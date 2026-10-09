@@ -28,6 +28,6 @@ it('default shop puts a priced inspection in the fixed actions and requests an o
 });
 it('a no-buy decision keeps entry primary and an explicitly opened ledger retains the complete view',async()=>{
  const {chooseBuildFocus}=await import('../src/game/BuildJourney'),s=buildJourneyPlan(true);chooseBuildFocus(s,'group');s.shop!.offers=[];s.shop!.toolOffers=[];const open=vi.fn(),actions={tools:()=>{},tool:()=>{},source:()=>{},deck:()=>{},continue:()=>{},continueLabel:'继续',ready:true};
- showBuildJourney({open} as unknown as DetailDialog,s,actions);const row=open.mock.calls[0][2];expect(row.find((a:{primary?:boolean})=>a.primary)?.label).toBe('这轮不买，留金入场');expect(open.mock.calls[0][3].keepsakeCompact).toBe(true);
+ showBuildJourney({open} as unknown as DetailDialog,s,actions);const row=open.mock.calls[0][2];expect(row.find((a:{primary?:boolean})=>a.primary)?.label).toBe('先留0金，进入牌桌');expect(open.mock.calls[0][3].keepsakeCompact).toBe(true);
  showBuildJourney({open} as unknown as DetailDialog,s,actions,false,true);expect(open.mock.calls[1][3].keepsakeCompact).toBeUndefined();expect(open.mock.calls[1][3].keepsake).toBeTruthy();
 });
