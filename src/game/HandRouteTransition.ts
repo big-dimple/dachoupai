@@ -1,5 +1,6 @@
 import {enumerateR2HandCandidates,type R2CandidateInput} from '../domain/r2HandCandidates';
 import {r2SelectionFacts,type R2SelectionFacts} from '../domain/r2SelectionFacts';
+import {validAssistDraft} from './AssistSelection';
 import {r2OrdinarySuppression} from '../domain/r2Chapter';
 
 /** Current public cards only. Preserve retained cards; never rank by score or inspect future draws. */
@@ -17,6 +18,14 @@ export function handRouteTransitions(input:R2CandidateInput,keepIds:readonly str
   const suppression=input.boss?r2OrdinarySuppression(input.boss,input.stageIndex,input.hand,example.playedIds):[];
   return r2SelectionFacts({...input,selectedIds:example.playedIds,ordinaryPointsSuppressedIds:[...new Set([...(input.ordinaryPointsSuppressedIds??[]),...suppression])]});
  });
+}
+export interface HandRouteTransitionDraft {facts:R2SelectionFacts;assistIds:string[];removedAssistIds:string[]}
+/** Resolve the transition's exact assist draft without touching the live selection. */
+export function handRouteTransitionDraft(input:R2CandidateInput,facts:R2SelectionFacts,keepIds:readonly string[],assistIds:readonly string[],available:boolean):HandRouteTransitionDraft {
+ const allowed=assistIds.filter(id=>!keepIds.includes(id));
+ const resolved=validAssistDraft({...input,selectedIds:facts.playedIds,ordinaryPointsSuppressedIds:facts.ordinaryPointsSuppressedIds},available,allowed);
+ const kept=resolved?.assistIds??[];
+ return {facts:resolved??facts,assistIds:[...kept],removedAssistIds:assistIds.filter(id=>!kept.includes(id))};
 }
 export function handRoutePlayBudget(handsLeft:number):string {
  const effects='返手或救场按实际效果结算；补牌不保证补齐。';

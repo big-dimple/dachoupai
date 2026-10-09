@@ -1,10 +1,10 @@
 import {rankLabel,SUIT_SYMBOL,type PlayingCard} from '../cards/types';
 import type {HandRouteReference} from './HandRouteGuidance';
 import {HAND_LABELS} from '../content/handLabels';
-import type {R2SelectionFacts} from '../domain/r2SelectionFacts';
+import type {HandRouteTransitionDraft} from './HandRouteTransition';
 import {renderCandidateCards,renderRetentionCards} from './CandidateCardPreview';
 
-export interface HandRouteTransitionView {budget:string;examples:(keepIds:readonly string[])=>readonly R2SelectionFacts[];choose:(facts:R2SelectionFacts,button:HTMLButtonElement)=>void;all:()=>void}
+export interface HandRouteTransitionView {budget:string;examples:(keepIds:readonly string[])=>readonly HandRouteTransitionDraft[];choose:(draft:HandRouteTransitionDraft,button:HTMLButtonElement)=>void;all:()=>void}
 /** Viewing a reference never modifies a draft or run; examples use the existing explicit change-group action. */
 export function mountHandRouteReferences(host:HTMLElement,hand:readonly PlayingCard[],references:readonly HandRouteReference[],disabledIds:readonly string[],discardCopy:string,back:()=>void,deck:()=>void,transition:HandRouteTransitionView):void {
  const names=(ids:readonly string[])=>ids.map(id=>hand.find(c=>c.id===id)!).map(c=>rankLabel(c.rank)+SUIT_SYMBOL[c.suit]).join(' ');
@@ -18,7 +18,7 @@ export function mountHandRouteReferences(host:HTMLElement,hand:readonly PlayingC
   const budget=document.createElement('p');budget.className='candidate-caption';budget.dataset.playBudget='true';budget.textContent=transition.budget;
   const examples=document.createElement('div');examples.className='candidate-transitions';
   const title=document.createElement('p');title.className='candidate-caption';title.textContent='只用保留组外的牌过渡 · 点示例后再换组，仍需自己出牌';examples.append(title);
-  for(const facts of transition.examples(reference.keepIds)){const button=document.createElement('button');button.type='button';button.className='candidate-choice';button.dataset.transition='true';button.dataset.ids=JSON.stringify(facts.playedIds);button.setAttribute('aria-pressed','false');button.setAttribute('aria-label','过渡示例 · '+HAND_LABELS[facts.type]+' · '+names(facts.playedIds));renderCandidateCards(button,hand,facts);const caption=document.createElement('span');caption.className='candidate-caption';caption.textContent=HAND_LABELS[facts.type]+' · 出'+facts.playedIds.length+'张，保留组不出；消耗1次出牌';button.append(caption);button.onclick=()=>transition.choose(facts,button);examples.append(button);}
+  for(const draft of transition.examples(reference.keepIds)){const facts=draft.facts;const button=document.createElement('button');button.type='button';button.className='candidate-choice';button.dataset.transition='true';button.dataset.ids=JSON.stringify(facts.playedIds);button.setAttribute('aria-pressed','false');button.setAttribute('aria-label','过渡示例 · '+HAND_LABELS[facts.type]+' · '+names(facts.playedIds));renderCandidateCards(button,hand,facts);const caption=document.createElement('span');caption.className='candidate-caption';caption.textContent=HAND_LABELS[facts.type]+' · 出'+facts.playedIds.length+'张，保留组不出；常规消耗1次出牌'+(draft.assistIds.length?'\n助演 '+names(draft.assistIds)+' 会一同用掉':'')+(draft.removedAssistIds.length?'\n换组将取消原助演 '+names(draft.removedAssistIds)+'；保留牌不参与助演':'');button.append(caption);button.onclick=()=>transition.choose(draft,button);examples.append(button);}
   if(!examples.querySelector('button')){const empty=document.createElement('p');empty.className='candidate-caption';empty.textContent='保留组外没有可出牌；可放弃留牌，查看全部已成型。';examples.append(empty);}
   actions.className='candidate-variants';
   for(const [label,run] of [['放弃留牌 · 看全部已成型',transition.all],['回牌桌自己选牌',back],['查公开牌组',deck]] as const){const button=document.createElement('button');button.type='button';button.textContent=label;button.onclick=run;actions.append(button);}
