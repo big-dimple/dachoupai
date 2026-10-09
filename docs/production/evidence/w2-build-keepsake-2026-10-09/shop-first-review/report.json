@@ -1,0 +1,153 @@
+{
+  "testedCommit": "8b5b75f06dd5cd2a184fb5ac74811689e31ea960",
+  "before": {
+    "source": "fd4661078d351793078e8fd7024d51cbd5b8b7d43c28e4ee1674b53b2c279398",
+    "index": "b467f14fdb94928d7c85542af658f26b9cadca01341b0d09dca3ed33056870ec",
+    "head": "8b5b75f06dd5cd2a184fb5ac74811689e31ea960",
+    "branch": "refs/heads/review/build-keepsake-20261009"
+  },
+  "originalNativeHead": "69227d09e63fd004546bbb7cfb377c46392c7f88",
+  "scope": "Restore exactly the prior accepted normal next-shop state through native production filechooser; display/inspect only at390 and320. No old gameplay chain, no state edits, no purchase command.",
+  "checks": [
+    {
+      "width": 390,
+      "status": "PASS",
+      "geometry": {
+        "viewport": {
+          "width": 390,
+          "height": 740
+        },
+        "scroll": {
+          "x": 36,
+          "y": 84.5,
+          "width": 318,
+          "height": 493.5,
+          "bottom": 578
+        },
+        "recommendation": {
+          "text": "优先考虑：一唱一和\n补当前缺少的倍率，用于同点成组；实付4金。\n当前培养 成组 · 本机续局保留",
+          "bounds": {
+            "x": 36,
+            "y": 96.5,
+            "width": 318,
+            "height": 110,
+            "bottom": 206.5
+          }
+        },
+        "card": {
+          "text": "一唱一和 · 实付4金\n\n查看后仍由你确认，不会自动购买。\n\n查看这件购买",
+          "bounds": {
+            "x": 36,
+            "y": 206.5,
+            "width": 318,
+            "height": 151.375,
+            "bottom": 357.875
+          }
+        },
+        "cardAction": {
+          "x": 125,
+          "y": 300.875,
+          "width": 114,
+          "height": 44,
+          "bottom": 344.875
+        },
+        "fixedPurchase": {
+          "text": "查看购买 · 4金",
+          "bounds": {
+            "x": 36,
+            "y": 605,
+            "width": 136.640625,
+            "height": 56,
+            "bottom": 661
+          },
+          "disabled": false
+        },
+        "collapsed": true,
+        "fullLedgerMounted": false,
+        "order": [
+          "dialog-purchase-summary",
+          "experience-cards",
+          "card-rules build-keepsake-compact"
+        ]
+      }
+    },
+    {
+      "width": 320,
+      "status": "PASS",
+      "geometry": {
+        "viewport": {
+          "width": 320,
+          "height": 740
+        },
+        "scroll": {
+          "x": 36,
+          "y": 84.5,
+          "width": 248,
+          "height": 441.5,
+          "bottom": 526
+        },
+        "recommendation": {
+          "text": "优先考虑：一唱一和\n补当前缺少的倍率，用于同点成组；实付4金。\n当前培养 成组 · 本机续局保留",
+          "bounds": {
+            "x": 36,
+            "y": 96.5,
+            "width": 248,
+            "height": 110,
+            "bottom": 206.5
+          }
+        },
+        "card": {
+          "text": "一唱一和 · 实付4金\n\n查看后仍由你确认，不会自动购买。\n\n查看这件购买",
+          "bounds": {
+            "x": 36,
+            "y": 206.5,
+            "width": 248,
+            "height": 143.375,
+            "bottom": 349.875
+          }
+        },
+        "cardAction": {
+          "x": 101,
+          "y": 296.875,
+          "width": 114,
+          "height": 44,
+          "bottom": 340.875
+        },
+        "fixedPurchase": {
+          "text": "查看购买 · 4金",
+          "bounds": {
+            "x": 36,
+            "y": 553,
+            "width": 248,
+            "height": 56,
+            "bottom": 609
+          },
+          "disabled": false
+        },
+        "collapsed": true,
+        "fullLedgerMounted": false,
+        "order": [
+          "dialog-purchase-summary",
+          "experience-cards",
+          "card-rules build-keepsake-compact"
+        ]
+      }
+    }
+  ],
+  "errors": [],
+  "physicalDevice": "NOT_RUN",
+  "humanAcceptance": "NOT_RUN",
+  "purchaseInspection": {
+    "status": "PASS",
+    "commandSeq": 7,
+    "submittedCommands": 0
+  },
+  "status": "PASS",
+  "after": {
+    "source": "fd4661078d351793078e8fd7024d51cbd5b8b7d43c28e4ee1674b53b2c279398",
+    "index": "b467f14fdb94928d7c85542af658f26b9cadca01341b0d09dca3ed33056870ec",
+    "head": "8b5b75f06dd5cd2a184fb5ac74811689e31ea960",
+    "branch": "refs/heads/review/build-keepsake-20261009"
+  },
+  "sourceUnchanged": true
+}

@@ -1,5 +1,7 @@
 # 六角色构筑手记／成长留存：有限软件证据
 
+2026-10-09父P2独审拒收旧默认商店首屏：完整账本挤掉推荐／购买。产品8b5b75f局部改为行动先见、账本默认紧凑折叠；[同390／320补正证据](shop-first-review/README.md)。旧图／旧软件PASS留原SHA，不能当作首屏优先通过。
+
 输入main b5aa06f（父03:42UTC已FF PR75）。初版481cf8a，当前产品69227d09e63fd004546bbb7cfb377c46392c7f88；源、index、HEAD检查前后完全一致。见report.json及assets.json：只实际消费既有二响.selection与b10.thumbnail；新增图／音频0，原图和manifest不改。
 
 ## 正常路径与当前像素
