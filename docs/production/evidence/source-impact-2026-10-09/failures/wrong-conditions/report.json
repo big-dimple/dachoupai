@@ -1,0 +1,287 @@
+{
+  "source": "2e492e6ed441a844ff9c3ab7539f12c2efc0e496",
+  "baseline": false,
+  "scope": "Controlled legacy group-upgrade-v1 B13 holdings and public hand for multi-source trace; current basic-choice b10 controlled shelf reused only for read10. No natural rate, six-hero, device/FPS/audio/human acceptance.",
+  "cases": [
+    {
+      "spec": {
+        "width": 1366,
+        "height": 768,
+        "mode": "normal",
+        "fixture": "chain"
+      },
+      "status": "FAIL",
+      "error": "TimeoutError: page.waitForFunction: Timeout 30000ms exceeded.",
+      "stack": "page.waitForFunction: Timeout 30000ms exceeded.\n    at live (/workspace/dachoupai/harness/source-impact.mjs:19:24)\n    at /workspace/dachoupai/harness/source-impact.mjs:25:43",
+      "observed": [
+        {
+          "cue": {
+            "eventId": "source-impact-controlled/hand/source-impact-controlled/command/3/event/2",
+            "rootId": "source-impact-controlled/hand/source-impact-controlled/command/3",
+            "instanceId": "a11",
+            "definitionId": "a11",
+            "kind": "retrigger",
+            "targetId": "spades-9",
+            "copies": [
+              "再9♠"
+            ]
+          },
+          "text": "再9♠",
+          "font": "14px",
+          "bounds": {
+            "type": 5,
+            "x": 606,
+            "y": 160,
+            "width": 30,
+            "height": 16
+          },
+          "frame": {
+            "type": 5,
+            "x": 603,
+            "y": 64,
+            "width": 80,
+            "height": 112
+          },
+          "originalVisible": false,
+          "targetGlow": 0.85,
+          "phase": "impact",
+          "scoreEvent": "source-impact-controlled/hand/source-impact-controlled/command/3/event/2"
+        },
+        {
+          "cue": {
+            "eventId": "source-impact-controlled/hand/source-impact-controlled/command/3/event/3",
+            "rootId": "source-impact-controlled/hand/source-impact-controlled/command/3",
+            "instanceId": "b06",
+            "definitionId": "b06",
+            "kind": "retrigger",
+            "targetId": "spades-9",
+            "copies": [
+              "再9♠"
+            ]
+          },
+          "text": "再9♠",
+          "font": "14px",
+          "bounds": {
+            "type": 5,
+            "x": 692,
+            "y": 160,
+            "width": 30,
+            "height": 16
+          },
+          "frame": {
+            "type": 5,
+            "x": 689,
+            "y": 64,
+            "width": 80,
+            "height": 112
+          },
+          "originalVisible": false,
+          "targetGlow": 0.85,
+          "phase": "impact",
+          "scoreEvent": "source-impact-controlled/hand/source-impact-controlled/command/3/event/3"
+        },
+        {
+          "cue": {
+            "eventId": "source-impact-controlled/hand/source-impact-controlled/command/3/event/7",
+            "rootId": "source-impact-controlled/hand/source-impact-controlled/command/3",
+            "instanceId": "a11",
+            "definitionId": "a11",
+            "kind": "retrigger",
+            "targetId": "hearts-9",
+            "copies": [
+              "再9♥"
+            ]
+          },
+          "text": "再9♥",
+          "font": "14px",
+          "bounds": {
+            "type": 5,
+            "x": 606,
+            "y": 160,
+            "width": 31,
+            "height": 16
+          },
+          "frame": {
+            "type": 5,
+            "x": 603,
+            "y": 64,
+            "width": 80,
+            "height": 112
+          },
+          "originalVisible": false,
+          "targetGlow": 0.85,
+          "phase": "impact",
+          "scoreEvent": "source-impact-controlled/hand/source-impact-controlled/command/3/event/7"
+        },
+        {
+          "cue": {
+            "eventId": "source-impact-controlled/hand/source-impact-controlled/command/3/event/8",
+            "rootId": "source-impact-controlled/hand/source-impact-controlled/command/3",
+            "instanceId": "b06",
+            "definitionId": "b06",
+            "kind": "retrigger",
+            "targetId": "hearts-9",
+            "copies": [
+              "再9♥"
+            ]
+          },
+          "text": "再9♥",
+          "font": "14px",
+          "bounds": {
+            "type": 5,
+            "x": 692,
+            "y": 160,
+            "width": 31,
+            "height": 16
+          },
+          "frame": {
+            "type": 5,
+            "x": 689,
+            "y": 64,
+            "width": 80,
+            "height": 112
+          },
+          "originalVisible": false,
+          "targetGlow": 0.85,
+          "phase": "impact",
+          "scoreEvent": "source-impact-controlled/hand/source-impact-controlled/command/3/event/8"
+        },
+        {
+          "cue": {
+            "eventId": "source-impact-controlled/hand/source-impact-controlled/command/3/event/12",
+            "rootId": "source-impact-controlled/hand/source-impact-controlled/command/3",
+            "instanceId": "a11",
+            "definitionId": "a11",
+            "kind": "retrigger",
+            "targetId": "clubs-9",
+            "copies": [
+              "再9♣"
+            ]
+          },
+          "text": "再9♣",
+          "font": "14px",
+          "bounds": {
+            "type": 5,
+            "x": 606,
+            "y": 160,
+            "width": 31,
+            "height": 16
+          },
+          "frame": {
+            "type": 5,
+            "x": 603,
+            "y": 64,
+            "width": 80,
+            "height": 112
+          },
+          "originalVisible": false,
+          "targetGlow": 0.85,
+          "phase": "impact",
+          "scoreEvent": "source-impact-controlled/hand/source-impact-controlled/command/3/event/12"
+        },
+        {
+          "cue": {
+            "eventId": "source-impact-controlled/hand/source-impact-controlled/command/3/event/13",
+            "rootId": "source-impact-controlled/hand/source-impact-controlled/command/3",
+            "instanceId": "b06",
+            "definitionId": "b06",
+            "kind": "retrigger",
+            "targetId": "clubs-9",
+            "copies": [
+              "再9♣"
+            ]
+          },
+          "text": "再9♣",
+          "font": "14px",
+          "bounds": {
+            "type": 5,
+            "x": 692,
+            "y": 160,
+            "width": 31,
+            "height": 16
+          },
+          "frame": {
+            "type": 5,
+            "x": 689,
+            "y": 64,
+            "width": 80,
+            "height": 112
+          },
+          "originalVisible": false,
+          "targetGlow": 0.85,
+          "phase": "impact",
+          "scoreEvent": "source-impact-controlled/hand/source-impact-controlled/command/3/event/13"
+        },
+        {
+          "cue": {
+            "eventId": "source-impact-controlled/hand/source-impact-controlled/command/3/event/17",
+            "rootId": "source-impact-controlled/hand/source-impact-controlled/command/3",
+            "instanceId": "a11",
+            "definitionId": "a11",
+            "kind": "retrigger",
+            "targetId": "clubs-13",
+            "copies": [
+              "再K♣"
+            ]
+          },
+          "text": "再K♣",
+          "font": "14px",
+          "bounds": {
+            "type": 5,
+            "x": 606,
+            "y": 160,
+            "width": 33,
+            "height": 16
+          },
+          "frame": {
+            "type": 5,
+            "x": 603,
+            "y": 64,
+            "width": 80,
+            "height": 112
+          },
+          "originalVisible": false,
+          "targetGlow": 0.85,
+          "phase": "impact",
+          "scoreEvent": "source-impact-controlled/hand/source-impact-controlled/command/3/event/17"
+        },
+        {
+          "cue": {
+            "eventId": "source-impact-controlled/hand/source-impact-controlled/command/3/event/20",
+            "rootId": "source-impact-controlled/hand/source-impact-controlled/command/3",
+            "instanceId": "a11",
+            "definitionId": "a11",
+            "kind": "retrigger",
+            "targetId": "diamonds-13",
+            "copies": [
+              "再K♦"
+            ]
+          },
+          "text": "再K♦",
+          "font": "14px",
+          "bounds": {
+            "type": 5,
+            "x": 606,
+            "y": 160,
+            "width": 31,
+            "height": 16
+          },
+          "frame": {
+            "type": 5,
+            "x": 603,
+            "y": 64,
+            "width": 80,
+            "height": 112
+          },
+          "originalVisible": false,
+          "targetGlow": 0.85,
+          "phase": "impact",
+          "scoreEvent": "source-impact-controlled/hand/source-impact-controlled/command/3/event/20"
+        }
+      ]
+    }
+  ],
+  "browser": "151.0.7922.173",
+  "status": "FAIL",
+  "error": "TimeoutError: page.waitForFunction: Timeout 30000ms exceeded."
+}

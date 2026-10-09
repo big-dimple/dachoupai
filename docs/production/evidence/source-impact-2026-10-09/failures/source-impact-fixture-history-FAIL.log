@@ -1,0 +1,12 @@
+/workspace/dachoupai/src/domain/r2Run.ts:172
+    if (!condition) throw new Error(`Run invariant: ${label}`);
+                          ^
+
+Error: Run invariant: chapter boss history
+    at check (/workspace/dachoupai/src/domain/r2Run.ts:172:27)
+    at assertR2Invariants (/workspace/dachoupai/src/domain/r2Run.ts:241:3)
+    at applyCommand (/workspace/dachoupai/src/domain/run.ts:121:50)
+    at send (file:///workspace/dachoupai/harness/source-impact.mjs:12:33)
+    at file:///workspace/dachoupai/harness/source-impact.mjs:13:445
+
+Node.js v24.19.0

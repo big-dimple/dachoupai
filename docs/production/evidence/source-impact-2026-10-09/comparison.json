@@ -1,0 +1,53 @@
+{
+  "status": "PASS",
+  "beforeSource": "d113b592bf78172c53af3270749d09edffcabb00",
+  "afterSource": "acbcec43b55c663c0667739f4c456ec2fccfd1c8",
+  "chainFullStateJournalStorageEqual": true,
+  "currentReadScore": "186",
+  "currentReadHeat": "10",
+  "chainScore": "3495",
+  "assets": [
+    {
+      "id": "f09",
+      "path": "public/assets/handdrawn-p08/cards/f09.thumbnail.webp",
+      "purpose": "thumbnail",
+      "sourceCommit": null,
+      "bytes": 4360,
+      "sha256": "d5984aaca5620150e701a00a5daf2c94ced849069c0838f0ad56b1787b60186a"
+    },
+    {
+      "id": "b05",
+      "path": "public/assets/handdrawn-p08/cards/b05.thumbnail.webp",
+      "purpose": "thumbnail",
+      "sourceCommit": "b67200e4a6a89d71a2e0d33ec18d36a1a446d5fb",
+      "bytes": 3964,
+      "sha256": "b82c77bb3a112c6f6fab449f29276b60317389b5a7ce1c45c3b1b33e642d14be"
+    },
+    {
+      "id": "b10",
+      "path": "public/assets/handdrawn-p08/cards/b10.thumbnail.webp",
+      "purpose": "thumbnail",
+      "sourceCommit": "b67200e4a6a89d71a2e0d33ec18d36a1a446d5fb",
+      "bytes": 4410,
+      "sha256": "ea36c7963037921a9b2ea7a9564bbb92edec1bd8f81835086e376715e7775097"
+    },
+    {
+      "id": "b06",
+      "path": "public/assets/handdrawn-p08/cards/b06.thumbnail.webp",
+      "purpose": "thumbnail",
+      "sourceCommit": "030508fb4dca8af276094dd5bc3eb6a9774d8375",
+      "bytes": 3380,
+      "sha256": "06d6152bbd2e226cdd3fde30d97ad086854ad19d69587fa327685a3642fbf667"
+    },
+    {
+      "id": "a11",
+      "path": "public/assets/handdrawn-p08/cards/a11-v2-ea9e76e4a31f.thumbnail.webp",
+      "purpose": "thumbnail",
+      "sourceCommit": "cd11009db796c815c21de6ba165e3697632e7334",
+      "bytes": 3756,
+      "sha256": "ea9e76e4a31fe5c4acd83e0324641c203c76281deaeec9684e06785492c87113"
+    }
+  ],
+  "newAssets": 0,
+  "physicalDevicesHumanAudioAccepted": false
+}
