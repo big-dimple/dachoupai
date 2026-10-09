@@ -1,0 +1,135 @@
+{
+  "source": "6178bb41a8f11b95d43a603a9bf3ac58a02156ab",
+  "baseline": true,
+  "scope": "Old stage3 shop checkpoint, disclosed cash/rank/suit/held-tool controls, not natural acquisition or route balance. Group buy/use and flush held-use through original native dialogs; straight and insufficient-cash read-only. Chromium software pictures, no human/device/audio/FPS acceptance.",
+  "cases": [
+    {
+      "kind": "group",
+      "width": 1366,
+      "height": 768,
+      "status": "PASS",
+      "comparison": {
+        "text": "这轮怎么选 · 同点成组\n\n这轮不买，留5金\n冷场救火：实付8金，当前还差3金；这轮先留金。\n当前培养 成组 · 本机续局保留\n\n二响 · 下场交棒次数恢复为1次 · 暂无成长来源\n建议依据与完整规则\n查看全部现货与持牌\n更换方向\n这轮不买，留金入场\n关闭",
+        "buttons": [
+          {
+            "text": "查看全部现货与持牌",
+            "bounds": {
+              "x": 264,
+              "y": 687,
+              "width": 245.5,
+              "height": 56,
+              "top": 687,
+              "right": 509.5,
+              "bottom": 743,
+              "left": 264
+            }
+          },
+          {
+            "text": "更换方向",
+            "bounds": {
+              "x": 517.5,
+              "y": 687,
+              "width": 175.5,
+              "height": 56,
+              "top": 687,
+              "right": 693,
+              "bottom": 743,
+              "left": 517.5
+            }
+          },
+          {
+            "text": "这轮不买，留金入场",
+            "bounds": {
+              "x": 701,
+              "y": 687,
+              "width": 245.5,
+              "height": 56,
+              "top": 687,
+              "right": 946.5,
+              "bottom": 743,
+              "left": 701
+            }
+          },
+          {
+            "text": "关闭",
+            "bounds": {
+              "x": 954.5,
+              "y": 687,
+              "width": 147.5,
+              "height": 56,
+              "top": 687,
+              "right": 1102,
+              "bottom": 743,
+              "left": 954.5
+            }
+          }
+        ]
+      }
+    },
+    {
+      "kind": "flush",
+      "width": 390,
+      "height": 740,
+      "status": "PASS",
+      "comparison": {
+        "text": "这轮怎么选 · 同花集中\n\n这轮不买，留5金\n冷场救火：实付8金，当前还差3金；这轮先留金。\n当前培养 同花 · 开局 成组 · 本机续局保留\n\n二响 · 下场交棒次数恢复为1次 · 暂无成长来源\n建议依据与完整规则\n查看全部现货与持牌\n更换方向\n这轮不买，留金入场\n关闭",
+        "buttons": [
+          {
+            "text": "查看全部现货与持牌",
+            "bounds": {
+              "x": 36,
+              "y": 609,
+              "width": 190,
+              "height": 44,
+              "top": 609,
+              "right": 226,
+              "bottom": 653,
+              "left": 36
+            }
+          },
+          {
+            "text": "更换方向",
+            "bounds": {
+              "x": 234,
+              "y": 609,
+              "width": 120,
+              "height": 44,
+              "top": 609,
+              "right": 354,
+              "bottom": 653,
+              "left": 234
+            }
+          },
+          {
+            "text": "这轮不买，留金入场",
+            "bounds": {
+              "x": 36,
+              "y": 661,
+              "width": 204,
+              "height": 56,
+              "top": 661,
+              "right": 240,
+              "bottom": 717,
+              "left": 36
+            }
+          },
+          {
+            "text": "关闭",
+            "bounds": {
+              "x": 248,
+              "y": 661,
+              "width": 106,
+              "height": 56,
+              "top": 661,
+              "right": 354,
+              "bottom": 717,
+              "left": 248
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "browser": "151.0.7922.173",
+  "status": "PASS"
+}

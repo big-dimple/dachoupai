@@ -1,0 +1,73 @@
+
+ RUN  v4.1.11 /workspace/dachoupai
+
+ ❯ tests/build-fallback.test.ts (8 tests | 3 failed) 233ms
+   × no current core candidate can still compare a legal basic tool and commit the disclosed local trio 58ms
+   × straight repairs exactly one known window using a duplicate donor without reading a future draw 22ms
+   × does not trade away another pair/trio or remove the only donor of a straight point 17ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 3 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/build-fallback.test.ts > no current core candidate can still compare a legal basic tool and commit the disclosed local trio
+AssertionError: expected 'clubs-6' to be 'clubs-7' // Object.is equality
+
+Expected: "clubs-7"
+Received: "clubs-6"
+
+ ❯ tests/build-fallback.test.ts:9:265
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/3]⎯
+
+ FAIL  tests/build-fallback.test.ts > straight repairs exactly one known window using a duplicate donor without reading a future draw
+AssertionError: expected '3、4、5、6、7中只缺7。\n6♣ → 7♣；公开牌组6 4→3张、7 …' to contain '5、6、7、8、9中只缺7'
+
+- Expected
++ Received
+
+- 5、6、7、8、9中只缺7
++ 3、4、5、6、7中只缺7。
++ 6♣ → 7♣；公开牌组6 4→3张、7 0→1张。
++ 保留原点数至少一张；只改牌组，不保证下手抽到这一段。
++ 实付2金；余额5→3金，按当前本金的常规利息档1→0。利息未到账，按关末实际余额重算。
+
+ ❯ tests/build-fallback.test.ts:13:174
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/3]⎯
+
+ FAIL  tests/build-fallback.test.ts > does not trade away another pair/trio or remove the only donor of a straight point
+AssertionError: expected { targetId: 'clubs-6', …(2) } to be undefined
+
+- Expected:
+undefined
+
++ Received:
+{
+  "body": "6♣ → 7♣；公开牌组6 4→3张、7 2→3张。
+花色/增强/版次保留；这张原点数永久减少，不保证下手抽到同点组。",
+  "summary": "可补一个同点三条",
+  "targetId": "clubs-6",
+}
+
+ ❯ tests/build-fallback.test.ts:23:133
+     21| });
+     22| it('does not trade away another pair/trio or remove the only donor of …
+     23|  const s=missingCoreFixture('group');s.deckInstances.find(c=>c.id==='c…
+       |                                                                                                                                     ^
+     24|  const t=missingCoreFixture('straight');for(const c of t.deckInstances…
+     25| });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/3]⎯
+
+
+ Test Files  1 failed | 2 passed (3)
+      Tests  3 failed | 29 passed (32)
+   Start at  22:21:56
+   Duration  1.20s (transform 1.65s, setup 0ms, import 2.24s, tests 575ms, environment 0ms)
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice
