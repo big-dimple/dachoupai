@@ -267,7 +267,8 @@ export function showConsumables(dialog:DetailDialog,state:R2RunState,ready:boole
       if(operation.kind==='add-gold')lines.push(`金币 ${state.gold} → ${state.gold+operation.amount}。`);
       if(operation.kind==='free-reroll')lines.push(state.shop?`本次免费刷新，不扣金币；刷新计数 ${state.shop.rerollCount} → ${state.shop.rerollCount+1}。\n下次收费刷新 ${r2PaidRerollPrice(state)} → ${r2PaidRerollPrice({...state,shop:{...state.shop,rerollCount:state.shop.rerollCount+1}})} 金。长期道具货架保留，不触发成长。`:'请在商店免费刷新货架。');
       const replacementNotes=selected.flatMap(choice=>choice.card?toolCardChange(tool,choice.card)?.note.startsWith('替换原增强')?[toolCardChange(tool,choice.card)!.note]:[]:[]);
-      costs.textContent=[...replacementNotes,...lines.filter(line=>/^(永久牺牲|有效牌组|额外使用代价|清空全部金币|下一场起)/.test(line))].join('\n');costs.hidden=!costs.textContent;
+      const exchangeCost=operation.kind==='exchange-hand-levels'&&selection.secondaryHandType?[`遗忘代价：${HAND_LABELS[selection.secondaryHandType]} Lv.${state.handLevels[selection.secondaryHandType]} → ${state.handLevels[selection.secondaryHandType]!-operation.loss}`]:[];
+      costs.textContent=[...replacementNotes,...exchangeCost,...lines.filter(line=>/^(永久牺牲|有效牌组|额外使用代价|清空全部金币|下一场起)/.test(line))].join('\n');costs.hidden=!costs.textContent;
       preview.textContent=lines.join('\n\n')||'选择目标后，这里会显示变化与代价。';
     }
     refresh();
