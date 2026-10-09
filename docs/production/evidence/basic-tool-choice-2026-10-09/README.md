@@ -15,3 +15,5 @@ PC1366在c24125b：实际选择→确认前29→27、取消完整不变、购买
 `boundaries-report.json`同名现货为明确受控T08货架，非自然获取；IndexedDB/meta QuotaExceededError只在提交保存处注入。第一轮观察器误关自动打开菜单，后续“已保存”结果/菜单阻挡FAIL继续保留。进一步定位是真实恢复缺陷：session成功“本局已保存”/“候选已保存”被RunMenu当警告，每次saving/idle变化再弹菜单；18072c8仅排除这两条成功通知，真实paused/readonly/lease警告保持。前两次归因观察器不足已纠正，未隐去原FAIL。重试、库存使用与同一已记录自然窗口实际手牌通过native输入复核完整状态。后续脚本漏执行自然记录中的DiscardHand导致等待，原FAIL保留；d932a12补真实输入后最终全部PASS，实际1730出手及reload完整canonical一致。原构建18072c8与d932a12的src树相同，见source-receipt。有限截图不用视频，不量软件GPU/FPS，不签听感、用户理解、物理设备或总体平衡。
 
 最终精确HEAD CI及draft PR由父按交棒回执核对，仍由父协调main，未强推或绕保护。整体第3包、W0–W9／六角色／原资产及真人/设备/听感门槛仍OPEN。
+
+首轮最终09454a2的CI37983905140域19旧期待/browser smoke旧身份FAIL，docs通过；[完整原日志及局部补正](ci-first-FAIL/README.md)。2文件31项/type通过，追加独立旧身份引导案例，不改产品src、不重跑原生，最终新HEAD另核。
