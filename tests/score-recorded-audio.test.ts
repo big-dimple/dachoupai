@@ -49,8 +49,8 @@ it('future multi-resource cap ends earlier beats at the collision time instead o
 });
 
 it('user 7/100 remains exact while internal music headroom, trimmed body and duck restoration apply',()=>{
- const {engine,inside,sources}=fixture();engine.setVolume('music',.07);engine.setVolume('sfx',1);expect(engine.getVolume('music')).toBe(.07);expect(engine.getVolume('sfx')).toBe(1);expect(inside.gains.music.gain.setTargetAtTime).toHaveBeenLastCalledWith(.035,1,.015);
- inside.scoreSamples.set('card-slide-1',{name:'card-slide-1',duration:.6});inside.sampleBodies.set('card-slide-1',{offset:.142,gain:.72});engine.select();expect(sources[0].start.mock.calls[0][1]).toBe(.142);expect(inside.gains.music.gain.linearRampToValueAtTime).toHaveBeenLastCalledWith(.035,1.12);
+ const {engine,inside,sources}=fixture();engine.setVolume('music',.07);engine.setVolume('sfx',1);expect(engine.getVolume('music')).toBe(.07);expect(engine.getVolume('sfx')).toBe(1);expect(inside.gains.music.gain.setTargetAtTime).toHaveBeenLastCalledWith(.0126,1,.015);
+ inside.scoreSamples.set('card-slide-1',{name:'card-slide-1',duration:.6});inside.sampleBodies.set('card-slide-1',{offset:.142,gain:.72});engine.select();expect(sources[0].start.mock.calls[0][1]).toBe(.142);expect(inside.gains.music.gain.linearRampToValueAtTime).toHaveBeenLastCalledWith(.0126,1.12);
  engine.setVolume('music',0);expect(inside.gains.music.gain.setValueAtTime).toHaveBeenLastCalledWith(0,1);
 });
 

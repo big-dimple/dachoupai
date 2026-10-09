@@ -550,3 +550,5 @@ button[aria-busy=true] { border-style:dashed; }
 .route-fit-caption { color:var(--route-fit);font-size:14px;line-height:20px;margin:6px 0 0; }
 .tool-inventory-card[data-route-fit] { border:3px solid var(--route-fit); }
 .tool-paper-ash { display:grid;place-content:center;min-height:94px;width:66px;margin:auto;color:#625b52;font-size:14px;border-bottom:6px dotted #625b52;background:radial-gradient(ellipse at 50% 85%,#b1a69b88 5%,transparent 35%); }
+
+.tool-purchased-result[open] { height:auto;min-height:0; }

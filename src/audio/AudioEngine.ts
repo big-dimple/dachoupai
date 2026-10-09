@@ -15,8 +15,8 @@ export type ScoreRollKind = 'heat' | 'mult' | 'total';
 const RECORDING_PATH = recording.runtimePath;
 export const TRANSITION_MUSIC = 'Serenade - Schubert · Jérôme Chauvel / Abydos Music（临时恢复）';
 const bounded = (value: number, max: number): number => Number.isFinite(value) ? Math.max(0, Math.min(max, value)) : 0;
-const SOURCE_GAIN: Record<VoiceBus, number> = { music: 1, sfx: 5.7, ui: 4.5 };
-const MUSIC_HEADROOM=.5; // Internal mix, not a preference/slider migration.
+const SOURCE_GAIN: Record<VoiceBus, number> = { music: 1, sfx: 8, ui: 7.2 };
+const MUSIC_HEADROOM=.18; // Internal mix, not a preference/slider migration.
 
 /** One application context. The app owns gesture/visibility listeners and persistence. */
 export class AudioEngine {
