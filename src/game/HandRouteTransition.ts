@@ -19,6 +19,7 @@ export function handRouteTransitions(input:R2CandidateInput,keepIds:readonly str
  });
 }
 export function handRoutePlayBudget(handsLeft:number):string {
- return handsLeft<=1?'最后一手：出牌后没有下一手补牌；必须达到目标才能过关。可放弃留牌，看全部已成型。':
-  '本场剩余出牌 '+handsLeft+' 次；过渡也消耗1次，出牌后剩 '+(handsLeft-1)+' 次。补牌不保证补齐。';
+ const effects='返手或救场按实际效果结算；补牌不保证补齐。';
+ return handsLeft<=1?'常规最后一手：通常出牌后没有剩余次数；未达目标有败局风险。'+effects+'可放弃留牌，看全部已成型。':
+  '本场剩余出牌 '+handsLeft+' 次；过渡常规消耗1次，常规剩余 '+(handsLeft-1)+' 次。'+effects;
 }

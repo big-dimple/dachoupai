@@ -1,3 +1,4 @@
+import {handRoutePlayBudget} from '../src/game/HandRouteTransition';
 import {describe,expect,it} from 'vitest';
 import {applyCommand,assertRunInvariants,createRun,type Action,type Command,type R2RunState} from '../src/domain/run';
 import {r2DisabledCards} from '../src/domain/r2Chapter';
@@ -96,7 +97,8 @@ describe('C02 stage qualifications and one-use hand return',()=>{
     const plan=cards(table(['b12','f07'],5),[[2,'spades'],[3,'hearts'],[4,'clubs'],[5,'diamonds'],[6,'spades'],[6,'hearts'],[6,'clubs'],[6,'diamonds']]);
     plan.state.characterId='touye';plan.state.rng.rule={algorithm:'fnv1a-mulberry32-v1',state:1};
     let state=plan.state;for(const id of plan.hand.slice(0,3))state=send(state,{type:'PlayHand',selectedIds:[id]});
-    expect(stage(state).handsLeft).toBe(1);state=send(send(state,{type:'SetWager',enabled:true}),{type:'PlayHand',selectedIds:plan.hand.slice(4,8)});
+    expect(stage(state).handsLeft).toBe(1);expect(handRoutePlayBudget(stage(state).handsLeft)).toContain('返手或救场按实际效果结算');expect(handRoutePlayBudget(stage(state).handsLeft)).toContain('败局风险');const beforeHand=[...state.handOrder];state=send(send(state,{type:'SetWager',enabled:true}),{type:'PlayHand',selectedIds:plan.hand.slice(4,8)});
+    expect(state.handOrder.some(id=>!beforeHand.includes(id))).toBe(true);
     expect(state.lastTrace!.finalScore).toBe('1774');expect(stage(state).heat).toBe('1852');
     expect(state.phase).toBe('await-input');expect(stage(state)).toMatchObject({handsLeft:1,playIndex:4,quadRefundUsed:true,rescueUsed:false});
     expect(state.safetyNetUsed).toBe(false);expect(state.jokers.some(j=>j.definitionId==='f07')).toBe(true);expect(state.lastTrace!.destroyedJokerIds).toEqual([]);

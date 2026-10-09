@@ -1,3 +1,4 @@
+import {handRoutePlayBudget} from '../src/game/HandRouteTransition';
 import {describe,expect,it} from 'vitest';
 import {applyCommand,assertRunInvariants,createRun,stateHash,type Action,type Command,type R2RunState} from '../src/domain/run';
 import {makeCheckpoint,readCheckpoint,restoreSlots} from '../src/application/checkpoint';
@@ -210,8 +211,10 @@ describe('C00 actual command transactions and lifecycle',()=>{
   });
   it('F07 rescues resource exhaustion after refill, destroys once, records the source and excludes future sale',()=>{
     let state=table(['f07']);state=hand(state,['clubs-2']);lastOpportunity(state);
+    expect(handRoutePlayBudget(state.stage!.handsLeft)).toContain('返手或救场按实际效果结算');expect(handRoutePlayBudget(state.stage!.handsLeft)).toContain('败局风险');const beforeHand=[...state.handOrder];
     const cmd=command(state,{type:'PlayHand',selectedIds:state.handOrder}),result=applyCommand(state,cmd);if(!result.ok)throw Error(result.code);state=result.state;assertRunInvariants(state);
     expect(state.phase).toBe('await-input');expect(state.stage!.handsLeft).toBe(1);expect(state.stage!.playIndex).toBe(4);expect(state.stage).toHaveProperty('rescueUsed',true);expect(state).toHaveProperty('safetyNetUsed',true);expect(state.jokers).toEqual([]);expect(state.gold).toBe(6);
+    expect(state.handOrder.some(id=>!beforeHand.includes(id))).toBe(true);
     expect(result.events.some(e=>e.type==='joker-transaction'&&e.definitionId==='f07'&&e.instanceId==='owned/f07'&&e.operation==='rescue-hand')).toBe(true);
     expect(state.lastTrace!.events.some(e=>e.sourceInstanceId==='owned/f07'&&e.operation==='rescue-hand')).toBe(true);
     expect(state.lastTrace!.sourceJokers.map(j=>j.instanceId)).toContain('owned/f07');
