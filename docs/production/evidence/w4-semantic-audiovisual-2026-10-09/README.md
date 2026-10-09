@@ -1,19 +1,19 @@
 # 单一视听候选：有限证据
 
-输入main f065091c488034a9e8d68feda9568dcbd52eb25c，父已FF PR72／73。声音与回弹产品 cc2e972f9a3ed3a3e02bf3b77f757e0576f23f34，harness修正3a633402a20e1b150da552541f0fbc7bebdce930；手机读数纸底最终产品 **76b74979be66ef029666efd24107a7cd8950dc07**。仅draft，最终精确head CI由PR另核，未由本执行合main。6.1 Medium串行，无工作者。
+输入main f065091c488034a9e8d68feda9568dcbd52eb25c，父已FF PR72／73。声音与回弹产品 cc2e972f9a3ed3a3e02bf3b77f757e0576f23f34，harness修正3a633402a20e1b150da552541f0fbc7bebdce930；手机读数纸底76b74979be66ef029666efd24107a7cd8950dc07；未来发牌／资源重叠上限补正后最终产品 **f6a72451e9cbeb170dab95f1afbf89e8f3c1dcc0**。仅draft，最终精确head CI由PR另核，未由本执行合main。6.1 Medium串行，无工作者。
 
 ## 可直接审阅
 
-- [完整正常动作链 MP4](natural-actual-action-chain.mp4)：约10秒，1366×768实际浏览器全页合成帧，导出960×540，包含DOM工具页；真实post-ceiling输出按记录时钟对齐（音频开始早于首个画面20.35ms，导出裁去这段）。这是实际CDP连续帧录制，未拼拍静态验收图，非实机／GPU FPS证据。
-- [该链原始可播放音频](natural-actual-audio.webm)、[输出分析](natural-output-analysis.json)：10.02秒，混合音乐30／音效80，峰值0.543121、RMS0.033758、满幅样本0。关键音触发至首个观测strike帧8.707ms。不是频谱品味／用户听感通过。
+- [完整正常动作链 MP4](natural-actual-action-chain.mp4)：约10秒，1366×768实际浏览器全页合成帧，导出960×540，包含DOM工具页；真实post-ceiling输出按记录时钟对齐（音频开始早于首个画面3.264ms，导出裁去这段）。这是实际CDP连续帧录制，未拼拍静态验收图，非实机／GPU FPS证据。
+- [该链原始可播放音频](natural-actual-audio.webm)、[输出分析](natural-output-analysis.json)：10.02秒，混合音乐30／音效80，峰值0.535614、RMS0.033753、满幅样本0。关键音触发至首个观测strike帧11.610ms。不是频谱品味／用户听感通过。
 - [最终PC真实相乘高光](hero-final/1366-multiply-normal.png)、[手机中途减动态前strike](hero-final/390-multiply-mid-reduce.png)、[手机跳过前strike](hero-final/390-multiply-skip.png)、[相乘独立输出](hero-final/1366-multiply-normal-audio.webm)。图片捕捉在操作低动态／跳过之前；最终完整状态／清理见report，不冒充已显示低动态后的瞬间。
 - [最终受控trace完整报告](hero-final/report.json)、[正常新局完整状态报告](natural-report.json)、[所有生产调用审计](production-audio-calls.txt)。所有waitForFunction为同步Boolean，异步预热另行显式await。
 
-正常链录在3a63340，PC音画产品与最终相同；后续76b7497仅增加手机高光读数纸底，该链不冒称重录于新head。最终三项受控高光记录在76b7497，受控相乘fixture不当自然率／经营证明。62项9文件定向／构建通过，纸底增量6项／type通过；最终CI另核，不反复本地整包或旧档矩阵。
+正常链最终重录在bd98e5d98103bfe7b9fe7757f1aa44120c1b8965，保留14张未来发牌而只限制实际重叠；后续f6a7245仅补未来多资源上限在碰撞时刻结束旧音，本正常链资源amount1的输出未变，不冒称其录于新head。最终三项受控高光记录在76b7497，受控相乘fixture不当自然率／经营证明。62项9文件定向／构建通过，纸底增量6项／type、未来发牌／多资源增量9项／type通过；最终CI另核，不反复本地整包或旧档矩阵。
 
 ## 真实动作与中断
 
-一条全新自然二响／成组局，seed1791513194283，正常英雄→路线→一起登台。起手满堂彩4金，6→2；基础道具2金，2→0；真实使用塔罗修改所选持久牌，进入牌桌后公开4♥＋4♣对子触发保存首发，实际过关、金币7。每步完整state同canonical命令；无扫种子／注入强牌。记录实际纸牌、购买两层、工具、发8牌、资源、加成、key三层、award三层与成功三层，0 oscillator。终止录制时还有一个有限胜利尾音，未声称所有总声部当时为0。
+一条全新自然二响／成组局，seed1791513668946，正常英雄→路线→一起登台。起手满堂彩4金，6→2；基础道具2金，2→0；真实使用塔罗修改所选持久牌，进入牌桌后公开K♦＋K♣对子触发保存首发，实际过关、金币7。每步完整state同canonical命令；无扫种子／注入强牌。记录实际纸牌、购买两层、工具、发8牌、资源、加成、key三层、award三层与成功三层，0 oscillator。终止录制时还有一个有限胜利尾音，未声称所有总声部当时为0。
 
 最终有限3案：PC1366真实保存相乘；手机390相乘时打开菜单切减少动态；同手机相乘快进。各自最终state完全同真实命令结算，hero group0／scoreAccent0、BGM只有原曲、0 oscillator。未测所有手机尺寸／物理后台音频／设备FPS或用户喜欢；单元覆盖缺源消费不追播、静音、挂后台和取消释放、事件防重、每语义上限与连续选牌。
 
@@ -27,6 +27,6 @@ Inkwave固定98ea296：实际Spring积分器→Phaser有限ease、minGap／每�
 
 ## 原失败与限制
 
-保留[失败目录](original-failures/)。首版脚本用了手机工具入口、宽屏无该按钮；另一版尝试共用货架分页，实际PC有专用工具页，修正为真实入口。首次过程中提交harness也导致source/index冻结断言失败；该结果未记PASS、后续固定head串行重录且sourceUnchanged=true。首轮相乘检查用未完成ResourceTiming判断流式MP3请求，误报缺曲；改为实际network request事件独立确认。视觉复核又见手机回弹压到倍率说明，局部纸底已修、有限3案重新检查；旧图保原SHA。
+保留[失败目录](original-failures/)。首版脚本用了手机工具入口、宽屏无该按钮；另一版尝试共用货架分页，实际PC有专用工具页，修正为真实入口。首次过程中提交harness也导致source/index冻结断言失败；该结果未记PASS、后续固定head串行重录且sourceUnchanged=true。首轮相乘检查用未完成ResourceTiming判断流式MP3请求，误报缺曲；改为实际network request事件独立确认。视觉复核又见手机回弹压到倍率说明，局部纸底已修、有限3案重新检查；旧图保原SHA。最后源码复核发现发牌预调度被声部上限提前切掉，已按实际重叠时间限流；未来多资源过限在未来碰撞时刻停止而非立即disconnect。9项定向通过，正常动作链按bd98e5d固定head重录。增量测试最初误把UI资源短声当作cancelPresentation应释放的sfx声部，1FAIL保留；改用背景中断验证全部总线释放，没有改既有UI保留合同。
 
 所有heard:false。无人主观听过新素材或本录制，观感／听感／用户PC和手机实机验收待父协调；软件录制、无满幅样本和测试数量不能代签。保持原小夜曲、30/80、已上线首次+500ms、低动态／跳过／取消、英雄→路线及商店规则，无新领域数值／3D／全套美术。

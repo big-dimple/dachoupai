@@ -64,4 +64,4 @@
 
 未采用：InkWipe、V.tone/V.nz、确认冲击环、.955按压／80ms、3D、字体、曲目或debug freeze；它们保留可移植参考，不能写成已实现。原demo5%失败／未听限制保持。此处记录候选实施，不预记CI、main、真人听感／观感或设备验收。最终有限动作链、可播放片段和精确head结果另存证据。
 
-有限候选已保存：[实际动作链、可播放输出、采用与未采用、原FAIL](evidence/w4-semantic-audiovisual-2026-10-09/README.md)。最终产品76b7497，heard:false；最终精确head CI／父审／main与用户实机另核。
+有限候选已保存：[实际动作链、可播放输出、采用与未采用、原FAIL](evidence/w4-semantic-audiovisual-2026-10-09/README.md)。最终产品f6a7245（未来发牌／多资源上限补正），heard:false；最终精确head CI／父审／main与用户实机另核。

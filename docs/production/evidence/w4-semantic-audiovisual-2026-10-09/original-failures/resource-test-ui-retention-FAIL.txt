@@ -1,0 +1,38 @@
+
+ RUN  v4.1.11 /workspace/dachoupai
+
+ ❯ tests/score-recorded-audio.test.ts (9 tests | 1 failed) 33ms
+   × future multi-resource cap ends earlier beats at the collision time instead of disconnecting now 6ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/score-recorded-audio.test.ts > future multi-resource cap ends earlier beats at the collision time instead of disconnecting now
+AssertionError: expected 6 to be +0 // Object.is equality
+
+- Expected
++ Received
+
+- 0
++ 6
+
+ ❯ tests/score-recorded-audio.test.ts:48:57
+     46|  expect(sources[0].stop.mock.calls.at(-1)[0]).toBeCloseTo(1.11);
+     47|  const voices=[...inside.voices] as any[];for(const voice of voices)ex…
+     48|  engine.cancelPresentation();expect(inside.voices.size).toBe(0);
+       |                                                         ^
+     49| });
+     50|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 8 passed (9)
+   Start at  02:42:15
+   Duration  361ms (transform 105ms, setup 0ms, import 123ms, tests 33ms, environment 0ms)
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice
