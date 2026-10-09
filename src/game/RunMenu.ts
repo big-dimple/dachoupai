@@ -1,3 +1,5 @@
+import {DetailDialog} from './DetailDialog';
+import {showCatalog} from './CatalogDialog';
 import type Phaser from 'phaser';
 import {gameSession} from './session';
 import {heatText} from './scoreText';
@@ -83,6 +85,8 @@ export function installRunMenu(game:Phaser.Game,getActions:()=>RunMenuActions|un
     // Closing a menu on the current scene preserves the player's unsubmitted card selection.
     if(game.registry.get('runController')!==run||!game.scene.isActive(target))routeSavedRun(game);close();
   },primary);resume.className='dialog-primary';
+  const catalogDialog=new DetailDialog();
+  const catalogButton=button('图鉴查询',()=>{const snapshot=session.run?.state;close();showCatalog(catalogDialog,snapshot,()=>session.run?.state===snapshot&&!session.working);});
   const inspect=document.createElement('div');inspect.className='run-menu-inspect';panel.append(inspect);
   const inspectButtons=(['viewDeck','viewRules','viewLastHand'] as const).map((key,index)=>{
     const action=button(['查看牌组','规则 / 物品','上手详情'][index],()=>{
@@ -154,6 +158,7 @@ export function installRunMenu(game:Phaser.Game,getActions:()=>RunMenuActions|un
     status.textContent=HAND_LABELS[state.lastTrace.handType]+' · '+heatText(state.lastTrace.finalScore)+' 热度\n'+(state.lastTrace.assist?savedAssistCopy(state.lastTrace)+'\n':'')+state.lastTrace.events.map(e=>e.reasonKey+'：'+e.operation+' '+e.value.n+'/'+e.value.d).join('\n');
   },playback);
   function refreshPlayback():void {
+    catalogButton.disabled=session.working||!session.loaded;
     const presenting=game.scene.isActive('game')&&(game.scene.getScene('game') as GameScene).isPresenting;
     forward.disabled=!presenting;replay.disabled=presenting||!session.run?.state.lastTrace;
     const actions=getActions();for(const entry of inspectButtons)entry.button.hidden=typeof actions?.[entry.key]!=='function';
@@ -189,5 +194,5 @@ export function installRunMenu(game:Phaser.Game,getActions:()=>RunMenuActions|un
   const unsubscribe=session.subscribe(refreshState);refreshState();
   const refreshMenuActions=(_parent:unknown,key:string)=>{if(key==='runMenuActions')refreshPlayback();};
   for(const event of ['setdata','changedata','removedata'])game.registry.events.on(event,refreshMenuActions);
-  game.events.once('destroy',()=>{unsubscribe();unsubscribeFullscreen();for(const event of ['setdata','changedata','removedata'])game.registry.events.off(event,refreshMenuActions);clearTimeout(noticeTimer);fullscreen.dispose();if(modal.open)modal.close();host.remove();});
+  game.events.once('destroy',()=>{catalogDialog.close();unsubscribe();unsubscribeFullscreen();for(const event of ['setdata','changedata','removedata'])game.registry.events.off(event,refreshMenuActions);clearTimeout(noticeTimer);fullscreen.dispose();if(modal.open)modal.close();host.remove();});
 }

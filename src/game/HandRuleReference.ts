@@ -18,13 +18,15 @@ const algorithms:Record<R2HandType,string>={
  'flush-house':'5张相同花色且组成葫芦；复制牌须有不同实例身份。',
  'flush-five':'5张相同花色、相同点数；复制牌须有不同实例身份。',
 };
-/** Public reference only: reads current saved levels, never evaluates a player's score. */
-export function handRuleReference(levels:Partial<Record<R2HandType,number>>,rules:HandRules={}):string {
- const rows=R2_HAND_TYPES.map(type=>{
+export function handTypeRuleReference(type:R2HandType,levels:Partial<Record<R2HandType,number>>={},rules:HandRules={}){
   const discovered=levels[type]!==undefined,level=levels[type]??1,[heat,mult,heatStep,multStep]=R2_BASE_SCORES[type];
   const H=heat+(level-1)*heatStep,M=Rational.fromJSON(mult).add(Rational.fromJSON(multStep).multiply(new Rational(BigInt(level-1))));
   const extra=type==='straight'&&rules.fourStraight?' 当前规则：4张普通顺子；同花顺仍5张。':type==='flush'&&rules.fourFlush?' 当前规则：4张普通同花；同花顺仍5张。':'';
   return HAND_LABELS[type]+' · '+(discovered?'Lv'+level:'未发现 · 按Lv1基准')+'\n'+algorithms[type]+extra+'\n基础热度 '+H+' · 基础倍率 '+fractionText(M.toJSON())+'\n每级：热度 +'+heatStep+' · 倍率 +'+fractionText(multStep);
- });
+
+}
+/** Public reference only: reads current saved levels, never evaluates a player's score. */
+export function handRuleReference(levels:Partial<Record<R2HandType,number>>,rules:HandRules={}):string {
+ const rows=R2_HAND_TYPES.map(type=>handTypeRuleReference(type,levels,rules));
  return '按当前保存的等级列出全部12型；同一次选牌只判一种牌型。目录顺序不代表当前收益高低。\n\n'+rows.join('\n\n')+'\n\n判型优先顺序（先符合者）：'+[...R2_HAND_TYPES].reverse().map(t=>HAND_LABELS[t]).join(' → ')+(rules.fourStraight&&rules.fourFlush?'\n同时持有两条四牌规则时，4张同花连续判普通同花，不是同花顺。':'')+'\n\n普通点数：2–10按牌面，J／Q／K为10，A为11。只加有效计分牌；附带牌仍参与判型、打出张数和重复条件。Boss停用的牌仍成型但计分效果停用；普通点数0只停止普通点数，其他效果保留。\n\n计分顺序：当前等级牌型基础 → 逐有效计分牌的普通点数、强化、版次、该牌大丑牌与重触发 → 留手强化／大丑牌 → 角色 → 按持有顺序的整手大丑牌及各自版次（逆场按相反顺序）。阿默新规则局仅打出1张时，角色 ×3 放在整手大丑牌之后；旧规则局仍按原顺序结算。各次 +热度、+倍率、×倍率即时发生；先乘不会追溯乘后加的倍率。最后热度×倍率，只向下取整一次。\n固定顺序示例：4倍先+2再×1.5为9倍；先×1.5再+2为8倍。\n\n仅正式打出会发现牌型，不自动升级；升级只作用已有发现型，满级'+SCORE_LIMITS.handLevel+'。未发现项按Lv1参考显示，不写入存档。';
 }
