@@ -1,5 +1,7 @@
 # 开发入口
 
+2026-10-09 22:48北京路线契合框／独立选中与起手标記、基础可靠成型＋随机惊喜已补下一工具经营合同分支review/tool-build-contract，仅文档未实现。当前AV PR87／head4850594保持冻结，精确CI继续；不把放置爽感变自动挂机、不改整套经济。原W3/W5/W4依赖与真人／设备／听感门槛不变。
+
 2026-10-09完整首120秒AV候选：产品391cb59＋低动态归位2c466ee、55定向/7files及type/plan通过；PC1366/390各一条同正常seed原生前后初终state及actions完全相等，真实362、共享舞台一次、7/100保持，三受控中断native通过。[有限软件画面／真实最终音轨短片](docs/production/evidence/w4-opening-climax-2026-10-09/README.md)约27/26秒，前后图与运动分帧已actual view；云端未真人试听，非设备FPS／人类验收。原FAIL保留，domain/application/content/platform/assets/art/GameScene原文同main4d，新runtime图片音频视频0；旧额外500ms同。当前仅review，精确head CI/draft另核，父审main；下一工具＋经营／胜败缺口未实现，不把PR77/81代签。
 
 2026-10-09 22:36北京新增用户体验缺口已落原W3/W4入口及TOOL_CHANGE_PREVIEW_SCOPE：胜败音画仍OPEN，下一工具＋经营完整流程含对子养成／省钱／爆发、推荐用途与代价及框线不等于必买；根只读核规则，当前AV先收束、不重复研究／不并发。旧PR81不签完成，原依赖与真人／设备／听感门槛保留。
