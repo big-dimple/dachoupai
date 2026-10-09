@@ -1319,7 +1319,7 @@ export class GameScene extends Phaser.Scene {
     const caption={x:s.x+8,y:s.y+(s.height>=108?4:1),width:s.height>=108?s.width-16:s.width*.52-16,height:s.height>=108?20:17};
     fitScoreLine(this.resultText,caption,14);
     const cells=scoreCells(s),impactCell=scoreImpactCell(s),texts=[this.scoreHeat,this.scoreMult,this.scoreTotal];
-    this.scoreLabels.forEach((text,i)=>{text.setVisible(i!==2||s.height>=108);fitScoreLine(text,{x:cells[i].x,y:i===2?impactCell.y-34:cells[i].y-18,width:cells[i].width,height:18},14);});
+    this.scoreLabels.forEach((text,i)=>{text.setVisible(!text.getData('landingSuppressed')&&(i!==2||s.height>=108));fitScoreLine(text,{x:cells[i].x,y:i===2?impactCell.y-34:cells[i].y-18,width:cells[i].width,height:18},14);});
     texts.forEach((text,i)=>{
       const cell=i===2?impactCell:cells[i];
       text.setFontFamily(SCORE_FONT).setFontStyle('800');
@@ -1766,8 +1766,8 @@ export class GameScene extends Phaser.Scene {
     const closeOpening=opening?this.showOpeningScore(score,context):undefined;
     const landing=closeOpening?.hero?undefined:mountScoreLanding(this,this.view.root,this.view.layout,score,presentation.replay,context.signal);
     const sideTotal=[this.scoreTotal,this.scoreLabels[2],this.view.root.list.find(o=>o.name==='score/total-pedestal') as Phaser.GameObjects.Graphics|undefined].filter((o):o is Phaser.GameObjects.Text|Phaser.GameObjects.Graphics=>!!o),sideVisible=sideTotal.map(o=>o.visible);
-    if(landing){sideTotal.forEach(o=>o.setVisible(false));this.scoreFlame?.destroy();this.scoreFlame=undefined;}
-    const closeLanding=()=>{landing?.dispose();sideTotal.forEach((o,i)=>{if(o.active)o.setVisible(sideVisible[i]);});context.signal.removeEventListener('abort',closeLanding);};
+    if(landing){this.scoreLabels[2].setData('landingSuppressed',true);sideTotal.forEach(o=>o.setVisible(false));this.scoreFlame?.destroy();this.scoreFlame=undefined;}
+    const closeLanding=()=>{landing?.dispose();this.scoreLabels[2].setData('landingSuppressed',false);sideTotal.forEach((o,i)=>{if(o.active)o.setVisible(sideVisible[i]);});context.signal.removeEventListener('abort',closeLanding);};
     context.signal.addEventListener('abort',closeLanding,{once:true});
     if(closeOpening?.strike&&!this.reducedMotion)await this.wait(180,context);
     if(context.signal.aborted)return;
