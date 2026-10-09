@@ -395,7 +395,7 @@ export class ShopScene extends Phaser.Scene {
     this.audio.select();
     this.dialog.open('基础改牌 · 本店自选1件',`标价2金，优惠沿既有合同；最低实付1金。\n${seat.consumed?'本店选择已购，刷新不能重开；下一店恢复。':'确认购买才扣款，买后仍由你选择目标使用。'}\n\n${rows.map(r=>r.info.name+'：'+r.purpose+(r.reason?'\n'+r.reason:'')).join('\n\n')}\n\n改牌不保证下一手发到目标或过关；也可以留钱入场。`,[],{
       summaryBody:`当前 ${this.run.gold} 金 · 道具箱 ${this.run.consumables.length}/${r2ConsumableCapacity(this.run)}\n每店只选购1件，刷新不补货；复制与献纸不在基础位。`,collapseRules:true,rulesLabel:'路线用途与使用边界',closeLabel:'回到经营',
-      cards:rows.map(row=>({title:row.info.name,url:row.info.artUrl,body:row.purpose+'\n'+(row.reason??`实付 ${row.price} 金 · 买后余额 ${this.run.gold-row.price} 金`),action:{label:row.duplicate?`看随机位 · ${row.duplicate.consumed?'已售':row.price+'金'}`:row.reason?'查看条件':`选择 · ${row.price}金`,disabled:!this.ready||!!row.reason&&!row.duplicate,run:()=>{
+      cards:rows.map(row=>({title:row.info.name,url:row.info.artUrl,body:row.purpose+'\n'+(row.reason??`实付 ${row.price} 金 · 买后余额 ${this.run.gold-row.price} 金`),action:!this.ready||!!row.reason&&!row.duplicate?undefined:{label:row.duplicate?`看随机位 · ${row.duplicate.consumed?'已售':row.price+'金'}`:`选择 · ${row.price}金`,run:()=>{
         if(row.duplicate){if(row.duplicate.consumed)this.dialog.open(row.info.name+' · 随机位已购','同名商品本店已售。基础位不能另选同名，但仍可选其它合法基础操作。',[{label:'返回基础选择',run:()=>this.inspectBasicChoice()}]);else this.inspectOffer(row.duplicate.offerId);return;}
         this.confirmBasicChoice(row.id,seq,shopSeq);
       }}})),
