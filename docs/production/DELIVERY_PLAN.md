@@ -1135,6 +1135,8 @@ allowedFiles：`src/game/HeroOpeningCopy.ts`、`CharacterRunCopy.ts`、`Characte
 
 ### W8 八章 无尽与C04
 
+2026-10-09父明确批准[C04.3只读图鉴查询子包](C04_READONLY_CATALOG_SCOPE.md)：输入main693275e，仅菜单主动名字/用途查询、当前公开内容/同身份详情及独立短横Canvas摘要预算修复，无新保存/跨局收藏/历史/联网；原C04状态、resumeContract、W6/W8及正式门槛不改，不恢复整个C04。
+
 - **requirementId：** U09、U10、U11；完整1.0范围。
 - **inputSHA：** W5稳定共同底座可先核通路；最终采用相关W7整合后的同一冻结版本。
 - **dependencies：** 后期新增工作等待W6首章真实玩家门槛及W5；受角色影响终验等对应W7；C04恢复遵守原resumeContract。最小依赖修正仅是优先门槛：既有八章内容和已核通路/恢复证据保留，必要缺陷维护不算后期扩展；不回滚内容或改plan.json历史状态。
