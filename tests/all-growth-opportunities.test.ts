@@ -43,3 +43,12 @@ it('committed purchase, sale and refresh give exact retained source deltas; miss
 });
 it('the old a06 identity has no new coefficient growth opportunity',()=>{const s=growthPlan('d03',true);s.jokers=[r2CreateJoker('a06','unit/old',4,'none',s)];s.stage!.initialJokerIds=['unit/old'];expect(growthOpportunity(s,s.jokers[0],context(s))).toBeUndefined();});
 it('f05 real non-increase resets saved growth and reports a reduction without positive benefit',()=>{const s=scene('f05');s.stage!.previousHandScore='999999';s.jokers[0].growth.multiplier={n:'1',d:'1'};const r=applyCommand(s,{runId:s.runId,commandId:s.runId+'/command/'+(s.commandSeq+1),expectedSeq:s.commandSeq,action:{type:'PlayHand',selectedIds:firstGrowthIds}});expect(r.ok).toBe(true);if(!r.ok)return;expect(r.state.jokers[0].growth.multiplier).toEqual({n:'0',d:'1'});expect(handGrowthChanges(r.state)[0].line).toContain('实际减少1');});
+
+it('e11/f12 actual clear growth is retained in trace and shared saved feedback',()=>{
+ for(const id of ['e11','f12']){let s=scene(id);const main=['hearts-14','spades-14','clubs-14','diamonds-14'],weak=['hearts-2','spades-3','clubs-4'];const ids=[...main,...weak,'diamonds-5'];s.drawPile=[...s.drawPile,...s.handOrder].filter(x=>!ids.includes(x));s.handOrder=ids;
+  const send=(selectedIds:string[])=>{const r=applyCommand(s,{runId:s.runId,commandId:s.runId+'/command/'+(s.commandSeq+1),expectedSeq:s.commandSeq,action:{type:'PlayHand',selectedIds}});expect(r.ok).toBe(true);if(r.ok)s=r.state;return r;};
+  if(id==='f12')for(const x of weak)send([x]);const before=structuredClone(s),r=send(main);expect(s.phase).toBe('stage-cleared');expect(s.stage!.handsLeft).toBe(id==='f12'?0:3);expect(s.jokers[0].growth.coefficient).toEqual({n:'11',d:'10'});expect(handGrowthChanges(s)[0].line).toContain('×1→×1.1');if(!r.ok)continue;const e=r.events.find(e=>e.type==='joker-transaction'&&e.definitionId===id&&e.phase==='onStageClear');expect(e).toBeDefined();if(e?.type==='joker-transaction')expect(transactionGrowthChange(before,s,e)).toContain('过关后已保存 ×1→×1.1');
+ }
+});
+
+it('consumed pending heat is a saved reduction, never newly grown heat',()=>{const s=scene('c05');s.jokers[0].growth.pendingHeat={n:'40',d:'1'};const r=applyCommand(s,{runId:s.runId,commandId:s.runId+'/command/'+(s.commandSeq+1),expectedSeq:s.commandSeq,action:{type:'PlayHand',selectedIds:firstGrowthIds}});expect(r.ok).toBe(true);if(!r.ok)return;expect(r.state.jokers[0].growth.pendingHeat).toEqual({n:'0',d:'1'});expect(handGrowthChanges(r.state)[0].line).toContain('实际减少40');});

@@ -36,6 +36,7 @@ export function growthOpportunityForDefinition(d:R2JokerDefinition,joker:R2Joker
   const known=['always','hand-type-in','hand-type-relation','hand-type-transition','held-count','played-count','played-count-maximum'].includes(hook.condition.kind);
   if(known){status=r2ScoreConditionMatches(hook.condition,score)?'ready':'unmet';reason=status==='ready'?'公开成长条件可用，成功出牌并保存后才新增。':'这组不满足新增成长条件，仍可自由出牌。';}
   if(hook.condition.kind==='held-count')reason='本组实际保留'+facts.heldIds.length+'张，成长要求至少'+hook.condition.minimum+'张。'+(status==='ready'?'成功结算后新增。':'可换较少张数的合法组合，或直接出牌。');
+  if(hook.condition.kind==='hand-type-relation'&&status==='ready')reason='上手'+HAND_LABELS[ctx.previousHandType!]+' → 本手'+HAND_LABELS[facts.type]+'；连续合格牌型'+(hook.condition.relation==='same'?'相同':'换型')+'，成功保存后才新增。';
   if(status==='unmet'&&hook.condition.kind==='hand-type-relation'&&hook.condition.values.includes(facts.type)){
    const canPrepare=hook.condition.relation==='same'||ctx.previousHandType===null||!hook.condition.values.includes(ctx.previousHandType);
    if(canPrepare){status=ctx.handsLeft>1?'prepare':'unmet';reason=ctx.handsLeft>1?'本组先建立'+HAND_LABELS[facts.type]+'接续；同场下一手'+(hook.condition.relation==='same'?'仍为该型':'换另一合格型')+'才检查成长，可能本手已过关。':'本场只剩一次出牌，不能再建立下一手接续；下场首手重新建立，已存成长保留。';}
@@ -47,7 +48,7 @@ export function growthOpportunityForDefinition(d:R2JokerDefinition,joker:R2Joker
  }else if(action==='clear'){
   if(hook.condition.kind==='no-joker-sale-this-stage'&&ctx.transaction.jokerSold){status='unmet';reason='本场或进场商店已出售，买回不恢复本场成长资格。';}
   else reason='须实际成功过关，并在关末检查'+r2ConditionDescription(hook.condition)+'。未提交牌不算过关。';
- }else if(action==='shop')reason=hook.phase==='onBuyOffer'?'成功购买其他商品后，原持有来源才长。':hook.phase==='onSellJoker'?'成功出售其他大丑牌后，仍持有的来源才长。':'成功刷新后才长；刷新资格、金币和价格沿原入口。';
+ }else if(action==='shop')reason=hook.phase==='onBuyOffer'?'成功购买其他商品后，原持有来源才长。':hook.phase==='onSellJoker'?'成功出售其他大丑牌后，仍持有的来源才长。':'成功付费刷新后才长；免费刷新不触发，资格和价格沿原入口。';
  if(resultOnly&&op.kind!=='update-score-growth')reason='实际结算时检查'+r2ConditionDescription(hook.condition)+'；选牌不预报结果。';
  const amount=op.kind==='multiply-coefficient-once'?'系数×'+fractionText(op.value)+'，最多到×'+fractionText(next.toJSON()):unit+'最多新增+'+fractionText(delta.compare(zero)>0?delta.toJSON():zero.toJSON());
  const label={ready:action==='discard'?'弃牌可蓄热':'成长条件可用',prepare:'建立接续',unmet:'不新增成长',capped:'成长已封顶',waiting:'动作时检查',used:'本场成长已用'}[status];
