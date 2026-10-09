@@ -1135,6 +1135,8 @@ allowedFiles：`src/game/HeroOpeningCopy.ts`、`CharacterRunCopy.ts`、`Characte
 
 ### W8 八章 无尽与C04
 
+2026-10-09父在PR86闭合后仅授权[C04.3完成局历史子包](COMPLETED_RUN_HISTORY_SCOPE.md)：输入main4d2d78e，先锁原生终态/normal与endless局次去重/同IndexedDB事务/失败保旧与同候选重试合同，再做主动只读列表。无旧档补录、全trace/录像、自动删记录或联网；不恢复整个C04，不把已有八章工程通路冒称当前自然/真人通过。
+
 2026-10-09父明确批准[C04.3只读图鉴查询子包](C04_READONLY_CATALOG_SCOPE.md)：输入main693275e，仅菜单主动名字/用途查询、当前公开内容/同身份详情及独立短横Canvas摘要预算修复，无新保存/跨局收藏/历史/联网；原C04状态、resumeContract、W6/W8及正式门槛不改，不恢复整个C04。
 
 候选602914e查询／724f83f独立摘要、2b23f08用途及18d53ab连续分页补正：[有限软件证据](evidence/c04-readonly-catalog-2026-10-09/README.md)。29定向/type/plan；PC1366、390代表只读操作及320、740边界，当前state/journal/storage/手选不改、零查询写入，高清按需与取消；PC一个无局连续三页补证。原FAIL和精确原生SHA保持；最终head一次CI/父审/main另核，真人设备/听感/用户满意及C04整包仍未验收。
