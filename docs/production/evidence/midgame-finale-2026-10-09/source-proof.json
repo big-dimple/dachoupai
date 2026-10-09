@@ -1,0 +1,30 @@
+{
+  "baseline": "2b360dc6adac6247b545b1e910c14223b0cb37de",
+  "current": "a41c342e8b391659d1d2c15f3bce580f0517fe39",
+  "protectedTreesUnchanged": {
+    "src/domain": true,
+    "src/application": true,
+    "src/content": true,
+    "src/platform": true,
+    "src/audio": true,
+    "public": true
+  },
+  "finalRuntimeSource": "c5f90e6b5988bc3dd3e1f2e4a3fb0bac18934f6b",
+  "reviewRuntimeSource": "c5f90e6b5988bc3dd3e1f2e4a3fb0bac18934f6b",
+  "localChecks": {
+    "typecheck": "PASS",
+    "targetedTests": 42,
+    "files": 6,
+    "testReceipt": "Tool command 48304: six files/42 tests passed, duration1.50s, 2026-10-09 17:52:01 UTC; no fresh broad local regression.",
+    "plan": "32 work packages; current=P08; no gameplay acceptance",
+    "validatorSelfTest": "1 valid and13 invalid fixtures PASS"
+  },
+  "notRun": [
+    "new basic-choice domain implementation pending parent contract lock",
+    "new finite natural midgame investment window pending supply",
+    "human satisfaction",
+    "physical user device/GPU/FPS",
+    "human hearing",
+    "natural eight-chapter campaign"
+  ]
+}

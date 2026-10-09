@@ -1,0 +1,98 @@
+{
+  "head": "a41c342e8b391659d1d2c15f3bce580f0517fe39",
+  "nativeSource": "914fa7a055e01586308f259c6298abea9c481528",
+  "scope": "Exact earlier saved terminal states: real UI skip, synthetic window blur and hidden wake-up, OS low-motion preference. State/export equality; not actual user OS suspension or GPU/hearing acceptance.",
+  "cases": [
+    {
+      "key": "win-skip",
+      "errors": [],
+      "before": {
+        "groups": 1,
+        "timer": true
+      },
+      "after": {
+        "groups": 0,
+        "timer": false
+      },
+      "stateUnchanged": true,
+      "exportUnchanged": true,
+      "status": "PASS"
+    },
+    {
+      "key": "win-background",
+      "errors": [],
+      "before": {
+        "groups": 1,
+        "timer": true
+      },
+      "after": {
+        "groups": 0,
+        "timer": false
+      },
+      "stateUnchanged": true,
+      "exportUnchanged": true,
+      "status": "PASS"
+    },
+    {
+      "key": "win-reduced",
+      "errors": [],
+      "before": {
+        "groups": 0,
+        "timer": false
+      },
+      "after": {
+        "groups": 0,
+        "timer": false
+      },
+      "stateUnchanged": true,
+      "exportUnchanged": true,
+      "status": "PASS"
+    },
+    {
+      "key": "failure-skip",
+      "errors": [],
+      "before": {
+        "groups": 1,
+        "timer": true
+      },
+      "after": {
+        "groups": 0,
+        "timer": false
+      },
+      "stateUnchanged": true,
+      "exportUnchanged": true,
+      "status": "PASS"
+    },
+    {
+      "key": "failure-background",
+      "errors": [],
+      "before": {
+        "groups": 1,
+        "timer": true
+      },
+      "after": {
+        "groups": 0,
+        "timer": false
+      },
+      "stateUnchanged": true,
+      "exportUnchanged": true,
+      "status": "PASS"
+    },
+    {
+      "key": "failure-reduced",
+      "errors": [],
+      "before": {
+        "groups": 0,
+        "timer": false
+      },
+      "after": {
+        "groups": 0,
+        "timer": false
+      },
+      "stateUnchanged": true,
+      "exportUnchanged": true,
+      "status": "PASS"
+    }
+  ],
+  "status": "PASS"
+}
