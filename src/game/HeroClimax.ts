@@ -68,7 +68,7 @@ export function mountHeroClimax(scene:Phaser.Scene,root:Phaser.GameObjects.Conta
  const foreground=scene.add.container(0,0);board.addAt(foreground,board.list.indexOf(hero)+1);
  const owned=new Set<Phaser.Tweens.Tween>();let disposed=false,still=reduced,struck=false,burst:InkBurstView|undefined,releaseDone:(()=>void)|undefined;
  const tween=(config:Phaser.Types.Tweens.TweenBuilderConfig)=>{if(disposed)return;const t=scene.tweens.add(config);owned.add(t);return t;};
- const neutral=()=>{burst?.dispose();burst=undefined;brush.setPosition(0,0).setAlpha(1).setScale(1);board.setPosition(0,0).setAlpha(1);hero.setPosition(heroX,heroY).setScale(heroScale).setAngle(-5);fitValue();};
+ const neutral=()=>{burst?.dispose();burst=undefined;brush.setPosition(0,0).setAlpha(1).setScale(1);board.setPosition(0,0).setAlpha(1);hero.setPosition(heroX,heroY).setScale(heroScale).setAngle(-5);readout.setY(labelY+(short?27:42));fitValue();};
  if(!still){board.setX(-w*.72).setAlpha(.25);hero.setPosition(heroX-w*.18,heroY+28).setScale(heroScale*.84).setAngle(-12);brush.setX(-w*.6);readout.setScale(readout.scaleX*.88);tween({targets:board,x:0,alpha:1,duration:200,ease:'Cubic.easeOut'});tween({targets:brush,x:0,duration:260,ease:'Cubic.easeOut'});tween({targets:hero,scaleX:heroScale*.96,scaleY:heroScale*.96,x:heroX-8,y:heroY,angle:-5,duration:250,ease:inkSettlingEase(.28)});}
  const dispose=(destroyGroup=true)=>{if(disposed)return;disposed=true;burst?.dispose();burst=undefined;for(const t of owned)t.remove();owned.clear();releaseDone?.();releaseDone=undefined;if(destroyGroup&&group.active)group.destroy();};
  group.once('destroy',()=>dispose(false));
