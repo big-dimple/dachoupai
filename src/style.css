@@ -474,3 +474,25 @@ button[aria-busy=true] { border-style:dashed; }
 .build-keepsake-value { display:block; font-size:20px; line-height:1.4; color:#a84437; }
 @media(max-width:480px) { .build-keepsake { padding:10px; gap:10px; } .build-keepsake-hero > img { width:60px; height:86px; } .build-keepsake-hero { gap:10px; } .build-keepsake-growth { gap:8px; padding:8px; } }
 @media(max-width:360px) { .build-keepsake { padding:8px; } .build-keepsake-growth > img { width:44px; height:62px; } }
+
+/* Tool comparisons stay inside the existing preview region; validity/costs never scroll away. */
+.tool-detail[open] .tool-selection-dock { display:flex;flex-direction:column;overflow:hidden; }
+.tool-detail .tool-validation,.tool-detail .tool-preview-cost { flex:none; }
+.tool-detail .tool-preview-cost { margin:4px 0;color:#865137;font-size:12px;line-height:1.4;white-space:pre-line; }
+.tool-detail .tool-preview-scroll { min-height:0;overflow:auto; }
+.tool-change-preview { display:flex;flex-wrap:wrap;gap:8px; }
+.tool-change-card { margin:6px 0;flex:1 1 120px;min-width:0; }
+.tool-change-card figcaption { font-size:12px;font-weight:bold;line-height:18px; }
+.tool-change-pair { display:flex;align-items:center;gap:6px; }
+.tool-change-pair > span:not(.tool-change-arrow) { width:48px; }
+.tool-change-pair .candidate-card-row { display:flex;padding:0; }
+.tool-change-pair .candidate-card-face { flex:1;min-width:42px;height:58px; }
+.tool-change-pair .candidate-card-face strong { font-size:14px; }
+.tool-change-pair .candidate-card-face img { width:25px;height:33px; }
+.tool-change-pair .candidate-card-pip { font-size:24px;line-height:30px; }
+.tool-change-card small { display:block;font-size:12px;line-height:16px;overflow-wrap:anywhere; }
+.tool-change-removed { padding:12px 0;border:1px dashed #a38b66;text-align:center;font-size:12px; }
+.tool-change-level { flex:1 1 250px;min-width:0;margin:6px 0;font-size:12px; }
+.tool-change-level-pair { display:flex;align-items:center;gap:6px; }
+.tool-change-level-pair > div { flex:1;min-width:0;display:grid;gap:3px;padding:6px;background:#f3eadb;border:1px solid #a38b66; }
+@media(min-width:900px) and (min-height:520px) { .tool-detail[open] .tool-selection-dock { max-height:none; }.tool-detail .tool-preview-scroll { flex:1; } }

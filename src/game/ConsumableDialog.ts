@@ -1,11 +1,10 @@
+import {toolCardChange,renderCardChange,renderHandChange,handLevelChangeText as handChange} from './ToolChangePreview';
 import {toolCardTargetStatus,toolCardMatches} from './ToolTargetDirectory';
 import {currentBuildFocus,focusedUpgradeTypes} from './BuildJourney';
 import type {Action,R2RunState} from '../domain/run';
 import {HAND_LABELS} from '../content/handLabels';
 import {rankLabel,SUITS,SUIT_SYMBOL,type PlayingCard,type Suit} from '../cards/types';
 import {R2_HAND_TYPES,type R2HandType} from '../domain/evaluateR2';
-import {R2_BASE_SCORES} from '../domain/scoreR2';
-import {Rational} from '../domain/rational';
 import {R2_ENHANCEMENTS,R2_TOOLS,R2_TOOL_CATALOG,type R2ToolDefinition} from '../content/r2Tools';
 import {R2_JOKERS,type R2JokerInstance} from '../content/r2Schema';
 import {getR2Stage,r2ConsumableCapacity,r2HandLimit,r2HandsBudget,R2_RESOURCE_CONTRACT} from '../domain/r2Run';
@@ -22,16 +21,6 @@ export const SKIP_ITEM_LABELS:Record<string,string>=Object.fromEntries(R2_TOOLS.
 const SUIT_NAMES:Record<Suit,string>={spades:'黑桃',hearts:'红桃',clubs:'梅花',diamonds:'方片'};
 const cardName=(card:PlayingCard)=>rankLabel(card.rank)+SUIT_SYMBOL[card.suit];
 const enhancementName=(card:PlayingCard)=>R2_ENHANCEMENTS.find(enhancement=>enhancement.id===card.enhancement)?.name??'无增强';
-function rationalText(value:Rational):string {
-  if(value.d===1n)return value.n.toString();
-  if(value.n*100n%value.d===0n){const hundredths=value.n*100n/value.d;return `${hundredths/100n}.${String(hundredths%100n).padStart(2,'0')}`.replace(/0+$/,'');}
-  return `${value.n}/${value.d}`;
-}
-function handChange(type:R2HandType,before:number,after:number):string {
-  const [heat,mult,heatStep,multStep]=R2_BASE_SCORES[type];
-  const multiplier=(level:number)=>rationalText(Rational.fromJSON(mult).add(Rational.fromJSON(multStep).multiply(new Rational(BigInt(level-1)))));
-  return `${HAND_LABELS[type]} · Lv.${before} → ${after}\n基础热度 ${heat+heatStep*(before-1)} → ${heat+heatStep*(after-1)}；基础倍率 ${multiplier(before)} → ${multiplier(after)}`;
-}
 interface Choice {id:string;name:string;detail:string;card?:PlayingCard;joker?:R2JokerInstance}
 interface Selection {ids:Set<string>;sacrificeId?:string;handType?:R2HandType;secondaryHandType?:R2HandType;suit?:Suit;targetKind:'card'|'joker'}
 const rarePool=(state:R2RunState)=>r2Pool(state.jokers.map(joker=>joker.definitionId),state.safetyNetUsed?['f07']:[]).filter(joker=>joker.rarity==='rare');
@@ -233,7 +222,7 @@ export function showConsumables(dialog:DetailDialog,state:R2RunState,ready:boole
       probability.textContent='公开概率：'+operation.choices.map(choice=>`${operation.kind==='random-enhancement'?R2_ENHANCEMENTS.find(enhancement=>enhancement.id===choice.id)!.name:editionLabel(choice.id as 'foil'|'holographic'|'polychrome')} ${choice.weight}/${total}`).join('、')+'。使用后揭晓结果。';panel.append(probability);
     }
     const risks=document.createElement('details'),riskTitle=document.createElement('summary'),riskText=document.createElement('p');risks.className='tool-full-risk';riskTitle.textContent='风险与完整说明';riskText.textContent=info.risk;risks.append(riskTitle,riskText);
-    panel.append(risks);scroll.append(panel);const dock=document.createElement('section');dock.className='tool-selection-dock';dock.setAttribute('aria-label','已选目标与真实预览');dock.append(preview,hint);d.insertBefore(dock,d.querySelector('.dialog-actions'));
+    panel.append(risks);scroll.append(panel);const dock=document.createElement('section');dock.className='tool-selection-dock';dock.setAttribute('aria-label','已选目标与真实预览');const changes=document.createElement('div'),body=document.createElement('div'),costs=document.createElement('p');changes.className='tool-change-preview';changes.setAttribute('aria-label','确认前后对照');body.className='tool-preview-scroll';costs.className='tool-preview-cost';costs.setAttribute('aria-live','polite');body.append(changes,preview);dock.append(hint,costs,body);d.insertBefore(dock,d.querySelector('.dialog-actions'));
     function refresh():void {
       for(const button of sortButtons)button.disabled=busy;
       const issue=selectionIssue(tool,state,selection,known,ready),selected=targetChoices().filter(choice=>selection.ids.has(choice.id));
@@ -254,6 +243,7 @@ export function showConsumables(dialog:DetailDialog,state:R2RunState,ready:boole
       hint.textContent=busy?'正在提交并保存…':issue??'目标有效。确认后使用物品并支付上述代价。';hint.dataset.valid=String(!issue);
       const lines:string[]=[],operation=tool.operation;
       if(selection.sacrificeId){const donor=(tool.target.kind==='joker-sacrifice'?jokerChoices:cardChoices).find(choice=>choice.id===selection.sacrificeId);if(donor)lines.push(`永久牺牲：${donor.name} · ${donor.detail.replace('\n',' · ')}。不作为出售，不退款。`);}
+      changes.replaceChildren();selected.forEach((choice,index)=>{if(choice.card){const change=toolCardChange(tool,choice.card);if(change)renderCardChange(changes,change,index);}});
       if(selected.length)lines.push((tool.target.kind==='card-sacrifice'?'公开受益顺序：':'目标顺序：')+selected.map((choice,index)=>`${index+1}. ${choice.name} · ${choice.detail.replace('\n',' · ')}`).join(' → '));
       for(const choice of selected)if(choice.card){
         if(operation.kind==='set-suit')lines.push(`${cardName(choice.card)} → ${rankLabel(choice.card.rank)}${SUIT_SYMBOL[operation.suit]}；${cardSpecialText(choice.card)}`);
@@ -263,8 +253,8 @@ export function showConsumables(dialog:DetailDialog,state:R2RunState,ready:boole
       }
       for(const choice of selected)if(choice.joker)lines.push(`${choice.name} · ${editionEffectText(choice.joker.edition)}\n${operation.kind==='set-joker-edition'?`版次 → ${editionEffectText(operation.edition)}；原支付 ${choice.joker.paidPrice} 金与已有成长保留。`:'本体、原支付金额与已有成长保留。'}`);
       if(operation.kind==='delete-cards'&&selected.length)lines.push(`有效牌组 ${state.deckInstances.length-state.destroyedIds.length} → ${state.deckInstances.length-state.destroyedIds.length-selected.length} 张；永久删除，确认使用才生效。`);
-      if(operation.kind==='upgrade-hand'){const type=tool.target.kind==='discovered-hand'&&tool.target.selection==='fixed'?operation.handType:selection.handType;if(type){const level=state.handLevels[type];lines.push(level===undefined?`${HAND_LABELS[type]} · 尚未发现`:level>=R2_TOOL_CATALOG.limits.handLevelMaximum?`${HAND_LABELS[type]} · Lv.${level}（已满级）`:handChange(type,level,level+operation.levels));}}
-      if(operation.kind==='exchange-hand-levels'){if(selection.handType)lines.push(handChange(selection.handType,state.handLevels[selection.handType]!,state.handLevels[selection.handType]!+operation.gain));if(selection.secondaryHandType)lines.push('遗忘：'+handChange(selection.secondaryHandType,state.handLevels[selection.secondaryHandType]!,state.handLevels[selection.secondaryHandType]!-operation.loss));}
+      if(operation.kind==='upgrade-hand'){const type=tool.target.kind==='discovered-hand'&&tool.target.selection==='fixed'?operation.handType:selection.handType;if(type){const level=state.handLevels[type];lines.push(level===undefined?`${HAND_LABELS[type]} · 尚未发现`:level>=R2_TOOL_CATALOG.limits.handLevelMaximum?`${HAND_LABELS[type]} · Lv.${level}（已满级）`:handChange(type,level,level+operation.levels));if(level!==undefined&&level<R2_TOOL_CATALOG.limits.handLevelMaximum)renderHandChange(changes,type,level,level+operation.levels);}}
+      if(operation.kind==='exchange-hand-levels'){for(const [type,delta] of [[selection.handType,operation.gain],[selection.secondaryHandType,-operation.loss]] as const){if(type)renderHandChange(changes,type,state.handLevels[type]!,state.handLevels[type]!+delta);}if(selection.handType)lines.push(handChange(selection.handType,state.handLevels[selection.handType]!,state.handLevels[selection.handType]!+operation.gain));if(selection.secondaryHandType)lines.push('遗忘：'+handChange(selection.secondaryHandType,state.handLevels[selection.secondaryHandType]!,state.handLevels[selection.secondaryHandType]!-operation.loss));}
       for(const cost of tool.costs){
         if(cost.kind==='gold')lines.push(`额外使用代价：${cost.amount} 金；金币 ${state.gold} → ${state.gold-cost.amount}。`);
         if(cost.kind==='all-gold')lines.push(`清空全部金币：${state.gold} → 0。`);
@@ -276,6 +266,7 @@ export function showConsumables(dialog:DetailDialog,state:R2RunState,ready:boole
       if(operation.kind==='restore-discard')lines.push(`本场弃牌：${state.stage?.discardsLeft??'尚未入场'} → ${state.stage?Math.min(state.stage.initialDiscards,state.stage.discardsLeft+operation.amount):'须先入场'}；上限为本场初始预算 ${state.stage?.initialDiscards??'待入场确定'}。`);
       if(operation.kind==='add-gold')lines.push(`金币 ${state.gold} → ${state.gold+operation.amount}。`);
       if(operation.kind==='free-reroll')lines.push(state.shop?`本次免费刷新，不扣金币；刷新计数 ${state.shop.rerollCount} → ${state.shop.rerollCount+1}。\n下次收费刷新 ${r2PaidRerollPrice(state)} → ${r2PaidRerollPrice({...state,shop:{...state.shop,rerollCount:state.shop.rerollCount+1}})} 金。长期道具货架保留，不触发成长。`:'请在商店免费刷新货架。');
+      costs.textContent=lines.filter(line=>/^(永久牺牲|有效牌组|额外使用代价|清空全部金币|下一场起)/.test(line)).join('\n');costs.hidden=!costs.textContent;
       preview.textContent=lines.join('\n\n')||'选择目标后，这里会显示变化与代价。';
     }
     refresh();

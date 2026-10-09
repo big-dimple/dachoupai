@@ -10,6 +10,10 @@ export function renderCandidateCards(button:HTMLButtonElement,hand:readonly Play
 export function renderRetentionCards(host:HTMLElement,hand:readonly PlayingCard[],ids:readonly string[],disabledIds:readonly string[]):void {
  renderPublicCards(host,hand,ids,card=>disabledIds.includes(card.id),()=> '留');
 }
+/** Tool comparison faces are references, never scoring/retention suggestions. */
+export function renderToolCard(host:HTMLElement,card:PlayingCard):void {
+ renderPublicCards(host,[card],[card.id],()=>false,()=> '');
+}
 function renderPublicCards(button:HTMLElement,hand:readonly PlayingCard[],ids:readonly string[],disabled:(card:PlayingCard)=>boolean,markText:(card:PlayingCard)=>string):void {
  button.replaceChildren();const row=document.createElement('span');row.className='candidate-card-row';row.setAttribute('aria-hidden','true');
  for(const id of ids){const card=hand.find(c=>c.id===id);if(!card)continue;
