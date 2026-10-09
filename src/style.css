@@ -443,3 +443,7 @@ button[aria-busy=true] { border-style:dashed; }
 .tool-detail .tool-selection-dock .tool-validation { margin:4px 0 0;padding:4px 6px;font-size:12px;line-height:1.4; }
 @media(max-width:560px) { .tool-detail .dialog-content { padding:10px; }.tool-detail .tool-choice-grid { grid-template-columns:repeat(4,minmax(0,1fr)); } }
 @media(max-width:360px) { .tool-detail .tool-choice-grid { grid-template-columns:repeat(3,minmax(0,1fr)); } }
+@media(max-height:500px) and (orientation:landscape) {
+ .tool-detail .tool-choice-grid { grid-template-columns:repeat(4,minmax(0,1fr)); }
+ .tool-detail .tool-selection-dock { box-sizing:border-box;max-height:80px; }
+}
