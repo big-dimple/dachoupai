@@ -8,7 +8,7 @@ export function buildKeepsakeView(facts:BuildKeepsake,cleanups:(()=>void)[]):HTM
  copy.append(heading,p(facts.hero.modeNote,'build-keepsake-note'),p(facts.hero.tip));
  if(facts.hero.details){const details=document.createElement('details'),summary=document.createElement('summary');details.className='card-rules';summary.textContent='完整角色打法';details.append(summary,p(facts.hero.details));copy.append(details);}
  hero.append(image(facts.hero.url,facts.hero.name+'既有立绘'),copy);section.append(hero);
- if(!facts.growth.length){section.append(p('尚无持有的成长来源；先用现有持牌尝试，按真实货架自主购买。','build-keepsake-empty'));return section;}
+ if(!facts.growth.length){section.append(p(facts.terminal?'本局最终未持有成长来源；这份留影不补发成长或奖励。':'尚无持有的成长来源；先用现有持牌尝试，按真实货架自主购买。','build-keepsake-empty'));return section;}
  const title=document.createElement('h3');title.textContent='已存成长 · 不补加到刚结算的本手';section.append(title);
  for(const row of facts.growth){
   const card=document.createElement('article'),copy=document.createElement('div'),name=document.createElement('h4'),value=document.createElement('strong');card.className='build-keepsake-growth';card.dataset.instanceId=row.instanceId;card.dataset.growthKey=row.key;

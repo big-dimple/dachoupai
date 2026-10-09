@@ -6,6 +6,7 @@ import {characterForRun} from './CharacterRunCopy';
 import {selectionPortraitURL} from './portraits';
 import {buildGrowthProgress,type BuildGrowthProgress} from './BuildGrowthProgress';
 export interface BuildKeepsake {
+ terminal?:boolean;
  hero:{name:string;ability:string;tip:string;details?:string;url:string;modeNote:string};
  growth:(BuildGrowthProgress&{read?:string})[];
 }
