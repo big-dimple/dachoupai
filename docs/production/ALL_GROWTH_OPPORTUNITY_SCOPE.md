@@ -27,7 +27,7 @@
 
 来源短反馈只消费成功保存的trace/transaction与实例前后值；同一来源结果含实际前→后，无增长/归零与消费不可冒称新增。近期出牌记录与随后交易的当前存值分开，不倒灌。复用原状态位、短结果与已存在的回看/持有详情，不加固定信息墙、第二舞台、停顿或新音效，不挤掉出牌/购买动作。
 
-允许src/game/GrowthOpportunity.ts、JokerExperience.ts、JokerPlainCopy.ts、BuildGrowthProgress.ts、GameScene.ts、ShopScene.ts、JokerGrowthCausality.ts及必要的新纯展示帮助函数、直接相关tests/有界harness与本包文档。禁止domain/application/content/身份/schema/数值/供给/角色/音频/BGM/素材/CI变更。只读取公共手牌/已存状态，不排序窥看抽牌或调用计分预测。
+允许src/game/GrowthOpportunity.ts、JokerExperience.ts、JokerMemory.ts（公共动作资格字段）、JokerPlainCopy.ts、BuildGrowthProgress.ts、GameScene.ts、ShopScene.ts、JokerGrowthCausality.ts及必要的新纯展示帮助函数、直接相关tests/有界harness与本包文档。禁止domain/application/content/身份/schema/数值/供给/角色/音频/BGM/素材/CI变更。只读取公共手牌/已存状态，不排序窥看抽牌或调用计分预测。
 
 ## 必要验收与依赖
 

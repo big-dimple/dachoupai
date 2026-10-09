@@ -110,8 +110,12 @@ export function jokerPlainCopy(d:R2JokerDefinition,j:R2JokerInstance|undefined,c
   else if(!fallback&&hooks.length===1)status='到对应时点检查；尚未兑现';
  }
  if(!events&&j){
-  const opportunity=growthOpportunityForDefinition(d,j,ctx),read=hooks.flatMap(h=>h.operations).find(o=>o.kind==='read-growth');
-  if(opportunity){const saved=(ctx.scoringLimited?'已存':'本次用已存')+(read?.kind==='read-growth'?unit(read.target):'成长')+'+'+fractionText(opportunity.stored)+(ctx.scoringLimited?'（本手不计入）':'');status=(ctx.scoringLimited?'本手计分停用；':'')+saved+'；上限'+fractionText(opportunity.cap)+'；'+(opportunity.status==='capped'?'已封顶，不再新增':opportunity.status==='ready'?'所选符合，成功结算后最多新增+'+fractionText(opportunity.delta)+'，下次用':opportunity.status==='unmet'?'所选不增长；'+opportunity.reason:opportunity.reason);}
+  const opportunity=growthOpportunityForDefinition(d,j,ctx);
+  if(opportunity){
+   const read=hooks.flatMap(h=>h.operations).find(o=>o.kind==='read-growth');
+   if(opportunity.action==='play'&&opportunity.operation==='add-growth'){const saved=(ctx.scoringLimited?'已存':'本次用已存')+(read?.kind==='read-growth'?unit(read.target):'成长')+'+'+fractionText(opportunity.stored)+(ctx.scoringLimited?'（本手不计入）':'');status=(ctx.scoringLimited?'本手计分停用；':'')+saved+'；上限'+fractionText(opportunity.cap)+'；'+(opportunity.status==='capped'?'已封顶，不再新增':opportunity.status==='ready'?'所选符合，成功结算后最多新增+'+fractionText(opportunity.delta)+'，下次用':opportunity.status==='unmet'?'所选不增长；'+opportunity.reason:opportunity.reason);}
+   else status=(ctx.scoringLimited?'本手计分停用；':'')+opportunity.summary;
+  }
  }
  const resourceHeat=hooks.length===1&&hooks[0].operations.length===1?hooks[0].operations[0]:undefined;
  if(!events&&(resourceHeat?.kind==='add-heat-per-gold'||resourceHeat?.kind==='add-heat-per-empty-slot')&&!ctx.scoringLimited){status=(resourceHeat.kind==='add-heat-per-gold'?'现在'+ctx.gold+'金':'现在'+Math.max(0,ctx.jokerSlots-ctx.jokerCount)+'个空槽')+'；按当前条件热度+'+fractionText(r2ResourceHeatValue(resourceHeat,ctx))+'，上限'+fractionText(resourceHeat.cap)+(j?'；出牌前重查':'；未购，买后重查');}

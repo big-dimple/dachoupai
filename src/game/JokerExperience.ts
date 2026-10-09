@@ -1,3 +1,4 @@
+import {handGrowthChanges} from './SavedGrowthChange';
 import {growthOpportunity} from './GrowthOpportunity';
 import type {R2RunState} from '../domain/r2Run';
 import type {ScoreEvent,ScoreTrace} from '../domain/scoreR2';
@@ -18,12 +19,13 @@ export type SelectionReadiness='ready'|'pending'|'unmet'|'limited';
 /** Public condition facts only: no score projection, future hand, RNG or command. */
 export function selectionExperience(state:R2RunState,joker:R2RunState['jokers'][number],ctx:JokerMemoryContext){
  const definition=r2JokerDefinitionFor(state,joker.definitionId),memory=jokerMemory(definition,joker,ctx),copy=jokerMemoryAbility(definition,joker,ctx);
- const growth=growthOpportunity(state,joker,ctx);
+ const growth=growthOpportunity(state,joker,ctx),savedGrowth=handGrowthChanges(state).find(f=>f.instanceId===joker.instanceId);
  const ready=memory.hooks.filter(h=>h.status==='条件满足'),pending=memory.hooks.filter(h=>h.status==='事件时检查');
  const preparations=r2JokerDefinitionFor(state,joker.definitionId).hooks.flatMap(h=>h.condition.kind==='hand-type-transition'&&ctx.facts?.type===h.condition.previous?[HAND_LABELS[h.condition.current]]:h.condition.kind==='hand-type-relation'&&ctx.facts&&h.condition.values.includes(ctx.facts.type)&&!ready.length?['接续牌型']:[]);
- const readiness:SelectionReadiness=ctx.scoringLimited?'limited':ready.length?'ready':preparations.length?'pending':memory.hooks.some(h=>h.status==='当前未满足')?'unmet':pending.length||memory.staticRules.length?'pending':'unmet';
- const label=ctx.scoringLimited?'计分停用':growth&&ctx.facts?growth.compactLabel:readiness==='limited'?'计分停用':readiness==='ready'?'所选满足':readiness==='pending'?(preparations.length?'准备下手':memory.staticRules.length?memory.status:'事件时检查'):ctx.facts?'所选未满足':'待选牌';
- return {readiness,label,title:memory.name+' · '+label,url:jokerArtPreviewUrl(joker.definitionId),body:copy.plain?(preparations.length&&!ready.length?'成功出牌后可为下一手'+preparations.join('／')+'准备，不保证组成。\n':'')+copy.plain.line+'\n'+copy.plain.status+'\n'+copy.plain.essential+(definition.hooks.some(h=>['onCardScore','onHeldCard','jokerScore'].includes(h.phase))?'\n计分收益须成功出牌与保存。':''):(growth?growth.body+'\n\n':'')+(preparations.length&&!ready.length?'成功出牌后可为下一手'+preparations.join('／')+'准备，不保证下一手能组成。\n\n':'')+copy.condition+'\n'+copy.value+'\n\n当前：'+label+'\n已保存：'+memory.saved+'\n\n下一步：选择1–5张；满足公开条件仍须成功出牌与保存，随机和结算结果在事件时确认。',details:copy.plain?copy.plain.details+'\n实际计分须成功出牌与保存，随机和结果在对应事件确认。':undefined};
+ const ordinaryReadiness:SelectionReadiness=ctx.scoringLimited?'limited':ready.length?'ready':preparations.length?'pending':memory.hooks.some(h=>h.status==='当前未满足')?'unmet':pending.length||memory.staticRules.length?'pending':'unmet';
+ const readiness:SelectionReadiness=ctx.scoringLimited?'limited':growth?(growth.status==='ready'&&growth.action==='play'?'ready':growth.status==='unmet'||growth.status==='capped'||growth.status==='used'?'unmet':'pending'):ordinaryReadiness;
+ const label=growth?(ctx.scoringLimited?'计分停·'+growth.compactLabel:growth.compactLabel):ctx.scoringLimited?'计分停用':readiness==='limited'?'计分停用':readiness==='ready'?'所选满足':readiness==='pending'?(preparations.length?'准备下手':memory.staticRules.length?memory.status:'事件时检查'):ctx.facts?'所选未满足':'待选牌';
+ return {readiness,label,title:memory.name+' · '+label,url:jokerArtPreviewUrl(joker.definitionId),body:growth?growth.body+(savedGrowth?'\n'+savedGrowth.line:''):copy.plain?(preparations.length&&!ready.length?'成功出牌后可为下一手'+preparations.join('／')+'准备，不保证组成。\n':'')+copy.plain.line+'\n'+copy.plain.status+'\n'+copy.plain.essential+(definition.hooks.some(h=>['onCardScore','onHeldCard','jokerScore'].includes(h.phase))?'\n计分收益须成功出牌与保存。':''):(preparations.length&&!ready.length?'成功出牌后可为下一手'+preparations.join('／')+'准备，不保证下一手能组成。\n\n':'')+copy.condition+'\n'+copy.value+'\n\n当前：'+label+'\n已保存：'+memory.saved+'\n\n下一步：选择1–5张；满足公开条件仍须成功出牌与保存，随机和结算结果在事件时确认。',details:copy.plain?copy.plain.details+'\n实际计分须成功出牌与保存，随机和结果在对应事件确认。':undefined};
 }
 const greater=(a:ScoreEvent['value'],b:ScoreEvent['value'])=>Rational.fromJSON(a).compare(Rational.fromJSON(b))>0;
 /** Used for accents only. Failed random checks, zero growth/caps and maintenance aren't benefit cues. */

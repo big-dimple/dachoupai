@@ -1,3 +1,4 @@
+import {transactionGrowthChange} from './SavedGrowthChange';
 import {paperSceneStart} from './PaperFlow';
 import {drawShopArt,shopSheet} from './ShopArt';
 import {r2BasicToolShelfStatus} from '../domain/r2Shop';
@@ -75,6 +76,7 @@ export class ShopScene extends Phaser.Scene {
   private goldText?:Phaser.GameObjects.Text;
   private pendingTransactions:Extract<DomainEvent,{type:'joker-transaction'}>[]=[];
   private lastTransactionNotes:string[]=[];
+  private transactionGrowthLines=new WeakMap<Extract<DomainEvent,{type:'joker-transaction'}>,string>();
   private pendingPayment?:string;
   private lastPurchaseReceipt?:ShopPurchaseReceipt;
 
@@ -667,7 +669,7 @@ export class ShopScene extends Phaser.Scene {
     for(const event of this.pendingTransactions){
       const index=this.run.jokers.findIndex(joker=>joker.instanceId===event.instanceId),slot=this.geometry().slots[index];
       if(!reduced&&slot)this.slotPop(slot);
-      lines.push({name:'transaction/'+event.instanceId,text:r2TransactionText(event,this.jokerDefinition(event.definitionId))});
+      lines.push({name:'transaction/'+event.instanceId,text:this.transactionGrowthLines.get(event)??r2TransactionText(event,this.jokerDefinition(event.definitionId))});
     }this.pendingTransactions=[];
     if(lines.length){
       const p=this.geometry(),bottom=parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--safe-bottom'))||0,box=shopResultBox(p,this.view.layout.height,bottom),probe=this.view.text(0,0,'',14,PAPER_CSS.ink).setVisible(false);
@@ -694,7 +696,7 @@ export class ShopScene extends Phaser.Scene {
       this.run=result.state;
       if(!result.duplicate&&this.lastPurchaseReceipt&&!shopPurchaseReceiptExists(this.lastPurchaseReceipt,this.run))this.lastPurchaseReceipt=undefined;
       const transactions=result.events.filter((event):event is Extract<DomainEvent,{type:'joker-transaction'}>=>event.type==='joker-transaction');
-      if(!result.duplicate&&transactions.length){this.pendingTransactions=transactions;this.lastTransactionNotes=transactions.map(event=>r2TransactionText(event,this.jokerDefinition(event.definitionId)));}
+      if(!result.duplicate&&transactions.length){this.pendingTransactions=transactions;this.lastTransactionNotes=transactions.map(event=>{const growth=transactionGrowthChange(previous,this.run,event);if(growth)this.transactionGrowthLines.set(event,transactionGrowthChange(previous,this.run,event,true)!);return growth??r2TransactionText(event,this.jokerDefinition(event.definitionId));});}
       if(action.type==='BuyOffer'&&purchase&&!result.duplicate){
         const {kind,offer}=purchase,name=kind==='jokers'?this.jokerDefinition(offer.definitionId).name:kind==='tools'?toolInfo(offer.definitionId,this.run).name:itemInfo(offer.definitionId).name;this.audio.purchase();
         this.lastPurchaseReceipt=shopPurchaseReceipt(previous,this.run,kind,offer);

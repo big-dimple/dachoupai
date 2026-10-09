@@ -1,3 +1,4 @@
+import {transactionGrowthChange,handGrowthChanges} from './SavedGrowthChange';
 import {heroAbilityCue,savedHeroResult} from './HeroAbilityCue';
 import {usesErxiangHandoff} from '../domain/r2ErxiangHandoff';
 import {erxiangChoice,savedErxiangHandoff} from './ErxiangHandoffCopy';
@@ -970,13 +971,13 @@ export class GameScene extends Phaser.Scene {
     const isCurrent=()=>this.dialog.active(dialog)&&!document.hidden&&this.ready&&this.run.phase==='await-input'&&!this.presentation&&r2CandidateKey(this.candidateInput())===key&&this.assistIds.join('|')===assistKey;
     const facts=this.selectionPreview(),initial=facts?selectionCopy(facts).title+'\n'+selectionCopy(facts).membership:'尚未选择牌';
     const opportunity=(j:R2JokerInstance,example:HandPreview)=>{const context=r2ScoreContext(this.run,this.hand,example.playedIds);const resolved=validAssistDraft({hand:this.hand,selectedIds:example.playedIds,disabledIds:this.run.stage!.disabledIds,jokers:this.run.jokers,definitions:this.jokerDefinitions,handRules:context.handRules,ordinaryPointsSuppressedIds:context.ordinaryPointsSuppressedIds},this.assistProfile&&r2AssistAvailability(this.run).available,this.assistIds)??example;return growthOpportunity(this.run,j,this.memoryContext(j,resolved));};
-    let groups=result.groups.map(g=>({...g,examples:growthOnly?g.examples.filter(example=>this.run.jokers.some(j=>opportunity(j,example)?.status==='ready')):g.examples})).filter(g=>g.examples.length);if(growthOnly)groups.sort((a,b)=>Number(['high-card','pair'].includes(a.type))-Number(['high-card','pair'].includes(b.type)));
+    let groups=result.groups.map(g=>({...g,examples:growthOnly?g.examples.filter(example=>this.run.jokers.some(j=>{const g=opportunity(j,example);return g?.action==='play'&&g.status==='ready';})):g.examples})).filter(g=>g.examples.length);if(growthOnly)groups.sort((a,b)=>Number(['high-card','pair'].includes(a.type))-Number(['high-card','pair'].includes(b.type)));
     if(focus&&!growthOnly)groups=groups.filter(g=>buildHandTypes(focus).includes(g.type));
     if(!growthOnly){const order=['high-card','pair','two-pair','three-kind','straight','flush','full-house','four-kind','straight-flush','five-kind','flush-house','flush-five'];groups.sort((a,b)=>order.indexOf(b.type)-order.indexOf(a.type));}
     const references=focus&&!growthOnly&&result.status==='ready'&&!groups.length?handRouteReferences({hand:this.hand,effectiveDeck:this.run.deckInstances.filter(c=>!this.run.destroyedIds.includes(c.id)),rules:r2SelectionFacts({...this.candidateInput(),selectedIds:[this.hand[0].id]}).rules},focus):[];
     const label=(ids:readonly string[])=>this.hand.filter(c=>ids.includes(c.id)).map(c=>rankLabel(c.rank)+SUIT_SYMBOL[c.suit]).join(' ');
     const suggestion=references[0]?'可尝试留 '+label(references[0].keepIds)+'；其余可尝试换。\n'+references[0].gap:groups[0]?'可先试'+HAND_LABELS[groups[0].type]+'：'+label(groups[0].examples[0].playedIds)+'\n点“换为这组”只选牌，再由你出牌。':initial;
-    const dialog=this.dialog.open(growthOnly?'本轮成长机会':'当前手牌怎么凑',initial+'\n'+(result.status==='ready'?'共'+groups.length+'种：'+groups.map(g=>HAND_LABELS[g.type]).join(' · '):'本轮牌型整理中')+'\n★代表计分牌。已成型示例只用当前手牌；未成型参考标“留”，不是计分牌型。\n点示例不改选择；换组后仍需自己出牌。成长不是通关必选，不必为成长强留场。'+(growthOnly?'本页只列每手加固定数值的成长；相乘成长和其他来源见构筑条件。':''),[
+    const dialog=this.dialog.open(growthOnly?'本轮成长机会':'当前手牌怎么凑',initial+'\n'+(result.status==='ready'?'共'+groups.length+'种：'+groups.map(g=>HAND_LABELS[g.type]).join(' · '):'本轮牌型整理中')+'\n★代表计分牌。已成型示例只用当前手牌；未成型参考标“留”，不是计分牌型。\n点示例不改选择；换组后仍需自己出牌。成长不是通关必选，不必为成长强留场。'+(growthOnly?'出牌、弃牌、交易与关末成长分开看；只亮公开可判断的出牌成长。':''),[
       {label:'换为这组',primary:true,disabled:true,run:()=>{
         const ghost=this.candidateGhost;if(!isCurrent()||!ghost||ghost.key!==key){message.textContent=isCurrent()?'先点一个示例，只查看不会改选择。':'手牌或规则已变化，请关闭后重新查看。';return;}
         this.candidateUndo={revision:this.draftRevision(),ids:[...this.selectedIds],assistIds:[...this.assistIds]};
@@ -1003,12 +1004,12 @@ export class GameScene extends Phaser.Scene {
       message.textContent='仅示例 · '+copy.title+'\n'+[...copy.restrictions,...(copy.disabledAccompanyingIds.length?['停用附带：'+label(copy.disabledAccompanyingIds)+' · '+copy.accompanyingNote]:[])].join('\n')+(sources?'\n四牌规则来自：'+sources:'')+'\n当前手牌选择未改变。';
     };
     if(references.length){mountHandRouteReferences(list,this.hand,references,this.run.stage!.disabledIds,discardReferenceCopy(this.run),()=>{if(!isCurrent())return;this.dialog.close(dialog);this.statusMessage='参考已查看 · 自己选牌，出弃由你决定';this.updateControls();},()=>{if(isCurrent())showDeckInspection(this.dialog,this.run);},{budget:handRoutePlayBudget(this.run.stage!.handsLeft),examples:keepIds=>{const input=this.candidateInput();return handRouteTransitions(input,keepIds).map(facts=>handRouteTransitionDraft(input,facts,keepIds,this.assistIds,this.assistProfile&&r2AssistAvailability(this.run).available));},choose:(draft,button)=>chooseExample(draft.facts,button,draft.assistIds),all:()=>{if(isCurrent())this.inspectCandidates(false,null);}});message.textContent='参考只查看，不改当前选择；换牌仍由你决定，不保证补齐。';}
-    if(growthOnly&&result.status==='ready'&&!groups.length){message.textContent='当前这些来源没有可新增成长的示例；其他来源见构筑条件，也可正常出牌或看全部牌型。成长不是通关必选。';}
+    if(growthOnly&&result.status==='ready'&&!groups.length){message.textContent='当前这些来源没有可新增成长的示例；下方仍可看弃牌、交易或结果时条件，也可正常出牌。成长不是通关必选。';}
     attachFirstChapterGuide(this.run,()=>this.render());
     if(result.status!=='ready'){const pending=document.createElement('p');pending.textContent=result.status==='working'?'正在分片整理，可关闭继续选牌；稍后再查看。':'本轮仅显示可核验的当前选择；完整规则在构筑条件。';list.append(pending);return;}
     for(const group of groups){const section=document.createElement('details'),heading=document.createElement('summary');section.className='candidate-group';section.open=group.type===facts?.type||!!focus&&!growthOnly&&group===groups[0];heading.textContent=HAND_LABELS[group.type]+' · 可选'+[...new Set(group.examples.map(e=>e.playedIds.length))].join('／')+'张';section.append(heading);list.append(section);
       const variants=document.createElement('div'),button=document.createElement('button');variants.className='candidate-variants';button.type='button';button.className='candidate-choice';button.dataset.type=group.type;button.setAttribute('aria-pressed','false');let shown=group.examples[0];
-      const display=(example:HandPreview)=>{shown=example;const copy=selectionCopy(example);renderCandidateCards(button,this.hand,example);const caption=document.createElement('span');caption.className='candidate-caption';caption.textContent=copy.membership+(copy.disabledAccompanyingIds.length?'\n停用附带：'+label(copy.disabledAccompanyingIds)+' · 本场计分效果停用':'');const growth=this.run.jokers.map(j=>opportunity(j,example)).filter(g=>g?.status==='ready');if(growth.length)caption.textContent+='\n'+growth.map(g=>g!.name+' · '+g!.label).join('；');button.append(caption);button.setAttribute('aria-label',HAND_LABELS[example.type]+' · '+label(example.playedIds)+' · '+copy.membership);button.dataset.ids=JSON.stringify(example.playedIds);};
+      const display=(example:HandPreview)=>{shown=example;const copy=selectionCopy(example);renderCandidateCards(button,this.hand,example);const caption=document.createElement('span');caption.className='candidate-caption';caption.textContent=copy.membership+(copy.disabledAccompanyingIds.length?'\n停用附带：'+label(copy.disabledAccompanyingIds)+' · 本场计分效果停用':'');const growth=this.run.jokers.map(j=>opportunity(j,example)).filter(g=>g?.status==='ready'&&g.action==='play');if(growth.length)caption.textContent+='\n'+growth.map(g=>g!.name+' · '+g!.label).join('；');button.append(caption);button.setAttribute('aria-label',HAND_LABELS[example.type]+' · '+label(example.playedIds)+' · '+copy.membership);button.dataset.ids=JSON.stringify(example.playedIds);};
       const choose=()=>{chooseExample(shown,button);variants.querySelectorAll('button').forEach(b=>b.setAttribute('aria-pressed',String(Number(b.dataset.count)===shown.playedIds.length)));};
       for(const example of group.examples){const variant=document.createElement('button');variant.type='button';variant.textContent=example.playedIds.length+'张示例';variant.dataset.count=String(example.playedIds.length);variant.setAttribute('aria-pressed','false');variant.onclick=()=>{display(example);choose();button.scrollIntoView({block:'nearest'});};variants.append(variant);}
       display(shown);button.onclick=choose;section.append(variants,button);
@@ -1316,9 +1317,9 @@ export class GameScene extends Phaser.Scene {
     this.scoreFlame?.setGuards(guards);
   }
 
-  private async showJokerTransaction(event:Extract<DomainEvent,{type:'joker-transaction'}>,context:EffectContext):Promise<void> {
+  private async showJokerTransaction(event:Extract<DomainEvent,{type:'joker-transaction'}>,context:EffectContext,savedGrowth?:string):Promise<void> {
     if(context.signal.aborted)return;
-    const note=r2TransactionText(event,this.jokerDefinition(event.definitionId)),view=this.jokerViews.get(event.instanceId),frame=view?.getData('frame') as Phaser.GameObjects.Rectangle|undefined;
+    const note=savedGrowth??r2TransactionText(event,this.jokerDefinition(event.definitionId)),view=this.jokerViews.get(event.instanceId),frame=view?.getData('frame') as Phaser.GameObjects.Rectangle|undefined;
     this.statusMessage=note;this.updateControls();
     if(event.operation==='add-gold'||event.operation==='add-gold-limited'){
       this.audio.coin();
@@ -1334,7 +1335,7 @@ export class GameScene extends Phaser.Scene {
   private async discardSelected(trick=false,bet?:TouyeBet,seq?:number,committedIds?:string[]):Promise<void> {
     if(this.pendingTouye)return;
     if(this.pendingRefill){if(!this.ready)return;this.refillHidden=!this.refillHidden;this.selectedIds.clear();this.statusMessage='';this.render();return;}
-    if(!this.ready||!this.selectedIds.size||this.run.stage!.discardsLeft<r2DiscardCost(this.run))return;this.clearHover();this.cancelAiCandidates();this.playing=true;this.statusMessage='';this.updateControls();const lifecycle=this.lifecycle,intent=++this.intent,selectedIds=committedIds??[...this.selectedIds],previousIds=[...this.run.handOrder],beforeDiscards=this.run.stage!.discardsLeft,spentDiscards=beforeDiscards-r2DiscardCost(this.run);
+    if(!this.ready||!this.selectedIds.size||this.run.stage!.discardsLeft<r2DiscardCost(this.run))return;this.clearHover();this.cancelAiCandidates();this.playing=true;this.statusMessage='';this.updateControls();const lifecycle=this.lifecycle,intent=++this.intent,previousRun=this.run,selectedIds=committedIds??[...this.selectedIds],previousIds=[...this.run.handOrder],beforeDiscards=this.run.stage!.discardsLeft,spentDiscards=beforeDiscards-r2DiscardCost(this.run);
     try {
       const result=await dispatchRun(this,{type:'DiscardHand',selectedIds,...(trick?{laohuanTrick:true}:{}),...(bet?{touyeBet:bet}:{})},seq);
       if(!this.alive(lifecycle,intent))return;
@@ -1344,13 +1345,13 @@ export class GameScene extends Phaser.Scene {
       const handArea=this.view.layout.hand;
       this.effects.enqueue(context=>Promise.all([this.pulseResource('discard',beforeDiscards,context,spentDiscards),...discarded.map((view,i)=>this.animate({targets:view.container,x:view.container.x-64-i*14,y:handArea.y+handArea.height+190,angle:-26,scaleX:.82,scaleY:.82,alpha:0,duration:this.reducedMotion?20:210,delay:this.reducedMotion?0:i*38,ease:'Cubic.easeIn'},context))]).then(()=>undefined));
       if(trick&&result.events.some(event=>event.type==='cards-discarded'))this.effects.enqueue(context=>this.animateRole(this.pendingRefill?'老幻·候选已存，待留牌':'老幻·候选不足，已全留',this.reducedMotion?120:180,context));
-      for(const event of result.events)if(event.type==='joker-transaction')this.effects.enqueue(context=>this.showJokerTransaction(event,context));
+      for(const event of result.events)if(event.type==='joker-transaction')this.effects.enqueue(context=>this.showJokerTransaction(event,context,transactionGrowthChange(previousRun,result.state,event,true)));
       for(const event of result.events)if(event.type==='boss-transaction')this.effects.enqueue(async context=>{
         const target=event.operation==='charge-discard'?this.goldText:this.heatText,b=target.getBounds();
         this.audio.sourceCue('boss');await Promise.all([this.floatNote(event.operation==='charge-discard'?'-1 金币':'目标 +'+heatText(event.amount),b.x+b.width/2,b.y+b.height,'#ffd0a2',this.reducedMotion?180:460,context),this.reducedMotion?this.wait(180,context):this.animate({targets:target,scale:{from:1.14,to:1},duration:360,ease:'Back.easeOut'},context)]);
       });
       await this.effects.drain();if(!this.alive(lifecycle,intent))return;
-      this.erxiangTargetId=null;this.azaoRelease=false;this.xiemuBurn=0;this.selectedIds.clear();this.assistIds=[];this.assistGestureStart=undefined;this.statusMessage=bet||this.pendingRefill?'':trick?'老幻·戏法已保存 · 候选不足，全留':'已弃 '+selectedIds.length+' 张 · '+(this.deck.length?'补抽完成':'牌堆已空');this.updateHud();this.renderHand();this.revealDrawnCards(previousIds);
+      this.erxiangTargetId=null;this.azaoRelease=false;this.xiemuBurn=0;this.selectedIds.clear();this.assistIds=[];this.assistGestureStart=undefined;this.statusMessage=bet||this.pendingRefill?'':result.events.flatMap(event=>event.type==='joker-transaction'?[transactionGrowthChange(previousRun,result.state,event,true)].filter(Boolean):[])[0]??(trick?'老幻·戏法已保存 · 候选不足，全留':'已弃 '+selectedIds.length+' 张 · '+(this.deck.length?'补抽完成':'牌堆已空'));this.updateHud();this.renderHand();this.revealDrawnCards(previousIds);
       if(this.run.phase==='run-lost')this.finishStage(false);
     } finally {if(this.alive(lifecycle,intent)&&['await-input','pending-refill'].includes(this.run.phase)){this.playing=false;this.refreshSelection();}}
   }
@@ -1837,7 +1838,7 @@ export class GameScene extends Phaser.Scene {
   private completePresentation(presentation:NonNullable<GameScene['presentation']>):void {
     if(!this.alive(presentation.lifecycle,presentation.intent))return;
     this.stopScoreFire();
-    this.erxiangTargetId=null;this.azaoRelease=false;this.xiemuBurn=0;this.presentation=undefined;this.run=presentation.state;this.selectedIds.clear();this.assistIds=[];this.assistGestureStart=undefined;this.statusMessage=savedHeroResult(this.run);this.updateHud();
+    this.erxiangTargetId=null;this.azaoRelease=false;this.xiemuBurn=0;this.presentation=undefined;this.run=presentation.state;this.selectedIds.clear();this.assistIds=[];this.assistGestureStart=undefined;this.statusMessage=savedHeroResult(this.run)||handGrowthChanges(this.run)[0]?.line||'';this.updateHud();
     if(this.run.phase==='stage-cleared'||this.run.phase==='run-won'){this.finishStage(true,true,!presentation.replay);return;}
     if(this.run.phase==='run-lost'){this.finishStage(false,!presentation.replay);return;}
     this.playing=false;this.render();this.revealDrawnCards(presentation.hand.map(card=>card.id));

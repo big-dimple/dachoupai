@@ -1,3 +1,4 @@
+import {r2DiscardCost} from '../domain/r2Run';
 import {R2_GROUP_UPGRADE_IDS,R2_GROUP_UPGRADE_JOKERS} from '../content/r2GroupUpgradeJokers';
 import {R2_COMBO_GROWTH_JOKERS,R2_COMBO_GROWTH_IDS} from '../content/r2ComboGrowthJokers';
 import {R2_ASSIST_JOKERS} from '../content/r2AssistJokers';
@@ -20,6 +21,7 @@ export interface JokerMemoryContext {
  scoringLimited:boolean;gold:number;handsLeft:number;playIndex:number;discardsUsed:number;quadRefundUsed:boolean;
  previousHandType:R2ScoreConditionContext['previousHandType'];previousHandTypeKnown?:boolean;stageHeat:string;target:string;
  transaction:R2TransactionConditionContext;deckSize:number;entryHandLimit?:number;jokerSlots:number;jokerCount:number;
+ canDiscard?:boolean;previousHandScore?:string|null;
 }
 const typeNames=(values:readonly (keyof typeof HAND_LABELS)[])=>values.map(t=>HAND_LABELS[t]).join('／');
 const modulo=(divisor:number,remainder:number)=>remainder===0?'本场第'+divisor+'、'+divisor*2+'、'+divisor*3+'…次成功出牌':'本场成功出牌序号除以'+divisor+'余'+remainder;
@@ -172,6 +174,6 @@ export function recordedJokerMemoryContext(ctx:JokerMemoryContext,record:{previo
 /** Public snapshot adapter. Never reads future drawPile, RNG, journal or score preview. */
 export function publicJokerMemoryContext(state:Pick<R2RunState,'phase'|'gold'|'stage'|'lastTrace'|'shop'>,extras:{hand:readonly PlayingCard[];facts?:R2SelectionFacts;scoringLimited:boolean;deckSize:number;jokerSlots:number;jokerCount:number}):JokerMemoryContext {
  const stage=state.stage,inStage=state.phase==='await-input';
- return{...extras,inStage,gold:state.gold,handsLeft:stage?.handsLeft??0,playIndex:stage?.playIndex??0,discardsUsed:stage?.discardsUsed??0,quadRefundUsed:stage?.quadRefundUsed??false,previousHandType:stage?.previousHandType??null,stageHeat:stage?.heat??'0',target:stage?.targetHeat??'1',disabledIds:stage?.disabledIds??[],entryHandLimit:inStage?stage?.initialHandLimit:undefined,
+ return{...extras,inStage,canDiscard:inStage&&!!stage&&stage.discardsLeft>=r2DiscardCost({stage,boss:stage.boss!})&&state.gold>=(stage.boss?.definitionId==='B07'?1:0),previousHandScore:stage?.previousHandScore??null,gold:state.gold,handsLeft:stage?.handsLeft??0,playIndex:stage?.playIndex??0,discardsUsed:stage?.discardsUsed??0,quadRefundUsed:stage?.quadRefundUsed??false,previousHandType:stage?.previousHandType??null,stageHeat:stage?.heat??'0',target:stage?.targetHeat??'1',disabledIds:stage?.disabledIds??[],entryHandLimit:inStage?stage?.initialHandLimit:undefined,
  transaction:{gold:state.gold,handsAfter:stage?.handsLeft,playIndex:stage?.playIndex,discardsUsed:stage?.discardsUsed,handType:stage?.previousHandType??null,heldCount:state.lastTrace?.sets.heldIds.length,discarded:[],hasStage:inStage,maxPlayedCount:stage?.maxPlayedCount??0,ordinaryStraightSeen:stage?.ordinaryStraightSeen??false,ordinaryFlushSeen:stage?.ordinaryFlushSeen??false,jokerSold:inStage?stage?.jokerSold??false:state.shop?.soldJoker??false,traceType:state.lastTrace?.handType??null,heat:stage?.heat??'0',target:stage?.targetHeat??'1'}};
 }
