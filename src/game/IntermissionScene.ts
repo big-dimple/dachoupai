@@ -136,7 +136,7 @@ export class IntermissionScene extends Phaser.Scene {
     }else if(capped){
       heading='已达数值上限';body='进度已保存。可查看本场、在菜单导出，或返回选角。';
     }else if(lost){
-      heading=failureSummary(run).reason;
+      heading='再登台';
       body=`${failureSummary(run).resources}\n累计 ${heatText(run.totalHeat)} 热度 · 余额 ${run.gold} 金\n同局重试从开局重新开始，构筑不继承。`;
     }
     const touye=savedTouyeWager(trace);if(touye)body=touye+'\n'+body;
@@ -167,7 +167,7 @@ export class IntermissionScene extends Phaser.Scene {
     const canSkip=animateIn&&!skipped;
     v.button(p.right,canSkip?'跳过动效':won||lost?'巡演留影':'回看上手',canSkip?'action/skip-celebration':'action/last-hand',()=>{if(canSkip){this.firstRender=false;this.audio.cancelPresentation();this.render();}else if(won||lost)this.inspectFinale();else this.inspectLastHand();},!this.busy&&(canSkip||won||lost||!!trace));
     const discovery=this.ready&&!this.notice&&!lost&&!skipped?savedGrowthDiscovery(run):undefined,gift=this.ready&&!this.notice&&!lost&&!skipped?stageGiftReceipt(run):undefined;
-    v.text(p.x,p.noticeY,this.busy?'正在保存…':this.notice||(!this.ready?'当前进度未保存或只读，请查看菜单。':capped?'已达数值上限，进度已保存':won?run.mode==='standard'?'八章通关已保存，继续无尽由你决定。':'本模式结果已保存，可重试或返回选角。':nextStage?gift?.banner||discovery?.full||'':lost?'同局重试沿用角色与开局种子。':''),14,this.notice?'#ffd0b1':'#3F606B',p.w).setName(gift&&nextStage?'gift/discovery':discovery&&nextStage?'growth/discovery':'');
+    v.text(p.x,p.noticeY,this.busy?'正在保存…':this.notice||(!this.ready?'当前进度未保存或只读，请查看菜单。':capped?'已达数值上限，进度已保存':won?run.mode==='standard'?'八章通关已保存，继续无尽由你决定。':'本模式结果已保存，可重试或返回选角。':nextStage?gift?.banner||discovery?.full||'':lost?'重试从开局开始，不继承构筑。':''),14,this.notice?'#ffd0b1':'#3F606B',p.w).setName(gift&&nextStage?'gift/discovery':discovery&&nextStage?'growth/discovery':'');
     this.firstRender=false;
   }
   private jokerDefinition(id:string){return r2JokerDefinitionFor(runController(this)!.state,id);}
@@ -186,7 +186,7 @@ export class IntermissionScene extends Phaser.Scene {
     resultStagePaper(this,v,b,lost);
     if(animate&&!skipped)this.outcomeMotion=mountResultEntrance(this,v.root,b,!lost);
     if(lost){
-      const summary=failureSummary(run),plan=resultStagePlan(b,v.layout.height<500),source=plan.source,main=plan.score,center=main.x+main.width/2;
+      const summary=failureSummary(run),plan=resultStagePlan(b,v.layout.height<500,true),source=plan.source,main=plan.score,center=main.x+main.width/2;
       const key=selectionPortraitKey(run.characterId),portraitHeight=Math.min(156,Math.max(0,source.height-70)),portraitWidth=portraitHeight*.67;
       if(portraitHeight>=40&&this.textures.exists(key)){
         const image=this.add.image(source.x+source.width/2,source.y+portraitHeight/2,key).setName('result-art/hero');image.setScale(Math.min(portraitWidth/image.width,portraitHeight/image.height));v.add(image);
@@ -206,7 +206,7 @@ export class IntermissionScene extends Phaser.Scene {
     const small=main.height<200;
     const paint=()=>{
       this.sourceArtLayer?.destroy();const start=v.root.length;
-      const sourceView=resultStageSources(this,v,plan.source,facts,short),text=sourceView.text;
+      const sourceView=resultStageSources(this,v,plan.source,run.phase==='run-won'?{...facts,character:run.characterId}:facts,short),text=sourceView.text;
       const source=facts.source,growth=facts.growth;
       let y=text.y;
       if(source){const name=v.text(text.x,y,growth?.name??source.title,14,PAPER_CSS.jade,text.width).setFontStyle('bold').setName('result/source-continuity');y+=name.height+6;}
@@ -215,6 +215,11 @@ export class IntermissionScene extends Phaser.Scene {
         const saved=v.text(text.x,y,prefix+growth.before+' → '+prefix+growth.after,text.width<150?22:24,PAPER_CSS.ink,text.width).setFontStyle('bold').setName('result/growth-saved');y+=saved.height+4;
         v.text(text.x,y,run.phase==='run-won'?'保存成长 · 本局留影':'保存成长 · 下手生效',14,PAPER_CSS.jade,text.width).setName('result/growth-next');
       }else if(source){v.text(text.x,y,source.effect,14,PAPER_CSS.jade,text.width).setStyle({maxLines:short?3:4}).setName('result/source-effect');}
+      else if(run.phase==='run-won'){
+        const name=v.text(text.x,y,getCharacter(run.characterId).name+' · 本局角色',14,PAPER_CSS.jade,text.width).setFontStyle('bold');y+=name.height+8;
+        const live=run.deckInstances.filter(c=>!run.destroyedIds.includes(c.id));
+        v.text(text.x,y,`最终牌组 ${live.length} 张\n增强 ${live.filter(c=>c.enhancement!==undefined).length} 张 · 余额 ${run.gold} 金`,14,PAPER_CSS.jade,text.width).setStyle({maxLines:short?2:4}).setName('result/final-holdings');
+      }
       this.sourceArtLayer=this.add.container(0,0,v.root.list.slice(start)).setName('result-art/source-layer');v.add(this.sourceArtLayer);
       return sourceView;
     };
