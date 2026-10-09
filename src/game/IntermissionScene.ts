@@ -1,3 +1,6 @@
+import {resultStageFacts,resultStagePlan} from './ResultStage';
+import {resultStagePaper,resultStageSources} from './ResultStageArt';
+import {jokerArtPreviewUrl} from './jokerArt';
 import {paperSceneStart} from './PaperFlow';
 import {savedTouyeWager} from './TouyeWagerCopy';
 import {savedBossImpact} from './SavedBossImpact';
@@ -31,14 +34,13 @@ import {gameSession} from './session';
 import {getCharacter} from './characters';
 import {stageOutcome} from './stageOutcome';
 import {failureSummary} from './FailureSummary';
-import {ScoreFlame} from './ScoreFlame';
 import {EffectQueue} from '../core/EffectQueue';
 import {REWARD_COIN,RewardCoinCue,loadRewardCoin,addRewardCoin,animateRewardCoin} from './RewardCoin';
 import {SceneView} from './SceneView';
 import {DetailDialog} from './DetailDialog';
 import {SKIP_ITEM_LABELS} from './ConsumableDialog';
 import type {Box} from './layout';
-import {PAPER_CSS} from './theme';
+import {PAPER_CSS,PAPER_THEME as T,SCORE_FONT} from './theme';
 
 export interface IntermissionResult {cleared:boolean;stageIndex:number;stageHeat:string;handsLeft:number;goldEarned:number;failureCue?:FailureCue;rewardClearId?:string}
 function resultLayout(width:number,height:number,top:number,bottom:number){
@@ -58,7 +60,6 @@ export class IntermissionScene extends Phaser.Scene {
   private busy=false;
   private notice='';
   private firstRender=true;
-  private celebration?:ScoreFlame;
   private readonly rewardCue=new RewardCoinCue();
   private readonly rewardEffects=new EffectQueue();
   private celebrationTimer?:Phaser.Time.TimerEvent;
@@ -67,6 +68,11 @@ export class IntermissionScene extends Phaser.Scene {
   constructor(){super('intermission');}
   init(data:IntermissionResult):void {this.result=data;}
   private get ready():boolean {const session=gameSession();return !this.busy&&runController(this)?.status==='idle'&&session.lease.writable&&!session.pendingRun&&!session.working;}
+  preload():void {
+    const run=runController(this)?.state;if(!run?.stage)return;
+    const source=resultStageFacts(run,this.result.cleared,!!run.stage.skipResult).source,key=source&&jokerArtKey(source.definitionId),url=source&&jokerArtPreviewUrl(source.definitionId);
+    if(key&&url&&!this.textures.exists(key))this.load.image(key,url,{responseType:'blob',timeout:5000});
+  }
   create():void {
     this.lifecycle++;this.busy=false;this.notice='';this.firstRender=true;this.events.once('shutdown',()=>{this.lifecycle++;this.dialog.close();this.stopCelebration();});
     const run=runController(this)?.state;if(!run?.stage){this.scene.start('character-select');return;}
@@ -140,7 +146,8 @@ export class IntermissionScene extends Phaser.Scene {
       v.button(p.left,'返回选角','action/continue-stage',()=>void this.next(),!this.busy);
       v.button(p.primary,this.busy?'正在开局…':'同局重试','action/retry-seed',()=>void this.retrySeed(),this.ready,true);
     }
-    v.button(p.right,lost?'本场详情':'回看上手','action/last-hand',()=>lost?this.inspectResult():this.inspectLastHand(),!this.busy&&(lost||!!trace));
+    const canSkip=animateIn&&!lost&&!skipped&&this.result.cleared;
+    v.button(p.right,canSkip?'跳过动效':lost?'本场详情':'回看上手',canSkip?'action/skip-celebration':'action/last-hand',()=>{if(canSkip){this.firstRender=false;this.audio.cancelPresentation();this.render();}else if(lost)this.inspectResult();else this.inspectLastHand();},!this.busy&&(canSkip||lost||!!trace));
     const discovery=this.ready&&!this.notice&&!lost&&!skipped?savedGrowthDiscovery(run):undefined,gift=this.ready&&!this.notice&&!lost&&!skipped?stageGiftReceipt(run):undefined;
     v.text(p.x,p.noticeY,this.busy?'正在保存…':this.notice||(!this.ready?'当前进度未保存或只读，请查看菜单。':capped?'已达数值上限，进度已保存':won?run.mode==='standard'?'八章通关已保存，继续无尽由你决定。':'本模式结果已保存，可重试或返回选角。':nextStage?gift?.banner||discovery?.full||'':lost?'同局重试沿用角色与开局种子。':''),14,this.notice?'#ffd0b1':'#3F606B',p.w).setName(gift&&nextStage?'gift/discovery':discovery&&nextStage?'growth/discovery':'');
     this.firstRender=false;
@@ -152,73 +159,55 @@ export class IntermissionScene extends Phaser.Scene {
   }
   private stopCelebration():void {
     this.rewardEffects.clear();
-    this.celebrationTimer?.remove();this.celebrationTimer=undefined;this.celebration?.destroy();this.celebration=undefined;
+    this.celebrationTimer?.remove();this.celebrationTimer=undefined;
     this.tweens.killAll();
   }
   private drawResultHero(b:Box,outcome:ReturnType<typeof stageOutcome>,skipped:boolean,lost:boolean,animate:boolean):void {
-    const v=this.view,run=runController(this)!.state,compact=b.height<220,cx=b.x+b.width/2,cy=b.y+b.height/2;
+    const v=this.view,run=runController(this)!.state,cx=b.x+b.width/2;
+    resultStagePaper(this,v,b,lost);
     if(lost){
       const summary=failureSummary(run);
-      v.text(cx,b.y+8,summary.reason,16,PAPER_CSS.ink,b.width-24).setOrigin(.5,0).setName('result/failure-reason');
-      if(b.height>=132){
-        v.text(cx,b.y+40,summary.lastHand,14,PAPER_CSS.jade,b.width-24).setOrigin(.5,0).setName('result/last-hand');
-        v.text(cx,b.y+66,summary.resources,14,PAPER_CSS.jade,b.width-24).setOrigin(.5,0).setName('result/resources');
-      }
+      v.text(cx,b.y+12,summary.reason,16,PAPER_CSS.ink,b.width-32).setOrigin(.5,0).setName('result/failure-reason');
+      if(b.height>=132){v.text(cx,b.y+42,summary.lastHand,14,PAPER_CSS.jade,b.width-32).setOrigin(.5,0).setName('result/last-hand');v.text(cx,b.y+66,summary.resources,14,PAPER_CSS.jade,b.width-32).setOrigin(.5,0).setName('result/resources');}
       const gap=(BigInt(run.stage!.targetHeat)-BigInt(this.result.stageHeat)).toString();
-      v.text(cx,b.y+b.height*.68,`${heatText(this.result.stageHeat)} / ${heatText(run.stage!.targetHeat)} · 差 ${heatText(gap)}`,b.width<420?16:22,'#eadbbd',b.width-24).setOrigin(.5,0).setName('result/gap');
-      if(animate){const curtain=v.add(this.add.rectangle(cx,b.y+b.height*.3,b.width,b.height*.6,0xe2e8e5,.45));this.tweens.add({targets:curtain,alpha:0,duration:280,ease:'Cubic.easeOut',onComplete:()=>curtain.destroy()});}
+      v.text(cx,b.y+b.height*.58,`${heatText(this.result.stageHeat)} / ${heatText(run.stage!.targetHeat)} · 差 ${heatText(gap)}`,b.width<420?22:32,PAPER_CSS.ink,b.width-32).setOrigin(.5,0).setName('result/gap');
       return;
     }
-    const trace=!skipped&&this.result.cleared?outcome.last:null,growth=trace&&b.height>=300&&b.width>=250?buildGrowthProgress(run)[0]:undefined,small=compact||!!growth,top=b.y+(small?6:18);
-    const hand=trace?HAND_LABELS[trace.handType]:'本场热度';
-    v.text(cx,top,hand,small?18:24,'#f3d899').setOrigin(.5,0).setFontStyle('bold');
-    if(trace)v.text(cx,top+(small?24:34),`${fractionText(trace.accumulator.H)} 热度 × ${fractionText(trace.accumulator.M)}`,small?18:22,'#ffdca0').setOrigin(.5,0).setName('result/formula');
-    const scoreY=top+(trace?(small?46:68):(small?24:42)),scoreSize=growth?44:compact?32:Math.min(68,Math.max(42,b.height*.19));
-    const score=v.text(cx,scoreY,(trace?'+':'')+heatText(trace?.finalScore??this.result.stageHeat),scoreSize,'#fff2c7').setOrigin(.5,0).setName('result/score').setFontStyle('bold');
-    for(let font=scoreSize;score.width>b.width-28&&font>24;)score.setFontSize(--font);
-    // Reserve visible coin height above the reward row; transparent cell padding is not a text gap.
-    const coinRow=this.result.cleared&&!skipped&&this.result.goldEarned>0,coinSize=growth?64:compact?(b.height<190?56:72):96;
-    const totalY=b.y+b.height-(coinRow?(growth?88:compact?(coinSize===56?70:88):120):(compact?46:85)),target=run.stage!.targetHeat;
-    if(trace&&totalY-scoreY-score.height>=25){
-      const fact=victorySourceFact(run,trace),sources=this.traceSources(trace).slice(0,3),assist=savedAssistSummary(trace);
-      let y=scoreY+score.height+(compact?4:12);
-      if(assist){const line=v.text(cx,y,assist,14,PAPER_CSS.jade,b.width-24).setOrigin(.5,0).setName('result/assist-source');y+=line.height+4;}
-      const shown=growth&&showBuildGrowth(v,this,v.root,{x:b.x+8,y:y+2,width:b.width-16,height:totalY-y-8},growth);
-      const copy=fact?fact.title+' · '+fact.effect:sources.length?sources.join(' · '):'牌型与计分牌共同结算';
-      const line=v.text(cx+18,y,copy,14,PAPER_CSS.jade,b.width-72).setOrigin(.5,0).setName('result/source-continuity');
-      // Measured text must fit above the real total; compact screens keep the assist identity first.
-      if(shown||y+line.height+4>totalY)line.destroy();
-      else {
-        const art=fact&&jokerArtKey(fact.definitionId);if(art&&this.textures.exists(art))v.add(this.add.image(Math.max(b.x+18,line.x-line.width/2-22),y+8,art).setDisplaySize(compact?16:28,compact?20:35).setName('result/source-art'));
-        if(animate){line.setAlpha(0);this.tweens.add({targets:line,alpha:1,duration:280,delay:180,ease:'Cubic.easeOut'});}
-      }
-    }
-    const gap=BigInt(target)>BigInt(this.result.stageHeat)?(BigInt(target)-BigInt(this.result.stageHeat)).toString():'0';
-    v.text(cx,totalY,skipped?'本场跳过':lost?`目标 ${heatText(target)} · 差 ${heatText(gap)}`:`全场 ${heatText(this.result.stageHeat)} / ${heatText(target)}`,compact?14:20,'#e3e9d9').setOrigin(.5,0).setName('result/gap');
+    const facts=resultStageFacts(run,this.result.cleared,skipped),plan=resultStagePlan(b,v.layout.height<500),main=plan.score,center=main.x+main.width/2,short=v.layout.height<500;
+    const sourceView=resultStageSources(this,v,plan.source,facts,short),text=sourceView.text;
+    const source=facts.source,growth=facts.growth,small=main.height<200;
+    let y=text.y;
+    if(source){const name=v.text(text.x,y,growth?.name??source.title,14,PAPER_CSS.jade,text.width).setFontStyle('bold').setName('result/source-continuity');y+=name.height+6;}
+    if(growth){
+      const prefix=growth.metric.includes('×')?'×':'+',read=v.text(text.x,y,'本手读取 '+prefix+growth.before,14,PAPER_CSS.jade,text.width).setName('result/growth-read');y+=read.height+4;
+      const saved=v.text(text.x,y,prefix+growth.before+' → '+prefix+growth.after,text.width<150?19:24,PAPER_CSS.ink,text.width).setFontStyle('bold').setName('result/growth-saved');y+=saved.height+4;
+      v.text(text.x,y,'保存成长 · 下手生效',14,PAPER_CSS.jade,text.width).setName('result/growth-next');
+    }else if(source){v.text(text.x,y,source.effect,14,PAPER_CSS.jade,text.width).setStyle({maxLines:short?3:4}).setName('result/source-effect');}
+    const hand=facts.trace?HAND_LABELS[facts.trace.handType]:'本场热度';
+    v.text(center,main.y,hand,16,PAPER_CSS.jade,main.width-16).setOrigin(.5,0).setName('result/hand');
+    if(facts.trace)v.text(center,main.y+24,`${fractionText(facts.trace.accumulator.H)} 热度 × ${fractionText(facts.trace.accumulator.M)}`,14,PAPER_CSS.jade,main.width-8).setOrigin(.5,0).setName('result/formula');
+    const scoreY=main.y+(facts.trace?44:26),scoreSize=short?38:small?48:68;
+    const score=v.text(center,scoreY,(facts.trace?'+':'')+heatText(facts.trace?.finalScore??this.result.stageHeat),scoreSize,facts.intensity>1?PAPER_CSS.red:PAPER_CSS.ink,main.width-8).setOrigin(.5,0).setFontFamily(SCORE_FONT).setFontStyle('bold').setName('result/score');
+    for(let font=scoreSize;score.width>main.width-8&&font>24;)score.setFontSize(--font);
+    const totalY=scoreY+score.height+8;
+    v.text(center,totalY,skipped?'本场跳过':`全场 ${heatText(this.result.stageHeat)} / ${heatText(run.stage!.targetHeat)}`,14,PAPER_CSS.jade,main.width).setOrigin(.5,0).setName('result/gap');
+    const rewardY=short?main.y+main.height-42:small?main.y+112:main.y+main.height-70;
     if(this.result.cleared&&!skipped){
-      const reward=v.text(cx,b.y+b.height-(compact?(coinSize===56?32:40):52),'过关奖励  +'+this.result.goldEarned+' 金',compact?16:22,'#ffdc91').setOrigin(.5,0).setFontStyle('bold').setName('result/reward');
-      const cue=this.firstRender&&this.rewardCue.claim(run,this.result),size=coinSize,diameter=size*.7,gap=8;
-      const x=cx-(reward.width+diameter+gap)/2+diameter/2,y=reward.y+reward.height/2-size*.04;
-      const show=()=>{reward.x=cx+(diameter+gap)/2;return addRewardCoin(this,v.root,x,y,size,run.stage!.clearId!);};
-      if(this.result.goldEarned>0&&this.textures.exists(REWARD_COIN.key)&&run.stage?.clearId){
-        const coin=show();if(cue)this.rewardEffects.enqueue(context=>animateRewardCoin(this,coin,context.signal,gameSession().reducedMotion||window.matchMedia('(prefers-reduced-motion: reduce)').matches));
-      }else if(cue){
-        this.rewardEffects.enqueue(async context=>{
-          if(!await loadRewardCoin(this,context.signal)||context.signal.aborted)return;
-          const coin=show();await animateRewardCoin(this,coin,context.signal,gameSession().reducedMotion||window.matchMedia('(prefers-reduced-motion: reduce)').matches);
-        });
+      const band={x:main.x,y:rewardY,width:main.width,height:short?40:48};v.material(band,T.paperLight,T.paperLight,6);
+      const reward=v.text(center,band.y+10,'过关奖励  +'+this.result.goldEarned+' 金',short?16:20,PAPER_CSS.ink,main.width-12).setOrigin(.5,0).setFontStyle('bold').setName('result/reward');
+      const cue=this.firstRender&&this.rewardCue.claim(run,this.result),size=40,diameter=size*.7,gap=8;
+      const x=center-(reward.width+diameter+gap)/2+diameter/2,coinY=reward.y+reward.height/2-size*.04;
+      const show=()=>{reward.x=center+(diameter+gap)/2;return addRewardCoin(this,v.root,x,coinY,size,run.stage!.clearId!);};
+      if(this.result.goldEarned>0&&run.stage?.clearId){
+        if(this.textures.exists(REWARD_COIN.key)){const coin=show();if(cue)this.rewardEffects.enqueue(context=>animateRewardCoin(this,coin,context.signal,!animate));}
+        else if(cue)this.rewardEffects.enqueue(async context=>{if(!await loadRewardCoin(this,context.signal)||context.signal.aborted)return;const coin=show();await animateRewardCoin(this,coin,context.signal,!animate);});
       }
       if(cue)void this.rewardEffects.drain().catch(()=>{});
     }
-    if(animate&&this.result.cleared&&!skipped){
-      const centerY=scoreY+score.height*.55,flare=v.add(this.add.graphics().lineStyle(outcome.intensity,0xffd588,.55).strokeEllipse(0,0,Math.min(320,b.width-20),68).setPosition(cx,centerY));
-      this.tweens.add({targets:flare,scaleX:{from:.3,to:1.1},scaleY:{from:.5,to:1.4},alpha:{from:.8,to:0},duration:550,ease:'Cubic.easeOut',onComplete:()=>flare.destroy()});
-      score.setScale(.72);this.tweens.add({targets:score,scale:1,duration:480,ease:'Back.easeOut'});
-      if(outcome.intensity>1){this.celebration=new ScoreFlame(this,v.root,{x:cx-Math.min(160,b.width*.4),y:scoreY+score.height-22,width:Math.min(320,b.width*.8),height:40});this.celebration.set(outcome.intensity);}
-      const skip=v.button({x:b.x+b.width-94,y:b.y+2,width:88,height:44},'跳过动效','action/skip-celebration',()=>{this.firstRender=false;this.audio.cancelPresentation();this.render();});
-      (skip.getData('label') as Phaser.GameObjects.Text).setFontSize(14);
-      const skipLabel=skip.getData('label') as Phaser.GameObjects.Text,skipArt=skip.getData('buttonArt') as Phaser.GameObjects.Container;
-      this.celebrationTimer=this.time.delayedCall(1000,()=>{this.celebration?.destroy();this.celebration=undefined;skipLabel.destroy();skipArt.destroy();skip.destroy();});
+    if(animate&&!skipped&&this.result.cleared){
+      // Short settling accents never own a command callback or delay the primary action.
+      const accented=[score,...sourceView.art];for(const item of accented){const sx=item.scaleX,sy=item.scaleY;item.setScale(sx*.98,sy*.98);this.tweens.add({targets:item,scaleX:sx,scaleY:sy,duration:facts.intensity>1?260:180,ease:'Cubic.easeOut'});}
+      this.celebrationTimer=this.time.delayedCall(1000,()=>{if(this.scene.isActive()){this.firstRender=false;this.render();}});
     }
   }
   private inspectJourney():void {
