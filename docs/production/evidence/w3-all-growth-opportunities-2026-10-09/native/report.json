@@ -1,0 +1,226 @@
+{
+  "before": {
+    "source": "a104229a293143988bec95cf9062fc3aa8d84057c98fa7e893826089346c2f9d",
+    "index": "a44b4e36beb394dd04856b2323776c4743e8e884d5967710a2c0aead9c2e3582",
+    "head": "579cf14438cce72e9a9d7cc447036efd28b00290",
+    "branch": "refs/heads/review/all-growth-opportunities"
+  },
+  "scope": "Explicit controlled source identities, not normal acquisition: a06 replaces holdings at original saved next shop before legal LeaveShop/EnterStage/first two-pair; c05 replaces d03 unit fixture at entry. Actual native PC flush and phone same-suit discard are committed using unchanged domain.",
+  "profiles": [
+    {
+      "name": "pc-1366",
+      "width": 1366,
+      "height": 768,
+      "body": "本轮成长机会\n\n同花 · 已选5张\n计分牌5张 · 附带0张\n本轮成长机会\n\n牌型与成长说明\n同花 · 可选5张\n5张示例\n2♦\n♦\n★\n8♦\n♦\n★\nQ♦\n★\n4♦\n♦\n★\nA♦\n♦\n★\n计分牌5张 · 附带0张\n独家戏 · 成长条件可用\n\n示例尚未选择；手牌选择保持原样。\n\n成长来源与时点\n独家戏\n\n现存×1.5 系数 · 上限×1,000,000\n成长条件可用：上手两对 → 本手同花；连续合格牌型换型，成功保存后才新增。\n系数×1.15，最多到×1.725\n只有成功保存才兑现；新成长从后续读取生效。\n\n查看来源与成长\n换为这组\n撤销换组\n全部可成牌型\n道具箱 0/2\n构筑条件\n完整牌型规则\n关闭",
+      "command": {
+        "runId": "run/group-natural-17/erxiang",
+        "commandId": "run/group-natural-17/erxiang/command/11",
+        "expectedSeq": 10,
+        "action": {
+          "type": "PlayHand",
+          "selectedIds": [
+            "diamonds-2",
+            "diamonds-8",
+            "diamonds-12",
+            "diamonds-4",
+            "diamonds-14"
+          ]
+        }
+      },
+      "canonicalEqualsDomain": true,
+      "growth": {
+        "coefficient": {
+          "n": "69",
+          "d": "40"
+        }
+      },
+      "inputFile": "pc-1366-input.json",
+      "outputFile": "pc-1366-output.json",
+      "screens": [
+        "pc-1366-initial.png",
+        "pc-1366-selected.png",
+        "pc-1366-growth.png",
+        "pc-1366-saved.png"
+      ],
+      "actualEvents": [
+        {
+          "type": "hand-scored-r2",
+          "events": [
+            {
+              "eventId": "run/group-natural-17/erxiang/hand/run/group-natural-17/erxiang/command/11/event/6",
+              "rootId": "run/group-natural-17/erxiang/hand/run/group-natural-17/erxiang/command/11",
+              "rootEventId": "run/group-natural-17/erxiang/hand/run/group-natural-17/erxiang/command/11/event/6",
+              "phase": "jokerScore",
+              "sourceType": "joker",
+              "sourceDefinitionId": "a06",
+              "sourceInstanceId": "controlled/a06",
+              "operation": "read-coefficient",
+              "value": {
+                "n": "3",
+                "d": "2"
+              },
+              "before": {
+                "H": {
+                  "n": "175",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "4",
+                  "d": "1"
+                }
+              },
+              "after": {
+                "H": {
+                  "n": "175",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "6",
+                  "d": "1"
+                }
+              },
+              "reasonKey": "a06.read-coefficient",
+              "visibleCondition": {
+                "kind": "hand-type-in",
+                "values": [
+                  "two-pair",
+                  "three-kind",
+                  "straight",
+                  "flush",
+                  "full-house",
+                  "four-kind",
+                  "straight-flush",
+                  "five-kind",
+                  "flush-house",
+                  "flush-five"
+                ]
+              },
+              "retriggerDepth": 0
+            },
+            {
+              "eventId": "run/group-natural-17/erxiang/hand/run/group-natural-17/erxiang/command/11/event/8",
+              "rootId": "run/group-natural-17/erxiang/hand/run/group-natural-17/erxiang/command/11",
+              "rootEventId": "run/group-natural-17/erxiang/hand/run/group-natural-17/erxiang/command/11/event/8",
+              "phase": "afterHand",
+              "sourceType": "joker",
+              "sourceDefinitionId": "a06",
+              "sourceInstanceId": "controlled/a06",
+              "operation": "multiply-coefficient",
+              "value": {
+                "n": "23",
+                "d": "20"
+              },
+              "before": {
+                "H": {
+                  "n": "175",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "6",
+                  "d": "1"
+                }
+              },
+              "after": {
+                "H": {
+                  "n": "175",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "6",
+                  "d": "1"
+                }
+              },
+              "reasonKey": "a06.multiply-coefficient",
+              "visibleCondition": {
+                "kind": "hand-type-relation",
+                "values": [
+                  "two-pair",
+                  "three-kind",
+                  "straight",
+                  "flush",
+                  "full-house",
+                  "four-kind",
+                  "straight-flush",
+                  "five-kind",
+                  "flush-house",
+                  "flush-five"
+                ],
+                "relation": "different"
+              },
+              "retriggerDepth": 0,
+              "resourceBefore": 0,
+              "resourceAfter": 1,
+              "growthBefore": {
+                "n": "3",
+                "d": "2"
+              },
+              "growthAfter": {
+                "n": "69",
+                "d": "40"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "phone-390",
+      "width": 390,
+      "height": 740,
+      "body": "本轮成长机会\n\n高牌 · 已选2张\n计分牌1张 · 附带1张\n本轮成长机会\n\n牌型与成长说明\n\n当前这些来源没有可新增成长的示例；下方仍可看弃牌、交易或结果时条件，也可正常出牌。成长不是通关必选。\n\n成长来源与时点\n换布景\n\n现存+0 蓄热 · 上限80\n弃牌可蓄热：所选可作为同花弃牌；须成功弃牌并保存才蓄热。\n蓄热最多新增+40\n下一次实际读取后消耗；场末清空。\n只有成功保存才兑现；新成长从后续读取生效。\n\n查看来源与成长\n换为这组\n撤销换组\n全部可成牌型\n道具箱 0/2\n构筑条件\n完整牌型规则\n关闭",
+      "command": {
+        "runId": "controlled/growth/d03",
+        "commandId": "controlled/growth/d03/command/5",
+        "expectedSeq": 4,
+        "action": {
+          "type": "DiscardHand",
+          "selectedIds": [
+            "hearts-13",
+            "hearts-2"
+          ]
+        }
+      },
+      "canonicalEqualsDomain": true,
+      "growth": {
+        "pendingHeat": {
+          "n": "40",
+          "d": "1"
+        }
+      },
+      "inputFile": "phone-390-input.json",
+      "outputFile": "phone-390-output.json",
+      "screens": [
+        "phone-390-initial.png",
+        "phone-390-selected.png",
+        "phone-390-growth.png",
+        "phone-390-saved.png"
+      ],
+      "actualEvents": [
+        {
+          "type": "joker-transaction",
+          "phase": "onDiscard",
+          "definitionId": "c05",
+          "instanceId": "controlled/c05",
+          "operation": "add-growth",
+          "amount": "40/1",
+          "visibleCondition": {
+            "kind": "discard-same-suit",
+            "minimum": 2
+          }
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "physicalDevice": "NOT_RUN",
+  "humanAcceptance": "NOT_RUN",
+  "fps": "NOT_MEASURED",
+  "status": "PASS",
+  "after": {
+    "source": "a104229a293143988bec95cf9062fc3aa8d84057c98fa7e893826089346c2f9d",
+    "index": "a44b4e36beb394dd04856b2323776c4743e8e884d5967710a2c0aead9c2e3582",
+    "head": "579cf14438cce72e9a9d7cc447036efd28b00290",
+    "branch": "refs/heads/review/all-growth-opportunities"
+  },
+  "sourceUnchanged": true
+}

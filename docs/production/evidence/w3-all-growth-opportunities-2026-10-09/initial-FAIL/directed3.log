@@ -1,0 +1,77 @@
+
+ RUN  v4.1.11 /workspace/dachoupai
+
+ ❯ tests/joker-experience.test.ts (7 tests | 1 failed) 109ms
+   × first-layer growth feedback retains cap clipping and zero-headroom facts 17ms
+ ❯ tests/all-growth-opportunities.test.ts (10 tests | 2 failed) 177ms
+   × c05 uses discarded cards including disabled cards, discard budget and actual saved delta 25ms
+   × saved hand change requires actual source events, and zero/reset is not positive growth 10ms
+ ❯ tests/growth-opportunity.test.ts (7 tests | 1 failed) 91ms
+   × no next hand is promised on last-hand setup, and cap clipping reports only remaining growth 18ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 4 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/all-growth-opportunities.test.ts > c05 uses discarded cards including disabled cards, discard budget and actual saved delta
+Error: Run invariant: live stage joker identities
+ ❯ check src/domain/r2Run.ts:118:70
+
+ ❯ assertR2Invariants src/domain/r2Run.ts:202:20
+ ❯ applyCommand src/domain/run.ts:201:5
+ ❯ tests/all-growth-opportunities.test.ts:22:679
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/4]⎯
+
+ FAIL  tests/all-growth-opportunities.test.ts > saved hand change requires actual source events, and zero/reset is not positive growth
+Error: Run invariant: live stage joker identities
+ ❯ check src/domain/r2Run.ts:118:70
+
+ ❯ assertR2Invariants src/domain/r2Run.ts:202:20
+ ❯ applyCommand src/domain/run.ts:201:5
+ ❯ tests/all-growth-opportunities.test.ts:29:153
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/4]⎯
+
+ FAIL  tests/growth-opportunity.test.ts > no next hand is promised on last-hand setup, and cap clipping reports only remaining growth
+AssertionError: expected '现存+59 热度 · 上限60\n成长条件可用：本组实际保留4张，成长要求…' to contain '最多+1'
+
+- Expected
++ Received
+
+- 最多+1
++ 现存+59 热度 · 上限60
++ 成长条件可用：本组实际保留4张，成长要求至少3张。成功结算后新增。
++ 热度最多新增+1
++ 只有成功保存才兑现；新成长从后续读取生效。
+
+ ❯ tests/growth-opportunity.test.ts:14:339
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/4]⎯
+
+ FAIL  tests/joker-experience.test.ts > first-layer growth feedback retains cap clipping and zero-headroom facts
+AssertionError: expected '现存+100 热度 · 上限100\n成长已封顶：已达成长上限，不再新增；…' to contain '已封顶，不再新增'
+
+- Expected
++ Received
+
+- 已封顶，不再新增
++ 现存+100 热度 · 上限100
++ 成长已封顶：已达成长上限，不再新增；已存值按读取条件使用。
++ 只有成功保存才兑现；新成长从后续读取生效。
+
+ ❯ tests/joker-experience.test.ts:50:116
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/4]⎯
+
+
+ Test Files  3 failed | 3 passed (6)
+      Tests  4 failed | 47 passed (51)
+   Start at  12:16:03
+   Duration  1.54s (transform 1.45s, setup 0ms, import 2.56s, tests 745ms, environment 1ms)
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice

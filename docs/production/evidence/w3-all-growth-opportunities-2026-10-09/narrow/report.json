@@ -1,0 +1,45 @@
+{
+  "before": {
+    "source": "a104229a293143988bec95cf9062fc3aa8d84057c98fa7e893826089346c2f9d",
+    "index": "a44b4e36beb394dd04856b2323776c4743e8e884d5967710a2c0aead9c2e3582",
+    "head": "579cf14438cce72e9a9d7cc447036efd28b00290",
+    "branch": "refs/heads/review/all-growth-opportunities"
+  },
+  "scope": "Necessary read-only layout views of the same controlled c05 public state; no gameplay commands, state and selection preserved through growth view open and close.",
+  "profiles": [
+    {
+      "name": "phone-320",
+      "width": 320,
+      "height": 740,
+      "body": "本轮成长机会\n\n高牌 · 已选2张\n计分牌1张 · 附带1张\n本轮成长机会\n\n牌型与成长说明\n\n当前这些来源没有可新增成长的示例；下方仍可看弃牌、交易或结果时条件，也可正常出牌。成长不是通关必选。\n\n成长来源与时点\n换布景\n\n现存+0 蓄热 · 上限80\n弃牌可蓄热：所选可作为同花弃牌；须成功弃牌并保存才蓄热。\n蓄热最多新增+40\n下一次实际读取后消耗；场末清空。\n只有成功保存才兑现；新成长从后续读取生效。\n\n查看来源与成长\n换为这组\n撤销换组\n全部可成牌型\n道具箱 0/2\n构筑条件\n完整牌型规则\n关闭",
+      "readOnlyStateUnchanged": true,
+      "screens": [
+        "phone-320-selected.png",
+        "phone-320-growth.png"
+      ]
+    },
+    {
+      "name": "short-740",
+      "width": 740,
+      "height": 390,
+      "body": "本轮成长机会\n\n高牌 · 已选2张\n计分牌1张 · 附带1张\n本轮成长机会\n\n牌型与成长说明\n\n当前这些来源没有可新增成长的示例；下方仍可看弃牌、交易或结果时条件，也可正常出牌。成长不是通关必选。\n\n成长来源与时点\n换布景\n\n现存+0 蓄热 · 上限80\n弃牌可蓄热：所选可作为同花弃牌；须成功弃牌并保存才蓄热。\n蓄热最多新增+40\n下一次实际读取后消耗；场末清空。\n只有成功保存才兑现；新成长从后续读取生效。\n\n查看来源与成长\n换为这组\n撤销换组\n全部可成牌型\n道具箱 0/2\n构筑条件\n完整牌型规则\n关闭",
+      "readOnlyStateUnchanged": true,
+      "screens": [
+        "short-740-selected.png",
+        "short-740-growth.png"
+      ]
+    }
+  ],
+  "errors": [],
+  "physicalDevice": "NOT_RUN",
+  "humanAcceptance": "NOT_RUN",
+  "fps": "NOT_MEASURED",
+  "status": "PASS",
+  "after": {
+    "source": "a104229a293143988bec95cf9062fc3aa8d84057c98fa7e893826089346c2f9d",
+    "index": "a44b4e36beb394dd04856b2323776c4743e8e884d5967710a2c0aead9c2e3582",
+    "head": "579cf14438cce72e9a9d7cc447036efd28b00290",
+    "branch": "refs/heads/review/all-growth-opportunities"
+  },
+  "sourceUnchanged": true
+}

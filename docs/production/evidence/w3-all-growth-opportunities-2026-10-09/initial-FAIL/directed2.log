@@ -1,0 +1,36 @@
+
+ RUN  v4.1.11 /workspace/dachoupai
+
+ ❯ tests/joker-experience.test.ts (7 tests | 1 failed) 105ms
+   × first-layer growth feedback retains cap clipping and zero-headroom facts 11ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/joker-experience.test.ts > first-layer growth feedback retains cap clipping and zero-headroom facts
+AssertionError: expected '现存+95 热度 · 上限100\n成长条件可用：公开成长条件可用，成功出…' to contain '最多新增+5'
+
+- Expected
++ Received
+
+- 最多新增+5
++ 现存+95 热度 · 上限100
++ 成长条件可用：公开成长条件可用，成功出牌并保存后才新增。
++ 热度最多+5
++ 只有成功保存才兑现；新成长从后续读取生效。
+
+ ❯ tests/joker-experience.test.ts:50:73
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 3 passed (4)
+      Tests  1 failed | 33 passed (34)
+   Start at  12:13:47
+   Duration  1.78s (transform 2.27s, setup 0ms, import 3.00s, tests 758ms, environment 0ms)
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice

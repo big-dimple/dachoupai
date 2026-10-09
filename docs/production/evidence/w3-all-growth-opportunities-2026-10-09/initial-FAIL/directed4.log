@@ -1,0 +1,27 @@
+
+ RUN  v4.1.11 /workspace/dachoupai
+
+ ❯ tests/all-growth-opportunities.test.ts (10 tests | 1 failed) 147ms
+   × saved hand change requires actual source events, and zero/reset is not positive growth 15ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/all-growth-opportunities.test.ts > saved hand change requires actual source events, and zero/reset is not positive growth
+Error: invalid-rational
+ ❯ Rational.fromJSON src/domain/rational.ts:28:52
+
+ ❯ tests/all-growth-opportunities.test.ts:29:575
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 5 passed (6)
+      Tests  1 failed | 50 passed (51)
+   Start at  12:20:06
+   Duration  1.64s (transform 2.03s, setup 0ms, import 2.99s, tests 701ms, environment 1ms)
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice

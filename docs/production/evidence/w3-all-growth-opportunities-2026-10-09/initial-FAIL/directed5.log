@@ -1,0 +1,27 @@
+
+ RUN  v4.1.11 /workspace/dachoupai
+
+ ❯ tests/all-growth-opportunities.test.ts (13 tests | 1 failed) 151ms
+   × committed purchase, sale and refresh give exact retained source deltas; missing identities are silent 7ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/all-growth-opportunities.test.ts > committed purchase, sale and refresh give exact retained source deltas; missing identities are silent
+Error: unavailable-joker-definition
+ ❯ r2CreateJoker src/domain/r2Run.ts:110:54
+
+ ❯ tests/all-growth-opportunities.test.ts:35:53
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 5 passed (6)
+      Tests  1 failed | 53 passed (54)
+   Start at  12:21:01
+   Duration  1.62s (transform 1.60s, setup 0ms, import 2.76s, tests 795ms, environment 1ms)
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice
