@@ -11,3 +11,5 @@
 - stopConditions：关键数值/按钮遮挡或缩字，未生效角色/卡被突出，成长倒算当前手、重奖/重复开局、缺图有色块、同方法两次仍无改善。观感与真人/设备结论分别保留。
 
 复用：handdrawn-p08六角色selection.webp（保持contain）、b10/c06等实际来源thumbnail、p00-paper.svg及现有SceneView纸边/按钮；stageOutcome、victorySourceFact、buildGrowthProgress、failureSummary与RewardCoin读已保存事实。新增外部图片/音频0。基线三结果共9原生导入截图在main595冻结取得，未再出牌或推进经营。
+
+2026-10-09父PR81 P2授权：旧preload最多5秒可能阻主操作；仅上述Intermission/ResultStageArt及同测试文件修为文字按钮先显、独立补图与取消/旧回调保护，只补一个延迟图片案例和必要生命周期定向；12张父像素审查无重叠保原eba证据，不扩大美术/整局/矩阵。新head一次标准CI后仍draft父审。

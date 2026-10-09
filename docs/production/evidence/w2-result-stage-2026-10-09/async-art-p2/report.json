@@ -1,0 +1,32 @@
+{
+  "head": "0a1992114b8d159628cfe85462bdfdd2bfc9598b",
+  "scope": "ONE delayed c06 image case, existing saved high-growth result at390. No PlayHand or journey, software only/heard:false. Request held pending until after native continue.",
+  "errors": [],
+  "textAndContinueVisibleWhileImageHeld": {
+    "score": "+3,802",
+    "source": "越染越深",
+    "art": 0,
+    "requestPending": true,
+    "enabled": true,
+    "elapsedSinceRequestMs": 86.6325469999997
+  },
+  "lateFulfill": "resolved",
+  "retired": {
+    "active": false,
+    "requestCleared": true
+  },
+  "continueCommands": [
+    {
+      "runId": "run/1791525882954/erxiang",
+      "commandId": "run/1791525882954/erxiang/command/80",
+      "expectedSeq": 79,
+      "action": {
+        "type": "OpenShop"
+      }
+    }
+  ],
+  "fullCanonicalEqual": true,
+  "lateResponseStateUnchanged": true,
+  "indexedDbEqual": true,
+  "status": "PASS"
+}

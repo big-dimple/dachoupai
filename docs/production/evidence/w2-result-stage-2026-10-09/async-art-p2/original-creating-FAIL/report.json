@@ -1,0 +1,5 @@
+{
+  "status": "FAIL",
+  "head": "3ca51ee7bd33a0e45d03b0d8e414df5d481b26a1",
+  "observation": "No delayed c06 request was started. Observer awaited the request without a deadline, then was explicitly interrupted. Inspection of Phaser Systems.isActive showed create status CREATING is not RUNNING. Current guard returned false during create. No native continue occurred; not a PASS."
+}
