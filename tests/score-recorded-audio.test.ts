@@ -59,3 +59,10 @@ it('key landing owns four recorded layers with low body, filtered air and bounde
  const show={};engine.scoreImpact(show,'actual-key','key',3);expect(sources.map(s=>s.buffer.name)).toEqual(['impactSoft_heavy_000','cloth2','impactWood_heavy_000','impactBell_heavy_003']);expect(filters.map(f=>f.type)).toEqual(['lowpass','bandpass','lowpass']);expect(filters[0].frequency.setValueAtTime).toHaveBeenCalledWith(620,1);expect(filters[0].frequency.linearRampToValueAtTime).toHaveBeenCalledWith(180,1.16);expect(sources.every(s=>s.stop.mock.calls[0][0]-s.start.mock.calls[0][0]<=.53)).toBe(true);
  engine.cancelPresentation();engine.scoreImpact(show,'actual-key','key',3);expect(sources).toHaveLength(4);expect(filters.every(f=>f.disconnect.mock.calls.length===1)).toBe(true);
 });
+
+it('ordinary saved wooden impacts preserve the recorded 1ms body, rotate variants and retain the cap',()=>{
+ const {engine,inside,sources}=fixture(),show={};engine.scoreImpact(show,'wood/one','add');
+ const first=[...inside.voices][0] as any;expect(first.gain.gain.linearRampToValueAtTime.mock.calls[0][1]).toBeCloseTo(1.0005);expect(sources[0].stop.mock.calls[0][0]).toBeCloseTo(1.18);
+ inside.context.currentTime=1.06;engine.scoreImpact(show,'wood/two','add');expect(sources.map(s=>s.buffer.name)).toEqual(['impactWood_light_000','impactWood_light_001']);inside.context.currentTime=1.12;engine.scoreImpact(show,'wood/three','add');expect(inside.voices.size).toBe(2);
+ engine.setVolume('sfx',0);engine.scoreImpact(show,'wood/muted','add');expect(inside.voices.size).toBe(0);expect(sources).toHaveLength(3);
+});
