@@ -1,5 +1,8 @@
 # 开发入口
 
+2026-10-09 PR80父审P2补正：预算6adc62f改常规余次／败局风险并注明真实返手救场结算；助演最终产品c747294仅过渡ghost排除保留组冲突助演、预览与应用一致、撤销完整恢复，普通候选规则保持。13必要定向/type、一组当前身份阿默合法夹具原生查看／换组／撤销与真实KKK出牌全state相等；不是自然证据。旧main37896181961 browser605秒cancelled、验证artifact成功，独立97a0b7a仅timeout10→15；原取消与观察器FAIL见[补正证据](docs/production/evidence/w5-retain-transition-2026-10-09/p2/README.md)。最终新head一次CI另核，draft父审协调main，真人／设备／听感/W6未签，6.1 Medium串行。
+
+
 2026-10-09 留牌过渡候选产品 `6dc2912`：输入父06:56UTC已FF PR79 main `15a1172`。现有怎么凑牌参考补组外真实示例、出一手代价、放弃留牌／全部已成型和末手提示；点示例只ghost，换组／撤销／过期复用旧合同。53定向/type、PC1366／390原正常seq65/68有限导入，唯一真实出牌完整canonical相等；原末手缺口假设FAIL保留。[按SHA证据](docs/production/evidence/w5-retain-transition-2026-10-09/README.md)。无规则／经济／抽牌保底／身份／二响C／音频改动；W5其它顺子／晚到与W6真人设备听感仍开放，六角色／工具战略价值不冒称解决。6.1 Medium串行，最终head CI另核，draft父独审协调main。
 
 

@@ -1,0 +1,189 @@
+{
+  "run": 37896181961,
+  "head": "15a1172998f9ca78659032b5046eb2ff5d63235f",
+  "overall": "cancelled",
+  "job": {
+    "id": 113707932782,
+    "run_id": 37896181961,
+    "workflow_name": "CI",
+    "head_branch": "main",
+    "run_url": "https://api.github.com/repos/big-dimple/dachoupai/actions/runs/37896181961",
+    "run_attempt": 1,
+    "node_id": "CR_kwDOU0E2xs8AAAAaeYVcbg",
+    "head_sha": "15a1172998f9ca78659032b5046eb2ff5d63235f",
+    "url": "https://api.github.com/repos/big-dimple/dachoupai/actions/jobs/113707932782",
+    "html_url": "https://github.com/big-dimple/dachoupai/actions/runs/37896181961/job/113707932782",
+    "status": "completed",
+    "conclusion": "cancelled",
+    "created_at": "2026-10-09T06:56:15Z",
+    "started_at": "2026-10-09T06:56:17Z",
+    "completed_at": "2026-10-09T07:06:22Z",
+    "name": "browser",
+    "steps": [
+      {
+        "name": "Set up job",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 1,
+        "started_at": "2026-10-09T06:56:18Z",
+        "completed_at": "2026-10-09T06:56:19Z"
+      },
+      {
+        "name": "Initialize containers",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 2,
+        "started_at": "2026-10-09T06:56:19Z",
+        "completed_at": "2026-10-09T06:56:46Z"
+      },
+      {
+        "name": "Run actions/checkout@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 3,
+        "started_at": "2026-10-09T06:56:46Z",
+        "completed_at": "2026-10-09T06:57:00Z"
+      },
+      {
+        "name": "Trust the checked-out workspace inside the container",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 4,
+        "started_at": "2026-10-09T06:57:00Z",
+        "completed_at": "2026-10-09T06:57:00Z"
+      },
+      {
+        "name": "Run actions/setup-node@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 5,
+        "started_at": "2026-10-09T06:57:00Z",
+        "completed_at": "2026-10-09T06:57:04Z"
+      },
+      {
+        "name": "Run npm ci",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 6,
+        "started_at": "2026-10-09T06:57:04Z",
+        "completed_at": "2026-10-09T06:57:09Z"
+      },
+      {
+        "name": "Verify preinstalled Playwright version and all engines",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 7,
+        "started_at": "2026-10-09T06:57:09Z",
+        "completed_at": "2026-10-09T06:57:10Z"
+      },
+      {
+        "name": "Run npm run verify:ci -- --scope=browser",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 8,
+        "started_at": "2026-10-09T06:57:10Z",
+        "completed_at": "2026-10-09T07:06:18Z"
+      },
+      {
+        "name": "Run actions/upload-artifact@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 9,
+        "started_at": "2026-10-09T07:06:18Z",
+        "completed_at": "2026-10-09T07:06:19Z"
+      },
+      {
+        "name": "Post Run actions/setup-node@v4",
+        "status": "completed",
+        "conclusion": "skipped",
+        "number": 16,
+        "started_at": "2026-10-09T07:06:19Z",
+        "completed_at": "2026-10-09T07:06:19Z"
+      },
+      {
+        "name": "Post Run actions/checkout@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 17,
+        "started_at": "2026-10-09T07:06:19Z",
+        "completed_at": "2026-10-09T07:06:20Z"
+      },
+      {
+        "name": "Stop containers",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 18,
+        "started_at": "2026-10-09T07:06:20Z",
+        "completed_at": "2026-10-09T07:06:20Z"
+      },
+      {
+        "name": "Complete job",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 19,
+        "started_at": "2026-10-09T07:06:20Z",
+        "completed_at": "2026-10-09T07:06:20Z"
+      }
+    ],
+    "check_run_url": "https://api.github.com/repos/big-dimple/dachoupai/check-runs/113707932782",
+    "labels": [
+      "ubuntu-latest"
+    ],
+    "runner_id": 1000003226,
+    "runner_name": "GitHub Actions 1000003226",
+    "runner_group_id": 0,
+    "runner_group_name": "GitHub Actions"
+  },
+  "receipt": {
+    "scope": "browser",
+    "testedCommit": "15a1172998f9ca78659032b5046eb2ff5d63235f",
+    "status": "PASS",
+    "exitCode": 0,
+    "before": {
+      "source": "3ec2846c9fade29af9df6e288792d18e9763ed75a2d63cecdd24381661da1323",
+      "index": "485079c4a4300a0870aca509fe6ac86d10ac6ae6be1b0b38f7b2f917b2057c32",
+      "head": "15a1172998f9ca78659032b5046eb2ff5d63235f",
+      "branch": null
+    },
+    "after": {
+      "source": "3ec2846c9fade29af9df6e288792d18e9763ed75a2d63cecdd24381661da1323",
+      "index": "485079c4a4300a0870aca509fe6ac86d10ac6ae6be1b0b38f7b2f917b2057c32",
+      "head": "15a1172998f9ca78659032b5046eb2ff5d63235f",
+      "branch": null
+    },
+    "steps": [
+      {
+        "name": "build",
+        "status": "PASS",
+        "childExitCode": 0,
+        "elapsedMs": 20260
+      },
+      {
+        "name": "verify:smoke",
+        "status": "PASS",
+        "childExitCode": 0,
+        "elapsedMs": 526936
+      }
+    ],
+    "notIncluded": [
+      {
+        "name": "extended browser/recovery/fault/asset/simulation diagnostics",
+        "status": "NOT_INCLUDED",
+        "reason": "run the existing specific command only when its domain changes; P00 removes repeated default execution"
+      },
+      {
+        "name": "balance/benchmark acceptance",
+        "status": "NOT_INCLUDED",
+        "reason": "later work packages; no gameplay approval inferred from checks"
+      },
+      {
+        "name": "physical devices / human / art approval",
+        "status": "NOT_RUN"
+      }
+    ]
+  },
+  "artifactId": 11600419260,
+  "configuredTimeoutSeconds": 600,
+  "durationSeconds": 605,
+  "inference": "Budget exhausted at successful verification completion, leaving no margin for post steps. Logs do not explicitly name the cancellation initiator. Preserve cancelled conclusion; extend only browser job to 15min, same checks and failure conditions."
+}

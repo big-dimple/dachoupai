@@ -1,0 +1,9 @@
+/workspace/dachoupai/src/domain/run.ts:256
+    if (!options.openingRoute || !Object.hasOwn((0,__vite_ssr_import_0__.R2_ROUTE_STARTERS), options.openingRoute)) throw Error("invalid-opening-route");
+                                                                                                                          ^
+
+Error: invalid-opening-route
+    at createRun (/workspace/dachoupai/src/domain/run.ts:256:123)
+    at file:///tmp/retain-p2-amo-native.mjs:2:530
+
+Node.js v24.19.0
