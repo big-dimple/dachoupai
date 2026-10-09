@@ -1,6 +1,6 @@
 # W3 全类成长机会与保存兑现：有限证据
 
-2026-10-09。输入main `b5b68ba837af8f3268188ed277c2a9211439e602`，12:29UTC远端核对相同。先范围/规则提交 `116a262`，产品 `40ad846ebfc13e3be3d2a6749ff07b01b6de4d6f`，原生证据产品 `579cf14`；原生产品完整SHA与逐文件hash见product-files.json。最后仅收窄e05购买入口文案并补购买工具不成长负例，补正文件hash见product-files-purchase-clock.json，最终head由PR/CI精确核。6.1默认Medium串行，无并发。父协调main，尚未部署或真人验收。
+2026-10-09。输入main `b5b68ba837af8f3268188ed277c2a9211439e602`，12:29UTC远端核对相同。先范围/规则提交 `116a262`，产品 `40ad846ebfc13e3be3d2a6749ff07b01b6de4d6f`，原生证据产品 `579cf14`；原生产品完整SHA与逐文件hash见product-files.json。之后收窄e05购买入口文案/工具购买负例，并补纯结果来源实际读取/消费分类保护；分别见product-files-purchase-clock.json、product-files-read-boundary.json，最终head由PR/CI精确核。6.1默认Medium串行，无并发。父协调main，尚未部署或真人验收。
 
 ## 补完范围
 
@@ -25,6 +25,10 @@
 ## 购买时点最终补正
 
 最后复核r2Run的BuyOffer分支确认：onBuyOffer经济钩子在offers（大丑牌）分支内，toolOffers/itemOffers分支不调用。e05原“成功购买其他商品”过宽，缩为“成功购买其他大丑牌”；构筑下一步同改。新增实际工具购买负例：工具入包，但e05存值不变、无对应交易事件。71相关tests/7files及typecheck通过。原生两条路径来源a06/c05、截图与报告仍按579cf14保留；不冒称本补正已另跑原生。最后差异仅e05两处文案/必要负例与文档，最终head标准CI重新核，旧8d221ff结果不得替代。
+
+## 结果来源最终补正
+
+既有Intermission绘制会把有before/after的成长行显示为“本手读取/保存成长”。最终纯ResultStage过滤要求同一实例实际read-growth/read-coefficient事件，不能仅凭存值变化宣称已读。没有读取事件但实际保存成长时仍走原savedBenefit来源反馈。BuildGrowthProgress的蓄热消耗行保留“上手消耗40→0”因果，但不提供代表成长对比的before/after，避免套用“下手生效”；原消费来源继续明确蓄热已消耗。两处只改纯来源选择/字段分类，Intermission布局、绘制和演出字节保持。72相关/7files及typecheck通过，包含无读事件不显示读取对比、消费不算新增。新增来源合同先在b2029ef落库。旧native a06实际read存在、c05仅弃牌未消费，两条原生截图仍按579cf14保持，不重新做经营/全设备矩阵；最终新head CI重新核，d2c172c也不能替代。
 
 ## 失败与精确边界
 

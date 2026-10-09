@@ -21,7 +21,7 @@ export function buildGrowthProgress(state:R2RunState):BuildGrowthProgress[]{
    if(t&&source&&after&&events?.length){
     const b=source.growth[read.key]??(read.kind!=='read-coefficient'?zero:undefined),a=after.growth[read.key]??(read.kind!=='read-coefficient'?zero:undefined);
     if(b&&a&&Rational.fromJSON(a).compare(Rational.fromJSON(b))>0){row.before=fractionText(b);row.after=fractionText(a);row.cause='上手'+HAND_LABELS[t.handType]+'促成 '+row.before+' → '+row.after;}
-    else if(b&&a&&Rational.fromJSON(a).compare(Rational.fromJSON(b))<0){row.before=fractionText(b);row.after=fractionText(a);row.cause=(events.some(e=>e.operation==='consume-growth')?'上手消耗 ':'上手归零 ')+row.before+' → '+row.after;}
+    else if(b&&a&&Rational.fromJSON(a).compare(Rational.fromJSON(b))<0){const consumed=events.some(e=>e.operation==='consume-growth');row.cause=(consumed?'上手消耗 ':'上手归零 ')+fractionText(b)+' → '+fractionText(a);if(!consumed){row.before=fractionText(b);row.after=fractionText(a);}}
     else row.cause='上手未新增，现存 '+row.current;
    }else if(t&&source&&after)row.cause='上手未新增，现存 '+row.current;
    rows.push(row);

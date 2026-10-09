@@ -1,6 +1,6 @@
 # 开发入口
 
-2026-10-09 W3全类成长候选：输入main b5b68ba，先116a262规则/范围；原生产品579cf14补8类遗漏时点，最后e05限买大丑牌文案/工具负例补正，同源现存/机会/已保存变化，原规则/身份/数值/音频/素材保持。71相关/type/plan与PC相乘、390同花弃牌各一笔canonical相等；320/短横仅同状态查看，短横原汇总下缘限制明示，原FAIL保留。[有限证据](docs/production/evidence/w3-all-growth-opportunities-2026-10-09/README.md)。6.1 Medium串行；最终head CI另核，draft父审协调main，真人/设备/听感/W3/W6未签，C04依原恢复合同。
+2026-10-09 W3全类成长候选：输入main b5b68ba，先116a262规则/范围；原生产品579cf14补8类遗漏时点，最后e05限买大丑牌/工具负例、结果实际读取/消费分类保护补正，同源现存/机会/已保存变化，原规则/身份/数值/音频/素材保持。72相关/type/plan与PC相乘、390同花弃牌各一笔canonical相等；320/短横仅同状态查看，短横原汇总下缘限制明示，原FAIL保留。[有限证据](docs/production/evidence/w3-all-growth-opportunities-2026-10-09/README.md)。6.1 Medium串行；最终head CI另核，draft父审协调main，真人/设备/听感/W3/W6未签，C04依原恢复合同。
 
 2026-10-09 W2商店整屏候选：输入父已FF PR83 main fd61909；持有/货架/固定入场纸层与价格可买/受限/已购收束，原宽布局、手机首屏、卡牌/触点不动，新图/音频0。1366/390同正常seq7前后及320/740必要图，原生邀请/工具购买两笔完整canonical相等、购买/出售取消与道具箱关闭state不变；42相关/type通过，最终head一次CI另核。[范围及有限证据](docs/production/evidence/w2-shop-whole-screen-2026-10-09/README.md)。历史观察器FAIL保留，真人/设备/听感/W6未签；6.1 Medium串行，draft父审协调main。
 

@@ -11,7 +11,7 @@ export function resultStageFacts(run:R2RunState,cleared:boolean,skipped=false){
  const character=trace?.events.some(e=>e.sourceType==='character'&&e.sourceDefinitionId===run.characterId&&hasActualBenefit(e))?run.characterId:undefined;
  const preferred=trace&&victorySourceFact(run,trace);
  let source=trace?(preferred?.definitionId&&trace.sourceJokers.some(j=>j.instanceId===preferred.sourceInstanceId&&j.definitionId===preferred.definitionId)?preferred:trace.events.filter(e=>e.sourceType==='joker').map(e=>savedBenefit(run,trace,e)).find(f=>!!f?.definitionId)):undefined;
- const growth=trace?buildGrowthProgress(run).find(g=>g.before!==undefined&&g.after!==undefined&&g.before!==g.after&&trace.sourceJokers.some(j=>j.instanceId===g.instanceId&&j.definitionId===g.definitionId)):undefined;
+ const growth=trace?buildGrowthProgress(run).find(g=>g.before!==undefined&&g.after!==undefined&&g.before!==g.after&&trace.sourceJokers.some(j=>j.instanceId===g.instanceId&&j.definitionId===g.definitionId)&&trace.events.some(e=>e.sourceType==='joker'&&e.sourceInstanceId===g.instanceId&&e.sourceDefinitionId===g.definitionId&&['read-growth','read-coefficient'].includes(e.operation))):undefined;
  if(trace&&growth){const event=trace.events.find(e=>e.sourceType==='joker'&&e.sourceInstanceId===growth.instanceId&&e.sourceDefinitionId===growth.definitionId&&hasActualBenefit(e));if(event)source=savedBenefit(run,trace,event);}
  return {trace,character,source:source||undefined,growth,intensity:trace?outcome.intensity:1};
 }
