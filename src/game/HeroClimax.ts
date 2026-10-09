@@ -35,7 +35,7 @@ export interface HeroClimaxView {group:Phaser.GameObjects.Container;strike:()=>v
 export function mountHeroClimax(scene:Phaser.Scene,root:Phaser.GameObjects.Container,viewport:Box,key:JokerKeyHighlight,value:HeroClimaxValue,reduced:boolean):HeroClimaxView|undefined {
  const id=key.heroId;if(!id)return;
  const heroKey=['opening-portrait-'+id,selectionPortraitKey(id),avatarKey(id)].find(k=>scene.textures.exists(k));if(!heroKey)return;
- const {width:w,height:h}=viewport,layout=heroClimaxLayout(w,h),{portrait,short,panelY,panelH}=layout;
+ const {width:w,height:h}=viewport,layout=heroClimaxLayout(w,h,!!key.fact.definitionId),{portrait,short,panelY,panelH}=layout;
  const group=scene.add.container(0,0).setName('joker/key-focus').setData('eventId',key.eventId).setData('benefit',key.fact).setData('heroClimax',true).setData('starter',key.kind==='starter').setData('phase',reduced?'still':'charge').setData('bounds',viewport);root.add(group);
  const dim=scene.add.rectangle(w/2,h/2,w,h,T.ink,.66);group.add(dim);
  const board=scene.add.container(0,0),shapes=scene.add.graphics();group.add(board);board.add(shapes);
@@ -86,7 +86,7 @@ export function mountHeroClimax(scene:Phaser.Scene,root:Phaser.GameObjects.Conta
  return {group,dispose,
   reduce:()=>{still=true;for(const t of owned)t.remove();owned.clear();neutral();releaseDone?.();releaseDone=undefined;},
   strike:()=>{if(disposed||struck)return;struck=true;group.setData('phase','strike');readout.setText(value.after);fitValue();note.setText(value.note);if(still)return;
-   for(const t of owned)t.remove();owned.clear();board.setPosition(0,0).setAlpha(1);sourceCard?.setScale(1.06).setAngle(-2);if(sourceCard)tween({targets:sourceCard,scaleX:1,scaleY:1,angle:3,duration:340,ease:inkSettlingEase(.32)});hero.setPosition(heroX+18,heroY-18).setScale(heroScale*1.16).setAngle(-9);brush.setPosition(-w*.05,0).setScale(1.16,1);
+   for(const t of owned)t.remove();owned.clear();board.setPosition(0,0).setAlpha(1);sourceCard?.setScale(1.06).setAngle(-2);if(sourceCard)tween({targets:sourceCard,scaleX:1,scaleY:1,angle:3,duration:340,ease:inkSettlingEase(.32)});hero.setPosition(heroX+18,heroY+(portrait?32:-18)).setScale(heroScale*1.16).setAngle(-9);brush.setPosition(-w*.05,0).setScale(1.16,1);
    burst=mountInkBurst(scene,foreground,heroX,heroY+heroH*.12,Math.min(w,h)*.48,T.red,820,24);
    const readoutY=layout.valueY,fit=Math.min(1,contentW/readout.width);readout.setY(readoutY+8).setScale(fit,fit*1.23);
    tween({targets:hero,x:heroX,y:heroY,scaleX:heroScale,scaleY:heroScale,angle:-5,duration:420,ease:inkSettlingEase(.30)});tween({targets:brush,x:0,scaleX:1,duration:520,ease:'Cubic.easeOut'});tween({targets:readout,y:readoutY,scaleX:fit,scaleY:fit,duration:340,ease:inkSettlingEase(.32)});

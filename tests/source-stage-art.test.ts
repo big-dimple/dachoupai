@@ -22,3 +22,5 @@ it('response header and streamed byte ceilings reject oversized input before ima
 it('wrong actual byte count, decoder dimensions and HTTP failure retain the same-name fallback',async()=>{
  const f=fixture();vi.stubGlobal('fetch',async()=>new Response('short'));expect(await loadClimaxSourceArt(f.scene,'f09',new AbortController().signal,()=>true)).toBe(false);vi.stubGlobal('fetch',async()=>new Response(f.bytes));f.setDecode(async()=>{f.image.naturalWidth=1;});expect(await loadClimaxSourceArt(f.scene,'f09',new AbortController().signal,()=>true)).toBe(false);vi.stubGlobal('fetch',async()=>new Response('',{status:404}));expect(await loadClimaxSourceArt(f.scene,'f09',new AbortController().signal,()=>true)).toBe(false);expect(f.publish).not.toHaveBeenCalled();
 });
+
+it('no-source final score retains the wider hero/readout composition without inventing a card',()=>{const plain=heroClimaxLayout(1366,768,false),withSource=heroClimaxLayout(1366,768);expect(plain.readout.width).toBeGreaterThan(withSource.readout.width);expect(plain.heroW).toBeGreaterThan(withSource.heroW);});
