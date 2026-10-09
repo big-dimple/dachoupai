@@ -60,7 +60,13 @@ try {
     assert.equal((await point(page,'character-select','action/confirm-character')).enabled,false);
     await tapUI(page,'character-select','character/amo',touch);await confirmHeroRoute(page,touch);await waitScene(page,'shop');
     assert.equal((await state(page)).characterId,'amo');
-    assert.equal((await state(page)).contentVersion,'quality-r2-touye-wager-v1');
+    const initialSupply=await state(page);
+    assert.equal(initialSupply.contentVersion,'quality-r2-basic-tool-supply-v1');
+    assert.equal(initialSupply.shop.toolOffers.length,2);
+    assert.equal(new Set(initialSupply.shop.toolOffers.map(o=>o.definitionId)).size,2);
+    const basic=initialSupply.shop.toolOffers.find(o=>o.offerId.endsWith('/tool/1'));
+    assert.ok(basic&&['T02','T08','T09','T10','T11'].includes(basic.definitionId));
+    assert.equal(basic.price,2);
     assert.equal((await state(page)).openingRoute,'group');
     assert.ok((await state(page)).shop.offers.some(o=>o.definitionId==='mantangcai'&&o.edition==='none'&&o.price===4));
     assert.equal((await state(page)).contentHash,'json-fnv-v1:0739df5a55a46b96');
