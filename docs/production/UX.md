@@ -1,5 +1,8 @@
 # 操作、信息与音画反馈合同
 
+2026-10-09 PR81补图CI补正产品 `959ab67`：首新b28e8dd域2790通过/4个既有failure-audio失败，原因是失败页不该进入胜利来源计算；仅成功且未跳场入口保护，音频/断言不改。46相关/type通过，成功延迟案例保持原0a19921，未重跑经营或矩阵；[原失败日志及补正](evidence/w2-result-stage-2026-10-09/async-art-p2/README.md)留存。新最终head一次CI另核，不重试旧head，仍draft父审协调main；6.1 Medium串行，真人/设备/听感/W6未签。
+
+
 2026-10-09 PR81父P2补正产品 `0a19921`：旧c6f59b1虽CI绿但preload贡献图可能阻文字/操作，暂不合main；移至文字按钮先呈现后的独立低优先请求，只补绘来源层，不重建主按钮/重播奖励或音频。离场/重试/销毁取消、代次/控制器/完整state与解码前后保护；42必要定向/type，仅原高分存档390一个延迟图片案例，回包前继续单笔OpenShop、完整canonical与保存相等、晚回包不改状态。原CREATING误判/端口观察器FAIL保留，[补正证据](evidence/w2-result-stage-2026-10-09/async-art-p2/README.md)；旧12图父审无重叠仍保eba SHA，未重拍矩阵。最终新head一次CI另核，draft父独审协调main，真人/设备/听感/W6未签；6.1 Medium串行。
 
 

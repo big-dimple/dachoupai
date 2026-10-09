@@ -1,5 +1,8 @@
 # PR81 P2：贡献图片不能阻塞文字或主操作
 
+2026-10-09 最终入口补正产品 `959ab670ab1cfc4d1441eb77cba38338eb8706fd`：首个新head b28e8dd精确CI37905258444/domain113737076607出现4个现有failure-audio失败（2790通过，4失败）。create无条件进入贡献图计算，音频隔离夹具只提供失败字段而stageOutcome读取BigInt(undefined)；只加“成功且未跳场”入口保护，失败原本就不应请求胜利来源图，原音频和断言保持。46相关/3文件及type通过；原失败完整日志gzip、原字节hash和receipt前后不变事实见failed-ci.json。新的最终head一次CI另核，旧失败head不重试。成功延迟案例仍按0a19921读取，其成功补绘路径没有改动；不重跑该案例/经营/矩阵。
+
+
 父独审指出旧最终 `c6f59b1a995e4db8978d1a94c9be148c1e3693af` 的Intermission preload可等待未缓存图片5000ms，create之前分数/继续均未出现。旧CI37902087171/production-docs37902087257成功不覆盖慢图时机，因此**旧head暂不合main**。旧12张最终图父像素审查无重叠，继续按eba4f24读取，不重拍矩阵或扩美术。
 
 补正最终产品 `0a1992114b8d159628cfe85462bdfdd2bfc9598b`：贡献图片退出Phaser preload；先render文字/按钮，再独立fetch低优先级图片。可读来源文字保留，成功后只补绘来源容器，主按钮对象、分数、奖励动画和音频不被重建/重播。来源容器坐标/字体/已有卡图与原构图一致。离场、忙碌重试及shutdown/destroy会取消请求；请求代次、场景标志、控制器和同一保存state均须有效，取blob/解码前后均检查，超时/取消会释放timer、监听、image src及object URL。无业务回调、计分/身份/奖励或音频改动。

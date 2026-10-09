@@ -1,0 +1,19 @@
+{
+  "head": "b28e8dd72cf5162feb488e5e738c038c86a20c73",
+  "runId": 37905258444,
+  "domainJobId": 113737076607,
+  "tests": {
+    "failed": 4,
+    "passed": 2790,
+    "total": 2794
+  },
+  "failureFile": "tests/failure-audio.test.ts",
+  "cause": "create unconditionally requested success-source art on failure; existing failure cue fixture intentionally supplies only failure fields, stageOutcome BigInt(undefined) threw. Guard success and non-skipped before asking for source facts; no audio/test assertion changes.",
+  "receiptBeforeAfterUnchanged": true,
+  "rawLog": {
+    "bytes": 66378,
+    "sha256": "3c48716a88677557478d6b1355a97931280af929346480634480367bc22e216e"
+  },
+  "browserAtCorrection": "in_progress; final status is read from Actions in the handoff, not inferred here",
+  "oldHeadNotRetried": true
+}
