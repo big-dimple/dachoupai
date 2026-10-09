@@ -908,7 +908,7 @@ export class GameScene extends Phaser.Scene {
     const criticalStatus=this.statusMessage||(this.pendingRefill?this.refillHidden?'候选已保存 · 点英雄继续':`留 ${this.pendingRefill.required} 张 · 已选 ${this.selectedIds.size}/${this.pendingRefill.required} · 确认后补入`:'')||(!this.playing&&!this.presentation&&this.handsLeft===1?reason:'');
     this.statusText.setName(discovery&&!criticalStatus?'growth/discovery':'').setText(criticalStatus||discovery?.full||sweepReminder||selectedReminder||guideCue||reminders||entryReminder||benefitReminder||memoryReminder||reason);
     if(!criticalStatus){
-    if(!discovery&&benefitReminder&&!sweepReminder&&!this.statusMessage&&!selectedReminder&&!reminders&&!entryReminder&&this.statusText.width>handWindow.status.width)this.statusText.setText('已保存收益 · 菜单查看上手');
+    if(!discovery&&benefitReminder&&!sweepReminder&&!this.statusMessage&&!selectedReminder&&!reminders&&!entryReminder&&this.statusText.width>handWindow.status.width)this.statusText.setText('已保存结果 · 菜单查看上手');
     if(selectedReminder&&this.statusText.width>handWindow.status.width)this.statusText.setText('点所选条件 · 查看来源');
     // Short landscape has an existing 12px bottom table margin: two normal 16px rows fit without moving controls.
     if(discovery)for(const text of [discovery.full,discovery.compact]){this.statusText.setText(text);if(this.statusText.width<=handWindow.status.width&&this.statusText.height<=handWindow.status.height+(handWindow.mode==='landscape'?12:0))break;}
@@ -1559,7 +1559,7 @@ export class GameScene extends Phaser.Scene {
     const benefit=this.presentation?savedBenefit(this.run,this.presentation.score,event):undefined;
     const sourceBenefit=hasActualBenefit(event);
     if(sourceBenefit&&event.sourceInstanceId===this.presentation?.state.routeStarter?.instanceId){const label=this.jokerViews.get(event.sourceInstanceId)?.getData('valueLabel') as Phaser.GameObjects.Text|undefined;label?.setText(event.operation==='add-growth'?'已存成长':'实际生效').setColor(C.red);}
-    if(benefit){this.statusText.setName('benefit/live').setText(benefit.effect);this.statusText.setData('benefit',benefit);if(this.statusText.width>this.view.layout.status.width)this.statusText.setText(benefit.title+' · 收益见上手详情');}
+    if(benefit){this.statusText.setName('benefit/live').setText(benefit.effect);this.statusText.setData('benefit',benefit);if(this.statusText.width>this.view.layout.status.width)this.statusText.setText(benefit.title+' · 结果见上手详情');}
 
     const restoreKey=key?this.showKeyHighlight(key,context):undefined;
     if(event.targetCardId)this.showTraceHeldCard(event.targetCardId);
