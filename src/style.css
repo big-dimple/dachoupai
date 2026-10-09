@@ -552,3 +552,5 @@ button[aria-busy=true] { border-style:dashed; }
 .tool-paper-ash { display:grid;place-content:center;min-height:94px;width:66px;margin:auto;color:#625b52;font-size:14px;border-bottom:6px dotted #625b52;background:radial-gradient(ellipse at 50% 85%,#b1a69b88 5%,transparent 35%); }
 
 .tool-purchased-result[open] { height:auto;min-height:0; }
+
+.detail-dialog[data-route-fit],.tool-inventory-card[data-route-fit] { border-width:1px;outline:1px solid var(--route-fit);outline-offset:2px;box-shadow:inset 0 0 0 3px #FFF9EE,inset 0 0 0 4px color-mix(in srgb,var(--route-fit) 30%,transparent); }

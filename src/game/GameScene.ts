@@ -1,3 +1,4 @@
+import {routeFrame} from './RouteFrame';
 import {routeFitCue,markRouteDetail} from './RouteFitCue';
 import {inventoryFeedback} from './InventoryFeedback';
 import {showSavedToolResult} from './SavedToolResult';
@@ -447,8 +448,8 @@ export class GameScene extends Phaser.Scene {
       }
       const d=this.jokerDefinition(j.definitionId),rarityStyle=JOKER_RARITY[d.rarity],sideLabels=l.mode==='landscape',labelBox=l.jokerLabels[i];
       const marker=v.add(this.add.container(b.x+b.width/2,b.y+b.height/2)).setData('baseX',b.x+b.width/2).setData('baseY',b.y+b.height/2);
-      const route=routeFitCue(this.run,'jokers',j.definitionId,j.instanceId);const r=this.add.rectangle(0,0,b.width,b.height,T.paperLight).setStrokeStyle(route?3:1,route?.ink??T.ink,route?.9:.5);
-      marker.add(r);
+      const route=routeFitCue(this.run,'jokers',j.definitionId,j.instanceId);const r=this.add.rectangle(0,0,b.width,b.height,T.paperLight).setStrokeStyle(1,T.ink,.5);
+      marker.add(r);if(route)marker.add(routeFrame(this,{x:-b.width/2,y:-b.height/2,width:b.width,height:b.height},route,d.rarity==='rare').setName('held/route-fit'));
       const resolution=Math.max(1.5,1/this.scale.zoom),labelX=sideLabels?labelBox.x-b.x-b.width/2:-b.width/2+3;
       const name=this.add.text(labelX,-b.height/2+1,d.name,{fontFamily:UI_FONT,fontSize:'14px',color:C.ink,resolution});
       const current=this.add.text(labelX,b.height/2-16,disabled.has(j.instanceId)?'封禁':this.jokerValue(j),{fontFamily:UI_FONT,fontSize:'14px',color:C.red,resolution});

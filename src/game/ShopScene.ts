@@ -1,3 +1,4 @@
+import {routeFrame} from './RouteFrame';
 import {routeFitCue,markRouteDetail,toolPurpose} from './RouteFitCue';
 import {inventoryFeedback} from './InventoryFeedback';
 import {showSavedToolResult} from './SavedToolResult';
@@ -201,7 +202,7 @@ export class ShopScene extends Phaser.Scene {
     const v=this.view;
     if(!p.inventoryCollapsed)this.run.jokers.forEach((j,i)=>{
       const b=p.slots[i],d=this.jokerDefinition(j.definitionId),ability=this.jokerCopy(j.definitionId,j),first=v.root.length;
-      this.drawSlot(b,true,d.rarity);const cue=routeFitCue(this.run,'jokers',j.definitionId,j.instanceId);if(cue)v.add(this.add.graphics().lineStyle(3,cue.ink,.9).strokeRoundedRect(b.x-2,b.y-2,b.width+4,b.height+4,5).setName('shop/held-route-fit').setData('route',cue.focus));
+      this.drawSlot(b,true,d.rarity);const cue=routeFitCue(this.run,'jokers',j.definitionId,j.instanceId);if(cue)v.add(routeFrame(this,b,cue,d.rarity==='rare').setName('shop/held-route-fit'));
       this.drawJokerPicture(j.definitionId,{x:b.x+3,y:b.y+22,width:b.width-6,height:b.height-25});
       const nameArea=shopOwnedNameArea(b,p.slots[i+1]?.x,v.layout.width);
       const ownedName=v.text(nameArea.x,b.y+3,d.name,14,'#26313A');this.ellipsis(ownedName,nameArea.width);
@@ -535,7 +536,7 @@ export class ShopScene extends Phaser.Scene {
   private buildLabel():string {const focus=currentBuildFocus(this.run,this.run.openingRoute);return focus?'培养 · '+BUILD_LABEL[focus]:'培养与构筑';}
   /** Outline real existing faces without hiding alternatives or changing the shelf hit rectangles. */
   private markBuildOffer(o:R2Offer,kind:ShelfKind,b:Box):void {
-    const cue=routeFitCue(this.run,kind,o.definitionId);if(cue&&!o.consumed)this.view.add(this.add.graphics().lineStyle(3,cue.ink,.9).strokeRoundedRect(b.x-2,b.y-2,b.width+4,b.height+4,6).setName('shop/build-match').setData('offerId',o.offerId).setData('route',cue.focus));
+    const cue=routeFitCue(this.run,kind,o.definitionId);if(cue&&!o.consumed)this.view.add(routeFrame(this,b,cue,kind==='jokers'&&this.jokerDefinition(o.definitionId).rarity==='rare').setName('shop/build-match').setData('offerId',o.offerId));
     if(kind==='jokers'&&starterOffer(this.run,o)){this.view.material({x:b.x+4,y:b.y+4,width:76,height:22},0xfff9ee,0xfff9ee,3);this.view.text(b.x+8,b.y+6,'起手 · 可选',14,'#26313A').setFontStyle('bold').setName('shop/route-starter-label').setData('offerId',o.offerId);}
     if(this.selectedOfferId===o.offerId)this.view.text(b.x+b.width-20,b.y+b.height-25,'✓',18,'#26313A').setName('shop/offer-selected');
   }
