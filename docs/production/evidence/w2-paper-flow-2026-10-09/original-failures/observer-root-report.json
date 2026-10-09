@@ -1,0 +1,262 @@
+{
+  "testedCommit": "ba0b61838aadf58bc95c4f0016184f80063f9f6e",
+  "before": {
+    "source": "bba72a8c43bf8d2ffe0cd03443ff3773b7d566291874738946070282dbcfaf1f",
+    "index": "e7c736ce4b5ee98822d05155edf6f50d6a169587a34a219670e55ed31a098cfd",
+    "head": "ba0b61838aadf58bc95c4f0016184f80063f9f6e",
+    "branch": "refs/heads/review/paper-flow-feedback-20261009"
+  },
+  "profiles": [
+    {
+      "width": 1366,
+      "height": 768,
+      "touch": false,
+      "transactions": [
+        {
+          "label": "purchase saved starter",
+          "commands": [
+            {
+              "runId": "run/1791513668946/erxiang",
+              "commandId": "run/1791513668946/erxiang/command/2",
+              "expectedSeq": 1,
+              "action": {
+                "type": "BuyOffer",
+                "offerId": "run/1791513668946/erxiang/shop/0/0/joker/2"
+              }
+            }
+          ],
+          "seq": 2
+        },
+        {
+          "label": "enter saved stage",
+          "commands": [
+            {
+              "runId": "run/1791513668946/erxiang",
+              "commandId": "run/1791513668946/erxiang/command/3",
+              "expectedSeq": 2,
+              "action": {
+                "type": "LeaveShop"
+              }
+            },
+            {
+              "runId": "run/1791513668946/erxiang",
+              "commandId": "run/1791513668946/erxiang/command/4",
+              "expectedSeq": 3,
+              "action": {
+                "type": "EnterStage"
+              }
+            }
+          ],
+          "seq": 4
+        },
+        {
+          "label": "play actual visible kings",
+          "commands": [
+            {
+              "runId": "run/1791513668946/erxiang",
+              "commandId": "run/1791513668946/erxiang/command/5",
+              "expectedSeq": 4,
+              "action": {
+                "type": "PlayHand",
+                "selectedIds": [
+                  "diamonds-13",
+                  "clubs-13"
+                ]
+              }
+            }
+          ],
+          "seq": 5
+        },
+        {
+          "label": "continue saved stage",
+          "commands": [
+            {
+              "runId": "run/1791513668946/erxiang",
+              "commandId": "run/1791513668946/erxiang/command/6",
+              "expectedSeq": 5,
+              "action": {
+                "type": "OpenShop"
+              }
+            }
+          ],
+          "seq": 6
+        }
+      ],
+      "sweeps": [],
+      "press": {
+        "before": {
+          "bounds": {
+            "x": 503,
+            "y": 600,
+            "width": 360,
+            "height": 52
+          },
+          "scale": 1
+        },
+        "pressed": {
+          "bounds": {
+            "x": 503,
+            "y": 600,
+            "width": 360,
+            "height": 52
+          },
+          "scale": 0.955
+        }
+      },
+      "frames": [
+        {
+          "file": "frames/0000.jpg",
+          "t": 1791516271.437181
+        },
+        {
+          "file": "frames/0001.jpg",
+          "t": 1791516271.471307
+        },
+        {
+          "file": "frames/0002.jpg",
+          "t": 1791516271.541367
+        },
+        {
+          "file": "frames/0003.jpg",
+          "t": 1791516271.57365
+        },
+        {
+          "file": "frames/0004.jpg",
+          "t": 1791516271.60716
+        },
+        {
+          "file": "frames/0005.jpg",
+          "t": 1791516271.645222
+        },
+        {
+          "file": "frames/0006.jpg",
+          "t": 1791516271.67569
+        },
+        {
+          "file": "frames/0007.jpg",
+          "t": 1791516271.765061
+        },
+        {
+          "file": "frames/0008.jpg",
+          "t": 1791516271.78629
+        },
+        {
+          "file": "frames/0009.jpg",
+          "t": 1791516271.820226
+        },
+        {
+          "file": "frames/0010.jpg",
+          "t": 1791516271.852443
+        },
+        {
+          "file": "frames/0011.jpg",
+          "t": 1791516271.936665
+        },
+        {
+          "file": "frames/0012.jpg",
+          "t": 1791516271.940735
+        },
+        {
+          "file": "frames/0013.jpg",
+          "t": 1791516271.982609
+        },
+        {
+          "file": "frames/0014.jpg",
+          "t": 1791516272.006095
+        },
+        {
+          "file": "frames/0015.jpg",
+          "t": 1791516272.036214
+        },
+        {
+          "file": "frames/0016.jpg",
+          "t": 1791516272.069874
+        },
+        {
+          "file": "frames/0017.jpg",
+          "t": 1791516272.105127
+        },
+        {
+          "file": "frames/0018.jpg",
+          "t": 1791516272.137764
+        },
+        {
+          "file": "frames/0019.jpg",
+          "t": 1791516272.169841
+        },
+        {
+          "file": "frames/0020.jpg",
+          "t": 1791516272.203576
+        },
+        {
+          "file": "frames/0021.jpg",
+          "t": 1791516272.23623
+        },
+        {
+          "file": "frames/0022.jpg",
+          "t": 1791516272.270312
+        },
+        {
+          "file": "frames/0023.jpg",
+          "t": 1791516272.402726
+        },
+        {
+          "file": "frames/0024.jpg",
+          "t": 1791516272.437391
+        },
+        {
+          "file": "frames/0025.jpg",
+          "t": 1791516272.470055
+        },
+        {
+          "file": "frames/0026.jpg",
+          "t": 1791516272.583361
+        },
+        {
+          "file": "frames/0027.jpg",
+          "t": 1791516272.61344
+        },
+        {
+          "file": "frames/0028.jpg",
+          "t": 1791516272.658374
+        },
+        {
+          "file": "frames/0029.jpg",
+          "t": 1791516272.691609
+        },
+        {
+          "file": "frames/0030.jpg",
+          "t": 1791516272.722408
+        },
+        {
+          "file": "frames/0031.jpg",
+          "t": 1791516272.782947
+        },
+        {
+          "file": "frames/0032.jpg",
+          "t": 1791516272.809024
+        },
+        {
+          "file": "frames/0033.jpg",
+          "t": 1791516272.875636
+        }
+      ]
+    }
+  ],
+  "errors": [
+    "TypeError: Failed to execute 'observe' on 'MutationObserver': parameter 1 is not of type 'Node'."
+  ],
+  "physicalDevice": "NOT_RUN",
+  "humanAcceptance": "NOT_RUN",
+  "scope": "Finite actual mouse/touch first chapter path; source/state observers read-only. No software GPU FPS acceptance.",
+  "status": "FAIL",
+  "error": "AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:\n\n  assert.ok(profile.sweeps.length>=5)\n",
+  "stack": "AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:\n\n  assert.ok(profile.sweeps.length>=5)\n\n    at file:///tmp/paper-flow-native.mjs:35:160",
+  "after": {
+    "source": "bba72a8c43bf8d2ffe0cd03443ff3773b7d566291874738946070282dbcfaf1f",
+    "index": "e7c736ce4b5ee98822d05155edf6f50d6a169587a34a219670e55ed31a098cfd",
+    "head": "ba0b61838aadf58bc95c4f0016184f80063f9f6e",
+    "branch": "refs/heads/review/paper-flow-feedback-20261009"
+  },
+  "sourceUnchanged": true
+}
