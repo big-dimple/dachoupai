@@ -1,0 +1,23 @@
+name: Acquire authorized CC0 transition BGM
+on:
+  push:
+    branches: [assets/bgm-cc0-acquire-20261009]
+permissions:
+  contents: read
+jobs:
+  acquire:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - name: Fetch the author-published original and attribution page
+        run: |
+          mkdir bgm
+          curl --fail --location --max-time 40 https://opengameart.org/sites/default/files/dark_things_loop_0.mp3 -o bgm/dark-things-loop.mp3
+          curl --fail --location --max-time 30 https://opengameart.org/content/dark-things-loop -o bgm/author-page.html
+          sha256sum bgm/dark-things-loop.mp3
+          wc -c bgm/dark-things-loop.mp3
+      - uses: actions/upload-artifact@v4
+        with:
+          name: authorized-cc0-dark-things-loop
+          path: bgm
+          retention-days: 3
