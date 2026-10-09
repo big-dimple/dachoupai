@@ -293,6 +293,16 @@ button[aria-busy=true] { border-style:dashed; }
  .dialog-card-art,.dialog-portrait-art { height:100%;width:auto;max-width:100%; }
  .dialog-header { padding:8px 16px; }.detail-dialog h2 { font-size:18px; }.dialog-actions { padding:6px 16px; }
 }
+.tool-short-instruction { margin:4px 0 0;font-size:14px;line-height:1.4;color:#2f5c58; }
+@media(min-width:1000px) and (min-height:600px) {
+ .tool-detail[open] { display:grid;width:min(1100px,calc(100vw - 32px));grid-template-columns:minmax(0,1fr) 300px;grid-template-rows:auto minmax(0,1fr) auto auto; }
+ .tool-detail .dialog-header { grid-column:1/-1; }
+ .tool-detail .dialog-content { grid-column:1;grid-row:2; }
+ .tool-detail .tool-selection-dock { grid-column:2;grid-row:2;max-height:none;border-top:0;border-left:1px solid #3F606B;padding:16px; }
+ .tool-detail .tool-selection-dock .tool-preview,.tool-detail .tool-selection-dock .tool-validation { font-size:14px; }
+ .tool-detail .dialog-actions,.tool-detail .dialog-status { grid-column:1/-1; }
+ .tool-detail .tool-choice-grid { max-height:min(44dvh,380px); }
+}
 
 /* Modal reveal never scales the 44px native hit targets. */
 .detail-dialog { animation:none; }

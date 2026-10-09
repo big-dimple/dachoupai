@@ -28,11 +28,11 @@ export function shopInvestment(state:R2RunState,offer:R2Offer,kind:'jokers'|'too
   let effect='选择已发现且未满级的牌型，永久提升基础值；不改手牌或保证成型。';
   if(type&&level!==undefined&&level<max){const [heat,mult,dh,dm]=R2_BASE_SCORES[type],after=Math.min(max,level+op.levels),m=(l:number)=>fractionText(Rational.fromJSON(mult).add(Rational.fromJSON(dm).multiply(new Rational(BigInt(l-1)))).toJSON());effect=`${HAND_LABELS[type]} Lv.${level}→${after}：基础热度 ${heat+dh*(level-1)}→${heat+dh*(after-1)}，基础倍率 ${m(level)}→${m(after)}。只在实际打出该型时读取，不是预计总分。`;}
   else if(type)effect=short+'，当前不能升级；不会解锁未发现牌型或突破上限。';
-  return {role:'升型',short:'升型 · '+short,effect,next:'买后收入工具包，确认使用才升级；不自动生效。'};
+  return {role:'升型',short:'升型 · '+short,effect,next:'买后收入道具箱，确认使用才升级；不自动生效。'};
  }
  if(op.kind==='set-suit')return {role:'改牌',short:'改牌 · 染成'+SUIT_SYMBOL[op.suit],effect:'永久替换所选牌花色，保留点数；不补顺子断点、不保证抽到所改牌。',next:'买后选择目标并确认；原花色会失去。'};
  if(op.kind==='shift-rank')return {role:'改牌',short:'改牌 · 点数'+(op.delta>0?'+':'')+op.delta,effect:'永久改变所选牌点数；在使用页逐张比较前后，原点数会失去，不保证抽到所改牌。',next:'买后选择目标并确认；不会自动整理牌组。'};
  if(op.kind==='copy-card'||op.kind==='delete-cards'||op.kind==='set-deck-suit')return {role:'改牌',short:'改牌 · '+t.name,effect:'改变牌组构成；具体对象、保留属性和代价见使用页，不保证下一手成型。',next:'买后选择目标并确认，修改成功才消耗。'};
  if(op.kind==='set-enhancement')return {role:['multiplier-paper','glass-paper'].includes(op.enhancement)?'倍率':'增强',short:'增强 · '+t.name,effect:'赋予所选牌增强；旧增强会被替换，收益按计分或持牌条件读取。',next:'买后选择目标并确认。'+(op.enhancement==='glass-paper'?'玻璃另有真实破碎风险。':'')};
- return {role:'工具',short:'工具 · '+t.name,effect:'作用、时点和额外代价见原规则；购买只收入库存。',next:'在工具包选择并确认使用，不自动生效。'};
+ return {role:'工具',short:'工具 · '+t.name,effect:'作用、时点和额外代价见原规则；购买只收入库存。',next:'在道具箱选择并确认使用，不自动生效。'};
 }

@@ -72,7 +72,7 @@ try {
     assert.equal((await state(page)).contentHash,'json-fnv-v1:f87eea81b756b81d');
     const shop=await state(page),offer=shop.shop.offers.find(o=>!o.consumed&&o.price<=shop.gold);assert.ok(offer,'natural starting gold permits a purchase');
     await tapUI(page,'shop','offer/'+offer.offerId,touch);await dom(page,'取消',touch);assert.deepEqual(await state(page),shop,'cancel leaves gold, shelf and RNG untouched');
-    await tapUI(page,'shop','offer/'+offer.offerId,touch);await dom(page,'确认购买',touch);await next(page,shop.commandSeq);
+    await tapUI(page,'shop','offer/'+offer.offerId,touch);await dom(page,/^(邀请|购买) · \d+ 金$/,touch);await next(page,shop.commandSeq);
     assert.equal((await state(page)).gold,shop.gold-offer.price);assert.equal((await state(page)).jokers.length,shop.jokers.length+1);
     if(saveScreens&&engine===selected[0])await page.screenshot({path:`shots/${name}-shop.png`});
     await tapUI(page,'shop','action/start-stage',touch);await waitScene(page,'game');await page.waitForFunction(()=>window.__harness.game.scene.getScene('game').cardViews.length>0);
@@ -122,7 +122,7 @@ try {
     });
     assert.deepEqual(tableNames.filter(name=>!name.startsWith('action/hand-')).sort(),['action/discard','action/play','action/sort-rank','action/sort-suit','action/tool-inventory'],'only approved common actions and the direct tool bag occupy the table');
     await tapUI(page,'game','action/tool-inventory',touch);
-    await page.getByRole('dialog',{name:'工具包',exact:true}).waitFor();await dom(page,'关闭',touch);
+    await page.getByRole('dialog',{name:'道具箱',exact:true}).waitFor();await dom(page,'关闭',touch);
     assert.deepEqual(await state(page),beforeInspect,'opening / closing the direct tool bag cannot spend resources or RNG');
     assert.ok(await page.evaluate(id=>window.__harness.game.scene.getScene('game').selectedIds.has(id),chosen),'opening / closing the direct tool bag preserves selected cards');
     for(const name of ['action/sort-rank','action/sort-suit']){
@@ -260,7 +260,7 @@ try {
       await page.goto(`http://127.0.0.1:${port}/?harness=1&seed=${fixture.seed}`);await waitScene(page,'title');
       await tapUI(page,'title','action/title-start',true);await waitScene(page,'character-select');await tapUI(page,'character-select','character/'+fixture.character,true);await confirmHeroRoute(page,true);await waitScene(page,'shop');
       const shop=await state(page),offer=shop.shop.offers.find(o=>o.definitionId===fixture.joker&&!o.consumed);assert.ok(offer&&offer.price===6&&shop.gold===6,'natural shelf permits the target purchase without injected state');
-      await tapUI(page,'shop','offer/'+offer.offerId,true);await dom(page,'确认购买',true);await next(page,shop.commandSeq);assert.equal((await state(page)).gold,0);
+      await tapUI(page,'shop','offer/'+offer.offerId,true);await dom(page,/^(邀请|购买) · \d+ 金$/,true);await next(page,shop.commandSeq);assert.equal((await state(page)).gold,0);
       await tapUI(page,'shop','action/start-stage',true);await waitScene(page,'game');await ready(page);
       if(fixture.joker==='d06'){
         const initial=await state(page);assert.equal(initial.stage.handLimit,9);assert.equal(initial.handOrder.length,9);assert.equal(await page.evaluate(()=>window.__harness.game.scene.getScene('game').cardViews.length),9);

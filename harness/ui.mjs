@@ -53,4 +53,4 @@ export async function confirmHeroRoute(page,touch=false,focus='group'){
   await tapUI(page,'character-select','action/confirm-character',touch);
 }
 export async function chooseCharacter(page,id,touch=false){await openSelector(page,touch);await tapUI(page,'character-select','character/'+id,touch);await confirmHeroRoute(page,touch);await waitScene(page,'shop');}
-export async function buyOffer(page,id,touch=false){await tapUI(page,'shop','offer/'+id,touch);const button=page.getByRole('button',{name:'确认购买',exact:true});if(touch)await button.tap();else await button.click();}
+export async function buyOffer(page,id,touch=false){await tapUI(page,'shop','offer/'+id,touch);const button=page.getByRole('button',{name:/^(邀请|购买) · \d+ 金$/});if(touch)await button.tap();else await button.click();}

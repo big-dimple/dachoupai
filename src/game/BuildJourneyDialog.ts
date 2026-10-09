@@ -36,7 +36,7 @@ export function showBuildJourney(dialog:DetailDialog,state:R2RunState,actions:Jo
   ...(actions.chapter?[{label:'本章节目',run:actions.chapter}]:[]),
   ...(actions.manage?[{label:'持有牌管理',run:actions.manage}]:[]),
   ...(actions.publicHands?[{label:'当前手牌可成型',run:actions.publicHands}]:[]),
-  {label:'打开工具包',disabled:!actions.ready||!state.consumables.length,run:actions.tools},
+  {label:'打开道具箱',disabled:!actions.ready||!state.consumables.length,run:actions.tools},
   {label:actions.continueLabel,primary:true,disabled:!actions.ready,run:actions.continue},
  ],{summaryBody:summary+'\n'+shortGuide[focus]+'\n'+buildDirectionCaption(state)+(state.phase==='shop'&&!offers.length?'\n本店无对应现货，可留金或换方向':''),cards,collapseRules:true,rulesLabel:'利息、牌组与完整来源规则'});attachFirstChapterGuide(state,actions.onFocus);
 }

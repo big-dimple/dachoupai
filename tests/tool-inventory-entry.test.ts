@@ -25,7 +25,7 @@ describe('visible tool inventory entry reuses space around existing actions',()=
   for(const b of [...p.shelf,p.reroll,p.play,p.build])expect(intersects(row.inventory,b)).toBe(false);expect(JSON.stringify(p)).toBe(before);
  });
  it('count and capacity derive from current inventory/modifiers, including zero and saved long-term expansion',()=>{
-  const s=createRun({seed:'tool-entry',runId:'fixture/tool-entry',characterId:'amo',rulesVersion:'r2'});expect(toolInventoryLabel(s)).toBe('工具包 0/2');s.consumables=[{instanceId:'owned/a',definitionId:'T07'}];expect(toolInventoryLabel(s)).toBe('工具包 1/2');s.longTermItems=['U07'];expect(toolInventoryLabel(s)).toBe('工具包 1/3');s.consumables=[];expect(toolInventoryLabel(s)).toBe('工具包 0/3');
+  const s=createRun({seed:'tool-entry',runId:'fixture/tool-entry',characterId:'amo',rulesVersion:'r2'});expect(toolInventoryLabel(s)).toBe('道具箱 0/2');s.consumables=[{instanceId:'owned/a',definitionId:'T07'}];expect(toolInventoryLabel(s)).toBe('道具箱 1/2');s.longTermItems=['U07'];expect(toolInventoryLabel(s)).toBe('道具箱 1/3');s.consumables=[];expect(toolInventoryLabel(s)).toBe('道具箱 0/3');
  });
 });
 

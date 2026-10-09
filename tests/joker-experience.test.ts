@@ -33,7 +33,7 @@ it('first transition is preparation, opposite ordinary type is eligible, special
  hand.forEach(c=>c.suit='hearts');const special={...ctx,facts:r2SelectionFacts({hand,selectedIds:hand.map(c=>c.id),disabledIds:[],jokers:[joker],definitions:r2JokerDefinitionsFor(p.state)})};expect(selectionExperience(p.state,joker,special).readiness).toBe('unmet');
 });
 it('real gifts and overflow report acquired destination; normal and repeated source beats are bounded',()=>{
- for(const full of [false,true]){const p=stageGiftPlan(full),s=giftSend(giftSend(p.state,{type:'PlayHand',selectedIds:p.first}),{type:'PlayHand',selectedIds:p.second}),e=s.lastTrace!.events.find(e=>!!e.rewardDefinitionId)!,f=savedBenefit(s,s.lastTrace!,e)!;expect(f.effect).toContain('方片染');expect(f.destination).toContain(full?'金币余额':'工具包');expect(f.toolId).toBe(full?undefined:'T04');expect(stageGiftReceipt(s)).toBeDefined();}
+ for(const full of [false,true]){const p=stageGiftPlan(full),s=giftSend(giftSend(p.state,{type:'PlayHand',selectedIds:p.first}),{type:'PlayHand',selectedIds:p.second}),e=s.lastTrace!.events.find(e=>!!e.rewardDefinitionId)!,f=savedBenefit(s,s.lastTrace!,e)!;expect(f.effect).toContain('方片染');expect(f.destination).toContain(full?'金币余额':'道具箱');expect(f.toolId).toBe(full?undefined:'T04');expect(stageGiftReceipt(s)).toBeDefined();}
  const s=played(),event=s.lastTrace!.events.find(e=>e.sourceDefinitionId==='b06')!,base=scoreBeat(event),first=experienceBeat(event,undefined,base),repeat=experienceBeat(event,event.sourceInstanceId,base),sum=(b:typeof base)=>b.windup+b.flight+b.impact+b.rest;expect(sum(first)).toBeLessThanOrEqual(520);expect(sum(repeat)).toBeLessThan(sum(first));
 });
 
