@@ -27,10 +27,12 @@
 
 来源短反馈只消费成功保存的trace/transaction与实例前后值；同一来源结果含实际前→后，无增长/归零与消费不可冒称新增。近期出牌记录与随后交易的当前存值分开，不倒灌。复用原状态位、短结果与已存在的回看/持有详情，不加固定信息墙、第二舞台、停顿或新音效，不挤掉出牌/购买动作。
 
-允许src/game/GrowthOpportunity.ts、JokerExperience.ts、JokerMemory.ts（公共动作资格字段）、JokerPlainCopy.ts、BuildGrowthProgress.ts、GameScene.ts、ShopScene.ts、JokerGrowthCausality.ts及必要的新纯展示帮助函数、直接相关tests/有界harness与本包文档。禁止domain/application/content/身份/schema/数值/供给/角色/音频/BGM/素材/CI变更。只读取公共手牌/已存状态，不排序窥看抽牌或调用计分预测。
+允许src/game/GrowthOpportunity.ts、JokerExperience.ts、JokerMemory.ts（公共动作资格字段）、JokerPlainCopy.ts、BuildGrowthProgress.ts、GameScene.ts、ShopScene.ts、JokerGrowthCausality.ts、ResultStage.ts（仅既有结果来源按实际读取事件选择；不改Intermission绘制/布局/演出）及必要的新纯展示帮助函数、直接相关tests/有界harness与本包文档。禁止domain/application/content/身份/schema/数值/供给/角色/音频/BGM/素材/CI变更。只读取公共手牌/已存状态，不排序窥看抽牌或调用计分预测。
 
 ## 必要验收与依赖
 
 依赖原W3公共事实与已有保存事件、W2最小可读组件；不等待整批美术，不解锁C04图鉴/历史或W7/W8后期新增。先定向覆盖八种遗漏时点及d09/f11结果未知、封禁/上限/已用/首手/场界、合法动作与取消/失败不兑现、隐藏RNG/抽牌序无影响、旧身份保持。用代表公开状态，不跑全72×全尺寸或自然整局。
 
 PC1366与390各一条明确合法受控原生路径：分别相乘出牌兑现与非出牌成长兑现，完整保存state等于原applyCommand；查看/关闭/取消不改状态，缺条件与未保存不称收益。320/短横仅必要同状态布局，44px操作与文字边界保护。先必要tests/typecheck，最终精确head一次标准仓库CI、draft父独审协调main。原失败留存，不用测试数/软件截图签真人理解、设备流畅度、听感、W6或整体W3完成。
+
+最终来源边界补正：结果页不能用成长前后值变化推断本手实际读取；既有ResultStage选择成长对比必须存在对应真实读取事件。蓄热消费行不提供代表“新增成长”的before/after字段，仍以原source consume反馈说明消耗。只做有限纯来源选择/字段分类及必要负例，原生a06/c05路径/截图按579cf14保留。
