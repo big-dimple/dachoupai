@@ -1,0 +1,91 @@
+{
+  "head": "eba4f240708f6bdf40c2a15b8df399e9e6c24dc5",
+  "status": "PASS",
+  "scope": "Observer bounds from the finite native imports, followed by actual screenshot review; not device acceptance. Reward material starts 10px above its text.",
+  "cases": [
+    {
+      "name": "ordinary",
+      "w": 1366,
+      "h": 768,
+      "resultTextContained": true,
+      "actualTotalAboveRewardPaper": true
+    },
+    {
+      "name": "high-growth",
+      "w": 1366,
+      "h": 768,
+      "resultTextContained": true,
+      "actualTotalAboveRewardPaper": true
+    },
+    {
+      "name": "failure",
+      "w": 1366,
+      "h": 768,
+      "resultTextContained": true,
+      "actualTotalAboveRewardPaper": false
+    },
+    {
+      "name": "ordinary",
+      "w": 390,
+      "h": 740,
+      "resultTextContained": true,
+      "actualTotalAboveRewardPaper": true
+    },
+    {
+      "name": "high-growth",
+      "w": 390,
+      "h": 740,
+      "resultTextContained": true,
+      "actualTotalAboveRewardPaper": true
+    },
+    {
+      "name": "failure",
+      "w": 390,
+      "h": 740,
+      "resultTextContained": true,
+      "actualTotalAboveRewardPaper": false
+    },
+    {
+      "name": "ordinary",
+      "w": 320,
+      "h": 740,
+      "resultTextContained": true,
+      "actualTotalAboveRewardPaper": true
+    },
+    {
+      "name": "high-growth",
+      "w": 320,
+      "h": 740,
+      "resultTextContained": true,
+      "actualTotalAboveRewardPaper": true
+    },
+    {
+      "name": "failure",
+      "w": 320,
+      "h": 740,
+      "resultTextContained": true,
+      "actualTotalAboveRewardPaper": false
+    },
+    {
+      "name": "ordinary",
+      "w": 740,
+      "h": 390,
+      "resultTextContained": true,
+      "actualTotalAboveRewardPaper": true
+    },
+    {
+      "name": "high-growth",
+      "w": 740,
+      "h": 390,
+      "resultTextContained": true,
+      "actualTotalAboveRewardPaper": true
+    },
+    {
+      "name": "failure",
+      "w": 740,
+      "h": 390,
+      "resultTextContained": true,
+      "actualTotalAboveRewardPaper": false
+    }
+  ]
+}
