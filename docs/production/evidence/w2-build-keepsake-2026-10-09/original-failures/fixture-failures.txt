@@ -1,0 +1,5 @@
+Initial finite test construction failures, before any product commit or PASS claim:
+03:49:04 UTC: 7 failed /16 passed; wrong createRun import from domain/r2Run (TypeError: createRun is not a function). Build typecheck TS2305 also failed.
+03:49:34 UTC: 7 failed /16 passed; imported actual entrypoint but omitted rulesVersion:r2, triggering unsupported-mode-config.
+03:49:56 UTC: 1 failed /22 passed; challenge Q01 fixture used free seed rather than fixed challenge/q01/0 (invalid-mode-seed-or-character).
+Original three fixture snapshots are preserved, not rewritten as passing. Inspected real createRun and mode policy, added r2/openingRoute, used canonical fixed challenge seed. 03:50:23 UTC: 23 passed /4 files; then type/build PASS.
