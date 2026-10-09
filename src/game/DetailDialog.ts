@@ -25,6 +25,7 @@ export class DetailDialog {
   private rarity?:JokerRarity;
   private attachFallback?:(url:string,alt:string)=>void;
   private refreshArt?:()=>void;
+  get current():HTMLDialogElement|undefined {return this.dialog;}
   active(dialog:HTMLDialogElement):boolean {return this.dialog===dialog;}
   /** Loader-driven scene refreshes keep an open modal current without rebuilding it. */
   refreshArtLoad():void {this.refreshArt?.();}

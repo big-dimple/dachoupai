@@ -526,3 +526,27 @@ button[aria-busy=true] { border-style:dashed; }
 .catalog-result p { display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden;font-size:14px;line-height:1.55;margin:6px 0; }
 .catalog-result button { min-height:44px;font-size:15px; }
 @media(max-width:420px) { .catalog-query { grid-template-columns:repeat(2,minmax(0,1fr)); }.catalog-query label:last-child { grid-column:1/-1; }.catalog-result { padding:8px;gap:8px; } }
+/* One saved-card attribute vocabulary in targets, before/after and results. */
+.candidate-card-face .card-enhancement-tag { position:absolute;bottom:18px;left:2px;right:2px;text-align:center;padding:1px;background:#3F606B;color:#fff9ee;font-size:12px;line-height:15px;border-radius:2px; }
+.candidate-card-face .card-edition-tag { position:absolute;right:2px;top:2px;font-size:12px;font-style:normal;background:#f0d3c7;color:#26313A; }
+.tool-existing-enhancement { font-size:14px;line-height:18px;background:#e2e8e5;border-left:3px solid #3F606B;padding:3px; }
+.tool-change-card.is-replacement,.tool-preview-cost.is-replacement { padding:6px;background:#f0d3c7;border-left:4px solid #B8473A; }
+.tool-change-card figcaption,.tool-change-card small,.tool-change-card .tool-change-attributes { font-size:14px;line-height:19px; }
+.tool-change-unknown { display:block;font-size:14px;line-height:20px; }
+.tool-change-pair > span:not(.tool-change-arrow) { width:64px; }
+.tool-change-pair .candidate-card-face { min-width:58px;height:82px; }
+.tool-card-option.is-selected::after { content:'✓';position:absolute;top:1px;left:1px;font-size:18px;color:#B8473A; }
+.tool-saved-changes { display:flex;flex-wrap:wrap;gap:12px; }
+.tool-saved-result .tool-change-card { flex:1 1 170px; }
+.tool-sacrifice-stage { position:relative;display:flex;align-items:start;justify-content:space-around;gap:12px;padding:14px 4px;border-block:1px solid #3F606B;min-height:160px; }
+.tool-sacrifice-stage figure { margin:0;text-align:center;flex:1;min-width:0; }
+.tool-sacrifice-stage figcaption { font-size:14px;line-height:20px;font-weight:bold;margin-top:8px; }
+.tool-sacrifice-stage .candidate-card-face { flex:none;width:66px;height:94px; }
+.tool-sacrifice-recipients { display:flex;gap:12px;flex:2;min-width:0; }
+.tool-sacrifice-ash { position:absolute;inset:0;width:100%;height:100%;pointer-events:none; }
+.tool-sacrifice-donor .is-ash .candidate-card-face { opacity:.3;filter:grayscale(1);border-style:dashed; }
+.tool-saved-next { background:#e2e8e5;padding:10px;font-size:14px; }
+.detail-dialog[data-route-fit] { border-color:var(--route-fit);border-width:3px; }
+.route-fit-caption { color:var(--route-fit);font-size:14px;line-height:20px;margin:6px 0 0; }
+.tool-inventory-card[data-route-fit] { border:3px solid var(--route-fit); }
+.tool-paper-ash { display:grid;place-content:center;min-height:94px;width:66px;margin:auto;color:#625b52;font-size:14px;border-bottom:6px dotted #625b52;background:radial-gradient(ellipse at 50% 85%,#b1a69b88 5%,transparent 35%); }

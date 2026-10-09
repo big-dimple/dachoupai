@@ -110,7 +110,8 @@ export function layout(viewport:{width:number;height:number},safe:Insets,request
   const scoreBudget=net-(52+89.6+18+88+handHeight+56+20+16+18)-.01;
   if((portrait&&width>=360&&count<=14&&scoreBudget>=108)||desktop){
     const x=safe.left+(portrait?(width<380?8:12):12),w=width-safe.left-safe.right-2*(portrait?(width<380?8:12):12);
-    const mainW=portrait?w:Math.min(1100,w-240),mainX=portrait?x:x+240+(w-240-mainW)/2;
+    const railWidth=desktop&&width>=1180&&height>=600?148:0;
+    const mainW=portrait?w:Math.min(1100,w-240-railWidth),mainX=portrait?x:x+240+(w-240-railWidth-mainW)/2;
     l.hud=box(x,safe.top+8,portrait?w:224,portrait?52:250);
     l.status=box(mainX,height-safe.bottom-28,mainW,20);
     const actionW=portrait?mainW:Math.min(480,mainW),actionX=mainX+(mainW-actionW)/2;
@@ -159,6 +160,7 @@ export function layout(viewport:{width:number;height:number},safe:Insets,request
   const actionStart=portrait&&!l.handOverflow?x+(sortWidth+gap)/2:x+sortWidth+gap;
   const tableActions=portrait&&!l.handOverflow?{discard:box(actionStart,y,discardWidth,actionHeight),play:box(actionStart+discardWidth+gap,y,remaining-discardWidth,actionHeight)}:originalActions;
   const status=l.mode==='landscape'?{...l.status,width:Math.min(l.status.width,tools.x-l.status.x-6)}:l.status;
+  if(desktop&&width>=1180&&height>=600){const rail=box(l.hand.x+l.hand.width+12,l.hand.y,132,168);return {...l,buttons:{rank:box(rail.x,rail.y,132,48),suit:box(rail.x,rail.y+56,132,48),ai:box(rail.x,rail.y+112,132,48)},tools:rail,toolsInHud:false,tableActions:{discard:box(x,y,Math.max(112,discardWidth),actionHeight),play:box(x+Math.max(112,discardWidth)+gap,y,l.actions.width-Math.max(112,discardWidth)-gap,actionHeight)},status};}
   return {...l,buttons,tools,toolsInHud:false,tableActions,status};
 }
 export type TableLayout=ReturnType<typeof layout>;

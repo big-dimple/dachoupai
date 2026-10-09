@@ -1,3 +1,4 @@
+import {enhancementText} from './CardSpecialLabels';
 import type {PlayingCard} from '../cards/types';
 import {R2_ENHANCEMENTS,type R2ToolDefinition} from '../content/r2Tools';
 import {HAND_LABELS} from '../content/handLabels';
@@ -14,7 +15,7 @@ export function toolCardChange(tool:R2ToolDefinition,card:PlayingCard):CardChang
  switch(operation.kind){
   case 'shift-rank':after.rank=Math.max(operation.minimum,Math.min(operation.maximum,card.rank+operation.delta)) as PlayingCard['rank'];break;
   case 'set-suit':after.suit=operation.suit;break;
-  case 'set-enhancement':after.enhancement=operation.enhancement;note=card.enhancement&&card.enhancement!==operation.enhancement?'替换原增强：'+R2_ENHANCEMENTS.find(e=>e.id===card.enhancement)!.name:'';break;
+  case 'set-enhancement':after.enhancement=operation.enhancement;note=card.enhancement&&card.enhancement!==operation.enhancement?'替换原增强：失去 '+enhancementText(card)+' → 获得 '+enhancementText(after):'';break;
   case 'delete-cards':after=undefined;label='永久删除';note='该实例从有效牌组移除';break;
   case 'copy-card':label=`复制 ×${operation.copies}`;note='原牌保留；新实例确认后生成';break;
   default:return undefined;
@@ -36,7 +37,7 @@ export function handLevelChangeText(type:R2HandType,before:number,after:number):
  return `${HAND_LABELS[type]} · Lv.${before} → ${after}\n基础热度 ${a.heat} → ${b.heat}；基础倍率 ${a.mult} → ${b.mult}`;
 }
 export function renderCardChange(host:HTMLElement,change:CardChange,index:number):void {
- const row=document.createElement('figure'),caption=document.createElement('figcaption'),pair=document.createElement('div');row.className='tool-change-card';row.dataset.sourceId=change.before.id;caption.textContent=`${index+1}. 确认前 → ${change.label}`;pair.className='tool-change-pair';
+ const row=document.createElement('figure'),caption=document.createElement('figcaption'),pair=document.createElement('div');row.className='tool-change-card'+(change.note.startsWith('替换原增强')?' is-replacement':'');row.dataset.sourceId=change.before.id;caption.textContent=`${index+1}. 确认前 → ${change.label}`;pair.className='tool-change-pair';
  const before=document.createElement('span'),arrow=document.createElement('span'),after=document.createElement('span');renderToolCard(before,change.before);appendAttributes(before,change.before);arrow.textContent='→';arrow.className='tool-change-arrow';
  if(change.after){renderToolCard(after,change.after);appendAttributes(after,change.after);after.className='tool-change-after';}else{after.className='tool-change-removed';after.textContent='移除';}
  pair.setAttribute('aria-label',cardSpecialText(change.before)+' → '+(change.after?cardSpecialText(change.after):'永久删除'));
@@ -49,5 +50,5 @@ export function renderHandChange(host:HTMLElement,type:R2HandType,before:number,
 }
 
 function appendAttributes(host:HTMLElement,card:PlayingCard):void {
- const label=document.createElement('small');label.className='tool-change-attributes';label.textContent=[R2_ENHANCEMENTS.find(e=>e.id===card.enhancement)?.name??'无增强',editionLabel(card.edition)].join(' · ');host.append(label);
+ const label=document.createElement('small');label.className='tool-change-attributes';label.textContent=[enhancementText(card),editionLabel(card.edition)].join(' · ');host.append(label);
 }

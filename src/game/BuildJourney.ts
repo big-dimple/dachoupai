@@ -35,7 +35,7 @@ export function toolSupportsFocus(id:string,focus:BuildFocus):boolean {
  const op=R2_TOOLS.find(t=>t.id===id)!.operation;
  if(op.kind==='upgrade-hand')return !op.handType||buildHandTypes(focus).includes(op.handType);
  // Existing score-paper / repeat tools are optional bridges, never a required glass recipe.
- if(op.kind==='set-enhancement')return op.enhancement!=='voice-paper';
+ if(op.kind==='set-enhancement'||op.kind==='random-enhancement'||op.kind==='random-edition')return true;
  if(op.kind==='add-gold'||op.kind==='restore-discard'||op.kind==='free-reroll')return true;
  return focus==='group'?['copy-card','shift-rank','delete-cards','exchange-hand-levels'].includes(op.kind):focus==='straight'?['shift-rank','copy-card','delete-cards','exchange-hand-levels'].includes(op.kind):['set-suit','set-deck-suit','copy-card','delete-cards','exchange-hand-levels'].includes(op.kind);
 }
@@ -53,7 +53,7 @@ export function buildJourneyFacts(state:R2RunState,focus:BuildFocus){
  for(const card of live){counts.set(card.rank,(counts.get(card.rank)??0)+1);suits.set(card.suit,(suits.get(card.suit)??0)+1);}
  const rankCounts=[...counts].sort((a,b)=>a[0]-b[0]).map(([rank,count])=>rankLabel(rank as Rank)+'×'+count).join('、');
  const composition=focus==='flush'?[...suits].map(([s,n])=>SUIT_SYMBOL[s]+' '+n+'张').join(' · '):rankCounts;
- const guide=focus==='group'?'保留同点牌，尝试对子、两对或更大成组；改点、复制和删牌各有代价。':focus==='straight'?'用不同点数接连续牌；成长来源可能仍读旧值，但是否新增成长另按来源条件。':'先决定集中哪一花色；染色只改所选对象，不保证下一手抽到同花。';
+ const guide=focus==='group'?'保留同点牌，用改点凑对子／两对，不必等复制；增强给实际计分牌，留牌增强另看条件。培养成长后保留现金，遇到满足来源条件的组合再爆发。':focus==='straight'?'用不同点数接连续牌；成长来源可能仍读旧值，但是否新增成长另按来源条件。':'先决定集中哪一花色；染色只改所选对象，不保证下一手抽到同花。';
  const owned=state.jokers.map(j=>{const d=r2JokerDefinitionFor(state,j.definitionId);return {id:j.instanceId,title:d.name,url:jokerArtPreviewUrl(d.id),relation:shopRouteRelation(state,j,focus),body:shopRouteRelation(state,j,focus).body+'\n已保存：'+r2JokerStateText(j,d)+'\n来源是否实际生效，按选牌条件、封禁与保存事件核对。'};});
  const tools=state.consumables.filter(c=>toolSupportsFocus(c.definitionId,focus)).map(c=>{const d=R2_TOOLS.find(t=>t.id===c.definitionId)!,info=toolInfo(d.id,state),openable=d.phases.includes(state.phase as 'shop'|'await-input')&&r2ToolSupported(d.id)&&r2ToolAllowed(state,d.id);return {id:c.instanceId,title:info.name,url:info.artUrl,openable,body:info.description+'\n'+info.cost+'\n'+(openable?'打开后自己选择对象；确认前仍校验目标、余额和上限。':'当前时点不能用；查看完整工具规则或到商店再决定。')};});
  const shop=state.shop,offers: {price:number;decision:string;brief:string;id:string;kind:'jokers'|'tools'|'items';title:string;body:string;url?:string;affordable:boolean;relation?:ReturnType<typeof shopOfferRelation>}[]=[];

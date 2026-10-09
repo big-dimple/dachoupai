@@ -21,7 +21,7 @@ function shortShopLayout(width:number,height:number,top:number,bottom:number,col
   return {x,w,top,pc:null,desktop:false,short:true,compact:true,wideHeader:false,portrait:false,copyBeside:true,inventoryCollapsed:collapsed,slots,shelf,
     tabs:{x:goodsX,y:tabsY,width:goodsWidth,height:44},chapter:{x,y:secondaryY,width:inventoryWidth,height:44},items:{x,y:secondaryY,width:inventoryWidth,height:44},
     reroll:{x:collapsed?x+60:x,y:collapsed?top:secondaryY,width:collapsed?104:122,height:44},build:{x:collapsed?x+172:x+130,y:collapsed?top:secondaryY,width:120,height:44},
-    play:{x,y:playY,width:collapsed?w:inventoryWidth,height:56},noticeY:playY+60};
+    play:{x:collapsed||height<600?x:width-156,y:playY,width:collapsed?w:height<600?inventoryWidth:144,height:56},noticeY:playY+60};
 }
 
 /** Left state, upper owned resources, lower sale panel. Short PC reuses the short branch. */
@@ -33,7 +33,7 @@ function desktopShopLayout(width:number,height:number,top:number,bottom:number,_
   const ownedRail={x:rightX,y:top,width:rightWidth,height:56+ownedHeight};
   const inventoryEntry={x:rightX+rightWidth-168,y:top+64,width:168,height:44};
   const shopPanel={x:rightX,y:slotY+ownedHeight+24,width:rightWidth,height:height-bottom-8-(slotY+ownedHeight+24)};
-  const actionWidth=width>=1600?144:128,goodsX=shopPanel.x+actionWidth+32,goodsWidth=shopPanel.width-actionWidth-48;
+  const actionWidth=width>=1600?144:128,goodsX=shopPanel.x+16,goodsWidth=shopPanel.width-actionWidth-48;
   // Reserve the lower 128px goods row, its headings and the feedback gap first.
   const faceHeightBudget=usableHeight-332-ownedHeight-128;
   const seat=(goodsWidth-24)/3,cardWidth=width>=1600?Math.min(144,faceHeightBudget/1.4):Math.min(128,faceHeightBudget/1.4),cardHeight=cardWidth*1.4;
@@ -43,7 +43,7 @@ function desktopShopLayout(width:number,height:number,top:number,bottom:number,_
   const groupY=upperY+upperHeight+24,groupWidth=(goodsWidth-16)/2,lowerY=groupY+24,lowerHeight=Math.max(96,Math.min(width>=1600?128:160,shopPanel.y+shopPanel.height-32-lowerY));
   const toolOffers={x:goodsX,y:lowerY,width:groupWidth,height:lowerHeight},itemOffers={x:goodsX+groupWidth+16,y:lowerY,width:groupWidth,height:lowerHeight};
   const feedback={x:shopPanel.x+12,y:shopPanel.y+shopPanel.height-24,width:shopPanel.width-24,height:20};
-  const play={x:shopPanel.x+12,y:shopPanel.y+28,width:actionWidth,height:56},reroll={x:play.x,y:play.y+68,width:actionWidth,height:44};
+  const play={x:shopPanel.x+shopPanel.width-actionWidth-12,y:shopPanel.y+28,width:actionWidth,height:56},reroll={x:play.x,y:play.y+68,width:actionWidth,height:44};
   const build={x:Math.min(rightX+5*(ownedWidth+12)+12,width-292),y:top+6,width:132,height:44};
   const chapter={x,y:top+176,width:leftWidth,height:44};
   const pc={left:{x,y:top,width:leftWidth,height:shopPanel.y+shopPanel.height-top},ownedRail,inventoryEntry,shopPanel,actionRail:{x:play.x,y:play.y,width:actionWidth,height:shopPanel.height-52},jokerOffers,toolOffers,itemOffers,feedback,groupY};

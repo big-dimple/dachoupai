@@ -1,3 +1,4 @@
+import {mountResultEntrance} from './ResultEntrance';
 import {resultStageFacts,resultStagePlan} from './ResultStage';
 import {resultStagePaper,resultStageSources,loadResultSourceArt} from './ResultStageArt';
 import {jokerArtPreviewUrl} from './jokerArt';
@@ -65,6 +66,7 @@ export class IntermissionScene extends Phaser.Scene {
   private firstRender=true;
   private readonly rewardCue=new RewardCoinCue();
   private readonly rewardEffects=new EffectQueue();
+  private outcomeMotion?:{dispose:()=>void};
   private celebrationTimer?:Phaser.Time.TimerEvent;
   private readonly dialog=new DetailDialog();
   private readonly audio=AudioEngine.shared;
@@ -84,7 +86,9 @@ export class IntermissionScene extends Phaser.Scene {
   }
   create():void {
     this.lifecycle++;this.busy=false;this.notice='';this.firstRender=true;
-    const retire=()=>{this.events.off('shutdown',retire);this.events.off('destroy',retire);this.lifecycle++;this.stopSourceArt();this.paintSourceArt=undefined;this.sourceArtLayer=undefined;this.dialog.close();this.stopCelebration();};
+    const preference=()=>{if(gameSession().reducedMotion&&this.scene.isActive()){this.firstRender=false;this.render();}};
+    if(typeof window!=='undefined')window.addEventListener('dachoupai-presentation',preference);
+    const retire=()=>{if(typeof window!=='undefined')window.removeEventListener('dachoupai-presentation',preference);this.events.off('shutdown',retire);this.events.off('destroy',retire);this.lifecycle++;this.stopSourceArt();this.paintSourceArt=undefined;this.sourceArtLayer=undefined;this.dialog.close();this.stopCelebration();};
     this.events.once('shutdown',retire);this.events.once('destroy',retire);
     const run=runController(this)?.state;if(!run?.stage){this.scene.start('character-select');return;}
     this.cameras.main.setBackgroundColor('#F3EADB');
@@ -158,7 +162,7 @@ export class IntermissionScene extends Phaser.Scene {
       v.button(p.left,'返回选角','action/continue-stage',()=>void this.next(),!this.busy);
       v.button(p.primary,this.busy?'正在开局…':'同局重试','action/retry-seed',()=>void this.retrySeed(),this.ready,true);
     }
-    const canSkip=animateIn&&!lost&&!skipped&&this.result.cleared;
+    const canSkip=animateIn&&!skipped;
     v.button(p.right,canSkip?'跳过动效':lost?'本场详情':'回看上手',canSkip?'action/skip-celebration':'action/last-hand',()=>{if(canSkip){this.firstRender=false;this.audio.cancelPresentation();this.render();}else if(lost)this.inspectResult();else this.inspectLastHand();},!this.busy&&(canSkip||lost||!!trace));
     const discovery=this.ready&&!this.notice&&!lost&&!skipped?savedGrowthDiscovery(run):undefined,gift=this.ready&&!this.notice&&!lost&&!skipped?stageGiftReceipt(run):undefined;
     v.text(p.x,p.noticeY,this.busy?'正在保存…':this.notice||(!this.ready?'当前进度未保存或只读，请查看菜单。':capped?'已达数值上限，进度已保存':won?run.mode==='standard'?'八章通关已保存，继续无尽由你决定。':'本模式结果已保存，可重试或返回选角。':nextStage?gift?.banner||discovery?.full||'':lost?'同局重试沿用角色与开局种子。':''),14,this.notice?'#ffd0b1':'#3F606B',p.w).setName(gift&&nextStage?'gift/discovery':discovery&&nextStage?'growth/discovery':'');
@@ -170,6 +174,7 @@ export class IntermissionScene extends Phaser.Scene {
     return [...new Set(trace.events.filter(e=>(e.sourceType==='joker'||e.sourceType==='character')&&e.phase!=='afterHand'&&(e.before.H.n!==e.after.H.n||e.before.H.d!==e.after.H.d||e.before.M.n!==e.after.M.n||e.before.M.d!==e.after.M.d||e.operation==='retrigger-card'&&BigInt(e.value.n)>0n)).map(e=>e.sourceType==='character'?(savedTouyeWager(trace)||character.name):this.jokerDefinition(e.sourceDefinitionId).name))];
   }
   private stopCelebration():void {
+    this.outcomeMotion?.dispose();this.outcomeMotion=undefined;
     this.rewardEffects.clear();
     this.celebrationTimer?.remove();this.celebrationTimer=undefined;
     this.tweens.killAll();
@@ -177,12 +182,14 @@ export class IntermissionScene extends Phaser.Scene {
   private drawResultHero(b:Box,outcome:ReturnType<typeof stageOutcome>,skipped:boolean,lost:boolean,animate:boolean):void {
     const v=this.view,run=runController(this)!.state,cx=b.x+b.width/2;
     resultStagePaper(this,v,b,lost);
+    if(animate&&!skipped)this.outcomeMotion=mountResultEntrance(this,v.root,b,!lost);
     if(lost){
       const summary=failureSummary(run);
       v.text(cx,b.y+12,summary.reason,16,PAPER_CSS.ink,b.width-32).setOrigin(.5,0).setName('result/failure-reason');
       if(b.height>=132){v.text(cx,b.y+42,summary.lastHand,14,PAPER_CSS.jade,b.width-32).setOrigin(.5,0).setName('result/last-hand');v.text(cx,b.y+66,summary.resources,14,PAPER_CSS.jade,b.width-32).setOrigin(.5,0).setName('result/resources');}
       const gap=(BigInt(run.stage!.targetHeat)-BigInt(this.result.stageHeat)).toString();
       v.text(cx,b.y+b.height*.58,`${heatText(this.result.stageHeat)} / ${heatText(run.stage!.targetHeat)} · 差 ${heatText(gap)}`,b.width<420?22:32,PAPER_CSS.ink,b.width-32).setOrigin(.5,0).setName('result/gap');
+      if(animate)this.celebrationTimer=this.time.delayedCall(1000,()=>{if(this.scene.isActive()){this.firstRender=false;this.render();}});
       return;
     }
     const facts=resultStageFacts(run,this.result.cleared,skipped),plan=resultStagePlan(b,v.layout.height<500),main=plan.score,center=main.x+main.width/2,short=v.layout.height<500;

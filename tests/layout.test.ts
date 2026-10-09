@@ -100,8 +100,8 @@ describe('CSS layout contract',()=>{
         expect(intersects(b,l.hand)).toBe(false);
       }
       for(let i=0;i<controls.length;i++)for(let j=i+1;j<controls.length;j++)expect(intersects(controls[i],controls[j])).toBe(false);
-      expect(l.buttons.rank.x).toBe(l.tools.x);expect(l.buttons.ai.x).toBe(l.tools.x+88);
-      if(l.mode!=='portrait')expect(l.tableActions.discard.x).toBeGreaterThan(l.tools.x+l.tools.width);
+      expect(l.buttons.rank.x).toBe(l.tools.x);if(l.tools.height>l.tools.width){expect(l.buttons.ai.x).toBe(l.tools.x);expect(l.buttons.ai.y).toBe(l.tools.y+112);expect(l.tableActions.play.x+l.tableActions.play.width).toBeLessThan(l.tools.x);}else expect(l.buttons.ai.x).toBe(l.tools.x+88);
+      if(l.mode!=='portrait'&&l.tools.height<=l.tools.width)expect(l.tableActions.discard.x).toBeGreaterThan(l.tools.x+l.tools.width);
       if(l.mode==='portrait'&&!l.handOverflow)expect((l.tableActions.discard.x+l.tableActions.play.x+l.tableActions.play.width)/2).toBeCloseTo(l.actions.x+l.actions.width/2);
       else expect(l.tableActions.play.x+l.tableActions.play.width).toBeCloseTo(l.actions.x+l.actions.width);
     }

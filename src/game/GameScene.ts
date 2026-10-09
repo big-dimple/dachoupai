@@ -1,3 +1,7 @@
+import {routeFitCue,markRouteDetail} from './RouteFitCue';
+import {inventoryFeedback} from './InventoryFeedback';
+import {showSavedToolResult} from './SavedToolResult';
+import {ENHANCEMENT_BRIEF} from './CardSpecialLabels';
 import {fitStatusSummary} from './StatusSummary';
 import {transactionGrowthChange,handGrowthChanges} from './SavedGrowthChange';
 import {heroAbilityCue,savedHeroResult} from './HeroAbilityCue';
@@ -390,7 +394,7 @@ export class GameScene extends Phaser.Scene {
     const brief=portrait||l.shortLandscape||l.buttons.rank.width<80;
     const sort=l.tools;
     const sortArt=this.add.graphics().fillStyle(T.jadeSoft).fillRoundedRect(sort.x,sort.y,sort.width,sort.height,6).lineStyle(1,T.jade,.9).strokeRoundedRect(sort.x+.5,sort.y+.5,sort.width-1,sort.height-1,6).lineStyle(1,T.jade,.35);
-    for(const offset of [44,88])sortArt.beginPath().moveTo(sort.x+offset,sort.y+10).lineTo(sort.x+offset,sort.y+sort.height-10).strokePath();
+    if(sort.height>sort.width){for(const offset of [52,108])sortArt.beginPath().moveTo(sort.x+8,sort.y+offset).lineTo(sort.x+sort.width-8,sort.y+offset).strokePath();}else for(const offset of [44,88])sortArt.beginPath().moveTo(sort.x+offset,sort.y+10).lineTo(sort.x+offset,sort.y+sort.height-10).strokePath();
     v.add(sortArt.setName('action/sort-group').setData('bounds',sort));
     this.rankButton=v.button(l.buttons.rank,brief?'点数':'点数排序','action/sort-rank',()=>void this.sortHand('rank'),this.ready,false,'sort');
     this.suitButton=v.button(l.buttons.suit,brief?'花色':'花色排序','action/sort-suit',()=>void this.sortHand('suit'),this.ready,false,'sort');
@@ -410,6 +414,7 @@ export class GameScene extends Phaser.Scene {
     this.playAura=v.add(this.add.graphics().lineStyle(2,T.red,.7).strokeRoundedRect(play.x-3,play.y-3,play.width+6,play.height+6,9).setAlpha(0));
     this.statusText=v.text(l.status.x,l.status.y,'',14,'#f3d5ab',l.status.width);
     this.inventoryButton=v.button(gameToolInventoryBox(l),toolInventoryLabel(this.run),'action/tool-inventory',()=>showConsumables(this.dialog,this.run,this.ready&&!this.pendingRefill&&!this.pendingTouye,(a,seq)=>this.command(a,seq)));
+    inventoryFeedback(this,this.inventoryButton,this.run,this.ready,this.reducedMotion);
     this.controlsLive=true;
     this.updateHud();this.renderHand();
   }
@@ -442,7 +447,7 @@ export class GameScene extends Phaser.Scene {
       }
       const d=this.jokerDefinition(j.definitionId),rarityStyle=JOKER_RARITY[d.rarity],sideLabels=l.mode==='landscape',labelBox=l.jokerLabels[i];
       const marker=v.add(this.add.container(b.x+b.width/2,b.y+b.height/2)).setData('baseX',b.x+b.width/2).setData('baseY',b.y+b.height/2);
-      const r=this.add.rectangle(0,0,b.width,b.height,T.paperLight).setStrokeStyle(1,T.ink,.5);
+      const route=routeFitCue(this.run,'jokers',j.definitionId,j.instanceId);const r=this.add.rectangle(0,0,b.width,b.height,T.paperLight).setStrokeStyle(route?3:1,route?.ink??T.ink,route?.9:.5);
       marker.add(r);
       const resolution=Math.max(1.5,1/this.scale.zoom),labelX=sideLabels?labelBox.x-b.x-b.width/2:-b.width/2+3;
       const name=this.add.text(labelX,-b.height/2+1,d.name,{fontFamily:UI_FONT,fontSize:'14px',color:C.ink,resolution});
@@ -573,9 +578,9 @@ export class GameScene extends Phaser.Scene {
     c.add([...faceArt,label,corner,scoringMark]);
     const selectionMark=this.add.text(-b.width/2+edge+9,-b.height/2+edge+label.height+11,'✓',{fontFamily:UI_FONT,fontSize:'14px',fontStyle:'bold',color:C.ink,backgroundColor:C.jadeSoft,padding:{x:4,y:1},resolution}).setOrigin(.5).setVisible(false);c.add(selectionMark);
     if(card.enhancement){
-      const enhancement=ENHANCEMENT_UI[card.enhancement],bx=b.width/2-14,by=-b.height/2+16;
-      const badge=this.add.graphics().fillStyle(enhancement.ink).fillRoundedRect(bx-10,by-10,20,20,4).lineStyle(1,0xffe4ad).strokeRoundedRect(bx-10,by-10,20,20,4);
-      c.add([badge,this.add.text(bx,by,enhancement.mark,{fontFamily:UI_FONT,fontSize:'12px',color:'#fff8e5',resolution}).setOrigin(.5)]);
+      const enhancement=ENHANCEMENT_UI[card.enhancement],bx=0,by=b.height/2-36,bw=Math.min(52,b.width-8);
+      const badge=this.add.graphics().fillStyle(enhancement.ink).fillRoundedRect(bx-bw/2,by-10,bw,20,4).lineStyle(1,0xffe4ad).strokeRoundedRect(bx-bw/2,by-10,bw,20,4);
+      c.add([badge,this.add.text(bx,by,ENHANCEMENT_BRIEF[card.enhancement],{fontFamily:UI_FONT,fontSize:'14px',color:'#fff8e5',resolution}).setOrigin(.5)]);
     }
     this.editionTrim(c,b.width,b.height,card.edition);
     const back=this.textures.exists('p00-card-back')?this.add.image(0,0,'p00-card-back').setDisplaySize(b.width,b.height).setVisible(false):undefined;if(back)c.add(back);
@@ -1092,6 +1097,7 @@ export class GameScene extends Phaser.Scene {
       ...(growth?[{label:'成长因果',disabled:!this.ready,run:()=>{const saved=groupGrowthCausality(this.run,j);if(saved)this.dialog.open(saved.title,saved.body);}}]:[]),
       {label:'左移',disabled:!this.ready||!!this.pendingTouye||index===0,run:()=>move(-1)},{label:'右移',disabled:!this.ready||!!this.pendingTouye||index===this.run.jokers.length-1,run:()=>move(1)},
     ],{rarity:d.rarity,artLoad:{status:jokerArtLoadState(this,d.id).status,readStatus:()=>jokerArtLoadState(this,d.id).status,retry:()=>retryJokerArt(this,[d.id],()=>{this.dialog.refreshArtLoad();if(!this.presentation&&!this.playing)this.render();})},ability,collapseRules:!!ability,...(ability?{editionBody:'版次：'+editionEffectText(j.edition).split('。')[0]+(restriction?' · '+(this.presentation?'本手暂停':'当前暂停'):'')} :{}),...(j.definitionId==='f09'?{f09:{inactive:!!restriction,bodyInactive:this.presentation?ability?.bodyActive===false:(this.run.stage?.discardsUsed??0)>0,reduced:this.reducedMotion,alignedLayers:jokerArtAlignedLayers(j.definitionId),reason:restriction||undefined}}:{}),...(art?{portrait:{url:art,thumbnailUrl:jokerArtPreviewUrl(d.id),alt:d.name+'完整卡面',layout:'card' as const,caption:d.name}}:{})});
+    markRouteDetail(dialog,routeFitCue(this.run,'jokers',d.id,j.instanceId));
     if(!artKey||!this.textures.exists(artKey))this.attachJokerFallback(dialog,d.id);
   }
   private attachJokerFallback(dialog:HTMLDialogElement,definitionId:string):void {
@@ -1106,7 +1112,7 @@ export class GameScene extends Phaser.Scene {
   }
   private async command(action:import('../domain/run').Action,expectedSeq?:number):Promise<boolean> {
     if(!this.ready)return false;this.clearHover();this.cancelAiCandidates();this.playing=true;const lifecycle=this.lifecycle,intent=++this.intent;this.updateControls();
-    const focusedId=this.hand[this.focusIndex]?.id;
+    const focusedId=this.hand[this.focusIndex]?.id,beforeTool=this.run,toolOwner=this.dialog.current;
     const beforeGold=this.run.gold,beforeDiscards=this.run.stage?.discardsLeft,beforeHand=this.hand,used=action.type==='UseConsumable'?this.run.consumables.find(item=>item.instanceId===action.instanceId):undefined;
     try {
       const result=await dispatchRun(this,action,expectedSeq);if(!this.alive(lifecycle,intent))return false;
@@ -1115,7 +1121,7 @@ export class GameScene extends Phaser.Scene {
       if(action.type==='ReorderHand'){if(focusedId)this.focusIndex=Math.max(0,this.run.handOrder.indexOf(focusedId));this.showFocusedCard();this.renderHand();}
       else if(action.type==='ReorderJokers'||action.type==='DestroyConsumable')this.render();
       if(used){
-        this.toolHand=beforeHand;this.dialog.close();
+        this.toolHand=beforeHand;
         const info=toolInfo(used.definitionId);this.audio.toolUse(info.family);this.effects.clear();
         this.effects.enqueue(async context=>{
           const p=this.view.layout.scoreBoard,effects=[this.floatNote(info.name,p.x+p.width/2,p.y+p.height/2,'#ffe3ae',400,context)];
@@ -1131,7 +1137,7 @@ export class GameScene extends Phaser.Scene {
           await Promise.all(effects);
         });
         try{await this.effects.drain();}catch{this.statusMessage='效果已保存，演出已停止。';}
-        if(this.alive(lifecycle,intent)){this.toolHand=undefined;this.render();}
+        if(this.alive(lifecycle,intent)){this.toolHand=undefined;this.render();if(action.type==='UseConsumable'&&!result.duplicate&&toolOwner&&this.dialog.active(toolOwner))showSavedToolResult(this.dialog,beforeTool,this.run,action,this.reducedMotion);}
       }
       return true;
     }

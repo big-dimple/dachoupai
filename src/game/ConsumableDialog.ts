@@ -1,3 +1,7 @@
+import {AudioEngine} from '../audio/AudioEngine';
+import {routeFitCue,markRouteDetail,toolPurpose} from './RouteFitCue';
+import {renderToolCard} from './CandidateCardPreview';
+import {enhancementText} from './CardSpecialLabels';
 import {toolCardChange,renderCardChange,renderHandChange,handLevelChangeText as handChange} from './ToolChangePreview';
 import {toolCardTargetStatus,toolCardMatches} from './ToolTargetDirectory';
 import {currentBuildFocus,focusedUpgradeTypes} from './BuildJourney';
@@ -147,12 +151,12 @@ export function showConsumables(dialog:DetailDialog,state:R2RunState,ready:boole
         catch{const status=confirmation.querySelector<HTMLParagraphElement>('.dialog-status')!;status.textContent='销毁未完成，请重试。';status.hidden=false;}
       }}],{closeLabel:'取消'});
     }};
-    const d=dialog.open(info.label+' · 使用详情',[info.description,info.cost].join('\n\n'),[useAction,destroyAction],{closeLabel:'取消',portrait:goodsArtPortrait(info)});d.classList.add('tool-detail');
+    const d=dialog.open(info.label+' · 使用详情',[info.description,info.cost].join('\n\n'),[useAction,destroyAction],{closeLabel:'取消',portrait:goodsArtPortrait(info)});d.classList.add('tool-detail');markRouteDetail(d,routeFitCue(state,'tools',tool.id));
     const instruction=document.createElement('p'),target=tool.target,shortOperation=tool.operation;
     instruction.className='tool-short-instruction';
     const effect=shortOperation.kind==='delete-cards'?'永久删牌':shortOperation.kind==='shift-rank'?`点数${shortOperation.delta>0?'+1':'−1'}`:shortOperation.kind==='set-enhancement'?`改为${R2_ENHANCEMENTS.find(value=>value.id===shortOperation.enhancement)?.name??'增强牌'}`:shortOperation.kind==='set-suit'?`改为${SUIT_NAMES[shortOperation.suit]}`:shortOperation.kind==='copy-card'?'复制牌':'选择生效对象';
     const count=target.kind==='cards'||target.kind==='card-sacrifice'?`选 ${target.minimum===target.maximum?target.maximum:target.minimum+'–'+target.maximum} 张` :target.kind==='card-or-joker'?'选 1 个普通版次对象':target.kind==='joker-sacrifice'?'选 1 张牺牲牌与 1 张受益牌':target.kind==='discovered-hand'?'选已发现牌型':target.kind==='suit'?'选 1 种花色':target.kind==='hand-exchange'?'选 2 种不同牌型':target.kind==='whole-deck'?'整副有效牌组': '无需选牌';
-    instruction.textContent=effect+' · '+count+(target.kind==='card-sacrifice'?'；另选 1 张牺牲牌':'');d.querySelector('.dialog-header')!.append(instruction);
+    instruction.textContent=effect+' · '+count+(target.kind==='card-sacrifice'?'；另选 1 张牺牲牌':'')+'。'+toolPurpose(state,tool.id);d.querySelector('.dialog-header')!.append(instruction);
     const scroll=d.querySelector('.dialog-scroll')!,art=d.querySelector('.dialog-card-art');if(art)scroll.prepend(art);
     const panel=document.createElement('section'),preview=document.createElement('p'),hint=document.createElement('p');panel.className='tool-target-panel';preview.className='tool-preview';preview.setAttribute('aria-live','polite');hint.className='tool-validation';hint.setAttribute('role','status');
     const directoryUpdates:(()=>void)[]=[];
@@ -176,11 +180,11 @@ export function showConsumables(dialog:DetailDialog,state:R2RunState,ready:boole
       for(const choice of choices){
         const label=document.createElement('label'),input=document.createElement('input'),name=document.createElement('strong'),detail=document.createElement('small');label.className='tool-card-option';label.dataset.sourceId=choice.id;
         input.type=role==='donor'||maximum===1?'radio':'checkbox';input.name=`${instanceId}/${role}`;input.value=choice.id;input.setAttribute('aria-label',choice.card&&role==='target'?choice.id:choice.name+' · '+(role==='donor'?'牺牲':'受益'));
-        if(choice.card){label.dataset.suit=choice.card.suit;label.dataset.edition=choice.card.edition??'none';label.title=cardSpecialText(choice.card);}else label.dataset.edition=choice.joker?.edition??'none';
+        if(choice.card){label.dataset.enhancement=choice.card.enhancement??'none';label.dataset.suit=choice.card.suit;label.dataset.edition=choice.card.edition??'none';label.title=cardSpecialText(choice.card);}else label.dataset.edition=choice.joker?.edition??'none';
         const path=choice.card&&handdrawnPath(choice.card.rank===11?'j':choice.card.rank===12?'q':choice.card.rank===13?'k':'','court'),url=choice.joker?jokerArtPreviewUrl(choice.joker.definitionId):path?assetUrl(path):undefined;
         name.textContent=choice.name;label.append(input,name);
         if(url){const image=document.createElement('img');image.src=url;image.alt='';image.loading='lazy';image.className='tool-target-art';image.onerror=()=>{image.hidden=true;};label.append(image);}
-        detail.textContent=choice.detail;label.append(detail);grid.append(label);rows.push({choice,label});controls.push({input,label,choice,role,maximum});
+        detail.textContent=choice.detail;label.append(detail);if(choice.card?.enhancement){const tag=document.createElement('b');tag.className='tool-existing-enhancement';tag.textContent=enhancementText(choice.card);label.append(tag);}grid.append(label);rows.push({choice,label});controls.push({input,label,choice,role,maximum});
         input.onchange=()=>{
           if(role==='donor'){selection.sacrificeId=choice.id;selection.ids.delete(choice.id);}
           else if(input.checked){if(maximum===1)selection.ids.clear();if(selection.ids.size<maximum)selection.ids.add(choice.id);}
@@ -243,7 +247,7 @@ export function showConsumables(dialog:DetailDialog,state:R2RunState,ready:boole
       hint.textContent=busy?'正在提交并保存…':issue??'目标有效。确认后使用物品并支付上述代价。';hint.dataset.valid=String(!issue);
       const lines:string[]=[],operation=tool.operation;
       if(selection.sacrificeId){const donor=(tool.target.kind==='joker-sacrifice'?jokerChoices:cardChoices).find(choice=>choice.id===selection.sacrificeId);if(donor)lines.push(`永久牺牲：${donor.name} · ${donor.detail.replace('\n',' · ')}。不作为出售，不退款。`);}
-      changes.replaceChildren();selected.forEach((choice,index)=>{if(choice.card){const change=toolCardChange(tool,choice.card);if(change)renderCardChange(changes,change,index);}});
+      changes.replaceChildren();if(tool.target.kind==='card-sacrifice'&&selection.sacrificeId){const donor=known.find(c=>c.id===selection.sacrificeId);if(donor)renderCardChange(changes,{before:donor,label:'永久献出',note:'牌组 −1 · 不退款'},0);}selected.forEach((choice,index)=>{if(choice.card){const change=toolCardChange(tool,choice.card);if(change)renderCardChange(changes,change,index);else if(tool.operation.kind==='random-enhancement'){const row=document.createElement('figure'),title=document.createElement('figcaption'),face=document.createElement('span'),unknown=document.createElement('strong');row.className='tool-change-card';row.dataset.sourceId=choice.card.id;title.textContent=`受益 ${index+1} · 点数／花色／版次保留`;renderToolCard(face,choice.card);unknown.textContent='→ 随机增强（保存后揭晓）';unknown.className='tool-change-unknown';row.append(title,face,unknown);changes.append(row);}}});
       if(selected.length)lines.push((tool.target.kind==='card-sacrifice'?'公开受益顺序：':'目标顺序：')+selected.map((choice,index)=>`${index+1}. ${choice.name} · ${choice.detail.replace('\n',' · ')}`).join(' → '));
       for(const choice of selected)if(choice.card){
         if(operation.kind==='set-suit')lines.push(`${cardName(choice.card)} → ${rankLabel(choice.card.rank)}${SUIT_SYMBOL[operation.suit]}；${cardSpecialText(choice.card)}`);
@@ -252,6 +256,7 @@ export function showConsumables(dialog:DetailDialog,state:R2RunState,ready:boole
         else lines.push(`${operation.kind==='delete-cards'?'永久删除：':''}${cardName(choice.card)} · ${cardSpecialText(choice.card)}`);
       }
       for(const choice of selected)if(choice.joker)lines.push(`${choice.name} · ${editionEffectText(choice.joker.edition)}\n${operation.kind==='set-joker-edition'?`版次 → ${editionEffectText(operation.edition)}；原支付 ${choice.joker.paidPrice} 金与已有成长保留。`:'本体、原支付金额与已有成长保留。'}`);
+      if(operation.kind==='random-enhancement'&&selection.sacrificeId)lines.push(`有效牌组 ${state.deckInstances.length-state.destroyedIds.length} → ${state.deckInstances.length-state.destroyedIds.length-1} 张；永久献出。`);
       if(operation.kind==='delete-cards'&&selected.length)lines.push(`有效牌组 ${state.deckInstances.length-state.destroyedIds.length} → ${state.deckInstances.length-state.destroyedIds.length-selected.length} 张；永久删除，确认使用才生效。`);
       if(operation.kind==='upgrade-hand'){const type=tool.target.kind==='discovered-hand'&&tool.target.selection==='fixed'?operation.handType:selection.handType;if(type){const level=state.handLevels[type];lines.push(level===undefined?`${HAND_LABELS[type]} · 尚未发现`:level>=R2_TOOL_CATALOG.limits.handLevelMaximum?`${HAND_LABELS[type]} · Lv.${level}（已满级）`:handChange(type,level,level+operation.levels));if(level!==undefined&&level<R2_TOOL_CATALOG.limits.handLevelMaximum)renderHandChange(changes,type,level,level+operation.levels);}}
       if(operation.kind==='exchange-hand-levels'){for(const [type,delta] of [[selection.handType,operation.gain],[selection.secondaryHandType,-operation.loss]] as const){if(type)renderHandChange(changes,type,state.handLevels[type]!,state.handLevels[type]!+delta);}if(selection.handType)lines.push(handChange(selection.handType,state.handLevels[selection.handType]!,state.handLevels[selection.handType]!+operation.gain));if(selection.secondaryHandType)lines.push('遗忘：'+handChange(selection.secondaryHandType,state.handLevels[selection.secondaryHandType]!,state.handLevels[selection.secondaryHandType]!-operation.loss));}
@@ -266,19 +271,22 @@ export function showConsumables(dialog:DetailDialog,state:R2RunState,ready:boole
       if(operation.kind==='restore-discard')lines.push(`本场弃牌：${state.stage?.discardsLeft??'尚未入场'} → ${state.stage?Math.min(state.stage.initialDiscards,state.stage.discardsLeft+operation.amount):'须先入场'}；上限为本场初始预算 ${state.stage?.initialDiscards??'待入场确定'}。`);
       if(operation.kind==='add-gold')lines.push(`金币 ${state.gold} → ${state.gold+operation.amount}。`);
       if(operation.kind==='free-reroll')lines.push(state.shop?`本次免费刷新，不扣金币；刷新计数 ${state.shop.rerollCount} → ${state.shop.rerollCount+1}。\n下次收费刷新 ${r2PaidRerollPrice(state)} → ${r2PaidRerollPrice({...state,shop:{...state.shop,rerollCount:state.shop.rerollCount+1}})} 金。长期道具货架保留，不触发成长。`:'请在商店免费刷新货架。');
+      const clearing=operation.kind==='clear-deck-specials'?known.filter(c=>c.enhancement).map(c=>`${cardName(c)}：失去 ${enhancementText(c)} → 无增强`):[];
       const replacementNotes=selected.flatMap(choice=>choice.card?toolCardChange(tool,choice.card)?.note.startsWith('替换原增强')?[toolCardChange(tool,choice.card)!.note]:[]:[]);
       const exchangeCost=operation.kind==='exchange-hand-levels'&&selection.secondaryHandType?[`遗忘代价：${HAND_LABELS[selection.secondaryHandType]} Lv.${state.handLevels[selection.secondaryHandType]} → ${state.handLevels[selection.secondaryHandType]!-operation.loss}`]:[];
-      costs.textContent=[...replacementNotes,...exchangeCost,...lines.filter(line=>/^(永久牺牲|有效牌组|额外使用代价|清空全部金币|下一场起)/.test(line))].join('\n');costs.hidden=!costs.textContent;
+      confirm.textContent=replacementNotes.length||clearing.length?'替换增强':busy?'正在保存…':'确认使用';costs.classList.toggle('is-replacement',!!(replacementNotes.length||clearing.length));
+      costs.textContent=[...clearing,...replacementNotes,...exchangeCost,...lines.filter(line=>/^(永久牺牲|有效牌组|额外使用代价|清空全部金币|下一场起)/.test(line))].join('\n');costs.hidden=!costs.textContent;
       preview.textContent=lines.join('\n\n')||'选择目标后，这里会显示变化与代价。';
     }
     refresh();
   };
+  if(!initialInstanceId)AudioEngine.shared.titleConfirm();
   const inventory=dialog.open('道具箱',`道具箱 ${state.consumables.length} / ${r2ConsumableCapacity(state)}：塔罗、星球、幻灵和补给，使用后会消耗。\n本局道具 ${state.longTermItems.length} / ${R2_TOOL_CATALOG.limits.longTermSlots}：持有即持续生效，不会用掉。\n点工具查看详情，选择目标后确认使用。`);inventory.classList.add('tool-inventory');
   const content=inventory.querySelector('.dialog-copy')!;
   function inventoryGroup(title:string,entries:readonly {id:string;name:string;label:string;artUrl:string;run:()=>void}[]):void {
     const section=document.createElement('section'),heading=document.createElement('h3'),grid=document.createElement('div');section.className='tool-inventory-group';heading.textContent=title;grid.className='tool-inventory-grid';section.append(heading,grid);
     if(!entries.length){const empty=document.createElement('p');empty.className='tool-empty';empty.textContent=title==='消耗工具'?'道具箱里还没有工具。到商店购买后，在这里选择目标并确认使用。':'还没有本局道具；在商店购买后会自动生效。';grid.append(empty);}
-    for(const entry of entries){const button=document.createElement('button'),image=document.createElement('img'),name=document.createElement('strong'),label=document.createElement('span');button.className='tool-inventory-card';button.setAttribute('aria-label',entry.name+' · 查看');button.dataset.itemId=entry.id;image.src=entry.artUrl;image.alt='';image.loading='lazy';name.textContent=entry.name;label.textContent=entry.label;button.append(image,name,label);button.onclick=entry.run;grid.append(button);}
+    for(const entry of entries){const button=document.createElement('button'),image=document.createElement('img'),name=document.createElement('strong'),label=document.createElement('span');button.className='tool-inventory-card';button.setAttribute('aria-label',entry.name+' · 查看');button.dataset.itemId=entry.id;const owned=state.consumables.find(c=>c.instanceId===entry.id),cue=owned&&routeFitCue(state,'tools',owned.definitionId);if(cue){button.dataset.routeFit=cue.focus;button.style.setProperty('--route-fit',cue.css);}image.src=entry.artUrl;image.alt='';image.loading='lazy';name.textContent=entry.name;label.textContent=entry.label;button.append(image,name,label);button.onclick=entry.run;grid.append(button);}
     content.append(section);
   }
   inventoryGroup('消耗工具',state.consumables.map(item=>{const info=toolInfo(item.definitionId,state),shopOnly=R2_TOOLS.find(tool=>tool.id===item.definitionId)!.phases.every(phase=>phase==='shop');return {id:item.instanceId,name:info.name,label:info.label+(shopOnly?' · 商店使用':''),artUrl:info.artUrl,run:()=>openTool(item.instanceId)};}));

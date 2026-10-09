@@ -1,3 +1,4 @@
+import {ENHANCEMENT_BRIEF} from './CardSpecialLabels';
 import {rankLabel,SUIT_SYMBOL,type PlayingCard} from '../cards/types';
 import type {R2SelectionFacts} from '../domain/r2SelectionFacts';
 import {handdrawnPath} from './HanddrawnArt';
@@ -21,7 +22,7 @@ function renderPublicCards(button:HTMLElement,hand:readonly PlayingCard[],ids:re
   face.dataset.disabled=String(disabled(card));index.textContent=rankLabel(card.rank)+SUIT_SYMBOL[card.suit];face.append(index);
   const path=handdrawnPath(card.rank===11?'j':card.rank===12?'q':card.rank===13?'k':'','court');
   if(path){const art=document.createElement('img');art.src=assetUrl(path);art.alt='';art.decoding='async';art.onerror=()=>{art.replaceWith(document.createTextNode(SUIT_SYMBOL[card.suit]));};face.append(art);}else{const pip=document.createElement('span');pip.className='candidate-card-pip';pip.textContent=SUIT_SYMBOL[card.suit];face.append(pip);}
-  mark.textContent=face.dataset.disabled==='true'?'停':markText(card);face.append(mark);row.append(face);
+  mark.textContent=face.dataset.disabled==='true'?'停':markText(card);face.append(mark);if(card.enhancement){const tag=document.createElement('b');tag.className='card-enhancement-tag';tag.textContent=ENHANCEMENT_BRIEF[card.enhancement];tag.dataset.enhancement=card.enhancement;face.append(tag);}if(card.edition&&card.edition!=='none'){face.dataset.edition=card.edition;const tag=document.createElement('i');tag.className='card-edition-tag';tag.textContent=card.edition==='foil'?'箔':card.edition==='holographic'?'幻':'彩';face.append(tag);}row.append(face);
  }
  button.append(row);
 }
