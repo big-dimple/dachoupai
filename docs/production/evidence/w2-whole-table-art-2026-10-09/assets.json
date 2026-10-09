@@ -1,0 +1,70 @@
+{
+  "newExternalImages": 0,
+  "newAudio": 0,
+  "preparedActuallyUsedSubset": [
+    {
+      "id": "p00-paper",
+      "purpose": "5low-noise decorative papers",
+      "path": "public/assets/p00/paper.svg",
+      "runtimeKeyOrLayer": "named table-art/*-paper layers;TileSprite runtime UUIDs are not external assets",
+      "bytes": 985,
+      "sha256": "3b0aea1ddf1b8fbc8c4f25b5a4b0a265eda1d7f9c766da0f0f0c9a4f0534d949",
+      "changed": false
+    },
+    {
+      "id": "erxiang.avatar",
+      "purpose": "HUD face",
+      "path": "public/assets/handdrawn-p08/characters/erxiang.avatar.webp",
+      "runtimeKeyOrLayer": "avatar-erxiang",
+      "bytes": 15880,
+      "sha256": "9e6ad8631633b5dd22da9edcaef2fd40df037e1c2930bfc8db8b5e3e522342f9",
+      "changed": false
+    },
+    {
+      "id": "erxiang.selection",
+      "purpose": "PC same-role figure",
+      "path": "public/assets/handdrawn-p08/characters/erxiang.selection.webp",
+      "runtimeKeyOrLayer": "selection-portrait-erxiang",
+      "bytes": 18316,
+      "sha256": "a5071c29da50d8dac41aff04aee757454d9375da9cb2e84e7f7b45305af0f431",
+      "changed": false
+    },
+    {
+      "id": "b10",
+      "purpose": "ownedgrowthsource",
+      "path": "public/assets/handdrawn-p08/cards/b10.thumbnail.webp",
+      "runtimeKeyOrLayer": "p08-joker-b10",
+      "bytes": 4410,
+      "sha256": "ea36c7963037921a9b2ea7a9564bbb92edec1bd8f81835086e376715e7775097",
+      "changed": false
+    },
+    {
+      "id": "j",
+      "purpose": "actualpublicJface",
+      "path": "public/assets/handdrawn-p08/court/j.court.webp",
+      "runtimeKeyOrLayer": "p08-court-j",
+      "bytes": 23858,
+      "sha256": "1159aa69ae9141e59a9e7120af31d7dfccdf981008428c85938b41f54e9c9264",
+      "changed": false
+    },
+    {
+      "id": "q",
+      "purpose": "actualpublicQface",
+      "path": "public/assets/handdrawn-p08/court/q.court.webp",
+      "runtimeKeyOrLayer": "p08-court-q",
+      "bytes": 23292,
+      "sha256": "54d581a71ea19f50db92c31a404482e494643d4700d6164db50075ee205b9efe",
+      "changed": false
+    },
+    {
+      "id": "k",
+      "purpose": "actualpublicKface",
+      "path": "public/assets/handdrawn-p08/court/k.court.webp",
+      "runtimeKeyOrLayer": "p08-court-k",
+      "bytes": 24632,
+      "sha256": "be013d9df76e76dc67cd502f48c0177cfe62595d044ceebfa180e707c1105116",
+      "changed": false
+    }
+  ],
+  "scope": "Only7existing paper/avatar/selection/b10/JQK outputs. Runtime UUID/cachedpaper entries inreport are renderer textures, not additional art. No267-output decode/audit or new3D."
+}
