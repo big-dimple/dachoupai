@@ -1,0 +1,49 @@
+
+> dachoupai@0.1.0 test
+> vitest run tests/hero-ability-cue.test.ts -t actual lost wager
+
+
+ RUN  v4.1.11 /workspace/dachoupai
+
+ ❯ tests/hero-ability-cue.test.ts (6 tests | 1 failed | 5 skipped) 119ms
+   × actual lost wager keeps its recorded result and routes the existing character cue without positive score impact 118ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/hero-ability-cue.test.ts > actual lost wager keeps its recorded result and routes the existing character cue without positive score impact
+AssertionError: expected "vi.fn()" to not be called at all, but actually been called 1 times
+
+Received:
+
+  1st vi.fn() call:
+
+    Array [
+      Object {
+        "replay": false,
+        "score": [Object],
+        "state": [Object],
+      },
+      "cue-touye/hand/cue/4/event/2",
+      "add",
+      0,
+    ]
+
+
+Number of calls: 1
+
+ ❯ tests/hero-ability-cue.test.ts:56:127
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 5 skipped (6)
+   Start at  10:50:02
+   Duration  1.62s (transform 1.12s, setup 0ms, import 1.37s, tests 119ms, environment 0ms)
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice

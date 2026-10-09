@@ -1,0 +1,10 @@
+
+> dachoupai@0.1.0 typecheck
+> tsc --noEmit
+
+tests/hero-ability-cue.test.ts(52,157): error TS2550: Property 'toReversed' does not exist on type 'string[]'. Do you need to change your target library? Try changing the 'lib' compiler option to 'es2023' or later.
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice
