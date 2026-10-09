@@ -1,3 +1,5 @@
+import {sourceImpact} from './SourceImpact';
+import {mountSourceImpact} from './SourceImpactView';
 import {growthPayoffs,growthEventPayoff} from './GrowthPayoff';
 import {showGrowthPayoff} from './GrowthPayoffView';
 import {routeFrame} from './RouteFrame';
@@ -1613,6 +1615,8 @@ export class GameScene extends Phaser.Scene {
     if(context.signal.aborted)return;
     // The domain result is already saved. Only the display and SFX arrive with this hit.
     this.scoreTotal.setData('eventPhase','impact');
+    const impactCue=this.presentation?sourceImpact(this.presentation.score,event):undefined,impactSource=impactCue?this.jokerViews.get(impactCue.instanceId):undefined;
+    const releaseSourceImpact=impactCue&&impactSource?mountSourceImpact(this,impactSource,impactCue,context.signal):undefined;
     restoreKey?.strike?.();
     if(restoreKey?.strike&&number)number={...number,tier:number.tier===3?3:2,peak:1.48};
     if(number||(sourceBenefit&&benefit)){if(!number&&sourceBenefit&&benefit&&this.presentation&&!this.presentation.replay)this.audio.scoreImpact(this.presentation,event.eventId,restoreKey?.strike?'key':'add',restoreKey?.strike?2:0);}
@@ -1668,6 +1672,7 @@ export class GameScene extends Phaser.Scene {
       if(label){const value='↑'+earned.delta,previous=label.text;label.setText(value);const room=label.getData('labelRoom') as number|undefined;if(room&&label.width*1.08>room)label.setText(previous);else label.setColor(C.red).setData('growthPayoff',earned);if(!this.reducedMotion)notes.push(this.animate({targets:label,scaleX:{from:1.08,to:1},scaleY:{from:1.08,to:1},duration:Math.min(160,timing.rest),ease:'Sine.easeOut'},context));}
     }
     await Promise.all([this.wait(timing.rest,context),restoreKey?.release?.()??Promise.resolve(),...notes]);
+    releaseSourceImpact?.();
     if(context.signal.aborted)return;
     restoreKey?.();
     if(event.operation==='destroy-card'&&card){
