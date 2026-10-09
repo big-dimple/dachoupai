@@ -35,3 +35,9 @@ PC1366×768、手机390×740/320×740、740×390：最终对应11/4/3/4列（短
 父PR71独审发现旧证据async waitForFunction谓词在[Playwright1.63.0官方frames.ts1508–1515](https://github.com/microsoft/playwright/blob/v1.63.0/packages/playwright-core/src/server/frames.ts#L1508-L1515)先truth-test Promise，不能可靠重复轮询Boolean。旧raw快照仍独立支持音频状态/+500ms；本包不把该异步等待当通过依据，不重跑旧音频包。新runner只用同步状态谓词；真正异步输入/读取显式await，然后同步断言。未签硬件帧率/主观听感/用户实机。
 
 游戏6.1默认Medium单线、无并发；范围内小检查完成即冻结，父独审协调main。
+
+## 精确CI原失败与局部补正
+
+原review head6d9cfa5141b4f70f780c02dc3c6ddf49da383c64、run37867153012/domain113616490072真实FAIL：goods-art未知工具T99须抛unknown-r2-tool，toolInfo新价格读取在getR2Tool之前引起TypeError。169files/2728tests通过、1file/1test失败，原FAIL raw日志gzip及元数据保留；不把内部runner故意失败样板当产品故障。没有重试旧job。
+
+产品补正 `cff6247e8abce9f5c5069830978662b797739901` 只把工具身份验证移回价格读取之前，保原未知ID拒绝合同；正常ID逻辑、供给、目录、音画、领域计分不改。三文件定向及typecheck结果见本目录原日志。不重拍已冻结原生矩阵，旧截图和完整state证据继续按各自SHA读取；最终新review head仅一次标准CI另核。

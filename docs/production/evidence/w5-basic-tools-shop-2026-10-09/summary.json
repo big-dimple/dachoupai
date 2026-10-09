@@ -30,5 +30,17 @@
   "physicalDeviceAccepted": false,
   "oldAsyncWaitReliable": false,
   "targetedTests": 61,
-  "targetedFiles": 5
+  "targetedFiles": 5,
+  "productAfterCIGuardFix": "cff6247e8abce9f5c5069830978662b797739901",
+  "originalCIFailure": {
+    "head": "6d9cfa5141b4f70f780c02dc3c6ddf49da383c64",
+    "run": 37867153012,
+    "job": 113616490072,
+    "status": "FAIL",
+    "reason": "toolInfo(T99) resolved price before getR2Tool identity validation; expected unknown-r2-tool: T99, got TypeError",
+    "testsPassed": 2728,
+    "testsFailed": 1,
+    "filesPassed": 169,
+    "filesFailed": 1
+  }
 }
