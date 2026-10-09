@@ -1,5 +1,7 @@
 # 大丑牌完整策划与开发交付计划
 
+2026-10-09 PR82交棒CI期待补正：首head7406de8域2805通过/1个构筑手记旧+1.5新身份期待失败；仅更新新交棒提示期待并同案保旧身份+1.5，原断言不放宽，局部10项/type通过。产品src与原生4014173保持，[原FAIL与补正](evidence/w7-erxiang-handoff-2026-10-09/ci-first-FAIL/README.md)保留；补正新head一次CI另核、draft父审main，真人/设备/趣味/平衡/W6未签，6.1 Medium串行。
+
 2026-10-09 二响交棒候选产品 `4014173`：父锁原W7单一合同，对子及以上各路线有效核心一张，首次普通点数热度→倍率、本场一次，替旧+1.5；二响新局显式新身份，原五角入口/旧局保持。12必要交棒定向、相关选择器补正/type与PC1366/390各一次合法普通88原生保存430完整canonical相等；390低动态/快进和导出回载、320/短横仅同选择态布局，原夹具ID/选择器期待/观察器FAIL保留。[按SHA有限证据](evidence/w7-erxiang-handoff-2026-10-09/README.md)。人工合法输入不称自然稳定过关，真人/平衡/设备/听感/W6未签；最终head一次PR CI另核、draft父有限独审协调main，6.1 Medium串行。
 
 2026-10-09 W5唯一窗口研究结束：原同花seq33/29金，实际P06与反事实留钱仅到下一场，累计2269/1921、目标1500，同三手/11金奖/成长1→1.25，结算36/40金。结论仅为本窗口4金换348热度余量与永久一级，不代表改牌/发牌稳定、全部替代或普遍缺件已解决，完整SG01/02未签。[有限原支与反事实](evidence/w5-one-window-2026-10-09/README.md)。[二响同点1/2次纸面合同](ERXIANG_SAME_RANK_CONTRACT_REVIEW.md)仅三份公开输入/14次计分已判断拒收：普通收益小、对子无角色收益；普通倍率纸有效也不能补足开场存在感。不实施、不叠旧被动/第二资源、不继续同类研究；旧PR66 C拒收保持。纯文档分支，无产品/全量CI/新版本，6.1 Medium串行。
@@ -992,7 +994,7 @@ floor(H×M) = 107,399,248。
 
 **2026-10-09父锁定二响交棒实施包（U09/U10/U11、SG07/SG08）：** 输入main `fcea984380fb4c8f7955dc5298957593091a6b5b`，承接文档 `cef7fac50f72b7242f30dd706f22572d41f6bcc6`。父明确授权本有界原型，真人/W6门槛未签不冒充通过。每场一次；对子及以上任何主型，从最终有效计分核心选一张（不要求同点组），其首次实际普通点数p改加倍率、不计热度；增强/版次/既有重触保持原规则，后续普通计分照旧，不重跑整手Joker/复制效果，替换旧+1.5。0点、失效核心、B08/Q01禁止发动，普通合法出牌继续；意图与Play同事务保存成功才消费，取消不消费，改手失效清除且不迁移。新显式身份隔离旧全部身份；仅二响正常带路线新局选新身份，其余五角正常入口不换身份。
 
-精确allowedFiles：`src/domain/r2GroupUpgrade.ts`、`r2ErxiangHandoff.ts`（新增）、`r2Run.ts`、`run.ts`、`scoreR2.ts`；`src/application/checkpoint.ts`、`groupTraceExecutions.ts`（首次普通点数骨架需识别一次合法改道，旧身份骨架不变）；`src/game/RunLaunch.ts`、`CharacterRunCopy.ts`、`ErxiangHandoffCopy.ts`（新增）、`GameScene.ts`、`AiHandCandidates.ts`、`scorePresentation.ts`；`tests/erxiang-handoff.test.ts`（新增）、`route-starter.test.ts`、`basic-tool-supply.test.ts`、`amo-launch.test.ts`（当前选择器二响文案显式更新，旧getCharacter事实保留）及若当前既有快照直接受新身份/文案影响的精确测试，修改前补列；本计划、`CHARACTER_PLAY_PLAN.md`第6节、`UX.md`、`AGENTS.md`与本包`evidence/w7-erxiang-handoff-2026-10-09/`。不重写其它五角、不新增图音/说明页/第二资源/预测总分、不延续旧PR66 C与拒收1/2重触案。
+精确allowedFiles：`src/domain/r2GroupUpgrade.ts`、`r2ErxiangHandoff.ts`（新增）、`r2Run.ts`、`run.ts`、`scoreR2.ts`；`src/application/checkpoint.ts`、`groupTraceExecutions.ts`（首次普通点数骨架需识别一次合法改道，旧身份骨架不变）；`src/game/RunLaunch.ts`、`CharacterRunCopy.ts`、`ErxiangHandoffCopy.ts`（新增）、`GameScene.ts`、`AiHandCandidates.ts`、`scorePresentation.ts`；`tests/erxiang-handoff.test.ts`（新增）、`route-starter.test.ts`、`basic-tool-supply.test.ts`、`build-keepsake.test.ts`（本轮CI发现旧+1.5新身份期待，仅更新新交棒文案与补旧身份断言）、`amo-launch.test.ts`（当前选择器二响文案显式更新，旧getCharacter事实保留）及若当前既有快照直接受新身份/文案影响的精确测试，修改前补列；本计划、`CHARACTER_PLAY_PLAN.md`第6节、`UX.md`、`AGENTS.md`与本包`evidence/w7-erxiang-handoff-2026-10-09/`。不重写其它五角、不新增图音/说明页/第二资源/预测总分、不延续旧PR66 C与拒收1/2重触案。
 
 输出/验收：现有英雄入口一句“这张的8点改加倍率，本场一次”，可选/取消/已用；真实反馈来自保存trace。定向覆盖88、22、顺子/同花核心、0普通点、既有重触只首次改道、失效/封禁、保存失败/幂等与旧身份隔离；一份普通牌实际UI路径PC1366/390、320与短横仅必要布局，保留软件/真人区别。完成单线产品包后一次最终CI与draft父有限独审，父协调main。不扫种子/八章、不扩兼容矩阵、不把430算例称作自然稳定过关或趣味验收。无资格/保存恢复不闭合或必须第二机制补救时停止扩大。
 

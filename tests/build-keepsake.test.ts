@@ -1,3 +1,4 @@
+import {R2_TOOL_SUPPLY_VERSION,R2_TOOL_SUPPLY_HASH} from '../src/domain/r2GroupUpgrade';
 import {expect,it} from 'vitest';
 import {createRun} from '../src/domain/run';
 import {r2CreateJoker} from '../src/domain/r2Run';
@@ -8,7 +9,7 @@ import {buildTransitionPlan,journeySend} from '../harness/fixtures/build-journey
 it.each(CHARACTER_IDS)('%s uses its actual new identity and existing portrait without changing a state',id=>{
  const s=createRun({rulesVersion:'r2',openingRoute:'group',runId:'keepsake/'+id,seed:'keepsake',characterId:id,r2Identity:newRunIdentity(id,'group'),modeConfig:{mode:'standard',difficulty:0,challengeId:null,programsEnabled:false}}),before=JSON.stringify(s),p=buildKeepsake(s);
  expect(p.hero.url).toContain('/'+id+'.selection.webp');expect(p.hero.name).toBeTruthy();expect(p.hero.tip).toBeTruthy();expect(p.hero.modeNote).not.toContain('已发动');expect(JSON.stringify(s)).toBe(before);
- if(id==='erxiang'){expect(p.hero.tip).toContain('+1.5');expect(p.hero.tip).not.toContain('重触');}
+ if(id==='erxiang'){expect(p.hero.tip).toContain('首次普通点数改加倍率');expect(p.hero.tip).toContain('每场一次');expect(p.hero.tip).not.toContain('重触');const old=createRun({rulesVersion:'r2',openingRoute:'group',runId:s.runId,seed:s.seed,characterId:id,r2Identity:{contentVersion:R2_TOOL_SUPPLY_VERSION,contentHash:R2_TOOL_SUPPLY_HASH},modeConfig:{mode:'standard',difficulty:0,challengeId:null,programsEnabled:false}});expect(buildKeepsake(old).hero.tip).toContain('+1.5');}
 });
 it('a disabled role is named but never sold as a current benefit',()=>{
  const s=createRun({rulesVersion:'r2',openingRoute:'group',runId:'keepsake/disabled',seed:'challenge/q01/0',characterId:'azao',r2Identity:newRunIdentity('azao','group'),modeConfig:{mode:'challenge',difficulty:0,challengeId:'Q01',programsEnabled:false}});
