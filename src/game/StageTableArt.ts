@@ -1,5 +1,5 @@
 import type Phaser from 'phaser';
-import {playedFootprint,type Box,type TableLayout} from './layout';
+import {playedFootprint,intersects,type Box,type TableLayout} from './layout';
 import {toolInventoryPlayedArea} from './ToolInventoryEntry';
 import {selectionPortraitKey} from './portraits';
 import type {CharacterId} from './characters';
@@ -41,4 +41,10 @@ export function drawStageTableArt(scene:Phaser.Scene,view:SceneView,characterId:
  if(box&&scene.textures.exists(key)){
   const image=scene.add.image(box.x+box.width/2,box.y+box.height/2,key);image.setScale(Math.min(box.width/image.width,box.height/image.height)).setName('table-art/character').setData('assetId',characterId+'.selection').setData('bounds',box);view.add(image);
  }
+}
+
+/** A decorative caption must not paint over a selection/footer on tight two-row screens. */
+export function playedCaptionBox(l:TableLayout,stage:Box):Box|undefined {
+ const caption={x:stage.x,y:stage.y-18,width:Math.min(80,stage.width),height:18};
+ return l.mode==='landscape'||caption.y<0||[l.hud,l.scoreBoard,...l.slots].some(b=>intersects(caption,b))?undefined:caption;
 }

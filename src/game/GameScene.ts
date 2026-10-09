@@ -1,4 +1,4 @@
-import {drawStageTableArt} from './StageTableArt';
+import {drawStageTableArt,playedCaptionBox} from './StageTableArt';
 import {paperSceneStart} from './PaperFlow';
 import {usesTouyeWager,type TouyeBet,type TouyeTarget} from '../domain/r2TouyeWager';
 import {touyeChoice,TOUYE_RISK} from './TouyeWagerCopy';
@@ -376,7 +376,7 @@ export class GameScene extends Phaser.Scene {
     this.fitScoreReadouts();
     const p=playedFootprint(toolInventoryPlayedArea(l),portrait);
     v.rect(p,T.paperLight).setFillStyle(0,0).setStrokeStyle(1,T.jade,.22).setName('table/played-workplane');
-    if(l.mode!=='landscape')v.text(p.x,p.y-18,'待出牌',14,C.jade).setName('table/played-label');
+    const caption=playedCaptionBox(l,p);if(caption)v.text(caption.x,caption.y,'待出牌',14,C.jade).setName('table/played-label');
     this.previousHandText=v.text(portrait?p.x+10:h.x+12,portrait?p.y+p.height-20:h.y+(short?301:510),'',14,portrait?'#eddfbf':C.brass,portrait?p.width-20:h.width-24).setVisible(!portrait&&!l.shortLandscape);
     this.handCountText=v.text(l.handLabel.x,l.handLabel.y,'',14,'#f0e6cb').setVisible(!portrait&&l.labelHeight>0);
     this.pileText=v.text(l.piles.x+l.piles.width,l.piles.y,'',14,'#c8d4c7').setOrigin(1,0).setVisible(!portrait&&l.labelHeight>0);
