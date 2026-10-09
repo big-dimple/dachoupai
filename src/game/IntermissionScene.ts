@@ -35,6 +35,8 @@ import {gameSession} from './session';
 import {getCharacter} from './characters';
 import {stageOutcome} from './stageOutcome';
 import {failureSummary} from './FailureSummary';
+import {finaleKeepsake} from './FinaleKeepsake';
+import {selectionPortraitKey} from './portraits';
 import {EffectQueue} from '../core/EffectQueue';
 import {REWARD_COIN,RewardCoinCue,loadRewardCoin,addRewardCoin,animateRewardCoin} from './RewardCoin';
 import {SceneView} from './SceneView';
@@ -87,8 +89,12 @@ export class IntermissionScene extends Phaser.Scene {
   create():void {
     this.lifecycle++;this.busy=false;this.notice='';this.firstRender=true;
     const preference=()=>{if(gameSession().reducedMotion&&this.scene.isActive()){this.firstRender=false;this.render();}};
+    const suspend=()=>{if(this.scene.isActive()){this.firstRender=false;this.stopCelebration();this.audio.cancelPresentation();}};
+    const visibility=()=>{if(document.hidden)suspend();};
     if(typeof window!=='undefined')window.addEventListener('dachoupai-presentation',preference);
-    const retire=()=>{if(typeof window!=='undefined')window.removeEventListener('dachoupai-presentation',preference);this.events.off('shutdown',retire);this.events.off('destroy',retire);this.lifecycle++;this.stopSourceArt();this.paintSourceArt=undefined;this.sourceArtLayer=undefined;this.dialog.close();this.stopCelebration();};
+    if(typeof window!=='undefined')window.addEventListener('blur',suspend);
+    if(typeof document!=='undefined')document.addEventListener('visibilitychange',visibility);
+    const retire=()=>{if(typeof window!=='undefined'){window.removeEventListener('dachoupai-presentation',preference);window.removeEventListener('blur',suspend);}if(typeof document!=='undefined')document.removeEventListener('visibilitychange',visibility);this.events.off('shutdown',retire);this.events.off('destroy',retire);this.lifecycle++;this.stopSourceArt();this.paintSourceArt=undefined;this.sourceArtLayer=undefined;this.dialog.close();this.stopCelebration();};
     this.events.once('shutdown',retire);this.events.once('destroy',retire);
     const run=runController(this)?.state;if(!run?.stage){this.scene.start('character-select');return;}
     this.cameras.main.setBackgroundColor('#F3EADB');
@@ -110,15 +116,8 @@ export class IntermissionScene extends Phaser.Scene {
     const outcome=stageOutcome(run.stage!,run.lastTrace),animateIn=this.firstRender&&!gameSession().reducedMotion&&!window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     this.stopCelebration();v.clear();this.paintSourceArt=undefined;this.sourceArtLayer=undefined;v.paperBackground();
     v.text(p.x,p.top,(run.tourMode==='endless'?'无尽 · ':'')+stage.name+' · '+character.name,14,'#3F606B',p.w-116);
-    const title=capped?'巡演，暂歇于此':skipped?'换一场，再登台':won?'八章好戏，满堂喝彩！':this.result.cleared?outcome.title:'演出失败';
-    v.text(lost?l.width/2:p.x,lost?Math.max(p.top+34,l.height*.18):p.top+(p.short?23:p.portrait?52:34),title,p.short?22:p.portrait?26:34,'#26313A',p.w).setOrigin(lost?.5:0,0).setName('result/title').setFontFamily('Georgia, "Noto Serif SC", SimSun, serif').setFontStyle('bold');
-    if(lost){
-      const groupWidth=Math.min(p.w,420),groupX=(l.width-groupWidth)/2;
-      Object.assign(p.score,{x:(l.width-Math.min(p.w,680))/2,y:Math.max(p.top+34,l.height*.18)+46,width:Math.min(p.w,680),height:Math.min(190,l.height*.25)});
-      Object.assign(p.primary,{x:groupX,y:p.score.y+p.score.height+12,width:groupWidth,height:56});
-      Object.assign(p.left,{x:groupX,y:p.primary.y+64,width:(groupWidth-8)/2,height:44});
-      Object.assign(p.right,{x:groupX+(groupWidth+8)/2,y:p.left.y,width:(groupWidth-8)/2,height:44});p.noticeY=p.left.y+54;
-    }
+    const title=capped?'巡演，暂歇于此':skipped?'换一场，再登台':won?(run.mode==='tutorial'?'教学巡演，谢幕！':run.mode==='challenge'?'挑战完成，谢幕！':'八章好戏，满堂喝彩！'):this.result.cleared?outcome.title:'此番落幕，再登台';
+    v.text(p.x,p.top+(p.short?23:p.portrait?52:34),title,p.short?22:p.portrait?26:34,'#26313A',p.w).setName('result/title').setFontFamily('Georgia, "Noto Serif SC", SimSun, serif').setFontStyle('bold');
     this.drawResultHero(p.score,outcome,!!skipped,lost,animateIn);
     const trace=run.lastTrace;
     const n=p.next;
@@ -136,12 +135,15 @@ export class IntermissionScene extends Phaser.Scene {
       if(qualified&&progress.ok&&progress.progress.standardWins[run.difficulty])body+='\n'+(run.difficulty<3?`D${run.difficulty+1} 与挑战已解锁。`:'四档难度已达最高档；挑战已解锁。');
     }else if(capped){
       heading='已达数值上限';body='进度已保存。可查看本场、在菜单导出，或返回选角。';
+    }else if(lost){
+      heading=failureSummary(run).reason;
+      body=`${failureSummary(run).resources}\n累计 ${heatText(run.totalHeat)} 热度 · 余额 ${run.gold} 金\n同局重试从开局重新开始，构筑不继承。`;
     }
     const touye=savedTouyeWager(trace);if(touye)body=touye+'\n'+body;
     const xiemuInterest=trace?.events.find(e=>e.sourceType==='character'&&e.sourceDefinitionId==='xiemu'&&e.phase==='onStageClear');
     if(!p.short&&!skipped&&this.result.cleared&&xiemuInterest)heading+=' · 额外关末息+'+xiemuInterest.value.n+'金';
     if(p.short&&trace&&!skipped&&this.result.cleared){const assist=savedAssistSummary(trace);if(assist)body=assist+'\n'+body;const fact=victorySourceFact(run,trace);if(fact)body=fact.title+' · '+fact.effect+'\n'+body;}
-    if(!lost){
+    {
       v.material(n,0x21474a,0x21474a,4).setName('result/next-panel');
       const nextHeading=v.text(n.x+14,n.y+10,heading,18,'#26313A',n.width-28).setFontStyle('bold');
       const bodyY=nextHeading.y+nextHeading.height+8;
@@ -163,7 +165,7 @@ export class IntermissionScene extends Phaser.Scene {
       v.button(p.primary,this.busy?'正在开局…':'同局重试','action/retry-seed',()=>void this.retrySeed(),this.ready,true);
     }
     const canSkip=animateIn&&!skipped;
-    v.button(p.right,canSkip?'跳过动效':lost?'本场详情':'回看上手',canSkip?'action/skip-celebration':'action/last-hand',()=>{if(canSkip){this.firstRender=false;this.audio.cancelPresentation();this.render();}else if(lost)this.inspectResult();else this.inspectLastHand();},!this.busy&&(canSkip||lost||!!trace));
+    v.button(p.right,canSkip?'跳过动效':won||lost?'巡演留影':'回看上手',canSkip?'action/skip-celebration':'action/last-hand',()=>{if(canSkip){this.firstRender=false;this.audio.cancelPresentation();this.render();}else if(won||lost)this.inspectFinale();else this.inspectLastHand();},!this.busy&&(canSkip||won||lost||!!trace));
     const discovery=this.ready&&!this.notice&&!lost&&!skipped?savedGrowthDiscovery(run):undefined,gift=this.ready&&!this.notice&&!lost&&!skipped?stageGiftReceipt(run):undefined;
     v.text(p.x,p.noticeY,this.busy?'正在保存…':this.notice||(!this.ready?'当前进度未保存或只读，请查看菜单。':capped?'已达数值上限，进度已保存':won?run.mode==='standard'?'八章通关已保存，继续无尽由你决定。':'本模式结果已保存，可重试或返回选角。':nextStage?gift?.banner||discovery?.full||'':lost?'同局重试沿用角色与开局种子。':''),14,this.notice?'#ffd0b1':'#3F606B',p.w).setName(gift&&nextStage?'gift/discovery':discovery&&nextStage?'growth/discovery':'');
     this.firstRender=false;
@@ -180,15 +182,23 @@ export class IntermissionScene extends Phaser.Scene {
     this.tweens.killAll();
   }
   private drawResultHero(b:Box,outcome:ReturnType<typeof stageOutcome>,skipped:boolean,lost:boolean,animate:boolean):void {
-    const v=this.view,run=runController(this)!.state,cx=b.x+b.width/2;
+    const v=this.view,run=runController(this)!.state;
     resultStagePaper(this,v,b,lost);
     if(animate&&!skipped)this.outcomeMotion=mountResultEntrance(this,v.root,b,!lost);
     if(lost){
-      const summary=failureSummary(run);
-      v.text(cx,b.y+12,summary.reason,16,PAPER_CSS.ink,b.width-32).setOrigin(.5,0).setName('result/failure-reason');
-      if(b.height>=132){v.text(cx,b.y+42,summary.lastHand,14,PAPER_CSS.jade,b.width-32).setOrigin(.5,0).setName('result/last-hand');v.text(cx,b.y+66,summary.resources,14,PAPER_CSS.jade,b.width-32).setOrigin(.5,0).setName('result/resources');}
+      const summary=failureSummary(run),plan=resultStagePlan(b,v.layout.height<500),source=plan.source,main=plan.score,center=main.x+main.width/2;
+      const key=selectionPortraitKey(run.characterId),portraitHeight=Math.min(156,Math.max(0,source.height-70)),portraitWidth=portraitHeight*.67;
+      if(portraitHeight>=40&&this.textures.exists(key)){
+        const image=this.add.image(source.x+source.width/2,source.y+portraitHeight/2,key).setName('result-art/hero');image.setScale(Math.min(portraitWidth/image.width,portraitHeight/image.height));v.add(image);
+      }
+      v.text(source.x,source.y+portraitHeight+8,getCharacter(run.characterId).name,16,PAPER_CSS.ink,source.width).setFontStyle('bold').setName('result/source-continuity');
+      v.text(source.x,source.y+portraitHeight+34,'本局构筑已留影',14,PAPER_CSS.jade,source.width);
+      v.text(center,main.y,summary.reason,16,PAPER_CSS.ink,main.width).setOrigin(.5,0).setName('result/failure-reason');
+      const last=v.text(center,main.y+28,summary.lastHand,14,PAPER_CSS.jade,main.width).setOrigin(.5,0).setName('result/last-hand');
       const gap=(BigInt(run.stage!.targetHeat)-BigInt(this.result.stageHeat)).toString();
-      v.text(cx,b.y+b.height*.58,`${heatText(this.result.stageHeat)} / ${heatText(run.stage!.targetHeat)} · 差 ${heatText(gap)}`,b.width<420?22:32,PAPER_CSS.ink,b.width-32).setOrigin(.5,0).setName('result/gap');
+      const scoreY=last.y+last.height+8,compact=main.width<220||v.layout.height<500;
+      v.text(center,scoreY,heatText(this.result.stageHeat),compact?32:54,PAPER_CSS.ink,main.width).setOrigin(.5,0).setFontFamily(SCORE_FONT).setFontStyle('bold').setName('result/score');
+      v.text(center,scoreY+(compact?44:68),`目标 ${heatText(run.stage!.targetHeat)}\n差 ${heatText(gap)} 热度`,14,PAPER_CSS.jade,main.width).setOrigin(.5,0).setName('result/gap');
       if(animate)this.celebrationTimer=this.time.delayedCall(1000,()=>{if(this.scene.isActive()){this.firstRender=false;this.render();}});
       return;
     }
@@ -203,7 +213,7 @@ export class IntermissionScene extends Phaser.Scene {
       if(growth){
         const prefix=growth.metric.includes('×')?'×':'+',read=v.text(text.x,y,'本手读取 '+prefix+growth.before,14,PAPER_CSS.jade,text.width).setName('result/growth-read');y+=read.height+4;
         const saved=v.text(text.x,y,prefix+growth.before+' → '+prefix+growth.after,text.width<150?22:24,PAPER_CSS.ink,text.width).setFontStyle('bold').setName('result/growth-saved');y+=saved.height+4;
-        v.text(text.x,y,'保存成长 · 下手生效',14,PAPER_CSS.jade,text.width).setName('result/growth-next');
+        v.text(text.x,y,run.phase==='run-won'?'保存成长 · 本局留影':'保存成长 · 下手生效',14,PAPER_CSS.jade,text.width).setName('result/growth-next');
       }else if(source){v.text(text.x,y,source.effect,14,PAPER_CSS.jade,text.width).setStyle({maxLines:short?3:4}).setName('result/source-effect');}
       this.sourceArtLayer=this.add.container(0,0,v.root.list.slice(start)).setName('result-art/source-layer');v.add(this.sourceArtLayer);
       return sourceView;
@@ -238,6 +248,14 @@ export class IntermissionScene extends Phaser.Scene {
       const accented=[score,...sourceView.art];for(const item of accented){const sx=item.scaleX,sy=item.scaleY;item.setScale(sx*.98,sy*.98);this.tweens.add({targets:item,scaleX:sx,scaleY:sy,duration:facts.intensity>1?260:180,ease:'Cubic.easeOut'});}
       this.celebrationTimer=this.time.delayedCall(1000,()=>{if(this.scene.isActive()){this.firstRender=false;this.render();}});
     }
+  }
+  private inspectFinale():void {
+    const run=runController(this)!.state,facts=finaleKeepsake(run);if(!facts||this.busy)return;
+    this.dialog.open(run.phase==='run-won'?'谢幕留影 · 最终构筑':'落幕留影 · 最终构筑',facts.summary+'\n\n'+facts.continuation,[
+      {label:'回看最后一手',disabled:!stageOutcome(run.stage!,run.lastTrace).last,run:()=>this.inspectLastHand()},
+      {label:'查看最终牌组',run:()=>showDeckInspection(this.dialog,run)},
+      {label:'本场详情',run:()=>this.inspectResult()},
+    ],{keepsake:facts.keepsake,cards:facts.cards,summaryBody:facts.summary+'\n'+facts.continuation,collapseRules:true,rulesLabel:'最终持有与成长记录'});
   }
   private inspectJourney():void {
     const run=runController(this)!.state;
