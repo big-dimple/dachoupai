@@ -30,7 +30,7 @@ export function drawStageTableArt(scene:Phaser.Scene,view:SceneView,characterId:
   const inset=5,corner=Math.min(16,b.height/5);g.lineStyle(1,edge,.24);
   for(const [x,y,dx,dy] of [[b.x+inset,b.y+inset,1,1],[b.x+b.width-inset,b.y+b.height-inset,-1,-1]])g.beginPath().moveTo(x,y+dy*corner).lineTo(x,y).lineTo(x+dx*corner,y).strokePath();
   view.add(g);
-  if(scene.textures.exists('p00-paper'))view.add(scene.add.tileSprite(b.x+4,b.y+4,b.width-8,b.height-8,'p00-paper').setOrigin(0).setAlpha(color===T.jadeSoft?.08:.18).setName('table-art/'+name+'-paper'));
+  if(scene.textures.exists('p00-paper'))view.add(scene.add.tileSprite(b.x+4,b.y+4,b.width-8,b.height-8,'p00-paper').setOrigin(0).setAlpha(color===T.jadeSoft ? .08 : .18).setName('table-art/'+name+'-paper'));
  }
  sheet('surface',plan.surface,T.jadeSoft,T.jade,true);
  sheet('program',plan.program,T.paper,T.brass);
