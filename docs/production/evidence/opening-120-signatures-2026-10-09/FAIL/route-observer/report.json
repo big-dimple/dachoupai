@@ -1,0 +1,677 @@
+{
+  "head": "815d2f1c2a26ebbeda5083d804bf2358957acabb",
+  "scope": "Bounded selection/route-only native inputs, actual text bounds and no run creation. No gameplay, human or device acceptance.",
+  "cases": [
+    {
+      "label": "390-hero-erxiang",
+      "hero": {
+        "x": 12,
+        "y": 104,
+        "width": 366,
+        "height": 322
+      },
+      "q": {
+        "art": {
+          "x": 24,
+          "y": 116,
+          "width": 150.06,
+          "height": 176.07999999999998
+        },
+        "copy": {
+          "x": 184.06,
+          "y": 116,
+          "width": 181.94,
+          "height": 182.07999999999998
+        },
+        "demo": {
+          "x": 24,
+          "y": 298.08,
+          "width": 342,
+          "height": 115.92
+        }
+      },
+      "nodes": [
+        {
+          "name": "opening/name",
+          "text": "二响",
+          "b": {
+            "x": 184,
+            "y": 116,
+            "w": 68,
+            "h": 36
+          },
+          "font": "34px"
+        },
+        {
+          "name": "opening/title",
+          "text": "捧哏王",
+          "b": {
+            "x": 184,
+            "y": 154,
+            "w": 42,
+            "h": 16
+          },
+          "font": "14px"
+        },
+        {
+          "name": "opening/taunt",
+          "text": "你刚开口，场子已经归我了。",
+          "b": {
+            "x": 184,
+            "y": 177,
+            "w": 180,
+            "h": 42
+          },
+          "font": "18px"
+        },
+        {
+          "name": "opening/play",
+          "text": "点数交棒 · 玩法示例",
+          "b": {
+            "x": 24,
+            "y": 298,
+            "w": 125,
+            "h": 16
+          },
+          "font": "14px"
+        },
+        {
+          "name": "opening/beat-label",
+          "text": "先有对子",
+          "b": {
+            "x": 30,
+            "y": 324,
+            "w": 56,
+            "h": 16
+          },
+          "font": "14px"
+        },
+        {
+          "name": "opening/beat-result",
+          "text": "对子及以上",
+          "b": {
+            "x": 30,
+            "y": 368,
+            "w": 70,
+            "h": 17
+          },
+          "font": "14px"
+        },
+        {
+          "name": "opening/beat-label",
+          "text": "选8交棒",
+          "b": {
+            "x": 146,
+            "y": 324,
+            "w": 50,
+            "h": 16
+          },
+          "font": "14px"
+        },
+        {
+          "name": "opening/beat-result",
+          "text": "普通点数转移",
+          "b": {
+            "x": 146,
+            "y": 368,
+            "w": 84,
+            "h": 17
+          },
+          "font": "14px"
+        },
+        {
+          "name": "opening/beat-label",
+          "text": "接住倍率",
+          "b": {
+            "x": 262,
+            "y": 324,
+            "w": 56,
+            "h": 16
+          },
+          "font": "14px"
+        },
+        {
+          "name": "opening/beat-result",
+          "text": "+ 8 倍率",
+          "b": {
+            "x": 262,
+            "y": 368,
+            "w": 52,
+            "h": 17
+          },
+          "font": "14px"
+        },
+        {
+          "name": "opening/cost",
+          "text": "普通点数不计热度 · 本场一次",
+          "b": {
+            "x": 24,
+            "y": 399,
+            "w": 181,
+            "h": 16
+          },
+          "font": "14px"
+        },
+        {
+          "name": "opening/status",
+          "text": "二响 · 下一步选路线",
+          "b": {
+            "x": 12,
+            "y": 700,
+            "w": 125,
+            "h": 16
+          },
+          "font": "14px"
+        }
+      ],
+      "selected": "erxiang",
+      "run": null,
+      "motion": 5
+    },
+    {
+      "label": "390-route-group",
+      "hero": {
+        "x": 12,
+        "y": 104,
+        "width": 366,
+        "height": 342
+      },
+      "q": {
+        "art": {
+          "x": 24,
+          "y": 116,
+          "width": 150.06,
+          "height": 194
+        },
+        "copy": {
+          "x": 184.06,
+          "y": 116,
+          "width": 181.94,
+          "height": 200
+        },
+        "demo": {
+          "x": 24,
+          "y": 316,
+          "width": 342,
+          "height": 118
+        }
+      },
+      "nodes": [
+        {
+          "name": "opening/name",
+          "text": "二响",
+          "b": {
+            "x": 184,
+            "y": 116,
+            "w": 68,
+            "h": 36
+          },
+          "font": "34px"
+        },
+        {
+          "name": "opening/title",
+          "text": "捧哏王",
+          "b": {
+            "x": 184,
+            "y": 154,
+            "w": 42,
+            "h": 16
+          },
+          "font": "14px"
+        },
+        {
+          "name": "opening/taunt",
+          "text": "你刚开口，场子已经归我了。",
+          "b": {
+            "x": 184,
+            "y": 177,
+            "w": 180,
+            "h": 42
+          },
+          "font": "18px"
+        },
+        {
+          "name": "opening/play",
+          "text": "同点成组 · 玩法示例",
+          "b": {
+            "x": 24,
+            "y": 316,
+            "w": 125,
+            "h": 16
+          },
+          "font": "14px"
+        },
+        {
+          "name": "opening/beat-label",
+          "text": "留住核心",
+          "b": {
+            "x": 30,
+            "y": 342,
+            "w": 56,
+            "h": 16
+          },
+          "font": "14px"
+        },
+        {
+          "name": "opening/beat-result",
+          "text": "两对／三条",
+          "b": {
+            "x": 30,
+            "y": 386,
+            "w": 70,
+            "h": 17
+          },
+          "font": "14px"
+        },
+        {
+          "name": "opening/beat-label",
+          "text": "工具做牌",
+          "b": {
+            "x": 146,
+            "y": 342,
+            "w": 56,
+            "h": 16
+          },
+          "font": "14px"
+        },
+        {
+          "name": "opening/beat-result",
+          "text": "改点／升型",
+          "b": {
+            "x": 146,
+            "y": 386,
+            "w": 70,
+            "h": 17
+          },
+          "font": "14px"
+        },
+        {
+          "name": "opening/beat-label",
+          "text": "首店看起手",
+          "b": {
+            "x": 262,
+            "y": 342,
+            "w": 70,
+            "h": 16
+          },
+          "font": "14px"
+        },
+        {
+          "name": "opening/beat-result",
+          "text": "满堂彩",
+          "b": {
+            "x": 262,
+            "y": 386,
+            "w": 42,
+            "h": 17
+          },
+          "font": "14px"
+        },
+        {
+          "name": "opening/cost",
+          "text": "成组后热度 +90",
+          "b": {
+            "x": 24,
+            "y": 419,
+            "w": 98,
+            "h": 16
+          },
+          "font": "14px"
+        },
+        {
+          "name": "opening/status",
+          "text": "二响 · 同点成组 · 确认才开局",
+          "b": {
+            "x": 12,
+            "y": 700,
+            "w": 179,
+            "h": 16
+          },
+          "font": "14px"
+        }
+      ],
+      "selected": "erxiang",
+      "route": "group",
+      "run": null,
+      "motion": 0
+    },
+    {
+      "label": "390-route-straight",
+      "hero": {
+        "x": 12,
+        "y": 104,
+        "width": 366,
+        "height": 342
+      },
+      "q": {
+        "art": {
+          "x": 24,
+          "y": 116,
+          "width": 150.06,
+          "height": 194
+        },
+        "copy": {
+          "x": 184.06,
+          "y": 116,
+          "width": 181.94,
+          "height": 200
+        },
+        "demo": {
+          "x": 24,
+          "y": 316,
+          "width": 342,
+          "height": 118
+        }
+      },
+      "nodes": [
+        {
+          "name": "opening/name",
+          "text": "二响",
+          "b": {
+            "x": 184,
+            "y": 116,
+            "w": 68,
+            "h": 36
+          },
+          "font": "34px"
+        },
+        {
+          "name": "opening/title",
+          "text": "捧哏王",
+          "b": {
+            "x": 184,
+            "y": 154,
+            "w": 42,
+            "h": 16
+          },
+          "font": "14px"
+        },
+        {
+          "name": "opening/taunt",
+          "text": "你刚开口，场子已经归我了。",
+          "b": {
+            "x": 184,
+            "y": 177,
+            "w": 180,
+            "h": 42
+          },
+          "font": "18px"
+        },
+        {
+          "name": "opening/play",
+          "text": "顺子接续 · 玩法示例",
+          "b": {
+            "x": 24,
+            "y": 316,
+            "w": 125,
+            "h": 16
+          },
+          "font": "14px"
+        },
+        {
+          "name": "opening/beat-label",
+          "text": "留住核心",
+          "b": {
+            "x": 30,
+            "y": 342,
+            "w": 56,
+            "h": 16
+          },
+          "font": "14px"
+        },
+        {
+          "name": "opening/beat-result",
+          "text": "连续5点",
+          "b": {
+            "x": 30,
+            "y": 386,
+            "w": 50,
+            "h": 17
+          },
+          "font": "14px"
+        },
+        {
+          "name": "opening/beat-label",
+          "text": "工具做牌",
+          "b": {
+            "x": 146,
+            "y": 342,
+            "w": 56,
+            "h": 16
+          },
+          "font": "14px"
+        },
+        {
+          "name": "opening/beat-result",
+          "text": "补点／升型",
+          "b": {
+            "x": 146,
+            "y": 386,
+            "w": 70,
+            "h": 17
+          },
+          "font": "14px"
+        },
+        {
+          "name": "opening/beat-label",
+          "text": "首店看起手",
+          "b": {
+            "x": 262,
+            "y": 342,
+            "w": 70,
+            "h": 16
+          },
+          "font": "14px"
+        },
+        {
+          "name": "opening/beat-result",
+          "text": "搭台阶",
+          "b": {
+            "x": 262,
+            "y": 386,
+            "w": 42,
+            "h": 17
+          },
+          "font": "14px"
+        },
+        {
+          "name": "opening/cost",
+          "text": "顺子后热度 +50",
+          "b": {
+            "x": 24,
+            "y": 419,
+            "w": 98,
+            "h": 16
+          },
+          "font": "14px"
+        },
+        {
+          "name": "opening/status",
+          "text": "二响 · 顺子接续 · 确认才开局",
+          "b": {
+            "x": 12,
+            "y": 700,
+            "w": 179,
+            "h": 16
+          },
+          "font": "14px"
+        }
+      ],
+      "selected": "erxiang",
+      "route": "straight",
+      "run": null,
+      "motion": 0
+    },
+    {
+      "label": "390-route-flush",
+      "hero": {
+        "x": 12,
+        "y": 104,
+        "width": 366,
+        "height": 342
+      },
+      "q": {
+        "art": {
+          "x": 24,
+          "y": 116,
+          "width": 150.06,
+          "height": 194
+        },
+        "copy": {
+          "x": 184.06,
+          "y": 116,
+          "width": 181.94,
+          "height": 200
+        },
+        "demo": {
+          "x": 24,
+          "y": 316,
+          "width": 342,
+          "height": 118
+        }
+      },
+      "nodes": [
+        {
+          "name": "opening/name",
+          "text": "二响",
+          "b": {
+            "x": 184,
+            "y": 116,
+            "w": 68,
+            "h": 36
+          },
+          "font": "34px"
+        },
+        {
+          "name": "opening/title",
+          "text": "捧哏王",
+          "b": {
+            "x": 184,
+            "y": 154,
+            "w": 42,
+            "h": 16
+          },
+          "font": "14px"
+        },
+        {
+          "name": "opening/taunt",
+          "text": "你刚开口，场子已经归我了。",
+          "b": {
+            "x": 184,
+            "y": 177,
+            "w": 180,
+            "h": 42
+          },
+          "font": "18px"
+        },
+        {
+          "name": "opening/play",
+          "text": "同花集中 · 玩法示例",
+          "b": {
+            "x": 24,
+            "y": 316,
+            "w": 125,
+            "h": 16
+          },
+          "font": "14px"
+        },
+        {
+          "name": "opening/beat-label",
+          "text": "留住核心",
+          "b": {
+            "x": 30,
+            "y": 342,
+            "w": 56,
+            "h": 16
+          },
+          "font": "14px"
+        },
+        {
+          "name": "opening/beat-result",
+          "text": "同花色5张",
+          "b": {
+            "x": 30,
+            "y": 386,
+            "w": 64,
+            "h": 17
+          },
+          "font": "14px"
+        },
+        {
+          "name": "opening/beat-label",
+          "text": "工具做牌",
+          "b": {
+            "x": 146,
+            "y": 342,
+            "w": 56,
+            "h": 16
+          },
+          "font": "14px"
+        },
+        {
+          "name": "opening/beat-result",
+          "text": "染色／升型",
+          "b": {
+            "x": 146,
+            "y": 386,
+            "w": 70,
+            "h": 17
+          },
+          "font": "14px"
+        },
+        {
+          "name": "opening/beat-label",
+          "text": "首店看起手",
+          "b": {
+            "x": 262,
+            "y": 342,
+            "w": 70,
+            "h": 16
+          },
+          "font": "14px"
+        },
+        {
+          "name": "opening/beat-result",
+          "text": "越染越深",
+          "b": {
+            "x": 262,
+            "y": 386,
+            "w": 56,
+            "h": 17
+          },
+          "font": "14px"
+        },
+        {
+          "name": "opening/cost",
+          "text": "同花 +0.25成长 · 下手生效",
+          "b": {
+            "x": 24,
+            "y": 419,
+            "w": 164,
+            "h": 16
+          },
+          "font": "14px"
+        },
+        {
+          "name": "opening/status",
+          "text": "二响 · 同花集中 · 确认才开局",
+          "b": {
+            "x": 12,
+            "y": 700,
+            "w": 179,
+            "h": 16
+          },
+          "font": "14px"
+        }
+      ],
+      "selected": "erxiang",
+      "route": "flush",
+      "run": null,
+      "motion": 0
+    }
+  ],
+  "errors": [],
+  "status": "FAIL",
+  "error": "ReferenceError: Cannot access 'width' before initialization",
+  "stack": "ReferenceError: Cannot access 'width' before initialization\n    at file:///workspace/dachoupai/harness/opening-selector-review.mjs:14:30"
+}

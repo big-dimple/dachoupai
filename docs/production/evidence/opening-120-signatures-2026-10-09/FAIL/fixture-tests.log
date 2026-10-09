@@ -1,0 +1,42 @@
+
+ RUN  v4.1.11 /workspace/dachoupai
+
+ ❯ tests/opening-signature.test.ts (5 tests | 2 failed) 27ms
+   × demonstration numeric results agree with actual rule steps, including real costs 5ms
+   × first-shop step follows actual shelf then owned stock without writing state or offering consumed stock 5ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/opening-signature.test.ts > demonstration numeric results agree with actual rule steps, including real costs
+Error: azao-release-unavailable
+ ❯ azaoChargeStep src/domain/r2AzaoCharge.ts:16:69
+     14|  if(!validAzaoCharge(intent.before)||typeof intent.release!=='boolean'…
+     15|  const qualified=AMO_ASSIST_TYPES.includes(type),before={...intent.bef…
+     16|  if(intent.release&&(!enabled||!qualified||before.charge===0))throw Er…
+       |                                                                     ^
+     17|  if(!enabled&&before.charge!==0)throw Error('invalid-disabled-azao-cha…
+     18|  const after=!enabled||intent.release||!qualified||before.previousQual…
+ ❯ tests/opening-signature.test.ts:20:174
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  tests/opening-signature.test.ts > first-shop step follows actual shelf then owned stock without writing state or offering consumed stock
+Error: invalid-opening-route
+ ❯ createRun src/domain/run.ts:346:25
+
+ ❯ run tests/opening-signature.test.ts:15:15
+ ❯ tests/opening-signature.test.ts:24:120
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  1 failed | 6 passed (7)
+      Tests  2 failed | 58 passed (60)
+   Start at  17:00:50
+   Duration  1.79s (transform 1.42s, setup 0ms, import 2.46s, tests 1.03s, environment 1ms)
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice

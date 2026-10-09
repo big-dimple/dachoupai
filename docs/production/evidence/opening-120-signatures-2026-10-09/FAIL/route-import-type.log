@@ -1,0 +1,10 @@
+
+> dachoupai@0.1.0 typecheck
+> tsc --noEmit
+
+src/game/OpeningRouteDemo.ts(5,9): error TS2724: '"../domain/rational"' has no exported member named 'fractionText'. Did you mean 'Fraction'?
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice

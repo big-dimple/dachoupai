@@ -1,0 +1,32 @@
+
+ RUN  v4.1.11 /workspace/dachoupai
+
+ ❯ tests/opening-signature.test.ts (5 tests | 1 failed) 37ms
+   × route examples use actual new-run starters and explicitly retain delayed flush growth 4ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/opening-signature.test.ts > route examples use actual new-run starters and explicitly retain delayed flush growth
+TypeError: fractionText is not a function
+ ❯ openingRouteDemo src/game/OpeningRouteDemo.ts:13:75
+     11|  const method={group:'改点数凑同点，再升两对／三条',straight:'微调缺口点数，再升顺子',flush:'染成…
+     12|  const operations=starter.hooks.flatMap(h=>h.operations),heat=operatio…
+     13|  const payoff=heat?.kind==='add-heat'?(focus==='group'?'成组':'顺子')+'后热度…
+       |                                                                           ^
+     14|  return {shape,method,payoff,starter:starter.name,id:starter.id};
+     15| }
+ ❯ tests/opening-signature.test.ts:23:189
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 6 passed (7)
+      Tests  1 failed | 59 passed (60)
+   Start at  17:10:32
+   Duration  1.94s (transform 1.65s, setup 0ms, import 2.67s, tests 1.11s, environment 1ms)
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice

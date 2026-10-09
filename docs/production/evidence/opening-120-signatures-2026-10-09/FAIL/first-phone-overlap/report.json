@@ -1,0 +1,6708 @@
+{
+  "label": "first",
+  "root": "/workspace/dachoupai",
+  "w": 390,
+  "h": 740,
+  "source": "22b083d3cee71918f471c6aba74fbd361953cf6c",
+  "errors": [],
+  "steps": [
+    {
+      "actions": [
+        {
+          "type": "ChooseProgram",
+          "programId": null
+        }
+      ],
+      "before": {
+        "schemaVersion": 2,
+        "rulesVersion": "r2",
+        "contentVersion": "quality-r2-erxiang-handoff-v1",
+        "contentHash": "json-fnv-v1:4fd36cebb0ec1267",
+        "runId": "run/group-natural-17/erxiang",
+        "seed": "group-natural-17",
+        "commandSeq": 1,
+        "difficulty": 0,
+        "characterId": "erxiang",
+        "openingRoute": "group",
+        "openingShow": {
+          "handsScored": 0,
+          "rootId": null,
+          "eventId": null,
+          "reason": null
+        },
+        "routeStarter": {
+          "instanceId": null,
+          "rootId": null,
+          "eventId": null
+        },
+        "mode": "standard",
+        "challengeId": null,
+        "programsEnabled": true,
+        "programRerollCoupon": false,
+        "chapterDisabledJokerId": null,
+        "chapter": 1,
+        "stageIndex": 0,
+        "phase": "shop",
+        "deckInstances": [
+          {
+            "id": "spades-2",
+            "suit": "spades",
+            "rank": 2
+          },
+          {
+            "id": "spades-3",
+            "suit": "spades",
+            "rank": 3
+          },
+          {
+            "id": "spades-4",
+            "suit": "spades",
+            "rank": 4
+          },
+          {
+            "id": "spades-5",
+            "suit": "spades",
+            "rank": 5
+          },
+          {
+            "id": "spades-6",
+            "suit": "spades",
+            "rank": 6
+          },
+          {
+            "id": "spades-7",
+            "suit": "spades",
+            "rank": 7
+          },
+          {
+            "id": "spades-8",
+            "suit": "spades",
+            "rank": 8
+          },
+          {
+            "id": "spades-9",
+            "suit": "spades",
+            "rank": 9
+          },
+          {
+            "id": "spades-10",
+            "suit": "spades",
+            "rank": 10
+          },
+          {
+            "id": "spades-11",
+            "suit": "spades",
+            "rank": 11
+          },
+          {
+            "id": "spades-12",
+            "suit": "spades",
+            "rank": 12
+          },
+          {
+            "id": "spades-13",
+            "suit": "spades",
+            "rank": 13
+          },
+          {
+            "id": "spades-14",
+            "suit": "spades",
+            "rank": 14
+          },
+          {
+            "id": "hearts-2",
+            "suit": "hearts",
+            "rank": 2
+          },
+          {
+            "id": "hearts-3",
+            "suit": "hearts",
+            "rank": 3
+          },
+          {
+            "id": "hearts-4",
+            "suit": "hearts",
+            "rank": 4
+          },
+          {
+            "id": "hearts-5",
+            "suit": "hearts",
+            "rank": 5
+          },
+          {
+            "id": "hearts-6",
+            "suit": "hearts",
+            "rank": 6
+          },
+          {
+            "id": "hearts-7",
+            "suit": "hearts",
+            "rank": 7
+          },
+          {
+            "id": "hearts-8",
+            "suit": "hearts",
+            "rank": 8
+          },
+          {
+            "id": "hearts-9",
+            "suit": "hearts",
+            "rank": 9
+          },
+          {
+            "id": "hearts-10",
+            "suit": "hearts",
+            "rank": 10
+          },
+          {
+            "id": "hearts-11",
+            "suit": "hearts",
+            "rank": 11
+          },
+          {
+            "id": "hearts-12",
+            "suit": "hearts",
+            "rank": 12
+          },
+          {
+            "id": "hearts-13",
+            "suit": "hearts",
+            "rank": 13
+          },
+          {
+            "id": "hearts-14",
+            "suit": "hearts",
+            "rank": 14
+          },
+          {
+            "id": "clubs-2",
+            "suit": "clubs",
+            "rank": 2
+          },
+          {
+            "id": "clubs-3",
+            "suit": "clubs",
+            "rank": 3
+          },
+          {
+            "id": "clubs-4",
+            "suit": "clubs",
+            "rank": 4
+          },
+          {
+            "id": "clubs-5",
+            "suit": "clubs",
+            "rank": 5
+          },
+          {
+            "id": "clubs-6",
+            "suit": "clubs",
+            "rank": 6
+          },
+          {
+            "id": "clubs-7",
+            "suit": "clubs",
+            "rank": 7
+          },
+          {
+            "id": "clubs-8",
+            "suit": "clubs",
+            "rank": 8
+          },
+          {
+            "id": "clubs-9",
+            "suit": "clubs",
+            "rank": 9
+          },
+          {
+            "id": "clubs-10",
+            "suit": "clubs",
+            "rank": 10
+          },
+          {
+            "id": "clubs-11",
+            "suit": "clubs",
+            "rank": 11
+          },
+          {
+            "id": "clubs-12",
+            "suit": "clubs",
+            "rank": 12
+          },
+          {
+            "id": "clubs-13",
+            "suit": "clubs",
+            "rank": 13
+          },
+          {
+            "id": "clubs-14",
+            "suit": "clubs",
+            "rank": 14
+          },
+          {
+            "id": "diamonds-2",
+            "suit": "diamonds",
+            "rank": 2
+          },
+          {
+            "id": "diamonds-3",
+            "suit": "diamonds",
+            "rank": 3
+          },
+          {
+            "id": "diamonds-4",
+            "suit": "diamonds",
+            "rank": 4
+          },
+          {
+            "id": "diamonds-5",
+            "suit": "diamonds",
+            "rank": 5
+          },
+          {
+            "id": "diamonds-6",
+            "suit": "diamonds",
+            "rank": 6
+          },
+          {
+            "id": "diamonds-7",
+            "suit": "diamonds",
+            "rank": 7
+          },
+          {
+            "id": "diamonds-8",
+            "suit": "diamonds",
+            "rank": 8
+          },
+          {
+            "id": "diamonds-9",
+            "suit": "diamonds",
+            "rank": 9
+          },
+          {
+            "id": "diamonds-10",
+            "suit": "diamonds",
+            "rank": 10
+          },
+          {
+            "id": "diamonds-11",
+            "suit": "diamonds",
+            "rank": 11
+          },
+          {
+            "id": "diamonds-12",
+            "suit": "diamonds",
+            "rank": 12
+          },
+          {
+            "id": "diamonds-13",
+            "suit": "diamonds",
+            "rank": 13
+          },
+          {
+            "id": "diamonds-14",
+            "suit": "diamonds",
+            "rank": 14
+          }
+        ],
+        "drawPile": [
+          "spades-2",
+          "spades-3",
+          "spades-4",
+          "spades-5",
+          "spades-6",
+          "spades-7",
+          "spades-8",
+          "spades-9",
+          "spades-10",
+          "spades-11",
+          "spades-12",
+          "spades-13",
+          "spades-14",
+          "hearts-2",
+          "hearts-3",
+          "hearts-4",
+          "hearts-5",
+          "hearts-6",
+          "hearts-7",
+          "hearts-8",
+          "hearts-9",
+          "hearts-10",
+          "hearts-11",
+          "hearts-12",
+          "hearts-13",
+          "hearts-14",
+          "clubs-2",
+          "clubs-3",
+          "clubs-4",
+          "clubs-5",
+          "clubs-6",
+          "clubs-7",
+          "clubs-8",
+          "clubs-9",
+          "clubs-10",
+          "clubs-11",
+          "clubs-12",
+          "clubs-13",
+          "clubs-14",
+          "diamonds-2",
+          "diamonds-3",
+          "diamonds-4",
+          "diamonds-5",
+          "diamonds-6",
+          "diamonds-7",
+          "diamonds-8",
+          "diamonds-9",
+          "diamonds-10",
+          "diamonds-11",
+          "diamonds-12",
+          "diamonds-13",
+          "diamonds-14"
+        ],
+        "handOrder": [],
+        "playedPile": [],
+        "discardPile": [],
+        "destroyedIds": [],
+        "stage": null,
+        "totalHeat": "0",
+        "gold": 6,
+        "jokers": [],
+        "consumables": [],
+        "longTermItems": [],
+        "program": {
+          "chapter": 1,
+          "offerIds": [
+            "PG04",
+            "PG01"
+          ],
+          "selectedId": null,
+          "choiceMade": false,
+          "abandoned": false,
+          "lastOpportunityClear": false,
+          "claimed": false
+        },
+        "boss": {
+          "definitionId": "B01",
+          "disabledSuit": null
+        },
+        "seenBossIds": [
+          "B01"
+        ],
+        "chapterSkipConsumable": "T04",
+        "purchaseCoupons": 0,
+        "safetyNetUsed": false,
+        "shop": {
+          "visitIndex": 0,
+          "rerollCount": 0,
+          "purchases": 0,
+          "soldJoker": false,
+          "freeRerolls": 0,
+          "offers": [
+            {
+              "offerId": "run/group-natural-17/erxiang/shop/0/0/joker/0",
+              "definitionId": "b10",
+              "price": 4,
+              "edition": "none",
+              "consumed": false
+            },
+            {
+              "offerId": "run/group-natural-17/erxiang/shop/0/0/joker/1",
+              "definitionId": "b11",
+              "price": 6,
+              "edition": "none",
+              "consumed": false
+            },
+            {
+              "offerId": "run/group-natural-17/erxiang/shop/0/0/joker/2",
+              "definitionId": "mantangcai",
+              "price": 4,
+              "edition": "none",
+              "consumed": false
+            }
+          ],
+          "toolOffers": [
+            {
+              "offerId": "run/group-natural-17/erxiang/shop/0/0/tool/0",
+              "definitionId": "T06",
+              "price": 4,
+              "consumed": false
+            },
+            {
+              "offerId": "run/group-natural-17/erxiang/shop/0/0/tool/1",
+              "definitionId": "T10",
+              "price": 2,
+              "consumed": false
+            }
+          ],
+          "itemOffers": [
+            {
+              "offerId": "run/group-natural-17/erxiang/shop/0/0/item/0",
+              "definitionId": "U11",
+              "price": 10,
+              "consumed": false
+            }
+          ]
+        },
+        "spectralModifiers": {
+          "handsPenalty": 0,
+          "handPenalty": 0,
+          "cleanSlateBonus": 0
+        },
+        "supplyRewardClaimed": false,
+        "chapterHandUsage": {},
+        "normalClearClaimed": false,
+        "tourMode": "normal",
+        "normalCompletion": null,
+        "rng": {
+          "deck": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 2623243611
+          },
+          "rule": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 2405713301
+          },
+          "shop": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 4201739804
+          },
+          "reward": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 428350038
+          },
+          "program": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 3495556570
+          },
+          "challenge": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 111812685
+          }
+        },
+        "receipts": [
+          {
+            "commandId": "run/group-natural-17/erxiang/start",
+            "fingerprint": "json-fnv-v1:72aae23dfa9a7ff1",
+            "seq": 1
+          }
+        ],
+        "lastTrace": null,
+        "handLevels": {},
+        "outcome": null
+      },
+      "after": {
+        "schemaVersion": 2,
+        "rulesVersion": "r2",
+        "contentVersion": "quality-r2-erxiang-handoff-v1",
+        "contentHash": "json-fnv-v1:4fd36cebb0ec1267",
+        "runId": "run/group-natural-17/erxiang",
+        "seed": "group-natural-17",
+        "commandSeq": 2,
+        "difficulty": 0,
+        "characterId": "erxiang",
+        "openingRoute": "group",
+        "openingShow": {
+          "handsScored": 0,
+          "rootId": null,
+          "eventId": null,
+          "reason": null
+        },
+        "routeStarter": {
+          "instanceId": null,
+          "rootId": null,
+          "eventId": null
+        },
+        "mode": "standard",
+        "challengeId": null,
+        "programsEnabled": true,
+        "programRerollCoupon": false,
+        "chapterDisabledJokerId": null,
+        "chapter": 1,
+        "stageIndex": 0,
+        "phase": "shop",
+        "deckInstances": [
+          {
+            "id": "spades-2",
+            "suit": "spades",
+            "rank": 2
+          },
+          {
+            "id": "spades-3",
+            "suit": "spades",
+            "rank": 3
+          },
+          {
+            "id": "spades-4",
+            "suit": "spades",
+            "rank": 4
+          },
+          {
+            "id": "spades-5",
+            "suit": "spades",
+            "rank": 5
+          },
+          {
+            "id": "spades-6",
+            "suit": "spades",
+            "rank": 6
+          },
+          {
+            "id": "spades-7",
+            "suit": "spades",
+            "rank": 7
+          },
+          {
+            "id": "spades-8",
+            "suit": "spades",
+            "rank": 8
+          },
+          {
+            "id": "spades-9",
+            "suit": "spades",
+            "rank": 9
+          },
+          {
+            "id": "spades-10",
+            "suit": "spades",
+            "rank": 10
+          },
+          {
+            "id": "spades-11",
+            "suit": "spades",
+            "rank": 11
+          },
+          {
+            "id": "spades-12",
+            "suit": "spades",
+            "rank": 12
+          },
+          {
+            "id": "spades-13",
+            "suit": "spades",
+            "rank": 13
+          },
+          {
+            "id": "spades-14",
+            "suit": "spades",
+            "rank": 14
+          },
+          {
+            "id": "hearts-2",
+            "suit": "hearts",
+            "rank": 2
+          },
+          {
+            "id": "hearts-3",
+            "suit": "hearts",
+            "rank": 3
+          },
+          {
+            "id": "hearts-4",
+            "suit": "hearts",
+            "rank": 4
+          },
+          {
+            "id": "hearts-5",
+            "suit": "hearts",
+            "rank": 5
+          },
+          {
+            "id": "hearts-6",
+            "suit": "hearts",
+            "rank": 6
+          },
+          {
+            "id": "hearts-7",
+            "suit": "hearts",
+            "rank": 7
+          },
+          {
+            "id": "hearts-8",
+            "suit": "hearts",
+            "rank": 8
+          },
+          {
+            "id": "hearts-9",
+            "suit": "hearts",
+            "rank": 9
+          },
+          {
+            "id": "hearts-10",
+            "suit": "hearts",
+            "rank": 10
+          },
+          {
+            "id": "hearts-11",
+            "suit": "hearts",
+            "rank": 11
+          },
+          {
+            "id": "hearts-12",
+            "suit": "hearts",
+            "rank": 12
+          },
+          {
+            "id": "hearts-13",
+            "suit": "hearts",
+            "rank": 13
+          },
+          {
+            "id": "hearts-14",
+            "suit": "hearts",
+            "rank": 14
+          },
+          {
+            "id": "clubs-2",
+            "suit": "clubs",
+            "rank": 2
+          },
+          {
+            "id": "clubs-3",
+            "suit": "clubs",
+            "rank": 3
+          },
+          {
+            "id": "clubs-4",
+            "suit": "clubs",
+            "rank": 4
+          },
+          {
+            "id": "clubs-5",
+            "suit": "clubs",
+            "rank": 5
+          },
+          {
+            "id": "clubs-6",
+            "suit": "clubs",
+            "rank": 6
+          },
+          {
+            "id": "clubs-7",
+            "suit": "clubs",
+            "rank": 7
+          },
+          {
+            "id": "clubs-8",
+            "suit": "clubs",
+            "rank": 8
+          },
+          {
+            "id": "clubs-9",
+            "suit": "clubs",
+            "rank": 9
+          },
+          {
+            "id": "clubs-10",
+            "suit": "clubs",
+            "rank": 10
+          },
+          {
+            "id": "clubs-11",
+            "suit": "clubs",
+            "rank": 11
+          },
+          {
+            "id": "clubs-12",
+            "suit": "clubs",
+            "rank": 12
+          },
+          {
+            "id": "clubs-13",
+            "suit": "clubs",
+            "rank": 13
+          },
+          {
+            "id": "clubs-14",
+            "suit": "clubs",
+            "rank": 14
+          },
+          {
+            "id": "diamonds-2",
+            "suit": "diamonds",
+            "rank": 2
+          },
+          {
+            "id": "diamonds-3",
+            "suit": "diamonds",
+            "rank": 3
+          },
+          {
+            "id": "diamonds-4",
+            "suit": "diamonds",
+            "rank": 4
+          },
+          {
+            "id": "diamonds-5",
+            "suit": "diamonds",
+            "rank": 5
+          },
+          {
+            "id": "diamonds-6",
+            "suit": "diamonds",
+            "rank": 6
+          },
+          {
+            "id": "diamonds-7",
+            "suit": "diamonds",
+            "rank": 7
+          },
+          {
+            "id": "diamonds-8",
+            "suit": "diamonds",
+            "rank": 8
+          },
+          {
+            "id": "diamonds-9",
+            "suit": "diamonds",
+            "rank": 9
+          },
+          {
+            "id": "diamonds-10",
+            "suit": "diamonds",
+            "rank": 10
+          },
+          {
+            "id": "diamonds-11",
+            "suit": "diamonds",
+            "rank": 11
+          },
+          {
+            "id": "diamonds-12",
+            "suit": "diamonds",
+            "rank": 12
+          },
+          {
+            "id": "diamonds-13",
+            "suit": "diamonds",
+            "rank": 13
+          },
+          {
+            "id": "diamonds-14",
+            "suit": "diamonds",
+            "rank": 14
+          }
+        ],
+        "drawPile": [
+          "spades-2",
+          "spades-3",
+          "spades-4",
+          "spades-5",
+          "spades-6",
+          "spades-7",
+          "spades-8",
+          "spades-9",
+          "spades-10",
+          "spades-11",
+          "spades-12",
+          "spades-13",
+          "spades-14",
+          "hearts-2",
+          "hearts-3",
+          "hearts-4",
+          "hearts-5",
+          "hearts-6",
+          "hearts-7",
+          "hearts-8",
+          "hearts-9",
+          "hearts-10",
+          "hearts-11",
+          "hearts-12",
+          "hearts-13",
+          "hearts-14",
+          "clubs-2",
+          "clubs-3",
+          "clubs-4",
+          "clubs-5",
+          "clubs-6",
+          "clubs-7",
+          "clubs-8",
+          "clubs-9",
+          "clubs-10",
+          "clubs-11",
+          "clubs-12",
+          "clubs-13",
+          "clubs-14",
+          "diamonds-2",
+          "diamonds-3",
+          "diamonds-4",
+          "diamonds-5",
+          "diamonds-6",
+          "diamonds-7",
+          "diamonds-8",
+          "diamonds-9",
+          "diamonds-10",
+          "diamonds-11",
+          "diamonds-12",
+          "diamonds-13",
+          "diamonds-14"
+        ],
+        "handOrder": [],
+        "playedPile": [],
+        "discardPile": [],
+        "destroyedIds": [],
+        "stage": null,
+        "totalHeat": "0",
+        "gold": 6,
+        "jokers": [],
+        "consumables": [],
+        "longTermItems": [],
+        "program": {
+          "chapter": 1,
+          "offerIds": [
+            "PG04",
+            "PG01"
+          ],
+          "selectedId": null,
+          "choiceMade": true,
+          "abandoned": false,
+          "lastOpportunityClear": false,
+          "claimed": false
+        },
+        "boss": {
+          "definitionId": "B01",
+          "disabledSuit": null
+        },
+        "seenBossIds": [
+          "B01"
+        ],
+        "chapterSkipConsumable": "T04",
+        "purchaseCoupons": 0,
+        "safetyNetUsed": false,
+        "shop": {
+          "visitIndex": 0,
+          "rerollCount": 0,
+          "purchases": 0,
+          "soldJoker": false,
+          "freeRerolls": 0,
+          "offers": [
+            {
+              "offerId": "run/group-natural-17/erxiang/shop/0/0/joker/0",
+              "definitionId": "b10",
+              "price": 4,
+              "edition": "none",
+              "consumed": false
+            },
+            {
+              "offerId": "run/group-natural-17/erxiang/shop/0/0/joker/1",
+              "definitionId": "b11",
+              "price": 6,
+              "edition": "none",
+              "consumed": false
+            },
+            {
+              "offerId": "run/group-natural-17/erxiang/shop/0/0/joker/2",
+              "definitionId": "mantangcai",
+              "price": 4,
+              "edition": "none",
+              "consumed": false
+            }
+          ],
+          "toolOffers": [
+            {
+              "offerId": "run/group-natural-17/erxiang/shop/0/0/tool/0",
+              "definitionId": "T06",
+              "price": 4,
+              "consumed": false
+            },
+            {
+              "offerId": "run/group-natural-17/erxiang/shop/0/0/tool/1",
+              "definitionId": "T10",
+              "price": 2,
+              "consumed": false
+            }
+          ],
+          "itemOffers": [
+            {
+              "offerId": "run/group-natural-17/erxiang/shop/0/0/item/0",
+              "definitionId": "U11",
+              "price": 10,
+              "consumed": false
+            }
+          ]
+        },
+        "spectralModifiers": {
+          "handsPenalty": 0,
+          "handPenalty": 0,
+          "cleanSlateBonus": 0
+        },
+        "supplyRewardClaimed": false,
+        "chapterHandUsage": {},
+        "normalClearClaimed": false,
+        "tourMode": "normal",
+        "normalCompletion": null,
+        "rng": {
+          "deck": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 2623243611
+          },
+          "rule": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 2405713301
+          },
+          "shop": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 4201739804
+          },
+          "reward": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 428350038
+          },
+          "program": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 3495556570
+          },
+          "challenge": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 111812685
+          }
+        },
+        "receipts": [
+          {
+            "commandId": "run/group-natural-17/erxiang/start",
+            "fingerprint": "json-fnv-v1:72aae23dfa9a7ff1",
+            "seq": 1
+          },
+          {
+            "commandId": "run/group-natural-17/erxiang/command/2",
+            "fingerprint": "json-fnv-v1:3c480d096ea5391d",
+            "seq": 2
+          }
+        ],
+        "lastTrace": null,
+        "handLevels": {},
+        "outcome": null
+      },
+      "canonical": true
+    },
+    {
+      "actions": [
+        {
+          "type": "BuyOffer",
+          "offerId": "run/group-natural-17/erxiang/shop/0/0/joker/2"
+        }
+      ],
+      "before": {
+        "schemaVersion": 2,
+        "rulesVersion": "r2",
+        "contentVersion": "quality-r2-erxiang-handoff-v1",
+        "contentHash": "json-fnv-v1:4fd36cebb0ec1267",
+        "runId": "run/group-natural-17/erxiang",
+        "seed": "group-natural-17",
+        "commandSeq": 2,
+        "difficulty": 0,
+        "characterId": "erxiang",
+        "openingRoute": "group",
+        "openingShow": {
+          "handsScored": 0,
+          "rootId": null,
+          "eventId": null,
+          "reason": null
+        },
+        "routeStarter": {
+          "instanceId": null,
+          "rootId": null,
+          "eventId": null
+        },
+        "mode": "standard",
+        "challengeId": null,
+        "programsEnabled": true,
+        "programRerollCoupon": false,
+        "chapterDisabledJokerId": null,
+        "chapter": 1,
+        "stageIndex": 0,
+        "phase": "shop",
+        "deckInstances": [
+          {
+            "id": "spades-2",
+            "suit": "spades",
+            "rank": 2
+          },
+          {
+            "id": "spades-3",
+            "suit": "spades",
+            "rank": 3
+          },
+          {
+            "id": "spades-4",
+            "suit": "spades",
+            "rank": 4
+          },
+          {
+            "id": "spades-5",
+            "suit": "spades",
+            "rank": 5
+          },
+          {
+            "id": "spades-6",
+            "suit": "spades",
+            "rank": 6
+          },
+          {
+            "id": "spades-7",
+            "suit": "spades",
+            "rank": 7
+          },
+          {
+            "id": "spades-8",
+            "suit": "spades",
+            "rank": 8
+          },
+          {
+            "id": "spades-9",
+            "suit": "spades",
+            "rank": 9
+          },
+          {
+            "id": "spades-10",
+            "suit": "spades",
+            "rank": 10
+          },
+          {
+            "id": "spades-11",
+            "suit": "spades",
+            "rank": 11
+          },
+          {
+            "id": "spades-12",
+            "suit": "spades",
+            "rank": 12
+          },
+          {
+            "id": "spades-13",
+            "suit": "spades",
+            "rank": 13
+          },
+          {
+            "id": "spades-14",
+            "suit": "spades",
+            "rank": 14
+          },
+          {
+            "id": "hearts-2",
+            "suit": "hearts",
+            "rank": 2
+          },
+          {
+            "id": "hearts-3",
+            "suit": "hearts",
+            "rank": 3
+          },
+          {
+            "id": "hearts-4",
+            "suit": "hearts",
+            "rank": 4
+          },
+          {
+            "id": "hearts-5",
+            "suit": "hearts",
+            "rank": 5
+          },
+          {
+            "id": "hearts-6",
+            "suit": "hearts",
+            "rank": 6
+          },
+          {
+            "id": "hearts-7",
+            "suit": "hearts",
+            "rank": 7
+          },
+          {
+            "id": "hearts-8",
+            "suit": "hearts",
+            "rank": 8
+          },
+          {
+            "id": "hearts-9",
+            "suit": "hearts",
+            "rank": 9
+          },
+          {
+            "id": "hearts-10",
+            "suit": "hearts",
+            "rank": 10
+          },
+          {
+            "id": "hearts-11",
+            "suit": "hearts",
+            "rank": 11
+          },
+          {
+            "id": "hearts-12",
+            "suit": "hearts",
+            "rank": 12
+          },
+          {
+            "id": "hearts-13",
+            "suit": "hearts",
+            "rank": 13
+          },
+          {
+            "id": "hearts-14",
+            "suit": "hearts",
+            "rank": 14
+          },
+          {
+            "id": "clubs-2",
+            "suit": "clubs",
+            "rank": 2
+          },
+          {
+            "id": "clubs-3",
+            "suit": "clubs",
+            "rank": 3
+          },
+          {
+            "id": "clubs-4",
+            "suit": "clubs",
+            "rank": 4
+          },
+          {
+            "id": "clubs-5",
+            "suit": "clubs",
+            "rank": 5
+          },
+          {
+            "id": "clubs-6",
+            "suit": "clubs",
+            "rank": 6
+          },
+          {
+            "id": "clubs-7",
+            "suit": "clubs",
+            "rank": 7
+          },
+          {
+            "id": "clubs-8",
+            "suit": "clubs",
+            "rank": 8
+          },
+          {
+            "id": "clubs-9",
+            "suit": "clubs",
+            "rank": 9
+          },
+          {
+            "id": "clubs-10",
+            "suit": "clubs",
+            "rank": 10
+          },
+          {
+            "id": "clubs-11",
+            "suit": "clubs",
+            "rank": 11
+          },
+          {
+            "id": "clubs-12",
+            "suit": "clubs",
+            "rank": 12
+          },
+          {
+            "id": "clubs-13",
+            "suit": "clubs",
+            "rank": 13
+          },
+          {
+            "id": "clubs-14",
+            "suit": "clubs",
+            "rank": 14
+          },
+          {
+            "id": "diamonds-2",
+            "suit": "diamonds",
+            "rank": 2
+          },
+          {
+            "id": "diamonds-3",
+            "suit": "diamonds",
+            "rank": 3
+          },
+          {
+            "id": "diamonds-4",
+            "suit": "diamonds",
+            "rank": 4
+          },
+          {
+            "id": "diamonds-5",
+            "suit": "diamonds",
+            "rank": 5
+          },
+          {
+            "id": "diamonds-6",
+            "suit": "diamonds",
+            "rank": 6
+          },
+          {
+            "id": "diamonds-7",
+            "suit": "diamonds",
+            "rank": 7
+          },
+          {
+            "id": "diamonds-8",
+            "suit": "diamonds",
+            "rank": 8
+          },
+          {
+            "id": "diamonds-9",
+            "suit": "diamonds",
+            "rank": 9
+          },
+          {
+            "id": "diamonds-10",
+            "suit": "diamonds",
+            "rank": 10
+          },
+          {
+            "id": "diamonds-11",
+            "suit": "diamonds",
+            "rank": 11
+          },
+          {
+            "id": "diamonds-12",
+            "suit": "diamonds",
+            "rank": 12
+          },
+          {
+            "id": "diamonds-13",
+            "suit": "diamonds",
+            "rank": 13
+          },
+          {
+            "id": "diamonds-14",
+            "suit": "diamonds",
+            "rank": 14
+          }
+        ],
+        "drawPile": [
+          "spades-2",
+          "spades-3",
+          "spades-4",
+          "spades-5",
+          "spades-6",
+          "spades-7",
+          "spades-8",
+          "spades-9",
+          "spades-10",
+          "spades-11",
+          "spades-12",
+          "spades-13",
+          "spades-14",
+          "hearts-2",
+          "hearts-3",
+          "hearts-4",
+          "hearts-5",
+          "hearts-6",
+          "hearts-7",
+          "hearts-8",
+          "hearts-9",
+          "hearts-10",
+          "hearts-11",
+          "hearts-12",
+          "hearts-13",
+          "hearts-14",
+          "clubs-2",
+          "clubs-3",
+          "clubs-4",
+          "clubs-5",
+          "clubs-6",
+          "clubs-7",
+          "clubs-8",
+          "clubs-9",
+          "clubs-10",
+          "clubs-11",
+          "clubs-12",
+          "clubs-13",
+          "clubs-14",
+          "diamonds-2",
+          "diamonds-3",
+          "diamonds-4",
+          "diamonds-5",
+          "diamonds-6",
+          "diamonds-7",
+          "diamonds-8",
+          "diamonds-9",
+          "diamonds-10",
+          "diamonds-11",
+          "diamonds-12",
+          "diamonds-13",
+          "diamonds-14"
+        ],
+        "handOrder": [],
+        "playedPile": [],
+        "discardPile": [],
+        "destroyedIds": [],
+        "stage": null,
+        "totalHeat": "0",
+        "gold": 6,
+        "jokers": [],
+        "consumables": [],
+        "longTermItems": [],
+        "program": {
+          "chapter": 1,
+          "offerIds": [
+            "PG04",
+            "PG01"
+          ],
+          "selectedId": null,
+          "choiceMade": true,
+          "abandoned": false,
+          "lastOpportunityClear": false,
+          "claimed": false
+        },
+        "boss": {
+          "definitionId": "B01",
+          "disabledSuit": null
+        },
+        "seenBossIds": [
+          "B01"
+        ],
+        "chapterSkipConsumable": "T04",
+        "purchaseCoupons": 0,
+        "safetyNetUsed": false,
+        "shop": {
+          "visitIndex": 0,
+          "rerollCount": 0,
+          "purchases": 0,
+          "soldJoker": false,
+          "freeRerolls": 0,
+          "offers": [
+            {
+              "offerId": "run/group-natural-17/erxiang/shop/0/0/joker/0",
+              "definitionId": "b10",
+              "price": 4,
+              "edition": "none",
+              "consumed": false
+            },
+            {
+              "offerId": "run/group-natural-17/erxiang/shop/0/0/joker/1",
+              "definitionId": "b11",
+              "price": 6,
+              "edition": "none",
+              "consumed": false
+            },
+            {
+              "offerId": "run/group-natural-17/erxiang/shop/0/0/joker/2",
+              "definitionId": "mantangcai",
+              "price": 4,
+              "edition": "none",
+              "consumed": false
+            }
+          ],
+          "toolOffers": [
+            {
+              "offerId": "run/group-natural-17/erxiang/shop/0/0/tool/0",
+              "definitionId": "T06",
+              "price": 4,
+              "consumed": false
+            },
+            {
+              "offerId": "run/group-natural-17/erxiang/shop/0/0/tool/1",
+              "definitionId": "T10",
+              "price": 2,
+              "consumed": false
+            }
+          ],
+          "itemOffers": [
+            {
+              "offerId": "run/group-natural-17/erxiang/shop/0/0/item/0",
+              "definitionId": "U11",
+              "price": 10,
+              "consumed": false
+            }
+          ]
+        },
+        "spectralModifiers": {
+          "handsPenalty": 0,
+          "handPenalty": 0,
+          "cleanSlateBonus": 0
+        },
+        "supplyRewardClaimed": false,
+        "chapterHandUsage": {},
+        "normalClearClaimed": false,
+        "tourMode": "normal",
+        "normalCompletion": null,
+        "rng": {
+          "deck": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 2623243611
+          },
+          "rule": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 2405713301
+          },
+          "shop": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 4201739804
+          },
+          "reward": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 428350038
+          },
+          "program": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 3495556570
+          },
+          "challenge": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 111812685
+          }
+        },
+        "receipts": [
+          {
+            "commandId": "run/group-natural-17/erxiang/start",
+            "fingerprint": "json-fnv-v1:72aae23dfa9a7ff1",
+            "seq": 1
+          },
+          {
+            "commandId": "run/group-natural-17/erxiang/command/2",
+            "fingerprint": "json-fnv-v1:3c480d096ea5391d",
+            "seq": 2
+          }
+        ],
+        "lastTrace": null,
+        "handLevels": {},
+        "outcome": null
+      },
+      "after": {
+        "schemaVersion": 2,
+        "rulesVersion": "r2",
+        "contentVersion": "quality-r2-erxiang-handoff-v1",
+        "contentHash": "json-fnv-v1:4fd36cebb0ec1267",
+        "runId": "run/group-natural-17/erxiang",
+        "seed": "group-natural-17",
+        "commandSeq": 3,
+        "difficulty": 0,
+        "characterId": "erxiang",
+        "openingRoute": "group",
+        "openingShow": {
+          "handsScored": 0,
+          "rootId": null,
+          "eventId": null,
+          "reason": null
+        },
+        "routeStarter": {
+          "instanceId": "run/group-natural-17/erxiang/joker/run/group-natural-17/erxiang/command/3",
+          "rootId": null,
+          "eventId": null
+        },
+        "mode": "standard",
+        "challengeId": null,
+        "programsEnabled": true,
+        "programRerollCoupon": false,
+        "chapterDisabledJokerId": null,
+        "chapter": 1,
+        "stageIndex": 0,
+        "phase": "shop",
+        "deckInstances": [
+          {
+            "id": "spades-2",
+            "suit": "spades",
+            "rank": 2
+          },
+          {
+            "id": "spades-3",
+            "suit": "spades",
+            "rank": 3
+          },
+          {
+            "id": "spades-4",
+            "suit": "spades",
+            "rank": 4
+          },
+          {
+            "id": "spades-5",
+            "suit": "spades",
+            "rank": 5
+          },
+          {
+            "id": "spades-6",
+            "suit": "spades",
+            "rank": 6
+          },
+          {
+            "id": "spades-7",
+            "suit": "spades",
+            "rank": 7
+          },
+          {
+            "id": "spades-8",
+            "suit": "spades",
+            "rank": 8
+          },
+          {
+            "id": "spades-9",
+            "suit": "spades",
+            "rank": 9
+          },
+          {
+            "id": "spades-10",
+            "suit": "spades",
+            "rank": 10
+          },
+          {
+            "id": "spades-11",
+            "suit": "spades",
+            "rank": 11
+          },
+          {
+            "id": "spades-12",
+            "suit": "spades",
+            "rank": 12
+          },
+          {
+            "id": "spades-13",
+            "suit": "spades",
+            "rank": 13
+          },
+          {
+            "id": "spades-14",
+            "suit": "spades",
+            "rank": 14
+          },
+          {
+            "id": "hearts-2",
+            "suit": "hearts",
+            "rank": 2
+          },
+          {
+            "id": "hearts-3",
+            "suit": "hearts",
+            "rank": 3
+          },
+          {
+            "id": "hearts-4",
+            "suit": "hearts",
+            "rank": 4
+          },
+          {
+            "id": "hearts-5",
+            "suit": "hearts",
+            "rank": 5
+          },
+          {
+            "id": "hearts-6",
+            "suit": "hearts",
+            "rank": 6
+          },
+          {
+            "id": "hearts-7",
+            "suit": "hearts",
+            "rank": 7
+          },
+          {
+            "id": "hearts-8",
+            "suit": "hearts",
+            "rank": 8
+          },
+          {
+            "id": "hearts-9",
+            "suit": "hearts",
+            "rank": 9
+          },
+          {
+            "id": "hearts-10",
+            "suit": "hearts",
+            "rank": 10
+          },
+          {
+            "id": "hearts-11",
+            "suit": "hearts",
+            "rank": 11
+          },
+          {
+            "id": "hearts-12",
+            "suit": "hearts",
+            "rank": 12
+          },
+          {
+            "id": "hearts-13",
+            "suit": "hearts",
+            "rank": 13
+          },
+          {
+            "id": "hearts-14",
+            "suit": "hearts",
+            "rank": 14
+          },
+          {
+            "id": "clubs-2",
+            "suit": "clubs",
+            "rank": 2
+          },
+          {
+            "id": "clubs-3",
+            "suit": "clubs",
+            "rank": 3
+          },
+          {
+            "id": "clubs-4",
+            "suit": "clubs",
+            "rank": 4
+          },
+          {
+            "id": "clubs-5",
+            "suit": "clubs",
+            "rank": 5
+          },
+          {
+            "id": "clubs-6",
+            "suit": "clubs",
+            "rank": 6
+          },
+          {
+            "id": "clubs-7",
+            "suit": "clubs",
+            "rank": 7
+          },
+          {
+            "id": "clubs-8",
+            "suit": "clubs",
+            "rank": 8
+          },
+          {
+            "id": "clubs-9",
+            "suit": "clubs",
+            "rank": 9
+          },
+          {
+            "id": "clubs-10",
+            "suit": "clubs",
+            "rank": 10
+          },
+          {
+            "id": "clubs-11",
+            "suit": "clubs",
+            "rank": 11
+          },
+          {
+            "id": "clubs-12",
+            "suit": "clubs",
+            "rank": 12
+          },
+          {
+            "id": "clubs-13",
+            "suit": "clubs",
+            "rank": 13
+          },
+          {
+            "id": "clubs-14",
+            "suit": "clubs",
+            "rank": 14
+          },
+          {
+            "id": "diamonds-2",
+            "suit": "diamonds",
+            "rank": 2
+          },
+          {
+            "id": "diamonds-3",
+            "suit": "diamonds",
+            "rank": 3
+          },
+          {
+            "id": "diamonds-4",
+            "suit": "diamonds",
+            "rank": 4
+          },
+          {
+            "id": "diamonds-5",
+            "suit": "diamonds",
+            "rank": 5
+          },
+          {
+            "id": "diamonds-6",
+            "suit": "diamonds",
+            "rank": 6
+          },
+          {
+            "id": "diamonds-7",
+            "suit": "diamonds",
+            "rank": 7
+          },
+          {
+            "id": "diamonds-8",
+            "suit": "diamonds",
+            "rank": 8
+          },
+          {
+            "id": "diamonds-9",
+            "suit": "diamonds",
+            "rank": 9
+          },
+          {
+            "id": "diamonds-10",
+            "suit": "diamonds",
+            "rank": 10
+          },
+          {
+            "id": "diamonds-11",
+            "suit": "diamonds",
+            "rank": 11
+          },
+          {
+            "id": "diamonds-12",
+            "suit": "diamonds",
+            "rank": 12
+          },
+          {
+            "id": "diamonds-13",
+            "suit": "diamonds",
+            "rank": 13
+          },
+          {
+            "id": "diamonds-14",
+            "suit": "diamonds",
+            "rank": 14
+          }
+        ],
+        "drawPile": [
+          "spades-2",
+          "spades-3",
+          "spades-4",
+          "spades-5",
+          "spades-6",
+          "spades-7",
+          "spades-8",
+          "spades-9",
+          "spades-10",
+          "spades-11",
+          "spades-12",
+          "spades-13",
+          "spades-14",
+          "hearts-2",
+          "hearts-3",
+          "hearts-4",
+          "hearts-5",
+          "hearts-6",
+          "hearts-7",
+          "hearts-8",
+          "hearts-9",
+          "hearts-10",
+          "hearts-11",
+          "hearts-12",
+          "hearts-13",
+          "hearts-14",
+          "clubs-2",
+          "clubs-3",
+          "clubs-4",
+          "clubs-5",
+          "clubs-6",
+          "clubs-7",
+          "clubs-8",
+          "clubs-9",
+          "clubs-10",
+          "clubs-11",
+          "clubs-12",
+          "clubs-13",
+          "clubs-14",
+          "diamonds-2",
+          "diamonds-3",
+          "diamonds-4",
+          "diamonds-5",
+          "diamonds-6",
+          "diamonds-7",
+          "diamonds-8",
+          "diamonds-9",
+          "diamonds-10",
+          "diamonds-11",
+          "diamonds-12",
+          "diamonds-13",
+          "diamonds-14"
+        ],
+        "handOrder": [],
+        "playedPile": [],
+        "discardPile": [],
+        "destroyedIds": [],
+        "stage": null,
+        "totalHeat": "0",
+        "gold": 2,
+        "jokers": [
+          {
+            "instanceId": "run/group-natural-17/erxiang/joker/run/group-natural-17/erxiang/command/3",
+            "definitionId": "mantangcai",
+            "paidPrice": 4,
+            "growth": {},
+            "edition": "none"
+          }
+        ],
+        "consumables": [],
+        "longTermItems": [],
+        "program": {
+          "chapter": 1,
+          "offerIds": [
+            "PG04",
+            "PG01"
+          ],
+          "selectedId": null,
+          "choiceMade": true,
+          "abandoned": false,
+          "lastOpportunityClear": false,
+          "claimed": false
+        },
+        "boss": {
+          "definitionId": "B01",
+          "disabledSuit": null
+        },
+        "seenBossIds": [
+          "B01"
+        ],
+        "chapterSkipConsumable": "T04",
+        "purchaseCoupons": 0,
+        "safetyNetUsed": false,
+        "shop": {
+          "visitIndex": 0,
+          "rerollCount": 0,
+          "purchases": 1,
+          "soldJoker": false,
+          "freeRerolls": 0,
+          "offers": [
+            {
+              "offerId": "run/group-natural-17/erxiang/shop/0/0/joker/0",
+              "definitionId": "b10",
+              "price": 4,
+              "edition": "none",
+              "consumed": false
+            },
+            {
+              "offerId": "run/group-natural-17/erxiang/shop/0/0/joker/1",
+              "definitionId": "b11",
+              "price": 6,
+              "edition": "none",
+              "consumed": false
+            },
+            {
+              "offerId": "run/group-natural-17/erxiang/shop/0/0/joker/2",
+              "definitionId": "mantangcai",
+              "price": 4,
+              "edition": "none",
+              "consumed": true
+            }
+          ],
+          "toolOffers": [
+            {
+              "offerId": "run/group-natural-17/erxiang/shop/0/0/tool/0",
+              "definitionId": "T06",
+              "price": 4,
+              "consumed": false
+            },
+            {
+              "offerId": "run/group-natural-17/erxiang/shop/0/0/tool/1",
+              "definitionId": "T10",
+              "price": 2,
+              "consumed": false
+            }
+          ],
+          "itemOffers": [
+            {
+              "offerId": "run/group-natural-17/erxiang/shop/0/0/item/0",
+              "definitionId": "U11",
+              "price": 10,
+              "consumed": false
+            }
+          ]
+        },
+        "spectralModifiers": {
+          "handsPenalty": 0,
+          "handPenalty": 0,
+          "cleanSlateBonus": 0
+        },
+        "supplyRewardClaimed": false,
+        "chapterHandUsage": {},
+        "normalClearClaimed": false,
+        "tourMode": "normal",
+        "normalCompletion": null,
+        "rng": {
+          "deck": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 2623243611
+          },
+          "rule": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 2405713301
+          },
+          "shop": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 4201739804
+          },
+          "reward": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 428350038
+          },
+          "program": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 3495556570
+          },
+          "challenge": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 111812685
+          }
+        },
+        "receipts": [
+          {
+            "commandId": "run/group-natural-17/erxiang/start",
+            "fingerprint": "json-fnv-v1:72aae23dfa9a7ff1",
+            "seq": 1
+          },
+          {
+            "commandId": "run/group-natural-17/erxiang/command/2",
+            "fingerprint": "json-fnv-v1:3c480d096ea5391d",
+            "seq": 2
+          },
+          {
+            "commandId": "run/group-natural-17/erxiang/command/3",
+            "fingerprint": "json-fnv-v1:fd3c7cb038760a9c",
+            "seq": 3
+          }
+        ],
+        "lastTrace": null,
+        "handLevels": {},
+        "outcome": null
+      },
+      "canonical": true
+    },
+    {
+      "actions": [
+        {
+          "type": "LeaveShop"
+        },
+        {
+          "type": "EnterStage"
+        }
+      ],
+      "before": {
+        "schemaVersion": 2,
+        "rulesVersion": "r2",
+        "contentVersion": "quality-r2-erxiang-handoff-v1",
+        "contentHash": "json-fnv-v1:4fd36cebb0ec1267",
+        "runId": "run/group-natural-17/erxiang",
+        "seed": "group-natural-17",
+        "commandSeq": 3,
+        "difficulty": 0,
+        "characterId": "erxiang",
+        "openingRoute": "group",
+        "openingShow": {
+          "handsScored": 0,
+          "rootId": null,
+          "eventId": null,
+          "reason": null
+        },
+        "routeStarter": {
+          "instanceId": "run/group-natural-17/erxiang/joker/run/group-natural-17/erxiang/command/3",
+          "rootId": null,
+          "eventId": null
+        },
+        "mode": "standard",
+        "challengeId": null,
+        "programsEnabled": true,
+        "programRerollCoupon": false,
+        "chapterDisabledJokerId": null,
+        "chapter": 1,
+        "stageIndex": 0,
+        "phase": "shop",
+        "deckInstances": [
+          {
+            "id": "spades-2",
+            "suit": "spades",
+            "rank": 2
+          },
+          {
+            "id": "spades-3",
+            "suit": "spades",
+            "rank": 3
+          },
+          {
+            "id": "spades-4",
+            "suit": "spades",
+            "rank": 4
+          },
+          {
+            "id": "spades-5",
+            "suit": "spades",
+            "rank": 5
+          },
+          {
+            "id": "spades-6",
+            "suit": "spades",
+            "rank": 6
+          },
+          {
+            "id": "spades-7",
+            "suit": "spades",
+            "rank": 7
+          },
+          {
+            "id": "spades-8",
+            "suit": "spades",
+            "rank": 8
+          },
+          {
+            "id": "spades-9",
+            "suit": "spades",
+            "rank": 9
+          },
+          {
+            "id": "spades-10",
+            "suit": "spades",
+            "rank": 10
+          },
+          {
+            "id": "spades-11",
+            "suit": "spades",
+            "rank": 11
+          },
+          {
+            "id": "spades-12",
+            "suit": "spades",
+            "rank": 12
+          },
+          {
+            "id": "spades-13",
+            "suit": "spades",
+            "rank": 13
+          },
+          {
+            "id": "spades-14",
+            "suit": "spades",
+            "rank": 14
+          },
+          {
+            "id": "hearts-2",
+            "suit": "hearts",
+            "rank": 2
+          },
+          {
+            "id": "hearts-3",
+            "suit": "hearts",
+            "rank": 3
+          },
+          {
+            "id": "hearts-4",
+            "suit": "hearts",
+            "rank": 4
+          },
+          {
+            "id": "hearts-5",
+            "suit": "hearts",
+            "rank": 5
+          },
+          {
+            "id": "hearts-6",
+            "suit": "hearts",
+            "rank": 6
+          },
+          {
+            "id": "hearts-7",
+            "suit": "hearts",
+            "rank": 7
+          },
+          {
+            "id": "hearts-8",
+            "suit": "hearts",
+            "rank": 8
+          },
+          {
+            "id": "hearts-9",
+            "suit": "hearts",
+            "rank": 9
+          },
+          {
+            "id": "hearts-10",
+            "suit": "hearts",
+            "rank": 10
+          },
+          {
+            "id": "hearts-11",
+            "suit": "hearts",
+            "rank": 11
+          },
+          {
+            "id": "hearts-12",
+            "suit": "hearts",
+            "rank": 12
+          },
+          {
+            "id": "hearts-13",
+            "suit": "hearts",
+            "rank": 13
+          },
+          {
+            "id": "hearts-14",
+            "suit": "hearts",
+            "rank": 14
+          },
+          {
+            "id": "clubs-2",
+            "suit": "clubs",
+            "rank": 2
+          },
+          {
+            "id": "clubs-3",
+            "suit": "clubs",
+            "rank": 3
+          },
+          {
+            "id": "clubs-4",
+            "suit": "clubs",
+            "rank": 4
+          },
+          {
+            "id": "clubs-5",
+            "suit": "clubs",
+            "rank": 5
+          },
+          {
+            "id": "clubs-6",
+            "suit": "clubs",
+            "rank": 6
+          },
+          {
+            "id": "clubs-7",
+            "suit": "clubs",
+            "rank": 7
+          },
+          {
+            "id": "clubs-8",
+            "suit": "clubs",
+            "rank": 8
+          },
+          {
+            "id": "clubs-9",
+            "suit": "clubs",
+            "rank": 9
+          },
+          {
+            "id": "clubs-10",
+            "suit": "clubs",
+            "rank": 10
+          },
+          {
+            "id": "clubs-11",
+            "suit": "clubs",
+            "rank": 11
+          },
+          {
+            "id": "clubs-12",
+            "suit": "clubs",
+            "rank": 12
+          },
+          {
+            "id": "clubs-13",
+            "suit": "clubs",
+            "rank": 13
+          },
+          {
+            "id": "clubs-14",
+            "suit": "clubs",
+            "rank": 14
+          },
+          {
+            "id": "diamonds-2",
+            "suit": "diamonds",
+            "rank": 2
+          },
+          {
+            "id": "diamonds-3",
+            "suit": "diamonds",
+            "rank": 3
+          },
+          {
+            "id": "diamonds-4",
+            "suit": "diamonds",
+            "rank": 4
+          },
+          {
+            "id": "diamonds-5",
+            "suit": "diamonds",
+            "rank": 5
+          },
+          {
+            "id": "diamonds-6",
+            "suit": "diamonds",
+            "rank": 6
+          },
+          {
+            "id": "diamonds-7",
+            "suit": "diamonds",
+            "rank": 7
+          },
+          {
+            "id": "diamonds-8",
+            "suit": "diamonds",
+            "rank": 8
+          },
+          {
+            "id": "diamonds-9",
+            "suit": "diamonds",
+            "rank": 9
+          },
+          {
+            "id": "diamonds-10",
+            "suit": "diamonds",
+            "rank": 10
+          },
+          {
+            "id": "diamonds-11",
+            "suit": "diamonds",
+            "rank": 11
+          },
+          {
+            "id": "diamonds-12",
+            "suit": "diamonds",
+            "rank": 12
+          },
+          {
+            "id": "diamonds-13",
+            "suit": "diamonds",
+            "rank": 13
+          },
+          {
+            "id": "diamonds-14",
+            "suit": "diamonds",
+            "rank": 14
+          }
+        ],
+        "drawPile": [
+          "spades-2",
+          "spades-3",
+          "spades-4",
+          "spades-5",
+          "spades-6",
+          "spades-7",
+          "spades-8",
+          "spades-9",
+          "spades-10",
+          "spades-11",
+          "spades-12",
+          "spades-13",
+          "spades-14",
+          "hearts-2",
+          "hearts-3",
+          "hearts-4",
+          "hearts-5",
+          "hearts-6",
+          "hearts-7",
+          "hearts-8",
+          "hearts-9",
+          "hearts-10",
+          "hearts-11",
+          "hearts-12",
+          "hearts-13",
+          "hearts-14",
+          "clubs-2",
+          "clubs-3",
+          "clubs-4",
+          "clubs-5",
+          "clubs-6",
+          "clubs-7",
+          "clubs-8",
+          "clubs-9",
+          "clubs-10",
+          "clubs-11",
+          "clubs-12",
+          "clubs-13",
+          "clubs-14",
+          "diamonds-2",
+          "diamonds-3",
+          "diamonds-4",
+          "diamonds-5",
+          "diamonds-6",
+          "diamonds-7",
+          "diamonds-8",
+          "diamonds-9",
+          "diamonds-10",
+          "diamonds-11",
+          "diamonds-12",
+          "diamonds-13",
+          "diamonds-14"
+        ],
+        "handOrder": [],
+        "playedPile": [],
+        "discardPile": [],
+        "destroyedIds": [],
+        "stage": null,
+        "totalHeat": "0",
+        "gold": 2,
+        "jokers": [
+          {
+            "instanceId": "run/group-natural-17/erxiang/joker/run/group-natural-17/erxiang/command/3",
+            "definitionId": "mantangcai",
+            "paidPrice": 4,
+            "growth": {},
+            "edition": "none"
+          }
+        ],
+        "consumables": [],
+        "longTermItems": [],
+        "program": {
+          "chapter": 1,
+          "offerIds": [
+            "PG04",
+            "PG01"
+          ],
+          "selectedId": null,
+          "choiceMade": true,
+          "abandoned": false,
+          "lastOpportunityClear": false,
+          "claimed": false
+        },
+        "boss": {
+          "definitionId": "B01",
+          "disabledSuit": null
+        },
+        "seenBossIds": [
+          "B01"
+        ],
+        "chapterSkipConsumable": "T04",
+        "purchaseCoupons": 0,
+        "safetyNetUsed": false,
+        "shop": {
+          "visitIndex": 0,
+          "rerollCount": 0,
+          "purchases": 1,
+          "soldJoker": false,
+          "freeRerolls": 0,
+          "offers": [
+            {
+              "offerId": "run/group-natural-17/erxiang/shop/0/0/joker/0",
+              "definitionId": "b10",
+              "price": 4,
+              "edition": "none",
+              "consumed": false
+            },
+            {
+              "offerId": "run/group-natural-17/erxiang/shop/0/0/joker/1",
+              "definitionId": "b11",
+              "price": 6,
+              "edition": "none",
+              "consumed": false
+            },
+            {
+              "offerId": "run/group-natural-17/erxiang/shop/0/0/joker/2",
+              "definitionId": "mantangcai",
+              "price": 4,
+              "edition": "none",
+              "consumed": true
+            }
+          ],
+          "toolOffers": [
+            {
+              "offerId": "run/group-natural-17/erxiang/shop/0/0/tool/0",
+              "definitionId": "T06",
+              "price": 4,
+              "consumed": false
+            },
+            {
+              "offerId": "run/group-natural-17/erxiang/shop/0/0/tool/1",
+              "definitionId": "T10",
+              "price": 2,
+              "consumed": false
+            }
+          ],
+          "itemOffers": [
+            {
+              "offerId": "run/group-natural-17/erxiang/shop/0/0/item/0",
+              "definitionId": "U11",
+              "price": 10,
+              "consumed": false
+            }
+          ]
+        },
+        "spectralModifiers": {
+          "handsPenalty": 0,
+          "handPenalty": 0,
+          "cleanSlateBonus": 0
+        },
+        "supplyRewardClaimed": false,
+        "chapterHandUsage": {},
+        "normalClearClaimed": false,
+        "tourMode": "normal",
+        "normalCompletion": null,
+        "rng": {
+          "deck": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 2623243611
+          },
+          "rule": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 2405713301
+          },
+          "shop": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 4201739804
+          },
+          "reward": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 428350038
+          },
+          "program": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 3495556570
+          },
+          "challenge": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 111812685
+          }
+        },
+        "receipts": [
+          {
+            "commandId": "run/group-natural-17/erxiang/start",
+            "fingerprint": "json-fnv-v1:72aae23dfa9a7ff1",
+            "seq": 1
+          },
+          {
+            "commandId": "run/group-natural-17/erxiang/command/2",
+            "fingerprint": "json-fnv-v1:3c480d096ea5391d",
+            "seq": 2
+          },
+          {
+            "commandId": "run/group-natural-17/erxiang/command/3",
+            "fingerprint": "json-fnv-v1:fd3c7cb038760a9c",
+            "seq": 3
+          }
+        ],
+        "lastTrace": null,
+        "handLevels": {},
+        "outcome": null
+      },
+      "after": {
+        "schemaVersion": 2,
+        "rulesVersion": "r2",
+        "contentVersion": "quality-r2-erxiang-handoff-v1",
+        "contentHash": "json-fnv-v1:4fd36cebb0ec1267",
+        "runId": "run/group-natural-17/erxiang",
+        "seed": "group-natural-17",
+        "commandSeq": 5,
+        "difficulty": 0,
+        "characterId": "erxiang",
+        "openingRoute": "group",
+        "openingShow": {
+          "handsScored": 0,
+          "rootId": null,
+          "eventId": null,
+          "reason": null
+        },
+        "routeStarter": {
+          "instanceId": "run/group-natural-17/erxiang/joker/run/group-natural-17/erxiang/command/3",
+          "rootId": null,
+          "eventId": null
+        },
+        "mode": "standard",
+        "challengeId": null,
+        "programsEnabled": true,
+        "programRerollCoupon": false,
+        "chapterDisabledJokerId": null,
+        "chapter": 1,
+        "stageIndex": 0,
+        "phase": "await-input",
+        "deckInstances": [
+          {
+            "id": "spades-2",
+            "suit": "spades",
+            "rank": 2
+          },
+          {
+            "id": "spades-3",
+            "suit": "spades",
+            "rank": 3
+          },
+          {
+            "id": "spades-4",
+            "suit": "spades",
+            "rank": 4
+          },
+          {
+            "id": "spades-5",
+            "suit": "spades",
+            "rank": 5
+          },
+          {
+            "id": "spades-6",
+            "suit": "spades",
+            "rank": 6
+          },
+          {
+            "id": "spades-7",
+            "suit": "spades",
+            "rank": 7
+          },
+          {
+            "id": "spades-8",
+            "suit": "spades",
+            "rank": 8
+          },
+          {
+            "id": "spades-9",
+            "suit": "spades",
+            "rank": 9
+          },
+          {
+            "id": "spades-10",
+            "suit": "spades",
+            "rank": 10
+          },
+          {
+            "id": "spades-11",
+            "suit": "spades",
+            "rank": 11
+          },
+          {
+            "id": "spades-12",
+            "suit": "spades",
+            "rank": 12
+          },
+          {
+            "id": "spades-13",
+            "suit": "spades",
+            "rank": 13
+          },
+          {
+            "id": "spades-14",
+            "suit": "spades",
+            "rank": 14
+          },
+          {
+            "id": "hearts-2",
+            "suit": "hearts",
+            "rank": 2
+          },
+          {
+            "id": "hearts-3",
+            "suit": "hearts",
+            "rank": 3
+          },
+          {
+            "id": "hearts-4",
+            "suit": "hearts",
+            "rank": 4
+          },
+          {
+            "id": "hearts-5",
+            "suit": "hearts",
+            "rank": 5
+          },
+          {
+            "id": "hearts-6",
+            "suit": "hearts",
+            "rank": 6
+          },
+          {
+            "id": "hearts-7",
+            "suit": "hearts",
+            "rank": 7
+          },
+          {
+            "id": "hearts-8",
+            "suit": "hearts",
+            "rank": 8
+          },
+          {
+            "id": "hearts-9",
+            "suit": "hearts",
+            "rank": 9
+          },
+          {
+            "id": "hearts-10",
+            "suit": "hearts",
+            "rank": 10
+          },
+          {
+            "id": "hearts-11",
+            "suit": "hearts",
+            "rank": 11
+          },
+          {
+            "id": "hearts-12",
+            "suit": "hearts",
+            "rank": 12
+          },
+          {
+            "id": "hearts-13",
+            "suit": "hearts",
+            "rank": 13
+          },
+          {
+            "id": "hearts-14",
+            "suit": "hearts",
+            "rank": 14
+          },
+          {
+            "id": "clubs-2",
+            "suit": "clubs",
+            "rank": 2
+          },
+          {
+            "id": "clubs-3",
+            "suit": "clubs",
+            "rank": 3
+          },
+          {
+            "id": "clubs-4",
+            "suit": "clubs",
+            "rank": 4
+          },
+          {
+            "id": "clubs-5",
+            "suit": "clubs",
+            "rank": 5
+          },
+          {
+            "id": "clubs-6",
+            "suit": "clubs",
+            "rank": 6
+          },
+          {
+            "id": "clubs-7",
+            "suit": "clubs",
+            "rank": 7
+          },
+          {
+            "id": "clubs-8",
+            "suit": "clubs",
+            "rank": 8
+          },
+          {
+            "id": "clubs-9",
+            "suit": "clubs",
+            "rank": 9
+          },
+          {
+            "id": "clubs-10",
+            "suit": "clubs",
+            "rank": 10
+          },
+          {
+            "id": "clubs-11",
+            "suit": "clubs",
+            "rank": 11
+          },
+          {
+            "id": "clubs-12",
+            "suit": "clubs",
+            "rank": 12
+          },
+          {
+            "id": "clubs-13",
+            "suit": "clubs",
+            "rank": 13
+          },
+          {
+            "id": "clubs-14",
+            "suit": "clubs",
+            "rank": 14
+          },
+          {
+            "id": "diamonds-2",
+            "suit": "diamonds",
+            "rank": 2
+          },
+          {
+            "id": "diamonds-3",
+            "suit": "diamonds",
+            "rank": 3
+          },
+          {
+            "id": "diamonds-4",
+            "suit": "diamonds",
+            "rank": 4
+          },
+          {
+            "id": "diamonds-5",
+            "suit": "diamonds",
+            "rank": 5
+          },
+          {
+            "id": "diamonds-6",
+            "suit": "diamonds",
+            "rank": 6
+          },
+          {
+            "id": "diamonds-7",
+            "suit": "diamonds",
+            "rank": 7
+          },
+          {
+            "id": "diamonds-8",
+            "suit": "diamonds",
+            "rank": 8
+          },
+          {
+            "id": "diamonds-9",
+            "suit": "diamonds",
+            "rank": 9
+          },
+          {
+            "id": "diamonds-10",
+            "suit": "diamonds",
+            "rank": 10
+          },
+          {
+            "id": "diamonds-11",
+            "suit": "diamonds",
+            "rank": 11
+          },
+          {
+            "id": "diamonds-12",
+            "suit": "diamonds",
+            "rank": 12
+          },
+          {
+            "id": "diamonds-13",
+            "suit": "diamonds",
+            "rank": 13
+          },
+          {
+            "id": "diamonds-14",
+            "suit": "diamonds",
+            "rank": 14
+          }
+        ],
+        "drawPile": [
+          "clubs-7",
+          "clubs-8",
+          "spades-6",
+          "hearts-4",
+          "hearts-7",
+          "hearts-14",
+          "diamonds-8",
+          "diamonds-3",
+          "spades-7",
+          "diamonds-12",
+          "spades-5",
+          "hearts-6",
+          "spades-10",
+          "diamonds-2",
+          "clubs-2",
+          "spades-14",
+          "hearts-3",
+          "spades-12",
+          "spades-13",
+          "spades-9",
+          "spades-3",
+          "diamonds-9",
+          "diamonds-6",
+          "clubs-9",
+          "hearts-8",
+          "hearts-9",
+          "spades-11",
+          "clubs-13",
+          "hearts-10",
+          "diamonds-7",
+          "diamonds-13",
+          "spades-8",
+          "clubs-4",
+          "hearts-11",
+          "clubs-3",
+          "clubs-11",
+          "clubs-10",
+          "clubs-6",
+          "hearts-12",
+          "hearts-5",
+          "diamonds-10",
+          "clubs-5",
+          "spades-4",
+          "diamonds-4"
+        ],
+        "handOrder": [
+          "clubs-12",
+          "hearts-13",
+          "hearts-2",
+          "spades-2",
+          "diamonds-11",
+          "diamonds-5",
+          "clubs-14",
+          "diamonds-14"
+        ],
+        "playedPile": [],
+        "discardPile": [],
+        "destroyedIds": [],
+        "stage": {
+          "erxiangHandoffUsed": false,
+          "openingDiscard": null,
+          "index": 0,
+          "targetHeat": "400",
+          "initialTargetHeat": "400",
+          "heat": "0",
+          "handsLeft": 4,
+          "initialHands": 4,
+          "discardsLeft": 3,
+          "initialDiscards": 3,
+          "discardSpent": 0,
+          "discardGained": 0,
+          "doubleDiscardBeforeFirstPlay": false,
+          "discardsUsed": 0,
+          "skipResult": null,
+          "playIndex": 0,
+          "previousHandType": null,
+          "previousHandScore": null,
+          "handLimit": 8,
+          "initialHandLimit": 8,
+          "boss": null,
+          "initialJokerIds": [
+            "run/group-natural-17/erxiang/joker/run/group-natural-17/erxiang/command/3"
+          ],
+          "sealedJokerIds": [],
+          "challengeDisabledJokerId": null,
+          "rescueUsed": false,
+          "clearId": null,
+          "goldEarned": 0,
+          "disabledIds": [],
+          "wagerSelected": false,
+          "wagerUsed": false,
+          "maxPlayedCount": 0,
+          "ordinaryStraightSeen": false,
+          "ordinaryFlushSeen": false,
+          "quadRefundUsed": false,
+          "jokerSold": false
+        },
+        "totalHeat": "0",
+        "gold": 2,
+        "jokers": [
+          {
+            "instanceId": "run/group-natural-17/erxiang/joker/run/group-natural-17/erxiang/command/3",
+            "definitionId": "mantangcai",
+            "paidPrice": 4,
+            "growth": {},
+            "edition": "none"
+          }
+        ],
+        "consumables": [],
+        "longTermItems": [],
+        "program": {
+          "chapter": 1,
+          "offerIds": [
+            "PG04",
+            "PG01"
+          ],
+          "selectedId": null,
+          "choiceMade": true,
+          "abandoned": false,
+          "lastOpportunityClear": false,
+          "claimed": false
+        },
+        "boss": {
+          "definitionId": "B01",
+          "disabledSuit": null
+        },
+        "seenBossIds": [
+          "B01"
+        ],
+        "chapterSkipConsumable": "T04",
+        "purchaseCoupons": 0,
+        "safetyNetUsed": false,
+        "shop": null,
+        "spectralModifiers": {
+          "handsPenalty": 0,
+          "handPenalty": 0,
+          "cleanSlateBonus": 0
+        },
+        "supplyRewardClaimed": false,
+        "chapterHandUsage": {},
+        "normalClearClaimed": false,
+        "tourMode": "normal",
+        "normalCompletion": null,
+        "rng": {
+          "deck": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 1543819562
+          },
+          "rule": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 2405713301
+          },
+          "shop": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 4201739804
+          },
+          "reward": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 428350038
+          },
+          "program": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 3495556570
+          },
+          "challenge": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 111812685
+          }
+        },
+        "receipts": [
+          {
+            "commandId": "run/group-natural-17/erxiang/start",
+            "fingerprint": "json-fnv-v1:72aae23dfa9a7ff1",
+            "seq": 1
+          },
+          {
+            "commandId": "run/group-natural-17/erxiang/command/2",
+            "fingerprint": "json-fnv-v1:3c480d096ea5391d",
+            "seq": 2
+          },
+          {
+            "commandId": "run/group-natural-17/erxiang/command/3",
+            "fingerprint": "json-fnv-v1:fd3c7cb038760a9c",
+            "seq": 3
+          },
+          {
+            "commandId": "run/group-natural-17/erxiang/command/4",
+            "fingerprint": "json-fnv-v1:dda419c1250f48ad",
+            "seq": 4
+          },
+          {
+            "commandId": "run/group-natural-17/erxiang/command/5",
+            "fingerprint": "json-fnv-v1:9a29a57ac4cf873e",
+            "seq": 5
+          }
+        ],
+        "lastTrace": null,
+        "handLevels": {},
+        "outcome": null
+      },
+      "canonical": true
+    },
+    {
+      "actions": [
+        {
+          "type": "PlayHand",
+          "selectedIds": [
+            "hearts-2",
+            "spades-2",
+            "clubs-14",
+            "diamonds-14"
+          ]
+        }
+      ],
+      "before": {
+        "schemaVersion": 2,
+        "rulesVersion": "r2",
+        "contentVersion": "quality-r2-erxiang-handoff-v1",
+        "contentHash": "json-fnv-v1:4fd36cebb0ec1267",
+        "runId": "run/group-natural-17/erxiang",
+        "seed": "group-natural-17",
+        "commandSeq": 5,
+        "difficulty": 0,
+        "characterId": "erxiang",
+        "openingRoute": "group",
+        "openingShow": {
+          "handsScored": 0,
+          "rootId": null,
+          "eventId": null,
+          "reason": null
+        },
+        "routeStarter": {
+          "instanceId": "run/group-natural-17/erxiang/joker/run/group-natural-17/erxiang/command/3",
+          "rootId": null,
+          "eventId": null
+        },
+        "mode": "standard",
+        "challengeId": null,
+        "programsEnabled": true,
+        "programRerollCoupon": false,
+        "chapterDisabledJokerId": null,
+        "chapter": 1,
+        "stageIndex": 0,
+        "phase": "await-input",
+        "deckInstances": [
+          {
+            "id": "spades-2",
+            "suit": "spades",
+            "rank": 2
+          },
+          {
+            "id": "spades-3",
+            "suit": "spades",
+            "rank": 3
+          },
+          {
+            "id": "spades-4",
+            "suit": "spades",
+            "rank": 4
+          },
+          {
+            "id": "spades-5",
+            "suit": "spades",
+            "rank": 5
+          },
+          {
+            "id": "spades-6",
+            "suit": "spades",
+            "rank": 6
+          },
+          {
+            "id": "spades-7",
+            "suit": "spades",
+            "rank": 7
+          },
+          {
+            "id": "spades-8",
+            "suit": "spades",
+            "rank": 8
+          },
+          {
+            "id": "spades-9",
+            "suit": "spades",
+            "rank": 9
+          },
+          {
+            "id": "spades-10",
+            "suit": "spades",
+            "rank": 10
+          },
+          {
+            "id": "spades-11",
+            "suit": "spades",
+            "rank": 11
+          },
+          {
+            "id": "spades-12",
+            "suit": "spades",
+            "rank": 12
+          },
+          {
+            "id": "spades-13",
+            "suit": "spades",
+            "rank": 13
+          },
+          {
+            "id": "spades-14",
+            "suit": "spades",
+            "rank": 14
+          },
+          {
+            "id": "hearts-2",
+            "suit": "hearts",
+            "rank": 2
+          },
+          {
+            "id": "hearts-3",
+            "suit": "hearts",
+            "rank": 3
+          },
+          {
+            "id": "hearts-4",
+            "suit": "hearts",
+            "rank": 4
+          },
+          {
+            "id": "hearts-5",
+            "suit": "hearts",
+            "rank": 5
+          },
+          {
+            "id": "hearts-6",
+            "suit": "hearts",
+            "rank": 6
+          },
+          {
+            "id": "hearts-7",
+            "suit": "hearts",
+            "rank": 7
+          },
+          {
+            "id": "hearts-8",
+            "suit": "hearts",
+            "rank": 8
+          },
+          {
+            "id": "hearts-9",
+            "suit": "hearts",
+            "rank": 9
+          },
+          {
+            "id": "hearts-10",
+            "suit": "hearts",
+            "rank": 10
+          },
+          {
+            "id": "hearts-11",
+            "suit": "hearts",
+            "rank": 11
+          },
+          {
+            "id": "hearts-12",
+            "suit": "hearts",
+            "rank": 12
+          },
+          {
+            "id": "hearts-13",
+            "suit": "hearts",
+            "rank": 13
+          },
+          {
+            "id": "hearts-14",
+            "suit": "hearts",
+            "rank": 14
+          },
+          {
+            "id": "clubs-2",
+            "suit": "clubs",
+            "rank": 2
+          },
+          {
+            "id": "clubs-3",
+            "suit": "clubs",
+            "rank": 3
+          },
+          {
+            "id": "clubs-4",
+            "suit": "clubs",
+            "rank": 4
+          },
+          {
+            "id": "clubs-5",
+            "suit": "clubs",
+            "rank": 5
+          },
+          {
+            "id": "clubs-6",
+            "suit": "clubs",
+            "rank": 6
+          },
+          {
+            "id": "clubs-7",
+            "suit": "clubs",
+            "rank": 7
+          },
+          {
+            "id": "clubs-8",
+            "suit": "clubs",
+            "rank": 8
+          },
+          {
+            "id": "clubs-9",
+            "suit": "clubs",
+            "rank": 9
+          },
+          {
+            "id": "clubs-10",
+            "suit": "clubs",
+            "rank": 10
+          },
+          {
+            "id": "clubs-11",
+            "suit": "clubs",
+            "rank": 11
+          },
+          {
+            "id": "clubs-12",
+            "suit": "clubs",
+            "rank": 12
+          },
+          {
+            "id": "clubs-13",
+            "suit": "clubs",
+            "rank": 13
+          },
+          {
+            "id": "clubs-14",
+            "suit": "clubs",
+            "rank": 14
+          },
+          {
+            "id": "diamonds-2",
+            "suit": "diamonds",
+            "rank": 2
+          },
+          {
+            "id": "diamonds-3",
+            "suit": "diamonds",
+            "rank": 3
+          },
+          {
+            "id": "diamonds-4",
+            "suit": "diamonds",
+            "rank": 4
+          },
+          {
+            "id": "diamonds-5",
+            "suit": "diamonds",
+            "rank": 5
+          },
+          {
+            "id": "diamonds-6",
+            "suit": "diamonds",
+            "rank": 6
+          },
+          {
+            "id": "diamonds-7",
+            "suit": "diamonds",
+            "rank": 7
+          },
+          {
+            "id": "diamonds-8",
+            "suit": "diamonds",
+            "rank": 8
+          },
+          {
+            "id": "diamonds-9",
+            "suit": "diamonds",
+            "rank": 9
+          },
+          {
+            "id": "diamonds-10",
+            "suit": "diamonds",
+            "rank": 10
+          },
+          {
+            "id": "diamonds-11",
+            "suit": "diamonds",
+            "rank": 11
+          },
+          {
+            "id": "diamonds-12",
+            "suit": "diamonds",
+            "rank": 12
+          },
+          {
+            "id": "diamonds-13",
+            "suit": "diamonds",
+            "rank": 13
+          },
+          {
+            "id": "diamonds-14",
+            "suit": "diamonds",
+            "rank": 14
+          }
+        ],
+        "drawPile": [
+          "clubs-7",
+          "clubs-8",
+          "spades-6",
+          "hearts-4",
+          "hearts-7",
+          "hearts-14",
+          "diamonds-8",
+          "diamonds-3",
+          "spades-7",
+          "diamonds-12",
+          "spades-5",
+          "hearts-6",
+          "spades-10",
+          "diamonds-2",
+          "clubs-2",
+          "spades-14",
+          "hearts-3",
+          "spades-12",
+          "spades-13",
+          "spades-9",
+          "spades-3",
+          "diamonds-9",
+          "diamonds-6",
+          "clubs-9",
+          "hearts-8",
+          "hearts-9",
+          "spades-11",
+          "clubs-13",
+          "hearts-10",
+          "diamonds-7",
+          "diamonds-13",
+          "spades-8",
+          "clubs-4",
+          "hearts-11",
+          "clubs-3",
+          "clubs-11",
+          "clubs-10",
+          "clubs-6",
+          "hearts-12",
+          "hearts-5",
+          "diamonds-10",
+          "clubs-5",
+          "spades-4",
+          "diamonds-4"
+        ],
+        "handOrder": [
+          "clubs-12",
+          "hearts-13",
+          "hearts-2",
+          "spades-2",
+          "diamonds-11",
+          "diamonds-5",
+          "clubs-14",
+          "diamonds-14"
+        ],
+        "playedPile": [],
+        "discardPile": [],
+        "destroyedIds": [],
+        "stage": {
+          "erxiangHandoffUsed": false,
+          "openingDiscard": null,
+          "index": 0,
+          "targetHeat": "400",
+          "initialTargetHeat": "400",
+          "heat": "0",
+          "handsLeft": 4,
+          "initialHands": 4,
+          "discardsLeft": 3,
+          "initialDiscards": 3,
+          "discardSpent": 0,
+          "discardGained": 0,
+          "doubleDiscardBeforeFirstPlay": false,
+          "discardsUsed": 0,
+          "skipResult": null,
+          "playIndex": 0,
+          "previousHandType": null,
+          "previousHandScore": null,
+          "handLimit": 8,
+          "initialHandLimit": 8,
+          "boss": null,
+          "initialJokerIds": [
+            "run/group-natural-17/erxiang/joker/run/group-natural-17/erxiang/command/3"
+          ],
+          "sealedJokerIds": [],
+          "challengeDisabledJokerId": null,
+          "rescueUsed": false,
+          "clearId": null,
+          "goldEarned": 0,
+          "disabledIds": [],
+          "wagerSelected": false,
+          "wagerUsed": false,
+          "maxPlayedCount": 0,
+          "ordinaryStraightSeen": false,
+          "ordinaryFlushSeen": false,
+          "quadRefundUsed": false,
+          "jokerSold": false
+        },
+        "totalHeat": "0",
+        "gold": 2,
+        "jokers": [
+          {
+            "instanceId": "run/group-natural-17/erxiang/joker/run/group-natural-17/erxiang/command/3",
+            "definitionId": "mantangcai",
+            "paidPrice": 4,
+            "growth": {},
+            "edition": "none"
+          }
+        ],
+        "consumables": [],
+        "longTermItems": [],
+        "program": {
+          "chapter": 1,
+          "offerIds": [
+            "PG04",
+            "PG01"
+          ],
+          "selectedId": null,
+          "choiceMade": true,
+          "abandoned": false,
+          "lastOpportunityClear": false,
+          "claimed": false
+        },
+        "boss": {
+          "definitionId": "B01",
+          "disabledSuit": null
+        },
+        "seenBossIds": [
+          "B01"
+        ],
+        "chapterSkipConsumable": "T04",
+        "purchaseCoupons": 0,
+        "safetyNetUsed": false,
+        "shop": null,
+        "spectralModifiers": {
+          "handsPenalty": 0,
+          "handPenalty": 0,
+          "cleanSlateBonus": 0
+        },
+        "supplyRewardClaimed": false,
+        "chapterHandUsage": {},
+        "normalClearClaimed": false,
+        "tourMode": "normal",
+        "normalCompletion": null,
+        "rng": {
+          "deck": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 1543819562
+          },
+          "rule": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 2405713301
+          },
+          "shop": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 4201739804
+          },
+          "reward": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 428350038
+          },
+          "program": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 3495556570
+          },
+          "challenge": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 111812685
+          }
+        },
+        "receipts": [
+          {
+            "commandId": "run/group-natural-17/erxiang/start",
+            "fingerprint": "json-fnv-v1:72aae23dfa9a7ff1",
+            "seq": 1
+          },
+          {
+            "commandId": "run/group-natural-17/erxiang/command/2",
+            "fingerprint": "json-fnv-v1:3c480d096ea5391d",
+            "seq": 2
+          },
+          {
+            "commandId": "run/group-natural-17/erxiang/command/3",
+            "fingerprint": "json-fnv-v1:fd3c7cb038760a9c",
+            "seq": 3
+          },
+          {
+            "commandId": "run/group-natural-17/erxiang/command/4",
+            "fingerprint": "json-fnv-v1:dda419c1250f48ad",
+            "seq": 4
+          },
+          {
+            "commandId": "run/group-natural-17/erxiang/command/5",
+            "fingerprint": "json-fnv-v1:9a29a57ac4cf873e",
+            "seq": 5
+          }
+        ],
+        "lastTrace": null,
+        "handLevels": {},
+        "outcome": null
+      },
+      "after": {
+        "schemaVersion": 2,
+        "rulesVersion": "r2",
+        "contentVersion": "quality-r2-erxiang-handoff-v1",
+        "contentHash": "json-fnv-v1:4fd36cebb0ec1267",
+        "runId": "run/group-natural-17/erxiang",
+        "seed": "group-natural-17",
+        "commandSeq": 6,
+        "difficulty": 0,
+        "characterId": "erxiang",
+        "openingRoute": "group",
+        "openingShow": {
+          "handsScored": 1,
+          "rootId": "run/group-natural-17/erxiang/hand/run/group-natural-17/erxiang/command/6",
+          "eventId": "run/group-natural-17/erxiang/hand/run/group-natural-17/erxiang/command/6/event/5",
+          "reason": "starter"
+        },
+        "routeStarter": {
+          "instanceId": "run/group-natural-17/erxiang/joker/run/group-natural-17/erxiang/command/3",
+          "rootId": "run/group-natural-17/erxiang/hand/run/group-natural-17/erxiang/command/6",
+          "eventId": "run/group-natural-17/erxiang/hand/run/group-natural-17/erxiang/command/6/event/5"
+        },
+        "mode": "standard",
+        "challengeId": null,
+        "programsEnabled": true,
+        "programRerollCoupon": false,
+        "chapterDisabledJokerId": null,
+        "chapter": 1,
+        "stageIndex": 0,
+        "phase": "await-input",
+        "deckInstances": [
+          {
+            "id": "spades-2",
+            "suit": "spades",
+            "rank": 2
+          },
+          {
+            "id": "spades-3",
+            "suit": "spades",
+            "rank": 3
+          },
+          {
+            "id": "spades-4",
+            "suit": "spades",
+            "rank": 4
+          },
+          {
+            "id": "spades-5",
+            "suit": "spades",
+            "rank": 5
+          },
+          {
+            "id": "spades-6",
+            "suit": "spades",
+            "rank": 6
+          },
+          {
+            "id": "spades-7",
+            "suit": "spades",
+            "rank": 7
+          },
+          {
+            "id": "spades-8",
+            "suit": "spades",
+            "rank": 8
+          },
+          {
+            "id": "spades-9",
+            "suit": "spades",
+            "rank": 9
+          },
+          {
+            "id": "spades-10",
+            "suit": "spades",
+            "rank": 10
+          },
+          {
+            "id": "spades-11",
+            "suit": "spades",
+            "rank": 11
+          },
+          {
+            "id": "spades-12",
+            "suit": "spades",
+            "rank": 12
+          },
+          {
+            "id": "spades-13",
+            "suit": "spades",
+            "rank": 13
+          },
+          {
+            "id": "spades-14",
+            "suit": "spades",
+            "rank": 14
+          },
+          {
+            "id": "hearts-2",
+            "suit": "hearts",
+            "rank": 2
+          },
+          {
+            "id": "hearts-3",
+            "suit": "hearts",
+            "rank": 3
+          },
+          {
+            "id": "hearts-4",
+            "suit": "hearts",
+            "rank": 4
+          },
+          {
+            "id": "hearts-5",
+            "suit": "hearts",
+            "rank": 5
+          },
+          {
+            "id": "hearts-6",
+            "suit": "hearts",
+            "rank": 6
+          },
+          {
+            "id": "hearts-7",
+            "suit": "hearts",
+            "rank": 7
+          },
+          {
+            "id": "hearts-8",
+            "suit": "hearts",
+            "rank": 8
+          },
+          {
+            "id": "hearts-9",
+            "suit": "hearts",
+            "rank": 9
+          },
+          {
+            "id": "hearts-10",
+            "suit": "hearts",
+            "rank": 10
+          },
+          {
+            "id": "hearts-11",
+            "suit": "hearts",
+            "rank": 11
+          },
+          {
+            "id": "hearts-12",
+            "suit": "hearts",
+            "rank": 12
+          },
+          {
+            "id": "hearts-13",
+            "suit": "hearts",
+            "rank": 13
+          },
+          {
+            "id": "hearts-14",
+            "suit": "hearts",
+            "rank": 14
+          },
+          {
+            "id": "clubs-2",
+            "suit": "clubs",
+            "rank": 2
+          },
+          {
+            "id": "clubs-3",
+            "suit": "clubs",
+            "rank": 3
+          },
+          {
+            "id": "clubs-4",
+            "suit": "clubs",
+            "rank": 4
+          },
+          {
+            "id": "clubs-5",
+            "suit": "clubs",
+            "rank": 5
+          },
+          {
+            "id": "clubs-6",
+            "suit": "clubs",
+            "rank": 6
+          },
+          {
+            "id": "clubs-7",
+            "suit": "clubs",
+            "rank": 7
+          },
+          {
+            "id": "clubs-8",
+            "suit": "clubs",
+            "rank": 8
+          },
+          {
+            "id": "clubs-9",
+            "suit": "clubs",
+            "rank": 9
+          },
+          {
+            "id": "clubs-10",
+            "suit": "clubs",
+            "rank": 10
+          },
+          {
+            "id": "clubs-11",
+            "suit": "clubs",
+            "rank": 11
+          },
+          {
+            "id": "clubs-12",
+            "suit": "clubs",
+            "rank": 12
+          },
+          {
+            "id": "clubs-13",
+            "suit": "clubs",
+            "rank": 13
+          },
+          {
+            "id": "clubs-14",
+            "suit": "clubs",
+            "rank": 14
+          },
+          {
+            "id": "diamonds-2",
+            "suit": "diamonds",
+            "rank": 2
+          },
+          {
+            "id": "diamonds-3",
+            "suit": "diamonds",
+            "rank": 3
+          },
+          {
+            "id": "diamonds-4",
+            "suit": "diamonds",
+            "rank": 4
+          },
+          {
+            "id": "diamonds-5",
+            "suit": "diamonds",
+            "rank": 5
+          },
+          {
+            "id": "diamonds-6",
+            "suit": "diamonds",
+            "rank": 6
+          },
+          {
+            "id": "diamonds-7",
+            "suit": "diamonds",
+            "rank": 7
+          },
+          {
+            "id": "diamonds-8",
+            "suit": "diamonds",
+            "rank": 8
+          },
+          {
+            "id": "diamonds-9",
+            "suit": "diamonds",
+            "rank": 9
+          },
+          {
+            "id": "diamonds-10",
+            "suit": "diamonds",
+            "rank": 10
+          },
+          {
+            "id": "diamonds-11",
+            "suit": "diamonds",
+            "rank": 11
+          },
+          {
+            "id": "diamonds-12",
+            "suit": "diamonds",
+            "rank": 12
+          },
+          {
+            "id": "diamonds-13",
+            "suit": "diamonds",
+            "rank": 13
+          },
+          {
+            "id": "diamonds-14",
+            "suit": "diamonds",
+            "rank": 14
+          }
+        ],
+        "drawPile": [
+          "clubs-7",
+          "clubs-8",
+          "spades-6",
+          "hearts-4",
+          "hearts-7",
+          "hearts-14",
+          "diamonds-8",
+          "diamonds-3",
+          "spades-7",
+          "diamonds-12",
+          "spades-5",
+          "hearts-6",
+          "spades-10",
+          "diamonds-2",
+          "clubs-2",
+          "spades-14",
+          "hearts-3",
+          "spades-12",
+          "spades-13",
+          "spades-9",
+          "spades-3",
+          "diamonds-9",
+          "diamonds-6",
+          "clubs-9",
+          "hearts-8",
+          "hearts-9",
+          "spades-11",
+          "clubs-13",
+          "hearts-10",
+          "diamonds-7",
+          "diamonds-13",
+          "spades-8",
+          "clubs-4",
+          "hearts-11",
+          "clubs-3",
+          "clubs-11",
+          "clubs-10",
+          "clubs-6",
+          "hearts-12",
+          "hearts-5"
+        ],
+        "handOrder": [
+          "clubs-12",
+          "hearts-13",
+          "diamonds-11",
+          "diamonds-5",
+          "diamonds-4",
+          "spades-4",
+          "clubs-5",
+          "diamonds-10"
+        ],
+        "playedPile": [
+          "hearts-2",
+          "spades-2",
+          "clubs-14",
+          "diamonds-14"
+        ],
+        "discardPile": [],
+        "destroyedIds": [],
+        "stage": {
+          "erxiangHandoffUsed": false,
+          "openingDiscard": null,
+          "index": 0,
+          "targetHeat": "400",
+          "initialTargetHeat": "400",
+          "heat": "362",
+          "handsLeft": 3,
+          "initialHands": 4,
+          "discardsLeft": 3,
+          "initialDiscards": 3,
+          "discardSpent": 0,
+          "discardGained": 0,
+          "doubleDiscardBeforeFirstPlay": false,
+          "discardsUsed": 0,
+          "skipResult": null,
+          "playIndex": 1,
+          "previousHandType": "two-pair",
+          "previousHandScore": "362",
+          "handLimit": 8,
+          "initialHandLimit": 8,
+          "boss": null,
+          "initialJokerIds": [
+            "run/group-natural-17/erxiang/joker/run/group-natural-17/erxiang/command/3"
+          ],
+          "sealedJokerIds": [],
+          "challengeDisabledJokerId": null,
+          "rescueUsed": false,
+          "clearId": null,
+          "goldEarned": 0,
+          "disabledIds": [],
+          "wagerSelected": false,
+          "wagerUsed": false,
+          "maxPlayedCount": 4,
+          "ordinaryStraightSeen": false,
+          "ordinaryFlushSeen": false,
+          "quadRefundUsed": false,
+          "jokerSold": false
+        },
+        "totalHeat": "0",
+        "gold": 2,
+        "jokers": [
+          {
+            "instanceId": "run/group-natural-17/erxiang/joker/run/group-natural-17/erxiang/command/3",
+            "definitionId": "mantangcai",
+            "paidPrice": 4,
+            "growth": {},
+            "edition": "none"
+          }
+        ],
+        "consumables": [],
+        "longTermItems": [],
+        "program": {
+          "chapter": 1,
+          "offerIds": [
+            "PG04",
+            "PG01"
+          ],
+          "selectedId": null,
+          "choiceMade": true,
+          "abandoned": false,
+          "lastOpportunityClear": false,
+          "claimed": false
+        },
+        "boss": {
+          "definitionId": "B01",
+          "disabledSuit": null
+        },
+        "seenBossIds": [
+          "B01"
+        ],
+        "chapterSkipConsumable": "T04",
+        "purchaseCoupons": 0,
+        "safetyNetUsed": false,
+        "shop": null,
+        "spectralModifiers": {
+          "handsPenalty": 0,
+          "handPenalty": 0,
+          "cleanSlateBonus": 0
+        },
+        "supplyRewardClaimed": false,
+        "chapterHandUsage": {
+          "two-pair": 1
+        },
+        "normalClearClaimed": false,
+        "tourMode": "normal",
+        "normalCompletion": null,
+        "rng": {
+          "deck": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 1543819562
+          },
+          "rule": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 2405713301
+          },
+          "shop": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 4201739804
+          },
+          "reward": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 428350038
+          },
+          "program": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 3495556570
+          },
+          "challenge": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 111812685
+          }
+        },
+        "receipts": [
+          {
+            "commandId": "run/group-natural-17/erxiang/start",
+            "fingerprint": "json-fnv-v1:72aae23dfa9a7ff1",
+            "seq": 1
+          },
+          {
+            "commandId": "run/group-natural-17/erxiang/command/2",
+            "fingerprint": "json-fnv-v1:3c480d096ea5391d",
+            "seq": 2
+          },
+          {
+            "commandId": "run/group-natural-17/erxiang/command/3",
+            "fingerprint": "json-fnv-v1:fd3c7cb038760a9c",
+            "seq": 3
+          },
+          {
+            "commandId": "run/group-natural-17/erxiang/command/4",
+            "fingerprint": "json-fnv-v1:dda419c1250f48ad",
+            "seq": 4
+          },
+          {
+            "commandId": "run/group-natural-17/erxiang/command/5",
+            "fingerprint": "json-fnv-v1:9a29a57ac4cf873e",
+            "seq": 5
+          },
+          {
+            "commandId": "run/group-natural-17/erxiang/command/6",
+            "fingerprint": "json-fnv-v1:e70c3f7f5ef1e78b",
+            "seq": 6
+          }
+        ],
+        "lastTrace": {
+          "erxiangHandoff": {
+            "targetId": null,
+            "beforeUsed": false,
+            "points": 0,
+            "afterUsed": false
+          },
+          "rulesVersion": "r2",
+          "rootId": "run/group-natural-17/erxiang/hand/run/group-natural-17/erxiang/command/6",
+          "handType": "two-pair",
+          "level": 1,
+          "sets": {
+            "playedIds": [
+              "hearts-2",
+              "spades-2",
+              "clubs-14",
+              "diamonds-14"
+            ],
+            "scoringIds": [
+              "hearts-2",
+              "spades-2",
+              "clubs-14",
+              "diamonds-14"
+            ],
+            "activeScoringIds": [
+              "hearts-2",
+              "spades-2",
+              "clubs-14",
+              "diamonds-14"
+            ],
+            "heldIds": [
+              "clubs-12",
+              "hearts-13",
+              "diamonds-11",
+              "diamonds-5"
+            ]
+          },
+          "finalScore": "362",
+          "accumulator": {
+            "H": {
+              "n": "181",
+              "d": "1"
+            },
+            "M": {
+              "n": "2",
+              "d": "1"
+            }
+          },
+          "events": [
+            {
+              "eventId": "run/group-natural-17/erxiang/hand/run/group-natural-17/erxiang/command/6/event/0",
+              "rootId": "run/group-natural-17/erxiang/hand/run/group-natural-17/erxiang/command/6",
+              "rootEventId": "run/group-natural-17/erxiang/hand/run/group-natural-17/erxiang/command/6/event/0",
+              "phase": "base",
+              "sourceType": "rule",
+              "sourceDefinitionId": "two-pair",
+              "sourceInstanceId": "run/group-natural-17/erxiang",
+              "operation": "base",
+              "value": {
+                "n": "65",
+                "d": "1"
+              },
+              "before": {
+                "H": {
+                  "n": "0",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "0",
+                  "d": "1"
+                }
+              },
+              "after": {
+                "H": {
+                  "n": "65",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "2",
+                  "d": "1"
+                }
+              },
+              "reasonKey": "two-pair.base",
+              "visibleCondition": {
+                "kind": "always"
+              },
+              "retriggerDepth": 0
+            },
+            {
+              "eventId": "run/group-natural-17/erxiang/hand/run/group-natural-17/erxiang/command/6/event/1",
+              "rootId": "run/group-natural-17/erxiang/hand/run/group-natural-17/erxiang/command/6",
+              "rootEventId": "run/group-natural-17/erxiang/hand/run/group-natural-17/erxiang/command/6/event/1",
+              "phase": "onCardScore",
+              "sourceType": "card",
+              "sourceDefinitionId": "rank-2",
+              "sourceInstanceId": "hearts-2",
+              "targetCardId": "hearts-2",
+              "operation": "add-heat",
+              "value": {
+                "n": "2",
+                "d": "1"
+              },
+              "before": {
+                "H": {
+                  "n": "65",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "2",
+                  "d": "1"
+                }
+              },
+              "after": {
+                "H": {
+                  "n": "67",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "2",
+                  "d": "1"
+                }
+              },
+              "reasonKey": "rank-2.add-heat",
+              "visibleCondition": {
+                "kind": "always"
+              },
+              "retriggerDepth": 0
+            },
+            {
+              "eventId": "run/group-natural-17/erxiang/hand/run/group-natural-17/erxiang/command/6/event/2",
+              "rootId": "run/group-natural-17/erxiang/hand/run/group-natural-17/erxiang/command/6",
+              "rootEventId": "run/group-natural-17/erxiang/hand/run/group-natural-17/erxiang/command/6/event/2",
+              "phase": "onCardScore",
+              "sourceType": "card",
+              "sourceDefinitionId": "rank-2",
+              "sourceInstanceId": "spades-2",
+              "targetCardId": "spades-2",
+              "operation": "add-heat",
+              "value": {
+                "n": "2",
+                "d": "1"
+              },
+              "before": {
+                "H": {
+                  "n": "67",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "2",
+                  "d": "1"
+                }
+              },
+              "after": {
+                "H": {
+                  "n": "69",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "2",
+                  "d": "1"
+                }
+              },
+              "reasonKey": "rank-2.add-heat",
+              "visibleCondition": {
+                "kind": "always"
+              },
+              "retriggerDepth": 0
+            },
+            {
+              "eventId": "run/group-natural-17/erxiang/hand/run/group-natural-17/erxiang/command/6/event/3",
+              "rootId": "run/group-natural-17/erxiang/hand/run/group-natural-17/erxiang/command/6",
+              "rootEventId": "run/group-natural-17/erxiang/hand/run/group-natural-17/erxiang/command/6/event/3",
+              "phase": "onCardScore",
+              "sourceType": "card",
+              "sourceDefinitionId": "rank-14",
+              "sourceInstanceId": "clubs-14",
+              "targetCardId": "clubs-14",
+              "operation": "add-heat",
+              "value": {
+                "n": "11",
+                "d": "1"
+              },
+              "before": {
+                "H": {
+                  "n": "69",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "2",
+                  "d": "1"
+                }
+              },
+              "after": {
+                "H": {
+                  "n": "80",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "2",
+                  "d": "1"
+                }
+              },
+              "reasonKey": "rank-14.add-heat",
+              "visibleCondition": {
+                "kind": "always"
+              },
+              "retriggerDepth": 0
+            },
+            {
+              "eventId": "run/group-natural-17/erxiang/hand/run/group-natural-17/erxiang/command/6/event/4",
+              "rootId": "run/group-natural-17/erxiang/hand/run/group-natural-17/erxiang/command/6",
+              "rootEventId": "run/group-natural-17/erxiang/hand/run/group-natural-17/erxiang/command/6/event/4",
+              "phase": "onCardScore",
+              "sourceType": "card",
+              "sourceDefinitionId": "rank-14",
+              "sourceInstanceId": "diamonds-14",
+              "targetCardId": "diamonds-14",
+              "operation": "add-heat",
+              "value": {
+                "n": "11",
+                "d": "1"
+              },
+              "before": {
+                "H": {
+                  "n": "80",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "2",
+                  "d": "1"
+                }
+              },
+              "after": {
+                "H": {
+                  "n": "91",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "2",
+                  "d": "1"
+                }
+              },
+              "reasonKey": "rank-14.add-heat",
+              "visibleCondition": {
+                "kind": "always"
+              },
+              "retriggerDepth": 0
+            },
+            {
+              "eventId": "run/group-natural-17/erxiang/hand/run/group-natural-17/erxiang/command/6/event/5",
+              "rootId": "run/group-natural-17/erxiang/hand/run/group-natural-17/erxiang/command/6",
+              "rootEventId": "run/group-natural-17/erxiang/hand/run/group-natural-17/erxiang/command/6/event/5",
+              "phase": "jokerScore",
+              "sourceType": "joker",
+              "sourceDefinitionId": "mantangcai",
+              "sourceInstanceId": "run/group-natural-17/erxiang/joker/run/group-natural-17/erxiang/command/3",
+              "operation": "add-heat",
+              "value": {
+                "n": "90",
+                "d": "1"
+              },
+              "before": {
+                "H": {
+                  "n": "91",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "2",
+                  "d": "1"
+                }
+              },
+              "after": {
+                "H": {
+                  "n": "181",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "2",
+                  "d": "1"
+                }
+              },
+              "reasonKey": "mantangcai.add-heat",
+              "visibleCondition": {
+                "kind": "hand-type-in",
+                "values": [
+                  "pair",
+                  "two-pair",
+                  "three-kind",
+                  "full-house",
+                  "four-kind"
+                ]
+              },
+              "retriggerDepth": 0
+            },
+            {
+              "eventId": "run/group-natural-17/erxiang/hand/run/group-natural-17/erxiang/command/6/event/6",
+              "rootId": "run/group-natural-17/erxiang/hand/run/group-natural-17/erxiang/command/6",
+              "rootEventId": "run/group-natural-17/erxiang/hand/run/group-natural-17/erxiang/command/6/event/6",
+              "phase": "finalScore",
+              "sourceType": "rule",
+              "sourceDefinitionId": "two-pair",
+              "sourceInstanceId": "run/group-natural-17/erxiang",
+              "operation": "final-score",
+              "value": {
+                "n": "362",
+                "d": "1"
+              },
+              "before": {
+                "H": {
+                  "n": "181",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "2",
+                  "d": "1"
+                }
+              },
+              "after": {
+                "H": {
+                  "n": "181",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "2",
+                  "d": "1"
+                }
+              },
+              "reasonKey": "two-pair.final-score",
+              "visibleCondition": {
+                "kind": "always"
+              },
+              "retriggerDepth": 0
+            }
+          ],
+          "jokers": [
+            {
+              "instanceId": "run/group-natural-17/erxiang/joker/run/group-natural-17/erxiang/command/3",
+              "definitionId": "mantangcai",
+              "paidPrice": 4,
+              "growth": {},
+              "edition": "none"
+            }
+          ],
+          "rng": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 2405713301
+          },
+          "goldDelta": 0,
+          "destroyedCardIds": [],
+          "destroyedJokerIds": [],
+          "cards": [
+            {
+              "id": "clubs-12",
+              "suit": "clubs",
+              "rank": 12
+            },
+            {
+              "id": "hearts-13",
+              "suit": "hearts",
+              "rank": 13
+            },
+            {
+              "id": "hearts-2",
+              "suit": "hearts",
+              "rank": 2
+            },
+            {
+              "id": "spades-2",
+              "suit": "spades",
+              "rank": 2
+            },
+            {
+              "id": "diamonds-11",
+              "suit": "diamonds",
+              "rank": 11
+            },
+            {
+              "id": "diamonds-5",
+              "suit": "diamonds",
+              "rank": 5
+            },
+            {
+              "id": "clubs-14",
+              "suit": "clubs",
+              "rank": 14
+            },
+            {
+              "id": "diamonds-14",
+              "suit": "diamonds",
+              "rank": 14
+            }
+          ],
+          "sourceJokers": [
+            {
+              "instanceId": "run/group-natural-17/erxiang/joker/run/group-natural-17/erxiang/command/3",
+              "definitionId": "mantangcai",
+              "paidPrice": 4,
+              "growth": {},
+              "edition": "none"
+            }
+          ],
+          "bossContext": {
+            "boss": null,
+            "previousHandType": null,
+            "sealedJokerIds": [],
+            "challengeDisabledJokerId": null
+          },
+          "combo": {
+            "goldBeforeRewards": null
+          }
+        },
+        "handLevels": {
+          "two-pair": 1
+        },
+        "outcome": null
+      },
+      "canonical": true
+    }
+  ],
+  "shots": [
+    "title-entrance",
+    "title-settled",
+    "ink-cover",
+    "hero-selected",
+    "route-choice",
+    "route-selected",
+    "shop-reveal",
+    "selected",
+    "hero-strike",
+    "settled"
+  ],
+  "scope": "One fixed seed, native title/hero/route/shop/card/play inputs; actual saved state against canonical command; software page frames and actual final WebAudio output. Not physical FPS, human hearing or subjective acceptance.",
+  "initial": {
+    "schemaVersion": 2,
+    "rulesVersion": "r2",
+    "contentVersion": "quality-r2-erxiang-handoff-v1",
+    "contentHash": "json-fnv-v1:4fd36cebb0ec1267",
+    "runId": "run/group-natural-17/erxiang",
+    "seed": "group-natural-17",
+    "commandSeq": 1,
+    "difficulty": 0,
+    "characterId": "erxiang",
+    "openingRoute": "group",
+    "openingShow": {
+      "handsScored": 0,
+      "rootId": null,
+      "eventId": null,
+      "reason": null
+    },
+    "routeStarter": {
+      "instanceId": null,
+      "rootId": null,
+      "eventId": null
+    },
+    "mode": "standard",
+    "challengeId": null,
+    "programsEnabled": true,
+    "programRerollCoupon": false,
+    "chapterDisabledJokerId": null,
+    "chapter": 1,
+    "stageIndex": 0,
+    "phase": "shop",
+    "deckInstances": [
+      {
+        "id": "spades-2",
+        "suit": "spades",
+        "rank": 2
+      },
+      {
+        "id": "spades-3",
+        "suit": "spades",
+        "rank": 3
+      },
+      {
+        "id": "spades-4",
+        "suit": "spades",
+        "rank": 4
+      },
+      {
+        "id": "spades-5",
+        "suit": "spades",
+        "rank": 5
+      },
+      {
+        "id": "spades-6",
+        "suit": "spades",
+        "rank": 6
+      },
+      {
+        "id": "spades-7",
+        "suit": "spades",
+        "rank": 7
+      },
+      {
+        "id": "spades-8",
+        "suit": "spades",
+        "rank": 8
+      },
+      {
+        "id": "spades-9",
+        "suit": "spades",
+        "rank": 9
+      },
+      {
+        "id": "spades-10",
+        "suit": "spades",
+        "rank": 10
+      },
+      {
+        "id": "spades-11",
+        "suit": "spades",
+        "rank": 11
+      },
+      {
+        "id": "spades-12",
+        "suit": "spades",
+        "rank": 12
+      },
+      {
+        "id": "spades-13",
+        "suit": "spades",
+        "rank": 13
+      },
+      {
+        "id": "spades-14",
+        "suit": "spades",
+        "rank": 14
+      },
+      {
+        "id": "hearts-2",
+        "suit": "hearts",
+        "rank": 2
+      },
+      {
+        "id": "hearts-3",
+        "suit": "hearts",
+        "rank": 3
+      },
+      {
+        "id": "hearts-4",
+        "suit": "hearts",
+        "rank": 4
+      },
+      {
+        "id": "hearts-5",
+        "suit": "hearts",
+        "rank": 5
+      },
+      {
+        "id": "hearts-6",
+        "suit": "hearts",
+        "rank": 6
+      },
+      {
+        "id": "hearts-7",
+        "suit": "hearts",
+        "rank": 7
+      },
+      {
+        "id": "hearts-8",
+        "suit": "hearts",
+        "rank": 8
+      },
+      {
+        "id": "hearts-9",
+        "suit": "hearts",
+        "rank": 9
+      },
+      {
+        "id": "hearts-10",
+        "suit": "hearts",
+        "rank": 10
+      },
+      {
+        "id": "hearts-11",
+        "suit": "hearts",
+        "rank": 11
+      },
+      {
+        "id": "hearts-12",
+        "suit": "hearts",
+        "rank": 12
+      },
+      {
+        "id": "hearts-13",
+        "suit": "hearts",
+        "rank": 13
+      },
+      {
+        "id": "hearts-14",
+        "suit": "hearts",
+        "rank": 14
+      },
+      {
+        "id": "clubs-2",
+        "suit": "clubs",
+        "rank": 2
+      },
+      {
+        "id": "clubs-3",
+        "suit": "clubs",
+        "rank": 3
+      },
+      {
+        "id": "clubs-4",
+        "suit": "clubs",
+        "rank": 4
+      },
+      {
+        "id": "clubs-5",
+        "suit": "clubs",
+        "rank": 5
+      },
+      {
+        "id": "clubs-6",
+        "suit": "clubs",
+        "rank": 6
+      },
+      {
+        "id": "clubs-7",
+        "suit": "clubs",
+        "rank": 7
+      },
+      {
+        "id": "clubs-8",
+        "suit": "clubs",
+        "rank": 8
+      },
+      {
+        "id": "clubs-9",
+        "suit": "clubs",
+        "rank": 9
+      },
+      {
+        "id": "clubs-10",
+        "suit": "clubs",
+        "rank": 10
+      },
+      {
+        "id": "clubs-11",
+        "suit": "clubs",
+        "rank": 11
+      },
+      {
+        "id": "clubs-12",
+        "suit": "clubs",
+        "rank": 12
+      },
+      {
+        "id": "clubs-13",
+        "suit": "clubs",
+        "rank": 13
+      },
+      {
+        "id": "clubs-14",
+        "suit": "clubs",
+        "rank": 14
+      },
+      {
+        "id": "diamonds-2",
+        "suit": "diamonds",
+        "rank": 2
+      },
+      {
+        "id": "diamonds-3",
+        "suit": "diamonds",
+        "rank": 3
+      },
+      {
+        "id": "diamonds-4",
+        "suit": "diamonds",
+        "rank": 4
+      },
+      {
+        "id": "diamonds-5",
+        "suit": "diamonds",
+        "rank": 5
+      },
+      {
+        "id": "diamonds-6",
+        "suit": "diamonds",
+        "rank": 6
+      },
+      {
+        "id": "diamonds-7",
+        "suit": "diamonds",
+        "rank": 7
+      },
+      {
+        "id": "diamonds-8",
+        "suit": "diamonds",
+        "rank": 8
+      },
+      {
+        "id": "diamonds-9",
+        "suit": "diamonds",
+        "rank": 9
+      },
+      {
+        "id": "diamonds-10",
+        "suit": "diamonds",
+        "rank": 10
+      },
+      {
+        "id": "diamonds-11",
+        "suit": "diamonds",
+        "rank": 11
+      },
+      {
+        "id": "diamonds-12",
+        "suit": "diamonds",
+        "rank": 12
+      },
+      {
+        "id": "diamonds-13",
+        "suit": "diamonds",
+        "rank": 13
+      },
+      {
+        "id": "diamonds-14",
+        "suit": "diamonds",
+        "rank": 14
+      }
+    ],
+    "drawPile": [
+      "spades-2",
+      "spades-3",
+      "spades-4",
+      "spades-5",
+      "spades-6",
+      "spades-7",
+      "spades-8",
+      "spades-9",
+      "spades-10",
+      "spades-11",
+      "spades-12",
+      "spades-13",
+      "spades-14",
+      "hearts-2",
+      "hearts-3",
+      "hearts-4",
+      "hearts-5",
+      "hearts-6",
+      "hearts-7",
+      "hearts-8",
+      "hearts-9",
+      "hearts-10",
+      "hearts-11",
+      "hearts-12",
+      "hearts-13",
+      "hearts-14",
+      "clubs-2",
+      "clubs-3",
+      "clubs-4",
+      "clubs-5",
+      "clubs-6",
+      "clubs-7",
+      "clubs-8",
+      "clubs-9",
+      "clubs-10",
+      "clubs-11",
+      "clubs-12",
+      "clubs-13",
+      "clubs-14",
+      "diamonds-2",
+      "diamonds-3",
+      "diamonds-4",
+      "diamonds-5",
+      "diamonds-6",
+      "diamonds-7",
+      "diamonds-8",
+      "diamonds-9",
+      "diamonds-10",
+      "diamonds-11",
+      "diamonds-12",
+      "diamonds-13",
+      "diamonds-14"
+    ],
+    "handOrder": [],
+    "playedPile": [],
+    "discardPile": [],
+    "destroyedIds": [],
+    "stage": null,
+    "totalHeat": "0",
+    "gold": 6,
+    "jokers": [],
+    "consumables": [],
+    "longTermItems": [],
+    "program": {
+      "chapter": 1,
+      "offerIds": [
+        "PG04",
+        "PG01"
+      ],
+      "selectedId": null,
+      "choiceMade": false,
+      "abandoned": false,
+      "lastOpportunityClear": false,
+      "claimed": false
+    },
+    "boss": {
+      "definitionId": "B01",
+      "disabledSuit": null
+    },
+    "seenBossIds": [
+      "B01"
+    ],
+    "chapterSkipConsumable": "T04",
+    "purchaseCoupons": 0,
+    "safetyNetUsed": false,
+    "shop": {
+      "visitIndex": 0,
+      "rerollCount": 0,
+      "purchases": 0,
+      "soldJoker": false,
+      "freeRerolls": 0,
+      "offers": [
+        {
+          "offerId": "run/group-natural-17/erxiang/shop/0/0/joker/0",
+          "definitionId": "b10",
+          "price": 4,
+          "edition": "none",
+          "consumed": false
+        },
+        {
+          "offerId": "run/group-natural-17/erxiang/shop/0/0/joker/1",
+          "definitionId": "b11",
+          "price": 6,
+          "edition": "none",
+          "consumed": false
+        },
+        {
+          "offerId": "run/group-natural-17/erxiang/shop/0/0/joker/2",
+          "definitionId": "mantangcai",
+          "price": 4,
+          "edition": "none",
+          "consumed": false
+        }
+      ],
+      "toolOffers": [
+        {
+          "offerId": "run/group-natural-17/erxiang/shop/0/0/tool/0",
+          "definitionId": "T06",
+          "price": 4,
+          "consumed": false
+        },
+        {
+          "offerId": "run/group-natural-17/erxiang/shop/0/0/tool/1",
+          "definitionId": "T10",
+          "price": 2,
+          "consumed": false
+        }
+      ],
+      "itemOffers": [
+        {
+          "offerId": "run/group-natural-17/erxiang/shop/0/0/item/0",
+          "definitionId": "U11",
+          "price": 10,
+          "consumed": false
+        }
+      ]
+    },
+    "spectralModifiers": {
+      "handsPenalty": 0,
+      "handPenalty": 0,
+      "cleanSlateBonus": 0
+    },
+    "supplyRewardClaimed": false,
+    "chapterHandUsage": {},
+    "normalClearClaimed": false,
+    "tourMode": "normal",
+    "normalCompletion": null,
+    "rng": {
+      "deck": {
+        "algorithm": "fnv1a-mulberry32-v1",
+        "state": 2623243611
+      },
+      "rule": {
+        "algorithm": "fnv1a-mulberry32-v1",
+        "state": 2405713301
+      },
+      "shop": {
+        "algorithm": "fnv1a-mulberry32-v1",
+        "state": 4201739804
+      },
+      "reward": {
+        "algorithm": "fnv1a-mulberry32-v1",
+        "state": 428350038
+      },
+      "program": {
+        "algorithm": "fnv1a-mulberry32-v1",
+        "state": 3495556570
+      },
+      "challenge": {
+        "algorithm": "fnv1a-mulberry32-v1",
+        "state": 111812685
+      }
+    },
+    "receipts": [
+      {
+        "commandId": "run/group-natural-17/erxiang/start",
+        "fingerprint": "json-fnv-v1:72aae23dfa9a7ff1",
+        "seq": 1
+      }
+    ],
+    "lastTrace": null,
+    "handLevels": {},
+    "outcome": null
+  },
+  "final": {
+    "schemaVersion": 2,
+    "rulesVersion": "r2",
+    "contentVersion": "quality-r2-erxiang-handoff-v1",
+    "contentHash": "json-fnv-v1:4fd36cebb0ec1267",
+    "runId": "run/group-natural-17/erxiang",
+    "seed": "group-natural-17",
+    "commandSeq": 6,
+    "difficulty": 0,
+    "characterId": "erxiang",
+    "openingRoute": "group",
+    "openingShow": {
+      "handsScored": 1,
+      "rootId": "run/group-natural-17/erxiang/hand/run/group-natural-17/erxiang/command/6",
+      "eventId": "run/group-natural-17/erxiang/hand/run/group-natural-17/erxiang/command/6/event/5",
+      "reason": "starter"
+    },
+    "routeStarter": {
+      "instanceId": "run/group-natural-17/erxiang/joker/run/group-natural-17/erxiang/command/3",
+      "rootId": "run/group-natural-17/erxiang/hand/run/group-natural-17/erxiang/command/6",
+      "eventId": "run/group-natural-17/erxiang/hand/run/group-natural-17/erxiang/command/6/event/5"
+    },
+    "mode": "standard",
+    "challengeId": null,
+    "programsEnabled": true,
+    "programRerollCoupon": false,
+    "chapterDisabledJokerId": null,
+    "chapter": 1,
+    "stageIndex": 0,
+    "phase": "await-input",
+    "deckInstances": [
+      {
+        "id": "spades-2",
+        "suit": "spades",
+        "rank": 2
+      },
+      {
+        "id": "spades-3",
+        "suit": "spades",
+        "rank": 3
+      },
+      {
+        "id": "spades-4",
+        "suit": "spades",
+        "rank": 4
+      },
+      {
+        "id": "spades-5",
+        "suit": "spades",
+        "rank": 5
+      },
+      {
+        "id": "spades-6",
+        "suit": "spades",
+        "rank": 6
+      },
+      {
+        "id": "spades-7",
+        "suit": "spades",
+        "rank": 7
+      },
+      {
+        "id": "spades-8",
+        "suit": "spades",
+        "rank": 8
+      },
+      {
+        "id": "spades-9",
+        "suit": "spades",
+        "rank": 9
+      },
+      {
+        "id": "spades-10",
+        "suit": "spades",
+        "rank": 10
+      },
+      {
+        "id": "spades-11",
+        "suit": "spades",
+        "rank": 11
+      },
+      {
+        "id": "spades-12",
+        "suit": "spades",
+        "rank": 12
+      },
+      {
+        "id": "spades-13",
+        "suit": "spades",
+        "rank": 13
+      },
+      {
+        "id": "spades-14",
+        "suit": "spades",
+        "rank": 14
+      },
+      {
+        "id": "hearts-2",
+        "suit": "hearts",
+        "rank": 2
+      },
+      {
+        "id": "hearts-3",
+        "suit": "hearts",
+        "rank": 3
+      },
+      {
+        "id": "hearts-4",
+        "suit": "hearts",
+        "rank": 4
+      },
+      {
+        "id": "hearts-5",
+        "suit": "hearts",
+        "rank": 5
+      },
+      {
+        "id": "hearts-6",
+        "suit": "hearts",
+        "rank": 6
+      },
+      {
+        "id": "hearts-7",
+        "suit": "hearts",
+        "rank": 7
+      },
+      {
+        "id": "hearts-8",
+        "suit": "hearts",
+        "rank": 8
+      },
+      {
+        "id": "hearts-9",
+        "suit": "hearts",
+        "rank": 9
+      },
+      {
+        "id": "hearts-10",
+        "suit": "hearts",
+        "rank": 10
+      },
+      {
+        "id": "hearts-11",
+        "suit": "hearts",
+        "rank": 11
+      },
+      {
+        "id": "hearts-12",
+        "suit": "hearts",
+        "rank": 12
+      },
+      {
+        "id": "hearts-13",
+        "suit": "hearts",
+        "rank": 13
+      },
+      {
+        "id": "hearts-14",
+        "suit": "hearts",
+        "rank": 14
+      },
+      {
+        "id": "clubs-2",
+        "suit": "clubs",
+        "rank": 2
+      },
+      {
+        "id": "clubs-3",
+        "suit": "clubs",
+        "rank": 3
+      },
+      {
+        "id": "clubs-4",
+        "suit": "clubs",
+        "rank": 4
+      },
+      {
+        "id": "clubs-5",
+        "suit": "clubs",
+        "rank": 5
+      },
+      {
+        "id": "clubs-6",
+        "suit": "clubs",
+        "rank": 6
+      },
+      {
+        "id": "clubs-7",
+        "suit": "clubs",
+        "rank": 7
+      },
+      {
+        "id": "clubs-8",
+        "suit": "clubs",
+        "rank": 8
+      },
+      {
+        "id": "clubs-9",
+        "suit": "clubs",
+        "rank": 9
+      },
+      {
+        "id": "clubs-10",
+        "suit": "clubs",
+        "rank": 10
+      },
+      {
+        "id": "clubs-11",
+        "suit": "clubs",
+        "rank": 11
+      },
+      {
+        "id": "clubs-12",
+        "suit": "clubs",
+        "rank": 12
+      },
+      {
+        "id": "clubs-13",
+        "suit": "clubs",
+        "rank": 13
+      },
+      {
+        "id": "clubs-14",
+        "suit": "clubs",
+        "rank": 14
+      },
+      {
+        "id": "diamonds-2",
+        "suit": "diamonds",
+        "rank": 2
+      },
+      {
+        "id": "diamonds-3",
+        "suit": "diamonds",
+        "rank": 3
+      },
+      {
+        "id": "diamonds-4",
+        "suit": "diamonds",
+        "rank": 4
+      },
+      {
+        "id": "diamonds-5",
+        "suit": "diamonds",
+        "rank": 5
+      },
+      {
+        "id": "diamonds-6",
+        "suit": "diamonds",
+        "rank": 6
+      },
+      {
+        "id": "diamonds-7",
+        "suit": "diamonds",
+        "rank": 7
+      },
+      {
+        "id": "diamonds-8",
+        "suit": "diamonds",
+        "rank": 8
+      },
+      {
+        "id": "diamonds-9",
+        "suit": "diamonds",
+        "rank": 9
+      },
+      {
+        "id": "diamonds-10",
+        "suit": "diamonds",
+        "rank": 10
+      },
+      {
+        "id": "diamonds-11",
+        "suit": "diamonds",
+        "rank": 11
+      },
+      {
+        "id": "diamonds-12",
+        "suit": "diamonds",
+        "rank": 12
+      },
+      {
+        "id": "diamonds-13",
+        "suit": "diamonds",
+        "rank": 13
+      },
+      {
+        "id": "diamonds-14",
+        "suit": "diamonds",
+        "rank": 14
+      }
+    ],
+    "drawPile": [
+      "clubs-7",
+      "clubs-8",
+      "spades-6",
+      "hearts-4",
+      "hearts-7",
+      "hearts-14",
+      "diamonds-8",
+      "diamonds-3",
+      "spades-7",
+      "diamonds-12",
+      "spades-5",
+      "hearts-6",
+      "spades-10",
+      "diamonds-2",
+      "clubs-2",
+      "spades-14",
+      "hearts-3",
+      "spades-12",
+      "spades-13",
+      "spades-9",
+      "spades-3",
+      "diamonds-9",
+      "diamonds-6",
+      "clubs-9",
+      "hearts-8",
+      "hearts-9",
+      "spades-11",
+      "clubs-13",
+      "hearts-10",
+      "diamonds-7",
+      "diamonds-13",
+      "spades-8",
+      "clubs-4",
+      "hearts-11",
+      "clubs-3",
+      "clubs-11",
+      "clubs-10",
+      "clubs-6",
+      "hearts-12",
+      "hearts-5"
+    ],
+    "handOrder": [
+      "clubs-12",
+      "hearts-13",
+      "diamonds-11",
+      "diamonds-5",
+      "diamonds-4",
+      "spades-4",
+      "clubs-5",
+      "diamonds-10"
+    ],
+    "playedPile": [
+      "hearts-2",
+      "spades-2",
+      "clubs-14",
+      "diamonds-14"
+    ],
+    "discardPile": [],
+    "destroyedIds": [],
+    "stage": {
+      "erxiangHandoffUsed": false,
+      "openingDiscard": null,
+      "index": 0,
+      "targetHeat": "400",
+      "initialTargetHeat": "400",
+      "heat": "362",
+      "handsLeft": 3,
+      "initialHands": 4,
+      "discardsLeft": 3,
+      "initialDiscards": 3,
+      "discardSpent": 0,
+      "discardGained": 0,
+      "doubleDiscardBeforeFirstPlay": false,
+      "discardsUsed": 0,
+      "skipResult": null,
+      "playIndex": 1,
+      "previousHandType": "two-pair",
+      "previousHandScore": "362",
+      "handLimit": 8,
+      "initialHandLimit": 8,
+      "boss": null,
+      "initialJokerIds": [
+        "run/group-natural-17/erxiang/joker/run/group-natural-17/erxiang/command/3"
+      ],
+      "sealedJokerIds": [],
+      "challengeDisabledJokerId": null,
+      "rescueUsed": false,
+      "clearId": null,
+      "goldEarned": 0,
+      "disabledIds": [],
+      "wagerSelected": false,
+      "wagerUsed": false,
+      "maxPlayedCount": 4,
+      "ordinaryStraightSeen": false,
+      "ordinaryFlushSeen": false,
+      "quadRefundUsed": false,
+      "jokerSold": false
+    },
+    "totalHeat": "0",
+    "gold": 2,
+    "jokers": [
+      {
+        "instanceId": "run/group-natural-17/erxiang/joker/run/group-natural-17/erxiang/command/3",
+        "definitionId": "mantangcai",
+        "paidPrice": 4,
+        "growth": {},
+        "edition": "none"
+      }
+    ],
+    "consumables": [],
+    "longTermItems": [],
+    "program": {
+      "chapter": 1,
+      "offerIds": [
+        "PG04",
+        "PG01"
+      ],
+      "selectedId": null,
+      "choiceMade": true,
+      "abandoned": false,
+      "lastOpportunityClear": false,
+      "claimed": false
+    },
+    "boss": {
+      "definitionId": "B01",
+      "disabledSuit": null
+    },
+    "seenBossIds": [
+      "B01"
+    ],
+    "chapterSkipConsumable": "T04",
+    "purchaseCoupons": 0,
+    "safetyNetUsed": false,
+    "shop": null,
+    "spectralModifiers": {
+      "handsPenalty": 0,
+      "handPenalty": 0,
+      "cleanSlateBonus": 0
+    },
+    "supplyRewardClaimed": false,
+    "chapterHandUsage": {
+      "two-pair": 1
+    },
+    "normalClearClaimed": false,
+    "tourMode": "normal",
+    "normalCompletion": null,
+    "rng": {
+      "deck": {
+        "algorithm": "fnv1a-mulberry32-v1",
+        "state": 1543819562
+      },
+      "rule": {
+        "algorithm": "fnv1a-mulberry32-v1",
+        "state": 2405713301
+      },
+      "shop": {
+        "algorithm": "fnv1a-mulberry32-v1",
+        "state": 4201739804
+      },
+      "reward": {
+        "algorithm": "fnv1a-mulberry32-v1",
+        "state": 428350038
+      },
+      "program": {
+        "algorithm": "fnv1a-mulberry32-v1",
+        "state": 3495556570
+      },
+      "challenge": {
+        "algorithm": "fnv1a-mulberry32-v1",
+        "state": 111812685
+      }
+    },
+    "receipts": [
+      {
+        "commandId": "run/group-natural-17/erxiang/start",
+        "fingerprint": "json-fnv-v1:72aae23dfa9a7ff1",
+        "seq": 1
+      },
+      {
+        "commandId": "run/group-natural-17/erxiang/command/2",
+        "fingerprint": "json-fnv-v1:3c480d096ea5391d",
+        "seq": 2
+      },
+      {
+        "commandId": "run/group-natural-17/erxiang/command/3",
+        "fingerprint": "json-fnv-v1:fd3c7cb038760a9c",
+        "seq": 3
+      },
+      {
+        "commandId": "run/group-natural-17/erxiang/command/4",
+        "fingerprint": "json-fnv-v1:dda419c1250f48ad",
+        "seq": 4
+      },
+      {
+        "commandId": "run/group-natural-17/erxiang/command/5",
+        "fingerprint": "json-fnv-v1:9a29a57ac4cf873e",
+        "seq": 5
+      },
+      {
+        "commandId": "run/group-natural-17/erxiang/command/6",
+        "fingerprint": "json-fnv-v1:e70c3f7f5ef1e78b",
+        "seq": 6
+      }
+    ],
+    "lastTrace": {
+      "erxiangHandoff": {
+        "targetId": null,
+        "beforeUsed": false,
+        "points": 0,
+        "afterUsed": false
+      },
+      "rulesVersion": "r2",
+      "rootId": "run/group-natural-17/erxiang/hand/run/group-natural-17/erxiang/command/6",
+      "handType": "two-pair",
+      "level": 1,
+      "sets": {
+        "playedIds": [
+          "hearts-2",
+          "spades-2",
+          "clubs-14",
+          "diamonds-14"
+        ],
+        "scoringIds": [
+          "hearts-2",
+          "spades-2",
+          "clubs-14",
+          "diamonds-14"
+        ],
+        "activeScoringIds": [
+          "hearts-2",
+          "spades-2",
+          "clubs-14",
+          "diamonds-14"
+        ],
+        "heldIds": [
+          "clubs-12",
+          "hearts-13",
+          "diamonds-11",
+          "diamonds-5"
+        ]
+      },
+      "finalScore": "362",
+      "accumulator": {
+        "H": {
+          "n": "181",
+          "d": "1"
+        },
+        "M": {
+          "n": "2",
+          "d": "1"
+        }
+      },
+      "events": [
+        {
+          "eventId": "run/group-natural-17/erxiang/hand/run/group-natural-17/erxiang/command/6/event/0",
+          "rootId": "run/group-natural-17/erxiang/hand/run/group-natural-17/erxiang/command/6",
+          "rootEventId": "run/group-natural-17/erxiang/hand/run/group-natural-17/erxiang/command/6/event/0",
+          "phase": "base",
+          "sourceType": "rule",
+          "sourceDefinitionId": "two-pair",
+          "sourceInstanceId": "run/group-natural-17/erxiang",
+          "operation": "base",
+          "value": {
+            "n": "65",
+            "d": "1"
+          },
+          "before": {
+            "H": {
+              "n": "0",
+              "d": "1"
+            },
+            "M": {
+              "n": "0",
+              "d": "1"
+            }
+          },
+          "after": {
+            "H": {
+              "n": "65",
+              "d": "1"
+            },
+            "M": {
+              "n": "2",
+              "d": "1"
+            }
+          },
+          "reasonKey": "two-pair.base",
+          "visibleCondition": {
+            "kind": "always"
+          },
+          "retriggerDepth": 0
+        },
+        {
+          "eventId": "run/group-natural-17/erxiang/hand/run/group-natural-17/erxiang/command/6/event/1",
+          "rootId": "run/group-natural-17/erxiang/hand/run/group-natural-17/erxiang/command/6",
+          "rootEventId": "run/group-natural-17/erxiang/hand/run/group-natural-17/erxiang/command/6/event/1",
+          "phase": "onCardScore",
+          "sourceType": "card",
+          "sourceDefinitionId": "rank-2",
+          "sourceInstanceId": "hearts-2",
+          "targetCardId": "hearts-2",
+          "operation": "add-heat",
+          "value": {
+            "n": "2",
+            "d": "1"
+          },
+          "before": {
+            "H": {
+              "n": "65",
+              "d": "1"
+            },
+            "M": {
+              "n": "2",
+              "d": "1"
+            }
+          },
+          "after": {
+            "H": {
+              "n": "67",
+              "d": "1"
+            },
+            "M": {
+              "n": "2",
+              "d": "1"
+            }
+          },
+          "reasonKey": "rank-2.add-heat",
+          "visibleCondition": {
+            "kind": "always"
+          },
+          "retriggerDepth": 0
+        },
+        {
+          "eventId": "run/group-natural-17/erxiang/hand/run/group-natural-17/erxiang/command/6/event/2",
+          "rootId": "run/group-natural-17/erxiang/hand/run/group-natural-17/erxiang/command/6",
+          "rootEventId": "run/group-natural-17/erxiang/hand/run/group-natural-17/erxiang/command/6/event/2",
+          "phase": "onCardScore",
+          "sourceType": "card",
+          "sourceDefinitionId": "rank-2",
+          "sourceInstanceId": "spades-2",
+          "targetCardId": "spades-2",
+          "operation": "add-heat",
+          "value": {
+            "n": "2",
+            "d": "1"
+          },
+          "before": {
+            "H": {
+              "n": "67",
+              "d": "1"
+            },
+            "M": {
+              "n": "2",
+              "d": "1"
+            }
+          },
+          "after": {
+            "H": {
+              "n": "69",
+              "d": "1"
+            },
+            "M": {
+              "n": "2",
+              "d": "1"
+            }
+          },
+          "reasonKey": "rank-2.add-heat",
+          "visibleCondition": {
+            "kind": "always"
+          },
+          "retriggerDepth": 0
+        },
+        {
+          "eventId": "run/group-natural-17/erxiang/hand/run/group-natural-17/erxiang/command/6/event/3",
+          "rootId": "run/group-natural-17/erxiang/hand/run/group-natural-17/erxiang/command/6",
+          "rootEventId": "run/group-natural-17/erxiang/hand/run/group-natural-17/erxiang/command/6/event/3",
+          "phase": "onCardScore",
+          "sourceType": "card",
+          "sourceDefinitionId": "rank-14",
+          "sourceInstanceId": "clubs-14",
+          "targetCardId": "clubs-14",
+          "operation": "add-heat",
+          "value": {
+            "n": "11",
+            "d": "1"
+          },
+          "before": {
+            "H": {
+              "n": "69",
+              "d": "1"
+            },
+            "M": {
+              "n": "2",
+              "d": "1"
+            }
+          },
+          "after": {
+            "H": {
+              "n": "80",
+              "d": "1"
+            },
+            "M": {
+              "n": "2",
+              "d": "1"
+            }
+          },
+          "reasonKey": "rank-14.add-heat",
+          "visibleCondition": {
+            "kind": "always"
+          },
+          "retriggerDepth": 0
+        },
+        {
+          "eventId": "run/group-natural-17/erxiang/hand/run/group-natural-17/erxiang/command/6/event/4",
+          "rootId": "run/group-natural-17/erxiang/hand/run/group-natural-17/erxiang/command/6",
+          "rootEventId": "run/group-natural-17/erxiang/hand/run/group-natural-17/erxiang/command/6/event/4",
+          "phase": "onCardScore",
+          "sourceType": "card",
+          "sourceDefinitionId": "rank-14",
+          "sourceInstanceId": "diamonds-14",
+          "targetCardId": "diamonds-14",
+          "operation": "add-heat",
+          "value": {
+            "n": "11",
+            "d": "1"
+          },
+          "before": {
+            "H": {
+              "n": "80",
+              "d": "1"
+            },
+            "M": {
+              "n": "2",
+              "d": "1"
+            }
+          },
+          "after": {
+            "H": {
+              "n": "91",
+              "d": "1"
+            },
+            "M": {
+              "n": "2",
+              "d": "1"
+            }
+          },
+          "reasonKey": "rank-14.add-heat",
+          "visibleCondition": {
+            "kind": "always"
+          },
+          "retriggerDepth": 0
+        },
+        {
+          "eventId": "run/group-natural-17/erxiang/hand/run/group-natural-17/erxiang/command/6/event/5",
+          "rootId": "run/group-natural-17/erxiang/hand/run/group-natural-17/erxiang/command/6",
+          "rootEventId": "run/group-natural-17/erxiang/hand/run/group-natural-17/erxiang/command/6/event/5",
+          "phase": "jokerScore",
+          "sourceType": "joker",
+          "sourceDefinitionId": "mantangcai",
+          "sourceInstanceId": "run/group-natural-17/erxiang/joker/run/group-natural-17/erxiang/command/3",
+          "operation": "add-heat",
+          "value": {
+            "n": "90",
+            "d": "1"
+          },
+          "before": {
+            "H": {
+              "n": "91",
+              "d": "1"
+            },
+            "M": {
+              "n": "2",
+              "d": "1"
+            }
+          },
+          "after": {
+            "H": {
+              "n": "181",
+              "d": "1"
+            },
+            "M": {
+              "n": "2",
+              "d": "1"
+            }
+          },
+          "reasonKey": "mantangcai.add-heat",
+          "visibleCondition": {
+            "kind": "hand-type-in",
+            "values": [
+              "pair",
+              "two-pair",
+              "three-kind",
+              "full-house",
+              "four-kind"
+            ]
+          },
+          "retriggerDepth": 0
+        },
+        {
+          "eventId": "run/group-natural-17/erxiang/hand/run/group-natural-17/erxiang/command/6/event/6",
+          "rootId": "run/group-natural-17/erxiang/hand/run/group-natural-17/erxiang/command/6",
+          "rootEventId": "run/group-natural-17/erxiang/hand/run/group-natural-17/erxiang/command/6/event/6",
+          "phase": "finalScore",
+          "sourceType": "rule",
+          "sourceDefinitionId": "two-pair",
+          "sourceInstanceId": "run/group-natural-17/erxiang",
+          "operation": "final-score",
+          "value": {
+            "n": "362",
+            "d": "1"
+          },
+          "before": {
+            "H": {
+              "n": "181",
+              "d": "1"
+            },
+            "M": {
+              "n": "2",
+              "d": "1"
+            }
+          },
+          "after": {
+            "H": {
+              "n": "181",
+              "d": "1"
+            },
+            "M": {
+              "n": "2",
+              "d": "1"
+            }
+          },
+          "reasonKey": "two-pair.final-score",
+          "visibleCondition": {
+            "kind": "always"
+          },
+          "retriggerDepth": 0
+        }
+      ],
+      "jokers": [
+        {
+          "instanceId": "run/group-natural-17/erxiang/joker/run/group-natural-17/erxiang/command/3",
+          "definitionId": "mantangcai",
+          "paidPrice": 4,
+          "growth": {},
+          "edition": "none"
+        }
+      ],
+      "rng": {
+        "algorithm": "fnv1a-mulberry32-v1",
+        "state": 2405713301
+      },
+      "goldDelta": 0,
+      "destroyedCardIds": [],
+      "destroyedJokerIds": [],
+      "cards": [
+        {
+          "id": "clubs-12",
+          "suit": "clubs",
+          "rank": 12
+        },
+        {
+          "id": "hearts-13",
+          "suit": "hearts",
+          "rank": 13
+        },
+        {
+          "id": "hearts-2",
+          "suit": "hearts",
+          "rank": 2
+        },
+        {
+          "id": "spades-2",
+          "suit": "spades",
+          "rank": 2
+        },
+        {
+          "id": "diamonds-11",
+          "suit": "diamonds",
+          "rank": 11
+        },
+        {
+          "id": "diamonds-5",
+          "suit": "diamonds",
+          "rank": 5
+        },
+        {
+          "id": "clubs-14",
+          "suit": "clubs",
+          "rank": 14
+        },
+        {
+          "id": "diamonds-14",
+          "suit": "diamonds",
+          "rank": 14
+        }
+      ],
+      "sourceJokers": [
+        {
+          "instanceId": "run/group-natural-17/erxiang/joker/run/group-natural-17/erxiang/command/3",
+          "definitionId": "mantangcai",
+          "paidPrice": 4,
+          "growth": {},
+          "edition": "none"
+        }
+      ],
+      "bossContext": {
+        "boss": null,
+        "previousHandType": null,
+        "sealedJokerIds": [],
+        "challengeDisabledJokerId": null
+      },
+      "combo": {
+        "goldBeforeRewards": null
+      }
+    },
+    "handLevels": {
+      "two-pair": 1
+    },
+    "outcome": null
+  },
+  "frames": [
+    {
+      "time": 11859.09999999404,
+      "phase": "charge",
+      "event": "run/group-natural-17/erxiang/hand/run/group-natural-17/erxiang/command/6/event/5",
+      "heroX": 62.40000000000002,
+      "heroY": 340.132,
+      "scale": 0.3515707317073171,
+      "boardX": -280.8
+    },
+    {
+      "time": 11869.40000000596,
+      "phase": "charge",
+      "event": "run/group-natural-17/erxiang/hand/run/group-natural-17/erxiang/command/6/event/5",
+      "heroX": 63.71724124405474,
+      "heroY": 339.53902966505575,
+      "scale": 0.3526343593325063,
+      "boardX": -240.75089999999997
+    },
+    {
+      "time": 11885.800000011921,
+      "phase": "charge",
+      "event": "run/group-natural-17/erxiang/hand/run/group-natural-17/erxiang/command/6/event/5",
+      "heroX": 69.05146223528268,
+      "heroY": 337.13777262720396,
+      "scale": 0.3569415618519701,
+      "boardX": -181.73786670000004
+    },
+    {
+      "time": 11902.40000000596,
+      "phase": "charge",
+      "event": "run/group-natural-17/erxiang/hand/run/group-natural-17/erxiang/command/6/event/5",
+      "heroX": 76.31715120629411,
+      "heroY": 333.8670444730509,
+      "scale": 0.36280835925182375,
+      "boardX": -135.83324430000002
+    },
+    {
+      "time": 11919.09999999404,
+      "phase": "charge",
+      "event": "run/group-natural-17/erxiang/hand/run/group-natural-17/erxiang/command/6/event/5",
+      "heroX": 85.05641465190234,
+      "heroY": 329.93297089624974,
+      "scale": 0.36986501805787675,
+      "boardX": -96.3144
+    },
+    {
+      "time": 11935.699999988079,
+      "phase": "charge",
+      "event": "run/group-natural-17/erxiang/hand/run/group-natural-17/erxiang/command/6/event/5",
+      "heroX": 93.80767397922597,
+      "heroY": 325.99349724407836,
+      "scale": 0.37693136313152775,
+      "boardX": -65.31643170000001
+    },
+    {
+      "time": 11952.40000000596,
+      "phase": "charge",
+      "event": "run/group-natural-17/erxiang/hand/run/group-natural-17/erxiang/command/6/event/5",
+      "heroX": 101.41486044162073,
+      "heroY": 322.56904031566916,
+      "scale": 0.38307390817245135,
+      "boardX": -42.99900929999998
+    },
+    {
+      "time": 11969,
+      "phase": "charge",
+      "event": "run/group-natural-17/erxiang/hand/run/group-natural-17/erxiang/command/6/event/5",
+      "heroX": 108.4183815691203,
+      "heroY": 319.4163298402674,
+      "scale": 0.3887290139311162,
+      "boardX": -25.58789999999999
+    },
+    {
+      "time": 11985.90000000596,
+      "phase": "charge",
+      "event": "run/group-natural-17/erxiang/hand/run/group-natural-17/erxiang/command/6/event/5",
+      "heroX": 114.11587454517652,
+      "heroY": 316.85154200538676,
+      "scale": 0.3933295462565397,
+      "boardX": -13.654496699999982
+    },
+    {
+      "time": 12003,
+      "phase": "charge",
+      "event": "run/group-natural-17/erxiang/hand/run/group-natural-17/erxiang/command/6/event/5",
+      "heroX": 118.4768383494561,
+      "heroY": 314.8884071738783,
+      "scale": 0.39685087660936397,
+      "boardX": -6.164121599999987
+    },
+    {
+      "time": 12019.199999988079,
+      "phase": "charge",
+      "event": "run/group-natural-17/erxiang/hand/run/group-natural-17/erxiang/command/6/event/5",
+      "heroX": 121.43746711443444,
+      "heroY": 313.55564824430604,
+      "scale": 0.39924148391578834,
+      "boardX": -2.246399999999994
+    },
+    {
+      "time": 12035.699999988079,
+      "phase": "charge",
+      "event": "run/group-natural-17/erxiang/hand/run/group-natural-17/erxiang/command/6/event/5",
+      "heroX": 123.51797953544002,
+      "heroY": 312.61908316732604,
+      "scale": 0.40092142712704026,
+      "boardX": -0.42706169999996746
+    },
+    {
+      "time": 12052.300000011921,
+      "phase": "charge",
+      "event": "run/group-natural-17/erxiang/hand/run/group-natural-17/erxiang/command/6/event/5",
+      "heroX": 124.64578208156861,
+      "heroY": 312.1113907028309,
+      "scale": 0.40183208942920795,
+      "boardX": -0.012039300000026287
+    },
+    {
+      "time": 12069,
+      "phase": "charge",
+      "event": "run/group-natural-17/erxiang/hand/run/group-natural-17/erxiang/command/6/event/5",
+      "heroX": 125.15321554297674,
+      "heroY": 311.88296406425485,
+      "scale": 0.4022418247377059,
+      "boardX": 0
+    },
+    {
+      "time": 12085.59999999404,
+      "phase": "charge",
+      "event": "run/group-natural-17/erxiang/hand/run/group-natural-17/erxiang/command/6/event/5",
+      "heroX": 125.14091055487395,
+      "heroY": 311.888503287195,
+      "scale": 0.4022318888771847,
+      "boardX": 0
+    },
+    {
+      "time": 12102.300000011921,
+      "phase": "charge",
+      "event": "run/group-natural-17/erxiang/hand/run/group-natural-17/erxiang/command/6/event/5",
+      "heroX": 124.8093198491318,
+      "heroY": 312.03777241518185,
+      "scale": 0.40196414062949265,
+      "boardX": 0
+    },
+    {
+      "time": 12119,
+      "phase": "charge",
+      "event": "run/group-natural-17/erxiang/hand/run/group-natural-17/erxiang/command/6/event/5",
+      "heroX": 124.60000000000002,
+      "heroY": 312.132,
+      "scale": 0.4017951219512195,
+      "boardX": 0
+    },
+    {
+      "time": 12135.59999999404,
+      "phase": "charge",
+      "event": "run/group-natural-17/erxiang/hand/run/group-natural-17/erxiang/command/6/event/5",
+      "heroX": 124.60000000000002,
+      "heroY": 312.132,
+      "scale": 0.4017951219512195,
+      "boardX": 0
+    },
+    {
+      "time": 12152.40000000596,
+      "phase": "charge",
+      "event": "run/group-natural-17/erxiang/hand/run/group-natural-17/erxiang/command/6/event/5",
+      "heroX": 124.60000000000002,
+      "heroY": 312.132,
+      "scale": 0.4017951219512195,
+      "boardX": 0
+    },
+    {
+      "time": 12169.09999999404,
+      "phase": "strike",
+      "event": "run/group-natural-17/erxiang/hand/run/group-natural-17/erxiang/command/6/event/5",
+      "heroX": 150.60000000000002,
+      "heroY": 294.132,
+      "scale": 0.4855024390243903,
+      "boardX": 0
+    },
+    {
+      "time": 12187.40000000596,
+      "phase": "strike",
+      "event": "run/group-natural-17/erxiang/hand/run/group-natural-17/erxiang/command/6/event/5",
+      "heroX": 150.15085424035826,
+      "heroY": 294.5811457596418,
+      "scale": 0.4838314707348612,
+      "boardX": 0
+    },
+    {
+      "time": 12204,
+      "phase": "strike",
+      "event": "run/group-natural-17/erxiang/hand/run/group-natural-17/erxiang/command/6/event/5",
+      "heroX": 149.28896634314242,
+      "heroY": 295.4430336568576,
+      "scale": 0.4806249674684712,
+      "boardX": 0
+    },
+    {
+      "time": 12220.90000000596,
+      "phase": "strike",
+      "event": "run/group-natural-17/erxiang/hand/run/group-natural-17/erxiang/command/6/event/5",
+      "heroX": 148.03014213286127,
+      "heroY": 296.70185786713876,
+      "scale": 0.4759417320324985,
+      "boardX": 0
+    },
+    {
+      "time": 12237.300000011921,
+      "phase": "strike",
+      "event": "run/group-natural-17/erxiang/hand/run/group-natural-17/erxiang/command/6/event/5",
+      "heroX": 146.536115531899,
+      "heroY": 298.19588446810104,
+      "scale": 0.47038346721460955,
+      "boardX": 0
+    },
+    {
+      "time": 12254.09999999404,
+      "phase": "strike",
+      "event": "run/group-natural-17/erxiang/hand/run/group-natural-17/erxiang/command/6/event/5",
+      "heroX": 144.91941218380776,
+      "heroY": 299.81258781619226,
+      "scale": 0.4643688050025238,
+      "boardX": 0
+    },
+    {
+      "time": 12270.59999999404,
+      "phase": "strike",
+      "event": "run/group-natural-17/erxiang/hand/run/group-natural-17/erxiang/command/6/event/5",
+      "heroX": 143.35826722460965,
+      "heroY": 301.3737327753904,
+      "scale": 0.4585608380648892,
+      "boardX": 0
+    },
+    {
+      "time": 12287.5,
+      "phase": "strike",
+      "event": "run/group-natural-17/erxiang/hand/run/group-natural-17/erxiang/command/6/event/5",
+      "heroX": 141.72497942570126,
+      "heroY": 303.00702057429874,
+      "scale": 0.4524844763024463,
+      "boardX": 0
+    },
+    {
+      "time": 12304.300000011921,
+      "phase": "strike",
+      "event": "run/group-natural-17/erxiang/hand/run/group-natural-17/erxiang/command/6/event/5",
+      "heroX": 140.16799583806633,
+      "heroY": 304.56400416193367,
+      "scale": 0.4466919910203183,
+      "boardX": 0
+    },
+    {
+      "time": 12320.800000011921,
+      "phase": "strike",
+      "event": "run/group-natural-17/erxiang/hand/run/group-natural-17/erxiang/command/6/event/5",
+      "heroX": 138.80896911409548,
+      "heroY": 305.92303088590455,
+      "scale": 0.4416359696472364,
+      "boardX": 0
+    },
+    {
+      "time": 12337.40000000596,
+      "phase": "strike",
+      "event": "run/group-natural-17/erxiang/hand/run/group-natural-17/erxiang/command/6/event/5",
+      "heroX": 137.49741388413582,
+      "heroY": 307.2345861158642,
+      "scale": 0.4367565576697605,
+      "boardX": 0
+    },
+    {
+      "time": 12354.5,
+      "phase": "strike",
+      "event": "run/group-natural-17/erxiang/hand/run/group-natural-17/erxiang/command/6/event/5",
+      "heroX": 136.40514166712188,
+      "heroY": 308.32685833287815,
+      "scale": 0.4326929498119916,
+      "boardX": 0
+    },
+    {
+      "time": 12370.90000000596,
+      "phase": "strike",
+      "event": "run/group-natural-17/erxiang/hand/run/group-natural-17/erxiang/command/6/event/5",
+      "heroX": 135.4019522040114,
+      "heroY": 309.33004779598866,
+      "scale": 0.4289607587687448,
+      "boardX": 0
+    },
+    {
+      "time": 12388.90000000596,
+      "phase": "strike",
+      "event": "run/group-natural-17/erxiang/hand/run/group-natural-17/erxiang/command/6/event/5",
+      "heroX": 134.55367709083396,
+      "heroY": 310.17832290916607,
+      "scale": 0.4258048994858993,
+      "boardX": 0
+    },
+    {
+      "time": 12405.59999999404,
+      "phase": "strike",
+      "event": "run/group-natural-17/erxiang/hand/run/group-natural-17/erxiang/command/6/event/5",
+      "heroX": 133.90161401682673,
+      "heroY": 310.8303859831733,
+      "scale": 0.42337901279756024,
+      "boardX": 0
+    },
+    {
+      "time": 12423,
+      "phase": "strike",
+      "event": "run/group-natural-17/erxiang/hand/run/group-natural-17/erxiang/command/6/event/5",
+      "heroX": 133.34585122992655,
+      "heroY": 311.3861487700735,
+      "scale": 0.42131139449442584,
+      "boardX": 0
+    },
+    {
+      "time": 12438.40000000596,
+      "phase": "strike",
+      "event": "run/group-natural-17/erxiang/hand/run/group-natural-17/erxiang/command/6/event/5",
+      "heroX": 132.9206981839827,
+      "heroY": 311.8113018160173,
+      "scale": 0.4197296869023616,
+      "boardX": 0
+    },
+    {
+      "time": 12452.5,
+      "phase": "strike",
+      "event": "run/group-natural-17/erxiang/hand/run/group-natural-17/erxiang/command/6/event/5",
+      "heroX": 132.62955408372628,
+      "heroY": 312.1024459162737,
+      "scale": 0.41864653616839953,
+      "boardX": 0
+    },
+    {
+      "time": 12469.300000011921,
+      "phase": "strike",
+      "event": "run/group-natural-17/erxiang/hand/run/group-natural-17/erxiang/command/6/event/5",
+      "heroX": 132.41706148326074,
+      "heroY": 312.3149385167393,
+      "scale": 0.417855994591383,
+      "boardX": 0
+    },
+    {
+      "time": 12485.800000011921,
+      "phase": "strike",
+      "event": "run/group-natural-17/erxiang/hand/run/group-natural-17/erxiang/command/6/event/5",
+      "heroX": 132.29281815128766,
+      "heroY": 312.4391818487124,
+      "scale": 0.4173937689921075,
+      "boardX": 0
+    },
+    {
+      "time": 12502.59999999404,
+      "phase": "strike",
+      "event": "run/group-natural-17/erxiang/hand/run/group-natural-17/erxiang/command/6/event/5",
+      "heroX": 132.2412354236227,
+      "heroY": 312.49076457637733,
+      "scale": 0.4172018644703231,
+      "boardX": 0
+    },
+    {
+      "time": 12519,
+      "phase": "strike",
+      "event": "run/group-natural-17/erxiang/hand/run/group-natural-17/erxiang/command/6/event/5",
+      "heroX": 132.2413691749735,
+      "heroY": 312.4906308250265,
+      "scale": 0.4172023620688445,
+      "boardX": 0
+    },
+    {
+      "time": 12535.699999988079,
+      "phase": "strike",
+      "event": "run/group-natural-17/erxiang/hand/run/group-natural-17/erxiang/command/6/event/5",
+      "heroX": 132.28834152637518,
+      "heroY": 312.44365847362485,
+      "scale": 0.4173771144916202,
+      "boardX": 0
+    },
+    {
+      "time": 12552.40000000596,
+      "phase": "strike",
+      "event": "run/group-natural-17/erxiang/hand/run/group-natural-17/erxiang/command/6/event/5",
+      "heroX": 132.36211933729257,
+      "heroY": 312.3698806627075,
+      "scale": 0.41765159194101686,
+      "boardX": 0
+    },
+    {
+      "time": 12569.09999999404,
+      "phase": "strike",
+      "event": "run/group-natural-17/erxiang/hand/run/group-natural-17/erxiang/command/6/event/5",
+      "heroX": 132.46305400093422,
+      "heroY": 312.2689459990658,
+      "scale": 0.4180271017140446,
+      "boardX": 0
+    },
+    {
+      "time": 12585.699999988079,
+      "phase": "strike",
+      "event": "run/group-natural-17/erxiang/hand/run/group-natural-17/erxiang/command/6/event/5",
+      "heroX": 132.5787958258785,
+      "heroY": 312.1532041741215,
+      "scale": 0.4184576989424552,
+      "boardX": 0
+    },
+    {
+      "time": 12602.300000011921,
+      "phase": "strike",
+      "event": "run/group-natural-17/erxiang/hand/run/group-natural-17/erxiang/command/6/event/5",
+      "heroX": 132.60000000000002,
+      "heroY": 312.132,
+      "scale": 0.4185365853658537,
+      "boardX": 0
+    },
+    {
+      "time": 12619.09999999404,
+      "phase": "strike",
+      "event": "run/group-natural-17/erxiang/hand/run/group-natural-17/erxiang/command/6/event/5",
+      "heroX": 132.60000000000002,
+      "heroY": 312.132,
+      "scale": 0.4185365853658537,
+      "boardX": 0
+    },
+    {
+      "time": 12635.699999988079,
+      "phase": "strike",
+      "event": "run/group-natural-17/erxiang/hand/run/group-natural-17/erxiang/command/6/event/5",
+      "heroX": 132.60000000000002,
+      "heroY": 312.132,
+      "scale": 0.4185365853658537,
+      "boardX": 0
+    },
+    {
+      "time": 12652.40000000596,
+      "phase": "strike",
+      "event": "run/group-natural-17/erxiang/hand/run/group-natural-17/erxiang/command/6/event/5",
+      "heroX": 132.60000000000002,
+      "heroY": 312.132,
+      "scale": 0.4185365853658537,
+      "boardX": 0
+    },
+    {
+      "time": 12669,
+      "phase": "strike",
+      "event": "run/group-natural-17/erxiang/hand/run/group-natural-17/erxiang/command/6/event/5",
+      "heroX": 132.60000000000002,
+      "heroY": 312.132,
+      "scale": 0.4185365853658537,
+      "boardX": 0
+    },
+    {
+      "time": 12685.800000011921,
+      "phase": "strike",
+      "event": "run/group-natural-17/erxiang/hand/run/group-natural-17/erxiang/command/6/event/5",
+      "heroX": 132.60000000000002,
+      "heroY": 312.132,
+      "scale": 0.4185365853658537,
+      "boardX": 0
+    },
+    {
+      "time": 12702.40000000596,
+      "phase": "strike",
+      "event": "run/group-natural-17/erxiang/hand/run/group-natural-17/erxiang/command/6/event/5",
+      "heroX": 132.60000000000002,
+      "heroY": 312.132,
+      "scale": 0.4185365853658537,
+      "boardX": 0
+    },
+    {
+      "time": 12719,
+      "phase": "strike",
+      "event": "run/group-natural-17/erxiang/hand/run/group-natural-17/erxiang/command/6/event/5",
+      "heroX": 132.60000000000002,
+      "heroY": 312.132,
+      "scale": 0.4185365853658537,
+      "boardX": 0
+    },
+    {
+      "time": 12735.699999988079,
+      "phase": "strike",
+      "event": "run/group-natural-17/erxiang/hand/run/group-natural-17/erxiang/command/6/event/5",
+      "heroX": 132.60000000000002,
+      "heroY": 312.132,
+      "scale": 0.4185365853658537,
+      "boardX": 0
+    },
+    {
+      "time": 12752.40000000596,
+      "phase": "strike",
+      "event": "run/group-natural-17/erxiang/hand/run/group-natural-17/erxiang/command/6/event/5",
+      "heroX": 132.60000000000002,
+      "heroY": 312.132,
+      "scale": 0.4185365853658537,
+      "boardX": 0
+    },
+    {
+      "time": 12769,
+      "phase": "strike",
+      "event": "run/group-natural-17/erxiang/hand/run/group-natural-17/erxiang/command/6/event/5",
+      "heroX": 132.60000000000002,
+      "heroY": 312.132,
+      "scale": 0.4185365853658537,
+      "boardX": 0
+    },
+    {
+      "time": 12785.699999988079,
+      "phase": "strike",
+      "event": "run/group-natural-17/erxiang/hand/run/group-natural-17/erxiang/command/6/event/5",
+      "heroX": 132.60000000000002,
+      "heroY": 312.132,
+      "scale": 0.4185365853658537,
+      "boardX": 0
+    },
+    {
+      "time": 12802.40000000596,
+      "phase": "strike",
+      "event": "run/group-natural-17/erxiang/hand/run/group-natural-17/erxiang/command/6/event/5",
+      "heroX": 132.60000000000002,
+      "heroY": 312.132,
+      "scale": 0.4185365853658537,
+      "boardX": 0
+    },
+    {
+      "time": 12819,
+      "phase": "strike",
+      "event": "run/group-natural-17/erxiang/hand/run/group-natural-17/erxiang/command/6/event/5",
+      "heroX": 132.60000000000002,
+      "heroY": 312.132,
+      "scale": 0.4185365853658537,
+      "boardX": 0
+    },
+    {
+      "time": 12835.90000000596,
+      "phase": "strike",
+      "event": "run/group-natural-17/erxiang/hand/run/group-natural-17/erxiang/command/6/event/5",
+      "heroX": 132.60000000000002,
+      "heroY": 312.132,
+      "scale": 0.4185365853658537,
+      "boardX": 0
+    },
+    {
+      "time": 12852.5,
+      "phase": "strike",
+      "event": "run/group-natural-17/erxiang/hand/run/group-natural-17/erxiang/command/6/event/5",
+      "heroX": 132.60000000000002,
+      "heroY": 312.132,
+      "scale": 0.4185365853658537,
+      "boardX": 0
+    },
+    {
+      "time": 12869,
+      "phase": "strike",
+      "event": "run/group-natural-17/erxiang/hand/run/group-natural-17/erxiang/command/6/event/5",
+      "heroX": 132.60000000000002,
+      "heroY": 312.132,
+      "scale": 0.4185365853658537,
+      "boardX": 0
+    },
+    {
+      "time": 12885.699999988079,
+      "phase": "strike",
+      "event": "run/group-natural-17/erxiang/hand/run/group-natural-17/erxiang/command/6/event/5",
+      "heroX": 132.60000000000002,
+      "heroY": 312.132,
+      "scale": 0.4185365853658537,
+      "boardX": 0
+    },
+    {
+      "time": 12902.300000011921,
+      "phase": "strike",
+      "event": "run/group-natural-17/erxiang/hand/run/group-natural-17/erxiang/command/6/event/5",
+      "heroX": 132.60000000000002,
+      "heroY": 312.132,
+      "scale": 0.4185365853658537,
+      "boardX": 0
+    },
+    {
+      "time": 12919.09999999404,
+      "phase": "strike",
+      "event": "run/group-natural-17/erxiang/hand/run/group-natural-17/erxiang/command/6/event/5",
+      "heroX": 132.60000000000002,
+      "heroY": 312.132,
+      "scale": 0.4185365853658537,
+      "boardX": 0
+    },
+    {
+      "time": 12935.699999988079,
+      "phase": "strike",
+      "event": "run/group-natural-17/erxiang/hand/run/group-natural-17/erxiang/command/6/event/5",
+      "heroX": 132.60000000000002,
+      "heroY": 312.132,
+      "scale": 0.4185365853658537,
+      "boardX": 0
+    },
+    {
+      "time": 12952.5,
+      "phase": "strike",
+      "event": "run/group-natural-17/erxiang/hand/run/group-natural-17/erxiang/command/6/event/5",
+      "heroX": 132.60000000000002,
+      "heroY": 312.132,
+      "scale": 0.4185365853658537,
+      "boardX": 0
+    },
+    {
+      "time": 12969,
+      "phase": "strike",
+      "event": "run/group-natural-17/erxiang/hand/run/group-natural-17/erxiang/command/6/event/5",
+      "heroX": 132.60000000000002,
+      "heroY": 312.132,
+      "scale": 0.4185365853658537,
+      "boardX": 0
+    },
+    {
+      "time": 12985.800000011921,
+      "phase": "strike",
+      "event": "run/group-natural-17/erxiang/hand/run/group-natural-17/erxiang/command/6/event/5",
+      "heroX": 132.60000000000002,
+      "heroY": 312.132,
+      "scale": 0.4185365853658537,
+      "boardX": 0
+    },
+    {
+      "time": 13002.300000011921,
+      "phase": "strike",
+      "event": "run/group-natural-17/erxiang/hand/run/group-natural-17/erxiang/command/6/event/5",
+      "heroX": 132.60000000000002,
+      "heroY": 312.132,
+      "scale": 0.4185365853658537,
+      "boardX": 0
+    },
+    {
+      "time": 13019.300000011921,
+      "phase": "strike",
+      "event": "run/group-natural-17/erxiang/hand/run/group-natural-17/erxiang/command/6/event/5",
+      "heroX": 132.60000000000002,
+      "heroY": 312.132,
+      "scale": 0.4185365853658537,
+      "boardX": 0
+    },
+    {
+      "time": 13035.5,
+      "phase": "strike",
+      "event": "run/group-natural-17/erxiang/hand/run/group-natural-17/erxiang/command/6/event/5",
+      "heroX": 132.60000000000002,
+      "heroY": 312.132,
+      "scale": 0.4185365853658537,
+      "boardX": 0
+    },
+    {
+      "time": 13052.800000011921,
+      "phase": "strike",
+      "event": "run/group-natural-17/erxiang/hand/run/group-natural-17/erxiang/command/6/event/5",
+      "heroX": 132.60000000000002,
+      "heroY": 312.132,
+      "scale": 0.4185365853658537,
+      "boardX": 0
+    },
+    {
+      "time": 13069,
+      "phase": "strike",
+      "event": "run/group-natural-17/erxiang/hand/run/group-natural-17/erxiang/command/6/event/5",
+      "heroX": 132.60000000000002,
+      "heroY": 312.132,
+      "scale": 0.4185365853658537,
+      "boardX": 0
+    },
+    {
+      "time": 13085.59999999404,
+      "phase": "strike",
+      "event": "run/group-natural-17/erxiang/hand/run/group-natural-17/erxiang/command/6/event/5",
+      "heroX": 132.60000000000002,
+      "heroY": 312.132,
+      "scale": 0.4185365853658537,
+      "boardX": 0
+    },
+    {
+      "time": 13102.300000011921,
+      "phase": "strike",
+      "event": "run/group-natural-17/erxiang/hand/run/group-natural-17/erxiang/command/6/event/5",
+      "heroX": 132.60000000000002,
+      "heroY": 312.132,
+      "scale": 0.4185365853658537,
+      "boardX": 0
+    },
+    {
+      "time": 13118.90000000596,
+      "phase": "strike",
+      "event": "run/group-natural-17/erxiang/hand/run/group-natural-17/erxiang/command/6/event/5",
+      "heroX": 132.60000000000002,
+      "heroY": 312.132,
+      "scale": 0.4185365853658537,
+      "boardX": 0
+    },
+    {
+      "time": 13135.59999999404,
+      "phase": "strike",
+      "event": "run/group-natural-17/erxiang/hand/run/group-natural-17/erxiang/command/6/event/5",
+      "heroX": 132.60000000000002,
+      "heroY": 312.132,
+      "scale": 0.4185365853658537,
+      "boardX": 0
+    },
+    {
+      "time": 13152.300000011921,
+      "phase": "strike",
+      "event": "run/group-natural-17/erxiang/hand/run/group-natural-17/erxiang/command/6/event/5",
+      "heroX": 132.60000000000002,
+      "heroY": 312.132,
+      "scale": 0.4185365853658537,
+      "boardX": 0
+    },
+    {
+      "time": 13169,
+      "phase": "strike",
+      "event": "run/group-natural-17/erxiang/hand/run/group-natural-17/erxiang/command/6/event/5",
+      "heroX": 132.60000000000002,
+      "heroY": 312.132,
+      "scale": 0.4185365853658537,
+      "boardX": 0
+    },
+    {
+      "time": 13185.59999999404,
+      "phase": "strike",
+      "event": "run/group-natural-17/erxiang/hand/run/group-natural-17/erxiang/command/6/event/5",
+      "heroX": 132.60000000000002,
+      "heroY": 312.132,
+      "scale": 0.4185365853658537,
+      "boardX": 0
+    },
+    {
+      "time": 13202.199999988079,
+      "phase": "strike",
+      "event": "run/group-natural-17/erxiang/hand/run/group-natural-17/erxiang/command/6/event/5",
+      "heroX": 132.60000000000002,
+      "heroY": 312.132,
+      "scale": 0.4185365853658537,
+      "boardX": 0
+    },
+    {
+      "time": 13218.90000000596,
+      "phase": "strike",
+      "event": "run/group-natural-17/erxiang/hand/run/group-natural-17/erxiang/command/6/event/5",
+      "heroX": 132.60000000000002,
+      "heroY": 312.132,
+      "scale": 0.4185365853658537,
+      "boardX": 0
+    },
+    {
+      "time": 13235.5,
+      "phase": "strike",
+      "event": "run/group-natural-17/erxiang/hand/run/group-natural-17/erxiang/command/6/event/5",
+      "heroX": 132.60000000000002,
+      "heroY": 312.132,
+      "scale": 0.4185365853658537,
+      "boardX": 0
+    },
+    {
+      "time": 13252.199999988079,
+      "phase": "strike",
+      "event": "run/group-natural-17/erxiang/hand/run/group-natural-17/erxiang/command/6/event/5",
+      "heroX": 132.60000000000002,
+      "heroY": 312.132,
+      "scale": 0.4185365853658537,
+      "boardX": 0
+    },
+    {
+      "time": 13268.90000000596,
+      "phase": "strike",
+      "event": "run/group-natural-17/erxiang/hand/run/group-natural-17/erxiang/command/6/event/5",
+      "heroX": 132.60000000000002,
+      "heroY": 312.132,
+      "scale": 0.4185365853658537,
+      "boardX": 0
+    },
+    {
+      "time": 13285.699999988079,
+      "phase": "strike",
+      "event": "run/group-natural-17/erxiang/hand/run/group-natural-17/erxiang/command/6/event/5",
+      "heroX": 132.60000000000002,
+      "heroY": 312.132,
+      "scale": 0.4185365853658537,
+      "boardX": 0
+    },
+    {
+      "time": 13302.199999988079,
+      "phase": "strike",
+      "event": "run/group-natural-17/erxiang/hand/run/group-natural-17/erxiang/command/6/event/5",
+      "heroX": 132.60000000000002,
+      "heroY": 312.132,
+      "scale": 0.4185365853658537,
+      "boardX": 0
+    },
+    {
+      "time": 13318.90000000596,
+      "phase": "strike",
+      "event": "run/group-natural-17/erxiang/hand/run/group-natural-17/erxiang/command/6/event/5",
+      "heroX": 132.60000000000002,
+      "heroY": 312.132,
+      "scale": 0.4185365853658537,
+      "boardX": 0
+    },
+    {
+      "time": 13336.800000011921,
+      "phase": "release",
+      "event": "run/group-natural-17/erxiang/hand/run/group-natural-17/erxiang/command/6/event/5",
+      "heroX": 132.60000000000002,
+      "heroY": 312.132,
+      "scale": 0.4185365853658537,
+      "boardX": 0
+    },
+    {
+      "time": 13353.300000011921,
+      "phase": "release",
+      "event": "run/group-natural-17/erxiang/hand/run/group-natural-17/erxiang/command/6/event/5",
+      "heroX": 132.60000000000002,
+      "heroY": 312.132,
+      "scale": 0.4185365853658537,
+      "boardX": 0.04382551440329218
+    },
+    {
+      "time": 13369,
+      "phase": "release",
+      "event": "run/group-natural-17/erxiang/hand/run/group-natural-17/erxiang/command/6/event/5",
+      "heroX": 132.60000000000002,
+      "heroY": 312.132,
+      "scale": 0.4185365853658537,
+      "boardX": 0.35060411522633744
+    },
+    {
+      "time": 13385.59999999404,
+      "phase": "release",
+      "event": "run/group-natural-17/erxiang/hand/run/group-natural-17/erxiang/command/6/event/5",
+      "heroX": 132.60000000000002,
+      "heroY": 312.132,
+      "scale": 0.4185365853658537,
+      "boardX": 1.2587958847736622
+    },
+    {
+      "time": 13402.199999988079,
+      "phase": "release",
+      "event": "run/group-natural-17/erxiang/hand/run/group-natural-17/erxiang/command/6/event/5",
+      "heroX": 132.60000000000002,
+      "heroY": 312.132,
+      "scale": 0.4185365853658537,
+      "boardX": 2.9383744855967078
+    },
+    {
+      "time": 13418.90000000596,
+      "phase": "release",
+      "event": "run/group-natural-17/erxiang/hand/run/group-natural-17/erxiang/command/6/event/5",
+      "heroX": 132.60000000000002,
+      "heroY": 312.132,
+      "scale": 0.4185365853658537,
+      "boardX": 5.8994106995884765
+    },
+    {
+      "time": 13435.5,
+      "phase": "release",
+      "event": "run/group-natural-17/erxiang/hand/run/group-natural-17/erxiang/command/6/event/5",
+      "heroX": 132.60000000000002,
+      "heroY": 312.132,
+      "scale": 0.4185365853658537,
+      "boardX": 10.381800000000004
+    },
+    {
+      "time": 13452.300000011921,
+      "phase": "release",
+      "event": "run/group-natural-17/erxiang/hand/run/group-natural-17/erxiang/command/6/event/5",
+      "heroX": 132.60000000000002,
+      "heroY": 312.132,
+      "scale": 0.4185365853658537,
+      "boardX": 16.272736625514398
+    },
+    {
+      "time": 13468.90000000596,
+      "phase": "release",
+      "event": "run/group-natural-17/erxiang/hand/run/group-natural-17/erxiang/command/6/event/5",
+      "heroX": 132.60000000000002,
+      "heroY": 312.132,
+      "scale": 0.4185365853658537,
+      "boardX": 24.608711111111102
+    },
+    {
+      "time": 13485.699999988079,
+      "phase": "release",
+      "event": "run/group-natural-17/erxiang/hand/run/group-natural-17/erxiang/command/6/event/5",
+      "heroX": 132.60000000000002,
+      "heroY": 312.132,
+      "scale": 0.4185365853658537,
+      "boardX": 35.39369300411522
+    },
+    {
+      "time": 13502.199999988079,
+      "phase": "release",
+      "event": "run/group-natural-17/erxiang/hand/run/group-natural-17/erxiang/command/6/event/5",
+      "heroX": 132.60000000000002,
+      "heroY": 312.132,
+      "scale": 0.4185365853658537,
+      "boardX": 48.06388888888888
+    },
+    {
+      "time": 13519,
+      "phase": "release",
+      "event": "run/group-natural-17/erxiang/hand/run/group-natural-17/erxiang/command/6/event/5",
+      "heroX": 132.60000000000002,
+      "heroY": 312.132,
+      "scale": 0.4185365853658537,
+      "boardX": 62.4
+    }
+  ],
+  "preferences": {
+    "music": 0.3,
+    "sfx": 0.8,
+    "stored": "{\"version\":2,\"music\":0.3,\"sfx\":0.8}"
+  },
+  "audioStart": 1791564804.1298,
+  "audioBytes": 185482,
+  "status": "PASS",
+  "frameCount": 189,
+  "start": 1791564802.938208,
+  "end": 1791564816.041142
+}

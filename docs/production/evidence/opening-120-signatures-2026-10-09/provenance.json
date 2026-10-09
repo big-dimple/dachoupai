@@ -1,0 +1,116 @@
+{
+  "inputMain": "d4d8ff13802a7d244ec990f11385df80956fa35d",
+  "product": "9d0611984392b96e4e1f4f19b6553933c80b3a1b",
+  "finalRouteProduct": "815d2f1c2a26ebbeda5083d804bf2358957acabb",
+  "currentHead": "988c88c0de2f0514c9bd1231132bc720f617a4a9",
+  "protectedTrees": {
+    "src/domain": {
+      "input": "5421b5ce4f633637763d6b687069b41884e83d4e",
+      "candidate": "5421b5ce4f633637763d6b687069b41884e83d4e",
+      "equal": true
+    },
+    "src/application": {
+      "input": "c983c2a370f289dfbfb5ef76df2af459f67cbf04",
+      "candidate": "c983c2a370f289dfbfb5ef76df2af459f67cbf04",
+      "equal": true
+    },
+    "src/content": {
+      "input": "6018132526ce72176f016f99ead53022480ab429",
+      "candidate": "6018132526ce72176f016f99ead53022480ab429",
+      "equal": true
+    },
+    "src/platform": {
+      "input": "860a9f8883cc158ac0c56ad6399518cc897a67b7",
+      "candidate": "860a9f8883cc158ac0c56ad6399518cc897a67b7",
+      "equal": true
+    },
+    "src/audio": {
+      "input": "a2f0483eecaaafb40cdbb82778ec2a846fd2e000",
+      "candidate": "a2f0483eecaaafb40cdbb82778ec2a846fd2e000",
+      "equal": true
+    },
+    "public": {
+      "input": "c4a6ec74e7fd754b0f300b973020f8afed7542e1",
+      "candidate": "c4a6ec74e7fd754b0f300b973020f8afed7542e1",
+      "equal": true
+    },
+    "art": {
+      "input": "b0caa33679b84bee932b2854734c04ad39ba0464",
+      "candidate": "b0caa33679b84bee932b2854734c04ad39ba0464",
+      "equal": true
+    }
+  },
+  "nativePC": "3e15b28b9f577d747a51ec0225fe889375a97a3a",
+  "nativePhone": "9d0894a23b42e4a780d9c90f65afc7b00c078e6c",
+  "phoneColdReloadExact": true,
+  "actualFirstScore": "2730",
+  "actualTransactions": [
+    {
+      "actions": [
+        {
+          "type": "ChooseProgram",
+          "programId": null
+        }
+      ],
+      "canonical": true
+    },
+    {
+      "actions": [
+        {
+          "type": "BuyOffer",
+          "offerId": "run/group-natural-17/erxiang/shop/0/0/joker/2"
+        }
+      ],
+      "canonical": true
+    },
+    {
+      "actions": [
+        {
+          "type": "BuyOffer",
+          "offerId": "run/group-natural-17/erxiang/shop/0/0/tool/1"
+        }
+      ],
+      "canonical": true
+    },
+    {
+      "actions": [
+        {
+          "type": "UseConsumable",
+          "instanceId": "run/group-natural-17/erxiang/tool/run/group-natural-17/erxiang/command/4",
+          "targetIds": [
+            "spades-2",
+            "hearts-2"
+          ]
+        }
+      ],
+      "canonical": true
+    },
+    {
+      "actions": [
+        {
+          "type": "LeaveShop"
+        },
+        {
+          "type": "EnterStage"
+        }
+      ],
+      "canonical": true
+    },
+    {
+      "actions": [
+        {
+          "type": "PlayHand",
+          "selectedIds": [
+            "hearts-2",
+            "spades-2",
+            "clubs-14",
+            "diamonds-14"
+          ],
+          "erxiangTargetId": "clubs-14"
+        }
+      ],
+      "canonical": true
+    }
+  ],
+  "scope": "Full native transaction recordings precede the isolated route payoff caption fix. Final captions/compare/active cancellation inspected separately on unchanged transaction code. Baseline has fewer user actions: 362 vs2730 is NOT an input-matched score or balance improvement. No human listening, physical FPS or device acceptance."
+}
