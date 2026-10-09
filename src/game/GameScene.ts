@@ -1113,7 +1113,7 @@ export class GameScene extends Phaser.Scene {
   }
   private async command(action:import('../domain/run').Action,expectedSeq?:number):Promise<boolean> {
     if(!this.ready)return false;this.clearHover();this.cancelAiCandidates();this.playing=true;const lifecycle=this.lifecycle,intent=++this.intent;this.updateControls();
-    const focusedId=this.hand[this.focusIndex]?.id,beforeTool=this.run,toolOwner=this.dialog.current;
+    const focusedId=this.hand[this.focusIndex]?.id,beforeTool=this.run,toolOwner=action.type==='UseConsumable'?this.dialog.current:undefined;
     const beforeGold=this.run.gold,beforeDiscards=this.run.stage?.discardsLeft,beforeHand=this.hand,used=action.type==='UseConsumable'?this.run.consumables.find(item=>item.instanceId===action.instanceId):undefined;
     try {
       const result=await dispatchRun(this,action,expectedSeq);if(!this.alive(lifecycle,intent))return false;
