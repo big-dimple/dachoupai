@@ -1,0 +1,73 @@
+{
+  "head": "fd61909135e1edc9a5332d28cc83c6a3effd2078",
+  "before": {
+    "source": "8e6e30544800708006b54c5d28a4282c1e77f57984a0578b4eeef64fa4730515",
+    "index": "596f9e1bc108ef015704024f690e5f0aa7bd046b6141d08921ca94c31155bd0e",
+    "head": "fd61909135e1edc9a5332d28cc83c6a3effd2078",
+    "branch": "refs/heads/review/hero-ability-discovery"
+  },
+  "scope": "Read-only unchanged legal saved next shop, default full screen; no gameplay commands, no asset/code edits.",
+  "screens": [
+    {
+      "width": 1366,
+      "height": 768,
+      "file": "pc-1366.png",
+      "stateUnchanged": true,
+      "commandSeq": 7,
+      "art": [
+        {
+          "id": "b10",
+          "status": "loaded"
+        },
+        {
+          "id": "b04",
+          "status": "loaded"
+        },
+        {
+          "id": "c10",
+          "status": "loaded"
+        },
+        {
+          "id": "b07",
+          "status": "loaded"
+        }
+      ]
+    },
+    {
+      "width": 390,
+      "height": 740,
+      "file": "phone-390.png",
+      "stateUnchanged": true,
+      "commandSeq": 7,
+      "art": [
+        {
+          "id": "b10",
+          "status": "loaded"
+        },
+        {
+          "id": "b04",
+          "status": "loaded"
+        },
+        {
+          "id": "c10",
+          "status": "loaded"
+        },
+        {
+          "id": "b07",
+          "status": "loaded"
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "physicalDevice": "NOT_RUN",
+  "humanAcceptance": "NOT_RUN",
+  "status": "PASS",
+  "after": {
+    "source": "8e6e30544800708006b54c5d28a4282c1e77f57984a0578b4eeef64fa4730515",
+    "index": "596f9e1bc108ef015704024f690e5f0aa7bd046b6141d08921ca94c31155bd0e",
+    "head": "fd61909135e1edc9a5332d28cc83c6a3effd2078",
+    "branch": "refs/heads/review/hero-ability-discovery"
+  },
+  "sourceUnchanged": true
+}
