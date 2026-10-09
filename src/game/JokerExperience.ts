@@ -36,6 +36,14 @@ export function hasActualBenefit(e:ScoreEvent):boolean {
 export interface SavedBenefit {eventId:string;sourceInstanceId:string;definitionId:string;title:string;effect:string;condition:string;destination:string;next:string;toolId?:string;url?:string}
 /** Ordered saved events; current balances never pretend to be the historic transaction. */
 export function savedBenefit(state:R2RunState,trace:ScoreTrace,e:ScoreEvent):SavedBenefit|undefined {
+ if(e.sourceType==='character'&&trace.events.some(saved=>saved===e||saved.eventId===e.eventId&&JSON.stringify(saved)===JSON.stringify(e))){
+  const fact=(title:string,effect:string,condition:string,next:string):SavedBenefit=>({eventId:e.eventId,sourceInstanceId:e.sourceInstanceId,definitionId:'',title,effect,condition,destination:'本手真实结果 · 已保存',next});
+  const handoff=trace.erxiangHandoff;
+  if(handoff?.targetId&&e.reasonKey==='erxiang.handoff'&&e.targetCardId===handoff.targetId)return fact('二响 · 交棒已兑现',handoff.points+'点热度改加倍率（首次普通计分）','指定有效核心，本场一次','本场已用；增强、版次、后续重触保持');
+  const wager=trace.touyeWager;
+  if(wager?.commit&&e.reasonKey.startsWith('touye.'+(wager.outcome==='won'?'won.':'lost.')))return fact('骰爷 · 赌约已结算','押'+HAND_LABELS[wager.commit.target]+' · 实际'+HAND_LABELS[trace.handType]+' · '+(wager.outcome==='won'?'达成×2':'未成×0.85'),'先前保存的赌约绑定本手','本场已用；未成不是收益');
+  if(trace.assist&&e.reasonKey==='amo.assist.'+trace.assist.kind)return fact('阿默 · 助攻已兑现','副组'+trace.assist.ids.length+'张已用 · 实际×'+trace.assist.multiplier,'有效主手及剩余同点副组','本场已用；副组不再留手');
+ }
  if(!hasActualBenefit(e)||e.phase==='base'||e.phase==='finalScore')return;
  if(trace.xiemuBurn?.cost&&e.sourceType==='character'&&e.sourceDefinitionId==='xiemu'&&e.phase==='characterScore')return {eventId:e.eventId,sourceInstanceId:e.sourceInstanceId,definitionId:'',title:'谢幕人 · 主动燃金',effect:'支付'+trace.xiemuBurn.cost+'金，'+trace.xiemuBurn.goldBefore+'→'+trace.xiemuBurn.goldAfter+'；角色时点实际×'+trace.xiemuBurn.multiplier,condition:'本场一次，两对及以上，已确认燃金',destination:'本手真实倍率 · 已保存',next:'本场已用，入场重置；息与持币收益读扣后余额'};
  if(trace.xiemuBurn&&e.sourceType==='character'&&e.sourceDefinitionId==='xiemu'&&e.phase==='onStageClear')return {eventId:e.eventId,sourceInstanceId:e.sourceInstanceId,definitionId:'',title:'谢幕人 · 额外关末息',effect:'额外+'+e.value.n+'金；奖励前本金'+e.goldBeforeRewards,condition:'真实成功，奖励前余额每5金给1、封顶2',destination:'实际金币 '+e.resourceBefore+'→'+e.resourceAfter+' · 已保存',next:'本次奖励不再生息；继续经营或下场主动燃金'};

@@ -1096,6 +1096,14 @@ W1对应场景的必要状态、可读性与最小尺寸合同可先独立验证
 
 ### W7 逐角色能力
 
+#### 首章主动能力发现与真实兑现
+
+2026-10-09父授权单一公共交互包；输入main `df17594c737acb002ea2230b9d857c9162e065a9`。沿原W6操作前提示与W7公共UI合同补真实断点，不新增角色机制、不代签W6真人/设备/听感或改变W2/W3依赖。先纠正选角旧能力承诺，再贯通当前可用→已有主动选择→真实保存兑现。
+
+allowedFiles：`src/game/HeroOpeningCopy.ts`、`CharacterRunCopy.ts`、`CharacterSelectScene.ts`、`GameScene.ts`、`HeroAbilityCue.ts`（新增公共身份/资格提示）、`AzaoChargeCopy.ts`、`XiemuBurnCopy.ts`、`TouyeWagerCopy.ts`、`ErxiangHandoffCopy.ts`、`JokerExperience.ts`、`JokerKeyHighlight.ts`、`HeroClimax.ts`及必要现有反馈适配；`tests/hero-opening-copy.test.ts`、`hero-ability-cue.test.ts`（新增）、`hero-climax.test.ts`、`touye-wager.test.ts`（真实成功/未成来源回执）及直接受影响现有角色文案测试；本计划、UX、AGENTS与`evidence/w6-hero-ability-discovery-2026-10-09/`。不改domain、数值、身份、schema、BGM、资源、CI或锁文件；不加规则页/说明墙、不重写故事台词大立绘、不跑六轮自然局。
+
+输出/验收：首屏一句打法与展开详情同源于实际新局身份；英雄标签只在本次操作真正合法时克制强调，并说对弃前/出前、金币不足/封禁/已用。保留现有选择取消和保存失败合同。保存反馈只消费真实trace或固定补牌保存结果，下注/候选准备不冒称收益；不与路线高光重复舞台或停顿，减少动态/快进保持。六角色公开合法状态定向检查、PC1366与390两端代表操作，320/短横只同状态布局；先定向/type，最终精确head一次CI及draft父审协调main。真人发现/理解/乐趣、设备、音频/W6未验仍未签。失败日志保留，不以截图或测试代签。
+
 #### 二响交棒锁定实施合同
 
 **2026-10-09父锁定二响交棒实施包（U09/U10/U11、SG07/SG08）：** 输入main `fcea984380fb4c8f7955dc5298957593091a6b5b`，承接文档 `cef7fac50f72b7242f30dd706f22572d41f6bcc6`。父明确授权本有界原型，真人/W6门槛未签不冒充通过。每场一次；对子及以上任何主型，从最终有效计分核心选一张（不要求同点组），其首次实际普通点数p改加倍率、不计热度；增强/版次/既有重触保持原规则，后续普通计分照旧，不重跑整手Joker/复制效果，替换旧+1.5。0点、失效核心、B08/Q01禁止发动，普通合法出牌继续；意图与Play同事务保存成功才消费，取消不消费，改手失效清除且不迁移。新显式身份隔离旧全部身份；仅二响正常带路线新局选新身份，其余五角正常入口不换身份。

@@ -113,7 +113,7 @@ export class CharacterSelectScene extends Phaser.Scene {
     else {const title=v.text(x,y,c.title,p.portrait?14:20,'#3F606B').setName('opening/title');y=title.y+title.height+8;}
     const quote=v.text(x,y,copy.taunt,p.short?18:p.portrait?20:28,copy.accent,w).setFontStyle('bold').setName('opening/taunt');y=quote.y+quote.height+8;
     if(!p.portrait||this.step==='hero'||b.height>280){const story=v.text(x,y,copy.story,p.portrait||p.short?14:18,'#59646A',w).setName('opening/story');y=story.y+story.height+10;}
-    const promise=abilityEnabled?copy.play:'本挑战关闭角色能力与开局赠送；仍保留这位英雄的身份。';
+    const promise=abilityEnabled?c.openingPlay:'本挑战关闭角色能力与开局赠送；仍保留这位英雄的身份。';
     if(p.portrait)y=Math.max(y,picture.y+picture.height)+8;
     if(!p.portrait||this.step==='hero'||b.height>280){
       const playX=p.portrait?b.x+12:x,playWidth=p.portrait?b.width-24:w;

@@ -6,11 +6,15 @@ import {characterForNewRun} from '../src/game/CharacterRunCopy';
 it('six short original voices accompany existing identities without strength or profession locks',()=>{
  expect(Object.keys(HERO_OPENING).sort()).toEqual([...CHARACTER_IDS].sort());
  expect(new Set(Object.values(HERO_OPENING).map(c=>c.taunt)).size).toBe(6);
- for(const id of CHARACTER_IDS){const c=HERO_OPENING[id];expect(c.story.length).toBeLessThanOrEqual(26);expect(c.taunt.length).toBeLessThanOrEqual(22);expect(c.play).not.toMatch(/保证|必胜|最强|只能选/);expect(c.accent).toMatch(/^#(26313A|B8473A|386D65)$/);expect(characterForNewRun(id).id).toBe(id);}
+ for(const id of CHARACTER_IDS){const c=HERO_OPENING[id];expect(c.story.length).toBeLessThanOrEqual(26);expect(c.taunt.length).toBeLessThanOrEqual(22);expect(characterForNewRun(id).openingPlay).not.toMatch(/保证|必胜|最强|只能选/);expect(c.accent).toMatch(/^#(26313A|B8473A|386D65)$/);expect(characterForNewRun(id).id).toBe(id);}
 });
-it('default promises keep ability eligibility, cost and risk instead of inventing a balance claim',()=>{
- expect(characterForNewRun('amo').passiveDescription).toContain('两对及以上');expect(HERO_OPENING.amo.play).toMatch(/两对或更大/);expect(HERO_OPENING.amo.play).toMatch(/每场一次.*副组会消耗/);
- expect(HERO_OPENING.touye.play).toMatch(/可能变弱/);expect(HERO_OPENING.erxiang.play).toMatch(/对子、两对、三条.*不享受/);
- expect(HERO_OPENING.azao.play).toMatch(/第一手和重复牌型不触发/);expect(HERO_OPENING.xiemu.play).toMatch(/最后可用出牌.*这一手过关/);
+it('default promises share the current identity copy and describe actual operation timing',()=>{
+ const copy=(id:typeof CHARACTER_IDS[number])=>characterForNewRun(id).openingPlay;
+ for(const id of CHARACTER_IDS)expect(copy(id).length).toBeLessThanOrEqual(52);
+ expect(copy('amo')).toMatch(/出牌前.*助攻.*真消耗/);
+ expect(copy('erxiang')).toMatch(/出牌前.*交棒.*点数改加倍率/);expect(copy('erxiang')).not.toMatch(/对子、两对、三条/);
+ expect(copy('laohuan')).toMatch(/弃牌前.*戏法.*自己留/);expect(copy('laohuan')).not.toMatch(/多添热度/);
+ expect(copy('touye')).toMatch(/弃牌前.*下一手.*未成×0.85/);expect(copy('touye')).not.toMatch(/机会|随机/);
+ expect(copy('azao')).toMatch(/先蓄势.*出牌前.*释放/);expect(copy('xiemu')).toMatch(/出牌前.*燃10／20／30金.*留钱/);
  expect(Object.keys(OPENING_ROUTES).sort()).toEqual([...BUILD_FOCUS].sort());
 });
