@@ -104,6 +104,7 @@ import {R2_TOOLS,R2_LONG_TERM_ITEMS} from '../content/r2Tools';
 import {cardSpecialText,editionLabel,editionEffectText,toolInfo} from './r2ToolInfo';
 
 import {mountHeroClimax,heroClimaxValue,type HeroClimaxView} from './HeroClimax';
+import {climaxSourceKey,loadClimaxSourceArt} from './ClimaxSourceArt';
 import {cssViewport} from '../platform/Viewport';
 type KeyCueCleanup=(()=>void)&{hero?:boolean;strike?:()=>void;release?:()=>Promise<void>};
 
@@ -237,6 +238,9 @@ export class GameScene extends Phaser.Scene {
     super('game');
   }
   private heroClimax?:HeroClimaxView;
+  private climaxArtAbort?:AbortController;
+  private climaxArtId?:string;
+  private climaxArtRequested=false;
   preload():void {
     const xhr:Phaser.Types.Loader.XHRSettingsObject={responseType:'text',timeout:5000};this.load.maxRetries=0;
     queueCourtArtLoads(this);
@@ -252,7 +256,7 @@ export class GameScene extends Phaser.Scene {
     // Keep committed score playback moving on slow renderers; bound background gaps to 1s.
     this.tweens.setLagSmooth(1000,1000);
     const lifecycle=++this.lifecycle;this.intent++;
-    this.refillHidden=false;this.effects.clear();this.erxiangTargetId=null;this.azaoRelease=false;this.xiemuBurn=0;this.jokerViews.clear();this.cardViews=[];this.selectedIds.clear();this.assistIds=[];this.assistPage=0;this.assistGestureStart=undefined;this.hoveredCardId=undefined;this.hoveredJokerId=undefined;this.playing=false;this.presentation=undefined;this.toolHand=undefined;this.statusMessage='';this.focusIndex=0;this.keyboardFocus=false;this.handStart=0;this.handNavigationButtons=[];
+    this.climaxArtAbort?.abort();this.climaxArtRequested=false;this.refillHidden=false;this.effects.clear();this.erxiangTargetId=null;this.azaoRelease=false;this.xiemuBurn=0;this.jokerViews.clear();this.cardViews=[];this.selectedIds.clear();this.assistIds=[];this.assistPage=0;this.assistGestureStart=undefined;this.hoveredCardId=undefined;this.hoveredJokerId=undefined;this.playing=false;this.presentation=undefined;this.toolHand=undefined;this.statusMessage='';this.focusIndex=0;this.keyboardFocus=false;this.handStart=0;this.handNavigationButtons=[];
     const settings=()=>{
       const hintVisible=!!this.handHint;this.stopHandHint();if(hintVisible&&this.reducedMotion)this.showHandHint(false);
       this.tweens.timeScale=gameSession().speed;this.time.timeScale=gameSession().speed;
@@ -274,7 +278,7 @@ export class GameScene extends Phaser.Scene {
       this.candidates.dispose();this.aiCandidates.dispose();this.aiCursor=undefined;this.candidateGhost=undefined;this.candidateUndo=undefined;this.handInput?.destroy();this.handInput=undefined;this.assistIds=[];this.assistGestureStart=undefined;this.controlsLive=false;this.stopScoreFire();
       if(this.registry.get('runMenuActions')===this.menuActions)this.registry.remove('runMenuActions');
       this.menuActions=undefined;
-      this.lifecycle++;this.intent++;this.effects.clear();this.audio.cancelPresentation();this.stopJokerIdle();this.tweens.killAll();this.time.removeAllEvents();this.jokerViews.clear();this.settledCards.clear();this.cardViews=[];this.selectedIds.clear();this.assistIds=[];this.assistPage=0;this.assistGestureStart=undefined;this.hoveredCardId=undefined;this.hoveredJokerId=undefined;this.jokerHoverPreview=undefined;this.previewCards=undefined;this.presentation=undefined;this.playAuraPulse=undefined;this.playing=false;this.rollingHeat=false;this.dialog.close();
+      this.climaxArtAbort?.abort();if(this.climaxArtId&&this.textures.exists(climaxSourceKey(this.climaxArtId)))this.textures.remove(climaxSourceKey(this.climaxArtId));this.climaxArtId=undefined;this.lifecycle++;this.intent++;this.effects.clear();this.audio.cancelPresentation();this.stopJokerIdle();this.tweens.killAll();this.time.removeAllEvents();this.jokerViews.clear();this.settledCards.clear();this.cardViews=[];this.selectedIds.clear();this.assistIds=[];this.assistPage=0;this.assistGestureStart=undefined;this.hoveredCardId=undefined;this.hoveredJokerId=undefined;this.jokerHoverPreview=undefined;this.previewCards=undefined;this.presentation=undefined;this.playAuraPulse=undefined;this.playing=false;this.rollingHeat=false;this.dialog.close();
       window.removeEventListener('keydown',this.keyboard);
       window.removeEventListener('dachoupai-presentation',settings);
     });
@@ -1844,6 +1848,7 @@ export class GameScene extends Phaser.Scene {
     });
     this.effects.enqueue(context=>this.wait(this.reducedMotion?120:baseCue&&!fourCardFormation(score)?200:460,context));
     const key=keyHighlight(state,score,originHeat,this.stage.targetHeat,!replay);
+    if(!this.climaxArtRequested&&key?.fact.definitionId&&heroClimaxValue(state,score,key,replay)){this.climaxArtRequested=true;this.climaxArtId=key.fact.definitionId;const abort=new AbortController();this.climaxArtAbort=abort;void loadClimaxSourceArt(this,key.fact.definitionId,abort.signal,()=>this.alive(lifecycle,intent)&&this.presentation===presentation&&this.effects.isCurrent(generation));}
     let jokerIndex=0,scoreOrdinal=0,multiplyOrdinal=0,previousSource:string|undefined;
     for(const event of score.events){
       if(event.phase==='base')continue;
@@ -1859,7 +1864,7 @@ export class GameScene extends Phaser.Scene {
 
   private completePresentation(presentation:NonNullable<GameScene['presentation']>):void {
     if(!this.alive(presentation.lifecycle,presentation.intent))return;
-    this.stopScoreFire();
+    this.climaxArtAbort?.abort();this.stopScoreFire();
     this.erxiangTargetId=null;this.azaoRelease=false;this.xiemuBurn=0;this.presentation=undefined;this.run=presentation.state;this.selectedIds.clear();this.assistIds=[];this.assistGestureStart=undefined;this.statusMessage=savedHeroResult(this.run)||handGrowthChanges(this.run)[0]?.line||'';this.updateHud();
     if(this.run.phase==='stage-cleared'||this.run.phase==='run-won'){this.finishStage(true,true,!presentation.replay);return;}
     if(this.run.phase==='run-lost'){this.finishStage(false,!presentation.replay);return;}
