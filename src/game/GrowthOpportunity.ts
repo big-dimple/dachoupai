@@ -48,7 +48,7 @@ export function growthOpportunityForDefinition(d:R2JokerDefinition,joker:R2Joker
  }else if(action==='clear'){
   if(hook.condition.kind==='no-joker-sale-this-stage'&&ctx.transaction.jokerSold){status='unmet';reason='本场或进场商店已出售，买回不恢复本场成长资格。';}
   else reason='须实际成功过关，并在关末检查'+r2ConditionDescription(hook.condition)+'。未提交牌不算过关。';
- }else if(action==='shop')reason=hook.phase==='onBuyOffer'?'成功购买其他商品后，原持有来源才长。':hook.phase==='onSellJoker'?'成功出售其他大丑牌后，仍持有的来源才长。':'成功付费刷新后才长；免费刷新不触发，资格和价格沿原入口。';
+ }else if(action==='shop')reason=hook.phase==='onBuyOffer'?'成功购买其他大丑牌后，原持有来源才长。':hook.phase==='onSellJoker'?'成功出售其他大丑牌后，仍持有的来源才长。':'成功付费刷新后才长；免费刷新不触发，资格和价格沿原入口。';
  if(resultOnly&&op.kind!=='update-score-growth')reason='实际结算时检查'+r2ConditionDescription(hook.condition)+'；选牌不预报结果。';
  const amount=op.kind==='multiply-coefficient-once'?'系数×'+fractionText(op.value)+'，最多到×'+fractionText(next.toJSON()):unit+'最多新增+'+fractionText(delta.compare(zero)>0?delta.toJSON():zero.toJSON());
  const label={ready:action==='discard'?'弃牌可蓄热':'成长条件可用',prepare:'建立接续',unmet:'不新增成长',capped:'成长已封顶',waiting:'动作时检查',used:'本场成长已用'}[status];
