@@ -1,6 +1,7 @@
 import recording from '../../public/assets/audio/p06/recording.json';
 import {DEFAULT_AUDIO} from './preferences';
-import {FOLEY,FOLEY_SAMPLES,type FoleyKind} from './foley';
+import {FOLEY,FOLEY_SAMPLES,type FoleyKind,type Layer} from './foley';
+import {sampleBody,type SampleBody} from './sampleBody';
 
 export type AudioBus = 'master' | 'music' | 'sfx' | 'ui';
 export type AudioScene = 'menu' | 'shop' | 'table' | 'boss' | 'success' | 'failure';
@@ -15,6 +16,7 @@ const RECORDING_PATH = recording.runtimePath;
 export const TRANSITION_MUSIC = 'Serenade - Schubert · Jérôme Chauvel / Abydos Music（临时恢复）';
 const bounded = (value: number, max: number): number => Number.isFinite(value) ? Math.max(0, Math.min(max, value)) : 0;
 const SOURCE_GAIN: Record<VoiceBus, number> = { music: 1, sfx: 5.7, ui: 4.5 };
+const MUSIC_HEADROOM=.5; // Internal mix, not a preference/slider migration.
 
 /** One application context. The app owns gesture/visibility listeners and persistence. */
 export class AudioEngine {
@@ -22,6 +24,7 @@ export class AudioEngine {
   private context?: AudioContext;
   private gains?: Record<AudioBus, GainNode>;
   private scoreSamples=new Map<string,AudioBuffer>();
+  private sampleBodies=new Map<string,SampleBody>();
   private scoreSampleTask?:Promise<void>;
   private readonly scoreCues=new WeakMap<object,Set<string>>();
   private voices = new Set<Voice>();
@@ -40,6 +43,7 @@ export class AudioEngine {
   private musicGeneration = 0;
   private musicFailed = false;
   private duckUntil = 0;
+  private duckFloor=.35;
   private readonly failureCues = new WeakSet<FailureCue>();
 
   get muted(): boolean { return this.masterMuted; }
@@ -174,13 +178,13 @@ export class AudioEngine {
     try {
       const context = this.context, gain = this.gains?.[bus];
       if (!context || !gain) return;
-      const value = (bus === 'master' && this.masterMuted) || (bus === 'music' && this.musicIsMuted) ? 0 : this.volumes[bus];
+      const value = (bus === 'master' && this.masterMuted) || (bus === 'music' && this.musicIsMuted) ? 0 : this.volumes[bus]*(bus==='music'?MUSIC_HEADROOM:1);
       gain.gain.cancelScheduledValues(context.currentTime);
       const now = context.currentTime;
       // Zero is an exact mute, not an exponential tail that stays faintly audible.
       if (value === 0) gain.gain.setValueAtTime(0, now);
       else if (bus === 'music' && this.duckUntil > now) {
-        const quiet = value * .35, remaining = this.duckUntil - now;
+        const quiet = value * this.duckFloor, remaining = this.duckUntil - now;
         gain.gain.setTargetAtTime(quiet, now, .008);
         gain.gain.setValueAtTime(quiet, now + remaining * .65);
         gain.gain.linearRampToValueAtTime(value, this.duckUntil);
@@ -214,10 +218,11 @@ export class AudioEngine {
   /** Cancel a skipped scene's score tails while its table music keeps playing. */
   cancelPresentation(): void { this.stopScoreFire(); this.stopVoices('sfx'); this.duckUntil = 0; this.applyVolume('music'); }
 
-  private duckMusic(duration = .3): void {
+  private duckMusic(duration = .3,floor=.35): void {
     if (!this.canPlay('music')) return;
     try {
       const context = this.context!;
+      this.duckFloor=this.duckUntil>context.currentTime?Math.min(this.duckFloor,floor):floor;
       this.duckUntil = Math.max(this.duckUntil, context.currentTime + bounded(duration, 1.5));
       this.applyVolume('music');
     } catch { /* Ducking failure is inaudible to rule state. */ }
@@ -232,7 +237,7 @@ export class AudioEngine {
     if(this.scoreSampleTask)return this.scoreSampleTask;
     const context=this.context;if(!context)return Promise.resolve();
     return this.scoreSampleTask=Promise.all([...FOLEY_SAMPLES,{name:'cloth2',runtimePath:'assets/audio/score-impact/cloth2.ogg'}].map(async ({name,runtimePath})=>{
-      try{const response=await fetch(new URL(runtimePath,document.baseURI));if(!response.ok)return;const buffer=await context.decodeAudioData(await response.arrayBuffer());this.scoreSamples.set(name,buffer);}catch{/* A missing clip is silent; saved source information remains. */}
+      try{const response=await fetch(new URL(runtimePath,document.baseURI));if(!response.ok)return;const buffer=await context.decodeAudioData(await response.arrayBuffer());this.scoreSamples.set(name,buffer);this.sampleBodies.set(name,sampleBody(Array.from({length:buffer.numberOfChannels},(_,i)=>buffer.getChannelData(i)),buffer.sampleRate));}catch{/* A missing clip is silent; saved source information remains. */}
     })).then(()=>undefined);
   }
   /** Recorded foley, one bounded hit per number arrival; no retroactive playback or synth fallback. */
@@ -242,7 +247,7 @@ export class AudioEngine {
     const rate=kind==='multiply'?1+bounded(chain,4)*.035:1;
     const voices=this.cue(kind,'sfx',rate,0,kind==='add'||kind==='flight'?1:1+bounded(tier,3)*.06);
     for(const voice of voices)voice.scoreAccent=true;
-    if(voices.length)this.duckMusic(kind==='add'?.14:.4);
+    if(voices.length)this.duckMusic(kind==='add'?.14:kind==='key'?.65:.4,kind==='key'?.20:.35);
   }
 
   /** Compatibility cleanup name; no continuous burning sources remain. */
@@ -295,18 +300,20 @@ export class AudioEngine {
     if(voices.length)this.duckMusic(.2);
   }
   /** A missing sample is silent; callbacks never schedule it retroactively. */
-  private recordedCue(name:string,duration:number,volume:number,bus:VoiceBus='sfx',rate=1,offset=0):Voice|undefined {
+  private recordedCue(name:string,duration:number,volume:number,bus:VoiceBus='sfx',rate=1,offset=0,shape?:Layer):Voice|undefined {
     if(!this.canPlay(bus))return;
     const buffer=this.scoreSamples.get(name);if(!buffer)return;
     try {
       const context=this.context!,source=context.createBufferSource(),gain=context.createGain(),time=context.currentTime+offset;
       // cloth2 has an 80ms quiet lead; start at its recorded cloth body, not silence.
-      const sampleOffset=name==='cloth2'?.08:0;
+      const body=this.sampleBodies.get(name),sampleOffset=body?.offset??(name==='cloth2'?.08:0);
       const speed=Math.max(.65,Math.min(1.4,rate)),length=Math.min(Math.max(.035,duration),(buffer.duration-sampleOffset)/speed);
       source.buffer=buffer;source.playbackRate.value=speed;
-      const peak=bounded(volume,.14)*SOURCE_GAIN[bus];
-      gain.gain.setValueAtTime(0,time);gain.gain.linearRampToValueAtTime(peak,time+.005);gain.gain.setValueAtTime(peak,time+length*.55);gain.gain.linearRampToValueAtTime(0,time+length);
-      source.connect(gain);gain.connect(this.gains![bus]);const voice={source,gain,bus,startsAt:time,endsAt:time+length};this.retain(voice);source.start(time,sampleOffset);source.stop(time+length);return voice;
+      const peak=bounded(volume,.14)*SOURCE_GAIN[bus]*(body?.gain??1),attack=Math.min(length*.2,shape?.attack??.005),hold=Math.max(attack,length*(shape?.hold??.55));
+      gain.gain.setValueAtTime(0,time);gain.gain.linearRampToValueAtTime(peak,time+attack);gain.gain.setValueAtTime(peak,time+hold);gain.gain.linearRampToValueAtTime(0,time+length);
+      let filter:BiquadFilterNode|undefined;const f=shape?.filter;
+      if(f&&typeof context.createBiquadFilter==='function'){filter=context.createBiquadFilter();filter.type=f.type;filter.Q.value=f.Q;filter.frequency.setValueAtTime(f.frequency,time);filter.frequency.linearRampToValueAtTime(f.end,time+Math.min(length,f.sweep));source.connect(filter);filter.connect(gain);}else source.connect(gain);
+      gain.connect(this.gains![bus]);const voice={source,gain,filter,bus,startsAt:time,endsAt:time+length};this.retain(voice);source.start(time,sampleOffset);source.stop(time+length);return voice;
     }catch{return;}
   }
   /** minGap/per-semantic oldest-voice cap adapted from Inkwave audio.js 258–280 (MIT).
@@ -326,7 +333,7 @@ export class AudioEngine {
     }
     const variant=this.variants.get(kind)??0;this.variants.set(kind,variant+1);
     return recipe.layers.flatMap(layer=>{
-      const voice=this.recordedCue(layer.samples[variant%layer.samples.length],duration===undefined?layer.duration:Math.min(duration,layer.duration),layer.gain*strength,bus,rate*(layer.rate??1),offset+(layer.delay??0));
+      const voice=this.recordedCue(layer.samples[variant%layer.samples.length],duration===undefined?layer.duration:Math.min(duration,layer.duration),layer.gain*strength,bus,rate*(layer.rate??1),offset+(layer.delay??0),layer);
       if(!voice)return [];voice.semantic=kind;return [voice];
     });
   }
@@ -335,8 +342,9 @@ export class AudioEngine {
   hoverTick():void {this.cue('hover','ui');}
   coin():void {this.cue('coin','ui');}
   titleBell():void {this.cue('title');}
+  titleConfirm():void {if(this.cue('confirm','ui').length)this.duckMusic(.32,.3);}
   curtainOpen():void {this.duckMusic(.4);this.cue('curtain');}
-  select():void {this.cue('select','ui');}
+  select():void {if(this.cue('select','ui').length)this.duckMusic(.12,.6);}
   cancel():void {this.cue('cancel','ui');}
   deselect():void {this.cancel();}
   invalid():void {this.cue('invalid','ui');}

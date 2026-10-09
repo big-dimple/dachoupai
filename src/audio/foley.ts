@@ -1,6 +1,6 @@
 import sources from '../../public/assets/audio/foley-v1/sources.json';
 export const FOLEY_SAMPLES = sources.assets;
-type Layer = { samples: string[]; duration: number; gain: number; delay?: number; rate?: number };
+export type Layer = { samples: string[]; duration: number; gain: number; delay?: number; rate?: number;attack?:number;hold?:number;filter?:{type:BiquadFilterType;frequency:number;end:number;sweep:number;Q:number} };
 export type FoleyRecipe = { layers: Layer[]; gap: number; cap: number };
 const layer=(samples:string[],duration:number,gain:number,delay=0,rate=1):Layer=>({samples,duration,gain,delay,rate});
 const slides=['card-slide-1','card-slide-2','card-slide-3'],places=['card-place-1','card-place-2','card-place-3'],wood=['impactWood_light_000','impactWood_light_001'];
@@ -8,7 +8,7 @@ const slides=['card-slide-1','card-slide-2','card-slide-3'],places=['card-place-
 export const FOLEY = {
  deal:{layers:[layer(slides,.14,.020)],gap:.035,cap:3},
  hover:{layers:[layer(['chip-lay-1'],.06,.006)],gap:.055,cap:1},
- select:{layers:[layer(slides,.12,.024)],gap:.035,cap:2},
+ select:{layers:[{...layer(slides,.16,.032),attack:.008,hold:.48}],gap:.045,cap:2},
  cancel:{layers:[layer(['card-shove-1'],.16,.021)],gap:.055,cap:2},
  invalid:{layers:[layer(['impactSoft_medium_000'],.12,.027,0,.8)],gap:.12,cap:1},
  land:{layers:[layer(places,.13,.025)],gap:.035,cap:3},
@@ -18,6 +18,7 @@ export const FOLEY = {
  spend:{layers:[layer(['chips-stack-1'],.13,.027)],gap:.04,cap:3},
  spendLast:{layers:[layer(['chips-stack-1'],.15,.032),layer(['impactSoft_medium_000'],.16,.024,.055)],gap:.04,cap:4},
  title:{layers:[layer(['impactBell_heavy_003'],.38,.030)],gap:.2,cap:1},
+ confirm:{layers:[layer(['impactWood_light_001'],.16,.032),layer(['impactBell_heavy_003'],.30,.024,.075)],gap:.2,cap:2},
  curtain:{layers:[layer(['cloth2'],.32,.035),layer(['card-fan-1'],.22,.015,.075)],gap:.2,cap:2},
  add:{layers:[layer(wood,.12,.030)],gap:.045,cap:2},
  held:{layers:[layer(places,.14,.020)],gap:.04,cap:2},
@@ -25,7 +26,8 @@ export const FOLEY = {
  joker:{layers:[layer(['impactSoft_medium_000'],.18,.039),layer(['chip-lay-2'],.12,.017,.04)],gap:.08,cap:3},
  boss:{layers:[layer(['impactSoft_heavy_000'],.26,.042,0,.83)],gap:.12,cap:1},
  multiply:{layers:[layer(['impactSoft_heavy_000'],.25,.056),layer(['impactBell_heavy_000'],.38,.029,.025),layer(['card-fan-1'],.18,.013,.065)],gap:.10,cap:3},
- key:{layers:[layer(['impactWood_heavy_000'],.22,.053),layer(['impactSoft_heavy_000'],.29,.043),layer(['impactBell_heavy_003'],.40,.033,.025)],gap:.10,cap:3},
+ // Inkwave679d2db audio.js726–734 thump/spray/tail structure; recorded material only.
+ key:{layers:[{...layer(['impactSoft_heavy_000'],.46,.057,0,.76),attack:.002,hold:.28,filter:{type:'lowpass',frequency:620,end:180,sweep:.16,Q:.65}},{...layer(['cloth2'],.30,.025,.02,1.1),attack:.005,hold:.32,filter:{type:'bandpass',frequency:2100,end:850,sweep:.18,Q:.75}},layer(['impactWood_heavy_000'],.16,.032,.045,.9),{...layer(['impactBell_heavy_003'],.52,.027,.115,.84),attack:.006,hold:.20,filter:{type:'lowpass',frequency:2600,end:1300,sweep:.28,Q:.6}}],gap:.18,cap:4},
  award:{layers:[layer(['impactSoft_heavy_000'],.28,.049),layer(['chips-collide-1'],.23,.033,.045),layer(['impactBell_heavy_000'],.46,.033,.075)],gap:.16,cap:3},
  flight:{layers:[layer(slides,.10,.012)],gap:.04,cap:2},
  retrigger:{layers:[layer(wood,.10,.029),layer(wood,.10,.026,.075,1.08)],gap:.10,cap:2},

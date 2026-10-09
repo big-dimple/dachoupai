@@ -23,7 +23,7 @@ it('number rolls replace their recorded texture, remain finite and cannot restar
 it('rapid ordinary input is throttled and longer sequences rotate variants under a per-semantic cap',()=>{
  const {engine,inside,sources}=fixture();engine.select();for(let i=0;i<100;i++)engine.select();expect(sources).toHaveLength(1);
  for(let i=0;i<7;i++){inside.context.currentTime+=.04;engine.select();}
- expect(new Set(sources.map(s=>s.buffer.name)).size).toBe(3);expect(inside.voices.size).toBe(2);
+ expect(new Set(sources.map(s=>s.buffer.name)).size).toBe(3);expect([...inside.voices].filter((v:any)=>v.startsAt<=inside.context.currentTime&&v.endsAt>inside.context.currentTime)).toHaveLength(2);
  engine.purchase();const confirmed=sources.slice(-2);expect(confirmed[1].start.mock.calls[0][0]-confirmed[0].start.mock.calls[0][0]).toBeCloseTo(.075);
  engine.setSuspended(true);expect(inside.voices.size).toBe(0);expect(sources.every(s=>s.disconnect.mock.calls.length===1)).toBe(true);
 });
@@ -46,4 +46,10 @@ it('future multi-resource cap ends earlier beats at the collision time instead o
  expect(sources[0].stop.mock.calls.at(-1)[0]).toBeCloseTo(1.11);
  const voices=[...inside.voices] as any[];for(const voice of voices)expect(voices.filter(v=>v.startsAt<=voice.startsAt&&v.endsAt>voice.startsAt).length).toBeLessThanOrEqual(4);
  engine.setSuspended(true);expect(inside.voices.size).toBe(0);
+});
+
+it('user 7/100 remains exact while internal music headroom, trimmed body and duck restoration apply',()=>{
+ const {engine,inside,sources}=fixture();engine.setVolume('music',.07);engine.setVolume('sfx',1);expect(engine.getVolume('music')).toBe(.07);expect(engine.getVolume('sfx')).toBe(1);expect(inside.gains.music.gain.setTargetAtTime).toHaveBeenLastCalledWith(.035,1,.015);
+ inside.scoreSamples.set('card-slide-1',{name:'card-slide-1',duration:.6});inside.sampleBodies.set('card-slide-1',{offset:.142,gain:.72});engine.select();expect(sources[0].start.mock.calls[0][1]).toBe(.142);expect(inside.gains.music.gain.linearRampToValueAtTime).toHaveBeenLastCalledWith(.035,1.12);
+ engine.setVolume('music',0);expect(inside.gains.music.gain.setValueAtTime).toHaveBeenLastCalledWith(0,1);
 });

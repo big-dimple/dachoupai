@@ -4,6 +4,8 @@ import {AudioEngine} from '../audio/AudioEngine';
 import {gameSession} from './session';
 import {routeSavedRun} from './RunMenu';
 import {SceneView} from './SceneView';
+import {inkSettlingEase} from './inkwaveSpring';
+import {mountInkBurst} from './InkBurst';
 
 /** A short, immediately usable stage entrance; its animation never starts a run. */
 export class TitleScene extends Phaser.Scene {
@@ -11,6 +13,7 @@ export class TitleScene extends Phaser.Scene {
   private seed?:string;
   private view!:SceneView;
   private firstRender=true;
+  private confirmation?:Phaser.Time.TimerEvent;
   private readonly audio=AudioEngine.shared;
   constructor(){super('title');}
   init(data?:{seed?:string}):void {this.seed=data?.seed??new URLSearchParams(location.search).get('seed')??undefined;}
@@ -30,6 +33,7 @@ export class TitleScene extends Phaser.Scene {
     const unsubscribe=gameSession().subscribe(()=>{if(this.scene.isActive()&&!this.leaving)this.render();});
     this.events.once(Phaser.Scenes.Events.SHUTDOWN,()=>{
       this.leaving=true;unsubscribe();this.input.keyboard?.off('keydown-ENTER',keyboardOpen);this.input.keyboard?.off('keydown-SPACE',keyboardOpen);
+      this.confirmation?.remove();this.confirmation=undefined;
       siblings.forEach(scene=>scene.events.off(Phaser.Scenes.Events.START,stopTitle));
     });
   }
@@ -41,6 +45,8 @@ export class TitleScene extends Phaser.Scene {
     const buttonWidth=short?Math.min(340,(w-left-right-64)*.44):Math.min(360,w-48),x=short?w-right-24-buttonWidth:(w-buttonWidth)/2,visualX=short?(left+x)/2:w/2;
     v.clear();v.paperBackground();
     const titleSize=short?Math.max(32,Math.min(50,(h-l.hud.y-bottom)*.2)):Math.max(38,Math.min(w<700?56:94,w*.18,h*.15)),titleY=short?l.hud.y+titleSize*.6+4:h*.23;
+    const entrance=this.firstRender&&session.loaded&&!this.reducedMotion();if(session.loaded)this.firstRender=false;
+    if(entrance)mountInkBurst(this,v.root,visualX,titleY,Math.min(w,h)*.28,0x3f606b,900,18);
     const title=v.text(visualX,titleY,'大丑牌',titleSize,'#203944').setOrigin(.5).setFontFamily('Georgia, "Noto Serif SC", SimSun, serif').setFontStyle('bold').setShadow(0,2,'#fff3d9',4,true,true);
     const textColor='#3F606B';
     title.setColor('#26313A').setShadow(0,0,'#000',0,false,false);
@@ -60,8 +66,12 @@ export class TitleScene extends Phaser.Scene {
       }
       fan.add(card);
     });
-    const entrance=this.firstRender&&!this.reducedMotion();this.firstRender=false;
-    if(entrance){fan.y+=12;fan.setAlpha(.6);this.tweens.add({targets:fan,y:fanY,alpha:1,duration:360,ease:'Cubic.easeOut'});}
+    if(entrance){
+      title.setScale(.3,.4).setAngle(-12).setAlpha(.2);this.tweens.add({targets:title,scaleX:1,scaleY:1,angle:0,alpha:1,duration:780,ease:inkSettlingEase(.35)});
+      fan.y+=Math.min(82,h*.12);fan.setAlpha(.1);this.tweens.add({targets:fan,y:fanY,alpha:1,duration:620,delay:110,ease:'Cubic.easeOut'});
+      for(const [i,child] of fan.list.entries()){const card=child as Phaser.GameObjects.Container,finalX=card.x,finalAngle=card.angle;card.x+=(i-1)*cardWidth*1.8;card.setAngle(finalAngle+(i-1)*34);this.tweens.add({targets:card,x:finalX,angle:finalAngle,duration:560,delay:110+i*55,ease:inkSettlingEase(.3)});card.once('destroy',()=>this.tweens.killTweensOf(card));}
+    }
+    title.once('destroy',()=>this.tweens.killTweensOf(title));
     fan.once('destroy',()=>this.tweens.killTweensOf(fan));
     const primaryY=short?l.hud.y+(h-l.hud.y-bottom-(saved?112:52))/2:h-bottom-168,primary={x,y:primaryY,width:buttonWidth,height:52};
     if(saved){
@@ -78,10 +88,16 @@ export class TitleScene extends Phaser.Scene {
   }
   private enterNew():void {
     if(this.leaving||gameSession().working)return;
-    this.leaving=true;this.audio.curtainOpen();paperSceneStart(this,'character-select',{seed:this.seed});
+    this.confirmTitle(()=>{this.audio.curtainOpen();paperSceneStart(this,'character-select',{seed:this.seed},true);});
   }
   private continueRun():void {
     const saved=gameSession().run;if(this.leaving||!saved||!['idle','readonly'].includes(saved.status))return;
-    this.leaving=true;this.audio.titleBell();this.scene.stop();routeSavedRun(this.game);
+    this.confirmTitle(()=>{this.audio.titleBell();this.scene.stop();routeSavedRun(this.game);});
+  }
+  private confirmTitle(leave:()=>void):void {
+    this.leaving=true;this.audio.titleConfirm();const title=this.view.root.getByName('title/name') as Phaser.GameObjects.Text;
+    if(this.reducedMotion()){leave();return;}
+    if(title){this.tweens.killTweensOf(title);title.setScale(1).setAngle(0).setAlpha(1);this.tweens.add({targets:title,scaleX:1.09,scaleY:.9,duration:70,yoyo:true,ease:'Sine.easeInOut'});mountInkBurst(this,this.view.root,title.x,title.y,Math.min(this.scale.width,this.scale.height)*.36,0xb8473a,650,20);}
+    this.confirmation=this.time.delayedCall(200,()=>{this.confirmation=undefined;if(this.scene.isActive())leave();});
   }
 }

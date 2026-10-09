@@ -5,11 +5,11 @@ let raf:Map<number,FrameRequestCallback>,next:number,removed:number,host:EventTa
 let canvas:HTMLCanvasElement;
 beforeEach(()=>{
  vi.useFakeTimers();raf=new Map();next=0;removed=0;host=new EventTarget();
- const ctx={scale(){},clearRect(){},beginPath(){},moveTo(){},lineTo(){},closePath(){},fill(){},stroke(){}};
+ const ctx={scale(){},clearRect(){},beginPath(){},moveTo(){},lineTo(){},closePath(){},fill(){},stroke(){},fillRect(){},ellipse(){},save(){},translate(){},rotate(){},strokeRect(){},fillText(){},restore(){}};
  vi.stubGlobal('requestAnimationFrame',(fn:FrameRequestCallback)=>{raf.set(++next,fn);return next;});
  vi.stubGlobal('cancelAnimationFrame',(id:number)=>raf.delete(id));
  vi.stubGlobal('window',Object.assign(new EventTarget(),{devicePixelRatio:1,matchMedia:()=>({matches:false})}));
- vi.stubGlobal('document',Object.assign(host,{hidden:false,body:{append:vi.fn()},createElement:()=>({style:{},setAttribute(){},getContext:()=>ctx,remove(){removed++;}})}));
+ vi.stubGlobal('document',Object.assign(host,{hidden:false,body:{append:vi.fn()},createElement:()=>({style:{},dataset:{},setAttribute(){},getContext:()=>ctx,remove(){removed++;}})}));
  canvas={getBoundingClientRect:()=>({left:0,top:0,width:390,height:740})} as HTMLCanvasElement;
 });
 afterEach(()=>{vi.useRealTimers();vi.unstubAllGlobals();});
@@ -31,4 +31,15 @@ it.each(['blur','resize','visibilitychange'])('%s retires visual immediately',ev
 it('route is immediate once; visual cancellation never repeats it',()=>{
  const start=vi.fn(),events={once:vi.fn()};paperSceneStart({scene:{start},game:{canvas,events}} as never,'shop',{seed:'x'});
  expect(start).toHaveBeenCalledExactlyOnceWith('shop',{seed:'x'});window.dispatchEvent(new Event('blur'));vi.advanceTimersByTime(1000);expect(start).toHaveBeenCalledTimes(1);
+});
+
+it('full cover/reveal remains bounded and its skip preserves the single immediate route',()=>{
+ const start=vi.fn(),events={once:vi.fn()};paperSceneStart({scene:{start},game:{canvas,events}} as never,'shop',undefined,true);
+ expect(start).toHaveBeenCalledExactlyOnceWith('shop');
+ const [id,frame]=[...raf.entries()][0];raf.delete(id);frame(performance.now()+380);expect(removed).toBe(0);
+ host.dispatchEvent(new Event('pointerdown'));expect(removed).toBe(1);expect(raf.size).toBe(0);
+ frame(performance.now()+700);vi.advanceTimersByTime(1400);expect(start).toHaveBeenCalledTimes(1);expect(removed).toBe(1);
+});
+it('full reveal completes even when frames are starved',()=>{
+ const flow=new PaperFlow(()=>false);flow.run(canvas,true);vi.advanceTimersByTime(1359);expect(removed).toBe(0);vi.advanceTimersByTime(1);expect(removed).toBe(1);expect(raf.size).toBe(0);
 });

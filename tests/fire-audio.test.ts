@@ -18,7 +18,7 @@ afterEach(()=>vi.unstubAllGlobals());
 describe('owned short drum and paper accents',()=>{
   it.each([0,1,2,3] as const)('compatibility tier %i uses short recorded key layers, no oscillator fallback',tier=>{
     const f=fixture();f.engine.scoreBrush({},'award',tier);expect(f.sources.map(s=>s.kind)).toEqual(['paper','paper','paper']);
-    expect(f.sources.every(s=>s.stop.mock.calls[0][0]-s.start.mock.calls[0][0]<=.4&&!s.loop)).toBe(true);
+    expect(f.sources.every(s=>s.stop.mock.calls[0][0]-s.start.mock.calls[0][0]<=.53&&!s.loop)).toBe(true);
     f.engine.stopScoreFire();expect(f.internal.voices.size).toBe(0);
   });
   it('deduplicates by presentation/event, including after cancellation, and allows a new actual attempt',()=>{
