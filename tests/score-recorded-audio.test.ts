@@ -32,3 +32,10 @@ it('every public semantic feedback uses available distinct recorded families wit
  for(const action of [()=>engine.deal(0),()=>engine.cardLand(),()=>engine.hoverTick(),()=>engine.coin(),()=>engine.titleBell(),()=>engine.curtainOpen(),()=>engine.select(),()=>engine.cancel(),()=>engine.invalid(),()=>engine.playHand(),()=>engine.discard(),()=>engine.resourceSpend('play',0),()=>engine.cardScore(),()=>engine.role(),()=>engine.joker(1),()=>engine.multiplier('add'),()=>engine.multiplier('multiply'),()=>engine.retrigger(),()=>engine.chanceRoll('lucky',true),()=>engine.chanceRoll('glass',false),()=>engine.glassBreak(),...(['tarot','planet','spectral','utility'] as const).map(f=>()=>engine.toolUse(f)),()=>engine.score(1),()=>engine.overkill(2),()=>engine.purchase(),()=>engine.sale(),()=>engine.reroll(),()=>engine.rareReveal(),()=>engine.success(),()=>engine.failure({runId:'x',commandSeq:2})]){inside.context.currentTime+=1;const before=sources.length;action();expect(sources.length).toBeGreaterThan(before);}
  expect(new Set(sources.map(s=>s.buffer.name)).size).toBeGreaterThanOrEqual(19);expect(inside.context.createOscillator).not.toHaveBeenCalled();expect(sources.every(s=>!s.loop)).toBe(true);
 });
+
+it('pre-scheduled deal train retains every future card and caps only overlapping voices',()=>{
+ const {engine,inside,sources}=fixture();for(let i=0;i<14;i++)engine.deal(i);
+ expect(sources).toHaveLength(14);expect(sources.every(s=>s.disconnect.mock.calls.length===0)).toBe(true);
+ const voices=[...inside.voices] as any[];for(const voice of voices)expect(voices.filter(v=>v.startsAt<=voice.startsAt&&v.endsAt>voice.startsAt).length).toBeLessThanOrEqual(3);
+ engine.cancelPresentation();expect(inside.voices.size).toBe(0);expect(sources.every(s=>s.disconnect.mock.calls.length===1)).toBe(true);
+});

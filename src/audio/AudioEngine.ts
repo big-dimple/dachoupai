@@ -6,7 +6,7 @@ export type AudioBus = 'master' | 'music' | 'sfx' | 'ui';
 export type AudioScene = 'menu' | 'shop' | 'table' | 'boss' | 'success' | 'failure';
 export type FailureCue = { runId: string; commandSeq: number };
 type VoiceBus = Exclude<AudioBus, 'master'>;
-type Voice = { source: AudioScheduledSourceNode; gain: GainNode; filter?: BiquadFilterNode; bus: VoiceBus; scoreAccent?: boolean; roll?: ScoreRollKind; semantic?: FoleyKind };
+type Voice = { source: AudioScheduledSourceNode; gain: GainNode; filter?: BiquadFilterNode; bus: VoiceBus; scoreAccent?: boolean; roll?: ScoreRollKind; semantic?: FoleyKind; startsAt?:number; endsAt?:number };
 export type ScoreSourceCue = 'card' | 'held' | 'character' | 'joker' | 'boss' | 'retrigger';
 export type ScoreRollKind = 'heat' | 'mult' | 'total';
 
@@ -306,7 +306,7 @@ export class AudioEngine {
       source.buffer=buffer;source.playbackRate.value=speed;
       const peak=bounded(volume,.14)*SOURCE_GAIN[bus];
       gain.gain.setValueAtTime(0,time);gain.gain.linearRampToValueAtTime(peak,time+.005);gain.gain.setValueAtTime(peak,time+length*.55);gain.gain.linearRampToValueAtTime(0,time+length);
-      source.connect(gain);gain.connect(this.gains![bus]);const voice={source,gain,bus};this.retain(voice);source.start(time,sampleOffset);source.stop(time+length);return voice;
+      source.connect(gain);gain.connect(this.gains![bus]);const voice={source,gain,bus,startsAt:time,endsAt:time+length};this.retain(voice);source.start(time,sampleOffset);source.stop(time+length);return voice;
     }catch{return;}
   }
   /** minGap/per-semantic oldest-voice cap adapted from Inkwave audio.js 258–280 (MIT).
@@ -317,7 +317,7 @@ export class AudioEngine {
     const recipe=FOLEY[kind],time=this.context!.currentTime+offset,last=this.cueTimes.get(kind);
     if(last!==undefined&&time>=last&&time-last<recipe.gap)return [];
     this.cueTimes.set(kind,time);
-    const active=[...this.voices].filter(v=>v.semantic===kind);
+    const active=[...this.voices].filter(v=>v.semantic===kind&&(v.startsAt??0)<=time&&(v.endsAt??Infinity)>time);
     while(active.length+recipe.layers.length>recipe.cap&&active.length)this.release(active.shift()!);
     const variant=this.variants.get(kind)??0;this.variants.set(kind,variant+1);
     return recipe.layers.flatMap(layer=>{
