@@ -8,7 +8,7 @@ import {jokerArtPreviewUrl} from './jokerArt';
 export function finaleKeepsake(run:R2RunState){
  if(!['run-won','run-lost'].includes(run.phase))return undefined;
  const live=run.deckInstances.filter(c=>!run.destroyedIds.includes(c.id)),keepsake=buildKeepsake(run);
- const summary=`累计 ${heatText(run.totalHeat)} 热度 · 余额 ${run.gold} 金\n牌组 ${live.length} 张 · 增强 ${live.filter(c=>c.enhancement!==undefined).length} 张 · 库存工具 ${run.consumables.length} 件`;
+ const summary=`已过关场次累计热度 ${heatText(run.totalHeat)} · 余额 ${run.gold} 金\n牌组 ${live.length} 张 · 增强 ${live.filter(c=>c.enhancement!==undefined).length} 张 · 库存工具 ${run.consumables.length} 件`;
  const continuation=run.phase==='run-won'&&run.mode==='standard'&&run.normalCompletion?'继续无尽会保留这些牌、成长、工具和金币。返回选角不接续本局。':'本局已结束；同局重试从开局重新开始，不继承这份构筑。';
  keepsake.terminal=true;
  for(const row of keepsake.growth)row.next=run.phase==='run-won'&&run.mode==='standard'&&run.normalCompletion?'自愿接续无尽时，沿此保存值继续':'本局最终保存值；重试从开局重新培养';

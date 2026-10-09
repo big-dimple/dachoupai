@@ -131,13 +131,13 @@ export class IntermissionScene extends Phaser.Scene {
     }else if(won){
       const progress=readRunProgress(),qualified=run.mode==='standard'&&!!run.normalCompletion;
       heading=run.mode==='challenge'?R2_MODE_CATALOG.challenges.find(row=>row.id===run.challengeId)!.name+' · 通关':run.mode==='tutorial'?'教学巡演通关':'八章通关';
-      body=`${character.name} · 累计 ${heatText(run.totalHeat)} 热度\n`+(qualified?'构筑与金币已保留，可自愿继续无尽巡演。':'本模式结果已保存，可同种子再试或选择下一次巡演。');
+      body=`${character.name} · 已过关场次累计热度 ${heatText(run.totalHeat)}\n`+(qualified?'构筑与金币已保留，可自愿继续无尽巡演。':'本模式结果已保存，可同种子再试或选择下一次巡演。');
       if(qualified&&progress.ok&&progress.progress.standardWins[run.difficulty])body+='\n'+(run.difficulty<3?`D${run.difficulty+1} 与挑战已解锁。`:'四档难度已达最高档；挑战已解锁。');
     }else if(capped){
       heading='已达数值上限';body='进度已保存。可查看本场、在菜单导出，或返回选角。';
     }else if(lost){
       heading='再登台';
-      body=`${failureSummary(run).resources}\n累计 ${heatText(run.totalHeat)} 热度 · 余额 ${run.gold} 金\n同局重试从开局重新开始，构筑不继承。`;
+      body=`${failureSummary(run).resources}\n已过关场次累计热度 ${heatText(run.totalHeat)} · 余额 ${run.gold} 金\n同局重试从开局重新开始，构筑不继承。`;
     }
     const touye=savedTouyeWager(trace);if(touye)body=touye+'\n'+body;
     const xiemuInterest=trace?.events.find(e=>e.sourceType==='character'&&e.sourceDefinitionId==='xiemu'&&e.phase==='onStageClear');
@@ -147,7 +147,7 @@ export class IntermissionScene extends Phaser.Scene {
       v.material(n,0x21474a,0x21474a,4).setName('result/next-panel');
       const nextHeading=v.text(n.x+14,n.y+10,heading,18,'#26313A',n.width-28).setFontStyle('bold');
       const bodyY=nextHeading.y+nextHeading.height+8;
-      v.text(n.x+14,bodyY,body,14,'#26313A',n.width-28).setLineSpacing(2).setStyle({maxLines:Math.max(1,Math.floor((n.y+n.height-12-bodyY)/19))});
+      v.text(n.x+14,bodyY,body,14,'#26313A',n.width-28).setLineSpacing(2).setStyle({maxLines:Math.max(1,Math.floor((n.y+n.height-12-bodyY)/19))}).setName('result/next-body');
     }
     if(nextStage){
       const gift=this.ready?stageGiftReceipt(run):undefined;
