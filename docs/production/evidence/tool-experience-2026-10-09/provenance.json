@@ -1,0 +1,59 @@
+{
+  "baseline": "4850594e8485f1a61595adfe0d6df048c10ca9e2",
+  "finalProduct": "ae08ce653ea8f28a460926658d6ce9a8f83fa4ec",
+  "protected": [
+    {
+      "path": "src/domain",
+      "baseTree": "5421b5ce4f633637763d6b687069b41884e83d4e",
+      "candidateTree": "5421b5ce4f633637763d6b687069b41884e83d4e",
+      "unchanged": true
+    },
+    {
+      "path": "src/application",
+      "baseTree": "c983c2a370f289dfbfb5ef76df2af459f67cbf04",
+      "candidateTree": "c983c2a370f289dfbfb5ef76df2af459f67cbf04",
+      "unchanged": true
+    },
+    {
+      "path": "src/content",
+      "baseTree": "6018132526ce72176f016f99ead53022480ab429",
+      "candidateTree": "6018132526ce72176f016f99ead53022480ab429",
+      "unchanged": true
+    },
+    {
+      "path": "public/assets",
+      "baseTree": "809823e118712c2e2e27b2921e0a3c648368ba26",
+      "candidateTree": "809823e118712c2e2e27b2921e0a3c648368ba26",
+      "unchanged": true
+    },
+    {
+      "path": "art/sources",
+      "baseTree": "47067728e0f15588b56199ff8ecc3b4e40c2dc53",
+      "candidateTree": "47067728e0f15588b56199ff8ecc3b4e40c2dc53",
+      "unchanged": true
+    }
+  ],
+  "audioComparison": [
+    {
+      "mix": "default",
+      "initialStateExactlyEqual": true,
+      "finalStateExactlyEqual": true,
+      "base": "4850594e8485f1a61595adfe0d6df048c10ca9e2",
+      "audioCandidate": "2059dea08e8cedcefed1a04468225955f3e619a0"
+    },
+    {
+      "mix": "custom",
+      "initialStateExactlyEqual": true,
+      "finalStateExactlyEqual": true,
+      "base": "4850594e8485f1a61595adfe0d6df048c10ca9e2",
+      "audioCandidate": "2059dea08e8cedcefed1a04468225955f3e619a0"
+    }
+  ],
+  "sourceNotes": {
+    "sacrifice-2059-worktree": "2059 head plus pending ResultStage/Intermission viewport edits only; source facts/ritual and audio unchanged at final, final generic next-step caption now says result saved rather than card edit. Later route/chest style photographed separately. No clean-worktree claim.",
+    "viewport-fd": "fd9f712 ResultStage/Art/Intermission bytes plus pending unrelated Game/Shop/frame changes only. Component source unchanged at final product; no clean-worktree claim.",
+    "endings-c9": "Earlier bounded sample, before final wooden-impact/portrait fix. Not final whole-package acceptance.",
+    "tools-pc-e920": "Initial complete tool path at e920; later shared frame/chest/compact purchase refinement shown separately at4beee28.",
+    "controls-c9": "Actual nine-card input and separate fourteen-card busy read-only presentation, not native acquisition of14."
+  }
+}

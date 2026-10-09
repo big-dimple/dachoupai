@@ -1,0 +1,40 @@
+
+> dachoupai@0.1.0 test
+> vitest run tests/saved-tool-result.test.ts tests/tool-change-preview.test.ts tests/failure-audio.test.ts
+
+
+ RUN  v4.1.11 /workspace/dachoupai
+
+ ❯ tests/saved-tool-result.test.ts (4 tests | 2 failed) 62ms
+   × all deterministic enhancement replacements report each actual card and preserve its other properties 32ms
+   × resource results describe saved gold or discard changes without inventing changed card faces 3ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/saved-tool-result.test.ts > all deterministic enhancement replacements report each actual card and preserve its other properties
+Error: wrong-consumable-target
+ ❯ send tests/saved-tool-result.test.ts:7:183
+
+ ❯ tests/saved-tool-result.test.ts:16:358
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  tests/saved-tool-result.test.ts > resource results describe saved gold or discard changes without inventing changed card faces
+Error: consumable-not-enabled
+ ❯ send tests/saved-tool-result.test.ts:7:183
+
+ ❯ tests/saved-tool-result.test.ts:20:165
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  1 failed | 2 passed (3)
+      Tests  2 failed | 14 passed (16)
+   Start at  15:29:58
+   Duration  1.23s (transform 2.05s, setup 0ms, import 2.73s, tests 108ms, environment 0ms)
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice

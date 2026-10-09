@@ -1,0 +1,99 @@
+{
+  "source": "fd9f7128ac3f7774978418894c729bed0e6fee89",
+  "scope": "Same saved b10 growth component at390x660 available area (representative address-bar reduction), dynamic390x740 and320x660; failure/no-growth390x660 only. Not the exact user screenshot trace or real Chrome address-bar/GPU acceptance.",
+  "cases": [
+    {
+      "kind": "growth",
+      "viewports": [
+        {
+          "viewport": {
+            "width": 390,
+            "height": 660
+          },
+          "bounds": {
+            "stage": {
+              "x": 12,
+              "y": 116,
+              "width": 366,
+              "height": 269.2
+            },
+            "next": {
+              "type": 5,
+              "x": 12,
+              "y": 397.2,
+              "width": 366,
+              "height": 98.80000000000001
+            },
+            "sources": [
+              {
+                "type": 5,
+                "x": 30,
+                "y": 141.28598062418064,
+                "width": 60.081317147089365,
+                "height": 75.1016464338617
+              },
+              {
+                "type": 5,
+                "x": 97.94742308412647,
+                "y": 138.80394326869055,
+                "width": 64.05257691587353,
+                "height": 80.06572114484189
+              }
+            ],
+            "texts": [
+              {
+                "name": "result/formula",
+                "text": "93 热度 × 3.5",
+                "bounds": {
+                  "type": 5,
+                  "x": 229.5,
+                  "y": 158,
+                  "width": 83,
+                  "height": 16
+                }
+              },
+              {
+                "name": "result/score",
+                "text": "+325",
+                "bounds": {
+                  "type": 5,
+                  "x": 239.5,
+                  "y": 180,
+                  "width": 63,
+                  "height": 35
+                }
+              },
+              {
+                "name": "result/gap",
+                "text": "全场 643 / 400",
+                "bounds": {
+                  "type": 5,
+                  "x": 225.5,
+                  "y": 223,
+                  "width": 91,
+                  "height": 16
+                }
+              },
+              {
+                "name": "result/reward",
+                "text": "奖励  +6 金",
+                "bounds": {
+                  "type": 5,
+                  "x": 233,
+                  "y": 311,
+                  "width": 76,
+                  "height": 19
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "errors": [],
+      "status": "FAIL",
+      "error": "AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:\n\n  assert.ok(bounds.footer)\n\n    at file:///workspace/dachoupai/harness/result-viewport.mjs:6:1221"
+    }
+  ],
+  "status": "FAIL",
+  "error": "AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:\n\n  assert.ok(bounds.footer)\n\n    at file:///workspace/dachoupai/harness/result-viewport.mjs:6:1221"
+}

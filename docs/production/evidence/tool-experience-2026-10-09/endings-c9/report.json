@@ -1,0 +1,3972 @@
+{
+  "head": "e920f284e8b90335c09aa6e3b721a06335e6bc04",
+  "scope": "Two controlled saved PlayHand outcomes; real audio output plus finite software frames, not physical FPS, human hearing or user acceptance.",
+  "cases": [
+    {
+      "key": "victory-pc",
+      "errors": [],
+      "before": {
+        "schemaVersion": 2,
+        "rulesVersion": "r2",
+        "contentVersion": "quality-r2-basic-tool-supply-v1",
+        "contentHash": "json-fnv-v1:f87eea81b756b81d",
+        "runId": "controlled/score-energy/multiply",
+        "seed": "score-energy-controlled",
+        "commandSeq": 3,
+        "difficulty": 0,
+        "characterId": "amo",
+        "openingRoute": "group",
+        "openingShow": {
+          "handsScored": 0,
+          "rootId": null,
+          "eventId": null,
+          "reason": null
+        },
+        "routeStarter": {
+          "instanceId": null,
+          "rootId": null,
+          "eventId": null
+        },
+        "mode": "standard",
+        "challengeId": null,
+        "programsEnabled": false,
+        "programRerollCoupon": false,
+        "chapterDisabledJokerId": null,
+        "chapter": 1,
+        "stageIndex": 0,
+        "phase": "await-input",
+        "deckInstances": [
+          {
+            "id": "spades-2",
+            "suit": "clubs",
+            "rank": 7
+          },
+          {
+            "id": "spades-3",
+            "suit": "hearts",
+            "rank": 7
+          },
+          {
+            "id": "spades-4",
+            "suit": "spades",
+            "rank": 9
+          },
+          {
+            "id": "spades-5",
+            "suit": "diamonds",
+            "rank": 9
+          },
+          {
+            "id": "spades-6",
+            "suit": "clubs",
+            "rank": 2
+          },
+          {
+            "id": "spades-7",
+            "suit": "spades",
+            "rank": 2
+          },
+          {
+            "id": "spades-8",
+            "suit": "hearts",
+            "rank": 11
+          },
+          {
+            "id": "spades-9",
+            "suit": "diamonds",
+            "rank": 12
+          },
+          {
+            "id": "spades-10",
+            "suit": "spades",
+            "rank": 10
+          },
+          {
+            "id": "spades-11",
+            "suit": "spades",
+            "rank": 11
+          },
+          {
+            "id": "spades-12",
+            "suit": "spades",
+            "rank": 12
+          },
+          {
+            "id": "spades-13",
+            "suit": "spades",
+            "rank": 13
+          },
+          {
+            "id": "spades-14",
+            "suit": "spades",
+            "rank": 14
+          },
+          {
+            "id": "hearts-2",
+            "suit": "hearts",
+            "rank": 2
+          },
+          {
+            "id": "hearts-3",
+            "suit": "hearts",
+            "rank": 3
+          },
+          {
+            "id": "hearts-4",
+            "suit": "hearts",
+            "rank": 4
+          },
+          {
+            "id": "hearts-5",
+            "suit": "hearts",
+            "rank": 5
+          },
+          {
+            "id": "hearts-6",
+            "suit": "hearts",
+            "rank": 6
+          },
+          {
+            "id": "hearts-7",
+            "suit": "hearts",
+            "rank": 7
+          },
+          {
+            "id": "hearts-8",
+            "suit": "hearts",
+            "rank": 8
+          },
+          {
+            "id": "hearts-9",
+            "suit": "hearts",
+            "rank": 9
+          },
+          {
+            "id": "hearts-10",
+            "suit": "hearts",
+            "rank": 10
+          },
+          {
+            "id": "hearts-11",
+            "suit": "hearts",
+            "rank": 11
+          },
+          {
+            "id": "hearts-12",
+            "suit": "hearts",
+            "rank": 12
+          },
+          {
+            "id": "hearts-13",
+            "suit": "hearts",
+            "rank": 13
+          },
+          {
+            "id": "hearts-14",
+            "suit": "hearts",
+            "rank": 14
+          },
+          {
+            "id": "clubs-2",
+            "suit": "clubs",
+            "rank": 2
+          },
+          {
+            "id": "clubs-3",
+            "suit": "clubs",
+            "rank": 3
+          },
+          {
+            "id": "clubs-4",
+            "suit": "clubs",
+            "rank": 4
+          },
+          {
+            "id": "clubs-5",
+            "suit": "clubs",
+            "rank": 5
+          },
+          {
+            "id": "clubs-6",
+            "suit": "clubs",
+            "rank": 6
+          },
+          {
+            "id": "clubs-7",
+            "suit": "clubs",
+            "rank": 7
+          },
+          {
+            "id": "clubs-8",
+            "suit": "clubs",
+            "rank": 8
+          },
+          {
+            "id": "clubs-9",
+            "suit": "clubs",
+            "rank": 9
+          },
+          {
+            "id": "clubs-10",
+            "suit": "clubs",
+            "rank": 10
+          },
+          {
+            "id": "clubs-11",
+            "suit": "clubs",
+            "rank": 11
+          },
+          {
+            "id": "clubs-12",
+            "suit": "clubs",
+            "rank": 12
+          },
+          {
+            "id": "clubs-13",
+            "suit": "clubs",
+            "rank": 13
+          },
+          {
+            "id": "clubs-14",
+            "suit": "clubs",
+            "rank": 14
+          },
+          {
+            "id": "diamonds-2",
+            "suit": "diamonds",
+            "rank": 2
+          },
+          {
+            "id": "diamonds-3",
+            "suit": "diamonds",
+            "rank": 3
+          },
+          {
+            "id": "diamonds-4",
+            "suit": "diamonds",
+            "rank": 4
+          },
+          {
+            "id": "diamonds-5",
+            "suit": "diamonds",
+            "rank": 5
+          },
+          {
+            "id": "diamonds-6",
+            "suit": "diamonds",
+            "rank": 6
+          },
+          {
+            "id": "diamonds-7",
+            "suit": "diamonds",
+            "rank": 7
+          },
+          {
+            "id": "diamonds-8",
+            "suit": "diamonds",
+            "rank": 8
+          },
+          {
+            "id": "diamonds-9",
+            "suit": "diamonds",
+            "rank": 9
+          },
+          {
+            "id": "diamonds-10",
+            "suit": "diamonds",
+            "rank": 10
+          },
+          {
+            "id": "diamonds-11",
+            "suit": "diamonds",
+            "rank": 11
+          },
+          {
+            "id": "diamonds-12",
+            "suit": "diamonds",
+            "rank": 12
+          },
+          {
+            "id": "diamonds-13",
+            "suit": "diamonds",
+            "rank": 13
+          },
+          {
+            "id": "diamonds-14",
+            "suit": "diamonds",
+            "rank": 14
+          }
+        ],
+        "drawPile": [
+          "spades-10",
+          "spades-11",
+          "spades-12",
+          "spades-13",
+          "spades-14",
+          "hearts-2",
+          "hearts-3",
+          "hearts-4",
+          "hearts-5",
+          "hearts-6",
+          "hearts-7",
+          "hearts-8",
+          "hearts-9",
+          "hearts-10",
+          "hearts-11",
+          "hearts-12",
+          "hearts-13",
+          "hearts-14",
+          "clubs-2",
+          "clubs-3",
+          "clubs-4",
+          "clubs-5",
+          "clubs-6",
+          "clubs-7",
+          "clubs-8",
+          "clubs-9",
+          "clubs-10",
+          "clubs-11",
+          "clubs-12",
+          "clubs-13",
+          "clubs-14",
+          "diamonds-2",
+          "diamonds-3",
+          "diamonds-4",
+          "diamonds-5",
+          "diamonds-6",
+          "diamonds-7",
+          "diamonds-8",
+          "diamonds-9",
+          "diamonds-10",
+          "diamonds-11",
+          "diamonds-12",
+          "diamonds-13",
+          "diamonds-14"
+        ],
+        "handOrder": [
+          "spades-2",
+          "spades-3",
+          "spades-4",
+          "spades-5",
+          "spades-6",
+          "spades-7",
+          "spades-8",
+          "spades-9"
+        ],
+        "playedPile": [],
+        "discardPile": [],
+        "destroyedIds": [],
+        "stage": {
+          "openingDiscard": null,
+          "assistUsed": false,
+          "index": 0,
+          "targetHeat": "400",
+          "initialTargetHeat": "400",
+          "heat": "0",
+          "handsLeft": 4,
+          "initialHands": 4,
+          "discardsLeft": 3,
+          "initialDiscards": 3,
+          "discardSpent": 0,
+          "discardGained": 0,
+          "doubleDiscardBeforeFirstPlay": false,
+          "discardsUsed": 0,
+          "skipResult": null,
+          "playIndex": 0,
+          "previousHandType": null,
+          "previousHandScore": null,
+          "handLimit": 8,
+          "initialHandLimit": 8,
+          "boss": null,
+          "initialJokerIds": [
+            "controlled/source/0",
+            "controlled/source/1",
+            "controlled/source/2"
+          ],
+          "sealedJokerIds": [],
+          "challengeDisabledJokerId": null,
+          "rescueUsed": false,
+          "clearId": null,
+          "goldEarned": 0,
+          "disabledIds": [],
+          "wagerSelected": false,
+          "wagerUsed": false,
+          "maxPlayedCount": 0,
+          "ordinaryStraightSeen": false,
+          "ordinaryFlushSeen": false,
+          "quadRefundUsed": false,
+          "jokerSold": false
+        },
+        "totalHeat": "0",
+        "gold": 20,
+        "jokers": [
+          {
+            "instanceId": "controlled/source/0",
+            "definitionId": "f09",
+            "paidPrice": 8,
+            "growth": {},
+            "edition": "none"
+          },
+          {
+            "instanceId": "controlled/source/1",
+            "definitionId": "f06",
+            "paidPrice": 8,
+            "growth": {},
+            "edition": "none"
+          },
+          {
+            "instanceId": "controlled/source/2",
+            "definitionId": "e08",
+            "paidPrice": 8,
+            "growth": {},
+            "edition": "none"
+          }
+        ],
+        "consumables": [],
+        "longTermItems": [],
+        "program": null,
+        "boss": {
+          "definitionId": "B01",
+          "disabledSuit": null
+        },
+        "seenBossIds": [
+          "B01"
+        ],
+        "chapterSkipConsumable": "T03",
+        "purchaseCoupons": 0,
+        "safetyNetUsed": false,
+        "shop": null,
+        "spectralModifiers": {
+          "handsPenalty": 0,
+          "handPenalty": 0,
+          "cleanSlateBonus": 0
+        },
+        "supplyRewardClaimed": false,
+        "chapterHandUsage": {},
+        "normalClearClaimed": false,
+        "tourMode": "normal",
+        "normalCompletion": null,
+        "rng": {
+          "deck": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 930748328
+          },
+          "rule": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 2222665615
+          },
+          "shop": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 3086453370
+          },
+          "reward": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 3790170128
+          },
+          "program": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 932151522
+          },
+          "challenge": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 750765427
+          }
+        },
+        "receipts": [
+          {
+            "commandId": "controlled/score-energy/multiply/start",
+            "fingerprint": "json-fnv-v1:6fcb46dafaefac26",
+            "seq": 1
+          },
+          {
+            "commandId": "controlled/score-energy/multiply/command/2",
+            "fingerprint": "json-fnv-v1:1b7c3821ad014595",
+            "seq": 2
+          },
+          {
+            "commandId": "controlled/score-energy/multiply/command/3",
+            "fingerprint": "json-fnv-v1:307674d22a5a6d56",
+            "seq": 3
+          }
+        ],
+        "lastTrace": null,
+        "handLevels": {},
+        "outcome": null
+      },
+      "after": {
+        "schemaVersion": 2,
+        "rulesVersion": "r2",
+        "contentVersion": "quality-r2-basic-tool-supply-v1",
+        "contentHash": "json-fnv-v1:f87eea81b756b81d",
+        "runId": "controlled/score-energy/multiply",
+        "seed": "score-energy-controlled",
+        "commandSeq": 4,
+        "difficulty": 0,
+        "characterId": "amo",
+        "openingRoute": "group",
+        "openingShow": {
+          "handsScored": 1,
+          "rootId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4",
+          "eventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/5",
+          "reason": "multiply"
+        },
+        "routeStarter": {
+          "instanceId": null,
+          "rootId": null,
+          "eventId": null
+        },
+        "mode": "standard",
+        "challengeId": null,
+        "programsEnabled": false,
+        "programRerollCoupon": false,
+        "chapterDisabledJokerId": null,
+        "chapter": 1,
+        "stageIndex": 1,
+        "phase": "stage-cleared",
+        "deckInstances": [
+          {
+            "id": "spades-2",
+            "suit": "clubs",
+            "rank": 7
+          },
+          {
+            "id": "spades-3",
+            "suit": "hearts",
+            "rank": 7
+          },
+          {
+            "id": "spades-4",
+            "suit": "spades",
+            "rank": 9
+          },
+          {
+            "id": "spades-5",
+            "suit": "diamonds",
+            "rank": 9
+          },
+          {
+            "id": "spades-6",
+            "suit": "clubs",
+            "rank": 2
+          },
+          {
+            "id": "spades-7",
+            "suit": "spades",
+            "rank": 2
+          },
+          {
+            "id": "spades-8",
+            "suit": "hearts",
+            "rank": 11
+          },
+          {
+            "id": "spades-9",
+            "suit": "diamonds",
+            "rank": 12
+          },
+          {
+            "id": "spades-10",
+            "suit": "spades",
+            "rank": 10
+          },
+          {
+            "id": "spades-11",
+            "suit": "spades",
+            "rank": 11
+          },
+          {
+            "id": "spades-12",
+            "suit": "spades",
+            "rank": 12
+          },
+          {
+            "id": "spades-13",
+            "suit": "spades",
+            "rank": 13
+          },
+          {
+            "id": "spades-14",
+            "suit": "spades",
+            "rank": 14
+          },
+          {
+            "id": "hearts-2",
+            "suit": "hearts",
+            "rank": 2
+          },
+          {
+            "id": "hearts-3",
+            "suit": "hearts",
+            "rank": 3
+          },
+          {
+            "id": "hearts-4",
+            "suit": "hearts",
+            "rank": 4
+          },
+          {
+            "id": "hearts-5",
+            "suit": "hearts",
+            "rank": 5
+          },
+          {
+            "id": "hearts-6",
+            "suit": "hearts",
+            "rank": 6
+          },
+          {
+            "id": "hearts-7",
+            "suit": "hearts",
+            "rank": 7
+          },
+          {
+            "id": "hearts-8",
+            "suit": "hearts",
+            "rank": 8
+          },
+          {
+            "id": "hearts-9",
+            "suit": "hearts",
+            "rank": 9
+          },
+          {
+            "id": "hearts-10",
+            "suit": "hearts",
+            "rank": 10
+          },
+          {
+            "id": "hearts-11",
+            "suit": "hearts",
+            "rank": 11
+          },
+          {
+            "id": "hearts-12",
+            "suit": "hearts",
+            "rank": 12
+          },
+          {
+            "id": "hearts-13",
+            "suit": "hearts",
+            "rank": 13
+          },
+          {
+            "id": "hearts-14",
+            "suit": "hearts",
+            "rank": 14
+          },
+          {
+            "id": "clubs-2",
+            "suit": "clubs",
+            "rank": 2
+          },
+          {
+            "id": "clubs-3",
+            "suit": "clubs",
+            "rank": 3
+          },
+          {
+            "id": "clubs-4",
+            "suit": "clubs",
+            "rank": 4
+          },
+          {
+            "id": "clubs-5",
+            "suit": "clubs",
+            "rank": 5
+          },
+          {
+            "id": "clubs-6",
+            "suit": "clubs",
+            "rank": 6
+          },
+          {
+            "id": "clubs-7",
+            "suit": "clubs",
+            "rank": 7
+          },
+          {
+            "id": "clubs-8",
+            "suit": "clubs",
+            "rank": 8
+          },
+          {
+            "id": "clubs-9",
+            "suit": "clubs",
+            "rank": 9
+          },
+          {
+            "id": "clubs-10",
+            "suit": "clubs",
+            "rank": 10
+          },
+          {
+            "id": "clubs-11",
+            "suit": "clubs",
+            "rank": 11
+          },
+          {
+            "id": "clubs-12",
+            "suit": "clubs",
+            "rank": 12
+          },
+          {
+            "id": "clubs-13",
+            "suit": "clubs",
+            "rank": 13
+          },
+          {
+            "id": "clubs-14",
+            "suit": "clubs",
+            "rank": 14
+          },
+          {
+            "id": "diamonds-2",
+            "suit": "diamonds",
+            "rank": 2
+          },
+          {
+            "id": "diamonds-3",
+            "suit": "diamonds",
+            "rank": 3
+          },
+          {
+            "id": "diamonds-4",
+            "suit": "diamonds",
+            "rank": 4
+          },
+          {
+            "id": "diamonds-5",
+            "suit": "diamonds",
+            "rank": 5
+          },
+          {
+            "id": "diamonds-6",
+            "suit": "diamonds",
+            "rank": 6
+          },
+          {
+            "id": "diamonds-7",
+            "suit": "diamonds",
+            "rank": 7
+          },
+          {
+            "id": "diamonds-8",
+            "suit": "diamonds",
+            "rank": 8
+          },
+          {
+            "id": "diamonds-9",
+            "suit": "diamonds",
+            "rank": 9
+          },
+          {
+            "id": "diamonds-10",
+            "suit": "diamonds",
+            "rank": 10
+          },
+          {
+            "id": "diamonds-11",
+            "suit": "diamonds",
+            "rank": 11
+          },
+          {
+            "id": "diamonds-12",
+            "suit": "diamonds",
+            "rank": 12
+          },
+          {
+            "id": "diamonds-13",
+            "suit": "diamonds",
+            "rank": 13
+          },
+          {
+            "id": "diamonds-14",
+            "suit": "diamonds",
+            "rank": 14
+          }
+        ],
+        "drawPile": [
+          "spades-10",
+          "spades-11",
+          "spades-12",
+          "spades-13",
+          "spades-14",
+          "hearts-2",
+          "hearts-3",
+          "hearts-4",
+          "hearts-5",
+          "hearts-6",
+          "hearts-7",
+          "hearts-8",
+          "hearts-9",
+          "hearts-10",
+          "hearts-11",
+          "hearts-12",
+          "hearts-13",
+          "hearts-14",
+          "clubs-2",
+          "clubs-3",
+          "clubs-4",
+          "clubs-5",
+          "clubs-6",
+          "clubs-7",
+          "clubs-8",
+          "clubs-9",
+          "clubs-10",
+          "clubs-11",
+          "clubs-12",
+          "clubs-13",
+          "clubs-14",
+          "diamonds-2",
+          "diamonds-3",
+          "diamonds-4",
+          "diamonds-5",
+          "diamonds-6",
+          "diamonds-7",
+          "diamonds-8",
+          "diamonds-9",
+          "diamonds-10",
+          "diamonds-11",
+          "diamonds-12",
+          "diamonds-13",
+          "diamonds-14"
+        ],
+        "handOrder": [
+          "spades-8",
+          "spades-9"
+        ],
+        "playedPile": [
+          "spades-2",
+          "spades-3",
+          "spades-4",
+          "spades-5",
+          "spades-6",
+          "spades-7"
+        ],
+        "discardPile": [],
+        "destroyedIds": [],
+        "stage": {
+          "openingDiscard": null,
+          "assistUsed": true,
+          "index": 0,
+          "targetHeat": "400",
+          "initialTargetHeat": "400",
+          "heat": "2095",
+          "handsLeft": 3,
+          "initialHands": 4,
+          "discardsLeft": 3,
+          "initialDiscards": 3,
+          "discardSpent": 0,
+          "discardGained": 0,
+          "doubleDiscardBeforeFirstPlay": false,
+          "discardsUsed": 0,
+          "skipResult": null,
+          "playIndex": 1,
+          "previousHandType": "two-pair",
+          "previousHandScore": "2095",
+          "handLimit": 8,
+          "initialHandLimit": 8,
+          "boss": null,
+          "initialJokerIds": [
+            "controlled/source/0",
+            "controlled/source/1",
+            "controlled/source/2"
+          ],
+          "sealedJokerIds": [],
+          "challengeDisabledJokerId": null,
+          "rescueUsed": false,
+          "clearId": "controlled/score-energy/multiply/clear/0",
+          "goldEarned": 11,
+          "disabledIds": [],
+          "wagerSelected": false,
+          "wagerUsed": false,
+          "maxPlayedCount": 4,
+          "ordinaryStraightSeen": false,
+          "ordinaryFlushSeen": false,
+          "quadRefundUsed": false,
+          "jokerSold": false
+        },
+        "totalHeat": "2095",
+        "gold": 31,
+        "jokers": [
+          {
+            "instanceId": "controlled/source/0",
+            "definitionId": "f09",
+            "paidPrice": 8,
+            "growth": {},
+            "edition": "none"
+          },
+          {
+            "instanceId": "controlled/source/1",
+            "definitionId": "f06",
+            "paidPrice": 8,
+            "growth": {},
+            "edition": "none",
+            "counters": {
+              "handsScored": 1
+            }
+          },
+          {
+            "instanceId": "controlled/source/2",
+            "definitionId": "e08",
+            "paidPrice": 8,
+            "growth": {},
+            "edition": "none"
+          }
+        ],
+        "consumables": [],
+        "longTermItems": [],
+        "program": null,
+        "boss": {
+          "definitionId": "B01",
+          "disabledSuit": null
+        },
+        "seenBossIds": [
+          "B01"
+        ],
+        "chapterSkipConsumable": "T03",
+        "purchaseCoupons": 0,
+        "safetyNetUsed": false,
+        "shop": null,
+        "spectralModifiers": {
+          "handsPenalty": 0,
+          "handPenalty": 0,
+          "cleanSlateBonus": 0
+        },
+        "supplyRewardClaimed": false,
+        "chapterHandUsage": {
+          "two-pair": 1
+        },
+        "normalClearClaimed": true,
+        "tourMode": "normal",
+        "normalCompletion": null,
+        "rng": {
+          "deck": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 930748328
+          },
+          "rule": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 2222665615
+          },
+          "shop": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 3086453370
+          },
+          "reward": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 3790170128
+          },
+          "program": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 932151522
+          },
+          "challenge": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 750765427
+          }
+        },
+        "receipts": [
+          {
+            "commandId": "controlled/score-energy/multiply/start",
+            "fingerprint": "json-fnv-v1:6fcb46dafaefac26",
+            "seq": 1
+          },
+          {
+            "commandId": "controlled/score-energy/multiply/command/2",
+            "fingerprint": "json-fnv-v1:1b7c3821ad014595",
+            "seq": 2
+          },
+          {
+            "commandId": "controlled/score-energy/multiply/command/3",
+            "fingerprint": "json-fnv-v1:307674d22a5a6d56",
+            "seq": 3
+          },
+          {
+            "commandId": "controlled/score-energy/multiply/command/4",
+            "fingerprint": "json-fnv-v1:ddee93be495c60fa",
+            "seq": 4
+          }
+        ],
+        "lastTrace": {
+          "rulesVersion": "r2",
+          "rootId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4",
+          "handType": "two-pair",
+          "level": 1,
+          "sets": {
+            "playedIds": [
+              "spades-2",
+              "spades-3",
+              "spades-4",
+              "spades-5"
+            ],
+            "scoringIds": [
+              "spades-2",
+              "spades-3",
+              "spades-4",
+              "spades-5"
+            ],
+            "activeScoringIds": [
+              "spades-2",
+              "spades-3",
+              "spades-4",
+              "spades-5"
+            ],
+            "heldIds": [
+              "spades-8",
+              "spades-9"
+            ],
+            "assistConsumedIds": [
+              "spades-6",
+              "spades-7"
+            ]
+          },
+          "assist": {
+            "ids": [
+              "spades-6",
+              "spades-7"
+            ],
+            "kind": "pair",
+            "multiplier": 2
+          },
+          "finalScore": "2095",
+          "accumulator": {
+            "H": {
+              "n": "97",
+              "d": "1"
+            },
+            "M": {
+              "n": "108",
+              "d": "5"
+            }
+          },
+          "events": [
+            {
+              "eventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/0",
+              "rootId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4",
+              "rootEventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/0",
+              "phase": "base",
+              "sourceType": "rule",
+              "sourceDefinitionId": "two-pair",
+              "sourceInstanceId": "controlled/score-energy/multiply",
+              "operation": "base",
+              "value": {
+                "n": "65",
+                "d": "1"
+              },
+              "before": {
+                "H": {
+                  "n": "0",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "0",
+                  "d": "1"
+                }
+              },
+              "after": {
+                "H": {
+                  "n": "65",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "2",
+                  "d": "1"
+                }
+              },
+              "reasonKey": "two-pair.base",
+              "visibleCondition": {
+                "kind": "always"
+              },
+              "retriggerDepth": 0
+            },
+            {
+              "eventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/1",
+              "rootId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4",
+              "rootEventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/1",
+              "phase": "onCardScore",
+              "sourceType": "card",
+              "sourceDefinitionId": "rank-7",
+              "sourceInstanceId": "spades-2",
+              "targetCardId": "spades-2",
+              "operation": "add-heat",
+              "value": {
+                "n": "7",
+                "d": "1"
+              },
+              "before": {
+                "H": {
+                  "n": "65",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "2",
+                  "d": "1"
+                }
+              },
+              "after": {
+                "H": {
+                  "n": "72",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "2",
+                  "d": "1"
+                }
+              },
+              "reasonKey": "rank-7.add-heat",
+              "visibleCondition": {
+                "kind": "always"
+              },
+              "retriggerDepth": 0
+            },
+            {
+              "eventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/2",
+              "rootId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4",
+              "rootEventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/2",
+              "phase": "onCardScore",
+              "sourceType": "card",
+              "sourceDefinitionId": "rank-7",
+              "sourceInstanceId": "spades-3",
+              "targetCardId": "spades-3",
+              "operation": "add-heat",
+              "value": {
+                "n": "7",
+                "d": "1"
+              },
+              "before": {
+                "H": {
+                  "n": "72",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "2",
+                  "d": "1"
+                }
+              },
+              "after": {
+                "H": {
+                  "n": "79",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "2",
+                  "d": "1"
+                }
+              },
+              "reasonKey": "rank-7.add-heat",
+              "visibleCondition": {
+                "kind": "always"
+              },
+              "retriggerDepth": 0
+            },
+            {
+              "eventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/3",
+              "rootId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4",
+              "rootEventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/3",
+              "phase": "onCardScore",
+              "sourceType": "card",
+              "sourceDefinitionId": "rank-9",
+              "sourceInstanceId": "spades-4",
+              "targetCardId": "spades-4",
+              "operation": "add-heat",
+              "value": {
+                "n": "9",
+                "d": "1"
+              },
+              "before": {
+                "H": {
+                  "n": "79",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "2",
+                  "d": "1"
+                }
+              },
+              "after": {
+                "H": {
+                  "n": "88",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "2",
+                  "d": "1"
+                }
+              },
+              "reasonKey": "rank-9.add-heat",
+              "visibleCondition": {
+                "kind": "always"
+              },
+              "retriggerDepth": 0
+            },
+            {
+              "eventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/4",
+              "rootId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4",
+              "rootEventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/4",
+              "phase": "onCardScore",
+              "sourceType": "card",
+              "sourceDefinitionId": "rank-9",
+              "sourceInstanceId": "spades-5",
+              "targetCardId": "spades-5",
+              "operation": "add-heat",
+              "value": {
+                "n": "9",
+                "d": "1"
+              },
+              "before": {
+                "H": {
+                  "n": "88",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "2",
+                  "d": "1"
+                }
+              },
+              "after": {
+                "H": {
+                  "n": "97",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "2",
+                  "d": "1"
+                }
+              },
+              "reasonKey": "rank-9.add-heat",
+              "visibleCondition": {
+                "kind": "always"
+              },
+              "retriggerDepth": 0
+            },
+            {
+              "eventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/5",
+              "rootId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4",
+              "rootEventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/5",
+              "phase": "jokerScore",
+              "sourceType": "joker",
+              "sourceDefinitionId": "f09",
+              "sourceInstanceId": "controlled/source/0",
+              "operation": "multiply-multiplier",
+              "value": {
+                "n": "3",
+                "d": "2"
+              },
+              "before": {
+                "H": {
+                  "n": "97",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "2",
+                  "d": "1"
+                }
+              },
+              "after": {
+                "H": {
+                  "n": "97",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "3",
+                  "d": "1"
+                }
+              },
+              "reasonKey": "f09.multiply-multiplier",
+              "visibleCondition": {
+                "kind": "resource",
+                "resource": "discards-used",
+                "equals": 0
+              },
+              "retriggerDepth": 0
+            },
+            {
+              "eventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/6",
+              "rootId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4",
+              "rootEventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/6",
+              "phase": "jokerScore",
+              "sourceType": "joker",
+              "sourceDefinitionId": "f06",
+              "sourceInstanceId": "controlled/source/1",
+              "operation": "multiply-multiplier",
+              "value": {
+                "n": "2",
+                "d": "1"
+              },
+              "before": {
+                "H": {
+                  "n": "97",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "3",
+                  "d": "1"
+                }
+              },
+              "after": {
+                "H": {
+                  "n": "97",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "6",
+                  "d": "1"
+                }
+              },
+              "reasonKey": "f06.multiply-multiplier",
+              "visibleCondition": {
+                "kind": "always"
+              },
+              "retriggerDepth": 0
+            },
+            {
+              "eventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/7",
+              "rootId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4",
+              "rootEventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/7",
+              "phase": "jokerScore",
+              "sourceType": "joker",
+              "sourceDefinitionId": "e08",
+              "sourceInstanceId": "controlled/source/2",
+              "operation": "multiply-multiplier",
+              "value": {
+                "n": "9",
+                "d": "5"
+              },
+              "before": {
+                "H": {
+                  "n": "97",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "6",
+                  "d": "1"
+                }
+              },
+              "after": {
+                "H": {
+                  "n": "97",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "54",
+                  "d": "5"
+                }
+              },
+              "reasonKey": "e08.multiply-multiplier",
+              "visibleCondition": {
+                "kind": "resource-minimum",
+                "resource": "gold",
+                "minimum": 20
+              },
+              "retriggerDepth": 0
+            },
+            {
+              "eventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/8",
+              "rootId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4",
+              "rootEventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/8",
+              "phase": "characterScore",
+              "sourceType": "character",
+              "sourceDefinitionId": "amo",
+              "sourceInstanceId": "controlled/score-energy/multiply/character",
+              "operation": "multiply-multiplier",
+              "value": {
+                "n": "2",
+                "d": "1"
+              },
+              "before": {
+                "H": {
+                  "n": "97",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "54",
+                  "d": "5"
+                }
+              },
+              "after": {
+                "H": {
+                  "n": "97",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "108",
+                  "d": "5"
+                }
+              },
+              "reasonKey": "amo.assist.pair",
+              "visibleCondition": {
+                "kind": "hand-type-in",
+                "values": [
+                  "two-pair",
+                  "three-kind",
+                  "straight",
+                  "flush",
+                  "full-house",
+                  "four-kind",
+                  "straight-flush",
+                  "five-kind",
+                  "flush-house",
+                  "flush-five"
+                ]
+              },
+              "retriggerDepth": 0
+            },
+            {
+              "eventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/9",
+              "rootId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4",
+              "rootEventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/9",
+              "phase": "finalScore",
+              "sourceType": "rule",
+              "sourceDefinitionId": "two-pair",
+              "sourceInstanceId": "controlled/score-energy/multiply",
+              "operation": "final-score",
+              "value": {
+                "n": "2095",
+                "d": "1"
+              },
+              "before": {
+                "H": {
+                  "n": "97",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "108",
+                  "d": "5"
+                }
+              },
+              "after": {
+                "H": {
+                  "n": "97",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "108",
+                  "d": "5"
+                }
+              },
+              "reasonKey": "two-pair.final-score",
+              "visibleCondition": {
+                "kind": "always"
+              },
+              "retriggerDepth": 0
+            },
+            {
+              "eventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/10",
+              "rootId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4",
+              "rootEventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/10",
+              "phase": "afterHand",
+              "sourceType": "joker",
+              "sourceDefinitionId": "f06",
+              "sourceInstanceId": "controlled/source/1",
+              "operation": "increment-hands-scored",
+              "value": {
+                "n": "1",
+                "d": "1"
+              },
+              "before": {
+                "H": {
+                  "n": "97",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "108",
+                  "d": "5"
+                }
+              },
+              "after": {
+                "H": {
+                  "n": "97",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "108",
+                  "d": "5"
+                }
+              },
+              "reasonKey": "f06.increment-hands-scored",
+              "visibleCondition": {
+                "kind": "always"
+              },
+              "retriggerDepth": 0
+            }
+          ],
+          "jokers": [
+            {
+              "instanceId": "controlled/source/0",
+              "definitionId": "f09",
+              "paidPrice": 8,
+              "growth": {},
+              "edition": "none"
+            },
+            {
+              "instanceId": "controlled/source/1",
+              "definitionId": "f06",
+              "paidPrice": 8,
+              "growth": {},
+              "edition": "none",
+              "counters": {
+                "handsScored": 1
+              }
+            },
+            {
+              "instanceId": "controlled/source/2",
+              "definitionId": "e08",
+              "paidPrice": 8,
+              "growth": {},
+              "edition": "none"
+            }
+          ],
+          "rng": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 2222665615
+          },
+          "goldDelta": 0,
+          "destroyedCardIds": [],
+          "destroyedJokerIds": [],
+          "cards": [
+            {
+              "id": "spades-2",
+              "suit": "clubs",
+              "rank": 7
+            },
+            {
+              "id": "spades-3",
+              "suit": "hearts",
+              "rank": 7
+            },
+            {
+              "id": "spades-4",
+              "suit": "spades",
+              "rank": 9
+            },
+            {
+              "id": "spades-5",
+              "suit": "diamonds",
+              "rank": 9
+            },
+            {
+              "id": "spades-6",
+              "suit": "clubs",
+              "rank": 2
+            },
+            {
+              "id": "spades-7",
+              "suit": "spades",
+              "rank": 2
+            },
+            {
+              "id": "spades-8",
+              "suit": "hearts",
+              "rank": 11
+            },
+            {
+              "id": "spades-9",
+              "suit": "diamonds",
+              "rank": 12
+            }
+          ],
+          "sourceJokers": [
+            {
+              "instanceId": "controlled/source/0",
+              "definitionId": "f09",
+              "paidPrice": 8,
+              "growth": {},
+              "edition": "none"
+            },
+            {
+              "instanceId": "controlled/source/1",
+              "definitionId": "f06",
+              "paidPrice": 8,
+              "growth": {},
+              "edition": "none"
+            },
+            {
+              "instanceId": "controlled/source/2",
+              "definitionId": "e08",
+              "paidPrice": 8,
+              "growth": {},
+              "edition": "none"
+            }
+          ],
+          "bossContext": {
+            "boss": null,
+            "previousHandType": null,
+            "sealedJokerIds": [],
+            "challengeDisabledJokerId": null
+          },
+          "combo": {
+            "goldBeforeRewards": 20
+          }
+        },
+        "handLevels": {
+          "two-pair": 1
+        },
+        "outcome": null
+      },
+      "clip": {
+        "frames": [
+          {
+            "time": 1791560336.758113,
+            "path": "victory-pc-frames/0.jpg"
+          },
+          {
+            "time": 1791560336.821281,
+            "path": "victory-pc-frames/1.jpg"
+          },
+          {
+            "time": 1791560336.888294,
+            "path": "victory-pc-frames/2.jpg"
+          },
+          {
+            "time": 1791560336.955043,
+            "path": "victory-pc-frames/3.jpg"
+          },
+          {
+            "time": 1791560337.021196,
+            "path": "victory-pc-frames/4.jpg"
+          },
+          {
+            "time": 1791560337.08882,
+            "path": "victory-pc-frames/5.jpg"
+          },
+          {
+            "time": 1791560337.155269,
+            "path": "victory-pc-frames/6.jpg"
+          },
+          {
+            "time": 1791560337.221214,
+            "path": "victory-pc-frames/7.jpg"
+          },
+          {
+            "time": 1791560337.287752,
+            "path": "victory-pc-frames/8.jpg"
+          },
+          {
+            "time": 1791560337.355015,
+            "path": "victory-pc-frames/9.jpg"
+          },
+          {
+            "time": 1791560337.422242,
+            "path": "victory-pc-frames/10.jpg"
+          },
+          {
+            "time": 1791560337.489049,
+            "path": "victory-pc-frames/11.jpg"
+          },
+          {
+            "time": 1791560337.554904,
+            "path": "victory-pc-frames/12.jpg"
+          },
+          {
+            "time": 1791560337.621082,
+            "path": "victory-pc-frames/13.jpg"
+          },
+          {
+            "time": 1791560337.687805,
+            "path": "victory-pc-frames/14.jpg"
+          },
+          {
+            "time": 1791560337.754592,
+            "path": "victory-pc-frames/15.jpg"
+          },
+          {
+            "time": 1791560337.821201,
+            "path": "victory-pc-frames/16.jpg"
+          },
+          {
+            "time": 1791560337.887953,
+            "path": "victory-pc-frames/17.jpg"
+          },
+          {
+            "time": 1791560337.954944,
+            "path": "victory-pc-frames/18.jpg"
+          },
+          {
+            "time": 1791560338.021412,
+            "path": "victory-pc-frames/19.jpg"
+          },
+          {
+            "time": 1791560338.094945,
+            "path": "victory-pc-frames/20.jpg"
+          },
+          {
+            "time": 1791560338.156133,
+            "path": "victory-pc-frames/21.jpg"
+          },
+          {
+            "time": 1791560338.222627,
+            "path": "victory-pc-frames/22.jpg"
+          },
+          {
+            "time": 1791560338.288008,
+            "path": "victory-pc-frames/23.jpg"
+          },
+          {
+            "time": 1791560338.354907,
+            "path": "victory-pc-frames/24.jpg"
+          },
+          {
+            "time": 1791560338.421286,
+            "path": "victory-pc-frames/25.jpg"
+          },
+          {
+            "time": 1791560338.487611,
+            "path": "victory-pc-frames/26.jpg"
+          },
+          {
+            "time": 1791560338.55617,
+            "path": "victory-pc-frames/27.jpg"
+          },
+          {
+            "time": 1791560338.621255,
+            "path": "victory-pc-frames/28.jpg"
+          },
+          {
+            "time": 1791560338.687477,
+            "path": "victory-pc-frames/29.jpg"
+          },
+          {
+            "time": 1791560338.75472,
+            "path": "victory-pc-frames/30.jpg"
+          },
+          {
+            "time": 1791560338.821334,
+            "path": "victory-pc-frames/31.jpg"
+          },
+          {
+            "time": 1791560338.887737,
+            "path": "victory-pc-frames/32.jpg"
+          },
+          {
+            "time": 1791560338.955551,
+            "path": "victory-pc-frames/33.jpg"
+          },
+          {
+            "time": 1791560339.021504,
+            "path": "victory-pc-frames/34.jpg"
+          },
+          {
+            "time": 1791560339.087482,
+            "path": "victory-pc-frames/35.jpg"
+          },
+          {
+            "time": 1791560339.154975,
+            "path": "victory-pc-frames/36.jpg"
+          },
+          {
+            "time": 1791560339.221639,
+            "path": "victory-pc-frames/37.jpg"
+          },
+          {
+            "time": 1791560339.287409,
+            "path": "victory-pc-frames/38.jpg"
+          },
+          {
+            "time": 1791560339.35467,
+            "path": "victory-pc-frames/39.jpg"
+          },
+          {
+            "time": 1791560339.421738,
+            "path": "victory-pc-frames/40.jpg"
+          },
+          {
+            "time": 1791560339.487587,
+            "path": "victory-pc-frames/41.jpg"
+          },
+          {
+            "time": 1791560339.555077,
+            "path": "victory-pc-frames/42.jpg"
+          },
+          {
+            "time": 1791560339.631749,
+            "path": "victory-pc-frames/43.jpg"
+          },
+          {
+            "time": 1791560339.693044,
+            "path": "victory-pc-frames/44.jpg"
+          },
+          {
+            "time": 1791560339.754348,
+            "path": "victory-pc-frames/45.jpg"
+          },
+          {
+            "time": 1791560339.820781,
+            "path": "victory-pc-frames/46.jpg"
+          },
+          {
+            "time": 1791560339.887282,
+            "path": "victory-pc-frames/47.jpg"
+          },
+          {
+            "time": 1791560339.953965,
+            "path": "victory-pc-frames/48.jpg"
+          },
+          {
+            "time": 1791560340.022375,
+            "path": "victory-pc-frames/49.jpg"
+          },
+          {
+            "time": 1791560340.087364,
+            "path": "victory-pc-frames/50.jpg"
+          },
+          {
+            "time": 1791560340.153851,
+            "path": "victory-pc-frames/51.jpg"
+          },
+          {
+            "time": 1791560340.220769,
+            "path": "victory-pc-frames/52.jpg"
+          },
+          {
+            "time": 1791560340.287207,
+            "path": "victory-pc-frames/53.jpg"
+          },
+          {
+            "time": 1791560340.354027,
+            "path": "victory-pc-frames/54.jpg"
+          },
+          {
+            "time": 1791560340.420797,
+            "path": "victory-pc-frames/55.jpg"
+          },
+          {
+            "time": 1791560340.487302,
+            "path": "victory-pc-frames/56.jpg"
+          },
+          {
+            "time": 1791560340.553973,
+            "path": "victory-pc-frames/57.jpg"
+          },
+          {
+            "time": 1791560340.620873,
+            "path": "victory-pc-frames/58.jpg"
+          },
+          {
+            "time": 1791560340.68712,
+            "path": "victory-pc-frames/59.jpg"
+          },
+          {
+            "time": 1791560340.754214,
+            "path": "victory-pc-frames/60.jpg"
+          },
+          {
+            "time": 1791560340.821171,
+            "path": "victory-pc-frames/61.jpg"
+          },
+          {
+            "time": 1791560340.887405,
+            "path": "victory-pc-frames/62.jpg"
+          },
+          {
+            "time": 1791560340.954048,
+            "path": "victory-pc-frames/63.jpg"
+          },
+          {
+            "time": 1791560341.020695,
+            "path": "victory-pc-frames/64.jpg"
+          },
+          {
+            "time": 1791560341.087113,
+            "path": "victory-pc-frames/65.jpg"
+          },
+          {
+            "time": 1791560341.153864,
+            "path": "victory-pc-frames/66.jpg"
+          },
+          {
+            "time": 1791560341.220684,
+            "path": "victory-pc-frames/67.jpg"
+          },
+          {
+            "time": 1791560341.28744,
+            "path": "victory-pc-frames/68.jpg"
+          },
+          {
+            "time": 1791560341.354287,
+            "path": "victory-pc-frames/69.jpg"
+          },
+          {
+            "time": 1791560341.421132,
+            "path": "victory-pc-frames/70.jpg"
+          },
+          {
+            "time": 1791560341.487254,
+            "path": "victory-pc-frames/71.jpg"
+          },
+          {
+            "time": 1791560341.561317,
+            "path": "victory-pc-frames/72.jpg"
+          },
+          {
+            "time": 1791560341.623599,
+            "path": "victory-pc-frames/73.jpg"
+          },
+          {
+            "time": 1791560341.687631,
+            "path": "victory-pc-frames/74.jpg"
+          },
+          {
+            "time": 1791560341.753986,
+            "path": "victory-pc-frames/75.jpg"
+          },
+          {
+            "time": 1791560341.820976,
+            "path": "victory-pc-frames/76.jpg"
+          },
+          {
+            "time": 1791560341.887348,
+            "path": "victory-pc-frames/77.jpg"
+          },
+          {
+            "time": 1791560341.958594,
+            "path": "victory-pc-frames/78.jpg"
+          },
+          {
+            "time": 1791560342.021057,
+            "path": "victory-pc-frames/79.jpg"
+          },
+          {
+            "time": 1791560342.088177,
+            "path": "victory-pc-frames/80.jpg"
+          },
+          {
+            "time": 1791560342.154547,
+            "path": "victory-pc-frames/81.jpg"
+          },
+          {
+            "time": 1791560342.222876,
+            "path": "victory-pc-frames/82.jpg"
+          },
+          {
+            "time": 1791560342.287596,
+            "path": "victory-pc-frames/83.jpg"
+          },
+          {
+            "time": 1791560342.354054,
+            "path": "victory-pc-frames/84.jpg"
+          },
+          {
+            "time": 1791560342.421319,
+            "path": "victory-pc-frames/85.jpg"
+          },
+          {
+            "time": 1791560342.487582,
+            "path": "victory-pc-frames/86.jpg"
+          },
+          {
+            "time": 1791560342.554724,
+            "path": "victory-pc-frames/87.jpg"
+          },
+          {
+            "time": 1791560342.62365,
+            "path": "victory-pc-frames/88.jpg"
+          },
+          {
+            "time": 1791560342.687315,
+            "path": "victory-pc-frames/89.jpg"
+          },
+          {
+            "time": 1791560342.755127,
+            "path": "victory-pc-frames/90.jpg"
+          },
+          {
+            "time": 1791560342.820507,
+            "path": "victory-pc-frames/91.jpg"
+          },
+          {
+            "time": 1791560342.887117,
+            "path": "victory-pc-frames/92.jpg"
+          },
+          {
+            "time": 1791560342.955753,
+            "path": "victory-pc-frames/93.jpg"
+          },
+          {
+            "time": 1791560343.024931,
+            "path": "victory-pc-frames/94.jpg"
+          },
+          {
+            "time": 1791560343.08768,
+            "path": "victory-pc-frames/95.jpg"
+          },
+          {
+            "time": 1791560343.154812,
+            "path": "victory-pc-frames/96.jpg"
+          },
+          {
+            "time": 1791560343.220949,
+            "path": "victory-pc-frames/97.jpg"
+          },
+          {
+            "time": 1791560343.287559,
+            "path": "victory-pc-frames/98.jpg"
+          },
+          {
+            "time": 1791560343.357436,
+            "path": "victory-pc-frames/99.jpg"
+          },
+          {
+            "time": 1791560343.420574,
+            "path": "victory-pc-frames/100.jpg"
+          },
+          {
+            "time": 1791560343.487406,
+            "path": "victory-pc-frames/101.jpg"
+          },
+          {
+            "time": 1791560343.554031,
+            "path": "victory-pc-frames/102.jpg"
+          },
+          {
+            "time": 1791560343.623611,
+            "path": "victory-pc-frames/103.jpg"
+          },
+          {
+            "time": 1791560343.687112,
+            "path": "victory-pc-frames/104.jpg"
+          },
+          {
+            "time": 1791560343.753957,
+            "path": "victory-pc-frames/105.jpg"
+          },
+          {
+            "time": 1791560343.820534,
+            "path": "victory-pc-frames/106.jpg"
+          },
+          {
+            "time": 1791560343.891184,
+            "path": "victory-pc-frames/107.jpg"
+          },
+          {
+            "time": 1791560343.95408,
+            "path": "victory-pc-frames/108.jpg"
+          },
+          {
+            "time": 1791560344.022386,
+            "path": "victory-pc-frames/109.jpg"
+          },
+          {
+            "time": 1791560344.088248,
+            "path": "victory-pc-frames/110.jpg"
+          },
+          {
+            "time": 1791560344.154046,
+            "path": "victory-pc-frames/111.jpg"
+          },
+          {
+            "time": 1791560344.258157,
+            "path": "victory-pc-frames/112.jpg"
+          },
+          {
+            "time": 1791560344.305098,
+            "path": "victory-pc-frames/113.jpg"
+          },
+          {
+            "time": 1791560344.371097,
+            "path": "victory-pc-frames/114.jpg"
+          },
+          {
+            "time": 1791560344.438759,
+            "path": "victory-pc-frames/115.jpg"
+          },
+          {
+            "time": 1791560344.509886,
+            "path": "victory-pc-frames/116.jpg"
+          },
+          {
+            "time": 1791560344.570732,
+            "path": "victory-pc-frames/117.jpg"
+          },
+          {
+            "time": 1791560344.637568,
+            "path": "victory-pc-frames/118.jpg"
+          },
+          {
+            "time": 1791560344.742488,
+            "path": "victory-pc-frames/119.jpg"
+          },
+          {
+            "time": 1791560344.787701,
+            "path": "victory-pc-frames/120.jpg"
+          },
+          {
+            "time": 1791560344.854275,
+            "path": "victory-pc-frames/121.jpg"
+          },
+          {
+            "time": 1791560344.92071,
+            "path": "victory-pc-frames/122.jpg"
+          },
+          {
+            "time": 1791560344.988217,
+            "path": "victory-pc-frames/123.jpg"
+          },
+          {
+            "time": 1791560345.054038,
+            "path": "victory-pc-frames/124.jpg"
+          },
+          {
+            "time": 1791560345.120904,
+            "path": "victory-pc-frames/125.jpg"
+          },
+          {
+            "time": 1791560345.193946,
+            "path": "victory-pc-frames/126.jpg"
+          },
+          {
+            "time": 1791560345.264807,
+            "path": "victory-pc-frames/127.jpg"
+          },
+          {
+            "time": 1791560345.32299,
+            "path": "victory-pc-frames/128.jpg"
+          },
+          {
+            "time": 1791560345.387484,
+            "path": "victory-pc-frames/129.jpg"
+          },
+          {
+            "time": 1791560345.455486,
+            "path": "victory-pc-frames/130.jpg"
+          },
+          {
+            "time": 1791560345.521779,
+            "path": "victory-pc-frames/131.jpg"
+          },
+          {
+            "time": 1791560345.587738,
+            "path": "victory-pc-frames/132.jpg"
+          },
+          {
+            "time": 1791560345.659959,
+            "path": "victory-pc-frames/133.jpg"
+          },
+          {
+            "time": 1791560345.736648,
+            "path": "victory-pc-frames/134.jpg"
+          },
+          {
+            "time": 1791560345.840898,
+            "path": "victory-pc-frames/135.jpg"
+          },
+          {
+            "time": 1791560345.927953,
+            "path": "victory-pc-frames/136.jpg"
+          },
+          {
+            "time": 1791560345.970812,
+            "path": "victory-pc-frames/137.jpg"
+          },
+          {
+            "time": 1791560346.037505,
+            "path": "victory-pc-frames/138.jpg"
+          },
+          {
+            "time": 1791560346.108306,
+            "path": "victory-pc-frames/139.jpg"
+          },
+          {
+            "time": 1791560346.170494,
+            "path": "victory-pc-frames/140.jpg"
+          },
+          {
+            "time": 1791560346.237229,
+            "path": "victory-pc-frames/141.jpg"
+          },
+          {
+            "time": 1791560346.304272,
+            "path": "victory-pc-frames/142.jpg"
+          },
+          {
+            "time": 1791560346.370631,
+            "path": "victory-pc-frames/143.jpg"
+          },
+          {
+            "time": 1791560346.437593,
+            "path": "victory-pc-frames/144.jpg"
+          },
+          {
+            "time": 1791560346.504514,
+            "path": "victory-pc-frames/145.jpg"
+          },
+          {
+            "time": 1791560346.571228,
+            "path": "victory-pc-frames/146.jpg"
+          },
+          {
+            "time": 1791560346.637329,
+            "path": "victory-pc-frames/147.jpg"
+          },
+          {
+            "time": 1791560346.705653,
+            "path": "victory-pc-frames/148.jpg"
+          },
+          {
+            "time": 1791560346.770675,
+            "path": "victory-pc-frames/149.jpg"
+          },
+          {
+            "time": 1791560346.8373,
+            "path": "victory-pc-frames/150.jpg"
+          },
+          {
+            "time": 1791560346.904564,
+            "path": "victory-pc-frames/151.jpg"
+          },
+          {
+            "time": 1791560346.970471,
+            "path": "victory-pc-frames/152.jpg"
+          },
+          {
+            "time": 1791560347.037571,
+            "path": "victory-pc-frames/153.jpg"
+          },
+          {
+            "time": 1791560347.108245,
+            "path": "victory-pc-frames/154.jpg"
+          }
+        ],
+        "audioStart": 1791560336.6634002,
+        "videoStart": 1791560336.758113,
+        "duration": 10.35013198852539,
+        "audioBytes": 168380,
+        "heard": false
+      },
+      "cleanup": {
+        "motion": false,
+        "timer": false,
+        "groups": 0
+      },
+      "status": "PASS"
+    },
+    {
+      "key": "failure-phone",
+      "errors": [],
+      "before": {
+        "schemaVersion": 2,
+        "rulesVersion": "r2",
+        "contentVersion": "quality-r2-erxiang-handoff-v1",
+        "contentHash": "json-fnv-v1:4fd36cebb0ec1267",
+        "runId": "hero-climax/failure",
+        "seed": "hero-climax/failure",
+        "commandSeq": 6,
+        "difficulty": 0,
+        "characterId": "erxiang",
+        "openingRoute": "group",
+        "openingShow": {
+          "handsScored": 3,
+          "rootId": null,
+          "eventId": null,
+          "reason": null
+        },
+        "routeStarter": {
+          "instanceId": null,
+          "rootId": null,
+          "eventId": null
+        },
+        "mode": "standard",
+        "challengeId": null,
+        "programsEnabled": false,
+        "programRerollCoupon": false,
+        "chapterDisabledJokerId": null,
+        "chapter": 1,
+        "stageIndex": 0,
+        "phase": "await-input",
+        "deckInstances": [
+          {
+            "id": "spades-2",
+            "suit": "spades",
+            "rank": 2
+          },
+          {
+            "id": "spades-3",
+            "suit": "spades",
+            "rank": 3
+          },
+          {
+            "id": "spades-4",
+            "suit": "spades",
+            "rank": 4
+          },
+          {
+            "id": "spades-5",
+            "suit": "spades",
+            "rank": 5
+          },
+          {
+            "id": "spades-6",
+            "suit": "spades",
+            "rank": 6
+          },
+          {
+            "id": "spades-7",
+            "suit": "spades",
+            "rank": 7
+          },
+          {
+            "id": "spades-8",
+            "suit": "spades",
+            "rank": 8
+          },
+          {
+            "id": "spades-9",
+            "suit": "spades",
+            "rank": 9
+          },
+          {
+            "id": "spades-10",
+            "suit": "spades",
+            "rank": 10
+          },
+          {
+            "id": "spades-11",
+            "suit": "spades",
+            "rank": 11
+          },
+          {
+            "id": "spades-12",
+            "suit": "spades",
+            "rank": 12
+          },
+          {
+            "id": "spades-13",
+            "suit": "spades",
+            "rank": 13
+          },
+          {
+            "id": "spades-14",
+            "suit": "spades",
+            "rank": 14
+          },
+          {
+            "id": "hearts-2",
+            "suit": "hearts",
+            "rank": 2
+          },
+          {
+            "id": "hearts-3",
+            "suit": "hearts",
+            "rank": 3
+          },
+          {
+            "id": "hearts-4",
+            "suit": "hearts",
+            "rank": 4
+          },
+          {
+            "id": "hearts-5",
+            "suit": "hearts",
+            "rank": 5
+          },
+          {
+            "id": "hearts-6",
+            "suit": "hearts",
+            "rank": 6
+          },
+          {
+            "id": "hearts-7",
+            "suit": "hearts",
+            "rank": 7
+          },
+          {
+            "id": "hearts-8",
+            "suit": "hearts",
+            "rank": 8
+          },
+          {
+            "id": "hearts-9",
+            "suit": "hearts",
+            "rank": 9
+          },
+          {
+            "id": "hearts-10",
+            "suit": "hearts",
+            "rank": 10
+          },
+          {
+            "id": "hearts-11",
+            "suit": "hearts",
+            "rank": 11
+          },
+          {
+            "id": "hearts-12",
+            "suit": "hearts",
+            "rank": 12
+          },
+          {
+            "id": "hearts-13",
+            "suit": "hearts",
+            "rank": 13
+          },
+          {
+            "id": "hearts-14",
+            "suit": "hearts",
+            "rank": 14
+          },
+          {
+            "id": "clubs-2",
+            "suit": "clubs",
+            "rank": 2
+          },
+          {
+            "id": "clubs-3",
+            "suit": "clubs",
+            "rank": 3
+          },
+          {
+            "id": "clubs-4",
+            "suit": "clubs",
+            "rank": 4
+          },
+          {
+            "id": "clubs-5",
+            "suit": "clubs",
+            "rank": 5
+          },
+          {
+            "id": "clubs-6",
+            "suit": "clubs",
+            "rank": 6
+          },
+          {
+            "id": "clubs-7",
+            "suit": "clubs",
+            "rank": 7
+          },
+          {
+            "id": "clubs-8",
+            "suit": "clubs",
+            "rank": 8
+          },
+          {
+            "id": "clubs-9",
+            "suit": "clubs",
+            "rank": 9
+          },
+          {
+            "id": "clubs-10",
+            "suit": "clubs",
+            "rank": 10
+          },
+          {
+            "id": "clubs-11",
+            "suit": "clubs",
+            "rank": 11
+          },
+          {
+            "id": "clubs-12",
+            "suit": "clubs",
+            "rank": 12
+          },
+          {
+            "id": "clubs-13",
+            "suit": "clubs",
+            "rank": 13
+          },
+          {
+            "id": "clubs-14",
+            "suit": "clubs",
+            "rank": 14
+          },
+          {
+            "id": "diamonds-2",
+            "suit": "diamonds",
+            "rank": 2
+          },
+          {
+            "id": "diamonds-3",
+            "suit": "diamonds",
+            "rank": 3
+          },
+          {
+            "id": "diamonds-4",
+            "suit": "diamonds",
+            "rank": 4
+          },
+          {
+            "id": "diamonds-5",
+            "suit": "diamonds",
+            "rank": 5
+          },
+          {
+            "id": "diamonds-6",
+            "suit": "diamonds",
+            "rank": 6
+          },
+          {
+            "id": "diamonds-7",
+            "suit": "diamonds",
+            "rank": 7
+          },
+          {
+            "id": "diamonds-8",
+            "suit": "diamonds",
+            "rank": 8
+          },
+          {
+            "id": "diamonds-9",
+            "suit": "diamonds",
+            "rank": 9
+          },
+          {
+            "id": "diamonds-10",
+            "suit": "diamonds",
+            "rank": 10
+          },
+          {
+            "id": "diamonds-11",
+            "suit": "diamonds",
+            "rank": 11
+          },
+          {
+            "id": "diamonds-12",
+            "suit": "diamonds",
+            "rank": 12
+          },
+          {
+            "id": "diamonds-13",
+            "suit": "diamonds",
+            "rank": 13
+          },
+          {
+            "id": "diamonds-14",
+            "suit": "diamonds",
+            "rank": 14
+          }
+        ],
+        "drawPile": [
+          "clubs-10",
+          "hearts-6",
+          "diamonds-11",
+          "spades-14",
+          "clubs-6",
+          "diamonds-3",
+          "hearts-9",
+          "diamonds-5",
+          "hearts-8",
+          "hearts-10",
+          "diamonds-13",
+          "spades-4",
+          "hearts-11",
+          "spades-11",
+          "clubs-14",
+          "spades-8",
+          "hearts-5",
+          "clubs-7",
+          "diamonds-8",
+          "spades-7",
+          "spades-13",
+          "spades-6",
+          "clubs-13",
+          "clubs-3",
+          "diamonds-10",
+          "diamonds-6",
+          "clubs-5",
+          "spades-9",
+          "spades-5",
+          "clubs-9",
+          "clubs-11",
+          "diamonds-9",
+          "hearts-14",
+          "clubs-4",
+          "diamonds-14",
+          "diamonds-12",
+          "hearts-13",
+          "spades-12",
+          "hearts-2",
+          "spades-3",
+          "hearts-4"
+        ],
+        "handOrder": [
+          "hearts-3",
+          "hearts-12",
+          "clubs-8",
+          "clubs-2",
+          "hearts-7",
+          "spades-10",
+          "diamonds-4",
+          "diamonds-7"
+        ],
+        "playedPile": [
+          "clubs-12",
+          "spades-2",
+          "diamonds-2"
+        ],
+        "discardPile": [],
+        "destroyedIds": [],
+        "stage": {
+          "erxiangHandoffUsed": false,
+          "openingDiscard": null,
+          "index": 0,
+          "targetHeat": "400",
+          "initialTargetHeat": "400",
+          "heat": "74",
+          "handsLeft": 1,
+          "initialHands": 4,
+          "discardsLeft": 3,
+          "initialDiscards": 3,
+          "discardSpent": 0,
+          "discardGained": 0,
+          "doubleDiscardBeforeFirstPlay": false,
+          "discardsUsed": 0,
+          "skipResult": null,
+          "playIndex": 3,
+          "previousHandType": "high-card",
+          "previousHandScore": "22",
+          "handLimit": 8,
+          "initialHandLimit": 8,
+          "boss": null,
+          "initialJokerIds": [],
+          "sealedJokerIds": [],
+          "challengeDisabledJokerId": null,
+          "rescueUsed": false,
+          "clearId": null,
+          "goldEarned": 0,
+          "disabledIds": [],
+          "wagerSelected": false,
+          "wagerUsed": false,
+          "maxPlayedCount": 1,
+          "ordinaryStraightSeen": false,
+          "ordinaryFlushSeen": false,
+          "quadRefundUsed": false,
+          "jokerSold": false
+        },
+        "totalHeat": "0",
+        "gold": 6,
+        "jokers": [],
+        "consumables": [],
+        "longTermItems": [],
+        "program": null,
+        "boss": {
+          "definitionId": "B01",
+          "disabledSuit": null
+        },
+        "seenBossIds": [
+          "B01"
+        ],
+        "chapterSkipConsumable": "T17",
+        "purchaseCoupons": 0,
+        "safetyNetUsed": false,
+        "shop": null,
+        "spectralModifiers": {
+          "handsPenalty": 0,
+          "handPenalty": 0,
+          "cleanSlateBonus": 0
+        },
+        "supplyRewardClaimed": false,
+        "chapterHandUsage": {
+          "high-card": 3
+        },
+        "normalClearClaimed": false,
+        "tourMode": "normal",
+        "normalCompletion": null,
+        "rng": {
+          "deck": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 824383864
+          },
+          "rule": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 1584535455
+          },
+          "shop": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 141192010
+          },
+          "reward": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 985011456
+          },
+          "program": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 209685874
+          },
+          "challenge": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 3714052259
+          }
+        },
+        "receipts": [
+          {
+            "commandId": "hero-climax/failure/start",
+            "fingerprint": "json-fnv-v1:d055e0d283293b06",
+            "seq": 1
+          },
+          {
+            "commandId": "hero-climax/failure/command/2",
+            "fingerprint": "json-fnv-v1:f47e04590ca9c05d",
+            "seq": 2
+          },
+          {
+            "commandId": "hero-climax/failure/command/3",
+            "fingerprint": "json-fnv-v1:cdeb2bde432bcd32",
+            "seq": 3
+          },
+          {
+            "commandId": "hero-climax/failure/command/4",
+            "fingerprint": "json-fnv-v1:566c5625566b8bb9",
+            "seq": 4
+          },
+          {
+            "commandId": "hero-climax/failure/command/5",
+            "fingerprint": "json-fnv-v1:2c27d84f644ad5e3",
+            "seq": 5
+          },
+          {
+            "commandId": "hero-climax/failure/command/6",
+            "fingerprint": "json-fnv-v1:38456788417a60fc",
+            "seq": 6
+          }
+        ],
+        "lastTrace": {
+          "erxiangHandoff": {
+            "targetId": null,
+            "beforeUsed": false,
+            "points": 0,
+            "afterUsed": false
+          },
+          "rulesVersion": "r2",
+          "rootId": "hero-climax/failure/hand/hero-climax/failure/command/6",
+          "handType": "high-card",
+          "level": 1,
+          "sets": {
+            "playedIds": [
+              "diamonds-2"
+            ],
+            "scoringIds": [
+              "diamonds-2"
+            ],
+            "activeScoringIds": [
+              "diamonds-2"
+            ],
+            "heldIds": [
+              "hearts-3",
+              "hearts-12",
+              "clubs-8",
+              "clubs-2",
+              "hearts-7",
+              "spades-10",
+              "diamonds-4"
+            ]
+          },
+          "finalScore": "22",
+          "accumulator": {
+            "H": {
+              "n": "22",
+              "d": "1"
+            },
+            "M": {
+              "n": "1",
+              "d": "1"
+            }
+          },
+          "events": [
+            {
+              "eventId": "hero-climax/failure/hand/hero-climax/failure/command/6/event/0",
+              "rootId": "hero-climax/failure/hand/hero-climax/failure/command/6",
+              "rootEventId": "hero-climax/failure/hand/hero-climax/failure/command/6/event/0",
+              "phase": "base",
+              "sourceType": "rule",
+              "sourceDefinitionId": "high-card",
+              "sourceInstanceId": "hero-climax/failure",
+              "operation": "base",
+              "value": {
+                "n": "20",
+                "d": "1"
+              },
+              "before": {
+                "H": {
+                  "n": "0",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "0",
+                  "d": "1"
+                }
+              },
+              "after": {
+                "H": {
+                  "n": "20",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "1",
+                  "d": "1"
+                }
+              },
+              "reasonKey": "high-card.base",
+              "visibleCondition": {
+                "kind": "always"
+              },
+              "retriggerDepth": 0
+            },
+            {
+              "eventId": "hero-climax/failure/hand/hero-climax/failure/command/6/event/1",
+              "rootId": "hero-climax/failure/hand/hero-climax/failure/command/6",
+              "rootEventId": "hero-climax/failure/hand/hero-climax/failure/command/6/event/1",
+              "phase": "onCardScore",
+              "sourceType": "card",
+              "sourceDefinitionId": "rank-2",
+              "sourceInstanceId": "diamonds-2",
+              "targetCardId": "diamonds-2",
+              "operation": "add-heat",
+              "value": {
+                "n": "2",
+                "d": "1"
+              },
+              "before": {
+                "H": {
+                  "n": "20",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "1",
+                  "d": "1"
+                }
+              },
+              "after": {
+                "H": {
+                  "n": "22",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "1",
+                  "d": "1"
+                }
+              },
+              "reasonKey": "rank-2.add-heat",
+              "visibleCondition": {
+                "kind": "always"
+              },
+              "retriggerDepth": 0
+            },
+            {
+              "eventId": "hero-climax/failure/hand/hero-climax/failure/command/6/event/2",
+              "rootId": "hero-climax/failure/hand/hero-climax/failure/command/6",
+              "rootEventId": "hero-climax/failure/hand/hero-climax/failure/command/6/event/2",
+              "phase": "finalScore",
+              "sourceType": "rule",
+              "sourceDefinitionId": "high-card",
+              "sourceInstanceId": "hero-climax/failure",
+              "operation": "final-score",
+              "value": {
+                "n": "22",
+                "d": "1"
+              },
+              "before": {
+                "H": {
+                  "n": "22",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "1",
+                  "d": "1"
+                }
+              },
+              "after": {
+                "H": {
+                  "n": "22",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "1",
+                  "d": "1"
+                }
+              },
+              "reasonKey": "high-card.final-score",
+              "visibleCondition": {
+                "kind": "always"
+              },
+              "retriggerDepth": 0
+            }
+          ],
+          "jokers": [],
+          "rng": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 1584535455
+          },
+          "goldDelta": 0,
+          "destroyedCardIds": [],
+          "destroyedJokerIds": [],
+          "cards": [
+            {
+              "id": "diamonds-2",
+              "suit": "diamonds",
+              "rank": 2
+            },
+            {
+              "id": "hearts-3",
+              "suit": "hearts",
+              "rank": 3
+            },
+            {
+              "id": "hearts-12",
+              "suit": "hearts",
+              "rank": 12
+            },
+            {
+              "id": "clubs-8",
+              "suit": "clubs",
+              "rank": 8
+            },
+            {
+              "id": "clubs-2",
+              "suit": "clubs",
+              "rank": 2
+            },
+            {
+              "id": "hearts-7",
+              "suit": "hearts",
+              "rank": 7
+            },
+            {
+              "id": "spades-10",
+              "suit": "spades",
+              "rank": 10
+            },
+            {
+              "id": "diamonds-4",
+              "suit": "diamonds",
+              "rank": 4
+            }
+          ],
+          "sourceJokers": [],
+          "bossContext": {
+            "boss": null,
+            "previousHandType": "high-card",
+            "sealedJokerIds": [],
+            "challengeDisabledJokerId": null
+          },
+          "combo": {
+            "goldBeforeRewards": null
+          }
+        },
+        "handLevels": {
+          "high-card": 1
+        },
+        "outcome": null
+      },
+      "after": {
+        "schemaVersion": 2,
+        "rulesVersion": "r2",
+        "contentVersion": "quality-r2-erxiang-handoff-v1",
+        "contentHash": "json-fnv-v1:4fd36cebb0ec1267",
+        "runId": "hero-climax/failure",
+        "seed": "hero-climax/failure",
+        "commandSeq": 7,
+        "difficulty": 0,
+        "characterId": "erxiang",
+        "openingRoute": "group",
+        "openingShow": {
+          "handsScored": 4,
+          "rootId": "hero-climax/failure/hand/hero-climax/failure/command/7",
+          "eventId": "hero-climax/failure/hand/hero-climax/failure/command/7/event/2",
+          "reason": "score"
+        },
+        "routeStarter": {
+          "instanceId": null,
+          "rootId": null,
+          "eventId": null
+        },
+        "mode": "standard",
+        "challengeId": null,
+        "programsEnabled": false,
+        "programRerollCoupon": false,
+        "chapterDisabledJokerId": null,
+        "chapter": 1,
+        "stageIndex": 0,
+        "phase": "run-lost",
+        "deckInstances": [
+          {
+            "id": "spades-2",
+            "suit": "spades",
+            "rank": 2
+          },
+          {
+            "id": "spades-3",
+            "suit": "spades",
+            "rank": 3
+          },
+          {
+            "id": "spades-4",
+            "suit": "spades",
+            "rank": 4
+          },
+          {
+            "id": "spades-5",
+            "suit": "spades",
+            "rank": 5
+          },
+          {
+            "id": "spades-6",
+            "suit": "spades",
+            "rank": 6
+          },
+          {
+            "id": "spades-7",
+            "suit": "spades",
+            "rank": 7
+          },
+          {
+            "id": "spades-8",
+            "suit": "spades",
+            "rank": 8
+          },
+          {
+            "id": "spades-9",
+            "suit": "spades",
+            "rank": 9
+          },
+          {
+            "id": "spades-10",
+            "suit": "spades",
+            "rank": 10
+          },
+          {
+            "id": "spades-11",
+            "suit": "spades",
+            "rank": 11
+          },
+          {
+            "id": "spades-12",
+            "suit": "spades",
+            "rank": 12
+          },
+          {
+            "id": "spades-13",
+            "suit": "spades",
+            "rank": 13
+          },
+          {
+            "id": "spades-14",
+            "suit": "spades",
+            "rank": 14
+          },
+          {
+            "id": "hearts-2",
+            "suit": "hearts",
+            "rank": 2
+          },
+          {
+            "id": "hearts-3",
+            "suit": "hearts",
+            "rank": 3
+          },
+          {
+            "id": "hearts-4",
+            "suit": "hearts",
+            "rank": 4
+          },
+          {
+            "id": "hearts-5",
+            "suit": "hearts",
+            "rank": 5
+          },
+          {
+            "id": "hearts-6",
+            "suit": "hearts",
+            "rank": 6
+          },
+          {
+            "id": "hearts-7",
+            "suit": "hearts",
+            "rank": 7
+          },
+          {
+            "id": "hearts-8",
+            "suit": "hearts",
+            "rank": 8
+          },
+          {
+            "id": "hearts-9",
+            "suit": "hearts",
+            "rank": 9
+          },
+          {
+            "id": "hearts-10",
+            "suit": "hearts",
+            "rank": 10
+          },
+          {
+            "id": "hearts-11",
+            "suit": "hearts",
+            "rank": 11
+          },
+          {
+            "id": "hearts-12",
+            "suit": "hearts",
+            "rank": 12
+          },
+          {
+            "id": "hearts-13",
+            "suit": "hearts",
+            "rank": 13
+          },
+          {
+            "id": "hearts-14",
+            "suit": "hearts",
+            "rank": 14
+          },
+          {
+            "id": "clubs-2",
+            "suit": "clubs",
+            "rank": 2
+          },
+          {
+            "id": "clubs-3",
+            "suit": "clubs",
+            "rank": 3
+          },
+          {
+            "id": "clubs-4",
+            "suit": "clubs",
+            "rank": 4
+          },
+          {
+            "id": "clubs-5",
+            "suit": "clubs",
+            "rank": 5
+          },
+          {
+            "id": "clubs-6",
+            "suit": "clubs",
+            "rank": 6
+          },
+          {
+            "id": "clubs-7",
+            "suit": "clubs",
+            "rank": 7
+          },
+          {
+            "id": "clubs-8",
+            "suit": "clubs",
+            "rank": 8
+          },
+          {
+            "id": "clubs-9",
+            "suit": "clubs",
+            "rank": 9
+          },
+          {
+            "id": "clubs-10",
+            "suit": "clubs",
+            "rank": 10
+          },
+          {
+            "id": "clubs-11",
+            "suit": "clubs",
+            "rank": 11
+          },
+          {
+            "id": "clubs-12",
+            "suit": "clubs",
+            "rank": 12
+          },
+          {
+            "id": "clubs-13",
+            "suit": "clubs",
+            "rank": 13
+          },
+          {
+            "id": "clubs-14",
+            "suit": "clubs",
+            "rank": 14
+          },
+          {
+            "id": "diamonds-2",
+            "suit": "diamonds",
+            "rank": 2
+          },
+          {
+            "id": "diamonds-3",
+            "suit": "diamonds",
+            "rank": 3
+          },
+          {
+            "id": "diamonds-4",
+            "suit": "diamonds",
+            "rank": 4
+          },
+          {
+            "id": "diamonds-5",
+            "suit": "diamonds",
+            "rank": 5
+          },
+          {
+            "id": "diamonds-6",
+            "suit": "diamonds",
+            "rank": 6
+          },
+          {
+            "id": "diamonds-7",
+            "suit": "diamonds",
+            "rank": 7
+          },
+          {
+            "id": "diamonds-8",
+            "suit": "diamonds",
+            "rank": 8
+          },
+          {
+            "id": "diamonds-9",
+            "suit": "diamonds",
+            "rank": 9
+          },
+          {
+            "id": "diamonds-10",
+            "suit": "diamonds",
+            "rank": 10
+          },
+          {
+            "id": "diamonds-11",
+            "suit": "diamonds",
+            "rank": 11
+          },
+          {
+            "id": "diamonds-12",
+            "suit": "diamonds",
+            "rank": 12
+          },
+          {
+            "id": "diamonds-13",
+            "suit": "diamonds",
+            "rank": 13
+          },
+          {
+            "id": "diamonds-14",
+            "suit": "diamonds",
+            "rank": 14
+          }
+        ],
+        "drawPile": [
+          "clubs-10",
+          "hearts-6",
+          "diamonds-11",
+          "spades-14",
+          "clubs-6",
+          "diamonds-3",
+          "hearts-9",
+          "diamonds-5",
+          "hearts-8",
+          "hearts-10",
+          "diamonds-13",
+          "spades-4",
+          "hearts-11",
+          "spades-11",
+          "clubs-14",
+          "spades-8",
+          "hearts-5",
+          "clubs-7",
+          "diamonds-8",
+          "spades-7",
+          "spades-13",
+          "spades-6",
+          "clubs-13",
+          "clubs-3",
+          "diamonds-10",
+          "diamonds-6",
+          "clubs-5",
+          "spades-9",
+          "spades-5",
+          "clubs-9",
+          "clubs-11",
+          "diamonds-9",
+          "hearts-14",
+          "clubs-4",
+          "diamonds-14",
+          "diamonds-12",
+          "hearts-13",
+          "spades-12",
+          "hearts-2",
+          "spades-3",
+          "hearts-4"
+        ],
+        "handOrder": [
+          "hearts-12",
+          "clubs-8",
+          "clubs-2",
+          "hearts-7",
+          "spades-10",
+          "diamonds-4",
+          "diamonds-7"
+        ],
+        "playedPile": [
+          "clubs-12",
+          "spades-2",
+          "diamonds-2",
+          "hearts-3"
+        ],
+        "discardPile": [],
+        "destroyedIds": [],
+        "stage": {
+          "erxiangHandoffUsed": false,
+          "openingDiscard": null,
+          "index": 0,
+          "targetHeat": "400",
+          "initialTargetHeat": "400",
+          "heat": "97",
+          "handsLeft": 0,
+          "initialHands": 4,
+          "discardsLeft": 3,
+          "initialDiscards": 3,
+          "discardSpent": 0,
+          "discardGained": 0,
+          "doubleDiscardBeforeFirstPlay": false,
+          "discardsUsed": 0,
+          "skipResult": null,
+          "playIndex": 4,
+          "previousHandType": "high-card",
+          "previousHandScore": "23",
+          "handLimit": 8,
+          "initialHandLimit": 8,
+          "boss": null,
+          "initialJokerIds": [],
+          "sealedJokerIds": [],
+          "challengeDisabledJokerId": null,
+          "rescueUsed": false,
+          "clearId": null,
+          "goldEarned": 0,
+          "disabledIds": [],
+          "wagerSelected": false,
+          "wagerUsed": false,
+          "maxPlayedCount": 1,
+          "ordinaryStraightSeen": false,
+          "ordinaryFlushSeen": false,
+          "quadRefundUsed": false,
+          "jokerSold": false
+        },
+        "totalHeat": "0",
+        "gold": 6,
+        "jokers": [],
+        "consumables": [],
+        "longTermItems": [],
+        "program": null,
+        "boss": {
+          "definitionId": "B01",
+          "disabledSuit": null
+        },
+        "seenBossIds": [
+          "B01"
+        ],
+        "chapterSkipConsumable": "T17",
+        "purchaseCoupons": 0,
+        "safetyNetUsed": false,
+        "shop": null,
+        "spectralModifiers": {
+          "handsPenalty": 0,
+          "handPenalty": 0,
+          "cleanSlateBonus": 0
+        },
+        "supplyRewardClaimed": false,
+        "chapterHandUsage": {
+          "high-card": 4
+        },
+        "normalClearClaimed": false,
+        "tourMode": "normal",
+        "normalCompletion": null,
+        "rng": {
+          "deck": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 824383864
+          },
+          "rule": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 1584535455
+          },
+          "shop": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 141192010
+          },
+          "reward": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 985011456
+          },
+          "program": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 209685874
+          },
+          "challenge": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 3714052259
+          }
+        },
+        "receipts": [
+          {
+            "commandId": "hero-climax/failure/start",
+            "fingerprint": "json-fnv-v1:d055e0d283293b06",
+            "seq": 1
+          },
+          {
+            "commandId": "hero-climax/failure/command/2",
+            "fingerprint": "json-fnv-v1:f47e04590ca9c05d",
+            "seq": 2
+          },
+          {
+            "commandId": "hero-climax/failure/command/3",
+            "fingerprint": "json-fnv-v1:cdeb2bde432bcd32",
+            "seq": 3
+          },
+          {
+            "commandId": "hero-climax/failure/command/4",
+            "fingerprint": "json-fnv-v1:566c5625566b8bb9",
+            "seq": 4
+          },
+          {
+            "commandId": "hero-climax/failure/command/5",
+            "fingerprint": "json-fnv-v1:2c27d84f644ad5e3",
+            "seq": 5
+          },
+          {
+            "commandId": "hero-climax/failure/command/6",
+            "fingerprint": "json-fnv-v1:38456788417a60fc",
+            "seq": 6
+          },
+          {
+            "commandId": "hero-climax/failure/command/7",
+            "fingerprint": "json-fnv-v1:60e290f72109014b",
+            "seq": 7
+          }
+        ],
+        "lastTrace": {
+          "erxiangHandoff": {
+            "targetId": null,
+            "beforeUsed": false,
+            "points": 0,
+            "afterUsed": false
+          },
+          "rulesVersion": "r2",
+          "rootId": "hero-climax/failure/hand/hero-climax/failure/command/7",
+          "handType": "high-card",
+          "level": 1,
+          "sets": {
+            "playedIds": [
+              "hearts-3"
+            ],
+            "scoringIds": [
+              "hearts-3"
+            ],
+            "activeScoringIds": [
+              "hearts-3"
+            ],
+            "heldIds": [
+              "hearts-12",
+              "clubs-8",
+              "clubs-2",
+              "hearts-7",
+              "spades-10",
+              "diamonds-4",
+              "diamonds-7"
+            ]
+          },
+          "finalScore": "23",
+          "accumulator": {
+            "H": {
+              "n": "23",
+              "d": "1"
+            },
+            "M": {
+              "n": "1",
+              "d": "1"
+            }
+          },
+          "events": [
+            {
+              "eventId": "hero-climax/failure/hand/hero-climax/failure/command/7/event/0",
+              "rootId": "hero-climax/failure/hand/hero-climax/failure/command/7",
+              "rootEventId": "hero-climax/failure/hand/hero-climax/failure/command/7/event/0",
+              "phase": "base",
+              "sourceType": "rule",
+              "sourceDefinitionId": "high-card",
+              "sourceInstanceId": "hero-climax/failure",
+              "operation": "base",
+              "value": {
+                "n": "20",
+                "d": "1"
+              },
+              "before": {
+                "H": {
+                  "n": "0",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "0",
+                  "d": "1"
+                }
+              },
+              "after": {
+                "H": {
+                  "n": "20",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "1",
+                  "d": "1"
+                }
+              },
+              "reasonKey": "high-card.base",
+              "visibleCondition": {
+                "kind": "always"
+              },
+              "retriggerDepth": 0
+            },
+            {
+              "eventId": "hero-climax/failure/hand/hero-climax/failure/command/7/event/1",
+              "rootId": "hero-climax/failure/hand/hero-climax/failure/command/7",
+              "rootEventId": "hero-climax/failure/hand/hero-climax/failure/command/7/event/1",
+              "phase": "onCardScore",
+              "sourceType": "card",
+              "sourceDefinitionId": "rank-3",
+              "sourceInstanceId": "hearts-3",
+              "targetCardId": "hearts-3",
+              "operation": "add-heat",
+              "value": {
+                "n": "3",
+                "d": "1"
+              },
+              "before": {
+                "H": {
+                  "n": "20",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "1",
+                  "d": "1"
+                }
+              },
+              "after": {
+                "H": {
+                  "n": "23",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "1",
+                  "d": "1"
+                }
+              },
+              "reasonKey": "rank-3.add-heat",
+              "visibleCondition": {
+                "kind": "always"
+              },
+              "retriggerDepth": 0
+            },
+            {
+              "eventId": "hero-climax/failure/hand/hero-climax/failure/command/7/event/2",
+              "rootId": "hero-climax/failure/hand/hero-climax/failure/command/7",
+              "rootEventId": "hero-climax/failure/hand/hero-climax/failure/command/7/event/2",
+              "phase": "finalScore",
+              "sourceType": "rule",
+              "sourceDefinitionId": "high-card",
+              "sourceInstanceId": "hero-climax/failure",
+              "operation": "final-score",
+              "value": {
+                "n": "23",
+                "d": "1"
+              },
+              "before": {
+                "H": {
+                  "n": "23",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "1",
+                  "d": "1"
+                }
+              },
+              "after": {
+                "H": {
+                  "n": "23",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "1",
+                  "d": "1"
+                }
+              },
+              "reasonKey": "high-card.final-score",
+              "visibleCondition": {
+                "kind": "always"
+              },
+              "retriggerDepth": 0
+            }
+          ],
+          "jokers": [],
+          "rng": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 1584535455
+          },
+          "goldDelta": 0,
+          "destroyedCardIds": [],
+          "destroyedJokerIds": [],
+          "cards": [
+            {
+              "id": "hearts-3",
+              "suit": "hearts",
+              "rank": 3
+            },
+            {
+              "id": "hearts-12",
+              "suit": "hearts",
+              "rank": 12
+            },
+            {
+              "id": "clubs-8",
+              "suit": "clubs",
+              "rank": 8
+            },
+            {
+              "id": "clubs-2",
+              "suit": "clubs",
+              "rank": 2
+            },
+            {
+              "id": "hearts-7",
+              "suit": "hearts",
+              "rank": 7
+            },
+            {
+              "id": "spades-10",
+              "suit": "spades",
+              "rank": 10
+            },
+            {
+              "id": "diamonds-4",
+              "suit": "diamonds",
+              "rank": 4
+            },
+            {
+              "id": "diamonds-7",
+              "suit": "diamonds",
+              "rank": 7
+            }
+          ],
+          "sourceJokers": [],
+          "bossContext": {
+            "boss": null,
+            "previousHandType": "high-card",
+            "sealedJokerIds": [],
+            "challengeDisabledJokerId": null
+          },
+          "combo": {
+            "goldBeforeRewards": null
+          }
+        },
+        "handLevels": {
+          "high-card": 1
+        },
+        "outcome": {
+          "reason": "hands-exhausted",
+          "stageIndex": 0
+        }
+      },
+      "clip": {
+        "frames": [
+          {
+            "time": 1791560350.97029,
+            "path": "failure-phone-frames/0.jpg"
+          },
+          {
+            "time": 1791560351.037853,
+            "path": "failure-phone-frames/1.jpg"
+          },
+          {
+            "time": 1791560351.102391,
+            "path": "failure-phone-frames/2.jpg"
+          },
+          {
+            "time": 1791560351.170238,
+            "path": "failure-phone-frames/3.jpg"
+          },
+          {
+            "time": 1791560351.234894,
+            "path": "failure-phone-frames/4.jpg"
+          },
+          {
+            "time": 1791560351.302419,
+            "path": "failure-phone-frames/5.jpg"
+          },
+          {
+            "time": 1791560351.369116,
+            "path": "failure-phone-frames/6.jpg"
+          },
+          {
+            "time": 1791560351.434918,
+            "path": "failure-phone-frames/7.jpg"
+          },
+          {
+            "time": 1791560351.501027,
+            "path": "failure-phone-frames/8.jpg"
+          },
+          {
+            "time": 1791560351.568244,
+            "path": "failure-phone-frames/9.jpg"
+          },
+          {
+            "time": 1791560351.6346,
+            "path": "failure-phone-frames/10.jpg"
+          },
+          {
+            "time": 1791560351.701116,
+            "path": "failure-phone-frames/11.jpg"
+          },
+          {
+            "time": 1791560351.767929,
+            "path": "failure-phone-frames/12.jpg"
+          },
+          {
+            "time": 1791560351.834446,
+            "path": "failure-phone-frames/13.jpg"
+          },
+          {
+            "time": 1791560351.900955,
+            "path": "failure-phone-frames/14.jpg"
+          },
+          {
+            "time": 1791560351.967664,
+            "path": "failure-phone-frames/15.jpg"
+          },
+          {
+            "time": 1791560352.03416,
+            "path": "failure-phone-frames/16.jpg"
+          },
+          {
+            "time": 1791560352.100994,
+            "path": "failure-phone-frames/17.jpg"
+          },
+          {
+            "time": 1791560352.167723,
+            "path": "failure-phone-frames/18.jpg"
+          },
+          {
+            "time": 1791560352.235325,
+            "path": "failure-phone-frames/19.jpg"
+          },
+          {
+            "time": 1791560352.300831,
+            "path": "failure-phone-frames/20.jpg"
+          },
+          {
+            "time": 1791560352.367764,
+            "path": "failure-phone-frames/21.jpg"
+          },
+          {
+            "time": 1791560352.434367,
+            "path": "failure-phone-frames/22.jpg"
+          },
+          {
+            "time": 1791560352.501009,
+            "path": "failure-phone-frames/23.jpg"
+          },
+          {
+            "time": 1791560352.567929,
+            "path": "failure-phone-frames/24.jpg"
+          },
+          {
+            "time": 1791560352.634517,
+            "path": "failure-phone-frames/25.jpg"
+          },
+          {
+            "time": 1791560352.706287,
+            "path": "failure-phone-frames/26.jpg"
+          },
+          {
+            "time": 1791560352.768034,
+            "path": "failure-phone-frames/27.jpg"
+          },
+          {
+            "time": 1791560352.834548,
+            "path": "failure-phone-frames/28.jpg"
+          },
+          {
+            "time": 1791560352.901341,
+            "path": "failure-phone-frames/29.jpg"
+          },
+          {
+            "time": 1791560352.968081,
+            "path": "failure-phone-frames/30.jpg"
+          },
+          {
+            "time": 1791560353.03433,
+            "path": "failure-phone-frames/31.jpg"
+          },
+          {
+            "time": 1791560353.101116,
+            "path": "failure-phone-frames/32.jpg"
+          },
+          {
+            "time": 1791560353.168046,
+            "path": "failure-phone-frames/33.jpg"
+          },
+          {
+            "time": 1791560353.234531,
+            "path": "failure-phone-frames/34.jpg"
+          },
+          {
+            "time": 1791560353.306223,
+            "path": "failure-phone-frames/35.jpg"
+          },
+          {
+            "time": 1791560353.368206,
+            "path": "failure-phone-frames/36.jpg"
+          },
+          {
+            "time": 1791560353.434325,
+            "path": "failure-phone-frames/37.jpg"
+          },
+          {
+            "time": 1791560353.501222,
+            "path": "failure-phone-frames/38.jpg"
+          },
+          {
+            "time": 1791560353.567929,
+            "path": "failure-phone-frames/39.jpg"
+          },
+          {
+            "time": 1791560353.634406,
+            "path": "failure-phone-frames/40.jpg"
+          },
+          {
+            "time": 1791560353.700868,
+            "path": "failure-phone-frames/41.jpg"
+          },
+          {
+            "time": 1791560353.768055,
+            "path": "failure-phone-frames/42.jpg"
+          },
+          {
+            "time": 1791560353.834217,
+            "path": "failure-phone-frames/43.jpg"
+          },
+          {
+            "time": 1791560353.900807,
+            "path": "failure-phone-frames/44.jpg"
+          },
+          {
+            "time": 1791560353.967865,
+            "path": "failure-phone-frames/45.jpg"
+          },
+          {
+            "time": 1791560354.034344,
+            "path": "failure-phone-frames/46.jpg"
+          },
+          {
+            "time": 1791560354.100967,
+            "path": "failure-phone-frames/47.jpg"
+          },
+          {
+            "time": 1791560354.167825,
+            "path": "failure-phone-frames/48.jpg"
+          },
+          {
+            "time": 1791560354.234654,
+            "path": "failure-phone-frames/49.jpg"
+          },
+          {
+            "time": 1791560354.300741,
+            "path": "failure-phone-frames/50.jpg"
+          },
+          {
+            "time": 1791560354.36782,
+            "path": "failure-phone-frames/51.jpg"
+          },
+          {
+            "time": 1791560354.434406,
+            "path": "failure-phone-frames/52.jpg"
+          },
+          {
+            "time": 1791560354.501053,
+            "path": "failure-phone-frames/53.jpg"
+          },
+          {
+            "time": 1791560354.567623,
+            "path": "failure-phone-frames/54.jpg"
+          },
+          {
+            "time": 1791560354.651433,
+            "path": "failure-phone-frames/55.jpg"
+          },
+          {
+            "time": 1791560354.717696,
+            "path": "failure-phone-frames/56.jpg"
+          },
+          {
+            "time": 1791560354.784447,
+            "path": "failure-phone-frames/57.jpg"
+          },
+          {
+            "time": 1791560354.851182,
+            "path": "failure-phone-frames/58.jpg"
+          },
+          {
+            "time": 1791560354.917616,
+            "path": "failure-phone-frames/59.jpg"
+          },
+          {
+            "time": 1791560354.984226,
+            "path": "failure-phone-frames/60.jpg"
+          },
+          {
+            "time": 1791560355.05107,
+            "path": "failure-phone-frames/61.jpg"
+          },
+          {
+            "time": 1791560355.117703,
+            "path": "failure-phone-frames/62.jpg"
+          },
+          {
+            "time": 1791560355.184234,
+            "path": "failure-phone-frames/63.jpg"
+          },
+          {
+            "time": 1791560355.251079,
+            "path": "failure-phone-frames/64.jpg"
+          },
+          {
+            "time": 1791560355.317571,
+            "path": "failure-phone-frames/65.jpg"
+          },
+          {
+            "time": 1791560355.38437,
+            "path": "failure-phone-frames/66.jpg"
+          },
+          {
+            "time": 1791560355.451393,
+            "path": "failure-phone-frames/67.jpg"
+          },
+          {
+            "time": 1791560355.51877,
+            "path": "failure-phone-frames/68.jpg"
+          },
+          {
+            "time": 1791560355.586285,
+            "path": "failure-phone-frames/69.jpg"
+          },
+          {
+            "time": 1791560355.65406,
+            "path": "failure-phone-frames/70.jpg"
+          },
+          {
+            "time": 1791560355.717725,
+            "path": "failure-phone-frames/71.jpg"
+          },
+          {
+            "time": 1791560355.784792,
+            "path": "failure-phone-frames/72.jpg"
+          }
+        ],
+        "audioStart": 1791560350.9123,
+        "videoStart": 1791560350.97029,
+        "duration": 4.814502000808716,
+        "audioBytes": 78542,
+        "heard": false
+      },
+      "cleanup": {
+        "motion": false,
+        "timer": false,
+        "groups": 0
+      },
+      "status": "PASS"
+    }
+  ],
+  "status": "PASS"
+}
