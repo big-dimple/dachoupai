@@ -2,7 +2,7 @@ import {describe,expect,it} from 'vitest';
 import {createRun,applyCommand,type Action,type R2RunState} from '../src/domain/run';
 import {CHARACTER_IDS,type CharacterId} from '../src/domain/characters';
 import {stableHash} from '../src/domain/hash';
-import {R2_ERXIANG_HANDOFF_HASH,R2_TOOL_SUPPLY_HASH,R2_ROUTE_STARTERS,R2_ROUTE_STARTER_HASH,R2_ROUTE_STARTER_VERSION,type R2OpeningRoute} from '../src/domain/r2GroupUpgrade';
+import {R2_BASIC_CHOICE_HASH,R2_ERXIANG_HANDOFF_VERSION,R2_ERXIANG_HANDOFF_HASH,R2_TOOL_SUPPLY_VERSION,R2_TOOL_SUPPLY_HASH,R2_ROUTE_STARTERS,R2_ROUTE_STARTER_HASH,R2_ROUTE_STARTER_VERSION,type R2OpeningRoute} from '../src/domain/r2GroupUpgrade';
 import {makeCheckpoint,readCheckpoint} from '../src/application/checkpoint';
 import {SavedRun,type SaveSlots,type SaveStore} from '../src/application/SavedRun';
 import {evaluateR2Hand} from '../src/domain/evaluateR2';
@@ -26,10 +26,12 @@ function natural(route:R2OpeningRoute){let s=start(route,'erxiang');const offer=
 describe('atomic first-shelf route contract',()=>{
  for(const characterId of CHARACTER_IDS)for(const route of Object.keys(R2_ROUTE_STARTERS) as R2OpeningRoute[])it(characterId+'/'+route+' keeps three original-price offers and a truly corresponding affordable ordinary card',()=>{
   const s=start(route,characterId),offer=s.shop!.offers.find(o=>o.definitionId===R2_ROUTE_STARTERS[route])!;
-  expect(s.contentHash).toBe(characterId==='erxiang'?R2_ERXIANG_HANDOFF_HASH:R2_TOOL_SUPPLY_HASH);expect(s.shop!.offers).toHaveLength(3);expect(offer.edition).toBe('none');expect(offer.price).toBe(route==='flush'?6:4);expect(offer.price).toBeLessThanOrEqual(s.gold);expect(starterOffer(s,offer)?.label).toContain('起手');expect(readCheckpoint(makeCheckpoint(s,[])).ok).toBe(true);expect(start(route,characterId)).toEqual(s);
-  const old=createRun({seed:s.seed,runId:s.runId,characterId,rulesVersion:'r2',r2Profile:'group-upgrade-v1',modeConfig:mode});expect(r2JokerDefinitionsFor(s)).toBe(r2JokerDefinitionsFor(old));expect(s.rng.shop).not.toEqual(old.rng.shop);expect(s.shop!.toolOffers[0].definitionId).toEqual(old.shop!.toolOffers[0].definitionId);expect(s.shop!.toolOffers).toHaveLength(2);expect(s.shop!.itemOffers).toEqual(old.shop!.itemOffers);
+  expect(s.contentHash).toBe(R2_BASIC_CHOICE_HASH);expect(s.shop!.offers).toHaveLength(3);expect(offer.edition).toBe('none');expect(offer.price).toBe(route==='flush'?6:4);expect(offer.price).toBeLessThanOrEqual(s.gold);expect(starterOffer(s,offer)?.label).toContain('起手');expect(readCheckpoint(makeCheckpoint(s,[])).ok).toBe(true);expect(start(route,characterId)).toEqual(s);
+  const old=createRun({seed:s.seed,runId:s.runId,characterId,rulesVersion:'r2',r2Profile:'group-upgrade-v1',modeConfig:mode});expect(r2JokerDefinitionsFor(s)).toBe(r2JokerDefinitionsFor(old));expect(s.rng.shop).not.toEqual(old.rng.shop);expect(s.shop!.toolOffers[0].definitionId).toEqual(old.shop!.toolOffers[0].definitionId);expect(s.shop!.toolOffers).toHaveLength(1);expect(s.shop!.itemOffers).toEqual(old.shop!.itemOffers);
+  const previousIdentity=characterId==='erxiang'?{contentVersion:R2_ERXIANG_HANDOFF_VERSION,contentHash:R2_ERXIANG_HANDOFF_HASH}:{contentVersion:R2_TOOL_SUPPLY_VERSION,contentHash:R2_TOOL_SUPPLY_HASH};
+  const previous=createRun({seed:s.seed,runId:s.runId,characterId,rulesVersion:'r2',r2Identity:previousIdentity,openingRoute:route,modeConfig:mode});expect(previous.contentHash).toBe(previousIdentity.contentHash);expect(previous.shop!.toolOffers).toHaveLength(2);expect(s.rng).toEqual(previous.rng);expect(s.shop!.toolOffers).toEqual(previous.shop!.toolOffers.slice(0,1));expect(launchIdentity(characterId,{kind:'retry',run:previous})).toEqual(previousIdentity);expect(send(previous,{type:'RerollShop'}).shop!.toolOffers).toHaveLength(2);
   expect(s.shop!.offers.filter((o,i)=>JSON.stringify(o)!==JSON.stringify(old.shop!.offers[i])).length).toBeLessThanOrEqual(1);
-  const refreshed=send(s,{type:'RerollShop'}),oldRefresh=send(old,{type:'RerollShop'});expect(refreshed.shop!.toolOffers).toHaveLength(2);expect(refreshed.shop!.rerollCount).toBe(oldRefresh.shop!.rerollCount);expect(refreshed.gold).toBe(oldRefresh.gold);expect(send(s,{type:'RerollShop'})).toEqual(refreshed);
+  const refreshed=send(s,{type:'RerollShop'}),oldRefresh=send(old,{type:'RerollShop'});expect(refreshed.shop!.toolOffers).toHaveLength(1);expect(refreshed.shop!.rerollCount).toBe(oldRefresh.shop!.rerollCount);expect(refreshed.gold).toBe(oldRefresh.gold);expect(send(s,{type:'RerollShop'})).toEqual(refreshed);
  });
  it('isolates old identities, invalid route fields, original receipt and initial shelf tampering',()=>{
   expect(()=>createRun({seed:'x',runId:'x',characterId:'amo',rulesVersion:'r2',r2Identity:identity})).toThrow('invalid-opening-route');
