@@ -1,0 +1,57 @@
+{
+  "baseline": "693275e6130f86665f7607abe53762b78a29806e",
+  "productHead": "2b23f08b1e3f2dd080c57434e9df02fb2c979f2a",
+  "nativeHead": "724f83ffbc7ec3587589a1aa524aa1ce446beed8",
+  "changedFiles": [
+    "docs/production/C04_READONLY_CATALOG_SCOPE.md",
+    "docs/production/DELIVERY_PLAN.md",
+    "src/game/Catalog.ts",
+    "src/game/CatalogDialog.ts",
+    "src/game/GameScene.ts",
+    "src/game/HandRuleReference.ts",
+    "src/game/RunMenu.ts",
+    "src/game/StatusSummary.ts",
+    "src/style.css",
+    "tests/catalog.test.ts",
+    "tests/status-summary.test.ts"
+  ],
+  "unchangedTrees": {
+    "src/domain": {
+      "before": "5421b5ce4f633637763d6b687069b41884e83d4e",
+      "after": "5421b5ce4f633637763d6b687069b41884e83d4e"
+    },
+    "src/application": {
+      "before": "c983c2a370f289dfbfb5ef76df2af459f67cbf04",
+      "after": "c983c2a370f289dfbfb5ef76df2af459f67cbf04"
+    },
+    "src/content": {
+      "before": "6018132526ce72176f016f99ead53022480ab429",
+      "after": "6018132526ce72176f016f99ead53022480ab429"
+    },
+    "src/audio": {
+      "before": "78b3cd8f4a266750121271aea5dbc76150ceec26",
+      "after": "78b3cd8f4a266750121271aea5dbc76150ceec26"
+    },
+    "public": {
+      "before": "c4a6ec74e7fd754b0f300b973020f8afed7542e1",
+      "after": "c4a6ec74e7fd754b0f300b973020f8afed7542e1"
+    },
+    "art": {
+      "before": "b0caa33679b84bee932b2854734c04ad39ba0464",
+      "after": "b0caa33679b84bee932b2854734c04ad39ba0464"
+    },
+    "src/platform": {
+      "before": "860a9f8883cc158ac0c56ad6399518cc897a67b7",
+      "after": "860a9f8883cc158ac0c56ad6399518cc897a67b7"
+    },
+    ".github": {
+      "before": "b923e03979ce93c9a142628f8b1099e2cd2b9150",
+      "after": "b923e03979ce93c9a142628f8b1099e2cd2b9150"
+    },
+    "scripts": {
+      "before": "60d85e73442db8e85c7aef0e8005f06fd3f561d0",
+      "after": "60d85e73442db8e85c7aef0e8005f06fd3f561d0"
+    }
+  },
+  "planJsonUnchanged": true
+}

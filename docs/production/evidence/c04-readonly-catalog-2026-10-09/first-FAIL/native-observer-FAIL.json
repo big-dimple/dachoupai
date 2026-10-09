@@ -1,0 +1,61 @@
+{
+  "before": {
+    "source": "890a7b1b7e4f7e7cc1072e17d1138cf869139e276755b3eef366c96513993417",
+    "index": "eae78682b31b2d7f29dd700b35101dc9fd24a02481be45e32fc1a4f75354dd2e",
+    "head": "724f83ffbc7ec3587589a1aa524aa1ce446beed8",
+    "branch": "refs/heads/review/catalog-readonly"
+  },
+  "scope": "Bounded native read-only query on existing canonical shop state; short landscape reuses prior controlled c05 input with only native card selection. No gameplay commands.",
+  "profiles": [
+    {
+      "name": "pc-1366",
+      "width": 1366,
+      "height": 768,
+      "frame": {
+        "x": 243,
+        "y": 12,
+        "width": 880,
+        "height": 744,
+        "scrollWidth": 846,
+        "clientWidth": 846,
+        "close": {
+          "x": 837.328125,
+          "y": 695,
+          "width": 264.671875,
+          "height": 48
+        }
+      },
+      "noRun": {
+        "stateAndStorageUnchanged": true,
+        "writes": []
+      },
+      "body": "练对子 · 大丑牌\n● 普通\n练对子\n高清细节加载中…\n\n当前持有 · 第1槽\n现存：热度成长 20\n实际买价 4 金\n\n公开记录：持有／上手来源。上手来源仅表示实际记录有来源事件，不等于收益或当前存值。\n\n一般规则\n任何成组牌型结算后热度成长+10，上限+100，下次起生效；每手任意牌型均加入已有成长，跨场保留。\n\n返回查询\n关闭",
+      "readOnly": true,
+      "writes": [],
+      "hdBeforeDetail": [],
+      "hdRequests": [
+        "/assets/handdrawn-p08/cards/b10.detail.webp"
+      ],
+      "delayedArtCanceled": true,
+      "screens": [
+        "pc-1366-query.png",
+        "pc-1366-detail.png",
+        "pc-1366-empty.png"
+      ]
+    }
+  ],
+  "errors": [],
+  "physicalDevice": "NOT_RUN",
+  "humanAcceptance": "NOT_RUN",
+  "fps": "NOT_MEASURED",
+  "audioListening": "NOT_RUN",
+  "status": "FAIL",
+  "error": "AssertionError [ERR_ASSERTION]: closed detail aborts delayed HD\n\nfalse !== true\n",
+  "after": {
+    "source": "890a7b1b7e4f7e7cc1072e17d1138cf869139e276755b3eef366c96513993417",
+    "index": "eae78682b31b2d7f29dd700b35101dc9fd24a02481be45e32fc1a4f75354dd2e",
+    "head": "724f83ffbc7ec3587589a1aa524aa1ce446beed8",
+    "branch": "refs/heads/review/catalog-readonly"
+  },
+  "sourceUnchanged": true
+}

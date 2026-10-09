@@ -1,0 +1,516 @@
+{
+  "before": {
+    "source": "890a7b1b7e4f7e7cc1072e17d1138cf869139e276755b3eef366c96513993417",
+    "index": "eae78682b31b2d7f29dd700b35101dc9fd24a02481be45e32fc1a4f75354dd2e",
+    "head": "724f83ffbc7ec3587589a1aa524aa1ce446beed8",
+    "branch": "refs/heads/review/catalog-readonly"
+  },
+  "scope": "Bounded native read-only query on existing canonical shop state; short landscape reuses prior controlled c05 input with only native card selection. No gameplay commands.",
+  "profiles": [
+    {
+      "name": "pc-1366",
+      "width": 1366,
+      "height": 768,
+      "frame": {
+        "x": 243,
+        "y": 12,
+        "width": 880,
+        "height": 744,
+        "scrollWidth": 846,
+        "clientWidth": 846,
+        "close": {
+          "x": 837.328125,
+          "y": 695,
+          "width": 264.671875,
+          "height": 48
+        }
+      },
+      "noRun": {
+        "stateAndStorageUnchanged": true,
+        "writes": []
+      },
+      "body": "练对子 · 大丑牌\n● 普通\n练对子\n高清细节加载中…\n\n当前持有 · 第1槽\n现存：热度成长 20\n实际买价 4 金\n\n公开记录：持有／上手来源。上手来源仅表示实际记录有来源事件，不等于收益或当前存值。\n\n一般规则\n任何成组牌型结算后热度成长+10，上限+100，下次起生效；每手任意牌型均加入已有成长，跨场保留。\n\n返回查询\n关闭",
+      "readOnly": true,
+      "writes": [],
+      "hdBeforeDetail": [],
+      "hdRequests": [
+        "/assets/handdrawn-p08/cards/b10.detail.webp"
+      ],
+      "delayedArtCanceled": true,
+      "screens": [
+        "pc-1366-query.png",
+        "pc-1366-detail.png",
+        "pc-1366-empty.png"
+      ]
+    },
+    {
+      "name": "phone-390",
+      "width": 390,
+      "height": 740,
+      "frame": {
+        "x": 19,
+        "y": 12,
+        "width": 352,
+        "height": 716,
+        "scrollWidth": 318,
+        "clientWidth": 318,
+        "close": {
+          "x": 262.671875,
+          "y": 669,
+          "width": 91.328125,
+          "height": 48
+        }
+      },
+      "body": "练对子 · 大丑牌\n● 普通\n练对子\n高清细节加载中…\n\n当前持有 · 第1槽\n现存：热度成长 20\n实际买价 4 金\n\n公开记录：持有／上手来源。上手来源仅表示实际记录有来源事件，不等于收益或当前存值。\n\n一般规则\n任何成组牌型结算后热度成长+10，上限+100，下次起生效；每手任意牌型均加入已有成长，跨场保留。\n\n返回查询\n关闭",
+      "readOnly": true,
+      "writes": [],
+      "hdBeforeDetail": [],
+      "hdRequests": [
+        "/assets/handdrawn-p08/cards/b10.detail.webp"
+      ],
+      "delayedArtCanceled": "not requested",
+      "screens": [
+        "phone-390-query.png",
+        "phone-390-detail.png",
+        "phone-390-empty.png"
+      ]
+    },
+    {
+      "name": "phone-320",
+      "width": 320,
+      "height": 740,
+      "frame": {
+        "x": 19,
+        "y": 12,
+        "width": 282,
+        "height": 716,
+        "scrollWidth": 248,
+        "clientWidth": 248,
+        "close": {
+          "x": 216,
+          "y": 669,
+          "width": 68,
+          "height": 48
+        }
+      },
+      "body": "练对子 · 大丑牌\n● 普通\n练对子\n高清细节加载中…\n\n当前持有 · 第1槽\n现存：热度成长 20\n实际买价 4 金\n\n公开记录：持有／上手来源。上手来源仅表示实际记录有来源事件，不等于收益或当前存值。\n\n一般规则\n任何成组牌型结算后热度成长+10，上限+100，下次起生效；每手任意牌型均加入已有成长，跨场保留。\n\n返回查询\n关闭",
+      "readOnly": true,
+      "writes": [],
+      "hdBeforeDetail": [],
+      "hdRequests": [
+        "/assets/handdrawn-p08/cards/b10.detail.webp"
+      ],
+      "delayedArtCanceled": "not requested",
+      "screens": [
+        "phone-320-query.png",
+        "phone-320-detail.png",
+        "phone-320-empty.png"
+      ]
+    },
+    {
+      "name": "short-740",
+      "width": 740,
+      "height": 390,
+      "bounds": {
+        "copy": "点所选条件",
+        "full": "满足0 · 待检查1 · 未满足0 · 点所选条件",
+        "fontSize": "14px",
+        "status": {
+          "x": 12,
+          "y": 350,
+          "width": 70,
+          "height": 16
+        },
+        "layout": {
+          "mode": "landscape",
+          "compact": false,
+          "shortLandscape": true,
+          "width": 740,
+          "height": 390,
+          "hud": {
+            "x": 12,
+            "y": 12,
+            "width": 160,
+            "height": 334
+          },
+          "jokers": {
+            "x": 188,
+            "y": 12,
+            "width": 396,
+            "height": 72
+          },
+          "preview": {
+            "x": 188,
+            "y": 88,
+            "width": 540,
+            "height": 86
+          },
+          "scoreBoard": {
+            "x": 188,
+            "y": 88,
+            "width": 266,
+            "height": 86
+          },
+          "playedArea": {
+            "x": 462,
+            "y": 88,
+            "width": 266,
+            "height": 86
+          },
+          "handLabel": {
+            "x": 188,
+            "y": 178,
+            "width": 116,
+            "height": 22
+          },
+          "piles": {
+            "x": 304,
+            "y": 178,
+            "width": 424,
+            "height": 22
+          },
+          "tools": {
+            "x": 144,
+            "y": 326,
+            "width": 132,
+            "height": 52
+          },
+          "hand": {
+            "x": 188,
+            "y": 200,
+            "width": 540,
+            "height": 122
+          },
+          "actions": {
+            "x": 188,
+            "y": 326,
+            "width": 540,
+            "height": 52
+          },
+          "status": {
+            "x": 12,
+            "y": 350,
+            "width": 126,
+            "height": 28
+          },
+          "scoreFire": {
+            "x": 328.32,
+            "y": 90,
+            "width": 123.68,
+            "height": 47
+          },
+          "toolsInHud": false,
+          "labelHeight": 22,
+          "buttons": {
+            "rank": {
+              "x": 144,
+              "y": 326,
+              "width": 44,
+              "height": 52
+            },
+            "suit": {
+              "x": 188,
+              "y": 326,
+              "width": 44,
+              "height": 52
+            },
+            "ai": {
+              "x": 232,
+              "y": 326,
+              "width": 44,
+              "height": 52
+            }
+          },
+          "tableActions": {
+            "discard": {
+              "x": 282,
+              "y": 326,
+              "width": 199,
+              "height": 52
+            },
+            "play": {
+              "x": 487,
+              "y": 326,
+              "width": 241,
+              "height": 52
+            }
+          },
+          "cards": [
+            {
+              "visible": true,
+              "visual": {
+                "x": 188,
+                "y": 222,
+                "width": 71.42857142857143,
+                "height": 100
+              },
+              "hit": {
+                "x": 188,
+                "y": 200,
+                "width": 66.93877551020408,
+                "height": 122
+              }
+            },
+            {
+              "visible": true,
+              "visual": {
+                "x": 254.9387755102041,
+                "y": 222,
+                "width": 71.42857142857143,
+                "height": 100
+              },
+              "hit": {
+                "x": 254.9387755102041,
+                "y": 200,
+                "width": 66.93877551020408,
+                "height": 122
+              }
+            },
+            {
+              "visible": true,
+              "visual": {
+                "x": 321.8775510204082,
+                "y": 222,
+                "width": 71.42857142857143,
+                "height": 100
+              },
+              "hit": {
+                "x": 321.8775510204082,
+                "y": 200,
+                "width": 66.93877551020408,
+                "height": 122
+              }
+            },
+            {
+              "visible": true,
+              "visual": {
+                "x": 388.81632653061223,
+                "y": 222,
+                "width": 71.42857142857143,
+                "height": 100
+              },
+              "hit": {
+                "x": 388.81632653061223,
+                "y": 200,
+                "width": 66.93877551020408,
+                "height": 122
+              }
+            },
+            {
+              "visible": true,
+              "visual": {
+                "x": 455.7551020408163,
+                "y": 222,
+                "width": 71.42857142857143,
+                "height": 100
+              },
+              "hit": {
+                "x": 455.7551020408163,
+                "y": 200,
+                "width": 66.93877551020408,
+                "height": 122
+              }
+            },
+            {
+              "visible": true,
+              "visual": {
+                "x": 522.6938775510205,
+                "y": 222,
+                "width": 71.42857142857143,
+                "height": 100
+              },
+              "hit": {
+                "x": 522.6938775510205,
+                "y": 200,
+                "width": 66.93877551020408,
+                "height": 122
+              }
+            },
+            {
+              "visible": true,
+              "visual": {
+                "x": 589.6326530612245,
+                "y": 222,
+                "width": 71.42857142857143,
+                "height": 100
+              },
+              "hit": {
+                "x": 589.6326530612245,
+                "y": 200,
+                "width": 66.93877551020408,
+                "height": 122
+              }
+            },
+            {
+              "visible": true,
+              "visual": {
+                "x": 656.5714285714286,
+                "y": 222,
+                "width": 71.42857142857143,
+                "height": 100
+              },
+              "hit": {
+                "x": 656.5714285714286,
+                "y": 200,
+                "width": 71.42857142857143,
+                "height": 122
+              }
+            }
+          ],
+          "handRows": 1,
+          "handOverflow": false,
+          "handStart": 0,
+          "visibleCardCount": 8,
+          "handNavigation": {
+            "previous": {
+              "x": 188,
+              "y": 239,
+              "width": 44,
+              "height": 44
+            },
+            "next": {
+              "x": 684,
+              "y": 239,
+              "width": 44,
+              "height": 44
+            }
+          },
+          "slots": [
+            {
+              "x": 190,
+              "y": 12,
+              "width": 34,
+              "height": 47.599999999999994
+            },
+            {
+              "x": 269.2,
+              "y": 12,
+              "width": 34,
+              "height": 47.599999999999994
+            },
+            {
+              "x": 348.4,
+              "y": 12,
+              "width": 34,
+              "height": 47.599999999999994
+            },
+            {
+              "x": 427.6,
+              "y": 12,
+              "width": 34,
+              "height": 47.599999999999994
+            },
+            {
+              "x": 506.8,
+              "y": 12,
+              "width": 34,
+              "height": 47.599999999999994
+            }
+          ],
+          "jokerLabels": [
+            {
+              "x": 230,
+              "y": 12,
+              "width": 33.2,
+              "height": 72
+            },
+            {
+              "x": 309.2,
+              "y": 12,
+              "width": 33.2,
+              "height": 72
+            },
+            {
+              "x": 388.4,
+              "y": 12,
+              "width": 33.2,
+              "height": 72
+            },
+            {
+              "x": 467.6,
+              "y": 12,
+              "width": 33.2,
+              "height": 72
+            },
+            {
+              "x": 546.8,
+              "y": 12,
+              "width": 33.2,
+              "height": 72
+            }
+          ]
+        },
+        "buttons": [
+          {
+            "key": "rankButton",
+            "x": 144,
+            "y": 326,
+            "width": 44,
+            "height": 52
+          },
+          {
+            "key": "suitButton",
+            "x": 188,
+            "y": 326,
+            "width": 44,
+            "height": 52
+          },
+          {
+            "key": "aiButton",
+            "x": 232,
+            "y": 326,
+            "width": 44,
+            "height": 52
+          },
+          {
+            "key": "playButton",
+            "x": 487,
+            "y": 326,
+            "width": 241,
+            "height": 52
+          },
+          {
+            "key": "discardButton",
+            "x": 282,
+            "y": 326,
+            "width": 199,
+            "height": 52
+          }
+        ]
+      },
+      "frame": {
+        "x": 19,
+        "y": 12,
+        "width": 702,
+        "height": 366,
+        "scrollWidth": 668,
+        "clientWidth": 668,
+        "close": {
+          "x": 496,
+          "y": 323,
+          "width": 208,
+          "height": 48
+        }
+      },
+      "readOnly": true,
+      "writes": [],
+      "screens": [
+        "short-740-status.png",
+        "short-740-query.png"
+      ]
+    }
+  ],
+  "errors": [],
+  "physicalDevice": "NOT_RUN",
+  "humanAcceptance": "NOT_RUN",
+  "fps": "NOT_MEASURED",
+  "audioListening": "NOT_RUN",
+  "status": "PASS",
+  "after": {
+    "source": "890a7b1b7e4f7e7cc1072e17d1138cf869139e276755b3eef366c96513993417",
+    "index": "eae78682b31b2d7f29dd700b35101dc9fd24a02481be45e32fc1a4f75354dd2e",
+    "head": "724f83ffbc7ec3587589a1aa524aa1ce446beed8",
+    "branch": "refs/heads/review/catalog-readonly"
+  },
+  "sourceUnchanged": true
+}

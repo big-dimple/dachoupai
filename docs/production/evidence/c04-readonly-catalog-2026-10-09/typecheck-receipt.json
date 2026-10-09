@@ -1,0 +1,24 @@
+{
+  "status": "PASS",
+  "exitCode": 0,
+  "before": {
+    "source": "eaf426e6ad413d4cbbbfd52c283daf317629b3fbb7ea16519f68402c3c7235b8",
+    "index": "ba036e9f3b39955dd6c539adb4cd1eb785072475f312983d46a123a076426f2d",
+    "head": "2b23f08b1e3f2dd080c57434e9df02fb2c979f2a",
+    "branch": "refs/heads/review/catalog-readonly"
+  },
+  "after": {
+    "source": "eaf426e6ad413d4cbbbfd52c283daf317629b3fbb7ea16519f68402c3c7235b8",
+    "index": "ba036e9f3b39955dd6c539adb4cd1eb785072475f312983d46a123a076426f2d",
+    "head": "2b23f08b1e3f2dd080c57434e9df02fb2c979f2a",
+    "branch": "refs/heads/review/catalog-readonly"
+  },
+  "steps": [
+    {
+      "name": "typecheck",
+      "status": "PASS",
+      "childExitCode": 0,
+      "elapsedMs": 11054
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+
+> dachoupai@0.1.0 typecheck
+> tsc --noEmit
+
+src/game/Catalog.ts(46,252): error TS2322: Type '{ url: string; thumbnailUrl: string | undefined; alt: string; layout: "card"; caption: string; } | undefined' is not assignable to type '{ url: string; thumbnailUrl: string | undefined; fallbackUrl: string; alt: string; layout: "card"; caption: string; } | undefined'.
+  Property 'fallbackUrl' is missing in type '{ url: string; thumbnailUrl: string | undefined; alt: string; layout: "card"; caption: string; }' but required in type '{ url: string; thumbnailUrl: string | undefined; fallbackUrl: string; alt: string; layout: "card"; caption: string; }'.
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice

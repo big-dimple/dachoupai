@@ -1,0 +1,172 @@
+
+ RUN  v4.1.11 /workspace/dachoupai
+
+ ❯ tests/catalog.test.ts (7 tests | 1 failed) 138ms
+   × querying cannot mutate the checkpoint or use hidden draw order and RNG 57ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/catalog.test.ts > querying cannot mutate the checkpoint or use hidden draw order and RNG
+AssertionError: expected { identity: { …(47) }, …(2) } to deeply equal { identity: { …(47) }, …(2) }
+
+- Expected
++ Received
+
+@@ -3411,54 +3411,54 @@
+      ],
+      "destroyedIds": [],
+      "difficulty": 0,
+      "discardPile": [],
+      "drawPile": [
+-       "clubs-7",
+-       "clubs-8",
+-       "spades-6",
+-       "hearts-4",
+-       "hearts-7",
+-       "hearts-14",
+-       "diamonds-8",
+-       "diamonds-3",
+-       "spades-7",
+-       "diamonds-12",
+-       "spades-5",
+-       "hearts-6",
+-       "spades-10",
+-       "diamonds-2",
+-       "clubs-2",
+-       "spades-14",
+-       "hearts-3",
+-       "spades-12",
+-       "spades-13",
+-       "spades-9",
+-       "spades-3",
+-       "diamonds-9",
+-       "diamonds-6",
+-       "clubs-9",
+-       "hearts-8",
+-       "hearts-9",
+-       "spades-11",
+-       "clubs-13",
+-       "hearts-10",
+-       "diamonds-7",
+-       "diamonds-13",
+-       "spades-8",
+-       "clubs-4",
+-       "hearts-11",
+-       "clubs-3",
+-       "clubs-11",
+-       "clubs-10",
++       "diamonds-4",
++       "spades-4",
++       "clubs-5",
++       "diamonds-10",
++       "hearts-5",
++       "hearts-12",
+        "clubs-6",
+-       "hearts-12",
+-       "hearts-5",
+-       "diamonds-10",
+-       "clubs-5",
+-       "spades-4",
+-       "diamonds-4",
++       "clubs-10",
++       "clubs-11",
++       "clubs-3",
++       "hearts-11",
++       "clubs-4",
++       "spades-8",
++       "diamonds-13",
++       "diamonds-7",
++       "hearts-10",
++       "clubs-13",
++       "spades-11",
++       "hearts-9",
++       "hearts-8",
++       "clubs-9",
++       "diamonds-6",
++       "diamonds-9",
++       "spades-3",
++       "spades-9",
++       "spades-13",
++       "spades-12",
++       "hearts-3",
++       "spades-14",
++       "clubs-2",
++       "diamonds-2",
++       "spades-10",
++       "hearts-6",
++       "spades-5",
++       "diamonds-12",
++       "spades-7",
++       "diamonds-3",
++       "diamonds-8",
++       "hearts-14",
++       "hearts-7",
++       "hearts-4",
++       "spades-6",
++       "clubs-8",
++       "clubs-7",
+      ],
+      "gold": 0,
+      "handLevels": {},
+      "handOrder": [
+        "clubs-12",
+@@ -3514,31 +3514,31 @@
+        },
+      ],
+      "rng": {
+        "challenge": {
+          "algorithm": "fnv1a-mulberry32-v1",
+-         "state": 111812685,
++         "state": 111812704,
+        },
+        "deck": {
+          "algorithm": "fnv1a-mulberry32-v1",
+-         "state": 1543819562,
++         "state": 1543819581,
+        },
+        "program": {
+          "algorithm": "fnv1a-mulberry32-v1",
+-         "state": 4127392240,
++         "state": 4127392259,
+        },
+        "reward": {
+          "algorithm": "fnv1a-mulberry32-v1",
+-         "state": 428350038,
++         "state": 428350057,
+        },
+        "rule": {
+          "algorithm": "fnv1a-mulberry32-v1",
+-         "state": 2405713301,
++         "state": 2405713320,
+        },
+        "shop": {
+          "algorithm": "fnv1a-mulberry32-v1",
+-         "state": 2370173991,
++         "state": 2370174010,
+        },
+      },
+      "rulesVersion": "r2",
+      "runId": "controlled/growth/d03",
+      "safetyNetUsed": false,
+
+ ❯ tests/catalog.test.ts:50:157
+     48| it('querying cannot mutate the checkpoint or use hidden draw order and…
+     49|  const s=growthPlan('d03'),before=structuredClone(s),facts=catalogFact…
+     50|  const other=structuredClone(s);other.drawPile.reverse();for(const rng…
+       |                                                                                                                                                             ^
+     51| });
+     52|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 3 passed (4)
+      Tests  1 failed | 27 passed (28)
+   Start at  13:14:44
+   Duration  929ms (transform 1.18s, setup 0ms, import 1.62s, tests 334ms, environment 1ms)
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice

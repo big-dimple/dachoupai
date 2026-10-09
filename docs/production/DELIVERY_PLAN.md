@@ -1137,6 +1137,8 @@ allowedFiles：`src/game/HeroOpeningCopy.ts`、`CharacterRunCopy.ts`、`Characte
 
 2026-10-09父明确批准[C04.3只读图鉴查询子包](C04_READONLY_CATALOG_SCOPE.md)：输入main693275e，仅菜单主动名字/用途查询、当前公开内容/同身份详情及独立短横Canvas摘要预算修复，无新保存/跨局收藏/历史/联网；原C04状态、resumeContract、W6/W8及正式门槛不改，不恢复整个C04。
 
+候选602914e查询／724f83f独立摘要及2b23f08用途补正：[有限软件证据](evidence/c04-readonly-catalog-2026-10-09/README.md)。29定向/type/plan；PC1366、390代表只读操作及320、740边界，当前state/journal/storage/手选不改、零查询写入，高清按需与取消。原FAIL和精确原生SHA保持；最终head一次CI/父审/main另核，真人设备/听感/用户满意及C04整包仍未验收。
+
 - **requirementId：** U09、U10、U11；完整1.0范围。
 - **inputSHA：** W5稳定共同底座可先核通路；最终采用相关W7整合后的同一冻结版本。
 - **dependencies：** 后期新增工作等待W6首章真实玩家门槛及W5；受角色影响终验等对应W7；C04恢复遵守原resumeContract。最小依赖修正仅是优先门槛：既有八章内容和已核通路/恢复证据保留，必要缺陷维护不算后期扩展；不回滚内容或改plan.json历史状态。
