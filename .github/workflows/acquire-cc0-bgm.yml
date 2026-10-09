@@ -2,13 +2,15 @@ name: Acquire authorized CC0 transition BGM
 on:
   push:
     branches: [assets/bgm-cc0-acquire-20261009]
+    paths: [.github/workflows/acquire-cc0-bgm.yml]
 permissions:
-  contents: read
+  contents: write
 jobs:
   acquire:
     runs-on: ubuntu-latest
     timeout-minutes: 3
     steps:
+      - uses: actions/checkout@v4
       - name: Fetch the author-published original and attribution page
         run: |
           mkdir bgm
@@ -16,6 +18,16 @@ jobs:
           curl --fail --location --max-time 30 https://opengameart.org/content/dark-things-loop -o bgm/author-page.html
           sha256sum bgm/dark-things-loop.mp3
           wc -c bgm/dark-things-loop.mp3
+      - name: Preserve the exact acquired original on this isolated asset branch
+        run: |
+          mkdir -p public/assets/audio/transition-bgm
+          cp bgm/dark-things-loop.mp3 public/assets/audio/transition-bgm/dark-things-loop.mp3
+          cp bgm/author-page.html public/assets/audio/transition-bgm/author-page.html
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add public/assets/audio/transition-bgm/dark-things-loop.mp3 public/assets/audio/transition-bgm/author-page.html
+          git commit -m 'assets: preserve author-published CC0 Dark Things Loop'
+          git push origin HEAD:assets/bgm-cc0-acquire-20261009
       - uses: actions/upload-artifact@v4
         with:
           name: authorized-cc0-dark-things-loop
