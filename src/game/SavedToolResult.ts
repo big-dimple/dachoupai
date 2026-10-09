@@ -45,6 +45,6 @@ export function showSavedToolResult(dialog:DetailDialog,before:R2RunState,after:
  }
  const grid=document.createElement('section');grid.className='tool-saved-changes';for(const [i,change] of facts.changes.entries())renderCardChange(grid,change,i);for(const level of facts.levels)renderHandChange(grid,level.type,level.before,level.after);
  for(const card of facts.added){const figure=document.createElement('figure'),face=document.createElement('span'),label=document.createElement('figcaption');figure.className='tool-change-card';renderToolCard(face,card);label.textContent='新增实例 · '+cardSpecialText(card);figure.append(face,label);grid.append(figure);}host.append(grid);
- const next=document.createElement('p');next.className='tool-saved-next';next.textContent=(facts.changes.length||facts.added.length?'点数与花色按上方实际牌面核对；增强只占一个槽。':'')+(after.phase==='shop'?'改牌已保存，可以保留金币进入牌桌。':'改牌已保存，继续自己选牌。');host.append(next);
+ const next=document.createElement('p');next.className='tool-saved-next';next.textContent=(facts.changes.length||facts.added.length?'点数与花色按上方实际牌面核对；增强只占一个槽。':'')+(after.phase==='shop'?'结果已保存，可以保留金币进入牌桌。':'结果已保存，继续自己选牌。');host.append(next);
  AudioEngine.shared.cardLand();
 }
