@@ -7,7 +7,7 @@ import {buildGrowthProgress} from './BuildGrowthProgress';
 
 /** Accent identities come only from a verified, saved result. No outcome or score is recomputed. */
 export function resultStageFacts(run:R2RunState,cleared:boolean,skipped=false){
- const outcome=stageOutcome(run.stage!,run.lastTrace),trace=cleared&&!skipped?outcome.last:null;
+ const outcome=stageOutcome(run.stage!,run.lastTrace),trace=cleared&&!skipped&&['stage-cleared','run-won'].includes(run.phase)?outcome.last:null;
  const character=trace?.events.some(e=>e.sourceType==='character'&&e.sourceDefinitionId===run.characterId&&hasActualBenefit(e))?run.characterId:undefined;
  const preferred=trace&&victorySourceFact(run,trace);
  let source=trace?(preferred?.definitionId&&trace.sourceJokers.some(j=>j.instanceId===preferred.sourceInstanceId&&j.definitionId===preferred.definitionId)?preferred:trace.events.filter(e=>e.sourceType==='joker').map(e=>savedBenefit(run,trace,e)).find(f=>!!f?.definitionId)):undefined;
@@ -18,7 +18,7 @@ export function resultStageFacts(run:R2RunState,cleared:boolean,skipped=false){
 export function resultStagePlan(b:Box,short:boolean){
  const split=b.width>=600||short,pad=short?12:18,gap=short?12:20,inner={x:b.x+pad,y:b.y+pad,width:b.width-pad*2,height:b.height-pad*2};
  const sourceWidth=short?Math.min(170,inner.width*.42):Math.min(300,inner.width*.32);
- const source:Box=split?{...inner,width:sourceWidth}:{...inner,y:inner.y+168,height:Math.max(0,inner.height-168)};
- const score:Box=split?{...inner,x:inner.x+sourceWidth+gap,width:inner.width-sourceWidth-gap}:{...inner,height:152};
+ const source:Box=split?{...inner,width:sourceWidth}:{...inner,y:inner.y+200,height:Math.max(0,inner.height-200)};
+ const score:Box=split?{...inner,x:inner.x+sourceWidth+gap,width:inner.width-sourceWidth-gap}:{...inner,height:184};
  return {split,score,source,pad};
 }

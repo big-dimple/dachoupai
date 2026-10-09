@@ -124,7 +124,7 @@ export class IntermissionScene extends Phaser.Scene {
     const touye=savedTouyeWager(trace);if(touye)body=touye+'\n'+body;
     const xiemuInterest=trace?.events.find(e=>e.sourceType==='character'&&e.sourceDefinitionId==='xiemu'&&e.phase==='onStageClear');
     if(!p.short&&!skipped&&this.result.cleared&&xiemuInterest)heading+=' · 额外关末息+'+xiemuInterest.value.n+'金';
-    if(p.short&&trace&&!skipped&&this.result.cleared){const fact=victorySourceFact(run,trace);if(fact)body=fact.title+' · '+fact.effect+'\n'+body;}
+    if(p.short&&trace&&!skipped&&this.result.cleared){const assist=savedAssistSummary(trace);if(assist)body=assist+'\n'+body;const fact=victorySourceFact(run,trace);if(fact)body=fact.title+' · '+fact.effect+'\n'+body;}
     if(!lost){
       v.material(n,0x21474a,0x21474a,4);
       const nextHeading=v.text(n.x+14,n.y+10,heading,18,'#26313A',n.width-28).setFontStyle('bold');
@@ -191,10 +191,12 @@ export class IntermissionScene extends Phaser.Scene {
     for(let font=scoreSize;score.width>main.width-8&&font>24;)score.setFontSize(--font);
     const totalY=scoreY+score.height+8;
     v.text(center,totalY,skipped?'本场跳过':`全场 ${heatText(this.result.stageHeat)} / ${heatText(run.stage!.targetHeat)}`,14,PAPER_CSS.jade,main.width).setOrigin(.5,0).setName('result/gap');
-    const rewardY=short?main.y+main.height-42:small?main.y+112:main.y+main.height-70;
+    const assist=facts.trace&&savedAssistSummary(facts.trace);
+    const rewardY=short?main.y+main.height-42:small?main.y+136:main.y+main.height-70;
     if(this.result.cleared&&!skipped){
-      const band={x:main.x,y:rewardY,width:main.width,height:short?40:48};v.material(band,T.paperLight,T.paperLight,6);
+      const band={x:main.x,y:rewardY,width:main.width,height:short?40:assist?54:48};v.material(band,T.paperLight,T.paperLight,6);
       const reward=v.text(center,band.y+10,'过关奖励  +'+this.result.goldEarned+' 金',short?16:20,PAPER_CSS.ink,main.width-12).setOrigin(.5,0).setFontStyle('bold').setName('result/reward');
+      if(assist&&!short)v.text(center,band.y+34,assist,14,PAPER_CSS.jade,main.width-12).setOrigin(.5,0).setName('result/assist-source');
       const cue=this.firstRender&&this.rewardCue.claim(run,this.result),size=40,diameter=size*.7,gap=8;
       const x=center-(reward.width+diameter+gap)/2+diameter/2,coinY=reward.y+reward.height/2-size*.04;
       const show=()=>{reward.x=center+(diameter+gap)/2;return addRewardCoin(this,v.root,x,coinY,size,run.stage!.clearId!);};
