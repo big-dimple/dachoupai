@@ -1,5 +1,7 @@
 # 开发入口
 
+2026-10-09 15:05UTC父已FF PR87 main4850594、预合CI37946695440全绿；当前唯一串行包为review/tool-experience，已整合下一合同dfdddd84。购买→立即使用／可发现库存→逐张覆盖警示／保存结果→献纸仪式→回到经营，路线契合与选中／首店标记分离、分端操作区；连续接胜败收尾。现2金位T02/T08/T09/T10/T11不含复制，可靠选择供给先给有限方案，新身份经济指令不偷改旧档。原美术／计分／随机／存档／主动选牌保持，6.1Medium无并发，有限关键native后一次CI；观感／实机／听感未签。
+
 2026-10-09 22:48北京路线契合框／独立选中与起手标記、基础可靠成型＋随机惊喜已补下一工具经营合同分支review/tool-build-contract，仅文档未实现。当前AV PR87／head4850594保持冻结，精确CI继续；不把放置爽感变自动挂机、不改整套经济。原W3/W5/W4依赖与真人／设备／听感门槛不变。
 
 2026-10-09完整首120秒AV候选：产品391cb59＋低动态归位2c466ee、55定向/7files及type/plan通过；PC1366/390各一条同正常seed原生前后初终state及actions完全相等，真实362、共享舞台一次、7/100保持，三受控中断native通过。[有限软件画面／真实最终音轨短片](docs/production/evidence/w4-opening-climax-2026-10-09/README.md)约27/26秒，前后图与运动分帧已actual view；云端未真人试听，非设备FPS／人类验收。原FAIL保留，domain/application/content/platform/assets/art/GameScene原文同main4d，新runtime图片音频视频0；旧额外500ms同。当前仅review，精确head CI/draft另核，父审main；下一工具＋经营／胜败缺口未实现，不把PR77/81代签。
