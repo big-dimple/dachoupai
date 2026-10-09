@@ -900,7 +900,7 @@ export function readCheckpoint(value:unknown):ReadResult {
     if(usesErxiangHandoff(state)){
       let used:boolean|undefined;
       for(const entry of journal as Command[]){
-        if(entry.action.type==='EnterStage')used=false;
+        if(entry.action.type==='EnterStage'||entry.action.type==='SkipStage')used=false;
         if(entry.action.type==='PlayHand'){
           if(entry.action.erxiangTargetId!==undefined){if(used)fail('invalid-save-erxiang-reuse');used=true;}
           if(state.lastTrace?.rootId===`${state.runId}/hand/${entry.commandId}`&&((entry.action.erxiangTargetId??null)!==state.lastTrace.erxiangHandoff!.targetId||stableHash(state.lastTrace.cards.filter(c=>entry.action.type==='PlayHand'&&entry.action.selectedIds.includes(c.id)).map(c=>c.id))!==stableHash(state.lastTrace.sets.playedIds)))fail('invalid-save-erxiang-journal-trace');

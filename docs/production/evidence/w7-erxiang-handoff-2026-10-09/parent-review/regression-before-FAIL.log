@@ -1,0 +1,39 @@
+
+> dachoupai@0.1.0 test
+> vitest run tests/erxiang-handoff.test.ts -t saved activation then
+
+
+ RUN  v4.1.11 /workspace/dachoupai
+
+ ❯ tests/erxiang-handoff.test.ts (13 tests | 1 failed | 12 skipped) 86ms
+     × saved activation then OpenShop and SkipStage resets journal usage and restores exactly 85ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/erxiang-handoff.test.ts > Erxiang first ordinary points handoff > saved activation then OpenShop and SkipStage resets journal usage and restores exactly
+Error: invalid-save-erxiang-journal-state
+ ❯ fail src/application/checkpoint.ts:59:43
+     57| }
+     58| type ReadResult={ok:true;checkpoint:Checkpoint}|{ok:false;code:string};
+     59| const fail=(message:string):never=>{throw Error(message);};
+       |                                           ^
+     60| function record(value:unknown,required:string[],optional:string[]=[]):…
+     61|   if(!value||typeof value!=='object'||Array.isArray(value))return fail…
+ ❯ makeCheckpoint src/application/checkpoint.ts:869:53
+ ❯ SavedRun.submit src/application/SavedRun.ts:49:30
+ ❯ SavedRun.dispatch src/application/SavedRun.ts:43:17
+ ❯ tests/erxiang-handoff.test.ts:25:670
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 12 skipped (13)
+   Start at  10:00:12
+   Duration  810ms (transform 490ms, setup 0ms, import 597ms, tests 86ms, environment 0ms)
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice
