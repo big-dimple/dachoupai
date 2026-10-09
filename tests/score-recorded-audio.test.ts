@@ -10,7 +10,7 @@ it('selection, confirmation, source multiplication and endings use actual sample
  const {engine,inside,sources}=fixture();inside.context.createOscillator=vi.fn(()=>{throw Error('synthetic tone');});
  engine.select();engine.cancel();engine.purchase();engine.multiplier('multiply',2);engine.success();const failed={runId:'same',commandSeq:3};engine.failure(failed);engine.failure(failed);
  expect(sources.map(s=>s.buffer.name)).toEqual(['cloth2','cloth2','impactMetal_light_002','impactMetal_heavy_000','impactMetal_heavy_000','impactMetal_light_002','impactMetal_medium_002','cloth2']);
- expect(inside.context.createOscillator).not.toHaveBeenCalled();expect(engine.getVolume('music')).toBe(.3);expect(engine.getVolume('sfx')).toBe(.8);
+ expect(sources[0].start.mock.calls[0][1]).toBe(.08);expect(sources[2].start.mock.calls[0][1]).toBe(0);expect(inside.context.createOscillator).not.toHaveBeenCalled();expect(engine.getVolume('music')).toBe(.3);expect(engine.getVolume('sfx')).toBe(.8);
  engine.cancelPresentation();expect([...inside.voices].every((v:any)=>v.bus==='ui')).toBe(true);
 });
 it('number rolls replace their recorded texture, remain finite and cannot restart after mute',()=>{

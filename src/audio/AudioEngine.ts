@@ -324,9 +324,10 @@ export class AudioEngine {
     for(const voice of this.voices)if(voice.scoreAccent)this.release(voice);
     const name=kind==='flight'?'cloth2':kind==='add'?'chop':tier>=2?'impactMetal_heavy_000':tier>=1?'impactMetal_medium_002':'impactMetal_light_002',buffer=this.scoreSamples.get(name);if(!buffer)return;
     try{const context=this.context!,source=context.createBufferSource(),gain=context.createGain();source.buffer=buffer;source.playbackRate.value=kind==='multiply'?1+Math.min(4,Math.max(0,chain))*.035:1;
-      const length=Math.min(kind==='flight'?.12:kind==='award'?.34:.23,buffer.duration/source.playbackRate.value),time=context.currentTime;
+      const sampleOffset=name==='cloth2'?.08:0;
+      const length=Math.min(kind==='flight'?.12:kind==='award'?.34:.23,(buffer.duration-sampleOffset)/source.playbackRate.value),time=context.currentTime;
       gain.gain.setValueAtTime(0,time);gain.gain.linearRampToValueAtTime((kind==='flight'?.025:kind==='add'?.055:.085+Math.min(3,tier)*.018)*SOURCE_GAIN.sfx,time+.005);gain.gain.setValueAtTime((kind==='flight'?.025:kind==='add'?.055:.085+Math.min(3,tier)*.018)*SOURCE_GAIN.sfx,time+length*.55);gain.gain.linearRampToValueAtTime(0,time+length);
-      source.connect(gain);gain.connect(this.gains!.sfx);this.retain({source,gain,bus:'sfx',scoreAccent:true});source.start(time);source.stop(time+length);this.duckMusic(length+.05);
+      source.connect(gain);gain.connect(this.gains!.sfx);this.retain({source,gain,bus:'sfx',scoreAccent:true});source.start(time,sampleOffset);source.stop(time+length);this.duckMusic(length+.05);
     }catch{/* Device teardown never changes the committed hand. */}
   }
 
@@ -401,11 +402,13 @@ export class AudioEngine {
     const buffer=this.scoreSamples.get(name);if(!buffer)return;
     try {
       const context=this.context!,source=context.createBufferSource(),gain=context.createGain(),time=context.currentTime+offset;
-      const speed=Math.max(.65,Math.min(1.4,rate)),length=Math.min(Math.max(.035,duration),buffer.duration/speed);
+      // cloth2 has an 80ms quiet lead; start at its recorded cloth body, not silence.
+      const sampleOffset=name==='cloth2'?.08:0;
+      const speed=Math.max(.65,Math.min(1.4,rate)),length=Math.min(Math.max(.035,duration),(buffer.duration-sampleOffset)/speed);
       source.buffer=buffer;source.playbackRate.value=speed;
       const peak=bounded(volume,.14)*SOURCE_GAIN[bus];
       gain.gain.setValueAtTime(0,time);gain.gain.linearRampToValueAtTime(peak,time+.005);gain.gain.setValueAtTime(peak,time+length*.55);gain.gain.linearRampToValueAtTime(0,time+length);
-      source.connect(gain);gain.connect(this.gains![bus]);const voice={source,gain,bus};this.retain(voice);source.start(time);source.stop(time+length);return voice;
+      source.connect(gain);gain.connect(this.gains![bus]);const voice={source,gain,bus};this.retain(voice);source.start(time,sampleOffset);source.stop(time+length);return voice;
     }catch{return;}
   }
   deal(index=0):void {this.recordedCue('cloth2',.11,.025,'sfx',1,Math.floor(bounded(index,8))*.055);}
