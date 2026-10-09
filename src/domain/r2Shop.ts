@@ -1,3 +1,4 @@
+import {isR2ToolSupply,R2_BASIC_TOOL_IDS} from './r2GroupUpgrade';
 import {r2JokerDefinitionsForContext,type R2ContentIdentity} from './r2ContentProfiles';
 import {R2_JOKERS,readR2Modifiers,supportsR2Joker,type R2JokerDefinition,type R2JokerInstance} from '../content/r2Schema';
 import {R2_EDITIONS,R2_LONG_TERM_ITEMS,R2_TOOLS,R2_TOOL_CATALOG,type R2Edition,type R2ToolDefinition} from '../content/r2Tools';
@@ -15,7 +16,8 @@ export function getR2Joker(id:string,identity:R2ContentIdentity={}):R2JokerDefin
   const definition=r2JokerDefinitionsForContext(identity).find(d=>d.id===id);if(!definition)throw new Error(`unknown-joker: ${id}`);return definition;
 }
 export const r2Price=(id:string,edition:R2Edition='none',identity:R2ContentIdentity={}):number=>R2_ECONOMY.prices[getR2Joker(id,identity).rarity]+R2_EDITIONS.find(row=>row.id===edition)!.priceDelta;
-export const r2ToolPrice=(id:string):number=>R2_TOOLS.find(row=>row.id===id)!.price;
+export const r2ToolPrice=(id:string,identity:R2ContentIdentity={}):number=>isR2ToolSupply(identity)&&R2_BASIC_TOOL_IDS.includes(id)?2:R2_TOOLS.find(row=>row.id===id)!.price;
+export const r2ToolShelfCapacity=(identity:R2ContentIdentity):number=>isR2ToolSupply(identity)?2:1;
 export const r2ItemPrice=(id:string):number=>R2_LONG_TERM_ITEMS.find(row=>row.id===id)!.price;
 export const r2PurchaseDiscount=(state:PurchaseContext):number=>(state.purchaseCoupons>0?2:0)+(state.shop?.purchases===0?readR2Modifiers(state.jokers??[],r2JokerDefinitionsForContext(state)).firstPurchaseDiscount+R2_LONG_TERM_ITEMS.reduce((sum,item)=>sum+(state.longTermItems?.includes(item.id)&&item.operation.kind==='first-purchase-discount'?item.operation.amount:0),0):0);
 export const r2PurchasePrice=(state:PurchaseContext,offer:R2Offer):number=>Math.max(1,offer.price-r2PurchaseDiscount(state));
@@ -80,4 +82,15 @@ export function drawR2Items(rng:SeededRng,owned:readonly string[],count:number):
   const available=R2_LONG_TERM_ITEMS.filter(item=>r2ItemSupported(item.id)&&!owned.includes(item.id)),ids:string[]=[];
   while(available.length&&ids.length<count){const item=pick(rng,available,row=>row.shopWeight);ids.push(item.id);available.splice(available.indexOf(item),1);}
   return ids;
+}
+
+/** The basic shelf never turns an empty legal pool into a different product or a reroll. */
+export function drawR2BasicTool(rng:SeededRng,pool:readonly R2ToolDefinition[],excluded?:string):string|undefined {
+ const eligible=pool.filter(tool=>R2_BASIC_TOOL_IDS.includes(tool.id)&&tool.id!==excluded);
+ return eligible.length?pick(rng,eligible,tool=>tool.shopWeight).id:undefined;
+}
+export function r2BasicToolShelfStatus(state:R2RunState):string|undefined {
+ if(!isR2ToolSupply(state)||!state.shop)return;
+ const basic=state.shop.toolOffers.find(offer=>offer.offerId.endsWith('/tool/1'));
+ return basic?basic.consumed?'基础改牌已售罄 · 本店不补货':'基础改牌 2 金 · 买后不补货':state.shop.toolOffers.some(offer=>R2_BASIC_TOOL_IDS.includes(offer.definitionId))?'无其他合法且不同的基础工具；保留现有货品':'当前没有合法基础改牌工具；该位缺货';
 }

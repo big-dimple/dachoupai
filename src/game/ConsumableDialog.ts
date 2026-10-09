@@ -1,3 +1,4 @@
+import {toolCardTargetStatus,toolCardMatches} from './ToolTargetDirectory';
 import {currentBuildFocus,focusedUpgradeTypes} from './BuildJourney';
 import type {Action,R2RunState} from '../domain/run';
 import {HAND_LABELS} from '../content/handLabels';
@@ -158,18 +159,23 @@ export function showConsumables(dialog:DetailDialog,state:R2RunState,ready:boole
       }}],{closeLabel:'取消'});
     }};
     const d=dialog.open(info.label+' · 使用详情',[info.description,info.cost].join('\n\n'),[useAction,destroyAction],{closeLabel:'取消',portrait:goodsArtPortrait(info)});d.classList.add('tool-detail');
+    const scroll=d.querySelector('.dialog-scroll')!,art=d.querySelector('.dialog-card-art');if(art)scroll.prepend(art);
     const panel=document.createElement('section'),preview=document.createElement('p'),hint=document.createElement('p');panel.className='tool-target-panel';preview.className='tool-preview';preview.setAttribute('aria-live','polite');hint.className='tool-validation';hint.setAttribute('role','status');
+    const directoryUpdates:(()=>void)[]=[];
     const controls:{input:HTMLInputElement;label:HTMLLabelElement;choice:Choice;role:'target'|'donor';maximum:number}[]=[],selects:HTMLSelectElement[]=[],sortButtons:HTMLButtonElement[]=[];
     const buttons=d.querySelectorAll<HTMLButtonElement>('.dialog-actions button'),confirm=buttons[0],destroy=buttons[1];
     const targetChoices=()=>tool.target.kind==='joker-sacrifice'||tool.target.kind==='card-or-joker'&&selection.targetKind==='joker'?jokerChoices:cardChoices;
     function showError(message:string):void {if(!dialog.active(d))return;const status=d.querySelector<HTMLParagraphElement>('.dialog-status')!;status.textContent=message;status.hidden=false;}
     function gallery(title:string,choices:readonly Choice[],role:'target'|'donor',maximum:number,host=panel):void {
       const field=document.createElement('fieldset'),legend=document.createElement('legend'),grid=document.createElement('div');field.className='tool-target-group';field.setAttribute('aria-label',title);legend.textContent=title;grid.className='tool-choice-grid';field.append(legend,grid);
-      const rows:{choice:Choice;label:HTMLLabelElement}[]=[];
+      const rows:{choice:Choice;label:HTMLLabelElement}[]=[],directory=document.createElement('div'),count=document.createElement('p');directory.className='tool-target-directory';count.className='tool-directory-count';let rankFilter='',suitFilter='',sortMode:'rank'|'suit'|undefined;
+      const priority=(choice:Choice)=>{if(!choice.card)return 0;const status=toolCardTargetStatus(tool,choice.card,role,selection.sacrificeId);return !status.eligible?2:status.changes?0:1;};
+      const updateDirectory=()=>{const ordered=[...rows].sort((a,b)=>{const legal=priority(a.choice)-priority(b.choice);if(legal)return legal;if(!sortMode||!a.choice.card||!b.choice.card)return 0;const x=a.choice.card,y=b.choice.card,rank=y.rank-x.rank,suit=SUITS.indexOf(x.suit)-SUITS.indexOf(y.suit);return sortMode==='rank'?rank||suit:suit||rank;});grid.append(...ordered.map(row=>row.label));let shown=0,hiddenSelected=0;for(const row of rows){row.label.hidden=!!row.choice.card&&!toolCardMatches(row.choice.card,rankFilter,suitFilter);if(!row.label.hidden)shown++;else if(selection.ids.has(row.choice.id)||selection.sacrificeId===row.choice.id)hiddenSelected++;}count.textContent=`显示 ${shown}/${rows.length}`+(hiddenSelected?` · 筛选外已选 ${hiddenSelected} 张（保留）`:'');};directoryUpdates.push(updateDirectory);
       if(choices.length&&choices.every(choice=>choice.card)){
         const sorting=document.createElement('div');sorting.className='tool-target-sort';sorting.setAttribute('role','group');sorting.setAttribute('aria-label',title+'整理');
-        for(const [mode,text] of [['rank','点数整理'],['suit','花色整理']] as const){const button=document.createElement('button');button.type='button';button.textContent=text;button.setAttribute('aria-pressed','false');button.onclick=()=>{if(busy)return;const ordered=[...rows].sort((a,b)=>{const x=a.choice.card!,y=b.choice.card!,rank=y.rank-x.rank,suit=SUITS.indexOf(x.suit)-SUITS.indexOf(y.suit);return mode==='rank'?rank||suit:suit||rank;});grid.append(...ordered.map(row=>row.label));for(const b of sorting.querySelectorAll('button'))b.setAttribute('aria-pressed',String(b===button));};sortButtons.push(button);sorting.append(button);}
+        for(const [mode,text] of [['rank','点数整理'],['suit','花色整理']] as const){const button=document.createElement('button');button.type='button';button.textContent=text;button.setAttribute('aria-pressed','false');button.onclick=()=>{if(busy)return;sortMode=mode;updateDirectory();for(const b of sorting.querySelectorAll('button'))b.setAttribute('aria-pressed',String(b===button));};sortButtons.push(button);sorting.append(button);}
         field.insertBefore(sorting,grid);
+        for(const [kind,text] of [['rank','点数筛选'],['suit','花色筛选']] as const){const label=document.createElement('label'),select=document.createElement('select'),all=document.createElement('option');label.textContent=text;select.setAttribute('aria-label',title+text);all.value='';all.textContent='全部';select.append(all);const values=kind==='rank'?[...new Set(choices.map(choice=>choice.card!.rank))].sort((a,b)=>b-a).map(rank=>[String(rank),rankLabel(rank)]):SUITS.map(suit=>[suit,SUIT_SYMBOL[suit]+' '+SUIT_NAMES[suit]]);for(const [value,text] of values){const option=document.createElement('option');option.value=value;option.textContent=text;select.append(option);}select.onchange=()=>{if(kind==='rank')rankFilter=select.value;else suitFilter=select.value;updateDirectory();};selects.push(select);label.append(select);directory.append(label);}field.insertBefore(directory,grid);field.insertBefore(count,grid);
         if(focus){const mode=focus==='flush'?'suit':'rank';queueMicrotask(()=>{if(grid.isConnected)sorting.querySelector<HTMLButtonElement>(mode==='suit'?'button:last-child':'button:first-child')?.click();});}
       }
       if(!choices.length){const empty=document.createElement('p');empty.textContent='当前没有可选对象。';grid.append(empty);}
@@ -187,7 +193,7 @@ export function showConsumables(dialog:DetailDialog,state:R2RunState,ready:boole
           else selection.ids.delete(choice.id);refresh();
         };
       }
-      host.append(field);
+      host.append(field);updateDirectory();
     }
     function handSelect(labelText:string,types:readonly R2HandType[],choose:(type:R2HandType|undefined)=>void,initial?:R2HandType):void {
       const label=document.createElement('label'),name=document.createElement('span'),select=document.createElement('select'),empty=document.createElement('option');label.className='tool-field';name.textContent=labelText;select.setAttribute('aria-label',labelText);empty.value='';empty.textContent=types.length?'请选择':'没有符合条件的已发现牌型';select.append(empty);
@@ -222,14 +228,14 @@ export function showConsumables(dialog:DetailDialog,state:R2RunState,ready:boole
       probability.textContent='公开概率：'+operation.choices.map(choice=>`${operation.kind==='random-enhancement'?R2_ENHANCEMENTS.find(enhancement=>enhancement.id===choice.id)!.name:editionLabel(choice.id as 'foil'|'holographic'|'polychrome')} ${choice.weight}/${total}`).join('、')+'。使用后揭晓结果。';panel.append(probability);
     }
     const risks=document.createElement('details'),riskTitle=document.createElement('summary'),riskText=document.createElement('p');risks.className='tool-full-risk';riskTitle.textContent='风险与完整说明';riskText.textContent=info.risk;risks.append(riskTitle,riskText);
-    panel.append(preview,hint,risks);d.querySelector('.dialog-scroll')!.append(panel);
+    panel.append(risks);scroll.append(panel);const dock=document.createElement('section');dock.className='tool-selection-dock';dock.setAttribute('aria-label','已选目标与真实预览');dock.append(preview,hint);d.insertBefore(dock,d.querySelector('.dialog-actions'));
     function refresh():void {
       for(const button of sortButtons)button.disabled=busy;
       const issue=selectionIssue(tool,state,selection,known,ready),selected=targetChoices().filter(choice=>selection.ids.has(choice.id));
       for(const control of controls){
         const {input,label,choice,role,maximum}=control;let unavailable=false;
         if(role==='target'){
-          unavailable=choice.id===selection.sacrificeId;
+          unavailable=choice.card?!toolCardTargetStatus(tool,choice.card,role,selection.sacrificeId).eligible:choice.id===selection.sacrificeId;
           if(tool.target.kind==='card-sacrifice'&&choice.card?.enhancement!==undefined)unavailable=true;
           if(tool.target.kind==='card-or-joker'&&(choice.card?.edition??choice.joker?.edition??'none')!=='none')unavailable=true;
           if(tool.target.kind==='joker-sacrifice'&&choice.joker?.edition===tool.target.excludedEdition)unavailable=true;
@@ -237,7 +243,7 @@ export function showConsumables(dialog:DetailDialog,state:R2RunState,ready:boole
         }else input.checked=selection.sacrificeId===choice.id;
         input.disabled=busy||unavailable;label.classList.toggle('is-unavailable',unavailable);label.classList.toggle('is-selected',input.checked);
       }
-      selects.forEach(select=>{select.disabled=busy;});useAction.disabled=busy||!!issue;destroyAction.disabled=busy||!ready;confirm.disabled=useAction.disabled;destroy.disabled=destroyAction.disabled;
+      directoryUpdates.forEach(update=>update());selects.forEach(select=>{select.disabled=busy;});useAction.disabled=busy||!!issue;destroyAction.disabled=busy||!ready;confirm.disabled=useAction.disabled;destroy.disabled=destroyAction.disabled;
       hint.textContent=busy?'正在提交并保存…':issue??'目标有效。确认后使用物品并支付上述代价。';hint.dataset.valid=String(!issue);
       const lines:string[]=[],operation=tool.operation;
       if(selection.sacrificeId){const donor=(tool.target.kind==='joker-sacrifice'?jokerChoices:cardChoices).find(choice=>choice.id===selection.sacrificeId);if(donor)lines.push(`永久牺牲：${donor.name} · ${donor.detail.replace('\n',' · ')}。不作为出售，不退款。`);}
@@ -246,9 +252,10 @@ export function showConsumables(dialog:DetailDialog,state:R2RunState,ready:boole
         if(operation.kind==='set-suit')lines.push(`${cardName(choice.card)} → ${rankLabel(choice.card.rank)}${SUIT_SYMBOL[operation.suit]}；${cardSpecialText(choice.card)}`);
         else if(operation.kind==='shift-rank')lines.push(`${cardName(choice.card)} → ${rankLabel(Math.max(operation.minimum,Math.min(operation.maximum,choice.card.rank+operation.delta)) as PlayingCard['rank'])}${SUIT_SYMBOL[choice.card.suit]}；${cardSpecialText(choice.card)}`);
         else if(operation.kind==='set-enhancement')lines.push(`${cardName(choice.card)}：${enhancementName(choice.card)} → ${R2_ENHANCEMENTS.find(enhancement=>enhancement.id===operation.enhancement)!.name}；${choice.card.enhancement!==undefined&&choice.card.enhancement!==operation.enhancement?'原增强将被替换，其效果不再保留。':'保留其他属性。'}\n当前 ${cardSpecialText(choice.card)}。`);
-        else lines.push(`${cardName(choice.card)} · ${cardSpecialText(choice.card)}`);
+        else lines.push(`${operation.kind==='delete-cards'?'永久删除：':''}${cardName(choice.card)} · ${cardSpecialText(choice.card)}`);
       }
       for(const choice of selected)if(choice.joker)lines.push(`${choice.name} · ${editionEffectText(choice.joker.edition)}\n${operation.kind==='set-joker-edition'?`版次 → ${editionEffectText(operation.edition)}；原支付 ${choice.joker.paidPrice} 金与已有成长保留。`:'本体、原支付金额与已有成长保留。'}`);
+      if(operation.kind==='delete-cards'&&selected.length)lines.push(`有效牌组 ${state.deckInstances.length-state.destroyedIds.length} → ${state.deckInstances.length-state.destroyedIds.length-selected.length} 张；永久删除，确认使用才生效。`);
       if(operation.kind==='upgrade-hand'){const type=tool.target.kind==='discovered-hand'&&tool.target.selection==='fixed'?operation.handType:selection.handType;if(type){const level=state.handLevels[type];lines.push(level===undefined?`${HAND_LABELS[type]} · 尚未发现`:level>=R2_TOOL_CATALOG.limits.handLevelMaximum?`${HAND_LABELS[type]} · Lv.${level}（已满级）`:handChange(type,level,level+operation.levels));}}
       if(operation.kind==='exchange-hand-levels'){if(selection.handType)lines.push(handChange(selection.handType,state.handLevels[selection.handType]!,state.handLevels[selection.handType]!+operation.gain));if(selection.secondaryHandType)lines.push('遗忘：'+handChange(selection.secondaryHandType,state.handLevels[selection.secondaryHandType]!,state.handLevels[selection.secondaryHandType]!-operation.loss));}
       for(const cost of tool.costs){

@@ -1,3 +1,4 @@
+import {R2_TOOL_SUPPLY_VERSION,R2_TOOL_SUPPLY_HASH,isR2ToolSupply} from './r2GroupUpgrade';
 import {usesTouyeWager,emptyTouyeWager,validTouyeCommit,touyeSnapshotToken,touyeReachableTypes,touyeTargetReached,TOUYE_TARGETS,type TouyeWager,type TouyeCommit} from './r2TouyeWager';
 import {R2_TOUYE_WAGER_VERSION,R2_TOUYE_WAGER_HASH} from './r2GroupUpgrade';
 import {usesLaohuanRefill,type PendingRefill} from './r2LaohuanRefill';
@@ -33,7 +34,7 @@ import {R2_TARGETS,R2_AVAILABLE_CHAPTERS,R2_ENDLESS_MAX_CHAPTER,R2_ENDLESS_CONTR
 export {R2_TARGETS} from './r2Chapter';
 import { scoreR2Hand, ScoreFault, SCORE_LIMITS, R2_BASE_SCORES, type ScoreTrace, type ScoreEvent } from './scoreR2';
 import type { Command, DomainEvent, RunState, StageState } from './run';
-import {drawR2Shelf,drawR2Edition,drawR2Tool,drawR2Items,R2_ECONOMY,r2Price,r2ToolPrice,r2ItemPrice,r2ToolAcquisitionPool,r2Pool,r2PaidRerollPrice,salePrice,r2PurchasePrice,type R2ShopState} from './r2Shop';
+import {drawR2BasicTool,r2ToolShelfCapacity,drawR2Shelf,drawR2Edition,drawR2Tool,drawR2Items,R2_ECONOMY,r2Price,r2ToolPrice,r2ItemPrice,r2ToolAcquisitionPool,r2Pool,r2PaidRerollPrice,salePrice,r2PurchasePrice,type R2ShopState} from './r2Shop';
 
 const R2_JOKERS=R2_PUBLISHED_JOKERS;
 export const R2_STARTING_HAND_LEVELS:Partial<Record<CharacterId,Partial<Record<R2HandType,number>>>> = R2_PUBLISHED_CONTENT.snapshot.startingHandLevels;
@@ -50,6 +51,7 @@ const sharedRuntimeHash=stableHash({jokers:SHARED_R2_JOKERS,features:R2_IMPLEMEN
 if(sharedRuntimeHash!==R2_LEGACY_CONTENT_HASH)throw Error('published-r2-contract-drift');
 
 export const R2_RULESETS=Object.freeze([
+  Object.freeze({contentVersion:R2_TOOL_SUPPLY_VERSION,contentHash:R2_TOOL_SUPPLY_HASH,amoScoreTiming:'assist-v1' as const}),
   Object.freeze({contentVersion:R2_TOUYE_WAGER_VERSION,contentHash:R2_TOUYE_WAGER_HASH,amoScoreTiming:'assist-v1' as const}),
   Object.freeze({contentVersion:R2_LAOHUAN_REFILL_VERSION,contentHash:R2_LAOHUAN_REFILL_HASH,amoScoreTiming:'assist-v1' as const}),
   Object.freeze({contentVersion:R2_XIEMU_BURN_VERSION,contentHash:R2_XIEMU_BURN_HASH,amoScoreTiming:'assist-v1' as const}),
@@ -219,9 +221,10 @@ export function assertR2Invariants(state:R2RunState):void {
   if(state.shop){
     const s=state.shop,offers=[...s.offers,...s.toolOffers,...s.itemOffers];
     check(typeof s.soldJoker==='boolean','shop sales qualification');
-    check(integer(s.rerollCount)&&integer(s.purchases)&&integer(s.visitIndex)&&s.visitIndex===state.stageIndex&&s.offers.length<=4&&s.toolOffers.length<=1&&s.itemOffers.length<=2&&new Set(offers.map(o=>o.offerId)).size===offers.length&&offers.every(o=>!!o.offerId&&typeof o.consumed==='boolean'),'shelf references/capacity');
+    check(integer(s.rerollCount)&&integer(s.purchases)&&integer(s.visitIndex)&&s.visitIndex===state.stageIndex&&s.offers.length<=4&&s.toolOffers.length<=r2ToolShelfCapacity(state)&&s.itemOffers.length<=2&&new Set(offers.map(o=>o.offerId)).size===offers.length&&offers.every(o=>!!o.offerId&&typeof o.consumed==='boolean'),'shelf references/capacity');
     check(s.offers.every(o=>R2_JOKERS.some(d=>d.id===o.definitionId&&supportsR2Joker(d))&&(o.edition===undefined||EDITIONS.includes(o.edition))&&o.price===r2Price(o.definitionId,o.edition,state)),'joker shelf prices/edition');
-    check(s.toolOffers.every(o=>r2ToolSupported(o.definitionId)&&r2ToolAllowed(state,o.definitionId)&&R2_TOOLS.some(t=>t.id===o.definitionId&&t.shopWeight>0)&&o.edition===undefined&&o.price===r2ToolPrice(o.definitionId)),'tool shelf prices');
+    check(!isR2ToolSupply(state)||new Set(s.toolOffers.map(o=>o.definitionId)).size===s.toolOffers.length,'distinct tool shelf');
+    check(s.toolOffers.every(o=>r2ToolSupported(o.definitionId)&&r2ToolAllowed(state,o.definitionId)&&R2_TOOLS.some(t=>t.id===o.definitionId&&t.shopWeight>0)&&o.edition===undefined&&o.price===r2ToolPrice(o.definitionId,state)),'tool shelf prices');
     check([0,1].includes(s.freeRerolls)&&(!s.freeRerolls||config.reroll.allowed),'shop program coupon');
     check(s.itemOffers.every(o=>r2ItemSupported(o.definitionId)&&o.edition===undefined&&o.price===r2ItemPrice(o.definitionId)),'item shelf prices');
   }
@@ -356,8 +359,9 @@ export function makeR2Shop(state:R2RunState,reset:boolean):void {
     if(offer){offer.definitionId=definitionId;offer.edition='none';offer.price=r2Price(definitionId,undefined,state);}
   }
   const toolId=drawR2Tool(rng,r2ToolAcquisitionPool(state));
-  const toolOffers=toolId?[{offerId:`${prefix}/tool/0`,definitionId:toolId,price:r2ToolPrice(toolId),consumed:false}]:[];
+  const toolOffers=toolId?[{offerId:`${prefix}/tool/0`,definitionId:toolId,price:r2ToolPrice(toolId,state),consumed:false}]:[];
   const itemOffers=reset?drawR2Items(rng,state.longTermItems,1+itemAmount(state,'item-offer-count')).map((id,slot)=>({offerId:`${prefix}/item/${slot}`,definitionId:id,price:r2ItemPrice(id),consumed:false})):state.shop!.itemOffers;
+  if(isR2ToolSupply(state)){const basicId=drawR2BasicTool(rng,r2ToolAcquisitionPool(state),toolId);if(basicId)toolOffers.push({offerId:`${prefix}/tool/1`,definitionId:basicId,price:r2ToolPrice(basicId,state),consumed:false});}
   const freeRerolls=reset?(state.programRerollCoupon?1:0):state.shop!.freeRerolls;
   if(reset)state.programRerollCoupon=false;
   state.shop={visitIndex:state.stageIndex,rerollCount:count,purchases:reset?0:state.shop!.purchases,soldJoker:reset?false:state.shop!.soldJoker,freeRerolls,offers,toolOffers,itemOffers};
@@ -553,7 +557,7 @@ export function transactR2(input:R2RunState|null,command:Command):Transaction {
           if(offer.edition!==undefined&&!EDITIONS.includes(offer.edition)||offer.price!==r2Price(offer.definitionId,offer.edition,state))return fail('invalid-offer');
         }else if(shelf==='toolOffers'){
           if(!r2ToolAllowed(state,offer.definitionId))return fail('tool-disabled-in-mode');
-          if(offer.edition!==undefined||!r2ToolAcquisitionPool(state).some(t=>t.id===offer.definitionId)||offer.price!==r2ToolPrice(offer.definitionId))return fail('invalid-offer');
+          if(offer.edition!==undefined||!r2ToolAcquisitionPool(state).some(t=>t.id===offer.definitionId)||offer.price!==r2ToolPrice(offer.definitionId,state))return fail('invalid-offer');
           if(state.consumables.length>=r2ConsumableCapacity(state))return fail('consumable-slots-full');
         }else{
           if(offer.edition!==undefined||!r2ItemSupported(offer.definitionId)||offer.price!==r2ItemPrice(offer.definitionId))return fail('invalid-offer');

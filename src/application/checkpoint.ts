@@ -1,3 +1,4 @@
+import {isR2ToolSupply} from '../domain/r2GroupUpgrade';
 import {usesTouyeWager,validTouyeCommit,touyeWagerStep,TOUYE_TARGETS,type TouyeCommit,type TouyeWagerTrace} from '../domain/r2TouyeWager';
 import {usesLaohuanRefill} from '../domain/r2LaohuanRefill';
 import {usesXiemuBurn,xiemuBurnStep,xiemuInterest,type XiemuBurnTrace} from '../domain/r2XiemuBurn';
@@ -105,7 +106,8 @@ function shop(value:unknown,commandSeq:number,stageMaximum:number,config:R2ModeC
   const s=record(value,['visitIndex','rerollCount','purchases','offers','toolOffers','itemOffers','soldJoker','freeRerolls']);
   integer(s.visitIndex,0,stageMaximum-1);integer(s.rerollCount);integer(s.purchases,0,commandSeq);bool(s.soldJoker);
   oneOf(s.freeRerolls,[0,1]);if((!config.programsEnabled||!config.reroll.allowed)&&s.freeRerolls!==0)fail('invalid-save-free-rerolls');
-  const ids=new Set<unknown>(),caps={offers:jokerShelfEffect.base+jokerShelfEffect.amount,toolOffers:1,itemOffers:itemShelfEffect.base+itemShelfEffect.amount};
+  if(isR2ToolSupply(identity)){const tools=array(s.toolOffers,2);if(new Set(tools.map(tool=>(tool as Record<string,unknown>).definitionId)).size!==tools.length)fail('duplicate-save-tool-definition');}
+  const ids=new Set<unknown>(),caps={offers:jokerShelfEffect.base+jokerShelfEffect.amount,toolOffers:isR2ToolSupply(identity)?2:1,itemOffers:itemShelfEffect.base+itemShelfEffect.amount};
   for(const name of ['offers','toolOffers','itemOffers'] as const)for(const item of array(s[name],caps[name])){
     const offer=record(item,['offerId','definitionId','price','consumed'],name==='offers'?['edition']:[]);
     text(offer.offerId);text(offer.definitionId);integer(offer.price,1);bool(offer.consumed);
@@ -121,7 +123,7 @@ function shop(value:unknown,commandSeq:number,stageMaximum:number,config:R2ModeC
       if(!definition||!r2ToolSupported(definitionId)||!definition.shopWeight)fail('save-tool-offer-not-enabled');
       if(!config.enhancementsAllowed&&['set-enhancement','random-enhancement'].includes(definition!.operation.kind)||
         !config.reroll.allowed&&definition!.operation.kind==='free-reroll')fail('save-tool-offer-mode-forbidden');
-      if(offer.price!==r2ToolPrice(definitionId))fail('invalid-save-offer-price');
+      if(offer.price!==r2ToolPrice(definitionId,identity))fail('invalid-save-offer-price');
     }else{
       if(!r2ItemSupported(definitionId))fail('save-item-offer-not-enabled');
       if(offer.price!==r2ItemPrice(definitionId))fail('invalid-save-offer-price');
