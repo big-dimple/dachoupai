@@ -61,7 +61,7 @@ try {
     await tapUI(page,'character-select','character/amo',touch);await confirmHeroRoute(page,touch);await waitScene(page,'shop');
     assert.equal((await state(page)).characterId,'amo');
     const initialSupply=await state(page);
-    assert.equal(initialSupply.contentVersion,'quality-r2-basic-tool-choice-v1');
+    assert.equal(initialSupply.contentVersion,'quality-r2-basic-suit-choice-v1');
     assert.equal(initialSupply.shop.toolOffers.length,1);
     assert.equal(new Set(initialSupply.shop.toolOffers.map(o=>o.definitionId)).size,1);
     assert.ok(initialSupply.shop.toolOffers.every(o=>o.offerId.endsWith('/tool/0')));
