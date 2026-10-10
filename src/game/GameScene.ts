@@ -20,6 +20,7 @@ import {usesTouyeWager,type TouyeBet,type TouyeTarget} from '../domain/r2TouyeWa
 import {touyeChoice,TOUYE_RISK} from './TouyeWagerCopy';
 import {usesLaohuanRefill} from '../domain/r2LaohuanRefill';
 import {savedBossImpact} from './SavedBossImpact';
+import {mountScoreLanding} from './ScoreLanding';
 import {numberImpact,impactBeat,numberPulse,type NumberImpact} from './ScoreEnergy';
 import {starterSelection} from './RouteStarter';
 import {firstChapterGuide,attachFirstChapterGuide} from './FirstChapterGuide';
@@ -1332,7 +1333,7 @@ export class GameScene extends Phaser.Scene {
     const caption={x:s.x+8,y:s.y+(s.height>=108?4:1),width:s.height>=108?s.width-16:s.width*.52-16,height:s.height>=108?20:17};
     fitScoreLine(this.resultText,caption,14);
     const cells=scoreCells(s),impactCell=scoreImpactCell(s),texts=[this.scoreHeat,this.scoreMult,this.scoreTotal];
-    this.scoreLabels.forEach((text,i)=>{text.setVisible(i!==2||s.height>=108);fitScoreLine(text,{x:cells[i].x,y:i===2?impactCell.y-34:cells[i].y-18,width:cells[i].width,height:18},14);});
+    this.scoreLabels.forEach((text,i)=>{text.setVisible(!text.getData('landingSuppressed')&&(i!==2||s.height>=108));fitScoreLine(text,{x:cells[i].x,y:i===2?impactCell.y-34:cells[i].y-18,width:cells[i].width,height:18},14);});
     texts.forEach((text,i)=>{
       const cell=i===2?impactCell:cells[i];
       text.setFontFamily(SCORE_FONT).setFontStyle('800');
@@ -1777,10 +1778,15 @@ export class GameScene extends Phaser.Scene {
     this.scoreTotal.setColor(celebration.cleared&&celebration.tier>=2?'#80551f':tier?C.red:C.ink);
     const opening= !presentation.replay&&presentation.state.openingShow?.rootId===score.rootId&&presentation.state.openingShow.reason==='score';
     const closeOpening=opening?this.showOpeningScore(score,context):undefined;
+    const landing=closeOpening?.hero?undefined:mountScoreLanding(this,this.view.root,this.view.layout,score,presentation.replay,context.signal,typeof this.scoreTotal.style.color==='string'?this.scoreTotal.style.color:C.ink);
+    const totalLabel=this.scoreLabels[2],sideTotal=[this.scoreTotal,totalLabel,this.view.root.list.find(o=>o.name==='score/total-pedestal') as Phaser.GameObjects.Graphics|undefined].filter((o):o is Phaser.GameObjects.Text|Phaser.GameObjects.Graphics=>!!o),sideVisible=sideTotal.map(o=>o.visible);
+    if(landing){totalLabel.setData('landingSuppressed',true);sideTotal.forEach(o=>o.setVisible(false));this.scoreFlame?.destroy();this.scoreFlame=undefined;}
+    let landingClosed=false;const closeLanding=()=>{if(landingClosed)return;landingClosed=true;landing?.dispose();totalLabel.setData('landingSuppressed',false);sideTotal.forEach((o,i)=>{if(o.active)o.setVisible(sideVisible[i]);});context.signal.removeEventListener('abort',closeLanding);};
+    context.signal.addEventListener('abort',closeLanding,{once:true});
     if(closeOpening?.strike&&!this.reducedMotion)await this.wait(180,context);
     if(context.signal.aborted)return;
     closeOpening?.strike?.();
-    if(!presentation.replay){const level=presentation.state.phase==='run-lost'?0:scoreFireLevel(presentation.originHeat,score.finalScore,this.stage.targetHeat);this.ensureScoreFlame().impact('award',level===3?1:level===2?.85:.65);this.audio.scoreImpact(presentation,'award','award',closeOpening?.strike&&level<2?2:level,score.events.filter(e=>numberImpact(e,this.stage.targetHeat)?.kind==='multiply').length);this.keepScoreReadable();}
+    if(!presentation.replay){const level=presentation.state.phase==='run-lost'?0:scoreFireLevel(presentation.originHeat,score.finalScore,this.stage.targetHeat);if(!landing)this.ensureScoreFlame().impact('award',level===3?1:level===2?.85:.65);this.audio.scoreImpact(presentation,'award','award',closeOpening?.strike&&level<2?2:level,score.events.filter(e=>numberImpact(e,this.stage.targetHeat)?.kind==='multiply').length);this.keepScoreReadable();}
     const effects:Promise<void>[]=[];
     // The credited heat rolls up in the HUD; the exact saved value always lands last.
     const heatFrom=BigInt(presentation.displayHeat),heatTo=BigInt(presentation.state.stage!.heat);
@@ -1792,10 +1798,11 @@ export class GameScene extends Phaser.Scene {
       }},context).then(()=>{this.rollingHeat=false;presentation.displayHeat=presentation.state.stage!.heat;if(!context.signal.aborted)this.updateHud();}));
     }else {presentation.displayHeat=presentation.state.stage!.heat;this.updateHud();}
     if(!this.reducedMotion){
-      effects.push(this.pulseScoreNumber(this.scoreTotal,1.28+scoreFireLevel(presentation.originHeat,score.finalScore,this.stage.targetHeat)*.04,260,context));
+      if(landing){const pose={t:0},text=landing.total,rest={x:text.x,y:text.y};effects.push(this.animate({targets:pose,t:1,duration:260,ease:'Linear',onUpdate:()=>{if(!text.active)return;const p=numberPulse(pose.t,'key',1.08);text.setScale(p.scale).setPosition(rest.x,rest.y+p.lift);}},context));}
+      else effects.push(this.pulseScoreNumber(this.scoreTotal,1.28+scoreFireLevel(presentation.originHeat,score.finalScore,this.stage.targetHeat)*.04,260,context));
       effects.push(this.animate({targets:this.heatText,scale:{from:celebration.cleared?1.1:1.04,to:1},duration:celebration.cleared?620:310,ease:'Back.easeOut'},context));
     }
-    effects.push(this.wait(this.reducedMotion?360:opening?(closeOpening?.strike?590:900):presentation.state.openingShow?.rootId===score.rootId?420:celebration.cleared?700:tier>=2?500:320,context));await Promise.all(effects);if(closeOpening?.hero&&!this.reducedMotion)await this.wait(500,context);await closeOpening?.release?.();closeOpening?.();if(context.signal.aborted)return;this.scoreTotal.setColor(C.ink);this.scoreHeat.setColor(C.jade);this.scoreMult.setColor(C.red);
+    effects.push(this.wait(this.reducedMotion?360:opening?(closeOpening?.strike?590:900):presentation.state.openingShow?.rootId===score.rootId?420:celebration.cleared?700:tier>=2?500:320,context));await Promise.all(effects);if(closeOpening?.hero&&!this.reducedMotion)await this.wait(500,context);await closeOpening?.release?.();closeOpening?.();closeLanding?.();if(context.signal.aborted)return;this.scoreTotal.setColor(C.ink);this.scoreHeat.setColor(C.jade);this.scoreMult.setColor(C.red);
   }
   private convergeScore(context:EffectContext):Promise<void> {
     if(this.reducedMotion||context.signal.aborted)return Promise.resolve();
@@ -1951,7 +1958,7 @@ export class GameScene extends Phaser.Scene {
     if(this.resourceCounts.discard.style.color!==discardColor)this.resourceCounts.discard.setColor(discardColor);
     const gold=this.presentation?.resourceGold??this.run.gold;
     this.goldText.setText(l.shortLandscape?gold+' 金':'金币 '+gold+(l.mode==='desktop'?'\n还需 '+heatText(remaining)+' 热度':''));
-    if(l.mode==='desktop'){
+    if(l.mode==='desktop'&&this.progressBar?.active){
       // Keep the two actual text rows within the HUD's dedicated gold region.
       fitScoreLine(this.goldText,{x:l.hud.x+12,y:l.hud.y+180,width:l.hud.width-24,height:48},14);
       const progressY=Math.max(l.hud.y+238,this.goldText.getBounds().bottom+6);
@@ -1961,7 +1968,8 @@ export class GameScene extends Phaser.Scene {
     this.pileText.setText('抽牌 '+this.deck.length+' · 已打 '+this.run.playedPile.length+' · 已弃 '+this.run.discardPile.length);
     const last=this.presentation?(this.presentation.credited?this.presentation.score:this.presentation.previousTrace):this.run.lastTrace;
     this.previousHandText.setText(last?'上手已入账：'+HAND_LABELS[last.handType]+' +'+heatText(last.finalScore):'上手记录：本场第一手');
-    if(l.mode!=='portrait'){
+    if(l.mode!=='portrait'&&this.progressBar?.active){
+      // During resize, the new layout can be read before its controls are rebuilt.
       const filled=BigInt(displayHeat)>=BigInt(this.stage.targetHeat)?1000n:BigInt(displayHeat)*1000n/BigInt(this.stage.targetHeat);
       const widthPx=Math.max(.5,(l.hud.width-24)*Number(filled)/1000);
       if(this.reducedMotion||this.rollingHeat){this.tweens.killTweensOf(this.progressBar);this.progressBar.setDisplaySize(widthPx,5);this.progressTarget=widthPx;}
