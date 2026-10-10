@@ -1,6 +1,22 @@
 import {it,expect} from 'vitest';
 import {shopLayout,shopFirstGuideLayout,shopSummaryWrap,shopOfferCopy,shopOwnedDropIndex,shopOwnedHitBox,shopOwnedNameArea,shopGoodsGrid} from '../src/game/ShopLayout';
 import {intersects} from '../src/game/layout';
+it('portrait merchandise rows and optional guide links retain independent full-size hit areas',()=>{
+ for(const width of [320,390])for(const cols of [2,3])for(const guide of [false,true]){
+  const p=shopLayout(width,740,12,0,cols,true,guide),tiles=p.shelf.map(b=>shopOfferCopy(p,b,true).tile);
+  expect(p.copyBeside).toBe(true);
+  for(const [i,tile] of tiles.entries()){
+   expect(tile.width).toBe(p.w);expect(tile.height).toBeGreaterThan(100);
+   for(const next of tiles.slice(i+1))expect(intersects(tile,next)).toBe(false);
+   for(const action of [p.reroll,p.build,p.play])expect(intersects(tile,action)).toBe(false);
+  }
+  const links=[p.reroll,p.build,...(guide?[{...p.build,x:p.build.x+p.build.width+6},{...p.build,x:p.build.x+2*(p.build.width+6)}]:[])];
+  for(const [i,b] of links.entries()){
+   expect(b.width).toBeGreaterThanOrEqual(44);expect(b.height).toBeGreaterThanOrEqual(44);expect(b.x+b.width).toBeLessThanOrEqual(p.x+p.w+.01);
+   for(const next of links.slice(i+1))expect(intersects(b,next)).toBe(false);
+  }
+ }
+});
 it('first-shop guide has reachable exits without covering merchandise or primary shop actions',()=>{
  for(const [width,height] of [[1280,720],[1366,768],[1920,1080],[390,740],[320,740],[740,390],[768,1024]]){
   const p=shopLayout(width,height,12,0,3),g=shopFirstGuideLayout(p,height,true);expect(g,'guide at '+width+'x'+height).toBeDefined();if(!g)continue;
@@ -14,7 +30,7 @@ it('first-shop guide has reachable exits without covering merchandise or primary
 it('three visible modest 5:7 goods, separate readable copy, inventory below, one main action row',()=>{
  for(const width of [360,390,430])for(const height of [640,740])for(const bottom of [0,34]){
   const l=shopLayout(width,height,8,bottom,3);expect(l.shelf).toHaveLength(3);
-  for(const b of l.shelf){expect(b.width).toBeGreaterThanOrEqual(88);expect(b.width).toBeLessThanOrEqual(108);expect(b.height/b.width).toBeCloseTo(1.4);expect(b.y+b.height+76).toBeLessThan(l.slots[0].y-18);expect(intersects({...b,height:b.height+76},l.reroll)).toBe(false);}
+  for(const b of l.shelf){expect(b.width).toBeGreaterThanOrEqual(l.copyBeside?60:88);expect(b.width).toBeLessThanOrEqual(108);expect(b.height/b.width).toBeCloseTo(1.4);const copy=shopOfferCopy(l,b,true),tile=l.copyBeside?copy.tile:{...b,height:b.height+76};expect(tile.y+tile.height).toBeLessThan(l.slots[0].y-18);expect(intersects(tile,l.reroll)).toBe(false);if(l.copyBeside)expect(copy.width).toBeGreaterThan(190);}
   expect(l.slots.every(b=>Math.abs(b.height/b.width-1.4)<1e-6)).toBe(true);
   expect(l.play.y).toBeGreaterThan(l.reroll.y+l.reroll.height);expect(l.play.y+l.play.height).toBeLessThan(height-bottom);expect(l.play.height).toBeGreaterThanOrEqual(48);
   expect(l.slots[0].y+l.slots[0].height).toBeLessThan(l.reroll.y);

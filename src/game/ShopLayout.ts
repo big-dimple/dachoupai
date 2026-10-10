@@ -52,10 +52,21 @@ function desktopShopLayout(width:number,height:number,top:number,bottom:number,_
     tabs:{x:goodsX,y:shopPanel.y+4,width:goodsWidth,height:20},chapter,items:inventoryEntry,build,reroll,play,noticeY:feedback.y};
 }
 
-export function shopLayout(width:number,height:number,top:number,bottom:number,cols:number,ownedCopy=false){
+export function shopLayout(width:number,height:number,top:number,bottom:number,cols:number,ownedCopy=false,guideActions=false){
   if(width>=1000){if(height-top-bottom<712)return shortShopLayout(width,height,top,bottom,cols);return desktopShopLayout(width,height,top,bottom,cols);}
   if(height-top-bottom<500)return shortShopLayout(width,height,top,bottom,cols);
   const portrait=width<700&&height>width,x=12,w=width-24,seat=(Math.min(w,420)-8*(cols-1))/cols;
+  if(portrait&&height-top-bottom>=680){
+    const secondaryY=height-bottom-144,shelfTop=top+104,slotGap=6,slotWidth=Math.min(58,(w-4*slotGap)/5),slotHeight=slotWidth*1.4;
+    const rowHeight=Math.min(118,(secondaryY-shelfTop-32-Math.max(slotHeight+20,104)-12*(cols-1))/cols),cardHeight=Math.max(72,rowHeight),cardWidth=cardHeight/1.4;
+    const shelf:Box[]=Array.from({length:cols},(_,i)=>({x:x+4,y:shelfTop+i*(cardHeight+12),width:cardWidth,height:cardHeight}));
+    const slotY=shelfTop+cols*cardHeight+12*(cols-1)+28,rackWidth=5*slotWidth+4*slotGap,slotX=x+(w-rackWidth)/2;
+    const slots:Box[]=Array.from({length:5},(_,i)=>({x:slotX+i*(slotWidth+slotGap),y:slotY,width:slotWidth,height:slotHeight}));
+    const actionGap=guideActions?6:8,toolWidth=(w-actionGap*(guideActions?3:1))/(guideActions?4:2);
+    return {x,w,top,pc:null,desktop:false,short:false,copyBeside:true,inventoryCollapsed:false,compact:true,wideHeader:false,portrait:true,guidanceBelow:false,slots,shelf,
+      tabs:{x,y:top+52,width:w,height:44},chapter:{x,y:slotY+slotHeight+8,width:toolWidth,height:44},items:{x:x+toolWidth+8,y:slotY+slotHeight+8,width:toolWidth,height:44},
+      reroll:{x,y:secondaryY,width:toolWidth,height:44},build:{x:x+toolWidth+actionGap,y:secondaryY,width:toolWidth,height:44},play:{x,y:secondaryY+52,width:w,height:56},noticeY:secondaryY+116};
+  }
   const slotGap=6,slotWidth=Math.min(64,(w-4*slotGap)/5),slotHeight=slotWidth*1.4;
   // Fit the visible owned rail before the fixed action row; only art shrinks.
   const portraitFaceBudget=(height-top-bottom-352-slotHeight)/1.4;
@@ -82,7 +93,7 @@ export function shopFirstGuideLayout(p:ReturnType<typeof shopLayout>,height:numb
   else{x=p.tabs.x;width=p.tabs.width;y=Math.max(...p.shelf.map(b=>b.y+b.height))+4;limit=p.play.y-4;}
  }else if(p.portrait){y=emptyOwned?p.slots[0].y:Math.max(...p.slots.map(b=>b.y+b.height))+26;limit=p.reroll.y-8;replacesEmptySlots=emptyOwned;}
  else{y=p.noticeY+28;limit=height-12;}
- const columns=2,padding=p.short?4:6,headingHeight=p.short?0:20,textHeight=p.short?18:width<284?56:40,gap=p.short?2:4;
+ const columns=2,padding=p.short?4:6,headingHeight=p.short||p.portrait?0:20,textHeight=p.short?18:p.portrait?28:width<284?56:40,gap=p.short?2:4;
  const boxHeight=padding*2+headingHeight+textHeight+gap+44;
  if(y+boxHeight>limit){
   if(!p.portrait||emptyOwned)return;
@@ -98,6 +109,7 @@ export function shopFirstGuideLayout(p:ReturnType<typeof shopLayout>,height:numb
 
 /** Text uses the goods seat on desktop, independently of the bounded card face. */
 export function shopOfferCopy(p:ReturnType<typeof shopLayout>,b:Box,plainJoker=false){
+  if(p.portrait&&p.copyBeside)return {x:b.x+b.width+14,y:b.y,width:p.x+p.w-(b.x+b.width+14)-4,priceY:b.y+b.height-20,lines:3,tile:{x:p.x,y:b.y,width:p.w,height:b.height}};
   if(p.pc){const seat=p.pc.jokerOffers.find(t=>b.x>=t.x&&b.x<t.x+t.width)!;return {x:seat.x+10,y:b.y+b.height+2,width:seat.width-20,priceY:seat.y+b.height+98+p.pc.guidanceHeight,lines:4,tile:seat};}
   const seat=(p.tabs.width-8*(p.shelf.length-1))/p.shelf.length;
   const x=p.copyBeside?b.x+b.width+6:b.x,y=p.copyBeside?b.y:b.y+b.height,width=p.copyBeside?seat-b.width-8:b.width+6;

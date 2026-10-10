@@ -105,7 +105,7 @@ export class ShopScene extends Phaser.Scene {
   private shelfOffers(kind=this.shelfKind):R2Offer[]{const offers=this.run.shop![SHELF_FIELDS[kind]],seat=kind==='tools'?basicChoiceSeat(this.run):undefined;return seat?[...offers,seat]:offers;}
   private get pageSize():number{return 3;}
   private visibleOffers():R2Offer[]{return this.shelfOffers().slice(this.shelfPage*this.pageSize,(this.shelfPage+1)*this.pageSize);}
-  private geometry(){const l=this.view.layout,bottom=parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--safe-bottom'))||0,cols=this.shelfKind==='jokers'?Math.max(3,Math.min(this.pageSize,this.shelfOffers().length)):Math.max(1,Math.min(2,this.shelfOffers().length));return shopLayout(l.width,l.height,l.hud.y,bottom,cols,this.run.jokers.some(j=>!!this.jokerCopy(j.definitionId)));}
+  private geometry(){const l=this.view.layout,bottom=parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--safe-bottom'))||0,cols=this.shelfKind==='jokers'?Math.max(3,Math.min(this.pageSize,this.shelfOffers().length)):Math.max(1,Math.min(2,this.shelfOffers().length));return shopLayout(l.width,l.height,l.hud.y,bottom,cols,this.run.jokers.some(j=>!!this.jokerCopy(j.definitionId)),!!firstChapterShopPrompt(this.run)&&this.ready);}
   create():void {
     this.busy=false;this.selectedOfferId=undefined;this.shelfKind='jokers';this.shelfPage=0;this.pcPages={jokers:0,tools:0,items:0};this.notice='';this.lifecycle++;
     this.pendingGoldRoll=undefined;this.pendingRerollFlip=false;this.pendingPurchaseFlight=undefined;this.pendingToolCue=undefined;this.pendingTransactions=[];this.lastTransactionNotes=[];this.lastPurchaseReceipt=undefined;this.pendingPayment=undefined;
@@ -146,7 +146,7 @@ export class ShopScene extends Phaser.Scene {
     if(!p.short){
       const savedGrowth=buildGrowthProgress(this.run)[0];
       const ownedLabel=savedGrowth?savedGrowth.name+' · '+savedGrowth.metric:p.portrait?`当前持有 ${this.run.jokers.length}/${r2JokerCapacity(this.run)}`:`随身 ${this.run.jokers.length}/${r2JokerCapacity(this.run)} · 点牌出售／调序`;
-      const inline=p.portrait&&p.slots[0].y-p.shelf[0].y-p.shelf[0].height<122;
+      const inline=p.portrait&&!p.copyBeside&&p.slots[0].y-p.shelf[0].y-p.shelf[0].height<122;
       v.text(inline?p.x:p.slots[0].x,inline?p.top+27:p.slots[0].y-20,ownedLabel,14,'#26313A',p.slots[4].x+p.slots[4].width-p.slots[0].x).setName('shop/owned-heading');
     }
     this.drawOwned(p);
@@ -163,9 +163,10 @@ export class ShopScene extends Phaser.Scene {
       const factsOnFace=!p.copyBeside&&!('guidanceBelow' in p&&p.guidanceBelow);
       this.drawJokerPicture(o.definitionId,{x:b.x+4,y:b.y+4,width:b.width-8,height:b.height-8-(factsOnFace?54:0)},o.consumed?.35:1);
       const copy=shopOfferCopy(p,b,true),copyX=copy.x,copyY=copy.y,copyWidth=copy.width;
-      const name=v.text(copyX,copyY+4,d.name,15,'#26313A').setFontStyle('bold').setName('shop/offer-name');this.ellipsis(name,copyWidth);
+      const name=v.text(copyX,copyY+4,d.name,15,'#26313A').setFontStyle('bold').setName('shop/offer-name');this.ellipsis(name,copyWidth-(starterOffer(this.run,o)?52:0));
       const plain=ability?.plain,full=plain?.line??ability?.summary??d.description;
-      const purpose=v.text(copyX,copyY+23,p.desktop?full:plain?.tile??full,14,'#3F606B',copyWidth).setStyle({maxLines:0}).setName('shop/offer-purpose').setData('offerId',o.offerId).setData('definitionId',d.id).setData('fullText',full);
+      const purposeCopy=p.desktop?full:plain?.tile??full;
+      const purpose=v.text(copyX,copyY+(p.portrait?28:23),p.portrait&&p.copyBeside?purposeCopy.replaceAll('\n',' · '):purposeCopy,14,'#3F606B',copyWidth).setStyle({maxLines:0}).setName('shop/offer-purpose').setData('offerId',o.offerId).setData('definitionId',d.id).setData('fullText',full);
       purpose.setWordWrapWidth(copyWidth,true);
       if(purpose.height>(p.desktop?76:54))this.twoLines(purpose,copyWidth);
 
@@ -173,20 +174,21 @@ export class ShopScene extends Phaser.Scene {
       const priceInk=this.offerPricePlate(o,{x:copyX-2,y:copy.priceY-2,width:copyWidth+2,height:24});
       v.text(copyX,copy.priceY,o.consumed?'已收入':price+' 金 · 查看',16,priceInk).setFontStyle('bold').setName('shop/offer-price').setData('offerId',o.offerId);
       v.add(createJokerRarityBadge(this,d.rarity,{x:b.x+b.width-31,y:b.y+b.height-21-(factsOnFace?54:0),compact:true}).setData('definitionId',o.definitionId).setData('surface','offer'));
-      this.drawOfferGuidance(o,{x:copyX,y:factsOnFace?b.y+b.height-54:copy.priceY-(p.copyBeside?36:54),width:copyWidth,height:p.copyBeside?34:52});
-      this.markBuildOffer(o,'jokers',b);
+      if(p.portrait){const g=shopOfferGuidance(this.run,o);v.text(copyX,copy.priceY-22,g.routeCaption+(g.stars?' · '+'★'.repeat(g.stars):''),14,'#80551F',copyWidth).setName('shop/offer-routes').setData('offerId',o.offerId).setData('routes',g.routes);}
+      else this.drawOfferGuidance(o,{x:copyX,y:factsOnFace?b.y+b.height-54:copy.priceY-(p.copyBeside?36:54),width:copyWidth,height:p.copyBeside?34:52});
+      this.markBuildOffer(o,'jokers',b,{x:copyX+copyWidth-44,y:copyY+2,width:44,height:22});
       const tile=copy.tile,hover=this.hoverCard(first,tile,o.definitionId),r=v.rect(tile).setFillStyle(0,0).setStrokeStyle().setData('selected',selected);
       this.offerArts.push(hover.art);v.target(r,`offer/${o.offerId}`,{tap:()=>this.inspectOffer(o.offerId),detail:()=>this.inspectOffer(o.offerId),...hover});
 
     });
     if(!offers.length)v.text(p.shelf[0].x,p.shelf[0].y,this.shelfKind==='items'?'本店暂无可购道具；换牌会保留此货架。':'本货架暂无商品，可换一批或进入牌桌。',14,'#3F606B',p.w);
     const allowed=r2RunModeConfig(this.run).reroll.allowed,cost=this.run.shop?.freeRerolls?0:r2PaidRerollPrice(this.run),canReroll=this.ready&&allowed&&this.run.gold>=cost&&r2Pool(this.run.jokers.map(j=>j.definitionId),this.run.safetyNetUsed?['f07']:[]).length>0;
-    v.button(p.reroll,!allowed?'禁止换牌':this.run.shop?.freeRerolls?'免费换牌':`换牌 ${cost} 金`,'action/reroll',()=>void this.send({type:'RerollShop'}),canReroll);
+    this.shopButton(p.reroll,!allowed?'禁止换牌':this.run.shop?.freeRerolls?'免费换牌':`换牌 ${cost} 金`,'action/reroll',()=>void this.send({type:'RerollShop'}),canReroll);
     v.button(p.play,'进入牌桌','action/start-stage',()=>void this.send({type:'LeaveShop'}),this.ready,true);
-    v.button(p.build,this.lastPurchaseReceipt?'购物结果':p.inventoryCollapsed?`培养 ${this.run.jokers.length}/${r2JokerCapacity(this.run)}`:this.buildLabel(),'action/build',()=>this.lastPurchaseReceipt?this.openPurchaseReceipt():this.inspectJourney());
+    this.shopButton(p.build,this.lastPurchaseReceipt?'购物结果':p.portrait&&p.copyBeside?'培养':p.inventoryCollapsed?`培养 ${this.run.jokers.length}/${r2JokerCapacity(this.run)}`:this.buildLabel(),'action/build',()=>this.lastPurchaseReceipt?this.openPurchaseReceipt():this.inspectJourney());
     const reason=!this.ready?'当前进度未保存或只读，请查看菜单。':allowed&&this.run.gold<cost?`换牌还差 ${cost-this.run.gold} 金。可直接入场。`:this.shelfKind==='jokers'&&this.run.jokers.length===r2JokerCapacity(this.run)?`${r2JokerCapacity(this.run)}槽已满，点随身牌出售后再买。`:this.shelfKind==='tools'?'购买后收入库存；查看详情，再确认使用。':this.shelfKind==='items'?'道具本局生效；换牌不重抽道具货架。':p.portrait?'点卡牌看详情，确认后扣款。':'点卡牌不会扣钱；点随身牌可出售或左移、右移。';
     const discovery=this.ready&&!this.notice?savedGrowthDiscovery(this.run):undefined;
-    this.noticeLabel=v.text(p.short?p.x:p.tabs.x,p.noticeY,this.busy?'正在保存…':this.notice||(this.shelfKind==='tools'?r2BasicToolShelfStatus(this.run):undefined)||discovery?.full||starterShopCue(this.run)||firstChapterGuide(this.run)?.cue||reason,14,this.notice?'#B8473A':'#3F606B',p.short?p.w:p.tabs.width).setStyle({maxLines:p.short?1:2}).setName(discovery?'growth/discovery':'');
+    this.noticeLabel=v.text(p.short?p.x:p.tabs.x,p.noticeY,this.busy?'正在保存…':this.notice||(this.shelfKind==='tools'?r2BasicToolShelfStatus(this.run):undefined)||discovery?.full||(p.portrait&&firstChapterShopPrompt(this.run)?'':starterShopCue(this.run)||firstChapterGuide(this.run)?.cue)||reason,14,this.notice?'#B8473A':'#3F606B',p.short?p.w:p.tabs.width).setStyle({maxLines:p.short?1:2}).setName(discovery?'growth/discovery':'');
     this.drawFirstGuide(p);
     this.drawResultCue();
   }
@@ -263,15 +265,20 @@ export class ShopScene extends Phaser.Scene {
     this.noticeLabel=v.text(pc.feedback.x+6,pc.feedback.y,this.busy?'正在保存…':this.notice||r2BasicToolShelfStatus(this.run)||discovery?.full||starterShopCue(this.run)||firstChapterGuide(this.run)?.cue||'点商品只看详情，确认才扣款；购买工具不会自动使用。',14,this.notice?'#B8473A':'#3F606B',pc.feedback.width-12).setStyle({maxLines:1}).setName(discovery?'growth/discovery':'');this.drawResultCue();
     this.drawFirstGuide(p);
   }
+  private firstGuideOptions():void {
+    this.dialog.open('首章提示选项','提示是可选帮助；关闭提示不修改牌组、金币或进度。',(['step','run','forever'] as const).map((scope,i)=>({label:['略过此提示','本局关闭提示','不再显示提示'][i],run:()=>{dismissFirstChapterGuide(this.run,scope);this.dialog.close();this.render();}})),{closeLabel:'回到筹备'});
+  }
   private drawFirstGuide(p:ReturnType<typeof shopLayout>):void {
-    const hint=firstChapterShopPrompt(this.run),g=hint&&this.ready?shopFirstGuideLayout(p,this.view.layout.height,this.run.jokers.length===0):undefined;if(!hint||!g)return;
-    const v=this.view;v.material(g.box,0xe2e8e5,0xe2e8e5,6);
+    const hint=firstChapterShopPrompt(this.run),g=hint&&this.ready?shopFirstGuideLayout(p,this.view.layout.height,this.run.jokers.length===0):undefined;if(!hint||!this.ready)return;
+    const list=p.portrait&&p.copyBeside;
+    const openStep=()=>{const step=hint.opening;if(step?.kind==='basic-tools')this.inspectBasicChoice();else if(step?.kind==='jokers'||step?.kind==='tools'){this.shelfKind=step.kind;this.inspectOffer(step.offerId);}else if(step?.kind==='inventory')showConsumables(this.dialog,this.run,this.ready,(a,seq)=>this.send(a,seq),step.instanceId);else this.inspectJourney();};
+    if(list){const x=p.build.x+p.build.width+6;this.shopButton({x,y:p.build.y,width:p.build.width,height:44},hint.action,'first-guide/shop-open',openStep);this.shopButton({x:x+p.build.width+6,y:p.build.y,width:p.build.width,height:44},'提示','first-guide/shop-options',()=>this.firstGuideOptions());}
+    if(!g)return;
+    const v=this.view;if(!p.portrait)v.material(g.box,0xe2e8e5,0xe2e8e5,6);
     if(g.headingHeight){const focus=currentBuildFocus(this.run,this.run.openingRoute);v.text(g.box.x+g.padding,g.box.y+g.padding,(focus?BUILD_LABEL[focus]+' · ':'')+'可选筹备',14,'#3F606B',g.box.width-g.padding*2).setName('first-guide/shop-heading');}
     v.text(g.box.x+g.padding,g.box.y+g.padding+g.headingHeight,hint.text,14,'#26313A',g.box.width-g.padding*2).setFontStyle('bold').setName('first-guide/shop-copy');
-    v.button(g.buttons[0],hint.action,'first-guide/shop-open',()=>{const step=hint.opening;if(step?.kind==='basic-tools')this.inspectBasicChoice();else if(step?.kind==='jokers'||step?.kind==='tools'){this.shelfKind=step.kind;this.inspectOffer(step.offerId);}else if(step?.kind==='inventory')showConsumables(this.dialog,this.run,this.ready,(a,seq)=>this.send(a,seq),step.instanceId);else this.inspectJourney();});
-    v.button(g.buttons[1],'提示选项','first-guide/shop-options',()=>{
-      this.dialog.open('首章提示选项','提示是可选帮助；关闭提示不修改牌组、金币或进度。',(['step','run','forever'] as const).map((scope,i)=>({label:['略过此提示','本局关闭提示','不再显示提示'][i],run:()=>{dismissFirstChapterGuide(this.run,scope);this.dialog.close();this.render();}})),{closeLabel:'回到筹备'});
-    });
+    if(!list)this.shopButton(g.buttons[0],hint.action,'first-guide/shop-open',openStep);
+    if(!list)this.shopButton(g.buttons[1],'提示选项','first-guide/shop-options',()=>this.firstGuideOptions());
   }
   /** Long real rules may need a whole group; paging must use the same final capacity. */
   private pcGroupCapacity(kind:'tools'|'items',p:ReturnType<typeof shopLayout>):number {
@@ -303,13 +310,13 @@ export class ShopScene extends Phaser.Scene {
     const artFace=column?{...face,y:tile.y+24,width:columnArtHeight/1.4,height:columnArtHeight}:face;
     if(d){this.drawJokerPicture(d.id,artFace,o.consumed?.35:1);v.add(createJokerRarityBadge(this,d.rarity,{x:artFace.x+artFace.width-31,y:artFace.y+artFace.height-21,compact:true}).setData('definitionId',d.id).setData('surface','offer'));}
     else this.drawGoodsArt(o.definitionId,info!.artUrl,artFace,o.consumed?.55:1,info!.fallbackArtUrl);
-    const name=v.text(column?tile.x+8:initialX,column?tile.y+2:initialY,d?.name??info!.name,15,'#26313A').setFontStyle('bold').setName('shop/offer-name').setData('offerId',o.offerId);this.ellipsis(name,column?64:width);
+    const name=v.text(column?tile.x+8:initialX,column?tile.y+2:initialY,d?.name??info!.name,15,'#26313A').setFontStyle('bold').setName('shop/offer-name').setData('offerId',o.offerId);this.ellipsis(name,column?64:width-(kind==='jokers'&&starterOffer(this.run,o)?52:0));
     v.text(initialX,column?tile.y+2:initialY+22,wrapped,14,'#3F606B').setName('shop/offer-purpose').setData('fullText',summary).setData('offerId',o.offerId);
     // A long full rule owns the right column; the price stays below the art on the left.
     const priceX=column?tile.x+8:initialX;
     const priceInk=this.offerPricePlate(o,{x:priceX-2,y:priceY-2,width:column?66:tile.x+tile.width-priceX-8,height:24});
     v.text(priceX,priceY,o.consumed?'已购':`${r2PurchasePrice(this.run,o)} 金${column?'':` · ${d?editionLabel(o.edition):'查看'}`}`,16,priceInk).setFontStyle('bold').setName('shop/offer-price').setData('offerId',o.offerId);
-    this.markBuildOffer(o,kind,tile);
+    this.markBuildOffer(o,kind,tile,{x:initialX+width-44,y:initialY,width:44,height:22});
     if(d)this.drawOfferGuidance(o,{x:initialX,y:priceY-guidanceHeight,width,height:guidanceHeight});
     const reason=o.consumed?'':this.purchaseReason(o,true);if(reason){const note=v.text(priceX,priceY+20,reason,14,'#B8473A').setName('shop/offer-reason').setData('offerId',o.offerId);this.ellipsis(note,column?64:width);}
     const hover=this.hoverCard(first,tile,d?.id),hit=v.rect(tile).setFillStyle(0,0).setStrokeStyle().setData('selected',this.selectedOfferId===o.offerId);
@@ -334,15 +341,23 @@ export class ShopScene extends Phaser.Scene {
     if(result?.key!==this.resultKey){this.drawResultCue();return;}
     if(result){this.resultNote?.setAlpha(result.alpha);this.resultPlate?.setAlpha(result.alpha);}
   }
+  private shopButton(b:Box,label:string,name:string,action:()=>void,enabled=true,primary=false):Phaser.GameObjects.Rectangle {
+    const button=this.view.button(b,label,name,action,enabled,primary);
+    if(this.geometry().portrait){const art=button.getData('buttonArt') as Phaser.GameObjects.Container;
+      (art.list[0] as Phaser.GameObjects.Graphics).clear();(art.list[1] as Phaser.GameObjects.Graphics).clear();
+      (button.getData('label') as Phaser.GameObjects.Text).setFontStyle('normal');
+    }
+    return button;
+  }
   private drawShelfTabs(b:Box):void {
     const v=this.view,pages=Math.ceil(this.shelfOffers().length/this.pageSize),pagerWidth=pages>1?44:0,gap=6,width=(b.width-pagerWidth-gap*(pagerWidth?3:2))/3;
     const labels:Record<ShelfKind,string>={jokers:'邀请助演',tools:'购买道具',items:'长期道具'};
     (['jokers','tools','items'] as const).forEach((kind,i)=>{
-      const button=v.button({x:b.x+i*(width+gap),y:b.y,width,height:b.height},width<72?labels[kind]:labels[kind]+' '+this.shelfOffers(kind).length,'action/shelf-'+kind,()=>{
+      const button=this.shopButton({x:b.x+i*(width+gap),y:b.y,width,height:b.height},width<72?labels[kind]:labels[kind]+' '+this.shelfOffers(kind).length,'action/shelf-'+kind,()=>{
         if(this.busy)return;this.shelfKind=kind;this.shelfPage=0;this.selectedOfferId=undefined;this.audio.select();this.render();
       },!this.busy,false);
-      if(this.shelfKind===kind)(button.getData('buttonArt') as Phaser.GameObjects.Container).add(this.add.graphics().lineStyle(2,0x3f606b).strokeRoundedRect(1,1,width-2,b.height-2,6));
-      (button.getData('label') as Phaser.GameObjects.Text).setFontSize(width<72?12:14);
+      if(this.shelfKind===kind)(button.getData('buttonArt') as Phaser.GameObjects.Container).add(this.geometry().portrait?this.add.graphics().lineStyle(2,0xb8473a).lineBetween(8,b.height-2,width-8,b.height-2):this.add.graphics().lineStyle(2,0x3f606b).strokeRoundedRect(1,1,width-2,b.height-2,6));
+      (button.getData('label') as Phaser.GameObjects.Text).setFontSize(14);
     });
     if(pages>1){
       const button=v.button({x:b.x+b.width-44,y:b.y,width:44,height:b.height},this.shelfPage+1<pages?'›':'‹','action/shelf-page',()=>{
@@ -538,7 +553,7 @@ export class ShopScene extends Phaser.Scene {
   }
   private offerPricePlate(o:R2Offer,b:Box):string {
     const unavailable=!o.consumed&&!!this.purchaseReason(o,true),tone=o.consumed?PAPER_THEME.paper:unavailable?0xf0ddd2:PAPER_THEME.jadeSoft;
-    this.view.material(b,tone,tone,3).setName('shop/price-plate').setData('offerId',o.offerId).setData('availability',o.consumed?'owned':unavailable?'unavailable':'available');
+    this.view.material(b,tone,tone,3).setAlpha(this.geometry().portrait?0:1).setName('shop/price-plate').setData('offerId',o.offerId).setData('availability',o.consumed?'owned':unavailable?'unavailable':'available');
     return unavailable?'#9f3228':o.consumed?'#736b5e':'#3F606B';
   }
 
@@ -606,9 +621,9 @@ export class ShopScene extends Phaser.Scene {
     const wide=b.width>=130,copy=wide?g.label+' · '+g.reason:g.label+'\n'+g.reason;
     v.text(b.x+(single?100:0),b.y+(single?0:18),copy,14,g.stars===3?'#80551F':'#59646A',b.width-(single?100:0)).setName('shop/offer-advice').setData('offerId',o.offerId).setData('stars',g.stars).setData('reason',g.detail).setData('fullText',copy);
   }
-  private markBuildOffer(o:R2Offer,kind:ShelfKind,b:Box):void {
+  private markBuildOffer(o:R2Offer,kind:ShelfKind,b:Box,label?:Box):void {
     const cue=routeFitCue(this.run,kind,o.definitionId);if(cue&&!o.consumed)this.view.add(routeFrame(this,b,cue,kind==='jokers'&&this.jokerDefinition(o.definitionId).rarity==='rare').setName('shop/build-match').setData('offerId',o.offerId));
-    if(kind==='jokers'&&starterOffer(this.run,o)){this.view.material({x:b.x+4,y:b.y+4,width:76,height:22},0xfff9ee,0xfff9ee,3);this.view.text(b.x+8,b.y+6,'起手 · 可选',14,'#26313A').setFontStyle('bold').setName('shop/route-starter-label').setData('offerId',o.offerId);}
+    if(kind==='jokers'&&starterOffer(this.run,o)&&label){this.view.material(label,0xfff9ee,0xfff9ee,3).setName('shop/route-starter-plate').setData('offerId',o.offerId).setData('bounds',label);this.view.text(label.x+8,label.y+2,'起手',14,'#26313A').setFontStyle('bold').setName('shop/route-starter-label').setData('offerId',o.offerId).setData('fullText','起手 · 可选');}
     if(this.selectedOfferId===o.offerId)this.view.text(b.x+b.width-20,b.y+b.height-25,'✓',18,'#26313A').setName('shop/offer-selected');
   }
   private inspectJourney(heroFocus=false):void {
