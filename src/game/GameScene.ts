@@ -955,7 +955,7 @@ export class GameScene extends Phaser.Scene {
     // Every update clears the readiness accent while saving, paused or presenting.
     const heroOpportunity=!!heroCue?.opportunity&&this.ready&&!this.presentation&&!this.playing;
     const heroAvailable=!!heroCue?.available&&heroOpportunity&&!heroChosen;
-    this.roleFrame.setData('abilityOpportunity',heroOpportunity&&!heroChosen).setData('abilityState',heroChosen?'chosen':heroAvailable?'ready':heroOpportunity?'needs-selection':'unavailable');
+    this.roleFrame.setData('abilityOpportunity',heroOpportunity&&!heroChosen).setData('abilityState',heroChosen?'chosen':heroAvailable?'ready':heroOpportunity?'needs-selection':this.pendingRefill||this.pendingTouye?'pending':heroCue?.label.includes('已用')?'used':'unavailable');
     if(this.heroActionButton){this.view.setEnabled(this.heroActionButton,this.ready&&(heroOpportunity||!!this.pendingRefill||heroChosen));const label=this.heroActionButton.getData('label') as Phaser.GameObjects.Text;label.setText(this.pendingRefill?'继续':heroChosen?'已选':usesTouyeWager(this.run)?'押注\n换牌':usesLaohuanRefill(this.run)?'戏法':usesErxiangHandoff(this.run)?'交棒':usesAzaoCharge(this.run)?'释放':usesXiemuBurn(this.run)?'燃金':'助攻');}
     this.roleText.setColor(heroAvailable?C.jade:C.mutedInk).setData('abilityAvailable',heroAvailable);
     this.roleFrame.setStrokeStyle(heroOpportunity||heroChosen?2:1,heroAvailable||heroChosen?T.jade:T.brass,heroOpportunity||heroChosen?1:.6);
