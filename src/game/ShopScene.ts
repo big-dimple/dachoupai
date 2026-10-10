@@ -407,7 +407,7 @@ export class ShopScene extends Phaser.Scene {
     this.audio.select();
     const dialog=this.dialog.open('改牌工具 · 选1件',purchase?'本店已购，刷新不重开；下一店恢复。':'本店选购1件，刷新不补货。购买后进入道具箱，使用时再选择目标牌。',[],{
       summaryBody:purchase?'已购 '+toolInfo(purchase.definitionId,this.run).name+' · 下店恢复':`金币 ${this.run.gold} · 道具箱 ${this.run.consumables.length}/${r2ConsumableCapacity(this.run)} · 本店选1件`,collapseRules:true,rulesLabel:'选购规则',closeLabel:'回到经营',
-      cards:rows.map(row=>({title:(({'T03':'♥ ','T04':'♦ ','T05':'♣ ','T06':'♠ '} as Record<string,string>)[row.id]??'')+row.info.name,url:row.info.artUrl,body:row.purpose+(row.reason&&!purchase?'\n'+(row.duplicate&&!row.duplicate.consumed?'同名随机现货':row.reason.replace(/^实付\d+金，/,'')):''),action:purchase&&!row.duplicate?undefined:{label:row.duplicate?`查看现货 · ${row.duplicate.consumed?'已售':row.price+'金'}`:`选择 · ${row.price}金`,disabled:!this.ready||!!row.reason&&!row.duplicate,run:()=>{
+      cards:rows.map(row=>({title:(({'T03':'♥ ','T04':'♦ ','T05':'♣ ','T06':'♠ '} as Record<string,string>)[row.id]??'')+row.info.name,url:row.info.artUrl,body:row.purpose+(row.reason&&!purchase?'\n'+(row.duplicate&&!row.duplicate.consumed?(isR2SuitChoice(this.run)?'同名现货':'同名随机现货'):row.reason.replace(/^实付\d+金，/,'')):''),action:purchase&&!row.duplicate?undefined:{label:row.duplicate?`${isR2SuitChoice(this.run)?'现货':'查看现货'} · ${row.duplicate.consumed?'已售':row.price+'金'}`:`选择 · ${row.price}金`,disabled:!this.ready||!!row.reason&&!row.duplicate,run:()=>{
         if(row.duplicate){if(row.duplicate.consumed)this.dialog.open(row.info.name+' · 现货已购','同名商品本店已售。仍可选其它合法基础操作。',[{label:'返回基础选择',run:()=>this.inspectBasicChoice()}]);else this.inspectOffer(row.duplicate.offerId);return;}
         this.confirmBasicChoice(row.id,seq,shopSeq);
       }}})),
