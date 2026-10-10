@@ -10,3 +10,13 @@
 - 三个脚本假设失败原始report保留：返回按钮误写“返回标题”、误等title而实际退出到character-select、手机未开启hasTouch；修脚本后最终两行PASS。均没有修改产品以迁就断言。
 
 原始完整保存元组和时长在report.json.gz；check.mjs是本环境有限检查脚本，非新增生产harness。最终候选精确CI另核，由父审查协调main；不宣称已上线或用户观感/设备/听感通过。
+
+## 父审生命周期返修
+
+原产品afb2ba0仅登记abort cleanup，但静态回退没有heroClimax owner，导致原resize/visibility/fastForward gate未调用effects.clear。父审阻塞成立，原定时完成/返回结果不构成提前取消通过。
+
+返修产品 `ab54ddd218fd073dec14bba2fe300e71dd4607df`：用单一refillPresentation EffectContext跟踪独立留牌展示，有图和静态两路径都赋值，finally按同context清除；三个原取消入口沿现有Effects.clear/abort，未新增演出框架。有图stage/strike/hold/release代码保持。
+
+只补三次真实原UI保存后的缺图取消：PC1366 resize至1346×748、手机390低动态受控document.hidden/visibilitychange、PC1366直接调用既有fastForward。取消后111.1/40.0/61.9ms内playing与owner清空、纸面不存在。图片查询恢复并尝试同eventId显示仍只有原一次；完整state/journal/storage与取消前实际成功保存结果一致。三张clean图实际查看PC/手机，均无回执残留。后台是受控浏览器信号，不是物理设备切后台；快进调用原方法，不冒称通过菜单鼠标入口。
+
+22定向及typecheck重新通过；未重跑六英雄或自然局。原1秒有限证据仅绑定afb2ba0，本返修没有改墙钟等待与正常时序。精确最终HEAD CI由新push触发，不复用旧绿。
