@@ -1,5 +1,7 @@
 # 短反馈与共用道具用途返修：有限软件证据
 
+更新：PR97独审三处覆盖缺口已补候选，[用途接线补证](purpose-review/README.md)。前版“全部货架/库存”声明过宽，历史资料按原HEAD读；本次最终HEAD/CI另核。基础自选准备仍未实施。
+
 输入main199c854fd9c61b796f713725b5481e4b0e125eaf；最终产品2b2be30887928b10df4141d5ae381f04e1abb97f，原生final-product/report.json绑定该产品HEAD。最终文档/证据HEAD与CI由PR记录，不借之前分支CI。6.1 Medium串行，无并发、无长录屏、无软件GPU帧率签收。
 
 ## 改动及实际覆盖
