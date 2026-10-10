@@ -19,3 +19,7 @@
 复跑用已有 `harness/hero-preparation-continuity.mjs`（PREPARATION_OUTPUT可指定）、本目录capture／source-check／inventory-check脚本；均从仓库根运行，不新增依赖。领域／内容／存档身份／音路／公共资产／HeroClimax／IntermissionScene／ResultStage与main相同；无新图、音频、视频或计分等待。
 
 选角样板保全于独立本地 `review/opening-visible-play`／`9123aef0d630776a55f477c245a33570fab59f0c`（WIP，首轮320风险文字越界FAIL尚待处理），不混入本候选。Rex NOT_ENABLED、文化转型PAUSED_BY_USER及原计划依赖保持。
+
+父独审追加窄高／安全区文字预算修正，产品 `4d4fbc71692bc0cedb19e92e245a77369dc96931`。原生390×640的用途／路线重叠16–22px，路线／价格重叠10px；320×740底部安全区34px的用途／路线重叠6–7px。旧三列恢复专属卡面下部路线区与23px用途起点；新图文行仅在可用高度≥693px启用，遇到实际用途底部越过路线时保留两行短摘要、按实际路线高度在价格前留2px，再将用途移至不重叠位置，完整效果仍在详情。390×740安全区34px同批商品原本没有重叠，也保存同法改前后。正常390×740截图与694318e候选逐字节一致（SHA256 f7939895cf41b4b11444fdc292f2ea2bdf9633f2ec2016c2865745db79a6aff1）。
+
+有限原生截图及完整文字边界见 [budget-review/native-text-bounds.json.gz](budget-review/native-text-bounds.json.gz)：390×640、320／390×740+bottom34、320×705新行边界／704旧列回退，以及正常390×740；改后名称、用途、路线、价格的实际文字矩形互不重叠。原FAIL截图均保留。17商店定向、typecheck、计划检查通过；此处依据实际Phaser文字与截图，不以卡框布局断言代签文字。旧HEAD694318e标准CI38050540083／计划38050540080均成功，补修最终HEAD需重新核对；不签真人／实机／全商品组合。
