@@ -7,7 +7,7 @@ import {HAND_LABELS} from '../content/handLabels';
 import type {ScoreBeat} from './scorePresentation';
 import type {R2OpeningRoute} from '../domain/r2GroupUpgrade';
 import type {CharacterId} from '../domain/characters';
-export interface JokerKeyHighlight {eventId:string;fact:SavedBenefit;kind:'multiply'|'crossing'|'starter'|'opening';landing:string;cause:string;route?:R2OpeningRoute;heroId?:CharacterId}
+export interface JokerKeyHighlight {eventId:string;fact:SavedBenefit;kind:'multiply'|'crossing'|'starter'|'opening'|'payoff'|'burst';landing:string;cause:string;route?:R2OpeningRoute;heroId?:CharacterId}
 const product=(a:ScoreEvent['after'])=>Rational.fromJSON(a.H).multiply(Rational.fromJSON(a.M)).floor();
 /** Select from committed events only, never selection forecasts. Stable tie keeps trace order. */
 export function keyHighlight(state:R2RunState,trace:ScoreTrace,originHeat='0',target=state.stage?.targetHeat,includeOpening=true):JokerKeyHighlight|undefined {
