@@ -116,3 +116,8 @@ it('PC portrait art spends actual remaining height without clipping three goods 
   for(const g of [p.pc!.toolOffers,p.pc!.itemOffers]){expect(g.height).toBeGreaterThanOrEqual(96);expect(g.y+g.height).toBeLessThanOrEqual(p.pc!.feedback.y);}
  }
 });
+
+it('keeps actual probability fractions together in narrow purpose text',()=>{
+ const text=shopSummaryWrap('结算后1/4概率永久破碎；1/15得10金',7,s=>s.length);
+ expect(text).toContain('1/4');expect(text).toContain('1/15');expect(text).not.toMatch(/1\/\n|1\n\//);
+});

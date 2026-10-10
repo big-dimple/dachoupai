@@ -109,7 +109,7 @@ export function shopOwnedDropIndex(p:ReturnType<typeof shopLayout>,x:number,y:nu
 /** Keep numeric gains/caps together while wrapping Chinese desktop summaries. */
 export function shopSummaryWrap(text:string,width:number,measure:(text:string)=>number):string {
   const lines:string[]=[];let line='';
-  for(const token of text.match(/\d+(?:\.\d+)?|[^\d]/gu)??[]){
+  for(const token of text.match(/\d+(?:\.\d+)?(?:\/\d+)?|[^\d]/gu)??[]){
     if(token==='\n'){lines.push(line);line='';continue;}
     if(line&&measure(line+token)>width){lines.push(line);line=token;}else line+=token;
   }
