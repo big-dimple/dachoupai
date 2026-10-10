@@ -1,0 +1,31 @@
+
+ RUN  v4.1.11 /workspace/dachoupai
+
+ ❯ tests/selection-layout.test.ts (2 tests | 1 failed) 38ms
+   × each hero/route stage reserves controls and keeps choices distinct across PC, narrow and short screens 18ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/selection-layout.test.ts > each hero/route stage reserves controls and keeps choices distinct across PC, narrow and short screens
+AssertionError: expected 42.666666666666664 to be greater than or equal to 44
+ ❯ tests/selection-layout.test.ts:18:64
+     16|   expect(p.hero.height).toBeGreaterThan(80);
+     17|   for(const b of [...choices,p.cancel,p.details,p.confirm]){
+     18|    expect(b.width).toBeGreaterThanOrEqual(44);expect(b.height).toBeGre…
+       |                                                                ^
+     19|    expect(b.x).toBeGreaterThanOrEqual(0);expect(b.x+b.width).toBeLessT…
+     20|    expect(b.y+b.height).toBeLessThanOrEqual(height-bottom);expect(inte…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 2 passed (3)
+      Tests  1 failed | 10 passed (11)
+   Start at  13:06:35
+   Duration  905ms (transform 1.22s, setup 0ms, import 1.58s, tests 96ms, environment 0ms)
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice
