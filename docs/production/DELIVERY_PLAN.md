@@ -1511,3 +1511,9 @@ b10/b03未满时，多打合法成组手仍能分别获得保存热度或倍率�
 A类信息说明的纸面样板归W1/W3；B服务与C供给记录先走SG02再决定W5规则/保存合同，不能混入纯文案改动。a06候选先走SG03；跨场或章节状态未闭合前不写实现。W7角色能力、旧局身份、正式人测与设备门槛不因本附录自动解锁。
 
 规则出处：[共同四卡](https://github.com/big-dimple/dachoupai/blob/14a9a747fa42764ab8000b6f71382c7bd6bec8ac/src/content/r2ComboGrowthJokers.ts)、[成组四卡](https://github.com/big-dimple/dachoupai/blob/14a9a747fa42764ab8000b6f71382c7bd6bec8ac/src/content/r2GroupUpgradeJokers.ts)、[计分与afterHand](https://github.com/big-dimple/dachoupai/blob/14a9a747fa42764ab8000b6f71382c7bd6bec8ac/src/domain/scoreR2.ts)、[商店与候选](https://github.com/big-dimple/dachoupai/blob/14a9a747fa42764ab8000b6f71382c7bd6bec8ac/src/domain/r2Shop.ts)、[商店事务与结算](https://github.com/big-dimple/dachoupai/blob/14a9a747fa42764ab8000b6f71382c7bd6bec8ac/src/domain/r2Run.ts)。条件资金、21工具与144金边界沿本文件“三份八章条件式设计账本”，不新增自然通关声明。
+
+### 待定包装提议：路线修行与英雄门派（2026-10-10）
+
+用户Sentinel_a520e40b1a708191b476b22fc506038b与c69510560e0c81918cc5949cb377bc20提出：三路线可用儒释道修行身份、徽记短名和真实阶段／境界分数达成的成就（如知行合一／新学派）包装；武侠门派可包装英雄。提议分层：英雄门派表达出身／招牌能力，路线修行表达本局成长方向；不强绑英雄与路线，保留六英雄已有能力、原立绘与同点成组／顺子／同花小标签，文字极简，可用徽记。儒释道不是现实宗教等级认证；实际达成才给成就。
+
+状态：需求已记录，风格、具体门派名、三修行映射、真实达成阈值及徽记待定，未实现／未验收。沿原W1说明、W2必要共享组件、W3真实达成事实及W5成长体验依赖推进，保留W6共同验收。当前基础白板／五选视觉与全套用途返修先行；不插队、不扩为新修行系统、不擅改路线名称／玩法规则、不现在批量生成logo。英雄与路线是两层提议，不作为同层二选一。
