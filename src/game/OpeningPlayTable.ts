@@ -9,10 +9,15 @@ export function drawOpeningPlayTable(scene:Phaser.Scene,v:SceneView,b:Box,s:Open
  const narrow=b.width<500,short=b.height<130,pad=short?4:8;
  v.material(b,PAPER_THEME.paperLight,PAPER_THEME.paperLight,8);
  v.add(scene.add.graphics().lineStyle(1,PAPER_THEME.divider,.8).strokeRoundedRect(b.x,b.y,b.width,b.height,8));
- v.text(b.x+pad,b.y+5,s.tag+' · 示例',14,'#3F606B').setName('opening/play');
+ if(!short)v.text(b.x+pad,b.y+5,s.tag+' · 示例',14,'#3F606B').setName('opening/play');
  const replayWidth=70;
- v.button({x:b.x+b.width-replayWidth-pad,y:b.y+2,width:replayWidth,height:short?30:32},'再看一次','action/opening-replay',replay);
- const top=b.y+(short?30:38),footer=short?38:narrow?44:50;
+ const footerWidth=b.width-pad*2-(short?replayWidth+8:0);
+ const result=v.text(b.x+pad,0,s.result,short?14:narrow?14:20,'#B8473A',footerWidth).setFontStyle('bold').setName('opening/sample-result');
+ const cost=v.text(b.x+pad,0,s.cost,14,'#3F606B',footerWidth).setName('opening/cost');
+ const footer=result.height+cost.height+8,footerY=b.y+b.height-footer;
+ result.setY(footerY+2);cost.setY(result.y+result.height+2);
+ v.button({x:b.x+b.width-replayWidth-pad,y:short?footerY:b.y+2,width:replayWidth,height:short?30:32},'再看一次','action/opening-replay',replay);
+ const top=b.y+(short?4:36);
  const rowH=narrow?(b.y+b.height-footer-top)/2:b.y+b.height-footer-top;
  const colW=narrow?b.width-pad*2:(b.width-pad*2-32)/2;
  const rows=[s.before,s.after];
@@ -20,7 +25,7 @@ export function drawOpeningPlayTable(scene:Phaser.Scene,v:SceneView,b:Box,s:Open
  rows.forEach((row,i)=>{
   const x=b.x+pad+(narrow?0:i*(colW+32)),y=top+(narrow?i*rowH:0);
   const label=v.text(x,y,row.label,short?14:narrow?14:18,i?'#B8473A':'#26313A',colW).setFontStyle('bold').setName('opening/sample-'+(i?'after':'before'));
-  const h=Math.max(32,Math.min(narrow?50:short?44:72,rowH-label.height-6)),gap=2;
+  const h=Math.max(44,Math.min(narrow?50:short?44:72,rowH-label.height-6)),gap=2;
   const width=Math.min(narrow?40:54,(colW-(row.cards.length-1)*gap)/row.cards.length);
   const cardsWidth=row.cards.length*(width+gap)-gap,start=x+(colW-cardsWidth)/2,cy=y+label.height+3;
   row.cards.forEach((value,index)=>{
@@ -35,8 +40,5 @@ export function drawOpeningPlayTable(scene:Phaser.Scene,v:SceneView,b:Box,s:Open
   });
  });
  if(!narrow)v.text(b.x+b.width/2,top+rowH/2,'→',26,'#B8473A').setOrigin(.5);
- const fy=b.y+b.height-footer+2;
- v.text(b.x+pad,fy,s.result,short?14:narrow?14:20,'#B8473A',b.width-pad*2).setFontStyle('bold').setName('opening/sample-result');
- v.text(b.x+pad,fy+(short?18:narrow?20:27),s.cost,14,'#3F606B',b.width-pad*2).setName('opening/cost');
  return animated;
 }
