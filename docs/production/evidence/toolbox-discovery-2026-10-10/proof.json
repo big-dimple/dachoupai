@@ -1,0 +1,94 @@
+{
+  "base": "82549cec04d4b651bcec5e621fed8f641602859a",
+  "product": "b122495db2231b9e8b9a59be3e5f602e01690297",
+  "toolboxInitialFinalTupleEquality": [
+    {
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      },
+      "initial": true,
+      "final": true
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 740
+      },
+      "initial": true,
+      "final": true
+    }
+  ],
+  "shopReadonlyTupleEquality": [
+    {
+      "viewport": {
+        "width": 1908,
+        "height": 960
+      },
+      "initial": true,
+      "final": true,
+      "toolPagerBefore": true,
+      "toolPagerAfter": false
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 740
+      },
+      "initial": true,
+      "final": true,
+      "toolPagerBefore": false,
+      "toolPagerAfter": false
+    }
+  ],
+  "protectedTrees": [
+    {
+      "path": "src/domain",
+      "base": "5cbf79d6505eec84e042e46b31d3832e09ac1d78",
+      "product": "5cbf79d6505eec84e042e46b31d3832e09ac1d78",
+      "equal": true
+    },
+    {
+      "path": "src/application",
+      "base": "a3cca278fdecd7bbd96a13909c2f904fb36e4bd4",
+      "product": "a3cca278fdecd7bbd96a13909c2f904fb36e4bd4",
+      "equal": true
+    },
+    {
+      "path": "src/content",
+      "base": "6018132526ce72176f016f99ead53022480ab429",
+      "product": "6018132526ce72176f016f99ead53022480ab429",
+      "equal": true
+    },
+    {
+      "path": "src/cards",
+      "base": "76fb723100aec6137061fd303d6328fc510ac458",
+      "product": "76fb723100aec6137061fd303d6328fc510ac458",
+      "equal": true
+    },
+    {
+      "path": "public",
+      "base": "c4a6ec74e7fd754b0f300b973020f8afed7542e1",
+      "product": "c4a6ec74e7fd754b0f300b973020f8afed7542e1",
+      "equal": true
+    },
+    {
+      "path": "src/game/assets",
+      "base": null,
+      "product": null,
+      "equal": true
+    },
+    {
+      "path": "src/game/audio",
+      "base": null,
+      "product": null,
+      "equal": true
+    },
+    {
+      "path": ".github",
+      "base": "b923e03979ce93c9a142628f8b1099e2cd2b9150",
+      "product": "b923e03979ce93c9a142628f8b1099e2cd2b9150",
+      "equal": true
+    }
+  ]
+}

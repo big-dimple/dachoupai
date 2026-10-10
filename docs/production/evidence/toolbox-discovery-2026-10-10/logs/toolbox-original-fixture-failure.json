@@ -1,0 +1,16 @@
+{
+  "source": "82549cec04d4b651bcec5e621fed8f641602859a",
+  "scope": "Controlled legal tool-experience stock; two finite native buy -> cancel -> inventory -> target -> use -> enter battle -> use paths. Not natural acquisition/human/device/audio/FPS acceptance.",
+  "cases": [
+    {
+      "spec": {
+        "width": 1366,
+        "height": 768
+      },
+      "errors": [],
+      "commands": []
+    }
+  ],
+  "status": "FAIL",
+  "error": "Error: invalid-save-array\n    at fail (/workspace/dachoupai/src/application/checkpoint.ts:99:9)\n    at array (/workspace/dachoupai/src/application/checkpoint.ts:124:52)\n    at shop (/workspace/dachoupai/src/application/checkpoint.ts:211:19)\n    at validateState (/workspace/dachoupai/src/application/checkpoint.ts:1171:5)\n    at makeCheckpoint (/workspace/dachoupai/src/application/checkpoint.ts:1262:3)\n    at file:///tmp/toolbox-audit.mjs:18:542"
+}

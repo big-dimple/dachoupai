@@ -1,0 +1,300 @@
+diff --git a/docs/production/HERO_DISCOVERY_PAYOFF_SCOPE.md b/docs/production/HERO_DISCOVERY_PAYOFF_SCOPE.md
+index 2729af5..2e6fe84 100644
+--- a/docs/production/HERO_DISCOVERY_PAYOFF_SCOPE.md
++++ b/docs/production/HERO_DISCOVERY_PAYOFF_SCOPE.md
+@@ -9,3 +9,5 @@
+ 高光只消费真实已保存事件：骰爷仅真实成功touye.won对应目标，失败×.85/普通×1.15与首次普通单对子不播成功。其它英雄按真实贡献/释放条件核，先检查现pre-fifth/首次通用保底是否误把小收益作英雄成功；用户新要求覆盖旧前五手按次数保证演出。早期引导促成实际组合兑现，不能造收益。
+ 
+ 主体可见1秒，入场/退场计时分开；从已有演出时槽取舍，不额外叠一次1秒空等。不新增视频资产/专用CG/音源或随机，结算精确、输入锁、低动态、跳过/取消/后台恢复与迟到回调清理保持。需先给各英雄实数规则与原时槽对照，再做必要表现修改、有限固定trace和双端实际像素。软件结果不是人类观感/设备/听感，不签全部W0–W9。
++
++用户Sentinel_395ea67508dc8191b1fd056316c3ec76硬合同：每次真实爆发均独立特写、主体1秒，不限首次/前120秒/前五手；不同合法事件不能被全局seen吞掉。同一手真实多来源按原事件顺序连贯编排，来源必须分别可感知，不堆无意义停顿；同一结算事件不可重复播放/奖励。验收必须含第二次及以后真实爆发、普通第一手无误触发。旧一次性引导不能充当高光唯一入口。
+diff --git a/src/game/ConsumableDialog.ts b/src/game/ConsumableDialog.ts
+index ac4fc8a..9b95d8f 100644
+--- a/src/game/ConsumableDialog.ts
++++ b/src/game/ConsumableDialog.ts
+@@ -280,7 +280,8 @@ export function showConsumables(dialog:DetailDialog,state:R2RunState,ready:boole
+     refresh();
+   };
+   if(!initialInstanceId)AudioEngine.shared.titleConfirm();
+-  const inventory=dialog.open('道具箱','选择工具，确认后使用。');inventory.classList.add('tool-inventory');
++  const available=state.consumables.some(c=>R2_TOOLS.find(t=>t.id===c.definitionId)?.phases.includes(state.phase as 'shop'|'await-input'));
++  const inventory=dialog.open('道具箱',state.consumables.length&&!available?'现有工具不在当前使用阶段；库存仍保留，按卡面提示到商店或牌桌使用。':'选择工具，确认后使用。');inventory.classList.add('tool-inventory');
+   const content=inventory.querySelector('.dialog-copy')!;
+   function inventoryGroup(title:string,entries:readonly {id:string;name:string;label:string;artUrl:string;action:string;run:()=>void}[]):void {
+     const section=document.createElement('section'),heading=document.createElement('h3'),grid=document.createElement('div');section.className='tool-inventory-group';heading.textContent=title;grid.className='tool-inventory-grid';section.append(heading,grid);
+diff --git a/src/game/InventoryFeedback.ts b/src/game/InventoryFeedback.ts
+index 73e6bb9..894e786 100644
+--- a/src/game/InventoryFeedback.ts
++++ b/src/game/InventoryFeedback.ts
+@@ -1,23 +1,30 @@
+ import type Phaser from 'phaser';
+ import type {R2RunState} from '../domain/run';
+ import {R2_TOOLS} from '../content/r2Tools';
+-import {PAPER_CSS} from './theme';
+-import {PAPER_THEME as T} from './theme';
++import {PAPER_CSS,PAPER_THEME as T} from './theme';
+ import {toolInventoryLabel} from './ToolInventoryEntry';
+-const seen=new WeakMap<Phaser.Game,Set<string>>();
+-/** Session-only finite first usable cue. Quantity is always the saved inventory count. */
+-export function inventoryFeedback(scene:Phaser.Scene,button:Phaser.GameObjects.Rectangle,state:R2RunState,ready:boolean,reduced:boolean):void {
+- const full=state.consumables.length>0,narrow=button.width<112,label=button.getData('label') as Phaser.GameObjects.Text;
+- label.setText(toolInventoryLabel(state,narrow)).setFontStyle(full?'bold':'normal').setColor(full?PAPER_CSS.red:PAPER_CSS.jade);if(narrow)label.setFontSize(14).setAlign('center');
++import {gameSession} from './session';
++/** Held inventory stays apparent until consumed; one frame-driven cue, never queued tweens. */
++export function inventoryFeedback(scene:Phaser.Scene,button:Phaser.GameObjects.Rectangle,state:R2RunState,_ready:boolean,_reduced:boolean):void {
++ const full=state.consumables.length>0,narrow=button.width<112,usable=state.consumables.some(c=>R2_TOOLS.find(t=>t.id===c.definitionId)?.phases.includes(state.phase as 'shop'|'await-input'));
++ const label=button.getData('label') as Phaser.GameObjects.Text,ink=full?(usable?T.red:T.brass):T.jade;
++ label.setText(toolInventoryLabel(state,narrow)).setFontStyle(full?'bold':'normal').setColor(full?(usable?PAPER_CSS.red:PAPER_CSS.brass):PAPER_CSS.jade);if(narrow)label.setFontSize(14).setAlign('center');
+  if(button.width>=88&&!button.getData('chest')){
+-  const icon=scene.add.graphics().setPosition(button.x-button.width/2+18,button.y+2),ink=full?T.red:T.jade;
+-  // The held-tool paper peeks from the existing chest; no new asset or persistent motion.
++  const icon=scene.add.graphics().setPosition(button.x-button.width/2+18,button.y+2);
+   if(full)icon.fillStyle(T.paperLight).fillRect(-6,-12,7,10).fillRect(1,-14,6,12).lineStyle(1,T.brass).strokeRect(-6,-12,7,10).strokeRect(1,-14,6,12);
+   icon.fillStyle(full?T.redSoft:T.jadeSoft).fillRoundedRect(-9,-3,18,11,2).lineStyle(1.5,ink).strokeRoundedRect(-9,-3,18,11,2);
+   icon.fillStyle(T.paperEdge).fillRoundedRect(-10,full?-8:-7,20,5,2).lineStyle(1.5,ink).strokeRoundedRect(-10,full?-8:-7,20,5,2).fillStyle(T.brass).fillRect(-1,-4,3,5);
+   button.parentContainer?.add(icon);button.setData('chest',icon);label.x+=narrow?8:10;button.once('destroy',()=>icon.destroy());
+  }
+- let keys=seen.get(scene.game);if(!keys){keys=new Set();seen.set(scene.game,keys);}const usable=state.consumables.filter(c=>R2_TOOLS.find(t=>t.id===c.definitionId)?.phases.includes(state.phase as 'shop'|'await-input'));
+- const fresh=ready&&usable.some(c=>!keys!.has(state.runId+'/'+c.instanceId+'/'+state.phase));if(!fresh)return;for(const c of usable)keys.add(state.runId+'/'+c.instanceId+'/'+state.phase);
+- button.setData('firstUsable',true);if(reduced)return;const y=label.y;let finished=false;const finish=()=>{if(finished)return;finished=true;window.removeEventListener('dachoupai-presentation',reduce);if(label.active)label.setPosition(label.x,y).setAngle(0);};const reduce=()=>{tween.remove();finish();};const tween=scene.tweens.add({targets:label,y:y-3,angle:2,duration:120,yoyo:true,repeat:2,ease:'Sine.easeInOut',onComplete:finish});window.addEventListener('dachoupai-presentation',reduce);label.once('destroy',()=>{tween.remove();finish();});
++ if(!full)return;
++ const frame=scene.add.graphics().lineStyle(1.5,ink,.9).strokeRoundedRect(button.x-button.width/2+2,button.y-button.height/2+2,button.width-4,button.height-4,4).setName('inventory/held-reminder');button.parentContainer?.add(frame);button.setData('inventoryReminder',frame).setData('inventoryAvailability',usable?'current':'later');
++ const update=(time:number)=>{
++  const current=scene.registry.get('runController')?.state as R2RunState|undefined;
++  if(!current?.consumables.length){frame.setVisible(false);return;}
++  const status=scene as Phaser.Scene&{ready?:boolean;playing?:boolean;presentation?:unknown};
++  const paused=!usable||status.ready===false||status.playing||!!status.presentation||!scene.scene.isActive()||document.hidden||!!document.querySelector('dialog[open]');
++  const reduced=gameSession().reducedMotion||window.matchMedia('(prefers-reduced-motion: reduce)').matches;
++  frame.setVisible(true).setAlpha(paused||reduced ? .9 : .72+.18*Math.cos(time*Math.PI/2000));button.setData('inventoryReminderState',reduced?'static':paused?'paused':'breathing');
++ };
++ scene.events.on('update',update);button.once('destroy',()=>{scene.events.off('update',update);frame.destroy();});update(performance.now());
+ }
+diff --git a/src/game/RouteFitCue.ts b/src/game/RouteFitCue.ts
+index 0300aa0..be09a0f 100644
+--- a/src/game/RouteFitCue.ts
++++ b/src/game/RouteFitCue.ts
+@@ -4,13 +4,16 @@ import {r2CreateJoker} from '../domain/r2Run';
+ import {currentBuildFocus} from './BuildDirectionPreferences';
+ import {toolSupportsFocus} from './BuildJourney';
+ import {shopRouteRelation} from './ShopRouteRelations';
++import {jokerApplicableRoutes} from './ShopOfferGuidance';
+ export const ROUTE_TONE={group:{ink:0x3f606b,css:'#3F606B',label:'契合同点成组路线'},straight:{ink:0x8f6a3b,css:'#8F6A3B',label:'契合顺子路线'},flush:{ink:0xb8473a,css:'#B8473A',label:'契合同花路线'}};
+ /** Same current-profile effect relation on shelf, held faces and detail; never a purchase ranking. */
+ export function routeFitCue(state:R2RunState,kind:'jokers'|'tools'|'items',id:string,instanceId?:string){
+  const focus=currentBuildFocus(state,state.openingRoute);if(!focus||kind==='items')return;
+  const relation=kind==='jokers'?shopRouteRelation(state,state.jokers.find(j=>j.instanceId===instanceId)??r2CreateJoker(id,'display/'+id,0,'none',state),focus):undefined;
+  const matches=relation?relation.kind==='direct'||relation.kind==='support':toolSupportsFocus(id,focus);
+- return matches?{...ROUTE_TONE[focus],focus,reason:relation?.body??'改牌或升型可服务该方向；目标与代价需自行确认。'}:undefined;
++ const j=kind==='jokers'?(state.jokers.find(j=>j.instanceId===instanceId)??r2CreateJoker(id,'display/'+id,0,'none',state)):undefined;
++ const label=j?'适用：'+jokerApplicableRoutes(state,j).map(f=>({group:'同点',straight:'顺子',flush:'同花'})[f]).join('/') :ROUTE_TONE[focus].label;
++ return matches?{...ROUTE_TONE[focus],label,focus,reason:relation?.body??'改牌或升型可服务该方向；目标与代价需自行确认。'}:undefined;
+ }
+ export function markRouteDetail(host:HTMLElement,cue:ReturnType<typeof routeFitCue>):void {
+  if(!cue)return;host.dataset.routeFit=cue.focus;host.style.setProperty('--route-fit',cue.css);const tag=document.createElement('p');tag.className='route-fit-caption';tag.textContent=cue.label;host.querySelector('.dialog-header')?.append(tag);
+diff --git a/src/game/ShopArt.ts b/src/game/ShopArt.ts
+index bae7654..fa83e03 100644
+--- a/src/game/ShopArt.ts
++++ b/src/game/ShopArt.ts
+@@ -19,12 +19,12 @@ export function drawShopArt(scene:Phaser.Scene,view:SceneView,p:ReturnType<typeo
+     shopSheet(scene,view,'program',pc.left,T.paperLight,true);
+     shopSheet(scene,view,'owned',{...pc.ownedRail,height:pc.ownedRail.height+16},T.jadeSoft);
+     shopSheet(scene,view,'stock',pc.shopPanel,T.paperLight,true);
+-    shopSheet(scene,view,'actions',{x:pc.shopPanel.x+6,y:pc.shopPanel.y+6,width:pc.actionRail.width+12,height:pc.shopPanel.height-12},T.jadeSoft);
++    shopSheet(scene,view,'actions',{x:pc.actionRail.x-6,y:pc.shopPanel.y+6,width:pc.actionRail.width+12,height:pc.shopPanel.height-12},T.jadeSoft);
+   }else if(p.portrait){
+     const top=p.slots[0].y-26;
+     // Held cards and the fixed actions share one quiet field, without inventing a tall inventory card.
+     shopSheet(scene,view,'owned-actions',{x:p.x-6,y:top,width:p.w+12,height:p.noticeY+22-top},T.jadeSoft);
+-    shopSheet(scene,view,'owned',{x:p.x,y:top+4,width:p.w,height:p.slots[0].height+46},T.paperLight,true);
++    shopSheet(scene,view,'owned',{x:p.x,y:top+4,width:p.w,height:p.slots[0].height+('guidanceBelow' in p&&p.guidanceBelow?70:46)},T.paperLight,true);
+     shopSheet(scene,view,'actions',{x:p.play.x-4,y:p.reroll.y-8,width:p.play.width+8,height:p.play.y+p.play.height-p.reroll.y+12},T.paperLight,true);
+   }else if(p.short){
+     shopSheet(scene,view,'stock',{x:p.tabs.x-4,y:p.tabs.y-4,width:p.tabs.width+8,height:Math.max(...p.shelf.map(b=>b.y+b.height))+6-p.tabs.y},T.paperLight);
+diff --git a/src/game/ShopLayout.ts b/src/game/ShopLayout.ts
+index 082e84c..8620488 100644
+--- a/src/game/ShopLayout.ts
++++ b/src/game/ShopLayout.ts
+@@ -30,17 +30,17 @@ function desktopShopLayout(width:number,height:number,top:number,bottom:number,_
+   const usableHeight=height-top-bottom;
+   const ownedWidth=width>=1600&&usableHeight>=800?96:80,ownedHeight=ownedWidth*1.4,slotY=top+56;
+   const slots:Box[]=Array.from({length:5},(_,i)=>({x:rightX+i*(ownedWidth+12),y:slotY,width:ownedWidth,height:ownedHeight}));
+-  const ownedRail={x:rightX,y:top,width:rightWidth,height:56+ownedHeight};
++  const ownedRail={x:rightX,y:top,width:rightWidth,height:76+ownedHeight};
+   const inventoryEntry={x:rightX+rightWidth-168,y:top+64,width:168,height:44};
+-  const shopPanel={x:rightX,y:slotY+ownedHeight+24,width:rightWidth,height:height-bottom-8-(slotY+ownedHeight+24)};
++  const shopPanel={x:rightX,y:slotY+ownedHeight+44,width:rightWidth,height:height-bottom-8-(slotY+ownedHeight+44)};
+   const actionWidth=width>=1600?144:128,goodsX=shopPanel.x+16,goodsWidth=shopPanel.width-actionWidth-48;
+   // Reserve the lower 128px goods row, its headings and the feedback gap first.
+-  const faceHeightBudget=usableHeight-332-ownedHeight-128;
+-  const seat=(goodsWidth-24)/3,cardWidth=width>=1600?Math.min(144,faceHeightBudget/1.4):Math.min(128,faceHeightBudget/1.4),cardHeight=cardWidth*1.4;
+-  const upperY=shopPanel.y+28,upperHeight=cardHeight+136;
++  const faceHeightBudget=usableHeight-388-ownedHeight-128;
++  const seat=(goodsWidth-24)/3,cardWidth=Math.max(88,Math.min(width>=1600?144:128,faceHeightBudget/1.4)),cardHeight=cardWidth*1.4;
++  const upperY=shopPanel.y+28,upperHeight=cardHeight+172;
+   const jokerOffers:Box[]=Array.from({length:3},(_,i)=>({x:goodsX+i*(seat+12),y:upperY,width:seat,height:upperHeight}));
+   const shelf=jokerOffers.map(b=>({x:b.x+(b.width-cardWidth)/2,y:b.y+6,width:cardWidth,height:cardHeight}));
+-  const groupY=upperY+upperHeight+24,groupWidth=(goodsWidth-16)/2,lowerY=groupY+24,lowerHeight=Math.max(96,Math.min(width>=1600?128:160,shopPanel.y+shopPanel.height-32-lowerY));
++  const groupY=upperY+upperHeight+24,groupWidth=(goodsWidth-16)/2,lowerY=groupY+24,lowerHeight=Math.max(96,shopPanel.y+shopPanel.height-32-lowerY);
+   const toolOffers={x:goodsX,y:lowerY,width:groupWidth,height:lowerHeight},itemOffers={x:goodsX+groupWidth+16,y:lowerY,width:groupWidth,height:lowerHeight};
+   const feedback={x:shopPanel.x+12,y:shopPanel.y+shopPanel.height-24,width:shopPanel.width-24,height:20};
+   const play={x:shopPanel.x+shopPanel.width-actionWidth-12,y:shopPanel.y+28,width:actionWidth,height:56},reroll={x:play.x,y:play.y+68,width:actionWidth,height:44};
+@@ -62,10 +62,12 @@ export function shopLayout(width:number,height:number,top:number,bottom:number,c
+   const shelfWidth=cols*seat+8*(cols-1),shelfX=x+(w-shelfWidth)/2,shelfTop=top+104;
+   const shelf:Box[]=Array.from({length:cols},(_,i)=>({x:shelfX+i*(seat+8)+(seat-cardWidth)/2,y:shelfTop,width:cardWidth,height:cardHeight}));
+   const ownedGap=portrait?Math.min(24,Math.max(0,height-top-bottom-352-slotHeight-cardHeight)):24;
+-  const rackWidth=5*slotWidth+4*slotGap,slotX=x+(w-rackWidth)/2,slotY=shelfTop+cardHeight+100+ownedGap;
++  const rackWidth=5*slotWidth+4*slotGap,slotX=x+(w-rackWidth)/2,originalSlotY=shelfTop+cardHeight+100+ownedGap;
++  const guidanceBelow=portrait&&height-bottom-144-(originalSlotY+slotHeight+20)>=94;
++  const slotY=originalSlotY+(guidanceBelow?54:0);
+   const slots:Box[]=Array.from({length:5},(_,i)=>({x:slotX+i*(slotWidth+slotGap),y:slotY,width:slotWidth,height:slotHeight}));
+   const secondaryY=portrait?height-bottom-144:Math.min(height-bottom-144,slotY+slotHeight+20),toolWidth=(Math.min(w,420)-8)/2,actionX=x+(w-Math.min(w,420))/2,inventoryY=slotY+slotHeight+8;
+-  return {x,w,top,pc:null,desktop:false,short:false,copyBeside:false,inventoryCollapsed:false,compact:portrait,wideHeader:false,portrait,slots,shelf,tabs:{x:actionX,y:top+52,width:Math.min(w,420),height:44},
++  return {x,w,top,pc:null,desktop:false,short:false,copyBeside:false,inventoryCollapsed:false,compact:portrait,wideHeader:false,portrait,guidanceBelow,slots,shelf,tabs:{x:actionX,y:top+52,width:Math.min(w,420),height:44},
+     chapter:{x:portrait?actionX:x,y:portrait?inventoryY:top+104,width:portrait?toolWidth:200,height:44},items:{x:portrait?actionX+toolWidth+8:x,y:portrait?inventoryY:top+156,width:portrait?toolWidth:200,height:44},
+     reroll:{x:actionX,y:secondaryY,width:toolWidth,height:44},build:{x:actionX+toolWidth+8,y:secondaryY,width:toolWidth,height:44},play:{x:actionX,y:secondaryY+52,width:Math.min(w,420),height:56},noticeY:secondaryY+116};
+ }
+@@ -95,10 +97,11 @@ export function shopFirstGuideLayout(p:ReturnType<typeof shopLayout>,height:numb
+ 
+ /** Text uses the goods seat on desktop, independently of the bounded card face. */
+ export function shopOfferCopy(p:ReturnType<typeof shopLayout>,b:Box,plainJoker=false){
+-  if(p.pc){const seat=p.pc.jokerOffers.find(t=>b.x>=t.x&&b.x<t.x+t.width)!;return {x:seat.x+10,y:b.y+b.height+2,width:seat.width-20,priceY:seat.y+b.height+98,lines:4,tile:seat};}
++  if(p.pc){const seat=p.pc.jokerOffers.find(t=>b.x>=t.x&&b.x<t.x+t.width)!;return {x:seat.x+10,y:b.y+b.height+2,width:seat.width-20,priceY:seat.y+b.height+134,lines:4,tile:seat};}
+   const seat=(p.tabs.width-8*(p.shelf.length-1))/p.shelf.length;
+   const x=p.copyBeside?b.x+b.width+6:b.x,y=p.copyBeside?b.y:b.y+b.height,width=p.copyBeside?seat-b.width-8:b.width+6;
+-  return {x,y,width,priceY:y+(plainJoker?76:58),lines:plainJoker?3:2,tile:{...b,width:p.copyBeside?b.width+6+width:b.width,height:p.copyBeside?b.height:b.height+(plainJoker?94:76)}};
++  const extra=plainJoker?(p.copyBeside?36:'guidanceBelow' in p&&p.guidanceBelow?54:0):0;
++  return {x,y,width,priceY:y+(plainJoker?76:58)+extra,lines:plainJoker?3:2,tile:{...b,width:p.copyBeside?b.width+6+width:b.width,height:p.copyBeside?Math.max(b.height,plainJoker?136:0):b.height+(plainJoker?94:76)+extra}};
+ }
+ 
+ /** Wrapped desktop racks need both axes; horizontal legacy racks retain their drop rule. */
+@@ -106,6 +109,14 @@ export function shopOwnedDropIndex(p:ReturnType<typeof shopLayout>,x:number,y:nu
+   return p.slots.findIndex(b=>x>=b.x&&x<=b.x+b.width&&(!p.desktop||(y>=b.y&&y<=b.y+b.height)));
+ }
+ 
++/** Actual PC goods cells own capacity; complete rules remain in purchase details. */
++export function shopGoodsGrid(group:Box,count:number){
++ const columns=Math.min(Math.max(1,count),Math.max(1,Math.floor((group.width+8)/208)));
++ const rowCapacity=Math.max(1,Math.floor((group.height+8)/136)),capacity=columns*rowCapacity;
++ const visible=Math.min(count,capacity),rows=Math.max(1,Math.ceil(visible/columns));
++ return {capacity,columns,boxes:Array.from({length:visible},(_,i)=>({x:group.x+(i%columns)*(group.width+8)/columns,y:group.y+Math.floor(i/columns)*(group.height+8)/rows,width:(group.width-8*(columns-1))/columns,height:(group.height-8*(rows-1))/rows}))};
++}
++
+ /** Keep numeric gains/caps together while wrapping Chinese desktop summaries. */
+ export function shopSummaryWrap(text:string,width:number,measure:(text:string)=>number):string {
+   const lines:string[]=[];let line='';
+diff --git a/src/game/ShopScene.ts b/src/game/ShopScene.ts
+index ed4c121..15223ca 100644
+--- a/src/game/ShopScene.ts
++++ b/src/game/ShopScene.ts
+@@ -20,7 +20,8 @@ import {r2ScoringDisabledJokerIds} from '../domain/scoreR2';
+ import {r2JokerDefinitionsFor,r2JokerDefinitionFor} from '../domain/r2ContentProfiles';
+ import {jokerAbilityCopyForRun,publicJokerMemoryContext} from './JokerMemory';
+ import type {R2JokerInstance} from '../content/r2Schema';
+-import {shopLayout,shopFirstGuideLayout,shopSummaryWrap,shopOfferCopy,shopOwnedDropIndex,shopOwnedHitBox,shopOwnedNameArea} from './ShopLayout';
++import {shopLayout,shopFirstGuideLayout,shopSummaryWrap,shopOfferCopy,shopOwnedDropIndex,shopOwnedHitBox,shopOwnedNameArea,shopGoodsGrid} from './ShopLayout';
++import {shopOfferGuidance,jokerRouteCaption,jokerApplicableRoutes} from './ShopOfferGuidance';
+ import {goodsArtKey,goodsArtLoadState,requestGoodsArt,retryGoodsArt} from './GoodsArtLoading';
+ import {ShopResultFeedback,shopResultBox,shopResultPages,type ShopResultLine} from './ShopResultFeedback';
+ import {requestJokerArt,jokerArtLoadState,retryJokerArt} from './JokerArtLoading';
+@@ -158,7 +159,8 @@ export class ShopScene extends Phaser.Scene {
+       if(this.shelfKind!=='jokers'){this.drawGoodsOffer(o,p.shelf[i],p.short,p.portrait);return;}
+       const selected=this.selectedOfferId===o.offerId,b=p.shelf[i],d=this.jokerDefinition(o.definitionId),ability=this.jokerCopy(o.definitionId),first=v.root.length;
+       this.drawOfferCard(b,d.rarity,selected,o.consumed,p.short);
+-      this.drawJokerPicture(o.definitionId,{x:b.x+4,y:b.y+4,width:b.width-8,height:b.height-8},o.consumed?.35:1);
++      const factsOnFace=!p.copyBeside&&!('guidanceBelow' in p&&p.guidanceBelow);
++      this.drawJokerPicture(o.definitionId,{x:b.x+4,y:b.y+4,width:b.width-8,height:b.height-8-(factsOnFace?54:0)},o.consumed?.35:1);
+       const copy=shopOfferCopy(p,b,true),copyX=copy.x,copyY=copy.y,copyWidth=copy.width;
+       const name=v.text(copyX,copyY+4,d.name,15,'#26313A').setFontStyle('bold').setName('shop/offer-name');this.ellipsis(name,copyWidth);
+       const plain=ability?.plain,full=plain?.line??ability?.summary??d.description;
+@@ -169,7 +171,8 @@ export class ShopScene extends Phaser.Scene {
+       const price=r2PurchasePrice(this.run,o);
+       const priceInk=this.offerPricePlate(o,{x:copyX-2,y:copy.priceY-2,width:copyWidth+2,height:24});
+       v.text(copyX,copy.priceY,o.consumed?'已收入':price+' 金 · 查看',16,priceInk).setFontStyle('bold').setName('shop/offer-price').setData('offerId',o.offerId);
+-      v.add(createJokerRarityBadge(this,d.rarity,{x:b.x+b.width-31,y:b.y+b.height-21,compact:true}).setData('definitionId',o.definitionId).setData('surface','offer'));
++      v.add(createJokerRarityBadge(this,d.rarity,{x:b.x+b.width-31,y:b.y+b.height-21-(factsOnFace?54:0),compact:true}).setData('definitionId',o.definitionId).setData('surface','offer'));
++      this.drawOfferGuidance(o,{x:copyX,y:factsOnFace?b.y+b.height-54:copy.priceY-(p.copyBeside?36:54),width:copyWidth,height:p.copyBeside?34:52});
+       this.markBuildOffer(o,'jokers',b);
+       const tile=copy.tile,hover=this.hoverCard(first,tile,o.definitionId),r=v.rect(tile).setFillStyle(0,0).setStrokeStyle().setData('selected',selected);
+       this.offerArts.push(hover.art);v.target(r,`offer/${o.offerId}`,{tap:()=>this.inspectOffer(o.offerId),detail:()=>this.inspectOffer(o.offerId),...hover});
+@@ -210,8 +213,8 @@ export class ShopScene extends Phaser.Scene {
+       const ownedName=v.text(nameArea.x,b.y+3,d.name,14,'#26313A');this.ellipsis(ownedName,nameArea.width);
+       v.add(createJokerRarityBadge(this,d.rarity,{x:b.x+b.width-31,y:b.y+b.height-21,compact:true}).setData('definitionId',j.definitionId).setData('surface','owned'));
+ 
+-      if(p.pc){const state=v.text(b.x,b.y+b.height+3,`${shopRouteRelation(this.run,j,currentBuildFocus(this.run,this.run.openingRoute)).tag}·${j.definitionId==='b10'?'热度'+fractionText(j.growth.heat??{n:'0',d:'1'}):ability?.compact||'查看'}`,14,'#3F606B').setName('shop/owned-state');this.ellipsis(state,b.width);}
+-      if(!p.pc&&b.y+b.height+20<=p.reroll.y-4)v.text(b.x+b.width/2,b.y+b.height+3,shopRouteRelation(this.run,j,currentBuildFocus(this.run,this.run.openingRoute)).tag,14,'#3F606B').setOrigin(.5,0).setName('shop/owned-route');
++      if(p.pc)v.text(b.x,b.y+b.height+3,jokerRouteCaption(this.run,j,b.width),14,'#3F606B',b.width).setName('shop/owned-state');
++      if(!p.pc&&b.y+b.height+20<=p.reroll.y-4){const roomy='guidanceBelow' in p&&p.guidanceBelow,copy=roomy?jokerApplicableRoutes(this.run,j).map(f=>({group:'同点',straight:'顺子',flush:'同花'})[f]).join('\n'):jokerRouteCaption(this.run,j,b.width);v.text(b.x+b.width/2,b.y+b.height+3,copy,14,'#3F606B').setOrigin(.5,0).setName('shop/owned-route');}
+       const hover=this.hoverCard(first,b,j.definitionId),r=v.rect(p.pc?b:shopOwnedHitBox(b,p.reroll.y,!!ability||!p.portrait)).setFillStyle(0,0).setStrokeStyle();
+       v.target(r,`joker/${j.instanceId}`,{tap:()=>this.inspectJoker(j.instanceId),detail:()=>this.inspectJoker(j.instanceId),drag:(x,y)=>this.moveJoker(j.instanceId,x,y),holdToDrag:true,...hover});
+     });
+@@ -251,9 +254,9 @@ export class ShopScene extends Phaser.Scene {
+       const offers=this.shelfOffers(kind),group=kind==='tools'?pc.toolOffers:pc.itemOffers,capacity=this.pcGroupCapacity(kind,p),pages=Math.max(1,Math.ceil(offers.length/capacity));this.pcPages[kind]=Math.min(this.pcPages[kind],pages-1);
+       v.text(group.x,pc.groupY,(kind==='tools'?'购买道具':'长期道具')+` · 待售 ${offers.filter(o=>!o.consumed).length}`,14,'#3F606B');
+       if(pages>1){const b={x:group.x+group.width-100,y:pc.groupY-20,width:100,height:44};v.button(b,`${this.pcPages[kind]+1}/${pages} ›`,'action/pc-page-'+kind,()=>{this.pcPages[kind]=(this.pcPages[kind]+1)%pages;this.render();});}
+-      const visible=offers.slice(this.pcPages[kind]*capacity,this.pcPages[kind]*capacity+capacity),seat=(group.width-8*Math.max(0,visible.length-1))/Math.max(1,visible.length);
++      const visible=offers.slice(this.pcPages[kind]*capacity,this.pcPages[kind]*capacity+capacity),grid=shopGoodsGrid(group,visible.length);
+       if(!visible.length)v.text(group.x+10,group.y+18,'暂无待售'+(kind==='tools'?'工具':'长期物品'),14,'#7B7365',group.width-20);
+-      visible.forEach((o,i)=>{const b={x:group.x+i*(seat+8),y:group.y,width:seat,height:group.height};const artWidth=Math.min(72,(b.height-16)/1.4);this.drawPCOffer(o,kind,b,{x:b.x+8,y:b.y+8,width:artWidth,height:artWidth*1.4});});
++      visible.forEach((o,i)=>{const b=grid.boxes[i];const artWidth=Math.min(72,(b.height-16)/1.4);this.drawPCOffer(o,kind,b,{x:b.x+8,y:b.y+8,width:artWidth,height:artWidth*1.4});});
+     }
+     const discovery=this.ready&&!this.notice?savedGrowthDiscovery(this.run):undefined;
+     this.noticeLabel=v.text(pc.feedback.x+6,pc.feedback.y,this.busy?'正在保存…':this.notice||r2BasicToolShelfStatus(this.run)||discovery?.full||starterShopCue(this.run)||firstChapterGuide(this.run)?.cue||'点商品只看详情，确认才扣款；购买工具不会自动使用。',14,this.notice?'#B8473A':'#3F606B',pc.feedback.width-12).setStyle({maxLines:1}).setName(discovery?'growth/discovery':'');this.drawResultCue();
+@@ -272,8 +275,7 @@ export class ShopScene extends Phaser.Scene {
+   /** Long real rules may need a whole group; paging must use the same final capacity. */
+   private pcGroupCapacity(kind:'tools'|'items',p:ReturnType<typeof shopLayout>):number {
+     const group=kind==='tools'?p.pc!.toolOffers:p.pc!.itemOffers;
+-    const budget=Math.floor((group.width/2-88)/14)*Math.floor((group.height-64)/16);
+-    return group.width>=440&&this.shelfOffers(kind).every(o=>(kind==='tools'?toolInfo(o.definitionId,this.run):itemInfo(o.definitionId)).description.length<=budget)?2:1;
++    return shopGoodsGrid(group,this.shelfOffers(kind).length).capacity;
+   }
+   private shopJokerSummary(id:string):string {
+     const d=this.jokerDefinition(id);
+@@ -292,7 +294,7 @@ export class ShopScene extends Phaser.Scene {
+     let summary=d?this.shopJokerSummary(d.id):info!.summary;
+     if(d){const plain=this.jokerCopy(d.id)?.plain;summary=plain?(plain.fallback?plain.tile:plain.line)+(plain.status.startsWith('现在')?'\n'+plain.status:''):this.shopJokerSummary(d.id);}
+     const initialX=d?tile.x+10:face.x+face.width+10,initialY=d?face.y+face.height+2:tile.y+2,width=tile.x+tile.width-initialX-10;
+-    const priceY=d?tile.y+face.height+98:tile.y+tile.height-36;
++    const priceY=d?tile.y+face.height+134:tile.y+tile.height-36;
+     const probe=v.text(0,0,'',14,'#3F606B');
+     const wrapped=shopSummaryWrap(summary,width,text=>{probe.setText(text);return probe.width;});probe.setText(wrapped);
+     const column=!d&&probe.height>priceY-(initialY+22)-4;probe.destroy();
+@@ -307,6 +309,7 @@ export class ShopScene extends Phaser.Scene {
+     const priceInk=this.offerPricePlate(o,{x:priceX-2,y:priceY-2,width:column?66:tile.x+tile.width-priceX-8,height:24});
+     v.text(priceX,priceY,o.consumed?'已购':`${r2PurchasePrice(this.run,o)} 金${column?'':` · ${d?editionLabel(o.edition):'查看'}`}`,16,priceInk).setFontStyle('bold').setName('shop/offer-price').setData('offerId',o.offerId);
+     this.markBuildOffer(o,kind,tile);
++    if(d)this.drawOfferGuidance(o,{x:initialX,y:priceY-36,width,height:34});
+     const reason=o.consumed?'':this.purchaseReason(o,true);if(reason){const note=v.text(priceX,priceY+20,reason,14,'#B8473A').setName('shop/offer-reason').setData('offerId',o.offerId);this.ellipsis(note,column?64:width);}
+     const hover=this.hoverCard(first,tile,d?.id),hit=v.rect(tile).setFillStyle(0,0).setStrokeStyle().setData('selected',this.selectedOfferId===o.offerId);
+     this.pcOfferBoxes.set(o.offerId,tile);this.offerArts.push(hover.art);v.target(hit,'offer/'+o.offerId,{tap:()=>this.inspectOffer(o.offerId),detail:()=>this.inspectOffer(o.offerId),...hover});
+@@ -584,6 +587,12 @@ export class ShopScene extends Phaser.Scene {
+   }
+   private buildLabel():string {const focus=currentBuildFocus(this.run,this.run.openingRoute);return focus?'培养 · '+BUILD_LABEL[focus]:'培养与构筑';}
+   /** Outline real existing faces without hiding alternatives or changing the shelf hit rectangles. */
++  private drawOfferGuidance(o:R2Offer,b:Box):void {
++    const g=shopOfferGuidance(this.run,o),v=this.view;
++    v.text(b.x,b.y,g.routeCaption,14,'#3F606B',b.width).setName('shop/offer-routes').setData('offerId',o.offerId).setData('routes',g.routes).setData('fullText',g.routeCaption);
++    const wide=b.width>=130,copy=wide?g.label+' · '+g.reason:g.label+'\n'+g.reason;
++    v.text(b.x,b.y+18,copy,14,g.stars===3?'#80551F':'#59646A',b.width).setName('shop/offer-advice').setData('offerId',o.offerId).setData('stars',g.stars).setData('reason',g.detail).setData('fullText',copy);
++  }
+   private markBuildOffer(o:R2Offer,kind:ShelfKind,b:Box):void {
+     const cue=routeFitCue(this.run,kind,o.definitionId);if(cue&&!o.consumed)this.view.add(routeFrame(this,b,cue,kind==='jokers'&&this.jokerDefinition(o.definitionId).rarity==='rare').setName('shop/build-match').setData('offerId',o.offerId));
+     if(kind==='jokers'&&starterOffer(this.run,o)){this.view.material({x:b.x+4,y:b.y+4,width:76,height:22},0xfff9ee,0xfff9ee,3);this.view.text(b.x+8,b.y+6,'起手 · 可选',14,'#26313A').setFontStyle('bold').setName('shop/route-starter-label').setData('offerId',o.offerId);}
+diff --git a/tests/shop-layout.test.ts b/tests/shop-layout.test.ts
+index 415b4d0..889c25a 100644
+--- a/tests/shop-layout.test.ts
++++ b/tests/shop-layout.test.ts
+@@ -1,5 +1,5 @@
+ import {it,expect} from 'vitest';
+-import {shopLayout,shopFirstGuideLayout,shopSummaryWrap,shopOfferCopy,shopOwnedDropIndex,shopOwnedHitBox,shopOwnedNameArea} from '../src/game/ShopLayout';
++import {shopLayout,shopFirstGuideLayout,shopSummaryWrap,shopOfferCopy,shopOwnedDropIndex,shopOwnedHitBox,shopOwnedNameArea,shopGoodsGrid} from '../src/game/ShopLayout';
+ import {intersects} from '../src/game/layout';
+ it('first-shop guide has reachable exits without covering merchandise or primary shop actions',()=>{
+  for(const [width,height] of [[1280,720],[1366,768],[1920,1080],[390,740],[320,740],[740,390],[768,1024]]){
+@@ -121,3 +121,7 @@ it('keeps actual probability fractions together in narrow purpose text',()=>{
+  const text=shopSummaryWrap('结算后1/4概率永久破碎；1/15得10金',7,s=>s.length);
+  expect(text).toContain('1/4');expect(text).toContain('1/15');expect(text).not.toMatch(/1\/\n|1\n\//);
+ });
++
++it('PC goods expand by final width and height, with bounded narrow pagination',()=>{
++ for(const [width,height,count] of [[500,272,4],[436,160,2],[256,112,2]]){const group={x:12,y:10,width,height},g=shopGoodsGrid(group,count);if(width>=436)expect(g.capacity).toBeGreaterThanOrEqual(count);else expect(g.capacity).toBe(1);for(const [i,b] of g.boxes.entries()){expect(b.x+b.width).toBeLessThanOrEqual(group.x+width);expect(b.y+b.height).toBeLessThanOrEqual(group.y+height);for(const other of g.boxes.slice(i+1))expect(intersects(b,other)).toBe(false);}}
++});
