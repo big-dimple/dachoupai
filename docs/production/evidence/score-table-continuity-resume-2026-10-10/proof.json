@@ -1,0 +1,58 @@
+{
+  "baseline": "ed85f7aaa307c81b872afd884a09f7393455aa27",
+  "product": "a842d766fb3b838044be62315cf997d344ae4cf9",
+  "comparisons": [
+    {
+      "key": "ordinary-1366-normal",
+      "initialAndFinalStateJournalStorageIdentical": true
+    },
+    {
+      "key": "growth-390-normal",
+      "initialAndFinalStateJournalStorageIdentical": true
+    }
+  ],
+  "protected": [
+    {
+      "path": "src/domain",
+      "exists": true,
+      "same": true,
+      "tree": "5cbf79d6505eec84e042e46b31d3832e09ac1d78"
+    },
+    {
+      "path": "src/application",
+      "exists": true,
+      "same": true,
+      "tree": "a3cca278fdecd7bbd96a13909c2f904fb36e4bd4"
+    },
+    {
+      "path": "src/content",
+      "exists": true,
+      "same": true,
+      "tree": "6018132526ce72176f016f99ead53022480ab429"
+    },
+    {
+      "path": "public",
+      "exists": true,
+      "same": true,
+      "tree": "c4a6ec74e7fd754b0f300b973020f8afed7542e1"
+    },
+    {
+      "path": "art/sources",
+      "exists": true,
+      "same": true,
+      "tree": "47067728e0f15588b56199ff8ecc3b4e40c2dc53"
+    },
+    {
+      "path": "src/audio",
+      "exists": true,
+      "same": true,
+      "tree": "a2f0483eecaaafb40cdbb82778ec2a846fd2e000"
+    },
+    {
+      "path": "vendor",
+      "exists": false,
+      "same": true,
+      "tree": null
+    }
+  ]
+}
