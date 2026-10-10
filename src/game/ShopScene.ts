@@ -128,7 +128,7 @@ export class ShopScene extends Phaser.Scene {
     this.pcOfferBoxes.clear();if(p.pc){this.renderPC(p);return;}
     const purse={x:p.x+p.w-(this.view.layout.width<=700?96:136)-124,y:p.top-1,width:116,height:34},purseArt=this.add.graphics();
     const character=getCharacter(this.run.characterId),titleRight=Math.min(...[purse,p.reroll,p.build].filter(b=>b.y<p.top+32&&b.y+b.height>p.top&&b.x>=p.x).map(b=>b.x),p.x+p.w)-6;
-    const avatar=avatarKey(character.id),withAvatar=p.portrait&&titleRight-p.x>=68&&this.textures.exists(avatar),titleX=p.x+(withAvatar?38:0);
+    const avatar=avatarKey(character.id),withAvatar=p.portrait&&titleRight-p.x>=Math.max(68,38+character.name.length*14)&&this.textures.exists(avatar),titleX=p.x+(withAvatar?38:0);
     if(withAvatar){const image=this.add.image(p.x+16,p.top+16,avatar);image.setScale(32/image.width).setName('shop/hero-avatar').setData('assetId',character.id+'.avatar');v.add(image);}
     const title=v.text(titleX,p.top+3,character.name+(this.run.tourMode==='endless'?' · 无尽筹备':' · 筹备'),18,'#26313A').setFontFamily('Georgia, "Noto Serif SC", SimSun, serif').setFontStyle('bold').setName('shop/title');
     if(title.x+title.width>titleRight)title.setText(character.name);
