@@ -10,4 +10,4 @@
 
 验收：纯formatter必要条件/精确与近似边界；原同夹具PC/390同输入前后真实命令/完整final state-journal-storage一致、实际caption未截断且主分/公式可读；字体使用现有OFL文件。只必要320同态布局及快进/低动态原保存一致，不重跑自然长局/六角/八章/大矩阵；最终产品HEAD精确CI，draft父审main。截图和软件事件时序不是真人动态/设备/听感签收。首个失败保留，不为实现写镜像测试。
 
-最终产品9238847：PC十个真实乘法caption完整、完整保存对照一致；首修b83视觉FAIL与手机热度截图异常保留，原因未解释，最新图层诊断正常显示。不得签全段无遮挡/设备/整体W4；见[evidence](evidence/score-number-clarity-2026-10-10/README.md)。
+最终产品9238847：PC十个真实乘法caption完整、完整保存对照一致；首修b83视觉FAIL保留；手机疑似缺热度的原观察已勘误，已提交原图/记录正常，无法复现或证实缺字。不得签全段无遮挡/设备/整体W4；见[evidence](evidence/score-number-clarity-2026-10-10/README.md)。

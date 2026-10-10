@@ -14,4 +14,4 @@ for name,d in reports.items():
   for caption in case.get('multiplierCaptions',[]):assert caption['text']==caption['full']
 assert reports['final']['expected']['lastTrace']['finalScore']=='5480485'
 for p in root.glob('*/*.png'):assert p.read_bytes().startswith(b'\x89PNG\r\n\x1a\n')
-print('PASS: exact archived source, command state, baseline complete state/journal/storage and actual full captions; image readability/phone capture anomaly require human review')
+print('PASS: exact archived source, command state, baseline complete state/journal/storage and actual full captions; pixel review confirms submitted phone heat digits; whole dynamic/device acceptance remains separate')

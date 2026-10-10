@@ -1,0 +1,56 @@
+{
+  "kind": "documentation-only correction of unconfirmed observation",
+  "originalObservation": "executor suspected missing 2,160 in two phone award images; prior prose incorrectly stated this as fact",
+  "recheck": "submitted original PNGs and report records show normal heat digits; no alternate missing-digit bytes found; cannot reproduce or confirm defect",
+  "productRegressionRerun": false,
+  "imagesAndRawReportsModified": false,
+  "images": [
+    {
+      "path": "final/390-award.png",
+      "originalHead": "af9a71ad3da42a52c042a5dda626f05916339e65",
+      "gitBlob": "e9c90e63428894b3af8034402c81f1bf99542070",
+      "sha256": "49744851834ccd5d10f2b7a14648e242ab2b49004c78b4c30f318806f045ace1",
+      "currentBytesEqualOriginal": true,
+      "originalSize": [
+        390,
+        740
+      ],
+      "pixelReview": "2,160 clearly visible; no confirmed missing heat digits"
+    },
+    {
+      "path": "phone-late/390-late-award.png",
+      "originalHead": "af9a71ad3da42a52c042a5dda626f05916339e65",
+      "gitBlob": "f4aad6b517be8b26ed50edce5ebf2ef9b63d19cd",
+      "sha256": "7413e576e7e30d7bcd8bcd9dab0b7ab93413a70d9eae35cac1fb379cf3a4794b",
+      "currentBytesEqualOriginal": true,
+      "originalSize": [
+        390,
+        740
+      ],
+      "pixelReview": "2,160 clearly visible; no confirmed missing heat digits"
+    }
+  ],
+  "heatPixelIdentity": {
+    "boxXYXYExclusive": [
+      50,
+      194,
+      116,
+      223
+    ],
+    "boxXYXYInclusive": [
+      50,
+      194,
+      115,
+      222
+    ],
+    "format": "RGB row-major bytes",
+    "images": [
+      "before/390-award.png",
+      "final/390-award.png",
+      "phone-late/390-late-award.png",
+      "phone-debug/390-late-award.png"
+    ],
+    "sha256": "203c8cc6dc206c09e240f7ecf6db71a86a231f98f8ec48d07cc74f707688bb70",
+    "allEqual": true
+  }
+}
