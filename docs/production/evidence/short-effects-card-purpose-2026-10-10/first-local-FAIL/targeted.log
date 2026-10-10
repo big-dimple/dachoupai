@@ -1,0 +1,82 @@
+
+> dachoupai@0.1.0 test
+> vitest run --run tests/saved-tool-result.test.ts tests/result-stage.test.ts tests/failure-audio.test.ts tests/reward-coin.test.ts
+
+
+ RUN  v4.1.11 /workspace/dachoupai
+
+ ❯ tests/failure-audio.test.ts (4 tests | 4 failed) 11ms
+     × plays both failed attempts when deterministic run ID and command sequence are identical 7ms
+     × keeps scene recreation on the same cue and restored results without a cue silent 1ms
+     × consumes a silent ending once and allows a new attempt with the same deterministic fields 1ms
+     × does not play a cue for a different run, stale ending or deliberate abandonment 1ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 4 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/failure-audio.test.ts > committed failure cue identity > plays both failed attempts when deterministic run ID and command sequence are identical
+ReferenceError: window is not defined
+ ❯ IntermissionScene.create src/game/IntermissionScene.ts:92:18
+     90|   create():void {
+     91|     this.lifecycle++;this.busy=false;this.notice='';this.firstRender=t…
+     92|     const motion=window.matchMedia('(prefers-reduced-motion: reduce)');
+       |                  ^
+     93|     const preference=()=>{if((gameSession().reducedMotion||motion.matc…
+     94|     const suspend=()=>{if(this.scene.isActive()){this.firstRender=fals…
+ ❯ enter tests/failure-audio.test.ts:18:9
+ ❯ tests/failure-audio.test.ts:34:36
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/4]⎯
+
+ FAIL  tests/failure-audio.test.ts > committed failure cue identity > keeps scene recreation on the same cue and restored results without a cue silent
+ReferenceError: window is not defined
+ ❯ IntermissionScene.create src/game/IntermissionScene.ts:92:18
+     90|   create():void {
+     91|     this.lifecycle++;this.busy=false;this.notice='';this.firstRender=t…
+     92|     const motion=window.matchMedia('(prefers-reduced-motion: reduce)');
+       |                  ^
+     93|     const preference=()=>{if((gameSession().reducedMotion||motion.matc…
+     94|     const suspend=()=>{if(this.scene.isActive()){this.firstRender=fals…
+ ❯ enter tests/failure-audio.test.ts:18:9
+ ❯ tests/failure-audio.test.ts:40:60
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/4]⎯
+
+ FAIL  tests/failure-audio.test.ts > committed failure cue identity > consumes a silent ending once and allows a new attempt with the same deterministic fields
+ReferenceError: window is not defined
+ ❯ IntermissionScene.create src/game/IntermissionScene.ts:92:18
+     90|   create():void {
+     91|     this.lifecycle++;this.busy=false;this.notice='';this.firstRender=t…
+     92|     const motion=window.matchMedia('(prefers-reduced-motion: reduce)');
+       |                  ^
+     93|     const preference=()=>{if((gameSession().reducedMotion||motion.matc…
+     94|     const suspend=()=>{if(this.scene.isActive()){this.firstRender=fals…
+ ❯ enter tests/failure-audio.test.ts:18:9
+ ❯ tests/failure-audio.test.ts:48:53
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/4]⎯
+
+ FAIL  tests/failure-audio.test.ts > committed failure cue identity > does not play a cue for a different run, stale ending or deliberate abandonment
+ReferenceError: window is not defined
+ ❯ IntermissionScene.create src/game/IntermissionScene.ts:92:18
+     90|   create():void {
+     91|     this.lifecycle++;this.busy=false;this.notice='';this.firstRender=t…
+     92|     const motion=window.matchMedia('(prefers-reduced-motion: reduce)');
+       |                  ^
+     93|     const preference=()=>{if((gameSession().reducedMotion||motion.matc…
+     94|     const suspend=()=>{if(this.scene.isActive()){this.firstRender=fals…
+ ❯ enter tests/failure-audio.test.ts:18:9
+ ❯ tests/failure-audio.test.ts:56:5
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/4]⎯
+
+
+ Test Files  1 failed | 3 passed (4)
+      Tests  4 failed | 48 passed (52)
+   Start at  23:47:13
+   Duration  1.50s (transform 1.96s, setup 0ms, import 2.84s, tests 431ms, environment 0ms)
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice
