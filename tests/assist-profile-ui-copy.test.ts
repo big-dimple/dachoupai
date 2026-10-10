@@ -31,7 +31,7 @@ it('same-ID game and shop copy follows the current exact profile in both directi
  }
 });
 it('saved Amo role copy distinguishes assist, before-Joker v10 and after-Joker v11 without changing other characters',()=>{
- expect(characterForRun(state(true)).passiveName).toBe('主手＋助攻（试行）');
+ expect(characterForRun(state(true)).passiveName).toBe('主手＋助攻');
  expect(characterForRun(legacy.before.state as any).passiveDescription).toContain('之前');
  expect(characterForRun(state(false)).passiveDescription).toContain('之后');
 });

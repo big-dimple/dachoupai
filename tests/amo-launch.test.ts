@@ -47,19 +47,19 @@ describe('normal new-game policy and exact retry creation',()=>{
   expect(()=>createRun({...base,r2Identity:newRunIdentity('amo'),modeConfig:{mode:'tutorial',difficulty:0,challengeId:null,programsEnabled:false}})).toThrow();
  });
  it('selector copy shares new-game policy without changing legacy or other character definitions',()=>{
-  const amo=characterForNewRun('amo');expect(amo.passiveName).toBe('主手＋助攻（试行）');
+  const amo=characterForNewRun('amo');expect(amo.passiveName).toBe('主手＋助攻');
   expect(amo.buildTip).not.toMatch(/单张|Lv3|高牌升级/);expect(amo.buildTip).toContain('不能助攻');
   expect(amo.passiveDescription).toMatch(/每场1次/);expect(amo.passiveDescription).toContain('对子×2／三条×4');
   expect(characterForNewRun('azao').passiveDescription).toContain('重复合格牌也可释放');
-  expect(characterForNewRun('xiemu').passiveName).toBe('留钱／燃金（试行）');
-  expect(characterForNewRun('xiemu').passiveDescription).toContain('替换旧末手×2与末手+2金');
+  expect(characterForNewRun('xiemu').passiveName).toBe('留钱／燃金');
+  expect(characterForNewRun('xiemu').passiveDescription).toContain('燃10／20／30金');
   expect(getCharacter('xiemu').passiveDescription).toContain('最后可用出牌');
-  expect(characterForNewRun('laohuan').passiveDescription).toContain('替换旧顺子/同花/同花顺+120');
-  expect(characterForNewRun('touye').passiveDescription).toContain('替换旧50/50随机押');
+  expect(characterForNewRun('laohuan').passiveDescription).toContain('多看最多2张');
+  expect(characterForNewRun('touye').passiveDescription).toContain('目标当前整手已能凑出就不能押');
   expect(getCharacter('touye').passiveDescription).toContain('50%');
   expect(getCharacter('laohuan').passiveDescription).toContain('额外 +120');
   expect(getCharacter('amo').buildTip).toContain('单张');
-  expect(characterForNewRun('erxiang').passiveName).toBe('交棒（试行）');
+  expect(characterForNewRun('erxiang').passiveName).toBe('交棒');
   expect(characterForNewRun('erxiang').passiveDescription).toContain('首次普通点数不计热度');
   expect(getCharacter('erxiang').passiveDescription).toBe('对子、两对、三条的倍率 +1.5。');
  });
