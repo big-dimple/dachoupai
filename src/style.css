@@ -628,7 +628,7 @@ button[aria-busy=true] { border-style:dashed; }
 @media(max-width:560px) { .hero-skill-dialog .dialog-content { grid-template-rows:minmax(0,1fr); }.hero-skill-dialog .dialog-scroll { height:100%; } }
 
 /* Owned tools share one compact paper case; the existing target/confirmation workspace follows. */
-.tool-inventory[open] { width:min(680px,calc(100vw - var(--safe-left) - var(--safe-right) - 24px));height:auto; }
+.tool-inventory[open] { width:min(680px,calc(100vw - var(--safe-left) - var(--safe-right) - 24px));height:auto;inset:auto;top:50%;left:50%;transform:translate(-50%,-50%); }
 .tool-inventory .dialog-body { margin:0; }
 .tool-inventory .tool-inventory-group { margin-top:14px; }
 .tool-inventory .tool-inventory-grid { grid-template-columns:repeat(auto-fill,minmax(160px,190px));justify-content:center;align-items:stretch; }
