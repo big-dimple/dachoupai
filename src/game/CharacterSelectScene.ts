@@ -39,6 +39,7 @@ export class CharacterSelectScene extends Phaser.Scene {
   private notice='';
   private animateChoice=false;
   private readonly openingMotion=new Map<Phaser.GameObjects.GameObject,()=>void>();
+  private sampleAfter=false;
   private readonly portraitRequests=new Set<CharacterId>();
   private view!:SceneView;
   private readonly dialog=new DetailDialog();
@@ -52,7 +53,7 @@ export class CharacterSelectScene extends Phaser.Scene {
     this.seed=this.modeConfig.mode==='tutorial'?R2_MODE_CATALOG.tutorial.config.seedPolicy.values[0]:data?.seed??(data?.freshSeed?String(Date.now()):undefined);
   }
   create():void {
-    this.choosing=false;this.notice='';this.animateChoice=false;this.lifecycle++;
+    this.choosing=false;this.notice='';this.animateChoice=false;this.sampleAfter=false;this.lifecycle++;
     this.cameras.main.setBackgroundColor('#F3EADB');this.audio.setScene('menu');
     this.view=new SceneView(this,()=>this.render());
     const session=gameSession();let pending=session.pendingRun;
@@ -96,7 +97,7 @@ export class CharacterSelectScene extends Phaser.Scene {
         v.text(b.x+14,b.y+(p.short?32:62),copy.play,14,'#26313A',b.width-28);
       }
       const hit=v.rect(b).setFillStyle(0,0).setStrokeStyle(0).setData('selected',selected);
-      v.target(hit,'route/'+focus,{tap:()=>{if(!this.choosing){this.selectedRoute=focus;this.notice='';this.animateChoice=true;this.audio.select();this.render();}}});
+      v.target(hit,'route/'+focus,{tap:()=>{if(!this.choosing){this.selectedRoute=focus;this.sampleAfter=false;this.notice='';this.animateChoice=true;this.audio.select();this.render();}}});
     });
     this.animateChoice=false;
     const existing=gameSession().run,canReturn=!!existing&&!['run-won','run-lost'].includes(existing.state.phase);
@@ -111,10 +112,12 @@ export class CharacterSelectScene extends Phaser.Scene {
     v.material(b,PAPER_THEME.jadeSoft,PAPER_THEME.jadeSoft,8);
     const trim=this.add.graphics().lineStyle(1,PAPER_THEME.jade,.25).strokeRoundedRect(b.x+4,b.y+4,b.width-8,b.height-8,6);v.add(trim);
     this.queueHeroPortrait(c.id);this.drawPortrait(c.id,q.art,true);
-    const x=q.copy.x,w=q.copy.width;
-    const name=v.text(x,q.copy.y,c.name,p.short?30:p.portrait?34:p.w>=1280?66:52,copy.accent).setFontFamily('Georgia, "Noto Serif SC", SimSun, serif').setFontStyle('bold').setName('opening/name');
+    const x=q.copy.x,w=q.copy.width,tightPortrait=p.portrait&&q.copy.height<100;
+    const name=v.text(x,q.copy.y,c.name,p.short?30:tightPortrait?28:p.portrait?34:p.w>=1280?66:52,copy.accent).setFontFamily('Georgia, "Noto Serif SC", SimSun, serif').setFontStyle('bold').setName('opening/name');
     const title=v.text(x,name.y+name.height+2,c.title,14,'#3F606B').setName('opening/title');
-    const quote=v.text(x,title.y+title.height+7,copy.taunt,p.short?16:p.portrait?16:24,copy.accent,w).setFontStyle('bold').setName('opening/taunt');
+    const quote=v.text(x,tightPortrait?name.y+name.height+4:title.y+title.height+7,copy.taunt,tightPortrait?14:p.short?16:p.portrait?16:24,copy.accent,w).setFontStyle('bold').setName('opening/taunt');
+    if(p.portrait){quote.setWordWrapWidth(0);if(quote.width>w)quote.setText(copy.taunt.replace(/([，？])/,'$1\n'));if(quote.width>w)quote.setFontSize(14);quote.setWordWrapWidth(w,true);}
+    if(tightPortrait)title.setVisible(false);
     if(p.short){title.setPosition(x+name.width+10,name.y+14);quote.setPosition(x+name.width+title.width+24,name.y+12).setWordWrapWidth(Math.max(100,w-name.width-title.width-24),true);}
     if(!abilityEnabled){v.text(q.demo.x,q.demo.y,'此挑战关闭角色能力',18,'#26313A',q.demo.width).setName('opening/play');v.text(q.demo.x,q.demo.y+28,'示例仅在普通局可用；原模式经济保持。',14,'#3F606B',q.demo.width);}
     else if(this.step==='route')this.showRouteDemo(q.demo,c.id,p.short);
@@ -125,7 +128,7 @@ export class CharacterSelectScene extends Phaser.Scene {
   }
   private trackOpening(target:Phaser.GameObjects.GameObject,finish:()=>void):void {this.openingMotion.set(target,finish);target.once('destroy',()=>{this.tweens.killTweensOf(target);this.openingMotion.delete(target);});}
   private showSample(b:Box,sample:OpeningPlaySample):void {
-    const cards=drawOpeningPlayTable(this,this.view,b,sample,()=>{if(!this.choosing){this.animateChoice=true;this.render();}});
+    const cards=drawOpeningPlayTable(this,this.view,b,sample,()=>{if(!this.choosing){this.sampleAfter=!this.sampleAfter;this.animateChoice=true;this.render();}},this.sampleAfter);
     if(this.animateChoice&&!this.reducedMotion())cards.forEach((art,i)=>{
       const finish=()=>{if(art.active)art.setPosition(0,0).setAlpha(1);};
       art.setPosition(-8,5).setAlpha(.45);this.trackOpening(art,finish);
@@ -182,7 +185,7 @@ export class CharacterSelectScene extends Phaser.Scene {
   private select(id:CharacterId):void {
     if(this.choosing)return;
     if(this.modeConfig.mode==='tutorial'&&id!=='erxiang'){this.notice='教程固定二响；跳过教程后可自由选角。';this.audio.invalid();this.render();return;}
-    this.selectedId=id;this.notice='';this.animateChoice=true;this.audio.select();this.render();
+    this.selectedId=id;this.sampleAfter=false;this.notice='';this.animateChoice=true;this.audio.select();this.render();
   }
   private compareHeroes():void {
     if(this.choosing)return;
