@@ -1,0 +1,75 @@
+{
+  "head": "ce1a42dca00c207e294560037ca69a2e6297fe7d",
+  "scope": "有限六英雄当前身份受控公开手牌/现金；同状态只读、一次骰爷原生赌约弃牌及取消。不读取隐藏抽牌顺序，不签自然获得/玩法吸引力/真人/设备/音频。",
+  "cases": [
+    {
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      },
+      "checks": [
+        {
+          "name": "erxiang",
+          "summary": "第3步 · 已选8点交棒，返回牌桌确认出牌",
+          "saveUnchanged": true
+        },
+        {
+          "name": "xiemu",
+          "summary": "第3步 · 已选燃10金，返回牌桌确认出牌",
+          "saveUnchanged": true
+        },
+        {
+          "name": "azao",
+          "summary": "第3步 · 已选释放1层，返回牌桌确认出牌",
+          "saveUnchanged": true
+        },
+        {
+          "name": "amo",
+          "summary": "第3步 · 已选2张助攻，返回牌桌确认出牌",
+          "saveUnchanged": true
+        },
+        {
+          "name": "azao-zero-qualified",
+          "saveUnchanged": true
+        }
+      ],
+      "errors": [],
+      "status": "PASS"
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 740
+      },
+      "checks": [
+        {
+          "name": "erxiang",
+          "summary": "第3步 · 已选8点交棒，返回牌桌确认出牌",
+          "saveUnchanged": true
+        },
+        {
+          "name": "xiemu",
+          "summary": "第3步 · 已选燃10金，返回牌桌确认出牌",
+          "saveUnchanged": true
+        },
+        {
+          "name": "azao",
+          "summary": "第3步 · 已选释放1层，返回牌桌确认出牌",
+          "saveUnchanged": true
+        },
+        {
+          "name": "amo",
+          "summary": "第3步 · 已选2张助攻，返回牌桌确认出牌",
+          "saveUnchanged": true
+        },
+        {
+          "name": "azao-zero-qualified",
+          "saveUnchanged": true
+        }
+      ],
+      "errors": [],
+      "status": "PASS"
+    }
+  ],
+  "status": "PASS"
+}
