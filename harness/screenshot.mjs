@@ -112,7 +112,7 @@ try {
     const beforeInspect=await state(page);
     for(const label of ['查看牌组','规则 / 物品']){
       await tapMenuAction(page,label,touch);assert.equal(await page.locator('.run-menu-modal').evaluate(dialog=>dialog.open),false,'inspection replaces the menu without stacking dialogs');
-      assert.ok(await page.locator('dialog[open]').count());await dom(page,'关闭',touch);
+      assert.ok(await page.locator('dialog[open]').count());await dom(page,label==='规则 / 物品'?'返回牌桌':'关闭',touch);
       assert.deepEqual(await state(page),beforeInspect,'low-frequency inspection cannot spend resources or RNG');
     }
     await page.waitForTimeout(370);
