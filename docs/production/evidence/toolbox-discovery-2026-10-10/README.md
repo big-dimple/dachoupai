@@ -1,3 +1,5 @@
+父独审返修（2026-10-10）：下方b122495/be90b78为历史候选，CI虽通过但1366基础自选标题/用途重叠11px，未获合并批准。当前最小返修产品a26006afaedfe435451d0e958bb692f1defd8311：仅drawBasicChoiceSeat按座宽保留至少96px文案宽、原画上限124px，PC用途按标题实际高度+6px；字号14/16与原hit/交易保持。1280/1366/1908实际标题→用途→价格分离，390布局/文字边界与main825完全相同（原字体框相接1px，实字形已查看，不声称全字体矩形分离）；四组查看/取消完整state-journal-storage不变。见[basic-choice-review-repair](basic-choice-review-repair/proof.json)。原父发现FAIL和观察器窄屏分页/手机字体框谓词失败保留；f10疑点父已核真实straight/flush条件并撤回，未改路线逻辑。20定向/type，最终新HEAD CI及父剩余独审待核，不声明可合并或已验收。
+
 # 道具箱发现与商店布局：有限软件证据
 
 2026-10-10。基线 main `82549cec04d4b651bcec5e621fed8f641602859a`，最终产品 `b122495db2231b9e8b9a59be3e5f602e01690297`；最终文档 HEAD 的 CI 由 PR 精确核实。6.1 Medium 串行，无并发工作者。

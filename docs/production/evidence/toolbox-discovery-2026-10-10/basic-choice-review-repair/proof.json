@@ -1,0 +1,147 @@
+{
+  "base": "82549cec04d4b651bcec5e621fed8f641602859a",
+  "rejectedPreviousProduct": "b122495db2231b9e8b9a59be3e5f602e01690297",
+  "repairProduct": "a26006afaedfe435451d0e958bb692f1defd8311",
+  "nativeReadonlyAllTuplesUnchanged": true,
+  "phoneBasicTextBoundsExactlySameAsMain": true,
+  "PC": [
+    {
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      },
+      "titlePurposeGap": 6,
+      "purposePriceGap": 47,
+      "fullBasicText": [
+        {
+          "name": "shop/basic-choice-title",
+          "text": "基础自选1件",
+          "bounds": {
+            "type": 5,
+            "x": 432,
+            "y": 564,
+            "width": 78,
+            "height": 17
+          },
+          "font": "14px"
+        },
+        {
+          "name": "shop/basic-choice-purpose",
+          "text": "选工具，再选目标牌",
+          "bounds": {
+            "type": 5,
+            "x": 432,
+            "y": 587,
+            "width": 126,
+            "height": 16
+          },
+          "font": "14px"
+        },
+        {
+          "name": "shop/basic-choice-price",
+          "text": "2 金",
+          "bounds": {
+            "type": 5,
+            "x": 432,
+            "y": 650,
+            "width": 30,
+            "height": 19
+          },
+          "font": "16px"
+        }
+      ]
+    },
+    {
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      },
+      "titlePurposeGap": 6,
+      "purposePriceGap": 31,
+      "fullBasicText": [
+        {
+          "name": "shop/basic-choice-title",
+          "text": "基础自选1件",
+          "bounds": {
+            "type": 5,
+            "x": 621,
+            "y": 612,
+            "width": 78,
+            "height": 17
+          },
+          "font": "14px"
+        },
+        {
+          "name": "shop/basic-choice-purpose",
+          "text": "选工具，再选目标牌",
+          "bounds": {
+            "type": 5,
+            "x": 621,
+            "y": 635,
+            "width": 84,
+            "height": 32
+          },
+          "font": "14px"
+        },
+        {
+          "name": "shop/basic-choice-price",
+          "text": "2 金",
+          "bounds": {
+            "type": 5,
+            "x": 621,
+            "y": 698,
+            "width": 30,
+            "height": 19
+          },
+          "font": "16px"
+        }
+      ]
+    },
+    {
+      "viewport": {
+        "width": 1908,
+        "height": 960
+      },
+      "titlePurposeGap": 6,
+      "purposePriceGap": 133,
+      "fullBasicText": [
+        {
+          "name": "shop/basic-choice-title",
+          "text": "基础自选1件",
+          "bounds": {
+            "type": 5,
+            "x": 900,
+            "y": 702,
+            "width": 78,
+            "height": 17
+          },
+          "font": "14px"
+        },
+        {
+          "name": "shop/basic-choice-purpose",
+          "text": "选工具，再选目标牌",
+          "bounds": {
+            "type": 5,
+            "x": 900,
+            "y": 725,
+            "width": 84,
+            "height": 32
+          },
+          "font": "14px"
+        },
+        {
+          "name": "shop/basic-choice-price",
+          "text": "2 金",
+          "bounds": {
+            "type": 5,
+            "x": 900,
+            "y": 890,
+            "width": 30,
+            "height": 19
+          },
+          "font": "16px"
+        }
+      ]
+    }
+  ]
+}
