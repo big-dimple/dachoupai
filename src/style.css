@@ -570,3 +570,5 @@ button[aria-busy=true] { border-style:dashed; }
 .tool-saved-result .is-removal .tool-change-arrow,
 .tool-saved-result .is-removal .tool-change-removed { display:none; }
 .tool-saved-result .is-removal .candidate-card-face { min-width:110px; }
+.tool-saved-result .is-removal .tool-change-pair > span:not(.tool-change-arrow) { width:110px; }
+.tool-saved-result[open] { height:auto;min-height:0; }
