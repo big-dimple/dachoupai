@@ -4,7 +4,7 @@ export function selectionLayout(width:number,height:number,top:number,bottom:num
  const portrait=width<640&&height>width,short=height<500;
  const w=Math.min(1320,width-24),x=(width-w)/2,header=Math.max(12,top),footerY=height-bottom-(short?66:104);
  const contentY=header+(short?54:92),contentSpace=footerY-12-contentY;
- const railHeight=portrait?(step==='route'?164:Math.min(184,Math.max(112,contentSpace-274))):short?(step==='route'?82:66):126;
+ const railHeight=portrait?(step==='route'?(height<700?132:144):(height<700?112:152)):short?(step==='route'?60:50):126;
  const railY=footerY-12-railHeight,hero:Box={x,y:contentY,width:w,height:Math.max(1,railY-contentY-14)};
  const gap=portrait?8:12,cols=portrait?3:6,rows=6/cols;
  const cardWidth=(w-gap*(cols-1))/cols,cardHeight=(railHeight-gap*(rows-1))/rows;
