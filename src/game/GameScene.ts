@@ -918,7 +918,7 @@ export class GameScene extends Phaser.Scene {
     const xiemu=usesXiemuBurn(this.run)?xiemuChoice(this.run,this.selectionPreview()?.type,this.xiemuBurn):undefined;
     const azao=usesAzaoCharge(this.run)?azaoChoice(this.run,this.selectionPreview()?.type):undefined;
     if(azao&&!azao.available&&this.ready&&!this.playing&&!this.presentation)this.azaoRelease=false;
-    if(azao){(this.playButton.getData('label') as Phaser.GameObjects.Text).setText(this.azaoRelease?'爆发×'+azao.multiplier:'出牌');this.roleText.setText(this.view.layout.mode==='portrait'?(azao.enabled?'阿燥·蓄'+azao.charge+'·'+(this.azaoRelease?'已选×'+azao.multiplier:azao.charge?'放×'+azao.multiplier:'点英雄'):'蓄势停用'):azao.compact);}
+    if(azao){(this.playButton.getData('label') as Phaser.GameObjects.Text).setText(this.azaoRelease?'爆发×'+azao.multiplier:'出牌');this.roleText.setText(this.view.layout.mode==='portrait'?(azao.enabled?this.azaoRelease?'阿燥·已选×'+azao.multiplier:'阿燥·蓄'+azao.charge+'·'+(azao.charge?'放×'+azao.multiplier:'点英雄'):'蓄势停用'):azao.compact);}
     if(xiemu){if(this.ready&&!this.playing&&!this.presentation&&this.xiemuBurn&&!xiemu.choices.find(c=>c.cost===this.xiemuBurn)?.available)this.xiemuBurn=0;const copy=xiemuChoice(this.run,this.selectionPreview()?.type,this.xiemuBurn);this.roleText.setText(this.view.layout.mode==='portrait'?copy.mobile:copy.compact);(this.playButton.getData('label') as Phaser.GameObjects.Text).setText(this.xiemuBurn?'燃'+this.xiemuBurn+'·出牌':'出牌');}
     this.resourceCounts.play.setColor(handActionCountColor('play',!!this.playButton.input?.enabled));
     this.resourceCounts.discard.setColor(handActionCountColor('discard',!!this.discardButton.input?.enabled,this.run.stage!.discardsLeft<2*r2DiscardCost(this.run)));
@@ -951,7 +951,7 @@ export class GameScene extends Phaser.Scene {
     if(usesLaohuanRefill(this.run))this.roleText.setText(this.roleCaption());
     const heroCue=heroAbilityCue(this.run,this.selectionPreview(),[...this.selectedIds],this.assistProfile&&assistCandidates(this.assistInput(),r2AssistAvailability(this.run).available).length>0);
     const heroChosen=!!(this.erxiangTargetId||this.azaoRelease||this.xiemuBurn||this.assistIds.length);
-    if(heroCue&&!this.presentation&&!this.playing&&!heroChosen)this.roleText.setText('技能 · '+(this.view.layout.mode==='portrait'?heroCue.label:heroCue.label.split('·').slice(1).join('·')));
+    if(heroCue&&!this.presentation&&!this.playing&&!heroChosen)this.roleText.setText(this.view.layout.mode==='portrait'?heroCue.label:'技能 · '+heroCue.label.split('·').slice(1).join('·'));
     // Every update clears the readiness accent while saving, paused or presenting.
     const heroOpportunity=!!heroCue?.opportunity&&this.ready&&!this.presentation&&!this.playing;
     const heroAvailable=!!heroCue?.available&&heroOpportunity&&!heroChosen;
