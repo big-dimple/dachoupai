@@ -9,6 +9,7 @@ import type {JokerKeyHighlight} from './JokerKeyHighlight';
 import type {R2RunState} from '../domain/r2Run';
 import type {ScoreTrace} from '../domain/scoreR2';
 import {fractionText} from './scoreText';
+import {multiplierOverview} from './ScoreEventCaption';
 import {selectionPortraitKey,avatarKey} from './portraits';
 import {jokerArtKey} from './jokerArt';
 import {getCharacter} from './characters';
@@ -16,8 +17,8 @@ import {SCORE_FONT,UI_FONT,PAPER_THEME as T,PAPER_CSS as C} from './theme';
 export interface HeroClimaxValue {label:string;before:string;after:string;note:string}
 /** Saved capability payoffs and actual bursts; legacy opening keys retain their receipt checks. */
 export function heroClimaxValue(state:R2RunState,trace:ScoreTrace,key:JokerKeyHighlight,replay=false):HeroClimaxValue|undefined {
- if(replay||!key.heroId)return;
- if(key.kind==='payoff'||key.kind==='burst'){const actual=heroPayoffs(state,trace).find(k=>k.eventId===key.eventId&&k.kind===key.kind);const event=trace.events.find(e=>e.eventId===key.eventId);if(!actual||!event)return;return {label:'实际倍率',before:'×'+fractionText(event.before.M),after:'×'+fractionText(event.after.M),note:actual.fact.effect};}
+ if(replay||!key.heroId||key.heroId!==state.characterId)return;
+ if(key.kind==='payoff'||key.kind==='burst'){const actual=heroPayoffs(state,trace).find(k=>k.eventId===key.eventId&&k.kind===key.kind);const event=trace.events.find(e=>e.eventId===key.eventId);if(!actual||!event)return;return {label:'实际倍率',before:'×'+multiplierOverview(event.before.M,true),after:'×'+multiplierOverview(event.after.M,true),note:actual.fact.effect};}
  if(state.phase==='run-lost')return;
  const stamp=state.openingShow;
  if(!stamp||stamp.rootId!==trace.rootId||stamp.eventId!==key.eventId||stamp.handsScored>5)return;

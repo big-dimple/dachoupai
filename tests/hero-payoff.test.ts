@@ -3,6 +3,8 @@ vi.mock('phaser',()=>({default:{Scene:class {}}}));
 import {createRun,type R2RunState,type Action} from '../src/domain/run';
 import {newRunIdentity} from '../src/game/RunLaunch';
 import {energySend,scoreEnergyFixture} from '../harness/fixtures/score-energy';
+import {finaleReady} from '../harness/fixtures/finale';
+import {r2CreateJoker} from '../src/domain/r2Run';
 import {heroPayoffs,heroPayoffBeat} from '../src/game/HeroPayoff';
 import {heroClimaxValue} from '../src/game/HeroClimax';
 import {heroAbilityCue,savedHeroResult} from '../src/game/HeroAbilityCue';
@@ -42,3 +44,5 @@ it('shortcuts reserve legal hits while leaving hand, sort and play geometry inta
 it('subject holds a real visible second on render updates and abort detaches without gameplay callbacks',async()=>{
  expect(heroPayoffBeat({windup:100,flight:200,impact:200,rest:500,strength:'multiply'},true)).toMatchObject({windup:0,flight:0,impact:1000,rest:0});let now=0;const clock=vi.spyOn(performance,'now').mockImplementation(()=>now),listeners=new Set<()=>void>(),data=new Map();const scene=Object.create(GameScene.prototype) as any;scene.events={on:(_:string,f:()=>void)=>listeners.add(f),off:(_:string,f:()=>void)=>listeners.delete(f)};scene.heroClimax={group:{setData:(k:string,v:any)=>data.set(k,v)}};const abort=new AbortController();let done=false;const p=scene.waitHeroSubject({signal:abort.signal}).then(()=>done=true);for(const n of [100,500,1099]){now=n;for(const f of listeners)f();await Promise.resolve();expect(done).toBe(false);}now=1100;for(const f of listeners)f();await p;expect(data.get('subjectHoldMs')).toBe(1000);expect(listeners.size).toBe(0);const q=scene.waitHeroSubject({signal:abort.signal});abort.abort();await q;expect(listeners.size).toBe(0);clock.mockRestore();
 });
+
+it('large saved joker multiplication reuses honest readable overview while preserving the exact event',()=>{let s=finaleReady();s.jokers=[r2CreateJoker('f09','controlled/large/f09',8,'none',s)];s.stage!.initialJokerIds=s.jokers.map(j=>j.instanceId);s=saved(s,{type:'PlayHand',selectedIds:s.handOrder.slice(0,5)});const before=JSON.stringify(s),k=heroPayoffs(s,s.lastTrace!).find(k=>k.fact.definitionId==='f09')!;expect(k).toBeDefined();expect(k.landing).toContain('≈');expect(k.landing).not.toContain('/');expect(heroClimaxValue(s,s.lastTrace!,k)?.after).toContain('≈');expect(heroClimaxValue(s,s.lastTrace!,{...k,heroId:'amo'})).toBeUndefined();expect(JSON.stringify(s)).toBe(before);});
