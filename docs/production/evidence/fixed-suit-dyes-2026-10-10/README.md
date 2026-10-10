@@ -2,7 +2,7 @@
 
 状态：实施中，未上线／未验收。requirementId沿W3/W5基础自选与已授权染色补充；inputSHA d67ca8379a147e5ccadca018473d69855a9072b6。
 
-依赖：已有基础五选、四染原画、真实选目标／前后对照／购买保存合同。允许文件：src/domain/r2GroupUpgrade.ts、r2Run.ts、r2Shop.ts、r2BasicChoice.ts；src/application/checkpoint.ts（真实4金回执编码的必要边界，原身份2金不变）；src/game/RunLaunch.ts、BasicToolChoice.ts、ShopScene.ts；src/style.css；tests/basic-tool-choice.test.ts、fixed-suit-dyes.test.ts、route-starter.test.ts（仅新局身份hash期望随授权身份更新，原供给断言不变）及本证据目录。计划授权／暂停文化记录独立文档提交。
+依赖：已有基础五选、四染原画、真实选目标／前后对照／购买保存合同。允许文件：src/domain/r2GroupUpgrade.ts、r2Run.ts、r2Shop.ts、r2BasicChoice.ts；src/application/checkpoint.ts（真实4金回执编码的必要边界，原身份2金不变）；src/game/RunLaunch.ts、BasicToolChoice.ts、ShopScene.ts；src/style.css；tests/basic-tool-choice.test.ts、fixed-suit-dyes.test.ts、route-starter.test.ts（仅新局身份hash期望随授权身份更新，原供给断言不变）及本证据目录；harness/screenshot.mjs仅新局身份断言随批准版本更新。计划授权／暂停文化记录独立文档提交。
 
 输出：新内容身份九项自选，原五项2金、四染4金／原优惠最低1；每店一次共用额度／刷新不恢复；PC全展开、手机两组；原染色1–3合法目标、保点／增强／版次及保存不变。旧五选身份保留原池／价格／RNG，必要一条旧局兼容检查，不做大矩阵。随机重复商品沿真实现货入口。
 
@@ -22,3 +22,7 @@ nonGoals：更换世界观／门派名／原画、改变计分／概率／刷新
 - 64定向/typecheck通过；全库一次201文件运行除18条新局hash仍期待旧五选外，其余2960通过，仅更新route-starter的新局身份期望后64定向通过。内容校验/build通过。最终精确HEAD全库CI另核，不借历史绿。无新图／音源／依赖，世界观／命名／倍率／概率／刷新费用不改。
 
 这是有限软件候选，受控手牌/库存与资源不是自然获得率或三路线平衡证明；没有完整旧档矩阵、六英雄自然旅程、真人理解/美术满意、设备流畅度/音频听感签收。check脚本是本保存环境检查记录，不新增生产harness。draft由父审协调main。
+
+## 精确CI旧断言返修
+
+首候选e7e3c073b9b402c68a1a4d78064ae9aeb0fd9871：CI38045255947的domain实际201文件／2978测试全PASS，docs及production-docs38045255946 PASS；browser在screenshot.mjs断言新局仍为quality-r2-basic-tool-choice-v1时FAIL。原日志保留。仅将此新局版本及对应冻结hash期望更新为quality-r2-basic-suit-choice-v1／json-fnv-v1:69c29f5cd54bb160；其余原操作、随机货架、存档、取消断言保留，没有产品规则返修。旧候选浏览器不签通过；最终HEAD新CI另核。
