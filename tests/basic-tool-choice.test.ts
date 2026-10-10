@@ -1,7 +1,7 @@
 import {expect,it} from 'vitest';
 import {createRun,applyCommand,type R2RunState,type Action} from '../src/domain/run';
 import {newRunIdentity,launchIdentity} from '../src/game/RunLaunch';
-import {R2_BASIC_CHOICE_HASH,R2_ERXIANG_HANDOFF_VERSION,R2_ERXIANG_HANDOFF_HASH,R2_BASIC_TOOL_IDS} from '../src/domain/r2GroupUpgrade';
+import {R2_BASIC_CHOICE_VERSION,R2_BASIC_CHOICE_HASH,R2_ERXIANG_HANDOFF_VERSION,R2_ERXIANG_HANDOFF_HASH,R2_BASIC_TOOL_IDS} from '../src/domain/r2GroupUpgrade';
 import {r2BasicChoicePool,r2PurchasePrice} from '../src/domain/r2Shop';
 import {basicChoiceSeat,basicChoiceRows,isBasicChoiceSeat} from '../src/game/BasicToolChoice';
 import {purchasePaymentFacts} from '../src/game/PurchasePaymentFacts';
@@ -9,7 +9,7 @@ import {makeCheckpoint,readCheckpoint} from '../src/application/checkpoint';
 import {stableHash} from '../src/domain/hash';
 import {SavedRun,type SaveStore,type SaveSlots} from '../src/application/SavedRun';
 import {CHARACTER_IDS} from '../src/domain/characters';
-const start=(characterId:R2RunState['characterId']='erxiang',legacy=false)=>createRun({seed:'group-natural-17',runId:'choice/'+characterId,rulesVersion:'r2',characterId,openingRoute:'group',r2Identity:legacy?{contentVersion:R2_ERXIANG_HANDOFF_VERSION,contentHash:R2_ERXIANG_HANDOFF_HASH}:newRunIdentity(characterId,'group'),modeConfig:{mode:'standard',difficulty:0,challengeId:null,programsEnabled:false}});
+const start=(characterId:R2RunState['characterId']='erxiang',legacy=false)=>createRun({seed:'group-natural-17',runId:'choice/'+characterId,rulesVersion:'r2',characterId,openingRoute:'group',r2Identity:legacy?{contentVersion:R2_ERXIANG_HANDOFF_VERSION,contentHash:R2_ERXIANG_HANDOFF_HASH}:{contentVersion:R2_BASIC_CHOICE_VERSION,contentHash:R2_BASIC_CHOICE_HASH},modeConfig:{mode:'standard',difficulty:0,challengeId:null,programsEnabled:false}});
 const cmd=(s:R2RunState,action:Action)=>({runId:s.runId,commandId:'choice/'+s.commandSeq,expectedSeq:s.commandSeq,action});
 const send=(s:R2RunState,action:Action)=>{const r=applyCommand(s,cmd(s,action));if(!r.ok)throw Error(r.code);return r.state;};
 const buy=(s:R2RunState,id=r2BasicChoicePool(s)[0].id):Action=>({type:'BuyBasicTool',definitionId:id,shopSeq:s.shop!.basicChoice!.shopSeq});

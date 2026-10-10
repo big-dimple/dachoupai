@@ -1,3 +1,4 @@
+import {isR2SuitChoice,R2_SUIT_DYE_IDS,r2BasicChoiceBasePrice} from '../domain/r2GroupUpgrade';
 import {routeFrame} from './RouteFrame';
 import {routeFitCue,markRouteDetail,toolPurpose} from './RouteFitCue';
 import {inventoryFeedback} from './InventoryFeedback';
@@ -389,7 +390,7 @@ export class ShopScene extends Phaser.Scene {
     const copy=p.pc?{tile:raw,x:raw.x+artWidth+20,y:raw.y+8,width:raw.width-artWidth-30,priceY:raw.y+raw.height-30}:shopOfferCopy(p,raw);
     shopSheet(this,v,'offer',copy.tile,PAPER_THEME.paperLight,true);
     const art=p.pc?{x:raw.x+8,y:raw.y+10,width:artWidth,height:raw.height-20}:{x:raw.x+5,y:raw.y+5,width:raw.width-10,height:raw.height-10};
-    const primary=purchase?.definitionId??'T08',ids=basicChoiceRows(this.run).map(row=>row.id).filter(id=>id!==primary).concat(primary);
+    const primary=purchase?.definitionId??'T08',ids=basicChoiceRows(this.run).map(row=>row.id).filter(id=>id!==primary).slice(0,4).concat(primary);
     for(const [i,id] of ids.entries()){
       const top=i===ids.length-1,w=Math.min(art.width*.72,art.height/1.4)*(top?1:.86),h=w*1.4,shift=top?0:[-1,-.45,.45,1][i]*Math.min(16,art.width*.12),info=toolInfo(id,this.run);
       this.drawGoodsArt(id,info.artUrl,{x:art.x+(art.width-w)/2+shift,y:art.y+(art.height-h)/2+(top?0:2),width:w,height:h},1,info.fallbackArtUrl).setAngle(top?0:[-12,-5,5,12][i]).setData('basicChoiceArt',true).setData('primary',top);
@@ -397,7 +398,7 @@ export class ShopScene extends Phaser.Scene {
     const title=purchase?'已购 · '+toolInfo(purchase.definitionId,this.run).name:'基础自选1件';
     const titleText=v.text(copy.x,copy.y+4,title,14,PAPER_CSS.ink,copy.width).setFontStyle('bold').setName('shop/basic-choice-title');
     v.text(copy.x,p.pc?titleText.y+titleText.height+6:copy.y+27,purchase?'下一店可再选':'选工具，再选目标牌',14,PAPER_CSS.jade,copy.width).setName('shop/basic-choice-purpose');
-    if(!purchase){const ink=this.offerPricePlate(o,{x:copy.x-2,y:copy.priceY-2,width:copy.width+2,height:24});v.text(copy.x,copy.priceY,r2PurchasePrice(this.run,o)+' 金',16,ink).setFontStyle('bold').setName('shop/basic-choice-price');}
+    if(!purchase){const ink=this.offerPricePlate(o,{x:copy.x-2,y:copy.priceY-2,width:copy.width+2,height:24});v.text(copy.x,copy.priceY,(isR2SuitChoice(this.run)?r2PurchasePrice(this.run,o)+' / '+r2PurchasePrice(this.run,{...o,price:4})+' 金':r2PurchasePrice(this.run,o)+' 金'),16,ink).setFontStyle('bold').setName('shop/basic-choice-price');}
     const hover=this.hoverCard(first,copy.tile),r=v.rect(copy.tile).setFillStyle(0,0).setStrokeStyle();v.target(r,'offer/'+o.offerId,{tap:()=>this.inspectBasicChoice(),detail:()=>this.inspectBasicChoice(),...hover});this.offerArts.push(hover.art);
   }
   private inspectBasicChoice():void {
@@ -406,11 +407,20 @@ export class ShopScene extends Phaser.Scene {
     this.audio.select();
     const dialog=this.dialog.open('改牌工具 · 选1件',purchase?'本店已购，刷新不重开；下一店恢复。':'本店选购1件，刷新不补货。购买后进入道具箱，使用时再选择目标牌。',[],{
       summaryBody:purchase?'已购 '+toolInfo(purchase.definitionId,this.run).name+' · 下店恢复':`金币 ${this.run.gold} · 道具箱 ${this.run.consumables.length}/${r2ConsumableCapacity(this.run)} · 本店选1件`,collapseRules:true,rulesLabel:'选购规则',closeLabel:'回到经营',
-      cards:rows.map(row=>({title:row.info.name,url:row.info.artUrl,body:row.purpose+(row.reason&&!purchase?'\n'+(row.duplicate&&!row.duplicate.consumed?'同名随机现货':row.reason.replace(/^实付\d+金，/,'')):''),action:purchase&&!row.duplicate?undefined:{label:row.duplicate?`查看现货 · ${row.duplicate.consumed?'已售':row.price+'金'}`:`选择 · ${row.price}金`,disabled:!this.ready||!!row.reason&&!row.duplicate,run:()=>{
+      cards:rows.map(row=>({title:(({'T03':'♥ ','T04':'♦ ','T05':'♣ ','T06':'♠ '} as Record<string,string>)[row.id]??'')+row.info.name,url:row.info.artUrl,body:row.purpose+(row.reason&&!purchase?'\n'+(row.duplicate&&!row.duplicate.consumed?'同名随机现货':row.reason.replace(/^实付\d+金，/,'')):''),action:purchase&&!row.duplicate?undefined:{label:row.duplicate?`查看现货 · ${row.duplicate.consumed?'已售':row.price+'金'}`:`选择 · ${row.price}金`,disabled:!this.ready||!!row.reason&&!row.duplicate,run:()=>{
         if(row.duplicate){if(row.duplicate.consumed)this.dialog.open(row.info.name+' · 现货已购','同名商品本店已售。仍可选其它合法基础操作。',[{label:'返回基础选择',run:()=>this.inspectBasicChoice()}]);else this.inspectOffer(row.duplicate.offerId);return;}
         this.confirmBasicChoice(row.id,seq,shopSeq);
       }}})),
     });dialog.classList.add('basic-choice-dialog');
+    if(isR2SuitChoice(this.run)){
+      dialog.classList.add('basic-suit-choice-dialog');dialog.dataset.choiceGroup=R2_SUIT_DYE_IDS.includes(purchase?.definitionId??'')?'dyes':'basic';
+      const cards=dialog.querySelectorAll<HTMLElement>('.experience-card');
+      rows.forEach((row,i)=>{const card=cards[i];card.dataset.choiceGroup=R2_SUIT_DYE_IDS.includes(row.id)?'dyes':'basic';const cue=routeFitCue(this.run,'tools',row.id);if(cue){card.dataset.routeFit=cue.focus;card.style.setProperty('--route-fit',cue.css);const copy=card.querySelector('p');if(copy&&R2_SUIT_DYE_IDS.includes(row.id))copy.textContent+=' · '+cue.label;}});
+      const tabs=document.createElement('div');tabs.className='basic-choice-groups';tabs.setAttribute('aria-label','工具分组');
+      for(const [group,label] of [['basic','改牌 · 5项'],['dyes','染色 · 4项']]){const button=document.createElement('button');button.type='button';button.textContent=label;button.setAttribute('aria-pressed',String(dialog.dataset.choiceGroup===group));button.onclick=()=>{dialog.dataset.choiceGroup=group;for(const tab of tabs.querySelectorAll('button'))tab.setAttribute('aria-pressed',String(tab===button));};tabs.append(button);}
+      dialog.querySelector('.experience-cards')?.before(tabs);
+    }
+
     if(purchase)dialog.querySelectorAll('.experience-card')[rows.findIndex(row=>row.id===purchase.definitionId)]?.classList.add('is-purchased');
   }
   private confirmBasicChoice(definitionId:string,seq:number,shopSeq:number):void {
@@ -424,6 +434,7 @@ export class ShopScene extends Phaser.Scene {
         const result=this.dialog.open(info.name+' · 已购入',`本店已购，下店恢复。购买已保存，尚未使用。`,[{label:'立即使用',primary:true,run:()=>showConsumables(this.dialog,this.run,this.ready,(a,s)=>this.send(a,s),gained.instanceId)},{label:'查看道具箱',run:()=>showConsumables(this.dialog,this.run,this.ready,(a,s)=>this.send(a,s))}],{closeLabel:'回到经营',portrait:goodsArtPortrait(info),effectBody:row.purpose,summaryBody:`实付 ${price} 金 · 余额 ${this.run.gold} 金`,collapseRules:true});result.classList.add('tool-purchased-result','basic-choice-receipt');
       }
     }}],{shopContext:'purchase',closeLabel:'取消',portrait:goodsArtPortrait(info),effectBody:info.summary,summaryBody:`实付 ${price} 金 · 余额 ${this.run.gold} → ${this.run.gold-price} 金`,collapseRules:true});
+    markRouteDetail(dialog,routeFitCue(this.run,'tools',definitionId));
   }
   private drawGoodsOffer(o:R2Offer,raw:Box,short:boolean,portrait:boolean):void {
     if(isBasicChoiceSeat(o)){this.drawBasicChoiceSeat(o,raw);return;}
@@ -770,7 +781,7 @@ export class ShopScene extends Phaser.Scene {
         if(buyBox&&landSlot)this.pendingPurchaseFlight={from:buyBox,to:landSlot,name};
       }else if(action.type==='BuyBasicTool'&&!result.duplicate){
         this.audio.purchase();this.pendingGoldRoll=oldGold;
-        this.lastPurchaseReceipt=shopPurchaseReceipt(previous,this.run,'tools',{offerId:'basic-choice/'+action.shopSeq,definitionId:action.definitionId,price:2,consumed:false});
+        this.lastPurchaseReceipt=shopPurchaseReceipt(previous,this.run,'tools',{offerId:'basic-choice/'+action.shopSeq,definitionId:action.definitionId,price:r2BasicChoiceBasePrice(action.definitionId),consumed:false});
         this.notice='基础选择已入道具箱，尚未使用 · 刷新不重开';
       }else if(action.type==='SellJoker'&&!result.duplicate){
         const joker=previous.jokers.find(j=>j.instanceId===action.instanceId)!;this.audio.sale();

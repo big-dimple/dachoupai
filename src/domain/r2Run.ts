@@ -1,5 +1,5 @@
 import {usesErxiangHandoff} from './r2ErxiangHandoff';
-import {R2_BASIC_CHOICE_VERSION,R2_BASIC_CHOICE_HASH,isR2BasicChoice} from './r2GroupUpgrade';
+import {R2_SUIT_CHOICE_VERSION,R2_SUIT_CHOICE_HASH,r2BasicChoiceBasePrice,R2_BASIC_CHOICE_VERSION,R2_BASIC_CHOICE_HASH,isR2BasicChoice} from './r2GroupUpgrade';
 import {r2BasicChoicePool} from './r2Shop';
 import {validR2BasicChoice} from './r2BasicChoice';
 import {R2_ERXIANG_HANDOFF_VERSION,R2_ERXIANG_HANDOFF_HASH} from './r2GroupUpgrade';
@@ -56,6 +56,7 @@ const sharedRuntimeHash=stableHash({jokers:SHARED_R2_JOKERS,features:R2_IMPLEMEN
 if(sharedRuntimeHash!==R2_LEGACY_CONTENT_HASH)throw Error('published-r2-contract-drift');
 
 export const R2_RULESETS=Object.freeze([
+  Object.freeze({contentVersion:R2_SUIT_CHOICE_VERSION,contentHash:R2_SUIT_CHOICE_HASH,amoScoreTiming:'assist-v1' as const}),
   Object.freeze({contentVersion:R2_BASIC_CHOICE_VERSION,contentHash:R2_BASIC_CHOICE_HASH,amoScoreTiming:'assist-v1' as const}),
   Object.freeze({contentVersion:R2_ERXIANG_HANDOFF_VERSION,contentHash:R2_ERXIANG_HANDOFF_HASH,amoScoreTiming:'assist-v1' as const}),
   Object.freeze({contentVersion:R2_TOOL_SUPPLY_VERSION,contentHash:R2_TOOL_SUPPLY_HASH,amoScoreTiming:'assist-v1' as const}),
@@ -561,7 +562,7 @@ export function transactR2(input:R2RunState|null,command:Command):Transaction {
         if(state.shop.basicChoice.purchase)return fail('basic-choice-consumed');
         if(!r2BasicChoicePool(state).some(t=>t.id===action.definitionId))return fail('basic-choice-not-legal');
         if(state.consumables.length>=r2ConsumableCapacity(state))return fail('consumable-slots-full');
-        const price=r2PurchasePrice(state,{definitionId:action.definitionId,offerId:'',price:2,consumed:false});
+        const price=r2PurchasePrice(state,{definitionId:action.definitionId,offerId:'',price:r2BasicChoiceBasePrice(action.definitionId),consumed:false});
         if(state.gold<price)return fail('not-enough-gold');
         state.gold-=price;state.shop.purchases++;if(state.purchaseCoupons>0)state.purchaseCoupons--;
         state.consumables.push({instanceId:`${state.runId}/tool/${command.commandId}`,definitionId:action.definitionId});

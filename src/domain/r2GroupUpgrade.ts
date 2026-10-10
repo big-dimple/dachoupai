@@ -35,7 +35,15 @@ export const R2_ERXIANG_HANDOFF_HASH=stableHash(R2_ERXIANG_HANDOFF_CONTRACT);
 export const R2_BASIC_CHOICE_VERSION='quality-r2-basic-tool-choice-v1';
 export const R2_BASIC_CHOICE_CONTRACT=Object.freeze({inherits:R2_ERXIANG_HANDOFF_HASH,allCharacters:true,basicIds:R2_BASIC_TOOL_IDS,price:2,discount:'existing-min1',purchase:'atomic-choice-existing-capacity',quota:'once-visit-receipt-survives-reroll-next-visit-resets',random:'original-first-and-basic-draw-consumed',duplicate:'redirect-random-real-price',legacy:'no-migration'});
 export const R2_BASIC_CHOICE_HASH=stableHash(R2_BASIC_CHOICE_CONTRACT);
-export function isR2BasicChoice(identity:{contentVersion?:unknown;contentHash?:unknown}):boolean{return identity.contentVersion===R2_BASIC_CHOICE_VERSION&&identity.contentHash===R2_BASIC_CHOICE_HASH;}
+export const R2_SUIT_DYE_IDS=Object.freeze(['T03','T04','T05','T06']);
+export const R2_SUIT_CHOICE_IDS=Object.freeze([...R2_BASIC_TOOL_IDS,...R2_SUIT_DYE_IDS]);
+export const R2_SUIT_CHOICE_VERSION='quality-r2-basic-suit-choice-v1';
+export const R2_SUIT_CHOICE_CONTRACT=Object.freeze({inherits:R2_BASIC_CHOICE_HASH,basicIds:R2_BASIC_TOOL_IDS,dyeIds:R2_SUIT_DYE_IDS,basicPrice:2,dyePrice:4,quota:'shared-once-visit',discount:'existing-min1',random:'unchanged-original-five-basic-draw',target:'existing-1-3-suit-only-preserve-rank-enhancement-edition',legacy:'no-migration'});
+export const R2_SUIT_CHOICE_HASH=stableHash(R2_SUIT_CHOICE_CONTRACT);
+export function isR2SuitChoice(identity:{contentVersion?:unknown;contentHash?:unknown}):boolean{return identity.contentVersion===R2_SUIT_CHOICE_VERSION&&identity.contentHash===R2_SUIT_CHOICE_HASH;}
+export const r2BasicChoiceIds=(identity:{contentVersion?:unknown;contentHash?:unknown})=>isR2SuitChoice(identity)?R2_SUIT_CHOICE_IDS:R2_BASIC_TOOL_IDS;
+export const r2BasicChoiceBasePrice=(id:string)=>R2_SUIT_DYE_IDS.includes(id)?4:2;
+export function isR2BasicChoice(identity:{contentVersion?:unknown;contentHash?:unknown}):boolean{return identity.contentVersion===R2_BASIC_CHOICE_VERSION&&identity.contentHash===R2_BASIC_CHOICE_HASH||isR2SuitChoice(identity);}
 export function isR2ErxiangHandoff(identity:{contentVersion?:unknown;contentHash?:unknown}):boolean{return identity.contentVersion===R2_ERXIANG_HANDOFF_VERSION&&identity.contentHash===R2_ERXIANG_HANDOFF_HASH||isR2BasicChoice(identity);}
 export function isR2ToolSupply(identity:{contentVersion?:unknown;contentHash?:unknown}):boolean{return identity.contentVersion===R2_TOOL_SUPPLY_VERSION&&identity.contentHash===R2_TOOL_SUPPLY_HASH||isR2ErxiangHandoff(identity);}
 export function isR2TouyeWager(identity:{contentVersion?:unknown;contentHash?:unknown}):boolean{return identity.contentVersion===R2_TOUYE_WAGER_VERSION&&identity.contentHash===R2_TOUYE_WAGER_HASH||isR2ToolSupply(identity);}

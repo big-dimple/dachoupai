@@ -645,3 +645,18 @@ button[aria-busy=true] { border-style:dashed; }
  .tool-inventory .tool-inventory-card { grid-template-rows:80px auto 1fr auto; }
  .tool-inventory .tool-inventory-card img { width:62px;height:80px; }
 }
+
+/* Nine fixed choices share one quota; phone groups preserve the original readable rows. */
+.basic-choice-groups { display:flex;gap:8px;margin:0 0 10px; }
+.basic-choice-groups button { flex:1;min-height:44px; }
+.basic-choice-groups button[aria-pressed="true"] { border:2px solid #3F606B;background:#e2e8e5; }
+.basic-suit-choice-dialog .experience-card[data-route-fit] { border-color:var(--route-fit);box-shadow:inset 0 0 0 1px var(--route-fit); }
+@media(max-width:811px), (max-height:499px) {
+ .basic-suit-choice-dialog[data-choice-group="basic"] .experience-card[data-choice-group="dyes"],
+ .basic-suit-choice-dialog[data-choice-group="dyes"] .experience-card[data-choice-group="basic"] { display:none; }
+}
+@media(min-width:812px) and (min-height:500px) {
+ .basic-suit-choice-dialog[open] { width:min(1100px,calc(100vw - var(--safe-left) - var(--safe-right) - 32px)); }
+ .basic-suit-choice-dialog .experience-cards { grid-template-columns:repeat(3,minmax(0,1fr)); }
+ .basic-suit-choice-dialog .basic-choice-groups { display:none; }
+}

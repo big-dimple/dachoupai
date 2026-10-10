@@ -105,7 +105,7 @@ function jokers(value:unknown,maximum:number=R2_LIMITS.jokerSlots,catalog=R2_JOK
 }
 function shop(value:unknown,commandSeq:number,stageMaximum:number,config:R2ModeConfig,identity:{contentVersion?:unknown;contentHash?:unknown}):void {
   const s=record(value,['visitIndex','rerollCount','purchases','offers','toolOffers','itemOffers','soldJoker','freeRerolls',...(isR2BasicChoice(identity)?['basicChoice']:[])]);
-  if(isR2BasicChoice(identity)){const c=record(s.basicChoice,['shopSeq','purchase']);integer(c.shopSeq,1,commandSeq);if(c.purchase!==null){const p=record(c.purchase,['definitionId','commandId','paidPrice','seq']);text(p.definitionId);text(p.commandId);integer(p.paidPrice,1,2);integer(p.seq,1,commandSeq);}}
+  if(isR2BasicChoice(identity)){const c=record(s.basicChoice,['shopSeq','purchase']);integer(c.shopSeq,1,commandSeq);if(c.purchase!==null){const p=record(c.purchase,['definitionId','commandId','paidPrice','seq']);text(p.definitionId);text(p.commandId);integer(p.paidPrice,1,isR2SuitChoice(identity)?r2BasicChoiceBasePrice(p.definitionId as string):2);integer(p.seq,1,commandSeq);}}
   integer(s.visitIndex,0,stageMaximum-1);integer(s.rerollCount);integer(s.purchases,0,commandSeq);bool(s.soldJoker);
   oneOf(s.freeRerolls,[0,1]);if((!config.programsEnabled||!config.reroll.allowed)&&s.freeRerolls!==0)fail('invalid-save-free-rerolls');
   if(isR2BasicChoice(identity)){const tools=array(s.toolOffers,1);if(tools.some(o=>!String((o as Record<string,unknown>).offerId).endsWith('/tool/0')))fail('invalid-save-basic-choice-random-shelf');}
@@ -681,7 +681,7 @@ function action(value:unknown,state:R2RunState):void {
   const keys:Record<Action['type'],string[]>={StartRun:['seed','characterId','rulesVersion'],LeaveShop:[],EnterStage:[],OpenShop:[],RerollShop:[],AbandonRun:[],SkipStage:[],ContinueEndless:[],ChooseProgram:['programId'],AbandonProgram:[],PlayHand:['selectedIds'],PlayAssistedHand:['selectedIds','assistIds'],DiscardHand:['selectedIds'],ChooseRefill:['selectedIds'],SellJoker:['instanceId'],UseConsumable:['instanceId','targetIds'],DestroyConsumable:['instanceId'],SetWager:['enabled'],BuyOffer:['offerId'],BuyBasicTool:['definitionId','shopSeq'],ReorderHand:['ids'],ReorderJokers:['ids']};
   if(typeof a.type!=='string'||!Object.hasOwn(keys,a.type))fail('unknown-save-command');
   record(a,['type',...keys[a.type as Action['type']]],a.type==='DiscardHand'?[...(usesLaohuanRefill(state)?['laohuanTrick']:[]),...(usesTouyeWager(state)?['touyeBet']:[])]:a.type==='UseConsumable'?['handType','secondaryHandType','suit','sacrificeId','targetKind']:a.type==='PlayHand'?[...(usesErxiangHandoff(state)?['erxiangTargetId']:[]),...(usesAzaoCharge(state)?['azaoRelease']:[]),...(usesXiemuBurn(state)?['xiemuBurn']:[])]:a.type==='StartRun'?['modeConfig','r2Identity',...(isR2RouteStarter(state)?['openingRoute']:[]),...(prototype||combo?['r2Profile']:[])]:[]);
-  if(a.type==='BuyBasicTool'){if(!isR2BasicChoice(state))fail('invalid-save-basic-choice-command');oneOf(a.definitionId,R2_BASIC_TOOL_IDS);integer(a.shopSeq,1);}
+  if(a.type==='BuyBasicTool'){if(!isR2BasicChoice(state))fail('invalid-save-basic-choice-command');oneOf(a.definitionId,r2BasicChoiceIds(state));integer(a.shopSeq,1);}
   if(a.touyeBet!==undefined){if(!usesTouyeWager(state)||a.type!=='DiscardHand')fail('invalid-save-touye-command');const b=record(a.touyeBet,['target','snapshotToken']);oneOf(b.target,TOUYE_TARGETS);text(b.snapshotToken);}
   if(a.type==='SetWager'&&usesTouyeWager(state))fail('invalid-save-touye-random-wager');
   if(a.laohuanTrick!==undefined){bool(a.laohuanTrick);if(!usesLaohuanRefill(state)||a.type!=='DiscardHand')fail('invalid-save-laohuan-command');}
@@ -964,5 +964,5 @@ export function restoreSlots(slots:{revision:number;current:unknown|null;previou
     return {status:'backup',checkpoint:previous.checkpoint,code:current.code,raw:slots.current};
   return {status:'invalid',code:current.code,raw:slots.current};
 }
-import {isR2BasicChoice,R2_BASIC_TOOL_IDS} from '../domain/r2GroupUpgrade';
+import {isR2BasicChoice,isR2SuitChoice,r2BasicChoiceBasePrice,r2BasicChoiceIds} from '../domain/r2GroupUpgrade';
 import {validR2BasicChoice} from '../domain/r2BasicChoice';
