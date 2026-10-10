@@ -288,7 +288,7 @@ export function showConsumables(dialog:DetailDialog,state:R2RunState,ready:boole
     for(const entry of entries){const button=document.createElement('button'),image=document.createElement('img'),name=document.createElement('strong'),label=document.createElement('span');button.className='tool-inventory-card';button.setAttribute('aria-label',entry.name+' · 查看');button.dataset.itemId=entry.id;const owned=state.consumables.find(c=>c.instanceId===entry.id),cue=owned&&routeFitCue(state,'tools',owned.definitionId);if(cue){button.dataset.routeFit=cue.focus;button.style.setProperty('--route-fit',cue.css);}image.src=entry.artUrl;image.alt='';image.loading='lazy';name.textContent=entry.name;label.textContent=entry.label;button.append(image,name,label);button.onclick=entry.run;grid.append(button);}
     content.append(section);
   }
-  inventoryGroup('消耗工具',state.consumables.map(item=>{const info=toolInfo(item.definitionId,state),shopOnly=R2_TOOLS.find(tool=>tool.id===item.definitionId)!.phases.every(phase=>phase==='shop');return {id:item.instanceId,name:info.name,label:info.label+(shopOnly?' · 商店使用':''),artUrl:info.artUrl,run:()=>openTool(item.instanceId)};}));
-  inventoryGroup('本局道具',state.longTermItems.map(id=>{const info=itemInfo(id);return {id,name:info.name,label:'本局持续生效 · 不消耗',artUrl:info.artUrl,run:()=>showItem(id)};}));
+  inventoryGroup('消耗工具',state.consumables.map(item=>{const info=toolInfo(item.definitionId,state),shopOnly=R2_TOOLS.find(tool=>tool.id===item.definitionId)!.phases.every(phase=>phase==='shop');return {id:item.instanceId,name:info.name,label:info.summary+(shopOnly?' · 商店使用':''),artUrl:info.artUrl,run:()=>openTool(item.instanceId)};}));
+  inventoryGroup('本局道具',state.longTermItems.map(id=>{const info=itemInfo(id);return {id,name:info.name,label:info.summary,artUrl:info.artUrl,run:()=>showItem(id)};}));
   if(initialInstanceId)openTool(initialInstanceId);
 }

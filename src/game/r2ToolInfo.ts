@@ -59,6 +59,20 @@ function effectText(effect:R2EnhancementEffect):string {
     default:return impossible(effect);
   }
 }
+/** Essential gains and destructive risk; ordering/qualification details stay expandable. */
+function enhancementSummary(row:R2EnhancementDefinition):string {
+ return row.effects.map(effect=>{
+  switch(effect.kind){
+  case 'add-heat':case 'add-multiplier':case 'multiply-multiplier':return `${effect.phase==='onHeldCard'?'选中牌留在手中，':'选中牌每次计分'}${mathText(effect)}`;
+  case 'chance-destroy':return `结算后${effect.probability.n}/${effect.probability.d}概率永久破碎`;
+  case 'add-gold':return `选中牌有效留在手中过关+${effect.amount}金，每场最多${effect.capPerStage}金`;
+  case 'retrigger-card':return `选中计分牌额外计分${effect.count}次`;
+  case 'chance-add-multiplier':return `选中牌每次计分${effect.probability.n}/${effect.probability.d}概率倍率+${fractionText(effect.value)}`;
+  case 'chance-add-gold':return `${effect.probability.n}/${effect.probability.d}概率+${effect.amount}金，每手最多${effect.capPerHand}金`;
+  default:return impossible(effect);
+  }
+ }).join('；');
+}
 function enhancementText(row:R2EnhancementDefinition):string {
   const prefix=row.id==='lucky-paper'?'每次普通或额外计分，两项独立判定，先倍率后金币，':'';
   return prefix+row.effects.map(effectText).join('，');
@@ -94,7 +108,7 @@ export function toolSummary(tool:R2ToolDefinition):string {
  case 'set-suit':return `把选中的扑克改成${suitNames[op.suit]}${SUIT_SYMBOL[op.suit]}`;
  case 'copy-card':return `复制选中的扑克${op.copies}张，原牌保留`;
  case 'shift-rank':return `选中的扑克点数${op.delta>0?'+':'−'}${Math.abs(op.delta)}`;
- case 'set-enhancement':return `${enhancementDefinition(op.enhancement).name}：${enhancementText(enhancementDefinition(op.enhancement))}`;
+ case 'set-enhancement':return enhancementSummary(enhancementDefinition(op.enhancement));
  case 'add-gold':return `获得${op.amount}金`;
  case 'restore-discard':return `恢复本场${op.amount}次弃牌，最多到入场次数`;
  case 'free-reroll':return '免费刷新一次大丑牌和工具货架';
@@ -102,9 +116,9 @@ export function toolSummary(tool:R2ToolDefinition):string {
  case 'random-edition':return '给选中的牌随机增加闪箔、全息或多彩版次';
  case 'set-deck-suit':return '把整个牌组改成一种花色';
  case 'exchange-hand-levels':return `一种牌型升${op.gain}级，另一种降${op.loss}级`;
- case 'rare-joker-reward':return `随机获得一张${editionLabel(op.edition)}稀有大丑牌`;
+ case 'rare-joker-reward':{const edition=op.edition;return `随机获得一张${edition==='none'?'':editionLabel(edition)}稀有大丑牌`;}
  case 'set-joker-edition':return `牺牲一张大丑牌，让受赠牌变为${editionLabel(op.edition)}（${mathText(editionDefinition(op.edition).effect!)}）`;
- case 'clear-deck-specials':return `清除全牌组增强和特殊版次，下一场起手牌上限+${op.handBonus}`;
+ case 'clear-deck-specials':return `清除全牌组增强和特殊版次；下一场起，永久手牌上限+${op.handBonus}`;
  default:return impossible(op);
  }
 }

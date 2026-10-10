@@ -286,11 +286,7 @@ export class ShopScene extends Phaser.Scene {
     shopSheet(this,v,'offer',tile,o.consumed?PAPER_THEME.jadeSoft:PAPER_THEME.paperLight,true);
     if(d)shopSheet(this,v,'offer-stage',{x:tile.x+4,y:tile.y+4,width:tile.width-8,height:face.height+10},PAPER_THEME.jadeSoft);
     
-    const investment=shopInvestment(this.run,o,kind);
-    let summary=investment&&(kind==='tools'&&['升型','改牌'].includes(investment.role)||investment.role==='倍率'&&investment.effect!==d?.description)?investment.short+'；'+investment.next:d?this.shopJokerSummary(d.id):info!.description;
-    if(!investment&&!d&&/^T0[3-6]$/.test(o.definitionId)){const suit=info!.description.match(/改为(.+?)，/)?.[1];summary=`商店/待出牌：选1–3张永久改${suit}；成功消耗，保留其余属性。`;}
-    if(!d&&o.definitionId==='U11')summary='后续开店长期货位1→2；当前不补，刷新不重抽。同种限一件，不可售。';
-    if(!d&&o.definitionId==='U01')summary='下场手牌上限+1，最多14；当前不补。同种限一件，不可售。';
+    let summary=d?this.shopJokerSummary(d.id):info!.summary;
     if(d){const plain=this.jokerCopy(d.id)?.plain;summary=plain?(plain.fallback?plain.tile:plain.line)+(plain.status.startsWith('现在')?'\n'+plain.status:''):this.shopJokerSummary(d.id);}
     const initialX=d?tile.x+10:face.x+face.width+10,initialY=d?face.y+face.height+2:tile.y+2,width=tile.x+tile.width-initialX-10;
     const priceY=d?tile.y+face.height+98:tile.y+tile.height-36;
@@ -418,12 +414,15 @@ export class ShopScene extends Phaser.Scene {
   private drawGoodsOffer(o:R2Offer,raw:Box,short:boolean,portrait:boolean):void {
     if(isBasicChoiceSeat(o)){this.drawBasicChoiceSeat(o,raw);return;}
     const v=this.view,selected=this.selectedOfferId===o.offerId,b=raw,isTool=this.shelfKind==='tools',info=isTool?toolInfo(o.definitionId,this.run):itemInfo(o.definitionId),first=v.root.length;
-    this.drawOfferCard(b,isTool?'uncommon':'common',selected,o.consumed,short);this.markBuildOffer(o,this.shelfKind,b);
-    this.drawGoodsArt(o.definitionId,info.artUrl,{x:b.x+5,y:b.y+5,width:b.width-10,height:b.height-10},o.consumed?.55:1,info.fallbackArtUrl);
-    const p=this.geometry(),copy=shopOfferCopy(p,b),copyX=copy.x,copyY=copy.y,copyWidth=copy.width;
+    const p=this.geometry(),copy={...shopOfferCopy(p,b)},summary=info.summary,probe=v.text(0,0,'',14,'#3F606B');
+    const wrapped=shopSummaryWrap(summary,copy.width,text=>{probe.setText(text);return probe.width;});probe.setText(wrapped);const purposeHeight=probe.height;probe.destroy();
+    if(!p.copyBeside)copy.y=Math.min(copy.y,copy.priceY-27-purposeHeight);
+    else copy.priceY=Math.min(b.y+b.height-24,Math.max(copy.priceY,copy.y+27+purposeHeight));
+    const copyX=copy.x,copyY=copy.y,copyWidth=copy.width,artHeight=p.copyBeside?b.height-10:Math.max(36,copyY-b.y-8);
+    const artBox={...b,height:artHeight+10};this.drawOfferCard(artBox,isTool?'uncommon':'common',selected,o.consumed,short);this.markBuildOffer(o,this.shelfKind,artBox);
+    this.drawGoodsArt(o.definitionId,info.artUrl,{x:b.x+5,y:b.y+5,width:b.width-10,height:artHeight},o.consumed?.55:1,info.fallbackArtUrl);
     const name=v.text(copyX,copyY+4,info.name,14,'#26313A');this.ellipsis(name,copyWidth);
-    const summary=info.summary;
-    const purpose=v.text(copyX,copyY+23,summary,14,'#3F606B').setName('shop/offer-purpose').setData('offerId',o.offerId).setData('fullText',summary);if(p.desktop)purpose.setWordWrapWidth(copyWidth,true).setStyle({maxLines:4});else this.twoLines(purpose,copyWidth);
+    v.text(copyX,copyY+23,wrapped,14,'#3F606B').setName('shop/offer-purpose').setData('offerId',o.offerId).setData('fullText',summary);
     const priceInk=this.offerPricePlate(o,{x:copyX-2,y:copy.priceY-2,width:copyWidth+2,height:24});
     v.text(copyX,copy.priceY,o.consumed?'已收入':r2PurchasePrice(this.run,o)+' 金',16,priceInk).setFontStyle('bold').setName('shop/offer-price').setData('offerId',o.offerId);
     const tile=copy.tile,hover=this.hoverCard(first,tile),r=v.rect(tile).setFillStyle(0,0).setStrokeStyle().setData('selected',selected);this.offerArts.push(hover.art);
