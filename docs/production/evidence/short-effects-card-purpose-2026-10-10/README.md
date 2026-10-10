@@ -20,3 +20,6 @@
 16174/16175/16176两次Library准备成功但helper下载均报“library file transfer failed: download failed”；16177当前准备后同错。无HTTP状态/403证据，本云从未view原用户图，不重试绕过。用户PC/手机观感、实机流畅、听感、基础自选原图对照、全套大丑牌及其他类别说明审校仍OPEN。
 
 files.json为本目录除自身的Git blob哈希；精确CI与可合并性由最终PR核，不以此文档声称CI通过。
+
+## 首轮CI真实失败与类型修复
+6464673099fa74699c77c9157afa93a14253349e / CI38007330491：domain194文件2933测试与docs通过，但browser构建TS2322失败：goodsArtPortrait去掉重复caption后，ReturnType推断丢了可选字段，大丑牌图鉴caption字面量不兼容。first-CI-FAIL/browser.log保留原日志。补显式可选caption类型契约，道具运行时仍无caption，编译后行为不变；本地完整build与图鉴/用途73测试成功。原生报告不重写SHA。新精确最终HEAD CI另核，不能借首轮domain通过冒称最终CI通过。
