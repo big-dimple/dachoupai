@@ -1,0 +1,1418 @@
+{
+  "source": "8c61eac1a16a85c88f6568544bf364d56b46db1d",
+  "status": "PASS",
+  "initialSameAfterRecorderRestart": true,
+  "commandCount": 19,
+  "readonlyChecks": 46,
+  "finalSaveParses": true,
+  "final": {
+    "phase": "stage-cleared",
+    "stageIndex": 3,
+    "gold": 22,
+    "handLevels": {
+      "pair": 2
+    }
+  },
+  "transactions": [
+    {
+      "seq": 2,
+      "actions": [
+        {
+          "type": "BuyOffer",
+          "offerId": "run/1791602670670/touye/shop/0/0/joker/2"
+        }
+      ],
+      "gold": [
+        6,
+        2
+      ],
+      "phase": "shop",
+      "stageIndex": 0
+    },
+    {
+      "seq": 3,
+      "actions": [
+        {
+          "type": "ChooseProgram",
+          "programId": null
+        }
+      ],
+      "gold": [
+        2,
+        2
+      ],
+      "phase": "shop",
+      "stageIndex": 0
+    },
+    {
+      "seq": 5,
+      "actions": [
+        {
+          "type": "LeaveShop"
+        },
+        {
+          "type": "EnterStage"
+        }
+      ],
+      "gold": [
+        2,
+        2
+      ],
+      "phase": "await-input",
+      "stageIndex": 0
+    },
+    {
+      "seq": 6,
+      "actions": [
+        {
+          "type": "DiscardHand",
+          "selectedIds": [
+            "clubs-6",
+            "clubs-9",
+            "hearts-5",
+            "clubs-10",
+            "diamonds-3"
+          ],
+          "touyeBet": {
+            "target": "two-pair",
+            "snapshotToken": "json-fnv-v1:05a7070c159a9f48"
+          }
+        }
+      ],
+      "gold": [
+        2,
+        2
+      ],
+      "phase": "await-input",
+      "stageIndex": 0
+    },
+    {
+      "seq": 7,
+      "actions": [
+        {
+          "type": "PlayHand",
+          "selectedIds": [
+            "hearts-11",
+            "clubs-11",
+            "spades-2",
+            "clubs-3",
+            "spades-6"
+          ]
+        }
+      ],
+      "gold": [
+        2,
+        2
+      ],
+      "phase": "await-input",
+      "stageIndex": 0,
+      "handType": "pair",
+      "score": "246",
+      "stageHeat": "246",
+      "events": [
+        {
+          "source": "pair",
+          "reason": "pair.base",
+          "operation": "base",
+          "value": {
+            "n": "35",
+            "d": "1"
+          },
+          "before": {
+            "H": {
+              "n": "0",
+              "d": "1"
+            },
+            "M": {
+              "n": "0",
+              "d": "1"
+            }
+          },
+          "after": {
+            "H": {
+              "n": "35",
+              "d": "1"
+            },
+            "M": {
+              "n": "2",
+              "d": "1"
+            }
+          }
+        },
+        {
+          "source": "rank-11",
+          "reason": "rank-11.add-heat",
+          "operation": "add-heat",
+          "value": {
+            "n": "10",
+            "d": "1"
+          },
+          "before": {
+            "H": {
+              "n": "35",
+              "d": "1"
+            },
+            "M": {
+              "n": "2",
+              "d": "1"
+            }
+          },
+          "after": {
+            "H": {
+              "n": "45",
+              "d": "1"
+            },
+            "M": {
+              "n": "2",
+              "d": "1"
+            }
+          }
+        },
+        {
+          "source": "rank-11",
+          "reason": "rank-11.add-heat",
+          "operation": "add-heat",
+          "value": {
+            "n": "10",
+            "d": "1"
+          },
+          "before": {
+            "H": {
+              "n": "45",
+              "d": "1"
+            },
+            "M": {
+              "n": "2",
+              "d": "1"
+            }
+          },
+          "after": {
+            "H": {
+              "n": "55",
+              "d": "1"
+            },
+            "M": {
+              "n": "2",
+              "d": "1"
+            }
+          }
+        },
+        {
+          "source": "touye",
+          "reason": "touye.lost.two-pair",
+          "operation": "multiply-multiplier",
+          "value": {
+            "n": "17",
+            "d": "20"
+          },
+          "before": {
+            "H": {
+              "n": "55",
+              "d": "1"
+            },
+            "M": {
+              "n": "2",
+              "d": "1"
+            }
+          },
+          "after": {
+            "H": {
+              "n": "55",
+              "d": "1"
+            },
+            "M": {
+              "n": "17",
+              "d": "10"
+            }
+          }
+        },
+        {
+          "source": "mantangcai",
+          "reason": "mantangcai.add-heat",
+          "operation": "add-heat",
+          "value": {
+            "n": "90",
+            "d": "1"
+          },
+          "before": {
+            "H": {
+              "n": "55",
+              "d": "1"
+            },
+            "M": {
+              "n": "17",
+              "d": "10"
+            }
+          },
+          "after": {
+            "H": {
+              "n": "145",
+              "d": "1"
+            },
+            "M": {
+              "n": "17",
+              "d": "10"
+            }
+          }
+        },
+        {
+          "source": "pair",
+          "reason": "pair.final-score",
+          "operation": "final-score",
+          "value": {
+            "n": "246",
+            "d": "1"
+          },
+          "before": {
+            "H": {
+              "n": "145",
+              "d": "1"
+            },
+            "M": {
+              "n": "17",
+              "d": "10"
+            }
+          },
+          "after": {
+            "H": {
+              "n": "145",
+              "d": "1"
+            },
+            "M": {
+              "n": "17",
+              "d": "10"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "seq": 8,
+      "actions": [
+        {
+          "type": "PlayHand",
+          "selectedIds": [
+            "hearts-9",
+            "hearts-10",
+            "spades-10",
+            "diamonds-2",
+            "hearts-3"
+          ]
+        }
+      ],
+      "gold": [
+        2,
+        8
+      ],
+      "phase": "stage-cleared",
+      "stageIndex": 1,
+      "handType": "pair",
+      "score": "333",
+      "stageHeat": "579",
+      "events": [
+        {
+          "source": "pair",
+          "reason": "pair.base",
+          "operation": "base",
+          "value": {
+            "n": "35",
+            "d": "1"
+          },
+          "before": {
+            "H": {
+              "n": "0",
+              "d": "1"
+            },
+            "M": {
+              "n": "0",
+              "d": "1"
+            }
+          },
+          "after": {
+            "H": {
+              "n": "35",
+              "d": "1"
+            },
+            "M": {
+              "n": "2",
+              "d": "1"
+            }
+          }
+        },
+        {
+          "source": "rank-10",
+          "reason": "rank-10.add-heat",
+          "operation": "add-heat",
+          "value": {
+            "n": "10",
+            "d": "1"
+          },
+          "before": {
+            "H": {
+              "n": "35",
+              "d": "1"
+            },
+            "M": {
+              "n": "2",
+              "d": "1"
+            }
+          },
+          "after": {
+            "H": {
+              "n": "45",
+              "d": "1"
+            },
+            "M": {
+              "n": "2",
+              "d": "1"
+            }
+          }
+        },
+        {
+          "source": "rank-10",
+          "reason": "rank-10.add-heat",
+          "operation": "add-heat",
+          "value": {
+            "n": "10",
+            "d": "1"
+          },
+          "before": {
+            "H": {
+              "n": "45",
+              "d": "1"
+            },
+            "M": {
+              "n": "2",
+              "d": "1"
+            }
+          },
+          "after": {
+            "H": {
+              "n": "55",
+              "d": "1"
+            },
+            "M": {
+              "n": "2",
+              "d": "1"
+            }
+          }
+        },
+        {
+          "source": "touye",
+          "reason": "touye.ordinary",
+          "operation": "multiply-multiplier",
+          "value": {
+            "n": "23",
+            "d": "20"
+          },
+          "before": {
+            "H": {
+              "n": "55",
+              "d": "1"
+            },
+            "M": {
+              "n": "2",
+              "d": "1"
+            }
+          },
+          "after": {
+            "H": {
+              "n": "55",
+              "d": "1"
+            },
+            "M": {
+              "n": "23",
+              "d": "10"
+            }
+          }
+        },
+        {
+          "source": "mantangcai",
+          "reason": "mantangcai.add-heat",
+          "operation": "add-heat",
+          "value": {
+            "n": "90",
+            "d": "1"
+          },
+          "before": {
+            "H": {
+              "n": "55",
+              "d": "1"
+            },
+            "M": {
+              "n": "23",
+              "d": "10"
+            }
+          },
+          "after": {
+            "H": {
+              "n": "145",
+              "d": "1"
+            },
+            "M": {
+              "n": "23",
+              "d": "10"
+            }
+          }
+        },
+        {
+          "source": "pair",
+          "reason": "pair.final-score",
+          "operation": "final-score",
+          "value": {
+            "n": "333",
+            "d": "1"
+          },
+          "before": {
+            "H": {
+              "n": "145",
+              "d": "1"
+            },
+            "M": {
+              "n": "23",
+              "d": "10"
+            }
+          },
+          "after": {
+            "H": {
+              "n": "145",
+              "d": "1"
+            },
+            "M": {
+              "n": "23",
+              "d": "10"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "seq": 9,
+      "actions": [
+        {
+          "type": "OpenShop"
+        }
+      ],
+      "gold": [
+        8,
+        8
+      ],
+      "phase": "shop",
+      "stageIndex": 1
+    },
+    {
+      "seq": 10,
+      "actions": [
+        {
+          "type": "BuyOffer",
+          "offerId": "run/1791602670670/touye/shop/1/0/tool/0"
+        }
+      ],
+      "gold": [
+        8,
+        4
+      ],
+      "phase": "shop",
+      "stageIndex": 1
+    },
+    {
+      "seq": 11,
+      "actions": [
+        {
+          "type": "UseConsumable",
+          "instanceId": "run/1791602670670/touye/tool/run/1791602670670/touye/command/10",
+          "targetIds": [],
+          "handType": "pair"
+        }
+      ],
+      "gold": [
+        4,
+        4
+      ],
+      "phase": "shop",
+      "stageIndex": 1
+    },
+    {
+      "seq": 13,
+      "actions": [
+        {
+          "type": "LeaveShop"
+        },
+        {
+          "type": "EnterStage"
+        }
+      ],
+      "gold": [
+        4,
+        4
+      ],
+      "phase": "await-input",
+      "stageIndex": 1
+    },
+    {
+      "seq": 14,
+      "actions": [
+        {
+          "type": "PlayHand",
+          "selectedIds": [
+            "hearts-9",
+            "spades-9",
+            "diamonds-3",
+            "spades-6",
+            "hearts-4"
+          ]
+        }
+      ],
+      "gold": [
+        4,
+        4
+      ],
+      "phase": "await-input",
+      "stageIndex": 1,
+      "handType": "pair",
+      "score": "454",
+      "stageHeat": "454",
+      "events": [
+        {
+          "source": "pair",
+          "reason": "pair.base",
+          "operation": "base",
+          "value": {
+            "n": "50",
+            "d": "1"
+          },
+          "before": {
+            "H": {
+              "n": "0",
+              "d": "1"
+            },
+            "M": {
+              "n": "0",
+              "d": "1"
+            }
+          },
+          "after": {
+            "H": {
+              "n": "50",
+              "d": "1"
+            },
+            "M": {
+              "n": "5",
+              "d": "2"
+            }
+          }
+        },
+        {
+          "source": "rank-9",
+          "reason": "rank-9.add-heat",
+          "operation": "add-heat",
+          "value": {
+            "n": "9",
+            "d": "1"
+          },
+          "before": {
+            "H": {
+              "n": "50",
+              "d": "1"
+            },
+            "M": {
+              "n": "5",
+              "d": "2"
+            }
+          },
+          "after": {
+            "H": {
+              "n": "59",
+              "d": "1"
+            },
+            "M": {
+              "n": "5",
+              "d": "2"
+            }
+          }
+        },
+        {
+          "source": "rank-9",
+          "reason": "rank-9.add-heat",
+          "operation": "add-heat",
+          "value": {
+            "n": "9",
+            "d": "1"
+          },
+          "before": {
+            "H": {
+              "n": "59",
+              "d": "1"
+            },
+            "M": {
+              "n": "5",
+              "d": "2"
+            }
+          },
+          "after": {
+            "H": {
+              "n": "68",
+              "d": "1"
+            },
+            "M": {
+              "n": "5",
+              "d": "2"
+            }
+          }
+        },
+        {
+          "source": "touye",
+          "reason": "touye.ordinary",
+          "operation": "multiply-multiplier",
+          "value": {
+            "n": "23",
+            "d": "20"
+          },
+          "before": {
+            "H": {
+              "n": "68",
+              "d": "1"
+            },
+            "M": {
+              "n": "5",
+              "d": "2"
+            }
+          },
+          "after": {
+            "H": {
+              "n": "68",
+              "d": "1"
+            },
+            "M": {
+              "n": "23",
+              "d": "8"
+            }
+          }
+        },
+        {
+          "source": "mantangcai",
+          "reason": "mantangcai.add-heat",
+          "operation": "add-heat",
+          "value": {
+            "n": "90",
+            "d": "1"
+          },
+          "before": {
+            "H": {
+              "n": "68",
+              "d": "1"
+            },
+            "M": {
+              "n": "23",
+              "d": "8"
+            }
+          },
+          "after": {
+            "H": {
+              "n": "158",
+              "d": "1"
+            },
+            "M": {
+              "n": "23",
+              "d": "8"
+            }
+          }
+        },
+        {
+          "source": "pair",
+          "reason": "pair.final-score",
+          "operation": "final-score",
+          "value": {
+            "n": "454",
+            "d": "1"
+          },
+          "before": {
+            "H": {
+              "n": "158",
+              "d": "1"
+            },
+            "M": {
+              "n": "23",
+              "d": "8"
+            }
+          },
+          "after": {
+            "H": {
+              "n": "158",
+              "d": "1"
+            },
+            "M": {
+              "n": "23",
+              "d": "8"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "seq": 15,
+      "actions": [
+        {
+          "type": "PlayHand",
+          "selectedIds": [
+            "spades-14",
+            "spades-4",
+            "spades-5",
+            "clubs-14",
+            "clubs-8"
+          ]
+        }
+      ],
+      "gold": [
+        4,
+        11
+      ],
+      "phase": "stage-cleared",
+      "stageIndex": 2,
+      "handType": "pair",
+      "score": "465",
+      "stageHeat": "919",
+      "events": [
+        {
+          "source": "pair",
+          "reason": "pair.base",
+          "operation": "base",
+          "value": {
+            "n": "50",
+            "d": "1"
+          },
+          "before": {
+            "H": {
+              "n": "0",
+              "d": "1"
+            },
+            "M": {
+              "n": "0",
+              "d": "1"
+            }
+          },
+          "after": {
+            "H": {
+              "n": "50",
+              "d": "1"
+            },
+            "M": {
+              "n": "5",
+              "d": "2"
+            }
+          }
+        },
+        {
+          "source": "rank-14",
+          "reason": "rank-14.add-heat",
+          "operation": "add-heat",
+          "value": {
+            "n": "11",
+            "d": "1"
+          },
+          "before": {
+            "H": {
+              "n": "50",
+              "d": "1"
+            },
+            "M": {
+              "n": "5",
+              "d": "2"
+            }
+          },
+          "after": {
+            "H": {
+              "n": "61",
+              "d": "1"
+            },
+            "M": {
+              "n": "5",
+              "d": "2"
+            }
+          }
+        },
+        {
+          "source": "rank-14",
+          "reason": "rank-14.add-heat",
+          "operation": "add-heat",
+          "value": {
+            "n": "11",
+            "d": "1"
+          },
+          "before": {
+            "H": {
+              "n": "61",
+              "d": "1"
+            },
+            "M": {
+              "n": "5",
+              "d": "2"
+            }
+          },
+          "after": {
+            "H": {
+              "n": "72",
+              "d": "1"
+            },
+            "M": {
+              "n": "5",
+              "d": "2"
+            }
+          }
+        },
+        {
+          "source": "touye",
+          "reason": "touye.ordinary",
+          "operation": "multiply-multiplier",
+          "value": {
+            "n": "23",
+            "d": "20"
+          },
+          "before": {
+            "H": {
+              "n": "72",
+              "d": "1"
+            },
+            "M": {
+              "n": "5",
+              "d": "2"
+            }
+          },
+          "after": {
+            "H": {
+              "n": "72",
+              "d": "1"
+            },
+            "M": {
+              "n": "23",
+              "d": "8"
+            }
+          }
+        },
+        {
+          "source": "mantangcai",
+          "reason": "mantangcai.add-heat",
+          "operation": "add-heat",
+          "value": {
+            "n": "90",
+            "d": "1"
+          },
+          "before": {
+            "H": {
+              "n": "72",
+              "d": "1"
+            },
+            "M": {
+              "n": "23",
+              "d": "8"
+            }
+          },
+          "after": {
+            "H": {
+              "n": "162",
+              "d": "1"
+            },
+            "M": {
+              "n": "23",
+              "d": "8"
+            }
+          }
+        },
+        {
+          "source": "pair",
+          "reason": "pair.final-score",
+          "operation": "final-score",
+          "value": {
+            "n": "465",
+            "d": "1"
+          },
+          "before": {
+            "H": {
+              "n": "162",
+              "d": "1"
+            },
+            "M": {
+              "n": "23",
+              "d": "8"
+            }
+          },
+          "after": {
+            "H": {
+              "n": "162",
+              "d": "1"
+            },
+            "M": {
+              "n": "23",
+              "d": "8"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "seq": 16,
+      "actions": [
+        {
+          "type": "OpenShop"
+        }
+      ],
+      "gold": [
+        11,
+        11
+      ],
+      "phase": "shop",
+      "stageIndex": 2
+    },
+    {
+      "seq": 18,
+      "actions": [
+        {
+          "type": "LeaveShop"
+        },
+        {
+          "type": "EnterStage"
+        }
+      ],
+      "gold": [
+        11,
+        11
+      ],
+      "phase": "await-input",
+      "stageIndex": 2
+    },
+    {
+      "seq": 19,
+      "actions": [
+        {
+          "type": "PlayHand",
+          "selectedIds": [
+            "spades-11",
+            "hearts-2",
+            "hearts-11"
+          ]
+        }
+      ],
+      "gold": [
+        11,
+        11
+      ],
+      "phase": "await-input",
+      "stageIndex": 2,
+      "handType": "pair",
+      "score": "460",
+      "stageHeat": "460",
+      "events": [
+        {
+          "source": "pair",
+          "reason": "pair.base",
+          "operation": "base",
+          "value": {
+            "n": "50",
+            "d": "1"
+          },
+          "before": {
+            "H": {
+              "n": "0",
+              "d": "1"
+            },
+            "M": {
+              "n": "0",
+              "d": "1"
+            }
+          },
+          "after": {
+            "H": {
+              "n": "50",
+              "d": "1"
+            },
+            "M": {
+              "n": "5",
+              "d": "2"
+            }
+          }
+        },
+        {
+          "source": "rank-11",
+          "reason": "rank-11.add-heat",
+          "operation": "add-heat",
+          "value": {
+            "n": "10",
+            "d": "1"
+          },
+          "before": {
+            "H": {
+              "n": "50",
+              "d": "1"
+            },
+            "M": {
+              "n": "5",
+              "d": "2"
+            }
+          },
+          "after": {
+            "H": {
+              "n": "60",
+              "d": "1"
+            },
+            "M": {
+              "n": "5",
+              "d": "2"
+            }
+          }
+        },
+        {
+          "source": "rank-11",
+          "reason": "rank-11.add-heat",
+          "operation": "add-heat",
+          "value": {
+            "n": "10",
+            "d": "1"
+          },
+          "before": {
+            "H": {
+              "n": "60",
+              "d": "1"
+            },
+            "M": {
+              "n": "5",
+              "d": "2"
+            }
+          },
+          "after": {
+            "H": {
+              "n": "70",
+              "d": "1"
+            },
+            "M": {
+              "n": "5",
+              "d": "2"
+            }
+          }
+        },
+        {
+          "source": "touye",
+          "reason": "touye.ordinary",
+          "operation": "multiply-multiplier",
+          "value": {
+            "n": "23",
+            "d": "20"
+          },
+          "before": {
+            "H": {
+              "n": "70",
+              "d": "1"
+            },
+            "M": {
+              "n": "5",
+              "d": "2"
+            }
+          },
+          "after": {
+            "H": {
+              "n": "70",
+              "d": "1"
+            },
+            "M": {
+              "n": "23",
+              "d": "8"
+            }
+          }
+        },
+        {
+          "source": "mantangcai",
+          "reason": "mantangcai.add-heat",
+          "operation": "add-heat",
+          "value": {
+            "n": "90",
+            "d": "1"
+          },
+          "before": {
+            "H": {
+              "n": "70",
+              "d": "1"
+            },
+            "M": {
+              "n": "23",
+              "d": "8"
+            }
+          },
+          "after": {
+            "H": {
+              "n": "160",
+              "d": "1"
+            },
+            "M": {
+              "n": "23",
+              "d": "8"
+            }
+          }
+        },
+        {
+          "source": "pair",
+          "reason": "pair.final-score",
+          "operation": "final-score",
+          "value": {
+            "n": "460",
+            "d": "1"
+          },
+          "before": {
+            "H": {
+              "n": "160",
+              "d": "1"
+            },
+            "M": {
+              "n": "23",
+              "d": "8"
+            }
+          },
+          "after": {
+            "H": {
+              "n": "160",
+              "d": "1"
+            },
+            "M": {
+              "n": "23",
+              "d": "8"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "seq": 20,
+      "actions": [
+        {
+          "type": "PlayHand",
+          "selectedIds": [
+            "spades-14",
+            "diamonds-8",
+            "diamonds-14",
+            "diamonds-2"
+          ]
+        }
+      ],
+      "gold": [
+        11,
+        22
+      ],
+      "phase": "stage-cleared",
+      "stageIndex": 3,
+      "handType": "pair",
+      "score": "465",
+      "stageHeat": "925",
+      "events": [
+        {
+          "source": "pair",
+          "reason": "pair.base",
+          "operation": "base",
+          "value": {
+            "n": "50",
+            "d": "1"
+          },
+          "before": {
+            "H": {
+              "n": "0",
+              "d": "1"
+            },
+            "M": {
+              "n": "0",
+              "d": "1"
+            }
+          },
+          "after": {
+            "H": {
+              "n": "50",
+              "d": "1"
+            },
+            "M": {
+              "n": "5",
+              "d": "2"
+            }
+          }
+        },
+        {
+          "source": "rank-14",
+          "reason": "rank-14.add-heat",
+          "operation": "add-heat",
+          "value": {
+            "n": "11",
+            "d": "1"
+          },
+          "before": {
+            "H": {
+              "n": "50",
+              "d": "1"
+            },
+            "M": {
+              "n": "5",
+              "d": "2"
+            }
+          },
+          "after": {
+            "H": {
+              "n": "61",
+              "d": "1"
+            },
+            "M": {
+              "n": "5",
+              "d": "2"
+            }
+          }
+        },
+        {
+          "source": "rank-14",
+          "reason": "rank-14.add-heat",
+          "operation": "add-heat",
+          "value": {
+            "n": "11",
+            "d": "1"
+          },
+          "before": {
+            "H": {
+              "n": "61",
+              "d": "1"
+            },
+            "M": {
+              "n": "5",
+              "d": "2"
+            }
+          },
+          "after": {
+            "H": {
+              "n": "72",
+              "d": "1"
+            },
+            "M": {
+              "n": "5",
+              "d": "2"
+            }
+          }
+        },
+        {
+          "source": "touye",
+          "reason": "touye.ordinary",
+          "operation": "multiply-multiplier",
+          "value": {
+            "n": "23",
+            "d": "20"
+          },
+          "before": {
+            "H": {
+              "n": "72",
+              "d": "1"
+            },
+            "M": {
+              "n": "5",
+              "d": "2"
+            }
+          },
+          "after": {
+            "H": {
+              "n": "72",
+              "d": "1"
+            },
+            "M": {
+              "n": "23",
+              "d": "8"
+            }
+          }
+        },
+        {
+          "source": "mantangcai",
+          "reason": "mantangcai.add-heat",
+          "operation": "add-heat",
+          "value": {
+            "n": "90",
+            "d": "1"
+          },
+          "before": {
+            "H": {
+              "n": "72",
+              "d": "1"
+            },
+            "M": {
+              "n": "23",
+              "d": "8"
+            }
+          },
+          "after": {
+            "H": {
+              "n": "162",
+              "d": "1"
+            },
+            "M": {
+              "n": "23",
+              "d": "8"
+            }
+          }
+        },
+        {
+          "source": "pair",
+          "reason": "pair.final-score",
+          "operation": "final-score",
+          "value": {
+            "n": "465",
+            "d": "1"
+          },
+          "before": {
+            "H": {
+              "n": "162",
+              "d": "1"
+            },
+            "M": {
+              "n": "23",
+              "d": "8"
+            }
+          },
+          "after": {
+            "H": {
+              "n": "162",
+              "d": "1"
+            },
+            "M": {
+              "n": "23",
+              "d": "8"
+            }
+          }
+        },
+        {
+          "source": "T16",
+          "reason": "T16.reward-consumable",
+          "operation": "reward-consumable",
+          "value": {
+            "n": "1",
+            "d": "1"
+          },
+          "before": {
+            "H": {
+              "n": "162",
+              "d": "1"
+            },
+            "M": {
+              "n": "23",
+              "d": "8"
+            }
+          },
+          "after": {
+            "H": {
+              "n": "162",
+              "d": "1"
+            },
+            "M": {
+              "n": "23",
+              "d": "8"
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "observerErrors": [
+    "locator.click: Timeout 20000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: '关闭', exact: true })\u001b[22m\n\n    at /tmp/touye-first-chapter-live.mjs:10:421"
+  ],
+  "limitations": [
+    "One seed/one PC software path; no future deck/RNG read for decisions; no injected state, seed search, repeated balance simulations.",
+    "Native software operations are not human understanding, retention, physical-device or audio listening approval.",
+    "No product changes or new product CI required for this walkthrough."
+  ]
+}

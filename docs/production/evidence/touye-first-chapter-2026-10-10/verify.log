@@ -1,0 +1,9 @@
+CHECKPOINT_KEYS [ 'ok', 'checkpoint' ] [
+  'format',
+  'formatVersion',
+  'state',
+  'journalBaseSeq',
+  'journal',
+  'checksum'
+]
+{"source":"8c61eac1a16a85c88f6568544bf364d56b46db1d","status":"PASS","commandCount":19,"readonly":46,"final":{"phase":"stage-cleared","stageIndex":3,"gold":22,"handLevels":{"pair":2}}}
