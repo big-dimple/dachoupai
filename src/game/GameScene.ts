@@ -1085,7 +1085,13 @@ export class GameScene extends Phaser.Scene {
     });
   }
   update(time:number):void {if(!this.roleFrame?.active)return;const active=this.roleFrame.getData('abilityOpportunity')&&!this.playing&&!this.presentation&&this.ready&&!document.hidden&&!document.querySelector('dialog[open]');this.roleFrame.setAlpha(active&&!this.reducedMotion ? .85+.15*Math.cos(time*Math.PI/2000) : 1).setData('reminderState',active?(this.reducedMotion?'static':'breathing'):'paused');}
-  private inspectHeroAction():void {if(!this.ready)return;if(this.pendingRefill){this.reopenRefill();return;}if(this.assistProfile&&heroAbilityCue(this.run,this.selectionPreview(),[...this.selectedIds],assistCandidates(this.assistInput(),r2AssistAvailability(this.run).available).length>0)?.available){this.inspectCandidates();return;}this.inspectRole();}
+  private inspectHeroAction():void {
+    if(!this.ready)return;if(this.pendingRefill){this.reopenRefill();return;}
+    if(this.assistProfile){const candidates=assistCandidates(this.assistInput(),r2AssistAvailability(this.run).available);if(candidates.length){
+      const seq=this.run.commandSeq,main=[...this.selectedIds].join('|');
+      this.dialog.open('阿默 · 选助攻',ASSIST_EXPLANATION,candidates.map(facts=>({label:facts.assistIds.map(id=>{const c=this.hand.find(c=>c.id===id)!;return rankLabel(c.rank)+SUIT_SYMBOL[c.suit];}).join(' ')+' · 助攻 ×'+facts.assistMultiplier,run:()=>{if(!this.ready||this.run.commandSeq!==seq||[...this.selectedIds].join('|')!==main)return;this.dialog.close();this.chooseAssist(facts.assistIds);}})),{closeLabel:'返回选牌'});return;
+    }}this.inspectRole();
+  }
   private inspectTouye():void {
     const copy=touyeChoice(this.run,[...this.selectedIds]),seq=this.run.commandSeq,ids=[...this.selectedIds];
     const guide=heroSkillGuide(this.run,this.selectionPreview(),ids);
