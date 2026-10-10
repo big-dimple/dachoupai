@@ -660,3 +660,7 @@ button[aria-busy=true] { border-style:dashed; }
  .basic-suit-choice-dialog .experience-cards { grid-template-columns:repeat(3,minmax(0,1fr)); }
  .basic-suit-choice-dialog .basic-choice-groups { display:none; }
 }
+@media(max-width:811px), (max-height:499px) {
+ .basic-suit-choice-dialog .experience-card[data-choice-group="basic"] { grid-template-columns:48px minmax(0,1fr);gap:8px;padding:6px; }
+ .basic-suit-choice-dialog .experience-card[data-choice-group="basic"] > img { width:48px;height:68px; }
+}
