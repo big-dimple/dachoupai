@@ -70,7 +70,7 @@ export class ShopScene extends Phaser.Scene {
   private pcPages={jokers:0,tools:0,items:0};
   private pcOfferBoxes=new Map<string,Box>();
   private artRefreshListeners=new Map<string,()=>void>();
-  private artTargets=new Map<string,{holder:Phaser.GameObjects.Container;box:Box;alpha:number}>();
+  private artTargets=new Map<string,{holder:Phaser.GameObjects.Container;box:Box;alpha:number}[]>();
   private jokerArtTargets=new Map<Phaser.GameObjects.Container,{definitionId:string;box:Box;alpha:number}>();
   private notice='';
   private view!:SceneView;
@@ -346,28 +346,30 @@ export class ShopScene extends Phaser.Scene {
   private findOffer(id:string):{kind:ShelfKind;offer:R2Offer}|undefined {
     for(const kind of ['jokers','tools','items'] as const){const offer=this.shelfOffers(kind).find(row=>row.offerId===id);if(offer)return {kind,offer};}
   }
-  private drawGoodsArt(id:string,url:string,b:Box,alpha=1,fallbackUrl=url):void {
+  private drawGoodsArt(id:string,url:string,b:Box,alpha=1,fallbackUrl=url):Phaser.GameObjects.Container {
     const external=!url.startsWith('data:'),key=external?goodsArtKey(id):'goods-motif/'+id;
     const holder=this.view.add(this.add.container(b.x+b.width/2,b.y+b.height/2).setName('shop/goods-art/'+id).setData('artUrl',url).setData('bounds',b));
-    const target={holder,box:b,alpha};this.artTargets.set(key,target);
-    if(this.textures.exists(key)){this.paintGoodsArt(key);return;}
+    const target={holder,box:b,alpha},register=(artKey:string)=>{const targets=this.artTargets.get(artKey)??[];if(!targets.includes(target))targets.push(target);this.artTargets.set(artKey,targets);};register(key);
+    if(this.textures.exists(key)){this.paintGoodsArt(key);return holder;}
     holder.add(this.view.text(0,0,this.shelfKind==='tools'?'工具':'道具',18,'#85784f').setOrigin(.5));
-    const fallbackKey='goods-motif/'+id;this.artTargets.set(fallbackKey,target);
+    const fallbackKey='goods-motif/'+id;register(fallbackKey);
     if(this.textures.exists(fallbackKey))this.paintGoodsArt(fallbackKey);
     else if(!this.artRefreshListeners.has(fallbackKey)){
       const lifecycle=this.lifecycle,loaded=()=>{this.artRefreshListeners.delete(fallbackKey);if(lifecycle===this.lifecycle&&this.scene.isActive())this.paintGoodsArt(this.textures.exists(key)?key:fallbackKey);};
       this.artRefreshListeners.set(fallbackKey,loaded);this.textures.once('addtexture-'+fallbackKey,loaded);this.textures.addBase64(fallbackKey,fallbackUrl);
     }
     if(external)requestGoodsArt(this,id,url,()=>{this.paintGoodsArt(key);this.dialog.refreshArtLoad();});
+    return holder;
   }
   private paintGoodsArt(key:string):void {
-    const target=this.artTargets.get(key);
-    // Failed fetch/decode still notifies detail status. It must never replace
-    // an already valid fallback with Phaser's missing-texture placeholder.
-    if(!target?.holder.active||!this.textures.exists(key))return;
-    const image=this.add.image(0,0,key),scale=Math.min(target.box.width/image.width,target.box.height/image.height);
-    target.holder.removeAll(true);target.holder.add(image.setScale(scale).setAlpha(target.alpha));
+    if(!this.textures.exists(key))return;
+    for(const target of this.artTargets.get(key)??[]){
+      if(!target.holder.active)continue;
+      const image=this.add.image(0,0,key),scale=Math.min(target.box.width/image.width,target.box.height/image.height);
+      target.holder.removeAll(true);target.holder.add(image.setScale(scale).setAlpha(target.alpha));
+    }
   }
+
   private ellipsis(text:Phaser.GameObjects.Text,width:number):void {text.setData('fullText',text.text);let copy=text.text;while(text.width>width&&copy.length){copy=copy.slice(0,-1);text.setText(copy+'…');}}
   private twoLines(text:Phaser.GameObjects.Text,width:number):void {
     const full=text.text;let line='',lines:string[]=[];text.setWordWrapWidth(0);
@@ -376,28 +378,33 @@ export class ShopScene extends Phaser.Scene {
     text.setText(lines.join('\n')).setData('fullText',full);
   }
   private drawBasicChoiceSeat(o:R2Offer,raw:Box):void {
-    const v=this.view,p=this.geometry(),copy=p.pc?{tile:raw,x:raw.x+10,y:raw.y+8,width:raw.width-20,priceY:raw.y+raw.height-30}:shopOfferCopy(p,raw),first=v.root.length;
-    shopSheet(this,v,'offer',copy.tile,o.consumed?PAPER_THEME.jadeSoft:PAPER_THEME.paperLight,true);
-    if(!p.pc&&p.copyBeside){
-      v.text(raw.x+raw.width/2,raw.y+18,'基础\n自选1件',16,PAPER_CSS.ink,raw.width-12).setOrigin(.5,0).setFontStyle('bold');
-      v.text(raw.x+raw.width/2,raw.y+66,'升 降 删\n热 倍',14,PAPER_CSS.jade,raw.width-12).setOrigin(.5,0);
+    const v=this.view,p=this.geometry(),first=v.root.length,purchase=this.run.shop!.basicChoice!.purchase;
+    const copy=p.pc?{tile:raw,x:raw.x+140,y:raw.y+8,width:raw.width-150,priceY:raw.y+raw.height-30}:shopOfferCopy(p,raw);
+    shopSheet(this,v,'offer',copy.tile,PAPER_THEME.paperLight,true);
+    const art=p.pc?{x:raw.x+8,y:raw.y+10,width:124,height:raw.height-20}:{x:raw.x+5,y:raw.y+5,width:raw.width-10,height:raw.height-10};
+    const primary=purchase?.definitionId??'T08',ids=basicChoiceRows(this.run).map(row=>row.id).filter(id=>id!==primary).concat(primary);
+    for(const [i,id] of ids.entries()){
+      const top=i===ids.length-1,w=Math.min(art.width*.72,art.height/1.4)*(top?1:.86),h=w*1.4,shift=top?0:[-1,-.45,.45,1][i]*Math.min(16,art.width*.12),info=toolInfo(id,this.run);
+      this.drawGoodsArt(id,info.artUrl,{x:art.x+(art.width-w)/2+shift,y:art.y+(art.height-h)/2+(top?0:2),width:w,height:h},1,info.fallbackArtUrl).setAngle(top?0:[-12,-5,5,12][i]).setData('basicChoiceArt',true).setData('primary',top);
     }
-    v.text(copy.x,copy.y+4,p.pc?'基础改牌 · 自选1件':'基础自选1件',14,PAPER_CSS.ink,copy.width).setFontStyle('bold').setName('shop/basic-choice-title');
-    v.text(copy.x,copy.y+27,o.consumed?(p.pc?'本店已购，下一店恢复':'已购 · 下店恢复'):(p.pc?'升点／降点／删牌／热度／倍率\n每店一次，刷新不补货':'升 降 删 热 倍\n本店一次'),p.pc?14:12,PAPER_CSS.jade,copy.width).setStyle({maxLines:p.pc?3:2}).setName('shop/basic-choice-purpose');
-    v.text(copy.x,copy.priceY,o.consumed?'已选购':p.pc?`标价2 · 实付${r2PurchasePrice(this.run,o)}金`:`实付${r2PurchasePrice(this.run,o)}金`,14,PAPER_CSS.ink,copy.width).setFontStyle('bold').setName('shop/basic-choice-price');
+    const title=purchase?'已购 · '+toolInfo(purchase.definitionId,this.run).name:'基础自选1件';
+    v.text(copy.x,copy.y+4,title,14,PAPER_CSS.ink,copy.width).setFontStyle('bold').setName('shop/basic-choice-title');
+    v.text(copy.x,copy.y+27,purchase?'下一店可再选':'选工具，再选目标牌',14,PAPER_CSS.jade,copy.width).setName('shop/basic-choice-purpose');
+    if(!purchase){const ink=this.offerPricePlate(o,{x:copy.x-2,y:copy.priceY-2,width:copy.width+2,height:24});v.text(copy.x,copy.priceY,r2PurchasePrice(this.run,o)+' 金',16,ink).setFontStyle('bold').setName('shop/basic-choice-price');}
     const hover=this.hoverCard(first,copy.tile),r=v.rect(copy.tile).setFillStyle(0,0).setStrokeStyle();v.target(r,'offer/'+o.offerId,{tap:()=>this.inspectBasicChoice(),detail:()=>this.inspectBasicChoice(),...hover});this.offerArts.push(hover.art);
   }
   private inspectBasicChoice():void {
     const seat=basicChoiceSeat(this.run);if(!seat||this.busy)return;
-    const rows=basicChoiceRows(this.run),seq=this.run.commandSeq,shopSeq=this.run.shop!.basicChoice!.shopSeq;
+    const rows=basicChoiceRows(this.run),seq=this.run.commandSeq,shopSeq=this.run.shop!.basicChoice!.shopSeq,purchase=this.run.shop!.basicChoice!.purchase;
     this.audio.select();
-    this.dialog.open('基础改牌 · 本店自选1件',`标价2金，优惠沿既有合同；最低实付1金。\n${seat.consumed?'本店选择已购，刷新不能重开；下一店恢复。':'确认购买才扣款，买后仍由你选择目标使用。'}\n\n${rows.map(r=>r.info.name+'：'+r.purpose+(r.reason?'\n'+r.reason:'')).join('\n\n')}\n\n改牌不保证下一手发到目标或过关；也可以留钱入场。`,[],{
-      summaryBody:`当前 ${this.run.gold} 金 · 道具箱 ${this.run.consumables.length}/${r2ConsumableCapacity(this.run)}\n每店只选购1件，刷新不补货；复制与献纸不在基础位。`,collapseRules:true,rulesLabel:'路线用途与使用边界',closeLabel:'回到经营',
-      cards:rows.map(row=>({title:row.info.name,url:row.info.artUrl,body:row.purpose+'\n'+(row.reason??`实付 ${row.price} 金 · 买后余额 ${this.run.gold-row.price} 金`),action:!this.ready||!!row.reason&&!row.duplicate?undefined:{label:row.duplicate?`看随机位 · ${row.duplicate.consumed?'已售':row.price+'金'}`:`选择 · ${row.price}金`,run:()=>{
-        if(row.duplicate){if(row.duplicate.consumed)this.dialog.open(row.info.name+' · 随机位已购','同名商品本店已售。基础位不能另选同名，但仍可选其它合法基础操作。',[{label:'返回基础选择',run:()=>this.inspectBasicChoice()}]);else this.inspectOffer(row.duplicate.offerId);return;}
+    const dialog=this.dialog.open('改牌工具 · 选1件',purchase?'本店已购，刷新不重开；下一店恢复。':'本店选购1件，刷新不补货。购买后进入道具箱，使用时再选择目标牌。',[],{
+      summaryBody:purchase?'已购 '+toolInfo(purchase.definitionId,this.run).name+' · 下店恢复':`金币 ${this.run.gold} · 道具箱 ${this.run.consumables.length}/${r2ConsumableCapacity(this.run)} · 本店选1件`,collapseRules:true,rulesLabel:'选购规则',closeLabel:'回到经营',
+      cards:rows.map(row=>({title:row.info.name,url:row.info.artUrl,body:row.purpose+(row.reason&&!purchase?'\n'+(row.duplicate&&!row.duplicate.consumed?'同名随机现货':row.reason.replace(/^实付\d+金，/,'')):''),action:purchase&&!row.duplicate?undefined:{label:row.duplicate?`查看现货 · ${row.duplicate.consumed?'已售':row.price+'金'}`:`选择 · ${row.price}金`,disabled:!this.ready||!!row.reason&&!row.duplicate,run:()=>{
+        if(row.duplicate){if(row.duplicate.consumed)this.dialog.open(row.info.name+' · 现货已购','同名商品本店已售。仍可选其它合法基础操作。',[{label:'返回基础选择',run:()=>this.inspectBasicChoice()}]);else this.inspectOffer(row.duplicate.offerId);return;}
         this.confirmBasicChoice(row.id,seq,shopSeq);
       }}})),
-    });
+    });dialog.classList.add('basic-choice-dialog');
+    if(purchase)dialog.querySelectorAll('.experience-card')[rows.findIndex(row=>row.id===purchase.definitionId)]?.classList.add('is-purchased');
   }
   private confirmBasicChoice(definitionId:string,seq:number,shopSeq:number):void {
     const row=basicChoiceRows(this.run).find(r=>r.id===definitionId);if(!row||row.reason)return;
@@ -407,7 +414,7 @@ export class ShopScene extends Phaser.Scene {
       if(await this.send({type:'BuyBasicTool',definitionId,shopSeq},seq)){
         if(!this.dialog.active(dialog))return;
         const gained=this.run.consumables.find(c=>!purchaseBefore.has(c.instanceId)&&c.definitionId===definitionId);if(!gained){this.dialog.close(dialog);return;}
-        const result=this.dialog.open(info.name+' · 已购入',`购买已保存 · 实付 ${price} 金 · 余额 ${this.run.gold} 金\n本店基础选择已售罄；刷新不重开。\n尚未使用，目标仍由你选择。`,[{label:'立即使用',primary:true,run:()=>showConsumables(this.dialog,this.run,this.ready,(a,s)=>this.send(a,s),gained.instanceId)},{label:'查看道具箱',run:()=>showConsumables(this.dialog,this.run,this.ready,(a,s)=>this.send(a,s))}],{closeLabel:'回到经营'});result.classList.add('tool-purchased-result');
+        const result=this.dialog.open(info.name+' · 已购入',`本店已购，下店恢复。购买已保存，尚未使用。`,[{label:'立即使用',primary:true,run:()=>showConsumables(this.dialog,this.run,this.ready,(a,s)=>this.send(a,s),gained.instanceId)},{label:'查看道具箱',run:()=>showConsumables(this.dialog,this.run,this.ready,(a,s)=>this.send(a,s))}],{closeLabel:'回到经营',portrait:goodsArtPortrait(info),effectBody:row.purpose,summaryBody:`实付 ${price} 金 · 余额 ${this.run.gold} 金`,collapseRules:true});result.classList.add('tool-purchased-result','basic-choice-receipt');
       }
     }}],{shopContext:'purchase',closeLabel:'取消',portrait:goodsArtPortrait(info),effectBody:info.summary,summaryBody:`实付 ${price} 金 · 余额 ${this.run.gold} → ${this.run.gold-price} 金`,collapseRules:true});
   }

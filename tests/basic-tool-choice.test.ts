@@ -61,3 +61,11 @@ it('the UI seat marker cannot match real offers when a run ID shares its prefix'
  const s=createRun({seed:'group-natural-17',runId:'basic-choice/window',rulesVersion:'r2',characterId:'erxiang',openingRoute:'group',r2Identity:newRunIdentity('erxiang','group')});
  expect(isBasicChoiceSeat(basicChoiceSeat(s)!)).toBe(true);for(const o of [...s.shop!.offers,...s.shop!.toolOffers,...s.shop!.itemOffers])expect(isBasicChoiceSeat(o)).toBe(false);
 });
+it('basic choice describes target count and actual operation in one line',()=>{
+ const state=start();const rows=basicChoiceRows(state);
+ expect(rows.find(r=>r.id==='T02')?.purpose).toBe('永久删除1–2张牌');
+ expect(rows.find(r=>r.id==='T08')?.purpose).toContain('点数+1');
+ expect(rows.find(r=>r.id==='T09')?.purpose).toContain('点数−1');
+ expect(rows.find(r=>r.id==='T10')?.purpose).toContain('20');
+ expect(rows.find(r=>r.id==='T11')?.purpose).toContain('2');
+});

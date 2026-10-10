@@ -21,5 +21,9 @@ it('resource results describe saved gold or discard changes without inventing ch
  expect(facts.goldAfter).toBeGreaterThan(facts.goldBefore);expect(facts.changes).toEqual([]);expect(facts.added).toEqual([]);
 });
 it('purpose follows actual operations and distinguishes held from scoring enhancements',()=>{
- const state=start();expect(toolPurpose(state,'T08')).toContain('不必等复制');expect(toolPurpose(state,'T11')).toContain('对子');expect(toolPurpose(state,'T13')).toContain('留在手中');expect(routeFitCue(state,'tools','S01')?.focus).toBe('group');expect(routeFitCue(state,'tools','T11')?.note).toContain('不代表必买');
+ const state=start();expect(toolPurpose(state,'T08')).toContain('不必等复制');expect(toolPurpose(state,'T11')).toContain('对子');expect(toolPurpose(state,'T13')).toContain('留在手中');expect(routeFitCue(state,'tools','S01')?.focus).toBe('group');expect(routeFitCue(state,'tools','T11')?.label).toBe('契合同点成组路线');
+});
+it('route wording keeps the actual fit predicate and excludes neutral items',()=>{
+ const state=start();expect(routeFitCue(state,'items','U01')).toBeUndefined();
+ expect(routeFitCue(state,'tools','T08')?.label).toBe('契合同点成组路线');
 });
