@@ -18,7 +18,7 @@ it('references all12 real bases and partial saved levels without discovery/save 
  expect(copy).not.toMatch(/预计|最佳|最强|本手总分|能过关/);
 });
 it('four rules explain ordinary exceptions, clone types and evaluator precedence',()=>{
- const copy=handRuleReference({},{fourStraight:true,fourFlush:true});expect(copy).toContain('4张普通顺子；同花顺仍5张');expect(copy).toContain('4张普通同花；同花顺仍5张');expect(copy).toContain('4张同花连续判普通同花，不是同花顺');expect(copy).toContain('不能跨越QKA2');expect(copy).toContain('不同实例身份');
+ const copy=handRuleReference({},{fourStraight:true,fourFlush:true});expect(copy).toContain('4张普通顺子；同花顺仍5张');expect(copy).toContain('4张普通同花；同花顺仍5张');expect(copy).toContain('4张同花连续判普通同花，不是同花顺');expect(copy).toContain('不能跨越QKA2');expect(copy).toContain('复制得到的不同牌');
  expect(copy).toContain('判型优先顺序（先符合者）：同花五条 → 同花葫芦 → 五条 → 同花顺 → 四条 → 葫芦 → 同花 → 顺子');
 });
 const hand:PlayingCard[]=[{id:'a',rank:5,suit:'hearts'},{id:'b',rank:8,suit:'clubs'},{id:'c',rank:6,suit:'clubs'},{id:'d',rank:5,suit:'clubs'},{id:'e',rank:4,suit:'clubs'},{id:'f',rank:3,suit:'clubs'},{id:'g',rank:9,suit:'diamonds'},{id:'h',rank:5,suit:'diamonds'}];

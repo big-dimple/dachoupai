@@ -151,7 +151,7 @@ export function showConsumables(dialog:DetailDialog,state:R2RunState,ready:boole
         catch{const status=confirmation.querySelector<HTMLParagraphElement>('.dialog-status')!;status.textContent='销毁未完成，请重试。';status.hidden=false;}
       }}],{closeLabel:'取消'});
     }};
-    const d=dialog.open(info.name+' · 使用详情',[info.description,info.cost].join('\n\n'),[useAction,destroyAction],{closeLabel:'取消',portrait:goodsArtPortrait(info),effectBody:info.summary,collapseRules:true});d.classList.add('tool-detail');markRouteDetail(d,routeFitCue(state,'tools',tool.id));
+    const d=dialog.open(info.name+' · 使用详情',[info.description,info.cost].join('\n\n'),[useAction,destroyAction],{closeLabel:'取消',guideSteps:{labels:tool.target.kind==='none'?['查看用途','确认使用']:['查看用途','选择目标','确认使用'],current:tool.target.kind==='none'?1:1},portrait:goodsArtPortrait(info),effectBody:info.summary,collapseRules:true});d.classList.add('tool-detail');markRouteDetail(d,routeFitCue(state,'tools',tool.id));
     const instruction=document.createElement('p'),target=tool.target;
     instruction.className='tool-short-instruction';
     const count=target.kind==='cards'||target.kind==='card-sacrifice'?`选 ${target.minimum===target.maximum?target.maximum:target.minimum+'–'+target.maximum} 张` :target.kind==='card-or-joker'?'选 1 个普通版次对象':target.kind==='joker-sacrifice'?'选 1 张牺牲牌与 1 张受益牌':target.kind==='discovered-hand'?'选已发现牌型':target.kind==='suit'?'选 1 种花色':target.kind==='hand-exchange'?'选 2 种不同牌型':target.kind==='whole-deck'?'整副有效牌组': '无需选牌';
@@ -228,7 +228,7 @@ export function showConsumables(dialog:DetailDialog,state:R2RunState,ready:boole
     panel.append(risks);scroll.append(panel);const dock=document.createElement('section');dock.className='tool-selection-dock';dock.setAttribute('aria-label','已选目标与真实预览');const changes=document.createElement('div'),body=document.createElement('div'),costs=document.createElement('p');changes.className='tool-change-preview';changes.setAttribute('aria-label','确认前后对照');body.className='tool-preview-scroll';costs.className='tool-preview-cost';costs.setAttribute('aria-live','polite');body.append(changes,preview);dock.append(hint,costs,body);d.insertBefore(dock,d.querySelector('.dialog-actions'));
     function refresh():void {
       for(const button of sortButtons)button.disabled=busy;
-      const issue=selectionIssue(tool,state,selection,known,ready),selected=targetChoices().filter(choice=>selection.ids.has(choice.id));
+      const issue=selectionIssue(tool,state,selection,known,ready);const steps=d.querySelectorAll('.operation-guide li'),step=issue?Math.max(0,steps.length-2):steps.length-1;steps.forEach((item,index)=>{item.classList.toggle('is-current',index===step);if(index===step)item.setAttribute('aria-current','step');else item.removeAttribute('aria-current');});const selected=targetChoices().filter(choice=>selection.ids.has(choice.id));
       for(const control of controls){
         const {input,label,choice,role,maximum}=control;let unavailable=false;
         if(role==='target'){

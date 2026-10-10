@@ -51,7 +51,7 @@ function effectText(effect:R2EnhancementEffect):string {
   switch(effect.kind){
     case 'add-heat':case 'add-multiplier':case 'multiply-multiplier':
       return `${effect.phase==='onHeldCard'?'有效持牌一次':'每次普通或额外计分'}${mathText(effect)}`;
-    case 'chance-destroy':return `结算后每张原实例只判一次，${effect.probability.n}/${effect.probability.d}概率永久破碎，失败手也判定且可低于主动删牌下限`;
+    case 'chance-destroy':return `结算后每张原牌只判一次，${effect.probability.n}/${effect.probability.d}概率永久破碎，失败手也判定且可低于主动删牌下限`;
     case 'add-gold':return `成功过关时每张有效持牌金币+${effect.amount}，每场最多${effect.capPerStage}金`;
     case 'retrigger-card':return `有效计分时额外计分+${effect.count}次，不递归触发，与大丑牌共享每张最多${SCORE_LIMITS.extraRetriggers}次额外计分`;
     case 'chance-add-multiplier':return `${effect.probability.n}/${effect.probability.d}概率倍率+${fractionText(effect.value)}`;
@@ -82,6 +82,13 @@ export function cardSpecialText(card:PlayingCard):string {
   const enhancement=card.enhancement?enhancementDefinition(card.enhancement):undefined;
   const edition=editionDefinition(card.edition);
   return `增强：${enhancement?`${enhancement.name}（${enhancementText(enhancement)}）`:'无'}；版次：${edition.name}${edition.effect?`（${mathText(edition.effect)}）`:''}`;
+}
+
+/** Front layer keeps actual scoring/held timing, chance, cap and permanent risk. */
+export function cardSpecialSummary(card:PlayingCard):string {
+ const enhancement=card.enhancement?enhancementDefinition(card.enhancement):undefined,edition=editionDefinition(card.edition);
+ const effect=enhancement?enhancementSummary(enhancement).replaceAll('选中牌','此牌'):'没有增强';
+ return (enhancement?enhancement.name+'：'+effect:effect)+'\n'+(edition.effect?edition.name+'：'+mathText(edition.effect):'普通版次：没有额外加成');
 }
 
 function targetText(tool:R2ToolDefinition):string {

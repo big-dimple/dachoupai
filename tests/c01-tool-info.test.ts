@@ -1,7 +1,7 @@
 import {describe,it,expect} from 'vitest';
 import {R2_TOOLS,R2_LONG_TERM_ITEMS} from '../src/content/r2Tools';
 import {ENHANCEMENTS,type PlayingCard} from '../src/cards/types';
-import {toolInfo,itemInfo,cardSpecialText,editionLabel,editionEffectText,toolFamilyLabel} from '../src/game/r2ToolInfo';
+import {toolInfo,itemInfo,cardSpecialSummary,cardSpecialText,editionLabel,editionEffectText,toolFamilyLabel} from '../src/game/r2ToolInfo';
 import {scoreBeat} from '../src/game/scorePresentation';
 import type {ScoreEvent} from '../src/domain/scoreR2';
 
@@ -156,4 +156,11 @@ describe('C01 committed chance, lifecycle and reward beats',()=>{
       expect(scoreBeat(event,8).windup).toBeGreaterThan(0);expect(scoreBeat(event,8).impact).toBeGreaterThan(0);
     }
   });
+});
+
+it('poker front layer retains each destructive, probabilistic and held benefit',()=>{
+ expect(cardSpecialSummary({id:'glass',rank:7,suit:'hearts',enhancement:'glass-paper'})).toContain('永久破碎');
+ expect(cardSpecialSummary({id:'lucky',rank:7,suit:'hearts',enhancement:'lucky-paper'})).toContain('每手最多');
+ expect(cardSpecialSummary({id:'held',rank:7,suit:'hearts',enhancement:'voice-paper',edition:'polychrome'})).toContain('留在手中');
+ expect(cardSpecialSummary({id:'held',rank:7,suit:'hearts',enhancement:'voice-paper',edition:'polychrome'})).toContain('倍率×');
 });

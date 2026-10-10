@@ -595,3 +595,34 @@ button[aria-busy=true] { border-style:dashed; }
  .basic-choice-dialog[open] { height:auto;inset:auto;top:50%;left:50%;transform:translate(-50%,-50%); }
  .basic-choice-dialog .dialog-scroll { height:auto; }
 }
+/* The current skill and its choices lead; unrelated inspection stays folded. */
+.dialog-choice-actions { display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-block:12px; }
+.dialog-choice-actions > div { min-width:0;padding:8px;border:1px solid #c7b89d;background:#fff9ee; }
+.dialog-choice-actions button { width:100%;min-height:44px;padding:8px;font-size:16px; }
+.dialog-choice-actions p { margin:6px 0 0;font-size:14px;line-height:1.4; }
+.dialog-secondary-actions { margin-block:10px;font-size:14px; }
+.dialog-secondary-actions > div { display:flex;flex-wrap:wrap;gap:8px;margin-top:8px; }
+.dialog-secondary-actions button { min-height:44px;padding:8px;font-size:14px; }
+.hero-skill-dialog .dialog-effect { white-space:pre-line;font-size:16px;line-height:1.5; }
+.hero-skill-dialog .dialog-purchase-summary { font-size:16px; }
+.hero-skill-dialog .dialog-content { grid-template-columns:120px minmax(0,1fr);gap:14px; }
+.hero-skill-dialog .dialog-portrait-art { align-self:start; }
+.hero-skill-dialog .dialog-portrait { max-height:180px; }
+.poker-detail-dialog .dialog-effect { white-space:pre-line;font-size:16px; }
+@media(max-width:560px) {
+ .hero-skill-dialog .dialog-content { grid-template-columns:1fr; }
+ .hero-skill-dialog .dialog-portrait-art { display:none; }
+ .hero-skill-dialog .dialog-choice-actions { grid-template-columns:repeat(2,minmax(0,1fr)); }
+}
+.ability-hook-timing { font-size:14px;line-height:1.4;margin:0 0 8px;color:#3F606B; }
+.operation-guide { display:flex;flex-wrap:wrap;gap:6px;list-style:none;padding:0;margin:0 0 10px;counter-reset:operation; }
+.operation-guide li { counter-increment:operation;font-size:14px;line-height:1.4;padding:6px;background:#e2e8e5;border:1px solid #c7b89d; }
+.operation-guide li::before { content:counter(operation) ' · ';font-weight:bold; }
+.operation-guide li.is-current { background:#3F606B;color:#fff9ee;border-color:#3F606B; }
+@media(min-width:812px) and (min-height:500px) {
+ .hero-skill-dialog[open] { height:auto;inset:auto;top:50%;left:50%;transform:translate(-50%,-50%); }
+ .hero-skill-dialog .dialog-scroll { height:auto; }
+}
+.hero-confirm-dialog[open] { height:auto;inset:auto;top:50%;left:50%;transform:translate(-50%,-50%); }
+.hero-confirm-dialog .dialog-scroll { height:auto; }
+@media(max-width:560px) { .hero-skill-dialog .dialog-content { grid-template-rows:minmax(0,1fr); }.hero-skill-dialog .dialog-scroll { height:100%; } }

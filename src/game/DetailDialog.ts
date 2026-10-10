@@ -15,7 +15,7 @@ export function modalBlocksCanvas(x:number,y:number):boolean {
 }
 interface DialogAction {label:string;run:()=>void|Promise<void>;disabled?:boolean;primary?:boolean}
 type ArtLoadStatus='unregistered'|'idle'|'loading'|'loaded'|'failed';
-interface DialogOptions {keepsake?:BuildKeepsake;keepsakeCompact?:boolean;shopContext?:'purchase'|'held'|'compare'|'sale';cards?:readonly ExperienceCard[];onClose?:()=>void;summaryBody?:string;effectBody?:string;editionBody?:string;ability?:CardAbilityCopy;collapseRules?:boolean;rulesLabel?:string;f09?:{inactive:boolean;bodyInactive?:boolean;alignedLayers?:boolean;reduced:boolean;reason?:string};closeLabel?:string;rarity?:JokerRarity;artLoad?:{status:ArtLoadStatus;readStatus?:()=>ArtLoadStatus;retry?:()=>Promise<boolean>};portrait?:{url:string;thumbnailUrl?:string;fallbackUrl?:string;alt:string;layout?:'card';caption?:string}}
+interface DialogOptions {guideSteps?:{labels:readonly string[];current:number};choices?:readonly (DialogAction&{detail?:string})[];secondaryActions?:readonly DialogAction[];keepsake?:BuildKeepsake;keepsakeCompact?:boolean;shopContext?:'purchase'|'held'|'compare'|'sale';cards?:readonly ExperienceCard[];onClose?:()=>void;summaryBody?:string;effectBody?:string;editionBody?:string;ability?:CardAbilityCopy;collapseRules?:boolean;rulesLabel?:string;f09?:{inactive:boolean;bodyInactive?:boolean;alignedLayers?:boolean;reduced:boolean;reason?:string};closeLabel?:string;rarity?:JokerRarity;artLoad?:{status:ArtLoadStatus;readStatus?:()=>ArtLoadStatus;retry?:()=>Promise<boolean>};portrait?:{url:string;thumbnailUrl?:string;fallbackUrl?:string;alt:string;layout?:'card';caption?:string}}
 export class DetailDialog {
   private dialog?:HTMLDialogElement;
   private lastPointer?:{x:number;y:number};
@@ -62,10 +62,11 @@ export class DetailDialog {
     status.className='dialog-status';status.setAttribute('role','status');status.hidden=true;
     header.className='dialog-header';layout.className='dialog-content';copy.className='dialog-copy';const intro=document.createElement('div');intro.className='dialog-intro';
     const eyebrow=document.createElement('span');eyebrow.className='dialog-eyebrow';eyebrow.textContent=options.portrait?'巡演藏牌':'牌桌手记';eyebrow.textContent=options.shopContext==='purchase'?'现货 · 确认后付款':options.shopContext==='sale'?'已持 · 确认后出售':options.shopContext==='held'?'当前持有':options.shopContext==='compare'?'现货与已持':eyebrow.textContent;header.append(eyebrow,heading);
-    for(const action of actions){
-      const b=document.createElement('button');b.textContent=action.label;b.disabled=!!action.disabled;if(action.primary)b.className='dialog-primary';
-      b.onclick=async()=>{AudioEngine.shared.select();b.disabled=true;b.setAttribute('aria-busy','true');status.hidden=true;try{await action.run();}catch{if(this.active(dialog)){status.textContent='操作未完成，请重试。';status.hidden=false;}}finally{if(b.isConnected){b.disabled=!!action.disabled;b.removeAttribute('aria-busy');}}};row.append(b);
-    }
+    const actionButton=(action:DialogAction)=>{
+      const b=document.createElement('button');b.type='button';b.textContent=action.label;b.disabled=!!action.disabled;if(action.primary)b.className='dialog-primary';
+      b.onclick=async()=>{AudioEngine.shared.select();b.disabled=true;b.setAttribute('aria-busy','true');status.hidden=true;try{await action.run();}catch{if(this.active(dialog)){status.textContent='操作未完成，请重试。';status.hidden=false;}}finally{if(b.isConnected){b.disabled=!!action.disabled;b.removeAttribute('aria-busy');}}};return b;
+    };
+    for(const action of actions)row.append(actionButton(action));
     const close=document.createElement('button');close.textContent=options.closeLabel??'关闭';close.className='dialog-close';close.onclick=()=>{AudioEngine.shared.cancel();this.close(dialog);};row.append(close);
     dialog.append(header);
     if(options.portrait){
@@ -142,6 +143,7 @@ export class DetailDialog {
       const ability=document.createElement('section'),condition=document.createElement('span'),value=document.createElement('strong'),state=document.createElement('small');
       ability.className='card-ability f09-ability';ability.dataset.inactive=String(!!options.f09?.inactive);condition.textContent=options.ability.condition;value.textContent=options.ability.value;if(options.ability.playerCopy&&options.ability.plain?.steps){
         dialog.classList.add('detail-dialog--stepped-joker');ability.classList.add('is-player-copy','is-stepped');
+        const timing=document.createElement('p');timing.className='ability-hook-timing';timing.textContent=options.ability.plain.steps.timings.join(' · ');ability.append(timing);
         const steps=document.createElement('ol');steps.className='ability-main ability-steps';steps.setAttribute('aria-label','生效步骤');
         for(const step of options.ability.plain.steps.steps){const item=document.createElement('li'),when=document.createElement('p'),effect=document.createElement('strong');when.className='ability-when';when.textContent=step.when;effect.textContent=step.effect;if(step.when)item.append(when);item.append(effect);steps.append(item);}ability.append(steps);
         const limits=document.createElement('ul');limits.className='ability-limits ability-step-limits';limits.setAttribute('aria-label','关键限制');for(const text of options.ability.plain.steps.limits){const item=document.createElement('li');item.textContent=text;limits.append(item);}if(limits.childElementCount)ability.append(limits);
@@ -164,6 +166,15 @@ export class DetailDialog {
         if(card.details){const details=document.createElement('details'),label=document.createElement('summary'),text=document.createElement('p');details.className='card-rules';label.textContent='条件、配合与完整损失';text.textContent=card.details;details.append(label,text);copy.append(details);}
         item.append(copy);gallery.append(item);
       }intro.append(gallery);
+    }
+    if(options.guideSteps){const steps=document.createElement('ol');steps.className='operation-guide';steps.setAttribute('aria-label','操作步骤');options.guideSteps.labels.forEach((label,index)=>{const item=document.createElement('li');item.textContent=label;if(index===options.guideSteps!.current){item.className='is-current';item.setAttribute('aria-current','step');}steps.append(item);});intro.prepend(steps);}
+    if(options.choices?.length){
+      const choices=document.createElement('section');choices.className='dialog-choice-actions';choices.setAttribute('aria-label','当前可选操作');
+      for(const action of options.choices){const item=document.createElement('div');item.append(actionButton(action));if(action.detail){const detail=document.createElement('p');detail.textContent=action.detail;item.append(detail);}choices.append(item);}intro.append(choices);
+    }
+    if(options.secondaryActions?.length){
+      const more=document.createElement('details'),label=document.createElement('summary'),buttons=document.createElement('div');more.className='dialog-secondary-actions';label.textContent='其它查看';
+      for(const action of options.secondaryActions)buttons.append(actionButton(action));more.append(label,buttons);copy.append(more);
     }
     if(options.keepsake&&options.keepsakeCompact)intro.append(compactBuildKeepsakeView(options.keepsake,cleanups));
     if(options.collapseRules||options.ability){const rules=document.createElement('details'),summary=document.createElement('summary'),text=document.createElement('p');rules.className='card-rules';summary.textContent=options.rulesLabel??'规则与操作';text.textContent=[options.ability?.plain?.details??options.ability?.rules,body].filter(Boolean).join('\n\n');rules.append(summary,text);copy.append(rules,status);}
