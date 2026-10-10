@@ -244,6 +244,7 @@ export class GameScene extends Phaser.Scene {
     super('game');
   }
   private heroClimax?:HeroClimaxView;
+  private refillPresentation?:EffectContext;
   private heroActionButton?:Phaser.GameObjects.Rectangle;
   private readonly shownPayoffs=new Set<string>();
   private climaxArtAbort?:AbortController;
@@ -305,7 +306,7 @@ export class GameScene extends Phaser.Scene {
     this.cameras.main.setBackgroundColor(C.paper);
     this.view=new SceneView(this,()=>{
       if(this.presentation)this.fastForward();
-      else if(this.heroClimax){this.effects.clear();this.heroClimax?.dispose();this.heroClimax=undefined;}
+      else if(this.heroClimax||this.refillPresentation){this.effects.clear();this.heroClimax?.dispose();this.heroClimax=undefined;}
       if(this.toolHand){this.effects.clear();this.toolHand=undefined;}
       this.render();
     },()=>({count:this.hand.length,start:this.handStart}));
@@ -1217,7 +1218,7 @@ export class GameScene extends Phaser.Scene {
     if(!this.handHint)return;this.handHint=false;
     if(this.controlsLive&&this.statusText?.active&&this.scene.isActive())this.updateControls();
   };
-  private readonly hintVisibility=()=>{if(document.hidden){if(this.presentation)this.fastForward();else if(this.heroClimax)this.effects.clear();this.stopHandHint();this.handInput?.cancel('blur');this.candidateGhost=undefined;this.candidates.dispose();this.aiCandidates.dispose();this.aiCursor=undefined;}else if(this.run?.phase==='await-input'&&!this.playing&&!this.presentation&&this.scene.isActive())this.refreshSelection();};
+  private readonly hintVisibility=()=>{if(document.hidden){if(this.presentation)this.fastForward();else if(this.heroClimax||this.refillPresentation)this.effects.clear();this.stopHandHint();this.handInput?.cancel('blur');this.candidateGhost=undefined;this.candidates.dispose();this.aiCandidates.dispose();this.aiCursor=undefined;}else if(this.run?.phase==='await-input'&&!this.playing&&!this.presentation&&this.scene.isActive())this.refreshSelection();};
   private showHandHint(claim=true):void {
     if(!this.view||!this.ready||this.handHint)return;
     const cards=this.view.layout.cards.filter(card=>card.visible);if(cards.length<2||claim&&!this.sweepHint.claim())return;
@@ -1418,7 +1419,7 @@ export class GameScene extends Phaser.Scene {
     const eventId=receipt.commandId+'/laohuan-refill';if(this.shownPayoffs.has(eventId))return;
     const cards=ids.map(id=>this.run.deckInstances.find(c=>c.id===id)).filter((c):c is PlayingCard=>!!c),names=cards.map(c=>rankLabel(c.rank)+SUIT_SYMBOL[c.suit]).join(' ');
     const key:JokerKeyHighlight={eventId,kind:'payoff',heroId:'laohuan',cause:'戏法实际留牌',landing:'留'+cards.length+'张 · 已保存',fact:{eventId,sourceInstanceId:this.run.runId+'/character',definitionId:'',title:'老幻 · 戏法留牌',effect:'实际留下 '+names,condition:'原戏法弃/留牌命令成功保存',destination:'当前手牌 · 不增加计分',next:'继续自主选牌'}};
-    this.effects.clear();this.effects.enqueue(async context=>{const stage=mountHeroClimax(this,this.view.root,{x:0,y:0,...cssViewport(this)},key,{label:'实际留牌',before:cards.length+'张',after:cards.length+'张',note:'多看'+looked+'张 · '+names+'；不增加计分'},this.reducedMotion);if(!stage){
+    this.effects.clear();this.effects.enqueue(async context=>{this.refillPresentation=context;try {const stage=mountHeroClimax(this,this.view.root,{x:0,y:0,...cssViewport(this)},key,{label:'实际留牌',before:cards.length+'张',after:cards.length+'张',note:'多看'+looked+'张 · '+names+'；不增加计分'},this.reducedMotion);if(!stage){
       const viewport=cssViewport(this),width=Math.min(480,viewport.width-32),height=140;
       const group=mountKeyHighlight(this,this.view.root,{x:(viewport.width-width)/2,y:(viewport.height-height)/2,width,height},{...key,heroId:undefined,cause:key.landing+' · 不增加计分'});
       this.shownPayoffs.add(eventId);let cleaned=false;const cleanup=()=>{if(cleaned)return;cleaned=true;context.signal.removeEventListener('abort',cleanup);group.destroy();};context.signal.addEventListener('abort',cleanup,{once:true});
@@ -1426,6 +1427,7 @@ export class GameScene extends Phaser.Scene {
     }
       this.heroClimax=stage;this.shownPayoffs.add(eventId);const cleanup=()=>{context.signal.removeEventListener('abort',cleanup);stage.dispose();if(this.heroClimax===stage)this.heroClimax=undefined;};context.signal.addEventListener('abort',cleanup,{once:true});
       try {await this.wait(this.reducedMotion?0:250,context);if(context.signal.aborted)return;stage.strike();await this.waitHeroSubject(context);if(!context.signal.aborted)await stage.release();}finally{cleanup();}
+    }finally{if(this.refillPresentation===context)this.refillPresentation=undefined;}
     });try {await this.effects.drain();}catch {this.effects.clear();}
   }
   private async chooseRefill():Promise<void> {
@@ -1930,7 +1932,7 @@ export class GameScene extends Phaser.Scene {
     this.playing=false;this.render();this.revealDrawnCards(presentation.hand.map(card=>card.id));
   }
 
-  fastForward():void {const presentation=this.presentation;if(!presentation){if(this.heroClimax)this.effects.clear();return;}this.effects.clear();this.audio.cancelPresentation();this.cameras.main.resetFX();this.heatText.setScale(1);this.scoreTotal.setScale(1);this.completePresentation(presentation);}
+  fastForward():void {const presentation=this.presentation;if(!presentation){if(this.heroClimax||this.refillPresentation)this.effects.clear();return;}this.effects.clear();this.audio.cancelPresentation();this.cameras.main.resetFX();this.heatText.setScale(1);this.scoreTotal.setScale(1);this.completePresentation(presentation);}
   replayLastTrace():void {
     if(this.playing||!this.run.lastTrace)return;
     this.clearHover();this.playing=true;this.playButton.disableInteractive();const intent=++this.intent;
