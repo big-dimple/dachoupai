@@ -1,5 +1,5 @@
 import {it,expect} from 'vitest';
-import {shopLayout,shopFirstGuideLayout,shopSummaryWrap,shopOfferCopy,shopOwnedDropIndex,shopOwnedHitBox,shopOwnedNameArea} from '../src/game/ShopLayout';
+import {shopLayout,shopFirstGuideLayout,shopSummaryWrap,shopOfferCopy,shopOwnedDropIndex,shopOwnedHitBox,shopOwnedNameArea,shopGoodsGrid} from '../src/game/ShopLayout';
 import {intersects} from '../src/game/layout';
 it('first-shop guide has reachable exits without covering merchandise or primary shop actions',()=>{
  for(const [width,height] of [[1280,720],[1366,768],[1920,1080],[390,740],[320,740],[740,390],[768,1024]]){
@@ -120,4 +120,8 @@ it('PC portrait art spends actual remaining height without clipping three goods 
 it('keeps actual probability fractions together in narrow purpose text',()=>{
  const text=shopSummaryWrap('结算后1/4概率永久破碎；1/15得10金',7,s=>s.length);
  expect(text).toContain('1/4');expect(text).toContain('1/15');expect(text).not.toMatch(/1\/\n|1\n\//);
+});
+
+it('PC goods expand by final width and height, with bounded narrow pagination',()=>{
+ for(const [width,height,count] of [[500,272,4],[436,160,2],[256,112,2]]){const group={x:12,y:10,width,height},g=shopGoodsGrid(group,count);if(width>=436)expect(g.capacity).toBeGreaterThanOrEqual(count);else expect(g.capacity).toBe(1);for(const [i,b] of g.boxes.entries()){expect(b.x+b.width).toBeLessThanOrEqual(group.x+width);expect(b.y+b.height).toBeLessThanOrEqual(group.y+height);for(const other of g.boxes.slice(i+1))expect(intersects(b,other)).toBe(false);}}
 });

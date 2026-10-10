@@ -20,7 +20,8 @@ import {r2ScoringDisabledJokerIds} from '../domain/scoreR2';
 import {r2JokerDefinitionsFor,r2JokerDefinitionFor} from '../domain/r2ContentProfiles';
 import {jokerAbilityCopyForRun,publicJokerMemoryContext} from './JokerMemory';
 import type {R2JokerInstance} from '../content/r2Schema';
-import {shopLayout,shopFirstGuideLayout,shopSummaryWrap,shopOfferCopy,shopOwnedDropIndex,shopOwnedHitBox,shopOwnedNameArea} from './ShopLayout';
+import {shopLayout,shopFirstGuideLayout,shopSummaryWrap,shopOfferCopy,shopOwnedDropIndex,shopOwnedHitBox,shopOwnedNameArea,shopGoodsGrid} from './ShopLayout';
+import {shopOfferGuidance,jokerRouteCaption,jokerApplicableRoutes} from './ShopOfferGuidance';
 import {goodsArtKey,goodsArtLoadState,requestGoodsArt,retryGoodsArt} from './GoodsArtLoading';
 import {ShopResultFeedback,shopResultBox,shopResultPages,type ShopResultLine} from './ShopResultFeedback';
 import {requestJokerArt,jokerArtLoadState,retryJokerArt} from './JokerArtLoading';
@@ -158,7 +159,8 @@ export class ShopScene extends Phaser.Scene {
       if(this.shelfKind!=='jokers'){this.drawGoodsOffer(o,p.shelf[i],p.short,p.portrait);return;}
       const selected=this.selectedOfferId===o.offerId,b=p.shelf[i],d=this.jokerDefinition(o.definitionId),ability=this.jokerCopy(o.definitionId),first=v.root.length;
       this.drawOfferCard(b,d.rarity,selected,o.consumed,p.short);
-      this.drawJokerPicture(o.definitionId,{x:b.x+4,y:b.y+4,width:b.width-8,height:b.height-8},o.consumed?.35:1);
+      const factsOnFace=!p.copyBeside&&!('guidanceBelow' in p&&p.guidanceBelow);
+      this.drawJokerPicture(o.definitionId,{x:b.x+4,y:b.y+4,width:b.width-8,height:b.height-8-(factsOnFace?54:0)},o.consumed?.35:1);
       const copy=shopOfferCopy(p,b,true),copyX=copy.x,copyY=copy.y,copyWidth=copy.width;
       const name=v.text(copyX,copyY+4,d.name,15,'#26313A').setFontStyle('bold').setName('shop/offer-name');this.ellipsis(name,copyWidth);
       const plain=ability?.plain,full=plain?.line??ability?.summary??d.description;
@@ -169,7 +171,8 @@ export class ShopScene extends Phaser.Scene {
       const price=r2PurchasePrice(this.run,o);
       const priceInk=this.offerPricePlate(o,{x:copyX-2,y:copy.priceY-2,width:copyWidth+2,height:24});
       v.text(copyX,copy.priceY,o.consumed?'已收入':price+' 金 · 查看',16,priceInk).setFontStyle('bold').setName('shop/offer-price').setData('offerId',o.offerId);
-      v.add(createJokerRarityBadge(this,d.rarity,{x:b.x+b.width-31,y:b.y+b.height-21,compact:true}).setData('definitionId',o.definitionId).setData('surface','offer'));
+      v.add(createJokerRarityBadge(this,d.rarity,{x:b.x+b.width-31,y:b.y+b.height-21-(factsOnFace?54:0),compact:true}).setData('definitionId',o.definitionId).setData('surface','offer'));
+      this.drawOfferGuidance(o,{x:copyX,y:factsOnFace?b.y+b.height-54:copy.priceY-(p.copyBeside?36:54),width:copyWidth,height:p.copyBeside?34:52});
       this.markBuildOffer(o,'jokers',b);
       const tile=copy.tile,hover=this.hoverCard(first,tile,o.definitionId),r=v.rect(tile).setFillStyle(0,0).setStrokeStyle().setData('selected',selected);
       this.offerArts.push(hover.art);v.target(r,`offer/${o.offerId}`,{tap:()=>this.inspectOffer(o.offerId),detail:()=>this.inspectOffer(o.offerId),...hover});
@@ -210,8 +213,8 @@ export class ShopScene extends Phaser.Scene {
       const ownedName=v.text(nameArea.x,b.y+3,d.name,14,'#26313A');this.ellipsis(ownedName,nameArea.width);
       v.add(createJokerRarityBadge(this,d.rarity,{x:b.x+b.width-31,y:b.y+b.height-21,compact:true}).setData('definitionId',j.definitionId).setData('surface','owned'));
 
-      if(p.pc){const state=v.text(b.x,b.y+b.height+3,`${shopRouteRelation(this.run,j,currentBuildFocus(this.run,this.run.openingRoute)).tag}·${j.definitionId==='b10'?'热度'+fractionText(j.growth.heat??{n:'0',d:'1'}):ability?.compact||'查看'}`,14,'#3F606B').setName('shop/owned-state');this.ellipsis(state,b.width);}
-      if(!p.pc&&b.y+b.height+20<=p.reroll.y-4)v.text(b.x+b.width/2,b.y+b.height+3,shopRouteRelation(this.run,j,currentBuildFocus(this.run,this.run.openingRoute)).tag,14,'#3F606B').setOrigin(.5,0).setName('shop/owned-route');
+      if(p.pc)v.text(b.x,b.y+b.height+3,jokerRouteCaption(this.run,j,b.width),14,'#3F606B',b.width).setName('shop/owned-state');
+      if(!p.pc&&b.y+b.height+20<=p.reroll.y-4){const roomy='guidanceBelow' in p&&p.guidanceBelow,copy=roomy?jokerApplicableRoutes(this.run,j).map(f=>({group:'同点',straight:'顺子',flush:'同花'})[f]).join('\n'):jokerRouteCaption(this.run,j,b.width);v.text(b.x+b.width/2,b.y+b.height+3,copy,14,'#3F606B').setOrigin(.5,0).setName('shop/owned-route');}
       const hover=this.hoverCard(first,b,j.definitionId),r=v.rect(p.pc?b:shopOwnedHitBox(b,p.reroll.y,!!ability||!p.portrait)).setFillStyle(0,0).setStrokeStyle();
       v.target(r,`joker/${j.instanceId}`,{tap:()=>this.inspectJoker(j.instanceId),detail:()=>this.inspectJoker(j.instanceId),drag:(x,y)=>this.moveJoker(j.instanceId,x,y),holdToDrag:true,...hover});
     });
@@ -251,9 +254,9 @@ export class ShopScene extends Phaser.Scene {
       const offers=this.shelfOffers(kind),group=kind==='tools'?pc.toolOffers:pc.itemOffers,capacity=this.pcGroupCapacity(kind,p),pages=Math.max(1,Math.ceil(offers.length/capacity));this.pcPages[kind]=Math.min(this.pcPages[kind],pages-1);
       v.text(group.x,pc.groupY,(kind==='tools'?'购买道具':'长期道具')+` · 待售 ${offers.filter(o=>!o.consumed).length}`,14,'#3F606B');
       if(pages>1){const b={x:group.x+group.width-100,y:pc.groupY-20,width:100,height:44};v.button(b,`${this.pcPages[kind]+1}/${pages} ›`,'action/pc-page-'+kind,()=>{this.pcPages[kind]=(this.pcPages[kind]+1)%pages;this.render();});}
-      const visible=offers.slice(this.pcPages[kind]*capacity,this.pcPages[kind]*capacity+capacity),seat=(group.width-8*Math.max(0,visible.length-1))/Math.max(1,visible.length);
+      const visible=offers.slice(this.pcPages[kind]*capacity,this.pcPages[kind]*capacity+capacity),grid=shopGoodsGrid(group,visible.length);
       if(!visible.length)v.text(group.x+10,group.y+18,'暂无待售'+(kind==='tools'?'工具':'长期物品'),14,'#7B7365',group.width-20);
-      visible.forEach((o,i)=>{const b={x:group.x+i*(seat+8),y:group.y,width:seat,height:group.height};const artWidth=Math.min(72,(b.height-16)/1.4);this.drawPCOffer(o,kind,b,{x:b.x+8,y:b.y+8,width:artWidth,height:artWidth*1.4});});
+      visible.forEach((o,i)=>{const b=grid.boxes[i];const artWidth=Math.min(72,(b.height-16)/1.4);this.drawPCOffer(o,kind,b,{x:b.x+8,y:b.y+8,width:artWidth,height:artWidth*1.4});});
     }
     const discovery=this.ready&&!this.notice?savedGrowthDiscovery(this.run):undefined;
     this.noticeLabel=v.text(pc.feedback.x+6,pc.feedback.y,this.busy?'正在保存…':this.notice||r2BasicToolShelfStatus(this.run)||discovery?.full||starterShopCue(this.run)||firstChapterGuide(this.run)?.cue||'点商品只看详情，确认才扣款；购买工具不会自动使用。',14,this.notice?'#B8473A':'#3F606B',pc.feedback.width-12).setStyle({maxLines:1}).setName(discovery?'growth/discovery':'');this.drawResultCue();
@@ -272,8 +275,7 @@ export class ShopScene extends Phaser.Scene {
   /** Long real rules may need a whole group; paging must use the same final capacity. */
   private pcGroupCapacity(kind:'tools'|'items',p:ReturnType<typeof shopLayout>):number {
     const group=kind==='tools'?p.pc!.toolOffers:p.pc!.itemOffers;
-    const budget=Math.floor((group.width/2-88)/14)*Math.floor((group.height-64)/16);
-    return group.width>=440&&this.shelfOffers(kind).every(o=>(kind==='tools'?toolInfo(o.definitionId,this.run):itemInfo(o.definitionId)).description.length<=budget)?2:1;
+    return shopGoodsGrid(group,this.shelfOffers(kind).length).capacity;
   }
   private shopJokerSummary(id:string):string {
     const d=this.jokerDefinition(id);
@@ -292,7 +294,7 @@ export class ShopScene extends Phaser.Scene {
     let summary=d?this.shopJokerSummary(d.id):info!.summary;
     if(d){const plain=this.jokerCopy(d.id)?.plain;summary=plain?(plain.fallback?plain.tile:plain.line)+(plain.status.startsWith('现在')?'\n'+plain.status:''):this.shopJokerSummary(d.id);}
     const initialX=d?tile.x+10:face.x+face.width+10,initialY=d?face.y+face.height+2:tile.y+2,width=tile.x+tile.width-initialX-10;
-    const priceY=d?tile.y+face.height+98:tile.y+tile.height-36;
+    const guidanceHeight=this.geometry().pc?.guidanceHeight??38,priceY=d?tile.y+face.height+98+guidanceHeight:tile.y+tile.height-36;
     const probe=v.text(0,0,'',14,'#3F606B');
     const wrapped=shopSummaryWrap(summary,width,text=>{probe.setText(text);return probe.width;});probe.setText(wrapped);
     const column=!d&&probe.height>priceY-(initialY+22)-4;probe.destroy();
@@ -307,6 +309,7 @@ export class ShopScene extends Phaser.Scene {
     const priceInk=this.offerPricePlate(o,{x:priceX-2,y:priceY-2,width:column?66:tile.x+tile.width-priceX-8,height:24});
     v.text(priceX,priceY,o.consumed?'已购':`${r2PurchasePrice(this.run,o)} 金${column?'':` · ${d?editionLabel(o.edition):'查看'}`}`,16,priceInk).setFontStyle('bold').setName('shop/offer-price').setData('offerId',o.offerId);
     this.markBuildOffer(o,kind,tile);
+    if(d)this.drawOfferGuidance(o,{x:initialX,y:priceY-guidanceHeight,width,height:guidanceHeight});
     const reason=o.consumed?'':this.purchaseReason(o,true);if(reason){const note=v.text(priceX,priceY+20,reason,14,'#B8473A').setName('shop/offer-reason').setData('offerId',o.offerId);this.ellipsis(note,column?64:width);}
     const hover=this.hoverCard(first,tile,d?.id),hit=v.rect(tile).setFillStyle(0,0).setStrokeStyle().setData('selected',this.selectedOfferId===o.offerId);
     this.pcOfferBoxes.set(o.offerId,tile);this.offerArts.push(hover.art);v.target(hit,'offer/'+o.offerId,{tap:()=>this.inspectOffer(o.offerId),detail:()=>this.inspectOffer(o.offerId),...hover});
@@ -584,6 +587,13 @@ export class ShopScene extends Phaser.Scene {
   }
   private buildLabel():string {const focus=currentBuildFocus(this.run,this.run.openingRoute);return focus?'培养 · '+BUILD_LABEL[focus]:'培养与构筑';}
   /** Outline real existing faces without hiding alternatives or changing the shelf hit rectangles. */
+  private drawOfferGuidance(o:R2Offer,b:Box):void {
+    const g=shopOfferGuidance(this.run,o),v=this.view;
+    const single=b.height<=20;
+    v.text(b.x,b.y,g.routeCaption,14,'#3F606B',single?96:b.width).setName('shop/offer-routes').setData('offerId',o.offerId).setData('routes',g.routes).setData('fullText',g.routeCaption);
+    const wide=b.width>=130,copy=wide?g.label+' · '+g.reason:g.label+'\n'+g.reason;
+    v.text(b.x+(single?100:0),b.y+(single?0:18),copy,14,g.stars===3?'#80551F':'#59646A',b.width-(single?100:0)).setName('shop/offer-advice').setData('offerId',o.offerId).setData('stars',g.stars).setData('reason',g.detail).setData('fullText',copy);
+  }
   private markBuildOffer(o:R2Offer,kind:ShelfKind,b:Box):void {
     const cue=routeFitCue(this.run,kind,o.definitionId);if(cue&&!o.consumed)this.view.add(routeFrame(this,b,cue,kind==='jokers'&&this.jokerDefinition(o.definitionId).rarity==='rare').setName('shop/build-match').setData('offerId',o.offerId));
     if(kind==='jokers'&&starterOffer(this.run,o)){this.view.material({x:b.x+4,y:b.y+4,width:76,height:22},0xfff9ee,0xfff9ee,3);this.view.text(b.x+8,b.y+6,'起手 · 可选',14,'#26313A').setFontStyle('bold').setName('shop/route-starter-label').setData('offerId',o.offerId);}
@@ -631,7 +641,8 @@ export class ShopScene extends Phaser.Scene {
     const inventory=kind==='jokers'?'当前构筑：'+(this.run.jokers.map(j=>this.jokerDefinition(j.definitionId).name).join('、')||'空'):kind==='tools'?`消耗品库存 ${this.run.consumables.length}/${r2ConsumableCapacity(this.run)}。购买不会自动使用或替换旧物。`:`长期道具 ${this.run.longTermItems.length}/${R2_LIMITS.longTermSlots}。同种不可重复、不可出售，持续到本局结束。`;
     const investment=shopInvestment(this.run,o,kind),tierBefore=Math.min(cap,Math.floor(this.run.gold/5)),tierAfter=after>=0?Math.min(afterCap,Math.floor(after/5)):undefined;
     const trade=tierAfter===undefined?'':`利息档 ${tierBefore}→${tierAfter} 金`+(tierBefore===tierAfter?'（当前余额不降档）':'（按购后余额重算）')+'；仅过关按届时余额结算。';
-    const body=effect+`\n\n实际购买支付 ${price} 金\n`+discountText+money+'\n\n'+inventory+(reason?'\n\n无法购买：'+reason:'\n\n确认购买才会扣除金币。');
+    const guidance=d?shopOfferGuidance(this.run,o):undefined;
+    const body=effect+(guidance?'\n\n当前局建议（不是稀有度）\n'+guidance.label+' · '+guidance.reason+'\n'+guidance.detail:'')+`\n\n实际购买支付 ${price} 金\n`+discountText+money+'\n\n'+inventory+(reason?'\n\n无法购买：'+reason:'\n\n确认购买才会扣除金币。');
     const purchaseBefore=new Set(this.run.consumables.map(c=>c.instanceId));
     const name=d?.name??info!.name,portrait=d?this.jokerPortrait(d.id):goodsArtPortrait(info!);
     const plainSummary=(d||info)?`实付 ${price} 金 · `+(after<0?`现有 ${this.run.gold} 金，差 ${-after} 金`:`余额 ${this.run.gold} → ${after} 金`)+(reason&&after>=0?'\n'+reason:'')+(discount?`\n优惠 ${discount} 金${this.run.purchaseCoupons?' · 使用1张减2金券':''}`:'')+shopPurchaseConditionLosses(this.run,o).map(loss=>'\n'+loss).join(''):undefined;

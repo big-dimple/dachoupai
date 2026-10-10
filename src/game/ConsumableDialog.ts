@@ -280,7 +280,8 @@ export function showConsumables(dialog:DetailDialog,state:R2RunState,ready:boole
     refresh();
   };
   if(!initialInstanceId)AudioEngine.shared.titleConfirm();
-  const inventory=dialog.open('道具箱','选择工具，确认后使用。');inventory.classList.add('tool-inventory');
+  const available=state.consumables.some(c=>R2_TOOLS.find(t=>t.id===c.definitionId)?.phases.includes(state.phase as 'shop'|'await-input'));
+  const inventory=dialog.open('道具箱',state.consumables.length&&!available?'现有工具不在当前使用阶段；库存仍保留，按卡面提示到商店或牌桌使用。':'选择工具，确认后使用。');inventory.classList.add('tool-inventory');
   const content=inventory.querySelector('.dialog-copy')!;
   function inventoryGroup(title:string,entries:readonly {id:string;name:string;label:string;artUrl:string;action:string;run:()=>void}[]):void {
     const section=document.createElement('section'),heading=document.createElement('h3'),grid=document.createElement('div');section.className='tool-inventory-group';heading.textContent=title;grid.className='tool-inventory-grid';section.append(heading,grid);

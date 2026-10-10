@@ -4,13 +4,16 @@ import {r2CreateJoker} from '../domain/r2Run';
 import {currentBuildFocus} from './BuildDirectionPreferences';
 import {toolSupportsFocus} from './BuildJourney';
 import {shopRouteRelation} from './ShopRouteRelations';
+import {jokerApplicableRoutes} from './ShopOfferGuidance';
 export const ROUTE_TONE={group:{ink:0x3f606b,css:'#3F606B',label:'契合同点成组路线'},straight:{ink:0x8f6a3b,css:'#8F6A3B',label:'契合顺子路线'},flush:{ink:0xb8473a,css:'#B8473A',label:'契合同花路线'}};
 /** Same current-profile effect relation on shelf, held faces and detail; never a purchase ranking. */
 export function routeFitCue(state:R2RunState,kind:'jokers'|'tools'|'items',id:string,instanceId?:string){
  const focus=currentBuildFocus(state,state.openingRoute);if(!focus||kind==='items')return;
  const relation=kind==='jokers'?shopRouteRelation(state,state.jokers.find(j=>j.instanceId===instanceId)??r2CreateJoker(id,'display/'+id,0,'none',state),focus):undefined;
  const matches=relation?relation.kind==='direct'||relation.kind==='support':toolSupportsFocus(id,focus);
- return matches?{...ROUTE_TONE[focus],focus,reason:relation?.body??'改牌或升型可服务该方向；目标与代价需自行确认。'}:undefined;
+ const j=kind==='jokers'?(state.jokers.find(j=>j.instanceId===instanceId)??r2CreateJoker(id,'display/'+id,0,'none',state)):undefined;
+ const label=j?'适用：'+jokerApplicableRoutes(state,j).map(f=>({group:'同点',straight:'顺子',flush:'同花'})[f]).join('/') :ROUTE_TONE[focus].label;
+ return matches?{...ROUTE_TONE[focus],label,focus,reason:relation?.body??'改牌或升型可服务该方向；目标与代价需自行确认。'}:undefined;
 }
 export function markRouteDetail(host:HTMLElement,cue:ReturnType<typeof routeFitCue>):void {
  if(!cue)return;host.dataset.routeFit=cue.focus;host.style.setProperty('--route-fit',cue.css);const tag=document.createElement('p');tag.className='route-fit-caption';tag.textContent=cue.label;host.querySelector('.dialog-header')?.append(tag);

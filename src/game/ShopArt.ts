@@ -19,12 +19,12 @@ export function drawShopArt(scene:Phaser.Scene,view:SceneView,p:ReturnType<typeo
     shopSheet(scene,view,'program',pc.left,T.paperLight,true);
     shopSheet(scene,view,'owned',{...pc.ownedRail,height:pc.ownedRail.height+16},T.jadeSoft);
     shopSheet(scene,view,'stock',pc.shopPanel,T.paperLight,true);
-    shopSheet(scene,view,'actions',{x:pc.shopPanel.x+6,y:pc.shopPanel.y+6,width:pc.actionRail.width+12,height:pc.shopPanel.height-12},T.jadeSoft);
+    shopSheet(scene,view,'actions',{x:pc.actionRail.x-6,y:pc.shopPanel.y+6,width:pc.actionRail.width+12,height:pc.shopPanel.height-12},T.jadeSoft);
   }else if(p.portrait){
     const top=p.slots[0].y-26;
     // Held cards and the fixed actions share one quiet field, without inventing a tall inventory card.
     shopSheet(scene,view,'owned-actions',{x:p.x-6,y:top,width:p.w+12,height:p.noticeY+22-top},T.jadeSoft);
-    shopSheet(scene,view,'owned',{x:p.x,y:top+4,width:p.w,height:p.slots[0].height+46},T.paperLight,true);
+    shopSheet(scene,view,'owned',{x:p.x,y:top+4,width:p.w,height:p.slots[0].height+('guidanceBelow' in p&&p.guidanceBelow?70:46)},T.paperLight,true);
     shopSheet(scene,view,'actions',{x:p.play.x-4,y:p.reroll.y-8,width:p.play.width+8,height:p.play.y+p.play.height-p.reroll.y+12},T.paperLight,true);
   }else if(p.short){
     shopSheet(scene,view,'stock',{x:p.tabs.x-4,y:p.tabs.y-4,width:p.tabs.width+8,height:Math.max(...p.shelf.map(b=>b.y+b.height))+6-p.tabs.y},T.paperLight);
