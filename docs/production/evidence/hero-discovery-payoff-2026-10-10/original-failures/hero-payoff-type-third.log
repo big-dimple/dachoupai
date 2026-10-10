@@ -1,0 +1,11 @@
+
+> dachoupai@0.1.0 typecheck
+> tsc --noEmit
+
+tests/hero-payoff.test.ts(42,24): error TS2345: Argument of type '{ windup: number; flight: number; impact: number; rest: number; }' is not assignable to parameter of type 'ScoreBeat'.
+  Property 'strength' is missing in type '{ windup: number; flight: number; impact: number; rest: number; }' but required in type 'ScoreBeat'.
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice

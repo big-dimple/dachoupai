@@ -1,0 +1,48 @@
+
+ RUN  v4.1.11 /workspace/dachoupai
+
+ ❯ tests/hero-payoff.test.ts (7 tests | 2 failed) 565ms
+   × all five scoring abilities use their actual saved contribution, independently of opening stamps 197ms
+   × all distinct real multiplication events keep trace order and same-event replay is excluded 40ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/hero-payoff.test.ts > all five scoring abilities use their actual saved contribution, independently of opening stamps
+Error: Run invariant: card conservation
+ ❯ check src/domain/r2Run.ts:122:70
+
+ ❯ assertR2Invariants src/domain/r2Run.ts:149:3
+ ❯ validateState src/application/checkpoint.ts:867:3
+ ❯ Module.makeCheckpoint src/application/checkpoint.ts:870:19
+ ❯ arrange tests/hero-payoff.test.ts:16:307
+ ❯ tests/hero-payoff.test.ts:21:90
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  tests/hero-payoff.test.ts > all distinct real multiplication events keep trace order and same-event replay is excluded
+Error: invalid-save-opening-receipt
+ ❯ fail src/application/checkpoint.ts:59:43
+     57| }
+     58| type ReadResult={ok:true;checkpoint:Checkpoint}|{ok:false;code:string};
+     59| const fail=(message:string):never=>{throw Error(message);};
+       |                                           ^
+     60| function record(value:unknown,required:string[],optional:string[]=[]):…
+     61|   if(!value||typeof value!=='object'||Array.isArray(value))return fail…
+ ❯ validateState src/application/checkpoint.ts:836:59
+ ❯ Module.makeCheckpoint src/application/checkpoint.ts:870:19
+ ❯ saved tests/hero-payoff.test.ts:18:88
+ ❯ tests/hero-payoff.test.ts:32:84
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  1 failed | 2 passed (3)
+      Tests  2 failed | 19 passed (21)
+   Start at  06:43:21
+   Duration  2.83s (transform 3.46s, setup 0ms, import 4.83s, tests 1.46s, environment 0ms)
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice

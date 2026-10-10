@@ -1,0 +1,19 @@
+PASS amo 1366 [ 1010.8999999761581 ]
+PASS azao 1366 [ 1010.0999999940395 ]
+PASS erxiang 1366 [ 1002 ]
+PASS xiemu 1366 [ 1008.5 ]
+PASS laohuan 1366 [ 1016.4000000059605 ]
+PASS touye 1366 [ 1009.5 ]
+PASS amo 390 [ 1016.0999999940395 ]
+PASS azao 390 [ 1006.4000000059605 ]
+PASS erxiang 390 [ 1004.3000000119209 ]
+PASS xiemu 390 [ 1005.3000000119209 ]
+page.waitForFunction: TypeError: Cannot read properties of undefined (reading 'game')
+    at eval (eval at predicate (eval at evaluate (:311:30)), <anonymous>:1:31)
+    at predicate (eval at evaluate (:311:30), <anonymous>:7:27)
+    at next (eval at evaluate (:311:30), <anonymous>:29:33)
+    at eval (eval at evaluate (:311:30), <anonymous>:42:13)
+    at UtilityScript.evaluate (<anonymous>:313:16)
+    at UtilityScript.<anonymous> (<anonymous>:1:44)
+    at done (/tmp/hero-payoff-native.mjs:22:31)
+    at /tmp/hero-payoff-native.mjs:31:371
