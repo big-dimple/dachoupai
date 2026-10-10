@@ -1,0 +1,517 @@
+{
+  "productSource": "92388474e50e6cc34b3b0e9664e54d444dc93b25",
+  "baseline": "8c61eac1a16a85c88f6568544bf364d56b46db1d",
+  "cases": [
+    {
+      "run": "before",
+      "source": "8c61eac1a16a85c88f6568544bf364d56b46db1d",
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      },
+      "domainExpectedEqual": true,
+      "errors": [],
+      "rawStatus": "PASS",
+      "visualStatus": "LIMITED; see README",
+      "baselineInitialAndFinalFullStateJournalStorageEqual": true
+    },
+    {
+      "run": "before",
+      "source": "8c61eac1a16a85c88f6568544bf364d56b46db1d",
+      "viewport": {
+        "width": 390,
+        "height": 740
+      },
+      "domainExpectedEqual": true,
+      "errors": [],
+      "rawStatus": "PASS",
+      "visualStatus": "LIMITED; see README",
+      "baselineInitialAndFinalFullStateJournalStorageEqual": true
+    },
+    {
+      "run": "after",
+      "source": "b83c8eff5bb23416fb8396af91772d935c07bd93",
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      },
+      "domainExpectedEqual": true,
+      "errors": [],
+      "rawStatus": "PASS",
+      "visualStatus": "FAIL: four late PC captions truncated",
+      "baselineInitialAndFinalFullStateJournalStorageEqual": true
+    },
+    {
+      "run": "after",
+      "source": "b83c8eff5bb23416fb8396af91772d935c07bd93",
+      "viewport": {
+        "width": 390,
+        "height": 740
+      },
+      "domainExpectedEqual": true,
+      "errors": [],
+      "rawStatus": "PASS",
+      "visualStatus": "LIMITED; see README",
+      "baselineInitialAndFinalFullStateJournalStorageEqual": true
+    },
+    {
+      "run": "final",
+      "source": "92388474e50e6cc34b3b0e9664e54d444dc93b25",
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      },
+      "domainExpectedEqual": true,
+      "errors": [],
+      "rawStatus": "PASS",
+      "visualStatus": "LIMITED; see README",
+      "baselineInitialAndFinalFullStateJournalStorageEqual": true,
+      "actualCaptionCount": 10,
+      "captions": [
+        {
+          "event": "save/final/standard/0/hand/save/final/standard/0/command/4/event/4",
+          "overview": "多彩·A♥ ×1.5 44→66",
+          "full": "多彩·A♥ ×1.5 44→66",
+          "exact": "多彩 · A♥ · 实际 ×1.5 · 44 → 66",
+          "font": "14px"
+        },
+        {
+          "event": "save/final/standard/0/hand/save/final/standard/0/command/4/event/6",
+          "overview": "多彩·A♥ ×1.5 66→99",
+          "full": "多彩·A♥ ×1.5 66→99",
+          "exact": "多彩 · A♥ · 实际 ×1.5 · 66 → 99",
+          "font": "14px"
+        },
+        {
+          "event": "save/final/standard/0/hand/save/final/standard/0/command/4/event/9",
+          "overview": "多彩·A♥ ×1.5 99→148.5",
+          "full": "多彩·A♥ ×1.5 99→148.5",
+          "exact": "多彩 · A♥ · 实际 ×1.5 · 99 → 148.5",
+          "font": "14px"
+        },
+        {
+          "event": "save/final/standard/0/hand/save/final/standard/0/command/4/event/11",
+          "overview": "多彩·A♥ ×1.5 148.5→≈222.8",
+          "full": "多彩·A♥ ×1.5 148.5→≈222.8",
+          "exact": "多彩 · A♥ · 实际 ×1.5 · 148.5 → 222.75",
+          "font": "14px"
+        },
+        {
+          "event": "save/final/standard/0/hand/save/final/standard/0/command/4/event/14",
+          "overview": "多彩·A♥ ×1.5 ≈222.8→≈334.1",
+          "full": "多彩·A♥ ×1.5 ≈222.8→≈334.1",
+          "exact": "多彩 · A♥ · 实际 ×1.5 · 222.75 → 334.125",
+          "font": "14px"
+        },
+        {
+          "event": "save/final/standard/0/hand/save/final/standard/0/command/4/event/16",
+          "overview": "多彩·A♥ ×1.5 ≈334.1→≈501.2",
+          "full": "多彩·A♥ ×1.5 ≈334.1→≈501.2",
+          "exact": "多彩 · A♥ · 实际 ×1.5 · 334.125 → 501.1875",
+          "font": "14px"
+        },
+        {
+          "event": "save/final/standard/0/hand/save/final/standard/0/command/4/event/19",
+          "overview": "多彩·A♥ ×1.5 ≈501.2→≈751.8",
+          "full": "多彩·A♥ ×1.5 ≈501.2→≈751.8",
+          "exact": "多彩 · A♥ · 实际 ×1.5 · 501.1875 → 24,057/32",
+          "font": "14px"
+        },
+        {
+          "event": "save/final/standard/0/hand/save/final/standard/0/command/4/event/21",
+          "overview": "多彩·A♥ ×1.5 ≈751.8→≈1127.7",
+          "full": "多彩·A♥ ×1.5 ≈751.8→≈1127.7",
+          "exact": "多彩 · A♥ · 实际 ×1.5 · 24,057/32 → 72,171/64",
+          "font": "14px"
+        },
+        {
+          "event": "save/final/standard/0/hand/save/final/standard/0/command/4/event/24",
+          "overview": "多彩·A♥ ×1.5 ≈1127.7→≈1691.5",
+          "full": "多彩·A♥ ×1.5 ≈1127.7→≈1691.5",
+          "exact": "多彩 · A♥ · 实际 ×1.5 · 72,171/64 → 216,513/128",
+          "font": "14px"
+        },
+        {
+          "event": "save/final/standard/0/hand/save/final/standard/0/command/4/event/26",
+          "overview": "多彩·A♥ ×1.5 ≈1691.5→≈2537.3",
+          "full": "多彩·A♥ ×1.5 ≈1691.5→≈2537.3",
+          "exact": "多彩 · A♥ · 实际 ×1.5 · 216,513/128 → 649,539/256",
+          "font": "14px"
+        }
+      ]
+    },
+    {
+      "run": "final",
+      "source": "92388474e50e6cc34b3b0e9664e54d444dc93b25",
+      "viewport": {
+        "width": 390,
+        "height": 740
+      },
+      "domainExpectedEqual": true,
+      "errors": [],
+      "rawStatus": "PASS",
+      "visualStatus": "LIMITED; see README",
+      "baselineInitialAndFinalFullStateJournalStorageEqual": true,
+      "actualCaptionCount": 10,
+      "captions": [
+        {
+          "event": "save/final/standard/0/hand/save/final/standard/0/command/4/event/4",
+          "overview": "多彩·A♥ ×1.5 44→66",
+          "full": "多彩·A♥ ×1.5 44→66",
+          "exact": "多彩 · A♥ · 实际 ×1.5 · 44 → 66",
+          "font": "14px"
+        },
+        {
+          "event": "save/final/standard/0/hand/save/final/standard/0/command/4/event/6",
+          "overview": "多彩·A♥ ×1.5 66→99",
+          "full": "多彩·A♥ ×1.5 66→99",
+          "exact": "多彩 · A♥ · 实际 ×1.5 · 66 → 99",
+          "font": "14px"
+        },
+        {
+          "event": "save/final/standard/0/hand/save/final/standard/0/command/4/event/9",
+          "overview": "多彩·A♥ ×1.5 99→148.5",
+          "full": "多彩·A♥ ×1.5 99→148.5",
+          "exact": "多彩 · A♥ · 实际 ×1.5 · 99 → 148.5",
+          "font": "14px"
+        },
+        {
+          "event": "save/final/standard/0/hand/save/final/standard/0/command/4/event/11",
+          "overview": "多彩·A♥ ×1.5 148.5→222.75",
+          "full": "多彩·A♥ ×1.5 148.5→222.75",
+          "exact": "多彩 · A♥ · 实际 ×1.5 · 148.5 → 222.75",
+          "font": "14px"
+        },
+        {
+          "event": "save/final/standard/0/hand/save/final/standard/0/command/4/event/14",
+          "overview": "多彩·A♥ ×1.5 222.75→334.125",
+          "full": "多彩·A♥ ×1.5 222.75→334.125",
+          "exact": "多彩 · A♥ · 实际 ×1.5 · 222.75 → 334.125",
+          "font": "14px"
+        },
+        {
+          "event": "save/final/standard/0/hand/save/final/standard/0/command/4/event/16",
+          "overview": "多彩·A♥ ×1.5 334.125→501.1875",
+          "full": "多彩·A♥ ×1.5 334.125→501.1875",
+          "exact": "多彩 · A♥ · 实际 ×1.5 · 334.125 → 501.1875",
+          "font": "14px"
+        },
+        {
+          "event": "save/final/standard/0/hand/save/final/standard/0/command/4/event/19",
+          "overview": "多彩·A♥ ×1.5 501.1875→≈751.78",
+          "full": "多彩·A♥ ×1.5 501.1875→≈751.78",
+          "exact": "多彩 · A♥ · 实际 ×1.5 · 501.1875 → 24,057/32",
+          "font": "14px"
+        },
+        {
+          "event": "save/final/standard/0/hand/save/final/standard/0/command/4/event/21",
+          "overview": "多彩·A♥ ×1.5 ≈751.78→≈1127.67",
+          "full": "多彩·A♥ ×1.5 ≈751.78→≈1127.67",
+          "exact": "多彩 · A♥ · 实际 ×1.5 · 24,057/32 → 72,171/64",
+          "font": "14px"
+        },
+        {
+          "event": "save/final/standard/0/hand/save/final/standard/0/command/4/event/24",
+          "overview": "多彩·A♥ ×1.5 ≈1127.67→≈1691.51",
+          "full": "多彩·A♥ ×1.5 ≈1127.67→≈1691.51",
+          "exact": "多彩 · A♥ · 实际 ×1.5 · 72,171/64 → 216,513/128",
+          "font": "14px"
+        },
+        {
+          "event": "save/final/standard/0/hand/save/final/standard/0/command/4/event/26",
+          "overview": "多彩·A♥ ×1.5 ≈1691.51→≈2537.26",
+          "full": "多彩·A♥ ×1.5 ≈1691.51→≈2537.26",
+          "exact": "多彩 · A♥ · 实际 ×1.5 · 216,513/128 → 649,539/256",
+          "font": "14px"
+        }
+      ]
+    },
+    {
+      "run": "boundaries",
+      "source": "92388474e50e6cc34b3b0e9664e54d444dc93b25",
+      "viewport": {
+        "width": 320,
+        "height": 740,
+        "mode": "reduced"
+      },
+      "domainExpectedEqual": true,
+      "errors": [],
+      "rawStatus": "PASS",
+      "visualStatus": "LIMITED; see README",
+      "actualCaptionCount": 10,
+      "captions": [
+        {
+          "event": "save/final/standard/0/hand/save/final/standard/0/command/4/event/4",
+          "overview": "多彩·A♥ ×1.5 44→66",
+          "full": "多彩·A♥ ×1.5 44→66",
+          "exact": "多彩 · A♥ · 实际 ×1.5 · 44 → 66",
+          "font": "14px"
+        },
+        {
+          "event": "save/final/standard/0/hand/save/final/standard/0/command/4/event/6",
+          "overview": "多彩·A♥ ×1.5 66→99",
+          "full": "多彩·A♥ ×1.5 66→99",
+          "exact": "多彩 · A♥ · 实际 ×1.5 · 66 → 99",
+          "font": "14px"
+        },
+        {
+          "event": "save/final/standard/0/hand/save/final/standard/0/command/4/event/9",
+          "overview": "多彩·A♥ ×1.5 99→148.5",
+          "full": "多彩·A♥ ×1.5 99→148.5",
+          "exact": "多彩 · A♥ · 实际 ×1.5 · 99 → 148.5",
+          "font": "14px"
+        },
+        {
+          "event": "save/final/standard/0/hand/save/final/standard/0/command/4/event/11",
+          "overview": "多彩·A♥ ×1.5 148.5→222.75",
+          "full": "多彩·A♥ ×1.5 148.5→222.75",
+          "exact": "多彩 · A♥ · 实际 ×1.5 · 148.5 → 222.75",
+          "font": "14px"
+        },
+        {
+          "event": "save/final/standard/0/hand/save/final/standard/0/command/4/event/14",
+          "overview": "多彩·A♥ ×1.5 222.75→334.125",
+          "full": "多彩·A♥ ×1.5 222.75→334.125",
+          "exact": "多彩 · A♥ · 实际 ×1.5 · 222.75 → 334.125",
+          "font": "14px"
+        },
+        {
+          "event": "save/final/standard/0/hand/save/final/standard/0/command/4/event/16",
+          "overview": "多彩·A♥ ×1.5 334.125→501.1875",
+          "full": "多彩·A♥ ×1.5 334.125→501.1875",
+          "exact": "多彩 · A♥ · 实际 ×1.5 · 334.125 → 501.1875",
+          "font": "14px"
+        },
+        {
+          "event": "save/final/standard/0/hand/save/final/standard/0/command/4/event/19",
+          "overview": "多彩·A♥ ×1.5 501.1875→≈751.78",
+          "full": "多彩·A♥ ×1.5 501.1875→≈751.78",
+          "exact": "多彩 · A♥ · 实际 ×1.5 · 501.1875 → 24,057/32",
+          "font": "14px"
+        },
+        {
+          "event": "save/final/standard/0/hand/save/final/standard/0/command/4/event/21",
+          "overview": "多彩·A♥ ×1.5 ≈751.78→≈1127.67",
+          "full": "多彩·A♥ ×1.5 ≈751.78→≈1127.67",
+          "exact": "多彩 · A♥ · 实际 ×1.5 · 24,057/32 → 72,171/64",
+          "font": "14px"
+        },
+        {
+          "event": "save/final/standard/0/hand/save/final/standard/0/command/4/event/24",
+          "overview": "多彩·A♥ ×1.5 ≈1127.67→≈1691.51",
+          "full": "多彩·A♥ ×1.5 ≈1127.67→≈1691.51",
+          "exact": "多彩 · A♥ · 实际 ×1.5 · 72,171/64 → 216,513/128",
+          "font": "14px"
+        },
+        {
+          "event": "save/final/standard/0/hand/save/final/standard/0/command/4/event/26",
+          "overview": "多彩·A♥ ×1.5 ≈1691.51→≈2537.26",
+          "full": "多彩·A♥ ×1.5 ≈1691.51→≈2537.26",
+          "exact": "多彩 · A♥ · 实际 ×1.5 · 216,513/128 → 649,539/256",
+          "font": "14px"
+        }
+      ]
+    },
+    {
+      "run": "boundaries",
+      "source": "92388474e50e6cc34b3b0e9664e54d444dc93b25",
+      "viewport": {
+        "width": 390,
+        "height": 740,
+        "mode": "fast"
+      },
+      "domainExpectedEqual": true,
+      "errors": [],
+      "rawStatus": "PASS",
+      "visualStatus": "LIMITED; see README"
+    },
+    {
+      "run": "phone-late",
+      "source": "92388474e50e6cc34b3b0e9664e54d444dc93b25",
+      "viewport": {
+        "width": 390,
+        "height": 740
+      },
+      "domainExpectedEqual": true,
+      "errors": [],
+      "rawStatus": "PASS",
+      "visualStatus": "LIMITED; see README",
+      "baselineInitialAndFinalFullStateJournalStorageEqual": true,
+      "actualCaptionCount": 10,
+      "captions": [
+        {
+          "event": "save/final/standard/0/hand/save/final/standard/0/command/4/event/4",
+          "overview": "多彩·A♥ ×1.5 44→66",
+          "full": "多彩·A♥ ×1.5 44→66",
+          "exact": "多彩 · A♥ · 实际 ×1.5 · 44 → 66",
+          "font": "14px"
+        },
+        {
+          "event": "save/final/standard/0/hand/save/final/standard/0/command/4/event/6",
+          "overview": "多彩·A♥ ×1.5 66→99",
+          "full": "多彩·A♥ ×1.5 66→99",
+          "exact": "多彩 · A♥ · 实际 ×1.5 · 66 → 99",
+          "font": "14px"
+        },
+        {
+          "event": "save/final/standard/0/hand/save/final/standard/0/command/4/event/9",
+          "overview": "多彩·A♥ ×1.5 99→148.5",
+          "full": "多彩·A♥ ×1.5 99→148.5",
+          "exact": "多彩 · A♥ · 实际 ×1.5 · 99 → 148.5",
+          "font": "14px"
+        },
+        {
+          "event": "save/final/standard/0/hand/save/final/standard/0/command/4/event/11",
+          "overview": "多彩·A♥ ×1.5 148.5→222.75",
+          "full": "多彩·A♥ ×1.5 148.5→222.75",
+          "exact": "多彩 · A♥ · 实际 ×1.5 · 148.5 → 222.75",
+          "font": "14px"
+        },
+        {
+          "event": "save/final/standard/0/hand/save/final/standard/0/command/4/event/14",
+          "overview": "多彩·A♥ ×1.5 222.75→334.125",
+          "full": "多彩·A♥ ×1.5 222.75→334.125",
+          "exact": "多彩 · A♥ · 实际 ×1.5 · 222.75 → 334.125",
+          "font": "14px"
+        },
+        {
+          "event": "save/final/standard/0/hand/save/final/standard/0/command/4/event/16",
+          "overview": "多彩·A♥ ×1.5 334.125→501.1875",
+          "full": "多彩·A♥ ×1.5 334.125→501.1875",
+          "exact": "多彩 · A♥ · 实际 ×1.5 · 334.125 → 501.1875",
+          "font": "14px"
+        },
+        {
+          "event": "save/final/standard/0/hand/save/final/standard/0/command/4/event/19",
+          "overview": "多彩·A♥ ×1.5 501.1875→≈751.78",
+          "full": "多彩·A♥ ×1.5 501.1875→≈751.78",
+          "exact": "多彩 · A♥ · 实际 ×1.5 · 501.1875 → 24,057/32",
+          "font": "14px"
+        },
+        {
+          "event": "save/final/standard/0/hand/save/final/standard/0/command/4/event/21",
+          "overview": "多彩·A♥ ×1.5 ≈751.78→≈1127.67",
+          "full": "多彩·A♥ ×1.5 ≈751.78→≈1127.67",
+          "exact": "多彩 · A♥ · 实际 ×1.5 · 24,057/32 → 72,171/64",
+          "font": "14px"
+        },
+        {
+          "event": "save/final/standard/0/hand/save/final/standard/0/command/4/event/24",
+          "overview": "多彩·A♥ ×1.5 ≈1127.67→≈1691.51",
+          "full": "多彩·A♥ ×1.5 ≈1127.67→≈1691.51",
+          "exact": "多彩 · A♥ · 实际 ×1.5 · 72,171/64 → 216,513/128",
+          "font": "14px"
+        },
+        {
+          "event": "save/final/standard/0/hand/save/final/standard/0/command/4/event/26",
+          "overview": "多彩·A♥ ×1.5 ≈1691.51→≈2537.26",
+          "full": "多彩·A♥ ×1.5 ≈1691.51→≈2537.26",
+          "exact": "多彩 · A♥ · 实际 ×1.5 · 216,513/128 → 649,539/256",
+          "font": "14px"
+        }
+      ]
+    },
+    {
+      "run": "phone-debug",
+      "source": "92388474e50e6cc34b3b0e9664e54d444dc93b25",
+      "viewport": {
+        "width": 390,
+        "height": 740
+      },
+      "domainExpectedEqual": true,
+      "errors": [],
+      "rawStatus": "PASS",
+      "visualStatus": "LIMITED; see README",
+      "baselineInitialAndFinalFullStateJournalStorageEqual": true,
+      "actualCaptionCount": 10,
+      "captions": [
+        {
+          "event": "save/final/standard/0/hand/save/final/standard/0/command/4/event/4",
+          "overview": "多彩·A♥ ×1.5 44→66",
+          "full": "多彩·A♥ ×1.5 44→66",
+          "exact": "多彩 · A♥ · 实际 ×1.5 · 44 → 66",
+          "font": "14px"
+        },
+        {
+          "event": "save/final/standard/0/hand/save/final/standard/0/command/4/event/6",
+          "overview": "多彩·A♥ ×1.5 66→99",
+          "full": "多彩·A♥ ×1.5 66→99",
+          "exact": "多彩 · A♥ · 实际 ×1.5 · 66 → 99",
+          "font": "14px"
+        },
+        {
+          "event": "save/final/standard/0/hand/save/final/standard/0/command/4/event/9",
+          "overview": "多彩·A♥ ×1.5 99→148.5",
+          "full": "多彩·A♥ ×1.5 99→148.5",
+          "exact": "多彩 · A♥ · 实际 ×1.5 · 99 → 148.5",
+          "font": "14px"
+        },
+        {
+          "event": "save/final/standard/0/hand/save/final/standard/0/command/4/event/11",
+          "overview": "多彩·A♥ ×1.5 148.5→222.75",
+          "full": "多彩·A♥ ×1.5 148.5→222.75",
+          "exact": "多彩 · A♥ · 实际 ×1.5 · 148.5 → 222.75",
+          "font": "14px"
+        },
+        {
+          "event": "save/final/standard/0/hand/save/final/standard/0/command/4/event/14",
+          "overview": "多彩·A♥ ×1.5 222.75→334.125",
+          "full": "多彩·A♥ ×1.5 222.75→334.125",
+          "exact": "多彩 · A♥ · 实际 ×1.5 · 222.75 → 334.125",
+          "font": "14px"
+        },
+        {
+          "event": "save/final/standard/0/hand/save/final/standard/0/command/4/event/16",
+          "overview": "多彩·A♥ ×1.5 334.125→501.1875",
+          "full": "多彩·A♥ ×1.5 334.125→501.1875",
+          "exact": "多彩 · A♥ · 实际 ×1.5 · 334.125 → 501.1875",
+          "font": "14px"
+        },
+        {
+          "event": "save/final/standard/0/hand/save/final/standard/0/command/4/event/19",
+          "overview": "多彩·A♥ ×1.5 501.1875→≈751.78",
+          "full": "多彩·A♥ ×1.5 501.1875→≈751.78",
+          "exact": "多彩 · A♥ · 实际 ×1.5 · 501.1875 → 24,057/32",
+          "font": "14px"
+        },
+        {
+          "event": "save/final/standard/0/hand/save/final/standard/0/command/4/event/21",
+          "overview": "多彩·A♥ ×1.5 ≈751.78→≈1127.67",
+          "full": "多彩·A♥ ×1.5 ≈751.78→≈1127.67",
+          "exact": "多彩 · A♥ · 实际 ×1.5 · 24,057/32 → 72,171/64",
+          "font": "14px"
+        },
+        {
+          "event": "save/final/standard/0/hand/save/final/standard/0/command/4/event/24",
+          "overview": "多彩·A♥ ×1.5 ≈1127.67→≈1691.51",
+          "full": "多彩·A♥ ×1.5 ≈1127.67→≈1691.51",
+          "exact": "多彩 · A♥ · 实际 ×1.5 · 72,171/64 → 216,513/128",
+          "font": "14px"
+        },
+        {
+          "event": "save/final/standard/0/hand/save/final/standard/0/command/4/event/26",
+          "overview": "多彩·A♥ ×1.5 ≈1691.51→≈2537.26",
+          "full": "多彩·A♥ ×1.5 ≈1691.51→≈2537.26",
+          "exact": "多彩 · A♥ · 实际 ×1.5 · 216,513/128 → 649,539/256",
+          "font": "14px"
+        }
+      ]
+    }
+  ],
+  "limitations": [
+    "existing controlled legacy identity finaleReady, not natural campaign acquisition",
+    "software Chromium Canvas DPR1 GPU disabled; no FPS/audio/human acceptance",
+    "two earlier phone award captures lack heat digits; diagnostic later visible, cause unresolved"
+  ],
+  "finalScore": "5480485",
+  "accumulator": {
+    "H": {
+      "n": "2160",
+      "d": "1"
+    },
+    "M": {
+      "n": "649539",
+      "d": "256"
+    }
+  }
+}

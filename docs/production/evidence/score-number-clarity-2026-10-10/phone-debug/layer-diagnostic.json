@@ -1,0 +1,1226 @@
+{
+  "renderer": 1,
+  "heat": {
+    "text": "2,160",
+    "alpha": 1,
+    "visible": true,
+    "renderFlags": 15,
+    "style": {
+      "fontSize": "21px",
+      "fontFamily": "\"Dachoupai Score\", \"Arial Narrow\", \"Roboto Condensed\", sans-serif",
+      "color": "#26313a"
+    },
+    "font": "800 21px \"Dachoupai Score\", \"Arial Narrow\", \"Roboto Condensed\", sans-serif",
+    "origin": [
+      24,
+      11
+    ],
+    "frame": [
+      72,
+      33
+    ],
+    "resolution": 1.5,
+    "parent": "view",
+    "index": 91,
+    "mask": false
+  },
+  "objects": [
+    {
+      "i": 0,
+      "name": "",
+      "type": "Rectangle",
+      "visible": true,
+      "alpha": 1,
+      "bounds": {
+        "type": 5,
+        "x": 0,
+        "y": 0,
+        "width": 390,
+        "height": 740
+      }
+    },
+    {
+      "i": 1,
+      "name": "",
+      "type": "Graphics",
+      "visible": true,
+      "alpha": 1
+    },
+    {
+      "i": 2,
+      "name": "table-art/surface",
+      "type": "Graphics",
+      "visible": true,
+      "alpha": 1
+    },
+    {
+      "i": 3,
+      "name": "table-art/surface-paper",
+      "type": "TileSprite",
+      "visible": true,
+      "alpha": 0.08,
+      "bounds": {
+        "type": 5,
+        "x": 8,
+        "y": 58,
+        "width": 374,
+        "height": 650
+      }
+    },
+    {
+      "i": 4,
+      "name": "table-art/program",
+      "type": "Graphics",
+      "visible": true,
+      "alpha": 1
+    },
+    {
+      "i": 5,
+      "name": "table-art/program-paper",
+      "type": "TileSprite",
+      "visible": true,
+      "alpha": 0.18,
+      "bounds": {
+        "type": 5,
+        "x": 16,
+        "y": 12,
+        "width": 358,
+        "height": 44
+      }
+    },
+    {
+      "i": 6,
+      "name": "table-art/rack",
+      "type": "Graphics",
+      "visible": true,
+      "alpha": 1
+    },
+    {
+      "i": 7,
+      "name": "table-art/rack-paper",
+      "type": "TileSprite",
+      "visible": true,
+      "alpha": 0.18,
+      "bounds": {
+        "type": 5,
+        "x": 20,
+        "y": 61,
+        "width": 350,
+        "height": 91
+      }
+    },
+    {
+      "i": 8,
+      "name": "table-art/hand",
+      "type": "Graphics",
+      "visible": true,
+      "alpha": 1
+    },
+    {
+      "i": 9,
+      "name": "table-art/hand-paper",
+      "type": "TileSprite",
+      "visible": true,
+      "alpha": 0.18,
+      "bounds": {
+        "type": 5,
+        "x": 13,
+        "y": 538.4,
+        "width": 364,
+        "height": 107
+      }
+    },
+    {
+      "i": 10,
+      "name": "table-art/stage",
+      "type": "Graphics",
+      "visible": true,
+      "alpha": 1
+    },
+    {
+      "i": 11,
+      "name": "table-art/stage-paper",
+      "type": "TileSprite",
+      "visible": true,
+      "alpha": 0.18,
+      "bounds": {
+        "type": 5,
+        "x": 41,
+        "y": 373,
+        "width": 308,
+        "height": 92
+      }
+    },
+    {
+      "i": 12,
+      "name": "score/board-paper",
+      "type": "Image",
+      "visible": true,
+      "alpha": 1,
+      "bounds": {
+        "type": 5,
+        "x": 12,
+        "y": 153.6,
+        "width": 366,
+        "height": 132.00000000000003
+      }
+    },
+    {
+      "i": 13,
+      "name": "score/board-border",
+      "type": "Graphics",
+      "visible": true,
+      "alpha": 1
+    },
+    {
+      "i": 14,
+      "name": "score/total-pedestal",
+      "type": "Graphics",
+      "visible": false,
+      "alpha": 1
+    },
+    {
+      "i": 15,
+      "name": "",
+      "type": "Container",
+      "visible": true,
+      "alpha": 1,
+      "bounds": {
+        "type": 5,
+        "x": 22,
+        "y": 12,
+        "width": 34,
+        "height": 34
+      }
+    },
+    {
+      "i": 16,
+      "name": "hero/details",
+      "type": "Rectangle",
+      "visible": true,
+      "alpha": 1,
+      "bounds": {
+        "type": 5,
+        "x": 17,
+        "y": 7,
+        "width": 44,
+        "height": 44
+      }
+    },
+    {
+      "i": 17,
+      "name": "",
+      "type": "Text",
+      "visible": true,
+      "alpha": 1,
+      "bounds": {
+        "type": 5,
+        "x": 76,
+        "y": 14,
+        "width": 36,
+        "height": 21
+      }
+    },
+    {
+      "i": 18,
+      "name": "",
+      "type": "Text",
+      "visible": false,
+      "alpha": 1,
+      "bounds": {
+        "type": 5,
+        "x": 76,
+        "y": 37,
+        "width": 109,
+        "height": 16
+      }
+    },
+    {
+      "i": 19,
+      "name": "hero/skill-entry",
+      "type": "Rectangle",
+      "visible": true,
+      "alpha": 1,
+      "bounds": {
+        "type": 5,
+        "x": 76,
+        "y": 37,
+        "width": 206,
+        "height": 20
+      }
+    },
+    {
+      "i": 20,
+      "name": "",
+      "type": "Text",
+      "visible": true,
+      "alpha": 1,
+      "bounds": {
+        "type": 5,
+        "x": 76,
+        "y": 36,
+        "width": 178.73620940798705,
+        "height": 19.07858415029075
+      }
+    },
+    {
+      "i": 21,
+      "name": "",
+      "type": "Text",
+      "visible": true,
+      "alpha": 1,
+      "bounds": {
+        "type": 5,
+        "x": 156,
+        "y": 14,
+        "width": 48,
+        "height": 16
+      }
+    },
+    {
+      "i": 22,
+      "name": "",
+      "type": "Graphics",
+      "visible": true,
+      "alpha": 1
+    },
+    {
+      "i": 23,
+      "name": "",
+      "type": "Image",
+      "visible": true,
+      "alpha": 1,
+      "bounds": {
+        "type": 5,
+        "x": 23,
+        "y": 62,
+        "width": 64,
+        "height": 89.6
+      }
+    },
+    {
+      "i": 24,
+      "name": "",
+      "type": "Image",
+      "visible": true,
+      "alpha": 0.18,
+      "bounds": {
+        "type": 5,
+        "x": 26,
+        "y": 65,
+        "width": 58,
+        "height": 83.6
+      }
+    },
+    {
+      "i": 25,
+      "name": "",
+      "type": "Graphics",
+      "visible": true,
+      "alpha": 1
+    },
+    {
+      "i": 26,
+      "name": "",
+      "type": "Graphics",
+      "visible": true,
+      "alpha": 1
+    },
+    {
+      "i": 27,
+      "name": "",
+      "type": "Image",
+      "visible": true,
+      "alpha": 1,
+      "bounds": {
+        "type": 5,
+        "x": 93,
+        "y": 62,
+        "width": 64,
+        "height": 89.6
+      }
+    },
+    {
+      "i": 28,
+      "name": "",
+      "type": "Image",
+      "visible": true,
+      "alpha": 0.18,
+      "bounds": {
+        "type": 5,
+        "x": 96,
+        "y": 65,
+        "width": 58,
+        "height": 83.6
+      }
+    },
+    {
+      "i": 29,
+      "name": "",
+      "type": "Graphics",
+      "visible": true,
+      "alpha": 1
+    },
+    {
+      "i": 30,
+      "name": "",
+      "type": "Graphics",
+      "visible": true,
+      "alpha": 1
+    },
+    {
+      "i": 31,
+      "name": "",
+      "type": "Image",
+      "visible": true,
+      "alpha": 1,
+      "bounds": {
+        "type": 5,
+        "x": 163,
+        "y": 62,
+        "width": 64,
+        "height": 89.6
+      }
+    },
+    {
+      "i": 32,
+      "name": "",
+      "type": "Image",
+      "visible": true,
+      "alpha": 0.18,
+      "bounds": {
+        "type": 5,
+        "x": 166,
+        "y": 65,
+        "width": 58,
+        "height": 83.6
+      }
+    },
+    {
+      "i": 33,
+      "name": "",
+      "type": "Graphics",
+      "visible": true,
+      "alpha": 1
+    },
+    {
+      "i": 34,
+      "name": "",
+      "type": "Graphics",
+      "visible": true,
+      "alpha": 1
+    },
+    {
+      "i": 35,
+      "name": "",
+      "type": "Image",
+      "visible": true,
+      "alpha": 1,
+      "bounds": {
+        "type": 5,
+        "x": 233,
+        "y": 62,
+        "width": 64,
+        "height": 89.6
+      }
+    },
+    {
+      "i": 36,
+      "name": "",
+      "type": "Image",
+      "visible": true,
+      "alpha": 0.18,
+      "bounds": {
+        "type": 5,
+        "x": 236,
+        "y": 65,
+        "width": 58,
+        "height": 83.6
+      }
+    },
+    {
+      "i": 37,
+      "name": "",
+      "type": "Graphics",
+      "visible": true,
+      "alpha": 1
+    },
+    {
+      "i": 38,
+      "name": "",
+      "type": "Graphics",
+      "visible": true,
+      "alpha": 1
+    },
+    {
+      "i": 39,
+      "name": "",
+      "type": "Image",
+      "visible": true,
+      "alpha": 1,
+      "bounds": {
+        "type": 5,
+        "x": 303,
+        "y": 62,
+        "width": 64,
+        "height": 89.6
+      }
+    },
+    {
+      "i": 40,
+      "name": "",
+      "type": "Image",
+      "visible": true,
+      "alpha": 0.18,
+      "bounds": {
+        "type": 5,
+        "x": 306,
+        "y": 65,
+        "width": 58,
+        "height": 83.6
+      }
+    },
+    {
+      "i": 41,
+      "name": "",
+      "type": "Graphics",
+      "visible": true,
+      "alpha": 1
+    },
+    {
+      "i": 42,
+      "name": "table/played-workplane",
+      "type": "Rectangle",
+      "visible": true,
+      "alpha": 1,
+      "bounds": {
+        "type": 5,
+        "x": 37,
+        "y": 369,
+        "width": 316,
+        "height": 100
+      }
+    },
+    {
+      "i": 43,
+      "name": "table/played-label",
+      "type": "Text",
+      "visible": true,
+      "alpha": 1,
+      "bounds": {
+        "type": 5,
+        "x": 37,
+        "y": 351,
+        "width": 42,
+        "height": 16
+      }
+    },
+    {
+      "i": 44,
+      "name": "action/sort-group",
+      "type": "Graphics",
+      "visible": true,
+      "alpha": 1
+    },
+    {
+      "i": 45,
+      "name": "",
+      "type": "Container",
+      "visible": true,
+      "alpha": 1,
+      "bounds": {
+        "type": 5,
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0
+      }
+    },
+    {
+      "i": 46,
+      "name": "",
+      "type": "Text",
+      "visible": true,
+      "alpha": 1,
+      "bounds": {
+        "type": 5,
+        "x": 20,
+        "y": 500.5,
+        "width": 28,
+        "height": 17
+      }
+    },
+    {
+      "i": 47,
+      "name": "action/sort-rank",
+      "type": "Rectangle",
+      "visible": true,
+      "alpha": 1,
+      "bounds": {
+        "type": 5,
+        "x": 12,
+        "y": 488.4,
+        "width": 44,
+        "height": 44
+      }
+    },
+    {
+      "i": 48,
+      "name": "",
+      "type": "Container",
+      "visible": true,
+      "alpha": 1,
+      "bounds": {
+        "type": 5,
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0
+      }
+    },
+    {
+      "i": 49,
+      "name": "",
+      "type": "Text",
+      "visible": true,
+      "alpha": 1,
+      "bounds": {
+        "type": 5,
+        "x": 64,
+        "y": 500.5,
+        "width": 28,
+        "height": 17
+      }
+    },
+    {
+      "i": 50,
+      "name": "action/sort-suit",
+      "type": "Rectangle",
+      "visible": true,
+      "alpha": 1,
+      "bounds": {
+        "type": 5,
+        "x": 56,
+        "y": 488.4,
+        "width": 44,
+        "height": 44
+      }
+    },
+    {
+      "i": 51,
+      "name": "",
+      "type": "Container",
+      "visible": true,
+      "alpha": 1,
+      "bounds": {
+        "type": 5,
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0
+      }
+    },
+    {
+      "i": 52,
+      "name": "",
+      "type": "Text",
+      "visible": true,
+      "alpha": 1,
+      "bounds": {
+        "type": 5,
+        "x": 106,
+        "y": 500.5,
+        "width": 32,
+        "height": 17
+      }
+    },
+    {
+      "i": 53,
+      "name": "selection/switch-type",
+      "type": "Rectangle",
+      "visible": true,
+      "alpha": 1,
+      "bounds": {
+        "type": 5,
+        "x": 100,
+        "y": 488.4,
+        "width": 44,
+        "height": 44
+      }
+    },
+    {
+      "i": 54,
+      "name": "",
+      "type": "Container",
+      "visible": true,
+      "alpha": 1,
+      "bounds": {
+        "type": 5,
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0
+      }
+    },
+    {
+      "i": 55,
+      "name": "",
+      "type": "Text",
+      "visible": true,
+      "alpha": 1,
+      "bounds": {
+        "type": 5,
+        "x": 113,
+        "y": 658.5,
+        "width": 28,
+        "height": 17
+      }
+    },
+    {
+      "i": 56,
+      "name": "action/discard",
+      "type": "Rectangle",
+      "visible": true,
+      "alpha": 1,
+      "bounds": {
+        "type": 5,
+        "x": 59,
+        "y": 652,
+        "width": 106,
+        "height": 56
+      }
+    },
+    {
+      "i": 57,
+      "name": "",
+      "type": "Container",
+      "visible": true,
+      "alpha": 1,
+      "bounds": {
+        "type": 5,
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0
+      }
+    },
+    {
+      "i": 58,
+      "name": "",
+      "type": "Text",
+      "visible": true,
+      "alpha": 1,
+      "bounds": {
+        "type": 5,
+        "x": 249.5,
+        "y": 657.5,
+        "width": 33,
+        "height": 19
+      }
+    },
+    {
+      "i": 59,
+      "name": "action/play",
+      "type": "Rectangle",
+      "visible": true,
+      "alpha": 1,
+      "bounds": {
+        "type": 5,
+        "x": 171,
+        "y": 652,
+        "width": 160,
+        "height": 56
+      }
+    },
+    {
+      "i": 60,
+      "name": "button/discard-left",
+      "type": "Text",
+      "visible": true,
+      "alpha": 1,
+      "bounds": {
+        "type": 5,
+        "x": 114,
+        "y": 681,
+        "width": 26,
+        "height": 16
+      }
+    },
+    {
+      "i": 61,
+      "name": "",
+      "type": "Graphics",
+      "visible": true,
+      "alpha": 0
+    },
+    {
+      "i": 62,
+      "name": "",
+      "type": "Text",
+      "visible": true,
+      "alpha": 1,
+      "bounds": {
+        "type": 5,
+        "x": 12,
+        "y": 712,
+        "width": 111,
+        "height": 16
+      }
+    },
+    {
+      "i": 63,
+      "name": "",
+      "type": "Container",
+      "visible": true,
+      "alpha": 1,
+      "bounds": {
+        "type": 5,
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0
+      }
+    },
+    {
+      "i": 64,
+      "name": "",
+      "type": "Text",
+      "visible": true,
+      "alpha": 1,
+      "bounds": {
+        "type": 5,
+        "x": 296.5,
+        "y": 501,
+        "width": 71,
+        "height": 16
+      }
+    },
+    {
+      "i": 65,
+      "name": "action/tool-inventory",
+      "type": "Rectangle",
+      "visible": true,
+      "alpha": 1,
+      "bounds": {
+        "type": 5,
+        "x": 266,
+        "y": 488.4,
+        "width": 112,
+        "height": 44
+      }
+    },
+    {
+      "i": 66,
+      "name": "",
+      "type": "Graphics",
+      "visible": true,
+      "alpha": 1
+    },
+    {
+      "i": 67,
+      "name": "card/save/final/card/3",
+      "type": "Rectangle",
+      "visible": true,
+      "alpha": 1,
+      "bounds": {
+        "type": 5,
+        "x": 11.999999999999996,
+        "y": 536.4,
+        "width": 43.14285714285714,
+        "height": 111.60000000000002
+      }
+    },
+    {
+      "i": 68,
+      "name": "card/save/final/card/8",
+      "type": "Rectangle",
+      "visible": true,
+      "alpha": 1,
+      "bounds": {
+        "type": 5,
+        "x": 55.14285714285715,
+        "y": 536.4,
+        "width": 43.14285714285715,
+        "height": 111.60000000000002
+      }
+    },
+    {
+      "i": 69,
+      "name": "card/save/final/card/14",
+      "type": "Rectangle",
+      "visible": true,
+      "alpha": 1,
+      "bounds": {
+        "type": 5,
+        "x": 98.28571428571429,
+        "y": 536.4,
+        "width": 43.14285714285715,
+        "height": 111.60000000000002
+      }
+    },
+    {
+      "i": 70,
+      "name": "card/save/final/card/0",
+      "type": "Rectangle",
+      "visible": true,
+      "alpha": 1,
+      "bounds": {
+        "type": 5,
+        "x": 141.42857142857144,
+        "y": 536.4,
+        "width": 43.14285714285714,
+        "height": 111.60000000000002
+      }
+    },
+    {
+      "i": 71,
+      "name": "card/save/final/card/17",
+      "type": "Rectangle",
+      "visible": true,
+      "alpha": 1,
+      "bounds": {
+        "type": 5,
+        "x": 184.57142857142858,
+        "y": 536.4,
+        "width": 43.14285714285714,
+        "height": 111.60000000000002
+      }
+    },
+    {
+      "i": 72,
+      "name": "card/save/final/card/19",
+      "type": "Rectangle",
+      "visible": true,
+      "alpha": 1,
+      "bounds": {
+        "type": 5,
+        "x": 227.71428571428572,
+        "y": 536.4,
+        "width": 43.14285714285717,
+        "height": 111.60000000000002
+      }
+    },
+    {
+      "i": 73,
+      "name": "card/save/final/card/1",
+      "type": "Rectangle",
+      "visible": true,
+      "alpha": 1,
+      "bounds": {
+        "type": 5,
+        "x": 270.8571428571429,
+        "y": 536.4,
+        "width": 43.14285714285717,
+        "height": 111.60000000000002
+      }
+    },
+    {
+      "i": 74,
+      "name": "card/save/final/card/5",
+      "type": "Rectangle",
+      "visible": true,
+      "alpha": 1,
+      "bounds": {
+        "type": 5,
+        "x": 314,
+        "y": 536.4,
+        "width": 64,
+        "height": 111.60000000000002
+      }
+    },
+    {
+      "i": 75,
+      "name": "",
+      "type": "Container",
+      "visible": true,
+      "alpha": 1,
+      "bounds": {
+        "type": 5,
+        "x": 49,
+        "y": 382.6,
+        "width": 52,
+        "height": 72.79999999999995
+      }
+    },
+    {
+      "i": 76,
+      "name": "",
+      "type": "Container",
+      "visible": true,
+      "alpha": 1,
+      "bounds": {
+        "type": 5,
+        "x": 109,
+        "y": 382.6,
+        "width": 52,
+        "height": 72.79999999999995
+      }
+    },
+    {
+      "i": 77,
+      "name": "",
+      "type": "Container",
+      "visible": true,
+      "alpha": 1,
+      "bounds": {
+        "type": 5,
+        "x": 169,
+        "y": 382.6,
+        "width": 52,
+        "height": 72.79999999999995
+      }
+    },
+    {
+      "i": 78,
+      "name": "",
+      "type": "Container",
+      "visible": true,
+      "alpha": 1,
+      "bounds": {
+        "type": 5,
+        "x": 229,
+        "y": 382.6,
+        "width": 52,
+        "height": 72.79999999999995
+      }
+    },
+    {
+      "i": 79,
+      "name": "",
+      "type": "Container",
+      "visible": true,
+      "alpha": 1,
+      "bounds": {
+        "type": 5,
+        "x": 289,
+        "y": 382.6,
+        "width": 52,
+        "height": 72.79999999999995
+      }
+    },
+    {
+      "i": 80,
+      "name": "",
+      "type": "Container",
+      "visible": true,
+      "alpha": 1,
+      "bounds": {
+        "type": 5,
+        "x": 227.71429443359375,
+        "y": 558.4000122070313,
+        "width": 64,
+        "height": 89.59999999999991
+      }
+    },
+    {
+      "i": 81,
+      "name": "",
+      "type": "Container",
+      "visible": true,
+      "alpha": 1,
+      "bounds": {
+        "type": 5,
+        "x": 270.8571472167969,
+        "y": 558.4000122070313,
+        "width": 64,
+        "height": 89.59999999999991
+      }
+    },
+    {
+      "i": 82,
+      "name": "",
+      "type": "Container",
+      "visible": true,
+      "alpha": 1,
+      "bounds": {
+        "type": 5,
+        "x": 314,
+        "y": 558.4000122070313,
+        "width": 64,
+        "height": 89.59999999999991
+      }
+    },
+    {
+      "i": 83,
+      "name": "",
+      "type": "Text",
+      "visible": false,
+      "alpha": 1,
+      "bounds": {
+        "type": 5,
+        "x": 60,
+        "y": 538.4,
+        "width": 60,
+        "height": 16
+      }
+    },
+    {
+      "i": 84,
+      "name": "",
+      "type": "Text",
+      "visible": false,
+      "alpha": 1,
+      "bounds": {
+        "type": 5,
+        "x": 226,
+        "y": 518,
+        "width": 152,
+        "height": 16
+      }
+    },
+    {
+      "i": 85,
+      "name": "button/play-left",
+      "type": "Text",
+      "visible": true,
+      "alpha": 1,
+      "bounds": {
+        "type": 5,
+        "x": 253,
+        "y": 681,
+        "width": 26,
+        "height": 16
+      }
+    },
+    {
+      "i": 86,
+      "name": "score/landing",
+      "type": "Container",
+      "visible": true,
+      "alpha": 1,
+      "bounds": {
+        "type": 5,
+        "x": 45,
+        "y": 375,
+        "width": 300,
+        "height": 88
+      }
+    },
+    {
+      "i": 87,
+      "name": "score/source",
+      "type": "Text",
+      "visible": true,
+      "alpha": 1,
+      "bounds": {
+        "type": 5,
+        "x": 125.5,
+        "y": 157.6,
+        "width": 139,
+        "height": 16
+      }
+    },
+    {
+      "i": 88,
+      "name": "",
+      "type": "Text",
+      "visible": true,
+      "alpha": 1,
+      "bounds": {
+        "type": 5,
+        "x": 55.540000000000006,
+        "y": 178.6,
+        "width": 56,
+        "height": 16
+      }
+    },
+    {
+      "i": 89,
+      "name": "",
+      "type": "Text",
+      "visible": true,
+      "alpha": 1,
+      "bounds": {
+        "type": 5,
+        "x": 55.540000000000006,
+        "y": 223.6,
+        "width": 56,
+        "height": 16
+      }
+    },
+    {
+      "i": 90,
+      "name": "",
+      "type": "Text",
+      "visible": false,
+      "alpha": 1,
+      "bounds": {
+        "type": 5,
+        "x": 234.54000000000002,
+        "y": 183.60000000000002,
+        "width": 56,
+        "height": 16
+      }
+    },
+    {
+      "i": 91,
+      "name": "score/heat",
+      "type": "Text",
+      "visible": true,
+      "alpha": 1,
+      "bounds": {
+        "type": 5,
+        "x": 59.540000000000006,
+        "y": 197.6,
+        "width": 48,
+        "height": 22
+      }
+    },
+    {
+      "i": 92,
+      "name": "score/multiplier",
+      "type": "Text",
+      "visible": true,
+      "alpha": 1,
+      "bounds": {
+        "type": 5,
+        "x": 22.040000000000006,
+        "y": 242.6,
+        "width": 123.00000000000001,
+        "height": 22.00000000000003
+      }
+    },
+    {
+      "i": 93,
+      "name": "score/total",
+      "type": "Text",
+      "visible": false,
+      "alpha": 1,
+      "bounds": {
+        "type": 5,
+        "x": 174.04000000000002,
+        "y": 224.60000000000002,
+        "width": 177,
+        "height": 51
+      }
+    },
+    {
+      "i": 94,
+      "name": "",
+      "type": "Text",
+      "visible": false,
+      "alpha": 1,
+      "bounds": {
+        "type": 5,
+        "x": 0,
+        "y": 0,
+        "width": 271,
+        "height": 16
+      }
+    },
+    {
+      "i": 95,
+      "name": "",
+      "type": "Text",
+      "visible": false,
+      "alpha": 1,
+      "bounds": {
+        "type": 5,
+        "x": 47,
+        "y": 449,
+        "width": 215,
+        "height": 16
+      }
+    }
+  ]
+}
