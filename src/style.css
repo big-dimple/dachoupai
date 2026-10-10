@@ -631,7 +631,7 @@ button[aria-busy=true] { border-style:dashed; }
 .tool-inventory[open] { width:min(680px,calc(100vw - var(--safe-left) - var(--safe-right) - 24px));height:auto;inset:auto;top:50%;left:50%;transform:translate(-50%,-50%); }
 .tool-inventory .dialog-body { margin:0; }
 .tool-inventory .tool-inventory-group { margin-top:14px; }
-.tool-inventory .tool-inventory-grid { grid-template-columns:repeat(auto-fill,minmax(160px,190px));justify-content:center;align-items:stretch; }
+.tool-inventory .tool-inventory-grid { grid-template-columns:repeat(auto-fit,minmax(160px,190px));justify-content:center;align-items:stretch; }
 .tool-inventory .tool-inventory-card { grid-template-rows:128px auto 1fr auto;padding:12px 10px;gap:8px; }
 .tool-inventory .tool-inventory-card img { width:98px;height:128px;filter:none; }
 .tool-inventory .tool-inventory-card span { font-size:14px; }
