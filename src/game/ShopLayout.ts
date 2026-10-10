@@ -56,7 +56,9 @@ export function shopLayout(width:number,height:number,top:number,bottom:number,c
   if(width>=1000){if(height-top-bottom<712)return shortShopLayout(width,height,top,bottom,cols);return desktopShopLayout(width,height,top,bottom,cols);}
   if(height-top-bottom<500)return shortShopLayout(width,height,top,bottom,cols);
   const portrait=width<700&&height>width,x=12,w=width-24,seat=(Math.min(w,420)-8*(cols-1))/cols;
-  if(portrait&&height-top-bottom>=680){
+  // Three rows need 23px heading space, two 16px effect lines, a route
+  // line and 19px price, with 2px gaps. Below this budget keep the gallery.
+  if(portrait&&height-top-bottom>=693){
     const secondaryY=height-bottom-144,shelfTop=top+104,slotGap=6,slotWidth=Math.min(58,(w-4*slotGap)/5),slotHeight=slotWidth*1.4;
     const rowHeight=Math.min(118,(secondaryY-shelfTop-32-Math.max(slotHeight+20,104)-12*(cols-1))/cols),cardHeight=Math.max(72,rowHeight),cardWidth=cardHeight/1.4;
     const shelf:Box[]=Array.from({length:cols},(_,i)=>({x:x+4,y:shelfTop+i*(cardHeight+12),width:cardWidth,height:cardHeight}));

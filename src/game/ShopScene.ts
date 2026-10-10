@@ -166,7 +166,7 @@ export class ShopScene extends Phaser.Scene {
       const name=v.text(copyX,copyY+4,d.name,15,'#26313A').setFontStyle('bold').setName('shop/offer-name');this.ellipsis(name,copyWidth-(starterOffer(this.run,o)?52:0));
       const plain=ability?.plain,full=plain?.line??ability?.summary??d.description;
       const purposeCopy=p.desktop?full:plain?.tile??full;
-      const purpose=v.text(copyX,copyY+(p.portrait?28:23),p.portrait&&p.copyBeside?purposeCopy.replaceAll('\n',' · '):purposeCopy,14,'#3F606B',copyWidth).setStyle({maxLines:0}).setName('shop/offer-purpose').setData('offerId',o.offerId).setData('definitionId',d.id).setData('fullText',full);
+      const purpose=v.text(copyX,copyY+(p.portrait&&p.copyBeside?28:23),p.portrait&&p.copyBeside?purposeCopy.replaceAll('\n',' · '):purposeCopy,14,'#3F606B',copyWidth).setStyle({maxLines:0}).setName('shop/offer-purpose').setData('offerId',o.offerId).setData('definitionId',d.id).setData('fullText',full);
       purpose.setWordWrapWidth(copyWidth,true);
       if(purpose.height>(p.desktop?76:54))this.twoLines(purpose,copyWidth);
 
@@ -174,7 +174,17 @@ export class ShopScene extends Phaser.Scene {
       const priceInk=this.offerPricePlate(o,{x:copyX-2,y:copy.priceY-2,width:copyWidth+2,height:24});
       v.text(copyX,copy.priceY,o.consumed?'已收入':price+' 金 · 查看',16,priceInk).setFontStyle('bold').setName('shop/offer-price').setData('offerId',o.offerId);
       v.add(createJokerRarityBadge(this,d.rarity,{x:b.x+b.width-31,y:b.y+b.height-21-(factsOnFace?54:0),compact:true}).setData('definitionId',o.definitionId).setData('surface','offer'));
-      if(p.portrait){const g=shopOfferGuidance(this.run,o);v.text(copyX,copy.priceY-22,g.routeCaption+(g.stars?' · '+'★'.repeat(g.stars):''),14,'#80551F',copyWidth).setName('shop/offer-routes').setData('offerId',o.offerId).setData('routes',g.routes);}
+      if(p.portrait){
+        const g=shopOfferGuidance(this.run,o),routeY=factsOnFace?b.y+b.height-52:copy.priceY-(p.copyBeside?22:54);
+        const route=v.text(copyX,routeY,g.routeCaption+(g.stars?' · '+'★'.repeat(g.stars):''),14,'#80551F',copyWidth).setName('shop/offer-routes').setData('offerId',o.offerId).setData('routes',g.routes);
+        if(p.copyBeside&&purpose.y+purpose.height+2>route.y){
+          // Fit actual text heights before the price; never infer clearance
+          // from card rectangles or apply row offsets to the old gallery.
+          this.twoLines(purpose,copyWidth);purpose.setData('fullText',full);
+          route.setY(copy.priceY-route.height-2);
+          purpose.setY(Math.min(purpose.y,route.y-purpose.height-2));
+        }
+      }
       else this.drawOfferGuidance(o,{x:copyX,y:factsOnFace?b.y+b.height-54:copy.priceY-(p.copyBeside?36:54),width:copyWidth,height:p.copyBeside?34:52});
       this.markBuildOffer(o,'jokers',b,{x:copyX+copyWidth-44,y:copyY+2,width:44,height:22});
       const tile=copy.tile,hover=this.hoverCard(first,tile,o.definitionId),r=v.rect(tile).setFillStyle(0,0).setStrokeStyle().setData('selected',selected);
