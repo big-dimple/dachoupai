@@ -385,7 +385,7 @@ export class ShopScene extends Phaser.Scene {
   }
   private drawBasicChoiceSeat(o:R2Offer,raw:Box):void {
     const v=this.view,p=this.geometry(),first=v.root.length,purchase=this.run.shop!.basicChoice!.purchase;
-    const artWidth=p.pc?Math.min(124,Math.max(64,raw.width*.32)):0;
+    const artWidth=p.pc?Math.min(124,Math.max(64,raw.width-126)):0;
     const copy=p.pc?{tile:raw,x:raw.x+artWidth+20,y:raw.y+8,width:raw.width-artWidth-30,priceY:raw.y+raw.height-30}:shopOfferCopy(p,raw);
     shopSheet(this,v,'offer',copy.tile,PAPER_THEME.paperLight,true);
     const art=p.pc?{x:raw.x+8,y:raw.y+10,width:artWidth,height:raw.height-20}:{x:raw.x+5,y:raw.y+5,width:raw.width-10,height:raw.height-10};
