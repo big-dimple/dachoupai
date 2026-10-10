@@ -1,0 +1,48 @@
+{
+  "baseline": "a7ad41d58076471fe82942db1d7f3159e69bbb27",
+  "scope": "protected trees equal; no baseline full-run equality asserted",
+  "paths": [
+    {
+      "path": "src/domain",
+      "baseline": "5cbf79d6505eec84e042e46b31d3832e09ac1d78",
+      "candidate": "5cbf79d6505eec84e042e46b31d3832e09ac1d78",
+      "exists": true
+    },
+    {
+      "path": "src/content",
+      "baseline": "6018132526ce72176f016f99ead53022480ab429",
+      "candidate": "6018132526ce72176f016f99ead53022480ab429",
+      "exists": true
+    },
+    {
+      "path": "public/assets",
+      "baseline": "809823e118712c2e2e27b2921e0a3c648368ba26",
+      "candidate": "809823e118712c2e2e27b2921e0a3c648368ba26",
+      "exists": true
+    },
+    {
+      "path": "public/audio",
+      "baseline": null,
+      "candidate": null,
+      "exists": false
+    },
+    {
+      "path": ".github/workflows",
+      "baseline": "58821d4798c07eb1e3f33a505c9f8fa310fd37b5",
+      "candidate": "58821d4798c07eb1e3f33a505c9f8fa310fd37b5",
+      "exists": true
+    },
+    {
+      "path": "src/game/characters.ts",
+      "baseline": "d1ada0aead307f6c3e2310088d766a271cb29b8e",
+      "candidate": "d1ada0aead307f6c3e2310088d766a271cb29b8e",
+      "exists": true
+    },
+    {
+      "path": "src/game/portraits.ts",
+      "baseline": "2917e5b49d9ab7781fa41580ba6bf73631149e39",
+      "candidate": "2917e5b49d9ab7781fa41580ba6bf73631149e39",
+      "exists": true
+    }
+  ]
+}

@@ -1,0 +1,31 @@
+
+ RUN  v4.1.11 /workspace/dachoupai
+
+ ❯ tests/shop-layout.test.ts (15 tests | 1 failed) 52ms
+   × first-shop guide has reachable exits without covering merchandise or primary shop actions 12ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/shop-layout.test.ts > first-shop guide has reachable exits without covering merchandise or primary shop actions
+AssertionError: guide at 740x390: expected undefined to be defined
+ ❯ tests/shop-layout.test.ts:6:120
+      4| it('first-shop guide has reachable exits without covering merchandise …
+      5|  for(const [width,height] of [[1280,720],[1366,768],[1920,1080],[390,7…
+      6|   const p=shopLayout(width,height,12,0,3),g=shopFirstGuideLayout(p,hei…
+       |                                                                                                                        ^
+      7|   expect(g.box.y).toBeGreaterThanOrEqual(8);expect(g.box.x).toBeGreate…
+      8|   for(const action of [p.play,p.reroll,p.build])expect(intersects(g.bo…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 1 passed (2)
+      Tests  1 failed | 23 passed (24)
+   Start at  02:56:16
+   Duration  908ms (transform 721ms, setup 0ms, import 871ms, tests 94ms, environment 0ms)
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice
