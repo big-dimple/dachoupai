@@ -1,0 +1,39 @@
+
+ RUN  v4.1.11 /workspace/dachoupai
+
+ ❯ tests/hero-skill-guide.test.ts (3 tests | 2 failed) 72ms
+   × six current skills give their actual steps and risks without mutating the run 56ms
+   × Touye unavailable, selected and pending steps come from existing real choices 4ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/hero-skill-guide.test.ts > six current skills give their actual steps and risks without mutating the run
+AssertionError: expected '本场赌约已用' to contain '选1–5张弃牌'
+
+Expected: "选1–5张弃牌"
+Received: "本场赌约已用"
+
+ ❯ tests/hero-skill-guide.test.ts:11:46
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  tests/hero-skill-guide.test.ts > Touye unavailable, selected and pending steps come from existing real choices
+Error: invalid-selection
+ ❯ r2SelectionFacts src/domain/r2SelectionFacts.ts:20:186
+
+ ❯ tests/hero-skill-guide.test.ts:16:52
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  1 failed | 4 passed (5)
+      Tests  2 failed | 40 passed (42)
+   Start at  01:24:38
+   Duration  1.51s (transform 1.60s, setup 0ms, import 2.37s, tests 688ms, environment 0ms)
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice

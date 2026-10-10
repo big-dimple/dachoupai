@@ -1,0 +1,8 @@
+FAIL Error: Run invariant: card conservation
+    at check (/workspace/dachoupai/src/domain/r2Run.ts:172:27)
+    at assertR2Invariants (/workspace/dachoupai/src/domain/r2Run.ts:214:3)
+    at validateState (/workspace/dachoupai/src/application/checkpoint.ts:1258:48)
+    at makeCheckpoint (/workspace/dachoupai/src/application/checkpoint.ts:1262:3)
+    at arrange (file:///workspace/dachoupai/harness/card-hero-guidance.mjs:14:225)
+    at entered (file:///workspace/dachoupai/harness/card-hero-guidance.mjs:15:585)
+    at file:///workspace/dachoupai/harness/card-hero-guidance.mjs:22:44
