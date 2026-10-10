@@ -1568,6 +1568,10 @@ A类信息说明的纸面样板归W1/W3；B服务与C供给记录先走SG02再�
 
 **阅读收益与后续边界：** 六种实际操作短句能直说能力差异；文化命名减少阅读或增加代入感尚无玩家证据。姓名／牌型词保持首层，不新增常驻解释板。待用户偏好及统一世界观确定后再取舍门派名、修行身份与文化映射，不继续自行构思。现有立绘协调说明仅是气质观察，不证明门派身份，也不是美术交付或观感验收；本稿不改服饰、不生图、不创造境界／成就判定。
 
+#### 染色后待核的成熟开源复用候选（父只读研究输入）
+
+用户授权吸收成熟代码资源，当前不打断染色唯一编码线。后续仅评估RexQuadImage：Phaser3固定提交 `0327a213d7b0d4a3eaa889fcf41092252d0ac486`，不能取已转Phaser4的master；MIT [完整声明](https://github.com/rexrainbow/phaser3-rex-notes/blob/0327a213d7b0d4a3eaa889fcf41092252d0ac486/LICENSE)，Copyright 2018 Rex。候选6源文件共9507bytes：plugins/gameobjects/mesh/quad/image/Image.js、methods/{InitFaces,GetPointPosition,ControlPoint}.js及mesh/utils/{MeshBase,LocalXY}.js；未安装／复制／启用，来源与许可仍需接入时逐文件核。仅一张HeroClimax实际来源卡随原340ms回弹做轻纸片弯曲，文字／数字／时长保持；不取示例card2.png、不引920KB rexUI，不替换已有Inkwave/browslatro。适配Phaser3.90 import与Container局部坐标；9顶点8三角，WebGL-only，Canvas／低动态／纹理缺失回普通Image。须真实WebGL可见前后品质才决定启用；效果不明显、文字失真或接缝则撤，不扩全牌系统。暂无许可清楚且更好的新增音频，不重复低质振荡器哔声。保持W2/W4原依赖，软件Canvas不代签该效果；文化转型仍PAUSED_BY_USER。
+
 ### 当前基础自选核心入口验收与三路线供给待比较（2026-10-10）
 
 用户Sentinel_07254966ebd48191875cf37ea3ca2b1b／4d454856811c8191a62b7c14c4cee7d0要求：基础自选是高频核心做牌入口，本整包验收重点提高美术品质与交互，不能以白板补图即完成。原手绘资产风格、五种用途直观区分、买前用途→选择实付→买后立即使用／库存→稳定目标操作→已购状态应是一条主次清楚、少重复文案的路径；手机好点、PC充分利用横屏。沿原W2必要素材／共享组件、W3买用事实与操作、W5构筑、W6双端共同验收，不新开并发或插队。候选及必要可见图／命令对照见[基础自选整包有限证据](evidence/basic-choice-visual-2026-10-10/README.md)，仅软件候选，用户原图对照、整链理解／美术观感、实机仍待，完整基础入口验收OPEN。
