@@ -2,6 +2,7 @@ import type {Action,R2RunState} from '../domain/run';
 import {R2_TOOLS} from '../content/r2Tools';
 import {R2_HAND_TYPES} from '../domain/evaluateR2';
 import {toolInfo,cardSpecialText,editionLabel} from './r2ToolInfo';
+import {rankLabel,SUIT_SYMBOL} from '../cards/types';
 import {renderToolCard} from './CandidateCardPreview';
 import {renderCardChange,renderHandChange,type CardChange} from './ToolChangePreview';
 import {enhancementText} from './CardSpecialLabels';
@@ -30,8 +31,9 @@ export function savedToolFacts(before:R2RunState,after:R2RunState,action:Extract
 export function showSavedToolResult(dialog:DetailDialog,before:R2RunState,after:R2RunState,action:Extract<Action,{type:'UseConsumable'}>,reduced:boolean):void {
  const facts=savedToolFacts(before,after,action);if(!facts)return;
  const info=toolInfo(facts.tool.id,after);let dispose=()=>{};
- const d=dialog.open(info.name+' · 已保存',[`道具已消耗 · 库存 ${after.consumables.length}`,`有效牌组 ${facts.deckBefore} → ${facts.deckAfter} 张`,...facts.resources,...(facts.goldBefore!==facts.goldAfter?[`金币 ${facts.goldBefore} → ${facts.goldAfter}`]:[])].join('\n'),[],{closeLabel:after.phase==='shop'?'回到经营':'回到牌桌',onClose:()=>dispose()});d.classList.add('tool-saved-result');d.dataset.resultKey=facts.key;d.dataset.animationState='settled';
+ const d=dialog.open(info.name+' · 已保存',[`道具已消耗 · 库存 ${after.consumables.length}`,...(facts.deckBefore!==facts.deckAfter?[`有效牌组 ${facts.deckBefore} → ${facts.deckAfter} 张`]:[]),...facts.resources,...(facts.goldBefore!==facts.goldAfter?[`金币 ${facts.goldBefore} → ${facts.goldAfter}`]:[])].join('\n'),[],{closeLabel:after.phase==='shop'?'回到经营':'回到牌桌',onClose:()=>dispose()});d.classList.add('tool-saved-result');d.dataset.resultKey=facts.key;d.dataset.animationState='settled';
  const host=d.querySelector('.dialog-copy')!;
+ const stage=document.createElement('section'),source=document.createElement('figure'),art=document.createElement('img'),name=document.createElement('figcaption'),work=document.createElement('div');stage.className='tool-payoff-stage';source.className='tool-payoff-source';art.src=info.artUrl;art.alt=info.name;art.onerror=()=>{art.onerror=null;art.src=info.fallbackArtUrl;};name.textContent=info.name;source.append(art,name);work.className='tool-payoff-work';stage.append(source,work);host.prepend(stage);
  if(facts.sacrifice&&facts.tool.operation.kind==='random-enhancement'){
   const stage=document.createElement('section'),donor=document.createElement('figure'),source=document.createElement('span'),label=document.createElement('figcaption'),recipients=document.createElement('div');stage.className='tool-sacrifice-stage';donor.className='tool-sacrifice-donor';label.textContent='永久献出 · 已保存';renderToolCard(source,facts.sacrifice.before);donor.append(source,label);recipients.className='tool-sacrifice-recipients';stage.append(donor,recipients);host.prepend(stage);
   const faces:HTMLElement[]=[];for(const change of facts.beneficiaries){const recipient=document.createElement('figure'),face=document.createElement('span'),name=document.createElement('figcaption');renderToolCard(face,change.after!);name.textContent=enhancementText(change.after!);recipient.append(face,name);recipient.className='tool-sacrifice-beneficiary';recipients.append(recipient);faces.push(recipient);}
@@ -45,8 +47,12 @@ export function showSavedToolResult(dialog:DetailDialog,before:R2RunState,after:
    const draw=(now:number)=>{if(stopped||!dialog.active(d)){stop();return;}const t=Math.min(1,(now-start)/1100);ctx.clearRect(0,0,bounds.width,bounds.height);for(let i=0;i<24;i++){const target=targets[i%Math.max(1,targets.length)]??{x,y},p=Math.max(0,Math.min(1,(t-i*.012)/.72)),bend=Math.sin(p*Math.PI)*(-32-i%4*8);const px=x+(target.x-x)*p,py=y+(target.y-y)*p+bend;ctx.globalAlpha=Math.sin(p*Math.PI)*.85;ctx.fillStyle=i%3?'#26313A':'#B8473A';ctx.fillRect(px,py,2+i%3,2+i%2);}ctx.globalAlpha=1;if(t<1)frame=requestAnimationFrame(draw);else stop();};frame=requestAnimationFrame(draw);timer=setTimeout(stop,1450);
   });}
  }
- const grid=document.createElement('section');grid.className='tool-saved-changes';for(const [i,change] of facts.changes.entries())renderCardChange(grid,change,i);for(const level of facts.levels)renderHandChange(grid,level.type,level.before,level.after);
- for(const card of facts.added){const figure=document.createElement('figure'),face=document.createElement('span'),label=document.createElement('figcaption');figure.className='tool-change-card';renderToolCard(face,card);label.textContent='新增实例 · '+cardSpecialText(card);figure.append(face,label);grid.append(figure);}host.append(grid);
+ const grid=document.createElement('section');grid.className='tool-saved-changes';for(const [i,change] of facts.changes.entries()){
+  renderCardChange(grid,change,i);const row=grid.lastElementChild!;
+  const caption=row.querySelector('figcaption');if(caption&&change.after)caption.textContent='使用前 → 已保存';
+  if(change.after&&(change.before.rank!==change.after.rank||change.before.suit!==change.after.suit)){const note=row.querySelector(':scope > small');if(note)note.textContent=rankLabel(change.before.rank)+SUIT_SYMBOL[change.before.suit]+' → '+rankLabel(change.after.rank)+SUIT_SYMBOL[change.after.suit];}
+ }for(const level of facts.levels)renderHandChange(grid,level.type,level.before,level.after);
+ for(const card of facts.added){const figure=document.createElement('figure'),face=document.createElement('span'),label=document.createElement('figcaption');figure.className='tool-change-card';renderToolCard(face,card);label.textContent='新增实例 · '+cardSpecialText(card);figure.append(face,label);grid.append(figure);}work.append(grid);
  if(!facts.sacrifice&&facts.changes.length){dispose=mountSavedCardMotion(d,grid,reduced);}
 
  AudioEngine.shared.cardLand();
