@@ -209,12 +209,13 @@ export class CharacterSelectScene extends Phaser.Scene {
       resumed:()=>{if(this.scene.isActive())routeSavedRun(this.game);}});
   }
   private applyModeChoice(choice:ModeChoice):void {
-    if(this.choosing||!this.scene.isActive())return;this.modeConfig=choice.modeConfig;this.seed=choice.seed;
+    if(this.choosing||!this.scene.isActive())return;this.sampleAfter=false;this.modeConfig=choice.modeConfig;this.seed=choice.seed;
     if(choice.modeConfig.mode==='tutorial'){this.selectedId='erxiang';this.seed=R2_MODE_CATALOG.tutorial.config.seedPolicy.values[0];}
     this.notice='';this.render();
   }
   private async cancelChoice():Promise<void> {
     if(this.choosing)return;
+    this.sampleAfter=false;
     if(this.step==='route'){this.step='hero';this.notice='';this.audio.cancel();this.render();return;}
     if(this.modeConfig.mode==='tutorial'){this.modeConfig=DEFAULT_MODE_SELECTION;this.selectedId=undefined;this.seed=undefined;this.notice='已跳过教程，可自由选择角色。';this.audio.cancel();this.render();return;}
     if(this.selectedId){this.selectedId=undefined;this.selectedRoute=undefined;this.notice='已取消选择，进度没有改变。';this.audio.cancel();this.render();return;}
@@ -224,7 +225,7 @@ export class CharacterSelectScene extends Phaser.Scene {
   }
   private async confirmChoice():Promise<void> {
     if(this.choosing||!this.selectedId)return;
-    if(this.step==='hero'){this.step='route';this.notice='';this.audio.select();this.render();return;}
+    if(this.step==='hero'){this.sampleAfter=false;this.step='route';this.notice='';this.audio.select();this.render();return;}
     if(!this.selectedRoute)return;
     const existing=gameSession().run;
     if(existing&&!['run-won','run-lost'].includes(existing.state.phase)){

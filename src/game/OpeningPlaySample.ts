@@ -26,5 +26,5 @@ export function routePlaySample(focus:BuildFocus,id:CharacterId):OpeningPlaySamp
   straight:{before:{label:'差一个6 → 往下挪两张',cards:['3♠','4♥','5♣','7♦','8♠'],marked:[3,4]},after:{label:'7、8各降1 → 接成顺子',cards:d.shape,marked:[3,4]}},
   flush:{before:{label:'差两张红桃 → 用红桃染',cards:['3♥','5♠','8♥','Q♣','A♥'],marked:[1,3]},after:{label:'点数保留 → 五张同花色',cards:d.shape,marked:[1,3]}},
  };
- return {tag:'做牌',...pairs[focus],result:d.payoff,cost:'买工具再选目标 · 原价格／次数 · 进店仍能换路线'};
+ return {tag:'做牌',...pairs[focus],result:'持起手牌时：'+d.payoff,cost:(focus==='flush'?'染色4金':'改点2金')+' · 买后选目标 · 可换路线'};
 }
