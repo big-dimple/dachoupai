@@ -1630,7 +1630,7 @@ export class GameScene extends Phaser.Scene {
 
     if(key&&(key.kind==='payoff'||key.kind==='burst')&&this.shownPayoffs.has(key.eventId))key=undefined;
     const restoreKey=key?this.showKeyHighlight(key,context):undefined;
-    if(restoreKey?.hero&&key&&(key.kind==='payoff'||key.kind==='burst'))this.shownPayoffs.add(key.eventId);
+    if(restoreKey&&key&&(key.kind==='payoff'||key.kind==='burst'))this.shownPayoffs.add(key.eventId);
     if(event.targetCardId)this.showTraceHeldCard(event.targetCardId);
     const timing=key?.kind==='payoff'||key?.kind==='burst'?heroPayoffBeat(beat,this.reducedMotion):key?.kind==='starter'||key?.kind==='opening'?keyHighlightBeat(beat,this.reducedMotion,key.kind):this.reducedMotion?{...beat,windup:0,flight:0,impact:Math.min(180,beat.impact),rest:80}:beat,duration=timing.windup+timing.flight+timing.impact;
     if(number&&this.presentation&&!this.presentation.replay&&number.kind!=='add'&&!this.reducedMotion)this.audio.scoreImpact(this.presentation,event.eventId,'flight',number.tier,number.chain);
@@ -1693,7 +1693,7 @@ export class GameScene extends Phaser.Scene {
     const positive=Rational.fromJSON(event.after.H).compare(Rational.fromJSON(event.before.H))>0||Rational.fromJSON(event.after.M).compare(Rational.fromJSON(event.before.M))>0;
     const accumulator=positive?(this.setAccumulator(event.after),Promise.resolve()):this.rollAccumulator(event,impactDuration,context);
     if(number){this.scoreTotal.setColor(number.color).setData('numberImpact',number);if(event.before.M.n!==event.after.M.n||event.before.M.d!==event.after.M.d)this.scoreMult.setColor(number.color);if(event.before.H.n!==event.after.H.n||event.before.H.d!==event.after.H.d)this.scoreHeat.setColor(number.color);if(number.factor){const caption=multiplierCaption(source,number.factor,event.before.M,event.after.M,this.view.layout.mode==='desktop');this.resultText.setText(caption.text).setData('exactMultiplierCaption',{eventId:event.eventId,text:caption.exact});}}
-    const effects=[...sourceEffects,accumulator,this.pulseAccumulator(event,impactDuration,context,number),this.impactAccumulator(event,impactDuration,context,number),restoreKey?.hero&&(key?.kind==='payoff'||key?.kind==='burst')?this.waitHeroSubject(context):this.wait(impactDuration,context)],notes:Promise<void>[]=[];
+    const effects=[...sourceEffects,accumulator,this.pulseAccumulator(event,impactDuration,context,number),this.impactAccumulator(event,impactDuration,context,number),restoreKey&&(key?.kind==='payoff'||key?.kind==='burst')?this.waitHeroSubject(context):this.wait(impactDuration,context)],notes:Promise<void>[]=[];
     if((event.operation==='rescue-hand'||event.operation==='refund-hand')&&this.presentation&&!this.presentation.replay&&event.resourceBefore!==undefined&&event.resourceAfter!==undefined){
       this.presentation.resourcePlayLeft=event.resourceAfter;
       effects.push(this.pulseResource('play',event.resourceBefore,context,event.resourceAfter));this.audio.select();
