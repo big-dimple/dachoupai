@@ -1816,9 +1816,9 @@ export class GameScene extends Phaser.Scene {
     if(landing){totalLabel.setData('landingSuppressed',true);sideTotal.forEach(o=>o.setVisible(false));this.scoreFlame?.destroy();this.scoreFlame=undefined;}
     let landingClosed=false;const closeLanding=()=>{if(landingClosed)return;landingClosed=true;landing?.dispose();totalLabel.setData('landingSuppressed',false);sideTotal.forEach((o,i)=>{if(o.active)o.setVisible(sideVisible[i]);});context.signal.removeEventListener('abort',closeLanding);};
     context.signal.addEventListener('abort',closeLanding,{once:true});
-    
+
     if(context.signal.aborted)return;
-    
+
     if(!presentation.replay){const level=presentation.state.phase==='run-lost'?0:scoreFireLevel(presentation.originHeat,score.finalScore,this.stage.targetHeat);if(!landing)this.ensureScoreFlame().impact('award',level===3?1:level===2?.85:.65);this.audio.scoreImpact(presentation,'award','award',level,score.events.filter(e=>numberImpact(e,this.stage.targetHeat)?.kind==='multiply').length);this.keepScoreReadable();}
     const effects:Promise<void>[]=[];
     // The credited heat rolls up in the HUD; the exact saved value always lands last.
