@@ -1,0 +1,38 @@
+
+> dachoupai@0.1.0 test
+> vitest run tests/shop-offer-guidance.test.ts tests/shop-layout.test.ts tests/tool-inventory-entry.test.ts tests/saved-tool-result.test.ts tests/shop-route-relations.test.ts
+
+
+ RUN  v4.1.11 /workspace/dachoupai
+
+ ❯ tests/shop-layout.test.ts (16 tests | 2 failed) 57ms
+   × wide PC low heights reserve lower goods and feedback before sizing either card rail 7ms
+   × PC portrait art spends actual remaining height without clipping three goods and independent lower groups 1ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/shop-layout.test.ts > wide PC low heights reserve lower goods and feedback before sizing either card rail
+AssertionError: expected 96 to be greater than or equal to 127.999
+ ❯ tests/shop-layout.test.ts:103:70
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  tests/shop-layout.test.ts > PC portrait art spends actual remaining height without clipping three goods and independent lower groups
+AssertionError: expected 88 to be greater than 88
+ ❯ tests/shop-layout.test.ts:115:49
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  1 failed | 4 passed (5)
+      Tests  2 failed | 49 passed (51)
+   Start at  05:37:17
+   Duration  2.33s (transform 1.84s, setup 0ms, import 2.61s, tests 1.82s, environment 0ms)
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice

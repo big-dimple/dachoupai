@@ -1,0 +1,5 @@
+FAIL AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+
+  assert.ok(t.bounds.x>=0&&t.bounds.right<=viewport.width&&t.bounds.y>=0&&t.bounds.bottom<=viewport.height)
+
+    at file:///tmp/shop-guidance-boundary-audit.mjs:3:1950

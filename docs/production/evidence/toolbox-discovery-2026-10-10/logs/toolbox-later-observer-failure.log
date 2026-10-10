@@ -1,0 +1,17 @@
+FAIL AssertionError [ERR_ASSERTION]: The input did not match the regular expression /阶段暂无可用/. Input:
+
+'道具箱\n' +
+  '\n' +
+  '现有工具不在当前使用阶段；库存仍保留，按卡面提示到商店或牌桌使用。\n' +
+  '\n' +
+  '消耗工具 1/2\n' +
+  '再想想\n' +
+  '恢复本场1次弃牌，最多到入场次数\n' +
+  '牌桌使用 ›\n' +
+  '本局道具 0/4\n' +
+  '\n' +
+  '还没有本局道具；持有时持续生效，不会用掉。\n' +
+  '\n' +
+  '关闭'
+
+    at file:///tmp/toolbox-later-audit.mjs:3:2067

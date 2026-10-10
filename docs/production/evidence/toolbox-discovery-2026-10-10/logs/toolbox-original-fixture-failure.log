@@ -1,0 +1,7 @@
+FAIL Error: invalid-save-array
+    at fail (/workspace/dachoupai/src/application/checkpoint.ts:99:9)
+    at array (/workspace/dachoupai/src/application/checkpoint.ts:124:52)
+    at shop (/workspace/dachoupai/src/application/checkpoint.ts:211:19)
+    at validateState (/workspace/dachoupai/src/application/checkpoint.ts:1171:5)
+    at makeCheckpoint (/workspace/dachoupai/src/application/checkpoint.ts:1262:3)
+    at file:///tmp/toolbox-audit.mjs:18:542
