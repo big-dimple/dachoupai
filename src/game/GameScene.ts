@@ -22,6 +22,7 @@ import {usesLaohuanRefill} from '../domain/r2LaohuanRefill';
 import {savedBossImpact} from './SavedBossImpact';
 import {mountScoreLanding} from './ScoreLanding';
 import {numberImpact,impactBeat,numberPulse,type NumberImpact} from './ScoreEnergy';
+import {multiplierCaption} from './ScoreEventCaption';
 import {starterSelection} from './RouteStarter';
 import {firstChapterGuide,attachFirstChapterGuide} from './FirstChapterGuide';
 import {buildGrowthProgress} from './BuildGrowthProgress';
@@ -1657,7 +1658,7 @@ export class GameScene extends Phaser.Scene {
     // the brief compressed hold and rebound, without extending the trace timeline.
     const positive=Rational.fromJSON(event.after.H).compare(Rational.fromJSON(event.before.H))>0||Rational.fromJSON(event.after.M).compare(Rational.fromJSON(event.before.M))>0;
     const accumulator=positive?(this.setAccumulator(event.after),Promise.resolve()):this.rollAccumulator(event,impactDuration,context);
-    if(number){this.scoreTotal.setColor(number.color).setData('numberImpact',number);if(event.before.M.n!==event.after.M.n||event.before.M.d!==event.after.M.d)this.scoreMult.setColor(number.color);if(event.before.H.n!==event.after.H.n||event.before.H.d!==event.after.H.d)this.scoreHeat.setColor(number.color);if(number.factor)this.resultText.setText(source+' · 实际 ×'+number.factor+' · '+fractionText(event.before.M)+' → '+fractionText(event.after.M));}
+    if(number){this.scoreTotal.setColor(number.color).setData('numberImpact',number);if(event.before.M.n!==event.after.M.n||event.before.M.d!==event.after.M.d)this.scoreMult.setColor(number.color);if(event.before.H.n!==event.after.H.n||event.before.H.d!==event.after.H.d)this.scoreHeat.setColor(number.color);if(number.factor){const caption=multiplierCaption(source,number.factor,event.before.M,event.after.M);this.resultText.setText(caption.text).setData('exactMultiplierCaption',{eventId:event.eventId,text:caption.exact});}}
     const effects=[...sourceEffects,accumulator,this.pulseAccumulator(event,impactDuration,context,number),this.impactAccumulator(event,impactDuration,context,number),this.wait(impactDuration,context)],notes:Promise<void>[]=[];
     if((event.operation==='rescue-hand'||event.operation==='refund-hand')&&this.presentation&&!this.presentation.replay&&event.resourceBefore!==undefined&&event.resourceAfter!==undefined){
       this.presentation.resourcePlayLeft=event.resourceAfter;
