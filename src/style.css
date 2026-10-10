@@ -626,3 +626,22 @@ button[aria-busy=true] { border-style:dashed; }
 .hero-confirm-dialog[open] { height:auto;inset:auto;top:50%;left:50%;transform:translate(-50%,-50%); }
 .hero-confirm-dialog .dialog-scroll { height:auto; }
 @media(max-width:560px) { .hero-skill-dialog .dialog-content { grid-template-rows:minmax(0,1fr); }.hero-skill-dialog .dialog-scroll { height:100%; } }
+
+/* Owned tools share one compact paper case; the existing target/confirmation workspace follows. */
+.tool-inventory[open] { width:min(680px,calc(100vw - var(--safe-left) - var(--safe-right) - 24px));height:auto; }
+.tool-inventory .dialog-body { margin:0; }
+.tool-inventory .tool-inventory-group { margin-top:14px; }
+.tool-inventory .tool-inventory-grid { grid-template-columns:repeat(auto-fill,minmax(160px,190px));justify-content:center;align-items:stretch; }
+.tool-inventory .tool-inventory-card { grid-template-rows:128px auto 1fr auto;padding:12px 10px;gap:8px; }
+.tool-inventory .tool-inventory-card img { width:98px;height:128px;filter:none; }
+.tool-inventory .tool-inventory-card span { font-size:14px; }
+.tool-inventory .tool-inventory-card .tool-inventory-action { align-self:end;width:100%;padding:6px 0;border-top:1px solid #C7B89D;color:#3F606B;font-weight:bold; }
+@media (max-width:560px) {
+ .tool-inventory .tool-inventory-grid { grid-template-columns:repeat(2,minmax(0,1fr));gap:10px; }
+ .tool-inventory .tool-inventory-card { grid-template-rows:104px auto 1fr auto;padding:10px 7px; }
+ .tool-inventory .tool-inventory-card img { width:80px;height:104px; }
+}
+@media (max-height:450px) {
+ .tool-inventory .tool-inventory-card { grid-template-rows:80px auto 1fr auto; }
+ .tool-inventory .tool-inventory-card img { width:62px;height:80px; }
+}
