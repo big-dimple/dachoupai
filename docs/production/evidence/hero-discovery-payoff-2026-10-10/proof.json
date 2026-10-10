@@ -149,5 +149,26 @@
   "boundarySource": "248d73df50bf15e17d88e3d57cd81a0fbe170a25",
   "entryBoundarySource": "fb0e27ed2550de58fbd378b97f06689deb20f18d",
   "fullEntrySelectionReadonlyTuples": true,
-  "scope": "Controlled valid current identities/real commands. Physical devices, natural reachability, audio, human appeal remain unaccepted. 8-card native; 9/14 capacities are focused geometry tests only."
+  "scope": "Controlled valid current identities/real commands. Physical devices, natural reachability, audio, human appeal remain unaccepted. 8-card native; 9/14 capacities are focused geometry tests only.",
+  "missingPortraitFallback": {
+    "source": "3b586484cdaaac25dcffcc33183b632dc8f0a9e3",
+    "cases": [
+      {
+        "width": 1366,
+        "height": 768,
+        "speed": 4,
+        "visibleMs": 1152.300000011921,
+        "canonicalFullTupleExact": true,
+        "controlledMissingTextureKeys": true
+      },
+      {
+        "width": 390,
+        "height": 740,
+        "speed": 4,
+        "visibleMs": 1016.7000000178814,
+        "canonicalFullTupleExact": true,
+        "controlledMissingTextureKeys": true
+      }
+    ]
+  }
 }

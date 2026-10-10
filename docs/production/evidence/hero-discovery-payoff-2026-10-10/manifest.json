@@ -2,8 +2,8 @@
   "files": [
     {
       "file": "README.md",
-      "bytes": 6512,
-      "sha256": "2b2f6fdd7f06ea1996f8fea71819d7259f2f763d71bf1fd967be10193dc10ee8"
+      "bytes": 8129,
+      "sha256": "657c36f1eacc7fb3d334464cb0ef18c1291203eb86f38520813bf778706f277e"
     },
     {
       "file": "amo-1366-payoff.png",
@@ -96,6 +96,21 @@
       "sha256": "55cb5db4662eb2a4d26e0d81040244bd00d4761354ad5d18306a19c36cd1d33a"
     },
     {
+      "file": "hero-payoff-fallback-directed-final.log",
+      "bytes": 415,
+      "sha256": "84c217edff1a61ed667537aaf1dfa2e5814f024b3163cd8422373e4710769ddf"
+    },
+    {
+      "file": "hero-payoff-fallback-type-final.log",
+      "bytes": 253,
+      "sha256": "74f919f77aaafd9e103ae561073b59a64c21a6860376204d97779934238403aa"
+    },
+    {
+      "file": "hero-payoff-fallback.mjs",
+      "bytes": 8807,
+      "sha256": "25cd0784b5f6ab264b800bd6012da0b0a87e6bc23db9e66b84ee05bb03a8d240"
+    },
+    {
       "file": "hero-payoff-native.mjs",
       "bytes": 11522,
       "sha256": "cc1f01f9db0eebe85832d8c1ec71c958ab2f7408d117233e57292d8dd8ab52f2"
@@ -124,6 +139,16 @@
       "file": "large-390-payoff.png",
       "bytes": 212906,
       "sha256": "8c48e11416fb4fe00310e00b6e13986b5b2a5b9f6c83f72a22f7b272fa7855ae"
+    },
+    {
+      "file": "missing-portrait-1366-fallback.png",
+      "bytes": 164383,
+      "sha256": "9ed49bd268c83f4fce85a9307813565b2f506a2a34659181dc1ff50d34f6c5c6"
+    },
+    {
+      "file": "missing-portrait-390-fallback.png",
+      "bytes": 78743,
+      "sha256": "1a5e12a820c81794b8a1bdebe60aa458d545129543f15e73d8d129593f9f330b"
     },
     {
       "file": "multi-1366-0-payoff.png",
@@ -161,6 +186,11 @@
       "sha256": "2af72c53e6c558936b96742686c5a00b09ece6499b17bc2f502c2236215c0292"
     },
     {
+      "file": "native-missing-portrait-fallback.json.gz",
+      "bytes": 18943,
+      "sha256": "5e8c7ab345920b5b8beff39b920d78c6bdbe211470c6880415679bc196f4495f"
+    },
+    {
       "file": "native-pc-and-original-phone.json.gz",
       "bytes": 162871,
       "sha256": "720e01cc74a3af565c448d9ad25cfa424f62fe67aeb80321db10771b6c5b138a"
@@ -194,6 +224,16 @@
       "file": "original-failures/hero-payoff-type-third.log",
       "bytes": 581,
       "sha256": "4014496eea67a606acbf71bd33009278226b895f22b33288e3142e4d3e3bbd87"
+    },
+    {
+      "file": "original-failures/missing-portrait-fallback-547ms-FAIL.json.gz",
+      "bytes": 10736,
+      "sha256": "eb0ccd947a8b52909f4616abbebd96036938d226e56b8ddb007e11765ea2b29e"
+    },
+    {
+      "file": "original-failures/missing-portrait-fallback-547ms-FAIL.png",
+      "bytes": 168357,
+      "sha256": "7076a9c781528e35a810005bced30bd168f93c079ef799c5ee6ebe6bdca87e3b"
     },
     {
       "file": "original-failures/mobile-hud-prefix-FAIL.png",
@@ -247,8 +287,8 @@
     },
     {
       "file": "proof.json",
-      "bytes": 4705,
-      "sha256": "3272896e218a858792fe5cf4002e6159c4dc4cfea117dd07c3219fd28e8c4abd"
+      "bytes": 5237,
+      "sha256": "ddf6538df4e6f0e13b8460f83f9dcbe0bad0eb444294d1d70b6ea5469133c559"
     },
     {
       "file": "protected-trees.json",
