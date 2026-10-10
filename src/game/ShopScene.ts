@@ -39,7 +39,7 @@ import {heatText,fractionText} from './scoreText';
 import {toolInfo,itemInfo,goodsArtPortrait,editionLabel,editionEffectText,toolFamilyLabel} from './r2ToolInfo';
 import {SceneView} from './SceneView';
 import {getCharacter} from './characters';
-import {selectionPortraitKey} from './portraits';
+import {selectionPortraitKey,avatarKey} from './portraits';
 import {DetailDialog} from './DetailDialog';
 import {showDeckInspection} from './DeckInspector';
 import type {RunMenuActions} from './RunMenu';
@@ -127,12 +127,12 @@ export class ShopScene extends Phaser.Scene {
     const v=this.view,p=this.geometry(),stage=getR2Stage(this.run.stageIndex,this.run.tourMode,this.run.difficulty)!;this.hideHoverPicture();v.clear();this.starterMarkers=[];v.paperBackground();this.offerArts=[];this.artTargets.clear();this.jokerArtTargets.clear();
     this.pcOfferBoxes.clear();if(p.pc){this.renderPC(p);return;}
     const purse={x:p.x+p.w-(this.view.layout.width<=700?96:136)-124,y:p.top-1,width:116,height:34},purseArt=this.add.graphics();
-    const title=v.text(p.x,p.top,this.run.tourMode==='endless'?'无尽演出筹备':'演出筹备',20,'#26313A').setFontFamily('Georgia, "Noto Serif SC", SimSun, serif').setFontStyle('bold').setName('shop/title');
-    const titleRight=Math.min(...[purse,p.reroll,p.build].filter(b=>b.y<title.y+title.height&&b.y+b.height>title.y&&b.x>=title.x).map(b=>b.x),p.x+p.w)-6;
-    if(title.x+title.width>titleRight){
-      title.setText(this.run.tourMode==='endless'?'无尽筹备':'筹备');
-      if(title.x+title.width>titleRight)title.setText('筹备');
-    }
+    const character=getCharacter(this.run.characterId),titleRight=Math.min(...[purse,p.reroll,p.build].filter(b=>b.y<p.top+32&&b.y+b.height>p.top&&b.x>=p.x).map(b=>b.x),p.x+p.w)-6;
+    const avatar=avatarKey(character.id),withAvatar=p.portrait&&titleRight-p.x>=68&&this.textures.exists(avatar),titleX=p.x+(withAvatar?38:0);
+    if(withAvatar){const image=this.add.image(p.x+16,p.top+16,avatar);image.setScale(32/image.width).setName('shop/hero-avatar').setData('assetId',character.id+'.avatar');v.add(image);}
+    const title=v.text(titleX,p.top+3,character.name+(this.run.tourMode==='endless'?' · 无尽筹备':' · 筹备'),18,'#26313A').setFontFamily('Georgia, "Noto Serif SC", SimSun, serif').setFontStyle('bold').setName('shop/title');
+    if(title.x+title.width>titleRight)title.setText(character.name);
+    for(let font=18;title.x+title.width>titleRight&&font>14;)title.setFontSize(--font);
     v.add(this.add.graphics().fillStyle(0x213d45,.2).fillRoundedRect(purse.x+1,purse.y+3,purse.width,purse.height,7));
     v.material(purse,0xfff9ee,0xfff9ee,7);
     purseArt.lineStyle(1,0x916738).strokeRoundedRect(purse.x+.5,purse.y+.5,purse.width-1,purse.height-1,7);v.add(purseArt);
@@ -228,7 +228,7 @@ export class ShopScene extends Phaser.Scene {
   private renderPC(p:ReturnType<typeof shopLayout>):void {
     const pc=p.pc!;const v=this.view,stage=getR2Stage(this.run.stageIndex,this.run.tourMode,this.run.difficulty)!;
     drawShopArt(this,v,p);
-    v.text(p.x+16,p.top+16,this.run.tourMode==='endless'?'无尽演出筹备':'演出筹备',24,'#26313A').setFontStyle('bold');
+    v.text(p.x+16,p.top+16,getCharacter(this.run.characterId).name+(this.run.tourMode==='endless'?' · 无尽筹备':' · 筹备'),this.run.tourMode==='endless'?20:24,'#26313A',pc.left.width-32).setFontStyle('bold').setName('shop/title');
     v.text(p.x+16,p.top+58,stage.name,16,'#3F606B',pc.left.width-32);
     v.text(p.x+16,p.top+86,'目标 '+heatText(stage.targetHeat),18,'#26313A',pc.left.width-32);
     this.goldText=v.text(p.x+16,p.top+124,'金币 '+this.run.gold,28,'#26313A',pc.left.width-32).setName('shop/gold').setFontStyle('bold');
@@ -262,9 +262,12 @@ export class ShopScene extends Phaser.Scene {
   private drawFirstGuide(p:ReturnType<typeof shopLayout>):void {
     const hint=firstChapterShopPrompt(this.run),g=hint&&this.ready?shopFirstGuideLayout(p,this.view.layout.height,this.run.jokers.length===0):undefined;if(!hint||!g)return;
     const v=this.view;v.material(g.box,0xe2e8e5,0xe2e8e5,6);
-    v.text(g.box.x+g.padding,g.box.y+g.padding,hint.text,14,'#26313A',g.box.width-g.padding*2).setFontStyle('bold').setName('first-guide/shop-copy');
+    if(g.headingHeight){const focus=currentBuildFocus(this.run,this.run.openingRoute);v.text(g.box.x+g.padding,g.box.y+g.padding,(focus?BUILD_LABEL[focus]+' · ':'')+'可选筹备',14,'#3F606B',g.box.width-g.padding*2).setName('first-guide/shop-heading');}
+    v.text(g.box.x+g.padding,g.box.y+g.padding+g.headingHeight,hint.text,14,'#26313A',g.box.width-g.padding*2).setFontStyle('bold').setName('first-guide/shop-copy');
     v.button(g.buttons[0],hint.action,'first-guide/shop-open',()=>{const step=hint.opening;if(step?.kind==='basic-tools')this.inspectBasicChoice();else if(step?.kind==='jokers'||step?.kind==='tools'){this.shelfKind=step.kind;this.inspectOffer(step.offerId);}else if(step?.kind==='inventory')showConsumables(this.dialog,this.run,this.ready,(a,seq)=>this.send(a,seq),step.instanceId);else this.inspectJourney();});
-    for(const [i,scope,label] of [[1,'step','略过'],[2,'run','本局关闭'],[3,'forever','不再显示']] as const)if(g.buttons[i])v.button(g.buttons[i],label,'first-guide/shop-'+scope,()=>{dismissFirstChapterGuide(this.run,scope);this.render();});
+    v.button(g.buttons[1],'提示选项','first-guide/shop-options',()=>{
+      this.dialog.open('首章提示选项','提示是可选帮助；关闭提示不修改牌组、金币或进度。',(['step','run','forever'] as const).map((scope,i)=>({label:['略过此提示','本局关闭提示','不再显示提示'][i],run:()=>{dismissFirstChapterGuide(this.run,scope);this.dialog.close();this.render();}})),{closeLabel:'回到筹备'});
+    });
   }
   /** Long real rules may need a whole group; paging must use the same final capacity. */
   private pcGroupCapacity(kind:'tools'|'items',p:ReturnType<typeof shopLayout>):number {

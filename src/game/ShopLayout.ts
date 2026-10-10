@@ -79,18 +79,18 @@ export function shopFirstGuideLayout(p:ReturnType<typeof shopLayout>,height:numb
   else{x=p.tabs.x;width=p.tabs.width;y=Math.max(...p.shelf.map(b=>b.y+b.height))+4;limit=p.play.y-4;}
  }else if(p.portrait){y=emptyOwned?p.slots[0].y:Math.max(...p.slots.map(b=>b.y+b.height))+26;limit=p.reroll.y-8;replacesEmptySlots=emptyOwned;}
  else{y=p.noticeY+28;limit=height-12;}
- const columns=width<284?2:4,padding=p.short&&columns===4?4:6,textHeight=p.short&&columns===4?18:columns===2?56:40,gap=columns===4&&p.short?2:4;
- const rows=4/columns,boxHeight=padding*2+textHeight+gap+rows*44+(rows-1)*6;
+ const columns=2,padding=p.short?4:6,headingHeight=p.short?0:20,textHeight=p.short?18:width<284?56:40,gap=p.short?2:4;
+ const boxHeight=padding*2+headingHeight+textHeight+gap+44;
  if(y+boxHeight>limit){
   if(!p.portrait||emptyOwned)return;
   const compactY=Math.max(...p.slots.map(b=>b.y+b.height))+22,compactHeight=74;
   if(compactY+compactHeight>p.reroll.y-8)return;
   const compactBox={x:p.x,y:compactY,width:p.w,height:compactHeight},buttonWidth=(p.w-18)/2;
-  return {box:compactBox,padding:6,textHeight:20,replacesEmptySlots:false,buttons:[{x:p.x+6,y:compactY+26,width:buttonWidth,height:44},{x:p.x+12+buttonWidth,y:compactY+26,width:buttonWidth,height:44}]};
+  return {box:compactBox,padding:6,headingHeight:0,textHeight:20,replacesEmptySlots:false,buttons:[{x:p.x+6,y:compactY+26,width:buttonWidth,height:44},{x:p.x+12+buttonWidth,y:compactY+26,width:buttonWidth,height:44}]};
  }
  const box={x,y,width,height:boxHeight},buttonWidth=(width-padding*2-(columns-1)*6)/columns;
- const buttons:Array<Box>=Array.from({length:4},(_,i)=>({x:x+padding+(i%columns)*(buttonWidth+6),y:y+padding+textHeight+gap+Math.floor(i/columns)*50,width:buttonWidth,height:44}));
- return {box,buttons,padding,textHeight,replacesEmptySlots};
+ const buttons:Array<Box>=Array.from({length:2},(_,i)=>({x:x+padding+(i%columns)*(buttonWidth+6),y:y+padding+headingHeight+textHeight+gap+Math.floor(i/columns)*50,width:buttonWidth,height:44}));
+ return {box,buttons,padding,headingHeight,textHeight,replacesEmptySlots};
 }
 
 /** Text uses the goods seat on desktop, independently of the bounded card face. */
