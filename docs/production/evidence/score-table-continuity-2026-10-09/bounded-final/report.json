@@ -1,0 +1,1425 @@
+{
+  "source": "2110e59c9a2ab1d3f38420027c8643b255181f53",
+  "baseline": false,
+  "scope": "Fixed controlled ordinary public hand and fixed legal flush/starter growth. Bounded award frames, no recording/audio/natural-rate/human/device acceptance.",
+  "cases": [
+    {
+      "kind": "ordinary",
+      "width": 1366,
+      "height": 768,
+      "mode": "normal",
+      "key": "ordinary-1366-normal",
+      "status": "PASS",
+      "errors": [],
+      "award": {
+        "sideTotalVisible": false,
+        "sideLabelVisible": false,
+        "hero": false,
+        "landing": true,
+        "texts": [
+          {
+            "name": "score/landing-label",
+            "text": "高牌 · 本手得分",
+            "bounds": {
+              "type": 5,
+              "x": 483,
+              "y": 293.312,
+              "width": 97,
+              "height": 16
+            }
+          },
+          {
+            "name": "score/landing-total",
+            "text": "27",
+            "exact": "27",
+            "bounds": {
+              "type": 5,
+              "x": 699.4412467874006,
+              "y": 309.5688123407284,
+              "width": 59.11750642519871,
+              "height": 65.56668894431135
+            }
+          },
+          {
+            "name": "score/landing-formula",
+            "text": "27 × 1",
+            "bounds": {
+              "type": 5,
+              "x": 709,
+              "y": 398.312,
+              "width": 40,
+              "height": 16
+            }
+          }
+        ]
+      },
+      "frameCount": 26,
+      "representativeFrames": [
+        {
+          "time": 3088.2999999821186,
+          "root": "controlled/score-energy/ordinary/hand/controlled/score-energy/ordinary/command/4",
+          "bounds": {
+            "x": 469,
+            "y": 286.312,
+            "width": 520,
+            "height": 136
+          },
+          "texts": [
+            {
+              "name": "score/landing-label",
+              "text": "高牌 · 本手得分",
+              "bounds": {
+                "type": 5,
+                "x": 483,
+                "y": 293.312,
+                "width": 97,
+                "height": 16
+              }
+            },
+            {
+              "name": "score/landing-total",
+              "text": "27",
+              "exact": "27",
+              "bounds": {
+                "type": 5,
+                "x": 701.5,
+                "y": 313.312,
+                "width": 55,
+                "height": 61
+              }
+            },
+            {
+              "name": "score/landing-formula",
+              "text": "27 × 1",
+              "bounds": {
+                "type": 5,
+                "x": 709,
+                "y": 398.312,
+                "width": 40,
+                "height": 16
+              }
+            }
+          ]
+        },
+        {
+          "time": 3299.5,
+          "root": "controlled/score-energy/ordinary/hand/controlled/score-energy/ordinary/command/4",
+          "bounds": {
+            "x": 469,
+            "y": 286.312,
+            "width": 520,
+            "height": 136
+          },
+          "texts": [
+            {
+              "name": "score/landing-label",
+              "text": "高牌 · 本手得分",
+              "bounds": {
+                "type": 5,
+                "x": 483,
+                "y": 293.312,
+                "width": 97,
+                "height": 16
+              }
+            },
+            {
+              "name": "score/landing-total",
+              "text": "27",
+              "exact": "27",
+              "bounds": {
+                "type": 5,
+                "x": 701.3206174167713,
+                "y": 312.985849848675,
+                "width": 55.35876516645749,
+                "height": 61.397903184616496
+              }
+            },
+            {
+              "name": "score/landing-formula",
+              "text": "27 × 1",
+              "bounds": {
+                "type": 5,
+                "x": 709,
+                "y": 398.312,
+                "width": 40,
+                "height": 16
+              }
+            }
+          ]
+        },
+        {
+          "time": 3499.699999988079,
+          "root": "controlled/score-energy/ordinary/hand/controlled/score-energy/ordinary/command/4",
+          "bounds": {
+            "x": 469,
+            "y": 286.312,
+            "width": 520,
+            "height": 136
+          },
+          "texts": [
+            {
+              "name": "score/landing-label",
+              "text": "高牌 · 本手得分",
+              "bounds": {
+                "type": 5,
+                "x": 483,
+                "y": 293.312,
+                "width": 97,
+                "height": 16
+              }
+            },
+            {
+              "name": "score/landing-total",
+              "text": "27",
+              "exact": "27",
+              "bounds": {
+                "type": 5,
+                "x": 701.5,
+                "y": 313.312,
+                "width": 55,
+                "height": 61
+              }
+            },
+            {
+              "name": "score/landing-formula",
+              "text": "27 × 1",
+              "bounds": {
+                "type": 5,
+                "x": 709,
+                "y": 398.312,
+                "width": 40,
+                "height": 16
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "kind": "growth",
+      "width": 390,
+      "height": 740,
+      "mode": "normal",
+      "key": "growth-390-normal",
+      "status": "PASS",
+      "errors": [],
+      "award": {
+        "sideTotalVisible": false,
+        "sideLabelVisible": false,
+        "hero": false,
+        "landing": true,
+        "texts": [
+          {
+            "name": "score/landing-label",
+            "text": "同花 · 本手得分",
+            "bounds": {
+              "type": 5,
+              "x": 55,
+              "y": 378,
+              "width": 97,
+              "height": 16
+            }
+          },
+          {
+            "name": "score/landing-total",
+            "text": "748",
+            "exact": "748",
+            "bounds": {
+              "type": 5,
+              "x": 162.9809872423096,
+              "y": 389.3386553264974,
+              "width": 64.03802551538081,
+              "height": 46.96121871127929
+            }
+          },
+          {
+            "name": "score/landing-formula",
+            "text": "187 × 4",
+            "bounds": {
+              "type": 5,
+              "x": 171,
+              "y": 443,
+              "width": 48,
+              "height": 16
+            }
+          }
+        ]
+      },
+      "frameCount": 39,
+      "representativeFrames": [
+        {
+          "time": 5443.4000000059605,
+          "root": "hero-climax/natural-flush/hand/hero-climax/natural-flush/command/5",
+          "bounds": {
+            "x": 41,
+            "y": 371,
+            "width": 308,
+            "height": 96
+          },
+          "texts": [
+            {
+              "name": "score/landing-label",
+              "text": "同花 · 本手得分",
+              "bounds": {
+                "type": 5,
+                "x": 55,
+                "y": 378,
+                "width": 97,
+                "height": 16
+              }
+            },
+            {
+              "name": "score/landing-total",
+              "text": "748",
+              "exact": "748",
+              "bounds": {
+                "type": 5,
+                "x": 165,
+                "y": 393,
+                "width": 60,
+                "height": 44
+              }
+            },
+            {
+              "name": "score/landing-formula",
+              "text": "187 × 4",
+              "bounds": {
+                "type": 5,
+                "x": 171,
+                "y": 443,
+                "width": 48,
+                "height": 16
+              }
+            }
+          ]
+        },
+        {
+          "time": 5754.9000000059605,
+          "root": "hero-climax/natural-flush/hand/hero-climax/natural-flush/command/5",
+          "bounds": {
+            "x": 41,
+            "y": 371,
+            "width": 308,
+            "height": 96
+          },
+          "texts": [
+            {
+              "name": "score/landing-label",
+              "text": "同花 · 本手得分",
+              "bounds": {
+                "type": 5,
+                "x": 55,
+                "y": 378,
+                "width": 97,
+                "height": 16
+              }
+            },
+            {
+              "name": "score/landing-total",
+              "text": "748",
+              "exact": "748",
+              "bounds": {
+                "type": 5,
+                "x": 165,
+                "y": 393,
+                "width": 60,
+                "height": 44
+              }
+            },
+            {
+              "name": "score/landing-formula",
+              "text": "187 × 4",
+              "bounds": {
+                "type": 5,
+                "x": 171,
+                "y": 443,
+                "width": 48,
+                "height": 16
+              }
+            }
+          ]
+        },
+        {
+          "time": 6071.300000011921,
+          "root": "hero-climax/natural-flush/hand/hero-climax/natural-flush/command/5",
+          "bounds": {
+            "x": 41,
+            "y": 371,
+            "width": 308,
+            "height": 96
+          },
+          "texts": [
+            {
+              "name": "score/landing-label",
+              "text": "同花 · 本手得分",
+              "bounds": {
+                "type": 5,
+                "x": 55,
+                "y": 378,
+                "width": 97,
+                "height": 16
+              }
+            },
+            {
+              "name": "score/landing-total",
+              "text": "748",
+              "exact": "748",
+              "bounds": {
+                "type": 5,
+                "x": 165,
+                "y": 393,
+                "width": 60,
+                "height": 44
+              }
+            },
+            {
+              "name": "score/landing-formula",
+              "text": "187 × 4",
+              "bounds": {
+                "type": 5,
+                "x": 171,
+                "y": 443,
+                "width": 48,
+                "height": 16
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "kind": "ordinary",
+      "width": 320,
+      "height": 740,
+      "mode": "normal",
+      "key": "ordinary-320-normal",
+      "status": "PASS",
+      "errors": [],
+      "award": {
+        "sideTotalVisible": false,
+        "sideLabelVisible": false,
+        "hero": false,
+        "landing": true,
+        "texts": [
+          {
+            "name": "score/landing-label",
+            "text": "高牌 · 本手得分",
+            "bounds": {
+              "type": 5,
+              "x": 26,
+              "y": 349.2,
+              "width": 97,
+              "height": 16
+            }
+          },
+          {
+            "name": "score/landing-total",
+            "text": "27",
+            "exact": "27",
+            "bounds": {
+              "type": 5,
+              "x": 139.21416341096443,
+              "y": 361.28555121461926,
+              "width": 41.57167317807111,
+              "height": 45.72884049587822
+            }
+          },
+          {
+            "name": "score/landing-formula",
+            "text": "27 × 1",
+            "bounds": {
+              "type": 5,
+              "x": 140,
+              "y": 414.2,
+              "width": 40,
+              "height": 16
+            }
+          }
+        ]
+      },
+      "frameCount": 26,
+      "representativeFrames": [
+        {
+          "time": 2660,
+          "root": "controlled/score-energy/ordinary/hand/controlled/score-energy/ordinary/command/4",
+          "bounds": {
+            "x": 12,
+            "y": 342.2,
+            "width": 296,
+            "height": 96
+          },
+          "texts": [
+            {
+              "name": "score/landing-label",
+              "text": "高牌 · 本手得分",
+              "bounds": {
+                "type": 5,
+                "x": 26,
+                "y": 349.2,
+                "width": 97,
+                "height": 16
+              }
+            },
+            {
+              "name": "score/landing-total",
+              "text": "27",
+              "exact": "27",
+              "bounds": {
+                "type": 5,
+                "x": 140,
+                "y": 364.2,
+                "width": 40,
+                "height": 44
+              }
+            },
+            {
+              "name": "score/landing-formula",
+              "text": "27 × 1",
+              "bounds": {
+                "type": 5,
+                "x": 140,
+                "y": 414.2,
+                "width": 40,
+                "height": 16
+              }
+            }
+          ]
+        },
+        {
+          "time": 2875.399999976158,
+          "root": "controlled/score-energy/ordinary/hand/controlled/score-energy/ordinary/command/4",
+          "bounds": {
+            "x": 12,
+            "y": 342.2,
+            "width": 296,
+            "height": 96
+          },
+          "texts": [
+            {
+              "name": "score/landing-label",
+              "text": "高牌 · 本手得分",
+              "bounds": {
+                "type": 5,
+                "x": 26,
+                "y": 349.2,
+                "width": 97,
+                "height": 16
+              }
+            },
+            {
+              "name": "score/landing-total",
+              "text": "27",
+              "exact": "27",
+              "bounds": {
+                "type": 5,
+                "x": 139.88997016969046,
+                "y": 363.9249254242261,
+                "width": 40.220059660619114,
+                "height": 44.24206562668104
+              }
+            },
+            {
+              "name": "score/landing-formula",
+              "text": "27 × 1",
+              "bounds": {
+                "type": 5,
+                "x": 140,
+                "y": 414.2,
+                "width": 40,
+                "height": 16
+              }
+            }
+          ]
+        },
+        {
+          "time": 3075.2999999821186,
+          "root": "controlled/score-energy/ordinary/hand/controlled/score-energy/ordinary/command/4",
+          "bounds": {
+            "x": 12,
+            "y": 342.2,
+            "width": 296,
+            "height": 96
+          },
+          "texts": [
+            {
+              "name": "score/landing-label",
+              "text": "高牌 · 本手得分",
+              "bounds": {
+                "type": 5,
+                "x": 26,
+                "y": 349.2,
+                "width": 97,
+                "height": 16
+              }
+            },
+            {
+              "name": "score/landing-total",
+              "text": "27",
+              "exact": "27",
+              "bounds": {
+                "type": 5,
+                "x": 140,
+                "y": 364.2,
+                "width": 40,
+                "height": 44
+              }
+            },
+            {
+              "name": "score/landing-formula",
+              "text": "27 × 1",
+              "bounds": {
+                "type": 5,
+                "x": 140,
+                "y": 414.2,
+                "width": 40,
+                "height": 16
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "kind": "ordinary",
+      "width": 740,
+      "height": 390,
+      "mode": "normal",
+      "key": "ordinary-740-normal",
+      "status": "PASS",
+      "errors": [],
+      "award": {
+        "sideTotalVisible": false,
+        "sideLabelVisible": false,
+        "hero": false,
+        "landing": true,
+        "texts": [
+          {
+            "name": "score/landing-label",
+            "text": "高牌 · 本手得分",
+            "bounds": {
+              "type": 5,
+              "x": 480,
+              "y": 97,
+              "width": 97,
+              "height": 16
+            }
+          },
+          {
+            "name": "score/landing-total",
+            "text": "27",
+            "exact": "27",
+            "bounds": {
+              "type": 5,
+              "x": 580.9297531568261,
+              "y": 109.00691981595273,
+              "width": 28.140493686347895,
+              "height": 30.22497470015142
+            }
+          },
+          {
+            "name": "score/landing-formula",
+            "text": "27 × 1",
+            "bounds": {
+              "type": 5,
+              "x": 575,
+              "y": 148,
+              "width": 40,
+              "height": 16
+            }
+          }
+        ]
+      },
+      "frameCount": 27,
+      "representativeFrames": [
+        {
+          "time": 2803.5,
+          "root": "controlled/score-energy/ordinary/hand/controlled/score-energy/ordinary/command/4",
+          "bounds": {
+            "x": 466,
+            "y": 90,
+            "width": 258,
+            "height": 82
+          },
+          "texts": [
+            {
+              "name": "score/landing-label",
+              "text": "高牌 · 本手得分",
+              "bounds": {
+                "type": 5,
+                "x": 480,
+                "y": 97,
+                "width": 97,
+                "height": 16
+              }
+            },
+            {
+              "name": "score/landing-total",
+              "text": "27",
+              "exact": "27",
+              "bounds": {
+                "type": 5,
+                "x": 581.5,
+                "y": 112,
+                "width": 27,
+                "height": 29
+              }
+            },
+            {
+              "name": "score/landing-formula",
+              "text": "27 × 1",
+              "bounds": {
+                "type": 5,
+                "x": 575,
+                "y": 148,
+                "width": 40,
+                "height": 16
+              }
+            }
+          ]
+        },
+        {
+          "time": 3002.9000000059605,
+          "root": "controlled/score-energy/ordinary/hand/controlled/score-energy/ordinary/command/4",
+          "bounds": {
+            "x": 466,
+            "y": 90,
+            "width": 258,
+            "height": 82
+          },
+          "texts": [
+            {
+              "name": "score/landing-label",
+              "text": "高牌 · 本手得分",
+              "bounds": {
+                "type": 5,
+                "x": 480,
+                "y": 97,
+                "width": 97,
+                "height": 16
+              }
+            },
+            {
+              "name": "score/landing-total",
+              "text": "27",
+              "exact": "27",
+              "bounds": {
+                "type": 5,
+                "x": 581.363526333806,
+                "y": 111.49454197705947,
+                "width": 27.272947332387844,
+                "height": 29.293165653305522
+              }
+            },
+            {
+              "name": "score/landing-formula",
+              "text": "27 × 1",
+              "bounds": {
+                "type": 5,
+                "x": 575,
+                "y": 148,
+                "width": 40,
+                "height": 16
+              }
+            }
+          ]
+        },
+        {
+          "time": 3219.5,
+          "root": "controlled/score-energy/ordinary/hand/controlled/score-energy/ordinary/command/4",
+          "bounds": {
+            "x": 466,
+            "y": 90,
+            "width": 258,
+            "height": 82
+          },
+          "texts": [
+            {
+              "name": "score/landing-label",
+              "text": "高牌 · 本手得分",
+              "bounds": {
+                "type": 5,
+                "x": 480,
+                "y": 97,
+                "width": 97,
+                "height": 16
+              }
+            },
+            {
+              "name": "score/landing-total",
+              "text": "27",
+              "exact": "27",
+              "bounds": {
+                "type": 5,
+                "x": 581.5,
+                "y": 112,
+                "width": 27,
+                "height": 29
+              }
+            },
+            {
+              "name": "score/landing-formula",
+              "text": "27 × 1",
+              "bounds": {
+                "type": 5,
+                "x": 575,
+                "y": 148,
+                "width": 40,
+                "height": 16
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "kind": "growth",
+      "width": 390,
+      "height": 740,
+      "mode": "reduced",
+      "key": "growth-390-reduced",
+      "status": "PASS",
+      "errors": [],
+      "award": {
+        "sideTotalVisible": false,
+        "sideLabelVisible": false,
+        "hero": false,
+        "landing": true,
+        "texts": [
+          {
+            "name": "score/landing-label",
+            "text": "同花 · 本手得分",
+            "bounds": {
+              "type": 5,
+              "x": 55,
+              "y": 378,
+              "width": 97,
+              "height": 16
+            }
+          },
+          {
+            "name": "score/landing-total",
+            "text": "748",
+            "exact": "748",
+            "bounds": {
+              "type": 5,
+              "x": 165,
+              "y": 393,
+              "width": 60,
+              "height": 44
+            }
+          },
+          {
+            "name": "score/landing-formula",
+            "text": "187 × 4",
+            "bounds": {
+              "type": 5,
+              "x": 171,
+              "y": 443,
+              "width": 48,
+              "height": 16
+            }
+          }
+        ]
+      },
+      "frameCount": 23,
+      "representativeFrames": [
+        {
+          "time": 3643.9000000059605,
+          "root": "hero-climax/natural-flush/hand/hero-climax/natural-flush/command/5",
+          "bounds": {
+            "x": 41,
+            "y": 371,
+            "width": 308,
+            "height": 96
+          },
+          "texts": [
+            {
+              "name": "score/landing-label",
+              "text": "同花 · 本手得分",
+              "bounds": {
+                "type": 5,
+                "x": 55,
+                "y": 378,
+                "width": 97,
+                "height": 16
+              }
+            },
+            {
+              "name": "score/landing-total",
+              "text": "748",
+              "exact": "748",
+              "bounds": {
+                "type": 5,
+                "x": 165,
+                "y": 393,
+                "width": 60,
+                "height": 44
+              }
+            },
+            {
+              "name": "score/landing-formula",
+              "text": "187 × 4",
+              "bounds": {
+                "type": 5,
+                "x": 171,
+                "y": 443,
+                "width": 48,
+                "height": 16
+              }
+            }
+          ]
+        },
+        {
+          "time": 3823.300000011921,
+          "root": "hero-climax/natural-flush/hand/hero-climax/natural-flush/command/5",
+          "bounds": {
+            "x": 41,
+            "y": 371,
+            "width": 308,
+            "height": 96
+          },
+          "texts": [
+            {
+              "name": "score/landing-label",
+              "text": "同花 · 本手得分",
+              "bounds": {
+                "type": 5,
+                "x": 55,
+                "y": 378,
+                "width": 97,
+                "height": 16
+              }
+            },
+            {
+              "name": "score/landing-total",
+              "text": "748",
+              "exact": "748",
+              "bounds": {
+                "type": 5,
+                "x": 165,
+                "y": 393,
+                "width": 60,
+                "height": 44
+              }
+            },
+            {
+              "name": "score/landing-formula",
+              "text": "187 × 4",
+              "bounds": {
+                "type": 5,
+                "x": 171,
+                "y": 443,
+                "width": 48,
+                "height": 16
+              }
+            }
+          ]
+        },
+        {
+          "time": 4006.699999988079,
+          "root": "hero-climax/natural-flush/hand/hero-climax/natural-flush/command/5",
+          "bounds": {
+            "x": 41,
+            "y": 371,
+            "width": 308,
+            "height": 96
+          },
+          "texts": [
+            {
+              "name": "score/landing-label",
+              "text": "同花 · 本手得分",
+              "bounds": {
+                "type": 5,
+                "x": 55,
+                "y": 378,
+                "width": 97,
+                "height": 16
+              }
+            },
+            {
+              "name": "score/landing-total",
+              "text": "748",
+              "exact": "748",
+              "bounds": {
+                "type": 5,
+                "x": 165,
+                "y": 393,
+                "width": 60,
+                "height": 44
+              }
+            },
+            {
+              "name": "score/landing-formula",
+              "text": "187 × 4",
+              "bounds": {
+                "type": 5,
+                "x": 171,
+                "y": 443,
+                "width": 48,
+                "height": 16
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "kind": "ordinary",
+      "width": 1366,
+      "height": 768,
+      "mode": "fast",
+      "key": "ordinary-1366-fast",
+      "status": "PASS",
+      "errors": [],
+      "award": {
+        "sideTotalVisible": false,
+        "sideLabelVisible": false,
+        "hero": false,
+        "landing": true,
+        "texts": [
+          {
+            "name": "score/landing-label",
+            "text": "高牌 · 本手得分",
+            "bounds": {
+              "type": 5,
+              "x": 483,
+              "y": 293.312,
+              "width": 97,
+              "height": 16
+            }
+          },
+          {
+            "name": "score/landing-total",
+            "text": "27",
+            "exact": "27",
+            "bounds": {
+              "type": 5,
+              "x": 699.4412467874006,
+              "y": 309.5688123407284,
+              "width": 59.11750642519871,
+              "height": 65.5666889443113
+            }
+          },
+          {
+            "name": "score/landing-formula",
+            "text": "27 × 1",
+            "bounds": {
+              "type": 5,
+              "x": 709,
+              "y": 398.312,
+              "width": 40,
+              "height": 16
+            }
+          }
+        ]
+      },
+      "frameCount": 18,
+      "representativeFrames": [
+        {
+          "time": 2816.2999999821186,
+          "root": "controlled/score-energy/ordinary/hand/controlled/score-energy/ordinary/command/4",
+          "bounds": {
+            "x": 469,
+            "y": 286.312,
+            "width": 520,
+            "height": 136
+          },
+          "texts": [
+            {
+              "name": "score/landing-label",
+              "text": "高牌 · 本手得分",
+              "bounds": {
+                "type": 5,
+                "x": 483,
+                "y": 293.312,
+                "width": 97,
+                "height": 16
+              }
+            },
+            {
+              "name": "score/landing-total",
+              "text": "27",
+              "exact": "27",
+              "bounds": {
+                "type": 5,
+                "x": 701.5,
+                "y": 313.312,
+                "width": 55,
+                "height": 61
+              }
+            },
+            {
+              "name": "score/landing-formula",
+              "text": "27 × 1",
+              "bounds": {
+                "type": 5,
+                "x": 709,
+                "y": 398.312,
+                "width": 40,
+                "height": 16
+              }
+            }
+          ]
+        },
+        {
+          "time": 2960.0999999940395,
+          "root": "controlled/score-energy/ordinary/hand/controlled/score-energy/ordinary/command/4",
+          "bounds": {
+            "x": 469,
+            "y": 286.312,
+            "width": 520,
+            "height": 136
+          },
+          "texts": [
+            {
+              "name": "score/landing-label",
+              "text": "高牌 · 本手得分",
+              "bounds": {
+                "type": 5,
+                "x": 483,
+                "y": 293.312,
+                "width": 97,
+                "height": 16
+              }
+            },
+            {
+              "name": "score/landing-total",
+              "text": "27",
+              "exact": "27",
+              "bounds": {
+                "type": 5,
+                "x": 700.4772727272727,
+                "y": 311.4524958677686,
+                "width": 57.045454545454504,
+                "height": 63.26859504132233
+              }
+            },
+            {
+              "name": "score/landing-formula",
+              "text": "27 × 1",
+              "bounds": {
+                "type": 5,
+                "x": 709,
+                "y": 398.312,
+                "width": 40,
+                "height": 16
+              }
+            }
+          ]
+        },
+        {
+          "time": 3093.4000000059605,
+          "root": "controlled/score-energy/ordinary/hand/controlled/score-energy/ordinary/command/4",
+          "bounds": {
+            "x": 469,
+            "y": 286.312,
+            "width": 520,
+            "height": 136
+          },
+          "texts": [
+            {
+              "name": "score/landing-label",
+              "text": "高牌 · 本手得分",
+              "bounds": {
+                "type": 5,
+                "x": 483,
+                "y": 293.312,
+                "width": 97,
+                "height": 16
+              }
+            },
+            {
+              "name": "score/landing-total",
+              "text": "27",
+              "exact": "27",
+              "bounds": {
+                "type": 5,
+                "x": 701.5,
+                "y": 313.312,
+                "width": 55,
+                "height": 61
+              }
+            },
+            {
+              "name": "score/landing-formula",
+              "text": "27 × 1",
+              "bounds": {
+                "type": 5,
+                "x": 709,
+                "y": 398.312,
+                "width": 40,
+                "height": 16
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "kind": "ordinary",
+      "width": 390,
+      "height": 740,
+      "mode": "resize",
+      "key": "ordinary-390-resize",
+      "status": "PASS",
+      "errors": [],
+      "award": {
+        "sideTotalVisible": false,
+        "sideLabelVisible": false,
+        "hero": false,
+        "landing": true,
+        "texts": [
+          {
+            "name": "score/landing-label",
+            "text": "高牌 · 本手得分",
+            "bounds": {
+              "type": 5,
+              "x": 55,
+              "y": 378,
+              "width": 97,
+              "height": 16
+            }
+          },
+          {
+            "name": "score/landing-total",
+            "text": "27",
+            "exact": "27",
+            "bounds": {
+              "type": 5,
+              "x": 174.40933811652886,
+              "y": 390.3457841553718,
+              "width": 41.18132376694231,
+              "height": 45.29945614363652
+            }
+          },
+          {
+            "name": "score/landing-formula",
+            "text": "27 × 1",
+            "bounds": {
+              "type": 5,
+              "x": 175,
+              "y": 443,
+              "width": 40,
+              "height": 16
+            }
+          }
+        ]
+      },
+      "resizedDuringAward": true,
+      "frameCount": 5,
+      "representativeFrames": [
+        {
+          "time": 2768.0999999940395,
+          "root": "controlled/score-energy/ordinary/hand/controlled/score-energy/ordinary/command/4",
+          "bounds": {
+            "x": 41,
+            "y": 371,
+            "width": 308,
+            "height": 96
+          },
+          "texts": [
+            {
+              "name": "score/landing-label",
+              "text": "高牌 · 本手得分",
+              "bounds": {
+                "type": 5,
+                "x": 55,
+                "y": 378,
+                "width": 97,
+                "height": 16
+              }
+            },
+            {
+              "name": "score/landing-total",
+              "text": "27",
+              "exact": "27",
+              "bounds": {
+                "type": 5,
+                "x": 175,
+                "y": 393,
+                "width": 40,
+                "height": 44
+              }
+            },
+            {
+              "name": "score/landing-formula",
+              "text": "27 × 1",
+              "bounds": {
+                "type": 5,
+                "x": 175,
+                "y": 443,
+                "width": 40,
+                "height": 16
+              }
+            }
+          ]
+        },
+        {
+          "time": 2797.300000011921,
+          "root": "controlled/score-energy/ordinary/hand/controlled/score-energy/ordinary/command/4",
+          "bounds": {
+            "x": 41,
+            "y": 371,
+            "width": 308,
+            "height": 96
+          },
+          "texts": [
+            {
+              "name": "score/landing-label",
+              "text": "高牌 · 本手得分",
+              "bounds": {
+                "type": 5,
+                "x": 55,
+                "y": 378,
+                "width": 97,
+                "height": 16
+              }
+            },
+            {
+              "name": "score/landing-total",
+              "text": "27",
+              "exact": "27",
+              "bounds": {
+                "type": 5,
+                "x": 175.98777683346609,
+                "y": 392.4503691112881,
+                "width": 38.02444633306783,
+                "height": 41.826890966374606
+              }
+            },
+            {
+              "name": "score/landing-formula",
+              "text": "27 × 1",
+              "bounds": {
+                "type": 5,
+                "x": 175,
+                "y": 443,
+                "width": 40,
+                "height": 16
+              }
+            }
+          ]
+        },
+        {
+          "time": 2830.800000011921,
+          "root": "controlled/score-energy/ordinary/hand/controlled/score-energy/ordinary/command/4",
+          "bounds": {
+            "x": 41,
+            "y": 371,
+            "width": 308,
+            "height": 96
+          },
+          "texts": [
+            {
+              "name": "score/landing-label",
+              "text": "高牌 · 本手得分",
+              "bounds": {
+                "type": 5,
+                "x": 55,
+                "y": 378,
+                "width": 97,
+                "height": 16
+              }
+            },
+            {
+              "name": "score/landing-total",
+              "text": "27",
+              "exact": "27",
+              "bounds": {
+                "type": 5,
+                "x": 173.62718479745106,
+                "y": 389.3029130632681,
+                "width": 42.74563040509787,
+                "height": 47.020193445607674
+              }
+            },
+            {
+              "name": "score/landing-formula",
+              "text": "27 × 1",
+              "bounds": {
+                "type": 5,
+                "x": 175,
+                "y": 443,
+                "width": 40,
+                "height": 16
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "kind": "ordinary",
+      "width": 390,
+      "height": 740,
+      "mode": "exit",
+      "key": "ordinary-390-exit",
+      "status": "PASS",
+      "errors": [],
+      "award": {
+        "sideTotalVisible": false,
+        "sideLabelVisible": false,
+        "hero": false,
+        "landing": true,
+        "texts": [
+          {
+            "name": "score/landing-label",
+            "text": "高牌 · 本手得分",
+            "bounds": {
+              "type": 5,
+              "x": 55,
+              "y": 378,
+              "width": 97,
+              "height": 16
+            }
+          },
+          {
+            "name": "score/landing-total",
+            "text": "27",
+            "exact": "27",
+            "bounds": {
+              "type": 5,
+              "x": 174.40933811652886,
+              "y": 390.3457841553718,
+              "width": 41.18132376694231,
+              "height": 45.29945614363652
+            }
+          },
+          {
+            "name": "score/landing-formula",
+            "text": "27 × 1",
+            "bounds": {
+              "type": 5,
+              "x": 175,
+              "y": 443,
+              "width": 40,
+              "height": 16
+            }
+          }
+        ]
+      },
+      "exitedDuringAward": true,
+      "frameCount": 0,
+      "representativeFrames": []
+    },
+    {
+      "kind": "fifth",
+      "width": 1366,
+      "height": 768,
+      "mode": "normal",
+      "key": "fifth-1366-normal",
+      "status": "PASS",
+      "errors": [],
+      "award": {
+        "sideTotalVisible": true,
+        "sideLabelVisible": true,
+        "hero": true,
+        "landing": false
+      },
+      "frameCount": 0,
+      "representativeFrames": []
+    }
+  ],
+  "browser": "151.0.7922.173",
+  "status": "PASS"
+}
