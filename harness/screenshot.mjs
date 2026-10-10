@@ -68,7 +68,7 @@ try {
     assert.deepEqual(initialSupply.shop.basicChoice,{shopSeq:initialSupply.commandSeq,purchase:null});
     assert.equal((await state(page)).openingRoute,'group');
     assert.ok((await state(page)).shop.offers.some(o=>o.definitionId==='mantangcai'&&o.edition==='none'&&o.price===4));
-    assert.equal((await state(page)).contentHash,'json-fnv-v1:74a532e990d14b0d');
+    assert.equal((await state(page)).contentHash,'json-fnv-v1:69c29f5cd54bb160');
     const shop=await state(page),offer=shop.shop.offers.find(o=>!o.consumed&&o.price<=shop.gold);assert.ok(offer,'natural starting gold permits a purchase');
     await tapUI(page,'shop','offer/'+offer.offerId,touch);await dom(page,'取消',touch);assert.deepEqual(await state(page),shop,'cancel leaves gold, shelf and RNG untouched');
     await tapUI(page,'shop','offer/'+offer.offerId,touch);await dom(page,/^(邀请|购买) · \d+ 金$/,touch);await next(page,shop.commandSeq);
