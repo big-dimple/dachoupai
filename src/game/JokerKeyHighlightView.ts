@@ -21,7 +21,7 @@ export function mountKeyHighlight(scene:Phaser.Scene,root:Phaser.GameObjects.Con
  group.add(scene.add.rectangle(box.width/2,box.height/2,box.width,box.height,T.paperLight,.98).setStrokeStyle(2,T.brass));
  const art= jokerArtKey(key.fact.definitionId),horizontal=box.width>box.height*1.6;
  const text=(x:number,y:number,value:string,size:number,width:number)=>{const t=scene.add.text(x,y,value,{fontFamily:UI_FONT,fontSize:size+'px',color:C.ink,wordWrap:{width,useAdvancedWrap:true}});group.add(t);return t;};
- const artHeight=compact?Math.max(24,box.height-24):horizontal?box.height-12:Math.min(110,box.height*.43),artWidth=artHeight*.8;
+ const artHeight=!art?0:compact?Math.max(24,box.height-24):horizontal?box.height-12:Math.min(110,box.height*.43),artWidth=artHeight*.8;
  if(art&&scene.textures.exists(art))group.add(scene.add.image(horizontal?artWidth/2+6:box.width/2,compact?24+artHeight/2:horizontal?box.height/2:12+artHeight/2,art).setDisplaySize(artWidth,artHeight).setName('joker/key-art'));
  if(compact){text(3,3,key.fact.title,14,box.width-6).setMaxLines(1);return group;}
  const x=horizontal?artWidth+14:8,y=horizontal?6:artHeight+18,w=box.width-x-8;

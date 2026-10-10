@@ -1418,7 +1418,12 @@ export class GameScene extends Phaser.Scene {
     const eventId=receipt.commandId+'/laohuan-refill';if(this.shownPayoffs.has(eventId))return;
     const cards=ids.map(id=>this.run.deckInstances.find(c=>c.id===id)).filter((c):c is PlayingCard=>!!c),names=cards.map(c=>rankLabel(c.rank)+SUIT_SYMBOL[c.suit]).join(' ');
     const key:JokerKeyHighlight={eventId,kind:'payoff',heroId:'laohuan',cause:'戏法实际留牌',landing:'留'+cards.length+'张 · 已保存',fact:{eventId,sourceInstanceId:this.run.runId+'/character',definitionId:'',title:'老幻 · 戏法留牌',effect:'实际留下 '+names,condition:'原戏法弃/留牌命令成功保存',destination:'当前手牌 · 不增加计分',next:'继续自主选牌'}};
-    this.effects.clear();this.effects.enqueue(async context=>{const stage=mountHeroClimax(this,this.view.root,{x:0,y:0,...cssViewport(this)},key,{label:'实际留牌',before:cards.length+'张',after:cards.length+'张',note:'多看'+looked+'张 · '+names+'；不增加计分'},this.reducedMotion);if(!stage)return;
+    this.effects.clear();this.effects.enqueue(async context=>{const stage=mountHeroClimax(this,this.view.root,{x:0,y:0,...cssViewport(this)},key,{label:'实际留牌',before:cards.length+'张',after:cards.length+'张',note:'多看'+looked+'张 · '+names+'；不增加计分'},this.reducedMotion);if(!stage){
+      const viewport=cssViewport(this),width=Math.min(480,viewport.width-32),height=140;
+      const group=mountKeyHighlight(this,this.view.root,{x:(viewport.width-width)/2,y:(viewport.height-height)/2,width,height},{...key,heroId:undefined,cause:key.landing+' · 不增加计分'});
+      this.shownPayoffs.add(eventId);let cleaned=false;const cleanup=()=>{if(cleaned)return;cleaned=true;context.signal.removeEventListener('abort',cleanup);group.destroy();};context.signal.addEventListener('abort',cleanup,{once:true});
+      try {await this.waitHeroSubject(context);}finally{cleanup();}return;
+    }
       this.heroClimax=stage;this.shownPayoffs.add(eventId);const cleanup=()=>{context.signal.removeEventListener('abort',cleanup);stage.dispose();if(this.heroClimax===stage)this.heroClimax=undefined;};context.signal.addEventListener('abort',cleanup,{once:true});
       try {await this.wait(this.reducedMotion?0:250,context);if(context.signal.aborted)return;stage.strike();await this.waitHeroSubject(context);if(!context.signal.aborted)await stage.release();}finally{cleanup();}
     });try {await this.effects.drain();}catch {this.effects.clear();}
