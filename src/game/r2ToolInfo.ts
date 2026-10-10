@@ -16,7 +16,7 @@ export interface ToolInfo {
 }
 export interface ItemInfo {name:string;summary:string;description:string;artUrl:string;detailArtUrl?:string;fallbackArtUrl:string}
 
-export function goodsArtPortrait(info:ToolInfo|ItemInfo){return {url:info.detailArtUrl??info.artUrl,thumbnailUrl:info.detailArtUrl?info.artUrl:undefined,fallbackUrl:info.fallbackArtUrl,alt:info.name,layout:'card' as const};}
+export function goodsArtPortrait(info:ToolInfo|ItemInfo):{url:string;thumbnailUrl?:string;fallbackUrl:string;alt:string;layout:'card';caption?:string}{return {url:info.detailArtUrl??info.artUrl,thumbnailUrl:info.detailArtUrl?info.artUrl:undefined,fallbackUrl:info.fallbackArtUrl,alt:info.name,layout:'card' as const};}
 
 const limits=R2_TOOL_CATALOG.limits;
 const familyNames:Record<R2ToolFamily,string>={tarot:'塔罗',planet:'星球',spectral:'幻灵',utility:'补给'};
