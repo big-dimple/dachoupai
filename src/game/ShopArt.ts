@@ -5,11 +5,12 @@ import type {shopLayout} from './ShopLayout';
 import {PAPER_THEME as T} from './theme';
 
 /** Quiet sheets follow published shop rectangles; decoration owns no input. */
-export function shopSheet(scene:Phaser.Scene,view:SceneView,name:string,b:Box,color:number,raised=false):void {
+export function shopSheet(scene:Phaser.Scene,view:SceneView,name:string,b:Box,color:number,raised=false,outlined=false):void {
   if(b.width<=0||b.height<=0)return;
   const g=scene.add.graphics().setName('shop-art/'+name).setData('bounds',{...b});
   if(raised)g.fillStyle(T.ink,.065).fillRoundedRect(b.x,b.y+2,b.width,b.height,6);
   g.fillStyle(color).fillRoundedRect(b.x,b.y,b.width,b.height,6);view.add(g);
+  if(outlined)view.add(scene.add.graphics().lineStyle(1,T.jade,.6).strokeRoundedRect(b.x+.5,b.y+.5,b.width-1,b.height-1,6).setName('shop-art/offer-edge').setData('bounds',{...b}));
   if(scene.textures.exists('p00-paper')&&b.width>8&&b.height>8)view.add(scene.add.tileSprite(b.x+4,b.y+4,b.width-8,b.height-8,'p00-paper').setOrigin(0).setAlpha(.09).setName('shop-art/'+name+'-paper'));
 }
 

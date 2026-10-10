@@ -306,7 +306,7 @@ export class ShopScene extends Phaser.Scene {
   private drawPCOffer(o:R2Offer,kind:ShelfKind,tile:Box,face:Box):void {
     if(isBasicChoiceSeat(o)){this.drawBasicChoiceSeat(o,tile);return;}
     const v=this.view,first=v.root.length,d=kind==='jokers'?this.jokerDefinition(o.definitionId):undefined,info=kind==='tools'?toolInfo(o.definitionId,this.run):kind==='items'?itemInfo(o.definitionId):undefined;
-    shopSheet(this,v,'offer',tile,o.consumed?PAPER_THEME.jadeSoft:PAPER_THEME.paperLight,true);
+    shopSheet(this,v,'offer',tile,o.consumed?PAPER_THEME.jadeSoft:PAPER_THEME.paperLight,true,!d);
     if(d)shopSheet(this,v,'offer-stage',{x:tile.x+4,y:tile.y+4,width:tile.width-8,height:face.height+10},PAPER_THEME.jadeSoft);
     
     let summary=d?this.shopJokerSummary(d.id):info!.summary;
@@ -413,7 +413,7 @@ export class ShopScene extends Phaser.Scene {
     const v=this.view,p=this.geometry(),first=v.root.length,purchase=this.run.shop!.basicChoice!.purchase;
     const artWidth=p.pc?Math.min(124,Math.max(64,raw.width-126)):0;
     const copy=p.pc?{tile:raw,x:raw.x+artWidth+20,y:raw.y+8,width:raw.width-artWidth-30,priceY:raw.y+raw.height-30}:shopOfferCopy(p,raw);
-    shopSheet(this,v,'offer',copy.tile,PAPER_THEME.paperLight,true);
+    shopSheet(this,v,'offer',copy.tile,PAPER_THEME.paperLight,true,!!p.pc);
     const art=p.pc?{x:raw.x+8,y:raw.y+10,width:artWidth,height:raw.height-20}:{x:raw.x+5,y:raw.y+5,width:raw.width-10,height:raw.height-10};
     const primary=purchase?.definitionId??'T08',ids=basicChoiceRows(this.run).map(row=>row.id).filter(id=>id!==primary).slice(0,4).concat(primary);
     for(const [i,id] of ids.entries()){
@@ -490,13 +490,13 @@ export class ShopScene extends Phaser.Scene {
     const glow=this.add.graphics().lineStyle(3,0x3f606b,.7).strokeRoundedRect(-b.width/2-1,-b.height/2-1,b.width+2,b.height+2,6).setAlpha(0);art.add(glow);
     const reduced=()=>gameSession().reducedMotion||window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const leave=()=>{
-      this.hideHoverPicture();if(!art.active)return;this.tweens.killTweensOf(art);glow.setAlpha(0);
+      this.hideHoverPicture();if(!art.active)return;this.tweens.killTweensOf(art);art.setAlpha(1);glow.setAlpha(0);
       if(reduced())art.setPosition(cx,cy).setScale(1).setAngle(0);
       else this.tweens.add({targets:art,x:cx,y:cy,angle:0,scaleX:1,scaleY:1,duration:110,ease:'Sine.easeOut'});
     };
     art.once('destroy',()=>this.tweens.killTweensOf(art));
     return {enter:()=>{
-      if(!art.active||!this.scene.isActive())return;this.hideHoverPicture();this.tweens.killTweensOf(art);glow.setAlpha(1);v.root.bringToTop(art);
+      if(!art.active||!this.scene.isActive())return;this.hideHoverPicture();this.tweens.killTweensOf(art);art.setAlpha(1);glow.setAlpha(1);v.root.bringToTop(art);
       if(!reduced())this.tweens.add({targets:art,y:cy-2,angle:0,scaleX:1,scaleY:1,duration:130,ease:'Sine.easeOut'});
       if(definitionId)this.hoverDelay=this.time.delayedCall(280,()=>{this.hoverDelay=undefined;if(art.active&&this.scene.isActive()&&!document.querySelector('dialog[open]'))this.showHoverPicture(definitionId,b);});
     },leave,art};
