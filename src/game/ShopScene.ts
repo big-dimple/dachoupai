@@ -245,6 +245,7 @@ export class ShopScene extends Phaser.Scene {
       const first=p.slots[0];this.ownedInput?.setBounds({x:first.x,y:first.y,width:last.x+last.width-first.x,height:first.height});
       const heading=v.root.list.find(o=>o.name==='shop/owned-heading') as Phaser.GameObjects.Text|undefined;
       this.ownedHint=p.pc||p.short?v.text(first.x,first.y-20,p.pc?'拖动换位 · 手机长按 · 从左至右触发':'拖动换位 · 手机长按',14,PAPER_CSS.jade,last.x+last.width-first.x).setName('shop/owned-drag-hint'):heading;
+      if(this.ownedHint&&this.ownedHint.y>first.y-30)this.ownedHint.setY(first.y-24);
     }
     if(!p.short&&this.run.jokers.length&&!firstChapterShopPrompt(this.run)){
       const first=this.run.jokers[0],plain=this.jokerCopy(first.definitionId,first)?.plain;
