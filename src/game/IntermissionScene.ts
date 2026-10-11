@@ -148,7 +148,7 @@ export class IntermissionScene extends Phaser.Scene {
     const touye=savedTouyeWager(trace);if(touye)body=touye+'\n'+body;
     const xiemuInterest=trace?.events.find(e=>e.sourceType==='character'&&e.sourceDefinitionId==='xiemu'&&e.phase==='onStageClear');
     if(!p.short&&!skipped&&this.result.cleared&&xiemuInterest)heading+=' · 额外关末息+'+xiemuInterest.value.n+'金';
-    if(p.short&&trace&&!skipped&&this.result.cleared&&nextStage?.index%3!==2){const assist=savedAssistSummary(trace);if(assist)body=assist+'\n'+body;const fact=victorySourceFact(run,trace);if(fact)body=fact.title+' · '+fact.effect+'\n'+body;}
+    if(p.short&&trace&&!skipped&&this.result.cleared&&(!nextStage||nextStage.index%3!==2)){const assist=savedAssistSummary(trace);if(assist)body=assist+'\n'+body;const fact=victorySourceFact(run,trace);if(fact)body=fact.title+' · '+fact.effect+'\n'+body;}
     {
       v.material(n,T.jade,T.jade,4).setName('result/next-panel');
       if(nextStage&&nextStage.index%3===2)v.add(this.add.graphics().lineStyle(2,T.red,.8).beginPath().moveTo(n.x+2,n.y+5).lineTo(n.x+2,n.y+n.height-5).strokePath()).setName('stage-identity/next-seal');
