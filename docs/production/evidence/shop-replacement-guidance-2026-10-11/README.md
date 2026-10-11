@@ -25,4 +25,4 @@
 - [入场动画视觉FAIL](entry-animation-visual-FAIL/report.json)：程序通过时首张手机图仍透明、PC仍在入场，不签画面；原[PC](entry-animation-visual-FAIL/1366x768-full-slot-shelf.png)/[手机](entry-animation-visual-FAIL/390x844-full-slot-shelf.png)保留。最终按原动画完成、实际文字有效alpha=1后拍，未取消/缩短产品动画。
 - [原金币滚动中间帧](intermediate-cash-roll/390x844-saved-purchase.png)：实际state/IDB已21，UI滚动当帧22；这是原反馈中间帧，非扣款错误。最终保存画面等待真实金币文本达到保存值再拍，不改变反馈。
 
-[保护树与历史段证明](protected-trees.json)：只有两个建议模块改产品；ShopScene、道具/拖拽、BuildJourney/BuildFallback、领域/保存/内容/资产逐树同main，唯一计划既有规格及历史段字节相同。PR115/117/116已由父合并，父main精确CI38134016502成功、线上dot读6d2d954据父报告；6/18终态、第7仍打，C1仅在C2收口的数值候选，Astra PR113冻结，均不写成全局已验收。
+[保护树与历史段证明](protected-trees.json)：只有两个建议模块改产品；ShopScene、道具/拖拽、BuildJourney/BuildFallback、领域/保存/内容/资产逐树同main，唯一计划既有规格及历史段字节相同。PR115/117/116已由父合并，父main精确CI38134016502成功、线上dot读6d2d954据父报告；6/18终态、第7老幻成组已过6万Boss单手77985但未终局；负责人已批准C2-B本地实现/验证，尚未发布/未实际scorer通过，净收益依赖仍未闭合（合同仅登记于唯一计划），Astra PR113冻结，均不写成全局已验收。
