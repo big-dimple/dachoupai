@@ -27,3 +27,15 @@ it('level-change facts follow actual upgrade and exchange commands rather than a
  expect(result.state.handLevels.pair).toBe(id==='T01'?2:4);expect(handLevelFacts('pair',result.state.handLevels.pair!)).toEqual(id==='T01'?{level:2,heat:50,mult:'2.5'}:{level:4,heat:80,mult:'3.5'});if(id==='S05')expect(result.state.handLevels['high-card']).toBe(4);
  }
 });
+
+it('purification shows enhancement and edition losses for distinct instances, including edition-only cards, and matches the saved command',()=>{
+ const state=createRun({rulesVersion:'r2',seed:'purification-preview',runId:'purification',characterId:'amo'});
+ state.consumables=[{instanceId:'clear',definitionId:'S08'}];
+ const cards=state.deckInstances.slice(0,4);cards[0].edition='foil';cards[1].enhancement='heat-paper';cards[2].edition='holographic';cards[2].enhancement='glass-paper';cards[3].edition='polychrome';
+ const before=structuredClone(state),previews=cards.map(c=>toolCardChange(tool('S08'),c)!);
+ const result=applyCommand(state,{runId:state.runId,commandId:'purify',expectedSeq:state.commandSeq,action:{type:'UseConsumable',instanceId:'clear',targetIds:[]}});
+ expect(result.ok).toBe(true);if(!result.ok)return;
+ expect(previews[0].note).toContain('闪箔');expect(previews[1].note).toContain('热度纸');expect(previews[2].note).toContain('全息');expect(previews[2].note).toContain('玻璃纸');expect(previews[3].note).toContain('多彩');
+ for(const p of previews)expect(p.after).toEqual(result.state.deckInstances.find(c=>c.id===p.before.id));
+ expect(state).toEqual(before);expect(result.state.spectralModifiers.cleanSlateBonus).toBe(1);
+});

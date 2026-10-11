@@ -27,3 +27,14 @@ it('route wording keeps the actual fit predicate and excludes neutral items',()=
  const state=start();expect(routeFitCue(state,'items','U01')).toBeUndefined();
  expect(routeFitCue(state,'tools','T08')?.label).toBe('契合同点成组路线');
 });
+it('purification saved facts reconcile both layers and exclude destroyed instances',()=>{
+ const before=start();before.consumables=[{instanceId:'clear',definitionId:'S08'}];
+ before.deckInstances[5].edition='none';const cards=before.deckInstances.slice(0,5);cards[0].enhancement='heat-paper';cards[0].edition='foil';cards[1].edition='holographic';cards[2].enhancement='glass-paper';cards[3].edition='polychrome';cards[4].edition='foil';before.destroyedIds=[cards[4].id];before.drawPile=before.drawPile.filter(id=>id!==cards[4].id);
+ const action={type:'UseConsumable' as const,instanceId:'clear',targetIds:[]},after=send(before,action),facts=savedToolFacts(before,after,action)!;
+ expect(facts.changes).toHaveLength(4);expect(facts.changes.map(c=>c.before.id)).not.toContain(cards[4].id);
+ expect(facts.changes[0].note).toContain('增强：');expect(facts.changes[0].note).toContain('版次：');expect(facts.changes[1].note).toContain('版次：');
+ expect(after.deckInstances[4]).toEqual(before.deckInstances[4]);
+ for(const change of facts.changes)expect(change.after).toEqual(after.deckInstances.find(c=>c.id===change.before.id));
+ const insufficient=structuredClone(before);delete insufficient.deckInstances[3].edition;
+ const result=applyCommand(insufficient,{runId:insufficient.runId,commandId:'invalid-clear',expectedSeq:insufficient.commandSeq,action});expect(result.ok).toBe(false);if(result.ok)return;expect(result.code).toBe('too-few-special-cards');expect(savedToolFacts(insufficient,result.state,action)).toBeUndefined();
+});

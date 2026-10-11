@@ -194,10 +194,9 @@ export function showConsumables(dialog:DetailDialog,state:R2RunState,ready:boole
     }
     function handSelect(labelText:string,types:readonly R2HandType[],choose:(type:R2HandType|undefined)=>void,initial?:R2HandType):void {
       const label=document.createElement('label'),name=document.createElement('span'),select=document.createElement('select'),empty=document.createElement('option');label.className='tool-field';name.textContent=labelText;select.setAttribute('aria-label',labelText);empty.value='';empty.textContent=types.length?'请选择':'没有符合条件的已发现牌型';select.append(empty);
-      for(const type of types){const option=document.createElement('option');option.value=type;option.textContent=`${HAND_LABELS[type]} · Lv.${state.handLevels[type]}`;select.append(option);}
+      for(const type of types){const option=document.createElement('option');option.value=type;option.textContent=state.handLevels[type]===undefined?`${HAND_LABELS[type]} · 尚未发现`:`${HAND_LABELS[type]} · Lv.${state.handLevels[type]}`;select.append(option);}
       select.value=initial??'';choose(initial);select.onchange=()=>{choose(select.value?select.value as R2HandType:undefined);refresh();};selects.push(select);label.append(name,select);panel.append(label);
     }
-    const discovered=R2_HAND_TYPES.filter(type=>state.handLevels[type]!==undefined);
     switch(tool.target.kind){
       case 'cards':gallery(state.phase==='shop'?'持久牌组':'当前手牌',cardChoices,'target',tool.target.maximum);break;
       case 'card-sacrifice':gallery('牺牲扑克牌',cardChoices,'donor',1);gallery('受益扑克牌',cardChoices,'target',tool.target.maximum);break;
@@ -213,7 +212,7 @@ export function showConsumables(dialog:DetailDialog,state:R2RunState,ready:boole
         for(const suit of SUITS){const option=document.createElement('option');option.value=suit;option.textContent=SUIT_SYMBOL[suit]+' '+SUIT_NAMES[suit];select.append(option);}
         select.onchange=()=>{selection.suit=select.value?select.value as Suit:undefined;refresh();};selects.push(select);label.append(name,select);panel.append(label);break;
       }
-      case 'hand-exchange':if(tool.operation.kind==='exchange-hand-levels'){const operation=tool.operation;handSelect('收益牌型',discovered.filter(type=>state.handLevels[type]!<=operation.targetMaximumBefore),type=>{selection.handType=type;});handSelect('遗忘牌型',discovered.filter(type=>state.handLevels[type]!>=operation.donorMinimumBefore),type=>{selection.secondaryHandType=type;});}break;
+      case 'hand-exchange':if(tool.operation.kind==='exchange-hand-levels'){handSelect('收益牌型',R2_HAND_TYPES,type=>{selection.handType=type;});handSelect('遗忘牌型',R2_HAND_TYPES,type=>{selection.secondaryHandType=type;});}break;
       case 'joker-sacrifice':gallery('牺牲大丑牌',jokerChoices,'donor',1);gallery('受益大丑牌',jokerChoices,'target',1);break;
       case 'whole-deck': {const count=state.deckInstances.filter(card=>!state.destroyedIds.includes(card.id)&&(card.enhancement!==undefined||(card.edition??'none')!=='none')).length;const note=document.createElement('p');note.textContent=`整副有效牌组中 ${count} 张有特殊属性；同一张牌的增强与版次只计一张。`;panel.append(note);break;}
       case 'none':break;
@@ -225,10 +224,31 @@ export function showConsumables(dialog:DetailDialog,state:R2RunState,ready:boole
       probability.textContent='公开概率：'+operation.choices.map(choice=>`${operation.kind==='random-enhancement'?R2_ENHANCEMENTS.find(enhancement=>enhancement.id===choice.id)!.name:editionLabel(choice.id as 'foil'|'holographic'|'polychrome')} ${choice.weight}/${total}`).join('、')+'。使用后揭晓结果。';panel.append(probability);
     }
     const risks=document.createElement('details'),riskTitle=document.createElement('summary'),riskText=document.createElement('p');risks.className='tool-full-risk';riskTitle.textContent='风险与完整说明';riskText.textContent=info.risk;risks.append(riskTitle,riskText);
-    panel.append(risks);scroll.append(panel);const dock=document.createElement('section');dock.className='tool-selection-dock';dock.setAttribute('aria-label','已选目标与真实预览');const changes=document.createElement('div'),body=document.createElement('div'),costs=document.createElement('p');changes.className='tool-change-preview';changes.setAttribute('aria-label','确认前后对照');body.className='tool-preview-scroll';costs.className='tool-preview-cost';costs.setAttribute('aria-live','polite');body.append(changes,preview);dock.append(hint,costs,body);d.insertBefore(dock,d.querySelector('.dialog-actions'));
+    panel.append(risks);scroll.append(panel);const workspace=document.createElement('div');workspace.className='tool-workspace';workspace.dataset.pane='targets';const dock=document.createElement('section');dock.className='tool-selection-dock';dock.setAttribute('aria-label','已选目标与真实预览');const changes=document.createElement('div'),body=document.createElement('div'),costs=document.createElement('p');changes.className='tool-change-preview';changes.setAttribute('aria-label','确认前后对照');body.className='tool-preview-scroll';costs.className='tool-preview-cost';costs.setAttribute('aria-live','polite');body.append(changes,preview);dock.append(hint,body);workspace.append(d.querySelector('.dialog-content')!,dock);d.insertBefore(workspace,d.querySelector('.dialog-actions'));costs.classList.add('tool-main-costs');d.insertBefore(costs,d.querySelector('.dialog-actions'));
+    const panes=document.createElement('div');panes.className='tool-workspace-panes';panes.setAttribute('role','group');panes.setAttribute('aria-label','道具工作面');
+    for(const [pane,label] of [['targets','选择对象'],['changes','变化与代价']] as const){const b=document.createElement('button');b.type='button';b.textContent=label;b.dataset.pane=pane;b.setAttribute('aria-pressed',String(pane==='targets'));b.onclick=()=>{workspace.dataset.pane=pane;workspace.scrollTop=0;for(const other of panes.querySelectorAll('button'))other.setAttribute('aria-pressed',String(other===b));};panes.append(b);}d.querySelector('.dialog-header')!.append(panes);
+    if(['whole-deck','none'].includes(tool.target.kind))panes.querySelector<HTMLButtonElement>('button:last-child')!.click();
     function refresh():void {
+      const operation=tool.operation;
       for(const button of sortButtons)button.disabled=busy;
-      const issue=selectionIssue(tool,state,selection,known,ready);const steps=d.querySelectorAll('.operation-guide li'),step=issue?Math.max(0,steps.length-2):steps.length-1;steps.forEach((item,index)=>{item.classList.toggle('is-current',index===step);if(index===step)item.setAttribute('aria-current','step');else item.removeAttribute('aria-current');});const selected=targetChoices().filter(choice=>selection.ids.has(choice.id));
+      const issue=selectionIssue(tool,state,selection,known,ready);
+      if(operation.kind==='exchange-hand-levels'){
+        for(const select of selects){
+          const gain=select.getAttribute('aria-label')==='收益牌型';
+          if(!gain&&select.getAttribute('aria-label')!=='遗忘牌型')continue;
+          const other=gain?selection.secondaryHandType:selection.handType;
+          for(const option of select.options){
+            if(!option.value)continue;
+            const type=option.value as R2HandType,level=state.handLevels[type];
+            const same=option.value===other,undiscovered=level===undefined;
+            const limit=!undiscovered&&(gain?level>operation.targetMaximumBefore:level<operation.donorMinimumBefore);
+            option.disabled=same||undiscovered||limit;
+            option.textContent=`${HAND_LABELS[type]} · `+(undiscovered?'尚未发现':`Lv.${level}`)+
+              (same?'（已作另一目标，不可同选）':limit?gain?`（须不高于${operation.targetMaximumBefore}级）`:`（须至少${operation.donorMinimumBefore}级）`:'');
+          }
+        }
+      }
+      const steps=d.querySelectorAll('.operation-guide li'),step=issue?Math.max(0,steps.length-2):steps.length-1;steps.forEach((item,index)=>{item.classList.toggle('is-current',index===step);if(index===step)item.setAttribute('aria-current','step');else item.removeAttribute('aria-current');});const selected=targetChoices().filter(choice=>selection.ids.has(choice.id));
       for(const control of controls){
         const {input,label,choice,role,maximum}=control;let unavailable=false;
         if(role==='target'){
@@ -240,11 +260,11 @@ export function showConsumables(dialog:DetailDialog,state:R2RunState,ready:boole
         }else input.checked=selection.sacrificeId===choice.id;
         input.disabled=busy||unavailable;label.classList.toggle('is-unavailable',unavailable);label.classList.toggle('is-selected',input.checked);
         const reason=choice.card?toolCardTargetStatus(tool,choice.card,role,selection.sacrificeId).reason:choice.id===selection.sacrificeId?'已作牺牲牌':tool.target.kind==='joker-sacrifice'&&choice.joker?.edition===tool.target.excludedEdition?'该版次不可作受益牌':'';
-        const detail=label.querySelector('small');if(detail)detail.textContent=choice.detail+(unavailable?' · '+(reason||'已选满，请先取消其它目标'):reason?' · '+reason:'');
+        const detail=label.querySelector('small');if(detail)detail.textContent=choice.detail+(reason?' · '+reason:'');
       }
       directoryUpdates.forEach(update=>update());selects.forEach(select=>{select.disabled=busy;});useAction.disabled=busy||!!issue;destroyAction.disabled=busy||!ready;confirm.disabled=useAction.disabled;destroy.disabled=destroyAction.disabled;
-      hint.textContent=busy?'正在提交并保存…':issue??'目标有效。确认后使用物品并支付上述代价。';hint.dataset.valid=String(!issue);
-      const lines:string[]=[],operation=tool.operation;
+      hint.textContent=busy?'正在提交并保存…':issue??'目标有效。确认后使用物品并支付上述代价。'+(tool.target.kind==='cards'&&selection.ids.size===tool.target.maximum?' 已选满，取消一张可换目标。':'');hint.dataset.valid=String(!issue);
+      const lines:string[]=[];
       if(selection.sacrificeId){const donor=(tool.target.kind==='joker-sacrifice'?jokerChoices:cardChoices).find(choice=>choice.id===selection.sacrificeId);if(donor)lines.push(`永久牺牲：${donor.name} · ${donor.detail.replace('\n',' · ')}。不作为出售，不退款。`);}
       changes.replaceChildren();if(tool.target.kind==='card-sacrifice'&&selection.sacrificeId){const donor=known.find(c=>c.id===selection.sacrificeId);if(donor)renderCardChange(changes,{before:donor,label:'永久献出',note:'牌组 −1 · 不退款'},0);}selected.forEach((choice,index)=>{if(choice.card){const change=toolCardChange(tool,choice.card);if(change)renderCardChange(changes,change,index);else if(tool.operation.kind==='random-enhancement'){const row=document.createElement('figure'),title=document.createElement('figcaption'),face=document.createElement('span'),unknown=document.createElement('strong');row.className='tool-change-card';row.dataset.sourceId=choice.card.id;title.textContent=`受益 ${index+1} · 点数／花色／版次保留`;renderToolCard(face,choice.card);unknown.textContent='→ 随机增强（保存后揭晓）';unknown.className='tool-change-unknown';row.append(title,face,unknown);changes.append(row);}}});
       if(selected.length)lines.push((tool.target.kind==='card-sacrifice'?'公开受益顺序：':'目标顺序：')+selected.map((choice,index)=>`${index+1}. ${choice.name} · ${choice.detail.replace('\n',' · ')}`).join(' → '));
@@ -255,27 +275,33 @@ export function showConsumables(dialog:DetailDialog,state:R2RunState,ready:boole
         else lines.push(`${operation.kind==='delete-cards'?'永久删除：':''}${cardName(choice.card)} · ${cardSpecialText(choice.card)}`);
       }
       for(const choice of selected)if(choice.joker)lines.push(`${choice.name} · ${editionEffectText(choice.joker.edition)}\n${operation.kind==='set-joker-edition'?`版次 → ${editionEffectText(operation.edition)}；原支付 ${choice.joker.paidPrice} 金与已有成长保留。`:'本体、原支付金额与已有成长保留。'}`);
+      if(operation.kind==='set-enhancement'){
+        const fracture=R2_ENHANCEMENTS.find(row=>row.id===operation.enhancement)!.effects.find(effect=>effect.kind==='chance-destroy');
+        if(fracture?.kind==='chance-destroy')lines.push(`破碎风险：有效计分后 ${fracture.probability.n}/${fracture.probability.d} 概率永久破碎；每张原牌只判一次，失败手也判定。`);
+      }
       if(operation.kind==='random-enhancement'&&selection.sacrificeId)lines.push(`有效牌组 ${state.deckInstances.length-state.destroyedIds.length} → ${state.deckInstances.length-state.destroyedIds.length-1} 张；永久献出。`);
       if(operation.kind==='delete-cards'&&selected.length)lines.push(`有效牌组 ${state.deckInstances.length-state.destroyedIds.length} → ${state.deckInstances.length-state.destroyedIds.length-selected.length} 张；永久删除，确认使用才生效。`);
       if(operation.kind==='upgrade-hand'){const type=tool.target.kind==='discovered-hand'&&tool.target.selection==='fixed'?operation.handType:selection.handType;if(type){const level=state.handLevels[type];lines.push(level===undefined?`${HAND_LABELS[type]} · 尚未发现`:level>=R2_TOOL_CATALOG.limits.handLevelMaximum?`${HAND_LABELS[type]} · Lv.${level}（已满级）`:handChange(type,level,level+operation.levels));if(level!==undefined&&level<R2_TOOL_CATALOG.limits.handLevelMaximum)renderHandChange(changes,type,level,level+operation.levels);}}
-      if(operation.kind==='exchange-hand-levels'){for(const [type,delta] of [[selection.handType,operation.gain],[selection.secondaryHandType,-operation.loss]] as const){if(type)renderHandChange(changes,type,state.handLevels[type]!,state.handLevels[type]!+delta);}if(selection.handType)lines.push(handChange(selection.handType,state.handLevels[selection.handType]!,state.handLevels[selection.handType]!+operation.gain));if(selection.secondaryHandType)lines.push('遗忘：'+handChange(selection.secondaryHandType,state.handLevels[selection.secondaryHandType]!,state.handLevels[selection.secondaryHandType]!-operation.loss));}
+      if(operation.kind==='exchange-hand-levels'&&!issue){for(const [type,delta] of [[selection.handType,operation.gain],[selection.secondaryHandType,-operation.loss]] as const){if(type)renderHandChange(changes,type,state.handLevels[type]!,state.handLevels[type]!+delta);}if(selection.handType)lines.push(handChange(selection.handType,state.handLevels[selection.handType]!,state.handLevels[selection.handType]!+operation.gain));if(selection.secondaryHandType)lines.push('遗忘：'+handChange(selection.secondaryHandType,state.handLevels[selection.secondaryHandType]!,state.handLevels[selection.secondaryHandType]!-operation.loss));}
       for(const cost of tool.costs){
         if(cost.kind==='gold')lines.push(`额外使用代价：${cost.amount} 金；金币 ${state.gold} → ${state.gold-cost.amount}。`);
         if(cost.kind==='all-gold')lines.push(`清空全部金币：${state.gold} → 0。`);
-        if(cost.kind==='permanent-hands-penalty')lines.push(`下一场起出牌预算：${r2HandsBudget(state)} → ${r2HandsBudget({...state,spectralModifiers:{...state.spectralModifiers,handsPenalty:state.spectralModifiers.handsPenalty+cost.amount}})}；原牌保留，复制 ${operation.kind==='copy-card'?operation.copies:0} 张。`);
-        if(cost.kind==='permanent-hand-penalty')lines.push(`下一场起手牌容量：${r2HandLimit(state)} → ${r2HandLimit({...state,spectralModifiers:{...state.spectralModifiers,handPenalty:state.spectralModifiers.handPenalty+cost.amount}})}；整副 ${state.deckInstances.length-state.destroyedIds.length} 张改为${selection.suit?SUIT_NAMES[selection.suit]:'所选花色'}。`);
+        if(cost.kind==='permanent-hands-penalty')lines.push(`下一场起永久减少出牌次数：${r2HandsBudget(state)} → ${r2HandsBudget({...state,spectralModifiers:{...state.spectralModifiers,handsPenalty:state.spectralModifiers.handsPenalty+cost.amount}})}；原牌保留，复制 ${operation.kind==='copy-card'?operation.copies:0} 张。`);
+        if(cost.kind==='permanent-hand-penalty')lines.push(`下一场起永久减少手牌上限：${r2HandLimit(state)} → ${r2HandLimit({...state,spectralModifiers:{...state.spectralModifiers,handPenalty:state.spectralModifiers.handPenalty+cost.amount}})}；整副 ${state.deckInstances.length-state.destroyedIds.length} 张改为${selection.suit?SUIT_NAMES[selection.suit]:'所选花色'}。`);
       }
       if(operation.kind==='rare-joker-reward'){const pool=rarePool(state);lines.push(`当前公开稀有池：${pool.length?pool.map(joker=>joker.name).join('、'):'无候选'}。${pool.length?`每张概率 1/${pool.length}。`:''}`);}
       if(operation.kind==='clear-deck-specials')lines.push(`所有增强与特殊版次都将清除。下一场起手牌容量：${r2HandLimit(state)} → ${r2HandLimit({...state,spectralModifiers:{...state.spectralModifiers,cleanSlateBonus:state.spectralModifiers.cleanSlateBonus+operation.handBonus}})}。`);
       if(operation.kind==='restore-discard')lines.push(`本场弃牌：${state.stage?.discardsLeft??'尚未入场'} → ${state.stage?Math.min(state.stage.initialDiscards,state.stage.discardsLeft+operation.amount):'须先入场'}；上限为本场初始预算 ${state.stage?.initialDiscards??'待入场确定'}。`);
       if(operation.kind==='add-gold')lines.push(`金币 ${state.gold} → ${state.gold+operation.amount}。`);
       if(operation.kind==='free-reroll')lines.push(state.shop?`本次免费刷新，不扣金币；刷新计数 ${state.shop.rerollCount} → ${state.shop.rerollCount+1}。\n下次收费刷新 ${r2PaidRerollPrice(state)} → ${r2PaidRerollPrice({...state,shop:{...state.shop,rerollCount:state.shop.rerollCount+1}})} 金。长期道具货架保留，不触发成长。`:'请在商店免费刷新货架。');
-      const clearing=operation.kind==='clear-deck-specials'?known.filter(c=>c.enhancement).map(c=>`${cardName(c)}：失去 ${enhancementText(c)} → 无增强`):[];
+      const cleared=operation.kind==='clear-deck-specials'?known.filter(c=>c.enhancement||(c.edition??'none')!=='none'):[];
+      const clearing=cleared.length?[`净台：${cleared.length} 张不同牌；失去 ${cleared.filter(c=>c.enhancement).length} 项增强、${cleared.filter(c=>(c.edition??'none')!=='none').length} 项特殊版次。`]:[];
+      if(!issue)cleared.forEach((card,index)=>renderCardChange(changes,toolCardChange(tool,card)!,index));
       const replacementNotes=selected.flatMap(choice=>choice.card?toolCardChange(tool,choice.card)?.note.startsWith('替换原增强')?[toolCardChange(tool,choice.card)!.note]:[]:[]);
-      const exchangeCost=operation.kind==='exchange-hand-levels'&&selection.secondaryHandType?[`遗忘代价：${HAND_LABELS[selection.secondaryHandType]} Lv.${state.handLevels[selection.secondaryHandType]} → ${state.handLevels[selection.secondaryHandType]!-operation.loss}`]:[];
-      confirm.textContent=replacementNotes.length||clearing.length?'替换增强':busy?'正在保存…':'确认使用';costs.classList.toggle('is-replacement',!!(replacementNotes.length||clearing.length));
-      costs.textContent=[...clearing,...replacementNotes,...exchangeCost,...lines.filter(line=>/^(永久牺牲|有效牌组|额外使用代价|清空全部金币|下一场起)/.test(line))].join('\n');costs.hidden=!costs.textContent;
-      preview.textContent=lines.join('\n\n')||'选择目标后，这里会显示变化与代价。';
+      const exchangeCost=operation.kind==='exchange-hand-levels'&&!issue&&selection.secondaryHandType?[`遗忘代价：${HAND_LABELS[selection.secondaryHandType]} Lv.${state.handLevels[selection.secondaryHandType]} → ${state.handLevels[selection.secondaryHandType]!-operation.loss}`]:[];
+      confirm.textContent=busy?'正在保存…':clearing.length?'清除增强／版次':replacementNotes.length?'替换增强':'确认使用';costs.classList.toggle('is-replacement',!!(replacementNotes.length||clearing.length));
+      costs.textContent=[...clearing,...new Set(replacementNotes),...exchangeCost,...lines.filter(line=>/^(永久牺牲|有效牌组|额外使用代价|清空全部金币|下一场起|破碎风险)/.test(line))].join('\n');costs.hidden=!costs.textContent;
+      preview.textContent=operation.kind==='clear-deck-specials'&&issue?issue:lines.join('\n\n')||'选择目标后，这里会显示变化与代价。';
     }
     refresh();
   };
