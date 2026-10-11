@@ -1,0 +1,14 @@
+{
+  "source": "b29ae51855e894db5878d6e70f77475f6a491ba6",
+  "status": "FAIL",
+  "error": "AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:\n+ actual - expected\n\n  [\n+   'spades-3',\n    'spades-2',\n-   'spades-3'\n  ]\n\n    at file://<repo>/harness/r2-tool-workspace.mjs:34:9",
+  "cases": [
+    {
+      "width": 1366,
+      "id": "T08",
+      "status": null,
+      "selects": null
+    }
+  ],
+  "steps": []
+}

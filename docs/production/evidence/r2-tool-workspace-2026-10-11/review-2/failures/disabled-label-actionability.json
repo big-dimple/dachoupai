@@ -1,0 +1,8 @@
+{
+  "source": "44c221d16b86e1b285db509e8e1f4608f98b7495",
+  "modified": true,
+  "scope": "390 native S01/T08/T13 target selection, disabled third-card attempt, deselect then replace, full saved tuple unchanged. Controlled legal inventory, no actual tool use.",
+  "cases": [],
+  "status": "FAIL",
+  "error": "locator.click: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('input[name$=\"/target\"][value=\"spades-5\"]').locator('..')\u001b[22m\n\u001b[2m    - locator resolved to <label data-suit=\"spades\" title=\"增强：无；版次：普通\" data-edition=\"none\" data-enhancement=\"none\" data-source-id=\"spades-5\" class=\"tool-card-option is-unavailable\">…</label>\u001b[22m\n\u001b[2m  - attempting click action\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is not enabled\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m    - waiting 20ms\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is not enabled\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m      - waiting 100ms\u001b[22m\n\u001b[2m    40 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m       - element is not enabled\u001b[22m\n\u001b[2m     - retrying click action\u001b[22m\n\u001b[2m       - waiting 500ms\u001b[22m\n\n    at <repo>/harness/r2-tool-selection-hint.mjs:11:1692"
+}

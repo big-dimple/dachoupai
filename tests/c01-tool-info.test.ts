@@ -161,6 +161,30 @@ describe('C01 committed chance, lifecycle and reward beats',()=>{
 it('poker front layer retains each destructive, probabilistic and held benefit',()=>{
  expect(cardSpecialSummary({id:'glass',rank:7,suit:'hearts',enhancement:'glass-paper'})).toContain('永久破碎');
  expect(cardSpecialSummary({id:'lucky',rank:7,suit:'hearts',enhancement:'lucky-paper'})).toContain('每手最多');
- expect(cardSpecialSummary({id:'held',rank:7,suit:'hearts',enhancement:'voice-paper',edition:'polychrome'})).toContain('留在手中');
+ expect(cardSpecialSummary({id:'held',rank:7,suit:'hearts',enhancement:'voice-paper',edition:'polychrome'})).toContain('留在手里');
  expect(cardSpecialSummary({id:'held',rank:7,suit:'hearts',enhancement:'voice-paper',edition:'polychrome'})).toContain('倍率×');
+});
+it('lasting copy and deck costs stay in the shared purchase/use front layer',()=>{
+ expect(toolInfo('S03').summary).toContain('下一场起永久出牌次数−1');
+ expect(toolInfo('S04').summary).toContain('下一场起永久手牌上限−1');
+ expect(toolInfo('T12').summary).toContain('概率永久破碎');
+ expect(toolInfo('T07').summary).not.toContain('永久出牌');
+});
+
+it('glass scoring and held additive timing stay explicit without doubling claims',()=>{
+ expect(toolInfo('T12').summary).toContain('打出且每次有效计分时');
+ expect(toolInfo('T12').summary).toContain('倍率×1.5');
+ expect(toolInfo('T12').summary).toContain('1/4概率永久破碎');
+ expect(toolInfo('T13').summary).toContain('不打出、有效留在手里时');
+ expect(toolInfo('T13').summary).toContain('倍率+1');
+ expect(toolInfo('T13').summary).not.toMatch(/翻倍|加倍/);
+});
+
+it('purchase summaries distinguish actual later payment and permanent sacrifice',()=>{
+ expect(toolInfo('S02').summary).toContain('使用另付5金');
+ expect(toolInfo('S05').summary).toContain('使用另付3金');
+ expect(toolInfo('S06').summary).toContain('清空全部金币（至少持有5金）');
+ expect(toolInfo('S01').summary).toContain('永久献出一张扑克');
+ expect(toolInfo('S07').summary).toContain('永久献出一张大丑牌');
+ expect(toolInfo('T07').summary).toContain('不立即补牌');
 });

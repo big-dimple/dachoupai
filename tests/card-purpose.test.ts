@@ -17,7 +17,8 @@ describe('shared first-layer card purpose',()=>{
   expect(lucky.summary).not.toMatch(/达到上限仍|不增加热度|两项独立判定/);expect(lucky.description).toContain('两项独立判定');expect(lucky.description).toContain('达到上限仍判定');
  });
  it('distinguishes held gains, stage cash, retrigger and persistent expansion',()=>{
-  expect(toolInfo('T13').summary).toMatch(/留在手中.*倍率\+1/);
+  expect(toolInfo('T13').summary).toMatch(/不打出.*有效留在手里.*倍率\+1/);
+  expect(toolInfo('T13').summary).not.toContain('倍率×');
   expect(toolInfo('T14').summary).toMatch(/留在手中过关\+1金.*每场最多5金/);
   expect(toolInfo('T15').summary).toContain('额外计分1次');
   expect(toolInfo('S06').summary).not.toContain('普通');

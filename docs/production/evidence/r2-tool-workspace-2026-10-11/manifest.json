@@ -1,0 +1,107 @@
+{
+  "baseline": "b29ae51855e894db5878d6e70f77475f6a491ba6",
+  "product": "54437b0dcf589acb4acb2d8bdde8b55e50582739",
+  "latestMainDocs": "2a75ec7de9ab758fc700a31fa552e8433bd8d1f8",
+  "protectedTrees": {
+    "src/domain": {
+      "baseline": "71b6e405a96cc9b4c89f5ee8ddf05168d1cd7c1e",
+      "product": "71b6e405a96cc9b4c89f5ee8ddf05168d1cd7c1e",
+      "equal": true
+    },
+    "src/application": {
+      "baseline": "39e8907746c30d7f7ae46a21f85915c52cf6b783",
+      "product": "39e8907746c30d7f7ae46a21f85915c52cf6b783",
+      "equal": true
+    },
+    "src/content": {
+      "baseline": "6018132526ce72176f016f99ead53022480ab429",
+      "product": "6018132526ce72176f016f99ead53022480ab429",
+      "equal": true
+    },
+    "src/audio": {
+      "baseline": "a2f0483eecaaafb40cdbb82778ec2a846fd2e000",
+      "product": "a2f0483eecaaafb40cdbb82778ec2a846fd2e000",
+      "equal": true
+    },
+    "public/assets": {
+      "baseline": "809823e118712c2e2e27b2921e0a3c648368ba26",
+      "product": "809823e118712c2e2e27b2921e0a3c648368ba26",
+      "equal": true
+    },
+    "art/sources": {
+      "baseline": "47067728e0f15588b56199ff8ecc3b4e40c2dc53",
+      "product": "47067728e0f15588b56199ff8ecc3b4e40c2dc53",
+      "equal": true
+    }
+  },
+  "checks": {
+    "directedTests": "72 PASS in 6 related files",
+    "typecheck": "PASS",
+    "plan": "PLAN_VALID 32; no gameplay acceptance",
+    "exactHeadGithubCI": "pending at documentation commit"
+  },
+  "notAccepted": [
+    "human understanding",
+    "physical PC or phone",
+    "FPS or GPU smoothness",
+    "audio",
+    "all 39 native tool journeys",
+    "18 hero-route playtests",
+    "global naming"
+  ],
+  "files": {
+    "COPY_AUDIT.md": "4d2a507e97f3208f87c0f313b8eee250ec8ddb0d3287fa3f4a77f9af46499364",
+    "after/1366-S08-saved.png": "926f02e18baff7125030d01b1824dd22202dfc0700c6036ae883b0e2bef760c6",
+    "after/1366-T08-preview.png": "0de5ea21639b166a34678b6b6b39bda674f49bb0f769dce3593a2528a8f9cd69",
+    "after/1366-T11-preview.png": "34603f72a3e844ae30f8875ad2dced9250a15ee38e5e6c2b6381e5124be08a19",
+    "after/320-T08-preview.png": "7889da43441def46e98908d34ec3f1e7a4b5b4b8d56891abc10be58d05183146",
+    "after/390-S03-confirm-risk.png": "55b3b1f7a70f76541c76c22bd051d6465e4aa6a2d15d31430b820b66e710d3f7",
+    "after/390-S03-purchase.png": "a5b7838a067c04abdafe18fa02a7e7dded4c5859f42fa6cc8674e4cac4ab5d07",
+    "after/390-S03-use.png": "4a85285916cdda7899e050fd0b789031222c428c420d875dcda6f525a91b83d1",
+    "after/390-S04-confirm-risk.png": "8f83dd68910894d84f30f762c039b83c719f178c3aef89ce165a2429c18909d3",
+    "after/390-S04-purchase.png": "914d157213ec7c5776605d1093cb0c9409f883ba7513fcabdd1bf77d64fcaded",
+    "after/390-S04-use.png": "ca0b329e5fd7407b4c44c84ca22fa56907b4aa536dfc7ddccbbcb7bef1ce0e32",
+    "after/390-S05-preview.png": "23be82072832faf093d56c98ffd759994b02dc05f0e3db1d6c8a42527784e84e",
+    "after/390-S05-saved.png": "94d1a6581bc5ec4f9e37439f6bf991c80f0b3d0c0e83b20ae287e7a2296e09c9",
+    "after/390-S08-glass-preview.png": "da16603c25eec1b0c5461da28f8a0d5c70c50a5fd8250b4b4730ed4b5c49d1b8",
+    "after/390-S08-glass-saved.png": "dedc0c17e034626b74c4d695b497be2b9b1df7a1573305a34bd0add61691ef34",
+    "after/390-S08-insufficient.png": "0cde9ee0d75c15b008c5e3f6ffbfc2825f0199e1693d4981091670f16bee0d18",
+    "after/390-T08-preview.png": "7e6c6f325431b3599b8c95cbf2a2e5a7e5c23f5c3ae54c4ff2b88550c78776fe",
+    "after/390-T12-confirm-risk.png": "dc6ea633d1a05c416fa8cf457fa956361fad4211d8a28bf2752c56b9f9235974",
+    "after/390-T12-purchase.png": "2eec18abe882fe3b08b9c42e7184c026d5a1c3462c6259d47e573a2281349046",
+    "after/390-T12-use.png": "603fbdb5900a8048cdaeeeef30ad8f1fd184bf0d7070d63c50ca1731ca88adb7",
+    "after/390-T13-confirm-risk.png": "a4591c40947d1fb06cdfa84cb27a2d0783724e84fa70cf33f9bbb7c07d400bed",
+    "after/390-T13-purchase.png": "047ff67244c33490d4b0e858acc1ec2525543690964f71352541270b374a11f4",
+    "after/390-T13-use.png": "99513f85c836e7bc27f01b290446887843cffaa46a57134e2d454f279922562a",
+    "after/390-actual-hand-preview.png": "ec69949607dcff1117beba69c487021e773893ee7b2bc7c7cf42750aa15c6a26",
+    "after/390-actual-hand-saved.png": "8e83cacdc971698c63b6bfd8c97d200ee2333eda706fb0533cbfa1b42d2a1a71",
+    "after/390-next-shop.png": "9413463206f53a108c045ffb133c253b2ef45285da8e5e01978d26dd0cbccda6",
+    "after/390-save-failed.png": "1188243f1893e88def567e2b856c502dec09f96c9749b992cd46bbdb858900fb",
+    "after/390-settled.png": "748b7e45e9dca61ab3b12b199da814491743f45eeea87d8217725a051f2db164",
+    "after/740-T08-target-1.png": "792d4b9c88b476c5087a7edf60ef38711076e7186c1a0f2288f7c5598d981fec",
+    "after/740-T08-target-2.png": "aad1947625b637389eadbad38ec6f4c5948d6e8f383ab8ded31075683fe5312f",
+    "audit.json": "33b940e475b7dbba35cecffc9da69ebba88d99bd391bbc9dff9e4063c293ab41",
+    "baseline.json": "77c19ba7be372d8c009c9e2db031a3ff80c5004e339ed472f671493df901aee8",
+    "before/1366-S08-before.png": "f01768d734750ade1dcf443ae9fd5bc6a643c97ae2748b2ae0262f97298bf3c3",
+    "before/1366-T08-before.png": "98520e95e262b27f950f59f4b48284b8028a568fd15e3860f3b1634179fe48a5",
+    "before/390-S08-before.png": "e6a092475e1c3f70d5069ea0cbb2b0403c534c0244a15d147f762c93a6b4d78c",
+    "before/390-T08-before.png": "c46ec4b87bb5eb890db9031d35f5625703294965e014dc4d98166385d1336028",
+    "failures/controlled-price-fixture.json": "3cba6e08c9573d6381f4cbb2c663b13d07e13b85d0adc0d050513a26df89c8f7",
+    "failures/controlled-price-fixture.png": "7c459ec10ecabc54f833278e696ec8328e46dc8bdcf263276baa3dc54803fa35",
+    "failures/first-comprehensive-source.patch": "272f8aa589ba3a988a47d8437afee3c84e865a74288f5ed5697b8da399720a28",
+    "failures/hidden-pane-observer.json": "7f358c72763add8ee04ea13ac0add45a1480845ccda6feac62ee524500503f89",
+    "failures/hidden-pane-observer.png": "70152d43aa46b36f41c5ca123f01a7519261325eaa149e235cf0d3407cafcb02",
+    "failures/incorrect-one-hand-clear-expectation.json": "a14c244bdbae7014b7d58e48412f1e79cdaf376652a97e34066d39a05a9b8642",
+    "failures/incorrect-one-hand-clear-expectation.png": "6edb0820d507fb75b5cca412cc67bcc5966d4360143f1c617c0594d38540f028",
+    "failures/option-disabled-observer.json": "5dbd3d32d4fc3b78d9395e475138ecf75165d5396f5dee09a633fd400766550a",
+    "failures/option-disabled-observer.png": "0cdc97b44edc5c186fa6a455253e08b5b9f04cff5a17ec000f9f52964f298c43",
+    "failures/short-header-original.png": "afe2b73c5af047611bf794c64788a4e13351679848460e563f0b3cc9e8eb72e5",
+    "failures/sorted-dom-order-observer.json": "6997c4f73309e3f5fe454504fcf6959d02de6485a8cacafe3c790fc88191a134",
+    "failures/sorted-dom-order-observer.png": "9566ea5b29b5a6d203350410248ea5139d6b083a93d023e2ef4a5396645ec080",
+    "failures/source-edit-navigation.json": "31965241f7a2a0d375b94965a7a095e4efbac477c2bd9f336da64c7fd34ce6be",
+    "failures/source-edit-navigation.png": "031955752f3d332d1394c71c5b0cda3009f2ba39837c91e593ebf3302edf0062",
+    "native-workspace.json": "f0fc852aaf8a42f5aa4a97869c276d7729f71dbf67261b8c6c2111c9b37de101",
+    "normal-journey.json": "62a1d70b83d99c54998c68a77f4f998ba1f28b0a64f90db0eebfe5a7a94dfecc",
+    "risk-views.json": "72f2cbba0382c997a8ceed58b9d523551e810b104faf8e68577eb90a5e1cec8c"
+  }
+}
