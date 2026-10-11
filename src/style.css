@@ -665,7 +665,7 @@ button[aria-busy=true] { border-style:dashed; }
  .basic-suit-choice-dialog .experience-card[data-choice-group="basic"] > img { width:48px;height:68px; }
 }
 /* Stage identity: scoped paper/ink entry; shared tool dialogs retain their styles. */
-.stage-identity-entry[open] { width:min(560px,calc(100vw - var(--safe-left) - var(--safe-right) - 24px));height:auto; }
+.stage-identity-entry[open] { width:min(560px,calc(100vw - var(--safe-left) - var(--safe-right) - 24px));height:fit-content; }
 .stage-identity-entry .dialog-scroll { height:auto;max-height:calc(100dvh - var(--safe-top) - var(--safe-bottom) - 220px); }
 .stage-identity-entry .dialog-header { border-top:4px solid #B8473A; }
 .stage-identity-entry .dialog-header h2 { font-family:Georgia,"Noto Serif SC",SimSun,serif;font-size:28px; }
