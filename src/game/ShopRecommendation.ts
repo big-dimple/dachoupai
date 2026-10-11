@@ -7,6 +7,9 @@ import {stableHash} from '../domain/hash';
 import {R2_GROUP_HAND_TYPES} from '../domain/r2GroupHands';
 import {R2_ENHANCEMENTS} from '../content/r2Tools';
 import {Rational} from '../domain/rational';
+import {readR2Modifiers,type Condition} from '../content/r2Schema';
+import {r2ScoringDisabledJokerIds} from '../domain/scoreR2';
+import {evaluateR2Hand} from '../domain/evaluateR2';
 import type {BuildFocus} from './BuildDirectionPreferences';
 
 /** Audited against e48fd07's resolved 72 definitions. Changed/older semantics require review. */
@@ -40,6 +43,18 @@ export function shopRecommendation(state:R2RunState,offer:R2Offer,focus?:BuildFo
  const flushConcentrated=largestSuit>=Math.max(6,Math.ceil(cards.length*.5));
  const consecutive=(pool:typeof cards,length:number)=>{const ranks=new Set(pool.flatMap(c=>c.rank===14?[1,14]:[c.rank]));return Array.from({length:15-length},(_,i)=>i+1).some(start=>Array.from({length},(_,j)=>start+j).every(r=>ranks.has(r)));};
  const straightPossible=consecutive(cards,5),straightConcentrated=straightPossible&&ranks.size<=9;
+ const modifiers=readR2Modifiers(state.jokers,definitions),handRules={fourStraight:modifiers.fourStraight,fourFlush:modifiers.fourFlush};
+ // Existence witnesses from the public deck only; no future draw/EV search.
+ const ordinaryStraightPossible=[5,...(handRules.fourStraight?[4]:[])].some(length=>Array.from({length:15-length},(_,i)=>i+1).some(start=>{
+  const pools=Array.from({length},(_,i)=>cards.filter(c=>c.rank===(start+i===1?14:start+i)));if(pools.some(p=>!p.length))return false;
+  const witness=pools.map(p=>p[0]);if(witness.every(c=>c.suit===witness[0].suit)){const index=pools.findIndex(p=>p.some(c=>c.suit!==witness[0].suit));if(index>=0)witness[index]=pools[index].find(c=>c.suit!==witness[0].suit)!;}
+  return evaluateR2Hand(witness,handRules).type==='straight';
+ }));
+ const ordinaryFlushPossible=[...suits.keys()].some(suit=>{
+  const pool=cards.filter(c=>c.suit===suit),groups=[...new Set(pool.map(c=>c.rank))].map(rank=>pool.filter(c=>c.rank===rank));
+  const seek=(i:number,left:number,witness:typeof cards):boolean=>{if(!left)return evaluateR2Hand(witness,handRules).type==='flush';if(i===groups.length)return false;for(let n=Math.min(left,groups[i].length);n>=0;n--)if(seek(i+1,left-n,[...witness,...groups[i].slice(0,n)]))return true;return false;};
+  return pool.length>=5&&seek(0,5,[])||handRules.fourFlush&&pool.length>=4&&seek(0,4,[]);
+ });
  const boosted=(c:typeof cards[number])=>!!c.edition&&c.edition!=='none'||R2_ENHANCEMENTS.find(e=>e.id===c.enhancement)?.effects.some(e=>e.phase==='onCardScore'&&['add-heat','add-multiplier','multiply-multiplier'].includes(e.kind))===true;
  const boostedGroup=largest>=3&&[...ranks].some(([r,n])=>n===largest&&cards.filter(c=>c.rank===r&&boosted(c)).length>=3);
  const houseCardPayoff=[...ranks].some(([triple,n])=>n>=3&&cards.filter(c=>c.rank===triple&&boosted(c)).length>=3&&[...ranks].some(([pair,m])=>pair!==triple&&m>=2&&cards.some(c=>c.rank===pair&&boosted(c))));
@@ -47,14 +62,36 @@ export function shopRecommendation(state:R2RunState,offer:R2Offer,focus?:BuildFo
  const trace=state.lastTrace,groupRecord=!!trace&&R2_GROUP_HAND_TYPES.includes(trace.handType),houseRecord=!!trace&&['full-house','flush-house'].includes(trace.handType),flushRecord=!!trace&&['flush','straight-flush'].includes(trace.handType);
  const groupReady=focus==='group'&&(groupConcentrated||groupRecord),flushReady=focus==='flush'&&(flushConcentrated||flushRecord),straightReady=focus==='straight'&&straightConcentrated;
  const qualifiedRecord=!!trace&&!['high-card','pair'].includes(trace.handType),qualifiedReady=groupConcentrated||straightReady||flushReady||qualifiedRecord;
- const heldDefinitions=state.jokers.map(j=>definitions.find(d=>d.id===j.definitionId)!);
+ const knownBoss=state.stageIndex%3===2?state.boss:null;
+ const sealedIds=state.stage?.index===state.stageIndex?state.stage.sealedJokerIds:[];
+ const disabledSources=new Set(r2ScoringDisabledJokerIds(knownBoss,state.jokers,definitions,sealedIds,state.chapterDisabledJokerId));
+ const scoringJokers=state.jokers.filter(j=>!disabledSources.has(j.instanceId));
+ const heldDefinitions=scoringJokers.map(j=>definitions.find(d=>d.id===j.definitionId)!);
  const heldCardPayoff=heldDefinitions.some(d=>d.hooks.some(h=>h.phase==='onCardScore'&&h.operations.some(o=>['add-heat','add-multiplier'].includes(o.kind))&&
   (h.condition.kind==='always'||h.condition.kind==='paired-rank'&&largest>=h.condition.minimum||h.condition.kind==='rank-in'&&cards.filter(c=>h.condition.kind==='rank-in'&&h.condition.values.includes(c.rank)).length>=3||h.condition.kind==='suit-in'&&cards.filter(c=>h.condition.kind==='suit-in'&&h.condition.values.includes(c.suit)).length>=Math.ceil(cards.length*.5))));
  const heldGroupPayoff=heldDefinitions.some(d=>d.hooks.some(h=>h.phase==='onCardScore'&&h.operations.some(o=>['add-heat','add-multiplier'].includes(o.kind))&&[...ranks].some(([rank,n])=>n===largest&&cards.filter(c=>c.rank===rank&&(h.condition.kind==='always'||h.condition.kind==='paired-rank'&&n>=h.condition.minimum||h.condition.kind==='rank-in'&&h.condition.values.includes(c.rank)||h.condition.kind==='suit-in'&&h.condition.values.includes(c.suit))).length>=3)));
- const retriggerSource=state.jokers.some(j=>j.definitionId==='b06'&&groupReady||j.definitionId==='a11'&&(groupConcentrated||houseRecord)||j.definitionId==='c07'&&flushReady||j.definitionId==='d11'&&cards.length>=3||j.definitionId==='d04');
- const additiveSource=state.jokers.some(j=>{const d=definitions.find(d=>d.id===j.definitionId)!;return d.hooks.some(h=>h.operations.some(o=>o.kind==='add-multiplier'||o.kind==='read-growth'&&o.target==='multiplier'&&Rational.fromJSON(j.growth[o.key]??{n:'0',d:'1'}).compare(new Rational(0n))>0));});
+ const retriggerSource=scoringJokers.some(j=>j.definitionId==='b06'&&largest>=2||j.definitionId==='a11'&&largest>=3&&second>=2||j.definitionId==='c07'&&largestSuit>=5||j.definitionId==='d11'&&cards.length>=3||j.definitionId==='d04');
+ // A sustained qualified-hand base needs an executable public condition, not
+ // just an operation tag. This checks availability, never next-hand odds.
+ const multiplierCondition=(c:Condition):boolean=>{
+  switch(c.kind){
+   case 'always':return true;
+   case 'paired-rank':return largest>=c.minimum;
+   case 'rank-groups':return counts.filter(n=>n>=c.groupSize).length>=c.minimum;
+   case 'held-rank-first':return r2HandLimit(state)>=4&&cards.some(card=>c.values.includes(card.rank));
+   case 'held-scoring-rank-first':return r2HandLimit(state)>=4&&largest>=3;
+   case 'resource-maximum':return c.resource==='gold'&&state.gold<=c.maximum;
+   case 'resource':return c.resource==='play-index'&&c.equals===1&&state.phase==='shop';
+   case 'all-played-active':return cards.length>=c.minimum;
+   // A ≤2-card short program cannot share an a06 qualified main hand.
+   case 'played-count-maximum':return false;
+   case 'hand-type-in':return c.values.some(type=>type==='three-kind'?largest>=3:type==='straight'?ordinaryStraightPossible:type==='flush'?ordinaryFlushPossible:type==='straight-flush'?[...suits.keys()].some(suit=>consecutive(cards.filter(card=>card.suit===suit),5)):false);
+   default:return false;
+  }
+ };
+ const additiveSource=scoringJokers.some(j=>{const d=definitions.find(d=>d.id===j.definitionId)!;return d.hooks.some(h=>multiplierCondition(h.condition)&&h.operations.some(o=>o.kind==='add-multiplier'&&Rational.fromJSON(o.value).compare(new Rational(0n))>0||o.kind==='read-growth'&&o.target==='multiplier'&&Rational.fromJSON(j.growth[o.key]??{n:'0',d:'1'}).compare(new Rational(0n))>0));});
  const potentialStages=state.tourMode==='endless'?6:Math.max(0,24-state.stageIndex),growthWindow=stage!=='late'&&potentialStages>=6;
- const facts={cards:cards.length,largest,second,largestSuit,groupConcentrated,flushConcentrated,straightConcentrated,boostedGroup,houseCardPayoff,boostedHouse,groupRecord,houseRecord,flushRecord,qualifiedRecord,heldCardPayoff,heldGroupPayoff,retriggerSource,additiveSource,potentialStages,growthWindow,initialGrowth:JSON.stringify(r2CreateJoker(offer.definitionId,'recommendation/'+offer.offerId,offer.price,offer.edition,state).growth)};
+ const facts={cards:cards.length,largest,second,largestSuit,groupConcentrated,flushConcentrated,straightConcentrated,ordinaryStraightPossible,ordinaryFlushPossible,boostedGroup,houseCardPayoff,boostedHouse,groupRecord,houseRecord,flushRecord,qualifiedRecord,heldCardPayoff,heldGroupPayoff,retriggerSource,additiveSource,disabledSourceCount:disabledSources.size,potentialStages,growthWindow,initialGrowth:JSON.stringify(r2CreateJoker(offer.definitionId,'recommendation/'+offer.offerId,offer.price,offer.edition,state).growth)};
  const d=definitions.find(d=>d.id===offer.definitionId),rule=SHOP_RECOMMENDATION_AUDIT[offer.definitionId as keyof typeof SHOP_RECOMMENDATION_AUDIT];
  const result=(stars:RecommendationStars,reason:string,condition:string):ShopRecommendation=>({stars,reason,condition,stage,facts,detail:reason+'；'+condition+(d?'。'+d.description:'')+(stars>=4?`\n公开依据：最大同点组${largest}张，前两组${largest+second}/${cards.length}张；最大花色${largestSuit}/${cards.length}张；已持逐牌加成${heldCardPayoff?'有':'无'}；剩余场次窗口${potentialStages}。`:'')+'\n基于公开构筑与当前阶段的推荐；不表示指定替换净更强。'});
  if(hash!==SHOP_RECOMMENDATION_SEMANTICS||!rule||!d)return result(0,'规则待核','该身份尚未审计');
@@ -95,7 +132,7 @@ export function shopRecommendation(state:R2RunState,offer:R2Offer,focus?:BuildFo
   case 'even-retrigger':return result(heldCardPayoff||count(boosted)>=3?4:3,'偶数手首牌重触','每场第偶数次出牌');
   case 'capital-multiply':return result(state.gold>=20&&additiveSource?4:2,'持金放大倍率','计分前须有20金');
   case 'quad-multiply':return result(largest<4?1:groupConcentrated&&additiveSource?4:2,'四条以上相乘','需四条或更高同点组');
-  case 'route-transition':return result(straightConcentrated&&flushConcentrated?4:2,'普通顺花交替相乘','首手与同花顺不触发');
+  case 'route-transition':return result(straightConcentrated&&flushConcentrated&&ordinaryStraightPossible&&ordinaryFlushPossible?4:2,'普通顺花交替相乘','首手与同花顺不触发');
   case 'no-discard':return result(additiveSource&&(groupReady||flushReady||straightReady)?4:3,'未弃牌相乘','本场成功弃牌即停用');
   case 'third-play':return result(3,'第三手相乘','本场每第3次出牌');
   case 'temporary-multiply':return result(stage==='late'?3:2,'短期爆发相乘','第4次出牌后销毁');
@@ -120,7 +157,7 @@ export function shopRecommendation(state:R2RunState,offer:R2Offer,focus?:BuildFo
   case 'last-income':return result(2,'最后一手过关加金','失败和跳场不给');
   case 'held-income':return result(groupReady&&cards.length>=9?3:2,'成组留牌过关加金','两对以上 · 至少留4张');
   case 'short-income':return result(focus==='group'?3:2,'短主手过关加金','本场每手均不超过4张');
-  case 'route-reward':return result(straightConcentrated&&flushConcentrated?3:2,'普通顺花过关赠工具','本场实际打过两种');
+  case 'route-reward':return result(straightConcentrated&&flushConcentrated&&ordinaryStraightPossible&&ordinaryFlushPossible?3:2,'普通顺花过关赠工具','本场实际打过两种');
   case 'discard-refund':return result(3,'增加一次弃牌机会','每场首次成功弃牌');
   case 'single-discard-income':return result(potentialStages<3?2:3,'单弃带来收入','每场最多两次');
   case 'discard-charge':return result(flushFit?3:2,'同色弃牌蓄热','下手消费 · 场末清零');

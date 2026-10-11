@@ -9,7 +9,7 @@ import {drawShopArt,shopSheet} from './ShopArt';
 import {r2BasicToolShelfStatus} from '../domain/r2Shop';
 import {starterOffer,starterShopCue} from './RouteStarter';
 import {firstChapterGuide,firstChapterShopPrompt,dismissFirstChapterGuide,attachFirstChapterGuide} from './FirstChapterGuide';
-import {shopRouteRelation,shopOfferRelation,shopReplacementFacts,shopReplacementTransactionFacts,shopSaleConsequences,shopPurchaseConditionLosses} from './ShopRouteRelations';
+import {shopRouteRelation,shopOfferRelation,shopReplacementFacts,shopReplacementTransactionFacts,shopReplacementCompactFacts,shopSaleConsequences,shopPurchaseConditionLosses} from './ShopRouteRelations';
 import {buildGrowthProgress} from './BuildGrowthProgress';
 import {shopInvestment} from './ShopInvestment';
 import {currentBuildFocus,BUILD_LABEL,toolSupportsFocus} from './BuildJourney';
@@ -709,8 +709,8 @@ export class ShopScene extends Phaser.Scene {
   private inspectReplacement(offerId:string):void {
     const found=this.findOffer(offerId);if(!found||found.kind!=='jokers'||found.offer.consumed||this.busy)return;
     const o=found.offer,focus=currentBuildFocus(this.run,this.run.openingRoute),d=this.jokerDefinition(o.definitionId);
-    const cards=this.run.jokers.map((j,i)=>{const f={...shopReplacementFacts(this.run,o,j,focus),transaction:shopReplacementTransactionFacts(this.run,o,j)},held=this.jokerDefinition(j.definitionId);return {title:`第 ${i+1} 槽 · ${held.name}`,url:jokerArtPreviewUrl(held.id),body:(this.jokerCopy(held.id,j)?.plain?.line??held.description)+'\n'+f.transaction.summary+(f.transaction.growthEffects.length?'\n'+f.transaction.growthEffects.join('\n'):'')+'\n出售失去：'+r2JokerStateText(j,held)+'；基础卖价 '+salePrice(j.paidPrice)+' 金。\n同名新购不继承成长。'+(f.saleEffects.length?'\n成功出售后的联动：\n'+f.saleEffects.join('\n'):''),details:f.transaction.summary+'\n'+f.transaction.growthEffects.join('\n')+'\n'+f.loss+'\n'+f.connections+'\n'+f.money+'\n'+f.held.body,action:{label:'保留或管理这张',run:()=>this.inspectJoker(j.instanceId,offerId)}};});
-    this.dialog.open(d.name+' · 持有与现货比较','按现持槽位逐张比较。保留、换方向或留金入场都可以；这里不排序推荐，也不自动卖买。',[{label:'返回购买详情',run:()=>this.inspectOffer(offerId)},{label:'更换培养方向',run:()=>this.inspectJourney()}],{shopContext:'compare',summaryBody:shopOfferGuidance(this.run,o).label+'\n'+shopOfferGuidance(this.run,o).reason+' · '+shopOfferGuidance(this.run,o).condition+'\n现货 · '+shopOfferRelation(this.run,o,focus).label+' · '+d.name+' · 实付'+r2PurchasePrice(this.run,o)+'金\n'+d.description,cards});attachFirstChapterGuide(this.run,()=>this.render());
+    const cards=this.run.jokers.map((j,i)=>{const f={...shopReplacementFacts(this.run,o,j,focus),transaction:shopReplacementTransactionFacts(this.run,o,j)},held=this.jokerDefinition(j.definitionId);return {title:`第 ${i+1} 槽 · ${held.name}`,url:jokerArtPreviewUrl(held.id),body:shopReplacementCompactFacts(this.run,j,f.transaction).join('\n'),details:f.transaction.summary+'\n'+f.transaction.growthEffects.join('\n')+'\n'+f.loss+'\n'+f.connections+'\n'+f.money+'\n'+f.held.body,action:{label:'管理这张',run:()=>this.inspectJoker(j.instanceId,offerId)}};});
+    this.dialog.open(d.name+' · 持有与现货比较','按现持槽位逐张比较。保留、换方向或留金入场都可以；这里不排序推荐，也不自动卖买。',[{label:'返回购买详情',run:()=>this.inspectOffer(offerId)},{label:'更换培养方向',run:()=>this.inspectJourney()}],{shopContext:'compare',summaryBody:shopOfferGuidance(this.run,o).label+'\n'+shopOfferGuidance(this.run,o).reason+' · '+shopOfferGuidance(this.run,o).condition,cards});attachFirstChapterGuide(this.run,()=>this.render());
   }
   private openPurchaseReceipt():void {
     const receipt=this.lastPurchaseReceipt;if(!receipt)return;

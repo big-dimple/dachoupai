@@ -163,3 +163,22 @@ export function shopReplacementTransactionFacts(state:R2RunState,offer:R2Offer,h
  const summary=`指定替换 · 先售后买：${state.gold}→${sold.state.gold}金；售后实付${price}金`+(bought.ok?`；买后${bought.state.gold}金。新牌在末槽，从初值开始。`:'；购买当前不可执行：'+bought.code+'。')+'\n失去版次：'+editionEffectText(held.edition).split('。')[0]+'；新牌版次：'+editionEffectText(offer.edition).split('。')[0]+(cashLosses.length?'\n'+cashLosses.join('\n'):'');
  return {status:bought.ok?'ready' as const:'blocked' as const,summary,growthEffects,cashLosses,refund:sold.state.gold-state.gold,price,goldAfterSale:sold.state.gold,goldAfterPurchase:bought.ok?bought.state.gold:undefined};
 }
+/** Comparison first layer: actual money and nonzero losses, full rules stay in details. */
+export function shopReplacementCompactFacts(state:R2RunState,held:R2JokerInstance,transaction:ReturnType<typeof shopReplacementTransactionFacts>):string[]{
+ if(transaction.price===undefined)return ['当前不能出售：'+(transaction.summary.includes('over-capacity-after-sale')?'售后道具超容量':transaction.summary)];
+ const rows=[`返${transaction.refund}金 · 实付${transaction.price}金`+(transaction.goldAfterPurchase!==undefined?` · 买后${transaction.goldAfterPurchase}金`:' · 当前不能买入')];
+ const names:Record<string,string>={heat:'热度',multiplier:'倍率',pendingHeat:'待用热度'};
+ const growth=Object.entries(held.growth).filter(([key,value])=>Rational.fromJSON(value).compare(new Rational(key==='coefficient'?1n:0n))>0).map(([key,value])=>key==='coefficient'?'系数×'+fractionText(value):(names[key]??'成长')+'+'+fractionText(value));
+ if(growth.length)rows.push('失去：'+growth.join('、'));
+ if(held.edition&&held.edition!=='none')rows.push('失去：'+editionEffectText(held.edition).split('。')[0]);
+ const d=r2JokerDefinitionFor(state,held.definitionId),lifetime=d.hooks.flatMap(h=>h.operations).find(o=>o.kind==='expire-after-hands');
+ if(lifetime?.kind==='expire-after-hands'&&(held.counters?.handsScored??0)>0)rows.push(`现牌余${Math.max(0,lifetime.limit-(held.counters?.handsScored??0))}手`);
+ if(held.counters?.stageClears)rows.push(`失去：过关进度${held.counters.stageClears}/2`);
+ rows.push(...transaction.growthEffects.map(row=>{
+  const short=row.replaceAll('无成长或使用计数','0').replaceAll('热度成长','热度').replaceAll('倍率成长','倍率').replaceAll('乘法系数','系数').replaceAll(' · ','').replaceAll(' → ','→');
+  return short.replace(/(热度|倍率|系数) /g,'$1').replace(/0→(热度|倍率|系数)/g,'$10→').replace(/→(热度|倍率|系数)/g,'→');
+ }));
+ if(!state.shop?.soldJoker)for(const other of state.jokers.filter(j=>j.instanceId!==held.instanceId))if(r2JokerDefinitionFor(state,other.definitionId).hooks.some(h=>h.phase==='onStageClear'&&h.condition.kind==='no-joker-sale-this-stage'))rows.push(r2JokerDefinitionFor(state,other.definitionId).name+'：下一场未售成长失效');
+ rows.push(...transaction.cashLosses);
+ return rows;
+}
