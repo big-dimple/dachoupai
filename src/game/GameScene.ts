@@ -66,7 +66,7 @@ import {EffectQueue,type EffectContext} from '../core/EffectQueue';
 import {r2JokerDefinitionsFor,r2JokerDefinitionFor} from '../domain/r2ContentProfiles';
 import {readR2Modifiers,type R2JokerInstance} from '../content/r2Schema';
 import {HAND_LABELS} from '../content/handLabels';
-import {heatText,fractionText} from './scoreText';
+import {heatText,fractionText,readableFractionText,readableScoreFormula,accumulatorRollValue} from './scoreText';
 import {scoreCelebration} from './scoreCelebration';
 import {scoreBeat,scoreFireLevel,fourCardFormation,scorePacketSymbol,scoreImpactScale,type ScoreBeat} from './scorePresentation';
 import {ScoreFlame,orderScoreBrushLayers} from './ScoreFlame';
@@ -1342,7 +1342,7 @@ export class GameScene extends Phaser.Scene {
       +'计分 '+score.sets.activeScoringIds.length+' 张 / '+(this.assistProfile?'主手':'打出')+' '+score.sets.playedIds.length+' 张\n'
       +(score.assist?savedAssistCopy(score)+'\n':'')
       +(impact?impact+'\n':'')
-      +'结算 '+fractionText(score.accumulator.H)+' × '+fractionText(score.accumulator.M)+' = '+heatText(score.finalScore);
+      +'精确热度 '+fractionText(score.accumulator.H)+'\n精确倍率 '+fractionText(score.accumulator.M)+'\n向下取整入账 '+score.finalScore;
   }
 
   private previewSelection(preview?:HandPreview):void {
@@ -1472,7 +1472,7 @@ export class GameScene extends Phaser.Scene {
     return item?.name??tool?.name??program?.name??(boss?boss.name+(sealed?' · '+this.jokerDefinition(sealed.definitionId).name:''):card?edition+rankLabel(card.rank)+SUIT_SYMBOL[card.suit]:HAND_LABELS[event.sourceDefinitionId as keyof typeof HAND_LABELS]??'计分牌');
   }
   private setAccumulator(value:Accumulator):void {
-    this.scoreHeat.setText(fractionText(value.H));this.scoreMult.setText('× '+fractionText(value.M));
+    this.scoreHeat.setText(readableFractionText(value.H));this.scoreMult.setText('× '+readableFractionText(value.M));
     this.setDisplayedProduct(Rational.fromJSON(value.H).multiply(Rational.fromJSON(value.M)).floor().toString());
   }
   private setDisplayedProduct(product:string):void {
@@ -1591,13 +1591,13 @@ export class GameScene extends Phaser.Scene {
       this.animate({targets:trail,alpha:{from:1,to:0},duration,ease:'Sine.easeIn'},context),
     ]).then(()=>{packet.destroy();trail.destroy();mask.destroy();safety.destroy();});
   }
-  /** Accumulator numbers roll between committed values; the exact fraction text always lands last. */
+  /** Accumulator numbers roll between committed values; the saved readable values always land last. */
   private rollAccumulator(event:ScoreEvent,duration:number,context:EffectContext):Promise<void> {
-    const h0=Number(event.before.H.n)/Number(event.before.H.d),h1=Number(event.after.H.n)/Number(event.after.H.d);
-    const m0=Number(event.before.M.n)/Number(event.before.M.d),m1=Number(event.after.M.n)/Number(event.after.M.d);
-    if(this.reducedMotion||duration<90||![h0,h1,m0,m1,h0*m0,h1*m1].every(Number.isFinite)||Math.max(h0,h1)*Math.max(m0,m1)>Number.MAX_SAFE_INTEGER){this.setAccumulator(event.after);return Promise.resolve();}
+    const h0=accumulatorRollValue(event.before.H),h1=accumulatorRollValue(event.after.H);
+    const m0=accumulatorRollValue(event.before.M),m1=accumulatorRollValue(event.after.M);
+    if(h0===undefined||h1===undefined||m0===undefined||m1===undefined||this.reducedMotion||duration<90||![h0,h1,m0,m1,h0*m0,h1*m1].every(Number.isFinite)||Math.max(h0,h1)*Math.max(m0,m1)>Number.MAX_SAFE_INTEGER){this.setAccumulator(event.after);return Promise.resolve();}
     if(!context.signal.aborted&&(h0!==h1||m0!==m1))this.audio.scoreRoll(duration/gameSession().speed,m0!==m1?'mult':'heat',event.operation==='multiply-multiplier'?2:1);
-    const trim=(value:number)=>String(Number(value.toFixed(2)));
+    const trim=(value:number)=>{const rounded=Number(value.toFixed(2));return (rounded===value?'':'≈')+String(rounded);};
     const roll={t:0};
     return this.animate({targets:roll,t:1,duration,ease:'Sine.easeOut',onUpdate:()=>{
       if(roll.t>=1){this.setAccumulator(event.after);return;}
@@ -1808,7 +1808,7 @@ export class GameScene extends Phaser.Scene {
   }
   private showOpeningScore(score:ScoreTrace,context:EffectContext):KeyCueCleanup {
     const event=score.events.find(e=>e.phase==='finalScore')!;
-    const key:JokerKeyHighlight={eventId:event.eventId,kind:'opening',heroId:this.run.characterId,cause:'本局前五手内真实结算',landing:fractionText(score.accumulator.H)+' × '+fractionText(score.accumulator.M)+' = '+heatText(score.finalScore),fact:{eventId:event.eventId,sourceInstanceId:event.sourceInstanceId,definitionId:'',title:(this.run.phase==='run-lost'?'本局结束 · 实际得分 · ':'开场得分 · ')+HAND_LABELS[score.handType],effect:'已结算 '+heatText(score.finalScore),condition:'真实已保存得分',destination:'本手实际得分',next:'继续自主选牌'}};
+    const key:JokerKeyHighlight={eventId:event.eventId,kind:'opening',heroId:this.run.characterId,cause:'本局前五手内真实结算',landing:readableScoreFormula(score.accumulator.H,score.accumulator.M,score.finalScore),fact:{eventId:event.eventId,sourceInstanceId:event.sourceInstanceId,definitionId:'',title:(this.run.phase==='run-lost'?'本局结束 · 实际得分 · ':'开场得分 · ')+HAND_LABELS[score.handType],effect:'已结算 '+heatText(score.finalScore),condition:'真实已保存得分',destination:'本手实际得分',next:'继续自主选牌'}};
     return this.showKeyHighlight(key,context);
   }
   private async award(score:ScoreTrace,presentation:NonNullable<GameScene['presentation']>,context:EffectContext):Promise<void> {
@@ -1820,7 +1820,7 @@ export class GameScene extends Phaser.Scene {
     await this.convergeScore(context);if(context.signal.aborted)return;
     this.setAccumulator(score.accumulator);this.setDisplayedProduct(score.finalScore);
     this.resultText.setText((presentation.replay?'回看 · ':celebration.cleared?celebration.label+' · ':HAND_LABELS[score.handType]+' · ')+'+'+heatText(score.finalScore));
-    this.breakdownText.setText(fractionText(score.accumulator.H)+' 热度 × '+fractionText(score.accumulator.M)+' 倍率 = '+heatText(score.finalScore));
+    this.breakdownText.setText(readableScoreFormula(score.accumulator.H,score.accumulator.M,score.finalScore));
     presentation.credited=true;this.updateHud();
     this.scoreTotal.setData('eventId',score.events.find(event=>event.phase==='finalScore')?.eventId).setData('eventPhase','award');
     this.scoreTotal.setColor(celebration.cleared&&celebration.tier>=2?'#80551f':tier?C.red:C.ink);

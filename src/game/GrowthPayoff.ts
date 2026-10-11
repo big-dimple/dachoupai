@@ -3,7 +3,7 @@ import type {ScoreTrace,ScoreEvent} from '../domain/scoreR2';
 import {r2JokerDefinitionFor} from '../domain/r2ContentProfiles';
 import {Rational} from '../domain/rational';
 import {buildGrowthProgress} from './BuildGrowthProgress';
-import {fractionText} from './scoreText';
+import {fractionText,readableFractionText} from './scoreText';
 export interface GrowthPayoff {instanceId:string;definitionId:string;name:string;unit:string;key:string;rootId:string;readLabel:string;readValue:string;readCount:number;before:string;after:string;caption:string;change:'gain'|'loss'|'same';delta:string}
 /** Last committed hand only. An absent read is not zero, and a replacement/current later balance cannot borrow this receipt. */
 export function growthPayoffs(state:R2RunState,trace:ScoreTrace|undefined=state.lastTrace??undefined):GrowthPayoff[]{
@@ -17,8 +17,8 @@ export function growthPayoffs(state:R2RunState,trace:ScoreTrace|undefined=state.
   if(Rational.fromJSON(a).compare(Rational.fromJSON(current))!==0)return [];
   const own=trace.events.filter(e=>e.sourceType==='joker'&&e.sourceInstanceId===row.instanceId&&e.sourceDefinitionId===row.definitionId),reads=own.filter(e=>e.operation===op.kind),values=[...new Set(reads.map(e=>fractionText(e.value)))];if(values.length>1)return [];
   const delta=Rational.fromJSON(a).add(Rational.fromJSON(b).multiply(new Rational(-1n))),change=delta.n>0n?'gain':delta.n<0n?'loss':'same',consumed=own.some(e=>e.operation==='consume-growth'),prefix=op.kind==='read-coefficient'?'×':'+';
-  const before=fractionText(b),after=fractionText(a),caption=change==='gain'?`新增+${fractionText(delta.toJSON())} · 下手生效`:change==='loss'?consumed?'本手已消耗 · 下手重新蓄':'已归零 · 下手重新养':reads.length?`未新增 · 已存${after}`:'未读取 · 未新增';
-  return [{instanceId:row.instanceId,definitionId:row.definitionId,name:row.name,unit:op.kind==='read-coefficient'?'系数':'target' in op&&op.target==='heat'?'热度':'倍率',key:row.key,rootId:trace.rootId,readLabel:reads.length>1?`每次 · ${reads.length}次`:reads.length?'上手读取':'未读取',readValue:reads.length?prefix+values[0]:'—',readCount:reads.length,before,after,caption,change,delta:fractionText(delta.toJSON())}];
+  const before=readableFractionText(b),after=readableFractionText(a),caption=change==='gain'?`新增+${readableFractionText(delta.toJSON())} · 下手生效`:change==='loss'?consumed?'本手已消耗 · 下手重新蓄':'已归零 · 下手重新养':reads.length?`未新增 · 已存${after}`:'未读取 · 未新增';
+  return [{instanceId:row.instanceId,definitionId:row.definitionId,name:row.name,unit:op.kind==='read-coefficient'?'系数':'target' in op&&op.target==='heat'?'热度':'倍率',key:row.key,rootId:trace.rootId,readLabel:reads.length>1?`每次 · ${reads.length}次`:reads.length?'上手读取':'未读取',readValue:reads.length?prefix+readableFractionText(reads[0].value):'—',readCount:reads.length,before,after,caption,change,delta:readableFractionText(delta.toJSON())}];
  });
 }
 /** One actual post-hand gain may stamp its original source, without extending the score timeline. */

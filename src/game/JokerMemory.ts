@@ -13,7 +13,7 @@ import {r2GrowthMinimums,type Condition,type Operation,type HookPhase,type R2Jok
 import {JOKER_COMPACT}from'./JokerCompact';
 import type {R2SelectionFacts}from'../domain/r2SelectionFacts';
 import{r2ScoreConditionMatches,r2TransactionConditionMatches,type R2ScoreConditionContext,type R2TransactionConditionContext}from'../domain/r2Conditions';
-import{HAND_LABELS}from'../content/handLabels';import{fractionText}from'./scoreText';import{R2_OFFER_USE,r2JokerStateText}from'./r2Help';import type{CardAbilityCopy}from'./CardCopy';
+import{HAND_LABELS}from'../content/handLabels';import{fractionText,readableFractionText}from'./scoreText';import{R2_OFFER_USE,r2JokerStateText}from'./r2Help';import type{CardAbilityCopy}from'./CardCopy';
 const phaseLabels:Record<HookPhase,string>={onCardScore:'计分牌逐张时',onHeldCard:'保留牌逐张时',jokerScore:'整手大丑牌时',afterHand:'实际结算后',onDiscard:'成功弃牌后',onStageClear:'实际过关时',onBuyOffer:'成功购买后',onSellJoker:'成功出售后',onReroll:'成功刷新后',beforeFailure:'失败前检查时'};
 export type MemoryStatus='待选牌'|'条件满足'|'当前未满足'|'事件时检查'|'计分受限';
 export interface JokerMemoryContext {
@@ -139,13 +139,12 @@ export function jokerMemory(definition:R2JokerDefinition,instance:R2JokerInstanc
  if(usageResetsOnEntry)saved=instance?.counters?.singleDiscards===undefined?'尚无保存的使用计数':'已保存使用记录 '+instance.counters.singleDiscards+' / '+limited.limit+' 次';
  const remainingUses=!instance?undefined:limited?.kind==='add-gold-limited'?ctx.inStage?Math.max(0,limited.limit-(instance.counters?.singleDiscards??0)):limited.limit:limited?.kind==='refund-hand-limited'?ctx.inStage&&ctx.quadRefundUsed?0:limited.limit:firstDiscard?ctx.inStage&&ctx.discardsUsed>0?0:1:undefined;
  const stored=Object.entries(savedGrowth).filter(([key,value])=>key==='coefficient'||BigInt(value.n)!==0n);
- // Compact saved numbers remain exact; oversized values lead to the state entry.
- const exact=(value:{n:string;d:string})=>{const r=Rational.fromJSON(value);return r.d===1n?r.n.toString():r.n+'/'+r.d;};
- const valueLabel=stored.map(([key,value])=>(key==='coefficient'?'系数×':key==='pendingHeat'?'蓄热':key==='multiplier'?'倍+':'热+')+exact(value)).join('／');
+ // First-layer labels are readable; saved/rules above keep their exact numbers.
+ const valueLabel=stored.map(([key,value])=>(key==='coefficient'?'系数×':key==='pendingHeat'?'蓄热':key==='multiplier'?'倍+':'热+')+readableFractionText(value)).join('／');
  const stateCandidates=combo&&definition.id==='f10'&&instance?[instance.counters?.rescueArmed?'救火待出牌':ctx.inStage&&(ctx.playIndex>0||ctx.discardsUsed>0)?'本场机会已用':'首弃前检查']:remaining!==undefined?['余'+remaining+'手']:remainingUses!==undefined?['余'+remainingUses+'次']:
   definition.id==='f09'&&ctx.inStage&&ctx.discardsUsed>0?['已弃牌']:
   instance&&definition.hooks.some(h=>h.operations.some(op=>op.kind==='reward-consumable-every-clears'))?[instance.counters?.stageClears===1?'下关赠票':'再2关赠票']:
-  valueLabel?[valueLabel,...(stored.length===1&&stored[0][0]==='coefficient'?['×'+exact(stored[0][1])]:[])]:[];
+  valueLabel?[valueLabel,...(stored.length===1&&stored[0][0]==='coefficient'?['×'+readableFractionText(stored[0][1])]:[])]:[];
  const incomeOp=definition.hooks.flatMap(h=>h.operations).find(o=>o.kind==='add-gold-per-held'||o.kind==='add-gold-per-capital');
  const comboLabels:Record<string,string[]>={a06:['两对以上×系数'],f10:['冷开局救火'],d12:[incomeOp?.kind==='add-gold-per-held'?'成型留≥'+incomeOp.minimum+'给金':'条件 ›'],e04:[incomeOp?.kind==='add-gold-per-capital'?'奖励前每'+incomeOp.divisor+'金+1':'条件 ›']};
  const groupIncome=definition.hooks.flatMap(h=>h.operations).find(o=>o.kind==='add-gold');

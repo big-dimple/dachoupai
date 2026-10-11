@@ -8,7 +8,7 @@ import type {Box} from './layout';
 import type {JokerKeyHighlight} from './JokerKeyHighlight';
 import type {R2RunState} from '../domain/r2Run';
 import type {ScoreTrace} from '../domain/scoreR2';
-import {fractionText} from './scoreText';
+import {readableFractionText} from './scoreText';
 import {multiplierOverview} from './ScoreEventCaption';
 import {selectionPortraitKey,avatarKey} from './portraits';
 import {jokerArtKey} from './jokerArt';
@@ -29,10 +29,10 @@ export function heroClimaxValue(state:R2RunState,trace:ScoreTrace,key:JokerKeyHi
  if(event.operation==='add-growth'){
   const before=trace.sourceJokers.find(j=>j.instanceId===event.sourceInstanceId)?.growth.multiplier??{n:'0',d:'1'},after=trace.jokers.find(j=>j.instanceId===event.sourceInstanceId)?.growth.multiplier;
   if(!before||!after)return;
-  return {label:'成长已保存',before:fractionText(before),after:fractionText(after),note:'下手生效 · 不加本手分'};
+  return {label:'成长已保存',before:readableFractionText(before),after:readableFractionText(after),note:'下手生效 · 不加本手分'};
  }
- if(event.before.M.n!==event.after.M.n||event.before.M.d!==event.after.M.d)return {label:'实际倍率',before:'×'+fractionText(event.before.M),after:'×'+fractionText(event.after.M),note:key.fact.effect};
- return {label:'实际热度',before:fractionText(event.before.H),after:fractionText(event.after.H),note:key.fact.effect};
+ if(event.before.M.n!==event.after.M.n||event.before.M.d!==event.after.M.d)return {label:'实际倍率',before:'×'+readableFractionText(event.before.M),after:'×'+readableFractionText(event.after.M),note:key.fact.effect};
+ return {label:'实际热度',before:readableFractionText(event.before.H),after:readableFractionText(event.after.H),note:key.fact.effect};
 }
 export interface HeroClimaxView {group:Phaser.GameObjects.Container;strike:()=>void;release:()=>Promise<void>;reduce:()=>void;dispose:()=>void}
 /** Big committed-event cut-in; no input handlers, camera shake or gameplay callbacks. */

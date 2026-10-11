@@ -30,7 +30,7 @@ import {r2BossText} from '../domain/r2Chapter';
 import {HAND_LABELS} from '../content/handLabels';
 import {rankLabel,SUIT_SYMBOL} from '../cards/types';
 import type {ScoreTrace} from '../domain/scoreR2';
-import {heatText,fractionText} from './scoreText';
+import {heatText,fractionText,readableFractionText} from './scoreText';
 import {r2ScoreOperationText} from './r2Help';
 import {runController,dispatchRun,startRun} from './runAdapter';
 import {gameSession} from './session';
@@ -232,7 +232,7 @@ export class IntermissionScene extends Phaser.Scene {
     this.paintSourceArt=()=>{paint();};const sourceView=paint();
     const hand=facts.trace?HAND_LABELS[facts.trace.handType]:'本场热度';
     v.text(center,main.y,hand,16,PAPER_CSS.jade,main.width-16).setOrigin(.5,0).setName('result/hand');
-    const formula=facts.trace?v.text(center,main.y+24,`${fractionText(facts.trace.accumulator.H)} 热度 × ${fractionText(facts.trace.accumulator.M)}`,14,PAPER_CSS.jade,main.width-8).setOrigin(.5,0).setName('result/formula'):undefined;
+    const formula=facts.trace?v.text(center,main.y+24,`${readableFractionText(facts.trace.accumulator.H)} 热度 × ${readableFractionText(facts.trace.accumulator.M)}`,14,PAPER_CSS.jade,main.width-8).setOrigin(.5,0).setName('result/formula'):undefined;
     const scoreY=formula?formula.y+formula.height+6:main.y+26,scoreSize=short?38:main.width<220?32:small?48:68;
     const score=v.text(center,scoreY,(facts.trace?'+':'')+heatText(facts.trace?.finalScore??this.result.stageHeat),scoreSize,facts.intensity>1?PAPER_CSS.red:PAPER_CSS.ink,main.width-8).setOrigin(.5,0).setFontFamily(SCORE_FONT).setFontStyle('bold').setName('result/score');
     for(let font=scoreSize;score.width>main.width-8&&font>24;)score.setFontSize(--font);
@@ -293,7 +293,7 @@ export class IntermissionScene extends Phaser.Scene {
       const operation=r2ScoreOperationText(e,e.sourceType==='joker'?this.jokerDefinition(e.sourceDefinitionId):undefined),status=['afterHand','beforeFailure','onStageClear'].includes(e.phase);
       return `${source} · ${operation}`+(status?'':` → ${fractionText(e.after.H)} 热度 × ${fractionText(e.after.M)} 倍率`);
     });
-    const summary=`${HAND_LABELS[trace.handType]} Lv.${trace.level} · ${heatText(trace.finalScore)} 热度\n打出：${trace.sets.playedIds.map(cardName).join('、')}\n实际计分：${trace.sets.activeScoringIds.map(cardName).join('、')||'无'}${trace.assist?'\n'+savedAssistCopy(trace):''}${impact?'\n\n'+impact:''}\n\n${fractionText(trace.accumulator.H)} × ${fractionText(trace.accumulator.M)} = ${heatText(trace.finalScore)}`;
+    const summary=`${HAND_LABELS[trace.handType]} Lv.${trace.level} · ${heatText(trace.finalScore)} 热度\n打出：${trace.sets.playedIds.map(cardName).join('、')}\n实际计分：${trace.sets.activeScoringIds.map(cardName).join('、')||'无'}${trace.assist?'\n'+savedAssistCopy(trace):''}${impact?'\n\n'+impact:''}\n\n精确热度 ${fractionText(trace.accumulator.H)}\n精确倍率 ${fractionText(trace.accumulator.M)}\n向下取整入账 ${trace.finalScore}`;
     // Read saved activity only; current gold and next-hand eligibility cannot explain this hand.
     const benefits=trace.sourceJokers.flatMap(joker=>{
       const copy=jokerAbilityCopyForRun(run,joker.definitionId,joker,recordedJokerMemoryContext(publicJokerMemoryContext(run,{hand:trace.cards,scoringLimited:false,deckSize:run.deckInstances.length-run.destroyedIds.length,jokerSlots:r2JokerCapacity(run),jokerCount:trace.sourceJokers.length}),trace.bossContext),trace.events);

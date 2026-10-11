@@ -1,0 +1,46 @@
+/** Controlled persisted inputs, actual PlayHand and existing details. Not a replay of the reported natural games. */
+import assert from 'node:assert/strict';
+import {createServer} from 'vite';
+import {chromium} from 'playwright';
+import {mkdir,writeFile,readFile} from 'node:fs/promises';
+import {gzipSync} from 'node:zlib';
+import {execFileSync} from 'node:child_process';
+import {tapUI,waitScene} from './ui.mjs';
+const normal=!!process.env.MULTIPLIER_NORMAL;
+const root=process.env.MULTIPLIER_ROOT??process.cwd(),out=process.env.MULTIPLIER_OUTPUT??'shots/readable-multiplier',baseline=!!process.env.MULTIPLIER_BASELINE;
+await mkdir(out,{recursive:true});
+const server=await createServer({root,mode:'e2e',server:{host:'127.0.0.1',port:5573,strictPort:true},logLevel:'error'});await server.listen();
+const {readableMultiplierFixture}=await server.ssrLoadModule('/harness/fixtures/readable-multiplier.ts'),{energySend}=await server.ssrLoadModule('/harness/fixtures/score-energy.ts'),{makeCheckpoint,readCheckpoint}=await server.ssrLoadModule('/src/application/checkpoint.ts');
+const browser=await chromium.launch({executablePath:'/usr/bin/chromium',args:['--disable-gpu','--disable-software-rasterizer']});
+const saved=p=>p.evaluate(async()=>{const c=window.__harness.game.registry.get('runController');return {state:c.state,journal:c.journal,storage:await c.store.read()};});
+const texts=(p,key)=>p.evaluate(key=>{const s=window.__harness.game.scene.getScene(key),all=[],walk=list=>{for(const o of list){all.push(o);if(o.list)walk(o.list);}};walk(s.children.list);return all.filter(o=>o.text!==undefined&&o.visible).map(o=>({name:o.name,text:o.text,bounds:o.getBounds()}));},key);
+const report={baseline,normal,source:execFileSync('git',['rev-parse','HEAD'],{cwd:root,encoding:'utf8'}).trim(),srcDiff:execFileSync('git',['diff','--stat','HEAD','--','src'],{cwd:root,encoding:'utf8'}),browser:browser.version(),scope:'Controlled public hand/levels/gold/saved growth, imported through production checkpoint; actual native PlayHand, full state/journal/storage comparison and reload. These are NOT the natural reported 447110 run or its fifth-stage path. Same CSS scale/DPR1/software Canvas; normal flag is recorded, otherwise low motion, PC1366x768 and phone390x740.',cases:[]},states=[];
+try{
+ for(const kind of normal?['group']:['group','straight'])for(const viewport of normal?[{width:1366,height:768}]:[{width:1366,height:768},{width:390,height:740}]){
+  const key=kind+'-'+viewport.width,p=await browser.newPage({viewport,deviceScaleFactor:1,hasTouch:viewport.width<800,reducedMotion:normal?'no-preference':'reduce'}),row={key,viewport,errors:[]};report.cases.push(row);p.setDefaultTimeout(25000);p.on('dialog',d=>d.accept());p.on('pageerror',e=>row.errors.push(e.stack));
+  try{
+   const f=readableMultiplierFixture(kind),action={type:'PlayHand',selectedIds:f.selectedIds},expected=energySend(f.state,action),cp=makeCheckpoint(f.state,[]);assert.ok(readCheckpoint(cp).ok);row.input=kind==='group'?'controlled two-pair Lv30, b10 heat64, gold20/e03, calibrated a06 coefficient':'controlled straight public ranks3–7, a06 coefficient839523/320000';
+   await p.goto('http://127.0.0.1:5573/?harness=1');await waitScene(p,'title');await p.locator('.run-menu-toggle').click();const sec=p.getByText('进度与存档',{exact:true}).locator('..');if(!await sec.evaluate(e=>e.open))await sec.locator('summary').click();const fc=p.waitForEvent('filechooser');await p.getByRole('button',{name:'导入本局',exact:true}).click();await(await fc).setFiles({name:'controlled-multiplier.json',mimeType:'application/json',buffer:Buffer.from(JSON.stringify(cp))});await waitScene(p,'game');
+   await p.waitForFunction(()=>{const s=window.__harness.game.scene.getScene('game');return s.ready&&!s.presentation&&s.cardViews.every(v=>!v.dealing&&!s.tweens.isTweening(v.container));});
+   const intro=p.getByRole('button',{name:'开始出牌',exact:true});if(await intro.count())await intro.click();if(await p.locator('.detail-dialog[open]').count())await p.getByRole('button',{name:'关闭',exact:true}).click();
+   const initial=await saved(p);assert.deepEqual(initial.state,f.state);row.tableTexts=await texts(p,'game');await p.screenshot({path:out+'/'+key+'-table.png',scale:'css'});
+   if(kind==='straight')assert.ok(row.tableTexts.some(t=>t.text.includes(baseline?'系数×839523/320000':'系数×≈2.62')),'actual held source label');
+   await p.evaluate(()=>{window.__multiplierFrames=[];window.__harness.game.events.on('poststep',()=>{const s=window.__harness.game.scene.getScene('game');if(s.presentation&&window.__multiplierFrames.length<240)window.__multiplierFrames.push({heat:s.scoreHeat.text,multiplier:s.scoreMult.text,total:s.scoreTotal.text});});});
+   for(const id of f.selectedIds)await tapUI(p,'game','card/'+id,viewport.width<800);
+   await tapUI(p,'game','action/play',viewport.width<800);await waitScene(p,'intermission');await p.waitForFunction(()=>window.__harness.game.scene.getScene('intermission').ready);await p.waitForTimeout(250);
+   row.frames=await p.evaluate(()=>window.__multiplierFrames);assert.ok(row.frames.length);assert.ok(row.frames.every(f=>!Object.values(f).some(t=>/NaN|Infinity/.test(t))));
+   const final=await saved(p);assert.deepEqual(final.state,expected);row.accumulator=expected.lastTrace.accumulator;row.finalScore=expected.lastTrace.finalScore;row.resultTexts=await texts(p,'intermission');
+   const formula=row.resultTexts.find(t=>t.name==='result/formula'),score=row.resultTexts.find(t=>t.name==='result/score');assert.ok(formula&&score);assert.equal(score.text,'+'+expected.lastTrace.finalScore.replace(/\B(?=(\d{3})+(?!\d))/g,','));
+   if(kind==='group'){assert.equal(expected.lastTrace.finalScore,'447110');assert.equal(formula.text,baseline?'781 热度 × 36,639/64':'781 热度 × ≈572.48');}
+   for(const t of [formula,score]){const b=t.bounds;assert.ok(b.x>=0&&b.y>=0&&b.x+b.width<=viewport.width+.1&&b.y+b.height<=viewport.height+.1);}
+   assert.ok(formula.bounds.y+formula.bounds.height<=score.bounds.y);await p.screenshot({path:out+'/'+key+'-result.png',scale:'css'});
+   await tapUI(p,'intermission','action/last-hand',viewport.width<800);row.details=await p.locator('.detail-dialog[open]').innerText();
+   const exact=kind==='group'?'36,639/64':'839,523/320,000';assert.ok(row.details.includes(exact),'existing detail keeps precise value');
+   await p.screenshot({path:out+'/'+key+'-details.png',scale:'css'});assert.deepEqual(await saved(p),final,'details are read-only');
+   await p.getByRole('button',{name:'关闭',exact:true}).click();await p.reload();await waitScene(p,'title');assert.deepEqual(await saved(p),final,'reload preserves exact receipt');
+   assert.deepEqual(row.errors,[]);states.push({key,initial,final});row.status='PASS';
+  }catch(e){row.status='FAIL';row.error=e.stack;await p.screenshot({path:out+'/'+key+'-FAIL.png',scale:'css'});throw e;}finally{await p.close();}
+ }
+ if(process.env.MULTIPLIER_COMPARE){const other=JSON.parse(await readFile(process.env.MULTIPLIER_COMPARE,'utf8'));assert.deepEqual(states,other);report.baselineStateJournalStorageEqual=true;}
+ report.status='PASS';
+}catch(e){report.status='FAIL';report.error=e.stack;process.exitCode=1;}finally{await writeFile(out+'/report.json',JSON.stringify(report,null,2)+'\n');await writeFile(out+'/states.json',JSON.stringify(states));await writeFile(out+'/states.json.gz',gzipSync(JSON.stringify(states)));console.log(JSON.stringify({status:report.status,error:report.error,cases:report.cases.map(r=>({key:r.key,status:r.status,error:r.error}))}));await browser.close();await server.close();}
