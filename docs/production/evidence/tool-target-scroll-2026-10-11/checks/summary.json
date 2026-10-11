@@ -1,0 +1,108 @@
+{
+  "selection_source": "5972724ddb50f4d8b0ee0ee1d5675a6a7b2686a7",
+  "product_blob": "0759384753976407bc938dee6aaa48c44970599b",
+  "selection_status": "PASS",
+  "scenes": 12,
+  "operations": 56,
+  "cases": [
+    {
+      "width": 390,
+      "tool": "T08",
+      "status": "PASS",
+      "operations": 7
+    },
+    {
+      "width": 390,
+      "tool": "T02",
+      "status": "PASS",
+      "operations": 6
+    },
+    {
+      "width": 390,
+      "tool": "S03",
+      "status": "PASS",
+      "operations": 2
+    },
+    {
+      "width": 390,
+      "tool": "S01",
+      "status": "PASS",
+      "operations": 4
+    },
+    {
+      "width": 390,
+      "tool": "S02",
+      "status": "PASS",
+      "operations": 5
+    },
+    {
+      "width": 390,
+      "tool": "S07",
+      "status": "PASS",
+      "operations": 4
+    },
+    {
+      "width": 1366,
+      "tool": "T08",
+      "status": "PASS",
+      "operations": 7
+    },
+    {
+      "width": 1366,
+      "tool": "T02",
+      "status": "PASS",
+      "operations": 6
+    },
+    {
+      "width": 1366,
+      "tool": "S03",
+      "status": "PASS",
+      "operations": 2
+    },
+    {
+      "width": 1366,
+      "tool": "S01",
+      "status": "PASS",
+      "operations": 4
+    },
+    {
+      "width": 1366,
+      "tool": "S02",
+      "status": "PASS",
+      "operations": 5
+    },
+    {
+      "width": 1366,
+      "tool": "S07",
+      "status": "PASS",
+      "operations": 4
+    }
+  ],
+  "save_source": "e875770083a4c7cd9b46a96a69456a1d513491fc",
+  "save_cases": [
+    {
+      "width": 390,
+      "scene": "shop",
+      "status": "PASS",
+      "cold_recovery": true
+    },
+    {
+      "width": 390,
+      "scene": "game",
+      "status": "PASS",
+      "cold_recovery": true
+    },
+    {
+      "width": 1366,
+      "scene": "shop",
+      "status": "PASS",
+      "cold_recovery": true
+    },
+    {
+      "width": 1366,
+      "scene": "game",
+      "status": "PASS",
+      "cold_recovery": true
+    }
+  ]
+}
