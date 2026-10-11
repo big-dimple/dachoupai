@@ -1,0 +1,683 @@
+{
+  "head": "3cfd32c8a3bc024bd84661db52b90ab9ec976974",
+  "scope": "controlled domain audit, not browser play or balance; original commands and current identity",
+  "selectedIds": [
+    "spades-4"
+  ],
+  "beforeOrder": [
+    "ordered/f03",
+    "ordered/f09"
+  ],
+  "afterOrder": [
+    "ordered/f09",
+    "ordered/f03"
+  ],
+  "beforeTrace": {
+    "erxiangHandoff": {
+      "targetId": null,
+      "beforeUsed": false,
+      "points": 0,
+      "afterUsed": false
+    },
+    "rulesVersion": "r2",
+    "rootId": "owned-order-fixed/hand/owned-order-fixed/command/7",
+    "handType": "high-card",
+    "level": 1,
+    "sets": {
+      "playedIds": [
+        "spades-4"
+      ],
+      "scoringIds": [
+        "spades-4"
+      ],
+      "activeScoringIds": [
+        "spades-4"
+      ],
+      "heldIds": [
+        "hearts-7",
+        "clubs-13",
+        "clubs-7",
+        "spades-12",
+        "clubs-6",
+        "hearts-4",
+        "hearts-14"
+      ]
+    },
+    "finalScore": "108",
+    "accumulator": {
+      "H": {
+        "n": "24",
+        "d": "1"
+      },
+      "M": {
+        "n": "9",
+        "d": "2"
+      }
+    },
+    "events": [
+      {
+        "eventId": "owned-order-fixed/hand/owned-order-fixed/command/7/event/0",
+        "rootId": "owned-order-fixed/hand/owned-order-fixed/command/7",
+        "rootEventId": "owned-order-fixed/hand/owned-order-fixed/command/7/event/0",
+        "phase": "base",
+        "sourceType": "rule",
+        "sourceDefinitionId": "high-card",
+        "sourceInstanceId": "owned-order-fixed",
+        "operation": "base",
+        "value": {
+          "n": "20",
+          "d": "1"
+        },
+        "before": {
+          "H": {
+            "n": "0",
+            "d": "1"
+          },
+          "M": {
+            "n": "0",
+            "d": "1"
+          }
+        },
+        "after": {
+          "H": {
+            "n": "20",
+            "d": "1"
+          },
+          "M": {
+            "n": "1",
+            "d": "1"
+          }
+        },
+        "reasonKey": "high-card.base",
+        "visibleCondition": {
+          "kind": "always"
+        },
+        "retriggerDepth": 0
+      },
+      {
+        "eventId": "owned-order-fixed/hand/owned-order-fixed/command/7/event/1",
+        "rootId": "owned-order-fixed/hand/owned-order-fixed/command/7",
+        "rootEventId": "owned-order-fixed/hand/owned-order-fixed/command/7/event/1",
+        "phase": "onCardScore",
+        "sourceType": "card",
+        "sourceDefinitionId": "rank-4",
+        "sourceInstanceId": "spades-4",
+        "targetCardId": "spades-4",
+        "operation": "add-heat",
+        "value": {
+          "n": "4",
+          "d": "1"
+        },
+        "before": {
+          "H": {
+            "n": "20",
+            "d": "1"
+          },
+          "M": {
+            "n": "1",
+            "d": "1"
+          }
+        },
+        "after": {
+          "H": {
+            "n": "24",
+            "d": "1"
+          },
+          "M": {
+            "n": "1",
+            "d": "1"
+          }
+        },
+        "reasonKey": "rank-4.add-heat",
+        "visibleCondition": {
+          "kind": "always"
+        },
+        "retriggerDepth": 0
+      },
+      {
+        "eventId": "owned-order-fixed/hand/owned-order-fixed/command/7/event/2",
+        "rootId": "owned-order-fixed/hand/owned-order-fixed/command/7",
+        "rootEventId": "owned-order-fixed/hand/owned-order-fixed/command/7/event/2",
+        "phase": "jokerScore",
+        "sourceType": "joker",
+        "sourceDefinitionId": "f03",
+        "sourceInstanceId": "ordered/f03",
+        "operation": "add-multiplier",
+        "value": {
+          "n": "2",
+          "d": "1"
+        },
+        "before": {
+          "H": {
+            "n": "24",
+            "d": "1"
+          },
+          "M": {
+            "n": "1",
+            "d": "1"
+          }
+        },
+        "after": {
+          "H": {
+            "n": "24",
+            "d": "1"
+          },
+          "M": {
+            "n": "3",
+            "d": "1"
+          }
+        },
+        "reasonKey": "f03.add-multiplier",
+        "visibleCondition": {
+          "kind": "resource",
+          "resource": "play-index",
+          "equals": 1
+        },
+        "retriggerDepth": 0
+      },
+      {
+        "eventId": "owned-order-fixed/hand/owned-order-fixed/command/7/event/3",
+        "rootId": "owned-order-fixed/hand/owned-order-fixed/command/7",
+        "rootEventId": "owned-order-fixed/hand/owned-order-fixed/command/7/event/3",
+        "phase": "jokerScore",
+        "sourceType": "joker",
+        "sourceDefinitionId": "f09",
+        "sourceInstanceId": "ordered/f09",
+        "operation": "multiply-multiplier",
+        "value": {
+          "n": "3",
+          "d": "2"
+        },
+        "before": {
+          "H": {
+            "n": "24",
+            "d": "1"
+          },
+          "M": {
+            "n": "3",
+            "d": "1"
+          }
+        },
+        "after": {
+          "H": {
+            "n": "24",
+            "d": "1"
+          },
+          "M": {
+            "n": "9",
+            "d": "2"
+          }
+        },
+        "reasonKey": "f09.multiply-multiplier",
+        "visibleCondition": {
+          "kind": "resource",
+          "resource": "discards-used",
+          "equals": 0
+        },
+        "retriggerDepth": 0
+      },
+      {
+        "eventId": "owned-order-fixed/hand/owned-order-fixed/command/7/event/4",
+        "rootId": "owned-order-fixed/hand/owned-order-fixed/command/7",
+        "rootEventId": "owned-order-fixed/hand/owned-order-fixed/command/7/event/4",
+        "phase": "finalScore",
+        "sourceType": "rule",
+        "sourceDefinitionId": "high-card",
+        "sourceInstanceId": "owned-order-fixed",
+        "operation": "final-score",
+        "value": {
+          "n": "108",
+          "d": "1"
+        },
+        "before": {
+          "H": {
+            "n": "24",
+            "d": "1"
+          },
+          "M": {
+            "n": "9",
+            "d": "2"
+          }
+        },
+        "after": {
+          "H": {
+            "n": "24",
+            "d": "1"
+          },
+          "M": {
+            "n": "9",
+            "d": "2"
+          }
+        },
+        "reasonKey": "high-card.final-score",
+        "visibleCondition": {
+          "kind": "always"
+        },
+        "retriggerDepth": 0
+      }
+    ],
+    "jokers": [
+      {
+        "instanceId": "ordered/f03",
+        "definitionId": "f03",
+        "paidPrice": 4,
+        "growth": {}
+      },
+      {
+        "instanceId": "ordered/f09",
+        "definitionId": "f09",
+        "paidPrice": 4,
+        "growth": {}
+      }
+    ],
+    "rng": {
+      "algorithm": "fnv1a-mulberry32-v1",
+      "state": 2244223645
+    },
+    "goldDelta": 0,
+    "destroyedCardIds": [],
+    "destroyedJokerIds": [],
+    "cards": [
+      {
+        "id": "spades-4",
+        "suit": "spades",
+        "rank": 4
+      },
+      {
+        "id": "hearts-7",
+        "suit": "hearts",
+        "rank": 7
+      },
+      {
+        "id": "clubs-13",
+        "suit": "clubs",
+        "rank": 13
+      },
+      {
+        "id": "clubs-7",
+        "suit": "clubs",
+        "rank": 7
+      },
+      {
+        "id": "spades-12",
+        "suit": "spades",
+        "rank": 12
+      },
+      {
+        "id": "clubs-6",
+        "suit": "clubs",
+        "rank": 6
+      },
+      {
+        "id": "hearts-4",
+        "suit": "hearts",
+        "rank": 4
+      },
+      {
+        "id": "hearts-14",
+        "suit": "hearts",
+        "rank": 14
+      }
+    ],
+    "sourceJokers": [
+      {
+        "instanceId": "ordered/f03",
+        "definitionId": "f03",
+        "paidPrice": 4,
+        "growth": {}
+      },
+      {
+        "instanceId": "ordered/f09",
+        "definitionId": "f09",
+        "paidPrice": 4,
+        "growth": {}
+      }
+    ],
+    "bossContext": {
+      "boss": null,
+      "previousHandType": null,
+      "sealedJokerIds": [],
+      "challengeDisabledJokerId": null
+    },
+    "combo": {
+      "goldBeforeRewards": null
+    }
+  },
+  "afterTrace": {
+    "erxiangHandoff": {
+      "targetId": null,
+      "beforeUsed": false,
+      "points": 0,
+      "afterUsed": false
+    },
+    "rulesVersion": "r2",
+    "rootId": "owned-order-fixed/hand/owned-order-fixed/command/8",
+    "handType": "high-card",
+    "level": 1,
+    "sets": {
+      "playedIds": [
+        "spades-4"
+      ],
+      "scoringIds": [
+        "spades-4"
+      ],
+      "activeScoringIds": [
+        "spades-4"
+      ],
+      "heldIds": [
+        "hearts-7",
+        "clubs-13",
+        "clubs-7",
+        "spades-12",
+        "clubs-6",
+        "hearts-4",
+        "hearts-14"
+      ]
+    },
+    "finalScore": "84",
+    "accumulator": {
+      "H": {
+        "n": "24",
+        "d": "1"
+      },
+      "M": {
+        "n": "7",
+        "d": "2"
+      }
+    },
+    "events": [
+      {
+        "eventId": "owned-order-fixed/hand/owned-order-fixed/command/8/event/0",
+        "rootId": "owned-order-fixed/hand/owned-order-fixed/command/8",
+        "rootEventId": "owned-order-fixed/hand/owned-order-fixed/command/8/event/0",
+        "phase": "base",
+        "sourceType": "rule",
+        "sourceDefinitionId": "high-card",
+        "sourceInstanceId": "owned-order-fixed",
+        "operation": "base",
+        "value": {
+          "n": "20",
+          "d": "1"
+        },
+        "before": {
+          "H": {
+            "n": "0",
+            "d": "1"
+          },
+          "M": {
+            "n": "0",
+            "d": "1"
+          }
+        },
+        "after": {
+          "H": {
+            "n": "20",
+            "d": "1"
+          },
+          "M": {
+            "n": "1",
+            "d": "1"
+          }
+        },
+        "reasonKey": "high-card.base",
+        "visibleCondition": {
+          "kind": "always"
+        },
+        "retriggerDepth": 0
+      },
+      {
+        "eventId": "owned-order-fixed/hand/owned-order-fixed/command/8/event/1",
+        "rootId": "owned-order-fixed/hand/owned-order-fixed/command/8",
+        "rootEventId": "owned-order-fixed/hand/owned-order-fixed/command/8/event/1",
+        "phase": "onCardScore",
+        "sourceType": "card",
+        "sourceDefinitionId": "rank-4",
+        "sourceInstanceId": "spades-4",
+        "targetCardId": "spades-4",
+        "operation": "add-heat",
+        "value": {
+          "n": "4",
+          "d": "1"
+        },
+        "before": {
+          "H": {
+            "n": "20",
+            "d": "1"
+          },
+          "M": {
+            "n": "1",
+            "d": "1"
+          }
+        },
+        "after": {
+          "H": {
+            "n": "24",
+            "d": "1"
+          },
+          "M": {
+            "n": "1",
+            "d": "1"
+          }
+        },
+        "reasonKey": "rank-4.add-heat",
+        "visibleCondition": {
+          "kind": "always"
+        },
+        "retriggerDepth": 0
+      },
+      {
+        "eventId": "owned-order-fixed/hand/owned-order-fixed/command/8/event/2",
+        "rootId": "owned-order-fixed/hand/owned-order-fixed/command/8",
+        "rootEventId": "owned-order-fixed/hand/owned-order-fixed/command/8/event/2",
+        "phase": "jokerScore",
+        "sourceType": "joker",
+        "sourceDefinitionId": "f09",
+        "sourceInstanceId": "ordered/f09",
+        "operation": "multiply-multiplier",
+        "value": {
+          "n": "3",
+          "d": "2"
+        },
+        "before": {
+          "H": {
+            "n": "24",
+            "d": "1"
+          },
+          "M": {
+            "n": "1",
+            "d": "1"
+          }
+        },
+        "after": {
+          "H": {
+            "n": "24",
+            "d": "1"
+          },
+          "M": {
+            "n": "3",
+            "d": "2"
+          }
+        },
+        "reasonKey": "f09.multiply-multiplier",
+        "visibleCondition": {
+          "kind": "resource",
+          "resource": "discards-used",
+          "equals": 0
+        },
+        "retriggerDepth": 0
+      },
+      {
+        "eventId": "owned-order-fixed/hand/owned-order-fixed/command/8/event/3",
+        "rootId": "owned-order-fixed/hand/owned-order-fixed/command/8",
+        "rootEventId": "owned-order-fixed/hand/owned-order-fixed/command/8/event/3",
+        "phase": "jokerScore",
+        "sourceType": "joker",
+        "sourceDefinitionId": "f03",
+        "sourceInstanceId": "ordered/f03",
+        "operation": "add-multiplier",
+        "value": {
+          "n": "2",
+          "d": "1"
+        },
+        "before": {
+          "H": {
+            "n": "24",
+            "d": "1"
+          },
+          "M": {
+            "n": "3",
+            "d": "2"
+          }
+        },
+        "after": {
+          "H": {
+            "n": "24",
+            "d": "1"
+          },
+          "M": {
+            "n": "7",
+            "d": "2"
+          }
+        },
+        "reasonKey": "f03.add-multiplier",
+        "visibleCondition": {
+          "kind": "resource",
+          "resource": "play-index",
+          "equals": 1
+        },
+        "retriggerDepth": 0
+      },
+      {
+        "eventId": "owned-order-fixed/hand/owned-order-fixed/command/8/event/4",
+        "rootId": "owned-order-fixed/hand/owned-order-fixed/command/8",
+        "rootEventId": "owned-order-fixed/hand/owned-order-fixed/command/8/event/4",
+        "phase": "finalScore",
+        "sourceType": "rule",
+        "sourceDefinitionId": "high-card",
+        "sourceInstanceId": "owned-order-fixed",
+        "operation": "final-score",
+        "value": {
+          "n": "84",
+          "d": "1"
+        },
+        "before": {
+          "H": {
+            "n": "24",
+            "d": "1"
+          },
+          "M": {
+            "n": "7",
+            "d": "2"
+          }
+        },
+        "after": {
+          "H": {
+            "n": "24",
+            "d": "1"
+          },
+          "M": {
+            "n": "7",
+            "d": "2"
+          }
+        },
+        "reasonKey": "high-card.final-score",
+        "visibleCondition": {
+          "kind": "always"
+        },
+        "retriggerDepth": 0
+      }
+    ],
+    "jokers": [
+      {
+        "instanceId": "ordered/f09",
+        "definitionId": "f09",
+        "paidPrice": 4,
+        "growth": {}
+      },
+      {
+        "instanceId": "ordered/f03",
+        "definitionId": "f03",
+        "paidPrice": 4,
+        "growth": {}
+      }
+    ],
+    "rng": {
+      "algorithm": "fnv1a-mulberry32-v1",
+      "state": 2244223645
+    },
+    "goldDelta": 0,
+    "destroyedCardIds": [],
+    "destroyedJokerIds": [],
+    "cards": [
+      {
+        "id": "spades-4",
+        "suit": "spades",
+        "rank": 4
+      },
+      {
+        "id": "hearts-7",
+        "suit": "hearts",
+        "rank": 7
+      },
+      {
+        "id": "clubs-13",
+        "suit": "clubs",
+        "rank": 13
+      },
+      {
+        "id": "clubs-7",
+        "suit": "clubs",
+        "rank": 7
+      },
+      {
+        "id": "spades-12",
+        "suit": "spades",
+        "rank": 12
+      },
+      {
+        "id": "clubs-6",
+        "suit": "clubs",
+        "rank": 6
+      },
+      {
+        "id": "hearts-4",
+        "suit": "hearts",
+        "rank": 4
+      },
+      {
+        "id": "hearts-14",
+        "suit": "hearts",
+        "rank": 14
+      }
+    ],
+    "sourceJokers": [
+      {
+        "instanceId": "ordered/f09",
+        "definitionId": "f09",
+        "paidPrice": 4,
+        "growth": {}
+      },
+      {
+        "instanceId": "ordered/f03",
+        "definitionId": "f03",
+        "paidPrice": 4,
+        "growth": {}
+      }
+    ],
+    "bossContext": {
+      "boss": null,
+      "previousHandType": null,
+      "sealedJokerIds": [],
+      "challengeDisabledJokerId": null
+    },
+    "combo": {
+      "goldBeforeRewards": null
+    }
+  },
+  "assertions": [
+    "identical actual hand/RNG before play",
+    "real shop ReorderJokers accepted",
+    "same selected actual card; changed score follows changed hook order",
+    "no scoring/command source modified"
+  ]
+}

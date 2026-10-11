@@ -1,0 +1,27 @@
+[
+  {
+    "attempt": 1,
+    "error": "AssertionError [ERR_ASSERTION]: long-hold-release no accidental detail\n\n1 !== 0\n"
+  },
+  {
+    "attempt": 2,
+    "error": "TimeoutError: locator.waitFor: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('.detail-dialog[open]') to be visible\u001b[22m\n"
+  },
+  {
+    "attempt": 3,
+    "error": "Error: page.waitForFunction: TypeError: Cannot read properties of undefined (reading 'game')\n    at eval (eval at predicate (eval at evaluate (:311:30)), <anonymous>:1:22)\n    at predicate (eval at evaluate (:311:30), <anonymous>:7:27)\n    at next (eval at evaluate (:311:30), <anonymous>:29:33)\n    at eval (eval at evaluate (:311:30), <anonymous>:42:13)\n    at UtilityScript.evaluate (<anonymous>:313:16)\n    at UtilityScript.<anonymous> (<anonymous>:1:44)"
+  },
+  {
+    "attempt": 4,
+    "error": "AssertionError [ERR_ASSERTION]: capture preserves full saved state\n+ actual - expected\n... Skipped lines\n\n  {\n    journal: [\n      {\n        action: {\n          ids: [\n...\n      },\n+     {\n+       action: {\n+         ids: [\n+           'owned-drag/1',\n+           'owned-drag/3',\n+           'owned-drag/2',\n+           'owned-drag/0',\n+           'owned-drag/4'\n+         ],\n+         type: 'ReorderJokers'\n+       },\n+       commandId: 'owned-drag-fixed/command/7',\n+       expectedSeq: 6,\n+       runId: 'owned-drag-fixed'\n+     }\n    ],\n    state: {\n      boss: {\n        definitionId: 'B04',\n        disabledSuit: null\n...\n      characterId: 'erxiang',\n+     commandSeq: 7,\n-     commandSeq: 6,\n      consumables: [],\n      contentHash: 'json-fnv-v1:69c29f5cd54bb160',\n      contentVersion: 'quality-r2-basic-suit-choice-v1',\n      deckInstances: [\n        {\n...\n        {\n-         definitionId: 'e01',\n-         growth: {},\n-         instanceId: 'owned-drag/2',\n-         paidPrice: 4\n-       },\n-       {\n          definitionId: 'b10',\n          growth: {},\n          instanceId: 'owned-drag/1',\n          paidPrice: 4\n        },\n...\n        {\n+         definitionId: 'e01',\n+         growth: {},\n+         instanceId: 'owned-drag/2',\n+         paidPrice: 4\n+       },\n+       {\n          definitionId: 'b03',\n          growth: {},\n          instanceId: 'owned-drag/0',\n          paidPrice: 4\n        },\n...\n        },\n+       {\n+         commandId: 'owned-drag-fixed/command/7',\n+         fingerprint: 'json-fnv-v1:3f4d51b2f5a5cf06',\n+         seq: 7\n+       }\n      ],\n      rng: {\n        challenge: {\n          algorithm: 'fnv1a-mulberry32-v1',\n          state: 3123875784\n"
+  },
+  {
+    "attempt": 5,
+    "error": "AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n\n1 !== 0\n"
+  },
+  {
+    "attempt": 6,
+    "error": "AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n\n1 !== 0\n",
+    "classification": "offer long-press inspection is preserved; native protocol timing can cross the 350 ms existing inspection threshold. Owned-drag no-detail guards remain strict; offer audit guards full state and closes optional unchanged inspection."
+  }
+]

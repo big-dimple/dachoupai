@@ -1,0 +1,727 @@
+{
+  "head": "3cfd32c8a3bc024bd84661db52b90ab9ec976974",
+  "sourceTree": "10aad2d6088e088d822d52bcb688bbc3d58cc1af",
+  "modified": "",
+  "baseline": false,
+  "scope": "Controlled current-identity five-owned checkpoint; real mouse/CDP touch/DOM inputs. Full state/journal/local storage vs actual applyCommand; no natural acquisition, 18-combination, physical device or human acceptance.",
+  "cases": [
+    {
+      "width": 1366,
+      "height": 768,
+      "touch": false,
+      "checks": [
+        {
+          "screenshot": "1366x768-idle.png"
+        },
+        {
+          "screenshot": "1366x768-dragging.png"
+        },
+        {
+          "screenshot": "1366x768-dropped.png"
+        },
+        {
+          "label": "single committed real reorder; exact full state/journal matches domain command",
+          "status": "PASS"
+        },
+        {
+          "label": "off-row release",
+          "status": "PASS"
+        },
+        {
+          "label": "same-slot",
+          "status": "PASS"
+        },
+        {
+          "label": "gap",
+          "status": "PASS"
+        },
+        {
+          "label": "prehold-vertical",
+          "status": "PASS"
+        },
+        {
+          "label": "long-hold-release",
+          "status": "PASS"
+        },
+        {
+          "label": "pointercancel",
+          "status": "PASS"
+        },
+        {
+          "label": "escape",
+          "status": "PASS"
+        },
+        {
+          "label": "blur",
+          "status": "PASS"
+        },
+        {
+          "label": "hidden",
+          "status": "PASS"
+        },
+        {
+          "label": "capture",
+          "status": "PASS"
+        },
+        {
+          "label": "multitouch",
+          "status": "PASS"
+        },
+        {
+          "label": "missed-release-recovery",
+          "status": "PASS"
+        },
+        {
+          "label": "resize",
+          "status": "PASS"
+        },
+        {
+          "label": "modal",
+          "status": "PASS"
+        },
+        {
+          "label": "ordinary tap inspects; left/right accessible fallback still saves",
+          "status": "PASS"
+        },
+        {
+          "label": "unbought merchandise cannot reorder or buy on drag; original long-press inspection preserved",
+          "originalInspectionOpened": false,
+          "status": "PASS"
+        },
+        {
+          "label": "reload restores full state and journal",
+          "status": "PASS"
+        }
+      ],
+      "errors": [],
+      "preview": {
+        "touchAction": "pan-y",
+        "sourceId": "owned-drag/0",
+        "hint": "松手换位 · 移出持牌区取消",
+        "arts": [
+          {
+            "id": "owned-drag/0",
+            "x": 588,
+            "y": 120,
+            "scale": 1.04
+          },
+          {
+            "id": "owned-drag/1",
+            "x": 312,
+            "y": 120,
+            "scale": 1
+          },
+          {
+            "id": "owned-drag/2",
+            "x": 404,
+            "y": 120,
+            "scale": 1
+          },
+          {
+            "id": "owned-drag/3",
+            "x": 496,
+            "y": 120,
+            "scale": 1
+          },
+          {
+            "id": "owned-drag/4",
+            "x": 680,
+            "y": 120,
+            "scale": 1
+          }
+        ],
+        "insertion": true
+      },
+      "status": "PASS",
+      "initialSummary": {
+        "commandSeq": 4,
+        "ids": [
+          "owned-drag/0",
+          "owned-drag/1",
+          "owned-drag/2",
+          "owned-drag/3",
+          "owned-drag/4"
+        ],
+        "gold": 6,
+        "journalLength": 0
+      },
+      "duringSummary": {
+        "commandSeq": 4,
+        "ids": [
+          "owned-drag/0",
+          "owned-drag/1",
+          "owned-drag/2",
+          "owned-drag/3",
+          "owned-drag/4"
+        ],
+        "gold": 6,
+        "journalLength": 0
+      },
+      "movedSummary": {
+        "commandSeq": 5,
+        "ids": [
+          "owned-drag/1",
+          "owned-drag/2",
+          "owned-drag/3",
+          "owned-drag/0",
+          "owned-drag/4"
+        ],
+        "gold": 6,
+        "journalLength": 1
+      },
+      "outOfRowSummary": {
+        "commandSeq": 5,
+        "ids": [
+          "owned-drag/1",
+          "owned-drag/2",
+          "owned-drag/3",
+          "owned-drag/0",
+          "owned-drag/4"
+        ],
+        "gold": 6,
+        "journalLength": 1
+      }
+    },
+    {
+      "width": 390,
+      "height": 740,
+      "touch": true,
+      "checks": [
+        {
+          "screenshot": "390x740-idle.png"
+        },
+        {
+          "screenshot": "390x740-lifted.png"
+        },
+        {
+          "screenshot": "390x740-dragging.png"
+        },
+        {
+          "screenshot": "390x740-dropped.png"
+        },
+        {
+          "label": "single committed real reorder; exact full state/journal matches domain command",
+          "status": "PASS"
+        },
+        {
+          "label": "off-row release",
+          "status": "PASS"
+        },
+        {
+          "label": "same-slot",
+          "status": "PASS"
+        },
+        {
+          "label": "gap",
+          "status": "PASS"
+        },
+        {
+          "label": "prehold-vertical",
+          "status": "PASS"
+        },
+        {
+          "label": "long-hold-release",
+          "status": "PASS"
+        },
+        {
+          "label": "pointercancel",
+          "status": "PASS"
+        },
+        {
+          "label": "escape",
+          "status": "PASS"
+        },
+        {
+          "label": "blur",
+          "status": "PASS"
+        },
+        {
+          "label": "hidden",
+          "status": "PASS"
+        },
+        {
+          "label": "capture",
+          "status": "PASS"
+        },
+        {
+          "label": "multitouch",
+          "status": "PASS"
+        },
+        {
+          "label": "missed-release-recovery",
+          "status": "PASS"
+        },
+        {
+          "label": "resize",
+          "status": "PASS"
+        },
+        {
+          "label": "modal",
+          "status": "PASS"
+        },
+        {
+          "label": "ordinary tap inspects; left/right accessible fallback still saves",
+          "status": "PASS"
+        },
+        {
+          "label": "unbought merchandise cannot reorder or buy on drag; original long-press inspection preserved",
+          "originalInspectionOpened": false,
+          "status": "PASS"
+        },
+        {
+          "label": "reload restores full state and journal",
+          "status": "PASS"
+        }
+      ],
+      "errors": [],
+      "preview": {
+        "touchAction": "pan-y",
+        "sourceId": "owned-drag/0",
+        "hint": "松手换位 · 移出持牌区取消",
+        "arts": [
+          {
+            "id": "owned-drag/0",
+            "x": 259,
+            "y": 528.5999999999999,
+            "scale": 1.04
+          },
+          {
+            "id": "owned-drag/1",
+            "x": 67,
+            "y": 528.6,
+            "scale": 1
+          },
+          {
+            "id": "owned-drag/2",
+            "x": 131,
+            "y": 528.6,
+            "scale": 1
+          },
+          {
+            "id": "owned-drag/3",
+            "x": 195,
+            "y": 528.6,
+            "scale": 1
+          },
+          {
+            "id": "owned-drag/4",
+            "x": 323,
+            "y": 528.6,
+            "scale": 1
+          }
+        ],
+        "insertion": true
+      },
+      "status": "PASS",
+      "initialSummary": {
+        "commandSeq": 4,
+        "ids": [
+          "owned-drag/0",
+          "owned-drag/1",
+          "owned-drag/2",
+          "owned-drag/3",
+          "owned-drag/4"
+        ],
+        "gold": 6,
+        "journalLength": 0
+      },
+      "duringSummary": {
+        "commandSeq": 4,
+        "ids": [
+          "owned-drag/0",
+          "owned-drag/1",
+          "owned-drag/2",
+          "owned-drag/3",
+          "owned-drag/4"
+        ],
+        "gold": 6,
+        "journalLength": 0
+      },
+      "movedSummary": {
+        "commandSeq": 5,
+        "ids": [
+          "owned-drag/1",
+          "owned-drag/2",
+          "owned-drag/3",
+          "owned-drag/0",
+          "owned-drag/4"
+        ],
+        "gold": 6,
+        "journalLength": 1
+      },
+      "outOfRowSummary": {
+        "commandSeq": 5,
+        "ids": [
+          "owned-drag/1",
+          "owned-drag/2",
+          "owned-drag/3",
+          "owned-drag/0",
+          "owned-drag/4"
+        ],
+        "gold": 6,
+        "journalLength": 1
+      }
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "checks": [
+        {
+          "screenshot": "390x844-idle.png"
+        },
+        {
+          "screenshot": "390x844-lifted.png"
+        },
+        {
+          "screenshot": "390x844-dragging.png"
+        },
+        {
+          "screenshot": "390x844-dropped.png"
+        },
+        {
+          "label": "single committed real reorder; exact full state/journal matches domain command",
+          "status": "PASS"
+        },
+        {
+          "label": "off-row release",
+          "status": "PASS"
+        },
+        {
+          "label": "same-slot",
+          "status": "PASS"
+        },
+        {
+          "label": "gap",
+          "status": "PASS"
+        },
+        {
+          "label": "prehold-vertical",
+          "status": "PASS"
+        },
+        {
+          "label": "long-hold-release",
+          "status": "PASS"
+        },
+        {
+          "label": "pointercancel",
+          "status": "PASS"
+        },
+        {
+          "label": "escape",
+          "status": "PASS"
+        },
+        {
+          "label": "blur",
+          "status": "PASS"
+        },
+        {
+          "label": "hidden",
+          "status": "PASS"
+        },
+        {
+          "label": "capture",
+          "status": "PASS"
+        },
+        {
+          "label": "multitouch",
+          "status": "PASS"
+        },
+        {
+          "label": "missed-release-recovery",
+          "status": "PASS"
+        },
+        {
+          "label": "resize",
+          "status": "PASS"
+        },
+        {
+          "label": "modal",
+          "status": "PASS"
+        },
+        {
+          "label": "ordinary tap inspects; left/right accessible fallback still saves",
+          "status": "PASS"
+        },
+        {
+          "label": "unbought merchandise cannot reorder or buy on drag; original long-press inspection preserved",
+          "originalInspectionOpened": false,
+          "status": "PASS"
+        },
+        {
+          "label": "reload restores full state and journal",
+          "status": "PASS"
+        }
+      ],
+      "errors": [],
+      "preview": {
+        "touchAction": "pan-y",
+        "sourceId": "owned-drag/0",
+        "hint": "松手换位 · 移出持牌区取消",
+        "arts": [
+          {
+            "id": "owned-drag/0",
+            "x": 259,
+            "y": 558.5999999999999,
+            "scale": 1.04
+          },
+          {
+            "id": "owned-drag/1",
+            "x": 67,
+            "y": 558.6,
+            "scale": 1
+          },
+          {
+            "id": "owned-drag/2",
+            "x": 131,
+            "y": 558.6,
+            "scale": 1
+          },
+          {
+            "id": "owned-drag/3",
+            "x": 195,
+            "y": 558.6,
+            "scale": 1
+          },
+          {
+            "id": "owned-drag/4",
+            "x": 323,
+            "y": 558.6,
+            "scale": 1
+          }
+        ],
+        "insertion": true
+      },
+      "status": "PASS",
+      "initialSummary": {
+        "commandSeq": 4,
+        "ids": [
+          "owned-drag/0",
+          "owned-drag/1",
+          "owned-drag/2",
+          "owned-drag/3",
+          "owned-drag/4"
+        ],
+        "gold": 6,
+        "journalLength": 0
+      },
+      "duringSummary": {
+        "commandSeq": 4,
+        "ids": [
+          "owned-drag/0",
+          "owned-drag/1",
+          "owned-drag/2",
+          "owned-drag/3",
+          "owned-drag/4"
+        ],
+        "gold": 6,
+        "journalLength": 0
+      },
+      "movedSummary": {
+        "commandSeq": 5,
+        "ids": [
+          "owned-drag/1",
+          "owned-drag/2",
+          "owned-drag/3",
+          "owned-drag/0",
+          "owned-drag/4"
+        ],
+        "gold": 6,
+        "journalLength": 1
+      },
+      "outOfRowSummary": {
+        "commandSeq": 5,
+        "ids": [
+          "owned-drag/1",
+          "owned-drag/2",
+          "owned-drag/3",
+          "owned-drag/0",
+          "owned-drag/4"
+        ],
+        "gold": 6,
+        "journalLength": 1
+      }
+    },
+    {
+      "width": 320,
+      "height": 568,
+      "touch": true,
+      "checks": [
+        {
+          "screenshot": "320x568-idle.png"
+        },
+        {
+          "screenshot": "320x568-lifted.png"
+        },
+        {
+          "screenshot": "320x568-dragging.png"
+        },
+        {
+          "screenshot": "320x568-dropped.png"
+        },
+        {
+          "label": "single committed real reorder; exact full state/journal matches domain command",
+          "status": "PASS"
+        },
+        {
+          "label": "off-row release",
+          "status": "PASS"
+        },
+        {
+          "label": "same-slot",
+          "status": "PASS"
+        },
+        {
+          "label": "gap",
+          "status": "PASS"
+        },
+        {
+          "label": "prehold-vertical",
+          "status": "PASS"
+        },
+        {
+          "label": "long-hold-release",
+          "status": "PASS"
+        },
+        {
+          "label": "pointercancel",
+          "status": "PASS"
+        },
+        {
+          "label": "escape",
+          "status": "PASS"
+        },
+        {
+          "label": "blur",
+          "status": "PASS"
+        },
+        {
+          "label": "hidden",
+          "status": "PASS"
+        },
+        {
+          "label": "capture",
+          "status": "PASS"
+        },
+        {
+          "label": "multitouch",
+          "status": "PASS"
+        },
+        {
+          "label": "missed-release-recovery",
+          "status": "PASS"
+        },
+        {
+          "label": "resize",
+          "status": "PASS"
+        },
+        {
+          "label": "modal",
+          "status": "PASS"
+        },
+        {
+          "label": "ordinary tap inspects; left/right accessible fallback still saves",
+          "status": "PASS"
+        },
+        {
+          "label": "unbought merchandise cannot reorder or buy on drag; original long-press inspection preserved",
+          "originalInspectionOpened": false,
+          "status": "PASS"
+        },
+        {
+          "label": "reload restores full state and journal",
+          "status": "PASS"
+        }
+      ],
+      "errors": [],
+      "preview": {
+        "touchAction": "pan-y",
+        "sourceId": "owned-drag/0",
+        "hint": "松手换位 · 移出持牌区取消",
+        "arts": [
+          {
+            "id": "owned-drag/0",
+            "x": 220.3999931335449,
+            "y": 381.9200000000001,
+            "scale": 1.04
+          },
+          {
+            "id": "owned-drag/1",
+            "x": 39.2,
+            "y": 381.92,
+            "scale": 1
+          },
+          {
+            "id": "owned-drag/2",
+            "x": 99.60000000000001,
+            "y": 381.92,
+            "scale": 1
+          },
+          {
+            "id": "owned-drag/3",
+            "x": 160,
+            "y": 381.92,
+            "scale": 1
+          },
+          {
+            "id": "owned-drag/4",
+            "x": 280.8,
+            "y": 381.92,
+            "scale": 1
+          }
+        ],
+        "insertion": true
+      },
+      "status": "PASS",
+      "initialSummary": {
+        "commandSeq": 4,
+        "ids": [
+          "owned-drag/0",
+          "owned-drag/1",
+          "owned-drag/2",
+          "owned-drag/3",
+          "owned-drag/4"
+        ],
+        "gold": 6,
+        "journalLength": 0
+      },
+      "duringSummary": {
+        "commandSeq": 4,
+        "ids": [
+          "owned-drag/0",
+          "owned-drag/1",
+          "owned-drag/2",
+          "owned-drag/3",
+          "owned-drag/4"
+        ],
+        "gold": 6,
+        "journalLength": 0
+      },
+      "movedSummary": {
+        "commandSeq": 5,
+        "ids": [
+          "owned-drag/1",
+          "owned-drag/2",
+          "owned-drag/3",
+          "owned-drag/0",
+          "owned-drag/4"
+        ],
+        "gold": 6,
+        "journalLength": 1
+      },
+      "outOfRowSummary": {
+        "commandSeq": 5,
+        "ids": [
+          "owned-drag/1",
+          "owned-drag/2",
+          "owned-drag/3",
+          "owned-drag/0",
+          "owned-drag/4"
+        ],
+        "gold": 6,
+        "journalLength": 1
+      }
+    }
+  ],
+  "status": "PASS"
+}

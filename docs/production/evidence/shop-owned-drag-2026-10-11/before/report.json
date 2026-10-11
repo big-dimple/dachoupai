@@ -1,0 +1,331 @@
+{
+  "head": "41d0990bf94698110446d0e4caeebd54d327a972",
+  "sourceTree": "b751e090be67ed73b72c107639faf008d62fd411",
+  "modified": "",
+  "baseline": true,
+  "scope": "Controlled current-identity five-owned checkpoint; real mouse/CDP touch/DOM inputs. Full state/journal/local storage vs actual applyCommand; no natural acquisition, 18-combination, physical device or human acceptance.",
+  "cases": [
+    {
+      "width": 1366,
+      "height": 768,
+      "touch": false,
+      "checks": [
+        {
+          "screenshot": "1366x768-idle.png"
+        },
+        {
+          "screenshot": "1366x768-dragging.png"
+        },
+        {
+          "screenshot": "1366x768-dropped.png"
+        },
+        {
+          "label": "single committed real reorder; exact full state/journal matches domain command",
+          "status": "PASS"
+        },
+        {
+          "label": "off-row release",
+          "status": "PASS"
+        },
+        {
+          "label": "reload restores full state and journal",
+          "status": "PASS"
+        }
+      ],
+      "errors": [],
+      "status": "PASS",
+      "initialSummary": {
+        "commandSeq": 4,
+        "ids": [
+          "owned-drag/0",
+          "owned-drag/1",
+          "owned-drag/2",
+          "owned-drag/3",
+          "owned-drag/4"
+        ],
+        "gold": 6,
+        "journalLength": 0
+      },
+      "duringSummary": {
+        "commandSeq": 4,
+        "ids": [
+          "owned-drag/0",
+          "owned-drag/1",
+          "owned-drag/2",
+          "owned-drag/3",
+          "owned-drag/4"
+        ],
+        "gold": 6,
+        "journalLength": 0
+      },
+      "movedSummary": {
+        "commandSeq": 5,
+        "ids": [
+          "owned-drag/1",
+          "owned-drag/2",
+          "owned-drag/3",
+          "owned-drag/0",
+          "owned-drag/4"
+        ],
+        "gold": 6,
+        "journalLength": 1
+      },
+      "outOfRowSummary": {
+        "commandSeq": 5,
+        "ids": [
+          "owned-drag/1",
+          "owned-drag/2",
+          "owned-drag/3",
+          "owned-drag/0",
+          "owned-drag/4"
+        ],
+        "gold": 6,
+        "journalLength": 1
+      }
+    },
+    {
+      "width": 390,
+      "height": 740,
+      "touch": true,
+      "checks": [
+        {
+          "screenshot": "390x740-idle.png"
+        },
+        {
+          "screenshot": "390x740-lifted.png"
+        },
+        {
+          "screenshot": "390x740-dragging.png"
+        },
+        {
+          "screenshot": "390x740-dropped.png"
+        },
+        {
+          "label": "single committed real reorder; exact full state/journal matches domain command",
+          "status": "PASS"
+        },
+        {
+          "label": "off-row release",
+          "status": "BASELINE_FAIL"
+        },
+        {
+          "label": "reload restores full state and journal",
+          "status": "PASS"
+        }
+      ],
+      "errors": [],
+      "status": "PASS",
+      "initialSummary": {
+        "commandSeq": 4,
+        "ids": [
+          "owned-drag/0",
+          "owned-drag/1",
+          "owned-drag/2",
+          "owned-drag/3",
+          "owned-drag/4"
+        ],
+        "gold": 6,
+        "journalLength": 0
+      },
+      "duringSummary": {
+        "commandSeq": 4,
+        "ids": [
+          "owned-drag/0",
+          "owned-drag/1",
+          "owned-drag/2",
+          "owned-drag/3",
+          "owned-drag/4"
+        ],
+        "gold": 6,
+        "journalLength": 0
+      },
+      "movedSummary": {
+        "commandSeq": 5,
+        "ids": [
+          "owned-drag/1",
+          "owned-drag/2",
+          "owned-drag/3",
+          "owned-drag/0",
+          "owned-drag/4"
+        ],
+        "gold": 6,
+        "journalLength": 1
+      },
+      "outOfRowSummary": {
+        "commandSeq": 6,
+        "ids": [
+          "owned-drag/2",
+          "owned-drag/3",
+          "owned-drag/1",
+          "owned-drag/0",
+          "owned-drag/4"
+        ],
+        "gold": 6,
+        "journalLength": 2
+      }
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "checks": [
+        {
+          "screenshot": "390x844-idle.png"
+        },
+        {
+          "screenshot": "390x844-lifted.png"
+        },
+        {
+          "screenshot": "390x844-dragging.png"
+        },
+        {
+          "screenshot": "390x844-dropped.png"
+        },
+        {
+          "label": "single committed real reorder; exact full state/journal matches domain command",
+          "status": "PASS"
+        },
+        {
+          "label": "off-row release",
+          "status": "BASELINE_FAIL"
+        },
+        {
+          "label": "reload restores full state and journal",
+          "status": "PASS"
+        }
+      ],
+      "errors": [],
+      "status": "PASS",
+      "initialSummary": {
+        "commandSeq": 4,
+        "ids": [
+          "owned-drag/0",
+          "owned-drag/1",
+          "owned-drag/2",
+          "owned-drag/3",
+          "owned-drag/4"
+        ],
+        "gold": 6,
+        "journalLength": 0
+      },
+      "duringSummary": {
+        "commandSeq": 4,
+        "ids": [
+          "owned-drag/0",
+          "owned-drag/1",
+          "owned-drag/2",
+          "owned-drag/3",
+          "owned-drag/4"
+        ],
+        "gold": 6,
+        "journalLength": 0
+      },
+      "movedSummary": {
+        "commandSeq": 5,
+        "ids": [
+          "owned-drag/1",
+          "owned-drag/2",
+          "owned-drag/3",
+          "owned-drag/0",
+          "owned-drag/4"
+        ],
+        "gold": 6,
+        "journalLength": 1
+      },
+      "outOfRowSummary": {
+        "commandSeq": 6,
+        "ids": [
+          "owned-drag/2",
+          "owned-drag/3",
+          "owned-drag/1",
+          "owned-drag/0",
+          "owned-drag/4"
+        ],
+        "gold": 6,
+        "journalLength": 2
+      }
+    },
+    {
+      "width": 320,
+      "height": 568,
+      "touch": true,
+      "checks": [
+        {
+          "screenshot": "320x568-idle.png"
+        },
+        {
+          "screenshot": "320x568-lifted.png"
+        },
+        {
+          "screenshot": "320x568-dragging.png"
+        },
+        {
+          "screenshot": "320x568-dropped.png"
+        },
+        {
+          "label": "single committed real reorder; exact full state/journal matches domain command",
+          "status": "PASS"
+        },
+        {
+          "label": "off-row release",
+          "status": "BASELINE_FAIL"
+        },
+        {
+          "label": "reload restores full state and journal",
+          "status": "PASS"
+        }
+      ],
+      "errors": [],
+      "status": "PASS",
+      "initialSummary": {
+        "commandSeq": 4,
+        "ids": [
+          "owned-drag/0",
+          "owned-drag/1",
+          "owned-drag/2",
+          "owned-drag/3",
+          "owned-drag/4"
+        ],
+        "gold": 6,
+        "journalLength": 0
+      },
+      "duringSummary": {
+        "commandSeq": 4,
+        "ids": [
+          "owned-drag/0",
+          "owned-drag/1",
+          "owned-drag/2",
+          "owned-drag/3",
+          "owned-drag/4"
+        ],
+        "gold": 6,
+        "journalLength": 0
+      },
+      "movedSummary": {
+        "commandSeq": 5,
+        "ids": [
+          "owned-drag/1",
+          "owned-drag/2",
+          "owned-drag/3",
+          "owned-drag/0",
+          "owned-drag/4"
+        ],
+        "gold": 6,
+        "journalLength": 1
+      },
+      "outOfRowSummary": {
+        "commandSeq": 6,
+        "ids": [
+          "owned-drag/2",
+          "owned-drag/3",
+          "owned-drag/1",
+          "owned-drag/0",
+          "owned-drag/4"
+        ],
+        "gold": 6,
+        "journalLength": 2
+      }
+    }
+  ],
+  "status": "PASS"
+}

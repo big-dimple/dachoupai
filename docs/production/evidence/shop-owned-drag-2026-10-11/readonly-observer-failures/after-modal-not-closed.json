@@ -1,0 +1,26 @@
+{
+  "head": "d48b181465df432ee1d19fd04885ab2763279a00",
+  "sourceTree": "dff6f08c86fdf845793970b407d15d6cf590b415",
+  "modified": "",
+  "baseline": false,
+  "scope": "Controlled current-identity five-owned checkpoint; real mouse/CDP touch/DOM inputs. Full state/journal/local storage vs actual applyCommand; no natural acquisition, 18-combination, physical device or human acceptance.",
+  "cases": [
+    {
+      "width": 1366,
+      "height": 768,
+      "touch": false,
+      "checks": [],
+      "errors": [],
+      "savedFailureSummary": {
+        "status": "paused",
+        "lease": true,
+        "commandSeq": 4,
+        "journalLength": 0,
+        "commitCalls": 1,
+        "idbRevision": 1
+      }
+    }
+  ],
+  "status": "FAIL",
+  "error": "TimeoutError: locator.waitFor: Timeout 3000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('.detail-dialog[open]') to be visible\u001b[22m\n"
+}

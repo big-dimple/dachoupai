@@ -1,0 +1,105 @@
+{
+  "main": "368397eeaf2aa518dd88feedaa12b947cb50cd0e",
+  "mergedCandidate": "265e4abf3e5315f0bdd0749872fb112fb7ca61f6",
+  "ownedComponentsSameAsFrozenReadonly": [
+    {
+      "path": "src/game/ShopScene.ts",
+      "readonlyTestA882380": "04953b5ea9ecfa90544490785011cfb0b0ff94ae",
+      "merged": "04953b5ea9ecfa90544490785011cfb0b0ff94ae",
+      "same": true
+    },
+    {
+      "path": "src/game/OwnedJokerInput.ts",
+      "readonlyTestA882380": "959efd456f44ed59c86097dabe1088b6f18c2161",
+      "merged": "959efd456f44ed59c86097dabe1088b6f18c2161",
+      "same": true
+    },
+    {
+      "path": "src/game/JokerReorder.ts",
+      "readonlyTestA882380": "04bce6225edf864b23e3a716e9ca2f3cc659fb8b",
+      "merged": "04bce6225edf864b23e3a716e9ca2f3cc659fb8b",
+      "same": true
+    }
+  ],
+  "protectedSameAsMain368397e": [
+    {
+      "path": "src/domain",
+      "main368397e": "71b6e405a96cc9b4c89f5ee8ddf05168d1cd7c1e",
+      "merged": "71b6e405a96cc9b4c89f5ee8ddf05168d1cd7c1e",
+      "same": true
+    },
+    {
+      "path": "src/content",
+      "main368397e": "6018132526ce72176f016f99ead53022480ab429",
+      "merged": "6018132526ce72176f016f99ead53022480ab429",
+      "same": true
+    },
+    {
+      "path": "src/game/ConsumableDialog.ts",
+      "main368397e": "0759384753976407bc938dee6aaa48c44970599b",
+      "merged": "0759384753976407bc938dee6aaa48c44970599b",
+      "same": true
+    },
+    {
+      "path": "src/game/SceneView.ts",
+      "main368397e": "c9a20c0cbba66aee3fa419882559e823281ad189",
+      "merged": "c9a20c0cbba66aee3fa419882559e823281ad189",
+      "same": true
+    },
+    {
+      "path": "src/game/GameScene.ts",
+      "main368397e": "82ec47a301dba87e2bcb56b36c3c95b11b7eab0c",
+      "merged": "82ec47a301dba87e2bcb56b36c3c95b11b7eab0c",
+      "same": true
+    },
+    {
+      "path": "src/game/IntermissionScene.ts",
+      "main368397e": "ca22b5bc4e904636b8c5b97bc40e98e8ab53b7d0",
+      "merged": "ca22b5bc4e904636b8c5b97bc40e98e8ab53b7d0",
+      "same": true
+    },
+    {
+      "path": "src/game/ToolChangePreview.ts",
+      "main368397e": "f49d1f73e56f753bd4368aea254d079527e2999e",
+      "merged": "f49d1f73e56f753bd4368aea254d079527e2999e",
+      "same": true
+    },
+    {
+      "path": "src/game/SavedToolResult.ts",
+      "main368397e": "4b5ffcdaf51ac14078d3228801182a8036f8a2bc",
+      "merged": "4b5ffcdaf51ac14078d3228801182a8036f8a2bc",
+      "same": true
+    },
+    {
+      "path": "src/game/scoreText.ts",
+      "main368397e": "c74fc6623e4f27eba35627eddf0b04a0d391fd96",
+      "merged": "c74fc6623e4f27eba35627eddf0b04a0d391fd96",
+      "same": true
+    },
+    {
+      "path": "src/style.css",
+      "main368397e": "147bce0ed2059ed97a973433fd12ed7d119ceded",
+      "merged": "147bce0ed2059ed97a973433fd12ed7d119ceded",
+      "same": true
+    },
+    {
+      "path": "public",
+      "main368397e": "c4a6ec74e7fd754b0f300b973020f8afed7542e1",
+      "merged": "c4a6ec74e7fd754b0f300b973020f8afed7542e1",
+      "same": true
+    },
+    {
+      "path": "art",
+      "main368397e": "b0caa33679b84bee932b2854734c04ad39ba0464",
+      "merged": "b0caa33679b84bee932b2854734c04ad39ba0464",
+      "same": true
+    },
+    {
+      "path": "docs/production/DELIVERY_PLAN.md",
+      "main368397e": "539a615655b05cecc4654f303fb93694c2b95886",
+      "merged": "539a615655b05cecc4654f303fb93694c2b95886",
+      "same": true
+    }
+  ],
+  "scope": "Normal no-conflict merge; parent instructed no additional full rerun. Previous native pixels/state proofs retain their original SHAs; final necessary CI uses new HEAD."
+}

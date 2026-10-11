@@ -1,0 +1,18 @@
+{
+  "head": "416e1ce3ba2c8ce0e66ea6bde60ded9f6f9126b8",
+  "sourceTree": "dff6f08c86fdf845793970b407d15d6cf590b415",
+  "modified": "",
+  "baseline": false,
+  "scope": "Controlled current-identity five-owned checkpoint; real mouse/CDP touch/DOM inputs. Full state/journal/local storage vs actual applyCommand; no natural acquisition, 18-combination, physical device or human acceptance.",
+  "cases": [
+    {
+      "width": 1366,
+      "height": 768,
+      "touch": false,
+      "checks": [],
+      "errors": []
+    }
+  ],
+  "status": "FAIL",
+  "error": "TimeoutError: page.waitForFunction: Timeout 30000ms exceeded."
+}

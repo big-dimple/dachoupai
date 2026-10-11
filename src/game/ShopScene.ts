@@ -21,7 +21,7 @@ import {r2ScoringDisabledJokerIds} from '../domain/scoreR2';
 import {r2JokerDefinitionsFor,r2JokerDefinitionFor} from '../domain/r2ContentProfiles';
 import {jokerAbilityCopyForRun,publicJokerMemoryContext} from './JokerMemory';
 import type {R2JokerInstance} from '../content/r2Schema';
-import {shopLayout,shopFirstGuideLayout,shopSummaryWrap,shopOfferCopy,shopOwnedDropIndex,shopOwnedHitBox,shopOwnedNameArea,shopGoodsGrid} from './ShopLayout';
+import {shopLayout,shopFirstGuideLayout,shopSummaryWrap,shopOfferCopy,shopOwnedHitBox,shopOwnedNameArea,shopGoodsGrid} from './ShopLayout';
 import {shopOfferGuidance,jokerRouteCaption,jokerApplicableRoutes} from './ShopOfferGuidance';
 import {goodsArtKey,goodsArtLoadState,requestGoodsArt,retryGoodsArt} from './GoodsArtLoading';
 import {ShopResultFeedback,shopResultBox,shopResultPages,type ShopResultLine} from './ShopResultFeedback';
@@ -36,7 +36,8 @@ import {r2PaidRerollPrice,salePrice,r2Pool,r2PurchasePrice,r2PurchaseDiscount,r2
 import type {R2RunState,Action,DomainEvent} from '../domain/run';
 import {getR2Stage,R2_LIMITS,r2InterestCap,r2ConsumableCapacity,r2CreateJoker} from '../domain/r2Run';
 import {dispatchRun,runController} from './runAdapter';
-import {reorderJokerIds} from './JokerReorder';
+import {reorderJokerIds,ownedJokerDropIndex} from './JokerReorder';
+import {OwnedJokerInput} from './OwnedJokerInput';
 import {heatText,fractionText} from './scoreText';
 import {toolInfo,itemInfo,goodsArtPortrait,editionLabel,editionEffectText,toolFamilyLabel} from './r2ToolInfo';
 import {SceneView} from './SceneView';
@@ -62,6 +63,10 @@ const SHELF_FIELDS={jokers:'offers',tools:'toolOffers',items:'itemOffers'} as co
 
 export class ShopScene extends Phaser.Scene {
   private run!:R2RunState;
+  private ownedInput?:OwnedJokerInput;
+  private ownedArts=new Map<string,Phaser.GameObjects.Container>();
+  private ownedDrag?:{id:string;seq:number;x:number;y:number;overlay:Phaser.GameObjects.Graphics;shadow:Phaser.GameObjects.Graphics};
+  private ownedHint?:Phaser.GameObjects.Text;
   private get jokerDefinitions(){return r2JokerDefinitionsFor(this.run);}
   private jokerDefinition(id:string){return r2JokerDefinitionFor(this.run,id);}
   private busy=false;
@@ -115,7 +120,9 @@ export class ShopScene extends Phaser.Scene {
     this.events.once('shutdown',()=>{if(this.registry.get('runMenuActions')===this.menuActions)this.registry.remove('runMenuActions');this.menuActions=undefined;});
     const run=runController(this)?.state;if(!run||run.phase!=='shop'){this.scene.start('character-select');return;}this.run=run;
     this.menuActions={viewDeck:()=>this.inspectDeck()};this.registry.set('runMenuActions',this.menuActions);
-    this.cameras.main.setBackgroundColor('#F3EADB');this.audio.setScene('shop');this.view=new SceneView(this,()=>this.render());this.render();
+    this.cameras.main.setBackgroundColor('#F3EADB');this.audio.setScene('shop');this.view=new SceneView(this,()=>this.render());
+    this.ownedInput=new OwnedJokerInput(this,{ready:()=>this.ready,inspectable:()=>!this.busy&&this.run?.phase==='shop',cards:()=>this.run.jokers.map((j,i)=>({...this.geometry().slots[i],id:j.instanceId})),cancelCanvas:()=>this.view.cancelInteraction(),tap:id=>this.inspectJoker(id),lift:(id,x,y)=>this.liftOwned(id,x,y),move:(x,y)=>this.previewOwned(x,y),drop:(id,x,y)=>this.moveJoker(id,x,y),cancel:()=>this.cancelOwned()});
+    this.events.once('shutdown',()=>{this.ownedInput?.destroy();this.ownedInput=undefined;});this.render();
     if(!gameSession().reducedMotion&&!window.matchMedia('(prefers-reduced-motion: reduce)').matches){
       this.view.root.setAlpha(.35);this.tweens.add({targets:this.view.root,alpha:1,duration:220,ease:'Cubic.easeOut'});
       this.offerArts.forEach((art,i)=>{const ty=art.y;art.setPosition(art.x,ty+26).setAlpha(0);this.tweens.add({targets:art,y:ty,alpha:1,duration:260,delay:110+i*70,ease:'Cubic.easeOut'});});
@@ -126,7 +133,7 @@ export class ShopScene extends Phaser.Scene {
     requestJokerArt(this,[...this.run.jokers.map(j=>j.definitionId),...this.run.shop!.offers.map(o=>o.definitionId)],()=>this.refreshJokerPictures());
     const selectedIndex=this.shelfOffers().findIndex(offer=>offer.offerId===this.selectedOfferId);if(selectedIndex>=0)this.shelfPage=Math.floor(selectedIndex/this.pageSize);
     this.shelfPage=Math.min(this.shelfPage,Math.max(0,Math.ceil(this.shelfOffers().length/this.pageSize)-1));
-    const v=this.view,p=this.geometry(),stage=getR2Stage(this.run.stageIndex,this.run.tourMode,this.run.difficulty)!;this.hideHoverPicture();v.clear();this.starterMarkers=[];v.paperBackground();this.offerArts=[];this.artTargets.clear();this.jokerArtTargets.clear();
+    const v=this.view,p=this.geometry(),stage=getR2Stage(this.run.stageIndex,this.run.tourMode,this.run.difficulty)!;this.hideHoverPicture();this.ownedInput?.setBounds(undefined);this.ownedArts.clear();this.ownedHint=undefined;v.clear();this.starterMarkers=[];v.paperBackground();this.offerArts=[];this.artTargets.clear();this.jokerArtTargets.clear();
     this.pcOfferBoxes.clear();if(p.pc){this.renderPC(p);return;}
     const purse={x:p.x+p.w-(this.view.layout.width<=700?96:136)-124,y:p.top-1,width:116,height:34},purseArt=this.add.graphics();
     const character=getCharacter(this.run.characterId),titleRight=Math.min(...[purse,p.reroll,p.build].filter(b=>b.y<p.top+32&&b.y+b.height>p.top&&b.x>=p.x).map(b=>b.x),p.x+p.w)-6;
@@ -145,7 +152,7 @@ export class ShopScene extends Phaser.Scene {
     if(!p.portrait&&!p.short)v.text(p.x,p.top+37,`${stage.name} · 目标 ${heatText(stage.targetHeat)}`,14,'#3F606B',p.short?p.slots[4].x+p.slots[4].width-p.x:p.w-24);
     if(!p.short){
       const savedGrowth=buildGrowthProgress(this.run)[0];
-      const ownedLabel=savedGrowth?savedGrowth.name+' · '+savedGrowth.metric:p.portrait?`当前持有 ${this.run.jokers.length}/${r2JokerCapacity(this.run)}`:`随身 ${this.run.jokers.length}/${r2JokerCapacity(this.run)} · 点牌出售／调序`;
+      const ownedLabel=this.run.jokers.length&&!p.inventoryCollapsed?'长按拖动换位 · 点牌查看':savedGrowth?savedGrowth.name+' · '+savedGrowth.metric:p.portrait?`当前持有 ${this.run.jokers.length}/${r2JokerCapacity(this.run)}`:`随身 ${this.run.jokers.length}/${r2JokerCapacity(this.run)} · 点牌出售／调序`;
       const inline=p.portrait&&!p.copyBeside&&p.slots[0].y-p.shelf[0].y-p.shelf[0].height<122;
       v.text(inline?p.x:p.slots[0].x,inline?p.top+27:p.slots[0].y-20,ownedLabel,14,'#26313A',p.slots[4].x+p.slots[4].width-p.slots[0].x).setName('shop/owned-heading');
     }
@@ -229,8 +236,17 @@ export class ShopScene extends Phaser.Scene {
       if(p.pc)v.text(b.x,b.y+b.height+3,jokerRouteCaption(this.run,j,b.width),14,'#3F606B',b.width).setName('shop/owned-state');
       if(!p.pc&&b.y+b.height+20<=p.reroll.y-4){const roomy='guidanceBelow' in p&&p.guidanceBelow,copy=roomy?jokerApplicableRoutes(this.run,j).map(f=>({group:'同点',straight:'顺子',flush:'同花'})[f]).join('\n'):jokerRouteCaption(this.run,j,b.width);v.text(b.x+b.width/2,b.y+b.height+3,copy,14,'#3F606B').setOrigin(.5,0).setName('shop/owned-route');}
       const hover=this.hoverCard(first,b,j.definitionId),r=v.rect(p.pc?b:shopOwnedHitBox(b,p.reroll.y,!!ability||!p.portrait)).setFillStyle(0,0).setStrokeStyle();
-      v.target(r,`joker/${j.instanceId}`,{tap:()=>this.inspectJoker(j.instanceId),detail:()=>this.inspectJoker(j.instanceId),drag:(x,y)=>this.moveJoker(j.instanceId,x,y),holdToDrag:true,...hover});
+      this.ownedArts.set(j.instanceId,hover.art);
+      // Native surface owns mouse/touch; named canvas geometry remains for keyboard/detail fallback and harness observation.
+      v.target(r,`joker/${j.instanceId}`,{tap:()=>this.inspectJoker(j.instanceId),detail:()=>this.inspectJoker(j.instanceId),...hover});
     });
+    const last=p.slots[this.run.jokers.length-1];
+    if(last&&!p.inventoryCollapsed){
+      const first=p.slots[0];this.ownedInput?.setBounds({x:first.x,y:first.y,width:last.x+last.width-first.x,height:first.height});
+      const heading=v.root.list.find(o=>o.name==='shop/owned-heading') as Phaser.GameObjects.Text|undefined;
+      this.ownedHint=p.pc||p.short?v.text(first.x,first.y-20,p.pc?'拖动换位 · 手机长按 · 从左至右触发':'拖动换位 · 手机长按',14,PAPER_CSS.jade,last.x+last.width-first.x).setName('shop/owned-drag-hint'):heading;
+      if(this.ownedHint&&this.ownedHint.y>first.y-30)this.ownedHint.setY(first.y-24);
+    }
     if(!p.short&&this.run.jokers.length&&!firstChapterShopPrompt(this.run)){
       const first=this.run.jokers[0],plain=this.jokerCopy(first.definitionId,first)?.plain;
       const x=p.pc?p.build.x:p.x,y=p.pc?p.slots[0].y:Math.max(p.chapter.y+p.chapter.height,p.items.y+p.items.height)+8,limit=p.pc?p.slots[0].y+p.slots[0].height:p.reroll.y-8,width=p.pc?p.pc.inventoryEntry.x-x-12:p.w;
@@ -722,9 +738,34 @@ export class ShopScene extends Phaser.Scene {
     const ids=reorderJokerIds(current,current[from],to);if(ids===current)return false;
     return this.send({type:'ReorderJokers',ids},expectedSeq);
   }
+  private liftOwned(id:string,x:number,y:number):void {
+    if(!this.ready)return;this.hideHoverPicture();
+    for(const art of this.ownedArts.values())this.tweens.killTweensOf(art);
+    const p=this.geometry(),b=p.slots[this.run.jokers.findIndex(j=>j.instanceId===id)],shadow=this.add.graphics().fillStyle(PAPER_THEME.ink,.16).fillRoundedRect(-b.width/2+5,-b.height/2+7,b.width,b.height,5);this.ownedArts.get(id)?.addAt(shadow,0);
+    this.ownedDrag={id,seq:this.run.commandSeq,x,y,shadow,overlay:this.view.add(this.add.graphics().setName('shop/owned-insertion'))};
+    this.previewOwned(x,y);
+  }
+  private previewOwned(x:number,y:number):void {
+    const drag=this.ownedDrag;if(!drag)return;
+    const p=this.geometry(),current=this.run.jokers.map(j=>j.instanceId),from=current.indexOf(drag.id),to=ownedJokerDropIndex(p.slots,current.length,x,y),preview=reorderJokerIds(current,drag.id,to),source=p.slots[from];
+    drag.overlay.clear().lineStyle(2,PAPER_THEME.jade,.45).strokeRoundedRect(source.x,source.y,source.width,source.height,5);
+    for(const [id,art] of this.ownedArts){
+      const seat=p.slots[preview.indexOf(id)];art.setAngle(0).setScale(1).setAlpha(1);
+      if(id===drag.id){art.setPosition(source.x+source.width/2+x-drag.x,source.y+source.height/2+y-drag.y).setScale(1.04).setAlpha(to<0?.55:1);this.view.root.bringToTop(art);}
+      else art.setPosition(seat.x+seat.width/2,seat.y+seat.height/2);
+    }
+    if(to>=0&&to!==from){const seat=p.slots[to],edge=to>from?seat.x+seat.width+3:seat.x-3;drag.overlay.lineStyle(3,PAPER_THEME.jade,1).lineBetween(edge,seat.y-3,edge,seat.y+seat.height+3);}
+    this.view.root.bringToTop(drag.overlay);this.ownedHint?.setText(to<0?'移回持牌区放下 · 松手取消':'松手换位 · 移出持牌区取消');
+  }
+  private cancelOwned():void {
+    const drag=this.ownedDrag;if(!drag)return;this.ownedDrag=undefined;drag.overlay.destroy();drag.shadow.destroy();
+    const p=this.geometry();for(const [i,j] of this.run.jokers.entries()){const art=this.ownedArts.get(j.instanceId),b=p.slots[i];if(art?.active)art.setPosition(b.x+b.width/2,b.y+b.height/2).setScale(1).setAngle(0).setAlpha(1);}
+    this.ownedHint?.setText(p.pc?'拖动换位 · 手机长按 · 从左至右触发':p.short?'拖动换位 · 手机长按':'长按拖动换位 · 点牌查看');
+  }
   private moveJoker(id:string,x:number,y:number):void {
-    const from=this.run.jokers.findIndex(j=>j.instanceId===id),to=shopOwnedDropIndex(this.geometry(),x,y);
-    if(from>=0&&to>=0&&to<this.run.jokers.length&&from!==to)void this.reorder(from,to);
+    const drag=this.ownedDrag,to=ownedJokerDropIndex(this.geometry().slots,this.run.jokers.length,x,y),from=this.run.jokers.findIndex(j=>j.instanceId===id);
+    this.cancelOwned();
+    if(drag?.id===id&&from>=0&&to>=0&&from!==to)void this.reorder(from,to,drag.seq);
   }
   private rollGold(from:number):void {
     const text=this.goldText,to=this.run.gold,reduced=gameSession().reducedMotion||window.matchMedia('(prefers-reduced-motion: reduce)').matches;
