@@ -1,0 +1,107 @@
+
+> dachoupai@0.1.0 test
+> vitest run tests/joker-plain-quantity.test.ts
+
+
+ RUN  v4.1.11 /workspace/dachoupai
+
+ ❯ tests/joker-plain-quantity.test.ts (5 tests | 5 failed) 99ms
+   × current a03 shelf/detail main agrees with its first active card rule and retains legal retriggers 89ms
+   × per-card arithmetic applies only to matching effective scoring cards 3ms
+   × held first-match limits keep one versus several recipients explicit 2ms
+   × joker-score arithmetic is once per qualified hand rather than per matching card 1ms
+   × published a03 retains the single-play rule and original +35 amount 1ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 5 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/joker-plain-quantity.test.ts > current a03 shelf/detail main agrees with its first active card rule and retains legal retriggers
+AssertionError: expected '除高牌/对子外的首张计分牌 → 每张有效牌热度+15' to be '除高牌/对子外的首张有效计分牌 → 热度+15' // Object.is equality
+
+Expected: "除高牌/对子外的首张有效计分牌 → 热度+15"
+Received: "除高牌/对子外的首张计分牌 → 每张有效牌热度+15"
+
+ ❯ tests/joker-plain-quantity.test.ts:14:17
+     12| it('current a03 shelf/detail main agrees with its first active card ru…
+     13|  const p=copy('a03');
+     14|  expect(p.line).toBe('除高牌/对子外的首张有效计分牌 → 热度+15');
+       |                 ^
+     15|  expect(p.tile).toBe('非高牌/对子\n首计分牌\n热度+15');
+     16|  expect(p.essential).toContain('合法重触发时可再次获得');
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/5]⎯
+
+ FAIL  tests/joker-plain-quantity.test.ts > per-card arithmetic applies only to matching effective scoring cards
+AssertionError: expected 'J/Q/K/A计分 → 每张有效牌热度+25' to contain '每张符合条件的有效计分牌'
+
+Expected: "每张符合条件的有效计分牌"
+Received: "J/Q/K/A计分 → 每张有效牌热度+25"
+
+ ❯ tests/joker-plain-quantity.test.ts:23:35
+     21| it('per-card arithmetic applies only to matching effective scoring car…
+     22|  for(const id of ['tiesuanpan','a08','b02','b05','c02','c03']){
+     23|   const p=copy(id);expect(p.line).toContain('每张符合条件的有效计分牌');
+       |                                   ^
+     24|   expect(p.tile).toContain('每张匹配牌');
+     25|   expect(p.line).not.toContain('每手一次');
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/5]⎯
+
+ FAIL  tests/joker-plain-quantity.test.ts > held first-match limits keep one versus several recipients explicit
+AssertionError: expected '留J/Q/K前1张 → 每张有效牌倍率×1.25' to contain '前1张 → 该有效保留牌倍率×1.25'
+
+Expected: "前1张 → 该有效保留牌倍率×1.25"
+Received: "留J/Q/K前1张 → 每张有效牌倍率×1.25"
+
+ ❯ tests/joker-plain-quantity.test.ts:33:45
+     31|
+     32| it('held first-match limits keep one versus several recipients explici…
+     33|  const first=copy('a10');expect(first.line).toContain('前1张 → 该有效保留牌倍率×…
+       |                                             ^
+     34|  expect(first.tile).not.toContain('每张');
+     35|  for(const id of ['d01','d02','b11','c10','d08']){
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/5]⎯
+
+ FAIL  tests/joker-plain-quantity.test.ts > joker-score arithmetic is once per qualified hand rather than per matching card
+AssertionError: expected '三条 → 倍率+2' to contain '每手一次，'
+
+Expected: "每手一次，"
+Received: "三条 → 倍率+2"
+
+ ❯ tests/joker-plain-quantity.test.ts:43:35
+     41| it('joker-score arithmetic is once per qualified hand rather than per …
+     42|  for(const id of ['pengci','c04','e08','f04']){
+     43|   const p=copy(id);expect(p.line).toContain('每手一次，');expect(p.tile).to…
+       |                                   ^
+     44|   expect(p.line).not.toContain('每张');
+     45|  }
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/5]⎯
+
+ FAIL  tests/joker-plain-quantity.test.ts > published a03 retains the single-play rule and original +35 amount
+AssertionError: expected '只出1张 → 热度+35' to be '只出1张 → 每张符合条件的有效计分牌热度+35' // Object.is equality
+
+Expected: "只出1张 → 每张符合条件的有效计分牌热度+35"
+Received: "只出1张 → 热度+35"
+
+ ❯ tests/joker-plain-quantity.test.ts:54:17
+     52|  const d=r2JokerDefinitionsFor({contentVersion:old.version,contentHash…
+     53|  const p=jokerMemoryAbility(d,undefined,context).plain!;
+     54|  expect(p.line).toBe('只出1张 → 每张符合条件的有效计分牌热度+35');
+       |                 ^
+     55|  expect(p.line).not.toContain('+15');
+     56| });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/5]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  5 failed (5)
+   Start at  08:20:21
+   Duration  2.03s (transform 1.48s, setup 0ms, import 1.65s, tests 99ms, environment 0ms)
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice
