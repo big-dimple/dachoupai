@@ -1,0 +1,23 @@
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
++ actual - expected
+
+  {
++   background: 'rgb(184, 71, 58)',
+-   background: 'rgb(159, 50, 40)',
+    color: 'rgb(255, 249, 238)'
+  }
+
+    at file:///workspace/dachoupai/harness/stage-identity.mjs:47:244 {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: { background: 'rgb(184, 71, 58)', color: 'rgb(255, 249, 238)' },
+  expected: { background: 'rgb(159, 50, 40)', color: 'rgb(255, 249, 238)' },
+  operator: 'deepStrictEqual',
+  diff: 'simple'
+}
+
+Node.js v24.19.0

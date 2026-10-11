@@ -715,3 +715,13 @@ button[aria-busy=true] { border-style:dashed; }
  .tool-detail .tool-short-instruction { grid-column:1;grid-row:3;margin:0; }
  .tool-detail .tool-workspace-panes { grid-column:2;grid-row:1 / span 3;margin:0;align-self:center; }
 }
+
+/* Stage identity: scoped paper/ink entry; shared tool dialogs retain their styles. */
+.stage-identity-entry[open] { width:min(560px,calc(100vw - var(--safe-left) - var(--safe-right) - 24px));height:fit-content; }
+.stage-identity-entry .dialog-scroll { height:auto;max-height:calc(100dvh - var(--safe-top) - var(--safe-bottom) - 220px); }
+.stage-identity-entry .dialog-header { border-top:4px solid #B8473A; }
+.stage-identity-entry .dialog-header h2 { font-family:Georgia,"Noto Serif SC",SimSun,serif;font-size:28px; }
+.stage-identity-entry .dialog-purchase-summary { background:#E2E8E5;color:#3F606B; }
+.stage-identity-entry .dialog-effect { border-left:3px solid #B8473A;padding-left:12px; }
+.stage-identity-entry .dialog-primary:hover { background:#9F3228;color:#FFF9EE; }
+@media (max-width:560px) { .stage-identity-entry .dialog-header h2 { font-size:24px; } }

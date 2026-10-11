@@ -6,6 +6,7 @@ import {r2DiscardCost,R2_LIMITS} from '../domain/r2Run';
 import type {R2RunState} from '../domain/run';
 import {r2ScoringDisabledJokerIds} from '../domain/scoreR2';
 import {heatText} from './scoreText';
+import {stageSuitLabel} from './StageIdentity';
 
 export type StageNoticeInput=Pick<R2RunState,'phase'|'stage'|'stageIndex'|'boss'|'handOrder'|'deckInstances'>&Partial<Pick<R2RunState,'jokers'|'challengeId'|'contentVersion'|'contentHash'>>;
 export interface StageNotice {
@@ -56,10 +57,10 @@ function enteredNotice(run:StageNoticeInput,selectedIds:readonly string[]=[]):St
     case 'B01':
       return {...notice,title:'贵宾场 · 弃牌耗'+discardCost+'次',description:discardCost===2?'第一手前，每次弃牌消耗2次额度。':'第一手已打出，每次弃牌消耗1次额度。',symbol:discardCost===2?'×2':'○',warning:discardCost===2};
     case 'B02':
-      return {...notice,title:'低调点 · 第4/5张无普通点数',description:'按手牌顺序计算所出牌；第4/5张仍组成牌型，明确的大丑牌效果正常。',symbol:'4/5'};
+      return {...notice,title:'低调点 · 第4/5张无普通点数',description:'按手牌顺序，第4/5张仅普通点数归零；仍成型，明确的大丑牌效果正常。',symbol:'4/5'};
     case 'B03': {
-      const suit=boss.disabledSuit?SUIT_SYMBOL[boss.disabledSuit]:'公开花色';
-      return {...notice,title:'单色灯 · '+suit+'失效',description:'本场'+suit+'不加点数或计分牌效果，仍参与牌型。',details:'本场公开花色：'+suit+'。\n'+notice.details,symbol:suit};
+      const suit=boss.disabledSuit?stageSuitLabel(boss.disabledSuit):'公开花色';
+      return {...notice,title:'单色灯 · '+suit+'失效',description:'本场'+suit+'不加点数或计分牌效果，仍参与牌型。',details:'本场公开花色：'+suit+'。\n'+notice.details,symbol:boss.disabledSuit?SUIT_SYMBOL[boss.disabledSuit]:'!'};
     }
     case 'B04':
       return {...notice,title:'素颜场 · J/Q/K失效',description:'J/Q/K不加点数或计分牌效果；A正常，失效人头仍可凑牌型。',symbol:'JQK'};
