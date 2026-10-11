@@ -11,6 +11,9 @@ function send(state:R2RunState,action:Action):R2RunState {
  if(!result.ok)throw Error(result.code);assertRunInvariants(result.state);return result.state;
 }
 describe('locked Boss identity across preview, entry and recovery',()=>{
+ it('B01 states the per-discard cost change without implying a refunded allowance',()=>{
+  expect(bossScope({definitionId:'B01',disabledSuit:null})).toBe('首手前每次弃牌耗2次，之后每次耗1次');
+ });
  it.each(SUITS)('%s remains exactly the announced parameter through shop and restored entry',suit=>{
   let run=createRun({seed:'stage-identity-fixed',runId:'identity/'+suit,characterId:'amo',rulesVersion:'r2',r2Identity:newRunIdentity('amo','group'),openingRoute:'group',modeConfig:{mode:'standard',difficulty:0,challengeId:null,programsEnabled:false}});
   run=send(send(send(run,{type:'LeaveShop'}),{type:'SkipStage'}),{type:'OpenShop'});

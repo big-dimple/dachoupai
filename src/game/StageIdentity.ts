@@ -11,7 +11,7 @@ export function bossIdentity(boss:R2BossPlan):string {
 /** Short public scope only; no draw, score prediction or recomputed result. */
 export function bossScope(boss:R2BossPlan):string {
  switch(boss.definitionId){
-  case 'B01':return '首手前弃牌耗2次；首手后恢复1次';
+  case 'B01':return '首手前每次弃牌耗2次，之后每次耗1次';
   case 'B02':return '第4/5张仅普通点数0；仍成型、触发大丑牌';
   case 'B03':return stageSuitLabel(boss.disabledSuit!)+'不加点数或计分牌效果；仍成型';
   case 'B04':return 'J/Q/K计分失效；仍成型，A正常';

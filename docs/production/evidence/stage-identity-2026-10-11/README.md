@@ -1,5 +1,11 @@
 # 关卡身份与 Boss 预告：有限修复候选
 
+父复核补正：B01短句明确为“首手前每次弃牌耗2次，之后每次耗1次”，指每次弃牌的消耗变化，不是返还一次额度；仅同步该定向断言，不大回归。此批属于信息可见性与布局基础修复，**没有新增Boss动画或形象，不能宣称Boss美术体验已满足**。两张原图材料化失败与黑桃→梅花根因未复现的边界继续保持。
+
+父正在独立纠偏原图：重新看预告底部微小符号，可能本来就是梅花，此前可能发生像素误读；尚待父确定结论。本执行者仍未取得原图像素，不替父签读图结论。运行时花色变化保持未证实，没有为此新增诊断/规则修复或扩大回归。B01返修的单文件8项定向测试见 `b01-targeted.txt`。
+
+四张代表图的 Library 交付尝试（2026-10-11）：使用本环境当前 Library prepared-upload 支持流程、刷新后的三个 helper，一次有序批量请求 PC入场、390入场、390预告、390过关图；启动阶段失败：`library upload failed: hosted apps tools/list request failed: network`。失败发生在准备/传输会话前，没有返回任何 `library_file_id`，没有可供父在Library查看的图；按父要求停止重试，没有改走重复上传。原始PNG继续在本目录，截图来源仍分别为801308d/75eb5e9，不冒称已上传或新拍。
+
 输入实时 main：`b29ae51855e894db5878d6e70f77475f6a491ba6`，经 `git fetch origin main` 核实。独立分支 `review/stage-identity-preview-20261011`；不合 main、不部署、不覆盖 DELIVERY_PLAN。最新用户补额度/开发授权覆盖 AGENTS 中额度恢复前的暂停；已读当前统一执行计划、原 RULES/CONTENT/UX/ENGINEERING/ART 的对应合同。执行环境 `/workspace/.agents` 为空，仓库没有 `.agents/skills`。18 组合实玩由父协调 dot，本批不承担。
 
 ## 先提交的范围与文件
