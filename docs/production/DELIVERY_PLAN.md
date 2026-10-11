@@ -43,7 +43,7 @@
 |---|---|---|
 | A 道具工作面、风险与全功能文案；Sol6.1 high，任务 `01a11519-3ec1-7596-a263-5b7e2429e0a6` | 开发进行中：覆盖、S05/S08及全部增强/版次/道具的真实条件、收益、代价逐项核对；先必要检查及PC/手机实际闭环，再dot操作验收 | 独占 `ConsumableDialog.ts`、`ToolChangePreview.ts`、`SavedToolResult.ts` 与对应交互/定向测试；新增文件先登记 |
 | B 关卡身份可见性与裁切；Sol6.1 high | [PR110](https://github.com/big-dimple/dachoupai/pull/110) draft，`dcc25d6b16b9f3a09f6a00754af4cd7d85e8aa4d` 冻结供父审；[精确HEAD CI](https://github.com/big-dimple/dachoupai/actions/runs/38120995411)及docs已通过，非体验签收；B01短句已补正，PC/手机实图与受控操作留证。不是Boss新动画/形象交付；下一项dot操作与父独审 | `GameScene.ts`、`IntermissionScene.ts`、`StageIdentity.ts`、`stageNotice.ts` 及其测试/harness；样式只用 `stage-identity-entry` 命名空间，禁止写A独占文件 |
-| C 三路线持续成长、无尽科学计数法方案；任务 `01a129b8-9c97-727f-9f2f-f585e857409c` | Sol6.1 medium规划后high细化；仅本地候选，未实施、未批准G1八卡参数。先核规则与真实经营痛点，再冻结具体方案、参数及保存/事件合同 | 当前只拥有本包方案材料；产品 `src/domain`／内容／分数展示文件尚未开放写入，实施时由父登记所有权，不夹入A/B |
+| C 三路线持续成长、无尽科学计数法方案；任务 `01a129b8-9c97-727f-9f2f-f585e857409c` | Sol6.1 medium规划后high细化；[成长核查与候选证据附录](evidence/growth-candidates-2026-10-11/README.md)，方案已提交待负责人取舍；未实施、未批准G1八卡参数或后期进阶系数，真正幂运算未定。按规则与实玩证据取舍具体方案、参数及保存/事件合同 | 当前只拥有本包方案材料；产品 `src/domain`／内容／分数展示文件尚未开放写入，实施时由父登记所有权，不夹入A/B |
 | D dot完整18组合实玩与证据 | 3/18终态；继续冻结局的二响/成组，逐局终态、关键技能/工具/采购/成长与冲突留账。不交Sol承担18局或燃烧周额度 | 实玩检查点及本包证据；不写产品代码、不移动候选或线上版本 |
 
 A/B不得同时修改共用文件（含 `GameScene.ts`／`IntermissionScene.ts`／`style.css` 的实际交集）。即使新增独立命名空间，也先报告交集，由父给串行写入窗口或调整边界；不能静默覆盖、交叉cherry-pick或自行解决语义冲突。父是唯一集成负责人，保持每包独立分支、冻结SHA与回退点；D可持续操作被冻结版本，A/B/C不能借并行授权扩大内容或改其样本。
