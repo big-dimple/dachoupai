@@ -17,7 +17,7 @@ export function jokerRouteCaption(state:R2RunState,j:R2JokerInstance,heldWidth?:
  if(heldWidth!==undefined&&applicable.length===3)return labels.slice(0,2).join('/')+'\n'+labels[2];
  return labels.join('/')||'核对条件';
 }
-/** Three transparent current-run advice levels. No rarity, score prediction or RNG input. */
+/** Conservative current-run advice; only 1–3 have public evidence here. No rarity, net-upgrade prediction or RNG input. */
 export function shopOfferGuidance(state:R2RunState,offer:R2Offer){
  const focus=currentBuildFocus(state,state.openingRoute),j=r2CreateJoker(offer.definitionId,'guidance/'+offer.offerId,offer.price,offer.edition,state),d=r2JokerDefinitionFor(state,j.definitionId),price=r2PurchasePrice(state,offer);
  const result=(stars:0|1|2|3,reason:string,detail=reason)=>({stars,reason,detail,routes:jokerApplicableRoutes(state,j),routeCaption:jokerRouteCaption(state,j),label:stars?'本局'+'★'.repeat(stars):'本局待选'});
@@ -25,7 +25,9 @@ export function shopOfferGuidance(state:R2RunState,offer:R2Offer){
  if(state.jokers.some(h=>h.definitionId===j.definitionId))return result(1,'已持同名');
  if(price>state.gold)return result(1,`差${price-state.gold}金`);
  if(!focus)return result(0,'先选路线');
- const advice=shopRouteAdvice(state,focus).items.find(a=>a.offer.offerId===offer.offerId),losses=shopPurchaseConditionLosses(state,offer);
+ // Reuse the route advice's assessed transaction, including the proposed sale.
+ // An empty assessed loss list must not fall back to a different direct purchase.
+ const advice=shopRouteAdvice(state,focus).items.find(a=>a.offer.offerId===offer.offerId),losses=advice?.purchaseConditionLosses??shopPurchaseConditionLosses(state,offer);
  if(losses.length)return result(1,'先留金币',losses.join('\n'));
  if(state.jokers.length>=r2JokerCapacity(state)&&advice?.verdict!=='compare')return result(1,'需先腾槽',advice?.reason);
  if(advice?.verdict==='compare')return result(2,'先比替换',advice.reason+(advice.loss?'\n'+advice.loss:''));

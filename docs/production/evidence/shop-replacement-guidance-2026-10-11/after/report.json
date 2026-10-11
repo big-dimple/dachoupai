@@ -1,0 +1,754 @@
+{
+  "head": "51d00155a193b5b7918cd96a9e389a7c1d2fe5c2",
+  "sourceTree": "04923fd3fa1c5d4c83371d0894f7c95c4ed5bf0a",
+  "modified": "",
+  "harnessSha256": "d905875dc8d1d451da5ac23c044fa237fec0ea7d5ad31b35330ce15175e01257",
+  "baseline": false,
+  "scope": "Two native browser viewports, a normal hero/route-created first-shop purchase plus controlled current-identity full-slot gold boundary; exact state/journal/IndexedDB commands and reload. No natural acquisition of controlled holdings, 18-combination, physical-device or human acceptance.",
+  "cases": [
+    {
+      "width": 1366,
+      "height": 768,
+      "touch": false,
+      "checks": [
+        {
+          "screenshot": "1366x768-normal-first-shop.png"
+        },
+        {
+          "label": "normal native hero/route entry and saved first-shelf purchase equal the actual command",
+          "status": "PASS"
+        },
+        {
+          "screenshot": "1366x768-full-slot-shelf.png"
+        },
+        {
+          "screenshot": "1366x768-route-replacement.png"
+        },
+        {
+          "screenshot": "1366x768-saved-sale.png"
+        },
+        {
+          "screenshot": "1366x768-saved-purchase.png"
+        },
+        {
+          "screenshot": "1366x768-net-cash-loss.png"
+        },
+        {
+          "screenshot": "1366x768-net-cash-loss-first-layer.png"
+        },
+        {
+          "screenshot": "1366x768-net-cash-loss-reason.png"
+        },
+        {
+          "label": "two-star compare agrees with net-cash facts; one-star gate loss uses 21→18; cancel/sell/buy/reload full command evidence",
+          "status": "PASS"
+        }
+      ],
+      "errors": [],
+      "normalBefore": {
+        "gold": 6,
+        "commandSeq": 1,
+        "ids": [],
+        "journalLength": 0
+      },
+      "normalOffers": [
+        {
+          "offer": {
+            "offerId": "run/1791720520585/erxiang/shop/0/0/joker/0",
+            "definitionId": "a03",
+            "price": 4,
+            "edition": "none",
+            "consumed": false
+          },
+          "guidance": {
+            "stars": 3,
+            "reason": "补缺口",
+            "detail": "补当前缺少的热度，用于两对／三条／葫芦／四条／五条／同花葫芦／同花五条；实付4金。",
+            "routes": [
+              "group",
+              "straight",
+              "flush"
+            ],
+            "routeCaption": "同点/顺子/同花",
+            "label": "本局★★★"
+          }
+        },
+        {
+          "offer": {
+            "offerId": "run/1791720520585/erxiang/shop/0/0/joker/1",
+            "definitionId": "c04",
+            "price": 4,
+            "edition": "none",
+            "consumed": false
+          },
+          "guidance": {
+            "stars": 1,
+            "reason": "非当前路",
+            "detail": "非当前路",
+            "routes": [
+              "straight",
+              "flush"
+            ],
+            "routeCaption": "顺子/同花",
+            "label": "本局★"
+          }
+        },
+        {
+          "offer": {
+            "offerId": "run/1791720520585/erxiang/shop/0/0/joker/2",
+            "definitionId": "mantangcai",
+            "price": 4,
+            "edition": "none",
+            "consumed": false
+          },
+          "guidance": {
+            "stars": 3,
+            "reason": "补缺口",
+            "detail": "补当前缺少的热度，用于对子／两对／三条／葫芦／四条；实付4金。",
+            "routes": [
+              "group"
+            ],
+            "routeCaption": "同点",
+            "label": "本局★★★"
+          }
+        }
+      ],
+      "normalBought": {
+        "gold": 2,
+        "commandSeq": 2,
+        "ids": [
+          "run/1791720520585/erxiang/joker/run/1791720520585/erxiang/command/2"
+        ],
+        "journalLength": 1
+      },
+      "before": {
+        "gold": 21,
+        "commandSeq": 4,
+        "ids": [
+          "replacement-held/0",
+          "replacement-held/1",
+          "replacement-held/2",
+          "replacement-held/3",
+          "replacement-held/4"
+        ],
+        "journalLength": 0
+      },
+      "advice": {
+        "items": [
+          {
+            "offer": {
+              "offerId": "replacement-offer/0",
+              "definitionId": "b10",
+              "price": 4,
+              "consumed": false
+            },
+            "verdict": "compare",
+            "replaceId": "replacement-held/4",
+            "reason": "补当前缺少的热度，用于对子／两对／三条／葫芦／四条／五条／同花葫芦／同花五条；实付4金。先比较第5槽少一级。",
+            "loss": "出售会失去少一级：普通顺子允许4张连续不同点数，A234合法，也保留5张顺子；基础卖价4金。",
+            "details": "出售将失去「少一级」的效果、版次和当前实例：无成长或使用计数。同名新购牌从新实例初值开始，不继承成长。",
+            "purchaseConditionLosses": []
+          },
+          {
+            "offer": {
+              "offerId": "replacement-offer/1",
+              "definitionId": "d07",
+              "price": 4,
+              "consumed": false
+            },
+            "verdict": "skip",
+            "reason": "已有老搭档（无成长或使用计数）；新牌倍率+0.5，未补明确缺口，建议先不买。"
+          },
+          {
+            "offer": {
+              "offerId": "replacement-offer/2",
+              "definitionId": "f10",
+              "price": 8,
+              "consumed": false
+            },
+            "verdict": "skip",
+            "reason": "当前构筑没有明确需要它的条件；本场尚未出牌，第一次成功弃牌前手牌凑不出两对及以上时，备好一次救火。下一次出牌若为两对及以上，倍率×3，这轮先留金。"
+          }
+        ],
+        "candidates": [
+          {
+            "offer": {
+              "offerId": "replacement-offer/0",
+              "definitionId": "b10",
+              "price": 4,
+              "consumed": false
+            },
+            "verdict": "compare",
+            "replaceId": "replacement-held/4",
+            "reason": "补当前缺少的热度，用于对子／两对／三条／葫芦／四条／五条／同花葫芦／同花五条；实付4金。先比较第5槽少一级。",
+            "loss": "出售会失去少一级：普通顺子允许4张连续不同点数，A234合法，也保留5张顺子；基础卖价4金。",
+            "details": "出售将失去「少一级」的效果、版次和当前实例：无成长或使用计数。同名新购牌从新实例初值开始，不继承成长。",
+            "purchaseConditionLosses": []
+          }
+        ],
+        "headline": "先看替换：练对子",
+        "reason": "补当前缺少的热度，用于对子／两对／三条／葫芦／四条／五条／同花葫芦／同花五条；实付4金。先比较第5槽少一级。"
+      },
+      "guidance": {
+        "stars": 2,
+        "reason": "先比替换",
+        "detail": "补当前缺少的热度，用于对子／两对／三条／葫芦／四条／五条／同花葫芦／同花五条；实付4金。先比较第5槽少一级。\n出售会失去少一级：普通顺子允许4张连续不同点数，A234合法，也保留5张顺子；基础卖价4金。",
+        "routes": [
+          "group"
+        ],
+        "routeCaption": "同点",
+        "label": "本局★★"
+      },
+      "rendered": [
+        {
+          "name": "shop/offer-purpose",
+          "text": "对子等同点组合出牌后 → 热度成长最多+10\n；上限100，新增下次用",
+          "bounds": {
+            "x": 298,
+            "y": 408,
+            "width": 270,
+            "height": 32
+          },
+          "visible": true,
+          "effectiveAlpha": 1
+        },
+        {
+          "name": "shop/offer-routes",
+          "text": "同点",
+          "bounds": {
+            "x": 298,
+            "y": 476,
+            "width": 28,
+            "height": 16
+          },
+          "visible": true,
+          "effectiveAlpha": 1
+        },
+        {
+          "name": "shop/offer-advice",
+          "text": "本局★★ · 先比替换",
+          "stars": 2,
+          "reason": "补当前缺少的热度，用于对子／两对／三条／葫芦／四条／五条／同花葫芦／同花五条；实付4金。先比较第5槽少一级。\n出售会失去少一级：普通顺子允许4张连续不同点数，A234合法，也保留5张顺子；基础卖价4金。",
+          "bounds": {
+            "x": 298,
+            "y": 494,
+            "width": 125,
+            "height": 16
+          },
+          "visible": true,
+          "effectiveAlpha": 1
+        },
+        {
+          "name": "shop/offer-reason",
+          "text": "槽位已满",
+          "bounds": {
+            "x": 298,
+            "y": 534,
+            "width": 56,
+            "height": 16
+          },
+          "visible": true,
+          "effectiveAlpha": 1
+        }
+      ],
+      "journeyText": "这轮怎么选 · 同点成组\n\n先看替换：练对子\n补当前缺少的热度，用于对子／两对／三条／葫芦／四条／五条／同花葫芦／同花五条；实付4金。先比较第5槽少一级。\n当前培养 成组 · 本机续局保留\n\n练对子 · 实付4金\n\n出售会失去少一级：普通顺子允许4张连续不同点数，A234合法，也保留5张顺子；基础卖价4金。\n\n查看这张替换\n二响 · 下场交棒次数恢复为1次 · 老搭档 已积攒 +0 倍率\n建议依据与完整规则\n查看替换 · 4金\n查看全部现货与持牌\n更换方向\n先留金，进入牌桌\n关闭",
+      "sold": {
+        "gold": 25,
+        "commandSeq": 5,
+        "ids": [
+          "replacement-held/0",
+          "replacement-held/1",
+          "replacement-held/2",
+          "replacement-held/3"
+        ],
+        "journalLength": 1
+      },
+      "bought": {
+        "gold": 21,
+        "commandSeq": 6,
+        "ids": [
+          "replacement-held/0",
+          "replacement-held/1",
+          "replacement-held/2",
+          "replacement-held/3",
+          "replacement-guidance-fixed/joker/replacement-guidance-fixed/command/6"
+        ],
+        "journalLength": 2
+      },
+      "reloaded": {
+        "gold": 21,
+        "commandSeq": 6,
+        "ids": [
+          "replacement-held/0",
+          "replacement-held/1",
+          "replacement-held/2",
+          "replacement-held/3",
+          "replacement-guidance-fixed/joker/replacement-guidance-fixed/command/6"
+        ],
+        "journalLength": 2
+      },
+      "lossBefore": {
+        "gold": 21,
+        "commandSeq": 4,
+        "ids": [
+          "replacement-held/0",
+          "replacement-held/1",
+          "replacement-held/2",
+          "replacement-held/3",
+          "replacement-held/4"
+        ],
+        "journalLength": 0
+      },
+      "lossAdvice": {
+        "items": [
+          {
+            "offer": {
+              "offerId": "replacement-offer/0",
+              "definitionId": "b10",
+              "price": 4,
+              "consumed": false
+            },
+            "verdict": "skip",
+            "reason": "买后金币21→18；包场的“本手开始金币至少20；本手新收入不改变资格”条件不再满足（倍率×1.8）；这轮先留金。",
+            "purchaseConditionLosses": [
+              "买后金币21→18；包场的“本手开始金币至少20；本手新收入不改变资格”条件不再满足（倍率×1.8）；这轮先留金。"
+            ]
+          },
+          {
+            "offer": {
+              "offerId": "replacement-offer/1",
+              "definitionId": "d07",
+              "price": 4,
+              "consumed": false
+            },
+            "verdict": "skip",
+            "reason": "已有老搭档（无成长或使用计数）；新牌倍率+0.5，未补明确缺口，建议先不买。"
+          },
+          {
+            "offer": {
+              "offerId": "replacement-offer/2",
+              "definitionId": "f10",
+              "price": 8,
+              "consumed": false
+            },
+            "verdict": "skip",
+            "reason": "当前构筑没有明确需要它的条件；本场尚未出牌，第一次成功弃牌前手牌凑不出两对及以上时，备好一次救火。下一次出牌若为两对及以上，倍率×3，这轮先留金。"
+          }
+        ],
+        "candidates": [],
+        "headline": "这轮不买，留21金",
+        "reason": "当前货架没有明确补强这条路线的牌；保留现有构筑，或主动换方向。"
+      },
+      "lossGuidance": {
+        "stars": 1,
+        "reason": "先留金币",
+        "detail": "买后金币21→18；包场的“本手开始金币至少20；本手新收入不改变资格”条件不再满足（倍率×1.8）；这轮先留金。",
+        "routes": [
+          "group"
+        ],
+        "routeCaption": "同点",
+        "label": "本局★"
+      },
+      "lossRendered": [
+        {
+          "name": "shop/offer-purpose",
+          "text": "对子等同点组合出牌后 → 热度成长最多+10\n；上限100，新增下次用",
+          "bounds": {
+            "x": 298,
+            "y": 408,
+            "width": 270,
+            "height": 32
+          },
+          "visible": true,
+          "effectiveAlpha": 1
+        },
+        {
+          "name": "shop/offer-routes",
+          "text": "同点",
+          "bounds": {
+            "x": 298,
+            "y": 476,
+            "width": 28,
+            "height": 16
+          },
+          "visible": true,
+          "effectiveAlpha": 1
+        },
+        {
+          "name": "shop/offer-advice",
+          "text": "本局★ · 先留金币",
+          "stars": 1,
+          "reason": "买后金币21→18；包场的“本手开始金币至少20；本手新收入不改变资格”条件不再满足（倍率×1.8）；这轮先留金。",
+          "bounds": {
+            "x": 298,
+            "y": 494,
+            "width": 111,
+            "height": 16
+          },
+          "visible": true,
+          "effectiveAlpha": 1
+        },
+        {
+          "name": "shop/offer-reason",
+          "text": "槽位已满",
+          "bounds": {
+            "x": 298,
+            "y": 534,
+            "width": 56,
+            "height": 16
+          },
+          "visible": true,
+          "effectiveAlpha": 1
+        }
+      ],
+      "lossJourneyFirstLayerText": "这轮怎么选 · 同点成组\n\n这轮不买，留21金\n当前大丑牌现货没有明确补强；留21金入场也是完整选择。\n买后金币21→19；包场的“本手开始金币至少20；本手新收入不改变资格”条件不再满足（倍率×1.8）；这轮先留金。\n当前培养 成组 · 本机续局保留\n\n二响 · 下场交棒次数恢复为1次 · 老搭档 已积攒 +0 倍率\n建议依据与完整规则\n查看全部现货与持牌\n更换方向\n先留21金，进入牌桌\n关闭",
+      "lossJourneyText": "这轮怎么选 · 同点成组\n\n这轮不买，留21金\n当前大丑牌现货没有明确补强；留21金入场也是完整选择。\n买后金币21→19；包场的“本手开始金币至少20；本手新收入不改变资格”条件不再满足（倍率×1.8）；这轮先留金。\n当前培养 成组 · 本机续局保留\n\n二响 · 下场交棒次数恢复为1次 · 老搭档 已积攒 +0 倍率\n建议依据与完整规则\n\n当前培养：同点成组 · 开局路线：同点成组\n当前方向在本机续局保留；导入到其它设备仍可重新选择。方向可随时换，不卖牌、不改成长或自动操作。\n\n这是按当前持牌、已存成长、实际货架与成本给出的保守建议，可自行选择其它方案。不是数学最优，也不保证下手成型。\n\n练对子：买后金币21→18；包场的“本手开始金币至少20；本手新收入不改变资格”条件不再满足（倍率×1.8）；这轮先留金。\n\n镜头不空：已有老搭档（无成长或使用计数）；新牌倍率+0.5，未补明确缺口，建议先不买。\n\n冷场救火：当前构筑没有明确需要它的条件；本场尚未出牌，第一次成功弃牌前手牌凑不出两对及以上时，备好一次救火。下一次出牌若为两对及以上，倍率×3，这轮先留金。\n\n余额 21→21 金；按当前持有上限对应利息档 4→4 金。利息在成功过关时按届时余额计算，不是现在到账或下场保证收入。\n\n包场\n通用辅助 · 不专属某一种牌型。\n当前金币至少20时，整手倍率 ×1.8。\n本手开始金币至少20；本手新收入不改变资格\n用途不表示已发动或最优；仍按实际条件、封禁和保存事件检查。\n已保存：无成长或使用计数\n来源是否实际生效，按选牌条件、封禁与保存事件核对。\n\n老搭档\n路线直接条件 · 明确条件涉及同点成组。\n任何成组牌型结算后倍率成长+0.25，上限+3，下次起生效；每手任意牌型均加入已有成长，跨场保留。\n实际牌型是对子／两对／三条／葫芦／四条／五条／同花葫芦／同花五条（精确牌型，不自动包含其他型）\n用途不表示已发动或最优；仍按实际条件、封禁和保存事件检查。\n已保存：无成长或使用计数\n来源是否实际生效，按选牌条件、封禁与保存事件核对。\n\n对半分\n路线直接条件 · 明确条件涉及同点成组。\n任何成组牌型致胜成功过场，额外+3金币；失败和跳场不给，助攻不改变主手判型。\n实际牌型是对子／两对／三条／葫芦／四条／五条／同花葫芦／同花五条（精确牌型，不自动包含其他型）\n用途不表示已发动或最优；仍按实际条件、封禁和保存事件检查。\n已保存：无成长或使用计数\n来源是否实际生效，按选牌条件、封禁与保存事件核对。\n\n小费盒\n通用辅助 · 不专属某一种牌型。\n成功过场额外 +2金币；失败和跳场不触发。\n\n用途不表示已发动或最优；仍按实际条件、封禁和保存事件检查。\n已保存：无成长或使用计数\n来源是否实际生效，按选牌条件、封禁与保存事件核对。\n\n少一级\n其它路线机会 · 明确条件涉及顺子接续。\n普通顺子允许4张连续不同点数，A234合法，也保留5张顺子；同花顺仍需5张，不允许QKA2。\n\n用途不表示已发动或最优；仍按实际条件、封禁和保存事件检查。\n已保存：无成长或使用计数\n来源是否实际生效，按选牌条件、封禁与保存事件核对。\n\n查看全部现货与持牌\n更换方向\n先留21金，进入牌桌\n关闭",
+      "status": "PASS"
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "checks": [
+        {
+          "screenshot": "390x844-normal-first-shop.png"
+        },
+        {
+          "label": "normal native hero/route entry and saved first-shelf purchase equal the actual command",
+          "status": "PASS"
+        },
+        {
+          "screenshot": "390x844-full-slot-shelf.png"
+        },
+        {
+          "screenshot": "390x844-route-replacement.png"
+        },
+        {
+          "screenshot": "390x844-saved-sale.png"
+        },
+        {
+          "screenshot": "390x844-saved-purchase.png"
+        },
+        {
+          "screenshot": "390x844-net-cash-loss.png"
+        },
+        {
+          "screenshot": "390x844-net-cash-loss-first-layer.png"
+        },
+        {
+          "screenshot": "390x844-net-cash-loss-reason.png"
+        },
+        {
+          "label": "two-star compare agrees with net-cash facts; one-star gate loss uses 21→18; cancel/sell/buy/reload full command evidence",
+          "status": "PASS"
+        }
+      ],
+      "errors": [],
+      "normalBefore": {
+        "gold": 6,
+        "commandSeq": 1,
+        "ids": [],
+        "journalLength": 0
+      },
+      "normalOffers": [
+        {
+          "offer": {
+            "offerId": "run/1791720534968/erxiang/shop/0/0/joker/0",
+            "definitionId": "b04",
+            "price": 4,
+            "edition": "none",
+            "consumed": false
+          },
+          "guidance": {
+            "stars": 3,
+            "reason": "补缺口",
+            "detail": "补当前缺少的倍率，用于同点成组；实付4金。",
+            "routes": [
+              "group"
+            ],
+            "routeCaption": "同点",
+            "label": "本局★★★"
+          }
+        },
+        {
+          "offer": {
+            "offerId": "run/1791720534968/erxiang/shop/0/0/joker/1",
+            "definitionId": "b08",
+            "price": 6,
+            "edition": "none",
+            "consumed": false
+          },
+          "guidance": {
+            "stars": 3,
+            "reason": "补缺口",
+            "detail": "补当前缺少的过关金币，用于对子／两对／三条／葫芦／四条／五条／同花葫芦／同花五条；实付6金。",
+            "routes": [
+              "group"
+            ],
+            "routeCaption": "同点",
+            "label": "本局★★★"
+          }
+        },
+        {
+          "offer": {
+            "offerId": "run/1791720534968/erxiang/shop/0/0/joker/2",
+            "definitionId": "mantangcai",
+            "price": 4,
+            "edition": "none",
+            "consumed": false
+          },
+          "guidance": {
+            "stars": 3,
+            "reason": "补缺口",
+            "detail": "补当前缺少的热度，用于对子／两对／三条／葫芦／四条；实付4金。",
+            "routes": [
+              "group"
+            ],
+            "routeCaption": "同点",
+            "label": "本局★★★"
+          }
+        }
+      ],
+      "normalBought": {
+        "gold": 2,
+        "commandSeq": 2,
+        "ids": [
+          "run/1791720534968/erxiang/joker/run/1791720534968/erxiang/command/2"
+        ],
+        "journalLength": 1
+      },
+      "before": {
+        "gold": 21,
+        "commandSeq": 4,
+        "ids": [
+          "replacement-held/0",
+          "replacement-held/1",
+          "replacement-held/2",
+          "replacement-held/3",
+          "replacement-held/4"
+        ],
+        "journalLength": 0
+      },
+      "advice": {
+        "items": [
+          {
+            "offer": {
+              "offerId": "replacement-offer/0",
+              "definitionId": "b10",
+              "price": 4,
+              "consumed": false
+            },
+            "verdict": "compare",
+            "replaceId": "replacement-held/4",
+            "reason": "补当前缺少的热度，用于对子／两对／三条／葫芦／四条／五条／同花葫芦／同花五条；实付4金。先比较第5槽少一级。",
+            "loss": "出售会失去少一级：普通顺子允许4张连续不同点数，A234合法，也保留5张顺子；基础卖价4金。",
+            "details": "出售将失去「少一级」的效果、版次和当前实例：无成长或使用计数。同名新购牌从新实例初值开始，不继承成长。",
+            "purchaseConditionLosses": []
+          },
+          {
+            "offer": {
+              "offerId": "replacement-offer/1",
+              "definitionId": "d07",
+              "price": 4,
+              "consumed": false
+            },
+            "verdict": "skip",
+            "reason": "已有老搭档（无成长或使用计数）；新牌倍率+0.5，未补明确缺口，建议先不买。"
+          },
+          {
+            "offer": {
+              "offerId": "replacement-offer/2",
+              "definitionId": "f10",
+              "price": 8,
+              "consumed": false
+            },
+            "verdict": "skip",
+            "reason": "当前构筑没有明确需要它的条件；本场尚未出牌，第一次成功弃牌前手牌凑不出两对及以上时，备好一次救火。下一次出牌若为两对及以上，倍率×3，这轮先留金。"
+          }
+        ],
+        "candidates": [
+          {
+            "offer": {
+              "offerId": "replacement-offer/0",
+              "definitionId": "b10",
+              "price": 4,
+              "consumed": false
+            },
+            "verdict": "compare",
+            "replaceId": "replacement-held/4",
+            "reason": "补当前缺少的热度，用于对子／两对／三条／葫芦／四条／五条／同花葫芦／同花五条；实付4金。先比较第5槽少一级。",
+            "loss": "出售会失去少一级：普通顺子允许4张连续不同点数，A234合法，也保留5张顺子；基础卖价4金。",
+            "details": "出售将失去「少一级」的效果、版次和当前实例：无成长或使用计数。同名新购牌从新实例初值开始，不继承成长。",
+            "purchaseConditionLosses": []
+          }
+        ],
+        "headline": "先看替换：练对子",
+        "reason": "补当前缺少的热度，用于对子／两对／三条／葫芦／四条／五条／同花葫芦／同花五条；实付4金。先比较第5槽少一级。"
+      },
+      "guidance": {
+        "stars": 2,
+        "reason": "先比替换",
+        "detail": "补当前缺少的热度，用于对子／两对／三条／葫芦／四条／五条／同花葫芦／同花五条；实付4金。先比较第5槽少一级。\n出售会失去少一级：普通顺子允许4张连续不同点数，A234合法，也保留5张顺子；基础卖价4金。",
+        "routes": [
+          "group"
+        ],
+        "routeCaption": "同点",
+        "label": "本局★★"
+      },
+      "rendered": [
+        {
+          "name": "shop/offer-purpose",
+          "text": "成组长热度 · +10顶100 · 新增下次用",
+          "bounds": {
+            "x": 114,
+            "y": 140,
+            "width": 226,
+            "height": 16
+          },
+          "visible": true,
+          "effectiveAlpha": 1
+        },
+        {
+          "name": "shop/offer-routes",
+          "text": "同点 · ★★",
+          "bounds": {
+            "x": 114,
+            "y": 188,
+            "width": 66,
+            "height": 16
+          },
+          "visible": true,
+          "effectiveAlpha": 1
+        }
+      ],
+      "journeyText": "这轮怎么选 · 同点成组\n\n先看替换：练对子\n补当前缺少的热度，用于对子／两对／三条／葫芦／四条／五条／同花葫芦／同花五条；实付4金。先比较第5槽少一级。\n当前培养 成组 · 本机续局保留\n\n练对子 · 实付4金\n\n出售会失去少一级：普通顺子允许4张连续不同点数，A234合法，也保留5张顺子；基础卖价4金。\n\n查看这张替换\n二响 · 下场交棒次数恢复为1次 · 老搭档 已积攒 +0 倍率\n建议依据与完整规则\n查看替换 · 4金\n查看全部现货与持牌\n更换方向\n先留金，进入牌桌\n关闭",
+      "sold": {
+        "gold": 25,
+        "commandSeq": 5,
+        "ids": [
+          "replacement-held/0",
+          "replacement-held/1",
+          "replacement-held/2",
+          "replacement-held/3"
+        ],
+        "journalLength": 1
+      },
+      "bought": {
+        "gold": 21,
+        "commandSeq": 6,
+        "ids": [
+          "replacement-held/0",
+          "replacement-held/1",
+          "replacement-held/2",
+          "replacement-held/3",
+          "replacement-guidance-fixed/joker/replacement-guidance-fixed/command/6"
+        ],
+        "journalLength": 2
+      },
+      "reloaded": {
+        "gold": 21,
+        "commandSeq": 6,
+        "ids": [
+          "replacement-held/0",
+          "replacement-held/1",
+          "replacement-held/2",
+          "replacement-held/3",
+          "replacement-guidance-fixed/joker/replacement-guidance-fixed/command/6"
+        ],
+        "journalLength": 2
+      },
+      "lossBefore": {
+        "gold": 21,
+        "commandSeq": 4,
+        "ids": [
+          "replacement-held/0",
+          "replacement-held/1",
+          "replacement-held/2",
+          "replacement-held/3",
+          "replacement-held/4"
+        ],
+        "journalLength": 0
+      },
+      "lossAdvice": {
+        "items": [
+          {
+            "offer": {
+              "offerId": "replacement-offer/0",
+              "definitionId": "b10",
+              "price": 4,
+              "consumed": false
+            },
+            "verdict": "skip",
+            "reason": "买后金币21→18；包场的“本手开始金币至少20；本手新收入不改变资格”条件不再满足（倍率×1.8）；这轮先留金。",
+            "purchaseConditionLosses": [
+              "买后金币21→18；包场的“本手开始金币至少20；本手新收入不改变资格”条件不再满足（倍率×1.8）；这轮先留金。"
+            ]
+          },
+          {
+            "offer": {
+              "offerId": "replacement-offer/1",
+              "definitionId": "d07",
+              "price": 4,
+              "consumed": false
+            },
+            "verdict": "skip",
+            "reason": "已有老搭档（无成长或使用计数）；新牌倍率+0.5，未补明确缺口，建议先不买。"
+          },
+          {
+            "offer": {
+              "offerId": "replacement-offer/2",
+              "definitionId": "f10",
+              "price": 8,
+              "consumed": false
+            },
+            "verdict": "skip",
+            "reason": "当前构筑没有明确需要它的条件；本场尚未出牌，第一次成功弃牌前手牌凑不出两对及以上时，备好一次救火。下一次出牌若为两对及以上，倍率×3，这轮先留金。"
+          }
+        ],
+        "candidates": [],
+        "headline": "这轮不买，留21金",
+        "reason": "当前货架没有明确补强这条路线的牌；保留现有构筑，或主动换方向。"
+      },
+      "lossGuidance": {
+        "stars": 1,
+        "reason": "先留金币",
+        "detail": "买后金币21→18；包场的“本手开始金币至少20；本手新收入不改变资格”条件不再满足（倍率×1.8）；这轮先留金。",
+        "routes": [
+          "group"
+        ],
+        "routeCaption": "同点",
+        "label": "本局★"
+      },
+      "lossRendered": [
+        {
+          "name": "shop/offer-purpose",
+          "text": "成组长热度 · +10顶100 · 新增下次用",
+          "bounds": {
+            "x": 114,
+            "y": 140,
+            "width": 226,
+            "height": 16
+          },
+          "visible": true,
+          "effectiveAlpha": 1
+        },
+        {
+          "name": "shop/offer-routes",
+          "text": "同点 · ★",
+          "bounds": {
+            "x": 114,
+            "y": 188,
+            "width": 53,
+            "height": 16
+          },
+          "visible": true,
+          "effectiveAlpha": 1
+        }
+      ],
+      "lossJourneyFirstLayerText": "这轮怎么选 · 同点成组\n\n这轮不买，留21金\n当前大丑牌现货没有明确补强；留21金入场也是完整选择。\n买后金币21→19；包场的“本手开始金币至少20；本手新收入不改变资格”条件不再满足（倍率×1.8）；这轮先留金。\n当前培养 成组 · 本机续局保留\n\n二响 · 下场交棒次数恢复为1次 · 老搭档 已积攒 +0 倍率\n建议依据与完整规则\n查看全部现货与持牌\n更换方向\n先留21金，进入牌桌\n关闭",
+      "lossJourneyText": "这轮怎么选 · 同点成组\n\n这轮不买，留21金\n当前大丑牌现货没有明确补强；留21金入场也是完整选择。\n买后金币21→19；包场的“本手开始金币至少20；本手新收入不改变资格”条件不再满足（倍率×1.8）；这轮先留金。\n当前培养 成组 · 本机续局保留\n\n二响 · 下场交棒次数恢复为1次 · 老搭档 已积攒 +0 倍率\n建议依据与完整规则\n\n当前培养：同点成组 · 开局路线：同点成组\n当前方向在本机续局保留；导入到其它设备仍可重新选择。方向可随时换，不卖牌、不改成长或自动操作。\n\n这是按当前持牌、已存成长、实际货架与成本给出的保守建议，可自行选择其它方案。不是数学最优，也不保证下手成型。\n\n练对子：买后金币21→18；包场的“本手开始金币至少20；本手新收入不改变资格”条件不再满足（倍率×1.8）；这轮先留金。\n\n镜头不空：已有老搭档（无成长或使用计数）；新牌倍率+0.5，未补明确缺口，建议先不买。\n\n冷场救火：当前构筑没有明确需要它的条件；本场尚未出牌，第一次成功弃牌前手牌凑不出两对及以上时，备好一次救火。下一次出牌若为两对及以上，倍率×3，这轮先留金。\n\n余额 21→21 金；按当前持有上限对应利息档 4→4 金。利息在成功过关时按届时余额计算，不是现在到账或下场保证收入。\n\n包场\n通用辅助 · 不专属某一种牌型。\n当前金币至少20时，整手倍率 ×1.8。\n本手开始金币至少20；本手新收入不改变资格\n用途不表示已发动或最优；仍按实际条件、封禁和保存事件检查。\n已保存：无成长或使用计数\n来源是否实际生效，按选牌条件、封禁与保存事件核对。\n\n老搭档\n路线直接条件 · 明确条件涉及同点成组。\n任何成组牌型结算后倍率成长+0.25，上限+3，下次起生效；每手任意牌型均加入已有成长，跨场保留。\n实际牌型是对子／两对／三条／葫芦／四条／五条／同花葫芦／同花五条（精确牌型，不自动包含其他型）\n用途不表示已发动或最优；仍按实际条件、封禁和保存事件检查。\n已保存：无成长或使用计数\n来源是否实际生效，按选牌条件、封禁与保存事件核对。\n\n对半分\n路线直接条件 · 明确条件涉及同点成组。\n任何成组牌型致胜成功过场，额外+3金币；失败和跳场不给，助攻不改变主手判型。\n实际牌型是对子／两对／三条／葫芦／四条／五条／同花葫芦／同花五条（精确牌型，不自动包含其他型）\n用途不表示已发动或最优；仍按实际条件、封禁和保存事件检查。\n已保存：无成长或使用计数\n来源是否实际生效，按选牌条件、封禁与保存事件核对。\n\n小费盒\n通用辅助 · 不专属某一种牌型。\n成功过场额外 +2金币；失败和跳场不触发。\n\n用途不表示已发动或最优；仍按实际条件、封禁和保存事件检查。\n已保存：无成长或使用计数\n来源是否实际生效，按选牌条件、封禁与保存事件核对。\n\n少一级\n其它路线机会 · 明确条件涉及顺子接续。\n普通顺子允许4张连续不同点数，A234合法，也保留5张顺子；同花顺仍需5张，不允许QKA2。\n\n用途不表示已发动或最优；仍按实际条件、封禁和保存事件检查。\n已保存：无成长或使用计数\n来源是否实际生效，按选牌条件、封禁与保存事件核对。\n\n查看全部现货与持牌\n更换方向\n先留21金，进入牌桌\n关闭",
+      "status": "PASS"
+    }
+  ],
+  "status": "PASS"
+}
