@@ -4,12 +4,16 @@ import type {R2SelectionFacts} from '../domain/r2SelectionFacts';
 import {handdrawnPath} from './HanddrawnArt';
 import {assetUrl} from './theme';
 /** The current public hand only. Court art is reused; marks come from actual selection facts. */
-export function renderCandidateCards(button:HTMLButtonElement,hand:readonly PlayingCard[],facts:R2SelectionFacts):void {
+export function renderCandidateCards(button:HTMLElement,hand:readonly PlayingCard[],facts:R2SelectionFacts):void {
  renderPublicCards(button,hand,facts.playedIds,card=>facts.disabledIds.includes(card.id),card=>(facts.activeScoringIds.includes(card.id)?'★':'附')+(facts.ordinaryPointsSuppressedIds.includes(card.id)?'0':''));
 }
 /** A reference is not a completed/scoring hand. Its cards carry 留 instead of scoring stars. */
 export function renderRetentionCards(host:HTMLElement,hand:readonly PlayingCard[],ids:readonly string[],disabledIds:readonly string[]):void {
  renderPublicCards(host,hand,ids,card=>disabledIds.includes(card.id),()=> '留');
+}
+/** Assist instances are consumed beside the main hand, never scored or retained. */
+export function renderAssistCards(host:HTMLElement,hand:readonly PlayingCard[],ids:readonly string[]):void {
+ renderPublicCards(host,hand,ids,()=>false,()=> '助');
 }
 /** Tool comparison faces are references, never scoring/retention suggestions. */
 export function renderToolCard(host:HTMLElement,card:PlayingCard):void {
