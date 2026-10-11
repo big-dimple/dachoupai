@@ -42,7 +42,7 @@ export class OwnedJokerInput {
   private coordinates(e:PointerEvent){const r=this.scene.game.canvas.getBoundingClientRect(),zoom=this.scene.scale.zoom;return{x:(e.clientX-r.left)*this.scene.scale.width*zoom/r.width,y:(e.clientY-r.top)*this.scene.scale.height*zoom/r.height};}
   private blocked(e:PointerEvent){return !!this.owner&&(this.owner.width!==innerWidth||this.owner.height!==innerHeight)||!this.options.ready()||modalBlocksCanvas(e.clientX,e.clientY)||e.clientX<0||e.clientY<0||e.clientX>=innerWidth||e.clientY>=innerHeight;}
   private readonly contact=(e:PointerEvent)=>{
-    if(e.isPrimary){for(const [id,type] of this.contacts)if(type===e.pointerType){if(this.owner?.pointerId===id)this.finish();this.contacts.delete(id);}}
+    if(e.isPrimary){for(const [id,type] of this.contacts)if(type===e.pointerType){if(this.owner?.pointerId===id){this.cancel();this.finish();}this.contacts.delete(id);}}
     this.contacts.set(e.pointerId,e.pointerType);
     if(this.owner&&e.pointerId!==this.owner.pointerId)this.cancel();
   };

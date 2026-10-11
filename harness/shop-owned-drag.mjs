@@ -29,7 +29,7 @@ for(const {touch,width,height} of [{touch:false,width:1366,height:768},{touch:tr
  const ids=before.state.jokers.map(j=>j.instanceId);ids.push(...ids.splice(0,1));const wanted=[...before.state.jokers.map(j=>j.instanceId)];wanted.splice(3,0,wanted.splice(0,1)[0]);const action={type:'ReorderJokers',ids:wanted},command={runId:before.state.runId,commandId:before.state.runId+'/command/'+(before.state.commandSeq+1),expectedSeq:before.state.commandSeq,action},expected=applyCommand(before.state,command);assert.ok(expected.ok);assert.deepEqual(row.moved.state,expected.state);assert.deepEqual(row.moved.journal,[...before.journal,command]);assert.equal(row.moved.state.commandSeq,before.state.commandSeq+1);row.checks.push({label:'single committed real reorder; exact full state/journal matches domain command',status:'PASS'});
  before=await snapshot(p);await start(await slot(p,0));if(touch)await p.waitForTimeout(400);const out=await slot(p,2);out.y+=190;await move(out);await end();row.outOfRow=await snapshot(p);if(!baseline)assert.deepEqual(row.outOfRow,before,'off-row release cancels');row.checks.push({label:'off-row release',status:JSON.stringify(row.outOfRow)===JSON.stringify(before)?'PASS':'BASELINE_FAIL'});
  if(!baseline){
-  for(const cancel of ['same-slot','gap','prehold-vertical','long-hold-release','pointercancel','escape','blur','hidden','capture','multitouch','resize','modal']){
+  for(const cancel of ['same-slot','gap','prehold-vertical','long-hold-release','pointercancel','escape','blur','hidden','capture','multitouch','missed-release-recovery','resize','modal']){
    before=await snapshot(p);const from=await slot(p,0);await start(from);if((touch&&cancel!=='prehold-vertical')||cancel==='long-hold-release')await p.waitForTimeout(400);
    if(cancel==='same-slot')await move({x:from.x+12,y:from.y});
    else if(cancel==='gap'){const b=await slot(p,1);await move({x:(from.x+b.x)/2,y:from.y});}
@@ -42,6 +42,7 @@ for(const {touch,width,height} of [{touch:false,width:1366,height:768},{touch:tr
    else if(cancel==='hidden')await p.evaluate(()=>{Object.defineProperty(document,'hidden',{configurable:true,value:true});document.dispatchEvent(new Event('visibilitychange'));Object.defineProperty(document,'hidden',{configurable:true,value:false});});
    else if(cancel==='capture'){await p.evaluate(()=>{const s=window.__harness.game.scene.getScene('shop').ownedInput;const id=s.owner?.pointerId;if(!s.surface.hasPointerCapture(id))throw Error('no actual capture');s.surface.releasePointerCapture(id);});await move(await slot(p,2));}
    else if(cancel==='multitouch')await p.evaluate(()=>window.dispatchEvent(new PointerEvent('pointerdown',{pointerId:909,isPrimary:false,pointerType:'touch'})));
+   else if(cancel==='missed-release-recovery'){await p.evaluate(()=>{const s=window.__harness.game.scene.getScene('shop'),o=s.ownedInput.owner;window.dispatchEvent(new PointerEvent('pointerdown',{pointerId:o.pointerId,isPrimary:true,pointerType:o.touch?'touch':'mouse'}));if(s.ownedDrag)throw Error('old lifted preview survived recovery');});}
    else if(cancel==='resize')await p.setViewportSize({width:width-1,height});
    else if(cancel==='modal')await p.locator('.run-menu-toggle').click();
    if(cancel==='pointercancel'&&touch){await idle(p);await frame(p);}else await end();
