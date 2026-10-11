@@ -26,7 +26,7 @@ export function shopOfferGuidance(state:R2RunState,offer:R2Offer){
  const operation=offer.consumed?'已购':same?'已持同名':full?'需替换':price>state.gold?`差${price-state.gold}金`:'可购买';
  const cashBasis=advice?.replaceId?'拟换第'+(state.jokers.findIndex(j=>j.instanceId===advice.replaceId)+1)+'槽':full?'未选替换：以下仅为直接买入现金':'直接买入';
  const stars=recommendation.stars,label=stars?'推荐指数 '+'★'.repeat(stars)+'☆'.repeat(5-stars):'推荐指数 待核';
- return {stars,label,reason:recommendation.reason,condition:recommendation.condition,recommendation,operation,operationShort:losses.length?'现金风险':operation,
+ return {stars,label,reason:recommendation.reason,condition:recommendation.condition,recommendation,operation,operationShort:losses.length?'现金风险':full&&!same&&!offer.consumed&&price>state.gold?`差${price-state.gold}金`:operation,
   purchaseConditionLosses:losses,cashBasis,replaceId:advice?.replaceId,
   detail:recommendation.detail+'\n'+operation+(price>state.gold?` · 直接买入差${price-state.gold}金`:'')+(losses.length?'\n'+cashBasis+'\n'+losses.join('\n'):''),
   routes:jokerApplicableRoutes(state,j),routeCaption:jokerRouteCaption(state,j)};

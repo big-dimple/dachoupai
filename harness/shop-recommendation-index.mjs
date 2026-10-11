@@ -23,7 +23,7 @@ function fixture(key){const legacy=key==='legacy';let s=createRun({seed:'recomme
  s.jokers=ids.map((id,i)=>r2CreateJoker(id,'native-held/'+i,key==='cash-loss'&&i===4?2:8,key==='sale-links'&&i===4?'foil':'none',s));
  const grown=s.jokers.find(j=>j.definitionId==='b03');if(grown)grown.growth.multiplier={n:'1',d:'1'};
  if(key==='sale-links')s.jokers[0].growth.coefficient={n:'3',d:'2'};
- s.shop.offers=stock.map((definitionId,i)=>({offerId:'native-offer/'+i,definitionId,price:r2Price(definitionId,'none',s),edition:'none',consumed:false}));assertRunInvariants(s);const cp=readCheckpoint(makeCheckpoint(s,[]));assert.ok(cp.ok,cp.code);return s;}
+ s.shop.visitIndex=s.stageIndex;s.shop.offers=stock.map((definitionId,i)=>({offerId:'native-offer/'+i,definitionId,price:r2Price(definitionId,'none',s),edition:'none',consumed:false}));assertRunInvariants(s);const cp=readCheckpoint(makeCheckpoint(s,[]));assert.ok(cp.ok,cp.code);return s;}
 const browser=await chromium.launch({executablePath:'/usr/bin/chromium',args:['--disable-gpu','--disable-software-rasterizer']});
 const snapshot=p=>p.evaluate(async()=>{const {gameSession}=await import('/src/game/session.ts'),s=gameSession();return{state:s.run.state,journal:s.run.journal,slots:await s.storage.read()};});
 const idle=p=>p.waitForFunction(()=>{const s=window.__harness?.game.scene.getScene('shop');return s?.ready&&s.view.root.alpha===1&&!s.tweens.isTweening(s.view.root)&&s.offerArts.every(a=>a.alpha===1&&!s.tweens.isTweening(a));});
