@@ -1,0 +1,14 @@
+{
+  "branch": "fix/amo-assist-entry",
+  "headAtRejectedRead": "5607a0d0095cd7a7b50516602aae25854e285f36",
+  "tool": "functions.exec -> tools.exec_command",
+  "command": "gh api repos/big-dimple/dachoupai --jq '{full_name,permissions}'",
+  "exitCode": 1,
+  "error": "Get \"https://api.github.com/repos/big-dimple/dachoupai\": Forbidden",
+  "layer": "GitHub API request denial; no execution approval escalation was used",
+  "draftCreated": false,
+  "exactHeadCiConfirmed": false,
+  "afterDenial": "Stopped GitHub API operations; no write, CI query, retry, alternative route or merge after denial. Git branch push is already successful.",
+  "requestFile": "draft-pr-request.json",
+  "remainingDependency": "C2 PR121 not integrated; parent notification after main merge is needed before routeGrowth identity snapshot alignment."
+}
