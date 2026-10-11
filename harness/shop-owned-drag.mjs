@@ -34,6 +34,7 @@ for(const {touch,width,height} of (process.env.DRAG_READONLY_ONLY==='1'?specs.sl
   row.savedFailure=await detailed();assert.deepEqual(row.savedFailure.state,initial.state);assert.deepEqual(row.savedFailure.slots,initial.slots);assert.equal(row.savedFailure.commitCalls,1);assert.equal(await p.locator('.detail-dialog[open]').count(),0);
   for(const mode of ['paused','readonly']){
    if(mode==='readonly')await p.evaluate(async()=>{const {gameSession}=await import('/src/game/session.ts');gameSession().lease.drop();});
+   if(await p.locator('.run-menu-modal').evaluate(d=>d.open))await p.locator('.run-menu-toggle').click();
    const stable=await detailed();assert.equal(stable.status,mode);await tapUI(p,'shop','joker/'+run.jokers[0].instanceId,touch);await p.locator('.detail-dialog[open]').waitFor({timeout:3000});
    for(const label of ['左移','右移','出售'])assert.ok(await p.getByRole('button',{name:label,exact:true}).isDisabled(),mode+' '+label+' disabled');
    assert.deepEqual(await detailed(),stable,mode+' tap inspection preserves full state/journal/IDB/pending candidate');await shot(mode+'-detail');await p.getByRole('button',{name:'关闭',exact:true}).click();
