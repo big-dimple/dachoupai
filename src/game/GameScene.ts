@@ -1139,7 +1139,7 @@ export class GameScene extends Phaser.Scene {
       const recommendation=this.assistRecommendations.get(this.run,[...this.selectedIds]);
       if(recommendation&&recommendation.options.length>1){
         if(recommendation.best.ids.length)this.chooseAssist(recommendation.best.ids);
-        else {this.statusMessage=recommendation.options.some(o=>o.ids.length&&o.range.minimum===recommendation.best.range.minimum)?'同分不助攻 · 保留副组，可手选':'不助攻收益更高 · 换一组可手选';this.updateControls();}return;
+        else {this.statusMessage=recommendation.options.some(o=>o.ids.length&&o.range.minimum===recommendation.best.range.minimum)?(recommendation.random?'同保底不助攻':'同分不助攻')+' · 保留副组，可手选':'不助攻收益更高 · 换一组可手选';this.updateControls();}return;
       }
     }this.inspectRole();
   }
