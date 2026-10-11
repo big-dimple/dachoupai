@@ -341,12 +341,12 @@ export class ShopScene extends Phaser.Scene {
     // A long full rule owns the right column; the price stays below the art on the left.
     const priceX=column?tile.x+8:initialX;
     const priceInk=this.offerPricePlate(o,{x:priceX-2,y:priceY-2,width:column?66:tile.x+tile.width-priceX-8,height:24});
-    v.text(priceX,priceY,o.consumed?'已购':`${r2PurchasePrice(this.run,o)} 金${column?'':` · ${d?editionLabel(o.edition):'查看'}`}`,16,priceInk).setFontStyle('bold').setName('shop/offer-price').setData('offerId',o.offerId);
+    v.text(priceX,priceY,o.consumed?'已购':`${r2PurchasePrice(this.run,o)} 金${column?'':` · ${d?(this.run.jokers.length>=r2JokerCapacity(this.run)?'比较替换':editionLabel(o.edition)):'查看'}`}`,16,priceInk).setFontStyle('bold').setName('shop/offer-price').setData('offerId',o.offerId);
     this.markBuildOffer(o,kind,tile,{x:initialX+width-44,y:initialY,width:44,height:22});
     if(d)this.drawOfferGuidance(o,{x:initialX,y:priceY-guidanceHeight,width,height:guidanceHeight});
     const reason=o.consumed?'':this.purchaseReason(o,true);if(reason){const note=v.text(priceX,priceY+20,reason,14,'#B8473A').setName('shop/offer-reason').setData('offerId',o.offerId);this.ellipsis(note,column?64:width);}
     const hover=this.hoverCard(first,tile,d?.id),hit=v.rect(tile).setFillStyle(0,0).setStrokeStyle().setData('selected',this.selectedOfferId===o.offerId);
-    this.pcOfferBoxes.set(o.offerId,tile);this.offerArts.push(hover.art);v.target(hit,'offer/'+o.offerId,{tap:()=>this.inspectOffer(o.offerId),detail:()=>this.inspectOffer(o.offerId),...hover});
+    this.pcOfferBoxes.set(o.offerId,tile);this.offerArts.push(hover.art);v.target(hit,'offer/'+o.offerId,{tap:()=>d&&this.run.jokers.length>=r2JokerCapacity(this.run)?this.inspectReplacement(o.offerId):this.inspectOffer(o.offerId),detail:()=>this.inspectOffer(o.offerId),...hover});
   }
   private get resultReduced():boolean{return gameSession().reducedMotion||window.matchMedia('(prefers-reduced-motion: reduce)').matches;}
   private drawResultCue():void {
