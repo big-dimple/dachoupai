@@ -355,9 +355,16 @@ export class GameScene extends Phaser.Scene {
     paintCardFeedback(view,{selected:this.selectedIds.has(view.card.id),scoring:!!view.container.getData('activeScoring'),hovered:this.hoveredCardId===view.card.id,focused:this.keyboardFocus&&document.activeElement===this.game.canvas&&index===this.focusIndex});
   }
   private get ready():boolean {const session=gameSession();return !this.playing&&runController(this)?.status==='idle'&&session.lease.writable&&!session.pendingRun&&!session.working;}
-  private get inventoryReady():boolean {return this.ready&&this.run.phase==='await-input'&&!this.presentation&&!this.pendingRefill&&!this.pendingTouye;}
+  private get inventoryInspectable():boolean {
+    const session=gameSession(),status=runController(this)?.status;
+    return !this.playing&&!this.presentation&&['idle','paused','readonly'].includes(status??'')&&!session.pendingRun&&!session.working&&this.run.phase==='await-input'&&!this.pendingRefill&&!this.pendingTouye;
+  }
   private updateInventoryControl():void {
-    if(this.controlsLive&&this.inventoryButton?.active)this.view.setEnabled(this.inventoryButton,this.inventoryReady);
+    if(this.controlsLive&&this.inventoryButton?.active)this.view.setEnabled(this.inventoryButton,this.inventoryInspectable);
+  }
+  private inspectInventory():void {
+    if(!this.inventoryInspectable)return;
+    showConsumables(this.dialog,this.run,this.ready,(action,seq)=>this.inventoryInspectable&&this.ready&&seq===this.run.commandSeq?this.command(action,seq):Promise.resolve(false));
   }
   get isPresenting():boolean {return !!this.presentation;}
   private render():void {
@@ -448,7 +455,7 @@ export class GameScene extends Phaser.Scene {
     const play=l.tableActions.play;
     this.playAura=v.add(this.add.graphics().lineStyle(2,T.red,.7).strokeRoundedRect(play.x-3,play.y-3,play.width+6,play.height+6,9).setAlpha(0));
     this.statusText=v.text(l.status.x,l.status.y,'',14,'#f3d5ab',l.status.width);
-    this.inventoryButton=v.button(gameToolInventoryBox(l),toolInventoryLabel(this.run),'action/tool-inventory',()=>{if(this.inventoryReady)showConsumables(this.dialog,this.run,true,(a,seq)=>this.command(a,seq));});
+    this.inventoryButton=v.button(gameToolInventoryBox(l),toolInventoryLabel(this.run),'action/tool-inventory',()=>this.inspectInventory());
     inventoryFeedback(this,this.inventoryButton,this.run,this.ready,this.reducedMotion);
     this.controlsLive=true;
     this.updateHud();this.renderHand();
