@@ -1,0 +1,84 @@
+{
+  "fixtureRejectedBeforeNative": [
+    "Run invariant: boss parameter (controlled B03 missing a suit; changed controlled fixture to B04)",
+    "Run invariant: basic choice visit/receipt/quota (controlled shop visit changed without matching original receipt; used valid LeaveShop then controlled stage-ready with shop=null)"
+  ],
+  "nativeObserverFailures": [
+    {
+      "label": "baseline-resize-observer",
+      "originalReport": "/tmp/inventory-refill-before/first-native-FAIL.json",
+      "sha256": "bd0e4be85512bfd79a857d12e32babe8f86346b14dc60eb6f4a6694a4ac48b24",
+      "head": "6d2d954d1b41cddf632dfdce86fb75374e8f7e54",
+      "gameSceneSha256": null,
+      "status": "FAIL",
+      "error": "locator.waitFor: Timeout 15000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('.tool-inventory[open]') to be visible\u001b[22m\n\n    at open (/workspace/dachoupai/harness/tool-inventory-refill.mjs:38:100)\n    at async file:///workspace/dachoupai/harness/tool-inventory-refill.mjs:59:127",
+      "cases": [
+        {
+          "viewport": {
+            "width": 1366,
+            "height": 768
+          },
+          "checksCompleted": [
+            "unavailable T17 remains inspectable; cancel writes nothing",
+            "pending box blocked; hide/reopen preserves fixed candidates and complete save",
+            "REPRODUCED: await-input/ready/zero discards/T17 but input.enabled=false; two real box taps do nothing"
+          ],
+          "error": "locator.waitFor: Timeout 15000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('.tool-inventory[open]') to be visible\u001b[22m\n\n    at open (/workspace/dachoupai/harness/tool-inventory-refill.mjs:38:100)\n    at async file:///workspace/dachoupai/harness/tool-inventory-refill.mjs:59:127"
+        }
+      ]
+    },
+    {
+      "label": "paused-menu-observer",
+      "originalReport": "/tmp/inventory-refill-after/first-native-FAIL.json",
+      "sha256": "0a6667f72127f813b21d9a264132ba2c8afcd172be28561c90ef5b1c649637c1",
+      "head": "6d2d954d1b41cddf632dfdce86fb75374e8f7e54",
+      "gameSceneSha256": null,
+      "status": "FAIL",
+      "error": "locator.click: Timeout 15000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: '取消', exact: true })\u001b[22m\n\u001b[2m    - locator resolved to <button class=\"dialog-close\">取消</button>\u001b[22m\n\u001b[2m  - attempting click action\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - <summary>本局与版本</summary> from <div class=\"run-menu\">…</div> subtree intercepts pointer events\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m    - waiting 20ms\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - <summary>本局与版本</summary> from <div class=\"run-menu\">…</div> subtree intercepts pointer events\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m      - waiting 100ms\u001b[22m\n\u001b[2m    26 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m       - element is visible, enabled and stable\u001b[22m\n\u001b[2m       - scrolling into view if needed\u001b[22m\n\u001b[2m       - done scrolling\u001b[22m\n\u001b[2m       - <summary>本局与版本</summary> from <div class=\"run-menu\">…</div> subtree intercepts pointer events\u001b[22m\n\u001b[2m     - retrying click action\u001b[22m\n\u001b[2m       - waiting 500ms\u001b[22m\n\n    at dom (/workspace/dachoupai/harness/tool-inventory-refill.mjs:32:93)\n    at close (/workspace/dachoupai/harness/tool-inventory-refill.mjs:37:41)\n    at /workspace/dachoupai/harness/tool-inventory-refill.mjs:64:154",
+      "cases": [
+        {
+          "viewport": {
+            "width": 1366,
+            "height": 768
+          },
+          "checksCompleted": [
+            "unavailable T17 remains inspectable; cancel writes nothing",
+            "pending box blocked; hide/reopen preserves fixed candidates and complete save",
+            "choice enables box without full render; two open/cancel cycles write nothing"
+          ],
+          "error": "locator.click: Timeout 15000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: '取消', exact: true })\u001b[22m\n\u001b[2m    - locator resolved to <button class=\"dialog-close\">取消</button>\u001b[22m\n\u001b[2m  - attempting click action\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - <summary>本局与版本</summary> from <div class=\"run-menu\">…</div> subtree intercepts pointer events\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m    - waiting 20ms\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - <summary>本局与版本</summary> from <div class=\"run-menu\">…</div> subtree intercepts pointer events\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m      - waiting 100ms\u001b[22m\n\u001b[2m    26 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m       - element is visible, enabled and stable\u001b[22m\n\u001b[2m       - scrolling into view if needed\u001b[22m\n\u001b[2m       - done scrolling\u001b[22m\n\u001b[2m       - <summary>本局与版本</summary> from <div class=\"run-menu\">…</div> subtree intercepts pointer events\u001b[22m\n\u001b[2m     - retrying click action\u001b[22m\n\u001b[2m       - waiting 500ms\u001b[22m\n\n    at dom (/workspace/dachoupai/harness/tool-inventory-refill.mjs:32:93)\n    at close (/workspace/dachoupai/harness/tool-inventory-refill.mjs:37:41)\n    at /workspace/dachoupai/harness/tool-inventory-refill.mjs:64:154"
+        }
+      ]
+    },
+    {
+      "label": "readonly-menu-observer",
+      "originalReport": "/tmp/inventory-refill-final/readonly-menu-FAIL.json",
+      "sha256": "2879e61ddce7e82219f05752ec000551adcf8fc726c6f1cecaeaa8f4dc852e43",
+      "head": "6d2d954d1b41cddf632dfdce86fb75374e8f7e54",
+      "gameSceneSha256": "05d344c880d4a061486d093a3e0bc8a388e9f96c7bcee4c7925a16759c570674",
+      "status": "FAIL",
+      "error": "locator.click: Timeout 15000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: '确认使用', exact: true })\u001b[22m\n\u001b[2m    - locator resolved to <button type=\"button\" class=\"dialog-primary\">确认使用</button>\u001b[22m\n\u001b[2m  - attempting click action\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - <dialog open=\"\" id=\"run-menu-modal\" class=\"run-menu-modal\" aria-labelledby=\"run-menu-heading\">…</dialog> from <div class=\"run-menu\">…</div> subtree intercepts pointer events\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m    - waiting 20ms\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - <dialog open=\"\" id=\"run-menu-modal\" class=\"run-menu-modal\" aria-labelledby=\"run-menu-heading\">…</dialog> from <div class=\"run-menu\">…</div> subtree intercepts pointer events\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m      - waiting 100ms\u001b[22m\n\u001b[2m    26 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m       - element is visible, enabled and stable\u001b[22m\n\u001b[2m       - scrolling into view if needed\u001b[22m\n\u001b[2m       - done scrolling\u001b[22m\n\u001b[2m       - <dialog open=\"\" id=\"run-menu-modal\" class=\"run-menu-modal\" aria-labelledby=\"run-menu-heading\">…</dialog> from <div class=\"run-menu\">…</div> subtree intercepts pointer events\u001b[22m\n\u001b[2m     - retrying click action\u001b[22m\n\u001b[2m       - waiting 500ms\u001b[22m\n\n    at dom (/workspace/dachoupai/harness/tool-inventory-refill.mjs:34:93)\n    at /workspace/dachoupai/harness/tool-inventory-refill.mjs:76:11",
+      "cases": [
+        {
+          "viewport": {
+            "width": 1366,
+            "height": 768
+          },
+          "checksCompleted": [
+            "unavailable T17 remains inspectable; cancel writes nothing",
+            "pending box blocked; hide/reopen preserves fixed candidates and complete save",
+            "choice enables box without full render; two open/cancel cycles write nothing",
+            "one held submission; save failure pauses entry, repeated taps cause no extra attempt/state/journal/storage write",
+            "native retry persists original T17 once; restored entry and empty box remain usable"
+          ],
+          "error": "locator.click: Timeout 15000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: '确认使用', exact: true })\u001b[22m\n\u001b[2m    - locator resolved to <button type=\"button\" class=\"dialog-primary\">确认使用</button>\u001b[22m\n\u001b[2m  - attempting click action\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - <dialog open=\"\" id=\"run-menu-modal\" class=\"run-menu-modal\" aria-labelledby=\"run-menu-heading\">…</dialog> from <div class=\"run-menu\">…</div> subtree intercepts pointer events\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m    - waiting 20ms\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - <dialog open=\"\" id=\"run-menu-modal\" class=\"run-menu-modal\" aria-labelledby=\"run-menu-heading\">…</dialog> from <div class=\"run-menu\">…</div> subtree intercepts pointer events\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m      - waiting 100ms\u001b[22m\n\u001b[2m    26 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m       - element is visible, enabled and stable\u001b[22m\n\u001b[2m       - scrolling into view if needed\u001b[22m\n\u001b[2m       - done scrolling\u001b[22m\n\u001b[2m       - <dialog open=\"\" id=\"run-menu-modal\" class=\"run-menu-modal\" aria-labelledby=\"run-menu-heading\">…</dialog> from <div class=\"run-menu\">…</div> subtree intercepts pointer events\u001b[22m\n\u001b[2m     - retrying click action\u001b[22m\n\u001b[2m       - waiting 500ms\u001b[22m\n\n    at dom (/workspace/dachoupai/harness/tool-inventory-refill.mjs:34:93)\n    at /workspace/dachoupai/harness/tool-inventory-refill.mjs:76:11"
+        }
+      ]
+    }
+  ],
+  "remoteReadFailure": {
+    "action": "gh repo view big-dimple/dachoupai --json nameWithOwner,defaultBranchRef",
+    "error": "Post https://api.github.com/graphql: Forbidden",
+    "handling": "Stopped this repository metadata read without retry/escalation or substitute metadata endpoint."
+  }
+}
