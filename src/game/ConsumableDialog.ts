@@ -218,6 +218,7 @@ export function showConsumables(dialog:DetailDialog,state:R2RunState,ready:boole
       case 'none':break;
     }
     if(['cards','card-sacrifice','card-or-joker'].includes(tool.target.kind)){const scope=document.createElement('p');scope.className='tool-scope-note';scope.textContent=state.phase==='shop'?'仅展示有效持久牌组，不展示抽牌顺序。整理只改显示；实际目标顺序见变化预览。':'只展示当前已知手牌。整理不改手牌或已选目标，不提供隐藏牌目标。';panel.prepend(scope);}
+    const selectionHint=document.createElement('p');selectionHint.className='tool-selection-hint';selectionHint.setAttribute('role','status');d.querySelector('.dialog-header')!.append(selectionHint);
     const operation=tool.operation;
     if(operation.kind==='random-enhancement'||operation.kind==='random-edition'){
       const probability=document.createElement('p'),total=operation.choices.reduce((sum,choice)=>sum+choice.weight,0);probability.className='tool-public-probability';
@@ -226,7 +227,7 @@ export function showConsumables(dialog:DetailDialog,state:R2RunState,ready:boole
     const risks=document.createElement('details'),riskTitle=document.createElement('summary'),riskText=document.createElement('p');risks.className='tool-full-risk';riskTitle.textContent='风险与完整说明';riskText.textContent=info.risk;risks.append(riskTitle,riskText);
     panel.append(risks);scroll.append(panel);const workspace=document.createElement('div');workspace.className='tool-workspace';workspace.dataset.pane='targets';const dock=document.createElement('section');dock.className='tool-selection-dock';dock.setAttribute('aria-label','已选目标与真实预览');const changes=document.createElement('div'),body=document.createElement('div'),costs=document.createElement('p');changes.className='tool-change-preview';changes.setAttribute('aria-label','确认前后对照');body.className='tool-preview-scroll';costs.className='tool-preview-cost';costs.setAttribute('aria-live','polite');body.append(changes,preview);dock.append(hint,body);workspace.append(d.querySelector('.dialog-content')!,dock);d.insertBefore(workspace,d.querySelector('.dialog-actions'));costs.classList.add('tool-main-costs');d.insertBefore(costs,d.querySelector('.dialog-actions'));
     const panes=document.createElement('div');panes.className='tool-workspace-panes';panes.setAttribute('role','group');panes.setAttribute('aria-label','道具工作面');
-    for(const [pane,label] of [['targets','选择对象'],['changes','变化与代价']] as const){const b=document.createElement('button');b.type='button';b.textContent=label;b.dataset.pane=pane;b.setAttribute('aria-pressed',String(pane==='targets'));b.onclick=()=>{workspace.dataset.pane=pane;workspace.scrollTop=0;for(const other of panes.querySelectorAll('button'))other.setAttribute('aria-pressed',String(other===b));};panes.append(b);}d.querySelector('.dialog-header')!.append(panes);
+    for(const [pane,label] of [['targets','选择对象'],['changes','变化与代价']] as const){const b=document.createElement('button');b.type='button';b.textContent=label;b.dataset.pane=pane;b.setAttribute('aria-pressed',String(pane==='targets'));b.onclick=()=>{workspace.dataset.pane=pane;d.dataset.toolPane=pane;workspace.scrollTop=0;for(const other of panes.querySelectorAll('button'))other.setAttribute('aria-pressed',String(other===b));};panes.append(b);}d.querySelector('.dialog-header')!.append(panes);
     if(['whole-deck','none'].includes(tool.target.kind))panes.querySelector<HTMLButtonElement>('button:last-child')!.click();
     function refresh():void {
       const operation=tool.operation;
@@ -263,10 +264,11 @@ export function showConsumables(dialog:DetailDialog,state:R2RunState,ready:boole
         const detail=label.querySelector('small');if(detail)detail.textContent=choice.detail+(reason?' · '+reason:'');
       }
       directoryUpdates.forEach(update=>update());selects.forEach(select=>{select.disabled=busy;});useAction.disabled=busy||!!issue;destroyAction.disabled=busy||!ready;confirm.disabled=useAction.disabled;destroy.disabled=destroyAction.disabled;
-      hint.textContent=busy?'正在提交并保存…':issue??'目标有效。确认后使用物品并支付上述代价。'+(tool.target.kind==='cards'&&selection.ids.size===tool.target.maximum?' 已选满，取消一张可换目标。':'');hint.dataset.valid=String(!issue);
+      hint.textContent=busy?'正在提交并保存…':issue??'目标有效。确认后使用物品并支付上述代价。';hint.dataset.valid=String(!issue);
+      selectionHint.textContent=(tool.target.kind==='cards'||tool.target.kind==='card-sacrifice')&&selection.ids.size===tool.target.maximum?'已选满，取消一张可换目标。':'';selectionHint.hidden=!selectionHint.textContent;
       const lines:string[]=[];
       if(selection.sacrificeId){const donor=(tool.target.kind==='joker-sacrifice'?jokerChoices:cardChoices).find(choice=>choice.id===selection.sacrificeId);if(donor)lines.push(`永久牺牲：${donor.name} · ${donor.detail.replace('\n',' · ')}。不作为出售，不退款。`);}
-      changes.replaceChildren();if(tool.target.kind==='card-sacrifice'&&selection.sacrificeId){const donor=known.find(c=>c.id===selection.sacrificeId);if(donor)renderCardChange(changes,{before:donor,label:'永久献出',note:'牌组 −1 · 不退款'},0);}selected.forEach((choice,index)=>{if(choice.card){const change=toolCardChange(tool,choice.card);if(change)renderCardChange(changes,change,index);else if(tool.operation.kind==='random-enhancement'){const row=document.createElement('figure'),title=document.createElement('figcaption'),face=document.createElement('span'),unknown=document.createElement('strong');row.className='tool-change-card';row.dataset.sourceId=choice.card.id;title.textContent=`受益 ${index+1} · 点数／花色／版次保留`;renderToolCard(face,choice.card);unknown.textContent='→ 随机增强（保存后揭晓）';unknown.className='tool-change-unknown';row.append(title,face,unknown);changes.append(row);}}});
+      changes.replaceChildren();if(tool.target.kind==='card-sacrifice'&&selection.sacrificeId){const donor=known.find(c=>c.id===selection.sacrificeId);if(donor)renderCardChange(changes,{before:donor,label:'永久献出',note:'牌组 −1 · 不退款'},0);}selected.forEach((choice,index)=>{if(choice.card){const change=toolCardChange(tool,choice.card);if(change)renderCardChange(changes,tool.id==='T12'?{...change,note:''}:change,index);else if(tool.operation.kind==='random-enhancement'){const row=document.createElement('figure'),title=document.createElement('figcaption'),face=document.createElement('span'),unknown=document.createElement('strong');row.className='tool-change-card';row.dataset.sourceId=choice.card.id;title.textContent=`受益 ${index+1} · 点数／花色／版次保留`;renderToolCard(face,choice.card);unknown.textContent='→ 随机增强（保存后揭晓）';unknown.className='tool-change-unknown';row.append(title,face,unknown);changes.append(row);}}});
       if(selected.length)lines.push((tool.target.kind==='card-sacrifice'?'公开受益顺序：':'目标顺序：')+selected.map((choice,index)=>`${index+1}. ${choice.name} · ${choice.detail.replace('\n',' · ')}`).join(' → '));
       for(const choice of selected)if(choice.card){
         if(operation.kind==='set-suit')lines.push(`${cardName(choice.card)} → ${rankLabel(choice.card.rank)}${SUIT_SYMBOL[operation.suit]}；${cardSpecialText(choice.card)}`);
@@ -301,7 +303,8 @@ export function showConsumables(dialog:DetailDialog,state:R2RunState,ready:boole
       const exchangeCost=operation.kind==='exchange-hand-levels'&&!issue&&selection.secondaryHandType?[`遗忘代价：${HAND_LABELS[selection.secondaryHandType]} Lv.${state.handLevels[selection.secondaryHandType]} → ${state.handLevels[selection.secondaryHandType]!-operation.loss}`]:[];
       confirm.textContent=busy?'正在保存…':clearing.length?'清除增强／版次':replacementNotes.length?'替换增强':'确认使用';costs.classList.toggle('is-replacement',!!(replacementNotes.length||clearing.length));
       costs.textContent=[...clearing,...new Set(replacementNotes),...exchangeCost,...lines.filter(line=>/^(永久牺牲|有效牌组|额外使用代价|清空全部金币|下一场起|破碎风险)/.test(line))].join('\n');costs.hidden=!costs.textContent;
-      preview.textContent=operation.kind==='clear-deck-specials'&&issue?issue:lines.join('\n\n')||'选择目标后，这里会显示变化与代价。';
+      const compactPreview=tool.id==='S05'||tool.id==='T12';
+      preview.hidden=compactPreview;preview.textContent=compactPreview?'':operation.kind==='clear-deck-specials'&&issue?issue:lines.join('\n\n')||'选择目标后，这里会显示变化与代价。';
     }
     refresh();
   };

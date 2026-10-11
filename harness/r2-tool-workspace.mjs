@@ -26,7 +26,7 @@ else if(id==='S05'){const gain=p.getByLabel('收益牌型',{exact:true}),loss=p.
 else if(id==='S08'){action={...action,targetIds:[]};await changes();assert.match(await p.locator('.tool-main-costs').innerText(),/4 张不同牌.*2 项增强.*3 项特殊版次/);assert.equal(await p.locator('.tool-change-card').count(),4);assert.equal(await p.locator('.dialog-actions button').first().innerText(),'清除增强／版次');}
 else for(const target of ids)await p.locator('input[value="'+target+'"]').check();
 if(id==='T08'){
- assert.equal((await p.locator('.tool-validation').innerText()).match(/已选满/g)?.length,1);
+ assert.equal((await p.locator('.tool-selection-hint').innerText()).match(/已选满/g)?.length,1);
  assert.equal(await p.locator('.tool-card-option small').filter({hasText:'已选满'}).count(),0);
  for(const name of ['点数整理','花色整理','点数整理','花色整理'])await p.getByRole('button',{name,exact:true}).click();
  await p.getByLabel('持久牌组点数筛选',{exact:true}).selectOption('10');

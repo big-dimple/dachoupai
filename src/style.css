@@ -666,7 +666,10 @@ button[aria-busy=true] { border-style:dashed; }
 }
 
 /* Tool workspace: whole comparison rows; one scroll region per visible pane. */
-.tool-detail[open] { display:flex;flex-direction:column; }
+.tool-detail[open] { display:flex;flex-direction:column;overflow:clip; }
+.tool-detail .tool-selection-hint { margin:6px 0 0;padding:6px 8px;background:#f0ddc7;color:#865137;font-size:14px;line-height:20px; }
+.tool-detail .tool-selection-hint[hidden],.tool-detail .tool-preview[hidden] { display:none; }
+@media(max-width:899px) { .tool-detail[data-tool-pane=changes] .tool-selection-hint { display:none; } }
 .tool-detail .tool-workspace { flex:1;min-height:0;overflow:auto; }
 .tool-detail .tool-workspace > .dialog-content { display:block;overflow:visible; }
 .tool-detail .tool-workspace .dialog-scroll { height:auto;overflow:visible; }
