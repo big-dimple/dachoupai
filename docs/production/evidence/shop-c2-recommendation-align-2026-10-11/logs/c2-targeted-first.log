@@ -1,0 +1,116 @@
+
+ RUN  v4.1.11 /workspace/dachoupai
+
+ ❯ tests/shop-recommendation-c2.test.ts (10 tests | 8 failed) 613ms
+     × mantangcai is +90 on a real group hand and its legacy purpose is unchanged 30ms
+     × c04 now has initial50 and actual saved growth, including four-card straight, but no fake growth window 15ms
+     × c06 and jiedongfeng include actual flush-house while c07 stays narrow 15ms
+     × c06 and jiedongfeng include actual flush-five while c07 stays narrow 8ms
+     × c06 fresh value0 never manufactures a multiplier source; its real saved value reads on nonflush hands 7ms
+     × f10 can arm on the first pre-play discard without a cold miss, unlike the retained old identity 12ms
+     × four real command clears give G1.35, and sale/buy do not erase or award run-owned history 223ms
+     × selling e11 itself still loses its instance coefficient while run-owned history stays 157ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 8 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/shop-recommendation-c2.test.ts > C2 reviewed semantic alignment, legacy and global ownership remain separate > mantangcai is +90 on a real group hand and its legacy purpose is unchanged
+AssertionError: expected undefined to deeply equal { n: '90', d: '1' }
+
+- Expected:
+{
+  "d": "1",
+  "n": "90",
+}
+
++ Received:
+undefined
+
+ ❯ tests/shop-recommendation-c2.test.ts:24:191
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/8]⎯
+
+ FAIL  tests/shop-recommendation-c2.test.ts > C2 reviewed semantic alignment, legacy and global ownership remain separate > c04 now has initial50 and actual saved growth, including four-card straight, but no fake growth window
+AssertionError: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ tests/shop-recommendation-c2.test.ts:29:272
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/8]⎯
+
+ FAIL  tests/shop-recommendation-c2.test.ts > C2 reviewed semantic alignment, legacy and global ownership remain separate > c06 and jiedongfeng include actual flush-house while c07 stays narrow
+ FAIL  tests/shop-recommendation-c2.test.ts > C2 reviewed semantic alignment, legacy and global ownership remain separate > c06 and jiedongfeng include actual flush-five while c07 stays narrow
+AssertionError: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ tests/shop-recommendation-c2.test.ts:34:143
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/8]⎯
+
+ FAIL  tests/shop-recommendation-c2.test.ts > C2 reviewed semantic alignment, legacy and global ownership remain separate > c06 fresh value0 never manufactures a multiplier source; its real saved value reads on nonflush hands
+AssertionError: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ tests/shop-recommendation-c2.test.ts:38:324
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/8]⎯
+
+ FAIL  tests/shop-recommendation-c2.test.ts > C2 reviewed semantic alignment, legacy and global ownership remain separate > f10 can arm on the first pre-play discard without a cold miss, unlike the retained old identity
+Error: r2-interaction-not-enabled
+ ❯ shopC2Send harness/fixtures/shop-c2-align.ts:25:153
+
+ ❯ tests/shop-recommendation-c2.test.ts:41:117
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/8]⎯
+
+ FAIL  tests/shop-recommendation-c2.test.ts > C2 reviewed semantic alignment, legacy and global ownership remain separate > four real command clears give G1.35, and sale/buy do not erase or award run-owned history
+Error: score-diagnostic
+ ❯ shopC2Send harness/fixtures/shop-c2-align.ts:25:153
+
+ ❯ send harness/fixtures/shop-c2-align.ts:32:34
+ ❯ shopC2EarnedHistory harness/fixtures/shop-c2-align.ts:36:3
+ ❯ tests/shop-recommendation-c2.test.ts:45:15
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/8]⎯
+
+ FAIL  tests/shop-recommendation-c2.test.ts > C2 reviewed semantic alignment, legacy and global ownership remain separate > selling e11 itself still loses its instance coefficient while run-owned history stays
+Error: Run invariant: joker shelf prices/edition
+ ❯ check src/domain/r2Run.ts:141:70
+
+ ❯ assertR2Invariants src/domain/r2Run.ts:270:5
+ ❯ applyCommand src/domain/run.ts:202:5
+ ❯ command src/game/ShopRouteRelations.ts:156:46
+ ❯ shopReplacementTransactionFacts src/game/ShopRouteRelations.ts:157:13
+ ❯ tests/shop-recommendation-c2.test.ts:52:118
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/8]⎯
+
+
+ Test Files  1 failed | 4 passed (5)
+      Tests  8 failed | 34 passed (42)
+   Start at  16:54:55
+   Duration  4.52s (transform 6.90s, setup 0ms, import 10.01s, tests 1.10s, environment 0ms)
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice

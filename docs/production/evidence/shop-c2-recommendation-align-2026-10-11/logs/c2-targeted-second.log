@@ -1,0 +1,61 @@
+
+ RUN  v4.1.11 /workspace/dachoupai
+
+ ❯ tests/shop-recommendation-c2.test.ts (10 tests | 4 failed) 219ms
+     × c04 now has initial50 and actual saved growth, including four-card straight, but no fake growth window 16ms
+     × c06 and jiedongfeng include actual flush-house while c07 stays narrow 8ms
+     × c06 and jiedongfeng include actual flush-five while c07 stays narrow 7ms
+     × four real command clears give G1.35, and sale/buy do not erase or award run-owned history 30ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 4 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/shop-recommendation-c2.test.ts > C2 reviewed semantic alignment, legacy and global ownership remain separate > c04 now has initial50 and actual saved growth, including four-card straight, but no fake growth window
+AssertionError: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ tests/shop-recommendation-c2.test.ts:30:392
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/4]⎯
+
+ FAIL  tests/shop-recommendation-c2.test.ts > C2 reviewed semantic alignment, legacy and global ownership remain separate > c06 and jiedongfeng include actual flush-house while c07 stays narrow
+ FAIL  tests/shop-recommendation-c2.test.ts > C2 reviewed semantic alignment, legacy and global ownership remain separate > c06 and jiedongfeng include actual flush-five while c07 stays narrow
+AssertionError: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ tests/shop-recommendation-c2.test.ts:35:143
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/4]⎯
+
+ FAIL  tests/shop-recommendation-c2.test.ts > C2 reviewed semantic alignment, legacy and global ownership remain separate > four real command clears give G1.35, and sale/buy do not erase or award run-owned history
+Error: score-diagnostic{"code":"invalid-disabled-cards","events":[]}
+ ❯ shopC2Send harness/fixtures/shop-c2-align.ts:25:153
+
+ ❯ send harness/fixtures/shop-c2-align.ts:32:34
+ ❯ shopC2EarnedHistory harness/fixtures/shop-c2-align.ts:36:3
+ ❯ tests/shop-recommendation-c2.test.ts:46:15
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/4]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  4 failed | 6 passed (10)
+   Start at  16:56:04
+   Duration  2.23s (transform 1.32s, setup 0ms, import 1.63s, tests 219ms, environment 0ms)
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice

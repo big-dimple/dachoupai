@@ -1,0 +1,12 @@
+/workspace/dachoupai/src/application/checkpoint.ts:105
+  throw Error(message);
+        ^
+
+Error: invalid-save-opening-state
+    at fail (/workspace/dachoupai/src/application/checkpoint.ts:105:9)
+    at validateState (/workspace/dachoupai/src/application/checkpoint.ts:1236:132)
+    at makeCheckpoint (/workspace/dachoupai/src/application/checkpoint.ts:1294:3)
+    at fixture (file:///workspace/dachoupai/harness/shop-c2-recommendations.mjs:15:199)
+    at file:///workspace/dachoupai/harness/shop-c2-recommendations.mjs:23:317
+
+Node.js v24.19.0

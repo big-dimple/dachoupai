@@ -3,6 +3,7 @@ import {createServer} from 'vite';
 import {writeFile,mkdir} from 'node:fs/promises';
 import {execFileSync} from 'node:child_process';
 const server=await createServer({server:{middlewareMode:true},logLevel:'error'});
+const baseline=await createServer({root:'/tmp/dachoupai-c2-before',cacheDir:'/tmp/c2-facts-baseline-vite',server:{middlewareMode:true},logLevel:'error'});
 const load=p=>server.ssrLoadModule(p);
 try {
  const f=await load('/harness/fixtures/shop-c2-align.ts');
@@ -16,6 +17,10 @@ try {
  const {stableHash}=await load('/src/domain/hash.ts');
  const offer=(s,id)=>({offerId:'public/'+id,definitionId:id,price:r2Price(id,'none',s),edition:'none',consumed:false});
  const recommendation=(s,id,focus='group')=>shopRecommendation(s,offer(s,id),focus);
+ const prior=(await baseline.ssrLoadModule('/src/game/ShopRecommendation.ts')).shopRecommendation;
+ const definitions=(await load('/src/domain/r2ContentProfiles.ts')).r2JokerDefinitionsFor;
+ const legacyState=f.shopC2Fixture([],true),legacyRegression=[];
+ for(const d of definitions(legacyState))for(const focus of ['group','straight','flush']) {const old=prior(legacyState,offer(legacyState,d.id),focus),now=recommendation(legacyState,d.id,focus);assert.deepEqual(now,old);legacyRegression.push({id:d.id,focus,before:old,after:now});}
  const six=['mantangcai','c04','c06','jiedongfeng','e11','f10'];
  const rows=[];
  for(const legacy of [true,false]) {
@@ -52,6 +57,6 @@ try {
  const sold=f.shopC2Send(s,{type:'SellJoker',instanceId:s.jokers[3].instanceId});
  const bought=f.shopC2Send(sold.state,{type:'BuyOffer',offerId:s.shop.offers[0].offerId});
  assert.deepEqual(bought.state.routeGrowth,s.routeGrowth);assert.deepEqual(bought.state.jokers[0].growth.coefficient,{n:'3',d:'2'});assert.ok(readCheckpoint(makeCheckpoint(bought.state,[])).ok);
- const result={head:execFileSync('git',['rev-parse','HEAD'],{encoding:'utf8'}).trim(),semantics:{legacy:SHOP_RECOMMENDATION_SEMANTICS,c2:SHOP_C2_RECOMMENDATION_SEMANTICS},scope:'Controlled public fixtures plus actual commands/scorer; no natural acquisition, future draws, EV or synthetic saved trace/history.',rows,scores,rescue:{beforeDiscard,armed,after:rescue,commands:rescueCommands,coldOpening:false},history,transaction:{before,facts,transaction,compact,sale,sold,bought,freshGrowth:bought.state.jokers.find(j=>j.definitionId==='c04').growth,readOnlyHash:stableHash(before)},status:'PASS'};
+ const result={head:execFileSync('git',['rev-parse','HEAD'],{encoding:'utf8'}).trim(),semantics:{legacy:SHOP_RECOMMENDATION_SEMANTICS,c2:SHOP_C2_RECOMMENDATION_SEMANTICS},legacyRegression,scope:'Controlled public fixtures plus actual commands/scorer; no natural acquisition, future draws, EV or synthetic saved trace/history.',rows,scores,rescue:{beforeDiscard,armed,after:rescue,commands:rescueCommands,coldOpening:false},history,transaction:{before,facts,transaction,compact,sale,sold,bought,freshGrowth:bought.state.jokers.find(j=>j.definitionId==='c04').growth,readOnlyHash:stableHash(before)},status:'PASS'};
  const dir=process.env.C2_FACT_OUTPUT??'/tmp/shop-c2-facts';await mkdir(dir,{recursive:true});await writeFile(dir+'/facts.json',JSON.stringify(result,null,2)+'\n');console.log(JSON.stringify({head:result.head,status:result.status,sixRows:rows.length,scoreInputs:scores.length,actualClears:history.clears.length,rescueCold:false,transactionRouteUnchanged:true}));
-} finally {await server.close();}
+} finally {await server.close();await baseline.close();}
