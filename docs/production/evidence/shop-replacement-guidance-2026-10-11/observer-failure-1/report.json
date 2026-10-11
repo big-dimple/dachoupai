@@ -1,0 +1,103 @@
+{
+  "head": "6d2d954d1b41cddf632dfdce86fb75374e8f7e54",
+  "sourceTree": "2b89e04bfd9ccf03cfeb88f0f101dcca2ef722a5",
+  "modified": "",
+  "baseline": true,
+  "scope": "Two native browser viewports, a normal hero/route-created first-shop purchase plus controlled current-identity full-slot gold boundary; exact state/journal/IndexedDB commands and reload. No natural acquisition of controlled holdings, 18-combination, physical-device or human acceptance.",
+  "cases": [
+    {
+      "width": 1366,
+      "height": 768,
+      "touch": false,
+      "checks": [
+        {
+          "screenshot": "1366x768-normal-first-shop.png"
+        },
+        {
+          "label": "normal native hero/route entry and saved first-shelf purchase equal the actual command",
+          "status": "PASS"
+        }
+      ],
+      "errors": [],
+      "normalBefore": {
+        "gold": 6,
+        "commandSeq": 1,
+        "ids": [],
+        "journalLength": 0
+      },
+      "normalOffers": [
+        {
+          "offer": {
+            "offerId": "run/1791719848487/erxiang/shop/0/0/joker/0",
+            "definitionId": "d06",
+            "price": 6,
+            "edition": "none",
+            "consumed": false
+          },
+          "guidance": {
+            "stars": 2,
+            "reason": "先核条件",
+            "detail": "当前构筑没有明确需要它的条件；下次进场手牌上限 +1，所有修正后的硬上限14，这轮先留金。",
+            "routes": [
+              "group",
+              "straight",
+              "flush"
+            ],
+            "routeCaption": "同点/顺子/同花",
+            "label": "本局★★"
+          }
+        },
+        {
+          "offer": {
+            "offerId": "run/1791719848487/erxiang/shop/0/0/joker/1",
+            "definitionId": "e09",
+            "price": 4,
+            "edition": "none",
+            "consumed": false
+          },
+          "guidance": {
+            "stars": 2,
+            "reason": "先核条件",
+            "detail": "当前构筑没有明确需要它的条件；持有时消耗品槽 +1，与道具合计最多4槽，这轮先留金。",
+            "routes": [
+              "group",
+              "straight",
+              "flush"
+            ],
+            "routeCaption": "同点/顺子/同花",
+            "label": "本局★★"
+          }
+        },
+        {
+          "offer": {
+            "offerId": "run/1791719848487/erxiang/shop/0/0/joker/2",
+            "definitionId": "mantangcai",
+            "price": 4,
+            "edition": "none",
+            "consumed": false
+          },
+          "guidance": {
+            "stars": 3,
+            "reason": "补缺口",
+            "detail": "补当前缺少的热度，用于对子／两对／三条／葫芦／四条；实付4金。",
+            "routes": [
+              "group"
+            ],
+            "routeCaption": "同点",
+            "label": "本局★★★"
+          }
+        }
+      ],
+      "normalBought": {
+        "gold": 2,
+        "commandSeq": 2,
+        "ids": [
+          "run/1791719848487/erxiang/joker/run/1791719848487/erxiang/command/2"
+        ],
+        "journalLength": 1
+      }
+    }
+  ],
+  "status": "FAIL",
+  "failure": "Error: invalid-save-offer-price"
+}
