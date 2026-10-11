@@ -4,6 +4,7 @@ import {makeCheckpoint,readCheckpoint} from '../src/application/checkpoint';
 import * as profiles from '../src/domain/r2ContentProfiles';
 import {stableHash} from '../src/domain/hash';
 import {r2CreateJoker} from '../src/domain/r2Run';
+import {r2ColdOpening} from '../src/domain/r2ComboGrowth';
 import {r2Price} from '../src/domain/r2Shop';
 import {shopRecommendation,SHOP_C2_RECOMMENDATION_SEMANTICS,SHOP_C2_RECOMMENDATION_AUDIT} from '../src/game/ShopRecommendation';
 import {shopOfferGuidance} from '../src/game/ShopOfferGuidance';
@@ -40,8 +41,8 @@ describe('C2 reviewed semantic alignment, legacy and global ownership remain sep
   const s=shopC2Fixture(['c06']);expect(rec(s,'a06').facts.additiveSource).toBe(false);s.jokers[0].growth.multiplier={n:'1',d:'2'};const t=shopC2Score(s,['spades-7','hearts-7']).trace;expect(t.handType).toBe('pair');expect(t.events.some(e=>e.sourceInstanceId==='held/c06'&&e.operation==='read-growth'&&e.value?.d==='2')).toBe(true);expect(rec(s,'a06').facts.additiveSource).toBe(true);
  });
  it('f10 can arm on the first pre-play discard without a cold miss, unlike the retained old identity',()=>{
-  let s=shopC2Fixture(['f10']);s=shopC2Send(s,{type:'LeaveShop'}).state;s=shopC2Send(s,{type:'EnterStage'}).state;s=shopC2Send(s,{type:'DiscardHand',selectedIds:s.handOrder.slice(0,1)}).state;
-  expect(s.jokers[0].counters?.rescueArmed).toBe(true);expect(rec(shopC2Fixture(),'f10').condition).toContain('未出牌首弃');expect(rec(shopC2Fixture([],true),'f10').condition).toContain('先弃牌预备');
+  let s=shopC2Fixture(['f10']);s=shopC2Send(s,{type:'LeaveShop'}).state;s=shopC2Send(s,{type:'EnterStage'}).state;const formed=['spades-7','hearts-7','clubs-8','diamonds-8','spades-2'];s.handOrder=[...formed,...s.deckInstances.filter(c=>!formed.includes(c.id)).slice(0,s.stage!.handLimit-formed.length).map(c=>c.id)];s.drawPile=s.deckInstances.map(c=>c.id).filter(id=>!s.handOrder.includes(id));assertRunInvariants(s);s=shopC2Send(s,{type:'DiscardHand',selectedIds:['spades-2']}).state;
+  expect(r2ColdOpening(s.stage!.openingDiscard)).toBe(false);expect(s.jokers[0].counters?.rescueArmed).toBe(true);expect(rec(shopC2Fixture(),'f10').condition).toContain('未出牌首弃');expect(rec(shopC2Fixture([],true),'f10').condition).toContain('先弃牌预备');
  });
  it('four real command clears give G1.35, and sale/buy do not erase or award run-owned history',()=>{
   const proof=shopC2EarnedHistory(),s=proof.state;expect(s.routeGrowth).toMatchObject({clears:4,G:4,S:0,F:0});expect(proof.commands.filter(c=>c.action.type==='PlayHand')).toHaveLength(4);assertRunInvariants(s);

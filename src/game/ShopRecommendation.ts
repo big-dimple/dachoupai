@@ -124,7 +124,7 @@ export function shopRecommendation(state:R2RunState,offer:R2Offer,focus?:BuildFo
    case 'flush-family-growth-c2':return !flushFamilyPossible?result(1,'缺同花族成长条件','新购成长为0'):growth(flushFit||flushConcentrated||!!trace&&['flush-house','flush-five'].includes(trace.handType),'同花族长倍率','含同花升级 · +0.5/上限6');
    case 'route-family-add-c2':return result(!straightFamilyPossible&&!flushFamilyPossible?1:straightReady||flushReady||flushConcentrated&&flushFamilyPossible?4:straightFit||flushFit?3:2,'顺花族加倍率1.5','含同花葫芦与同花五条');
    case 'sale-keeps-coefficient-c2':return result(stage==='late'?2:potentialStages>=6?4:3,'不出售跨场成长','售其他保系数 · 本场停成长');
-   case 'opening-discard-rescue-c2':return result(qualifiedReady?3:2,'首次弃牌备救火','未出牌首弃 · 下手两对以上×3');
+   case 'opening-discard-rescue-c2':return result(largest>=3||second>=2||straightFamilyPossible||flushFamilyPossible?3:2,'首次弃牌备救火','未出牌首弃 · 下手两对以上×3');
   case 'triple':return result(largest<3?1:groupReady?4:groupFit?3:2,'主手三条加倍率','需主手三条');
   case 'group-heat':return result(largest<2?1:groupFit?(stage==='late'?2:3):2,'成组基础热度','普通成组牌型');
   case 'pair-score':return result(largest<2?1:groupReady&&heldCardPayoff?4:groupFit?3:2,'同点逐牌加倍率','计分点数实际重复');
