@@ -1,0 +1,8 @@
+{
+  "source": "11688e4ddb2772d5c2414bacc9a345e6cd370585",
+  "status": "VISUAL_FAIL",
+  "screenshot": "390x740-lifted.png",
+  "finding": "Stationary touch hold lifts the first card upward into the row hint; software assertions passed but pixels rejected.",
+  "fix": "1dbc766: remove upward displacement; keep 1.04 scale and add paper shadow beneath original art.",
+  "tight320": "Existing compact heading lives in upper overview area; it remains visible and names the long-press operation. No goods/owned geometry changed."
+}
