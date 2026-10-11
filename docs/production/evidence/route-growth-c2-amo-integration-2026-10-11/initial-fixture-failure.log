@@ -1,0 +1,109 @@
+
+> dachoupai@0.1.0 test
+> vitest run tests/assist-route-growth-integration.test.ts
+
+
+ RUN  v4.1.11 /workspace/dachoupai-c2-integrated
+
+ ❯ tests/assist-route-growth-integration.test.ts (30 tests | 17 failed) 664ms
+     × three-of-a-kind compares every public no-assist/side option with a real command 37ms
+     × four-of-a-kind compares every public no-assist/side option with a real command 30ms
+     × five-of-a-kind uses only the main high-order families 34ms
+     × legacy 'quality-r2-basic-suit-choice-v1' omits C2 and preserves its scorer 2ms
+     × legacy 'quality-r2-basic-tool-choice-v1' omits C2 and preserves its scorer 0ms
+     × legacy 'quality-r2-erxiang-handoff-v1' omits C2 and preserves its scorer 0ms
+     × legacy 'quality-r2-basic-tool-supply-v1' omits C2 and preserves its scorer 1ms
+     × legacy 'quality-r2-touye-wager-v1' omits C2 and preserves its scorer 0ms
+     × legacy 'quality-r2-laohuan-refill-v1' omits C2 and preserves its scorer 0ms
+     × legacy 'quality-r2-xiemu-burn-v1' omits C2 and preserves its scorer 0ms
+     × legacy 'quality-r2-azao-charge-v1' omits C2 and preserves its scorer 0ms
+     × legacy 'quality-r2-route-starter-v1' omits C2 and preserves its scorer 0ms
+     × legacy 'quality-r2-group-upgrade-prototype-v1' omits C2 and preserves its scorer 0ms
+     × legacy 'quality-r2-combo-growth-prototype-v1' omits C2 and preserves its scorer 0ms
+     × legacy 'quality-r2-amo-assist-prototype-v1' omits C2 and preserves its scorer 0ms
+     × legacy 'quality-r2-content-v11' omits C2 and preserves its scorer 0ms
+     × legacy 'quality-r2-content-v10' omits C2 and preserves its scorer 0ms
+
+ Test Files  1 failed (1)
+      Tests  17 failed | 13 passed (30)
+   Start at  15:37:46
+   Duration  1.62s (transform 636ms, setup 0ms, import 776ms, tests 664ms, environment 0ms)
+
+
+⎯⎯⎯⎯⎯⎯ Failed Tests 17 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/assist-route-growth-integration.test.ts > PR123 public assist preview integrated with C2 before-hand history > three-of-a-kind compares every public no-assist/side option with a real command
+AssertionError: expected 'three-kind' to be 'three-of-a-kind' // Object.is equality
+
+Expected: "three-of-a-kind"
+Received: "three-kind"
+
+ ❯ tests/assist-route-growth-integration.test.ts:62:78
+     60|  ] as const)('%s compares every public no-assist/side option with a re…
+     61|   const s=arrange(fixture(),[...ids]),ranked=check(s,[...ids]);
+     62|   expect(scoreR2Hand({...assistPublicInput(s,ids),rng:s.rng.rule}).han…
+       |                                                                              ^
+     63|   expect(ranked.options.some(o=>!o.ids.length)).toBe(true);
+     64|   if(type==='pair'||type==='high-card')expect(ranked.options).toHaveLe…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/17]⎯
+
+ FAIL  tests/assist-route-growth-integration.test.ts > PR123 public assist preview integrated with C2 before-hand history > four-of-a-kind compares every public no-assist/side option with a real command
+AssertionError: expected 'four-kind' to be 'four-of-a-kind' // Object.is equality
+
+Expected: "four-of-a-kind"
+Received: "four-kind"
+
+ ❯ tests/assist-route-growth-integration.test.ts:62:78
+     60|  ] as const)('%s compares every public no-assist/side option with a re…
+     61|   const s=arrange(fixture(),[...ids]),ranked=check(s,[...ids]);
+     62|   expect(scoreR2Hand({...assistPublicInput(s,ids),rng:s.rng.rule}).han…
+       |                                                                              ^
+     63|   expect(ranked.options.some(o=>!o.ids.length)).toBe(true);
+     64|   if(type==='pair'||type==='high-card')expect(ranked.options).toHaveLe…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/17]⎯
+
+ FAIL  tests/assist-route-growth-integration.test.ts > PR123 public assist preview integrated with C2 before-hand history > five-of-a-kind uses only the main high-order families
+AssertionError: expected 'five-kind' to be 'five-of-a-kind' // Object.is equality
+
+Expected: "five-of-a-kind"
+Received: "five-kind"
+
+ ❯ tests/assist-route-growth-integration.test.ts:69:91
+     67|   const ids=['spades-3','hearts-4','clubs-5','diamonds-6','spades-7'],…
+     68|   ids.forEach((id,i)=>{const c=s.deckInstances.find(c=>c.id===id)!;c.r…
+     69|   check(s,ids);expect(scoreR2Hand({...assistPublicInput(s,ids),rng:s.r…
+       |                                                                                           ^
+     70|  });
+     71|  it('accounts for held benefits, including when not assisting wins',()…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/17]⎯
+
+ FAIL  tests/assist-route-growth-integration.test.ts > PR123 public assist preview integrated with C2 before-hand history > legacy 'quality-r2-basic-suit-choice-v1' omits C2 and preserves its scorer
+ FAIL  tests/assist-route-growth-integration.test.ts > PR123 public assist preview integrated with C2 before-hand history > legacy 'quality-r2-basic-tool-choice-v1' omits C2 and preserves its scorer
+ FAIL  tests/assist-route-growth-integration.test.ts > PR123 public assist preview integrated with C2 before-hand history > legacy 'quality-r2-erxiang-handoff-v1' omits C2 and preserves its scorer
+ FAIL  tests/assist-route-growth-integration.test.ts > PR123 public assist preview integrated with C2 before-hand history > legacy 'quality-r2-basic-tool-supply-v1' omits C2 and preserves its scorer
+ FAIL  tests/assist-route-growth-integration.test.ts > PR123 public assist preview integrated with C2 before-hand history > legacy 'quality-r2-touye-wager-v1' omits C2 and preserves its scorer
+ FAIL  tests/assist-route-growth-integration.test.ts > PR123 public assist preview integrated with C2 before-hand history > legacy 'quality-r2-laohuan-refill-v1' omits C2 and preserves its scorer
+ FAIL  tests/assist-route-growth-integration.test.ts > PR123 public assist preview integrated with C2 before-hand history > legacy 'quality-r2-xiemu-burn-v1' omits C2 and preserves its scorer
+ FAIL  tests/assist-route-growth-integration.test.ts > PR123 public assist preview integrated with C2 before-hand history > legacy 'quality-r2-azao-charge-v1' omits C2 and preserves its scorer
+ FAIL  tests/assist-route-growth-integration.test.ts > PR123 public assist preview integrated with C2 before-hand history > legacy 'quality-r2-route-starter-v1' omits C2 and preserves its scorer
+ FAIL  tests/assist-route-growth-integration.test.ts > PR123 public assist preview integrated with C2 before-hand history > legacy 'quality-r2-group-upgrade-prototype-v1' omits C2 and preserves its scorer
+ FAIL  tests/assist-route-growth-integration.test.ts > PR123 public assist preview integrated with C2 before-hand history > legacy 'quality-r2-combo-growth-prototype-v1' omits C2 and preserves its scorer
+ FAIL  tests/assist-route-growth-integration.test.ts > PR123 public assist preview integrated with C2 before-hand history > legacy 'quality-r2-amo-assist-prototype-v1' omits C2 and preserves its scorer
+ FAIL  tests/assist-route-growth-integration.test.ts > PR123 public assist preview integrated with C2 before-hand history > legacy 'quality-r2-content-v11' omits C2 and preserves its scorer
+ FAIL  tests/assist-route-growth-integration.test.ts > PR123 public assist preview integrated with C2 before-hand history > legacy 'quality-r2-content-v10' omits C2 and preserves its scorer
+Error: invalid-r2-identity
+ ❯ createRun src/domain/run.ts:347:25
+
+ ❯ fixture tests/assist-route-growth-integration.test.ts:15:8
+ ❯ tests/assist-route-growth-integration.test.ts:97:11
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/17]⎯
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice

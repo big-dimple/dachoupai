@@ -11,7 +11,9 @@ import {showSavedToolResult} from './SavedToolResult';
 import {ENHANCEMENT_BRIEF} from './CardSpecialLabels';
 import {fitStatusSummary} from './StatusSummary';
 import {transactionGrowthChange,handGrowthChanges} from './SavedGrowthChange';
-import {heroActionShortcut} from './HeroActionShortcut';
+import {heroActionShortcut,heroShortcutReminder} from './HeroActionShortcut';
+import {AssistRecommendationCache} from './AssistRecommendation';
+import {showAssistChoices} from './AssistChoiceDialog';
 import {heroPayoffs,heroPayoffBeat} from './HeroPayoff';
 import {heroAbilityCue,savedHeroResult} from './HeroAbilityCue';
 import {usesErxiangHandoff} from '../domain/r2ErxiangHandoff';
@@ -169,6 +171,7 @@ export class GameScene extends Phaser.Scene {
   private selectedIds = new Set<string>();
   private assistIds:string[]=[];
   private assistPage=0;
+  private readonly assistRecommendations=new AssistRecommendationCache();
   private assistGestureStart?:string[];
   private readonly candidates=new R2HandCandidateCache();
   private readonly aiCandidates=new AiHandCandidateCache();
@@ -326,7 +329,7 @@ export class GameScene extends Phaser.Scene {
     this.game.canvas.setAttribute('data-hand-input','pointer');
     window.addEventListener('pointerdown',this.pointerFocus,true);document.addEventListener('focusin',this.focusFeedback);document.addEventListener('focusout',this.focusFeedback);window.addEventListener('blur',this.stopHandHint);document.addEventListener('visibilitychange',this.hintVisibility);
     this.render();
-    const unsubscribeInventory=gameSession().subscribe(()=>this.updateInventoryControl());
+    const unsubscribeInventory=gameSession().subscribe(()=>{this.updateInventoryControl();if(this.controlsLive)this.updateHeroControl();});
     this.events.once('shutdown',unsubscribeInventory);
     if(enteredStage)this.revealDrawnCards([]);
     const notice=stageNotice(this.run);
@@ -388,7 +391,7 @@ export class GameScene extends Phaser.Scene {
     this.roleFrame=this.add.rectangle(0,0,avatarSize+4,avatarSize+4,T.brass).setFillStyle(T.brass,0).setStrokeStyle(1,T.brass,.6);this.roleAvatar.add(this.roleFrame);
     const identity=stageIdentity(this.stage.index,this.run.stage!.boss,this.run.tourMode,this.run.difficulty)!;
     if(!portrait)v.text(h.x+12,h.y+8,this.run.tourMode==='endless'?'无尽巡演':'大 丑 牌',short?20:28,C.paper);
-    if(!portrait||!usesErxiangHandoff(this.run)&&!usesAzaoCharge(this.run)&&!usesXiemuBurn(this.run)&&!usesLaohuanRefill(this.run)&&!usesTouyeWager(this.run))v.text(h.x+(portrait?64:76),avatarY,(portrait&&this.run.tourMode==='endless'?'无尽 · ':'')+c.name,portrait?18:short?20:22,C.paper,portrait?h.width-160:h.width-88);
+    if(!portrait||!this.assistProfile&&!usesErxiangHandoff(this.run)&&!usesAzaoCharge(this.run)&&!usesXiemuBurn(this.run)&&!usesLaohuanRefill(this.run)&&!usesTouyeWager(this.run))v.text(h.x+(portrait?64:76),avatarY,(portrait&&this.run.tourMode==='endless'?'无尽 · ':'')+c.name,portrait?18:short?20:22,C.paper,portrait?h.width-160:h.width-88);
     this.roleText=v.text(h.x+(portrait?64:76),avatarY+(portrait?23:28),this.roleCaption(),14,C.mutedInk,portrait?h.width-160:h.width-88);
     const skillEntry=v.rect({x:this.roleText.x,y:this.roleText.y,width:portrait?h.width-160:h.width-88,height:20}).setFillStyle(0,0).setStrokeStyle();v.target(skillEntry,'hero/skill-entry',{tap:()=>this.inspectRole(),detail:()=>this.inspectRole()});
     if(!portrait&&!l.shortLandscape)v.text(h.x+12,h.y+96,identity.isBoss?identity.title:identity.stageName,14,C.paper,h.width-24).setName('stage-identity/current');
@@ -402,9 +405,9 @@ export class GameScene extends Phaser.Scene {
       this.progressBar=v.rect({x:h.x+12,y:progressY,width:1,height:5},T.jade).setOrigin(0,.5).setPosition(h.x+12,progressY+2.5).setStrokeStyle();
     }
     if(portrait){this.roleText.setVisible(false);this.goldText.setFontSize(14).setOrigin(0,0).setPosition(h.x+144,h.y+6);this.heatText.setPosition(h.x+64,h.y+28).setFontSize(16).setWordWrapWidth(h.width-168);}
-    if(usesErxiangHandoff(this.run)||usesAzaoCharge(this.run)||usesXiemuBurn(this.run)||usesLaohuanRefill(this.run)||usesTouyeWager(this.run)){
-      if(portrait){this.roleText.setVisible(true).setPosition(h.x+64,avatarY).setFontSize(13).setColor(C.jade).setWordWrapWidth(108);this.goldText.setPosition(h.x+166,h.y+6).setFontSize(12);}
-      const hit=v.add(this.add.rectangle(this.roleText.x+54,this.roleText.y+9,108,30,0,0));v.target(hit,usesErxiangHandoff(this.run)?'hero/erxiang-handoff-label':usesTouyeWager(this.run)?'hero/touye-wager-label':usesLaohuanRefill(this.run)?'hero/laohuan-trick-label':usesXiemuBurn(this.run)?'hero/xiemu-burn-label':'hero/azao-charge-label',{tap:()=>this.inspectRole(),detail:()=>this.inspectRole()});
+    if(this.assistProfile||usesErxiangHandoff(this.run)||usesAzaoCharge(this.run)||usesXiemuBurn(this.run)||usesLaohuanRefill(this.run)||usesTouyeWager(this.run)){
+      if(portrait){this.roleText.setVisible(true).setPosition(h.x+64,avatarY).setFontSize(13).setColor(C.jade).setWordWrapWidth(108);this.goldText.setPosition(h.x+(this.assistProfile?182:166),h.y+6).setFontSize(12);if(this.assistProfile&&h.width<340)this.goldText.setPosition(h.x+12,avatarY+34);}
+      const hit=v.add(this.add.rectangle(this.roleText.x+54,this.roleText.y+9,108,30,0,0));v.target(hit,usesErxiangHandoff(this.run)?'hero/erxiang-handoff-label':usesTouyeWager(this.run)?'hero/touye-wager-label':usesLaohuanRefill(this.run)?'hero/laohuan-trick-label':usesXiemuBurn(this.run)?'hero/xiemu-burn-label':this.assistProfile?'hero/amo-assist-label':'hero/azao-charge-label',{tap:()=>this.inspectRole(),detail:()=>this.inspectRole()});
     }
     this.renderJokerRack();
     const s=l.scoreBoard;
@@ -866,22 +869,25 @@ export class GameScene extends Phaser.Scene {
     const text=(x:number,y:number,value:string,width:number)=>{const t=this.add.text(x,y,value,{fontFamily:UI_FONT,fontSize:'14px',color:C.jade,resolution:Math.max(1.5,1/this.scale.zoom)}).setName('selection/assist-copy').setData('fullText',value);this.previewCards!.add(t);fitScoreLine(t,{x,y,width,height:18},14);return t;};
     text(score.x+10,score.y+(desktop?52:score.height<90?24:34),preview?'主手 '+preview.playedIds.length+' · 计分 '+preview.activeScoringIds.length+' · 留手 '+preview.heldIds.length:'主手：先选1–5张',score.width-20);
     const railWidth=Math.min(194,p.width-8),rail:Box=room?{x:score.x+10,y:score.y+Math.min(60,score.height-66),width:score.width-20,height:44}:{x:p.x+p.width-railWidth-4,y:p.y,width:railWidth,height:44};
-    const pageSize=Math.min(Math.max(1,candidates.length),Math.max(1,Math.floor((rail.width-88)/94))),pages=Math.max(1,Math.ceil(candidates.length/pageSize));this.assistPage=Math.max(0,Math.min(this.assistPage,pages-1));
-    const pageCopy=candidates.length>1?' · '+candidates.length+'组 · 第'+(this.assistPage+1)+'/'+pages+'页':'';
-    if(room||!growthIdle)text(room?score.x+10:rail.x,room?score.y+score.height-18:rail.y+46,status+pageCopy+(current&&room?' · 已选×'+current.assistMultiplier:''),room?score.width-20:rail.width);
+    const first=this.view.root.length;
+    const currentLabel=current?'已选 ×'+current.assistMultiplier:'推荐助攻';
     if(candidates.length){
-      const paged=pages>1,gap=6,side=paged?44:0,usable=rail.width-side*2,width=(usable-gap*(pageSize-1))/pageSize;
-      const button=(b:Box,value:string,name:string,action:()=>void,enabled:boolean,selected=false)=>{const first=this.view.root.length,r=this.view.button(b,value,name,action,enabled);(r.getData('label') as Phaser.GameObjects.Text).setFontSize(14);if(selected)(r.getData('label') as Phaser.GameObjects.Text).setColor(C.red);this.previewCards!.add(this.view.root.list.slice(first));return r;};
-      if(paged){button({...rail,width:44},'上页','selection/assist-prev',()=>{this.assistPage--;this.refreshSelection();},this.ready&&this.assistPage>0);button({...rail,x:rail.x+rail.width-44,width:44},'下页','selection/assist-next',()=>{this.assistPage++;this.refreshSelection();},this.ready&&this.assistPage<pages-1);}
-      candidates.slice(this.assistPage*pageSize,(this.assistPage+1)*pageSize).forEach((facts,i)=>{const selected=current?.assistIds.join('|')===facts.assistIds.join('|');button({...rail,x:rail.x+side+i*(width+gap),width},label(facts.assistIds)+'\n'+(selected?'取消助攻':'助攻 ×'+facts.assistMultiplier),'selection/assist-'+facts.assistIds.join('+'),()=>this.chooseAssist(facts.assistIds),this.ready,selected);});
+      const recommendation=this.assistRecommendations.get(this.run,[...this.selectedIds]);
+      const choice=this.view.button({...rail,width:rail.width-72},current?label(current.assistIds)+'\n'+currentLabel:recommendation?.best.ids.length?'推荐 ×'+recommendation.best.multiplier:'保留副组',
+        'selection/assist-recommend',()=>this.inspectHeroAction(),this.ready);
+      (choice.getData('label') as Phaser.GameObjects.Text).setFontSize(14);
+      const other=this.view.button({...rail,x:rail.x+rail.width-66,width:66},'换一组','selection/assist-change',()=>this.inspectAssistChoices(),this.ready);
+      (other.getData('label') as Phaser.GameObjects.Text).setFontSize(14);
     }else if(!growthIdle){text(rail.x,rail.y+8,availability.available?(preview?'剩余牌无合法助攻':'先组成两对、三条或更高'):status,rail.width);}
+    this.previewCards!.add(this.view.root.list.slice(first));
+    if(room||!growthIdle)text(room?score.x+10:rail.x,room?score.y+score.height-18:rail.y+46,status+(current?' · 已选×'+current.assistMultiplier:''),room?score.width-20:rail.width);
     const compact=room&&p.height<110;
     if(room&&!growthIdle){
       if(compact){
         text(p.x+8,p.y+2,'主手：'+label([...this.selectedIds]),p.width-16);
         text(p.x+8,p.y+20,'助攻：'+(current?label(current.assistIds)+' ×'+current.assistMultiplier:'未选'),p.width-16);
         text(p.x+8,p.y+40,ASSIST_EXPLANATION,p.width-16);
-      }else {text(p.x+8,p.y+2,ASSIST_EXPLANATION,p.width-16);text(p.x+8,p.y+22,ASSIST_AI_EXPLANATION,p.width-16);}
+      }else {text(p.x+8,p.y+2,ASSIST_EXPLANATION,p.width-16);if(!portrait||this.scale.width>=360)text(p.x+8,p.y+22,ASSIST_AI_EXPLANATION,p.width-16);}
     }else if(desktop){
       text(score.x+10,score.y+76,current?'助攻 '+current.assistIds.length+'张 ×'+current.assistMultiplier+' · 一同用掉':'助攻会一同用掉',score.width-20);
       text(score.x+10,score.y+94,'不算主手或留手牌',score.width-20);
@@ -970,16 +976,7 @@ export class GameScene extends Phaser.Scene {
     const safeBottom=parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--safe-bottom'))||0;
     fitStatusSummary(this.statusText,{...handWindow.status,height:Math.max(0,Math.min(handWindow.status.height+(handWindow.mode==='landscape'?12:0),handWindow.height-safeBottom-handWindow.status.y))},!criticalStatus&&selectedReminder?'点所选条件':undefined);
     if(usesLaohuanRefill(this.run))this.roleText.setText(this.roleCaption());
-    const heroCue=heroAbilityCue(this.run,this.selectionPreview(),[...this.selectedIds],this.assistProfile&&assistCandidates(this.assistInput(),r2AssistAvailability(this.run).available).length>0);
-    const heroChosen=!!(this.erxiangTargetId||this.azaoRelease||this.xiemuBurn||this.assistIds.length);
-    if(heroCue&&!this.presentation&&!this.playing&&!heroChosen)this.roleText.setText(this.view.layout.mode==='portrait'?heroCue.label:'技能 · '+heroCue.label.split('·').slice(1).join('·'));
-    // Every update clears the readiness accent while saving, paused or presenting.
-    const heroOpportunity=!!heroCue?.opportunity&&this.ready&&!this.presentation&&!this.playing;
-    const heroAvailable=!!heroCue?.available&&heroOpportunity&&!heroChosen;
-    this.roleFrame.setData('abilityOpportunity',heroOpportunity&&!heroChosen).setData('abilityState',heroChosen?'chosen':heroAvailable?'ready':heroOpportunity?'needs-selection':this.pendingRefill||this.pendingTouye?'pending':heroCue?.label.includes('已用')?'used':'unavailable');
-    if(this.heroActionButton){this.view.setEnabled(this.heroActionButton,this.ready&&(heroOpportunity||!!this.pendingRefill||heroChosen));const label=this.heroActionButton.getData('label') as Phaser.GameObjects.Text;label.setText(this.pendingRefill?'继续':heroChosen?'已选':usesTouyeWager(this.run)?'押注\n换牌':usesLaohuanRefill(this.run)?'戏法':usesErxiangHandoff(this.run)?'交棒':usesAzaoCharge(this.run)?'释放':usesXiemuBurn(this.run)?'燃金':'助攻');}
-    this.roleText.setColor(heroAvailable?C.jade:C.mutedInk).setData('abilityAvailable',heroAvailable);
-    this.roleFrame.setStrokeStyle(heroOpportunity||heroChosen?2:1,heroAvailable||heroChosen?T.jade:T.brass,heroOpportunity||heroChosen?1:.6);
+    this.updateHeroControl();
     this.resourceCounts.play.setVisible(!this.pendingRefill);this.resourceCounts.discard.setVisible(!this.pendingRefill);
     if(this.pendingRefill){this.view.setEnabled(this.aiButton,false);this.view.setEnabled(this.playButton,this.ready&&!this.refillHidden&&this.selectedIds.size===this.pendingRefill.required);(this.playButton.getData('label') as Phaser.GameObjects.Text).setText('确认留'+this.pendingRefill.required);this.view.setEnabled(this.discardButton,this.ready);(this.discardButton.getData('label') as Phaser.GameObjects.Text).setText(this.refillHidden?'继续选牌':'收起候选');}
     // Balatro-style call-to-action: the playable state breathes a warm aura.
@@ -989,6 +986,20 @@ export class GameScene extends Phaser.Scene {
       if(auraOn&&!this.playAuraPulse&&!this.reducedMotion)this.playAuraPulse=this.tweens.add({targets:this.playAura,alpha:.8,duration:640,yoyo:true,repeat:-1,ease:'Sine.easeInOut'});
       if(!auraOn&&this.playAuraPulse){this.playAuraPulse.remove();this.playAuraPulse=undefined;this.playAura.setAlpha(0);}
     }
+  }
+  private updateHeroControl():void {
+    if(!this.roleFrame?.active)return;
+    const heroCue=heroAbilityCue(this.run,this.selectionPreview(),[...this.selectedIds],this.assistProfile&&assistCandidates(this.assistInput(),r2AssistAvailability(this.run).available).length>0);
+    const heroChosen=!!(this.erxiangTargetId||this.azaoRelease||this.xiemuBurn||this.assistIds.length);
+    if(this.assistProfile&&heroChosen&&!this.presentation&&!this.playing)this.roleText.setText('阿默·已选助攻×'+(this.assistIds.length===3?4:2));
+    if(heroCue&&!this.presentation&&!this.playing&&!heroChosen)this.roleText.setText(this.view.layout.mode==='portrait'?heroCue.label:'技能 · '+heroCue.label.split('·').slice(1).join('·'));
+    // Every update clears the readiness accent while saving, paused or presenting.
+    const heroOpportunity=!!heroCue?.opportunity&&this.ready&&!this.presentation&&!this.playing;
+    const heroAvailable=!!heroCue?.available&&heroOpportunity&&!heroChosen;
+    this.roleFrame.setData('abilityOpportunity',heroOpportunity&&!heroChosen).setData('abilityAvailable',heroAvailable).setData('abilityChosen',heroChosen&&this.ready).setData('abilityState',heroChosen?'chosen':heroAvailable?'ready':heroOpportunity?'needs-selection':this.pendingRefill||this.pendingTouye?'pending':heroCue?.label.includes('已用')?'used':'unavailable');
+    if(this.heroActionButton){this.heroActionButton.setData('abilityAvailable',heroAvailable).setData('abilityChosen',heroChosen&&this.ready);this.view.setEnabled(this.heroActionButton,this.ready&&(heroOpportunity||!!this.pendingRefill||heroChosen));const label=this.heroActionButton.getData('label') as Phaser.GameObjects.Text;label.setText(this.pendingRefill?'继续':heroChosen?'已选':usesTouyeWager(this.run)?'押注\n换牌':usesLaohuanRefill(this.run)?'戏法':usesErxiangHandoff(this.run)?'交棒':usesAzaoCharge(this.run)?'释放':usesXiemuBurn(this.run)?'燃金':'助攻');}
+    this.roleText.setColor(heroAvailable?C.jade:C.mutedInk).setData('abilityAvailable',heroAvailable);
+    this.roleFrame.setStrokeStyle(heroOpportunity||heroChosen?2:1,heroAvailable||heroChosen?T.jade:T.brass,heroOpportunity||heroChosen?1:.6);
   }
   /** This public selection boundary cannot carry a score trace or RNG. */
   private candidateInput():R2CandidateInput {
@@ -1105,13 +1116,32 @@ export class GameScene extends Phaser.Scene {
       image.destroy();
     });
   }
-  update(time:number):void {if(!this.roleFrame?.active)return;const active=this.roleFrame.getData('abilityOpportunity')&&!this.playing&&!this.presentation&&this.ready&&!document.hidden&&!document.querySelector('dialog[open]');this.roleFrame.setAlpha(active&&!this.reducedMotion ? .85+.15*Math.cos(time*Math.PI/2000) : 1).setData('reminderState',active?(this.reducedMotion?'static':'breathing'):'paused');}
+  update(time:number):void {
+    if(!this.roleFrame?.active)return;
+    const blocked=!!(this.playing||this.presentation||document.hidden||document.querySelector('dialog[open]'));
+    const visual=heroShortcutReminder(!!this.roleFrame.getData('abilityAvailable'),!!this.roleFrame.getData('abilityChosen'),this.ready,blocked,this.reducedMotion,time);
+    this.roleFrame.setAlpha(visual.alpha).setData('reminderState',visual.state);
+    if(this.heroActionButton)this.heroActionButton.setStrokeStyle(visual.width,T.jade,visual.opacity).setData('reminderState',visual.state);
+  }
+  private inspectAssistChoices():void {
+    if(!this.ready||this.presentation||!this.assistProfile)return;
+    const recommendation=this.assistRecommendations.get(this.run,[...this.selectedIds]),main=this.selectionPreview();
+    if(!recommendation||!main){this.inspectRole();return;}
+    const seq=this.run.commandSeq,key=recommendation.key;
+    showAssistChoices(this.dialog,this.hand,main,recommendation,this.assistIds,
+      ()=>this.ready&&!this.presentation&&this.run.commandSeq===seq&&this.assistRecommendations.get(this.run,[...this.selectedIds])?.key===key,
+      ids=>{if(ids.length)this.chooseAssist(ids);else {this.assistIds=[];this.statusMessage='本手不助攻，保留余牌与机会';this.refreshSelection();}});
+  }
   private inspectHeroAction():void {
-    if(!this.ready)return;if(this.pendingRefill){this.reopenRefill();return;}
-    if(this.assistProfile){const candidates=assistCandidates(this.assistInput(),r2AssistAvailability(this.run).available);if(candidates.length){
-      const seq=this.run.commandSeq,main=[...this.selectedIds].join('|');
-      this.dialog.open('阿默 · 选助攻',ASSIST_EXPLANATION,candidates.map(facts=>({label:facts.assistIds.map(id=>{const c=this.hand.find(c=>c.id===id)!;return rankLabel(c.rank)+SUIT_SYMBOL[c.suit];}).join(' ')+' · 助攻 ×'+facts.assistMultiplier,run:()=>{if(!this.ready||this.run.commandSeq!==seq||[...this.selectedIds].join('|')!==main)return;this.dialog.close();this.chooseAssist(facts.assistIds);}})),{closeLabel:'返回选牌'});return;
-    }}this.inspectRole();
+    if(!this.ready||this.presentation)return;if(this.pendingRefill){this.reopenRefill();return;}
+    if(this.assistProfile){
+      if(this.assistIds.length){this.chooseAssist(this.assistIds);return;}
+      const recommendation=this.assistRecommendations.get(this.run,[...this.selectedIds]);
+      if(recommendation&&recommendation.options.length>1){
+        if(recommendation.best.ids.length)this.chooseAssist(recommendation.best.ids);
+        else {this.statusMessage=recommendation.options.some(o=>o.ids.length&&o.range.minimum===recommendation.best.range.minimum)?(recommendation.random?'同保底不助攻':'同分不助攻')+' · 保留副组，可手选':'不助攻收益更高 · 换一组可手选';this.updateControls();}return;
+      }
+    }this.inspectRole();
   }
   private inspectTouye():void {
     const copy=touyeChoice(this.run,[...this.selectedIds]),seq=this.run.commandSeq,ids=[...this.selectedIds];
@@ -1137,6 +1167,7 @@ export class GameScene extends Phaser.Scene {
     const dialog=this.dialog.open('二响 · 交棒',characterForRun(this.run).passiveDescription,[],{guideSteps:heroOperationSteps(this.run,guide,!!this.erxiangTargetId),summaryBody:guide.step,effectBody:choice.sentence+'\n'+guide.risk,collapseRules:true,rulesLabel:'交棒细则',closeLabel:'返回选牌',choices:actions.filter(a=>a.label!=='上一手详情'),secondaryActions:actions.filter(a=>a.label==='上一手详情')});mountHeroSkillGuide(dialog);
   }
   private inspectRole():void {
+    if(this.ready&&this.assistProfile&&this.assistRecommendations.get(this.run,[...this.selectedIds])?.options.length!>1){this.inspectAssistChoices();return;}
     if(usesErxiangHandoff(this.run)){this.inspectErxiang();return;}
     if(usesTouyeWager(this.run)){this.inspectTouye();return;}
     if(this.pendingRefill){this.dialog.close();this.reopenRefill();return;}
