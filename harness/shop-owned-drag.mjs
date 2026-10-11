@@ -5,7 +5,7 @@ import {mkdir,writeFile} from 'node:fs/promises';
 import {execFileSync} from 'node:child_process';
 import {point,waitScene,tapUI} from './ui.mjs';
 const port=Number(process.env.DRAG_PORT??5462),baseline=process.env.DRAG_BASELINE==='1',dir=process.env.DRAG_OUTPUT??(baseline?'/tmp/shop-owned-drag-before':'/tmp/shop-owned-drag-after');await mkdir(dir,{recursive:true});
-const server=await createServer({root:process.env.DRAG_ROOT,mode:'e2e',server:{host:'127.0.0.1',port,strictPort:true},logLevel:'error'});await server.listen();
+const server=await createServer({root:process.env.DRAG_ROOT,cacheDir:`/tmp/owned-drag-vite-${port}`,mode:'e2e',server:{host:'127.0.0.1',port,strictPort:true},logLevel:'error'});await server.listen();
 const {createRun,applyCommand,assertRunInvariants}=await server.ssrLoadModule('/src/domain/run.ts'),{newRunIdentity}=await server.ssrLoadModule('/src/game/RunLaunch.ts'),{r2CreateJoker}=await server.ssrLoadModule('/src/domain/r2Run.ts'),{makeCheckpoint,readCheckpoint}=await server.ssrLoadModule('/src/application/checkpoint.ts');
 let run=createRun({seed:'owned-drag-fixed',runId:'owned-drag-fixed',characterId:'erxiang',rulesVersion:'r2',r2Identity:newRunIdentity('erxiang','group'),openingRoute:'group'});
 for(const action of [{type:'LeaveShop'},{type:'SkipStage'},{type:'OpenShop'}]){const result=applyCommand(run,{runId:run.runId,commandId:run.runId+'/command/'+(run.commandSeq+1),expectedSeq:run.commandSeq,action});assert.ok(result.ok,result.code);run=result.state;}
