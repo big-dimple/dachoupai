@@ -1,0 +1,741 @@
+{
+  "head": "56f5ad5e175ad16b1f89adc544c3332eed6ffb71",
+  "sourceTree": "04923fd3fa1c5d4c83371d0894f7c95c4ed5bf0a",
+  "modified": "",
+  "harnessSha256": "7fc240622d2a99fabe9f449b744ee7bb83304df9527db90c3dd2b1f38ad0b223",
+  "baseline": true,
+  "scope": "Controlled current-identity shop checkpoints, normal browser import and real Phaser text/layout; one native cancelled lift on each main viewport. No full drag suite, natural acquisition, 18 runs, physical device or human acceptance.",
+  "cases": [
+    {
+      "width": 1180,
+      "height": 757,
+      "touch": false,
+      "count": 0,
+      "errors": [],
+      "before": {
+        "commandSeq": 4,
+        "ids": [],
+        "journalLength": 0
+      },
+      "geometry": {
+        "touch": false,
+        "pc": true,
+        "short": false,
+        "collapsed": false,
+        "slots": [
+          {
+            "x": 272,
+            "y": 64,
+            "width": 80,
+            "height": 112
+          },
+          {
+            "x": 364,
+            "y": 64,
+            "width": 80,
+            "height": 112
+          },
+          {
+            "x": 456,
+            "y": 64,
+            "width": 80,
+            "height": 112
+          },
+          {
+            "x": 548,
+            "y": 64,
+            "width": 80,
+            "height": 112
+          },
+          {
+            "x": 640,
+            "y": 64,
+            "width": 80,
+            "height": 112
+          }
+        ],
+        "texts": [
+          {
+            "name": "shop/owned-heading",
+            "text": "当前构筑 0/5 · 从左至右触发",
+            "fontSize": "16px",
+            "bounds": {
+              "x": 272,
+              "y": 20,
+              "width": 201,
+              "height": 19
+            }
+          }
+        ],
+        "names": []
+      },
+      "result": {
+        "failures": []
+      },
+      "screenshot": "1180x757-held-0.png",
+      "status": "PASS"
+    },
+    {
+      "width": 1180,
+      "height": 757,
+      "touch": false,
+      "count": 1,
+      "errors": [],
+      "before": {
+        "commandSeq": 4,
+        "ids": [
+          "hint-held/0"
+        ],
+        "journalLength": 0
+      },
+      "geometry": {
+        "touch": false,
+        "pc": true,
+        "short": false,
+        "collapsed": false,
+        "slots": [
+          {
+            "x": 272,
+            "y": 64,
+            "width": 80,
+            "height": 112
+          },
+          {
+            "x": 364,
+            "y": 64,
+            "width": 80,
+            "height": 112
+          },
+          {
+            "x": 456,
+            "y": 64,
+            "width": 80,
+            "height": 112
+          },
+          {
+            "x": 548,
+            "y": 64,
+            "width": 80,
+            "height": 112
+          },
+          {
+            "x": 640,
+            "y": 64,
+            "width": 80,
+            "height": 112
+          }
+        ],
+        "texts": [
+          {
+            "name": "shop/owned-heading",
+            "text": "当前构筑 1/5 · 从左至右触发",
+            "fontSize": "16px",
+            "bounds": {
+              "x": 272,
+              "y": 20,
+              "width": 201,
+              "height": 19
+            }
+          },
+          {
+            "name": "shop/owned-drag-hint",
+            "text": "拖动换位 · 手机长按 · 从左至右触发",
+            "fontSize": "14px",
+            "bounds": {
+              "x": 272,
+              "y": 40,
+              "width": 70,
+              "height": 64
+            }
+          }
+        ],
+        "names": [
+          {
+            "id": "hint-held/0",
+            "name": "少一级",
+            "bounds": {
+              "x": 275,
+              "y": 67,
+              "width": 42,
+              "height": 16
+            }
+          }
+        ]
+      },
+      "result": {
+        "hint": {
+          "name": "shop/owned-drag-hint",
+          "text": "拖动换位 · 手机长按 · 从左至右触发",
+          "fontSize": "14px",
+          "bounds": {
+            "x": 272,
+            "y": 40,
+            "width": 70,
+            "height": 64
+          }
+        },
+        "failures": [
+          "hint wraps to multiple lines",
+          "hint overlaps 少一级",
+          "hint extends into card rail"
+        ]
+      },
+      "screenshot": "1180x757-held-1.png",
+      "status": "BASELINE_FAIL"
+    },
+    {
+      "width": 1180,
+      "height": 757,
+      "touch": false,
+      "count": 2,
+      "errors": [],
+      "before": {
+        "commandSeq": 4,
+        "ids": [
+          "hint-held/0",
+          "hint-held/1"
+        ],
+        "journalLength": 0
+      },
+      "geometry": {
+        "touch": false,
+        "pc": true,
+        "short": false,
+        "collapsed": false,
+        "slots": [
+          {
+            "x": 272,
+            "y": 64,
+            "width": 80,
+            "height": 112
+          },
+          {
+            "x": 364,
+            "y": 64,
+            "width": 80,
+            "height": 112
+          },
+          {
+            "x": 456,
+            "y": 64,
+            "width": 80,
+            "height": 112
+          },
+          {
+            "x": 548,
+            "y": 64,
+            "width": 80,
+            "height": 112
+          },
+          {
+            "x": 640,
+            "y": 64,
+            "width": 80,
+            "height": 112
+          }
+        ],
+        "texts": [
+          {
+            "name": "shop/owned-heading",
+            "text": "当前构筑 2/5 · 从左至右触发",
+            "fontSize": "16px",
+            "bounds": {
+              "x": 272,
+              "y": 20,
+              "width": 201,
+              "height": 19
+            }
+          },
+          {
+            "name": "shop/owned-drag-hint",
+            "text": "拖动换位 · 手机长按 · 从左至右触发",
+            "fontSize": "14px",
+            "bounds": {
+              "x": 272,
+              "y": 40,
+              "width": 133,
+              "height": 32
+            }
+          }
+        ],
+        "names": [
+          {
+            "id": "hint-held/0",
+            "name": "少一级",
+            "bounds": {
+              "x": 275,
+              "y": 67,
+              "width": 42,
+              "height": 16
+            }
+          },
+          {
+            "id": "hint-held/1",
+            "name": "搭台阶",
+            "bounds": {
+              "x": 367,
+              "y": 67,
+              "width": 42,
+              "height": 16
+            }
+          }
+        ]
+      },
+      "result": {
+        "hint": {
+          "name": "shop/owned-drag-hint",
+          "text": "拖动换位 · 手机长按 · 从左至右触发",
+          "fontSize": "14px",
+          "bounds": {
+            "x": 272,
+            "y": 40,
+            "width": 133,
+            "height": 32
+          }
+        },
+        "failures": [
+          "hint wraps to multiple lines",
+          "hint overlaps 少一级",
+          "hint overlaps 搭台阶",
+          "hint extends into card rail"
+        ]
+      },
+      "screenshot": "1180x757-held-2.png",
+      "status": "BASELINE_FAIL"
+    },
+    {
+      "width": 1180,
+      "height": 757,
+      "touch": false,
+      "count": 5,
+      "errors": [],
+      "before": {
+        "commandSeq": 4,
+        "ids": [
+          "hint-held/0",
+          "hint-held/1",
+          "hint-held/2",
+          "hint-held/3",
+          "hint-held/4"
+        ],
+        "journalLength": 0
+      },
+      "geometry": {
+        "touch": false,
+        "pc": true,
+        "short": false,
+        "collapsed": false,
+        "slots": [
+          {
+            "x": 272,
+            "y": 64,
+            "width": 80,
+            "height": 112
+          },
+          {
+            "x": 364,
+            "y": 64,
+            "width": 80,
+            "height": 112
+          },
+          {
+            "x": 456,
+            "y": 64,
+            "width": 80,
+            "height": 112
+          },
+          {
+            "x": 548,
+            "y": 64,
+            "width": 80,
+            "height": 112
+          },
+          {
+            "x": 640,
+            "y": 64,
+            "width": 80,
+            "height": 112
+          }
+        ],
+        "texts": [
+          {
+            "name": "shop/owned-heading",
+            "text": "已积攒 ×1 倍率",
+            "fontSize": "16px",
+            "bounds": {
+              "x": 272,
+              "y": 20,
+              "width": 108,
+              "height": 19
+            }
+          },
+          {
+            "name": "shop/owned-drag-hint",
+            "text": "拖动换位 · 手机长按 · 从左至右触发",
+            "fontSize": "14px",
+            "bounds": {
+              "x": 272,
+              "y": 40,
+              "width": 221,
+              "height": 16
+            }
+          }
+        ],
+        "names": [
+          {
+            "id": "hint-held/0",
+            "name": "少一级",
+            "bounds": {
+              "x": 275,
+              "y": 67,
+              "width": 42,
+              "height": 16
+            }
+          },
+          {
+            "id": "hint-held/1",
+            "name": "搭台阶",
+            "bounds": {
+              "x": 367,
+              "y": 67,
+              "width": 42,
+              "height": 16
+            }
+          },
+          {
+            "id": "hint-held/2",
+            "name": "小费盒",
+            "bounds": {
+              "x": 459,
+              "y": 67,
+              "width": 42,
+              "height": 16
+            }
+          },
+          {
+            "id": "hint-held/3",
+            "name": "滚个零头",
+            "bounds": {
+              "x": 551,
+              "y": 67,
+              "width": 56,
+              "height": 16
+            }
+          },
+          {
+            "id": "hint-held/4",
+            "name": "真正的压轴",
+            "bounds": {
+              "x": 643,
+              "y": 67,
+              "width": 70,
+              "height": 16
+            }
+          }
+        ]
+      },
+      "result": {
+        "hint": {
+          "name": "shop/owned-drag-hint",
+          "text": "拖动换位 · 手机长按 · 从左至右触发",
+          "fontSize": "14px",
+          "bounds": {
+            "x": 272,
+            "y": 40,
+            "width": 221,
+            "height": 16
+          }
+        },
+        "failures": []
+      },
+      "screenshot": "1180x757-held-5.png",
+      "status": "PASS"
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "count": 0,
+      "errors": [],
+      "before": {
+        "commandSeq": 4,
+        "ids": [],
+        "journalLength": 0
+      },
+      "geometry": {
+        "touch": true,
+        "pc": false,
+        "short": false,
+        "collapsed": false,
+        "slots": [
+          {
+            "x": 38,
+            "y": 518,
+            "width": 58,
+            "height": 81.19999999999999
+          },
+          {
+            "x": 102,
+            "y": 518,
+            "width": 58,
+            "height": 81.19999999999999
+          },
+          {
+            "x": 166,
+            "y": 518,
+            "width": 58,
+            "height": 81.19999999999999
+          },
+          {
+            "x": 230,
+            "y": 518,
+            "width": 58,
+            "height": 81.19999999999999
+          },
+          {
+            "x": 294,
+            "y": 518,
+            "width": 58,
+            "height": 81.19999999999999
+          }
+        ],
+        "texts": [
+          {
+            "name": "shop/owned-heading",
+            "text": "当前持有 0/5",
+            "fontSize": "14px",
+            "bounds": {
+              "x": 38,
+              "y": 498,
+              "width": 80,
+              "height": 16
+            }
+          }
+        ],
+        "names": []
+      },
+      "result": {
+        "failures": []
+      },
+      "screenshot": "390x844-held-0.png",
+      "status": "PASS"
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "count": 1,
+      "errors": [],
+      "before": {
+        "commandSeq": 4,
+        "ids": [
+          "hint-held/0"
+        ],
+        "journalLength": 0
+      },
+      "geometry": {
+        "touch": true,
+        "pc": false,
+        "short": false,
+        "collapsed": false,
+        "slots": [
+          {
+            "x": 38,
+            "y": 518,
+            "width": 58,
+            "height": 81.19999999999999
+          },
+          {
+            "x": 102,
+            "y": 518,
+            "width": 58,
+            "height": 81.19999999999999
+          },
+          {
+            "x": 166,
+            "y": 518,
+            "width": 58,
+            "height": 81.19999999999999
+          },
+          {
+            "x": 230,
+            "y": 518,
+            "width": 58,
+            "height": 81.19999999999999
+          },
+          {
+            "x": 294,
+            "y": 518,
+            "width": 58,
+            "height": 81.19999999999999
+          }
+        ],
+        "texts": [
+          {
+            "name": "shop/owned-heading",
+            "text": "长按拖动换位 · 点牌查看",
+            "fontSize": "14px",
+            "bounds": {
+              "x": 38,
+              "y": 494,
+              "width": 153,
+              "height": 16
+            }
+          }
+        ],
+        "names": [
+          {
+            "id": "hint-held/0",
+            "name": "少一级",
+            "bounds": {
+              "x": 39,
+              "y": 520.9999755859375,
+              "width": 42,
+              "height": 16
+            }
+          }
+        ]
+      },
+      "result": {
+        "hint": {
+          "name": "shop/owned-heading",
+          "text": "长按拖动换位 · 点牌查看",
+          "fontSize": "14px",
+          "bounds": {
+            "x": 38,
+            "y": 494,
+            "width": 153,
+            "height": 16
+          }
+        },
+        "failures": []
+      },
+      "screenshot": "390x844-held-1.png",
+      "status": "PASS"
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "count": 2,
+      "errors": [],
+      "before": {
+        "commandSeq": 4,
+        "ids": [
+          "hint-held/0",
+          "hint-held/1"
+        ],
+        "journalLength": 0
+      },
+      "geometry": {
+        "touch": true,
+        "pc": false,
+        "short": false,
+        "collapsed": false,
+        "slots": [
+          {
+            "x": 38,
+            "y": 518,
+            "width": 58,
+            "height": 81.19999999999999
+          },
+          {
+            "x": 102,
+            "y": 518,
+            "width": 58,
+            "height": 81.19999999999999
+          },
+          {
+            "x": 166,
+            "y": 518,
+            "width": 58,
+            "height": 81.19999999999999
+          },
+          {
+            "x": 230,
+            "y": 518,
+            "width": 58,
+            "height": 81.19999999999999
+          },
+          {
+            "x": 294,
+            "y": 518,
+            "width": 58,
+            "height": 81.19999999999999
+          }
+        ],
+        "texts": [
+          {
+            "name": "shop/owned-heading",
+            "text": "长按拖动换位 · 点牌查看",
+            "fontSize": "14px",
+            "bounds": {
+              "x": 38,
+              "y": 494,
+              "width": 153,
+              "height": 16
+            }
+          }
+        ],
+        "names": [
+          {
+            "id": "hint-held/0",
+            "name": "少一级",
+            "bounds": {
+              "x": 39,
+              "y": 520.9999755859375,
+              "width": 42,
+              "height": 16
+            }
+          },
+          {
+            "id": "hint-held/1",
+            "name": "搭台阶",
+            "bounds": {
+              "x": 103,
+              "y": 520.9999755859375,
+              "width": 42,
+              "height": 16
+            }
+          }
+        ]
+      },
+      "result": {
+        "hint": {
+          "name": "shop/owned-heading",
+          "text": "长按拖动换位 · 点牌查看",
+          "fontSize": "14px",
+          "bounds": {
+            "x": 38,
+            "y": 494,
+            "width": 153,
+            "height": 16
+          }
+        },
+        "failures": []
+      },
+      "screenshot": "390x844-held-2.png",
+      "status": "PASS"
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "count": 5,
+      "errors": [],
+      "before": {
+        "commandSeq": 4,
+        "ids": [
+          "hint-held/0",
+          "hint-held/1",
+          "hint-held/2",
+          "hint-held/3",
+          "hint-held/4"
+        ],
+        "journalLength": 0
+      }
+    }
+  ],
+  "status": "FAIL",
+  "failure": "Error: page.evaluate: Error: actual name text missing 真正的压轴\n    at eval (eval at evaluate (:311:30), <anonymous>:1:693)\n    at Array.map (<anonymous>)\n    at eval (eval at evaluate (:311:30), <anonymous>:1:527)\n    at UtilityScript.evaluate (<anonymous>:313:16)\n    at UtilityScript.<anonymous> (<anonymous>:1:44)"
+}

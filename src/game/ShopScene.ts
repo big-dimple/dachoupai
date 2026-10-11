@@ -152,7 +152,7 @@ export class ShopScene extends Phaser.Scene {
     if(!p.portrait&&!p.short)v.text(p.x,p.top+37,`${stage.name} · 目标 ${heatText(stage.targetHeat)}`,14,'#3F606B',p.short?p.slots[4].x+p.slots[4].width-p.x:p.w-24);
     if(!p.short){
       const savedGrowth=buildGrowthProgress(this.run)[0];
-      const ownedLabel=this.run.jokers.length&&!p.inventoryCollapsed?'长按拖动换位 · 点牌查看':savedGrowth?savedGrowth.name+' · '+savedGrowth.metric:p.portrait?`当前持有 ${this.run.jokers.length}/${r2JokerCapacity(this.run)}`:`随身 ${this.run.jokers.length}/${r2JokerCapacity(this.run)} · 点牌出售／调序`;
+      const ownedLabel=this.run.jokers.length&&!p.inventoryCollapsed?this.ownedDragHint():savedGrowth?savedGrowth.name+' · '+savedGrowth.metric:p.portrait?`当前持有 ${this.run.jokers.length}/${r2JokerCapacity(this.run)}`:`随身 ${this.run.jokers.length}/${r2JokerCapacity(this.run)} · 点牌出售／调序`;
       const inline=p.portrait&&!p.copyBeside&&p.slots[0].y-p.shelf[0].y-p.shelf[0].height<122;
       v.text(inline?p.x:p.slots[0].x,inline?p.top+27:p.slots[0].y-20,ownedLabel,14,'#26313A',p.slots[4].x+p.slots[4].width-p.slots[0].x).setName('shop/owned-heading');
     }
@@ -244,7 +244,8 @@ export class ShopScene extends Phaser.Scene {
     if(last&&!p.inventoryCollapsed){
       const first=p.slots[0];this.ownedInput?.setBounds({x:first.x,y:first.y,width:last.x+last.width-first.x,height:first.height});
       const heading=v.root.list.find(o=>o.name==='shop/owned-heading') as Phaser.GameObjects.Text|undefined;
-      this.ownedHint=p.pc||p.short?v.text(first.x,first.y-20,p.pc?'拖动换位 · 手机长按 · 从左至右触发':'拖动换位 · 手机长按',14,PAPER_CSS.jade,last.x+last.width-first.x).setName('shop/owned-drag-hint'):heading;
+      const railEnd=p.slots[p.slots.length-1];
+      this.ownedHint=p.pc||p.short?v.text(first.x,first.y-24,this.ownedDragHint(),14,PAPER_CSS.jade,railEnd.x+railEnd.width-first.x).setName('shop/owned-drag-hint'):heading;
       if(this.ownedHint&&this.ownedHint.y>first.y-30)this.ownedHint.setY(first.y-24);
     }
     if(!p.short&&this.run.jokers.length&&!firstChapterShopPrompt(this.run)){
@@ -639,6 +640,7 @@ export class ShopScene extends Phaser.Scene {
     return deficit>0?(short?`差 ${deficit} 金`:`金币不足，还差 ${deficit} 金币。`):'';
   }
   private buildLabel():string {const focus=currentBuildFocus(this.run,this.run.openingRoute);return focus?'培养 · '+BUILD_LABEL[focus]:'培养与构筑';}
+  private ownedDragHint():string {return this.sys.game.device.input.touch?'长按拖动换位 · 点牌查看':'拖动换位 · 点牌查看';}
   /** Outline real existing faces without hiding alternatives or changing the shelf hit rectangles. */
   private drawOfferGuidance(o:R2Offer,b:Box):void {
     const g=shopOfferGuidance(this.run,o),v=this.view;
@@ -760,7 +762,7 @@ export class ShopScene extends Phaser.Scene {
   private cancelOwned():void {
     const drag=this.ownedDrag;if(!drag)return;this.ownedDrag=undefined;drag.overlay.destroy();drag.shadow.destroy();
     const p=this.geometry();for(const [i,j] of this.run.jokers.entries()){const art=this.ownedArts.get(j.instanceId),b=p.slots[i];if(art?.active)art.setPosition(b.x+b.width/2,b.y+b.height/2).setScale(1).setAngle(0).setAlpha(1);}
-    this.ownedHint?.setText(p.pc?'拖动换位 · 手机长按 · 从左至右触发':p.short?'拖动换位 · 手机长按':'长按拖动换位 · 点牌查看');
+    this.ownedHint?.setText(this.ownedDragHint());
   }
   private moveJoker(id:string,x:number,y:number):void {
     const drag=this.ownedDrag,to=ownedJokerDropIndex(this.geometry().slots,this.run.jokers.length,x,y),from=this.run.jokers.findIndex(j=>j.instanceId===id);
