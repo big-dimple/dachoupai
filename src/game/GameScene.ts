@@ -24,7 +24,7 @@ import {usesLaohuanRefill} from '../domain/r2LaohuanRefill';
 import {savedBossImpact} from './SavedBossImpact';
 import {mountScoreLanding} from './ScoreLanding';
 import {numberImpact,impactBeat,numberPulse,type NumberImpact} from './ScoreEnergy';
-import {multiplierCaption} from './ScoreEventCaption';
+import {multiplierCaption,readableMultiplierEffect} from './ScoreEventCaption';
 import {starterSelection} from './RouteStarter';
 import {firstChapterGuide,attachFirstChapterGuide} from './FirstChapterGuide';
 import {buildGrowthProgress} from './BuildGrowthProgress';
@@ -1639,7 +1639,7 @@ export class GameScene extends Phaser.Scene {
     const benefit=this.presentation?savedBenefit(this.run,this.presentation.score,event):undefined;
     const sourceBenefit=hasActualBenefit(event);
     if(sourceBenefit&&event.sourceInstanceId===this.presentation?.state.routeStarter?.instanceId){const label=this.jokerViews.get(event.sourceInstanceId)?.getData('valueLabel') as Phaser.GameObjects.Text|undefined;label?.setText(event.operation==='add-growth'?'已存成长':'实际生效').setColor(C.red);}
-    if(benefit){this.statusText.setName('benefit/live').setText(benefit.effect);this.statusText.setData('benefit',benefit);if(this.statusText.width>this.view.layout.status.width)this.statusText.setText(benefit.title+' · 结果见上手详情');}
+    if(benefit){this.statusText.setName('benefit/live').setText(readableMultiplierEffect(benefit.effect,event.value));this.statusText.setData('benefit',benefit);if(this.statusText.width>this.view.layout.status.width)this.statusText.setText(benefit.title+' · 结果见上手详情');}
 
     if(key&&(key.kind==='payoff'||key.kind==='burst')&&this.shownPayoffs.has(key.eventId))key=undefined;
     const restoreKey=key?this.showKeyHighlight(key,context):undefined;
@@ -1647,7 +1647,7 @@ export class GameScene extends Phaser.Scene {
     if(event.targetCardId)this.showTraceHeldCard(event.targetCardId);
     const timing=key?.kind==='payoff'||key?.kind==='burst'?heroPayoffBeat(beat,this.reducedMotion):key?.kind==='starter'||key?.kind==='opening'?keyHighlightBeat(beat,this.reducedMotion,key.kind):this.reducedMotion?{...beat,windup:0,flight:0,impact:Math.min(180,beat.impact),rest:80}:beat,duration=timing.windup+timing.flight+timing.impact;
     if(number&&this.presentation&&!this.presentation.replay&&number.kind!=='add'&&!this.reducedMotion)this.audio.scoreImpact(this.presentation,event.eventId,'flight',number.tier,number.chain);
-    const note=event.sourceType==='character'&&benefit?benefit.effect:this.operationText(event),source=this.eventSource(event),card=this.settledCards.get(event.targetCardId??'')??this.cardViews.find(view=>view.card.id===event.targetCardId);
+    const note=event.sourceType==='character'&&benefit?readableMultiplierEffect(benefit.effect,event.value):readableMultiplierEffect(this.operationText(event),event.value),source=this.eventSource(event),card=this.settledCards.get(event.targetCardId??'')??this.cardViews.find(view=>view.card.id===event.targetCardId);
     this.resultText.setVisible(true).setText(source+' · '+note);this.breakdownText.setText((event.phase==='onStageClear'?'过关收益':event.phase==='beforeFailure'?'失败前救场':event.phase==='afterHand'?'结算后状态':event.sourceType==='joker'?'大丑牌连锁':'逐项计分')+' · '+source+' '+note);this.setAccumulator(event.before);
     this.scoreTotal.setData('eventId',event.eventId).setData('eventPhase','windup');
     const sourceEffects:Promise<void>[]=[];
@@ -1705,7 +1705,7 @@ export class GameScene extends Phaser.Scene {
     // the brief compressed hold and rebound, without extending the trace timeline.
     const positive=Rational.fromJSON(event.after.H).compare(Rational.fromJSON(event.before.H))>0||Rational.fromJSON(event.after.M).compare(Rational.fromJSON(event.before.M))>0;
     const accumulator=positive?(this.setAccumulator(event.after),Promise.resolve()):this.rollAccumulator(event,impactDuration,context);
-    if(number){this.scoreTotal.setColor(number.color).setData('numberImpact',number);if(event.before.M.n!==event.after.M.n||event.before.M.d!==event.after.M.d)this.scoreMult.setColor(number.color);if(event.before.H.n!==event.after.H.n||event.before.H.d!==event.after.H.d)this.scoreHeat.setColor(number.color);if(number.factor){const caption=multiplierCaption(source,number.factor,event.before.M,event.after.M,this.view.layout.mode==='desktop');this.resultText.setText(caption.text).setData('exactMultiplierCaption',{eventId:event.eventId,text:caption.exact});}}
+    if(number){this.scoreTotal.setColor(number.color).setData('numberImpact',number);if(event.before.M.n!==event.after.M.n||event.before.M.d!==event.after.M.d)this.scoreMult.setColor(number.color);if(event.before.H.n!==event.after.H.n||event.before.H.d!==event.after.H.d)this.scoreHeat.setColor(number.color);if(number.factorValue){const caption=multiplierCaption(source,number.factorValue,event.before.M,event.after.M,this.view.layout.mode==='desktop');this.resultText.setText(caption.text).setData('exactMultiplierCaption',{eventId:event.eventId,text:caption.exact});}}
     const effects=[...sourceEffects,accumulator,this.pulseAccumulator(event,impactDuration,context,number),this.impactAccumulator(event,impactDuration,context,number),restoreKey&&(key?.kind==='payoff'||key?.kind==='burst')?this.waitHeroSubject(context):this.wait(impactDuration,context)],notes:Promise<void>[]=[];
     if((event.operation==='rescue-hand'||event.operation==='refund-hand')&&this.presentation&&!this.presentation.replay&&event.resourceBefore!==undefined&&event.resourceAfter!==undefined){
       this.presentation.resourcePlayLeft=event.resourceAfter;
