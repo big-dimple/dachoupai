@@ -1,0 +1,403 @@
+{
+  "status": "local-required-steps-covered; ready-for-new-draft; exact-commit-CI-and-parent-review-pending",
+  "baseMain": "e48fd07a6e7b4575067dc356ad28cb0a94fe15e9",
+  "branch": "feat/c2-route-growth-2026-10-11",
+  "identity": {
+    "contentVersion": "quality-r2-route-growth-v1",
+    "contentHash": "json-fnv-v1:7414228d95059959"
+  },
+  "frozenInput": {
+    "branch": "c2-route-growth-local",
+    "base": "6d2d954d1b41cddf632dfdce86fb75374e8f7e54",
+    "patchSha256": "59da38ecfdda4646a48f3053a8151f0e5b340a34119fab702fd90a063e62d8a2",
+    "archiveSha256": "19e28dc22a0ac055eccb15f432c8fbc99b96c696fdff7f7fff6d2fc8b4198d08",
+    "manifestScope": "../route-growth-c2-2026-10-11/manifest.json is historical original freeze, not integration hashes",
+    "productExceptions": [
+      "src/game/GameScene.ts",
+      "src/content/r2RouteGrowthJokers.ts"
+    ],
+    "remainingOriginalProductAndTestsByteExact": true,
+    "scorerAndRecoveryJsonByteExact": true
+  },
+  "productAndTestAndHarnessFiles": [
+    {
+      "path": "harness/screenshot.mjs",
+      "sha256": "274c3fc06699d7e227176e8411279ac478d737c9febc1aab653f972f2f5e9151",
+      "bytes": 39258
+    },
+    {
+      "path": "src/application/checkpoint.ts",
+      "sha256": "b0dd111b59ef6248b293a39b6dfcaf1c969e2da97f694d9eeab430ff5aff700b",
+      "bytes": 115432
+    },
+    {
+      "path": "src/application/routeGrowthTrace.ts",
+      "sha256": "d15b46d545bf2c0f1684168ae25460f238de49cd7a3bc06d280d1a3f5b1bd264",
+      "bytes": 6479
+    },
+    {
+      "path": "src/content/r2RouteGrowthJokers.ts",
+      "sha256": "5a271e0bb114ea76a4668ae1912efc4d7445ef9967328706ebc1589776e775dc",
+      "bytes": 4374
+    },
+    {
+      "path": "src/content/r2Schema.ts",
+      "sha256": "4a416f03b71c2697b544d8f8dd437bcb00425b3666f76d0a61ab14c0fa92c1a1",
+      "bytes": 29423
+    },
+    {
+      "path": "src/domain/r2Conditions.ts",
+      "sha256": "33af077bb2b2626de9f511b72cfd42bee7a4c5d91b5da107e217b0d53fef40b8",
+      "bytes": 6103
+    },
+    {
+      "path": "src/domain/r2ContentProfiles.ts",
+      "sha256": "fa80f4d8623783555fe7438e1f66900c4e370c33883387139dbd0a5adb1ca126",
+      "bytes": 1727
+    },
+    {
+      "path": "src/domain/r2GroupUpgrade.ts",
+      "sha256": "300f509e458a567436ee916788d8d983fef8ab04f3e8038d37e58b3df1a792c3",
+      "bytes": 9934
+    },
+    {
+      "path": "src/domain/r2RouteGrowth.ts",
+      "sha256": "aef7099220a333237d9c01f66d119366fd3f82ea90146803e55605318fae9f5e",
+      "bytes": 9627
+    },
+    {
+      "path": "src/domain/r2Run.ts",
+      "sha256": "d2e266c61379e401d4c1aa0dd2f0ba938afcdfa040637ed91dd95e567a41a7e1",
+      "bytes": 96001
+    },
+    {
+      "path": "src/domain/scoreR2.ts",
+      "sha256": "657a5d5cc505da6a684cb6b4d77b243ef498c42cfe4827f7095e0816a01c90a4",
+      "bytes": 41224
+    },
+    {
+      "path": "src/game/AiHandCandidates.ts",
+      "sha256": "ac464af45fa2e3253ce7e4677f38393fa4145493136359d19656b9f31042764e",
+      "bytes": 7634
+    },
+    {
+      "path": "src/game/GameScene.ts",
+      "sha256": "6dd1b3eb91f6281217070c2b1ba767c8db1eaa3509677ccc5ce0106b000e6f59",
+      "bytes": 225040
+    },
+    {
+      "path": "src/game/JokerMemory.ts",
+      "sha256": "5f7d8d8b9aed5aa03bc42dfb30b6bd14682792fc0e981dd5c9e35373fc9931e8",
+      "bytes": 22267
+    },
+    {
+      "path": "src/game/JokerPlainCopy.ts",
+      "sha256": "3eeb8a200f23ff80adf5001e2db12c99aa3d24fdbdcc97e121859929397cf8b3",
+      "bytes": 18382
+    },
+    {
+      "path": "src/game/RunLaunch.ts",
+      "sha256": "7a10cbb0d627035c157736a787c9b579b2e4b61dfcd40188b10bad2744987b3e",
+      "bytes": 1186
+    },
+    {
+      "path": "src/game/r2Help.ts",
+      "sha256": "8032f6e84502e8fb5b11682783f1532b6f8f38a0e96cec5ebe68e5ec89e8e665",
+      "bytes": 21698
+    },
+    {
+      "path": "src/game/scorePresentation.ts",
+      "sha256": "5f440616400636ff3ad61defa989bdb5ddf89caf9704d129d515584f87833fb1",
+      "bytes": 5823
+    },
+    {
+      "path": "tests/erxiang-handoff.test.ts",
+      "sha256": "b8b02ca8bccd558fb982aaa7977c9e0f895be286cd5a280b8e90a374129db984",
+      "bytes": 14929
+    },
+    {
+      "path": "tests/fixed-suit-dyes.test.ts",
+      "sha256": "c6b781a3d02e57ccf27d03f536bf4db713757f66b8b304b4839621b419e38dfb",
+      "bytes": 10179
+    },
+    {
+      "path": "tests/fixtures/route-growth-history.ts",
+      "sha256": "634a3e4f94f9304ebd8f49257bb94b0cf365f6afb2c9f7c01442ebfe363c0d21",
+      "bytes": 799
+    },
+    {
+      "path": "tests/hero-ability-cue.test.ts",
+      "sha256": "1c53a2e5d39496ec0ad69677779996a104c7a7d76a1b777878f399d30f214154",
+      "bytes": 7835
+    },
+    {
+      "path": "tests/hero-climax.test.ts",
+      "sha256": "4712f33ffa3f93df575a601c2fcd12dd06aab395d4afbb14bc989aafeca18277",
+      "bytes": 6386
+    },
+    {
+      "path": "tests/joker-plain-quantity.test.ts",
+      "sha256": "809f31f67b0587c1a39dee1ec75496aecd450e55d26367995ac2945031dd8e87",
+      "bytes": 3019
+    },
+    {
+      "path": "tests/laohuan-refill.test.ts",
+      "sha256": "07863ca1c529bd55243a96e61d31fe0c75a8c6163e8350afacd83972a8b7967a",
+      "bytes": 12423
+    },
+    {
+      "path": "tests/opening-signature.test.ts",
+      "sha256": "ba7121f7686e3373913a7dbe060072a0f981bdf20b702c9fd9f67452082ba907",
+      "bytes": 5799
+    },
+    {
+      "path": "tests/route-growth-run.test.ts",
+      "sha256": "b1403268b0e93fbbcd917398521f5a2a2e4f939ce982809c2d30d6b08198e140",
+      "bytes": 27422
+    },
+    {
+      "path": "tests/route-growth-score.test.ts",
+      "sha256": "aa99bfaf0a06435afee789349aa68087bc0a3686b09e28056590fa11bf7c65f2",
+      "bytes": 14364
+    },
+    {
+      "path": "tests/route-starter.test.ts",
+      "sha256": "a07062e7eec9abc4b205ba9a36936f2c2fec85647948d0de8cc68508bdc030ca",
+      "bytes": 10395
+    },
+    {
+      "path": "tests/saved-boss-impact.test.ts",
+      "sha256": "f43d9c55c064618ae5be1d5b65d9bf272d7e4bd4e0a44c82b5b7805d1c04462f",
+      "bytes": 3942
+    },
+    {
+      "path": "tests/touye-wager.test.ts",
+      "sha256": "9bcc206fc3cc4376ef68fb12c4c55954735245a0fbceb10eae054c7485953ec9",
+      "bytes": 14591
+    },
+    {
+      "path": "tests/v00-bot.test.ts",
+      "sha256": "0ac9d5dc7925179d87826e4499cdb0f7c471eec13e1b4b4a9b37c26bba7dee2d",
+      "bytes": 2246
+    },
+    {
+      "path": "tests/xiemu-burn.test.ts",
+      "sha256": "61004412b10d3217e8ceb265fab8f272f7bc2152331ef4a0a664a895586dd7be",
+      "bytes": 11724
+    }
+  ],
+  "currentPlan": {
+    "path": "docs/production/DELIVERY_PLAN.md",
+    "sha256": "f3fd87b299aab0bd3ce04a8a3ef8d78a6c632ce573f89c8c10c6d7c06283e7fd",
+    "bytes": 298588
+  },
+  "historicalPlanTail": {
+    "boundary": "bytes strictly after ## 既有规格 工作包合同与历史证据; includes following newlines",
+    "sha256": "664f841aa85193464c760d9d124932c7ae1b7345a8b5a7cd3a0ec8491a0621b5",
+    "byteExactMain": true
+  },
+  "localChecks": {
+    "fullUnit": {
+      "files": 209,
+      "passed": 3103,
+      "startUTC": "2026-10-11 14:28:34",
+      "durationSeconds": 77.63
+    },
+    "content": "PASS-in-third-wrapper",
+    "typecheck": "PASS",
+    "build": "PASS-in-third-wrapper-and-final-browser",
+    "browser": "PASS-Chromium-151.0.7922.173-PC1280x720-mobile390x740",
+    "docs": "PASS-after-final-status-update",
+    "sourceIndexHeadStableDuringEachRunner": true,
+    "wholeWrapper": "FAIL-retained; old smoke identity expectation corrected and affected browser/docs separately PASS",
+    "originalTargeted": "165-PASS",
+    "affectedAfterFixtureAndDetectionFix": "108-PASS",
+    "profileDetection": "PASS-reference-copy-mutation finite diagnostic",
+    "evidenceExport": "PASS; two JSON exact frozen",
+    "remoteExactCommitCI": "PENDING-after-new-commit-and-draft",
+    "diffCheck": "checked-before-commit; no product edits afterward"
+  },
+  "independentReview": {
+    "scope": "original repaired 7414 frozen mathematical/save/recovery code",
+    "status": "bounded-P2-P3-PASS; nine anomaly diagnostics rejected",
+    "report": "../route-growth-c2-2026-10-11/INDEPENDENT_REVIEW.md",
+    "integrationGameSceneAndDetectionOptimization": "parent exact-HEAD review pending; not signed by original review"
+  },
+  "remainingUnsigned": [
+    "dot18-full-natural-playthroughs",
+    "natural-supply-purchasability-maturation-and-billion-path",
+    "full-balance",
+    "physical-devices-human-audio-and-full-art",
+    "Firefox-WebKit-remote-required-CI",
+    "parent-exact-HEAD-integration-review"
+  ],
+  "deliveryBoundary": {
+    "newDraftOnly": true,
+    "mainMerge": false,
+    "deployment": false,
+    "newAmoOrStarAlgorithm": false,
+    "failureGuide": "plan-only postponed"
+  },
+  "integrationEvidenceFiles": [
+    {
+      "path": "docs/production/evidence/route-growth-c2-integration-2026-10-11/GameScene-C2-on-main.patch",
+      "sha256": "59324fea2e20a1759460d441a263ce92b2fd381e0b9d0932a67461b10eceda55",
+      "bytes": 2812
+    },
+    {
+      "path": "docs/production/evidence/route-growth-c2-integration-2026-10-11/GameScene-PR119-preserved.patch",
+      "sha256": "d69e95c2ac4124a67a629935139f4067f71f2bc8dba8069f9a23cf99960b4e81",
+      "bytes": 7149
+    },
+    {
+      "path": "docs/production/evidence/route-growth-c2-integration-2026-10-11/INTEGRATION.md",
+      "sha256": "2f39d446a7a7711a68fa17b7b57d667190a58588b134c9c7a40980c521891ea6",
+      "bytes": 10757
+    },
+    {
+      "path": "docs/production/evidence/route-growth-c2-integration-2026-10-11/final-local-checks/affected-targeted-108.log",
+      "sha256": "53dd3080cd0bcde58f8f8d7e3707f9cb14843eea5415c8e6fec6890d957cbcb7",
+      "bytes": 652
+    },
+    {
+      "path": "docs/production/evidence/route-growth-c2-integration-2026-10-11/final-local-checks/browser-gates.json",
+      "sha256": "19c71e298a10d246680adee5b70dfaf407278980ee053cee123766e25b1eea78",
+      "bytes": 1499
+    },
+    {
+      "path": "docs/production/evidence/route-growth-c2-integration-2026-10-11/final-local-checks/browser.log",
+      "sha256": "5e7c0436e55a72a4b72e248b283d72dcf78c8ea355751d7f45f1175b95bdab97",
+      "bytes": 4600
+    },
+    {
+      "path": "docs/production/evidence/route-growth-c2-integration-2026-10-11/final-local-checks/desktop-game.png",
+      "sha256": "06097cabee984253eb146538eb5cf589ae58126c09b2af5ee074ea7988376405",
+      "bytes": 152680
+    },
+    {
+      "path": "docs/production/evidence/route-growth-c2-integration-2026-10-11/final-local-checks/desktop-shop.png",
+      "sha256": "e5705bcb9eedff92210e3aaed64fa9aafe6ccb08188978391698379d30ca79eb",
+      "bytes": 277142
+    },
+    {
+      "path": "docs/production/evidence/route-growth-c2-integration-2026-10-11/final-local-checks/docs-before-status-update.log",
+      "sha256": "84eabb5566e4243989b90da1714e24df8a214a72d932137c0d73cf62437de8d5",
+      "bytes": 1883
+    },
+    {
+      "path": "docs/production/evidence/route-growth-c2-integration-2026-10-11/final-local-checks/docs-gates-before-status-update.json",
+      "sha256": "75357e565c7cce85402333de3195ee3513c04443b6a28caedb3e83de52d31f58",
+      "bytes": 1386
+    },
+    {
+      "path": "docs/production/evidence/route-growth-c2-integration-2026-10-11/final-local-checks/docs-gates.json",
+      "sha256": "f10e2fa9033a311a0ef9f85ce58c3e325230fa531be5f7e233c6af65acd33fe5",
+      "bytes": 1385
+    },
+    {
+      "path": "docs/production/evidence/route-growth-c2-integration-2026-10-11/final-local-checks/docs.log",
+      "sha256": "2916dd1cabade68d5525db887df499ef9604c295cedd825a118e77f5b9858706",
+      "bytes": 1882
+    },
+    {
+      "path": "docs/production/evidence/route-growth-c2-integration-2026-10-11/final-local-checks/evidence-export.log",
+      "sha256": "8b0bc6fdcfcb7fa51f1a7dced510cb8090fc5e31ec64c796e2951af3a27986f3",
+      "bytes": 1608
+    },
+    {
+      "path": "docs/production/evidence/route-growth-c2-integration-2026-10-11/final-local-checks/integration-targeted-165.log",
+      "sha256": "ecfc5d206b16529e93f4aacedde3972231191d8d6ef17537e6063cae46c8b1c7",
+      "bytes": 765
+    },
+    {
+      "path": "docs/production/evidence/route-growth-c2-integration-2026-10-11/final-local-checks/mobile-game.png",
+      "sha256": "93985fb1c541dfbbcd82b6964fa86e4ede13e510e273de48cef502ff9f40d167",
+      "bytes": 417485
+    },
+    {
+      "path": "docs/production/evidence/route-growth-c2-integration-2026-10-11/final-local-checks/mobile-shop.png",
+      "sha256": "db5ca5e670a9f13b34011603cc729869a2147b311283114b13b712e7628f43c0",
+      "bytes": 540533
+    },
+    {
+      "path": "docs/production/evidence/route-growth-c2-integration-2026-10-11/final-local-checks/profile-detection.json",
+      "sha256": "5a2e354418a0c16f529658ec333c52cc8325e51cbcbf1f6cd2429ac6f38057de",
+      "bytes": 640
+    },
+    {
+      "path": "docs/production/evidence/route-growth-c2-integration-2026-10-11/final-local-checks/smoke-result.json",
+      "sha256": "88c45ada490ee8c334b8ee99a17754a9407e9e0a5e6ba37ca26c5784cc56cf49",
+      "bytes": 4977
+    },
+    {
+      "path": "docs/production/evidence/route-growth-c2-integration-2026-10-11/final-local-checks/typecheck.log",
+      "sha256": "74f919f77aaafd9e103ae561073b59a64c21a6860376204d97779934238403aa",
+      "bytes": 253
+    },
+    {
+      "path": "docs/production/evidence/route-growth-c2-integration-2026-10-11/first-release-failure/gates.json",
+      "sha256": "f83114d667c933ed3e8ccae456ac82eabcaed99b1e6308801b8e86ca74c55d71",
+      "bytes": 1409
+    },
+    {
+      "path": "docs/production/evidence/route-growth-c2-integration-2026-10-11/first-release-failure/release.log",
+      "sha256": "9d0fea0b41a53222845877874b8ab2739b70d70fa1dd0936ac5b12bdeb63b807",
+      "bytes": 14147
+    },
+    {
+      "path": "docs/production/evidence/route-growth-c2-integration-2026-10-11/first-release-failure/v00-isolated-before-fast-path.log",
+      "sha256": "2b73d9b89e123c8ec6f8dd05eaf70baa77f7bf88b6c9d97d267cf6fa1cfcae43",
+      "bytes": 1067
+    },
+    {
+      "path": "docs/production/evidence/route-growth-c2-integration-2026-10-11/fixture-alignment.log",
+      "sha256": "6e19a17ec78795416c3b1710273fee81d5bd3def257ce1aedb0738d64a000124",
+      "bytes": 592
+    },
+    {
+      "path": "docs/production/evidence/route-growth-c2-integration-2026-10-11/integration-facts.json",
+      "sha256": "eb42668cd1077245c663474fb4942cde3cd9b4ba4b75f6076ac8dd4051b00351",
+      "bytes": 2315
+    },
+    {
+      "path": "docs/production/evidence/route-growth-c2-integration-2026-10-11/route-profile-fast-path.patch",
+      "sha256": "c37457dc2531d80dd2d22e8c0ae521280db18abccd235890ffdbc42427f958ed",
+      "bytes": 1829
+    },
+    {
+      "path": "docs/production/evidence/route-growth-c2-integration-2026-10-11/second-release-failure/gates.json",
+      "sha256": "3727eafe8ceb6b498cfc6aa53cbd42459ea21a37cddc9f7092fd1c0515d959f1",
+      "bytes": 1409
+    },
+    {
+      "path": "docs/production/evidence/route-growth-c2-integration-2026-10-11/second-release-failure/release.log",
+      "sha256": "533ea7ace87a661ec115698d4d52cf7d8b23f803a4068515640b26d944d90e1f",
+      "bytes": 4271
+    },
+    {
+      "path": "docs/production/evidence/route-growth-c2-integration-2026-10-11/third-release-smoke-identity-failure/gates.json",
+      "sha256": "33394d955206c9a0ac998e0edcfc79207b12d134e2821e82763ac8edb13fca2a",
+      "bytes": 1757
+    },
+    {
+      "path": "docs/production/evidence/route-growth-c2-integration-2026-10-11/third-release-smoke-identity-failure/release.log",
+      "sha256": "ab42f8059510a5fbcf5c9eaaee82e6291fe2d6d622babb81d00e5ce4e0b2e4b3",
+      "bytes": 13015
+    },
+    {
+      "path": "docs/production/evidence/route-growth-c2-integration-2026-10-11/third-release-smoke-identity-failure/smoke-failure.png",
+      "sha256": "eff2d246c1c21b41d44628a4ca7a2dd85f52e230689e96af08ca0236b8d881c5",
+      "bytes": 246672
+    },
+    {
+      "path": "docs/production/evidence/route-growth-c2-integration-2026-10-11/third-release-smoke-identity-failure/smoke-result.json",
+      "sha256": "b8f4ba7fd43ed23a76cd418d741d771b2a1d0e5ae33521cffff99da7313bfe15",
+      "bytes": 2938
+    },
+    {
+      "path": "docs/production/evidence/route-growth-c2-integration-2026-10-11/v00-main-vs-candidate.json",
+      "sha256": "90e983638be33b6346f555accc8fe1b1fdb91f58079bbb33d1c82520fa005748",
+      "bytes": 7208
+    }
+  ]
+}

@@ -1,0 +1,198 @@
+{
+  "purpose": "One existing groups/65-command legality check per source, not balance simulation or gameplay acceptance",
+  "mainSource": "exact e48fd07 git archive src snapshot",
+  "main": {
+    "numTotalTestSuites": 2,
+    "numPassedTestSuites": 2,
+    "numFailedTestSuites": 0,
+    "numPendingTestSuites": 0,
+    "numTotalTests": 5,
+    "numPassedTests": 1,
+    "numFailedTests": 0,
+    "numPendingTests": 4,
+    "numTodoTests": 0,
+    "snapshot": {
+      "added": 0,
+      "failure": false,
+      "filesAdded": 0,
+      "filesRemoved": 0,
+      "filesRemovedList": [],
+      "filesUnmatched": 0,
+      "filesUpdated": 0,
+      "matched": 0,
+      "total": 0,
+      "unchecked": 0,
+      "uncheckedKeysByFile": [],
+      "unmatched": 0,
+      "updated": 0,
+      "didUpdate": false
+    },
+    "startTime": 1791728720007,
+    "success": true,
+    "testResults": [
+      {
+        "assertionResults": [
+          {
+            "ancestorTitles": [
+              "V00 policies receive only player-visible information"
+            ],
+            "fullName": "V00 policies receive only player-visible information offers three distinct family entries, rather than buying the same five every run",
+            "status": "skipped",
+            "title": "offers three distinct family entries, rather than buying the same five every run",
+            "failureMessages": [],
+            "meta": {},
+            "tags": []
+          },
+          {
+            "ancestorTitles": [
+              "V00 policies receive only player-visible information"
+            ],
+            "fullName": "V00 policies receive only player-visible information hidden deck order and every RNG cursor cannot affect the public decision",
+            "status": "skipped",
+            "title": "hidden deck order and every RNG cursor cannot affect the public decision",
+            "failureMessages": [],
+            "meta": {},
+            "tags": []
+          },
+          {
+            "ancestorTitles": [
+              "V00 policies receive only player-visible information"
+            ],
+            "fullName": "V00 policies receive only player-visible information single-held emits only valid ordinary commands on a natural run",
+            "status": "skipped",
+            "title": "single-held emits only valid ordinary commands on a natural run",
+            "failureMessages": [],
+            "meta": {},
+            "tags": []
+          },
+          {
+            "ancestorTitles": [
+              "V00 policies receive only player-visible information"
+            ],
+            "fullName": "V00 policies receive only player-visible information groups emits only valid ordinary commands on a natural run",
+            "status": "passed",
+            "title": "groups emits only valid ordinary commands on a natural run",
+            "duration": 2793.516957,
+            "failureMessages": [],
+            "meta": {},
+            "tags": []
+          },
+          {
+            "ancestorTitles": [
+              "V00 policies receive only player-visible information"
+            ],
+            "fullName": "V00 policies receive only player-visible information suit emits only valid ordinary commands on a natural run",
+            "status": "skipped",
+            "title": "suit emits only valid ordinary commands on a natural run",
+            "failureMessages": [],
+            "meta": {},
+            "tags": []
+          }
+        ],
+        "startTime": 1791728721013,
+        "endTime": 1791728723806.5168,
+        "status": "passed",
+        "message": "",
+        "name": "/tmp/dachoupai-c2-main-v00-check/tests/v00-bot.test.ts"
+      }
+    ]
+  },
+  "candidateBeforeTimeoutChange": {
+    "numTotalTestSuites": 2,
+    "numPassedTestSuites": 2,
+    "numFailedTestSuites": 0,
+    "numPendingTestSuites": 0,
+    "numTotalTests": 5,
+    "numPassedTests": 1,
+    "numFailedTests": 0,
+    "numPendingTests": 4,
+    "numTodoTests": 0,
+    "snapshot": {
+      "added": 0,
+      "failure": false,
+      "filesAdded": 0,
+      "filesRemoved": 0,
+      "filesRemovedList": [],
+      "filesUnmatched": 0,
+      "filesUpdated": 0,
+      "matched": 0,
+      "total": 0,
+      "unchecked": 0,
+      "uncheckedKeysByFile": [],
+      "unmatched": 0,
+      "updated": 0,
+      "didUpdate": false
+    },
+    "startTime": 1791728766695,
+    "success": true,
+    "testResults": [
+      {
+        "assertionResults": [
+          {
+            "ancestorTitles": [
+              "V00 policies receive only player-visible information"
+            ],
+            "fullName": "V00 policies receive only player-visible information offers three distinct family entries, rather than buying the same five every run",
+            "status": "skipped",
+            "title": "offers three distinct family entries, rather than buying the same five every run",
+            "failureMessages": [],
+            "meta": {},
+            "tags": []
+          },
+          {
+            "ancestorTitles": [
+              "V00 policies receive only player-visible information"
+            ],
+            "fullName": "V00 policies receive only player-visible information hidden deck order and every RNG cursor cannot affect the public decision",
+            "status": "skipped",
+            "title": "hidden deck order and every RNG cursor cannot affect the public decision",
+            "failureMessages": [],
+            "meta": {},
+            "tags": []
+          },
+          {
+            "ancestorTitles": [
+              "V00 policies receive only player-visible information"
+            ],
+            "fullName": "V00 policies receive only player-visible information single-held emits only valid ordinary commands on a natural run",
+            "status": "skipped",
+            "title": "single-held emits only valid ordinary commands on a natural run",
+            "failureMessages": [],
+            "meta": {},
+            "tags": []
+          },
+          {
+            "ancestorTitles": [
+              "V00 policies receive only player-visible information"
+            ],
+            "fullName": "V00 policies receive only player-visible information groups emits only valid ordinary commands on a natural run",
+            "status": "passed",
+            "title": "groups emits only valid ordinary commands on a natural run",
+            "duration": 3441.1459619999996,
+            "failureMessages": [],
+            "meta": {},
+            "tags": []
+          },
+          {
+            "ancestorTitles": [
+              "V00 policies receive only player-visible information"
+            ],
+            "fullName": "V00 policies receive only player-visible information suit emits only valid ordinary commands on a natural run",
+            "status": "skipped",
+            "title": "suit emits only valid ordinary commands on a natural run",
+            "failureMessages": [],
+            "meta": {},
+            "tags": []
+          }
+        ],
+        "startTime": 1791728767913,
+        "endTime": 1791728771354.146,
+        "status": "passed",
+        "message": "",
+        "name": "/workspace/dachoupai-c2-integrated/tests/v00-bot.test.ts"
+      }
+    ]
+  },
+  "sampleCountAndPolicyUnchanged": true,
+  "scopedTestTimeoutMilliseconds": 10000
+}

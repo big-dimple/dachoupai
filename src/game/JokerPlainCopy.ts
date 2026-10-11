@@ -15,6 +15,7 @@ const names=(types:readonly (keyof typeof HAND_LABELS)[])=>types.length===R2_GRO
 const allBeyondPair=(types:readonly (keyof typeof HAND_LABELS)[])=>types.length===Object.keys(HAND_LABELS).length-2&&Object.keys(HAND_LABELS).filter(t=>t!=='high-card'&&t!=='pair').every(t=>types.includes(t as keyof typeof HAND_LABELS));
 const when=(c:Condition,phase:HookPhase):string|undefined=>{
  switch(c.kind){
+  case'opening-discard':return '出牌前首次成功弃牌';
   case'always':return phase==='jokerScore'?'每次出牌':phase==='onStageClear'?'成功过关':phase==='onBuyOffer'?'成功买牌':phase==='onSellJoker'?'成功卖牌':phase==='onReroll'?'成功换商店货':'出牌结算后';
   case'hand-type-in':return names(c.values);
   case'played-count':return '只出'+c.equals+'张';

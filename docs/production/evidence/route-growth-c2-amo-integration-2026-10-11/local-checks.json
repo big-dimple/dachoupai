@@ -1,0 +1,66 @@
+{
+  "affected-tests": {
+    "command": [
+      "npm",
+      "test",
+      "--",
+      "tests/assist-route-growth-integration.test.ts",
+      "tests/assist-recommendation.test.ts",
+      "tests/assist-entry-guards.test.ts",
+      "tests/assist-selection-ui.test.ts",
+      "tests/amo-assist.test.ts",
+      "tests/amo-assist-jokers.test.ts",
+      "tests/amo-assist-consumption-save.test.ts",
+      "tests/amo-assist-edition-save.test.ts",
+      "tests/assist-profile-ui-copy.test.ts",
+      "tests/route-growth-score.test.ts",
+      "tests/route-growth-run.test.ts",
+      "tests/route-growth-facts.test.ts",
+      "tests/ai-hand-candidates.test.ts"
+    ],
+    "exitCode": 0,
+    "startedUTC": "2026-10-11T15:40:31.476012+00:00",
+    "finishedUTC": "2026-10-11T15:40:42.153395+00:00"
+  },
+  "typecheck": {
+    "command": [
+      "npm",
+      "run",
+      "typecheck"
+    ],
+    "exitCode": 0,
+    "startedUTC": "2026-10-11T15:42:59.830683+00:00",
+    "finishedUTC": "2026-10-11T15:43:11.454891+00:00"
+  },
+  "content": {
+    "command": [
+      "npm",
+      "run",
+      "verify:content"
+    ],
+    "exitCode": 0,
+    "startedUTC": "2026-10-11T15:38:57.792332+00:00",
+    "finishedUTC": "2026-10-11T15:39:04.814616+00:00"
+  },
+  "production-plan": {
+    "command": [
+      "node",
+      "scripts/check-production-plan.mjs"
+    ],
+    "exitCode": 0,
+    "startedUTC": "2026-10-11T15:38:57.792833+00:00",
+    "finishedUTC": "2026-10-11T15:38:58.041233+00:00"
+  },
+  "docs": {
+    "command": [
+      "npm",
+      "run",
+      "verify:ci",
+      "--",
+      "--scope=docs"
+    ],
+    "exitCode": 0,
+    "startedUTC": "2026-10-11T15:42:59.831116+00:00",
+    "finishedUTC": "2026-10-11T15:43:02.443135+00:00"
+  }
+}

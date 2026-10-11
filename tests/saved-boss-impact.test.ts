@@ -1,3 +1,4 @@
+import {r2RouteSnapshot} from '../src/domain/r2RouteGrowth';
 import {describe,it,expect} from 'vitest';
 import {createRun} from '../src/domain/run';
 import {newRunIdentity} from '../src/game/RunLaunch';
@@ -6,7 +7,7 @@ import {scoreR2Hand,type ScoreInput} from '../src/domain/scoreR2';
 import {savedBossImpact} from '../src/game/SavedBossImpact';
 const run=createRun({seed:'saved-impact-current',runId:'saved-impact',characterId:'erxiang',rulesVersion:'r2',r2Identity:newRunIdentity('erxiang','group'),openingRoute:'group',modeConfig:{mode:'standard',difficulty:0,challengeId:null,programsEnabled:false}});
 const hand=[2,4,6,10,12].map(rank=>run.deckInstances.find(c=>c.suit==='diamonds'&&c.rank===rank)!);
-function score(extra:Partial<ScoreInput>={}){return scoreR2Hand({rulesVersion:'r2',runId:run.runId,rootId:'impact/hand',characterId:'erxiang',hand,selectedIds:hand.map(c=>c.id),disabledIds:[],jokers:[],definitions:r2JokerDefinitionsFor(run),handLevels:{},playIndex:1,handsBeforePlay:4,previousHandType:null,wager:false,rng:run.rng.rule,...extra});}
+function score(extra:Partial<ScoreInput>={}){return scoreR2Hand({rulesVersion:'r2',runId:run.runId,rootId:'impact/hand',characterId:'erxiang',hand,selectedIds:hand.map(c=>c.id),disabledIds:[],jokers:[],definitions:r2JokerDefinitionsFor(run),handLevels:{},playIndex:1,handsBeforePlay:4,previousHandType:null,wager:false,rng:run.rng.rule,routeGrowth:r2RouteSnapshot(run.routeGrowth),...extra});}
 const boss=(definitionId:NonNullable<ScoreInput['boss']>['definitionId'])=>({definitionId,disabledSuit:null});
 describe('saved Boss scoring impact, current identity',()=>{
  it('names actual ordinary-point targets without denying their other effects',()=>{

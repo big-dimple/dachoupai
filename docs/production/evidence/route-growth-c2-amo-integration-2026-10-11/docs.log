@@ -1,0 +1,54 @@
+
+> dachoupai@0.1.0 verify:ci
+> node scripts/verify-ci.mjs --scope=docs
+
+CHECK production-plan: /opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node scripts/check-production-plan.mjs
+PLAN_VALID: 32 work packages; current=P08; not a gameplay acceptance
+production-plan: PASS
+{
+  "scope": "docs",
+  "testedCommit": "9e64e526b6efc167c183061e60fd8c1e61e578a8",
+  "status": "PASS",
+  "exitCode": 0,
+  "before": {
+    "source": "e13089fb0f879e48502223a926a8ec19e74df88a8acd41c1bb503d18b5171cd8",
+    "index": "d8d7120c59052a44df3629f87b14322706b5d1ba2b6592bcf681cc26ffbfd09a",
+    "head": "9e64e526b6efc167c183061e60fd8c1e61e578a8",
+    "branch": "refs/heads/feat/c2-route-growth-2026-10-11"
+  },
+  "after": {
+    "source": "e13089fb0f879e48502223a926a8ec19e74df88a8acd41c1bb503d18b5171cd8",
+    "index": "d8d7120c59052a44df3629f87b14322706b5d1ba2b6592bcf681cc26ffbfd09a",
+    "head": "9e64e526b6efc167c183061e60fd8c1e61e578a8",
+    "branch": "refs/heads/feat/c2-route-growth-2026-10-11"
+  },
+  "steps": [
+    {
+      "name": "production-plan",
+      "status": "PASS",
+      "childExitCode": 0,
+      "elapsedMs": 846
+    }
+  ],
+  "notIncluded": [
+    {
+      "name": "extended browser/recovery/fault/asset/simulation diagnostics",
+      "status": "NOT_INCLUDED",
+      "reason": "run the existing specific command only when its domain changes; P00 removes repeated default execution"
+    },
+    {
+      "name": "balance/benchmark acceptance",
+      "status": "NOT_INCLUDED",
+      "reason": "later work packages; no gameplay approval inferred from checks"
+    },
+    {
+      "name": "physical devices / human / art approval",
+      "status": "NOT_RUN"
+    }
+  ]
+}
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice
