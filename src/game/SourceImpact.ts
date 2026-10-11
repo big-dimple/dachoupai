@@ -1,6 +1,6 @@
 import type {ScoreEvent,ScoreTrace} from '../domain/scoreR2';
 import {Rational} from '../domain/rational';
-import {fractionText} from './scoreText';
+import {readableFractionText} from './scoreText';
 import {rankLabel,SUIT_SYMBOL} from '../cards/types';
 export interface SourceImpact {eventId:string;rootId:string;instanceId:string;definitionId:string;kind:'heat'|'multiplier'|'multiply'|'read-heat'|'read-multiplier'|'retrigger';copies:string[];targetId?:string}
 const delta=(a:ScoreEvent['value'],b:ScoreEvent['value'])=>Rational.fromJSON(a).add(Rational.fromJSON(b).multiply(new Rational(-1n)));
@@ -16,8 +16,8 @@ export function sourceImpact(trace:ScoreTrace,event:ScoreEvent):SourceImpact|und
  if(heat.n>0n&&multiplier.n>0n)return; // A compound operation keeps the existing complete summary.
  if(multiplier.n>0n&&['multiply-multiplier','read-coefficient'].includes(event.operation)){
   const before=Rational.fromJSON(event.before.M);if(before.n<=0n)return;
-  const factor=Rational.fromJSON(event.after.M).multiply(new Rational(before.d,before.n)),v=fractionText(factor.toJSON());return {...base,kind:reads?'read-multiplier':'multiply',copies:reads?['读×'+v,'×'+v]:['×'+v]};
+  const factor=Rational.fromJSON(event.after.M).multiply(new Rational(before.d,before.n)),v=readableFractionText(factor.toJSON());return {...base,kind:reads?'read-multiplier':'multiply',copies:reads?['读×'+v,'×'+v]:['×'+v]};
  }
- if(heat.n>0n){const v=fractionText(heat.toJSON());return {...base,kind:reads?'read-heat':'heat',copies:reads?['读热'+v,'读+'+v,'读'+v]:['热+'+v,'+'+v]};}
- if(multiplier.n>0n){const v=fractionText(multiplier.toJSON());return {...base,kind:reads?'read-multiplier':'multiplier',copies:reads?['读倍'+v,'读+'+v,'读'+v]:['倍+'+v,'+'+v]};}
+ if(heat.n>0n){const v=readableFractionText(heat.toJSON());return {...base,kind:reads?'read-heat':'heat',copies:reads?['读热'+v,'读+'+v,'读'+v]:['热+'+v,'+'+v]};}
+ if(multiplier.n>0n){const v=readableFractionText(multiplier.toJSON());return {...base,kind:reads?'read-multiplier':'multiplier',copies:reads?['读倍'+v,'读+'+v,'读'+v]:['倍+'+v,'+'+v]};}
 }

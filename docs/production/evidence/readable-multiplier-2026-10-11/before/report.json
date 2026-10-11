@@ -1,0 +1,4426 @@
+{
+  "baseline": true,
+  "source": "41d0990bf94698110446d0e4caeebd54d327a972",
+  "srcDiff": "",
+  "browser": "151.0.7922.173",
+  "scope": "Controlled public hand/levels/gold/saved growth, imported through production checkpoint; actual native PlayHand, full state/journal/storage comparison and reload. These are NOT the natural reported 447110 run or its fifth-stage path. Same CSS scale/DPR1/software Canvas/low motion, PC1366x768 and phone390x740.",
+  "cases": [
+    {
+      "key": "group-1366",
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      },
+      "errors": [],
+      "input": "controlled two-pair Lv30, b10 heat64, gold20/e03, calibrated a06 coefficient",
+      "tableTexts": [
+        {
+          "name": "",
+          "text": "大 丑 牌",
+          "bounds": {
+            "type": 5,
+            "x": 24,
+            "y": 16,
+            "width": 100,
+            "height": 31
+          }
+        },
+        {
+          "name": "",
+          "text": "二响",
+          "bounds": {
+            "type": 5,
+            "x": 88,
+            "y": 50,
+            "width": 45,
+            "height": 25
+          }
+        },
+        {
+          "name": "",
+          "text": "技能 · 选对子以上",
+          "bounds": {
+            "type": 5,
+            "x": 88,
+            "y": 78,
+            "width": 111,
+            "height": 16
+          }
+        },
+        {
+          "name": "stage-identity/current",
+          "text": "第 1 章 · 暖场",
+          "bounds": {
+            "type": 5,
+            "x": 24,
+            "y": 104,
+            "width": 85,
+            "height": 16
+          }
+        },
+        {
+          "name": "",
+          "text": "0",
+          "bounds": {
+            "type": 5,
+            "x": 24,
+            "y": 126,
+            "width": 14,
+            "height": 27
+          }
+        },
+        {
+          "name": "",
+          "text": "金币 20\n还需 400 热度",
+          "bounds": {
+            "type": 5,
+            "x": 80,
+            "y": 188,
+            "width": 88,
+            "height": 32
+          }
+        },
+        {
+          "name": "hud/target",
+          "text": "目标 400",
+          "bounds": {
+            "type": 5,
+            "x": 24,
+            "y": 164,
+            "width": 56,
+            "height": 16
+          }
+        },
+        {
+          "name": "rarity-badge/label",
+          "text": "稀",
+          "bounds": {
+            "type": 5,
+            "x": 578,
+            "y": 142.5,
+            "width": 13,
+            "height": 15
+          }
+        },
+        {
+          "name": "",
+          "text": "独家戏",
+          "bounds": {
+            "type": 5,
+            "x": 520,
+            "y": 65,
+            "width": 42,
+            "height": 16
+          }
+        },
+        {
+          "name": "",
+          "text": "状态 ›",
+          "bounds": {
+            "type": 5,
+            "x": 520,
+            "y": 160,
+            "width": 37,
+            "height": 16
+          }
+        },
+        {
+          "name": "rarity-badge/label",
+          "text": "普",
+          "bounds": {
+            "type": 5,
+            "x": 664,
+            "y": 142.5,
+            "width": 13,
+            "height": 15
+          }
+        },
+        {
+          "name": "",
+          "text": "练对子",
+          "bounds": {
+            "type": 5,
+            "x": 606,
+            "y": 65,
+            "width": 42,
+            "height": 16
+          }
+        },
+        {
+          "name": "",
+          "text": "热+64",
+          "bounds": {
+            "type": 5,
+            "x": 606,
+            "y": 160,
+            "width": 38,
+            "height": 16
+          }
+        },
+        {
+          "name": "rarity-badge/label",
+          "text": "特",
+          "bounds": {
+            "type": 5,
+            "x": 750,
+            "y": 142.5,
+            "width": 13,
+            "height": 15
+          }
+        },
+        {
+          "name": "",
+          "text": "家底",
+          "bounds": {
+            "type": 5,
+            "x": 692,
+            "y": 65,
+            "width": 28,
+            "height": 16
+          }
+        },
+        {
+          "name": "",
+          "text": "金币加热",
+          "bounds": {
+            "type": 5,
+            "x": 692,
+            "y": 160,
+            "width": 56,
+            "height": 16
+          }
+        },
+        {
+          "name": "score/source",
+          "text": "第 1 章 · 暖场",
+          "bounds": {
+            "type": 5,
+            "x": 51.5,
+            "y": 277,
+            "width": 145,
+            "height": 26
+          }
+        },
+        {
+          "name": "table/played-label",
+          "text": "待出牌",
+          "bounds": {
+            "type": 5,
+            "x": 459,
+            "y": 256,
+            "width": 42,
+            "height": 16
+          }
+        },
+        {
+          "name": "",
+          "text": "上手记录：本场第一手",
+          "bounds": {
+            "type": 5,
+            "x": 24,
+            "y": 518,
+            "width": 140,
+            "height": 16
+          }
+        },
+        {
+          "name": "",
+          "text": "点数排序",
+          "bounds": {
+            "type": 5,
+            "x": 1256,
+            "y": 528.5,
+            "width": 56,
+            "height": 17
+          }
+        },
+        {
+          "name": "",
+          "text": "花色排序",
+          "bounds": {
+            "type": 5,
+            "x": 1256,
+            "y": 584.5,
+            "width": 56,
+            "height": 17
+          }
+        },
+        {
+          "name": "",
+          "text": "AI 切",
+          "bounds": {
+            "type": 5,
+            "x": 1268,
+            "y": 640.5,
+            "width": 32,
+            "height": 17
+          }
+        },
+        {
+          "name": "",
+          "text": "交棒",
+          "bounds": {
+            "type": 5,
+            "x": 565,
+            "y": 698.5,
+            "width": 28,
+            "height": 17
+          }
+        },
+        {
+          "name": "",
+          "text": "弃牌",
+          "bounds": {
+            "type": 5,
+            "x": 521,
+            "y": 686.5,
+            "width": 28,
+            "height": 17
+          }
+        },
+        {
+          "name": "",
+          "text": "出牌",
+          "bounds": {
+            "type": 5,
+            "x": 786.5,
+            "y": 685.5,
+            "width": 33,
+            "height": 19
+          }
+        },
+        {
+          "name": "button/play-left",
+          "text": "4 次",
+          "bounds": {
+            "type": 5,
+            "x": 790,
+            "y": 709,
+            "width": 26,
+            "height": 16
+          }
+        },
+        {
+          "name": "button/discard-left",
+          "text": "3 次",
+          "bounds": {
+            "type": 5,
+            "x": 522,
+            "y": 709,
+            "width": 26,
+            "height": 16
+          }
+        },
+        {
+          "name": "",
+          "text": "独家戏 · 系数×12213/352 · 长按条件",
+          "bounds": {
+            "type": 5,
+            "x": 252,
+            "y": 740,
+            "width": 226,
+            "height": 16
+          }
+        },
+        {
+          "name": "",
+          "text": "道具箱 0/2",
+          "bounds": {
+            "type": 5,
+            "x": 98.5,
+            "y": 459,
+            "width": 71,
+            "height": 16
+          }
+        },
+        {
+          "name": "card-pip",
+          "text": "♠",
+          "bounds": {
+            "type": 5,
+            "x": 327.58841355859374,
+            "y": 547.3181883117187,
+            "width": 12,
+            "height": 25
+          }
+        },
+        {
+          "name": "card-pip",
+          "text": "♠",
+          "bounds": {
+            "type": 5,
+            "x": 363.53158155859376,
+            "y": 547.3181883117187,
+            "width": 12,
+            "height": 25
+          }
+        },
+        {
+          "name": "card-pip",
+          "text": "♠",
+          "bounds": {
+            "type": 5,
+            "x": 345.55999755859375,
+            "y": 570.4650939117188,
+            "width": 12,
+            "height": 25
+          }
+        },
+        {
+          "name": "card-pip",
+          "text": "♠",
+          "bounds": {
+            "type": 5,
+            "x": 327.58841355859374,
+            "y": 593.6119995117188,
+            "width": 12,
+            "height": 25
+          }
+        },
+        {
+          "name": "card-pip",
+          "text": "♠",
+          "bounds": {
+            "type": 5,
+            "x": 363.53158155859376,
+            "y": 593.6119995117188,
+            "width": 12,
+            "height": 25
+          }
+        },
+        {
+          "name": "card-pip",
+          "text": "♠",
+          "bounds": {
+            "type": 5,
+            "x": 327.58841355859374,
+            "y": 639.9058107117188,
+            "width": 12,
+            "height": 25
+          }
+        },
+        {
+          "name": "card-pip",
+          "text": "♠",
+          "bounds": {
+            "type": 5,
+            "x": 363.53158155859376,
+            "y": 639.9058107117188,
+            "width": 12,
+            "height": 25
+          }
+        },
+        {
+          "name": "rank-index",
+          "text": "7\n♠",
+          "bounds": {
+            "type": 5,
+            "x": 307.1311975585937,
+            "y": 541.7151995117188,
+            "width": 12,
+            "height": 42
+          }
+        },
+        {
+          "name": "",
+          "text": "7\n♠",
+          "bounds": {
+            "type": 5,
+            "x": 384.9887975585938,
+            "y": 628.5087995117187,
+            "width": 11,
+            "height": 42
+          }
+        },
+        {
+          "name": "card-pip",
+          "text": "♥",
+          "bounds": {
+            "type": 5,
+            "x": 436.2884098964844,
+            "y": 547.8181883117187,
+            "width": 13,
+            "height": 24
+          }
+        },
+        {
+          "name": "card-pip",
+          "text": "♥",
+          "bounds": {
+            "type": 5,
+            "x": 469.51157789648437,
+            "y": 547.8181883117187,
+            "width": 13,
+            "height": 24
+          }
+        },
+        {
+          "name": "card-pip",
+          "text": "♥",
+          "bounds": {
+            "type": 5,
+            "x": 452.8999938964844,
+            "y": 570.9650939117188,
+            "width": 13,
+            "height": 24
+          }
+        },
+        {
+          "name": "card-pip",
+          "text": "♥",
+          "bounds": {
+            "type": 5,
+            "x": 436.2884098964844,
+            "y": 594.1119995117188,
+            "width": 13,
+            "height": 24
+          }
+        },
+        {
+          "name": "card-pip",
+          "text": "♥",
+          "bounds": {
+            "type": 5,
+            "x": 469.51157789648437,
+            "y": 594.1119995117188,
+            "width": 13,
+            "height": 24
+          }
+        },
+        {
+          "name": "card-pip",
+          "text": "♥",
+          "bounds": {
+            "type": 5,
+            "x": 436.2884098964844,
+            "y": 640.4058107117188,
+            "width": 13,
+            "height": 24
+          }
+        },
+        {
+          "name": "card-pip",
+          "text": "♥",
+          "bounds": {
+            "type": 5,
+            "x": 469.51157789648437,
+            "y": 640.4058107117188,
+            "width": 13,
+            "height": 24
+          }
+        },
+        {
+          "name": "rank-index",
+          "text": "7\n♥",
+          "bounds": {
+            "type": 5,
+            "x": 414.97119389648435,
+            "y": 541.7151995117188,
+            "width": 14,
+            "height": 42
+          }
+        },
+        {
+          "name": "",
+          "text": "7\n♥",
+          "bounds": {
+            "type": 5,
+            "x": 491.8287938964844,
+            "y": 628.5087995117187,
+            "width": 12,
+            "height": 42
+          }
+        },
+        {
+          "name": "card-pip",
+          "text": "♠",
+          "bounds": {
+            "type": 5,
+            "x": 543.268406234375,
+            "y": 543.2926395117188,
+            "width": 12,
+            "height": 25
+          }
+        },
+        {
+          "name": "card-pip",
+          "text": "♠",
+          "bounds": {
+            "type": 5,
+            "x": 579.211574234375,
+            "y": 543.2926395117188,
+            "width": 12,
+            "height": 25
+          }
+        },
+        {
+          "name": "card-pip",
+          "text": "♠",
+          "bounds": {
+            "type": 5,
+            "x": 543.268406234375,
+            "y": 576.5034171117187,
+            "width": 12,
+            "height": 25
+          }
+        },
+        {
+          "name": "card-pip",
+          "text": "♠",
+          "bounds": {
+            "type": 5,
+            "x": 579.211574234375,
+            "y": 576.5034171117187,
+            "width": 12,
+            "height": 25
+          }
+        },
+        {
+          "name": "card-pip",
+          "text": "♠",
+          "bounds": {
+            "type": 5,
+            "x": 561.239990234375,
+            "y": 593.6119995117188,
+            "width": 12,
+            "height": 25
+          }
+        },
+        {
+          "name": "card-pip",
+          "text": "♠",
+          "bounds": {
+            "type": 5,
+            "x": 543.268406234375,
+            "y": 610.7205819117188,
+            "width": 12,
+            "height": 25
+          }
+        },
+        {
+          "name": "card-pip",
+          "text": "♠",
+          "bounds": {
+            "type": 5,
+            "x": 579.211574234375,
+            "y": 610.7205819117188,
+            "width": 12,
+            "height": 25
+          }
+        },
+        {
+          "name": "card-pip",
+          "text": "♠",
+          "bounds": {
+            "type": 5,
+            "x": 543.268406234375,
+            "y": 643.9313595117187,
+            "width": 12,
+            "height": 25
+          }
+        },
+        {
+          "name": "card-pip",
+          "text": "♠",
+          "bounds": {
+            "type": 5,
+            "x": 579.211574234375,
+            "y": 643.9313595117187,
+            "width": 12,
+            "height": 25
+          }
+        },
+        {
+          "name": "rank-index",
+          "text": "9\n♠",
+          "bounds": {
+            "type": 5,
+            "x": 522.811190234375,
+            "y": 541.7151995117188,
+            "width": 12,
+            "height": 42
+          }
+        },
+        {
+          "name": "",
+          "text": "9\n♠",
+          "bounds": {
+            "type": 5,
+            "x": 600.668790234375,
+            "y": 628.5087995117187,
+            "width": 11,
+            "height": 42
+          }
+        },
+        {
+          "name": "card-pip",
+          "text": "♥",
+          "bounds": {
+            "type": 5,
+            "x": 651.9684330898438,
+            "y": 543.7926395117188,
+            "width": 13,
+            "height": 24
+          }
+        },
+        {
+          "name": "card-pip",
+          "text": "♥",
+          "bounds": {
+            "type": 5,
+            "x": 685.1916010898437,
+            "y": 543.7926395117188,
+            "width": 13,
+            "height": 24
+          }
+        },
+        {
+          "name": "card-pip",
+          "text": "♥",
+          "bounds": {
+            "type": 5,
+            "x": 651.9684330898438,
+            "y": 577.0034171117187,
+            "width": 13,
+            "height": 24
+          }
+        },
+        {
+          "name": "card-pip",
+          "text": "♥",
+          "bounds": {
+            "type": 5,
+            "x": 685.1916010898437,
+            "y": 577.0034171117187,
+            "width": 13,
+            "height": 24
+          }
+        },
+        {
+          "name": "card-pip",
+          "text": "♥",
+          "bounds": {
+            "type": 5,
+            "x": 668.5800170898438,
+            "y": 594.1119995117188,
+            "width": 13,
+            "height": 24
+          }
+        },
+        {
+          "name": "card-pip",
+          "text": "♥",
+          "bounds": {
+            "type": 5,
+            "x": 651.9684330898438,
+            "y": 611.2205819117188,
+            "width": 13,
+            "height": 24
+          }
+        },
+        {
+          "name": "card-pip",
+          "text": "♥",
+          "bounds": {
+            "type": 5,
+            "x": 685.1916010898437,
+            "y": 611.2205819117188,
+            "width": 13,
+            "height": 24
+          }
+        },
+        {
+          "name": "card-pip",
+          "text": "♥",
+          "bounds": {
+            "type": 5,
+            "x": 651.9684330898438,
+            "y": 644.4313595117187,
+            "width": 13,
+            "height": 24
+          }
+        },
+        {
+          "name": "card-pip",
+          "text": "♥",
+          "bounds": {
+            "type": 5,
+            "x": 685.1916010898437,
+            "y": 644.4313595117187,
+            "width": 13,
+            "height": 24
+          }
+        },
+        {
+          "name": "rank-index",
+          "text": "9\n♥",
+          "bounds": {
+            "type": 5,
+            "x": 630.6512170898437,
+            "y": 541.7151995117188,
+            "width": 14,
+            "height": 42
+          }
+        },
+        {
+          "name": "",
+          "text": "9\n♥",
+          "bounds": {
+            "type": 5,
+            "x": 707.5088170898438,
+            "y": 628.5087995117187,
+            "width": 12,
+            "height": 42
+          }
+        },
+        {
+          "name": "",
+          "text": "♠",
+          "bounds": {
+            "type": 5,
+            "x": 768.4199829101562,
+            "y": 580.9075195117188,
+            "width": 29,
+            "height": 56
+          }
+        },
+        {
+          "name": "rank-index",
+          "text": "A\n♠",
+          "bounds": {
+            "type": 5,
+            "x": 738.4911829101562,
+            "y": 541.7151995117188,
+            "width": 16,
+            "height": 42
+          }
+        },
+        {
+          "name": "",
+          "text": "A\n♠",
+          "bounds": {
+            "type": 5,
+            "x": 812.3487829101563,
+            "y": 628.5087995117187,
+            "width": 15,
+            "height": 42
+          }
+        },
+        {
+          "name": "card-pip",
+          "text": "♦",
+          "bounds": {
+            "type": 5,
+            "x": 866.788425765625,
+            "y": 547.3181883117187,
+            "width": 12,
+            "height": 25
+          }
+        },
+        {
+          "name": "card-pip",
+          "text": "♦",
+          "bounds": {
+            "type": 5,
+            "x": 902.731593765625,
+            "y": 547.3181883117187,
+            "width": 12,
+            "height": 25
+          }
+        },
+        {
+          "name": "card-pip",
+          "text": "♦",
+          "bounds": {
+            "type": 5,
+            "x": 884.760009765625,
+            "y": 570.4650939117188,
+            "width": 12,
+            "height": 25
+          }
+        },
+        {
+          "name": "card-pip",
+          "text": "♦",
+          "bounds": {
+            "type": 5,
+            "x": 866.788425765625,
+            "y": 593.6119995117188,
+            "width": 12,
+            "height": 25
+          }
+        },
+        {
+          "name": "card-pip",
+          "text": "♦",
+          "bounds": {
+            "type": 5,
+            "x": 902.731593765625,
+            "y": 593.6119995117188,
+            "width": 12,
+            "height": 25
+          }
+        },
+        {
+          "name": "card-pip",
+          "text": "♦",
+          "bounds": {
+            "type": 5,
+            "x": 866.788425765625,
+            "y": 639.9058107117188,
+            "width": 12,
+            "height": 25
+          }
+        },
+        {
+          "name": "card-pip",
+          "text": "♦",
+          "bounds": {
+            "type": 5,
+            "x": 902.731593765625,
+            "y": 639.9058107117188,
+            "width": 12,
+            "height": 25
+          }
+        },
+        {
+          "name": "rank-index",
+          "text": "7\n♦",
+          "bounds": {
+            "type": 5,
+            "x": 846.331209765625,
+            "y": 541.7151995117188,
+            "width": 12,
+            "height": 42
+          }
+        },
+        {
+          "name": "",
+          "text": "7\n♦",
+          "bounds": {
+            "type": 5,
+            "x": 924.188809765625,
+            "y": 628.5087995117187,
+            "width": 11,
+            "height": 42
+          }
+        },
+        {
+          "name": "rank-index",
+          "text": "J\n♣",
+          "bounds": {
+            "type": 5,
+            "x": 954.1711755859375,
+            "y": 541.7151995117188,
+            "width": 15,
+            "height": 42
+          }
+        },
+        {
+          "name": "",
+          "text": "J\n♣",
+          "bounds": {
+            "type": 5,
+            "x": 1029.0287755859374,
+            "y": 628.5087995117187,
+            "width": 14,
+            "height": 42
+          }
+        },
+        {
+          "name": "",
+          "text": "♥",
+          "bounds": {
+            "type": 5,
+            "x": 1090.43994140625,
+            "y": 580.9075195117188,
+            "width": 32,
+            "height": 56
+          }
+        },
+        {
+          "name": "rank-index",
+          "text": "A\n♥",
+          "bounds": {
+            "type": 5,
+            "x": 1062.01114140625,
+            "y": 541.7151995117188,
+            "width": 16,
+            "height": 42
+          }
+        },
+        {
+          "name": "",
+          "text": "A\n♥",
+          "bounds": {
+            "type": 5,
+            "x": 1135.86874140625,
+            "y": 628.5087995117187,
+            "width": 15,
+            "height": 42
+          }
+        },
+        {
+          "name": "",
+          "text": "第 1 章 · 暖场\n选1–5张出牌，不合适可弃牌换新",
+          "bounds": {
+            "type": 5,
+            "x": 596.5,
+            "y": 331.312,
+            "width": 265,
+            "height": 46
+          }
+        },
+        {
+          "name": "selection/fact-line",
+          "text": "按全部所选牌判型，最多5张",
+          "bounds": {
+            "type": 5,
+            "x": 36,
+            "y": 308,
+            "width": 176,
+            "height": 16
+          }
+        },
+        {
+          "name": "selection/rules-entry",
+          "text": "本轮可成5种 · 查看",
+          "bounds": {
+            "type": 5,
+            "x": 22,
+            "y": 414,
+            "width": 119,
+            "height": 16
+          }
+        },
+        {
+          "name": "selection/quick-label",
+          "text": "来源\n条件",
+          "bounds": {
+            "type": 5,
+            "x": 268,
+            "y": 276,
+            "width": 28,
+            "height": 34
+          }
+        },
+        {
+          "name": "selection/quick-label",
+          "text": "怎么\n凑牌",
+          "bounds": {
+            "type": 5,
+            "x": 316,
+            "y": 276,
+            "width": 28,
+            "height": 34
+          }
+        }
+      ],
+      "accumulator": {
+        "H": {
+          "n": "781",
+          "d": "1"
+        },
+        "M": {
+          "n": "36639",
+          "d": "64"
+        }
+      },
+      "finalScore": "447110",
+      "resultTexts": [
+        {
+          "name": "stage-identity/result",
+          "text": "第 1 章 · 暖场 · 二响",
+          "bounds": {
+            "type": 5,
+            "x": 193,
+            "y": 8,
+            "width": 125,
+            "height": 16
+          }
+        },
+        {
+          "name": "result/title",
+          "text": "一场好戏，满堂喝彩！",
+          "bounds": {
+            "type": 5,
+            "x": 193,
+            "y": 42,
+            "width": 340,
+            "height": 36
+          }
+        },
+        {
+          "name": "result/source-continuity",
+          "text": "练对子",
+          "bounds": {
+            "type": 5,
+            "x": 211,
+            "y": 286,
+            "width": 42,
+            "height": 17
+          }
+        },
+        {
+          "name": "result/growth-read",
+          "text": "本手读取 +64",
+          "bounds": {
+            "type": 5,
+            "x": 211,
+            "y": 309,
+            "width": 84,
+            "height": 16
+          }
+        },
+        {
+          "name": "result/growth-saved",
+          "text": "+64 → +74",
+          "bounds": {
+            "type": 5,
+            "x": 211,
+            "y": 329,
+            "width": 119,
+            "height": 27
+          }
+        },
+        {
+          "name": "result/growth-next",
+          "text": "保存成长 · 下手生效",
+          "bounds": {
+            "type": 5,
+            "x": 211,
+            "y": 360,
+            "width": 125,
+            "height": 16
+          }
+        },
+        {
+          "name": "result/hand",
+          "text": "两对",
+          "bounds": {
+            "type": 5,
+            "x": 826.5,
+            "y": 120,
+            "width": 33,
+            "height": 19
+          }
+        },
+        {
+          "name": "result/formula",
+          "text": "781 热度 × 36,639/64",
+          "bounds": {
+            "type": 5,
+            "x": 776,
+            "y": 144,
+            "width": 134,
+            "height": 16
+          }
+        },
+        {
+          "name": "result/score",
+          "text": "+447,110",
+          "bounds": {
+            "type": 5,
+            "x": 716.5,
+            "y": 166,
+            "width": 253,
+            "height": 77
+          }
+        },
+        {
+          "name": "result/gap",
+          "text": "全场 447,110 / 400",
+          "bounds": {
+            "type": 5,
+            "x": 784.5,
+            "y": 251,
+            "width": 117,
+            "height": 16
+          }
+        },
+        {
+          "name": "result/reward",
+          "text": "过关奖励  +11 金",
+          "bounds": {
+            "type": 5,
+            "x": 789,
+            "y": 446,
+            "width": 144,
+            "height": 22
+          }
+        },
+        {
+          "name": "",
+          "text": "准备下一场",
+          "bounds": {
+            "type": 5,
+            "x": 207,
+            "y": 546,
+            "width": 90,
+            "height": 21
+          }
+        },
+        {
+          "name": "result/next-body",
+          "text": "第 1 章 · 正场 · 目标 600\n筹备后，出牌与弃牌次数补满。\n下场交棒次数恢复为1次",
+          "bounds": {
+            "type": 5,
+            "x": 207,
+            "y": 575,
+            "width": 196,
+            "height": 52
+          }
+        },
+        {
+          "name": "",
+          "text": "本场详情",
+          "bounds": {
+            "type": 5,
+            "x": 299.5,
+            "y": 676.5,
+            "width": 61,
+            "height": 17
+          }
+        },
+        {
+          "name": "",
+          "text": "前往筹备商店",
+          "bounds": {
+            "type": 5,
+            "x": 619.5,
+            "y": 678.5,
+            "width": 133,
+            "height": 25
+          }
+        },
+        {
+          "name": "",
+          "text": "回看上手",
+          "bounds": {
+            "type": 5,
+            "x": 1008.5,
+            "y": 676.5,
+            "width": 61,
+            "height": 17
+          }
+        },
+        {
+          "name": "",
+          "text": "",
+          "bounds": {
+            "type": 5,
+            "x": 193,
+            "y": 728,
+            "width": 0,
+            "height": 16
+          }
+        }
+      ],
+      "details": "最后一手 · 已保存的结算\n\n两对 Lv.30 · 447,110 热度\n打出：7♠、7♥、9♠、9♥\n实际计分：7♠、7♥、9♠、9♥\n\n781 × 36,639/64 = 447,110\n\n独家戏\n\n读取已有 ×12,213/352 倍率\n原因：本手计分时 · 实际牌型是两对／三条／顺子／同花／葫芦／四条／同花顺／五条／同花葫芦／同花五条（精确牌型，不自动包含其他型）\n去向：本次计分 · 已计入本手保存结果\n下一步：按来源条件选牌；查看完整计分明细。\n\n练对子\n\n读取已有 64 热度\n原因：本手计分时 · 每到这个时点检查；满足条件不等于效果已经发生\n去向：本次计分 · 已计入本手保存结果\n下一步：按来源条件选牌；查看完整计分明细。\n\n家底\n\n+40 热度\n原因：本手计分时 · 每到这个时点检查；满足条件不等于效果已经发生\n去向：本次计分 · 已计入本手保存结果\n下一步：按来源条件选牌；查看完整计分明细。\n\n练对子\n\n成长 +10 · 下手生效\n原因：结算后 · 实际牌型是对子／两对／三条／葫芦／四条／五条／同花葫芦／同花五条（精确牌型，不自动包含其他型）\n去向：该来源成长记录 · 该手后已存 74 · 结算后新增，下手按条件读取\n下一步：查看来源的已保存成长，再选满足条件的牌。\n\n完整计分明细\n查看培养路线\n前往筹备商店继续培养\n关闭",
+      "status": "PASS"
+    },
+    {
+      "key": "group-390",
+      "viewport": {
+        "width": 390,
+        "height": 740
+      },
+      "errors": [],
+      "input": "controlled two-pair Lv30, b10 heat64, gold20/e03, calibrated a06 coefficient",
+      "tableTexts": [
+        {
+          "name": "",
+          "text": "二响·选对子以上",
+          "bounds": {
+            "type": 5,
+            "x": 76,
+            "y": 14,
+            "width": 96,
+            "height": 14
+          }
+        },
+        {
+          "name": "",
+          "text": "目标 0 / 400",
+          "bounds": {
+            "type": 5,
+            "x": 76,
+            "y": 36,
+            "width": 86,
+            "height": 19
+          }
+        },
+        {
+          "name": "",
+          "text": "金币 20",
+          "bounds": {
+            "type": 5,
+            "x": 178,
+            "y": 14,
+            "width": 41,
+            "height": 14
+          }
+        },
+        {
+          "name": "rarity-badge/label",
+          "text": "稀",
+          "bounds": {
+            "type": 5,
+            "x": 68,
+            "y": 118.10000610351562,
+            "width": 13,
+            "height": 15
+          }
+        },
+        {
+          "name": "",
+          "text": "独家戏",
+          "bounds": {
+            "type": 5,
+            "x": 26,
+            "y": 63.000003051757815,
+            "width": 42,
+            "height": 16
+          }
+        },
+        {
+          "name": "",
+          "text": "状态 ›",
+          "bounds": {
+            "type": 5,
+            "x": 26,
+            "y": 135.60000305175782,
+            "width": 37,
+            "height": 16
+          }
+        },
+        {
+          "name": "rarity-badge/label",
+          "text": "普",
+          "bounds": {
+            "type": 5,
+            "x": 138,
+            "y": 118.10000610351562,
+            "width": 13,
+            "height": 15
+          }
+        },
+        {
+          "name": "",
+          "text": "练对子",
+          "bounds": {
+            "type": 5,
+            "x": 96,
+            "y": 63.000003051757815,
+            "width": 42,
+            "height": 16
+          }
+        },
+        {
+          "name": "",
+          "text": "热+64",
+          "bounds": {
+            "type": 5,
+            "x": 96,
+            "y": 135.60000305175782,
+            "width": 38,
+            "height": 16
+          }
+        },
+        {
+          "name": "rarity-badge/label",
+          "text": "特",
+          "bounds": {
+            "type": 5,
+            "x": 208,
+            "y": 118.10000610351562,
+            "width": 13,
+            "height": 15
+          }
+        },
+        {
+          "name": "",
+          "text": "家底",
+          "bounds": {
+            "type": 5,
+            "x": 166,
+            "y": 63.000003051757815,
+            "width": 28,
+            "height": 16
+          }
+        },
+        {
+          "name": "",
+          "text": "金币加热",
+          "bounds": {
+            "type": 5,
+            "x": 166,
+            "y": 135.60000305175782,
+            "width": 56,
+            "height": 16
+          }
+        },
+        {
+          "name": "score/source",
+          "text": "第 1 章 · 暖场",
+          "bounds": {
+            "type": 5,
+            "x": 70.5,
+            "y": 160.6,
+            "width": 145,
+            "height": 26
+          }
+        },
+        {
+          "name": "table/played-label",
+          "text": "待出牌",
+          "bounds": {
+            "type": 5,
+            "x": 37,
+            "y": 351,
+            "width": 42,
+            "height": 16
+          }
+        },
+        {
+          "name": "",
+          "text": "点数",
+          "bounds": {
+            "type": 5,
+            "x": 20,
+            "y": 500.5,
+            "width": 28,
+            "height": 17
+          }
+        },
+        {
+          "name": "",
+          "text": "花色",
+          "bounds": {
+            "type": 5,
+            "x": 64,
+            "y": 500.5,
+            "width": 28,
+            "height": 17
+          }
+        },
+        {
+          "name": "",
+          "text": "AI 切",
+          "bounds": {
+            "type": 5,
+            "x": 106,
+            "y": 500.5,
+            "width": 32,
+            "height": 17
+          }
+        },
+        {
+          "name": "",
+          "text": "交棒",
+          "bounds": {
+            "type": 5,
+            "x": 20,
+            "y": 670.5,
+            "width": 28,
+            "height": 17
+          }
+        },
+        {
+          "name": "",
+          "text": "弃牌",
+          "bounds": {
+            "type": 5,
+            "x": 113,
+            "y": 658.5,
+            "width": 28,
+            "height": 17
+          }
+        },
+        {
+          "name": "",
+          "text": "出牌",
+          "bounds": {
+            "type": 5,
+            "x": 249.5,
+            "y": 657.5,
+            "width": 33,
+            "height": 19
+          }
+        },
+        {
+          "name": "button/play-left",
+          "text": "4 次",
+          "bounds": {
+            "type": 5,
+            "x": 253,
+            "y": 681,
+            "width": 26,
+            "height": 16
+          }
+        },
+        {
+          "name": "button/discard-left",
+          "text": "3 次",
+          "bounds": {
+            "type": 5,
+            "x": 114,
+            "y": 681,
+            "width": 26,
+            "height": 16
+          }
+        },
+        {
+          "name": "",
+          "text": "独家戏 · 系数×12213/352 · 长按条件",
+          "bounds": {
+            "type": 5,
+            "x": 12,
+            "y": 712,
+            "width": 226,
+            "height": 16
+          }
+        },
+        {
+          "name": "",
+          "text": "道具箱 0/2",
+          "bounds": {
+            "type": 5,
+            "x": 296.5,
+            "y": 501,
+            "width": 71,
+            "height": 16
+          }
+        },
+        {
+          "name": "card-pip",
+          "text": "♠",
+          "bounds": {
+            "type": 5,
+            "x": 30.979999999999997,
+            "y": 566.5244922070312,
+            "width": 7,
+            "height": 14
+          }
+        },
+        {
+          "name": "card-pip",
+          "text": "♠",
+          "bounds": {
+            "type": 5,
+            "x": 50.02,
+            "y": 566.5244922070312,
+            "width": 7,
+            "height": 14
+          }
+        },
+        {
+          "name": "card-pip",
+          "text": "♠",
+          "bounds": {
+            "type": 5,
+            "x": 40.5,
+            "y": 581.3622522070312,
+            "width": 7,
+            "height": 14
+          }
+        },
+        {
+          "name": "card-pip",
+          "text": "♠",
+          "bounds": {
+            "type": 5,
+            "x": 30.979999999999997,
+            "y": 596.2000122070312,
+            "width": 7,
+            "height": 14
+          }
+        },
+        {
+          "name": "card-pip",
+          "text": "♠",
+          "bounds": {
+            "type": 5,
+            "x": 50.02,
+            "y": 596.2000122070312,
+            "width": 7,
+            "height": 14
+          }
+        },
+        {
+          "name": "card-pip",
+          "text": "♠",
+          "bounds": {
+            "type": 5,
+            "x": 30.979999999999997,
+            "y": 625.8755322070313,
+            "width": 7,
+            "height": 14
+          }
+        },
+        {
+          "name": "card-pip",
+          "text": "♠",
+          "bounds": {
+            "type": 5,
+            "x": 50.02,
+            "y": 625.8755322070313,
+            "width": 7,
+            "height": 14
+          }
+        },
+        {
+          "name": "rank-index",
+          "text": "7\n♠",
+          "bounds": {
+            "type": 5,
+            "x": 16,
+            "y": 562.4000122070313,
+            "width": 8,
+            "height": 30
+          }
+        },
+        {
+          "name": "",
+          "text": "7",
+          "bounds": {
+            "type": 5,
+            "x": 65,
+            "y": 630.0000122070312,
+            "width": 7,
+            "height": 14
+          }
+        },
+        {
+          "name": "card-pip",
+          "text": "♥",
+          "bounds": {
+            "type": 5,
+            "x": 74.80286041259765,
+            "y": 568.0244922070312,
+            "width": 7,
+            "height": 11
+          }
+        },
+        {
+          "name": "card-pip",
+          "text": "♥",
+          "bounds": {
+            "type": 5,
+            "x": 92.48286041259766,
+            "y": 568.0244922070312,
+            "width": 7,
+            "height": 11
+          }
+        },
+        {
+          "name": "card-pip",
+          "text": "♥",
+          "bounds": {
+            "type": 5,
+            "x": 83.64286041259766,
+            "y": 582.8622522070312,
+            "width": 7,
+            "height": 11
+          }
+        },
+        {
+          "name": "card-pip",
+          "text": "♥",
+          "bounds": {
+            "type": 5,
+            "x": 74.80286041259765,
+            "y": 597.7000122070312,
+            "width": 7,
+            "height": 11
+          }
+        },
+        {
+          "name": "card-pip",
+          "text": "♥",
+          "bounds": {
+            "type": 5,
+            "x": 92.48286041259766,
+            "y": 597.7000122070312,
+            "width": 7,
+            "height": 11
+          }
+        },
+        {
+          "name": "card-pip",
+          "text": "♥",
+          "bounds": {
+            "type": 5,
+            "x": 74.80286041259765,
+            "y": 627.3755322070313,
+            "width": 7,
+            "height": 11
+          }
+        },
+        {
+          "name": "card-pip",
+          "text": "♥",
+          "bounds": {
+            "type": 5,
+            "x": 92.48286041259766,
+            "y": 627.3755322070313,
+            "width": 7,
+            "height": 11
+          }
+        },
+        {
+          "name": "rank-index",
+          "text": "7\n♥",
+          "bounds": {
+            "type": 5,
+            "x": 59.142860412597656,
+            "y": 562.4000122070313,
+            "width": 9,
+            "height": 30
+          }
+        },
+        {
+          "name": "",
+          "text": "7",
+          "bounds": {
+            "type": 5,
+            "x": 108.14286041259766,
+            "y": 630.0000122070312,
+            "width": 7,
+            "height": 14
+          }
+        },
+        {
+          "name": "card-pip",
+          "text": "♠",
+          "bounds": {
+            "type": 5,
+            "x": 117.26572082519532,
+            "y": 563.9440122070313,
+            "width": 7,
+            "height": 14
+          }
+        },
+        {
+          "name": "card-pip",
+          "text": "♠",
+          "bounds": {
+            "type": 5,
+            "x": 136.30572082519532,
+            "y": 563.9440122070313,
+            "width": 7,
+            "height": 14
+          }
+        },
+        {
+          "name": "card-pip",
+          "text": "♠",
+          "bounds": {
+            "type": 5,
+            "x": 117.26572082519532,
+            "y": 585.2329722070313,
+            "width": 7,
+            "height": 14
+          }
+        },
+        {
+          "name": "card-pip",
+          "text": "♠",
+          "bounds": {
+            "type": 5,
+            "x": 136.30572082519532,
+            "y": 585.2329722070313,
+            "width": 7,
+            "height": 14
+          }
+        },
+        {
+          "name": "card-pip",
+          "text": "♠",
+          "bounds": {
+            "type": 5,
+            "x": 126.78572082519531,
+            "y": 596.2000122070312,
+            "width": 7,
+            "height": 14
+          }
+        },
+        {
+          "name": "card-pip",
+          "text": "♠",
+          "bounds": {
+            "type": 5,
+            "x": 117.2657208251953,
+            "y": 607.1670522070312,
+            "width": 7.000000000000014,
+            "height": 14
+          }
+        },
+        {
+          "name": "card-pip",
+          "text": "♠",
+          "bounds": {
+            "type": 5,
+            "x": 136.30572082519532,
+            "y": 607.1670522070312,
+            "width": 7,
+            "height": 14
+          }
+        },
+        {
+          "name": "card-pip",
+          "text": "♠",
+          "bounds": {
+            "type": 5,
+            "x": 117.2657208251953,
+            "y": 628.4560122070312,
+            "width": 7.000000000000014,
+            "height": 14
+          }
+        },
+        {
+          "name": "card-pip",
+          "text": "♠",
+          "bounds": {
+            "type": 5,
+            "x": 136.30572082519532,
+            "y": 628.4560122070312,
+            "width": 7,
+            "height": 14
+          }
+        },
+        {
+          "name": "rank-index",
+          "text": "9\n♠",
+          "bounds": {
+            "type": 5,
+            "x": 102.28572082519531,
+            "y": 562.4000122070313,
+            "width": 8,
+            "height": 30
+          }
+        },
+        {
+          "name": "",
+          "text": "9",
+          "bounds": {
+            "type": 5,
+            "x": 151.2857208251953,
+            "y": 630.0000122070312,
+            "width": 7,
+            "height": 14
+          }
+        },
+        {
+          "name": "card-pip",
+          "text": "♥",
+          "bounds": {
+            "type": 5,
+            "x": 161.08857360839843,
+            "y": 565.4440122070313,
+            "width": 7,
+            "height": 11
+          }
+        },
+        {
+          "name": "card-pip",
+          "text": "♥",
+          "bounds": {
+            "type": 5,
+            "x": 178.76857360839844,
+            "y": 565.4440122070313,
+            "width": 7,
+            "height": 11
+          }
+        },
+        {
+          "name": "card-pip",
+          "text": "♥",
+          "bounds": {
+            "type": 5,
+            "x": 161.08857360839843,
+            "y": 586.7329722070313,
+            "width": 7,
+            "height": 11
+          }
+        },
+        {
+          "name": "card-pip",
+          "text": "♥",
+          "bounds": {
+            "type": 5,
+            "x": 178.76857360839844,
+            "y": 586.7329722070313,
+            "width": 7,
+            "height": 11
+          }
+        },
+        {
+          "name": "card-pip",
+          "text": "♥",
+          "bounds": {
+            "type": 5,
+            "x": 169.92857360839844,
+            "y": 597.7000122070312,
+            "width": 7,
+            "height": 11
+          }
+        },
+        {
+          "name": "card-pip",
+          "text": "♥",
+          "bounds": {
+            "type": 5,
+            "x": 161.08857360839843,
+            "y": 608.6670522070312,
+            "width": 7,
+            "height": 11
+          }
+        },
+        {
+          "name": "card-pip",
+          "text": "♥",
+          "bounds": {
+            "type": 5,
+            "x": 178.76857360839844,
+            "y": 608.6670522070312,
+            "width": 7,
+            "height": 11
+          }
+        },
+        {
+          "name": "card-pip",
+          "text": "♥",
+          "bounds": {
+            "type": 5,
+            "x": 161.08857360839843,
+            "y": 629.9560122070312,
+            "width": 7,
+            "height": 11
+          }
+        },
+        {
+          "name": "card-pip",
+          "text": "♥",
+          "bounds": {
+            "type": 5,
+            "x": 178.76857360839844,
+            "y": 629.9560122070312,
+            "width": 7,
+            "height": 11
+          }
+        },
+        {
+          "name": "rank-index",
+          "text": "9\n♥",
+          "bounds": {
+            "type": 5,
+            "x": 145.42857360839844,
+            "y": 562.4000122070313,
+            "width": 9,
+            "height": 30
+          }
+        },
+        {
+          "name": "",
+          "text": "9",
+          "bounds": {
+            "type": 5,
+            "x": 194.42857360839844,
+            "y": 630.0000122070312,
+            "width": 7,
+            "height": 14
+          }
+        },
+        {
+          "name": "",
+          "text": "♠",
+          "bounds": {
+            "type": 5,
+            "x": 207.07142639160156,
+            "y": 586.9920122070313,
+            "width": 19,
+            "height": 36
+          }
+        },
+        {
+          "name": "rank-index",
+          "text": "A\n♠",
+          "bounds": {
+            "type": 5,
+            "x": 188.57142639160156,
+            "y": 562.4000122070313,
+            "width": 11,
+            "height": 30
+          }
+        },
+        {
+          "name": "",
+          "text": "A",
+          "bounds": {
+            "type": 5,
+            "x": 234.57142639160156,
+            "y": 630.0000122070312,
+            "width": 10,
+            "height": 14
+          }
+        },
+        {
+          "name": "card-pip",
+          "text": "♦",
+          "bounds": {
+            "type": 5,
+            "x": 247.19429443359374,
+            "y": 566.5244922070312,
+            "width": 6,
+            "height": 14
+          }
+        },
+        {
+          "name": "card-pip",
+          "text": "♦",
+          "bounds": {
+            "type": 5,
+            "x": 266.23429443359373,
+            "y": 566.5244922070312,
+            "width": 6,
+            "height": 14
+          }
+        },
+        {
+          "name": "card-pip",
+          "text": "♦",
+          "bounds": {
+            "type": 5,
+            "x": 256.71429443359375,
+            "y": 581.3622522070312,
+            "width": 6,
+            "height": 14
+          }
+        },
+        {
+          "name": "card-pip",
+          "text": "♦",
+          "bounds": {
+            "type": 5,
+            "x": 247.19429443359374,
+            "y": 596.2000122070312,
+            "width": 6,
+            "height": 14
+          }
+        },
+        {
+          "name": "card-pip",
+          "text": "♦",
+          "bounds": {
+            "type": 5,
+            "x": 266.23429443359373,
+            "y": 596.2000122070312,
+            "width": 6,
+            "height": 14
+          }
+        },
+        {
+          "name": "card-pip",
+          "text": "♦",
+          "bounds": {
+            "type": 5,
+            "x": 247.19429443359374,
+            "y": 625.8755322070313,
+            "width": 6,
+            "height": 14
+          }
+        },
+        {
+          "name": "card-pip",
+          "text": "♦",
+          "bounds": {
+            "type": 5,
+            "x": 266.23429443359373,
+            "y": 625.8755322070313,
+            "width": 6,
+            "height": 14
+          }
+        },
+        {
+          "name": "rank-index",
+          "text": "7\n♦",
+          "bounds": {
+            "type": 5,
+            "x": 231.71429443359375,
+            "y": 562.4000122070313,
+            "width": 8,
+            "height": 30
+          }
+        },
+        {
+          "name": "",
+          "text": "7",
+          "bounds": {
+            "type": 5,
+            "x": 280.71429443359375,
+            "y": 630.0000122070312,
+            "width": 7,
+            "height": 14
+          }
+        },
+        {
+          "name": "rank-index",
+          "text": "J\n♣",
+          "bounds": {
+            "type": 5,
+            "x": 274.8571472167969,
+            "y": 562.4000122070313,
+            "width": 10,
+            "height": 30
+          }
+        },
+        {
+          "name": "",
+          "text": "J",
+          "bounds": {
+            "type": 5,
+            "x": 323.8571472167969,
+            "y": 630.0000122070312,
+            "width": 7,
+            "height": 14
+          }
+        },
+        {
+          "name": "",
+          "text": "♥",
+          "bounds": {
+            "type": 5,
+            "x": 335.5,
+            "y": 586.9920122070313,
+            "width": 21,
+            "height": 36
+          }
+        },
+        {
+          "name": "rank-index",
+          "text": "A\n♥",
+          "bounds": {
+            "type": 5,
+            "x": 318,
+            "y": 562.4000122070313,
+            "width": 11,
+            "height": 30
+          }
+        },
+        {
+          "name": "",
+          "text": "A",
+          "bounds": {
+            "type": 5,
+            "x": 364,
+            "y": 630.0000122070312,
+            "width": 10,
+            "height": 14
+          }
+        },
+        {
+          "name": "",
+          "text": "第 1 章 · 暖场\n选1–5张出牌，不合适可弃牌换新",
+          "bounds": {
+            "type": 5,
+            "x": 62.5,
+            "y": 396,
+            "width": 265,
+            "height": 46
+          }
+        },
+        {
+          "name": "selection/fact-line",
+          "text": "按全部所选牌判型，最多5张",
+          "bounds": {
+            "type": 5,
+            "x": 55,
+            "y": 191.6,
+            "width": 176,
+            "height": 16
+          }
+        },
+        {
+          "name": "selection/rules-entry",
+          "text": "本轮可成5种 · 查看",
+          "bounds": {
+            "type": 5,
+            "x": 22,
+            "y": 265.6,
+            "width": 119,
+            "height": 16
+          }
+        },
+        {
+          "name": "selection/quick-label",
+          "text": "来源\n条件",
+          "bounds": {
+            "type": 5,
+            "x": 286,
+            "y": 160,
+            "width": 28,
+            "height": 34
+          }
+        },
+        {
+          "name": "selection/quick-label",
+          "text": "怎么\n凑牌",
+          "bounds": {
+            "type": 5,
+            "x": 334,
+            "y": 160,
+            "width": 28,
+            "height": 34
+          }
+        }
+      ],
+      "accumulator": {
+        "H": {
+          "n": "781",
+          "d": "1"
+        },
+        "M": {
+          "n": "36639",
+          "d": "64"
+        }
+      },
+      "finalScore": "447110",
+      "resultTexts": [
+        {
+          "name": "stage-identity/result",
+          "text": "第 1 章 · 暖场 · 二响",
+          "bounds": {
+            "type": 5,
+            "x": 12,
+            "y": 8,
+            "width": 125,
+            "height": 16
+          }
+        },
+        {
+          "name": "result/title",
+          "text": "一场好戏，满堂喝彩！",
+          "bounds": {
+            "type": 5,
+            "x": 12,
+            "y": 60,
+            "width": 261,
+            "height": 27
+          }
+        },
+        {
+          "name": "result/source-continuity",
+          "text": "练对子",
+          "bounds": {
+            "type": 5,
+            "x": 105,
+            "y": 334,
+            "width": 42,
+            "height": 17
+          }
+        },
+        {
+          "name": "result/growth-read",
+          "text": "本手读取 +64",
+          "bounds": {
+            "type": 5,
+            "x": 105,
+            "y": 357,
+            "width": 84,
+            "height": 16
+          }
+        },
+        {
+          "name": "result/growth-saved",
+          "text": "+64 → +74",
+          "bounds": {
+            "type": 5,
+            "x": 105,
+            "y": 377,
+            "width": 119,
+            "height": 27
+          }
+        },
+        {
+          "name": "result/growth-next",
+          "text": "保存成长 · 下手生效",
+          "bounds": {
+            "type": 5,
+            "x": 105,
+            "y": 408,
+            "width": 125,
+            "height": 16
+          }
+        },
+        {
+          "name": "result/hand",
+          "text": "两对",
+          "bounds": {
+            "type": 5,
+            "x": 178.5,
+            "y": 134,
+            "width": 33,
+            "height": 19
+          }
+        },
+        {
+          "name": "result/formula",
+          "text": "781 热度 × 36,639/64",
+          "bounds": {
+            "type": 5,
+            "x": 128,
+            "y": 158,
+            "width": 134,
+            "height": 16
+          }
+        },
+        {
+          "name": "result/score",
+          "text": "+447,110",
+          "bounds": {
+            "type": 5,
+            "x": 106,
+            "y": 180,
+            "width": 178,
+            "height": 55
+          }
+        },
+        {
+          "name": "result/gap",
+          "text": "全场 447,110 / 400",
+          "bounds": {
+            "type": 5,
+            "x": 136.5,
+            "y": 243,
+            "width": 117,
+            "height": 16
+          }
+        },
+        {
+          "name": "result/reward",
+          "text": "过关奖励  +11 金",
+          "bounds": {
+            "type": 5,
+            "x": 141,
+            "y": 280,
+            "width": 144,
+            "height": 22
+          }
+        },
+        {
+          "name": "",
+          "text": "准备下一场",
+          "bounds": {
+            "type": 5,
+            "x": 26,
+            "y": 486,
+            "width": 90,
+            "height": 21
+          }
+        },
+        {
+          "name": "result/next-body",
+          "text": "第 1 章 · 正场 · 目标 600\n筹备后，出牌与弃牌次数补满。\n下场交棒次数恢复为1次",
+          "bounds": {
+            "type": 5,
+            "x": 26,
+            "y": 515,
+            "width": 196,
+            "height": 34
+          }
+        },
+        {
+          "name": "",
+          "text": "本场详情",
+          "bounds": {
+            "type": 5,
+            "x": 71.5,
+            "y": 604.5,
+            "width": 61,
+            "height": 17
+          }
+        },
+        {
+          "name": "",
+          "text": "前往筹备商店",
+          "bounds": {
+            "type": 5,
+            "x": 128.5,
+            "y": 658.5,
+            "width": 133,
+            "height": 25
+          }
+        },
+        {
+          "name": "",
+          "text": "回看上手",
+          "bounds": {
+            "type": 5,
+            "x": 258.5,
+            "y": 604.5,
+            "width": 61,
+            "height": 17
+          }
+        },
+        {
+          "name": "",
+          "text": "",
+          "bounds": {
+            "type": 5,
+            "x": 12,
+            "y": 708,
+            "width": 0,
+            "height": 16
+          }
+        }
+      ],
+      "details": "最后一手 · 已保存的结算\n\n两对 Lv.30 · 447,110 热度\n打出：7♠、7♥、9♠、9♥\n实际计分：7♠、7♥、9♠、9♥\n\n781 × 36,639/64 = 447,110\n\n独家戏\n\n读取已有 ×12,213/352 倍率\n原因：本手计分时 · 实际牌型是两对／三条／顺子／同花／葫芦／四条／同花顺／五条／同花葫芦／同花五条（精确牌型，不自动包含其他型）\n去向：本次计分 · 已计入本手保存结果\n下一步：按来源条件选牌；查看完整计分明细。\n\n练对子\n\n读取已有 64 热度\n原因：本手计分时 · 每到这个时点检查；满足条件不等于效果已经发生\n去向：本次计分 · 已计入本手保存结果\n下一步：按来源条件选牌；查看完整计分明细。\n\n家底\n\n+40 热度\n原因：本手计分时 · 每到这个时点检查；满足条件不等于效果已经发生\n去向：本次计分 · 已计入本手保存结果\n下一步：按来源条件选牌；查看完整计分明细。\n\n练对子\n\n成长 +10 · 下手生效\n原因：结算后 · 实际牌型是对子／两对／三条／葫芦／四条／五条／同花葫芦／同花五条（精确牌型，不自动包含其他型）\n去向：该来源成长记录 · 该手后已存 74 · 结算后新增，下手按条件读取\n下一步：查看来源的已保存成长，再选满足条件的牌。\n\n完整计分明细\n查看培养路线\n前往筹备商店继续培养\n关闭",
+      "status": "PASS"
+    },
+    {
+      "key": "straight-1366",
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      },
+      "errors": [],
+      "input": "controlled straight public ranks3–7, a06 coefficient839523/320000",
+      "tableTexts": [
+        {
+          "name": "",
+          "text": "大 丑 牌",
+          "bounds": {
+            "type": 5,
+            "x": 24,
+            "y": 16,
+            "width": 100,
+            "height": 31
+          }
+        },
+        {
+          "name": "",
+          "text": "二响",
+          "bounds": {
+            "type": 5,
+            "x": 88,
+            "y": 50,
+            "width": 45,
+            "height": 25
+          }
+        },
+        {
+          "name": "",
+          "text": "技能 · 选对子以上",
+          "bounds": {
+            "type": 5,
+            "x": 88,
+            "y": 78,
+            "width": 111,
+            "height": 16
+          }
+        },
+        {
+          "name": "stage-identity/current",
+          "text": "第 1 章 · 暖场",
+          "bounds": {
+            "type": 5,
+            "x": 24,
+            "y": 104,
+            "width": 85,
+            "height": 16
+          }
+        },
+        {
+          "name": "",
+          "text": "0",
+          "bounds": {
+            "type": 5,
+            "x": 24,
+            "y": 126,
+            "width": 14,
+            "height": 27
+          }
+        },
+        {
+          "name": "",
+          "text": "金币 6\n还需 400 热度",
+          "bounds": {
+            "type": 5,
+            "x": 80,
+            "y": 188,
+            "width": 88,
+            "height": 32
+          }
+        },
+        {
+          "name": "hud/target",
+          "text": "目标 400",
+          "bounds": {
+            "type": 5,
+            "x": 24,
+            "y": 164,
+            "width": 56,
+            "height": 16
+          }
+        },
+        {
+          "name": "rarity-badge/label",
+          "text": "稀",
+          "bounds": {
+            "type": 5,
+            "x": 578,
+            "y": 142.5,
+            "width": 13,
+            "height": 15
+          }
+        },
+        {
+          "name": "",
+          "text": "独家戏",
+          "bounds": {
+            "type": 5,
+            "x": 520,
+            "y": 65,
+            "width": 42,
+            "height": 16
+          }
+        },
+        {
+          "name": "",
+          "text": "状态 ›",
+          "bounds": {
+            "type": 5,
+            "x": 520,
+            "y": 160,
+            "width": 37,
+            "height": 16
+          }
+        },
+        {
+          "name": "score/source",
+          "text": "第 1 章 · 暖场",
+          "bounds": {
+            "type": 5,
+            "x": 51.5,
+            "y": 277,
+            "width": 145,
+            "height": 26
+          }
+        },
+        {
+          "name": "table/played-label",
+          "text": "待出牌",
+          "bounds": {
+            "type": 5,
+            "x": 459,
+            "y": 256,
+            "width": 42,
+            "height": 16
+          }
+        },
+        {
+          "name": "",
+          "text": "上手记录：本场第一手",
+          "bounds": {
+            "type": 5,
+            "x": 24,
+            "y": 518,
+            "width": 140,
+            "height": 16
+          }
+        },
+        {
+          "name": "",
+          "text": "点数排序",
+          "bounds": {
+            "type": 5,
+            "x": 1256,
+            "y": 528.5,
+            "width": 56,
+            "height": 17
+          }
+        },
+        {
+          "name": "",
+          "text": "花色排序",
+          "bounds": {
+            "type": 5,
+            "x": 1256,
+            "y": 584.5,
+            "width": 56,
+            "height": 17
+          }
+        },
+        {
+          "name": "",
+          "text": "AI 切",
+          "bounds": {
+            "type": 5,
+            "x": 1268,
+            "y": 640.5,
+            "width": 32,
+            "height": 17
+          }
+        },
+        {
+          "name": "",
+          "text": "交棒",
+          "bounds": {
+            "type": 5,
+            "x": 565,
+            "y": 698.5,
+            "width": 28,
+            "height": 17
+          }
+        },
+        {
+          "name": "",
+          "text": "弃牌",
+          "bounds": {
+            "type": 5,
+            "x": 521,
+            "y": 686.5,
+            "width": 28,
+            "height": 17
+          }
+        },
+        {
+          "name": "",
+          "text": "出牌",
+          "bounds": {
+            "type": 5,
+            "x": 786.5,
+            "y": 685.5,
+            "width": 33,
+            "height": 19
+          }
+        },
+        {
+          "name": "button/play-left",
+          "text": "4 次",
+          "bounds": {
+            "type": 5,
+            "x": 790,
+            "y": 709,
+            "width": 26,
+            "height": 16
+          }
+        },
+        {
+          "name": "button/discard-left",
+          "text": "3 次",
+          "bounds": {
+            "type": 5,
+            "x": 522,
+            "y": 709,
+            "width": 26,
+            "height": 16
+          }
+        },
+        {
+          "name": "",
+          "text": "独家戏 · 系数×839523/320000 · 长按条件",
+          "bounds": {
+            "type": 5,
+            "x": 252,
+            "y": 740,
+            "width": 257,
+            "height": 16
+          }
+        },
+        {
+          "name": "",
+          "text": "道具箱 0/2",
+          "bounds": {
+            "type": 5,
+            "x": 98.5,
+            "y": 459,
+            "width": 71,
+            "height": 16
+          }
+        },
+        {
+          "name": "card-pip",
+          "text": "♠",
+          "bounds": {
+            "type": 5,
+            "x": 345.55999755859375,
+            "y": 547.3181883117187,
+            "width": 12,
+            "height": 25
+          }
+        },
+        {
+          "name": "card-pip",
+          "text": "♠",
+          "bounds": {
+            "type": 5,
+            "x": 345.55999755859375,
+            "y": 593.6119995117188,
+            "width": 12,
+            "height": 25
+          }
+        },
+        {
+          "name": "card-pip",
+          "text": "♠",
+          "bounds": {
+            "type": 5,
+            "x": 345.55999755859375,
+            "y": 639.9058107117188,
+            "width": 12,
+            "height": 25
+          }
+        },
+        {
+          "name": "rank-index",
+          "text": "3\n♠",
+          "bounds": {
+            "type": 5,
+            "x": 307.1311975585937,
+            "y": 541.7151995117188,
+            "width": 12,
+            "height": 42
+          }
+        },
+        {
+          "name": "",
+          "text": "3\n♠",
+          "bounds": {
+            "type": 5,
+            "x": 384.9887975585938,
+            "y": 628.5087995117187,
+            "width": 11,
+            "height": 42
+          }
+        },
+        {
+          "name": "card-pip",
+          "text": "♥",
+          "bounds": {
+            "type": 5,
+            "x": 436.2884098964844,
+            "y": 547.8181883117187,
+            "width": 13,
+            "height": 24
+          }
+        },
+        {
+          "name": "card-pip",
+          "text": "♥",
+          "bounds": {
+            "type": 5,
+            "x": 469.51157789648437,
+            "y": 547.8181883117187,
+            "width": 13,
+            "height": 24
+          }
+        },
+        {
+          "name": "card-pip",
+          "text": "♥",
+          "bounds": {
+            "type": 5,
+            "x": 436.2884098964844,
+            "y": 640.4058107117188,
+            "width": 13,
+            "height": 24
+          }
+        },
+        {
+          "name": "card-pip",
+          "text": "♥",
+          "bounds": {
+            "type": 5,
+            "x": 469.51157789648437,
+            "y": 640.4058107117188,
+            "width": 13,
+            "height": 24
+          }
+        },
+        {
+          "name": "rank-index",
+          "text": "4\n♥",
+          "bounds": {
+            "type": 5,
+            "x": 414.97119389648435,
+            "y": 541.7151995117188,
+            "width": 14,
+            "height": 42
+          }
+        },
+        {
+          "name": "",
+          "text": "4\n♥",
+          "bounds": {
+            "type": 5,
+            "x": 491.8287938964844,
+            "y": 628.5087995117187,
+            "width": 12,
+            "height": 42
+          }
+        },
+        {
+          "name": "card-pip",
+          "text": "♠",
+          "bounds": {
+            "type": 5,
+            "x": 543.268406234375,
+            "y": 547.3181883117187,
+            "width": 12,
+            "height": 25
+          }
+        },
+        {
+          "name": "card-pip",
+          "text": "♠",
+          "bounds": {
+            "type": 5,
+            "x": 579.211574234375,
+            "y": 547.3181883117187,
+            "width": 12,
+            "height": 25
+          }
+        },
+        {
+          "name": "card-pip",
+          "text": "♠",
+          "bounds": {
+            "type": 5,
+            "x": 561.239990234375,
+            "y": 593.6119995117188,
+            "width": 12,
+            "height": 25
+          }
+        },
+        {
+          "name": "card-pip",
+          "text": "♠",
+          "bounds": {
+            "type": 5,
+            "x": 543.268406234375,
+            "y": 639.9058107117188,
+            "width": 12,
+            "height": 25
+          }
+        },
+        {
+          "name": "card-pip",
+          "text": "♠",
+          "bounds": {
+            "type": 5,
+            "x": 579.211574234375,
+            "y": 639.9058107117188,
+            "width": 12,
+            "height": 25
+          }
+        },
+        {
+          "name": "rank-index",
+          "text": "5\n♠",
+          "bounds": {
+            "type": 5,
+            "x": 522.811190234375,
+            "y": 541.7151995117188,
+            "width": 12,
+            "height": 42
+          }
+        },
+        {
+          "name": "",
+          "text": "5\n♠",
+          "bounds": {
+            "type": 5,
+            "x": 600.668790234375,
+            "y": 628.5087995117187,
+            "width": 11,
+            "height": 42
+          }
+        },
+        {
+          "name": "card-pip",
+          "text": "♥",
+          "bounds": {
+            "type": 5,
+            "x": 651.9684330898438,
+            "y": 547.8181883117187,
+            "width": 13,
+            "height": 24
+          }
+        },
+        {
+          "name": "card-pip",
+          "text": "♥",
+          "bounds": {
+            "type": 5,
+            "x": 685.1916010898437,
+            "y": 547.8181883117187,
+            "width": 13,
+            "height": 24
+          }
+        },
+        {
+          "name": "card-pip",
+          "text": "♥",
+          "bounds": {
+            "type": 5,
+            "x": 651.9684330898438,
+            "y": 594.1119995117188,
+            "width": 13,
+            "height": 24
+          }
+        },
+        {
+          "name": "card-pip",
+          "text": "♥",
+          "bounds": {
+            "type": 5,
+            "x": 685.1916010898437,
+            "y": 594.1119995117188,
+            "width": 13,
+            "height": 24
+          }
+        },
+        {
+          "name": "card-pip",
+          "text": "♥",
+          "bounds": {
+            "type": 5,
+            "x": 651.9684330898438,
+            "y": 640.4058107117188,
+            "width": 13,
+            "height": 24
+          }
+        },
+        {
+          "name": "card-pip",
+          "text": "♥",
+          "bounds": {
+            "type": 5,
+            "x": 685.1916010898437,
+            "y": 640.4058107117188,
+            "width": 13,
+            "height": 24
+          }
+        },
+        {
+          "name": "rank-index",
+          "text": "6\n♥",
+          "bounds": {
+            "type": 5,
+            "x": 630.6512170898437,
+            "y": 541.7151995117188,
+            "width": 14,
+            "height": 42
+          }
+        },
+        {
+          "name": "",
+          "text": "6\n♥",
+          "bounds": {
+            "type": 5,
+            "x": 707.5088170898438,
+            "y": 628.5087995117187,
+            "width": 12,
+            "height": 42
+          }
+        },
+        {
+          "name": "card-pip",
+          "text": "♠",
+          "bounds": {
+            "type": 5,
+            "x": 758.9483989101562,
+            "y": 547.3181883117187,
+            "width": 12,
+            "height": 25
+          }
+        },
+        {
+          "name": "card-pip",
+          "text": "♠",
+          "bounds": {
+            "type": 5,
+            "x": 794.8915669101563,
+            "y": 547.3181883117187,
+            "width": 12,
+            "height": 25
+          }
+        },
+        {
+          "name": "card-pip",
+          "text": "♠",
+          "bounds": {
+            "type": 5,
+            "x": 776.9199829101562,
+            "y": 570.4650939117188,
+            "width": 12,
+            "height": 25
+          }
+        },
+        {
+          "name": "card-pip",
+          "text": "♠",
+          "bounds": {
+            "type": 5,
+            "x": 758.9483989101562,
+            "y": 593.6119995117188,
+            "width": 12,
+            "height": 25
+          }
+        },
+        {
+          "name": "card-pip",
+          "text": "♠",
+          "bounds": {
+            "type": 5,
+            "x": 794.8915669101563,
+            "y": 593.6119995117188,
+            "width": 12,
+            "height": 25
+          }
+        },
+        {
+          "name": "card-pip",
+          "text": "♠",
+          "bounds": {
+            "type": 5,
+            "x": 758.9483989101562,
+            "y": 639.9058107117188,
+            "width": 12,
+            "height": 25
+          }
+        },
+        {
+          "name": "card-pip",
+          "text": "♠",
+          "bounds": {
+            "type": 5,
+            "x": 794.8915669101563,
+            "y": 639.9058107117188,
+            "width": 12,
+            "height": 25
+          }
+        },
+        {
+          "name": "rank-index",
+          "text": "7\n♠",
+          "bounds": {
+            "type": 5,
+            "x": 738.4911829101562,
+            "y": 541.7151995117188,
+            "width": 12,
+            "height": 42
+          }
+        },
+        {
+          "name": "",
+          "text": "7\n♠",
+          "bounds": {
+            "type": 5,
+            "x": 816.3487829101563,
+            "y": 628.5087995117187,
+            "width": 11,
+            "height": 42
+          }
+        },
+        {
+          "name": "card-pip",
+          "text": "♠",
+          "bounds": {
+            "type": 5,
+            "x": 884.760009765625,
+            "y": 547.3181883117187,
+            "width": 12,
+            "height": 25
+          }
+        },
+        {
+          "name": "card-pip",
+          "text": "♠",
+          "bounds": {
+            "type": 5,
+            "x": 884.760009765625,
+            "y": 639.9058107117188,
+            "width": 12,
+            "height": 25
+          }
+        },
+        {
+          "name": "rank-index",
+          "text": "2\n♠",
+          "bounds": {
+            "type": 5,
+            "x": 846.331209765625,
+            "y": 541.7151995117188,
+            "width": 12,
+            "height": 42
+          }
+        },
+        {
+          "name": "",
+          "text": "2\n♠",
+          "bounds": {
+            "type": 5,
+            "x": 924.188809765625,
+            "y": 628.5087995117187,
+            "width": 11,
+            "height": 42
+          }
+        },
+        {
+          "name": "card-pip",
+          "text": "♦",
+          "bounds": {
+            "type": 5,
+            "x": 974.6283915859375,
+            "y": 547.3181883117187,
+            "width": 12,
+            "height": 25
+          }
+        },
+        {
+          "name": "card-pip",
+          "text": "♦",
+          "bounds": {
+            "type": 5,
+            "x": 1010.5715595859375,
+            "y": 547.3181883117187,
+            "width": 12,
+            "height": 25
+          }
+        },
+        {
+          "name": "card-pip",
+          "text": "♦",
+          "bounds": {
+            "type": 5,
+            "x": 974.6283915859375,
+            "y": 593.6119995117188,
+            "width": 12,
+            "height": 25
+          }
+        },
+        {
+          "name": "card-pip",
+          "text": "♦",
+          "bounds": {
+            "type": 5,
+            "x": 1010.5715595859375,
+            "y": 593.6119995117188,
+            "width": 12,
+            "height": 25
+          }
+        },
+        {
+          "name": "card-pip",
+          "text": "♦",
+          "bounds": {
+            "type": 5,
+            "x": 974.6283915859375,
+            "y": 639.9058107117188,
+            "width": 12,
+            "height": 25
+          }
+        },
+        {
+          "name": "card-pip",
+          "text": "♦",
+          "bounds": {
+            "type": 5,
+            "x": 1010.5715595859375,
+            "y": 639.9058107117188,
+            "width": 12,
+            "height": 25
+          }
+        },
+        {
+          "name": "rank-index",
+          "text": "6\n♦",
+          "bounds": {
+            "type": 5,
+            "x": 954.1711755859375,
+            "y": 541.7151995117188,
+            "width": 12,
+            "height": 42
+          }
+        },
+        {
+          "name": "",
+          "text": "6\n♦",
+          "bounds": {
+            "type": 5,
+            "x": 1032.0287755859374,
+            "y": 628.5087995117187,
+            "width": 11,
+            "height": 42
+          }
+        },
+        {
+          "name": "",
+          "text": "♠",
+          "bounds": {
+            "type": 5,
+            "x": 1091.93994140625,
+            "y": 580.9075195117188,
+            "width": 29,
+            "height": 56
+          }
+        },
+        {
+          "name": "rank-index",
+          "text": "A\n♠",
+          "bounds": {
+            "type": 5,
+            "x": 1062.01114140625,
+            "y": 541.7151995117188,
+            "width": 16,
+            "height": 42
+          }
+        },
+        {
+          "name": "",
+          "text": "A\n♠",
+          "bounds": {
+            "type": 5,
+            "x": 1135.86874140625,
+            "y": 628.5087995117187,
+            "width": 15,
+            "height": 42
+          }
+        },
+        {
+          "name": "",
+          "text": "第 1 章 · 暖场\n选1–5张出牌，不合适可弃牌换新",
+          "bounds": {
+            "type": 5,
+            "x": 596.5,
+            "y": 331.312,
+            "width": 265,
+            "height": 46
+          }
+        },
+        {
+          "name": "selection/fact-line",
+          "text": "按全部所选牌判型，最多5张",
+          "bounds": {
+            "type": 5,
+            "x": 36,
+            "y": 308,
+            "width": 176,
+            "height": 16
+          }
+        },
+        {
+          "name": "selection/rules-entry",
+          "text": "本轮可成4种 · 查看",
+          "bounds": {
+            "type": 5,
+            "x": 22,
+            "y": 414,
+            "width": 119,
+            "height": 16
+          }
+        },
+        {
+          "name": "selection/quick-label",
+          "text": "来源\n条件",
+          "bounds": {
+            "type": 5,
+            "x": 268,
+            "y": 276,
+            "width": 28,
+            "height": 34
+          }
+        },
+        {
+          "name": "selection/quick-label",
+          "text": "怎么\n凑牌",
+          "bounds": {
+            "type": 5,
+            "x": 316,
+            "y": 276,
+            "width": 28,
+            "height": 34
+          }
+        }
+      ],
+      "accumulator": {
+        "H": {
+          "n": "150",
+          "d": "1"
+        },
+        "M": {
+          "n": "839523",
+          "d": "80000"
+        }
+      },
+      "finalScore": "1574",
+      "resultTexts": [
+        {
+          "name": "stage-identity/result",
+          "text": "第 1 章 · 暖场 · 二响",
+          "bounds": {
+            "type": 5,
+            "x": 193,
+            "y": 8,
+            "width": 125,
+            "height": 16
+          }
+        },
+        {
+          "name": "result/title",
+          "text": "一场好戏，满堂喝彩！",
+          "bounds": {
+            "type": 5,
+            "x": 193,
+            "y": 42,
+            "width": 340,
+            "height": 36
+          }
+        },
+        {
+          "name": "result/source-continuity",
+          "text": "独家戏",
+          "bounds": {
+            "type": 5,
+            "x": 211,
+            "y": 286,
+            "width": 42,
+            "height": 17
+          }
+        },
+        {
+          "name": "result/source-effect",
+          "text": "读取已有 ×839,523/320,000 倍率",
+          "bounds": {
+            "type": 5,
+            "x": 211,
+            "y": 309,
+            "width": 206,
+            "height": 16
+          }
+        },
+        {
+          "name": "result/hand",
+          "text": "顺子",
+          "bounds": {
+            "type": 5,
+            "x": 826.5,
+            "y": 120,
+            "width": 33,
+            "height": 19
+          }
+        },
+        {
+          "name": "result/formula",
+          "text": "150 热度 × 839,523/80,000",
+          "bounds": {
+            "type": 5,
+            "x": 758.5,
+            "y": 144,
+            "width": 169,
+            "height": 16
+          }
+        },
+        {
+          "name": "result/score",
+          "text": "+1,574",
+          "bounds": {
+            "type": 5,
+            "x": 751,
+            "y": 166,
+            "width": 184,
+            "height": 77
+          }
+        },
+        {
+          "name": "result/gap",
+          "text": "全场 1,574 / 400",
+          "bounds": {
+            "type": 5,
+            "x": 792,
+            "y": 251,
+            "width": 102,
+            "height": 16
+          }
+        },
+        {
+          "name": "result/reward",
+          "text": "过关奖励  +8 金",
+          "bounds": {
+            "type": 5,
+            "x": 794,
+            "y": 446,
+            "width": 134,
+            "height": 22
+          }
+        },
+        {
+          "name": "",
+          "text": "准备下一场",
+          "bounds": {
+            "type": 5,
+            "x": 207,
+            "y": 546,
+            "width": 90,
+            "height": 21
+          }
+        },
+        {
+          "name": "result/next-body",
+          "text": "第 1 章 · 正场 · 目标 600\n筹备后，出牌与弃牌次数补满。\n下场交棒次数恢复为1次",
+          "bounds": {
+            "type": 5,
+            "x": 207,
+            "y": 575,
+            "width": 196,
+            "height": 52
+          }
+        },
+        {
+          "name": "",
+          "text": "本场详情",
+          "bounds": {
+            "type": 5,
+            "x": 299.5,
+            "y": 676.5,
+            "width": 61,
+            "height": 17
+          }
+        },
+        {
+          "name": "",
+          "text": "前往筹备商店",
+          "bounds": {
+            "type": 5,
+            "x": 619.5,
+            "y": 678.5,
+            "width": 133,
+            "height": 25
+          }
+        },
+        {
+          "name": "",
+          "text": "回看上手",
+          "bounds": {
+            "type": 5,
+            "x": 1008.5,
+            "y": 676.5,
+            "width": 61,
+            "height": 17
+          }
+        },
+        {
+          "name": "",
+          "text": "",
+          "bounds": {
+            "type": 5,
+            "x": 193,
+            "y": 728,
+            "width": 0,
+            "height": 16
+          }
+        }
+      ],
+      "details": "最后一手 · 已保存的结算\n\n顺子 Lv.1 · 1,574 热度\n打出：3♠、4♥、5♠、6♥、7♠\n实际计分：3♠、4♥、5♠、6♥、7♠\n\n150 × 839,523/80,000 = 1,574\n\n独家戏\n\n读取已有 ×839,523/320,000 倍率\n原因：本手计分时 · 实际牌型是两对／三条／顺子／同花／葫芦／四条／同花顺／五条／同花葫芦／同花五条（精确牌型，不自动包含其他型）\n去向：本次计分 · 已计入本手保存结果\n下一步：按来源条件选牌；查看完整计分明细。\n\n完整计分明细\n查看培养路线\n前往筹备商店继续培养\n关闭",
+      "status": "PASS"
+    },
+    {
+      "key": "straight-390",
+      "viewport": {
+        "width": 390,
+        "height": 740
+      },
+      "errors": [],
+      "input": "controlled straight public ranks3–7, a06 coefficient839523/320000",
+      "tableTexts": [
+        {
+          "name": "",
+          "text": "二响·选对子以上",
+          "bounds": {
+            "type": 5,
+            "x": 76,
+            "y": 14,
+            "width": 96,
+            "height": 14
+          }
+        },
+        {
+          "name": "",
+          "text": "目标 0 / 400",
+          "bounds": {
+            "type": 5,
+            "x": 76,
+            "y": 36,
+            "width": 86,
+            "height": 19
+          }
+        },
+        {
+          "name": "",
+          "text": "金币 6",
+          "bounds": {
+            "type": 5,
+            "x": 178,
+            "y": 14,
+            "width": 35,
+            "height": 14
+          }
+        },
+        {
+          "name": "rarity-badge/label",
+          "text": "稀",
+          "bounds": {
+            "type": 5,
+            "x": 68,
+            "y": 118.10000610351562,
+            "width": 13,
+            "height": 15
+          }
+        },
+        {
+          "name": "",
+          "text": "独家戏",
+          "bounds": {
+            "type": 5,
+            "x": 26,
+            "y": 63.000003051757815,
+            "width": 42,
+            "height": 16
+          }
+        },
+        {
+          "name": "",
+          "text": "状态 ›",
+          "bounds": {
+            "type": 5,
+            "x": 26,
+            "y": 135.60000305175782,
+            "width": 37,
+            "height": 16
+          }
+        },
+        {
+          "name": "score/source",
+          "text": "第 1 章 · 暖场",
+          "bounds": {
+            "type": 5,
+            "x": 70.5,
+            "y": 160.6,
+            "width": 145,
+            "height": 26
+          }
+        },
+        {
+          "name": "table/played-label",
+          "text": "待出牌",
+          "bounds": {
+            "type": 5,
+            "x": 37,
+            "y": 351,
+            "width": 42,
+            "height": 16
+          }
+        },
+        {
+          "name": "",
+          "text": "点数",
+          "bounds": {
+            "type": 5,
+            "x": 20,
+            "y": 500.5,
+            "width": 28,
+            "height": 17
+          }
+        },
+        {
+          "name": "",
+          "text": "花色",
+          "bounds": {
+            "type": 5,
+            "x": 64,
+            "y": 500.5,
+            "width": 28,
+            "height": 17
+          }
+        },
+        {
+          "name": "",
+          "text": "AI 切",
+          "bounds": {
+            "type": 5,
+            "x": 106,
+            "y": 500.5,
+            "width": 32,
+            "height": 17
+          }
+        },
+        {
+          "name": "",
+          "text": "交棒",
+          "bounds": {
+            "type": 5,
+            "x": 20,
+            "y": 670.5,
+            "width": 28,
+            "height": 17
+          }
+        },
+        {
+          "name": "",
+          "text": "弃牌",
+          "bounds": {
+            "type": 5,
+            "x": 113,
+            "y": 658.5,
+            "width": 28,
+            "height": 17
+          }
+        },
+        {
+          "name": "",
+          "text": "出牌",
+          "bounds": {
+            "type": 5,
+            "x": 249.5,
+            "y": 657.5,
+            "width": 33,
+            "height": 19
+          }
+        },
+        {
+          "name": "button/play-left",
+          "text": "4 次",
+          "bounds": {
+            "type": 5,
+            "x": 253,
+            "y": 681,
+            "width": 26,
+            "height": 16
+          }
+        },
+        {
+          "name": "button/discard-left",
+          "text": "3 次",
+          "bounds": {
+            "type": 5,
+            "x": 114,
+            "y": 681,
+            "width": 26,
+            "height": 16
+          }
+        },
+        {
+          "name": "",
+          "text": "独家戏 · 系数×839523/320000 · 长按条件",
+          "bounds": {
+            "type": 5,
+            "x": 12,
+            "y": 712,
+            "width": 257,
+            "height": 16
+          }
+        },
+        {
+          "name": "",
+          "text": "道具箱 0/2",
+          "bounds": {
+            "type": 5,
+            "x": 296.5,
+            "y": 501,
+            "width": 71,
+            "height": 16
+          }
+        },
+        {
+          "name": "card-pip",
+          "text": "♠",
+          "bounds": {
+            "type": 5,
+            "x": 40.5,
+            "y": 566.5244922070312,
+            "width": 7,
+            "height": 14
+          }
+        },
+        {
+          "name": "card-pip",
+          "text": "♠",
+          "bounds": {
+            "type": 5,
+            "x": 40.5,
+            "y": 596.2000122070312,
+            "width": 7,
+            "height": 14
+          }
+        },
+        {
+          "name": "card-pip",
+          "text": "♠",
+          "bounds": {
+            "type": 5,
+            "x": 40.5,
+            "y": 625.8755322070313,
+            "width": 7,
+            "height": 14
+          }
+        },
+        {
+          "name": "rank-index",
+          "text": "3\n♠",
+          "bounds": {
+            "type": 5,
+            "x": 16,
+            "y": 562.4000122070313,
+            "width": 8,
+            "height": 30
+          }
+        },
+        {
+          "name": "",
+          "text": "3",
+          "bounds": {
+            "type": 5,
+            "x": 65,
+            "y": 630.0000122070312,
+            "width": 7,
+            "height": 14
+          }
+        },
+        {
+          "name": "card-pip",
+          "text": "♥",
+          "bounds": {
+            "type": 5,
+            "x": 74.80286041259765,
+            "y": 568.0244922070312,
+            "width": 7,
+            "height": 11
+          }
+        },
+        {
+          "name": "card-pip",
+          "text": "♥",
+          "bounds": {
+            "type": 5,
+            "x": 92.48286041259766,
+            "y": 568.0244922070312,
+            "width": 7,
+            "height": 11
+          }
+        },
+        {
+          "name": "card-pip",
+          "text": "♥",
+          "bounds": {
+            "type": 5,
+            "x": 74.80286041259765,
+            "y": 627.3755322070313,
+            "width": 7,
+            "height": 11
+          }
+        },
+        {
+          "name": "card-pip",
+          "text": "♥",
+          "bounds": {
+            "type": 5,
+            "x": 92.48286041259766,
+            "y": 627.3755322070313,
+            "width": 7,
+            "height": 11
+          }
+        },
+        {
+          "name": "rank-index",
+          "text": "4\n♥",
+          "bounds": {
+            "type": 5,
+            "x": 59.142860412597656,
+            "y": 562.4000122070313,
+            "width": 9,
+            "height": 30
+          }
+        },
+        {
+          "name": "",
+          "text": "4",
+          "bounds": {
+            "type": 5,
+            "x": 108.14286041259766,
+            "y": 630.0000122070312,
+            "width": 7,
+            "height": 14
+          }
+        },
+        {
+          "name": "card-pip",
+          "text": "♠",
+          "bounds": {
+            "type": 5,
+            "x": 117.26572082519532,
+            "y": 566.5244922070312,
+            "width": 7,
+            "height": 14
+          }
+        },
+        {
+          "name": "card-pip",
+          "text": "♠",
+          "bounds": {
+            "type": 5,
+            "x": 136.30572082519532,
+            "y": 566.5244922070312,
+            "width": 7,
+            "height": 14
+          }
+        },
+        {
+          "name": "card-pip",
+          "text": "♠",
+          "bounds": {
+            "type": 5,
+            "x": 126.78572082519531,
+            "y": 596.2000122070312,
+            "width": 7,
+            "height": 14
+          }
+        },
+        {
+          "name": "card-pip",
+          "text": "♠",
+          "bounds": {
+            "type": 5,
+            "x": 117.2657208251953,
+            "y": 625.8755322070313,
+            "width": 7.000000000000014,
+            "height": 14
+          }
+        },
+        {
+          "name": "card-pip",
+          "text": "♠",
+          "bounds": {
+            "type": 5,
+            "x": 136.30572082519532,
+            "y": 625.8755322070313,
+            "width": 7,
+            "height": 14
+          }
+        },
+        {
+          "name": "rank-index",
+          "text": "5\n♠",
+          "bounds": {
+            "type": 5,
+            "x": 102.28572082519531,
+            "y": 562.4000122070313,
+            "width": 8,
+            "height": 30
+          }
+        },
+        {
+          "name": "",
+          "text": "5",
+          "bounds": {
+            "type": 5,
+            "x": 151.2857208251953,
+            "y": 630.0000122070312,
+            "width": 7,
+            "height": 14
+          }
+        },
+        {
+          "name": "card-pip",
+          "text": "♥",
+          "bounds": {
+            "type": 5,
+            "x": 161.08857360839843,
+            "y": 568.0244922070312,
+            "width": 7,
+            "height": 11
+          }
+        },
+        {
+          "name": "card-pip",
+          "text": "♥",
+          "bounds": {
+            "type": 5,
+            "x": 178.76857360839844,
+            "y": 568.0244922070312,
+            "width": 7,
+            "height": 11
+          }
+        },
+        {
+          "name": "card-pip",
+          "text": "♥",
+          "bounds": {
+            "type": 5,
+            "x": 161.08857360839843,
+            "y": 597.7000122070312,
+            "width": 7,
+            "height": 11
+          }
+        },
+        {
+          "name": "card-pip",
+          "text": "♥",
+          "bounds": {
+            "type": 5,
+            "x": 178.76857360839844,
+            "y": 597.7000122070312,
+            "width": 7,
+            "height": 11
+          }
+        },
+        {
+          "name": "card-pip",
+          "text": "♥",
+          "bounds": {
+            "type": 5,
+            "x": 161.08857360839843,
+            "y": 627.3755322070313,
+            "width": 7,
+            "height": 11
+          }
+        },
+        {
+          "name": "card-pip",
+          "text": "♥",
+          "bounds": {
+            "type": 5,
+            "x": 178.76857360839844,
+            "y": 627.3755322070313,
+            "width": 7,
+            "height": 11
+          }
+        },
+        {
+          "name": "rank-index",
+          "text": "6\n♥",
+          "bounds": {
+            "type": 5,
+            "x": 145.42857360839844,
+            "y": 562.4000122070313,
+            "width": 9,
+            "height": 30
+          }
+        },
+        {
+          "name": "",
+          "text": "6",
+          "bounds": {
+            "type": 5,
+            "x": 194.42857360839844,
+            "y": 630.0000122070312,
+            "width": 7,
+            "height": 14
+          }
+        },
+        {
+          "name": "card-pip",
+          "text": "♠",
+          "bounds": {
+            "type": 5,
+            "x": 203.55142639160155,
+            "y": 566.5244922070312,
+            "width": 7,
+            "height": 14
+          }
+        },
+        {
+          "name": "card-pip",
+          "text": "♠",
+          "bounds": {
+            "type": 5,
+            "x": 222.59142639160157,
+            "y": 566.5244922070312,
+            "width": 7,
+            "height": 14
+          }
+        },
+        {
+          "name": "card-pip",
+          "text": "♠",
+          "bounds": {
+            "type": 5,
+            "x": 213.07142639160156,
+            "y": 581.3622522070312,
+            "width": 7,
+            "height": 14
+          }
+        },
+        {
+          "name": "card-pip",
+          "text": "♠",
+          "bounds": {
+            "type": 5,
+            "x": 203.55142639160155,
+            "y": 596.2000122070312,
+            "width": 7,
+            "height": 14
+          }
+        },
+        {
+          "name": "card-pip",
+          "text": "♠",
+          "bounds": {
+            "type": 5,
+            "x": 222.59142639160157,
+            "y": 596.2000122070312,
+            "width": 7,
+            "height": 14
+          }
+        },
+        {
+          "name": "card-pip",
+          "text": "♠",
+          "bounds": {
+            "type": 5,
+            "x": 203.55142639160155,
+            "y": 625.8755322070313,
+            "width": 7,
+            "height": 14
+          }
+        },
+        {
+          "name": "card-pip",
+          "text": "♠",
+          "bounds": {
+            "type": 5,
+            "x": 222.59142639160157,
+            "y": 625.8755322070313,
+            "width": 7,
+            "height": 14
+          }
+        },
+        {
+          "name": "rank-index",
+          "text": "7\n♠",
+          "bounds": {
+            "type": 5,
+            "x": 188.57142639160156,
+            "y": 562.4000122070313,
+            "width": 8,
+            "height": 30
+          }
+        },
+        {
+          "name": "",
+          "text": "7",
+          "bounds": {
+            "type": 5,
+            "x": 237.57142639160156,
+            "y": 630.0000122070312,
+            "width": 7,
+            "height": 14
+          }
+        },
+        {
+          "name": "card-pip",
+          "text": "♠",
+          "bounds": {
+            "type": 5,
+            "x": 256.21429443359375,
+            "y": 566.5244922070312,
+            "width": 7,
+            "height": 14
+          }
+        },
+        {
+          "name": "card-pip",
+          "text": "♠",
+          "bounds": {
+            "type": 5,
+            "x": 256.21429443359375,
+            "y": 625.8755322070313,
+            "width": 7,
+            "height": 14
+          }
+        },
+        {
+          "name": "rank-index",
+          "text": "2\n♠",
+          "bounds": {
+            "type": 5,
+            "x": 231.71429443359375,
+            "y": 562.4000122070313,
+            "width": 8,
+            "height": 30
+          }
+        },
+        {
+          "name": "",
+          "text": "2",
+          "bounds": {
+            "type": 5,
+            "x": 280.71429443359375,
+            "y": 630.0000122070312,
+            "width": 7,
+            "height": 14
+          }
+        },
+        {
+          "name": "card-pip",
+          "text": "♦",
+          "bounds": {
+            "type": 5,
+            "x": 290.3371472167969,
+            "y": 566.5244922070312,
+            "width": 6,
+            "height": 14
+          }
+        },
+        {
+          "name": "card-pip",
+          "text": "♦",
+          "bounds": {
+            "type": 5,
+            "x": 309.37714721679686,
+            "y": 566.5244922070312,
+            "width": 6,
+            "height": 14
+          }
+        },
+        {
+          "name": "card-pip",
+          "text": "♦",
+          "bounds": {
+            "type": 5,
+            "x": 290.3371472167969,
+            "y": 596.2000122070312,
+            "width": 6,
+            "height": 14
+          }
+        },
+        {
+          "name": "card-pip",
+          "text": "♦",
+          "bounds": {
+            "type": 5,
+            "x": 309.37714721679686,
+            "y": 596.2000122070312,
+            "width": 6,
+            "height": 14
+          }
+        },
+        {
+          "name": "card-pip",
+          "text": "♦",
+          "bounds": {
+            "type": 5,
+            "x": 290.3371472167969,
+            "y": 625.8755322070313,
+            "width": 6,
+            "height": 14
+          }
+        },
+        {
+          "name": "card-pip",
+          "text": "♦",
+          "bounds": {
+            "type": 5,
+            "x": 309.37714721679686,
+            "y": 625.8755322070313,
+            "width": 6,
+            "height": 14
+          }
+        },
+        {
+          "name": "rank-index",
+          "text": "6\n♦",
+          "bounds": {
+            "type": 5,
+            "x": 274.8571472167969,
+            "y": 562.4000122070313,
+            "width": 8,
+            "height": 30
+          }
+        },
+        {
+          "name": "",
+          "text": "6",
+          "bounds": {
+            "type": 5,
+            "x": 323.8571472167969,
+            "y": 630.0000122070312,
+            "width": 7,
+            "height": 14
+          }
+        },
+        {
+          "name": "",
+          "text": "♠",
+          "bounds": {
+            "type": 5,
+            "x": 336.5,
+            "y": 586.9920122070313,
+            "width": 19,
+            "height": 36
+          }
+        },
+        {
+          "name": "rank-index",
+          "text": "A\n♠",
+          "bounds": {
+            "type": 5,
+            "x": 318,
+            "y": 562.4000122070313,
+            "width": 11,
+            "height": 30
+          }
+        },
+        {
+          "name": "",
+          "text": "A",
+          "bounds": {
+            "type": 5,
+            "x": 364,
+            "y": 630.0000122070312,
+            "width": 10,
+            "height": 14
+          }
+        },
+        {
+          "name": "",
+          "text": "第 1 章 · 暖场\n选1–5张出牌，不合适可弃牌换新",
+          "bounds": {
+            "type": 5,
+            "x": 62.5,
+            "y": 396,
+            "width": 265,
+            "height": 46
+          }
+        },
+        {
+          "name": "selection/fact-line",
+          "text": "按全部所选牌判型，最多5张",
+          "bounds": {
+            "type": 5,
+            "x": 55,
+            "y": 191.6,
+            "width": 176,
+            "height": 16
+          }
+        },
+        {
+          "name": "selection/rules-entry",
+          "text": "本轮可成4种 · 查看",
+          "bounds": {
+            "type": 5,
+            "x": 22,
+            "y": 265.6,
+            "width": 119,
+            "height": 16
+          }
+        },
+        {
+          "name": "selection/quick-label",
+          "text": "来源\n条件",
+          "bounds": {
+            "type": 5,
+            "x": 286,
+            "y": 160,
+            "width": 28,
+            "height": 34
+          }
+        },
+        {
+          "name": "selection/quick-label",
+          "text": "怎么\n凑牌",
+          "bounds": {
+            "type": 5,
+            "x": 334,
+            "y": 160,
+            "width": 28,
+            "height": 34
+          }
+        }
+      ],
+      "accumulator": {
+        "H": {
+          "n": "150",
+          "d": "1"
+        },
+        "M": {
+          "n": "839523",
+          "d": "80000"
+        }
+      },
+      "finalScore": "1574",
+      "resultTexts": [
+        {
+          "name": "stage-identity/result",
+          "text": "第 1 章 · 暖场 · 二响",
+          "bounds": {
+            "type": 5,
+            "x": 12,
+            "y": 8,
+            "width": 125,
+            "height": 16
+          }
+        },
+        {
+          "name": "result/title",
+          "text": "一场好戏，满堂喝彩！",
+          "bounds": {
+            "type": 5,
+            "x": 12,
+            "y": 60,
+            "width": 261,
+            "height": 27
+          }
+        },
+        {
+          "name": "result/source-continuity",
+          "text": "独家戏",
+          "bounds": {
+            "type": 5,
+            "x": 105,
+            "y": 334,
+            "width": 42,
+            "height": 17
+          }
+        },
+        {
+          "name": "result/source-effect",
+          "text": "读取已有 ×839,523/320,000 倍率",
+          "bounds": {
+            "type": 5,
+            "x": 105,
+            "y": 357,
+            "width": 206,
+            "height": 16
+          }
+        },
+        {
+          "name": "result/hand",
+          "text": "顺子",
+          "bounds": {
+            "type": 5,
+            "x": 178.5,
+            "y": 134,
+            "width": 33,
+            "height": 19
+          }
+        },
+        {
+          "name": "result/formula",
+          "text": "150 热度 × 839,523/80,000",
+          "bounds": {
+            "type": 5,
+            "x": 110.5,
+            "y": 158,
+            "width": 169,
+            "height": 16
+          }
+        },
+        {
+          "name": "result/score",
+          "text": "+1,574",
+          "bounds": {
+            "type": 5,
+            "x": 130,
+            "y": 180,
+            "width": 130,
+            "height": 55
+          }
+        },
+        {
+          "name": "result/gap",
+          "text": "全场 1,574 / 400",
+          "bounds": {
+            "type": 5,
+            "x": 144,
+            "y": 243,
+            "width": 102,
+            "height": 16
+          }
+        },
+        {
+          "name": "result/reward",
+          "text": "过关奖励  +8 金",
+          "bounds": {
+            "type": 5,
+            "x": 146,
+            "y": 280,
+            "width": 134,
+            "height": 22
+          }
+        },
+        {
+          "name": "",
+          "text": "准备下一场",
+          "bounds": {
+            "type": 5,
+            "x": 26,
+            "y": 486,
+            "width": 90,
+            "height": 21
+          }
+        },
+        {
+          "name": "result/next-body",
+          "text": "第 1 章 · 正场 · 目标 600\n筹备后，出牌与弃牌次数补满。\n下场交棒次数恢复为1次",
+          "bounds": {
+            "type": 5,
+            "x": 26,
+            "y": 515,
+            "width": 196,
+            "height": 34
+          }
+        },
+        {
+          "name": "",
+          "text": "本场详情",
+          "bounds": {
+            "type": 5,
+            "x": 71.5,
+            "y": 604.5,
+            "width": 61,
+            "height": 17
+          }
+        },
+        {
+          "name": "",
+          "text": "前往筹备商店",
+          "bounds": {
+            "type": 5,
+            "x": 128.5,
+            "y": 658.5,
+            "width": 133,
+            "height": 25
+          }
+        },
+        {
+          "name": "",
+          "text": "回看上手",
+          "bounds": {
+            "type": 5,
+            "x": 258.5,
+            "y": 604.5,
+            "width": 61,
+            "height": 17
+          }
+        },
+        {
+          "name": "",
+          "text": "",
+          "bounds": {
+            "type": 5,
+            "x": 12,
+            "y": 708,
+            "width": 0,
+            "height": 16
+          }
+        }
+      ],
+      "details": "最后一手 · 已保存的结算\n\n顺子 Lv.1 · 1,574 热度\n打出：3♠、4♥、5♠、6♥、7♠\n实际计分：3♠、4♥、5♠、6♥、7♠\n\n150 × 839,523/80,000 = 1,574\n\n独家戏\n\n读取已有 ×839,523/320,000 倍率\n原因：本手计分时 · 实际牌型是两对／三条／顺子／同花／葫芦／四条／同花顺／五条／同花葫芦／同花五条（精确牌型，不自动包含其他型）\n去向：本次计分 · 已计入本手保存结果\n下一步：按来源条件选牌；查看完整计分明细。\n\n完整计分明细\n查看培养路线\n前往筹备商店继续培养\n关闭",
+      "status": "PASS"
+    }
+  ],
+  "status": "PASS"
+}

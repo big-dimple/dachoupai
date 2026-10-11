@@ -41,10 +41,10 @@ it('additive zero shows mechanism only; every real saved growth value takes prio
   }
  }expect(growthIds).toHaveLength(14);
 });
-it('saved coefficient1 is visible; large exact numbers fall back to state, not truncated numbers/mechanisms',()=>{
+it('saved coefficient1 stays exact; large readable labels mark precision loss and details retain every digit',()=>{
  const j=r2CreateJoker('e11','coefficient',0),m=jokerMemory(def('e11'),j,ctx);expect(m.labelCandidates).toEqual(['系数×1','×1']);
  j.growth.coefficient={n:'123456789012345678901234567890',d:'1'};const big=jokerMemory(def('e11'),j,ctx);
- expect(big.short).toContain(j.growth.coefficient.n);expect(fitJokerLabel(big.labelCandidates,s=>s.length<=4,big.stateLabel)).toBe('状态 ›');expect(big.saved).toBeTruthy();
+ expect(big.short).toBe('系数×≈1.23e29');expect(fitJokerLabel(big.labelCandidates,s=>s.length<=12,big.stateLabel)).toBe('系数×≈1.23e29');expect(fitJokerLabel(big.labelCandidates,s=>s.length<=4,big.stateLabel)).toBe('状态 ›');expect(big.saved.replaceAll(',','')).toContain(j.growth.coefficient.n);
 });
 it('actual lifetime/used counts and discarded history outrank mechanism and remain public facts after refunds',()=>{
  for(const id of ['f06','d05','b12','f09']){const j=r2CreateJoker(id,id,0);j.counters={...(j.counters??{}),handsScored:4};const used={...ctx,quadRefundUsed:true,discardsUsed:1};const m=jokerMemory(def(id),j,used);expect(m.short).toBe(id==='f06'?'余0手':id==='f09'?'已弃牌':'余0次');expect(m.stateLabel).toBe(true);}

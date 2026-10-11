@@ -56,3 +56,12 @@ describe('primary numeric impact room',()=>{
     }
   });
 });
+
+it('width fallback marks precision loss once and keeps exact powers unmarked',()=>{
+ expect(compactScoreText('× 123,456,789')).toBe('× ≈1.23e8');
+ expect(compactScoreText('× -123,456,789')).toBe('× ≈-1.23e8');
+ expect(compactScoreText('× ≈123456789')).toBe('× ≈1.23e8');
+ expect(compactScoreText('× 123000000')).toBe('× 1.23e8');
+ const text=fakeText('× 123000000');fitScoreLine(text,{x:0,y:0,width:60,height:40},26,true);
+ expect(text.text).toBe('× ≈1e8');expect(text.getData('fullText')).toBe('× 123000000');
+});

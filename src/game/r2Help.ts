@@ -3,7 +3,7 @@ import {getR2Joker} from '../domain/r2Shop';
 import type {DomainEvent} from '../domain/run';
 import {SCORE_LIMITS,type ScoreEvent} from '../domain/scoreR2';
 import {Rational} from '../domain/rational';
-import {fractionText} from './scoreText';
+import {fractionText,readableFractionText} from './scoreText';
 import {HAND_LABELS} from '../content/handLabels';
 import {getR2Tool} from '../content/r2Tools';
 
@@ -82,15 +82,15 @@ export function r2JokerValue(joker:R2JokerInstance,context:{gold:number;jokerCou
   const limited=operations.find(operation=>operation.kind==='add-gold-limited');
   if(limited?.kind==='add-gold-limited')return '余'+Math.max(0,limited.limit-(joker.counters?.singleDiscards??0))+'次';
   const stored=operations.find(operation=>operation.kind==='consume-growth');
-  if(stored?.kind==='consume-growth')return '待用+'+fractionText(joker.growth[stored.key]??{n:'0',d:'1'});
+  if(stored?.kind==='consume-growth')return '待用+'+readableFractionText(joker.growth[stored.key]??{n:'0',d:'1'});
   const coefficient=operations.find(operation=>operation.kind==='read-coefficient');
-  if(coefficient?.kind==='read-coefficient')return '×'+fractionText(joker.growth[coefficient.key]);
+  if(coefficient?.kind==='read-coefficient')return '×'+readableFractionText(joker.growth[coefficient.key]);
   if(operations.some(operation=>operation.kind==='reward-consumable-every-clears'))return joker.counters!.stageClears===1?'下关':'2关';
   const growth=operations.find(operation=>operation.kind==='read-growth');
-  if(growth?.kind==='read-growth')return '+'+fractionText(joker.growth[growth.key]??{n:'0',d:'1'});
+  if(growth?.kind==='read-growth')return '+'+readableFractionText(joker.growth[growth.key]??{n:'0',d:'1'});
   const heat=operations.find(operation=>operation.kind==='add-heat-per-gold'||operation.kind==='add-heat-per-empty-slot');
   if(heat?.kind==='add-heat-per-gold'||heat?.kind==='add-heat-per-empty-slot'){
-    return '+'+fractionText(r2ResourceHeatValue(heat,context));
+    return '+'+readableFractionText(r2ResourceHeatValue(heat,context));
   }
   const modifier=definition.modifiers?.find(modifier=>modifier.kind==='hand-limit');
   if(modifier?.kind==='hand-limit'&&modifier.deckMaximum!==undefined&&context.deckSize>modifier.deckMaximum)return '未生效';
