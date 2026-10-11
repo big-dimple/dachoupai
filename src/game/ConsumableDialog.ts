@@ -266,7 +266,12 @@ export function showConsumables(dialog:DetailDialog,state:R2RunState,ready:boole
       }
       directoryUpdates.forEach(update=>update());selects.forEach(select=>{select.disabled=busy;});useAction.disabled=busy||!!issue;destroyAction.disabled=busy||!ready;confirm.disabled=useAction.disabled;destroy.disabled=destroyAction.disabled;
       hint.textContent=busy?'正在提交并保存…':issue??'目标有效。确认后使用物品并支付上述代价。';hint.dataset.valid=String(!issue);
-      selectionHint.textContent=(tool.target.kind==='cards'||tool.target.kind==='card-sacrifice')&&selection.ids.size===tool.target.maximum?'已选满，取消一张可换目标。':'';selectionHint.hidden=!selectionHint.textContent;
+      // Keep this status row present so full/deselect cannot resize and clamp a bottom-scrolled target pane.
+      selectionHint.textContent=tool.target.kind==='cards'||tool.target.kind==='card-sacrifice'
+        ?selection.ids.size===tool.target.maximum
+          ?tool.target.maximum===1?'已选 1 张，可直接选择另一张。':'已选满，取消一张可换目标。'
+          :`已选 ${selection.ids.size}/${tool.target.maximum} 张，可继续选择。`
+        :'';selectionHint.hidden=!selectionHint.textContent;
       const lines:string[]=[];
       if(selection.sacrificeId){const donor=(tool.target.kind==='joker-sacrifice'?jokerChoices:cardChoices).find(choice=>choice.id===selection.sacrificeId);if(donor)lines.push(`永久牺牲：${donor.name} · ${donor.detail.replace('\n',' · ')}。不作为出售，不退款。`);}
       changes.replaceChildren();if(tool.target.kind==='card-sacrifice'&&selection.sacrificeId){const donor=known.find(c=>c.id===selection.sacrificeId);if(donor)renderCardChange(changes,{before:donor,label:'永久献出',note:'牌组 −1 · 不退款'},0);}selected.forEach((choice,index)=>{if(choice.card){const change=toolCardChange(tool,choice.card);if(change)renderCardChange(changes,tool.id==='T12'?{...change,note:''}:change,index);else if(tool.operation.kind==='random-enhancement'){const row=document.createElement('figure'),title=document.createElement('figcaption'),face=document.createElement('span'),unknown=document.createElement('strong');row.className='tool-change-card';row.dataset.sourceId=choice.card.id;title.textContent=`受益 ${index+1} · 点数／花色／版次保留`;renderToolCard(face,choice.card);unknown.textContent='→ 随机增强（保存后揭晓）';unknown.className='tool-change-unknown';row.append(title,face,unknown);changes.append(row);}}});
