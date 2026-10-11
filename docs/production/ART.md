@@ -1,5 +1,12 @@
 # D44 当前视觉合同
 
+## 当前复用与统一美术范围
+
+2026-10-11：以D44成熟手绘及[DELIVERY_PLAN当前统一执行计划](DELIVERY_PLAN.md#当前统一执行计划)为准。纸白/卡纸、墨、青蓝与唯一主动作朱红，以及六人可信年龄/职业/体态差异继续保留；下方旧A/B、24牌/27图待接入等仅属于其来源阶段，不重开全库制作。
+
+当前main57b63dd两份manifest为81角色/72功能牌/JQK记录和51工具/物品记录，共267运行输出；静态映射已存在。复用六立绘/头像、72卡、JQK、39工具和12物品，在同版选角、商店、牌桌、工具、来源、胜败/设置/错误态统一构图/字号/纸边/动作。映射与数量不代替像素、解剖或审美签收；只有具体有证据的缺陷才局部加工/重制。共用视觉合同在第一批开工前锁定：选角/商店/改牌/结算的真实尺寸PC与手机整屏样板，统一字体/间距/按钮层级/选中与推荐区分；样板丑或信息层级不清不铺开，批二/三继承同规范，不把音画拖到批三。复用来源、具体模块、已采用/候选、许可、目标体验和验收统一见当前计划复用矩阵，不以“借鉴过”代签整屏完成。武侠包装、全3D/联网和新资产扩产暂缓；目前只整理计划，未实施或自动批准新图。
+
+
 P08 c08/c09独立小增量（UTC 2026-10-04）：b2 main76557f24精确CI37174251434/docs37174251527均success，停止旧CI检查。仅消费合法b0394ef四档缺档c08及缺角布c09，4WebP91906B，原云逐hash/portable异cwd/四图actual view通过；注册本2ID，原47映射不变，现新15/72、旧22、机制35，51runtime1455792B。59受影响tests/type及390×740实际两图/HD按需hash/缓存/404保缩略固定框重试/完整run不变PASS；双four四红桃仍普通同花，完整常驻例外14px/res1.5。仅一新场景PNGactual view，fixture非自然购买/部署/整体/设备PASS；evidence/p08-handdrawn-b3-2026-10-04。新消费源码7b0992d冻结1866 tests/104files、content、type/build、Canvas双端smoke、plan全PASS，source/index/HEAD不变；正常FF/精确新CI另报，review0767d50仅一现成PNG/README；fire审批pending不绕路；不生图、不改玩法/RNG/save/PC/部署。
 
 P08两图小增量（UTC 2026-10-04）：四牌短修main89339f0精确CI37173247948/docs37173247924均success，旧CI不再检查。合法素材3284505仅取授权目录，manifest逐hash/portable异cwd verify/四个实际像素PASS；铁算盘旧本ID替换、f10机制本ID替换，现新13/72、旧22、机制37，合计47WebP/1363886B，原43输出不变。46受影响tests/type及390×740 Canvas BASE_URL/实际两纹理/HD按需/缓存/404保缩略固定框重试/完整run不变PASS，一张现成牌桌图已actual view并review e1da046仅PNG+README正常push；候选非main部署/整体/真机PASS。root已actual GitHub view e1da046局部候选方向通过；新源码82fc462冻结1865 tests/104files、content、type/build、Canvas双端smoke、plan全PASS，source/index/HEAD不变，正常FF/精确CI另报；火审批pending不绕路，c08/c09合法输入后下一独立增量，不混本冻结。A03/P08只读精确72覆盖与c08/c09机制条件建议归evidence/p08-handdrawn-b2-2026-10-04，未生成或接未approved图。OnePlus/真GPU/听感NOT_RUN。
