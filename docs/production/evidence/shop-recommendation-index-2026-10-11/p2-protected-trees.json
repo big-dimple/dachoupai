@@ -1,0 +1,25 @@
+{
+  "base": "ed9a4a58874a448c371a604d40f57a003faa7a50",
+  "mergedHead": "f6398c9a240dc4768fa181904d873f1eb257dbd9",
+  "nativeProductHead": "0de0cf28eda34b0537642fd63dbc6b6be3efaaea",
+  "ownSourceUnchangedAcrossMerge": true,
+  "allowedChanged": [
+    "src/game/ShopOfferGuidance.ts",
+    "src/game/ShopRecommendation.ts",
+    "src/game/ShopRouteRelations.ts",
+    "src/game/ShopScene.ts",
+    "tests/shop-current-decisions.test.ts",
+    "tests/shop-offer-guidance.test.ts",
+    "tests/shop-recommendation.test.ts"
+  ],
+  "protectedBlobCount": 907,
+  "protectedUnchanged": true,
+  "historicalPlanUnchanged": true,
+  "historicalPlanSha256": "664f841aa85193464c760d9d124932c7ae1b7345a8b5a7cd3a0ec8491a0621b5",
+  "ownSourceBlobs": {
+    "src/game/ShopOfferGuidance.ts": "f3767ca94c6a7445acafa4151ac5696581c5eaa4",
+    "src/game/ShopRecommendation.ts": "f54437e078b3f56328593af481b96041b98eb4c5",
+    "src/game/ShopRouteRelations.ts": "166cfb367cb50a8be036baf35fd24fa2b995dbc3",
+    "src/game/ShopScene.ts": "ce877e6da43047d71fa216c570fcb4ac5a57f327"
+  }
+}

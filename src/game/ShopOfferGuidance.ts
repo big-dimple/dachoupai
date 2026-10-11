@@ -4,8 +4,8 @@ import type {R2Offer} from '../domain/r2Shop';
 import {r2PurchasePrice} from '../domain/r2Shop';
 import {r2CreateJoker} from '../domain/r2Run';
 import {r2JokerCapacity} from '../domain/r2Resources';
-import {r2JokerDefinitionFor} from '../domain/r2ContentProfiles';
 import {currentBuildFocus} from './BuildDirectionPreferences';
+import {shopRecommendation} from './ShopRecommendation';
 import {shopRouteRelation,shopRouteAdvice,shopPurchaseConditionLosses} from './ShopRouteRelations';
 const routes=['group','straight','flush'] as const;
 const names={group:'同点',straight:'顺子',flush:'同花'};
@@ -17,30 +17,17 @@ export function jokerRouteCaption(state:R2RunState,j:R2JokerInstance,heldWidth?:
  if(heldWidth!==undefined&&applicable.length===3)return labels.slice(0,2).join('/')+'\n'+labels[2];
  return labels.join('/')||'核对条件';
 }
-/** Conservative current-run advice; only 1–3 have public evidence here. No rarity, net-upgrade prediction or RNG input. */
+/** Recommendation value and transaction feasibility are separate public results. */
 export function shopOfferGuidance(state:R2RunState,offer:R2Offer){
- const focus=currentBuildFocus(state,state.openingRoute),j=r2CreateJoker(offer.definitionId,'guidance/'+offer.offerId,offer.price,offer.edition,state),d=r2JokerDefinitionFor(state,j.definitionId),price=r2PurchasePrice(state,offer);
- const result=(stars:0|1|2|3,reason:string,detail=reason)=>({stars,reason,detail,routes:jokerApplicableRoutes(state,j),routeCaption:jokerRouteCaption(state,j),label:stars?'本局'+'★'.repeat(stars):'本局待选'});
- if(offer.consumed)return result(1,'已购');
- if(state.jokers.some(h=>h.definitionId===j.definitionId))return result(1,'已持同名');
- if(price>state.gold)return result(1,`差${price-state.gold}金`);
- if(!focus)return result(0,'先选路线');
- // Reuse the route advice's assessed transaction, including the proposed sale.
- // An empty assessed loss list must not fall back to a different direct purchase.
- const advice=shopRouteAdvice(state,focus).items.find(a=>a.offer.offerId===offer.offerId),losses=advice?.purchaseConditionLosses??shopPurchaseConditionLosses(state,offer);
- if(losses.length)return result(1,'先留金币',losses.join('\n'));
- if(state.jokers.length>=r2JokerCapacity(state)&&advice?.verdict!=='compare')return result(1,'需先腾槽',advice?.reason);
- if(advice?.verdict==='compare')return result(2,'先比替换',advice.reason+(advice.loss?'\n'+advice.loss:''));
- if(shopRouteRelation(state,j,focus).kind==='other')return result(1,'非当前路');
- if(advice?.verdict==='consider')return result(3,'补缺口',advice.reason);
- const operations=d.hooks.flatMap(h=>h.condition.kind==='always'?h.operations:[]),heldRoles=new Set(state.jokers.flatMap(h=>r2JokerDefinitionFor(state,h.definitionId).hooks.flatMap(h=>h.operations.map(o=>o.kind))));
- const gap=operations.find(o=>(o.kind==='add-heat'||o.kind==='add-multiplier')&&!heldRoles.has(o.kind));
- if(gap)return result(3,gap.kind==='add-heat'?'补热度':'补倍率','无牌型限制的真实加成；当前持有缺少这一加成类型，实际仍按封禁/结算事件检查。');
- if(d.modifiers?.some(m=>m.kind==='first-purchase-discount'))return result(2,'后续省金','购买前未持有不减本笔；后续各店首次成功购买按原规则减1金，不保证回本。');
- const heldRank=d.hooks.find(h=>h.condition.kind==='held-rank-first');
- if(heldRank&&heldRank.condition.kind==='held-rank-first'){
-  const c=heldRank.condition,possible=state.deckInstances.some(card=>!state.destroyedIds.includes(card.id)&&c.values.includes(card.rank));
-  return possible?result(2,'须留低牌',`公开牌组有${c.values.join('/')}；须把它们留在前${c.limit}位才读收益，不保证下一手抽到。`):result(1,'缺所需点数');
- }
- return result(2,'先核条件',advice?.reason??d.description);
+ const focus=currentBuildFocus(state,state.openingRoute),j=r2CreateJoker(offer.definitionId,'guidance/'+offer.offerId,offer.price,offer.edition,state),price=r2PurchasePrice(state,offer),recommendation=shopRecommendation(state,offer,focus);
+ const full=state.jokers.length>=r2JokerCapacity(state),same=state.jokers.some(h=>h.definitionId===j.definitionId);
+ // Preserve PR118's evaluated replacement facts, including a deliberately empty list.
+ const advice=focus?shopRouteAdvice(state,focus).items.find(a=>a.offer.offerId===offer.offerId):undefined,losses=advice?.purchaseConditionLosses??shopPurchaseConditionLosses(state,offer);
+ const operation=offer.consumed?'已购':same?'已持同名':full?'需替换':price>state.gold?`差${price-state.gold}金`:'可购买';
+ const cashBasis=advice?.replaceId?'拟换第'+(state.jokers.findIndex(j=>j.instanceId===advice.replaceId)+1)+'槽':full?'未选替换：以下仅为直接买入现金':'直接买入';
+ const stars=recommendation.stars,label=stars?'推荐指数 '+'★'.repeat(stars)+'☆'.repeat(5-stars):'推荐指数 待核';
+ return {stars,label,reason:recommendation.reason,condition:recommendation.condition,recommendation,operation,operationShort:losses.length?'现金风险':full&&!same&&!offer.consumed&&price>state.gold?`差${price-state.gold}金`:operation,
+  purchaseConditionLosses:losses,cashBasis,replaceId:advice?.replaceId,
+  detail:recommendation.detail+'\n'+operation+(price>state.gold?` · 直接买入差${price-state.gold}金`:'')+(losses.length?'\n'+cashBasis+'\n'+losses.join('\n'):''),
+  routes:jokerApplicableRoutes(state,j),routeCaption:jokerRouteCaption(state,j)};
 }

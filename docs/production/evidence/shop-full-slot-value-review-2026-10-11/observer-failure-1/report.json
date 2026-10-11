@@ -1,0 +1,5288 @@
+{
+  "head": "e48fd07a6e7b4575067dc356ad28cb0a94fe15e9",
+  "sourceTree": "36f5b2e08773ece2c38f40e6f276bfd3c8fa48ef",
+  "sourceChanges": "",
+  "harnessSha256": "1abcc469766beec92f0ffd0d28bc08e26dad50ec14f15e3780766155a2607375",
+  "scope": "Read-only controlled current-identity shop imports, actual mouse/touch UI and screenshots; paired real scorer counterexamples on public cards and clone-only real transaction commands. No product change, natural acquisition, natural games, physical-device acceptance or deployment.",
+  "cases": [
+    {
+      "width": 1180,
+      "height": 757,
+      "touch": false,
+      "key": "full-same-role",
+      "errors": [],
+      "before": {
+        "gold": 40,
+        "contentVersion": "quality-r2-basic-suit-choice-v1",
+        "contentHash": "json-fnv-v1:69c29f5cd54bb160",
+        "commandSeq": 4,
+        "held": [
+          {
+            "instanceId": "value-held/0",
+            "definitionId": "mantangcai",
+            "paidPrice": 8,
+            "growth": {}
+          },
+          {
+            "instanceId": "value-held/1",
+            "definitionId": "b02",
+            "paidPrice": 8,
+            "growth": {}
+          },
+          {
+            "instanceId": "value-held/2",
+            "definitionId": "b03",
+            "paidPrice": 8,
+            "growth": {
+              "multiplier": {
+                "n": "1",
+                "d": "1"
+              }
+            }
+          },
+          {
+            "instanceId": "value-held/3",
+            "definitionId": "e01",
+            "paidPrice": 8,
+            "growth": {}
+          },
+          {
+            "instanceId": "value-held/4",
+            "definitionId": "e04",
+            "paidPrice": 8,
+            "growth": {}
+          }
+        ],
+        "journalLength": 0
+      },
+      "advice": {
+        "items": [
+          {
+            "offer": {
+              "offerId": "value-offer/0",
+              "definitionId": "b04",
+              "price": 4,
+              "consumed": false
+            },
+            "verdict": "skip",
+            "reason": "已有对上眼（无成长或使用计数）；新牌倍率+2，未补明确缺口，建议先不买。"
+          },
+          {
+            "offer": {
+              "offerId": "value-offer/1",
+              "definitionId": "e08",
+              "price": 8,
+              "consumed": false
+            },
+            "verdict": "skip",
+            "reason": "当前构筑没有明确需要它的条件；倍率×1.8，这轮先留金。"
+          },
+          {
+            "offer": {
+              "offerId": "value-offer/2",
+              "definitionId": "c08",
+              "price": 6,
+              "consumed": false
+            },
+            "verdict": "skip",
+            "reason": "它的条件不补当前同点成组；想用它时先主动换方向。"
+          }
+        ],
+        "candidates": [],
+        "headline": "这轮不买，留40金",
+        "reason": "当前货架没有明确补强这条路线的牌；保留现有构筑，或主动换方向。"
+      },
+      "offers": [
+        {
+          "offer": {
+            "offerId": "value-offer/0",
+            "definitionId": "b04",
+            "price": 4,
+            "consumed": false
+          },
+          "name": "一唱一和",
+          "guidance": {
+            "stars": 1,
+            "reason": "需先腾槽",
+            "detail": "已有对上眼（无成长或使用计数）；新牌倍率+2，未补明确缺口，建议先不买。",
+            "routes": [
+              "group"
+            ],
+            "routeCaption": "同点",
+            "label": "本局★"
+          }
+        },
+        {
+          "offer": {
+            "offerId": "value-offer/1",
+            "definitionId": "e08",
+            "price": 8,
+            "consumed": false
+          },
+          "name": "包场",
+          "guidance": {
+            "stars": 1,
+            "reason": "需先腾槽",
+            "detail": "当前构筑没有明确需要它的条件；倍率×1.8，这轮先留金。",
+            "routes": [
+              "group",
+              "straight",
+              "flush"
+            ],
+            "routeCaption": "同点/顺子/同花",
+            "label": "本局★"
+          }
+        },
+        {
+          "offer": {
+            "offerId": "value-offer/2",
+            "definitionId": "c08",
+            "price": 6,
+            "consumed": false
+          },
+          "name": "少一级",
+          "guidance": {
+            "stars": 1,
+            "reason": "需先腾槽",
+            "detail": "它的条件不补当前同点成组；想用它时先主动换方向。",
+            "routes": [
+              "straight"
+            ],
+            "routeCaption": "顺子",
+            "label": "本局★"
+          }
+        }
+      ],
+      "rendered": [
+        {
+          "name": "shop/offer-purpose",
+          "offerId": "value-offer/0",
+          "text": "≥2组各≥2张同点 → 每手一次，倍\n率+2",
+          "bounds": {
+            "x": 298,
+            "y": 437,
+            "width": 207,
+            "height": 32
+          },
+          "visible": true,
+          "effectiveAlpha": 1
+        },
+        {
+          "name": "shop/offer-routes",
+          "offerId": "value-offer/0",
+          "text": "同点",
+          "bounds": {
+            "x": 298,
+            "y": 505,
+            "width": 28,
+            "height": 16
+          },
+          "visible": true,
+          "effectiveAlpha": 1
+        },
+        {
+          "name": "shop/offer-advice",
+          "offerId": "value-offer/0",
+          "text": "本局★ · 需先腾槽",
+          "stars": 1,
+          "reason": "已有对上眼（无成长或使用计数）；新牌倍率+2，未补明确缺口，建议先不买。",
+          "bounds": {
+            "x": 398,
+            "y": 505,
+            "width": 56,
+            "height": 32
+          },
+          "visible": true,
+          "effectiveAlpha": 1
+        },
+        {
+          "name": "shop/offer-reason",
+          "offerId": "value-offer/0",
+          "text": "槽位已满",
+          "bounds": {
+            "x": 298,
+            "y": 545,
+            "width": 56,
+            "height": 16
+          },
+          "visible": true,
+          "effectiveAlpha": 1
+        },
+        {
+          "name": "shop/offer-purpose",
+          "offerId": "value-offer/1",
+          "text": "出牌前≥20金 → 每手一次，倍率×\n1.8\n现在40金 · 金币条件目前够；未\n购，买后重查",
+          "bounds": {
+            "x": 538,
+            "y": 437,
+            "width": 208,
+            "height": 64
+          },
+          "visible": true,
+          "effectiveAlpha": 1
+        },
+        {
+          "name": "shop/offer-routes",
+          "offerId": "value-offer/1",
+          "text": "同点/顺子/同花",
+          "bounds": {
+            "x": 538,
+            "y": 505,
+            "width": 92,
+            "height": 16
+          },
+          "visible": true,
+          "effectiveAlpha": 1
+        },
+        {
+          "name": "shop/offer-advice",
+          "offerId": "value-offer/1",
+          "text": "本局★ · 需先腾槽",
+          "stars": 1,
+          "reason": "当前构筑没有明确需要它的条件；倍率×1.8，这轮先留金。",
+          "bounds": {
+            "x": 638,
+            "y": 505,
+            "width": 56,
+            "height": 32
+          },
+          "visible": true,
+          "effectiveAlpha": 1
+        },
+        {
+          "name": "shop/offer-reason",
+          "offerId": "value-offer/1",
+          "text": "槽位已满",
+          "bounds": {
+            "x": 538,
+            "y": 545,
+            "width": 56,
+            "height": 16
+          },
+          "visible": true,
+          "effectiveAlpha": 1
+        },
+        {
+          "name": "shop/offer-purpose",
+          "offerId": "value-offer/2",
+          "text": "普通顺子 → 4张即可；同花顺仍5\n张",
+          "bounds": {
+            "x": 778,
+            "y": 437,
+            "width": 206,
+            "height": 32
+          },
+          "visible": true,
+          "effectiveAlpha": 1
+        },
+        {
+          "name": "shop/offer-routes",
+          "offerId": "value-offer/2",
+          "text": "顺子",
+          "bounds": {
+            "x": 778,
+            "y": 505,
+            "width": 28,
+            "height": 16
+          },
+          "visible": true,
+          "effectiveAlpha": 1
+        },
+        {
+          "name": "shop/offer-advice",
+          "offerId": "value-offer/2",
+          "text": "本局★ · 需先腾槽",
+          "stars": 1,
+          "reason": "它的条件不补当前同点成组；想用它时先主动换方向。",
+          "bounds": {
+            "x": 878,
+            "y": 505,
+            "width": 56,
+            "height": 32
+          },
+          "visible": true,
+          "effectiveAlpha": 1
+        },
+        {
+          "name": "shop/offer-reason",
+          "offerId": "value-offer/2",
+          "text": "槽位已满",
+          "bounds": {
+            "x": 778,
+            "y": 545,
+            "width": 56,
+            "height": 16
+          },
+          "visible": true,
+          "effectiveAlpha": 1
+        },
+        {
+          "name": "shop/offer-purpose",
+          "offerId": "full-slot-value-review/shop/1/0/tool/0",
+          "text": "选中牌打出且每次有效计分时，热度+\n20",
+          "bounds": {
+            "x": 378,
+            "y": 613,
+            "width": 233,
+            "height": 32
+          },
+          "visible": true,
+          "effectiveAlpha": 1
+        },
+        {
+          "name": "shop/offer-purpose",
+          "offerId": "full-slot-value-review/shop/1/0/item/0",
+          "text": "每间商店第一次成功购买价格−1金，至\n少1金，可与大丑牌优惠叠加",
+          "bounds": {
+            "x": 740,
+            "y": 613,
+            "width": 240,
+            "height": 32
+          },
+          "visible": true,
+          "effectiveAlpha": 1
+        }
+      ],
+      "screenshot": "1180x757-full-same-role.png",
+      "detailText": "现货 · 确认后付款\n一唱一和 · 购买详情\n\n适用：同点\n\n● 普通\n≥2组各≥2张同点 → 每手一次，倍率+2\n两对、葫芦可以满足；只有一组同点数的三条或四条不满足。\n未购买；买入后才生效\n\n版次：普通（无额外计分）\n\n实付 2 金 · 余额 40 → 38 金\n5个槽位已满。请先关闭详情，点随身牌确认出售，再购买。\n优惠 2 金 · 使用1张减2金券\n\n高清细节加载中…\n规则与操作\n与持有牌比较\n邀请 · 2 金\n取消",
+      "detailScreenshot": "1180x757-full-same-role-detail.png"
+    }
+  ],
+  "counterexamples": [
+    {
+      "offerId": "b04",
+      "soldId": "b02",
+      "originalGuidance": {
+        "stars": 1,
+        "reason": "需先腾槽",
+        "detail": "已有对上眼（无成长或使用计数）；新牌倍率+2，未补明确缺口，建议先不买。",
+        "routes": [
+          "group"
+        ],
+        "routeCaption": "同点",
+        "label": "本局★"
+      },
+      "hand": [
+        {
+          "id": "spades-7",
+          "suit": "spades",
+          "rank": 7
+        },
+        {
+          "id": "hearts-7",
+          "suit": "hearts",
+          "rank": 7
+        },
+        {
+          "id": "clubs-8",
+          "suit": "clubs",
+          "rank": 8
+        },
+        {
+          "id": "diamonds-8",
+          "suit": "diamonds",
+          "rank": 8
+        },
+        {
+          "id": "clubs-10",
+          "suit": "clubs",
+          "rank": 10
+        },
+        {
+          "id": "diamonds-11",
+          "suit": "diamonds",
+          "rank": 11
+        },
+        {
+          "id": "spades-12",
+          "suit": "spades",
+          "rank": 12
+        },
+        {
+          "id": "hearts-14",
+          "suit": "hearts",
+          "rank": 14
+        }
+      ],
+      "selectedIds": [
+        "spades-7",
+        "hearts-7"
+      ],
+      "retainedInput": {
+        "jokers": [
+          {
+            "instanceId": "value-held/0",
+            "definitionId": "mantangcai",
+            "paidPrice": 8,
+            "growth": {}
+          },
+          {
+            "instanceId": "value-held/1",
+            "definitionId": "b02",
+            "paidPrice": 8,
+            "growth": {}
+          },
+          {
+            "instanceId": "value-held/2",
+            "definitionId": "b03",
+            "paidPrice": 8,
+            "growth": {
+              "multiplier": {
+                "n": "1",
+                "d": "1"
+              }
+            }
+          },
+          {
+            "instanceId": "value-held/3",
+            "definitionId": "e01",
+            "paidPrice": 8,
+            "growth": {}
+          },
+          {
+            "instanceId": "value-held/4",
+            "definitionId": "e04",
+            "paidPrice": 8,
+            "growth": {}
+          }
+        ],
+        "gold": 40,
+        "handLevels": {},
+        "scoreContext": {
+          "laohuanTrick": true,
+          "amoScoreTiming": "after-joker",
+          "characterId": "laohuan",
+          "jokerSlots": 5,
+          "gold": 40,
+          "discardsUsed": 0,
+          "previousHandScore": null,
+          "boss": null,
+          "sealedJokerIds": [],
+          "challengeDisabledJokerId": null,
+          "stageHeatBefore": "0",
+          "stageTargetHeat": "400",
+          "handRules": {
+            "fourStraight": false,
+            "fourFlush": false
+          },
+          "ordinaryPointsSuppressedIds": []
+        }
+      },
+      "transaction": {
+        "afterSale": [
+          {
+            "instanceId": "value-held/0",
+            "definitionId": "mantangcai",
+            "paidPrice": 8,
+            "growth": {}
+          },
+          {
+            "instanceId": "value-held/2",
+            "definitionId": "b03",
+            "paidPrice": 8,
+            "growth": {
+              "multiplier": {
+                "n": "1",
+                "d": "1"
+              }
+            }
+          },
+          {
+            "instanceId": "value-held/3",
+            "definitionId": "e01",
+            "paidPrice": 8,
+            "growth": {}
+          },
+          {
+            "instanceId": "value-held/4",
+            "definitionId": "e04",
+            "paidPrice": 8,
+            "growth": {}
+          }
+        ],
+        "goldAfterSale": 44,
+        "afterPurchase": [
+          {
+            "instanceId": "value-held/0",
+            "definitionId": "mantangcai",
+            "paidPrice": 8,
+            "growth": {}
+          },
+          {
+            "instanceId": "value-held/2",
+            "definitionId": "b03",
+            "paidPrice": 8,
+            "growth": {
+              "multiplier": {
+                "n": "1",
+                "d": "1"
+              }
+            }
+          },
+          {
+            "instanceId": "value-held/3",
+            "definitionId": "e01",
+            "paidPrice": 8,
+            "growth": {}
+          },
+          {
+            "instanceId": "value-held/4",
+            "definitionId": "e04",
+            "paidPrice": 8,
+            "growth": {}
+          },
+          {
+            "instanceId": "full-slot-value-review/joker/full-slot-value-review/review/6",
+            "definitionId": "b04",
+            "paidPrice": 2,
+            "growth": {}
+          }
+        ],
+        "goldAfterPurchase": 42
+      },
+      "replacementFacts": {
+        "saleEffects": [],
+        "held": {
+          "kind": "direct",
+          "label": "路线直接条件",
+          "tag": "主线",
+          "body": "路线直接条件 · 明确条件涉及同点成组。\n计分牌的点数在实际打出牌中至少出现2次时，该牌倍率 +0.25。\n同打的同点数牌至少2张，附带和停用也参与计数\n用途不表示已发动或最优；仍按实际条件、封禁和保存事件检查。"
+        },
+        "offer": {
+          "kind": "direct",
+          "label": "路线直接条件",
+          "tag": "主线",
+          "body": "路线直接条件 · 明确条件涉及同点成组。\n实际打出牌含至少两组不同点数、每组至少2张时，整手倍率 +2。\n打出至少2组不同点数、各至少2张同点的牌\n用途不表示已发动或最优；仍按实际条件、封禁和保存事件检查。"
+        },
+        "loss": "出售将失去「对上眼」的效果、版次和当前实例：无成长或使用计数。同名新购牌从新实例初值开始，不继承成长。",
+        "connections": "未记录与现持其它牌在上手共同触发；这不代表没有配合机会。",
+        "money": "当前余额 40 金；该牌基础卖价 4 金；现货「一唱一和」当前实付 2 金。出售和购买分别确认，交易来源、优惠和售后余额以实际保存结果重算。"
+      },
+      "retainedPreview": {
+        "handType": "pair",
+        "level": 1,
+        "base": {
+          "H": {
+            "n": "35",
+            "d": "1"
+          },
+          "M": {
+            "n": "2",
+            "d": "1"
+          }
+        },
+        "sets": {
+          "playedIds": [
+            "spades-7",
+            "hearts-7"
+          ],
+          "scoringIds": [
+            "spades-7",
+            "hearts-7"
+          ],
+          "activeScoringIds": [
+            "spades-7",
+            "hearts-7"
+          ],
+          "heldIds": [
+            "clubs-8",
+            "diamonds-8",
+            "clubs-10",
+            "diamonds-11",
+            "spades-12",
+            "hearts-14"
+          ]
+        },
+        "breakdown": {
+          "minimum": {
+            "H": {
+              "n": "139",
+              "d": "1"
+            },
+            "M": {
+              "n": "7",
+              "d": "2"
+            }
+          },
+          "maximum": {
+            "H": {
+              "n": "139",
+              "d": "1"
+            },
+            "M": {
+              "n": "7",
+              "d": "2"
+            }
+          },
+          "events": [
+            {
+              "eventId": "value-review/public-example/event/0",
+              "rootId": "value-review/public-example",
+              "rootEventId": "value-review/public-example/event/0",
+              "phase": "base",
+              "sourceType": "rule",
+              "sourceDefinitionId": "pair",
+              "sourceInstanceId": "full-slot-value-review",
+              "operation": "base",
+              "value": {
+                "n": "35",
+                "d": "1"
+              },
+              "before": {
+                "H": {
+                  "n": "0",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "0",
+                  "d": "1"
+                }
+              },
+              "after": {
+                "H": {
+                  "n": "35",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "2",
+                  "d": "1"
+                }
+              },
+              "reasonKey": "pair.base",
+              "visibleCondition": {
+                "kind": "always"
+              },
+              "retriggerDepth": 0
+            },
+            {
+              "eventId": "value-review/public-example/event/1",
+              "rootId": "value-review/public-example",
+              "rootEventId": "value-review/public-example/event/1",
+              "phase": "onCardScore",
+              "sourceType": "card",
+              "sourceDefinitionId": "rank-7",
+              "sourceInstanceId": "spades-7",
+              "targetCardId": "spades-7",
+              "operation": "add-heat",
+              "value": {
+                "n": "7",
+                "d": "1"
+              },
+              "before": {
+                "H": {
+                  "n": "35",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "2",
+                  "d": "1"
+                }
+              },
+              "after": {
+                "H": {
+                  "n": "42",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "2",
+                  "d": "1"
+                }
+              },
+              "reasonKey": "rank-7.add-heat",
+              "visibleCondition": {
+                "kind": "always"
+              },
+              "retriggerDepth": 0
+            },
+            {
+              "eventId": "value-review/public-example/event/2",
+              "rootId": "value-review/public-example",
+              "rootEventId": "value-review/public-example/event/1",
+              "phase": "onCardScore",
+              "sourceType": "joker",
+              "sourceDefinitionId": "b02",
+              "sourceInstanceId": "value-held/1",
+              "targetCardId": "spades-7",
+              "operation": "add-multiplier",
+              "value": {
+                "n": "1",
+                "d": "4"
+              },
+              "before": {
+                "H": {
+                  "n": "42",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "2",
+                  "d": "1"
+                }
+              },
+              "after": {
+                "H": {
+                  "n": "42",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "9",
+                  "d": "4"
+                }
+              },
+              "reasonKey": "b02.add-multiplier",
+              "visibleCondition": {
+                "kind": "paired-rank",
+                "minimum": 2
+              },
+              "retriggerDepth": 0
+            },
+            {
+              "eventId": "value-review/public-example/event/3",
+              "rootId": "value-review/public-example",
+              "rootEventId": "value-review/public-example/event/3",
+              "phase": "onCardScore",
+              "sourceType": "card",
+              "sourceDefinitionId": "rank-7",
+              "sourceInstanceId": "hearts-7",
+              "targetCardId": "hearts-7",
+              "operation": "add-heat",
+              "value": {
+                "n": "7",
+                "d": "1"
+              },
+              "before": {
+                "H": {
+                  "n": "42",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "9",
+                  "d": "4"
+                }
+              },
+              "after": {
+                "H": {
+                  "n": "49",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "9",
+                  "d": "4"
+                }
+              },
+              "reasonKey": "rank-7.add-heat",
+              "visibleCondition": {
+                "kind": "always"
+              },
+              "retriggerDepth": 0
+            },
+            {
+              "eventId": "value-review/public-example/event/4",
+              "rootId": "value-review/public-example",
+              "rootEventId": "value-review/public-example/event/3",
+              "phase": "onCardScore",
+              "sourceType": "joker",
+              "sourceDefinitionId": "b02",
+              "sourceInstanceId": "value-held/1",
+              "targetCardId": "hearts-7",
+              "operation": "add-multiplier",
+              "value": {
+                "n": "1",
+                "d": "4"
+              },
+              "before": {
+                "H": {
+                  "n": "49",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "9",
+                  "d": "4"
+                }
+              },
+              "after": {
+                "H": {
+                  "n": "49",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "5",
+                  "d": "2"
+                }
+              },
+              "reasonKey": "b02.add-multiplier",
+              "visibleCondition": {
+                "kind": "paired-rank",
+                "minimum": 2
+              },
+              "retriggerDepth": 0
+            },
+            {
+              "eventId": "value-review/public-example/event/5",
+              "rootId": "value-review/public-example",
+              "rootEventId": "value-review/public-example/event/5",
+              "phase": "jokerScore",
+              "sourceType": "joker",
+              "sourceDefinitionId": "mantangcai",
+              "sourceInstanceId": "value-held/0",
+              "operation": "add-heat",
+              "value": {
+                "n": "90",
+                "d": "1"
+              },
+              "before": {
+                "H": {
+                  "n": "49",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "5",
+                  "d": "2"
+                }
+              },
+              "after": {
+                "H": {
+                  "n": "139",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "5",
+                  "d": "2"
+                }
+              },
+              "reasonKey": "mantangcai.add-heat",
+              "visibleCondition": {
+                "kind": "hand-type-in",
+                "values": [
+                  "pair",
+                  "two-pair",
+                  "three-kind",
+                  "full-house",
+                  "four-kind"
+                ]
+              },
+              "retriggerDepth": 0
+            },
+            {
+              "eventId": "value-review/public-example/event/6",
+              "rootId": "value-review/public-example",
+              "rootEventId": "value-review/public-example/event/6",
+              "phase": "jokerScore",
+              "sourceType": "joker",
+              "sourceDefinitionId": "b03",
+              "sourceInstanceId": "value-held/2",
+              "operation": "read-growth",
+              "value": {
+                "n": "1",
+                "d": "1"
+              },
+              "before": {
+                "H": {
+                  "n": "139",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "5",
+                  "d": "2"
+                }
+              },
+              "after": {
+                "H": {
+                  "n": "139",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "7",
+                  "d": "2"
+                }
+              },
+              "reasonKey": "b03.read-growth",
+              "visibleCondition": {
+                "kind": "always"
+              },
+              "retriggerDepth": 0
+            },
+            {
+              "eventId": "value-review/public-example/event/7",
+              "rootId": "value-review/public-example",
+              "rootEventId": "value-review/public-example/event/7",
+              "phase": "finalScore",
+              "sourceType": "rule",
+              "sourceDefinitionId": "pair",
+              "sourceInstanceId": "full-slot-value-review",
+              "operation": "final-score",
+              "value": {
+                "n": "486",
+                "d": "1"
+              },
+              "before": {
+                "H": {
+                  "n": "139",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "7",
+                  "d": "2"
+                }
+              },
+              "after": {
+                "H": {
+                  "n": "139",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "7",
+                  "d": "2"
+                }
+              },
+              "reasonKey": "pair.final-score",
+              "visibleCondition": {
+                "kind": "always"
+              },
+              "retriggerDepth": 0
+            },
+            {
+              "eventId": "value-review/public-example/event/8",
+              "rootId": "value-review/public-example",
+              "rootEventId": "value-review/public-example/event/8",
+              "phase": "afterHand",
+              "sourceType": "joker",
+              "sourceDefinitionId": "b03",
+              "sourceInstanceId": "value-held/2",
+              "operation": "add-growth",
+              "value": {
+                "n": "1",
+                "d": "4"
+              },
+              "before": {
+                "H": {
+                  "n": "139",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "7",
+                  "d": "2"
+                }
+              },
+              "after": {
+                "H": {
+                  "n": "139",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "7",
+                  "d": "2"
+                }
+              },
+              "reasonKey": "b03.add-growth",
+              "visibleCondition": {
+                "kind": "hand-type-in",
+                "values": [
+                  "pair",
+                  "two-pair",
+                  "three-kind",
+                  "full-house",
+                  "four-kind",
+                  "five-kind",
+                  "flush-house",
+                  "flush-five"
+                ]
+              },
+              "retriggerDepth": 0
+            }
+          ]
+        },
+        "possibleScores": [
+          "486"
+        ],
+        "scoreRange": {
+          "minimum": "486",
+          "maximum": "486"
+        },
+        "randomEffects": []
+      },
+      "replacedPreview": {
+        "handType": "pair",
+        "level": 1,
+        "base": {
+          "H": {
+            "n": "35",
+            "d": "1"
+          },
+          "M": {
+            "n": "2",
+            "d": "1"
+          }
+        },
+        "sets": {
+          "playedIds": [
+            "spades-7",
+            "hearts-7"
+          ],
+          "scoringIds": [
+            "spades-7",
+            "hearts-7"
+          ],
+          "activeScoringIds": [
+            "spades-7",
+            "hearts-7"
+          ],
+          "heldIds": [
+            "clubs-8",
+            "diamonds-8",
+            "clubs-10",
+            "diamonds-11",
+            "spades-12",
+            "hearts-14"
+          ]
+        },
+        "breakdown": {
+          "minimum": {
+            "H": {
+              "n": "139",
+              "d": "1"
+            },
+            "M": {
+              "n": "3",
+              "d": "1"
+            }
+          },
+          "maximum": {
+            "H": {
+              "n": "139",
+              "d": "1"
+            },
+            "M": {
+              "n": "3",
+              "d": "1"
+            }
+          },
+          "events": [
+            {
+              "eventId": "value-review/public-example/event/0",
+              "rootId": "value-review/public-example",
+              "rootEventId": "value-review/public-example/event/0",
+              "phase": "base",
+              "sourceType": "rule",
+              "sourceDefinitionId": "pair",
+              "sourceInstanceId": "full-slot-value-review",
+              "operation": "base",
+              "value": {
+                "n": "35",
+                "d": "1"
+              },
+              "before": {
+                "H": {
+                  "n": "0",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "0",
+                  "d": "1"
+                }
+              },
+              "after": {
+                "H": {
+                  "n": "35",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "2",
+                  "d": "1"
+                }
+              },
+              "reasonKey": "pair.base",
+              "visibleCondition": {
+                "kind": "always"
+              },
+              "retriggerDepth": 0
+            },
+            {
+              "eventId": "value-review/public-example/event/1",
+              "rootId": "value-review/public-example",
+              "rootEventId": "value-review/public-example/event/1",
+              "phase": "onCardScore",
+              "sourceType": "card",
+              "sourceDefinitionId": "rank-7",
+              "sourceInstanceId": "spades-7",
+              "targetCardId": "spades-7",
+              "operation": "add-heat",
+              "value": {
+                "n": "7",
+                "d": "1"
+              },
+              "before": {
+                "H": {
+                  "n": "35",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "2",
+                  "d": "1"
+                }
+              },
+              "after": {
+                "H": {
+                  "n": "42",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "2",
+                  "d": "1"
+                }
+              },
+              "reasonKey": "rank-7.add-heat",
+              "visibleCondition": {
+                "kind": "always"
+              },
+              "retriggerDepth": 0
+            },
+            {
+              "eventId": "value-review/public-example/event/2",
+              "rootId": "value-review/public-example",
+              "rootEventId": "value-review/public-example/event/2",
+              "phase": "onCardScore",
+              "sourceType": "card",
+              "sourceDefinitionId": "rank-7",
+              "sourceInstanceId": "hearts-7",
+              "targetCardId": "hearts-7",
+              "operation": "add-heat",
+              "value": {
+                "n": "7",
+                "d": "1"
+              },
+              "before": {
+                "H": {
+                  "n": "42",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "2",
+                  "d": "1"
+                }
+              },
+              "after": {
+                "H": {
+                  "n": "49",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "2",
+                  "d": "1"
+                }
+              },
+              "reasonKey": "rank-7.add-heat",
+              "visibleCondition": {
+                "kind": "always"
+              },
+              "retriggerDepth": 0
+            },
+            {
+              "eventId": "value-review/public-example/event/3",
+              "rootId": "value-review/public-example",
+              "rootEventId": "value-review/public-example/event/3",
+              "phase": "jokerScore",
+              "sourceType": "joker",
+              "sourceDefinitionId": "mantangcai",
+              "sourceInstanceId": "value-held/0",
+              "operation": "add-heat",
+              "value": {
+                "n": "90",
+                "d": "1"
+              },
+              "before": {
+                "H": {
+                  "n": "49",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "2",
+                  "d": "1"
+                }
+              },
+              "after": {
+                "H": {
+                  "n": "139",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "2",
+                  "d": "1"
+                }
+              },
+              "reasonKey": "mantangcai.add-heat",
+              "visibleCondition": {
+                "kind": "hand-type-in",
+                "values": [
+                  "pair",
+                  "two-pair",
+                  "three-kind",
+                  "full-house",
+                  "four-kind"
+                ]
+              },
+              "retriggerDepth": 0
+            },
+            {
+              "eventId": "value-review/public-example/event/4",
+              "rootId": "value-review/public-example",
+              "rootEventId": "value-review/public-example/event/4",
+              "phase": "jokerScore",
+              "sourceType": "joker",
+              "sourceDefinitionId": "b03",
+              "sourceInstanceId": "value-held/2",
+              "operation": "read-growth",
+              "value": {
+                "n": "1",
+                "d": "1"
+              },
+              "before": {
+                "H": {
+                  "n": "139",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "2",
+                  "d": "1"
+                }
+              },
+              "after": {
+                "H": {
+                  "n": "139",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "3",
+                  "d": "1"
+                }
+              },
+              "reasonKey": "b03.read-growth",
+              "visibleCondition": {
+                "kind": "always"
+              },
+              "retriggerDepth": 0
+            },
+            {
+              "eventId": "value-review/public-example/event/5",
+              "rootId": "value-review/public-example",
+              "rootEventId": "value-review/public-example/event/5",
+              "phase": "finalScore",
+              "sourceType": "rule",
+              "sourceDefinitionId": "pair",
+              "sourceInstanceId": "full-slot-value-review",
+              "operation": "final-score",
+              "value": {
+                "n": "417",
+                "d": "1"
+              },
+              "before": {
+                "H": {
+                  "n": "139",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "3",
+                  "d": "1"
+                }
+              },
+              "after": {
+                "H": {
+                  "n": "139",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "3",
+                  "d": "1"
+                }
+              },
+              "reasonKey": "pair.final-score",
+              "visibleCondition": {
+                "kind": "always"
+              },
+              "retriggerDepth": 0
+            },
+            {
+              "eventId": "value-review/public-example/event/6",
+              "rootId": "value-review/public-example",
+              "rootEventId": "value-review/public-example/event/6",
+              "phase": "afterHand",
+              "sourceType": "joker",
+              "sourceDefinitionId": "b03",
+              "sourceInstanceId": "value-held/2",
+              "operation": "add-growth",
+              "value": {
+                "n": "1",
+                "d": "4"
+              },
+              "before": {
+                "H": {
+                  "n": "139",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "3",
+                  "d": "1"
+                }
+              },
+              "after": {
+                "H": {
+                  "n": "139",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "3",
+                  "d": "1"
+                }
+              },
+              "reasonKey": "b03.add-growth",
+              "visibleCondition": {
+                "kind": "hand-type-in",
+                "values": [
+                  "pair",
+                  "two-pair",
+                  "three-kind",
+                  "full-house",
+                  "four-kind",
+                  "five-kind",
+                  "flush-house",
+                  "flush-five"
+                ]
+              },
+              "retriggerDepth": 0
+            }
+          ]
+        },
+        "possibleScores": [
+          "417"
+        ],
+        "scoreRange": {
+          "minimum": "417",
+          "maximum": "417"
+        },
+        "randomEffects": []
+      },
+      "delta": "-69",
+      "limitation": "Only this fixed public hand/context; no expected score, stage win, trigger frequency or global optimum claim."
+    },
+    {
+      "offerId": "b04",
+      "soldId": "b02",
+      "originalGuidance": {
+        "stars": 1,
+        "reason": "需先腾槽",
+        "detail": "已有对上眼（无成长或使用计数）；新牌倍率+2，未补明确缺口，建议先不买。",
+        "routes": [
+          "group"
+        ],
+        "routeCaption": "同点",
+        "label": "本局★"
+      },
+      "hand": [
+        {
+          "id": "spades-7",
+          "suit": "spades",
+          "rank": 7
+        },
+        {
+          "id": "hearts-7",
+          "suit": "hearts",
+          "rank": 7
+        },
+        {
+          "id": "clubs-8",
+          "suit": "clubs",
+          "rank": 8
+        },
+        {
+          "id": "diamonds-8",
+          "suit": "diamonds",
+          "rank": 8
+        },
+        {
+          "id": "clubs-10",
+          "suit": "clubs",
+          "rank": 10
+        },
+        {
+          "id": "diamonds-11",
+          "suit": "diamonds",
+          "rank": 11
+        },
+        {
+          "id": "spades-12",
+          "suit": "spades",
+          "rank": 12
+        },
+        {
+          "id": "hearts-14",
+          "suit": "hearts",
+          "rank": 14
+        }
+      ],
+      "selectedIds": [
+        "spades-7",
+        "hearts-7",
+        "clubs-8",
+        "diamonds-8"
+      ],
+      "retainedInput": {
+        "jokers": [
+          {
+            "instanceId": "value-held/0",
+            "definitionId": "mantangcai",
+            "paidPrice": 8,
+            "growth": {}
+          },
+          {
+            "instanceId": "value-held/1",
+            "definitionId": "b02",
+            "paidPrice": 8,
+            "growth": {}
+          },
+          {
+            "instanceId": "value-held/2",
+            "definitionId": "b03",
+            "paidPrice": 8,
+            "growth": {
+              "multiplier": {
+                "n": "1",
+                "d": "1"
+              }
+            }
+          },
+          {
+            "instanceId": "value-held/3",
+            "definitionId": "e01",
+            "paidPrice": 8,
+            "growth": {}
+          },
+          {
+            "instanceId": "value-held/4",
+            "definitionId": "e04",
+            "paidPrice": 8,
+            "growth": {}
+          }
+        ],
+        "gold": 40,
+        "handLevels": {},
+        "scoreContext": {
+          "laohuanTrick": true,
+          "amoScoreTiming": "after-joker",
+          "characterId": "laohuan",
+          "jokerSlots": 5,
+          "gold": 40,
+          "discardsUsed": 0,
+          "previousHandScore": null,
+          "boss": null,
+          "sealedJokerIds": [],
+          "challengeDisabledJokerId": null,
+          "stageHeatBefore": "0",
+          "stageTargetHeat": "400",
+          "handRules": {
+            "fourStraight": false,
+            "fourFlush": false
+          },
+          "ordinaryPointsSuppressedIds": []
+        }
+      },
+      "transaction": {
+        "afterSale": [
+          {
+            "instanceId": "value-held/0",
+            "definitionId": "mantangcai",
+            "paidPrice": 8,
+            "growth": {}
+          },
+          {
+            "instanceId": "value-held/2",
+            "definitionId": "b03",
+            "paidPrice": 8,
+            "growth": {
+              "multiplier": {
+                "n": "1",
+                "d": "1"
+              }
+            }
+          },
+          {
+            "instanceId": "value-held/3",
+            "definitionId": "e01",
+            "paidPrice": 8,
+            "growth": {}
+          },
+          {
+            "instanceId": "value-held/4",
+            "definitionId": "e04",
+            "paidPrice": 8,
+            "growth": {}
+          }
+        ],
+        "goldAfterSale": 44,
+        "afterPurchase": [
+          {
+            "instanceId": "value-held/0",
+            "definitionId": "mantangcai",
+            "paidPrice": 8,
+            "growth": {}
+          },
+          {
+            "instanceId": "value-held/2",
+            "definitionId": "b03",
+            "paidPrice": 8,
+            "growth": {
+              "multiplier": {
+                "n": "1",
+                "d": "1"
+              }
+            }
+          },
+          {
+            "instanceId": "value-held/3",
+            "definitionId": "e01",
+            "paidPrice": 8,
+            "growth": {}
+          },
+          {
+            "instanceId": "value-held/4",
+            "definitionId": "e04",
+            "paidPrice": 8,
+            "growth": {}
+          },
+          {
+            "instanceId": "full-slot-value-review/joker/full-slot-value-review/review/6",
+            "definitionId": "b04",
+            "paidPrice": 2,
+            "growth": {}
+          }
+        ],
+        "goldAfterPurchase": 42
+      },
+      "replacementFacts": {
+        "saleEffects": [],
+        "held": {
+          "kind": "direct",
+          "label": "路线直接条件",
+          "tag": "主线",
+          "body": "路线直接条件 · 明确条件涉及同点成组。\n计分牌的点数在实际打出牌中至少出现2次时，该牌倍率 +0.25。\n同打的同点数牌至少2张，附带和停用也参与计数\n用途不表示已发动或最优；仍按实际条件、封禁和保存事件检查。"
+        },
+        "offer": {
+          "kind": "direct",
+          "label": "路线直接条件",
+          "tag": "主线",
+          "body": "路线直接条件 · 明确条件涉及同点成组。\n实际打出牌含至少两组不同点数、每组至少2张时，整手倍率 +2。\n打出至少2组不同点数、各至少2张同点的牌\n用途不表示已发动或最优；仍按实际条件、封禁和保存事件检查。"
+        },
+        "loss": "出售将失去「对上眼」的效果、版次和当前实例：无成长或使用计数。同名新购牌从新实例初值开始，不继承成长。",
+        "connections": "未记录与现持其它牌在上手共同触发；这不代表没有配合机会。",
+        "money": "当前余额 40 金；该牌基础卖价 4 金；现货「一唱一和」当前实付 2 金。出售和购买分别确认，交易来源、优惠和售后余额以实际保存结果重算。"
+      },
+      "retainedPreview": {
+        "handType": "two-pair",
+        "level": 1,
+        "base": {
+          "H": {
+            "n": "65",
+            "d": "1"
+          },
+          "M": {
+            "n": "2",
+            "d": "1"
+          }
+        },
+        "sets": {
+          "playedIds": [
+            "spades-7",
+            "hearts-7",
+            "clubs-8",
+            "diamonds-8"
+          ],
+          "scoringIds": [
+            "spades-7",
+            "hearts-7",
+            "clubs-8",
+            "diamonds-8"
+          ],
+          "activeScoringIds": [
+            "spades-7",
+            "hearts-7",
+            "clubs-8",
+            "diamonds-8"
+          ],
+          "heldIds": [
+            "clubs-10",
+            "diamonds-11",
+            "spades-12",
+            "hearts-14"
+          ]
+        },
+        "breakdown": {
+          "minimum": {
+            "H": {
+              "n": "185",
+              "d": "1"
+            },
+            "M": {
+              "n": "4",
+              "d": "1"
+            }
+          },
+          "maximum": {
+            "H": {
+              "n": "185",
+              "d": "1"
+            },
+            "M": {
+              "n": "4",
+              "d": "1"
+            }
+          },
+          "events": [
+            {
+              "eventId": "value-review/public-example/event/0",
+              "rootId": "value-review/public-example",
+              "rootEventId": "value-review/public-example/event/0",
+              "phase": "base",
+              "sourceType": "rule",
+              "sourceDefinitionId": "two-pair",
+              "sourceInstanceId": "full-slot-value-review",
+              "operation": "base",
+              "value": {
+                "n": "65",
+                "d": "1"
+              },
+              "before": {
+                "H": {
+                  "n": "0",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "0",
+                  "d": "1"
+                }
+              },
+              "after": {
+                "H": {
+                  "n": "65",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "2",
+                  "d": "1"
+                }
+              },
+              "reasonKey": "two-pair.base",
+              "visibleCondition": {
+                "kind": "always"
+              },
+              "retriggerDepth": 0
+            },
+            {
+              "eventId": "value-review/public-example/event/1",
+              "rootId": "value-review/public-example",
+              "rootEventId": "value-review/public-example/event/1",
+              "phase": "onCardScore",
+              "sourceType": "card",
+              "sourceDefinitionId": "rank-7",
+              "sourceInstanceId": "spades-7",
+              "targetCardId": "spades-7",
+              "operation": "add-heat",
+              "value": {
+                "n": "7",
+                "d": "1"
+              },
+              "before": {
+                "H": {
+                  "n": "65",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "2",
+                  "d": "1"
+                }
+              },
+              "after": {
+                "H": {
+                  "n": "72",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "2",
+                  "d": "1"
+                }
+              },
+              "reasonKey": "rank-7.add-heat",
+              "visibleCondition": {
+                "kind": "always"
+              },
+              "retriggerDepth": 0
+            },
+            {
+              "eventId": "value-review/public-example/event/2",
+              "rootId": "value-review/public-example",
+              "rootEventId": "value-review/public-example/event/1",
+              "phase": "onCardScore",
+              "sourceType": "joker",
+              "sourceDefinitionId": "b02",
+              "sourceInstanceId": "value-held/1",
+              "targetCardId": "spades-7",
+              "operation": "add-multiplier",
+              "value": {
+                "n": "1",
+                "d": "4"
+              },
+              "before": {
+                "H": {
+                  "n": "72",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "2",
+                  "d": "1"
+                }
+              },
+              "after": {
+                "H": {
+                  "n": "72",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "9",
+                  "d": "4"
+                }
+              },
+              "reasonKey": "b02.add-multiplier",
+              "visibleCondition": {
+                "kind": "paired-rank",
+                "minimum": 2
+              },
+              "retriggerDepth": 0
+            },
+            {
+              "eventId": "value-review/public-example/event/3",
+              "rootId": "value-review/public-example",
+              "rootEventId": "value-review/public-example/event/3",
+              "phase": "onCardScore",
+              "sourceType": "card",
+              "sourceDefinitionId": "rank-7",
+              "sourceInstanceId": "hearts-7",
+              "targetCardId": "hearts-7",
+              "operation": "add-heat",
+              "value": {
+                "n": "7",
+                "d": "1"
+              },
+              "before": {
+                "H": {
+                  "n": "72",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "9",
+                  "d": "4"
+                }
+              },
+              "after": {
+                "H": {
+                  "n": "79",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "9",
+                  "d": "4"
+                }
+              },
+              "reasonKey": "rank-7.add-heat",
+              "visibleCondition": {
+                "kind": "always"
+              },
+              "retriggerDepth": 0
+            },
+            {
+              "eventId": "value-review/public-example/event/4",
+              "rootId": "value-review/public-example",
+              "rootEventId": "value-review/public-example/event/3",
+              "phase": "onCardScore",
+              "sourceType": "joker",
+              "sourceDefinitionId": "b02",
+              "sourceInstanceId": "value-held/1",
+              "targetCardId": "hearts-7",
+              "operation": "add-multiplier",
+              "value": {
+                "n": "1",
+                "d": "4"
+              },
+              "before": {
+                "H": {
+                  "n": "79",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "9",
+                  "d": "4"
+                }
+              },
+              "after": {
+                "H": {
+                  "n": "79",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "5",
+                  "d": "2"
+                }
+              },
+              "reasonKey": "b02.add-multiplier",
+              "visibleCondition": {
+                "kind": "paired-rank",
+                "minimum": 2
+              },
+              "retriggerDepth": 0
+            },
+            {
+              "eventId": "value-review/public-example/event/5",
+              "rootId": "value-review/public-example",
+              "rootEventId": "value-review/public-example/event/5",
+              "phase": "onCardScore",
+              "sourceType": "card",
+              "sourceDefinitionId": "rank-8",
+              "sourceInstanceId": "clubs-8",
+              "targetCardId": "clubs-8",
+              "operation": "add-heat",
+              "value": {
+                "n": "8",
+                "d": "1"
+              },
+              "before": {
+                "H": {
+                  "n": "79",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "5",
+                  "d": "2"
+                }
+              },
+              "after": {
+                "H": {
+                  "n": "87",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "5",
+                  "d": "2"
+                }
+              },
+              "reasonKey": "rank-8.add-heat",
+              "visibleCondition": {
+                "kind": "always"
+              },
+              "retriggerDepth": 0
+            },
+            {
+              "eventId": "value-review/public-example/event/6",
+              "rootId": "value-review/public-example",
+              "rootEventId": "value-review/public-example/event/5",
+              "phase": "onCardScore",
+              "sourceType": "joker",
+              "sourceDefinitionId": "b02",
+              "sourceInstanceId": "value-held/1",
+              "targetCardId": "clubs-8",
+              "operation": "add-multiplier",
+              "value": {
+                "n": "1",
+                "d": "4"
+              },
+              "before": {
+                "H": {
+                  "n": "87",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "5",
+                  "d": "2"
+                }
+              },
+              "after": {
+                "H": {
+                  "n": "87",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "11",
+                  "d": "4"
+                }
+              },
+              "reasonKey": "b02.add-multiplier",
+              "visibleCondition": {
+                "kind": "paired-rank",
+                "minimum": 2
+              },
+              "retriggerDepth": 0
+            },
+            {
+              "eventId": "value-review/public-example/event/7",
+              "rootId": "value-review/public-example",
+              "rootEventId": "value-review/public-example/event/7",
+              "phase": "onCardScore",
+              "sourceType": "card",
+              "sourceDefinitionId": "rank-8",
+              "sourceInstanceId": "diamonds-8",
+              "targetCardId": "diamonds-8",
+              "operation": "add-heat",
+              "value": {
+                "n": "8",
+                "d": "1"
+              },
+              "before": {
+                "H": {
+                  "n": "87",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "11",
+                  "d": "4"
+                }
+              },
+              "after": {
+                "H": {
+                  "n": "95",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "11",
+                  "d": "4"
+                }
+              },
+              "reasonKey": "rank-8.add-heat",
+              "visibleCondition": {
+                "kind": "always"
+              },
+              "retriggerDepth": 0
+            },
+            {
+              "eventId": "value-review/public-example/event/8",
+              "rootId": "value-review/public-example",
+              "rootEventId": "value-review/public-example/event/7",
+              "phase": "onCardScore",
+              "sourceType": "joker",
+              "sourceDefinitionId": "b02",
+              "sourceInstanceId": "value-held/1",
+              "targetCardId": "diamonds-8",
+              "operation": "add-multiplier",
+              "value": {
+                "n": "1",
+                "d": "4"
+              },
+              "before": {
+                "H": {
+                  "n": "95",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "11",
+                  "d": "4"
+                }
+              },
+              "after": {
+                "H": {
+                  "n": "95",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "3",
+                  "d": "1"
+                }
+              },
+              "reasonKey": "b02.add-multiplier",
+              "visibleCondition": {
+                "kind": "paired-rank",
+                "minimum": 2
+              },
+              "retriggerDepth": 0
+            },
+            {
+              "eventId": "value-review/public-example/event/9",
+              "rootId": "value-review/public-example",
+              "rootEventId": "value-review/public-example/event/9",
+              "phase": "jokerScore",
+              "sourceType": "joker",
+              "sourceDefinitionId": "mantangcai",
+              "sourceInstanceId": "value-held/0",
+              "operation": "add-heat",
+              "value": {
+                "n": "90",
+                "d": "1"
+              },
+              "before": {
+                "H": {
+                  "n": "95",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "3",
+                  "d": "1"
+                }
+              },
+              "after": {
+                "H": {
+                  "n": "185",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "3",
+                  "d": "1"
+                }
+              },
+              "reasonKey": "mantangcai.add-heat",
+              "visibleCondition": {
+                "kind": "hand-type-in",
+                "values": [
+                  "pair",
+                  "two-pair",
+                  "three-kind",
+                  "full-house",
+                  "four-kind"
+                ]
+              },
+              "retriggerDepth": 0
+            },
+            {
+              "eventId": "value-review/public-example/event/10",
+              "rootId": "value-review/public-example",
+              "rootEventId": "value-review/public-example/event/10",
+              "phase": "jokerScore",
+              "sourceType": "joker",
+              "sourceDefinitionId": "b03",
+              "sourceInstanceId": "value-held/2",
+              "operation": "read-growth",
+              "value": {
+                "n": "1",
+                "d": "1"
+              },
+              "before": {
+                "H": {
+                  "n": "185",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "3",
+                  "d": "1"
+                }
+              },
+              "after": {
+                "H": {
+                  "n": "185",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "4",
+                  "d": "1"
+                }
+              },
+              "reasonKey": "b03.read-growth",
+              "visibleCondition": {
+                "kind": "always"
+              },
+              "retriggerDepth": 0
+            },
+            {
+              "eventId": "value-review/public-example/event/11",
+              "rootId": "value-review/public-example",
+              "rootEventId": "value-review/public-example/event/11",
+              "phase": "finalScore",
+              "sourceType": "rule",
+              "sourceDefinitionId": "two-pair",
+              "sourceInstanceId": "full-slot-value-review",
+              "operation": "final-score",
+              "value": {
+                "n": "740",
+                "d": "1"
+              },
+              "before": {
+                "H": {
+                  "n": "185",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "4",
+                  "d": "1"
+                }
+              },
+              "after": {
+                "H": {
+                  "n": "185",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "4",
+                  "d": "1"
+                }
+              },
+              "reasonKey": "two-pair.final-score",
+              "visibleCondition": {
+                "kind": "always"
+              },
+              "retriggerDepth": 0
+            },
+            {
+              "eventId": "value-review/public-example/event/12",
+              "rootId": "value-review/public-example",
+              "rootEventId": "value-review/public-example/event/12",
+              "phase": "afterHand",
+              "sourceType": "joker",
+              "sourceDefinitionId": "b03",
+              "sourceInstanceId": "value-held/2",
+              "operation": "add-growth",
+              "value": {
+                "n": "1",
+                "d": "4"
+              },
+              "before": {
+                "H": {
+                  "n": "185",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "4",
+                  "d": "1"
+                }
+              },
+              "after": {
+                "H": {
+                  "n": "185",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "4",
+                  "d": "1"
+                }
+              },
+              "reasonKey": "b03.add-growth",
+              "visibleCondition": {
+                "kind": "hand-type-in",
+                "values": [
+                  "pair",
+                  "two-pair",
+                  "three-kind",
+                  "full-house",
+                  "four-kind",
+                  "five-kind",
+                  "flush-house",
+                  "flush-five"
+                ]
+              },
+              "retriggerDepth": 0
+            }
+          ]
+        },
+        "possibleScores": [
+          "740"
+        ],
+        "scoreRange": {
+          "minimum": "740",
+          "maximum": "740"
+        },
+        "randomEffects": []
+      },
+      "replacedPreview": {
+        "handType": "two-pair",
+        "level": 1,
+        "base": {
+          "H": {
+            "n": "65",
+            "d": "1"
+          },
+          "M": {
+            "n": "2",
+            "d": "1"
+          }
+        },
+        "sets": {
+          "playedIds": [
+            "spades-7",
+            "hearts-7",
+            "clubs-8",
+            "diamonds-8"
+          ],
+          "scoringIds": [
+            "spades-7",
+            "hearts-7",
+            "clubs-8",
+            "diamonds-8"
+          ],
+          "activeScoringIds": [
+            "spades-7",
+            "hearts-7",
+            "clubs-8",
+            "diamonds-8"
+          ],
+          "heldIds": [
+            "clubs-10",
+            "diamonds-11",
+            "spades-12",
+            "hearts-14"
+          ]
+        },
+        "breakdown": {
+          "minimum": {
+            "H": {
+              "n": "185",
+              "d": "1"
+            },
+            "M": {
+              "n": "5",
+              "d": "1"
+            }
+          },
+          "maximum": {
+            "H": {
+              "n": "185",
+              "d": "1"
+            },
+            "M": {
+              "n": "5",
+              "d": "1"
+            }
+          },
+          "events": [
+            {
+              "eventId": "value-review/public-example/event/0",
+              "rootId": "value-review/public-example",
+              "rootEventId": "value-review/public-example/event/0",
+              "phase": "base",
+              "sourceType": "rule",
+              "sourceDefinitionId": "two-pair",
+              "sourceInstanceId": "full-slot-value-review",
+              "operation": "base",
+              "value": {
+                "n": "65",
+                "d": "1"
+              },
+              "before": {
+                "H": {
+                  "n": "0",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "0",
+                  "d": "1"
+                }
+              },
+              "after": {
+                "H": {
+                  "n": "65",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "2",
+                  "d": "1"
+                }
+              },
+              "reasonKey": "two-pair.base",
+              "visibleCondition": {
+                "kind": "always"
+              },
+              "retriggerDepth": 0
+            },
+            {
+              "eventId": "value-review/public-example/event/1",
+              "rootId": "value-review/public-example",
+              "rootEventId": "value-review/public-example/event/1",
+              "phase": "onCardScore",
+              "sourceType": "card",
+              "sourceDefinitionId": "rank-7",
+              "sourceInstanceId": "spades-7",
+              "targetCardId": "spades-7",
+              "operation": "add-heat",
+              "value": {
+                "n": "7",
+                "d": "1"
+              },
+              "before": {
+                "H": {
+                  "n": "65",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "2",
+                  "d": "1"
+                }
+              },
+              "after": {
+                "H": {
+                  "n": "72",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "2",
+                  "d": "1"
+                }
+              },
+              "reasonKey": "rank-7.add-heat",
+              "visibleCondition": {
+                "kind": "always"
+              },
+              "retriggerDepth": 0
+            },
+            {
+              "eventId": "value-review/public-example/event/2",
+              "rootId": "value-review/public-example",
+              "rootEventId": "value-review/public-example/event/2",
+              "phase": "onCardScore",
+              "sourceType": "card",
+              "sourceDefinitionId": "rank-7",
+              "sourceInstanceId": "hearts-7",
+              "targetCardId": "hearts-7",
+              "operation": "add-heat",
+              "value": {
+                "n": "7",
+                "d": "1"
+              },
+              "before": {
+                "H": {
+                  "n": "72",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "2",
+                  "d": "1"
+                }
+              },
+              "after": {
+                "H": {
+                  "n": "79",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "2",
+                  "d": "1"
+                }
+              },
+              "reasonKey": "rank-7.add-heat",
+              "visibleCondition": {
+                "kind": "always"
+              },
+              "retriggerDepth": 0
+            },
+            {
+              "eventId": "value-review/public-example/event/3",
+              "rootId": "value-review/public-example",
+              "rootEventId": "value-review/public-example/event/3",
+              "phase": "onCardScore",
+              "sourceType": "card",
+              "sourceDefinitionId": "rank-8",
+              "sourceInstanceId": "clubs-8",
+              "targetCardId": "clubs-8",
+              "operation": "add-heat",
+              "value": {
+                "n": "8",
+                "d": "1"
+              },
+              "before": {
+                "H": {
+                  "n": "79",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "2",
+                  "d": "1"
+                }
+              },
+              "after": {
+                "H": {
+                  "n": "87",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "2",
+                  "d": "1"
+                }
+              },
+              "reasonKey": "rank-8.add-heat",
+              "visibleCondition": {
+                "kind": "always"
+              },
+              "retriggerDepth": 0
+            },
+            {
+              "eventId": "value-review/public-example/event/4",
+              "rootId": "value-review/public-example",
+              "rootEventId": "value-review/public-example/event/4",
+              "phase": "onCardScore",
+              "sourceType": "card",
+              "sourceDefinitionId": "rank-8",
+              "sourceInstanceId": "diamonds-8",
+              "targetCardId": "diamonds-8",
+              "operation": "add-heat",
+              "value": {
+                "n": "8",
+                "d": "1"
+              },
+              "before": {
+                "H": {
+                  "n": "87",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "2",
+                  "d": "1"
+                }
+              },
+              "after": {
+                "H": {
+                  "n": "95",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "2",
+                  "d": "1"
+                }
+              },
+              "reasonKey": "rank-8.add-heat",
+              "visibleCondition": {
+                "kind": "always"
+              },
+              "retriggerDepth": 0
+            },
+            {
+              "eventId": "value-review/public-example/event/5",
+              "rootId": "value-review/public-example",
+              "rootEventId": "value-review/public-example/event/5",
+              "phase": "jokerScore",
+              "sourceType": "joker",
+              "sourceDefinitionId": "mantangcai",
+              "sourceInstanceId": "value-held/0",
+              "operation": "add-heat",
+              "value": {
+                "n": "90",
+                "d": "1"
+              },
+              "before": {
+                "H": {
+                  "n": "95",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "2",
+                  "d": "1"
+                }
+              },
+              "after": {
+                "H": {
+                  "n": "185",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "2",
+                  "d": "1"
+                }
+              },
+              "reasonKey": "mantangcai.add-heat",
+              "visibleCondition": {
+                "kind": "hand-type-in",
+                "values": [
+                  "pair",
+                  "two-pair",
+                  "three-kind",
+                  "full-house",
+                  "four-kind"
+                ]
+              },
+              "retriggerDepth": 0
+            },
+            {
+              "eventId": "value-review/public-example/event/6",
+              "rootId": "value-review/public-example",
+              "rootEventId": "value-review/public-example/event/6",
+              "phase": "jokerScore",
+              "sourceType": "joker",
+              "sourceDefinitionId": "b03",
+              "sourceInstanceId": "value-held/2",
+              "operation": "read-growth",
+              "value": {
+                "n": "1",
+                "d": "1"
+              },
+              "before": {
+                "H": {
+                  "n": "185",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "2",
+                  "d": "1"
+                }
+              },
+              "after": {
+                "H": {
+                  "n": "185",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "3",
+                  "d": "1"
+                }
+              },
+              "reasonKey": "b03.read-growth",
+              "visibleCondition": {
+                "kind": "always"
+              },
+              "retriggerDepth": 0
+            },
+            {
+              "eventId": "value-review/public-example/event/7",
+              "rootId": "value-review/public-example",
+              "rootEventId": "value-review/public-example/event/7",
+              "phase": "jokerScore",
+              "sourceType": "joker",
+              "sourceDefinitionId": "b04",
+              "sourceInstanceId": "full-slot-value-review/joker/full-slot-value-review/review/6",
+              "operation": "add-multiplier",
+              "value": {
+                "n": "2",
+                "d": "1"
+              },
+              "before": {
+                "H": {
+                  "n": "185",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "3",
+                  "d": "1"
+                }
+              },
+              "after": {
+                "H": {
+                  "n": "185",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "5",
+                  "d": "1"
+                }
+              },
+              "reasonKey": "b04.add-multiplier",
+              "visibleCondition": {
+                "kind": "rank-groups",
+                "minimum": 2,
+                "groupSize": 2
+              },
+              "retriggerDepth": 0
+            },
+            {
+              "eventId": "value-review/public-example/event/8",
+              "rootId": "value-review/public-example",
+              "rootEventId": "value-review/public-example/event/8",
+              "phase": "finalScore",
+              "sourceType": "rule",
+              "sourceDefinitionId": "two-pair",
+              "sourceInstanceId": "full-slot-value-review",
+              "operation": "final-score",
+              "value": {
+                "n": "925",
+                "d": "1"
+              },
+              "before": {
+                "H": {
+                  "n": "185",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "5",
+                  "d": "1"
+                }
+              },
+              "after": {
+                "H": {
+                  "n": "185",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "5",
+                  "d": "1"
+                }
+              },
+              "reasonKey": "two-pair.final-score",
+              "visibleCondition": {
+                "kind": "always"
+              },
+              "retriggerDepth": 0
+            },
+            {
+              "eventId": "value-review/public-example/event/9",
+              "rootId": "value-review/public-example",
+              "rootEventId": "value-review/public-example/event/9",
+              "phase": "afterHand",
+              "sourceType": "joker",
+              "sourceDefinitionId": "b03",
+              "sourceInstanceId": "value-held/2",
+              "operation": "add-growth",
+              "value": {
+                "n": "1",
+                "d": "4"
+              },
+              "before": {
+                "H": {
+                  "n": "185",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "5",
+                  "d": "1"
+                }
+              },
+              "after": {
+                "H": {
+                  "n": "185",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "5",
+                  "d": "1"
+                }
+              },
+              "reasonKey": "b03.add-growth",
+              "visibleCondition": {
+                "kind": "hand-type-in",
+                "values": [
+                  "pair",
+                  "two-pair",
+                  "three-kind",
+                  "full-house",
+                  "four-kind",
+                  "five-kind",
+                  "flush-house",
+                  "flush-five"
+                ]
+              },
+              "retriggerDepth": 0
+            }
+          ]
+        },
+        "possibleScores": [
+          "925"
+        ],
+        "scoreRange": {
+          "minimum": "925",
+          "maximum": "925"
+        },
+        "randomEffects": []
+      },
+      "delta": "185",
+      "limitation": "Only this fixed public hand/context; no expected score, stage win, trigger frequency or global optimum claim."
+    },
+    {
+      "offerId": "e08",
+      "soldId": "e01",
+      "originalGuidance": {
+        "stars": 1,
+        "reason": "需先腾槽",
+        "detail": "当前构筑没有明确需要它的条件；倍率×1.8，这轮先留金。",
+        "routes": [
+          "group",
+          "straight",
+          "flush"
+        ],
+        "routeCaption": "同点/顺子/同花",
+        "label": "本局★"
+      },
+      "hand": [
+        {
+          "id": "spades-7",
+          "suit": "spades",
+          "rank": 7
+        },
+        {
+          "id": "hearts-7",
+          "suit": "hearts",
+          "rank": 7
+        },
+        {
+          "id": "clubs-8",
+          "suit": "clubs",
+          "rank": 8
+        },
+        {
+          "id": "diamonds-8",
+          "suit": "diamonds",
+          "rank": 8
+        },
+        {
+          "id": "clubs-10",
+          "suit": "clubs",
+          "rank": 10
+        },
+        {
+          "id": "diamonds-11",
+          "suit": "diamonds",
+          "rank": 11
+        },
+        {
+          "id": "spades-12",
+          "suit": "spades",
+          "rank": 12
+        },
+        {
+          "id": "hearts-14",
+          "suit": "hearts",
+          "rank": 14
+        }
+      ],
+      "selectedIds": [
+        "spades-7",
+        "hearts-7"
+      ],
+      "retainedInput": {
+        "jokers": [
+          {
+            "instanceId": "value-held/0",
+            "definitionId": "mantangcai",
+            "paidPrice": 8,
+            "growth": {}
+          },
+          {
+            "instanceId": "value-held/1",
+            "definitionId": "b02",
+            "paidPrice": 8,
+            "growth": {}
+          },
+          {
+            "instanceId": "value-held/2",
+            "definitionId": "b03",
+            "paidPrice": 8,
+            "growth": {
+              "multiplier": {
+                "n": "1",
+                "d": "1"
+              }
+            }
+          },
+          {
+            "instanceId": "value-held/3",
+            "definitionId": "e01",
+            "paidPrice": 8,
+            "growth": {}
+          },
+          {
+            "instanceId": "value-held/4",
+            "definitionId": "e04",
+            "paidPrice": 8,
+            "growth": {}
+          }
+        ],
+        "gold": 40,
+        "handLevels": {},
+        "scoreContext": {
+          "laohuanTrick": true,
+          "amoScoreTiming": "after-joker",
+          "characterId": "laohuan",
+          "jokerSlots": 5,
+          "gold": 40,
+          "discardsUsed": 0,
+          "previousHandScore": null,
+          "boss": null,
+          "sealedJokerIds": [],
+          "challengeDisabledJokerId": null,
+          "stageHeatBefore": "0",
+          "stageTargetHeat": "400",
+          "handRules": {
+            "fourStraight": false,
+            "fourFlush": false
+          },
+          "ordinaryPointsSuppressedIds": []
+        }
+      },
+      "transaction": {
+        "afterSale": [
+          {
+            "instanceId": "value-held/0",
+            "definitionId": "mantangcai",
+            "paidPrice": 8,
+            "growth": {}
+          },
+          {
+            "instanceId": "value-held/1",
+            "definitionId": "b02",
+            "paidPrice": 8,
+            "growth": {}
+          },
+          {
+            "instanceId": "value-held/2",
+            "definitionId": "b03",
+            "paidPrice": 8,
+            "growth": {
+              "multiplier": {
+                "n": "1",
+                "d": "1"
+              }
+            }
+          },
+          {
+            "instanceId": "value-held/4",
+            "definitionId": "e04",
+            "paidPrice": 8,
+            "growth": {}
+          }
+        ],
+        "goldAfterSale": 44,
+        "afterPurchase": [
+          {
+            "instanceId": "value-held/0",
+            "definitionId": "mantangcai",
+            "paidPrice": 8,
+            "growth": {}
+          },
+          {
+            "instanceId": "value-held/1",
+            "definitionId": "b02",
+            "paidPrice": 8,
+            "growth": {}
+          },
+          {
+            "instanceId": "value-held/2",
+            "definitionId": "b03",
+            "paidPrice": 8,
+            "growth": {
+              "multiplier": {
+                "n": "1",
+                "d": "1"
+              }
+            }
+          },
+          {
+            "instanceId": "value-held/4",
+            "definitionId": "e04",
+            "paidPrice": 8,
+            "growth": {}
+          },
+          {
+            "instanceId": "full-slot-value-review/joker/full-slot-value-review/review/6",
+            "definitionId": "e08",
+            "paidPrice": 6,
+            "growth": {}
+          }
+        ],
+        "goldAfterPurchase": 38
+      },
+      "replacementFacts": {
+        "saleEffects": [],
+        "held": {
+          "kind": "support",
+          "label": "通用辅助",
+          "tag": "辅助",
+          "body": "通用辅助 · 不专属某一种牌型。\n成功过场额外 +2金币；失败和跳场不触发。\n\n用途不表示已发动或最优；仍按实际条件、封禁和保存事件检查。"
+        },
+        "offer": {
+          "kind": "support",
+          "label": "通用辅助",
+          "tag": "辅助",
+          "body": "通用辅助 · 不专属某一种牌型。\n当前金币至少20时，整手倍率 ×1.8。\n本手开始金币至少20；本手新收入不改变资格\n用途不表示已发动或最优；仍按实际条件、封禁和保存事件检查。"
+        },
+        "loss": "出售将失去「小费盒」的效果、版次和当前实例：无成长或使用计数。同名新购牌从新实例初值开始，不继承成长。",
+        "connections": "未记录与现持其它牌在上手共同触发；这不代表没有配合机会。",
+        "money": "当前余额 40 金；该牌基础卖价 4 金；现货「包场」当前实付 6 金。出售和购买分别确认，交易来源、优惠和售后余额以实际保存结果重算。"
+      },
+      "retainedPreview": {
+        "handType": "pair",
+        "level": 1,
+        "base": {
+          "H": {
+            "n": "35",
+            "d": "1"
+          },
+          "M": {
+            "n": "2",
+            "d": "1"
+          }
+        },
+        "sets": {
+          "playedIds": [
+            "spades-7",
+            "hearts-7"
+          ],
+          "scoringIds": [
+            "spades-7",
+            "hearts-7"
+          ],
+          "activeScoringIds": [
+            "spades-7",
+            "hearts-7"
+          ],
+          "heldIds": [
+            "clubs-8",
+            "diamonds-8",
+            "clubs-10",
+            "diamonds-11",
+            "spades-12",
+            "hearts-14"
+          ]
+        },
+        "breakdown": {
+          "minimum": {
+            "H": {
+              "n": "139",
+              "d": "1"
+            },
+            "M": {
+              "n": "7",
+              "d": "2"
+            }
+          },
+          "maximum": {
+            "H": {
+              "n": "139",
+              "d": "1"
+            },
+            "M": {
+              "n": "7",
+              "d": "2"
+            }
+          },
+          "events": [
+            {
+              "eventId": "value-review/public-example/event/0",
+              "rootId": "value-review/public-example",
+              "rootEventId": "value-review/public-example/event/0",
+              "phase": "base",
+              "sourceType": "rule",
+              "sourceDefinitionId": "pair",
+              "sourceInstanceId": "full-slot-value-review",
+              "operation": "base",
+              "value": {
+                "n": "35",
+                "d": "1"
+              },
+              "before": {
+                "H": {
+                  "n": "0",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "0",
+                  "d": "1"
+                }
+              },
+              "after": {
+                "H": {
+                  "n": "35",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "2",
+                  "d": "1"
+                }
+              },
+              "reasonKey": "pair.base",
+              "visibleCondition": {
+                "kind": "always"
+              },
+              "retriggerDepth": 0
+            },
+            {
+              "eventId": "value-review/public-example/event/1",
+              "rootId": "value-review/public-example",
+              "rootEventId": "value-review/public-example/event/1",
+              "phase": "onCardScore",
+              "sourceType": "card",
+              "sourceDefinitionId": "rank-7",
+              "sourceInstanceId": "spades-7",
+              "targetCardId": "spades-7",
+              "operation": "add-heat",
+              "value": {
+                "n": "7",
+                "d": "1"
+              },
+              "before": {
+                "H": {
+                  "n": "35",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "2",
+                  "d": "1"
+                }
+              },
+              "after": {
+                "H": {
+                  "n": "42",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "2",
+                  "d": "1"
+                }
+              },
+              "reasonKey": "rank-7.add-heat",
+              "visibleCondition": {
+                "kind": "always"
+              },
+              "retriggerDepth": 0
+            },
+            {
+              "eventId": "value-review/public-example/event/2",
+              "rootId": "value-review/public-example",
+              "rootEventId": "value-review/public-example/event/1",
+              "phase": "onCardScore",
+              "sourceType": "joker",
+              "sourceDefinitionId": "b02",
+              "sourceInstanceId": "value-held/1",
+              "targetCardId": "spades-7",
+              "operation": "add-multiplier",
+              "value": {
+                "n": "1",
+                "d": "4"
+              },
+              "before": {
+                "H": {
+                  "n": "42",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "2",
+                  "d": "1"
+                }
+              },
+              "after": {
+                "H": {
+                  "n": "42",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "9",
+                  "d": "4"
+                }
+              },
+              "reasonKey": "b02.add-multiplier",
+              "visibleCondition": {
+                "kind": "paired-rank",
+                "minimum": 2
+              },
+              "retriggerDepth": 0
+            },
+            {
+              "eventId": "value-review/public-example/event/3",
+              "rootId": "value-review/public-example",
+              "rootEventId": "value-review/public-example/event/3",
+              "phase": "onCardScore",
+              "sourceType": "card",
+              "sourceDefinitionId": "rank-7",
+              "sourceInstanceId": "hearts-7",
+              "targetCardId": "hearts-7",
+              "operation": "add-heat",
+              "value": {
+                "n": "7",
+                "d": "1"
+              },
+              "before": {
+                "H": {
+                  "n": "42",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "9",
+                  "d": "4"
+                }
+              },
+              "after": {
+                "H": {
+                  "n": "49",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "9",
+                  "d": "4"
+                }
+              },
+              "reasonKey": "rank-7.add-heat",
+              "visibleCondition": {
+                "kind": "always"
+              },
+              "retriggerDepth": 0
+            },
+            {
+              "eventId": "value-review/public-example/event/4",
+              "rootId": "value-review/public-example",
+              "rootEventId": "value-review/public-example/event/3",
+              "phase": "onCardScore",
+              "sourceType": "joker",
+              "sourceDefinitionId": "b02",
+              "sourceInstanceId": "value-held/1",
+              "targetCardId": "hearts-7",
+              "operation": "add-multiplier",
+              "value": {
+                "n": "1",
+                "d": "4"
+              },
+              "before": {
+                "H": {
+                  "n": "49",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "9",
+                  "d": "4"
+                }
+              },
+              "after": {
+                "H": {
+                  "n": "49",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "5",
+                  "d": "2"
+                }
+              },
+              "reasonKey": "b02.add-multiplier",
+              "visibleCondition": {
+                "kind": "paired-rank",
+                "minimum": 2
+              },
+              "retriggerDepth": 0
+            },
+            {
+              "eventId": "value-review/public-example/event/5",
+              "rootId": "value-review/public-example",
+              "rootEventId": "value-review/public-example/event/5",
+              "phase": "jokerScore",
+              "sourceType": "joker",
+              "sourceDefinitionId": "mantangcai",
+              "sourceInstanceId": "value-held/0",
+              "operation": "add-heat",
+              "value": {
+                "n": "90",
+                "d": "1"
+              },
+              "before": {
+                "H": {
+                  "n": "49",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "5",
+                  "d": "2"
+                }
+              },
+              "after": {
+                "H": {
+                  "n": "139",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "5",
+                  "d": "2"
+                }
+              },
+              "reasonKey": "mantangcai.add-heat",
+              "visibleCondition": {
+                "kind": "hand-type-in",
+                "values": [
+                  "pair",
+                  "two-pair",
+                  "three-kind",
+                  "full-house",
+                  "four-kind"
+                ]
+              },
+              "retriggerDepth": 0
+            },
+            {
+              "eventId": "value-review/public-example/event/6",
+              "rootId": "value-review/public-example",
+              "rootEventId": "value-review/public-example/event/6",
+              "phase": "jokerScore",
+              "sourceType": "joker",
+              "sourceDefinitionId": "b03",
+              "sourceInstanceId": "value-held/2",
+              "operation": "read-growth",
+              "value": {
+                "n": "1",
+                "d": "1"
+              },
+              "before": {
+                "H": {
+                  "n": "139",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "5",
+                  "d": "2"
+                }
+              },
+              "after": {
+                "H": {
+                  "n": "139",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "7",
+                  "d": "2"
+                }
+              },
+              "reasonKey": "b03.read-growth",
+              "visibleCondition": {
+                "kind": "always"
+              },
+              "retriggerDepth": 0
+            },
+            {
+              "eventId": "value-review/public-example/event/7",
+              "rootId": "value-review/public-example",
+              "rootEventId": "value-review/public-example/event/7",
+              "phase": "finalScore",
+              "sourceType": "rule",
+              "sourceDefinitionId": "pair",
+              "sourceInstanceId": "full-slot-value-review",
+              "operation": "final-score",
+              "value": {
+                "n": "486",
+                "d": "1"
+              },
+              "before": {
+                "H": {
+                  "n": "139",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "7",
+                  "d": "2"
+                }
+              },
+              "after": {
+                "H": {
+                  "n": "139",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "7",
+                  "d": "2"
+                }
+              },
+              "reasonKey": "pair.final-score",
+              "visibleCondition": {
+                "kind": "always"
+              },
+              "retriggerDepth": 0
+            },
+            {
+              "eventId": "value-review/public-example/event/8",
+              "rootId": "value-review/public-example",
+              "rootEventId": "value-review/public-example/event/8",
+              "phase": "afterHand",
+              "sourceType": "joker",
+              "sourceDefinitionId": "b03",
+              "sourceInstanceId": "value-held/2",
+              "operation": "add-growth",
+              "value": {
+                "n": "1",
+                "d": "4"
+              },
+              "before": {
+                "H": {
+                  "n": "139",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "7",
+                  "d": "2"
+                }
+              },
+              "after": {
+                "H": {
+                  "n": "139",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "7",
+                  "d": "2"
+                }
+              },
+              "reasonKey": "b03.add-growth",
+              "visibleCondition": {
+                "kind": "hand-type-in",
+                "values": [
+                  "pair",
+                  "two-pair",
+                  "three-kind",
+                  "full-house",
+                  "four-kind",
+                  "five-kind",
+                  "flush-house",
+                  "flush-five"
+                ]
+              },
+              "retriggerDepth": 0
+            }
+          ]
+        },
+        "possibleScores": [
+          "486"
+        ],
+        "scoreRange": {
+          "minimum": "486",
+          "maximum": "486"
+        },
+        "randomEffects": []
+      },
+      "replacedPreview": {
+        "handType": "pair",
+        "level": 1,
+        "base": {
+          "H": {
+            "n": "35",
+            "d": "1"
+          },
+          "M": {
+            "n": "2",
+            "d": "1"
+          }
+        },
+        "sets": {
+          "playedIds": [
+            "spades-7",
+            "hearts-7"
+          ],
+          "scoringIds": [
+            "spades-7",
+            "hearts-7"
+          ],
+          "activeScoringIds": [
+            "spades-7",
+            "hearts-7"
+          ],
+          "heldIds": [
+            "clubs-8",
+            "diamonds-8",
+            "clubs-10",
+            "diamonds-11",
+            "spades-12",
+            "hearts-14"
+          ]
+        },
+        "breakdown": {
+          "minimum": {
+            "H": {
+              "n": "139",
+              "d": "1"
+            },
+            "M": {
+              "n": "63",
+              "d": "10"
+            }
+          },
+          "maximum": {
+            "H": {
+              "n": "139",
+              "d": "1"
+            },
+            "M": {
+              "n": "63",
+              "d": "10"
+            }
+          },
+          "events": [
+            {
+              "eventId": "value-review/public-example/event/0",
+              "rootId": "value-review/public-example",
+              "rootEventId": "value-review/public-example/event/0",
+              "phase": "base",
+              "sourceType": "rule",
+              "sourceDefinitionId": "pair",
+              "sourceInstanceId": "full-slot-value-review",
+              "operation": "base",
+              "value": {
+                "n": "35",
+                "d": "1"
+              },
+              "before": {
+                "H": {
+                  "n": "0",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "0",
+                  "d": "1"
+                }
+              },
+              "after": {
+                "H": {
+                  "n": "35",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "2",
+                  "d": "1"
+                }
+              },
+              "reasonKey": "pair.base",
+              "visibleCondition": {
+                "kind": "always"
+              },
+              "retriggerDepth": 0
+            },
+            {
+              "eventId": "value-review/public-example/event/1",
+              "rootId": "value-review/public-example",
+              "rootEventId": "value-review/public-example/event/1",
+              "phase": "onCardScore",
+              "sourceType": "card",
+              "sourceDefinitionId": "rank-7",
+              "sourceInstanceId": "spades-7",
+              "targetCardId": "spades-7",
+              "operation": "add-heat",
+              "value": {
+                "n": "7",
+                "d": "1"
+              },
+              "before": {
+                "H": {
+                  "n": "35",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "2",
+                  "d": "1"
+                }
+              },
+              "after": {
+                "H": {
+                  "n": "42",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "2",
+                  "d": "1"
+                }
+              },
+              "reasonKey": "rank-7.add-heat",
+              "visibleCondition": {
+                "kind": "always"
+              },
+              "retriggerDepth": 0
+            },
+            {
+              "eventId": "value-review/public-example/event/2",
+              "rootId": "value-review/public-example",
+              "rootEventId": "value-review/public-example/event/1",
+              "phase": "onCardScore",
+              "sourceType": "joker",
+              "sourceDefinitionId": "b02",
+              "sourceInstanceId": "value-held/1",
+              "targetCardId": "spades-7",
+              "operation": "add-multiplier",
+              "value": {
+                "n": "1",
+                "d": "4"
+              },
+              "before": {
+                "H": {
+                  "n": "42",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "2",
+                  "d": "1"
+                }
+              },
+              "after": {
+                "H": {
+                  "n": "42",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "9",
+                  "d": "4"
+                }
+              },
+              "reasonKey": "b02.add-multiplier",
+              "visibleCondition": {
+                "kind": "paired-rank",
+                "minimum": 2
+              },
+              "retriggerDepth": 0
+            },
+            {
+              "eventId": "value-review/public-example/event/3",
+              "rootId": "value-review/public-example",
+              "rootEventId": "value-review/public-example/event/3",
+              "phase": "onCardScore",
+              "sourceType": "card",
+              "sourceDefinitionId": "rank-7",
+              "sourceInstanceId": "hearts-7",
+              "targetCardId": "hearts-7",
+              "operation": "add-heat",
+              "value": {
+                "n": "7",
+                "d": "1"
+              },
+              "before": {
+                "H": {
+                  "n": "42",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "9",
+                  "d": "4"
+                }
+              },
+              "after": {
+                "H": {
+                  "n": "49",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "9",
+                  "d": "4"
+                }
+              },
+              "reasonKey": "rank-7.add-heat",
+              "visibleCondition": {
+                "kind": "always"
+              },
+              "retriggerDepth": 0
+            },
+            {
+              "eventId": "value-review/public-example/event/4",
+              "rootId": "value-review/public-example",
+              "rootEventId": "value-review/public-example/event/3",
+              "phase": "onCardScore",
+              "sourceType": "joker",
+              "sourceDefinitionId": "b02",
+              "sourceInstanceId": "value-held/1",
+              "targetCardId": "hearts-7",
+              "operation": "add-multiplier",
+              "value": {
+                "n": "1",
+                "d": "4"
+              },
+              "before": {
+                "H": {
+                  "n": "49",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "9",
+                  "d": "4"
+                }
+              },
+              "after": {
+                "H": {
+                  "n": "49",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "5",
+                  "d": "2"
+                }
+              },
+              "reasonKey": "b02.add-multiplier",
+              "visibleCondition": {
+                "kind": "paired-rank",
+                "minimum": 2
+              },
+              "retriggerDepth": 0
+            },
+            {
+              "eventId": "value-review/public-example/event/5",
+              "rootId": "value-review/public-example",
+              "rootEventId": "value-review/public-example/event/5",
+              "phase": "jokerScore",
+              "sourceType": "joker",
+              "sourceDefinitionId": "mantangcai",
+              "sourceInstanceId": "value-held/0",
+              "operation": "add-heat",
+              "value": {
+                "n": "90",
+                "d": "1"
+              },
+              "before": {
+                "H": {
+                  "n": "49",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "5",
+                  "d": "2"
+                }
+              },
+              "after": {
+                "H": {
+                  "n": "139",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "5",
+                  "d": "2"
+                }
+              },
+              "reasonKey": "mantangcai.add-heat",
+              "visibleCondition": {
+                "kind": "hand-type-in",
+                "values": [
+                  "pair",
+                  "two-pair",
+                  "three-kind",
+                  "full-house",
+                  "four-kind"
+                ]
+              },
+              "retriggerDepth": 0
+            },
+            {
+              "eventId": "value-review/public-example/event/6",
+              "rootId": "value-review/public-example",
+              "rootEventId": "value-review/public-example/event/6",
+              "phase": "jokerScore",
+              "sourceType": "joker",
+              "sourceDefinitionId": "b03",
+              "sourceInstanceId": "value-held/2",
+              "operation": "read-growth",
+              "value": {
+                "n": "1",
+                "d": "1"
+              },
+              "before": {
+                "H": {
+                  "n": "139",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "5",
+                  "d": "2"
+                }
+              },
+              "after": {
+                "H": {
+                  "n": "139",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "7",
+                  "d": "2"
+                }
+              },
+              "reasonKey": "b03.read-growth",
+              "visibleCondition": {
+                "kind": "always"
+              },
+              "retriggerDepth": 0
+            },
+            {
+              "eventId": "value-review/public-example/event/7",
+              "rootId": "value-review/public-example",
+              "rootEventId": "value-review/public-example/event/7",
+              "phase": "jokerScore",
+              "sourceType": "joker",
+              "sourceDefinitionId": "e08",
+              "sourceInstanceId": "full-slot-value-review/joker/full-slot-value-review/review/6",
+              "operation": "multiply-multiplier",
+              "value": {
+                "n": "9",
+                "d": "5"
+              },
+              "before": {
+                "H": {
+                  "n": "139",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "7",
+                  "d": "2"
+                }
+              },
+              "after": {
+                "H": {
+                  "n": "139",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "63",
+                  "d": "10"
+                }
+              },
+              "reasonKey": "e08.multiply-multiplier",
+              "visibleCondition": {
+                "kind": "resource-minimum",
+                "resource": "gold",
+                "minimum": 20
+              },
+              "retriggerDepth": 0
+            },
+            {
+              "eventId": "value-review/public-example/event/8",
+              "rootId": "value-review/public-example",
+              "rootEventId": "value-review/public-example/event/8",
+              "phase": "finalScore",
+              "sourceType": "rule",
+              "sourceDefinitionId": "pair",
+              "sourceInstanceId": "full-slot-value-review",
+              "operation": "final-score",
+              "value": {
+                "n": "875",
+                "d": "1"
+              },
+              "before": {
+                "H": {
+                  "n": "139",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "63",
+                  "d": "10"
+                }
+              },
+              "after": {
+                "H": {
+                  "n": "139",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "63",
+                  "d": "10"
+                }
+              },
+              "reasonKey": "pair.final-score",
+              "visibleCondition": {
+                "kind": "always"
+              },
+              "retriggerDepth": 0
+            },
+            {
+              "eventId": "value-review/public-example/event/9",
+              "rootId": "value-review/public-example",
+              "rootEventId": "value-review/public-example/event/9",
+              "phase": "afterHand",
+              "sourceType": "joker",
+              "sourceDefinitionId": "b03",
+              "sourceInstanceId": "value-held/2",
+              "operation": "add-growth",
+              "value": {
+                "n": "1",
+                "d": "4"
+              },
+              "before": {
+                "H": {
+                  "n": "139",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "63",
+                  "d": "10"
+                }
+              },
+              "after": {
+                "H": {
+                  "n": "139",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "63",
+                  "d": "10"
+                }
+              },
+              "reasonKey": "b03.add-growth",
+              "visibleCondition": {
+                "kind": "hand-type-in",
+                "values": [
+                  "pair",
+                  "two-pair",
+                  "three-kind",
+                  "full-house",
+                  "four-kind",
+                  "five-kind",
+                  "flush-house",
+                  "flush-five"
+                ]
+              },
+              "retriggerDepth": 0
+            }
+          ]
+        },
+        "possibleScores": [
+          "875"
+        ],
+        "scoreRange": {
+          "minimum": "875",
+          "maximum": "875"
+        },
+        "randomEffects": []
+      },
+      "delta": "389",
+      "limitation": "Only this fixed public hand/context; no expected score, stage win, trigger frequency or global optimum claim."
+    },
+    {
+      "offerId": "e08",
+      "soldId": "e01",
+      "originalGuidance": {
+        "stars": 1,
+        "reason": "需先腾槽",
+        "detail": "当前构筑没有明确需要它的条件；倍率×1.8，这轮先留金。",
+        "routes": [
+          "group",
+          "straight",
+          "flush"
+        ],
+        "routeCaption": "同点/顺子/同花",
+        "label": "本局★"
+      },
+      "hand": [
+        {
+          "id": "spades-7",
+          "suit": "spades",
+          "rank": 7
+        },
+        {
+          "id": "hearts-7",
+          "suit": "hearts",
+          "rank": 7
+        },
+        {
+          "id": "clubs-8",
+          "suit": "clubs",
+          "rank": 8
+        },
+        {
+          "id": "diamonds-8",
+          "suit": "diamonds",
+          "rank": 8
+        },
+        {
+          "id": "clubs-10",
+          "suit": "clubs",
+          "rank": 10
+        },
+        {
+          "id": "diamonds-11",
+          "suit": "diamonds",
+          "rank": 11
+        },
+        {
+          "id": "spades-12",
+          "suit": "spades",
+          "rank": 12
+        },
+        {
+          "id": "hearts-14",
+          "suit": "hearts",
+          "rank": 14
+        }
+      ],
+      "selectedIds": [
+        "spades-7",
+        "hearts-7",
+        "clubs-8",
+        "diamonds-8"
+      ],
+      "retainedInput": {
+        "jokers": [
+          {
+            "instanceId": "value-held/0",
+            "definitionId": "mantangcai",
+            "paidPrice": 8,
+            "growth": {}
+          },
+          {
+            "instanceId": "value-held/1",
+            "definitionId": "b02",
+            "paidPrice": 8,
+            "growth": {}
+          },
+          {
+            "instanceId": "value-held/2",
+            "definitionId": "b03",
+            "paidPrice": 8,
+            "growth": {
+              "multiplier": {
+                "n": "1",
+                "d": "1"
+              }
+            }
+          },
+          {
+            "instanceId": "value-held/3",
+            "definitionId": "e01",
+            "paidPrice": 8,
+            "growth": {}
+          },
+          {
+            "instanceId": "value-held/4",
+            "definitionId": "e04",
+            "paidPrice": 8,
+            "growth": {}
+          }
+        ],
+        "gold": 40,
+        "handLevels": {},
+        "scoreContext": {
+          "laohuanTrick": true,
+          "amoScoreTiming": "after-joker",
+          "characterId": "laohuan",
+          "jokerSlots": 5,
+          "gold": 40,
+          "discardsUsed": 0,
+          "previousHandScore": null,
+          "boss": null,
+          "sealedJokerIds": [],
+          "challengeDisabledJokerId": null,
+          "stageHeatBefore": "0",
+          "stageTargetHeat": "400",
+          "handRules": {
+            "fourStraight": false,
+            "fourFlush": false
+          },
+          "ordinaryPointsSuppressedIds": []
+        }
+      },
+      "transaction": {
+        "afterSale": [
+          {
+            "instanceId": "value-held/0",
+            "definitionId": "mantangcai",
+            "paidPrice": 8,
+            "growth": {}
+          },
+          {
+            "instanceId": "value-held/1",
+            "definitionId": "b02",
+            "paidPrice": 8,
+            "growth": {}
+          },
+          {
+            "instanceId": "value-held/2",
+            "definitionId": "b03",
+            "paidPrice": 8,
+            "growth": {
+              "multiplier": {
+                "n": "1",
+                "d": "1"
+              }
+            }
+          },
+          {
+            "instanceId": "value-held/4",
+            "definitionId": "e04",
+            "paidPrice": 8,
+            "growth": {}
+          }
+        ],
+        "goldAfterSale": 44,
+        "afterPurchase": [
+          {
+            "instanceId": "value-held/0",
+            "definitionId": "mantangcai",
+            "paidPrice": 8,
+            "growth": {}
+          },
+          {
+            "instanceId": "value-held/1",
+            "definitionId": "b02",
+            "paidPrice": 8,
+            "growth": {}
+          },
+          {
+            "instanceId": "value-held/2",
+            "definitionId": "b03",
+            "paidPrice": 8,
+            "growth": {
+              "multiplier": {
+                "n": "1",
+                "d": "1"
+              }
+            }
+          },
+          {
+            "instanceId": "value-held/4",
+            "definitionId": "e04",
+            "paidPrice": 8,
+            "growth": {}
+          },
+          {
+            "instanceId": "full-slot-value-review/joker/full-slot-value-review/review/6",
+            "definitionId": "e08",
+            "paidPrice": 6,
+            "growth": {}
+          }
+        ],
+        "goldAfterPurchase": 38
+      },
+      "replacementFacts": {
+        "saleEffects": [],
+        "held": {
+          "kind": "support",
+          "label": "通用辅助",
+          "tag": "辅助",
+          "body": "通用辅助 · 不专属某一种牌型。\n成功过场额外 +2金币；失败和跳场不触发。\n\n用途不表示已发动或最优；仍按实际条件、封禁和保存事件检查。"
+        },
+        "offer": {
+          "kind": "support",
+          "label": "通用辅助",
+          "tag": "辅助",
+          "body": "通用辅助 · 不专属某一种牌型。\n当前金币至少20时，整手倍率 ×1.8。\n本手开始金币至少20；本手新收入不改变资格\n用途不表示已发动或最优；仍按实际条件、封禁和保存事件检查。"
+        },
+        "loss": "出售将失去「小费盒」的效果、版次和当前实例：无成长或使用计数。同名新购牌从新实例初值开始，不继承成长。",
+        "connections": "未记录与现持其它牌在上手共同触发；这不代表没有配合机会。",
+        "money": "当前余额 40 金；该牌基础卖价 4 金；现货「包场」当前实付 6 金。出售和购买分别确认，交易来源、优惠和售后余额以实际保存结果重算。"
+      },
+      "retainedPreview": {
+        "handType": "two-pair",
+        "level": 1,
+        "base": {
+          "H": {
+            "n": "65",
+            "d": "1"
+          },
+          "M": {
+            "n": "2",
+            "d": "1"
+          }
+        },
+        "sets": {
+          "playedIds": [
+            "spades-7",
+            "hearts-7",
+            "clubs-8",
+            "diamonds-8"
+          ],
+          "scoringIds": [
+            "spades-7",
+            "hearts-7",
+            "clubs-8",
+            "diamonds-8"
+          ],
+          "activeScoringIds": [
+            "spades-7",
+            "hearts-7",
+            "clubs-8",
+            "diamonds-8"
+          ],
+          "heldIds": [
+            "clubs-10",
+            "diamonds-11",
+            "spades-12",
+            "hearts-14"
+          ]
+        },
+        "breakdown": {
+          "minimum": {
+            "H": {
+              "n": "185",
+              "d": "1"
+            },
+            "M": {
+              "n": "4",
+              "d": "1"
+            }
+          },
+          "maximum": {
+            "H": {
+              "n": "185",
+              "d": "1"
+            },
+            "M": {
+              "n": "4",
+              "d": "1"
+            }
+          },
+          "events": [
+            {
+              "eventId": "value-review/public-example/event/0",
+              "rootId": "value-review/public-example",
+              "rootEventId": "value-review/public-example/event/0",
+              "phase": "base",
+              "sourceType": "rule",
+              "sourceDefinitionId": "two-pair",
+              "sourceInstanceId": "full-slot-value-review",
+              "operation": "base",
+              "value": {
+                "n": "65",
+                "d": "1"
+              },
+              "before": {
+                "H": {
+                  "n": "0",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "0",
+                  "d": "1"
+                }
+              },
+              "after": {
+                "H": {
+                  "n": "65",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "2",
+                  "d": "1"
+                }
+              },
+              "reasonKey": "two-pair.base",
+              "visibleCondition": {
+                "kind": "always"
+              },
+              "retriggerDepth": 0
+            },
+            {
+              "eventId": "value-review/public-example/event/1",
+              "rootId": "value-review/public-example",
+              "rootEventId": "value-review/public-example/event/1",
+              "phase": "onCardScore",
+              "sourceType": "card",
+              "sourceDefinitionId": "rank-7",
+              "sourceInstanceId": "spades-7",
+              "targetCardId": "spades-7",
+              "operation": "add-heat",
+              "value": {
+                "n": "7",
+                "d": "1"
+              },
+              "before": {
+                "H": {
+                  "n": "65",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "2",
+                  "d": "1"
+                }
+              },
+              "after": {
+                "H": {
+                  "n": "72",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "2",
+                  "d": "1"
+                }
+              },
+              "reasonKey": "rank-7.add-heat",
+              "visibleCondition": {
+                "kind": "always"
+              },
+              "retriggerDepth": 0
+            },
+            {
+              "eventId": "value-review/public-example/event/2",
+              "rootId": "value-review/public-example",
+              "rootEventId": "value-review/public-example/event/1",
+              "phase": "onCardScore",
+              "sourceType": "joker",
+              "sourceDefinitionId": "b02",
+              "sourceInstanceId": "value-held/1",
+              "targetCardId": "spades-7",
+              "operation": "add-multiplier",
+              "value": {
+                "n": "1",
+                "d": "4"
+              },
+              "before": {
+                "H": {
+                  "n": "72",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "2",
+                  "d": "1"
+                }
+              },
+              "after": {
+                "H": {
+                  "n": "72",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "9",
+                  "d": "4"
+                }
+              },
+              "reasonKey": "b02.add-multiplier",
+              "visibleCondition": {
+                "kind": "paired-rank",
+                "minimum": 2
+              },
+              "retriggerDepth": 0
+            },
+            {
+              "eventId": "value-review/public-example/event/3",
+              "rootId": "value-review/public-example",
+              "rootEventId": "value-review/public-example/event/3",
+              "phase": "onCardScore",
+              "sourceType": "card",
+              "sourceDefinitionId": "rank-7",
+              "sourceInstanceId": "hearts-7",
+              "targetCardId": "hearts-7",
+              "operation": "add-heat",
+              "value": {
+                "n": "7",
+                "d": "1"
+              },
+              "before": {
+                "H": {
+                  "n": "72",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "9",
+                  "d": "4"
+                }
+              },
+              "after": {
+                "H": {
+                  "n": "79",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "9",
+                  "d": "4"
+                }
+              },
+              "reasonKey": "rank-7.add-heat",
+              "visibleCondition": {
+                "kind": "always"
+              },
+              "retriggerDepth": 0
+            },
+            {
+              "eventId": "value-review/public-example/event/4",
+              "rootId": "value-review/public-example",
+              "rootEventId": "value-review/public-example/event/3",
+              "phase": "onCardScore",
+              "sourceType": "joker",
+              "sourceDefinitionId": "b02",
+              "sourceInstanceId": "value-held/1",
+              "targetCardId": "hearts-7",
+              "operation": "add-multiplier",
+              "value": {
+                "n": "1",
+                "d": "4"
+              },
+              "before": {
+                "H": {
+                  "n": "79",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "9",
+                  "d": "4"
+                }
+              },
+              "after": {
+                "H": {
+                  "n": "79",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "5",
+                  "d": "2"
+                }
+              },
+              "reasonKey": "b02.add-multiplier",
+              "visibleCondition": {
+                "kind": "paired-rank",
+                "minimum": 2
+              },
+              "retriggerDepth": 0
+            },
+            {
+              "eventId": "value-review/public-example/event/5",
+              "rootId": "value-review/public-example",
+              "rootEventId": "value-review/public-example/event/5",
+              "phase": "onCardScore",
+              "sourceType": "card",
+              "sourceDefinitionId": "rank-8",
+              "sourceInstanceId": "clubs-8",
+              "targetCardId": "clubs-8",
+              "operation": "add-heat",
+              "value": {
+                "n": "8",
+                "d": "1"
+              },
+              "before": {
+                "H": {
+                  "n": "79",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "5",
+                  "d": "2"
+                }
+              },
+              "after": {
+                "H": {
+                  "n": "87",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "5",
+                  "d": "2"
+                }
+              },
+              "reasonKey": "rank-8.add-heat",
+              "visibleCondition": {
+                "kind": "always"
+              },
+              "retriggerDepth": 0
+            },
+            {
+              "eventId": "value-review/public-example/event/6",
+              "rootId": "value-review/public-example",
+              "rootEventId": "value-review/public-example/event/5",
+              "phase": "onCardScore",
+              "sourceType": "joker",
+              "sourceDefinitionId": "b02",
+              "sourceInstanceId": "value-held/1",
+              "targetCardId": "clubs-8",
+              "operation": "add-multiplier",
+              "value": {
+                "n": "1",
+                "d": "4"
+              },
+              "before": {
+                "H": {
+                  "n": "87",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "5",
+                  "d": "2"
+                }
+              },
+              "after": {
+                "H": {
+                  "n": "87",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "11",
+                  "d": "4"
+                }
+              },
+              "reasonKey": "b02.add-multiplier",
+              "visibleCondition": {
+                "kind": "paired-rank",
+                "minimum": 2
+              },
+              "retriggerDepth": 0
+            },
+            {
+              "eventId": "value-review/public-example/event/7",
+              "rootId": "value-review/public-example",
+              "rootEventId": "value-review/public-example/event/7",
+              "phase": "onCardScore",
+              "sourceType": "card",
+              "sourceDefinitionId": "rank-8",
+              "sourceInstanceId": "diamonds-8",
+              "targetCardId": "diamonds-8",
+              "operation": "add-heat",
+              "value": {
+                "n": "8",
+                "d": "1"
+              },
+              "before": {
+                "H": {
+                  "n": "87",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "11",
+                  "d": "4"
+                }
+              },
+              "after": {
+                "H": {
+                  "n": "95",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "11",
+                  "d": "4"
+                }
+              },
+              "reasonKey": "rank-8.add-heat",
+              "visibleCondition": {
+                "kind": "always"
+              },
+              "retriggerDepth": 0
+            },
+            {
+              "eventId": "value-review/public-example/event/8",
+              "rootId": "value-review/public-example",
+              "rootEventId": "value-review/public-example/event/7",
+              "phase": "onCardScore",
+              "sourceType": "joker",
+              "sourceDefinitionId": "b02",
+              "sourceInstanceId": "value-held/1",
+              "targetCardId": "diamonds-8",
+              "operation": "add-multiplier",
+              "value": {
+                "n": "1",
+                "d": "4"
+              },
+              "before": {
+                "H": {
+                  "n": "95",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "11",
+                  "d": "4"
+                }
+              },
+              "after": {
+                "H": {
+                  "n": "95",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "3",
+                  "d": "1"
+                }
+              },
+              "reasonKey": "b02.add-multiplier",
+              "visibleCondition": {
+                "kind": "paired-rank",
+                "minimum": 2
+              },
+              "retriggerDepth": 0
+            },
+            {
+              "eventId": "value-review/public-example/event/9",
+              "rootId": "value-review/public-example",
+              "rootEventId": "value-review/public-example/event/9",
+              "phase": "jokerScore",
+              "sourceType": "joker",
+              "sourceDefinitionId": "mantangcai",
+              "sourceInstanceId": "value-held/0",
+              "operation": "add-heat",
+              "value": {
+                "n": "90",
+                "d": "1"
+              },
+              "before": {
+                "H": {
+                  "n": "95",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "3",
+                  "d": "1"
+                }
+              },
+              "after": {
+                "H": {
+                  "n": "185",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "3",
+                  "d": "1"
+                }
+              },
+              "reasonKey": "mantangcai.add-heat",
+              "visibleCondition": {
+                "kind": "hand-type-in",
+                "values": [
+                  "pair",
+                  "two-pair",
+                  "three-kind",
+                  "full-house",
+                  "four-kind"
+                ]
+              },
+              "retriggerDepth": 0
+            },
+            {
+              "eventId": "value-review/public-example/event/10",
+              "rootId": "value-review/public-example",
+              "rootEventId": "value-review/public-example/event/10",
+              "phase": "jokerScore",
+              "sourceType": "joker",
+              "sourceDefinitionId": "b03",
+              "sourceInstanceId": "value-held/2",
+              "operation": "read-growth",
+              "value": {
+                "n": "1",
+                "d": "1"
+              },
+              "before": {
+                "H": {
+                  "n": "185",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "3",
+                  "d": "1"
+                }
+              },
+              "after": {
+                "H": {
+                  "n": "185",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "4",
+                  "d": "1"
+                }
+              },
+              "reasonKey": "b03.read-growth",
+              "visibleCondition": {
+                "kind": "always"
+              },
+              "retriggerDepth": 0
+            },
+            {
+              "eventId": "value-review/public-example/event/11",
+              "rootId": "value-review/public-example",
+              "rootEventId": "value-review/public-example/event/11",
+              "phase": "finalScore",
+              "sourceType": "rule",
+              "sourceDefinitionId": "two-pair",
+              "sourceInstanceId": "full-slot-value-review",
+              "operation": "final-score",
+              "value": {
+                "n": "740",
+                "d": "1"
+              },
+              "before": {
+                "H": {
+                  "n": "185",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "4",
+                  "d": "1"
+                }
+              },
+              "after": {
+                "H": {
+                  "n": "185",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "4",
+                  "d": "1"
+                }
+              },
+              "reasonKey": "two-pair.final-score",
+              "visibleCondition": {
+                "kind": "always"
+              },
+              "retriggerDepth": 0
+            },
+            {
+              "eventId": "value-review/public-example/event/12",
+              "rootId": "value-review/public-example",
+              "rootEventId": "value-review/public-example/event/12",
+              "phase": "afterHand",
+              "sourceType": "joker",
+              "sourceDefinitionId": "b03",
+              "sourceInstanceId": "value-held/2",
+              "operation": "add-growth",
+              "value": {
+                "n": "1",
+                "d": "4"
+              },
+              "before": {
+                "H": {
+                  "n": "185",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "4",
+                  "d": "1"
+                }
+              },
+              "after": {
+                "H": {
+                  "n": "185",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "4",
+                  "d": "1"
+                }
+              },
+              "reasonKey": "b03.add-growth",
+              "visibleCondition": {
+                "kind": "hand-type-in",
+                "values": [
+                  "pair",
+                  "two-pair",
+                  "three-kind",
+                  "full-house",
+                  "four-kind",
+                  "five-kind",
+                  "flush-house",
+                  "flush-five"
+                ]
+              },
+              "retriggerDepth": 0
+            }
+          ]
+        },
+        "possibleScores": [
+          "740"
+        ],
+        "scoreRange": {
+          "minimum": "740",
+          "maximum": "740"
+        },
+        "randomEffects": []
+      },
+      "replacedPreview": {
+        "handType": "two-pair",
+        "level": 1,
+        "base": {
+          "H": {
+            "n": "65",
+            "d": "1"
+          },
+          "M": {
+            "n": "2",
+            "d": "1"
+          }
+        },
+        "sets": {
+          "playedIds": [
+            "spades-7",
+            "hearts-7",
+            "clubs-8",
+            "diamonds-8"
+          ],
+          "scoringIds": [
+            "spades-7",
+            "hearts-7",
+            "clubs-8",
+            "diamonds-8"
+          ],
+          "activeScoringIds": [
+            "spades-7",
+            "hearts-7",
+            "clubs-8",
+            "diamonds-8"
+          ],
+          "heldIds": [
+            "clubs-10",
+            "diamonds-11",
+            "spades-12",
+            "hearts-14"
+          ]
+        },
+        "breakdown": {
+          "minimum": {
+            "H": {
+              "n": "185",
+              "d": "1"
+            },
+            "M": {
+              "n": "36",
+              "d": "5"
+            }
+          },
+          "maximum": {
+            "H": {
+              "n": "185",
+              "d": "1"
+            },
+            "M": {
+              "n": "36",
+              "d": "5"
+            }
+          },
+          "events": [
+            {
+              "eventId": "value-review/public-example/event/0",
+              "rootId": "value-review/public-example",
+              "rootEventId": "value-review/public-example/event/0",
+              "phase": "base",
+              "sourceType": "rule",
+              "sourceDefinitionId": "two-pair",
+              "sourceInstanceId": "full-slot-value-review",
+              "operation": "base",
+              "value": {
+                "n": "65",
+                "d": "1"
+              },
+              "before": {
+                "H": {
+                  "n": "0",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "0",
+                  "d": "1"
+                }
+              },
+              "after": {
+                "H": {
+                  "n": "65",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "2",
+                  "d": "1"
+                }
+              },
+              "reasonKey": "two-pair.base",
+              "visibleCondition": {
+                "kind": "always"
+              },
+              "retriggerDepth": 0
+            },
+            {
+              "eventId": "value-review/public-example/event/1",
+              "rootId": "value-review/public-example",
+              "rootEventId": "value-review/public-example/event/1",
+              "phase": "onCardScore",
+              "sourceType": "card",
+              "sourceDefinitionId": "rank-7",
+              "sourceInstanceId": "spades-7",
+              "targetCardId": "spades-7",
+              "operation": "add-heat",
+              "value": {
+                "n": "7",
+                "d": "1"
+              },
+              "before": {
+                "H": {
+                  "n": "65",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "2",
+                  "d": "1"
+                }
+              },
+              "after": {
+                "H": {
+                  "n": "72",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "2",
+                  "d": "1"
+                }
+              },
+              "reasonKey": "rank-7.add-heat",
+              "visibleCondition": {
+                "kind": "always"
+              },
+              "retriggerDepth": 0
+            },
+            {
+              "eventId": "value-review/public-example/event/2",
+              "rootId": "value-review/public-example",
+              "rootEventId": "value-review/public-example/event/1",
+              "phase": "onCardScore",
+              "sourceType": "joker",
+              "sourceDefinitionId": "b02",
+              "sourceInstanceId": "value-held/1",
+              "targetCardId": "spades-7",
+              "operation": "add-multiplier",
+              "value": {
+                "n": "1",
+                "d": "4"
+              },
+              "before": {
+                "H": {
+                  "n": "72",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "2",
+                  "d": "1"
+                }
+              },
+              "after": {
+                "H": {
+                  "n": "72",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "9",
+                  "d": "4"
+                }
+              },
+              "reasonKey": "b02.add-multiplier",
+              "visibleCondition": {
+                "kind": "paired-rank",
+                "minimum": 2
+              },
+              "retriggerDepth": 0
+            },
+            {
+              "eventId": "value-review/public-example/event/3",
+              "rootId": "value-review/public-example",
+              "rootEventId": "value-review/public-example/event/3",
+              "phase": "onCardScore",
+              "sourceType": "card",
+              "sourceDefinitionId": "rank-7",
+              "sourceInstanceId": "hearts-7",
+              "targetCardId": "hearts-7",
+              "operation": "add-heat",
+              "value": {
+                "n": "7",
+                "d": "1"
+              },
+              "before": {
+                "H": {
+                  "n": "72",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "9",
+                  "d": "4"
+                }
+              },
+              "after": {
+                "H": {
+                  "n": "79",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "9",
+                  "d": "4"
+                }
+              },
+              "reasonKey": "rank-7.add-heat",
+              "visibleCondition": {
+                "kind": "always"
+              },
+              "retriggerDepth": 0
+            },
+            {
+              "eventId": "value-review/public-example/event/4",
+              "rootId": "value-review/public-example",
+              "rootEventId": "value-review/public-example/event/3",
+              "phase": "onCardScore",
+              "sourceType": "joker",
+              "sourceDefinitionId": "b02",
+              "sourceInstanceId": "value-held/1",
+              "targetCardId": "hearts-7",
+              "operation": "add-multiplier",
+              "value": {
+                "n": "1",
+                "d": "4"
+              },
+              "before": {
+                "H": {
+                  "n": "79",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "9",
+                  "d": "4"
+                }
+              },
+              "after": {
+                "H": {
+                  "n": "79",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "5",
+                  "d": "2"
+                }
+              },
+              "reasonKey": "b02.add-multiplier",
+              "visibleCondition": {
+                "kind": "paired-rank",
+                "minimum": 2
+              },
+              "retriggerDepth": 0
+            },
+            {
+              "eventId": "value-review/public-example/event/5",
+              "rootId": "value-review/public-example",
+              "rootEventId": "value-review/public-example/event/5",
+              "phase": "onCardScore",
+              "sourceType": "card",
+              "sourceDefinitionId": "rank-8",
+              "sourceInstanceId": "clubs-8",
+              "targetCardId": "clubs-8",
+              "operation": "add-heat",
+              "value": {
+                "n": "8",
+                "d": "1"
+              },
+              "before": {
+                "H": {
+                  "n": "79",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "5",
+                  "d": "2"
+                }
+              },
+              "after": {
+                "H": {
+                  "n": "87",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "5",
+                  "d": "2"
+                }
+              },
+              "reasonKey": "rank-8.add-heat",
+              "visibleCondition": {
+                "kind": "always"
+              },
+              "retriggerDepth": 0
+            },
+            {
+              "eventId": "value-review/public-example/event/6",
+              "rootId": "value-review/public-example",
+              "rootEventId": "value-review/public-example/event/5",
+              "phase": "onCardScore",
+              "sourceType": "joker",
+              "sourceDefinitionId": "b02",
+              "sourceInstanceId": "value-held/1",
+              "targetCardId": "clubs-8",
+              "operation": "add-multiplier",
+              "value": {
+                "n": "1",
+                "d": "4"
+              },
+              "before": {
+                "H": {
+                  "n": "87",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "5",
+                  "d": "2"
+                }
+              },
+              "after": {
+                "H": {
+                  "n": "87",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "11",
+                  "d": "4"
+                }
+              },
+              "reasonKey": "b02.add-multiplier",
+              "visibleCondition": {
+                "kind": "paired-rank",
+                "minimum": 2
+              },
+              "retriggerDepth": 0
+            },
+            {
+              "eventId": "value-review/public-example/event/7",
+              "rootId": "value-review/public-example",
+              "rootEventId": "value-review/public-example/event/7",
+              "phase": "onCardScore",
+              "sourceType": "card",
+              "sourceDefinitionId": "rank-8",
+              "sourceInstanceId": "diamonds-8",
+              "targetCardId": "diamonds-8",
+              "operation": "add-heat",
+              "value": {
+                "n": "8",
+                "d": "1"
+              },
+              "before": {
+                "H": {
+                  "n": "87",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "11",
+                  "d": "4"
+                }
+              },
+              "after": {
+                "H": {
+                  "n": "95",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "11",
+                  "d": "4"
+                }
+              },
+              "reasonKey": "rank-8.add-heat",
+              "visibleCondition": {
+                "kind": "always"
+              },
+              "retriggerDepth": 0
+            },
+            {
+              "eventId": "value-review/public-example/event/8",
+              "rootId": "value-review/public-example",
+              "rootEventId": "value-review/public-example/event/7",
+              "phase": "onCardScore",
+              "sourceType": "joker",
+              "sourceDefinitionId": "b02",
+              "sourceInstanceId": "value-held/1",
+              "targetCardId": "diamonds-8",
+              "operation": "add-multiplier",
+              "value": {
+                "n": "1",
+                "d": "4"
+              },
+              "before": {
+                "H": {
+                  "n": "95",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "11",
+                  "d": "4"
+                }
+              },
+              "after": {
+                "H": {
+                  "n": "95",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "3",
+                  "d": "1"
+                }
+              },
+              "reasonKey": "b02.add-multiplier",
+              "visibleCondition": {
+                "kind": "paired-rank",
+                "minimum": 2
+              },
+              "retriggerDepth": 0
+            },
+            {
+              "eventId": "value-review/public-example/event/9",
+              "rootId": "value-review/public-example",
+              "rootEventId": "value-review/public-example/event/9",
+              "phase": "jokerScore",
+              "sourceType": "joker",
+              "sourceDefinitionId": "mantangcai",
+              "sourceInstanceId": "value-held/0",
+              "operation": "add-heat",
+              "value": {
+                "n": "90",
+                "d": "1"
+              },
+              "before": {
+                "H": {
+                  "n": "95",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "3",
+                  "d": "1"
+                }
+              },
+              "after": {
+                "H": {
+                  "n": "185",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "3",
+                  "d": "1"
+                }
+              },
+              "reasonKey": "mantangcai.add-heat",
+              "visibleCondition": {
+                "kind": "hand-type-in",
+                "values": [
+                  "pair",
+                  "two-pair",
+                  "three-kind",
+                  "full-house",
+                  "four-kind"
+                ]
+              },
+              "retriggerDepth": 0
+            },
+            {
+              "eventId": "value-review/public-example/event/10",
+              "rootId": "value-review/public-example",
+              "rootEventId": "value-review/public-example/event/10",
+              "phase": "jokerScore",
+              "sourceType": "joker",
+              "sourceDefinitionId": "b03",
+              "sourceInstanceId": "value-held/2",
+              "operation": "read-growth",
+              "value": {
+                "n": "1",
+                "d": "1"
+              },
+              "before": {
+                "H": {
+                  "n": "185",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "3",
+                  "d": "1"
+                }
+              },
+              "after": {
+                "H": {
+                  "n": "185",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "4",
+                  "d": "1"
+                }
+              },
+              "reasonKey": "b03.read-growth",
+              "visibleCondition": {
+                "kind": "always"
+              },
+              "retriggerDepth": 0
+            },
+            {
+              "eventId": "value-review/public-example/event/11",
+              "rootId": "value-review/public-example",
+              "rootEventId": "value-review/public-example/event/11",
+              "phase": "jokerScore",
+              "sourceType": "joker",
+              "sourceDefinitionId": "e08",
+              "sourceInstanceId": "full-slot-value-review/joker/full-slot-value-review/review/6",
+              "operation": "multiply-multiplier",
+              "value": {
+                "n": "9",
+                "d": "5"
+              },
+              "before": {
+                "H": {
+                  "n": "185",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "4",
+                  "d": "1"
+                }
+              },
+              "after": {
+                "H": {
+                  "n": "185",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "36",
+                  "d": "5"
+                }
+              },
+              "reasonKey": "e08.multiply-multiplier",
+              "visibleCondition": {
+                "kind": "resource-minimum",
+                "resource": "gold",
+                "minimum": 20
+              },
+              "retriggerDepth": 0
+            },
+            {
+              "eventId": "value-review/public-example/event/12",
+              "rootId": "value-review/public-example",
+              "rootEventId": "value-review/public-example/event/12",
+              "phase": "finalScore",
+              "sourceType": "rule",
+              "sourceDefinitionId": "two-pair",
+              "sourceInstanceId": "full-slot-value-review",
+              "operation": "final-score",
+              "value": {
+                "n": "1332",
+                "d": "1"
+              },
+              "before": {
+                "H": {
+                  "n": "185",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "36",
+                  "d": "5"
+                }
+              },
+              "after": {
+                "H": {
+                  "n": "185",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "36",
+                  "d": "5"
+                }
+              },
+              "reasonKey": "two-pair.final-score",
+              "visibleCondition": {
+                "kind": "always"
+              },
+              "retriggerDepth": 0
+            },
+            {
+              "eventId": "value-review/public-example/event/13",
+              "rootId": "value-review/public-example",
+              "rootEventId": "value-review/public-example/event/13",
+              "phase": "afterHand",
+              "sourceType": "joker",
+              "sourceDefinitionId": "b03",
+              "sourceInstanceId": "value-held/2",
+              "operation": "add-growth",
+              "value": {
+                "n": "1",
+                "d": "4"
+              },
+              "before": {
+                "H": {
+                  "n": "185",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "36",
+                  "d": "5"
+                }
+              },
+              "after": {
+                "H": {
+                  "n": "185",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "36",
+                  "d": "5"
+                }
+              },
+              "reasonKey": "b03.add-growth",
+              "visibleCondition": {
+                "kind": "hand-type-in",
+                "values": [
+                  "pair",
+                  "two-pair",
+                  "three-kind",
+                  "full-house",
+                  "four-kind",
+                  "five-kind",
+                  "flush-house",
+                  "flush-five"
+                ]
+              },
+              "retriggerDepth": 0
+            }
+          ]
+        },
+        "possibleScores": [
+          "1332"
+        ],
+        "scoreRange": {
+          "minimum": "1332",
+          "maximum": "1332"
+        },
+        "randomEffects": []
+      },
+      "delta": "592",
+      "limitation": "Only this fixed public hand/context; no expected score, stage win, trigger frequency or global optimum claim."
+    }
+  ],
+  "status": "FAIL",
+  "failure": "AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:\n\n  assert.ok(row.detailText.includes('大丑牌槽位已满'))\n"
+}

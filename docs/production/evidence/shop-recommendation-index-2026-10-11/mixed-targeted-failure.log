@@ -1,0 +1,34 @@
+
+> dachoupai@0.1.0 test
+> vitest run tests/shop-recommendation.test.ts tests/shop-offer-guidance.test.ts tests/shop-current-decisions.test.ts tests/joker-reorder.test.ts tests/shop-layout.test.ts
+
+
+ RUN  v4.1.11 /workspace/dachoupai
+
+ ❯ tests/shop-recommendation.test.ts (14 tests | 1 failed) 233ms
+     × a straight opening does not veto the actual late mixed straight/house public build 22ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/shop-recommendation.test.ts > audited sustained recommendation, separate from purchase and replacement > a straight opening does not veto the actual late mixed straight/house public build
+AssertionError: expected 'straight-flush' to be 'straight' // Object.is equality
+
+Expected: "straight"
+Received: "straight-flush"
+
+ ❯ tests/shop-recommendation.test.ts:31:1235
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 4 passed (5)
+      Tests  1 failed | 116 passed (117)
+   Start at  15:02:39
+   Duration  2.06s (transform 3.13s, setup 0ms, import 4.02s, tests 568ms, environment 1ms)
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice

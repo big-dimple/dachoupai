@@ -1,6 +1,6 @@
 import {afterEach,beforeEach,it,expect,vi} from 'vitest';
 import type {Action,R2RunState} from '../src/domain/run';
-const fixture=vi.hoisted(()=>({active:undefined as object|undefined,dialogs:[] as {title:string;body:string;actions:{label:string;run:()=>void|Promise<void>}[];token:object;options?:{cards?:{body:string}[]}}[]}));
+const fixture=vi.hoisted(()=>({active:undefined as object|undefined,dialogs:[] as {title:string;body:string;actions:{label:string;run:()=>void|Promise<void>}[];token:object;options?:{cards?:{body:string;details?:string}[]}}[]}));
 vi.mock('phaser',()=>({default:{Scene:class {scene={isActive:()=>true};}}}));
 vi.mock('../src/game/SceneView',()=>({SceneView:class {}}));
 vi.mock('../src/game/session',()=>({gameSession:()=>({lease:{writable:true},pendingRun:null,working:false})}));
@@ -8,7 +8,7 @@ vi.mock('../src/game/runAdapter',()=>({runController:()=>({status:'idle'})}));
 vi.mock('../src/game/DetailDialog',()=>({DetailDialog:class {
  active(token:object){return fixture.active===token;}
  close(token?:object){if(!token||fixture.active===token)fixture.active=undefined;}
- open(title:string,body:string,actions:{label:string;run:()=>void|Promise<void>}[]=[],options?:{cards?:{body:string}[]}){const token={};fixture.active=token;fixture.dialogs.push({title,body,actions,token,options});return token;}
+ open(title:string,body:string,actions:{label:string;run:()=>void|Promise<void>}[]=[],options?:{cards?:{body:string;details?:string}[]}){const token={};fixture.active=token;fixture.dialogs.push({title,body,actions,token,options});return token;}
 }}));
 import {ShopScene} from '../src/game/ShopScene';
 import {r2CreateJoker} from '../src/domain/r2Run';
@@ -40,6 +40,8 @@ it('the still-active confirmation closes after saving and opens current offer de
 
 it('comparison and actual sale confirmation both expose retained reset, growth and qualification consequences',async()=>{
  const x=pendingSale(true);expect(x.confirmation.body).toContain('×1.5 → ×1');expect(x.confirmation.body).toContain('旧物新用');expect(x.confirmation.body).toContain('未出售');expect(x.s.run).toEqual(x.before);
- x.s.dialog.close();x.s.inspectReplacement(x.offerId);const cards=fixture.dialogs.at(-1)!.options!.cards!;expect(cards[0].body).toContain('×1.5 → ×1');expect(cards[0].body).toContain('+0.5 → +1');expect(cards[0].body).toContain('未出售');
+ x.s.dialog.close();x.s.inspectReplacement(x.offerId);const cards=fixture.dialogs.at(-1)!.options!.cards!;
+ expect(cards[0].body).toContain('长期捧场售后：系数×1.5→×1');expect(cards[0].body).toContain('旧物新用售后：倍率0.5→1');expect(cards[0].body).toContain('下一场未售成长失效');
+ expect(cards[0].details).toContain('长期捧场 · 售后：乘法系数 ×1.5 → 乘法系数 ×1');expect(cards[0].details).toContain('旧物新用 · 售后：倍率成长 0.5 → 倍率成长 1');expect(cards[0].details).toContain('售后实付6金；买后11金');expect(x.s.run).toEqual(x.before);
  x.finish();await x.pending;expect(x.opened).not.toHaveBeenCalled();expect(x.s.run.jokers.find(j=>j.instanceId==='long')!.growth.coefficient).toEqual({n:'1',d:'1'});expect(x.s.run.jokers.find(j=>j.instanceId==='reuse')!.growth.multiplier).toEqual({n:'1',d:'1'});
 });

@@ -1,0 +1,46 @@
+
+ RUN  v4.1.11 /workspace/dachoupai
+
+ ❯ tests/shop-recommendation-c07.test.ts (4 tests | 1 failed) 56ms
+     × legal20 same-suit two-rank deck has no source across all six five-card rank distributions 40ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/shop-recommendation-c07.test.ts > c07 sources require its actual ordinary flush or straight-flush family > legal20 same-suit two-rank deck has no source across all six five-card rank distributions
+AssertionError: expected { stars: 4, reason: '重触后长倍率', …(4) } to match object { stars: 2, facts: { …(2) } }
+(26 matching properties omitted from actual)
+
+- Expected
++ Received
+
+  {
+    "facts": {
+      "ordinaryFlushPossible": false,
+-     "retriggerSource": false,
++     "retriggerSource": true,
+    },
+-   "stars": 2,
++   "stars": 4,
+  }
+
+ ❯ tests/shop-recommendation-c07.test.ts:31:29
+     29|   }
+     30|   expect(sourceEvents(score(s,[7,7,8,8]))).toHaveLength(0);
+     31|   expect(recommendation(s)).toMatchObject({stars:2,facts:{ordinaryFlus…
+       |                             ^
+     32|  });
+     33|  it('actual ordinary flush source supports d09 even when the opening f…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 3 passed (4)
+   Start at  16:19:00
+   Duration  786ms (transform 475ms, setup 0ms, import 586ms, tests 56ms, environment 0ms)
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice
