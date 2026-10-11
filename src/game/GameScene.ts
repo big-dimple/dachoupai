@@ -326,6 +326,8 @@ export class GameScene extends Phaser.Scene {
     this.game.canvas.setAttribute('data-hand-input','pointer');
     window.addEventListener('pointerdown',this.pointerFocus,true);document.addEventListener('focusin',this.focusFeedback);document.addEventListener('focusout',this.focusFeedback);window.addEventListener('blur',this.stopHandHint);document.addEventListener('visibilitychange',this.hintVisibility);
     this.render();
+    const unsubscribeInventory=gameSession().subscribe(()=>this.updateInventoryControl());
+    this.events.once('shutdown',unsubscribeInventory);
     if(enteredStage)this.revealDrawnCards([]);
     const notice=stageNotice(this.run);
     if(enteredStage&&notice?.warning){
@@ -353,6 +355,17 @@ export class GameScene extends Phaser.Scene {
     paintCardFeedback(view,{selected:this.selectedIds.has(view.card.id),scoring:!!view.container.getData('activeScoring'),hovered:this.hoveredCardId===view.card.id,focused:this.keyboardFocus&&document.activeElement===this.game.canvas&&index===this.focusIndex});
   }
   private get ready():boolean {const session=gameSession();return !this.playing&&runController(this)?.status==='idle'&&session.lease.writable&&!session.pendingRun&&!session.working;}
+  private get inventoryInspectable():boolean {
+    const session=gameSession(),status=runController(this)?.status;
+    return !this.playing&&!this.presentation&&['idle','paused','readonly'].includes(status??'')&&!session.pendingRun&&!session.working&&this.run.phase==='await-input'&&!this.pendingRefill&&!this.pendingTouye;
+  }
+  private updateInventoryControl():void {
+    if(this.controlsLive&&this.inventoryButton?.active)this.view.setEnabled(this.inventoryButton,this.inventoryInspectable);
+  }
+  private inspectInventory():void {
+    if(!this.inventoryInspectable)return;
+    showConsumables(this.dialog,this.run,this.ready,(action,seq)=>this.inventoryInspectable&&this.ready&&seq===this.run.commandSeq?this.command(action,seq):Promise.resolve(false));
+  }
   get isPresenting():boolean {return !!this.presentation;}
   private render():void {
     this.stopHandHint();
@@ -442,7 +455,7 @@ export class GameScene extends Phaser.Scene {
     const play=l.tableActions.play;
     this.playAura=v.add(this.add.graphics().lineStyle(2,T.red,.7).strokeRoundedRect(play.x-3,play.y-3,play.width+6,play.height+6,9).setAlpha(0));
     this.statusText=v.text(l.status.x,l.status.y,'',14,'#f3d5ab',l.status.width);
-    this.inventoryButton=v.button(gameToolInventoryBox(l),toolInventoryLabel(this.run),'action/tool-inventory',()=>showConsumables(this.dialog,this.run,this.ready&&!this.pendingRefill&&!this.pendingTouye,(a,seq)=>this.command(a,seq)));
+    this.inventoryButton=v.button(gameToolInventoryBox(l),toolInventoryLabel(this.run),'action/tool-inventory',()=>this.inspectInventory());
     inventoryFeedback(this,this.inventoryButton,this.run,this.ready,this.reducedMotion);
     this.controlsLive=true;
     this.updateHud();this.renderHand();
@@ -912,6 +925,7 @@ export class GameScene extends Phaser.Scene {
   }
   private updateControls():void {
     if(!this.controlsLive)return;
+    this.updateInventoryControl();
     this.view.setEnabled(this.rankButton,this.ready&&!this.pendingRefill);this.view.setEnabled(this.suitButton,this.ready&&!this.pendingRefill);
     const aiInput=this.aiInput(),aiResult=this.aiCandidates.result;
     this.view.setEnabled(this.aiButton,this.ready&&!this.pendingRefill&&!this.presentation&&aiResult?.status==='ready'&&aiResult.key===aiHandKey(aiInput)&&aiResult.ordered.length>0);
@@ -952,7 +966,7 @@ export class GameScene extends Phaser.Scene {
     if(!discovery&&this.statusText.width>this.view.layout.status.width&&memoryReminder&&!sweepReminder&&!this.statusMessage&&!reminders&&!entryReminder)this.statusText.setText(savedReminder!.name+' · 保存状态见详情');
     if(azao&&!this.presentation&&!this.playing&&!discovery&&!sweepReminder&&!selectedReminder&&!guideCue&&!reminders&&!entryReminder&&!benefitReminder&&!memoryReminder)this.statusText.setText(azao.compact+' · '+(this.azaoRelease?'本手释放，消耗全部层':azao.hold)).setName('hero/azao-charge-status');
     }
-    if(usesTouyeWager(this.run)){const copy=touyeChoice(this.run,[...this.selectedIds]);this.roleText.setText(copy.compact);if(!criticalStatus&&!this.playing&&!this.presentation&&copy.status)this.statusText.setText(copy.status);if(this.pendingTouye){this.view.setEnabled(this.discardButton,false);if(this.inventoryButton)this.view.setEnabled(this.inventoryButton,false);}}
+    if(usesTouyeWager(this.run)){const copy=touyeChoice(this.run,[...this.selectedIds]);this.roleText.setText(copy.compact);if(!criticalStatus&&!this.playing&&!this.presentation&&copy.status)this.statusText.setText(copy.status);if(this.pendingTouye)this.view.setEnabled(this.discardButton,false);}
     const safeBottom=parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--safe-bottom'))||0;
     fitStatusSummary(this.statusText,{...handWindow.status,height:Math.max(0,Math.min(handWindow.status.height+(handWindow.mode==='landscape'?12:0),handWindow.height-safeBottom-handWindow.status.y))},!criticalStatus&&selectedReminder?'点所选条件':undefined);
     if(usesLaohuanRefill(this.run))this.roleText.setText(this.roleCaption());
@@ -967,7 +981,7 @@ export class GameScene extends Phaser.Scene {
     this.roleText.setColor(heroAvailable?C.jade:C.mutedInk).setData('abilityAvailable',heroAvailable);
     this.roleFrame.setStrokeStyle(heroOpportunity||heroChosen?2:1,heroAvailable||heroChosen?T.jade:T.brass,heroOpportunity||heroChosen?1:.6);
     this.resourceCounts.play.setVisible(!this.pendingRefill);this.resourceCounts.discard.setVisible(!this.pendingRefill);
-    if(this.pendingRefill){this.view.setEnabled(this.aiButton,false);this.view.setEnabled(this.playButton,this.ready&&!this.refillHidden&&this.selectedIds.size===this.pendingRefill.required);(this.playButton.getData('label') as Phaser.GameObjects.Text).setText('确认留'+this.pendingRefill.required);this.view.setEnabled(this.discardButton,this.ready);(this.discardButton.getData('label') as Phaser.GameObjects.Text).setText(this.refillHidden?'继续选牌':'收起候选');if(this.inventoryButton)this.view.setEnabled(this.inventoryButton,false);}
+    if(this.pendingRefill){this.view.setEnabled(this.aiButton,false);this.view.setEnabled(this.playButton,this.ready&&!this.refillHidden&&this.selectedIds.size===this.pendingRefill.required);(this.playButton.getData('label') as Phaser.GameObjects.Text).setText('确认留'+this.pendingRefill.required);this.view.setEnabled(this.discardButton,this.ready);(this.discardButton.getData('label') as Phaser.GameObjects.Text).setText(this.refillHidden?'继续选牌':'收起候选');}
     // Balatro-style call-to-action: the playable state breathes a warm aura.
     const auraOn=!!this.playButton.input?.enabled&&this.selectedIds.size>0&&!this.presentation&&!this.playing;
     if(this.playAura){

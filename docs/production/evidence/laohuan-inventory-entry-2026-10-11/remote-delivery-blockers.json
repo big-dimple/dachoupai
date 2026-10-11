@@ -1,0 +1,19 @@
+{
+  "tool": "functions.exec -> tools.exec_command",
+  "exit_code": 1,
+  "executionApprovalRejectionObserved": false,
+  "classification": "gh/API request-layer Forbidden; numeric HTTP status not included in original output, so GitHub origin HTTP 403 vs intermediary refusal is unconfirmed. No execution approval-review rejection was returned.",
+  "handling": "Stopped each original API action; no retry, substitute route or credential/authorization header exposure. Current repaired HEAD has not been queried again.",
+  "originalActions": [
+    {
+      "action": "draft PR POST",
+      "command": "gh api repos/big-dimple/dachoupai/pulls --method POST --input /tmp/inventory-refill-pr.json --jq '{number,html_url,draft,head:.head.sha,base:.base.sha}'",
+      "error": "Post \"https://api.github.com/repos/big-dimple/dachoupai/pulls\": Forbidden"
+    },
+    {
+      "action": "exact HEAD CI GET",
+      "command": "gh api 'repos/big-dimple/dachoupai/actions/runs?head_sha=c5386867cd9500c998188708ed35f5c8578a0981&per_page=20' --jq '.workflow_runs | map({id,name,head_sha,status,conclusion,event,html_url})'",
+      "error": "Get \"https://api.github.com/repos/big-dimple/dachoupai/actions/runs?head_sha=c5386867cd9500c998188708ed35f5c8578a0981&per_page=20\": Forbidden"
+    }
+  ]
+}
