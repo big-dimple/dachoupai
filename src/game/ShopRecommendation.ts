@@ -11,9 +11,12 @@ import {readR2Modifiers,type Condition} from '../content/r2Schema';
 import {r2ScoringDisabledJokerIds} from '../domain/scoreR2';
 import {evaluateR2Hand} from '../domain/evaluateR2';
 import type {BuildFocus} from './BuildDirectionPreferences';
+import {isR2RouteGrowth} from '../domain/r2GroupUpgrade';
+import {shopRouteGrowthFacts} from './ShopRouteGrowthFacts';
 
 /** Audited against e48fd07's resolved 72 definitions. Changed/older semantics require review. */
 export const SHOP_RECOMMENDATION_SEMANTICS='json-fnv-v1:bd8fa974db581460';
+export const SHOP_C2_RECOMMENDATION_SEMANTICS='json-fnv-v1:91387711fbe1298d';
 export const SHOP_RECOMMENDATION_AUDIT={
  pengci:'triple',mantangcai:'group-heat',tiesuanpan:'face-score',huimaqiang:'third-play',jiedongfeng:'straight-flush-add',
  a03:'first-score',a05:'repeat-growth',b02:'pair-score',b03:'group-growth',b04:'two-groups',
@@ -29,12 +32,20 @@ export const SHOP_RECOMMENDATION_AUDIT={
  d11:'third-retrigger',d12:'held-income',e09:'tool-space',e10:'clear-tool',e11:'sale-reset-coefficient',e12:'reroll-growth',
  f08:'chance-heat',f10:'opening-rescue',f11:'low-score-growth',f12:'last-clear-coefficient',
 } as const;
+/** PR121 9c56744: six reviewed semantic changes; other 66 duties stay shared. */
+export const SHOP_C2_RECOMMENDATION_AUDIT={...SHOP_RECOMMENDATION_AUDIT,
+ mantangcai:'group-heat-c2',c04:'straight-heat-growth-c2',c06:'flush-family-growth-c2',
+ jiedongfeng:'route-family-add-c2',e11:'sale-keeps-coefficient-c2',f10:'opening-discard-rescue-c2',
+} as const;
 export type RecommendationStars=0|1|2|3|4|5;
 export interface ShopRecommendation {stars:RecommendationStars;reason:string;condition:string;detail:string;stage:'early'|'mid'|'late';facts:Readonly<Record<string,number|boolean|string>>}
 const hashes=new WeakMap<object,string>();
 /** No affordability, shelf availability, RNG, future piles, simulation or stored recommendation. */
 export function shopRecommendation(state:R2RunState,offer:R2Offer,focus?:BuildFocus):ShopRecommendation {
  const definitions=r2JokerDefinitionsFor(state);let hash=hashes.get(definitions);if(!hash){hash=stableHash(definitions);hashes.set(definitions,hash);}
+ const c2=isR2RouteGrowth(state)&&hash===SHOP_C2_RECOMMENDATION_SEMANTICS;
+ const audited=c2||hash===SHOP_RECOMMENDATION_SEMANTICS;
+ const routeGrowth=c2?shopRouteGrowthFacts(state):undefined;
  const stage=state.chapter<=2?'early':state.chapter<=5?'mid':'late';
  const cards=state.deckInstances.filter(c=>!state.destroyedIds.includes(c.id)),ranks=new Map<number,number>(),suits=new Map<string,number>();
  for(const c of cards){ranks.set(c.rank,(ranks.get(c.rank)??0)+1);suits.set(c.suit,(suits.get(c.suit)??0)+1);}
@@ -56,6 +67,11 @@ export function shopRecommendation(state:R2RunState,offer:R2Offer,focus?:BuildFo
   return pool.length>=5&&seek(0,5,[])||handRules.fourFlush&&pool.length>=4&&seek(0,4,[]);
  });
  const flushRetriggerPossible=ordinaryFlushPossible||[...suits.keys()].some(suit=>consecutive(cards.filter(card=>card.suit===suit),5));
+ // C2's F family is broader than c07's unchanged ordinary-flush/SF trigger.
+ const flushHousePossible=c2&&[...suits.keys()].some(suit=>{const ns=[...new Set(cards.filter(c=>c.suit===suit).map(c=>c.rank))].map(rank=>cards.filter(c=>c.suit===suit&&c.rank===rank).length).sort((a,b)=>b-a);return (ns[0]??0)>=3&&(ns[1]??0)>=2;});
+ const flushFivePossible=c2&&[...suits.keys()].some(suit=>[...ranks.keys()].some(rank=>cards.filter(c=>c.suit===suit&&c.rank===rank).length>=5));
+ const straightFamilyPossible=ordinaryStraightPossible||[...suits.keys()].some(suit=>consecutive(cards.filter(card=>card.suit===suit),5));
+ const flushFamilyPossible=flushRetriggerPossible||flushHousePossible||flushFivePossible;
  const boosted=(c:typeof cards[number])=>!!c.edition&&c.edition!=='none'||R2_ENHANCEMENTS.find(e=>e.id===c.enhancement)?.effects.some(e=>e.phase==='onCardScore'&&['add-heat','add-multiplier','multiply-multiplier'].includes(e.kind))===true;
  const boostedGroup=largest>=3&&[...ranks].some(([r,n])=>n===largest&&cards.filter(c=>c.rank===r&&boosted(c)).length>=3);
  const houseCardPayoff=[...ranks].some(([triple,n])=>n>=3&&cards.filter(c=>c.rank===triple&&boosted(c)).length>=3&&[...ranks].some(([pair,m])=>pair!==triple&&m>=2&&cards.some(c=>c.rank===pair&&boosted(c))));
@@ -86,16 +102,16 @@ export function shopRecommendation(state:R2RunState,offer:R2Offer,focus?:BuildFo
    case 'all-played-active':return cards.length>=c.minimum;
    // A ≤2-card short program cannot share an a06 qualified main hand.
    case 'played-count-maximum':return false;
-   case 'hand-type-in':return c.values.some(type=>type==='three-kind'?largest>=3:type==='straight'?ordinaryStraightPossible:type==='flush'?ordinaryFlushPossible:type==='straight-flush'?[...suits.keys()].some(suit=>consecutive(cards.filter(card=>card.suit===suit),5)):false);
+   case 'hand-type-in':return c.values.some(type=>type==='three-kind'?largest>=3:type==='straight'?ordinaryStraightPossible:type==='flush'?ordinaryFlushPossible:type==='straight-flush'?[...suits.keys()].some(suit=>consecutive(cards.filter(card=>card.suit===suit),5)):type==='flush-house'?flushHousePossible:type==='flush-five'?flushFivePossible:false);
    default:return false;
   }
  };
  const additiveSource=scoringJokers.some(j=>{const d=definitions.find(d=>d.id===j.definitionId)!;return d.hooks.some(h=>multiplierCondition(h.condition)&&h.operations.some(o=>o.kind==='add-multiplier'&&Rational.fromJSON(o.value).compare(new Rational(0n))>0||o.kind==='read-growth'&&o.target==='multiplier'&&Rational.fromJSON(j.growth[o.key]??{n:'0',d:'1'}).compare(new Rational(0n))>0));});
  const potentialStages=state.tourMode==='endless'?6:Math.max(0,24-state.stageIndex),growthWindow=stage!=='late'&&potentialStages>=6;
- const facts={cards:cards.length,largest,second,largestSuit,groupConcentrated,flushConcentrated,straightConcentrated,ordinaryStraightPossible,ordinaryFlushPossible,boostedGroup,houseCardPayoff,boostedHouse,groupRecord,houseRecord,flushRecord,qualifiedRecord,heldCardPayoff,heldGroupPayoff,retriggerSource,additiveSource,disabledSourceCount:disabledSources.size,potentialStages,growthWindow,initialGrowth:JSON.stringify(r2CreateJoker(offer.definitionId,'recommendation/'+offer.offerId,offer.price,offer.edition,state).growth)};
- const d=definitions.find(d=>d.id===offer.definitionId),rule=SHOP_RECOMMENDATION_AUDIT[offer.definitionId as keyof typeof SHOP_RECOMMENDATION_AUDIT];
- const result=(stars:RecommendationStars,reason:string,condition:string):ShopRecommendation=>({stars,reason,condition,stage,facts,detail:reason+'；'+condition+(d?'。'+d.description:'')+(stars>=4?`\n公开依据：最大同点组${largest}张，前两组${largest+second}/${cards.length}张；最大花色${largestSuit}/${cards.length}张；已持逐牌加成${heldCardPayoff?'有':'无'}；剩余场次窗口${potentialStages}。`:'')+'\n基于公开构筑与当前阶段的推荐；不表示指定替换净更强。'});
- if(hash!==SHOP_RECOMMENDATION_SEMANTICS||!rule||!d)return result(0,'规则待核','该身份尚未审计');
+ const facts={cards:cards.length,largest,second,largestSuit,groupConcentrated,flushConcentrated,straightConcentrated,ordinaryStraightPossible,ordinaryFlushPossible,boostedGroup,houseCardPayoff,boostedHouse,groupRecord,houseRecord,flushRecord,qualifiedRecord,heldCardPayoff,heldGroupPayoff,retriggerSource,additiveSource,disabledSourceCount:disabledSources.size,potentialStages,growthWindow,initialGrowth:JSON.stringify(r2CreateJoker(offer.definitionId,'recommendation/'+offer.offerId,offer.price,offer.edition,state).growth),...(c2?{straightFamilyPossible,flushFamilyPossible,flushHousePossible,flushFivePossible,routeGrowth:JSON.stringify(routeGrowth)}:{})};
+ const d=definitions.find(d=>d.id===offer.definitionId),rules=c2?SHOP_C2_RECOMMENDATION_AUDIT:SHOP_RECOMMENDATION_AUDIT,rule=rules[offer.definitionId as keyof typeof SHOP_RECOMMENDATION_AUDIT];
+ const result=(stars:RecommendationStars,reason:string,condition:string):ShopRecommendation=>({stars,reason,condition,stage,facts,detail:reason+'；'+condition+(d?'。'+d.description:'')+(stars>=4?`\n公开依据：最大同点组${largest}张，前两组${largest+second}/${cards.length}张；最大花色${largestSuit}/${cards.length}张；已持逐牌加成${heldCardPayoff?'有':'无'}；剩余场次窗口${potentialStages}。`:'')+'\n基于公开构筑与当前阶段的推荐；不表示指定替换净更强。'+(routeGrowth?'\n'+routeGrowth.detail:'')});
+ if(!audited||!rule||!d)return result(0,'规则待核','该身份尚未审计');
  const scoreHooks=d.hooks.some(h=>['jokerScore','onCardScore','onHeldCard'].includes(h.phase));
  if(scoreHooks&&state.chapterDisabledJokerId===d.id)return result(1,'本章计分停用','静态与经营效果另核');
  if(scoreHooks&&state.stageIndex%3===2&&state.boss.definitionId==='B16'&&d.rarity==='rare')return result(1,'本场稀有计分停用','封禁结束再考虑');
@@ -103,6 +119,12 @@ export function shopRecommendation(state:R2RunState,offer:R2Offer,focus?:BuildFo
  const count=(predicate:(c:typeof cards[number])=>boolean)=>cards.filter(predicate).length;
  const groupFit=focus==='group'||groupRecord,flushFit=focus==='flush'||flushRecord,straightFit=focus==='straight';
  switch(rule){
+   case 'group-heat-c2':return result(largest<2?1:groupFit?(stage==='late'?2:3):2,'成组热度+90','含五条与同花升级牌型');
+   case 'straight-heat-growth-c2':return !straightFamilyPossible?result(1,'缺顺子成长条件','新购成长为0'):growth(straightFit||straightConcentrated||!!trace&&['straight','straight-flush'].includes(trace.handType),'顺子热度与成长','热+50 · 成长+10/上限100');
+   case 'flush-family-growth-c2':return !flushFamilyPossible?result(1,'缺同花族成长条件','新购成长为0'):growth(flushFit||flushConcentrated||!!trace&&['flush-house','flush-five'].includes(trace.handType),'同花族长倍率','含同花升级 · +0.5/上限6');
+   case 'route-family-add-c2':return result(!straightFamilyPossible&&!flushFamilyPossible?1:straightReady||flushReady||flushConcentrated&&flushFamilyPossible?4:straightFit||flushFit?3:2,'顺花族加倍率1.5','含同花葫芦与同花五条');
+   case 'sale-keeps-coefficient-c2':return result(stage==='late'?2:potentialStages>=6?4:3,'不出售跨场成长','卖其他牌保倍率 · 下一场不成长');
+   case 'opening-discard-rescue-c2':return result(largest>=3||second>=2||straightFamilyPossible||flushFamilyPossible?3:2,'首次弃牌备救火','未出牌首弃 · 下手两对以上×3');
   case 'triple':return result(largest<3?1:groupReady?4:groupFit?3:2,'主手三条加倍率','需主手三条');
   case 'group-heat':return result(largest<2?1:groupFit?(stage==='late'?2:3):2,'成组基础热度','普通成组牌型');
   case 'pair-score':return result(largest<2?1:groupReady&&heldCardPayoff?4:groupFit?3:2,'同点逐牌加倍率','计分点数实际重复');

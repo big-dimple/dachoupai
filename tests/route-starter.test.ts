@@ -2,11 +2,12 @@ import {describe,expect,it} from 'vitest';
 import {createRun,applyCommand,type Action,type R2RunState} from '../src/domain/run';
 import {CHARACTER_IDS,type CharacterId} from '../src/domain/characters';
 import {stableHash} from '../src/domain/hash';
-import {R2_SUIT_CHOICE_HASH,R2_ERXIANG_HANDOFF_VERSION,R2_ERXIANG_HANDOFF_HASH,R2_TOOL_SUPPLY_VERSION,R2_TOOL_SUPPLY_HASH,R2_ROUTE_STARTERS,R2_ROUTE_STARTER_HASH,R2_ROUTE_STARTER_VERSION,type R2OpeningRoute} from '../src/domain/r2GroupUpgrade';
+import {R2_ROUTE_GROWTH_HASH,R2_ERXIANG_HANDOFF_VERSION,R2_ERXIANG_HANDOFF_HASH,R2_TOOL_SUPPLY_VERSION,R2_TOOL_SUPPLY_HASH,R2_ROUTE_STARTERS,R2_ROUTE_STARTER_HASH,R2_ROUTE_STARTER_VERSION,type R2OpeningRoute} from '../src/domain/r2GroupUpgrade';
 import {makeCheckpoint,readCheckpoint} from '../src/application/checkpoint';
 import {SavedRun,type SaveSlots,type SaveStore} from '../src/application/SavedRun';
 import {evaluateR2Hand} from '../src/domain/evaluateR2';
 import {r2JokerDefinitionsFor} from '../src/domain/r2ContentProfiles';
+import {R2_ROUTE_GROWTH_JOKERS} from '../src/content/r2RouteGrowthJokers';
 import {newRunIdentity,launchIdentity} from '../src/game/RunLaunch';
 import {starterOffer,starterShopCue,starterSelection} from '../src/game/RouteStarter';
 import {keyHighlight,keyHighlightBeat,starterRepeatBeat} from '../src/game/JokerKeyHighlight';
@@ -26,8 +27,8 @@ function natural(route:R2OpeningRoute){let s=start(route,'erxiang');const offer=
 describe('atomic first-shelf route contract',()=>{
  for(const characterId of CHARACTER_IDS)for(const route of Object.keys(R2_ROUTE_STARTERS) as R2OpeningRoute[])it(characterId+'/'+route+' keeps three original-price offers and a truly corresponding affordable ordinary card',()=>{
   const s=start(route,characterId),offer=s.shop!.offers.find(o=>o.definitionId===R2_ROUTE_STARTERS[route])!;
-  expect(s.contentHash).toBe(R2_SUIT_CHOICE_HASH);expect(s.shop!.offers).toHaveLength(3);expect(offer.edition).toBe('none');expect(offer.price).toBe(route==='flush'?6:4);expect(offer.price).toBeLessThanOrEqual(s.gold);expect(starterOffer(s,offer)?.label).toContain('起手');expect(readCheckpoint(makeCheckpoint(s,[])).ok).toBe(true);expect(start(route,characterId)).toEqual(s);
-  const old=createRun({seed:s.seed,runId:s.runId,characterId,rulesVersion:'r2',r2Profile:'group-upgrade-v1',modeConfig:mode});expect(r2JokerDefinitionsFor(s)).toBe(r2JokerDefinitionsFor(old));expect(s.rng.shop).not.toEqual(old.rng.shop);expect(s.shop!.toolOffers[0].definitionId).toEqual(old.shop!.toolOffers[0].definitionId);expect(s.shop!.toolOffers).toHaveLength(1);expect(s.shop!.itemOffers).toEqual(old.shop!.itemOffers);
+  expect(s.contentHash).toBe(R2_ROUTE_GROWTH_HASH);expect(s.shop!.offers).toHaveLength(3);expect(offer.edition).toBe('none');expect(offer.price).toBe(route==='flush'?6:4);expect(offer.price).toBeLessThanOrEqual(s.gold);expect(starterOffer(s,offer)?.label).toContain('起手');expect(readCheckpoint(makeCheckpoint(s,[])).ok).toBe(true);expect(start(route,characterId)).toEqual(s);
+  const old=createRun({seed:s.seed,runId:s.runId,characterId,rulesVersion:'r2',r2Profile:'group-upgrade-v1',modeConfig:mode});expect(r2JokerDefinitionsFor(s)).toBe(R2_ROUTE_GROWTH_JOKERS);expect(r2JokerDefinitionsFor(old)).not.toBe(R2_ROUTE_GROWTH_JOKERS);expect(s.rng.shop).not.toEqual(old.rng.shop);expect(s.shop!.toolOffers[0].definitionId).toEqual(old.shop!.toolOffers[0].definitionId);expect(s.shop!.toolOffers).toHaveLength(1);expect(s.shop!.itemOffers).toEqual(old.shop!.itemOffers);
   const previousIdentity=characterId==='erxiang'?{contentVersion:R2_ERXIANG_HANDOFF_VERSION,contentHash:R2_ERXIANG_HANDOFF_HASH}:{contentVersion:R2_TOOL_SUPPLY_VERSION,contentHash:R2_TOOL_SUPPLY_HASH};
   const previous=createRun({seed:s.seed,runId:s.runId,characterId,rulesVersion:'r2',r2Identity:previousIdentity,openingRoute:route,modeConfig:mode});expect(previous.contentHash).toBe(previousIdentity.contentHash);expect(previous.shop!.toolOffers).toHaveLength(2);expect(s.rng).toEqual(previous.rng);expect(s.shop!.toolOffers).toEqual(previous.shop!.toolOffers.slice(0,1));expect(launchIdentity(characterId,{kind:'retry',run:previous})).toEqual(previousIdentity);expect(send(previous,{type:'RerollShop'}).shop!.toolOffers).toHaveLength(2);
   expect(s.shop!.offers.filter((o,i)=>JSON.stringify(o)!==JSON.stringify(old.shop!.offers[i])).length).toBeLessThanOrEqual(1);
@@ -56,7 +57,7 @@ describe('first saved source highlight',()=>{
   const key=keyHighlight(p.after,p.after.lastTrace!)!;expect(key.kind).toBe('starter');expect(key.route).toBe(route);expect(key.heroId).toBe('erxiang');expect(keyHighlight(p.after,p.after.lastTrace!,'0','999999',false)).toBeUndefined();
   const beat=keyHighlightBeat(scoreBeat(event),false,key.kind);expect(beat.windup+beat.flight+beat.impact+beat.rest).toBe(1000);const repeat=starterRepeatBeat(scoreBeat(event));expect(repeat.windup+repeat.flight+repeat.impact+repeat.rest).toBe(290);
   const invalid=structuredClone(p.after);invalid.routeStarter!.eventId=stamp.rootId+'/event/0';expect(readChanged(p.after,invalid).ok).toBe(false);
-  if(route==='flush'){expect(event.operation).toBe('add-growth');expect(event.before).toEqual(event.after);expect(key.landing).toContain('本手分数不变');expect(key.fact.effect).toContain('0.25');
+  if(route==='flush'){expect(event.operation).toBe('add-growth');expect(event.before).toEqual(event.after);expect(key.landing).toContain('本手分数不变');expect(key.fact.effect).toContain('0.5');
    const next=p.after.phase==='stage-cleared'?send(send(send(p.after,{type:'OpenShop'}),{type:'LeaveShop'}),{type:'EnterStage'}):p.after;
    const second=send(next,{type:'PlayHand',selectedIds:[next.handOrder[0]]});expect(second.routeStarter).toEqual(stamp);expect(keyHighlight(second,second.lastTrace!,'0','999999')).toBeUndefined();expect(second.lastTrace!.events.some(e=>e.operation==='read-growth'&&e.sourceInstanceId===stamp.instanceId&&e.value.n!=='0')).toBe(true);const read=second.lastTrace!.events.find(e=>e.operation==='read-growth'&&e.sourceInstanceId===stamp.instanceId)!;const crossing=(BigInt(read.before.H.n)*BigInt(read.before.M.n)/(BigInt(read.before.H.d)*BigInt(read.before.M.d))+1n).toString();expect(keyHighlight(second,second.lastTrace!,'0',crossing)).toBeUndefined();
   }

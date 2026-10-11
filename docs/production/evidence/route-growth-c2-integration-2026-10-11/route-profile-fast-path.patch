@@ -1,0 +1,22 @@
+diff --git a/workspace/dachoupai-c2/src/content/r2RouteGrowthJokers.ts b/src/content/r2RouteGrowthJokers.ts
+index b7b2fe5..21c7bd5 100644
+--- a/workspace/dachoupai-c2/src/content/r2RouteGrowthJokers.ts
++++ b/src/content/r2RouteGrowthJokers.ts
+@@ -1,5 +1,8 @@
+ import type {R2JokerDefinition} from './r2Schema';
+ import {R2_GROUP_UPGRADE_JOKERS} from './r2GroupUpgradeJokers';
++import {R2_COMBO_GROWTH_JOKERS} from './r2ComboGrowthJokers';
++import {R2_ASSIST_JOKERS} from './r2AssistJokers';
++import {R2_PUBLISHED_JOKERS} from '../domain/r2PublishedContent';
+ import {R2_GROUP_HAND_TYPES} from '../domain/r2GroupHands';
+ import {R2_STRAIGHT_HAND_TYPES,R2_FLUSH_HAND_TYPES} from '../domain/r2RouteGrowth';
+ import {AMO_ASSIST_TYPES} from '../domain/r2QualifiedHands';
+@@ -35,4 +38,7 @@ function freeze<T>(value:T):T {if(value&&typeof value==='object'){Object.values(
+ export const R2_ROUTE_GROWTH_JOKERS:readonly R2JokerDefinition[]=freeze(R2_GROUP_UPGRADE_JOKERS.map(d=>changes[d.id]?{...d,...changes[d.id]}:d));
+ export const R2_ROUTE_GROWTH_IDS=Object.freeze(Object.keys(changes));
+ const definitionsHash=stableHash(R2_ROUTE_GROWTH_JOKERS);
+-export const hasR2RouteGrowthDefinitions=(definitions:readonly R2JokerDefinition[])=>definitions===R2_ROUTE_GROWTH_JOKERS||stableHash(definitions)===definitionsHash;
++// These module-owned arrays are deeply frozen. Legacy previews need no full
++// 72-card hash on every candidate; arbitrary/copied arrays still get the hash.
++const legacyDefinitionSets=new Set<readonly R2JokerDefinition[]>([R2_PUBLISHED_JOKERS,R2_ASSIST_JOKERS,R2_COMBO_GROWTH_JOKERS,R2_GROUP_UPGRADE_JOKERS]);
++export const hasR2RouteGrowthDefinitions=(definitions:readonly R2JokerDefinition[])=>definitions===R2_ROUTE_GROWTH_JOKERS||!legacyDefinitionSets.has(definitions)&&stableHash(definitions)===definitionsHash;

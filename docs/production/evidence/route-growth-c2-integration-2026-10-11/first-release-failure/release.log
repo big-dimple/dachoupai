@@ -1,0 +1,328 @@
+
+> dachoupai@0.1.0 release:checked
+> node scripts/release-checked.mjs
+
+CHECK verify:ci: /opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node /opt/codex/runtimes/codex-primary-runtime/dependencies/node/lib/node_modules/npm/bin/npm-cli.js run verify:ci
+
+> dachoupai@0.1.0 verify:ci
+> node scripts/verify-ci.mjs
+
+CHECK test: /opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node /opt/codex/runtimes/codex-primary-runtime/dependencies/node/lib/node_modules/npm/bin/npm-cli.js run test
+
+> dachoupai@0.1.0 test
+> vitest run
+
+
+ RUN  v4.1.11 /workspace/dachoupai-c2-integrated
+
+ ❯ tests/erxiang-handoff.test.ts (13 tests | 2 failed) 640ms
+     × high card, held/attached/disabled target and actual zero points reject; ordinary legal scoring still works 31ms
+     × B08/Q01 block activation but allow ordinary play 8ms
+ ❯ tests/touye-wager.test.ts (14 tests | 1 failed) 1049ms
+     × Q01/B08 refuse, B01/B07 original costs and B14 only one actual discard remain 20ms
+ ❯ tests/laohuan-refill.test.ts (11 tests | 1 failed) 572ms
+     × Q01 refuses, B08 permits non-scoring selection and B14 increases once 21ms
+ ❯ tests/xiemu-burn.test.ts (11 tests | 1 failed) 508ms
+     × B08 blocks burn keeps resource interest; Q01 disables both 11ms
+ ❯ tests/hero-ability-cue.test.ts (6 tests | 1 failed) 592ms
+   × B08 respects the non-scoring Laohuan exception and never advertises disabled scoring abilities 9ms
+ ❯ tests/hero-climax.test.ts (8 tests | 1 failed) 96ms
+   × real saved growth reads both snapshots without counting it as current score 16ms
+ ❯ tests/opening-signature.test.ts (6 tests | 1 failed) 34ms
+   × route examples use actual new-run starters and explicitly retain delayed flush growth 5ms
+ ❯ tests/saved-boss-impact.test.ts (7 tests | 7 failed) 14ms
+     × names actual ordinary-point targets without denying their other effects 8ms
+     × does not claim suppression if the saved hand has no suppressed targets 1ms
+     × reads a real base reduction and distinguishes repeated from first/different hands 1ms
+     × identifies only cards in the saved scoring set that actually lost scoring 1ms
+     × uses saved source order and seals after the live inventory/seals have changed 1ms
+     × shows saved role restrictions without inventing lost scores or a failure cause 1ms
+     × does not reuse a live/next Boss for an ordinary saved hand 1ms
+ ❯ tests/joker-plain-quantity.test.ts (5 tests | 1 failed) 19ms
+   × joker-score arithmetic is once per qualified hand rather than per matching card 7ms
+ ❯ tests/v00-bot.test.ts (5 tests | 1 failed) 13424ms
+     × groups emits only valid ordinary commands on a natural run 5087ms
+
+⎯⎯⎯⎯⎯⎯ Failed Tests 17 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/erxiang-handoff.test.ts > Erxiang first ordinary points handoff > high card, held/attached/disabled target and actual zero points reject; ordinary legal scoring still works
+AssertionError: expected [Function] to throw error including 'erxiang-zero-points' but got 'invalid-route-growth-snapshot'
+
+Expected: "erxiang-zero-points"
+Received: "invalid-route-growth-snapshot"
+
+ ❯ tests/erxiang-handoff.test.ts:30:922
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/17]⎯
+
+ FAIL  tests/erxiang-handoff.test.ts > Erxiang first ordinary points handoff > B08/Q01 block activation but allow ordinary play
+Error: Run invariant: route history identity/ledger
+ ❯ check src/domain/r2Run.ts:127:70
+
+ ❯ assertR2Invariants src/domain/r2Run.ts:142:3
+ ❯ applyCommand src/domain/run.ts:202:5
+ ❯ send tests/erxiang-handoff.test.ts:17:92
+ ❯ tests/erxiang-handoff.test.ts:32:244
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/17]⎯
+
+ FAIL  tests/hero-ability-cue.test.ts > B08 respects the non-scoring Laohuan exception and never advertises disabled scoring abilities
+Error: Run invariant: route history identity/ledger
+ ❯ check src/domain/r2Run.ts:127:70
+
+ ❯ assertR2Invariants src/domain/r2Run.ts:142:3
+ ❯ Module.applyCommand src/domain/run.ts:202:5
+ ❯ send tests/hero-ability-cue.test.ts:17:51
+ ❯ tests/hero-ability-cue.test.ts:45:430
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/17]⎯
+
+ FAIL  tests/hero-climax.test.ts > real saved growth reads both snapshots without counting it as current score
+AssertionError: expected { label: '成长已保存', before: '0', …(2) } to deeply equal { label: '成长已保存', before: '0', …(2) }
+
+- Expected
++ Received
+
+  {
+-   "after": "0.25",
++   "after": "0.5",
+    "before": "0",
+    "label": "成长已保存",
+    "note": "下手生效 · 不加本手分",
+  }
+
+ ❯ tests/hero-climax.test.ts:13:116
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/17]⎯
+
+ FAIL  tests/joker-plain-quantity.test.ts > joker-score arithmetic is once per qualified hand rather than per matching card
+AssertionError: expected '打出顺子、同花顺时，出牌热度 +50。' to contain '每手一次，'
+
+Expected: "每手一次，"
+Received: "打出顺子、同花顺时，出牌热度 +50。"
+
+ ❯ tests/joker-plain-quantity.test.ts:43:35
+     41| it('joker-score arithmetic is once per qualified hand rather than per …
+     42|  for(const id of ['pengci','c04','e08','f04']){
+     43|   const p=copy(id);expect(p.line).toContain('每手一次，');expect(p.tile).to…
+       |                                   ^
+     44|   expect(p.line).not.toContain('每张');
+     45|  }
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/17]⎯
+
+ FAIL  tests/laohuan-refill.test.ts > laohuan real discard and fixed refill > Q01 refuses, B08 permits non-scoring selection and B14 increases once
+Error: Run invariant: route history identity/ledger
+ ❯ check src/domain/r2Run.ts:127:70
+
+ ❯ assertR2Invariants src/domain/r2Run.ts:142:3
+ ❯ applyCommand src/domain/run.ts:202:5
+ ❯ send tests/laohuan-refill.test.ts:12:88
+ ❯ tests/laohuan-refill.test.ts:22:825
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/17]⎯
+
+ FAIL  tests/opening-signature.test.ts > route examples use actual new-run starters and explicitly retain delayed flush growth
+AssertionError: expected '同花 +0.5成长 · 下手生效' to contain '+0.25'
+
+Expected: "+0.25"
+Received: "同花 +0.5成长 · 下手生效"
+
+ ❯ tests/opening-signature.test.ts:24:575
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/17]⎯
+
+ FAIL  tests/saved-boss-impact.test.ts > saved Boss scoring impact, current identity > names actual ordinary-point targets without denying their other effects
+Error: invalid-route-growth-snapshot
+ ❯ resolveScore src/domain/scoreR2.ts:143:96
+
+ ❯ scoreR2Hand src/domain/scoreR2.ts:113:10
+ ❯ score tests/saved-boss-impact.test.ts:9:53
+ ❯ tests/saved-boss-impact.test.ts:13:11
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[8/17]⎯
+
+ FAIL  tests/saved-boss-impact.test.ts > saved Boss scoring impact, current identity > does not claim suppression if the saved hand has no suppressed targets
+Error: invalid-route-growth-snapshot
+ ❯ resolveScore src/domain/scoreR2.ts:143:96
+
+ ❯ scoreR2Hand src/domain/scoreR2.ts:113:10
+ ❯ score tests/saved-boss-impact.test.ts:9:53
+ ❯ tests/saved-boss-impact.test.ts:16:109
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[9/17]⎯
+
+ FAIL  tests/saved-boss-impact.test.ts > saved Boss scoring impact, current identity > reads a real base reduction and distinguishes repeated from first/different hands
+Error: invalid-route-growth-snapshot
+ ❯ resolveScore src/domain/scoreR2.ts:143:96
+
+ ❯ scoreR2Hand src/domain/scoreR2.ts:113:10
+ ❯ score tests/saved-boss-impact.test.ts:9:53
+ ❯ tests/saved-boss-impact.test.ts:18:30
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[10/17]⎯
+
+ FAIL  tests/saved-boss-impact.test.ts > saved Boss scoring impact, current identity > identifies only cards in the saved scoring set that actually lost scoring
+Error: invalid-route-growth-snapshot
+ ❯ resolveScore src/domain/scoreR2.ts:143:96
+
+ ❯ scoreR2Hand src/domain/scoreR2.ts:113:10
+ ❯ score tests/saved-boss-impact.test.ts:9:53
+ ❯ tests/saved-boss-impact.test.ts:23:11
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[11/17]⎯
+
+ FAIL  tests/saved-boss-impact.test.ts > saved Boss scoring impact, current identity > uses saved source order and seals after the live inventory/seals have changed
+Error: invalid-route-growth-snapshot
+ ❯ resolveScore src/domain/scoreR2.ts:143:96
+
+ ❯ scoreR2Hand src/domain/scoreR2.ts:113:10
+ ❯ score tests/saved-boss-impact.test.ts:9:53
+ ❯ tests/saved-boss-impact.test.ts:27:11
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[12/17]⎯
+
+ FAIL  tests/saved-boss-impact.test.ts > saved Boss scoring impact, current identity > shows saved role restrictions without inventing lost scores or a failure cause
+Error: invalid-route-growth-snapshot
+ ❯ resolveScore src/domain/scoreR2.ts:143:96
+
+ ❯ scoreR2Hand src/domain/scoreR2.ts:113:10
+ ❯ score tests/saved-boss-impact.test.ts:9:53
+ ❯ tests/saved-boss-impact.test.ts:31:34
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[13/17]⎯
+
+ FAIL  tests/saved-boss-impact.test.ts > saved Boss scoring impact, current identity > does not reuse a live/next Boss for an ordinary saved hand
+Error: invalid-route-growth-snapshot
+ ❯ resolveScore src/domain/scoreR2.ts:143:96
+
+ ❯ scoreR2Hand src/domain/scoreR2.ts:113:10
+ ❯ score tests/saved-boss-impact.test.ts:9:53
+ ❯ tests/saved-boss-impact.test.ts:33:119
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[14/17]⎯
+
+ FAIL  tests/touye-wager.test.ts > Touye public pre-discard commitment > Q01/B08 refuse, B01/B07 original costs and B14 only one actual discard remain
+Error: Run invariant: route history identity/ledger
+ ❯ check src/domain/r2Run.ts:127:70
+
+ ❯ assertR2Invariants src/domain/r2Run.ts:142:3
+ ❯ applyCommand src/domain/run.ts:202:5
+ ❯ send tests/touye-wager.test.ts:19:82
+ ❯ tests/touye-wager.test.ts:32:785
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[15/17]⎯
+
+ FAIL  tests/v00-bot.test.ts > V00 policies receive only player-visible information > groups emits only valid ordinary commands on a natural run
+Error: Test timed out in 5000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ ❯ tests/v00-bot.test.ts:19:51
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[16/17]⎯
+
+ FAIL  tests/xiemu-burn.test.ts > xiemu bounded pay/score/clear transaction > B08 blocks burn keeps resource interest; Q01 disables both
+Error: Run invariant: route history identity/ledger
+ ❯ check src/domain/r2Run.ts:127:70
+
+ ❯ assertR2Invariants src/domain/r2Run.ts:142:3
+ ❯ applyCommand src/domain/run.ts:202:5
+ ❯ send tests/xiemu-burn.test.ts:15:92
+ ❯ tests/xiemu-burn.test.ts:27:325
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[17/17]⎯
+
+
+ Test Files  10 failed | 199 passed (209)
+      Tests  17 failed | 3086 passed (3103)
+   Start at  14:10:51
+   Duration  52.55s (transform 8.80s, setup 0ms, import 33.73s, tests 72.01s, environment 22ms)
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice
+test: FAIL
+{
+  "scope": "all",
+  "testedCommit": "e48fd07a6e7b4575067dc356ad28cb0a94fe15e9",
+  "status": "FAIL",
+  "exitCode": 1,
+  "before": {
+    "source": "9316fc9192200eb4268bde6a00fb8c984eea544188c41173b1f3bcff454c0fb7",
+    "index": "4320d1470a33d44e0bedd5b5055e8643845ed5b79a2f96b45c7ad7e6fbba0280",
+    "head": "e48fd07a6e7b4575067dc356ad28cb0a94fe15e9",
+    "branch": "refs/heads/feat/c2-route-growth-2026-10-11"
+  },
+  "after": {
+    "source": "9316fc9192200eb4268bde6a00fb8c984eea544188c41173b1f3bcff454c0fb7",
+    "index": "4320d1470a33d44e0bedd5b5055e8643845ed5b79a2f96b45c7ad7e6fbba0280",
+    "head": "e48fd07a6e7b4575067dc356ad28cb0a94fe15e9",
+    "branch": "refs/heads/feat/c2-route-growth-2026-10-11"
+  },
+  "steps": [
+    {
+      "name": "test",
+      "status": "FAIL",
+      "childExitCode": 1,
+      "elapsedMs": 55303,
+      "reason": "child exited 1"
+    }
+  ],
+  "notIncluded": [
+    {
+      "name": "extended browser/recovery/fault/asset/simulation diagnostics",
+      "status": "NOT_INCLUDED",
+      "reason": "run the existing specific command only when its domain changes; P00 removes repeated default execution"
+    },
+    {
+      "name": "balance/benchmark acceptance",
+      "status": "NOT_INCLUDED",
+      "reason": "later work packages; no gameplay approval inferred from checks"
+    },
+    {
+      "name": "physical devices / human / art approval",
+      "status": "NOT_RUN"
+    }
+  ]
+}
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice
+verify:ci: FAIL
+{
+  "status": "FAIL",
+  "exitCode": 1,
+  "before": {
+    "source": "9316fc9192200eb4268bde6a00fb8c984eea544188c41173b1f3bcff454c0fb7",
+    "index": "4320d1470a33d44e0bedd5b5055e8643845ed5b79a2f96b45c7ad7e6fbba0280",
+    "head": "e48fd07a6e7b4575067dc356ad28cb0a94fe15e9",
+    "branch": "refs/heads/feat/c2-route-growth-2026-10-11"
+  },
+  "after": {
+    "source": "9316fc9192200eb4268bde6a00fb8c984eea544188c41173b1f3bcff454c0fb7",
+    "index": "4320d1470a33d44e0bedd5b5055e8643845ed5b79a2f96b45c7ad7e6fbba0280",
+    "head": "e48fd07a6e7b4575067dc356ad28cb0a94fe15e9",
+    "branch": "refs/heads/feat/c2-route-growth-2026-10-11"
+  },
+  "steps": [
+    {
+      "name": "verify:ci",
+      "status": "FAIL",
+      "childExitCode": 1,
+      "elapsedMs": 57093,
+      "reason": "child exited 1"
+    }
+  ]
+}
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice

@@ -15,6 +15,7 @@ const names=(types:readonly (keyof typeof HAND_LABELS)[])=>types.length===R2_GRO
 const allBeyondPair=(types:readonly (keyof typeof HAND_LABELS)[])=>types.length===Object.keys(HAND_LABELS).length-2&&Object.keys(HAND_LABELS).filter(t=>t!=='high-card'&&t!=='pair').every(t=>types.includes(t as keyof typeof HAND_LABELS));
 const when=(c:Condition,phase:HookPhase):string|undefined=>{
  switch(c.kind){
+  case'opening-discard':return '出牌前首次成功弃牌';
   case'always':return phase==='jokerScore'?'每次出牌':phase==='onStageClear'?'成功过关':phase==='onBuyOffer'?'成功买牌':phase==='onSellJoker'?'成功卖牌':phase==='onReroll'?'成功换商店货':'出牌结算后';
   case'hand-type-in':return names(c.values);
   case'played-count':return '只出'+c.equals+'张';
@@ -158,7 +159,7 @@ export function jokerPlainCopy(d:R2JokerDefinition,j:R2JokerInstance|undefined,c
  }else{
   const read=hooks[0]?.operations[0],life=hooks.flatMap(h=>h.operations).find(o=>o.kind==='expire-after-hands');
   if(life?.kind==='expire-after-hands'&&read?.kind==='multiply-multiplier')tile='出牌倍率×'+fractionText(read.value)+'\n总共'+life.limit+'手';
-  else if(read?.kind==='read-coefficient')tile='多步条件\n倍率×'+(j?fractionText(growth[read.key]):'保存值')+'\n点牌查重置';
+  else if(read?.kind==='read-coefficient')tile='多步条件\n倍率×'+(j?fractionText(growth[read.key]):'保存值')+'\n点牌查'+(d.id==='e11'&&!hooks.some(h=>h.operations.some(o=>o.kind==='reset-coefficient'))?'成长':'重置');
   else if(legacyGrowth&&read?.kind==='read-growth'){const grow=hooks[1].operations[0];if(grow.kind==='add-growth'){const bounds=growthBounds(d,j,grow);tile='特定牌型\n'+(bounds.capped?unit(read.target)+'封顶'+fractionText(bounds.cap):unit(read.target)+'+'+fractionText(bounds.delta)+'顶'+fractionText(bounds.cap))+'\n'+(bounds.capped?'不再新增':'新增下次用');}}
   else if(read?.kind==='read-growth')tile='多步成长\n'+unit(read.target)+'+保存值\n点牌查增减';
   else tile='多步条件\n'+(read?.kind==='retrigger-card'?'再计'+read.count+'次':read?gain(read,hooks[0].phase,hooks[0].condition)??'分时点生效':'分时点生效')+'\n点牌查条件';

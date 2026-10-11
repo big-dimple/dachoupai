@@ -1,0 +1,18 @@
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+
+  assert.ok(rescue.lastTrace.events.some(e=>e.sourceInstanceId==='held/f10'&&e.operation==='multiply-multiplier'&&e.value.n==='3'))
+
+    at file:///workspace/dachoupai/harness/shop-c2-facts.mjs:45:9 {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: false,
+  expected: true,
+  operator: '==',
+  diff: 'simple'
+}
+
+Node.js v24.19.0

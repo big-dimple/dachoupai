@@ -89,3 +89,9 @@ it('growth headroom remains separate from a suppressed current read',()=>{
  const p=jokerAbilityCopyForRun(identity,'b10',j,ctx({scoringLimited:true})).plain!;
  expect(p.status).toContain('本手不计入');expect(p.status).toContain('最多新增+5');expect(p.status).not.toContain('本次用已存');
 });
+it('C2 e11 shelf fallback sends players to growth; legacy e11 still sends them to its real reset',()=>{
+ const current={contentVersion:'quality-r2-route-growth-v1',contentHash:'json-fnv-v1:7414228d95059959'};
+ const now=jokerAbilityCopyForRun(current,'e11',undefined,ctx()).plain!;
+ expect(now.tile).toContain('点牌查成长');expect(now.tile).not.toContain('重置');
+ const legacy=identities.at(-1)!;expect(jokerAbilityCopyForRun(legacy,'e11',undefined,ctx()).plain!.tile).toContain('点牌查重置');
+});

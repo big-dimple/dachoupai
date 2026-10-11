@@ -1,13 +1,14 @@
 import {describe,it,expect} from 'vitest';
 import {createRun,assertRunInvariants,type R2RunState} from '../src/domain/run';
-import {newRunIdentity} from '../src/game/RunLaunch';
+import {R2_SUIT_CHOICE_VERSION,R2_SUIT_CHOICE_HASH} from '../src/domain/r2GroupUpgrade';
+const legacyIdentity=()=>({contentVersion:R2_SUIT_CHOICE_VERSION,contentHash:R2_SUIT_CHOICE_HASH});
 import {r2CreateJoker} from '../src/domain/r2Run';
 import {r2JokerDefinitionsFor} from '../src/domain/r2ContentProfiles';
 import {scoreR2Hand} from '../src/domain/scoreR2';
 import {shopRecommendation} from '../src/game/ShopRecommendation';
 
 function publicDeck(counts:Record<number,number>,fourFlush=false):R2RunState {
- const s=createRun({seed:'c07-public',runId:'c07-public',characterId:'laohuan',rulesVersion:'r2',r2Identity:newRunIdentity('laohuan','group'),openingRoute:'group',modeConfig:{mode:'standard',difficulty:0,challengeId:null,programsEnabled:false}});
+ const s=createRun({seed:'c07-public',runId:'c07-public',characterId:'laohuan',rulesVersion:'r2',r2Identity:legacyIdentity(),openingRoute:'group',modeConfig:{mode:'standard',difficulty:0,challengeId:null,programsEnabled:false}});
  const original=s.deckInstances;
  s.deckInstances=Object.entries(counts).flatMap(([rank,count])=>Array.from({length:count},(_,i)=>({...original.find(c=>c.rank===Number(rank)&&c.suit==='hearts')!,id:`public/${rank}/${i}`})));
  s.drawPile=s.deckInstances.map(c=>c.id);s.handOrder=[];s.playedPile=[];s.discardPile=[];s.destroyedIds=[];

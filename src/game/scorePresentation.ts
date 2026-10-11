@@ -12,7 +12,7 @@ export function fourCardFormation(score:ScoreTrace):{instanceId:string;definitio
 export function scorePacketSymbol(event:ScoreEvent):'+H'|'+M'|'×M'|'÷H'|undefined {
   if(event.operation==='halve-base-heat')return '÷H';
   if(event.before.M.n!==event.after.M.n||event.before.M.d!==event.after.M.d)
-    return event.operation==='multiply-multiplier'||event.operation==='read-coefficient'?'×M':'+M';
+    return event.operation==='multiply-multiplier'||event.operation==='read-coefficient'||event.operation==='route-factor'?'×M':'+M';
   if(event.before.H.n!==event.after.H.n||event.before.H.d!==event.after.H.d)return '+H';
 }
 
@@ -37,7 +37,7 @@ export function scoreBeat(event:ScoreEvent,ordinal=0):ScoreBeat {
     start={windup:100,flight:0,impact:180,rest:120,strength:'light'};fast={windup:60,flight:0,impact:150,rest:90,strength:'light'};
   }else if(event.operation==='retrigger-card'){
     start={windup:140,flight:0,impact:220,rest:140,strength:'retrigger'};fast={windup:100,flight:0,impact:160,rest:100,strength:'retrigger'};
-  }else if(event.operation==='multiply-multiplier'||event.operation==='read-coefficient'){
+  }else if(event.operation==='multiply-multiplier'||event.operation==='read-coefficient'||event.operation==='route-factor'){
     start={windup:360,flight:180,impact:340,rest:220,strength:'multiply'};fast={windup:300,flight:150,impact:270,rest:180,strength:'multiply'};
   }else if(event.sourceType==='character'){
     start={windup:220,flight:160,impact:260,rest:160,strength:'role'};fast={windup:160,flight:120,impact:200,rest:120,strength:'role'};

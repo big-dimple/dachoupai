@@ -1,0 +1,44 @@
+{
+  "status": "PASS",
+  "identity": {
+    "contentVersion": "quality-r2-route-growth-v1",
+    "contentHash": "json-fnv-v1:7414228d95059959"
+  },
+  "newCardFactAnomaliesRejected": 3,
+  "legacyAnomaliesRejected": 9,
+  "legitimateNextClear": {
+    "clears": 2,
+    "G": 1,
+    "S": 1,
+    "F": 1,
+    "settlements": [
+      {
+        "stageIndex": 0,
+        "families": [
+          "G"
+        ]
+      },
+      {
+        "stageIndex": 1,
+        "families": [
+          "S",
+          "F"
+        ]
+      }
+    ]
+  },
+  "stageUnplayedRank": 10,
+  "stagePlayedTargetRejected": "unavailable-target",
+  "shopOldSourceRank": 3,
+  "shopActualDeckRank": 4,
+  "oldRuleSourcePreservedAfterSale": {
+    "fourStraight": true,
+    "fourFlush": false
+  },
+  "nextStageActualRules": {
+    "fourStraight": false,
+    "fourFlush": false
+  },
+  "sourceFieldsAdded": false,
+  "mathematicsOrIdentityChanged": false
+}

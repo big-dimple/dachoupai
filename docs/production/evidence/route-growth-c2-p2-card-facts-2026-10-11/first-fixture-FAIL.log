@@ -1,0 +1,25 @@
+
+ RUN  v4.1.11 /workspace/dachoupai-c2-integrated
+
+·······································································································································································x
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/route-growth-facts.test.ts > C2 route source facts against independent current stage evidence > keeps the actual prior rule source after a shop sale and reads the changed rules in the next stage
+Error: wrong-phase
+ ❯ send tests/route-growth-facts.test.ts:13:123
+     11| const original=evidence.crossStage.before as Checkpoint;
+     12| function command(s:R2RunState,action:Command['action']):Command{return…
+     13| function send(s:R2RunState,action:Command['action']):R2RunState {const…
+       |                                                                                                                           ^
+     14| function restore(cp:Checkpoint):R2RunState {const r=readCheckpoint(cp)…
+     15| function round(s:R2RunState){return restore(makeCheckpoint(s,[]));}
+ ❯ tests/route-growth-facts.test.ts:76:75
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 6 passed (7)
+      Tests  1 failed | 167 passed (168)
+   Start at  14:58:45
+   Duration  5.15s (transform 3.72s, setup 0ms, import 5.94s, tests 5.93s, environment 1ms)

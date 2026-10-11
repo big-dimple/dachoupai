@@ -1,0 +1,61 @@
+{
+  "scope": "all",
+  "testedCommit": "e48fd07a6e7b4575067dc356ad28cb0a94fe15e9",
+  "status": "FAIL",
+  "exitCode": 1,
+  "before": {
+    "source": "6cc521e05e08acbcdc465cab1b1daa1e96c3f521e56bd4fd1d12689c1b2a6474",
+    "index": "4320d1470a33d44e0bedd5b5055e8643845ed5b79a2f96b45c7ad7e6fbba0280",
+    "head": "e48fd07a6e7b4575067dc356ad28cb0a94fe15e9",
+    "branch": "refs/heads/feat/c2-route-growth-2026-10-11"
+  },
+  "after": {
+    "source": "6cc521e05e08acbcdc465cab1b1daa1e96c3f521e56bd4fd1d12689c1b2a6474",
+    "index": "4320d1470a33d44e0bedd5b5055e8643845ed5b79a2f96b45c7ad7e6fbba0280",
+    "head": "e48fd07a6e7b4575067dc356ad28cb0a94fe15e9",
+    "branch": "refs/heads/feat/c2-route-growth-2026-10-11"
+  },
+  "steps": [
+    {
+      "name": "test",
+      "status": "PASS",
+      "childExitCode": 0,
+      "elapsedMs": 79732
+    },
+    {
+      "name": "verify:content",
+      "status": "PASS",
+      "childExitCode": 0,
+      "elapsedMs": 5068
+    },
+    {
+      "name": "build",
+      "status": "PASS",
+      "childExitCode": 0,
+      "elapsedMs": 30273
+    },
+    {
+      "name": "verify:smoke",
+      "status": "FAIL",
+      "childExitCode": 1,
+      "elapsedMs": 49745,
+      "reason": "child exited 1"
+    }
+  ],
+  "notIncluded": [
+    {
+      "name": "extended browser/recovery/fault/asset/simulation diagnostics",
+      "status": "NOT_INCLUDED",
+      "reason": "run the existing specific command only when its domain changes; P00 removes repeated default execution"
+    },
+    {
+      "name": "balance/benchmark acceptance",
+      "status": "NOT_INCLUDED",
+      "reason": "later work packages; no gameplay approval inferred from checks"
+    },
+    {
+      "name": "physical devices / human / art approval",
+      "status": "NOT_RUN"
+    }
+  ]
+}

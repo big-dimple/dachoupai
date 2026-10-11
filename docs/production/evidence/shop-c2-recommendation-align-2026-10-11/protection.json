@@ -1,0 +1,97 @@
+{
+  "parentMain": "9d0cd754150a8c9cb6ed3ddf38c50f543ed6bac3",
+  "fixedC2Input": "9c567449b553b4220811e189a77dc150185692f5",
+  "normalMergeBaseline": "79ab2481226b2527014c88750339cffc94870037",
+  "productHead": "fa66bf5edbbb5ceb0b9f68e646c772a557be2809",
+  "mergeParents": [
+    "9d0cd754150a8c9cb6ed3ddf38c50f543ed6bac3",
+    "9c567449b553b4220811e189a77dc150185692f5"
+  ],
+  "checks": [
+    {
+      "path": "src/domain",
+      "baseDigest": "ce2ad85a8aec5f77b57b93add65be63a5f6dff4875bc571deeb84a4329cdae5d",
+      "headDigest": "ce2ad85a8aec5f77b57b93add65be63a5f6dff4875bc571deeb84a4329cdae5d",
+      "equal": true
+    },
+    {
+      "path": "src/content",
+      "baseDigest": "8b8b46b08497aa9f25f1df5c7e471e3fde78c0fe0edb2db618a9cd15b59d34a1",
+      "headDigest": "8b8b46b08497aa9f25f1df5c7e471e3fde78c0fe0edb2db618a9cd15b59d34a1",
+      "equal": true
+    },
+    {
+      "path": "src/application",
+      "baseDigest": "2d1ce411cdf39734debeef4d0b139439f49626515589cf957ac549557ac70e52",
+      "headDigest": "2d1ce411cdf39734debeef4d0b139439f49626515589cf957ac549557ac70e52",
+      "equal": true
+    },
+    {
+      "path": "public",
+      "baseDigest": "7f2c759332446c1586d59a8a269a3c6bcd0b7e6e41b3e91cb9fd842f79400759",
+      "headDigest": "7f2c759332446c1586d59a8a269a3c6bcd0b7e6e41b3e91cb9fd842f79400759",
+      "equal": true
+    },
+    {
+      "path": "art",
+      "baseDigest": "d4c3e6c237398546d00d4577ba902f2f9cad3e3a94a60fb0d220946cb516729c",
+      "headDigest": "d4c3e6c237398546d00d4577ba902f2f9cad3e3a94a60fb0d220946cb516729c",
+      "equal": true
+    },
+    {
+      "path": "src/game/GameScene.ts",
+      "baseDigest": "c851d823ffa11cc711da7b00cdec28cf972b0da0303f7db642b9cbb2351b812e",
+      "headDigest": "c851d823ffa11cc711da7b00cdec28cf972b0da0303f7db642b9cbb2351b812e",
+      "equal": true
+    },
+    {
+      "path": "src/game/OwnedJokerInput.ts",
+      "baseDigest": "2f2ca28a5ec2c86be154acb3bd91151bc96686c1032576b14ed877284914a9c4",
+      "headDigest": "2f2ca28a5ec2c86be154acb3bd91151bc96686c1032576b14ed877284914a9c4",
+      "equal": true
+    },
+    {
+      "path": "src/game/JokerReorder.ts",
+      "baseDigest": "2f0bfad30eb609f6e77c2075b6e99649ed835caa9d17a147490e4f64513d1d6f",
+      "headDigest": "2f0bfad30eb609f6e77c2075b6e99649ed835caa9d17a147490e4f64513d1d6f",
+      "equal": true
+    },
+    {
+      "path": "src/game/ShopLayout.ts",
+      "baseDigest": "4f0a4d027b389fa397d1f377a573d84b05b1aec7a0c8c6a208037f83b8892382",
+      "headDigest": "4f0a4d027b389fa397d1f377a573d84b05b1aec7a0c8c6a208037f83b8892382",
+      "equal": true
+    },
+    {
+      "path": "src/game/DetailDialog.ts",
+      "baseDigest": "3bd84c571d3b5b7a8323ee1f1c61eb1f6354ef9216f86f3d4f62a35a8d3c56b2",
+      "headDigest": "3bd84c571d3b5b7a8323ee1f1c61eb1f6354ef9216f86f3d4f62a35a8d3c56b2",
+      "equal": true
+    },
+    {
+      "path": "src/game/ToolUseController.ts",
+      "baseDigest": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "headDigest": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "equal": true
+    },
+    {
+      "path": "src/game/RunLaunch.ts",
+      "baseDigest": "e10134228a2a94b85db01ff7868468af6c5acc54e5d137b06810fe2b42284096",
+      "headDigest": "e10134228a2a94b85db01ff7868468af6c5acc54e5d137b06810fe2b42284096",
+      "equal": true
+    }
+  ],
+  "ownSourceDelta": [
+    "src/game/JokerPlainCopy.ts",
+    "src/game/ShopRecommendation.ts",
+    "src/game/ShopRouteGrowthFacts.ts",
+    "src/game/ShopRouteRelations.ts",
+    "src/game/ShopScene.ts"
+  ],
+  "fixedC2GameSceneExact": true,
+  "mainC07PredicateExact": true,
+  "historicalPlanSuffixSha256": "664f841aa85193464c760d9d124932c7ae1b7345a8b5a7cd3a0ec8491a0621b5",
+  "historicalPlanExact": true,
+  "newDomainContentSaveAssetChanges": 0,
+  "status": "PASS"
+}

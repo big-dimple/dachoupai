@@ -1,0 +1,14 @@
+{"width":1366,"key":"six-a","status":"OBSERVED_BEFORE"}
+/workspace/dachoupai/src/application/checkpoint.ts:105
+  throw Error(message);
+        ^
+
+Error: invalid-save-group-live-growth
+    at fail (/workspace/dachoupai/src/application/checkpoint.ts:105:9)
+    at trace (/workspace/dachoupai/src/application/checkpoint.ts:753:130)
+    at validateState (/workspace/dachoupai/src/application/checkpoint.ts:1255:3)
+    at makeCheckpoint (/workspace/dachoupai/src/application/checkpoint.ts:1294:3)
+    at fixture (file:///workspace/dachoupai/harness/shop-c2-recommendations.mjs:15:298)
+    at file:///workspace/dachoupai/harness/shop-c2-recommendations.mjs:23:317
+
+Node.js v24.19.0

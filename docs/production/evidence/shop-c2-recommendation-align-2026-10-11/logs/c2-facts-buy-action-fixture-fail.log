@@ -1,0 +1,50 @@
+/workspace/dachoupai/harness/fixtures/shop-c2-align.ts:48
+  if (!r.ok) throw Error(r.code + JSON.stringify(r.diagnostic));
+                   ^
+
+Error: r2-interaction-not-enabledundefined
+    at Module.shopC2Send (/workspace/dachoupai/harness/fixtures/shop-c2-align.ts:48:20)
+    at file:///workspace/dachoupai/harness/shop-c2-facts.mjs:53:17
+
+Node.js v24.19.0
+fatal error: all goroutines are asleep - deadlock!
+
+goroutine 1 [chan receive]:
+github.com/evanw/esbuild/internal/helpers.(*ThreadSafeWaitGroup).Wait(...)
+	github.com/evanw/esbuild/internal/helpers/waitgroup.go:36
+main.runService.func2()
+	github.com/evanw/esbuild/cmd/esbuild/service.go:114 +0x53
+main.runService(0x1)
+	github.com/evanw/esbuild/cmd/esbuild/service.go:160 +0x637
+main.main()
+	github.com/evanw/esbuild/cmd/esbuild/main.go:252 +0xb16
+
+goroutine 7 [chan receive]:
+main.runService.func1()
+	github.com/evanw/esbuild/cmd/esbuild/service.go:98 +0x45
+created by main.runService in goroutine 1
+	github.com/evanw/esbuild/cmd/esbuild/service.go:97 +0x1ce
+
+goroutine 8 [chan receive]:
+main.(*serviceType).sendRequest(0x134aea1f5050, {0xa13ca0, 0x134aed7be990})
+	github.com/evanw/esbuild/cmd/esbuild/service.go:192 +0x12b
+main.runService.func3()
+	github.com/evanw/esbuild/cmd/esbuild/service.go:125 +0x3e
+created by main.runService in goroutine 1
+	github.com/evanw/esbuild/cmd/esbuild/service.go:122 +0x2c7
+
+goroutine 3060 [chan receive]:
+main.(*serviceType).sendRequest(0x134aea1f5050, {0xa13ca0, 0x134aef240180})
+	github.com/evanw/esbuild/cmd/esbuild/service.go:192 +0x12b
+main.(*serviceType).handleBuildRequest.func3.2(0x134af10fbe00)
+	github.com/evanw/esbuild/cmd/esbuild/service.go:744 +0x2ba
+github.com/evanw/esbuild/pkg/api.rebuildImpl({0x134af10fbc80, {0x134aebce4708, 0x1, 0x1}, {0x0, 0x0, 0x0}, {0x0, 0x1, 0x0, ...}, ...}, ...)
+	github.com/evanw/esbuild/pkg/api/api_impl.go:1644 +0xecd
+github.com/evanw/esbuild/pkg/api.(*internalContext).rebuild(_)
+	github.com/evanw/esbuild/pkg/api/api_impl.go:1026 +0x2fe
+github.com/evanw/esbuild/pkg/api.(*internalContext).Rebuild(0x0?)
+	github.com/evanw/esbuild/pkg/api/api_impl.go:1087 +0x47
+main.(*serviceType).handleIncomingPacket.func5()
+	github.com/evanw/esbuild/cmd/esbuild/service.go:293 +0xba
+created by main.(*serviceType).handleIncomingPacket in goroutine 1
+	github.com/evanw/esbuild/cmd/esbuild/service.go:290 +0x11d2

@@ -14,6 +14,7 @@ import {Rational} from '../domain/rational';
 import {fractionText} from './scoreText';
 import {HAND_LABELS} from '../content/handLabels';
 import {editionEffectText} from './r2ToolInfo';
+import {shopRouteGrowthFacts} from './ShopRouteGrowthFacts';
 const labels={group:'同点成组',straight:'顺子接续',flush:'同花集中'};
 const focuses=['group','straight','flush'] as const;
 const effectNames:Record<string,string>={heat:'热度',multiplier:'倍率',multiply:'相乘倍率',retrigger:'再次计分',gold:'过关金币','four-straight':'四张顺子','four-flush':'四张同花'};
@@ -116,7 +117,7 @@ export function shopOfferRelation(state:R2RunState,o:R2Offer,focus:BuildFocus|un
 /** Deterministic public on-sale effects on retained instances; no command, RNG or scoring preview. */
 export function shopSaleConsequences(state:R2RunState,sold:R2JokerInstance):string[]{
  if(state.phase!=='shop'||!state.shop||!state.jokers.some(j=>j.instanceId===sold.instanceId))return [];
- const rows:string[]=[];
+ const rows:string[]=[],route=shopRouteGrowthFacts(state);
  for(const [index,j] of state.jokers.entries()){
   if(j.instanceId===sold.instanceId)continue;
   const d=r2JokerDefinitionFor(state,j.definitionId),growth={...j.growth};
@@ -134,8 +135,12 @@ export function shopSaleConsequences(state:R2RunState,sold:R2JokerInstance):stri
     }
    }
   }
-  if(d.hooks.some(h=>h.phase==='onStageClear'&&h.condition.kind==='no-joker-sale-this-stage'))rows.push(d.name+'：'+(state.shop.soldJoker?'本店已出售，该资格已失去；本次仍不满足':'本次出售将使下一场“本场未出售”的过关成长条件不满足')+'；不会在这里获得过关成长。');
+  if(d.hooks.some(h=>h.phase==='onStageClear'&&h.condition.kind==='no-joker-sale-this-stage')){
+   const kept=route&&j.growth.coefficient&&!d.hooks.some(h=>h.phase==='onSellJoker'&&h.operations.some(o=>o.kind==='reset-coefficient'))?'已有系数×'+fractionText(j.growth.coefficient)+'保留；':'';
+   rows.push(d.name+'：'+kept+(state.shop.soldJoker?'本店已出售，该资格已失去；本次仍不满足':'本次出售将使下一场“本场未出售”的过关成长条件不满足')+'；不会在这里获得过关成长。');
+  }
  }
+ if(route)rows.push(route.preserved);
  return rows;
 }
 export function shopReplacementFacts(state:R2RunState,offer:R2Offer,held:R2JokerInstance,focus:BuildFocus|undefined){
@@ -166,6 +171,7 @@ export function shopReplacementTransactionFacts(state:R2RunState,offer:R2Offer,h
 /** Comparison first layer: actual money and nonzero losses, full rules stay in details. */
 export function shopReplacementCompactFacts(state:R2RunState,held:R2JokerInstance,transaction:ReturnType<typeof shopReplacementTransactionFacts>):string[]{
  if(transaction.price===undefined)return ['当前不能出售：'+(transaction.summary.includes('over-capacity-after-sale')?'售后道具超容量':transaction.summary)];
+ const route=shopRouteGrowthFacts(state);
  const rows=[`返${transaction.refund}金 · 实付${transaction.price}金`+(transaction.goldAfterPurchase!==undefined?` · 买后${transaction.goldAfterPurchase}金`:' · 当前不能买入')];
  const names:Record<string,string>={heat:'热度',multiplier:'倍率',pendingHeat:'待用热度'};
  const growth=Object.entries(held.growth).filter(([key,value])=>Rational.fromJSON(value).compare(new Rational(key==='coefficient'?1n:0n))>0).map(([key,value])=>key==='coefficient'?'系数×'+fractionText(value):(names[key]??'成长')+'+'+fractionText(value));
@@ -178,7 +184,13 @@ export function shopReplacementCompactFacts(state:R2RunState,held:R2JokerInstanc
   const short=row.replaceAll('无成长或使用计数','0').replaceAll('热度成长','热度').replaceAll('倍率成长','倍率').replaceAll('乘法系数','系数').replaceAll(' · ','').replaceAll(' → ','→');
   return short.replace(/(热度|倍率|系数) /g,'$1').replace(/0→(热度|倍率|系数)/g,'$10→').replace(/→(热度|倍率|系数)/g,'→');
  }));
- if(!state.shop?.soldJoker)for(const other of state.jokers.filter(j=>j.instanceId!==held.instanceId))if(r2JokerDefinitionFor(state,other.definitionId).hooks.some(h=>h.phase==='onStageClear'&&h.condition.kind==='no-joker-sale-this-stage'))rows.push(r2JokerDefinitionFor(state,other.definitionId).name+'：下一场未售成长失效');
+ if(!state.shop?.soldJoker)for(const other of state.jokers.filter(j=>j.instanceId!==held.instanceId)){
+  const otherDef=r2JokerDefinitionFor(state,other.definitionId);
+  if(otherDef.hooks.some(h=>h.phase==='onStageClear'&&h.condition.kind==='no-joker-sale-this-stage')){
+   const kept=route&&other.growth.coefficient&&!otherDef.hooks.some(h=>h.phase==='onSellJoker'&&h.operations.some(o=>o.kind==='reset-coefficient'))?'系数×'+fractionText(other.growth.coefficient)+'保留 · ':'';
+   rows.push(otherDef.name+'：'+kept+'下一场未售成长失效');
+  }
+ }
  rows.push(...transaction.cashLosses);
  return rows;
 }

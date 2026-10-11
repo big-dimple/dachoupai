@@ -1,0 +1,111 @@
+{
+  "testedCommit": "e48fd07a6e7b4575067dc356ad28cb0a94fe15e9",
+  "dirty": "M docs/production/DELIVERY_PLAN.md\nA  docs/production/evidence/route-growth-c2-2026-10-11/INDEPENDENT_REVIEW.md\nA  docs/production/evidence/route-growth-c2-2026-10-11/LOCAL_IMPLEMENTATION-before-entry.md\nA  docs/production/evidence/route-growth-c2-2026-10-11/LOCAL_IMPLEMENTATION-before-p2.md\nA  docs/production/evidence/route-growth-c2-2026-10-11/LOCAL_IMPLEMENTATION.md\nA  docs/production/evidence/route-growth-c2-2026-10-11/export-evidence.mjs\nA  docs/production/evidence/route-growth-c2-2026-10-11/manifest-before-entry.json\nA  docs/production/evidence/route-growth-c2-2026-10-11/manifest-before-p2.json\nA  docs/production/evidence/route-growth-c2-2026-10-11/manifest.json\nA  docs/production/evidence/route-growth-c2-2026-10-11/p2-recovery-before-entry.json\nA  docs/production/evidence/route-growth-c2-2026-10-11/p2-recovery.json\nA  docs/production/evidence/route-growth-c2-2026-10-11/scorer-and-save-before-p2.json\nA  docs/production/evidence/route-growth-c2-2026-10-11/scorer-and-save.json\n M harness/screenshot.mjs\nM  src/application/checkpoint.ts\nA  src/application/routeGrowthTrace.ts\nAM src/content/r2RouteGrowthJokers.ts\nM  src/content/r2Schema.ts\nM  src/domain/r2Conditions.ts\nM  src/domain/r2ContentProfiles.ts\nM  src/domain/r2GroupUpgrade.ts\nA  src/domain/r2RouteGrowth.ts\nM  src/domain/r2Run.ts\nM  src/domain/scoreR2.ts\nM  src/game/AiHandCandidates.ts\nM  src/game/GameScene.ts\nM  src/game/JokerMemory.ts\nM  src/game/JokerPlainCopy.ts\nM  src/game/RunLaunch.ts\nM  src/game/r2Help.ts\nM  src/game/scorePresentation.ts\n M tests/erxiang-handoff.test.ts\nM  tests/fixed-suit-dyes.test.ts\n M tests/hero-ability-cue.test.ts\n M tests/hero-climax.test.ts\n M tests/joker-plain-quantity.test.ts\n M tests/laohuan-refill.test.ts\n M tests/opening-signature.test.ts\nA  tests/route-growth-run.test.ts\nA  tests/route-growth-score.test.ts\nM  tests/route-starter.test.ts\n M tests/saved-boss-impact.test.ts\n M tests/touye-wager.test.ts\n M tests/v00-bot.test.ts\n M tests/xiemu-burn.test.ts\n?? docs/production/evidence/route-growth-c2-integration-2026-10-11/\n?? node_modules\n?? tests/fixtures/route-growth-history.ts",
+  "checks": [
+    {
+      "engine": "chromium",
+      "browserVersion": "151.0.7922.173",
+      "profile": "desktop",
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      },
+      "deviceScaleFactor": 1,
+      "framebufferDensity": 1,
+      "fullscreen": "NOT_RUN",
+      "resourceFeedback": {
+        "discard": {
+          "commandSeq": 7,
+          "text": "2 次",
+          "scaleX": 1.6,
+          "pollingStarted": {
+            "commandSeq": 7,
+            "text": "2 次",
+            "scaleX": 1.6,
+            "capturedBeforeWait": true
+          }
+        },
+        "play": {
+          "commandSeq": 8,
+          "text": "3 次",
+          "scaleX": 1.6,
+          "pollingStarted": {
+            "commandSeq": 8,
+            "text": "3 次",
+            "scaleX": 1.6,
+            "capturedBeforeWait": true
+          }
+        }
+      },
+      "status": "PASS",
+      "input": "mouse.click / DOM click",
+      "covered": [
+        "select-confirm-cancel",
+        "buy-cancel",
+        "rank/suit-sort",
+        "discard-refill",
+        "live-discard-count-pulse",
+        "live-play-count-pulse",
+        "play-preview-feedback",
+        "reload-continue",
+        "fixed-menu-anchor",
+        "menu-preserves-selection"
+      ]
+    },
+    {
+      "engine": "chromium",
+      "browserVersion": "151.0.7922.173",
+      "profile": "mobile",
+      "viewport": {
+        "width": 390,
+        "height": 740
+      },
+      "deviceScaleFactor": 3,
+      "framebufferDensity": 2,
+      "fullscreen": "PASS (browser API; physical toolbar/orientation NOT_RUN)",
+      "resourceFeedback": {
+        "discard": {
+          "commandSeq": 7,
+          "text": "2 次",
+          "scaleX": 1.6,
+          "pollingStarted": {
+            "commandSeq": 7,
+            "text": "2 次",
+            "scaleX": 1.6,
+            "capturedBeforeWait": true
+          }
+        },
+        "play": {
+          "commandSeq": 8,
+          "text": "3 次",
+          "scaleX": 1.6,
+          "pollingStarted": {
+            "commandSeq": 8,
+            "text": "3 次",
+            "scaleX": 1.6,
+            "capturedBeforeWait": true
+          }
+        }
+      },
+      "status": "PASS",
+      "input": "touchscreen.tap / DOM tap",
+      "covered": [
+        "select-confirm-cancel",
+        "buy-cancel",
+        "rank/suit-sort",
+        "discard-refill",
+        "live-discard-count-pulse",
+        "live-play-count-pulse",
+        "play-preview-feedback",
+        "reload-continue",
+        "fixed-menu-anchor",
+        "menu-preserves-selection",
+        "high-DPR",
+        "left/right-selected-rank-visible",
+        "rotation-preserves-state"
+      ]
+    }
+  ],
+  "physicalDevice": "NOT_RUN",
+  "humanAcceptance": "NOT_RUN"
+}

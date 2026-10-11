@@ -1,0 +1,153 @@
+{
+  "status": "uncommitted-local-candidate",
+  "base": "6d2d954d1b41cddf632dfdce86fb75374e8f7e54",
+  "latestMainReadOnly": "56f5ad5e175ad16b1f89adc544c3332eed6ffb71",
+  "branch": "c2-route-growth-local",
+  "identity": {
+    "contentVersion": "quality-r2-route-growth-v1",
+    "contentHash": "json-fnv-v1:3e788b6aba71306e"
+  },
+  "checks": {
+    "targetedFiles": 6,
+    "targetedTestsPassed": 141,
+    "testStartUTC": "2026-10-11 13:38:58",
+    "typecheck": "PASS",
+    "diffCheck": "PASS",
+    "evidenceExport": "PASS",
+    "CI": "not-run",
+    "full251Rerun": "not-run",
+    "independentReReview": "pending"
+  },
+  "productFiles": [
+    {
+      "path": "src/application/checkpoint.ts",
+      "sha256": "03fd26983e2d0b9340b02aaad138d3f3df9181e30d088cb7bf2dd3d3134c7b18"
+    },
+    {
+      "path": "src/application/routeGrowthTrace.ts",
+      "sha256": "d15b46d545bf2c0f1684168ae25460f238de49cd7a3bc06d280d1a3f5b1bd264"
+    },
+    {
+      "path": "src/content/r2RouteGrowthJokers.ts",
+      "sha256": "45101f6c92b0869f34e1e02eb2e15dbe9ff0badf12a336b12da91bc4978fc9dd"
+    },
+    {
+      "path": "src/content/r2Schema.ts",
+      "sha256": "4a416f03b71c2697b544d8f8dd437bcb00425b3666f76d0a61ab14c0fa92c1a1"
+    },
+    {
+      "path": "src/domain/r2Conditions.ts",
+      "sha256": "33af077bb2b2626de9f511b72cfd42bee7a4c5d91b5da107e217b0d53fef40b8"
+    },
+    {
+      "path": "src/domain/r2ContentProfiles.ts",
+      "sha256": "fa80f4d8623783555fe7438e1f66900c4e370c33883387139dbd0a5adb1ca126"
+    },
+    {
+      "path": "src/domain/r2GroupUpgrade.ts",
+      "sha256": "300f509e458a567436ee916788d8d983fef8ab04f3e8038d37e58b3df1a792c3"
+    },
+    {
+      "path": "src/domain/r2RouteGrowth.ts",
+      "sha256": "37e7690b35b0415a4d991eeae9ef8d6ab3bea642a87f27459bf10a6bd4b110e6"
+    },
+    {
+      "path": "src/domain/r2Run.ts",
+      "sha256": "8696dcf13fc3e93bc7009d59b05797ffbbff421507e52eae741a49442272dc91"
+    },
+    {
+      "path": "src/domain/scoreR2.ts",
+      "sha256": "657a5d5cc505da6a684cb6b4d77b243ef498c42cfe4827f7095e0816a01c90a4"
+    },
+    {
+      "path": "src/game/AiHandCandidates.ts",
+      "sha256": "ac464af45fa2e3253ce7e4677f38393fa4145493136359d19656b9f31042764e"
+    },
+    {
+      "path": "src/game/GameScene.ts",
+      "sha256": "4b597eae9a431ebf5e7247c1de59dc6ff46310e92660c7b6b726eb968e8628f4"
+    },
+    {
+      "path": "src/game/JokerMemory.ts",
+      "sha256": "5f7d8d8b9aed5aa03bc42dfb30b6bd14682792fc0e981dd5c9e35373fc9931e8"
+    },
+    {
+      "path": "src/game/JokerPlainCopy.ts",
+      "sha256": "3eeb8a200f23ff80adf5001e2db12c99aa3d24fdbdcc97e121859929397cf8b3"
+    },
+    {
+      "path": "src/game/RunLaunch.ts",
+      "sha256": "7a10cbb0d627035c157736a787c9b579b2e4b61dfcd40188b10bad2744987b3e"
+    },
+    {
+      "path": "src/game/r2Help.ts",
+      "sha256": "8032f6e84502e8fb5b11682783f1532b6f8f38a0e96cec5ebe68e5ec89e8e665"
+    },
+    {
+      "path": "src/game/scorePresentation.ts",
+      "sha256": "5f440616400636ff3ad61defa989bdb5ddf89caf9704d129d515584f87833fb1"
+    },
+    {
+      "path": "tests/fixed-suit-dyes.test.ts",
+      "sha256": "c6b781a3d02e57ccf27d03f536bf4db713757f66b8b304b4839621b419e38dfb"
+    },
+    {
+      "path": "tests/route-growth-run.test.ts",
+      "sha256": "c56470ea2b93821b3f2a41d9ce7f1774c4b54bee13fc2c235cccbbb1eda9262b"
+    },
+    {
+      "path": "tests/route-growth-score.test.ts",
+      "sha256": "aa99bfaf0a06435afee789349aa68087bc0a3686b09e28056590fa11bf7c65f2"
+    },
+    {
+      "path": "tests/route-starter.test.ts",
+      "sha256": "a07062e7eec9abc4b205ba9a36936f2c2fec85647948d0de8cc68508bdc030ca"
+    }
+  ],
+  "scorerAndSaveSha256": "9bdebb189eaffa8eda6d675e5f183183b0e3c8e49f036b6d07b23459fef27c05",
+  "latestMainReportedByParent": "e48fd07a6e7b4575067dc356ad28cb0a94fe15e9",
+  "priorCandidate": {
+    "contentHash": "json-fnv-v1:cb22e412a59fde6e",
+    "checks": {
+      "targetedFiles": 13,
+      "targetedTestsPassed": 251,
+      "typecheck": "PASS",
+      "diffCheck": "PASS",
+      "evidenceExport": "PASS",
+      "CI": "not-run"
+    },
+    "evidence": "scorer-and-save-before-p2.json",
+    "review": "P2 confirmed by independent Sol 6.1 xhigh; fixed in current candidate, re-review pending"
+  },
+  "p2RecoverySha256": "27384887c04d924612ab68c2c672dbacbe617a396fd898d559f5ffea97e294e8",
+  "deliverableFiles": [
+    {
+      "path": "docs/production/evidence/route-growth-c2-2026-10-11/LOCAL_IMPLEMENTATION.md",
+      "sha256": "f1b56415a66a34e3aed5e866ee440b14c3d55e8d68df07532ec62510b1cb35d0"
+    },
+    {
+      "path": "docs/production/evidence/route-growth-c2-2026-10-11/export-evidence.mjs",
+      "sha256": "9380c3d3f443e359a73ee2c439908127ddc1722540d836a80fc93b9800503c7f"
+    },
+    {
+      "path": "docs/production/evidence/route-growth-c2-2026-10-11/scorer-and-save.json",
+      "sha256": "9bdebb189eaffa8eda6d675e5f183183b0e3c8e49f036b6d07b23459fef27c05"
+    },
+    {
+      "path": "docs/production/evidence/route-growth-c2-2026-10-11/p2-recovery.json",
+      "sha256": "27384887c04d924612ab68c2c672dbacbe617a396fd898d559f5ffea97e294e8"
+    },
+    {
+      "path": "docs/production/evidence/route-growth-c2-2026-10-11/LOCAL_IMPLEMENTATION-before-p2.md",
+      "sha256": "0679632a4029991b742abfd25d159fe0e07141e7e8fca625ca28908b852275b6"
+    },
+    {
+      "path": "docs/production/evidence/route-growth-c2-2026-10-11/manifest-before-p2.json",
+      "sha256": "819b8f90b6bd72425f377fc65aa94fe9b45ba650aac6a59388da4f62906ac6b6"
+    },
+    {
+      "path": "docs/production/evidence/route-growth-c2-2026-10-11/scorer-and-save-before-p2.json",
+      "sha256": "21bc34eb701d1b8d49815a31b905b76b92e7883e4194271cea75e51488d4abf1"
+    }
+  ]
+}

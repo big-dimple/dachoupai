@@ -3,13 +3,13 @@ import { R2_HAND_TYPES, type R2HandType } from '../domain/evaluateR2';
 import { Rational, type Fraction } from '../domain/rational';
 import {SUITS,type Suit} from '../cards/types';
 
-export type ScorePhase = 'base' | 'onCardScore' | 'onHeldCard' | 'characterScore' | 'jokerScore' | 'finalScore' | 'afterHand' | 'beforeFailure' | 'onStageClear';
+export type ScorePhase = 'base' | 'onCardScore' | 'onHeldCard' | 'characterScore' | 'jokerScore' | 'routeGrowth' | 'finalScore' | 'afterHand' | 'beforeFailure' | 'onStageClear';
 export type ScoreHookPhase = 'onCardScore' | 'onHeldCard' | 'jokerScore' | 'afterHand';
 export type TransactionHookPhase = 'onDiscard' | 'onStageClear' | 'onBuyOffer' | 'onSellJoker' | 'onReroll' | 'beforeFailure';
 export type HookPhase = ScoreHookPhase | TransactionHookPhase;
 export type Condition =
   | { kind: 'always' }
-  | { kind: 'cold-opening-discard' }
+  | { kind: 'cold-opening-discard' | 'opening-discard' }
   | { kind: 'largest-scoring-rank-group' }
   | { kind: 'hand-type-in'; values: readonly R2HandType[] }
   | { kind: 'rank-in'; values: readonly number[] }
@@ -203,11 +203,12 @@ function validModifier(modifier:unknown):modifier is R2JokerModifier {
 }
 
 /** One predicate contract for executable content and saved, player-visible score explanations. */
-export function validR2Condition(c:unknown,phase?:HookPhase):c is Condition {
+export function validR2Condition(c:unknown,phase?:HookPhase,profile:'published'|'route-growth-v1'='published'):c is Condition {
   if(!object(c))return false;let valid=false;const at=(...phases:HookPhase[])=>!phase||phases.includes(phase);
   switch(c.kind){
     case 'always':valid=exact(c,['kind']);break;
     case 'largest-scoring-rank-group':valid=at('onCardScore')&&exact(c,['kind']);break;
+    case 'opening-discard':valid=profile==='route-growth-v1'&&at('onDiscard')&&exact(c,['kind']);break;
     case 'cold-opening-discard':valid=at('onDiscard')&&exact(c,['kind']);break;
     case 'hand-type-in':valid=exact(c,['kind','values'])&&handTypes(c.values);break;
     case 'rank-in':valid=exact(c,['kind','values'])&&at('onCardScore','onHeldCard')&&Array.isArray(c.values)&&c.values.length>0&&c.values.length<=13&&c.values.every(v=>integer(v,2,14));break;
@@ -239,14 +240,14 @@ export function validR2Condition(c:unknown,phase?:HookPhase):c is Condition {
     case 'discard-same-suit':valid=at('onDiscard')&&exact(c,['kind','minimum'])&&integer(c.minimum,2,5);break;
     case 'exhausted-hands':valid=at('beforeFailure')&&exact(c,['kind']);break;
   }
-  if(phase==='onDiscard'&&!(c.kind==='always'||c.kind==='cold-opening-discard'||c.kind==='discard-count'||c.kind==='discard-same-suit'||c.kind==='resource'&&c.resource==='discards-used'&&integer(c.equals,1,6)))return false;
+  if(phase==='onDiscard'&&!(c.kind==='always'||c.kind==='cold-opening-discard'||profile==='route-growth-v1'&&c.kind==='opening-discard'||c.kind==='discard-count'||c.kind==='discard-same-suit'||c.kind==='resource'&&c.resource==='discards-used'&&integer(c.equals,1,6)))return false;
   if(phase==='onStageClear'&&!(c.kind==='always'||c.kind==='hand-type-in'||c.kind==='resource'&&c.resource==='hands-after'||c.kind==='held-count'||c.kind==='stage-played-maximum'||c.kind==='stage-hand-types-all'||c.kind==='no-joker-sale-this-stage'))return false;
   if((phase==='onBuyOffer'||phase==='onSellJoker'||phase==='onReroll')&&c.kind!=='always')return false;
   if(phase==='beforeFailure'&&c.kind!=='exhausted-hands')return false;
   return valid;
 }
 
-export function validateR2Content(input: unknown): string[] {
+export function validateR2Content(input: unknown,profile:'published'|'route-growth-v1'='published'): string[] {
   const errors: string[] = [];
   if (!Array.isArray(input) || input.length > 72) return ['content: expected up to 72 definitions'];
   const ids = new Set<string>();
@@ -261,7 +262,7 @@ export function validateR2Content(input: unknown): string[] {
     for (const [h, hook] of definition.hooks.entries()) {
       const at = `${path}.hooks[${h}]`;
       if (!object(hook) || !exact(hook, ['phase', 'condition', 'operations']) || !['onCardScore', 'onHeldCard', 'jokerScore', 'afterHand','onDiscard','onStageClear','onBuyOffer','onSellJoker','onReroll','beforeFailure'].includes(hook.phase as string)) { errors.push(`${at}: unknown phase/fields`); continue; }
-      if (!validR2Condition(hook.condition,hook.phase as HookPhase)) errors.push(`${at}: unknown/invalid condition`);
+      if (!validR2Condition(hook.condition,hook.phase as HookPhase,profile)) errors.push(`${at}: unknown/invalid condition`);
       if (!Array.isArray(hook.operations) || !hook.operations.length || hook.operations.length > 8) { errors.push(`${at}: invalid operations`); continue; }
       for (const [o, op] of hook.operations.entries()) {
         let accepted = false;
@@ -271,7 +272,7 @@ export function validateR2Content(input: unknown): string[] {
           case 'add-growth': accepted = ['afterHand','onBuyOffer','onSellJoker','onDiscard','onReroll'].includes(hook.phase as string) && exact(op, ['kind', 'key', 'value', 'cap']) && growthKey(op.key) && op.key!=='coefficient' && fraction(op.value, true) && fraction(op.cap, true); break;
           case 'read-coefficient':accepted=['a06','e11','f12'].includes(definition.id as string)&&hook.phase==='jokerScore'&&exact(op,['kind','key'])&&op.key==='coefficient';break;
           case 'multiply-coefficient-once':accepted=definition.id==='a06'&&hook.phase==='afterHand'&&exact(op,['kind','key','value','cap','initial'])&&op.key==='coefficient'&&JSON.stringify(op.value)===JSON.stringify({n:'23',d:'20'})&&JSON.stringify(op.initial)===JSON.stringify({n:'3',d:'2'})&&JSON.stringify(op.cap)===JSON.stringify({n:'1000000',d:'1'});break;
-          case 'arm-rescue':accepted=definition.id==='f10'&&hook.phase==='onDiscard'&&object(hook.condition)&&hook.condition.kind==='cold-opening-discard'&&exact(op,['kind']);break;
+          case 'arm-rescue':accepted=definition.id==='f10'&&hook.phase==='onDiscard'&&object(hook.condition)&&(hook.condition.kind==='cold-opening-discard'||profile==='route-growth-v1'&&hook.condition.kind==='opening-discard')&&exact(op,['kind']);break;
           case 'consume-rescue':accepted=definition.id==='f10'&&hook.phase==='afterHand'&&exact(op,['kind']);break;
           case 'rescue-multiplier':accepted=definition.id==='f10'&&hook.phase==='jokerScore'&&exact(op,['kind','value'])&&fraction(op.value,true)&&Rational.fromJSON(op.value as Fraction).compare(new Rational(3n))===0;break;
           case 'add-gold-per-held':accepted=definition.id==='d12'&&hook.phase==='onStageClear'&&exact(op,['kind','minimum','cap'])&&op.minimum===4&&op.cap===6;break;

@@ -1,0 +1,34 @@
+
+> dachoupai@0.1.0 test
+> vitest run tests/assist-route-growth-integration.test.ts tests/assist-recommendation.test.ts tests/assist-entry-guards.test.ts tests/assist-selection-ui.test.ts tests/amo-assist.test.ts tests/amo-assist-jokers.test.ts tests/amo-assist-consumption-save.test.ts tests/amo-assist-edition-save.test.ts tests/assist-profile-ui-copy.test.ts tests/route-growth-score.test.ts tests/route-growth-run.test.ts tests/route-growth-facts.test.ts tests/r2-group-contract.test.ts tests/ai-hand-candidates.test.ts
+
+
+ RUN  v4.1.11 /workspace/dachoupai-c2-integrated
+
+ ❯ tests/assist-recommendation.test.ts (6 tests | 1 failed) 510ms
+   × a real B15 saved seal removes its held contribution and can change the recommended group 53ms
+
+ Test Files  1 failed | 12 passed (13)
+      Tests  1 failed | 216 passed (217)
+   Start at  15:38:58
+   Duration  12.06s (transform 9.06s, setup 0ms, import 15.01s, tests 16.91s, environment 1ms)
+
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/assist-recommendation.test.ts > a real B15 saved seal removes its held contribution and can change the recommended group
+Error: Run invariant: route history identity/ledger
+ ❯ check src/domain/r2Run.ts:141:70
+
+ ❯ assertR2Invariants src/domain/r2Run.ts:156:3
+ ❯ applyCommand src/domain/run.ts:202:5
+ ❯ send tests/assist-recommendation.test.ts:9:51
+ ❯ tests/assist-recommendation.test.ts:18:520
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice

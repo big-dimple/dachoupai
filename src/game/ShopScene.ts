@@ -38,6 +38,7 @@ import {getR2Stage,R2_LIMITS,r2InterestCap,r2ConsumableCapacity,r2CreateJoker} f
 import {dispatchRun,runController} from './runAdapter';
 import {reorderJokerIds,ownedJokerDropIndex} from './JokerReorder';
 import {OwnedJokerInput} from './OwnedJokerInput';
+import {shopRouteGrowthFacts} from './ShopRouteGrowthFacts';
 import {heatText,fractionText} from './scoreText';
 import {toolInfo,itemInfo,goodsArtPortrait,editionLabel,editionEffectText,toolFamilyLabel} from './r2ToolInfo';
 import {SceneView} from './SceneView';
@@ -708,9 +709,9 @@ export class ShopScene extends Phaser.Scene {
   }
   private inspectReplacement(offerId:string):void {
     const found=this.findOffer(offerId);if(!found||found.kind!=='jokers'||found.offer.consumed||this.busy)return;
-    const o=found.offer,focus=currentBuildFocus(this.run,this.run.openingRoute),d=this.jokerDefinition(o.definitionId);
+    const o=found.offer,focus=currentBuildFocus(this.run,this.run.openingRoute),d=this.jokerDefinition(o.definitionId),route=shopRouteGrowthFacts(this.run);
     const cards=this.run.jokers.map((j,i)=>{const f={...shopReplacementFacts(this.run,o,j,focus),transaction:shopReplacementTransactionFacts(this.run,o,j)},held=this.jokerDefinition(j.definitionId);return {title:`第 ${i+1} 槽 · ${held.name}`,url:jokerArtPreviewUrl(held.id),body:shopReplacementCompactFacts(this.run,j,f.transaction).join('\n'),details:f.transaction.summary+'\n'+f.transaction.growthEffects.join('\n')+'\n'+f.loss+'\n'+f.connections+'\n'+f.money+'\n'+f.held.body,action:{label:'管理这张',run:()=>this.inspectJoker(j.instanceId,offerId)}};});
-    this.dialog.open(d.name+' · 持有与现货比较','按现持槽位逐张比较。保留、换方向或留金入场都可以；这里不排序推荐，也不自动卖买。',[{label:'返回购买详情',run:()=>this.inspectOffer(offerId)},{label:'更换培养方向',run:()=>this.inspectJourney()}],{shopContext:'compare',summaryBody:shopOfferGuidance(this.run,o).label+'\n'+shopOfferGuidance(this.run,o).reason+' · '+shopOfferGuidance(this.run,o).condition,cards});attachFirstChapterGuide(this.run,()=>this.render());
+    this.dialog.open(d.name+' · 持有与现货比较','按现持槽位逐张比较。保留、换方向或留金入场都可以；这里不排序推荐，也不自动卖买。',[{label:'返回购买详情',run:()=>this.inspectOffer(offerId)},{label:'更换培养方向',run:()=>this.inspectJourney()}],{shopContext:'compare',summaryBody:shopOfferGuidance(this.run,o).label+'\n'+shopOfferGuidance(this.run,o).reason+' · '+shopOfferGuidance(this.run,o).condition+(route?'\n'+route.preserved:''),cards});attachFirstChapterGuide(this.run,()=>this.render());
   }
   private openPurchaseReceipt():void {
     const receipt=this.lastPurchaseReceipt;if(!receipt)return;

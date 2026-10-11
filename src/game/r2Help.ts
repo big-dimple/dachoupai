@@ -132,6 +132,9 @@ export function r2JokerExtraHelp(definition:R2JokerDefinition):string {
 export function r2ScoreOperationText(event:ScoreEvent,definition?:R2JokerDefinition):string {
   const value=fractionText(event.value);
   const resource=event.resourceBefore!==undefined&&event.resourceAfter!==undefined?' · '+event.resourceBefore+' → '+event.resourceAfter:'';
+  if(event.operation==='route-factor')return ({G:'成组',S:'顺子',F:'同花'} as const)[event.routeFamily!]+'资历 '+event.resourceBefore+' 场 · 倍率×'+value+' · 本手读取';
+  if(event.operation==='route-clear')return '实际清场 '+event.resourceBefore+' → '+event.resourceAfter+' · 资历下手生效';
+  if(event.operation==='route-clear-family')return ({G:'成组',S:'顺子',F:'同花'} as const)[event.routeFamily!]+'合格清场 '+event.resourceBefore+' → '+event.resourceAfter+' · 下手生效';
   if(event.operation==='lucky-multiplier-check')return '幸运倍率 · '+(event.value.n==='1'?'命中':'未命中')+'（1/5）';
   if(event.operation==='lucky-gold-check')return '幸运金币 · '+(event.value.n==='1'?'命中':'未命中')+'（1/15）';
   if(event.operation==='lucky-gold-cap')return '幸运金币本手已达'+value+'金上限';

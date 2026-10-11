@@ -1,0 +1,81 @@
+{
+  "baseMain": "e48fd07a6e7b4575067dc356ad28cb0a94fe15e9",
+  "branch": "feat/c2-route-growth-2026-10-11",
+  "frozenLocalIdentity": {
+    "contentVersion": "quality-r2-route-growth-v1",
+    "contentHash": "json-fnv-v1:7414228d95059959"
+  },
+  "frozenPatchSha256": "59da38ecfdda4646a48f3053a8151f0e5b340a34119fab702fd90a063e62d8a2",
+  "GameSceneMainExactAfterRemovingTwoC2Additions": true,
+  "PR118CashFilesExactMain": true,
+  "PR119InventoryControlTestsExactMain": true,
+  "PR120ShopSceneExactMain": true,
+  "deliveryPlanHistoricalTailSha256": "664f841aa85193464c760d9d124932c7ae1b7345a8b5a7cd3a0ec8491a0621b5",
+  "newFailureGuide": "plan-only-postponed-until-dot18-and-rules-stable",
+  "newStarAlgorithmOrAmoInteraction": "not-included",
+  "frozenImplementationProductExceptions": [
+    "src/game/GameScene.ts",
+    "src/content/r2RouteGrowthJokers.ts",
+    "src/domain/r2Run.ts",
+    "tests/route-growth-run.test.ts"
+  ],
+  "newRouteMathAndSaveSourcesExactFrozen": false,
+  "routeDefinitionHashUnchanged": true,
+  "legacyProfileReferenceFastPath": true,
+  "mutableOrCopiedDefinitionsStillHashed": true,
+  "testAlignmentFiles": [
+    "tests/erxiang-handoff.test.ts",
+    "tests/touye-wager.test.ts",
+    "tests/laohuan-refill.test.ts",
+    "tests/xiemu-burn.test.ts",
+    "tests/hero-ability-cue.test.ts",
+    "tests/saved-boss-impact.test.ts",
+    "tests/hero-climax.test.ts",
+    "tests/opening-signature.test.ts",
+    "tests/joker-plain-quantity.test.ts",
+    "tests/fixtures/route-growth-history.ts",
+    "tests/v00-bot.test.ts"
+  ],
+  "v00PolicyOrSampleCountChanged": false,
+  "v00ScopedTestTimeoutMilliseconds": 10000,
+  "smokeIdentityAlignmentFile": "harness/screenshot.mjs",
+  "fullUnitSuiteAfterFix": {
+    "files": 209,
+    "passed": 3103,
+    "startUTC": "2026-10-11 14:28:34",
+    "durationSeconds": 77.63
+  },
+  "finalLocalBrowser": {
+    "status": "PASS",
+    "engines": [
+      "chromium"
+    ],
+    "profiles": [
+      "desktop",
+      "mobile"
+    ],
+    "browserVersion": "151.0.7922.173",
+    "sourceIndexHeadPreserved": true
+  },
+  "finalLocalRequiredStepsCovered": true,
+  "wholeReleaseWrapperResult": "FAIL-retained; later browser/docs scopes cover affected steps",
+  "profileDetectionDiagnostic": "PASS-reference-copy-mutation; Vite closing pre-scan warning retained in narrative",
+  "finalDocsStatus": "PASS",
+  "finalDocsSourceIndexHeadPreserved": true,
+  "saveValidationDelta": "cross-check all current stage source cards against actual deck and rules against last actual scorer source; recheck before clear; no fields/identity/math change",
+  "currentFollowup": {
+    "oldHead": "166022277aed2180361d18627b76b9377266c64a",
+    "newP2": "earlier-source-cards-rules-confirmed-and-author-repaired; parent re-review pending",
+    "targetedFiles": 9,
+    "targetedTestsPassed": 205,
+    "startUTC": "2026-10-11 15:03:01",
+    "durationSeconds": 3.81,
+    "oldUnitAndBrowserResultsAreHistorical": true,
+    "report": "../route-growth-c2-p2-card-facts-2026-10-11/README.md",
+    "typecheck": "PASS",
+    "content": "PASS",
+    "docs": "PASS; source/index/HEAD stable",
+    "newIndependentReview": "PENDING-parent",
+    "currentLocalFullSuiteOrBrowser": "NOT_RERUN; old166 evidence retained"
+  }
+}
