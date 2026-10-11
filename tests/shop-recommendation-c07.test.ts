@@ -35,8 +35,10 @@ describe('c07 sources require its actual ordinary flush or straight-flush family
   expect(t.handType).toBe('flush');expect(sourceEvents(t).length).toBeGreaterThan(0);expect(recommendation(s)).toMatchObject({stars:4,facts:{ordinaryFlushPossible:true,retriggerSource:true}});expect(JSON.stringify(s)).toBe(before);
  });
  it('actual five-card straight-flush source remains eligible',()=>{
-  const s=publicDeck({6:4,7:4,8:4,9:4,10:4}),before=JSON.stringify(s),t=score(s,[6,7,8,9,10]);
-  expect(t.handType).toBe('straight-flush');expect(sourceEvents(t).length).toBeGreaterThan(0);expect(recommendation(s)).toMatchObject({stars:4,facts:{retriggerSource:true}});expect(JSON.stringify(s)).toBe(before);
+  const s=publicDeck({6:1,7:9,8:8,9:1,10:1});
+  for(const c of s.deckInstances)if((c.rank===7||c.rank===8)&&!c.id.endsWith('/0'))c.suit='spades';assertRunInvariants(s);
+  const before=JSON.stringify(s),t=score(s,[6,7,8,9,10]);
+  expect(t.handType).toBe('straight-flush');expect(sourceEvents(t).length).toBeGreaterThan(0);expect(recommendation(s)).toMatchObject({stars:4,facts:{ordinaryFlushPossible:false,retriggerSource:true}});expect(JSON.stringify(s)).toBe(before);
  });
  it('the real c09 four-flush modifier admits a source that five-card high types alone do not',()=>{
   const s=publicDeck({7:10,8:10},true),before=JSON.stringify(s),t=score(s,[7,7,8,8]);

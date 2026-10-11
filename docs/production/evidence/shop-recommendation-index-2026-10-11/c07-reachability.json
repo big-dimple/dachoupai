@@ -22855,38 +22855,48 @@
             "rank": 6
           },
           {
-            "id": "public/6/1",
-            "suit": "hearts",
-            "rank": 6
-          },
-          {
-            "id": "public/6/2",
-            "suit": "hearts",
-            "rank": 6
-          },
-          {
-            "id": "public/6/3",
-            "suit": "hearts",
-            "rank": 6
-          },
-          {
             "id": "public/7/0",
             "suit": "hearts",
             "rank": 7
           },
           {
             "id": "public/7/1",
-            "suit": "hearts",
+            "suit": "spades",
             "rank": 7
           },
           {
             "id": "public/7/2",
-            "suit": "hearts",
+            "suit": "spades",
             "rank": 7
           },
           {
             "id": "public/7/3",
-            "suit": "hearts",
+            "suit": "spades",
+            "rank": 7
+          },
+          {
+            "id": "public/7/4",
+            "suit": "spades",
+            "rank": 7
+          },
+          {
+            "id": "public/7/5",
+            "suit": "spades",
+            "rank": 7
+          },
+          {
+            "id": "public/7/6",
+            "suit": "spades",
+            "rank": 7
+          },
+          {
+            "id": "public/7/7",
+            "suit": "spades",
+            "rank": 7
+          },
+          {
+            "id": "public/7/8",
+            "suit": "spades",
             "rank": 7
           },
           {
@@ -22896,17 +22906,37 @@
           },
           {
             "id": "public/8/1",
-            "suit": "hearts",
+            "suit": "spades",
             "rank": 8
           },
           {
             "id": "public/8/2",
-            "suit": "hearts",
+            "suit": "spades",
             "rank": 8
           },
           {
             "id": "public/8/3",
-            "suit": "hearts",
+            "suit": "spades",
+            "rank": 8
+          },
+          {
+            "id": "public/8/4",
+            "suit": "spades",
+            "rank": 8
+          },
+          {
+            "id": "public/8/5",
+            "suit": "spades",
+            "rank": 8
+          },
+          {
+            "id": "public/8/6",
+            "suit": "spades",
+            "rank": 8
+          },
+          {
+            "id": "public/8/7",
+            "suit": "spades",
             "rank": 8
           },
           {
@@ -22915,62 +22945,32 @@
             "rank": 9
           },
           {
-            "id": "public/9/1",
-            "suit": "hearts",
-            "rank": 9
-          },
-          {
-            "id": "public/9/2",
-            "suit": "hearts",
-            "rank": 9
-          },
-          {
-            "id": "public/9/3",
-            "suit": "hearts",
-            "rank": 9
-          },
-          {
             "id": "public/10/0",
-            "suit": "hearts",
-            "rank": 10
-          },
-          {
-            "id": "public/10/1",
-            "suit": "hearts",
-            "rank": 10
-          },
-          {
-            "id": "public/10/2",
-            "suit": "hearts",
-            "rank": 10
-          },
-          {
-            "id": "public/10/3",
             "suit": "hearts",
             "rank": 10
           }
         ],
         "drawPile": [
           "public/6/0",
-          "public/6/1",
-          "public/6/2",
-          "public/6/3",
           "public/7/0",
           "public/7/1",
           "public/7/2",
           "public/7/3",
+          "public/7/4",
+          "public/7/5",
+          "public/7/6",
+          "public/7/7",
+          "public/7/8",
           "public/8/0",
           "public/8/1",
           "public/8/2",
           "public/8/3",
+          "public/8/4",
+          "public/8/5",
+          "public/8/6",
+          "public/8/7",
           "public/9/0",
-          "public/9/1",
-          "public/9/2",
-          "public/9/3",
-          "public/10/0",
-          "public/10/1",
-          "public/10/2",
-          "public/10/3"
+          "public/10/0"
         ],
         "handOrder": [],
         "playedPile": [],
@@ -26008,14 +26008,14 @@
         "stage": "early",
         "facts": {
           "cards": 20,
-          "largest": 4,
-          "second": 4,
-          "largestSuit": 20,
-          "groupConcentrated": false,
+          "largest": 9,
+          "second": 8,
+          "largestSuit": 15,
+          "groupConcentrated": true,
           "flushConcentrated": true,
           "straightConcentrated": true,
-          "ordinaryStraightPossible": false,
-          "ordinaryFlushPossible": true,
+          "ordinaryStraightPossible": true,
+          "ordinaryFlushPossible": false,
           "boostedGroup": false,
           "houseCardPayoff": false,
           "boostedHouse": false,
@@ -26032,8 +26032,9 @@
           "growthWindow": true,
           "initialGrowth": "{}"
         },
-        "detail": "重触后长倍率；需实际额外重触。本手实际执行过至少一次额外重触发，结算后倍率成长 +0.2，上限3，从下一手生效；每手加入已有成长。\n公开依据：最大同点组4张，前两组8/20张；最大花色20/20张；已持逐牌加成无；剩余场次窗口24。\n基于公开构筑与当前阶段的推荐；不表示指定替换净更强。"
-      }
+        "detail": "重触后长倍率；需实际额外重触。本手实际执行过至少一次额外重触发，结算后倍率成长 +0.2，上限3，从下一手生效；每手加入已有成长。\n公开依据：最大同点组9张，前两组17/20张；最大花色15/20张；已持逐牌加成无；剩余场次窗口24。\n基于公开构筑与当前阶段的推荐；不表示指定替换净更强。"
+      },
+      "fixtureNote": "Exactly five consecutive hearts plus fifteen spades at only ranks7/8; ordinary flush unavailable, actual straight-flush is the only c07 family witness"
     },
     {
       "name": "four-flush-positive",
@@ -29230,5 +29231,7 @@
         "detail": "重触后长倍率；需实际额外重触。本手实际执行过至少一次额外重触发，结算后倍率成长 +0.2，上限3，从下一手生效；每手加入已有成长。\n公开依据：最大同点组10张，前两组20/20张；最大花色20/20张；已持逐牌加成无；剩余场次窗口24。\n基于公开构筑与当前阶段的推荐；不表示指定替换净更强。"
       }
     }
-  ]
+  ],
+  "strictStraightFlushFixtureAtHead": "269dbc4ffad3f0bbe1b6c90eb60dbc6cfbc2ea88",
+  "productSourceUnchanged": true
 }
