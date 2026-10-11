@@ -1,0 +1,9 @@
+{
+  "input": "2a75ec7de9ab758fc700a31fa552e8433bd8d1f8",
+  "product": "7bd17b1628e5efdc7b5788ecd26a7c8c17933e51",
+  "fullResultStateEqual": 6,
+  "fullNextShopStateEqual": 6,
+  "journalComparison": "Different entry paths: baseline imports saved result, candidate actually plays. Read-only views individually preserve entire state/journal/storage.",
+  "pr110": "dcc25d6b16b9f3a09f6a00754af4cd7d85e8aa4d applies cleanly (check only)",
+  "protectedTrees": "domain, content, audio, public, scoreText, ShopScene, ConsumableDialog, ToolChangePreview, SavedToolResult unchanged"
+}
