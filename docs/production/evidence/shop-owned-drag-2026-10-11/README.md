@@ -6,7 +6,7 @@
 
 - 基线：`41d0990bf94698110446d0e4caeebd54d327a972`，独立只读 worktree；before/report.json 绑定其 src 树且无修改。
 - 产品：`698832e`；正常合入父发布 main `44a140ec3361e4aa9e06d8bf7705344a4c2e419b`，保 PR115 全部倍率显示和计划；初验11688e4的提起图实际视觉FAIL后，以1dbc766补纸影、5484d26留4px提示间隔；缩窗竞态0d922b8与主指针恢复7ca642e补正后，完整四尺寸拖拽验收源码 `3cfd32c8a3bc024bd84661db52b90ab9ec976974`，src 树 `10aad2d6088e088d822d52bcb688bbc3d58cc1af`，after/report.json 记录源码无修改。
-- 仅 ShopScene、独立 OwnedJokerInput、JokerReorder 落点适配、定向测试/harness、本文证据与[父同步草案](plan-handoff.md)；按父最新指令，DELIVERY_PLAN 当前段由道具滚动包统一更新，本包不写。SceneView、牌桌、道具选择/预览/结果组件、style.css、领域/内容/概率/随机/数值/价格/保存格式/美术音频均同 44a140e；没有 PR113 拣入。
+- 仅 ShopScene、独立 OwnedJokerInput、JokerReorder 落点适配、定向测试/harness、本文证据与[父同步草案](plan-handoff.md)；按父最新指令，DELIVERY_PLAN 当前段由道具滚动包统一更新，本包不写。SceneView、牌桌、道具选择/预览/结果组件、style.css、领域/内容/概率/随机/数值/价格/保存格式/美术音频初验均同44a140e；最终正常同步父已合PR117的main368397e，保护文件/唯一计划同368397e，三份持牌组件逐字节同a882380只读验收，见[合主线记录](main-alignment.json)；没有 PR113 拣入。
 - Chromium 软件 Canvas，PC1366×768、手机390×740与390×844、320×568；普通动态模式，PC真实 mouse、手机真实 CDP touch＋原生 DOM/文件导入。受控当前 basic-suit-choice 身份、第二场商店五张持牌，不代表自然取得、18组合、真人审美或物理设备触感。
 
 ## 画面与操作
@@ -49,8 +49,8 @@
 
 初验虽原生断言绿，实际[原提起图](initial-visual-FAIL/390x740-lifted.png)中的上移牌遮住提示，明确视觉拒收。1dbc766删除上移、保轻放大并加原卡纸影，5484d26补4px纸间距；[原审记录](initial-visual-FAIL/visual-review.json)保留，最终重核四尺寸全套原生操作，不能以初验绿替代像素验收。
 
-`npm exec vitest run tests/joker-reorder.test.ts tests/pointer-release-time.test.ts tests/shop-layout.test.ts tests/r2-run.test.ts tests/score-text.test.ts tests/readable-multiplier-source.test.ts`：134通过；`npm run typecheck`通过。`node harness/shop-owned-drag.mjs`：四尺寸原生输入全部 PASS；基线通过隔离 worktree/DRAG_ROOT 重跑。
+`npm exec vitest run tests/joker-reorder.test.ts tests/pointer-release-time.test.ts tests/shop-layout.test.ts tests/r2-run.test.ts tests/score-text.test.ts tests/readable-multiplier-source.test.ts`：134通过（原拖拽批定向）；只读最小返修后`npm run typecheck`通过，父要求仅边界追加，未重跑原四尺寸全套。`node harness/shop-owned-drag.mjs`：四尺寸原生输入全部 PASS；基线通过隔离 worktree/DRAG_ROOT 重跑。
 
 [原观察器失败](original-observer-failures.json)及六份原始 gzip 保留，没有借重试抹除：首次夹具误放首店违反 opening-save 合同（未运行浏览器）；随后观察器将PC短点击误称长按、未释放合成第二指、并在活 dev 服务修改源码导致热重载、只尝试释放0–9而实际touch pointerId更大、把商品原长按查看错误列为“禁止详情”。后轮原生协议时序也可跨过原商品长按阈值，额外禁止其原查看的断言已移除并保全保存相等，持牌拖拽禁止详情的断言全部保持。分别修正真实等待/完整指针结束/冻结源码/实际捕获ID/商品原查看合同；没有放宽保存相等或取消断言。上述观察器失败不误写为产品失败。产品已证实的原手机越界提交 FAIL 保留于 before；最终轮另有真实[PC缩窗立即释放竞态 FAIL](product-resize-FAIL/report.json)：5484d26时浏览器已变但Phaser尚未重绘，误提交一笔。0d922b8直接响应window resize并核按下/释放的视口尺寸，原断言不放宽，四尺寸重核通过；7ca642e另在主指针恢复前先取消旧预览，并补受控信号断言，不冒称实机丢失释放。
 
-最终 draft PR、精确 HEAD CI 与父独审结论由 PR/交接读取；工程绿不签整体体验，父唯一串行合 main，本代理未合并或部署。
+最终 draft [PR116](https://github.com/big-dimple/dachoupai/pull/116)、新HEAD精确CI与父独审结论由PR/交接读取；旧3573fc6 CI通过仅属原候选，不能代签只读返修。工程绿不签整体体验，父唯一串行合 main，本代理未合并或部署。
