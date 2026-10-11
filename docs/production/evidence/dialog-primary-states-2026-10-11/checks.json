@@ -1,0 +1,37 @@
+{
+  "base": "9d0cd754150a8c9cb6ed3ddf38c50f543ed6bac3",
+  "product": {
+    "file": "src/style.css",
+    "sha256": "d997ed57299b569ab4d36d8fce6326d75602678551eb7115d9b759f1d179db8d",
+    "gitBlob": "5287a604de11f082e7c7925f1004b906607b8380",
+    "scope": "two CSS rules at245–246, exclude data-shop-context, existing colors and geometry"
+  },
+  "native": {
+    "status": "PASS",
+    "cases": 2,
+    "samples": 38,
+    "sourceUnchanged": true,
+    "fullStateOracle": true
+  },
+  "before": {
+    "status": "REPRODUCED",
+    "sourceUnchanged": true,
+    "supplementalTouch": "REPRODUCED"
+  },
+  "protectedChanges": [],
+  "widthHeightIdentical": true,
+  "shopSpecificStatesIdentical": true,
+  "fullInitialAndFinalStateIdenticalToBase": true,
+  "localChecks": [
+    "native bounded harness PC/390 PASS",
+    "node --check harness/dialog-primary-states.mjs PASS",
+    "git diff --check PASS"
+  ],
+  "notRun": [
+    "unchanged full unit suite",
+    "local build",
+    "natural18 journeys",
+    "true device/GPU/long-term play"
+  ],
+  "ci": "final exact HEAD must be checked separately via connector"
+}

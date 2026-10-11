@@ -242,6 +242,8 @@ button:active { transform:translateY(1px);box-shadow:none; }
 .dialog-card-image { background:#fff9ee; }
 .dialog-actions { background:#F3EADB;border-color:#3F606B; }
 .dialog-primary { background:#B8473A;color:#fff9ee;border-color:#B8473A; }
+.detail-dialog:not([data-shop-context]) .dialog-primary:not(:disabled):is(:hover,:active,:focus-visible) { background:#9F3228;color:#FFF9EE; }
+.detail-dialog:not([data-shop-context]) .dialog-primary:disabled { background:#D8D1C3;color:#595B59;border-color:#858B89;transform:none; }
 .dialog-close { background:#fff9ee;color:#3F606B;border-color:#3F606B; }
 .dialog-edition-summary { border-color:#3F606B;background:#e2e8e5; }
 .card-ability>strong,.card-ability>span { color:#26313A; }

@@ -1,0 +1,12 @@
+/workspace/dachoupai/src/application/checkpoint.ts:99
+  throw Error(message);
+        ^
+
+Error: invalid-save-fields
+    at fail (/workspace/dachoupai/src/application/checkpoint.ts:99:9)
+    at record (/workspace/dachoupai/src/application/checkpoint.ts:104:139)
+    at validateState (/workspace/dachoupai/src/application/checkpoint.ts:1054:18)
+    at makeCheckpoint (/workspace/dachoupai/src/application/checkpoint.ts:1262:3)
+    at file:///workspace/dachoupai/harness/dialog-primary-states.mjs:21:10
+
+Node.js v24.19.0
