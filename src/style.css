@@ -671,4 +671,5 @@ button[aria-busy=true] { border-style:dashed; }
 .stage-identity-entry .dialog-header h2 { font-family:Georgia,"Noto Serif SC",SimSun,serif;font-size:28px; }
 .stage-identity-entry .dialog-purchase-summary { background:#E2E8E5;color:#3F606B; }
 .stage-identity-entry .dialog-effect { border-left:3px solid #B8473A;padding-left:12px; }
+.stage-identity-entry .dialog-primary:hover { background:#9F3228;color:#FFF9EE; }
 @media (max-width:560px) { .stage-identity-entry .dialog-header h2 { font-size:24px; } }

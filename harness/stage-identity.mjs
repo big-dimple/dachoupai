@@ -6,6 +6,7 @@ import {execFileSync} from 'node:child_process';
 import {tapUI,waitScene} from './ui.mjs';
 
 const output=process.env.STAGE_IDENTITY_OUTPUT??'/tmp/stage-identity-before';
+const entryOnly=!!process.env.STAGE_IDENTITY_ENTRY_ONLY;
 await mkdir(output,{recursive:true});
 const server=await createServer({mode:'e2e',server:{host:'127.0.0.1',port:5447,strictPort:true},logLevel:'error'});await server.listen();
 const {createRun,applyCommand,assertRunInvariants}=await server.ssrLoadModule('/src/domain/run.ts');
@@ -28,11 +29,25 @@ const report={head:execFileSync('git',['rev-parse','HEAD'],{encoding:'utf8'}).tr
 try{
  for(const width of [1366,390])for(const boss of [{definitionId:'B03',disabledSuit:'clubs'},{definitionId:'B02',disabledSuit:null}]){
   const f=fixture(boss),row={width,boss,errors:[]};report.cases.push(row);
+  const imported=entryOnly?send(send(f.cleared,{type:'OpenShop'}),{type:'LeaveShop'}):f.entered;
   const page=await browser.newPage({viewport:{width,height:width===390?844:768},hasTouch:width===390,reducedMotion:'reduce'});page.on('pageerror',e=>row.errors.push(String(e)));page.on('dialog',d=>d.accept());
   const name=width+'-'+boss.definitionId,touch=width===390;
   await page.goto('http://127.0.0.1:5447/?harness=1');await waitScene(page,'title');
   await page.locator('.run-menu-toggle').click();const details=page.getByText('进度与存档',{exact:true}).locator('..');if(!await details.evaluate(e=>e.open))await details.locator('summary').click();
-  const chooser=page.waitForEvent('filechooser');await page.getByRole('button',{name:'导入本局',exact:true}).click();await(await chooser).setFiles({name:'controlled.json',mimeType:'application/json',buffer:Buffer.from(JSON.stringify(makeCheckpoint(f.entered,[])))});await waitScene(page,'game');
+  const chooser=page.waitForEvent('filechooser');await page.getByRole('button',{name:'导入本局',exact:true}).click();await(await chooser).setFiles({name:'controlled.json',mimeType:'application/json',buffer:Buffer.from(JSON.stringify(makeCheckpoint(imported,[])))});await waitScene(page,'game');
+  if(entryOnly){
+   const expected=send(imported,{type:'EnterStage'});await page.waitForFunction(()=>!!document.querySelector('.stage-identity-entry[open]'));assert.deepEqual(await page.evaluate(()=>window.__harness.game.registry.get('runController').state),expected);
+   row.entry=await page.locator('dialog[open]').innerText();row.geometry=[];
+   for(const [boundaryWidth,boundaryHeight] of (width===1366&&boss.definitionId==='B03'?[[1366,768],[320,740],[740,360]]:[[width,width===390?844:768]])){
+    await page.setViewportSize({width:boundaryWidth,height:boundaryHeight});
+    const primary=page.getByRole('button',{name:'开始出牌',exact:true}),bounds=await page.locator('dialog[open]').boundingBox(),button=await primary.boundingBox();
+    assert.ok(button&&button.y>=0&&button.y+button.height<=boundaryHeight);assert.ok(bounds.height<boundaryHeight-48,'entry sheet fits concise content');
+    row.geometry.push({width:boundaryWidth,height:boundaryHeight,bounds,button});await page.screenshot({path:output+'/'+boundaryWidth+'-'+boss.definitionId+'-entry.png'});
+   }
+   await page.getByRole('button',{name:'开始出牌',exact:true}).hover();row.primaryHover=await page.getByRole('button',{name:'开始出牌',exact:true}).evaluate(e=>({background:getComputedStyle(e).backgroundColor,color:getComputedStyle(e).color}));assert.deepEqual(row.primaryHover,{background:'rgb(159, 50, 40)',color:'rgb(255, 249, 238)'});
+   await page.locator('dialog[open] summary').click();row.fullRules=await page.locator('dialog[open]').innerText();assert.match(row.fullRules,/应对/);await page.getByRole('button',{name:'开始出牌',exact:true}).click();assert.deepEqual(await page.evaluate(()=>window.__harness.game.registry.get('runController').state),expected);
+   row.final=expected;assert.deepEqual(row.errors,[]);await page.close();continue;
+  }
   await page.waitForFunction(()=>{const scene=window.__harness.game.scene.getScene('game');return scene.ready&&!scene.presentation&&scene.cardViews.every(v=>!v.dealing);});
   for(const id of f.action.selectedIds)await tapUI(page,'game','card/'+id,touch);
   await tapUI(page,'game','action/play',touch);await waitScene(page,'intermission');
