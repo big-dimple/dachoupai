@@ -55,6 +55,7 @@ export function shopRecommendation(state:R2RunState,offer:R2Offer,focus?:BuildFo
   const seek=(i:number,left:number,witness:typeof cards):boolean=>{if(!left)return evaluateR2Hand(witness,handRules).type==='flush';if(i===groups.length)return false;for(let n=Math.min(left,groups[i].length);n>=0;n--)if(seek(i+1,left-n,[...witness,...groups[i].slice(0,n)]))return true;return false;};
   return pool.length>=5&&seek(0,5,[])||handRules.fourFlush&&pool.length>=4&&seek(0,4,[]);
  });
+ const flushRetriggerPossible=ordinaryFlushPossible||[...suits.keys()].some(suit=>consecutive(cards.filter(card=>card.suit===suit),5));
  const boosted=(c:typeof cards[number])=>!!c.edition&&c.edition!=='none'||R2_ENHANCEMENTS.find(e=>e.id===c.enhancement)?.effects.some(e=>e.phase==='onCardScore'&&['add-heat','add-multiplier','multiply-multiplier'].includes(e.kind))===true;
  const boostedGroup=largest>=3&&[...ranks].some(([r,n])=>n===largest&&cards.filter(c=>c.rank===r&&boosted(c)).length>=3);
  const houseCardPayoff=[...ranks].some(([triple,n])=>n>=3&&cards.filter(c=>c.rank===triple&&boosted(c)).length>=3&&[...ranks].some(([pair,m])=>pair!==triple&&m>=2&&cards.some(c=>c.rank===pair&&boosted(c))));
@@ -70,7 +71,7 @@ export function shopRecommendation(state:R2RunState,offer:R2Offer,focus?:BuildFo
  const heldCardPayoff=heldDefinitions.some(d=>d.hooks.some(h=>h.phase==='onCardScore'&&h.operations.some(o=>['add-heat','add-multiplier'].includes(o.kind))&&
   (h.condition.kind==='always'||h.condition.kind==='paired-rank'&&largest>=h.condition.minimum||h.condition.kind==='rank-in'&&cards.filter(c=>h.condition.kind==='rank-in'&&h.condition.values.includes(c.rank)).length>=3||h.condition.kind==='suit-in'&&cards.filter(c=>h.condition.kind==='suit-in'&&h.condition.values.includes(c.suit)).length>=Math.ceil(cards.length*.5))));
  const heldGroupPayoff=heldDefinitions.some(d=>d.hooks.some(h=>h.phase==='onCardScore'&&h.operations.some(o=>['add-heat','add-multiplier'].includes(o.kind))&&[...ranks].some(([rank,n])=>n===largest&&cards.filter(c=>c.rank===rank&&(h.condition.kind==='always'||h.condition.kind==='paired-rank'&&n>=h.condition.minimum||h.condition.kind==='rank-in'&&h.condition.values.includes(c.rank)||h.condition.kind==='suit-in'&&h.condition.values.includes(c.suit))).length>=3)));
- const retriggerSource=scoringJokers.some(j=>j.definitionId==='b06'&&largest>=2||j.definitionId==='a11'&&largest>=3&&second>=2||j.definitionId==='c07'&&largestSuit>=5||j.definitionId==='d11'&&cards.length>=3||j.definitionId==='d04');
+ const retriggerSource=scoringJokers.some(j=>j.definitionId==='b06'&&largest>=2||j.definitionId==='a11'&&largest>=3&&second>=2||j.definitionId==='c07'&&flushRetriggerPossible||j.definitionId==='d11'&&cards.length>=3||j.definitionId==='d04');
  // A sustained qualified-hand base needs an executable public condition, not
  // just an operation tag. This checks availability, never next-hand odds.
  const multiplierCondition=(c:Condition):boolean=>{
