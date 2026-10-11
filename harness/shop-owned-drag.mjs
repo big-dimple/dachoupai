@@ -35,7 +35,7 @@ for(const {touch,width,height} of (process.env.DRAG_READONLY_ONLY==='1'?specs.sl
   for(const mode of ['paused','readonly']){
    if(mode==='readonly')await p.evaluate(async()=>{const {gameSession}=await import('/src/game/session.ts');gameSession().lease.drop();});
    if(await p.locator('.run-menu-modal').evaluate(d=>d.open))await p.locator('.run-menu-toggle').click();
-   const stable=await detailed();assert.equal(stable.status,mode);await tapUI(p,'shop','joker/'+run.jokers[0].instanceId,touch);await p.locator('.detail-dialog[open]').waitFor({timeout:3000});
+   const stable=await detailed();assert.equal(stable.status,mode);row[mode+'BeforeTap']=await p.evaluate(()=>{const s=window.__harness.game.scene.getScene('shop');return{busy:s.busy,ready:s.ready,phase:s.run.phase,openDialogs:[...document.querySelectorAll('dialog[open]')].map(d=>d.className),surfaceHidden:s.ownedInput.surface.hidden};});await shot(mode+'-card-before-tap');await tapUI(p,'shop','joker/'+run.jokers[0].instanceId,touch);await p.locator('.detail-dialog[open]').waitFor({timeout:3000});
    for(const label of ['左移','右移','出售'])assert.ok(await p.getByRole('button',{name:label,exact:true}).isDisabled(),mode+' '+label+' disabled');
    assert.deepEqual(await detailed(),stable,mode+' tap inspection preserves full state/journal/IDB/pending candidate');await shot(mode+'-detail');await p.getByRole('button',{name:'关闭',exact:true}).click();
    const at=await slot(p,0);await start(at);await p.waitForTimeout(400);assert.ok(await p.evaluate(()=>!window.__harness.game.scene.getScene('shop').ownedDrag));await move(await slot(p,3));
