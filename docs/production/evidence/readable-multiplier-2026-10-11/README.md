@@ -3,7 +3,7 @@
 归唯一 DELIVERY_PLAN 的低阅读与真实成长呈现；不增加新研究/数值方案。父只串行集成，本包不合main或部署，也不签整体美术/真人理解/实机/听感/18组合。
 
 - 基线：`41d0990bf94698110446d0e4caeebd54d327a972`，已合PR110/112/114。
-- 冻结产品：`ec57f2fe9da05e5f79d890cfb706d7c01d234ea6`；src tree `6b61fdeac71ff49b684cb16c1d25aa30d5773950`。后续证据/计划提交不改此树。
+- 最终冻结产品：`370bc0fe0777a7d8b36ce10b8829fcfc040859c9`；src tree `10b782441ae6b25318dddf02080a5098b40592e9`。原四案/普通速度图来自初版 `ec57f2fe9da05e5f79d890cfb706d7c01d234ea6`（src tree `6b61fdeac71ff49b684cb16c1d25aa30d5773950`）；父审后另补实际事件factor入口和同事件可见说明，最终factor证据单独绑定新产品，未冒用初版图。后续证据/计划提交不改最终src树。
 - 只读参考PR113：`b6617e9b2c36df2b8f481242528b3e5d7000766e`。ResultScoreNumber采用截断，极小正值仍可能≈0，本包未复用其实现、未cherry-pick、未引入其未验美术；PR113保持冻结未合，不计Sol结果为Astra验收。
 - 交付前再fetch核main/PR113；main仍41d0990，A/B/数量文案未回退。父报告main CI38127406182成功、09:27 UTC生产浏览器版本C03 41d0990bf946/build09:11:22.210Z/dirty package-lock.json；这是父版本核验，非本云新版操作验收。
 
@@ -21,7 +21,7 @@
 
 首层采用BigInt四舍五入（半值远离零）；整数与最多2位可精确表示的小数不虚标≈。绝对值≥1e15或<0.01用3位有效数字科学计数法；科学计数法本身若精确也不标≈，舍入进位正常调整指数。极小非零值不写成≈0。零、负号、负分母正常化、循环小数、千/4096位整数与长分母均覆盖；零分母明确拒绝。formatter不把任意长BigInt转成Number；滚数动画仅在分子分母都≤MAX_SAFE_INTEGER时转换，大比例直接落权威值。中间动画舍掉小数才标≈，落点回到保存值。
 
-heatText的得分科学计数法门槛/实现保持；不加零、不改存分、计分、成长数值、乘区、保存格式、概率、随机、价格或资产。14个src/game文件只做以上必要显示改动，src/domain、content、application、platform、public、art与基线逐树无差异。
+heatText的得分科学计数法门槛/实现保持；不加零、不改存分、计分、成长数值、乘区、保存格式、概率、随机、价格或资产。15个src/game文件只做以上必要显示改动，src/domain、content、application、platform、public、art与基线逐树无差异。
 
 ## 两个报告值的同尺度像素
 
@@ -40,9 +40,13 @@ heatText的得分科学计数法门槛/实现保持；不加零、不改存分�
 - [before/report](before/report.json)四案与[after/report](after/report.json)四案实际PlayHand通过；候选的initial/final state、journal、storage逐字段与基线相同。原[完整before](before/states.json.gz)/[完整after](after/states.json.gz)供独审，非只比finalScore。打开详情为只读，reload保存完全相等。两个尺寸公式/存分实际bounds内且互不遮挡；主要前后与详情PNG已实际view。
 - [normal/report](normal/report.json)另一个PC普通速度成组，完整保存同原命令、读数帧无NaN/Infinity、[最终图](normal/group-1366-result.png)。不把低动态证据代签正常动画，也不声称手机正常速度/快进/18局全验。
 - [原FAIL记录](original-failures.json)：旧9.375首层期待、新测试选了可整除的分子、测试context类型遗漏、baseline观察器误认实际label入口均保留；最终修正后通过。首精确公式增加floor(...)后手机过长，[原像素FAIL](detail-long-formula-FAIL.png)保留，最后分三行精确H/M/入账；未缩字或换布局遮盖。
-- 标准CI只触发一次：[38128768688](https://github.com/big-dimple/dachoupai/actions/runs/38128768688)，精确HEAD `41463d89406aa5e8fd3d9670ca4d78d90515313d`。domain为3019通过/1失败：旧joker-compact要求首层保留29位整数，与新合同冲突；docs通过，browser结论按交付报告读取。原[CI失败摘录](ci-first-failure.txt)未重跑、未刷绿。仅同步该测试为首层≈1.23e29及详情全部数字断言，相关24项/3文件定向再次通过；产品src树不变，不重拍图。按用户只一次/不追加大回归，新测试/事实提交用[skip ci]，新交付HEAD标准CI未运行，父精确HEAD检查仍是合并前剩余阻塞，不以原其他绿job代签。
+- 原标准CI：[38128768688](https://github.com/big-dimple/dachoupai/actions/runs/38128768688)，HEAD `41463d89406aa5e8fd3d9670ca4d78d90515313d`；domain 3019通过/1失败（旧joker-compact要求首层29位精确整数），docs/browser均通过。原[失败摘录](ci-first-failure.txt)保留，未重跑原run。测试已改为首层≈1.23e29和详情完整数字断言。原0ff事实/测试提交用了skip ci；父随后明确要求修完真实factor遗漏后正常最终CI，故最终产品/测试HEAD只再触发这一次必要CI，按PR交付报告的精确SHA/run读取，不能拿旧绿job代签。
+- 父审指出`ScoreEnergy.factor`→`multiplierCaption`→`GameScene.resultText`仍原样显示分数。最终修复添加原Rational的`factorValue`供首层，原精确factor string、kind/tier/peak/color及能量计算保持。`caption.exact`仍完整；HeroClimax可见note、GameScene同事件底部benefit/operation说明也仅替换确切的“×精确值”显示，原保存fact/operationText详情不变。38项/6相关文件与typecheck通过；新测试实际PlayHand产生a06读取事件，验证factor≈2.62、精确元数据、tier/peak/color及trace不变。
+- [最终factor报告](factor/report.json)：PC1366×768、手机390×740，两案受控导入→真实PlayHand→已有菜单“回看上一手”通过。为保留场内回看，前置六次领域命令以指定系数1000及公开3–7过关，进入第3章暖场目标2400，再恢复839523/320000；这不是自然前六场，也不作自然养成/胜率证据。实际这一手存分1574；原生回看前后完整state/journal/storage相同，见[完整受控账](factor/states.json.gz)。截帧暂停仅在poststep捕捉显示时暂停/恢复场景，不改文字、不藏遮挡层、不改保存值。第一次英雄高光覆盖底层caption，未拿被盖文字签可见；最终[PC英雄说明](factor/straight-1366-factor.png)/[手机英雄说明](factor/straight-390-factor.png)可见“读取已有 ×≈2.62 倍率”。原生回看没有英雄遮挡：[PC实际caption](factor/straight-1366-caption.png)/[手机实际caption](factor/straight-390-caption.png)完整可见“独家戏 ×≈2.62 4→≈10.49”，实际宽158 CSSpx；精确metadata仍×839,523/320,000。均实际view确认。
+- factor观察器的受控前置错误保留在[factor观察失败记录](factor-observer-failures.json)：第一版后续手未指定顺子而不能触发a06，第二版第2章目标仍不足以让1574留场；最后明确指定六次受控领域过关，只跑两次浏览器实际手与回看。未通过改变产品阈值来绕过。
 
-复查命令：`npm run typecheck`；`npx vitest run tests/score-text.test.ts tests/readable-multiplier-source.test.ts tests/score-event-caption.test.ts tests/score-text-layout.test.ts`；`MULTIPLIER_OUTPUT=/tmp/multiplier-review node harness/readable-multiplier.mjs`。普通速度仅PC一案：`MULTIPLIER_NORMAL=1 MULTIPLIER_OUTPUT=/tmp/multiplier-normal node harness/readable-multiplier.mjs`。
+
+复查命令：`npm run typecheck`；`npx vitest run tests/score-text.test.ts tests/readable-multiplier-source.test.ts tests/score-event-caption.test.ts tests/score-text-layout.test.ts`；`MULTIPLIER_OUTPUT=/tmp/multiplier-review node harness/readable-multiplier.mjs`。最终factor原生回看：`MULTIPLIER_FACTOR=1 MULTIPLIER_OUTPUT=/tmp/multiplier-factor node harness/readable-multiplier.mjs`。普通速度仅PC一案：`MULTIPLIER_NORMAL=1 MULTIPLIER_OUTPUT=/tmp/multiplier-normal node harness/readable-multiplier.mjs`。
 
 剩余边界：当前低成本样本未重放自然局、未验证18路线/真人设备；4096位详情保证文字不截精度，未拍4096位整屏或单独审其滚动。超过2位的极细成长可能前后都显示同一个近似值，实际变化仍按精确值选择/报账，精确详情可辨。大分继续用既有heatText；整套得分科学计数法/资产/控件重做不在本包。PC原来源caption的一位小数合同保持。
 
