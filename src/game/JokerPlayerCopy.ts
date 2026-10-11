@@ -1,4 +1,6 @@
 import {jokerPlainCopy} from './JokerPlainCopy';
+import {R2_ROUTE_GROWTH_IDS,R2_ROUTE_GROWTH_JOKERS} from '../content/r2RouteGrowthJokers';
+import {JOKER_ROUTE_GROWTH_TEMPLATES} from './JokerRouteGrowthTemplates';
 import {R2_GROUP_HAND_TYPES,r2LargestScoringRankGroup} from '../domain/r2GroupHands';
 import {R2_GROUP_UPGRADE_IDS,R2_GROUP_UPGRADE_JOKERS} from '../content/r2GroupUpgradeJokers';
 import {JOKER_GROUP_UPGRADE_TEMPLATES} from './JokerGroupUpgradeTemplates';
@@ -60,7 +62,8 @@ const eventTiming:Record<string,string>={afterHand:'出牌结算后才更新',on
 export function jokerPlayerCopy(definition:R2JokerDefinition,instance:R2JokerInstance|undefined,ctx:JokerMemoryContext,memory:Memory,events?:readonly ScoreEvent[]):CardAbilityCopy {
  const combo=R2_COMBO_GROWTH_IDS.includes(definition.id)&&R2_COMBO_GROWTH_JOKERS.includes(definition);
  const grouped=R2_GROUP_UPGRADE_IDS.includes(definition.id)&&R2_GROUP_UPGRADE_JOKERS.includes(definition);
- const template=grouped?JOKER_GROUP_UPGRADE_TEMPLATES[definition.id]:combo?JOKER_COMBO_GROWTH_TEMPLATES[definition.id]:R2_ASSIST_ADAPTED_IDS.includes(definition.id)&&R2_ASSIST_JOKERS.includes(definition)?JOKER_ASSIST_TEMPLATES[definition.id]:copyTemplates[definition.id];
+ const route=R2_ROUTE_GROWTH_IDS.includes(definition.id)&&R2_ROUTE_GROWTH_JOKERS.includes(definition);
+ const template=route?JOKER_ROUTE_GROWTH_TEMPLATES[definition.id]:grouped?JOKER_GROUP_UPGRADE_TEMPLATES[definition.id]:combo?JOKER_COMBO_GROWTH_TEMPLATES[definition.id]:R2_ASSIST_ADAPTED_IDS.includes(definition.id)&&R2_ASSIST_JOKERS.includes(definition)?JOKER_ASSIST_TEMPLATES[definition.id]:copyTemplates[definition.id];
  if(!template)return{condition:'查看这张牌的条件与效果。',value:'完整规则见下方。',state:instance?'按实际出牌与交易判断':'尚未购买，买入后才会生效',flavor:'',rules:definition.description,summary:'条件与效果 · 查看',compact:memory.short,narrow:memory.short,benefit:'条件与效果',playerCopy:true};
  const values:Record<string,string>={};for(const[key,binding]of Object.entries(template.bindings))values[key]=formatted(bindingValue(binding.source,definition),binding.format);
  const growth=instance?{...r2GrowthMinimums(definition),...instance.growth}:{};
