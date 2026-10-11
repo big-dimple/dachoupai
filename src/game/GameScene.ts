@@ -71,6 +71,7 @@ import {scoreCelebration} from './scoreCelebration';
 import {scoreBeat,scoreFireLevel,fourCardFormation,scorePacketSymbol,scoreImpactScale,type ScoreBeat} from './scorePresentation';
 import {ScoreFlame,orderScoreBrushLayers} from './ScoreFlame';
 import {stageNotice,discardReferenceCopy} from './stageNotice';
+import {stageIdentity} from './StageIdentity';
 import type {R2RunState as RunState,DomainEvent} from '../domain/run';
 import {r2UsesAssist,R2_LIMITS,getR2Stage as getStage,r2ScoreContext,r2DiscardCost} from '../domain/r2Run';
 import {r2ScoringDisabledJokerIds,type Accumulator,type ScoreTrace,type ScoreEvent} from '../domain/scoreR2';
@@ -327,7 +328,12 @@ export class GameScene extends Phaser.Scene {
     this.render();
     if(enteredStage)this.revealDrawnCards([]);
     const notice=stageNotice(this.run);
-    if(enteredStage&&notice?.warning)this.dialog.open('压轴规则 · '+notice.title,notice.details,[{label:'开始出牌',primary:true,run:()=>this.dialog.close()}]);
+    if(enteredStage&&notice?.warning){
+      const identity=stageIdentity(this.run.stage.index,this.run.stage.boss,this.run.tourMode,this.run.difficulty)!;
+      const dialog=this.dialog.open(identity.title,notice.details,[{label:'开始出牌',primary:true,run:()=>this.dialog.close()}],{summaryBody:identity.stageName+' · 目标 '+heatText(this.run.stage.targetHeat),effectBody:notice.description,collapseRules:true,rulesLabel:'完整限制与应对'});
+      dialog.classList.add('stage-identity-entry');
+      dialog.dataset.stageKind=identity.isBoss?'boss':'normal';
+    }
   }
 
   private readonly keyboard=(event:KeyboardEvent)=>{
@@ -367,12 +373,12 @@ export class GameScene extends Phaser.Scene {
     addAvatar(this,this.roleAvatar,c,0,0,avatarSize);
     {const hit=v.add(this.add.rectangle(h.x+12+avatarSize/2,avatarY+avatarSize/2,Math.max(44,avatarSize+8),Math.max(44,avatarSize+8),0,0));v.target(hit,usesErxiangHandoff(this.run)?'hero/erxiang-handoff':usesTouyeWager(this.run)?'hero/touye-wager':usesLaohuanRefill(this.run)?'hero/laohuan-trick':usesXiemuBurn(this.run)?'hero/xiemu-burn':usesAzaoCharge(this.run)?'hero/azao-charge':'hero/details',{tap:()=>this.inspectRole(),detail:()=>this.inspectRole()});}
     this.roleFrame=this.add.rectangle(0,0,avatarSize+4,avatarSize+4,T.brass).setFillStyle(T.brass,0).setStrokeStyle(1,T.brass,.6);this.roleAvatar.add(this.roleFrame);
-    const bossName=r2BossText(this.run.boss).split('：')[0];
+    const identity=stageIdentity(this.stage.index,this.run.stage!.boss,this.run.tourMode,this.run.difficulty)!;
     if(!portrait)v.text(h.x+12,h.y+8,this.run.tourMode==='endless'?'无尽巡演':'大 丑 牌',short?20:28,C.paper);
     if(!portrait||!usesErxiangHandoff(this.run)&&!usesAzaoCharge(this.run)&&!usesXiemuBurn(this.run)&&!usesLaohuanRefill(this.run)&&!usesTouyeWager(this.run))v.text(h.x+(portrait?64:76),avatarY,(portrait&&this.run.tourMode==='endless'?'无尽 · ':'')+c.name,portrait?18:short?20:22,C.paper,portrait?h.width-160:h.width-88);
     this.roleText=v.text(h.x+(portrait?64:76),avatarY+(portrait?23:28),this.roleCaption(),14,C.mutedInk,portrait?h.width-160:h.width-88);
     const skillEntry=v.rect({x:this.roleText.x,y:this.roleText.y,width:portrait?h.width-160:h.width-88,height:20}).setFillStyle(0,0).setStrokeStyle();v.target(skillEntry,'hero/skill-entry',{tap:()=>this.inspectRole(),detail:()=>this.inspectRole()});
-    if(!portrait&&!l.shortLandscape)v.text(h.x+12,h.y+(short?96:96),this.stage.index%3===2?'压轴 · '+bossName:this.stage.name,14,C.paper,h.width-24);
+    if(!portrait&&!l.shortLandscape)v.text(h.x+12,h.y+96,identity.isBoss?identity.title:identity.stageName,14,C.paper,h.width-24).setName('stage-identity/current');
     this.heatText=v.text(h.x+12,h.y+(portrait?27:l.shortLandscape?94:short?108:118),'',portrait?20:short?28:24,C.paper,h.width-24).setFontStyle('bold');
     const goldY=h.y+(portrait?31:l.shortLandscape?11:180);
     this.goldText=l.shortLandscape?v.text(h.x+h.width-12,goldY,'',14,C.brass).setOrigin(1,0):v.text(h.x+12,goldY,'',14,C.brass,h.width-24);
@@ -793,7 +799,7 @@ export class GameScene extends Phaser.Scene {
       const note=this.add.text(score.x+10,score.y+28,'原保留：'+held,{fontFamily:UI_FONT,fontSize:'14px',color:C.mutedInk,wordWrap:{width:score.width-20,useAdvancedWrap:true}}).setName('refill/held');this.previewCards.add(note);return;}
     if(this.assistProfile){const growth=!preview&&p.height>=94&&p.width>=250?buildGrowthProgress(this.run)[0]:undefined,payoffs=growth?growthPayoffs(this.run):[],payoff=payoffs.find(p=>p.change!=='same')??payoffs[0];const shown=payoff&&showGrowthPayoff(this.view,this,this.previewCards,p,payoff)||growth&&showBuildGrowth(this.view,this,this.previewCards,p,growth);this.renderAssistSelection(preview,p,!!shown);return;}
     if(!preview){
-      const notice=stageNotice(this.run),hint=notice?.warning?notice.title+(p.height>=90?'\n'+notice.description:''):this.run.stage!.playIndex===0?'选 1–5 张，凑牌型出牌\n不合适？弃牌换新牌':'选牌，准备下一手';
+      const notice=stageNotice(this.run),identity=stageIdentity(this.stage.index,this.run.stage!.boss,this.run.tourMode,this.run.difficulty)!,hint=notice?.warning?identity.stageName+' · '+notice.title+(p.height>=90?'\n'+notice.description:''):this.run.stage!.playIndex===0?identity.stageName+'\n选1–5张出牌，不合适可弃牌换新':'选牌，准备下一手';
       const payoffs=notice?.warning?[]:growthPayoffs(this.run),payoff=payoffs.find(p=>p.change!=='same')??payoffs[0],shown=payoff&&showGrowthPayoff(this.view,this,this.previewCards,p,payoff);
       const text=!shown?this.add.text(p.x+p.width/2,p.y+p.height/2,hint,{fontFamily:UI_FONT,fontSize:p.height<90||notice?.warning?'14px':'18px',color:notice?.warning?C.red:C.mutedInk,align:'center',lineSpacing:4,wordWrap:{width:p.width-24,useAdvancedWrap:true},resolution:Math.max(1.5,1/this.scale.zoom)}).setOrigin(.5):undefined;
       if(text)this.previewCards.add(text);
@@ -1345,7 +1351,7 @@ export class GameScene extends Phaser.Scene {
     [this.scoreHeat,this.scoreMult,this.scoreTotal].forEach(text=>text.setText('').setData('fullText','').setData('eventId',undefined).setData('eventPhase',undefined).setVisible(false));
     (this.view.root.list.find(o=>o.name==='score/total-pedestal') as Phaser.GameObjects.Graphics|undefined)?.setVisible(false);
     const score=this.view.layout.scoreBoard;
-    this.resultText.setVisible(true).setText(preview?selectionCopy(preview).title:'当前选择 · 选1–5张');
+    this.resultText.setVisible(true).setText(preview?selectionCopy(preview).title:this.stage.name);
     fitScoreLine(this.resultText,{x:score.x+10,y:score.y+(score.height<90?4:7),width:score.width-20-(this.selectionQuickInScore(score)?104:0),height:score.height<90?18:30},score.height<90?18:24);
   }
   /** Reflow real text bounds inside the reserved score/body/fire lanes. */
