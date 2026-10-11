@@ -1,0 +1,156 @@
+{
+  "head": "a882380d08af2669fa5836ac9b77e6d53fd71294",
+  "sourceTree": "dff6f08c86fdf845793970b407d15d6cf590b415",
+  "modified": "",
+  "baseline": false,
+  "scope": "Controlled current-identity five-owned checkpoint; real mouse/CDP touch/DOM inputs. Full state/journal/local storage vs actual applyCommand; no natural acquisition, 18-combination, physical device or human acceptance.",
+  "cases": [
+    {
+      "width": 1366,
+      "height": 768,
+      "touch": false,
+      "checks": [
+        {
+          "screenshot": "1366x768-paused-card-before-tap.png"
+        },
+        {
+          "screenshot": "1366x768-paused-detail.png"
+        },
+        {
+          "label": "paused native tap/hold inspect; change buttons disabled; attempted drag does not lift/write/retry; exact state/journal/IDB/candidate/calls unchanged",
+          "status": "PASS"
+        },
+        {
+          "screenshot": "1366x768-readonly-card-before-tap.png"
+        },
+        {
+          "screenshot": "1366x768-readonly-detail.png"
+        },
+        {
+          "label": "readonly native tap/hold inspect; change buttons disabled; attempted drag does not lift/write/retry; exact state/journal/IDB/candidate/calls unchanged",
+          "status": "PASS"
+        }
+      ],
+      "errors": [],
+      "pausedBeforeTap": {
+        "busy": false,
+        "ready": false,
+        "phase": "shop",
+        "openDialogs": [],
+        "surfaceHidden": false
+      },
+      "readonlyBeforeTap": {
+        "busy": false,
+        "ready": false,
+        "phase": "shop",
+        "openDialogs": [],
+        "surfaceHidden": false
+      },
+      "scrollRange": {
+        "documentTop": 0,
+        "windowY": 0,
+        "documentHeight": 768,
+        "viewportHeight": 768,
+        "overflowY": "hidden",
+        "surfaceTouchAction": "pan-y"
+      },
+      "scope": "Controlled actual IndexedDbSave commit error and real WriteLease.drop; native inputs. Shop body overflow hidden, no document scroll range. pan-y/no-reorder/no-detail is not actual scrolling acceptance.",
+      "status": "PASS",
+      "savedFailureSummary": {
+        "status": "paused",
+        "lease": true,
+        "commandSeq": 4,
+        "journalLength": 0,
+        "commitCalls": 1,
+        "publishedOrder": [
+          "owned-drag/0",
+          "owned-drag/1",
+          "owned-drag/2",
+          "owned-drag/3",
+          "owned-drag/4"
+        ],
+        "pendingOrder": [
+          "owned-drag/1",
+          "owned-drag/0",
+          "owned-drag/2",
+          "owned-drag/3",
+          "owned-drag/4"
+        ]
+      }
+    },
+    {
+      "width": 390,
+      "height": 740,
+      "touch": true,
+      "checks": [
+        {
+          "screenshot": "390x740-paused-card-before-tap.png"
+        },
+        {
+          "screenshot": "390x740-paused-detail.png"
+        },
+        {
+          "label": "paused native tap/hold inspect; change buttons disabled; attempted drag does not lift/write/retry; exact state/journal/IDB/candidate/calls unchanged",
+          "status": "PASS"
+        },
+        {
+          "screenshot": "390x740-readonly-card-before-tap.png"
+        },
+        {
+          "screenshot": "390x740-readonly-detail.png"
+        },
+        {
+          "label": "readonly native tap/hold inspect; change buttons disabled; attempted drag does not lift/write/retry; exact state/journal/IDB/candidate/calls unchanged",
+          "status": "PASS"
+        }
+      ],
+      "errors": [],
+      "pausedBeforeTap": {
+        "busy": false,
+        "ready": false,
+        "phase": "shop",
+        "openDialogs": [],
+        "surfaceHidden": false
+      },
+      "readonlyBeforeTap": {
+        "busy": false,
+        "ready": false,
+        "phase": "shop",
+        "openDialogs": [],
+        "surfaceHidden": false
+      },
+      "scrollRange": {
+        "documentTop": 0,
+        "windowY": 0,
+        "documentHeight": 740,
+        "viewportHeight": 740,
+        "overflowY": "hidden",
+        "surfaceTouchAction": "pan-y"
+      },
+      "scope": "Controlled actual IndexedDbSave commit error and real WriteLease.drop; native inputs. Shop body overflow hidden, no document scroll range. pan-y/no-reorder/no-detail is not actual scrolling acceptance.",
+      "status": "PASS",
+      "savedFailureSummary": {
+        "status": "paused",
+        "lease": true,
+        "commandSeq": 4,
+        "journalLength": 0,
+        "commitCalls": 1,
+        "publishedOrder": [
+          "owned-drag/0",
+          "owned-drag/1",
+          "owned-drag/2",
+          "owned-drag/3",
+          "owned-drag/4"
+        ],
+        "pendingOrder": [
+          "owned-drag/1",
+          "owned-drag/0",
+          "owned-drag/2",
+          "owned-drag/3",
+          "owned-drag/4"
+        ]
+      }
+    }
+  ],
+  "status": "PASS"
+}

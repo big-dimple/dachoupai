@@ -5,7 +5,7 @@
 ## 版本与范围
 
 - 基线：`41d0990bf94698110446d0e4caeebd54d327a972`，独立只读 worktree；before/report.json 绑定其 src 树且无修改。
-- 产品：`698832e`；正常合入父发布 main `44a140ec3361e4aa9e06d8bf7705344a4c2e419b`，保 PR115 全部倍率显示和计划；初验11688e4的提起图实际视觉FAIL后，以1dbc766补纸影、5484d26留4px提示间隔；缩窗竞态0d922b8与主指针恢复7ca642e补正后，最终冻结验收源码 `3cfd32c8a3bc024bd84661db52b90ab9ec976974`，src 树 `10aad2d6088e088d822d52bcb688bbc3d58cc1af`，after/report.json 记录源码无修改。
+- 产品：`698832e`；正常合入父发布 main `44a140ec3361e4aa9e06d8bf7705344a4c2e419b`，保 PR115 全部倍率显示和计划；初验11688e4的提起图实际视觉FAIL后，以1dbc766补纸影、5484d26留4px提示间隔；缩窗竞态0d922b8与主指针恢复7ca642e补正后，完整四尺寸拖拽验收源码 `3cfd32c8a3bc024bd84661db52b90ab9ec976974`，src 树 `10aad2d6088e088d822d52bcb688bbc3d58cc1af`，after/report.json 记录源码无修改。
 - 仅 ShopScene、独立 OwnedJokerInput、JokerReorder 落点适配、定向测试/harness、本文证据与[父同步草案](plan-handoff.md)；按父最新指令，DELIVERY_PLAN 当前段由道具滚动包统一更新，本包不写。SceneView、牌桌、道具选择/预览/结果组件、style.css、领域/内容/概率/随机/数值/价格/保存格式/美术音频均同 44a140e；没有 PR113 拣入。
 - Chromium 软件 Canvas，PC1366×768、手机390×740与390×844、320×568；普通动态模式，PC真实 mouse、手机真实 CDP touch＋原生 DOM/文件导入。受控当前 basic-suit-choice 身份、第二场商店五张持牌，不代表自然取得、18组合、真人审美或物理设备触感。
 
@@ -18,9 +18,17 @@
 | 390×844 | [before](before/390x844-idle.png) | [原位无预览](before/390x844-dragging.png) | [新提示](after/390x844-idle.png) | [真实横向换位](after/390x844-dragging.png) | [落下](after/390x844-dropped.png) |
 | 320×568 | [before](before/320x568-idle.png) | [原位无预览](before/320x568-dragging.png) | [新提示](after/320x568-idle.png) | [真实横向换位](after/320x568-dragging.png) | [落下](after/320x568-dropped.png) |
 
-手机长按约350毫秒即提起，有[390×740提起图](after/390x740-lifted.png)，横移才换位；轻触仍查看。复用牌桌 PointerIntent 与原生 pan-y 表层模式，让浏览器处理纵向 pan/cancel；持牌始终为原实例，其他原卡即时让位，纸墨插入线标出最终位置。移出持牌区变淡并提示松手取消，落下才执行原 ReorderJokers，原选择音＋“顺序已保存”反馈保留。未购商品没有进入输入表层。左/右移仍为详情层可访问备用；原短横屏收起持牌管理布局保持，本次没有重画短横屏库存。
+手机长按约350毫秒即提起，有[390×740提起图](after/390x740-lifted.png)，横移才换位；轻触仍查看。复用牌桌 PointerIntent 与原生 pan-y 表层模式，普通触摸保原生 pan-y；提前纵滑只核“不排序/不弹详情”，不签实际滚动位移。当前商店 body 为 overflow:hidden，document scrollHeight 分别等于768/740 viewportHeight、scrollTop/scrollY为0，无页面可滚范围；持牌始终为原实例，其他原卡即时让位，纸墨插入线标出最终位置。移出持牌区变淡并提示松手取消，落下才执行原 ReorderJokers，原选择音＋“顺序已保存”反馈保留。未购商品没有进入输入表层。左/右移仍为详情层可访问备用；原短横屏收起持牌管理布局保持，本次没有重画短横屏库存。
 
 本人实际查看主 PC/手机/320 原尺寸 PNG：PC/390提示在持牌区附近，320紧凑版复用上方概览栏可见提示；卡名/原画/插入线可见，拖起与其余牌让位有区别，落下新顺序与底部保存反馈可见。该软件像素检查不等于父独立审美或用户设备签收。
+
+## 父独审只读查看返修
+
+父发现旧ready同时阻断轻点查看。真实[旧候选3573fc6的保存失败后卡面轻点FAIL](readonly-before/report.json)与[已关闭原自动保存警告的卡面](readonly-before/1366x768-paused-card-before-tap.png)保留：busy=false、ready=false、phase=shop、openDialogs=[]，仍看不到详情。d48b181只分查看与变更权限，查看沿原非busy条件；按下捕获canDrag，提起/移动/释放同时受原ready保护，readonly/paused不提起、不提交。
+
+[a882380冻结边界](readonly-after/report.json) src树dff6f08：仅PC1366×768与390×740定向复核，不重跑其它界面或四尺寸全套。实际IndexedDbSave.commit注入一次错误，原命令进入paused且保旧state/IDB；实际WriteLease.drop进入readonly。两态原生轻点/静止长按均开详情，[PC灰色变更按钮](readonly-after/1366x768-paused-detail.png)/[手机只读详情](readonly-after/390x740-readonly-detail.png)可看，左右/出售仍disabled；长按横移无ghost，无额外commit/retry，完整state/journal/IDB/失败候选及调用次数都保持。完整账见[原始压缩证据](readonly-after/full-state-journal-idb-candidate.json.gz)。查看恢复不授权写入。
+
+最初边界观察器未关闭原自动保存警告导致两次超时，已明确排除为产品复现；其后并发服务一次启动超时原因未证，独立依赖缓存/串行边界运行通过，原报告均在readonly-observer-failures。真实回归FAIL只采用上面的隔离3573fc6记录。
 
 ## 保存、取消与时序
 
