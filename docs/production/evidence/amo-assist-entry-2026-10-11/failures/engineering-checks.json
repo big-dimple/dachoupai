@@ -1,0 +1,34 @@
+{
+  "firstTypecheck": {
+    "status": "FAIL",
+    "causes": [
+      "PublicScoreInput not exported by domain module; derived function parameter type used instead",
+      "HTMLDivElement cast to HTMLButtonElement rejected; reused renderer host broadened to HTMLElement"
+    ]
+  },
+  "firstRankingTests": {
+    "passed": 3,
+    "failed": 2,
+    "causes": [
+      "duplicate-save-joker in engineered no-assist fixture",
+      "invalid-save-stage-seals in ordinary stage fixture"
+    ],
+    "repair": "Unique held cards/jokers fixture, valid B15 actual first-play seal"
+  },
+  "B15PreparationAttempts": {
+    "causes": [
+      "chapter boss history: B15 not legal in chapter1",
+      "program snapshot: initial program carried into artificial late-stage setup"
+    ],
+    "repair": "Validated chapter7 B15 history with programs disabled, real PlayHand followed by scoring oracle"
+  },
+  "parallelFinalChecks": {
+    "filesPassed": 12,
+    "filesFailed": 1,
+    "testsPassed": 145,
+    "testsFailed": 1,
+    "failure": "tests/tool-inventory-entry.test.ts:33 original5s timeout; elapsed6.44s during build+two browser jobs",
+    "singleFileRetest": "18 passed, original timeout unchanged",
+    "serialCompleteRetest": "13files146passed,6.25s"
+  }
+}

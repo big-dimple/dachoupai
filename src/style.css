@@ -625,6 +625,41 @@ button[aria-busy=true] { border-style:dashed; }
 }
 .hero-confirm-dialog[open] { height:auto;inset:auto;top:50%;left:50%;transform:translate(-50%,-50%); }
 .hero-confirm-dialog .dialog-scroll { height:auto; }
+.amo-assist-dialog[open] { width:min(700px,calc(100vw - var(--safe-left) - var(--safe-right) - 24px));height:auto;inset:auto;top:50%;left:50%;transform:translate(-50%,-50%); }
+.amo-assist-dialog .dialog-scroll { height:auto; }
+.amo-assist-dialog .dialog-body { margin:12px 0 0;font-size:14px; }
+.amo-assist-workspace h3 { margin:0 0 8px;font-size:16px; }
+.amo-assist-main { padding:0 0 12px;border-bottom:1px solid #c7b89d;margin-bottom:14px; }
+.amo-assist-options { display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px; }
+.amo-assist-option { min-width:0;padding:12px;border:1px solid #c7b89d;border-radius:6px;background:#fff9ee; }
+.amo-assist-option.is-recommended { grid-column:1/-1;border:2px solid #3f606b;background:#e2e8e5;display:grid;grid-template-columns:minmax(108px,1fr) minmax(0,1.6fr);column-gap:12px;align-items:center; }
+.amo-assist-option.is-recommended h3 { grid-column:1/-1; }
+.amo-assist-option.is-recommended > div { grid-column:1;grid-row:2/span 3; }
+.amo-assist-option.is-recommended > p,.amo-assist-option.is-recommended > button,.amo-assist-option.is-recommended > details { grid-column:2; }
+.amo-assist-option.is-recommended .candidate-card-row { margin:0; }
+.amo-assist-option[data-chosen="true"] { box-shadow:inset 0 0 0 1px #3f606b; }
+.amo-assist-option p { margin:8px 0;font-size:14px;line-height:1.4; }
+.amo-assist-option button { width:100%;min-height:44px;font-size:16px; }
+.amo-assist-option details { margin-top:8px;font-size:14px; }
+.amo-assist-option details p { overflow-wrap:anywhere; }
+.amo-assist-option summary { min-height:44px;display:flex;align-items:center;cursor:pointer; }
+.amo-assist-retain { min-height:52px;display:flex;align-items:center;justify-content:center;color:#3f606b;font-size:15px; }
+@media(max-width:560px) {
+ .amo-assist-dialog .dialog-content { padding:12px; }
+ .amo-assist-options { gap:8px; }
+ .amo-assist-option { padding:8px; }
+ .amo-assist-option .candidate-card-face { min-width:28px;height:64px; }
+ .amo-assist-option .candidate-card-row { gap:3px; }
+ .amo-assist-option .candidate-card-face img { width:26px;height:34px; }
+ .amo-assist-option .candidate-card-face small { font-size:12px; }
+}
+@media(max-height:450px) {
+ .amo-assist-dialog .dialog-content { padding:10px 16px; }
+ .amo-assist-main { display:grid;grid-template-columns:135px minmax(0,1fr);align-items:center;padding-bottom:8px;margin-bottom:8px; }
+ .amo-assist-dialog .candidate-card-face { height:54px;flex-basis:40px; }
+ .amo-assist-dialog .candidate-card-face img { width:22px;height:30px; }
+ .amo-assist-dialog .candidate-card-face small { font-size:12px; }
+}
 @media(max-width:560px) { .hero-skill-dialog .dialog-content { grid-template-rows:minmax(0,1fr); }.hero-skill-dialog .dialog-scroll { height:100%; } }
 
 /* Owned tools share one compact paper case; the existing target/confirmation workspace follows. */

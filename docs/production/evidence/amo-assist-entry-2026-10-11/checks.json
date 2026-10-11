@@ -1,0 +1,71 @@
+{
+  "base": "e48fd07a6e7b4575067dc356ad28cb0a94fe15e9",
+  "productCommit": "aeebb3ac900c27ae4779f1b66561427d1395b660",
+  "productFiles": {
+    "src/game/AssistRecommendation.ts": {
+      "sha256": "51695a75ca7758d04702d125f01f6f11024c2c0d5a80f7726f22a1be3b8b7804",
+      "gitBlob": "30af7579094a697df9289634b74bda859e7662d0"
+    },
+    "src/game/AssistChoiceDialog.ts": {
+      "sha256": "54dd0e91abadaeddefd3dab5b85785f17304f0ad0a19699bee8e5d09ada88027",
+      "gitBlob": "7524ae956542fefab49e9447a0580a6804545abf"
+    },
+    "src/game/CandidateCardPreview.ts": {
+      "sha256": "1c3fef0c92a4daa3b1ffab12a6d050560d7971c281acd0bdb55d2f121faed169",
+      "gitBlob": "b451509b8e173c23e9f64d9cdf7797611b720359"
+    },
+    "src/game/GameScene.ts": {
+      "sha256": "b3c71a84538f04f242bda9ae0163899c916210695375f4bfe1f6d3d11bb4b418",
+      "gitBlob": "6108fe64217d26d0c8dadcd56c917afb94abde80"
+    },
+    "src/game/HeroActionShortcut.ts": {
+      "sha256": "a9c396e0f5db4d86451e02562fcbe5d8701dac81ce0a893e90744ef4bbeac1bd",
+      "gitBlob": "72ef337fc7b5e3e5d9ca383a7081e9c6e5cad7d5"
+    },
+    "src/style.css": {
+      "sha256": "25e329bba51497f75b8e831eb379fbb5668d0358c64978362d50e125f4ff67a8",
+      "gitBlob": "5dec727b67989a352f21c1aebb17cd74c3e4123b"
+    }
+  },
+  "behavior": {
+    "status": "PASS",
+    "cases": 16,
+    "heroes": 12,
+    "guards": 8,
+    "sourceUnchanged": true,
+    "samples": 2251,
+    "scope": "Final JS/state behavior, before CSS-only detail summary hit enlarged from28 to44; preserved archive."
+  },
+  "finalLayout": {
+    "status": "PASS",
+    "cases": 16,
+    "sourceUnchanged": true,
+    "scope": "Final product CSS, all four dimensions, score detail native toggle and min44 touch, no additional plays/heroes/guards in this supplemental mode."
+  },
+  "pr119": {
+    "status": "PASS",
+    "cases": 2,
+    "sceneShaMatchesFinal": true
+  },
+  "targetedTests": {
+    "files": 13,
+    "tests": 146,
+    "status": "PASS",
+    "log": "targeted-final.log",
+    "precedingParallelAttempt": "145 passed/1 original5s layout timeout; single file18 passed; complete13 files146 passed serially without timeout setting change."
+  },
+  "build": {
+    "status": "PASS",
+    "includesTypecheck": true,
+    "log": "build-final.log",
+    "note": "Local working-source build; no clean release/deployment claimed."
+  },
+  "protectedChanges": [],
+  "c2": {
+    "source": "parent delegation",
+    "pullRequest": 121,
+    "head": "166022277aed2180361d18627b76b9377266c64a",
+    "status": "not merged at parent update; no integration; require real identity pre-score routeGrowth snapshot alignment after parent merge"
+  },
+  "remoteCI": "Not yet queried; final HEAD result is separate from local tests."
+}
