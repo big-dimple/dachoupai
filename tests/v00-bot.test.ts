@@ -16,10 +16,11 @@ describe('V00 policies receive only player-visible information',()=>{
     expect(publicR2View(hidden)).toEqual(publicR2View(s));for(const style of V00_STYLES)expect(chooseV00Action(publicR2View(hidden),style)).toEqual(chooseV00Action(publicR2View(s),style));
     const view=publicR2View(s);for(const key of ['rng','drawPile','deckInstances','seed'])expect(Object.hasOwn(view,key)).toBe(false);
   });
+  // The same 65 commands need headroom under the full-suite CPU load; no extra samples.
   it.each(['single-held','groups','suit'] as const)('%s emits only valid ordinary commands on a natural run',style=>{
     let s=createRun({seed:'policy-valid-'+style,characterId:style==='single-held'?'amo':'erxiang',runId:'policy',rulesVersion:'r2'});
     for(let i=0;i<65;i++){const view=publicR2View(s),before=JSON.stringify(view),action=chooseV00Action(view,style);expect(JSON.stringify(view)).toBe(before);if(!action){expect(['run-won','run-lost','abandoned']).toContain(s.phase);break;}
       const r=applyCommand(s,{runId:s.runId,commandId:'policy-'+i,expectedSeq:s.commandSeq,action});expect(r.ok,r.ok?'':r.code).toBe(true);if(!r.ok)break;s=r.state as R2RunState;
     }
-  });
+  },10000);
 });

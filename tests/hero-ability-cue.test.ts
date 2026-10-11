@@ -1,3 +1,4 @@
+import {completeControlledRouteHistory} from './fixtures/route-growth-history';
 import {it,expect,vi} from 'vitest';
 vi.mock('phaser',()=>({default:{Scene:class {}}}));
 import {GameScene} from '../src/game/GameScene';
@@ -42,7 +43,7 @@ it('committed handoff and wager results explain actual sources; promises and alt
 });
 
 it('B08 respects the non-scoring Laohuan exception and never advertises disabled scoring abilities',()=>{
- for(const id of CHARACTER_IDS){let s=createRun({rulesVersion:'r2',characterId:id,runId:'boss-cue-'+id,seed:'group-natural-17',modeConfig:{mode:'standard',difficulty:0,challengeId:null,programsEnabled:false},r2Identity:newRunIdentity(id,'group'),openingRoute:'group'});s.phase='stage-ready';s.chapter=3;s.stageIndex=8;s.shop!.visitIndex=8;s.seenBossIds=['B02','B03','B08'];s.boss={definitionId:'B08',disabledSuit:null};s=arrange(send(s,{type:'EnterStage'}));const cue=heroAbilityCue(s,facts(s),main,id==='amo');expect(cue?.available).toBe(id==='laohuan');if(id!=='laohuan')expect(cue?.label).toContain('停用');}
+ for(const id of CHARACTER_IDS){let s=createRun({rulesVersion:'r2',characterId:id,runId:'boss-cue-'+id,seed:'group-natural-17',modeConfig:{mode:'standard',difficulty:0,challengeId:null,programsEnabled:false},r2Identity:newRunIdentity(id,'group'),openingRoute:'group'});s.phase='stage-ready';s.chapter=3;s.stageIndex=8;s.shop!.visitIndex=8;s.seenBossIds=['B02','B03','B08'];s.boss={definitionId:'B08',disabledSuit:null};completeControlledRouteHistory(s);s=arrange(send(s,{type:'EnterStage'}));const cue=heroAbilityCue(s,facts(s),main,id==='amo');expect(cue?.available).toBe(id==='laohuan');if(id!=='laohuan')expect(cue?.label).toContain('停用');}
 });
 it('Q01 public current states disable every ability cue without a game mutation',()=>{
  for(const id of CHARACTER_IDS){const s=arrange(send(send(createRun({rulesVersion:'r2',characterId:id,runId:'q-cue-'+id,seed:'challenge/q01/0',r2Identity:newRunIdentity(id,'group'),openingRoute:'group',modeConfig:{mode:'challenge',difficulty:0,challengeId:'Q01',programsEnabled:false}}),{type:'LeaveShop'}),{type:'EnterStage'}));expect(heroAbilityCue(s,facts(s),main,id==='amo')).toMatchObject({available:false});}

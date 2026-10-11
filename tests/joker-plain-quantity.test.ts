@@ -39,11 +39,11 @@ it('held first-match limits keep one versus several recipients explicit',()=>{
 });
 
 it('joker-score arithmetic is once per qualified hand rather than per matching card',()=>{
- for(const id of ['pengci','c04','e08','f04']){
+ for(const id of ['pengci','e08','f04']){
   const p=copy(id);expect(p.line).toContain('每手一次，');expect(p.tile).toContain('每手一次');
   expect(p.line).not.toContain('每张');
  }
- expect(copy('c04').line).toContain('热度+50');
+ const step=copy('c04');expect(step.line).toBe('打出顺子、同花顺时，出牌热度 +50。');expect(step.tile).toContain('每手一次，热度+50');expect(step.line).not.toContain('每张');
  expect(copy('e08').line).toContain('倍率×1.8');
 });
 

@@ -1,3 +1,5 @@
+import {R2_ROUTE_GROWTH_JOKERS} from '../content/r2RouteGrowthJokers';
+import {R2_ROUTE_GROWTH_RULE} from './r2RouteGrowth';
 import {TOUYE_ACCEPTED} from './r2TouyeTargets';
 import {R2_COMBO_GROWTH_HASH,isR2ComboGrowth} from './r2ComboGrowth';
 import {R2_GROUP_UPGRADE_JOKERS} from '../content/r2GroupUpgradeJokers';
@@ -40,7 +42,11 @@ export const R2_SUIT_CHOICE_IDS=Object.freeze([...R2_BASIC_TOOL_IDS,...R2_SUIT_D
 export const R2_SUIT_CHOICE_VERSION='quality-r2-basic-suit-choice-v1';
 export const R2_SUIT_CHOICE_CONTRACT=Object.freeze({inherits:R2_BASIC_CHOICE_HASH,basicIds:R2_BASIC_TOOL_IDS,dyeIds:R2_SUIT_DYE_IDS,basicPrice:2,dyePrice:4,quota:'shared-once-visit',discount:'existing-min1',random:'unchanged-original-five-basic-draw',target:'existing-1-3-suit-only-preserve-rank-enhancement-edition',legacy:'no-migration'});
 export const R2_SUIT_CHOICE_HASH=stableHash(R2_SUIT_CHOICE_CONTRACT);
-export function isR2SuitChoice(identity:{contentVersion?:unknown;contentHash?:unknown}):boolean{return identity.contentVersion===R2_SUIT_CHOICE_VERSION&&identity.contentHash===R2_SUIT_CHOICE_HASH;}
+export const R2_ROUTE_GROWTH_VERSION='quality-r2-route-growth-v1';
+export const R2_ROUTE_GROWTH_CONTRACT=Object.freeze({inherits:R2_SUIT_CHOICE_HASH,allCharacters:true,rule:R2_ROUTE_GROWTH_RULE,legacy:'exact-no-migration',starters:'no-instance-coefficient',rescue:'first-successful-opening-discard'});
+export const R2_ROUTE_GROWTH_HASH=stableHash({contract:R2_ROUTE_GROWTH_CONTRACT,jokers:R2_ROUTE_GROWTH_JOKERS});
+export function isR2RouteGrowth(identity:{contentVersion?:unknown;contentHash?:unknown}):boolean{return identity.contentVersion===R2_ROUTE_GROWTH_VERSION&&identity.contentHash===R2_ROUTE_GROWTH_HASH;}
+export function isR2SuitChoice(identity:{contentVersion?:unknown;contentHash?:unknown}):boolean{return identity.contentVersion===R2_SUIT_CHOICE_VERSION&&identity.contentHash===R2_SUIT_CHOICE_HASH||isR2RouteGrowth(identity);}
 export const r2BasicChoiceIds=(identity:{contentVersion?:unknown;contentHash?:unknown})=>isR2SuitChoice(identity)?R2_SUIT_CHOICE_IDS:R2_BASIC_TOOL_IDS;
 export const r2BasicChoiceBasePrice=(id:string)=>R2_SUIT_DYE_IDS.includes(id)?4:2;
 export function isR2BasicChoice(identity:{contentVersion?:unknown;contentHash?:unknown}):boolean{return identity.contentVersion===R2_BASIC_CHOICE_VERSION&&identity.contentHash===R2_BASIC_CHOICE_HASH||isR2SuitChoice(identity);}

@@ -8,6 +8,8 @@ import {r2ScoreConditionMatches} from './r2Conditions';
 import {r2SelectionFacts} from './r2SelectionFacts';
 import { EDITIONS, type Edition, type PlayingCard } from '../cards/types';
 import { SeededRng, type RngSnapshot } from '../core/SeededRng';
+import {hasR2RouteGrowthDefinitions} from '../content/r2RouteGrowthJokers';
+import {validR2RouteProgress,r2RouteFamilies,r2RouteFactor,r2RouteGrowthTrace,R2_ROUTE_HAND_TYPES,type R2RouteFamily,type R2RouteProgress,type R2RouteGrowthTrace} from './r2RouteGrowth';
 import { r2GrowthCaps, r2GrowthInitials, r2GrowthMinimums, validR2JokerCounters, validateR2Content, type Condition, type ScoreHookPhase, type R2JokerDefinition, type R2JokerInstance, type ScorePhase } from '../content/r2Schema';
 import { R2_EDITIONS, R2_ENHANCEMENTS, R2_TOOL_CATALOG } from '../content/r2Tools';
 import { CHARACTER_IDS, type CharacterId } from './characters';
@@ -18,6 +20,7 @@ import {r2BossPlanValid,type R2BossPlan} from './r2Chapter';
 export const SCORE_LIMITS = { eventCount: 512, extraRetriggers: 4, retriggerDepth: 1, handLevel: 30,
   handCount: R2_TOOL_CATALOG.limits.handMaximum, jokerCount: R2_TOOL_CATALOG.limits.jokerMaximum } as const;
 export const SCORE_OPERATIONS = Object.freeze([
+  'route-factor','route-clear','route-clear-family',
   'base', 'add-heat', 'add-multiplier', 'multiply-multiplier', 'read-growth', 'consume-growth',
   'add-growth', 'reset-growth', 'score-growth-baseline', 'increment-hands-scored', 'destroy-joker',
   'rescue-hand', 'add-gold', 'retrigger-card', 'retrigger-cap', 'final-score', 'add-heat-per-gold',
@@ -31,6 +34,8 @@ export const SCORE_OPERATIONS = Object.freeze([
 export type ScoreOperation = typeof SCORE_OPERATIONS[number];
 export const R2_BASE_SCORES = R2_PUBLISHED_CONTENT.snapshot.hands as unknown as Record<R2HandType, readonly [number, Fraction, number, Fraction]>;
 export interface ScoreInput {
+  /** Required for the exact C2 content profile; never inferred from Joker ownership. */
+  routeGrowth?:R2RouteProgress;
   erxiangHandoff?:ErxiangHandoffIntent;
   touyeWager?:{commit:TouyeCommit|null};
   azaoCharge?:AzaoChargeIntent;
@@ -53,6 +58,7 @@ export interface ScoreInput {
 }
 export interface Accumulator { H: Fraction; M: Fraction }
 export interface ScoreEvent {
+  routeFamily?:R2RouteFamily;
   eventId: string; rootId: string; rootEventId: string; phase: ScorePhase;
   sourceType: 'rule' | 'card' | 'character' | 'joker'; sourceDefinitionId: string; sourceInstanceId: string;
   targetCardId?: string; targetJokerInstanceId?:string; operation: string; value: Fraction; before: Accumulator; after: Accumulator;
@@ -63,6 +69,7 @@ export interface ScoreEvent {
   programGoldBeforeReward?:number; goldBeforeRewards?:number;
 }
 interface ScoreTraceBase {
+  routeGrowth?:R2RouteGrowthTrace;
   rulesVersion: 'r2'; rootId: string; handType: R2HandType; level: number;
   sets: { playedIds: string[]; scoringIds: string[]; activeScoringIds: string[]; heldIds: string[] };
   finalScore: string; accumulator: Accumulator; events: ScoreEvent[]; jokers: R2JokerInstance[]; rng: RngSnapshot;
@@ -132,7 +139,9 @@ function resolveScore(input: PublicScoreInput, policy: ResolvePolicy): ScoreTrac
   if(!Number.isSafeInteger(jokerSlots)||jokerSlots<1||jokerSlots>SCORE_LIMITS.jokerCount||jokerSlots<input.jokers.length)throw new Error('invalid-score-joker-slots');
   if(challengeDisabledJokerId!==null&&(typeof challengeDisabledJokerId!=='string'||!input.definitions.some(definition=>definition.id===challengeDisabledJokerId)))throw new Error('invalid-score-challenge-ban');
   for (const [type, level] of Object.entries(input.handLevels)) if (!R2_HAND_TYPES.includes(type as R2HandType) || !Number.isInteger(level) || level! < 1 || level! > SCORE_LIMITS.handLevel) throw new Error('invalid-hand-level');
-  const errors = validateR2Content(input.definitions);
+  const routeProfile=hasR2RouteGrowthDefinitions(input.definitions);
+  if(routeProfile?!validR2RouteProgress(input.routeGrowth):input.routeGrowth!==undefined)throw Error('invalid-route-growth-snapshot');
+  const errors = validateR2Content(input.definitions,routeProfile?'route-growth-v1':'published');
   if (errors.length) throw new Error(`invalid-content: ${errors.join('; ')}`);
   const needsStageContext=input.jokers.some(joker=>input.definitions.find(definition=>definition.id===joker.definitionId)?.hooks
     .some(hook=>hook.condition.kind==='stage-score-below-target'||hook.condition.kind==='hand-score-below-target'));
@@ -192,13 +201,13 @@ function resolveScore(input: PublicScoreInput, policy: ResolvePolicy): ScoreTrac
     : policy.kind === 'preview' && policy.bound === 'maximum';
   const snapshot = (): Accumulator => ({ H: H.toJSON(), M: M.toJSON() });
   type Source = Pick<ScoreEvent, 'sourceType'|'sourceDefinitionId'|'sourceInstanceId'>;
-  type EventDetails = {reasonKey?:string; resourceBefore?:number; resourceAfter?:number;growthBefore?:Fraction;growthAfter?:Fraction};
+  type EventDetails = {routeFamily?:R2RouteFamily;reasonKey?:string; resourceBefore?:number; resourceAfter?:number;growthBefore?:Fraction;growthAfter?:Fraction};
   const emit = (phase: ScorePhase, source: Source, operation: ScoreOperation, value: Rational, mutate: () => void, condition: Condition = {kind:'always'}, card?: PlayingCard, depth = 0, rootEventId?: string, details:EventDetails = {}) => {
     if (events.length >= SCORE_LIMITS.eventCount) throw new ScoreFault('event-limit', immutable(structuredClone(events)));
     const before = snapshot(); mutate();
     const eventId = `${input.rootId}/event/${events.length}`;
     events.push({ eventId, rootId: input.rootId, rootEventId: rootEventId ?? eventId, phase, ...source, ...(card ? {targetCardId:card.id} : {}), operation, value: value.toJSON(), before, after: snapshot(), reasonKey: details.reasonKey ?? `${source.sourceDefinitionId}.${operation}`, visibleCondition: structuredClone(condition), retriggerDepth: depth,
-      ...(details.resourceBefore === undefined ? {} : {resourceBefore:details.resourceBefore,resourceAfter:details.resourceAfter}),...(details.growthBefore===undefined?{}:{growthBefore:details.growthBefore,growthAfter:details.growthAfter}) });
+      ...(details.routeFamily?{routeFamily:details.routeFamily}:{}),...(details.resourceBefore === undefined ? {} : {resourceBefore:details.resourceBefore,resourceAfter:details.resourceAfter}),...(details.growthBefore===undefined?{}:{growthBefore:details.growthBefore,growthAfter:details.growthAfter}) });
   };
   const cardSource = (card:PlayingCard):Source => ({sourceType:'card',sourceDefinitionId:card.id,sourceInstanceId:card.id});
   type MathOperation = 'add-heat'|'add-multiplier'|'multiply-multiplier';
@@ -378,6 +387,11 @@ function resolveScore(input: PublicScoreInput, policy: ResolvePolicy): ScoreTrac
     case 'xiemu': if(xiemuBurn){if(xiemuBurn.multiplier)char('multiply-multiplier',new Rational(BigInt(xiemuBurn.multiplier)));}else if (input.handsBeforePlay === 1) char('multiply-multiplier', new Rational(2n)); break;
   }
   hook('jokerScore');
+  const routeGrowth=routeProfile?r2RouteGrowthTrace(input.routeGrowth!,evaluated.type):undefined;
+  if(routeGrowth)for(const family of r2RouteFamilies(evaluated.type)){
+    const value=r2RouteFactor(family,routeGrowth.before[family]);
+    emit('routeGrowth',{sourceType:'rule',sourceDefinitionId:'route-growth',sourceInstanceId:input.runId},'route-factor',value,()=>{M=M.multiply(value);},{kind:'hand-type-in',values:R2_ROUTE_HAND_TYPES[family]},undefined,0,undefined,{reasonKey:`route-growth.${family}.factor`,routeFamily:family,resourceBefore:routeGrowth.before[family],resourceAfter:routeGrowth.before[family]});
+  }
   if(boss?.definitionId!=='B08'&&input.characterId==='amo'&&input.amoScoreTiming==='after-joker'&&played.length===1)char('multiply-multiplier',new Rational(3n),{kind:'played-count',equals:1});
   if(assist){const value=new Rational(BigInt(assist.assistMultiplier));emit('characterScore',character,'multiply-multiplier',value,()=>{M=M.multiply(value);},{kind:'hand-type-in',values:[...AMO_ASSIST_TYPES]},undefined,0,undefined,{reasonKey:`amo.assist.${assist.assistKind}`});}
   const final = H.multiply(M).floor();
@@ -394,7 +408,7 @@ function resolveScore(input: PublicScoreInput, policy: ResolvePolicy): ScoreTrac
       {reasonKey:`enhancement.${card.enhancement}.destroy-card`});
   }
   hook('afterHand');
-  return immutable({ ...(erxiangHandoff?{erxiangHandoff}:{}),...(touyeWager?{touyeWager}:{}),...(input.laohuanTrick?{laohuanTrick:true as const}:{}),...(xiemuBurn?{xiemuBurn}:{}),...(azaoCharge?{azaoCharge}:{}),rulesVersion:'r2', rootId:input.rootId, handType:evaluated.type, level,
+  return immutable({ ...(routeGrowth?{routeGrowth}:{}),...(erxiangHandoff?{erxiangHandoff}:{}),...(touyeWager?{touyeWager}:{}),...(input.laohuanTrick?{laohuanTrick:true as const}:{}),...(xiemuBurn?{xiemuBurn}:{}),...(azaoCharge?{azaoCharge}:{}),rulesVersion:'r2', rootId:input.rootId, handType:evaluated.type, level,
     sets:{playedIds:played.map(c=>c.id),scoringIds:evaluated.scoringIds,activeScoringIds:active.map(c=>c.id),heldIds:held.map(c=>c.id)},
     ...(input.amoScoreTiming==='assist-v1'?{sets:{playedIds:played.map(c=>c.id),scoringIds:evaluated.scoringIds,activeScoringIds:active.map(c=>c.id),heldIds:held.map(c=>c.id),assistConsumedIds:assist?.assistIds??[]},assist:assist?{ids:assist.assistIds,kind:assist.assistKind,multiplier:assist.assistMultiplier}:null}:{}),finalScore:final.toString(),accumulator:snapshot(),events,jokers:jokers.filter(j=>!destroyedJokerIds.includes(j.instanceId)),
     ...(rng ? {rng:rng.snapshot()} : {}),goldDelta,destroyedCardIds,destroyedJokerIds,cards,sourceJokers,bossContext });
@@ -406,6 +420,7 @@ export type PublicRandomEffect =
   | {kind:'joker-heat';sourceDefinitionId:string;sourceInstanceId:string;probability:{n:number;d:number};value:Fraction;timing:'jokerScore'}
   | {kind:'wager';outcomes:{probability:{n:number;d:number};multiplier:Fraction}[]};
 export interface ScorePreview {
+  routeGrowth?:R2RouteGrowthTrace;
   handType:R2HandType; level:number; base:Accumulator; sets:ScoreTrace['sets'];
   /** With lucky, these are range endpoints, not an exhaustive outcome list. */
   breakdown:{minimum:Accumulator;maximum:Accumulator;events:readonly ScoreEvent[]};
@@ -442,7 +457,7 @@ export function previewR2Hand(input: PublicScoreInput): ScorePreview {
   ]});
   for(const {joker,operation} of chanceJokers)if(operation.kind==='chance-add-heat')randomEffects.push({kind:'joker-heat',
     sourceDefinitionId:joker.definitionId,sourceInstanceId:joker.instanceId,probability:operation.probability,value:operation.value,timing:'jokerScore'});
-  return immutable({handType:minimum.handType,level:minimum.level,base:minimum.events.filter(event=>event.phase==='base').at(-1)!.after,sets:minimum.sets,
+  return immutable({...(minimum.routeGrowth?{routeGrowth:minimum.routeGrowth}:{}),handType:minimum.handType,level:minimum.level,base:minimum.events.filter(event=>event.phase==='base').at(-1)!.after,sets:minimum.sets,
     breakdown:{minimum:minimum.accumulator,maximum:maximum.accumulator,events:minimum.events},
     possibleScores:randomScore ? [minimum.finalScore,maximum.finalScore] : [minimum.finalScore],
     scoreRange:{minimum:minimum.finalScore,maximum:maximum.finalScore},randomEffects});

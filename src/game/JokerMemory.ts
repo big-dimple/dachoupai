@@ -1,3 +1,4 @@
+import {R2_ROUTE_GROWTH_JOKERS} from '../content/r2RouteGrowthJokers';
 import {r2DiscardCost} from '../domain/r2Run';
 import {R2_GROUP_UPGRADE_IDS,R2_GROUP_UPGRADE_JOKERS} from '../content/r2GroupUpgradeJokers';
 import {R2_COMBO_GROWTH_JOKERS,R2_COMBO_GROWTH_IDS} from '../content/r2ComboGrowthJokers';
@@ -28,6 +29,7 @@ const modulo=(divisor:number,remainder:number)=>remainder===0?'本场第'+diviso
 /** Conditions are described by schema kinds, never a five-card ID eligibility table. */
 export function r2ConditionDescription(c:Condition):string {
  switch(c.kind){
+  case'opening-discard':return'本场未出牌时，第一次成功弃牌；不要求弃牌前缺少成型牌';
   case'cold-opening-discard':return'本场未出牌，首次成功弃牌前公开手牌无法凑出两对及以上';
   case'always':return'每到这个时点检查；满足条件不等于效果已经发生';
   case'hand-type-in':return'实际牌型是'+typeNames(c.values)+'（精确牌型，不自动包含其他型）';
@@ -119,7 +121,7 @@ function hookStatus(phase:HookPhase,c:Condition,operations:readonly Operation[],
  return(phase==='onCardScore'?active.some(matches):phase==='onHeldCard'?validHeld.some(matches):matches())?'条件满足':'当前未满足';
 }
 export function jokerMemory(definition:R2JokerDefinition,instance:R2JokerInstance|undefined,ctx:JokerMemoryContext){
- const combo=R2_COMBO_GROWTH_IDS.includes(definition.id)&&R2_COMBO_GROWTH_JOKERS.includes(definition);
+ const combo=R2_COMBO_GROWTH_IDS.includes(definition.id)&&(R2_COMBO_GROWTH_JOKERS.includes(definition)||R2_ROUTE_GROWTH_JOKERS.includes(definition));
  const hooks=definition.hooks.map(h=>({phase:h.phase,timing:phaseLabels[h.phase],condition:r2ConditionDescription(h.condition),mechanism:h.operations.map(op=>operationDescription(op,ctx)).join('；'),status:combo&&h.operations.some(op=>op.kind==='rescue-multiplier')&&!instance?.counters?.rescueArmed?'当前未满足' as const:hookStatus(h.phase,h.condition,h.operations,ctx),history:ctx.inStage&&['stage-played-maximum','stage-hand-types-all','no-joker-sale-this-stage'].includes(h.condition.kind)?r2TransactionConditionMatches(h.condition,ctx.transaction)?'已提交资格保持；未宣称奖励触发':'已提交资格尚未满足或已破坏':''}));
  const staticRules=(definition.modifiers??[]).map(m=>modifierDescription(m,ctx)),life=definition.hooks.flatMap(h=>h.operations.filter(op=>op.kind==='expire-after-hands'))[0];
  // Missing additive storage is a real zero, never a claim about its history.
@@ -146,7 +148,7 @@ export function jokerMemory(definition:R2JokerDefinition,instance:R2JokerInstanc
   instance&&definition.hooks.some(h=>h.operations.some(op=>op.kind==='reward-consumable-every-clears'))?[instance.counters?.stageClears===1?'下关赠票':'再2关赠票']:
   valueLabel?[valueLabel,...(stored.length===1&&stored[0][0]==='coefficient'?['×'+readableFractionText(stored[0][1])]:[])]:[];
  const incomeOp=definition.hooks.flatMap(h=>h.operations).find(o=>o.kind==='add-gold-per-held'||o.kind==='add-gold-per-capital');
- const comboLabels:Record<string,string[]>={a06:['两对以上×系数'],f10:['冷开局救火'],d12:[incomeOp?.kind==='add-gold-per-held'?'成型留≥'+incomeOp.minimum+'给金':'条件 ›'],e04:[incomeOp?.kind==='add-gold-per-capital'?'奖励前每'+incomeOp.divisor+'金+1':'条件 ›']};
+ const comboLabels:Record<string,string[]>={a06:['两对以上×系数'],f10:[definition.hooks.some(h=>h.condition.kind==='opening-discard')?'首次弃牌救火':'冷开局救火'],d12:[incomeOp?.kind==='add-gold-per-held'?'成型留≥'+incomeOp.minimum+'给金':'条件 ›'],e04:[incomeOp?.kind==='add-gold-per-capital'?'奖励前每'+incomeOp.divisor+'金+1':'条件 ›']};
  const groupIncome=definition.hooks.flatMap(h=>h.operations).find(o=>o.kind==='add-gold');
  const groupLabels:Record<string,string[]>={b03:['同点组合长倍率'],b06:['最大同点组再计'],b08:[groupIncome?.kind==='add-gold'?'同点组合过关+'+groupIncome.amount+'金':'条件 ›'],b10:['同点组合长热度']};
  const grouped=R2_GROUP_UPGRADE_IDS.includes(definition.id)&&R2_GROUP_UPGRADE_JOKERS.includes(definition);
