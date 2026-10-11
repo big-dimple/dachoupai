@@ -1,0 +1,44 @@
+{
+  "source": "b29ae51855e894db5878d6e70f77475f6a491ba6",
+  "status": "FAIL",
+  "error": "AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:\n\n  assert.ok(await loss.locator('option[value=\"pair\"]').isDisabled())\n\n    at file://<repo>/harness/r2-tool-workspace.mjs:22:144",
+  "cases": [
+    {
+      "width": 1366,
+      "id": "T08",
+      "status": "PASS",
+      "selects": null
+    },
+    {
+      "width": 1366,
+      "id": "T09",
+      "status": "PASS",
+      "selects": null
+    },
+    {
+      "width": 1366,
+      "id": "T11",
+      "status": "PASS",
+      "selects": null
+    },
+    {
+      "width": 1366,
+      "id": "S01",
+      "status": "PASS",
+      "selects": null
+    },
+    {
+      "width": 1366,
+      "id": "S08",
+      "status": "PASS",
+      "selects": null
+    },
+    {
+      "width": 1366,
+      "id": "S05",
+      "status": null,
+      "selects": null
+    }
+  ],
+  "steps": []
+}

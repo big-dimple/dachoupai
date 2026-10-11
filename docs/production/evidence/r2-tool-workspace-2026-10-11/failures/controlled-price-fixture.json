@@ -1,0 +1,20 @@
+{
+  "source": null,
+  "status": "FAIL",
+  "error": "Error: invalid-save-offer-price\n    at fail (<repo>/src/application/checkpoint.ts:99:9)\n    at shop (<repo>/src/application/checkpoint.ts:240:91)\n    at validateState (<repo>/src/application/checkpoint.ts:1171:5)\n    at makeCheckpoint (<repo>/src/application/checkpoint.ts:1262:3)\n    at file://<temporary>/r2-tool-risk.mjs:6:236",
+  "cases": [
+    {
+      "width": null,
+      "id": "S03",
+      "status": "PASS",
+      "selects": null
+    },
+    {
+      "width": null,
+      "id": "S04",
+      "status": "PASS",
+      "selects": null
+    }
+  ],
+  "steps": []
+}
