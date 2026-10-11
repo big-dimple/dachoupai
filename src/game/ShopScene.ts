@@ -65,7 +65,7 @@ export class ShopScene extends Phaser.Scene {
   private run!:R2RunState;
   private ownedInput?:OwnedJokerInput;
   private ownedArts=new Map<string,Phaser.GameObjects.Container>();
-  private ownedDrag?:{id:string;seq:number;x:number;y:number;overlay:Phaser.GameObjects.Graphics};
+  private ownedDrag?:{id:string;seq:number;x:number;y:number;overlay:Phaser.GameObjects.Graphics;shadow:Phaser.GameObjects.Graphics};
   private ownedHint?:Phaser.GameObjects.Text;
   private get jokerDefinitions(){return r2JokerDefinitionsFor(this.run);}
   private jokerDefinition(id:string){return r2JokerDefinitionFor(this.run,id);}
@@ -740,7 +740,8 @@ export class ShopScene extends Phaser.Scene {
   private liftOwned(id:string,x:number,y:number):void {
     if(!this.ready)return;this.hideHoverPicture();
     for(const art of this.ownedArts.values())this.tweens.killTweensOf(art);
-    this.ownedDrag={id,seq:this.run.commandSeq,x,y,overlay:this.view.add(this.add.graphics().setName('shop/owned-insertion'))};
+    const p=this.geometry(),b=p.slots[this.run.jokers.findIndex(j=>j.instanceId===id)],shadow=this.add.graphics().fillStyle(PAPER_THEME.ink,.16).fillRoundedRect(-b.width/2+5,-b.height/2+7,b.width,b.height,5);this.ownedArts.get(id)?.addAt(shadow,0);
+    this.ownedDrag={id,seq:this.run.commandSeq,x,y,shadow,overlay:this.view.add(this.add.graphics().setName('shop/owned-insertion'))};
     this.previewOwned(x,y);
   }
   private previewOwned(x:number,y:number):void {
@@ -749,14 +750,14 @@ export class ShopScene extends Phaser.Scene {
     drag.overlay.clear().lineStyle(2,PAPER_THEME.jade,.45).strokeRoundedRect(source.x,source.y,source.width,source.height,5);
     for(const [id,art] of this.ownedArts){
       const seat=p.slots[preview.indexOf(id)];art.setAngle(0).setScale(1).setAlpha(1);
-      if(id===drag.id){art.setPosition(source.x+source.width/2+x-drag.x,source.y+source.height/2+y-drag.y-8).setScale(1.04).setAlpha(to<0?.55:1);this.view.root.bringToTop(art);}
+      if(id===drag.id){art.setPosition(source.x+source.width/2+x-drag.x,source.y+source.height/2+y-drag.y).setScale(1.04).setAlpha(to<0?.55:1);this.view.root.bringToTop(art);}
       else art.setPosition(seat.x+seat.width/2,seat.y+seat.height/2);
     }
     if(to>=0&&to!==from){const seat=p.slots[to],edge=to>from?seat.x+seat.width+3:seat.x-3;drag.overlay.lineStyle(3,PAPER_THEME.jade,1).lineBetween(edge,seat.y-3,edge,seat.y+seat.height+3);}
     this.view.root.bringToTop(drag.overlay);this.ownedHint?.setText(to<0?'移回持牌区放下 · 松手取消':'松手换位 · 移出持牌区取消');
   }
   private cancelOwned():void {
-    const drag=this.ownedDrag;if(!drag)return;this.ownedDrag=undefined;drag.overlay.destroy();
+    const drag=this.ownedDrag;if(!drag)return;this.ownedDrag=undefined;drag.overlay.destroy();drag.shadow.destroy();
     const p=this.geometry();for(const [i,j] of this.run.jokers.entries()){const art=this.ownedArts.get(j.instanceId),b=p.slots[i];if(art?.active)art.setPosition(b.x+b.width/2,b.y+b.height/2).setScale(1).setAngle(0).setAlpha(1);}
     this.ownedHint?.setText(p.pc?'拖动换位 · 手机长按 · 从左至右触发':p.short?'拖动换位 · 手机长按':'长按拖动换位 · 点牌查看');
   }
