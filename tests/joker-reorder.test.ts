@@ -1,5 +1,5 @@
 import {describe,expect,it} from 'vitest';
-import {reorderJokerIds} from '../src/game/JokerReorder';
+import {reorderJokerIds,ownedJokerDropIndex} from '../src/game/JokerReorder';
 import {createRun} from '../src/domain/run';
 import {r2CreateJoker} from '../src/domain/r2Run';
 import {SavedRun,type SaveSlots,type SaveStore} from '../src/application/SavedRun';
@@ -7,6 +7,19 @@ import {makeCheckpoint,type Checkpoint} from '../src/application/checkpoint';
 
 const moves=Array.from({length:5},(_,i)=>i+1).flatMap(length=>
   Array.from({length},(_,from)=>Array.from({length},(_,to)=>({length,from,to}))).flat());
+
+describe('owned row drag bounds',()=>{
+  const slots=Array.from({length:5},(_,i)=>({x:12+i*64,y:100,width:58,height:81.2}));
+  it('includes paper gaps with nearest final-seat insertion and works in both directions',()=>{
+    expect(ownedJokerDropIndex(slots,5,73,120)).toBe(1);
+    expect(ownedJokerDropIndex(slots,5,72,120)).toBe(0);
+    expect(reorderJokerIds(['a','b','c'],'a',ownedJokerDropIndex(slots,3,141,120))).toEqual(['b','c','a']);
+    expect(reorderJokerIds(['a','b','c'],'c',ownedJokerDropIndex(slots,3,40,120))).toEqual(['c','a','b']);
+  });
+  it('rejects goods, vertical escape, empty slots, no cards and nonfinite coordinates',()=>{
+    for(const [count,x,y] of [[2,170,120],[5,40,99],[5,40,182],[5,11,120],[5,330,120],[0,40,120],[5,NaN,120],[5,40,NaN]])expect(ownedJokerDropIndex(slots,count,x,y)).toBe(-1);
+  });
+});
 
 describe('owned Joker final-slot adapter',()=>{
   it.each(moves)('$length Jokers: $from → $to matches the existing splice order',({length,from,to})=>{
