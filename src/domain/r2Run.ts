@@ -113,6 +113,20 @@ const integer = (n:number) => Number.isSafeInteger(n) && n >= 0;
 const scoreString = (n:string) => typeof n==='string' && /^(0|[1-9]\d*)$/.test(n) && n.length<=MAX_INTEGER_DIGITS;
 const permutation = (a:readonly string[],b:readonly string[]) => a.length===b.length && new Set(a).size===a.length && a.every(id=>b.includes(id));
 
+// Played cards cannot be targeted by stage tools. Shop edits occur only after
+// the clear has committed, so a retained old stage must keep its old snapshots.
+function routeCardsMatchDeck(state:R2RunState):boolean {
+  return state.stage!.routeGrowth!.sources.every(source=>source.cards.every(card=>stableHash(card)===stableHash(state.deckInstances.find(current=>current.id===card.id))));
+}
+function routeRulesMatchTrace(state:R2RunState):boolean {
+  const trace=state.lastTrace,route=state.stage!.routeGrowth!;
+  if(!trace)return route.sources.length===0;
+  // c08/c09 are static inventory modifiers, never destroyed by a stage hook.
+  // The last actual scorer input remains authoritative after shop replacement.
+  const modifiers=readR2Modifiers(trace.sourceJokers,r2JokerDefinitionsFor(state));
+  return route.sources.every(source=>source.rules.fourStraight===modifiers.fourStraight&&source.rules.fourFlush===modifiers.fourFlush);
+}
+
 /** Initial values belong to creation, never restoration of an incomplete instance. */
 export function r2CreateJoker(definitionId:string,instanceId:string,paidPrice:number,edition?:Edition,identity?:{contentVersion?:unknown;contentHash?:unknown}):R2JokerInstance {
   const definition=(identity?r2JokerDefinitionsFor(identity):R2_JOKERS).find(definition=>definition.id===definitionId);
@@ -145,6 +159,8 @@ export function assertR2Invariants(state:R2RunState):void {
     check(isR2RouteGrowth(state)?validR2RouteStage(route,state.stage.playIndex,state.runId,state.commandSeq,state.receipts):!Object.hasOwn(state.stage,'routeGrowth'),'route stage qualification');
     if(route){
       check(route.entry.type===(state.stage.skipResult?'SkipStage':'EnterStage'),'route stage entry');
+      check(routeRulesMatchTrace(state),'route main rule facts');
+      if(state.stage.index===state.stageIndex||state.phase==='stage-cleared'||state.phase==='run-won')check(routeCardsMatchDeck(state),'route main card facts');
       check(state.stage.previousHandType===(route.handTypes.at(-1)??null)&&state.stage.ordinaryStraightSeen===route.handTypes.includes('straight')&&state.stage.ordinaryFlushSeen===route.handTypes.includes('flush')&&state.stage.maxPlayedCount===Math.max(0,...route.sources.map(s=>s.cards.length)),'route main history');
       if(state.lastTrace){
         const source=route.sources.at(-1)!,trace=state.lastTrace,modifiers=readR2Modifiers(trace.sourceJokers,r2JokerDefinitionsFor(state));
@@ -527,6 +543,7 @@ function grantProgramReward(state:R2RunState,goldBeforeRewards:number):void {
 
 function settleRouteClear(state:R2RunState):void {
   const trace=state.lastTrace!,history=state.routeGrowth!,stage=state.stage!,before=r2RouteSnapshot(history),eligible=stage.routeGrowth!.eligible;
+  if(!routeCardsMatchDeck(state)||!routeRulesMatchTrace(state))throw Error('invalid-route-main-facts');
   if(trace.events.length+1+eligible.length>SCORE_LIMITS.eventCount)throw new ScoreFault('event-limit',trace.events);
   settleR2RouteGrowth(history,stage.index,stage.routeGrowth!);
   const additions:ScoreEvent[]=[];

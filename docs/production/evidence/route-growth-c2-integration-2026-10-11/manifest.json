@@ -1,5 +1,5 @@
 {
-  "status": "local-required-steps-covered; ready-for-new-draft; exact-commit-CI-and-parent-review-pending",
+  "status": "PR121 original166 candidate author repaired source card/rule P2; new exact-HEAD CI and parent re-review pending",
   "baseMain": "e48fd07a6e7b4575067dc356ad28cb0a94fe15e9",
   "branch": "feat/c2-route-growth-2026-10-11",
   "identity": {
@@ -14,10 +14,13 @@
     "manifestScope": "../route-growth-c2-2026-10-11/manifest.json is historical original freeze, not integration hashes",
     "productExceptions": [
       "src/game/GameScene.ts",
-      "src/content/r2RouteGrowthJokers.ts"
+      "src/content/r2RouteGrowthJokers.ts",
+      "src/domain/r2Run.ts",
+      "tests/route-growth-run.test.ts"
     ],
-    "remainingOriginalProductAndTestsByteExact": true,
-    "scorerAndRecoveryJsonByteExact": true
+    "remainingOriginalProductAndTestsByteExact": false,
+    "scorerAndRecoveryJsonByteExact": true,
+    "remainingOriginalProductAndTestsByteExactExceptListedFiles": true
   },
   "productAndTestAndHarnessFiles": [
     {
@@ -67,8 +70,8 @@
     },
     {
       "path": "src/domain/r2Run.ts",
-      "sha256": "d2e266c61379e401d4c1aa0dd2f0ba938afcdfa040637ed91dd95e567a41a7e1",
-      "bytes": 96001
+      "sha256": "fb4edb914537bf15ca4edaba0efa458fe70a1f08de601baf344ad9b80dffa86a",
+      "bytes": 97270
     },
     {
       "path": "src/domain/scoreR2.ts",
@@ -151,9 +154,14 @@
       "bytes": 5799
     },
     {
+      "path": "tests/route-growth-facts.test.ts",
+      "sha256": "bdcf2ae7a793bd89c0971c775e7294b957a5cf085f30dd2f4e7ff8102ee18eba",
+      "bytes": 8004
+    },
+    {
       "path": "tests/route-growth-run.test.ts",
-      "sha256": "b1403268b0e93fbbcd917398521f5a2a2e4f939ce982809c2d30d6b08198e140",
-      "bytes": 27422
+      "sha256": "cecd8e1353f163edfef3240586462bae413973380ed0c5d6779bafc33efff1f7",
+      "bytes": 27667
     },
     {
       "path": "tests/route-growth-score.test.ts",
@@ -188,8 +196,8 @@
   ],
   "currentPlan": {
     "path": "docs/production/DELIVERY_PLAN.md",
-    "sha256": "f3fd87b299aab0bd3ce04a8a3ef8d78a6c632ce573f89c8c10c6d7c06283e7fd",
-    "bytes": 298588
+    "sha256": "6a2c461cb4365e7166b4dc20f332e0d33a5fa5627351e53972b8e8bac2fd349f",
+    "bytes": 299236
   },
   "historicalPlanTail": {
     "boundary": "bytes strictly after ## 既有规格 工作包合同与历史证据; includes following newlines",
@@ -215,13 +223,30 @@
     "profileDetection": "PASS-reference-copy-mutation finite diagnostic",
     "evidenceExport": "PASS; two JSON exact frozen",
     "remoteExactCommitCI": "PENDING-after-new-commit-and-draft",
-    "diffCheck": "checked-before-commit; no product edits afterward"
+    "diffCheck": "checked-before-commit; no product edits afterward",
+    "historicalFullUnitContentBuildBrowserSourceHead": "166022277aed2180361d18627b76b9377266c64a",
+    "currentFollowup": {
+      "oldHead": "166022277aed2180361d18627b76b9377266c64a",
+      "newP2": "earlier-source-cards-rules-confirmed-and-author-repaired; parent re-review pending",
+      "targetedFiles": 9,
+      "targetedTestsPassed": 205,
+      "startUTC": "2026-10-11 15:03:01",
+      "durationSeconds": 3.81,
+      "oldUnitAndBrowserResultsAreHistorical": true,
+      "report": "../route-growth-c2-p2-card-facts-2026-10-11/README.md",
+      "typecheck": "PASS",
+      "content": "PASS",
+      "docs": "PASS; source/index/HEAD stable",
+      "newIndependentReview": "PENDING-parent",
+      "currentLocalFullSuiteOrBrowser": "NOT_RERUN; old166 evidence retained"
+    }
   },
   "independentReview": {
     "scope": "original repaired 7414 frozen mathematical/save/recovery code",
     "status": "bounded-P2-P3-PASS; nine anomaly diagnostics rejected",
     "report": "../route-growth-c2-2026-10-11/INDEPENDENT_REVIEW.md",
-    "integrationGameSceneAndDetectionOptimization": "parent exact-HEAD review pending; not signed by original review"
+    "integrationGameSceneAndDetectionOptimization": "parent exact-HEAD review pending; not signed by original review",
+    "newCardFactsScope": "old review did not cover this reproduced bug; author fixed; parent re-review pending"
   },
   "remainingUnsigned": [
     "dot18-full-natural-playthroughs",
@@ -251,8 +276,8 @@
     },
     {
       "path": "docs/production/evidence/route-growth-c2-integration-2026-10-11/INTEGRATION.md",
-      "sha256": "2f39d446a7a7711a68fa17b7b57d667190a58588b134c9c7a40980c521891ea6",
-      "bytes": 10757
+      "sha256": "57e43664101c466430a3ef1f5bdd5519391ce5b7ab19358f2b7b97e2a48ac25b",
+      "bytes": 11141
     },
     {
       "path": "docs/production/evidence/route-growth-c2-integration-2026-10-11/final-local-checks/affected-targeted-108.log",
@@ -356,8 +381,8 @@
     },
     {
       "path": "docs/production/evidence/route-growth-c2-integration-2026-10-11/integration-facts.json",
-      "sha256": "eb42668cd1077245c663474fb4942cde3cd9b4ba4b75f6076ac8dd4051b00351",
-      "bytes": 2315
+      "sha256": "1eea9d717388535a248f29c0eee5be52f6da5dffadc6aae57d09dfd99058cb2f",
+      "bytes": 3218
     },
     {
       "path": "docs/production/evidence/route-growth-c2-integration-2026-10-11/route-profile-fast-path.patch",
@@ -398,6 +423,108 @@
       "path": "docs/production/evidence/route-growth-c2-integration-2026-10-11/v00-main-vs-candidate.json",
       "sha256": "90e983638be33b6346f555accc8fe1b1fdb91f58079bbb33d1c82520fa005748",
       "bytes": 7208
+    }
+  ],
+  "sourceFactsP2EvidenceFiles": [
+    {
+      "path": "docs/production/evidence/route-growth-c2-p2-card-facts-2026-10-11/README.md",
+      "sha256": "271f73e2b8748b0341ad04c170a26c5a1a8781b2c723b84e7255efd04fd51a07",
+      "bytes": 5746
+    },
+    {
+      "path": "docs/production/evidence/route-growth-c2-p2-card-facts-2026-10-11/affected-205.log",
+      "sha256": "389770116b1d0506053ad979a70e369be347fc84958c0d48525776d7ff44ab03",
+      "bytes": 633
+    },
+    {
+      "path": "docs/production/evidence/route-growth-c2-p2-card-facts-2026-10-11/affected-205.log.raw.gz",
+      "sha256": "bf42a80e2799160f99ebc182ac082e13addaae332aedbd6bbd56c8ef94f9af59",
+      "bytes": 203
+    },
+    {
+      "path": "docs/production/evidence/route-growth-c2-p2-card-facts-2026-10-11/after-fix-evidence.json",
+      "sha256": "2c0c87c65ff03e776ce4c64a5237e00bb47a3edf9cf6726fed590d3760c9b174",
+      "bytes": 605653
+    },
+    {
+      "path": "docs/production/evidence/route-growth-c2-p2-card-facts-2026-10-11/before-fix-reproduction.json",
+      "sha256": "e28833842eff3714312ad9df85301a97109677fa006703ae08d6865de1ce2133",
+      "bytes": 388984
+    },
+    {
+      "path": "docs/production/evidence/route-growth-c2-p2-card-facts-2026-10-11/content.log",
+      "sha256": "093d3fa978c886339538c7fdc667d69522b8c3858e26bbd5ddfeb8d1f4a38f02",
+      "bytes": 5951
+    },
+    {
+      "path": "docs/production/evidence/route-growth-c2-p2-card-facts-2026-10-11/docs-gates.json",
+      "sha256": "dccace2c703a06131c50b5857950750309a81c137840672ac306056de8a19099",
+      "bytes": 1385
+    },
+    {
+      "path": "docs/production/evidence/route-growth-c2-p2-card-facts-2026-10-11/docs.log",
+      "sha256": "de5fa87c020a6a2a42bbb704dc1e4be7b90f63b2311f7ec7594918969d4f4e40",
+      "bytes": 1882
+    },
+    {
+      "path": "docs/production/evidence/route-growth-c2-p2-card-facts-2026-10-11/export-card-facts-evidence.mjs",
+      "sha256": "d8d4494c484f745352de74464ee1920a0722da02442e85036f40ffdf905c1726",
+      "bytes": 7261
+    },
+    {
+      "path": "docs/production/evidence/route-growth-c2-p2-card-facts-2026-10-11/export.log",
+      "sha256": "ad3c2faa97fcec24b3f223704e5a06dfd96649e03c931df2792d930c5104b245",
+      "bytes": 897
+    },
+    {
+      "path": "docs/production/evidence/route-growth-c2-p2-card-facts-2026-10-11/first-fixture-FAIL.log",
+      "sha256": "3465d6bf90251a9535ec0f869d4e8cd1bb2c85602f4b4666057b230a7edee44a",
+      "bytes": 1570
+    },
+    {
+      "path": "docs/production/evidence/route-growth-c2-p2-card-facts-2026-10-11/first-fixture-FAIL.log.raw.gz",
+      "sha256": "c1047883aa8cf465f0294e54be90a6b9fddde950ed5ffa091f3a4ac71b975e8d",
+      "bytes": 585
+    },
+    {
+      "path": "docs/production/evidence/route-growth-c2-p2-card-facts-2026-10-11/integration-INTEGRATION-before-fix.md",
+      "sha256": "2f39d446a7a7711a68fa17b7b57d667190a58588b134c9c7a40980c521891ea6",
+      "bytes": 10757
+    },
+    {
+      "path": "docs/production/evidence/route-growth-c2-p2-card-facts-2026-10-11/integration-integration-facts-before-fix.json",
+      "sha256": "eb42668cd1077245c663474fb4942cde3cd9b4ba4b75f6076ac8dd4051b00351",
+      "bytes": 2315
+    },
+    {
+      "path": "docs/production/evidence/route-growth-c2-p2-card-facts-2026-10-11/integration-manifest-before-fix.json",
+      "sha256": "4f37f3636d490a5d4cf858684f9d63c1d7937db8b539de13c57b9bb1fbf96025",
+      "bytes": 16139
+    },
+    {
+      "path": "docs/production/evidence/route-growth-c2-p2-card-facts-2026-10-11/manifest.json",
+      "sha256": "cbd70e3c4ffddb46fcb0d5dede48012bc12faee40715937beeaa992c07306386",
+      "bytes": 7480
+    },
+    {
+      "path": "docs/production/evidence/route-growth-c2-p2-card-facts-2026-10-11/seven-files-168.log",
+      "sha256": "2e757c1cb457c29473f63a93e7ae6f4734cf6543a7734f0f1134b54812732c85",
+      "bytes": 559
+    },
+    {
+      "path": "docs/production/evidence/route-growth-c2-p2-card-facts-2026-10-11/seven-files-168.log.raw.gz",
+      "sha256": "472c1b214643e98ba1b893ecca71ef2e149b4f2b2dc74ba67b5a1951022aacfb",
+      "bytes": 202
+    },
+    {
+      "path": "docs/production/evidence/route-growth-c2-p2-card-facts-2026-10-11/source-facts-fix.patch.raw.gz",
+      "sha256": "60cd5c3d04e2c6e187bec3842c5ed57d8bfb927ba6d4af3d62ac42d60f9237e7",
+      "bytes": 2312
+    },
+    {
+      "path": "docs/production/evidence/route-growth-c2-p2-card-facts-2026-10-11/typecheck.log",
+      "sha256": "74f919f77aaafd9e103ae561073b59a64c21a6860376204d97779934238403aa",
+      "bytes": 253
     }
   ]
 }

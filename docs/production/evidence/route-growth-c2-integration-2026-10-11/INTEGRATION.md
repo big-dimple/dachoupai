@@ -1,3 +1,5 @@
+> 本文下方原集成段绑定PR121初始HEAD `166022277aed2180361d18627b76b9377266c64a`；父随后实证发现前面source cards/rules P2。当前最小返修及新205项/实际恢复证据见[本轮报告](../route-growth-c2-p2-card-facts-2026-10-11/README.md)。原独审、3103项和双端smoke只属旧HEAD，不能代签新返修；当前哈希以本目录manifest为准。
+
 # C2-B 从最新 main 的串行集成候选
 
 2026-10-11 UTC。输入远端 main `e48fd07a6e7b4575067dc356ad28cb0a94fe15e9`；新分支 `feat/c2-route-growth-2026-10-11`，工作树 `/workspace/dachoupai-c2-integrated`。本次按父授权只集成新实现候选，提交/推送/draft PR后由父核精确HEAD及CI决定合main；本代理不合main、不部署、不自然试玩。未使用或搬运此前被拒的旧C文档PR/分支。

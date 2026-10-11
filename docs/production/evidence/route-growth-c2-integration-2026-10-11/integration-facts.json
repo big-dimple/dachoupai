@@ -15,9 +15,11 @@
   "newStarAlgorithmOrAmoInteraction": "not-included",
   "frozenImplementationProductExceptions": [
     "src/game/GameScene.ts",
-    "src/content/r2RouteGrowthJokers.ts"
+    "src/content/r2RouteGrowthJokers.ts",
+    "src/domain/r2Run.ts",
+    "tests/route-growth-run.test.ts"
   ],
-  "newRouteMathAndSaveSourcesExactFrozen": true,
+  "newRouteMathAndSaveSourcesExactFrozen": false,
   "routeDefinitionHashUnchanged": true,
   "legacyProfileReferenceFastPath": true,
   "mutableOrCopiedDefinitionsStillHashed": true,
@@ -59,5 +61,21 @@
   "wholeReleaseWrapperResult": "FAIL-retained; later browser/docs scopes cover affected steps",
   "profileDetectionDiagnostic": "PASS-reference-copy-mutation; Vite closing pre-scan warning retained in narrative",
   "finalDocsStatus": "PASS",
-  "finalDocsSourceIndexHeadPreserved": true
+  "finalDocsSourceIndexHeadPreserved": true,
+  "saveValidationDelta": "cross-check all current stage source cards against actual deck and rules against last actual scorer source; recheck before clear; no fields/identity/math change",
+  "currentFollowup": {
+    "oldHead": "166022277aed2180361d18627b76b9377266c64a",
+    "newP2": "earlier-source-cards-rules-confirmed-and-author-repaired; parent re-review pending",
+    "targetedFiles": 9,
+    "targetedTestsPassed": 205,
+    "startUTC": "2026-10-11 15:03:01",
+    "durationSeconds": 3.81,
+    "oldUnitAndBrowserResultsAreHistorical": true,
+    "report": "../route-growth-c2-p2-card-facts-2026-10-11/README.md",
+    "typecheck": "PASS",
+    "content": "PASS",
+    "docs": "PASS; source/index/HEAD stable",
+    "newIndependentReview": "PENDING-parent",
+    "currentLocalFullSuiteOrBrowser": "NOT_RERUN; old166 evidence retained"
+  }
 }

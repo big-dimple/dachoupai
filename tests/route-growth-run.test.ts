@@ -97,8 +97,11 @@ describe('C2 run history and strict recovery',()=>{
     let s=arrange(fixture(),pair);const first=command(s,{type:'PlayHand',selectedIds:pair});s=send(s,first.action);const before=round(s,[first]);expect(before.state.routeGrowth!.G).toBe(0);expect(before.state.stage!.routeGrowth!.sources[0].cards.map(c=>c.id)).toEqual(pair);
     s=arrange(s,[...flush,'clubs-9','diamonds-9']);const second=command(s,{type:'PlayAssistedHand',selectedIds:flush,assistIds:['clubs-9','diamonds-9']});s=send(s,second.action);
     const after=round(s,[first,second]);expect(after.state.stage!.routeGrowth!.handTypes).toEqual(['pair','flush']);expect(after.state.stage!.routeGrowth!.sources[1].cards.map(c=>c.id)).toEqual(flush);expect(after.state.routeGrowth).toMatchObject({clears:1,G:1,S:0,F:1});expect(after.state.lastTrace!.routeGrowth!.before).toEqual({clears:0,G:0,S:0,F:0});
-    // A source records the command-time cards, not a later edited deck view.
-    s.deckInstances.find(c=>c.id===pair[0])!.rank=2;round(s,[first,second]);
+    // Later shop edits are legal; stage-cleared itself has no tool-use window.
+    s=send(s,{type:'OpenShop'});s.consumables=[{instanceId:'rank-tool',definitionId:'T08'}];
+    s=send(s,{type:'UseConsumable',instanceId:'rank-tool',targetIds:[pair[0]]});
+    expect(s.deckInstances.find(c=>c.id===pair[0])!.rank).toBe(13);
+    expect(s.stage!.routeGrowth!.sources[0].cards[0].rank).toBe(12);round(s);
   });
   it('rejects the independently reproduced 411-heat forged-F save and restores its legitimate G clear',()=>{
     let s=createRun({seed:'review',runId:'review',characterId:'amo',rulesVersion:'r2',r2Identity:newRunIdentity('amo','group'),openingRoute:'group',modeConfig:{mode:'standard',difficulty:0,challengeId:null,programsEnabled:false}});
