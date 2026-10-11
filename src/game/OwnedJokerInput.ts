@@ -14,7 +14,7 @@ interface Options {
 export class OwnedJokerInput {
   readonly surface=document.createElement('div');
   private readonly intent=new PointerIntent();
-  private owner?:{pointerId:number;id:string;x:number;y:number;touch:boolean;lifted:boolean;canceled:boolean};
+  private owner?:{pointerId:number;id:string;x:number;y:number;touch:boolean;lifted:boolean;canceled:boolean;width:number;height:number};
   private contacts=new Map<number,string>();
   private timer?:ReturnType<typeof setTimeout>;
   private savedInput=true;
@@ -33,13 +33,14 @@ export class OwnedJokerInput {
     window.addEventListener('pointercancel',this.interrupt,true);
     window.addEventListener('pointerout',this.out,true);
     window.addEventListener('blur',this.blur);
+    window.addEventListener('resize',this.resize);
     window.addEventListener('keydown',this.key);
     document.addEventListener('visibilitychange',this.visibility);
     document.addEventListener('focusin',this.focus);
     document.body.append(this.surface);
   }
   private coordinates(e:PointerEvent){const r=this.scene.game.canvas.getBoundingClientRect(),zoom=this.scene.scale.zoom;return{x:(e.clientX-r.left)*this.scene.scale.width*zoom/r.width,y:(e.clientY-r.top)*this.scene.scale.height*zoom/r.height};}
-  private blocked(e:PointerEvent){return !this.options.ready()||modalBlocksCanvas(e.clientX,e.clientY)||e.clientX<0||e.clientY<0||e.clientX>=innerWidth||e.clientY>=innerHeight;}
+  private blocked(e:PointerEvent){return !!this.owner&&(this.owner.width!==innerWidth||this.owner.height!==innerHeight)||!this.options.ready()||modalBlocksCanvas(e.clientX,e.clientY)||e.clientX<0||e.clientY<0||e.clientX>=innerWidth||e.clientY>=innerHeight;}
   private readonly contact=(e:PointerEvent)=>{
     if(e.isPrimary){for(const [id,type] of this.contacts)if(type===e.pointerType){if(this.owner?.pointerId===id)this.finish();this.contacts.delete(id);}}
     this.contacts.set(e.pointerId,e.pointerType);
@@ -49,7 +50,7 @@ export class OwnedJokerInput {
     if(e.button!==0||!e.isPrimary||this.contacts.size!==1||this.owner||this.blocked(e))return;
     const {x,y}=this.coordinates(e),card=this.options.cards().find(b=>x>=b.x&&x<=b.x+b.width&&y>=b.y&&y<=b.y+b.height);if(!card)return;
     this.options.cancelCanvas();this.savedInput=this.scene.input.enabled;this.scene.input.enabled=false;
-    this.owner={pointerId:e.pointerId,id:card.id,x,y,touch:e.pointerType==='touch',lifted:false,canceled:false};
+    this.owner={pointerId:e.pointerId,id:card.id,x,y,touch:e.pointerType==='touch',lifted:false,canceled:false,width:innerWidth,height:innerHeight};
     this.intent.down(e.pointerId,x,y,performance.now());
     try{this.surface.setPointerCapture(e.pointerId);}catch{/* Window events still track the contact. */}
     if(e.pointerType!=='touch')e.preventDefault();
@@ -80,6 +81,7 @@ export class OwnedJokerInput {
   private readonly lost=(e:PointerEvent)=>{if(this.owner?.pointerId===e.pointerId){this.cancel();this.finish();}};
   private readonly out=(e:PointerEvent)=>{if(!e.relatedTarget&&this.owner?.pointerId===e.pointerId)this.cancel();};
   private readonly blur=()=>{this.cancel();this.finish();this.contacts.clear();};
+  private readonly resize=()=>{this.cancel();this.finish();};
   private readonly visibility=()=>{if(document.hidden)this.blur();};
   private readonly focus=()=>{if(document.querySelector('dialog[open]'))this.cancel();};
   private readonly key=(e:KeyboardEvent)=>{if(e.key==='Escape')this.cancel();};
@@ -90,5 +92,5 @@ export class OwnedJokerInput {
     const r=this.scene.game.canvas.getBoundingClientRect(),sx=r.width/(this.scene.scale.width*this.scene.scale.zoom),sy=r.height/(this.scene.scale.height*this.scene.scale.zoom);
     Object.assign(this.surface.style,{left:r.left+b.x*sx+'px',top:r.top+b.y*sy+'px',width:b.width*sx+'px',height:b.height*sy+'px'});
   }
-  destroy(){this.cancel();this.finish();this.surface.remove();window.removeEventListener('pointerdown',this.contact,true);window.removeEventListener('pointermove',this.move,true);window.removeEventListener('pointerup',this.up,true);window.removeEventListener('pointercancel',this.interrupt,true);window.removeEventListener('pointerout',this.out,true);window.removeEventListener('blur',this.blur);window.removeEventListener('keydown',this.key);document.removeEventListener('visibilitychange',this.visibility);document.removeEventListener('focusin',this.focus);}
+  destroy(){this.cancel();this.finish();this.surface.remove();window.removeEventListener('pointerdown',this.contact,true);window.removeEventListener('pointermove',this.move,true);window.removeEventListener('pointerup',this.up,true);window.removeEventListener('pointercancel',this.interrupt,true);window.removeEventListener('pointerout',this.out,true);window.removeEventListener('blur',this.blur);window.removeEventListener('resize',this.resize);window.removeEventListener('keydown',this.key);document.removeEventListener('visibilitychange',this.visibility);document.removeEventListener('focusin',this.focus);}
 }
