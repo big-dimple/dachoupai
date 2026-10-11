@@ -1,0 +1,11 @@
+/workspace/dachoupai/src/application/checkpoint.ts:99
+  throw Error(message);
+        ^
+
+Error: invalid-save-opening-state
+    at fail (/workspace/dachoupai/src/application/checkpoint.ts:99:9)
+    at validateState (/workspace/dachoupai/src/application/checkpoint.ts:1205:132)
+    at makeCheckpoint (/workspace/dachoupai/src/application/checkpoint.ts:1262:3)
+    at file:///workspace/dachoupai/shots/joker-card-quantity-copy/capture.mjs:24:5
+
+Node.js v24.19.0

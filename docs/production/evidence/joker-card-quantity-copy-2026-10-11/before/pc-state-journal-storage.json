@@ -1,0 +1,2902 @@
+{
+  "initial": {
+    "state": {
+      "schemaVersion": 2,
+      "rulesVersion": "r2",
+      "contentVersion": "quality-r2-basic-suit-choice-v1",
+      "contentHash": "json-fnv-v1:69c29f5cd54bb160",
+      "runId": "controlled/quantity-copy/a03",
+      "seed": "quantity-copy/a03",
+      "commandSeq": 2,
+      "difficulty": 0,
+      "characterId": "erxiang",
+      "openingRoute": "straight",
+      "openingShow": {
+        "handsScored": 0,
+        "rootId": null,
+        "eventId": null,
+        "reason": null
+      },
+      "routeStarter": {
+        "instanceId": null,
+        "rootId": null,
+        "eventId": null
+      },
+      "mode": "standard",
+      "challengeId": null,
+      "programsEnabled": false,
+      "programRerollCoupon": false,
+      "chapterDisabledJokerId": null,
+      "chapter": 1,
+      "stageIndex": 0,
+      "phase": "shop",
+      "deckInstances": [
+        {
+          "id": "spades-2",
+          "suit": "spades",
+          "rank": 2
+        },
+        {
+          "id": "spades-3",
+          "suit": "spades",
+          "rank": 3
+        },
+        {
+          "id": "spades-4",
+          "suit": "spades",
+          "rank": 4
+        },
+        {
+          "id": "spades-5",
+          "suit": "spades",
+          "rank": 5
+        },
+        {
+          "id": "spades-6",
+          "suit": "spades",
+          "rank": 6
+        },
+        {
+          "id": "spades-7",
+          "suit": "spades",
+          "rank": 7
+        },
+        {
+          "id": "spades-8",
+          "suit": "spades",
+          "rank": 8
+        },
+        {
+          "id": "spades-9",
+          "suit": "spades",
+          "rank": 9
+        },
+        {
+          "id": "spades-10",
+          "suit": "spades",
+          "rank": 10
+        },
+        {
+          "id": "spades-11",
+          "suit": "spades",
+          "rank": 11
+        },
+        {
+          "id": "spades-12",
+          "suit": "spades",
+          "rank": 12
+        },
+        {
+          "id": "spades-13",
+          "suit": "spades",
+          "rank": 13
+        },
+        {
+          "id": "spades-14",
+          "suit": "spades",
+          "rank": 14
+        },
+        {
+          "id": "hearts-2",
+          "suit": "hearts",
+          "rank": 2
+        },
+        {
+          "id": "hearts-3",
+          "suit": "hearts",
+          "rank": 3
+        },
+        {
+          "id": "hearts-4",
+          "suit": "hearts",
+          "rank": 4
+        },
+        {
+          "id": "hearts-5",
+          "suit": "hearts",
+          "rank": 5
+        },
+        {
+          "id": "hearts-6",
+          "suit": "hearts",
+          "rank": 6
+        },
+        {
+          "id": "hearts-7",
+          "suit": "hearts",
+          "rank": 7
+        },
+        {
+          "id": "hearts-8",
+          "suit": "hearts",
+          "rank": 8
+        },
+        {
+          "id": "hearts-9",
+          "suit": "hearts",
+          "rank": 9
+        },
+        {
+          "id": "hearts-10",
+          "suit": "hearts",
+          "rank": 10
+        },
+        {
+          "id": "hearts-11",
+          "suit": "hearts",
+          "rank": 11
+        },
+        {
+          "id": "hearts-12",
+          "suit": "hearts",
+          "rank": 12
+        },
+        {
+          "id": "hearts-13",
+          "suit": "hearts",
+          "rank": 13
+        },
+        {
+          "id": "hearts-14",
+          "suit": "hearts",
+          "rank": 14
+        },
+        {
+          "id": "clubs-2",
+          "suit": "clubs",
+          "rank": 2
+        },
+        {
+          "id": "clubs-3",
+          "suit": "clubs",
+          "rank": 3
+        },
+        {
+          "id": "clubs-4",
+          "suit": "clubs",
+          "rank": 4
+        },
+        {
+          "id": "clubs-5",
+          "suit": "clubs",
+          "rank": 5
+        },
+        {
+          "id": "clubs-6",
+          "suit": "clubs",
+          "rank": 6
+        },
+        {
+          "id": "clubs-7",
+          "suit": "clubs",
+          "rank": 7
+        },
+        {
+          "id": "clubs-8",
+          "suit": "clubs",
+          "rank": 8
+        },
+        {
+          "id": "clubs-9",
+          "suit": "clubs",
+          "rank": 9
+        },
+        {
+          "id": "clubs-10",
+          "suit": "clubs",
+          "rank": 10
+        },
+        {
+          "id": "clubs-11",
+          "suit": "clubs",
+          "rank": 11
+        },
+        {
+          "id": "clubs-12",
+          "suit": "clubs",
+          "rank": 12
+        },
+        {
+          "id": "clubs-13",
+          "suit": "clubs",
+          "rank": 13
+        },
+        {
+          "id": "clubs-14",
+          "suit": "clubs",
+          "rank": 14
+        },
+        {
+          "id": "diamonds-2",
+          "suit": "diamonds",
+          "rank": 2
+        },
+        {
+          "id": "diamonds-3",
+          "suit": "diamonds",
+          "rank": 3
+        },
+        {
+          "id": "diamonds-4",
+          "suit": "diamonds",
+          "rank": 4
+        },
+        {
+          "id": "diamonds-5",
+          "suit": "diamonds",
+          "rank": 5
+        },
+        {
+          "id": "diamonds-6",
+          "suit": "diamonds",
+          "rank": 6
+        },
+        {
+          "id": "diamonds-7",
+          "suit": "diamonds",
+          "rank": 7
+        },
+        {
+          "id": "diamonds-8",
+          "suit": "diamonds",
+          "rank": 8
+        },
+        {
+          "id": "diamonds-9",
+          "suit": "diamonds",
+          "rank": 9
+        },
+        {
+          "id": "diamonds-10",
+          "suit": "diamonds",
+          "rank": 10
+        },
+        {
+          "id": "diamonds-11",
+          "suit": "diamonds",
+          "rank": 11
+        },
+        {
+          "id": "diamonds-12",
+          "suit": "diamonds",
+          "rank": 12
+        },
+        {
+          "id": "diamonds-13",
+          "suit": "diamonds",
+          "rank": 13
+        },
+        {
+          "id": "diamonds-14",
+          "suit": "diamonds",
+          "rank": 14
+        }
+      ],
+      "drawPile": [
+        "spades-2",
+        "spades-3",
+        "spades-4",
+        "spades-5",
+        "spades-6",
+        "spades-7",
+        "spades-8",
+        "spades-9",
+        "spades-10",
+        "spades-11",
+        "spades-12",
+        "spades-13",
+        "spades-14",
+        "hearts-2",
+        "hearts-3",
+        "hearts-4",
+        "hearts-5",
+        "hearts-6",
+        "hearts-7",
+        "hearts-8",
+        "hearts-9",
+        "hearts-10",
+        "hearts-11",
+        "hearts-12",
+        "hearts-13",
+        "hearts-14",
+        "clubs-2",
+        "clubs-3",
+        "clubs-4",
+        "clubs-5",
+        "clubs-6",
+        "clubs-7",
+        "clubs-8",
+        "clubs-9",
+        "clubs-10",
+        "clubs-11",
+        "clubs-12",
+        "clubs-13",
+        "clubs-14",
+        "diamonds-2",
+        "diamonds-3",
+        "diamonds-4",
+        "diamonds-5",
+        "diamonds-6",
+        "diamonds-7",
+        "diamonds-8",
+        "diamonds-9",
+        "diamonds-10",
+        "diamonds-11",
+        "diamonds-12",
+        "diamonds-13",
+        "diamonds-14"
+      ],
+      "handOrder": [],
+      "playedPile": [],
+      "discardPile": [],
+      "destroyedIds": [],
+      "stage": null,
+      "totalHeat": "0",
+      "gold": 4,
+      "jokers": [],
+      "consumables": [],
+      "longTermItems": [],
+      "program": null,
+      "boss": {
+        "definitionId": "B04",
+        "disabledSuit": null
+      },
+      "seenBossIds": [
+        "B04"
+      ],
+      "chapterSkipConsumable": "T06",
+      "purchaseCoupons": 0,
+      "safetyNetUsed": false,
+      "shop": {
+        "visitIndex": 0,
+        "rerollCount": 1,
+        "purchases": 0,
+        "soldJoker": false,
+        "freeRerolls": 0,
+        "offers": [
+          {
+            "offerId": "controlled/quantity-copy/a03/shop/0/1/joker/0",
+            "definitionId": "a03",
+            "price": 4,
+            "consumed": false
+          },
+          {
+            "offerId": "controlled/quantity-copy/a03/shop/0/1/joker/1",
+            "definitionId": "e10",
+            "price": 6,
+            "edition": "none",
+            "consumed": false
+          },
+          {
+            "offerId": "controlled/quantity-copy/a03/shop/0/1/joker/2",
+            "definitionId": "b12",
+            "price": 8,
+            "edition": "none",
+            "consumed": false
+          }
+        ],
+        "toolOffers": [
+          {
+            "offerId": "controlled/quantity-copy/a03/shop/0/1/tool/0",
+            "definitionId": "T17",
+            "price": 4,
+            "consumed": false
+          }
+        ],
+        "itemOffers": [
+          {
+            "offerId": "controlled/quantity-copy/a03/shop/0/0/item/0",
+            "definitionId": "U10",
+            "price": 10,
+            "consumed": false
+          }
+        ],
+        "basicChoice": {
+          "shopSeq": 1,
+          "purchase": null
+        }
+      },
+      "spectralModifiers": {
+        "handsPenalty": 0,
+        "handPenalty": 0,
+        "cleanSlateBonus": 0
+      },
+      "supplyRewardClaimed": false,
+      "chapterHandUsage": {},
+      "normalClearClaimed": false,
+      "tourMode": "normal",
+      "normalCompletion": null,
+      "rng": {
+        "deck": {
+          "algorithm": "fnv1a-mulberry32-v1",
+          "state": 2113637367
+        },
+        "rule": {
+          "algorithm": "fnv1a-mulberry32-v1",
+          "state": 3537812457
+        },
+        "shop": {
+          "algorithm": "fnv1a-mulberry32-v1",
+          "state": 1265312557
+        },
+        "reward": {
+          "algorithm": "fnv1a-mulberry32-v1",
+          "state": 1728473242
+        },
+        "program": {
+          "algorithm": "fnv1a-mulberry32-v1",
+          "state": 1756164828
+        },
+        "challenge": {
+          "algorithm": "fnv1a-mulberry32-v1",
+          "state": 1020950737
+        }
+      },
+      "receipts": [
+        {
+          "commandId": "controlled/quantity-copy/a03/start",
+          "fingerprint": "json-fnv-v1:e877c60e2e7b852a",
+          "seq": 1
+        },
+        {
+          "commandId": "controlled/reroll",
+          "fingerprint": "json-fnv-v1:6ea8844dfc533941",
+          "seq": 2
+        }
+      ],
+      "lastTrace": null,
+      "handLevels": {},
+      "outcome": null
+    },
+    "journal": [],
+    "exportJSON": "{\n  \"format\": \"dachoupai-checkpoint\",\n  \"formatVersion\": 1,\n  \"state\": {\n    \"schemaVersion\": 2,\n    \"rulesVersion\": \"r2\",\n    \"contentVersion\": \"quality-r2-basic-suit-choice-v1\",\n    \"contentHash\": \"json-fnv-v1:69c29f5cd54bb160\",\n    \"runId\": \"controlled/quantity-copy/a03\",\n    \"seed\": \"quantity-copy/a03\",\n    \"commandSeq\": 2,\n    \"difficulty\": 0,\n    \"characterId\": \"erxiang\",\n    \"openingRoute\": \"straight\",\n    \"openingShow\": {\n      \"handsScored\": 0,\n      \"rootId\": null,\n      \"eventId\": null,\n      \"reason\": null\n    },\n    \"routeStarter\": {\n      \"instanceId\": null,\n      \"rootId\": null,\n      \"eventId\": null\n    },\n    \"mode\": \"standard\",\n    \"challengeId\": null,\n    \"programsEnabled\": false,\n    \"programRerollCoupon\": false,\n    \"chapterDisabledJokerId\": null,\n    \"chapter\": 1,\n    \"stageIndex\": 0,\n    \"phase\": \"shop\",\n    \"deckInstances\": [\n      {\n        \"id\": \"spades-2\",\n        \"suit\": \"spades\",\n        \"rank\": 2\n      },\n      {\n        \"id\": \"spades-3\",\n        \"suit\": \"spades\",\n        \"rank\": 3\n      },\n      {\n        \"id\": \"spades-4\",\n        \"suit\": \"spades\",\n        \"rank\": 4\n      },\n      {\n        \"id\": \"spades-5\",\n        \"suit\": \"spades\",\n        \"rank\": 5\n      },\n      {\n        \"id\": \"spades-6\",\n        \"suit\": \"spades\",\n        \"rank\": 6\n      },\n      {\n        \"id\": \"spades-7\",\n        \"suit\": \"spades\",\n        \"rank\": 7\n      },\n      {\n        \"id\": \"spades-8\",\n        \"suit\": \"spades\",\n        \"rank\": 8\n      },\n      {\n        \"id\": \"spades-9\",\n        \"suit\": \"spades\",\n        \"rank\": 9\n      },\n      {\n        \"id\": \"spades-10\",\n        \"suit\": \"spades\",\n        \"rank\": 10\n      },\n      {\n        \"id\": \"spades-11\",\n        \"suit\": \"spades\",\n        \"rank\": 11\n      },\n      {\n        \"id\": \"spades-12\",\n        \"suit\": \"spades\",\n        \"rank\": 12\n      },\n      {\n        \"id\": \"spades-13\",\n        \"suit\": \"spades\",\n        \"rank\": 13\n      },\n      {\n        \"id\": \"spades-14\",\n        \"suit\": \"spades\",\n        \"rank\": 14\n      },\n      {\n        \"id\": \"hearts-2\",\n        \"suit\": \"hearts\",\n        \"rank\": 2\n      },\n      {\n        \"id\": \"hearts-3\",\n        \"suit\": \"hearts\",\n        \"rank\": 3\n      },\n      {\n        \"id\": \"hearts-4\",\n        \"suit\": \"hearts\",\n        \"rank\": 4\n      },\n      {\n        \"id\": \"hearts-5\",\n        \"suit\": \"hearts\",\n        \"rank\": 5\n      },\n      {\n        \"id\": \"hearts-6\",\n        \"suit\": \"hearts\",\n        \"rank\": 6\n      },\n      {\n        \"id\": \"hearts-7\",\n        \"suit\": \"hearts\",\n        \"rank\": 7\n      },\n      {\n        \"id\": \"hearts-8\",\n        \"suit\": \"hearts\",\n        \"rank\": 8\n      },\n      {\n        \"id\": \"hearts-9\",\n        \"suit\": \"hearts\",\n        \"rank\": 9\n      },\n      {\n        \"id\": \"hearts-10\",\n        \"suit\": \"hearts\",\n        \"rank\": 10\n      },\n      {\n        \"id\": \"hearts-11\",\n        \"suit\": \"hearts\",\n        \"rank\": 11\n      },\n      {\n        \"id\": \"hearts-12\",\n        \"suit\": \"hearts\",\n        \"rank\": 12\n      },\n      {\n        \"id\": \"hearts-13\",\n        \"suit\": \"hearts\",\n        \"rank\": 13\n      },\n      {\n        \"id\": \"hearts-14\",\n        \"suit\": \"hearts\",\n        \"rank\": 14\n      },\n      {\n        \"id\": \"clubs-2\",\n        \"suit\": \"clubs\",\n        \"rank\": 2\n      },\n      {\n        \"id\": \"clubs-3\",\n        \"suit\": \"clubs\",\n        \"rank\": 3\n      },\n      {\n        \"id\": \"clubs-4\",\n        \"suit\": \"clubs\",\n        \"rank\": 4\n      },\n      {\n        \"id\": \"clubs-5\",\n        \"suit\": \"clubs\",\n        \"rank\": 5\n      },\n      {\n        \"id\": \"clubs-6\",\n        \"suit\": \"clubs\",\n        \"rank\": 6\n      },\n      {\n        \"id\": \"clubs-7\",\n        \"suit\": \"clubs\",\n        \"rank\": 7\n      },\n      {\n        \"id\": \"clubs-8\",\n        \"suit\": \"clubs\",\n        \"rank\": 8\n      },\n      {\n        \"id\": \"clubs-9\",\n        \"suit\": \"clubs\",\n        \"rank\": 9\n      },\n      {\n        \"id\": \"clubs-10\",\n        \"suit\": \"clubs\",\n        \"rank\": 10\n      },\n      {\n        \"id\": \"clubs-11\",\n        \"suit\": \"clubs\",\n        \"rank\": 11\n      },\n      {\n        \"id\": \"clubs-12\",\n        \"suit\": \"clubs\",\n        \"rank\": 12\n      },\n      {\n        \"id\": \"clubs-13\",\n        \"suit\": \"clubs\",\n        \"rank\": 13\n      },\n      {\n        \"id\": \"clubs-14\",\n        \"suit\": \"clubs\",\n        \"rank\": 14\n      },\n      {\n        \"id\": \"diamonds-2\",\n        \"suit\": \"diamonds\",\n        \"rank\": 2\n      },\n      {\n        \"id\": \"diamonds-3\",\n        \"suit\": \"diamonds\",\n        \"rank\": 3\n      },\n      {\n        \"id\": \"diamonds-4\",\n        \"suit\": \"diamonds\",\n        \"rank\": 4\n      },\n      {\n        \"id\": \"diamonds-5\",\n        \"suit\": \"diamonds\",\n        \"rank\": 5\n      },\n      {\n        \"id\": \"diamonds-6\",\n        \"suit\": \"diamonds\",\n        \"rank\": 6\n      },\n      {\n        \"id\": \"diamonds-7\",\n        \"suit\": \"diamonds\",\n        \"rank\": 7\n      },\n      {\n        \"id\": \"diamonds-8\",\n        \"suit\": \"diamonds\",\n        \"rank\": 8\n      },\n      {\n        \"id\": \"diamonds-9\",\n        \"suit\": \"diamonds\",\n        \"rank\": 9\n      },\n      {\n        \"id\": \"diamonds-10\",\n        \"suit\": \"diamonds\",\n        \"rank\": 10\n      },\n      {\n        \"id\": \"diamonds-11\",\n        \"suit\": \"diamonds\",\n        \"rank\": 11\n      },\n      {\n        \"id\": \"diamonds-12\",\n        \"suit\": \"diamonds\",\n        \"rank\": 12\n      },\n      {\n        \"id\": \"diamonds-13\",\n        \"suit\": \"diamonds\",\n        \"rank\": 13\n      },\n      {\n        \"id\": \"diamonds-14\",\n        \"suit\": \"diamonds\",\n        \"rank\": 14\n      }\n    ],\n    \"drawPile\": [\n      \"spades-2\",\n      \"spades-3\",\n      \"spades-4\",\n      \"spades-5\",\n      \"spades-6\",\n      \"spades-7\",\n      \"spades-8\",\n      \"spades-9\",\n      \"spades-10\",\n      \"spades-11\",\n      \"spades-12\",\n      \"spades-13\",\n      \"spades-14\",\n      \"hearts-2\",\n      \"hearts-3\",\n      \"hearts-4\",\n      \"hearts-5\",\n      \"hearts-6\",\n      \"hearts-7\",\n      \"hearts-8\",\n      \"hearts-9\",\n      \"hearts-10\",\n      \"hearts-11\",\n      \"hearts-12\",\n      \"hearts-13\",\n      \"hearts-14\",\n      \"clubs-2\",\n      \"clubs-3\",\n      \"clubs-4\",\n      \"clubs-5\",\n      \"clubs-6\",\n      \"clubs-7\",\n      \"clubs-8\",\n      \"clubs-9\",\n      \"clubs-10\",\n      \"clubs-11\",\n      \"clubs-12\",\n      \"clubs-13\",\n      \"clubs-14\",\n      \"diamonds-2\",\n      \"diamonds-3\",\n      \"diamonds-4\",\n      \"diamonds-5\",\n      \"diamonds-6\",\n      \"diamonds-7\",\n      \"diamonds-8\",\n      \"diamonds-9\",\n      \"diamonds-10\",\n      \"diamonds-11\",\n      \"diamonds-12\",\n      \"diamonds-13\",\n      \"diamonds-14\"\n    ],\n    \"handOrder\": [],\n    \"playedPile\": [],\n    \"discardPile\": [],\n    \"destroyedIds\": [],\n    \"stage\": null,\n    \"totalHeat\": \"0\",\n    \"gold\": 4,\n    \"jokers\": [],\n    \"consumables\": [],\n    \"longTermItems\": [],\n    \"program\": null,\n    \"boss\": {\n      \"definitionId\": \"B04\",\n      \"disabledSuit\": null\n    },\n    \"seenBossIds\": [\n      \"B04\"\n    ],\n    \"chapterSkipConsumable\": \"T06\",\n    \"purchaseCoupons\": 0,\n    \"safetyNetUsed\": false,\n    \"shop\": {\n      \"visitIndex\": 0,\n      \"rerollCount\": 1,\n      \"purchases\": 0,\n      \"soldJoker\": false,\n      \"freeRerolls\": 0,\n      \"offers\": [\n        {\n          \"offerId\": \"controlled/quantity-copy/a03/shop/0/1/joker/0\",\n          \"definitionId\": \"a03\",\n          \"price\": 4,\n          \"consumed\": false\n        },\n        {\n          \"offerId\": \"controlled/quantity-copy/a03/shop/0/1/joker/1\",\n          \"definitionId\": \"e10\",\n          \"price\": 6,\n          \"edition\": \"none\",\n          \"consumed\": false\n        },\n        {\n          \"offerId\": \"controlled/quantity-copy/a03/shop/0/1/joker/2\",\n          \"definitionId\": \"b12\",\n          \"price\": 8,\n          \"edition\": \"none\",\n          \"consumed\": false\n        }\n      ],\n      \"toolOffers\": [\n        {\n          \"offerId\": \"controlled/quantity-copy/a03/shop/0/1/tool/0\",\n          \"definitionId\": \"T17\",\n          \"price\": 4,\n          \"consumed\": false\n        }\n      ],\n      \"itemOffers\": [\n        {\n          \"offerId\": \"controlled/quantity-copy/a03/shop/0/0/item/0\",\n          \"definitionId\": \"U10\",\n          \"price\": 10,\n          \"consumed\": false\n        }\n      ],\n      \"basicChoice\": {\n        \"shopSeq\": 1,\n        \"purchase\": null\n      }\n    },\n    \"spectralModifiers\": {\n      \"handsPenalty\": 0,\n      \"handPenalty\": 0,\n      \"cleanSlateBonus\": 0\n    },\n    \"supplyRewardClaimed\": false,\n    \"chapterHandUsage\": {},\n    \"normalClearClaimed\": false,\n    \"tourMode\": \"normal\",\n    \"normalCompletion\": null,\n    \"rng\": {\n      \"deck\": {\n        \"algorithm\": \"fnv1a-mulberry32-v1\",\n        \"state\": 2113637367\n      },\n      \"rule\": {\n        \"algorithm\": \"fnv1a-mulberry32-v1\",\n        \"state\": 3537812457\n      },\n      \"shop\": {\n        \"algorithm\": \"fnv1a-mulberry32-v1\",\n        \"state\": 1265312557\n      },\n      \"reward\": {\n        \"algorithm\": \"fnv1a-mulberry32-v1\",\n        \"state\": 1728473242\n      },\n      \"program\": {\n        \"algorithm\": \"fnv1a-mulberry32-v1\",\n        \"state\": 1756164828\n      },\n      \"challenge\": {\n        \"algorithm\": \"fnv1a-mulberry32-v1\",\n        \"state\": 1020950737\n      }\n    },\n    \"receipts\": [\n      {\n        \"commandId\": \"controlled/quantity-copy/a03/start\",\n        \"fingerprint\": \"json-fnv-v1:e877c60e2e7b852a\",\n        \"seq\": 1\n      },\n      {\n        \"commandId\": \"controlled/reroll\",\n        \"fingerprint\": \"json-fnv-v1:6ea8844dfc533941\",\n        \"seq\": 2\n      }\n    ],\n    \"lastTrace\": null,\n    \"handLevels\": {},\n    \"outcome\": null\n  },\n  \"journalBaseSeq\": 2,\n  \"journal\": [],\n  \"checksum\": \"json-fnv-v1:26c9ea2406dbc810\"\n}",
+    "storage": [
+      {
+        "key": "meta",
+        "value": {
+          "revision": 2,
+          "slotKey": "r2:json-fnv-v1:69c29f5cd54bb160:standard:none:d0:program-off"
+        }
+      },
+      {
+        "key": "r2:json-fnv-v1:69c29f5cd54bb160:standard:none:d0:program-off",
+        "value": {
+          "current": {
+            "format": "dachoupai-checkpoint",
+            "formatVersion": 1,
+            "state": {
+              "schemaVersion": 2,
+              "rulesVersion": "r2",
+              "contentVersion": "quality-r2-basic-suit-choice-v1",
+              "contentHash": "json-fnv-v1:69c29f5cd54bb160",
+              "runId": "controlled/quantity-copy/a03",
+              "seed": "quantity-copy/a03",
+              "commandSeq": 2,
+              "difficulty": 0,
+              "characterId": "erxiang",
+              "openingRoute": "straight",
+              "openingShow": {
+                "handsScored": 0,
+                "rootId": null,
+                "eventId": null,
+                "reason": null
+              },
+              "routeStarter": {
+                "instanceId": null,
+                "rootId": null,
+                "eventId": null
+              },
+              "mode": "standard",
+              "challengeId": null,
+              "programsEnabled": false,
+              "programRerollCoupon": false,
+              "chapterDisabledJokerId": null,
+              "chapter": 1,
+              "stageIndex": 0,
+              "phase": "shop",
+              "deckInstances": [
+                {
+                  "id": "spades-2",
+                  "suit": "spades",
+                  "rank": 2
+                },
+                {
+                  "id": "spades-3",
+                  "suit": "spades",
+                  "rank": 3
+                },
+                {
+                  "id": "spades-4",
+                  "suit": "spades",
+                  "rank": 4
+                },
+                {
+                  "id": "spades-5",
+                  "suit": "spades",
+                  "rank": 5
+                },
+                {
+                  "id": "spades-6",
+                  "suit": "spades",
+                  "rank": 6
+                },
+                {
+                  "id": "spades-7",
+                  "suit": "spades",
+                  "rank": 7
+                },
+                {
+                  "id": "spades-8",
+                  "suit": "spades",
+                  "rank": 8
+                },
+                {
+                  "id": "spades-9",
+                  "suit": "spades",
+                  "rank": 9
+                },
+                {
+                  "id": "spades-10",
+                  "suit": "spades",
+                  "rank": 10
+                },
+                {
+                  "id": "spades-11",
+                  "suit": "spades",
+                  "rank": 11
+                },
+                {
+                  "id": "spades-12",
+                  "suit": "spades",
+                  "rank": 12
+                },
+                {
+                  "id": "spades-13",
+                  "suit": "spades",
+                  "rank": 13
+                },
+                {
+                  "id": "spades-14",
+                  "suit": "spades",
+                  "rank": 14
+                },
+                {
+                  "id": "hearts-2",
+                  "suit": "hearts",
+                  "rank": 2
+                },
+                {
+                  "id": "hearts-3",
+                  "suit": "hearts",
+                  "rank": 3
+                },
+                {
+                  "id": "hearts-4",
+                  "suit": "hearts",
+                  "rank": 4
+                },
+                {
+                  "id": "hearts-5",
+                  "suit": "hearts",
+                  "rank": 5
+                },
+                {
+                  "id": "hearts-6",
+                  "suit": "hearts",
+                  "rank": 6
+                },
+                {
+                  "id": "hearts-7",
+                  "suit": "hearts",
+                  "rank": 7
+                },
+                {
+                  "id": "hearts-8",
+                  "suit": "hearts",
+                  "rank": 8
+                },
+                {
+                  "id": "hearts-9",
+                  "suit": "hearts",
+                  "rank": 9
+                },
+                {
+                  "id": "hearts-10",
+                  "suit": "hearts",
+                  "rank": 10
+                },
+                {
+                  "id": "hearts-11",
+                  "suit": "hearts",
+                  "rank": 11
+                },
+                {
+                  "id": "hearts-12",
+                  "suit": "hearts",
+                  "rank": 12
+                },
+                {
+                  "id": "hearts-13",
+                  "suit": "hearts",
+                  "rank": 13
+                },
+                {
+                  "id": "hearts-14",
+                  "suit": "hearts",
+                  "rank": 14
+                },
+                {
+                  "id": "clubs-2",
+                  "suit": "clubs",
+                  "rank": 2
+                },
+                {
+                  "id": "clubs-3",
+                  "suit": "clubs",
+                  "rank": 3
+                },
+                {
+                  "id": "clubs-4",
+                  "suit": "clubs",
+                  "rank": 4
+                },
+                {
+                  "id": "clubs-5",
+                  "suit": "clubs",
+                  "rank": 5
+                },
+                {
+                  "id": "clubs-6",
+                  "suit": "clubs",
+                  "rank": 6
+                },
+                {
+                  "id": "clubs-7",
+                  "suit": "clubs",
+                  "rank": 7
+                },
+                {
+                  "id": "clubs-8",
+                  "suit": "clubs",
+                  "rank": 8
+                },
+                {
+                  "id": "clubs-9",
+                  "suit": "clubs",
+                  "rank": 9
+                },
+                {
+                  "id": "clubs-10",
+                  "suit": "clubs",
+                  "rank": 10
+                },
+                {
+                  "id": "clubs-11",
+                  "suit": "clubs",
+                  "rank": 11
+                },
+                {
+                  "id": "clubs-12",
+                  "suit": "clubs",
+                  "rank": 12
+                },
+                {
+                  "id": "clubs-13",
+                  "suit": "clubs",
+                  "rank": 13
+                },
+                {
+                  "id": "clubs-14",
+                  "suit": "clubs",
+                  "rank": 14
+                },
+                {
+                  "id": "diamonds-2",
+                  "suit": "diamonds",
+                  "rank": 2
+                },
+                {
+                  "id": "diamonds-3",
+                  "suit": "diamonds",
+                  "rank": 3
+                },
+                {
+                  "id": "diamonds-4",
+                  "suit": "diamonds",
+                  "rank": 4
+                },
+                {
+                  "id": "diamonds-5",
+                  "suit": "diamonds",
+                  "rank": 5
+                },
+                {
+                  "id": "diamonds-6",
+                  "suit": "diamonds",
+                  "rank": 6
+                },
+                {
+                  "id": "diamonds-7",
+                  "suit": "diamonds",
+                  "rank": 7
+                },
+                {
+                  "id": "diamonds-8",
+                  "suit": "diamonds",
+                  "rank": 8
+                },
+                {
+                  "id": "diamonds-9",
+                  "suit": "diamonds",
+                  "rank": 9
+                },
+                {
+                  "id": "diamonds-10",
+                  "suit": "diamonds",
+                  "rank": 10
+                },
+                {
+                  "id": "diamonds-11",
+                  "suit": "diamonds",
+                  "rank": 11
+                },
+                {
+                  "id": "diamonds-12",
+                  "suit": "diamonds",
+                  "rank": 12
+                },
+                {
+                  "id": "diamonds-13",
+                  "suit": "diamonds",
+                  "rank": 13
+                },
+                {
+                  "id": "diamonds-14",
+                  "suit": "diamonds",
+                  "rank": 14
+                }
+              ],
+              "drawPile": [
+                "spades-2",
+                "spades-3",
+                "spades-4",
+                "spades-5",
+                "spades-6",
+                "spades-7",
+                "spades-8",
+                "spades-9",
+                "spades-10",
+                "spades-11",
+                "spades-12",
+                "spades-13",
+                "spades-14",
+                "hearts-2",
+                "hearts-3",
+                "hearts-4",
+                "hearts-5",
+                "hearts-6",
+                "hearts-7",
+                "hearts-8",
+                "hearts-9",
+                "hearts-10",
+                "hearts-11",
+                "hearts-12",
+                "hearts-13",
+                "hearts-14",
+                "clubs-2",
+                "clubs-3",
+                "clubs-4",
+                "clubs-5",
+                "clubs-6",
+                "clubs-7",
+                "clubs-8",
+                "clubs-9",
+                "clubs-10",
+                "clubs-11",
+                "clubs-12",
+                "clubs-13",
+                "clubs-14",
+                "diamonds-2",
+                "diamonds-3",
+                "diamonds-4",
+                "diamonds-5",
+                "diamonds-6",
+                "diamonds-7",
+                "diamonds-8",
+                "diamonds-9",
+                "diamonds-10",
+                "diamonds-11",
+                "diamonds-12",
+                "diamonds-13",
+                "diamonds-14"
+              ],
+              "handOrder": [],
+              "playedPile": [],
+              "discardPile": [],
+              "destroyedIds": [],
+              "stage": null,
+              "totalHeat": "0",
+              "gold": 4,
+              "jokers": [],
+              "consumables": [],
+              "longTermItems": [],
+              "program": null,
+              "boss": {
+                "definitionId": "B04",
+                "disabledSuit": null
+              },
+              "seenBossIds": [
+                "B04"
+              ],
+              "chapterSkipConsumable": "T06",
+              "purchaseCoupons": 0,
+              "safetyNetUsed": false,
+              "shop": {
+                "visitIndex": 0,
+                "rerollCount": 1,
+                "purchases": 0,
+                "soldJoker": false,
+                "freeRerolls": 0,
+                "offers": [
+                  {
+                    "offerId": "controlled/quantity-copy/a03/shop/0/1/joker/0",
+                    "definitionId": "a03",
+                    "price": 4,
+                    "consumed": false
+                  },
+                  {
+                    "offerId": "controlled/quantity-copy/a03/shop/0/1/joker/1",
+                    "definitionId": "e10",
+                    "price": 6,
+                    "edition": "none",
+                    "consumed": false
+                  },
+                  {
+                    "offerId": "controlled/quantity-copy/a03/shop/0/1/joker/2",
+                    "definitionId": "b12",
+                    "price": 8,
+                    "edition": "none",
+                    "consumed": false
+                  }
+                ],
+                "toolOffers": [
+                  {
+                    "offerId": "controlled/quantity-copy/a03/shop/0/1/tool/0",
+                    "definitionId": "T17",
+                    "price": 4,
+                    "consumed": false
+                  }
+                ],
+                "itemOffers": [
+                  {
+                    "offerId": "controlled/quantity-copy/a03/shop/0/0/item/0",
+                    "definitionId": "U10",
+                    "price": 10,
+                    "consumed": false
+                  }
+                ],
+                "basicChoice": {
+                  "shopSeq": 1,
+                  "purchase": null
+                }
+              },
+              "spectralModifiers": {
+                "handsPenalty": 0,
+                "handPenalty": 0,
+                "cleanSlateBonus": 0
+              },
+              "supplyRewardClaimed": false,
+              "chapterHandUsage": {},
+              "normalClearClaimed": false,
+              "tourMode": "normal",
+              "normalCompletion": null,
+              "rng": {
+                "deck": {
+                  "algorithm": "fnv1a-mulberry32-v1",
+                  "state": 2113637367
+                },
+                "rule": {
+                  "algorithm": "fnv1a-mulberry32-v1",
+                  "state": 3537812457
+                },
+                "shop": {
+                  "algorithm": "fnv1a-mulberry32-v1",
+                  "state": 1265312557
+                },
+                "reward": {
+                  "algorithm": "fnv1a-mulberry32-v1",
+                  "state": 1728473242
+                },
+                "program": {
+                  "algorithm": "fnv1a-mulberry32-v1",
+                  "state": 1756164828
+                },
+                "challenge": {
+                  "algorithm": "fnv1a-mulberry32-v1",
+                  "state": 1020950737
+                }
+              },
+              "receipts": [
+                {
+                  "commandId": "controlled/quantity-copy/a03/start",
+                  "fingerprint": "json-fnv-v1:e877c60e2e7b852a",
+                  "seq": 1
+                },
+                {
+                  "commandId": "controlled/reroll",
+                  "fingerprint": "json-fnv-v1:6ea8844dfc533941",
+                  "seq": 2
+                }
+              ],
+              "lastTrace": null,
+              "handLevels": {},
+              "outcome": null
+            },
+            "journalBaseSeq": 2,
+            "journal": [],
+            "checksum": "json-fnv-v1:26c9ea2406dbc810"
+          },
+          "previous": null
+        }
+      },
+      {
+        "key": "r2:json-fnv-v1:69c29f5cd54bb160:standard:none:d0:program-on",
+        "value": {
+          "current": {
+            "format": "dachoupai-checkpoint",
+            "formatVersion": 1,
+            "state": {
+              "schemaVersion": 2,
+              "rulesVersion": "r2",
+              "contentVersion": "quality-r2-basic-suit-choice-v1",
+              "contentHash": "json-fnv-v1:69c29f5cd54bb160",
+              "runId": "run/1791707208231/erxiang",
+              "seed": "1791707208231",
+              "commandSeq": 1,
+              "difficulty": 0,
+              "characterId": "erxiang",
+              "openingRoute": "straight",
+              "openingShow": {
+                "handsScored": 0,
+                "rootId": null,
+                "eventId": null,
+                "reason": null
+              },
+              "routeStarter": {
+                "instanceId": null,
+                "rootId": null,
+                "eventId": null
+              },
+              "mode": "standard",
+              "challengeId": null,
+              "programsEnabled": true,
+              "programRerollCoupon": false,
+              "chapterDisabledJokerId": null,
+              "chapter": 1,
+              "stageIndex": 0,
+              "phase": "shop",
+              "deckInstances": [
+                {
+                  "id": "spades-2",
+                  "suit": "spades",
+                  "rank": 2
+                },
+                {
+                  "id": "spades-3",
+                  "suit": "spades",
+                  "rank": 3
+                },
+                {
+                  "id": "spades-4",
+                  "suit": "spades",
+                  "rank": 4
+                },
+                {
+                  "id": "spades-5",
+                  "suit": "spades",
+                  "rank": 5
+                },
+                {
+                  "id": "spades-6",
+                  "suit": "spades",
+                  "rank": 6
+                },
+                {
+                  "id": "spades-7",
+                  "suit": "spades",
+                  "rank": 7
+                },
+                {
+                  "id": "spades-8",
+                  "suit": "spades",
+                  "rank": 8
+                },
+                {
+                  "id": "spades-9",
+                  "suit": "spades",
+                  "rank": 9
+                },
+                {
+                  "id": "spades-10",
+                  "suit": "spades",
+                  "rank": 10
+                },
+                {
+                  "id": "spades-11",
+                  "suit": "spades",
+                  "rank": 11
+                },
+                {
+                  "id": "spades-12",
+                  "suit": "spades",
+                  "rank": 12
+                },
+                {
+                  "id": "spades-13",
+                  "suit": "spades",
+                  "rank": 13
+                },
+                {
+                  "id": "spades-14",
+                  "suit": "spades",
+                  "rank": 14
+                },
+                {
+                  "id": "hearts-2",
+                  "suit": "hearts",
+                  "rank": 2
+                },
+                {
+                  "id": "hearts-3",
+                  "suit": "hearts",
+                  "rank": 3
+                },
+                {
+                  "id": "hearts-4",
+                  "suit": "hearts",
+                  "rank": 4
+                },
+                {
+                  "id": "hearts-5",
+                  "suit": "hearts",
+                  "rank": 5
+                },
+                {
+                  "id": "hearts-6",
+                  "suit": "hearts",
+                  "rank": 6
+                },
+                {
+                  "id": "hearts-7",
+                  "suit": "hearts",
+                  "rank": 7
+                },
+                {
+                  "id": "hearts-8",
+                  "suit": "hearts",
+                  "rank": 8
+                },
+                {
+                  "id": "hearts-9",
+                  "suit": "hearts",
+                  "rank": 9
+                },
+                {
+                  "id": "hearts-10",
+                  "suit": "hearts",
+                  "rank": 10
+                },
+                {
+                  "id": "hearts-11",
+                  "suit": "hearts",
+                  "rank": 11
+                },
+                {
+                  "id": "hearts-12",
+                  "suit": "hearts",
+                  "rank": 12
+                },
+                {
+                  "id": "hearts-13",
+                  "suit": "hearts",
+                  "rank": 13
+                },
+                {
+                  "id": "hearts-14",
+                  "suit": "hearts",
+                  "rank": 14
+                },
+                {
+                  "id": "clubs-2",
+                  "suit": "clubs",
+                  "rank": 2
+                },
+                {
+                  "id": "clubs-3",
+                  "suit": "clubs",
+                  "rank": 3
+                },
+                {
+                  "id": "clubs-4",
+                  "suit": "clubs",
+                  "rank": 4
+                },
+                {
+                  "id": "clubs-5",
+                  "suit": "clubs",
+                  "rank": 5
+                },
+                {
+                  "id": "clubs-6",
+                  "suit": "clubs",
+                  "rank": 6
+                },
+                {
+                  "id": "clubs-7",
+                  "suit": "clubs",
+                  "rank": 7
+                },
+                {
+                  "id": "clubs-8",
+                  "suit": "clubs",
+                  "rank": 8
+                },
+                {
+                  "id": "clubs-9",
+                  "suit": "clubs",
+                  "rank": 9
+                },
+                {
+                  "id": "clubs-10",
+                  "suit": "clubs",
+                  "rank": 10
+                },
+                {
+                  "id": "clubs-11",
+                  "suit": "clubs",
+                  "rank": 11
+                },
+                {
+                  "id": "clubs-12",
+                  "suit": "clubs",
+                  "rank": 12
+                },
+                {
+                  "id": "clubs-13",
+                  "suit": "clubs",
+                  "rank": 13
+                },
+                {
+                  "id": "clubs-14",
+                  "suit": "clubs",
+                  "rank": 14
+                },
+                {
+                  "id": "diamonds-2",
+                  "suit": "diamonds",
+                  "rank": 2
+                },
+                {
+                  "id": "diamonds-3",
+                  "suit": "diamonds",
+                  "rank": 3
+                },
+                {
+                  "id": "diamonds-4",
+                  "suit": "diamonds",
+                  "rank": 4
+                },
+                {
+                  "id": "diamonds-5",
+                  "suit": "diamonds",
+                  "rank": 5
+                },
+                {
+                  "id": "diamonds-6",
+                  "suit": "diamonds",
+                  "rank": 6
+                },
+                {
+                  "id": "diamonds-7",
+                  "suit": "diamonds",
+                  "rank": 7
+                },
+                {
+                  "id": "diamonds-8",
+                  "suit": "diamonds",
+                  "rank": 8
+                },
+                {
+                  "id": "diamonds-9",
+                  "suit": "diamonds",
+                  "rank": 9
+                },
+                {
+                  "id": "diamonds-10",
+                  "suit": "diamonds",
+                  "rank": 10
+                },
+                {
+                  "id": "diamonds-11",
+                  "suit": "diamonds",
+                  "rank": 11
+                },
+                {
+                  "id": "diamonds-12",
+                  "suit": "diamonds",
+                  "rank": 12
+                },
+                {
+                  "id": "diamonds-13",
+                  "suit": "diamonds",
+                  "rank": 13
+                },
+                {
+                  "id": "diamonds-14",
+                  "suit": "diamonds",
+                  "rank": 14
+                }
+              ],
+              "drawPile": [
+                "spades-2",
+                "spades-3",
+                "spades-4",
+                "spades-5",
+                "spades-6",
+                "spades-7",
+                "spades-8",
+                "spades-9",
+                "spades-10",
+                "spades-11",
+                "spades-12",
+                "spades-13",
+                "spades-14",
+                "hearts-2",
+                "hearts-3",
+                "hearts-4",
+                "hearts-5",
+                "hearts-6",
+                "hearts-7",
+                "hearts-8",
+                "hearts-9",
+                "hearts-10",
+                "hearts-11",
+                "hearts-12",
+                "hearts-13",
+                "hearts-14",
+                "clubs-2",
+                "clubs-3",
+                "clubs-4",
+                "clubs-5",
+                "clubs-6",
+                "clubs-7",
+                "clubs-8",
+                "clubs-9",
+                "clubs-10",
+                "clubs-11",
+                "clubs-12",
+                "clubs-13",
+                "clubs-14",
+                "diamonds-2",
+                "diamonds-3",
+                "diamonds-4",
+                "diamonds-5",
+                "diamonds-6",
+                "diamonds-7",
+                "diamonds-8",
+                "diamonds-9",
+                "diamonds-10",
+                "diamonds-11",
+                "diamonds-12",
+                "diamonds-13",
+                "diamonds-14"
+              ],
+              "handOrder": [],
+              "playedPile": [],
+              "discardPile": [],
+              "destroyedIds": [],
+              "stage": null,
+              "totalHeat": "0",
+              "gold": 6,
+              "jokers": [],
+              "consumables": [],
+              "longTermItems": [],
+              "program": {
+                "chapter": 1,
+                "offerIds": [
+                  "PG01",
+                  "PG04"
+                ],
+                "selectedId": null,
+                "choiceMade": false,
+                "abandoned": false,
+                "lastOpportunityClear": false,
+                "claimed": false
+              },
+              "boss": {
+                "definitionId": "B04",
+                "disabledSuit": null
+              },
+              "seenBossIds": [
+                "B04"
+              ],
+              "chapterSkipConsumable": "T17",
+              "purchaseCoupons": 0,
+              "safetyNetUsed": false,
+              "shop": {
+                "visitIndex": 0,
+                "rerollCount": 0,
+                "purchases": 0,
+                "soldJoker": false,
+                "freeRerolls": 0,
+                "offers": [
+                  {
+                    "offerId": "run/1791707208231/erxiang/shop/0/0/joker/0",
+                    "definitionId": "d12",
+                    "price": 6,
+                    "edition": "none",
+                    "consumed": false
+                  },
+                  {
+                    "offerId": "run/1791707208231/erxiang/shop/0/0/joker/1",
+                    "definitionId": "b06",
+                    "price": 13,
+                    "edition": "polychrome",
+                    "consumed": false
+                  },
+                  {
+                    "offerId": "run/1791707208231/erxiang/shop/0/0/joker/2",
+                    "definitionId": "c04",
+                    "price": 4,
+                    "edition": "none",
+                    "consumed": false
+                  }
+                ],
+                "toolOffers": [
+                  {
+                    "offerId": "run/1791707208231/erxiang/shop/0/0/tool/0",
+                    "definitionId": "T13",
+                    "price": 4,
+                    "consumed": false
+                  }
+                ],
+                "itemOffers": [
+                  {
+                    "offerId": "run/1791707208231/erxiang/shop/0/0/item/0",
+                    "definitionId": "U05",
+                    "price": 12,
+                    "consumed": false
+                  }
+                ],
+                "basicChoice": {
+                  "shopSeq": 1,
+                  "purchase": null
+                }
+              },
+              "spectralModifiers": {
+                "handsPenalty": 0,
+                "handPenalty": 0,
+                "cleanSlateBonus": 0
+              },
+              "supplyRewardClaimed": false,
+              "chapterHandUsage": {},
+              "normalClearClaimed": false,
+              "tourMode": "normal",
+              "normalCompletion": null,
+              "rng": {
+                "deck": {
+                  "algorithm": "fnv1a-mulberry32-v1",
+                  "state": 4179154413
+                },
+                "rule": {
+                  "algorithm": "fnv1a-mulberry32-v1",
+                  "state": 213796811
+                },
+                "shop": {
+                  "algorithm": "fnv1a-mulberry32-v1",
+                  "state": 1845977846
+                },
+                "reward": {
+                  "algorithm": "fnv1a-mulberry32-v1",
+                  "state": 819638956
+                },
+                "program": {
+                  "algorithm": "fnv1a-mulberry32-v1",
+                  "state": 1834355376
+                },
+                "challenge": {
+                  "algorithm": "fnv1a-mulberry32-v1",
+                  "state": 2146126831
+                }
+              },
+              "receipts": [
+                {
+                  "commandId": "run/1791707208231/erxiang/start",
+                  "fingerprint": "json-fnv-v1:a6320a6170f80f2d",
+                  "seq": 1
+                }
+              ],
+              "lastTrace": null,
+              "handLevels": {},
+              "outcome": null
+            },
+            "journalBaseSeq": 1,
+            "journal": [],
+            "checksum": "json-fnv-v1:ecc3d5cff187ba0b"
+          },
+          "previous": null
+        }
+      }
+    ]
+  },
+  "final": {
+    "state": {
+      "schemaVersion": 2,
+      "rulesVersion": "r2",
+      "contentVersion": "quality-r2-basic-suit-choice-v1",
+      "contentHash": "json-fnv-v1:69c29f5cd54bb160",
+      "runId": "controlled/quantity-copy/a03",
+      "seed": "quantity-copy/a03",
+      "commandSeq": 2,
+      "difficulty": 0,
+      "characterId": "erxiang",
+      "openingRoute": "straight",
+      "openingShow": {
+        "handsScored": 0,
+        "rootId": null,
+        "eventId": null,
+        "reason": null
+      },
+      "routeStarter": {
+        "instanceId": null,
+        "rootId": null,
+        "eventId": null
+      },
+      "mode": "standard",
+      "challengeId": null,
+      "programsEnabled": false,
+      "programRerollCoupon": false,
+      "chapterDisabledJokerId": null,
+      "chapter": 1,
+      "stageIndex": 0,
+      "phase": "shop",
+      "deckInstances": [
+        {
+          "id": "spades-2",
+          "suit": "spades",
+          "rank": 2
+        },
+        {
+          "id": "spades-3",
+          "suit": "spades",
+          "rank": 3
+        },
+        {
+          "id": "spades-4",
+          "suit": "spades",
+          "rank": 4
+        },
+        {
+          "id": "spades-5",
+          "suit": "spades",
+          "rank": 5
+        },
+        {
+          "id": "spades-6",
+          "suit": "spades",
+          "rank": 6
+        },
+        {
+          "id": "spades-7",
+          "suit": "spades",
+          "rank": 7
+        },
+        {
+          "id": "spades-8",
+          "suit": "spades",
+          "rank": 8
+        },
+        {
+          "id": "spades-9",
+          "suit": "spades",
+          "rank": 9
+        },
+        {
+          "id": "spades-10",
+          "suit": "spades",
+          "rank": 10
+        },
+        {
+          "id": "spades-11",
+          "suit": "spades",
+          "rank": 11
+        },
+        {
+          "id": "spades-12",
+          "suit": "spades",
+          "rank": 12
+        },
+        {
+          "id": "spades-13",
+          "suit": "spades",
+          "rank": 13
+        },
+        {
+          "id": "spades-14",
+          "suit": "spades",
+          "rank": 14
+        },
+        {
+          "id": "hearts-2",
+          "suit": "hearts",
+          "rank": 2
+        },
+        {
+          "id": "hearts-3",
+          "suit": "hearts",
+          "rank": 3
+        },
+        {
+          "id": "hearts-4",
+          "suit": "hearts",
+          "rank": 4
+        },
+        {
+          "id": "hearts-5",
+          "suit": "hearts",
+          "rank": 5
+        },
+        {
+          "id": "hearts-6",
+          "suit": "hearts",
+          "rank": 6
+        },
+        {
+          "id": "hearts-7",
+          "suit": "hearts",
+          "rank": 7
+        },
+        {
+          "id": "hearts-8",
+          "suit": "hearts",
+          "rank": 8
+        },
+        {
+          "id": "hearts-9",
+          "suit": "hearts",
+          "rank": 9
+        },
+        {
+          "id": "hearts-10",
+          "suit": "hearts",
+          "rank": 10
+        },
+        {
+          "id": "hearts-11",
+          "suit": "hearts",
+          "rank": 11
+        },
+        {
+          "id": "hearts-12",
+          "suit": "hearts",
+          "rank": 12
+        },
+        {
+          "id": "hearts-13",
+          "suit": "hearts",
+          "rank": 13
+        },
+        {
+          "id": "hearts-14",
+          "suit": "hearts",
+          "rank": 14
+        },
+        {
+          "id": "clubs-2",
+          "suit": "clubs",
+          "rank": 2
+        },
+        {
+          "id": "clubs-3",
+          "suit": "clubs",
+          "rank": 3
+        },
+        {
+          "id": "clubs-4",
+          "suit": "clubs",
+          "rank": 4
+        },
+        {
+          "id": "clubs-5",
+          "suit": "clubs",
+          "rank": 5
+        },
+        {
+          "id": "clubs-6",
+          "suit": "clubs",
+          "rank": 6
+        },
+        {
+          "id": "clubs-7",
+          "suit": "clubs",
+          "rank": 7
+        },
+        {
+          "id": "clubs-8",
+          "suit": "clubs",
+          "rank": 8
+        },
+        {
+          "id": "clubs-9",
+          "suit": "clubs",
+          "rank": 9
+        },
+        {
+          "id": "clubs-10",
+          "suit": "clubs",
+          "rank": 10
+        },
+        {
+          "id": "clubs-11",
+          "suit": "clubs",
+          "rank": 11
+        },
+        {
+          "id": "clubs-12",
+          "suit": "clubs",
+          "rank": 12
+        },
+        {
+          "id": "clubs-13",
+          "suit": "clubs",
+          "rank": 13
+        },
+        {
+          "id": "clubs-14",
+          "suit": "clubs",
+          "rank": 14
+        },
+        {
+          "id": "diamonds-2",
+          "suit": "diamonds",
+          "rank": 2
+        },
+        {
+          "id": "diamonds-3",
+          "suit": "diamonds",
+          "rank": 3
+        },
+        {
+          "id": "diamonds-4",
+          "suit": "diamonds",
+          "rank": 4
+        },
+        {
+          "id": "diamonds-5",
+          "suit": "diamonds",
+          "rank": 5
+        },
+        {
+          "id": "diamonds-6",
+          "suit": "diamonds",
+          "rank": 6
+        },
+        {
+          "id": "diamonds-7",
+          "suit": "diamonds",
+          "rank": 7
+        },
+        {
+          "id": "diamonds-8",
+          "suit": "diamonds",
+          "rank": 8
+        },
+        {
+          "id": "diamonds-9",
+          "suit": "diamonds",
+          "rank": 9
+        },
+        {
+          "id": "diamonds-10",
+          "suit": "diamonds",
+          "rank": 10
+        },
+        {
+          "id": "diamonds-11",
+          "suit": "diamonds",
+          "rank": 11
+        },
+        {
+          "id": "diamonds-12",
+          "suit": "diamonds",
+          "rank": 12
+        },
+        {
+          "id": "diamonds-13",
+          "suit": "diamonds",
+          "rank": 13
+        },
+        {
+          "id": "diamonds-14",
+          "suit": "diamonds",
+          "rank": 14
+        }
+      ],
+      "drawPile": [
+        "spades-2",
+        "spades-3",
+        "spades-4",
+        "spades-5",
+        "spades-6",
+        "spades-7",
+        "spades-8",
+        "spades-9",
+        "spades-10",
+        "spades-11",
+        "spades-12",
+        "spades-13",
+        "spades-14",
+        "hearts-2",
+        "hearts-3",
+        "hearts-4",
+        "hearts-5",
+        "hearts-6",
+        "hearts-7",
+        "hearts-8",
+        "hearts-9",
+        "hearts-10",
+        "hearts-11",
+        "hearts-12",
+        "hearts-13",
+        "hearts-14",
+        "clubs-2",
+        "clubs-3",
+        "clubs-4",
+        "clubs-5",
+        "clubs-6",
+        "clubs-7",
+        "clubs-8",
+        "clubs-9",
+        "clubs-10",
+        "clubs-11",
+        "clubs-12",
+        "clubs-13",
+        "clubs-14",
+        "diamonds-2",
+        "diamonds-3",
+        "diamonds-4",
+        "diamonds-5",
+        "diamonds-6",
+        "diamonds-7",
+        "diamonds-8",
+        "diamonds-9",
+        "diamonds-10",
+        "diamonds-11",
+        "diamonds-12",
+        "diamonds-13",
+        "diamonds-14"
+      ],
+      "handOrder": [],
+      "playedPile": [],
+      "discardPile": [],
+      "destroyedIds": [],
+      "stage": null,
+      "totalHeat": "0",
+      "gold": 4,
+      "jokers": [],
+      "consumables": [],
+      "longTermItems": [],
+      "program": null,
+      "boss": {
+        "definitionId": "B04",
+        "disabledSuit": null
+      },
+      "seenBossIds": [
+        "B04"
+      ],
+      "chapterSkipConsumable": "T06",
+      "purchaseCoupons": 0,
+      "safetyNetUsed": false,
+      "shop": {
+        "visitIndex": 0,
+        "rerollCount": 1,
+        "purchases": 0,
+        "soldJoker": false,
+        "freeRerolls": 0,
+        "offers": [
+          {
+            "offerId": "controlled/quantity-copy/a03/shop/0/1/joker/0",
+            "definitionId": "a03",
+            "price": 4,
+            "consumed": false
+          },
+          {
+            "offerId": "controlled/quantity-copy/a03/shop/0/1/joker/1",
+            "definitionId": "e10",
+            "price": 6,
+            "edition": "none",
+            "consumed": false
+          },
+          {
+            "offerId": "controlled/quantity-copy/a03/shop/0/1/joker/2",
+            "definitionId": "b12",
+            "price": 8,
+            "edition": "none",
+            "consumed": false
+          }
+        ],
+        "toolOffers": [
+          {
+            "offerId": "controlled/quantity-copy/a03/shop/0/1/tool/0",
+            "definitionId": "T17",
+            "price": 4,
+            "consumed": false
+          }
+        ],
+        "itemOffers": [
+          {
+            "offerId": "controlled/quantity-copy/a03/shop/0/0/item/0",
+            "definitionId": "U10",
+            "price": 10,
+            "consumed": false
+          }
+        ],
+        "basicChoice": {
+          "shopSeq": 1,
+          "purchase": null
+        }
+      },
+      "spectralModifiers": {
+        "handsPenalty": 0,
+        "handPenalty": 0,
+        "cleanSlateBonus": 0
+      },
+      "supplyRewardClaimed": false,
+      "chapterHandUsage": {},
+      "normalClearClaimed": false,
+      "tourMode": "normal",
+      "normalCompletion": null,
+      "rng": {
+        "deck": {
+          "algorithm": "fnv1a-mulberry32-v1",
+          "state": 2113637367
+        },
+        "rule": {
+          "algorithm": "fnv1a-mulberry32-v1",
+          "state": 3537812457
+        },
+        "shop": {
+          "algorithm": "fnv1a-mulberry32-v1",
+          "state": 1265312557
+        },
+        "reward": {
+          "algorithm": "fnv1a-mulberry32-v1",
+          "state": 1728473242
+        },
+        "program": {
+          "algorithm": "fnv1a-mulberry32-v1",
+          "state": 1756164828
+        },
+        "challenge": {
+          "algorithm": "fnv1a-mulberry32-v1",
+          "state": 1020950737
+        }
+      },
+      "receipts": [
+        {
+          "commandId": "controlled/quantity-copy/a03/start",
+          "fingerprint": "json-fnv-v1:e877c60e2e7b852a",
+          "seq": 1
+        },
+        {
+          "commandId": "controlled/reroll",
+          "fingerprint": "json-fnv-v1:6ea8844dfc533941",
+          "seq": 2
+        }
+      ],
+      "lastTrace": null,
+      "handLevels": {},
+      "outcome": null
+    },
+    "journal": [],
+    "exportJSON": "{\n  \"format\": \"dachoupai-checkpoint\",\n  \"formatVersion\": 1,\n  \"state\": {\n    \"schemaVersion\": 2,\n    \"rulesVersion\": \"r2\",\n    \"contentVersion\": \"quality-r2-basic-suit-choice-v1\",\n    \"contentHash\": \"json-fnv-v1:69c29f5cd54bb160\",\n    \"runId\": \"controlled/quantity-copy/a03\",\n    \"seed\": \"quantity-copy/a03\",\n    \"commandSeq\": 2,\n    \"difficulty\": 0,\n    \"characterId\": \"erxiang\",\n    \"openingRoute\": \"straight\",\n    \"openingShow\": {\n      \"handsScored\": 0,\n      \"rootId\": null,\n      \"eventId\": null,\n      \"reason\": null\n    },\n    \"routeStarter\": {\n      \"instanceId\": null,\n      \"rootId\": null,\n      \"eventId\": null\n    },\n    \"mode\": \"standard\",\n    \"challengeId\": null,\n    \"programsEnabled\": false,\n    \"programRerollCoupon\": false,\n    \"chapterDisabledJokerId\": null,\n    \"chapter\": 1,\n    \"stageIndex\": 0,\n    \"phase\": \"shop\",\n    \"deckInstances\": [\n      {\n        \"id\": \"spades-2\",\n        \"suit\": \"spades\",\n        \"rank\": 2\n      },\n      {\n        \"id\": \"spades-3\",\n        \"suit\": \"spades\",\n        \"rank\": 3\n      },\n      {\n        \"id\": \"spades-4\",\n        \"suit\": \"spades\",\n        \"rank\": 4\n      },\n      {\n        \"id\": \"spades-5\",\n        \"suit\": \"spades\",\n        \"rank\": 5\n      },\n      {\n        \"id\": \"spades-6\",\n        \"suit\": \"spades\",\n        \"rank\": 6\n      },\n      {\n        \"id\": \"spades-7\",\n        \"suit\": \"spades\",\n        \"rank\": 7\n      },\n      {\n        \"id\": \"spades-8\",\n        \"suit\": \"spades\",\n        \"rank\": 8\n      },\n      {\n        \"id\": \"spades-9\",\n        \"suit\": \"spades\",\n        \"rank\": 9\n      },\n      {\n        \"id\": \"spades-10\",\n        \"suit\": \"spades\",\n        \"rank\": 10\n      },\n      {\n        \"id\": \"spades-11\",\n        \"suit\": \"spades\",\n        \"rank\": 11\n      },\n      {\n        \"id\": \"spades-12\",\n        \"suit\": \"spades\",\n        \"rank\": 12\n      },\n      {\n        \"id\": \"spades-13\",\n        \"suit\": \"spades\",\n        \"rank\": 13\n      },\n      {\n        \"id\": \"spades-14\",\n        \"suit\": \"spades\",\n        \"rank\": 14\n      },\n      {\n        \"id\": \"hearts-2\",\n        \"suit\": \"hearts\",\n        \"rank\": 2\n      },\n      {\n        \"id\": \"hearts-3\",\n        \"suit\": \"hearts\",\n        \"rank\": 3\n      },\n      {\n        \"id\": \"hearts-4\",\n        \"suit\": \"hearts\",\n        \"rank\": 4\n      },\n      {\n        \"id\": \"hearts-5\",\n        \"suit\": \"hearts\",\n        \"rank\": 5\n      },\n      {\n        \"id\": \"hearts-6\",\n        \"suit\": \"hearts\",\n        \"rank\": 6\n      },\n      {\n        \"id\": \"hearts-7\",\n        \"suit\": \"hearts\",\n        \"rank\": 7\n      },\n      {\n        \"id\": \"hearts-8\",\n        \"suit\": \"hearts\",\n        \"rank\": 8\n      },\n      {\n        \"id\": \"hearts-9\",\n        \"suit\": \"hearts\",\n        \"rank\": 9\n      },\n      {\n        \"id\": \"hearts-10\",\n        \"suit\": \"hearts\",\n        \"rank\": 10\n      },\n      {\n        \"id\": \"hearts-11\",\n        \"suit\": \"hearts\",\n        \"rank\": 11\n      },\n      {\n        \"id\": \"hearts-12\",\n        \"suit\": \"hearts\",\n        \"rank\": 12\n      },\n      {\n        \"id\": \"hearts-13\",\n        \"suit\": \"hearts\",\n        \"rank\": 13\n      },\n      {\n        \"id\": \"hearts-14\",\n        \"suit\": \"hearts\",\n        \"rank\": 14\n      },\n      {\n        \"id\": \"clubs-2\",\n        \"suit\": \"clubs\",\n        \"rank\": 2\n      },\n      {\n        \"id\": \"clubs-3\",\n        \"suit\": \"clubs\",\n        \"rank\": 3\n      },\n      {\n        \"id\": \"clubs-4\",\n        \"suit\": \"clubs\",\n        \"rank\": 4\n      },\n      {\n        \"id\": \"clubs-5\",\n        \"suit\": \"clubs\",\n        \"rank\": 5\n      },\n      {\n        \"id\": \"clubs-6\",\n        \"suit\": \"clubs\",\n        \"rank\": 6\n      },\n      {\n        \"id\": \"clubs-7\",\n        \"suit\": \"clubs\",\n        \"rank\": 7\n      },\n      {\n        \"id\": \"clubs-8\",\n        \"suit\": \"clubs\",\n        \"rank\": 8\n      },\n      {\n        \"id\": \"clubs-9\",\n        \"suit\": \"clubs\",\n        \"rank\": 9\n      },\n      {\n        \"id\": \"clubs-10\",\n        \"suit\": \"clubs\",\n        \"rank\": 10\n      },\n      {\n        \"id\": \"clubs-11\",\n        \"suit\": \"clubs\",\n        \"rank\": 11\n      },\n      {\n        \"id\": \"clubs-12\",\n        \"suit\": \"clubs\",\n        \"rank\": 12\n      },\n      {\n        \"id\": \"clubs-13\",\n        \"suit\": \"clubs\",\n        \"rank\": 13\n      },\n      {\n        \"id\": \"clubs-14\",\n        \"suit\": \"clubs\",\n        \"rank\": 14\n      },\n      {\n        \"id\": \"diamonds-2\",\n        \"suit\": \"diamonds\",\n        \"rank\": 2\n      },\n      {\n        \"id\": \"diamonds-3\",\n        \"suit\": \"diamonds\",\n        \"rank\": 3\n      },\n      {\n        \"id\": \"diamonds-4\",\n        \"suit\": \"diamonds\",\n        \"rank\": 4\n      },\n      {\n        \"id\": \"diamonds-5\",\n        \"suit\": \"diamonds\",\n        \"rank\": 5\n      },\n      {\n        \"id\": \"diamonds-6\",\n        \"suit\": \"diamonds\",\n        \"rank\": 6\n      },\n      {\n        \"id\": \"diamonds-7\",\n        \"suit\": \"diamonds\",\n        \"rank\": 7\n      },\n      {\n        \"id\": \"diamonds-8\",\n        \"suit\": \"diamonds\",\n        \"rank\": 8\n      },\n      {\n        \"id\": \"diamonds-9\",\n        \"suit\": \"diamonds\",\n        \"rank\": 9\n      },\n      {\n        \"id\": \"diamonds-10\",\n        \"suit\": \"diamonds\",\n        \"rank\": 10\n      },\n      {\n        \"id\": \"diamonds-11\",\n        \"suit\": \"diamonds\",\n        \"rank\": 11\n      },\n      {\n        \"id\": \"diamonds-12\",\n        \"suit\": \"diamonds\",\n        \"rank\": 12\n      },\n      {\n        \"id\": \"diamonds-13\",\n        \"suit\": \"diamonds\",\n        \"rank\": 13\n      },\n      {\n        \"id\": \"diamonds-14\",\n        \"suit\": \"diamonds\",\n        \"rank\": 14\n      }\n    ],\n    \"drawPile\": [\n      \"spades-2\",\n      \"spades-3\",\n      \"spades-4\",\n      \"spades-5\",\n      \"spades-6\",\n      \"spades-7\",\n      \"spades-8\",\n      \"spades-9\",\n      \"spades-10\",\n      \"spades-11\",\n      \"spades-12\",\n      \"spades-13\",\n      \"spades-14\",\n      \"hearts-2\",\n      \"hearts-3\",\n      \"hearts-4\",\n      \"hearts-5\",\n      \"hearts-6\",\n      \"hearts-7\",\n      \"hearts-8\",\n      \"hearts-9\",\n      \"hearts-10\",\n      \"hearts-11\",\n      \"hearts-12\",\n      \"hearts-13\",\n      \"hearts-14\",\n      \"clubs-2\",\n      \"clubs-3\",\n      \"clubs-4\",\n      \"clubs-5\",\n      \"clubs-6\",\n      \"clubs-7\",\n      \"clubs-8\",\n      \"clubs-9\",\n      \"clubs-10\",\n      \"clubs-11\",\n      \"clubs-12\",\n      \"clubs-13\",\n      \"clubs-14\",\n      \"diamonds-2\",\n      \"diamonds-3\",\n      \"diamonds-4\",\n      \"diamonds-5\",\n      \"diamonds-6\",\n      \"diamonds-7\",\n      \"diamonds-8\",\n      \"diamonds-9\",\n      \"diamonds-10\",\n      \"diamonds-11\",\n      \"diamonds-12\",\n      \"diamonds-13\",\n      \"diamonds-14\"\n    ],\n    \"handOrder\": [],\n    \"playedPile\": [],\n    \"discardPile\": [],\n    \"destroyedIds\": [],\n    \"stage\": null,\n    \"totalHeat\": \"0\",\n    \"gold\": 4,\n    \"jokers\": [],\n    \"consumables\": [],\n    \"longTermItems\": [],\n    \"program\": null,\n    \"boss\": {\n      \"definitionId\": \"B04\",\n      \"disabledSuit\": null\n    },\n    \"seenBossIds\": [\n      \"B04\"\n    ],\n    \"chapterSkipConsumable\": \"T06\",\n    \"purchaseCoupons\": 0,\n    \"safetyNetUsed\": false,\n    \"shop\": {\n      \"visitIndex\": 0,\n      \"rerollCount\": 1,\n      \"purchases\": 0,\n      \"soldJoker\": false,\n      \"freeRerolls\": 0,\n      \"offers\": [\n        {\n          \"offerId\": \"controlled/quantity-copy/a03/shop/0/1/joker/0\",\n          \"definitionId\": \"a03\",\n          \"price\": 4,\n          \"consumed\": false\n        },\n        {\n          \"offerId\": \"controlled/quantity-copy/a03/shop/0/1/joker/1\",\n          \"definitionId\": \"e10\",\n          \"price\": 6,\n          \"edition\": \"none\",\n          \"consumed\": false\n        },\n        {\n          \"offerId\": \"controlled/quantity-copy/a03/shop/0/1/joker/2\",\n          \"definitionId\": \"b12\",\n          \"price\": 8,\n          \"edition\": \"none\",\n          \"consumed\": false\n        }\n      ],\n      \"toolOffers\": [\n        {\n          \"offerId\": \"controlled/quantity-copy/a03/shop/0/1/tool/0\",\n          \"definitionId\": \"T17\",\n          \"price\": 4,\n          \"consumed\": false\n        }\n      ],\n      \"itemOffers\": [\n        {\n          \"offerId\": \"controlled/quantity-copy/a03/shop/0/0/item/0\",\n          \"definitionId\": \"U10\",\n          \"price\": 10,\n          \"consumed\": false\n        }\n      ],\n      \"basicChoice\": {\n        \"shopSeq\": 1,\n        \"purchase\": null\n      }\n    },\n    \"spectralModifiers\": {\n      \"handsPenalty\": 0,\n      \"handPenalty\": 0,\n      \"cleanSlateBonus\": 0\n    },\n    \"supplyRewardClaimed\": false,\n    \"chapterHandUsage\": {},\n    \"normalClearClaimed\": false,\n    \"tourMode\": \"normal\",\n    \"normalCompletion\": null,\n    \"rng\": {\n      \"deck\": {\n        \"algorithm\": \"fnv1a-mulberry32-v1\",\n        \"state\": 2113637367\n      },\n      \"rule\": {\n        \"algorithm\": \"fnv1a-mulberry32-v1\",\n        \"state\": 3537812457\n      },\n      \"shop\": {\n        \"algorithm\": \"fnv1a-mulberry32-v1\",\n        \"state\": 1265312557\n      },\n      \"reward\": {\n        \"algorithm\": \"fnv1a-mulberry32-v1\",\n        \"state\": 1728473242\n      },\n      \"program\": {\n        \"algorithm\": \"fnv1a-mulberry32-v1\",\n        \"state\": 1756164828\n      },\n      \"challenge\": {\n        \"algorithm\": \"fnv1a-mulberry32-v1\",\n        \"state\": 1020950737\n      }\n    },\n    \"receipts\": [\n      {\n        \"commandId\": \"controlled/quantity-copy/a03/start\",\n        \"fingerprint\": \"json-fnv-v1:e877c60e2e7b852a\",\n        \"seq\": 1\n      },\n      {\n        \"commandId\": \"controlled/reroll\",\n        \"fingerprint\": \"json-fnv-v1:6ea8844dfc533941\",\n        \"seq\": 2\n      }\n    ],\n    \"lastTrace\": null,\n    \"handLevels\": {},\n    \"outcome\": null\n  },\n  \"journalBaseSeq\": 2,\n  \"journal\": [],\n  \"checksum\": \"json-fnv-v1:26c9ea2406dbc810\"\n}",
+    "storage": [
+      {
+        "key": "meta",
+        "value": {
+          "revision": 2,
+          "slotKey": "r2:json-fnv-v1:69c29f5cd54bb160:standard:none:d0:program-off"
+        }
+      },
+      {
+        "key": "r2:json-fnv-v1:69c29f5cd54bb160:standard:none:d0:program-off",
+        "value": {
+          "current": {
+            "format": "dachoupai-checkpoint",
+            "formatVersion": 1,
+            "state": {
+              "schemaVersion": 2,
+              "rulesVersion": "r2",
+              "contentVersion": "quality-r2-basic-suit-choice-v1",
+              "contentHash": "json-fnv-v1:69c29f5cd54bb160",
+              "runId": "controlled/quantity-copy/a03",
+              "seed": "quantity-copy/a03",
+              "commandSeq": 2,
+              "difficulty": 0,
+              "characterId": "erxiang",
+              "openingRoute": "straight",
+              "openingShow": {
+                "handsScored": 0,
+                "rootId": null,
+                "eventId": null,
+                "reason": null
+              },
+              "routeStarter": {
+                "instanceId": null,
+                "rootId": null,
+                "eventId": null
+              },
+              "mode": "standard",
+              "challengeId": null,
+              "programsEnabled": false,
+              "programRerollCoupon": false,
+              "chapterDisabledJokerId": null,
+              "chapter": 1,
+              "stageIndex": 0,
+              "phase": "shop",
+              "deckInstances": [
+                {
+                  "id": "spades-2",
+                  "suit": "spades",
+                  "rank": 2
+                },
+                {
+                  "id": "spades-3",
+                  "suit": "spades",
+                  "rank": 3
+                },
+                {
+                  "id": "spades-4",
+                  "suit": "spades",
+                  "rank": 4
+                },
+                {
+                  "id": "spades-5",
+                  "suit": "spades",
+                  "rank": 5
+                },
+                {
+                  "id": "spades-6",
+                  "suit": "spades",
+                  "rank": 6
+                },
+                {
+                  "id": "spades-7",
+                  "suit": "spades",
+                  "rank": 7
+                },
+                {
+                  "id": "spades-8",
+                  "suit": "spades",
+                  "rank": 8
+                },
+                {
+                  "id": "spades-9",
+                  "suit": "spades",
+                  "rank": 9
+                },
+                {
+                  "id": "spades-10",
+                  "suit": "spades",
+                  "rank": 10
+                },
+                {
+                  "id": "spades-11",
+                  "suit": "spades",
+                  "rank": 11
+                },
+                {
+                  "id": "spades-12",
+                  "suit": "spades",
+                  "rank": 12
+                },
+                {
+                  "id": "spades-13",
+                  "suit": "spades",
+                  "rank": 13
+                },
+                {
+                  "id": "spades-14",
+                  "suit": "spades",
+                  "rank": 14
+                },
+                {
+                  "id": "hearts-2",
+                  "suit": "hearts",
+                  "rank": 2
+                },
+                {
+                  "id": "hearts-3",
+                  "suit": "hearts",
+                  "rank": 3
+                },
+                {
+                  "id": "hearts-4",
+                  "suit": "hearts",
+                  "rank": 4
+                },
+                {
+                  "id": "hearts-5",
+                  "suit": "hearts",
+                  "rank": 5
+                },
+                {
+                  "id": "hearts-6",
+                  "suit": "hearts",
+                  "rank": 6
+                },
+                {
+                  "id": "hearts-7",
+                  "suit": "hearts",
+                  "rank": 7
+                },
+                {
+                  "id": "hearts-8",
+                  "suit": "hearts",
+                  "rank": 8
+                },
+                {
+                  "id": "hearts-9",
+                  "suit": "hearts",
+                  "rank": 9
+                },
+                {
+                  "id": "hearts-10",
+                  "suit": "hearts",
+                  "rank": 10
+                },
+                {
+                  "id": "hearts-11",
+                  "suit": "hearts",
+                  "rank": 11
+                },
+                {
+                  "id": "hearts-12",
+                  "suit": "hearts",
+                  "rank": 12
+                },
+                {
+                  "id": "hearts-13",
+                  "suit": "hearts",
+                  "rank": 13
+                },
+                {
+                  "id": "hearts-14",
+                  "suit": "hearts",
+                  "rank": 14
+                },
+                {
+                  "id": "clubs-2",
+                  "suit": "clubs",
+                  "rank": 2
+                },
+                {
+                  "id": "clubs-3",
+                  "suit": "clubs",
+                  "rank": 3
+                },
+                {
+                  "id": "clubs-4",
+                  "suit": "clubs",
+                  "rank": 4
+                },
+                {
+                  "id": "clubs-5",
+                  "suit": "clubs",
+                  "rank": 5
+                },
+                {
+                  "id": "clubs-6",
+                  "suit": "clubs",
+                  "rank": 6
+                },
+                {
+                  "id": "clubs-7",
+                  "suit": "clubs",
+                  "rank": 7
+                },
+                {
+                  "id": "clubs-8",
+                  "suit": "clubs",
+                  "rank": 8
+                },
+                {
+                  "id": "clubs-9",
+                  "suit": "clubs",
+                  "rank": 9
+                },
+                {
+                  "id": "clubs-10",
+                  "suit": "clubs",
+                  "rank": 10
+                },
+                {
+                  "id": "clubs-11",
+                  "suit": "clubs",
+                  "rank": 11
+                },
+                {
+                  "id": "clubs-12",
+                  "suit": "clubs",
+                  "rank": 12
+                },
+                {
+                  "id": "clubs-13",
+                  "suit": "clubs",
+                  "rank": 13
+                },
+                {
+                  "id": "clubs-14",
+                  "suit": "clubs",
+                  "rank": 14
+                },
+                {
+                  "id": "diamonds-2",
+                  "suit": "diamonds",
+                  "rank": 2
+                },
+                {
+                  "id": "diamonds-3",
+                  "suit": "diamonds",
+                  "rank": 3
+                },
+                {
+                  "id": "diamonds-4",
+                  "suit": "diamonds",
+                  "rank": 4
+                },
+                {
+                  "id": "diamonds-5",
+                  "suit": "diamonds",
+                  "rank": 5
+                },
+                {
+                  "id": "diamonds-6",
+                  "suit": "diamonds",
+                  "rank": 6
+                },
+                {
+                  "id": "diamonds-7",
+                  "suit": "diamonds",
+                  "rank": 7
+                },
+                {
+                  "id": "diamonds-8",
+                  "suit": "diamonds",
+                  "rank": 8
+                },
+                {
+                  "id": "diamonds-9",
+                  "suit": "diamonds",
+                  "rank": 9
+                },
+                {
+                  "id": "diamonds-10",
+                  "suit": "diamonds",
+                  "rank": 10
+                },
+                {
+                  "id": "diamonds-11",
+                  "suit": "diamonds",
+                  "rank": 11
+                },
+                {
+                  "id": "diamonds-12",
+                  "suit": "diamonds",
+                  "rank": 12
+                },
+                {
+                  "id": "diamonds-13",
+                  "suit": "diamonds",
+                  "rank": 13
+                },
+                {
+                  "id": "diamonds-14",
+                  "suit": "diamonds",
+                  "rank": 14
+                }
+              ],
+              "drawPile": [
+                "spades-2",
+                "spades-3",
+                "spades-4",
+                "spades-5",
+                "spades-6",
+                "spades-7",
+                "spades-8",
+                "spades-9",
+                "spades-10",
+                "spades-11",
+                "spades-12",
+                "spades-13",
+                "spades-14",
+                "hearts-2",
+                "hearts-3",
+                "hearts-4",
+                "hearts-5",
+                "hearts-6",
+                "hearts-7",
+                "hearts-8",
+                "hearts-9",
+                "hearts-10",
+                "hearts-11",
+                "hearts-12",
+                "hearts-13",
+                "hearts-14",
+                "clubs-2",
+                "clubs-3",
+                "clubs-4",
+                "clubs-5",
+                "clubs-6",
+                "clubs-7",
+                "clubs-8",
+                "clubs-9",
+                "clubs-10",
+                "clubs-11",
+                "clubs-12",
+                "clubs-13",
+                "clubs-14",
+                "diamonds-2",
+                "diamonds-3",
+                "diamonds-4",
+                "diamonds-5",
+                "diamonds-6",
+                "diamonds-7",
+                "diamonds-8",
+                "diamonds-9",
+                "diamonds-10",
+                "diamonds-11",
+                "diamonds-12",
+                "diamonds-13",
+                "diamonds-14"
+              ],
+              "handOrder": [],
+              "playedPile": [],
+              "discardPile": [],
+              "destroyedIds": [],
+              "stage": null,
+              "totalHeat": "0",
+              "gold": 4,
+              "jokers": [],
+              "consumables": [],
+              "longTermItems": [],
+              "program": null,
+              "boss": {
+                "definitionId": "B04",
+                "disabledSuit": null
+              },
+              "seenBossIds": [
+                "B04"
+              ],
+              "chapterSkipConsumable": "T06",
+              "purchaseCoupons": 0,
+              "safetyNetUsed": false,
+              "shop": {
+                "visitIndex": 0,
+                "rerollCount": 1,
+                "purchases": 0,
+                "soldJoker": false,
+                "freeRerolls": 0,
+                "offers": [
+                  {
+                    "offerId": "controlled/quantity-copy/a03/shop/0/1/joker/0",
+                    "definitionId": "a03",
+                    "price": 4,
+                    "consumed": false
+                  },
+                  {
+                    "offerId": "controlled/quantity-copy/a03/shop/0/1/joker/1",
+                    "definitionId": "e10",
+                    "price": 6,
+                    "edition": "none",
+                    "consumed": false
+                  },
+                  {
+                    "offerId": "controlled/quantity-copy/a03/shop/0/1/joker/2",
+                    "definitionId": "b12",
+                    "price": 8,
+                    "edition": "none",
+                    "consumed": false
+                  }
+                ],
+                "toolOffers": [
+                  {
+                    "offerId": "controlled/quantity-copy/a03/shop/0/1/tool/0",
+                    "definitionId": "T17",
+                    "price": 4,
+                    "consumed": false
+                  }
+                ],
+                "itemOffers": [
+                  {
+                    "offerId": "controlled/quantity-copy/a03/shop/0/0/item/0",
+                    "definitionId": "U10",
+                    "price": 10,
+                    "consumed": false
+                  }
+                ],
+                "basicChoice": {
+                  "shopSeq": 1,
+                  "purchase": null
+                }
+              },
+              "spectralModifiers": {
+                "handsPenalty": 0,
+                "handPenalty": 0,
+                "cleanSlateBonus": 0
+              },
+              "supplyRewardClaimed": false,
+              "chapterHandUsage": {},
+              "normalClearClaimed": false,
+              "tourMode": "normal",
+              "normalCompletion": null,
+              "rng": {
+                "deck": {
+                  "algorithm": "fnv1a-mulberry32-v1",
+                  "state": 2113637367
+                },
+                "rule": {
+                  "algorithm": "fnv1a-mulberry32-v1",
+                  "state": 3537812457
+                },
+                "shop": {
+                  "algorithm": "fnv1a-mulberry32-v1",
+                  "state": 1265312557
+                },
+                "reward": {
+                  "algorithm": "fnv1a-mulberry32-v1",
+                  "state": 1728473242
+                },
+                "program": {
+                  "algorithm": "fnv1a-mulberry32-v1",
+                  "state": 1756164828
+                },
+                "challenge": {
+                  "algorithm": "fnv1a-mulberry32-v1",
+                  "state": 1020950737
+                }
+              },
+              "receipts": [
+                {
+                  "commandId": "controlled/quantity-copy/a03/start",
+                  "fingerprint": "json-fnv-v1:e877c60e2e7b852a",
+                  "seq": 1
+                },
+                {
+                  "commandId": "controlled/reroll",
+                  "fingerprint": "json-fnv-v1:6ea8844dfc533941",
+                  "seq": 2
+                }
+              ],
+              "lastTrace": null,
+              "handLevels": {},
+              "outcome": null
+            },
+            "journalBaseSeq": 2,
+            "journal": [],
+            "checksum": "json-fnv-v1:26c9ea2406dbc810"
+          },
+          "previous": null
+        }
+      },
+      {
+        "key": "r2:json-fnv-v1:69c29f5cd54bb160:standard:none:d0:program-on",
+        "value": {
+          "current": {
+            "format": "dachoupai-checkpoint",
+            "formatVersion": 1,
+            "state": {
+              "schemaVersion": 2,
+              "rulesVersion": "r2",
+              "contentVersion": "quality-r2-basic-suit-choice-v1",
+              "contentHash": "json-fnv-v1:69c29f5cd54bb160",
+              "runId": "run/1791707208231/erxiang",
+              "seed": "1791707208231",
+              "commandSeq": 1,
+              "difficulty": 0,
+              "characterId": "erxiang",
+              "openingRoute": "straight",
+              "openingShow": {
+                "handsScored": 0,
+                "rootId": null,
+                "eventId": null,
+                "reason": null
+              },
+              "routeStarter": {
+                "instanceId": null,
+                "rootId": null,
+                "eventId": null
+              },
+              "mode": "standard",
+              "challengeId": null,
+              "programsEnabled": true,
+              "programRerollCoupon": false,
+              "chapterDisabledJokerId": null,
+              "chapter": 1,
+              "stageIndex": 0,
+              "phase": "shop",
+              "deckInstances": [
+                {
+                  "id": "spades-2",
+                  "suit": "spades",
+                  "rank": 2
+                },
+                {
+                  "id": "spades-3",
+                  "suit": "spades",
+                  "rank": 3
+                },
+                {
+                  "id": "spades-4",
+                  "suit": "spades",
+                  "rank": 4
+                },
+                {
+                  "id": "spades-5",
+                  "suit": "spades",
+                  "rank": 5
+                },
+                {
+                  "id": "spades-6",
+                  "suit": "spades",
+                  "rank": 6
+                },
+                {
+                  "id": "spades-7",
+                  "suit": "spades",
+                  "rank": 7
+                },
+                {
+                  "id": "spades-8",
+                  "suit": "spades",
+                  "rank": 8
+                },
+                {
+                  "id": "spades-9",
+                  "suit": "spades",
+                  "rank": 9
+                },
+                {
+                  "id": "spades-10",
+                  "suit": "spades",
+                  "rank": 10
+                },
+                {
+                  "id": "spades-11",
+                  "suit": "spades",
+                  "rank": 11
+                },
+                {
+                  "id": "spades-12",
+                  "suit": "spades",
+                  "rank": 12
+                },
+                {
+                  "id": "spades-13",
+                  "suit": "spades",
+                  "rank": 13
+                },
+                {
+                  "id": "spades-14",
+                  "suit": "spades",
+                  "rank": 14
+                },
+                {
+                  "id": "hearts-2",
+                  "suit": "hearts",
+                  "rank": 2
+                },
+                {
+                  "id": "hearts-3",
+                  "suit": "hearts",
+                  "rank": 3
+                },
+                {
+                  "id": "hearts-4",
+                  "suit": "hearts",
+                  "rank": 4
+                },
+                {
+                  "id": "hearts-5",
+                  "suit": "hearts",
+                  "rank": 5
+                },
+                {
+                  "id": "hearts-6",
+                  "suit": "hearts",
+                  "rank": 6
+                },
+                {
+                  "id": "hearts-7",
+                  "suit": "hearts",
+                  "rank": 7
+                },
+                {
+                  "id": "hearts-8",
+                  "suit": "hearts",
+                  "rank": 8
+                },
+                {
+                  "id": "hearts-9",
+                  "suit": "hearts",
+                  "rank": 9
+                },
+                {
+                  "id": "hearts-10",
+                  "suit": "hearts",
+                  "rank": 10
+                },
+                {
+                  "id": "hearts-11",
+                  "suit": "hearts",
+                  "rank": 11
+                },
+                {
+                  "id": "hearts-12",
+                  "suit": "hearts",
+                  "rank": 12
+                },
+                {
+                  "id": "hearts-13",
+                  "suit": "hearts",
+                  "rank": 13
+                },
+                {
+                  "id": "hearts-14",
+                  "suit": "hearts",
+                  "rank": 14
+                },
+                {
+                  "id": "clubs-2",
+                  "suit": "clubs",
+                  "rank": 2
+                },
+                {
+                  "id": "clubs-3",
+                  "suit": "clubs",
+                  "rank": 3
+                },
+                {
+                  "id": "clubs-4",
+                  "suit": "clubs",
+                  "rank": 4
+                },
+                {
+                  "id": "clubs-5",
+                  "suit": "clubs",
+                  "rank": 5
+                },
+                {
+                  "id": "clubs-6",
+                  "suit": "clubs",
+                  "rank": 6
+                },
+                {
+                  "id": "clubs-7",
+                  "suit": "clubs",
+                  "rank": 7
+                },
+                {
+                  "id": "clubs-8",
+                  "suit": "clubs",
+                  "rank": 8
+                },
+                {
+                  "id": "clubs-9",
+                  "suit": "clubs",
+                  "rank": 9
+                },
+                {
+                  "id": "clubs-10",
+                  "suit": "clubs",
+                  "rank": 10
+                },
+                {
+                  "id": "clubs-11",
+                  "suit": "clubs",
+                  "rank": 11
+                },
+                {
+                  "id": "clubs-12",
+                  "suit": "clubs",
+                  "rank": 12
+                },
+                {
+                  "id": "clubs-13",
+                  "suit": "clubs",
+                  "rank": 13
+                },
+                {
+                  "id": "clubs-14",
+                  "suit": "clubs",
+                  "rank": 14
+                },
+                {
+                  "id": "diamonds-2",
+                  "suit": "diamonds",
+                  "rank": 2
+                },
+                {
+                  "id": "diamonds-3",
+                  "suit": "diamonds",
+                  "rank": 3
+                },
+                {
+                  "id": "diamonds-4",
+                  "suit": "diamonds",
+                  "rank": 4
+                },
+                {
+                  "id": "diamonds-5",
+                  "suit": "diamonds",
+                  "rank": 5
+                },
+                {
+                  "id": "diamonds-6",
+                  "suit": "diamonds",
+                  "rank": 6
+                },
+                {
+                  "id": "diamonds-7",
+                  "suit": "diamonds",
+                  "rank": 7
+                },
+                {
+                  "id": "diamonds-8",
+                  "suit": "diamonds",
+                  "rank": 8
+                },
+                {
+                  "id": "diamonds-9",
+                  "suit": "diamonds",
+                  "rank": 9
+                },
+                {
+                  "id": "diamonds-10",
+                  "suit": "diamonds",
+                  "rank": 10
+                },
+                {
+                  "id": "diamonds-11",
+                  "suit": "diamonds",
+                  "rank": 11
+                },
+                {
+                  "id": "diamonds-12",
+                  "suit": "diamonds",
+                  "rank": 12
+                },
+                {
+                  "id": "diamonds-13",
+                  "suit": "diamonds",
+                  "rank": 13
+                },
+                {
+                  "id": "diamonds-14",
+                  "suit": "diamonds",
+                  "rank": 14
+                }
+              ],
+              "drawPile": [
+                "spades-2",
+                "spades-3",
+                "spades-4",
+                "spades-5",
+                "spades-6",
+                "spades-7",
+                "spades-8",
+                "spades-9",
+                "spades-10",
+                "spades-11",
+                "spades-12",
+                "spades-13",
+                "spades-14",
+                "hearts-2",
+                "hearts-3",
+                "hearts-4",
+                "hearts-5",
+                "hearts-6",
+                "hearts-7",
+                "hearts-8",
+                "hearts-9",
+                "hearts-10",
+                "hearts-11",
+                "hearts-12",
+                "hearts-13",
+                "hearts-14",
+                "clubs-2",
+                "clubs-3",
+                "clubs-4",
+                "clubs-5",
+                "clubs-6",
+                "clubs-7",
+                "clubs-8",
+                "clubs-9",
+                "clubs-10",
+                "clubs-11",
+                "clubs-12",
+                "clubs-13",
+                "clubs-14",
+                "diamonds-2",
+                "diamonds-3",
+                "diamonds-4",
+                "diamonds-5",
+                "diamonds-6",
+                "diamonds-7",
+                "diamonds-8",
+                "diamonds-9",
+                "diamonds-10",
+                "diamonds-11",
+                "diamonds-12",
+                "diamonds-13",
+                "diamonds-14"
+              ],
+              "handOrder": [],
+              "playedPile": [],
+              "discardPile": [],
+              "destroyedIds": [],
+              "stage": null,
+              "totalHeat": "0",
+              "gold": 6,
+              "jokers": [],
+              "consumables": [],
+              "longTermItems": [],
+              "program": {
+                "chapter": 1,
+                "offerIds": [
+                  "PG01",
+                  "PG04"
+                ],
+                "selectedId": null,
+                "choiceMade": false,
+                "abandoned": false,
+                "lastOpportunityClear": false,
+                "claimed": false
+              },
+              "boss": {
+                "definitionId": "B04",
+                "disabledSuit": null
+              },
+              "seenBossIds": [
+                "B04"
+              ],
+              "chapterSkipConsumable": "T17",
+              "purchaseCoupons": 0,
+              "safetyNetUsed": false,
+              "shop": {
+                "visitIndex": 0,
+                "rerollCount": 0,
+                "purchases": 0,
+                "soldJoker": false,
+                "freeRerolls": 0,
+                "offers": [
+                  {
+                    "offerId": "run/1791707208231/erxiang/shop/0/0/joker/0",
+                    "definitionId": "d12",
+                    "price": 6,
+                    "edition": "none",
+                    "consumed": false
+                  },
+                  {
+                    "offerId": "run/1791707208231/erxiang/shop/0/0/joker/1",
+                    "definitionId": "b06",
+                    "price": 13,
+                    "edition": "polychrome",
+                    "consumed": false
+                  },
+                  {
+                    "offerId": "run/1791707208231/erxiang/shop/0/0/joker/2",
+                    "definitionId": "c04",
+                    "price": 4,
+                    "edition": "none",
+                    "consumed": false
+                  }
+                ],
+                "toolOffers": [
+                  {
+                    "offerId": "run/1791707208231/erxiang/shop/0/0/tool/0",
+                    "definitionId": "T13",
+                    "price": 4,
+                    "consumed": false
+                  }
+                ],
+                "itemOffers": [
+                  {
+                    "offerId": "run/1791707208231/erxiang/shop/0/0/item/0",
+                    "definitionId": "U05",
+                    "price": 12,
+                    "consumed": false
+                  }
+                ],
+                "basicChoice": {
+                  "shopSeq": 1,
+                  "purchase": null
+                }
+              },
+              "spectralModifiers": {
+                "handsPenalty": 0,
+                "handPenalty": 0,
+                "cleanSlateBonus": 0
+              },
+              "supplyRewardClaimed": false,
+              "chapterHandUsage": {},
+              "normalClearClaimed": false,
+              "tourMode": "normal",
+              "normalCompletion": null,
+              "rng": {
+                "deck": {
+                  "algorithm": "fnv1a-mulberry32-v1",
+                  "state": 4179154413
+                },
+                "rule": {
+                  "algorithm": "fnv1a-mulberry32-v1",
+                  "state": 213796811
+                },
+                "shop": {
+                  "algorithm": "fnv1a-mulberry32-v1",
+                  "state": 1845977846
+                },
+                "reward": {
+                  "algorithm": "fnv1a-mulberry32-v1",
+                  "state": 819638956
+                },
+                "program": {
+                  "algorithm": "fnv1a-mulberry32-v1",
+                  "state": 1834355376
+                },
+                "challenge": {
+                  "algorithm": "fnv1a-mulberry32-v1",
+                  "state": 2146126831
+                }
+              },
+              "receipts": [
+                {
+                  "commandId": "run/1791707208231/erxiang/start",
+                  "fingerprint": "json-fnv-v1:a6320a6170f80f2d",
+                  "seq": 1
+                }
+              ],
+              "lastTrace": null,
+              "handLevels": {},
+              "outcome": null
+            },
+            "journalBaseSeq": 1,
+            "journal": [],
+            "checksum": "json-fnv-v1:ecc3d5cff187ba0b"
+          },
+          "previous": null
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "status": "PASS",
+  "note": "Each native UI new run preceding import has a distinct time-based ID; retained backup rows differ across baseline/candidate. Complete storage is unchanged within each viewing session.",
+  "cases": [
+    {
+      "name": "pc",
+      "stateJournalExportEqualAcrossVersions": true,
+      "completeStorageEqualWithinEachVersion": true,
+      "storageRecordKeys": [
+        "meta",
+        "r2:json-fnv-v1:69c29f5cd54bb160:standard:none:d0:program-off",
+        "r2:json-fnv-v1:69c29f5cd54bb160:standard:none:d0:program-on"
+      ]
+    },
+    {
+      "name": "phone",
+      "stateJournalExportEqualAcrossVersions": true,
+      "completeStorageEqualWithinEachVersion": true,
+      "storageRecordKeys": [
+        "meta",
+        "r2:json-fnv-v1:69c29f5cd54bb160:standard:none:d0:program-off",
+        "r2:json-fnv-v1:69c29f5cd54bb160:standard:none:d0:program-on"
+      ]
+    }
+  ]
+}

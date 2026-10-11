@@ -1,0 +1,12 @@
+{
+  "source": "b29ae51855e894db5878d6e70f77475f6a491ba6",
+  "status": "FAIL",
+  "error": "page.waitForFunction: Timeout 20000ms exceeded.\n    at waitScene (<repo>/harness/ui.mjs:3:41)\n    at ready (<temporary>/r2-tool-journey.mjs:13:31)\n    at <temporary>/r2-tool-journey.mjs:22:253",
+  "cases": [],
+  "steps": [
+    "buy existing growth joker",
+    "purchase T08 into inventory",
+    "carry unused tool into actual hand",
+    "use T08 on two actual visible 2s"
+  ]
+}

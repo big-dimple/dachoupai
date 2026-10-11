@@ -1,0 +1,372 @@
+{
+  "source": "b29ae51855e894db5878d6e70f77475f6a491ba6",
+  "status": "FAIL",
+  "error": "locator.selectOption: Timeout 20000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByLabel('遗忘牌型', { exact: true })\u001b[22m\n\u001b[2m    - locator resolved to <select aria-label=\"遗忘牌型\">…</select>\u001b[22m\n\u001b[2m  - attempting select option action\u001b[22m\n\u001b[2m    2 × waiting for element to be visible and enabled\u001b[22m\n\u001b[2m      - element is not visible\u001b[22m\n\u001b[2m    - retrying select option action\u001b[22m\n\u001b[2m    - waiting 20ms\u001b[22m\n\u001b[2m    2 × waiting for element to be visible and enabled\u001b[22m\n\u001b[2m      - element is not visible\u001b[22m\n\u001b[2m    - retrying select option action\u001b[22m\n\u001b[2m      - waiting 100ms\u001b[22m\n\u001b[2m    29 × waiting for element to be visible and enabled\u001b[22m\n\u001b[2m       - element is not visible\u001b[22m\n\u001b[2m     - retrying select option action\u001b[22m\n\u001b[2m       - waiting 500ms\u001b[22m\n\n    at <repo>/harness/r2-tool-workspace.mjs:25:1160",
+  "cases": [
+    {
+      "width": 1366,
+      "id": "T08",
+      "status": "PASS",
+      "selects": null
+    },
+    {
+      "width": 1366,
+      "id": "T09",
+      "status": "PASS",
+      "selects": null
+    },
+    {
+      "width": 1366,
+      "id": "T11",
+      "status": "PASS",
+      "selects": null
+    },
+    {
+      "width": 1366,
+      "id": "S01",
+      "status": "PASS",
+      "selects": null
+    },
+    {
+      "width": 1366,
+      "id": "S08",
+      "status": "PASS",
+      "selects": null
+    },
+    {
+      "width": 1366,
+      "id": "S05",
+      "status": "PASS",
+      "selects": [
+        {
+          "label": "收益牌型",
+          "value": "pair",
+          "options": [
+            {
+              "value": "",
+              "disabled": false,
+              "text": "请选择"
+            },
+            {
+              "value": "high-card",
+              "disabled": false,
+              "text": "高牌 · Lv.5"
+            },
+            {
+              "value": "pair",
+              "disabled": false,
+              "text": "对子 · Lv.5"
+            },
+            {
+              "value": "two-pair",
+              "disabled": true,
+              "text": "两对 · 尚未发现"
+            },
+            {
+              "value": "three-kind",
+              "disabled": true,
+              "text": "三条 · 尚未发现"
+            },
+            {
+              "value": "straight",
+              "disabled": false,
+              "text": "顺子 · Lv.1"
+            },
+            {
+              "value": "flush",
+              "disabled": true,
+              "text": "同花 · Lv.30（须不高于27级）"
+            },
+            {
+              "value": "full-house",
+              "disabled": true,
+              "text": "葫芦 · 尚未发现"
+            },
+            {
+              "value": "four-kind",
+              "disabled": true,
+              "text": "四条 · 尚未发现"
+            },
+            {
+              "value": "straight-flush",
+              "disabled": true,
+              "text": "同花顺 · 尚未发现"
+            },
+            {
+              "value": "five-kind",
+              "disabled": true,
+              "text": "五条 · 尚未发现"
+            },
+            {
+              "value": "flush-house",
+              "disabled": true,
+              "text": "同花葫芦 · 尚未发现"
+            },
+            {
+              "value": "flush-five",
+              "disabled": true,
+              "text": "同花五条 · 尚未发现"
+            }
+          ]
+        },
+        {
+          "label": "遗忘牌型",
+          "value": "",
+          "options": [
+            {
+              "value": "",
+              "disabled": false,
+              "text": "请选择"
+            },
+            {
+              "value": "high-card",
+              "disabled": false,
+              "text": "高牌 · Lv.5"
+            },
+            {
+              "value": "pair",
+              "disabled": true,
+              "text": "对子 · Lv.5（已作另一目标，不可同选）"
+            },
+            {
+              "value": "two-pair",
+              "disabled": true,
+              "text": "两对 · 尚未发现"
+            },
+            {
+              "value": "three-kind",
+              "disabled": true,
+              "text": "三条 · 尚未发现"
+            },
+            {
+              "value": "straight",
+              "disabled": true,
+              "text": "顺子 · Lv.1（须至少2级）"
+            },
+            {
+              "value": "flush",
+              "disabled": false,
+              "text": "同花 · Lv.30"
+            },
+            {
+              "value": "full-house",
+              "disabled": true,
+              "text": "葫芦 · 尚未发现"
+            },
+            {
+              "value": "four-kind",
+              "disabled": true,
+              "text": "四条 · 尚未发现"
+            },
+            {
+              "value": "straight-flush",
+              "disabled": true,
+              "text": "同花顺 · 尚未发现"
+            },
+            {
+              "value": "five-kind",
+              "disabled": true,
+              "text": "五条 · 尚未发现"
+            },
+            {
+              "value": "flush-house",
+              "disabled": true,
+              "text": "同花葫芦 · 尚未发现"
+            },
+            {
+              "value": "flush-five",
+              "disabled": true,
+              "text": "同花五条 · 尚未发现"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "width": 1366,
+      "id": "S08-insufficient",
+      "status": "PASS",
+      "selects": null
+    },
+    {
+      "width": 390,
+      "id": "T08",
+      "status": "PASS",
+      "selects": null
+    },
+    {
+      "width": 390,
+      "id": "T09",
+      "status": "PASS",
+      "selects": null
+    },
+    {
+      "width": 390,
+      "id": "T11",
+      "status": "PASS",
+      "selects": null
+    },
+    {
+      "width": 390,
+      "id": "S01",
+      "status": "PASS",
+      "selects": null
+    },
+    {
+      "width": 390,
+      "id": "S08",
+      "status": "PASS",
+      "selects": null
+    },
+    {
+      "width": 390,
+      "id": "S05",
+      "status": null,
+      "selects": [
+        {
+          "label": "收益牌型",
+          "value": "pair",
+          "options": [
+            {
+              "value": "",
+              "disabled": false,
+              "text": "请选择"
+            },
+            {
+              "value": "high-card",
+              "disabled": false,
+              "text": "高牌 · Lv.5"
+            },
+            {
+              "value": "pair",
+              "disabled": false,
+              "text": "对子 · Lv.5"
+            },
+            {
+              "value": "two-pair",
+              "disabled": true,
+              "text": "两对 · 尚未发现"
+            },
+            {
+              "value": "three-kind",
+              "disabled": true,
+              "text": "三条 · 尚未发现"
+            },
+            {
+              "value": "straight",
+              "disabled": false,
+              "text": "顺子 · Lv.1"
+            },
+            {
+              "value": "flush",
+              "disabled": true,
+              "text": "同花 · Lv.30（须不高于27级）"
+            },
+            {
+              "value": "full-house",
+              "disabled": true,
+              "text": "葫芦 · 尚未发现"
+            },
+            {
+              "value": "four-kind",
+              "disabled": true,
+              "text": "四条 · 尚未发现"
+            },
+            {
+              "value": "straight-flush",
+              "disabled": true,
+              "text": "同花顺 · 尚未发现"
+            },
+            {
+              "value": "five-kind",
+              "disabled": true,
+              "text": "五条 · 尚未发现"
+            },
+            {
+              "value": "flush-house",
+              "disabled": true,
+              "text": "同花葫芦 · 尚未发现"
+            },
+            {
+              "value": "flush-five",
+              "disabled": true,
+              "text": "同花五条 · 尚未发现"
+            }
+          ]
+        },
+        {
+          "label": "遗忘牌型",
+          "value": "",
+          "options": [
+            {
+              "value": "",
+              "disabled": false,
+              "text": "请选择"
+            },
+            {
+              "value": "high-card",
+              "disabled": false,
+              "text": "高牌 · Lv.5"
+            },
+            {
+              "value": "pair",
+              "disabled": true,
+              "text": "对子 · Lv.5（已作另一目标，不可同选）"
+            },
+            {
+              "value": "two-pair",
+              "disabled": true,
+              "text": "两对 · 尚未发现"
+            },
+            {
+              "value": "three-kind",
+              "disabled": true,
+              "text": "三条 · 尚未发现"
+            },
+            {
+              "value": "straight",
+              "disabled": true,
+              "text": "顺子 · Lv.1（须至少2级）"
+            },
+            {
+              "value": "flush",
+              "disabled": false,
+              "text": "同花 · Lv.30"
+            },
+            {
+              "value": "full-house",
+              "disabled": true,
+              "text": "葫芦 · 尚未发现"
+            },
+            {
+              "value": "four-kind",
+              "disabled": true,
+              "text": "四条 · 尚未发现"
+            },
+            {
+              "value": "straight-flush",
+              "disabled": true,
+              "text": "同花顺 · 尚未发现"
+            },
+            {
+              "value": "five-kind",
+              "disabled": true,
+              "text": "五条 · 尚未发现"
+            },
+            {
+              "value": "flush-house",
+              "disabled": true,
+              "text": "同花葫芦 · 尚未发现"
+            },
+            {
+              "value": "flush-five",
+              "disabled": true,
+              "text": "同花五条 · 尚未发现"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "steps": []
+}

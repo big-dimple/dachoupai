@@ -1,0 +1,541 @@
+{
+  "sha": "c503f08540928ba69ea5bd5ed9d9330b638c0159",
+  "dirty": "",
+  "scope": "Controlled validated current-identity shop, actual shelf/detail/expanded rules only. No purchase, scoring, natural play or external hosting.",
+  "cases": [],
+  "screenshots": [],
+  "identity": {
+    "contentVersion": "quality-r2-basic-suit-choice-v1",
+    "contentHash": "json-fnv-v1:69c29f5cd54bb160"
+  },
+  "offerId": "controlled/quantity-copy/a03/shop/0/1/joker/0",
+  "copy": [
+    {
+      "id": "a03",
+      "hooks": [
+        {
+          "phase": "onCardScore",
+          "condition": {
+            "kind": "scoring-position",
+            "position": "first",
+            "handTypes": [
+              "two-pair",
+              "three-kind",
+              "straight",
+              "flush",
+              "full-house",
+              "four-kind",
+              "straight-flush",
+              "five-kind",
+              "flush-house",
+              "flush-five"
+            ]
+          },
+          "operations": [
+            {
+              "kind": "add-heat",
+              "value": {
+                "n": "15",
+                "d": "1"
+              }
+            }
+          ]
+        }
+      ],
+      "plain": {
+        "line": "除高牌/对子外的首张有效计分牌 → 热度+15",
+        "tile": "非高牌/对子\n首计分牌\n热度+15",
+        "status": "未购买；买入后才生效",
+        "essential": "只加在首张有效计分牌上；合法重触发时可再次获得。\n只加给能计分的牌；附带/停用牌不获加成。",
+        "details": "主手为两对及以上牌型时，首张有效计分牌的热度 +15。\n只加在首张有效计分牌上；合法重触发时可再次获得。\n尚未购买，买入后才会生效\n两对及以上牌型包括两对、三条、顺子、同花、葫芦、四条、同花顺、五条、同花葫芦、同花五条；对子和高牌不算。\n停用牌跳过；助攻牌不参与计分，也不触发此效果。\n热度是计分的底数；倍率 + 表示增加，倍率 × 表示相乘。各效果按实际顺序结算，最后才算总分。",
+        "fallback": false
+      }
+    },
+    {
+      "id": "tiesuanpan",
+      "hooks": [
+        {
+          "phase": "onCardScore",
+          "condition": {
+            "kind": "rank-in",
+            "values": [
+              11,
+              12,
+              13,
+              14
+            ]
+          },
+          "operations": [
+            {
+              "kind": "add-heat",
+              "value": {
+                "n": "25",
+                "d": "1"
+              }
+            }
+          ]
+        }
+      ],
+      "plain": {
+        "line": "J/Q/K/A计分 → 每张符合条件的有效计分牌热度+25",
+        "tile": "J/Q/K/A计分\n每张匹配牌热度+25",
+        "status": "未购买；买入后才生效",
+        "essential": "只算计分牌；附带打出的牌、停用牌和留在手里的牌不算。\n只加给能计分的牌；附带/停用牌不获加成。",
+        "details": "每张能计分的 J、Q、K、A，计分时多加 25 热度。\n只算计分牌；附带打出的牌、停用牌和留在手里的牌不算。\n尚未购买，买入后才会生效\n这张扑克牌再次计分时，也会再获得这项加成。A包括在内。\n热度是计分的底数；倍率 + 表示增加，倍率 × 表示相乘。各效果按实际顺序结算，最后才算总分。",
+        "fallback": false
+      }
+    },
+    {
+      "id": "a08",
+      "hooks": [
+        {
+          "phase": "onCardScore",
+          "condition": {
+            "kind": "rank-in",
+            "values": [
+              2,
+              3,
+              4,
+              5
+            ]
+          },
+          "operations": [
+            {
+              "kind": "add-heat",
+              "value": {
+                "n": "20",
+                "d": "1"
+              }
+            }
+          ]
+        }
+      ],
+      "plain": {
+        "line": "2/3/4/5计分 → 每张符合条件的有效计分牌热度+20",
+        "tile": "2/3/4/5计分\n每张匹配牌热度+20",
+        "status": "未购买；买入后才生效",
+        "essential": "附带牌、停用牌和留在手里的牌不算。\n只加给能计分的牌；附带/停用牌不获加成。",
+        "details": "每张能计分的 2、3、4、5，计分时多加 20 热度。\n附带牌、停用牌和留在手里的牌不算。\n尚未购买，买入后才会生效\n符合的扑克牌再次计分时，也会再次获得这项加成。\n热度是计分的底数；倍率 + 表示增加，倍率 × 表示相乘。各效果按实际顺序结算，最后才算总分。",
+        "fallback": false
+      }
+    },
+    {
+      "id": "b02",
+      "hooks": [
+        {
+          "phase": "onCardScore",
+          "condition": {
+            "kind": "paired-rank",
+            "minimum": 2
+          },
+          "operations": [
+            {
+              "kind": "add-multiplier",
+              "value": {
+                "n": "1",
+                "d": "4"
+              }
+            }
+          ]
+        }
+      ],
+      "plain": {
+        "line": "同打≥2张同点牌 → 每张符合条件的有效计分牌倍率+0.25",
+        "tile": "同点≥2张\n每张匹配牌倍率+0.25",
+        "status": "未购买；买入后才生效",
+        "essential": "附带牌和停用牌可凑够张数，但自身不能获得这项计分加成。\n只加给能计分的牌；附带/停用牌不获加成。",
+        "details": "打出的牌里，同一点数至少有 2 张时，其中每张能计分的牌都让倍率 +0.25。\n附带牌和停用牌可凑够张数，但自身不能获得这项计分加成。\n尚未购买，买入后才会生效\n不要求最终牌型恰为对子。再次计分的符合牌也再次加倍率。\n热度是计分的底数；倍率 + 表示增加，倍率 × 表示相乘。各效果按实际顺序结算，最后才算总分。",
+        "fallback": false
+      }
+    },
+    {
+      "id": "b05",
+      "hooks": [
+        {
+          "phase": "onCardScore",
+          "condition": {
+            "kind": "paired-rank",
+            "minimum": 3
+          },
+          "operations": [
+            {
+              "kind": "add-heat",
+              "value": {
+                "n": "15",
+                "d": "1"
+              }
+            }
+          ]
+        }
+      ],
+      "plain": {
+        "line": "同打≥3张同点牌 → 每张符合条件的有效计分牌热度+15",
+        "tile": "同点≥3张\n每张匹配牌热度+15",
+        "status": "未购买；买入后才生效",
+        "essential": "附带牌和停用牌可凑够张数，但自身不能获得这项计分加成。\n只加给能计分的牌；附带/停用牌不获加成。",
+        "details": "打出的牌里，同一点数至少有 3 张时，其中每张能计分的牌都多加 15 热度。\n附带牌和停用牌可凑够张数，但自身不能获得这项计分加成。\n尚未购买，买入后才会生效\n不要求最终牌型恰为三条；葫芦里的三张同点牌等也可以满足。再次计分的符合牌也再次加热度。\n热度是计分的底数；倍率 + 表示增加，倍率 × 表示相乘。各效果按实际顺序结算，最后才算总分。",
+        "fallback": false
+      }
+    },
+    {
+      "id": "c02",
+      "hooks": [
+        {
+          "phase": "onCardScore",
+          "condition": {
+            "kind": "suit-in",
+            "values": [
+              "hearts",
+              "diamonds"
+            ]
+          },
+          "operations": [
+            {
+              "kind": "add-heat",
+              "value": {
+                "n": "8",
+                "d": "1"
+              }
+            }
+          ]
+        }
+      ],
+      "plain": {
+        "line": "♥/♦计分 → 每张符合条件的有效计分牌热度+8",
+        "tile": "♥/♦计分\n每张匹配牌热度+8",
+        "status": "未购买；买入后才生效",
+        "essential": "附带牌、停用牌和留在手里的牌不算。\n只加给能计分的牌；附带/停用牌不获加成。",
+        "details": "每张能计分的♥、♦，计分时多加 8 热度。\n附带牌、停用牌和留在手里的牌不算。\n尚未购买，买入后才会生效\n符合的扑克牌再次计分时，也会再次获得这项加成。\n热度是计分的底数；倍率 + 表示增加，倍率 × 表示相乘。各效果按实际顺序结算，最后才算总分。",
+        "fallback": false
+      }
+    },
+    {
+      "id": "c03",
+      "hooks": [
+        {
+          "phase": "onCardScore",
+          "condition": {
+            "kind": "suit-in",
+            "values": [
+              "spades",
+              "clubs"
+            ]
+          },
+          "operations": [
+            {
+              "kind": "add-heat",
+              "value": {
+                "n": "8",
+                "d": "1"
+              }
+            }
+          ]
+        }
+      ],
+      "plain": {
+        "line": "♠/♣计分 → 每张符合条件的有效计分牌热度+8",
+        "tile": "♠/♣计分\n每张匹配牌热度+8",
+        "status": "未购买；买入后才生效",
+        "essential": "附带牌、停用牌和留在手里的牌不算。\n只加给能计分的牌；附带/停用牌不获加成。",
+        "details": "每张能计分的♠、♣，计分时多加 8 热度。\n附带牌、停用牌和留在手里的牌不算。\n尚未购买，买入后才会生效\n符合的扑克牌再次计分时，也会再次获得这项加成。\n热度是计分的底数；倍率 + 表示增加，倍率 × 表示相乘。各效果按实际顺序结算，最后才算总分。",
+        "fallback": false
+      }
+    },
+    {
+      "id": "a10",
+      "hooks": [
+        {
+          "phase": "onHeldCard",
+          "condition": {
+            "kind": "held-rank-first",
+            "values": [
+              11,
+              12,
+              13
+            ],
+            "limit": 1
+          },
+          "operations": [
+            {
+              "kind": "multiply-multiplier",
+              "value": {
+                "n": "5",
+                "d": "4"
+              }
+            }
+          ]
+        }
+      ],
+      "plain": {
+        "line": "留J/Q/K前1张 → 该有效保留牌倍率×1.25",
+        "tile": "留J/Q/K前1张\n该留牌倍率×1.25",
+        "status": "未购买；买入后才生效",
+        "essential": "先排除助攻和停用牌，再找首张人头牌；排在它前面的小牌不影响。\n只算保留的有效牌；按手牌从左到右取。",
+        "details": "保留的有效 J、Q、K 中，按手牌顺序取首张，使倍率 ×1.25。\n先排除助攻和停用牌，再找首张人头牌；排在它前面的小牌不影响。\n尚未购买，买入后才会生效\n不限制主手张数。A不算人头牌；持牌版次不计分。此加成发生在持牌阶段。\n热度是计分的底数；倍率 + 表示增加，倍率 × 表示相乘。各效果按实际顺序结算，最后才算总分。",
+        "fallback": false
+      }
+    },
+    {
+      "id": "d01",
+      "hooks": [
+        {
+          "phase": "onHeldCard",
+          "condition": {
+            "kind": "held-rank-first",
+            "values": [
+              11,
+              12,
+              13
+            ],
+            "limit": 4
+          },
+          "operations": [
+            {
+              "kind": "add-multiplier",
+              "value": {
+                "n": "1",
+                "d": "2"
+              }
+            }
+          ]
+        }
+      ],
+      "plain": {
+        "line": "留J/Q/K前4张 → 每张符合条件的有效保留牌倍率+0.5",
+        "tile": "留J/Q/K前4张\n每张匹配留牌倍率+0.5",
+        "status": "未购买；买入后才生效",
+        "essential": "A不算；停用牌不算，跳过后再取够数量。\n只算保留的有效牌；按手牌从左到右取。",
+        "details": "留在手里的 J、Q、K，按手牌顺序取前 4 张，每张让倍率 +0.5。\nA不算；停用牌不算，跳过后再取够数量。\n尚未购买，买入后才会生效\n只留牌也不会获得它们的普通点数；持牌的版次不计分。按手牌顺序逐张处理，同一张牌上的大丑牌效果按槽位顺序处理。\n热度是计分的底数；倍率 + 表示增加，倍率 × 表示相乘。各效果按实际顺序结算，最后才算总分。",
+        "fallback": false
+      }
+    },
+    {
+      "id": "d02",
+      "hooks": [
+        {
+          "phase": "onHeldCard",
+          "condition": {
+            "kind": "held-rank-first",
+            "values": [
+              2,
+              3,
+              4,
+              5
+            ],
+            "limit": 4
+          },
+          "operations": [
+            {
+              "kind": "add-heat",
+              "value": {
+                "n": "6",
+                "d": "1"
+              }
+            }
+          ]
+        }
+      ],
+      "plain": {
+        "line": "留2/3/4/5前4张 → 每张符合条件的有效保留牌热度+6",
+        "tile": "留2/3/4/5前4张\n每张匹配留牌热度+6",
+        "status": "未购买；买入后才生效",
+        "essential": "停用牌不算，跳过后再取够数量；只加这里写的热度，不加这些牌的普通点数。\n只算保留的有效牌；按手牌从左到右取。",
+        "details": "留在手里的 2、3、4、5，按手牌顺序取前 4 张，每张加 6 热度。\n停用牌不算，跳过后再取够数量；只加这里写的热度，不加这些牌的普通点数。\n尚未购买，买入后才会生效\n持牌版次不计分。留在手里的牌按手牌顺序逐张处理。\n热度是计分的底数；倍率 + 表示增加，倍率 × 表示相乘。各效果按实际顺序结算，最后才算总分。",
+        "fallback": false
+      }
+    },
+    {
+      "id": "b11",
+      "hooks": [
+        {
+          "phase": "onHeldCard",
+          "condition": {
+            "kind": "held-scoring-rank-first",
+            "limit": 3
+          },
+          "operations": [
+            {
+              "kind": "add-multiplier",
+              "value": {
+                "n": "1",
+                "d": "2"
+              }
+            }
+          ]
+        }
+      ],
+      "plain": {
+        "line": "留牌与计分牌同点，前3张 → 每张符合条件的有效保留牌倍率+0.5",
+        "tile": "留牌与计分牌同点，前3张\n每张匹配留牌倍率+0.5",
+        "status": "未购买；买入后才生效",
+        "essential": "停用的留牌不算；附带牌和停用计分牌不能用来配对。\n只算保留的有效牌；按手牌从左到右取。",
+        "details": "留牌与本手能计分的牌同点数时，按手牌顺序取前 3 张，每张让倍率 +0.5。\n停用的留牌不算；附带牌和停用计分牌不能用来配对。\n尚未购买，买入后才会生效\n同点只需匹配任意一张有效计分牌；每张符合的留牌只算一次。先筛出符合的留牌，再取前几张。持牌不加普通点数，版次不计分。\n热度是计分的底数；倍率 + 表示增加，倍率 × 表示相乘。各效果按实际顺序结算，最后才算总分。",
+        "fallback": false
+      }
+    },
+    {
+      "id": "c10",
+      "hooks": [
+        {
+          "phase": "onHeldCard",
+          "condition": {
+            "kind": "held-rank-first",
+            "values": [
+              14
+            ],
+            "limit": 2
+          },
+          "operations": [
+            {
+              "kind": "add-multiplier",
+              "value": {
+                "n": "3",
+                "d": "4"
+              }
+            }
+          ]
+        }
+      ],
+      "plain": {
+        "line": "留A前2张 → 每张符合条件的有效保留牌倍率+0.75",
+        "tile": "留A前2张\n每张匹配留牌倍率+0.75",
+        "status": "未购买；买入后才生效",
+        "essential": "停用的A不算，跳过后再取够数量。\n只算保留的有效牌；按手牌从左到右取。",
+        "details": "留在手里的 A，按手牌顺序取前 2 张，每张让倍率 +0.75。\n停用的A不算，跳过后再取够数量。\n尚未购买，买入后才会生效\n持牌不加普通点数，持牌版次不计分。\n热度是计分的底数；倍率 + 表示增加，倍率 × 表示相乘。各效果按实际顺序结算，最后才算总分。",
+        "fallback": false
+      }
+    },
+    {
+      "id": "d08",
+      "hooks": [
+        {
+          "phase": "onHeldCard",
+          "condition": {
+            "kind": "held-enhancement-first",
+            "enhancement": "voice-paper",
+            "limit": 2
+          },
+          "operations": [
+            {
+              "kind": "multiply-multiplier",
+              "value": {
+                "n": "6",
+                "d": "5"
+              }
+            }
+          ]
+        }
+      ],
+      "plain": {
+        "line": "留声纸前2张 → 每张符合条件的有效保留牌倍率×1.2",
+        "tile": "留声纸前2张\n每张匹配留牌倍率×1.2",
+        "status": "未购买；买入后才生效",
+        "essential": "停用的留声纸不算；每张分开乘，手牌顺序会影响结果。\n只算保留的有效牌；按手牌从左到右取。\n每张先加自身倍率，再单独相乘。",
+        "details": "留在手里的留声纸，按顺序取前 2 张，每张先加自身倍率，再让倍率 ×1.2。\n停用的留声纸不算；每张分开乘，手牌顺序会影响结果。\n尚未购买，买入后才会生效\n留声纸自身先 +1 倍率，然后轮到这张留牌对应的大丑牌效果；其他持牌加成按大丑牌槽位顺序穿插处理，不应把所有加法和乘法各合成一批。持牌版次不计分。\n热度是计分的底数；倍率 + 表示增加，倍率 × 表示相乘。各效果按实际顺序结算，最后才算总分。",
+        "fallback": false
+      }
+    },
+    {
+      "id": "c04",
+      "hooks": [
+        {
+          "phase": "jokerScore",
+          "condition": {
+            "kind": "hand-type-in",
+            "values": [
+              "straight",
+              "straight-flush"
+            ]
+          },
+          "operations": [
+            {
+              "kind": "add-heat",
+              "value": {
+                "n": "50",
+                "d": "1"
+              }
+            }
+          ]
+        }
+      ],
+      "plain": {
+        "line": "顺子/同花顺 → 每手一次，热度+50",
+        "tile": "顺子/同花顺\n每手一次，热度+50",
+        "status": "未购买；买入后才生效",
+        "essential": "",
+        "details": "打出顺子、同花顺时，整手热度 +50。\n尚未购买，买入后才会生效\n只看最终判定的牌型。\n热度是计分的底数；倍率 + 表示增加，倍率 × 表示相乘。各效果按实际顺序结算，最后才算总分。",
+        "fallback": false
+      }
+    },
+    {
+      "id": "e08",
+      "hooks": [
+        {
+          "phase": "jokerScore",
+          "condition": {
+            "kind": "resource-minimum",
+            "resource": "gold",
+            "minimum": 20
+          },
+          "operations": [
+            {
+              "kind": "multiply-multiplier",
+              "value": {
+                "n": "9",
+                "d": "5"
+              }
+            }
+          ]
+        }
+      ],
+      "plain": {
+        "line": "出牌前≥20金 → 每手一次，倍率×1.8",
+        "tile": "出牌前≥20金\n每手一次，倍率×1.8",
+        "status": "现在4金 · 金币条件未满足，还差16金；未购，买后重查",
+        "essential": "按出牌开始时的金币判断，不花费金币。",
+        "details": "出牌时至少有 20 金币，本次出牌的倍率 ×1.8。\n按出牌开始时的金币判断，不花费金币。\n尚未购买，买入后才会生效\n本手计分中赚到的金币不会改变本手资格。\n热度是计分的底数；倍率 + 表示增加，倍率 × 表示相乘。各效果按实际顺序结算，最后才算总分。",
+        "fallback": false
+      }
+    },
+    {
+      "id": "f04",
+      "hooks": [
+        {
+          "phase": "jokerScore",
+          "condition": {
+            "kind": "resource-maximum",
+            "resource": "gold",
+            "maximum": 3
+          },
+          "operations": [
+            {
+              "kind": "add-multiplier",
+              "value": {
+                "n": "3",
+                "d": "1"
+              }
+            }
+          ]
+        }
+      ],
+      "plain": {
+        "line": "出牌前≤3金 → 每手一次，倍率+3",
+        "tile": "出牌前≤3金\n每手一次，倍率+3",
+        "status": "现在4金 · 金币条件未满足；未购，买后重查",
+        "essential": "按出牌开始时的金币判断；是加倍率，不是把倍率乘这个数。",
+        "details": "出牌时有 3 金币或更少，本次出牌的倍率 +3。\n按出牌开始时的金币判断；是加倍率，不是把倍率乘这个数。\n尚未购买，买入后才会生效\n本手计分中赚的钱不改变本手资格；之后出牌重新判断。\n热度是计分的底数；倍率 + 表示增加，倍率 × 表示相乘。各效果按实际顺序结算，最后才算总分。",
+        "fallback": false
+      }
+    }
+  ],
+  "build": {
+    "version": "C03",
+    "builtAt": "2026-10-11T08:23:54.999Z",
+    "revision": "c503f08540928ba69ea5bd5ed9d9330b638c0159",
+    "sourceStatus": "clean",
+    "modified": false
+  },
+  "browser": "151.0.7922.173",
+  "status": "FAIL",
+  "error": "page.waitForFunction: Timeout 30000ms exceeded.\n    at /workspace/dachoupai/shots/joker-card-quantity-copy/capture.mjs:53:11"
+}

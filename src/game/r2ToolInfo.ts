@@ -63,7 +63,7 @@ function effectText(effect:R2EnhancementEffect):string {
 function enhancementSummary(row:R2EnhancementDefinition):string {
  return row.effects.map(effect=>{
   switch(effect.kind){
-  case 'add-heat':case 'add-multiplier':case 'multiply-multiplier':return `${effect.phase==='onHeldCard'?'选中牌留在手中，':'选中牌每次计分'}${mathText(effect)}`;
+  case 'add-heat':case 'add-multiplier':case 'multiply-multiplier':return `${effect.phase==='onHeldCard'?'选中牌不打出、有效留在手里时，':'选中牌打出且每次有效计分时，'}${mathText(effect)}`;
   case 'chance-destroy':return `结算后${effect.probability.n}/${effect.probability.d}概率永久破碎`;
   case 'add-gold':return `选中牌有效留在手中过关+${effect.amount}金，每场最多${effect.capPerStage}金`;
   case 'retrigger-card':return `选中计分牌额外计分${effect.count}次`;
@@ -107,27 +107,41 @@ function targetText(tool:R2ToolDefinition):string {
   }
 }
 /** First layer: purpose and actual effect only; full targeting and costs stay in confirmation. */
-export function toolSummary(tool:R2ToolDefinition):string {
+function toolEffectSummary(tool:R2ToolDefinition):string {
  const op=tool.operation;
  switch(op.kind){
  case 'upgrade-hand':return op.handType?`给${HAND_LABELS[op.handType]}升级`:'给一种牌型升级';
  case 'delete-cards':return '永久删掉选中的扑克';
  case 'set-suit':return `把选中的扑克改成${suitNames[op.suit]}${SUIT_SYMBOL[op.suit]}`;
- case 'copy-card':return `复制选中的扑克${op.copies}张，原牌保留`;
+ case 'copy-card':return `复制选中的扑克${op.copies}张，原牌保留；新牌入抽牌堆底，不立即补牌`;
  case 'shift-rank':return `选中的扑克点数${op.delta>0?'+':'−'}${Math.abs(op.delta)}`;
  case 'set-enhancement':return enhancementSummary(enhancementDefinition(op.enhancement));
  case 'add-gold':return `获得${op.amount}金`;
  case 'restore-discard':return `恢复本场${op.amount}次弃牌，最多到入场次数`;
  case 'free-reroll':return '免费刷新一次大丑牌和工具货架';
- case 'random-enhancement':return '牺牲一张扑克，给受赠扑克随机增强';
+ case 'random-enhancement':return '永久献出一张扑克，给受赠扑克随机增强';
  case 'random-edition':return '给选中的牌随机增加闪箔、全息或多彩版次';
  case 'set-deck-suit':return '把整个牌组改成一种花色';
  case 'exchange-hand-levels':return `一种牌型升${op.gain}级，另一种降${op.loss}级`;
  case 'rare-joker-reward':{const edition=op.edition;return `随机获得一张${edition==='none'?'':editionLabel(edition)}稀有大丑牌`;}
- case 'set-joker-edition':return `牺牲一张大丑牌，让受赠牌变为${editionLabel(op.edition)}（${mathText(editionDefinition(op.edition).effect!)}）`;
+ case 'set-joker-edition':return `永久献出一张大丑牌，让受赠牌变为${editionLabel(op.edition)}（${mathText(editionDefinition(op.edition).effect!)}）`;
  case 'clear-deck-specials':return `清除全牌组增强和特殊版次；下一场起，永久手牌上限+${op.handBonus}`;
  default:return impossible(op);
  }
+}
+/** Use costs are distinct from the purchase price and stay on every shared front layer. */
+export function toolSummary(tool:R2ToolDefinition):string {
+ const costs=tool.costs.flatMap(cost=>{
+  switch(cost.kind){
+   case 'gold':return [`使用另付${cost.amount}金`];
+   case 'all-gold':return [`使用时清空全部金币（至少持有${cost.minimum}金）`];
+   case 'permanent-hands-penalty':return [`下一场起永久出牌次数−${cost.amount}`];
+   case 'permanent-hand-penalty':return [`下一场起永久手牌上限−${cost.amount}`];
+   case 'sacrifice-card':case 'sacrifice-joker':return [];
+   default:return impossible(cost);
+  }
+ });
+ return [toolEffectSummary(tool),...costs].join('；');
 }
 function operationText(tool:R2ToolDefinition):string {
   const op=tool.operation;

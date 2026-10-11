@@ -18,6 +18,7 @@ export function toolCardChange(tool:R2ToolDefinition,card:PlayingCard):CardChang
   case 'set-enhancement':after.enhancement=operation.enhancement;note=card.enhancement&&card.enhancement!==operation.enhancement?'替换原增强：失去 '+enhancementText(card)+' → 获得 '+enhancementText(after):'';break;
   case 'delete-cards':after=undefined;label='永久删除';note='该实例从有效牌组移除';break;
   case 'copy-card':label=`复制 ×${operation.copies}`;note='原牌保留；新实例确认后生成';break;
+  case 'clear-deck-specials':delete after.enhancement;delete after.edition;label='清除增强／版次';note='失去 '+[card.enhancement?enhancementText(card):'',card.edition&&card.edition!=='none'?editionLabel(card.edition):''].filter(Boolean).join('、')+' → 无增强／普通版次';break;
   default:return undefined;
  }
  if(after&&operation.kind!=='copy-card'&&JSON.stringify(before)===JSON.stringify(after))label='不变';
@@ -50,5 +51,5 @@ export function renderHandChange(host:HTMLElement,type:R2HandType,before:number,
 }
 
 function appendAttributes(host:HTMLElement,card:PlayingCard):void {
- const label=document.createElement('small');label.className='tool-change-attributes';label.textContent=[card.enhancement?enhancementText(card):'',card.edition&&card.edition!=='none'?editionLabel(card.edition):''].filter(Boolean).join(' · ');if(label.textContent)host.append(label);
+ const label=document.createElement('small');label.className='tool-change-attributes';label.textContent='增强：'+enhancementText(card)+'\n版次：'+editionLabel(card.edition);host.append(label);
 }
