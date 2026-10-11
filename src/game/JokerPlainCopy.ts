@@ -32,16 +32,25 @@ const when=(c:Condition,phase:HookPhase):string|undefined=>{
   case'resource-maximum':return '出牌前≤'+c.maximum+'金';
   case'resource':return c.resource==='gold'?'出牌前'+c.equals+'金':c.resource==='discards-used'?c.equals===0?'本场未弃过牌':c.equals===1&&phase==='onDiscard'?'本场首次成功弃牌':'本场已弃'+c.equals+'次':c.resource==='hands-after'?phase==='onStageClear'?'剩'+c.equals+'次出牌过关':'出牌后剩'+c.equals+'次':'本场第'+c.equals+'次出牌';
   case'play-modulo':return c.remainder===0?'本场第'+c.divisor+'/'+c.divisor*2+'/'+c.divisor*3+'…次出牌':undefined;
-  case'scoring-position':return (c.handTypes?(allBeyondPair(c.handTypes)?'除高牌/对子外':names(c.handTypes))+'的':'')+(c.position==='third-original'?'原计分第3张':c.position==='first'?'首张计分牌':'末张计分牌')+(c.playModulo?'，本场每第'+c.playModulo.divisor+'次出牌':'');
+  case'scoring-position':return (c.handTypes?(allBeyondPair(c.handTypes)?'除高牌/对子外':names(c.handTypes))+'的':'')+(c.position==='third-original'?'原计分第3张':c.position==='first'?'首张有效计分牌':'末张有效计分牌')+(c.playModulo?'，本场每第'+c.playModulo.divisor+'次出牌':'');
   case'discard-count':return '成功弃'+c.equals+'张';
   case'hand-type-unfinished':return names(c.values)+'结算后未过关';
   default:return undefined;
  }
 };
 const unit=(target:'heat'|'multiplier')=>target==='heat'?'热度':'倍率';
-function gain(o:Operation,phase:HookPhase):string|undefined{
+/** The condition already names positional targets; other card hooks iterate only matching cards. */
+function quantity(c:Condition|undefined,phase:HookPhase,compact=false):string {
+ if(phase==='onCardScore')return c?.kind==='scoring-position'?'':compact?'每张匹配牌':'每张符合条件的有效计分牌';
+ if(phase==='onHeldCard'){
+  const first=c&&['held-rank-first','held-scoring-rank-first','held-enhancement-first'].includes(c.kind)&&'limit' in c&&c.limit===1;
+  return first?(compact?'该留牌':'该有效保留牌'):(compact?'每张匹配留牌':'每张符合条件的有效保留牌');
+ }
+ return phase==='jokerScore'?'每手一次，':'';
+}
+function gain(o:Operation,phase:HookPhase,c?:Condition):string|undefined{
  switch(o.kind){
-  case'add-heat':case'add-multiplier':case'multiply-multiplier':return (phase==='onCardScore'||phase==='onHeldCard'?'每张有效牌':'')+(o.kind==='add-heat'?'热度+':o.kind==='add-multiplier'?'倍率+':'倍率×')+fractionText(o.value);
+  case'add-heat':case'add-multiplier':case'multiply-multiplier':return quantity(c,phase)+(o.kind==='add-heat'?'热度+':o.kind==='add-multiplier'?'倍率+':'倍率×')+fractionText(o.value);
   case'retrigger-card':return '对应有效计分牌再计'+o.count+'次';
   case'add-gold':case'add-gold-limited':return '获得'+o.amount+'金';
   case'refund-discard':return '返'+o.amount+'次弃牌';
@@ -59,7 +68,7 @@ export function jokerPlainCopy(d:R2JokerDefinition,j:R2JokerInstance|undefined,c
  const essential:string[]=limits.filter(s=>!s.includes('同一张牌的额外计分次数有总上限'));
  const hooks=d.hooks;
  if(hooks.length===1&&hooks[0].operations.length===1&&!d.modifiers?.length){
-  const h=hooks[0];condition=when(h.condition,h.phase);effect=gain(h.operations[0],h.phase);
+  const h=hooks[0];condition=when(h.condition,h.phase);effect=gain(h.operations[0],h.phase,h.condition);
   if(h.phase==='onStageClear'&&condition&&condition!=='成功过关')condition+='并过关';
   if(h.phase==='onHeldCard'){essential.push('只算保留的有效牌；按手牌从左到右取。');if(h.condition.kind==='held-enhancement-first')essential.push('每张先加自身倍率，再单独相乘。');}
   const limited=h.operations[0];if(limited.kind==='add-gold-limited'||limited.kind==='refund-hand-limited')essential.push('每场最多'+limited.limit+'次；进场重置。');
@@ -134,12 +143,11 @@ export function jokerPlainCopy(d:R2JokerDefinition,j:R2JokerInstance|undefined,c
   const h=hooks[0],o=h?.operations[0];
   let tileCondition=condition,tileEffect=effect;
   if(h?.condition.kind==='paired-rank')tileCondition='同点≥'+h.condition.minimum+'张';
-  if(o?.kind==='add-heat'||o?.kind==='add-multiplier'||o?.kind==='multiply-multiplier')tileEffect=(h.phase==='onCardScore'||h.phase==='onHeldCard'?'每张':'')+(o.kind==='add-heat'?'热度+':o.kind==='add-multiplier'?'倍率+':'倍率×')+fractionText(o.value);
-  if(h?.condition.kind==='paired-rank')tileEffect='每张计分'+tileEffect?.replace(/^每张/,'');
+  if(o?.kind==='add-heat'||o?.kind==='add-multiplier'||o?.kind==='multiply-multiplier')tileEffect=quantity(h.condition,h.phase,true)+(o.kind==='add-heat'?'热度+':o.kind==='add-multiplier'?'倍率+':'倍率×')+fractionText(o.value);
   if(h?.condition.kind==='scoring-position')tileCondition=(h.condition.handTypes?names(h.condition.handTypes):'')+(h.condition.position==='third-original'?'原第3牌':h.condition.position==='first'?'首计分牌':'末计分牌')+(h.condition.playModulo?'第'+h.condition.playModulo.divisor+'手':'');
   if(o?.kind==='retrigger-card')tileEffect='再计'+o.count+'次';
   if(o?.kind==='read-growth'){const grow=hooks[1].operations[0];if(grow.kind==='add-growth'){const bounds=growthBounds(d,j,grow),c=hooks[1].condition;const grouped=c.kind==='hand-type-in'&&c.values.length===R2_GROUP_HAND_TYPES.length&&c.values.every(t=>R2_GROUP_HAND_TYPES.includes(t));tileCondition=grouped?'成组长'+unit(o.target):when(c,hooks[1].phase)??condition;tileEffect=bounds.capped?(grouped?'':unit(o.target))+'封顶'+fractionText(bounds.cap)+'\n不再新增':(grouped?'':unit(o.target))+'+'+fractionText(bounds.delta)+'顶'+fractionText(bounds.cap)+'\n新增下次用';}}
-  if(h?.condition.kind==='scoring-position'&&h.condition.position==='first'&&!h.condition.playModulo&&h.condition.handTypes&&allBeyondPair(h.condition.handTypes))tile='非高牌/对子\n首计分牌\n'+tileEffect?.replace(/^每张/,'');
+  if(h?.condition.kind==='scoring-position'&&h.condition.position==='first'&&!h.condition.playModulo&&h.condition.handTypes&&allBeyondPair(h.condition.handTypes))tile='非高牌/对子\n首计分牌\n'+tileEffect;
   else if(o?.kind==='add-heat-per-gold')tile='每1金热度+'+fractionText(o.value)+'\n当前+'+fractionText(r2ResourceHeatValue(o,ctx))+'\n上限'+fractionText(o.cap);
   else if(o?.kind==='add-heat-per-empty-slot')tile='每空槽+'+fractionText(o.value)+'\n当前热度+'+fractionText(r2ResourceHeatValue(o,ctx))+'\n上限'+fractionText(o.cap);
   else if(o?.kind==='chance-add-heat')tile='每次出牌揭晓\n'+o.probability.n+'/'+o.probability.d+'机会\n热度+'+fractionText(o.value);
@@ -153,7 +161,7 @@ export function jokerPlainCopy(d:R2JokerDefinition,j:R2JokerInstance|undefined,c
   else if(read?.kind==='read-coefficient')tile='多步条件\n倍率×'+(j?fractionText(growth[read.key]):'保存值')+'\n点牌查重置';
   else if(legacyGrowth&&read?.kind==='read-growth'){const grow=hooks[1].operations[0];if(grow.kind==='add-growth'){const bounds=growthBounds(d,j,grow);tile='特定牌型\n'+(bounds.capped?unit(read.target)+'封顶'+fractionText(bounds.cap):unit(read.target)+'+'+fractionText(bounds.delta)+'顶'+fractionText(bounds.cap))+'\n'+(bounds.capped?'不再新增':'新增下次用');}}
   else if(read?.kind==='read-growth')tile='多步成长\n'+unit(read.target)+'+保存值\n点牌查增减';
-  else tile='多步条件\n'+(read?.kind==='retrigger-card'?'再计'+read.count+'次':read?gain(read,hooks[0].phase)??'分时点生效':'分时点生效')+'\n点牌查条件';
+  else tile='多步条件\n'+(read?.kind==='retrigger-card'?'再计'+read.count+'次':read?gain(read,hooks[0].phase,hooks[0].condition)??'分时点生效':'分时点生效')+'\n点牌查条件';
  }
 
  const visibleLimits=[...new Set(essential)].join('\n');
