@@ -1,0 +1,32 @@
+{
+  "baselineObserver": {
+    "status": "FAIL",
+    "error": "AssertionError [ERR_ASSERTION]: actual held source label\n    at file:///workspace/dachoupai/harness/readable-multiplier.mjs:26:32",
+    "reason": "The observer expected a standalone ×fraction label. The production held label actually uses JokerMemory plus label fitting, and the full value was in the bottom source hint. Changed only the observer to inspect the actual hint, then added readable formatting to JokerMemory.",
+    "completedCases": [
+      "group-1366",
+      "group-390"
+    ]
+  },
+  "targetedFailures": [
+    {
+      "kind": "legacy expectation",
+      "expected": "9.375",
+      "actual": "≈9.38",
+      "resolution": "Two-decimal first-layer contract; exact detail remains 9.375."
+    },
+    {
+      "kind": "new test data",
+      "value": "12345678901234567890123456789/7",
+      "reason": "The numerator was divisible by 7, so exact formatter correctly returned an integer. Fixed the test input to end in 790."
+    },
+    {
+      "kind": "test typecheck",
+      "reason": "New memory-source test initially omitted required context fields. Filled explicit public hand/capacity context; final typecheck passes."
+    }
+  ],
+  "pixelFailure": {
+    "file": "/tmp/multiplier-after/straight-390-details.png",
+    "reason": "Adding floor(...) made the existing single-line exact formula too long in the mobile detail. Split exact heat, multiplier and saved floor receipt into three rows; final after images replace the rejected candidate."
+  }
+}

@@ -1,0 +1,40 @@
+Original CI run: https://github.com/big-dimple/dachoupai/actions/runs/38128768688
+Job: 114438545733 (domain)
+Exact tested HEAD: 41463d89406aa5e8fd3d9670ca4d78d90515313d
+This failed run is retained; no rerun or green claim.
+
+-11T09:34:12.0211911Z ⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+2026-10-11T09:34:12.0212228Z 
+2026-10-11T09:34:12.0214214Z  FAIL  tests/joker-compact.test.ts > saved coefficient1 is visible; large exact numbers fall back to state, not truncated numbers/mechanisms
+2026-10-11T09:34:12.0219675Z AssertionError: expected '系数×≈1.23e29' to contain '123456789012345678901234567890'
+2026-10-11T09:34:12.0220125Z 
+2026-10-11T09:34:12.0220609Z Expected: "123456789012345678901234567890"
+2026-10-11T09:34:12.0221152Z Received: "系数×≈1.23e29"
+2026-10-11T09:34:12.0221350Z 
+2026-10-11T09:34:12.0221664Z  ❯ tests/joker-compact.test.ts:47:20
+2026-10-11T09:34:12.0268058Z      45|  const j=r2CreateJoker('e11','coefficient',0),m=jokerMemory(def('e11')…
+2026-10-11T09:34:12.0268922Z      46|  j.growth.coefficient={n:'123456789012345678901234567890',d:'1'};const…
+2026-10-11T09:34:12.0270032Z      47|  expect(big.short).toContain(j.growth.coefficient.n);expect(fitJokerLa…
+2026-10-11T09:34:12.0270728Z        |                    ^
+2026-10-11T09:34:12.0271106Z      48| });
+2026-10-11T09:34:12.0271631Z      49| it('actual lifetime/used counts and discarded history outrank mechanis…
+2026-10-11T09:34:12.0271956Z 
+2026-10-11T09:34:12.0272490Z ⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+2026-10-11T09:34:12.0272765Z 
+2026-10-11T09:34:12.0272850Z 
+2026-10-11T09:34:12.0284039Z  Test Files  1 failed | 205 passed (206)
+2026-10-11T09:34:12.0305588Z       Tests  1 failed | 3019 passed (3020)
+2026-10-11T09:34:12.0306915Z    Start at  09:33:29
+2026-10-11T09:34:12.0307927Z    Duration  42.04s (transform 5.95s, setup 0ms, import 27.94s, tests 65.54s, environment 23ms)
+2026-10-11T09:34:12.0335887Z 
+2026-10-11T09:34:12.0340189Z 
+2026-10-11T09:34:12.0358882Z ##[error]AssertionError: expected '系数×≈1.23e29' to contain '123456789012345678901234567890'
+
+Expected: "123456789012345678901234567890"
+Received: "系数×≈1.23e29"
+
+ ❯ tests/joker-compact.test.ts:47:20
+
+
+2026-10-11T09:34:12.5550472Z test: FAIL
+2026-10-1

@@ -1,0 +1,16 @@
+[
+  {
+    "source": "55624487b43ada215534b2211de213df44c004ec",
+    "srcDiff": " src/game/GameScene.ts | 4 ++--\n 1 file changed, 2 insertions(+), 2 deletions(-)\n",
+    "status": "FAIL",
+    "error": "AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n+ actual - expected\n\n+ 'await-input'\n- 'stage-cleared'\n\n    at file:///workspace/dachoupai/harness/readable-multiplier.mjs:23:219",
+    "scope": "Controlled public hand/levels/gold/saved growth, imported through production checkpoint; actual native PlayHand, full state/journal/storage comparison and reload. These are NOT the natural reported 447110 run or its fifth-stage path. Same CSS scale/DPR1/software Canvas; normal flag is recorded, otherwise low motion, PC1366x768 and phone390x740."
+  },
+  {
+    "source": "55624487b43ada215534b2211de213df44c004ec",
+    "srcDiff": " src/game/GameScene.ts | 4 ++--\n 1 file changed, 2 insertions(+), 2 deletions(-)\n",
+    "status": "FAIL",
+    "error": "AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n+ actual - expected\n\n+ 'stage-cleared'\n- 'await-input'\n\n    at file:///workspace/dachoupai/harness/readable-multiplier.mjs:35:304",
+    "scope": "Controlled public hand/levels/gold/saved growth, imported through production checkpoint; actual native PlayHand, full state/journal/storage comparison and reload. These are NOT the natural reported 447110 run or its fifth-stage path. Same CSS scale/DPR1/software Canvas; normal flag is recorded, otherwise low motion, PC1366x768 and phone390x740."
+  }
+]

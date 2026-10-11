@@ -3,7 +3,7 @@ import type {ScoreTrace} from '../domain/scoreR2';
 import {playedFootprint,type Box,type TableLayout} from './layout';
 import {toolInventoryPlayedArea} from './ToolInventoryEntry';
 import {HAND_LABELS} from '../content/handLabels';
-import {fractionText,heatText} from './scoreText';
+import {readableFractionText,heatText} from './scoreText';
 import {fitScoreLine} from './ScoreTextLayout';
 import {PAPER_THEME as T,PAPER_CSS as C,SCORE_FONT,UI_FONT} from './theme';
 
@@ -28,7 +28,7 @@ export function mountScoreLanding(scene:Phaser.Scene,parent:Phaser.GameObjects.C
  const total=scene.add.text(0,0,heatText(trace.finalScore),{fontFamily:SCORE_FONT,fontSize:'54px',fontStyle:'bold',color}).setName('score/landing-total');
  fitScoreLine(total,{x:box.x+14,y:numberY,width:box.width-28,height:numberHeight},compact?40:54,true);
  total.setData('exactScore',trace.finalScore);
- const formula=scene.add.text(0,0,fractionText(trace.accumulator.H)+' × '+fractionText(trace.accumulator.M),{fontFamily:UI_FONT,fontSize:'14px',color:C.jade}).setName('score/landing-formula');
+ const formula=scene.add.text(0,0,readableFractionText(trace.accumulator.H)+' × '+readableFractionText(trace.accumulator.M),{fontFamily:UI_FONT,fontSize:'14px',color:C.jade}).setName('score/landing-formula');
  fitScoreLine(formula,{x:box.x+14,y:box.y+box.height-24,width:box.width-28,height:20},14,true);
  group.add([label,total,formula]);
  let disposed=false;const dispose=()=>{if(disposed)return;disposed=true;signal.removeEventListener('abort',dispose);group.destroy();};signal.addEventListener('abort',dispose,{once:true});return {total,dispose};

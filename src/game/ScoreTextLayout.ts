@@ -12,9 +12,10 @@ export function scoreFlightLanding(source:{x:number;y:number},cell:Box,outset=14
 
 /** Display precision only. Full exact values remain in trace/save and on the text's data. */
 export function compactScoreText(value:string):string {
-  return value.replace(/\d[\d,]*(?:\.\d+)?/g,part=>{
-    const digits=part.replaceAll(',',''),whole=digits.split('.')[0];
-    return whole.length>5?whole[0]+'.'+whole.slice(1,3)+'e'+(whole.length-1):part;
+  return value.replace(/(≈)?(-?)(\d[\d,]*(?:\.\d+)?)/g,(part,approx,sign,number:string)=>{
+    const digits=number.replaceAll(',',''),[whole,decimal='']=digits.split('.');
+    const lost=/[1-9]/.test(whole.slice(3)+decimal);
+    return whole.length>5?(approx||lost?'≈':'')+sign+whole[0]+'.'+whole.slice(1,3)+'e'+(whole.length-1):part;
   });
 }
 
@@ -25,7 +26,7 @@ export function fitScoreLine(text:Phaser.GameObjects.Text,area:Box,baseSize:numb
   for(let size=baseSize;(text.width>area.width||text.height>area.height)&&size>14;)text.setFontSize(--size);
   if(numeric&&text.width>area.width){
     text.setText(compactScoreText(value));
-    if(text.width>area.width)text.setText(text.text.replace(/(\d)\.\d{2}e/g,'$1e'));
+    if(text.width>area.width)text.setText(text.text.replace(/(≈)?(-?)(\d)\.(\d{2})e/g,(_,approx,sign,whole,tail)=>(approx||/[1-9]/.test(tail)?'≈':'')+sign+whole+'e'));
   }
   if(!numeric&&text.width>area.width){
     let end=value.length;
