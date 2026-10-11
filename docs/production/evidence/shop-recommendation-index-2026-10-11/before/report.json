@@ -1,0 +1,4249 @@
+{
+  "head": "e48fd07a6e7b4575067dc356ad28cb0a94fe15e9",
+  "sourceTree": "36f5b2e08773ece2c38f40e6f276bfd3c8fa48ef",
+  "sourceChanges": "",
+  "harnessSha256": "35e70e29ecbd9317e6b2b213e1f6203e352eb806685e896466ed684a670ad3c0",
+  "baseline": true,
+  "scope": "Controlled current/legacy-identity shops, 1180/1366 desktop and 390/320 touch; actual labels and native full-slot comparison/held/sale-cancel UI, full state/journal/IDB read-only equality. No natural games, probability prediction, score caching, history replay or deployment.",
+  "cases": [
+    {
+      "width": 1180,
+      "height": 757,
+      "touch": false,
+      "key": "ordinary-full",
+      "errors": [],
+      "checks": [],
+      "before": {
+        "gold": 40,
+        "contentVersion": "quality-r2-basic-suit-choice-v1",
+        "contentHash": "json-fnv-v1:69c29f5cd54bb160",
+        "commandSeq": 4,
+        "held": [
+          {
+            "instanceId": "native-held/0",
+            "definitionId": "mantangcai",
+            "paidPrice": 8,
+            "growth": {},
+            "edition": "none"
+          },
+          {
+            "instanceId": "native-held/1",
+            "definitionId": "b02",
+            "paidPrice": 8,
+            "growth": {},
+            "edition": "none"
+          },
+          {
+            "instanceId": "native-held/2",
+            "definitionId": "b03",
+            "paidPrice": 8,
+            "growth": {
+              "multiplier": {
+                "n": "1",
+                "d": "1"
+              }
+            },
+            "edition": "none"
+          },
+          {
+            "instanceId": "native-held/3",
+            "definitionId": "e01",
+            "paidPrice": 8,
+            "growth": {},
+            "edition": "none"
+          },
+          {
+            "instanceId": "native-held/4",
+            "definitionId": "e04",
+            "paidPrice": 8,
+            "growth": {},
+            "edition": "none"
+          }
+        ],
+        "journalLength": 0
+      },
+      "guidance": [
+        {
+          "offer": {
+            "offerId": "native-offer/0",
+            "definitionId": "b04",
+            "price": 4,
+            "edition": "none",
+            "consumed": false
+          },
+          "stars": 1,
+          "reason": "需先腾槽",
+          "detail": "已有对上眼（无成长或使用计数）；新牌倍率+2，未补明确缺口，建议先不买。",
+          "routes": [
+            "group"
+          ],
+          "routeCaption": "同点",
+          "label": "本局★"
+        },
+        {
+          "offer": {
+            "offerId": "native-offer/1",
+            "definitionId": "e08",
+            "price": 8,
+            "edition": "none",
+            "consumed": false
+          },
+          "stars": 1,
+          "reason": "需先腾槽",
+          "detail": "当前构筑没有明确需要它的条件；倍率×1.8，这轮先留金。",
+          "routes": [
+            "group",
+            "straight",
+            "flush"
+          ],
+          "routeCaption": "同点/顺子/同花",
+          "label": "本局★"
+        },
+        {
+          "offer": {
+            "offerId": "native-offer/2",
+            "definitionId": "c08",
+            "price": 6,
+            "edition": "none",
+            "consumed": false
+          },
+          "stars": 1,
+          "reason": "需先腾槽",
+          "detail": "它的条件不补当前同点成组；想用它时先主动换方向。",
+          "routes": [
+            "straight"
+          ],
+          "routeCaption": "顺子",
+          "label": "本局★"
+        }
+      ],
+      "geometry": [
+        {
+          "name": "shop/owned-heading",
+          "text": "已积攒 +1 倍率",
+          "fontSize": "16px",
+          "bounds": {
+            "x": 272,
+            "y": 20,
+            "width": 108,
+            "height": 19
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/owned-drag-hint",
+          "text": "拖动换位 · 点牌查看",
+          "fontSize": "14px",
+          "bounds": {
+            "x": 272,
+            "y": 40,
+            "width": 125,
+            "height": 16
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-name",
+          "text": "一唱一和",
+          "offerId": "native-offer/0",
+          "fontSize": "15px",
+          "bounds": {
+            "x": 298,
+            "y": 415,
+            "width": 61,
+            "height": 17
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-purpose",
+          "text": "≥2组各≥2张同点 → 每手一次，倍\n率+2",
+          "offerId": "native-offer/0",
+          "fontSize": "14px",
+          "bounds": {
+            "x": 298,
+            "y": 437,
+            "width": 207,
+            "height": 32
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-price",
+          "text": "4 金 · 普通",
+          "offerId": "native-offer/0",
+          "fontSize": "16px",
+          "bounds": {
+            "x": 298,
+            "y": 525,
+            "width": 76,
+            "height": 19
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-routes",
+          "text": "同点",
+          "offerId": "native-offer/0",
+          "fontSize": "14px",
+          "bounds": {
+            "x": 298,
+            "y": 505,
+            "width": 28,
+            "height": 16
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-advice",
+          "text": "本局★ · 需先腾槽",
+          "offerId": "native-offer/0",
+          "stars": 1,
+          "reason": "已有对上眼（无成长或使用计数）；新牌倍率+2，未补明确缺口，建议先不买。",
+          "fontSize": "14px",
+          "bounds": {
+            "x": 398,
+            "y": 505,
+            "width": 56,
+            "height": 32
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-reason",
+          "text": "槽位已满",
+          "offerId": "native-offer/0",
+          "fontSize": "14px",
+          "bounds": {
+            "x": 298,
+            "y": 545,
+            "width": 56,
+            "height": 16
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-name",
+          "text": "包场",
+          "offerId": "native-offer/1",
+          "fontSize": "15px",
+          "bounds": {
+            "x": 538,
+            "y": 415,
+            "width": 31,
+            "height": 17
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-purpose",
+          "text": "出牌前≥20金 → 每手一次，倍率×\n1.8\n现在40金 · 金币条件目前够；未\n购，买后重查",
+          "offerId": "native-offer/1",
+          "fontSize": "14px",
+          "bounds": {
+            "x": 538,
+            "y": 437,
+            "width": 208,
+            "height": 64
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-price",
+          "text": "8 金 · 普通",
+          "offerId": "native-offer/1",
+          "fontSize": "16px",
+          "bounds": {
+            "x": 538,
+            "y": 525,
+            "width": 76,
+            "height": 19
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-routes",
+          "text": "同点/顺子/同花",
+          "offerId": "native-offer/1",
+          "fontSize": "14px",
+          "bounds": {
+            "x": 538,
+            "y": 505,
+            "width": 92,
+            "height": 16
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-advice",
+          "text": "本局★ · 需先腾槽",
+          "offerId": "native-offer/1",
+          "stars": 1,
+          "reason": "当前构筑没有明确需要它的条件；倍率×1.8，这轮先留金。",
+          "fontSize": "14px",
+          "bounds": {
+            "x": 638,
+            "y": 505,
+            "width": 56,
+            "height": 32
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-reason",
+          "text": "槽位已满",
+          "offerId": "native-offer/1",
+          "fontSize": "14px",
+          "bounds": {
+            "x": 538,
+            "y": 545,
+            "width": 56,
+            "height": 16
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-name",
+          "text": "少一级",
+          "offerId": "native-offer/2",
+          "fontSize": "15px",
+          "bounds": {
+            "x": 778,
+            "y": 415,
+            "width": 46,
+            "height": 17
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-purpose",
+          "text": "普通顺子 → 4张即可；同花顺仍5\n张",
+          "offerId": "native-offer/2",
+          "fontSize": "14px",
+          "bounds": {
+            "x": 778,
+            "y": 437,
+            "width": 206,
+            "height": 32
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-price",
+          "text": "6 金 · 普通",
+          "offerId": "native-offer/2",
+          "fontSize": "16px",
+          "bounds": {
+            "x": 778,
+            "y": 525,
+            "width": 76,
+            "height": 19
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-routes",
+          "text": "顺子",
+          "offerId": "native-offer/2",
+          "fontSize": "14px",
+          "bounds": {
+            "x": 778,
+            "y": 505,
+            "width": 28,
+            "height": 16
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-advice",
+          "text": "本局★ · 需先腾槽",
+          "offerId": "native-offer/2",
+          "stars": 1,
+          "reason": "它的条件不补当前同点成组；想用它时先主动换方向。",
+          "fontSize": "14px",
+          "bounds": {
+            "x": 878,
+            "y": 505,
+            "width": 56,
+            "height": 32
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-reason",
+          "text": "槽位已满",
+          "offerId": "native-offer/2",
+          "fontSize": "14px",
+          "bounds": {
+            "x": 778,
+            "y": 545,
+            "width": 56,
+            "height": 16
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-name",
+          "text": "玻璃面",
+          "offerId": "recommendation-native/shop/1/0/tool/0",
+          "fontSize": "15px",
+          "bounds": {
+            "x": 378,
+            "y": 591,
+            "width": 46,
+            "height": 17
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-purpose",
+          "text": "选中牌打出且每次有效计分时，倍率×\n1.5；结算后1/4概率永久破碎",
+          "offerId": "recommendation-native/shop/1/0/tool/0",
+          "fontSize": "14px",
+          "bounds": {
+            "x": 378,
+            "y": 613,
+            "width": 233,
+            "height": 32
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-price",
+          "text": "5 金 · 查看",
+          "offerId": "recommendation-native/shop/1/0/tool/0",
+          "fontSize": "16px",
+          "bounds": {
+            "x": 378,
+            "y": 681,
+            "width": 76,
+            "height": 19
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-name",
+          "text": "利息册",
+          "offerId": "recommendation-native/shop/1/0/item/0",
+          "fontSize": "15px",
+          "bounds": {
+            "x": 740,
+            "y": 591,
+            "width": 46,
+            "height": 17
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-purpose",
+          "text": "每次过关结算利息上限+2金，在奖励前\n读取；不会直接赠送金币，须有足够存\n款产生利息",
+          "offerId": "recommendation-native/shop/1/0/item/0",
+          "fontSize": "14px",
+          "bounds": {
+            "x": 740,
+            "y": 613,
+            "width": 240,
+            "height": 48
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-price",
+          "text": "10 金 · 查看",
+          "offerId": "recommendation-native/shop/1/0/item/0",
+          "fontSize": "16px",
+          "bounds": {
+            "x": 740,
+            "y": 681,
+            "width": 85,
+            "height": 19
+          },
+          "alpha": 1
+        }
+      ],
+      "screenshot": "1180x757-ordinary-full.png",
+      "status": "OBSERVED_BEFORE"
+    },
+    {
+      "width": 1180,
+      "height": 757,
+      "touch": false,
+      "key": "core-high",
+      "errors": [],
+      "checks": [],
+      "before": {
+        "gold": 40,
+        "contentVersion": "quality-r2-basic-suit-choice-v1",
+        "contentHash": "json-fnv-v1:69c29f5cd54bb160",
+        "commandSeq": 4,
+        "held": [
+          {
+            "instanceId": "native-held/0",
+            "definitionId": "b03",
+            "paidPrice": 8,
+            "growth": {
+              "multiplier": {
+                "n": "1",
+                "d": "1"
+              }
+            },
+            "edition": "none"
+          },
+          {
+            "instanceId": "native-held/1",
+            "definitionId": "e05",
+            "paidPrice": 8,
+            "growth": {},
+            "edition": "none"
+          },
+          {
+            "instanceId": "native-held/2",
+            "definitionId": "e06",
+            "paidPrice": 8,
+            "growth": {},
+            "edition": "none"
+          },
+          {
+            "instanceId": "native-held/3",
+            "definitionId": "e11",
+            "paidPrice": 8,
+            "growth": {
+              "coefficient": {
+                "n": "1",
+                "d": "1"
+              }
+            },
+            "edition": "none"
+          },
+          {
+            "instanceId": "native-held/4",
+            "definitionId": "c08",
+            "paidPrice": 8,
+            "growth": {},
+            "edition": "none"
+          }
+        ],
+        "journalLength": 0
+      },
+      "guidance": [
+        {
+          "offer": {
+            "offerId": "native-offer/0",
+            "definitionId": "b06",
+            "price": 8,
+            "edition": "none",
+            "consumed": false
+          },
+          "stars": 1,
+          "reason": "需先腾槽",
+          "detail": "换掉少一级还会影响保留牌的出售联动；先留金，完整损失可查看。",
+          "routes": [
+            "group"
+          ],
+          "routeCaption": "同点",
+          "label": "本局★"
+        },
+        {
+          "offer": {
+            "offerId": "native-offer/1",
+            "definitionId": "a11",
+            "price": 8,
+            "edition": "none",
+            "consumed": false
+          },
+          "stars": 1,
+          "reason": "需先腾槽",
+          "detail": "换掉少一级还会影响保留牌的出售联动；先留金，完整损失可查看。",
+          "routes": [
+            "group"
+          ],
+          "routeCaption": "同点",
+          "label": "本局★"
+        },
+        {
+          "offer": {
+            "offerId": "native-offer/2",
+            "definitionId": "b09",
+            "price": 8,
+            "edition": "none",
+            "consumed": false
+          },
+          "stars": 1,
+          "reason": "需先腾槽",
+          "detail": "已有长期捧场（乘法系数 ×1）；新牌倍率×2，未补明确缺口，建议先不买。",
+          "routes": [
+            "group"
+          ],
+          "routeCaption": "同点",
+          "label": "本局★"
+        }
+      ],
+      "geometry": [
+        {
+          "name": "shop/owned-heading",
+          "text": "已积攒 +1 倍率",
+          "fontSize": "16px",
+          "bounds": {
+            "x": 272,
+            "y": 20,
+            "width": 108,
+            "height": 19
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/owned-drag-hint",
+          "text": "拖动换位 · 点牌查看",
+          "fontSize": "14px",
+          "bounds": {
+            "x": 272,
+            "y": 40,
+            "width": 125,
+            "height": 16
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-name",
+          "text": "再说一遍",
+          "offerId": "native-offer/0",
+          "fontSize": "15px",
+          "bounds": {
+            "x": 298,
+            "y": 415,
+            "width": 61,
+            "height": 17
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-purpose",
+          "text": "多步条件\n再计1次\n点牌查条件",
+          "offerId": "native-offer/0",
+          "fontSize": "14px",
+          "bounds": {
+            "x": 298,
+            "y": 437,
+            "width": 70,
+            "height": 48
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-price",
+          "text": "8 金 · 普通",
+          "offerId": "native-offer/0",
+          "fontSize": "16px",
+          "bounds": {
+            "x": 298,
+            "y": 525,
+            "width": 76,
+            "height": 19
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-routes",
+          "text": "同点",
+          "offerId": "native-offer/0",
+          "fontSize": "14px",
+          "bounds": {
+            "x": 298,
+            "y": 505,
+            "width": 28,
+            "height": 16
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-advice",
+          "text": "本局★ · 需先腾槽",
+          "offerId": "native-offer/0",
+          "stars": 1,
+          "reason": "换掉少一级还会影响保留牌的出售联动；先留金，完整损失可查看。",
+          "fontSize": "14px",
+          "bounds": {
+            "x": 398,
+            "y": 505,
+            "width": 56,
+            "height": 32
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-reason",
+          "text": "槽位已满",
+          "offerId": "native-offer/0",
+          "fontSize": "14px",
+          "bounds": {
+            "x": 298,
+            "y": 545,
+            "width": 56,
+            "height": 16
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-name",
+          "text": "返个场",
+          "offerId": "native-offer/1",
+          "fontSize": "15px",
+          "bounds": {
+            "x": 538,
+            "y": 415,
+            "width": 46,
+            "height": 17
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-purpose",
+          "text": "葫芦/同花葫芦 → 对应有效计分牌\n再计1次",
+          "offerId": "native-offer/1",
+          "fontSize": "14px",
+          "bounds": {
+            "x": 538,
+            "y": 437,
+            "width": 208,
+            "height": 32
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-price",
+          "text": "8 金 · 普通",
+          "offerId": "native-offer/1",
+          "fontSize": "16px",
+          "bounds": {
+            "x": 538,
+            "y": 525,
+            "width": 76,
+            "height": 19
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-routes",
+          "text": "同点",
+          "offerId": "native-offer/1",
+          "fontSize": "14px",
+          "bounds": {
+            "x": 538,
+            "y": 505,
+            "width": 28,
+            "height": 16
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-advice",
+          "text": "本局★ · 需先腾槽",
+          "offerId": "native-offer/1",
+          "stars": 1,
+          "reason": "换掉少一级还会影响保留牌的出售联动；先留金，完整损失可查看。",
+          "fontSize": "14px",
+          "bounds": {
+            "x": 638,
+            "y": 505,
+            "width": 56,
+            "height": 32
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-reason",
+          "text": "槽位已满",
+          "offerId": "native-offer/1",
+          "fontSize": "14px",
+          "bounds": {
+            "x": 538,
+            "y": 545,
+            "width": 56,
+            "height": 16
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-name",
+          "text": "四座皆惊",
+          "offerId": "native-offer/2",
+          "fontSize": "15px",
+          "bounds": {
+            "x": 778,
+            "y": 415,
+            "width": 61,
+            "height": 17
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-purpose",
+          "text": "四条/五条/同花五条 → 每手一次\n，倍率×2",
+          "offerId": "native-offer/2",
+          "fontSize": "14px",
+          "bounds": {
+            "x": 778,
+            "y": 437,
+            "width": 198,
+            "height": 32
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-price",
+          "text": "8 金 · 普通",
+          "offerId": "native-offer/2",
+          "fontSize": "16px",
+          "bounds": {
+            "x": 778,
+            "y": 525,
+            "width": 76,
+            "height": 19
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-routes",
+          "text": "同点",
+          "offerId": "native-offer/2",
+          "fontSize": "14px",
+          "bounds": {
+            "x": 778,
+            "y": 505,
+            "width": 28,
+            "height": 16
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-advice",
+          "text": "本局★ · 需先腾槽",
+          "offerId": "native-offer/2",
+          "stars": 1,
+          "reason": "已有长期捧场（乘法系数 ×1）；新牌倍率×2，未补明确缺口，建议先不买。",
+          "fontSize": "14px",
+          "bounds": {
+            "x": 878,
+            "y": 505,
+            "width": 56,
+            "height": 32
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-reason",
+          "text": "槽位已满",
+          "offerId": "native-offer/2",
+          "fontSize": "14px",
+          "bounds": {
+            "x": 778,
+            "y": 545,
+            "width": 56,
+            "height": 16
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-name",
+          "text": "玻璃面",
+          "offerId": "recommendation-native/shop/1/0/tool/0",
+          "fontSize": "15px",
+          "bounds": {
+            "x": 378,
+            "y": 591,
+            "width": 46,
+            "height": 17
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-purpose",
+          "text": "选中牌打出且每次有效计分时，倍率×\n1.5；结算后1/4概率永久破碎",
+          "offerId": "recommendation-native/shop/1/0/tool/0",
+          "fontSize": "14px",
+          "bounds": {
+            "x": 378,
+            "y": 613,
+            "width": 233,
+            "height": 32
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-price",
+          "text": "5 金 · 查看",
+          "offerId": "recommendation-native/shop/1/0/tool/0",
+          "fontSize": "16px",
+          "bounds": {
+            "x": 378,
+            "y": 681,
+            "width": 76,
+            "height": 19
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-name",
+          "text": "利息册",
+          "offerId": "recommendation-native/shop/1/0/item/0",
+          "fontSize": "15px",
+          "bounds": {
+            "x": 740,
+            "y": 591,
+            "width": 46,
+            "height": 17
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-purpose",
+          "text": "每次过关结算利息上限+2金，在奖励前\n读取；不会直接赠送金币，须有足够存\n款产生利息",
+          "offerId": "recommendation-native/shop/1/0/item/0",
+          "fontSize": "14px",
+          "bounds": {
+            "x": 740,
+            "y": 613,
+            "width": 240,
+            "height": 48
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-price",
+          "text": "10 金 · 查看",
+          "offerId": "recommendation-native/shop/1/0/item/0",
+          "fontSize": "16px",
+          "bounds": {
+            "x": 740,
+            "y": 681,
+            "width": 85,
+            "height": 19
+          },
+          "alpha": 1
+        }
+      ],
+      "screenshot": "1180x757-core-high.png",
+      "status": "OBSERVED_BEFORE"
+    },
+    {
+      "width": 1180,
+      "height": 757,
+      "touch": false,
+      "key": "cash-loss",
+      "errors": [],
+      "checks": [],
+      "before": {
+        "gold": 21,
+        "contentVersion": "quality-r2-basic-suit-choice-v1",
+        "contentHash": "json-fnv-v1:69c29f5cd54bb160",
+        "commandSeq": 4,
+        "held": [
+          {
+            "instanceId": "native-held/0",
+            "definitionId": "e08",
+            "paidPrice": 8,
+            "growth": {},
+            "edition": "none"
+          },
+          {
+            "instanceId": "native-held/1",
+            "definitionId": "b03",
+            "paidPrice": 8,
+            "growth": {
+              "multiplier": {
+                "n": "1",
+                "d": "1"
+              }
+            },
+            "edition": "none"
+          },
+          {
+            "instanceId": "native-held/2",
+            "definitionId": "b08",
+            "paidPrice": 8,
+            "growth": {},
+            "edition": "none"
+          },
+          {
+            "instanceId": "native-held/3",
+            "definitionId": "e01",
+            "paidPrice": 8,
+            "growth": {},
+            "edition": "none"
+          },
+          {
+            "instanceId": "native-held/4",
+            "definitionId": "c08",
+            "paidPrice": 2,
+            "growth": {},
+            "edition": "none"
+          }
+        ],
+        "journalLength": 0
+      },
+      "guidance": [
+        {
+          "offer": {
+            "offerId": "native-offer/0",
+            "definitionId": "b10",
+            "price": 4,
+            "edition": "none",
+            "consumed": false
+          },
+          "stars": 1,
+          "reason": "先留金币",
+          "detail": "买后金币21→18；包场的“本手开始金币至少20；本手新收入不改变资格”条件不再满足（倍率×1.8）；这轮先留金。",
+          "routes": [
+            "group"
+          ],
+          "routeCaption": "同点",
+          "label": "本局★"
+        },
+        {
+          "offer": {
+            "offerId": "native-offer/1",
+            "definitionId": "d07",
+            "price": 4,
+            "edition": "none",
+            "consumed": false
+          },
+          "stars": 1,
+          "reason": "先留金币",
+          "detail": "买后金币21→17；包场的“本手开始金币至少20；本手新收入不改变资格”条件不再满足（倍率×1.8）；这轮先留金。",
+          "routes": [
+            "group",
+            "straight",
+            "flush"
+          ],
+          "routeCaption": "同点/顺子/同花",
+          "label": "本局★"
+        },
+        {
+          "offer": {
+            "offerId": "native-offer/2",
+            "definitionId": "f10",
+            "price": 8,
+            "edition": "none",
+            "consumed": false
+          },
+          "stars": 1,
+          "reason": "先留金币",
+          "detail": "买后金币21→13；包场的“本手开始金币至少20；本手新收入不改变资格”条件不再满足（倍率×1.8）；这轮先留金。",
+          "routes": [
+            "group",
+            "straight",
+            "flush"
+          ],
+          "routeCaption": "同点/顺子/同花",
+          "label": "本局★"
+        }
+      ],
+      "geometry": [
+        {
+          "name": "shop/owned-heading",
+          "text": "已积攒 +1 倍率",
+          "fontSize": "16px",
+          "bounds": {
+            "x": 272,
+            "y": 20,
+            "width": 108,
+            "height": 19
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/owned-drag-hint",
+          "text": "拖动换位 · 点牌查看",
+          "fontSize": "14px",
+          "bounds": {
+            "x": 272,
+            "y": 40,
+            "width": 125,
+            "height": 16
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-name",
+          "text": "练对子",
+          "offerId": "native-offer/0",
+          "fontSize": "15px",
+          "bounds": {
+            "x": 298,
+            "y": 415,
+            "width": 46,
+            "height": 17
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-purpose",
+          "text": "对子等同点组合出牌后 → 热度成\n长最多+10；上限100，新增下次\n用",
+          "offerId": "native-offer/0",
+          "fontSize": "14px",
+          "bounds": {
+            "x": 298,
+            "y": 437,
+            "width": 204,
+            "height": 48
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-price",
+          "text": "4 金 · 普通",
+          "offerId": "native-offer/0",
+          "fontSize": "16px",
+          "bounds": {
+            "x": 298,
+            "y": 525,
+            "width": 76,
+            "height": 19
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-routes",
+          "text": "同点",
+          "offerId": "native-offer/0",
+          "fontSize": "14px",
+          "bounds": {
+            "x": 298,
+            "y": 505,
+            "width": 28,
+            "height": 16
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-advice",
+          "text": "本局★ · 先留金币",
+          "offerId": "native-offer/0",
+          "stars": 1,
+          "reason": "买后金币21→18；包场的“本手开始金币至少20；本手新收入不改变资格”条件不再满足（倍率×1.8）；这轮先留金。",
+          "fontSize": "14px",
+          "bounds": {
+            "x": 398,
+            "y": 505,
+            "width": 56,
+            "height": 32
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-reason",
+          "text": "槽位已满",
+          "offerId": "native-offer/0",
+          "fontSize": "14px",
+          "bounds": {
+            "x": 298,
+            "y": 545,
+            "width": 56,
+            "height": 16
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-name",
+          "text": "镜头不空",
+          "offerId": "native-offer/1",
+          "fontSize": "15px",
+          "bounds": {
+            "x": 538,
+            "y": 415,
+            "width": 61,
+            "height": 17
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-purpose",
+          "text": "≥1张都计分 → 每手一次，倍率+\n0.5",
+          "offerId": "native-offer/1",
+          "fontSize": "14px",
+          "bounds": {
+            "x": 538,
+            "y": 437,
+            "width": 200,
+            "height": 32
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-price",
+          "text": "4 金 · 普通",
+          "offerId": "native-offer/1",
+          "fontSize": "16px",
+          "bounds": {
+            "x": 538,
+            "y": 525,
+            "width": 76,
+            "height": 19
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-routes",
+          "text": "同点/顺子/同花",
+          "offerId": "native-offer/1",
+          "fontSize": "14px",
+          "bounds": {
+            "x": 538,
+            "y": 505,
+            "width": 92,
+            "height": 16
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-advice",
+          "text": "本局★ · 先留金币",
+          "offerId": "native-offer/1",
+          "stars": 1,
+          "reason": "买后金币21→17；包场的“本手开始金币至少20；本手新收入不改变资格”条件不再满足（倍率×1.8）；这轮先留金。",
+          "fontSize": "14px",
+          "bounds": {
+            "x": 638,
+            "y": 505,
+            "width": 56,
+            "height": 32
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-reason",
+          "text": "槽位已满",
+          "offerId": "native-offer/1",
+          "fontSize": "14px",
+          "bounds": {
+            "x": 538,
+            "y": 545,
+            "width": 56,
+            "height": 16
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-name",
+          "text": "冷场救火",
+          "offerId": "native-offer/2",
+          "fontSize": "15px",
+          "bounds": {
+            "x": 778,
+            "y": 415,
+            "width": 61,
+            "height": 17
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-purpose",
+          "text": "多步条件\n分时点生效\n点牌查条件",
+          "offerId": "native-offer/2",
+          "fontSize": "14px",
+          "bounds": {
+            "x": 778,
+            "y": 437,
+            "width": 70,
+            "height": 48
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-price",
+          "text": "8 金 · 普通",
+          "offerId": "native-offer/2",
+          "fontSize": "16px",
+          "bounds": {
+            "x": 778,
+            "y": 525,
+            "width": 76,
+            "height": 19
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-routes",
+          "text": "同点/顺子/同花",
+          "offerId": "native-offer/2",
+          "fontSize": "14px",
+          "bounds": {
+            "x": 778,
+            "y": 505,
+            "width": 92,
+            "height": 16
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-advice",
+          "text": "本局★ · 先留金币",
+          "offerId": "native-offer/2",
+          "stars": 1,
+          "reason": "买后金币21→13；包场的“本手开始金币至少20；本手新收入不改变资格”条件不再满足（倍率×1.8）；这轮先留金。",
+          "fontSize": "14px",
+          "bounds": {
+            "x": 878,
+            "y": 505,
+            "width": 56,
+            "height": 32
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-reason",
+          "text": "槽位已满",
+          "offerId": "native-offer/2",
+          "fontSize": "14px",
+          "bounds": {
+            "x": 778,
+            "y": 545,
+            "width": 56,
+            "height": 16
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-name",
+          "text": "玻璃面",
+          "offerId": "recommendation-native/shop/1/0/tool/0",
+          "fontSize": "15px",
+          "bounds": {
+            "x": 378,
+            "y": 591,
+            "width": 46,
+            "height": 17
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-purpose",
+          "text": "选中牌打出且每次有效计分时，倍率×\n1.5；结算后1/4概率永久破碎",
+          "offerId": "recommendation-native/shop/1/0/tool/0",
+          "fontSize": "14px",
+          "bounds": {
+            "x": 378,
+            "y": 613,
+            "width": 233,
+            "height": 32
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-price",
+          "text": "5 金 · 查看",
+          "offerId": "recommendation-native/shop/1/0/tool/0",
+          "fontSize": "16px",
+          "bounds": {
+            "x": 378,
+            "y": 681,
+            "width": 76,
+            "height": 19
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-name",
+          "text": "利息册",
+          "offerId": "recommendation-native/shop/1/0/item/0",
+          "fontSize": "15px",
+          "bounds": {
+            "x": 740,
+            "y": 591,
+            "width": 46,
+            "height": 17
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-purpose",
+          "text": "每次过关结算利息上限+2金，在奖励前\n读取；不会直接赠送金币，须有足够存\n款产生利息",
+          "offerId": "recommendation-native/shop/1/0/item/0",
+          "fontSize": "14px",
+          "bounds": {
+            "x": 740,
+            "y": 613,
+            "width": 240,
+            "height": 48
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-price",
+          "text": "10 金 · 查看",
+          "offerId": "recommendation-native/shop/1/0/item/0",
+          "fontSize": "16px",
+          "bounds": {
+            "x": 740,
+            "y": 681,
+            "width": 85,
+            "height": 19
+          },
+          "alpha": 1
+        }
+      ],
+      "screenshot": "1180x757-cash-loss.png",
+      "status": "OBSERVED_BEFORE"
+    },
+    {
+      "width": 1366,
+      "height": 768,
+      "touch": false,
+      "key": "ordinary-full",
+      "errors": [],
+      "checks": [],
+      "before": {
+        "gold": 40,
+        "contentVersion": "quality-r2-basic-suit-choice-v1",
+        "contentHash": "json-fnv-v1:69c29f5cd54bb160",
+        "commandSeq": 4,
+        "held": [
+          {
+            "instanceId": "native-held/0",
+            "definitionId": "mantangcai",
+            "paidPrice": 8,
+            "growth": {},
+            "edition": "none"
+          },
+          {
+            "instanceId": "native-held/1",
+            "definitionId": "b02",
+            "paidPrice": 8,
+            "growth": {},
+            "edition": "none"
+          },
+          {
+            "instanceId": "native-held/2",
+            "definitionId": "b03",
+            "paidPrice": 8,
+            "growth": {
+              "multiplier": {
+                "n": "1",
+                "d": "1"
+              }
+            },
+            "edition": "none"
+          },
+          {
+            "instanceId": "native-held/3",
+            "definitionId": "e01",
+            "paidPrice": 8,
+            "growth": {},
+            "edition": "none"
+          },
+          {
+            "instanceId": "native-held/4",
+            "definitionId": "e04",
+            "paidPrice": 8,
+            "growth": {},
+            "edition": "none"
+          }
+        ],
+        "journalLength": 0
+      },
+      "guidance": [
+        {
+          "offer": {
+            "offerId": "native-offer/0",
+            "definitionId": "b04",
+            "price": 4,
+            "edition": "none",
+            "consumed": false
+          },
+          "stars": 1,
+          "reason": "需先腾槽",
+          "detail": "已有对上眼（无成长或使用计数）；新牌倍率+2，未补明确缺口，建议先不买。",
+          "routes": [
+            "group"
+          ],
+          "routeCaption": "同点",
+          "label": "本局★"
+        },
+        {
+          "offer": {
+            "offerId": "native-offer/1",
+            "definitionId": "e08",
+            "price": 8,
+            "edition": "none",
+            "consumed": false
+          },
+          "stars": 1,
+          "reason": "需先腾槽",
+          "detail": "当前构筑没有明确需要它的条件；倍率×1.8，这轮先留金。",
+          "routes": [
+            "group",
+            "straight",
+            "flush"
+          ],
+          "routeCaption": "同点/顺子/同花",
+          "label": "本局★"
+        },
+        {
+          "offer": {
+            "offerId": "native-offer/2",
+            "definitionId": "c08",
+            "price": 6,
+            "edition": "none",
+            "consumed": false
+          },
+          "stars": 1,
+          "reason": "需先腾槽",
+          "detail": "它的条件不补当前同点成组；想用它时先主动换方向。",
+          "routes": [
+            "straight"
+          ],
+          "routeCaption": "顺子",
+          "label": "本局★"
+        }
+      ],
+      "geometry": [
+        {
+          "name": "shop/owned-heading",
+          "text": "已积攒 +1 倍率",
+          "fontSize": "16px",
+          "bounds": {
+            "x": 272,
+            "y": 20,
+            "width": 108,
+            "height": 19
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/owned-drag-hint",
+          "text": "拖动换位 · 点牌查看",
+          "fontSize": "14px",
+          "bounds": {
+            "x": 272,
+            "y": 40,
+            "width": 125,
+            "height": 16
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-name",
+          "text": "一唱一和",
+          "offerId": "native-offer/0",
+          "fontSize": "15px",
+          "bounds": {
+            "x": 298,
+            "y": 386,
+            "width": 61,
+            "height": 17
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-purpose",
+          "text": "≥2组各≥2张同点 → 每手一次，倍率+2",
+          "offerId": "native-offer/0",
+          "fontSize": "14px",
+          "bounds": {
+            "x": 298,
+            "y": 408,
+            "width": 237,
+            "height": 16
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-price",
+          "text": "4 金 · 普通",
+          "offerId": "native-offer/0",
+          "fontSize": "16px",
+          "bounds": {
+            "x": 298,
+            "y": 514,
+            "width": 76,
+            "height": 19
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-routes",
+          "text": "同点",
+          "offerId": "native-offer/0",
+          "fontSize": "14px",
+          "bounds": {
+            "x": 298,
+            "y": 476,
+            "width": 28,
+            "height": 16
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-advice",
+          "text": "本局★ · 需先腾槽",
+          "offerId": "native-offer/0",
+          "stars": 1,
+          "reason": "已有对上眼（无成长或使用计数）；新牌倍率+2，未补明确缺口，建议先不买。",
+          "fontSize": "14px",
+          "bounds": {
+            "x": 298,
+            "y": 494,
+            "width": 111,
+            "height": 16
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-reason",
+          "text": "槽位已满",
+          "offerId": "native-offer/0",
+          "fontSize": "14px",
+          "bounds": {
+            "x": 298,
+            "y": 534,
+            "width": 56,
+            "height": 16
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-name",
+          "text": "包场",
+          "offerId": "native-offer/1",
+          "fontSize": "15px",
+          "bounds": {
+            "x": 600,
+            "y": 386,
+            "width": 31,
+            "height": 17
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-purpose",
+          "text": "出牌前≥20金 → 每手一次，倍率×1.8\n现在40金 · 金币条件目前够；未购，买后重\n查",
+          "offerId": "native-offer/1",
+          "fontSize": "14px",
+          "bounds": {
+            "x": 600,
+            "y": 408,
+            "width": 267,
+            "height": 48
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-price",
+          "text": "8 金 · 普通",
+          "offerId": "native-offer/1",
+          "fontSize": "16px",
+          "bounds": {
+            "x": 600,
+            "y": 514,
+            "width": 76,
+            "height": 19
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-routes",
+          "text": "同点/顺子/同花",
+          "offerId": "native-offer/1",
+          "fontSize": "14px",
+          "bounds": {
+            "x": 600,
+            "y": 476,
+            "width": 92,
+            "height": 16
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-advice",
+          "text": "本局★ · 需先腾槽",
+          "offerId": "native-offer/1",
+          "stars": 1,
+          "reason": "当前构筑没有明确需要它的条件；倍率×1.8，这轮先留金。",
+          "fontSize": "14px",
+          "bounds": {
+            "x": 600,
+            "y": 494,
+            "width": 111,
+            "height": 16
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-reason",
+          "text": "槽位已满",
+          "offerId": "native-offer/1",
+          "fontSize": "14px",
+          "bounds": {
+            "x": 600,
+            "y": 534,
+            "width": 56,
+            "height": 16
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-name",
+          "text": "少一级",
+          "offerId": "native-offer/2",
+          "fontSize": "15px",
+          "bounds": {
+            "x": 902,
+            "y": 386,
+            "width": 46,
+            "height": 17
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-purpose",
+          "text": "普通顺子 → 4张即可；同花顺仍5张",
+          "offerId": "native-offer/2",
+          "fontSize": "14px",
+          "bounds": {
+            "x": 902,
+            "y": 408,
+            "width": 220,
+            "height": 16
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-price",
+          "text": "6 金 · 普通",
+          "offerId": "native-offer/2",
+          "fontSize": "16px",
+          "bounds": {
+            "x": 902,
+            "y": 514,
+            "width": 76,
+            "height": 19
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-routes",
+          "text": "顺子",
+          "offerId": "native-offer/2",
+          "fontSize": "14px",
+          "bounds": {
+            "x": 902,
+            "y": 476,
+            "width": 28,
+            "height": 16
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-advice",
+          "text": "本局★ · 需先腾槽",
+          "offerId": "native-offer/2",
+          "stars": 1,
+          "reason": "它的条件不补当前同点成组；想用它时先主动换方向。",
+          "fontSize": "14px",
+          "bounds": {
+            "x": 902,
+            "y": 494,
+            "width": 111,
+            "height": 16
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-reason",
+          "text": "槽位已满",
+          "offerId": "native-offer/2",
+          "fontSize": "14px",
+          "bounds": {
+            "x": 902,
+            "y": 534,
+            "width": 56,
+            "height": 16
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-name",
+          "text": "玻璃面",
+          "offerId": "recommendation-native/shop/1/0/tool/0",
+          "fontSize": "15px",
+          "bounds": {
+            "x": 378,
+            "y": 602,
+            "width": 46,
+            "height": 17
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-purpose",
+          "text": "选中牌打出且每次\n有效计分时，倍率\n×1.5；结算后1/4\n概率永久破碎",
+          "offerId": "recommendation-native/shop/1/0/tool/0",
+          "fontSize": "14px",
+          "bounds": {
+            "x": 378,
+            "y": 624,
+            "width": 112,
+            "height": 64
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-price",
+          "text": "5 金 · 查看",
+          "offerId": "recommendation-native/shop/1/0/tool/0",
+          "fontSize": "16px",
+          "bounds": {
+            "x": 378,
+            "y": 692,
+            "width": 76,
+            "height": 19
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-name",
+          "text": "利息册",
+          "offerId": "recommendation-native/shop/1/0/item/0",
+          "fontSize": "15px",
+          "bounds": {
+            "x": 833,
+            "y": 602,
+            "width": 46,
+            "height": 17
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-purpose",
+          "text": "每次过关结算利息上限+2金，在奖励前读取；不会直接\n赠送金币，须有足够存款产生利息",
+          "offerId": "recommendation-native/shop/1/0/item/0",
+          "fontSize": "14px",
+          "bounds": {
+            "x": 833,
+            "y": 624,
+            "width": 338,
+            "height": 32
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-price",
+          "text": "10 金 · 查看",
+          "offerId": "recommendation-native/shop/1/0/item/0",
+          "fontSize": "16px",
+          "bounds": {
+            "x": 833,
+            "y": 692,
+            "width": 85,
+            "height": 19
+          },
+          "alpha": 1
+        }
+      ],
+      "screenshot": "1366x768-ordinary-full.png",
+      "status": "OBSERVED_BEFORE"
+    },
+    {
+      "width": 1366,
+      "height": 768,
+      "touch": false,
+      "key": "core-high",
+      "errors": [],
+      "checks": [],
+      "before": {
+        "gold": 40,
+        "contentVersion": "quality-r2-basic-suit-choice-v1",
+        "contentHash": "json-fnv-v1:69c29f5cd54bb160",
+        "commandSeq": 4,
+        "held": [
+          {
+            "instanceId": "native-held/0",
+            "definitionId": "b03",
+            "paidPrice": 8,
+            "growth": {
+              "multiplier": {
+                "n": "1",
+                "d": "1"
+              }
+            },
+            "edition": "none"
+          },
+          {
+            "instanceId": "native-held/1",
+            "definitionId": "e05",
+            "paidPrice": 8,
+            "growth": {},
+            "edition": "none"
+          },
+          {
+            "instanceId": "native-held/2",
+            "definitionId": "e06",
+            "paidPrice": 8,
+            "growth": {},
+            "edition": "none"
+          },
+          {
+            "instanceId": "native-held/3",
+            "definitionId": "e11",
+            "paidPrice": 8,
+            "growth": {
+              "coefficient": {
+                "n": "1",
+                "d": "1"
+              }
+            },
+            "edition": "none"
+          },
+          {
+            "instanceId": "native-held/4",
+            "definitionId": "c08",
+            "paidPrice": 8,
+            "growth": {},
+            "edition": "none"
+          }
+        ],
+        "journalLength": 0
+      },
+      "guidance": [
+        {
+          "offer": {
+            "offerId": "native-offer/0",
+            "definitionId": "b06",
+            "price": 8,
+            "edition": "none",
+            "consumed": false
+          },
+          "stars": 1,
+          "reason": "需先腾槽",
+          "detail": "换掉少一级还会影响保留牌的出售联动；先留金，完整损失可查看。",
+          "routes": [
+            "group"
+          ],
+          "routeCaption": "同点",
+          "label": "本局★"
+        },
+        {
+          "offer": {
+            "offerId": "native-offer/1",
+            "definitionId": "a11",
+            "price": 8,
+            "edition": "none",
+            "consumed": false
+          },
+          "stars": 1,
+          "reason": "需先腾槽",
+          "detail": "换掉少一级还会影响保留牌的出售联动；先留金，完整损失可查看。",
+          "routes": [
+            "group"
+          ],
+          "routeCaption": "同点",
+          "label": "本局★"
+        },
+        {
+          "offer": {
+            "offerId": "native-offer/2",
+            "definitionId": "b09",
+            "price": 8,
+            "edition": "none",
+            "consumed": false
+          },
+          "stars": 1,
+          "reason": "需先腾槽",
+          "detail": "已有长期捧场（乘法系数 ×1）；新牌倍率×2，未补明确缺口，建议先不买。",
+          "routes": [
+            "group"
+          ],
+          "routeCaption": "同点",
+          "label": "本局★"
+        }
+      ],
+      "geometry": [
+        {
+          "name": "shop/owned-heading",
+          "text": "已积攒 +1 倍率",
+          "fontSize": "16px",
+          "bounds": {
+            "x": 272,
+            "y": 20,
+            "width": 108,
+            "height": 19
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/owned-drag-hint",
+          "text": "拖动换位 · 点牌查看",
+          "fontSize": "14px",
+          "bounds": {
+            "x": 272,
+            "y": 40,
+            "width": 125,
+            "height": 16
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-name",
+          "text": "再说一遍",
+          "offerId": "native-offer/0",
+          "fontSize": "15px",
+          "bounds": {
+            "x": 298,
+            "y": 386,
+            "width": 61,
+            "height": 17
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-purpose",
+          "text": "多步条件\n再计1次\n点牌查条件",
+          "offerId": "native-offer/0",
+          "fontSize": "14px",
+          "bounds": {
+            "x": 298,
+            "y": 408,
+            "width": 70,
+            "height": 48
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-price",
+          "text": "8 金 · 普通",
+          "offerId": "native-offer/0",
+          "fontSize": "16px",
+          "bounds": {
+            "x": 298,
+            "y": 514,
+            "width": 76,
+            "height": 19
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-routes",
+          "text": "同点",
+          "offerId": "native-offer/0",
+          "fontSize": "14px",
+          "bounds": {
+            "x": 298,
+            "y": 476,
+            "width": 28,
+            "height": 16
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-advice",
+          "text": "本局★ · 需先腾槽",
+          "offerId": "native-offer/0",
+          "stars": 1,
+          "reason": "换掉少一级还会影响保留牌的出售联动；先留金，完整损失可查看。",
+          "fontSize": "14px",
+          "bounds": {
+            "x": 298,
+            "y": 494,
+            "width": 111,
+            "height": 16
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-reason",
+          "text": "槽位已满",
+          "offerId": "native-offer/0",
+          "fontSize": "14px",
+          "bounds": {
+            "x": 298,
+            "y": 534,
+            "width": 56,
+            "height": 16
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-name",
+          "text": "返个场",
+          "offerId": "native-offer/1",
+          "fontSize": "15px",
+          "bounds": {
+            "x": 600,
+            "y": 386,
+            "width": 46,
+            "height": 17
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-purpose",
+          "text": "葫芦/同花葫芦 → 对应有效计分牌再计1次",
+          "offerId": "native-offer/1",
+          "fontSize": "14px",
+          "bounds": {
+            "x": 600,
+            "y": 408,
+            "width": 258,
+            "height": 16
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-price",
+          "text": "8 金 · 普通",
+          "offerId": "native-offer/1",
+          "fontSize": "16px",
+          "bounds": {
+            "x": 600,
+            "y": 514,
+            "width": 76,
+            "height": 19
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-routes",
+          "text": "同点",
+          "offerId": "native-offer/1",
+          "fontSize": "14px",
+          "bounds": {
+            "x": 600,
+            "y": 476,
+            "width": 28,
+            "height": 16
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-advice",
+          "text": "本局★ · 需先腾槽",
+          "offerId": "native-offer/1",
+          "stars": 1,
+          "reason": "换掉少一级还会影响保留牌的出售联动；先留金，完整损失可查看。",
+          "fontSize": "14px",
+          "bounds": {
+            "x": 600,
+            "y": 494,
+            "width": 111,
+            "height": 16
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-reason",
+          "text": "槽位已满",
+          "offerId": "native-offer/1",
+          "fontSize": "14px",
+          "bounds": {
+            "x": 600,
+            "y": 534,
+            "width": 56,
+            "height": 16
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-name",
+          "text": "四座皆惊",
+          "offerId": "native-offer/2",
+          "fontSize": "15px",
+          "bounds": {
+            "x": 902,
+            "y": 386,
+            "width": 61,
+            "height": 17
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-purpose",
+          "text": "四条/五条/同花五条 → 每手一次，倍率×2",
+          "offerId": "native-offer/2",
+          "fontSize": "14px",
+          "bounds": {
+            "x": 902,
+            "y": 408,
+            "width": 256,
+            "height": 16
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-price",
+          "text": "8 金 · 普通",
+          "offerId": "native-offer/2",
+          "fontSize": "16px",
+          "bounds": {
+            "x": 902,
+            "y": 514,
+            "width": 76,
+            "height": 19
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-routes",
+          "text": "同点",
+          "offerId": "native-offer/2",
+          "fontSize": "14px",
+          "bounds": {
+            "x": 902,
+            "y": 476,
+            "width": 28,
+            "height": 16
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-advice",
+          "text": "本局★ · 需先腾槽",
+          "offerId": "native-offer/2",
+          "stars": 1,
+          "reason": "已有长期捧场（乘法系数 ×1）；新牌倍率×2，未补明确缺口，建议先不买。",
+          "fontSize": "14px",
+          "bounds": {
+            "x": 902,
+            "y": 494,
+            "width": 111,
+            "height": 16
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-reason",
+          "text": "槽位已满",
+          "offerId": "native-offer/2",
+          "fontSize": "14px",
+          "bounds": {
+            "x": 902,
+            "y": 534,
+            "width": 56,
+            "height": 16
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-name",
+          "text": "玻璃面",
+          "offerId": "recommendation-native/shop/1/0/tool/0",
+          "fontSize": "15px",
+          "bounds": {
+            "x": 378,
+            "y": 602,
+            "width": 46,
+            "height": 17
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-purpose",
+          "text": "选中牌打出且每次\n有效计分时，倍率\n×1.5；结算后1/4\n概率永久破碎",
+          "offerId": "recommendation-native/shop/1/0/tool/0",
+          "fontSize": "14px",
+          "bounds": {
+            "x": 378,
+            "y": 624,
+            "width": 112,
+            "height": 64
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-price",
+          "text": "5 金 · 查看",
+          "offerId": "recommendation-native/shop/1/0/tool/0",
+          "fontSize": "16px",
+          "bounds": {
+            "x": 378,
+            "y": 692,
+            "width": 76,
+            "height": 19
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-name",
+          "text": "利息册",
+          "offerId": "recommendation-native/shop/1/0/item/0",
+          "fontSize": "15px",
+          "bounds": {
+            "x": 833,
+            "y": 602,
+            "width": 46,
+            "height": 17
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-purpose",
+          "text": "每次过关结算利息上限+2金，在奖励前读取；不会直接\n赠送金币，须有足够存款产生利息",
+          "offerId": "recommendation-native/shop/1/0/item/0",
+          "fontSize": "14px",
+          "bounds": {
+            "x": 833,
+            "y": 624,
+            "width": 338,
+            "height": 32
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-price",
+          "text": "10 金 · 查看",
+          "offerId": "recommendation-native/shop/1/0/item/0",
+          "fontSize": "16px",
+          "bounds": {
+            "x": 833,
+            "y": 692,
+            "width": 85,
+            "height": 19
+          },
+          "alpha": 1
+        }
+      ],
+      "screenshot": "1366x768-core-high.png",
+      "status": "OBSERVED_BEFORE"
+    },
+    {
+      "width": 1366,
+      "height": 768,
+      "touch": false,
+      "key": "cash-loss",
+      "errors": [],
+      "checks": [],
+      "before": {
+        "gold": 21,
+        "contentVersion": "quality-r2-basic-suit-choice-v1",
+        "contentHash": "json-fnv-v1:69c29f5cd54bb160",
+        "commandSeq": 4,
+        "held": [
+          {
+            "instanceId": "native-held/0",
+            "definitionId": "e08",
+            "paidPrice": 8,
+            "growth": {},
+            "edition": "none"
+          },
+          {
+            "instanceId": "native-held/1",
+            "definitionId": "b03",
+            "paidPrice": 8,
+            "growth": {
+              "multiplier": {
+                "n": "1",
+                "d": "1"
+              }
+            },
+            "edition": "none"
+          },
+          {
+            "instanceId": "native-held/2",
+            "definitionId": "b08",
+            "paidPrice": 8,
+            "growth": {},
+            "edition": "none"
+          },
+          {
+            "instanceId": "native-held/3",
+            "definitionId": "e01",
+            "paidPrice": 8,
+            "growth": {},
+            "edition": "none"
+          },
+          {
+            "instanceId": "native-held/4",
+            "definitionId": "c08",
+            "paidPrice": 2,
+            "growth": {},
+            "edition": "none"
+          }
+        ],
+        "journalLength": 0
+      },
+      "guidance": [
+        {
+          "offer": {
+            "offerId": "native-offer/0",
+            "definitionId": "b10",
+            "price": 4,
+            "edition": "none",
+            "consumed": false
+          },
+          "stars": 1,
+          "reason": "先留金币",
+          "detail": "买后金币21→18；包场的“本手开始金币至少20；本手新收入不改变资格”条件不再满足（倍率×1.8）；这轮先留金。",
+          "routes": [
+            "group"
+          ],
+          "routeCaption": "同点",
+          "label": "本局★"
+        },
+        {
+          "offer": {
+            "offerId": "native-offer/1",
+            "definitionId": "d07",
+            "price": 4,
+            "edition": "none",
+            "consumed": false
+          },
+          "stars": 1,
+          "reason": "先留金币",
+          "detail": "买后金币21→17；包场的“本手开始金币至少20；本手新收入不改变资格”条件不再满足（倍率×1.8）；这轮先留金。",
+          "routes": [
+            "group",
+            "straight",
+            "flush"
+          ],
+          "routeCaption": "同点/顺子/同花",
+          "label": "本局★"
+        },
+        {
+          "offer": {
+            "offerId": "native-offer/2",
+            "definitionId": "f10",
+            "price": 8,
+            "edition": "none",
+            "consumed": false
+          },
+          "stars": 1,
+          "reason": "先留金币",
+          "detail": "买后金币21→13；包场的“本手开始金币至少20；本手新收入不改变资格”条件不再满足（倍率×1.8）；这轮先留金。",
+          "routes": [
+            "group",
+            "straight",
+            "flush"
+          ],
+          "routeCaption": "同点/顺子/同花",
+          "label": "本局★"
+        }
+      ],
+      "geometry": [
+        {
+          "name": "shop/owned-heading",
+          "text": "已积攒 +1 倍率",
+          "fontSize": "16px",
+          "bounds": {
+            "x": 272,
+            "y": 20,
+            "width": 108,
+            "height": 19
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/owned-drag-hint",
+          "text": "拖动换位 · 点牌查看",
+          "fontSize": "14px",
+          "bounds": {
+            "x": 272,
+            "y": 40,
+            "width": 125,
+            "height": 16
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-name",
+          "text": "练对子",
+          "offerId": "native-offer/0",
+          "fontSize": "15px",
+          "bounds": {
+            "x": 298,
+            "y": 386,
+            "width": 46,
+            "height": 17
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-purpose",
+          "text": "对子等同点组合出牌后 → 热度成长最多+10\n；上限100，新增下次用",
+          "offerId": "native-offer/0",
+          "fontSize": "14px",
+          "bounds": {
+            "x": 298,
+            "y": 408,
+            "width": 270,
+            "height": 32
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-price",
+          "text": "4 金 · 普通",
+          "offerId": "native-offer/0",
+          "fontSize": "16px",
+          "bounds": {
+            "x": 298,
+            "y": 514,
+            "width": 76,
+            "height": 19
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-routes",
+          "text": "同点",
+          "offerId": "native-offer/0",
+          "fontSize": "14px",
+          "bounds": {
+            "x": 298,
+            "y": 476,
+            "width": 28,
+            "height": 16
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-advice",
+          "text": "本局★ · 先留金币",
+          "offerId": "native-offer/0",
+          "stars": 1,
+          "reason": "买后金币21→18；包场的“本手开始金币至少20；本手新收入不改变资格”条件不再满足（倍率×1.8）；这轮先留金。",
+          "fontSize": "14px",
+          "bounds": {
+            "x": 298,
+            "y": 494,
+            "width": 111,
+            "height": 16
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-reason",
+          "text": "槽位已满",
+          "offerId": "native-offer/0",
+          "fontSize": "14px",
+          "bounds": {
+            "x": 298,
+            "y": 534,
+            "width": 56,
+            "height": 16
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-name",
+          "text": "镜头不空",
+          "offerId": "native-offer/1",
+          "fontSize": "15px",
+          "bounds": {
+            "x": 600,
+            "y": 386,
+            "width": 61,
+            "height": 17
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-purpose",
+          "text": "≥1张都计分 → 每手一次，倍率+0.5",
+          "offerId": "native-offer/1",
+          "fontSize": "14px",
+          "bounds": {
+            "x": 600,
+            "y": 408,
+            "width": 219,
+            "height": 16
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-price",
+          "text": "4 金 · 普通",
+          "offerId": "native-offer/1",
+          "fontSize": "16px",
+          "bounds": {
+            "x": 600,
+            "y": 514,
+            "width": 76,
+            "height": 19
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-routes",
+          "text": "同点/顺子/同花",
+          "offerId": "native-offer/1",
+          "fontSize": "14px",
+          "bounds": {
+            "x": 600,
+            "y": 476,
+            "width": 92,
+            "height": 16
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-advice",
+          "text": "本局★ · 先留金币",
+          "offerId": "native-offer/1",
+          "stars": 1,
+          "reason": "买后金币21→17；包场的“本手开始金币至少20；本手新收入不改变资格”条件不再满足（倍率×1.8）；这轮先留金。",
+          "fontSize": "14px",
+          "bounds": {
+            "x": 600,
+            "y": 494,
+            "width": 111,
+            "height": 16
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-reason",
+          "text": "槽位已满",
+          "offerId": "native-offer/1",
+          "fontSize": "14px",
+          "bounds": {
+            "x": 600,
+            "y": 534,
+            "width": 56,
+            "height": 16
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-name",
+          "text": "冷场救火",
+          "offerId": "native-offer/2",
+          "fontSize": "15px",
+          "bounds": {
+            "x": 902,
+            "y": 386,
+            "width": 61,
+            "height": 17
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-purpose",
+          "text": "多步条件\n分时点生效\n点牌查条件",
+          "offerId": "native-offer/2",
+          "fontSize": "14px",
+          "bounds": {
+            "x": 902,
+            "y": 408,
+            "width": 70,
+            "height": 48
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-price",
+          "text": "8 金 · 普通",
+          "offerId": "native-offer/2",
+          "fontSize": "16px",
+          "bounds": {
+            "x": 902,
+            "y": 514,
+            "width": 76,
+            "height": 19
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-routes",
+          "text": "同点/顺子/同花",
+          "offerId": "native-offer/2",
+          "fontSize": "14px",
+          "bounds": {
+            "x": 902,
+            "y": 476,
+            "width": 92,
+            "height": 16
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-advice",
+          "text": "本局★ · 先留金币",
+          "offerId": "native-offer/2",
+          "stars": 1,
+          "reason": "买后金币21→13；包场的“本手开始金币至少20；本手新收入不改变资格”条件不再满足（倍率×1.8）；这轮先留金。",
+          "fontSize": "14px",
+          "bounds": {
+            "x": 902,
+            "y": 494,
+            "width": 111,
+            "height": 16
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-reason",
+          "text": "槽位已满",
+          "offerId": "native-offer/2",
+          "fontSize": "14px",
+          "bounds": {
+            "x": 902,
+            "y": 534,
+            "width": 56,
+            "height": 16
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-name",
+          "text": "玻璃面",
+          "offerId": "recommendation-native/shop/1/0/tool/0",
+          "fontSize": "15px",
+          "bounds": {
+            "x": 378,
+            "y": 602,
+            "width": 46,
+            "height": 17
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-purpose",
+          "text": "选中牌打出且每次\n有效计分时，倍率\n×1.5；结算后1/4\n概率永久破碎",
+          "offerId": "recommendation-native/shop/1/0/tool/0",
+          "fontSize": "14px",
+          "bounds": {
+            "x": 378,
+            "y": 624,
+            "width": 112,
+            "height": 64
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-price",
+          "text": "5 金 · 查看",
+          "offerId": "recommendation-native/shop/1/0/tool/0",
+          "fontSize": "16px",
+          "bounds": {
+            "x": 378,
+            "y": 692,
+            "width": 76,
+            "height": 19
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-name",
+          "text": "利息册",
+          "offerId": "recommendation-native/shop/1/0/item/0",
+          "fontSize": "15px",
+          "bounds": {
+            "x": 833,
+            "y": 602,
+            "width": 46,
+            "height": 17
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-purpose",
+          "text": "每次过关结算利息上限+2金，在奖励前读取；不会直接\n赠送金币，须有足够存款产生利息",
+          "offerId": "recommendation-native/shop/1/0/item/0",
+          "fontSize": "14px",
+          "bounds": {
+            "x": 833,
+            "y": 624,
+            "width": 338,
+            "height": 32
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-price",
+          "text": "10 金 · 查看",
+          "offerId": "recommendation-native/shop/1/0/item/0",
+          "fontSize": "16px",
+          "bounds": {
+            "x": 833,
+            "y": 692,
+            "width": 85,
+            "height": 19
+          },
+          "alpha": 1
+        }
+      ],
+      "screenshot": "1366x768-cash-loss.png",
+      "status": "OBSERVED_BEFORE"
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "key": "ordinary-full",
+      "errors": [],
+      "checks": [],
+      "before": {
+        "gold": 40,
+        "contentVersion": "quality-r2-basic-suit-choice-v1",
+        "contentHash": "json-fnv-v1:69c29f5cd54bb160",
+        "commandSeq": 4,
+        "held": [
+          {
+            "instanceId": "native-held/0",
+            "definitionId": "mantangcai",
+            "paidPrice": 8,
+            "growth": {},
+            "edition": "none"
+          },
+          {
+            "instanceId": "native-held/1",
+            "definitionId": "b02",
+            "paidPrice": 8,
+            "growth": {},
+            "edition": "none"
+          },
+          {
+            "instanceId": "native-held/2",
+            "definitionId": "b03",
+            "paidPrice": 8,
+            "growth": {
+              "multiplier": {
+                "n": "1",
+                "d": "1"
+              }
+            },
+            "edition": "none"
+          },
+          {
+            "instanceId": "native-held/3",
+            "definitionId": "e01",
+            "paidPrice": 8,
+            "growth": {},
+            "edition": "none"
+          },
+          {
+            "instanceId": "native-held/4",
+            "definitionId": "e04",
+            "paidPrice": 8,
+            "growth": {},
+            "edition": "none"
+          }
+        ],
+        "journalLength": 0
+      },
+      "guidance": [
+        {
+          "offer": {
+            "offerId": "native-offer/0",
+            "definitionId": "b04",
+            "price": 4,
+            "edition": "none",
+            "consumed": false
+          },
+          "stars": 1,
+          "reason": "需先腾槽",
+          "detail": "已有对上眼（无成长或使用计数）；新牌倍率+2，未补明确缺口，建议先不买。",
+          "routes": [
+            "group"
+          ],
+          "routeCaption": "同点",
+          "label": "本局★"
+        },
+        {
+          "offer": {
+            "offerId": "native-offer/1",
+            "definitionId": "e08",
+            "price": 8,
+            "edition": "none",
+            "consumed": false
+          },
+          "stars": 1,
+          "reason": "需先腾槽",
+          "detail": "当前构筑没有明确需要它的条件；倍率×1.8，这轮先留金。",
+          "routes": [
+            "group",
+            "straight",
+            "flush"
+          ],
+          "routeCaption": "同点/顺子/同花",
+          "label": "本局★"
+        },
+        {
+          "offer": {
+            "offerId": "native-offer/2",
+            "definitionId": "c08",
+            "price": 6,
+            "edition": "none",
+            "consumed": false
+          },
+          "stars": 1,
+          "reason": "需先腾槽",
+          "detail": "它的条件不补当前同点成组；想用它时先主动换方向。",
+          "routes": [
+            "straight"
+          ],
+          "routeCaption": "顺子",
+          "label": "本局★"
+        }
+      ],
+      "geometry": [
+        {
+          "name": "shop/owned-heading",
+          "text": "长按拖动换位 · 点牌查看",
+          "fontSize": "14px",
+          "bounds": {
+            "x": 38,
+            "y": 494,
+            "width": 153,
+            "height": 16
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-purpose",
+          "text": "≥2组各≥2张同点 · 每手一次，倍率+2",
+          "offerId": "native-offer/0",
+          "fontSize": "14px",
+          "bounds": {
+            "x": 114,
+            "y": 140,
+            "width": 228,
+            "height": 16
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-price",
+          "text": "4 金 · 查看",
+          "offerId": "native-offer/0",
+          "fontSize": "16px",
+          "bounds": {
+            "x": 114,
+            "y": 210,
+            "width": 76,
+            "height": 19
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-routes",
+          "text": "同点 · ★",
+          "offerId": "native-offer/0",
+          "fontSize": "14px",
+          "bounds": {
+            "x": 114,
+            "y": 188,
+            "width": 53,
+            "height": 16
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-purpose",
+          "text": "出牌前≥20金 · 每手一次，倍率×1.8",
+          "offerId": "native-offer/1",
+          "fontSize": "14px",
+          "bounds": {
+            "x": 114,
+            "y": 270,
+            "width": 218,
+            "height": 16
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-price",
+          "text": "8 金 · 查看",
+          "offerId": "native-offer/1",
+          "fontSize": "16px",
+          "bounds": {
+            "x": 114,
+            "y": 340,
+            "width": 76,
+            "height": 19
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-routes",
+          "text": "同点/顺子/同花 · ★",
+          "offerId": "native-offer/1",
+          "fontSize": "14px",
+          "bounds": {
+            "x": 114,
+            "y": 318,
+            "width": 117,
+            "height": 16
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-purpose",
+          "text": "顺子4张 · 同花顺5张",
+          "offerId": "native-offer/2",
+          "fontSize": "14px",
+          "bounds": {
+            "x": 114,
+            "y": 400,
+            "width": 127,
+            "height": 16
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-price",
+          "text": "6 金 · 查看",
+          "offerId": "native-offer/2",
+          "fontSize": "16px",
+          "bounds": {
+            "x": 114,
+            "y": 470,
+            "width": 76,
+            "height": 19
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-routes",
+          "text": "顺子 · ★",
+          "offerId": "native-offer/2",
+          "fontSize": "14px",
+          "bounds": {
+            "x": 114,
+            "y": 448,
+            "width": 53,
+            "height": 16
+          },
+          "alpha": 1
+        }
+      ],
+      "screenshot": "390x844-ordinary-full.png",
+      "status": "OBSERVED_BEFORE"
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "key": "core-high",
+      "errors": [],
+      "checks": [],
+      "before": {
+        "gold": 40,
+        "contentVersion": "quality-r2-basic-suit-choice-v1",
+        "contentHash": "json-fnv-v1:69c29f5cd54bb160",
+        "commandSeq": 4,
+        "held": [
+          {
+            "instanceId": "native-held/0",
+            "definitionId": "b03",
+            "paidPrice": 8,
+            "growth": {
+              "multiplier": {
+                "n": "1",
+                "d": "1"
+              }
+            },
+            "edition": "none"
+          },
+          {
+            "instanceId": "native-held/1",
+            "definitionId": "e05",
+            "paidPrice": 8,
+            "growth": {},
+            "edition": "none"
+          },
+          {
+            "instanceId": "native-held/2",
+            "definitionId": "e06",
+            "paidPrice": 8,
+            "growth": {},
+            "edition": "none"
+          },
+          {
+            "instanceId": "native-held/3",
+            "definitionId": "e11",
+            "paidPrice": 8,
+            "growth": {
+              "coefficient": {
+                "n": "1",
+                "d": "1"
+              }
+            },
+            "edition": "none"
+          },
+          {
+            "instanceId": "native-held/4",
+            "definitionId": "c08",
+            "paidPrice": 8,
+            "growth": {},
+            "edition": "none"
+          }
+        ],
+        "journalLength": 0
+      },
+      "guidance": [
+        {
+          "offer": {
+            "offerId": "native-offer/0",
+            "definitionId": "b06",
+            "price": 8,
+            "edition": "none",
+            "consumed": false
+          },
+          "stars": 1,
+          "reason": "需先腾槽",
+          "detail": "换掉少一级还会影响保留牌的出售联动；先留金，完整损失可查看。",
+          "routes": [
+            "group"
+          ],
+          "routeCaption": "同点",
+          "label": "本局★"
+        },
+        {
+          "offer": {
+            "offerId": "native-offer/1",
+            "definitionId": "a11",
+            "price": 8,
+            "edition": "none",
+            "consumed": false
+          },
+          "stars": 1,
+          "reason": "需先腾槽",
+          "detail": "换掉少一级还会影响保留牌的出售联动；先留金，完整损失可查看。",
+          "routes": [
+            "group"
+          ],
+          "routeCaption": "同点",
+          "label": "本局★"
+        },
+        {
+          "offer": {
+            "offerId": "native-offer/2",
+            "definitionId": "b09",
+            "price": 8,
+            "edition": "none",
+            "consumed": false
+          },
+          "stars": 1,
+          "reason": "需先腾槽",
+          "detail": "已有长期捧场（乘法系数 ×1）；新牌倍率×2，未补明确缺口，建议先不买。",
+          "routes": [
+            "group"
+          ],
+          "routeCaption": "同点",
+          "label": "本局★"
+        }
+      ],
+      "geometry": [
+        {
+          "name": "shop/owned-heading",
+          "text": "长按拖动换位 · 点牌查看",
+          "fontSize": "14px",
+          "bounds": {
+            "x": 38,
+            "y": 494,
+            "width": 153,
+            "height": 16
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-purpose",
+          "text": "多步条件 · 再计1次 · 点牌查条件",
+          "offerId": "native-offer/0",
+          "fontSize": "14px",
+          "bounds": {
+            "x": 114,
+            "y": 140,
+            "width": 201,
+            "height": 16
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-price",
+          "text": "8 金 · 查看",
+          "offerId": "native-offer/0",
+          "fontSize": "16px",
+          "bounds": {
+            "x": 114,
+            "y": 210,
+            "width": 76,
+            "height": 19
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-routes",
+          "text": "同点 · ★",
+          "offerId": "native-offer/0",
+          "fontSize": "14px",
+          "bounds": {
+            "x": 114,
+            "y": 188,
+            "width": 53,
+            "height": 16
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-purpose",
+          "text": "葫芦/同花葫芦 · 再计1次",
+          "offerId": "native-offer/1",
+          "fontSize": "14px",
+          "bounds": {
+            "x": 114,
+            "y": 270,
+            "width": 151,
+            "height": 16
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-price",
+          "text": "8 金 · 查看",
+          "offerId": "native-offer/1",
+          "fontSize": "16px",
+          "bounds": {
+            "x": 114,
+            "y": 340,
+            "width": 76,
+            "height": 19
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-routes",
+          "text": "同点 · ★",
+          "offerId": "native-offer/1",
+          "fontSize": "14px",
+          "bounds": {
+            "x": 114,
+            "y": 318,
+            "width": 53,
+            "height": 16
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-purpose",
+          "text": "四条/五条/同花五条 · 每手一次，倍率×2",
+          "offerId": "native-offer/2",
+          "fontSize": "14px",
+          "bounds": {
+            "x": 114,
+            "y": 400,
+            "width": 247,
+            "height": 16
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-price",
+          "text": "8 金 · 查看",
+          "offerId": "native-offer/2",
+          "fontSize": "16px",
+          "bounds": {
+            "x": 114,
+            "y": 470,
+            "width": 76,
+            "height": 19
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-routes",
+          "text": "同点 · ★",
+          "offerId": "native-offer/2",
+          "fontSize": "14px",
+          "bounds": {
+            "x": 114,
+            "y": 448,
+            "width": 53,
+            "height": 16
+          },
+          "alpha": 1
+        }
+      ],
+      "screenshot": "390x844-core-high.png",
+      "status": "OBSERVED_BEFORE"
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "key": "cash-loss",
+      "errors": [],
+      "checks": [],
+      "before": {
+        "gold": 21,
+        "contentVersion": "quality-r2-basic-suit-choice-v1",
+        "contentHash": "json-fnv-v1:69c29f5cd54bb160",
+        "commandSeq": 4,
+        "held": [
+          {
+            "instanceId": "native-held/0",
+            "definitionId": "e08",
+            "paidPrice": 8,
+            "growth": {},
+            "edition": "none"
+          },
+          {
+            "instanceId": "native-held/1",
+            "definitionId": "b03",
+            "paidPrice": 8,
+            "growth": {
+              "multiplier": {
+                "n": "1",
+                "d": "1"
+              }
+            },
+            "edition": "none"
+          },
+          {
+            "instanceId": "native-held/2",
+            "definitionId": "b08",
+            "paidPrice": 8,
+            "growth": {},
+            "edition": "none"
+          },
+          {
+            "instanceId": "native-held/3",
+            "definitionId": "e01",
+            "paidPrice": 8,
+            "growth": {},
+            "edition": "none"
+          },
+          {
+            "instanceId": "native-held/4",
+            "definitionId": "c08",
+            "paidPrice": 2,
+            "growth": {},
+            "edition": "none"
+          }
+        ],
+        "journalLength": 0
+      },
+      "guidance": [
+        {
+          "offer": {
+            "offerId": "native-offer/0",
+            "definitionId": "b10",
+            "price": 4,
+            "edition": "none",
+            "consumed": false
+          },
+          "stars": 1,
+          "reason": "先留金币",
+          "detail": "买后金币21→18；包场的“本手开始金币至少20；本手新收入不改变资格”条件不再满足（倍率×1.8）；这轮先留金。",
+          "routes": [
+            "group"
+          ],
+          "routeCaption": "同点",
+          "label": "本局★"
+        },
+        {
+          "offer": {
+            "offerId": "native-offer/1",
+            "definitionId": "d07",
+            "price": 4,
+            "edition": "none",
+            "consumed": false
+          },
+          "stars": 1,
+          "reason": "先留金币",
+          "detail": "买后金币21→17；包场的“本手开始金币至少20；本手新收入不改变资格”条件不再满足（倍率×1.8）；这轮先留金。",
+          "routes": [
+            "group",
+            "straight",
+            "flush"
+          ],
+          "routeCaption": "同点/顺子/同花",
+          "label": "本局★"
+        },
+        {
+          "offer": {
+            "offerId": "native-offer/2",
+            "definitionId": "f10",
+            "price": 8,
+            "edition": "none",
+            "consumed": false
+          },
+          "stars": 1,
+          "reason": "先留金币",
+          "detail": "买后金币21→13；包场的“本手开始金币至少20；本手新收入不改变资格”条件不再满足（倍率×1.8）；这轮先留金。",
+          "routes": [
+            "group",
+            "straight",
+            "flush"
+          ],
+          "routeCaption": "同点/顺子/同花",
+          "label": "本局★"
+        }
+      ],
+      "geometry": [
+        {
+          "name": "shop/owned-heading",
+          "text": "长按拖动换位 · 点牌查看",
+          "fontSize": "14px",
+          "bounds": {
+            "x": 38,
+            "y": 494,
+            "width": 153,
+            "height": 16
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-purpose",
+          "text": "成组长热度 · +10顶100 · 新增下次用",
+          "offerId": "native-offer/0",
+          "fontSize": "14px",
+          "bounds": {
+            "x": 114,
+            "y": 140,
+            "width": 226,
+            "height": 16
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-price",
+          "text": "4 金 · 查看",
+          "offerId": "native-offer/0",
+          "fontSize": "16px",
+          "bounds": {
+            "x": 114,
+            "y": 210,
+            "width": 76,
+            "height": 19
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-routes",
+          "text": "同点 · ★",
+          "offerId": "native-offer/0",
+          "fontSize": "14px",
+          "bounds": {
+            "x": 114,
+            "y": 188,
+            "width": 53,
+            "height": 16
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-purpose",
+          "text": "≥1张都计分 · 每手一次，倍率+0.5",
+          "offerId": "native-offer/1",
+          "fontSize": "14px",
+          "bounds": {
+            "x": 114,
+            "y": 270,
+            "width": 210,
+            "height": 16
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-price",
+          "text": "4 金 · 查看",
+          "offerId": "native-offer/1",
+          "fontSize": "16px",
+          "bounds": {
+            "x": 114,
+            "y": 340,
+            "width": 76,
+            "height": 19
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-routes",
+          "text": "同点/顺子/同花 · ★",
+          "offerId": "native-offer/1",
+          "fontSize": "14px",
+          "bounds": {
+            "x": 114,
+            "y": 318,
+            "width": 117,
+            "height": 16
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-purpose",
+          "text": "多步条件 · 分时点生效 · 点牌查条件",
+          "offerId": "native-offer/2",
+          "fontSize": "14px",
+          "bounds": {
+            "x": 114,
+            "y": 400,
+            "width": 221,
+            "height": 16
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-price",
+          "text": "8 金 · 查看",
+          "offerId": "native-offer/2",
+          "fontSize": "16px",
+          "bounds": {
+            "x": 114,
+            "y": 470,
+            "width": 76,
+            "height": 19
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-routes",
+          "text": "同点/顺子/同花 · ★",
+          "offerId": "native-offer/2",
+          "fontSize": "14px",
+          "bounds": {
+            "x": 114,
+            "y": 448,
+            "width": 117,
+            "height": 16
+          },
+          "alpha": 1
+        }
+      ],
+      "screenshot": "390x844-cash-loss.png",
+      "status": "OBSERVED_BEFORE"
+    },
+    {
+      "width": 320,
+      "height": 844,
+      "touch": true,
+      "key": "ordinary-full",
+      "errors": [],
+      "checks": [],
+      "before": {
+        "gold": 40,
+        "contentVersion": "quality-r2-basic-suit-choice-v1",
+        "contentHash": "json-fnv-v1:69c29f5cd54bb160",
+        "commandSeq": 4,
+        "held": [
+          {
+            "instanceId": "native-held/0",
+            "definitionId": "mantangcai",
+            "paidPrice": 8,
+            "growth": {},
+            "edition": "none"
+          },
+          {
+            "instanceId": "native-held/1",
+            "definitionId": "b02",
+            "paidPrice": 8,
+            "growth": {},
+            "edition": "none"
+          },
+          {
+            "instanceId": "native-held/2",
+            "definitionId": "b03",
+            "paidPrice": 8,
+            "growth": {
+              "multiplier": {
+                "n": "1",
+                "d": "1"
+              }
+            },
+            "edition": "none"
+          },
+          {
+            "instanceId": "native-held/3",
+            "definitionId": "e01",
+            "paidPrice": 8,
+            "growth": {},
+            "edition": "none"
+          },
+          {
+            "instanceId": "native-held/4",
+            "definitionId": "e04",
+            "paidPrice": 8,
+            "growth": {},
+            "edition": "none"
+          }
+        ],
+        "journalLength": 0
+      },
+      "guidance": [
+        {
+          "offer": {
+            "offerId": "native-offer/0",
+            "definitionId": "b04",
+            "price": 4,
+            "edition": "none",
+            "consumed": false
+          },
+          "stars": 1,
+          "reason": "需先腾槽",
+          "detail": "已有对上眼（无成长或使用计数）；新牌倍率+2，未补明确缺口，建议先不买。",
+          "routes": [
+            "group"
+          ],
+          "routeCaption": "同点",
+          "label": "本局★"
+        },
+        {
+          "offer": {
+            "offerId": "native-offer/1",
+            "definitionId": "e08",
+            "price": 8,
+            "edition": "none",
+            "consumed": false
+          },
+          "stars": 1,
+          "reason": "需先腾槽",
+          "detail": "当前构筑没有明确需要它的条件；倍率×1.8，这轮先留金。",
+          "routes": [
+            "group",
+            "straight",
+            "flush"
+          ],
+          "routeCaption": "同点/顺子/同花",
+          "label": "本局★"
+        },
+        {
+          "offer": {
+            "offerId": "native-offer/2",
+            "definitionId": "c08",
+            "price": 6,
+            "edition": "none",
+            "consumed": false
+          },
+          "stars": 1,
+          "reason": "需先腾槽",
+          "detail": "它的条件不补当前同点成组；想用它时先主动换方向。",
+          "routes": [
+            "straight"
+          ],
+          "routeCaption": "顺子",
+          "label": "本局★"
+        }
+      ],
+      "geometry": [
+        {
+          "name": "shop/owned-heading",
+          "text": "长按拖动换位 · 点牌查看",
+          "fontSize": "14px",
+          "bounds": {
+            "x": 12,
+            "y": 498,
+            "width": 153,
+            "height": 16
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-purpose",
+          "text": "≥2组各≥2张同点 · 每手一次，倍率+2",
+          "offerId": "native-offer/0",
+          "fontSize": "14px",
+          "bounds": {
+            "x": 114,
+            "y": 144,
+            "width": 114,
+            "height": 32
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-price",
+          "text": "4 金 · 查看",
+          "offerId": "native-offer/0",
+          "fontSize": "16px",
+          "bounds": {
+            "x": 114,
+            "y": 214,
+            "width": 76,
+            "height": 19
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-routes",
+          "text": "同点 · ★",
+          "offerId": "native-offer/0",
+          "fontSize": "14px",
+          "bounds": {
+            "x": 114,
+            "y": 192,
+            "width": 53,
+            "height": 16
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-purpose",
+          "text": "出牌前≥20金 · 每手一次，倍率×1.8",
+          "offerId": "native-offer/1",
+          "fontSize": "14px",
+          "bounds": {
+            "x": 114,
+            "y": 274,
+            "width": 126,
+            "height": 32
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-price",
+          "text": "8 金 · 查看",
+          "offerId": "native-offer/1",
+          "fontSize": "16px",
+          "bounds": {
+            "x": 114,
+            "y": 344,
+            "width": 76,
+            "height": 19
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-routes",
+          "text": "同点/顺子/同花 · ★",
+          "offerId": "native-offer/1",
+          "fontSize": "14px",
+          "bounds": {
+            "x": 114,
+            "y": 322,
+            "width": 117,
+            "height": 16
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-purpose",
+          "text": "顺子4张 · 同花顺5张",
+          "offerId": "native-offer/2",
+          "fontSize": "14px",
+          "bounds": {
+            "x": 114,
+            "y": 404,
+            "width": 127,
+            "height": 16
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-price",
+          "text": "6 金 · 查看",
+          "offerId": "native-offer/2",
+          "fontSize": "16px",
+          "bounds": {
+            "x": 114,
+            "y": 474,
+            "width": 76,
+            "height": 19
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-routes",
+          "text": "顺子 · ★",
+          "offerId": "native-offer/2",
+          "fontSize": "14px",
+          "bounds": {
+            "x": 114,
+            "y": 452,
+            "width": 53,
+            "height": 16
+          },
+          "alpha": 1
+        }
+      ],
+      "screenshot": "320x844-ordinary-full.png",
+      "status": "OBSERVED_BEFORE"
+    },
+    {
+      "width": 320,
+      "height": 844,
+      "touch": true,
+      "key": "core-high",
+      "errors": [],
+      "checks": [],
+      "before": {
+        "gold": 40,
+        "contentVersion": "quality-r2-basic-suit-choice-v1",
+        "contentHash": "json-fnv-v1:69c29f5cd54bb160",
+        "commandSeq": 4,
+        "held": [
+          {
+            "instanceId": "native-held/0",
+            "definitionId": "b03",
+            "paidPrice": 8,
+            "growth": {
+              "multiplier": {
+                "n": "1",
+                "d": "1"
+              }
+            },
+            "edition": "none"
+          },
+          {
+            "instanceId": "native-held/1",
+            "definitionId": "e05",
+            "paidPrice": 8,
+            "growth": {},
+            "edition": "none"
+          },
+          {
+            "instanceId": "native-held/2",
+            "definitionId": "e06",
+            "paidPrice": 8,
+            "growth": {},
+            "edition": "none"
+          },
+          {
+            "instanceId": "native-held/3",
+            "definitionId": "e11",
+            "paidPrice": 8,
+            "growth": {
+              "coefficient": {
+                "n": "1",
+                "d": "1"
+              }
+            },
+            "edition": "none"
+          },
+          {
+            "instanceId": "native-held/4",
+            "definitionId": "c08",
+            "paidPrice": 8,
+            "growth": {},
+            "edition": "none"
+          }
+        ],
+        "journalLength": 0
+      },
+      "guidance": [
+        {
+          "offer": {
+            "offerId": "native-offer/0",
+            "definitionId": "b06",
+            "price": 8,
+            "edition": "none",
+            "consumed": false
+          },
+          "stars": 1,
+          "reason": "需先腾槽",
+          "detail": "换掉少一级还会影响保留牌的出售联动；先留金，完整损失可查看。",
+          "routes": [
+            "group"
+          ],
+          "routeCaption": "同点",
+          "label": "本局★"
+        },
+        {
+          "offer": {
+            "offerId": "native-offer/1",
+            "definitionId": "a11",
+            "price": 8,
+            "edition": "none",
+            "consumed": false
+          },
+          "stars": 1,
+          "reason": "需先腾槽",
+          "detail": "换掉少一级还会影响保留牌的出售联动；先留金，完整损失可查看。",
+          "routes": [
+            "group"
+          ],
+          "routeCaption": "同点",
+          "label": "本局★"
+        },
+        {
+          "offer": {
+            "offerId": "native-offer/2",
+            "definitionId": "b09",
+            "price": 8,
+            "edition": "none",
+            "consumed": false
+          },
+          "stars": 1,
+          "reason": "需先腾槽",
+          "detail": "已有长期捧场（乘法系数 ×1）；新牌倍率×2，未补明确缺口，建议先不买。",
+          "routes": [
+            "group"
+          ],
+          "routeCaption": "同点",
+          "label": "本局★"
+        }
+      ],
+      "geometry": [
+        {
+          "name": "shop/owned-heading",
+          "text": "长按拖动换位 · 点牌查看",
+          "fontSize": "14px",
+          "bounds": {
+            "x": 12,
+            "y": 498,
+            "width": 153,
+            "height": 16
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-purpose",
+          "text": "多步条件 · 再计1次 · 点牌查条件",
+          "offerId": "native-offer/0",
+          "fontSize": "14px",
+          "bounds": {
+            "x": 114,
+            "y": 144,
+            "width": 127,
+            "height": 32
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-price",
+          "text": "8 金 · 查看",
+          "offerId": "native-offer/0",
+          "fontSize": "16px",
+          "bounds": {
+            "x": 114,
+            "y": 214,
+            "width": 76,
+            "height": 19
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-routes",
+          "text": "同点 · ★",
+          "offerId": "native-offer/0",
+          "fontSize": "14px",
+          "bounds": {
+            "x": 114,
+            "y": 192,
+            "width": 53,
+            "height": 16
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-purpose",
+          "text": "葫芦/同花葫芦 · 再计1次",
+          "offerId": "native-offer/1",
+          "fontSize": "14px",
+          "bounds": {
+            "x": 114,
+            "y": 274,
+            "width": 151,
+            "height": 16
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-price",
+          "text": "8 金 · 查看",
+          "offerId": "native-offer/1",
+          "fontSize": "16px",
+          "bounds": {
+            "x": 114,
+            "y": 344,
+            "width": 76,
+            "height": 19
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-routes",
+          "text": "同点 · ★",
+          "offerId": "native-offer/1",
+          "fontSize": "14px",
+          "bounds": {
+            "x": 114,
+            "y": 322,
+            "width": 53,
+            "height": 16
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-purpose",
+          "text": "四条/五条/同花五条 · 每手一次，倍率×2",
+          "offerId": "native-offer/2",
+          "fontSize": "14px",
+          "bounds": {
+            "x": 114,
+            "y": 404,
+            "width": 129,
+            "height": 32
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-price",
+          "text": "8 金 · 查看",
+          "offerId": "native-offer/2",
+          "fontSize": "16px",
+          "bounds": {
+            "x": 114,
+            "y": 474,
+            "width": 76,
+            "height": 19
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-routes",
+          "text": "同点 · ★",
+          "offerId": "native-offer/2",
+          "fontSize": "14px",
+          "bounds": {
+            "x": 114,
+            "y": 452,
+            "width": 53,
+            "height": 16
+          },
+          "alpha": 1
+        }
+      ],
+      "screenshot": "320x844-core-high.png",
+      "status": "OBSERVED_BEFORE"
+    },
+    {
+      "width": 320,
+      "height": 844,
+      "touch": true,
+      "key": "cash-loss",
+      "errors": [],
+      "checks": [],
+      "before": {
+        "gold": 21,
+        "contentVersion": "quality-r2-basic-suit-choice-v1",
+        "contentHash": "json-fnv-v1:69c29f5cd54bb160",
+        "commandSeq": 4,
+        "held": [
+          {
+            "instanceId": "native-held/0",
+            "definitionId": "e08",
+            "paidPrice": 8,
+            "growth": {},
+            "edition": "none"
+          },
+          {
+            "instanceId": "native-held/1",
+            "definitionId": "b03",
+            "paidPrice": 8,
+            "growth": {
+              "multiplier": {
+                "n": "1",
+                "d": "1"
+              }
+            },
+            "edition": "none"
+          },
+          {
+            "instanceId": "native-held/2",
+            "definitionId": "b08",
+            "paidPrice": 8,
+            "growth": {},
+            "edition": "none"
+          },
+          {
+            "instanceId": "native-held/3",
+            "definitionId": "e01",
+            "paidPrice": 8,
+            "growth": {},
+            "edition": "none"
+          },
+          {
+            "instanceId": "native-held/4",
+            "definitionId": "c08",
+            "paidPrice": 2,
+            "growth": {},
+            "edition": "none"
+          }
+        ],
+        "journalLength": 0
+      },
+      "guidance": [
+        {
+          "offer": {
+            "offerId": "native-offer/0",
+            "definitionId": "b10",
+            "price": 4,
+            "edition": "none",
+            "consumed": false
+          },
+          "stars": 1,
+          "reason": "先留金币",
+          "detail": "买后金币21→18；包场的“本手开始金币至少20；本手新收入不改变资格”条件不再满足（倍率×1.8）；这轮先留金。",
+          "routes": [
+            "group"
+          ],
+          "routeCaption": "同点",
+          "label": "本局★"
+        },
+        {
+          "offer": {
+            "offerId": "native-offer/1",
+            "definitionId": "d07",
+            "price": 4,
+            "edition": "none",
+            "consumed": false
+          },
+          "stars": 1,
+          "reason": "先留金币",
+          "detail": "买后金币21→17；包场的“本手开始金币至少20；本手新收入不改变资格”条件不再满足（倍率×1.8）；这轮先留金。",
+          "routes": [
+            "group",
+            "straight",
+            "flush"
+          ],
+          "routeCaption": "同点/顺子/同花",
+          "label": "本局★"
+        },
+        {
+          "offer": {
+            "offerId": "native-offer/2",
+            "definitionId": "f10",
+            "price": 8,
+            "edition": "none",
+            "consumed": false
+          },
+          "stars": 1,
+          "reason": "先留金币",
+          "detail": "买后金币21→13；包场的“本手开始金币至少20；本手新收入不改变资格”条件不再满足（倍率×1.8）；这轮先留金。",
+          "routes": [
+            "group",
+            "straight",
+            "flush"
+          ],
+          "routeCaption": "同点/顺子/同花",
+          "label": "本局★"
+        }
+      ],
+      "geometry": [
+        {
+          "name": "shop/owned-heading",
+          "text": "长按拖动换位 · 点牌查看",
+          "fontSize": "14px",
+          "bounds": {
+            "x": 12,
+            "y": 498,
+            "width": 153,
+            "height": 16
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-purpose",
+          "text": "成组长热度 · +10顶100 · 新增下次用",
+          "offerId": "native-offer/0",
+          "fontSize": "14px",
+          "bounds": {
+            "x": 114,
+            "y": 144,
+            "width": 153,
+            "height": 32
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-price",
+          "text": "4 金 · 查看",
+          "offerId": "native-offer/0",
+          "fontSize": "16px",
+          "bounds": {
+            "x": 114,
+            "y": 214,
+            "width": 76,
+            "height": 19
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-routes",
+          "text": "同点 · ★",
+          "offerId": "native-offer/0",
+          "fontSize": "14px",
+          "bounds": {
+            "x": 114,
+            "y": 192,
+            "width": 53,
+            "height": 16
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-purpose",
+          "text": "≥1张都计分 · 每手一次，倍率+0.5",
+          "offerId": "native-offer/1",
+          "fontSize": "14px",
+          "bounds": {
+            "x": 114,
+            "y": 274,
+            "width": 126,
+            "height": 32
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-price",
+          "text": "4 金 · 查看",
+          "offerId": "native-offer/1",
+          "fontSize": "16px",
+          "bounds": {
+            "x": 114,
+            "y": 344,
+            "width": 76,
+            "height": 19
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-routes",
+          "text": "同点/顺子/同花 · ★",
+          "offerId": "native-offer/1",
+          "fontSize": "14px",
+          "bounds": {
+            "x": 114,
+            "y": 322,
+            "width": 117,
+            "height": 16
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-purpose",
+          "text": "多步条件 · 分时点生效 · 点牌查条件",
+          "offerId": "native-offer/2",
+          "fontSize": "14px",
+          "bounds": {
+            "x": 114,
+            "y": 404,
+            "width": 147,
+            "height": 32
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-price",
+          "text": "8 金 · 查看",
+          "offerId": "native-offer/2",
+          "fontSize": "16px",
+          "bounds": {
+            "x": 114,
+            "y": 474,
+            "width": 76,
+            "height": 19
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-routes",
+          "text": "同点/顺子/同花 · ★",
+          "offerId": "native-offer/2",
+          "fontSize": "14px",
+          "bounds": {
+            "x": 114,
+            "y": 452,
+            "width": 117,
+            "height": 16
+          },
+          "alpha": 1
+        }
+      ],
+      "screenshot": "320x844-cash-loss.png",
+      "status": "OBSERVED_BEFORE"
+    }
+  ],
+  "status": "PASS"
+}

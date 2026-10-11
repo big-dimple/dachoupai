@@ -1,0 +1,634 @@
+{
+  "head": "a7c765cf378cabfe2ab89cbd29042a52369fc815",
+  "sourceTree": "38c52316baf714ac5782a2dbfe26377d202b26e1",
+  "sourceChanges": "",
+  "harnessSha256": "5a0a4ba7e7ede65610c33103c3edfdafbdd5873c35e65237d23e0069c33e5ff3",
+  "baseline": false,
+  "scope": "Controlled current/legacy-identity shops, 1180/1366 desktop and 390/320 touch; actual labels and native full-slot comparison/held/sale-cancel UI, full state/journal/IDB read-only equality. No natural games, probability prediction, score caching, history replay or deployment.",
+  "cases": [
+    {
+      "width": 1180,
+      "height": 757,
+      "touch": false,
+      "key": "ordinary-full",
+      "errors": [],
+      "checks": [
+        "actual full-slot compare entry, five accessible slots, selected held sale confirmation and cancellation are read-only"
+      ],
+      "before": {
+        "gold": 40,
+        "contentVersion": "quality-r2-basic-suit-choice-v1",
+        "contentHash": "json-fnv-v1:69c29f5cd54bb160",
+        "commandSeq": 4,
+        "held": [
+          {
+            "instanceId": "native-held/0",
+            "definitionId": "mantangcai",
+            "paidPrice": 8,
+            "growth": {},
+            "edition": "none"
+          },
+          {
+            "instanceId": "native-held/1",
+            "definitionId": "b02",
+            "paidPrice": 8,
+            "growth": {},
+            "edition": "none"
+          },
+          {
+            "instanceId": "native-held/2",
+            "definitionId": "b03",
+            "paidPrice": 8,
+            "growth": {
+              "multiplier": {
+                "n": "1",
+                "d": "1"
+              }
+            },
+            "edition": "none"
+          },
+          {
+            "instanceId": "native-held/3",
+            "definitionId": "e01",
+            "paidPrice": 8,
+            "growth": {},
+            "edition": "none"
+          },
+          {
+            "instanceId": "native-held/4",
+            "definitionId": "e04",
+            "paidPrice": 8,
+            "growth": {},
+            "edition": "none"
+          }
+        ],
+        "journalLength": 0
+      },
+      "guidance": [
+        {
+          "offer": {
+            "offerId": "native-offer/0",
+            "definitionId": "b04",
+            "price": 4,
+            "edition": "none",
+            "consumed": false
+          },
+          "stars": 3,
+          "label": "推荐指数 ★★★☆☆",
+          "reason": "两组同点加倍率",
+          "condition": "需两对或葫芦",
+          "recommendation": {
+            "stars": 3,
+            "reason": "两组同点加倍率",
+            "condition": "需两对或葫芦",
+            "stage": "early",
+            "facts": {
+              "cards": 52,
+              "largest": 4,
+              "second": 4,
+              "largestSuit": 13,
+              "groupConcentrated": false,
+              "flushConcentrated": false,
+              "straightConcentrated": false,
+              "boostedGroup": false,
+              "boostedHouse": false,
+              "groupRecord": false,
+              "houseRecord": false,
+              "flushRecord": false,
+              "qualifiedRecord": false,
+              "heldCardPayoff": true,
+              "retriggerSource": false,
+              "additiveSource": true,
+              "potentialStages": 23,
+              "growthWindow": true,
+              "initialGrowth": "{}"
+            },
+            "detail": "两组同点加倍率；需两对或葫芦。实际打出牌含至少两组不同点数、每组至少2张时，整手倍率 +2。\n基于公开构筑与当前阶段的推荐；不表示指定替换净更强。"
+          },
+          "operation": "需替换",
+          "operationShort": "需替换",
+          "purchaseConditionLosses": [],
+          "cashBasis": "未选替换：以下仅为直接买入现金",
+          "detail": "两组同点加倍率；需两对或葫芦。实际打出牌含至少两组不同点数、每组至少2张时，整手倍率 +2。\n基于公开构筑与当前阶段的推荐；不表示指定替换净更强。\n需替换",
+          "routes": [
+            "group"
+          ],
+          "routeCaption": "同点"
+        },
+        {
+          "offer": {
+            "offerId": "native-offer/1",
+            "definitionId": "e08",
+            "price": 8,
+            "edition": "none",
+            "consumed": false
+          },
+          "stars": 4,
+          "label": "推荐指数 ★★★★☆",
+          "reason": "持金放大倍率",
+          "condition": "计分前须有20金",
+          "recommendation": {
+            "stars": 4,
+            "reason": "持金放大倍率",
+            "condition": "计分前须有20金",
+            "stage": "early",
+            "facts": {
+              "cards": 52,
+              "largest": 4,
+              "second": 4,
+              "largestSuit": 13,
+              "groupConcentrated": false,
+              "flushConcentrated": false,
+              "straightConcentrated": false,
+              "boostedGroup": false,
+              "boostedHouse": false,
+              "groupRecord": false,
+              "houseRecord": false,
+              "flushRecord": false,
+              "qualifiedRecord": false,
+              "heldCardPayoff": true,
+              "retriggerSource": false,
+              "additiveSource": true,
+              "potentialStages": 23,
+              "growthWindow": true,
+              "initialGrowth": "{}"
+            },
+            "detail": "持金放大倍率；计分前须有20金。当前金币至少20时，整手倍率 ×1.8。\n公开依据：最大同点组4张，前两组8/52张；最大花色13/52张；已持逐牌加成有；剩余场次窗口23。\n基于公开构筑与当前阶段的推荐；不表示指定替换净更强。"
+          },
+          "operation": "需替换",
+          "operationShort": "需替换",
+          "purchaseConditionLosses": [],
+          "cashBasis": "未选替换：以下仅为直接买入现金",
+          "detail": "持金放大倍率；计分前须有20金。当前金币至少20时，整手倍率 ×1.8。\n公开依据：最大同点组4张，前两组8/52张；最大花色13/52张；已持逐牌加成有；剩余场次窗口23。\n基于公开构筑与当前阶段的推荐；不表示指定替换净更强。\n需替换",
+          "routes": [
+            "group",
+            "straight",
+            "flush"
+          ],
+          "routeCaption": "同点/顺子/同花"
+        },
+        {
+          "offer": {
+            "offerId": "native-offer/2",
+            "definitionId": "c08",
+            "price": 6,
+            "edition": "none",
+            "consumed": false
+          },
+          "stars": 2,
+          "label": "推荐指数 ★★☆☆☆",
+          "reason": "普通四顺更易成型",
+          "condition": "同花顺仍需5张",
+          "recommendation": {
+            "stars": 2,
+            "reason": "普通四顺更易成型",
+            "condition": "同花顺仍需5张",
+            "stage": "early",
+            "facts": {
+              "cards": 52,
+              "largest": 4,
+              "second": 4,
+              "largestSuit": 13,
+              "groupConcentrated": false,
+              "flushConcentrated": false,
+              "straightConcentrated": false,
+              "boostedGroup": false,
+              "boostedHouse": false,
+              "groupRecord": false,
+              "houseRecord": false,
+              "flushRecord": false,
+              "qualifiedRecord": false,
+              "heldCardPayoff": true,
+              "retriggerSource": false,
+              "additiveSource": true,
+              "potentialStages": 23,
+              "growthWindow": true,
+              "initialGrowth": "{}"
+            },
+            "detail": "普通四顺更易成型；同花顺仍需5张。普通顺子允许4张连续不同点数，A234合法，也保留5张顺子；同花顺仍需5张，不允许QKA2。\n基于公开构筑与当前阶段的推荐；不表示指定替换净更强。"
+          },
+          "operation": "需替换",
+          "operationShort": "需替换",
+          "purchaseConditionLosses": [],
+          "cashBasis": "未选替换：以下仅为直接买入现金",
+          "detail": "普通四顺更易成型；同花顺仍需5张。普通顺子允许4张连续不同点数，A234合法，也保留5张顺子；同花顺仍需5张，不允许QKA2。\n基于公开构筑与当前阶段的推荐；不表示指定替换净更强。\n需替换",
+          "routes": [
+            "straight"
+          ],
+          "routeCaption": "顺子"
+        }
+      ],
+      "geometry": [
+        {
+          "name": "shop/owned-heading",
+          "text": "已积攒 +1 倍率",
+          "fontSize": "16px",
+          "bounds": {
+            "x": 272,
+            "y": 20,
+            "width": 108,
+            "height": 19
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/owned-drag-hint",
+          "text": "拖动换位 · 点牌查看",
+          "fontSize": "14px",
+          "bounds": {
+            "x": 272,
+            "y": 40,
+            "width": 125,
+            "height": 16
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-name",
+          "text": "一唱一和",
+          "offerId": "native-offer/0",
+          "fontSize": "15px",
+          "bounds": {
+            "x": 298,
+            "y": 415,
+            "width": 61,
+            "height": 17
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-purpose",
+          "text": "≥2组各≥2张同点 → 每手一次，倍\n率+2",
+          "offerId": "native-offer/0",
+          "fontSize": "14px",
+          "bounds": {
+            "x": 298,
+            "y": 437,
+            "width": 207,
+            "height": 32
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-price",
+          "text": "4 金 · 比较替换",
+          "offerId": "native-offer/0",
+          "fontSize": "16px",
+          "bounds": {
+            "x": 298,
+            "y": 525,
+            "width": 108,
+            "height": 19
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-advice",
+          "text": "推荐指数 ★★★☆☆",
+          "offerId": "native-offer/0",
+          "stars": 3,
+          "reason": "两组同点加倍率；需两对或葫芦。实际打出牌含至少两组不同点数、每组至少2张时，整手倍率 +2。\n基于公开构筑与当前阶段的推荐；不表示指定替换净更强。\n需替换",
+          "fontSize": "14px",
+          "bounds": {
+            "x": 298,
+            "y": 505,
+            "width": 123,
+            "height": 16
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-operation",
+          "text": "需替换",
+          "offerId": "native-offer/0",
+          "fontSize": "14px",
+          "bounds": {
+            "x": 429,
+            "y": 505,
+            "width": 42,
+            "height": 16
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-reason",
+          "text": "槽位已满",
+          "offerId": "native-offer/0",
+          "fontSize": "14px",
+          "bounds": {
+            "x": 298,
+            "y": 545,
+            "width": 56,
+            "height": 16
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-name",
+          "text": "包场",
+          "offerId": "native-offer/1",
+          "fontSize": "15px",
+          "bounds": {
+            "x": 538,
+            "y": 415,
+            "width": 31,
+            "height": 17
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-purpose",
+          "text": "出牌前≥20金 → 每手一次，倍率×\n1.8\n现在40金 · 金币条件目前够；未\n购，买后重查",
+          "offerId": "native-offer/1",
+          "fontSize": "14px",
+          "bounds": {
+            "x": 538,
+            "y": 437,
+            "width": 208,
+            "height": 64
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-price",
+          "text": "8 金 · 比较替换",
+          "offerId": "native-offer/1",
+          "fontSize": "16px",
+          "bounds": {
+            "x": 538,
+            "y": 525,
+            "width": 108,
+            "height": 19
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-advice",
+          "text": "推荐指数 ★★★★☆",
+          "offerId": "native-offer/1",
+          "stars": 4,
+          "reason": "持金放大倍率；计分前须有20金。当前金币至少20时，整手倍率 ×1.8。\n公开依据：最大同点组4张，前两组8/52张；最大花色13/52张；已持逐牌加成有；剩余场次窗口23。\n基于公开构筑与当前阶段的推荐；不表示指定替换净更强。\n需替换",
+          "fontSize": "14px",
+          "bounds": {
+            "x": 538,
+            "y": 505,
+            "width": 123,
+            "height": 16
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-operation",
+          "text": "需替换",
+          "offerId": "native-offer/1",
+          "fontSize": "14px",
+          "bounds": {
+            "x": 669,
+            "y": 505,
+            "width": 42,
+            "height": 16
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-reason",
+          "text": "槽位已满",
+          "offerId": "native-offer/1",
+          "fontSize": "14px",
+          "bounds": {
+            "x": 538,
+            "y": 545,
+            "width": 56,
+            "height": 16
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-name",
+          "text": "少一级",
+          "offerId": "native-offer/2",
+          "fontSize": "15px",
+          "bounds": {
+            "x": 778,
+            "y": 415,
+            "width": 46,
+            "height": 17
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-purpose",
+          "text": "普通顺子 → 4张即可；同花顺仍5\n张",
+          "offerId": "native-offer/2",
+          "fontSize": "14px",
+          "bounds": {
+            "x": 778,
+            "y": 437,
+            "width": 206,
+            "height": 32
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-price",
+          "text": "6 金 · 比较替换",
+          "offerId": "native-offer/2",
+          "fontSize": "16px",
+          "bounds": {
+            "x": 778,
+            "y": 525,
+            "width": 108,
+            "height": 19
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-advice",
+          "text": "推荐指数 ★★☆☆☆",
+          "offerId": "native-offer/2",
+          "stars": 2,
+          "reason": "普通四顺更易成型；同花顺仍需5张。普通顺子允许4张连续不同点数，A234合法，也保留5张顺子；同花顺仍需5张，不允许QKA2。\n基于公开构筑与当前阶段的推荐；不表示指定替换净更强。\n需替换",
+          "fontSize": "14px",
+          "bounds": {
+            "x": 778,
+            "y": 505,
+            "width": 123,
+            "height": 16
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-operation",
+          "text": "需替换",
+          "offerId": "native-offer/2",
+          "fontSize": "14px",
+          "bounds": {
+            "x": 909,
+            "y": 505,
+            "width": 42,
+            "height": 16
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-reason",
+          "text": "槽位已满",
+          "offerId": "native-offer/2",
+          "fontSize": "14px",
+          "bounds": {
+            "x": 778,
+            "y": 545,
+            "width": 56,
+            "height": 16
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-name",
+          "text": "玻璃面",
+          "offerId": "recommendation-native/shop/1/0/tool/0",
+          "fontSize": "15px",
+          "bounds": {
+            "x": 378,
+            "y": 591,
+            "width": 46,
+            "height": 17
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-purpose",
+          "text": "选中牌打出且每次有效计分时，倍率×\n1.5；结算后1/4概率永久破碎",
+          "offerId": "recommendation-native/shop/1/0/tool/0",
+          "fontSize": "14px",
+          "bounds": {
+            "x": 378,
+            "y": 613,
+            "width": 233,
+            "height": 32
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-price",
+          "text": "5 金 · 查看",
+          "offerId": "recommendation-native/shop/1/0/tool/0",
+          "fontSize": "16px",
+          "bounds": {
+            "x": 378,
+            "y": 681,
+            "width": 76,
+            "height": 19
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-name",
+          "text": "利息册",
+          "offerId": "recommendation-native/shop/1/0/item/0",
+          "fontSize": "15px",
+          "bounds": {
+            "x": 740,
+            "y": 591,
+            "width": 46,
+            "height": 17
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-purpose",
+          "text": "每次过关结算利息上限+2金，在奖励前\n读取；不会直接赠送金币，须有足够存\n款产生利息",
+          "offerId": "recommendation-native/shop/1/0/item/0",
+          "fontSize": "14px",
+          "bounds": {
+            "x": 740,
+            "y": 613,
+            "width": 240,
+            "height": 48
+          },
+          "alpha": 1
+        },
+        {
+          "name": "shop/offer-price",
+          "text": "10 金 · 查看",
+          "offerId": "recommendation-native/shop/1/0/item/0",
+          "fontSize": "16px",
+          "bounds": {
+            "x": 740,
+            "y": 681,
+            "width": 85,
+            "height": 19
+          },
+          "alpha": 1
+        }
+      ],
+      "screenshot": "1180x757-ordinary-full.png",
+      "comparisonText": "现货与已持\n一唱一和 · 持有与现货比较\n\n推荐指数 ★★★☆☆\n两组同点加倍率 · 需两对或葫芦\n现货 · 路线直接条件 · 一唱一和 · 实付4金\n实际打出牌含至少两组不同点数、每组至少2张时，整手倍率 +2。\n\n第 1 槽 · 满堂彩\n\n对子/两对/三条/葫芦/四条 → 每手一次，热度+90\n指定替换 · 先售后买：40→44金；售后实付4金；买后40金。新牌在末槽，从初值开始。\n失去版次：普通（无额外计分）。版次独立于增强和稀有度。扑克在该次增强后、大丑牌能力前触发；大丑牌在自身全部计分能力后逐槽触发，本体未命中仍有效。持牌或计分失效时不触发版次。；新牌版次：普通（无额外计分）。版次独立于增强和稀有度。扑克在该次增强后、大丑牌能力前触发；大丑牌在自身全部计分能力后逐槽触发，本体未命中仍有效。持牌或计分失效时不触发版次。\n出售失去：无成长或使用计数；基础卖价 4 金。\n同名新购不继承成长。\n\n保留或管理这张\n条件、配合与完整损失\n第 2 槽 · 对上眼\n\n同打≥2张同点牌 → 每张符合条件的有效计分牌倍率+0.25\n指定替换 · 先售后买：40→44金；售后实付4金；买后40金。新牌在末槽，从初值开始。\n失去版次：普通（无额外计分）。版次独立于增强和稀有度。扑克在该次增强后、大丑牌能力前触发；大丑牌在自身全部计分能力后逐槽触发，本体未命中仍有效。持牌或计分失效时不触发版次。；新牌版次：普通（无额外计分）。版次独立于增强和稀有度。扑克在该次增强后、大丑牌能力前触发；大丑牌在自身全部计分能力后逐槽触发，本体未命中仍有效。持牌或计分失效时不触发版次。\n出售失去：无成长或使用计数；基础卖价 4 金。\n同名新购不继承成长。\n\n保留或管理这张\n条件、配合与完整损失\n第 3 槽 · 老搭档\n\n对子等同点组合出牌后 → 倍率成长最多+0.25；上限3，新增下次用\n指定替换 · 先售后买：40→44金；售后实付4金；买后40金。新牌在末槽，从初值开始。\n失去版次：普通（无额外计分）。版次独立于增强和稀有度。扑克在该次增强后、大丑牌能力前触发；大丑牌在自身全部计分能力后逐槽触发，本体未命中仍有效。持牌或计分失效时不触发版次。；新牌版次：普通（无额外计分）。版次独立于增强和稀有度。扑克在该次增强后、大丑牌能力前触发；大丑牌在自身全部计分能力后逐槽触发，本体未命中仍有效。持牌或计分失效时不触发版次。\n出售失去：倍率成长 1；基础卖价 4 金。\n同名新购不继承成长。\n\n保留或管理这张\n条件、配合与完整损失\n第 4 槽 · 小费盒\n\n成功过关 → 获得2金\n指定替换 · 先售后买：40→44金；售后实付4金；买后40金。新牌在末槽，从初值开始。\n失去版次：普通（无额外计分）。版次独立于增强和稀有度。扑克在该次增强后、大丑牌能力前触发；大丑牌在自身全部计分能力后逐槽触发，本体未命中仍有效。持牌或计分失效时不触发版次。；新牌版次：普通（无额外计分）。版次独立于增强和稀有度。扑克在该次增强后、大丑牌能力前触发；大丑牌在自身全部计分能力后逐槽触发，本体未命中仍有效。持牌或计分失效时不触发版次。\n出售失去：无成长或使用计数；基础卖价 4 金。\n同名新购不继承成长。\n\n保留或管理这张\n条件、配合与完整损失\n第 5 槽 · 滚个零头\n\n成功过关时，按领取所有过关奖励前的金币，每10金额外给1金，最多6金。\n指定替换 · 先售后买：40→44金；售后实付4金；买后40金。新牌在末槽，从初值开始。\n失去版次：普通（无额外计分）。版次独立于增强和稀有度。扑克在该次增强后、大丑牌能力前触发；大丑牌在自身全部计分能力后逐槽触发，本体未命中仍有效。持牌或计分失效时不触发版次。；新牌版次：普通（无额外计分）。版次独立于增强和稀有度。扑克在该次增强后、大丑牌能力前触发；大丑牌在自身全部计分能力后逐槽触发，本体未命中仍有效。持牌或计分失效时不触发版次。\n出售失去：无成长或使用计数；基础卖价 4 金。\n同名新购不继承成长。\n\n保留或管理这张\n条件、配合与完整损失\n\n按现持槽位逐张比较。保留、换方向或留金入场都可以；这里不排序推荐，也不自动卖买。\n\n返回购买详情\n更换培养方向\n关闭",
+      "comparisonScreenshot": "1180x757-ordinary-full-compare.png",
+      "transactions": [
+        {
+          "status": "ready",
+          "summary": "指定替换 · 先售后买：40→44金；售后实付4金；买后40金。新牌在末槽，从初值开始。\n失去版次：普通（无额外计分）。版次独立于增强和稀有度。扑克在该次增强后、大丑牌能力前触发；大丑牌在自身全部计分能力后逐槽触发，本体未命中仍有效。持牌或计分失效时不触发版次。；新牌版次：普通（无额外计分）。版次独立于增强和稀有度。扑克在该次增强后、大丑牌能力前触发；大丑牌在自身全部计分能力后逐槽触发，本体未命中仍有效。持牌或计分失效时不触发版次。",
+          "growthEffects": [],
+          "cashLosses": [],
+          "refund": 4,
+          "price": 4,
+          "goldAfterSale": 44,
+          "goldAfterPurchase": 40
+        },
+        {
+          "status": "ready",
+          "summary": "指定替换 · 先售后买：40→44金；售后实付4金；买后40金。新牌在末槽，从初值开始。\n失去版次：普通（无额外计分）。版次独立于增强和稀有度。扑克在该次增强后、大丑牌能力前触发；大丑牌在自身全部计分能力后逐槽触发，本体未命中仍有效。持牌或计分失效时不触发版次。；新牌版次：普通（无额外计分）。版次独立于增强和稀有度。扑克在该次增强后、大丑牌能力前触发；大丑牌在自身全部计分能力后逐槽触发，本体未命中仍有效。持牌或计分失效时不触发版次。",
+          "growthEffects": [],
+          "cashLosses": [],
+          "refund": 4,
+          "price": 4,
+          "goldAfterSale": 44,
+          "goldAfterPurchase": 40
+        },
+        {
+          "status": "ready",
+          "summary": "指定替换 · 先售后买：40→44金；售后实付4金；买后40金。新牌在末槽，从初值开始。\n失去版次：普通（无额外计分）。版次独立于增强和稀有度。扑克在该次增强后、大丑牌能力前触发；大丑牌在自身全部计分能力后逐槽触发，本体未命中仍有效。持牌或计分失效时不触发版次。；新牌版次：普通（无额外计分）。版次独立于增强和稀有度。扑克在该次增强后、大丑牌能力前触发；大丑牌在自身全部计分能力后逐槽触发，本体未命中仍有效。持牌或计分失效时不触发版次。",
+          "growthEffects": [],
+          "cashLosses": [],
+          "refund": 4,
+          "price": 4,
+          "goldAfterSale": 44,
+          "goldAfterPurchase": 40
+        },
+        {
+          "status": "ready",
+          "summary": "指定替换 · 先售后买：40→44金；售后实付4金；买后40金。新牌在末槽，从初值开始。\n失去版次：普通（无额外计分）。版次独立于增强和稀有度。扑克在该次增强后、大丑牌能力前触发；大丑牌在自身全部计分能力后逐槽触发，本体未命中仍有效。持牌或计分失效时不触发版次。；新牌版次：普通（无额外计分）。版次独立于增强和稀有度。扑克在该次增强后、大丑牌能力前触发；大丑牌在自身全部计分能力后逐槽触发，本体未命中仍有效。持牌或计分失效时不触发版次。",
+          "growthEffects": [],
+          "cashLosses": [],
+          "refund": 4,
+          "price": 4,
+          "goldAfterSale": 44,
+          "goldAfterPurchase": 40
+        },
+        {
+          "status": "ready",
+          "summary": "指定替换 · 先售后买：40→44金；售后实付4金；买后40金。新牌在末槽，从初值开始。\n失去版次：普通（无额外计分）。版次独立于增强和稀有度。扑克在该次增强后、大丑牌能力前触发；大丑牌在自身全部计分能力后逐槽触发，本体未命中仍有效。持牌或计分失效时不触发版次。；新牌版次：普通（无额外计分）。版次独立于增强和稀有度。扑克在该次增强后、大丑牌能力前触发；大丑牌在自身全部计分能力后逐槽触发，本体未命中仍有效。持牌或计分失效时不触发版次。",
+          "growthEffects": [],
+          "cashLosses": [],
+          "refund": 4,
+          "price": 4,
+          "goldAfterSale": 44,
+          "goldAfterPurchase": 40
+        }
+      ],
+      "saleConfirmation": "已持 · 确认后出售\n出售确认\n● 普通\n\n出售「对上眼」 · 基础返还 4 金\n失去当前成长：无成长或使用计数\n\n出售第 2 槽的「对上眼」基础卖价 4 金币。\n当前余额 40 金；交易来源与售后余额以实际保存结果为准。\n\n该牌成长将丢失，当前成长：无成长或使用计数。\n\n确认出售\n取消",
+      "status": "PASS"
+    },
+    {
+      "width": 1180,
+      "height": 757,
+      "touch": false,
+      "key": "core-high",
+      "errors": [],
+      "checks": []
+    }
+  ],
+  "status": "FAIL",
+  "failure": "Error: Run invariant: card conservation"
+}
