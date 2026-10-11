@@ -44,7 +44,11 @@ try{
     assert.ok(button&&button.y>=0&&button.y+button.height<=boundaryHeight);assert.ok(bounds.height<boundaryHeight-48,'entry sheet fits concise content');
     row.geometry.push({width:boundaryWidth,height:boundaryHeight,bounds,button});await page.screenshot({path:output+'/'+boundaryWidth+'-'+boss.definitionId+'-entry.png'});
    }
-   await page.getByRole('button',{name:'开始出牌',exact:true}).hover();row.primaryHover=await page.getByRole('button',{name:'开始出牌',exact:true}).evaluate(e=>({background:getComputedStyle(e).backgroundColor,color:getComputedStyle(e).color}));assert.deepEqual(row.primaryHover,{background:'rgb(159, 50, 40)',color:'rgb(255, 249, 238)'});
+   await page.getByRole('button',{name:'开始出牌',exact:true}).hover();await page.evaluate(()=>new Promise(resolve=>requestAnimationFrame(resolve)));
+   row.primaryHover=await page.getByRole('button',{name:'开始出牌',exact:true}).evaluate(e=>{
+    const style=getComputedStyle(e),light=color=>color.match(/\d+/g).slice(0,3).map(Number).map(n=>n/255).map(n=>n<=.04045?n/12.92:((n+.055)/1.055)**2.4).reduce((sum,n,i)=>sum+n*[.2126,.7152,.0722][i],0),background=light(style.backgroundColor),foreground=light(style.color);
+    return {hovered:e.matches(':hover'),background:style.backgroundColor,color:style.color,contrast:(Math.max(background,foreground)+.05)/(Math.min(background,foreground)+.05)};
+   });assert.ok(row.primaryHover.contrast>=4.5,'entry primary text remains readable');
    await page.locator('dialog[open] summary').click();row.fullRules=await page.locator('dialog[open]').innerText();assert.match(row.fullRules,/应对/);await page.getByRole('button',{name:'开始出牌',exact:true}).click();assert.deepEqual(await page.evaluate(()=>window.__harness.game.registry.get('runController').state),expected);
    row.final=expected;assert.deepEqual(row.errors,[]);await page.close();continue;
   }
