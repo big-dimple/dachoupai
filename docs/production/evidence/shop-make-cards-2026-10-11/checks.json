@@ -1,0 +1,44 @@
+{
+  "productBase": "e7ba47805f35590439dbf5d710ec8daba650299a",
+  "parentDocsBase": "89484f46f392cb26a6f7358bcb31ab730d71a995",
+  "native": {
+    "status": "PASS",
+    "cases": 2,
+    "sourceUnchanged": true,
+    "explicitPurchases": 4,
+    "explicitUses": 6,
+    "saveFailureChains": 4,
+    "readonlyChains": 2,
+    "fullStateJournalStorageOracle": true
+  },
+  "targetedTests": {
+    "files": 8,
+    "tests": 64,
+    "status": "PASS"
+  },
+  "build": {
+    "status": "PASS",
+    "includesTypecheck": true
+  },
+  "productFiles": {
+    "src/game/MakeCardsDialog.ts": {
+      "sha256": "5525289f73f7678a6abcf9618ddd91ffb2710208c401b4f226fb20226948998a",
+      "gitBlob": "710d5c9f45ec816dccbf2a01c9e25f0304ffba85"
+    },
+    "src/game/ShopScene.ts": {
+      "sha256": "d5fca2b4f29a3c0de394dc431ba7a1b8a9c88c9ad43210f2fcf6b22c62843230",
+      "gitBlob": "541c95474a3e7a5ef6bba2af1f7e9e337fd1d1ab"
+    },
+    "src/style.css": {
+      "sha256": "101feae7a6d9a959931fcbbdc2b222214d7e1ce806b1ac1619d0d3ddbb8334d3",
+      "gitBlob": "b864d7e4482c3e2f6d38940f866517144cdc01d2"
+    }
+  },
+  "protectedChanges": [],
+  "notRun": [
+    "natural18 journeys",
+    "physical devices/other browsers/GPU/audio/human preference",
+    "all mode/legacy-identity/consumable combination matrix"
+  ],
+  "ci": "Final exact HEAD separately on draft PR; local tests are working-source checks."
+}

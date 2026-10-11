@@ -1,0 +1,36 @@
+
+ RUN  v4.1.11 /workspace/dachoupai
+
+ ❯ tests/make-cards-flow.test.ts (3 tests | 2 failed) 32ms
+   × the live purchase gate rejects saving, read-only, lease loss and an old shop sequence while owned tools route to their existing selector 6ms
+   × resumes only the exact saved use candidate and never a different command at the same sequence 6ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/make-cards-flow.test.ts > the live purchase gate rejects saving, read-only, lease loss and an old shop sequence while owned tools route to their existing selector
+TypeError: Cannot set property resultReduced of #<ShopScene> which has only a getter
+ ❯ scene tests/make-cards-flow.test.ts:14:105
+
+ ❯ tests/make-cards-flow.test.ts:17:156
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  tests/make-cards-flow.test.ts > resumes only the exact saved use candidate and never a different command at the same sequence
+TypeError: Cannot set property resultReduced of #<ShopScene> which has only a getter
+ ❯ scene tests/make-cards-flow.test.ts:14:105
+
+ ❯ tests/make-cards-flow.test.ts:18:418
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  2 failed | 1 passed (3)
+   Start at  23:28:29
+   Duration  2.18s (transform 1.72s, setup 0ms, import 2.01s, tests 32ms, environment 0ms)
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice
