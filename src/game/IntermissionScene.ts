@@ -1,3 +1,5 @@
+import {drawResultScoreComposition,resultStrongHand} from './ResultScoreComposition';
+import {inkSettlingEase} from './inkwaveSpring';
 import {heroStageContinuity} from './HeroStageContinuity';
 import {mountResultEntrance} from './ResultEntrance';
 import {resultStageFacts,resultStagePlan} from './ResultStage';
@@ -186,6 +188,9 @@ export class IntermissionScene extends Phaser.Scene {
   private drawResultHero(b:Box,outcome:ReturnType<typeof stageOutcome>,skipped:boolean,lost:boolean,animate:boolean):void {
     const v=this.view,run=runController(this)!.state;
     resultStagePaper(this,v,b,lost);
+    if(!lost&&!skipped&&this.result.cleared&&v.layout.height>=500&&resultStageFacts(run,true).trace){
+      this.drawSavedScore(b,animate);return;
+    }
     if(animate&&!skipped)this.outcomeMotion=mountResultEntrance(this,v.root,b,!lost);
     if(lost){
       const summary=failureSummary(run),plan=resultStagePlan(b,v.layout.height<500,true),source=plan.source,main=plan.score,center=main.x+main.width/2;
@@ -256,6 +261,28 @@ export class IntermissionScene extends Phaser.Scene {
       this.celebrationTimer=this.time.delayedCall(1000,()=>{if(this.scene.isActive()){this.firstRender=false;this.render();}});
     }
   }
+  private drawSavedScore(b:Box,animate:boolean):void {
+    const v=this.view,run=runController(this)!.state,facts=resultStageFacts(run,true);
+    if(animate&&resultStrongHand(facts,run.stage!.targetHeat))this.outcomeMotion=mountResultEntrance(this,v.root,b,true);
+    const composition=drawResultScoreComposition(this,v,b,run,this.result.stageHeat),band=composition.band,center=band.x+band.width/2;
+    this.paintSourceArt=()=>composition.paint();
+    const reward=v.text(center,band.y+8,'过关奖励  +'+this.result.goldEarned+' 金',18,PAPER_CSS.ink,band.width-12).setOrigin(.5,0).setFontStyle('bold').setName('result/reward');
+    const cue=this.firstRender&&this.rewardCue.claim(run,this.result),size=32,diameter=size*.7,gap=8;
+    const x=center-(reward.width+diameter+gap)/2+diameter/2,coinY=reward.y+reward.height/2-size*.04;
+    const show=()=>{reward.x=center+(diameter+gap)/2;return addRewardCoin(this,v.root,x,coinY,size,run.stage!.clearId!);};
+    if(this.result.goldEarned>0&&run.stage?.clearId){
+      if(this.textures.exists(REWARD_COIN.key)){const coin=show();if(cue)this.rewardEffects.enqueue(context=>animateRewardCoin(this,coin,context.signal,!animate));}
+      else if(cue)this.rewardEffects.enqueue(async context=>{if(!await loadRewardCoin(this,context.signal)||context.signal.aborted)return;const coin=show();await animateRewardCoin(this,coin,context.signal,!animate);});
+    }
+    if(cue)void this.rewardEffects.drain().catch(()=>{});
+    if(animate){
+      const score=composition.score;
+      score.setScale(composition.strong?.94:.99);
+      this.tweens.add({targets:score,scaleX:1,scaleY:1,duration:composition.strong?620:200,ease:inkSettlingEase(.6)});
+      // Facts remain readable and actions remain live during the finite entrance.
+      this.celebrationTimer=this.time.delayedCall(1000,()=>{if(this.scene.isActive()){this.firstRender=false;this.view.afterInteraction(()=>this.render());}});
+    }
+  }
   private inspectFinale():void {
     const run=runController(this)!.state,facts=finaleKeepsake(run);if(!facts||this.busy)return;
     this.dialog.open(run.phase==='run-won'?'谢幕留影 · 最终构筑':'落幕留影 · 最终构筑',facts.summary+'\n\n'+facts.continuation,[
@@ -289,7 +316,7 @@ export class IntermissionScene extends Phaser.Scene {
       const operation=r2ScoreOperationText(e,e.sourceType==='joker'?this.jokerDefinition(e.sourceDefinitionId):undefined),status=['afterHand','beforeFailure','onStageClear'].includes(e.phase);
       return `${source} · ${operation}`+(status?'':` → ${fractionText(e.after.H)} 热度 × ${fractionText(e.after.M)} 倍率`);
     });
-    const summary=`${HAND_LABELS[trace.handType]} Lv.${trace.level} · ${heatText(trace.finalScore)} 热度\n打出：${trace.sets.playedIds.map(cardName).join('、')}\n实际计分：${trace.sets.activeScoringIds.map(cardName).join('、')||'无'}${trace.assist?'\n'+savedAssistCopy(trace):''}${impact?'\n\n'+impact:''}\n\n${fractionText(trace.accumulator.H)} × ${fractionText(trace.accumulator.M)} = ${heatText(trace.finalScore)}`;
+    const summary=`${HAND_LABELS[trace.handType]} Lv.${trace.level} · ${heatText(trace.finalScore)} 热度\n打出：${trace.sets.playedIds.map(cardName).join('、')}\n实际计分：${trace.sets.activeScoringIds.map(cardName).join('、')||'无'}${trace.assist?'\n'+savedAssistCopy(trace):''}${impact?'\n\n'+impact:''}\n\n精确热度 ${trace.accumulator.H.n}/${trace.accumulator.H.d} · 精确倍率 ${trace.accumulator.M.n}/${trace.accumulator.M.d}\n保存得分（乘积向下取整） ${trace.finalScore}`;
     // Read saved activity only; current gold and next-hand eligibility cannot explain this hand.
     const benefits=trace.sourceJokers.flatMap(joker=>{
       const copy=jokerAbilityCopyForRun(run,joker.definitionId,joker,recordedJokerMemoryContext(publicJokerMemoryContext(run,{hand:trace.cards,scoringLimited:false,deckSize:run.deckInstances.length-run.destroyedIds.length,jokerSlots:r2JokerCapacity(run),jokerCount:trace.sourceJokers.length}),trace.bossContext),trace.events);
