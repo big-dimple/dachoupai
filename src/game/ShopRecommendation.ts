@@ -42,7 +42,8 @@ export function shopRecommendation(state:R2RunState,offer:R2Offer,focus?:BuildFo
  const straightPossible=consecutive(cards,5),straightConcentrated=straightPossible&&ranks.size<=9;
  const boosted=(c:typeof cards[number])=>!!c.edition&&c.edition!=='none'||R2_ENHANCEMENTS.find(e=>e.id===c.enhancement)?.effects.some(e=>e.phase==='onCardScore'&&['add-heat','add-multiplier','multiply-multiplier'].includes(e.kind))===true;
  const boostedGroup=largest>=3&&[...ranks].some(([r,n])=>n===largest&&cards.filter(c=>c.rank===r&&boosted(c)).length>=3);
- const boostedHouse=groupConcentrated&&[...ranks].some(([triple,n])=>n>=3&&cards.filter(c=>c.rank===triple&&boosted(c)).length>=3&&[...ranks].some(([pair,m])=>pair!==triple&&m>=2&&cards.some(c=>c.rank===pair&&boosted(c))));
+ const houseCardPayoff=[...ranks].some(([triple,n])=>n>=3&&cards.filter(c=>c.rank===triple&&boosted(c)).length>=3&&[...ranks].some(([pair,m])=>pair!==triple&&m>=2&&cards.some(c=>c.rank===pair&&boosted(c))));
+ const boostedHouse=groupConcentrated&&houseCardPayoff;
  const trace=state.lastTrace,groupRecord=!!trace&&R2_GROUP_HAND_TYPES.includes(trace.handType),houseRecord=!!trace&&['full-house','flush-house'].includes(trace.handType),flushRecord=!!trace&&['flush','straight-flush'].includes(trace.handType);
  const groupReady=focus==='group'&&(groupConcentrated||groupRecord),flushReady=focus==='flush'&&(flushConcentrated||flushRecord),straightReady=focus==='straight'&&straightConcentrated;
  const qualifiedRecord=!!trace&&!['high-card','pair'].includes(trace.handType),qualifiedReady=groupConcentrated||straightReady||flushReady||qualifiedRecord;
@@ -53,7 +54,7 @@ export function shopRecommendation(state:R2RunState,offer:R2Offer,focus?:BuildFo
  const retriggerSource=state.jokers.some(j=>j.definitionId==='b06'&&groupReady||j.definitionId==='a11'&&(groupConcentrated||houseRecord)||j.definitionId==='c07'&&flushReady||j.definitionId==='d11'&&cards.length>=3||j.definitionId==='d04');
  const additiveSource=state.jokers.some(j=>{const d=definitions.find(d=>d.id===j.definitionId)!;return d.hooks.some(h=>h.operations.some(o=>o.kind==='add-multiplier'||o.kind==='read-growth'&&o.target==='multiplier'&&Rational.fromJSON(j.growth[o.key]??{n:'0',d:'1'}).compare(new Rational(0n))>0));});
  const potentialStages=state.tourMode==='endless'?6:Math.max(0,24-state.stageIndex),growthWindow=stage!=='late'&&potentialStages>=6;
- const facts={cards:cards.length,largest,second,largestSuit,groupConcentrated,flushConcentrated,straightConcentrated,boostedGroup,boostedHouse,groupRecord,houseRecord,flushRecord,qualifiedRecord,heldCardPayoff,heldGroupPayoff,retriggerSource,additiveSource,potentialStages,growthWindow,initialGrowth:JSON.stringify(r2CreateJoker(offer.definitionId,'recommendation/'+offer.offerId,offer.price,offer.edition,state).growth)};
+ const facts={cards:cards.length,largest,second,largestSuit,groupConcentrated,flushConcentrated,straightConcentrated,boostedGroup,houseCardPayoff,boostedHouse,groupRecord,houseRecord,flushRecord,qualifiedRecord,heldCardPayoff,heldGroupPayoff,retriggerSource,additiveSource,potentialStages,growthWindow,initialGrowth:JSON.stringify(r2CreateJoker(offer.definitionId,'recommendation/'+offer.offerId,offer.price,offer.edition,state).growth)};
  const d=definitions.find(d=>d.id===offer.definitionId),rule=SHOP_RECOMMENDATION_AUDIT[offer.definitionId as keyof typeof SHOP_RECOMMENDATION_AUDIT];
  const result=(stars:RecommendationStars,reason:string,condition:string):ShopRecommendation=>({stars,reason,condition,stage,facts,detail:reason+'；'+condition+(d?'。'+d.description:'')+(stars>=4?`\n公开依据：最大同点组${largest}张，前两组${largest+second}/${cards.length}张；最大花色${largestSuit}/${cards.length}张；已持逐牌加成${heldCardPayoff?'有':'无'}；剩余场次窗口${potentialStages}。`:'')+'\n基于公开构筑与当前阶段的推荐；不表示指定替换净更强。'});
  if(hash!==SHOP_RECOMMENDATION_SEMANTICS||!rule||!d)return result(0,'规则待核','该身份尚未审计');
@@ -87,8 +88,8 @@ export function shopRecommendation(state:R2RunState,offer:R2Offer,focus?:BuildFo
   case 'diverse-coefficient':return result(stage==='late'?(qualifiedReady?3:2):groupConcentrated&&boostedGroup&&additiveSource&&growthWindow?5:qualifiedReady?4:groupFit||flushFit||straightFit?3:2,'长期相乘成长','新购×1.5 · 连续不同合格主手');
   case 'sale-reset-coefficient':return result(stage==='late'?2:potentialStages>=6?4:3,'不出售跨场成长','初始×1 · 出售其他重置');
   case 'last-clear-coefficient':return result(stage==='late'?2:3,'压线过关系数成长','新购×1 · 最后一手成功');
-  case 'group-retrigger':return result(largest<2?1:groupConcentrated&&(boostedGroup||heldGroupPayoff)?5:groupFit?4:2,'成组核心逐牌重触','最大原始同点组有效牌');
-  case 'house-retrigger':return result(largest<3||second<2?1:(groupConcentrated||houseRecord)&&boostedHouse?5:groupConcentrated||houseRecord?4:2,'葫芦整组重触','只读葫芦或同花葫芦');
+  case 'group-retrigger':return result(largest<2?1:groupConcentrated&&(boostedGroup||heldGroupPayoff)?5:groupFit||boostedGroup||heldGroupPayoff?4:2,'成组核心逐牌重触','最大原始同点组有效牌');
+  case 'house-retrigger':return result(largest<3||second<2?1:(groupConcentrated||houseRecord)&&boostedHouse?5:groupConcentrated||houseRecord||houseCardPayoff?4:2,'葫芦整组重触','只读葫芦或同花葫芦');
   case 'flush-retrigger':return result(largestSuit<5?1:flushReady&&cards.some(boosted)||flushReady&&heldCardPayoff?4:flushFit?3:2,'同花尾牌重触','普通同花或同花顺');
   case 'third-retrigger':return result(cards.length<3?1:heldCardPayoff||count(boosted)>=3?4:3,'第三计分牌重触','第三原始牌须有效');
   case 'even-retrigger':return result(heldCardPayoff||count(boosted)>=3?4:3,'偶数手首牌重触','每场第偶数次出牌');
