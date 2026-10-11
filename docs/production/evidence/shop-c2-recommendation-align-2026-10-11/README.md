@@ -34,3 +34,11 @@
 原FAIL保留在`fail-*`和`logs`：初始断言错用事件operand/growthAfter和非现行动作、新购初值不是显式0、改手牌后缺disabled重算；原生初局受控修改触发opening-state校验，同ID改已有trace成长触发live-growth校验；均修观察夹具/断言，未放宽任何checkpoint/领域保护。导出首版错用救火数学事件名及BuyJoker也已保留，最终改用真实rescue-multiplier/BuyOffer。并行Vite提示默认HMR端口占用不影响HTTP/原生实际操作，未作为产品故障或避开原环境。
 
 不签通用净收益评估、未来概率/EV、自然强度、真人理解、物理设备/听感或W0–W9全体验；不增做牌流程、供给、价格或新规则。C2父串行合并/发布与dot剩余18局继续独立处理。
+
+## 父独审短提示及最新main接续
+
+父指出e11“本场停成长”易被读成刚结束的那场。产品 `ee4ed292ec9c46d6005bfb89ff60cf9229d26b4a` 只将该短提示改为“卖其他牌保倍率 · 下一场不成长”，与比较层一致；10条C2定向及type通过。仅six-b货架1366/390两必要原生，提示14px、195×16px一行完整，无星/价/操作重叠，全state/journal/IndexedDB初终同，实图均实际查看：[390](e11-next-stage-native/390-six-b-shop.png)、[PC1366](e11-next-stage-native/1366-six-b-shop.png)。未重跑比较/确认或整套矩阵，原图仍按原SHA。
+
+随后正常merge父已独审/精确CI成功PR124 main `accef6595a465e421fe5e394f17279a8875c4900` 为 `b49632d026ab0fc039377abb7b2a70567d3dcedb`，无冲突。仅继承style.css两条主按钮CSS，其文件逐字节同父main；其他源码逐字节同短提示冻结产品，域/内容/save/GameScene同固定C2 PR121。CSS作用于非shop详情按钮状态，不影响本次canvas货架提示；未重复未变原生。[接续保护](e11-next-stage-integration.json)。唯一计划只追加当前段。原94fe8ac成功CI仍按旧SHA保留；最终新HEAD必要CI在PR125更新，不借旧绿。路线资历、所有规则/数值/保存/做牌/工具选择及原保护不变。
+
+原94fe8ac README/索引另存原字节快照；旧索引按94fe8ac checkout读取，当前artifact-index登记追加后的当前证据。
