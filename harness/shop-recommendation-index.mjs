@@ -18,6 +18,8 @@ function fixture(key){const legacy=key==='legacy';let s=createRun({seed:'recomme
  if(key.startsWith('cash-')){s.gold=21;ids=['e08','b03','b08','e01','c08'];stock=['b10','d07','f10'];}
  if(key==='sale-links'){s.gold=21;s.purchaseCoupons=1;ids=['e11','e06','e05','e02','c08'];stock=['b04','b06','a11'];}
  if(legacy){stock=['pengci','b06','e08'];ids=['mantangcai','b02','b03','e01','e04'];}
+ // Controlled public-deck reductions must also conserve all actual zone IDs.
+ const liveIds=new Set(s.deckInstances.map(c=>c.id));for(const field of ['drawPile','handOrder','playedPile','discardPile','destroyedIds'])s[field]=s[field].filter(id=>liveIds.has(id));
  s.jokers=ids.map((id,i)=>r2CreateJoker(id,'native-held/'+i,key==='cash-loss'&&i===4?2:8,key==='sale-links'&&i===4?'foil':'none',s));
  const grown=s.jokers.find(j=>j.definitionId==='b03');if(grown)grown.growth.multiplier={n:'1',d:'1'};
  if(key==='sale-links')s.jokers[0].growth.coefficient={n:'3',d:'2'};
