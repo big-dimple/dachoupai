@@ -22,3 +22,5 @@
 [原观察器失败](observer-failure-1/report.json)：手机5牌“真正的压轴”原本按现行宽度截断，观察器错按未截断字符串找名字而失败。只改观察器读取卡顶真实Text及其displayedName/bounds，未改名字显示；前两个PC缺陷已在该次真实复现，但最终使用修正观察器完成11行。原FAIL/完整账保留。
 
 [保护树](protected-trees.json)：GameScene/道具选择组件、ShopLayout、OwnedJokerInput/JokerReorder/PointerIntent、PR118建议模块、领域/保存/内容/资产均同main；唯一计划仅当前段登记，历史段字节保持。父最新报告7/18终态，第7老幻成组第7正目标105000、实际84623失败，19clear累计481198、峰单手77985；第8老幻顺子进行中。C2数值Max仍本地实现未发布，本包不改数值、不代签scorer；独立GameScene道具箱修复不触碰。
+
+后续父已合[PR119](https://github.com/big-dimple/dachoupai/pull/119)至main df5d92a；本分支正常merge 7afbc1d保完整GameScene版本，提示/ShopLayout/OwnedJokerInput/JokerReorder/PointerIntent字节同已验ce9ea52，没有重拍或重跑未变11场景。最终综合src树因继承GameScene变化而为36f5b2e08773ece2c38f40e6f276bfd3c8fa48ef，不能冒称综合源树仍为旧acaed586。见[对齐证明](main-alignment.json)；GameScene并非本排版源diff，后续仅type及必要新HEAD CI。df5d92a main CI/线上版本仍待父核。
