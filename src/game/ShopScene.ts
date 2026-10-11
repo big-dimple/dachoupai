@@ -188,7 +188,7 @@ export class ShopScene extends Phaser.Scene {
         if(noteX+this.measureShopText(note)<=copyX+copyWidth)v.text(noteX,rowY,note,14,g.purchaseConditionLosses.length?'#B8473A':'#3F606B').setName('shop/offer-operation').setData('offerId',o.offerId);
         if(p.copyBeside){
           this.twoLines(purpose,copyWidth);purpose.setY(copyY+26);
-          if(rowY-(purpose.y+purpose.height)>=20)v.text(copyX,rowY-18,g.condition,14,'#3F606B',copyWidth).setName('shop/offer-condition').setData('offerId',o.offerId);
+          if(rowY-(purpose.y+purpose.height)>=20&&this.measureShopText(g.condition)<=copyWidth)v.text(copyX,rowY-18,g.condition,14,'#3F606B').setName('shop/offer-condition').setData('offerId',o.offerId);
         }
       }
       else this.drawOfferGuidance(o,{x:copyX,y:factsOnFace?b.y+b.height-54:copy.priceY-(p.copyBeside?36:54),width:copyWidth,height:p.copyBeside?34:52});
@@ -647,7 +647,7 @@ export class ShopScene extends Phaser.Scene {
     const index=v.text(b.x,b.y,g.label,14,'#80551F').setName('shop/offer-advice').setData('offerId',o.offerId).setData('stars',g.stars).setData('reason',g.detail).setData('fullText',g.label);
     const note=g.operation!=='可购买'?g.operationShort:g.reason.slice(0,4),x=b.x+index.width+8;
     if(x+this.measureShopText(note)<=b.x+b.width)v.text(x,b.y,note,14,g.purchaseConditionLosses.length?'#B8473A':'#3F606B').setName('shop/offer-operation').setData('offerId',o.offerId);
-    if(b.height>=36)v.text(b.x,b.y+18,g.condition,14,'#3F606B',b.width).setName('shop/offer-condition').setData('offerId',o.offerId);
+    if(b.height>=36&&this.measureShopText(g.condition)<=b.width)v.text(b.x,b.y+18,g.condition,14,'#3F606B').setName('shop/offer-condition').setData('offerId',o.offerId);
   }
   private markBuildOffer(o:R2Offer,kind:ShelfKind,b:Box,label?:Box):void {
     const cue=routeFitCue(this.run,kind,o.definitionId);if(cue&&!o.consumed)this.view.add(routeFrame(this,b,cue,kind==='jokers'&&this.jokerDefinition(o.definitionId).rarity==='rare').setName('shop/build-match').setData('offerId',o.offerId));
