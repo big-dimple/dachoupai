@@ -40,8 +40,10 @@ heatText的得分科学计数法门槛/实现保持；不加零、不改存分�
 - [before/report](before/report.json)四案与[after/report](after/report.json)四案实际PlayHand通过；候选的initial/final state、journal、storage逐字段与基线相同。原[完整before](before/states.json.gz)/[完整after](after/states.json.gz)供独审，非只比finalScore。打开详情为只读，reload保存完全相等。两个尺寸公式/存分实际bounds内且互不遮挡；主要前后与详情PNG已实际view。
 - [normal/report](normal/report.json)另一个PC普通速度成组，完整保存同原命令、读数帧无NaN/Infinity、[最终图](normal/group-1366-result.png)。不把低动态证据代签正常动画，也不声称手机正常速度/快进/18局全验。
 - [原FAIL记录](original-failures.json)：旧9.375首层期待、新测试选了可整除的分子、测试context类型遗漏、baseline观察器误认实际label入口均保留；最终修正后通过。首精确公式增加floor(...)后手机过长，[原像素FAIL](detail-long-formula-FAIL.png)保留，最后分三行精确H/M/入账；未缩字或换布局遮盖。
-- 最终标准CI仅在冻结交付HEAD的draft PR创建时触发一次，不逐改全回归；运行结论在交付消息按精确HEAD报告，不借基线CI签本候选。
+- 标准CI只触发一次：[38128768688](https://github.com/big-dimple/dachoupai/actions/runs/38128768688)，精确HEAD `41463d89406aa5e8fd3d9670ca4d78d90515313d`。domain为3019通过/1失败：旧joker-compact要求首层保留29位整数，与新合同冲突；docs通过，browser结论按交付报告读取。原[CI失败摘录](ci-first-failure.txt)未重跑、未刷绿。仅同步该测试为首层≈1.23e29及详情全部数字断言，相关24项/3文件定向再次通过；产品src树不变，不重拍图。按用户只一次/不追加大回归，新测试/事实提交用[skip ci]，新交付HEAD标准CI未运行，父精确HEAD检查仍是合并前剩余阻塞，不以原其他绿job代签。
 
 复查命令：`npm run typecheck`；`npx vitest run tests/score-text.test.ts tests/readable-multiplier-source.test.ts tests/score-event-caption.test.ts tests/score-text-layout.test.ts`；`MULTIPLIER_OUTPUT=/tmp/multiplier-review node harness/readable-multiplier.mjs`。普通速度仅PC一案：`MULTIPLIER_NORMAL=1 MULTIPLIER_OUTPUT=/tmp/multiplier-normal node harness/readable-multiplier.mjs`。
 
 剩余边界：当前低成本样本未重放自然局、未验证18路线/真人设备；4096位详情保证文字不截精度，未拍4096位整屏或单独审其滚动。超过2位的极细成长可能前后都显示同一个近似值，实际变化仍按精确值选择/报账，精确详情可辨。大分继续用既有heatText；整套得分科学计数法/资产/控件重做不在本包。PC原来源caption的一位小数合同保持。
+
+冻结后父最新事实已同步唯一计划：D5/18终态；二响顺子b29第6章正场42614/45000失败、峰单手42251、16场通过累计183023（非单手）、独家自然7次约3.99；父已看终态图。第6局二响同花将加载41d0990。此事实/旧测试补正不改显示产品，不追加实玩或美术。
