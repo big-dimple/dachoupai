@@ -159,7 +159,7 @@ export function jokerPlainCopy(d:R2JokerDefinition,j:R2JokerInstance|undefined,c
  }else{
   const read=hooks[0]?.operations[0],life=hooks.flatMap(h=>h.operations).find(o=>o.kind==='expire-after-hands');
   if(life?.kind==='expire-after-hands'&&read?.kind==='multiply-multiplier')tile='出牌倍率×'+fractionText(read.value)+'\n总共'+life.limit+'手';
-  else if(read?.kind==='read-coefficient')tile='多步条件\n倍率×'+(j?fractionText(growth[read.key]):'保存值')+'\n点牌查重置';
+  else if(read?.kind==='read-coefficient')tile='多步条件\n倍率×'+(j?fractionText(growth[read.key]):'保存值')+'\n点牌查'+(d.id==='e11'&&!hooks.some(h=>h.operations.some(o=>o.kind==='reset-coefficient'))?'成长':'重置');
   else if(legacyGrowth&&read?.kind==='read-growth'){const grow=hooks[1].operations[0];if(grow.kind==='add-growth'){const bounds=growthBounds(d,j,grow);tile='特定牌型\n'+(bounds.capped?unit(read.target)+'封顶'+fractionText(bounds.cap):unit(read.target)+'+'+fractionText(bounds.delta)+'顶'+fractionText(bounds.cap))+'\n'+(bounds.capped?'不再新增':'新增下次用');}}
   else if(read?.kind==='read-growth')tile='多步成长\n'+unit(read.target)+'+保存值\n点牌查增减';
   else tile='多步条件\n'+(read?.kind==='retrigger-card'?'再计'+read.count+'次':read?gain(read,hooks[0].phase,hooks[0].condition)??'分时点生效':'分时点生效')+'\n点牌查条件';
