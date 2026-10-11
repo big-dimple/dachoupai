@@ -1,0 +1,27 @@
+{
+  "main": "636e7f586d602d7ef2f8d31b4a83e11e11ba92cb",
+  "priorPr110": "dcc25d6b16b9f3a09f6a00754af4cd7d85e8aa4d",
+  "merge": "3d4668caa3c1ad95f45c976f3e039e517e831485",
+  "conflicts": [
+    "src/style.css"
+  ],
+  "mainPreserved": {
+    "src/game/ConsumableDialog.ts": "0ac7da600ef9275664dc2e799fc7a9ac3a6fd14947d88d4e52faeff8a91cf211",
+    "src/game/ToolChangePreview.ts": "661788984b417caaf0fee5560a523ea5708bc432705ea1cdee4935863a46d420",
+    "src/game/SavedToolResult.ts": "8f53fa64f0551a339f83ccb750b7a834591bdbe123dff87207defbb24f71fe9b",
+    "src/game/CardSpecialLabels.ts": "90c6d8eb156f1b1d170ac170d1a7ddcc0aceac1913e7923ac2c233ece82bb45c",
+    "src/game/JokerPlainCopy.ts": "7be1801d004f4ffdbbf5589512ba47db2be280a14abaeb38ad85aad61f240598",
+    "src/game/r2ToolInfo.ts": "14572668274684586348f0295a36cc717565a8a009212a3fcec536beef251abe",
+    "docs/production/DELIVERY_PLAN.md": "7d345210fdce2226dba602d1257700a8f48d7500bb7c83dd432c94f0d6740c27",
+    "docs/production/plan.json": "b8ea10de9eefcf71edcb93bf2e1b5167af66f872bac53fe2917cce8fe9f229b9"
+  },
+  "stagePreserved": {
+    "src/game/GameScene.ts": "9837e864e467275801ed287c681c87e4970dc7b2894a25ac228f7da175ae5a7d",
+    "src/game/IntermissionScene.ts": "6f596b58e019fba9482c33e9ce0897da4cc389f650e3e97e6fa970f0c23b5ff8",
+    "src/game/StageIdentity.ts": "9649b841ca77f3c4378f303667cdc92cd867799fecfae26b0c03c72546ae16dc",
+    "src/game/stageNotice.ts": "bce3b61873c85b39e50321492c407611db6657af9287b658219cce03cccddc16",
+    "tests/stage-identity.test.ts": "e2208e780cd6c9b447d40be7703e3377ac4a74daff18082280b03437fc0ba576",
+    "harness/stage-identity.mjs": "25b8aa15d88174e2319c2c23d24812821fe90a4da4319c7e7e8a526732735bde"
+  },
+  "css": "exact main CSS + unchanged prior stage-identity-entry block"
+}
