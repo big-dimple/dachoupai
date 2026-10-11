@@ -13,7 +13,7 @@ import {buildGrowthProgress} from './BuildGrowthProgress';
 import {Rational} from '../domain/rational';
 import {fractionText} from './scoreText';
 import {HAND_LABELS} from '../content/handLabels';
-import {editionEffectText,editionLabel} from './r2ToolInfo';
+import {editionEffectText} from './r2ToolInfo';
 const labels={group:'同点成组',straight:'顺子接续',flush:'同花集中'};
 const focuses=['group','straight','flush'] as const;
 const effectNames:Record<string,string>={heat:'热度',multiplier:'倍率',multiply:'相乘倍率',retrigger:'再次计分',gold:'过关金币','four-straight':'四张顺子','four-flush':'四张同花'};
@@ -160,6 +160,6 @@ export function shopReplacementTransactionFacts(state:R2RunState,offer:R2Offer,h
   if(JSON.stringify(afterSale.growth)!==JSON.stringify(afterBuy.growth))growthEffects.push(d.name+' · 购后：'+r2JokerStateText(afterSale,d)+' → '+r2JokerStateText(afterBuy,d));
  }
  const cashLosses=shopPurchaseConditionLosses(state,offer,held);
- const summary=`指定替换 · 先售后买：${state.gold}→${sold.state.gold}金；售后实付${price}金`+(bought.ok?`；买后${bought.state.gold}金。新牌在末槽，从初值开始。`:'；购买当前不可执行：'+bought.code+'。')+'\n失去版次：'+editionLabel(held.edition)+'；新牌版次：'+editionLabel(offer.edition)+(cashLosses.length?'\n'+cashLosses.join('\n'):'');
+ const summary=`指定替换 · 先售后买：${state.gold}→${sold.state.gold}金；售后实付${price}金`+(bought.ok?`；买后${bought.state.gold}金。新牌在末槽，从初值开始。`:'；购买当前不可执行：'+bought.code+'。')+'\n失去版次：'+editionEffectText(held.edition).split('。')[0]+'；新牌版次：'+editionEffectText(offer.edition).split('。')[0]+(cashLosses.length?'\n'+cashLosses.join('\n'):'');
  return {status:bought.ok?'ready' as const:'blocked' as const,summary,growthEffects,cashLosses,refund:sold.state.gold-state.gold,price,goldAfterSale:sold.state.gold,goldAfterPurchase:bought.ok?bought.state.gold:undefined};
 }
