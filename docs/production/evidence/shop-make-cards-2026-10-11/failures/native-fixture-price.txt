@@ -1,0 +1,13 @@
+/tmp/shop-make-before/src/application/checkpoint.ts:105
+  throw Error(message);
+        ^
+
+Error: invalid-save-offer-price
+    at fail (/tmp/shop-make-before/src/application/checkpoint.ts:105:9)
+    at shop (/tmp/shop-make-before/src/application/checkpoint.ts:246:91)
+    at validateState (/tmp/shop-make-before/src/application/checkpoint.ts:1202:5)
+    at makeCheckpoint (/tmp/shop-make-before/src/application/checkpoint.ts:1294:3)
+    at fixture (file:///workspace/dachoupai/harness/shop-make-cards.mjs:12:505)
+    at file:///workspace/dachoupai/harness/shop-make-cards.mjs:13:15
+
+Node.js v24.19.0
