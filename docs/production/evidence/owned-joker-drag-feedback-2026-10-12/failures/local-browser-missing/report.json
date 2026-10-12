@@ -1,0 +1,49 @@
+{
+  "scope": "browser",
+  "testedCommit": "29d95f43e8c0bfa64ef069215d76ad6946aa8672",
+  "status": "FAIL",
+  "exitCode": 1,
+  "before": {
+    "source": "4e8125e584f6fb814878ab28b8539d21ca9652220730acd1e6b1c997888aac1d",
+    "index": "6e86426836472d6eb9398b785598bbd6e70b37402e91850bf2eba1df9e1446cd",
+    "head": "29d95f43e8c0bfa64ef069215d76ad6946aa8672",
+    "branch": "refs/heads/fix/owned-joker-drag-2026-10-12"
+  },
+  "after": {
+    "source": "4e8125e584f6fb814878ab28b8539d21ca9652220730acd1e6b1c997888aac1d",
+    "index": "6e86426836472d6eb9398b785598bbd6e70b37402e91850bf2eba1df9e1446cd",
+    "head": "29d95f43e8c0bfa64ef069215d76ad6946aa8672",
+    "branch": "refs/heads/fix/owned-joker-drag-2026-10-12"
+  },
+  "steps": [
+    {
+      "name": "build",
+      "status": "PASS",
+      "childExitCode": 0,
+      "elapsedMs": 14991
+    },
+    {
+      "name": "verify:smoke",
+      "status": "FAIL",
+      "childExitCode": 1,
+      "elapsedMs": 5493,
+      "reason": "child exited 1"
+    }
+  ],
+  "notIncluded": [
+    {
+      "name": "extended browser/recovery/fault/asset/simulation diagnostics",
+      "status": "NOT_INCLUDED",
+      "reason": "run the existing specific command only when its domain changes; P00 removes repeated default execution"
+    },
+    {
+      "name": "balance/benchmark acceptance",
+      "status": "NOT_INCLUDED",
+      "reason": "later work packages; no gameplay approval inferred from checks"
+    },
+    {
+      "name": "physical devices / human / art approval",
+      "status": "NOT_RUN"
+    }
+  ]
+}

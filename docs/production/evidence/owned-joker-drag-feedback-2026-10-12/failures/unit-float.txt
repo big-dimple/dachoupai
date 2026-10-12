@@ -1,0 +1,4 @@
+2026-10-12 first directed run: 96 passed / 1 failed.
+owned-joker-drag-visual.test.ts:10 expected 518.6 using Object.is; received 518.5999999999999.
+Observer correction: use toBeCloseTo for CSS floating-point coordinates; product pose unchanged.
+Subsequent directed run: 97/97 passed.
