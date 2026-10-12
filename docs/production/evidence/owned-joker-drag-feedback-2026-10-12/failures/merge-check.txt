@@ -1,0 +1,5 @@
+Integration merge e68acfd into 6074433 had one ShopScene save-failed conflict.
+An early typecheck before resolution reported TS1185 at lines 881/884/886 (merge markers).
+Resolution preserves both reorder restoration notice and PR137 makeCardsPending.purchaseIntent.
+Committed merge 8bc6527538d8a20297a11b2e768dd4a4fe80ba73.
+Post-resolution typecheck PASS; 6 files / 118 directed tests PASS; five native integration profiles PASS.

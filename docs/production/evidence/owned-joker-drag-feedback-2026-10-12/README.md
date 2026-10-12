@@ -1,14 +1,16 @@
 # 持有大丑牌拖拽反馈：有限受控验收
 
+**集成候选含未合main依赖PR137 `e68acfd56281c2b85401ba0cb9009f6146fca09c`，仅按父授权做draft集成，不是绕过其合并拒绝。main仍00fe311。**
+
 本批独立修复手机商店满五张的“抓不住／不跟手／目标与保存落位不清楚”。[draft PR138](https://github.com/big-dimple/dachoupai/pull/138)，父唯一 Ready／merge／发布。正常试玩归 dot，本批不是自然经营、美术最终签收或物理手机验收。
 
-基线server取git archive到独立/tmp目录；baseline/report的modified字段描述harness调用方工作树，不是该只读archive。基线：`00fe311e04305b7769f8141520742810bc614134`。产品：`29d95f43e8c0bfa64ef069215d76ad6946aa8672`，src tree `e2a3058cce25c67c63c89f5a351896a4e54181b4`。`candidate/report.json` 的最终原生验收正是在该冻结提交、无 src/tests/harness 修改下运行；其后证据提交不改变产品树。README 所列本地检查与远端最终 HEAD CI 分开，不借历史绿色签本批。
+基线server取git archive到独立/tmp目录；baseline/report的modified字段描述harness调用方工作树，不是该只读archive。基线：`00fe311e04305b7769f8141520742810bc614134`。独立初版产品：`29d95f43e8c0bfa64ef069215d76ad6946aa8672`，src tree `e2a3058cce25c67c63c89f5a351896a4e54181b4`；随后补实际坐标采集 `b91b19d4` 与更严格首帧harness `6074433e`。最终集成产品：`8bc6527538d8a20297a11b2e768dd4a4fe80ba73`，src tree `8aee0ab47a537c4d02c4d5539fca6d29d9ade5c8`。`candidate/report.json` 的最终原生验收正是在该冻结提交、无 src/tests/harness 修改下运行；其后证据提交不改变产品树。README 所列本地检查与远端最终 HEAD CI 分开，不借历史绿色签本批。
 
 ## 已复现与修正
 
 - 同一受控当前身份 checkpoint、五张真实实例，在 baseline 320×740／390×844／412×915 原生 CDP touch 中，355ms 静止长按仅 1.04 倍且没有上移。实际抓起 PNG 几乎和静止相同；旧全通过对象断言不当体验验收。
 - `pan-y` 使三种手机长按后约20px纵向移动被浏览器接管，实际触发取消，`vertical.drag=false`。PC 同移动仍跟随。这个当前 main 实例是“不跟手”的确定原因之一，不归咎旧版本，也不宣称解释用户所有手势。
-- 新模块抬高32 CSS px、1.12倍、明显纸影；二维位移保留抓点偏移。目标槽纸底／边框＋“第N位”；其他牌按原 move 插入顺序短促让位（110ms），不是swap。成功保存后用新绘实例短落位（150ms）；低动态保直接跟手和明确状态，省去装饰过渡。
+- 新模块抬高32 CSS px、1.12倍、明显纸影；二维位移保留抓点偏移。目标槽纸底／边框＋“第N位”；其他牌按原 move 插入顺序短促让位（110ms），不是swap。成功保存后先采集旧实例实际位置，再用新绘实例短落位（150ms）；低动态保直接跟手和明确状态，省去装饰过渡。
 - 仅持牌输入面改 `touch-action:none`，保持355ms／10px及原落点函数。当前商店 body overflow hidden、文档无滚动范围；提前移动仍取消，不冒称页面滚动已验。其他触摸面未改。
 - 保存等待保目标预览并写“保存中”，锁画布输入；resize重绘只重绑视觉。唯一持久动作仍为现有 `send(ReorderJokers,expectedSeq)`，没有视觉模块写run/save。保存失败即时恢复真实已保存序，显示未保存，沿用菜单“重试保存”提交同一候选，无视觉假成功。
 - 默认“通常从左到右结算 · 长按拖动排序”；即将入场的压轴B13整手按右到左提示（读stageIndex与本章boss，不误读保留的上一场stage）。本槽版次及原评分/骰爷待结算锁定完全不改，不声称任何换位都会增分。
@@ -29,6 +31,8 @@
 
 ## 状态与异常验收
 
+最终集成五个profile各额外做快速跨槽、马上释放、250ms实际存储延迟（不resize），记录成功后的每个poststep首批画面位置：所有其它牌保持目标中心、没有先弹回。旧29d95f4在320这个同一受控操作真实FAIL（首保存帧其它牌偏离目标约21.5px），原FAIL见failures/delayed-save-jump，采集实际位置后五组均PASS。此前仅慢拖/最终位置不足以签这个边界。
+
 五个profile各做1→5慢拖（二维含8px纵向）、5→1快跨槽、中间2→4插入。每次只增加一笔command/receipt/journal与一次IDB revision，完整新状态等于实际 `applyCommand`，实例growth/edition随本体移动。预览、延迟保存阶段全保存不变；释放至成功期间不先弹回。延迟保存时尝试点击未购货物不提交；尺寸变化重绘仍保“保存中”。落位后所有实例实际中心按已保存序。
 
 手机四profile各11个取消/安全边界、PC9个：静止长按松手、同槽、滑出、pointercancel、手机提前移动、原生双指（主指先松）、受控hidden信号、resize、Escape、blur信号、拖动中锁定。每项完整状态/存档一致且dispatch0；锁定后新长按不抬起、拖动不提交，普通tap仍可只读查看，左移/右移/出售禁用。隐藏与blur为DOM控制信号，不当物理后台证据。
@@ -45,12 +49,19 @@
 - `failures/unit-float.txt`：浮点CSS y坐标Object.is期待518.6，实际518.5999999999999；改近似断言，产品不改。
 - `failures/local-browser-missing`：标准本地build成功，smoke启动失败因Playwright下载的headless-shell不存在；使用已安装`/usr/bin/chromium`复核。该环境缺失不当产品通过或失败。
 - `failures/local-guard-overlap`：系统Chromium smoke的PC/手机子检查成功、child exit0，但本线程同时写证据，check-runner检测源码指纹改变而判总gate FAIL。明确承认工作调度错误，保存原FAIL；[实际smoke报告](checks/system-chromium-smoke.json)可读，不能称本地总gate通过。最终HEAD在不可变Actions checkout独立核。
-- 定向4files／97tests通过，typecheck通过；本地domain全222files／3264tests与content通过（产品冻结前，后仅B13提示判断/销毁接线与测试更新）。本地冻结产品build与docs通过。系统Chromium smoke及最终HEAD CI回执下方另登记。
+- 定向4files／97tests通过，typecheck通过；本地domain全222files／3264tests与content通过（产品冻结前，后仅B13提示判断/销毁接线与测试更新）。本地冻结产品build与docs通过。系统Chromium smoke原回执与总gate FAIL见上；最终HEAD CI另核，不能借137或29的CI签集成。
+- 集成typecheck及6files／118定向通过（含ShopLayout/MakeCards合同）；第一次合并唯一冲突在send的save-failed处，同时保留purchaseIntent与排序notice。冲突解决前误执行typecheck遇3条TS1185，是检查时机失误，不是运行时问题，原记录见merge-check.txt。
 
 ## 待签边界与集成
 
 当前受控source仅上述SHA与fixture；物理手机、硬件GPU/FPS、真人抓持观感、音频、自然五张获取/整局与其它viewport仍OPEN。B13提示判断定向测试通过，未冒称该Boss完整原生旅程；骰爷待兑现锁定沿原领域及既有全套测试，未改GameScene。没有mask证据，未做新增mask或改变shared layout。
 
-并行PR137 `e68acfd56281c2b85401ba0cb9009f6146fca09c` 尚待父审合main，父合后必须正常merge main，不挑拣/覆盖，再跑本harness三种手机及PC；本候选不借当前结果替新持牌几何签收。父通知该候选统一手机三列货架，并保持输入/拖拽合同。当前未改其分支。
+并行PR137尚未合main，父通知其合并工具因范围识别拒绝两次；本代理没有请求/绕过该合并。父随后明确授权吸收137候选到本draft做集成。已经正常merge为8bc65275，保双方历史与原失败，未挑拣、未推main、未发布。RunMenu／MakeCardsDialog／ShopLayout／style.css与137候选字节相同，domain/content/application/platform/public与00fe311相同。
+
+最终`integrated/report.json`在8bc65275、无src/tests/harness修改下运行，三种手机及PC、DPR2低动态、四笔插入/持久保存、原安全边界、延迟/失败/菜单重试/冷恢复均PASS。实际新三列货架的牌位重新用原生坐标验，不借旧列位断言；[320抓起](integrated/320x740-slow-held.png)／[途中](integrated/320x740-slow-mid.png)／[落位](integrated/320x740-slow-dropped.png)，[390保存](integrated/390x844-saving-delay.png)，[412途中](integrated/412x915-slow-mid.png)。本代理已actual view上述像素。
+
+[集成完整状态对照](comparison-integrated.json)：初态与三笔主路径的完整state/journal/IDB与baseline相等；PR137首次开菜单多一个fullscreen-hint已看UI偏好，明确登记，不改run。每次手势内所有非lease localStorage保持原样。完整状态和逐帧采样在integrated gzip，原初版candidate与FAIL保留不覆盖。
+
+**整屏未通过新观察：** 320满五张时，货架“4 金 · 比较替换”越过列宽，价格行互相挤占。见上面integrated整屏，属于137货架范围，已报告父，未在拖拽批擅改其代码。瞬时抬起也会经过价格/提示边缘。这里仅签受控拖拽反馈与状态门，不签整个满五商店。父审/权限解除及父对这个新满五边界的处置仍待；137正常合main后须确认正式main包含的实际SHA，再核必要集成差异，不把本draft依赖当已发布。
 
 重跑：`DRAG_OUTPUT=/tmp/owned-feedback-check node harness/owned-joker-drag-feedback.mjs`；受控存档通过正常菜单导入，输入用真实CDP／mouse／DOM。正常试玩由dot负责。
