@@ -56,19 +56,7 @@ export function shopLayout(width:number,height:number,top:number,bottom:number,c
   if(width>=1000){if(height-top-bottom<712)return shortShopLayout(width,height,top,bottom,cols);return desktopShopLayout(width,height,top,bottom,cols);}
   if(height-top-bottom<500)return shortShopLayout(width,height,top,bottom,cols);
   const portrait=width<700&&height>width,x=12,w=width-24,seat=(Math.min(w,420)-8*(cols-1))/cols;
-  // Three rows need 23px heading space, two 16px effect lines, a route
-  // line and 19px price, with 2px gaps. Below this budget keep the gallery.
-  if(portrait&&height-top-bottom>=693){
-    const secondaryY=height-bottom-144,shelfTop=top+104,slotGap=6,slotWidth=Math.min(58,(w-4*slotGap)/5),slotHeight=slotWidth*1.4;
-    const rowHeight=Math.min(118,(secondaryY-shelfTop-32-Math.max(slotHeight+20,104)-12*(cols-1))/cols),cardHeight=Math.max(72,rowHeight),cardWidth=cardHeight/1.4;
-    const shelf:Box[]=Array.from({length:cols},(_,i)=>({x:x+4,y:shelfTop+i*(cardHeight+12),width:cardWidth,height:cardHeight}));
-    const slotY=shelfTop+cols*cardHeight+12*(cols-1)+28,rackWidth=5*slotWidth+4*slotGap,slotX=x+(w-rackWidth)/2;
-    const slots:Box[]=Array.from({length:5},(_,i)=>({x:slotX+i*(slotWidth+slotGap),y:slotY,width:slotWidth,height:slotHeight}));
-    const actionGap=guideActions?6:8,toolWidth=(w-actionGap*(guideActions?3:1))/(guideActions?4:2);
-    return {x,w,top,pc:null,desktop:false,short:false,copyBeside:true,inventoryCollapsed:false,compact:true,wideHeader:false,portrait:true,guidanceBelow:false,slots,shelf,
-      tabs:{x,y:top+52,width:w,height:44},chapter:{x,y:slotY+slotHeight+8,width:toolWidth,height:44},items:{x:x+toolWidth+8,y:slotY+slotHeight+8,width:toolWidth,height:44},
-      reroll:{x,y:secondaryY,width:toolWidth,height:44},build:{x:x+toolWidth+actionGap,y:secondaryY,width:toolWidth,height:44},play:{x,y:secondaryY+52,width:w,height:56},noticeY:secondaryY+116};
-  }
+  // Browser toolbar height changes keep the same three-card gallery.
   const slotGap=6,slotWidth=Math.min(64,(w-4*slotGap)/5),slotHeight=slotWidth*1.4;
   // Fit the visible owned rail before the fixed action row; only art shrinks.
   const portraitFaceBudget=(height-top-bottom-352-slotHeight)/1.4;
@@ -77,7 +65,7 @@ export function shopLayout(width:number,height:number,top:number,bottom:number,c
   const shelf:Box[]=Array.from({length:cols},(_,i)=>({x:shelfX+i*(seat+8)+(seat-cardWidth)/2,y:shelfTop,width:cardWidth,height:cardHeight}));
   const ownedGap=portrait?Math.min(24,Math.max(0,height-top-bottom-352-slotHeight-cardHeight)):24;
   const rackWidth=5*slotWidth+4*slotGap,slotX=x+(w-rackWidth)/2,originalSlotY=shelfTop+cardHeight+100+ownedGap;
-  const guidanceBelow=portrait&&height-bottom-144-(originalSlotY+slotHeight+20)>=94;
+  const guidanceBelow=false;
   const slotY=originalSlotY+(guidanceBelow?54:0);
   const slots:Box[]=Array.from({length:5},(_,i)=>({x:slotX+i*(slotWidth+slotGap),y:slotY,width:slotWidth,height:slotHeight}));
   const secondaryY=portrait?height-bottom-144:Math.min(height-bottom-144,slotY+slotHeight+20),toolWidth=(Math.min(w,420)-8)/2,actionX=x+(w-Math.min(w,420))/2,inventoryY=slotY+slotHeight+8;
@@ -135,7 +123,7 @@ export function shopGoodsGrid(group:Box,count:number){
 /** Keep numeric gains/caps together while wrapping Chinese desktop summaries. */
 export function shopSummaryWrap(text:string,width:number,measure:(text:string)=>number):string {
   const lines:string[]=[];let line='';
-  for(const token of text.match(/\d+(?:\.\d+)?(?:\/\d+)?|[^\d]/gu)??[]){
+  for(const token of text.match(/[+×−-]?\d+(?:\.\d+)?(?:\/\d+)?|[^\d]/gu)??[]){
     if(token==='\n'){lines.push(line);line='';continue;}
     if(line&&measure(line+token)>width){lines.push(line);line=token;}else line+=token;
   }

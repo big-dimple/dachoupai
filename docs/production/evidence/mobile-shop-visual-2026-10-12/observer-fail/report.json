@@ -1,0 +1,390 @@
+{
+  "status": "FAIL",
+  "error": "page.waitForFunction: Timeout 20000ms exceeded.\n    at shot (/workspace/dachoupai/harness/shop-make-cards.mjs:20:38)\n    at /workspace/dachoupai/harness/shop-make-cards.mjs:46:65",
+  "sourceUnchanged": true,
+  "cases": [
+    {
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      },
+      "status": "PASS",
+      "checks": [
+        "purchase cancel zero writes; held/duplicate/failure old full save unchanged; native retry saves original purchase once and resumes target UI without consumption",
+        "real overwrite warning and explicit replace; cancel preserves paid item and entire save; reopen clears only draft; consume duplicate/failure safe; native retry actual result and complete domain oracle",
+        "existing inventory direct use; scroll preserved across two selections; cancel/reopen/second use and continue hub; one buy/two explicit uses, final full state/journal/IDB matches canonical commands",
+        "same-name random stock has one visible seat and exact price; explicit BuyOffer continues to original selector, cancel retains purchase, direct use confirms once; final two buys/three uses match complete original oracle",
+        "actual lease loss: purchase seats disabled, held tool still inspectable, confirm disabled and native click/cancel zero write attempts/full save changes"
+      ],
+      "shots": [
+        "1366-table.png",
+        "1366-hub-owned.png",
+        "1366-hub-purchase.png",
+        "1366-purchase-confirm.png",
+        "1366-purchase-saving.png",
+        "1366-purchase-failed.png",
+        "1366-purchase-restored-selector.png",
+        "1366-overwrite-preview.png",
+        "1366-consume-saving.png",
+        "1366-consume-failed.png",
+        "1366-consume-restored-result.png",
+        "1366-continuous-owned-preview.png",
+        "1366-continuous-owned-result.png",
+        "1366-hub-final.png",
+        "1366-stock-purchased-selector.png",
+        "1366-stock-used-result.png",
+        "1366-all-used-hub.png",
+        "1366-readonly-preview.png"
+      ]
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 740
+      },
+      "status": "FAIL",
+      "checks": [],
+      "error": "page.waitForFunction: Timeout 20000ms exceeded.\n    at shot (/workspace/dachoupai/harness/shop-make-cards.mjs:20:38)\n    at /workspace/dachoupai/harness/shop-make-cards.mjs:37:1107",
+      "shots": [
+        "390-table.png",
+        "390-hub-owned.png",
+        "390-hub-purchase.png",
+        "390-purchase-confirm.png",
+        "390-purchase-saving.png",
+        "390-purchase-failed.png"
+      ],
+      "assetWaitFailures": [
+        {
+          "name": "purchase-restored-selector",
+          "images": [
+            {
+              "src": "http://127.0.0.1:5606/assets/handdrawn-p08/court/q.court.webp",
+              "loading": "lazy",
+              "complete": false,
+              "naturalWidth": 0,
+              "bounds": {
+                "x": 63.75,
+                "y": 739.875,
+                "width": 24,
+                "height": 30,
+                "top": 739.875,
+                "right": 87.75,
+                "bottom": 769.875,
+                "left": 63.75
+              },
+              "viewport": {
+                "width": 390,
+                "height": 740
+              }
+            },
+            {
+              "src": "http://127.0.0.1:5606/assets/handdrawn-p08/court/q.court.webp",
+              "loading": "lazy",
+              "complete": false,
+              "naturalWidth": 0,
+              "bounds": {
+                "x": 143.25,
+                "y": 739.875,
+                "width": 24,
+                "height": 30,
+                "top": 739.875,
+                "right": 167.25,
+                "bottom": 769.875,
+                "left": 143.25
+              },
+              "viewport": {
+                "width": 390,
+                "height": 740
+              }
+            },
+            {
+              "src": "http://127.0.0.1:5606/assets/handdrawn-p08/court/q.court.webp",
+              "loading": "lazy",
+              "complete": false,
+              "naturalWidth": 0,
+              "bounds": {
+                "x": 222.75,
+                "y": 739.875,
+                "width": 24,
+                "height": 30,
+                "top": 739.875,
+                "right": 246.75,
+                "bottom": 769.875,
+                "left": 222.75
+              },
+              "viewport": {
+                "width": 390,
+                "height": 740
+              }
+            },
+            {
+              "src": "http://127.0.0.1:5606/assets/handdrawn-p08/court/q.court.webp",
+              "loading": "lazy",
+              "complete": false,
+              "naturalWidth": 0,
+              "bounds": {
+                "x": 302.25,
+                "y": 739.875,
+                "width": 24,
+                "height": 30,
+                "top": 739.875,
+                "right": 326.25,
+                "bottom": 769.875,
+                "left": 302.25
+              },
+              "viewport": {
+                "width": 390,
+                "height": 740
+              }
+            },
+            {
+              "src": "http://127.0.0.1:5606/assets/handdrawn-p08/court/j.court.webp",
+              "loading": "lazy",
+              "complete": false,
+              "naturalWidth": 0,
+              "bounds": {
+                "x": 63.75,
+                "y": 846.96875,
+                "width": 24,
+                "height": 30,
+                "top": 846.96875,
+                "right": 87.75,
+                "bottom": 876.96875,
+                "left": 63.75
+              },
+              "viewport": {
+                "width": 390,
+                "height": 740
+              }
+            },
+            {
+              "src": "http://127.0.0.1:5606/assets/handdrawn-p08/court/j.court.webp",
+              "loading": "lazy",
+              "complete": false,
+              "naturalWidth": 0,
+              "bounds": {
+                "x": 143.25,
+                "y": 846.96875,
+                "width": 24,
+                "height": 30,
+                "top": 846.96875,
+                "right": 167.25,
+                "bottom": 876.96875,
+                "left": 143.25
+              },
+              "viewport": {
+                "width": 390,
+                "height": 740
+              }
+            },
+            {
+              "src": "http://127.0.0.1:5606/assets/handdrawn-p08/court/j.court.webp",
+              "loading": "lazy",
+              "complete": false,
+              "naturalWidth": 0,
+              "bounds": {
+                "x": 222.75,
+                "y": 846.96875,
+                "width": 24,
+                "height": 30,
+                "top": 846.96875,
+                "right": 246.75,
+                "bottom": 876.96875,
+                "left": 222.75
+              },
+              "viewport": {
+                "width": 390,
+                "height": 740
+              }
+            },
+            {
+              "src": "http://127.0.0.1:5606/assets/handdrawn-p08/court/j.court.webp",
+              "loading": "lazy",
+              "complete": false,
+              "naturalWidth": 0,
+              "bounds": {
+                "x": 302.25,
+                "y": 846.96875,
+                "width": 24,
+                "height": 30,
+                "top": 846.96875,
+                "right": 326.25,
+                "bottom": 876.96875,
+                "left": 302.25
+              },
+              "viewport": {
+                "width": 390,
+                "height": 740
+              }
+            }
+          ]
+        },
+        {
+          "name": "FAIL",
+          "images": [
+            {
+              "src": "http://127.0.0.1:5606/assets/handdrawn-p08/court/q.court.webp",
+              "loading": "lazy",
+              "complete": false,
+              "naturalWidth": 0,
+              "bounds": {
+                "x": 63.75,
+                "y": 739.875,
+                "width": 24,
+                "height": 30,
+                "top": 739.875,
+                "right": 87.75,
+                "bottom": 769.875,
+                "left": 63.75
+              },
+              "viewport": {
+                "width": 390,
+                "height": 740
+              }
+            },
+            {
+              "src": "http://127.0.0.1:5606/assets/handdrawn-p08/court/q.court.webp",
+              "loading": "lazy",
+              "complete": false,
+              "naturalWidth": 0,
+              "bounds": {
+                "x": 143.25,
+                "y": 739.875,
+                "width": 24,
+                "height": 30,
+                "top": 739.875,
+                "right": 167.25,
+                "bottom": 769.875,
+                "left": 143.25
+              },
+              "viewport": {
+                "width": 390,
+                "height": 740
+              }
+            },
+            {
+              "src": "http://127.0.0.1:5606/assets/handdrawn-p08/court/q.court.webp",
+              "loading": "lazy",
+              "complete": false,
+              "naturalWidth": 0,
+              "bounds": {
+                "x": 222.75,
+                "y": 739.875,
+                "width": 24,
+                "height": 30,
+                "top": 739.875,
+                "right": 246.75,
+                "bottom": 769.875,
+                "left": 222.75
+              },
+              "viewport": {
+                "width": 390,
+                "height": 740
+              }
+            },
+            {
+              "src": "http://127.0.0.1:5606/assets/handdrawn-p08/court/q.court.webp",
+              "loading": "lazy",
+              "complete": false,
+              "naturalWidth": 0,
+              "bounds": {
+                "x": 302.25,
+                "y": 739.875,
+                "width": 24,
+                "height": 30,
+                "top": 739.875,
+                "right": 326.25,
+                "bottom": 769.875,
+                "left": 302.25
+              },
+              "viewport": {
+                "width": 390,
+                "height": 740
+              }
+            },
+            {
+              "src": "http://127.0.0.1:5606/assets/handdrawn-p08/court/j.court.webp",
+              "loading": "lazy",
+              "complete": false,
+              "naturalWidth": 0,
+              "bounds": {
+                "x": 63.75,
+                "y": 846.96875,
+                "width": 24,
+                "height": 30,
+                "top": 846.96875,
+                "right": 87.75,
+                "bottom": 876.96875,
+                "left": 63.75
+              },
+              "viewport": {
+                "width": 390,
+                "height": 740
+              }
+            },
+            {
+              "src": "http://127.0.0.1:5606/assets/handdrawn-p08/court/j.court.webp",
+              "loading": "lazy",
+              "complete": false,
+              "naturalWidth": 0,
+              "bounds": {
+                "x": 143.25,
+                "y": 846.96875,
+                "width": 24,
+                "height": 30,
+                "top": 846.96875,
+                "right": 167.25,
+                "bottom": 876.96875,
+                "left": 143.25
+              },
+              "viewport": {
+                "width": 390,
+                "height": 740
+              }
+            },
+            {
+              "src": "http://127.0.0.1:5606/assets/handdrawn-p08/court/j.court.webp",
+              "loading": "lazy",
+              "complete": false,
+              "naturalWidth": 0,
+              "bounds": {
+                "x": 222.75,
+                "y": 846.96875,
+                "width": 24,
+                "height": 30,
+                "top": 846.96875,
+                "right": 246.75,
+                "bottom": 876.96875,
+                "left": 222.75
+              },
+              "viewport": {
+                "width": 390,
+                "height": 740
+              }
+            },
+            {
+              "src": "http://127.0.0.1:5606/assets/handdrawn-p08/court/j.court.webp",
+              "loading": "lazy",
+              "complete": false,
+              "naturalWidth": 0,
+              "bounds": {
+                "x": 302.25,
+                "y": 846.96875,
+                "width": 24,
+                "height": 30,
+                "top": 846.96875,
+                "right": 326.25,
+                "bottom": 876.96875,
+                "left": 302.25
+              },
+              "viewport": {
+                "width": 390,
+                "height": 740
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
