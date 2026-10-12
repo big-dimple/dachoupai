@@ -4,7 +4,7 @@ import {r2RunModeConfig} from '../content/r2Modes';
 import {usesAzaoCharge} from '../domain/r2AzaoCharge';
 import {usesXiemuBurn,xiemuInterest} from '../domain/r2XiemuBurn';
 import {usesErxiangHandoff} from '../domain/r2ErxiangHandoff';
-import {usesTouyeWager} from '../domain/r2TouyeWager';
+import {usesTouyeWager,usesTouyeNewCore} from '../domain/r2TouyeWager';
 import {usesLaohuanRefill} from '../domain/r2LaohuanRefill';
 import {savedHeroResult} from './HeroAbilityCue';
 import {savedXiemuBurn} from './XiemuBurnCopy';
@@ -32,7 +32,7 @@ export function heroStageContinuity(run:R2RunState):HeroStageContinuity|undefine
  if(azao)return {last,next:'下场从0层重新蓄势',decision:'两对及以上先蓄，换牌型可续蓄；有层后自己决定释放。弃牌保层，过场不保层。'};
  if(xiemu)return {last,next:'下场燃金次数恢复为1次',decision:`当前${run.gold}金；`+(run.gold<10?`距最低10金燃档还差${10-run.gold}金。`:'可自行留钱，或入场选两对及以上再选燃档。')+`按当前本金，角色关末息最多${xiemuInterest(run.gold)}金；购买/燃金后要按余钱重算，未到账。`};
  if(erxiang)return {last,next:'下场交棒次数恢复为1次',decision:'先凑对子及以上，再选有效核心把一次普通点数改加倍率；可以留到后手，改牌工具与增强仍由你选择。'};
- if(touye)return {last,next:'下场赌约次数恢复为1次',decision:'先看整手哪些目标尚未成型，再选弃牌与赌约；只赌下一手，成型×2、未成×0.85，可不押。'};
+ if(touye)return {last,next:'下场赌约次数恢复为1次',decision:usesTouyeNewCore(run)?'已成型也可押；先选真实弃牌和目标，下一手目标达成且本次新补入有效核心才×2，否则×0.85。可不押。':'先看整手哪些目标尚未成型，再选弃牌与赌约；只赌下一手，成型×2、未成×0.85，可不押。'};
  if(laohuan)return {last,next:'下场戏法次数恢复为1次',decision:'先决定保留哪些牌，再自行戏法弃并从真实补牌候选留牌；照付弃牌成本，不能预知补牌。'};
  return {last,next:'下场助攻次数恢复为1次',decision:'两对及以上主手之外留同点对子或三条，可自己选择助攻；副组真消耗，不算留牌，可留到关键手。'};
 }

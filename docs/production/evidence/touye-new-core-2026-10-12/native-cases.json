@@ -1,0 +1,190 @@
+{
+  "status": "PASS",
+  "identity": {
+    "contentVersion": "quality-r2-touye-new-core-v1",
+    "contentHash": "json-fnv-v1:413ecc65d3b9a2a1"
+  },
+  "scope": "bounded planted legal states, actual UI actions and full state/journal/IndexedDB; no natural game/seed search or full18",
+  "cases": [
+    {
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      },
+      "kind": "mature-win",
+      "status": "PASS",
+      "cancelUnchanged": true,
+      "pendingRestoreExact": true,
+      "playRestoreExact": true,
+      "outcome": "won",
+      "failedDiscardUnpublished": true,
+      "failedPlayUnpublished": true,
+      "retryCandidatesByteExact": true
+    },
+    {
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      },
+      "kind": "mature-old-core",
+      "status": "PASS",
+      "cancelUnchanged": true,
+      "pendingRestoreExact": true,
+      "playRestoreExact": true,
+      "outcome": "lost",
+      "failedDiscardUnpublished": null,
+      "failedPlayUnpublished": null,
+      "retryCandidatesByteExact": null
+    },
+    {
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      },
+      "kind": "mature-accompanying",
+      "status": "PASS",
+      "cancelUnchanged": true,
+      "pendingRestoreExact": true,
+      "playRestoreExact": true,
+      "outcome": "lost",
+      "failedDiscardUnpublished": null,
+      "failedPlayUnpublished": null,
+      "retryCandidatesByteExact": null
+    },
+    {
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      },
+      "kind": "short",
+      "status": "PASS",
+      "cancelUnchanged": true,
+      "pendingRestoreExact": true,
+      "playRestoreExact": true,
+      "outcome": "won",
+      "failedDiscardUnpublished": null,
+      "failedPlayUnpublished": null,
+      "retryCandidatesByteExact": null
+    },
+    {
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      },
+      "kind": "disabled-core",
+      "status": "PASS",
+      "cancelUnchanged": true,
+      "pendingRestoreExact": true,
+      "playRestoreExact": true,
+      "outcome": "lost",
+      "failedDiscardUnpublished": null,
+      "failedPlayUnpublished": null,
+      "retryCandidatesByteExact": null
+    },
+    {
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      },
+      "kind": "legacy-mature",
+      "status": "PASS",
+      "cancelUnchanged": null,
+      "pendingRestoreExact": null,
+      "playRestoreExact": null,
+      "outcome": null,
+      "failedDiscardUnpublished": null,
+      "failedPlayUnpublished": null,
+      "retryCandidatesByteExact": null
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "kind": "mature-win",
+      "status": "PASS",
+      "cancelUnchanged": true,
+      "pendingRestoreExact": true,
+      "playRestoreExact": true,
+      "outcome": "won",
+      "failedDiscardUnpublished": null,
+      "failedPlayUnpublished": null,
+      "retryCandidatesByteExact": null
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "kind": "mature-old-core",
+      "status": "PASS",
+      "cancelUnchanged": true,
+      "pendingRestoreExact": true,
+      "playRestoreExact": true,
+      "outcome": "lost",
+      "failedDiscardUnpublished": null,
+      "failedPlayUnpublished": null,
+      "retryCandidatesByteExact": null
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "kind": "mature-accompanying",
+      "status": "PASS",
+      "cancelUnchanged": true,
+      "pendingRestoreExact": true,
+      "playRestoreExact": true,
+      "outcome": "lost",
+      "failedDiscardUnpublished": null,
+      "failedPlayUnpublished": null,
+      "retryCandidatesByteExact": null
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "kind": "short",
+      "status": "PASS",
+      "cancelUnchanged": true,
+      "pendingRestoreExact": true,
+      "playRestoreExact": true,
+      "outcome": "won",
+      "failedDiscardUnpublished": null,
+      "failedPlayUnpublished": null,
+      "retryCandidatesByteExact": null
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "kind": "disabled-core",
+      "status": "PASS",
+      "cancelUnchanged": true,
+      "pendingRestoreExact": true,
+      "playRestoreExact": true,
+      "outcome": "lost",
+      "failedDiscardUnpublished": null,
+      "failedPlayUnpublished": null,
+      "retryCandidatesByteExact": null
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "kind": "legacy-mature",
+      "status": "PASS",
+      "cancelUnchanged": null,
+      "pendingRestoreExact": null,
+      "playRestoreExact": null,
+      "outcome": null,
+      "failedDiscardUnpublished": null,
+      "failedPlayUnpublished": null,
+      "retryCandidatesByteExact": null
+    }
+  ]
+}

@@ -1,0 +1,69 @@
+{
+  "affected-tests": {
+    "command": [
+      "npm",
+      "test",
+      "--",
+      "tests/touye-new-core.test.ts",
+      "tests/touye-wager.test.ts",
+      "tests/touye-combo-cue.test.ts",
+      "tests/hero-ability-cue.test.ts",
+      "tests/hero-skill-guide.test.ts",
+      "tests/hero-opening-copy.test.ts",
+      "tests/hero-stage-continuity.test.ts",
+      "tests/opening-play-sample.test.ts",
+      "tests/opening-signature.test.ts",
+      "tests/r2-starting-profile.test.ts",
+      "tests/route-growth-run.test.ts",
+      "tests/route-growth-score.test.ts",
+      "tests/route-growth-facts.test.ts",
+      "tests/ai-hand-candidates.test.ts",
+      "tests/r2-command.test.ts"
+    ],
+    "exitCode": 0,
+    "startUTC": "2026-10-12T01:40:31.920361+00:00",
+    "endUTC": "2026-10-12T01:40:50.322924+00:00"
+  },
+  "typecheck": {
+    "command": [
+      "npm",
+      "run",
+      "typecheck"
+    ],
+    "exitCode": 0,
+    "startUTC": "2026-10-12T01:21:06.788962+00:00",
+    "endUTC": "2026-10-12T01:21:31.740986+00:00"
+  },
+  "content": {
+    "command": [
+      "npm",
+      "run",
+      "verify:content"
+    ],
+    "exitCode": 0,
+    "startUTC": "2026-10-12T01:21:06.789587+00:00",
+    "endUTC": "2026-10-12T01:21:14.858006+00:00"
+  },
+  "docs": {
+    "command": [
+      "npm",
+      "run",
+      "verify:ci",
+      "--",
+      "--scope=docs"
+    ],
+    "exitCode": 0,
+    "startUTC": "2026-10-12T01:40:31.921265+00:00",
+    "endUTC": "2026-10-12T01:40:43.693999+00:00"
+  },
+  "build": {
+    "command": [
+      "npm",
+      "run",
+      "build"
+    ],
+    "exitCode": 0,
+    "startUTC": "2026-10-12T01:40:31.920905+00:00",
+    "endUTC": "2026-10-12T01:41:05.237265+00:00"
+  }
+}
