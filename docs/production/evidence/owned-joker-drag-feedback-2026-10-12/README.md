@@ -8,6 +8,14 @@
 - 移除GameScene已持有大丑牌baseY−1.2、yoyo/repeat:-1的无限上下浮动及其启停代码。悬停单次反馈、source聚焦仍保留；F09／InventoryFeedback／HeroActionShortcut／音路／style／index／领域／存档字节与1fcec442相同。没有新教程，也没有扩大库存或英雄提示。
 - 源码没有显式手机震动调用；用户感到的轻震来源没有物理设备证据。本候选未新增振动API，**不声称验证或保证物理震动**。
 
+## 最终吸收价格修复与CI阻塞闭环
+
+父批准的main60db8176f70d67a9e581d08a348f1cef883de58b已正常吸收为62384a78；仅带入手机价格文本一行与其原证据。最终产品/相关harness冻结于0eedde7a10d04f4af9904b86afcf8e5af626cb20，src tree ee1d15c00e3d52fb4e3ff79dd7537039daf46463。GameScene及轻拖起视觉与65befbb4字节相同，未回退价格修复。
+
+仅320/390两种宽度做相关回归（DRAG_SMOKE=1）：真实长按1→5插入、跟手/目标/延迟保存/尺寸重绑/落位/冷恢复，以及牌桌3秒静止与原长按调序完整保存再次PASS；没有重复全部取消/失败矩阵，也没有整局。数据和准确整屏在price-integration，[320抓起](price-integration/320x740-slow-held.png)／[中途](price-integration/320x740-slow-mid.png)／[落位](price-integration/320x740-slow-dropped.png)，[390抓起](price-integration/390x844-slow-held.png)。本代理已actual view，价格短串保留，原挤占问题不再作为当前阻塞。
+
+5317b794的主CI38273028571 domain/docs在运行测试前因Git索引输出1054397bytes超过Node默认1048576bytes报ENOBUFS，原失败见failures/ci-index-buffer.txt和checks/ci-index-buffer-regression.txt。这不是产品断言失败，也不借production-docs绿灯当主CI绿灯。检查器只提高read-only Git输出缓冲至16MiB，仍完整哈希索引/源码、拒绝检查器写入；加实际全索引hash回归，8项门禁测试及本地docs gate通过，不跳过测试。最终HEAD的远端完整门禁另核。
+
 ## 当前准确截图与状态
 
 small-lift/report在65befbb4洁净产品/tests/harness运行：320×740、390×844、412×915、PC1366×900、DPR2低动态390×844五组PASS。保1→5／5→1／中间插入、静止长按／二维跟手／目标／落位、取消／双指／锁定／隐藏信号／尺寸、真实存储延迟首保存帧／quota失败／菜单同候选重试／冷恢复。完整state、journal、IDB仍逐笔等于原applyCommand，每笔只一次命令；全部记录在small-lift gzip，不用截图对象存在代签。
@@ -17,7 +25,7 @@ small-lift/report在65befbb4洁净产品/tests/harness运行：320×740、390×8
 | 320×740 | [抓起](small-lift/320x740-slow-held.png) | [中途](small-lift/320x740-slow-mid.png) | [等待](small-lift/320x740-saving-delay.png) | [落位](small-lift/320x740-slow-dropped.png) | [静止](small-lift/320x740-table-idle-end.png) |
 | 390×844 | [抓起](small-lift/390x844-slow-held.png) | [中途](small-lift/390x844-slow-mid.png) | [等待](small-lift/390x844-saving-delay.png) | [落位](small-lift/390x844-slow-dropped.png) | [静止](small-lift/390x844-table-idle-end.png) |
 
-本代理actual view上述320/390抓起、途中和牌桌整屏：抬起较原候选轻，牌影/目标槽仍可辨。原320满槽货架价格挤占仍可见，属于既有货架范围，本次不扩改。
+本代理actual view上述320/390抓起、途中和牌桌整屏：抬起较原候选轻，牌影/目标槽仍可辨。这组65befbb4图片仍保原价格挤占；父随后独立修复，当前以price-integration截图为准，不覆盖旧图。
 
 五profile牌桌已持五张3秒逐poststep采样，全部实例yRange=0，未写状态；随后原生长按1→4仍按原插入语义正确保存、完整state/journal/IDB对原命令。F09样板未加入这条fixture，不借这条签单卡艺术；该模块字节保持，定向测试覆盖保留原条件。
 
