@@ -378,7 +378,6 @@ export class GameScene extends Phaser.Scene {
     this.stage={...this.stage,targetHeat:this.run.stage!.targetHeat};
     this.controlsLive=false;this.stopScoreFire();
     const v=this.view,l=v.layout;this.hoveredCardId=undefined;this.hoveredJokerId=undefined;this.jokerHoverPreview=undefined;v.clear();this.handNavigationButtons=[];v.paperBackground();drawStageTableArt(this,v,this.characterId);this.settledCards.clear();this.previewCards=undefined;
-
     this.playAuraPulse?.remove();this.playAuraPulse=undefined;this.playAura=undefined;
     if(this.progressBar)this.tweens.killTweensOf(this.progressBar);this.progressTarget=Number.NaN;
     const h=l.hud,c=getCharacter(this.characterId),portrait=l.mode==='portrait',short=l.mode==='landscape';
