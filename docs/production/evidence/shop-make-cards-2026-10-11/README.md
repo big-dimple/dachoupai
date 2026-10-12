@@ -28,14 +28,16 @@ PC左右同时显示库存与选购，在1366×768本工程九项自选全部首
 |---|---|---|
 | PC商店主入口 | [商店](before/1366-table.png) | [商店](after/1366-table.png) |
 | 手机商店主入口 | [商店](before/390-table.png) | [商店](after/390-table.png) |
-| PC选购 | [原基础板](before/1366-basic-before.png) | [九项展开](after/1366-hub-purchase.png) |
-| 手机选购/库存 | [原基础板](before/390-basic-before.png) | [选购](after/390-hub-purchase.png) / [已有](after/390-hub-owned.png) |
+| PC选购 | [原基础板](before/1366-basic-before.png) | [九项展开](layout/1366-hub-purchase.png) |
+| 手机选购/库存 | [原基础板](before/390-basic-before.png) | [选购](layout/390-hub-purchase.png) / [已有](layout/390-hub-owned.png) |
 | 手机目标首屏 | [原库存选择](before/390-target-before.png) | [付款已恢复、目标前置](after/390-purchase-restored-selector.png) |
 | 明确覆盖 | 原规则保持 | [PC](after/1366-overwrite-preview.png) / [手机](after/390-overwrite-preview.png) |
 | 已保存真实结果 | 原组件复用 | [PC](after/1366-consume-restored-result.png) / [手机](after/390-consume-restored-result.png) |
 | 连续用库存 | 原规则保持 | [PC两选预览](after/1366-continuous-owned-preview.png) / [手机两选预览](after/390-continuous-owned-preview.png) |
 | 现货接目标/实际使用 | 原BuyOffer/UseConsumable | [手机已购未用](after/390-stock-purchased-selector.png) / [实际使用](after/390-stock-used-result.png) |
 | 保存/只读 | 原协议保持 | [PC购买中](after/1366-purchase-saving.png) / [手机消费中](after/390-consume-saving.png) / [手机只读](after/390-readonly-preview.png) |
+
+最终另补[稳定图面检查](layout/report.json.gz)：只等当前可见图片完成解码/naturalWidth>0及300ms过渡，然后捕获PC/390入口、库存/选购、原目标首屏；完整保存不变，没有再购买或消费。原交易归档及其早帧保持，其中[手机早帧](failures/390-early-assets-and-touch-highlight.png)存在懒加载图未解码和原生触摸高亮，不能拿早帧签最终图面。产品三个文件没有变更，最新样板取layout目录。
 
 关键整屏已逐张实际读取，包括主入口、PC九项/手机分区、购后目标、覆盖固定提示、保存后结果；不能用几何断言/CI替代目测。本包有限纸墨样板通过自审，真人理解、物理设备/听感/整体美术仍未签收。
 

@@ -40,5 +40,11 @@
     "physical devices/other browsers/GPU/audio/human preference",
     "all mode/legacy-identity/consumable combination matrix"
   ],
-  "ci": "Final exact HEAD separately on draft PR; local tests are working-source checks."
+  "ci": "Final exact HEAD separately on draft PR; local tests are working-source checks.",
+  "settledLayout": {
+    "status": "PASS",
+    "cases": 2,
+    "sourceUnchanged": true,
+    "scope": "Same product bytes; visible DOM images complete/naturalWidth>0 and300ms transition settle; no new purchase/use. Original early frames retained."
+  }
 }
