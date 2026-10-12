@@ -40,3 +40,11 @@
 2. 第一短横候选bounds虽过，实际像素仍有来源卡压人物、分隔线碰累计；[视觉FAIL原图](failures/short-overlap-visual-FAIL.png)保留。短横移除来源小卡并合并次级标签，让完整人物、主分数、H/M、累计与奖励各自分离；末手详情保持原入口。最终740×390已实际查看。
 
 以上初候选源HEAD显示be2且工作树当时未提交，不冒充精确冻结SHA；最终图与完整report绑定2e，吸收记录绑定8c，哈希分别留证。整体美术、自然来源原trace重放、人类操作理解、设备/听感、其它页面与正式质量门仍待父/用户验收。本包独立draft，父唯一集成/部署。
+
+## 首CI必要返修（保留原失败）
+
+精确初draft HEAD `8c2fa1f7fb8ed54bd01c091ff9b4786dcaf2e84c` 的[CI38233780448](https://github.com/big-dimple/dachoupai/actions/runs/38233780448) domain有4个 `failure-audio.test.ts` 失败，原[完整log](failures/ci-8c2-domain.log)保留。该文件只用最小run桩并mock整个render来验证音频；本批失败页新增资源请求却在无挂载视图时读得分账本。返修仅让可选transport依赖已挂载的paint hook，失败页只请求身份图、不读计分来源；原音频代码及四条断言未改。
+
+补核同源多次计分：五张K加演纸各自再计分一次，铁算盘实际10笔热+25，按原事件收成`热+25·10次`；有更多不同操作时显示另N笔，完整顺序不变、留在原回看。实际多次再计分也进入强链层。原初夹具误把每牌重触上限当全手上限，测试预计9而真实为10，已按五牌×原先/再计分两次补正；产品不改规则。
+
+最终必要返修本地104项/8文件、typecheck/build通过；[6个只读复核](ci-repair/report.json.gz)、[缺图/迟到/离场3例](ci-repair-boundaries/report.json.gz)、[重复来源2例](repeated-source/report.json.gz)全部通过，已查看[390完整实图](repeated-source/repeated-390.png)。同源摘要变为有限高度，原普通/乘法/亿分布局没有重排，原全段短片和37例按各自source保留。复核期间各报告实际HEAD及当前文件blob hash单独登记在checks.ciRepair，不冒充初2e矩阵或初8c2CI已经通过新版本。最终新HEAD CI必须另核；仍仅draft，不合main。

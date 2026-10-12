@@ -32,3 +32,10 @@ export function settlementReady(kind:'ordinary'|'chain'|'million'|'billion'|'lon
  if(kind!=='ordinary')state=energySend(state,{type:'DiscardHand',selectedIds:[state.handOrder[0]]});
  return {state,action:{type:'PlayHand' as const,selectedIds,...(kind!=='ordinary'?{xiemuBurn:30 as const}:{})}};
 }
+
+/** Five face cards with their own encore-paper: ten actual same-source triggers. */
+export function repeatedSettlementReady(){
+ const f=settlementReady('ordinary');f.state.jokers[0]=r2CreateJoker('tiesuanpan',f.state.jokers[0].instanceId,4,'none',f.state);
+ for(const id of f.action.selectedIds){const card=f.state.deckInstances.find(c=>c.id===id)!;card.rank=13;card.enhancement='encore-paper';}
+ return {...f,action:{...f.action,xiemuBurn:30 as const}};
+}

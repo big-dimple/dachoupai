@@ -24,13 +24,18 @@ export function settlementFacts(run:R2RunState,cleared:boolean,skipped=false){
  const saved=resultStageFacts(run,cleared,skipped),trace=saved.trace;
  const factors=trace?.events.filter(multiplicative)??[];
  const score=BigInt(trace?.finalScore??'0');
- const tier=score>=100000000n?3:score>=10000000n?2:factors.length>=2?1:0;
+ const retriggers=trace?.events.filter(e=>scoring(e)&&e.operation==='retrigger-card'&&BigInt(e.value.n)>0n).length??0;
+ const tier=score>=100000000n?3:score>=10000000n?2:factors.length>=2||retriggers>=2?1:0;
  const tag=skipped?'换场留影':!cleared?'此番落幕':tier===3?'亿分落定':tier===2?'千万喝彩':tier===1?'连锁成势':'好戏收束';
  const hero=trace?.events.find(e=>scoring(e)&&e.sourceType==='character'&&e.sourceDefinitionId===run.characterId&&(increased(e,'H')||increased(e,'M')));
  const cardEvent=factors.find(e=>e.sourceType==='joker')??trace?.events.find(e=>scoring(e)&&e.sourceType==='joker'&&(increased(e,'H')||increased(e,'M')));
  const card=cardEvent?{id:cardEvent.sourceDefinitionId,name:r2JokerDefinitionFor(run,cardEvent.sourceDefinitionId).name,event:cardEvent}:undefined;
  const operation=(e:ScoreEvent)=>multiplicative(e)?'×'+readableFractionText(e.value):increased(e,'H')?'热度 +'+readableFractionText(e.value):'倍率 +'+readableFractionText(e.value);
- const cardCopy=card?trace!.events.filter(e=>scoring(e)&&e.sourceType==='joker'&&e.sourceInstanceId===card.event.sourceInstanceId&&(increased(e,'H')||increased(e,'M'))).map(e=>e.operation==='read-growth'?'读取 +'+readableFractionText(e.value)+(increased(e,'H')?' 热度':' 倍率'):operation(e)).join('\n'):undefined;
+ const cardEvents=card?trace!.events.filter(e=>scoring(e)&&e.sourceType==='joker'&&e.sourceInstanceId===card.event.sourceInstanceId&&(increased(e,'H')||increased(e,'M'))):[];
+ const reads=new Map<string,number>();
+ for(const e of cardEvents){const copy=e.operation==='read-growth'?'读取 +'+readableFractionText(e.value)+(increased(e,'H')?' 热度':' 倍率'):operation(e);reads.set(copy,(reads.get(copy)??0)+1);}
+ const labels=[...reads].map(([copy,count])=>count>1?copy.replace('热度 +','热+').replace('倍率 +','倍+').replaceAll(' ','')+'·'+count+'次':copy);
+ const cardCopy=card?(labels.length>2?labels[0]+'\n另'+(cardEvents.length-[...reads.values()][0])+'笔':labels.join('\n')):undefined;
  const heroCopy=hero?(trace?.xiemuBurn?.cost?'燃'+trace.xiemuBurn.cost+'金 · ':trace?.azaoCharge?.release?'释放'+trace.azaoCharge.before.charge+'层 · ':'本手兑现 · ')+operation(hero):'本局角色';
  const route=trace?.events.find(e=>e.operation==='route-factor'&&multiplicative(e));
  const routeCopy=route?'本局资历 '+route.routeFamily+route.resourceBefore+' · ×'+readableFractionText(route.value):undefined;

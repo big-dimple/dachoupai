@@ -76,8 +76,10 @@ export class IntermissionScene extends Phaser.Scene {
   private get ready():boolean {const session=gameSession();return !this.busy&&runController(this)?.status==='idle'&&session.lease.writable&&!session.pendingRun&&!session.working;}
   private stopSourceArt():void {this.sourceArtRequest?.abort();this.sourceArtRequest=undefined;}
   private requestSourceArt():void {
+    // Optional transport belongs to a mounted result view, independent of ending audio.
+    if(!this.paintSourceArt)return;
     const controller=runController(this),run=controller?.state;if(!controller||!run?.stage||run.stage.skipResult)return;
-    const source=settlementFacts(run,this.result.cleared,!!run.stage.skipResult).card;
+    const source=this.result.cleared?settlementFacts(run,true,!!run.stage.skipResult).card:undefined;
     const candidates=[{key:selectionPortraitKey(run.characterId),url:selectionPortraitURL(run.characterId)},...(source?[{key:jokerArtKey(source.id),url:jokerArtPreviewUrl(source.id)}]:[])].filter((item):item is {key:string;url:string}=>!!item.key&&!!item.url&&!this.textures.exists(item.key));
     if(!candidates.length)return;
     this.stopSourceArt();const request=this.sourceArtRequest=new AbortController(),lifecycle=this.lifecycle;

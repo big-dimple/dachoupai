@@ -11,8 +11,9 @@ const port=Number(process.env.SETTLEMENT_PORT??5572);
 const root=process.env.SETTLEMENT_ROOT??process.cwd(),out=process.env.SETTLEMENT_OUTPUT??'/tmp/settlement-after',baseline=!!process.env.SETTLEMENT_BEFORE,quick=!!process.env.SETTLEMENT_QUICK;
 await mkdir(out,{recursive:true});
 const loader=await createServer({root:process.cwd(),logLevel:'error'});
-const {settlementReady}=await loader.ssrLoadModule('/harness/fixtures/settlement.ts'),{energySend}=await loader.ssrLoadModule('/harness/fixtures/hero-climax.ts'),{makeCheckpoint,readCheckpoint}=await loader.ssrLoadModule('/src/application/checkpoint.ts'),{applyCommand}=await loader.ssrLoadModule('/src/domain/run.ts');
+const {settlementReady,repeatedSettlementReady}=await loader.ssrLoadModule('/harness/fixtures/settlement.ts'),{energySend}=await loader.ssrLoadModule('/harness/fixtures/hero-climax.ts'),{makeCheckpoint,readCheckpoint}=await loader.ssrLoadModule('/src/application/checkpoint.ts'),{applyCommand}=await loader.ssrLoadModule('/src/domain/run.ts');
 const fixtures=Object.fromEntries(['ordinary','chain','million','billion','long','boss-win','boss-loss'].map(kind=>{const f=settlementReady(kind),after=energySend(f.state,f.action);assert.ok(readCheckpoint(makeCheckpoint(f.state,[])).ok);assert.ok(readCheckpoint(makeCheckpoint(after,[])).ok);return [kind,{...f,after}];}));
+if(process.env.SETTLEMENT_REPEATED){const f=repeatedSettlementReady(),after=energySend(f.state,f.action);assert.ok(readCheckpoint(makeCheckpoint(after,[])).ok);fixtures.repeated={...f,after};}
 await writeFile(out+'/controlled-states.json',JSON.stringify(fixtures));await loader.close();
 const server=await createServer({root,mode:'e2e',server:{host:'127.0.0.1',port,strictPort:true},logLevel:'error'});await server.listen();
 const browser=await chromium.launch({executablePath:'/usr/bin/chromium',args:['--disable-gpu','--disable-software-rasterizer']}),report={head:execFileSync('git',['rev-parse','HEAD'],{cwd:root,encoding:'utf8'}).trim(),baseline,scope:'Controlled inventory/levels/prior ledger -> unchanged real scorer. Same terminal states imported through production UI for before/after. Native command cases compare complete state, journal and IndexedDB. No natural acquisition, human aesthetic, hardware, FPS or hearing acceptance.',cases:[]};
@@ -30,7 +31,7 @@ async function shot(p,row,key){await p.screenshot({path:out+'/'+key+'.png',scale
 }
 const sizes=quick?[{width:1366,height:768},{width:390,height:844}]:[{width:1180,height:757},{width:1366,height:768},{width:390,height:844}];
 try{
- for(const kind of boundaryOnly?[]:quick?['billion','ordinary','boss-loss']:Object.keys(fixtures))for(const viewport of sizes){
+ for(const kind of boundaryOnly?[]:process.env.SETTLEMENT_REPEATED?['repeated']:quick?['billion','ordinary','boss-loss']:Object.keys(fixtures))for(const viewport of sizes){
   const key=kind+'-'+viewport.width,p=await browser.newPage({viewport,hasTouch:viewport.width<700,deviceScaleFactor:1}),row={key,kind,viewport,errors:[],score:fixtures[kind].after.lastTrace.finalScore};report.cases.push(row);p.setDefaultTimeout(24000);p.on('dialog',d=>d.accept());p.on('pageerror',e=>row.errors.push(e.stack));
   try{await imp(p,fixtures[kind].after);const initial=await saved(p);await p.waitForTimeout(1250);await shot(p,row,key);assert.deepEqual(await saved(p),initial);row.saved=initial;assert.deepEqual(row.errors,[]);row.status='PASS';console.log('PASS',key,row.score);}catch(e){row.status='FAIL';row.error=e.stack;await p.screenshot({path:out+'/'+key+'-FAIL.png'});throw e;}finally{await p.close();}
  }

@@ -1,14 +1,22 @@
 import {it,expect} from 'vitest';
 import {settlementFacts,settlementPlan} from '../src/game/SettlementPresentation';
-import {settlementReady} from '../harness/fixtures/settlement';
+import {settlementReady,repeatedSettlementReady} from '../harness/fixtures/settlement';
 import {energySend} from '../harness/fixtures/hero-climax';
 import {heatText} from '../src/game/scoreText';
+import {makeCheckpoint,readCheckpoint} from '../src/application/checkpoint';
 
 const settle=(kind:Parameters<typeof settlementReady>[0])=>{const f=settlementReady(kind);return energySend(f.state,f.action);};
 it('same-source heat additions stay additions, including the already saved growth at cap',()=>{
  const run=settle('ordinary'),before=JSON.stringify(run),f=settlementFacts(run,true);
  expect(f.card?.id).toBe('c04');expect(f.cardCopy).toBe('热度 +50\n读取 +100 热度');
  expect(f.tier).toBe(0);expect(f.hero).toBeUndefined();expect(f.chain).toEqual([]);expect(JSON.stringify(run)).toBe(before);
+});
+it('ten actual same-source face triggers fit a short receipt while the full event list remains exact',()=>{
+ const f=repeatedSettlementReady(),run=energySend(f.state,f.action);expect(readCheckpoint(makeCheckpoint(run,[])).ok).toBe(true);
+ const events=run.lastTrace!.events.filter(e=>e.sourceDefinitionId==='tiesuanpan'&&e.operation==='add-heat');
+ expect(run.lastTrace!.events.filter(e=>e.sourceType==='card'&&e.operation==='retrigger-card'&&e.value.n==='1')).toHaveLength(5);
+ expect(events).toHaveLength(10);expect(settlementFacts(run,true).cardCopy).toBe('热+25·10次');expect(settlementFacts(run,true).tier).toBe(1);
+ expect(run.lastTrace!.events.filter(e=>e.sourceDefinitionId==='tiesuanpan')).toEqual(events);
 });
 it('hero, joker factors, final cumulative M and prior run seniority remain distinct',()=>{
  const run=settle('billion'),f=settlementFacts(run,true);

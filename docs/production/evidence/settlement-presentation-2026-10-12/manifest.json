@@ -1,11 +1,27 @@
 {
   "checks.json": {
-    "bytes": 1775,
-    "sha256": "cf02ce14ba4c3028e01c8e17c8bfacd4e193615def2859afa6e9fdd99555a5b4"
+    "bytes": 3202,
+    "sha256": "45f39a39a857cabcccac59a2c4ca76a12051df1d6ef9ba4513ef1cd4c4b63b56"
   },
   "README.md": {
-    "bytes": 6422,
-    "sha256": "b35a9c08c159e4b2cc652c7d708b6165e341d4990ab58694e2aecc5cd8e53eff"
+    "bytes": 8038,
+    "sha256": "153991be29a1dc58e9148d5df22b2ebecb13e47b1cee2c0a5b820b5e8d31e937"
+  },
+  "repeated-source/repeated-390.png": {
+    "bytes": 102269,
+    "sha256": "31be34a4c10a8a6a90c9a8f0b754532c3b4c87a7ffeaa86143547fb4276b6305"
+  },
+  "repeated-source/controlled-states.json.gz": {
+    "bytes": 17007,
+    "sha256": "dbf62ec796a056c9ec0d5e75f5b7703fa5dc00ca87cbfa5e81edf232b705ec4f"
+  },
+  "repeated-source/repeated-1366.png": {
+    "bytes": 204958,
+    "sha256": "946eebb64f5f67a0756190ceead49955a0d95dcd45e68a99854ccfddd8664d52"
+  },
+  "repeated-source/report.json.gz": {
+    "bytes": 17500,
+    "sha256": "6b65d3eb82abe9be905b131975c295439f86e89b02e120be87881d59fce0b84d"
   },
   "before/million-1366.png": {
     "bytes": 142187,
@@ -98,6 +114,54 @@
   "before/ordinary-1366.png": {
     "bytes": 126660,
     "sha256": "4f65f90fe2a29f64ce6c940fcdf4fd623fe7684dff64f0caa0e226f72bc3938e"
+  },
+  "ci-repair-boundaries/boundary-missing-art.png": {
+    "bytes": 93188,
+    "sha256": "8e1a969526933cfe7c6adbbb47a96d47bb456f8bca12482e03b893ef768170e6"
+  },
+  "ci-repair-boundaries/controlled-states.json.gz": {
+    "bytes": 15223,
+    "sha256": "51d46b0f362e46b0acc4a53fe9ddcd4bdeecb8009fb9e1a79ad32fea792a5633"
+  },
+  "ci-repair-boundaries/boundary-slow-art.png": {
+    "bytes": 234467,
+    "sha256": "ec06baf01b67312ad3c7de40dd506c7d9ce8dfe314a398c561b8ecbd5f786067"
+  },
+  "ci-repair-boundaries/report.json.gz": {
+    "bytes": 31757,
+    "sha256": "922c1928462c3fa9f189d43b21571498833f5efd79fd90e0ee5fdf918ed7d7e6"
+  },
+  "ci-repair/controlled-states.json.gz": {
+    "bytes": 15223,
+    "sha256": "51d46b0f362e46b0acc4a53fe9ddcd4bdeecb8009fb9e1a79ad32fea792a5633"
+  },
+  "ci-repair/billion-390.png": {
+    "bytes": 125860,
+    "sha256": "c58a576b4fe083e27b5f2062399346a95b0b99fd67466e8b70dfa088104c2622"
+  },
+  "ci-repair/boss-loss-1366.png": {
+    "bytes": 194203,
+    "sha256": "2e512be4aad439b7bbf7aa8ef5bebebebdfc727bb5f95447706e7d6149a566b1"
+  },
+  "ci-repair/billion-1366.png": {
+    "bytes": 234467,
+    "sha256": "ec06baf01b67312ad3c7de40dd506c7d9ce8dfe314a398c561b8ecbd5f786067"
+  },
+  "ci-repair/ordinary-390.png": {
+    "bytes": 101710,
+    "sha256": "bd014a080adf3805424fd25187d84632b6401cc0ec93689af9ff629b4ffaa39d"
+  },
+  "ci-repair/boss-loss-390.png": {
+    "bytes": 92396,
+    "sha256": "842eba65fbf5ebca85c2a852bf87c038579b13874b71c2b845356d468e916040"
+  },
+  "ci-repair/report.json.gz": {
+    "bytes": 46149,
+    "sha256": "ed1da91b636fcfdc7540018fae7224fba2cc1d3b089e080c7cdb1c94fe9211d2"
+  },
+  "ci-repair/ordinary-1366.png": {
+    "bytes": 205544,
+    "sha256": "99a2371e312ea55cc55089c4d83b9aa6c7ddc7b570642c53ee72e8333ea91a71"
   },
   "after/native-boss-loss-390.mp4": {
     "bytes": 124137,
@@ -318,6 +382,10 @@
   "failures/short-overlap-visual-FAIL.png": {
     "bytes": 104006,
     "sha256": "59333c402f92eb98e783a273126c9f7e579f5faa81066429a8062c5f9d09f204"
+  },
+  "failures/ci-8c2-domain.log": {
+    "bytes": 75811,
+    "sha256": "f9802fa2d27193121fa621985fd798613fdaea30455cb964a3101d60d4cb3f45"
   },
   "failures/manifest-interception-report.json.gz": {
     "bytes": 343974,
