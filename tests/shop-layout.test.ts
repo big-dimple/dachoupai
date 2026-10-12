@@ -4,7 +4,7 @@ import {intersects} from '../src/game/layout';
 it('portrait gallery and full-size hit areas remain stable across browser toolbar height changes',()=>{
  for(const width of [320,360,390,412])for(const cols of [2,3])for(const guide of [false,true])for(const height of [640,693,740,844]){
   const p=shopLayout(width,height,12,34,cols,true,guide),tiles=p.shelf.map(b=>shopOfferCopy(p,b,true).tile);
-  expect(p.copyBeside).toBe(false);expect(p.guidanceBelow).toBe(false);
+  expect(p.copyBeside).toBe(false);expect('guidanceBelow' in p&&p.guidanceBelow).toBe(false);
   expect(p.shelf.every(b=>b.y===p.shelf[0].y)).toBe(true);
   for(const [i,tile] of tiles.entries()){
    expect(tile.width).toBeGreaterThanOrEqual(44);expect(tile.height).toBeGreaterThan(100);

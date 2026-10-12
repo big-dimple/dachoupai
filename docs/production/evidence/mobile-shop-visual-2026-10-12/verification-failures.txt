@@ -1,0 +1,3 @@
+First layout unit check FAIL: old test explicitly required tall portrait three-row layout. Updated the contract to test a stable gallery across640/693/740/844 heights.
+Final typecheck first FAIL: test directly read optional guidanceBelow on a union. Added an in-type guard; product code unchanged. Final typecheck and affected unit checks pass.
+Tool-flow original observer FAIL: waited for lazy Q/J images at y739.875/846.96875, below the clipped target scroll viewport. Actual screenshot was readable. Observer now waits for the actual intersection with viewport AND overflow ancestors; no image bypass or product asset change. Original full FAIL report/coordinates/screenshots are preserved.
