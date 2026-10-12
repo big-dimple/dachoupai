@@ -1,0 +1,80 @@
+{
+  "library_file_id": "libfile_9f7da453784881919da479e71316639c",
+  "file_name": "16215.jpg",
+  "image_exists": false,
+  "image_inspected": false,
+  "helper_error": "library file transfer failed: download failed",
+  "http_status": null,
+  "attempts": [
+    {
+      "metadata_file": "transfer.json",
+      "structuredContent": {
+        "transfers": [
+          {
+            "transfer_id": "materialize-1",
+            "file_id": "file_00000000715c8230aa493d2a46d75c14",
+            "library_file_id": "libfile_9f7da453784881919da479e71316639c",
+            "file_name": "16215.jpg",
+            "suggested_path": "16215.jpg",
+            "download_url": "[REDACTED]",
+            "current_version_number": 0,
+            "xattrs": [
+              {
+                "name": "user.library-file-version",
+                "value": "0"
+              }
+            ],
+            "workspace_path": null,
+            "method": "GET",
+            "headers": {},
+            "mime_type": "image/jpeg",
+            "size_bytes": 315777,
+            "download_url_present": true
+          }
+        ],
+        "unavailable_items": [],
+        "destination": {
+          "directory": "/workspace/consumable-evidence/source",
+          "conflict_policy": "dedupe"
+        },
+        "warnings": [],
+        "external_connectors_accessed": false
+      }
+    },
+    {
+      "metadata_file": "transfer-retry.json",
+      "structuredContent": {
+        "transfers": [
+          {
+            "transfer_id": "materialize-1",
+            "file_id": "file_00000000715c8230aa493d2a46d75c14",
+            "library_file_id": "libfile_9f7da453784881919da479e71316639c",
+            "file_name": "16215.jpg",
+            "suggested_path": "16215.jpg",
+            "download_url": "[REDACTED]",
+            "current_version_number": 0,
+            "xattrs": [
+              {
+                "name": "user.library-file-version",
+                "value": "0"
+              }
+            ],
+            "workspace_path": null,
+            "method": "GET",
+            "headers": {},
+            "mime_type": "image/jpeg",
+            "size_bytes": 315777,
+            "download_url_present": true
+          }
+        ],
+        "unavailable_items": [],
+        "destination": {
+          "directory": "/workspace/consumable-evidence/source",
+          "conflict_policy": "dedupe"
+        },
+        "warnings": [],
+        "external_connectors_accessed": false
+      }
+    }
+  ]
+}
