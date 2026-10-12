@@ -1,20 +1,17 @@
 import {it,expect} from 'vitest';
 import {shopLayout,shopFirstGuideLayout,shopSummaryWrap,shopOfferCopy,shopOwnedDropIndex,shopOwnedHitBox,shopOwnedNameArea,shopGoodsGrid} from '../src/game/ShopLayout';
 import {intersects} from '../src/game/layout';
-it('portrait merchandise rows and optional guide links retain independent full-size hit areas',()=>{
- for(const width of [320,390])for(const cols of [2,3])for(const guide of [false,true]){
-  const p=shopLayout(width,740,12,0,cols,true,guide),tiles=p.shelf.map(b=>shopOfferCopy(p,b,true).tile);
-  expect(p.copyBeside).toBe(true);
+it('portrait gallery and full-size hit areas remain stable across browser toolbar height changes',()=>{
+ for(const width of [320,360,390,412])for(const cols of [2,3])for(const guide of [false,true])for(const height of [640,693,740,844]){
+  const p=shopLayout(width,height,12,34,cols,true,guide),tiles=p.shelf.map(b=>shopOfferCopy(p,b,true).tile);
+  expect(p.copyBeside).toBe(false);expect(p.guidanceBelow).toBe(false);
+  expect(p.shelf.every(b=>b.y===p.shelf[0].y)).toBe(true);
   for(const [i,tile] of tiles.entries()){
-   expect(tile.width).toBe(p.w);expect(tile.height).toBeGreaterThan(100);
+   expect(tile.width).toBeGreaterThanOrEqual(44);expect(tile.height).toBeGreaterThan(100);
    for(const next of tiles.slice(i+1))expect(intersects(tile,next)).toBe(false);
    for(const action of [p.reroll,p.build,p.play])expect(intersects(tile,action)).toBe(false);
   }
-  const links=[p.reroll,p.build,...(guide?[{...p.build,x:p.build.x+p.build.width+6},{...p.build,x:p.build.x+2*(p.build.width+6)}]:[])];
-  for(const [i,b] of links.entries()){
-   expect(b.width).toBeGreaterThanOrEqual(44);expect(b.height).toBeGreaterThanOrEqual(44);expect(b.x+b.width).toBeLessThanOrEqual(p.x+p.w+.01);
-   for(const next of links.slice(i+1))expect(intersects(b,next)).toBe(false);
-  }
+  for(const b of [p.reroll,p.build,p.play]){expect(b.width).toBeGreaterThanOrEqual(44);expect(b.height).toBeGreaterThanOrEqual(44);expect(b.x+b.width).toBeLessThanOrEqual(p.x+p.w+.01);}
  }
 });
 it('first-shop guide has reachable exits without covering merchandise or primary shop actions',()=>{

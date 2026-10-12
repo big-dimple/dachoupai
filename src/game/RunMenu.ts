@@ -38,8 +38,9 @@ export function installRunMenu(game:Phaser.Game,getActions:()=>RunMenuActions|un
   const session=gameSession(),audio=AudioEngine.shared,fullscreen=installFullscreen();
   const host=document.createElement('div'),toggle=document.createElement('button'),fullButton=document.createElement('button'),modal=document.createElement('dialog'),panel=document.createElement('section'),status=document.createElement('p');
   const fullscreenInfo=document.createElement('p'),fullscreenHint=document.createElement('div'),hintCopy=document.createElement('span'),hintClose=document.createElement('button');
-  let previousFocus:HTMLElement|undefined,attentionKey='';
+  let previousFocus:HTMLElement|undefined,attentionKey='',hintSeen=false;
   const stored=(key:string):unknown=>{try{return JSON.parse(localStorage.getItem(key)??'null');}catch{return null;}};
+  hintSeen=!!stored('dachoupai-fullscreen-hint-v1');
   const audioPreferences=readAudioPreferences(stored('dachoupai-audio-v2'),stored('dachoupai-audio-v1'),stored('dachoupai-presentation-v1'));
   audio.setVolume('master',1);audio.muted=false;audio.musicMuted=false;
   audio.setVolume('music',audioPreferences.music);audio.setVolume('sfx',audioPreferences.sfx);audio.setVolume('ui',audioPreferences.sfx);
@@ -61,7 +62,7 @@ export function installRunMenu(game:Phaser.Game,getActions:()=>RunMenuActions|un
     refreshPlayback();
     // Only the menu anchor stays on the play surface, including browser fullscreen.
     modal.prepend(toggle);toggle.textContent='关闭';toggle.setAttribute('aria-expanded','true');toggle.setAttribute('aria-label','关闭菜单');
-    if(!stored('dachoupai-fullscreen-hint-v1')){fullscreenHint.hidden=false;try{localStorage.setItem('dachoupai-fullscreen-hint-v1','true');}catch{}}
+    if(!hintSeen){hintSeen=true;fullscreenHint.hidden=false;try{localStorage.setItem('dachoupai-fullscreen-hint-v1','true');}catch{}}
     if(typeof modal.showModal==='function')modal.showModal();else modal.setAttribute('open','');
     const action=[retry,reload,takeover,resume].find(button=>!button.hidden&&!button.disabled);(action??toggle).focus({preventScroll:true});
   };
