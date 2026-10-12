@@ -1,4 +1,39 @@
-# 持有大丑牌拖拽反馈：有限受控验收
+# 当前最小补强候选：16px拖起、固定牌桌持牌
+
+用户最新已认可手机长按调序与轻震，只要稍微补强。本节为当前范围；下方32px／1.12旧候选、原FAIL、未验边界均按其SHA保留，不覆盖旧图，也不把旧CI签新候选。PR138保持draft，父唯一Ready/merge，本代理不合并/发布，不绕过此前合并拒绝。
+
+产品冻结 `65befbb49b947cc8c1c57edecefcfbc4866ae5f2`，src tree `df24118a1df81c4080133fa001289dc79cd69456`；随后c03fad71只增加同harness的旧main边界观察模式，产品src相同。
+
+- 抓起32→16 CSS px，1.12→1.06倍；纸影两层alpha .10／.20。跟手、目标槽号、110ms让位、150ms落位与实际位置采样保持。355ms长按、10px阈值、move插入、局部touch-action:none与保存协议沿原PR138字节；OwnedJokerInput／ShopScene／PointerIntent／JokerReorder未继续改动。
+- 移除GameScene已持有大丑牌baseY−1.2、yoyo/repeat:-1的无限上下浮动及其启停代码。悬停单次反馈、source聚焦仍保留；F09／InventoryFeedback／HeroActionShortcut／音路／style／index／领域／存档字节与1fcec442相同。没有新教程，也没有扩大库存或英雄提示。
+- 源码没有显式手机震动调用；用户感到的轻震来源没有物理设备证据。本候选未新增振动API，**不声称验证或保证物理震动**。
+
+## 当前准确截图与状态
+
+small-lift/report在65befbb4洁净产品/tests/harness运行：320×740、390×844、412×915、PC1366×900、DPR2低动态390×844五组PASS。保1→5／5→1／中间插入、静止长按／二维跟手／目标／落位、取消／双指／锁定／隐藏信号／尺寸、真实存储延迟首保存帧／quota失败／菜单同候选重试／冷恢复。完整state、journal、IDB仍逐笔等于原applyCommand，每笔只一次命令；全部记录在small-lift gzip，不用截图对象存在代签。
+
+| viewport | 抓起16px | 跟手／目标 | 保存等待 | 落位 | 牌桌静止3秒后 |
+|---|---|---|---|---|---|
+| 320×740 | [抓起](small-lift/320x740-slow-held.png) | [中途](small-lift/320x740-slow-mid.png) | [等待](small-lift/320x740-saving-delay.png) | [落位](small-lift/320x740-slow-dropped.png) | [静止](small-lift/320x740-table-idle-end.png) |
+| 390×844 | [抓起](small-lift/390x844-slow-held.png) | [中途](small-lift/390x844-slow-mid.png) | [等待](small-lift/390x844-saving-delay.png) | [落位](small-lift/390x844-slow-dropped.png) | [静止](small-lift/390x844-table-idle-end.png) |
+
+本代理actual view上述320/390抓起、途中和牌桌整屏：抬起较原候选轻，牌影/目标槽仍可辨。原320满槽货架价格挤占仍可见，属于既有货架范围，本次不扩改。
+
+五profile牌桌已持五张3秒逐poststep采样，全部实例yRange=0，未写状态；随后原生长按1→4仍按原插入语义正确保存、完整state/journal/IDB对原命令。F09样板未加入这条fixture，不借这条签单卡艺术；该模块字节保持，定向测试覆盖保留原条件。
+
+## 轨道外滚动与缩放边界
+
+旧main8f036827的独立archive与当前候选同harness/同mobile设置对照，[结果](outside-policy-comparison.json)：四touch profile轨道外菜单原生滚动均0→145px，前后完整保存不变；menu touch-action:auto，原全局body overflow:hidden/canvas touch-action:none均相同。viewport meta未加user-scalable或maximum-scale限制。局部none仅持牌固定矩形，没有新增全局拦截。
+
+CDP原生pinch旧/新均scale1→1，未证明pinch成功，**不签全页缩放或物理手机缩放**。已有canvas全局none及body无文档滚动范围不归因于本局部修复，也没有扩大本批去修改它们。证据严格限定为轨道外DOM滚动可用和缩放策略未新增限制。
+
+原边界观察器FAIL保在failures/outside-observer-control：首次手势位置触到菜单音量滑块，sfx偏好.8→.38，保存state/journal/IDB不变；改手势落在面板空白边距/顶部，不改产品。另首次diff-check有两处移除旧调用后空白行尾空格，已清理，type/test通过不被该格式检查FAIL替代。
+
+当前typecheck、7files／112定向通过；最终HEAD完整CI按PR回执另核，不借1fcec442成功回执。物理设备／触感／整屏美学／自然试玩仍未签，正常试玩归dot。
+
+---
+
+# 原32px候选与验收历史
 
 **最终已正常吸收父批准的main `8f036827dde4ca5b88ba89fceb0fbdf0f32b2970`，PR137已合；本批合并提交 `8d8260315c780d9cf5f5703ecbdd8257d51430ce`。先前draft依赖和拒绝仅历史，不再作为当前阻塞。本代理未合main或发布，仍由父唯一Ready/merge。**
 
