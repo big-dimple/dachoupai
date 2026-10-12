@@ -55,7 +55,8 @@ describe('normal new-game policy and exact retry creation',()=>{
   expect(characterForNewRun('xiemu').passiveDescription).toContain('燃10／20／30金');
   expect(getCharacter('xiemu').passiveDescription).toContain('最后可用出牌');
   expect(characterForNewRun('laohuan').passiveDescription).toContain('多看最多2张');
-  expect(characterForNewRun('touye').passiveDescription).toContain('目标当前整手已能凑出就不能押');
+  expect(characterForNewRun('touye').passiveDescription).toContain('已成型也可押');
+  expect(characterForNewRun('touye').passiveDescription).toContain('本次实际新补ID至少一张进入有效计分核心');
   expect(getCharacter('touye').passiveDescription).toContain('50%');
   expect(getCharacter('laohuan').passiveDescription).toContain('额外 +120');
   expect(getCharacter('amo').buildTip).toContain('单张');

@@ -44,3 +44,11 @@ GameScene事先报告并仅改确认页资格/风险/实际短补数，及新身
 原作者FAIL分列：新测试首轮30PASS/3FAIL为Q01种子、B02错误字段、preview不存在的字段；随后夹具类型/ES2022 API与旧当前文案期待修正。B08旧夹具seq1手改创建态，改成真正LeaveShop后再设置受控Boss。原生观察器先误关自动保存菜单、点已用shortcut查详情、点“开始”冷继续、用点击顺序而非真实handOrder作命令oracle，四份原报告/图完整保留；仅修观察器，不据FAIL改规则/保存。原actor/source事件数值在上述观察器修正期间保持。
 
 [保护清单](manifest.json)记录15份必要产品文件与每份源哈希，687个其余源码/公开资源及唯一计划逐字节同输入main；旧常量声明逐字节保留，C2资历文件/六牌定义/经济/目标/Boss/Mode/受控动作以外英雄算法保持。无新美术音视频；没有写独占UI文件、没有新大规模模拟或自然试玩。生产build/精确新HEAD远端CI与父独审各自为门，draft候选不自行合并/发布，资格only软件证据不代签倍率后置、均衡或更有趣。
+
+## PR130 发布准备接续与远端原FAIL
+
+产品冻结提交为 `cc252868a2f607b620587d61868384229d81e316`；[draft PR130](https://github.com/big-dimple/dachoupai/pull/130)建立后普通合入 main `be2ff12f0d159f48a11c8bec8089f4dc1d2bd3d7`，得到 `b477bef8e852632061e0f46c298c516a04c0071f`。该合入相对冻结提交仅改变 DELIVERY_PLAN，计划全文等于 main；15个产品文件及 src/tests/harness/public/scripts 各树同冻结提交，其余686个保护文件同原始清单。原manifest是冻结提交证据，不把其“计划同497基线”冒记为合入后的事实。父已独立领域审查产品PASS，无P1/P2；最终集成与部署仍由父负责。
+
+`b477bef` 的[远端CI38227699013](https://github.com/big-dimple/dachoupai/actions/runs/38227699013)领域任务实际3231通过/4失败，原[完整日志](remote-ci-domain-fail-b477bef.log)保留。四败来自两份此前未纳入180项的入口测试旧断言：amo-launch仍要求骰爷“已成型不能押”，route-starter三路线仍要求骰爷新局旧C2哈希。这是作者漏更新测试，不能把该HEAD签成绿CI。本次仅修这两份测试的期望：新骰爷描述须包括已成型可押与真实新补ID入有效核心；骰爷路线使用独立新哈希，其他五英雄仍原C2。首店数量、价格、对应牌、实际保存、RNG及旧身份断言保持。修复后的两份入口测试加新/旧骰爷套件共73项实际通过，日志见[定向结果](ci-fixture-check.log)；不叠加为原180项的新总数。
+
+修测试期间所有产品源码、公用资源与原生harness均同 `cc252868`，无需重做实现或重复原生交易。最终HEAD的远端CI另按SHA核验，旧FAIL不会改写为PASS；这批不重跑自然18局、不自行合main或部署。
