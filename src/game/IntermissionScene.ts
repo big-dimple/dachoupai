@@ -1,14 +1,11 @@
 import {heroStageContinuity} from './HeroStageContinuity';
-import {mountResultEntrance} from './ResultEntrance';
-import {resultStageFacts,resultStagePlan} from './ResultStage';
-import {resultStagePaper,resultStageSources,loadResultSourceArt} from './ResultStageArt';
+import {drawSettlement,mountSettlementMotion,settlementFacts} from './SettlementPresentation';
+import {loadResultSourceArt} from './ResultStageArt';
 import {jokerArtPreviewUrl} from './jokerArt';
 import {paperSceneStart} from './PaperFlow';
 import {savedTouyeWager} from './TouyeWagerCopy';
 import {savedBossImpact} from './SavedBossImpact';
 import {stageIdentity} from './StageIdentity';
-import {buildGrowthProgress} from './BuildGrowthProgress';
-import {showBuildGrowth} from './BuildGrowthView';
 import {victorySourceFact} from './JokerKeyHighlight';
 import {jokerArtKey} from './jokerArt';
 import {showBuildJourney} from './BuildJourneyDialog';
@@ -30,7 +27,7 @@ import {r2BossText} from '../domain/r2Chapter';
 import {HAND_LABELS} from '../content/handLabels';
 import {rankLabel,SUIT_SYMBOL} from '../cards/types';
 import type {ScoreTrace} from '../domain/scoreR2';
-import {heatText,fractionText,readableFractionText} from './scoreText';
+import {heatText,fractionText} from './scoreText';
 import {r2ScoreOperationText} from './r2Help';
 import {runController,dispatchRun,startRun} from './runAdapter';
 import {gameSession} from './session';
@@ -38,14 +35,14 @@ import {getCharacter} from './characters';
 import {stageOutcome} from './stageOutcome';
 import {failureSummary} from './FailureSummary';
 import {finaleKeepsake} from './FinaleKeepsake';
-import {selectionPortraitKey} from './portraits';
+import {selectionPortraitKey,selectionPortraitURL} from './portraits';
 import {EffectQueue} from '../core/EffectQueue';
 import {REWARD_COIN,RewardCoinCue,loadRewardCoin,addRewardCoin,animateRewardCoin} from './RewardCoin';
 import {SceneView} from './SceneView';
 import {DetailDialog} from './DetailDialog';
 import {SKIP_ITEM_LABELS} from './ConsumableDialog';
 import type {Box} from './layout';
-import {PAPER_CSS,PAPER_THEME as T,SCORE_FONT} from './theme';
+import {PAPER_CSS,PAPER_THEME as T} from './theme';
 
 export interface IntermissionResult {cleared:boolean;stageIndex:number;stageHeat:string;handsLeft:number;goldEarned:number;failureCue?:FailureCue;rewardClearId?:string}
 function resultLayout(width:number,height:number,top:number,bottom:number,nextBoss=false){
@@ -79,12 +76,13 @@ export class IntermissionScene extends Phaser.Scene {
   private get ready():boolean {const session=gameSession();return !this.busy&&runController(this)?.status==='idle'&&session.lease.writable&&!session.pendingRun&&!session.working;}
   private stopSourceArt():void {this.sourceArtRequest?.abort();this.sourceArtRequest=undefined;}
   private requestSourceArt():void {
-    const controller=runController(this),run=controller?.state;if(!controller||!run?.stage||!this.result.cleared||run.stage.skipResult)return;
-    const source=resultStageFacts(run,this.result.cleared,!!run.stage.skipResult).source,key=source&&jokerArtKey(source.definitionId),url=source&&jokerArtPreviewUrl(source.definitionId);
-    if(!key||!url||this.textures.exists(key))return;
+    const controller=runController(this),run=controller?.state;if(!controller||!run?.stage||run.stage.skipResult)return;
+    const source=settlementFacts(run,this.result.cleared,!!run.stage.skipResult).card;
+    const candidates=[{key:selectionPortraitKey(run.characterId),url:selectionPortraitURL(run.characterId)},...(source?[{key:jokerArtKey(source.id),url:jokerArtPreviewUrl(source.id)}]:[])].filter((item):item is {key:string;url:string}=>!!item.key&&!!item.url&&!this.textures.exists(item.key));
+    if(!candidates.length)return;
     this.stopSourceArt();const request=this.sourceArtRequest=new AbortController(),lifecycle=this.lifecycle;
     const current=()=>this.sourceArtRequest===request&&!request.signal.aborted&&lifecycle===this.lifecycle&&this.sys.settings.active&&!this.busy&&runController(this)===controller&&controller.state===run;
-    void loadResultSourceArt(this,key,url,request.signal,current).then(loaded=>{
+    for(const item of candidates)void loadResultSourceArt(this,item.key,item.url,request.signal,current).then(loaded=>{
       if(loaded&&current())this.paintSourceArt?.();
     });
   }
@@ -121,9 +119,10 @@ export class IntermissionScene extends Phaser.Scene {
     this.stopCelebration();v.clear();this.paintSourceArt=undefined;this.sourceArtLayer=undefined;v.paperBackground();
     const identity=stageIdentity(stage.index,run.stage!.boss,run.tourMode,run.difficulty)!;
     v.text(p.x,p.top,(run.tourMode==='endless'?'无尽 · ':'')+stage.name+' · '+character.name,14,identity.isBoss?PAPER_CSS.red:PAPER_CSS.jade,p.w-116).setName('stage-identity/result');
-    const title=capped?'巡演，暂歇于此':skipped?'换一场，再登台':won?(run.mode==='tutorial'?'教学巡演，谢幕！':run.mode==='challenge'?'挑战完成，谢幕！':'八章好戏，满堂喝彩！'):this.result.cleared?(identity.isBoss?'压轴过关 · '+identity.title:outcome.title):'此番落幕，再登台';
+    const resultTier=settlementFacts(run,this.result.cleared,!!skipped).tier;
+    const title=capped?'巡演，暂歇于此':skipped?'换一场，再登台':won?(run.mode==='tutorial'?'教学巡演，谢幕！':run.mode==='challenge'?'挑战完成，谢幕！':resultTier===3?'亿分落定，满堂喝彩！':resultTier===2?'千万喝彩，八章谢幕！':'八章好戏，满堂喝彩！'):this.result.cleared?(identity.isBoss?'压轴过关 · '+identity.title:outcome.title):'此番落幕，再登台';
     v.text(p.x,p.top+(p.short?23:p.portrait?52:34),title,p.short||p.portrait&&identity.isBoss?22:p.portrait?26:34,identity.isBoss&&this.result.cleared?PAPER_CSS.red:PAPER_CSS.ink,p.w).setName('result/title').setFontFamily('Georgia, "Noto Serif SC", SimSun, serif').setFontStyle('bold');
-    this.drawResultHero(p.score,outcome,!!skipped,lost,animateIn);
+    this.drawResultHero(p.score,!!skipped,lost,animateIn);
     const trace=run.lastTrace;
     const n=p.next;
     let heading='下一步',body='';
@@ -150,7 +149,8 @@ export class IntermissionScene extends Phaser.Scene {
     if(!p.short&&!skipped&&this.result.cleared&&xiemuInterest)heading+=' · 额外关末息+'+xiemuInterest.value.n+'金';
     if(p.short&&trace&&!skipped&&this.result.cleared&&(!nextStage||nextStage.index%3!==2)){const assist=savedAssistSummary(trace);if(assist)body=assist+'\n'+body;const fact=victorySourceFact(run,trace);if(fact)body=fact.title+' · '+fact.effect+'\n'+body;}
     {
-      v.material(n,T.jade,T.jade,4).setName('result/next-panel');
+      v.material(n,T.paper,T.paper,4).setName('result/next-panel');
+      v.add(this.add.graphics().lineStyle(1,T.divider,.75).beginPath().moveTo(n.x,n.y).lineTo(n.x+n.width,n.y).strokePath());
       if(nextStage&&nextStage.index%3===2)v.add(this.add.graphics().lineStyle(2,T.red,.8).beginPath().moveTo(n.x+2,n.y+5).lineTo(n.x+2,n.y+n.height-5).strokePath()).setName('stage-identity/next-seal');
       const nextHeading=v.text(n.x+14,n.y+10,heading,18,'#26313A',n.width-28).setFontStyle('bold');
       const bodyY=nextHeading.y+nextHeading.height+8;
@@ -187,65 +187,16 @@ export class IntermissionScene extends Phaser.Scene {
     this.celebrationTimer?.remove();this.celebrationTimer=undefined;
     this.tweens.killAll();
   }
-  private drawResultHero(b:Box,outcome:ReturnType<typeof stageOutcome>,skipped:boolean,lost:boolean,animate:boolean):void {
+  private drawResultHero(b:Box,skipped:boolean,lost:boolean,animate:boolean):void {
     const v=this.view,run=runController(this)!.state;
-    resultStagePaper(this,v,b,lost);
-    if(animate&&!skipped)this.outcomeMotion=mountResultEntrance(this,v.root,b,!lost);
-    if(lost){
-      const summary=failureSummary(run),plan=resultStagePlan(b,v.layout.height<500,true),source=plan.source,main=plan.score,center=main.x+main.width/2;
-      const key=selectionPortraitKey(run.characterId),portraitHeight=Math.min(156,Math.max(0,source.height-70)),portraitWidth=portraitHeight*.67;
-      if(portraitHeight>=40&&this.textures.exists(key)){
-        const image=this.add.image(source.x+source.width/2,source.y+portraitHeight/2,key).setName('result-art/hero');image.setScale(Math.min(portraitWidth/image.width,portraitHeight/image.height));v.add(image);
-      }
-      v.text(source.x,source.y+portraitHeight+8,getCharacter(run.characterId).name,16,PAPER_CSS.ink,source.width).setFontStyle('bold').setName('result/source-continuity');
-      v.text(source.x,source.y+portraitHeight+34,'本局构筑已留影',14,PAPER_CSS.jade,source.width);
-      v.text(center,main.y,summary.reason,16,PAPER_CSS.ink,main.width).setOrigin(.5,0).setName('result/failure-reason');
-      const last=v.text(center,main.y+28,summary.lastHand,14,PAPER_CSS.jade,main.width).setOrigin(.5,0).setName('result/last-hand');
-      const gap=(BigInt(run.stage!.targetHeat)-BigInt(this.result.stageHeat)).toString();
-      const scoreY=last.y+last.height+8,compact=main.width<220||v.layout.height<500;
-      v.text(center,scoreY,heatText(this.result.stageHeat),compact?32:54,PAPER_CSS.ink,main.width).setOrigin(.5,0).setFontFamily(SCORE_FONT).setFontStyle('bold').setName('result/score');
-      v.text(center,scoreY+(compact?44:68),`目标 ${heatText(run.stage!.targetHeat)}\n差 ${heatText(gap)} 热度`,14,PAPER_CSS.jade,main.width).setOrigin(.5,0).setName('result/gap');
-      if(animate)this.celebrationTimer=this.time.delayedCall(1000,()=>{if(this.scene.isActive()){this.firstRender=false;this.render();}});
-      return;
-    }
-    const facts=resultStageFacts(run,this.result.cleared,skipped),plan=resultStagePlan(b,v.layout.height<500),main=plan.score,center=main.x+main.width/2,short=v.layout.height<500;
-    const small=main.height<200;
-    const paint=()=>{
-      this.sourceArtLayer?.destroy();const start=v.root.length;
-      const sourceView=resultStageSources(this,v,plan.source,run.phase==='run-won'?{...facts,character:run.characterId}:facts,short),text=sourceView.text;
-      const source=facts.source,growth=facts.growth;
-      let y=text.y;
-      if(source){const name=v.text(text.x,y,growth?.name??source.title,14,PAPER_CSS.jade,text.width).setFontStyle('bold').setName('result/source-continuity');y+=name.height+6;}
-      if(growth){
-        const prefix=growth.metric.includes('×')?'×':'+',read=v.text(text.x,y,'本手读取 '+prefix+growth.before,14,PAPER_CSS.jade,text.width).setName('result/growth-read');y+=read.height+4;
-        const saved=v.text(text.x,y,prefix+growth.before+' → '+prefix+growth.after,text.width<150?22:24,PAPER_CSS.ink,text.width).setFontStyle('bold').setName('result/growth-saved');y+=saved.height+4;
-        v.text(text.x,y,run.phase==='run-won'?'保存成长 · 本局留影':'保存成长 · 下手生效',14,PAPER_CSS.jade,text.width).setName('result/growth-next');
-      }else if(source){v.text(text.x,y,source.effect,14,PAPER_CSS.jade,text.width).setStyle({maxLines:short?3:4}).setName('result/source-effect');}
-      else if(run.phase==='run-won'){
-        const name=v.text(text.x,y,getCharacter(run.characterId).name+' · 本局角色',14,PAPER_CSS.jade,text.width).setFontStyle('bold');y+=name.height+8;
-        const live=run.deckInstances.filter(c=>!run.destroyedIds.includes(c.id));
-        v.text(text.x,y,`最终牌组 ${live.length} 张\n增强 ${live.filter(c=>c.enhancement!==undefined).length} 张 · 余额 ${run.gold} 金`,14,PAPER_CSS.jade,text.width).setStyle({maxLines:short?2:4}).setName('result/final-holdings');
-      }
-      this.sourceArtLayer=this.add.container(0,0,v.root.list.slice(start)).setName('result-art/source-layer');v.add(this.sourceArtLayer);
-      return sourceView;
-    };
-    this.paintSourceArt=()=>{paint();};const sourceView=paint();
-    const hand=facts.trace?HAND_LABELS[facts.trace.handType]:'本场热度';
-    v.text(center,main.y,hand,16,PAPER_CSS.jade,main.width-16).setOrigin(.5,0).setName('result/hand');
-    const formula=facts.trace?v.text(center,main.y+24,`${readableFractionText(facts.trace.accumulator.H)} 热度 × ${readableFractionText(facts.trace.accumulator.M)}`,14,PAPER_CSS.jade,main.width-8).setOrigin(.5,0).setName('result/formula'):undefined;
-    const scoreY=formula?formula.y+formula.height+6:main.y+26,scoreSize=short?38:main.width<220?32:small?48:68;
-    const score=v.text(center,scoreY,(facts.trace?'+':'')+heatText(facts.trace?.finalScore??this.result.stageHeat),scoreSize,facts.intensity>1?PAPER_CSS.red:PAPER_CSS.ink,main.width-8).setOrigin(.5,0).setFontFamily(SCORE_FONT).setFontStyle('bold').setName('result/score');
-    for(let font=scoreSize;score.width>main.width-8&&font>24;)score.setFontSize(--font);
-    const totalY=scoreY+score.height+8;
-    v.text(center,totalY,skipped?'本场跳过':`全场 ${heatText(this.result.stageHeat)} / ${heatText(run.stage!.targetHeat)}`,14,PAPER_CSS.jade,main.width).setOrigin(.5,0).setName('result/gap');
-    const assist=facts.trace&&savedAssistSummary(facts.trace);
-    const compact=main.width<220,rewardHeight=short?40:compact?(assist?78:58):assist?54:48;
-    const rewardY=short?main.y+main.height-42:compact?main.y+main.height-rewardHeight-8:small?main.y+136:main.y+main.height-70;
+    const presentation=drawSettlement(this,v,b,run,this.result.cleared,skipped,this.result.stageHeat);
+    this.paintSourceArt=()=>{presentation.paint();};
+    if(animate&&!skipped)this.outcomeMotion=mountSettlementMotion(this,v.root,b,presentation.score,presentation.hero,presentation.facts.tier,lost);
     if(this.result.cleared&&!skipped){
-      const band={x:main.x,y:rewardY,width:main.width,height:rewardHeight};v.material(band,T.paperLight,T.paperLight,6);
-      const reward=v.text(center,band.y+10,(compact?'奖励  +':'过关奖励  +')+this.result.goldEarned+' 金',short||compact?16:20,PAPER_CSS.ink,main.width-12).setOrigin(.5,0).setFontStyle('bold').setName('result/reward');
-      if(assist&&!short)v.text(center,band.y+34,assist,14,PAPER_CSS.jade,main.width-12).setOrigin(.5,0).setName('result/assist-source');
-      const cue=this.firstRender&&this.rewardCue.claim(run,this.result),size=40,diameter=size*.7,gap=8;
+      const band=presentation.reward,center=band.x+band.width/2;
+      v.add(this.add.graphics().lineStyle(1,T.divider,.7).beginPath().moveTo(band.x,band.y-5).lineTo(band.x+band.width,band.y-5).strokePath());
+      const reward=v.text(center,band.y+7,'奖励  +'+this.result.goldEarned+' 金',band.width<220?16:20,PAPER_CSS.ink).setOrigin(.5,0).setFontStyle('bold').setName('result/reward');
+      const cue=this.firstRender&&this.rewardCue.claim(run,this.result),size=32,diameter=size*.7,gap=6;
       const x=center-(reward.width+diameter+gap)/2+diameter/2,coinY=reward.y+reward.height/2-size*.04;
       const show=()=>{reward.x=center+(diameter+gap)/2;return addRewardCoin(this,v.root,x,coinY,size,run.stage!.clearId!);};
       if(this.result.goldEarned>0&&run.stage?.clearId){
@@ -253,11 +204,6 @@ export class IntermissionScene extends Phaser.Scene {
         else if(cue)this.rewardEffects.enqueue(async context=>{if(!await loadRewardCoin(this,context.signal)||context.signal.aborted)return;const coin=show();await animateRewardCoin(this,coin,context.signal,!animate);});
       }
       if(cue)void this.rewardEffects.drain().catch(()=>{});
-    }
-    if(animate&&!skipped&&this.result.cleared){
-      // Short settling accents never own a command callback or delay the primary action.
-      const accented=[score,...sourceView.art];for(const item of accented){const sx=item.scaleX,sy=item.scaleY;item.setScale(sx*.98,sy*.98);this.tweens.add({targets:item,scaleX:sx,scaleY:sy,duration:facts.intensity>1?260:180,ease:'Cubic.easeOut'});}
-      this.celebrationTimer=this.time.delayedCall(1000,()=>{if(this.scene.isActive()){this.firstRender=false;this.render();}});
     }
   }
   private inspectFinale():void {

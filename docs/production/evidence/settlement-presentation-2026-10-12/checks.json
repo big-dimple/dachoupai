@@ -1,0 +1,49 @@
+{
+  "baseline": "be2ff12f0d159f48a11c8bec8089f4dc1d2bd3d7",
+  "product": "2e214e25ddbedcdd450e9d6c769978051c41610a",
+  "mergedMain": "dc985f6a4f418e5751648f1d57f466163fbc2673",
+  "integration": "8c04902eea4601e1f3fb9e856f3a28d24a67702f",
+  "frozenProductFilesIdenticalAfterMerge": true,
+  "protectedTreesIdenticalToMergedMain": true,
+  "controlledStatesIdenticalAfterMerge": true,
+  "beforeCases": 21,
+  "frozenProductCases": 37,
+  "integrationReadonlyCases": 6,
+  "affectedTests": {
+    "files": 7,
+    "tests": 99,
+    "status": "PASS"
+  },
+  "typecheck": "PASS",
+  "build": "PASS",
+  "actualPixelReview": [
+    "ordinary-390",
+    "chain-1366",
+    "billion-1366",
+    "billion-390",
+    "long-390",
+    "boss-loss-1366",
+    "boundary-narrow",
+    "boundary-short",
+    "boundary-missing-art",
+    "native-billion-ending"
+  ],
+  "humanAestheticAcceptance": false,
+  "hardwareAndHearingAcceptance": false,
+  "natural310793589Trace": "NOT_AVAILABLE_IN_WORKSPACE",
+  "ci": "Read exact final draft HEAD checks; no old run is used as a gate.",
+  "productFiles": {
+    "src/game/IntermissionScene.ts": "0b9fb66b2a8ca1b3f9472d19f1992b192d76438d",
+    "src/game/SettlementPresentation.ts": "b4e528eaf31d2d10f8a403dd00865208deba1e86",
+    "harness/fixtures/settlement.ts": "3d4b19d5c140a922882619c4b7f6122a4c16b770",
+    "harness/settlement-presentation.mjs": "0f7f872db4f1055d4b0d3e635df2265be00a167e",
+    "tests/settlement-presentation.test.ts": "6e0b5413f23edfb14cfa6d731661ae7f4675a722"
+  },
+  "finalDocsMainAbsorption": {
+    "main": "0c71c5dabbc754516848d1a0acc931464db730a8",
+    "integration": "10a74918523f4ef8ecea6834145ba3e812311069",
+    "onlyMainDocsChanged": true,
+    "productFilesAndProtectedTreesUnchanged": true,
+    "planCheck": "PASS: 32 work packages"
+  }
+}
