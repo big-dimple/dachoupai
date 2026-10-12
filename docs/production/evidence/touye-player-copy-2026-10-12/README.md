@@ -8,7 +8,9 @@
 
 [十个受控只读显示范围](views-final/report.json)复用PR130已保存的真实原生状态与命令日志，仅导入、查看、选牌预览和取消，没有新押注/出牌或自然试玩。两端各检查操作步骤、目标确认及展开风险、已换牌待出手及展开细则、赢/输短结果、旧C2成型目标禁押。各范围完整state/journal/IndexedDB查看前后相等。两端输赢短结果实际在屏内；确认、完整细则、菜单整段与PC结果图已实际查看。
 
-显示差分用源码等于输入main的另一工作树直接加载原函数。旧C2同一合法状态的角色/选择/技能步骤全部与旧函数相等；新身份只改可见文案与步骤标签，enabled/pending/used/choices/snapshotToken等非显示资格字段严格相等；其他五英雄角色文案完整相等。原当前身份 `quality-r2-touye-new-core-v1 / json-fnv-v1:413ecc65d3b9a2a1`、旧C2 `quality-r2-route-growth-v1 / json-fnv-v1:7414228d95059959` 不变。[保护清单](manifest.json)包含除四个显示文件之外的源码、公开资源、唯一计划、工作流和包文件，全逐字节等于输入main；领域、应用保存、内容定义、数值、时序、Intermission、Shop、MakeCardsDialog和样式均不改。
+显示差分用源码等于输入main的另一工作树直接加载原函数。旧C2同一合法状态的角色/选择/技能步骤全部与旧函数相等；新身份只改可见文案与步骤标签，enabled/pending/used/choices/snapshotToken等非显示资格字段严格相等；其他五英雄角色文案完整相等。原当前身份 `quality-r2-touye-new-core-v1 / json-fnv-v1:413ecc65d3b9a2a1`、旧C2 `quality-r2-route-growth-v1 / json-fnv-v1:7414228d95059959` 不变。[保护清单](manifest.json)包含除四个显示文件之外的源码、公开资源、唯一计划、工作流和包文件，702项全逐字节等于吸收后的main `0c71c5dabbc754516848d1a0acc931464db730a8`；领域、应用保存、内容定义、数值、时序、Intermission、Shop、MakeCardsDialog和样式均不改。
+
+显示实现冻结为 `8e4accce7e312b046cdcc81acd08213324ea6cb3`。父随后合PR131，仅更新统一计划和18局分版本复盘，本包正常合入 `0c71c5dabbc754516848d1a0acc931464db730a8`，合入提交为 `dde237d5e5b78cf812f99f46ea7a9c2fceff1ab0`，相对8e只增加这两份文档，src/tests/harness/public/scripts各树未变。清单基线相应换成新main，原始输入dc与源冻结8e另保留，不借文档合入声称已核新产品或已上线。未扩改音频或美术资源。
 
 [75项定向检查](tests.log)、[类型检查](typecheck.log)、[build](build.log)通过，不把远端全套和定向项叠加为新总数。保留首轮[菜单观察器FAIL](observer-fail/report.json)：漏点旧局更换时真正的确认开始新局，后补真实DOM确认；保留[基线SSR依赖FAIL](baseline-dependency-fail.log)：旧工作树未挂Vite依赖，后让纯SSR跳过配置文件加载。这两次不是产品失败，没有据此改规则或造PASS。原缓存缺陷的两端REPRODUCED记录与最终PASS分列，不覆盖原证据。
 
