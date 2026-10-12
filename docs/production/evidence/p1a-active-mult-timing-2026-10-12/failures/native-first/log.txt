@@ -1,0 +1,18 @@
+{"status":"FAIL","rows":[{"width":1366,"kind":"xiemu","status":"RUNNING","caption":"谢幕人 ×4 27→108"}],"error":"locator.click: Timeout 25000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: '重试保存', exact: true })\u001b[22m\n\n    at dom (/workspace/dachoupai/harness/p1a-active-mult-native.mjs:14:32)\n    at /workspace/dachoupai/harness/p1a-active-mult-native.mjs:48:51"}
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+locator.click: Timeout 25000ms exceeded.
+Call log:
+[2m  - waiting for getByRole('button', { name: '重试保存', exact: true })[22m
+
+    at dom (/workspace/dachoupai/harness/p1a-active-mult-native.mjs:14:32)
+    at /workspace/dachoupai/harness/p1a-active-mult-native.mjs:48:51 {
+  log: [
+    "  - waiting for getByRole('button', { name: '重试保存', exact: true })"
+  ],
+  name: 'TimeoutError'
+}
+
+Node.js v24.19.0

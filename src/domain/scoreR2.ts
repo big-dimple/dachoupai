@@ -37,6 +37,8 @@ export const R2_BASE_SCORES = R2_PUBLISHED_CONTENT.snapshot.hands as unknown as 
 export interface ScoreInput {
   /** Required for the exact C2 content profile; never inferred from Joker ownership. */
   routeGrowth?:R2RouteProgress;
+  /** Only the new saved identity opts into moving explicit active multipliers. */
+  activeMultTiming?:'after-route-growth';
   erxiangHandoff?:ErxiangHandoffIntent;
   touyeWager?:{commit:TouyeCommit|null;newCore?:true};
   azaoCharge?:AzaoChargeIntent;
@@ -141,6 +143,7 @@ function resolveScore(input: PublicScoreInput, policy: ResolvePolicy): ScoreTrac
   if(challengeDisabledJokerId!==null&&(typeof challengeDisabledJokerId!=='string'||!input.definitions.some(definition=>definition.id===challengeDisabledJokerId)))throw new Error('invalid-score-challenge-ban');
   for (const [type, level] of Object.entries(input.handLevels)) if (!R2_HAND_TYPES.includes(type as R2HandType) || !Number.isInteger(level) || level! < 1 || level! > SCORE_LIMITS.handLevel) throw new Error('invalid-hand-level');
   const routeProfile=hasR2RouteGrowthDefinitions(input.definitions);
+  if(input.activeMultTiming!==undefined&&(input.activeMultTiming!=='after-route-growth'||!routeProfile||!['touye','xiemu','azao','neutral'].includes(input.characterId)))throw Error('invalid-active-mult-timing');
   if(routeProfile?!validR2RouteProgress(input.routeGrowth):input.routeGrowth!==undefined)throw Error('invalid-route-growth-snapshot');
   const errors = validateR2Content(input.definitions,routeProfile?'route-growth-v1':'published');
   if (errors.length) throw new Error(`invalid-content: ${errors.join('; ')}`);
@@ -380,13 +383,19 @@ function resolveScore(input: PublicScoreInput, policy: ResolvePolicy): ScoreTrac
     else if (kind === 'add-multiplier') M = M.add(value);
     else M = M.multiply(value);
   }, condition,undefined,0,undefined,reasonKey?{reasonKey}:{});
+  const lateActive=input.activeMultTiming==='after-route-growth'&&!!(xiemuBurn?.cost||azaoCharge?.release||touyeWager?.commit);
+  let deferredCharacter:(()=>void)|undefined;
+  const activeChar=(value:Rational,reasonKey?:string)=>{
+    const apply=()=>char('multiply-multiplier',value,{kind:'always'},reasonKey);
+    if(lateActive)deferredCharacter=apply;else apply();
+  };
   if(boss?.definitionId!=='B08')switch (input.characterId) {
     case 'amo': if ((input.amoScoreTiming??'before-joker') === 'before-joker' && played.length === 1) char('multiply-multiplier', new Rational(3n), {kind:'played-count',equals:1}); break;
     case 'erxiang': if (!erxiangHandoff&&['pair','two-pair','three-kind'].includes(evaluated.type)) char('add-multiplier', new Rational(3n,2n), {kind:'hand-type-in',values:['pair','two-pair','three-kind']}); break;
     case 'laohuan': if (!input.laohuanTrick&&(['straight','flush','straight-flush'].includes(evaluated.type))) char('add-heat', new Rational(120n), {kind:'hand-type-in',values:['straight','flush','straight-flush']}); break;
-    case 'azao': if(azaoCharge){if(azaoCharge.multiplier)char('multiply-multiplier',azaoCharge.multiplier==='1.5'?new Rational(3n,2n):azaoCharge.multiplier==='2.5'?new Rational(5n,2n):new Rational(4n));}else if (input.previousHandType !== null && input.previousHandType !== evaluated.type) char('add-multiplier', new Rational(1n)); break;
-    case 'touye': if(touyeWager){if(touyeWager.multiplier)char('multiply-multiplier',touyeWager.multiplier==='2'?new Rational(2n):touyeWager.multiplier==='0.85'?new Rational(17n,20n):new Rational(23n,20n),{kind:'always'},'touye.'+touyeWager.outcome+(touyeWager.commit?'.'+touyeWager.commit.target:''));}else char('multiply-multiplier', input.wager ? (chance({n:1,d:2}) ? new Rational(2n) : new Rational(3n,4n)) : new Rational(23n,20n)); break;
-    case 'xiemu': if(xiemuBurn){if(xiemuBurn.multiplier)char('multiply-multiplier',new Rational(BigInt(xiemuBurn.multiplier)));}else if (input.handsBeforePlay === 1) char('multiply-multiplier', new Rational(2n)); break;
+    case 'azao': if(azaoCharge){if(azaoCharge.multiplier)activeChar(azaoCharge.multiplier==='1.5'?new Rational(3n,2n):azaoCharge.multiplier==='2.5'?new Rational(5n,2n):new Rational(4n));}else if (input.previousHandType !== null && input.previousHandType !== evaluated.type) char('add-multiplier', new Rational(1n)); break;
+    case 'touye': if(touyeWager){if(touyeWager.multiplier)activeChar(touyeWager.multiplier==='2'?new Rational(2n):touyeWager.multiplier==='0.85'?new Rational(17n,20n):new Rational(23n,20n),'touye.'+touyeWager.outcome+(touyeWager.commit?'.'+touyeWager.commit.target:''));}else char('multiply-multiplier', input.wager ? (chance({n:1,d:2}) ? new Rational(2n) : new Rational(3n,4n)) : new Rational(23n,20n)); break;
+    case 'xiemu': if(xiemuBurn){if(xiemuBurn.multiplier)activeChar(new Rational(BigInt(xiemuBurn.multiplier)));}else if (input.handsBeforePlay === 1) char('multiply-multiplier', new Rational(2n)); break;
   }
   hook('jokerScore');
   const routeGrowth=routeProfile?r2RouteGrowthTrace(input.routeGrowth!,evaluated.type):undefined;
@@ -396,6 +405,7 @@ function resolveScore(input: PublicScoreInput, policy: ResolvePolicy): ScoreTrac
   }
   if(boss?.definitionId!=='B08'&&input.characterId==='amo'&&input.amoScoreTiming==='after-joker'&&played.length===1)char('multiply-multiplier',new Rational(3n),{kind:'played-count',equals:1});
   if(assist){const value=new Rational(BigInt(assist.assistMultiplier));emit('characterScore',character,'multiply-multiplier',value,()=>{M=M.multiply(value);},{kind:'hand-type-in',values:[...AMO_ASSIST_TYPES]},undefined,0,undefined,{reasonKey:`amo.assist.${assist.assistKind}`});}
+  deferredCharacter?.();
   const final = H.multiply(M).floor();
   if (final < 0n) throw new ScoreFault('negative-score', events);
   emit('finalScore', rule, 'final-score', new Rational(final), () => {});

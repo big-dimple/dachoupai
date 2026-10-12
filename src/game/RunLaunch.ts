@@ -1,4 +1,4 @@
-import {R2_ROUTE_GROWTH_VERSION,R2_ROUTE_GROWTH_HASH,R2_TOUYE_CORE_VERSION,R2_TOUYE_CORE_HASH} from '../domain/r2GroupUpgrade';
+import {R2_ACTIVE_MULT_VERSION,R2_ACTIVE_MULT_HASH,R2_ACTIVE_MULT_CHARACTERS,R2_ROUTE_GROWTH_VERSION,R2_ROUTE_GROWTH_HASH} from '../domain/r2GroupUpgrade';
 import type {CharacterId} from '../domain/characters';
 import type {R2RunState} from '../domain/r2Run';
 import {r2RulesetFor} from '../domain/r2Run';
@@ -7,7 +7,7 @@ import {R2_GROUP_UPGRADE_VERSION,R2_GROUP_UPGRADE_HASH,type R2OpeningRoute} from
 export type RunLaunchIntent={kind:'new';openingRoute?:R2OpeningRoute}|{kind:'retry';run:R2RunState};
 /** Only the normal new-game route follows this policy. Saved runs carry their own identity. */
 export function newRunIdentity(characterId:CharacterId,route?:R2OpeningRoute){
-  if(route&&characterId==='touye')return {contentVersion:R2_TOUYE_CORE_VERSION,contentHash:R2_TOUYE_CORE_HASH};
+  if(route&&(R2_ACTIVE_MULT_CHARACTERS as readonly string[]).includes(characterId))return {contentVersion:R2_ACTIVE_MULT_VERSION,contentHash:R2_ACTIVE_MULT_HASH};
   if(route)return {contentVersion:R2_ROUTE_GROWTH_VERSION,contentHash:R2_ROUTE_GROWTH_HASH};
   return {contentVersion:R2_GROUP_UPGRADE_VERSION,contentHash:R2_GROUP_UPGRADE_HASH};
 }

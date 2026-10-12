@@ -1,0 +1,208 @@
+
+ RUN  v4.1.11 /workspace/dachoupai
+
+ ❯ tests/azao-charge.test.ts (10 tests | 10 failed) 159ms
+     × first ordinary two-pair gains one after commit; restore and duplicate do not gain twice 59ms
+     × qualified repeat may release; holding the repeat clears both fields; discard preserves 19ms
+     × different adjacent qualified types cap at3; all release tiers use real scoring without old add1 or enhancements 11ms
+     × pair/high-card cannot release and holding clears; empty charge rejects without costing play or RNG 16ms
+     × Q01 and B08 neither gain nor release; disabled release cannot spend a hand 9ms
+     × clear/next entry/abandon retain historical trace but clear live charge 9ms
+     × strict parsing rejects missing/live/transition/tier/character-event tampering 10ms
+     × save failure holds original charge; retry same release candidate consumes once and restores 10ms
+     × public choice needs selected qualification and shows consequence; saved repeat uses short hero cue 8ms
+     × last-hand hold copy is conditional and names stage clearing without assuming no refund/rescue 8ms
+
+⎯⎯⎯⎯⎯⎯ Failed Tests 10 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/azao-charge.test.ts > stage-local azao charge candidate > first ordinary two-pair gains one after commit; restore and duplicate do not gain twice
+Error: invalid-save-fields
+ ❯ fail src/application/checkpoint.ts:62:43
+     60| }
+     61| type ReadResult={ok:true;checkpoint:Checkpoint}|{ok:false;code:string};
+     62| const fail=(message:string):never=>{throw Error(message);};
+       |                                           ^
+     63| function record(value:unknown,required:string[],optional:string[]=[]):…
+     64|   if(!value||typeof value!=='object'||Array.isArray(value))return fail…
+ ❯ record src/application/checkpoint.ts:66:125
+ ❯ validateState src/application/checkpoint.ts:791:30
+ ❯ makeCheckpoint src/application/checkpoint.ts:888:19
+ ❯ send tests/azao-charge.test.ts:16:282
+ ❯ entered tests/azao-charge.test.ts:17:19
+ ❯ tests/azao-charge.test.ts:22:108
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/10]⎯
+
+ FAIL  tests/azao-charge.test.ts > stage-local azao charge candidate > qualified repeat may release; holding the repeat clears both fields; discard preserves
+Error: invalid-save-fields
+ ❯ fail src/application/checkpoint.ts:62:43
+     60| }
+     61| type ReadResult={ok:true;checkpoint:Checkpoint}|{ok:false;code:string};
+     62| const fail=(message:string):never=>{throw Error(message);};
+       |                                           ^
+     63| function record(value:unknown,required:string[],optional:string[]=[]):…
+     64|   if(!value||typeof value!=='object'||Array.isArray(value))return fail…
+ ❯ record src/application/checkpoint.ts:66:125
+ ❯ validateState src/application/checkpoint.ts:791:30
+ ❯ makeCheckpoint src/application/checkpoint.ts:888:19
+ ❯ send tests/azao-charge.test.ts:16:282
+ ❯ entered tests/azao-charge.test.ts:17:19
+ ❯ tests/azao-charge.test.ts:23:110
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/10]⎯
+
+ FAIL  tests/azao-charge.test.ts > stage-local azao charge candidate > different adjacent qualified types cap at3; all release tiers use real scoring without old add1 or enhancements
+Error: invalid-save-fields
+ ❯ fail src/application/checkpoint.ts:62:43
+     60| }
+     61| type ReadResult={ok:true;checkpoint:Checkpoint}|{ok:false;code:string};
+     62| const fail=(message:string):never=>{throw Error(message);};
+       |                                           ^
+     63| function record(value:unknown,required:string[],optional:string[]=[]):…
+     64|   if(!value||typeof value!=='object'||Array.isArray(value))return fail…
+ ❯ record src/application/checkpoint.ts:66:125
+ ❯ validateState src/application/checkpoint.ts:791:30
+ ❯ makeCheckpoint src/application/checkpoint.ts:888:19
+ ❯ send tests/azao-charge.test.ts:16:282
+ ❯ entered tests/azao-charge.test.ts:17:19
+ ❯ tests/azao-charge.test.ts:24:325
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/10]⎯
+
+ FAIL  tests/azao-charge.test.ts > stage-local azao charge candidate > pair/high-card cannot release and holding clears; empty charge rejects without costing play or RNG
+Error: invalid-save-fields
+ ❯ fail src/application/checkpoint.ts:62:43
+     60| }
+     61| type ReadResult={ok:true;checkpoint:Checkpoint}|{ok:false;code:string};
+     62| const fail=(message:string):never=>{throw Error(message);};
+       |                                           ^
+     63| function record(value:unknown,required:string[],optional:string[]=[]):…
+     64|   if(!value||typeof value!=='object'||Array.isArray(value))return fail…
+ ❯ record src/application/checkpoint.ts:66:125
+ ❯ validateState src/application/checkpoint.ts:791:30
+ ❯ makeCheckpoint src/application/checkpoint.ts:888:19
+ ❯ send tests/azao-charge.test.ts:16:282
+ ❯ entered tests/azao-charge.test.ts:17:19
+ ❯ tests/azao-charge.test.ts:25:119
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/10]⎯
+
+ FAIL  tests/azao-charge.test.ts > stage-local azao charge candidate > Q01 and B08 neither gain nor release; disabled release cannot spend a hand
+Error: invalid-save-fields
+ ❯ fail src/application/checkpoint.ts:62:43
+     60| }
+     61| type ReadResult={ok:true;checkpoint:Checkpoint}|{ok:false;code:string};
+     62| const fail=(message:string):never=>{throw Error(message);};
+       |                                           ^
+     63| function record(value:unknown,required:string[],optional:string[]=[]):…
+     64|   if(!value||typeof value!=='object'||Array.isArray(value))return fail…
+ ❯ record src/application/checkpoint.ts:66:125
+ ❯ validateState src/application/checkpoint.ts:791:30
+ ❯ makeCheckpoint src/application/checkpoint.ts:888:19
+ ❯ send tests/azao-charge.test.ts:16:282
+ ❯ entered tests/azao-charge.test.ts:17:19
+ ❯ tests/azao-charge.test.ts:26:104
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/10]⎯
+
+ FAIL  tests/azao-charge.test.ts > stage-local azao charge candidate > clear/next entry/abandon retain historical trace but clear live charge
+Error: invalid-save-fields
+ ❯ fail src/application/checkpoint.ts:62:43
+     60| }
+     61| type ReadResult={ok:true;checkpoint:Checkpoint}|{ok:false;code:string};
+     62| const fail=(message:string):never=>{throw Error(message);};
+       |                                           ^
+     63| function record(value:unknown,required:string[],optional:string[]=[]):…
+     64|   if(!value||typeof value!=='object'||Array.isArray(value))return fail…
+ ❯ record src/application/checkpoint.ts:66:125
+ ❯ validateState src/application/checkpoint.ts:791:30
+ ❯ makeCheckpoint src/application/checkpoint.ts:888:19
+ ❯ send tests/azao-charge.test.ts:16:282
+ ❯ entered tests/azao-charge.test.ts:17:19
+ ❯ tests/azao-charge.test.ts:27:100
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/10]⎯
+
+ FAIL  tests/azao-charge.test.ts > stage-local azao charge candidate > strict parsing rejects missing/live/transition/tier/character-event tampering
+Error: invalid-save-fields
+ ❯ fail src/application/checkpoint.ts:62:43
+     60| }
+     61| type ReadResult={ok:true;checkpoint:Checkpoint}|{ok:false;code:string};
+     62| const fail=(message:string):never=>{throw Error(message);};
+       |                                           ^
+     63| function record(value:unknown,required:string[],optional:string[]=[]):…
+     64|   if(!value||typeof value!=='object'||Array.isArray(value))return fail…
+ ❯ record src/application/checkpoint.ts:66:125
+ ❯ validateState src/application/checkpoint.ts:791:30
+ ❯ makeCheckpoint src/application/checkpoint.ts:888:19
+ ❯ send tests/azao-charge.test.ts:16:282
+ ❯ entered tests/azao-charge.test.ts:17:19
+ ❯ tests/azao-charge.test.ts:28:107
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/10]⎯
+
+ FAIL  tests/azao-charge.test.ts > stage-local azao charge candidate > save failure holds original charge; retry same release candidate consumes once and restores
+Error: invalid-save-fields
+ ❯ fail src/application/checkpoint.ts:62:43
+     60| }
+     61| type ReadResult={ok:true;checkpoint:Checkpoint}|{ok:false;code:string};
+     62| const fail=(message:string):never=>{throw Error(message);};
+       |                                           ^
+     63| function record(value:unknown,required:string[],optional:string[]=[]):…
+     64|   if(!value||typeof value!=='object'||Array.isArray(value))return fail…
+ ❯ record src/application/checkpoint.ts:66:125
+ ❯ validateState src/application/checkpoint.ts:791:30
+ ❯ makeCheckpoint src/application/checkpoint.ts:888:19
+ ❯ send tests/azao-charge.test.ts:16:282
+ ❯ entered tests/azao-charge.test.ts:17:19
+ ❯ tests/azao-charge.test.ts:29:125
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[8/10]⎯
+
+ FAIL  tests/azao-charge.test.ts > stage-local azao charge candidate > public choice needs selected qualification and shows consequence; saved repeat uses short hero cue
+Error: invalid-save-fields
+ ❯ fail src/application/checkpoint.ts:62:43
+     60| }
+     61| type ReadResult={ok:true;checkpoint:Checkpoint}|{ok:false;code:string};
+     62| const fail=(message:string):never=>{throw Error(message);};
+       |                                           ^
+     63| function record(value:unknown,required:string[],optional:string[]=[]):…
+     64|   if(!value||typeof value!=='object'||Array.isArray(value))return fail…
+ ❯ record src/application/checkpoint.ts:66:125
+ ❯ validateState src/application/checkpoint.ts:791:30
+ ❯ makeCheckpoint src/application/checkpoint.ts:888:19
+ ❯ send tests/azao-charge.test.ts:16:282
+ ❯ entered tests/azao-charge.test.ts:17:19
+ ❯ tests/azao-charge.test.ts:30:127
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[9/10]⎯
+
+ FAIL  tests/azao-charge.test.ts > stage-local azao charge candidate > last-hand hold copy is conditional and names stage clearing without assuming no refund/rescue
+Error: invalid-save-fields
+ ❯ fail src/application/checkpoint.ts:62:43
+     60| }
+     61| type ReadResult={ok:true;checkpoint:Checkpoint}|{ok:false;code:string};
+     62| const fail=(message:string):never=>{throw Error(message);};
+       |                                           ^
+     63| function record(value:unknown,required:string[],optional:string[]=[]):…
+     64|   if(!value||typeof value!=='object'||Array.isArray(value))return fail…
+ ❯ record src/application/checkpoint.ts:66:125
+ ❯ validateState src/application/checkpoint.ts:791:30
+ ❯ makeCheckpoint src/application/checkpoint.ts:888:19
+ ❯ send tests/azao-charge.test.ts:16:282
+ ❯ entered tests/azao-charge.test.ts:17:19
+ ❯ tests/azao-charge.test.ts:31:124
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[10/10]⎯
+
+
+ Test Files  1 failed | 5 passed (6)
+      Tests  10 failed | 97 passed (107)
+   Start at  09:40:58
+   Duration  2.73s (transform 1.52s, setup 0ms, import 2.55s, tests 3.55s, environment 0ms)
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice

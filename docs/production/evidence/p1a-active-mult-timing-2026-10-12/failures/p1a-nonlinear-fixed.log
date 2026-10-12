@@ -1,0 +1,26 @@
+
+ RUN  v4.1.11 /workspace/dachoupai
+
+ ❯ tests/p1a-active-mult.test.ts (16 tests | 1 failed) 767ms
+     × nonlinear refunds and after-hand growth use the new saved final, while RNG and paid-capital predicates remain unchanged 42ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/p1a-active-mult.test.ts > P1A exact active multiplier timing > nonlinear refunds and after-hand growth use the new saved final, while RNG and paid-capital predicates remain unchanged
+TypeError: Cannot read properties of undefined (reading 'n')
+ ❯ tests/p1a-active-mult.test.ts:106:271
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 15 passed (16)
+   Start at  10:05:03
+   Duration  1.44s (transform 473ms, setup 0ms, import 580ms, tests 767ms, environment 0ms)
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice

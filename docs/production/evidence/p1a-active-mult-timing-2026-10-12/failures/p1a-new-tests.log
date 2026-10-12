@@ -1,0 +1,66 @@
+
+ RUN  v4.1.11 /workspace/dachoupai
+
+ ❯ tests/p1a-active-mult.test.ts (12 tests | 3 failed) 427ms
+     × forks only three route-selected heroes; every old retry retains exact identity 6ms
+     × reconstructs supplied G18 H457/M17.5 same-hand won and lost, both before final floor 23ms
+     × all burn/release tiers, zero active-card ordinary heat and huge route factors floor exactly once 9ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 3 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/p1a-active-mult.test.ts > P1A exact active multiplier timing > forks only three route-selected heroes; every old retry retains exact identity
+Error: invalid-opening-route
+ ❯ createRun src/domain/run.ts:340:92
+    338| export function createRun(options: StartOptions & {rulesVersion?:'r1'|…
+    339|   if(options.rulesVersion==='r2'&&isR2RouteStarter(options.r2Identity?…
+    340|     if(!options.openingRoute||!Object.hasOwn(R2_ROUTE_STARTERS,options…
+       |                                                                                            ^
+    341|     const mode=resolveR2ModeConfig(options.modeConfig??{mode:'standard…
+    342|     const result=applyCommand(null,routeStarterStartCommand({...option…
+ ❯ tests/p1a-active-mult.test.ts:27:14
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/3]⎯
+
+ FAIL  tests/p1a-active-mult.test.ts > P1A exact active multiplier timing > reconstructs supplied G18 H457/M17.5 same-hand won and lost, both before final floor
+Error: invalid-touye-commit
+ ❯ touyeWagerStep src/domain/r2TouyeWager.ts:35:53
+     33| }
+     34| export function touyeWagerStep(type:R2HandType,commit:TouyeCommit|null…
+     35|  if(commit&&!validTouyeCommit(commit,newCore))throw Error('invalid-tou…
+       |                                                     ^
+     36|  const activeNewIds=commit&&newCore?commit.refill!.refilledIds.filter(…
+     37|  const core=newCore?{core:{contract:'new-core-v1' as const,activeNewId…
+ ❯ resolveScore src/domain/scoreR2.ts:183:37
+ ❯ Module.scoreR2Hand src/domain/scoreR2.ts:116:10
+ ❯ after tests/p1a-active-mult.test.ts:15:36
+ ❯ tests/p1a-active-mult.test.ts:44:91
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/3]⎯
+
+ FAIL  tests/p1a-active-mult.test.ts > P1A exact active multiplier timing > all burn/release tiers, zero active-card ordinary heat and huge route factors floor exactly once
+Error: invalid-touye-commit
+ ❯ touyeWagerStep src/domain/r2TouyeWager.ts:35:53
+     33| }
+     34| export function touyeWagerStep(type:R2HandType,commit:TouyeCommit|null…
+     35|  if(commit&&!validTouyeCommit(commit,newCore))throw Error('invalid-tou…
+       |                                                     ^
+     36|  const activeNewIds=commit&&newCore?commit.refill!.refilledIds.filter(…
+     37|  const core=newCore?{core:{contract:'new-core-v1' as const,activeNewId…
+ ❯ resolveScore src/domain/scoreR2.ts:183:37
+ ❯ Module.scoreR2Hand src/domain/scoreR2.ts:116:10
+ ❯ after tests/p1a-active-mult.test.ts:15:36
+ ❯ tests/p1a-active-mult.test.ts:68:39
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/3]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  3 failed | 9 passed (12)
+   Start at  09:45:19
+   Duration  1.21s (transform 527ms, setup 0ms, import 667ms, tests 427ms, environment 0ms)
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice

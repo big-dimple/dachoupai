@@ -1,0 +1,30 @@
+
+> dachoupai@0.1.0 test
+> vitest run
+
+
+ RUN  v4.1.11 /workspace/dachoupai
+
+ ❯ tests/touye-combo-cue.test.ts (2 tests | 1 failed) 63ms
+   × a real third-hand flush settles separate Touye and Huimaqiang multipliers 40ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/touye-combo-cue.test.ts > a real third-hand flush settles separate Touye and Huimaqiang multipliers
+AssertionError: expected 8 to be less than 6
+ ❯ tests/touye-combo-cue.test.ts:23:424
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 219 passed (220)
+      Tests  1 failed | 3246 passed (3247)
+   Start at  09:45:57
+   Duration  39.52s (transform 6.33s, setup 0ms, import 28.13s, tests 55.98s, environment 20ms)
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice
