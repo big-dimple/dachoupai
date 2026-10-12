@@ -1,0 +1,505 @@
+{
+  "base": "8f036827dde4ca5b88ba89fceb0fbdf0f32b2970",
+  "head": "8f036827dde4ca5b88ba89fceb0fbdf0f32b2970",
+  "dirty": "M src/game/ShopScene.ts\n?? harness/mobile-shop-price.mjs",
+  "harnessSha256": "e5bc4e2e8fc5dc38b42e0268a990cc86fe7f6636fc84e20f3ccde0bebffb8dae",
+  "sourceBefore": "24f4613b5f55e6932910d0aa3088d498a01b38c2b54c05471d098f0be57e6617",
+  "before": false,
+  "scope": "Local Chromium CSS viewport/DPR1 software touch. Validator-approved current-identity full5/under2 shops: enough, short, same-name, actually bought/sold.12/100 are disabled read-only scene projections; never imported/saved or claimed legal catalog prices. No gameplay/natural/hosted writes; only actual UI inspection and cancellation.",
+  "cases": [
+    {
+      "width": 320,
+      "full": true,
+      "status": "enough",
+      "checks": [
+        "price-area native tap uses original details/comparison gate; complete state/journal/storage unchanged"
+      ],
+      "shots": [
+        "320-full5-enough-shop.png",
+        "320-full5-enough-details.png",
+        "320-full5-enough-readonly-12-100.png"
+      ],
+      "errors": [
+        "Error: Run invariant: joker shelf prices/edition"
+      ],
+      "initial": {
+        "gold": 200,
+        "owned": 5,
+        "commandSeq": 2,
+        "journal": 0
+      },
+      "geometry": {
+        "layout": {
+          "x": 12,
+          "w": 296,
+          "top": 12,
+          "pc": null,
+          "desktop": false,
+          "short": false,
+          "copyBeside": false,
+          "inventoryCollapsed": false,
+          "compact": true,
+          "wideHeader": false,
+          "portrait": true,
+          "guidanceBelow": false,
+          "slots": [
+            {
+              "x": 12,
+              "y": 363.2,
+              "width": 54.4,
+              "height": 76.16
+            },
+            {
+              "x": 72.4,
+              "y": 363.2,
+              "width": 54.4,
+              "height": 76.16
+            },
+            {
+              "x": 132.8,
+              "y": 363.2,
+              "width": 54.4,
+              "height": 76.16
+            },
+            {
+              "x": 193.2,
+              "y": 363.2,
+              "width": 54.4,
+              "height": 76.16
+            },
+            {
+              "x": 253.6,
+              "y": 363.2,
+              "width": 54.4,
+              "height": 76.16
+            }
+          ],
+          "shelf": [
+            {
+              "x": 14.666666666666664,
+              "y": 116,
+              "width": 88,
+              "height": 123.19999999999999
+            },
+            {
+              "x": 116,
+              "y": 116,
+              "width": 88,
+              "height": 123.19999999999999
+            },
+            {
+              "x": 217.33333333333331,
+              "y": 116,
+              "width": 88,
+              "height": 123.19999999999999
+            }
+          ],
+          "tabs": {
+            "x": 12,
+            "y": 64,
+            "width": 296,
+            "height": 44
+          },
+          "chapter": {
+            "x": 12,
+            "y": 447.36,
+            "width": 144,
+            "height": 44
+          },
+          "items": {
+            "x": 164,
+            "y": 447.36,
+            "width": 144,
+            "height": 44
+          },
+          "reroll": {
+            "x": 12,
+            "y": 596,
+            "width": 144,
+            "height": 44
+          },
+          "build": {
+            "x": 164,
+            "y": 596,
+            "width": 144,
+            "height": 44
+          },
+          "play": {
+            "x": 12,
+            "y": 648,
+            "width": 296,
+            "height": 56
+          },
+          "noticeY": 712
+        },
+        "rows": [
+          {
+            "name": "shop/price-plate",
+            "offerId": "controlled/price-0",
+            "availability": "unavailable",
+            "bounds": {
+              "x": 12.666667938232422,
+              "y": 313.20000610351565,
+              "width": 96,
+              "height": 24
+            }
+          },
+          {
+            "name": "shop/offer-price",
+            "text": "4金 · 比较",
+            "offerId": "controlled/price-0",
+            "fontSize": "16px",
+            "bounds": {
+              "x": 15.000001271565758,
+              "y": 315.0000061035156,
+              "width": 72,
+              "height": 19
+            }
+          },
+          {
+            "name": "shop/offer-advice",
+            "offerId": "controlled/price-0",
+            "bounds": {
+              "x": 20.166667938232422,
+              "y": 187.20001220703125,
+              "width": 77,
+              "height": 16
+            }
+          },
+          {
+            "name": "offer/controlled/price-0",
+            "bounds": {
+              "x": 14.666666666666664,
+              "y": 116,
+              "width": 88,
+              "height": 217.2
+            }
+          },
+          {
+            "name": "shop/price-plate",
+            "offerId": "controlled/price-1",
+            "availability": "unavailable",
+            "bounds": {
+              "x": 114,
+              "y": 313.20000610351565,
+              "width": 96,
+              "height": 24
+            }
+          },
+          {
+            "name": "shop/offer-price",
+            "text": "6金 · 比较",
+            "offerId": "controlled/price-1",
+            "fontSize": "16px",
+            "bounds": {
+              "x": 116,
+              "y": 315.0000061035156,
+              "width": 72,
+              "height": 19
+            }
+          },
+          {
+            "name": "shop/offer-advice",
+            "offerId": "controlled/price-1",
+            "bounds": {
+              "x": 121.5,
+              "y": 187.20001220703125,
+              "width": 77,
+              "height": 16
+            }
+          },
+          {
+            "name": "offer/controlled/price-1",
+            "bounds": {
+              "x": 116,
+              "y": 116,
+              "width": 88,
+              "height": 217.2
+            }
+          },
+          {
+            "name": "shop/price-plate",
+            "offerId": "controlled/price-2",
+            "availability": "unavailable",
+            "bounds": {
+              "x": 215.33334350585938,
+              "y": 313.20000610351565,
+              "width": 96,
+              "height": 24
+            }
+          },
+          {
+            "name": "shop/offer-price",
+            "text": "6金 · 比较",
+            "offerId": "controlled/price-2",
+            "fontSize": "16px",
+            "bounds": {
+              "x": 217.00001017252606,
+              "y": 315.0000061035156,
+              "width": 72,
+              "height": 19
+            }
+          },
+          {
+            "name": "shop/offer-advice",
+            "offerId": "controlled/price-2",
+            "bounds": {
+              "x": 222.83334350585938,
+              "y": 187.20001220703125,
+              "width": 77,
+              "height": 16
+            }
+          },
+          {
+            "name": "offer/controlled/price-2",
+            "bounds": {
+              "x": 217.33333333333331,
+              "y": 116,
+              "width": 88,
+              "height": 217.2
+            }
+          }
+        ]
+      },
+      "overflows": [],
+      "details": "现货 · 确认后付款\n最后一句 · 购买详情\n\n适用：同点/顺子/同花\n\n● 普通\n出牌后剩0次 → 每手一次，热度+70\n按出牌开始时剩余的机会判断；不要求这一手过关。\n未购买；买入后才生效\n\n版次：普通（无额外计分）\n\n推荐指数 ★★☆☆☆\n最后一手加热 · 本手后无出牌余量\n直接买入 · 实付 4 金 · 余额 200 → 196 金\n5个槽位已满。请先关闭详情，点随身牌确认出售，再购买。\n\n规则与操作\n比较替换\n邀请 · 4 金\n取消",
+      "projection": {
+        "layout": {
+          "x": 12,
+          "w": 296,
+          "top": 12,
+          "pc": null,
+          "desktop": false,
+          "short": false,
+          "copyBeside": false,
+          "inventoryCollapsed": false,
+          "compact": true,
+          "wideHeader": false,
+          "portrait": true,
+          "guidanceBelow": false,
+          "slots": [
+            {
+              "x": 12,
+              "y": 363.2,
+              "width": 54.4,
+              "height": 76.16
+            },
+            {
+              "x": 72.4,
+              "y": 363.2,
+              "width": 54.4,
+              "height": 76.16
+            },
+            {
+              "x": 132.8,
+              "y": 363.2,
+              "width": 54.4,
+              "height": 76.16
+            },
+            {
+              "x": 193.2,
+              "y": 363.2,
+              "width": 54.4,
+              "height": 76.16
+            },
+            {
+              "x": 253.6,
+              "y": 363.2,
+              "width": 54.4,
+              "height": 76.16
+            }
+          ],
+          "shelf": [
+            {
+              "x": 14.666666666666664,
+              "y": 116,
+              "width": 88,
+              "height": 123.19999999999999
+            },
+            {
+              "x": 116,
+              "y": 116,
+              "width": 88,
+              "height": 123.19999999999999
+            },
+            {
+              "x": 217.33333333333331,
+              "y": 116,
+              "width": 88,
+              "height": 123.19999999999999
+            }
+          ],
+          "tabs": {
+            "x": 12,
+            "y": 64,
+            "width": 296,
+            "height": 44
+          },
+          "chapter": {
+            "x": 12,
+            "y": 447.36,
+            "width": 144,
+            "height": 44
+          },
+          "items": {
+            "x": 164,
+            "y": 447.36,
+            "width": 144,
+            "height": 44
+          },
+          "reroll": {
+            "x": 12,
+            "y": 596,
+            "width": 144,
+            "height": 44
+          },
+          "build": {
+            "x": 164,
+            "y": 596,
+            "width": 144,
+            "height": 44
+          },
+          "play": {
+            "x": 12,
+            "y": 648,
+            "width": 296,
+            "height": 56
+          },
+          "noticeY": 712
+        },
+        "rows": [
+          {
+            "name": "shop/price-plate",
+            "offerId": "controlled/price-0",
+            "availability": "unavailable",
+            "bounds": {
+              "x": 12.666667938232422,
+              "y": 313.20000610351565,
+              "width": 96,
+              "height": 24
+            }
+          },
+          {
+            "name": "shop/offer-price",
+            "text": "4金 · 比较",
+            "offerId": "controlled/price-0",
+            "fontSize": "16px",
+            "bounds": {
+              "x": 15.000001271565758,
+              "y": 315.0000061035156,
+              "width": 72,
+              "height": 19
+            }
+          },
+          {
+            "name": "shop/offer-advice",
+            "offerId": "controlled/price-0",
+            "bounds": {
+              "x": 20.166667938232422,
+              "y": 187.20001220703125,
+              "width": 77,
+              "height": 16
+            }
+          },
+          {
+            "name": "offer/controlled/price-0",
+            "bounds": {
+              "x": 14.666666666666664,
+              "y": 116,
+              "width": 88,
+              "height": 217.2
+            }
+          },
+          {
+            "name": "shop/price-plate",
+            "offerId": "controlled/price-1",
+            "availability": "unavailable",
+            "bounds": {
+              "x": 114,
+              "y": 313.20000610351565,
+              "width": 96,
+              "height": 24
+            }
+          },
+          {
+            "name": "shop/offer-price",
+            "text": "12金 · 比较",
+            "offerId": "controlled/price-1",
+            "fontSize": "16px",
+            "bounds": {
+              "x": 116,
+              "y": 315.0000061035156,
+              "width": 81,
+              "height": 19
+            }
+          },
+          {
+            "name": "shop/offer-advice",
+            "offerId": "controlled/price-1",
+            "bounds": {
+              "x": 121.5,
+              "y": 187.20001220703125,
+              "width": 77,
+              "height": 16
+            }
+          },
+          {
+            "name": "offer/controlled/price-1",
+            "bounds": {
+              "x": 116,
+              "y": 116,
+              "width": 88,
+              "height": 217.2
+            }
+          },
+          {
+            "name": "shop/price-plate",
+            "offerId": "controlled/price-2",
+            "availability": "unavailable",
+            "bounds": {
+              "x": 215.33334350585938,
+              "y": 313.20000610351565,
+              "width": 96,
+              "height": 24
+            }
+          },
+          {
+            "name": "shop/offer-price",
+            "text": "100金 · 比较",
+            "offerId": "controlled/price-2",
+            "fontSize": "16px",
+            "bounds": {
+              "x": 217.00001017252606,
+              "y": 315.0000061035156,
+              "width": 89,
+              "height": 19
+            }
+          },
+          {
+            "name": "shop/offer-advice",
+            "offerId": "controlled/price-2",
+            "bounds": {
+              "x": 222.83334350585938,
+              "y": 187.20001220703125,
+              "width": 77,
+              "height": 16
+            }
+          },
+          {
+            "name": "offer/controlled/price-2",
+            "bounds": {
+              "x": 217.33333333333331,
+              "y": 116,
+              "width": 88,
+              "height": 217.2
+            }
+          }
+        ]
+      },
+      "projectionOverflows": []
+    }
+  ],
+  "result": "FAIL",
+  "failure": "TimeoutError: locator.waitFor: Timeout 15000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('.detail-dialog[open]') to be visible\u001b[22m\n",
+  "sourceAfter": "24f4613b5f55e6932910d0aa3088d498a01b38c2b54c05471d098f0be57e6617"
+}
