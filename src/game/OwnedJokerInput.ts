@@ -9,7 +9,7 @@ interface Options {
   tap:(id:string)=>void;lift:(id:string,x:number,y:number)=>void;
   move:(x:number,y:number)=>void;drop:(id:string,x:number,y:number)=>void;cancel:()=>void;
 }
-/** Same native pan-y surface and PointerIntent threshold as the table hand.
+/** Native owned-card rail, with the same PointerIntent threshold as the table hand.
  * Only owned instances enter this surface; previews never mutate the saved order. */
 export class OwnedJokerInput {
   readonly surface=document.createElement('div');
@@ -20,7 +20,9 @@ export class OwnedJokerInput {
   private savedInput=true;
   constructor(private readonly scene:Phaser.Scene,private readonly options:Options){
     this.surface.className='shop-owned-input';this.surface.setAttribute('aria-hidden','true');
-    Object.assign(this.surface.style,{position:'fixed',zIndex:'5',touchAction:'pan-y',userSelect:'none',cursor:'grab',webkitTapHighlightColor:'transparent'});
+    // pan-y lets the browser cancel a contact after it has already lifted a card.
+    // This fixed shop rail has no scrolling content; pre-hold movement still cancels.
+    Object.assign(this.surface.style,{position:'fixed',zIndex:'5',touchAction:'none',userSelect:'none',cursor:'grab',webkitTapHighlightColor:'transparent'});
     this.surface.addEventListener('pointerdown',this.down);
     // Keep Phaser's legacy mouse/touch listeners from owning this same contact.
     this.surface.addEventListener('mousedown',e=>e.stopPropagation());
@@ -60,11 +62,11 @@ export class OwnedJokerInput {
   private readonly move=(e:PointerEvent)=>{
     const o=this.owner;if(!o||e.pointerId!==o.pointerId)return;
     if(e.pointerType!=='touch'&&e.buttons===0){this.cancel();this.finish();return;}
-    if(o.canceled)return;if(this.blocked(e)){this.cancel();return;}
+    if(o.canceled)return;if(this.blocked(e)||o.lifted&&!this.options.ready()){this.cancel();return;}
     const {x,y}=this.coordinates(e);this.intent.move(e.pointerId,x,y);
     if(Math.hypot(x-o.x,y-o.y)>10){
       clearTimeout(this.timer);
-      // Ordinary touch pan belongs to the browser. Movement cannot turn into a hold or tap.
+      // Movement before the hold cannot turn into a drag or tap.
       if(!o.canDrag||!this.options.ready()){this.cancel();return;}
       if(o.touch&&!o.lifted){this.cancel();return;}
       this.lift(o);
