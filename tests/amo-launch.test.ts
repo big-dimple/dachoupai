@@ -56,7 +56,8 @@ describe('normal new-game policy and exact retry creation',()=>{
   expect(getCharacter('xiemu').passiveDescription).toContain('最后可用出牌');
   expect(characterForNewRun('laohuan').passiveDescription).toContain('多看最多2张');
   expect(characterForNewRun('touye').passiveDescription).toContain('已成型也可押');
-  expect(characterForNewRun('touye').passiveDescription).toContain('本次实际新补ID至少一张进入有效计分核心');
+  expect(characterForNewRun('touye').passiveDescription).toContain('至少用一张刚摸回的牌凑成所押牌型');
+  expect(characterForNewRun('touye').passiveDescription).not.toMatch(/ID|事务|核心/);
   expect(getCharacter('touye').passiveDescription).toContain('50%');
   expect(getCharacter('laohuan').passiveDescription).toContain('额外 +120');
   expect(getCharacter('amo').buildTip).toContain('单张');

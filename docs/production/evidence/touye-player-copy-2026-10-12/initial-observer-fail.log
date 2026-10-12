@@ -1,0 +1,14 @@
+{"status":"FAIL","rows":0,"error":"page.waitForFunction: Timeout 20000ms exceeded.\n    at waitScene (/workspace/dachoupai-touye-copy/harness/ui.mjs:3:41)\n    at chooseCharacter (/workspace/dachoupai-touye-copy/harness/ui.mjs:55:191)\n    at async file:///workspace/dachoupai-touye-copy/harness/touye-player-copy.mjs:26:140"}
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+page.waitForFunction: Timeout 20000ms exceeded.
+    at waitScene (/workspace/dachoupai-touye-copy/harness/ui.mjs:3:41)
+    at chooseCharacter (/workspace/dachoupai-touye-copy/harness/ui.mjs:55:191)
+    at async file:///workspace/dachoupai-touye-copy/harness/touye-player-copy.mjs:26:140 {
+  log: [],
+  name: 'TimeoutError'
+}
+
+Node.js v24.19.0
