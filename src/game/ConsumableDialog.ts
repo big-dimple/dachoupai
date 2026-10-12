@@ -1,5 +1,5 @@
 import {AudioEngine} from '../audio/AudioEngine';
-import {routeFitCue,markRouteDetail,toolPurpose} from './RouteFitCue';
+import {routeFitCue,markRouteDetail} from './RouteFitCue';
 import {renderToolCard} from './CandidateCardPreview';
 import {enhancementText} from './CardSpecialLabels';
 import {toolCardChange,renderCardChange,renderHandChange,handLevelChangeText as handChange} from './ToolChangePreview';
@@ -151,11 +151,11 @@ export function showConsumables(dialog:DetailDialog,state:R2RunState,ready:boole
         catch{const status=confirmation.querySelector<HTMLParagraphElement>('.dialog-status')!;status.textContent='销毁未完成，请重试。';status.hidden=false;}
       }}],{closeLabel:'取消'});
     }};
-    const d=dialog.open(info.name+' · 使用详情',[info.description,info.cost].join('\n\n'),[useAction,destroyAction],{closeLabel:'取消',guideSteps:{labels:tool.target.kind==='none'?['查看用途','确认使用']:['查看用途','选择目标','确认使用'],current:tool.target.kind==='none'?1:1},portrait:goodsArtPortrait(info),effectBody:info.summary,collapseRules:true});d.classList.add('tool-detail');markRouteDetail(d,routeFitCue(state,'tools',tool.id));
+    const d=dialog.open(info.name+' · 使用',[info.description,info.cost].join('\n\n'),[useAction,destroyAction],{closeLabel:'取消 · 保留工具',portrait:goodsArtPortrait(info),effectBody:info.summary,collapseRules:true});d.classList.add('tool-detail');markRouteDetail(d,routeFitCue(state,'tools',tool.id));
     const instruction=document.createElement('p'),target=tool.target;
     instruction.className='tool-short-instruction';
     const count=target.kind==='cards'||target.kind==='card-sacrifice'?`选 ${target.minimum===target.maximum?target.maximum:target.minimum+'–'+target.maximum} 张` :target.kind==='card-or-joker'?'选 1 个普通版次对象':target.kind==='joker-sacrifice'?'选 1 张牺牲牌与 1 张受益牌':target.kind==='discovered-hand'?'选已发现牌型':target.kind==='suit'?'选 1 种花色':target.kind==='hand-exchange'?'选 2 种不同牌型':target.kind==='whole-deck'?'整副有效牌组': '无需选牌';
-    instruction.textContent=count+(target.kind==='card-sacrifice'?'；另选 1 张牺牲牌':'')+'。'+toolPurpose(state,tool.id);d.querySelector('.dialog-header')!.append(instruction);
+    instruction.textContent=target.kind==='card-sacrifice'?`受益 ${target.minimum}–${target.maximum} 张 + 牺牲 1 张 → 确认`:target.kind==='joker-sacrifice'?'受益 1 张 + 牺牲 1 张 → 确认':count+' → 确认使用';d.querySelector('.dialog-header')!.append(instruction);
     const scroll=d.querySelector('.dialog-scroll')!,art=d.querySelector('.dialog-card-art');if(art)scroll.prepend(art);
     const panel=document.createElement('section'),preview=document.createElement('p'),hint=document.createElement('p');panel.className='tool-target-panel';preview.className='tool-preview';preview.setAttribute('aria-live','polite');hint.className='tool-validation';hint.setAttribute('role','status');
     const directoryUpdates:(()=>void)[]=[];
@@ -168,7 +168,7 @@ export function showConsumables(dialog:DetailDialog,state:R2RunState,ready:boole
       const rows:{choice:Choice;label:HTMLLabelElement}[]=[],directory=document.createElement('div'),count=document.createElement('p');directory.className='tool-target-directory';count.className='tool-directory-count';let rankFilter='',suitFilter='',sortMode:'rank'|'suit'|undefined;
       const priority=(choice:Choice)=>{if(!choice.card)return 0;const status=toolCardTargetStatus(tool,choice.card,role,selection.sacrificeId);return !status.eligible?2:status.changes?0:1;};
       // Selection refreshes keep target nodes, focus and scroll in place; only explicit sorting reorders.
-      const updateDirectory=(reorder=false)=>{if(reorder){const ordered=[...rows].sort((a,b)=>{const legal=priority(a.choice)-priority(b.choice);if(legal)return legal;if(!sortMode||!a.choice.card||!b.choice.card)return 0;const x=a.choice.card,y=b.choice.card,rank=y.rank-x.rank,suit=SUITS.indexOf(x.suit)-SUITS.indexOf(y.suit);return sortMode==='rank'?rank||suit:suit||rank;});grid.append(...ordered.map(row=>row.label));}let shown=0,hiddenSelected=0;for(const row of rows){row.label.hidden=!!row.choice.card&&!toolCardMatches(row.choice.card,rankFilter,suitFilter);if(!row.label.hidden)shown++;else if(selection.ids.has(row.choice.id)||selection.sacrificeId===row.choice.id)hiddenSelected++;}count.textContent=`显示 ${shown}/${rows.length}`+(hiddenSelected?` · 筛选外已选 ${hiddenSelected} 张（保留）`:'');};directoryUpdates.push(updateDirectory);
+      const updateDirectory=(reorder=false)=>{const areas=[d.querySelector<HTMLElement>('.tool-workspace'),d.querySelector<HTMLElement>('.dialog-content')],positions=areas.map(area=>area?.scrollTop??0);if(reorder){const ordered=[...rows].sort((a,b)=>{const legal=priority(a.choice)-priority(b.choice);if(legal)return legal;if(!sortMode||!a.choice.card||!b.choice.card)return 0;const x=a.choice.card,y=b.choice.card,rank=y.rank-x.rank,suit=SUITS.indexOf(x.suit)-SUITS.indexOf(y.suit);return sortMode==='rank'?rank||suit:suit||rank;});grid.append(...ordered.map(row=>row.label));}let shown=0,hiddenSelected=0;for(const row of rows){row.label.hidden=!!row.choice.card&&!toolCardMatches(row.choice.card,rankFilter,suitFilter);if(!row.label.hidden)shown++;else if(role==='donor'?selection.sacrificeId===row.choice.id:selection.ids.has(row.choice.id))hiddenSelected++;}count.textContent=`显示 ${shown}/${rows.length}`+(hiddenSelected?` · 筛选外已选 ${hiddenSelected} 张（保留）`:'');areas.forEach((area,index)=>{if(area)area.scrollTop=positions[index];});};directoryUpdates.push(updateDirectory);
       if(choices.length&&choices.every(choice=>choice.card)){
         const sorting=document.createElement('div');sorting.className='tool-target-sort';sorting.setAttribute('role','group');sorting.setAttribute('aria-label',title+'整理');
         for(const [mode,text] of [['rank','点数整理'],['suit','花色整理']] as const){const button=document.createElement('button');button.type='button';button.textContent=text;button.setAttribute('aria-pressed','false');button.onclick=()=>{if(busy)return;sortMode=mode;updateDirectory(true);for(const b of sorting.querySelectorAll('button'))b.setAttribute('aria-pressed',String(b===button));};sortButtons.push(button);sorting.append(button);}
@@ -226,9 +226,14 @@ export function showConsumables(dialog:DetailDialog,state:R2RunState,ready:boole
       probability.textContent='公开概率：'+operation.choices.map(choice=>`${operation.kind==='random-enhancement'?R2_ENHANCEMENTS.find(enhancement=>enhancement.id===choice.id)!.name:editionLabel(choice.id as 'foil'|'holographic'|'polychrome')} ${choice.weight}/${total}`).join('、')+'。使用后揭晓结果。';panel.append(probability);
     }
     const risks=document.createElement('details'),riskTitle=document.createElement('summary'),riskText=document.createElement('p');risks.className='tool-full-risk';riskTitle.textContent='风险与完整说明';riskText.textContent=info.risk;risks.append(riskTitle,riskText);
-    panel.append(risks);scroll.append(panel);const workspace=document.createElement('div');workspace.className='tool-workspace';workspace.dataset.pane='targets';const dock=document.createElement('section');dock.className='tool-selection-dock';dock.setAttribute('aria-label','已选目标与真实预览');const changes=document.createElement('div'),body=document.createElement('div'),costs=document.createElement('p');changes.className='tool-change-preview';changes.setAttribute('aria-label','确认前后对照');body.className='tool-preview-scroll';costs.className='tool-preview-cost';costs.setAttribute('aria-live','polite');body.append(changes,preview);dock.append(hint,body);workspace.append(d.querySelector('.dialog-content')!,dock);d.insertBefore(workspace,d.querySelector('.dialog-actions'));costs.classList.add('tool-main-costs');d.insertBefore(costs,d.querySelector('.dialog-actions'));
+    risks.append(destroy);const route=d.querySelector('.route-fit-caption');if(route)risks.append(route);
+    // Shop's existing entry appends its receipt synchronously after this selector opens.
+    // Keep the full paid receipt available with the rules without expanding the fixed header.
+    queueMicrotask(()=>{const receipt=d.querySelector('.make-cards-receipt');if(receipt)risks.append(receipt);});
+    panel.append(risks);scroll.prepend(panel);const workspace=document.createElement('div');workspace.className='tool-workspace';workspace.dataset.pane='targets';const dock=document.createElement('section');dock.className='tool-selection-dock';dock.setAttribute('aria-label','已选目标与真实预览');const changes=document.createElement('div'),body=document.createElement('div'),costs=document.createElement('p');changes.className='tool-change-preview';changes.setAttribute('aria-label','确认前后对照');body.className='tool-preview-scroll';costs.className='tool-preview-cost';costs.setAttribute('aria-live','polite');body.append(changes,preview);dock.append(hint,body);workspace.append(d.querySelector('.dialog-content')!,dock);d.insertBefore(workspace,d.querySelector('.dialog-actions'));costs.classList.add('tool-main-costs');d.insertBefore(costs,d.querySelector('.dialog-actions'));
     const panes=document.createElement('div');panes.className='tool-workspace-panes';panes.setAttribute('role','group');panes.setAttribute('aria-label','道具工作面');
-    for(const [pane,label] of [['targets','选择对象'],['changes','变化与代价']] as const){const b=document.createElement('button');b.type='button';b.textContent=label;b.dataset.pane=pane;b.setAttribute('aria-pressed',String(pane==='targets'));b.onclick=()=>{workspace.dataset.pane=pane;d.dataset.toolPane=pane;workspace.scrollTop=0;for(const other of panes.querySelectorAll('button'))other.setAttribute('aria-pressed',String(other===b));};panes.append(b);}d.querySelector('.dialog-header')!.append(panes);
+    const paneScroll={targets:0,changes:0};
+    for(const [pane,label] of [['targets','返回选牌'],['changes','查看预览']] as const){const b=document.createElement('button');b.type='button';b.textContent=label;b.dataset.pane=pane;b.setAttribute('aria-pressed',String(pane==='targets'));b.onclick=()=>{paneScroll[workspace.dataset.pane as keyof typeof paneScroll]=workspace.scrollTop;workspace.dataset.pane=pane;d.dataset.toolPane=pane;workspace.scrollTop=paneScroll[pane];for(const other of panes.querySelectorAll('button'))other.setAttribute('aria-pressed',String(other===b));};panes.append(b);}d.querySelector('.dialog-header')!.append(panes);
     if(['whole-deck','none'].includes(tool.target.kind))panes.querySelector<HTMLButtonElement>('button:last-child')!.click();
     function refresh():void {
       const operation=tool.operation;
@@ -250,7 +255,7 @@ export function showConsumables(dialog:DetailDialog,state:R2RunState,ready:boole
           }
         }
       }
-      const steps=d.querySelectorAll('.operation-guide li'),step=issue?Math.max(0,steps.length-2):steps.length-1;steps.forEach((item,index)=>{item.classList.toggle('is-current',index===step);if(index===step)item.setAttribute('aria-current','step');else item.removeAttribute('aria-current');});const selected=targetChoices().filter(choice=>selection.ids.has(choice.id));
+      const selected=targetChoices().filter(choice=>selection.ids.has(choice.id));
       for(const control of controls){
         const {input,label,choice,role,maximum}=control;let unavailable=false;
         if(role==='target'){
@@ -266,11 +271,11 @@ export function showConsumables(dialog:DetailDialog,state:R2RunState,ready:boole
       }
       directoryUpdates.forEach(update=>update());selects.forEach(select=>{select.disabled=busy;});useAction.disabled=busy||!!issue;destroyAction.disabled=busy||!ready;confirm.disabled=useAction.disabled;destroy.disabled=destroyAction.disabled;
       hint.textContent=busy?'正在提交并保存…':issue??'目标有效。确认后使用物品并支付上述代价。';hint.dataset.valid=String(!issue);
-      // Keep this status row present so full/deselect cannot resize and clamp a bottom-scrolled target pane.
-      selectionHint.textContent=tool.target.kind==='cards'||tool.target.kind==='card-sacrifice'
-        ?selection.ids.size===tool.target.maximum
-          ?tool.target.maximum===1?'已选 1 张，可直接选择另一张。':'已选满，取消一张可换目标。'
-          :`已选 ${selection.ids.size}/${tool.target.maximum} 张，可继续选择。`
+      // Fixed summary rows retain visible selected identities, including targets outside filters.
+      const donor=(tool.target.kind==='joker-sacrifice'?jokerChoices:cardChoices).find(choice=>choice.id===selection.sacrificeId);
+      selectionHint.textContent=['cards','card-sacrifice','card-or-joker','joker-sacrifice'].includes(tool.target.kind)
+        ?`受益：${selected.map(choice=>choice.name).join('、')||'未选'}${tool.target.kind==='cards'||tool.target.kind==='card-sacrifice'?` (${selection.ids.size}/${tool.target.maximum})`:''}`+
+          (tool.target.kind==='card-sacrifice'||tool.target.kind==='joker-sacrifice'?`\n牺牲：${donor?.name??'未选'} · 永久移除，不退款`:'')
         :'';selectionHint.hidden=!selectionHint.textContent;
       const lines:string[]=[];
       if(selection.sacrificeId){const donor=(tool.target.kind==='joker-sacrifice'?jokerChoices:cardChoices).find(choice=>choice.id===selection.sacrificeId);if(donor)lines.push(`永久牺牲：${donor.name} · ${donor.detail.replace('\n',' · ')}。不作为出售，不退款。`);}
@@ -308,7 +313,7 @@ export function showConsumables(dialog:DetailDialog,state:R2RunState,ready:boole
       const replacementNotes=selected.flatMap(choice=>choice.card?toolCardChange(tool,choice.card)?.note.startsWith('替换原增强')?[toolCardChange(tool,choice.card)!.note]:[]:[]);
       const exchangeCost=operation.kind==='exchange-hand-levels'&&!issue&&selection.secondaryHandType?[`遗忘代价：${HAND_LABELS[selection.secondaryHandType]} Lv.${state.handLevels[selection.secondaryHandType]} → ${state.handLevels[selection.secondaryHandType]!-operation.loss}`]:[];
       confirm.textContent=busy?'正在保存…':clearing.length?'清除增强／版次':replacementNotes.length?'替换增强':'确认使用';costs.classList.toggle('is-replacement',!!(replacementNotes.length||clearing.length));
-      costs.textContent=[...clearing,...new Set(replacementNotes),...exchangeCost,...lines.filter(line=>/^(永久牺牲|有效牌组|额外使用代价|清空全部金币|下一场起|破碎风险)/.test(line))].join('\n');costs.hidden=!costs.textContent;
+      costs.textContent=[...clearing,...new Set(replacementNotes),...exchangeCost,...lines.filter(line=>/^(额外使用代价|清空全部金币|下一场起|破碎风险)/.test(line)||operation.kind==='delete-cards'&&line.startsWith('有效牌组'))].join('\n');costs.hidden=!costs.textContent;
       const compactPreview=tool.id==='S05'||tool.id==='T12';
       preview.hidden=compactPreview;preview.textContent=compactPreview?'':operation.kind==='clear-deck-specials'&&issue?issue:lines.join('\n\n')||'选择目标后，这里会显示变化与代价。';
     }
