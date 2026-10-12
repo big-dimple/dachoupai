@@ -1,0 +1,6046 @@
+{
+  "head": "00fe311e04305b7769f8141520742810bc614134",
+  "sourceTree": "a633fb0d07a551fc365a54e80e7e639d650987bb",
+  "modified": "M src/game/ShopScene.ts\n?? harness/owned-joker-drag-feedback.mjs\n?? src/game/OwnedJokerDragVisual.ts\n?? tests/owned-joker-drag-visual.test.ts",
+  "baseline": true,
+  "scope": "Controlled current-identity five-owned checkpoint; real mouse/CDP touch/DOM inputs. Full state/journal/local storage vs actual applyCommand; no natural acquisition, 18-combination, physical device or human acceptance.",
+  "cases": [
+    {
+      "width": 320,
+      "height": 740,
+      "touch": true,
+      "name": "320x740",
+      "checks": [],
+      "errors": [],
+      "moves": [
+        {
+          "from": 0,
+          "to": 4,
+          "style": "slow",
+          "before": {
+            "seq": 4,
+            "ids": [
+              "owned-drag/0",
+              "owned-drag/1",
+              "owned-drag/2",
+              "owned-drag/3",
+              "owned-drag/4"
+            ],
+            "revision": 1
+          },
+          "held": {
+            "drag": true,
+            "saving": false,
+            "inputEnabled": false,
+            "hint": "松手换位 · 移出持牌区取消",
+            "slots": [
+              {
+                "x": 12,
+                "y": 488,
+                "width": 54.4,
+                "height": 76.16
+              },
+              {
+                "x": 72.4,
+                "y": 488,
+                "width": 54.4,
+                "height": 76.16
+              },
+              {
+                "x": 132.8,
+                "y": 488,
+                "width": 54.4,
+                "height": 76.16
+              },
+              {
+                "x": 193.2,
+                "y": 488,
+                "width": 54.4,
+                "height": 76.16
+              },
+              {
+                "x": 253.6,
+                "y": 488,
+                "width": 54.4,
+                "height": 76.16
+              }
+            ],
+            "arts": [
+              {
+                "id": "owned-drag/0",
+                "x": 39.2,
+                "y": 526.0799999999999,
+                "scale": 1.04,
+                "active": true,
+                "bounds": {
+                  "x": 10.912001800537105,
+                  "y": 486.47681854248043,
+                  "width": 56.57599792480469,
+                  "height": 98.79999637603754
+                }
+              },
+              {
+                "id": "owned-drag/1",
+                "x": 99.60000000000001,
+                "y": 526.08,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 72.39999847412109,
+                  "y": 488.0000170898437,
+                  "width": 54.39999999999999,
+                  "height": 95
+                }
+              },
+              {
+                "id": "owned-drag/2",
+                "x": 160,
+                "y": 526.08,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 132.8,
+                  "y": 488.0000170898437,
+                  "width": 54.400000000000006,
+                  "height": 95
+                }
+              },
+              {
+                "id": "owned-drag/3",
+                "x": 220.39999999999998,
+                "y": 526.08,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 193.1999938964844,
+                  "y": 488.0000170898437,
+                  "width": 56.80000000000001,
+                  "height": 95
+                }
+              },
+              {
+                "id": "owned-drag/4",
+                "x": 280.8,
+                "y": 526.08,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 253.59998779296873,
+                  "y": 488.0000170898437,
+                  "width": 57.400000000000006,
+                  "height": 95
+                }
+              }
+            ],
+            "surfaceTouchAction": "pan-y",
+            "dispatch": []
+          },
+          "heldShot": "320x740-slow-held.png",
+          "mid": {
+            "drag": true,
+            "saving": false,
+            "inputEnabled": false,
+            "hint": "松手换位 · 移出持牌区取消",
+            "slots": [
+              {
+                "x": 12,
+                "y": 488,
+                "width": 54.4,
+                "height": 76.16
+              },
+              {
+                "x": 72.4,
+                "y": 488,
+                "width": 54.4,
+                "height": 76.16
+              },
+              {
+                "x": 132.8,
+                "y": 488,
+                "width": 54.4,
+                "height": 76.16
+              },
+              {
+                "x": 193.2,
+                "y": 488,
+                "width": 54.4,
+                "height": 76.16
+              },
+              {
+                "x": 253.6,
+                "y": 488,
+                "width": 54.4,
+                "height": 76.16
+              }
+            ],
+            "arts": [
+              {
+                "id": "owned-drag/0",
+                "x": 280.7999870300293,
+                "y": 534.0799999999999,
+                "scale": 1.04,
+                "active": true,
+                "bounds": {
+                  "x": 252.5119888305664,
+                  "y": 494.47681854248043,
+                  "width": 56.57599792480471,
+                  "height": 98.79999637603754
+                }
+              },
+              {
+                "id": "owned-drag/1",
+                "x": 39.2,
+                "y": 526.08,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 12.00000076293945,
+                  "y": 488.0000170898437,
+                  "width": 54.39999999999999,
+                  "height": 95
+                }
+              },
+              {
+                "id": "owned-drag/2",
+                "x": 99.60000000000001,
+                "y": 526.08,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 72.3999984741211,
+                  "y": 488.0000170898437,
+                  "width": 54.400000000000006,
+                  "height": 95
+                }
+              },
+              {
+                "id": "owned-drag/3",
+                "x": 160,
+                "y": 526.08,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 132.8,
+                  "y": 488.0000170898437,
+                  "width": 56.80000000000001,
+                  "height": 95
+                }
+              },
+              {
+                "id": "owned-drag/4",
+                "x": 220.39999999999998,
+                "y": 526.08,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 193.19999389648436,
+                  "y": 488.0000170898437,
+                  "width": 57.400000000000006,
+                  "height": 95
+                }
+              }
+            ],
+            "surfaceTouchAction": "pan-y",
+            "dispatch": []
+          },
+          "midShot": "320x740-slow-mid.png",
+          "after": {
+            "seq": 5,
+            "ids": [
+              "owned-drag/1",
+              "owned-drag/2",
+              "owned-drag/3",
+              "owned-drag/4",
+              "owned-drag/0"
+            ],
+            "revision": 2
+          },
+          "dropped": {
+            "drag": false,
+            "saving": false,
+            "inputEnabled": true,
+            "hint": "长按拖动换位 · 点牌查看",
+            "slots": [
+              {
+                "x": 12,
+                "y": 488,
+                "width": 54.4,
+                "height": 76.16
+              },
+              {
+                "x": 72.4,
+                "y": 488,
+                "width": 54.4,
+                "height": 76.16
+              },
+              {
+                "x": 132.8,
+                "y": 488,
+                "width": 54.4,
+                "height": 76.16
+              },
+              {
+                "x": 193.2,
+                "y": 488,
+                "width": 54.4,
+                "height": 76.16
+              },
+              {
+                "x": 253.6,
+                "y": 488,
+                "width": 54.4,
+                "height": 76.16
+              }
+            ],
+            "arts": [
+              {
+                "id": "owned-drag/1",
+                "x": 39.2,
+                "y": 526.08,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 12.00000076293945,
+                  "y": 488.0000170898437,
+                  "width": 54.39999999999999,
+                  "height": 95
+                }
+              },
+              {
+                "id": "owned-drag/2",
+                "x": 99.60000000000001,
+                "y": 526.08,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 72.39999847412109,
+                  "y": 488.0000170898437,
+                  "width": 54.39999999999999,
+                  "height": 95
+                }
+              },
+              {
+                "id": "owned-drag/3",
+                "x": 160,
+                "y": 526.08,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 132.8,
+                  "y": 488.0000170898437,
+                  "width": 57.19999999999999,
+                  "height": 95
+                }
+              },
+              {
+                "id": "owned-drag/4",
+                "x": 220.39999999999998,
+                "y": 526.08,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 193.1999938964844,
+                  "y": 488.0000170898437,
+                  "width": 56.80000000000001,
+                  "height": 95
+                }
+              },
+              {
+                "id": "owned-drag/0",
+                "x": 280.8,
+                "y": 526.08,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 253.59998779296873,
+                  "y": 488.0000170898437,
+                  "width": 54.400000000000006,
+                  "height": 95
+                }
+              }
+            ],
+            "surfaceTouchAction": "pan-y",
+            "dispatch": [
+              [
+                {
+                  "type": "ReorderJokers",
+                  "ids": [
+                    "owned-drag/1",
+                    "owned-drag/2",
+                    "owned-drag/3",
+                    "owned-drag/4",
+                    "owned-drag/0"
+                  ]
+                },
+                4
+              ]
+            ]
+          },
+          "dropShot": "320x740-slow-dropped.png",
+          "status": "PASS"
+        },
+        {
+          "from": 4,
+          "to": 0,
+          "style": "fast",
+          "before": {
+            "seq": 5,
+            "ids": [
+              "owned-drag/1",
+              "owned-drag/2",
+              "owned-drag/3",
+              "owned-drag/4",
+              "owned-drag/0"
+            ],
+            "revision": 2
+          },
+          "held": {
+            "drag": true,
+            "saving": false,
+            "inputEnabled": false,
+            "hint": "松手换位 · 移出持牌区取消",
+            "slots": [
+              {
+                "x": 12,
+                "y": 488,
+                "width": 54.4,
+                "height": 76.16
+              },
+              {
+                "x": 72.4,
+                "y": 488,
+                "width": 54.4,
+                "height": 76.16
+              },
+              {
+                "x": 132.8,
+                "y": 488,
+                "width": 54.4,
+                "height": 76.16
+              },
+              {
+                "x": 193.2,
+                "y": 488,
+                "width": 54.4,
+                "height": 76.16
+              },
+              {
+                "x": 253.6,
+                "y": 488,
+                "width": 54.4,
+                "height": 76.16
+              }
+            ],
+            "arts": [
+              {
+                "id": "owned-drag/1",
+                "x": 39.2,
+                "y": 526.08,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 12.00000076293945,
+                  "y": 488.0000170898437,
+                  "width": 54.39999999999999,
+                  "height": 95
+                }
+              },
+              {
+                "id": "owned-drag/2",
+                "x": 99.60000000000001,
+                "y": 526.08,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 72.39999847412109,
+                  "y": 488.0000170898437,
+                  "width": 54.39999999999999,
+                  "height": 95
+                }
+              },
+              {
+                "id": "owned-drag/3",
+                "x": 160,
+                "y": 526.08,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 132.8,
+                  "y": 488.0000170898437,
+                  "width": 57.19999999999999,
+                  "height": 95
+                }
+              },
+              {
+                "id": "owned-drag/4",
+                "x": 220.39999999999998,
+                "y": 526.08,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 193.1999938964844,
+                  "y": 488.0000170898437,
+                  "width": 56.80000000000001,
+                  "height": 95
+                }
+              },
+              {
+                "id": "owned-drag/0",
+                "x": 280.79999999999995,
+                "y": 526.0799999999999,
+                "scale": 1.04,
+                "active": true,
+                "bounds": {
+                  "x": 252.5119888305664,
+                  "y": 486.47681854248043,
+                  "width": 56.57599792480465,
+                  "height": 98.79999637603754
+                }
+              }
+            ],
+            "surfaceTouchAction": "pan-y",
+            "dispatch": [
+              [
+                {
+                  "type": "ReorderJokers",
+                  "ids": [
+                    "owned-drag/1",
+                    "owned-drag/2",
+                    "owned-drag/3",
+                    "owned-drag/4",
+                    "owned-drag/0"
+                  ]
+                },
+                4
+              ]
+            ]
+          },
+          "heldShot": "320x740-fast-held.png",
+          "mid": {
+            "drag": true,
+            "saving": false,
+            "inputEnabled": false,
+            "hint": "松手换位 · 移出持牌区取消",
+            "slots": [
+              {
+                "x": 12,
+                "y": 488,
+                "width": 54.4,
+                "height": 76.16
+              },
+              {
+                "x": 72.4,
+                "y": 488,
+                "width": 54.4,
+                "height": 76.16
+              },
+              {
+                "x": 132.8,
+                "y": 488,
+                "width": 54.4,
+                "height": 76.16
+              },
+              {
+                "x": 193.2,
+                "y": 488,
+                "width": 54.4,
+                "height": 76.16
+              },
+              {
+                "x": 253.6,
+                "y": 488,
+                "width": 54.4,
+                "height": 76.16
+              }
+            ],
+            "arts": [
+              {
+                "id": "owned-drag/1",
+                "x": 99.60000000000001,
+                "y": 526.08,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 72.39999847412109,
+                  "y": 488.0000170898437,
+                  "width": 54.39999999999999,
+                  "height": 95
+                }
+              },
+              {
+                "id": "owned-drag/2",
+                "x": 160,
+                "y": 526.08,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 132.8,
+                  "y": 488.0000170898437,
+                  "width": 54.39999999999998,
+                  "height": 95
+                }
+              },
+              {
+                "id": "owned-drag/3",
+                "x": 220.39999999999998,
+                "y": 526.08,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 193.1999938964844,
+                  "y": 488.0000170898437,
+                  "width": 57.19999999999999,
+                  "height": 95
+                }
+              },
+              {
+                "id": "owned-drag/4",
+                "x": 280.8,
+                "y": 526.08,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 253.59998779296876,
+                  "y": 488.0000170898437,
+                  "width": 56.80000000000001,
+                  "height": 95
+                }
+              },
+              {
+                "id": "owned-drag/0",
+                "x": 39.200012969970714,
+                "y": 526.0799999999999,
+                "scale": 1.04,
+                "active": true,
+                "bounds": {
+                  "x": 10.912013244628888,
+                  "y": 486.47681854248043,
+                  "width": 56.57599792480469,
+                  "height": 98.79999637603754
+                }
+              }
+            ],
+            "surfaceTouchAction": "pan-y",
+            "dispatch": [
+              [
+                {
+                  "type": "ReorderJokers",
+                  "ids": [
+                    "owned-drag/1",
+                    "owned-drag/2",
+                    "owned-drag/3",
+                    "owned-drag/4",
+                    "owned-drag/0"
+                  ]
+                },
+                4
+              ]
+            ]
+          },
+          "midShot": "320x740-fast-mid.png",
+          "after": {
+            "seq": 6,
+            "ids": [
+              "owned-drag/0",
+              "owned-drag/1",
+              "owned-drag/2",
+              "owned-drag/3",
+              "owned-drag/4"
+            ],
+            "revision": 3
+          },
+          "dropped": {
+            "drag": false,
+            "saving": false,
+            "inputEnabled": true,
+            "hint": "长按拖动换位 · 点牌查看",
+            "slots": [
+              {
+                "x": 12,
+                "y": 488,
+                "width": 54.4,
+                "height": 76.16
+              },
+              {
+                "x": 72.4,
+                "y": 488,
+                "width": 54.4,
+                "height": 76.16
+              },
+              {
+                "x": 132.8,
+                "y": 488,
+                "width": 54.4,
+                "height": 76.16
+              },
+              {
+                "x": 193.2,
+                "y": 488,
+                "width": 54.4,
+                "height": 76.16
+              },
+              {
+                "x": 253.6,
+                "y": 488,
+                "width": 54.4,
+                "height": 76.16
+              }
+            ],
+            "arts": [
+              {
+                "id": "owned-drag/0",
+                "x": 39.2,
+                "y": 526.08,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 12.00000076293945,
+                  "y": 488.0000170898437,
+                  "width": 54.39999999999999,
+                  "height": 95
+                }
+              },
+              {
+                "id": "owned-drag/1",
+                "x": 99.60000000000001,
+                "y": 526.08,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 72.39999847412109,
+                  "y": 488.0000170898437,
+                  "width": 54.39999999999999,
+                  "height": 95
+                }
+              },
+              {
+                "id": "owned-drag/2",
+                "x": 160,
+                "y": 526.08,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 132.8,
+                  "y": 488.0000170898437,
+                  "width": 54.400000000000006,
+                  "height": 95
+                }
+              },
+              {
+                "id": "owned-drag/3",
+                "x": 220.39999999999998,
+                "y": 526.08,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 193.1999938964844,
+                  "y": 488.0000170898437,
+                  "width": 56.80000000000001,
+                  "height": 95
+                }
+              },
+              {
+                "id": "owned-drag/4",
+                "x": 280.8,
+                "y": 526.08,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 253.59998779296873,
+                  "y": 488.0000170898437,
+                  "width": 57.400000000000006,
+                  "height": 95
+                }
+              }
+            ],
+            "surfaceTouchAction": "pan-y",
+            "dispatch": [
+              [
+                {
+                  "type": "ReorderJokers",
+                  "ids": [
+                    "owned-drag/1",
+                    "owned-drag/2",
+                    "owned-drag/3",
+                    "owned-drag/4",
+                    "owned-drag/0"
+                  ]
+                },
+                4
+              ],
+              [
+                {
+                  "type": "ReorderJokers",
+                  "ids": [
+                    "owned-drag/0",
+                    "owned-drag/1",
+                    "owned-drag/2",
+                    "owned-drag/3",
+                    "owned-drag/4"
+                  ]
+                },
+                5
+              ]
+            ]
+          },
+          "dropShot": "320x740-fast-dropped.png",
+          "status": "PASS"
+        },
+        {
+          "from": 1,
+          "to": 3,
+          "style": "middle",
+          "before": {
+            "seq": 6,
+            "ids": [
+              "owned-drag/0",
+              "owned-drag/1",
+              "owned-drag/2",
+              "owned-drag/3",
+              "owned-drag/4"
+            ],
+            "revision": 3
+          },
+          "held": {
+            "drag": true,
+            "saving": false,
+            "inputEnabled": false,
+            "hint": "松手换位 · 移出持牌区取消",
+            "slots": [
+              {
+                "x": 12,
+                "y": 488,
+                "width": 54.4,
+                "height": 76.16
+              },
+              {
+                "x": 72.4,
+                "y": 488,
+                "width": 54.4,
+                "height": 76.16
+              },
+              {
+                "x": 132.8,
+                "y": 488,
+                "width": 54.4,
+                "height": 76.16
+              },
+              {
+                "x": 193.2,
+                "y": 488,
+                "width": 54.4,
+                "height": 76.16
+              },
+              {
+                "x": 253.6,
+                "y": 488,
+                "width": 54.4,
+                "height": 76.16
+              }
+            ],
+            "arts": [
+              {
+                "id": "owned-drag/0",
+                "x": 39.2,
+                "y": 526.08,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 12.00000076293945,
+                  "y": 488.0000170898437,
+                  "width": 54.39999999999999,
+                  "height": 95
+                }
+              },
+              {
+                "id": "owned-drag/1",
+                "x": 99.60000000000002,
+                "y": 526.0799999999999,
+                "scale": 1.04,
+                "active": true,
+                "bounds": {
+                  "x": 71.31199951171874,
+                  "y": 486.47681854248043,
+                  "width": 56.575997924804696,
+                  "height": 98.79999637603754
+                }
+              },
+              {
+                "id": "owned-drag/2",
+                "x": 160,
+                "y": 526.08,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 132.8,
+                  "y": 488.0000170898437,
+                  "width": 54.400000000000006,
+                  "height": 95
+                }
+              },
+              {
+                "id": "owned-drag/3",
+                "x": 220.39999999999998,
+                "y": 526.08,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 193.1999938964844,
+                  "y": 488.0000170898437,
+                  "width": 56.80000000000001,
+                  "height": 95
+                }
+              },
+              {
+                "id": "owned-drag/4",
+                "x": 280.8,
+                "y": 526.08,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 253.59998779296873,
+                  "y": 488.0000170898437,
+                  "width": 57.400000000000006,
+                  "height": 95
+                }
+              }
+            ],
+            "surfaceTouchAction": "pan-y",
+            "dispatch": [
+              [
+                {
+                  "type": "ReorderJokers",
+                  "ids": [
+                    "owned-drag/1",
+                    "owned-drag/2",
+                    "owned-drag/3",
+                    "owned-drag/4",
+                    "owned-drag/0"
+                  ]
+                },
+                4
+              ],
+              [
+                {
+                  "type": "ReorderJokers",
+                  "ids": [
+                    "owned-drag/0",
+                    "owned-drag/1",
+                    "owned-drag/2",
+                    "owned-drag/3",
+                    "owned-drag/4"
+                  ]
+                },
+                5
+              ]
+            ]
+          },
+          "heldShot": "320x740-middle-held.png",
+          "mid": {
+            "drag": true,
+            "saving": false,
+            "inputEnabled": false,
+            "hint": "松手换位 · 移出持牌区取消",
+            "slots": [
+              {
+                "x": 12,
+                "y": 488,
+                "width": 54.4,
+                "height": 76.16
+              },
+              {
+                "x": 72.4,
+                "y": 488,
+                "width": 54.4,
+                "height": 76.16
+              },
+              {
+                "x": 132.8,
+                "y": 488,
+                "width": 54.4,
+                "height": 76.16
+              },
+              {
+                "x": 193.2,
+                "y": 488,
+                "width": 54.4,
+                "height": 76.16
+              },
+              {
+                "x": 253.6,
+                "y": 488,
+                "width": 54.4,
+                "height": 76.16
+              }
+            ],
+            "arts": [
+              {
+                "id": "owned-drag/0",
+                "x": 39.2,
+                "y": 526.08,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 12.00000076293945,
+                  "y": 488.0000170898437,
+                  "width": 54.39999999999999,
+                  "height": 95
+                }
+              },
+              {
+                "id": "owned-drag/1",
+                "x": 220.3999954223633,
+                "y": 526.0799999999999,
+                "scale": 1.04,
+                "active": true,
+                "bounds": {
+                  "x": 192.11199493408202,
+                  "y": 486.47681854248043,
+                  "width": 56.57599792480471,
+                  "height": 98.79999637603754
+                }
+              },
+              {
+                "id": "owned-drag/2",
+                "x": 99.60000000000001,
+                "y": 526.08,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 72.3999984741211,
+                  "y": 488.0000170898437,
+                  "width": 54.400000000000006,
+                  "height": 95
+                }
+              },
+              {
+                "id": "owned-drag/3",
+                "x": 160,
+                "y": 526.08,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 132.8,
+                  "y": 488.0000170898437,
+                  "width": 56.80000000000001,
+                  "height": 95
+                }
+              },
+              {
+                "id": "owned-drag/4",
+                "x": 280.8,
+                "y": 526.08,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 253.59998779296873,
+                  "y": 488.0000170898437,
+                  "width": 57.400000000000006,
+                  "height": 95
+                }
+              }
+            ],
+            "surfaceTouchAction": "pan-y",
+            "dispatch": [
+              [
+                {
+                  "type": "ReorderJokers",
+                  "ids": [
+                    "owned-drag/1",
+                    "owned-drag/2",
+                    "owned-drag/3",
+                    "owned-drag/4",
+                    "owned-drag/0"
+                  ]
+                },
+                4
+              ],
+              [
+                {
+                  "type": "ReorderJokers",
+                  "ids": [
+                    "owned-drag/0",
+                    "owned-drag/1",
+                    "owned-drag/2",
+                    "owned-drag/3",
+                    "owned-drag/4"
+                  ]
+                },
+                5
+              ]
+            ]
+          },
+          "midShot": "320x740-middle-mid.png",
+          "after": {
+            "seq": 7,
+            "ids": [
+              "owned-drag/0",
+              "owned-drag/2",
+              "owned-drag/3",
+              "owned-drag/1",
+              "owned-drag/4"
+            ],
+            "revision": 4
+          },
+          "dropped": {
+            "drag": false,
+            "saving": false,
+            "inputEnabled": true,
+            "hint": "长按拖动换位 · 点牌查看",
+            "slots": [
+              {
+                "x": 12,
+                "y": 488,
+                "width": 54.4,
+                "height": 76.16
+              },
+              {
+                "x": 72.4,
+                "y": 488,
+                "width": 54.4,
+                "height": 76.16
+              },
+              {
+                "x": 132.8,
+                "y": 488,
+                "width": 54.4,
+                "height": 76.16
+              },
+              {
+                "x": 193.2,
+                "y": 488,
+                "width": 54.4,
+                "height": 76.16
+              },
+              {
+                "x": 253.6,
+                "y": 488,
+                "width": 54.4,
+                "height": 76.16
+              }
+            ],
+            "arts": [
+              {
+                "id": "owned-drag/0",
+                "x": 39.2,
+                "y": 526.08,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 12.00000076293945,
+                  "y": 488.0000170898437,
+                  "width": 54.39999999999999,
+                  "height": 95
+                }
+              },
+              {
+                "id": "owned-drag/2",
+                "x": 99.60000000000001,
+                "y": 526.08,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 72.39999847412109,
+                  "y": 488.0000170898437,
+                  "width": 54.39999999999999,
+                  "height": 95
+                }
+              },
+              {
+                "id": "owned-drag/3",
+                "x": 160,
+                "y": 526.08,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 132.8,
+                  "y": 488.0000170898437,
+                  "width": 57.19999999999999,
+                  "height": 95
+                }
+              },
+              {
+                "id": "owned-drag/1",
+                "x": 220.39999999999998,
+                "y": 526.08,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 193.1999938964844,
+                  "y": 488.0000170898437,
+                  "width": 54.400000000000006,
+                  "height": 95
+                }
+              },
+              {
+                "id": "owned-drag/4",
+                "x": 280.8,
+                "y": 526.08,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 253.59998779296873,
+                  "y": 488.0000170898437,
+                  "width": 57.400000000000006,
+                  "height": 95
+                }
+              }
+            ],
+            "surfaceTouchAction": "pan-y",
+            "dispatch": [
+              [
+                {
+                  "type": "ReorderJokers",
+                  "ids": [
+                    "owned-drag/1",
+                    "owned-drag/2",
+                    "owned-drag/3",
+                    "owned-drag/4",
+                    "owned-drag/0"
+                  ]
+                },
+                4
+              ],
+              [
+                {
+                  "type": "ReorderJokers",
+                  "ids": [
+                    "owned-drag/0",
+                    "owned-drag/1",
+                    "owned-drag/2",
+                    "owned-drag/3",
+                    "owned-drag/4"
+                  ]
+                },
+                5
+              ],
+              [
+                {
+                  "type": "ReorderJokers",
+                  "ids": [
+                    "owned-drag/0",
+                    "owned-drag/2",
+                    "owned-drag/3",
+                    "owned-drag/1",
+                    "owned-drag/4"
+                  ]
+                },
+                6
+              ]
+            ]
+          },
+          "dropShot": "320x740-middle-dropped.png",
+          "status": "PASS"
+        }
+      ],
+      "cancellations": [],
+      "initial": {
+        "seq": 4,
+        "ids": [
+          "owned-drag/0",
+          "owned-drag/1",
+          "owned-drag/2",
+          "owned-drag/3",
+          "owned-drag/4"
+        ],
+        "revision": 1
+      },
+      "initialVisual": {
+        "drag": false,
+        "saving": false,
+        "inputEnabled": true,
+        "hint": "长按拖动换位 · 点牌查看",
+        "slots": [
+          {
+            "x": 12,
+            "y": 488,
+            "width": 54.4,
+            "height": 76.16
+          },
+          {
+            "x": 72.4,
+            "y": 488,
+            "width": 54.4,
+            "height": 76.16
+          },
+          {
+            "x": 132.8,
+            "y": 488,
+            "width": 54.4,
+            "height": 76.16
+          },
+          {
+            "x": 193.2,
+            "y": 488,
+            "width": 54.4,
+            "height": 76.16
+          },
+          {
+            "x": 253.6,
+            "y": 488,
+            "width": 54.4,
+            "height": 76.16
+          }
+        ],
+        "arts": [
+          {
+            "id": "owned-drag/0",
+            "x": 39.2,
+            "y": 526.08,
+            "scale": 1,
+            "active": true,
+            "bounds": {
+              "x": 12.00000076293945,
+              "y": 488.0000170898437,
+              "width": 54.39999999999999,
+              "height": 95
+            }
+          },
+          {
+            "id": "owned-drag/1",
+            "x": 99.60000000000001,
+            "y": 526.08,
+            "scale": 1,
+            "active": true,
+            "bounds": {
+              "x": 72.39999847412109,
+              "y": 488.0000170898437,
+              "width": 54.39999999999999,
+              "height": 95
+            }
+          },
+          {
+            "id": "owned-drag/2",
+            "x": 160,
+            "y": 526.08,
+            "scale": 1,
+            "active": true,
+            "bounds": {
+              "x": 132.8,
+              "y": 488.0000170898437,
+              "width": 54.400000000000006,
+              "height": 95
+            }
+          },
+          {
+            "id": "owned-drag/3",
+            "x": 220.39999999999998,
+            "y": 526.08,
+            "scale": 1,
+            "active": true,
+            "bounds": {
+              "x": 193.1999938964844,
+              "y": 488.0000170898437,
+              "width": 56.80000000000001,
+              "height": 95
+            }
+          },
+          {
+            "id": "owned-drag/4",
+            "x": 280.8,
+            "y": 526.08,
+            "scale": 1,
+            "active": true,
+            "bounds": {
+              "x": 253.59998779296873,
+              "y": 488.0000170898437,
+              "width": 57.400000000000006,
+              "height": 95
+            }
+          }
+        ],
+        "surfaceTouchAction": "pan-y",
+        "dispatch": []
+      },
+      "idleShot": "320x740-idle.png",
+      "vertical": {
+        "drag": false,
+        "saving": false,
+        "inputEnabled": true,
+        "hint": "长按拖动换位 · 点牌查看",
+        "slots": [
+          {
+            "x": 12,
+            "y": 488,
+            "width": 54.4,
+            "height": 76.16
+          },
+          {
+            "x": 72.4,
+            "y": 488,
+            "width": 54.4,
+            "height": 76.16
+          },
+          {
+            "x": 132.8,
+            "y": 488,
+            "width": 54.4,
+            "height": 76.16
+          },
+          {
+            "x": 193.2,
+            "y": 488,
+            "width": 54.4,
+            "height": 76.16
+          },
+          {
+            "x": 253.6,
+            "y": 488,
+            "width": 54.4,
+            "height": 76.16
+          }
+        ],
+        "arts": [
+          {
+            "id": "owned-drag/0",
+            "x": 39.2,
+            "y": 526.08,
+            "scale": 1,
+            "active": true,
+            "bounds": {
+              "x": 12.00000076293945,
+              "y": 488.0000170898437,
+              "width": 54.39999999999999,
+              "height": 95
+            }
+          },
+          {
+            "id": "owned-drag/2",
+            "x": 99.60000000000001,
+            "y": 526.08,
+            "scale": 1,
+            "active": true,
+            "bounds": {
+              "x": 72.39999847412109,
+              "y": 488.0000170898437,
+              "width": 54.39999999999999,
+              "height": 95
+            }
+          },
+          {
+            "id": "owned-drag/3",
+            "x": 160,
+            "y": 526.08,
+            "scale": 1,
+            "active": true,
+            "bounds": {
+              "x": 132.8,
+              "y": 488.0000170898437,
+              "width": 57.19999999999999,
+              "height": 95
+            }
+          },
+          {
+            "id": "owned-drag/1",
+            "x": 220.39999999999998,
+            "y": 526.08,
+            "scale": 1,
+            "active": true,
+            "bounds": {
+              "x": 193.1999938964844,
+              "y": 488.0000170898437,
+              "width": 54.400000000000006,
+              "height": 95
+            }
+          },
+          {
+            "id": "owned-drag/4",
+            "x": 280.8,
+            "y": 526.08,
+            "scale": 1,
+            "active": true,
+            "bounds": {
+              "x": 253.59998779296873,
+              "y": 488.0000170898437,
+              "width": 57.400000000000006,
+              "height": 95
+            }
+          }
+        ],
+        "surfaceTouchAction": "pan-y",
+        "dispatch": [
+          [
+            {
+              "type": "ReorderJokers",
+              "ids": [
+                "owned-drag/1",
+                "owned-drag/2",
+                "owned-drag/3",
+                "owned-drag/4",
+                "owned-drag/0"
+              ]
+            },
+            4
+          ],
+          [
+            {
+              "type": "ReorderJokers",
+              "ids": [
+                "owned-drag/0",
+                "owned-drag/1",
+                "owned-drag/2",
+                "owned-drag/3",
+                "owned-drag/4"
+              ]
+            },
+            5
+          ],
+          [
+            {
+              "type": "ReorderJokers",
+              "ids": [
+                "owned-drag/0",
+                "owned-drag/2",
+                "owned-drag/3",
+                "owned-drag/1",
+                "owned-drag/4"
+              ]
+            },
+            6
+          ]
+        ]
+      },
+      "verticalShot": "320x740-vertical.png",
+      "restored": {
+        "seq": 7,
+        "ids": [
+          "owned-drag/0",
+          "owned-drag/2",
+          "owned-drag/3",
+          "owned-drag/1",
+          "owned-drag/4"
+        ],
+        "revision": 4
+      },
+      "status": "PASS"
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "name": "390x844",
+      "checks": [],
+      "errors": [],
+      "moves": [
+        {
+          "from": 0,
+          "to": 4,
+          "style": "slow",
+          "before": {
+            "seq": 4,
+            "ids": [
+              "owned-drag/0",
+              "owned-drag/1",
+              "owned-drag/2",
+              "owned-drag/3",
+              "owned-drag/4"
+            ],
+            "revision": 1
+          },
+          "held": {
+            "drag": true,
+            "saving": false,
+            "inputEnabled": false,
+            "hint": "松手换位 · 移出持牌区取消",
+            "slots": [
+              {
+                "x": 38,
+                "y": 518,
+                "width": 58,
+                "height": 81.19999999999999
+              },
+              {
+                "x": 102,
+                "y": 518,
+                "width": 58,
+                "height": 81.19999999999999
+              },
+              {
+                "x": 166,
+                "y": 518,
+                "width": 58,
+                "height": 81.19999999999999
+              },
+              {
+                "x": 230,
+                "y": 518,
+                "width": 58,
+                "height": 81.19999999999999
+              },
+              {
+                "x": 294,
+                "y": 518,
+                "width": 58,
+                "height": 81.19999999999999
+              }
+            ],
+            "arts": [
+              {
+                "id": "owned-drag/0",
+                "x": 67,
+                "y": 558.5999999999999,
+                "scale": 1.04,
+                "active": true,
+                "bounds": {
+                  "x": 36.84000110626221,
+                  "y": 516.3759771347046,
+                  "width": 60.319997787475586,
+                  "height": 103.99999618530273
+                }
+              },
+              {
+                "id": "owned-drag/1",
+                "x": 131,
+                "y": 558.6,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 102,
+                  "y": 517.9999755859375,
+                  "width": 58,
+                  "height": 100
+                }
+              },
+              {
+                "id": "owned-drag/2",
+                "x": 195,
+                "y": 558.6,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 166,
+                  "y": 517.9999755859375,
+                  "width": 58,
+                  "height": 100
+                }
+              },
+              {
+                "id": "owned-drag/3",
+                "x": 259,
+                "y": 558.6,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 230,
+                  "y": 517.9999755859375,
+                  "width": 58,
+                  "height": 100
+                }
+              },
+              {
+                "id": "owned-drag/4",
+                "x": 323,
+                "y": 558.6,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 294,
+                  "y": 517.9999755859375,
+                  "width": 58,
+                  "height": 100
+                }
+              }
+            ],
+            "surfaceTouchAction": "pan-y",
+            "dispatch": []
+          },
+          "heldShot": "390x844-slow-held.png",
+          "mid": {
+            "drag": true,
+            "saving": false,
+            "inputEnabled": false,
+            "hint": "松手换位 · 移出持牌区取消",
+            "slots": [
+              {
+                "x": 38,
+                "y": 518,
+                "width": 58,
+                "height": 81.19999999999999
+              },
+              {
+                "x": 102,
+                "y": 518,
+                "width": 58,
+                "height": 81.19999999999999
+              },
+              {
+                "x": 166,
+                "y": 518,
+                "width": 58,
+                "height": 81.19999999999999
+              },
+              {
+                "x": 230,
+                "y": 518,
+                "width": 58,
+                "height": 81.19999999999999
+              },
+              {
+                "x": 294,
+                "y": 518,
+                "width": 58,
+                "height": 81.19999999999999
+              }
+            ],
+            "arts": [
+              {
+                "id": "owned-drag/0",
+                "x": 323,
+                "y": 566.5999999999999,
+                "scale": 1.04,
+                "active": true,
+                "bounds": {
+                  "x": 292.8400011062622,
+                  "y": 524.3759771347046,
+                  "width": 60.319997787475586,
+                  "height": 103.99999618530273
+                }
+              },
+              {
+                "id": "owned-drag/1",
+                "x": 67,
+                "y": 558.6,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 38,
+                  "y": 517.9999755859375,
+                  "width": 58,
+                  "height": 100
+                }
+              },
+              {
+                "id": "owned-drag/2",
+                "x": 131,
+                "y": 558.6,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 102,
+                  "y": 517.9999755859375,
+                  "width": 58,
+                  "height": 100
+                }
+              },
+              {
+                "id": "owned-drag/3",
+                "x": 195,
+                "y": 558.6,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 166,
+                  "y": 517.9999755859375,
+                  "width": 58,
+                  "height": 100
+                }
+              },
+              {
+                "id": "owned-drag/4",
+                "x": 259,
+                "y": 558.6,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 230,
+                  "y": 517.9999755859375,
+                  "width": 58,
+                  "height": 100
+                }
+              }
+            ],
+            "surfaceTouchAction": "pan-y",
+            "dispatch": []
+          },
+          "midShot": "390x844-slow-mid.png",
+          "after": {
+            "seq": 5,
+            "ids": [
+              "owned-drag/1",
+              "owned-drag/2",
+              "owned-drag/3",
+              "owned-drag/4",
+              "owned-drag/0"
+            ],
+            "revision": 2
+          },
+          "dropped": {
+            "drag": false,
+            "saving": false,
+            "inputEnabled": true,
+            "hint": "长按拖动换位 · 点牌查看",
+            "slots": [
+              {
+                "x": 38,
+                "y": 518,
+                "width": 58,
+                "height": 81.19999999999999
+              },
+              {
+                "x": 102,
+                "y": 518,
+                "width": 58,
+                "height": 81.19999999999999
+              },
+              {
+                "x": 166,
+                "y": 518,
+                "width": 58,
+                "height": 81.19999999999999
+              },
+              {
+                "x": 230,
+                "y": 518,
+                "width": 58,
+                "height": 81.19999999999999
+              },
+              {
+                "x": 294,
+                "y": 518,
+                "width": 58,
+                "height": 81.19999999999999
+              }
+            ],
+            "arts": [
+              {
+                "id": "owned-drag/1",
+                "x": 67,
+                "y": 558.6,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 38,
+                  "y": 517.9999755859375,
+                  "width": 58,
+                  "height": 100
+                }
+              },
+              {
+                "id": "owned-drag/2",
+                "x": 131,
+                "y": 558.6,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 102,
+                  "y": 517.9999755859375,
+                  "width": 58,
+                  "height": 100
+                }
+              },
+              {
+                "id": "owned-drag/3",
+                "x": 195,
+                "y": 558.6,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 166,
+                  "y": 517.9999755859375,
+                  "width": 58,
+                  "height": 100
+                }
+              },
+              {
+                "id": "owned-drag/4",
+                "x": 259,
+                "y": 558.6,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 230,
+                  "y": 517.9999755859375,
+                  "width": 58,
+                  "height": 100
+                }
+              },
+              {
+                "id": "owned-drag/0",
+                "x": 323,
+                "y": 558.6,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 294,
+                  "y": 517.9999755859375,
+                  "width": 58,
+                  "height": 100
+                }
+              }
+            ],
+            "surfaceTouchAction": "pan-y",
+            "dispatch": [
+              [
+                {
+                  "type": "ReorderJokers",
+                  "ids": [
+                    "owned-drag/1",
+                    "owned-drag/2",
+                    "owned-drag/3",
+                    "owned-drag/4",
+                    "owned-drag/0"
+                  ]
+                },
+                4
+              ]
+            ]
+          },
+          "dropShot": "390x844-slow-dropped.png",
+          "status": "PASS"
+        },
+        {
+          "from": 4,
+          "to": 0,
+          "style": "fast",
+          "before": {
+            "seq": 5,
+            "ids": [
+              "owned-drag/1",
+              "owned-drag/2",
+              "owned-drag/3",
+              "owned-drag/4",
+              "owned-drag/0"
+            ],
+            "revision": 2
+          },
+          "held": {
+            "drag": true,
+            "saving": false,
+            "inputEnabled": false,
+            "hint": "松手换位 · 移出持牌区取消",
+            "slots": [
+              {
+                "x": 38,
+                "y": 518,
+                "width": 58,
+                "height": 81.19999999999999
+              },
+              {
+                "x": 102,
+                "y": 518,
+                "width": 58,
+                "height": 81.19999999999999
+              },
+              {
+                "x": 166,
+                "y": 518,
+                "width": 58,
+                "height": 81.19999999999999
+              },
+              {
+                "x": 230,
+                "y": 518,
+                "width": 58,
+                "height": 81.19999999999999
+              },
+              {
+                "x": 294,
+                "y": 518,
+                "width": 58,
+                "height": 81.19999999999999
+              }
+            ],
+            "arts": [
+              {
+                "id": "owned-drag/1",
+                "x": 67,
+                "y": 558.6,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 38,
+                  "y": 517.9999755859375,
+                  "width": 58,
+                  "height": 100
+                }
+              },
+              {
+                "id": "owned-drag/2",
+                "x": 131,
+                "y": 558.6,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 102,
+                  "y": 517.9999755859375,
+                  "width": 58,
+                  "height": 100
+                }
+              },
+              {
+                "id": "owned-drag/3",
+                "x": 195,
+                "y": 558.6,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 166,
+                  "y": 517.9999755859375,
+                  "width": 58,
+                  "height": 100
+                }
+              },
+              {
+                "id": "owned-drag/4",
+                "x": 259,
+                "y": 558.6,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 230,
+                  "y": 517.9999755859375,
+                  "width": 58,
+                  "height": 100
+                }
+              },
+              {
+                "id": "owned-drag/0",
+                "x": 323,
+                "y": 558.5999999999999,
+                "scale": 1.04,
+                "active": true,
+                "bounds": {
+                  "x": 292.8400011062622,
+                  "y": 516.3759771347046,
+                  "width": 60.319997787475586,
+                  "height": 103.99999618530273
+                }
+              }
+            ],
+            "surfaceTouchAction": "pan-y",
+            "dispatch": [
+              [
+                {
+                  "type": "ReorderJokers",
+                  "ids": [
+                    "owned-drag/1",
+                    "owned-drag/2",
+                    "owned-drag/3",
+                    "owned-drag/4",
+                    "owned-drag/0"
+                  ]
+                },
+                4
+              ]
+            ]
+          },
+          "heldShot": "390x844-fast-held.png",
+          "mid": {
+            "drag": true,
+            "saving": false,
+            "inputEnabled": false,
+            "hint": "松手换位 · 移出持牌区取消",
+            "slots": [
+              {
+                "x": 38,
+                "y": 518,
+                "width": 58,
+                "height": 81.19999999999999
+              },
+              {
+                "x": 102,
+                "y": 518,
+                "width": 58,
+                "height": 81.19999999999999
+              },
+              {
+                "x": 166,
+                "y": 518,
+                "width": 58,
+                "height": 81.19999999999999
+              },
+              {
+                "x": 230,
+                "y": 518,
+                "width": 58,
+                "height": 81.19999999999999
+              },
+              {
+                "x": 294,
+                "y": 518,
+                "width": 58,
+                "height": 81.19999999999999
+              }
+            ],
+            "arts": [
+              {
+                "id": "owned-drag/1",
+                "x": 131,
+                "y": 558.6,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 102,
+                  "y": 517.9999755859375,
+                  "width": 58,
+                  "height": 100
+                }
+              },
+              {
+                "id": "owned-drag/2",
+                "x": 195,
+                "y": 558.6,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 166,
+                  "y": 517.9999755859375,
+                  "width": 58,
+                  "height": 100
+                }
+              },
+              {
+                "id": "owned-drag/3",
+                "x": 259,
+                "y": 558.6,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 230,
+                  "y": 517.9999755859375,
+                  "width": 58,
+                  "height": 100
+                }
+              },
+              {
+                "id": "owned-drag/4",
+                "x": 323,
+                "y": 558.6,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 294,
+                  "y": 517.9999755859375,
+                  "width": 58,
+                  "height": 100
+                }
+              },
+              {
+                "id": "owned-drag/0",
+                "x": 67,
+                "y": 558.5999999999999,
+                "scale": 1.04,
+                "active": true,
+                "bounds": {
+                  "x": 36.84000110626221,
+                  "y": 516.3759771347046,
+                  "width": 60.319997787475586,
+                  "height": 103.99999618530273
+                }
+              }
+            ],
+            "surfaceTouchAction": "pan-y",
+            "dispatch": [
+              [
+                {
+                  "type": "ReorderJokers",
+                  "ids": [
+                    "owned-drag/1",
+                    "owned-drag/2",
+                    "owned-drag/3",
+                    "owned-drag/4",
+                    "owned-drag/0"
+                  ]
+                },
+                4
+              ]
+            ]
+          },
+          "midShot": "390x844-fast-mid.png",
+          "after": {
+            "seq": 6,
+            "ids": [
+              "owned-drag/0",
+              "owned-drag/1",
+              "owned-drag/2",
+              "owned-drag/3",
+              "owned-drag/4"
+            ],
+            "revision": 3
+          },
+          "dropped": {
+            "drag": false,
+            "saving": false,
+            "inputEnabled": true,
+            "hint": "长按拖动换位 · 点牌查看",
+            "slots": [
+              {
+                "x": 38,
+                "y": 518,
+                "width": 58,
+                "height": 81.19999999999999
+              },
+              {
+                "x": 102,
+                "y": 518,
+                "width": 58,
+                "height": 81.19999999999999
+              },
+              {
+                "x": 166,
+                "y": 518,
+                "width": 58,
+                "height": 81.19999999999999
+              },
+              {
+                "x": 230,
+                "y": 518,
+                "width": 58,
+                "height": 81.19999999999999
+              },
+              {
+                "x": 294,
+                "y": 518,
+                "width": 58,
+                "height": 81.19999999999999
+              }
+            ],
+            "arts": [
+              {
+                "id": "owned-drag/0",
+                "x": 67,
+                "y": 558.6,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 38,
+                  "y": 517.9999755859375,
+                  "width": 58,
+                  "height": 100
+                }
+              },
+              {
+                "id": "owned-drag/1",
+                "x": 131,
+                "y": 558.6,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 102,
+                  "y": 517.9999755859375,
+                  "width": 58,
+                  "height": 100
+                }
+              },
+              {
+                "id": "owned-drag/2",
+                "x": 195,
+                "y": 558.6,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 166,
+                  "y": 517.9999755859375,
+                  "width": 58,
+                  "height": 100
+                }
+              },
+              {
+                "id": "owned-drag/3",
+                "x": 259,
+                "y": 558.6,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 230,
+                  "y": 517.9999755859375,
+                  "width": 58,
+                  "height": 100
+                }
+              },
+              {
+                "id": "owned-drag/4",
+                "x": 323,
+                "y": 558.6,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 294,
+                  "y": 517.9999755859375,
+                  "width": 58,
+                  "height": 100
+                }
+              }
+            ],
+            "surfaceTouchAction": "pan-y",
+            "dispatch": [
+              [
+                {
+                  "type": "ReorderJokers",
+                  "ids": [
+                    "owned-drag/1",
+                    "owned-drag/2",
+                    "owned-drag/3",
+                    "owned-drag/4",
+                    "owned-drag/0"
+                  ]
+                },
+                4
+              ],
+              [
+                {
+                  "type": "ReorderJokers",
+                  "ids": [
+                    "owned-drag/0",
+                    "owned-drag/1",
+                    "owned-drag/2",
+                    "owned-drag/3",
+                    "owned-drag/4"
+                  ]
+                },
+                5
+              ]
+            ]
+          },
+          "dropShot": "390x844-fast-dropped.png",
+          "status": "PASS"
+        },
+        {
+          "from": 1,
+          "to": 3,
+          "style": "middle",
+          "before": {
+            "seq": 6,
+            "ids": [
+              "owned-drag/0",
+              "owned-drag/1",
+              "owned-drag/2",
+              "owned-drag/3",
+              "owned-drag/4"
+            ],
+            "revision": 3
+          },
+          "held": {
+            "drag": true,
+            "saving": false,
+            "inputEnabled": false,
+            "hint": "松手换位 · 移出持牌区取消",
+            "slots": [
+              {
+                "x": 38,
+                "y": 518,
+                "width": 58,
+                "height": 81.19999999999999
+              },
+              {
+                "x": 102,
+                "y": 518,
+                "width": 58,
+                "height": 81.19999999999999
+              },
+              {
+                "x": 166,
+                "y": 518,
+                "width": 58,
+                "height": 81.19999999999999
+              },
+              {
+                "x": 230,
+                "y": 518,
+                "width": 58,
+                "height": 81.19999999999999
+              },
+              {
+                "x": 294,
+                "y": 518,
+                "width": 58,
+                "height": 81.19999999999999
+              }
+            ],
+            "arts": [
+              {
+                "id": "owned-drag/0",
+                "x": 67,
+                "y": 558.6,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 38,
+                  "y": 517.9999755859375,
+                  "width": 58,
+                  "height": 100
+                }
+              },
+              {
+                "id": "owned-drag/1",
+                "x": 131,
+                "y": 558.5999999999999,
+                "scale": 1.04,
+                "active": true,
+                "bounds": {
+                  "x": 100.8400011062622,
+                  "y": 516.3759771347046,
+                  "width": 60.319997787475586,
+                  "height": 103.99999618530273
+                }
+              },
+              {
+                "id": "owned-drag/2",
+                "x": 195,
+                "y": 558.6,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 166,
+                  "y": 517.9999755859375,
+                  "width": 58,
+                  "height": 100
+                }
+              },
+              {
+                "id": "owned-drag/3",
+                "x": 259,
+                "y": 558.6,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 230,
+                  "y": 517.9999755859375,
+                  "width": 58,
+                  "height": 100
+                }
+              },
+              {
+                "id": "owned-drag/4",
+                "x": 323,
+                "y": 558.6,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 294,
+                  "y": 517.9999755859375,
+                  "width": 58,
+                  "height": 100
+                }
+              }
+            ],
+            "surfaceTouchAction": "pan-y",
+            "dispatch": [
+              [
+                {
+                  "type": "ReorderJokers",
+                  "ids": [
+                    "owned-drag/1",
+                    "owned-drag/2",
+                    "owned-drag/3",
+                    "owned-drag/4",
+                    "owned-drag/0"
+                  ]
+                },
+                4
+              ],
+              [
+                {
+                  "type": "ReorderJokers",
+                  "ids": [
+                    "owned-drag/0",
+                    "owned-drag/1",
+                    "owned-drag/2",
+                    "owned-drag/3",
+                    "owned-drag/4"
+                  ]
+                },
+                5
+              ]
+            ]
+          },
+          "heldShot": "390x844-middle-held.png",
+          "mid": {
+            "drag": true,
+            "saving": false,
+            "inputEnabled": false,
+            "hint": "松手换位 · 移出持牌区取消",
+            "slots": [
+              {
+                "x": 38,
+                "y": 518,
+                "width": 58,
+                "height": 81.19999999999999
+              },
+              {
+                "x": 102,
+                "y": 518,
+                "width": 58,
+                "height": 81.19999999999999
+              },
+              {
+                "x": 166,
+                "y": 518,
+                "width": 58,
+                "height": 81.19999999999999
+              },
+              {
+                "x": 230,
+                "y": 518,
+                "width": 58,
+                "height": 81.19999999999999
+              },
+              {
+                "x": 294,
+                "y": 518,
+                "width": 58,
+                "height": 81.19999999999999
+              }
+            ],
+            "arts": [
+              {
+                "id": "owned-drag/0",
+                "x": 67,
+                "y": 558.6,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 38,
+                  "y": 517.9999755859375,
+                  "width": 58,
+                  "height": 100
+                }
+              },
+              {
+                "id": "owned-drag/1",
+                "x": 259,
+                "y": 558.5999999999999,
+                "scale": 1.04,
+                "active": true,
+                "bounds": {
+                  "x": 228.8400011062622,
+                  "y": 516.3759771347046,
+                  "width": 60.319997787475586,
+                  "height": 103.99999618530273
+                }
+              },
+              {
+                "id": "owned-drag/2",
+                "x": 131,
+                "y": 558.6,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 102,
+                  "y": 517.9999755859375,
+                  "width": 58,
+                  "height": 100
+                }
+              },
+              {
+                "id": "owned-drag/3",
+                "x": 195,
+                "y": 558.6,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 166,
+                  "y": 517.9999755859375,
+                  "width": 58,
+                  "height": 100
+                }
+              },
+              {
+                "id": "owned-drag/4",
+                "x": 323,
+                "y": 558.6,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 294,
+                  "y": 517.9999755859375,
+                  "width": 58,
+                  "height": 100
+                }
+              }
+            ],
+            "surfaceTouchAction": "pan-y",
+            "dispatch": [
+              [
+                {
+                  "type": "ReorderJokers",
+                  "ids": [
+                    "owned-drag/1",
+                    "owned-drag/2",
+                    "owned-drag/3",
+                    "owned-drag/4",
+                    "owned-drag/0"
+                  ]
+                },
+                4
+              ],
+              [
+                {
+                  "type": "ReorderJokers",
+                  "ids": [
+                    "owned-drag/0",
+                    "owned-drag/1",
+                    "owned-drag/2",
+                    "owned-drag/3",
+                    "owned-drag/4"
+                  ]
+                },
+                5
+              ]
+            ]
+          },
+          "midShot": "390x844-middle-mid.png",
+          "after": {
+            "seq": 7,
+            "ids": [
+              "owned-drag/0",
+              "owned-drag/2",
+              "owned-drag/3",
+              "owned-drag/1",
+              "owned-drag/4"
+            ],
+            "revision": 4
+          },
+          "dropped": {
+            "drag": false,
+            "saving": false,
+            "inputEnabled": true,
+            "hint": "长按拖动换位 · 点牌查看",
+            "slots": [
+              {
+                "x": 38,
+                "y": 518,
+                "width": 58,
+                "height": 81.19999999999999
+              },
+              {
+                "x": 102,
+                "y": 518,
+                "width": 58,
+                "height": 81.19999999999999
+              },
+              {
+                "x": 166,
+                "y": 518,
+                "width": 58,
+                "height": 81.19999999999999
+              },
+              {
+                "x": 230,
+                "y": 518,
+                "width": 58,
+                "height": 81.19999999999999
+              },
+              {
+                "x": 294,
+                "y": 518,
+                "width": 58,
+                "height": 81.19999999999999
+              }
+            ],
+            "arts": [
+              {
+                "id": "owned-drag/0",
+                "x": 67,
+                "y": 558.6,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 38,
+                  "y": 517.9999755859375,
+                  "width": 58,
+                  "height": 100
+                }
+              },
+              {
+                "id": "owned-drag/2",
+                "x": 131,
+                "y": 558.6,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 102,
+                  "y": 517.9999755859375,
+                  "width": 58,
+                  "height": 100
+                }
+              },
+              {
+                "id": "owned-drag/3",
+                "x": 195,
+                "y": 558.6,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 166,
+                  "y": 517.9999755859375,
+                  "width": 58,
+                  "height": 100
+                }
+              },
+              {
+                "id": "owned-drag/1",
+                "x": 259,
+                "y": 558.6,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 230,
+                  "y": 517.9999755859375,
+                  "width": 58,
+                  "height": 100
+                }
+              },
+              {
+                "id": "owned-drag/4",
+                "x": 323,
+                "y": 558.6,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 294,
+                  "y": 517.9999755859375,
+                  "width": 58,
+                  "height": 100
+                }
+              }
+            ],
+            "surfaceTouchAction": "pan-y",
+            "dispatch": [
+              [
+                {
+                  "type": "ReorderJokers",
+                  "ids": [
+                    "owned-drag/1",
+                    "owned-drag/2",
+                    "owned-drag/3",
+                    "owned-drag/4",
+                    "owned-drag/0"
+                  ]
+                },
+                4
+              ],
+              [
+                {
+                  "type": "ReorderJokers",
+                  "ids": [
+                    "owned-drag/0",
+                    "owned-drag/1",
+                    "owned-drag/2",
+                    "owned-drag/3",
+                    "owned-drag/4"
+                  ]
+                },
+                5
+              ],
+              [
+                {
+                  "type": "ReorderJokers",
+                  "ids": [
+                    "owned-drag/0",
+                    "owned-drag/2",
+                    "owned-drag/3",
+                    "owned-drag/1",
+                    "owned-drag/4"
+                  ]
+                },
+                6
+              ]
+            ]
+          },
+          "dropShot": "390x844-middle-dropped.png",
+          "status": "PASS"
+        }
+      ],
+      "cancellations": [],
+      "initial": {
+        "seq": 4,
+        "ids": [
+          "owned-drag/0",
+          "owned-drag/1",
+          "owned-drag/2",
+          "owned-drag/3",
+          "owned-drag/4"
+        ],
+        "revision": 1
+      },
+      "initialVisual": {
+        "drag": false,
+        "saving": false,
+        "inputEnabled": true,
+        "hint": "长按拖动换位 · 点牌查看",
+        "slots": [
+          {
+            "x": 38,
+            "y": 518,
+            "width": 58,
+            "height": 81.19999999999999
+          },
+          {
+            "x": 102,
+            "y": 518,
+            "width": 58,
+            "height": 81.19999999999999
+          },
+          {
+            "x": 166,
+            "y": 518,
+            "width": 58,
+            "height": 81.19999999999999
+          },
+          {
+            "x": 230,
+            "y": 518,
+            "width": 58,
+            "height": 81.19999999999999
+          },
+          {
+            "x": 294,
+            "y": 518,
+            "width": 58,
+            "height": 81.19999999999999
+          }
+        ],
+        "arts": [
+          {
+            "id": "owned-drag/0",
+            "x": 67,
+            "y": 558.6,
+            "scale": 1,
+            "active": true,
+            "bounds": {
+              "x": 38,
+              "y": 517.9999755859375,
+              "width": 58,
+              "height": 100
+            }
+          },
+          {
+            "id": "owned-drag/1",
+            "x": 131,
+            "y": 558.6,
+            "scale": 1,
+            "active": true,
+            "bounds": {
+              "x": 102,
+              "y": 517.9999755859375,
+              "width": 58,
+              "height": 100
+            }
+          },
+          {
+            "id": "owned-drag/2",
+            "x": 195,
+            "y": 558.6,
+            "scale": 1,
+            "active": true,
+            "bounds": {
+              "x": 166,
+              "y": 517.9999755859375,
+              "width": 58,
+              "height": 100
+            }
+          },
+          {
+            "id": "owned-drag/3",
+            "x": 259,
+            "y": 558.6,
+            "scale": 1,
+            "active": true,
+            "bounds": {
+              "x": 230,
+              "y": 517.9999755859375,
+              "width": 58,
+              "height": 100
+            }
+          },
+          {
+            "id": "owned-drag/4",
+            "x": 323,
+            "y": 558.6,
+            "scale": 1,
+            "active": true,
+            "bounds": {
+              "x": 294,
+              "y": 517.9999755859375,
+              "width": 58,
+              "height": 100
+            }
+          }
+        ],
+        "surfaceTouchAction": "pan-y",
+        "dispatch": []
+      },
+      "idleShot": "390x844-idle.png",
+      "vertical": {
+        "drag": false,
+        "saving": false,
+        "inputEnabled": true,
+        "hint": "长按拖动换位 · 点牌查看",
+        "slots": [
+          {
+            "x": 38,
+            "y": 518,
+            "width": 58,
+            "height": 81.19999999999999
+          },
+          {
+            "x": 102,
+            "y": 518,
+            "width": 58,
+            "height": 81.19999999999999
+          },
+          {
+            "x": 166,
+            "y": 518,
+            "width": 58,
+            "height": 81.19999999999999
+          },
+          {
+            "x": 230,
+            "y": 518,
+            "width": 58,
+            "height": 81.19999999999999
+          },
+          {
+            "x": 294,
+            "y": 518,
+            "width": 58,
+            "height": 81.19999999999999
+          }
+        ],
+        "arts": [
+          {
+            "id": "owned-drag/0",
+            "x": 67,
+            "y": 558.6,
+            "scale": 1,
+            "active": true,
+            "bounds": {
+              "x": 38,
+              "y": 517.9999755859375,
+              "width": 58,
+              "height": 100
+            }
+          },
+          {
+            "id": "owned-drag/2",
+            "x": 131,
+            "y": 558.6,
+            "scale": 1,
+            "active": true,
+            "bounds": {
+              "x": 102,
+              "y": 517.9999755859375,
+              "width": 58,
+              "height": 100
+            }
+          },
+          {
+            "id": "owned-drag/3",
+            "x": 195,
+            "y": 558.6,
+            "scale": 1,
+            "active": true,
+            "bounds": {
+              "x": 166,
+              "y": 517.9999755859375,
+              "width": 58,
+              "height": 100
+            }
+          },
+          {
+            "id": "owned-drag/1",
+            "x": 259,
+            "y": 558.6,
+            "scale": 1,
+            "active": true,
+            "bounds": {
+              "x": 230,
+              "y": 517.9999755859375,
+              "width": 58,
+              "height": 100
+            }
+          },
+          {
+            "id": "owned-drag/4",
+            "x": 323,
+            "y": 558.6,
+            "scale": 1,
+            "active": true,
+            "bounds": {
+              "x": 294,
+              "y": 517.9999755859375,
+              "width": 58,
+              "height": 100
+            }
+          }
+        ],
+        "surfaceTouchAction": "pan-y",
+        "dispatch": [
+          [
+            {
+              "type": "ReorderJokers",
+              "ids": [
+                "owned-drag/1",
+                "owned-drag/2",
+                "owned-drag/3",
+                "owned-drag/4",
+                "owned-drag/0"
+              ]
+            },
+            4
+          ],
+          [
+            {
+              "type": "ReorderJokers",
+              "ids": [
+                "owned-drag/0",
+                "owned-drag/1",
+                "owned-drag/2",
+                "owned-drag/3",
+                "owned-drag/4"
+              ]
+            },
+            5
+          ],
+          [
+            {
+              "type": "ReorderJokers",
+              "ids": [
+                "owned-drag/0",
+                "owned-drag/2",
+                "owned-drag/3",
+                "owned-drag/1",
+                "owned-drag/4"
+              ]
+            },
+            6
+          ]
+        ]
+      },
+      "verticalShot": "390x844-vertical.png",
+      "restored": {
+        "seq": 7,
+        "ids": [
+          "owned-drag/0",
+          "owned-drag/2",
+          "owned-drag/3",
+          "owned-drag/1",
+          "owned-drag/4"
+        ],
+        "revision": 4
+      },
+      "status": "PASS"
+    },
+    {
+      "width": 412,
+      "height": 915,
+      "touch": true,
+      "name": "412x915",
+      "checks": [],
+      "errors": [],
+      "moves": [
+        {
+          "from": 0,
+          "to": 4,
+          "style": "slow",
+          "before": {
+            "seq": 4,
+            "ids": [
+              "owned-drag/0",
+              "owned-drag/1",
+              "owned-drag/2",
+              "owned-drag/3",
+              "owned-drag/4"
+            ],
+            "revision": 1
+          },
+          "held": {
+            "drag": true,
+            "saving": false,
+            "inputEnabled": false,
+            "hint": "松手换位 · 移出持牌区取消",
+            "slots": [
+              {
+                "x": 49,
+                "y": 518,
+                "width": 58,
+                "height": 81.19999999999999
+              },
+              {
+                "x": 113,
+                "y": 518,
+                "width": 58,
+                "height": 81.19999999999999
+              },
+              {
+                "x": 177,
+                "y": 518,
+                "width": 58,
+                "height": 81.19999999999999
+              },
+              {
+                "x": 241,
+                "y": 518,
+                "width": 58,
+                "height": 81.19999999999999
+              },
+              {
+                "x": 305,
+                "y": 518,
+                "width": 58,
+                "height": 81.19999999999999
+              }
+            ],
+            "arts": [
+              {
+                "id": "owned-drag/0",
+                "x": 78,
+                "y": 558.5999999999999,
+                "scale": 1.04,
+                "active": true,
+                "bounds": {
+                  "x": 47.84000110626221,
+                  "y": 516.3759771347046,
+                  "width": 60.319997787475586,
+                  "height": 103.99999618530273
+                }
+              },
+              {
+                "id": "owned-drag/1",
+                "x": 142,
+                "y": 558.6,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 113,
+                  "y": 517.9999755859375,
+                  "width": 58,
+                  "height": 100
+                }
+              },
+              {
+                "id": "owned-drag/2",
+                "x": 206,
+                "y": 558.6,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 177,
+                  "y": 517.9999755859375,
+                  "width": 58,
+                  "height": 100
+                }
+              },
+              {
+                "id": "owned-drag/3",
+                "x": 270,
+                "y": 558.6,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 241,
+                  "y": 517.9999755859375,
+                  "width": 58,
+                  "height": 100
+                }
+              },
+              {
+                "id": "owned-drag/4",
+                "x": 334,
+                "y": 558.6,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 305,
+                  "y": 517.9999755859375,
+                  "width": 58,
+                  "height": 100
+                }
+              }
+            ],
+            "surfaceTouchAction": "pan-y",
+            "dispatch": []
+          },
+          "heldShot": "412x915-slow-held.png",
+          "mid": {
+            "drag": true,
+            "saving": false,
+            "inputEnabled": false,
+            "hint": "松手换位 · 移出持牌区取消",
+            "slots": [
+              {
+                "x": 49,
+                "y": 518,
+                "width": 58,
+                "height": 81.19999999999999
+              },
+              {
+                "x": 113,
+                "y": 518,
+                "width": 58,
+                "height": 81.19999999999999
+              },
+              {
+                "x": 177,
+                "y": 518,
+                "width": 58,
+                "height": 81.19999999999999
+              },
+              {
+                "x": 241,
+                "y": 518,
+                "width": 58,
+                "height": 81.19999999999999
+              },
+              {
+                "x": 305,
+                "y": 518,
+                "width": 58,
+                "height": 81.19999999999999
+              }
+            ],
+            "arts": [
+              {
+                "id": "owned-drag/0",
+                "x": 334,
+                "y": 566.5999999999999,
+                "scale": 1.04,
+                "active": true,
+                "bounds": {
+                  "x": 303.8400011062622,
+                  "y": 524.3759771347046,
+                  "width": 60.319997787475586,
+                  "height": 103.99999618530273
+                }
+              },
+              {
+                "id": "owned-drag/1",
+                "x": 78,
+                "y": 558.6,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 49,
+                  "y": 517.9999755859375,
+                  "width": 58,
+                  "height": 100
+                }
+              },
+              {
+                "id": "owned-drag/2",
+                "x": 142,
+                "y": 558.6,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 113,
+                  "y": 517.9999755859375,
+                  "width": 58,
+                  "height": 100
+                }
+              },
+              {
+                "id": "owned-drag/3",
+                "x": 206,
+                "y": 558.6,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 177,
+                  "y": 517.9999755859375,
+                  "width": 58,
+                  "height": 100
+                }
+              },
+              {
+                "id": "owned-drag/4",
+                "x": 270,
+                "y": 558.6,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 241,
+                  "y": 517.9999755859375,
+                  "width": 58,
+                  "height": 100
+                }
+              }
+            ],
+            "surfaceTouchAction": "pan-y",
+            "dispatch": []
+          },
+          "midShot": "412x915-slow-mid.png",
+          "after": {
+            "seq": 5,
+            "ids": [
+              "owned-drag/1",
+              "owned-drag/2",
+              "owned-drag/3",
+              "owned-drag/4",
+              "owned-drag/0"
+            ],
+            "revision": 2
+          },
+          "dropped": {
+            "drag": false,
+            "saving": false,
+            "inputEnabled": true,
+            "hint": "长按拖动换位 · 点牌查看",
+            "slots": [
+              {
+                "x": 49,
+                "y": 518,
+                "width": 58,
+                "height": 81.19999999999999
+              },
+              {
+                "x": 113,
+                "y": 518,
+                "width": 58,
+                "height": 81.19999999999999
+              },
+              {
+                "x": 177,
+                "y": 518,
+                "width": 58,
+                "height": 81.19999999999999
+              },
+              {
+                "x": 241,
+                "y": 518,
+                "width": 58,
+                "height": 81.19999999999999
+              },
+              {
+                "x": 305,
+                "y": 518,
+                "width": 58,
+                "height": 81.19999999999999
+              }
+            ],
+            "arts": [
+              {
+                "id": "owned-drag/1",
+                "x": 78,
+                "y": 558.6,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 49,
+                  "y": 517.9999755859375,
+                  "width": 58,
+                  "height": 100
+                }
+              },
+              {
+                "id": "owned-drag/2",
+                "x": 142,
+                "y": 558.6,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 113,
+                  "y": 517.9999755859375,
+                  "width": 58,
+                  "height": 100
+                }
+              },
+              {
+                "id": "owned-drag/3",
+                "x": 206,
+                "y": 558.6,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 177,
+                  "y": 517.9999755859375,
+                  "width": 58,
+                  "height": 100
+                }
+              },
+              {
+                "id": "owned-drag/4",
+                "x": 270,
+                "y": 558.6,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 241,
+                  "y": 517.9999755859375,
+                  "width": 58,
+                  "height": 100
+                }
+              },
+              {
+                "id": "owned-drag/0",
+                "x": 334,
+                "y": 558.6,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 305,
+                  "y": 517.9999755859375,
+                  "width": 58,
+                  "height": 100
+                }
+              }
+            ],
+            "surfaceTouchAction": "pan-y",
+            "dispatch": [
+              [
+                {
+                  "type": "ReorderJokers",
+                  "ids": [
+                    "owned-drag/1",
+                    "owned-drag/2",
+                    "owned-drag/3",
+                    "owned-drag/4",
+                    "owned-drag/0"
+                  ]
+                },
+                4
+              ]
+            ]
+          },
+          "dropShot": "412x915-slow-dropped.png",
+          "status": "PASS"
+        },
+        {
+          "from": 4,
+          "to": 0,
+          "style": "fast",
+          "before": {
+            "seq": 5,
+            "ids": [
+              "owned-drag/1",
+              "owned-drag/2",
+              "owned-drag/3",
+              "owned-drag/4",
+              "owned-drag/0"
+            ],
+            "revision": 2
+          },
+          "held": {
+            "drag": true,
+            "saving": false,
+            "inputEnabled": false,
+            "hint": "松手换位 · 移出持牌区取消",
+            "slots": [
+              {
+                "x": 49,
+                "y": 518,
+                "width": 58,
+                "height": 81.19999999999999
+              },
+              {
+                "x": 113,
+                "y": 518,
+                "width": 58,
+                "height": 81.19999999999999
+              },
+              {
+                "x": 177,
+                "y": 518,
+                "width": 58,
+                "height": 81.19999999999999
+              },
+              {
+                "x": 241,
+                "y": 518,
+                "width": 58,
+                "height": 81.19999999999999
+              },
+              {
+                "x": 305,
+                "y": 518,
+                "width": 58,
+                "height": 81.19999999999999
+              }
+            ],
+            "arts": [
+              {
+                "id": "owned-drag/1",
+                "x": 78,
+                "y": 558.6,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 49,
+                  "y": 517.9999755859375,
+                  "width": 58,
+                  "height": 100
+                }
+              },
+              {
+                "id": "owned-drag/2",
+                "x": 142,
+                "y": 558.6,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 113,
+                  "y": 517.9999755859375,
+                  "width": 58,
+                  "height": 100
+                }
+              },
+              {
+                "id": "owned-drag/3",
+                "x": 206,
+                "y": 558.6,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 177,
+                  "y": 517.9999755859375,
+                  "width": 58,
+                  "height": 100
+                }
+              },
+              {
+                "id": "owned-drag/4",
+                "x": 270,
+                "y": 558.6,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 241,
+                  "y": 517.9999755859375,
+                  "width": 58,
+                  "height": 100
+                }
+              },
+              {
+                "id": "owned-drag/0",
+                "x": 334,
+                "y": 558.5999999999999,
+                "scale": 1.04,
+                "active": true,
+                "bounds": {
+                  "x": 303.8400011062622,
+                  "y": 516.3759771347046,
+                  "width": 60.319997787475586,
+                  "height": 103.99999618530273
+                }
+              }
+            ],
+            "surfaceTouchAction": "pan-y",
+            "dispatch": [
+              [
+                {
+                  "type": "ReorderJokers",
+                  "ids": [
+                    "owned-drag/1",
+                    "owned-drag/2",
+                    "owned-drag/3",
+                    "owned-drag/4",
+                    "owned-drag/0"
+                  ]
+                },
+                4
+              ]
+            ]
+          },
+          "heldShot": "412x915-fast-held.png",
+          "mid": {
+            "drag": true,
+            "saving": false,
+            "inputEnabled": false,
+            "hint": "松手换位 · 移出持牌区取消",
+            "slots": [
+              {
+                "x": 49,
+                "y": 518,
+                "width": 58,
+                "height": 81.19999999999999
+              },
+              {
+                "x": 113,
+                "y": 518,
+                "width": 58,
+                "height": 81.19999999999999
+              },
+              {
+                "x": 177,
+                "y": 518,
+                "width": 58,
+                "height": 81.19999999999999
+              },
+              {
+                "x": 241,
+                "y": 518,
+                "width": 58,
+                "height": 81.19999999999999
+              },
+              {
+                "x": 305,
+                "y": 518,
+                "width": 58,
+                "height": 81.19999999999999
+              }
+            ],
+            "arts": [
+              {
+                "id": "owned-drag/1",
+                "x": 142,
+                "y": 558.6,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 113,
+                  "y": 517.9999755859375,
+                  "width": 58,
+                  "height": 100
+                }
+              },
+              {
+                "id": "owned-drag/2",
+                "x": 206,
+                "y": 558.6,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 177,
+                  "y": 517.9999755859375,
+                  "width": 58,
+                  "height": 100
+                }
+              },
+              {
+                "id": "owned-drag/3",
+                "x": 270,
+                "y": 558.6,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 241,
+                  "y": 517.9999755859375,
+                  "width": 58,
+                  "height": 100
+                }
+              },
+              {
+                "id": "owned-drag/4",
+                "x": 334,
+                "y": 558.6,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 305,
+                  "y": 517.9999755859375,
+                  "width": 58,
+                  "height": 100
+                }
+              },
+              {
+                "id": "owned-drag/0",
+                "x": 78,
+                "y": 558.5999999999999,
+                "scale": 1.04,
+                "active": true,
+                "bounds": {
+                  "x": 47.84000110626221,
+                  "y": 516.3759771347046,
+                  "width": 60.319997787475586,
+                  "height": 103.99999618530273
+                }
+              }
+            ],
+            "surfaceTouchAction": "pan-y",
+            "dispatch": [
+              [
+                {
+                  "type": "ReorderJokers",
+                  "ids": [
+                    "owned-drag/1",
+                    "owned-drag/2",
+                    "owned-drag/3",
+                    "owned-drag/4",
+                    "owned-drag/0"
+                  ]
+                },
+                4
+              ]
+            ]
+          },
+          "midShot": "412x915-fast-mid.png",
+          "after": {
+            "seq": 6,
+            "ids": [
+              "owned-drag/0",
+              "owned-drag/1",
+              "owned-drag/2",
+              "owned-drag/3",
+              "owned-drag/4"
+            ],
+            "revision": 3
+          },
+          "dropped": {
+            "drag": false,
+            "saving": false,
+            "inputEnabled": true,
+            "hint": "长按拖动换位 · 点牌查看",
+            "slots": [
+              {
+                "x": 49,
+                "y": 518,
+                "width": 58,
+                "height": 81.19999999999999
+              },
+              {
+                "x": 113,
+                "y": 518,
+                "width": 58,
+                "height": 81.19999999999999
+              },
+              {
+                "x": 177,
+                "y": 518,
+                "width": 58,
+                "height": 81.19999999999999
+              },
+              {
+                "x": 241,
+                "y": 518,
+                "width": 58,
+                "height": 81.19999999999999
+              },
+              {
+                "x": 305,
+                "y": 518,
+                "width": 58,
+                "height": 81.19999999999999
+              }
+            ],
+            "arts": [
+              {
+                "id": "owned-drag/0",
+                "x": 78,
+                "y": 558.6,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 49,
+                  "y": 517.9999755859375,
+                  "width": 58,
+                  "height": 100
+                }
+              },
+              {
+                "id": "owned-drag/1",
+                "x": 142,
+                "y": 558.6,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 113,
+                  "y": 517.9999755859375,
+                  "width": 58,
+                  "height": 100
+                }
+              },
+              {
+                "id": "owned-drag/2",
+                "x": 206,
+                "y": 558.6,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 177,
+                  "y": 517.9999755859375,
+                  "width": 58,
+                  "height": 100
+                }
+              },
+              {
+                "id": "owned-drag/3",
+                "x": 270,
+                "y": 558.6,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 241,
+                  "y": 517.9999755859375,
+                  "width": 58,
+                  "height": 100
+                }
+              },
+              {
+                "id": "owned-drag/4",
+                "x": 334,
+                "y": 558.6,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 305,
+                  "y": 517.9999755859375,
+                  "width": 58,
+                  "height": 100
+                }
+              }
+            ],
+            "surfaceTouchAction": "pan-y",
+            "dispatch": [
+              [
+                {
+                  "type": "ReorderJokers",
+                  "ids": [
+                    "owned-drag/1",
+                    "owned-drag/2",
+                    "owned-drag/3",
+                    "owned-drag/4",
+                    "owned-drag/0"
+                  ]
+                },
+                4
+              ],
+              [
+                {
+                  "type": "ReorderJokers",
+                  "ids": [
+                    "owned-drag/0",
+                    "owned-drag/1",
+                    "owned-drag/2",
+                    "owned-drag/3",
+                    "owned-drag/4"
+                  ]
+                },
+                5
+              ]
+            ]
+          },
+          "dropShot": "412x915-fast-dropped.png",
+          "status": "PASS"
+        },
+        {
+          "from": 1,
+          "to": 3,
+          "style": "middle",
+          "before": {
+            "seq": 6,
+            "ids": [
+              "owned-drag/0",
+              "owned-drag/1",
+              "owned-drag/2",
+              "owned-drag/3",
+              "owned-drag/4"
+            ],
+            "revision": 3
+          },
+          "held": {
+            "drag": true,
+            "saving": false,
+            "inputEnabled": false,
+            "hint": "松手换位 · 移出持牌区取消",
+            "slots": [
+              {
+                "x": 49,
+                "y": 518,
+                "width": 58,
+                "height": 81.19999999999999
+              },
+              {
+                "x": 113,
+                "y": 518,
+                "width": 58,
+                "height": 81.19999999999999
+              },
+              {
+                "x": 177,
+                "y": 518,
+                "width": 58,
+                "height": 81.19999999999999
+              },
+              {
+                "x": 241,
+                "y": 518,
+                "width": 58,
+                "height": 81.19999999999999
+              },
+              {
+                "x": 305,
+                "y": 518,
+                "width": 58,
+                "height": 81.19999999999999
+              }
+            ],
+            "arts": [
+              {
+                "id": "owned-drag/0",
+                "x": 78,
+                "y": 558.6,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 49,
+                  "y": 517.9999755859375,
+                  "width": 58,
+                  "height": 100
+                }
+              },
+              {
+                "id": "owned-drag/1",
+                "x": 142,
+                "y": 558.5999999999999,
+                "scale": 1.04,
+                "active": true,
+                "bounds": {
+                  "x": 111.8400011062622,
+                  "y": 516.3759771347046,
+                  "width": 60.319997787475586,
+                  "height": 103.99999618530273
+                }
+              },
+              {
+                "id": "owned-drag/2",
+                "x": 206,
+                "y": 558.6,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 177,
+                  "y": 517.9999755859375,
+                  "width": 58,
+                  "height": 100
+                }
+              },
+              {
+                "id": "owned-drag/3",
+                "x": 270,
+                "y": 558.6,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 241,
+                  "y": 517.9999755859375,
+                  "width": 58,
+                  "height": 100
+                }
+              },
+              {
+                "id": "owned-drag/4",
+                "x": 334,
+                "y": 558.6,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 305,
+                  "y": 517.9999755859375,
+                  "width": 58,
+                  "height": 100
+                }
+              }
+            ],
+            "surfaceTouchAction": "pan-y",
+            "dispatch": [
+              [
+                {
+                  "type": "ReorderJokers",
+                  "ids": [
+                    "owned-drag/1",
+                    "owned-drag/2",
+                    "owned-drag/3",
+                    "owned-drag/4",
+                    "owned-drag/0"
+                  ]
+                },
+                4
+              ],
+              [
+                {
+                  "type": "ReorderJokers",
+                  "ids": [
+                    "owned-drag/0",
+                    "owned-drag/1",
+                    "owned-drag/2",
+                    "owned-drag/3",
+                    "owned-drag/4"
+                  ]
+                },
+                5
+              ]
+            ]
+          },
+          "heldShot": "412x915-middle-held.png",
+          "mid": {
+            "drag": true,
+            "saving": false,
+            "inputEnabled": false,
+            "hint": "松手换位 · 移出持牌区取消",
+            "slots": [
+              {
+                "x": 49,
+                "y": 518,
+                "width": 58,
+                "height": 81.19999999999999
+              },
+              {
+                "x": 113,
+                "y": 518,
+                "width": 58,
+                "height": 81.19999999999999
+              },
+              {
+                "x": 177,
+                "y": 518,
+                "width": 58,
+                "height": 81.19999999999999
+              },
+              {
+                "x": 241,
+                "y": 518,
+                "width": 58,
+                "height": 81.19999999999999
+              },
+              {
+                "x": 305,
+                "y": 518,
+                "width": 58,
+                "height": 81.19999999999999
+              }
+            ],
+            "arts": [
+              {
+                "id": "owned-drag/0",
+                "x": 78,
+                "y": 558.6,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 49,
+                  "y": 517.9999755859375,
+                  "width": 58,
+                  "height": 100
+                }
+              },
+              {
+                "id": "owned-drag/1",
+                "x": 270,
+                "y": 558.5999999999999,
+                "scale": 1.04,
+                "active": true,
+                "bounds": {
+                  "x": 239.8400011062622,
+                  "y": 516.3759771347046,
+                  "width": 60.319997787475586,
+                  "height": 103.99999618530273
+                }
+              },
+              {
+                "id": "owned-drag/2",
+                "x": 142,
+                "y": 558.6,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 113,
+                  "y": 517.9999755859375,
+                  "width": 58,
+                  "height": 100
+                }
+              },
+              {
+                "id": "owned-drag/3",
+                "x": 206,
+                "y": 558.6,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 177,
+                  "y": 517.9999755859375,
+                  "width": 58,
+                  "height": 100
+                }
+              },
+              {
+                "id": "owned-drag/4",
+                "x": 334,
+                "y": 558.6,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 305,
+                  "y": 517.9999755859375,
+                  "width": 58,
+                  "height": 100
+                }
+              }
+            ],
+            "surfaceTouchAction": "pan-y",
+            "dispatch": [
+              [
+                {
+                  "type": "ReorderJokers",
+                  "ids": [
+                    "owned-drag/1",
+                    "owned-drag/2",
+                    "owned-drag/3",
+                    "owned-drag/4",
+                    "owned-drag/0"
+                  ]
+                },
+                4
+              ],
+              [
+                {
+                  "type": "ReorderJokers",
+                  "ids": [
+                    "owned-drag/0",
+                    "owned-drag/1",
+                    "owned-drag/2",
+                    "owned-drag/3",
+                    "owned-drag/4"
+                  ]
+                },
+                5
+              ]
+            ]
+          },
+          "midShot": "412x915-middle-mid.png",
+          "after": {
+            "seq": 7,
+            "ids": [
+              "owned-drag/0",
+              "owned-drag/2",
+              "owned-drag/3",
+              "owned-drag/1",
+              "owned-drag/4"
+            ],
+            "revision": 4
+          },
+          "dropped": {
+            "drag": false,
+            "saving": false,
+            "inputEnabled": true,
+            "hint": "长按拖动换位 · 点牌查看",
+            "slots": [
+              {
+                "x": 49,
+                "y": 518,
+                "width": 58,
+                "height": 81.19999999999999
+              },
+              {
+                "x": 113,
+                "y": 518,
+                "width": 58,
+                "height": 81.19999999999999
+              },
+              {
+                "x": 177,
+                "y": 518,
+                "width": 58,
+                "height": 81.19999999999999
+              },
+              {
+                "x": 241,
+                "y": 518,
+                "width": 58,
+                "height": 81.19999999999999
+              },
+              {
+                "x": 305,
+                "y": 518,
+                "width": 58,
+                "height": 81.19999999999999
+              }
+            ],
+            "arts": [
+              {
+                "id": "owned-drag/0",
+                "x": 78,
+                "y": 558.6,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 49,
+                  "y": 517.9999755859375,
+                  "width": 58,
+                  "height": 100
+                }
+              },
+              {
+                "id": "owned-drag/2",
+                "x": 142,
+                "y": 558.6,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 113,
+                  "y": 517.9999755859375,
+                  "width": 58,
+                  "height": 100
+                }
+              },
+              {
+                "id": "owned-drag/3",
+                "x": 206,
+                "y": 558.6,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 177,
+                  "y": 517.9999755859375,
+                  "width": 58,
+                  "height": 100
+                }
+              },
+              {
+                "id": "owned-drag/1",
+                "x": 270,
+                "y": 558.6,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 241,
+                  "y": 517.9999755859375,
+                  "width": 58,
+                  "height": 100
+                }
+              },
+              {
+                "id": "owned-drag/4",
+                "x": 334,
+                "y": 558.6,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 305,
+                  "y": 517.9999755859375,
+                  "width": 58,
+                  "height": 100
+                }
+              }
+            ],
+            "surfaceTouchAction": "pan-y",
+            "dispatch": [
+              [
+                {
+                  "type": "ReorderJokers",
+                  "ids": [
+                    "owned-drag/1",
+                    "owned-drag/2",
+                    "owned-drag/3",
+                    "owned-drag/4",
+                    "owned-drag/0"
+                  ]
+                },
+                4
+              ],
+              [
+                {
+                  "type": "ReorderJokers",
+                  "ids": [
+                    "owned-drag/0",
+                    "owned-drag/1",
+                    "owned-drag/2",
+                    "owned-drag/3",
+                    "owned-drag/4"
+                  ]
+                },
+                5
+              ],
+              [
+                {
+                  "type": "ReorderJokers",
+                  "ids": [
+                    "owned-drag/0",
+                    "owned-drag/2",
+                    "owned-drag/3",
+                    "owned-drag/1",
+                    "owned-drag/4"
+                  ]
+                },
+                6
+              ]
+            ]
+          },
+          "dropShot": "412x915-middle-dropped.png",
+          "status": "PASS"
+        }
+      ],
+      "cancellations": [],
+      "initial": {
+        "seq": 4,
+        "ids": [
+          "owned-drag/0",
+          "owned-drag/1",
+          "owned-drag/2",
+          "owned-drag/3",
+          "owned-drag/4"
+        ],
+        "revision": 1
+      },
+      "initialVisual": {
+        "drag": false,
+        "saving": false,
+        "inputEnabled": true,
+        "hint": "长按拖动换位 · 点牌查看",
+        "slots": [
+          {
+            "x": 49,
+            "y": 518,
+            "width": 58,
+            "height": 81.19999999999999
+          },
+          {
+            "x": 113,
+            "y": 518,
+            "width": 58,
+            "height": 81.19999999999999
+          },
+          {
+            "x": 177,
+            "y": 518,
+            "width": 58,
+            "height": 81.19999999999999
+          },
+          {
+            "x": 241,
+            "y": 518,
+            "width": 58,
+            "height": 81.19999999999999
+          },
+          {
+            "x": 305,
+            "y": 518,
+            "width": 58,
+            "height": 81.19999999999999
+          }
+        ],
+        "arts": [
+          {
+            "id": "owned-drag/0",
+            "x": 78,
+            "y": 558.6,
+            "scale": 1,
+            "active": true,
+            "bounds": {
+              "x": 49,
+              "y": 517.9999755859375,
+              "width": 58,
+              "height": 100
+            }
+          },
+          {
+            "id": "owned-drag/1",
+            "x": 142,
+            "y": 558.6,
+            "scale": 1,
+            "active": true,
+            "bounds": {
+              "x": 113,
+              "y": 517.9999755859375,
+              "width": 58,
+              "height": 100
+            }
+          },
+          {
+            "id": "owned-drag/2",
+            "x": 206,
+            "y": 558.6,
+            "scale": 1,
+            "active": true,
+            "bounds": {
+              "x": 177,
+              "y": 517.9999755859375,
+              "width": 58,
+              "height": 100
+            }
+          },
+          {
+            "id": "owned-drag/3",
+            "x": 270,
+            "y": 558.6,
+            "scale": 1,
+            "active": true,
+            "bounds": {
+              "x": 241,
+              "y": 517.9999755859375,
+              "width": 58,
+              "height": 100
+            }
+          },
+          {
+            "id": "owned-drag/4",
+            "x": 334,
+            "y": 558.6,
+            "scale": 1,
+            "active": true,
+            "bounds": {
+              "x": 305,
+              "y": 517.9999755859375,
+              "width": 58,
+              "height": 100
+            }
+          }
+        ],
+        "surfaceTouchAction": "pan-y",
+        "dispatch": []
+      },
+      "idleShot": "412x915-idle.png",
+      "vertical": {
+        "drag": false,
+        "saving": false,
+        "inputEnabled": true,
+        "hint": "长按拖动换位 · 点牌查看",
+        "slots": [
+          {
+            "x": 49,
+            "y": 518,
+            "width": 58,
+            "height": 81.19999999999999
+          },
+          {
+            "x": 113,
+            "y": 518,
+            "width": 58,
+            "height": 81.19999999999999
+          },
+          {
+            "x": 177,
+            "y": 518,
+            "width": 58,
+            "height": 81.19999999999999
+          },
+          {
+            "x": 241,
+            "y": 518,
+            "width": 58,
+            "height": 81.19999999999999
+          },
+          {
+            "x": 305,
+            "y": 518,
+            "width": 58,
+            "height": 81.19999999999999
+          }
+        ],
+        "arts": [
+          {
+            "id": "owned-drag/0",
+            "x": 78,
+            "y": 558.6,
+            "scale": 1,
+            "active": true,
+            "bounds": {
+              "x": 49,
+              "y": 517.9999755859375,
+              "width": 58,
+              "height": 100
+            }
+          },
+          {
+            "id": "owned-drag/2",
+            "x": 142,
+            "y": 558.6,
+            "scale": 1,
+            "active": true,
+            "bounds": {
+              "x": 113,
+              "y": 517.9999755859375,
+              "width": 58,
+              "height": 100
+            }
+          },
+          {
+            "id": "owned-drag/3",
+            "x": 206,
+            "y": 558.6,
+            "scale": 1,
+            "active": true,
+            "bounds": {
+              "x": 177,
+              "y": 517.9999755859375,
+              "width": 58,
+              "height": 100
+            }
+          },
+          {
+            "id": "owned-drag/1",
+            "x": 270,
+            "y": 558.6,
+            "scale": 1,
+            "active": true,
+            "bounds": {
+              "x": 241,
+              "y": 517.9999755859375,
+              "width": 58,
+              "height": 100
+            }
+          },
+          {
+            "id": "owned-drag/4",
+            "x": 334,
+            "y": 558.6,
+            "scale": 1,
+            "active": true,
+            "bounds": {
+              "x": 305,
+              "y": 517.9999755859375,
+              "width": 58,
+              "height": 100
+            }
+          }
+        ],
+        "surfaceTouchAction": "pan-y",
+        "dispatch": [
+          [
+            {
+              "type": "ReorderJokers",
+              "ids": [
+                "owned-drag/1",
+                "owned-drag/2",
+                "owned-drag/3",
+                "owned-drag/4",
+                "owned-drag/0"
+              ]
+            },
+            4
+          ],
+          [
+            {
+              "type": "ReorderJokers",
+              "ids": [
+                "owned-drag/0",
+                "owned-drag/1",
+                "owned-drag/2",
+                "owned-drag/3",
+                "owned-drag/4"
+              ]
+            },
+            5
+          ],
+          [
+            {
+              "type": "ReorderJokers",
+              "ids": [
+                "owned-drag/0",
+                "owned-drag/2",
+                "owned-drag/3",
+                "owned-drag/1",
+                "owned-drag/4"
+              ]
+            },
+            6
+          ]
+        ]
+      },
+      "verticalShot": "412x915-vertical.png",
+      "restored": {
+        "seq": 7,
+        "ids": [
+          "owned-drag/0",
+          "owned-drag/2",
+          "owned-drag/3",
+          "owned-drag/1",
+          "owned-drag/4"
+        ],
+        "revision": 4
+      },
+      "status": "PASS"
+    },
+    {
+      "width": 1366,
+      "height": 900,
+      "touch": false,
+      "name": "1366x900",
+      "checks": [],
+      "errors": [],
+      "moves": [
+        {
+          "from": 0,
+          "to": 4,
+          "style": "slow",
+          "before": {
+            "seq": 4,
+            "ids": [
+              "owned-drag/0",
+              "owned-drag/1",
+              "owned-drag/2",
+              "owned-drag/3",
+              "owned-drag/4"
+            ],
+            "revision": 1
+          },
+          "held": {
+            "drag": true,
+            "saving": false,
+            "inputEnabled": false,
+            "hint": "松手换位 · 移出持牌区取消",
+            "slots": [
+              {
+                "x": 272,
+                "y": 64,
+                "width": 80,
+                "height": 112
+              },
+              {
+                "x": 364,
+                "y": 64,
+                "width": 80,
+                "height": 112
+              },
+              {
+                "x": 456,
+                "y": 64,
+                "width": 80,
+                "height": 112
+              },
+              {
+                "x": 548,
+                "y": 64,
+                "width": 80,
+                "height": 112
+              },
+              {
+                "x": 640,
+                "y": 64,
+                "width": 80,
+                "height": 112
+              }
+            ],
+            "arts": [
+              {
+                "id": "owned-drag/0",
+                "x": 324,
+                "y": 120,
+                "scale": 1.04,
+                "active": true,
+                "bounds": {
+                  "x": 282.4000015258789,
+                  "y": 61.76000213623047,
+                  "width": 83.19999694824219,
+                  "height": 136.23999500274658
+                }
+              },
+              {
+                "id": "owned-drag/1",
+                "x": 404,
+                "y": 120,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 364,
+                  "y": 64,
+                  "width": 80,
+                  "height": 131
+                }
+              },
+              {
+                "id": "owned-drag/2",
+                "x": 496,
+                "y": 120,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 456,
+                  "y": 64,
+                  "width": 80,
+                  "height": 147
+                }
+              },
+              {
+                "id": "owned-drag/3",
+                "x": 588,
+                "y": 120,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 548,
+                  "y": 64,
+                  "width": 80,
+                  "height": 147
+                }
+              },
+              {
+                "id": "owned-drag/4",
+                "x": 680,
+                "y": 120,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 640,
+                  "y": 64,
+                  "width": 80,
+                  "height": 147
+                }
+              }
+            ],
+            "surfaceTouchAction": "pan-y",
+            "dispatch": []
+          },
+          "heldShot": "1366x900-slow-held.png",
+          "mid": {
+            "drag": true,
+            "saving": false,
+            "inputEnabled": false,
+            "hint": "松手换位 · 移出持牌区取消",
+            "slots": [
+              {
+                "x": 272,
+                "y": 64,
+                "width": 80,
+                "height": 112
+              },
+              {
+                "x": 364,
+                "y": 64,
+                "width": 80,
+                "height": 112
+              },
+              {
+                "x": 456,
+                "y": 64,
+                "width": 80,
+                "height": 112
+              },
+              {
+                "x": 548,
+                "y": 64,
+                "width": 80,
+                "height": 112
+              },
+              {
+                "x": 640,
+                "y": 64,
+                "width": 80,
+                "height": 112
+              }
+            ],
+            "arts": [
+              {
+                "id": "owned-drag/0",
+                "x": 680,
+                "y": 128,
+                "scale": 1.04,
+                "active": true,
+                "bounds": {
+                  "x": 638.4000015258789,
+                  "y": 69.76000213623047,
+                  "width": 83.19999694824219,
+                  "height": 136.23999500274658
+                }
+              },
+              {
+                "id": "owned-drag/1",
+                "x": 312,
+                "y": 120,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 272,
+                  "y": 64,
+                  "width": 80,
+                  "height": 131
+                }
+              },
+              {
+                "id": "owned-drag/2",
+                "x": 404,
+                "y": 120,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 364,
+                  "y": 64,
+                  "width": 80,
+                  "height": 147
+                }
+              },
+              {
+                "id": "owned-drag/3",
+                "x": 496,
+                "y": 120,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 456,
+                  "y": 64,
+                  "width": 80,
+                  "height": 147
+                }
+              },
+              {
+                "id": "owned-drag/4",
+                "x": 588,
+                "y": 120,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 548,
+                  "y": 64,
+                  "width": 80,
+                  "height": 147
+                }
+              }
+            ],
+            "surfaceTouchAction": "pan-y",
+            "dispatch": []
+          },
+          "midShot": "1366x900-slow-mid.png",
+          "after": {
+            "seq": 5,
+            "ids": [
+              "owned-drag/1",
+              "owned-drag/2",
+              "owned-drag/3",
+              "owned-drag/4",
+              "owned-drag/0"
+            ],
+            "revision": 2
+          },
+          "dropped": {
+            "drag": false,
+            "saving": false,
+            "inputEnabled": true,
+            "hint": "拖动换位 · 点牌查看",
+            "slots": [
+              {
+                "x": 272,
+                "y": 64,
+                "width": 80,
+                "height": 112
+              },
+              {
+                "x": 364,
+                "y": 64,
+                "width": 80,
+                "height": 112
+              },
+              {
+                "x": 456,
+                "y": 64,
+                "width": 80,
+                "height": 112
+              },
+              {
+                "x": 548,
+                "y": 64,
+                "width": 80,
+                "height": 112
+              },
+              {
+                "x": 640,
+                "y": 64,
+                "width": 80,
+                "height": 112
+              }
+            ],
+            "arts": [
+              {
+                "id": "owned-drag/1",
+                "x": 312,
+                "y": 120,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 272,
+                  "y": 64,
+                  "width": 80,
+                  "height": 131
+                }
+              },
+              {
+                "id": "owned-drag/2",
+                "x": 404,
+                "y": 120,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 364,
+                  "y": 64,
+                  "width": 80,
+                  "height": 147
+                }
+              },
+              {
+                "id": "owned-drag/3",
+                "x": 496,
+                "y": 120,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 456,
+                  "y": 64,
+                  "width": 80,
+                  "height": 147
+                }
+              },
+              {
+                "id": "owned-drag/4",
+                "x": 588,
+                "y": 120,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 548,
+                  "y": 64,
+                  "width": 80,
+                  "height": 147
+                }
+              },
+              {
+                "id": "owned-drag/0",
+                "x": 680,
+                "y": 120,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 640,
+                  "y": 64,
+                  "width": 80,
+                  "height": 131
+                }
+              }
+            ],
+            "surfaceTouchAction": "pan-y",
+            "dispatch": [
+              [
+                {
+                  "type": "ReorderJokers",
+                  "ids": [
+                    "owned-drag/1",
+                    "owned-drag/2",
+                    "owned-drag/3",
+                    "owned-drag/4",
+                    "owned-drag/0"
+                  ]
+                },
+                4
+              ]
+            ]
+          },
+          "dropShot": "1366x900-slow-dropped.png",
+          "status": "PASS"
+        },
+        {
+          "from": 4,
+          "to": 0,
+          "style": "fast",
+          "before": {
+            "seq": 5,
+            "ids": [
+              "owned-drag/1",
+              "owned-drag/2",
+              "owned-drag/3",
+              "owned-drag/4",
+              "owned-drag/0"
+            ],
+            "revision": 2
+          },
+          "held": {
+            "drag": true,
+            "saving": false,
+            "inputEnabled": false,
+            "hint": "松手换位 · 移出持牌区取消",
+            "slots": [
+              {
+                "x": 272,
+                "y": 64,
+                "width": 80,
+                "height": 112
+              },
+              {
+                "x": 364,
+                "y": 64,
+                "width": 80,
+                "height": 112
+              },
+              {
+                "x": 456,
+                "y": 64,
+                "width": 80,
+                "height": 112
+              },
+              {
+                "x": 548,
+                "y": 64,
+                "width": 80,
+                "height": 112
+              },
+              {
+                "x": 640,
+                "y": 64,
+                "width": 80,
+                "height": 112
+              }
+            ],
+            "arts": [
+              {
+                "id": "owned-drag/1",
+                "x": 312,
+                "y": 120,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 272,
+                  "y": 64,
+                  "width": 80,
+                  "height": 131
+                }
+              },
+              {
+                "id": "owned-drag/2",
+                "x": 404,
+                "y": 120,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 364,
+                  "y": 64,
+                  "width": 80,
+                  "height": 147
+                }
+              },
+              {
+                "id": "owned-drag/3",
+                "x": 496,
+                "y": 120,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 456,
+                  "y": 64,
+                  "width": 80,
+                  "height": 147
+                }
+              },
+              {
+                "id": "owned-drag/4",
+                "x": 588,
+                "y": 120,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 548,
+                  "y": 64,
+                  "width": 80,
+                  "height": 147
+                }
+              },
+              {
+                "id": "owned-drag/0",
+                "x": 692,
+                "y": 120,
+                "scale": 1.04,
+                "active": true,
+                "bounds": {
+                  "x": 650.4000015258789,
+                  "y": 61.76000213623047,
+                  "width": 83.19999694824219,
+                  "height": 136.23999500274658
+                }
+              }
+            ],
+            "surfaceTouchAction": "pan-y",
+            "dispatch": [
+              [
+                {
+                  "type": "ReorderJokers",
+                  "ids": [
+                    "owned-drag/1",
+                    "owned-drag/2",
+                    "owned-drag/3",
+                    "owned-drag/4",
+                    "owned-drag/0"
+                  ]
+                },
+                4
+              ]
+            ]
+          },
+          "heldShot": "1366x900-fast-held.png",
+          "mid": {
+            "drag": true,
+            "saving": false,
+            "inputEnabled": false,
+            "hint": "松手换位 · 移出持牌区取消",
+            "slots": [
+              {
+                "x": 272,
+                "y": 64,
+                "width": 80,
+                "height": 112
+              },
+              {
+                "x": 364,
+                "y": 64,
+                "width": 80,
+                "height": 112
+              },
+              {
+                "x": 456,
+                "y": 64,
+                "width": 80,
+                "height": 112
+              },
+              {
+                "x": 548,
+                "y": 64,
+                "width": 80,
+                "height": 112
+              },
+              {
+                "x": 640,
+                "y": 64,
+                "width": 80,
+                "height": 112
+              }
+            ],
+            "arts": [
+              {
+                "id": "owned-drag/1",
+                "x": 404,
+                "y": 120,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 364,
+                  "y": 64,
+                  "width": 80,
+                  "height": 131
+                }
+              },
+              {
+                "id": "owned-drag/2",
+                "x": 496,
+                "y": 120,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 456,
+                  "y": 64,
+                  "width": 80,
+                  "height": 147
+                }
+              },
+              {
+                "id": "owned-drag/3",
+                "x": 588,
+                "y": 120,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 548,
+                  "y": 64,
+                  "width": 80,
+                  "height": 147
+                }
+              },
+              {
+                "id": "owned-drag/4",
+                "x": 680,
+                "y": 120,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 640,
+                  "y": 64,
+                  "width": 80,
+                  "height": 147
+                }
+              },
+              {
+                "id": "owned-drag/0",
+                "x": 312,
+                "y": 120,
+                "scale": 1.04,
+                "active": true,
+                "bounds": {
+                  "x": 270.4000015258789,
+                  "y": 61.76000213623047,
+                  "width": 83.19999694824219,
+                  "height": 136.23999500274658
+                }
+              }
+            ],
+            "surfaceTouchAction": "pan-y",
+            "dispatch": [
+              [
+                {
+                  "type": "ReorderJokers",
+                  "ids": [
+                    "owned-drag/1",
+                    "owned-drag/2",
+                    "owned-drag/3",
+                    "owned-drag/4",
+                    "owned-drag/0"
+                  ]
+                },
+                4
+              ]
+            ]
+          },
+          "midShot": "1366x900-fast-mid.png",
+          "after": {
+            "seq": 6,
+            "ids": [
+              "owned-drag/0",
+              "owned-drag/1",
+              "owned-drag/2",
+              "owned-drag/3",
+              "owned-drag/4"
+            ],
+            "revision": 3
+          },
+          "dropped": {
+            "drag": false,
+            "saving": false,
+            "inputEnabled": true,
+            "hint": "拖动换位 · 点牌查看",
+            "slots": [
+              {
+                "x": 272,
+                "y": 64,
+                "width": 80,
+                "height": 112
+              },
+              {
+                "x": 364,
+                "y": 64,
+                "width": 80,
+                "height": 112
+              },
+              {
+                "x": 456,
+                "y": 64,
+                "width": 80,
+                "height": 112
+              },
+              {
+                "x": 548,
+                "y": 64,
+                "width": 80,
+                "height": 112
+              },
+              {
+                "x": 640,
+                "y": 64,
+                "width": 80,
+                "height": 112
+              }
+            ],
+            "arts": [
+              {
+                "id": "owned-drag/0",
+                "x": 312,
+                "y": 120,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 272,
+                  "y": 64,
+                  "width": 80,
+                  "height": 131
+                }
+              },
+              {
+                "id": "owned-drag/1",
+                "x": 404,
+                "y": 120,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 364,
+                  "y": 64,
+                  "width": 80,
+                  "height": 131
+                }
+              },
+              {
+                "id": "owned-drag/2",
+                "x": 496,
+                "y": 120,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 456,
+                  "y": 64,
+                  "width": 80,
+                  "height": 147
+                }
+              },
+              {
+                "id": "owned-drag/3",
+                "x": 588,
+                "y": 120,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 548,
+                  "y": 64,
+                  "width": 80,
+                  "height": 147
+                }
+              },
+              {
+                "id": "owned-drag/4",
+                "x": 680,
+                "y": 120,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 640,
+                  "y": 64,
+                  "width": 80,
+                  "height": 147
+                }
+              }
+            ],
+            "surfaceTouchAction": "pan-y",
+            "dispatch": [
+              [
+                {
+                  "type": "ReorderJokers",
+                  "ids": [
+                    "owned-drag/1",
+                    "owned-drag/2",
+                    "owned-drag/3",
+                    "owned-drag/4",
+                    "owned-drag/0"
+                  ]
+                },
+                4
+              ],
+              [
+                {
+                  "type": "ReorderJokers",
+                  "ids": [
+                    "owned-drag/0",
+                    "owned-drag/1",
+                    "owned-drag/2",
+                    "owned-drag/3",
+                    "owned-drag/4"
+                  ]
+                },
+                5
+              ]
+            ]
+          },
+          "dropShot": "1366x900-fast-dropped.png",
+          "status": "PASS"
+        },
+        {
+          "from": 1,
+          "to": 3,
+          "style": "middle",
+          "before": {
+            "seq": 6,
+            "ids": [
+              "owned-drag/0",
+              "owned-drag/1",
+              "owned-drag/2",
+              "owned-drag/3",
+              "owned-drag/4"
+            ],
+            "revision": 3
+          },
+          "held": {
+            "drag": true,
+            "saving": false,
+            "inputEnabled": false,
+            "hint": "松手换位 · 移出持牌区取消",
+            "slots": [
+              {
+                "x": 272,
+                "y": 64,
+                "width": 80,
+                "height": 112
+              },
+              {
+                "x": 364,
+                "y": 64,
+                "width": 80,
+                "height": 112
+              },
+              {
+                "x": 456,
+                "y": 64,
+                "width": 80,
+                "height": 112
+              },
+              {
+                "x": 548,
+                "y": 64,
+                "width": 80,
+                "height": 112
+              },
+              {
+                "x": 640,
+                "y": 64,
+                "width": 80,
+                "height": 112
+              }
+            ],
+            "arts": [
+              {
+                "id": "owned-drag/0",
+                "x": 312,
+                "y": 120,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 272,
+                  "y": 64,
+                  "width": 80,
+                  "height": 131
+                }
+              },
+              {
+                "id": "owned-drag/1",
+                "x": 416,
+                "y": 120,
+                "scale": 1.04,
+                "active": true,
+                "bounds": {
+                  "x": 374.4000015258789,
+                  "y": 61.76000213623047,
+                  "width": 83.19999694824219,
+                  "height": 136.23999500274658
+                }
+              },
+              {
+                "id": "owned-drag/2",
+                "x": 496,
+                "y": 120,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 456,
+                  "y": 64,
+                  "width": 80,
+                  "height": 147
+                }
+              },
+              {
+                "id": "owned-drag/3",
+                "x": 588,
+                "y": 120,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 548,
+                  "y": 64,
+                  "width": 80,
+                  "height": 147
+                }
+              },
+              {
+                "id": "owned-drag/4",
+                "x": 680,
+                "y": 120,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 640,
+                  "y": 64,
+                  "width": 80,
+                  "height": 147
+                }
+              }
+            ],
+            "surfaceTouchAction": "pan-y",
+            "dispatch": [
+              [
+                {
+                  "type": "ReorderJokers",
+                  "ids": [
+                    "owned-drag/1",
+                    "owned-drag/2",
+                    "owned-drag/3",
+                    "owned-drag/4",
+                    "owned-drag/0"
+                  ]
+                },
+                4
+              ],
+              [
+                {
+                  "type": "ReorderJokers",
+                  "ids": [
+                    "owned-drag/0",
+                    "owned-drag/1",
+                    "owned-drag/2",
+                    "owned-drag/3",
+                    "owned-drag/4"
+                  ]
+                },
+                5
+              ]
+            ]
+          },
+          "heldShot": "1366x900-middle-held.png",
+          "mid": {
+            "drag": true,
+            "saving": false,
+            "inputEnabled": false,
+            "hint": "松手换位 · 移出持牌区取消",
+            "slots": [
+              {
+                "x": 272,
+                "y": 64,
+                "width": 80,
+                "height": 112
+              },
+              {
+                "x": 364,
+                "y": 64,
+                "width": 80,
+                "height": 112
+              },
+              {
+                "x": 456,
+                "y": 64,
+                "width": 80,
+                "height": 112
+              },
+              {
+                "x": 548,
+                "y": 64,
+                "width": 80,
+                "height": 112
+              },
+              {
+                "x": 640,
+                "y": 64,
+                "width": 80,
+                "height": 112
+              }
+            ],
+            "arts": [
+              {
+                "id": "owned-drag/0",
+                "x": 312,
+                "y": 120,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 272,
+                  "y": 64,
+                  "width": 80,
+                  "height": 131
+                }
+              },
+              {
+                "id": "owned-drag/1",
+                "x": 588,
+                "y": 120,
+                "scale": 1.04,
+                "active": true,
+                "bounds": {
+                  "x": 546.4000015258789,
+                  "y": 61.76000213623047,
+                  "width": 83.19999694824219,
+                  "height": 136.23999500274658
+                }
+              },
+              {
+                "id": "owned-drag/2",
+                "x": 404,
+                "y": 120,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 364,
+                  "y": 64,
+                  "width": 80,
+                  "height": 147
+                }
+              },
+              {
+                "id": "owned-drag/3",
+                "x": 496,
+                "y": 120,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 456,
+                  "y": 64,
+                  "width": 80,
+                  "height": 147
+                }
+              },
+              {
+                "id": "owned-drag/4",
+                "x": 680,
+                "y": 120,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 640,
+                  "y": 64,
+                  "width": 80,
+                  "height": 147
+                }
+              }
+            ],
+            "surfaceTouchAction": "pan-y",
+            "dispatch": [
+              [
+                {
+                  "type": "ReorderJokers",
+                  "ids": [
+                    "owned-drag/1",
+                    "owned-drag/2",
+                    "owned-drag/3",
+                    "owned-drag/4",
+                    "owned-drag/0"
+                  ]
+                },
+                4
+              ],
+              [
+                {
+                  "type": "ReorderJokers",
+                  "ids": [
+                    "owned-drag/0",
+                    "owned-drag/1",
+                    "owned-drag/2",
+                    "owned-drag/3",
+                    "owned-drag/4"
+                  ]
+                },
+                5
+              ]
+            ]
+          },
+          "midShot": "1366x900-middle-mid.png",
+          "after": {
+            "seq": 7,
+            "ids": [
+              "owned-drag/0",
+              "owned-drag/2",
+              "owned-drag/3",
+              "owned-drag/1",
+              "owned-drag/4"
+            ],
+            "revision": 4
+          },
+          "dropped": {
+            "drag": false,
+            "saving": false,
+            "inputEnabled": true,
+            "hint": "拖动换位 · 点牌查看",
+            "slots": [
+              {
+                "x": 272,
+                "y": 64,
+                "width": 80,
+                "height": 112
+              },
+              {
+                "x": 364,
+                "y": 64,
+                "width": 80,
+                "height": 112
+              },
+              {
+                "x": 456,
+                "y": 64,
+                "width": 80,
+                "height": 112
+              },
+              {
+                "x": 548,
+                "y": 64,
+                "width": 80,
+                "height": 112
+              },
+              {
+                "x": 640,
+                "y": 64,
+                "width": 80,
+                "height": 112
+              }
+            ],
+            "arts": [
+              {
+                "id": "owned-drag/0",
+                "x": 312,
+                "y": 120,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 272,
+                  "y": 64,
+                  "width": 80,
+                  "height": 131
+                }
+              },
+              {
+                "id": "owned-drag/2",
+                "x": 404,
+                "y": 120,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 364,
+                  "y": 64,
+                  "width": 80,
+                  "height": 147
+                }
+              },
+              {
+                "id": "owned-drag/3",
+                "x": 496,
+                "y": 120,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 456,
+                  "y": 64,
+                  "width": 80,
+                  "height": 147
+                }
+              },
+              {
+                "id": "owned-drag/1",
+                "x": 588,
+                "y": 120,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 548,
+                  "y": 64,
+                  "width": 80,
+                  "height": 131
+                }
+              },
+              {
+                "id": "owned-drag/4",
+                "x": 680,
+                "y": 120,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 640,
+                  "y": 64,
+                  "width": 80,
+                  "height": 147
+                }
+              }
+            ],
+            "surfaceTouchAction": "pan-y",
+            "dispatch": [
+              [
+                {
+                  "type": "ReorderJokers",
+                  "ids": [
+                    "owned-drag/1",
+                    "owned-drag/2",
+                    "owned-drag/3",
+                    "owned-drag/4",
+                    "owned-drag/0"
+                  ]
+                },
+                4
+              ],
+              [
+                {
+                  "type": "ReorderJokers",
+                  "ids": [
+                    "owned-drag/0",
+                    "owned-drag/1",
+                    "owned-drag/2",
+                    "owned-drag/3",
+                    "owned-drag/4"
+                  ]
+                },
+                5
+              ],
+              [
+                {
+                  "type": "ReorderJokers",
+                  "ids": [
+                    "owned-drag/0",
+                    "owned-drag/2",
+                    "owned-drag/3",
+                    "owned-drag/1",
+                    "owned-drag/4"
+                  ]
+                },
+                6
+              ]
+            ]
+          },
+          "dropShot": "1366x900-middle-dropped.png",
+          "status": "PASS"
+        }
+      ],
+      "cancellations": [],
+      "initial": {
+        "seq": 4,
+        "ids": [
+          "owned-drag/0",
+          "owned-drag/1",
+          "owned-drag/2",
+          "owned-drag/3",
+          "owned-drag/4"
+        ],
+        "revision": 1
+      },
+      "initialVisual": {
+        "drag": false,
+        "saving": false,
+        "inputEnabled": true,
+        "hint": "拖动换位 · 点牌查看",
+        "slots": [
+          {
+            "x": 272,
+            "y": 64,
+            "width": 80,
+            "height": 112
+          },
+          {
+            "x": 364,
+            "y": 64,
+            "width": 80,
+            "height": 112
+          },
+          {
+            "x": 456,
+            "y": 64,
+            "width": 80,
+            "height": 112
+          },
+          {
+            "x": 548,
+            "y": 64,
+            "width": 80,
+            "height": 112
+          },
+          {
+            "x": 640,
+            "y": 64,
+            "width": 80,
+            "height": 112
+          }
+        ],
+        "arts": [
+          {
+            "id": "owned-drag/0",
+            "x": 312,
+            "y": 120,
+            "scale": 1,
+            "active": true,
+            "bounds": {
+              "x": 272,
+              "y": 64,
+              "width": 80,
+              "height": 131
+            }
+          },
+          {
+            "id": "owned-drag/1",
+            "x": 404,
+            "y": 120,
+            "scale": 1,
+            "active": true,
+            "bounds": {
+              "x": 364,
+              "y": 64,
+              "width": 80,
+              "height": 131
+            }
+          },
+          {
+            "id": "owned-drag/2",
+            "x": 496,
+            "y": 120,
+            "scale": 1,
+            "active": true,
+            "bounds": {
+              "x": 456,
+              "y": 64,
+              "width": 80,
+              "height": 147
+            }
+          },
+          {
+            "id": "owned-drag/3",
+            "x": 588,
+            "y": 120,
+            "scale": 1,
+            "active": true,
+            "bounds": {
+              "x": 548,
+              "y": 64,
+              "width": 80,
+              "height": 147
+            }
+          },
+          {
+            "id": "owned-drag/4",
+            "x": 680,
+            "y": 120,
+            "scale": 1,
+            "active": true,
+            "bounds": {
+              "x": 640,
+              "y": 64,
+              "width": 80,
+              "height": 147
+            }
+          }
+        ],
+        "surfaceTouchAction": "pan-y",
+        "dispatch": []
+      },
+      "idleShot": "1366x900-idle.png",
+      "vertical": {
+        "drag": true,
+        "saving": false,
+        "inputEnabled": false,
+        "hint": "松手换位 · 移出持牌区取消",
+        "slots": [
+          {
+            "x": 272,
+            "y": 64,
+            "width": 80,
+            "height": 112
+          },
+          {
+            "x": 364,
+            "y": 64,
+            "width": 80,
+            "height": 112
+          },
+          {
+            "x": 456,
+            "y": 64,
+            "width": 80,
+            "height": 112
+          },
+          {
+            "x": 548,
+            "y": 64,
+            "width": 80,
+            "height": 112
+          },
+          {
+            "x": 640,
+            "y": 64,
+            "width": 80,
+            "height": 112
+          }
+        ],
+        "arts": [
+          {
+            "id": "owned-drag/0",
+            "x": 317,
+            "y": 140,
+            "scale": 1.04,
+            "active": true,
+            "bounds": {
+              "x": 275.4000015258789,
+              "y": 81.76000213623047,
+              "width": 83.19999694824219,
+              "height": 136.23999500274658
+            }
+          },
+          {
+            "id": "owned-drag/2",
+            "x": 404,
+            "y": 120,
+            "scale": 1,
+            "active": true,
+            "bounds": {
+              "x": 364,
+              "y": 64,
+              "width": 80,
+              "height": 147
+            }
+          },
+          {
+            "id": "owned-drag/3",
+            "x": 496,
+            "y": 120,
+            "scale": 1,
+            "active": true,
+            "bounds": {
+              "x": 456,
+              "y": 64,
+              "width": 80,
+              "height": 147
+            }
+          },
+          {
+            "id": "owned-drag/1",
+            "x": 588,
+            "y": 120,
+            "scale": 1,
+            "active": true,
+            "bounds": {
+              "x": 548,
+              "y": 64,
+              "width": 80,
+              "height": 131
+            }
+          },
+          {
+            "id": "owned-drag/4",
+            "x": 680,
+            "y": 120,
+            "scale": 1,
+            "active": true,
+            "bounds": {
+              "x": 640,
+              "y": 64,
+              "width": 80,
+              "height": 147
+            }
+          }
+        ],
+        "surfaceTouchAction": "pan-y",
+        "dispatch": [
+          [
+            {
+              "type": "ReorderJokers",
+              "ids": [
+                "owned-drag/1",
+                "owned-drag/2",
+                "owned-drag/3",
+                "owned-drag/4",
+                "owned-drag/0"
+              ]
+            },
+            4
+          ],
+          [
+            {
+              "type": "ReorderJokers",
+              "ids": [
+                "owned-drag/0",
+                "owned-drag/1",
+                "owned-drag/2",
+                "owned-drag/3",
+                "owned-drag/4"
+              ]
+            },
+            5
+          ],
+          [
+            {
+              "type": "ReorderJokers",
+              "ids": [
+                "owned-drag/0",
+                "owned-drag/2",
+                "owned-drag/3",
+                "owned-drag/1",
+                "owned-drag/4"
+              ]
+            },
+            6
+          ]
+        ]
+      },
+      "verticalShot": "1366x900-vertical.png",
+      "restored": {
+        "seq": 7,
+        "ids": [
+          "owned-drag/0",
+          "owned-drag/2",
+          "owned-drag/3",
+          "owned-drag/1",
+          "owned-drag/4"
+        ],
+        "revision": 4
+      },
+      "status": "PASS"
+    }
+  ],
+  "status": "PASS"
+}

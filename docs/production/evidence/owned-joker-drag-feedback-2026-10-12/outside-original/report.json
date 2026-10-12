@@ -1,0 +1,206 @@
+{
+  "head": "8f036827dde4ca5b88ba89fceb0fbdf0f32b2970",
+  "sourceTree": "7457e66ff2bd05e55137b51da70ebed009e6e8ef",
+  "modified": "",
+  "baseline": false,
+  "scope": "Controlled current-identity five-owned checkpoint; real mouse/CDP touch/DOM inputs. Full state/journal/local storage vs actual applyCommand; no natural acquisition, 18-combination, physical device or human acceptance.",
+  "cases": [
+    {
+      "width": 320,
+      "height": 740,
+      "touch": true,
+      "name": "320x740",
+      "checks": [],
+      "errors": [],
+      "moves": [],
+      "cancellations": [],
+      "outsideRail": {
+        "scrollBefore": {
+          "top": 0,
+          "height": 1400,
+          "client": 662,
+          "touchAction": "auto"
+        },
+        "scrollAfter": {
+          "top": 145,
+          "touchAction": "auto"
+        },
+        "scaleBefore": 1,
+        "scaleAfter": 1,
+        "nativePinchChanged": false,
+        "meta": "width=device-width, initial-scale=1.0, viewport-fit=cover",
+        "body": {
+          "overflow": "hidden",
+          "touchAction": "auto",
+          "canvasTouchAction": "none"
+        }
+      },
+      "initial": {
+        "seq": 4,
+        "ids": [
+          "owned-drag/0",
+          "owned-drag/1",
+          "owned-drag/2",
+          "owned-drag/3",
+          "owned-drag/4"
+        ],
+        "revision": 1
+      },
+      "status": "OBSERVED"
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "name": "390x844",
+      "checks": [],
+      "errors": [],
+      "moves": [],
+      "cancellations": [],
+      "outsideRail": {
+        "scrollBefore": {
+          "top": 0,
+          "height": 1288,
+          "client": 766,
+          "touchAction": "auto"
+        },
+        "scrollAfter": {
+          "top": 145,
+          "touchAction": "auto"
+        },
+        "scaleBefore": 1,
+        "scaleAfter": 1,
+        "nativePinchChanged": false,
+        "meta": "width=device-width, initial-scale=1.0, viewport-fit=cover",
+        "body": {
+          "overflow": "hidden",
+          "touchAction": "auto",
+          "canvasTouchAction": "none"
+        }
+      },
+      "initial": {
+        "seq": 4,
+        "ids": [
+          "owned-drag/0",
+          "owned-drag/1",
+          "owned-drag/2",
+          "owned-drag/3",
+          "owned-drag/4"
+        ],
+        "revision": 1
+      },
+      "status": "OBSERVED"
+    },
+    {
+      "width": 412,
+      "height": 915,
+      "touch": true,
+      "name": "412x915",
+      "checks": [],
+      "errors": [],
+      "moves": [],
+      "cancellations": [],
+      "outsideRail": {
+        "scrollBefore": {
+          "top": 0,
+          "height": 1288,
+          "client": 837,
+          "touchAction": "auto"
+        },
+        "scrollAfter": {
+          "top": 145,
+          "touchAction": "auto"
+        },
+        "scaleBefore": 1,
+        "scaleAfter": 1,
+        "nativePinchChanged": false,
+        "meta": "width=device-width, initial-scale=1.0, viewport-fit=cover",
+        "body": {
+          "overflow": "hidden",
+          "touchAction": "auto",
+          "canvasTouchAction": "none"
+        }
+      },
+      "initial": {
+        "seq": 4,
+        "ids": [
+          "owned-drag/0",
+          "owned-drag/1",
+          "owned-drag/2",
+          "owned-drag/3",
+          "owned-drag/4"
+        ],
+        "revision": 1
+      },
+      "status": "OBSERVED"
+    },
+    {
+      "width": 1366,
+      "height": 900,
+      "touch": false,
+      "name": "1366x900",
+      "checks": [],
+      "errors": [],
+      "moves": [],
+      "cancellations": [],
+      "initial": {
+        "seq": 4,
+        "ids": [
+          "owned-drag/0",
+          "owned-drag/1",
+          "owned-drag/2",
+          "owned-drag/3",
+          "owned-drag/4"
+        ],
+        "revision": 1
+      },
+      "status": "NOT_APPLICABLE"
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "reduced": true,
+      "dpr": 2,
+      "name": "390x844-reduce-dpr2",
+      "checks": [],
+      "errors": [],
+      "moves": [],
+      "cancellations": [],
+      "outsideRail": {
+        "scrollBefore": {
+          "top": 0,
+          "height": 1288,
+          "client": 766,
+          "touchAction": "auto"
+        },
+        "scrollAfter": {
+          "top": 145,
+          "touchAction": "auto"
+        },
+        "scaleBefore": 1,
+        "scaleAfter": 1,
+        "nativePinchChanged": false,
+        "meta": "width=device-width, initial-scale=1.0, viewport-fit=cover",
+        "body": {
+          "overflow": "hidden",
+          "touchAction": "auto",
+          "canvasTouchAction": "none"
+        }
+      },
+      "initial": {
+        "seq": 4,
+        "ids": [
+          "owned-drag/0",
+          "owned-drag/1",
+          "owned-drag/2",
+          "owned-drag/3",
+          "owned-drag/4"
+        ],
+        "revision": 1
+      },
+      "status": "OBSERVED"
+    }
+  ],
+  "status": "PASS"
+}

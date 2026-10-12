@@ -3,6 +3,7 @@ import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 import {execFileSync} from 'node:child_process';
+import {createHash} from 'node:crypto';
 import {pathToFileURL} from 'node:url';
 
 const root=process.cwd(),text=p=>fs.readFileSync(path.join(root,p),'utf8');
@@ -21,6 +22,11 @@ async function fixture(run){
 const step=(name,code)=>({name,command:process.execPath,args:['-e',code]});
 
 describe('executable CI and read-only gates',()=>{
+  it('hashes the complete repository index without truncating large Git output',async()=>{
+    const {snapshotSource}=await runner();
+    const index=execFileSync('git',['ls-files','--stage','-z'],{cwd:root,maxBuffer:16*1024*1024});
+    expect(snapshotSource(root).index).toBe(createHash('sha256').update(index).digest('hex'));
+  },20000);
   it('has real E2E and CI entry points, rather than placeholder success',()=>{
     const p=JSON.parse(text('package.json'));
     for(const script of ['test:e2e','verify:ci']){expect(p.scripts[script]).toBeTruthy();expect(p.scripts[script]).not.toMatch(/echo|exit 0/);}

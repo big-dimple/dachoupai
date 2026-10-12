@@ -6,7 +6,7 @@ import {spawnSync} from 'node:child_process';
 
 const hash=bytes=>createHash('sha256').update(bytes).digest('hex');
 function git(root,args,optional=false){
-  const result=spawnSync('git',args,{cwd:root,encoding:'utf8',windowsHide:true});
+  const result=spawnSync('git',args,{cwd:root,encoding:'utf8',windowsHide:true,maxBuffer:16*1024*1024});
   if(result.status!==0&&!optional)throw Error(`git ${args.join(' ')}: ${result.stderr||result.error}`);
   return result.status===0?result.stdout:null;
 }

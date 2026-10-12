@@ -1,0 +1,1630 @@
+{
+  "head": "00fe311e04305b7769f8141520742810bc614134",
+  "sourceTree": "a633fb0d07a551fc365a54e80e7e639d650987bb",
+  "modified": "M src/game/ShopScene.ts\n?? harness/owned-joker-drag-feedback.mjs\n?? src/game/OwnedJokerDragVisual.ts\n?? tests/owned-joker-drag-visual.test.ts",
+  "baseline": false,
+  "scope": "Controlled current-identity five-owned checkpoint; real mouse/CDP touch/DOM inputs. Full state/journal/local storage vs actual applyCommand; no natural acquisition, 18-combination, physical device or human acceptance.",
+  "cases": [
+    {
+      "width": 320,
+      "height": 740,
+      "touch": true,
+      "name": "320x740",
+      "checks": [],
+      "errors": [],
+      "moves": [
+        {
+          "from": 0,
+          "to": 4,
+          "style": "slow",
+          "before": {
+            "seq": 4,
+            "ids": [
+              "owned-drag/0",
+              "owned-drag/1",
+              "owned-drag/2",
+              "owned-drag/3",
+              "owned-drag/4"
+            ],
+            "revision": 1
+          },
+          "held": {
+            "drag": true,
+            "saving": false,
+            "inputEnabled": false,
+            "hint": "松手放第 1 位 · 移出取消",
+            "slots": [
+              {
+                "x": 12,
+                "y": 488,
+                "width": 54.4,
+                "height": 76.16
+              },
+              {
+                "x": 72.4,
+                "y": 488,
+                "width": 54.4,
+                "height": 76.16
+              },
+              {
+                "x": 132.8,
+                "y": 488,
+                "width": 54.4,
+                "height": 76.16
+              },
+              {
+                "x": 193.2,
+                "y": 488,
+                "width": 54.4,
+                "height": 76.16
+              },
+              {
+                "x": 253.6,
+                "y": 488,
+                "width": 54.4,
+                "height": 76.16
+              }
+            ],
+            "arts": [
+              {
+                "id": "owned-drag/0",
+                "x": 39.2,
+                "y": 494.0799999999999,
+                "scale": 1.12,
+                "active": true,
+                "bounds": {
+                  "x": 8.736000633239744,
+                  "y": 451.430386390686,
+                  "width": 60.92800025939941,
+                  "height": 106.40000045299524
+                }
+              },
+              {
+                "id": "owned-drag/1",
+                "x": 99.60000000000001,
+                "y": 526.08,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 72.39999847412109,
+                  "y": 488.0000170898437,
+                  "width": 54.39999999999999,
+                  "height": 95
+                }
+              },
+              {
+                "id": "owned-drag/2",
+                "x": 160,
+                "y": 526.08,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 132.8,
+                  "y": 488.0000170898437,
+                  "width": 54.400000000000006,
+                  "height": 95
+                }
+              },
+              {
+                "id": "owned-drag/3",
+                "x": 220.39999999999998,
+                "y": 526.08,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 193.1999938964844,
+                  "y": 488.0000170898437,
+                  "width": 56.80000000000001,
+                  "height": 95
+                }
+              },
+              {
+                "id": "owned-drag/4",
+                "x": 280.8,
+                "y": 526.08,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 253.59998779296873,
+                  "y": 488.0000170898437,
+                  "width": 57.400000000000006,
+                  "height": 95
+                }
+              }
+            ],
+            "surfaceTouchAction": "pan-y",
+            "dispatch": []
+          },
+          "heldShot": "320x740-slow-held.png",
+          "mid": {
+            "drag": true,
+            "saving": false,
+            "inputEnabled": false,
+            "hint": "松手放第 5 位 · 移出取消",
+            "slots": [
+              {
+                "x": 12,
+                "y": 488,
+                "width": 54.4,
+                "height": 76.16
+              },
+              {
+                "x": 72.4,
+                "y": 488,
+                "width": 54.4,
+                "height": 76.16
+              },
+              {
+                "x": 132.8,
+                "y": 488,
+                "width": 54.4,
+                "height": 76.16
+              },
+              {
+                "x": 193.2,
+                "y": 488,
+                "width": 54.4,
+                "height": 76.16
+              },
+              {
+                "x": 253.6,
+                "y": 488,
+                "width": 54.4,
+                "height": 76.16
+              }
+            ],
+            "arts": [
+              {
+                "id": "owned-drag/0",
+                "x": 280.7999870300293,
+                "y": 502.0799999999999,
+                "scale": 1.12,
+                "active": true,
+                "bounds": {
+                  "x": 250.33598766326904,
+                  "y": 459.430386390686,
+                  "width": 60.9280002593994,
+                  "height": 106.40000045299524
+                }
+              },
+              {
+                "id": "owned-drag/1",
+                "x": 39.2,
+                "y": 526.08,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 12.00000076293945,
+                  "y": 488.0000170898437,
+                  "width": 54.39999999999999,
+                  "height": 95
+                }
+              },
+              {
+                "id": "owned-drag/2",
+                "x": 99.60000000000001,
+                "y": 526.08,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 72.3999984741211,
+                  "y": 488.0000170898437,
+                  "width": 54.400000000000006,
+                  "height": 95
+                }
+              },
+              {
+                "id": "owned-drag/3",
+                "x": 160,
+                "y": 526.08,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 132.8,
+                  "y": 488.0000170898437,
+                  "width": 56.80000000000001,
+                  "height": 95
+                }
+              },
+              {
+                "id": "owned-drag/4",
+                "x": 224.53519909842223,
+                "y": 526.08,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 197.33520202636717,
+                  "y": 488.0000170898437,
+                  "width": 57.400000000000006,
+                  "height": 95
+                }
+              }
+            ],
+            "surfaceTouchAction": "pan-y",
+            "dispatch": []
+          },
+          "midShot": "320x740-slow-mid.png",
+          "pending": {
+            "drag": true,
+            "saving": true,
+            "inputEnabled": false,
+            "hint": "正在保存顺序…",
+            "slots": [
+              {
+                "x": 12,
+                "y": 488,
+                "width": 54.4,
+                "height": 76.16
+              },
+              {
+                "x": 72.4,
+                "y": 488,
+                "width": 54.4,
+                "height": 76.16
+              },
+              {
+                "x": 132.8,
+                "y": 488,
+                "width": 54.4,
+                "height": 76.16
+              },
+              {
+                "x": 193.2,
+                "y": 488,
+                "width": 54.4,
+                "height": 76.16
+              },
+              {
+                "x": 253.6,
+                "y": 488,
+                "width": 54.4,
+                "height": 76.16
+              }
+            ],
+            "arts": [
+              {
+                "id": "owned-drag/0",
+                "x": 280.8,
+                "y": 494.08000000000004,
+                "scale": 1.12,
+                "active": true,
+                "bounds": {
+                  "x": 250.33598766326904,
+                  "y": 451.430386390686,
+                  "width": 60.9280002593994,
+                  "height": 106.40000045299524
+                }
+              },
+              {
+                "id": "owned-drag/1",
+                "x": 39.2,
+                "y": 526.08,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 12.00000076293945,
+                  "y": 488.0000170898437,
+                  "width": 54.39999999999999,
+                  "height": 95
+                }
+              },
+              {
+                "id": "owned-drag/2",
+                "x": 99.60000000000001,
+                "y": 526.08,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 72.3999984741211,
+                  "y": 488.0000170898437,
+                  "width": 54.400000000000006,
+                  "height": 95
+                }
+              },
+              {
+                "id": "owned-drag/3",
+                "x": 160,
+                "y": 526.08,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 132.8,
+                  "y": 488.0000170898437,
+                  "width": 56.80000000000001,
+                  "height": 95
+                }
+              },
+              {
+                "id": "owned-drag/4",
+                "x": 220.39999999999998,
+                "y": 526.08,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 193.19999389648436,
+                  "y": 488.0000170898437,
+                  "width": 57.400000000000006,
+                  "height": 95
+                }
+              }
+            ],
+            "surfaceTouchAction": "pan-y",
+            "dispatch": [
+              [
+                {
+                  "type": "ReorderJokers",
+                  "ids": [
+                    "owned-drag/1",
+                    "owned-drag/2",
+                    "owned-drag/3",
+                    "owned-drag/4",
+                    "owned-drag/0"
+                  ]
+                },
+                4
+              ]
+            ]
+          },
+          "pendingShot": "320x740-saving-delay.png",
+          "after": {
+            "seq": 5,
+            "ids": [
+              "owned-drag/1",
+              "owned-drag/2",
+              "owned-drag/3",
+              "owned-drag/4",
+              "owned-drag/0"
+            ],
+            "revision": 2
+          },
+          "dropped": {
+            "drag": false,
+            "saving": false,
+            "inputEnabled": true,
+            "hint": "通常从左到右结算 · 长按拖动排序",
+            "slots": [
+              {
+                "x": 12,
+                "y": 488,
+                "width": 54.4,
+                "height": 76.16
+              },
+              {
+                "x": 72.4,
+                "y": 488,
+                "width": 54.4,
+                "height": 76.16
+              },
+              {
+                "x": 132.8,
+                "y": 488,
+                "width": 54.4,
+                "height": 76.16
+              },
+              {
+                "x": 193.2,
+                "y": 488,
+                "width": 54.4,
+                "height": 76.16
+              },
+              {
+                "x": 253.6,
+                "y": 488,
+                "width": 54.4,
+                "height": 76.16
+              }
+            ],
+            "arts": [
+              {
+                "id": "owned-drag/1",
+                "x": 39.2,
+                "y": 526.08,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 12.00000076293945,
+                  "y": 488.0000170898437,
+                  "width": 54.39999999999999,
+                  "height": 95
+                }
+              },
+              {
+                "id": "owned-drag/2",
+                "x": 99.60000000000001,
+                "y": 526.08,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 72.39999847412109,
+                  "y": 488.0000170898437,
+                  "width": 54.39999999999999,
+                  "height": 95
+                }
+              },
+              {
+                "id": "owned-drag/3",
+                "x": 160,
+                "y": 526.08,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 132.8,
+                  "y": 488.0000170898437,
+                  "width": 57.19999999999999,
+                  "height": 95
+                }
+              },
+              {
+                "id": "owned-drag/4",
+                "x": 220.39999999999998,
+                "y": 526.08,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 193.1999938964844,
+                  "y": 488.0000170898437,
+                  "width": 56.80000000000001,
+                  "height": 95
+                }
+              },
+              {
+                "id": "owned-drag/0",
+                "x": 280.8,
+                "y": 526.08,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 253.59998779296873,
+                  "y": 488.0000170898437,
+                  "width": 54.400000000000006,
+                  "height": 95
+                }
+              }
+            ],
+            "surfaceTouchAction": "pan-y",
+            "dispatch": [
+              [
+                {
+                  "type": "ReorderJokers",
+                  "ids": [
+                    "owned-drag/1",
+                    "owned-drag/2",
+                    "owned-drag/3",
+                    "owned-drag/4",
+                    "owned-drag/0"
+                  ]
+                },
+                4
+              ]
+            ]
+          },
+          "dropShot": "320x740-slow-dropped.png",
+          "status": "PASS"
+        },
+        {
+          "from": 4,
+          "to": 0,
+          "style": "fast",
+          "before": {
+            "seq": 5,
+            "ids": [
+              "owned-drag/1",
+              "owned-drag/2",
+              "owned-drag/3",
+              "owned-drag/4",
+              "owned-drag/0"
+            ],
+            "revision": 2
+          },
+          "held": {
+            "drag": true,
+            "saving": false,
+            "inputEnabled": false,
+            "hint": "松手放第 5 位 · 移出取消",
+            "slots": [
+              {
+                "x": 12,
+                "y": 488,
+                "width": 54.4,
+                "height": 76.16
+              },
+              {
+                "x": 72.4,
+                "y": 488,
+                "width": 54.4,
+                "height": 76.16
+              },
+              {
+                "x": 132.8,
+                "y": 488,
+                "width": 54.4,
+                "height": 76.16
+              },
+              {
+                "x": 193.2,
+                "y": 488,
+                "width": 54.4,
+                "height": 76.16
+              },
+              {
+                "x": 253.6,
+                "y": 488,
+                "width": 54.4,
+                "height": 76.16
+              }
+            ],
+            "arts": [
+              {
+                "id": "owned-drag/1",
+                "x": 39.2,
+                "y": 526.08,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 12.00000076293945,
+                  "y": 488.0000170898437,
+                  "width": 54.39999999999999,
+                  "height": 95
+                }
+              },
+              {
+                "id": "owned-drag/2",
+                "x": 99.60000000000001,
+                "y": 526.08,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 72.39999847412109,
+                  "y": 488.0000170898437,
+                  "width": 54.39999999999999,
+                  "height": 95
+                }
+              },
+              {
+                "id": "owned-drag/3",
+                "x": 160,
+                "y": 526.08,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 132.8,
+                  "y": 488.0000170898437,
+                  "width": 57.19999999999999,
+                  "height": 95
+                }
+              },
+              {
+                "id": "owned-drag/4",
+                "x": 220.39999999999998,
+                "y": 526.08,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 193.1999938964844,
+                  "y": 488.0000170898437,
+                  "width": 56.80000000000001,
+                  "height": 95
+                }
+              },
+              {
+                "id": "owned-drag/0",
+                "x": 280.79999999999995,
+                "y": 494.0799999999999,
+                "scale": 1.12,
+                "active": true,
+                "bounds": {
+                  "x": 250.335987663269,
+                  "y": 451.430386390686,
+                  "width": 60.928000259399425,
+                  "height": 106.40000045299524
+                }
+              }
+            ],
+            "surfaceTouchAction": "pan-y",
+            "dispatch": [
+              [
+                {
+                  "type": "ReorderJokers",
+                  "ids": [
+                    "owned-drag/1",
+                    "owned-drag/2",
+                    "owned-drag/3",
+                    "owned-drag/4",
+                    "owned-drag/0"
+                  ]
+                },
+                4
+              ]
+            ]
+          },
+          "heldShot": "320x740-fast-held.png",
+          "mid": {
+            "drag": true,
+            "saving": false,
+            "inputEnabled": false,
+            "hint": "松手放第 1 位 · 移出取消",
+            "slots": [
+              {
+                "x": 12,
+                "y": 488,
+                "width": 54.4,
+                "height": 76.16
+              },
+              {
+                "x": 72.4,
+                "y": 488,
+                "width": 54.4,
+                "height": 76.16
+              },
+              {
+                "x": 132.8,
+                "y": 488,
+                "width": 54.4,
+                "height": 76.16
+              },
+              {
+                "x": 193.2,
+                "y": 488,
+                "width": 54.4,
+                "height": 76.16
+              },
+              {
+                "x": 253.6,
+                "y": 488,
+                "width": 54.4,
+                "height": 76.16
+              }
+            ],
+            "arts": [
+              {
+                "id": "owned-drag/1",
+                "x": 98.60383110443277,
+                "y": 526.08,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 71.40382843017578,
+                  "y": 488.0000170898437,
+                  "width": 54.39999999999999,
+                  "height": 95
+                }
+              },
+              {
+                "id": "owned-drag/2",
+                "x": 159.00383110443275,
+                "y": 526.08,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 131.8038299560547,
+                  "y": 488.0000170898437,
+                  "width": 54.39999999999998,
+                  "height": 95
+                }
+              },
+              {
+                "id": "owned-drag/3",
+                "x": 219.40383110443273,
+                "y": 526.08,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 192.20382385253907,
+                  "y": 488.0000170898437,
+                  "width": 57.19999999999999,
+                  "height": 95
+                }
+              },
+              {
+                "id": "owned-drag/4",
+                "x": 279.8038311044328,
+                "y": 526.08,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 252.6038330078125,
+                  "y": 488.0000170898437,
+                  "width": 56.80000000000001,
+                  "height": 95
+                }
+              },
+              {
+                "id": "owned-drag/0",
+                "x": 39.200012969970714,
+                "y": 494.0799999999999,
+                "scale": 1.12,
+                "active": true,
+                "bounds": {
+                  "x": 8.736012077331523,
+                  "y": 451.430386390686,
+                  "width": 60.92800025939941,
+                  "height": 106.40000045299524
+                }
+              }
+            ],
+            "surfaceTouchAction": "pan-y",
+            "dispatch": [
+              [
+                {
+                  "type": "ReorderJokers",
+                  "ids": [
+                    "owned-drag/1",
+                    "owned-drag/2",
+                    "owned-drag/3",
+                    "owned-drag/4",
+                    "owned-drag/0"
+                  ]
+                },
+                4
+              ]
+            ]
+          },
+          "midShot": "320x740-fast-mid.png",
+          "after": {
+            "seq": 6,
+            "ids": [
+              "owned-drag/0",
+              "owned-drag/1",
+              "owned-drag/2",
+              "owned-drag/3",
+              "owned-drag/4"
+            ],
+            "revision": 3
+          },
+          "dropped": {
+            "drag": false,
+            "saving": false,
+            "inputEnabled": true,
+            "hint": "通常从左到右结算 · 长按拖动排序",
+            "slots": [
+              {
+                "x": 12,
+                "y": 488,
+                "width": 54.4,
+                "height": 76.16
+              },
+              {
+                "x": 72.4,
+                "y": 488,
+                "width": 54.4,
+                "height": 76.16
+              },
+              {
+                "x": 132.8,
+                "y": 488,
+                "width": 54.4,
+                "height": 76.16
+              },
+              {
+                "x": 193.2,
+                "y": 488,
+                "width": 54.4,
+                "height": 76.16
+              },
+              {
+                "x": 253.6,
+                "y": 488,
+                "width": 54.4,
+                "height": 76.16
+              }
+            ],
+            "arts": [
+              {
+                "id": "owned-drag/0",
+                "x": 39.2,
+                "y": 526.08,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 12.00000076293945,
+                  "y": 488.0000170898437,
+                  "width": 54.39999999999999,
+                  "height": 95
+                }
+              },
+              {
+                "id": "owned-drag/1",
+                "x": 99.60000000000001,
+                "y": 526.08,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 72.39999847412109,
+                  "y": 488.0000170898437,
+                  "width": 54.39999999999999,
+                  "height": 95
+                }
+              },
+              {
+                "id": "owned-drag/2",
+                "x": 160,
+                "y": 526.08,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 132.8,
+                  "y": 488.0000170898437,
+                  "width": 54.400000000000006,
+                  "height": 95
+                }
+              },
+              {
+                "id": "owned-drag/3",
+                "x": 220.39999999999998,
+                "y": 526.08,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 193.1999938964844,
+                  "y": 488.0000170898437,
+                  "width": 56.80000000000001,
+                  "height": 95
+                }
+              },
+              {
+                "id": "owned-drag/4",
+                "x": 280.8,
+                "y": 526.08,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 253.59998779296873,
+                  "y": 488.0000170898437,
+                  "width": 57.400000000000006,
+                  "height": 95
+                }
+              }
+            ],
+            "surfaceTouchAction": "pan-y",
+            "dispatch": [
+              [
+                {
+                  "type": "ReorderJokers",
+                  "ids": [
+                    "owned-drag/1",
+                    "owned-drag/2",
+                    "owned-drag/3",
+                    "owned-drag/4",
+                    "owned-drag/0"
+                  ]
+                },
+                4
+              ],
+              [
+                {
+                  "type": "ReorderJokers",
+                  "ids": [
+                    "owned-drag/0",
+                    "owned-drag/1",
+                    "owned-drag/2",
+                    "owned-drag/3",
+                    "owned-drag/4"
+                  ]
+                },
+                5
+              ]
+            ]
+          },
+          "dropShot": "320x740-fast-dropped.png",
+          "status": "PASS"
+        },
+        {
+          "from": 1,
+          "to": 3,
+          "style": "middle",
+          "before": {
+            "seq": 6,
+            "ids": [
+              "owned-drag/0",
+              "owned-drag/1",
+              "owned-drag/2",
+              "owned-drag/3",
+              "owned-drag/4"
+            ],
+            "revision": 3
+          },
+          "held": {
+            "drag": true,
+            "saving": false,
+            "inputEnabled": false,
+            "hint": "松手放第 2 位 · 移出取消",
+            "slots": [
+              {
+                "x": 12,
+                "y": 488,
+                "width": 54.4,
+                "height": 76.16
+              },
+              {
+                "x": 72.4,
+                "y": 488,
+                "width": 54.4,
+                "height": 76.16
+              },
+              {
+                "x": 132.8,
+                "y": 488,
+                "width": 54.4,
+                "height": 76.16
+              },
+              {
+                "x": 193.2,
+                "y": 488,
+                "width": 54.4,
+                "height": 76.16
+              },
+              {
+                "x": 253.6,
+                "y": 488,
+                "width": 54.4,
+                "height": 76.16
+              }
+            ],
+            "arts": [
+              {
+                "id": "owned-drag/0",
+                "x": 39.2,
+                "y": 526.08,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 12.00000076293945,
+                  "y": 488.0000170898437,
+                  "width": 54.39999999999999,
+                  "height": 95
+                }
+              },
+              {
+                "id": "owned-drag/1",
+                "x": 99.60000000000002,
+                "y": 494.0799999999999,
+                "scale": 1.12,
+                "active": true,
+                "bounds": {
+                  "x": 69.13599834442138,
+                  "y": 451.430386390686,
+                  "width": 60.928000259399425,
+                  "height": 106.40000045299524
+                }
+              },
+              {
+                "id": "owned-drag/2",
+                "x": 160,
+                "y": 526.08,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 132.8,
+                  "y": 488.0000170898437,
+                  "width": 54.400000000000006,
+                  "height": 95
+                }
+              },
+              {
+                "id": "owned-drag/3",
+                "x": 220.39999999999998,
+                "y": 526.08,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 193.1999938964844,
+                  "y": 488.0000170898437,
+                  "width": 56.80000000000001,
+                  "height": 95
+                }
+              },
+              {
+                "id": "owned-drag/4",
+                "x": 280.8,
+                "y": 526.08,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 253.59998779296873,
+                  "y": 488.0000170898437,
+                  "width": 57.400000000000006,
+                  "height": 95
+                }
+              }
+            ],
+            "surfaceTouchAction": "pan-y",
+            "dispatch": [
+              [
+                {
+                  "type": "ReorderJokers",
+                  "ids": [
+                    "owned-drag/1",
+                    "owned-drag/2",
+                    "owned-drag/3",
+                    "owned-drag/4",
+                    "owned-drag/0"
+                  ]
+                },
+                4
+              ],
+              [
+                {
+                  "type": "ReorderJokers",
+                  "ids": [
+                    "owned-drag/0",
+                    "owned-drag/1",
+                    "owned-drag/2",
+                    "owned-drag/3",
+                    "owned-drag/4"
+                  ]
+                },
+                5
+              ]
+            ]
+          },
+          "heldShot": "320x740-middle-held.png",
+          "mid": {
+            "drag": true,
+            "saving": false,
+            "inputEnabled": false,
+            "hint": "松手放第 4 位 · 移出取消",
+            "slots": [
+              {
+                "x": 12,
+                "y": 488,
+                "width": 54.4,
+                "height": 76.16
+              },
+              {
+                "x": 72.4,
+                "y": 488,
+                "width": 54.4,
+                "height": 76.16
+              },
+              {
+                "x": 132.8,
+                "y": 488,
+                "width": 54.4,
+                "height": 76.16
+              },
+              {
+                "x": 193.2,
+                "y": 488,
+                "width": 54.4,
+                "height": 76.16
+              },
+              {
+                "x": 253.6,
+                "y": 488,
+                "width": 54.4,
+                "height": 76.16
+              }
+            ],
+            "arts": [
+              {
+                "id": "owned-drag/0",
+                "x": 39.2,
+                "y": 526.08,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 12.00000076293945,
+                  "y": 488.0000170898437,
+                  "width": 54.39999999999999,
+                  "height": 95
+                }
+              },
+              {
+                "id": "owned-drag/1",
+                "x": 220.3999954223633,
+                "y": 494.0799999999999,
+                "scale": 1.12,
+                "active": true,
+                "bounds": {
+                  "x": 189.93599376678466,
+                  "y": 451.430386390686,
+                  "width": 60.928000259399425,
+                  "height": 106.40000045299524
+                }
+              },
+              {
+                "id": "owned-drag/2",
+                "x": 100.59616889556716,
+                "y": 526.08,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 73.39616851806642,
+                  "y": 488.0000170898437,
+                  "width": 54.400000000000006,
+                  "height": 95
+                }
+              },
+              {
+                "id": "owned-drag/3",
+                "x": 160.99616889556714,
+                "y": 526.08,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 133.79617004394532,
+                  "y": 488.0000170898437,
+                  "width": 56.80000000000001,
+                  "height": 95
+                }
+              },
+              {
+                "id": "owned-drag/4",
+                "x": 280.8,
+                "y": 526.08,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 253.59998779296873,
+                  "y": 488.0000170898437,
+                  "width": 57.400000000000006,
+                  "height": 95
+                }
+              }
+            ],
+            "surfaceTouchAction": "pan-y",
+            "dispatch": [
+              [
+                {
+                  "type": "ReorderJokers",
+                  "ids": [
+                    "owned-drag/1",
+                    "owned-drag/2",
+                    "owned-drag/3",
+                    "owned-drag/4",
+                    "owned-drag/0"
+                  ]
+                },
+                4
+              ],
+              [
+                {
+                  "type": "ReorderJokers",
+                  "ids": [
+                    "owned-drag/0",
+                    "owned-drag/1",
+                    "owned-drag/2",
+                    "owned-drag/3",
+                    "owned-drag/4"
+                  ]
+                },
+                5
+              ]
+            ]
+          },
+          "midShot": "320x740-middle-mid.png",
+          "after": {
+            "seq": 7,
+            "ids": [
+              "owned-drag/0",
+              "owned-drag/2",
+              "owned-drag/3",
+              "owned-drag/1",
+              "owned-drag/4"
+            ],
+            "revision": 4
+          },
+          "dropped": {
+            "drag": false,
+            "saving": false,
+            "inputEnabled": true,
+            "hint": "通常从左到右结算 · 长按拖动排序",
+            "slots": [
+              {
+                "x": 12,
+                "y": 488,
+                "width": 54.4,
+                "height": 76.16
+              },
+              {
+                "x": 72.4,
+                "y": 488,
+                "width": 54.4,
+                "height": 76.16
+              },
+              {
+                "x": 132.8,
+                "y": 488,
+                "width": 54.4,
+                "height": 76.16
+              },
+              {
+                "x": 193.2,
+                "y": 488,
+                "width": 54.4,
+                "height": 76.16
+              },
+              {
+                "x": 253.6,
+                "y": 488,
+                "width": 54.4,
+                "height": 76.16
+              }
+            ],
+            "arts": [
+              {
+                "id": "owned-drag/0",
+                "x": 39.2,
+                "y": 526.08,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 12.00000076293945,
+                  "y": 488.0000170898437,
+                  "width": 54.39999999999999,
+                  "height": 95
+                }
+              },
+              {
+                "id": "owned-drag/2",
+                "x": 99.60000000000001,
+                "y": 526.08,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 72.39999847412109,
+                  "y": 488.0000170898437,
+                  "width": 54.39999999999999,
+                  "height": 95
+                }
+              },
+              {
+                "id": "owned-drag/3",
+                "x": 160,
+                "y": 526.08,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 132.8,
+                  "y": 488.0000170898437,
+                  "width": 57.19999999999999,
+                  "height": 95
+                }
+              },
+              {
+                "id": "owned-drag/1",
+                "x": 220.39999999999998,
+                "y": 526.08,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 193.1999938964844,
+                  "y": 488.0000170898437,
+                  "width": 54.400000000000006,
+                  "height": 95
+                }
+              },
+              {
+                "id": "owned-drag/4",
+                "x": 280.8,
+                "y": 526.08,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 253.59998779296873,
+                  "y": 488.0000170898437,
+                  "width": 57.400000000000006,
+                  "height": 95
+                }
+              }
+            ],
+            "surfaceTouchAction": "pan-y",
+            "dispatch": [
+              [
+                {
+                  "type": "ReorderJokers",
+                  "ids": [
+                    "owned-drag/1",
+                    "owned-drag/2",
+                    "owned-drag/3",
+                    "owned-drag/4",
+                    "owned-drag/0"
+                  ]
+                },
+                4
+              ],
+              [
+                {
+                  "type": "ReorderJokers",
+                  "ids": [
+                    "owned-drag/0",
+                    "owned-drag/1",
+                    "owned-drag/2",
+                    "owned-drag/3",
+                    "owned-drag/4"
+                  ]
+                },
+                5
+              ],
+              [
+                {
+                  "type": "ReorderJokers",
+                  "ids": [
+                    "owned-drag/0",
+                    "owned-drag/2",
+                    "owned-drag/3",
+                    "owned-drag/1",
+                    "owned-drag/4"
+                  ]
+                },
+                6
+              ]
+            ]
+          },
+          "dropShot": "320x740-middle-dropped.png",
+          "status": "PASS"
+        }
+      ],
+      "cancellations": [],
+      "initial": {
+        "seq": 4,
+        "ids": [
+          "owned-drag/0",
+          "owned-drag/1",
+          "owned-drag/2",
+          "owned-drag/3",
+          "owned-drag/4"
+        ],
+        "revision": 1
+      },
+      "initialVisual": {
+        "drag": false,
+        "saving": false,
+        "inputEnabled": true,
+        "hint": "通常从左到右结算 · 长按拖动排序",
+        "slots": [
+          {
+            "x": 12,
+            "y": 488,
+            "width": 54.4,
+            "height": 76.16
+          },
+          {
+            "x": 72.4,
+            "y": 488,
+            "width": 54.4,
+            "height": 76.16
+          },
+          {
+            "x": 132.8,
+            "y": 488,
+            "width": 54.4,
+            "height": 76.16
+          },
+          {
+            "x": 193.2,
+            "y": 488,
+            "width": 54.4,
+            "height": 76.16
+          },
+          {
+            "x": 253.6,
+            "y": 488,
+            "width": 54.4,
+            "height": 76.16
+          }
+        ],
+        "arts": [
+          {
+            "id": "owned-drag/0",
+            "x": 39.2,
+            "y": 526.08,
+            "scale": 1,
+            "active": true,
+            "bounds": {
+              "x": 12.00000076293945,
+              "y": 488.0000170898437,
+              "width": 54.39999999999999,
+              "height": 95
+            }
+          },
+          {
+            "id": "owned-drag/1",
+            "x": 99.60000000000001,
+            "y": 526.08,
+            "scale": 1,
+            "active": true,
+            "bounds": {
+              "x": 72.39999847412109,
+              "y": 488.0000170898437,
+              "width": 54.39999999999999,
+              "height": 95
+            }
+          },
+          {
+            "id": "owned-drag/2",
+            "x": 160,
+            "y": 526.08,
+            "scale": 1,
+            "active": true,
+            "bounds": {
+              "x": 132.8,
+              "y": 488.0000170898437,
+              "width": 54.400000000000006,
+              "height": 95
+            }
+          },
+          {
+            "id": "owned-drag/3",
+            "x": 220.39999999999998,
+            "y": 526.08,
+            "scale": 1,
+            "active": true,
+            "bounds": {
+              "x": 193.1999938964844,
+              "y": 488.0000170898437,
+              "width": 56.80000000000001,
+              "height": 95
+            }
+          },
+          {
+            "id": "owned-drag/4",
+            "x": 280.8,
+            "y": 526.08,
+            "scale": 1,
+            "active": true,
+            "bounds": {
+              "x": 253.59998779296873,
+              "y": 488.0000170898437,
+              "width": 57.400000000000006,
+              "height": 95
+            }
+          }
+        ],
+        "surfaceTouchAction": "pan-y",
+        "dispatch": []
+      },
+      "idleShot": "320x740-idle.png",
+      "vertical": {
+        "drag": false,
+        "saving": false,
+        "inputEnabled": true,
+        "hint": "通常从左到右结算 · 长按拖动排序",
+        "slots": [
+          {
+            "x": 12,
+            "y": 488,
+            "width": 54.4,
+            "height": 76.16
+          },
+          {
+            "x": 72.4,
+            "y": 488,
+            "width": 54.4,
+            "height": 76.16
+          },
+          {
+            "x": 132.8,
+            "y": 488,
+            "width": 54.4,
+            "height": 76.16
+          },
+          {
+            "x": 193.2,
+            "y": 488,
+            "width": 54.4,
+            "height": 76.16
+          },
+          {
+            "x": 253.6,
+            "y": 488,
+            "width": 54.4,
+            "height": 76.16
+          }
+        ],
+        "arts": [
+          {
+            "id": "owned-drag/0",
+            "x": 39.2,
+            "y": 526.08,
+            "scale": 1,
+            "active": true,
+            "bounds": {
+              "x": 12.00000076293945,
+              "y": 488.0000170898437,
+              "width": 54.39999999999999,
+              "height": 95
+            }
+          },
+          {
+            "id": "owned-drag/2",
+            "x": 99.60000000000001,
+            "y": 526.08,
+            "scale": 1,
+            "active": true,
+            "bounds": {
+              "x": 72.39999847412109,
+              "y": 488.0000170898437,
+              "width": 54.39999999999999,
+              "height": 95
+            }
+          },
+          {
+            "id": "owned-drag/3",
+            "x": 160,
+            "y": 526.08,
+            "scale": 1,
+            "active": true,
+            "bounds": {
+              "x": 132.8,
+              "y": 488.0000170898437,
+              "width": 57.19999999999999,
+              "height": 95
+            }
+          },
+          {
+            "id": "owned-drag/1",
+            "x": 220.39999999999998,
+            "y": 526.08,
+            "scale": 1,
+            "active": true,
+            "bounds": {
+              "x": 193.1999938964844,
+              "y": 488.0000170898437,
+              "width": 54.400000000000006,
+              "height": 95
+            }
+          },
+          {
+            "id": "owned-drag/4",
+            "x": 280.8,
+            "y": 526.08,
+            "scale": 1,
+            "active": true,
+            "bounds": {
+              "x": 253.59998779296873,
+              "y": 488.0000170898437,
+              "width": 57.400000000000006,
+              "height": 95
+            }
+          }
+        ],
+        "surfaceTouchAction": "pan-y",
+        "dispatch": [
+          [
+            {
+              "type": "ReorderJokers",
+              "ids": [
+                "owned-drag/1",
+                "owned-drag/2",
+                "owned-drag/3",
+                "owned-drag/4",
+                "owned-drag/0"
+              ]
+            },
+            4
+          ],
+          [
+            {
+              "type": "ReorderJokers",
+              "ids": [
+                "owned-drag/0",
+                "owned-drag/1",
+                "owned-drag/2",
+                "owned-drag/3",
+                "owned-drag/4"
+              ]
+            },
+            5
+          ],
+          [
+            {
+              "type": "ReorderJokers",
+              "ids": [
+                "owned-drag/0",
+                "owned-drag/2",
+                "owned-drag/3",
+                "owned-drag/1",
+                "owned-drag/4"
+              ]
+            },
+            6
+          ]
+        ]
+      },
+      "verticalShot": "320x740-vertical.png"
+    }
+  ],
+  "status": "FAIL",
+  "error": "AssertionError [ERR_ASSERTION]: held vertical native move still follows"
+}

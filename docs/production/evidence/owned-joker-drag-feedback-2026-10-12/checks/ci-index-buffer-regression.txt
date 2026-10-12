@@ -1,0 +1,5 @@
+5317b794 CI38273028571 domain job114891687916/docs job114891687490 failed BEFORE tests.
+Error: git ls-files --stage -z: spawnSync git ENOBUFS.
+Actual index output: 1054397 bytes; default Node maxBuffer: 1048576 bytes.
+Fix b749ec50: maxBuffer16MiB for read-only git calls, no skip/truncation/relaxed source or index guard.
+Typecheck PASS; ci-gates.test.mjs 8/8 PASS; verify:ci --scope=docs PASS after fix.

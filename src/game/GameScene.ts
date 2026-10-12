@@ -240,7 +240,6 @@ export class GameScene extends Phaser.Scene {
   private progressTarget=Number.NaN;
   private playAura?:Phaser.GameObjects.Graphics;
   private playAuraPulse?:Phaser.Tweens.Tween;
-  private jokerIdle=new Map<Phaser.GameObjects.Container,Phaser.Tweens.Tween>();
   private scoreFlame?:ScoreFlame;
   private displayedScoreProduct='0';
   private controlsLive=false;
@@ -276,7 +275,7 @@ export class GameScene extends Phaser.Scene {
       this.tweens.timeScale=gameSession().speed;this.time.timeScale=gameSession().speed;
       if(this.reducedMotion){
         if(this.toolHand){this.effects.clear();this.toolHand=undefined;this.render();}
-        this.heroClimax?.reduce();this.stopJokerIdle();this.playAuraPulse?.remove();this.playAuraPulse=undefined;this.cameras.main.resetFX();
+        this.heroClimax?.reduce();this.playAuraPulse?.remove();this.playAuraPulse=undefined;this.cameras.main.resetFX();
         this.cardViews.forEach(view=>{view.sheenTween?.remove();view.sheen?.setAlpha(0);this.revealCard(view);});
         for(const container of [...this.cardViews.map(view=>view.container),...this.jokerViews.values()]){
           const rim=container.getData('editionRim') as Phaser.GameObjects.Graphics|undefined;
@@ -292,7 +291,7 @@ export class GameScene extends Phaser.Scene {
       this.candidates.dispose();this.aiCandidates.dispose();this.aiCursor=undefined;this.candidateGhost=undefined;this.candidateUndo=undefined;this.handInput?.destroy();this.handInput=undefined;this.assistIds=[];this.assistGestureStart=undefined;this.controlsLive=false;this.stopScoreFire();
       if(this.registry.get('runMenuActions')===this.menuActions)this.registry.remove('runMenuActions');
       this.menuActions=undefined;
-      this.climaxArtAbort?.abort();if(this.climaxArtId&&this.textures.exists(climaxSourceKey(this.climaxArtId)))this.textures.remove(climaxSourceKey(this.climaxArtId));this.climaxArtId=undefined;this.lifecycle++;this.intent++;this.effects.clear();this.audio.cancelPresentation();this.stopJokerIdle();this.tweens.killAll();this.time.removeAllEvents();this.jokerViews.clear();this.settledCards.clear();this.cardViews=[];this.selectedIds.clear();this.assistIds=[];this.assistPage=0;this.assistGestureStart=undefined;this.hoveredCardId=undefined;this.hoveredJokerId=undefined;this.jokerHoverPreview=undefined;this.previewCards=undefined;this.presentation=undefined;this.playAuraPulse=undefined;this.playing=false;this.rollingHeat=false;this.dialog.close();
+      this.climaxArtAbort?.abort();if(this.climaxArtId&&this.textures.exists(climaxSourceKey(this.climaxArtId)))this.textures.remove(climaxSourceKey(this.climaxArtId));this.climaxArtId=undefined;this.lifecycle++;this.intent++;this.effects.clear();this.audio.cancelPresentation();this.tweens.killAll();this.time.removeAllEvents();this.jokerViews.clear();this.settledCards.clear();this.cardViews=[];this.selectedIds.clear();this.assistIds=[];this.assistPage=0;this.assistGestureStart=undefined;this.hoveredCardId=undefined;this.hoveredJokerId=undefined;this.jokerHoverPreview=undefined;this.previewCards=undefined;this.presentation=undefined;this.playAuraPulse=undefined;this.playing=false;this.rollingHeat=false;this.dialog.close();
       window.removeEventListener('keydown',this.keyboard);
       window.removeEventListener('dachoupai-presentation',settings);
     });
@@ -379,7 +378,6 @@ export class GameScene extends Phaser.Scene {
     this.stage={...this.stage,targetHeat:this.run.stage!.targetHeat};
     this.controlsLive=false;this.stopScoreFire();
     const v=this.view,l=v.layout;this.hoveredCardId=undefined;this.hoveredJokerId=undefined;this.jokerHoverPreview=undefined;v.clear();this.handNavigationButtons=[];v.paperBackground();drawStageTableArt(this,v,this.characterId);this.settledCards.clear();this.previewCards=undefined;
-    this.stopJokerIdle();
     this.playAuraPulse?.remove();this.playAuraPulse=undefined;this.playAura=undefined;
     if(this.progressBar)this.tweens.killTweensOf(this.progressBar);this.progressTarget=Number.NaN;
     const h=l.hud,c=getCharacter(this.characterId),portrait=l.mode==='portrait',short=l.mode==='landscape';
@@ -464,21 +462,11 @@ export class GameScene extends Phaser.Scene {
     this.controlsLive=true;
     this.updateHud();this.renderHand();
   }
-  /** Owned jokers breathe gently between plays; the idle motion is re-armed after hovers. */
-  private armJokerIdle(view:Phaser.GameObjects.Container,index:number):void {
-    this.stopJokerIdle(view);
-    if(view.getData('f09-art')||this.reducedMotion||!view.active||!this.ready||this.presentation||this.jokerViews.get(this.hoveredJokerId??'')===view)return;
-    this.jokerIdle.set(view,this.tweens.add({targets:view,y:Number(view.getData('baseY'))-1.2,duration:2100+index*130,delay:index*170,yoyo:true,repeat:-1,ease:'Sine.easeInOut'}));
-  }
-  private stopJokerIdle(view?:Phaser.GameObjects.Container):void {
-    if(view){this.jokerIdle.get(view)?.remove();this.jokerIdle.delete(view);return;}
-    this.jokerIdle.forEach(tween=>tween.remove());this.jokerIdle.clear();
-  }
   private renderJokerRack(jokers:readonly R2JokerInstance[]=this.run.jokers):void {
     const v=this.view,l=v.layout;this.jokerViews.clear();
     const context=this.presentation?.score.bossContext,boss=context?context.boss:this.run.stage?.boss;
     const disabled=new Set(r2ScoringDisabledJokerIds(boss,jokers,this.jokerDefinitions,context?.sealedJokerIds??this.run.stage?.sealedJokerIds??[],context?.challengeDisabledJokerId??this.run.stage?.challengeDisabledJokerId??null));
-    this.stopJokerIdle();
+
     l.slots.forEach((b,i)=>{
       if(i>=r2JokerCapacity(this.run))return;
       const j=jokers[i],shadow=v.add(this.add.graphics());
@@ -513,7 +501,6 @@ export class GameScene extends Phaser.Scene {
       current.setBackgroundColor(C.paperLight);marker.add([name,current]).setData('frame',r).setData('frameColor',disabled.has(j.instanceId)?T.red:rarityStyle.edge).setData('nameLabel',name).setData('valueLabel',current).setData('slotIndex',i);
       if(disabled.has(j.instanceId)){r.setStrokeStyle(2,T.red);marker.setData('bossDisabled',true);}
       this.jokerViews.set(j.instanceId,marker);
-      this.armJokerIdle(marker,i);
       const hit=v.rect({x:b.x,y:b.y,width:b.width+(sideLabels?labelBox.width+6:0),height:b.height},T.ink).setFillStyle(T.ink,.001).setStrokeStyle();marker.setData('hit',hit);
       v.target(hit,'joker/'+j.instanceId,{tap:()=>this.inspectJoker(j.instanceId),detail:()=>this.inspectJoker(j.instanceId),drag:x=>void this.reorderJoker(j.instanceId,x),holdToDrag:true,enter:()=>this.hoverJoker(j.instanceId,true),leave:()=>this.hoverJoker(j.instanceId,false)});
     });
@@ -766,15 +753,14 @@ export class GameScene extends Phaser.Scene {
     this.view.root.bringToTop(panel);panel.once('destroy',()=>this.tweens.killTweensOf(panel));
     if(!this.reducedMotion){panel.setAlpha(0).setY(top+5);this.tweens.add({targets:panel,alpha:1,y:top,duration:130,ease:'Sine.easeOut'});}
   }
-  private restingJoker(view:Phaser.GameObjects.Container,animate:boolean,allowIdle=true):void {
+  private restingJoker(view:Phaser.GameObjects.Container,animate:boolean):void {
     if(!view.active||this.playing||this.presentation)return;
     const frame=view.getData('frame') as Phaser.GameObjects.Rectangle,hit=view.getData('hit') as Phaser.GameObjects.Rectangle,hovered=this.jokerViews.get(this.hoveredJokerId??'')===view,x=Number(view.getData('baseX')),baseY=Number(view.getData('baseY')),lift=Math.min(6,Math.max(0,baseY-frame.height/2-6)*.5),y=baseY-(hovered&&!this.reducedMotion?lift:0),scale=hovered&&!this.reducedMotion?1.045:1;
-    this.stopJokerIdle(view);this.tweens.killTweensOf(view);frame.setStrokeStyle(hovered?4:2,hovered?0xffdea3:Number(view.getData('frameColor')));
-    const idle=()=>{if(allowIdle&&!hovered)this.armJokerIdle(view,Number(view.getData('slotIndex'))||0);};
-    if(animate&&!this.reducedMotion)this.tweens.add({targets:view,x,y,angle:0,scaleX:scale,scaleY:scale,duration:120,ease:'Sine.easeOut',onComplete:idle});else {view.setPosition(x,y).setAngle(0).setScale(scale);idle();}
+    this.tweens.killTweensOf(view);frame.setStrokeStyle(hovered?4:2,hovered?0xffdea3:Number(view.getData('frameColor')));
+    if(animate&&!this.reducedMotion)this.tweens.add({targets:view,x,y,angle:0,scaleX:scale,scaleY:scale,duration:120,ease:'Sine.easeOut'});else {view.setPosition(x,y).setAngle(0).setScale(scale);}
     if(hovered)this.view.root.bringToTop(view);else if(hit?.active)this.view.root.moveBelow<Phaser.GameObjects.GameObject>(view,hit);
   }
-  private clearHover():void {this.hoveredCardId=undefined;this.hoveredJokerId=undefined;this.jokerHoverPreview?.destroy();this.jokerHoverPreview=undefined;this.cardViews.forEach((view,i)=>{this.revealCard(view);this.restingCard(view,i,false);});this.orderSelectedCards();this.stopJokerIdle();this.jokerViews.forEach(view=>this.restingJoker(view,false,false));}
+  private clearHover():void {this.hoveredCardId=undefined;this.hoveredJokerId=undefined;this.jokerHoverPreview?.destroy();this.jokerHoverPreview=undefined;this.cardViews.forEach((view,i)=>{this.revealCard(view);this.restingCard(view,i,false);});this.orderSelectedCards();this.jokerViews.forEach(view=>this.restingJoker(view,false));}
   /** Rebuild every card layer from hand order, independent of clicks, selection and hover. */
   private orderSelectedCards():void {
     if(this.presentation)return;
@@ -1351,7 +1337,7 @@ export class GameScene extends Phaser.Scene {
   }
   private async focusSource(source:Phaser.GameObjects.Container,frame:Phaser.GameObjects.Rectangle,color:number,strong:boolean,duration:number,context:EffectContext,beat?:ScoreBeat,impact?:Promise<void>):Promise<void> {
     if(context.signal.aborted)return;
-    this.stopJokerIdle(source);this.tweens.killTweensOf(source);
+    this.tweens.killTweensOf(source);
     if(this.reducedMotion){
       if(source.getData('cardFace')){
         const width=frame.width,height=frame.height,glow=this.add.graphics().lineStyle(2,color,.95).strokeRoundedRect(-width/2-1,-height/2-1,width+2,height+2,Math.min(7,width*.09));source.addAt(glow,1);
