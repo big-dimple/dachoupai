@@ -1,0 +1,14 @@
+{"status":"FAIL","rows":8,"error":"page.evaluate: TypeError: Cannot read properties of undefined (reading 'getBounds')\n    at eval (eval at evaluate (:311:30), <anonymous>:1:150)\n    at UtilityScript.evaluate (<anonymous>:313:16)\n    at UtilityScript.<anonymous> (<anonymous>:1:44)\n    at /workspace/dachoupai-touye-copy/harness/touye-player-copy-views.mjs:50:92"}
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+page.evaluate: TypeError: Cannot read properties of undefined (reading 'getBounds')
+    at eval (eval at evaluate (:311:30), <anonymous>:1:150)
+    at UtilityScript.evaluate (<anonymous>:313:16)
+    at UtilityScript.<anonymous> (<anonymous>:1:44)
+    at /workspace/dachoupai-touye-copy/harness/touye-player-copy-views.mjs:50:92 {
+  log: []
+}
+
+Node.js v24.19.0

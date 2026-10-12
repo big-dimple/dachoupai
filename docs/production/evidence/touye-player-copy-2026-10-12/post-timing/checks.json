@@ -1,0 +1,35 @@
+{
+  "baseMain": "f326a9b3a7a9be937c7c3cd4d286721f674a9409",
+  "priorCandidate": "ad69ea4ed8c3f782e638f2263a4f050bdf627fbb",
+  "mainIntegrationCommit": "db6f134fcd63049c4f1553d2cb0b627402eeeb7d",
+  "productFourByteExactPrior": true,
+  "protectedCount": 702,
+  "protectedByteExactMain": true,
+  "domainApplicationContentCardsAudioPublicExactMain": true,
+  "inheritedProductSourceDifferenceFromPrior": [
+    "src/application/checkpoint.ts",
+    "src/application/routeGrowthTrace.ts",
+    "src/domain/r2GroupUpgrade.ts",
+    "src/domain/r2Run.ts",
+    "src/domain/scoreR2.ts",
+    "src/game/AiHandCandidates.ts",
+    "src/game/GameScene.ts",
+    "src/game/HeroSignature.ts",
+    "src/game/HeroStageContinuity.ts",
+    "src/game/JokerExperience.ts",
+    "src/game/RunLaunch.ts"
+  ],
+  "productDifferenceFromMain": [
+    "src/game/CharacterRunCopy.ts",
+    "src/game/HeroSkillGuide.ts",
+    "src/game/RunMenu.ts",
+    "src/game/TouyeWagerCopy.ts"
+  ],
+  "localTests": 94,
+  "typecheck": "PASS",
+  "build": "PASS",
+  "readonlyViews": 18,
+  "readonlyNormalMenu": 2,
+  "outcomeWordsMatchSavedWinLoss": true,
+  "sourceCheckpointScoresUnchanged": true
+}

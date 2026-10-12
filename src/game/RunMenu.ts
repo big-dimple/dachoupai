@@ -166,9 +166,12 @@ export function installRunMenu(game:Phaser.Game,getActions:()=>RunMenuActions|un
   }
   panel.append(saveTools);
   const infoTools=document.createElement('details'),infoSummary=document.createElement('summary'),info=document.createElement('p');infoSummary.textContent='本局与版本';infoTools.append(infoSummary);panel.append(infoTools);
-  button('局详情',()=>{const state=session.state();info.textContent=state?'角色 '+characterForRun(state).name+' · '+characterForRun(state).passiveName+'\n'+characterForRun(state).passiveDescription+'\nSEED '+state.seed+'\n规则 '+state.rulesVersion+' · 内容 '+state.contentVersion:'当前没有进行中的局。';},infoTools);
-  button('版本信息',()=>{info.textContent=`${formatBuildInfo(buildInfo)}\n当前可玩内容：${R2_JOKERS.length}张大丑牌、${R2_AVAILABLE_CHAPTERS}章。`;},infoTools);infoTools.append(info);
+  let infoView:'run'|'version'='run';
+  const refreshInfo=()=>{if(infoView!=='run')return;const state=session.state();info.textContent=state?'角色 '+characterForRun(state).name+' · '+characterForRun(state).passiveName+'\n'+characterForRun(state).passiveDescription+'\nSEED '+state.seed+'\n规则 '+state.rulesVersion+' · 内容 '+state.contentVersion:'当前没有进行中的局。';};
+  button('局详情',()=>{infoView='run';refreshInfo();},infoTools);
+  button('版本信息',()=>{infoView='version';info.textContent=`${formatBuildInfo(buildInfo)}\n当前可玩内容：${R2_JOKERS.length}张大丑牌、${R2_AVAILABLE_CHAPTERS}章。`;},infoTools);infoTools.append(info);
   function refreshState():void {
+    refreshInfo();
     const run=session.run,pending=session.pendingRun,saving=pending??run;
     if(run){game.registry.set('runController',run);game.registry.set('runState',run.state);}else{game.registry.remove('runController');game.registry.remove('runState');}
     status.textContent=!session.loaded?session.notice||'正在读取完整存档…':pending?'新局或导入尚未保存，原局已保留。'+(saving?.status==='saving'?'正在保存同一候选…':saving?.status==='readonly'?'候选已只读，可导出或取消后接管。':'请重试保存，或先导出候选再取消。'):!session.lease.writable?'另一页面持有写入权，本页只读。接管会读取最新完整进度。':run?.status==='paused'?'未保存：'+(run.lastError==='quota-exceeded'?'存储空间不足':'存储暂时不可用')+'。后续操作已暂停，重试会保存同一结果；也可导出内存结果。':run?.status==='saving'?'正在保存，请稍候…':run?.status==='readonly'?'进度已在另一页面更新。请接管并读取最新存档。':session.notice|| (run?'已保存 · 第 '+run.state.chapter+' 章 · 金币 '+run.state.gold:'没有进行中的局，请选择角色。');

@@ -1,0 +1,7 @@
+{
+  "baseline": true,
+  "scope": "normal Xiemu to Touye route selection, read-only menu text before and after details click; no natural play",
+  "rows": [],
+  "status": "FAIL",
+  "error": "page.waitForFunction: Timeout 20000ms exceeded.\n    at waitScene (/workspace/dachoupai-touye-copy/harness/ui.mjs:3:41)\n    at chooseCharacter (/workspace/dachoupai-touye-copy/harness/ui.mjs:55:191)\n    at async file:///workspace/dachoupai-touye-copy/harness/touye-player-copy.mjs:26:140"
+}
