@@ -1,0 +1,159 @@
+{
+  "head": "0e11e150e63a7b6cb9fb97cdf2a27145ebd599f8",
+  "modified": false,
+  "baseline": "89a96c432f32814bf6e17c2def8013a15d7303a5",
+  "scope": "Controlled legal current-identity fixture imported via normal menu; actual BuyOffer/UseConsumable and native Chromium IndexedDB. Software CSS viewports/DPR1; short heights reserve 112px for browser bars, not physical browser chrome. No natural acquisition, original user image, device or production acceptance claim.",
+  "result": "PASS",
+  "base": "b4b247f61f54e1a27d5143ece3ebf42829202b90",
+  "checks": {
+    "typecheck": "PASS",
+    "targetedTests": "72 tests / 8 files PASS",
+    "build": "PASS"
+  },
+  "cases": [
+    {
+      "viewport": "320x640",
+      "headerPx": 141,
+      "selectionPx": 408,
+      "footerPx": 65,
+      "stockTop": 206.89,
+      "stockBottom": 341.66,
+      "firstScreenBottom": 542,
+      "checks": [
+        "actual purchase saved exactly once; store/use choices retained",
+        "independent donor; 1–2 beneficiaries retained across rank/suit sort/filter; no jump to top",
+        "selection/cancel full state, journal and storage unchanged",
+        "full committed state/RNG/journal/storage equals existing command; no repeat payment/use"
+      ],
+      "result": "PASS"
+    },
+    {
+      "viewport": "390x640",
+      "headerPx": 141,
+      "selectionPx": 408,
+      "footerPx": 65,
+      "stockTop": 206.89,
+      "stockBottom": 322.06,
+      "firstScreenBottom": 542,
+      "checks": [
+        "actual purchase saved exactly once; store/use choices retained",
+        "independent donor; 1–2 beneficiaries retained across rank/suit sort/filter; no jump to top",
+        "selection/cancel full state, journal and storage unchanged",
+        "full committed state/RNG/journal/storage equals existing command; no repeat payment/use",
+        "actual buy-to-store only purchases; no use",
+        "enhancement overwrite risk remains beside confirmation; cancel preserves tool and full saved tuple"
+      ],
+      "result": "PASS"
+    },
+    {
+      "viewport": "412x740",
+      "headerPx": 141,
+      "selectionPx": 508,
+      "footerPx": 65,
+      "stockTop": 206.89,
+      "stockBottom": 322.06,
+      "firstScreenBottom": 642,
+      "checks": [
+        "actual purchase saved exactly once; store/use choices retained",
+        "independent donor; 1–2 beneficiaries retained across rank/suit sort/filter; no jump to top",
+        "selection/cancel full state, journal and storage unchanged",
+        "full committed state/RNG/journal/storage equals existing command; no repeat payment/use"
+      ],
+      "result": "PASS"
+    },
+    {
+      "viewport": "320x528",
+      "headerPx": 141,
+      "selectionPx": 296,
+      "footerPx": 65,
+      "stockTop": 206.89,
+      "stockBottom": 341.66,
+      "firstScreenBottom": 430,
+      "checks": [
+        "actual purchase saved exactly once; store/use choices retained",
+        "independent donor; 1–2 beneficiaries retained across rank/suit sort/filter; no jump to top",
+        "selection/cancel full state, journal and storage unchanged",
+        "full committed state/RNG/journal/storage equals existing command; no repeat payment/use"
+      ],
+      "result": "PASS"
+    },
+    {
+      "viewport": "390x528",
+      "headerPx": 141,
+      "selectionPx": 296,
+      "footerPx": 65,
+      "stockTop": 206.89,
+      "stockBottom": 322.06,
+      "firstScreenBottom": 430,
+      "checks": [
+        "actual purchase saved exactly once; store/use choices retained",
+        "independent donor; 1–2 beneficiaries retained across rank/suit sort/filter; no jump to top",
+        "selection/cancel full state, journal and storage unchanged",
+        "injected IndexedDB failure atomic rollback; real retry saved one original candidate",
+        "full committed state/RNG/journal/storage equals existing command; no repeat payment/use"
+      ],
+      "result": "PASS"
+    },
+    {
+      "viewport": "412x628",
+      "headerPx": 141,
+      "selectionPx": 396,
+      "footerPx": 65,
+      "stockTop": 206.89,
+      "stockBottom": 322.06,
+      "firstScreenBottom": 530,
+      "checks": [
+        "actual purchase saved exactly once; store/use choices retained",
+        "independent donor; 1–2 beneficiaries retained across rank/suit sort/filter; no jump to top",
+        "selection/cancel full state, journal and storage unchanged",
+        "full committed state/RNG/journal/storage equals existing command; no repeat payment/use"
+      ],
+      "result": "PASS"
+    },
+    {
+      "viewport": "1366x768",
+      "headerPx": 141,
+      "selectionPx": 536,
+      "footerPx": 65,
+      "stockTop": 155.5,
+      "stockBottom": 294.27,
+      "firstScreenBottom": 664,
+      "checks": [
+        "actual purchase saved exactly once; store/use choices retained",
+        "independent donor; 1–2 beneficiaries retained across rank/suit sort/filter; no jump to top",
+        "selection/cancel full state, journal and storage unchanged",
+        "full committed state/RNG/journal/storage equals existing command; no repeat payment/use"
+      ],
+      "result": "PASS"
+    }
+  ],
+  "failureNotes": [
+    "First product draft: preview button overlapped steps; title line height corrected. Full PNG retained.",
+    "final1: recipient filter count included donor; changed UI count to use each gallery role.",
+    "final2: observer used innerText on folded receipt; corrected to textContent, product unchanged.",
+    "final3: observer assumed click order rather than original public deck target order; corrected observer, original command order preserved.",
+    "final4: observer tried menu import while normal return had opened tool workspace; use normal close before menu import."
+  ],
+  "artifacts": {
+    "after/1366x768-purchase-first-view.png": "22d106fe2f30cbc89ea743ee2c57396259d164acc484737248aa0dc2ce31f333",
+    "after/1366x768-sacrifice-selected.png": "686be94f2b30819233884891e36e21bf529dd974e0306417987e72935a0be15f",
+    "after/320x528-preview.png": "1fc0e04bbe95a0d35660da20e091ba12503f76a945906074dd71c3972a4926ea",
+    "after/320x528-purchase-first-view.png": "a30f80cce34b5a4719f65b54565b2075837071e41da3a6cd532146af85ad7d3a",
+    "after/320x528-sacrifice-selected.png": "b3960e2ff0887ad14d87fb6dd51e4964bfb1e551de23bbdbf64e6e44d9e95eb0",
+    "after/320x640-purchase-first-view.png": "63ce7efadd63dfaf6ea35756e527b7a970b0899318803158b39b8576d7bc2c0c",
+    "after/320x640-sacrifice-selected.png": "215b539b4ec217d23a14c525a921595970b272d8d2764906d05edf310ab6a0b0",
+    "after/390x528-purchase-first-view.png": "f7f220d369935a1d99cf7d13eff79c3e251fa8b8e41814665b91b16f5727d87c",
+    "after/390x528-sacrifice-selected.png": "f47b685ba4bf7e63f9d5564512656fbc03f9704d1965dedb1a928cebfea5672d",
+    "after/390x528-save-failed.png": "e4cdec065af60da1cb16e8e3bf807c12899144c11a79226e7ee669853f07b127",
+    "after/390x640-purchase-first-view.png": "ee42b3d0fc52297375c2af52b364c958eda7acf04209ea809754481f3381e651",
+    "after/390x640-replacement-risk.png": "bedd56fef16cebbf1bdb7ef5fc29da22141ccc3e9d0fd10a201c13fb2f489b0a",
+    "after/390x640-sacrifice-selected.png": "78b40e3881d9efa039e90b8a63faa5a2ca4619e019b261d68b1cb80fe2887a77",
+    "after/412x628-purchase-first-view.png": "8aa0fe2f720b47648eeb0ae6205a4ef13b0ff085e8c0559f3d144ffa3fcdd207",
+    "after/412x628-sacrifice-selected.png": "7deed4ed799b0324f7af3a8acc52c6f6d5df173754cf3b65ca46017be1948364",
+    "after/412x740-purchase-first-view.png": "6cdba351f8ff8ceadf01606eb89a3ff51073960cd0b3a150ca25dcd6ad860367",
+    "after/412x740-sacrifice-selected.png": "4d2b796b795371f62c0e8d851b227e49a9cdb886f08500da576d3a08b5eb2050",
+    "after/full-state-journal-storage.json.gz": "7b2a78ce1bd3ccd318138e80530293852d2cd76a0e190fec068a5c1c6a4414cf",
+    "failures/header-overlap.png": "fd6fa382c6dd35e10dfb38354499f196d2fcc4c3d755c3cb81192b1cd35c9b99",
+    "failures/reports.json.gz": "f8d398f42c9d6e13dc2e27370e55ecf1efd94ac706a466404a543a22dc571449"
+  }
+}

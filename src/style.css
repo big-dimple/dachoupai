@@ -276,6 +276,9 @@ button:active { transform:translateY(1px);box-shadow:none; }
  .make-cards-grid,.make-cards-owned .make-cards-grid { grid-template-columns:repeat(2,minmax(0,1fr));gap:10px; }
  .make-cards-tile { display:grid;justify-items:center;gap:8px;text-align:center;padding:10px; }
  .make-cards-workspace h3 { font-size:18px; }
+ .make-cards-stock { grid-template-columns:1fr; }
+ .make-cards-stock .make-cards-tile { display:flex;text-align:left; }
+ .make-cards-stock .make-cards-tile img { width:48px;height:68px; }
 }
 .dialog-close { background:#fff9ee;color:#3F606B;border-color:#3F606B; }
 .dialog-edition-summary { border-color:#3F606B;background:#e2e8e5; }
@@ -776,6 +779,23 @@ button[aria-busy=true] { border-style:dashed; }
  .tool-detail .tool-workspace > .dialog-content,.tool-detail[open] .tool-workspace .tool-selection-dock { grid-column:auto;grid-row:auto; }
 }
 .tool-detail .tool-change-pair > span:not(.tool-change-arrow) { width:96px;flex:none; }
+
+/* Keep selection as the main surface at short phone heights. */
+.tool-detail .tool-workspace { overflow-anchor:none; }
+.tool-detail .dialog-header { padding:10px 12px; }
+.tool-detail .dialog-header h2 { display:flex;align-items:center;min-height:44px;margin:0;padding-right:96px;font-size:22px;line-height:28px; }
+.tool-detail .tool-short-instruction { margin:4px 0;font-size:14px;line-height:20px; }
+.tool-detail .tool-selection-hint { margin:0;padding:4px 6px;min-height:20px;font-size:14px;line-height:20px;white-space:pre-line; }
+.tool-detail .tool-workspace-panes { position:absolute;right:12px;top:8px;margin:0;width:88px; }
+.tool-detail .tool-workspace-panes button { padding:4px;font-size:14px; }
+.tool-detail .tool-workspace-panes button[aria-pressed=true] { display:none; }
+.tool-detail .dialog-actions { flex-wrap:nowrap;padding:8px 12px;gap:8px; }
+.tool-detail .dialog-actions button { flex:1 1 0;min-width:0;min-height:48px;padding:6px; }
+.tool-detail .tool-scope-note { margin:0 0 6px;padding:0;font-size:12px;line-height:18px; }
+.tool-detail .tool-main-costs { padding:4px 12px;font-size:12px;line-height:18px; }
+.tool-detail .tool-full-risk > button { display:block;min-height:44px;margin-top:8px; }
+@media(max-width:899px) { .tool-detail[data-tool-pane=changes] .tool-selection-hint { display:block; } }
+@media(min-width:900px) { .tool-detail .dialog-header h2 { padding-right:0; } }
 
 /* Both attribute layers remain readable in previews and saved reconciliation. */
 .tool-detail .tool-change-card figcaption,.tool-detail .tool-change-card small,
