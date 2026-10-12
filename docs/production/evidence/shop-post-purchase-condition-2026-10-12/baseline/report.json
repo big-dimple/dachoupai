@@ -1,0 +1,1733 @@
+{
+  "head": "f326a9b3a7a9be937c7c3cd4d286721f674a9409",
+  "sourceTree": "f06acf2cc9ab50c9fac959afe6879cd220a3e08a",
+  "changes": "",
+  "harnessSha256": "8dee8e9574214e87720eca4e83079ad5c49aca175061816348eda513496592aa",
+  "baseline": true,
+  "scope": "Three public cash inputs plus specified full-slot sale/discount and growth links. PC1366/390 native mouse/touch view/cancel/change-object only. Full state/journal/RNG/storage equality. No natural games, pricing evaluation, real purchase/save during observation or physical-device acceptance.",
+  "cases": [
+    {
+      "width": 1366,
+      "height": 768,
+      "touch": false,
+      "key": "negative",
+      "errors": [],
+      "screenshots": [
+        "1366-negative-shelf.png",
+        "1366-negative-detail.png",
+        "1366-negative-compare.png"
+      ],
+      "before": {
+        "gold": 26,
+        "identity": {
+          "contentVersion": "quality-r2-route-growth-v1",
+          "contentHash": "json-fnv-v1:7414228d95059959"
+        },
+        "commandSeq": 4,
+        "rng": {
+          "deck": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 709646677
+          },
+          "rule": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 2082970515
+          },
+          "shop": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 3529896705
+          },
+          "reward": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 793547844
+          },
+          "program": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 1058376152
+          },
+          "challenge": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 3379911767
+          }
+        },
+        "journalLength": 0
+      },
+      "guidance": {
+        "stars": 4,
+        "label": "推荐指数 ★★★★☆",
+        "reason": "持金放大倍率",
+        "condition": "计分前须有20金",
+        "recommendation": {
+          "stars": 4,
+          "reason": "持金放大倍率",
+          "condition": "计分前须有20金",
+          "stage": "early",
+          "facts": {
+            "cards": 52,
+            "largest": 4,
+            "second": 4,
+            "largestSuit": 13,
+            "groupConcentrated": false,
+            "flushConcentrated": false,
+            "straightConcentrated": false,
+            "ordinaryStraightPossible": true,
+            "ordinaryFlushPossible": true,
+            "boostedGroup": false,
+            "houseCardPayoff": false,
+            "boostedHouse": false,
+            "groupRecord": false,
+            "houseRecord": false,
+            "flushRecord": false,
+            "qualifiedRecord": false,
+            "heldCardPayoff": true,
+            "heldGroupPayoff": true,
+            "retriggerSource": false,
+            "additiveSource": true,
+            "disabledSourceCount": 0,
+            "potentialStages": 23,
+            "growthWindow": true,
+            "initialGrowth": "{}",
+            "straightFamilyPossible": true,
+            "flushFamilyPossible": true,
+            "flushHousePossible": false,
+            "flushFivePossible": false,
+            "routeGrowth": "{\"before\":{\"clears\":0,\"G\":0,\"S\":0,\"F\":0},\"factors\":{\"G\":{\"n\":\"1\",\"d\":\"1\"},\"S\":{\"n\":\"1\",\"d\":\"1\"},\"F\":{\"n\":\"1\",\"d\":\"1\"}},\"preserved\":\"本局路线资历保留，出售不丢。\",\"detail\":\"本局路线资历：成功清场0次；G 0次 / ×1；S 0次 / ×1；F 0次 / ×1。\\n资历不绑定起手或持牌实例，出售不清零；按实际主手族读取，可重叠的族分别读取。每族前三次合格清场因子为1，清场后才入账，下手读取；本次买卖不增加资历。\"}"
+          },
+          "detail": "持金放大倍率；计分前须有20金。当前金币至少20时，整手倍率 ×1.8。\n公开依据：最大同点组4张，前两组8/52张；最大花色13/52张；已持逐牌加成有；剩余场次窗口23。\n基于公开构筑与当前阶段的推荐；不表示指定替换净更强。\n本局路线资历：成功清场0次；G 0次 / ×1；S 0次 / ×1；F 0次 / ×1。\n资历不绑定起手或持牌实例，出售不清零；按实际主手族读取，可重叠的族分别读取。每族前三次合格清场因子为1，清场后才入账，下手读取；本次买卖不增加资历。"
+        },
+        "operation": "可购买",
+        "operationShort": "可购买",
+        "purchaseConditionLosses": [],
+        "cashBasis": "直接买入",
+        "detail": "持金放大倍率；计分前须有20金。当前金币至少20时，整手倍率 ×1.8。\n公开依据：最大同点组4张，前两组8/52张；最大花色13/52张；已持逐牌加成有；剩余场次窗口23。\n基于公开构筑与当前阶段的推荐；不表示指定替换净更强。\n本局路线资历：成功清场0次；G 0次 / ×1；S 0次 / ×1；F 0次 / ×1。\n资历不绑定起手或持牌实例，出售不清零；按实际主手族读取，可重叠的族分别读取。每族前三次合格清场因子为1，清场后才入账，下手读取；本次买卖不增加资历。\n可购买",
+        "routes": [
+          "group",
+          "straight",
+          "flush"
+        ],
+        "routeCaption": "同点/顺子/同花"
+      },
+      "geometry": [
+        {
+          "name": "shop/offer-name",
+          "text": "包场",
+          "bounds": {
+            "x": 298,
+            "y": 386,
+            "width": 31,
+            "height": 17
+          }
+        },
+        {
+          "name": "shop/offer-purpose",
+          "text": "出牌前≥20金 → 每手一次，倍率×1.8\n现在26金 · 金币条件目前够；未购，买后重\n查",
+          "bounds": {
+            "x": 298,
+            "y": 408,
+            "width": 267,
+            "height": 48
+          }
+        },
+        {
+          "name": "shop/offer-price",
+          "text": "8 金 · 普通",
+          "bounds": {
+            "x": 298,
+            "y": 514,
+            "width": 76,
+            "height": 19
+          }
+        },
+        {
+          "name": "shop/offer-advice",
+          "text": "推荐指数 ★★★★☆",
+          "stars": 4,
+          "bounds": {
+            "x": 298,
+            "y": 476,
+            "width": 123,
+            "height": 16
+          }
+        },
+        {
+          "name": "shop/offer-operation",
+          "text": "持金放大",
+          "bounds": {
+            "x": 429,
+            "y": 476,
+            "width": 56,
+            "height": 16
+          }
+        },
+        {
+          "name": "shop/offer-condition",
+          "text": "计分前须有20金",
+          "bounds": {
+            "x": 298,
+            "y": 494,
+            "width": 100,
+            "height": 16
+          }
+        },
+        {
+          "name": "shop/offer-name",
+          "text": "免费逛摊",
+          "bounds": {
+            "x": 378,
+            "y": 602,
+            "width": 61,
+            "height": 17
+          }
+        },
+        {
+          "name": "shop/offer-purpose",
+          "text": "免费刷新一次大丑\n牌和工具货架",
+          "bounds": {
+            "x": 378,
+            "y": 624,
+            "width": 112,
+            "height": 32
+          }
+        },
+        {
+          "name": "shop/offer-price",
+          "text": "4 金 · 查看",
+          "bounds": {
+            "x": 378,
+            "y": 692,
+            "width": 76,
+            "height": 19
+          }
+        },
+        {
+          "name": "shop/offer-name",
+          "text": "常客章",
+          "bounds": {
+            "x": 833,
+            "y": 602,
+            "width": 46,
+            "height": 17
+          }
+        },
+        {
+          "name": "shop/offer-purpose",
+          "text": "后续付费刷新价格−1金，至少1金；免费刷新照常免费",
+          "bounds": {
+            "x": 833,
+            "y": 624,
+            "width": 332,
+            "height": 16
+          }
+        },
+        {
+          "name": "shop/offer-price",
+          "text": "12 金 · 查看",
+          "bounds": {
+            "x": 833,
+            "y": 692,
+            "width": 85,
+            "height": 19
+          }
+        }
+      ],
+      "initialText": "现货 · 确认后付款\n包场 · 购买详情\n\n适用：同点/顺子/同花\n\n✦ 稀有\n出牌前≥20金 → 每手一次，倍率×1.8\n按出牌开始时的金币判断，不花费金币。\n现在26金 · 金币条件目前够；未购，买后重查\n\n版次：普通（无额外计分）\n\n推荐指数 ★★★★☆\n持金放大倍率 · 计分前须有20金\n直接买入 · 实付 8 金 · 余额 26 → 18 金\n\n高清细节加载中…\n规则与操作\n比较替换\n邀请 · 8 金\n取消",
+      "compareText": "现货与已持\n包场 · 持有与现货比较\n\n推荐指数 ★★★★☆\n持金放大倍率 · 计分前须有20金\n本局路线资历保留，出售不丢。\n\n第 1 槽 · 对上眼\n\n返4金 · 实付8金 · 买后22金\n\n管理这张\n条件、配合与完整损失\n\n按现持槽位逐张比较。保留、换方向或留金入场都可以；这里不排序推荐，也不自动卖买。\n\n返回购买详情\n更换培养方向\n关闭",
+      "returnedDetailText": "现货 · 确认后付款\n包场 · 购买详情\n\n适用：同点/顺子/同花\n\n✦ 稀有\n出牌前≥20金 → 每手一次，倍率×1.8\n按出牌开始时的金币判断，不花费金币。\n现在26金 · 金币条件目前够；未购，买后重查\n\n版次：普通（无额外计分）\n\n推荐指数 ★★★★☆\n持金放大倍率 · 计分前须有20金\n直接买入 · 实付 8 金 · 余额 26 → 18 金\n\n规则与操作\n比较替换\n邀请 · 8 金\n取消",
+      "after": "Equal to full before in full-state-journal-storage.json.gz",
+      "sendCalls": [],
+      "status": "REPRODUCED/OBSERVED"
+    },
+    {
+      "width": 1366,
+      "height": 768,
+      "touch": false,
+      "key": "positive",
+      "errors": [],
+      "screenshots": [
+        "1366-positive-shelf.png",
+        "1366-positive-detail.png",
+        "1366-positive-compare.png"
+      ],
+      "before": {
+        "gold": 28,
+        "identity": {
+          "contentVersion": "quality-r2-route-growth-v1",
+          "contentHash": "json-fnv-v1:7414228d95059959"
+        },
+        "commandSeq": 4,
+        "rng": {
+          "deck": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 709646677
+          },
+          "rule": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 2082970515
+          },
+          "shop": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 3529896705
+          },
+          "reward": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 793547844
+          },
+          "program": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 1058376152
+          },
+          "challenge": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 3379911767
+          }
+        },
+        "journalLength": 0
+      },
+      "guidance": {
+        "stars": 4,
+        "label": "推荐指数 ★★★★☆",
+        "reason": "持金放大倍率",
+        "condition": "计分前须有20金",
+        "recommendation": {
+          "stars": 4,
+          "reason": "持金放大倍率",
+          "condition": "计分前须有20金",
+          "stage": "early",
+          "facts": {
+            "cards": 52,
+            "largest": 4,
+            "second": 4,
+            "largestSuit": 13,
+            "groupConcentrated": false,
+            "flushConcentrated": false,
+            "straightConcentrated": false,
+            "ordinaryStraightPossible": true,
+            "ordinaryFlushPossible": true,
+            "boostedGroup": false,
+            "houseCardPayoff": false,
+            "boostedHouse": false,
+            "groupRecord": false,
+            "houseRecord": false,
+            "flushRecord": false,
+            "qualifiedRecord": false,
+            "heldCardPayoff": true,
+            "heldGroupPayoff": true,
+            "retriggerSource": false,
+            "additiveSource": true,
+            "disabledSourceCount": 0,
+            "potentialStages": 23,
+            "growthWindow": true,
+            "initialGrowth": "{}",
+            "straightFamilyPossible": true,
+            "flushFamilyPossible": true,
+            "flushHousePossible": false,
+            "flushFivePossible": false,
+            "routeGrowth": "{\"before\":{\"clears\":0,\"G\":0,\"S\":0,\"F\":0},\"factors\":{\"G\":{\"n\":\"1\",\"d\":\"1\"},\"S\":{\"n\":\"1\",\"d\":\"1\"},\"F\":{\"n\":\"1\",\"d\":\"1\"}},\"preserved\":\"本局路线资历保留，出售不丢。\",\"detail\":\"本局路线资历：成功清场0次；G 0次 / ×1；S 0次 / ×1；F 0次 / ×1。\\n资历不绑定起手或持牌实例，出售不清零；按实际主手族读取，可重叠的族分别读取。每族前三次合格清场因子为1，清场后才入账，下手读取；本次买卖不增加资历。\"}"
+          },
+          "detail": "持金放大倍率；计分前须有20金。当前金币至少20时，整手倍率 ×1.8。\n公开依据：最大同点组4张，前两组8/52张；最大花色13/52张；已持逐牌加成有；剩余场次窗口23。\n基于公开构筑与当前阶段的推荐；不表示指定替换净更强。\n本局路线资历：成功清场0次；G 0次 / ×1；S 0次 / ×1；F 0次 / ×1。\n资历不绑定起手或持牌实例，出售不清零；按实际主手族读取，可重叠的族分别读取。每族前三次合格清场因子为1，清场后才入账，下手读取；本次买卖不增加资历。"
+        },
+        "operation": "可购买",
+        "operationShort": "可购买",
+        "purchaseConditionLosses": [],
+        "cashBasis": "直接买入",
+        "detail": "持金放大倍率；计分前须有20金。当前金币至少20时，整手倍率 ×1.8。\n公开依据：最大同点组4张，前两组8/52张；最大花色13/52张；已持逐牌加成有；剩余场次窗口23。\n基于公开构筑与当前阶段的推荐；不表示指定替换净更强。\n本局路线资历：成功清场0次；G 0次 / ×1；S 0次 / ×1；F 0次 / ×1。\n资历不绑定起手或持牌实例，出售不清零；按实际主手族读取，可重叠的族分别读取。每族前三次合格清场因子为1，清场后才入账，下手读取；本次买卖不增加资历。\n可购买",
+        "routes": [
+          "group",
+          "straight",
+          "flush"
+        ],
+        "routeCaption": "同点/顺子/同花"
+      },
+      "geometry": [
+        {
+          "name": "shop/offer-name",
+          "text": "包场",
+          "bounds": {
+            "x": 298,
+            "y": 386,
+            "width": 31,
+            "height": 17
+          }
+        },
+        {
+          "name": "shop/offer-purpose",
+          "text": "出牌前≥20金 → 每手一次，倍率×1.8\n现在28金 · 金币条件目前够；未购，买后重\n查",
+          "bounds": {
+            "x": 298,
+            "y": 408,
+            "width": 267,
+            "height": 48
+          }
+        },
+        {
+          "name": "shop/offer-price",
+          "text": "8 金 · 普通",
+          "bounds": {
+            "x": 298,
+            "y": 514,
+            "width": 76,
+            "height": 19
+          }
+        },
+        {
+          "name": "shop/offer-advice",
+          "text": "推荐指数 ★★★★☆",
+          "stars": 4,
+          "bounds": {
+            "x": 298,
+            "y": 476,
+            "width": 123,
+            "height": 16
+          }
+        },
+        {
+          "name": "shop/offer-operation",
+          "text": "持金放大",
+          "bounds": {
+            "x": 429,
+            "y": 476,
+            "width": 56,
+            "height": 16
+          }
+        },
+        {
+          "name": "shop/offer-condition",
+          "text": "计分前须有20金",
+          "bounds": {
+            "x": 298,
+            "y": 494,
+            "width": 100,
+            "height": 16
+          }
+        },
+        {
+          "name": "shop/offer-name",
+          "text": "免费逛摊",
+          "bounds": {
+            "x": 378,
+            "y": 602,
+            "width": 61,
+            "height": 17
+          }
+        },
+        {
+          "name": "shop/offer-purpose",
+          "text": "免费刷新一次大丑\n牌和工具货架",
+          "bounds": {
+            "x": 378,
+            "y": 624,
+            "width": 112,
+            "height": 32
+          }
+        },
+        {
+          "name": "shop/offer-price",
+          "text": "4 金 · 查看",
+          "bounds": {
+            "x": 378,
+            "y": 692,
+            "width": 76,
+            "height": 19
+          }
+        },
+        {
+          "name": "shop/offer-name",
+          "text": "常客章",
+          "bounds": {
+            "x": 833,
+            "y": 602,
+            "width": 46,
+            "height": 17
+          }
+        },
+        {
+          "name": "shop/offer-purpose",
+          "text": "后续付费刷新价格−1金，至少1金；免费刷新照常免费",
+          "bounds": {
+            "x": 833,
+            "y": 624,
+            "width": 332,
+            "height": 16
+          }
+        },
+        {
+          "name": "shop/offer-price",
+          "text": "12 金 · 查看",
+          "bounds": {
+            "x": 833,
+            "y": 692,
+            "width": 85,
+            "height": 19
+          }
+        }
+      ],
+      "initialText": "现货 · 确认后付款\n包场 · 购买详情\n\n适用：同点/顺子/同花\n\n✦ 稀有\n出牌前≥20金 → 每手一次，倍率×1.8\n按出牌开始时的金币判断，不花费金币。\n现在28金 · 金币条件目前够；未购，买后重查\n\n版次：普通（无额外计分）\n\n推荐指数 ★★★★☆\n持金放大倍率 · 计分前须有20金\n直接买入 · 实付 8 金 · 余额 28 → 20 金\n\n规则与操作\n比较替换\n邀请 · 8 金\n取消",
+      "compareText": "现货与已持\n包场 · 持有与现货比较\n\n推荐指数 ★★★★☆\n持金放大倍率 · 计分前须有20金\n本局路线资历保留，出售不丢。\n\n第 1 槽 · 对上眼\n\n返4金 · 实付8金 · 买后24金\n\n管理这张\n条件、配合与完整损失\n\n按现持槽位逐张比较。保留、换方向或留金入场都可以；这里不排序推荐，也不自动卖买。\n\n返回购买详情\n更换培养方向\n关闭",
+      "returnedDetailText": "现货 · 确认后付款\n包场 · 购买详情\n\n适用：同点/顺子/同花\n\n✦ 稀有\n出牌前≥20金 → 每手一次，倍率×1.8\n按出牌开始时的金币判断，不花费金币。\n现在28金 · 金币条件目前够；未购，买后重查\n\n版次：普通（无额外计分）\n\n推荐指数 ★★★★☆\n持金放大倍率 · 计分前须有20金\n直接买入 · 实付 8 金 · 余额 28 → 20 金\n\n规则与操作\n比较替换\n邀请 · 8 金\n取消",
+      "after": "Equal to full before in full-state-journal-storage.json.gz",
+      "sendCalls": [],
+      "status": "REPRODUCED/OBSERVED"
+    },
+    {
+      "width": 1366,
+      "height": 768,
+      "touch": false,
+      "key": "retained",
+      "errors": [],
+      "screenshots": [
+        "1366-retained-shelf.png",
+        "1366-retained-detail.png",
+        "1366-retained-detail-cash-warning.png",
+        "1366-retained-compare.png"
+      ],
+      "before": {
+        "gold": 23,
+        "identity": {
+          "contentVersion": "quality-r2-route-growth-v1",
+          "contentHash": "json-fnv-v1:7414228d95059959"
+        },
+        "commandSeq": 4,
+        "rng": {
+          "deck": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 709646677
+          },
+          "rule": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 2082970515
+          },
+          "shop": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 3529896705
+          },
+          "reward": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 793547844
+          },
+          "program": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 1058376152
+          },
+          "challenge": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 3379911767
+          }
+        },
+        "journalLength": 0
+      },
+      "guidance": {
+        "stars": 4,
+        "label": "推荐指数 ★★★★☆",
+        "reason": "持续长热度",
+        "condition": "成组后增长 · 下手生效",
+        "recommendation": {
+          "stars": 4,
+          "reason": "持续长热度",
+          "condition": "成组后增长 · 下手生效",
+          "stage": "early",
+          "facts": {
+            "cards": 52,
+            "largest": 4,
+            "second": 4,
+            "largestSuit": 13,
+            "groupConcentrated": false,
+            "flushConcentrated": false,
+            "straightConcentrated": false,
+            "ordinaryStraightPossible": true,
+            "ordinaryFlushPossible": true,
+            "boostedGroup": false,
+            "houseCardPayoff": false,
+            "boostedHouse": false,
+            "groupRecord": false,
+            "houseRecord": false,
+            "flushRecord": false,
+            "qualifiedRecord": false,
+            "heldCardPayoff": true,
+            "heldGroupPayoff": true,
+            "retriggerSource": false,
+            "additiveSource": true,
+            "disabledSourceCount": 0,
+            "potentialStages": 23,
+            "growthWindow": true,
+            "initialGrowth": "{}",
+            "straightFamilyPossible": true,
+            "flushFamilyPossible": true,
+            "flushHousePossible": false,
+            "flushFivePossible": false,
+            "routeGrowth": "{\"before\":{\"clears\":0,\"G\":0,\"S\":0,\"F\":0},\"factors\":{\"G\":{\"n\":\"1\",\"d\":\"1\"},\"S\":{\"n\":\"1\",\"d\":\"1\"},\"F\":{\"n\":\"1\",\"d\":\"1\"}},\"preserved\":\"本局路线资历保留，出售不丢。\",\"detail\":\"本局路线资历：成功清场0次；G 0次 / ×1；S 0次 / ×1；F 0次 / ×1。\\n资历不绑定起手或持牌实例，出售不清零；按实际主手族读取，可重叠的族分别读取。每族前三次合格清场因子为1，清场后才入账，下手读取；本次买卖不增加资历。\"}"
+          },
+          "detail": "持续长热度；成组后增长 · 下手生效。任何成组牌型结算后热度成长+10，上限+100，下次起生效；每手任意牌型均加入已有成长，跨场保留。\n公开依据：最大同点组4张，前两组8/52张；最大花色13/52张；已持逐牌加成有；剩余场次窗口23。\n基于公开构筑与当前阶段的推荐；不表示指定替换净更强。\n本局路线资历：成功清场0次；G 0次 / ×1；S 0次 / ×1；F 0次 / ×1。\n资历不绑定起手或持牌实例，出售不清零；按实际主手族读取，可重叠的族分别读取。每族前三次合格清场因子为1，清场后才入账，下手读取；本次买卖不增加资历。"
+        },
+        "operation": "可购买",
+        "operationShort": "现金风险",
+        "purchaseConditionLosses": [
+          "买后金币23→19；包场的“本手开始金币至少20；本手新收入不改变资格”条件不再满足（倍率×1.8）；这轮先留金。"
+        ],
+        "cashBasis": "直接买入",
+        "detail": "持续长热度；成组后增长 · 下手生效。任何成组牌型结算后热度成长+10，上限+100，下次起生效；每手任意牌型均加入已有成长，跨场保留。\n公开依据：最大同点组4张，前两组8/52张；最大花色13/52张；已持逐牌加成有；剩余场次窗口23。\n基于公开构筑与当前阶段的推荐；不表示指定替换净更强。\n本局路线资历：成功清场0次；G 0次 / ×1；S 0次 / ×1；F 0次 / ×1。\n资历不绑定起手或持牌实例，出售不清零；按实际主手族读取，可重叠的族分别读取。每族前三次合格清场因子为1，清场后才入账，下手读取；本次买卖不增加资历。\n可购买\n直接买入\n买后金币23→19；包场的“本手开始金币至少20；本手新收入不改变资格”条件不再满足（倍率×1.8）；这轮先留金。",
+        "routes": [
+          "group"
+        ],
+        "routeCaption": "同点"
+      },
+      "geometry": [
+        {
+          "name": "shop/offer-name",
+          "text": "练对子",
+          "bounds": {
+            "x": 298,
+            "y": 386,
+            "width": 46,
+            "height": 17
+          }
+        },
+        {
+          "name": "shop/offer-purpose",
+          "text": "对子等同点组合出牌后 → 热度成长最多+10\n；上限100，新增下次用",
+          "bounds": {
+            "x": 298,
+            "y": 408,
+            "width": 270,
+            "height": 32
+          }
+        },
+        {
+          "name": "shop/offer-price",
+          "text": "4 金 · 普通",
+          "bounds": {
+            "x": 298,
+            "y": 514,
+            "width": 76,
+            "height": 19
+          }
+        },
+        {
+          "name": "shop/offer-advice",
+          "text": "推荐指数 ★★★★☆",
+          "stars": 4,
+          "bounds": {
+            "x": 298,
+            "y": 476,
+            "width": 123,
+            "height": 16
+          }
+        },
+        {
+          "name": "shop/offer-operation",
+          "text": "持续长热",
+          "bounds": {
+            "x": 429,
+            "y": 476,
+            "width": 56,
+            "height": 16
+          }
+        },
+        {
+          "name": "shop/offer-condition",
+          "text": "成组后增长 · 下手生效",
+          "bounds": {
+            "x": 298,
+            "y": 494,
+            "width": 139,
+            "height": 16
+          }
+        },
+        {
+          "name": "shop/offer-name",
+          "text": "免费逛摊",
+          "bounds": {
+            "x": 378,
+            "y": 602,
+            "width": 61,
+            "height": 17
+          }
+        },
+        {
+          "name": "shop/offer-purpose",
+          "text": "免费刷新一次大丑\n牌和工具货架",
+          "bounds": {
+            "x": 378,
+            "y": 624,
+            "width": 112,
+            "height": 32
+          }
+        },
+        {
+          "name": "shop/offer-price",
+          "text": "4 金 · 查看",
+          "bounds": {
+            "x": 378,
+            "y": 692,
+            "width": 76,
+            "height": 19
+          }
+        },
+        {
+          "name": "shop/offer-name",
+          "text": "常客章",
+          "bounds": {
+            "x": 833,
+            "y": 602,
+            "width": 46,
+            "height": 17
+          }
+        },
+        {
+          "name": "shop/offer-purpose",
+          "text": "后续付费刷新价格−1金，至少1金；免费刷新照常免费",
+          "bounds": {
+            "x": 833,
+            "y": 624,
+            "width": 332,
+            "height": 16
+          }
+        },
+        {
+          "name": "shop/offer-price",
+          "text": "12 金 · 查看",
+          "bounds": {
+            "x": 833,
+            "y": 692,
+            "width": 85,
+            "height": 19
+          }
+        }
+      ],
+      "initialText": "现货 · 确认后付款\n练对子 · 购买详情\n\n适用：同点\n\n● 普通\n对子等同点组合出牌后 → 热度成长最多+10；上限100，新增下次用\n本次出牌使用旧值；新成长从下一次出牌起生效，每次出牌只长一次，额外计分不会多长。\n普通顺子、普通同花不增长。\n未购买；新购保存热度+0\n\n版次：普通（无额外计分）\n\n推荐指数 ★★★★☆\n持续长热度 · 成组后增长 · 下手生效\n直接买入 · 实付 4 金 · 余额 23 → 19 金\n买后金币23→19；包场的“本手开始金币至少20；本手新收入不改变资格”条件不再满足（倍率×1.8）；这轮先留金。\n\n高清细节加载中…\n规则与操作\n比较替换\n邀请 · 4 金\n取消",
+      "compareText": "现货与已持\n练对子 · 持有与现货比较\n\n推荐指数 ★★★★☆\n持续长热度 · 成组后增长 · 下手生效\n本局路线资历保留，出售不丢。\n\n第 1 槽 · 对上眼\n\n返4金 · 实付4金 · 买后23金\n\n管理这张\n条件、配合与完整损失\n第 2 槽 · 包场\n\n返4金 · 实付4金 · 买后23金\n\n管理这张\n条件、配合与完整损失\n\n按现持槽位逐张比较。保留、换方向或留金入场都可以；这里不排序推荐，也不自动卖买。\n\n返回购买详情\n更换培养方向\n关闭",
+      "returnedDetailText": "现货 · 确认后付款\n练对子 · 购买详情\n\n适用：同点\n\n● 普通\n对子等同点组合出牌后 → 热度成长最多+10；上限100，新增下次用\n本次出牌使用旧值；新成长从下一次出牌起生效，每次出牌只长一次，额外计分不会多长。\n普通顺子、普通同花不增长。\n未购买；新购保存热度+0\n\n版次：普通（无额外计分）\n\n推荐指数 ★★★★☆\n持续长热度 · 成组后增长 · 下手生效\n直接买入 · 实付 4 金 · 余额 23 → 19 金\n买后金币23→19；包场的“本手开始金币至少20；本手新收入不改变资格”条件不再满足（倍率×1.8）；这轮先留金。\n\n规则与操作\n比较替换\n邀请 · 4 金\n取消",
+      "after": "Equal to full before in full-state-journal-storage.json.gz",
+      "sendCalls": [],
+      "status": "REPRODUCED/OBSERVED"
+    },
+    {
+      "width": 1366,
+      "height": 768,
+      "touch": false,
+      "key": "full",
+      "errors": [],
+      "screenshots": [
+        "1366-full-shelf.png",
+        "1366-full-compare.png",
+        "1366-full-slot1-cancel.png",
+        "1366-full-slot2-cancel.png",
+        "1366-full-second-slot-compare.png"
+      ],
+      "before": {
+        "gold": 24,
+        "identity": {
+          "contentVersion": "quality-r2-route-growth-v1",
+          "contentHash": "json-fnv-v1:7414228d95059959"
+        },
+        "commandSeq": 4,
+        "rng": {
+          "deck": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 709646677
+          },
+          "rule": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 2082970515
+          },
+          "shop": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 3529896705
+          },
+          "reward": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 793547844
+          },
+          "program": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 1058376152
+          },
+          "challenge": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 3379911767
+          }
+        },
+        "journalLength": 0
+      },
+      "guidance": {
+        "stars": 4,
+        "label": "推荐指数 ★★★★☆",
+        "reason": "持金放大倍率",
+        "condition": "计分前须有20金",
+        "recommendation": {
+          "stars": 4,
+          "reason": "持金放大倍率",
+          "condition": "计分前须有20金",
+          "stage": "early",
+          "facts": {
+            "cards": 52,
+            "largest": 4,
+            "second": 4,
+            "largestSuit": 13,
+            "groupConcentrated": false,
+            "flushConcentrated": false,
+            "straightConcentrated": false,
+            "ordinaryStraightPossible": true,
+            "ordinaryFlushPossible": true,
+            "boostedGroup": false,
+            "houseCardPayoff": false,
+            "boostedHouse": false,
+            "groupRecord": false,
+            "houseRecord": false,
+            "flushRecord": false,
+            "qualifiedRecord": false,
+            "heldCardPayoff": true,
+            "heldGroupPayoff": true,
+            "retriggerSource": false,
+            "additiveSource": true,
+            "disabledSourceCount": 0,
+            "potentialStages": 23,
+            "growthWindow": true,
+            "initialGrowth": "{}",
+            "straightFamilyPossible": true,
+            "flushFamilyPossible": true,
+            "flushHousePossible": false,
+            "flushFivePossible": false,
+            "routeGrowth": "{\"before\":{\"clears\":0,\"G\":0,\"S\":0,\"F\":0},\"factors\":{\"G\":{\"n\":\"1\",\"d\":\"1\"},\"S\":{\"n\":\"1\",\"d\":\"1\"},\"F\":{\"n\":\"1\",\"d\":\"1\"}},\"preserved\":\"本局路线资历保留，出售不丢。\",\"detail\":\"本局路线资历：成功清场0次；G 0次 / ×1；S 0次 / ×1；F 0次 / ×1。\\n资历不绑定起手或持牌实例，出售不清零；按实际主手族读取，可重叠的族分别读取。每族前三次合格清场因子为1，清场后才入账，下手读取；本次买卖不增加资历。\"}"
+          },
+          "detail": "持金放大倍率；计分前须有20金。当前金币至少20时，整手倍率 ×1.8。\n公开依据：最大同点组4张，前两组8/52张；最大花色13/52张；已持逐牌加成有；剩余场次窗口23。\n基于公开构筑与当前阶段的推荐；不表示指定替换净更强。\n本局路线资历：成功清场0次；G 0次 / ×1；S 0次 / ×1；F 0次 / ×1。\n资历不绑定起手或持牌实例，出售不清零；按实际主手族读取，可重叠的族分别读取。每族前三次合格清场因子为1，清场后才入账，下手读取；本次买卖不增加资历。"
+        },
+        "operation": "需替换",
+        "operationShort": "需替换",
+        "purchaseConditionLosses": [],
+        "cashBasis": "未选替换：以下仅为直接买入现金",
+        "detail": "持金放大倍率；计分前须有20金。当前金币至少20时，整手倍率 ×1.8。\n公开依据：最大同点组4张，前两组8/52张；最大花色13/52张；已持逐牌加成有；剩余场次窗口23。\n基于公开构筑与当前阶段的推荐；不表示指定替换净更强。\n本局路线资历：成功清场0次；G 0次 / ×1；S 0次 / ×1；F 0次 / ×1。\n资历不绑定起手或持牌实例，出售不清零；按实际主手族读取，可重叠的族分别读取。每族前三次合格清场因子为1，清场后才入账，下手读取；本次买卖不增加资历。\n需替换",
+        "routes": [
+          "group",
+          "straight",
+          "flush"
+        ],
+        "routeCaption": "同点/顺子/同花"
+      },
+      "geometry": [
+        {
+          "name": "shop/offer-name",
+          "text": "包场",
+          "bounds": {
+            "x": 298,
+            "y": 386,
+            "width": 31,
+            "height": 17
+          }
+        },
+        {
+          "name": "shop/offer-purpose",
+          "text": "出牌前≥20金 → 每手一次，倍率×1.8\n现在24金 · 金币条件目前够；未购，买后重\n查",
+          "bounds": {
+            "x": 298,
+            "y": 408,
+            "width": 267,
+            "height": 48
+          }
+        },
+        {
+          "name": "shop/offer-price",
+          "text": "5 金 · 比较替换",
+          "bounds": {
+            "x": 298,
+            "y": 514,
+            "width": 108,
+            "height": 19
+          }
+        },
+        {
+          "name": "shop/offer-advice",
+          "text": "推荐指数 ★★★★☆",
+          "stars": 4,
+          "bounds": {
+            "x": 298,
+            "y": 476,
+            "width": 123,
+            "height": 16
+          }
+        },
+        {
+          "name": "shop/offer-operation",
+          "text": "需替换",
+          "bounds": {
+            "x": 429,
+            "y": 476,
+            "width": 42,
+            "height": 16
+          }
+        },
+        {
+          "name": "shop/offer-condition",
+          "text": "计分前须有20金",
+          "bounds": {
+            "x": 298,
+            "y": 494,
+            "width": 100,
+            "height": 16
+          }
+        },
+        {
+          "name": "shop/offer-reason",
+          "text": "槽位已满",
+          "bounds": {
+            "x": 298,
+            "y": 534,
+            "width": 56,
+            "height": 16
+          }
+        },
+        {
+          "name": "shop/offer-name",
+          "text": "免费逛摊",
+          "bounds": {
+            "x": 378,
+            "y": 602,
+            "width": 61,
+            "height": 17
+          }
+        },
+        {
+          "name": "shop/offer-purpose",
+          "text": "免费刷新一次大丑\n牌和工具货架",
+          "bounds": {
+            "x": 378,
+            "y": 624,
+            "width": 112,
+            "height": 32
+          }
+        },
+        {
+          "name": "shop/offer-price",
+          "text": "1 金 · 查看",
+          "bounds": {
+            "x": 378,
+            "y": 692,
+            "width": 76,
+            "height": 19
+          }
+        },
+        {
+          "name": "shop/offer-name",
+          "text": "常客章",
+          "bounds": {
+            "x": 833,
+            "y": 602,
+            "width": 46,
+            "height": 17
+          }
+        },
+        {
+          "name": "shop/offer-purpose",
+          "text": "后续付费刷新价格−1金，至少1金；免费刷新照常免费",
+          "bounds": {
+            "x": 833,
+            "y": 624,
+            "width": 332,
+            "height": 16
+          }
+        },
+        {
+          "name": "shop/offer-price",
+          "text": "9 金 · 查看",
+          "bounds": {
+            "x": 833,
+            "y": 692,
+            "width": 76,
+            "height": 19
+          }
+        }
+      ],
+      "initialText": "现货与已持\n包场 · 持有与现货比较\n\n推荐指数 ★★★★☆\n持金放大倍率 · 计分前须有20金\n本局路线资历保留，出售不丢。\n\n第 1 槽 · 熟客券\n\n返1金 · 实付6金 · 买后19金\n旧物新用售后：倍率0→0.5\n置办行头购后：热度0→8\n长期捧场：系数×1.5保留 · 下一场未售成长失效\n\n管理这张\n条件、配合与完整损失\n第 2 槽 · 长期捧场\n\n返4金 · 实付5金 · 买后23金\n失去：系数×1.5\n旧物新用售后：倍率0→0.5\n置办行头购后：热度0→8\n\n管理这张\n条件、配合与完整损失\n第 3 槽 · 旧物新用\n\n返4金 · 实付5金 · 买后23金\n置办行头购后：热度0→8\n长期捧场：系数×1.5保留 · 下一场未售成长失效\n\n管理这张\n条件、配合与完整损失\n第 4 槽 · 置办行头\n\n返4金 · 实付5金 · 买后23金\n旧物新用售后：倍率0→0.5\n长期捧场：系数×1.5保留 · 下一场未售成长失效\n\n管理这张\n条件、配合与完整损失\n第 5 槽 · 对上眼\n\n返4金 · 实付5金 · 买后23金\n旧物新用售后：倍率0→0.5\n置办行头购后：热度0→8\n长期捧场：系数×1.5保留 · 下一场未售成长失效\n\n管理这张\n条件、配合与完整损失\n\n按现持槽位逐张比较。保留、换方向或留金入场都可以；这里不排序推荐，也不自动卖买。\n\n返回购买详情\n更换培养方向\n关闭",
+      "transactions": [
+        {
+          "status": "ready",
+          "summary": "指定替换 · 先售后买：24→25金；售后实付6金；买后19金。新牌在末槽，从初值开始。\n失去版次：普通（无额外计分）；新牌版次：普通（无额外计分）",
+          "growthEffects": [
+            "旧物新用 · 售后：无成长或使用计数 → 倍率成长 0.5",
+            "置办行头 · 购后：无成长或使用计数 → 热度成长 8"
+          ],
+          "cashLosses": [],
+          "refund": 1,
+          "price": 6,
+          "goldAfterSale": 25,
+          "goldAfterPurchase": 19
+        },
+        {
+          "status": "ready",
+          "summary": "指定替换 · 先售后买：24→28金；售后实付5金；买后23金。新牌在末槽，从初值开始。\n失去版次：普通（无额外计分）；新牌版次：普通（无额外计分）",
+          "growthEffects": [
+            "旧物新用 · 售后：无成长或使用计数 → 倍率成长 0.5",
+            "置办行头 · 购后：无成长或使用计数 → 热度成长 8"
+          ],
+          "cashLosses": [],
+          "refund": 4,
+          "price": 5,
+          "goldAfterSale": 28,
+          "goldAfterPurchase": 23
+        },
+        {
+          "status": "ready",
+          "summary": "指定替换 · 先售后买：24→28金；售后实付5金；买后23金。新牌在末槽，从初值开始。\n失去版次：普通（无额外计分）；新牌版次：普通（无额外计分）",
+          "growthEffects": [
+            "置办行头 · 购后：无成长或使用计数 → 热度成长 8"
+          ],
+          "cashLosses": [],
+          "refund": 4,
+          "price": 5,
+          "goldAfterSale": 28,
+          "goldAfterPurchase": 23
+        },
+        {
+          "status": "ready",
+          "summary": "指定替换 · 先售后买：24→28金；售后实付5金；买后23金。新牌在末槽，从初值开始。\n失去版次：普通（无额外计分）；新牌版次：普通（无额外计分）",
+          "growthEffects": [
+            "旧物新用 · 售后：无成长或使用计数 → 倍率成长 0.5"
+          ],
+          "cashLosses": [],
+          "refund": 4,
+          "price": 5,
+          "goldAfterSale": 28,
+          "goldAfterPurchase": 23
+        },
+        {
+          "status": "ready",
+          "summary": "指定替换 · 先售后买：24→28金；售后实付5金；买后23金。新牌在末槽，从初值开始。\n失去版次：普通（无额外计分）；新牌版次：普通（无额外计分）",
+          "growthEffects": [
+            "旧物新用 · 售后：无成长或使用计数 → 倍率成长 0.5",
+            "置办行头 · 购后：无成长或使用计数 → 热度成长 8"
+          ],
+          "cashLosses": [],
+          "refund": 4,
+          "price": 5,
+          "goldAfterSale": 28,
+          "goldAfterPurchase": 23
+        }
+      ],
+      "selectionText": [
+        "已持 · 确认后出售\n出售确认\n● 普通\n\n出售「熟客券」 · 基础返还 1 金\n失去当前成长：无成长或使用计数\n\n出售第 1 槽的「熟客券」基础卖价 1 金币。\n当前余额 24 金；交易来源与售后余额以实际保存结果为准。\n\n该牌成长将丢失，当前成长：无成长或使用计数。\n\n成功出售后保留牌的确定影响：\n长期捧场：已有系数×1.5保留；本次出售将使下一场“本场未出售”的过关成长条件不满足；不会在这里获得过关成长。\n旧物新用（第3槽）保留：倍率成长 +0 → +0.5（上限3）。\n本局路线资历保留，出售不丢。\n\n确认出售\n取消",
+        "已持 · 确认后出售\n出售确认\n✦ 稀有\n\n出售「长期捧场」 · 基础返还 4 金\n失去当前成长：乘法系数 ×1.5\n\n出售第 2 槽的「长期捧场」基础卖价 4 金币。\n当前余额 24 金；交易来源与售后余额以实际保存结果为准。\n\n该牌成长将丢失，当前成长：乘法系数 ×1.5。\n\n成功出售后保留牌的确定影响：\n旧物新用（第3槽）保留：倍率成长 +0 → +0.5（上限3）。\n本局路线资历保留，出售不丢。\n\n确认出售\n取消"
+      ],
+      "changedSelectionText": "现货与已持\n包场 · 持有与现货比较\n\n推荐指数 ★★★★☆\n持金放大倍率 · 计分前须有20金\n本局路线资历保留，出售不丢。\n\n第 1 槽 · 熟客券\n\n返1金 · 实付6金 · 买后19金\n旧物新用售后：倍率0→0.5\n置办行头购后：热度0→8\n长期捧场：系数×1.5保留 · 下一场未售成长失效\n\n管理这张\n条件、配合与完整损失\n第 2 槽 · 长期捧场\n\n返4金 · 实付5金 · 买后23金\n失去：系数×1.5\n旧物新用售后：倍率0→0.5\n置办行头购后：热度0→8\n\n管理这张\n条件、配合与完整损失\n第 3 槽 · 旧物新用\n\n返4金 · 实付5金 · 买后23金\n置办行头购后：热度0→8\n长期捧场：系数×1.5保留 · 下一场未售成长失效\n\n管理这张\n条件、配合与完整损失\n第 4 槽 · 置办行头\n\n返4金 · 实付5金 · 买后23金\n旧物新用售后：倍率0→0.5\n长期捧场：系数×1.5保留 · 下一场未售成长失效\n\n管理这张\n条件、配合与完整损失\n第 5 槽 · 对上眼\n\n返4金 · 实付5金 · 买后23金\n旧物新用售后：倍率0→0.5\n置办行头购后：热度0→8\n长期捧场：系数×1.5保留 · 下一场未售成长失效\n\n管理这张\n条件、配合与完整损失\n\n按现持槽位逐张比较。保留、换方向或留金入场都可以；这里不排序推荐，也不自动卖买。\n\n返回购买详情\n更换培养方向\n关闭",
+      "returnedDetailText": "现货 · 确认后付款\n包场 · 购买详情\n\n适用：同点/顺子/同花\n\n✦ 稀有\n出牌前≥20金 → 每手一次，倍率×1.8\n按出牌开始时的金币判断，不花费金币。\n现在24金 · 金币条件目前够；未购，买后重查\n\n版次：普通（无额外计分）\n\n推荐指数 ★★★★☆\n持金放大倍率 · 计分前须有20金\n直接买入 · 实付 5 金 · 余额 24 → 19 金\n5个槽位已满。请先关闭详情，点随身牌确认出售，再购买。\n优惠 3 金 · 使用1张减2金券\n\n规则与操作\n比较替换\n邀请 · 5 金\n取消",
+      "after": "Equal to full before in full-state-journal-storage.json.gz",
+      "sendCalls": [],
+      "status": "REPRODUCED/OBSERVED"
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "key": "negative",
+      "errors": [],
+      "screenshots": [
+        "390-negative-shelf.png",
+        "390-negative-detail.png",
+        "390-negative-compare.png"
+      ],
+      "before": {
+        "gold": 26,
+        "identity": {
+          "contentVersion": "quality-r2-route-growth-v1",
+          "contentHash": "json-fnv-v1:7414228d95059959"
+        },
+        "commandSeq": 4,
+        "rng": {
+          "deck": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 709646677
+          },
+          "rule": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 2082970515
+          },
+          "shop": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 3529896705
+          },
+          "reward": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 793547844
+          },
+          "program": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 1058376152
+          },
+          "challenge": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 3379911767
+          }
+        },
+        "journalLength": 0
+      },
+      "guidance": {
+        "stars": 4,
+        "label": "推荐指数 ★★★★☆",
+        "reason": "持金放大倍率",
+        "condition": "计分前须有20金",
+        "recommendation": {
+          "stars": 4,
+          "reason": "持金放大倍率",
+          "condition": "计分前须有20金",
+          "stage": "early",
+          "facts": {
+            "cards": 52,
+            "largest": 4,
+            "second": 4,
+            "largestSuit": 13,
+            "groupConcentrated": false,
+            "flushConcentrated": false,
+            "straightConcentrated": false,
+            "ordinaryStraightPossible": true,
+            "ordinaryFlushPossible": true,
+            "boostedGroup": false,
+            "houseCardPayoff": false,
+            "boostedHouse": false,
+            "groupRecord": false,
+            "houseRecord": false,
+            "flushRecord": false,
+            "qualifiedRecord": false,
+            "heldCardPayoff": true,
+            "heldGroupPayoff": true,
+            "retriggerSource": false,
+            "additiveSource": true,
+            "disabledSourceCount": 0,
+            "potentialStages": 23,
+            "growthWindow": true,
+            "initialGrowth": "{}",
+            "straightFamilyPossible": true,
+            "flushFamilyPossible": true,
+            "flushHousePossible": false,
+            "flushFivePossible": false,
+            "routeGrowth": "{\"before\":{\"clears\":0,\"G\":0,\"S\":0,\"F\":0},\"factors\":{\"G\":{\"n\":\"1\",\"d\":\"1\"},\"S\":{\"n\":\"1\",\"d\":\"1\"},\"F\":{\"n\":\"1\",\"d\":\"1\"}},\"preserved\":\"本局路线资历保留，出售不丢。\",\"detail\":\"本局路线资历：成功清场0次；G 0次 / ×1；S 0次 / ×1；F 0次 / ×1。\\n资历不绑定起手或持牌实例，出售不清零；按实际主手族读取，可重叠的族分别读取。每族前三次合格清场因子为1，清场后才入账，下手读取；本次买卖不增加资历。\"}"
+          },
+          "detail": "持金放大倍率；计分前须有20金。当前金币至少20时，整手倍率 ×1.8。\n公开依据：最大同点组4张，前两组8/52张；最大花色13/52张；已持逐牌加成有；剩余场次窗口23。\n基于公开构筑与当前阶段的推荐；不表示指定替换净更强。\n本局路线资历：成功清场0次；G 0次 / ×1；S 0次 / ×1；F 0次 / ×1。\n资历不绑定起手或持牌实例，出售不清零；按实际主手族读取，可重叠的族分别读取。每族前三次合格清场因子为1，清场后才入账，下手读取；本次买卖不增加资历。"
+        },
+        "operation": "可购买",
+        "operationShort": "可购买",
+        "purchaseConditionLosses": [],
+        "cashBasis": "直接买入",
+        "detail": "持金放大倍率；计分前须有20金。当前金币至少20时，整手倍率 ×1.8。\n公开依据：最大同点组4张，前两组8/52张；最大花色13/52张；已持逐牌加成有；剩余场次窗口23。\n基于公开构筑与当前阶段的推荐；不表示指定替换净更强。\n本局路线资历：成功清场0次；G 0次 / ×1；S 0次 / ×1；F 0次 / ×1。\n资历不绑定起手或持牌实例，出售不清零；按实际主手族读取，可重叠的族分别读取。每族前三次合格清场因子为1，清场后才入账，下手读取；本次买卖不增加资历。\n可购买",
+        "routes": [
+          "group",
+          "straight",
+          "flush"
+        ],
+        "routeCaption": "同点/顺子/同花"
+      },
+      "geometry": [
+        {
+          "name": "shop/offer-purpose",
+          "text": "出牌前≥20金 · 每手一次，倍率×1.8",
+          "bounds": {
+            "x": 114,
+            "y": 138,
+            "width": 218,
+            "height": 16
+          }
+        },
+        {
+          "name": "shop/offer-price",
+          "text": "8 金 · 查看",
+          "bounds": {
+            "x": 114,
+            "y": 210,
+            "width": 76,
+            "height": 19
+          }
+        },
+        {
+          "name": "shop/offer-advice",
+          "text": "推荐指数 ★★★★☆",
+          "stars": 4,
+          "bounds": {
+            "x": 114,
+            "y": 190,
+            "width": 123,
+            "height": 16
+          }
+        },
+        {
+          "name": "shop/offer-operation",
+          "text": "持金放大",
+          "bounds": {
+            "x": 245,
+            "y": 190,
+            "width": 56,
+            "height": 16
+          }
+        },
+        {
+          "name": "shop/offer-condition",
+          "text": "计分前须有20金",
+          "bounds": {
+            "x": 114,
+            "y": 172,
+            "width": 100,
+            "height": 16
+          }
+        }
+      ],
+      "initialText": "现货 · 确认后付款\n包场 · 购买详情\n\n适用：同点/顺子/同花\n\n✦ 稀有\n出牌前≥20金 → 每手一次，倍率×1.8\n按出牌开始时的金币判断，不花费金币。\n现在26金 · 金币条件目前够；未购，买后重查\n\n版次：普通（无额外计分）\n\n推荐指数 ★★★★☆\n持金放大倍率 · 计分前须有20金\n直接买入 · 实付 8 金 · 余额 26 → 18 金\n\n规则与操作\n比较替换\n邀请 · 8 金\n取消",
+      "compareText": "现货与已持\n包场 · 持有与现货比较\n\n推荐指数 ★★★★☆\n持金放大倍率 · 计分前须有20金\n本局路线资历保留，出售不丢。\n\n第 1 槽 · 对上眼\n\n返4金 · 实付8金 · 买后22金\n\n管理这张\n条件、配合与完整损失\n\n按现持槽位逐张比较。保留、换方向或留金入场都可以；这里不排序推荐，也不自动卖买。\n\n返回购买详情\n更换培养方向\n关闭",
+      "returnedDetailText": "现货 · 确认后付款\n包场 · 购买详情\n\n适用：同点/顺子/同花\n\n✦ 稀有\n出牌前≥20金 → 每手一次，倍率×1.8\n按出牌开始时的金币判断，不花费金币。\n现在26金 · 金币条件目前够；未购，买后重查\n\n版次：普通（无额外计分）\n\n推荐指数 ★★★★☆\n持金放大倍率 · 计分前须有20金\n直接买入 · 实付 8 金 · 余额 26 → 18 金\n\n规则与操作\n比较替换\n邀请 · 8 金\n取消",
+      "after": "Equal to full before in full-state-journal-storage.json.gz",
+      "sendCalls": [],
+      "status": "REPRODUCED/OBSERVED"
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "key": "positive",
+      "errors": [],
+      "screenshots": [
+        "390-positive-shelf.png",
+        "390-positive-detail.png",
+        "390-positive-compare.png"
+      ],
+      "before": {
+        "gold": 28,
+        "identity": {
+          "contentVersion": "quality-r2-route-growth-v1",
+          "contentHash": "json-fnv-v1:7414228d95059959"
+        },
+        "commandSeq": 4,
+        "rng": {
+          "deck": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 709646677
+          },
+          "rule": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 2082970515
+          },
+          "shop": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 3529896705
+          },
+          "reward": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 793547844
+          },
+          "program": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 1058376152
+          },
+          "challenge": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 3379911767
+          }
+        },
+        "journalLength": 0
+      },
+      "guidance": {
+        "stars": 4,
+        "label": "推荐指数 ★★★★☆",
+        "reason": "持金放大倍率",
+        "condition": "计分前须有20金",
+        "recommendation": {
+          "stars": 4,
+          "reason": "持金放大倍率",
+          "condition": "计分前须有20金",
+          "stage": "early",
+          "facts": {
+            "cards": 52,
+            "largest": 4,
+            "second": 4,
+            "largestSuit": 13,
+            "groupConcentrated": false,
+            "flushConcentrated": false,
+            "straightConcentrated": false,
+            "ordinaryStraightPossible": true,
+            "ordinaryFlushPossible": true,
+            "boostedGroup": false,
+            "houseCardPayoff": false,
+            "boostedHouse": false,
+            "groupRecord": false,
+            "houseRecord": false,
+            "flushRecord": false,
+            "qualifiedRecord": false,
+            "heldCardPayoff": true,
+            "heldGroupPayoff": true,
+            "retriggerSource": false,
+            "additiveSource": true,
+            "disabledSourceCount": 0,
+            "potentialStages": 23,
+            "growthWindow": true,
+            "initialGrowth": "{}",
+            "straightFamilyPossible": true,
+            "flushFamilyPossible": true,
+            "flushHousePossible": false,
+            "flushFivePossible": false,
+            "routeGrowth": "{\"before\":{\"clears\":0,\"G\":0,\"S\":0,\"F\":0},\"factors\":{\"G\":{\"n\":\"1\",\"d\":\"1\"},\"S\":{\"n\":\"1\",\"d\":\"1\"},\"F\":{\"n\":\"1\",\"d\":\"1\"}},\"preserved\":\"本局路线资历保留，出售不丢。\",\"detail\":\"本局路线资历：成功清场0次；G 0次 / ×1；S 0次 / ×1；F 0次 / ×1。\\n资历不绑定起手或持牌实例，出售不清零；按实际主手族读取，可重叠的族分别读取。每族前三次合格清场因子为1，清场后才入账，下手读取；本次买卖不增加资历。\"}"
+          },
+          "detail": "持金放大倍率；计分前须有20金。当前金币至少20时，整手倍率 ×1.8。\n公开依据：最大同点组4张，前两组8/52张；最大花色13/52张；已持逐牌加成有；剩余场次窗口23。\n基于公开构筑与当前阶段的推荐；不表示指定替换净更强。\n本局路线资历：成功清场0次；G 0次 / ×1；S 0次 / ×1；F 0次 / ×1。\n资历不绑定起手或持牌实例，出售不清零；按实际主手族读取，可重叠的族分别读取。每族前三次合格清场因子为1，清场后才入账，下手读取；本次买卖不增加资历。"
+        },
+        "operation": "可购买",
+        "operationShort": "可购买",
+        "purchaseConditionLosses": [],
+        "cashBasis": "直接买入",
+        "detail": "持金放大倍率；计分前须有20金。当前金币至少20时，整手倍率 ×1.8。\n公开依据：最大同点组4张，前两组8/52张；最大花色13/52张；已持逐牌加成有；剩余场次窗口23。\n基于公开构筑与当前阶段的推荐；不表示指定替换净更强。\n本局路线资历：成功清场0次；G 0次 / ×1；S 0次 / ×1；F 0次 / ×1。\n资历不绑定起手或持牌实例，出售不清零；按实际主手族读取，可重叠的族分别读取。每族前三次合格清场因子为1，清场后才入账，下手读取；本次买卖不增加资历。\n可购买",
+        "routes": [
+          "group",
+          "straight",
+          "flush"
+        ],
+        "routeCaption": "同点/顺子/同花"
+      },
+      "geometry": [
+        {
+          "name": "shop/offer-purpose",
+          "text": "出牌前≥20金 · 每手一次，倍率×1.8",
+          "bounds": {
+            "x": 114,
+            "y": 138,
+            "width": 218,
+            "height": 16
+          }
+        },
+        {
+          "name": "shop/offer-price",
+          "text": "8 金 · 查看",
+          "bounds": {
+            "x": 114,
+            "y": 210,
+            "width": 76,
+            "height": 19
+          }
+        },
+        {
+          "name": "shop/offer-advice",
+          "text": "推荐指数 ★★★★☆",
+          "stars": 4,
+          "bounds": {
+            "x": 114,
+            "y": 190,
+            "width": 123,
+            "height": 16
+          }
+        },
+        {
+          "name": "shop/offer-operation",
+          "text": "持金放大",
+          "bounds": {
+            "x": 245,
+            "y": 190,
+            "width": 56,
+            "height": 16
+          }
+        },
+        {
+          "name": "shop/offer-condition",
+          "text": "计分前须有20金",
+          "bounds": {
+            "x": 114,
+            "y": 172,
+            "width": 100,
+            "height": 16
+          }
+        }
+      ],
+      "initialText": "现货 · 确认后付款\n包场 · 购买详情\n\n适用：同点/顺子/同花\n\n✦ 稀有\n出牌前≥20金 → 每手一次，倍率×1.8\n按出牌开始时的金币判断，不花费金币。\n现在28金 · 金币条件目前够；未购，买后重查\n\n版次：普通（无额外计分）\n\n推荐指数 ★★★★☆\n持金放大倍率 · 计分前须有20金\n直接买入 · 实付 8 金 · 余额 28 → 20 金\n\n规则与操作\n比较替换\n邀请 · 8 金\n取消",
+      "compareText": "现货与已持\n包场 · 持有与现货比较\n\n推荐指数 ★★★★☆\n持金放大倍率 · 计分前须有20金\n本局路线资历保留，出售不丢。\n\n第 1 槽 · 对上眼\n\n返4金 · 实付8金 · 买后24金\n\n管理这张\n条件、配合与完整损失\n\n按现持槽位逐张比较。保留、换方向或留金入场都可以；这里不排序推荐，也不自动卖买。\n\n返回购买详情\n更换培养方向\n关闭",
+      "returnedDetailText": "现货 · 确认后付款\n包场 · 购买详情\n\n适用：同点/顺子/同花\n\n✦ 稀有\n出牌前≥20金 → 每手一次，倍率×1.8\n按出牌开始时的金币判断，不花费金币。\n现在28金 · 金币条件目前够；未购，买后重查\n\n版次：普通（无额外计分）\n\n推荐指数 ★★★★☆\n持金放大倍率 · 计分前须有20金\n直接买入 · 实付 8 金 · 余额 28 → 20 金\n\n规则与操作\n比较替换\n邀请 · 8 金\n取消",
+      "after": "Equal to full before in full-state-journal-storage.json.gz",
+      "sendCalls": [],
+      "status": "REPRODUCED/OBSERVED"
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "key": "retained",
+      "errors": [],
+      "screenshots": [
+        "390-retained-shelf.png",
+        "390-retained-detail.png",
+        "390-retained-detail-cash-warning.png",
+        "390-retained-compare.png"
+      ],
+      "before": {
+        "gold": 23,
+        "identity": {
+          "contentVersion": "quality-r2-route-growth-v1",
+          "contentHash": "json-fnv-v1:7414228d95059959"
+        },
+        "commandSeq": 4,
+        "rng": {
+          "deck": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 709646677
+          },
+          "rule": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 2082970515
+          },
+          "shop": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 3529896705
+          },
+          "reward": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 793547844
+          },
+          "program": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 1058376152
+          },
+          "challenge": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 3379911767
+          }
+        },
+        "journalLength": 0
+      },
+      "guidance": {
+        "stars": 4,
+        "label": "推荐指数 ★★★★☆",
+        "reason": "持续长热度",
+        "condition": "成组后增长 · 下手生效",
+        "recommendation": {
+          "stars": 4,
+          "reason": "持续长热度",
+          "condition": "成组后增长 · 下手生效",
+          "stage": "early",
+          "facts": {
+            "cards": 52,
+            "largest": 4,
+            "second": 4,
+            "largestSuit": 13,
+            "groupConcentrated": false,
+            "flushConcentrated": false,
+            "straightConcentrated": false,
+            "ordinaryStraightPossible": true,
+            "ordinaryFlushPossible": true,
+            "boostedGroup": false,
+            "houseCardPayoff": false,
+            "boostedHouse": false,
+            "groupRecord": false,
+            "houseRecord": false,
+            "flushRecord": false,
+            "qualifiedRecord": false,
+            "heldCardPayoff": true,
+            "heldGroupPayoff": true,
+            "retriggerSource": false,
+            "additiveSource": true,
+            "disabledSourceCount": 0,
+            "potentialStages": 23,
+            "growthWindow": true,
+            "initialGrowth": "{}",
+            "straightFamilyPossible": true,
+            "flushFamilyPossible": true,
+            "flushHousePossible": false,
+            "flushFivePossible": false,
+            "routeGrowth": "{\"before\":{\"clears\":0,\"G\":0,\"S\":0,\"F\":0},\"factors\":{\"G\":{\"n\":\"1\",\"d\":\"1\"},\"S\":{\"n\":\"1\",\"d\":\"1\"},\"F\":{\"n\":\"1\",\"d\":\"1\"}},\"preserved\":\"本局路线资历保留，出售不丢。\",\"detail\":\"本局路线资历：成功清场0次；G 0次 / ×1；S 0次 / ×1；F 0次 / ×1。\\n资历不绑定起手或持牌实例，出售不清零；按实际主手族读取，可重叠的族分别读取。每族前三次合格清场因子为1，清场后才入账，下手读取；本次买卖不增加资历。\"}"
+          },
+          "detail": "持续长热度；成组后增长 · 下手生效。任何成组牌型结算后热度成长+10，上限+100，下次起生效；每手任意牌型均加入已有成长，跨场保留。\n公开依据：最大同点组4张，前两组8/52张；最大花色13/52张；已持逐牌加成有；剩余场次窗口23。\n基于公开构筑与当前阶段的推荐；不表示指定替换净更强。\n本局路线资历：成功清场0次；G 0次 / ×1；S 0次 / ×1；F 0次 / ×1。\n资历不绑定起手或持牌实例，出售不清零；按实际主手族读取，可重叠的族分别读取。每族前三次合格清场因子为1，清场后才入账，下手读取；本次买卖不增加资历。"
+        },
+        "operation": "可购买",
+        "operationShort": "现金风险",
+        "purchaseConditionLosses": [
+          "买后金币23→19；包场的“本手开始金币至少20；本手新收入不改变资格”条件不再满足（倍率×1.8）；这轮先留金。"
+        ],
+        "cashBasis": "直接买入",
+        "detail": "持续长热度；成组后增长 · 下手生效。任何成组牌型结算后热度成长+10，上限+100，下次起生效；每手任意牌型均加入已有成长，跨场保留。\n公开依据：最大同点组4张，前两组8/52张；最大花色13/52张；已持逐牌加成有；剩余场次窗口23。\n基于公开构筑与当前阶段的推荐；不表示指定替换净更强。\n本局路线资历：成功清场0次；G 0次 / ×1；S 0次 / ×1；F 0次 / ×1。\n资历不绑定起手或持牌实例，出售不清零；按实际主手族读取，可重叠的族分别读取。每族前三次合格清场因子为1，清场后才入账，下手读取；本次买卖不增加资历。\n可购买\n直接买入\n买后金币23→19；包场的“本手开始金币至少20；本手新收入不改变资格”条件不再满足（倍率×1.8）；这轮先留金。",
+        "routes": [
+          "group"
+        ],
+        "routeCaption": "同点"
+      },
+      "geometry": [
+        {
+          "name": "shop/offer-purpose",
+          "text": "成组长热度 · +10顶100 · 新增下次用",
+          "bounds": {
+            "x": 114,
+            "y": 138,
+            "width": 226,
+            "height": 16
+          }
+        },
+        {
+          "name": "shop/offer-price",
+          "text": "4 金 · 查看",
+          "bounds": {
+            "x": 114,
+            "y": 210,
+            "width": 76,
+            "height": 19
+          }
+        },
+        {
+          "name": "shop/offer-advice",
+          "text": "推荐指数 ★★★★☆",
+          "stars": 4,
+          "bounds": {
+            "x": 114,
+            "y": 190,
+            "width": 123,
+            "height": 16
+          }
+        },
+        {
+          "name": "shop/offer-operation",
+          "text": "持续长热",
+          "bounds": {
+            "x": 245,
+            "y": 190,
+            "width": 56,
+            "height": 16
+          }
+        },
+        {
+          "name": "shop/offer-condition",
+          "text": "成组后增长 · 下手生效",
+          "bounds": {
+            "x": 114,
+            "y": 172,
+            "width": 139,
+            "height": 16
+          }
+        }
+      ],
+      "initialText": "现货 · 确认后付款\n练对子 · 购买详情\n\n适用：同点\n\n● 普通\n对子等同点组合出牌后 → 热度成长最多+10；上限100，新增下次用\n本次出牌使用旧值；新成长从下一次出牌起生效，每次出牌只长一次，额外计分不会多长。\n普通顺子、普通同花不增长。\n未购买；新购保存热度+0\n\n版次：普通（无额外计分）\n\n推荐指数 ★★★★☆\n持续长热度 · 成组后增长 · 下手生效\n直接买入 · 实付 4 金 · 余额 23 → 19 金\n买后金币23→19；包场的“本手开始金币至少20；本手新收入不改变资格”条件不再满足（倍率×1.8）；这轮先留金。\n\n高清细节加载中…\n规则与操作\n比较替换\n邀请 · 4 金\n取消",
+      "compareText": "现货与已持\n练对子 · 持有与现货比较\n\n推荐指数 ★★★★☆\n持续长热度 · 成组后增长 · 下手生效\n本局路线资历保留，出售不丢。\n\n第 1 槽 · 对上眼\n\n返4金 · 实付4金 · 买后23金\n\n管理这张\n条件、配合与完整损失\n第 2 槽 · 包场\n\n返4金 · 实付4金 · 买后23金\n\n管理这张\n条件、配合与完整损失\n\n按现持槽位逐张比较。保留、换方向或留金入场都可以；这里不排序推荐，也不自动卖买。\n\n返回购买详情\n更换培养方向\n关闭",
+      "returnedDetailText": "现货 · 确认后付款\n练对子 · 购买详情\n\n适用：同点\n\n● 普通\n对子等同点组合出牌后 → 热度成长最多+10；上限100，新增下次用\n本次出牌使用旧值；新成长从下一次出牌起生效，每次出牌只长一次，额外计分不会多长。\n普通顺子、普通同花不增长。\n未购买；新购保存热度+0\n\n版次：普通（无额外计分）\n\n推荐指数 ★★★★☆\n持续长热度 · 成组后增长 · 下手生效\n直接买入 · 实付 4 金 · 余额 23 → 19 金\n买后金币23→19；包场的“本手开始金币至少20；本手新收入不改变资格”条件不再满足（倍率×1.8）；这轮先留金。\n\n规则与操作\n比较替换\n邀请 · 4 金\n取消",
+      "after": "Equal to full before in full-state-journal-storage.json.gz",
+      "sendCalls": [],
+      "status": "REPRODUCED/OBSERVED"
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "key": "full",
+      "errors": [],
+      "screenshots": [
+        "390-full-shelf.png",
+        "390-full-compare.png",
+        "390-full-slot1-cancel.png",
+        "390-full-slot2-cancel.png",
+        "390-full-second-slot-compare.png"
+      ],
+      "before": {
+        "gold": 24,
+        "identity": {
+          "contentVersion": "quality-r2-route-growth-v1",
+          "contentHash": "json-fnv-v1:7414228d95059959"
+        },
+        "commandSeq": 4,
+        "rng": {
+          "deck": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 709646677
+          },
+          "rule": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 2082970515
+          },
+          "shop": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 3529896705
+          },
+          "reward": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 793547844
+          },
+          "program": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 1058376152
+          },
+          "challenge": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 3379911767
+          }
+        },
+        "journalLength": 0
+      },
+      "guidance": {
+        "stars": 4,
+        "label": "推荐指数 ★★★★☆",
+        "reason": "持金放大倍率",
+        "condition": "计分前须有20金",
+        "recommendation": {
+          "stars": 4,
+          "reason": "持金放大倍率",
+          "condition": "计分前须有20金",
+          "stage": "early",
+          "facts": {
+            "cards": 52,
+            "largest": 4,
+            "second": 4,
+            "largestSuit": 13,
+            "groupConcentrated": false,
+            "flushConcentrated": false,
+            "straightConcentrated": false,
+            "ordinaryStraightPossible": true,
+            "ordinaryFlushPossible": true,
+            "boostedGroup": false,
+            "houseCardPayoff": false,
+            "boostedHouse": false,
+            "groupRecord": false,
+            "houseRecord": false,
+            "flushRecord": false,
+            "qualifiedRecord": false,
+            "heldCardPayoff": true,
+            "heldGroupPayoff": true,
+            "retriggerSource": false,
+            "additiveSource": true,
+            "disabledSourceCount": 0,
+            "potentialStages": 23,
+            "growthWindow": true,
+            "initialGrowth": "{}",
+            "straightFamilyPossible": true,
+            "flushFamilyPossible": true,
+            "flushHousePossible": false,
+            "flushFivePossible": false,
+            "routeGrowth": "{\"before\":{\"clears\":0,\"G\":0,\"S\":0,\"F\":0},\"factors\":{\"G\":{\"n\":\"1\",\"d\":\"1\"},\"S\":{\"n\":\"1\",\"d\":\"1\"},\"F\":{\"n\":\"1\",\"d\":\"1\"}},\"preserved\":\"本局路线资历保留，出售不丢。\",\"detail\":\"本局路线资历：成功清场0次；G 0次 / ×1；S 0次 / ×1；F 0次 / ×1。\\n资历不绑定起手或持牌实例，出售不清零；按实际主手族读取，可重叠的族分别读取。每族前三次合格清场因子为1，清场后才入账，下手读取；本次买卖不增加资历。\"}"
+          },
+          "detail": "持金放大倍率；计分前须有20金。当前金币至少20时，整手倍率 ×1.8。\n公开依据：最大同点组4张，前两组8/52张；最大花色13/52张；已持逐牌加成有；剩余场次窗口23。\n基于公开构筑与当前阶段的推荐；不表示指定替换净更强。\n本局路线资历：成功清场0次；G 0次 / ×1；S 0次 / ×1；F 0次 / ×1。\n资历不绑定起手或持牌实例，出售不清零；按实际主手族读取，可重叠的族分别读取。每族前三次合格清场因子为1，清场后才入账，下手读取；本次买卖不增加资历。"
+        },
+        "operation": "需替换",
+        "operationShort": "需替换",
+        "purchaseConditionLosses": [],
+        "cashBasis": "未选替换：以下仅为直接买入现金",
+        "detail": "持金放大倍率；计分前须有20金。当前金币至少20时，整手倍率 ×1.8。\n公开依据：最大同点组4张，前两组8/52张；最大花色13/52张；已持逐牌加成有；剩余场次窗口23。\n基于公开构筑与当前阶段的推荐；不表示指定替换净更强。\n本局路线资历：成功清场0次；G 0次 / ×1；S 0次 / ×1；F 0次 / ×1。\n资历不绑定起手或持牌实例，出售不清零；按实际主手族读取，可重叠的族分别读取。每族前三次合格清场因子为1，清场后才入账，下手读取；本次买卖不增加资历。\n需替换",
+        "routes": [
+          "group",
+          "straight",
+          "flush"
+        ],
+        "routeCaption": "同点/顺子/同花"
+      },
+      "geometry": [
+        {
+          "name": "shop/offer-purpose",
+          "text": "出牌前≥20金 · 每手一次，倍率×1.8",
+          "bounds": {
+            "x": 114,
+            "y": 138,
+            "width": 218,
+            "height": 16
+          }
+        },
+        {
+          "name": "shop/offer-price",
+          "text": "5 金 · 比较替换",
+          "bounds": {
+            "x": 114,
+            "y": 210,
+            "width": 108,
+            "height": 19
+          }
+        },
+        {
+          "name": "shop/offer-advice",
+          "text": "推荐指数 ★★★★☆",
+          "stars": 4,
+          "bounds": {
+            "x": 114,
+            "y": 190,
+            "width": 123,
+            "height": 16
+          }
+        },
+        {
+          "name": "shop/offer-operation",
+          "text": "需替换",
+          "bounds": {
+            "x": 245,
+            "y": 190,
+            "width": 42,
+            "height": 16
+          }
+        },
+        {
+          "name": "shop/offer-condition",
+          "text": "计分前须有20金",
+          "bounds": {
+            "x": 114,
+            "y": 172,
+            "width": 100,
+            "height": 16
+          }
+        }
+      ],
+      "initialText": "现货与已持\n包场 · 持有与现货比较\n\n推荐指数 ★★★★☆\n持金放大倍率 · 计分前须有20金\n本局路线资历保留，出售不丢。\n\n第 1 槽 · 熟客券\n\n返1金 · 实付6金 · 买后19金\n旧物新用售后：倍率0→0.5\n置办行头购后：热度0→8\n长期捧场：系数×1.5保留 · 下一场未售成长失效\n\n管理这张\n条件、配合与完整损失\n第 2 槽 · 长期捧场\n\n返4金 · 实付5金 · 买后23金\n失去：系数×1.5\n旧物新用售后：倍率0→0.5\n置办行头购后：热度0→8\n\n管理这张\n条件、配合与完整损失\n第 3 槽 · 旧物新用\n\n返4金 · 实付5金 · 买后23金\n置办行头购后：热度0→8\n长期捧场：系数×1.5保留 · 下一场未售成长失效\n\n管理这张\n条件、配合与完整损失\n第 4 槽 · 置办行头\n\n返4金 · 实付5金 · 买后23金\n旧物新用售后：倍率0→0.5\n长期捧场：系数×1.5保留 · 下一场未售成长失效\n\n管理这张\n条件、配合与完整损失\n第 5 槽 · 对上眼\n\n返4金 · 实付5金 · 买后23金\n旧物新用售后：倍率0→0.5\n置办行头购后：热度0→8\n长期捧场：系数×1.5保留 · 下一场未售成长失效\n\n管理这张\n条件、配合与完整损失\n\n按现持槽位逐张比较。保留、换方向或留金入场都可以；这里不排序推荐，也不自动卖买。\n\n返回购买详情\n更换培养方向\n关闭",
+      "transactions": [
+        {
+          "status": "ready",
+          "summary": "指定替换 · 先售后买：24→25金；售后实付6金；买后19金。新牌在末槽，从初值开始。\n失去版次：普通（无额外计分）；新牌版次：普通（无额外计分）",
+          "growthEffects": [
+            "旧物新用 · 售后：无成长或使用计数 → 倍率成长 0.5",
+            "置办行头 · 购后：无成长或使用计数 → 热度成长 8"
+          ],
+          "cashLosses": [],
+          "refund": 1,
+          "price": 6,
+          "goldAfterSale": 25,
+          "goldAfterPurchase": 19
+        },
+        {
+          "status": "ready",
+          "summary": "指定替换 · 先售后买：24→28金；售后实付5金；买后23金。新牌在末槽，从初值开始。\n失去版次：普通（无额外计分）；新牌版次：普通（无额外计分）",
+          "growthEffects": [
+            "旧物新用 · 售后：无成长或使用计数 → 倍率成长 0.5",
+            "置办行头 · 购后：无成长或使用计数 → 热度成长 8"
+          ],
+          "cashLosses": [],
+          "refund": 4,
+          "price": 5,
+          "goldAfterSale": 28,
+          "goldAfterPurchase": 23
+        },
+        {
+          "status": "ready",
+          "summary": "指定替换 · 先售后买：24→28金；售后实付5金；买后23金。新牌在末槽，从初值开始。\n失去版次：普通（无额外计分）；新牌版次：普通（无额外计分）",
+          "growthEffects": [
+            "置办行头 · 购后：无成长或使用计数 → 热度成长 8"
+          ],
+          "cashLosses": [],
+          "refund": 4,
+          "price": 5,
+          "goldAfterSale": 28,
+          "goldAfterPurchase": 23
+        },
+        {
+          "status": "ready",
+          "summary": "指定替换 · 先售后买：24→28金；售后实付5金；买后23金。新牌在末槽，从初值开始。\n失去版次：普通（无额外计分）；新牌版次：普通（无额外计分）",
+          "growthEffects": [
+            "旧物新用 · 售后：无成长或使用计数 → 倍率成长 0.5"
+          ],
+          "cashLosses": [],
+          "refund": 4,
+          "price": 5,
+          "goldAfterSale": 28,
+          "goldAfterPurchase": 23
+        },
+        {
+          "status": "ready",
+          "summary": "指定替换 · 先售后买：24→28金；售后实付5金；买后23金。新牌在末槽，从初值开始。\n失去版次：普通（无额外计分）；新牌版次：普通（无额外计分）",
+          "growthEffects": [
+            "旧物新用 · 售后：无成长或使用计数 → 倍率成长 0.5",
+            "置办行头 · 购后：无成长或使用计数 → 热度成长 8"
+          ],
+          "cashLosses": [],
+          "refund": 4,
+          "price": 5,
+          "goldAfterSale": 28,
+          "goldAfterPurchase": 23
+        }
+      ],
+      "selectionText": [
+        "已持 · 确认后出售\n出售确认\n● 普通\n\n出售「熟客券」 · 基础返还 1 金\n失去当前成长：无成长或使用计数\n\n出售第 1 槽的「熟客券」基础卖价 1 金币。\n当前余额 24 金；交易来源与售后余额以实际保存结果为准。\n\n该牌成长将丢失，当前成长：无成长或使用计数。\n\n成功出售后保留牌的确定影响：\n长期捧场：已有系数×1.5保留；本次出售将使下一场“本场未出售”的过关成长条件不满足；不会在这里获得过关成长。\n旧物新用（第3槽）保留：倍率成长 +0 → +0.5（上限3）。\n本局路线资历保留，出售不丢。\n\n确认出售\n取消",
+        "已持 · 确认后出售\n出售确认\n✦ 稀有\n\n出售「长期捧场」 · 基础返还 4 金\n失去当前成长：乘法系数 ×1.5\n\n出售第 2 槽的「长期捧场」基础卖价 4 金币。\n当前余额 24 金；交易来源与售后余额以实际保存结果为准。\n\n该牌成长将丢失，当前成长：乘法系数 ×1.5。\n\n成功出售后保留牌的确定影响：\n旧物新用（第3槽）保留：倍率成长 +0 → +0.5（上限3）。\n本局路线资历保留，出售不丢。\n\n确认出售\n取消"
+      ],
+      "changedSelectionText": "现货与已持\n包场 · 持有与现货比较\n\n推荐指数 ★★★★☆\n持金放大倍率 · 计分前须有20金\n本局路线资历保留，出售不丢。\n\n第 1 槽 · 熟客券\n\n返1金 · 实付6金 · 买后19金\n旧物新用售后：倍率0→0.5\n置办行头购后：热度0→8\n长期捧场：系数×1.5保留 · 下一场未售成长失效\n\n管理这张\n条件、配合与完整损失\n第 2 槽 · 长期捧场\n\n返4金 · 实付5金 · 买后23金\n失去：系数×1.5\n旧物新用售后：倍率0→0.5\n置办行头购后：热度0→8\n\n管理这张\n条件、配合与完整损失\n第 3 槽 · 旧物新用\n\n返4金 · 实付5金 · 买后23金\n置办行头购后：热度0→8\n长期捧场：系数×1.5保留 · 下一场未售成长失效\n\n管理这张\n条件、配合与完整损失\n第 4 槽 · 置办行头\n\n返4金 · 实付5金 · 买后23金\n旧物新用售后：倍率0→0.5\n长期捧场：系数×1.5保留 · 下一场未售成长失效\n\n管理这张\n条件、配合与完整损失\n第 5 槽 · 对上眼\n\n返4金 · 实付5金 · 买后23金\n旧物新用售后：倍率0→0.5\n置办行头购后：热度0→8\n长期捧场：系数×1.5保留 · 下一场未售成长失效\n\n管理这张\n条件、配合与完整损失\n\n按现持槽位逐张比较。保留、换方向或留金入场都可以；这里不排序推荐，也不自动卖买。\n\n返回购买详情\n更换培养方向\n关闭",
+      "returnedDetailText": "现货 · 确认后付款\n包场 · 购买详情\n\n适用：同点/顺子/同花\n\n✦ 稀有\n出牌前≥20金 → 每手一次，倍率×1.8\n按出牌开始时的金币判断，不花费金币。\n现在24金 · 金币条件目前够；未购，买后重查\n\n版次：普通（无额外计分）\n\n推荐指数 ★★★★☆\n持金放大倍率 · 计分前须有20金\n直接买入 · 实付 5 金 · 余额 24 → 19 金\n5个槽位已满。请先关闭详情，点随身牌确认出售，再购买。\n优惠 3 金 · 使用1张减2金券\n\n规则与操作\n比较替换\n邀请 · 5 金\n取消",
+      "after": "Equal to full before in full-state-journal-storage.json.gz",
+      "sendCalls": [],
+      "status": "REPRODUCED/OBSERVED"
+    }
+  ],
+  "status": "PASS"
+}
