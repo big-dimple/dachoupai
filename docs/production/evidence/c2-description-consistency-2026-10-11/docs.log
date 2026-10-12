@@ -1,0 +1,54 @@
+
+> dachoupai@0.1.0 verify:ci
+> node scripts/verify-ci.mjs --scope=docs
+
+CHECK production-plan: /opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node scripts/check-production-plan.mjs
+PLAN_VALID: 32 work packages; current=P08; not a gameplay acceptance
+production-plan: PASS
+{
+  "scope": "docs",
+  "testedCommit": "89484f46f392cb26a6f7358bcb31ab730d71a995",
+  "status": "PASS",
+  "exitCode": 0,
+  "before": {
+    "source": "4f9f08b48642136d4ec018aab9185a52817ec78310b56253ef1c2b1fef1d72c4",
+    "index": "b587d383ba1be261fc1d61a826d87af5988333c5ccb50a30649c5ce6dd81545f",
+    "head": "89484f46f392cb26a6f7358bcb31ab730d71a995",
+    "branch": "refs/heads/fix/c2-description-consistency-2026-10-11"
+  },
+  "after": {
+    "source": "4f9f08b48642136d4ec018aab9185a52817ec78310b56253ef1c2b1fef1d72c4",
+    "index": "b587d383ba1be261fc1d61a826d87af5988333c5ccb50a30649c5ce6dd81545f",
+    "head": "89484f46f392cb26a6f7358bcb31ab730d71a995",
+    "branch": "refs/heads/fix/c2-description-consistency-2026-10-11"
+  },
+  "steps": [
+    {
+      "name": "production-plan",
+      "status": "PASS",
+      "childExitCode": 0,
+      "elapsedMs": 1131
+    }
+  ],
+  "notIncluded": [
+    {
+      "name": "extended browser/recovery/fault/asset/simulation diagnostics",
+      "status": "NOT_INCLUDED",
+      "reason": "run the existing specific command only when its domain changes; P00 removes repeated default execution"
+    },
+    {
+      "name": "balance/benchmark acceptance",
+      "status": "NOT_INCLUDED",
+      "reason": "later work packages; no gameplay approval inferred from checks"
+    },
+    {
+      "name": "physical devices / human / art approval",
+      "status": "NOT_RUN"
+    }
+  ]
+}
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice
