@@ -1,0 +1,35 @@
+
+ RUN  v4.1.11 /workspace/dachoupai
+
+ ❯ tests/p1a-active-mult.test.ts (14 tests | 1 failed) 807ms
+     × same-input business contrasts preserve stars/prices and real sale costs, no natural replacement claim 14ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/p1a-active-mult.test.ts > P1A exact active multiplier timing > same-input business contrasts preserve stars/prices and real sale costs, no natural replacement claim
+Error: invalid-save-opening-state
+ ❯ fail src/application/checkpoint.ts:62:43
+     60| }
+     61| type ReadResult={ok:true;checkpoint:Checkpoint}|{ok:false;code:string};
+     62| const fail=(message:string):never=>{throw Error(message);};
+       |                                           ^
+     63| function record(value:unknown,required:string[],optional:string[]=[]):…
+     64|   if(!value||typeof value!=='object'||Array.isArray(value))return fail…
+ ❯ validateState src/application/checkpoint.ts:857:70
+ ❯ makeCheckpoint src/application/checkpoint.ts:888:19
+ ❯ round tests/p1a-active-mult.test.ts:19:39
+ ❯ tests/p1a-active-mult.test.ts:60:63
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 1 passed (2)
+      Tests  1 failed | 15 passed (16)
+   Start at  09:57:25
+   Duration  1.92s (transform 1.26s, setup 0ms, import 1.72s, tests 878ms, environment 0ms)
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice
