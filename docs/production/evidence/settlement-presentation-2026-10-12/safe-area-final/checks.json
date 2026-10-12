@@ -1,0 +1,31 @@
+{
+  "captureBaseHead": "3dd8b292741e8e1f4c226a0278cc5952d0b5a4c7",
+  "sourceBlobs": {
+    "src/game/IntermissionScene.ts": "af600a7d464640831c06c95ca27ee72b62fd1f54",
+    "src/game/SettlementPresentation.ts": "0ad86452d795eb632517642b630f589d5d8d6798",
+    "harness/settlement-presentation.mjs": "36634f13ea19b9f220406113ace9c9e06926e24f"
+  },
+  "tests": {
+    "files": 8,
+    "passed": 107,
+    "typecheck": "PASS",
+    "build": "PASS",
+    "productionPlan": "PASS (32)"
+  },
+  "browser": "Real Chromium screenshots at CSS 320x640; CSS safe-top/bottom set before application starts. Controlled real scorer inputs, not natural acquisition or physical iPhone evidence.",
+  "cases": 15,
+  "safeBottom": 34,
+  "safeTop": [
+    0,
+    34
+  ],
+  "scoringAndAudioUnchanged": true,
+  "humanAestheticAcceptance": "Parent review required",
+  "noInsetGeometryComparison": {
+    "billion-320x640": true,
+    "boss-loss-320x640": true,
+    "retrigger-320x640": true
+  },
+  "absorbedMain": "f326a9b3a7a9be937c7c3cd4d286721f674a9409",
+  "mainIntegrationBrowser": "PASS 3 actual320x640 top34+bottom34; captured local merge169dc509; same presentation source blobs"
+}

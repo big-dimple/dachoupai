@@ -46,13 +46,13 @@ import {PAPER_CSS,PAPER_THEME as T} from './theme';
 
 export interface IntermissionResult {cleared:boolean;stageIndex:number;stageHeat:string;handsLeft:number;goldEarned:number;failureCue?:FailureCue;rewardClearId?:string}
 function resultLayout(width:number,height:number,top:number,bottom:number,nextBoss=false){
-  const short=height<500,portrait=width<700&&height>width,tight=portrait&&height<=700,w=Math.min(980,width-24),x=(width-w)/2;
-  const footerY=height-bottom-(portrait?(tight?132:148):104),bodyY=top+(short?64:portrait?(tight?100:108):94),available=footerY-16-bodyY;
-  const nextHeight=short?available:Math.min(tight?60:nextBoss?132:portrait?100:112,available*(nextBoss ? .30 : .26));
-  const score:Box=short?{x,y:bodyY,width:w*.64-12,height:available}:{x,y:bodyY,width:w,height:available-nextHeight-12};
-  const next:Box=short?{x:x+w*.64,y:bodyY,width:w*.36,height:available}:{x,y:score.y+score.height+12,width:w,height:nextHeight};
+  const short=height<500,portrait=width<700&&height>width,tight=portrait&&height<=700,compactNext=tight&&bottom>0,w=Math.min(980,width-24),x=(width-w)/2;
+  const footerY=height-bottom-(portrait?(tight?132:148):104),bodyY=top+(short?64:portrait?(tight?(compactNext?88:100):108):94),available=footerY-16-bodyY;
+  const nextHeight=short?available:Math.min(tight?(compactNext?32:60):nextBoss?132:portrait?100:112,available*(nextBoss ? .30 : .26));
+  const score:Box=short?{x,y:bodyY,width:w*.64-12,height:available}:{x,y:bodyY,width:w,height:available-nextHeight-(compactNext?8:12)};
+  const next:Box=short?{x:x+w*.64,y:bodyY,width:w*.36,height:available}:{x,y:score.y+score.height+(compactNext?8:12),width:w,height:nextHeight};
   const sideWidth=Math.floor(w*.28),primaryWidth=Math.floor(w*.43),rightWidth=w-sideWidth-primaryWidth-16;
-  return {x,w,top,short,portrait,tight,score,next,left:{x,y:footerY,width:portrait?w/2-4:sideWidth,height:44},primary:portrait?{x,y:footerY+52,width:w,height:tight?48:56}:{x:x+sideWidth+8,y:footerY,width:primaryWidth,height:56},right:portrait?{x:x+w/2+4,y:footerY,width:w/2-4,height:44}:{x:x+sideWidth+primaryWidth+16,y:footerY,width:rightWidth,height:44},noticeY:footerY+(portrait?(tight?108:116):64)};
+  return {x,w,top,short,portrait,tight,compactNext,score,next,left:{x,y:footerY,width:portrait?w/2-4:sideWidth,height:44},primary:portrait?{x,y:footerY+52,width:w,height:tight?48:56}:{x:x+sideWidth+8,y:footerY,width:primaryWidth,height:56},right:portrait?{x:x+w/2+4,y:footerY,width:w/2-4,height:44}:{x:x+sideWidth+primaryWidth+16,y:footerY,width:rightWidth,height:44},noticeY:footerY+(portrait?(tight?108:116):64)};
 }
 
 export class IntermissionScene extends Phaser.Scene {
@@ -124,7 +124,7 @@ export class IntermissionScene extends Phaser.Scene {
     const resultTier=settlementFacts(run,this.result.cleared,!!skipped).tier;
     const title=capped?'巡演，暂歇于此':skipped?'换一场，再登台':won?(run.mode==='tutorial'?'教学巡演，谢幕！':run.mode==='challenge'?'挑战完成，谢幕！':resultTier===3?'亿分落定，满堂喝彩！':resultTier===2?'千万喝彩，八章谢幕！':'八章好戏，满堂喝彩！'):this.result.cleared?(identity.isBoss?'压轴过关 · '+identity.title:outcome.title):'此番落幕，再登台';
     v.text(p.x,p.top+(p.short?23:p.portrait?52:34),title,p.short||p.portrait&&identity.isBoss?22:p.portrait?26:34,identity.isBoss&&this.result.cleared?PAPER_CSS.red:PAPER_CSS.ink,p.w).setName('result/title').setFontFamily('Georgia, "Noto Serif SC", SimSun, serif').setFontStyle('bold');
-    this.drawResultHero(p.score,!!skipped,lost,animateIn);
+    this.drawResultHero(p.score,!!skipped,lost,animateIn,p.compactNext);
     const trace=run.lastTrace;
     const n=p.next;
     let heading='下一步',body='';
@@ -154,9 +154,14 @@ export class IntermissionScene extends Phaser.Scene {
       v.material(n,T.paper,T.paper,4).setName('result/next-panel');
       v.add(this.add.graphics().lineStyle(1,T.divider,.75).beginPath().moveTo(n.x,n.y).lineTo(n.x+n.width,n.y).strokePath());
       if(nextStage&&nextStage.index%3===2)v.add(this.add.graphics().lineStyle(2,T.red,.8).beginPath().moveTo(n.x+2,n.y+5).lineTo(n.x+2,n.y+n.height-5).strokePath()).setName('stage-identity/next-seal');
+      if(p.compactNext){
+        const brief=nextStage?'下场 '+nextStage.name+' · 目标 '+heatText(nextStage.targetHeat):lost?'同局重试从开局，构筑不继承。':won?'八章结果已保存，可继续无尽。':heading;
+        v.text(n.x+14,n.y+8,brief,14,PAPER_CSS.ink,n.width-28).setName('result/next-body');
+      }else {
       const nextHeading=v.text(n.x+14,n.y+10,heading,18,'#26313A',n.width-28).setFontStyle('bold');
       const bodyY=nextHeading.y+nextHeading.height+8;
       v.text(n.x+14,bodyY,body,14,'#26313A',n.width-28).setLineSpacing(2).setStyle({maxLines:Math.max(1,Math.floor((n.y+n.height-12-bodyY)/19))}).setName('result/next-body');
+      }
     }
     if(nextStage){
       const gift=this.ready?stageGiftReceipt(run):undefined;
@@ -189,9 +194,9 @@ export class IntermissionScene extends Phaser.Scene {
     this.celebrationTimer?.remove();this.celebrationTimer=undefined;
     this.tweens.killAll();
   }
-  private drawResultHero(b:Box,skipped:boolean,lost:boolean,animate:boolean):void {
+  private drawResultHero(b:Box,skipped:boolean,lost:boolean,animate:boolean,compactSafe=false):void {
     const v=this.view,run=runController(this)!.state;
-    const presentation=drawSettlement(this,v,b,run,this.result.cleared,skipped,this.result.stageHeat);
+    const presentation=drawSettlement(this,v,b,run,this.result.cleared,skipped,this.result.stageHeat,compactSafe);
     this.paintSourceArt=()=>{presentation.paint();};
     if(animate&&!skipped)this.outcomeMotion=mountSettlementMotion(this,v.root,b,presentation.score,presentation.hero,presentation.facts.tier,lost);
     if(this.result.cleared&&!skipped){

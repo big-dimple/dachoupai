@@ -64,7 +64,7 @@ function fit(view:SceneView,x:number,y:number,text:string,size:number,width:numb
  return item;
 }
 /** All imagery stays contained. Fixed boxes survive missing or late optional resources. */
-export function drawSettlement(scene:Phaser.Scene,view:SceneView,b:Box,run:R2RunState,cleared:boolean,skipped:boolean,stageHeat:string){
+export function drawSettlement(scene:Phaser.Scene,view:SceneView,b:Box,run:R2RunState,cleared:boolean,skipped:boolean,stageHeat:string,compactSafe=false){
  const facts=settlementFacts(run,cleared,skipped),lost=!cleared&&!skipped,p=settlementPlan(b,view.layout.height<500,lost),accent=lost?T.ink:facts.tier?T.red:T.jade;
  const paper=scene.add.graphics().setName('result-art/stage').setData('bounds',b);
  paper.fillStyle(T.ink,.04).fillRoundedRect(b.x,b.y+3,b.width,b.height,4).fillStyle(T.paperLight).fillRoundedRect(b.x,b.y,b.width,b.height,4);
@@ -95,7 +95,9 @@ export function drawSettlement(scene:Phaser.Scene,view:SceneView,b:Box,run:R2Run
  const artLayer=scene.add.container(0,0).setName('result-art/source-layer');view.add(artLayer);
  const paint=()=>{
   artLayer.removeAll(true);const start=view.root.length;
-  const hero=p.hero,heroFoot=p.desktop?64:facts.hero?50:28,heroHeight=Math.max(0,hero.height-heroFoot),key=selectionPortraitKey(run.characterId);
+  const hero={...p.hero};
+  if(compactSafe&&lost&&!p.desktop&&!p.short&&hero.y<gap.y+gap.height+10){const shift=gap.y+gap.height+10-hero.y;hero.y+=shift;hero.height-=shift;}
+  const heroFoot=p.desktop?64:facts.hero?50:28,heroHeight=Math.max(0,hero.height-heroFoot),key=selectionPortraitKey(run.characterId);
   const addArt=(key:string,box:Box,name:string,id:string)=>{const image=scene.add.image(box.x+box.width/2,box.y+box.height/2,key).setName(name).setData('assetId',id).setData('bounds',box);image.setScale(Math.min(box.width/image.width,box.height/image.height));view.add(image);return image;};
   let heroImage:Phaser.GameObjects.Image|undefined;
   if(heroHeight>=40&&scene.textures.exists(key))heroImage=addArt(key,{...hero,height:heroHeight},'result-art/hero',run.characterId+'.selection');
@@ -105,6 +107,10 @@ export function drawSettlement(scene:Phaser.Scene,view:SceneView,b:Box,run:R2Run
    const frame={x:hero.x+Math.max(0,(hero.width-240)/2),y:hero.y,width:Math.min(240,hero.width),height:heroHeight};
    view.material(frame,T.paper,T.paper,4).setName('result-art/hero-fallback-panel');
    view.add(scene.add.graphics().lineStyle(1,T.divider,.85).strokeRoundedRect(frame.x+1,frame.y+1,frame.width-2,frame.height-2,4));
+   if(compactSafe&&frame.height<110){
+    fit(view,frame.x+frame.width/2,frame.y+3,'此番留影',14,frame.width-12,C.jade,'result-art/hero-fallback',true);
+    fit(view,frame.x+frame.width/2,frame.y+22,played.length?rankLabel(played[played.length-1].rank)+SUIT_SYMBOL[played[played.length-1].suit]+(played.length>1?' 等'+played.length+'张':''):getCharacter(run.characterId).name,14,frame.width-12,C.ink,'result/fallback-identity',true);
+   }else{
    const heading=fit(view,frame.x+frame.width/2,frame.y+12,'此番留影',18,frame.width-16,C.jade,'result-art/hero-fallback',true).setFontFamily('Georgia, "Noto Serif SC", SimSun, serif');
    const count=Math.min(5,played.length),h=Math.max(36,Math.min(116,frame.height-heading.height-54)),w=Math.min(h*.68,(frame.width-28)/Math.max(1,count)),step=Math.min(w+4,(frame.width-w-20)/Math.max(1,count-1)),left=frame.x+(frame.width-w-step*Math.max(0,count-1))/2;
    for(const [i,card] of played.slice(0,5).entries()){
@@ -117,6 +123,7 @@ export function drawSettlement(scene:Phaser.Scene,view:SceneView,b:Box,run:R2Run
    }
    if(!played.length)fit(view,frame.x+frame.width/2,frame.y+frame.height*.42,getCharacter(run.characterId).name,Math.min(42,frame.width*.24),frame.width-16,C.ink,'result/fallback-identity',true).setFontFamily('Georgia, "Noto Serif SC", SimSun, serif').setFontStyle('bold');
    fit(view,frame.x+frame.width/2,frame.y+frame.height-22,played.length?'最后落牌 · 已保存':'本局构筑 · 已保存',14,frame.width-12,C.jade,'result/fallback-caption',true);
+   }
   }
   const heroName=fit(view,hero.x+hero.width/2,hero.y+heroHeight+2,getCharacter(run.characterId).name,p.desktop?20:16,hero.width,C.ink,'result/hero-name',true).setFontFamily('Georgia, "Noto Serif SC", SimSun, serif').setFontStyle('bold');
   if(!p.short&&(p.desktop||facts.hero))fit(view,hero.x+hero.width/2,heroName.y+heroName.height+6,facts.heroCopy,14,hero.width,facts.hero?C.red:C.jade,'result/hero-effect',true).setData('ownerCharacter',run.characterId);

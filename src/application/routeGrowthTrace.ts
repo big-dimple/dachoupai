@@ -8,7 +8,7 @@ import {R2_BASE_SCORES,r2ScoringDisabledJokerIds} from '../domain/scoreR2';
 import type {R2JokerDefinition} from '../content/r2Schema';
 
 /** C2-only closure. A clear changes the run ledger, never the hand's source snapshot. */
-export function assertRouteGrowthTrace(t:ScoreTrace,history:R2RouteHistory,stage:NonNullable<R2RunState['stage']>,runId:string,successful:boolean,definitions:readonly R2JokerDefinition[]):void {
+export function assertRouteGrowthTrace(t:ScoreTrace,history:R2RouteHistory,stage:NonNullable<R2RunState['stage']>,runId:string,successful:boolean,definitions:readonly R2JokerDefinition[],activeMultTiming=false):void {
   const fail=():never=>{throw Error('invalid-save-route-growth-trace');};
   const expected=r2RouteSnapshot(history),eligible=stage.routeGrowth!.eligible;
   if(successful){expected.clears--;for(const f of eligible)expected[f]--;}
@@ -20,7 +20,7 @@ export function assertRouteGrowthTrace(t:ScoreTrace,history:R2RouteHistory,stage
   for(const [i,e] of reads.entries()){
     const family=families[i],index=t.events.indexOf(e);
     if(e.routeFamily!==family||e.phase!=='routeGrowth'||index<=lastJoker||index>=final||i>0&&index!==t.events.indexOf(reads[i-1])+1||e.reasonKey!==`route-growth.${family}.factor`||stableHash(e.value)!==stableHash(t.routeGrowth!.factors[family])||e.resourceBefore!==expected[family]||e.resourceAfter!==expected[family]||stableHash(e.visibleCondition)!==stableHash({kind:'hand-type-in',values:R2_ROUTE_HAND_TYPES[family]}))fail();
-    if(t.events.slice(index+1,final).some(next=>next.phase!=='routeGrowth'&&!(next.sourceType==='character'&&next.sourceDefinitionId==='amo')))fail();
+    if(t.events.slice(index+1,final).some(next=>next.phase!=='routeGrowth'&&!(next.sourceType==='character'&&(next.sourceDefinitionId==='amo'||activeMultTiming&&(['xiemu','azao'].includes(next.sourceDefinitionId)||next.sourceDefinitionId==='touye'&&!!t.touyeWager?.commit)))))fail();
   }
   for(const e of [...clears,...awards]){
     const family=e.routeFamily;

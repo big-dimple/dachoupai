@@ -66,3 +66,13 @@
 - [完整亿分动作](parent-review-repair/native/native-billion-1366.mp4)、[正常失败动作](parent-review-repair/native/native-boss-loss-390.mp4)、[仅b06动作](parent-review-repair/native/native-retrigger-390.mp4)
 
 107项/8文件定向、typecheck/build通过，所有source/growth下界和实际字符图已核，未降低字体14px。当前仍独立draft，不合main/部署，父独立复审与设备/听感/人验保持待验。
+
+## 320×640 安全区最后修正
+
+父已通过上一轮人物构图、b06、双资历与成长方向；本轮仅收口 safe-bottom34 导致人物不足40px隐藏。短竖屏且有底部安全区时，把次级下一步压成一行32px、间距8px，恢复人物预算；主按钮仍48px且完全位于安全区之上。加入top34后同样保留完整人物、英雄自身成本、实际来源。失败页人物从实际末手文字下方起排，紧凑真实缺图框用实际末牌与总张数，不冒充新人物或虚构收益。
+
+[bottom34三例](safe-area-final/bottom34/report.json.gz)、[top34+bottom34三例](safe-area-final/both34/report.json.gz)、[真实缺图/慢载三例](safe-area-final/boundary-both34/report.json.gz)、[无安全区三例复核](safe-area-final/no-inset/report.json.gz)、[源blob/检查](safe-area-final/checks.json)。全部实际Chromium 320×640整屏；安全区CSS在应用启动前写入。截图是受控原计分器例（亿分733884590），不是自然310793589或实体手机验收。正常三例回看关闭及亿分继续取消的完整保存不变，纯b06继续只增加一次命令且金不变。
+
+107项/8文件、typecheck/build、production-plan和领域/音频/GameScene等边界检查通过。截屏报告记录采集基础HEAD 3dd8与修改后的源blob；最终提交和精确新HEAD CI在draft PR另登记，不借旧绿灯代签。仅draft，父独审后才能合main。
+
+正常合入父新main f326a9b（PR134），身份和动作新时序原样吸收。其上[320×640 top34+bottom34三例](safe-area-final/main-f326/report.json.gz)再核通过，权威燃金30、谢幕×4与冷场自身×3归属不变，107项/8文件和build再次通过。无安全区三例的全部几何与父已看3dd8完全一致；安全区分支才压缩次级面板及启用紧凑留影。

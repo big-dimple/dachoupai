@@ -1,0 +1,52 @@
+
+> dachoupai@0.1.0 verify
+> npm run typecheck && npm test && npm run build
+
+
+> dachoupai@0.1.0 typecheck
+> tsc --noEmit
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice
+
+> dachoupai@0.1.0 test
+> vitest run
+
+
+ RUN  v4.1.11 /workspace/dachoupai
+
+ ❯ tests/hero-ability-cue.test.ts (6 tests | 1 failed) 860ms
+   × actual lost wager keeps its recorded result and routes the existing character cue without positive score impact 63ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/hero-ability-cue.test.ts > actual lost wager keeps its recorded result and routes the existing character cue without positive score impact
+AssertionError: expected '骰爷·押三条输约 ×0.85 1→0.85' to contain '未成×0.85'
+
+Expected: "未成×0.85"
+Received: "骰爷·押三条输约 ×0.85 1→0.85"
+
+ ❯ tests/hero-ability-cue.test.ts:57:249
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 219 passed (220)
+      Tests  1 failed | 3250 passed (3251)
+   Start at  10:06:51
+   Duration  45.07s (transform 7.12s, setup 0ms, import 32.53s, tests 71.42s, environment 23ms)
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice
