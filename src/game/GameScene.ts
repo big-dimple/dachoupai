@@ -1,3 +1,4 @@
+import {isR2ActiveMultTiming} from '../domain/r2GroupUpgrade';
 import {touyeComboCue} from './TouyeComboCue';
 import {azaoReleaseLabel,heroSkillGuide,heroOperationSteps,mountHeroSkillGuide} from './HeroSkillGuide';
 import {sourceImpact} from './SourceImpact';
@@ -1023,7 +1024,7 @@ export class GameScene extends Phaser.Scene {
   }
   private aiInput():AiHandInput {
     const stage=this.run.stage!,context=r2ScoreContext(this.run,this.hand,[]);
-    return{...this.candidateInput(),boss:context.boss,sealedJokerIds:context.sealedJokerIds,challengeDisabledJokerId:context.challengeDisabledJokerId,score:{...(context.routeGrowth?{routeGrowth:context.routeGrowth}:{}),...(context.erxiangHandoff?{erxiangHandoff:context.erxiangHandoff}:{}),...(context.touyeWager?{touyeWager:context.touyeWager}:{}),...(context.laohuanTrick?{laohuanTrick:context.laohuanTrick}:{}),...(context.xiemuBurn?{xiemuBurn:context.xiemuBurn}:{}),...(context.azaoCharge?{azaoCharge:context.azaoCharge}:{}),characterId:context.characterId,amoScoreTiming:context.amoScoreTiming,jokerSlots:context.jokerSlots,handLevels:this.run.handLevels,previousHandType:stage.previousHandType,previousHandScore:context.previousHandScore,wager:stage.wagerSelected}};
+    return{...this.candidateInput(),boss:context.boss,sealedJokerIds:context.sealedJokerIds,challengeDisabledJokerId:context.challengeDisabledJokerId,score:{...(context.activeMultTiming?{activeMultTiming:context.activeMultTiming}:{}),...(context.routeGrowth?{routeGrowth:context.routeGrowth}:{}),...(context.erxiangHandoff?{erxiangHandoff:context.erxiangHandoff}:{}),...(context.touyeWager?{touyeWager:context.touyeWager}:{}),...(context.laohuanTrick?{laohuanTrick:context.laohuanTrick}:{}),...(context.xiemuBurn?{xiemuBurn:context.xiemuBurn}:{}),...(context.azaoCharge?{azaoCharge:context.azaoCharge}:{}),characterId:context.characterId,amoScoreTiming:context.amoScoreTiming,jokerSlots:context.jokerSlots,handLevels:this.run.handLevels,previousHandType:stage.previousHandType,previousHandScore:context.previousHandScore,wager:stage.wagerSelected}};
   }
   private cancelAiCandidates():void {this.aiCandidates.dispose();this.aiCursor=undefined;}
   private candidateEntry():string {
@@ -1752,6 +1753,12 @@ export class GameScene extends Phaser.Scene {
     const positive=Rational.fromJSON(event.after.H).compare(Rational.fromJSON(event.before.H))>0||Rational.fromJSON(event.after.M).compare(Rational.fromJSON(event.before.M))>0;
     const accumulator=positive?(this.setAccumulator(event.after),Promise.resolve()):this.rollAccumulator(event,impactDuration,context);
     if(number){this.scoreTotal.setColor(number.color).setData('numberImpact',number);if(event.before.M.n!==event.after.M.n||event.before.M.d!==event.after.M.d)this.scoreMult.setColor(number.color);if(event.before.H.n!==event.after.H.n||event.before.H.d!==event.after.H.d)this.scoreHeat.setColor(number.color);if(number.factorValue){const caption=multiplierCaption(source,number.factorValue,event.before.M,event.after.M,this.view.layout.mode==='desktop');this.resultText.setText(caption.text).setData('exactMultiplierCaption',{eventId:event.eventId,text:caption.exact});}}
+    // A new-profile wager loss is a real multiplier too; retain its factor
+    // and saved before/after values when the positive-impact cue is absent.
+    if(!number?.factorValue&&isR2ActiveMultTiming(this.run)&&event.sourceType==='character'&&event.operation==='multiply-multiplier'){
+      const caption=multiplierCaption(source,event.value,event.before.M,event.after.M,this.view.layout.mode==='desktop');
+      this.resultText.setText(caption.text).setData('exactMultiplierCaption',{eventId:event.eventId,text:caption.exact});
+    }
     const effects=[...sourceEffects,accumulator,this.pulseAccumulator(event,impactDuration,context,number),this.impactAccumulator(event,impactDuration,context,number),restoreKey&&(key?.kind==='payoff'||key?.kind==='burst')?this.waitHeroSubject(context):this.wait(impactDuration,context)],notes:Promise<void>[]=[];
     if((event.operation==='rescue-hand'||event.operation==='refund-hand')&&this.presentation&&!this.presentation.replay&&event.resourceBefore!==undefined&&event.resourceAfter!==undefined){
       this.presentation.resourcePlayLeft=event.resourceAfter;
