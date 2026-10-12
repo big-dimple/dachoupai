@@ -1,0 +1,2033 @@
+{
+  "base": "00fe311e04305b7769f8141520742810bc614134",
+  "head": "00fe311e04305b7769f8141520742810bc614134",
+  "changes": "?? harness/mobile-shop-visual.mjs",
+  "mode": "before",
+  "scope": "Local controlled Chromium CSS viewport/DPR1; touch events are software. Agent could not download or inspect user Android original. No physical Chrome bars, device, natural game or hosted save claims.",
+  "cases": [
+    {
+      "spec": {
+        "width": 320,
+        "height": 640,
+        "safe": 34
+      },
+      "shots": [
+        "320x640-safe34-shop.png"
+      ],
+      "errors": [],
+      "checks": [],
+      "initial": {
+        "gold": 7,
+        "commandSeq": 2,
+        "contentVersion": "quality-r2-route-growth-v1",
+        "contentHash": "json-fnv-v1:7414228d95059959",
+        "journalLength": 0
+      },
+      "geometry": {
+        "layout": {
+          "x": 12,
+          "w": 296,
+          "top": 12,
+          "pc": null,
+          "desktop": false,
+          "short": false,
+          "copyBeside": false,
+          "inventoryCollapsed": false,
+          "compact": true,
+          "wideHeader": false,
+          "portrait": true,
+          "guidanceBelow": false,
+          "slots": [
+            {
+              "x": 12,
+              "y": 363.2,
+              "width": 54.4,
+              "height": 76.16
+            },
+            {
+              "x": 72.4,
+              "y": 363.2,
+              "width": 54.4,
+              "height": 76.16
+            },
+            {
+              "x": 132.8,
+              "y": 363.2,
+              "width": 54.4,
+              "height": 76.16
+            },
+            {
+              "x": 193.2,
+              "y": 363.2,
+              "width": 54.4,
+              "height": 76.16
+            },
+            {
+              "x": 253.6,
+              "y": 363.2,
+              "width": 54.4,
+              "height": 76.16
+            }
+          ],
+          "shelf": [
+            {
+              "x": 14.666666666666664,
+              "y": 116,
+              "width": 88,
+              "height": 123.19999999999999
+            },
+            {
+              "x": 116,
+              "y": 116,
+              "width": 88,
+              "height": 123.19999999999999
+            },
+            {
+              "x": 217.33333333333331,
+              "y": 116,
+              "width": 88,
+              "height": 123.19999999999999
+            }
+          ],
+          "tabs": {
+            "x": 12,
+            "y": 64,
+            "width": 296,
+            "height": 44
+          },
+          "chapter": {
+            "x": 12,
+            "y": 447.36,
+            "width": 144,
+            "height": 44
+          },
+          "items": {
+            "x": 164,
+            "y": 447.36,
+            "width": 144,
+            "height": 44
+          },
+          "reroll": {
+            "x": 12,
+            "y": 462,
+            "width": 144,
+            "height": 44
+          },
+          "build": {
+            "x": 164,
+            "y": 462,
+            "width": 144,
+            "height": 44
+          },
+          "play": {
+            "x": 12,
+            "y": 514,
+            "width": 296,
+            "height": 56
+          },
+          "noticeY": 578
+        },
+        "rows": [
+          {
+            "name": "shop/hero-avatar",
+            "bounds": {
+              "x": 12,
+              "y": 12,
+              "width": 32,
+              "height": 32
+            }
+          },
+          {
+            "name": "shop/title",
+            "text": "二响",
+            "fontSize": "15px",
+            "bounds": {
+              "x": 50,
+              "y": 15,
+              "width": 31,
+              "height": 17
+            }
+          },
+          {
+            "name": "shop/gold",
+            "text": "金币 7",
+            "fontSize": "16px",
+            "bounds": {
+              "x": 98,
+              "y": 16,
+              "width": 46,
+              "height": 19
+            }
+          },
+          {
+            "name": "shop/owned-heading",
+            "text": "长按拖动换位 · 点牌查看",
+            "fontSize": "14px",
+            "bounds": {
+              "x": 12,
+              "y": 339.2,
+              "width": 153,
+              "height": 16
+            }
+          },
+          {
+            "name": "action/shelf-jokers",
+            "bounds": {
+              "x": 12.000000000000004,
+              "y": 64,
+              "width": 63.33333333333334,
+              "height": 44
+            }
+          },
+          {
+            "name": "action/shelf-tools",
+            "bounds": {
+              "x": 81.33333333333334,
+              "y": 64,
+              "width": 63.33333333333334,
+              "height": 44
+            }
+          },
+          {
+            "name": "action/shelf-items",
+            "bounds": {
+              "x": 150.66666666666669,
+              "y": 64,
+              "width": 63.33333333333334,
+              "height": 44
+            }
+          },
+          {
+            "name": "action/tool-inventory",
+            "bounds": {
+              "x": 220,
+              "y": 64,
+              "width": 88,
+              "height": 44
+            }
+          },
+          {
+            "name": "shop/offer-name",
+            "text": "最后一句",
+            "fontSize": "15px",
+            "bounds": {
+              "x": 15.000001271565758,
+              "y": 243.00000610351563,
+              "width": 61.00000000000001,
+              "height": 16.99999999999997
+            }
+          },
+          {
+            "name": "shop/offer-purpose",
+            "text": "出牌后剩0次\n每手一次，热度+70",
+            "offerId": "controlled/offer-0",
+            "fontSize": "14px",
+            "bounds": {
+              "x": 15.000001271565758,
+              "y": 262.0000061035156,
+              "width": 84,
+              "height": 48
+            }
+          },
+          {
+            "name": "shop/price-plate",
+            "offerId": "controlled/offer-0",
+            "bounds": {
+              "x": 12.666667938232422,
+              "y": 313.20000610351565,
+              "width": 96,
+              "height": 24
+            }
+          },
+          {
+            "name": "shop/offer-price",
+            "text": "4 金 · 查看",
+            "offerId": "controlled/offer-0",
+            "fontSize": "16px",
+            "bounds": {
+              "x": 15.000001271565758,
+              "y": 315.0000061035156,
+              "width": 76,
+              "height": 19
+            }
+          },
+          {
+            "name": "shop/offer-advice",
+            "text": "推荐指数 ★★☆☆☆",
+            "offerId": "controlled/offer-0",
+            "stars": 2,
+            "fontSize": "14px",
+            "bounds": {
+              "x": 15.000001271565758,
+              "y": 187.00000610351563,
+              "width": 123,
+              "height": 16
+            }
+          },
+          {
+            "name": "offer/controlled/offer-0",
+            "bounds": {
+              "x": 14.666666666666664,
+              "y": 116,
+              "width": 88,
+              "height": 217.2
+            }
+          },
+          {
+            "name": "shop/offer-name",
+            "text": "加班费",
+            "fontSize": "15px",
+            "bounds": {
+              "x": 116,
+              "y": 243.00000610351563,
+              "width": 46,
+              "height": 16.99999999999997
+            }
+          },
+          {
+            "name": "shop/offer-purpose",
+            "text": "剩0次出牌过关并过关\n获得4金",
+            "offerId": "controlled/offer-1",
+            "fontSize": "14px",
+            "bounds": {
+              "x": 116,
+              "y": 262.0000061035156,
+              "width": 92,
+              "height": 48
+            }
+          },
+          {
+            "name": "shop/price-plate",
+            "offerId": "controlled/offer-1",
+            "bounds": {
+              "x": 114,
+              "y": 313.20000610351565,
+              "width": 96,
+              "height": 24
+            }
+          },
+          {
+            "name": "shop/offer-price",
+            "text": "6 金 · 查看",
+            "offerId": "controlled/offer-1",
+            "fontSize": "16px",
+            "bounds": {
+              "x": 116,
+              "y": 315.0000061035156,
+              "width": 76,
+              "height": 19
+            }
+          },
+          {
+            "name": "shop/offer-advice",
+            "text": "推荐指数 ★★☆☆☆",
+            "offerId": "controlled/offer-1",
+            "stars": 2,
+            "fontSize": "14px",
+            "bounds": {
+              "x": 116,
+              "y": 187.00000610351563,
+              "width": 123,
+              "height": 16
+            }
+          },
+          {
+            "name": "offer/controlled/offer-1",
+            "bounds": {
+              "x": 116,
+              "y": 116,
+              "width": 88,
+              "height": 217.2
+            }
+          },
+          {
+            "name": "shop/offer-name",
+            "text": "小费盒",
+            "fontSize": "15px",
+            "bounds": {
+              "x": 217.00001017252606,
+              "y": 243.00000610351563,
+              "width": 46,
+              "height": 16.99999999999997
+            }
+          },
+          {
+            "name": "shop/offer-purpose",
+            "text": "成功过关\n获得2金",
+            "offerId": "controlled/offer-2",
+            "fontSize": "14px",
+            "bounds": {
+              "x": 217.00001017252606,
+              "y": 262.0000061035156,
+              "width": 56,
+              "height": 32
+            }
+          },
+          {
+            "name": "shop/price-plate",
+            "offerId": "controlled/offer-2",
+            "bounds": {
+              "x": 215.33334350585938,
+              "y": 313.20000610351565,
+              "width": 96,
+              "height": 24
+            }
+          },
+          {
+            "name": "shop/offer-price",
+            "text": "4 金 · 查看",
+            "offerId": "controlled/offer-2",
+            "fontSize": "16px",
+            "bounds": {
+              "x": 217.00001017252606,
+              "y": 315.0000061035156,
+              "width": 76,
+              "height": 19
+            }
+          },
+          {
+            "name": "shop/offer-advice",
+            "text": "推荐指数 ★★★☆☆",
+            "offerId": "controlled/offer-2",
+            "stars": 3,
+            "fontSize": "14px",
+            "bounds": {
+              "x": 217.00001017252606,
+              "y": 187.00000610351563,
+              "width": 123,
+              "height": 16
+            }
+          },
+          {
+            "name": "offer/controlled/offer-2",
+            "bounds": {
+              "x": 217.33333333333331,
+              "y": 116,
+              "width": 88,
+              "height": 217.2
+            }
+          },
+          {
+            "name": "action/reroll",
+            "bounds": {
+              "x": 12,
+              "y": 462,
+              "width": 144,
+              "height": 44
+            }
+          },
+          {
+            "name": "action/start-stage",
+            "bounds": {
+              "x": 12,
+              "y": 514,
+              "width": 296,
+              "height": 56
+            }
+          },
+          {
+            "name": "action/build",
+            "bounds": {
+              "x": 164,
+              "y": 462,
+              "width": 144,
+              "height": 44
+            }
+          }
+        ],
+        "menu": [
+          {
+            "text": "全屏",
+            "bounds": {
+              "x": 212,
+              "y": 12,
+              "width": 44,
+              "height": 44,
+              "top": 12,
+              "right": 256,
+              "bottom": 56,
+              "left": 212
+            }
+          },
+          {
+            "text": "菜单",
+            "bounds": {
+              "x": 264,
+              "y": 12,
+              "width": 44,
+              "height": 44,
+              "top": 12,
+              "right": 308,
+              "bottom": 56,
+              "left": 264
+            }
+          }
+        ]
+      },
+      "final": {
+        "gold": 7,
+        "commandSeq": 2,
+        "contentVersion": "quality-r2-route-growth-v1",
+        "contentHash": "json-fnv-v1:7414228d95059959",
+        "journalLength": 0
+      },
+      "status": "OBSERVED_BEFORE"
+    },
+    {
+      "spec": {
+        "width": 390,
+        "height": 640
+      },
+      "shots": [
+        "390x640-shop.png"
+      ],
+      "errors": [],
+      "checks": [],
+      "initial": {
+        "gold": 7,
+        "commandSeq": 2,
+        "contentVersion": "quality-r2-route-growth-v1",
+        "contentHash": "json-fnv-v1:7414228d95059959",
+        "journalLength": 0
+      },
+      "geometry": {
+        "layout": {
+          "x": 12,
+          "w": 366,
+          "top": 8,
+          "pc": null,
+          "desktop": false,
+          "short": false,
+          "copyBeside": false,
+          "inventoryCollapsed": false,
+          "compact": true,
+          "wideHeader": false,
+          "portrait": true,
+          "guidanceBelow": false,
+          "slots": [
+            {
+              "x": 23,
+              "y": 387.2,
+              "width": 64,
+              "height": 89.6
+            },
+            {
+              "x": 93,
+              "y": 387.2,
+              "width": 64,
+              "height": 89.6
+            },
+            {
+              "x": 163,
+              "y": 387.2,
+              "width": 64,
+              "height": 89.6
+            },
+            {
+              "x": 233,
+              "y": 387.2,
+              "width": 64,
+              "height": 89.6
+            },
+            {
+              "x": 303,
+              "y": 387.2,
+              "width": 64,
+              "height": 89.6
+            }
+          ],
+          "shelf": [
+            {
+              "x": 16.333333333333336,
+              "y": 112,
+              "width": 108,
+              "height": 151.2
+            },
+            {
+              "x": 141.00000000000003,
+              "y": 112,
+              "width": 108,
+              "height": 151.2
+            },
+            {
+              "x": 265.6666666666667,
+              "y": 112,
+              "width": 108,
+              "height": 151.2
+            }
+          ],
+          "tabs": {
+            "x": 12,
+            "y": 60,
+            "width": 366,
+            "height": 44
+          },
+          "chapter": {
+            "x": 12,
+            "y": 484.79999999999995,
+            "width": 179,
+            "height": 44
+          },
+          "items": {
+            "x": 199,
+            "y": 484.79999999999995,
+            "width": 179,
+            "height": 44
+          },
+          "reroll": {
+            "x": 12,
+            "y": 496,
+            "width": 179,
+            "height": 44
+          },
+          "build": {
+            "x": 199,
+            "y": 496,
+            "width": 179,
+            "height": 44
+          },
+          "play": {
+            "x": 12,
+            "y": 548,
+            "width": 366,
+            "height": 56
+          },
+          "noticeY": 612
+        },
+        "rows": [
+          {
+            "name": "shop/hero-avatar",
+            "bounds": {
+              "x": 12,
+              "y": 8,
+              "width": 32,
+              "height": 32
+            }
+          },
+          {
+            "name": "shop/title",
+            "text": "二响 · 筹备",
+            "fontSize": "18px",
+            "bounds": {
+              "x": 50,
+              "y": 11,
+              "width": 88,
+              "height": 21
+            }
+          },
+          {
+            "name": "shop/gold",
+            "text": "金币 7",
+            "fontSize": "16px",
+            "bounds": {
+              "x": 168,
+              "y": 12,
+              "width": 46,
+              "height": 19
+            }
+          },
+          {
+            "name": "shop/owned-heading",
+            "text": "长按拖动换位 · 点牌查看",
+            "fontSize": "14px",
+            "bounds": {
+              "x": 23,
+              "y": 363.2,
+              "width": 153,
+              "height": 16
+            }
+          },
+          {
+            "name": "action/shelf-jokers",
+            "bounds": {
+              "x": 12,
+              "y": 60,
+              "width": 86.66666666666667,
+              "height": 44
+            }
+          },
+          {
+            "name": "action/shelf-tools",
+            "bounds": {
+              "x": 104.66666666666666,
+              "y": 60,
+              "width": 86.66666666666666,
+              "height": 44
+            }
+          },
+          {
+            "name": "action/shelf-items",
+            "bounds": {
+              "x": 197.33333333333334,
+              "y": 60,
+              "width": 86.66666666666666,
+              "height": 44
+            }
+          },
+          {
+            "name": "action/tool-inventory",
+            "bounds": {
+              "x": 290,
+              "y": 60,
+              "width": 88,
+              "height": 44
+            }
+          },
+          {
+            "name": "shop/offer-name",
+            "text": "最后一句",
+            "fontSize": "15px",
+            "bounds": {
+              "x": 16.0000025431315,
+              "y": 267.0000061035156,
+              "width": 61,
+              "height": 17
+            }
+          },
+          {
+            "name": "shop/offer-purpose",
+            "text": "出牌后剩0次\n每手一次，热度+70",
+            "offerId": "controlled/offer-0",
+            "fontSize": "14px",
+            "bounds": {
+              "x": 16.0000025431315,
+              "y": 286.0000061035156,
+              "width": 114,
+              "height": 48
+            }
+          },
+          {
+            "name": "shop/price-plate",
+            "offerId": "controlled/offer-0",
+            "bounds": {
+              "x": 14.333335876464837,
+              "y": 337.20000610351565,
+              "width": 116,
+              "height": 24
+            }
+          },
+          {
+            "name": "shop/offer-price",
+            "text": "4 金 · 查看",
+            "offerId": "controlled/offer-0",
+            "fontSize": "16px",
+            "bounds": {
+              "x": 16.0000025431315,
+              "y": 339.0000061035156,
+              "width": 76,
+              "height": 19
+            }
+          },
+          {
+            "name": "shop/offer-advice",
+            "text": "推荐指数 ★★☆☆☆",
+            "offerId": "controlled/offer-0",
+            "stars": 2,
+            "fontSize": "14px",
+            "bounds": {
+              "x": 16.0000025431315,
+              "y": 211.00000610351563,
+              "width": 123,
+              "height": 16
+            }
+          },
+          {
+            "name": "offer/controlled/offer-0",
+            "bounds": {
+              "x": 16.333333333333343,
+              "y": 112,
+              "width": 108,
+              "height": 245.2
+            }
+          },
+          {
+            "name": "shop/offer-name",
+            "text": "加班费",
+            "fontSize": "15px",
+            "bounds": {
+              "x": 140.99999999999997,
+              "y": 267.0000061035156,
+              "width": 46,
+              "height": 17
+            }
+          },
+          {
+            "name": "shop/offer-purpose",
+            "text": "剩0次出牌过关并过关\n获得4金",
+            "offerId": "controlled/offer-1",
+            "fontSize": "14px",
+            "bounds": {
+              "x": 140.99999999999997,
+              "y": 286.0000061035156,
+              "width": 106,
+              "height": 48
+            }
+          },
+          {
+            "name": "shop/price-plate",
+            "offerId": "controlled/offer-1",
+            "bounds": {
+              "x": 139,
+              "y": 337.20000610351565,
+              "width": 116,
+              "height": 24
+            }
+          },
+          {
+            "name": "shop/offer-price",
+            "text": "6 金 · 查看",
+            "offerId": "controlled/offer-1",
+            "fontSize": "16px",
+            "bounds": {
+              "x": 140.99999999999997,
+              "y": 339.0000061035156,
+              "width": 76,
+              "height": 19
+            }
+          },
+          {
+            "name": "shop/offer-advice",
+            "text": "推荐指数 ★★☆☆☆",
+            "offerId": "controlled/offer-1",
+            "stars": 2,
+            "fontSize": "14px",
+            "bounds": {
+              "x": 140.99999999999997,
+              "y": 211.00000610351563,
+              "width": 123.00000000000003,
+              "height": 16
+            }
+          },
+          {
+            "name": "offer/controlled/offer-1",
+            "bounds": {
+              "x": 141.00000000000003,
+              "y": 112,
+              "width": 108,
+              "height": 245.2
+            }
+          },
+          {
+            "name": "shop/offer-name",
+            "text": "小费盒",
+            "fontSize": "15px",
+            "bounds": {
+              "x": 265.99998982747394,
+              "y": 267.0000061035156,
+              "width": 46,
+              "height": 17
+            }
+          },
+          {
+            "name": "shop/offer-purpose",
+            "text": "成功过关\n获得2金",
+            "offerId": "controlled/offer-2",
+            "fontSize": "14px",
+            "bounds": {
+              "x": 265.99998982747394,
+              "y": 286.0000061035156,
+              "width": 56,
+              "height": 32
+            }
+          },
+          {
+            "name": "shop/price-plate",
+            "offerId": "controlled/offer-2",
+            "bounds": {
+              "x": 263.6666564941406,
+              "y": 337.20000610351565,
+              "width": 116,
+              "height": 24
+            }
+          },
+          {
+            "name": "shop/offer-price",
+            "text": "4 金 · 查看",
+            "offerId": "controlled/offer-2",
+            "fontSize": "16px",
+            "bounds": {
+              "x": 265.99998982747394,
+              "y": 339.0000061035156,
+              "width": 76,
+              "height": 19
+            }
+          },
+          {
+            "name": "shop/offer-advice",
+            "text": "推荐指数 ★★★☆☆",
+            "offerId": "controlled/offer-2",
+            "stars": 3,
+            "fontSize": "14px",
+            "bounds": {
+              "x": 265.99998982747394,
+              "y": 211.00000610351563,
+              "width": 123,
+              "height": 16
+            }
+          },
+          {
+            "name": "offer/controlled/offer-2",
+            "bounds": {
+              "x": 265.6666666666667,
+              "y": 112,
+              "width": 108,
+              "height": 245.2
+            }
+          },
+          {
+            "name": "action/reroll",
+            "bounds": {
+              "x": 12,
+              "y": 496,
+              "width": 179,
+              "height": 44
+            }
+          },
+          {
+            "name": "action/start-stage",
+            "bounds": {
+              "x": 12,
+              "y": 548,
+              "width": 366,
+              "height": 56
+            }
+          },
+          {
+            "name": "action/build",
+            "bounds": {
+              "x": 199,
+              "y": 496,
+              "width": 179,
+              "height": 44
+            }
+          }
+        ],
+        "menu": [
+          {
+            "text": "全屏",
+            "bounds": {
+              "x": 282,
+              "y": 12,
+              "width": 44,
+              "height": 44,
+              "top": 12,
+              "right": 326,
+              "bottom": 56,
+              "left": 282
+            }
+          },
+          {
+            "text": "菜单",
+            "bounds": {
+              "x": 334,
+              "y": 12,
+              "width": 44,
+              "height": 44,
+              "top": 12,
+              "right": 378,
+              "bottom": 56,
+              "left": 334
+            }
+          }
+        ]
+      },
+      "final": {
+        "gold": 7,
+        "commandSeq": 2,
+        "contentVersion": "quality-r2-route-growth-v1",
+        "contentHash": "json-fnv-v1:7414228d95059959",
+        "journalLength": 0
+      },
+      "status": "OBSERVED_BEFORE"
+    },
+    {
+      "spec": {
+        "width": 320,
+        "height": 740
+      },
+      "shots": [
+        "320x740-shop.png"
+      ],
+      "errors": [],
+      "checks": [],
+      "initial": {
+        "gold": 7,
+        "commandSeq": 2,
+        "contentVersion": "quality-r2-route-growth-v1",
+        "contentHash": "json-fnv-v1:7414228d95059959",
+        "journalLength": 0
+      },
+      "geometry": {
+        "layout": {
+          "x": 12,
+          "w": 296,
+          "top": 12,
+          "pc": null,
+          "desktop": false,
+          "short": false,
+          "copyBeside": true,
+          "inventoryCollapsed": false,
+          "compact": true,
+          "wideHeader": false,
+          "portrait": true,
+          "guidanceBelow": false,
+          "slots": [
+            {
+              "x": 12,
+              "y": 488,
+              "width": 54.4,
+              "height": 76.16
+            },
+            {
+              "x": 72.4,
+              "y": 488,
+              "width": 54.4,
+              "height": 76.16
+            },
+            {
+              "x": 132.8,
+              "y": 488,
+              "width": 54.4,
+              "height": 76.16
+            },
+            {
+              "x": 193.2,
+              "y": 488,
+              "width": 54.4,
+              "height": 76.16
+            },
+            {
+              "x": 253.6,
+              "y": 488,
+              "width": 54.4,
+              "height": 76.16
+            }
+          ],
+          "shelf": [
+            {
+              "x": 16,
+              "y": 116,
+              "width": 76.1904761904762,
+              "height": 106.66666666666667
+            },
+            {
+              "x": 16,
+              "y": 234.66666666666669,
+              "width": 76.1904761904762,
+              "height": 106.66666666666667
+            },
+            {
+              "x": 16,
+              "y": 353.33333333333337,
+              "width": 76.1904761904762,
+              "height": 106.66666666666667
+            }
+          ],
+          "tabs": {
+            "x": 12,
+            "y": 64,
+            "width": 296,
+            "height": 44
+          },
+          "chapter": {
+            "x": 12,
+            "y": 572.16,
+            "width": 144,
+            "height": 44
+          },
+          "items": {
+            "x": 164,
+            "y": 572.16,
+            "width": 144,
+            "height": 44
+          },
+          "reroll": {
+            "x": 12,
+            "y": 596,
+            "width": 144,
+            "height": 44
+          },
+          "build": {
+            "x": 164,
+            "y": 596,
+            "width": 144,
+            "height": 44
+          },
+          "play": {
+            "x": 12,
+            "y": 648,
+            "width": 296,
+            "height": 56
+          },
+          "noticeY": 712
+        },
+        "rows": [
+          {
+            "name": "shop/hero-avatar",
+            "bounds": {
+              "x": 12,
+              "y": 12,
+              "width": 32,
+              "height": 32
+            }
+          },
+          {
+            "name": "shop/title",
+            "text": "二响",
+            "fontSize": "15px",
+            "bounds": {
+              "x": 50,
+              "y": 15,
+              "width": 31,
+              "height": 17
+            }
+          },
+          {
+            "name": "shop/gold",
+            "text": "金币 7",
+            "fontSize": "16px",
+            "bounds": {
+              "x": 98,
+              "y": 16,
+              "width": 46,
+              "height": 19
+            }
+          },
+          {
+            "name": "shop/owned-heading",
+            "text": "长按拖动换位 · 点牌查看",
+            "fontSize": "14px",
+            "bounds": {
+              "x": 12,
+              "y": 464,
+              "width": 153,
+              "height": 16
+            }
+          },
+          {
+            "name": "shop/owned-route",
+            "text": "同/顺/花",
+            "fontSize": "14px",
+            "bounds": {
+              "x": 14.00000076293945,
+              "y": 567.0000170898437,
+              "width": 50,
+              "height": 16
+            }
+          },
+          {
+            "name": "action/shelf-jokers",
+            "bounds": {
+              "x": 12.000000000000004,
+              "y": 64,
+              "width": 63.33333333333334,
+              "height": 44
+            }
+          },
+          {
+            "name": "action/shelf-tools",
+            "bounds": {
+              "x": 81.33333333333334,
+              "y": 64,
+              "width": 63.33333333333334,
+              "height": 44
+            }
+          },
+          {
+            "name": "action/shelf-items",
+            "bounds": {
+              "x": 150.66666666666669,
+              "y": 64,
+              "width": 63.33333333333334,
+              "height": 44
+            }
+          },
+          {
+            "name": "action/tool-inventory",
+            "bounds": {
+              "x": 220,
+              "y": 64,
+              "width": 88,
+              "height": 44
+            }
+          },
+          {
+            "name": "shop/offer-name",
+            "text": "最后一句",
+            "fontSize": "15px",
+            "bounds": {
+              "x": 106,
+              "y": 119.99999491373697,
+              "width": 61,
+              "height": 17
+            }
+          },
+          {
+            "name": "shop/offer-purpose",
+            "text": "出牌后剩0次 · 每手一次，热度+\n70",
+            "offerId": "controlled/offer-0",
+            "fontSize": "14px",
+            "bounds": {
+              "x": 106,
+              "y": 141.99999491373697,
+              "width": 197,
+              "height": 32
+            }
+          },
+          {
+            "name": "shop/price-plate",
+            "offerId": "controlled/offer-0",
+            "bounds": {
+              "x": 104.1904761904762,
+              "y": 200.66666158040366,
+              "width": 199.8095238095238,
+              "height": 24
+            }
+          },
+          {
+            "name": "shop/offer-price",
+            "text": "4 金 · 查看",
+            "offerId": "controlled/offer-0",
+            "fontSize": "16px",
+            "bounds": {
+              "x": 106,
+              "y": 202.99999491373697,
+              "width": 76,
+              "height": 19
+            }
+          },
+          {
+            "name": "shop/offer-advice",
+            "text": "推荐指数 ★★☆☆☆",
+            "offerId": "controlled/offer-0",
+            "stars": 2,
+            "fontSize": "14px",
+            "bounds": {
+              "x": 106,
+              "y": 182.99999491373697,
+              "width": 123,
+              "height": 16
+            }
+          },
+          {
+            "name": "shop/offer-operation",
+            "text": "最后一手",
+            "offerId": "controlled/offer-0",
+            "fontSize": "14px",
+            "bounds": {
+              "x": 237,
+              "y": 182.99999491373697,
+              "width": 56,
+              "height": 16
+            }
+          },
+          {
+            "name": "offer/controlled/offer-0",
+            "bounds": {
+              "x": 12,
+              "y": 116,
+              "width": 296,
+              "height": 106.66666666666669
+            }
+          },
+          {
+            "name": "shop/offer-name",
+            "text": "加班费",
+            "fontSize": "15px",
+            "bounds": {
+              "x": 106,
+              "y": 239,
+              "width": 46,
+              "height": 17
+            }
+          },
+          {
+            "name": "shop/offer-purpose",
+            "text": "剩0次出牌过关并过关 · 获得4金",
+            "offerId": "controlled/offer-1",
+            "fontSize": "14px",
+            "bounds": {
+              "x": 106,
+              "y": 260.6666666666667,
+              "width": 197,
+              "height": 16
+            }
+          },
+          {
+            "name": "shop/price-plate",
+            "offerId": "controlled/offer-1",
+            "bounds": {
+              "x": 104.1904761904762,
+              "y": 319.33333333333337,
+              "width": 199.8095238095238,
+              "height": 24
+            }
+          },
+          {
+            "name": "shop/offer-price",
+            "text": "6 金 · 查看",
+            "offerId": "controlled/offer-1",
+            "fontSize": "16px",
+            "bounds": {
+              "x": 106,
+              "y": 321,
+              "width": 76,
+              "height": 19
+            }
+          },
+          {
+            "name": "shop/offer-advice",
+            "text": "推荐指数 ★★☆☆☆",
+            "offerId": "controlled/offer-1",
+            "stars": 2,
+            "fontSize": "14px",
+            "bounds": {
+              "x": 106,
+              "y": 301,
+              "width": 123,
+              "height": 16
+            }
+          },
+          {
+            "name": "shop/offer-operation",
+            "text": "最后一手",
+            "offerId": "controlled/offer-1",
+            "fontSize": "14px",
+            "bounds": {
+              "x": 237,
+              "y": 301,
+              "width": 56,
+              "height": 16
+            }
+          },
+          {
+            "name": "shop/offer-condition",
+            "text": "失败和跳场不给",
+            "offerId": "controlled/offer-1",
+            "fontSize": "14px",
+            "bounds": {
+              "x": 106,
+              "y": 283,
+              "width": 98,
+              "height": 16
+            }
+          },
+          {
+            "name": "offer/controlled/offer-1",
+            "bounds": {
+              "x": 12,
+              "y": 234.66666666666666,
+              "width": 296,
+              "height": 106.66666666666666
+            }
+          },
+          {
+            "name": "shop/offer-name",
+            "text": "小费盒",
+            "fontSize": "15px",
+            "bounds": {
+              "x": 106,
+              "y": 356.99998982747394,
+              "width": 46,
+              "height": 17
+            }
+          },
+          {
+            "name": "shop/offer-purpose",
+            "text": "成功过关 · 获得2金",
+            "offerId": "controlled/offer-2",
+            "fontSize": "14px",
+            "bounds": {
+              "x": 106,
+              "y": 379.3333231608073,
+              "width": 119,
+              "height": 16
+            }
+          },
+          {
+            "name": "shop/price-plate",
+            "offerId": "controlled/offer-2",
+            "bounds": {
+              "x": 104.1904761904762,
+              "y": 437.999989827474,
+              "width": 199.8095238095238,
+              "height": 24
+            }
+          },
+          {
+            "name": "shop/offer-price",
+            "text": "4 金 · 查看",
+            "offerId": "controlled/offer-2",
+            "fontSize": "16px",
+            "bounds": {
+              "x": 106,
+              "y": 439.99998982747394,
+              "width": 76,
+              "height": 19
+            }
+          },
+          {
+            "name": "shop/offer-advice",
+            "text": "推荐指数 ★★★☆☆",
+            "offerId": "controlled/offer-2",
+            "stars": 3,
+            "fontSize": "14px",
+            "bounds": {
+              "x": 106,
+              "y": 419.99998982747394,
+              "width": 123,
+              "height": 16
+            }
+          },
+          {
+            "name": "shop/offer-operation",
+            "text": "过关增加",
+            "offerId": "controlled/offer-2",
+            "fontSize": "14px",
+            "bounds": {
+              "x": 237,
+              "y": 419.99998982747394,
+              "width": 56,
+              "height": 16
+            }
+          },
+          {
+            "name": "shop/offer-condition",
+            "text": "成功过关 · 跳场不给",
+            "offerId": "controlled/offer-2",
+            "fontSize": "14px",
+            "bounds": {
+              "x": 106,
+              "y": 401.99998982747394,
+              "width": 125,
+              "height": 16
+            }
+          },
+          {
+            "name": "offer/controlled/offer-2",
+            "bounds": {
+              "x": 12,
+              "y": 353.33333333333337,
+              "width": 296,
+              "height": 106.66666666666669
+            }
+          },
+          {
+            "name": "action/reroll",
+            "bounds": {
+              "x": 12,
+              "y": 596,
+              "width": 144,
+              "height": 44
+            }
+          },
+          {
+            "name": "action/start-stage",
+            "bounds": {
+              "x": 12,
+              "y": 648,
+              "width": 296,
+              "height": 56
+            }
+          },
+          {
+            "name": "action/build",
+            "bounds": {
+              "x": 164,
+              "y": 596,
+              "width": 144,
+              "height": 44
+            }
+          }
+        ],
+        "menu": [
+          {
+            "text": "全屏",
+            "bounds": {
+              "x": 212,
+              "y": 12,
+              "width": 44,
+              "height": 44,
+              "top": 12,
+              "right": 256,
+              "bottom": 56,
+              "left": 212
+            }
+          },
+          {
+            "text": "菜单",
+            "bounds": {
+              "x": 264,
+              "y": 12,
+              "width": 44,
+              "height": 44,
+              "top": 12,
+              "right": 308,
+              "bottom": 56,
+              "left": 264
+            }
+          }
+        ]
+      },
+      "final": {
+        "gold": 7,
+        "commandSeq": 2,
+        "contentVersion": "quality-r2-route-growth-v1",
+        "contentHash": "json-fnv-v1:7414228d95059959",
+        "journalLength": 0
+      },
+      "status": "OBSERVED_BEFORE"
+    },
+    {
+      "spec": {
+        "width": 390,
+        "height": 740
+      },
+      "shots": [
+        "390x740-shop.png"
+      ],
+      "errors": [],
+      "checks": [],
+      "initial": {
+        "gold": 7,
+        "commandSeq": 2,
+        "contentVersion": "quality-r2-route-growth-v1",
+        "contentHash": "json-fnv-v1:7414228d95059959",
+        "journalLength": 0
+      },
+      "geometry": {
+        "layout": {
+          "x": 12,
+          "w": 366,
+          "top": 8,
+          "pc": null,
+          "desktop": false,
+          "short": false,
+          "copyBeside": true,
+          "inventoryCollapsed": false,
+          "compact": true,
+          "wideHeader": false,
+          "portrait": true,
+          "guidanceBelow": false,
+          "slots": [
+            {
+              "x": 38,
+              "y": 488,
+              "width": 58,
+              "height": 81.19999999999999
+            },
+            {
+              "x": 102,
+              "y": 488,
+              "width": 58,
+              "height": 81.19999999999999
+            },
+            {
+              "x": 166,
+              "y": 488,
+              "width": 58,
+              "height": 81.19999999999999
+            },
+            {
+              "x": 230,
+              "y": 488,
+              "width": 58,
+              "height": 81.19999999999999
+            },
+            {
+              "x": 294,
+              "y": 488,
+              "width": 58,
+              "height": 81.19999999999999
+            }
+          ],
+          "shelf": [
+            {
+              "x": 16,
+              "y": 112,
+              "width": 77.14285714285715,
+              "height": 108
+            },
+            {
+              "x": 16,
+              "y": 232,
+              "width": 77.14285714285715,
+              "height": 108
+            },
+            {
+              "x": 16,
+              "y": 352,
+              "width": 77.14285714285715,
+              "height": 108
+            }
+          ],
+          "tabs": {
+            "x": 12,
+            "y": 60,
+            "width": 366,
+            "height": 44
+          },
+          "chapter": {
+            "x": 12,
+            "y": 577.2,
+            "width": 179,
+            "height": 44
+          },
+          "items": {
+            "x": 199,
+            "y": 577.2,
+            "width": 179,
+            "height": 44
+          },
+          "reroll": {
+            "x": 12,
+            "y": 596,
+            "width": 179,
+            "height": 44
+          },
+          "build": {
+            "x": 199,
+            "y": 596,
+            "width": 179,
+            "height": 44
+          },
+          "play": {
+            "x": 12,
+            "y": 648,
+            "width": 366,
+            "height": 56
+          },
+          "noticeY": 712
+        },
+        "rows": [
+          {
+            "name": "shop/hero-avatar",
+            "bounds": {
+              "x": 12,
+              "y": 8,
+              "width": 32,
+              "height": 32
+            }
+          },
+          {
+            "name": "shop/title",
+            "text": "二响 · 筹备",
+            "fontSize": "18px",
+            "bounds": {
+              "x": 50,
+              "y": 11,
+              "width": 88,
+              "height": 21
+            }
+          },
+          {
+            "name": "shop/gold",
+            "text": "金币 7",
+            "fontSize": "16px",
+            "bounds": {
+              "x": 168,
+              "y": 12,
+              "width": 46,
+              "height": 19
+            }
+          },
+          {
+            "name": "shop/owned-heading",
+            "text": "长按拖动换位 · 点牌查看",
+            "fontSize": "14px",
+            "bounds": {
+              "x": 38,
+              "y": 464,
+              "width": 153,
+              "height": 16
+            }
+          },
+          {
+            "name": "shop/owned-route",
+            "text": "同/顺/花",
+            "fontSize": "14px",
+            "bounds": {
+              "x": 42,
+              "y": 571.9999755859375,
+              "width": 50,
+              "height": 16
+            }
+          },
+          {
+            "name": "action/shelf-jokers",
+            "bounds": {
+              "x": 12,
+              "y": 60,
+              "width": 86.66666666666667,
+              "height": 44
+            }
+          },
+          {
+            "name": "action/shelf-tools",
+            "bounds": {
+              "x": 104.66666666666666,
+              "y": 60,
+              "width": 86.66666666666666,
+              "height": 44
+            }
+          },
+          {
+            "name": "action/shelf-items",
+            "bounds": {
+              "x": 197.33333333333334,
+              "y": 60,
+              "width": 86.66666666666666,
+              "height": 44
+            }
+          },
+          {
+            "name": "action/tool-inventory",
+            "bounds": {
+              "x": 290,
+              "y": 60,
+              "width": 88,
+              "height": 44
+            }
+          },
+          {
+            "name": "shop/offer-name",
+            "text": "最后一句",
+            "fontSize": "15px",
+            "bounds": {
+              "x": 107,
+              "y": 116,
+              "width": 61,
+              "height": 17
+            }
+          },
+          {
+            "name": "shop/offer-purpose",
+            "text": "出牌后剩0次 · 每手一次，热度+70",
+            "offerId": "controlled/offer-0",
+            "fontSize": "14px",
+            "bounds": {
+              "x": 107,
+              "y": 138,
+              "width": 212,
+              "height": 16
+            }
+          },
+          {
+            "name": "shop/price-plate",
+            "offerId": "controlled/offer-0",
+            "bounds": {
+              "x": 105.14285714285715,
+              "y": 198,
+              "width": 268.85714285714283,
+              "height": 24
+            }
+          },
+          {
+            "name": "shop/offer-price",
+            "text": "4 金 · 查看",
+            "offerId": "controlled/offer-0",
+            "fontSize": "16px",
+            "bounds": {
+              "x": 107,
+              "y": 200,
+              "width": 76,
+              "height": 19
+            }
+          },
+          {
+            "name": "shop/offer-advice",
+            "text": "推荐指数 ★★☆☆☆",
+            "offerId": "controlled/offer-0",
+            "stars": 2,
+            "fontSize": "14px",
+            "bounds": {
+              "x": 107,
+              "y": 180,
+              "width": 123,
+              "height": 16
+            }
+          },
+          {
+            "name": "shop/offer-operation",
+            "text": "最后一手",
+            "offerId": "controlled/offer-0",
+            "fontSize": "14px",
+            "bounds": {
+              "x": 238,
+              "y": 180,
+              "width": 56,
+              "height": 16
+            }
+          },
+          {
+            "name": "shop/offer-condition",
+            "text": "本手后无出牌余量",
+            "offerId": "controlled/offer-0",
+            "fontSize": "14px",
+            "bounds": {
+              "x": 107,
+              "y": 162,
+              "width": 112,
+              "height": 16
+            }
+          },
+          {
+            "name": "offer/controlled/offer-0",
+            "bounds": {
+              "x": 12,
+              "y": 112,
+              "width": 366,
+              "height": 108
+            }
+          },
+          {
+            "name": "shop/offer-name",
+            "text": "加班费",
+            "fontSize": "15px",
+            "bounds": {
+              "x": 107,
+              "y": 236,
+              "width": 46,
+              "height": 17
+            }
+          },
+          {
+            "name": "shop/offer-purpose",
+            "text": "剩0次出牌过关并过关 · 获得4金",
+            "offerId": "controlled/offer-1",
+            "fontSize": "14px",
+            "bounds": {
+              "x": 107,
+              "y": 258,
+              "width": 197,
+              "height": 16
+            }
+          },
+          {
+            "name": "shop/price-plate",
+            "offerId": "controlled/offer-1",
+            "bounds": {
+              "x": 105.14285714285715,
+              "y": 318,
+              "width": 268.85714285714283,
+              "height": 24
+            }
+          },
+          {
+            "name": "shop/offer-price",
+            "text": "6 金 · 查看",
+            "offerId": "controlled/offer-1",
+            "fontSize": "16px",
+            "bounds": {
+              "x": 107,
+              "y": 320,
+              "width": 76,
+              "height": 19
+            }
+          },
+          {
+            "name": "shop/offer-advice",
+            "text": "推荐指数 ★★☆☆☆",
+            "offerId": "controlled/offer-1",
+            "stars": 2,
+            "fontSize": "14px",
+            "bounds": {
+              "x": 107,
+              "y": 300,
+              "width": 123,
+              "height": 16
+            }
+          },
+          {
+            "name": "shop/offer-operation",
+            "text": "最后一手",
+            "offerId": "controlled/offer-1",
+            "fontSize": "14px",
+            "bounds": {
+              "x": 238,
+              "y": 300,
+              "width": 56,
+              "height": 16
+            }
+          },
+          {
+            "name": "shop/offer-condition",
+            "text": "失败和跳场不给",
+            "offerId": "controlled/offer-1",
+            "fontSize": "14px",
+            "bounds": {
+              "x": 107,
+              "y": 282,
+              "width": 98,
+              "height": 16
+            }
+          },
+          {
+            "name": "offer/controlled/offer-1",
+            "bounds": {
+              "x": 12,
+              "y": 232,
+              "width": 366,
+              "height": 108
+            }
+          },
+          {
+            "name": "shop/offer-name",
+            "text": "小费盒",
+            "fontSize": "15px",
+            "bounds": {
+              "x": 107,
+              "y": 356,
+              "width": 46,
+              "height": 17
+            }
+          },
+          {
+            "name": "shop/offer-purpose",
+            "text": "成功过关 · 获得2金",
+            "offerId": "controlled/offer-2",
+            "fontSize": "14px",
+            "bounds": {
+              "x": 107,
+              "y": 378,
+              "width": 119,
+              "height": 16
+            }
+          },
+          {
+            "name": "shop/price-plate",
+            "offerId": "controlled/offer-2",
+            "bounds": {
+              "x": 105.14285714285715,
+              "y": 438,
+              "width": 268.85714285714283,
+              "height": 24
+            }
+          },
+          {
+            "name": "shop/offer-price",
+            "text": "4 金 · 查看",
+            "offerId": "controlled/offer-2",
+            "fontSize": "16px",
+            "bounds": {
+              "x": 107,
+              "y": 440,
+              "width": 76,
+              "height": 19
+            }
+          },
+          {
+            "name": "shop/offer-advice",
+            "text": "推荐指数 ★★★☆☆",
+            "offerId": "controlled/offer-2",
+            "stars": 3,
+            "fontSize": "14px",
+            "bounds": {
+              "x": 107,
+              "y": 420,
+              "width": 123,
+              "height": 16
+            }
+          },
+          {
+            "name": "shop/offer-operation",
+            "text": "过关增加",
+            "offerId": "controlled/offer-2",
+            "fontSize": "14px",
+            "bounds": {
+              "x": 238,
+              "y": 420,
+              "width": 56,
+              "height": 16
+            }
+          },
+          {
+            "name": "shop/offer-condition",
+            "text": "成功过关 · 跳场不给",
+            "offerId": "controlled/offer-2",
+            "fontSize": "14px",
+            "bounds": {
+              "x": 107,
+              "y": 402,
+              "width": 125,
+              "height": 16
+            }
+          },
+          {
+            "name": "offer/controlled/offer-2",
+            "bounds": {
+              "x": 12,
+              "y": 352,
+              "width": 366,
+              "height": 108
+            }
+          },
+          {
+            "name": "action/reroll",
+            "bounds": {
+              "x": 12,
+              "y": 596,
+              "width": 179,
+              "height": 44
+            }
+          },
+          {
+            "name": "action/start-stage",
+            "bounds": {
+              "x": 12,
+              "y": 648,
+              "width": 366,
+              "height": 56
+            }
+          },
+          {
+            "name": "action/build",
+            "bounds": {
+              "x": 199,
+              "y": 596,
+              "width": 179,
+              "height": 44
+            }
+          }
+        ],
+        "menu": [
+          {
+            "text": "全屏",
+            "bounds": {
+              "x": 282,
+              "y": 12,
+              "width": 44,
+              "height": 44,
+              "top": 12,
+              "right": 326,
+              "bottom": 56,
+              "left": 282
+            }
+          },
+          {
+            "text": "菜单",
+            "bounds": {
+              "x": 334,
+              "y": 12,
+              "width": 44,
+              "height": 44,
+              "top": 12,
+              "right": 378,
+              "bottom": 56,
+              "left": 334
+            }
+          }
+        ]
+      },
+      "final": {
+        "gold": 7,
+        "commandSeq": 2,
+        "contentVersion": "quality-r2-route-growth-v1",
+        "contentHash": "json-fnv-v1:7414228d95059959",
+        "journalLength": 0
+      },
+      "status": "OBSERVED_BEFORE"
+    }
+  ],
+  "status": "COMPLETE"
+}

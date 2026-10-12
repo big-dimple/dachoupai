@@ -16,7 +16,7 @@ export function makeCardsRows(run:R2RunState){
 /** A local view over actual stock and inventory. Every payment/consumption uses the existing confirmation. */
 export function showMakeCards(dialog:DetailDialog,run:R2RunState,ready:()=>boolean,purchaseReason:(offer:R2Offer)=>string|undefined,owned:(id:string)=>void,basic:(id:string)=>void,offer:(id:string)=>void,inventory:()=>void):void {
  const rows=makeCardsRows(run),seq=run.commandSeq;
- const d=dialog.open('做牌','',[],{closeLabel:'回到商店'});d.classList.add('make-cards-dialog');
+ const d=dialog.open('道具','',[],{closeLabel:'回到商店'});d.classList.add('make-cards-dialog');
  const summary=document.createElement('p');summary.className='make-cards-summary';summary.textContent=`金币 ${run.gold} · 库存 ${run.consumables.length}/${r2ConsumableCapacity(run)}`;d.querySelector('.dialog-header')!.append(summary);
  const scroll=d.querySelector<HTMLElement>('.dialog-scroll')!;scroll.replaceChildren();
  const tabs=document.createElement('nav'),workspace=document.createElement('div');tabs.className='make-cards-tabs';workspace.className='make-cards-workspace';d.dataset.makePane=rows.owned.length?'owned':'purchase';
@@ -29,7 +29,7 @@ export function showMakeCards(dialog:DetailDialog,run:R2RunState,ready:()=>boole
  };
  const held=grid(sections.get('owned')!);for(const r of rows.owned)tile(held,r.id,r.info,r.purpose,r.later?'查看 · 留到牌桌':'选目标',undefined,()=>owned(r.id),true);
  if(!rows.owned.length){const p=document.createElement('p');p.className='make-cards-empty';p.textContent='暂无库存，先选购一件工具。';held.append(p);}
- const stock=sections.get('purchase')!,quota=document.createElement('p');quota.className='make-cards-quota';quota.textContent=!run.shop!.basicChoice?'本店现货 · 按实际报价选购':run.shop!.basicChoice.purchase?'本店自选已购 · 下一店恢复':'本店自选1件 · 购买后自行选目标';stock.append(quota);
+ const stock=sections.get('purchase')!,quota=document.createElement('p');quota.className='make-cards-quota';quota.textContent=!run.shop!.basicChoice?'本店现货 · 确认购买时可选存着或现在用':run.shop!.basicChoice.purchase?'本店自选已购 · 下一店恢复':'本店自选1件 · 可买来存着或现在用';stock.append(quota);
  const choices=grid(stock);for(const r of rows.basic)tile(choices,r.id,r.info,r.purpose,(r.duplicate?'现货 · ':'')+r.price+' 金',r.duplicate?(r.duplicate.consumed?'已售':purchaseReason(r.duplicate)):r.reason,()=>r.duplicate?offer(r.duplicate.offerId):basic(r.id));
  if(rows.offers.length){const h=document.createElement('h3');h.textContent='本店现货';stock.append(h);const random=grid(stock);for(const r of rows.offers)tile(random,r.offer.offerId,r.info,toolPurpose(run,r.offer.definitionId),r.price+' 金',r.offer.consumed?'已售':purchaseReason(r.offer),()=>offer(r.offer.offerId));}
  scroll.append(tabs,workspace);const more=document.createElement('button');more.type='button';more.textContent='道具箱与长期物品';more.onclick=inventory;d.querySelector('.dialog-actions')!.prepend(more);
