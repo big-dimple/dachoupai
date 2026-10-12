@@ -905,7 +905,7 @@ export class ShopScene extends Phaser.Scene {
       }
       if(action.type==='UseConsumable'&&!result.duplicate&&owner&&this.dialog.active(owner)){showSavedToolResult(this.dialog,previous,this.run,action,this.resultReduced);if(owner.classList.contains('make-cards-tool'))this.continueMakeCards();}
       return true;
-    }finally {if(lifecycle===this.lifecycle){this.busy=false;if(pendingDrag){this.ownedDrag=undefined;this.input.enabled=inputEnabled;}if(this.scene.isActive()&&this.run.phase==='shop'){this.render();pendingDrag?.settle(reorderSaved);this.afterRenderFx();}else pendingDrag?.destroy();}}
+    }finally {if(lifecycle===this.lifecycle){this.busy=false;if(pendingDrag){pendingDrag.capture();this.ownedDrag=undefined;this.input.enabled=inputEnabled;}if(this.scene.isActive()&&this.run.phase==='shop'){this.render();pendingDrag?.settle(reorderSaved);this.afterRenderFx();}else pendingDrag?.destroy();}}
   }
 }
 import {basicChoiceSeat,isBasicChoiceSeat,basicChoiceRows} from './BasicToolChoice';

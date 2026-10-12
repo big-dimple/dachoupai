@@ -80,6 +80,8 @@ export class OwnedJokerDragVisual {
   pending(){this.saving=true;this.paint(false);}
   /** A resize may redraw cards while persistence is pending. Rebind to the new faces. */
   rebind(){if(this.saving){this.overlay=undefined;this.shadow=undefined;this.label=undefined;this.destinations.clear();this.paint(true);}}
+  /** Sample actual tween positions immediately before old faces are destroyed. */
+  capture(){for(const [id,art] of this.surface().arts)if(art.active)this.positions.set(id,{x:art.x,y:art.y,scale:art.scaleX});}
   settle(saved:boolean){
     const s=this.surface();this.removeLayers();
     for(const [i,id] of s.ids.entries()){
