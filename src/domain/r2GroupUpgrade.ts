@@ -45,7 +45,11 @@ export const R2_SUIT_CHOICE_HASH=stableHash(R2_SUIT_CHOICE_CONTRACT);
 export const R2_ROUTE_GROWTH_VERSION='quality-r2-route-growth-v1';
 export const R2_ROUTE_GROWTH_CONTRACT=Object.freeze({inherits:R2_SUIT_CHOICE_HASH,allCharacters:true,rule:R2_ROUTE_GROWTH_RULE,legacy:'exact-no-migration',starters:'no-instance-coefficient',rescue:'first-successful-opening-discard'});
 export const R2_ROUTE_GROWTH_HASH=stableHash({contract:R2_ROUTE_GROWTH_CONTRACT,jokers:R2_ROUTE_GROWTH_JOKERS});
-export function isR2RouteGrowth(identity:{contentVersion?:unknown;contentHash?:unknown}):boolean{return identity.contentVersion===R2_ROUTE_GROWTH_VERSION&&identity.contentHash===R2_ROUTE_GROWTH_HASH;}
+export const R2_TOUYE_CORE_VERSION='quality-r2-touye-new-core-v1';
+export const R2_TOUYE_CORE_CONTRACT=Object.freeze({inherits:R2_ROUTE_GROWTH_HASH,launch:'touye-selected-route-only',qualification:'target-accepted-and-actual-refill-id-in-active-scoring-core',formedBefore:'allowed',refill:'same-discard-transaction-pop-ids-before-after-partitions',proof:'receipt-bound-discard-and-due-play-with-C2-main-source',public:'observed-hand-and-actual-refill-only-private-partitions-never-score-input',ordinary:'1.15',success:'2',failure:'0.85',clock:'unchanged-characterScore-before-jokerScore-qualification-only',lost:'legal-play-consumes-even-old-core-accompanying-disabled-or-target-miss',locked:'existing-no-discard-tools-joker-changes',disabled:'B08-Q01',short:'actual-at-least-one-refill-empty-stack-no-bet',legacy:'exact-no-migration'});
+export const R2_TOUYE_CORE_HASH=stableHash(R2_TOUYE_CORE_CONTRACT);
+export function isR2TouyeNewCore(identity:{contentVersion?:unknown;contentHash?:unknown}):boolean{return identity.contentVersion===R2_TOUYE_CORE_VERSION&&identity.contentHash===R2_TOUYE_CORE_HASH;}
+export function isR2RouteGrowth(identity:{contentVersion?:unknown;contentHash?:unknown}):boolean{return identity.contentVersion===R2_ROUTE_GROWTH_VERSION&&identity.contentHash===R2_ROUTE_GROWTH_HASH||isR2TouyeNewCore(identity);}
 export function isR2SuitChoice(identity:{contentVersion?:unknown;contentHash?:unknown}):boolean{return identity.contentVersion===R2_SUIT_CHOICE_VERSION&&identity.contentHash===R2_SUIT_CHOICE_HASH||isR2RouteGrowth(identity);}
 export const r2BasicChoiceIds=(identity:{contentVersion?:unknown;contentHash?:unknown})=>isR2SuitChoice(identity)?R2_SUIT_CHOICE_IDS:R2_BASIC_TOOL_IDS;
 export const r2BasicChoiceBasePrice=(id:string)=>R2_SUIT_DYE_IDS.includes(id)?4:2;

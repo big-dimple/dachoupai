@@ -1,3 +1,4 @@
+import {stableHash} from './hash';
 import {erxiangHandoffStep,type ErxiangHandoffIntent,type ErxiangHandoffTrace} from './r2ErxiangHandoff';
 import {touyeWagerStep,type TouyeCommit,type TouyeWagerTrace} from './r2TouyeWager';
 import {xiemuBurnStep,type XiemuBurnIntent,type XiemuBurnTrace} from './r2XiemuBurn';
@@ -37,7 +38,7 @@ export interface ScoreInput {
   /** Required for the exact C2 content profile; never inferred from Joker ownership. */
   routeGrowth?:R2RouteProgress;
   erxiangHandoff?:ErxiangHandoffIntent;
-  touyeWager?:{commit:TouyeCommit|null};
+  touyeWager?:{commit:TouyeCommit|null;newCore?:true};
   azaoCharge?:AzaoChargeIntent;
   xiemuBurn?:XiemuBurnIntent;
   laohuanTrick?:true;
@@ -176,7 +177,8 @@ function resolveScore(input: PublicScoreInput, policy: ResolvePolicy): ScoreTrac
   const facts=r2SelectionFacts({hand:cards,selectedIds:input.selectedIds,jokers,definitions:input.definitions,handRules:input.handRules,disabledIds:input.disabledIds,ordinaryPointsSuppressedIds:input.ordinaryPointsSuppressedIds});
   const evaluated={type:facts.type,scoringIds:facts.scoringIds};
   if(input.touyeWager&&(!['touye','neutral'].includes(input.characterId)||input.wager))throw Error('invalid-touye-score');
-  const touyeWager=input.touyeWager?touyeWagerStep(evaluated.type,input.touyeWager.commit,input.characterId==='touye'&&input.boss?.definitionId!=='B08'):undefined;
+  const touyeWager=input.touyeWager?touyeWagerStep(evaluated.type,input.touyeWager.commit,input.characterId==='touye'&&input.boss?.definitionId!=='B08',facts.activeScoringIds,input.touyeWager.newCore===true):undefined;
+  if(input.touyeWager?.newCore&&input.touyeWager.commit&&stableHash([...cards.map(c=>c.id)].sort())!==stableHash([...input.touyeWager.commit.refill!.handAfter].sort()))throw Error('invalid-touye-refill-hand');
   if(touyeWager?.commit&&touyeWager.commit.duePlayIndex!==input.playIndex)throw Error('invalid-touye-due-play');
   if(input.laohuanTrick!==undefined&&(input.laohuanTrick!==true||!['laohuan','neutral'].includes(input.characterId)))throw Error('invalid-laohuan-character');
   if(input.xiemuBurn&&input.characterId!=='xiemu'&&input.characterId!=='neutral')throw Error('invalid-xiemu-character');

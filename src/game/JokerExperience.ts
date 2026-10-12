@@ -43,7 +43,7 @@ export function savedBenefit(state:R2RunState,trace:ScoreTrace,e:ScoreEvent):Sav
   const handoff=trace.erxiangHandoff;
   if(handoff?.targetId&&e.reasonKey==='erxiang.handoff'&&e.targetCardId===handoff.targetId)return fact('二响 · 交棒已兑现',handoff.points+'点热度改加倍率（首次普通计分）','指定有效核心，本场一次','本场已用；增强、版次、后续重触保持');
   const wager=trace.touyeWager;
-  if(wager?.commit&&e.reasonKey.startsWith('touye.'+(wager.outcome==='won'?'won.':'lost.')))return fact('骰爷 · 赌约已结算','押'+HAND_LABELS[wager.commit.target]+' · 实际'+HAND_LABELS[trace.handType]+' · '+(wager.outcome==='won'?'达成×2':'未成×0.85'),'先前保存的赌约绑定本手','本场已用；未成不是收益');
+  if(wager?.commit&&e.reasonKey.startsWith('touye.'+(wager.outcome==='won'?'won.':'lost.')))return fact('骰爷 · 赌约已结算','押'+HAND_LABELS[wager.commit.target]+' · 实际'+HAND_LABELS[trace.handType]+' · '+(wager.outcome==='won'?'达成×2':wager.core?.lossReason==='new-core'?'新补牌未入有效核心×0.85':'未成×0.85'),'先前保存的赌约绑定本手',wager.core?'本场已用；输约不是收益':'本场已用；未成不是收益');
   if(trace.assist&&e.reasonKey==='amo.assist.'+trace.assist.kind)return fact('阿默 · 助攻已兑现','副组'+trace.assist.ids.length+'张已用 · 实际×'+trace.assist.multiplier,'有效主手及剩余同点副组','本场已用；副组不再留手');
  }
  if(!hasActualBenefit(e)||e.phase==='base'||e.phase==='finalScore')return;

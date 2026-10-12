@@ -14,7 +14,7 @@ it('default promises share the current identity copy and describe actual operati
  expect(copy('amo')).toMatch(/出牌前.*助攻.*真消耗/);
  expect(copy('erxiang')).toMatch(/出牌前.*交棒.*点数改加倍率/);expect(copy('erxiang')).not.toMatch(/对子、两对、三条/);
  expect(copy('laohuan')).toMatch(/弃牌前.*戏法.*自己留/);expect(copy('laohuan')).not.toMatch(/多添热度/);
- expect(copy('touye')).toMatch(/弃牌前.*下一手.*未成×0.85/);expect(copy('touye')).not.toMatch(/机会|随机/);
+ expect(copy('touye')).toMatch(/弃牌前.*已成型.*下一手.*有效核心.*×0.85/);expect(copy('touye')).not.toMatch(/机会|随机/);
  expect(copy('azao')).toMatch(/先蓄势.*出牌前.*释放/);expect(copy('xiemu')).toMatch(/出牌前.*燃10／20／30金.*留钱/);
  expect(Object.keys(OPENING_ROUTES).sort()).toEqual([...BUILD_FOCUS].sort());
 });
