@@ -1,5 +1,5 @@
 import {assertTouyeCoreFacts} from './r2TouyeCoreFacts';
-import {R2_TOUYE_CORE_VERSION,R2_TOUYE_CORE_HASH,isR2TouyeNewCore} from './r2GroupUpgrade';
+import {R2_ACTIVE_MULT_VERSION,R2_ACTIVE_MULT_HASH,R2_ACTIVE_MULT_CHARACTERS,isR2ActiveMultTiming,R2_TOUYE_CORE_VERSION,R2_TOUYE_CORE_HASH,isR2TouyeNewCore} from './r2GroupUpgrade';
 import {R2_ROUTE_GROWTH_VERSION,R2_ROUTE_GROWTH_HASH,isR2RouteGrowth} from './r2GroupUpgrade';
 import {freshR2RouteHistory,freshR2RouteStage,r2RouteSnapshot,validR2RouteHistory,validR2RouteStage,recordR2RouteHand,settleR2RouteGrowth,R2_ROUTE_FAMILIES,type R2RouteHistory,type R2RouteStage} from './r2RouteGrowth';
 import {usesErxiangHandoff} from './r2ErxiangHandoff';
@@ -60,6 +60,7 @@ const sharedRuntimeHash=stableHash({jokers:SHARED_R2_JOKERS,features:R2_IMPLEMEN
 if(sharedRuntimeHash!==R2_LEGACY_CONTENT_HASH)throw Error('published-r2-contract-drift');
 
 export const R2_RULESETS=Object.freeze([
+  Object.freeze({contentVersion:R2_ACTIVE_MULT_VERSION,contentHash:R2_ACTIVE_MULT_HASH,amoScoreTiming:'assist-v1' as const}),
   Object.freeze({contentVersion:R2_TOUYE_CORE_VERSION,contentHash:R2_TOUYE_CORE_HASH,amoScoreTiming:'assist-v1' as const}),
   Object.freeze({contentVersion:R2_ROUTE_GROWTH_VERSION,contentHash:R2_ROUTE_GROWTH_HASH,amoScoreTiming:'assist-v1' as const}),
   Object.freeze({contentVersion:R2_SUIT_CHOICE_VERSION,contentHash:R2_SUIT_CHOICE_HASH,amoScoreTiming:'assist-v1' as const}),
@@ -152,7 +153,7 @@ export function assertR2Invariants(state:R2RunState):void {
     }
   }else check(!Object.hasOwn(state.stage,'touyeWager'),'touye profile shape');}
   assertTouyeCoreFacts(state);
-  check(!isR2TouyeNewCore(state)||state.characterId==='touye','touye core character identity');
+  check(!isR2TouyeNewCore(state)||(isR2ActiveMultTiming(state)?(R2_ACTIVE_MULT_CHARACTERS as readonly string[]).includes(state.characterId):state.characterId==='touye'),'touye core character identity');
   check(state.schemaVersion===2 && state.rulesVersion==='r2' && !!r2RulesetFor(state),'r2 versions');
   check(isR2RouteStarter(state)?!!state.openingRoute&&Object.hasOwn(R2_ROUTE_STARTERS,state.openingRoute):!Object.hasOwn(state,'openingRoute'),'opening route identity');
   check(isR2RouteStarter(state)?!!state.routeStarter:!Object.hasOwn(state,'routeStarter'),'starter identity');
@@ -299,7 +300,7 @@ export function r2ScoreContext(state:Pick<R2RunState,'gold'|'stage'|'boss'|'stag
   const modifiers=readR2Modifiers(state.jokers,r2JokerDefinitionsFor(state));
   const config=r2RunModeConfig(state),profile=r2RulesetFor(state);
   if(!profile)throw Error('incompatible-version');
-  return {...(isR2RouteGrowth(state)?{routeGrowth:r2RouteSnapshot(state.routeGrowth)}:{}),...(usesErxiangHandoff(state)?{erxiangHandoff:{targetId:null,beforeUsed:state.stage?.erxiangHandoffUsed??false}}:{}),...(usesTouyeWager(state)?{touyeWager:{commit:state.stage?.touyeWager?.resolution==='pending'?state.stage.touyeWager.commit:null,...(usesTouyeNewCore(state)?{newCore:true as const}:{})}}:{}),...(usesLaohuanRefill(state)?{laohuanTrick:true as const}:{}),...(usesXiemuBurn(state)?{xiemuBurn:{cost:0 as XiemuBurnCost,goldBefore:state.gold,beforeUsed:state.stage?.xiemuBurnUsed??false}}:{}),...(usesAzaoCharge(state)?{azaoCharge:{before:state.stage?.azaoCharge??emptyAzaoCharge(),release:false}}:{}),amoScoreTiming:r2ScoreTimingFor(state),characterId:config.characterAbilityEnabled?state.characterId:'neutral' as const,jokerSlots:config.jokerSlots,gold:state.gold,discardsUsed:state.stage?.discardsUsed??0,previousHandScore:state.stage?.previousHandScore??null,boss:state.stage?.boss??null,sealedJokerIds:state.stage?.sealedJokerIds??[],challengeDisabledJokerId:state.stage?.challengeDisabledJokerId??null,
+  return {...(isR2ActiveMultTiming(state)?{activeMultTiming:'after-route-growth' as const}:{}),...(isR2RouteGrowth(state)?{routeGrowth:r2RouteSnapshot(state.routeGrowth)}:{}),...(usesErxiangHandoff(state)?{erxiangHandoff:{targetId:null,beforeUsed:state.stage?.erxiangHandoffUsed??false}}:{}),...(usesTouyeWager(state)?{touyeWager:{commit:state.stage?.touyeWager?.resolution==='pending'?state.stage.touyeWager.commit:null,...(usesTouyeNewCore(state)?{newCore:true as const}:{})}}:{}),...(usesLaohuanRefill(state)?{laohuanTrick:true as const}:{}),...(usesXiemuBurn(state)?{xiemuBurn:{cost:0 as XiemuBurnCost,goldBefore:state.gold,beforeUsed:state.stage?.xiemuBurnUsed??false}}:{}),...(usesAzaoCharge(state)?{azaoCharge:{before:state.stage?.azaoCharge??emptyAzaoCharge(),release:false}}:{}),amoScoreTiming:r2ScoreTimingFor(state),characterId:config.characterAbilityEnabled?state.characterId:'neutral' as const,jokerSlots:config.jokerSlots,gold:state.gold,discardsUsed:state.stage?.discardsUsed??0,previousHandScore:state.stage?.previousHandScore??null,boss:state.stage?.boss??null,sealedJokerIds:state.stage?.sealedJokerIds??[],challengeDisabledJokerId:state.stage?.challengeDisabledJokerId??null,
     ...(state.stage?{stageHeatBefore:state.stage.heat,stageTargetHeat:state.stage.targetHeat}:{}),
     handRules:{fourStraight:modifiers.fourStraight,fourFlush:modifiers.fourFlush},ordinaryPointsSuppressedIds:r2OrdinarySuppression(state.boss,state.stage?.index??state.stageIndex,hand,ids)};
 }
@@ -577,7 +578,7 @@ export function transactR2(input:R2RunState|null,command:Command):Transaction {
     if(identity!==undefined&&(!identity||typeof identity!=='object'||Object.getPrototypeOf(identity)!==Object.prototype||Object.keys(identity).sort().join(',')!=='contentHash,contentVersion'||action.r2Profile!==undefined||!r2RulesetFor(identity)))return fail('invalid-r2-identity');
     const profile=r2RulesetFor(identity??(action.r2Profile==='group-upgrade-v1'?{contentVersion:R2_GROUP_UPGRADE_VERSION,contentHash:R2_GROUP_UPGRADE_HASH}:action.r2Profile==='combo-growth-v1'?{contentVersion:R2_COMBO_GROWTH_VERSION,contentHash:R2_COMBO_GROWTH_HASH}:action.r2Profile==='amo-assist-v1'?{contentVersion:R2_ASSIST_VERSION,contentHash:R2_ASSIST_HASH}:{contentVersion:R2_CONTENT_VERSION,contentHash:R2_CONTENT_HASH}))!;
     if(isR2RouteStarter(profile)?!action.openingRoute||!Object.hasOwn(R2_ROUTE_STARTERS,action.openingRoute):Object.hasOwn(action,'openingRoute'))return fail('invalid-opening-route');
-    if(isR2TouyeNewCore(profile)&&action.characterId!=='touye')return fail('invalid-r2-profile');
+    if(isR2TouyeNewCore(profile)&&(isR2ActiveMultTiming(profile)?!(R2_ACTIVE_MULT_CHARACTERS as readonly string[]).includes(action.characterId):action.characterId!=='touye'))return fail('invalid-r2-profile');
     const assisted=profile.amoScoreTiming==='assist-v1'&&action.characterId==='amo';
     if(profile.contentVersion===R2_ASSIST_VERSION&&action.characterId!=='amo')return fail('invalid-r2-profile');
     if(!r2ModeSeedAllowed(config,action.seed)||config.mode==='tutorial'&&action.characterId!=='erxiang')return fail('invalid-mode-seed-or-character');

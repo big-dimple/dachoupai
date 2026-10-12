@@ -1,0 +1,443 @@
+{
+  "checkedUTC": "2026-10-12T10:51:51.735663+00:00",
+  "inputProduct": "dc985f6a4f418e5751648f1d57f466163fbc2673",
+  "baseMain": "0c71c5dabbc754516848d1a0acc931464db730a8",
+  "productCommit": "3b4e192aea9bdea5053ba4ccdc5037d78809db29",
+  "identity": {
+    "contentVersion": "quality-r2-active-mult-timing-v1",
+    "contentHash": "json-fnv-v1:ca1e8f77913649d3"
+  },
+  "sourceSha256": "b41df29e983c4f6603c279303cfcb9c4203243fe9d5f591a66f221b22fab65d3",
+  "productFiles": [
+    {
+      "path": "src/application/checkpoint.ts",
+      "sha256": "96dc68160d512f72a58912496c68af577b077ec70f1c8484ad397d914d2cfbbd"
+    },
+    {
+      "path": "src/application/routeGrowthTrace.ts",
+      "sha256": "b01444de6f3123bdf0f335f08fc737765b1c720fcd009be2aac321f7f4f0758a"
+    },
+    {
+      "path": "src/domain/r2GroupUpgrade.ts",
+      "sha256": "d92a32a3c6910e3da51819696cbc9401e8a9bde349924e5a23b8f9df851876c3"
+    },
+    {
+      "path": "src/domain/r2Run.ts",
+      "sha256": "5c827e37d78fdb7c54a3edc8bb1b7f2f15dfc1d8c0c49647e1b547e3db0d6e1a"
+    },
+    {
+      "path": "src/domain/scoreR2.ts",
+      "sha256": "54a63beb1a975bea66121de74366f9b29f8f972ed873cfbf2546e3c78d8603ac"
+    },
+    {
+      "path": "src/game/AiHandCandidates.ts",
+      "sha256": "61be6f44828acc04d57cd594d49bc5448890e80440e2e4e8716015c35c44a590"
+    },
+    {
+      "path": "src/game/GameScene.ts",
+      "sha256": "653af418034b1b5ce9d099efc5a0e14644d8163a6ee87cb06fd5eb605695de1d"
+    },
+    {
+      "path": "src/game/HeroSignature.ts",
+      "sha256": "af8662e606bcca6cd52943130bbbf13a1d48513455f685411d3ffd358ca09083"
+    },
+    {
+      "path": "src/game/HeroStageContinuity.ts",
+      "sha256": "c6eee0433d4f97da5551d128758d4eaebbef7976395fdbef83916bef0b223de6"
+    },
+    {
+      "path": "src/game/JokerExperience.ts",
+      "sha256": "a30f3891a5cc859aee246d0e1bd297f54355f0cac1799572f61bdf0365a58362"
+    },
+    {
+      "path": "src/game/RunLaunch.ts",
+      "sha256": "7a0407123c716dfbe9f7ddb0522fb027ce969681812509ce9eb304f24eb2ec58"
+    }
+  ],
+  "protected": [
+    {
+      "path": "src/content",
+      "baseObject": "e8c3794be5b0fcb74da4aeb9e6adc63c22388345",
+      "productObject": "e8c3794be5b0fcb74da4aeb9e6adc63c22388345",
+      "exact": true
+    },
+    {
+      "path": "src/audio",
+      "baseObject": "a2f0483eecaaafb40cdbb82778ec2a846fd2e000",
+      "productObject": "a2f0483eecaaafb40cdbb82778ec2a846fd2e000",
+      "exact": true
+    },
+    {
+      "path": "src/game/IntermissionScene.ts",
+      "baseObject": "ca22b5bc4e904636b8c5b97bc40e98e8ab53b7d0",
+      "productObject": "ca22b5bc4e904636b8c5b97bc40e98e8ab53b7d0",
+      "exact": true
+    },
+    {
+      "path": "src/style.css",
+      "baseObject": "b864d7e4482c3e2f6d38940f866517144cdc01d2",
+      "productObject": "b864d7e4482c3e2f6d38940f866517144cdc01d2",
+      "exact": true
+    },
+    {
+      "path": "public",
+      "baseObject": "c4a6ec74e7fd754b0f300b973020f8afed7542e1",
+      "productObject": "c4a6ec74e7fd754b0f300b973020f8afed7542e1",
+      "exact": true
+    },
+    {
+      "path": "art",
+      "baseObject": "b0caa33679b84bee932b2854734c04ad39ba0464",
+      "productObject": "b0caa33679b84bee932b2854734c04ad39ba0464",
+      "exact": true
+    },
+    {
+      "path": "src/domain/r2RouteGrowth.ts",
+      "baseObject": "6e35545ef1948202eedd1b6366b3be9688c84046",
+      "productObject": "6e35545ef1948202eedd1b6366b3be9688c84046",
+      "exact": true
+    },
+    {
+      "path": "src/domain/r2TouyeWager.ts",
+      "baseObject": "c4c58177ebeb0d771032e66c6092f1fc96820216",
+      "productObject": "c4c58177ebeb0d771032e66c6092f1fc96820216",
+      "exact": true
+    },
+    {
+      "path": "src/domain/r2TouyeCoreFacts.ts",
+      "baseObject": "b54c6162b87f36dbec1d7213ef94d64f4a5b37d9",
+      "productObject": "b54c6162b87f36dbec1d7213ef94d64f4a5b37d9",
+      "exact": true
+    },
+    {
+      "path": "src/domain/r2XiemuBurn.ts",
+      "baseObject": "76a4c8624fc7bd6c975b311c6946075d39b8aada",
+      "productObject": "76a4c8624fc7bd6c975b311c6946075d39b8aada",
+      "exact": true
+    },
+    {
+      "path": "src/domain/r2AzaoCharge.ts",
+      "baseObject": "849fc08323f7906ebb1bf9fff669ad74a49c74b7",
+      "productObject": "849fc08323f7906ebb1bf9fff669ad74a49c74b7",
+      "exact": true
+    },
+    {
+      "path": "src/domain/r2ErxiangHandoff.ts",
+      "baseObject": "055c3c3dcaaf74a19196d6b0808620466ee2cb96",
+      "productObject": "055c3c3dcaaf74a19196d6b0808620466ee2cb96",
+      "exact": true
+    },
+    {
+      "path": "src/domain/r2LaohuanRefill.ts",
+      "baseObject": "e4292eedb6c7cfd2b0e2c12d7798bc7becdb3e9b",
+      "productObject": "e4292eedb6c7cfd2b0e2c12d7798bc7becdb3e9b",
+      "exact": true
+    },
+    {
+      "path": "src/domain/r2Chapter.ts",
+      "baseObject": "dc79d188838b9fbdb1cde02705627c5e3305f798",
+      "productObject": "dc79d188838b9fbdb1cde02705627c5e3305f798",
+      "exact": true
+    },
+    {
+      "path": "src/domain/r2Resources.ts",
+      "baseObject": "00369351d1f7476fdceb9efde3b75f89a041ffbc",
+      "productObject": "00369351d1f7476fdceb9efde3b75f89a041ffbc",
+      "exact": true
+    },
+    {
+      "path": "src/domain/r2Shop.ts",
+      "baseObject": "4243b252d124b99fc29259236a7f8a4116df9a23",
+      "productObject": "4243b252d124b99fc29259236a7f8a4116df9a23",
+      "exact": true
+    },
+    {
+      "path": "src/application/SavedRun.ts",
+      "baseObject": "31bba149320afe7bd06c0e5d2d414623b940726d",
+      "productObject": "31bba149320afe7bd06c0e5d2d414623b940726d",
+      "exact": true
+    },
+    {
+      "path": "src/application/RunController.ts",
+      "baseObject": "604592c5c97eb15e61be43dd59838a0f3b576282",
+      "productObject": "604592c5c97eb15e61be43dd59838a0f3b576282",
+      "exact": true
+    },
+    {
+      "path": "src/game/CharacterRunCopy.ts",
+      "baseObject": "b3e567f27dfdaee42b6a8d0f0bedfaa28f41800c",
+      "productObject": "b3e567f27dfdaee42b6a8d0f0bedfaa28f41800c",
+      "exact": true
+    },
+    {
+      "path": "src/game/TouyeWagerCopy.ts",
+      "baseObject": "f1b9f354de0c292019cb625cd7fcd947f62f7ae4",
+      "productObject": "f1b9f354de0c292019cb625cd7fcd947f62f7ae4",
+      "exact": true
+    },
+    {
+      "path": "src/game/HeroSkillGuide.ts",
+      "baseObject": "e3a12c032a7f3a2d1036a4e1bad412b1f1bfad91",
+      "productObject": "e3a12c032a7f3a2d1036a4e1bad412b1f1bfad91",
+      "exact": true
+    },
+    {
+      "path": "src/game/RunMenu.ts",
+      "baseObject": "bb47db99e65a926f20ddd8fe27d72482d5ad9478",
+      "productObject": "bb47db99e65a926f20ddd8fe27d72482d5ad9478",
+      "exact": true
+    },
+    {
+      "path": "package.json",
+      "baseObject": "f7e7f89f05edd46636bac3acc1dfcd1b6cd94ccd",
+      "productObject": "f7e7f89f05edd46636bac3acc1dfcd1b6cd94ccd",
+      "exact": true
+    },
+    {
+      "path": "package-lock.json",
+      "baseObject": "acc93dcd9410bc911db279534e28522a8691dbab",
+      "productObject": "acc93dcd9410bc911db279534e28522a8691dbab",
+      "exact": true
+    },
+    {
+      "path": ".github/workflows",
+      "baseObject": "58821d4798c07eb1e3f33a505c9f8fa310fd37b5",
+      "productObject": "58821d4798c07eb1e3f33a505c9f8fa310fd37b5",
+      "exact": true
+    }
+  ],
+  "allProtectedExact": true,
+  "checks": {
+    "verify": "PASS: typecheck, 220 files / 3254 tests, build",
+    "domainEvidence": "PASS: 16 old identities, 100 complete byte pairs, 86 failure-retry-restore pairs",
+    "native": "PASS: PC1366 and touch390 × 4 branches",
+    "sourceImagesActualView": 8,
+    "smoke": "PASS: system Chromium desktop/mobile",
+    "plan": "PASS:32 existing work packages; not gameplay acceptance"
+  },
+  "publication": {
+    "mainMerged": false,
+    "pr132Included": false,
+    "pr132ReadyBlocked": "parent reported permission-check rejection; exact rejection text not supplied; awaits user confirmation",
+    "crossPackageIntegration": "WAIT_PARENT",
+    "naturalRuns": "NOT_RUN",
+    "parentIndependentReview": "OPEN"
+  },
+  "artifacts": [
+    {
+      "path": "README.md",
+      "bytes": 9262,
+      "sha256": "c00ff4ff413f0c007455743d4642ca0ceb7ab492df4d39dce6667b711606cde6"
+    },
+    {
+      "path": "failures/native-first/log.txt",
+      "bytes": 908,
+      "sha256": "8f618c0f6c97fb3f5f8083bcd29a6222e9e482384723496f59f602877be1a737"
+    },
+    {
+      "path": "failures/native-first/report.json",
+      "bytes": 170987,
+      "sha256": "bf37922d3f4c77ff1fb9c9a01e35dcf82ed598f4a453bf8cec81b090bb925009"
+    },
+    {
+      "path": "failures/native-fourth/FAIL.png",
+      "bytes": 183252,
+      "sha256": "8eb426db049a0dba895a3237b9c5b5e343434cbc0cab4bf4aa7c18d44e24ddb8"
+    },
+    {
+      "path": "failures/native-fourth/report.json",
+      "bytes": 1734621,
+      "sha256": "6c08f68e21e158a0b2e053d81f13e3dbffb93e978380a076ca8125a7e7514425"
+    },
+    {
+      "path": "failures/native-second/FAIL.png",
+      "bytes": 90227,
+      "sha256": "abd710d0748f99ade5423547e81140e729c034f41e4d76891892cd0196a001ae"
+    },
+    {
+      "path": "failures/native-second/report.json",
+      "bytes": 1228112,
+      "sha256": "3f590d8bb6ee87e3d54f119815c1da8e65661556f9bad76ed40f79e056b8ab81"
+    },
+    {
+      "path": "failures/native-third/FAIL.png",
+      "bytes": 96383,
+      "sha256": "b0be051876a89be0e38e2fe6c9c439aa3dca58d0b232b6f58f87f10c21e15fde"
+    },
+    {
+      "path": "failures/native-third/report.json",
+      "bytes": 1733954,
+      "sha256": "83763137cf9a2bf24227daab61b94816a8bb2f6ce8cb1ff209ef657f009110b2"
+    },
+    {
+      "path": "failures/p1a-extended-tests.log",
+      "bytes": 1598,
+      "sha256": "d5b743a3e4b2b0c048a7310838637ec8679a9b9afab1d6e5d790cd1f47abc31f"
+    },
+    {
+      "path": "failures/p1a-first-tests.log",
+      "bytes": 11402,
+      "sha256": "93b89f79099f6b7bedb3385d8b0695f436661fc33238a42aa25f9e7ef311b740"
+    },
+    {
+      "path": "failures/p1a-full-tests.log",
+      "bytes": 978,
+      "sha256": "278a49cb10763ba4f5d93efed238dd53325c035ebcb5cc940ac382e477d36841"
+    },
+    {
+      "path": "failures/p1a-new-tests.log",
+      "bytes": 3562,
+      "sha256": "9e8038ae77db740ca830c7fa3cf3c109ea3b9cc81e449d93696ac0fa46a3c8bf"
+    },
+    {
+      "path": "failures/p1a-nonlinear-fixed.log",
+      "bytes": 1067,
+      "sha256": "241922c5e12f0cd8c47d7dbfad134040b13a95148c04732bc31b28ae8a1e775e"
+    },
+    {
+      "path": "failures/p1a-nonlinear-tests.log",
+      "bytes": 1109,
+      "sha256": "9183164d7ec1a074248c38802c9a62cc7f0daf868f0d2c060e699e92a1f05ece"
+    },
+    {
+      "path": "failures/p1a-verify-final.log",
+      "bytes": 1722,
+      "sha256": "43464c5b9b92e3e5341837f5c02608fd241fff03a41152df6ca70e149d97f2ee"
+    },
+    {
+      "path": "failures/p1a-windows-tests.log",
+      "bytes": 1232,
+      "sha256": "c21e721227e7cf2359ff6d1d91d14104cebdd6409a27fe13027ae0633a126f7e"
+    },
+    {
+      "path": "native/1366-azao-saved.png",
+      "bytes": 125637,
+      "sha256": "271d1c8d21afdf4e1020ad2bd42d8b88e468fd7c1c9b397f22287ccf6f7c2c19"
+    },
+    {
+      "path": "native/1366-azao-source.png",
+      "bytes": 396884,
+      "sha256": "530095c4bed8b587a9640801eb876e8ec05c70114f4b9c22eb79e5a265224f70"
+    },
+    {
+      "path": "native/1366-touye-lost-saved.png",
+      "bytes": 96383,
+      "sha256": "b0be051876a89be0e38e2fe6c9c439aa3dca58d0b232b6f58f87f10c21e15fde"
+    },
+    {
+      "path": "native/1366-touye-lost-source.png",
+      "bytes": 182706,
+      "sha256": "0ced72a2e03905b60e5d40d579cadf00a8caf301411c2a9eaa145e19b1999162"
+    },
+    {
+      "path": "native/1366-touye-won-saved.png",
+      "bytes": 117896,
+      "sha256": "e2d185289792c8d4bc7aa1aa40f7dfc5df9c8ac30a80b445aefaa393046e7e02"
+    },
+    {
+      "path": "native/1366-touye-won-source.png",
+      "bytes": 374078,
+      "sha256": "e4031bc763d4211ba6efe91bfc3cbf56eae47f176e9e64c006348fbef2343a5e"
+    },
+    {
+      "path": "native/1366-xiemu-saved.png",
+      "bytes": 128816,
+      "sha256": "6222aa6b513e6034570e0a6d24162e5d3fc17a75f52bedc0a46bbd6b61521788"
+    },
+    {
+      "path": "native/1366-xiemu-source.png",
+      "bytes": 468553,
+      "sha256": "a7c22bc9cba03099a2ac3d471df6dcca8fa22056f0c0dad070f31f20d2723829"
+    },
+    {
+      "path": "native/390-azao-saved.png",
+      "bytes": 74025,
+      "sha256": "9ffec0e031a89a9c8886ccf58c54df9965d860e1eb98088acbe5c75a984a20fc"
+    },
+    {
+      "path": "native/390-azao-source.png",
+      "bytes": 157004,
+      "sha256": "f20f3cc1224a063b761be3d9c7e65e8c55d463d087ff565fdc7ce740940683b1"
+    },
+    {
+      "path": "native/390-touye-lost-saved.png",
+      "bytes": 70232,
+      "sha256": "0cfd9bdce48ac21cb67815740e92adb8427dbea4586d71eacbeeb204af2cce56"
+    },
+    {
+      "path": "native/390-touye-lost-source.png",
+      "bytes": 88933,
+      "sha256": "a8c97d9758c23877b4680d689cf306af1166ddd7aab83db2f98029afc72d347a"
+    },
+    {
+      "path": "native/390-touye-won-saved.png",
+      "bytes": 82889,
+      "sha256": "bf1f41637dad36f6feb756cdea4073ed36d968f8cfd7f97fb276bd500e5ee107"
+    },
+    {
+      "path": "native/390-touye-won-source.png",
+      "bytes": 157024,
+      "sha256": "8750e23056ef0b0bd08655176fa2bcbe3f58351119b56209a9f203123ba94599"
+    },
+    {
+      "path": "native/390-xiemu-saved.png",
+      "bytes": 92201,
+      "sha256": "b90b10feafe0ab2516e718da1a9914f3ce0425f7558b9a2aad456666aee3b149"
+    },
+    {
+      "path": "native/390-xiemu-source.png",
+      "bytes": 177465,
+      "sha256": "8ac4bb349b11e1665e43575b3c389a2a98eca3433f36a32bb2a008b82798074a"
+    },
+    {
+      "path": "native/report.json",
+      "bytes": 4193604,
+      "sha256": "7548c977e4aa6725a475c8bc9a69b9404939d9e59585da117ef63dbfcf05b861"
+    },
+    {
+      "path": "p1a-display-terms.log",
+      "bytes": 415,
+      "sha256": "20054afcb1b9e1a416a2cfb758353e5463cb122a87008b49950e2114cea7fe2c"
+    },
+    {
+      "path": "p1a-final-unit.log",
+      "bytes": 415,
+      "sha256": "3ef8d5dbe24fa4314aa518859689db81aaee5764b63deba771d1ee9ed4084f07"
+    },
+    {
+      "path": "p1a-native-product.log",
+      "bytes": 891,
+      "sha256": "70232e5b4df2ae327baa4f6dee4f5529f89a5e09678817f5aafe13b49745f0f2"
+    },
+    {
+      "path": "p1a-plan-final.log",
+      "bytes": 69,
+      "sha256": "4ac412cb7d8dabcb0857d651e1f1800b2142284bb826518fe5fd749bb54b6e27"
+    },
+    {
+      "path": "p1a-plan-self.log",
+      "bytes": 61,
+      "sha256": "f4972d178d274a806e897c532582ead50728295f288bd3731022c46efb99e501"
+    },
+    {
+      "path": "p1a-plan.log",
+      "bytes": 69,
+      "sha256": "4ac412cb7d8dabcb0857d651e1f1800b2142284bb826518fe5fd749bb54b6e27"
+    },
+    {
+      "path": "p1a-smoke-product.log",
+      "bytes": 1380,
+      "sha256": "bebec6bea19f52da0ca8a1543044239ca5b36b4f334c64ed6ac94545efd8655a"
+    },
+    {
+      "path": "p1a-verify-product.log",
+      "bytes": 2018,
+      "sha256": "27fda17e391c9562cc2b677a7c2e1869733d083cf2d3227b70c336e517c04317"
+    },
+    {
+      "path": "scorer-and-legacy.json",
+      "bytes": 3014560,
+      "sha256": "99bfe85f69a08a70a8782b374d9777046192b34699f9ca0c8fbf4f55ba244c17"
+    }
+  ]
+}

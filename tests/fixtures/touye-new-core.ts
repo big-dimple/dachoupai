@@ -1,13 +1,13 @@
 import {createRun,applyCommand,type R2RunState,type Command,type Action} from '../../src/domain/run';
 import {assertR2Invariants,r2CreateJoker} from '../../src/domain/r2Run';
-import {isR2RouteStarter} from '../../src/domain/r2GroupUpgrade';
-import {newRunIdentity} from '../../src/game/RunLaunch';
+import {R2_TOUYE_CORE_VERSION,R2_TOUYE_CORE_HASH,isR2RouteStarter} from '../../src/domain/r2GroupUpgrade';
 import {touyeChoice} from '../../src/game/TouyeWagerCopy';
 import type {TouyeTarget} from '../../src/domain/r2TouyeWager';
 import {r2DisabledCards,type R2BossPlan} from '../../src/domain/r2Chapter';
 import {completeControlledRouteHistory} from './route-growth-history';
 import {resolveR2ModeConfig} from '../../src/content/r2Modes';
 import {makeCheckpoint,readCheckpoint} from '../../src/application/checkpoint';
+const coreIdentity={contentVersion:R2_TOUYE_CORE_VERSION,contentHash:R2_TOUYE_CORE_HASH};
 export const matureMain=['spades-9','hearts-9','clubs-13','diamonds-13'];
 export const baselineHand=[...matureMain,'spades-3','hearts-5','clubs-7','diamonds-2'];
 export type TouyeScenario='mature-win'|'mature-old-core'|'mature-accompanying'|'unformed-win'|'target-miss'|'duplicate-face'|'short'|'empty'|'four-straight'|'four-flush'|'four-kind-flush'|'disabled-core'|'B02-zero'|'unformed-disabled'|'full-house-core'|'four-kind-core'|'all-disabled-flush';
@@ -20,7 +20,7 @@ export function touyeFixture(kind:TouyeScenario='mature-win',options:{identity?:
  const modeConfig=options.challenge?{mode:'challenge' as const,difficulty:0 as const,challengeId:'Q01' as const,programsEnabled:false}:{mode:'standard' as const,difficulty:0 as const,challengeId:null,programsEnabled:false};
  const resolved=resolveR2ModeConfig(modeConfig);if(!resolved.ok)throw Error(resolved.code);
  const seed=resolved.config.seedPolicy.kind==='free'?'touye-core-bounded':resolved.config.seedPolicy.values[0];
- let s=createRun({rulesVersion:'r2',characterId:'touye',runId:'core/'+kind,seed,r2Identity:options.identity??newRunIdentity('touye','group'),...(isR2RouteStarter(options.identity??newRunIdentity('touye','group'))?{openingRoute:'group' as const}:{}),modeConfig});
+ let s=createRun({rulesVersion:'r2',characterId:'touye',runId:'core/'+kind,seed,r2Identity:options.identity??coreIdentity,...(isR2RouteStarter(options.identity??coreIdentity)?{openingRoute:'group' as const}:{}),modeConfig});
  s=touyeSend(s,{type:'LeaveShop'});s.shop=null;
  const boss=options.boss??(kind==='disabled-core'||kind==='unformed-disabled'||kind==='all-disabled-flush'?{definitionId:'B03',disabledSuit:'hearts'}:kind==='B02-zero'?{definitionId:'B02',disabledSuit:null}:undefined);
  if(boss){const n=Number(boss.definitionId.slice(1));s.chapter=n<=4?1:n<=12?3:7;s.stageIndex=s.chapter*3-1;s.seenBossIds=[...['B01','B02','B03','B04','B05','B06'].slice(0,s.chapter-1),boss.definitionId];s.boss=boss;completeControlledRouteHistory(s);}

@@ -1,0 +1,31 @@
+
+ RUN  v4.1.11 /workspace/dachoupai
+
+ ❯ tests/p1a-active-mult.test.ts (15 tests | 1 failed) 676ms
+     × each active has a bounded original-target use-worthy window as well as unused comparisons 11ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/p1a-active-mult.test.ts > P1A exact active multiplier timing > each active has a bounded original-target use-worthy window as well as unused comparisons
+Error: Run invariant: chapter boss history
+ ❯ check src/domain/r2Run.ts:145:70
+
+ ❯ assertR2Invariants src/domain/r2Run.ts:213:3
+ ❯ applyCommand src/domain/run.ts:204:5
+ ❯ touyeSend tests/fixtures/touye-new-core.ts:15:75
+ ❯ activeRunFixture tests/fixtures/p1a-active-mult.ts:38:4
+ ❯ tests/p1a-active-mult.test.ts:68:78
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 14 passed (15)
+   Start at  09:59:01
+   Duration  1.47s (transform 559ms, setup 0ms, import 686ms, tests 676ms, environment 0ms)
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice

@@ -1,0 +1,60 @@
+
+> dachoupai@0.1.0 verify
+> npm run typecheck && npm test && npm run build
+
+
+> dachoupai@0.1.0 typecheck
+> tsc --noEmit
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice
+
+> dachoupai@0.1.0 test
+> vitest run
+
+
+ RUN  v4.1.11 /workspace/dachoupai
+
+
+ Test Files  220 passed (220)
+      Tests  3254 passed (3254)
+   Start at  10:43:04
+   Duration  49.21s (transform 8.62s, setup 0ms, import 39.93s, tests 71.83s, environment 21ms)
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice
+
+> dachoupai@0.1.0 build
+> tsc --noEmit && vite build
+
+vite v7.3.6 building client environment for production...
+transforming...
+✓ 244 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/build-info.json                0.17 kB │ gzip:   0.15 kB
+dist/index.html                     0.55 kB │ gzip:   0.36 kB
+dist/assets/index-CfHqm1Bo.css     65.04 kB │ gzip:  12.62 kB
+dist/assets/index-Cm3Ry3l8.js   2,579.87 kB │ gzip: 750.44 kB
+
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+✓ built in 6.79s
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice
