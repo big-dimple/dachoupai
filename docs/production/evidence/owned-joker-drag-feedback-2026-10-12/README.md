@@ -1,10 +1,10 @@
 # 持有大丑牌拖拽反馈：有限受控验收
 
-**集成候选含未合main依赖PR137 `e68acfd56281c2b85401ba0cb9009f6146fca09c`，仅按父授权做draft集成，不是绕过其合并拒绝。main仍00fe311。**
+**最终已正常吸收父批准的main `8f036827dde4ca5b88ba89fceb0fbdf0f32b2970`，PR137已合；本批合并提交 `8d8260315c780d9cf5f5703ecbdd8257d51430ce`。先前draft依赖和拒绝仅历史，不再作为当前阻塞。本代理未合main或发布，仍由父唯一Ready/merge。**
 
 本批独立修复手机商店满五张的“抓不住／不跟手／目标与保存落位不清楚”。[draft PR138](https://github.com/big-dimple/dachoupai/pull/138)，父唯一 Ready／merge／发布。正常试玩归 dot，本批不是自然经营、美术最终签收或物理手机验收。
 
-基线server取git archive到独立/tmp目录；baseline/report的modified字段描述harness调用方工作树，不是该只读archive。基线：`00fe311e04305b7769f8141520742810bc614134`。独立初版产品：`29d95f43e8c0bfa64ef069215d76ad6946aa8672`，src tree `e2a3058cce25c67c63c89f5a351896a4e54181b4`；随后补实际坐标采集 `b91b19d4` 与更严格首帧harness `6074433e`。最终集成产品：`8bc6527538d8a20297a11b2e768dd4a4fe80ba73`，src tree `8aee0ab47a537c4d02c4d5539fca6d29d9ade5c8`。`candidate/report.json` 的最终原生验收正是在该冻结提交、无 src/tests/harness 修改下运行；其后证据提交不改变产品树。README 所列本地检查与远端最终 HEAD CI 分开，不借历史绿色签本批。
+基线server取git archive到独立/tmp目录；baseline/report的modified字段描述harness调用方工作树，不是该只读archive。基线：`00fe311e04305b7769f8141520742810bc614134`。独立初版产品：`29d95f43e8c0bfa64ef069215d76ad6946aa8672`，src tree `e2a3058cce25c67c63c89f5a351896a4e54181b4`；随后补实际坐标采集 `b91b19d4` 与更严格首帧harness `6074433e`。最终集成产品：`8bc6527538d8a20297a11b2e768dd4a4fe80ba73`，src tree `8aee0ab47a537c4d02c4d5539fca6d29d9ade5c8`。`candidate/report.json` 的最终原生验收正是在该冻结提交、无 src/tests/harness 修改下运行；其后证据提交不改变产品树。main吸收后的8d826031产品／tests／harness与8bc65275完全相同，src tree仍8aee0ab4；`main-final/report.json`在8d826031无修改下再次5组PASS，完整初态／四笔排序／失败重试／冷恢复与先前集成相等，见comparison-main-final.json。README 所列本地检查与远端最终 HEAD CI 分开，不借历史绿色签本批。
 
 ## 已复现与修正
 
@@ -54,14 +54,21 @@
 
 ## 待签边界与集成
 
-当前受控source仅上述SHA与fixture；物理手机、硬件GPU/FPS、真人抓持观感、音频、自然五张获取/整局与其它viewport仍OPEN。B13提示判断定向测试通过，未冒称该Boss完整原生旅程；骰爷待兑现锁定沿原领域及既有全套测试，未改GameScene。没有mask证据，未做新增mask或改变shared layout。
+当前受控source仅上述SHA与fixture；报告全截图由harness输出，仓库按README选择关键完整PNG及全部状态记录，不把缺少录像的路径当录像通过；物理手机、硬件GPU/FPS、真人抓持观感、音频、自然五张获取/整局与其它viewport仍OPEN。B13提示判断定向测试通过，未冒称该Boss完整原生旅程；骰爷待兑现锁定沿原领域及既有全套测试，未改GameScene。没有mask证据，未做新增mask或改变shared layout。
 
-并行PR137尚未合main，父通知其合并工具因范围识别拒绝两次；本代理没有请求/绕过该合并。父随后明确授权吸收137候选到本draft做集成。已经正常merge为8bc65275，保双方历史与原失败，未挑拣、未推main、未发布。RunMenu／MakeCardsDialog／ShopLayout／style.css与137候选字节相同，domain/content/application/platform/public与00fe311相同。
+此前并行PR137未合main，父通知其合并工具因范围识别拒绝两次；本代理没有请求/绕过该合并。父随后明确授权吸收137候选到本draft做集成；随后父获具体批准，正常合137至main8f036827。已经正常merge为8bc65275，保双方历史与原失败，未挑拣、未推main、未发布。RunMenu／MakeCardsDialog／ShopLayout／style.css与137候选字节相同，domain/content/application/platform/public与00fe311相同。
 
 最终`integrated/report.json`在8bc65275、无src/tests/harness修改下运行，三种手机及PC、DPR2低动态、四笔插入/持久保存、原安全边界、延迟/失败/菜单重试/冷恢复均PASS。实际新三列货架的牌位重新用原生坐标验，不借旧列位断言；[320抓起](integrated/320x740-slow-held.png)／[途中](integrated/320x740-slow-mid.png)／[落位](integrated/320x740-slow-dropped.png)，[390保存](integrated/390x844-saving-delay.png)，[412途中](integrated/412x915-slow-mid.png)。本代理已actual view上述像素。
 
 [集成完整状态对照](comparison-integrated.json)：初态与三笔主路径的完整state/journal/IDB与baseline相等；PR137首次开菜单多一个fullscreen-hint已看UI偏好，明确登记，不改run。每次手势内所有非lease localStorage保持原样。完整状态和逐帧采样在integrated gzip，原初版candidate与FAIL保留不覆盖。
 
-**整屏未通过新观察：** 320满五张时，货架“4 金 · 比较替换”越过列宽，价格行互相挤占。见上面integrated整屏，属于137货架范围，已报告父，未在拖拽批擅改其代码。瞬时抬起也会经过价格/提示边缘。这里仅签受控拖拽反馈与状态门，不签整个满五商店。父审/权限解除及父对这个新满五边界的处置仍待；137正常合main后须确认正式main包含的实际SHA，再核必要集成差异，不把本draft依赖当已发布。
+**整屏未通过新观察：** 320满五张时，货架“4 金 · 比较替换”越过列宽，价格行互相挤占。见上面integrated整屏，属于137货架范围，已报告父，未在拖拽批擅改其代码。瞬时抬起也会经过价格/提示边缘。这里仅签受控拖拽反馈与状态门，不签整个满五商店。父对这个新满五边界的处置仍待；137已由父合main，8d826031正常吸收并重跑三种手机/PC/低动态全部PASS，不改变它的价格或购买实现。拖拽尚待父Ready/merge，不能称已发布。
 
 重跑：`DRAG_OUTPUT=/tmp/owned-feedback-check node harness/owned-joker-drag-feedback.mjs`；受控存档通过正常菜单导入，输入用真实CDP／mouse／DOM。正常试玩由dot负责。
+
+
+## main吸收后的冻结回执
+
+`8d8260315c780d9cf5f5703ecbdd8257d51430ce`正合main8f036827，无src/tests/harness新差异。`main-final`的5组真实触摸/鼠标、完整状态、取消与一次命令、快速释放/延迟首帧、失败/重试/冷恢复再次PASS。[320抓起](main-final/320x740-slow-held.png)／[中途](main-final/320x740-slow-mid.png)／[落位](main-final/320x740-slow-dropped.png)，[390等待](main-final/390x844-saving-delay.png)，[412途中](main-final/412x915-slow-mid.png)。
+
+吸收前冻结证据提交ada261554f680336b63578bcab29ae3aab72c66a的[完整CI38265270167](https://github.com/big-dimple/dachoupai/actions/runs/38265270167) browser/domain/docs均success，[production-docs38265270163](https://github.com/big-dimple/dachoupai/actions/runs/38265270163) success；该HEAD本地browser总gate亦PASS（build＋系统Chromium PC/手机smoke，源码指纹不变）。最终head将仅增加本回执，CI依然按最终PR HEAD单独核并在PR描述和交付回执链接，不借ada代签新HEAD。
