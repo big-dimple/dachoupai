@@ -14,6 +14,18 @@
 
 [75项定向检查](tests.log)、[类型检查](typecheck.log)、[build](build.log)通过，不把远端全套和定向项叠加为新总数。保留首轮[菜单观察器FAIL](observer-fail/report.json)：漏点旧局更换时真正的确认开始新局，后补真实DOM确认；保留[基线SSR依赖FAIL](baseline-dependency-fail.log)：旧工作树未挂Vite依赖，后让纯SSR跳过配置文件加载。这两次不是产品失败，没有据此改规则或造PASS。原缓存缺陷的两端REPRODUCED记录与最终PASS分列，不覆盖原证据。
 
-## 文件窗口之外的同步项
+## ad69时文件窗口之外的同步项（现已由main解决）
 
 当前时序线程已启动，只预留上述三个文案文件。尚有三处骰爷说明在它的文件窗口内，本包未写：HeroSignature第11行示例的“新牌入有效核心”，HeroStageContinuity第35行下场提示，JokerExperience第46行输约来源说明。交父/时序线程同步清理为“新摸牌参与成型”“新摸的牌没参与成型”等自然中文；不得把这三处记成已修。这是已定位的显示同步项，不是玩法或数值问题，也不扩写Intermission或倍率时序包。本包最终精确SHA/CI另交父，draft不自行合main或部署，不以等待18局阻塞此已验显示包。
+
+上段保留ad69交接时的真实状态。随后父已合PR134至 `f326a9b3a7a9be937c7c3cd4d286721f674a9409`，三处术语已由该包修正。本候选正常合入main，三份文件与main逐字节相同，不再是待处理项；未越过窗口重写。
+
+## 发布批准后的最新main接续
+
+父明确批准PR132/134发布，且PR132已由父转Ready。本候选普通合入 `f326a9b3a7a9be937c7c3cd4d286721f674a9409`，合入提交 `db6f134fcd63049c4f1553d2cb0b627402eeeb7d`，无文本冲突。四个显示产品文件均逐字节等于原PR132 `ad69ea4ed8c3f782e638f2263a4f050bdf627fbb`；相对新main仍只有这四份显示文件差异。领域/应用保存/内容/牌/音频/公开资源各树完全等于main，保新时序身份和三份新文案，不改布局、数值、规则或保存。相对ad69继承的11份产品源差异全部来自已合main，完整列表见[接续检查](post-timing/checks.json)。
+
+原正常新局检查固定资格身份，按最新入口改读真实launch身份，实际新局为 `quality-r2-active-mult-timing-v1 / json-fnv-v1:ca1e8f77913649d3`；并未给旧档改身份。[最新正常菜单两端检查](post-timing/menu/report.json)仍实际走谢幕→骰爷正常路线确认，切换后未点详情就显示骰爷人话说明，版本视图保留，全保存不变。
+
+[三身份两端18个只读范围](post-timing/views/report.json)从固定main直接加载旧函数，与候选同合法保存输入对照。旧C2全文/资格/步骤不变；资格身份与后置身份均显示1/2/3操作和新摸牌成型条件，非显示资格字段严格同main，没有落入旧禁押、50%随机或开发术语说明。最新后置赢/输原生存档已过关，因此按真实phase导入结算页查看，不篡改phase留在牌桌；实际显示的赢/输词与保存结果对应。所有state/journal/IndexedDB查看前后相等，保持原分412/175及后置档2472/1050，未重算或再次押/出牌。最新菜单、待出手细则和结算页实图已实际查看。
+
+[94项受影响测试](post-timing/tests.log)、[typecheck](post-timing/typecheck.log)、[build](post-timing/build.log)通过。首轮补证在结算页按平级找Text，未遍历其容器而报getBounds undefined；[原FAIL报告](post-timing/observer-first/report.json)与[日志](post-timing/observer-first.log)保留，后只修观察器递归查找/等待真实Text，并给不同身份确认截图独立文件名，没有修改Intermission或其他产品。旧历史图/报告保持原SHA，最新保护清单基线更新为f326。最终HEAD CI重新按精确SHA核验；不自行合main或再转PR状态，父负责唯一集成。

@@ -1,6 +1,6 @@
 {
-  "checkedUTC": "2026-10-12T10:00:54.430826+00:00",
-  "baseMain": "0c71c5dabbc754516848d1a0acc931464db730a8",
+  "checkedUTC": "2026-10-12T12:29:26.736311+00:00",
+  "baseMain": "f326a9b3a7a9be937c7c3cd4d286721f674a9409",
   "productFiles": [
     {
       "path": "src/game/CharacterRunCopy.ts",
@@ -725,7 +725,7 @@
     "src/vendor/browslatro/reordering.ts",
     "src/vite-env.d.ts"
   ],
-  "baseSSRRoot": "/workspace/dachoupai-touye-core",
+  "baseSSRRoot": "/tmp/dachoupai-touye-copy-timing-main",
   "baseSSRSourceTreeExactMain": true,
   "identitiesUnchanged": {
     "current": {
@@ -735,14 +735,23 @@
     "oldC2": {
       "contentVersion": "quality-r2-route-growth-v1",
       "contentHash": "json-fnv-v1:7414228d95059959"
+    },
+    "latest": {
+      "contentVersion": "quality-r2-active-mult-timing-v1",
+      "contentHash": "json-fnv-v1:ca1e8f77913649d3"
     }
   },
-  "remainingOwnerWindows": [
+  "copyImplementationBase": "dc985f6a4f418e5751648f1d57f466163fbc2673",
+  "frozenDisplayCommit": "8e4accce7e312b046cdcc81acd08213324ea6cb3",
+  "docsIntegrationCommit": "dde237d5e5b78cf812f99f46ea7a9c2fceff1ab0",
+  "priorCandidate": "ad69ea4ed8c3f782e638f2263a4f050bdf627fbb",
+  "activeTimingIntegrationCommit": "db6f134fcd63049c4f1553d2cb0b627402eeeb7d",
+  "productFourFilesUnchangedFromPrior": true,
+  "resolvedOwnerWindows": [
     "src/game/HeroSignature.ts:11",
     "src/game/HeroStageContinuity.ts:35",
     "src/game/JokerExperience.ts:46"
   ],
-  "copyImplementationBase": "dc985f6a4f418e5751648f1d57f466163fbc2673",
-  "frozenDisplayCommit": "8e4accce7e312b046cdcc81acd08213324ea6cb3",
-  "docsIntegrationCommit": "dde237d5e5b78cf812f99f46ea7a9c2fceff1ab0"
+  "threeMainDisplayFilesByteExact": true,
+  "domainAndApplicationTreesByteExactMain": true
 }

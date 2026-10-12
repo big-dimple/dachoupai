@@ -9,8 +9,10 @@ const out=process.env.TOUYE_COPY_OUTPUT??'/tmp/touye-player-copy';
 await mkdir(out,{recursive:true});
 const server=await createServer({cacheDir:'/tmp/touye-player-copy-vite',mode:'e2e',server:{host:'127.0.0.1',port:5642,strictPort:true,hmr:false},logLevel:'error'});
 await server.listen();
+const {newRunIdentity}=await server.ssrLoadModule('/src/game/RunLaunch.ts');
+const expectedIdentity=newRunIdentity('touye','group');
 const browser=await chromium.launch({executablePath:'/usr/bin/chromium',args:['--disable-gpu','--disable-software-rasterizer']});
-const report={baseline,scope:'normal Xiemu to Touye route selection, read-only menu text before and after details click; no natural play',rows:[],status:'RUNNING'};
+const report={baseline,expectedIdentity,scope:'normal Xiemu to Touye route selection, read-only menu text before and after details click; no natural play',rows:[],status:'RUNNING'};
 try {
  for(const viewport of [{width:1366,height:768},{width:390,height:844}]) {
   const touch=viewport.width===390,context=await browser.newContext({viewport,hasTouch:touch,reducedMotion:'reduce'}),page=await context.newPage();
@@ -24,7 +26,7 @@ try {
   await menu();const info=await expand('本局与版本');await dom(page.getByRole('button',{name:'局详情',exact:true}));
   const oldText=await info.locator('p').innerText();assert.match(oldText,/谢幕/);await dom(page.locator('.run-menu-toggle'));
   await menu();await expand('进度与存档');await dom(page.getByRole('button',{name:'开始新局',exact:true}));await waitScene(page,'character-select');await tapUI(page,'character-select','character/touye',touch);await confirmHeroRoute(page,touch);await dom(page.getByRole('button',{name:'确认开始新局',exact:true}));await waitScene(page,'shop');
-  const before=await snap();assert.equal(before.state.characterId,'touye');assert.equal(before.state.contentHash,'json-fnv-v1:413ecc65d3b9a2a1');
+  const before=await snap();assert.equal(before.state.characterId,'touye');assert.equal(before.state.contentVersion,expectedIdentity.contentVersion);assert.equal(before.state.contentHash,expectedIdentity.contentHash);
   await menu();await expand('本局与版本');const beforeClick=await info.locator('p').innerText();const stale=beforeClick.includes('谢幕');
   const staleImage=viewport.width+'-new-run-before-details.png';await page.screenshot({path:out+'/'+staleImage,scale:'css'});
   await dom(page.getByRole('button',{name:'局详情',exact:true}));const afterClick=await info.locator('p').innerText();assert.match(afterClick,/骰爷/);
