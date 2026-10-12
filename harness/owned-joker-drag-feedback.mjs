@@ -6,6 +6,7 @@ import {gzipSync} from 'node:zlib';
 import {execFileSync} from 'node:child_process';
 import {point,waitScene,tapUI} from './ui.mjs';
 const port=Number(process.env.DRAG_PORT??5473),baseline=process.env.DRAG_BASELINE==='1',dir=process.env.DRAG_OUTPUT??(baseline?'/tmp/owned-feedback-before':'/tmp/owned-feedback-after');await mkdir(dir,{recursive:true});
+const smoke=process.env.DRAG_SMOKE==='1';
 const server=await createServer({root:process.env.DRAG_ROOT,cacheDir:`/tmp/owned-drag-vite-${port}`,mode:'e2e',server:{host:'127.0.0.1',port,strictPort:true},logLevel:'error'});await server.listen();
 const {createRun,applyCommand,assertRunInvariants}=await server.ssrLoadModule('/src/domain/run.ts'),{newRunIdentity}=await server.ssrLoadModule('/src/game/RunLaunch.ts'),{r2CreateJoker}=await server.ssrLoadModule('/src/domain/r2Run.ts'),{makeCheckpoint,readCheckpoint}=await server.ssrLoadModule('/src/application/checkpoint.ts');
 let run=createRun({seed:'owned-drag-fixed',runId:'owned-drag-fixed',characterId:'erxiang',rulesVersion:'r2',r2Identity:newRunIdentity('erxiang','group'),openingRoute:'group'});
@@ -21,7 +22,7 @@ const slot=(p,i)=>p.evaluate(i=>{const s=window.__harness.game.scene.getScene('s
 const load=async p=>{await p.locator('.run-menu-toggle').click();const sec=p.getByText('进度与存档',{exact:true}).locator('..');if(!await sec.evaluate(e=>e.open))await sec.locator('summary').click();const fc=p.waitForEvent('filechooser');await p.getByRole('button',{name:'导入本局',exact:true}).click();await(await fc).setFiles({name:'controlled-owned.json',mimeType:'application/json',buffer:Buffer.from(JSON.stringify(cp))});await waitScene(p,'shop');await idle(p);await frame(p);await p.waitForTimeout(350);await p.waitForFunction(()=>{const s=window.__harness.game.scene.getScene('shop');return s.run.jokers.every(j=>s.textures.exists('p08-joker-'+j.definitionId))&&s.run.shop.offers.every(j=>s.textures.exists('p08-joker-'+j.definitionId));});};
 const visual=p=>p.evaluate(()=>{const s=window.__harness.game.scene.getScene('shop'),d=s.ownedDrag;return {drag:!!d,saving:d?.saving??false,inputEnabled:s.input.enabled,hint:s.ownedHint?.text,slots:s.geometry().slots,arts:[...s.ownedArts].map(([id,a])=>({id,x:a.x,y:a.y,scale:a.scaleX,active:a.active,bounds:{x:a.getBounds().x,y:a.getBounds().y,width:a.getBounds().width,height:a.getBounds().height}})),surfaceTouchAction:s.ownedInput.surface.style.touchAction,dispatch:window.__feedbackDispatch??[]};});
 try{
- for(const spec of [{width:320,height:740,touch:true},{width:390,height:844,touch:true},{width:412,height:915,touch:true},{width:1366,height:900,touch:false},...(!baseline?[{width:390,height:844,touch:true,reduced:true,dpr:2}]:[])]){
+ for(const spec of [{width:320,height:740,touch:true},{width:390,height:844,touch:true},{width:412,height:915,touch:true},{width:1366,height:900,touch:false},...(!baseline?[{width:390,height:844,touch:true,reduced:true,dpr:2}]:[])].filter(s=>!smoke||s.touch&&!s.reduced&&[320,390].includes(s.width))){
   const {width,height,touch}=spec,name=width+'x'+height+(spec.reduced?'-reduce-dpr2':''),context=await browser.newContext({viewport:{width,height},hasTouch:touch,isMobile:touch,deviceScaleFactor:spec.dpr??1,reducedMotion:spec.reduced?'reduce':'no-preference'}),p=await context.newPage(),row={...spec,name,checks:[],errors:[],moves:[],cancellations:[]};report.cases.push(row);p.on('dialog',d=>d.accept());p.on('pageerror',e=>row.errors.push(String(e)));await p.goto(`http://127.0.0.1:${port}/?harness=1`);await waitScene(p,'title');await load(p);
   await p.evaluate(()=>{const c=window.__harness.game.registry.get('runController'),dispatch=c.dispatch;window.__feedbackDispatch=[];c.dispatch=function(...args){window.__feedbackDispatch.push(structuredClone(args));return dispatch.apply(this,args);};});
   const cdp=touch?await context.newCDPSession(p):undefined;
@@ -38,7 +39,7 @@ try{
   }
   if(process.env.DRAG_BOUNDARY_ONLY==='1'){row.initial=await snapshot(p);row.status=touch?'OBSERVED':'NOT_APPLICABLE';await context.close();continue;}
   row.initial=await snapshot(p);row.initialVisual=await visual(p);row.idleShot=await shot('idle');
-  for(const [from,to,style] of [[0,4,'slow'],[4,0,'fast'],[1,3,'middle']]){
+  for(const [from,to,style] of [[0,4,'slow'],[4,0,'fast'],[1,3,'middle']].slice(0,smoke?1:3)){
    const before=await snapshot(p),at=await slot(p,from),target=await slot(p,to),id=before.state.jokers[from].instanceId,v0=await visual(p),calls=v0.dispatch.length,m={from,to,style,before};row.moves.push(m);
    await start(at);await p.waitForTimeout(touch?420:30);
    if(!touch)await move({x:at.x+12,y:at.y});
@@ -63,7 +64,7 @@ try{
    for(const [i,j] of m.after.state.jokers.entries()){const a=m.dropped.arts.find(a=>a.id===j.instanceId),b=m.dropped.slots[i];assert.ok(Math.abs(a.x-(b.x+b.width/2))<1);assert.ok(Math.abs(a.y-(b.y+b.height/2))<1);assert.equal(a.scale,1);}
    m.status='PASS';
   }
-  if(!baseline){
+  if(!baseline&&!smoke){
    const before=await snapshot(p),id=before.state.jokers[0].instanceId,calls=(await visual(p)).dispatch.length,delayed={before};row.fastDelayed=delayed;
    await p.evaluate(async()=>{const {gameSession}=await import('/src/game/session.ts'),s=gameSession(),commit=s.storage.commit;window.__feedbackRestoreCommit=()=>s.storage.commit=commit;s.storage.commit=async(...args)=>{await new Promise(resolve=>window.__feedbackReleaseSave=resolve);return commit.apply(s.storage,args);};});
    await start(await slot(p,0));await p.waitForTimeout(420);const dest=await slot(p,4);
@@ -77,7 +78,7 @@ try{
   // Long-held vertical follow reproduces Chromium's pan-y cancellation, independent of pixels.
   let before=await snapshot(p),at=await slot(p,0);await start(at);await p.waitForTimeout(420);await move({x:at.x+5,y:at.y+20});row.vertical=await visual(p);row.verticalShot=await shot('vertical');await up();await frame(p);assert.deepEqual(await snapshot(p),before);
   if(!baseline){assert.ok(row.vertical.drag,'held vertical native move still follows');const a=row.vertical.arts.find(a=>a.id===before.state.jokers[0].instanceId),b=row.vertical.slots[0];assert.ok(Math.abs(a.y-(b.y+b.height/2+20-16))<1);}
-  if(!baseline){
+  if(!baseline&&!smoke){
    for(const mode of ['stationary','same-slot','outside','pointercancel',...(touch?['prehold','multitouch']:[]),'hidden-signal','resize','escape','blur','lock-mid-drag']){
     before=await snapshot(p);const calls=(await visual(p)).dispatch.length;at=await slot(p,0);await start(at);
     if(mode!=='prehold')await p.waitForTimeout(420);
