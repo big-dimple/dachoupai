@@ -1,7 +1,7 @@
 import type {R2RunState} from '../domain/r2Run';
 import {applyCommand,type Action} from '../domain/run';
 import type {Condition,R2JokerInstance,R2JokerDefinition} from '../content/r2Schema';
-import {r2JokerDefinitionFor} from '../domain/r2ContentProfiles';
+import {r2JokerDefinitionFor,r2JokerDefinitionsFor} from '../domain/r2ContentProfiles';
 import {R2_GROUP_HAND_TYPES} from '../domain/r2GroupHands';
 import {r2CreateJoker} from '../domain/r2Run';
 import {r2JokerCapacity} from '../domain/r2Resources';
@@ -52,11 +52,28 @@ function savedInvestment(state:R2RunState,j:R2JokerInstance){
 function shortEffect(d:R2JokerDefinition){
  const values=d.hooks.flatMap(h=>h.operations).flatMap(o=>o.kind==='add-multiplier'?['倍率+'+fractionText(o.value)]:o.kind==='add-heat'?['热度+'+fractionText(o.value)]:o.kind==='multiply-multiplier'?['倍率×'+fractionText(o.value)]:[]);return [...new Set(values)].join('、')||d.description.split('；')[0];
 }
-/** Public transaction cash only; retained definitions and purchase discounts use the current identity. */
+/** Public cash after the specified sale, including real on-sale hooks. No dispatch or save. */
+export function shopPurchaseCashFacts(state:R2RunState,offer:R2Offer,sold?:R2JokerInstance){
+ let afterSale=state;
+ if(sold){
+  const result=applyCommand(state,{runId:state.runId,commandId:state.runId+'/condition-sale/'+(state.commandSeq+1),expectedSeq:state.commandSeq,action:{type:'SellJoker',instanceId:sold.instanceId}});
+  if(!result.ok)return {status:'blocked' as const,code:result.code};
+  afterSale=result.state;
+ }else if(r2JokerDefinitionsFor(state).some(d=>d.id===offer.definitionId)&&state.jokers.length>=r2JokerCapacity(state))return {status:'needs-selection' as const};
+ const price=r2PurchasePrice(afterSale,offer);
+ return {status:'assessed' as const,afterSale,price,goldAfterPurchase:afterSale.gold-price};
+}
+/** Retained losses and a new card's unmet cash gate share the exact transaction basis. */
 export function shopPurchaseConditionLosses(state:R2RunState,offer:R2Offer,sold?:R2JokerInstance){
- const jokers=state.jokers.filter(j=>j.instanceId!==sold?.instanceId),cash=state.gold+(sold?salePrice(sold.paidPrice):0)-r2PurchasePrice({...state,jokers},offer);
+ const transaction=shopPurchaseCashFacts(state,offer,sold);
+ if(transaction.status!=='assessed'||transaction.goldAfterPurchase<0)return [];
+ const jokers=transaction.afterSale.jokers,cash=transaction.goldAfterPurchase;
  const matches=(c:Condition,gold:number)=>c.kind==='resource-minimum'?gold>=c.minimum:c.kind==='resource-maximum'?gold<=c.maximum:c.kind==='resource'?gold===c.equals:false;
- return jokers.flatMap(j=>{const d=r2JokerDefinitionFor(state,j.definitionId);return d.hooks.filter(h=>(h.condition.kind==='resource-minimum'||h.condition.kind==='resource-maximum'||h.condition.kind==='resource')&&h.condition.resource==='gold'&&matches(h.condition,state.gold)&&!matches(h.condition,cash)).map(h=>`买后金币${state.gold}→${cash}；${d.name}的“${r2ConditionDescription(h.condition)}”条件不再满足（${shortEffect({...d,hooks:[h]})}）；这轮先留金。`);});
+ const isGold=(c:Condition)=> (c.kind==='resource-minimum'||c.kind==='resource-maximum'||c.kind==='resource')&&c.resource==='gold';
+ const retained=jokers.flatMap(j=>{const d=r2JokerDefinitionFor(state,j.definitionId);return d.hooks.filter(h=>isGold(h.condition)&&matches(h.condition,state.gold)&&!matches(h.condition,cash)).map(h=>`买后金币${state.gold}→${cash}；${d.name}买后${cash}金，暂不触发${shortEffect({...d,hooks:[h]})}（需${r2ConditionDescription(h.condition)}）；这轮先留金。`);});
+ // Tools/items have no Joker hooks; keep their retained-card warnings intact.
+ const fresh=r2JokerDefinitionsFor(state).find(d=>d.id===offer.definitionId);
+ return [...retained,...(fresh?.hooks.filter(h=>isGold(h.condition)&&!matches(h.condition,cash)).map(h=>`${fresh.name}买后${cash}金，暂不触发${shortEffect({...fresh,hooks:[h]})}（需${r2ConditionDescription(h.condition)}）。`)??[])];
 }
 export interface ShopRouteAdviceItem {offer:R2Offer;verdict:'consider'|'compare'|'skip';reason:string;replaceId?:string;loss?:string;purchaseConditionLosses?:string[]}
 /** Conservative current-state advice layered on the existing relation/price/replacement facts. No score or future draws. */

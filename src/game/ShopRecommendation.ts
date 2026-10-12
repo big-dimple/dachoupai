@@ -13,6 +13,8 @@ import {evaluateR2Hand} from '../domain/evaluateR2';
 import type {BuildFocus} from './BuildDirectionPreferences';
 import {isR2RouteGrowth} from '../domain/r2GroupUpgrade';
 import {shopRouteGrowthFacts} from './ShopRouteGrowthFacts';
+import {shopPurchaseCashFacts} from './ShopRouteRelations';
+import type {R2JokerInstance} from '../content/r2Schema';
 
 /** Audited against e48fd07's resolved 72 definitions. Changed/older semantics require review. */
 export const SHOP_RECOMMENDATION_SEMANTICS='json-fnv-v1:bd8fa974db581460';
@@ -40,8 +42,11 @@ export const SHOP_C2_RECOMMENDATION_AUDIT={...SHOP_RECOMMENDATION_AUDIT,
 export type RecommendationStars=0|1|2|3|4|5;
 export interface ShopRecommendation {stars:RecommendationStars;reason:string;condition:string;detail:string;stage:'early'|'mid'|'late';facts:Readonly<Record<string,number|boolean|string>>}
 const hashes=new WeakMap<object,string>();
-/** No affordability, shelf availability, RNG, future piles, simulation or stored recommendation. */
-export function shopRecommendation(state:R2RunState,offer:R2Offer,focus?:BuildFocus):ShopRecommendation {
+/** No affordability rating, RNG, future piles or stored recommendation. Cash gates use purchase cash. */
+export function shopRecommendation(state:R2RunState,offer:R2Offer,focus?:BuildFocus,sold?:R2JokerInstance):ShopRecommendation {
+ const cash=offer.definitionId==='e08'?shopPurchaseCashFacts(state,offer,sold):undefined;
+ // Only this cash-gated recommendation reads the specified sale's retained sources/growth.
+ if(cash?.status==='assessed')state=cash.afterSale;
  const definitions=r2JokerDefinitionsFor(state);let hash=hashes.get(definitions);if(!hash){hash=stableHash(definitions);hashes.set(definitions,hash);}
  const c2=isR2RouteGrowth(state)&&hash===SHOP_C2_RECOMMENDATION_SEMANTICS;
  const audited=c2||hash===SHOP_RECOMMENDATION_SEMANTICS;
@@ -153,7 +158,11 @@ export function shopRecommendation(state:R2RunState,offer:R2Offer,focus?:BuildFo
   case 'flush-retrigger':return result(largestSuit<5?1:flushReady&&cards.some(boosted)||flushReady&&heldCardPayoff?4:flushFit?3:2,'同花尾牌重触','普通同花或同花顺');
   case 'third-retrigger':return result(cards.length<3?1:heldCardPayoff||count(boosted)>=3?4:3,'第三计分牌重触','第三原始牌须有效');
   case 'even-retrigger':return result(heldCardPayoff||count(boosted)>=3?4:3,'偶数手首牌重触','每场第偶数次出牌');
-  case 'capital-multiply':return result(state.gold>=20&&additiveSource?4:2,'持金放大倍率','计分前须有20金');
+  case 'capital-multiply':{
+   if(cash?.status!=='assessed')return result(2,'替换待核',cash?.status==='blocked'?'指定出售不可执行，余额待核':'先指定替换对象，再核20金');
+   const gold=cash.goldAfterPurchase;
+   return result(gold>=20&&additiveSource?4:2,gold>=0&&gold<20?'暂不触发':'持金放大倍率',gold<0?'当前买不起；需留20金':`买后${gold}金，${gold>=20?'满足20金门槛':'暂不触发'}`);
+  }
   case 'quad-multiply':return result(largest<4?1:groupConcentrated&&additiveSource?4:2,'四条以上相乘','需四条或更高同点组');
   case 'route-transition':return result(straightConcentrated&&flushConcentrated&&ordinaryStraightPossible&&ordinaryFlushPossible?4:2,'普通顺花交替相乘','首手与同花顺不触发');
   case 'no-discard':return result(additiveSource&&(groupReady||flushReady||straightReady)?4:3,'未弃牌相乘','本场成功弃牌即停用');
