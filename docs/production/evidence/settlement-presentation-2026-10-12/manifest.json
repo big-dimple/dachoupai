@@ -4,8 +4,8 @@
     "sha256": "45f39a39a857cabcccac59a2c4ca76a12051df1d6ef9ba4513ef1cd4c4b63b56"
   },
   "README.md": {
-    "bytes": 8038,
-    "sha256": "153991be29a1dc58e9148d5df22b2ebecb13e47b1cee2c0a5b820b5e8d31e937"
+    "bytes": 11282,
+    "sha256": "87618b89246fc34d5fccf271d287bf0d22076b612d1504d727cc45cb659e25d5"
   },
   "repeated-source/repeated-390.png": {
     "bytes": 102269,
@@ -130,6 +130,10 @@
   "ci-repair-boundaries/report.json.gz": {
     "bytes": 31757,
     "sha256": "922c1928462c3fa9f189d43b21571498833f5efd79fd90e0ee5fdf918ed7d7e6"
+  },
+  "parent-review-repair/checks.json": {
+    "bytes": 1687,
+    "sha256": "485450cca43c324b604051ce7e22cdf909b7b7e6e71f5c093a7bfc8d7424bfd5"
   },
   "ci-repair/controlled-states.json.gz": {
     "bytes": 15223,
@@ -394,5 +398,217 @@
   "failures/manifest-interception-FAIL.png": {
     "bytes": 2740,
     "sha256": "fb32313e11bc8ffbd5310a1660e630b64cedb4622f8462a5eae2d5464ac8279e"
+  },
+  "parent-review-repair/failure-art/controlled-states.json.gz": {
+    "bytes": 15223,
+    "sha256": "cb76ffb1092523b33d3803db65b3ef520755d9710fe729779ad7da544b0c0d81"
+  },
+  "parent-review-repair/failure-art/boundary-missing-failure.png": {
+    "bytes": 61200,
+    "sha256": "994a89b08bf45a2d66fc4c8a0714887c1a314c003192da5a7b54c090976d6d82"
+  },
+  "parent-review-repair/failure-art/boundary-normal-failure.png": {
+    "bytes": 119858,
+    "sha256": "81f1d824b139cf91b22c42fe0e46dc81c7df93eafb46f5d59a24d85b1912b043"
+  },
+  "parent-review-repair/failure-art/report.json.gz": {
+    "bytes": 17310,
+    "sha256": "be088e393da325a26596c8d33444262756d8c1c550e2a52d6da281e760bbf174"
+  },
+  "parent-review-repair/failure-art/boundary-slow-failure.png": {
+    "bytes": 119858,
+    "sha256": "81f1d824b139cf91b22c42fe0e46dc81c7df93eafb46f5d59a24d85b1912b043"
+  },
+  "parent-review-repair/native/native-boss-loss-390.mp4": {
+    "bytes": 133507,
+    "sha256": "82f4934dbc9e59f7d5d560aacbee909bfca3eead0c87b0ca3ec414d5f3acddbf"
+  },
+  "parent-review-repair/native/native-billion-1366.png": {
+    "bytes": 222961,
+    "sha256": "f948899e31dab9c07cbe0696ed9f080188ca5131bb919ac3e3d00b76d068c7e2"
+  },
+  "parent-review-repair/native/native-billion-1366-entry.png": {
+    "bytes": 233011,
+    "sha256": "7a9bc727e68e5ce3423c78482d73aeb947f051222b2aa13731648c1085a77b1f"
+  },
+  "parent-review-repair/native/controlled-states.json.gz": {
+    "bytes": 16471,
+    "sha256": "9f082f4e6cb2e6f1af8037f4afabff42f772a1c5b8a64df14282f73a704cec13"
+  },
+  "parent-review-repair/native/native-billion-1366.mp4": {
+    "bytes": 1227306,
+    "sha256": "315dee048b35a2745f81d31319cea5df1f70c143783dea7567fe63c6eab2f9b7"
+  },
+  "parent-review-repair/native/native-retrigger-390.mp4": {
+    "bytes": 200033,
+    "sha256": "79cf30708c7c1a2458f74d13569777031560af9e0a57a8e928b3607f70cf2ff6"
+  },
+  "parent-review-repair/native/native-boss-loss-390.png": {
+    "bytes": 119858,
+    "sha256": "81f1d824b139cf91b22c42fe0e46dc81c7df93eafb46f5d59a24d85b1912b043"
+  },
+  "parent-review-repair/native/native-boss-loss-390-entry.png": {
+    "bytes": 123995,
+    "sha256": "4f5acb1a9ed50640f817ad28584d5edd397c7be8745d68d2cd8de8a742c0be96"
+  },
+  "parent-review-repair/native/native-retrigger-390-entry.png": {
+    "bytes": 114759,
+    "sha256": "8d04a3036f6c989cc50ca5233e23ae123f6d22d7dcb12c5a1520a87c416384e0"
+  },
+  "parent-review-repair/native/report.json.gz": {
+    "bytes": 43606,
+    "sha256": "3fd96f3a8bf72d819caf991ebc9b21eae5575ae3e11aa8fffa2ca352713a6cb8"
+  },
+  "parent-review-repair/native/native-retrigger-390.png": {
+    "bytes": 111128,
+    "sha256": "fd8d9844b157dbde15a3aec3b706e74704d3d72b2e19d1bf3002e8c2f0678294"
+  },
+  "parent-review-repair/screens/retrigger-624x768.png": {
+    "bytes": 147214,
+    "sha256": "543c9d2f742efe485547d6e17adb49e76a4cec1e59a2002f2d9cfd07160110d3"
+  },
+  "parent-review-repair/screens/growth-320x640.png": {
+    "bytes": 74882,
+    "sha256": "0de52411d154ade3d12584bb6cd2b0a6bac2622768ad3e6f54b0f4084dea5656"
+  },
+  "parent-review-repair/screens/billion-320x640.png": {
+    "bytes": 77638,
+    "sha256": "1e8232dcf91107e25ab74b3522f5ce05d14281d19daa987d12f216e283d32a04"
+  },
+  "parent-review-repair/screens/dual-1366x768.png": {
+    "bytes": 223228,
+    "sha256": "1957de91924eaea05773cc24f632c61141089c2d9a46d7e8fecf84621de34074"
+  },
+  "parent-review-repair/screens/boss-loss-390x660.png": {
+    "bytes": 75172,
+    "sha256": "3808a5bd7bd6c5fcf7d8228cf502a260a1522f63f7606a4723f0330b36655f5e"
+  },
+  "parent-review-repair/screens/dual-390x844.png": {
+    "bytes": 116416,
+    "sha256": "18b35bbde2fe035547d49aeee16edbc6884cc8e1b6b8942f2fe3b7acc205ad7b"
+  },
+  "parent-review-repair/screens/dual-624x768.png": {
+    "bytes": 161728,
+    "sha256": "4be8e2424aa1efb0a58c5da5c4569149d3edf2f9e374b80f207adc567c7fd998"
+  },
+  "parent-review-repair/screens/billion-624x768.png": {
+    "bytes": 160536,
+    "sha256": "8656ecc07933222da3930193d9dd5b6c94b26032d874c5057e08515b4141a528"
+  },
+  "parent-review-repair/screens/billion-390x844.png": {
+    "bytes": 115213,
+    "sha256": "2a2206f13cedfccc44ac32f12eabfbf58c1049edfcdf531f70fb34768025d30f"
+  },
+  "parent-review-repair/screens/boss-loss-624x768.png": {
+    "bytes": 132247,
+    "sha256": "c556370db2f345f173bd079653297805b9d9818d7f4e721397ade51adfedf98d"
+  },
+  "parent-review-repair/screens/dual-390x660.png": {
+    "bytes": 88844,
+    "sha256": "5b9563cefbf0f876bd0a9eb1371cd5cdea76aacef6e9a07f708778f5d5409443"
+  },
+  "parent-review-repair/screens/controlled-states.json.gz": {
+    "bytes": 19831,
+    "sha256": "8e5f9d8ccd0fce8690cc776466f9030472ab1e2ed27e9038f6f72db1b516a503"
+  },
+  "parent-review-repair/screens/boss-loss-390x844.png": {
+    "bytes": 119858,
+    "sha256": "81f1d824b139cf91b22c42fe0e46dc81c7df93eafb46f5d59a24d85b1912b043"
+  },
+  "parent-review-repair/screens/retrigger-390x844.png": {
+    "bytes": 110048,
+    "sha256": "21a76600c0038ab07be48a850713d4263b48aa12c8bbf323aad6751bc86e86f4"
+  },
+  "parent-review-repair/screens/boss-loss-700x768.png": {
+    "bytes": 161505,
+    "sha256": "980ed982b12b8fa4a0a90f1df7b59ba53b670c1062c18570785b2fe0f6280e04"
+  },
+  "parent-review-repair/screens/retrigger-800x768.png": {
+    "bytes": 195896,
+    "sha256": "02ebccde602933b8862192b36e1f9a740ae78d1432ed0b59ca1f3631348dc31b"
+  },
+  "parent-review-repair/screens/billion-700x768.png": {
+    "bytes": 187547,
+    "sha256": "f6ee0da359cfda74893e9c1e7e4602cd444ea2fa11ac95d29bc2254864e2d44e"
+  },
+  "parent-review-repair/screens/retrigger-390x660.png": {
+    "bytes": 80256,
+    "sha256": "e894fbb7d4cc31f0c52fd77f4d23132169de3ebafcd799f6c039cf602fb0ed84"
+  },
+  "parent-review-repair/screens/growth-390x844.png": {
+    "bytes": 113972,
+    "sha256": "699fb9eb4f8b3c0fe8dfb759b2db0202bc0b0ef4dcfe1274229ddc50c6eff5ac"
+  },
+  "parent-review-repair/screens/dual-320x640.png": {
+    "bytes": 77483,
+    "sha256": "59a567c622d9922dd6d6cc2d9ff86737f825d56668295ea79a2fcf6d24bfece4"
+  },
+  "parent-review-repair/screens/dual-700x768.png": {
+    "bytes": 188516,
+    "sha256": "5eb11321978e2788749483689794047ef1de29b1655a57d63669c3fb1e40c277"
+  },
+  "parent-review-repair/screens/billion-390x660.png": {
+    "bytes": 86641,
+    "sha256": "f7a7aff7a399ebf84a9d36919a86b12f35061f969d6743e6ff3b1ed5ccb7a428"
+  },
+  "parent-review-repair/screens/retrigger-320x640.png": {
+    "bytes": 71066,
+    "sha256": "265c9b82c17e95bfe2436f66abc3d69310b7eaa7164531223cfe8b5af9dc5ff1"
+  },
+  "parent-review-repair/screens/boss-loss-1366x768.png": {
+    "bytes": 189633,
+    "sha256": "110c1f2b10316228453b97ec599e5568d742849ae5cab3e3fc95c62ccfa3b048"
+  },
+  "parent-review-repair/screens/growth-624x768.png": {
+    "bytes": 151879,
+    "sha256": "4499b84dab54c414788b4ebc5b8eceea63104af9c6ab62887be8e63a45daa629"
+  },
+  "parent-review-repair/screens/retrigger-700x768.png": {
+    "bytes": 174005,
+    "sha256": "6ef923bef59ae614e3b3d06ae19e6e657a7d3afec6139f75334f0c1ef45b143c"
+  },
+  "parent-review-repair/screens/growth-1366x768.png": {
+    "bytes": 208330,
+    "sha256": "f0dc380635b57a77644001437ef9dda05c4517ed4a460e90f1e1472a46ad6aba"
+  },
+  "parent-review-repair/screens/boss-loss-800x768.png": {
+    "bytes": 183261,
+    "sha256": "ac486668954f3336999c29115267807b29b2de4bff3b358e53f4397cadc5c9ab"
+  },
+  "parent-review-repair/screens/report.json.gz": {
+    "bytes": 278191,
+    "sha256": "81f0d4da7ad2f13ef4f33cc0a23f97744c5e762a1443bf49725f325a8692aec1"
+  },
+  "parent-review-repair/screens/boss-loss-320x640.png": {
+    "bytes": 69090,
+    "sha256": "6b2cc14483bf1a54a4dd9169e9d7103e0a8ca0819d08f0f7620c964c11fb4230"
+  },
+  "parent-review-repair/screens/growth-700x768.png": {
+    "bytes": 178344,
+    "sha256": "427fdd1a2d6dec0a2fb8a3a49ab048b6839f7d03bde2712bf6fd563227884715"
+  },
+  "parent-review-repair/screens/dual-800x768.png": {
+    "bytes": 212710,
+    "sha256": "f1b426cadbb94322c404e7d64384a2f5539b09cacb593d8db894299949a9fed2"
+  },
+  "parent-review-repair/screens/retrigger-1366x768.png": {
+    "bytes": 203644,
+    "sha256": "0b572db76b78032796b3a0674982f298800ce2d88521d5874126bec8f1914143"
+  },
+  "parent-review-repair/screens/growth-800x768.png": {
+    "bytes": 200411,
+    "sha256": "05e5aba486c31831b194364463d54e596d822f96a68c4eac7dba32624ebd21f4"
+  },
+  "parent-review-repair/screens/billion-800x768.png": {
+    "bytes": 211553,
+    "sha256": "7044b1c6e1f54260935de8e3413ee97ff0f2053937b8edb1652bff4bcf1a04ca"
+  },
+  "parent-review-repair/screens/growth-390x660.png": {
+    "bytes": 84416,
+    "sha256": "ee0b4648537eefc32bb471fb1c6f7e8e9e875b5dc792284fcec557258860db11"
+  },
+  "parent-review-repair/screens/billion-1366x768.png": {
+    "bytes": 221756,
+    "sha256": "78bb321f3dc122e2882a8c2050016249db708eb0da7b3cbc53a7095082a95a09"
   }
 }

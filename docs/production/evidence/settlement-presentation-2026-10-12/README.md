@@ -48,3 +48,21 @@
 补核同源多次计分：五张K加演纸各自再计分一次，铁算盘实际10笔热+25，按原事件收成`热+25·10次`；有更多不同操作时显示另N笔，完整顺序不变、留在原回看。实际多次再计分也进入强链层。原初夹具误把每牌重触上限当全手上限，测试预计9而真实为10，已按五牌×原先/再计分两次补正；产品不改规则。
 
 最终必要返修本地104项/8文件、typecheck/build通过；[6个只读复核](ci-repair/report.json.gz)、[缺图/迟到/离场3例](ci-repair-boundaries/report.json.gz)、[重复来源2例](repeated-source/report.json.gz)全部通过，已查看[390完整实图](repeated-source/repeated-390.png)。同源摘要变为有限高度，原普通/乘法/亿分布局没有重排，原全段短片和37例按各自source保留。复核期间各报告实际HEAD及当前文件blob hash单独登记在checks.ciRepair，不冒充初2e矩阵或初8c2CI已经通过新版本。最终新HEAD CI必须另核；仍仅draft，不合main。
+
+## 父审拒收后的限定修正（当前待复审）
+
+父实际看d990的三张最终图后拒收，**未签美学通过**。本轮只修人物/缺图构图、英雄成本归属、玩家文案、短竖屏、纯重触/双资历和源自身成长展示。领域、身份/存档、计分/随机/价格、GameScene和音频原样。父点名的旧图继续保留为拒收基准。
+
+原正常失败PNG与report均含谢幕selection完整图（y375.2、height148.8），不是证实了网络缺图：真正问题是人物挤在左下，人物区与中心大量空白。本轮正常失败人物完整居中；独立拦所有人物WebP时，展示有纸框、实际已保存末手K♠和角色身份的静态留影，移除旧两行文字空区。燃金说明始终位于谢幕人姓名下、与冷场牌分列，冷场卡只显示自身×3。主层移除H/M/S/Lv缩写与长乘式，改为牌型等级、目标、两族完整短摘要；精确账仍沿现有回看入口。
+
+390×660及320×640通过限定缩短次级下一步区域、48px主动作和紧凑来源卡保留完整人物/成本/来源因子，不用隐藏主要结果换无重叠。仅b06、对子12级的受控原计分器例真实1800过关，无其他增益Joker；两笔retrigger事件即时H/M不变，仍识别再说一遍并显示“再计分2次”。同花顺例同时显示顺子21场与同花21场。搭台阶非封顶50→60，源自身read50和手后60分开，在624/700/800及短竖屏完整可读；source/growth与奖励相交时至少8px纵向间隔。
+
+[35例整屏与完整保存](parent-review-repair/screens/report.json.gz)、[正常/慢载/真实缺图失败3例](parent-review-repair/failure-art/report.json.gz)、[3条真实UI动作/保存](parent-review-repair/native/report.json.gz)、[检查和源blob hash](parent-review-repair/checks.json)。截屏绑定其报告实际HEAD与此处blob hash；不是自然18局，未声称自然310793589原trace重放。新HEAD CI另核；旧d990绿灯不能代签这轮修正。
+
+- [失败390](parent-review-repair/screens/boss-loss-390x844.png)、[失败390×660](parent-review-repair/screens/boss-loss-390x660.png)、[真正缺图失败](parent-review-repair/failure-art/boundary-missing-failure.png)
+- [亿分1366](parent-review-repair/screens/billion-1366x768.png)、[亿分390](parent-review-repair/screens/billion-390x844.png)、[亿分320×640](parent-review-repair/screens/billion-320x640.png)
+- [仅b06](parent-review-repair/screens/retrigger-320x640.png)、[双资历](parent-review-repair/screens/dual-390x660.png)
+- [非封顶成长624](parent-review-repair/screens/growth-624x768.png)、[700](parent-review-repair/screens/growth-700x768.png)、[800](parent-review-repair/screens/growth-800x768.png)、[320×640](parent-review-repair/screens/growth-320x640.png)
+- [完整亿分动作](parent-review-repair/native/native-billion-1366.mp4)、[正常失败动作](parent-review-repair/native/native-boss-loss-390.mp4)、[仅b06动作](parent-review-repair/native/native-retrigger-390.mp4)
+
+107项/8文件定向、typecheck/build通过，所有source/growth下界和实际字符图已核，未降低字体14px。当前仍独立draft，不合main/部署，父独立复审与设备/听感/人验保持待验。

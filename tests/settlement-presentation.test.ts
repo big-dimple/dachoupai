@@ -1,6 +1,6 @@
 import {it,expect} from 'vitest';
 import {settlementFacts,settlementPlan} from '../src/game/SettlementPresentation';
-import {settlementReady,repeatedSettlementReady} from '../harness/fixtures/settlement';
+import {settlementReady,repeatedSettlementReady,retriggerSettlementReady,growthSettlementReady,dualRouteSettlementReady} from '../harness/fixtures/settlement';
 import {energySend} from '../harness/fixtures/hero-climax';
 import {heatText} from '../src/game/scoreText';
 import {makeCheckpoint,readCheckpoint} from '../src/application/checkpoint';
@@ -17,6 +17,20 @@ it('ten actual same-source face triggers fit a short receipt while the full even
  expect(run.lastTrace!.events.filter(e=>e.sourceType==='card'&&e.operation==='retrigger-card'&&e.value.n==='1')).toHaveLength(5);
  expect(events).toHaveLength(10);expect(settlementFacts(run,true).cardCopy).toBe('热+25·10次');expect(settlementFacts(run,true).tier).toBe(1);
  expect(run.lastTrace!.events.filter(e=>e.sourceDefinitionId==='tiesuanpan')).toEqual(events);
+});
+it('the only b06 source is retained from two real retriggers with unchanged immediate accumulators',()=>{
+ const f=retriggerSettlementReady(),run=energySend(f.state,f.action),facts=settlementFacts(run,true);expect(readCheckpoint(makeCheckpoint(run,[])).ok).toBe(true);
+ expect(run.phase).toBe('stage-cleared');expect(run.lastTrace!.sourceJokers.map(j=>j.definitionId)).toEqual(['b06']);
+ const events=run.lastTrace!.events.filter(e=>e.sourceDefinitionId==='b06'&&e.operation==='retrigger-card');expect(events).toHaveLength(2);for(const e of events)expect(e.after).toEqual(e.before);
+ expect(facts.card?.id).toBe('b06');expect(facts.cardCopy).toBe('再计分2次');expect(facts.tier).toBe(1);
+});
+it('both actual route families remain in the short receipt and exact factors',()=>{
+ const f=dualRouteSettlementReady(),run=energySend(f.state,f.action),facts=settlementFacts(run,true);expect(readCheckpoint(makeCheckpoint(run,[])).ok).toBe(true);
+ expect(facts.routeSummary).toBe('本局顺子21场 · 同花21场');expect(facts.routeCopy).toContain('S21');expect(facts.routeCopy).toContain('F21');
+});
+it('uncapped c04 keeps actual hand reading distinct from the source instance saved after the hand',()=>{
+ const f=growthSettlementReady(),run=energySend(f.state,f.action),facts=settlementFacts(run,true);
+ expect(facts.cardCopy).toBe('热度 +50\n读取 +50 热度');expect(facts.growth).toMatchObject({before:'50',after:'60',instanceId:facts.card!.event.sourceInstanceId});
 });
 it('hero, joker factors, final cumulative M and prior run seniority remain distinct',()=>{
  const run=settle('billion'),f=settlementFacts(run,true);

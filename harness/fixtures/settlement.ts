@@ -39,3 +39,17 @@ export function repeatedSettlementReady(){
  for(const id of f.action.selectedIds){const card=f.state.deckInstances.find(c=>c.id===id)!;card.rank=13;card.enhancement='encore-paper';}
  return {...f,action:{...f.action,xiemuBurn:30 as const}};
 }
+
+export function retriggerSettlementReady(){
+ const f=settlementReady('ordinary');f.state.jokers[0]=r2CreateJoker('b06',f.state.jokers[0].instanceId,8,'none',f.state);
+ f.state.handLevels.pair=12;
+ for(const id of f.action.selectedIds.slice(0,2))f.state.deckInstances.find(c=>c.id===id)!.rank=13;
+ return {...f,action:{type:'PlayHand' as const,selectedIds:f.action.selectedIds.slice(0,2)}};
+}
+export function growthSettlementReady(){const f=settlementReady('ordinary');f.state.jokers[0].growth.heat={n:'50',d:'1'};return f;}
+export function dualRouteSettlementReady(){
+ const f=settlementReady('billion');f.state.routeGrowth!.F=f.state.routeGrowth!.S;
+ f.state.routeGrowth!.settlements.forEach(s=>{s.families=['S','F'];});
+ for(const id of f.action.selectedIds)f.state.deckInstances.find(c=>c.id===id)!.suit='hearts';
+ return f;
+}

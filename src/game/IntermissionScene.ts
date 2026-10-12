@@ -46,13 +46,13 @@ import {PAPER_CSS,PAPER_THEME as T} from './theme';
 
 export interface IntermissionResult {cleared:boolean;stageIndex:number;stageHeat:string;handsLeft:number;goldEarned:number;failureCue?:FailureCue;rewardClearId?:string}
 function resultLayout(width:number,height:number,top:number,bottom:number,nextBoss=false){
-  const short=height<500,portrait=width<700&&height>width,w=Math.min(980,width-24),x=(width-w)/2;
-  const footerY=height-bottom-(portrait?148:104),bodyY=top+(short?64:portrait?108:94),available=footerY-16-bodyY;
-  const nextHeight=short?available:Math.min(nextBoss?132:portrait?100:112,available*(nextBoss ? .30 : .26));
+  const short=height<500,portrait=width<700&&height>width,tight=portrait&&height<=700,w=Math.min(980,width-24),x=(width-w)/2;
+  const footerY=height-bottom-(portrait?(tight?132:148):104),bodyY=top+(short?64:portrait?(tight?100:108):94),available=footerY-16-bodyY;
+  const nextHeight=short?available:Math.min(tight?60:nextBoss?132:portrait?100:112,available*(nextBoss ? .30 : .26));
   const score:Box=short?{x,y:bodyY,width:w*.64-12,height:available}:{x,y:bodyY,width:w,height:available-nextHeight-12};
   const next:Box=short?{x:x+w*.64,y:bodyY,width:w*.36,height:available}:{x,y:score.y+score.height+12,width:w,height:nextHeight};
   const sideWidth=Math.floor(w*.28),primaryWidth=Math.floor(w*.43),rightWidth=w-sideWidth-primaryWidth-16;
-  return {x,w,top,short,portrait,score,next,left:{x,y:footerY,width:portrait?w/2-4:sideWidth,height:44},primary:portrait?{x,y:footerY+52,width:w,height:56}:{x:x+sideWidth+8,y:footerY,width:primaryWidth,height:56},right:portrait?{x:x+w/2+4,y:footerY,width:w/2-4,height:44}:{x:x+sideWidth+primaryWidth+16,y:footerY,width:rightWidth,height:44},noticeY:footerY+(portrait?116:64)};
+  return {x,w,top,short,portrait,tight,score,next,left:{x,y:footerY,width:portrait?w/2-4:sideWidth,height:44},primary:portrait?{x,y:footerY+52,width:w,height:tight?48:56}:{x:x+sideWidth+8,y:footerY,width:primaryWidth,height:56},right:portrait?{x:x+w/2+4,y:footerY,width:w/2-4,height:44}:{x:x+sideWidth+primaryWidth+16,y:footerY,width:rightWidth,height:44},noticeY:footerY+(portrait?(tight?108:116):64)};
 }
 
 export class IntermissionScene extends Phaser.Scene {
@@ -144,7 +144,7 @@ export class IntermissionScene extends Phaser.Scene {
       heading='已达数值上限';body='进度已保存。可查看本场、在菜单导出，或返回选角。';
     }else if(lost){
       heading='再登台';
-      body=`${failureSummary(run).resources}\n已过关场次累计热度 ${heatText(run.totalHeat)} · 余额 ${run.gold} 金\n同局重试从开局重新开始，构筑不继承。`;
+      body=p.tight?'同局重试从开局，构筑不继承。':`${failureSummary(run).resources}\n已过关场次累计热度 ${heatText(run.totalHeat)} · 余额 ${run.gold} 金\n同局重试从开局重新开始，构筑不继承。`;
     }
     const touye=savedTouyeWager(trace);if(touye)body=touye+'\n'+body;
     const xiemuInterest=trace?.events.find(e=>e.sourceType==='character'&&e.sourceDefinitionId==='xiemu'&&e.phase==='onStageClear');
