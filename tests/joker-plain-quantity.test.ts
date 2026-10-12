@@ -43,7 +43,7 @@ it('joker-score arithmetic is once per qualified hand rather than per matching c
   const p=copy(id);expect(p.line).toContain('每手一次，');expect(p.tile).toContain('每手一次');
   expect(p.line).not.toContain('每张');
  }
- const step=copy('c04');expect(step.line).toBe('打出顺子、同花顺时，出牌热度 +50。');expect(step.tile).toContain('每手一次，热度+50');expect(step.line).not.toContain('每张');
+ const step=copy('c04');expect(step.line).toBe('顺子/同花顺 → 每手一次，热度+50；成长+10顶100，新增下次用');expect(step.tile).toContain('每手一次，热度+50');expect(step.line).not.toContain('每张');
  expect(copy('e08').line).toContain('倍率×1.8');
 });
 

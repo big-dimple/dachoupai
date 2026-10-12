@@ -1,0 +1,7 @@
+{
+  "baseline": false,
+  "scope": "bounded native first-shop viewing; planted individual offers, no buy/play command; complete before/after state/journal/storage and commit count",
+  "rows": [],
+  "status": "FAIL",
+  "error": "Error: invalid-save-opening-state\n    at fail (/workspace/dachoupai-c2-copy/src/application/checkpoint.ts:105:9)\n    at validateState (/workspace/dachoupai-c2-copy/src/application/checkpoint.ts:1236:132)\n    at makeCheckpoint (/workspace/dachoupai-c2-copy/src/application/checkpoint.ts:1294:3)\n    at imp (file:///workspace/dachoupai-c2-copy/harness/c2-description-native.mjs:15:11)\n    at file:///workspace/dachoupai-c2-copy/harness/c2-description-native.mjs:23:34"
+}

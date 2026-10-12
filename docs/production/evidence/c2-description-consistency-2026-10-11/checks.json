@@ -1,0 +1,63 @@
+{
+  "affected-tests": {
+    "command": [
+      "npm",
+      "test",
+      "--",
+      "tests/c2-description-consistency.test.ts",
+      "tests/joker-player-copy.test.ts",
+      "tests/joker-plain-copy.test.ts",
+      "tests/joker-plain-quantity.test.ts",
+      "tests/joker-detail-steps.test.ts",
+      "tests/group-upgrade-ui-copy.test.ts",
+      "tests/joker-copy-ambiguity.test.ts",
+      "tests/shop-offer-guidance.test.ts",
+      "tests/shop-route-relations.test.ts"
+    ],
+    "exitCode": 0,
+    "startUTC": "2026-10-11T23:51:25.870709+00:00",
+    "endUTC": "2026-10-11T23:51:36.852026+00:00"
+  },
+  "typecheck": {
+    "command": [
+      "npm",
+      "run",
+      "typecheck"
+    ],
+    "exitCode": 0,
+    "startUTC": "2026-10-11T23:51:25.871324+00:00",
+    "endUTC": "2026-10-11T23:51:51.789183+00:00"
+  },
+  "content": {
+    "command": [
+      "npm",
+      "run",
+      "verify:content"
+    ],
+    "exitCode": 0,
+    "startUTC": "2026-10-11T23:51:25.871711+00:00",
+    "endUTC": "2026-10-11T23:51:35.945553+00:00"
+  },
+  "docs": {
+    "command": [
+      "npm",
+      "run",
+      "verify:ci",
+      "--",
+      "--scope=docs"
+    ],
+    "exitCode": 0,
+    "startUTC": "2026-10-11T23:58:42.527098+00:00",
+    "endUTC": "2026-10-11T23:58:48.324639+00:00"
+  },
+  "build": {
+    "command": [
+      "npm",
+      "run",
+      "build"
+    ],
+    "exitCode": 0,
+    "startUTC": "2026-10-11T23:57:21.647495+00:00",
+    "endUTC": "2026-10-11T23:57:51.604078+00:00"
+  }
+}

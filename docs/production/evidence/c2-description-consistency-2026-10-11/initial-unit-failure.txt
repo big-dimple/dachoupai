@@ -1,0 +1,1 @@
+First affected copy unit batch: 7 files, 70 PASS / 1 FAIL. tests/joker-plain-quantity.test.ts:46 still required C2 c04 old summary without growth. Expected: 打出顺子、同花顺时，出牌热度 +50。 Received: 顺子/同花顺 → 热度+50；成长+10顶100，新增下次用. Updated that current-identity expectation; retained per-hand-once quantity in the corrected line/tile. Legacy whole-copy hashes cover the unchanged old summary.

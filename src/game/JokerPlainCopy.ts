@@ -75,6 +75,13 @@ export function jokerPlainCopy(d:R2JokerDefinition,j:R2JokerInstance|undefined,c
   const limited=h.operations[0];if(limited.kind==='add-gold-limited'||limited.kind==='refund-hand-limited')essential.push('每场最多'+limited.limit+'次；进场重置。');
   if(h.phase==='onCardScore')essential.push('只加给能计分的牌；附带/停用牌不获加成。');
   if(['onDiscard','afterHand'].includes(h.phase))essential.push(h.phase==='onDiscard'?'成功弃牌后才兑现。':'实际出牌结算后才兑现。');
+ }else if(hooks.length===3&&hooks[0].phase==='jokerScore'&&hooks[1].phase==='jokerScore'&&hooks[2].phase==='afterHand'&&hooks.every(h=>h.operations.length===1)&&hooks[0].operations[0].kind==='add-heat'&&hooks[1].operations[0].kind==='read-growth'&&hooks[1].condition.kind==='always'&&hooks[2].operations[0].kind==='add-growth'&&hooks[0].condition.kind==='hand-type-in'&&hooks[2].condition.kind==='hand-type-in'&&hooks[0].condition.values.join('|')===hooks[2].condition.values.join('|')&&!d.modifiers?.length){
+  const add=hooks[0].operations[0],read=hooks[1].operations[0],grow=hooks[2].operations[0];
+  if(read.key===grow.key&&read.target==='heat'){
+   condition=when(hooks[0].condition,hooks[0].phase);const bounds=growthBounds(d,j,grow);
+   effect='每手一次，热度+'+fractionText(add.value)+'；'+(bounds.capped?'成长封顶+'+fractionText(bounds.cap):'成长+'+fractionText(bounds.delta)+'顶'+fractionText(bounds.cap)+'，新增下次用');
+   essential.push('每手任意牌型均读取已有热度成长，跨场保留；只有上述牌型增加成长。');
+  }
  }else if(hooks.length===2&&hooks[0].operations.length===1&&hooks[0].operations[0].kind==='read-growth'&&hooks[1].operations.length===1&&hooks[1].operations[0].kind==='add-growth'&&!d.modifiers?.length){
   const read=hooks[0].operations[0],grow=hooks[1].operations[0],h=hooks[1];
   if(read.key===grow.key){condition=when(h.condition,h.phase);const bounds=growthBounds(d,j,grow);effect=unit(read.target)+(bounds.capped?'成长已封顶'+fractionText(bounds.cap)+'，不再新增':'成长最多+'+fractionText(bounds.delta)+'；上限'+fractionText(bounds.cap)+'，新增下次用');if(condition&&h.phase==='afterHand')condition+='出牌后';if(!limits.some(s=>/下次|下一|后续/.test(s)))essential.push('每次出牌用已保存的'+unit(read.target)+'；新增从后续出牌生效。');if(h.condition.kind==='hand-type-in'&&h.condition.values.length===R2_GROUP_HAND_TYPES.length&&h.condition.values.every(t=>R2_GROUP_HAND_TYPES.includes(t)))essential.push('普通顺子、普通同花不增长。');}
@@ -148,6 +155,9 @@ export function jokerPlainCopy(d:R2JokerDefinition,j:R2JokerInstance|undefined,c
   if(h?.condition.kind==='scoring-position')tileCondition=(h.condition.handTypes?names(h.condition.handTypes):'')+(h.condition.position==='third-original'?'原第3牌':h.condition.position==='first'?'首计分牌':'末计分牌')+(h.condition.playModulo?'第'+h.condition.playModulo.divisor+'手':'');
   if(o?.kind==='retrigger-card')tileEffect='再计'+o.count+'次';
   if(o?.kind==='read-growth'){const grow=hooks[1].operations[0];if(grow.kind==='add-growth'){const bounds=growthBounds(d,j,grow),c=hooks[1].condition;const grouped=c.kind==='hand-type-in'&&c.values.length===R2_GROUP_HAND_TYPES.length&&c.values.every(t=>R2_GROUP_HAND_TYPES.includes(t));tileCondition=grouped?'成组长'+unit(o.target):when(c,hooks[1].phase)??condition;tileEffect=bounds.capped?(grouped?'':unit(o.target))+'封顶'+fractionText(bounds.cap)+'\n不再新增':(grouped?'':unit(o.target))+'+'+fractionText(bounds.delta)+'顶'+fractionText(bounds.cap)+'\n新增下次用';}}
+  if(hooks.length===3&&hooks[1].operations[0]?.kind==='read-growth'&&hooks[2].operations[0]?.kind==='add-growth'&&o?.kind==='add-heat'){
+   const bounds=growthBounds(d,j,hooks[2].operations[0]);tileEffect='每手一次，热度+'+fractionText(o.value)+'\n成长'+(bounds.capped?'封顶':'+'+fractionText(bounds.delta)+'顶')+fractionText(bounds.cap)+'\n'+(bounds.capped?'不再新增':'新增下次用');
+  }
   if(h?.condition.kind==='scoring-position'&&h.condition.position==='first'&&!h.condition.playModulo&&h.condition.handTypes&&allBeyondPair(h.condition.handTypes))tile='非高牌/对子\n首计分牌\n'+tileEffect;
   else if(o?.kind==='add-heat-per-gold')tile='每1金热度+'+fractionText(o.value)+'\n当前+'+fractionText(r2ResourceHeatValue(o,ctx))+'\n上限'+fractionText(o.cap);
   else if(o?.kind==='add-heat-per-empty-slot')tile='每空槽+'+fractionText(o.value)+'\n当前热度+'+fractionText(r2ResourceHeatValue(o,ctx))+'\n上限'+fractionText(o.cap);
