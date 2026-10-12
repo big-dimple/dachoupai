@@ -20,8 +20,8 @@ import {usesErxiangHandoff} from '../domain/r2ErxiangHandoff';
 import {erxiangChoice,savedErxiangHandoff} from './ErxiangHandoffCopy';
 import {drawStageTableArt,playedCaptionBox} from './StageTableArt';
 import {paperSceneStart} from './PaperFlow';
-import {usesTouyeWager,type TouyeBet,type TouyeTarget} from '../domain/r2TouyeWager';
-import {touyeChoice,TOUYE_RISK} from './TouyeWagerCopy';
+import {usesTouyeWager,usesTouyeNewCore,type TouyeBet,type TouyeTarget} from '../domain/r2TouyeWager';
+import {touyeChoice,touyeConfirmationCopy} from './TouyeWagerCopy';
 import {usesLaohuanRefill} from '../domain/r2LaohuanRefill';
 import {savedBossImpact} from './SavedBossImpact';
 import {mountScoreLanding} from './ScoreLanding';
@@ -1153,8 +1153,8 @@ export class GameScene extends Phaser.Scene {
     });mountHeroSkillGuide(dialog);
   }
   private confirmTouye(target:TouyeTarget,snapshotToken:string,seq:number,ids:string[],accepted:string):void {
-    const cost=r2DiscardCost(this.run),gold=stageNotice(this.run)?.discardGoldCost??0;
-    const dialog=this.dialog.open('押'+HAND_LABELS[target]+' · 弃'+ids.length+'张',TOUYE_RISK+'。\n达成×2，替代普通×1.15。\n当前整手尚未达到；接受：'+accepted+'。\n本次实际弃牌：'+ids.map(id=>{const c=this.hand.find(c=>c.id===id)!;return rankLabel(c.rank)+SUIT_SYMBOL[c.suit];}).join(' ')+'。\n花'+cost+'次弃牌'+(gold?'＋'+gold+'金币':'，不另收金币')+'；确认保存后才补牌，不能取消重抽。',[{label:'确认押'+HAND_LABELS[target]+'并弃'+ids.length+'张',primary:true,run:()=>{this.dialog.close();void this.discardSelected(false,{target,snapshotToken},seq,ids);}}],{closeLabel:'取消 · 不弃牌',guideSteps:{labels:['选要弃的牌','选押注目标','确认补牌'],current:2},summaryBody:'③ 确认押'+HAND_LABELS[target]+'并补牌',effectBody:'弃'+ids.length+'张，补'+ids.length+'张 · 花'+cost+'次弃牌'+(gold?'＋'+gold+'金币':'')+'\n'+TOUYE_RISK+'；达成×2。',collapseRules:true,rulesLabel:'目标与弃牌明细'});mountHeroSkillGuide(dialog);dialog.classList.add('hero-confirm-dialog');
+    const cost=r2DiscardCost(this.run),gold=stageNotice(this.run)?.discardGoldCost??0,copy=touyeConfirmationCopy(this.run,ids);
+    const dialog=this.dialog.open('押'+HAND_LABELS[target]+' · 弃'+ids.length+'张',copy.risk+'。\n'+copy.success+'，替代普通×1.15。\n'+copy.qualification+'；接受：'+accepted+'。\n本次实际弃牌：'+ids.map(id=>{const c=this.hand.find(c=>c.id===id)!;return rankLabel(c.rank)+SUIT_SYMBOL[c.suit];}).join(' ')+'。\n花'+cost+'次弃牌'+(gold?'＋'+gold+'金币':'，不另收金币')+'；确认保存后才补牌，不能取消重抽。',[{label:'确认押'+HAND_LABELS[target]+'并弃'+ids.length+'张',primary:true,run:()=>{this.dialog.close();void this.discardSelected(false,{target,snapshotToken},seq,ids);}}],{closeLabel:'取消 · 不弃牌',guideSteps:{labels:['选要弃的牌','选押注目标','确认补牌'],current:2},summaryBody:'③ 确认押'+HAND_LABELS[target]+'并补牌',effectBody:'弃'+ids.length+'张，补'+copy.refillCount+'张 · 花'+cost+'次弃牌'+(gold?'＋'+gold+'金币':'')+'\n'+copy.risk+'；'+copy.success+'。',collapseRules:true,rulesLabel:'目标与弃牌明细'});mountHeroSkillGuide(dialog);dialog.classList.add('hero-confirm-dialog');
   }
   private inspectErxiang():void {
     const seq=this.run.commandSeq,choice=erxiangChoice(this.run,this.selectionPreview(),this.erxiangTargetId);
@@ -1510,7 +1510,7 @@ export class GameScene extends Phaser.Scene {
     if(event.sourceType==='rule'&&event.sourceDefinitionId==='route-growth')return '路线资历';
     const edition=event.reasonKey.startsWith('edition.')?editionLabel(event.reasonKey.split('.')[1] as PlayingCard['edition'])+' · ':'';
     if(event.sourceType==='joker')return edition+this.jokerDefinition(event.sourceDefinitionId).name;
-    if(event.sourceType==='character'&&(event.reasonKey.startsWith('touye.won.')||event.reasonKey.startsWith('touye.lost.')))return '骰爷 · 押'+HAND_LABELS[event.reasonKey.split('.')[2] as TouyeTarget]+(event.reasonKey.startsWith('touye.won.')?'达成':'未成');
+    if(event.sourceType==='character'&&(event.reasonKey.startsWith('touye.won.')||event.reasonKey.startsWith('touye.lost.')))return '骰爷 · 押'+HAND_LABELS[event.reasonKey.split('.')[2] as TouyeTarget]+(event.reasonKey.startsWith('touye.won.')?'达成':usesTouyeNewCore(this.run)?'输约':'未成');
     if(event.sourceType==='character')return getCharacter(this.characterId).name+(event.reasonKey.startsWith('amo.assist.')?' · 助攻':'');
     const card=(this.presentation?.score??this.run.lastTrace)?.cards.find(card=>card.id===event.targetCardId);
     const item=R2_LONG_TERM_ITEMS.find(item=>item.id===event.sourceDefinitionId),tool=R2_TOOLS.find(tool=>tool.id===event.sourceDefinitionId),program=R2_MODE_CATALOG.programs.find(program=>program.id===event.sourceDefinitionId);

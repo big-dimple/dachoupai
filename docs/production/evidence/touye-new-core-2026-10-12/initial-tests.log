@@ -1,0 +1,241 @@
+
+> dachoupai@0.1.0 test
+> vitest run tests/touye-new-core.test.ts tests/touye-wager.test.ts
+
+
+ RUN  v4.1.11 /workspace/dachoupai-touye-core
+
+ ❯ tests/touye-new-core.test.ts (19 tests | 3 failed) 1374ms
+     × B02-zero wins only with actual new ID in authoritative active core 47ms
+     × B08/Q01 and empty stack forbid commitment atomically; B07 still pays the real discard cost 18ms
+     × actual scorer and public preview share before snapshot and core facts, retaining the original multiplier timing 95ms
+
+ Test Files  1 failed | 1 passed (2)
+      Tests  3 failed | 30 passed (33)
+   Start at  00:48:07
+   Duration  3.85s (transform 1.77s, setup 0ms, import 2.61s, tests 3.62s, environment 0ms)
+
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 3 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/touye-new-core.test.ts > Touye actual refill ID responsibility, separate new identity > B02-zero wins only with actual new ID in authoritative active core
+AssertionError: the given combination of arguments (undefined and string) is invalid for this assertion. You can use an array, a map, an object, a set, a string, or a weakset instead of a string
+ ❯ tests/touye-new-core.test.ts:29:78
+     27|   expect(trace.touyeWager!.core!.activeNewIds).toEqual(f.incoming);exp…
+     28|   expect(after.stage!.touyeWager!.resolution).toBe('played');expect(af…
+     29|   if(kind==='B02-zero')expect(trace.bossContext.ordinaryPointsSuppress…
+       |                                                                              ^
+     30|   if(kind==='short'){expect(f.state.stage!.touyeWager!.commit!.refill!…
+     31|  });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/3]⎯
+
+ FAIL  tests/touye-new-core.test.ts > Touye actual refill ID responsibility, separate new identity > B08/Q01 and empty stack forbid commitment atomically; B07 still pays the real discard cost
+Error: invalid-mode-seed-or-character
+ ❯ createRun src/domain/run.ts:341:25
+    339|     const mode=resolveR2ModeConfig(options.modeConfig??{mode:'standard…
+    340|     const result=applyCommand(null,routeStarterStartCommand({...option…
+    341|     if(!result.ok)throw Error(result.code);return result.state;
+       |                         ^
+    342|   }
+    343|   const result = applyCommand(null, {
+ ❯ touyeFixture tests/fixtures/touye-new-core.ts:18:8
+ ❯ tests/touye-new-core.test.ts:46:107
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/3]⎯
+
+ FAIL  tests/touye-new-core.test.ts > Touye actual refill ID responsibility, separate new identity > actual scorer and public preview share before snapshot and core facts, retaining the original multiplier timing
+AssertionError: expected undefined to deeply equal { commit: { …(10) }, …(3) }
+
+- Expected:
+{
+  "commit": {
+    "discardCommandId": "core/mature-win/command/4",
+    "duePlayIndex": 1,
+    "expectedSeq": 3,
+    "handBefore": [
+      {
+        "id": "spades-9",
+        "rank": 9,
+        "suit": "spades",
+      },
+      {
+        "id": "hearts-9",
+        "rank": 9,
+        "suit": "hearts",
+      },
+      {
+        "id": "clubs-13",
+        "rank": 13,
+        "suit": "clubs",
+      },
+      {
+        "id": "diamonds-13",
+        "rank": 13,
+        "suit": "diamonds",
+      },
+      {
+        "id": "spades-3",
+        "rank": 3,
+        "suit": "spades",
+      },
+      {
+        "id": "hearts-5",
+        "rank": 5,
+        "suit": "hearts",
+      },
+      {
+        "id": "clubs-7",
+        "rank": 7,
+        "suit": "clubs",
+      },
+      {
+        "id": "diamonds-2",
+        "rank": 2,
+        "suit": "diamonds",
+      },
+    ],
+    "refill": {
+      "discardBefore": [],
+      "drawAfter": [
+        "spades-2",
+        "spades-4",
+        "spades-5",
+        "spades-6",
+        "spades-7",
+        "spades-8",
+        "spades-10",
+        "spades-11",
+        "spades-12",
+        "spades-13",
+        "spades-14",
+        "hearts-2",
+        "hearts-3",
+        "hearts-4",
+        "hearts-6",
+        "hearts-7",
+        "hearts-8",
+        "hearts-10",
+        "hearts-11",
+        "hearts-12",
+        "hearts-13",
+        "hearts-14",
+        "clubs-2",
+        "clubs-3",
+        "clubs-4",
+        "clubs-5",
+        "clubs-6",
+        "clubs-8",
+        "clubs-10",
+        "clubs-11",
+        "clubs-12",
+        "clubs-14",
+        "diamonds-3",
+        "diamonds-4",
+        "diamonds-5",
+        "diamonds-6",
+        "diamonds-7",
+        "diamonds-8",
+        "diamonds-9",
+        "diamonds-10",
+        "diamonds-11",
+        "diamonds-12",
+        "diamonds-14",
+      ],
+      "drawBefore": [
+        "spades-2",
+        "spades-4",
+        "spades-5",
+        "spades-6",
+        "spades-7",
+        "spades-8",
+        "spades-10",
+        "spades-11",
+        "spades-12",
+        "spades-13",
+        "spades-14",
+        "hearts-2",
+        "hearts-3",
+        "hearts-4",
+        "hearts-6",
+        "hearts-7",
+        "hearts-8",
+        "hearts-10",
+        "hearts-11",
+        "hearts-12",
+        "hearts-13",
+        "hearts-14",
+        "clubs-2",
+        "clubs-3",
+        "clubs-4",
+        "clubs-5",
+        "clubs-6",
+        "clubs-8",
+        "clubs-10",
+        "clubs-11",
+        "clubs-12",
+        "clubs-14",
+        "diamonds-3",
+        "diamonds-4",
+        "diamonds-5",
+        "diamonds-6",
+        "diamonds-7",
+        "diamonds-8",
+        "diamonds-9",
+        "diamonds-10",
+        "diamonds-11",
+        "diamonds-12",
+        "diamonds-14",
+        "clubs-9",
+      ],
+      "handAfter": [
+        "spades-9",
+        "clubs-13",
+        "diamonds-13",
+        "spades-3",
+        "hearts-5",
+        "clubs-7",
+        "diamonds-2",
+        "clubs-9",
+      ],
+      "handLimit": 8,
+      "playedBefore": [],
+      "refilledIds": [
+        "clubs-9",
+      ],
+    },
+    "rules": {
+      "fourFlush": false,
+      "fourStraight": false,
+    },
+    "selectedIds": [
+      "hearts-9",
+    ],
+    "snapshotToken": "json-fnv-v1:ca710994c3901690",
+    "stageIndex": 0,
+    "target": "two-pair",
+  },
+  "core": {
+    "activeNewIds": [
+      "clubs-9",
+    ],
+    "contract": "new-core-v1",
+    "lossReason": null,
+  },
+  "multiplier": "2",
+  "outcome": "won",
+}
+
++ Received:
+undefined
+
+ ❯ tests/touye-new-core.test.ts:62:90
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/3]⎯
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice

@@ -1,0 +1,54 @@
+
+> dachoupai@0.1.0 verify:ci
+> node scripts/verify-ci.mjs --scope=docs
+
+CHECK production-plan: /opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node scripts/check-production-plan.mjs
+PLAN_VALID: 32 work packages; current=P08; not a gameplay acceptance
+production-plan: PASS
+{
+  "scope": "docs",
+  "testedCommit": "4976f30a4bb8c65dedbf46af16499dd8da5a541b",
+  "status": "PASS",
+  "exitCode": 0,
+  "before": {
+    "source": "95158d6924bd52db5b9efa14d63258bac718681604cf22539172714651316bbd",
+    "index": "97a07e986396dc3e95215b489a97fb5e497113ab40a808dc7575f570886f3ceb",
+    "head": "4976f30a4bb8c65dedbf46af16499dd8da5a541b",
+    "branch": "refs/heads/feat/touye-new-core-2026-10-12"
+  },
+  "after": {
+    "source": "95158d6924bd52db5b9efa14d63258bac718681604cf22539172714651316bbd",
+    "index": "97a07e986396dc3e95215b489a97fb5e497113ab40a808dc7575f570886f3ceb",
+    "head": "4976f30a4bb8c65dedbf46af16499dd8da5a541b",
+    "branch": "refs/heads/feat/touye-new-core-2026-10-12"
+  },
+  "steps": [
+    {
+      "name": "production-plan",
+      "status": "PASS",
+      "childExitCode": 0,
+      "elapsedMs": 2270
+    }
+  ],
+  "notIncluded": [
+    {
+      "name": "extended browser/recovery/fault/asset/simulation diagnostics",
+      "status": "NOT_INCLUDED",
+      "reason": "run the existing specific command only when its domain changes; P00 removes repeated default execution"
+    },
+    {
+      "name": "balance/benchmark acceptance",
+      "status": "NOT_INCLUDED",
+      "reason": "later work packages; no gameplay approval inferred from checks"
+    },
+    {
+      "name": "physical devices / human / art approval",
+      "status": "NOT_RUN"
+    }
+  ]
+}
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice

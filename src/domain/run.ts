@@ -1,3 +1,4 @@
+import {usesTouyeNewCore} from './r2TouyeWager';
 import type {TouyeBet} from './r2TouyeWager';
 import {isR2RouteStarter,R2_ROUTE_STARTERS,type R2OpeningRoute} from './r2GroupUpgrade';
 import {routeStarterStartCommand} from './r2RouteStarter';
@@ -191,6 +192,7 @@ export function applyCommand(input: AnyRunState | null, command: Command): Comma
   const previous = input?.receipts.find(receipt => receipt.commandId === command.commandId);
   if (previous) {
     if (previous.fingerprint !== fingerprint) return fail('command-id-conflict');
+    if(input?.rulesVersion==='r2'&&usesTouyeNewCore(input)){try{assertR2Invariants(input);}catch{return fail('touye-invalid-core-facts');}}
     return { ok: true, state: input!, events: [], receipt: previous, duplicate: true };
   }
   if (command.expectedSeq !== (input?.commandSeq ?? 0)) return fail('stale-sequence');
