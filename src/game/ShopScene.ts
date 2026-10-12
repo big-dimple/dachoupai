@@ -184,7 +184,7 @@ export class ShopScene extends Phaser.Scene {
 
       const price=r2PurchasePrice(this.run,o);
       const priceInk=this.offerPricePlate(o,{x:copyX-2,y:copy.priceY-2,width:copyWidth+2,height:24});
-      v.text(copyX,copy.priceY,o.consumed?'已收入':price+' 金 · '+(this.run.jokers.length>=r2JokerCapacity(this.run)?'比较替换':'查看'),16,priceInk).setFontStyle('bold').setName('shop/offer-price').setData('offerId',o.offerId);
+      v.text(copyX,copy.priceY,o.consumed?'已收入':p.portrait?price+'金 · '+(this.run.jokers.length>=r2JokerCapacity(this.run)?'比较':'查看'):price+' 金 · '+(this.run.jokers.length>=r2JokerCapacity(this.run)?'比较替换':'查看'),16,priceInk).setFontStyle('bold').setName('shop/offer-price').setData('offerId',o.offerId);
       v.add(createJokerRarityBadge(this,d.rarity,{x:b.x+b.width-31,y:b.y+b.height-21-(factsOnFace?54:0),compact:true}).setData('definitionId',o.definitionId).setData('surface','offer'));
       if(p.portrait){
         const g=shopOfferGuidance(this.run,o),rowY=factsOnFace?b.y+b.height-52:copy.priceY-20;
