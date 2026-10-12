@@ -9,7 +9,7 @@ interface Surface {
   ids:readonly string[];hint?:Phaser.GameObjects.Text;
 }
 /** CSS-pixel feedback; no domain state, command or persistence is owned here. */
-export const OWNED_DRAG={lift:32,scale:1.12,giveWayMs:110,settleMs:150} as const;
+export const OWNED_DRAG={lift:16,scale:1.06,giveWayMs:110,settleMs:150} as const;
 export function ownedDragPose(slot:Box,start:{x:number;y:number},pointer:{x:number;y:number}) {
   return {x:slot.x+slot.width/2+pointer.x-start.x,y:slot.y+slot.height/2+pointer.y-start.y-OWNED_DRAG.lift};
 }
@@ -62,8 +62,8 @@ export class OwnedJokerDragVisual {
         this.scene.tweens.killTweensOf(art);
         const pose=this.saving?{x:b.x+b.width/2,y:b.y+b.height/2-OWNED_DRAG.lift}:ownedDragPose(source,this.start,this.pointer);
         art.setPosition(pose.x,pose.y).setScale(OWNED_DRAG.scale).setAngle(0).setAlpha(to<0?.65:1);
-        this.shadow!.clear().fillStyle(PAPER_THEME.ink,.12).fillRoundedRect(-source.width*.56-3,-source.height*.56+7,source.width*1.12+6,source.height*1.12+6,7)
-          .fillStyle(PAPER_THEME.ink,.28).fillRoundedRect(-source.width*.56,-source.height*.56+9,source.width*1.12,source.height*1.12,5).setPosition(pose.x+3,pose.y+3).setAlpha(to<0?.5:1);
+        this.shadow!.clear().fillStyle(PAPER_THEME.ink,.10).fillRoundedRect(-source.width*.53-3,-source.height*.53+7,source.width*1.06+6,source.height*1.06+6,7)
+          .fillStyle(PAPER_THEME.ink,.20).fillRoundedRect(-source.width*.53,-source.height*.53+9,source.width*1.06,source.height*1.06,5).setPosition(pose.x+3,pose.y+3).setAlpha(to<0?.5:1);
         s.root.bringToTop(this.shadow!);s.root.bringToTop(art);
       }else if(rebind||this.destinations.get(id)!==dest){
         this.scene.tweens.killTweensOf(art);art.setScale(1).setAngle(0).setAlpha(1);

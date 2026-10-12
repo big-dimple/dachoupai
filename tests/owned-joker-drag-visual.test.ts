@@ -8,7 +8,7 @@ describe('owned drag feedback and real slot semantics',()=>{
     const start={x:30,y:560},a=ownedDragPose(slots[0],start,start),b=ownedDragPose(slots[0],start,{x:260,y:577});
     expect(b.x-a.x).toBe(230);expect(b.y-a.y).toBe(17);
     expect(a.y).toBeCloseTo(slots[0].y+slots[0].height/2-OWNED_DRAG.lift);
-    expect(OWNED_DRAG.lift).toBeGreaterThanOrEqual(28);
+    expect(OWNED_DRAG.lift).toBe(16);expect(OWNED_DRAG.scale).toBe(1.06);
   });
   it('previews final insertion positions in both directions and in the middle',()=>{
     const ids=['a','b','c','d','e'];
