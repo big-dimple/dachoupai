@@ -1,0 +1,35 @@
+{
+  "baseline": "2ef9180c066308e06d7d09850983ea469aa67fd8",
+  "productSha": "e68913bdafe843785009a02ffcdf2f1c8274af7d",
+  "buildInfo": {
+    "version": "C03",
+    "builtAt": "2026-10-13T15:59:08.289Z",
+    "revision": "e68913bdafe843785009a02ffcdf2f1c8274af7d",
+    "sourceStatus": "clean",
+    "modified": false
+  },
+  "sourceSha256": {
+    "src/game/ImageWarmupQueue.ts": "efce0af3174ee77eaa55c92a27db20e677ea210c495a2c3ff034f2c63ffe5491",
+    "src/game/ImageWarmupStatus.ts": "73ef3756799c228fa7a483126bc5240e85e499efa125a13c2401fea98022b509",
+    "src/game/StageImageWarmup.ts": "46322935770571b9c882f4473d797841f19ddaf73b660f7520df132c02e7f2de",
+    "src/game/BootScene.ts": "0d76e52483def976ba7e3366760081023aa6a1b06304004df64fc75e8e695d0c",
+    "src/game/TitleScene.ts": "b18ca3dd2bdf64da0d31fa30956d90e3c81b9f6b336418e9281e682387413ba8",
+    "src/game/CharacterSelectScene.ts": "231796ade0338bc73ee9d30924b8222a68ef2d1c44ff0db806b5871e69e1e91b",
+    "src/game/ShopScene.ts": "5b0ad19c9fd5b7b7d17d7e49371bcf59725a9f9f36df8f08366494a1cef25e55",
+    "src/game/GameScene.ts": "617273d5acd4c23dbbddb69bb2592a77a7a27e1facd824a3de797df249c544e1"
+  },
+  "bundleSha256": {
+    "dist/assets/index-CkME0Ovj.js": "79fe1b465cf9db0fa0203cab484e036d6233b214a6c9456061f5b22b7f1cf864",
+    "dist/assets/index-BaH_aplF.css": "f1edf5fea8ed28d4592c9c0d7ca5e558db03f36351e18ffee75eeb704e398815"
+  },
+  "typecheck": "PASS",
+  "targetedTests": {
+    "command": "npm test -- --run tests/image-warmup-queue.test.ts tests/joker-art-loading.test.ts tests/goods-art-loading.test.ts tests/detail-art.test.ts tests/hero-climax.test.ts tests/selection-layout.test.ts tests/opening-play-sample.test.ts",
+    "files": 7,
+    "tests": 134,
+    "status": "PASS",
+    "scope": "bounded queue / existing thumbnail retry / detail / goods / hero presentation contracts; not UX acceptance"
+  },
+  "protectedPaths": "git diff origin/main --name-only -- src/domain src/content src/application src/audio src/platform public art docs/production/DELIVERY_PLAN.md: empty",
+  "noGameScoring": true
+}
