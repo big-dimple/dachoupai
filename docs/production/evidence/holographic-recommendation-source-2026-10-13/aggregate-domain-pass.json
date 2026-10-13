@@ -1,0 +1,48 @@
+{
+  "scope": "domain",
+  "testedCommit": "3fc863fd3b96806886de04107d2d16818ad6487b",
+  "status": "PASS",
+  "exitCode": 0,
+  "before": {
+    "source": "ad08897813bbb27e5649c5afa6eaa558d8fadbfabbb3ab0418d84a504a61aff8",
+    "index": "59ef296001a56abf02d825a143668e9c14fa9ac88f60bc10f168c11bf8669a85",
+    "head": "3fc863fd3b96806886de04107d2d16818ad6487b",
+    "branch": "refs/heads/fix/holographic-recommendation-source-2026-10-13"
+  },
+  "after": {
+    "source": "ad08897813bbb27e5649c5afa6eaa558d8fadbfabbb3ab0418d84a504a61aff8",
+    "index": "59ef296001a56abf02d825a143668e9c14fa9ac88f60bc10f168c11bf8669a85",
+    "head": "3fc863fd3b96806886de04107d2d16818ad6487b",
+    "branch": "refs/heads/fix/holographic-recommendation-source-2026-10-13"
+  },
+  "steps": [
+    {
+      "name": "test",
+      "status": "PASS",
+      "childExitCode": 0,
+      "elapsedMs": 45679
+    },
+    {
+      "name": "verify:content",
+      "status": "PASS",
+      "childExitCode": 0,
+      "elapsedMs": 3393
+    }
+  ],
+  "notIncluded": [
+    {
+      "name": "extended browser/recovery/fault/asset/simulation diagnostics",
+      "status": "NOT_INCLUDED",
+      "reason": "run the existing specific command only when its domain changes; P00 removes repeated default execution"
+    },
+    {
+      "name": "balance/benchmark acceptance",
+      "status": "NOT_INCLUDED",
+      "reason": "later work packages; no gameplay approval inferred from checks"
+    },
+    {
+      "name": "physical devices / human / art approval",
+      "status": "NOT_RUN"
+    }
+  ]
+}

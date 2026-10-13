@@ -5,7 +5,7 @@ import {r2JokerDefinitionsFor} from '../domain/r2ContentProfiles';
 import {r2JokerCapacity,r2HandLimit} from '../domain/r2Resources';
 import {stableHash} from '../domain/hash';
 import {R2_GROUP_HAND_TYPES} from '../domain/r2GroupHands';
-import {R2_ENHANCEMENTS} from '../content/r2Tools';
+import {R2_ENHANCEMENTS,R2_EDITIONS} from '../content/r2Tools';
 import {Rational} from '../domain/rational';
 import {readR2Modifiers,type Condition} from '../content/r2Schema';
 import {r2ScoringDisabledJokerIds} from '../domain/scoreR2';
@@ -114,7 +114,12 @@ export function shopRecommendation(state:R2RunState,offer:R2Offer,focus?:BuildFo
    default:return false;
   }
  };
- const additiveSource=scoringJokers.some(j=>{const d=definitions.find(d=>d.id===j.definitionId)!;return d.hooks.some(h=>multiplierCondition(h.condition)&&h.operations.some(o=>o.kind==='add-multiplier'&&Rational.fromJSON(o.value).compare(new Rational(0n))>0||o.kind==='read-growth'&&o.target==='multiplier'&&Rational.fromJSON(j.growth[o.key]??{n:'0',d:'1'}).compare(new Rational(0n))>0));});
+ const additiveSource=scoringJokers.some(j=>{
+  const d=definitions.find(d=>d.id===j.definitionId)!,edition=R2_EDITIONS.find(e=>e.id===(j.edition??'none'))?.effect;
+  // Editions score without an own-hook hit, but only on an enabled retained
+  // instance. Heat and multiplicative editions are not additive multiplier sources.
+  return edition?.kind==='add-multiplier'&&Rational.fromJSON(edition.value).compare(new Rational(0n))>0||d.hooks.some(h=>multiplierCondition(h.condition)&&h.operations.some(o=>o.kind==='add-multiplier'&&Rational.fromJSON(o.value).compare(new Rational(0n))>0||o.kind==='read-growth'&&o.target==='multiplier'&&Rational.fromJSON(j.growth[o.key]??{n:'0',d:'1'}).compare(new Rational(0n))>0));
+ });
  const potentialStages=state.tourMode==='endless'?6:Math.max(0,24-state.stageIndex),growthWindow=stage!=='late'&&potentialStages>=6;
  const facts={cards:cards.length,largest,second,largestSuit,groupConcentrated,flushConcentrated,straightConcentrated,ordinaryStraightPossible,ordinaryFlushPossible,boostedGroup,houseCardPayoff,boostedHouse,groupRecord,houseRecord,flushRecord,qualifiedRecord,heldCardPayoff,heldGroupPayoff,retriggerSource,additiveSource,disabledSourceCount:disabledSources.size,potentialStages,growthWindow,initialGrowth:JSON.stringify(r2CreateJoker(offer.definitionId,'recommendation/'+offer.offerId,offer.price,offer.edition,state).growth),...(c2?{straightFamilyPossible,flushFamilyPossible,flushHousePossible,flushFivePossible,routeGrowth:JSON.stringify(routeGrowth)}:{})};
  const d=definitions.find(d=>d.id===offer.definitionId),rules=c2?SHOP_C2_RECOMMENDATION_AUDIT:SHOP_RECOMMENDATION_AUDIT,rule=rules[offer.definitionId as keyof typeof SHOP_RECOMMENDATION_AUDIT];
