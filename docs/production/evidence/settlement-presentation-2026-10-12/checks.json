@@ -1,0 +1,80 @@
+{
+  "baseline": "be2ff12f0d159f48a11c8bec8089f4dc1d2bd3d7",
+  "product": "2e214e25ddbedcdd450e9d6c769978051c41610a",
+  "mergedMain": "dc985f6a4f418e5751648f1d57f466163fbc2673",
+  "integration": "8c04902eea4601e1f3fb9e856f3a28d24a67702f",
+  "frozenProductFilesIdenticalAfterMerge": true,
+  "protectedTreesIdenticalToMergedMain": true,
+  "controlledStatesIdenticalAfterMerge": true,
+  "beforeCases": 21,
+  "frozenProductCases": 37,
+  "integrationReadonlyCases": 6,
+  "affectedTests": {
+    "files": 7,
+    "tests": 99,
+    "status": "PASS"
+  },
+  "typecheck": "PASS",
+  "build": "PASS",
+  "actualPixelReview": [
+    "ordinary-390",
+    "chain-1366",
+    "billion-1366",
+    "billion-390",
+    "long-390",
+    "boss-loss-1366",
+    "boundary-narrow",
+    "boundary-short",
+    "boundary-missing-art",
+    "native-billion-ending"
+  ],
+  "humanAestheticAcceptance": false,
+  "hardwareAndHearingAcceptance": false,
+  "natural310793589Trace": "NOT_AVAILABLE_IN_WORKSPACE",
+  "ci": "Read exact final draft HEAD checks; no old run is used as a gate.",
+  "productFiles": {
+    "src/game/IntermissionScene.ts": "0b9fb66b2a8ca1b3f9472d19f1992b192d76438d",
+    "src/game/SettlementPresentation.ts": "b4e528eaf31d2d10f8a403dd00865208deba1e86",
+    "harness/fixtures/settlement.ts": "3d4b19d5c140a922882619c4b7f6122a4c16b770",
+    "harness/settlement-presentation.mjs": "0f7f872db4f1055d4b0d3e635df2265be00a167e",
+    "tests/settlement-presentation.test.ts": "6e0b5413f23edfb14cfa6d731661ae7f4675a722"
+  },
+  "finalDocsMainAbsorption": {
+    "main": "0c71c5dabbc754516848d1a0acc931464db730a8",
+    "integration": "10a74918523f4ef8ecea6834145ba3e812311069",
+    "onlyMainDocsChanged": true,
+    "productFilesAndProtectedTreesUnchanged": true,
+    "planCheck": "PASS: 32 work packages"
+  },
+  "ciRepair": {
+    "failedHead": "8c2fa1f7fb8ed54bd01c091ff9b4786dcaf2e84c",
+    "failedRun": 38233780448,
+    "failure": "4 existing isolated audio tests called optional art after their render stub; no scoring fields in the audio-only run stub",
+    "fix": "optional transport requires the mounted paint hook; failed results load only identity art without reading the scoring ledger",
+    "audioTestsUnchanged": true,
+    "finalLocalCodeHead": "9774f10",
+    "affectedTests": {
+      "files": 8,
+      "tests": 104,
+      "status": "PASS"
+    },
+    "typecheck": "PASS",
+    "build": "PASS",
+    "readonlyRecheckCases": 6,
+    "assetBoundaryRecheckCases": 3,
+    "repeatedSourceCases": 2,
+    "repeatedSourceActualEvents": 10,
+    "productFiles": {
+      "src/game/IntermissionScene.ts": "a0b9cae649d204b07108ddbed688aa11abf47f3e",
+      "src/game/SettlementPresentation.ts": "21324f31f001a4c883367961df1fdc813620c4ff",
+      "harness/fixtures/settlement.ts": "c25ab93c839b7053bbf7cdc890b9dcde2cd2402d",
+      "harness/settlement-presentation.mjs": "2eb8f46fb616ccdb74df59e566e7235e353cdfef",
+      "tests/settlement-presentation.test.ts": "1f0a6e4557ef6b80df768d6855fc1d7f323e6c63"
+    },
+    "snapshots": {
+      "ci-repair": "8c2fa1f7fb8ed54bd01c091ff9b4786dcaf2e84c",
+      "ci-repair-boundaries": "50175758e45f142ca6ebafc74610f31b7e440479",
+      "repeated-source": "9774f10bb25d6abc12e23573020194c8bd18c1af"
+    }
+  }
+}
