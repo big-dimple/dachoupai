@@ -62,9 +62,9 @@ it('full Joker slots do not suppress a legal tool purchase warning for retained 
  const o={offerId:'public/tool',definitionId:'T01',price:4,consumed:false};s.shop!.toolOffers=[o];
  expect(shopPurchaseCashFacts(s,o)).toMatchObject({status:'assessed',goldAfterPurchase:19});expect(shopPurchaseConditionLosses(s,o).join('\n')).toContain('包场买后19金，暂不触发');
 });
-it('discounted purchase uses the real threshold, while ordinary high / rare low / five-star core remain possible',()=>{
+it('discounted purchase uses the real threshold, while ordinary high / rare low remain separate from the reserved fifth star',()=>{
  const {s,o}=setup(26);s.purchaseCoupons=1;expect(shopOfferGuidance(s,o)).toMatchObject({stars:4,condition:expect.stringContaining('买后20金')});s.purchaseCoupons=0;expect(shopOfferGuidance(s,o).stars).toBe(2);
  const high={...o,definitionId:'b06',price:r2Price('b06','none',s)};s.gold=0;expect(shopOfferGuidance(s,high)).toMatchObject({stars:4,operation:expect.stringContaining('差')});
  s.deckInstances=s.deckInstances.filter(c=>c.rank===7||c.rank===8&&c.suit!=='spades'||c.rank===9&&['hearts','clubs'].includes(c.suit)||c.rank===10&&c.suit==='hearts');
- expect(shopRecommendation(s,high,'group').stars).toBe(5);
+ expect(shopRecommendation(s,high,'group').stars).toBe(4);
 });

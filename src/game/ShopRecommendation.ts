@@ -40,12 +40,13 @@ export const SHOP_C2_RECOMMENDATION_AUDIT={...SHOP_RECOMMENDATION_AUDIT,
  jiedongfeng:'route-family-add-c2',e11:'sale-keeps-coefficient-c2',f10:'opening-discard-rescue-c2',
 } as const;
 export type RecommendationStars=0|1|2|3|4|5;
-export interface ShopRecommendation {stars:RecommendationStars;reason:string;condition:string;detail:string;stage:'early'|'mid'|'late';facts:Readonly<Record<string,number|boolean|string>>}
+export interface ShopRecommendation {stars:RecommendationStars;reason:string;condition:string;detail:string;stage:'early'|'mid'|'late';combination:string;facts:Readonly<Record<string,number|boolean|string>>}
 const hashes=new WeakMap<object,string>();
 /** No affordability rating, RNG, future piles or stored recommendation. Cash gates use purchase cash. */
 export function shopRecommendation(state:R2RunState,offer:R2Offer,focus?:BuildFocus,sold?:R2JokerInstance):ShopRecommendation {
- const cash=offer.definitionId==='e08'?shopPurchaseCashFacts(state,offer,sold):undefined;
- // Only this cash-gated recommendation reads the specified sale's retained sources/growth.
+ const cash=offer.definitionId==='e08'||sold?shopPurchaseCashFacts(state,offer,sold):undefined;
+ // Every specified sale removes its sources/modifiers and applies real sale hooks.
+ // The original state, RNG and storage remain untouched.
  if(cash?.status==='assessed')state=cash.afterSale;
  const definitions=r2JokerDefinitionsFor(state);let hash=hashes.get(definitions);if(!hash){hash=stableHash(definitions);hashes.set(definitions,hash);}
  const c2=isR2RouteGrowth(state)&&hash===SHOP_C2_RECOMMENDATION_SEMANTICS;
@@ -115,7 +116,18 @@ export function shopRecommendation(state:R2RunState,offer:R2Offer,focus?:BuildFo
  const potentialStages=state.tourMode==='endless'?6:Math.max(0,24-state.stageIndex),growthWindow=stage!=='late'&&potentialStages>=6;
  const facts={cards:cards.length,largest,second,largestSuit,groupConcentrated,flushConcentrated,straightConcentrated,ordinaryStraightPossible,ordinaryFlushPossible,boostedGroup,houseCardPayoff,boostedHouse,groupRecord,houseRecord,flushRecord,qualifiedRecord,heldCardPayoff,heldGroupPayoff,retriggerSource,additiveSource,disabledSourceCount:disabledSources.size,potentialStages,growthWindow,initialGrowth:JSON.stringify(r2CreateJoker(offer.definitionId,'recommendation/'+offer.offerId,offer.price,offer.edition,state).growth),...(c2?{straightFamilyPossible,flushFamilyPossible,flushHousePossible,flushFivePossible,routeGrowth:JSON.stringify(routeGrowth)}:{})};
  const d=definitions.find(d=>d.id===offer.definitionId),rules=c2?SHOP_C2_RECOMMENDATION_AUDIT:SHOP_RECOMMENDATION_AUDIT,rule=rules[offer.definitionId as keyof typeof SHOP_RECOMMENDATION_AUDIT];
- const result=(stars:RecommendationStars,reason:string,condition:string):ShopRecommendation=>({stars,reason,condition,stage,facts,detail:reason+'；'+condition+(d?'。'+d.description:'')+(stars>=4?`\n公开依据：最大同点组${largest}张，前两组${largest+second}/${cards.length}张；最大花色${largestSuit}/${cards.length}张；已持逐牌加成${heldCardPayoff?'有':'无'}；剩余场次窗口${potentialStages}。`:'')+'\n基于公开构筑与当前阶段的推荐；不表示指定替换净更强。'+(routeGrowth?'\n'+routeGrowth.detail:'')});
+ // Potential is a public prerequisite, never a saved activation or a star bonus.
+ const potential=rule==='group-retrigger'&&(boostedGroup||heldGroupPayoff)?'同点重触可接加成，待触发':
+  rule==='house-retrigger'&&houseCardPayoff?'葫芦重触可接加成，待触发':
+  rule==='flush-retrigger'&&flushRetriggerPossible?'可重触同花尾牌，核对尾牌加成':
+  rule==='retrigger-growth'?(retriggerSource?'已有重触来源，成长待触发':'尚缺可用重触来源'):
+  rule==='diverse-coefficient'?(additiveSource?'已有加倍率来源，换型待触发':'换型待触发，核对加倍率来源'):'';
+ const recorded=state.jokers.filter(j=>trace?.events.some(e=>e.sourceType==='joker'&&e.sourceInstanceId===j.instanceId&&['onCardScore','onHeldCard','jokerScore'].includes(e.phase)&&(JSON.stringify(e.before)!==JSON.stringify(e.after)||e.operation==='retrigger-card'&&Rational.fromJSON(e.value).compare(new Rational(0n))>0))).map(j=>definitions.find(d=>d.id===j.definitionId)!.name);
+ const combination=(potential?'组合潜力：'+potential+'。\n':'')+(recorded.length>=2?'组合记录：上手'+recorded.join('、')+'共同计分（新牌未参与）。':'组合记录：尚无两张现持牌共同计分。');
+ // Existing group-only 5-star shortcuts lack cross-route cost/lifetime calibration.
+ // Keep a five-slot scale, but reserve 5 until that evidence exists for every route.
+ const result=(stars:RecommendationStars,reason:string,condition:string):ShopRecommendation=>({stars,reason,condition,stage,combination,facts,detail:reason+'；'+condition+(d?'。'+d.description:'')+(stars>=4?`\n公开依据：最大同点组${largest}张，前两组${largest+second}/${cards.length}张；最大花色${largestSuit}/${cards.length}张；已持逐牌加成${heldCardPayoff?'有':'无'}；剩余场次窗口${potentialStages}。`:'')+'\n'+combination+'\n共同计分不代表额外奖励或下手必触发，新现货尚未加入上手记录。\n推荐指数不等于稀有度或路线契合；星星不代表必买或稳赚，需结合替换损失。\n基于公开构筑与当前阶段的推荐；不表示指定替换净更强。'+(routeGrowth?'\n'+routeGrowth.detail:'')});
+ if(sold&&cash?.status==='blocked')return result(0,'替换不可执行','先核对出售限制');
  if(!audited||!rule||!d)return result(0,'规则待核','该身份尚未审计');
  const scoreHooks=d.hooks.some(h=>['jokerScore','onCardScore','onHeldCard'].includes(h.phase));
  if(scoreHooks&&state.chapterDisabledJokerId===d.id)return result(1,'本章计分停用','静态与经营效果另核');
@@ -150,11 +162,11 @@ export function shopRecommendation(state:R2RunState,offer:R2Offer,focus?:BuildFo
   case 'rising-growth':return result(growthWindow&&additiveSource?3:2,'递增得分长倍率','不升分会归零');
   case 'low-score-growth':return result(2,'低分后长热度','未过关且低于目标10%');
   case 'retrigger-growth':return retriggerSource?growth(true,'重触后长倍率','需实际额外重触'):result(2,'尚缺重触来源','新购成长为0');
-  case 'diverse-coefficient':return result(stage==='late'?(qualifiedReady?3:2):groupConcentrated&&boostedGroup&&additiveSource&&growthWindow?5:qualifiedReady?4:groupFit||flushFit||straightFit?3:2,'长期相乘成长','新购×1.5 · 连续不同合格主手');
+  case 'diverse-coefficient':return result(stage==='late'?(qualifiedReady?3:2):qualifiedReady?4:groupFit||flushFit||straightFit?3:2,'长期相乘成长','新购×1.5 · 连续不同合格主手');
   case 'sale-reset-coefficient':return result(stage==='late'?2:potentialStages>=6?4:3,'不出售跨场成长','初始×1 · 出售其他重置');
   case 'last-clear-coefficient':return result(stage==='late'?2:3,'压线过关系数成长','新购×1 · 最后一手成功');
-  case 'group-retrigger':return result(largest<2?1:groupConcentrated&&(boostedGroup||heldGroupPayoff)?5:groupFit||boostedGroup||heldGroupPayoff?4:2,'成组核心逐牌重触','最大原始同点组有效牌');
-  case 'house-retrigger':return result(largest<3||second<2?1:(groupConcentrated||houseRecord)&&boostedHouse?5:groupConcentrated||houseRecord||houseCardPayoff?4:2,'葫芦整组重触','只读葫芦或同花葫芦');
+  case 'group-retrigger':return result(largest<2?1:groupFit||boostedGroup||heldGroupPayoff?4:2,'成组核心逐牌重触','最大原始同点组有效牌');
+  case 'house-retrigger':return result(largest<3||second<2?1:groupConcentrated||houseRecord||houseCardPayoff?4:2,'葫芦整组重触','只读葫芦或同花葫芦');
   case 'flush-retrigger':return result(largestSuit<5?1:flushReady&&cards.some(boosted)||flushReady&&heldCardPayoff?4:flushFit?3:2,'同花尾牌重触','普通同花或同花顺');
   case 'third-retrigger':return result(cards.length<3?1:heldCardPayoff||count(boosted)>=3?4:3,'第三计分牌重触','第三原始牌须有效');
   case 'even-retrigger':return result(heldCardPayoff||count(boosted)>=3?4:3,'偶数手首牌重触','每场第偶数次出牌');
