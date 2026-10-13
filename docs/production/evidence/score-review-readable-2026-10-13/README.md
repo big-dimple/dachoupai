@@ -44,3 +44,8 @@ GameScene只改inspectLastTrace接入及删除已无调用的回看专用formatB
 共同文件仅GameScene.ts回看方法/相关导入和RunMenu.ts非game回看后备分支；直接摘取新formatter并最小接入即可，不需要重构GameScene。唯一主执行计划未改，开工卡/证据独立落在本目录供父整合。
 
 具体相邻范围：`src/game/IntermissionScene.ts:inspectLastHand`自己的“回看最后一手”还用旧精确展示/完整计分明细；它不是本次菜单后备入口，且属结算线程共同文件，本包未顺手修改。建议父/结算owner按同一formatter做最小接入，避免该独立入口与菜单显示不一致。没有其它实现阻塞或权限拒绝；未做main合并/强推。
+
+
+## 同批补完（2026-10-13，按父新授权）
+
+上方Intermission未接入提示仅属于bf394交付时点，现已在不动其它结算代码的前提下最小接入同一formatter。原按钮、结果canvas像素及完整保存/冷恢复已局部对照；新SHA/软件门/失败记录和手机PC图另见[结果页补完证据](intermission/README.md)。旧测试与截图不回写为新SHA，最终新CI以PR160回执另核。

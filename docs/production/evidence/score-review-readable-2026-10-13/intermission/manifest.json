@@ -1,0 +1,259 @@
+{
+  "inputSHA": "bf3944a26747ab8a1a830e098ae5857fb7f5dded",
+  "sourceSHA": "4cb5d9dbfac2a6d5f05c9ab6e7d8bf8a32ca32a0",
+  "protected": [
+    {
+      "path": "src/domain",
+      "base": "621572ff4e63ec7c99a593b6d88e522f37225b9b",
+      "source": "621572ff4e63ec7c99a593b6d88e522f37225b9b",
+      "same": true
+    },
+    {
+      "path": "src/content",
+      "base": "e8c3794be5b0fcb74da4aeb9e6adc63c22388345",
+      "source": "e8c3794be5b0fcb74da4aeb9e6adc63c22388345",
+      "same": true
+    },
+    {
+      "path": "src/application",
+      "base": "d7ab7bdaed8ae67f91a4f53e11ad735daacfae57",
+      "source": "d7ab7bdaed8ae67f91a4f53e11ad735daacfae57",
+      "same": true
+    },
+    {
+      "path": "src/platform",
+      "base": "860a9f8883cc158ac0c56ad6399518cc897a67b7",
+      "source": "860a9f8883cc158ac0c56ad6399518cc897a67b7",
+      "same": true
+    },
+    {
+      "path": "src/audio",
+      "base": "a2f0483eecaaafb40cdbb82778ec2a846fd2e000",
+      "source": "a2f0483eecaaafb40cdbb82778ec2a846fd2e000",
+      "same": true
+    },
+    {
+      "path": "public",
+      "base": "c4a6ec74e7fd754b0f300b973020f8afed7542e1",
+      "source": "c4a6ec74e7fd754b0f300b973020f8afed7542e1",
+      "same": true
+    },
+    {
+      "path": "art",
+      "base": "b0caa33679b84bee932b2854734c04ad39ba0464",
+      "source": "b0caa33679b84bee932b2854734c04ad39ba0464",
+      "same": true
+    },
+    {
+      "path": "src/game/GameScene.ts",
+      "base": "1b24db74cbebf3359d76e298074b92b9454ebead",
+      "source": "1b24db74cbebf3359d76e298074b92b9454ebead",
+      "same": true
+    },
+    {
+      "path": "src/game/RunMenu.ts",
+      "base": "acad82dec101618c60fdae7508ffe0d287c27a9f",
+      "source": "acad82dec101618c60fdae7508ffe0d287c27a9f",
+      "same": true
+    },
+    {
+      "path": "src/game/ScoreReview.ts",
+      "base": "ca22c1227ec9d2a8fe087b4664d38ea6b5d93567",
+      "source": "ca22c1227ec9d2a8fe087b4664d38ea6b5d93567",
+      "same": true
+    },
+    {
+      "path": "src/game/HeroClimax.ts",
+      "base": "32a2c48b45077504d647d0f746b412965d06e07a",
+      "source": "32a2c48b45077504d647d0f746b412965d06e07a",
+      "same": true
+    },
+    {
+      "path": "src/game/CharacterSelectScene.ts",
+      "base": "4c589573438d1bcf06b94f8a31e5186ab5b8fe20",
+      "source": "4c589573438d1bcf06b94f8a31e5186ab5b8fe20",
+      "same": true
+    },
+    {
+      "path": "docs/production/DELIVERY_PLAN.md",
+      "base": "c74c8653cfe862d05fe6b0dbb3541e191558f834",
+      "source": "c74c8653cfe862d05fe6b0dbb3541e191558f834",
+      "same": true
+    },
+    {
+      "path": "package-lock.json",
+      "base": "acc93dcd9410bc911db279534e28522a8691dbab",
+      "source": "acc93dcd9410bc911db279534e28522a8691dbab",
+      "same": true
+    },
+    {
+      "path": ".github",
+      "base": "b923e03979ce93c9a142628f8b1099e2cd2b9150",
+      "source": "b923e03979ce93c9a142628f8b1099e2cd2b9150",
+      "same": true
+    }
+  ],
+  "sourceIntermissionBlob": "ce8e115de51a0fee5b311a2dd506b999351a6de7",
+  "files": [
+    {
+      "path": "FAILURES.md",
+      "bytes": 615,
+      "sha256": "aa6bf2ad8d74673d3d9e2b9adb6ccdc5602d4c555b9c2d7b8d5c76039b722275"
+    },
+    {
+      "path": "README.md",
+      "bytes": 4086,
+      "sha256": "e29dfd37338aae1140d3584014668963cf72d8c5a0dc3d03be4efd5eb4dab292"
+    },
+    {
+      "path": "native/1366-clear-baseline-default.png",
+      "bytes": 118050,
+      "sha256": "e00ceff38f02293d64d312fc05e45ccac8822238e9cded9ce1fcd4f8549d72f5"
+    },
+    {
+      "path": "native/1366-clear-baseline-result.png",
+      "bytes": 125966,
+      "sha256": "da564f6b02c21fa2b69277eac111a246ee100f44bf59aab5160c8806cc3d1818"
+    },
+    {
+      "path": "native/1366-clear-current-default.png",
+      "bytes": 116889,
+      "sha256": "44468a873d7e9711fc059521616abb9975472bfcf1e621c2354e61db6d749d99"
+    },
+    {
+      "path": "native/1366-clear-current-diagnostic.png",
+      "bytes": 147404,
+      "sha256": "c5f235201396a49ed541f6054502b152d4b34f96c88a6273f188b37934c52438"
+    },
+    {
+      "path": "native/1366-clear-current-result.png",
+      "bytes": 125966,
+      "sha256": "da564f6b02c21fa2b69277eac111a246ee100f44bf59aab5160c8806cc3d1818"
+    },
+    {
+      "path": "native/1366-loss-baseline-default.png",
+      "bytes": 44383,
+      "sha256": "db85f1fabd8257bb938b0b4a1b154027aab9f08b44e09da8a0ef804353445656"
+    },
+    {
+      "path": "native/1366-loss-baseline-result.png",
+      "bytes": 100569,
+      "sha256": "d876ed223e421511f8f05abddc30cd337ddcf6874b7bdf0608b11edb294b539b"
+    },
+    {
+      "path": "native/1366-loss-current-default.png",
+      "bytes": 79538,
+      "sha256": "abcfa1a535e30fafbc7466f17f70c43c08e96c08c1cc92b1caf5a81536bc26e5"
+    },
+    {
+      "path": "native/1366-loss-current-diagnostic.png",
+      "bytes": 135962,
+      "sha256": "b5d3f5f0c3744a6f91a57caf1b84b0a0d04a3df7973805793015a6c0c751916f"
+    },
+    {
+      "path": "native/1366-loss-current-result.png",
+      "bytes": 100569,
+      "sha256": "d876ed223e421511f8f05abddc30cd337ddcf6874b7bdf0608b11edb294b539b"
+    },
+    {
+      "path": "native/390-clear-baseline-default.png",
+      "bytes": 83131,
+      "sha256": "5d62e9c3178f132da778a4de0aa419bf05ea49cdcca43ce2812a33546f05795a"
+    },
+    {
+      "path": "native/390-clear-baseline-result.png",
+      "bytes": 89479,
+      "sha256": "dee343d0829de772877f78b34f42d8b3ca213fe7706fcd16803d5376ee5aaef5"
+    },
+    {
+      "path": "native/390-clear-current-default.png",
+      "bytes": 94061,
+      "sha256": "a47e8fe4484df16e98f28d5048b8c121c6ad22f1d9c9306c633ce13d6c9dcce0"
+    },
+    {
+      "path": "native/390-clear-current-diagnostic.png",
+      "bytes": 71314,
+      "sha256": "74a3944eb901a8993102e9654783435d570e1a5ea2bd2e4c0057f2e4d13bd58b"
+    },
+    {
+      "path": "native/390-clear-current-result.png",
+      "bytes": 89479,
+      "sha256": "dee343d0829de772877f78b34f42d8b3ca213fe7706fcd16803d5376ee5aaef5"
+    },
+    {
+      "path": "native/390-loss-baseline-default.png",
+      "bytes": 34197,
+      "sha256": "91e78b5f4a935079b9315365f8c9a77593a3429bba803f6f60e70d96c2b583f4"
+    },
+    {
+      "path": "native/390-loss-baseline-result.png",
+      "bytes": 82411,
+      "sha256": "0f696d88f28efa647f05e33db689d679d9e538bfd6aea15691de5b7967262ff2"
+    },
+    {
+      "path": "native/390-loss-current-default.png",
+      "bytes": 68006,
+      "sha256": "ff498e65060af0d430f409c26d943329c9a895bf943283a7a4ee4c7a8db5bec1"
+    },
+    {
+      "path": "native/390-loss-current-diagnostic.png",
+      "bytes": 73517,
+      "sha256": "9ded19553768e28a2e26ce16acf8051f4a39ef2c6f0829bc4b0439f9a3a0852d"
+    },
+    {
+      "path": "native/390-loss-current-result.png",
+      "bytes": 82411,
+      "sha256": "0f696d88f28efa647f05e33db689d679d9e538bfd6aea15691de5b7967262ff2"
+    },
+    {
+      "path": "native/report.json",
+      "bytes": 350107,
+      "sha256": "477e5187fc67e5b0c0c91ffce9e5cd601265288a55e7393ea1dcfecb09559c4f"
+    },
+    {
+      "path": "observer-first-FAIL/1366-clear-baseline-default.png",
+      "bytes": 118050,
+      "sha256": "e00ceff38f02293d64d312fc05e45ccac8822238e9cded9ce1fcd4f8549d72f5"
+    },
+    {
+      "path": "observer-first-FAIL/1366-clear-baseline-result.png",
+      "bytes": 125966,
+      "sha256": "da564f6b02c21fa2b69277eac111a246ee100f44bf59aab5160c8806cc3d1818"
+    },
+    {
+      "path": "observer-first-FAIL/1366-clear-current-default.png",
+      "bytes": 116889,
+      "sha256": "44468a873d7e9711fc059521616abb9975472bfcf1e621c2354e61db6d749d99"
+    },
+    {
+      "path": "observer-first-FAIL/1366-clear-current-diagnostic.png",
+      "bytes": 147404,
+      "sha256": "c5f235201396a49ed541f6054502b152d4b34f96c88a6273f188b37934c52438"
+    },
+    {
+      "path": "observer-first-FAIL/1366-clear-current-result.png",
+      "bytes": 125966,
+      "sha256": "da564f6b02c21fa2b69277eac111a246ee100f44bf59aab5160c8806cc3d1818"
+    },
+    {
+      "path": "observer-first-FAIL/1366-loss-baseline-result.png",
+      "bytes": 100569,
+      "sha256": "d876ed223e421511f8f05abddc30cd337ddcf6874b7bdf0608b11edb294b539b"
+    },
+    {
+      "path": "observer-first-FAIL/report.json",
+      "bytes": 120798,
+      "sha256": "05cb8f69857e1296b6d2de76dcfe73ce062a735b7f98f3e741e9927f7d6f7751"
+    },
+    {
+      "path": "score-review-intermission-tests.txt",
+      "bytes": 601,
+      "sha256": "7d51ab8a51973f25181f5457b0a145cf7a26109a24cdd40eb68513aa8e612bcd"
+    },
+    {
+      "path": "score-review-intermission-typecheck.txt",
+      "bytes": 253,
+      "sha256": "74f919f77aaafd9e103ae561073b59a64c21a6860376204d97779934238403aa"
+    }
+  ]
+}
