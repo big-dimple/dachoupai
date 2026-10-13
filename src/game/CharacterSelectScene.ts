@@ -1,3 +1,4 @@
+import {warmOpeningImages,warmHeroImage} from './StageImageWarmup';
 import {paperSceneStart} from './PaperFlow';
 import {inkSettlingEase} from './inkwaveSpring';
 import {characterForNewRun} from './CharacterRunCopy';
@@ -40,7 +41,6 @@ export class CharacterSelectScene extends Phaser.Scene {
   private animateChoice=false;
   private readonly openingMotion=new Map<Phaser.GameObjects.GameObject,()=>void>();
   private sampleAfter=false;
-  private readonly portraitRequests=new Set<CharacterId>();
   private view!:SceneView;
   private readonly dialog=new DetailDialog();
   private readonly modeDialog=new ModeSelectDialog();
@@ -56,13 +56,15 @@ export class CharacterSelectScene extends Phaser.Scene {
     this.choosing=false;this.notice='';this.animateChoice=false;this.sampleAfter=false;this.lifecycle++;
     this.cameras.main.setBackgroundColor('#F3EADB');this.audio.setScene('menu');
     this.view=new SceneView(this,()=>this.render());
+    const refreshImage=(key:string)=>{if(this.scene.isActive()&&(key.startsWith('selection-portrait-')||key.startsWith('avatar-')||key==='opening-portrait-'+(this.selectedId??'amo')))this.render();};
+    this.textures.on('addtexture',refreshImage);this.events.once('shutdown',()=>this.textures.off('addtexture',refreshImage));warmOpeningImages(this);
     const session=gameSession();let pending=session.pendingRun;
     const unsubscribe=session.subscribe(()=>{const prior=pending;pending=session.pendingRun;
       if(prior&&!pending&&!this.choosing&&this.scene.isActive()){this.notice=session.notice;this.render();}
     });
     const settle=()=>{for(const [target,finish] of this.openingMotion){this.tweens.killTweensOf(target);finish();}this.openingMotion.clear();};
     const hide=()=>{if(document.hidden)settle();};window.addEventListener('blur',settle);window.addEventListener('dachoupai-presentation',settle);document.addEventListener('visibilitychange',hide);
-    this.events.once('shutdown',()=>{settle();window.removeEventListener('blur',settle);window.removeEventListener('dachoupai-presentation',settle);document.removeEventListener('visibilitychange',hide);unsubscribe();this.lifecycle++;this.portraitRequests.clear();this.dialog.close();this.modeDialog.close();});this.render();
+    this.events.once('shutdown',()=>{settle();window.removeEventListener('blur',settle);window.removeEventListener('dachoupai-presentation',settle);document.removeEventListener('visibilitychange',hide);unsubscribe();this.lifecycle++;this.dialog.close();this.modeDialog.close();});this.render();
   }
   private render():void {
     const v=this.view,l=v.layout,style=getComputedStyle(document.documentElement),bottom=parseFloat(style.getPropertyValue('--safe-bottom'))||0;
@@ -143,18 +145,7 @@ export class CharacterSelectScene extends Phaser.Scene {
   }
   private reducedMotion():boolean {return gameSession().reducedMotion||window.matchMedia('(prefers-reduced-motion: reduce)').matches;}
   private queueHeroPortrait(id:CharacterId):void {
-    const key='opening-portrait-'+id;if(this.textures.exists(key)||this.portraitRequests.has(id))return;
-    this.portraitRequests.add(id);const event='filecomplete-image-'+key;
-    const done=()=>{
-      this.load.off('loaderror',failed);
-      if(!this.scene.isActive()||(this.selectedId??'amo')!==id)return;
-      const image=this.view.root.getByName('opening/portrait') as Phaser.GameObjects.Image|undefined;
-      if(image){const b=image.getData('openingBounds') as Box;image.setTexture(key).setScale(Math.min(b.width/image.width,b.height/image.height)).setPosition(b.x+b.width/2,b.y+b.height/2);}
-    };
-    const failed=(file:Phaser.Loader.File)=>{if(file.key===key){this.portraitRequests.delete(id);this.load.off(event,done);}};
-    this.load.once(event,done);this.load.on('loaderror',failed);
-    this.events.once('shutdown',()=>{this.load.off(event,done);this.load.off('loaderror',failed);});
-    this.load.image(key,portraitURL(id));if(!this.load.isLoading())this.load.start();
+    warmHeroImage(this,id);
   }
   private drawPortrait(id:CharacterId,b:Box,hero=false):void {
     const key=hero&&this.textures.exists('opening-portrait-'+id)?'opening-portrait-'+id:selectionPortraitKey(id);if(!this.textures.exists(key)){addAvatar(this,this.view.root,getCharacter(id),b.x+b.width/2,b.y+b.height/2,Math.min(b.width,b.height));return;}
