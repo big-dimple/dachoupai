@@ -37,7 +37,7 @@ export function scoreSourceProcess(trace:ScoreTrace,event:ScoreEvent,source:stri
  if(['multiply-multiplier','read-coefficient','route-factor'].includes(event.operation)){
   const before=Rational.fromJSON(event.before.M);if(before.n===0n||!mult.n)return;
   const factor=Rational.fromJSON(event.after.M).multiply(new Rational(before.d,before.n)).toJSON();
-  const origin=event.operation==='route-factor'?'本局资历':event.reasonKey.startsWith('edition.')?'版次':reads?'读已有':'本源';
+  const origin=event.operation==='route-factor'?'本局资历':event.reasonKey.startsWith('edition.')?'版次':reads?'读已有':'本次倍率';
   return {...base,kind:'multiply',factor,repeat,effect:repeated+origin+' ×'+readableFractionText(factor),exact:multiplierCaption(source,factor,event.before.M,event.after.M).exact};
  }
  // Compound effects retain the existing complete operation copy.
@@ -51,7 +51,7 @@ export function scoreSourceClimaxValue(cue:ScoreSourceProcess,note:string){
  if(cue.kind!=='multiply'&&cue.kind!=='add'&&cue.kind!=='heat')return;
  const multiplier=cue.kind!=='heat',value=cue.factor?Rational.fromJSON(cue.factor):subtract(multiplier?cue.after.M:cue.after.H,multiplier?cue.before.M:cue.before.H);
  const local=(cue.factor?'×':value.n>0n?'+':'')+readableFractionText(value.toJSON());
- return {label:cue.kind==='multiply'?'本源因子':cue.kind==='add'?'本源加倍率':'本源加热度',before:local,after:local,note,
+ return {label:cue.kind==='multiply'?'本次倍率':'本次加成',before:local,after:local,note,
   accumulated:(multiplier?'累计倍率 ':'累计热度 ')+multiplierOverview(multiplier?cue.before.M:cue.before.H,true)+'→'+multiplierOverview(multiplier?cue.after.M:cue.after.H,true)};
 }
 

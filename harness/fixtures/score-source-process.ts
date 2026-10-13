@@ -2,8 +2,9 @@ import {scoreEnergyFixture} from './score-energy';
 import {readableMultiplierFixture} from './readable-multiplier';
 import {r2CreateJoker} from '../../src/domain/r2Run';
 /** Bounded public controls; these are not natural acquisitions or complete games. */
-export function scoreSourceProcessFixture(kind:'ordinary'|'chain'|'billion'){
+export function scoreSourceProcessFixture(kind:'ordinary'|'chain'|'billion'|'addition'){
  if(kind==='ordinary')return scoreEnergyFixture('ordinary');
+ if(kind==='addition'){const f=readableMultiplierFixture('group');return {...f,assistIds:[],erxiangTargetId:f.selectedIds[0]};}
  if(kind==='billion'){
   const f=readableMultiplierFixture('group');
   f.state.jokers[0].growth.coefficient={n:'1000000',d:'1'};
