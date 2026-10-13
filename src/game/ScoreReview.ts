@@ -45,7 +45,9 @@ function sourceName(run:R2RunState,trace:ScoreTrace,event:ScoreEvent):string {
   }
   if(event.sourceType==='character'){
     const hero=getCharacter(run.characterId).name;
-    if(event.reasonKey.startsWith('touye.won.')||event.reasonKey.startsWith('touye.lost.'))return hero+' · 赌约'+(trace.touyeWager?.commit?'押'+HAND_LABELS[trace.touyeWager.commit.target]:'');
+    if(event.reasonKey.startsWith('touye.won.')||event.reasonKey.startsWith('touye.lost.'))return hero+' · 赌约'+(trace.touyeWager?.commit?'押'+HAND_LABELS[trace.touyeWager.commit.target]:'')+(event.reasonKey.startsWith('touye.won.')?' · 达成':' · 输约');
+    if(event.sourceDefinitionId==='xiemu'&&event.operation==='multiply-multiplier'&&trace.xiemuBurn?.cost)return hero+' · 燃'+trace.xiemuBurn.cost+'金';
+    if(event.sourceDefinitionId==='azao'&&event.operation==='multiply-multiplier'&&trace.azaoCharge?.release)return hero+' · 消耗'+trace.azaoCharge.before.charge+'层爆发';
     return hero+(event.reasonKey.startsWith('amo.assist.')?' · 助攻':event.reasonKey==='erxiang.handoff'?' · 交棒':'');
   }
   const enhancement=event.reasonKey.startsWith('enhancement.')?R2_ENHANCEMENTS.find(item=>item.id===event.reasonKey.split('.')[1])?.name:undefined;
