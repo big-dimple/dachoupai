@@ -84,6 +84,6 @@ CHROMIUM_PATH=/path/to/chromium node prototypes/card-value-visual/verify.mjs
 
 `evidence/verification.json` 绑定 HTML/CSS/JS 哈希。Chromium151、DPR1 的 320/390/1366 软件视窗：图片加载、无页面/卡内横溢出、关键文字 Range 不越卡、每条五颗完整星、44px 控件、条件开合、3↔5样例/条件同步、两张选择上限与移出、普通/五星对比、关闭/Esc/焦点恢复、切样例保留选择、低动态、无外部请求、无 JS 错误通过。还实际查看了最终默认/五星/比较/展开图，检查文字与星星。
 
-首版与失败不抹除：`evidence/initial-review/` 保存悬浮条遮卡、320标题拆行、PC过高的首版图；`compact-layout-overflow.json` 为收紧头部后390宽溢出的检查失败（320已通过），随后固定小牌网格修复。`compact-layout-overflow.png` 是诊断时320正常视窗，**不是390失败图**。没有缩小断言范围或隐藏横向溢出来过检查。
+首版与失败不抹除：`evidence/initial-review/` 保存悬浮条遮卡、320标题拆行、PC过高的首版图；`compact-layout-overflow.json` 为收紧头部后390宽溢出的检查失败（320已通过），随后固定小牌网格修复。`compact-layout-overflow.png` 是诊断时320正常视窗，**不是390失败图**。未隐藏横向溢出来过检查。最后一次统一比较面板的五星颜色后，旧观察器把已关闭对比弹窗中的五星也算入主卡，产生 `hidden-dialog-selector-failure.json`；现明确检查 `.card .five`，比较面板仍单独验证，两类显示对象不混计。首提交 da8f3776 保存了该失败观察器；最终交付以后续修复 SHA 为准。
 
 验证边界：只验本静态原型；未验真实推荐正确性、自然五星频率、交易/存档、整局体验、触屏实体设备、用户理解、音效/性能或正式部署。这里的 PASS 不能签上线、游戏体验验收或 #143/#144 通过。保留草稿 PR，未合并。
