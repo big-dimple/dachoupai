@@ -1,7 +1,7 @@
 import {describe,it,expect} from 'vitest';
 import {readFileSync} from 'node:fs';
 import {execFileSync} from 'node:child_process';
-import {makeReport,route,passive,score,budget,interval,lockChallenge,cashOpportunity,frac,target,warmFraction} from '../analysis/endless-shadow/model.mjs';
+import {makeReport,route,passive,score,budget,interval,lockChallenge,cashOpportunity,frac,target,warmFraction,trialTarget} from '../analysis/endless-shadow/model.mjs';
 import {Rational} from '../src/domain/rational';
 import {r2RouteFactor,r2RouteFamilies} from '../src/domain/r2RouteGrowth';
 import {r2StageSpec} from '../src/domain/r2Chapter';
@@ -113,6 +113,42 @@ describe('endless shadow fixed states — no gameplay acceptance',()=>{
   expect(t.events.findIndex(e=>e.operation==='glass-check')).toBeGreaterThan(t.events.findIndex(e=>e.operation==='final-score'));
   expect(report.glassLossStress.nextStageSafeCapacity).toBe('543712');
   expect(report.glassLossStress.nextStagePossibleGlassCapacity).toBe('752832');
+ });
+ it('public user pair chain is exact and gives no hero or package event',()=>{
+  const base=recipeInput(inputs.states[0],35);
+  const hand=[{id:'6h',rank:6,suit:'hearts',enhancement:'multiplier-paper'},{id:'6s',rank:6,suit:'spades',enhancement:'multiplier-paper'}];
+  const j=(id,growth={})=>{const v=r2CreateJoker(id,id,8,undefined,identity);return {...v,growth:{...v.growth,...growth}};};
+  const owned=[j('b06'),j('jiedongfeng'),j('e11',{coefficient:frac(2)}),j('a06'),j('f09')];
+  const packet={...base,characterId:'amo',hand,selectedIds:hand.map(c=>c.id),gold:206,handLevels:{pair:1},jokers:owned};
+  const t=scoreR2Hand(packet);
+  expect(t.finalScore).toBe('26221278');
+  expect(t.accumulator.H).toEqual(frac(59));
+  expect(t.events.filter(e=>e.operation==='retrigger-card')).toHaveLength(2);
+  expect(t.events.filter(e=>e.operation==='add-multiplier'&&e.sourceType==='card')).toHaveLength(4);
+  expect(t.events.filter(e=>e.sourceType==='character'&&e.operation==='multiply-multiplier')).toHaveLength(0);
+  expect(t.events.filter(e=>e.sourceDefinitionId==='e08')).toHaveLength(0);
+  expect(route('G',35)).toEqual(inputs.userReports[1].exactTrace.factor);
+  const noRoute=scoreR2Hand({...packet,routeGrowth:{clears:35,G:0,S:0,F:0}});
+  expect(noRoute.finalScore).toBe('1770');
+  expect(report.reports[1].verifiedArithmeticChain).toBe(true);
+ });
+ it('bounded main trial is a concrete table and preserves explicit hand-making/hero gains',()=>{
+  expect(inputs.recommendedTrial.passive.cap).toBe(4);
+  expect(trialTarget(inputs,13,2)).toBe(65951n);
+  expect(trialTarget(inputs,13,2,3)).toBe(197852n);
+  const base=recipeInput(inputs.states[0],35);
+  const hand=[{id:'6h',rank:6,suit:'hearts',enhancement:'multiplier-paper'},{id:'6s',rank:6,suit:'spades',enhancement:'multiplier-paper'},
+   {id:'6c',rank:6,suit:'clubs'},{id:'4h',rank:4,suit:'hearts'},{id:'4s',rank:4,suit:'spades'},{id:'4c',rank:4,suit:'clubs'}];
+  const j=(id,growth={})=>{const v=r2CreateJoker(id,id,8,undefined,identity);return {...v,growth:{...v.growth,...growth}};};
+  const packet={...base,characterId:'amo',hand,selectedIds:hand.slice(0,3).map(c=>c.id),gold:206,handLevels:{'three-kind':1},
+   routeGrowth:{clears:35,G:0,S:0,F:0},
+   jokers:[j('b06'),j('jiedongfeng'),j('e11',{coefficient:frac(2)}),j('a06'),j('f09')]};
+  const plain=scoreR2Hand(packet),assist=scoreR2Hand({...packet,assistIds:hand.slice(3).map(c=>c.id)});
+  expect(plain.accumulator.H).toEqual(frac(108));expect(plain.accumulator.M).toEqual(frac(63,2));
+  expect(plain.finalScore).toBe('3402');expect(assist.finalScore).toBe('13608');
+  expect(report.recommendedTrial.sourceContrast).toMatchObject({pairCompressed:'7080',tripleNoAssist:'13608',tripleAndOneAssist:'54432',oneAssistThenPlain:'68040'});
+  expect(BigInt(report.recommendedTrial.sourceContrast.oneAssistThenPlain)).toBeGreaterThan(trialTarget(inputs,13,2));
+  expect(report.recommendedTrial.trainingRepair.every(r=>r.feasible)).toBe(true);
  });
  it('root trace transcription is exact without pretending to import its save',()=>{
   const hand=[{id:'2h',rank:2,suit:'hearts'},{id:'2s',rank:2,suit:'spades'}];
