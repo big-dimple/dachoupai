@@ -40,7 +40,6 @@ async function run(name,viewport,kind){
    await confirmHeroRoute(page,touch);await waitScene(page,'shop');
    const initialShop=await page.evaluate(()=>{const s=window.__harness.game.scene.getScene('shop');return {phase:window.__harness.game.registry.get('runController').state.phase,offerAlpha:s.offerArts.map(a=>a.alpha),artPlaceholders:s.jokerArtTargets.size};});
    await page.screenshot({path:`${output}/${name}-shop.png`});
-   await page.waitForFunction(()=>['p08-court-j','p08-court-q','p08-court-k'].every(key=>window.__harness.game.textures.exists(key)));
    const saved=await page.evaluate(()=>JSON.stringify(window.__harness.game.registry.get('runController').state));
    await tapUI(page,'shop','action/start-stage',touch);await waitScene(page,'game');await page.waitForFunction(()=>window.__harness.game.scene.getScene('game').cardViews.length===8);
    await page.locator('[data-image-warmup]').waitFor({state:'hidden'});
