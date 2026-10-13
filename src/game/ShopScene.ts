@@ -1,3 +1,4 @@
+import {createShopRarityFrame,createShopRecommendationStars,createShopRecommendationAccent,createShopCombinationMark,createShopRouteTag,shopCombinationVisual,shopCombinationMarkLayout,shopRecommendationVisual} from './ShopCardValueVisual';
 import {isR2SuitChoice,R2_SUIT_DYE_IDS,r2BasicChoiceBasePrice} from '../domain/r2GroupUpgrade';
 import {routeFrame} from './RouteFrame';
 import {routeFitCue,markRouteDetail,toolPurpose} from './RouteFitCue';
@@ -171,9 +172,9 @@ export class ShopScene extends Phaser.Scene {
     offers.forEach((o,i)=>{
       if(this.shelfKind!=='jokers'){this.drawGoodsOffer(o,p.shelf[i],p.short,p.portrait);return;}
       const selected=this.selectedOfferId===o.offerId,b=p.shelf[i],d=this.jokerDefinition(o.definitionId),ability=this.jokerCopy(o.definitionId),first=v.root.length;
-      this.drawOfferCard(b,d.rarity,selected,o.consumed,p.short);
+      this.drawOfferCard(b,d.rarity,selected,o.consumed,p.short).setData('offerId',o.offerId);
       const factsOnFace=!p.copyBeside&&!('guidanceBelow' in p&&p.guidanceBelow);
-      this.drawJokerPicture(o.definitionId,{x:b.x+4,y:b.y+4,width:b.width-8,height:b.height-8-(factsOnFace?54:0)},o.consumed?.35:1);
+      this.drawJokerPicture(o.definitionId,{x:b.x+4,y:b.y+4,width:b.width-8,height:b.height-8-(factsOnFace?24:0)},o.consumed?.35:1);
       const copy=shopOfferCopy(p,b,true),copyX=copy.x,copyY=copy.y,copyWidth=copy.width;
       const name=v.text(copyX,copyY+4,d.name,15,'#26313A').setFontStyle('bold').setName('shop/offer-name');this.ellipsis(name,copyWidth-(starterOffer(this.run,o)?52:0));
       const plain=ability?.plain,full=plain?.line??ability?.summary??d.description;
@@ -186,9 +187,10 @@ export class ShopScene extends Phaser.Scene {
       const price=r2PurchasePrice(this.run,o);
       const priceInk=this.offerPricePlate(o,{x:copyX-2,y:copy.priceY-2,width:copyWidth+2,height:24});
       v.text(copyX,copy.priceY,o.consumed?'已收入':p.portrait?price+'金 · '+(this.run.jokers.length>=r2JokerCapacity(this.run)?'比较':'查看'):price+' 金 · '+(this.run.jokers.length>=r2JokerCapacity(this.run)?'比较替换':'查看'),16,priceInk).setFontStyle('bold').setName('shop/offer-price').setData('offerId',o.offerId);
-      v.add(createJokerRarityBadge(this,d.rarity,{x:b.x+b.width-31,y:b.y+b.height-21-(factsOnFace?54:0),compact:true}).setData('definitionId',o.definitionId).setData('surface','offer'));
+      v.add(createJokerRarityBadge(this,d.rarity,{x:b.x+b.width-31,y:b.y+b.height-21-(factsOnFace?24:0),compact:true}).setData('definitionId',o.definitionId).setData('surface','offer'));
+      this.drawOfferFaceMarks(o,{x:b.x+4,y:b.y+4,width:b.width-8,height:b.height-8-(factsOnFace?24:0)});
       if(p.portrait){
-        const g=shopOfferGuidance(this.run,o),rowY=factsOnFace?b.y+b.height-52:copy.priceY-20;
+        const g=shopOfferGuidance(this.run,o),rowY=factsOnFace?b.y+b.height-20:copy.priceY-20;
         const index=this.drawOfferStars(o,{x:factsOnFace?b.x+4:copyX,y:rowY,width:factsOnFace?b.width-8:copyWidth,height:18});
         const note=g.operation!=='可购买'?g.operationShort:g.reason.slice(0,4),noteX=copyX+index.width+8;
         if(noteX+this.measureShopText(note)<=copyX+copyWidth)v.text(noteX,rowY,note,14,g.purchaseConditionLosses.length?'#B8473A':'#3F606B').setName('shop/offer-operation').setData('offerId',o.offerId);
@@ -331,6 +333,7 @@ export class ShopScene extends Phaser.Scene {
     if(isBasicChoiceSeat(o)){this.drawBasicChoiceSeat(o,tile);return;}
     const v=this.view,first=v.root.length,d=kind==='jokers'?this.jokerDefinition(o.definitionId):undefined,info=kind==='tools'?toolInfo(o.definitionId,this.run):kind==='items'?itemInfo(o.definitionId):undefined;
     shopSheet(this,v,'offer',tile,o.consumed?PAPER_THEME.jadeSoft:PAPER_THEME.paperLight,true,!d);
+    if(d)v.add(createShopRarityFrame(this,tile,d.rarity).setData('offerId',o.offerId));
     if(d)shopSheet(this,v,'offer-stage',{x:tile.x+4,y:tile.y+4,width:tile.width-8,height:face.height+10},PAPER_THEME.jadeSoft);
     
     let summary=d?this.shopJokerSummary(d.id):info!.summary;
@@ -343,6 +346,7 @@ export class ShopScene extends Phaser.Scene {
     const columnArtHeight=Math.min(face.height,Math.max(0,priceY-(tile.y+24)-4));
     const artFace=column?{...face,y:tile.y+24,width:columnArtHeight/1.4,height:columnArtHeight}:face;
     if(d){this.drawJokerPicture(d.id,artFace,o.consumed?.35:1);v.add(createJokerRarityBadge(this,d.rarity,{x:artFace.x+artFace.width-31,y:artFace.y+artFace.height-21,compact:true}).setData('definitionId',d.id).setData('surface','offer'));}
+    if(d)this.drawOfferFaceMarks(o,artFace);
     else this.drawGoodsArt(o.definitionId,info!.artUrl,artFace,o.consumed?.55:1,info!.fallbackArtUrl);
     const name=v.text(column?tile.x+8:initialX,column?tile.y+2:initialY,d?.name??info!.name,15,'#26313A').setFontStyle('bold').setName('shop/offer-name').setData('offerId',o.offerId);this.ellipsis(name,column?64:width-(kind==='jokers'&&starterOffer(this.run,o)?52:0));
     v.text(initialX,column?tile.y+2:initialY+22,wrapped,14,'#3F606B').setName('shop/offer-purpose').setData('fullText',summary).setData('offerId',o.offerId);
@@ -666,10 +670,12 @@ export class ShopScene extends Phaser.Scene {
     g.lineStyle(1,0xa69778,.45).strokeRoundedRect(b.x+.5,b.y+.5,b.width-1,b.height-1,3);v.add(g.setAlpha(alpha));
     holder.add(v.root.list.slice(first));
   }
-  private drawOfferCard(b:Box,rarity:JokerRarity,selected:boolean,consumed:boolean,short:boolean,headerHeight=64,footerHeight=short?44:64):void {
+  private drawOfferCard(b:Box,rarity:JokerRarity,selected:boolean,consumed:boolean,short:boolean,headerHeight=64,footerHeight=short?44:64):Phaser.GameObjects.Graphics {
     const shadow=this.add.graphics().fillStyle(0x26313a,.08).fillRoundedRect(b.x+1,b.y+3,b.width,b.height,5);
     this.view.add(shadow);this.view.material(b,consumed?0xe2e8e5:0xfff9ee,0xfff9ee,5);
-    this.view.add(this.add.graphics().lineStyle(selected?2:1,0x26313a,.55).strokeRoundedRect(b.x,b.y,b.width,b.height,5));
+    const frame=this.view.add(createShopRarityFrame(this,b,rarity));
+    if(selected)this.view.add(this.add.graphics().lineStyle(2,0x26313a,.8).strokeRoundedRect(b.x+2,b.y+2,b.width-4,b.height-4,4));
+    return frame;
   }
 
   private purchaseReason(o:R2Offer,short=false):string {
@@ -693,9 +699,16 @@ export class ShopScene extends Phaser.Scene {
   /** Outline real existing faces without hiding alternatives or changing the shelf hit rectangles. */
   private measureShopText(copy:string):number {const probe=this.add.text(0,0,copy,{fontFamily:UI_FONT,fontSize:'14px'});const width=probe.width;probe.destroy();return width;}
   private drawOfferStars(o:R2Offer,b:Box):Phaser.GameObjects.Container {
-    const g=shopOfferGuidance(this.run,o),width=Math.min(100,b.width),index=this.view.add(this.add.container(b.x,b.y)).setSize(width,18).setName('shop/offer-advice').setData('offerId',o.offerId).setData('stars',g.stars).setData('reason',g.detail).setData('fullText',g.label).setData('bounds',{...b,width});
-    for(let i=0;i<5;i++)index.add(this.add.text(width*(i+.5)/5,0,i<g.stars?'★':'☆',{fontFamily:UI_FONT,fontSize:'14px',color:'#80551F',resolution:Math.min(window.devicePixelRatio||1,3)}).setOrigin(.5,0).setName('shop/offer-star').setData('offerId',o.offerId).setData('slot',i));
-    return index;
+    const g=shopOfferGuidance(this.run,o),style=shopRecommendationVisual(g.stars,b.width);
+    if(style.exceptional)this.view.add(createShopRecommendationAccent(this,{...b,width:style.width}).setData('offerId',o.offerId));
+    return this.view.add(createShopRecommendationStars(this,b,g.stars,o.offerId,g.label,g.detail));
+  }
+  private drawOfferFaceMarks(o:R2Offer,face:Box):void {
+    if(o.consumed)return;
+    const cue=routeFitCue(this.run,'jokers',o.definitionId),combination=shopCombinationVisual(shopOfferGuidance(this.run,o).recommendation);
+    if(cue)this.view.add(createShopRouteTag(this,face.x+1,face.y+1,cue.focus,cue.label).setData('offerId',o.offerId));
+    const combinationLayout=shopCombinationMarkLayout(face.width-30);
+    if(combination&&combinationLayout)this.view.add(createShopCombinationMark(this,face.x+1,face.y+face.height-18,combination,combinationLayout).setData('offerId',o.offerId));
   }
   private drawOfferGuidance(o:R2Offer,b:Box):void {
     const g=shopOfferGuidance(this.run,o),v=this.view;
@@ -705,7 +718,7 @@ export class ShopScene extends Phaser.Scene {
     if(b.height>=36&&this.measureShopText(g.condition)<=b.width)v.text(b.x,b.y+18,g.condition,14,'#3F606B').setName('shop/offer-condition').setData('offerId',o.offerId);
   }
   private markBuildOffer(o:R2Offer,kind:ShelfKind,b:Box,label?:Box):void {
-    const cue=routeFitCue(this.run,kind,o.definitionId);if(cue&&!o.consumed)this.view.add(routeFrame(this,b,cue,kind==='jokers'&&this.jokerDefinition(o.definitionId).rarity==='rare').setName('shop/build-match').setData('offerId',o.offerId));
+    const cue=routeFitCue(this.run,kind,o.definitionId);if(cue&&!o.consumed&&kind!=='jokers')this.view.add(routeFrame(this,b,cue).setName('shop/build-match').setData('offerId',o.offerId));
     if(kind==='jokers'&&starterOffer(this.run,o)&&label){this.view.material(label,0xfff9ee,0xfff9ee,3).setName('shop/route-starter-plate').setData('offerId',o.offerId).setData('bounds',label);this.view.text(label.x+8,label.y+2,'起手',14,'#26313A').setFontStyle('bold').setName('shop/route-starter-label').setData('offerId',o.offerId).setData('fullText','起手 · 可选');}
     if(this.selectedOfferId===o.offerId)this.view.text(b.x+b.width-20,b.y+b.height-25,'✓',18,'#26313A').setName('shop/offer-selected');
   }
