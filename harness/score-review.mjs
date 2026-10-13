@@ -59,6 +59,7 @@ try {
    const dialog=page.locator('.detail-dialog[open]');assert.equal(await dialog.locator('details.card-rules').evaluate(e=>e.open),false);
    row.defaultText=await dialog.innerText();assert.doesNotMatch(row.defaultText,/reasonKey|route-growth|multiply-multiplier|add-heat|eventId|精确倍率/);assert.match(row.defaultText,/实际(触发|读取|记录|检查) \d+ 次/);
    assert.equal(await dialog.locator('.dialog-effect').innerText(),expected.summary);row.defaultBounds=await bounds();assertBounds(row.defaultBounds);row.images.push(await shot(kind+'-default'));
+   if(kind==='giant-projection'){const route=dialog.locator('.experience-card').filter({has:page.getByRole('heading',{name:'本局顺子清场加成 · 本手计分',exact:true})});await route.evaluate(e=>e.scrollIntoView({block:'start'}));row.images.push(await shot(kind+'-route-sources'));}
    const rules=dialog.locator('.dialog-copy > details.card-rules');await rules.locator('summary').evaluate(e=>e.scrollIntoView({block:'center'}));await dom(rules.locator('summary'));assert.equal(await rules.locator('p').innerText(),expected.diagnostics);await rules.locator('p').evaluate(e=>e.scrollIntoView({block:'start'}));row.expandedBounds=await bounds();assertBounds(row.expandedBounds);row.images.push(await shot(kind+'-diagnostic'));
    await close();const after=await snap();assert.deepEqual(after,before);row.afterHash=hash(after);row.fullStateJournalStorageUnchanged=true;
    // Only native saved samples restore: never save/import the display projection.
