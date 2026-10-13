@@ -70,7 +70,7 @@ export function budget(state,count,{policy='legacy',cap=4,hands=4,gold=60,discar
       const actions=[{name:'stable',cost:0,post:frac(1n),m:state.M,burn:0,rescue:0,glass:0,discard:0}];
       if(n.burnLeft)for(const cost of [10,20,30])if(n.cash>=cost)actions.push({name:'burn-'+cost,cost,post:frac(cost/10+1),m:state.M,burn:1,rescue:0,glass:0,discard:0});
       if(n.rescueLeft&&turn===0&&n.discards>0)actions.push({name:'cold-after-one-discard',cost:0,post:frac(3n),m:state.M,burn:0,rescue:1,glass:0,discard:1});
-      if(n.glassLeft&&turn===0)actions.push({name:'single-glass-poly',cost:0,post:frac(1n),m:frac(66n),burn:0,rescue:0,glass:1,discard:0});
+      if(n.glassLeft&&turn===0)actions.push({name:'single-glass-poly',cost:0,post:frac(1n),m:frac(51n),burn:0,rescue:0,glass:1,discard:0});
       for(const a of actions){
         const post=n.life>0?mul(a.post,frac(2n)):a.post;
         const s=calculate(a.m,post);
@@ -145,10 +145,10 @@ export function makeReport(inputs){
     {name:'linear-max',policy:'linear-max',cap:4}];
   const rows=[],windows=[],curveChecks=[],chapterGrades=[],challengeCandidates=[];
   for(const chapter of inputs.chapters){
-    const count=(chapter-1)*3;
     for(const spec of policySpecs){
       const chapterRows=[];
       for(const stage of inputs.stages){
+        const count=(chapter-1)*3+stage;
         const hands=stage===2?inputs.supply.fastBossHands:inputs.supply.hands;
         const stageRows=inputs.states.map(state=>({id:state.id,class:state.class,chapter,stage,policy:spec.name,count,hands,
           factor:passive(state.families,count,spec.policy,spec.cap),...((b)=>({stableFirst:b.stableFirst,capacity:b.capacity}))(budget(state,count,{policy:spec.policy,cap:spec.cap,hands}))}));
@@ -161,12 +161,12 @@ export function makeReport(inputs){
       }
       if(spec.name==='legacy'){
         for(const growth of [frac(12n,5n),frac(3n),frac(11n,2n),frac(61n,10n)]){
-          const warm=target(chapter,0,growth),rawMature=chapterRows[0].filter(r=>r.class==='mature');
+          const warm=target(chapter,0,growth),bossMature=chapterRows[2].filter(r=>r.class==='mature');
           let warmExact=chapter<=8?frac(warm):frac(160000n);
           if(chapter>8)for(let c=8;c<chapter;c++)warmExact=mul(warmExact,growth);
           // Warm is an already-rounded public table cell. Lock function uses a single ceiling per stage.
           // Recompute candidate target from exact curve in the loop below to avoid earlier-ceil amplification.
-          const low=maximum(rawMature.map(r=>BigInt(r.stableFirst)))/2n+1n;
+          const low=maximum(bossMature.map(r=>BigInt(r.stableFirst)))/2n+1n;
           const high=minimum(chapterRows[2].filter(r=>r.class==='mature').map(r=>BigInt(r.capacity)))/2n;
           const eligible=[];
           for(const grade of [1,4,16,64,256,1024,4096]){
@@ -178,7 +178,7 @@ export function makeReport(inputs){
               firstHandClear:chapterRows.flatMap((rs,s)=>rs.filter(r=>BigInt(r.stableFirst)>=BigInt(targets[s])).map(r=>({state:r.id,stage:s})))});
           }
           // Integer grade interval exact across all stages; pressure required only at boss, not every warmup.
-          const required= floor(div(frac(maximum(rawMature.map(r=>BigInt(r.stableFirst)))),mul(warmExact,stageRatio(2))))+1n;
+          const required= floor(div(frac(maximum(bossMature.map(r=>BigInt(r.stableFirst)))),mul(warmExact,stageRatio(2))))+1n;
           const affordable=minimum(chapterRows.map((rs,s)=>floor(div(frac(minimum(rs.filter(r=>r.class==='mature').map(r=>BigInt(r.capacity)))),mul(warmExact,stageRatio(s))))));
           const clippedUpper=affordable<4096n?affordable:4096n;
           const clippedLower=required>1n?required:1n;
@@ -226,8 +226,8 @@ export function makeReport(inputs){
   const trialSlices=inputs.chapters.flatMap(chapter=>inputs.stages.map(stage=>{
     const hands=stage===2?3:4;
     const T=trialTarget(inputs,chapter,stage);
-    const values=inputs.states.map(state=>({id:state.id,stable:score(state,(chapter-1)*3,'cap-max',4),
-      capacity:BigInt(budget(state,(chapter-1)*3,{policy:'cap-max',cap:4,hands}).capacity)}));
+    const values=inputs.states.map(state=>({id:state.id,stable:score(state,(chapter-1)*3+stage,'cap-max',4),
+      capacity:BigInt(budget(state,(chapter-1)*3+stage,{policy:'cap-max',cap:4,hands}).capacity)}));
     const grades=inputs.recommendedTrial.challengeGrades.map(grade=>{
       const target=trialTarget(inputs,chapter,stage,grade);
       return {grade,target:String(target),failed:values.filter(v=>v.capacity<target).map(v=>v.id),
@@ -247,8 +247,8 @@ export function makeReport(inputs){
         availability:'hypothetical accumulated +1 offers; not guaranteed stock in one shop or natural purchase probability'};
     }));
   const pairCompressed=score({H:'59',M:frac(30n),families:['G']},35,'cap-max',4);
-  const triplePlain=score({H:'108',M:frac(63n,2n),families:['G']},35,'cap-max',4);
-  const tripleAssist=score({H:'108',M:frac(63n,2n),families:['G']},35,'cap-max',4,frac(63n,2n),frac(4n));
+  const triplePlain=score({H:'126',M:frac(99n,2n),families:['G']},35,'cap-max',4);
+  const tripleAssist=score({H:'126',M:frac(99n,2n),families:['G']},35,'cap-max',4,frac(99n,2n),frac(4n));
   const rootPre=mul(frac(inputs.rootTrace.H),inputs.rootTrace.preRouteM);
   const rootM=mul(inputs.rootTrace.preRouteM,route('G',inputs.rootTrace.G));
   const rootScore=floor(mul(frac(inputs.rootTrace.H),rootM));
@@ -265,7 +265,7 @@ export function makeReport(inputs){
     historicalHighScoreGuard:{source:'PR144/G14 published formula reconstruction; not a new natural run',H:'977',rawM:frac(3726n,5n),S:21,
       legacy:String(score({H:'977',M:frac(3726n,5n),families:['S']},21)),
       cap4:String(score({H:'977',M:frac(3726n,5n),families:['S']},21,'cap-max',4)),
-      warning:'bounded passive changes drastically reduce this historical same-input absolute score; retain old identity, do not claim the natural hundred-million guard passed'},
+      warning:'bounded passive changes drastically reduce this historical same-input absolute score; new rules require a new run; no migration matrix; do not claim the historical absolute-score guard passed'},
     reportedScoreCeilings:inputs.userReports.filter(r=>r.target).map((r,i)=>({name:r.name,handsAssumed:i===1?3:4,reportedScore:r.score,reportedTarget:r.target,
       optimisticRepeatCeiling:String(BigInt(r.score)*BigInt(i===1?3:4)),largestTargetMultipleUnderRepeat:Number(BigInt(r.score)*BigInt(i===1?3:4)/BigInt(r.target)),
       warning:'conditional arithmetic on reported peaks only; not sustainable capacity, not an auto-grade input, and not a bug certification'})),
