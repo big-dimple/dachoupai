@@ -1,0 +1,142 @@
+{
+  "head": "0259e65e40a365a7acd422767b3b298fb1e4aff5",
+  "sourceBefore": {
+    "src/game/MakeCardsDialog.ts": "03f66091bf2897f21ee8cc72c8c327c31dbc0cb8971405644753dd4e37e3957f",
+    "src/game/ShopScene.ts": "72c6645bca0d52ed4fc1133358d1a9c4208793f15883a7c49f9085a2a29cad17",
+    "src/game/ConsumableDialog.ts": "6b856b137c1fe062974260f3e08cff493f693f377ee3d5ce99efcceb071db54f"
+  },
+  "before": false,
+  "scope": "Legal controlled native import, shop only; Chromium CSS viewports 390x740/1366x768 DPR1, touch/mouse/keyboard. No physical device or natural acquisition claim.",
+  "cases": [
+    {
+      "width": 1366,
+      "checks": [
+        "target selection keeps scroll/focus; purchase and target cancel leave complete save unchanged",
+        "store purchases once without consumption; cold Continue retains complete save and fixed inventory entry; explicit use matches canonical command once",
+        "immediate-use purchase pays once, opens real targets, and cancellation keeps the unconsumed tool; Escape also restores list context",
+        "fixed P07, targetless T16 and chosen T01 steps agree with actual native controls; inspection/cancel preserves full save"
+      ],
+      "shots": [
+        "1366-purchase-before.png",
+        "1366-purchase-cancel.png",
+        "1366-selected-target.png",
+        "1366-owned-cancel.png",
+        "1366-cold-shop.png",
+        "1366-cold-inventory.png",
+        "1366-used.png",
+        "1366-immediate-use-pending.png",
+        "1366-instruction-P07.png",
+        "1366-instruction-T16.png",
+        "1366-instruction-T01.png"
+      ],
+      "errors": [],
+      "initial": {
+        "gold": 30,
+        "seq": 2,
+        "journal": 0
+      },
+      "purchaseBefore": {
+        "pane": "purchase",
+        "scroll": [
+          0,
+          0
+        ],
+        "focus": "T11"
+      },
+      "purchaseAfter": {
+        "pane": "purchase",
+        "scroll": [
+          0,
+          0
+        ],
+        "focus": "T11"
+      },
+      "ownedBefore": {
+        "pane": "purchase",
+        "scroll": [
+          0,
+          0
+        ],
+        "focus": "held/T08"
+      },
+      "targetBefore": [
+        0,
+        0,
+        0
+      ],
+      "targetAfter": [
+        0,
+        0,
+        0
+      ],
+      "ownedAfter": {
+        "pane": "purchase",
+        "scroll": [
+          0,
+          0
+        ],
+        "focus": "held/T08"
+      },
+      "escapeBefore": {
+        "pane": "purchase",
+        "scroll": [
+          0,
+          0
+        ],
+        "focus": "T11"
+      },
+      "escapeAfter": {
+        "pane": "purchase",
+        "scroll": [
+          0,
+          0
+        ],
+        "focus": "T11"
+      },
+      "stored": {
+        "gold": 26,
+        "seq": 3,
+        "journal": 1
+      },
+      "used": {
+        "gold": 26,
+        "seq": 4,
+        "journal": 2
+      },
+      "immediate": {
+        "gold": 24,
+        "seq": 5,
+        "journal": 3
+      },
+      "instructionInitial": {
+        "gold": 30,
+        "seq": 2,
+        "journal": 0
+      },
+      "instructions": [
+        {
+          "id": "P07",
+          "instruction": "固定牌型 · 无需选择 → 确认使用",
+          "selects": 0
+        },
+        {
+          "id": "T16",
+          "instruction": "无需选牌 → 确认使用",
+          "selects": 0
+        },
+        {
+          "id": "T01",
+          "instruction": "选已发现牌型 → 确认使用",
+          "selects": 1
+        }
+      ],
+      "result": "PASS"
+    }
+  ],
+  "result": "PASS",
+  "sourceAfter": {
+    "src/game/MakeCardsDialog.ts": "03f66091bf2897f21ee8cc72c8c327c31dbc0cb8971405644753dd4e37e3957f",
+    "src/game/ShopScene.ts": "72c6645bca0d52ed4fc1133358d1a9c4208793f15883a7c49f9085a2a29cad17",
+    "src/game/ConsumableDialog.ts": "6b856b137c1fe062974260f3e08cff493f693f377ee3d5ce99efcceb071db54f"
+  }
+}

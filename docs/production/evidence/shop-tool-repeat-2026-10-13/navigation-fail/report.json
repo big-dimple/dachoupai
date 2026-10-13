@@ -1,0 +1,15 @@
+{
+  "head": "2ef9180c066308e06d7d09850983ea469aa67fd8",
+  "before": true,
+  "scope": "Legal controlled native import, shop only; Chromium CSS viewports 390x740/1366x768 DPR1, touch/mouse/keyboard. No physical device or natural acquisition claim.",
+  "cases": [
+    {
+      "width": 390,
+      "checks": [],
+      "shots": [],
+      "errors": []
+    }
+  ],
+  "result": "FAIL",
+  "error": "page.goto: Timeout 15000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:5735/?harness=1\", waiting until \"load\"\u001b[22m\n\n    at /workspace/dachoupai/harness/shop-tool-repeat.mjs:26:10"
+}
