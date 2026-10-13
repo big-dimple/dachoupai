@@ -15,7 +15,7 @@ export function shopCombinationVisual(recommendation:Pick<ShopRecommendation,'co
  const text=line.slice('组合潜力：'.length).replace(/。$/,'');
  // These are existing explanatory words, not a fresh source/activation/strength calculation.
  const cue=text.includes('尚缺')?'missing':text.includes('核对')?'check':'potential';
- return {cue,label:cue==='missing'?'缺源':cue==='check'?'待核':'可搭',fullText:line} as const;
+ return {cue,label:cue==='missing'?'缺搭档':cue==='check'?'看条件':'可搭配',fullText:line} as const;
 }
 export function createShopRarityFrame(scene:Phaser.Scene,b:Box,rarity:JokerRarity){
  const style=JOKER_RARITY[rarity],g=scene.add.graphics().setName('shop/offer-rarity-frame').setData('rarity',rarity).setData('bounds',b);
@@ -38,13 +38,20 @@ export function createShopRouteTag(scene:Phaser.Scene,x:number,y:number,focus:'g
  const label=scene.add.text(4,1,{group:'同点',straight:'顺子',flush:'同花'}[focus],{fontFamily:UI_FONT,fontSize:'12px',color:SHOP_VALUE_INK.recommendation,resolution:1.5});
  return tag.add([plate,label]);
 }
-export function createShopCombinationMark(scene:Phaser.Scene,x:number,y:number,cue:NonNullable<ReturnType<typeof shopCombinationVisual>>){
- const mark=scene.add.container(x,y).setName('shop/offer-combination').setSize(48,18).setData('cue',cue.cue).setData('fullText',cue.fullText);
- const g=scene.add.graphics().fillStyle(SHOP_VALUE_INK.paper,.97).fillRoundedRect(0,0,48,18,3).lineStyle(1,0x26313a,1).strokeCircle(6,9,4);
+/** Three readable characters take priority over decorative rings beside the rarity badge. */
+export function shopCombinationMarkLayout(availableWidth:number){
+ if(availableWidth<44)return;
+ return availableWidth>=62?{width:62,textX:18,rings:true}:{width:44,textX:4,rings:false};
+}
+export function createShopCombinationMark(scene:Phaser.Scene,x:number,y:number,cue:NonNullable<ReturnType<typeof shopCombinationVisual>>,layout:NonNullable<ReturnType<typeof shopCombinationMarkLayout>>){
+ const mark=scene.add.container(x,y).setName('shop/offer-combination').setSize(layout.width,18).setData('cue',cue.cue).setData('label',cue.label).setData('fullText',cue.fullText).setData('bounds',{x,y,width:layout.width,height:18});
+ const g=scene.add.graphics().fillStyle(SHOP_VALUE_INK.paper,.97).fillRoundedRect(0,0,layout.width,18,3).lineStyle(1,0x26313a,1);
+ if(layout.rings){g.strokeCircle(6,9,4);
  if(cue.cue==='missing'||cue.cue==='check'){
   for(const start of [0,Math.PI*.5,Math.PI,Math.PI*1.5])g.beginPath().arc(11,9,4,start,start+Math.PI*.3,false).strokePath();
  }else g.strokeCircle(11,9,4);
- const text=scene.add.text(18,1,cue.label,{fontFamily:UI_FONT,fontSize:'12px',color:'#26313A',resolution:1.5});
+ }
+ const text=scene.add.text(layout.textX,1,cue.label,{fontFamily:UI_FONT,fontSize:'12px',color:'#26313A',resolution:1.5});
  return mark.add([g,text]);
 }
 export function createShopRecommendationStars(scene:Phaser.Scene,b:Box,stars:number,offerId:string,fullText:string,detail:string){

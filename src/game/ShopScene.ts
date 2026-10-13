@@ -1,4 +1,4 @@
-import {createShopRarityFrame,createShopRecommendationStars,createShopRecommendationAccent,createShopCombinationMark,createShopRouteTag,shopCombinationVisual,shopRecommendationVisual} from './ShopCardValueVisual';
+import {createShopRarityFrame,createShopRecommendationStars,createShopRecommendationAccent,createShopCombinationMark,createShopRouteTag,shopCombinationVisual,shopCombinationMarkLayout,shopRecommendationVisual} from './ShopCardValueVisual';
 import {isR2SuitChoice,R2_SUIT_DYE_IDS,r2BasicChoiceBasePrice} from '../domain/r2GroupUpgrade';
 import {routeFrame} from './RouteFrame';
 import {routeFitCue,markRouteDetail,toolPurpose} from './RouteFitCue';
@@ -707,7 +707,8 @@ export class ShopScene extends Phaser.Scene {
     if(o.consumed)return;
     const cue=routeFitCue(this.run,'jokers',o.definitionId),combination=shopCombinationVisual(shopOfferGuidance(this.run,o).recommendation);
     if(cue)this.view.add(createShopRouteTag(this,face.x+1,face.y+1,cue.focus,cue.label).setData('offerId',o.offerId));
-    if(combination)this.view.add(createShopCombinationMark(this,face.x+1,face.y+face.height-18,combination).setData('offerId',o.offerId));
+    const combinationLayout=shopCombinationMarkLayout(face.width-30);
+    if(combination&&combinationLayout)this.view.add(createShopCombinationMark(this,face.x+1,face.y+face.height-18,combination,combinationLayout).setData('offerId',o.offerId));
   }
   private drawOfferGuidance(o:R2Offer,b:Box):void {
     const g=shopOfferGuidance(this.run,o),v=this.view;
