@@ -2,7 +2,7 @@
 
 ## 当前统一执行计划
 
-更新：2026-10-13 UTC，依据[18局自然复盘](evidence/natural-18-runs-2026-10-12/REVIEW.md)与已合主线 `ee59f1ed295c64b390de9f786c4ceca2ba40b715` 同步。**18格已完成的是旧身份13局5通8败＋C2五局全部普通八章通关，不是新资格/后置身份18格；原图与逐场账仍未落库。** 新C2后期60/60首手过，当前核心问题是主动、替换与Boss决策价值，不按旧六万失败全局加倍率/改价/抬目标。先限定推荐指数与真实替换成本合同，再经父审做核心经营有限实现及父三路线自然验证；英雄/Boss最小规则调整依验证再定。已有结算可在父安排下独立收尾，新增视听、头像和预加载降后续，不抢核心。本节是唯一当前队列；下方原W0–W9及各SHA历史证据保留。本轮仅同步两份计划文档，不改产品、不补跑游戏。
+更新：2026-10-13 UTC，依据[18局自然复盘](evidence/natural-18-runs-2026-10-12/REVIEW.md)与已合主线 `4ca4b27586cd88d511c8b4017df7403ddc0c2e4a` 同步。**18格已完成的是旧身份13局5通8败＋C2五局全部普通八章通关，不是新资格/后置身份18格；原图与逐场账仍未落库。** 新C2后期60/60首手过，当前核心问题是主动、替换与Boss决策价值，不按旧六万失败全局加倍率/改价/抬目标。先限定推荐指数与真实替换成本合同，再经父审做核心经营有限实现及父三路线自然验证；英雄/Boss最小规则调整依验证再定。已有结算可在父安排下独立收尾，新增视听、头像和预加载降后续，不抢核心。本节是唯一当前队列；下方原W0–W9及各SHA历史证据保留。本轮仅同步两份计划文档，不改产品、不补跑游戏。
 
 ### 1 已证明的结果与仍未证明的事
 
@@ -10,7 +10,7 @@
 
 | 对象 | 本轮事实 | 验收边界 |
 |---|---|---|
-| 版本基线 | 当前开发main为[ee59f1ed](https://github.com/big-dimple/dachoupai/commit/ee59f1ed295c64b390de9f786c4ceca2ba40b715)（PR143已合，继承PR144独立核算）；自然复盘仍冻结be2ff12，G16为89484f46、其余四局be2ff12，均为 `quality-r2-route-growth-v1`；旧be2实读build/dirty事实保在[复盘](evidence/natural-18-runs-2026-10-12/REVIEW.md) | 运行SHA/身份与当前发布分开；合并、CI或版本可用不等于自然经营/整体体验通过，不用当前main重写旧样本 |
+| 版本基线 | 当前开发main为[4ca4b275](https://github.com/big-dimple/dachoupai/commit/4ca4b27586cd88d511c8b4017df7403ddc0c2e4a)；[PR146计划同步](https://github.com/big-dimple/dachoupai/commit/56d9f22b0f8b3de5fe2a4a7ea0a54275907d4765)、PR148及PR149均已合；自然复盘仍冻结be2ff12，G16为89484f46、其余四局be2ff12，均为 `quality-r2-route-growth-v1`；旧be2实读build/dirty事实保在[复盘](evidence/natural-18-runs-2026-10-12/REVIEW.md) | 运行SHA/身份与当前发布分开；合并、CI或版本可用不等于自然经营/整体体验通过，不用当前main重写旧样本 |
 | 18局自然样本 | 六英雄×三路线18格均有自然胜败终态，10通8败是跨版本档案计数 | 旧13局和新5局分组；新C2只覆盖骰爷三路、谢幕顺子/同花。阿默、二响、老幻、阿燥三路及谢幕成组均无本批新C2自然终态，不能签新身份18格平衡 |
 | 自然高分已可达 | 新C2峰值单手：骰爷成组21,709,885；骰爷顺子22,609,254；骰爷同花4,417,884；谢幕顺子310,793,589；谢幕同花22,084,433 | 每个是实际单手，非累计。谢幕顺子终场正常燃30，无复制、玻璃或牌版次；已证明这一自然样本能上亿，未证明稳定亿分、所有英雄或无尽续航 |
 | 现有做牌UI | [PR128有限证据](evidence/shop-make-cards-2026-10-11/README.md)及be2原PC自然买用链保持；随后手机局部修复已合，范围见下表 | 已合软件受控手机检查不代签实体设备、全部39工具或自然整局；不从零重做已实现系统 |
@@ -25,9 +25,13 @@
 | 指定售后推荐/成本已合 | [PR143](https://github.com/big-dimple/dachoupai/pull/143)已合[ee59f1ed](https://github.com/big-dimple/dachoupai/commit/ee59f1ed295c64b390de9f786c4ceca2ba40b715)：卖掉来源后按真实保留来源重算、逐槽推荐/资金/成长/版次损失及首层具体潜力/缺项；保原a06/b06/a11五星。[来源/逐槽证据](evidence/recommendation-evidence-2026-10-13/README.md)、[方案A范围](evidence/recommendation-evidence-2026-10-13/OPTION_A.md)、[最终57项/三viewport九只读样例](evidence/recommendation-evidence-2026-10-13/COPY_REFINEMENT.md) | 局部小修已实现，state/journal/storage/localStorage不变、send=0；跨路线五星公平性与成本/寿命统一校准仍未完成，不签自然满槽替换或整体推荐政策 |
 | 独立数值核算已合 | [PR144](https://github.com/big-dimple/dachoupai/pull/144)已合[b15a4555](https://github.com/big-dimple/dachoupai/commit/b15a45554644fabfc9687396a7e929fc1dad10f3)，只新增[analysis/scoring-calibration核算依据](../../analysis/scoring-calibration/README.md)；成熟GF/SF增长与现行目标结构性失配已有可复算受控数据，游戏参数未改 | 用户3,193,089,021截图仍缺完整保存/trace，不能排除该手bug。候选收窄为共享公开目标表离线对照，无玩家预选路线曲线菜单；合法保存的兼容区间/资源可行解仍待算，18格仅长期覆盖账，不阻独立修复 |
 | 独立视觉原型待父审 | [PR145](https://github.com/big-dimple/dachoupai/pull/145)仍draft，首版父审为表单感重/重复按钮多；原型一轮收敛[f16e1725](https://github.com/big-dimple/dachoupai/commit/f16e17253558d13bffd0c2316a12c44b2b1f171b)，[原稿/round2证据](https://github.com/big-dimple/dachoupai/blob/f16e17253558d13bffd0c2316a12c44b2b1f171b/prototypes/card-value-visual/README.md)及[最终CI38350745756](https://github.com/big-dimple/dachoupai/actions/runs/38350745756)成功；父已看第二轮390截图，人物更突出、无逐卡重复按钮 | 仅prototypes/card-value-visual，星值为展示样例；父尚未实际操作原型，整体美学与产品接入未通过，不验证真实五星频率、交易保存、实体设备或整局体验 |
+| f06限次说明局部已合 | [PR148](https://github.com/big-dimple/dachoupai/pull/148)已合[c359d338](https://github.com/big-dimple/dachoupai/commit/c359d3389702f18c1d91944f3395d4dcff7afe30)；正常新购各阶段统一二星并显示“限4次”，原计分停用/B16封禁仍优先一星。[119项/六只读页面范围](evidence/f06-recommendation-2026-10-13/README.md) | 只改单牌推荐说明，不改第四次仍有效/手后销毁、跨场计数、价格或原五星；非寿命总收益、自然经营或全局校准验收 |
+| 购买基线合同A已合 | [PR149](https://github.com/big-dimple/dachoupai/pull/149)复审修复已合[4ca4b275](https://github.com/big-dimple/dachoupai/commit/4ca4b27586cd88d511c8b4017df7403ddc0c2e4a)。[CONTRACT_A](evidence/replacement-cash-risk-2026-10-13/CONTRACT_A.md)统一指定出售预览的权威售后状态与实际售后/普通末槽的当前购买前状态；退款、售出成长和解禁是既成基线，不重复作为购入补偿 | 仅纯成长新牌即时初值零、购款停用仍有效包场且本范围无即时补偿的已知当前损失，原大于二星时上限二星；有效版次/购入钩子/禁用变化等不套零收益证明。非整笔交易净收益，0待核方案撤回；其他低档/封禁及原五星保持。PC/390受控真实出售后查看/取消，不是实际UI购入或自然三路线验收；[CI_REGRESSION原FAIL与修订](evidence/replacement-cash-risk-2026-10-13/CI_REGRESSION.md)保留 |
 | 整体品质 | 六英雄、72丑牌、39工具、12物品、八章/16Boss、来源演出及现有手绘资产继续复用 | 整屏美学、Boss形象/收束、听感、物理设备、人测、无尽和正式质量门仍OPEN；不重做全武侠/全资产 |
 
 **发布与短程观察补记（2026-10-13）：** 父05:18UTC在 [pai.hp666.cc](https://pai.hp666.cc) 菜单实际读到 `ee59f1ed295c`，构建 `05:16:28.894Z`，dirty `package-lock.json`一项，不称洁净构建；[合并后CI38350468873](https://github.com/big-dimple/dachoupai/actions/runs/38350468873)本轮05:28UTC重新核为completed/success，head_sha=`ee59f1ed295c64b390de9f786c4ceca2ba40b715`。父在该线上版本自然开阿默同点新局，买满堂彩6→2金，弃5、留对子与A三张并补成葫芦，一手1,655/400过第1暖场、+7金。仅一场短程观察，非完整局且未覆盖满槽替换，不新填18格终态或签整体体验；本轮文档代理未复跑或补签截图/存档。
+
+**合同A发布核验补记（2026-10-13）：** 精确候选 `eaa5f3119d62967665e3c0bf102991c0c1e2f36b` 的[CI38392207445](https://github.com/big-dimple/dachoupai/actions/runs/38392207445)成功；[main CI38393478816](https://github.com/big-dimple/dachoupai/actions/runs/38393478816)父12:03UTC观察仍in_progress，本轮重新查询已completed/success，绑定 `4ca4b27586cd88d511c8b4017df7403ddc0c2e4a`。父11:58UTC在dot云浏览器正式域名菜单实读 `4ca4b27586cd`、build `11:55:22.126Z`、dirty `package-lock.json`一项，不称洁净构建。仅发布验证，不是自然经营/满槽交易/实体设备或体验总验收；五星全局和父自然三路线仍未验，结算仍未发布。
 
 **本次关键归因已核清：** [r2RouteGrowth.ts](https://github.com/big-dimple/dachoupai/blob/be2ff12f0d159f48a11c8bec8089f4dc1d2bd3d7/src/domain/r2RouteGrowth.ts) 的资历归本局，按真实主手族与成功清场累计，既不归某一张丑牌，也不被初选路线锁死。前三次合格清场为准备期，其后G/S/F分别按1.35/1.4/1.3逐次相乘；读取手前旧值，清场新增不倒灌本手，位于整手丑牌及本槽版次后、阿默后置助攻前。[计分时钟](https://github.com/big-dimple/dachoupai/blob/be2ff12f0d159f48a11c8bec8089f4dc1d2bd3d7/src/domain/scoreR2.ts)和[精确身份路由](https://github.com/big-dimple/dachoupai/blob/be2ff12f0d159f48a11c8bec8089f4dc1d2bd3d7/src/domain/r2ContentProfiles.ts)按父只读复核记录采用。每族单独封顶，符合多个族时可读多族；这不是搭台阶的隐藏倍率，出售搭台阶不丢本局顺子资历。
 
@@ -52,8 +56,8 @@
 
 | 优先级与批次 | 当前最小交付 | 并行/串行边界 | 退出时必须拿出的结果 |
 |---|---|---|---|
-| **已合P0/P1局部闭环**，原W7/W3 | PR130资格、PR134主动后置及132/136/137/138/139/140/143局部已合，PR144独立核算已合；证据范围见上表，代码交付与体验验收分签 | 必要新旧身份/恢复核验可接续，不重启“等18局”阻断、不重复当前已修问题 | N01未终态、骰爷新资格自然赢×2未独立验证；其他未发生/未覆盖路径明确保留 |
-| **下一优先：限定推荐指数/真实替换成本合同**，原W5/P08 | 五代表机制：f06有限寿命、晚到成长、已养成替换、现金门槛、永久损失工具；[PR135](https://github.com/big-dimple/dachoupai/pull/135)为未合候选输入。本轮仅核五类真实成本/寿命/损失与指定替换后条件；全局星级语义/判定仍待验证，旧f06早中2/晚3、c04晚2不是新方案，跨路线五星统一校准仍未完成；PR143局部来源/成本/首层小修已合，不表示新全局评分获批 | 先锁可解释判定、指定对象/总成本、已知与未知；不扫种子、不运行自然试玩，不造未来净收益或全局价/倍率/目标变更 | 同输入样例、明确不足条件与文件范围交父审；满槽不一刀切一星，未知不伪造五星；合同未锁不冒称已实现 |
+| **已合P0/P1局部闭环**，原W7/W3 | PR130资格、PR134主动后置及132/136/137/138/139/140/143/148/149局部已合，PR144核算、PR146计划同步已合；证据范围见上表，代码交付与体验验收分签 | 必要新旧身份/恢复核验可接续，不重启“等18局”阻断、不重复当前已修问题 | N01未终态、骰爷新资格自然赢×2未独立验证；其他未发生/未覆盖路径明确保留 |
+| **下一优先：限定推荐指数/真实替换成本合同**，原W5/P08 | 五代表机制：f06有限寿命、晚到成长、已养成替换、现金门槛、永久损失工具；[PR135](https://github.com/big-dimple/dachoupai/pull/135)为未合候选输入。本轮仅核五类真实成本/寿命/损失与指定替换后条件；全局星级语义/判定仍待验证，PR148已取消f06晚期自动升三，c04晚二仅旧启发式；跨路线五星统一校准仍未完成，PR143及PR149合同A局部已合，不表示新全局评分获批 | 先锁可解释判定、指定对象/总成本、已知与未知；不扫种子、不运行自然试玩，不造未来净收益或全局价/倍率/目标变更 | 同输入样例、明确不足条件与文件范围交父审；满槽不一刀切一星，未知不伪造五星；合同未锁不冒称已实现 |
 | **随后：核心经营有限实现＋父三路线自然验证**，原W5/W7/W8 | 合同获父批准后只改受影响评价/替换路径；保原资历G1.35/S1.4/F1.3、六牌、价格、供给、关卡目标。英雄/Boss最小规则调整依据验证再定 | 父排文件窗口及唯一集成，预登记成组/顺子/同花各一条自然路径；不强买强用、不刷满意样本、不重跑18局作前置 | 真实买/不买、用/保留、替换成本与后续兑现；失败或未发生保留，受控增分不签自然决策价值 |
 | **已有结算候选可独立收尾**，原W1/W2/W3/W4/W6 | 旧[PR133](https://github.com/big-dimple/dachoupai/pull/133)仍draft56aa86fc；独立恢复线程远端[37b8565e](https://github.com/big-dimple/dachoupai/commit/37b8565e4c7b44404ccec4bc38899746d32d2532)仅[首个受控样板证据](https://github.com/big-dimple/dachoupai/blob/37b8565e4c7b44404ccec4bc38899746d32d2532/docs/production/evidence/settlement-recovery-2026-10-13/README.md)。父回执本地69f30a79最终证据仍未push，创建恢复draft被权限拦截 | 未发布完成；不把远端首样板当本地最终证据已交付或美术通过。独立收尾不重排主线，共用文件仍由父串行安排，旧线程停止计划文件写入的要求保持 | 待最终证据可审查、精确候选CI和父审图/整段验收；听感/实机无证据继续OPEN |
 | **后续：头像与预加载**，不插核心 | 父本轮回执：头像线程本地未提交改动保留，未合/未验；预加载仅核查，无新代码 | 按用户最新优先级降后续，不覆盖旧改动，不因最新反馈重排核心 | 待核心经营推进后另给明确范围；不把本地候选或只读核查写成已上线 |
