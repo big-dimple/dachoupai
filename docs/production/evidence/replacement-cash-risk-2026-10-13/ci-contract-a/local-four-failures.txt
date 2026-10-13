@@ -1,0 +1,84 @@
+
+ RUN  v4.1.11 /workspace/dachoupai
+
+ ❯ tests/shop-recommendation.test.ts (20 tests | 1 failed) 267ms
+     × refund cash requires the explicitly specified slot independently of recommendation 12ms
+ ❯ tests/shop-current-decisions.test.ts (14 tests | 3 failed) 107ms
+   × threshold protection uses actual discounted price and replacement net cash 12ms
+   × visible stars do not borrow an automatically proposed replacement cash basis 26ms
+   × assessed replacement losses agree with saved sale/purchase and discounted direct-purchase boundaries 7ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 4 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/shop-current-decisions.test.ts > threshold protection uses actual discounted price and replacement net cash
+AssertionError: expected '购款金币22→18；包场买后18金，暂不触发倍率×1.8（需本手开始金币至…' to contain '21→18'
+
+Expected: "21→18"
+Received: "购款金币22→18；包场买后18金，暂不触发倍率×1.8（需本手开始金币至少20；本手新收入不改变资格）；这轮先留金。"
+
+ ❯ tests/shop-current-decisions.test.ts:23:566
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/4]⎯
+
+ FAIL  tests/shop-current-decisions.test.ts > visible stars do not borrow an automatically proposed replacement cash basis
+AssertionError: expected { Object (stars, label, ...) } to match object { stars: 4, operationShort: '现金风险' }
+(19 matching properties omitted from actual)
+
+- Expected
++ Received
+
+  {
+    "operationShort": "现金风险",
+-   "stars": 4,
++   "stars": 2,
+  }
+
+ ❯ tests/shop-current-decisions.test.ts:24:657
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/4]⎯
+
+ FAIL  tests/shop-current-decisions.test.ts > assessed replacement losses agree with saved sale/purchase and discounted direct-purchase boundaries
+AssertionError: expected { Object (stars, label, ...) } to match object { stars: 4, operationShort: '现金风险' }
+(19 matching properties omitted from actual)
+
+- Expected
++ Received
+
+  {
+    "operationShort": "现金风险",
+-   "stars": 4,
++   "stars": 2,
+  }
+
+ ❯ tests/shop-current-decisions.test.ts:25:735
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/4]⎯
+
+ FAIL  tests/shop-recommendation.test.ts > audited sustained recommendation, separate from purchase and replacement > refund cash requires the explicitly specified slot independently of recommendation
+AssertionError: expected 2 to be 4 // Object.is equality
+
+- Expected
++ Received
+
+- 4
++ 2
+
+ ❯ tests/shop-recommendation.test.ts:34:382
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/4]⎯
+
+
+ Test Files  2 failed (2)
+      Tests  4 failed | 30 passed (34)
+   Start at  11:39:05
+   Duration  1.18s (transform 1.34s, setup 0ms, import 1.72s, tests 374ms, environment 0ms)
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice

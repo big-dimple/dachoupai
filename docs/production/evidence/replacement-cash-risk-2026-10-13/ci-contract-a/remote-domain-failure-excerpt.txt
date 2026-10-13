@@ -1,0 +1,121 @@
+ FAIL  tests/shop-current-decisions.test.ts > threshold protection uses actual discounted price and replacement net cash
+2026-10-13T11:32:30.7066263Z AssertionError: expected '购款金币22→18；包场买后18金，暂不触发倍率×1.8（需本手开始金币至…' to contain '21→18'
+2026-10-13T11:32:30.7066942Z 
+2026-10-13T11:32:30.7067224Z Expected: "21→18"
+2026-10-13T11:32:30.7068441Z Received: "购款金币22→18；包场买后18金，暂不触发倍率×1.8（需本手开始金币至少20；本手新收入不改变资格）；这轮先留金。"
+2026-10-13T11:32:30.7068957Z 
+2026-10-13T11:32:30.7069582Z  ❯ tests/shop-current-decisions.test.ts:23:566
+2026-10-13T11:32:30.7140456Z 
+2026-10-13T11:32:30.7143454Z 
+2026-10-13T11:32:30.7146299Z ⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/4]⎯
+2026-10-13T11:32:30.7146877Z 
+2026-10-13T11:32:30.7148503Z  FAIL  tests/shop-current-decisions.test.ts > visible stars do not borrow an automatically proposed replacement cash basis
+2026-10-13T11:32:30.7150655Z AssertionError: expected { Object (stars, label, ...) } to match object { stars: 4, operationShort: '现金风险' }
+2026-10-13T11:32:30.7152020Z (19 matching properties omitted from actual)
+2026-10-13T11:32:30.7152473Z 
+2026-10-13T11:32:30.7152746Z - Expected
+2026-10-13T11:32:30.7153624Z + Received
+2026-10-13T11:32:30.7153877Z 
+2026-10-13T11:32:30.7154079Z   {
+2026-10-13T11:32:30.7154651Z     "operationShort": "现金风险",
+2026-10-13T11:32:30.7155293Z -   "stars": 4,
+2026-10-13T11:32:30.7155873Z +   "stars": 2,
+2026-10-13T11:32:30.7156368Z   }
+2026-10-13T11:32:30.7156596Z 
+2026-10-13T11:32:30.7157291Z  ❯ tests/shop-current-decisions.test.ts:24:657
+2026-10-13T11:32:30.7157911Z 
+2026-10-13T11:32:30.7157922Z 
+2026-10-13T11:32:30.7158423Z ⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/4]⎯
+2026-10-13T11:32:30.7158807Z 
+2026-10-13T11:32:30.7160492Z  FAIL  tests/shop-current-decisions.test.ts > assessed replacement losses agree with saved sale/purchase and discounted direct-purchase boundaries
+2026-10-13T11:32:30.7162794Z AssertionError: expected { Object (stars, label, ...) } to match object { stars: 4, operationShort: '现金风险' }
+2026-10-13T11:32:30.7164322Z (19 matching properties omitted from actual)
+2026-10-13T11:32:30.7164729Z 
+2026-10-13T11:32:30.7164969Z - Expected
+2026-10-13T11:32:30.7165530Z + Received
+2026-10-13T11:32:30.7165765Z 
+2026-10-13T11:32:30.7165977Z   {
+2026-10-13T11:32:30.7166537Z     "operationShort": "现金风险",
+2026-10-13T11:32:30.7167157Z -   "stars": 4,
+2026-10-13T11:32:30.7167681Z +   "stars": 2,
+2026-10-13T11:32:30.7168133Z   }
+2026-10-13T11:32:30.7168344Z 
+2026-10-13T11:32:30.7168992Z  ❯ tests/shop-current-decisions.test.ts:25:735
+2026-10-13T11:32:30.7169519Z 
+2026-10-13T11:32:30.7169528Z 
+2026-10-13T11:32:30.7169961Z ⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/4]⎯
+2026-10-13T11:32:30.7170344Z 
+2026-10-13T11:32:30.7172484Z  FAIL  tests/shop-recommendation.test.ts > audited sustained recommendation, separate from purchase and replacement > refund cash requires the explicitly specified slot independently of recommendation
+2026-10-13T11:32:30.7174979Z AssertionError: expected 2 to be 4 // Object.is equality
+2026-10-13T11:32:30.7175553Z 
+2026-10-13T11:32:30.7175797Z - Expected
+2026-10-13T11:32:30.7176282Z + Received
+2026-10-13T11:32:30.7176533Z 
+2026-10-13T11:32:30.7176738Z - 4
+2026-10-13T11:32:30.7177135Z + 2
+2026-10-13T11:32:30.7177345Z 
+2026-10-13T11:32:30.7177971Z  ❯ tests/shop-recommendation.test.ts:34:382
+2026-10-13T11:32:30.7217055Z 
+2026-10-13T11:32:30.7217382Z 
+2026-10-13T11:32:30.7218161Z ⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/4]⎯
+2026-10-13T11:32:30.7218562Z 
+2026-10-13T11:32:30.7243557Z 
+2026-10-13T11:32:30.7245305Z  Test Files  2 failed | 224 passed (226)
+2026-10-13T11:32:30.7274735Z       Tests  4 failed | 3325 passed (3329)
+2026-10-13T11:32:30.7290534Z    Start at  11:31:24
+2026-10-13T11:32:30.7325250Z    Duration  66.67s (transform 7.91s, setup 0ms, import 43.86s, tests 107.78s, environment 35ms)
+2026-10-13T11:32:30.7327614Z 
+2026-10-13T11:32:30.7349308Z 
+2026-10-13T11:32:30.7382155Z ##[error]AssertionError: expected '购款金币22→18；包场买后18金，暂不触发倍率×1.8（需本手开始金币至…' to contain '21→18'
+
+Expected: "21→18"
+Received: "购款金币22→18；包场买后18金，暂不触发倍率×1.8（需本手开始金币至少20；本手新收入不改变资格）；这轮先留金。"
+
+ ❯ tests/shop-current-decisions.test.ts:23:566
+
+
+2026-10-13T11:32:30.7394210Z 
+2026-10-13T11:32:30.7398751Z ##[error]AssertionError: expected { Object (stars, label, ...) } to match object { stars: 4, operationShort: '现金风险' }
+(19 matching properties omitted from actual)
+
+- Expected
++ Received
+
+  {
+    "operationShort": "现金风险",
+-   "stars": 4,
++   "stars": 2,
+  }
+
+ ❯ tests/shop-current-decisions.test.ts:24:657
+
+
+2026-10-13T11:32:30.7401371Z 
+2026-10-13T11:32:30.7404877Z ##[error]AssertionError: expected { Object (stars, label, ...) } to match object { stars: 4, operationShort: '现金风险' }
+(19 matching properties omitted from actual)
+
+- Expected
++ Received
+
+  {
+    "operationShort": "现金风险",
+-   "stars": 4,
++   "stars": 2,
+  }
+
+ ❯ tests/shop-current-decisions.test.ts:25:735
+
+
+2026-10-13T11:32:30.7406418Z 
+2026-10-13T11:32:30.7407863Z ##[error]AssertionError: expected 2 to be 4 // Object.is equality
+
+- Expected
++ Received
+
+- 4
++ 2
+
+ ❯ tests/shop-recommendation.test.ts:34:382
+
+
+2026-10-13T11:32:31.5930443Z test: FAIL

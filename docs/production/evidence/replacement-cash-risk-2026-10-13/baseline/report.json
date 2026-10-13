@@ -1,0 +1,1223 @@
+{
+  "head": "c359d3389702f18c1d91944f3395d4dcff7afe30",
+  "sourceTree": "31230b234546c1965e1b68a2bbbcdf5550339a34",
+  "sourceChanges": "",
+  "baseline": true,
+  "fixtureSha256": "c1293e7bcb1ec0d7fdea9eca8b5f45ebf6090684499f9c9a6281e497d2da16e2",
+  "harnessSha256": "0403a38f7071d5d9dfd623b9bf835b114bf7c615c3d87afc01e544ca154f0306",
+  "scope": "CONTROLLED valid full shop. Native checkpoint import, compare specified donors, cancel. Not a purchase, natural play, probability or device acceptance.",
+  "cases": [
+    {
+      "width": 1366,
+      "height": 768,
+      "touch": false,
+      "errors": [],
+      "screenshots": [
+        "1366-cash-loss-compare.png",
+        "1366-cash-preserved-compare.png"
+      ],
+      "offers": [
+        {
+          "index": 2,
+          "guidance": {
+            "stars": 4,
+            "label": "推荐指数 ★★★★☆",
+            "reason": "现金风险",
+            "condition": "成组后增长 · 下手生效",
+            "recommendation": {
+              "stars": 4,
+              "reason": "持续长热度",
+              "condition": "成组后增长 · 下手生效",
+              "stage": "early",
+              "combination": "组合记录：尚无两张现持牌共同计分。",
+              "combinationHint": "",
+              "facts": {
+                "cards": 52,
+                "largest": 4,
+                "second": 4,
+                "largestSuit": 13,
+                "groupConcentrated": false,
+                "flushConcentrated": false,
+                "straightConcentrated": false,
+                "ordinaryStraightPossible": true,
+                "ordinaryFlushPossible": true,
+                "boostedGroup": false,
+                "houseCardPayoff": false,
+                "boostedHouse": false,
+                "groupRecord": false,
+                "houseRecord": false,
+                "flushRecord": false,
+                "qualifiedRecord": false,
+                "heldCardPayoff": true,
+                "heldGroupPayoff": true,
+                "retriggerSource": false,
+                "additiveSource": true,
+                "disabledSourceCount": 0,
+                "potentialStages": 21,
+                "growthWindow": true,
+                "initialGrowth": "{}",
+                "straightFamilyPossible": true,
+                "flushFamilyPossible": true,
+                "flushHousePossible": false,
+                "flushFivePossible": false,
+                "routeGrowth": "{\"before\":{\"clears\":1,\"G\":0,\"S\":0,\"F\":0},\"factors\":{\"G\":{\"n\":\"1\",\"d\":\"1\"},\"S\":{\"n\":\"1\",\"d\":\"1\"},\"F\":{\"n\":\"1\",\"d\":\"1\"}},\"preserved\":\"本局路线资历保留，出售不丢。\",\"detail\":\"本局路线资历：成功清场1次；G 0次 / ×1；S 0次 / ×1；F 0次 / ×1。\\n资历不绑定起手或持牌实例，出售不清零；按实际主手族读取，可重叠的族分别读取。每族前三次合格清场因子为1，清场后才入账，下手读取；本次买卖不增加资历。\"}"
+              },
+              "detail": "持续长热度；成组后增长 · 下手生效。任何成组牌型结算后热度成长+10，上限+100，下次起生效；每手任意牌型均加入已有成长，跨场保留。\n公开依据：最大同点组4张，前两组8/52张；最大花色13/52张；已持逐牌加成有；剩余场次窗口21。\n组合记录：尚无两张现持牌共同计分。\n本局路线资历：成功清场1次；G 0次 / ×1；S 0次 / ×1；F 0次 / ×1。\n资历不绑定起手或持牌实例，出售不清零；按实际主手族读取，可重叠的族分别读取。每族前三次合格清场因子为1，清场后才入账，下手读取；本次买卖不增加资历。"
+            },
+            "operation": "需替换",
+            "operationShort": "现金风险",
+            "purchaseConditionLosses": [
+              "买后金币22→19；包场买后19金，暂不触发倍率×1.8（需本手开始金币至少20；本手新收入不改变资格）；这轮先留金。"
+            ],
+            "cashBasis": "指定第3槽先售后买",
+            "replaceId": "held/e01",
+            "detail": "持续长热度；成组后增长 · 下手生效。任何成组牌型结算后热度成长+10，上限+100，下次起生效；每手任意牌型均加入已有成长，跨场保留。\n公开依据：最大同点组4张，前两组8/52张；最大花色13/52张；已持逐牌加成有；剩余场次窗口21。\n组合记录：尚无两张现持牌共同计分。\n本局路线资历：成功清场1次；G 0次 / ×1；S 0次 / ×1；F 0次 / ×1。\n资历不绑定起手或持牌实例，出售不清零；按实际主手族读取，可重叠的族分别读取。每族前三次合格清场因子为1，清场后才入账，下手读取；本次买卖不增加资历。\n需替换\n指定第3槽先售后买\n买后金币22→19；包场买后19金，暂不触发倍率×1.8（需本手开始金币至少20；本手新收入不改变资格）；这轮先留金。",
+            "routes": [
+              "group"
+            ],
+            "routeCaption": "同点"
+          },
+          "text": "第 3 槽 · 小费盒\n\n返1金 · 实付4金 · 买后19金\n买后金币22→19；包场买后19金，暂不触发倍率×1.8（需本手开始金币至少20；本手新收入不改变资格）；这轮先留金。\n推荐指数 ★★★★☆ · 现金风险\n\n管理这张\n条件、配合与完整损失",
+          "geometry": {
+            "line": {
+              "x": 349,
+              "y": 390.015625,
+              "right": 478.640625,
+              "bottom": 409.015625
+            },
+            "pane": {
+              "x": 260,
+              "y": 110.5,
+              "right": 1106,
+              "bottom": 670
+            }
+          }
+        },
+        {
+          "index": 4,
+          "guidance": {
+            "stars": 4,
+            "label": "推荐指数 ★★★★☆",
+            "reason": "持续长热度",
+            "condition": "成组后增长 · 下手生效",
+            "recommendation": {
+              "stars": 4,
+              "reason": "持续长热度",
+              "condition": "成组后增长 · 下手生效",
+              "stage": "early",
+              "combination": "组合记录：尚无两张现持牌共同计分。",
+              "combinationHint": "",
+              "facts": {
+                "cards": 52,
+                "largest": 4,
+                "second": 4,
+                "largestSuit": 13,
+                "groupConcentrated": false,
+                "flushConcentrated": false,
+                "straightConcentrated": false,
+                "ordinaryStraightPossible": true,
+                "ordinaryFlushPossible": true,
+                "boostedGroup": false,
+                "houseCardPayoff": false,
+                "boostedHouse": false,
+                "groupRecord": false,
+                "houseRecord": false,
+                "flushRecord": false,
+                "qualifiedRecord": false,
+                "heldCardPayoff": true,
+                "heldGroupPayoff": true,
+                "retriggerSource": false,
+                "additiveSource": true,
+                "disabledSourceCount": 0,
+                "potentialStages": 21,
+                "growthWindow": true,
+                "initialGrowth": "{}",
+                "straightFamilyPossible": true,
+                "flushFamilyPossible": true,
+                "flushHousePossible": false,
+                "flushFivePossible": false,
+                "routeGrowth": "{\"before\":{\"clears\":1,\"G\":0,\"S\":0,\"F\":0},\"factors\":{\"G\":{\"n\":\"1\",\"d\":\"1\"},\"S\":{\"n\":\"1\",\"d\":\"1\"},\"F\":{\"n\":\"1\",\"d\":\"1\"}},\"preserved\":\"本局路线资历保留，出售不丢。\",\"detail\":\"本局路线资历：成功清场1次；G 0次 / ×1；S 0次 / ×1；F 0次 / ×1。\\n资历不绑定起手或持牌实例，出售不清零；按实际主手族读取，可重叠的族分别读取。每族前三次合格清场因子为1，清场后才入账，下手读取；本次买卖不增加资历。\"}"
+              },
+              "detail": "持续长热度；成组后增长 · 下手生效。任何成组牌型结算后热度成长+10，上限+100，下次起生效；每手任意牌型均加入已有成长，跨场保留。\n公开依据：最大同点组4张，前两组8/52张；最大花色13/52张；已持逐牌加成有；剩余场次窗口21。\n组合记录：尚无两张现持牌共同计分。\n本局路线资历：成功清场1次；G 0次 / ×1；S 0次 / ×1；F 0次 / ×1。\n资历不绑定起手或持牌实例，出售不清零；按实际主手族读取，可重叠的族分别读取。每族前三次合格清场因子为1，清场后才入账，下手读取；本次买卖不增加资历。"
+            },
+            "operation": "需替换",
+            "operationShort": "需替换",
+            "purchaseConditionLosses": [],
+            "cashBasis": "指定第5槽先售后买",
+            "replaceId": "held/e04",
+            "detail": "持续长热度；成组后增长 · 下手生效。任何成组牌型结算后热度成长+10，上限+100，下次起生效；每手任意牌型均加入已有成长，跨场保留。\n公开依据：最大同点组4张，前两组8/52张；最大花色13/52张；已持逐牌加成有；剩余场次窗口21。\n组合记录：尚无两张现持牌共同计分。\n本局路线资历：成功清场1次；G 0次 / ×1；S 0次 / ×1；F 0次 / ×1。\n资历不绑定起手或持牌实例，出售不清零；按实际主手族读取，可重叠的族分别读取。每族前三次合格清场因子为1，清场后才入账，下手读取；本次买卖不增加资历。\n需替换\n指定第5槽先售后买",
+            "routes": [
+              "group"
+            ],
+            "routeCaption": "同点"
+          },
+          "text": "第 5 槽 · 滚个零头\n\n返4金 · 实付4金 · 买后22金\n推荐指数 ★★★★☆ · 持续长热度\n\n管理这张\n条件、配合与完整损失",
+          "geometry": {
+            "line": {
+              "x": 349,
+              "y": 512.765625,
+              "right": 478.640625,
+              "bottom": 531.765625
+            },
+            "pane": {
+              "x": 260,
+              "y": 110.5,
+              "right": 1106,
+              "bottom": 670
+            }
+          }
+        }
+      ],
+      "before": {
+        "identity": {
+          "contentVersion": "quality-r2-route-growth-v1",
+          "contentHash": "json-fnv-v1:7414228d95059959"
+        },
+        "commandSeq": 4
+      },
+      "after": "Equal to before; full data in gzip",
+      "sendCalls": [],
+      "status": "PASS"
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "errors": [],
+      "screenshots": [
+        "390-cash-loss-compare.png",
+        "390-cash-preserved-compare.png"
+      ],
+      "offers": [
+        {
+          "index": 2,
+          "guidance": {
+            "stars": 4,
+            "label": "推荐指数 ★★★★☆",
+            "reason": "现金风险",
+            "condition": "成组后增长 · 下手生效",
+            "recommendation": {
+              "stars": 4,
+              "reason": "持续长热度",
+              "condition": "成组后增长 · 下手生效",
+              "stage": "early",
+              "combination": "组合记录：尚无两张现持牌共同计分。",
+              "combinationHint": "",
+              "facts": {
+                "cards": 52,
+                "largest": 4,
+                "second": 4,
+                "largestSuit": 13,
+                "groupConcentrated": false,
+                "flushConcentrated": false,
+                "straightConcentrated": false,
+                "ordinaryStraightPossible": true,
+                "ordinaryFlushPossible": true,
+                "boostedGroup": false,
+                "houseCardPayoff": false,
+                "boostedHouse": false,
+                "groupRecord": false,
+                "houseRecord": false,
+                "flushRecord": false,
+                "qualifiedRecord": false,
+                "heldCardPayoff": true,
+                "heldGroupPayoff": true,
+                "retriggerSource": false,
+                "additiveSource": true,
+                "disabledSourceCount": 0,
+                "potentialStages": 21,
+                "growthWindow": true,
+                "initialGrowth": "{}",
+                "straightFamilyPossible": true,
+                "flushFamilyPossible": true,
+                "flushHousePossible": false,
+                "flushFivePossible": false,
+                "routeGrowth": "{\"before\":{\"clears\":1,\"G\":0,\"S\":0,\"F\":0},\"factors\":{\"G\":{\"n\":\"1\",\"d\":\"1\"},\"S\":{\"n\":\"1\",\"d\":\"1\"},\"F\":{\"n\":\"1\",\"d\":\"1\"}},\"preserved\":\"本局路线资历保留，出售不丢。\",\"detail\":\"本局路线资历：成功清场1次；G 0次 / ×1；S 0次 / ×1；F 0次 / ×1。\\n资历不绑定起手或持牌实例，出售不清零；按实际主手族读取，可重叠的族分别读取。每族前三次合格清场因子为1，清场后才入账，下手读取；本次买卖不增加资历。\"}"
+              },
+              "detail": "持续长热度；成组后增长 · 下手生效。任何成组牌型结算后热度成长+10，上限+100，下次起生效；每手任意牌型均加入已有成长，跨场保留。\n公开依据：最大同点组4张，前两组8/52张；最大花色13/52张；已持逐牌加成有；剩余场次窗口21。\n组合记录：尚无两张现持牌共同计分。\n本局路线资历：成功清场1次；G 0次 / ×1；S 0次 / ×1；F 0次 / ×1。\n资历不绑定起手或持牌实例，出售不清零；按实际主手族读取，可重叠的族分别读取。每族前三次合格清场因子为1，清场后才入账，下手读取；本次买卖不增加资历。"
+            },
+            "operation": "需替换",
+            "operationShort": "现金风险",
+            "purchaseConditionLosses": [
+              "买后金币22→19；包场买后19金，暂不触发倍率×1.8（需本手开始金币至少20；本手新收入不改变资格）；这轮先留金。"
+            ],
+            "cashBasis": "指定第3槽先售后买",
+            "replaceId": "held/e01",
+            "detail": "持续长热度；成组后增长 · 下手生效。任何成组牌型结算后热度成长+10，上限+100，下次起生效；每手任意牌型均加入已有成长，跨场保留。\n公开依据：最大同点组4张，前两组8/52张；最大花色13/52张；已持逐牌加成有；剩余场次窗口21。\n组合记录：尚无两张现持牌共同计分。\n本局路线资历：成功清场1次；G 0次 / ×1；S 0次 / ×1；F 0次 / ×1。\n资历不绑定起手或持牌实例，出售不清零；按实际主手族读取，可重叠的族分别读取。每族前三次合格清场因子为1，清场后才入账，下手读取；本次买卖不增加资历。\n需替换\n指定第3槽先售后买\n买后金币22→19；包场买后19金，暂不触发倍率×1.8（需本手开始金币至少20；本手新收入不改变资格）；这轮先留金。",
+            "routes": [
+              "group"
+            ],
+            "routeCaption": "同点"
+          },
+          "text": "第 3 槽 · 小费盒\n\n返1金 · 实付4金 · 买后19金\n买后金币22→19；包场买后19金，暂不触发倍率×1.8（需本手开始金币至少20；本手新收入不改变资格）；这轮先留金。\n推荐指数 ★★★★☆ · 现金风险\n\n管理这张\n条件、配合与完整损失",
+          "geometry": {
+            "line": {
+              "x": 125,
+              "y": 402.078125,
+              "right": 254.640625,
+              "bottom": 421.078125
+            },
+            "pane": {
+              "x": 36,
+              "y": 126.5,
+              "right": 354,
+              "bottom": 678
+            }
+          }
+        },
+        {
+          "index": 4,
+          "guidance": {
+            "stars": 4,
+            "label": "推荐指数 ★★★★☆",
+            "reason": "持续长热度",
+            "condition": "成组后增长 · 下手生效",
+            "recommendation": {
+              "stars": 4,
+              "reason": "持续长热度",
+              "condition": "成组后增长 · 下手生效",
+              "stage": "early",
+              "combination": "组合记录：尚无两张现持牌共同计分。",
+              "combinationHint": "",
+              "facts": {
+                "cards": 52,
+                "largest": 4,
+                "second": 4,
+                "largestSuit": 13,
+                "groupConcentrated": false,
+                "flushConcentrated": false,
+                "straightConcentrated": false,
+                "ordinaryStraightPossible": true,
+                "ordinaryFlushPossible": true,
+                "boostedGroup": false,
+                "houseCardPayoff": false,
+                "boostedHouse": false,
+                "groupRecord": false,
+                "houseRecord": false,
+                "flushRecord": false,
+                "qualifiedRecord": false,
+                "heldCardPayoff": true,
+                "heldGroupPayoff": true,
+                "retriggerSource": false,
+                "additiveSource": true,
+                "disabledSourceCount": 0,
+                "potentialStages": 21,
+                "growthWindow": true,
+                "initialGrowth": "{}",
+                "straightFamilyPossible": true,
+                "flushFamilyPossible": true,
+                "flushHousePossible": false,
+                "flushFivePossible": false,
+                "routeGrowth": "{\"before\":{\"clears\":1,\"G\":0,\"S\":0,\"F\":0},\"factors\":{\"G\":{\"n\":\"1\",\"d\":\"1\"},\"S\":{\"n\":\"1\",\"d\":\"1\"},\"F\":{\"n\":\"1\",\"d\":\"1\"}},\"preserved\":\"本局路线资历保留，出售不丢。\",\"detail\":\"本局路线资历：成功清场1次；G 0次 / ×1；S 0次 / ×1；F 0次 / ×1。\\n资历不绑定起手或持牌实例，出售不清零；按实际主手族读取，可重叠的族分别读取。每族前三次合格清场因子为1，清场后才入账，下手读取；本次买卖不增加资历。\"}"
+              },
+              "detail": "持续长热度；成组后增长 · 下手生效。任何成组牌型结算后热度成长+10，上限+100，下次起生效；每手任意牌型均加入已有成长，跨场保留。\n公开依据：最大同点组4张，前两组8/52张；最大花色13/52张；已持逐牌加成有；剩余场次窗口21。\n组合记录：尚无两张现持牌共同计分。\n本局路线资历：成功清场1次；G 0次 / ×1；S 0次 / ×1；F 0次 / ×1。\n资历不绑定起手或持牌实例，出售不清零；按实际主手族读取，可重叠的族分别读取。每族前三次合格清场因子为1，清场后才入账，下手读取；本次买卖不增加资历。"
+            },
+            "operation": "需替换",
+            "operationShort": "需替换",
+            "purchaseConditionLosses": [],
+            "cashBasis": "指定第5槽先售后买",
+            "replaceId": "held/e04",
+            "detail": "持续长热度；成组后增长 · 下手生效。任何成组牌型结算后热度成长+10，上限+100，下次起生效；每手任意牌型均加入已有成长，跨场保留。\n公开依据：最大同点组4张，前两组8/52张；最大花色13/52张；已持逐牌加成有；剩余场次窗口21。\n组合记录：尚无两张现持牌共同计分。\n本局路线资历：成功清场1次；G 0次 / ×1；S 0次 / ×1；F 0次 / ×1。\n资历不绑定起手或持牌实例，出售不清零；按实际主手族读取，可重叠的族分别读取。每族前三次合格清场因子为1，清场后才入账，下手读取；本次买卖不增加资历。\n需替换\n指定第5槽先售后买",
+            "routes": [
+              "group"
+            ],
+            "routeCaption": "同点"
+          },
+          "text": "第 5 槽 · 滚个零头\n\n返4金 · 实付4金 · 买后22金\n推荐指数 ★★★★☆ · 持续长热度\n\n管理这张\n条件、配合与完整损失",
+          "geometry": {
+            "line": {
+              "x": 125,
+              "y": 496.828125,
+              "right": 254.640625,
+              "bottom": 515.828125
+            },
+            "pane": {
+              "x": 36,
+              "y": 126.5,
+              "right": 354,
+              "bottom": 678
+            }
+          }
+        }
+      ],
+      "before": {
+        "identity": {
+          "contentVersion": "quality-r2-route-growth-v1",
+          "contentHash": "json-fnv-v1:7414228d95059959"
+        },
+        "commandSeq": 4
+      },
+      "after": "Equal to before; full data in gzip",
+      "sendCalls": [],
+      "status": "PASS"
+    },
+    {
+      "width": 320,
+      "height": 640,
+      "touch": true,
+      "errors": [],
+      "screenshots": [
+        "320-cash-loss-compare.png",
+        "320-cash-preserved-compare.png"
+      ],
+      "offers": [
+        {
+          "index": 2,
+          "guidance": {
+            "stars": 4,
+            "label": "推荐指数 ★★★★☆",
+            "reason": "现金风险",
+            "condition": "成组后增长 · 下手生效",
+            "recommendation": {
+              "stars": 4,
+              "reason": "持续长热度",
+              "condition": "成组后增长 · 下手生效",
+              "stage": "early",
+              "combination": "组合记录：尚无两张现持牌共同计分。",
+              "combinationHint": "",
+              "facts": {
+                "cards": 52,
+                "largest": 4,
+                "second": 4,
+                "largestSuit": 13,
+                "groupConcentrated": false,
+                "flushConcentrated": false,
+                "straightConcentrated": false,
+                "ordinaryStraightPossible": true,
+                "ordinaryFlushPossible": true,
+                "boostedGroup": false,
+                "houseCardPayoff": false,
+                "boostedHouse": false,
+                "groupRecord": false,
+                "houseRecord": false,
+                "flushRecord": false,
+                "qualifiedRecord": false,
+                "heldCardPayoff": true,
+                "heldGroupPayoff": true,
+                "retriggerSource": false,
+                "additiveSource": true,
+                "disabledSourceCount": 0,
+                "potentialStages": 21,
+                "growthWindow": true,
+                "initialGrowth": "{}",
+                "straightFamilyPossible": true,
+                "flushFamilyPossible": true,
+                "flushHousePossible": false,
+                "flushFivePossible": false,
+                "routeGrowth": "{\"before\":{\"clears\":1,\"G\":0,\"S\":0,\"F\":0},\"factors\":{\"G\":{\"n\":\"1\",\"d\":\"1\"},\"S\":{\"n\":\"1\",\"d\":\"1\"},\"F\":{\"n\":\"1\",\"d\":\"1\"}},\"preserved\":\"本局路线资历保留，出售不丢。\",\"detail\":\"本局路线资历：成功清场1次；G 0次 / ×1；S 0次 / ×1；F 0次 / ×1。\\n资历不绑定起手或持牌实例，出售不清零；按实际主手族读取，可重叠的族分别读取。每族前三次合格清场因子为1，清场后才入账，下手读取；本次买卖不增加资历。\"}"
+              },
+              "detail": "持续长热度；成组后增长 · 下手生效。任何成组牌型结算后热度成长+10，上限+100，下次起生效；每手任意牌型均加入已有成长，跨场保留。\n公开依据：最大同点组4张，前两组8/52张；最大花色13/52张；已持逐牌加成有；剩余场次窗口21。\n组合记录：尚无两张现持牌共同计分。\n本局路线资历：成功清场1次；G 0次 / ×1；S 0次 / ×1；F 0次 / ×1。\n资历不绑定起手或持牌实例，出售不清零；按实际主手族读取，可重叠的族分别读取。每族前三次合格清场因子为1，清场后才入账，下手读取；本次买卖不增加资历。"
+            },
+            "operation": "需替换",
+            "operationShort": "现金风险",
+            "purchaseConditionLosses": [
+              "买后金币22→19；包场买后19金，暂不触发倍率×1.8（需本手开始金币至少20；本手新收入不改变资格）；这轮先留金。"
+            ],
+            "cashBasis": "指定第3槽先售后买",
+            "replaceId": "held/e01",
+            "detail": "持续长热度；成组后增长 · 下手生效。任何成组牌型结算后热度成长+10，上限+100，下次起生效；每手任意牌型均加入已有成长，跨场保留。\n公开依据：最大同点组4张，前两组8/52张；最大花色13/52张；已持逐牌加成有；剩余场次窗口21。\n组合记录：尚无两张现持牌共同计分。\n本局路线资历：成功清场1次；G 0次 / ×1；S 0次 / ×1；F 0次 / ×1。\n资历不绑定起手或持牌实例，出售不清零；按实际主手族读取，可重叠的族分别读取。每族前三次合格清场因子为1，清场后才入账，下手读取；本次买卖不增加资历。\n需替换\n指定第3槽先售后买\n买后金币22→19；包场买后19金，暂不触发倍率×1.8（需本手开始金币至少20；本手新收入不改变资格）；这轮先留金。",
+            "routes": [
+              "group"
+            ],
+            "routeCaption": "同点"
+          },
+          "text": "第 3 槽 · 小费盒\n\n返1金 · 实付4金 · 买后19金\n买后金币22→19；包场买后19金，暂不触发倍率×1.8（需本手开始金币至少20；本手新收入不改变资格）；这轮先留金。\n推荐指数 ★★★★☆ · 现金风险\n\n管理这张\n条件、配合与完整损失",
+          "geometry": {
+            "line": {
+              "x": 101,
+              "y": 300.734375,
+              "right": 230.640625,
+              "bottom": 319.734375
+            },
+            "pane": {
+              "x": 36,
+              "y": 106.5,
+              "right": 284,
+              "bottom": 494
+            }
+          }
+        },
+        {
+          "index": 4,
+          "guidance": {
+            "stars": 4,
+            "label": "推荐指数 ★★★★☆",
+            "reason": "持续长热度",
+            "condition": "成组后增长 · 下手生效",
+            "recommendation": {
+              "stars": 4,
+              "reason": "持续长热度",
+              "condition": "成组后增长 · 下手生效",
+              "stage": "early",
+              "combination": "组合记录：尚无两张现持牌共同计分。",
+              "combinationHint": "",
+              "facts": {
+                "cards": 52,
+                "largest": 4,
+                "second": 4,
+                "largestSuit": 13,
+                "groupConcentrated": false,
+                "flushConcentrated": false,
+                "straightConcentrated": false,
+                "ordinaryStraightPossible": true,
+                "ordinaryFlushPossible": true,
+                "boostedGroup": false,
+                "houseCardPayoff": false,
+                "boostedHouse": false,
+                "groupRecord": false,
+                "houseRecord": false,
+                "flushRecord": false,
+                "qualifiedRecord": false,
+                "heldCardPayoff": true,
+                "heldGroupPayoff": true,
+                "retriggerSource": false,
+                "additiveSource": true,
+                "disabledSourceCount": 0,
+                "potentialStages": 21,
+                "growthWindow": true,
+                "initialGrowth": "{}",
+                "straightFamilyPossible": true,
+                "flushFamilyPossible": true,
+                "flushHousePossible": false,
+                "flushFivePossible": false,
+                "routeGrowth": "{\"before\":{\"clears\":1,\"G\":0,\"S\":0,\"F\":0},\"factors\":{\"G\":{\"n\":\"1\",\"d\":\"1\"},\"S\":{\"n\":\"1\",\"d\":\"1\"},\"F\":{\"n\":\"1\",\"d\":\"1\"}},\"preserved\":\"本局路线资历保留，出售不丢。\",\"detail\":\"本局路线资历：成功清场1次；G 0次 / ×1；S 0次 / ×1；F 0次 / ×1。\\n资历不绑定起手或持牌实例，出售不清零；按实际主手族读取，可重叠的族分别读取。每族前三次合格清场因子为1，清场后才入账，下手读取；本次买卖不增加资历。\"}"
+              },
+              "detail": "持续长热度；成组后增长 · 下手生效。任何成组牌型结算后热度成长+10，上限+100，下次起生效；每手任意牌型均加入已有成长，跨场保留。\n公开依据：最大同点组4张，前两组8/52张；最大花色13/52张；已持逐牌加成有；剩余场次窗口21。\n组合记录：尚无两张现持牌共同计分。\n本局路线资历：成功清场1次；G 0次 / ×1；S 0次 / ×1；F 0次 / ×1。\n资历不绑定起手或持牌实例，出售不清零；按实际主手族读取，可重叠的族分别读取。每族前三次合格清场因子为1，清场后才入账，下手读取；本次买卖不增加资历。"
+            },
+            "operation": "需替换",
+            "operationShort": "需替换",
+            "purchaseConditionLosses": [],
+            "cashBasis": "指定第5槽先售后买",
+            "replaceId": "held/e04",
+            "detail": "持续长热度；成组后增长 · 下手生效。任何成组牌型结算后热度成长+10，上限+100，下次起生效；每手任意牌型均加入已有成长，跨场保留。\n公开依据：最大同点组4张，前两组8/52张；最大花色13/52张；已持逐牌加成有；剩余场次窗口21。\n组合记录：尚无两张现持牌共同计分。\n本局路线资历：成功清场1次；G 0次 / ×1；S 0次 / ×1；F 0次 / ×1。\n资历不绑定起手或持牌实例，出售不清零；按实际主手族读取，可重叠的族分别读取。每族前三次合格清场因子为1，清场后才入账，下手读取；本次买卖不增加资历。\n需替换\n指定第5槽先售后买",
+            "routes": [
+              "group"
+            ],
+            "routeCaption": "同点"
+          },
+          "text": "第 5 槽 · 滚个零头\n\n返4金 · 实付4金 · 买后22金\n推荐指数 ★★★★☆ · 持续长热度\n\n管理这张\n条件、配合与完整损失",
+          "geometry": {
+            "line": {
+              "x": 101,
+              "y": 299.859375,
+              "right": 230.640625,
+              "bottom": 318.859375
+            },
+            "pane": {
+              "x": 36,
+              "y": 106.5,
+              "right": 284,
+              "bottom": 494
+            }
+          }
+        }
+      ],
+      "before": {
+        "identity": {
+          "contentVersion": "quality-r2-route-growth-v1",
+          "contentHash": "json-fnv-v1:7414228d95059959"
+        },
+        "commandSeq": 4
+      },
+      "after": "Equal to before; full data in gzip",
+      "sendCalls": [],
+      "status": "PASS"
+    }
+  ],
+  "controlledVectors": [
+    {
+      "key": "loss",
+      "identity": {
+        "contentVersion": "quality-r2-route-growth-v1",
+        "contentHash": "json-fnv-v1:7414228d95059959"
+      },
+      "cards": [
+        {
+          "id": "spades-7",
+          "suit": "spades",
+          "rank": 7
+        },
+        {
+          "id": "hearts-7",
+          "suit": "hearts",
+          "rank": 7
+        }
+      ],
+      "stars": 4,
+      "ratingReason": "持续长热度",
+      "ratingCondition": "成组后增长 · 下手生效",
+      "gold": [
+        22,
+        19
+      ],
+      "scores": [
+        "418",
+        "217"
+      ],
+      "beforeJokers": [
+        {
+          "instanceId": "held/e08",
+          "definitionId": "e08",
+          "paidPrice": 8,
+          "growth": {},
+          "edition": "none"
+        },
+        {
+          "instanceId": "held/b02",
+          "definitionId": "b02",
+          "paidPrice": 8,
+          "growth": {},
+          "edition": "none"
+        },
+        {
+          "instanceId": "held/e01",
+          "definitionId": "e01",
+          "paidPrice": 0,
+          "growth": {},
+          "edition": "none"
+        },
+        {
+          "instanceId": "held/e03",
+          "definitionId": "e03",
+          "paidPrice": 8,
+          "growth": {},
+          "edition": "none"
+        },
+        {
+          "instanceId": "held/e04",
+          "definitionId": "e04",
+          "paidPrice": 8,
+          "growth": {},
+          "edition": "none"
+        }
+      ],
+      "afterJokers": [
+        {
+          "instanceId": "held/e08",
+          "definitionId": "e08",
+          "paidPrice": 8,
+          "growth": {},
+          "edition": "none"
+        },
+        {
+          "instanceId": "held/b02",
+          "definitionId": "b02",
+          "paidPrice": 8,
+          "growth": {},
+          "edition": "none"
+        },
+        {
+          "instanceId": "held/e03",
+          "definitionId": "e03",
+          "paidPrice": 8,
+          "growth": {},
+          "edition": "none"
+        },
+        {
+          "instanceId": "held/e04",
+          "definitionId": "e04",
+          "paidPrice": 8,
+          "growth": {},
+          "edition": "none"
+        },
+        {
+          "instanceId": "f06-recommendation/joker/f06-recommendation/vector/6",
+          "definitionId": "b10",
+          "paidPrice": 4,
+          "growth": {},
+          "edition": "none"
+        }
+      ],
+      "afterScoreJokers": [
+        {
+          "instanceId": "held/e08",
+          "definitionId": "e08",
+          "paidPrice": 8,
+          "growth": {},
+          "edition": "none"
+        },
+        {
+          "instanceId": "held/b02",
+          "definitionId": "b02",
+          "paidPrice": 8,
+          "growth": {},
+          "edition": "none"
+        },
+        {
+          "instanceId": "held/e03",
+          "definitionId": "e03",
+          "paidPrice": 8,
+          "growth": {},
+          "edition": "none"
+        },
+        {
+          "instanceId": "held/e04",
+          "definitionId": "e04",
+          "paidPrice": 8,
+          "growth": {},
+          "edition": "none"
+        },
+        {
+          "instanceId": "f06-recommendation/joker/f06-recommendation/vector/6",
+          "definitionId": "b10",
+          "paidPrice": 4,
+          "growth": {
+            "heat": {
+              "n": "10",
+              "d": "1"
+            }
+          },
+          "edition": "none"
+        }
+      ],
+      "beforeEvents": [
+        {
+          "source": "e08",
+          "instanceId": "held/e08",
+          "operation": "multiply-multiplier",
+          "value": {
+            "n": "9",
+            "d": "5"
+          }
+        }
+      ],
+      "afterEvents": [],
+      "inputUnchanged": true
+    },
+    {
+      "key": "threshold-preserved",
+      "identity": {
+        "contentVersion": "quality-r2-route-growth-v1",
+        "contentHash": "json-fnv-v1:7414228d95059959"
+      },
+      "cards": [
+        {
+          "id": "spades-7",
+          "suit": "spades",
+          "rank": 7
+        },
+        {
+          "id": "hearts-7",
+          "suit": "hearts",
+          "rank": 7
+        }
+      ],
+      "stars": 4,
+      "ratingReason": "持续长热度",
+      "ratingCondition": "成组后增长 · 下手生效",
+      "gold": [
+        22,
+        22
+      ],
+      "scores": [
+        "418",
+        "418"
+      ],
+      "beforeJokers": [
+        {
+          "instanceId": "held/e08",
+          "definitionId": "e08",
+          "paidPrice": 8,
+          "growth": {},
+          "edition": "none"
+        },
+        {
+          "instanceId": "held/b02",
+          "definitionId": "b02",
+          "paidPrice": 8,
+          "growth": {},
+          "edition": "none"
+        },
+        {
+          "instanceId": "held/e01",
+          "definitionId": "e01",
+          "paidPrice": 8,
+          "growth": {},
+          "edition": "none"
+        },
+        {
+          "instanceId": "held/e03",
+          "definitionId": "e03",
+          "paidPrice": 8,
+          "growth": {},
+          "edition": "none"
+        },
+        {
+          "instanceId": "held/e04",
+          "definitionId": "e04",
+          "paidPrice": 8,
+          "growth": {},
+          "edition": "none"
+        }
+      ],
+      "afterJokers": [
+        {
+          "instanceId": "held/e08",
+          "definitionId": "e08",
+          "paidPrice": 8,
+          "growth": {},
+          "edition": "none"
+        },
+        {
+          "instanceId": "held/b02",
+          "definitionId": "b02",
+          "paidPrice": 8,
+          "growth": {},
+          "edition": "none"
+        },
+        {
+          "instanceId": "held/e03",
+          "definitionId": "e03",
+          "paidPrice": 8,
+          "growth": {},
+          "edition": "none"
+        },
+        {
+          "instanceId": "held/e04",
+          "definitionId": "e04",
+          "paidPrice": 8,
+          "growth": {},
+          "edition": "none"
+        },
+        {
+          "instanceId": "f06-recommendation/joker/f06-recommendation/vector/6",
+          "definitionId": "b10",
+          "paidPrice": 4,
+          "growth": {},
+          "edition": "none"
+        }
+      ],
+      "afterScoreJokers": [
+        {
+          "instanceId": "held/e08",
+          "definitionId": "e08",
+          "paidPrice": 8,
+          "growth": {},
+          "edition": "none"
+        },
+        {
+          "instanceId": "held/b02",
+          "definitionId": "b02",
+          "paidPrice": 8,
+          "growth": {},
+          "edition": "none"
+        },
+        {
+          "instanceId": "held/e03",
+          "definitionId": "e03",
+          "paidPrice": 8,
+          "growth": {},
+          "edition": "none"
+        },
+        {
+          "instanceId": "held/e04",
+          "definitionId": "e04",
+          "paidPrice": 8,
+          "growth": {},
+          "edition": "none"
+        },
+        {
+          "instanceId": "f06-recommendation/joker/f06-recommendation/vector/6",
+          "definitionId": "b10",
+          "paidPrice": 4,
+          "growth": {
+            "heat": {
+              "n": "10",
+              "d": "1"
+            }
+          },
+          "edition": "none"
+        }
+      ],
+      "beforeEvents": [
+        {
+          "source": "e08",
+          "instanceId": "held/e08",
+          "operation": "multiply-multiplier",
+          "value": {
+            "n": "9",
+            "d": "5"
+          }
+        }
+      ],
+      "afterEvents": [
+        {
+          "source": "e08",
+          "instanceId": "held/e08",
+          "operation": "multiply-multiplier",
+          "value": {
+            "n": "9",
+            "d": "5"
+          }
+        }
+      ],
+      "inputUnchanged": true
+    },
+    {
+      "key": "actual-compensation",
+      "identity": {
+        "contentVersion": "quality-r2-route-growth-v1",
+        "contentHash": "json-fnv-v1:7414228d95059959"
+      },
+      "cards": [
+        {
+          "id": "spades-7",
+          "suit": "spades",
+          "rank": 7,
+          "enhancement": "multiplier-paper",
+          "edition": "holographic"
+        },
+        {
+          "id": "hearts-7",
+          "suit": "hearts",
+          "rank": 7,
+          "enhancement": "multiplier-paper",
+          "edition": "holographic"
+        }
+      ],
+      "stars": 4,
+      "ratingReason": "成组核心逐牌重触",
+      "ratingCondition": "最大原始同点组有效牌",
+      "gold": [
+        22,
+        15
+      ],
+      "scores": [
+        "1757",
+        "1767"
+      ],
+      "beforeJokers": [
+        {
+          "instanceId": "held/e08",
+          "definitionId": "e08",
+          "paidPrice": 8,
+          "growth": {},
+          "edition": "none"
+        },
+        {
+          "instanceId": "held/b02",
+          "definitionId": "b02",
+          "paidPrice": 8,
+          "growth": {},
+          "edition": "none"
+        },
+        {
+          "instanceId": "held/e01",
+          "definitionId": "e01",
+          "paidPrice": 0,
+          "growth": {},
+          "edition": "none"
+        },
+        {
+          "instanceId": "held/e03",
+          "definitionId": "e03",
+          "paidPrice": 8,
+          "growth": {},
+          "edition": "none"
+        },
+        {
+          "instanceId": "held/e04",
+          "definitionId": "e04",
+          "paidPrice": 8,
+          "growth": {},
+          "edition": "none"
+        }
+      ],
+      "afterJokers": [
+        {
+          "instanceId": "held/e08",
+          "definitionId": "e08",
+          "paidPrice": 8,
+          "growth": {},
+          "edition": "none"
+        },
+        {
+          "instanceId": "held/b02",
+          "definitionId": "b02",
+          "paidPrice": 8,
+          "growth": {},
+          "edition": "none"
+        },
+        {
+          "instanceId": "held/e03",
+          "definitionId": "e03",
+          "paidPrice": 8,
+          "growth": {},
+          "edition": "none"
+        },
+        {
+          "instanceId": "held/e04",
+          "definitionId": "e04",
+          "paidPrice": 8,
+          "growth": {},
+          "edition": "none"
+        },
+        {
+          "instanceId": "f06-recommendation/joker/f06-recommendation/vector/6",
+          "definitionId": "b06",
+          "paidPrice": 8,
+          "growth": {},
+          "edition": "none"
+        }
+      ],
+      "afterScoreJokers": [
+        {
+          "instanceId": "held/e08",
+          "definitionId": "e08",
+          "paidPrice": 8,
+          "growth": {},
+          "edition": "none"
+        },
+        {
+          "instanceId": "held/b02",
+          "definitionId": "b02",
+          "paidPrice": 8,
+          "growth": {},
+          "edition": "none"
+        },
+        {
+          "instanceId": "held/e03",
+          "definitionId": "e03",
+          "paidPrice": 8,
+          "growth": {},
+          "edition": "none"
+        },
+        {
+          "instanceId": "held/e04",
+          "definitionId": "e04",
+          "paidPrice": 8,
+          "growth": {},
+          "edition": "none"
+        },
+        {
+          "instanceId": "f06-recommendation/joker/f06-recommendation/vector/6",
+          "definitionId": "b06",
+          "paidPrice": 8,
+          "growth": {},
+          "edition": "none"
+        }
+      ],
+      "beforeEvents": [
+        {
+          "source": "e08",
+          "instanceId": "held/e08",
+          "operation": "multiply-multiplier",
+          "value": {
+            "n": "9",
+            "d": "5"
+          }
+        }
+      ],
+      "afterEvents": [
+        {
+          "source": "b06",
+          "instanceId": "f06-recommendation/joker/f06-recommendation/vector/6",
+          "operation": "retrigger-card",
+          "value": {
+            "n": "1",
+            "d": "1"
+          }
+        },
+        {
+          "source": "b06",
+          "instanceId": "f06-recommendation/joker/f06-recommendation/vector/6",
+          "operation": "retrigger-card",
+          "value": {
+            "n": "1",
+            "d": "1"
+          }
+        }
+      ],
+      "inputUnchanged": true
+    },
+    {
+      "key": "unknown-future",
+      "identity": {
+        "contentVersion": "quality-r2-route-growth-v1",
+        "contentHash": "json-fnv-v1:7414228d95059959"
+      },
+      "cards": [
+        {
+          "id": "spades-7",
+          "suit": "spades",
+          "rank": 7
+        },
+        {
+          "id": "hearts-7",
+          "suit": "hearts",
+          "rank": 7
+        }
+      ],
+      "stars": 4,
+      "ratingReason": "持续长热度",
+      "ratingCondition": "成组后增长 · 下手生效",
+      "gold": [
+        22,
+        19
+      ],
+      "scores": [
+        "220",
+        "142"
+      ],
+      "beforeJokers": [
+        {
+          "instanceId": "held/e08",
+          "definitionId": "e08",
+          "paidPrice": 8,
+          "growth": {},
+          "edition": "none"
+        },
+        {
+          "instanceId": "held/b02",
+          "definitionId": "b02",
+          "paidPrice": 8,
+          "growth": {},
+          "edition": "none"
+        },
+        {
+          "instanceId": "held/e01",
+          "definitionId": "e01",
+          "paidPrice": 0,
+          "growth": {},
+          "edition": "none"
+        },
+        {
+          "instanceId": "held/buy-growth",
+          "definitionId": "e05",
+          "paidPrice": 8,
+          "growth": {},
+          "edition": "none"
+        },
+        {
+          "instanceId": "held/e04",
+          "definitionId": "e04",
+          "paidPrice": 8,
+          "growth": {},
+          "edition": "none"
+        }
+      ],
+      "afterJokers": [
+        {
+          "instanceId": "held/e08",
+          "definitionId": "e08",
+          "paidPrice": 8,
+          "growth": {},
+          "edition": "none"
+        },
+        {
+          "instanceId": "held/b02",
+          "definitionId": "b02",
+          "paidPrice": 8,
+          "growth": {},
+          "edition": "none"
+        },
+        {
+          "instanceId": "held/buy-growth",
+          "definitionId": "e05",
+          "paidPrice": 8,
+          "growth": {
+            "heat": {
+              "n": "8",
+              "d": "1"
+            }
+          },
+          "edition": "none"
+        },
+        {
+          "instanceId": "held/e04",
+          "definitionId": "e04",
+          "paidPrice": 8,
+          "growth": {},
+          "edition": "none"
+        },
+        {
+          "instanceId": "f06-recommendation/joker/f06-recommendation/vector/6",
+          "definitionId": "b10",
+          "paidPrice": 4,
+          "growth": {},
+          "edition": "none"
+        }
+      ],
+      "afterScoreJokers": [
+        {
+          "instanceId": "held/e08",
+          "definitionId": "e08",
+          "paidPrice": 8,
+          "growth": {},
+          "edition": "none"
+        },
+        {
+          "instanceId": "held/b02",
+          "definitionId": "b02",
+          "paidPrice": 8,
+          "growth": {},
+          "edition": "none"
+        },
+        {
+          "instanceId": "held/buy-growth",
+          "definitionId": "e05",
+          "paidPrice": 8,
+          "growth": {
+            "heat": {
+              "n": "8",
+              "d": "1"
+            }
+          },
+          "edition": "none"
+        },
+        {
+          "instanceId": "held/e04",
+          "definitionId": "e04",
+          "paidPrice": 8,
+          "growth": {},
+          "edition": "none"
+        },
+        {
+          "instanceId": "f06-recommendation/joker/f06-recommendation/vector/6",
+          "definitionId": "b10",
+          "paidPrice": 4,
+          "growth": {
+            "heat": {
+              "n": "10",
+              "d": "1"
+            }
+          },
+          "edition": "none"
+        }
+      ],
+      "beforeEvents": [
+        {
+          "source": "e08",
+          "instanceId": "held/e08",
+          "operation": "multiply-multiplier",
+          "value": {
+            "n": "9",
+            "d": "5"
+          }
+        },
+        {
+          "source": "e05",
+          "instanceId": "held/buy-growth",
+          "operation": "read-growth",
+          "value": {
+            "n": "0",
+            "d": "1"
+          }
+        }
+      ],
+      "afterEvents": [
+        {
+          "source": "e05",
+          "instanceId": "held/buy-growth",
+          "operation": "read-growth",
+          "value": {
+            "n": "8",
+            "d": "1"
+          }
+        }
+      ],
+      "inputUnchanged": true
+    }
+  ],
+  "status": "PASS"
+}

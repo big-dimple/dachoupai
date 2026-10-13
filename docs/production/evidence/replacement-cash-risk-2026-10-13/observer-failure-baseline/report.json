@@ -1,0 +1,182 @@
+{
+  "head": "c359d3389702f18c1d91944f3395d4dcff7afe30",
+  "sourceTree": "31230b234546c1965e1b68a2bbbcdf5550339a34",
+  "sourceChanges": "",
+  "baseline": true,
+  "fixtureSha256": "63412ce42dff9a56e1cca9f192a8aa8ea5dce808ea647a52f97b8d0ef907bf3e",
+  "harnessSha256": "a6ba8b3618cfb147a347c9c3b996c652bc77e65ee1582d247e0b50902b523fd9",
+  "scope": "CONTROLLED valid full shop. Native checkpoint import, compare specified donors, cancel. Not a purchase, natural play, probability or device acceptance.",
+  "cases": [
+    {
+      "width": 1366,
+      "height": 768,
+      "touch": false,
+      "errors": [],
+      "screenshots": [
+        "1366-cash-loss-compare.png",
+        "1366-cash-preserved-compare.png"
+      ],
+      "offers": [
+        {
+          "index": 2,
+          "guidance": {
+            "stars": 4,
+            "label": "推荐指数 ★★★★☆",
+            "reason": "现金风险",
+            "condition": "成组后增长 · 下手生效",
+            "recommendation": {
+              "stars": 4,
+              "reason": "持续长热度",
+              "condition": "成组后增长 · 下手生效",
+              "stage": "early",
+              "combination": "组合记录：尚无两张现持牌共同计分。",
+              "combinationHint": "",
+              "facts": {
+                "cards": 52,
+                "largest": 4,
+                "second": 4,
+                "largestSuit": 13,
+                "groupConcentrated": false,
+                "flushConcentrated": false,
+                "straightConcentrated": false,
+                "ordinaryStraightPossible": true,
+                "ordinaryFlushPossible": true,
+                "boostedGroup": false,
+                "houseCardPayoff": false,
+                "boostedHouse": false,
+                "groupRecord": false,
+                "houseRecord": false,
+                "flushRecord": false,
+                "qualifiedRecord": false,
+                "heldCardPayoff": true,
+                "heldGroupPayoff": true,
+                "retriggerSource": false,
+                "additiveSource": true,
+                "disabledSourceCount": 0,
+                "potentialStages": 21,
+                "growthWindow": true,
+                "initialGrowth": "{}",
+                "straightFamilyPossible": true,
+                "flushFamilyPossible": true,
+                "flushHousePossible": false,
+                "flushFivePossible": false,
+                "routeGrowth": "{\"before\":{\"clears\":1,\"G\":0,\"S\":0,\"F\":0},\"factors\":{\"G\":{\"n\":\"1\",\"d\":\"1\"},\"S\":{\"n\":\"1\",\"d\":\"1\"},\"F\":{\"n\":\"1\",\"d\":\"1\"}},\"preserved\":\"本局路线资历保留，出售不丢。\",\"detail\":\"本局路线资历：成功清场1次；G 0次 / ×1；S 0次 / ×1；F 0次 / ×1。\\n资历不绑定起手或持牌实例，出售不清零；按实际主手族读取，可重叠的族分别读取。每族前三次合格清场因子为1，清场后才入账，下手读取；本次买卖不增加资历。\"}"
+              },
+              "detail": "持续长热度；成组后增长 · 下手生效。任何成组牌型结算后热度成长+10，上限+100，下次起生效；每手任意牌型均加入已有成长，跨场保留。\n公开依据：最大同点组4张，前两组8/52张；最大花色13/52张；已持逐牌加成有；剩余场次窗口21。\n组合记录：尚无两张现持牌共同计分。\n本局路线资历：成功清场1次；G 0次 / ×1；S 0次 / ×1；F 0次 / ×1。\n资历不绑定起手或持牌实例，出售不清零；按实际主手族读取，可重叠的族分别读取。每族前三次合格清场因子为1，清场后才入账，下手读取；本次买卖不增加资历。"
+            },
+            "operation": "需替换",
+            "operationShort": "现金风险",
+            "purchaseConditionLosses": [
+              "买后金币22→19；包场买后19金，暂不触发倍率×1.8（需本手开始金币至少20；本手新收入不改变资格）；这轮先留金。"
+            ],
+            "cashBasis": "指定第3槽先售后买",
+            "replaceId": "held/e01",
+            "detail": "持续长热度；成组后增长 · 下手生效。任何成组牌型结算后热度成长+10，上限+100，下次起生效；每手任意牌型均加入已有成长，跨场保留。\n公开依据：最大同点组4张，前两组8/52张；最大花色13/52张；已持逐牌加成有；剩余场次窗口21。\n组合记录：尚无两张现持牌共同计分。\n本局路线资历：成功清场1次；G 0次 / ×1；S 0次 / ×1；F 0次 / ×1。\n资历不绑定起手或持牌实例，出售不清零；按实际主手族读取，可重叠的族分别读取。每族前三次合格清场因子为1，清场后才入账，下手读取；本次买卖不增加资历。\n需替换\n指定第3槽先售后买\n买后金币22→19；包场买后19金，暂不触发倍率×1.8（需本手开始金币至少20；本手新收入不改变资格）；这轮先留金。",
+            "routes": [
+              "group"
+            ],
+            "routeCaption": "同点"
+          },
+          "text": "第 3 槽 · 小费盒\n\n返1金 · 实付4金 · 买后19金\n买后金币22→19；包场买后19金，暂不触发倍率×1.8（需本手开始金币至少20；本手新收入不改变资格）；这轮先留金。\n推荐指数 ★★★★☆ · 现金风险\n\n管理这张\n条件、配合与完整损失",
+          "geometry": {
+            "line": {
+              "x": 349,
+              "y": 134.015625,
+              "right": 478.640625,
+              "bottom": 153.015625
+            },
+            "pane": {
+              "x": 260,
+              "y": 110.5,
+              "right": 1106,
+              "bottom": 670
+            }
+          }
+        },
+        {
+          "index": 4,
+          "guidance": {
+            "stars": 4,
+            "label": "推荐指数 ★★★★☆",
+            "reason": "持续长热度",
+            "condition": "成组后增长 · 下手生效",
+            "recommendation": {
+              "stars": 4,
+              "reason": "持续长热度",
+              "condition": "成组后增长 · 下手生效",
+              "stage": "early",
+              "combination": "组合记录：尚无两张现持牌共同计分。",
+              "combinationHint": "",
+              "facts": {
+                "cards": 52,
+                "largest": 4,
+                "second": 4,
+                "largestSuit": 13,
+                "groupConcentrated": false,
+                "flushConcentrated": false,
+                "straightConcentrated": false,
+                "ordinaryStraightPossible": true,
+                "ordinaryFlushPossible": true,
+                "boostedGroup": false,
+                "houseCardPayoff": false,
+                "boostedHouse": false,
+                "groupRecord": false,
+                "houseRecord": false,
+                "flushRecord": false,
+                "qualifiedRecord": false,
+                "heldCardPayoff": true,
+                "heldGroupPayoff": true,
+                "retriggerSource": false,
+                "additiveSource": true,
+                "disabledSourceCount": 0,
+                "potentialStages": 21,
+                "growthWindow": true,
+                "initialGrowth": "{}",
+                "straightFamilyPossible": true,
+                "flushFamilyPossible": true,
+                "flushHousePossible": false,
+                "flushFivePossible": false,
+                "routeGrowth": "{\"before\":{\"clears\":1,\"G\":0,\"S\":0,\"F\":0},\"factors\":{\"G\":{\"n\":\"1\",\"d\":\"1\"},\"S\":{\"n\":\"1\",\"d\":\"1\"},\"F\":{\"n\":\"1\",\"d\":\"1\"}},\"preserved\":\"本局路线资历保留，出售不丢。\",\"detail\":\"本局路线资历：成功清场1次；G 0次 / ×1；S 0次 / ×1；F 0次 / ×1。\\n资历不绑定起手或持牌实例，出售不清零；按实际主手族读取，可重叠的族分别读取。每族前三次合格清场因子为1，清场后才入账，下手读取；本次买卖不增加资历。\"}"
+              },
+              "detail": "持续长热度；成组后增长 · 下手生效。任何成组牌型结算后热度成长+10，上限+100，下次起生效；每手任意牌型均加入已有成长，跨场保留。\n公开依据：最大同点组4张，前两组8/52张；最大花色13/52张；已持逐牌加成有；剩余场次窗口21。\n组合记录：尚无两张现持牌共同计分。\n本局路线资历：成功清场1次；G 0次 / ×1；S 0次 / ×1；F 0次 / ×1。\n资历不绑定起手或持牌实例，出售不清零；按实际主手族读取，可重叠的族分别读取。每族前三次合格清场因子为1，清场后才入账，下手读取；本次买卖不增加资历。"
+            },
+            "operation": "需替换",
+            "operationShort": "需替换",
+            "purchaseConditionLosses": [],
+            "cashBasis": "指定第5槽先售后买",
+            "replaceId": "held/e04",
+            "detail": "持续长热度；成组后增长 · 下手生效。任何成组牌型结算后热度成长+10，上限+100，下次起生效；每手任意牌型均加入已有成长，跨场保留。\n公开依据：最大同点组4张，前两组8/52张；最大花色13/52张；已持逐牌加成有；剩余场次窗口21。\n组合记录：尚无两张现持牌共同计分。\n本局路线资历：成功清场1次；G 0次 / ×1；S 0次 / ×1；F 0次 / ×1。\n资历不绑定起手或持牌实例，出售不清零；按实际主手族读取，可重叠的族分别读取。每族前三次合格清场因子为1，清场后才入账，下手读取；本次买卖不增加资历。\n需替换\n指定第5槽先售后买",
+            "routes": [
+              "group"
+            ],
+            "routeCaption": "同点"
+          },
+          "text": "第 5 槽 · 滚个零头\n\n返4金 · 实付4金 · 买后22金\n推荐指数 ★★★★☆ · 持续长热度\n\n管理这张\n条件、配合与完整损失",
+          "geometry": {
+            "line": {
+              "x": 349,
+              "y": 512.765625,
+              "right": 478.640625,
+              "bottom": 531.765625
+            },
+            "pane": {
+              "x": 260,
+              "y": 110.5,
+              "right": 1106,
+              "bottom": 670
+            }
+          }
+        }
+      ],
+      "before": {
+        "identity": {
+          "contentVersion": "quality-r2-route-growth-v1",
+          "contentHash": "json-fnv-v1:7414228d95059959"
+        },
+        "commandSeq": 4
+      }
+    }
+  ],
+  "status": "FAIL",
+  "failure": "TimeoutError: locator.click: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: '取消', exact: true })\u001b[22m\n"
+}

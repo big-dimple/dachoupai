@@ -1,0 +1,31 @@
+
+ RUN  v4.1.11 /workspace/dachoupai
+
+ ❯ tests/shop-replacement-cash-risk.test.ts (11 tests | 1 failed) 340ms
+   × a currently banned retained cash source and a changed hand-rule donor are not assumed to supply lost strength 13ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/shop-replacement-cash-risk.test.ts > a currently banned retained cash source and a changed hand-rule donor are not assumed to supply lost strength
+Error: Run invariant: chapter boss history
+ ❯ check src/domain/r2Run.ts:145:70
+
+ ❯ assertR2Invariants src/domain/r2Run.ts:213:3
+ ❯ applyCommand src/domain/run.ts:204:5
+ ❯ shopPurchaseCashFacts src/game/ShopRouteRelations.ts:59:16
+ ❯ risk tests/shop-replacement-cash-risk.test.ts:14:81
+ ❯ tests/shop-replacement-cash-risk.test.ts:52:9
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 3 passed (4)
+      Tests  1 failed | 38 passed (39)
+   Start at  09:00:11
+   Duration  2.06s (transform 2.72s, setup 0ms, import 3.60s, tests 1.22s, environment 0ms)
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice
