@@ -176,7 +176,7 @@ export function shopRecommendation(state:R2RunState,offer:R2Offer,focus?:BuildFo
   case 'last-clear-coefficient':return result(stage==='late'?2:3,'压线过关系数成长','新购×1 · 最后一手成功');
   case 'group-retrigger':return result(largest<2?1:groupConcentrated&&(boostedGroup||heldGroupPayoff)?5:groupFit||boostedGroup||heldGroupPayoff?4:2,'成组核心逐牌重触','最大原始同点组有效牌');
   case 'house-retrigger':return result(largest<3||second<2?1:(groupConcentrated||houseRecord)&&boostedHouse?5:groupConcentrated||houseRecord||houseCardPayoff?4:2,'葫芦整组重触','只读葫芦或同花葫芦');
-  case 'flush-retrigger':return result(largestSuit<5?1:flushReady&&cards.some(boosted)||flushReady&&heldCardPayoff?4:flushFit?3:2,'同花尾牌重触','普通同花或同花顺');
+  case 'flush-retrigger':return !flushRetriggerPossible?result(1,'缺同花重触条件','普通同花或同花顺'):result(flushReady&&(cards.some(boosted)||heldCardPayoff)?4:flushFit?3:2,'同花尾牌重触','普通同花或同花顺');
   case 'third-retrigger':return result(cards.length<3?1:heldCardPayoff||count(boosted)>=3?4:3,'第三计分牌重触','第三原始牌须有效');
   case 'even-retrigger':return result(heldCardPayoff||count(boosted)>=3?4:3,'偶数手首牌重触','每场第偶数次出牌');
   case 'capital-multiply':{
