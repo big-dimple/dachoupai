@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="zh-CN">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>大丑牌 · 助演挑选样板</title><link rel="stylesheet" href="style.css"></head>
+<body>
+<header class="masthead"><a class="brand" href="./index.html" aria-label="大丑牌，重置样例">大丑牌<span>巡演手记 / 助演</span></a><span class="sample">展示样例 · 非实局推荐</span></header>
+<main>
+<section class="intro"><div><p class="eyebrow">筹备下一场</p><h1>挑一位助演</h1><p class="lead">先看推荐，再看搭配。</p></div><div class="route-context"><span>当前路线</span><strong>同点成组</strong><div class="mini-hand" aria-label="展示手牌：黑桃K、红桃K、梅花K、黑桃2、红桃2"><i>♠ K</i><i>♥ K</i><i>♣ K</i><i>♠ 2</i><i>♥ 2</i></div></div></section>
+<section class="shop" aria-label="助演卡牌展示样例">
+<div class="shelf-heading"><h2>本场助演 <span>三张样例</span></h2><div class="fixture-controls" role="group" aria-label="切换组合展示样例"><span>组合样例</span><button id="missing" aria-pressed="true">缺搭档</button><button id="ready" aria-pressed="false">已齐备</button></div></div>
+<div id="cards" class="cards"></div>
+</section>
+<div class="selection-bar"><p id="selection-status" role="status" aria-live="polite">点选两张，放在一起看</p><button id="compare" disabled>对比所选 <span id="count">0/2</span></button></div>
+<p class="footnote">星看推荐 · 签看稀有 · 路线看契合 · 条件看组合</p>
+</main>
+<dialog id="comparison" aria-labelledby="compare-title"><div class="dialog-heading"><div><p class="eyebrow">展示样例</p><h2 id="compare-title">两张放在一起看</h2></div><button id="close-compare" aria-label="关闭对比">关闭</button></div><div id="comparison-content"></div><p class="dialog-note">稀有度不随当前搭配改变。</p></dialog>
+<script src="app.js"></script>
+</body></html>

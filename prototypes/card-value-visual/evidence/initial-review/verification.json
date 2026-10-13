@@ -1,0 +1,80 @@
+{
+  "kind": "Static visual prototype, synthetic display fixtures only",
+  "browser": "151.0.7922.173",
+  "profiles": [
+    {
+      "width": 320,
+      "height": 740,
+      "dpr": 1,
+      "entry": "local HTTP (loopback only)",
+      "checks": [
+        "all images loaded",
+        "no horizontal/card overflow",
+        "five full vector stars per rating",
+        "44px controls",
+        "expand/collapse",
+        "fixture 3→5→3 and condition count",
+        "select/remove and max-two feedback",
+        "two comparisons",
+        "Escape/close/focus restore",
+        "selection preserved on fixture change",
+        "reduced motion",
+        "zero external requests",
+        "zero JS errors"
+      ],
+      "status": "PASS"
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "dpr": 1,
+      "entry": "local HTTP (loopback only)",
+      "checks": [
+        "all images loaded",
+        "no horizontal/card overflow",
+        "five full vector stars per rating",
+        "44px controls",
+        "expand/collapse",
+        "fixture 3→5→3 and condition count",
+        "select/remove and max-two feedback",
+        "two comparisons",
+        "Escape/close/focus restore",
+        "selection preserved on fixture change",
+        "reduced motion",
+        "zero external requests",
+        "zero JS errors"
+      ],
+      "status": "PASS"
+    },
+    {
+      "width": 1366,
+      "height": 900,
+      "dpr": 1,
+      "entry": "local HTTP (loopback only)",
+      "checks": [
+        "all images loaded",
+        "no horizontal/card overflow",
+        "five full vector stars per rating",
+        "44px controls",
+        "expand/collapse",
+        "fixture 3→5→3 and condition count",
+        "select/remove and max-two feedback",
+        "two comparisons",
+        "Escape/close/focus restore",
+        "selection preserved on fixture change",
+        "reduced motion",
+        "zero external requests",
+        "zero JS errors"
+      ],
+      "status": "PASS"
+    }
+  ],
+  "humanAcceptance": "NOT_RUN",
+  "physicalDevice": "NOT_RUN",
+  "gameplayRecommendationCalibration": "NOT_RUN",
+  "sourceHashes": {
+    "index.html": "6e4db754b2b890acbd9a96d4239858588d595956334467930db2e6145618c762",
+    "style.css": "8846ecdb75826eb93233350264575818783b54bffd06ab843605bd5827a73274",
+    "app.js": "60de4cdcf8485716e2b6c4dff4fe6e01ed076a7e06b13b7ec6023f8262349074"
+  }
+}

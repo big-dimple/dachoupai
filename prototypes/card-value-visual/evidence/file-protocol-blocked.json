@@ -1,0 +1,14 @@
+{
+  "kind": "Static visual prototype, synthetic display fixtures only",
+  "browser": "151.0.7922.173",
+  "profiles": [],
+  "humanAcceptance": "NOT_RUN",
+  "physicalDevice": "NOT_RUN",
+  "gameplayRecommendationCalibration": "NOT_RUN",
+  "sourceHashes": {
+    "index.html": "6e4db754b2b890acbd9a96d4239858588d595956334467930db2e6145618c762",
+    "style.css": "8846ecdb75826eb93233350264575818783b54bffd06ab843605bd5827a73274",
+    "app.js": "60de4cdcf8485716e2b6c4dff4fe6e01ed076a7e06b13b7ec6023f8262349074"
+  },
+  "failure": "Error: page.goto: net::ERR_BLOCKED_BY_ADMINISTRATOR at file:///workspace/dachoupai/prototypes/card-value-visual/index.html\nCall log:\n\u001b[2m  - navigating to \"file:///workspace/dachoupai/prototypes/card-value-visual/index.html\", waiting until \"load\"\u001b[22m\n"
+}
