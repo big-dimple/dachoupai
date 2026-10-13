@@ -13,7 +13,7 @@ it.each(['group','straight','flush'] as const)('%s: a specified sale cannot rema
  const shelf=shopOfferGuidance(s,o),remove=shopOfferGuidance(s,o,s.jokers[0]),keep=shopOfferGuidance(s,o,s.jokers[3]);
  expect(shelf).toMatchObject({stars:4,operation:'需替换'});
  expect(remove.recommendation).toMatchObject({stars:2,facts:{retriggerSource:false}});
- expect(remove.recommendation.combination).toContain('尚缺可用重触来源');
+ expect(remove.recommendation.combinationHint).toBe('组合潜力：尚缺可用重触来源。');
  expect(keep.recommendation).toMatchObject({stars:4,facts:{retriggerSource:true}});
  const tx=shopReplacementTransactionFacts(s,o,s.jokers[2]),cost=shopReplacementCompactFacts(s,s.jokers[2],tx).join('\n');
  expect(tx.status).toBe('ready');expect(cost).toContain('实付');expect(cost).toContain('买后');expect(cost).toContain('失去：系数×1.6');
@@ -22,7 +22,7 @@ it.each(['group','straight','flush'] as const)('%s: a specified sale cannot rema
 it.each(['group','straight','flush'] as const)('%s: potential and retained saved co-scoring are distinct',route=>{
  const s=recommendationEvidenceFixture(route),o=s.shop!.offers[0];
  const r=shopRecommendation(s,o,route);
- expect(r.combination).toContain('组合潜力：已有重触来源');expect(r.combination).toContain('组合记录：上手三拍');expect(r.combination).toContain('新牌未参与');
+ expect(r.combinationHint).toBe('组合潜力：已有重触来源，成长待触发。');expect(r.combinationHint).not.toMatch(/组合记录|上手|新牌未参与/);expect(r.detail).not.toMatch(/必买|稳赚|不代表|净更强/);expect(r.combination).toContain('组合潜力：已有重触来源');expect(r.combination).toContain('组合记录：上手三拍');expect(r.combination).toContain('新牌未参与');
  expect(shopRecommendation(s,o,route,s.jokers[0]).combination).not.toContain('上手三拍');
  s.lastTrace=null;expect(shopRecommendation(s,o,route).combination).toContain('尚无两张');
 });

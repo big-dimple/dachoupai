@@ -30,7 +30,7 @@ try{
    await shot('shelf');await tapUI(p,'shop','offer/'+o.offerId,spec.touch);await p.getByRole('button',{name:'管理这张',exact:true}).first().waitFor();row.compare=await p.locator('.detail-dialog[open]').innerText();
    if(!baseline){assert.ok(row.compare.includes('推荐指数 ★★☆☆☆'));assert.ok(row.compare.includes('推荐指数 ★★★★☆'));}await shot('compare');
    await p.locator('.experience-card').nth(2).scrollIntoViewIfNeeded();await shot('growth-cost');
-   await p.getByRole('button',{name:'返回购买详情',exact:true}).click();row.detail=await p.locator('.detail-dialog[open]').innerText();if(!baseline){assert.ok(row.detail.includes('组合潜力：已有重触来源'));assert.ok(row.detail.includes('组合记录：上手'));assert.ok(row.detail.includes('新牌未参与'));}await shot('detail');if(spec.touch){await p.locator('.dialog-purchase-summary').scrollIntoViewIfNeeded();await shot('detail-summary');}
+   await p.getByRole('button',{name:'返回购买详情',exact:true}).click();row.detail=await p.locator('.detail-dialog[open]').innerText();if(!baseline){assert.ok(row.detail.includes('组合潜力：已有重触来源'));assert.ok(!row.detail.includes('组合记录：'));assert.ok(!row.detail.includes('新牌未参与'));}await shot('detail');if(spec.touch){await p.locator('.dialog-purchase-summary').scrollIntoViewIfNeeded();await shot('detail-summary');}
    await p.getByRole('button',{name:'取消',exact:true}).click();await frame(p);row.after=await snapshot(p);assert.deepEqual(row.after,row.before);
    row.sendCalls=await p.evaluate(()=>window.__recommendationSendCalls);assert.deepEqual(row.sendCalls,[]);assert.deepEqual(row.errors,[]);row.status='PASS';console.log(JSON.stringify({width:spec.width,route,sourceSaleStars:row.guidance[0].stars,status:row.status}));
   }await p.close();
