@@ -1,0 +1,80 @@
+{
+  "kind": "Static visual prototype, synthetic display fixtures only",
+  "browser": "151.0.7922.173",
+  "profiles": [
+    {
+      "width": 320,
+      "height": 740,
+      "dpr": 1,
+      "entry": "local HTTP (loopback only)",
+      "checks": [
+        "all images loaded",
+        "no horizontal/card overflow or text-range clipping",
+        "five full vector stars per rating",
+        "44px controls",
+        "expand/collapse",
+        "fixture 3→5→3 and condition count",
+        "select/remove and max-two feedback",
+        "two comparisons",
+        "Escape/close/focus restore",
+        "selection preserved on fixture change",
+        "reduced motion",
+        "zero external requests",
+        "zero JS errors"
+      ],
+      "status": "PASS"
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "dpr": 1,
+      "entry": "local HTTP (loopback only)",
+      "checks": [
+        "all images loaded",
+        "no horizontal/card overflow or text-range clipping",
+        "five full vector stars per rating",
+        "44px controls",
+        "expand/collapse",
+        "fixture 3→5→3 and condition count",
+        "select/remove and max-two feedback",
+        "two comparisons",
+        "Escape/close/focus restore",
+        "selection preserved on fixture change",
+        "reduced motion",
+        "zero external requests",
+        "zero JS errors"
+      ],
+      "status": "PASS"
+    },
+    {
+      "width": 1366,
+      "height": 900,
+      "dpr": 1,
+      "entry": "local HTTP (loopback only)",
+      "checks": [
+        "all images loaded",
+        "no horizontal/card overflow or text-range clipping",
+        "five full vector stars per rating",
+        "44px controls",
+        "expand/collapse",
+        "fixture 3→5→3 and condition count",
+        "select/remove and max-two feedback",
+        "two comparisons",
+        "Escape/close/focus restore",
+        "selection preserved on fixture change",
+        "reduced motion",
+        "zero external requests",
+        "zero JS errors"
+      ],
+      "status": "PASS"
+    }
+  ],
+  "humanAcceptance": "NOT_RUN",
+  "physicalDevice": "NOT_RUN",
+  "gameplayRecommendationCalibration": "NOT_RUN",
+  "sourceHashes": {
+    "index.html": "0217ec3bf0d51f8dbb4344e5c94242e2576f9506d2200016f6acbb5257fa33a9",
+    "style.css": "caa6e00af0c0afa6027abb59b21bcbc8b867a77e3a5dff8e4d646edac579d835",
+    "app.js": "e72ae60a793dd1cdb3495741c3ab5bff471abc0c7b1f11e765d72a092edf4047"
+  }
+}
