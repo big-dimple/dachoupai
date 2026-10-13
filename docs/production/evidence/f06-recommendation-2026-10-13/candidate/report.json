@@ -1,0 +1,516 @@
+{
+  "head": "fd69db9460c0ccd681dc4f6d1c58e6e07b44627b",
+  "sourceTree": "31230b234546c1965e1b68a2bbbcdf5550339a34",
+  "sourceChanges": "",
+  "fixtureSha256": "86fcc4c855baefe4ae5b08fc0b0615c72c67dc6633c1d768da94c25661bcdd69",
+  "harnessSha256": "69f538407250e4ea4b461d73f457637f746b43945f0cbdcb0b46b57d62f1a428",
+  "baseline": false,
+  "scope": "CONTROLLED chapter-six invariant-valid projection. Native checkpoint import then read-only shelf/detail/cancel on PC1366 and software mobile390/320. Not natural progress, physical-device or balance acceptance.",
+  "cases": [
+    {
+      "width": 1366,
+      "height": 768,
+      "touch": false,
+      "errors": [],
+      "screenshots": [
+        "1366-shelf.png",
+        "1366-purchase-first-screen.png"
+      ],
+      "before": {
+        "identity": {
+          "contentVersion": "quality-r2-route-growth-v1",
+          "contentHash": "json-fnv-v1:7414228d95059959"
+        },
+        "commandSeq": 4
+      },
+      "guidance": {
+        "stars": 2,
+        "label": "推荐指数 ★★☆☆☆",
+        "reason": "限4次",
+        "condition": "第4次出牌后销毁",
+        "recommendation": {
+          "stars": 2,
+          "reason": "限4次",
+          "condition": "第4次出牌后销毁",
+          "stage": "late",
+          "combination": "组合记录：尚无两张现持牌共同计分。",
+          "combinationHint": "",
+          "facts": {
+            "cards": 52,
+            "largest": 4,
+            "second": 4,
+            "largestSuit": 13,
+            "groupConcentrated": false,
+            "flushConcentrated": false,
+            "straightConcentrated": false,
+            "ordinaryStraightPossible": true,
+            "ordinaryFlushPossible": true,
+            "boostedGroup": false,
+            "houseCardPayoff": false,
+            "boostedHouse": false,
+            "groupRecord": false,
+            "houseRecord": false,
+            "flushRecord": false,
+            "qualifiedRecord": false,
+            "heldCardPayoff": false,
+            "heldGroupPayoff": false,
+            "retriggerSource": false,
+            "additiveSource": false,
+            "disabledSourceCount": 0,
+            "potentialStages": 9,
+            "growthWindow": false,
+            "initialGrowth": "{}",
+            "straightFamilyPossible": true,
+            "flushFamilyPossible": true,
+            "flushHousePossible": false,
+            "flushFivePossible": false,
+            "routeGrowth": "{\"before\":{\"clears\":5,\"G\":0,\"S\":0,\"F\":0},\"factors\":{\"G\":{\"n\":\"1\",\"d\":\"1\"},\"S\":{\"n\":\"1\",\"d\":\"1\"},\"F\":{\"n\":\"1\",\"d\":\"1\"}},\"preserved\":\"本局路线资历保留，出售不丢。\",\"detail\":\"本局路线资历：成功清场5次；G 0次 / ×1；S 0次 / ×1；F 0次 / ×1。\\n资历不绑定起手或持牌实例，出售不清零；按实际主手族读取，可重叠的族分别读取。每族前三次合格清场因子为1，清场后才入账，下手读取；本次买卖不增加资历。\"}"
+          },
+          "detail": "限4次；第4次出牌后销毁。整手倍率 ×2；买入后第4次合法出牌本手仍有效，结算后销毁自身，次数跨场保留。\n组合记录：尚无两张现持牌共同计分。\n本局路线资历：成功清场5次；G 0次 / ×1；S 0次 / ×1；F 0次 / ×1。\n资历不绑定起手或持牌实例，出售不清零；按实际主手族读取，可重叠的族分别读取。每族前三次合格清场因子为1，清场后才入账，下手读取；本次买卖不增加资历。"
+        },
+        "operation": "可购买",
+        "operationShort": "可购买",
+        "purchaseConditionLosses": [],
+        "cashBasis": "直接买入",
+        "detail": "限4次；第4次出牌后销毁。整手倍率 ×2；买入后第4次合法出牌本手仍有效，结算后销毁自身，次数跨场保留。\n组合记录：尚无两张现持牌共同计分。\n本局路线资历：成功清场5次；G 0次 / ×1；S 0次 / ×1；F 0次 / ×1。\n资历不绑定起手或持牌实例，出售不清零；按实际主手族读取，可重叠的族分别读取。每族前三次合格清场因子为1，清场后才入账，下手读取；本次买卖不增加资历。\n可购买\n直接买入",
+        "routes": [
+          "group",
+          "straight",
+          "flush"
+        ],
+        "routeCaption": "同点/顺子/同花"
+      },
+      "shelf": {
+        "stars": [
+          {
+            "stars": 2,
+            "area": {
+              "x": 298,
+              "y": 476,
+              "width": 100,
+              "height": 38
+            },
+            "children": [
+              {
+                "text": "★",
+                "bounds": {
+                  "type": 5,
+                  "x": 301.5,
+                  "y": 476,
+                  "width": 13,
+                  "height": 16
+                },
+                "fontSize": "14px"
+              },
+              {
+                "text": "★",
+                "bounds": {
+                  "type": 5,
+                  "x": 321.5,
+                  "y": 476,
+                  "width": 13,
+                  "height": 16
+                },
+                "fontSize": "14px"
+              },
+              {
+                "text": "☆",
+                "bounds": {
+                  "type": 5,
+                  "x": 341.5,
+                  "y": 476,
+                  "width": 13,
+                  "height": 16
+                },
+                "fontSize": "14px"
+              },
+              {
+                "text": "☆",
+                "bounds": {
+                  "type": 5,
+                  "x": 361.5,
+                  "y": 476,
+                  "width": 13,
+                  "height": 16
+                },
+                "fontSize": "14px"
+              },
+              {
+                "text": "☆",
+                "bounds": {
+                  "type": 5,
+                  "x": 381.5,
+                  "y": 476,
+                  "width": 13,
+                  "height": 16
+                },
+                "fontSize": "14px"
+              }
+            ]
+          }
+        ],
+        "phrases": [
+          {
+            "text": "限4次",
+            "bounds": {
+              "type": 5,
+              "x": 406,
+              "y": 476,
+              "width": 36,
+              "height": 16
+            }
+          }
+        ]
+      },
+      "detail": "现货 · 确认后付款\n一次性招牌 · 购买详情\n\n适用：同点/顺子/同花\n\n✦ 稀有\n\n出牌时生效 · 出牌结算后更新\n\n本牌共可用 4 手\n\n本次出牌的倍率 ×2\n最后一手结算后消失\n最后一手仍有加成。\n计分加成暂停时仍扣剩余手数\n换场不重置。\n现在：尚未购买，买入后才会生效\n\n推荐指数 ★★☆☆☆\n限4次 · 第4次出牌后销毁\n直接买入 · 实付 8 金 · 余额 40 → 32 金\n\n版次：普通（无额外计分）\n\n高清细节加载中…\n规则与操作\n邀请 · 8 金\n取消",
+      "summary": "推荐指数 ★★☆☆☆\n限4次 · 第4次出牌后销毁\n直接买入 · 实付 8 金 · 余额 40 → 32 金",
+      "summaryGeometry": {
+        "text": {
+          "x": 640.59375,
+          "y": 395.625,
+          "right": 815.78125,
+          "bottom": 442.421875
+        },
+        "pane": {
+          "x": 624.59375,
+          "y": 136.5,
+          "right": 1105.984375,
+          "bottom": 658
+        }
+      },
+      "after": "Equal to before; full data in gzip",
+      "sendCalls": [],
+      "status": "PASS"
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "errors": [],
+      "screenshots": [
+        "390-shelf.png",
+        "390-purchase-first-screen.png"
+      ],
+      "before": {
+        "identity": {
+          "contentVersion": "quality-r2-route-growth-v1",
+          "contentHash": "json-fnv-v1:7414228d95059959"
+        },
+        "commandSeq": 4
+      },
+      "guidance": {
+        "stars": 2,
+        "label": "推荐指数 ★★☆☆☆",
+        "reason": "限4次",
+        "condition": "第4次出牌后销毁",
+        "recommendation": {
+          "stars": 2,
+          "reason": "限4次",
+          "condition": "第4次出牌后销毁",
+          "stage": "late",
+          "combination": "组合记录：尚无两张现持牌共同计分。",
+          "combinationHint": "",
+          "facts": {
+            "cards": 52,
+            "largest": 4,
+            "second": 4,
+            "largestSuit": 13,
+            "groupConcentrated": false,
+            "flushConcentrated": false,
+            "straightConcentrated": false,
+            "ordinaryStraightPossible": true,
+            "ordinaryFlushPossible": true,
+            "boostedGroup": false,
+            "houseCardPayoff": false,
+            "boostedHouse": false,
+            "groupRecord": false,
+            "houseRecord": false,
+            "flushRecord": false,
+            "qualifiedRecord": false,
+            "heldCardPayoff": false,
+            "heldGroupPayoff": false,
+            "retriggerSource": false,
+            "additiveSource": false,
+            "disabledSourceCount": 0,
+            "potentialStages": 9,
+            "growthWindow": false,
+            "initialGrowth": "{}",
+            "straightFamilyPossible": true,
+            "flushFamilyPossible": true,
+            "flushHousePossible": false,
+            "flushFivePossible": false,
+            "routeGrowth": "{\"before\":{\"clears\":5,\"G\":0,\"S\":0,\"F\":0},\"factors\":{\"G\":{\"n\":\"1\",\"d\":\"1\"},\"S\":{\"n\":\"1\",\"d\":\"1\"},\"F\":{\"n\":\"1\",\"d\":\"1\"}},\"preserved\":\"本局路线资历保留，出售不丢。\",\"detail\":\"本局路线资历：成功清场5次；G 0次 / ×1；S 0次 / ×1；F 0次 / ×1。\\n资历不绑定起手或持牌实例，出售不清零；按实际主手族读取，可重叠的族分别读取。每族前三次合格清场因子为1，清场后才入账，下手读取；本次买卖不增加资历。\"}"
+          },
+          "detail": "限4次；第4次出牌后销毁。整手倍率 ×2；买入后第4次合法出牌本手仍有效，结算后销毁自身，次数跨场保留。\n组合记录：尚无两张现持牌共同计分。\n本局路线资历：成功清场5次；G 0次 / ×1；S 0次 / ×1；F 0次 / ×1。\n资历不绑定起手或持牌实例，出售不清零；按实际主手族读取，可重叠的族分别读取。每族前三次合格清场因子为1，清场后才入账，下手读取；本次买卖不增加资历。"
+        },
+        "operation": "可购买",
+        "operationShort": "可购买",
+        "purchaseConditionLosses": [],
+        "cashBasis": "直接买入",
+        "detail": "限4次；第4次出牌后销毁。整手倍率 ×2；买入后第4次合法出牌本手仍有效，结算后销毁自身，次数跨场保留。\n组合记录：尚无两张现持牌共同计分。\n本局路线资历：成功清场5次；G 0次 / ×1；S 0次 / ×1；F 0次 / ×1。\n资历不绑定起手或持牌实例，出售不清零；按实际主手族读取，可重叠的族分别读取。每族前三次合格清场因子为1，清场后才入账，下手读取；本次买卖不增加资历。\n可购买\n直接买入",
+        "routes": [
+          "group",
+          "straight",
+          "flush"
+        ],
+        "routeCaption": "同点/顺子/同花"
+      },
+      "shelf": {
+        "stars": [
+          {
+            "stars": 2,
+            "area": {
+              "x": 20.333333333333336,
+              "y": 211.2,
+              "width": 100,
+              "height": 18
+            },
+            "children": [
+              {
+                "text": "★",
+                "bounds": {
+                  "type": 5,
+                  "x": 23.833335876464844,
+                  "y": 211.20001220703125,
+                  "width": 13,
+                  "height": 16
+                },
+                "fontSize": "14px"
+              },
+              {
+                "text": "★",
+                "bounds": {
+                  "type": 5,
+                  "x": 43.833335876464844,
+                  "y": 211.20001220703125,
+                  "width": 13,
+                  "height": 16
+                },
+                "fontSize": "14px"
+              },
+              {
+                "text": "☆",
+                "bounds": {
+                  "type": 5,
+                  "x": 63.833335876464844,
+                  "y": 211.20001220703125,
+                  "width": 13,
+                  "height": 16
+                },
+                "fontSize": "14px"
+              },
+              {
+                "text": "☆",
+                "bounds": {
+                  "type": 5,
+                  "x": 83.83333587646484,
+                  "y": 211.20001220703125,
+                  "width": 13,
+                  "height": 16
+                },
+                "fontSize": "14px"
+              },
+              {
+                "text": "☆",
+                "bounds": {
+                  "type": 5,
+                  "x": 103.83333587646484,
+                  "y": 211.20001220703125,
+                  "width": 13,
+                  "height": 16
+                },
+                "fontSize": "14px"
+              }
+            ]
+          }
+        ],
+        "phrases": []
+      },
+      "detail": "现货 · 确认后付款\n一次性招牌 · 购买详情\n\n适用：同点/顺子/同花\n\n✦ 稀有\n\n出牌时生效 · 出牌结算后更新\n\n本牌共可用 4 手\n\n本次出牌的倍率 ×2\n最后一手结算后消失\n最后一手仍有加成。\n计分加成暂停时仍扣剩余手数\n换场不重置。\n现在：尚未购买，买入后才会生效\n\n推荐指数 ★★☆☆☆\n限4次 · 第4次出牌后销毁\n直接买入 · 实付 8 金 · 余额 40 → 32 金\n\n版次：普通（无额外计分）\n\n规则与操作\n邀请 · 8 金\n取消",
+      "summary": "推荐指数 ★★☆☆☆\n限4次 · 第4次出牌后销毁\n直接买入 · 实付 8 金 · 余额 40 → 32 金",
+      "summaryGeometry": {
+        "text": {
+          "x": 52,
+          "y": 562.265625,
+          "right": 227.1875,
+          "bottom": 609.0625
+        },
+        "pane": {
+          "x": 36,
+          "y": 303.140625,
+          "right": 354,
+          "bottom": 666
+        }
+      },
+      "after": "Equal to before; full data in gzip",
+      "sendCalls": [],
+      "status": "PASS"
+    },
+    {
+      "width": 320,
+      "height": 640,
+      "touch": true,
+      "errors": [],
+      "screenshots": [
+        "320-shelf.png",
+        "320-purchase-first-screen.png",
+        "320-purchase-summary-scroll.png"
+      ],
+      "before": {
+        "identity": {
+          "contentVersion": "quality-r2-route-growth-v1",
+          "contentHash": "json-fnv-v1:7414228d95059959"
+        },
+        "commandSeq": 4
+      },
+      "guidance": {
+        "stars": 2,
+        "label": "推荐指数 ★★☆☆☆",
+        "reason": "限4次",
+        "condition": "第4次出牌后销毁",
+        "recommendation": {
+          "stars": 2,
+          "reason": "限4次",
+          "condition": "第4次出牌后销毁",
+          "stage": "late",
+          "combination": "组合记录：尚无两张现持牌共同计分。",
+          "combinationHint": "",
+          "facts": {
+            "cards": 52,
+            "largest": 4,
+            "second": 4,
+            "largestSuit": 13,
+            "groupConcentrated": false,
+            "flushConcentrated": false,
+            "straightConcentrated": false,
+            "ordinaryStraightPossible": true,
+            "ordinaryFlushPossible": true,
+            "boostedGroup": false,
+            "houseCardPayoff": false,
+            "boostedHouse": false,
+            "groupRecord": false,
+            "houseRecord": false,
+            "flushRecord": false,
+            "qualifiedRecord": false,
+            "heldCardPayoff": false,
+            "heldGroupPayoff": false,
+            "retriggerSource": false,
+            "additiveSource": false,
+            "disabledSourceCount": 0,
+            "potentialStages": 9,
+            "growthWindow": false,
+            "initialGrowth": "{}",
+            "straightFamilyPossible": true,
+            "flushFamilyPossible": true,
+            "flushHousePossible": false,
+            "flushFivePossible": false,
+            "routeGrowth": "{\"before\":{\"clears\":5,\"G\":0,\"S\":0,\"F\":0},\"factors\":{\"G\":{\"n\":\"1\",\"d\":\"1\"},\"S\":{\"n\":\"1\",\"d\":\"1\"},\"F\":{\"n\":\"1\",\"d\":\"1\"}},\"preserved\":\"本局路线资历保留，出售不丢。\",\"detail\":\"本局路线资历：成功清场5次；G 0次 / ×1；S 0次 / ×1；F 0次 / ×1。\\n资历不绑定起手或持牌实例，出售不清零；按实际主手族读取，可重叠的族分别读取。每族前三次合格清场因子为1，清场后才入账，下手读取；本次买卖不增加资历。\"}"
+          },
+          "detail": "限4次；第4次出牌后销毁。整手倍率 ×2；买入后第4次合法出牌本手仍有效，结算后销毁自身，次数跨场保留。\n组合记录：尚无两张现持牌共同计分。\n本局路线资历：成功清场5次；G 0次 / ×1；S 0次 / ×1；F 0次 / ×1。\n资历不绑定起手或持牌实例，出售不清零；按实际主手族读取，可重叠的族分别读取。每族前三次合格清场因子为1，清场后才入账，下手读取；本次买卖不增加资历。"
+        },
+        "operation": "可购买",
+        "operationShort": "可购买",
+        "purchaseConditionLosses": [],
+        "cashBasis": "直接买入",
+        "detail": "限4次；第4次出牌后销毁。整手倍率 ×2；买入后第4次合法出牌本手仍有效，结算后销毁自身，次数跨场保留。\n组合记录：尚无两张现持牌共同计分。\n本局路线资历：成功清场5次；G 0次 / ×1；S 0次 / ×1；F 0次 / ×1。\n资历不绑定起手或持牌实例，出售不清零；按实际主手族读取，可重叠的族分别读取。每族前三次合格清场因子为1，清场后才入账，下手读取；本次买卖不增加资历。\n可购买\n直接买入",
+        "routes": [
+          "group",
+          "straight",
+          "flush"
+        ],
+        "routeCaption": "同点/顺子/同花"
+      },
+      "shelf": {
+        "stars": [
+          {
+            "stars": 2,
+            "area": {
+              "x": 18.666666666666664,
+              "y": 187.2,
+              "width": 80,
+              "height": 18
+            },
+            "children": [
+              {
+                "text": "★",
+                "bounds": {
+                  "type": 5,
+                  "x": 20.166667938232422,
+                  "y": 187.20001220703125,
+                  "width": 13,
+                  "height": 16
+                },
+                "fontSize": "14px"
+              },
+              {
+                "text": "★",
+                "bounds": {
+                  "type": 5,
+                  "x": 36.16666793823242,
+                  "y": 187.20001220703125,
+                  "width": 13,
+                  "height": 16
+                },
+                "fontSize": "14px"
+              },
+              {
+                "text": "☆",
+                "bounds": {
+                  "type": 5,
+                  "x": 52.16666793823242,
+                  "y": 187.20001220703125,
+                  "width": 13,
+                  "height": 16
+                },
+                "fontSize": "14px"
+              },
+              {
+                "text": "☆",
+                "bounds": {
+                  "type": 5,
+                  "x": 68.16666793823242,
+                  "y": 187.20001220703125,
+                  "width": 13,
+                  "height": 16
+                },
+                "fontSize": "14px"
+              },
+              {
+                "text": "☆",
+                "bounds": {
+                  "type": 5,
+                  "x": 84.16666793823242,
+                  "y": 187.20001220703125,
+                  "width": 13,
+                  "height": 16
+                },
+                "fontSize": "14px"
+              }
+            ]
+          }
+        ],
+        "phrases": []
+      },
+      "detail": "现货 · 确认后付款\n一次性招牌 · 购买详情\n\n适用：同点/顺子/同花\n\n✦ 稀有\n\n出牌时生效 · 出牌结算后更新\n\n本牌共可用 4 手\n\n本次出牌的倍率 ×2\n最后一手结算后消失\n最后一手仍有加成。\n计分加成暂停时仍扣剩余手数\n换场不重置。\n现在：尚未购买，买入后才会生效\n\n推荐指数 ★★☆☆☆\n限4次 · 第4次出牌后销毁\n直接买入 · 实付 8 金 · 余额 40 → 32 金\n\n版次：普通（无额外计分）\n\n高清细节加载中…\n规则与操作\n邀请 · 8 金\n取消",
+      "summary": "推荐指数 ★★☆☆☆\n限4次 · 第4次出牌后销毁\n直接买入 · 实付 8 金 · 余额 40 → 32 金",
+      "summaryGeometry": {
+        "text": {
+          "x": 52,
+          "y": 497.984375,
+          "right": 227.1875,
+          "bottom": 544.78125
+        },
+        "pane": {
+          "x": 36,
+          "y": 238.859375,
+          "right": 284,
+          "bottom": 482
+        }
+      },
+      "after": "Equal to before; full data in gzip",
+      "sendCalls": [],
+      "status": "PASS"
+    }
+  ],
+  "status": "PASS"
+}
