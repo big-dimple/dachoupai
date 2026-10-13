@@ -15,6 +15,7 @@ import {isR2RouteGrowth} from '../domain/r2GroupUpgrade';
 import {shopRouteGrowthFacts} from './ShopRouteGrowthFacts';
 import {shopPurchaseCashFacts} from './ShopRouteRelations';
 import type {R2JokerInstance} from '../content/r2Schema';
+import {shopDeferredGrowthCashRisk} from './ShopReplacementCashRisk';
 
 /** Audited against e48fd07's resolved 72 definitions. Changed/older semantics require review. */
 export const SHOP_RECOMMENDATION_SEMANTICS='json-fnv-v1:bd8fa974db581460';
@@ -44,10 +45,12 @@ export interface ShopRecommendation {stars:RecommendationStars;reason:string;con
 const hashes=new WeakMap<object,string>();
 /** No affordability rating, RNG, future piles or stored recommendation. Cash gates use purchase cash. */
 export function shopRecommendation(state:R2RunState,offer:R2Offer,focus?:BuildFocus,sold?:R2JokerInstance):ShopRecommendation {
+ const before=state;
  const cash=offer.definitionId==='e08'||sold?shopPurchaseCashFacts(state,offer,sold):undefined;
  // Every specified sale removes its sources/modifiers and applies real sale hooks.
  // The original state, RNG and storage remain untouched.
  if(cash?.status==='assessed')state=cash.afterSale;
+ const replacementCashRisk=sold&&cash?.status==='assessed'?shopDeferredGrowthCashRisk(before,offer,sold,cash.afterSale):undefined;
  const definitions=r2JokerDefinitionsFor(state);let hash=hashes.get(definitions);if(!hash){hash=stableHash(definitions);hashes.set(definitions,hash);}
  const c2=isR2RouteGrowth(state)&&hash===SHOP_C2_RECOMMENDATION_SEMANTICS;
  const audited=c2||hash===SHOP_RECOMMENDATION_SEMANTICS;
@@ -124,7 +127,10 @@ export function shopRecommendation(state:R2RunState,offer:R2Offer,focus?:BuildFo
   rule==='diverse-coefficient'?(additiveSource?'已有加倍率来源，换型待触发':'换型待触发，核对加倍率来源'):'';
  const recorded=state.jokers.filter(j=>trace?.events.some(e=>e.sourceType==='joker'&&e.sourceInstanceId===j.instanceId&&['onCardScore','onHeldCard','jokerScore'].includes(e.phase)&&(JSON.stringify(e.before)!==JSON.stringify(e.after)||e.operation==='retrigger-card'&&Rational.fromJSON(e.value).compare(new Rational(0n))>0))).map(j=>definitions.find(d=>d.id===j.definitionId)!.name);
  const combination=(potential?'组合潜力：'+potential+'。\n':'')+(recorded.length>=2?'组合记录：上手'+recorded.join('、')+'共同计分（新牌未参与）。':'组合记录：尚无两张现持牌共同计分。');
- const result=(stars:RecommendationStars,reason:string,condition:string):ShopRecommendation=>({stars,reason,condition,stage,combination,combinationHint:potential&&stars>=3?'组合潜力：'+potential+'。':'',facts,detail:reason+'；'+condition+(d?'。'+d.description:'')+(stars>=4?`\n公开依据：最大同点组${largest}张，前两组${largest+second}/${cards.length}张；最大花色${largestSuit}/${cards.length}张；已持逐牌加成${heldCardPayoff?'有':'无'}；剩余场次窗口${potentialStages}。`:'')+'\n'+combination+(routeGrowth?'\n'+routeGrowth.detail:'')});
+ const result=(stars:RecommendationStars,reason:string,condition:string):ShopRecommendation=>{
+  const limited=replacementCashRisk&&stars>2,actualStars=limited?2:stars,actualCondition=limited?`买后${replacementCashRisk.goldAfterPurchase}金，包场暂不触发 · 新购成长为0`:condition;
+  return {stars:actualStars,reason:limited?'购后组合受损':reason,condition:actualCondition,stage,combination,combinationHint:potential&&actualStars>=3?'组合潜力：'+potential+'。':'',facts:{...facts,...(limited?{replacementCashRisk:JSON.stringify(replacementCashRisk)}:{})},detail:(limited?'购后组合受损；'+actualCondition+'。\n':'')+reason+'；'+condition+(d?'。'+d.description:'')+(actualStars>=4?`\n公开依据：最大同点组${largest}张，前两组${largest+second}/${cards.length}张；最大花色${largestSuit}/${cards.length}张；已持逐牌加成${heldCardPayoff?'有':'无'}；剩余场次窗口${potentialStages}。`:'')+'\n'+combination+(routeGrowth?'\n'+routeGrowth.detail:'')};
+ };
  if(sold&&cash?.status==='blocked')return result(0,'替换不可执行','先核对出售限制');
  if(!audited||!rule||!d)return result(0,'规则待核','该身份尚未审计');
  const scoreHooks=d.hooks.some(h=>['jokerScore','onCardScore','onHeldCard'].includes(h.phase));
