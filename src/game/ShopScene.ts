@@ -1,7 +1,7 @@
 import {isR2SuitChoice,R2_SUIT_DYE_IDS,r2BasicChoiceBasePrice} from '../domain/r2GroupUpgrade';
 import {routeFrame} from './RouteFrame';
 import {routeFitCue,markRouteDetail,toolPurpose} from './RouteFitCue';
-import {showMakeCards} from './MakeCardsDialog';
+import {showMakeCards,type MakeCardsView} from './MakeCardsDialog';
 import {inventoryFeedback} from './InventoryFeedback';
 import {showSavedToolResult} from './SavedToolResult';
 import {transactionGrowthChange} from './SavedGrowthChange';
@@ -77,6 +77,7 @@ export class ShopScene extends Phaser.Scene {
   private selectedOfferId?:string;
   private shelfKind:ShelfKind='jokers';
   private shelfPage=0;
+  private makeCardsView:MakeCardsView={pane:'purchase',positions:{owned:0,purchase:0}};
   private pcPages={jokers:0,tools:0,items:0};
   private pcOfferBoxes=new Map<string,Box>();
   private artRefreshListeners=new Map<string,()=>void>();
@@ -115,6 +116,7 @@ export class ShopScene extends Phaser.Scene {
   private visibleOffers():R2Offer[]{return this.shelfOffers().slice(this.shelfPage*this.pageSize,(this.shelfPage+1)*this.pageSize);}
   private geometry(){const l=this.view.layout,bottom=parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--safe-bottom'))||0,cols=this.shelfKind==='jokers'?Math.max(3,Math.min(this.pageSize,this.shelfOffers().length)):Math.max(1,Math.min(2,this.shelfOffers().length));return shopLayout(l.width,l.height,l.hud.y,bottom,cols,this.run.jokers.some(j=>!!this.jokerCopy(j.definitionId)),!!firstChapterShopPrompt(this.run)&&this.ready);}
   create():void {
+    this.makeCardsView={pane:'purchase',positions:{owned:0,purchase:0}};
     this.busy=false;this.selectedOfferId=undefined;this.shelfKind='jokers';this.shelfPage=0;this.pcPages={jokers:0,tools:0,items:0};this.notice='';this.lifecycle++;
     this.pendingGoldRoll=undefined;this.pendingRerollFlip=false;this.pendingPurchaseFlight=undefined;this.pendingToolCue=undefined;this.pendingTransactions=[];this.lastTransactionNotes=[];this.lastPurchaseReceipt=undefined;this.pendingPayment=undefined;
     this.resultFeedback=new ShopResultFeedback();this.resultKey=undefined;this.resultNote=undefined;this.resultPlate=undefined;
@@ -455,7 +457,7 @@ export class ShopScene extends Phaser.Scene {
     const seq=this.run.commandSeq,shopSeq=this.run.shop!.basicChoice?.shopSeq;
     showMakeCards(this.dialog,this.run,()=>this.ready&&this.run.commandSeq===seq,o=>this.purchaseReason(o),
       id=>this.openMakeTool(id),id=>{if(shopSeq!==undefined)this.confirmBasicChoice(id,seq,shopSeq,true);},
-      id=>this.inspectOffer(id,true),()=>showConsumables(this.dialog,this.run,this.ready,(a,s)=>this.send(a,s)));
+      id=>this.inspectOffer(id,true),()=>showConsumables(this.dialog,this.run,this.ready,(a,s)=>this.send(a,s)),this.makeCardsView);
   }
   private makeCardsReturn(d:HTMLDialogElement,label:string):void {
     const close=d.querySelector<HTMLButtonElement>('.dialog-close')!;close.textContent=label;
