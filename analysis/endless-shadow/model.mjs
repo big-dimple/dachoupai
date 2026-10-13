@@ -120,6 +120,13 @@ export function lockChallenge(options){
   const value=ceil(mul(mul(warm,frac(grade)),stageRatio(stage)));
   return Object.freeze({policyVersion,chapter,stage,grade,source,baseWarm:warm,target:String(value),b14Increment:String(ceil(frac(value,20n))),locked:true});
 }
+export function trialTarget(inputs,chapter,stage=0,grade=1){
+  const table=inputs.recommendedTrial.mainTargets;
+  if(!Number.isSafeInteger(chapter)||chapter<1||chapter>80||!Number.isInteger(grade)||grade<1||grade>64)throw Error('invalid-trial-target');
+  let base=chapter<=8?frac(table[chapter-1]):frac(table[7]);
+  if(chapter>8)for(let c=8;c<chapter;c++)base=mul(base,inputs.recommendedTrial.endlessGrowth);
+  return ceil(mul(mul(base,stageRatio(stage)),frac(grade)));
+}
 export const interest=(gold,cap=5)=>Math.min(cap,Math.floor(gold/5));
 export const cashHeat=gold=>Math.min(60,2*gold);
 export const cashMult=gold=>gold>=20?frac(9n,5n):frac(1n);
@@ -211,6 +218,37 @@ export function makeReport(inputs){
     {id:'cold-once-one-discard',options:{rescue:true}},{id:'glass-once-safe-backup',options:{glass:true}},
     {id:'burn-once-29',options:{burn:true,gold:29}},{id:'burn-once-30',options:{burn:true,gold:30}},
   ].flatMap(test=>['legacy','cap-max'].map(policy=>({case:test.id,policy,...budget(gf,count,{...test.options,policy,cap:4,targetHeat:policy==='legacy'?String(target(13,2)):'195264'})})));
+  const exactPair=inputs.userReports.find(r=>r.exactTrace)?.exactTrace;
+  const pairFactor=route('G',35);
+  if(!exactPair||cmp(pairFactor,exactPair.factor)!==0)throw Error('public pair factor mismatch');
+  const verifiedPair=score({H:'59',M:frac(30n),families:['G']},35);
+  if(String(verifiedPair)!=='26221278')throw Error('public pair score mismatch');
+  const trialSlices=inputs.chapters.flatMap(chapter=>inputs.stages.map(stage=>{
+    const hands=stage===2?3:4;
+    const T=trialTarget(inputs,chapter,stage);
+    const values=inputs.states.map(state=>({id:state.id,stable:score(state,(chapter-1)*3,'cap-max',4),
+      capacity:BigInt(budget(state,(chapter-1)*3,{policy:'cap-max',cap:4,hands}).capacity)}));
+    const grades=inputs.recommendedTrial.challengeGrades.map(grade=>{
+      const target=trialTarget(inputs,chapter,stage,grade);
+      return {grade,target:String(target),failed:values.filter(v=>v.capacity<target).map(v=>v.id),
+        stableFirstClear:values.filter(v=>v.stable>=target).map(v=>v.id)};
+    });
+    return {chapter,stage,hands,target:String(T),failed:values.filter(v=>v.capacity<T).map(v=>v.id),
+      stableFirstClear:values.filter(v=>v.stable>=T).map(v=>v.id),grades};
+  }));
+  const trainingRepair=[{chapter:13,extraLevels:2},{chapter:20,extraLevels:10}].flatMap(({chapter,extraLevels})=>
+    inputs.states.filter(r=>r.class==='ordinary').map(state=>{
+      const perLevel={G:[55n,1n],S:[35n,frac(1n,2n)],F:[30n,frac(1n,2n)]}[state.families[0]];
+      const incrementM=typeof perLevel[1]==='bigint'?frac(perLevel[1]):perLevel[1];
+      const m=frac(BigInt(state.M.n)*BigInt(incrementM.d)+BigInt(extraLevels)*BigInt(incrementM.n)*BigInt(state.M.d),BigInt(state.M.d)*BigInt(incrementM.d));
+      const improved={...state,H:String(BigInt(state.H)+BigInt(extraLevels)*perLevel[0]),M:m};
+      const S=score(improved,(chapter-1)*3,'cap-max',4),T=trialTarget(inputs,chapter,2);
+      return {chapter,state:state.id,levelBefore:state.level,levelAfter:state.level+extraLevels,normalPriceBudget:4*extraLevels,perHand:String(S),bossTarget:String(T),threeHandCapacity:String(S*3n),feasible:S*3n>=T,
+        availability:'hypothetical accumulated +1 offers; not guaranteed stock in one shop or natural purchase probability'};
+    }));
+  const pairCompressed=score({H:'59',M:frac(30n),families:['G']},35,'cap-max',4);
+  const triplePlain=score({H:'108',M:frac(63n,2n),families:['G']},35,'cap-max',4);
+  const tripleAssist=score({H:'108',M:frac(63n,2n),families:['G']},35,'cap-max',4,frac(63n,2n),frac(4n));
   const rootPre=mul(frac(inputs.rootTrace.H),inputs.rootTrace.preRouteM);
   const rootM=mul(inputs.rootTrace.preRouteM,route('G',inputs.rootTrace.G));
   const rootScore=floor(mul(frac(inputs.rootTrace.H),rootM));
@@ -222,13 +260,13 @@ export function makeReport(inputs){
   const locked=lockChallenge({chapter:13,stage:2,baseWarm:warmFraction(13),grade:4});
   const q48=chapterGrades.find(r=>r.chapter===13&&r.policy==='cap-max-4');
   return {schema:'endless-shadow-report-v1',baseSha:inputs.baseSha,identity:inputs.identity,kernelBlobs:inputs.kernelBlobs,
-    evidence:inputs.evidence,standards:inputs.standards,rows,windows,curveChecks,chapterGrades,challengeCandidates,resources,economy,burnEconomy,
+    evidence:inputs.evidence,standards:inputs.standards,recommendedTrial:{...inputs.recommendedTrial,slices:trialSlices,trainingRepair,sourceContrast:{pairCompressed:String(pairCompressed),pairThreeHandCapacity:String(pairCompressed*3n),tripleNoAssist:String(triplePlain),tripleAndOneAssist:String(tripleAssist),oneAssistThenPlain:String(tripleAssist+triplePlain),chapter13Boss:String(trialTarget(inputs,13,2)),meaning:'constructed same-card/joker-family comparison, not a claim these extra cards are in the user current hand'}},rows,windows,curveChecks,chapterGrades,challengeCandidates,resources,economy,burnEconomy,
     rootTrace:{...inputs.rootTrace,computedM:rootM,computedScore:String(rootScore),withoutRoute:String(floor(rootPre)),nextHandSameInputs:String(rootNextScore),remark:'transcribed formula verified; no original save/replay obtained'},
     historicalHighScoreGuard:{source:'PR144/G14 published formula reconstruction; not a new natural run',H:'977',rawM:frac(3726n,5n),S:21,
       legacy:String(score({H:'977',M:frac(3726n,5n),families:['S']},21)),
       cap4:String(score({H:'977',M:frac(3726n,5n),families:['S']},21,'cap-max',4)),
       warning:'bounded passive changes drastically reduce this historical same-input absolute score; retain old identity, do not claim the natural hundred-million guard passed'},
-    reportedScoreCeilings:inputs.userReports.map((r,i)=>({name:r.name,handsAssumed:i===1?3:4,reportedScore:r.score,reportedTarget:r.target,
+    reportedScoreCeilings:inputs.userReports.filter(r=>r.target).map((r,i)=>({name:r.name,handsAssumed:i===1?3:4,reportedScore:r.score,reportedTarget:r.target,
       optimisticRepeatCeiling:String(BigInt(r.score)*BigInt(i===1?3:4)),largestTargetMultipleUnderRepeat:Number(BigInt(r.score)*BigInt(i===1?3:4)/BigInt(r.target)),
       warning:'conditional arithmetic on reported peaks only; not sustainable capacity, not an auto-grade input, and not a bug certification'})),
     upgradeOpportunity:inputs.states.filter(r=>r.class==='ordinary').map(r=>{
@@ -238,7 +276,7 @@ export function makeReport(inputs){
         rawGain:div(after,before),spendAt27FailsPackageBreakEven:cmp(div(after,before),frac(9n,5n))<0,
         remark:'exact pre-floor ratio; actual floor and current scorer checked separately in tests'};
     }),
-    reports:inputs.userReports.map(r=>({...r,excess:frac(BigInt(r.score)-BigInt(r.target),BigInt(r.target)),verifiedHand:false})),
+    reports:inputs.userReports.map(r=>({...r,...(r.target?{excess:frac(BigInt(r.score)-BigInt(r.target),BigInt(r.target))}:{}),verifiedArithmeticChain:!!r.exactTrace,arithmeticStatus:r.exactTrace?'exact public chain verified; no identity clarification needed for this chain':'unverified contributions'})),
     passiveSlope:{legacyPerChapter:{G:frac(19683n,8000n),S:frac(343n,125n),F:frac(2197n,1000n)},targetPerChapter:frac(12n,5n),
       groupRelative:frac(19683n,19200n),caps:'after saturation auto growth is 1; linear-max logarithmic growth decays; acquired joker/card/hero operations remain outside this multiplier'},
     fixedGradeAttacks:{lock:locked,zeroSamples:locked.target,lowSamples:locked.target,peak:locked.target,soldInventory:locked.target,
@@ -248,6 +286,6 @@ export function makeReport(inputs){
     preservedScoreWitness:challengeCandidates.find(r=>r.chapter===13&&r.growth.n==='61')?.presets.find(r=>r.grade===4096)??null,
     jointWitness:q48?{baseWarm:q48.jointAnchor,grade:48,targets:[0,1,2].map(stage=>lockChallenge({chapter:13,stage,baseWarm:q48.jointAnchor,grade:48}).target),
       feasible:q48.feasibleGrades.includes(48),meaning:'one math witness for selected recipes and criteria; not production parameters or whole-game acceptance'}:null,
-    blocker:'Original full saved runs were not supplied. Constructed ready-hand supply does not prove natural acquisition, deal probability or real-save optimality.',
+    blocker:'The public Amo pair chain is verified and has no identity blocker. Full-save supply optimality and the two other incomplete chains are not inferred; these do not block the new-profile shadow trial.',
     execution:'pure BigInt arithmetic; no game UI, new art, gameplay parameter changes or save migration'};
 }
