@@ -1,0 +1,347 @@
+{
+  "head": "0c246792ff71139c7246329945176ff39d99f6f2",
+  "dirty": "?? docs/production/evidence/staged-image-warmup-2026-10-13/",
+  "browser": "151.0.7922.173",
+  "scope": "Local UI only: title, selector, first shop, entry and save reload; no scoring or complete run.",
+  "cases": [
+    {
+      "name": "mobile-weak",
+      "status": "PASS",
+      "viewport": {
+        "width": 390,
+        "height": 740
+      },
+      "kind": "weak",
+      "titleUsableMs": 948.5999999999767,
+      "hotNewHeroRequests": [],
+      "warmKeys": [
+        "selection-portrait-amo",
+        "avatar-amo",
+        "selection-portrait-touye",
+        "opening-portrait-amo",
+        "avatar-touye",
+        "selection-portrait-laohuan",
+        "avatar-laohuan",
+        "selection-portrait-erxiang",
+        "p08-court-k",
+        "p08-court-q",
+        "p08-court-j",
+        "avatar-erxiang"
+      ],
+      "initialShop": {
+        "phase": "shop",
+        "offerAlpha": [
+          0,
+          0,
+          0
+        ],
+        "artPlaceholders": 3
+      },
+      "normalSaveReload": "equal entire run state",
+      "shopStateBytes": 5473,
+      "requests": [
+        {
+          "url": "/assets/handdrawn-p08/characters/amo.selection.webp",
+          "at": 1791906415807
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/amo.avatar.webp",
+          "at": 1791906415808
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/touye.selection.webp",
+          "at": 1791906417723
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/amo.portrait.webp",
+          "at": 1791906417931
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/touye.avatar.webp",
+          "at": 1791906419799
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/laohuan.selection.webp",
+          "at": 1791906419999
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/laohuan.avatar.webp",
+          "at": 1791906421803
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/erxiang.selection.webp",
+          "at": 1791906422022
+        },
+        {
+          "url": "/assets/handdrawn-p08/cards/b07.thumbnail.webp",
+          "at": 1791906423121
+        },
+        {
+          "url": "/assets/handdrawn-p08/cards/c05.thumbnail.webp",
+          "at": 1791906423127
+        },
+        {
+          "url": "/assets/handdrawn-p08/cards/mantangcai.thumbnail.webp",
+          "at": 1791906423285
+        },
+        {
+          "url": "/assets/handdrawn-p08/court/k.court.webp",
+          "at": 1791906423806
+        },
+        {
+          "url": "/assets/handdrawn-p08/court/q.court.webp",
+          "at": 1791906424027
+        },
+        {
+          "url": "/assets/handdrawn-p08/court/j.court.webp",
+          "at": 1791906425821
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/erxiang.avatar.webp",
+          "at": 1791906426032
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/azao.selection.webp",
+          "at": 1791906427817
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/azao.avatar.webp",
+          "at": 1791906428033
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/amo.selection.webp",
+          "at": 1791906430426
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/amo.avatar.webp",
+          "at": 1791906430426
+        }
+      ],
+      "errors": []
+    },
+    {
+      "name": "pc-failure-retry",
+      "status": "PASS",
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      },
+      "kind": "failure",
+      "titleUsableMs": 1033.5,
+      "hotNewHeroRequests": [],
+      "warmKeys": [
+        "avatar-touye",
+        "selection-portrait-laohuan",
+        "avatar-laohuan",
+        "selection-portrait-erxiang",
+        "avatar-erxiang",
+        "selection-portrait-azao",
+        "avatar-azao",
+        "selection-portrait-xiemu",
+        "avatar-xiemu",
+        "selection-portrait-touye",
+        "selection-portrait-amo",
+        "avatar-amo",
+        "opening-portrait-amo",
+        "p08-court-k",
+        "p08-court-q",
+        "p08-court-j"
+      ],
+      "initialShop": {
+        "phase": "shop",
+        "offerAlpha": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "artPlaceholders": 3
+      },
+      "normalSaveReload": "equal entire run state",
+      "shopStateBytes": 5473,
+      "amo404Requests": 9,
+      "requests": [
+        {
+          "url": "/assets/handdrawn-p08/characters/amo.selection.webp",
+          "at": 1791906433165
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/amo.avatar.webp",
+          "at": 1791906433168
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/touye.selection.webp",
+          "at": 1791906433307
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/touye.avatar.webp",
+          "at": 1791906433309
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/laohuan.selection.webp",
+          "at": 1791906433400
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/laohuan.avatar.webp",
+          "at": 1791906433585
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/erxiang.selection.webp",
+          "at": 1791906433769
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/erxiang.avatar.webp",
+          "at": 1791906433979
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/azao.selection.webp",
+          "at": 1791906434066
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/azao.avatar.webp",
+          "at": 1791906434325
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/xiemu.selection.webp",
+          "at": 1791906434331
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/xiemu.avatar.webp",
+          "at": 1791906434737
+        },
+        {
+          "url": "/assets/handdrawn-p08/cards/mantangcai.thumbnail.webp",
+          "at": 1791906434786
+        },
+        {
+          "url": "/assets/handdrawn-p08/cards/c04.thumbnail.webp",
+          "at": 1791906435095
+        },
+        {
+          "url": "/assets/handdrawn-p08/cards/c06.thumbnail.webp",
+          "at": 1791906435184
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/touye.selection.webp",
+          "at": 1791906435492
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/amo.portrait.webp",
+          "at": 1791906435847
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/amo.selection.webp",
+          "at": 1791906439879
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/amo.avatar.webp",
+          "at": 1791906439882
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/amo.portrait.webp",
+          "at": 1791906440348
+        },
+        {
+          "url": "/assets/handdrawn-p08/cards/b07.thumbnail.webp",
+          "at": 1791906447381
+        },
+        {
+          "url": "/assets/handdrawn-p08/cards/c05.thumbnail.webp",
+          "at": 1791906447382
+        },
+        {
+          "url": "/assets/handdrawn-tools/tool-t17.thumbnail.webp",
+          "at": 1791906447383
+        },
+        {
+          "url": "/assets/handdrawn-tools/tool-t02.thumbnail.webp",
+          "at": 1791906447384
+        },
+        {
+          "url": "/assets/handdrawn-p08/court/k.court.webp",
+          "at": 1791906447384
+        },
+        {
+          "url": "/assets/handdrawn-p08/court/q.court.webp",
+          "at": 1791906447384
+        },
+        {
+          "url": "/assets/handdrawn-p08/court/j.court.webp",
+          "at": 1791906448233
+        },
+        {
+          "url": "/assets/handdrawn-tools/item-u05.thumbnail.webp",
+          "at": 1791906449122
+        },
+        {
+          "url": "/assets/handdrawn-tools/tool-t08.thumbnail.webp",
+          "at": 1791906449426
+        },
+        {
+          "url": "/assets/handdrawn-tools/tool-t11.thumbnail.webp",
+          "at": 1791906450559
+        },
+        {
+          "url": "/assets/handdrawn-tools/tool-t10.thumbnail.webp",
+          "at": 1791906450831
+        },
+        {
+          "url": "/assets/handdrawn-tools/tool-t09.thumbnail.webp",
+          "at": 1791906452806
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/amo.selection.webp",
+          "at": 1791906456367
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/amo.avatar.webp",
+          "at": 1791906456367
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/touye.selection.webp",
+          "at": 1791906456684
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/touye.avatar.webp",
+          "at": 1791906456781
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/laohuan.selection.webp",
+          "at": 1791906457116
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/laohuan.avatar.webp",
+          "at": 1791906457220
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/erxiang.selection.webp",
+          "at": 1791906457469
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/erxiang.avatar.webp",
+          "at": 1791906457660
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/azao.selection.webp",
+          "at": 1791906457838
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/azao.avatar.webp",
+          "at": 1791906457928
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/amo.portrait.webp",
+          "at": 1791906458581
+        },
+        {
+          "url": "/assets/handdrawn-p08/court/k.court.webp",
+          "at": 1791906458821
+        }
+      ],
+      "errors": []
+    }
+  ],
+  "status": "PASS"
+}

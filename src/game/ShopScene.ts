@@ -1,4 +1,5 @@
 import {createShopRarityFrame,createShopRecommendationStars,createShopRecommendationAccent,createShopCombinationMark,createShopRouteTag,shopCombinationVisual,shopCombinationMarkLayout,shopRecommendationVisual} from './ShopCardValueVisual';
+import {warmTableImages} from './StageImageWarmup';
 import {isR2SuitChoice,R2_SUIT_DYE_IDS,r2BasicChoiceBasePrice} from '../domain/r2GroupUpgrade';
 import {routeFrame} from './RouteFrame';
 import {routeFitCue,markRouteDetail,toolPurpose} from './RouteFitCue';
@@ -129,7 +130,7 @@ export class ShopScene extends Phaser.Scene {
     this.cameras.main.setBackgroundColor('#F3EADB');this.audio.setScene('shop');this.view=new SceneView(this,()=>this.render());
     const canvasLabel=this.game.canvas.getAttribute('aria-label');this.events.once('shutdown',()=>{if(canvasLabel===null)this.game.canvas.removeAttribute('aria-label');else this.game.canvas.setAttribute('aria-label',canvasLabel);});
     this.ownedInput=new OwnedJokerInput(this,{ready:()=>this.ready,inspectable:()=>!this.busy&&this.run?.phase==='shop',cards:()=>this.run.jokers.map((j,i)=>({...this.geometry().slots[i],id:j.instanceId})),cancelCanvas:()=>this.view.cancelInteraction(),tap:id=>this.inspectJoker(id),lift:(id,x,y)=>this.liftOwned(id,x,y),move:(x,y)=>this.previewOwned(x,y),drop:(id,x,y)=>this.moveJoker(id,x,y),cancel:()=>this.cancelOwned()});
-    this.events.once('shutdown',()=>{this.ownedInput?.destroy();this.ownedInput=undefined;if(this.ownedDrag?.saving)this.input.enabled=true;this.ownedDrag?.destroy();this.ownedDrag=undefined;});this.render();this.resumeMakeCards();
+    this.events.once('shutdown',()=>{this.ownedInput?.destroy();this.ownedInput=undefined;if(this.ownedDrag?.saving)this.input.enabled=true;this.ownedDrag?.destroy();this.ownedDrag=undefined;});this.render();this.resumeMakeCards();warmTableImages(this,this.run.characterId);
     if(!gameSession().reducedMotion&&!window.matchMedia('(prefers-reduced-motion: reduce)').matches){
       this.view.root.setAlpha(.35);this.tweens.add({targets:this.view.root,alpha:1,duration:220,ease:'Cubic.easeOut'});
       this.offerArts.forEach((art,i)=>{const ty=art.y;art.setPosition(art.x,ty+26).setAlpha(0);this.tweens.add({targets:art,y:ty,alpha:1,duration:260,delay:110+i*70,ease:'Cubic.easeOut'});});

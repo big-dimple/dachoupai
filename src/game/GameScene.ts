@@ -1,4 +1,6 @@
 import {formatScoreReview} from './ScoreReview';
+import {whenTextureReady} from './LateTextureArt';
+import {warmTableImages} from './StageImageWarmup';
 import {isR2ActiveMultTiming} from '../domain/r2GroupUpgrade';
 import {touyeComboCue} from './TouyeComboCue';
 import {azaoReleaseLabel,heroSkillGuide,heroOperationSteps,mountHeroSkillGuide} from './HeroSkillGuide';
@@ -44,7 +46,7 @@ import {handRouteReferences} from './HandRouteGuidance';
 import {mountHandRouteReferences} from './HandRouteGuidanceView';
 import {selectionExperience,hasActualBenefit,savedBenefit,experienceBeat} from './JokerExperience';
 import {groupGrowthCausality,savedGrowthDiscovery} from './JokerGrowthCausality';
-import {courtArtKey,queueCourtArtLoads} from './HanddrawnArt';
+import {courtArtKey} from './HanddrawnArt';
 import {R2HandCandidateCache,r2CandidateKey,r2HandRevision,type R2CandidateInput,type R2CandidateResult} from '../domain/r2HandCandidates';
 import {AI_HAND_POLICY,AiHandCandidateCache,aiHandKey,nextAiHand,type AiHandInput,type AiHandCursor} from './AiHandCandidates';
 import {jokerMemory,jokerAbilityCopyForRun,publicJokerMemoryContext,recordedJokerMemoryContext} from './JokerMemory';
@@ -257,8 +259,7 @@ export class GameScene extends Phaser.Scene {
   private climaxArtRequested=false;
   preload():void {
     const xhr:Phaser.Types.Loader.XHRSettingsObject={responseType:'text',timeout:5000};this.load.maxRetries=0;
-    queueCourtArtLoads(this);
-    const hero=runController(this)?.state.characterId;if(hero&&!this.textures.exists('opening-portrait-'+hero))this.load.image('opening-portrait-'+hero,portraitURL(hero),{responseType:'blob',timeout:1800});
+    const hero=runController(this)?.state.characterId;if(hero)warmTableImages(this,hero);
     for(const asset of P00_ASSETS)if(!this.textures.exists(asset.key))this.load.svg(asset.key,assetUrl(asset.path),{width:asset.width,height:asset.height},xhr);
   }
   private get reducedMotion():boolean {return gameSession().reducedMotion||window.matchMedia('(prefers-reduced-motion: reduce)').matches;}
@@ -386,7 +387,8 @@ export class GameScene extends Phaser.Scene {
 
     const avatarSize=portrait?30:44,avatarY=h.y+(portrait?6:short?34:42);
     this.roleAvatar=v.add(this.add.container(h.x+12+avatarSize/2,avatarY+avatarSize/2)).setData('baseY',avatarY+avatarSize/2);
-    addAvatar(this,this.roleAvatar,c,0,0,avatarSize);
+    const avatarArt=this.add.container(0,0);this.roleAvatar.add(avatarArt);addAvatar(this,avatarArt,c,0,0,avatarSize);
+    if(!this.textures.exists(avatarKey(c.id)))whenTextureReady(this,avatarArt,avatarKey(c.id),()=>{avatarArt.removeAll(true);addAvatar(this,avatarArt,c,0,0,avatarSize);});
     {const hit=v.add(this.add.rectangle(h.x+12+avatarSize/2,avatarY+avatarSize/2,Math.max(44,avatarSize+8),Math.max(44,avatarSize+8),0,0));v.target(hit,usesErxiangHandoff(this.run)?'hero/erxiang-handoff':usesTouyeWager(this.run)?'hero/touye-wager':usesLaohuanRefill(this.run)?'hero/laohuan-trick':usesXiemuBurn(this.run)?'hero/xiemu-burn':usesAzaoCharge(this.run)?'hero/azao-charge':'hero/details',{tap:()=>this.inspectRole(),detail:()=>this.inspectRole()});}
     this.roleFrame=this.add.rectangle(0,0,avatarSize+4,avatarSize+4,T.brass).setFillStyle(T.brass,0).setStrokeStyle(1,T.brass,.6);this.roleAvatar.add(this.roleFrame);
     const identity=stageIdentity(this.stage.index,this.run.stage!.boss,this.run.tourMode,this.run.difficulty)!;
@@ -602,10 +604,12 @@ export class GameScene extends Phaser.Scene {
       frame.lineStyle(1,T.jade,1).strokeRoundedRect(-fw/2,fy-fh/2,fw,fh,4);
       frame.lineStyle(1,0xfff3d6,.8).strokeRoundedRect(-fw/2+3,fy-fh/2+3,fw-6,fh-6,3);
       faceArt.push(frame);
-      if(key&&this.textures.exists(key)){
+      const art=this.add.container(0,fy);faceArt.push(art);
+      art.add(this.add.text(0,0,SUIT_SYMBOL[card.suit],{fontFamily:'Georgia,serif',fontSize:`${Math.min(b.width*.4,b.height*.28)}px`,color:ink,resolution}).setOrigin(.5));
+      if(key)whenTextureReady(this,art,key,()=>{
         const source=this.textures.get(key).getSourceImage() as HTMLImageElement;
-        faceArt.push(this.add.image(0,fy,key).setScale(Math.min((fw-2)/source.width,(fh-2)/source.height)));
-      }else faceArt.push(this.add.text(0,fy,SUIT_SYMBOL[card.suit],{fontFamily:'Georgia,serif',fontSize:`${Math.min(b.width*.4,b.height*.28)}px`,color:ink,resolution}).setOrigin(.5));
+        art.removeAll(true);art.add(this.add.image(0,0,key).setScale(Math.min((fw-2)/source.width,(fh-2)/source.height)));
+      });
 
     }
     const scoringMark=this.add.text(-b.width/2+edge,b.height/2-21,'★',{fontFamily:UI_FONT,fontSize:'14px',fontStyle:'bold',color:C.jade,resolution}).setVisible(false);

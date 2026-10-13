@@ -1,0 +1,78 @@
+{
+  "head": "2ef9180c066308e06d7d09850983ea469aa67fd8",
+  "dirty": "M src/game/BootScene.ts\n M src/game/CharacterSelectScene.ts\n M src/game/GameScene.ts\n M src/game/ShopScene.ts\n M src/game/TitleScene.ts\n?? harness/staged-image-warmup.mjs\n?? src/game/ImageWarmupQueue.ts\n?? src/game/ImageWarmupStatus.ts\n?? src/game/StageImageWarmup.ts\n?? tests/image-warmup-queue.test.ts",
+  "browser": "151.0.7922.173",
+  "scope": "Local UI only: title, selector, first shop, entry and save reload; no scoring or complete run.",
+  "cases": [
+    {
+      "name": "mobile-weak",
+      "status": "FAIL",
+      "error": "TimeoutError: page.waitForFunction: Timeout 12000ms exceeded.",
+      "requests": [
+        {
+          "url": "/assets/handdrawn-p08/characters/amo.selection.webp",
+          "at": 1791906182077
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/amo.avatar.webp",
+          "at": 1791906182078
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/touye.selection.webp",
+          "at": 1791906183964
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/touye.avatar.webp",
+          "at": 1791906183998
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/laohuan.selection.webp",
+          "at": 1791906185886
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/laohuan.avatar.webp",
+          "at": 1791906185923
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/erxiang.selection.webp",
+          "at": 1791906187821
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/erxiang.avatar.webp",
+          "at": 1791906187858
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/azao.selection.webp",
+          "at": 1791906189738
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/azao.avatar.webp",
+          "at": 1791906189770
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/xiemu.selection.webp",
+          "at": 1791906191662
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/xiemu.avatar.webp",
+          "at": 1791906191695
+        },
+        {
+          "url": "/assets/handdrawn-p08/cards/mantangcai.thumbnail.webp",
+          "at": 1791906193679
+        },
+        {
+          "url": "/assets/handdrawn-p08/cards/c04.thumbnail.webp",
+          "at": 1791906193739
+        },
+        {
+          "url": "/assets/handdrawn-p08/cards/c06.thumbnail.webp",
+          "at": 1791906193877
+        }
+      ],
+      "errors": []
+    }
+  ],
+  "status": "FAIL",
+  "error": "TimeoutError: page.waitForFunction: Timeout 12000ms exceeded."
+}

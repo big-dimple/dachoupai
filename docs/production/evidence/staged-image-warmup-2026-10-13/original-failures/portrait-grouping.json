@@ -1,0 +1,81 @@
+{
+  "fault": "Three existing amo images never respond; fetch + decode deadline is 4500ms, one automatic transient retry.",
+  "requests": [
+    {
+      "url": "http://127.0.0.1:5175/assets/handdrawn-p08/characters/amo.selection.webp",
+      "at": 1791907028705
+    },
+    {
+      "url": "http://127.0.0.1:5175/assets/handdrawn-p08/characters/amo.avatar.webp",
+      "at": 1791907028706
+    },
+    {
+      "url": "http://127.0.0.1:5175/assets/handdrawn-p08/characters/amo.portrait.webp",
+      "at": 1791907033337
+    },
+    {
+      "url": "http://127.0.0.1:5175/assets/handdrawn-p08/characters/amo.selection.webp",
+      "at": 1791907038805
+    },
+    {
+      "url": "http://127.0.0.1:5175/assets/handdrawn-p08/characters/amo.avatar.webp",
+      "at": 1791907039114
+    },
+    {
+      "url": "http://127.0.0.1:5175/assets/handdrawn-p08/characters/amo.portrait.webp",
+      "at": 1791907043367
+    }
+  ],
+  "failures": [
+    {
+      "url": "http://127.0.0.1:5175/assets/handdrawn-p08/characters/amo.selection.webp",
+      "at": 1791907033463,
+      "error": {
+        "errorText": "net::ERR_ABORTED"
+      }
+    },
+    {
+      "url": "http://127.0.0.1:5175/assets/handdrawn-p08/characters/amo.avatar.webp",
+      "at": 1791907033463,
+      "error": {
+        "errorText": "net::ERR_ABORTED"
+      }
+    },
+    {
+      "url": "http://127.0.0.1:5175/assets/handdrawn-p08/characters/amo.portrait.webp",
+      "at": 1791907038052,
+      "error": {
+        "errorText": "net::ERR_ABORTED"
+      }
+    },
+    {
+      "url": "http://127.0.0.1:5175/assets/handdrawn-p08/characters/amo.selection.webp",
+      "at": 1791907043363,
+      "error": {
+        "errorText": "net::ERR_ABORTED"
+      }
+    },
+    {
+      "url": "http://127.0.0.1:5175/assets/handdrawn-p08/characters/amo.avatar.webp",
+      "at": 1791907043677,
+      "error": {
+        "errorText": "net::ERR_ABORTED"
+      }
+    },
+    {
+      "url": "http://127.0.0.1:5175/assets/handdrawn-p08/characters/amo.portrait.webp",
+      "at": 1791907048072,
+      "error": {
+        "errorText": "net::ERR_ABORTED"
+      }
+    }
+  ],
+  "errors": [],
+  "titleUsableMs": 1484.1999999999534,
+  "controls": {
+    "selectorActive": true,
+    "confirmEnabled": true,
+    "heroLoaded": false
+  },
+  "status": "PASS"
+}
