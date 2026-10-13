@@ -306,7 +306,7 @@ export class GameScene extends Phaser.Scene {
     }
     this.run=controller.state;
     if(!['await-input','pending-refill'].includes(this.run.phase)||!this.run.stage){this.scene.start('character-select');return;}
-    this.stage=getStage(this.run.stage.index,this.run.tourMode,this.run.difficulty)!;this.characterId=this.run.characterId;settings();this.audio.setScene(this.stage.index%3===2?'boss':'table');
+    this.stage=getStage(this.run.stage.index,this.run.tourMode,this.run.difficulty,this.run)!;this.characterId=this.run.characterId;settings();this.audio.setScene(this.stage.index%3===2?'boss':'table');
     this.cameras.main.setBackgroundColor(C.paper);
     this.view=new SceneView(this,()=>{
       if(this.presentation)this.fastForward();
@@ -1010,7 +1010,7 @@ export class GameScene extends Phaser.Scene {
   }
   private aiInput():AiHandInput {
     const stage=this.run.stage!,context=r2ScoreContext(this.run,this.hand,[]);
-    return{...this.candidateInput(),boss:context.boss,sealedJokerIds:context.sealedJokerIds,challengeDisabledJokerId:context.challengeDisabledJokerId,score:{...(context.activeMultTiming?{activeMultTiming:context.activeMultTiming}:{}),...(context.routeGrowth?{routeGrowth:context.routeGrowth}:{}),...(context.erxiangHandoff?{erxiangHandoff:context.erxiangHandoff}:{}),...(context.touyeWager?{touyeWager:context.touyeWager}:{}),...(context.laohuanTrick?{laohuanTrick:context.laohuanTrick}:{}),...(context.xiemuBurn?{xiemuBurn:context.xiemuBurn}:{}),...(context.azaoCharge?{azaoCharge:context.azaoCharge}:{}),characterId:context.characterId,amoScoreTiming:context.amoScoreTiming,jokerSlots:context.jokerSlots,handLevels:this.run.handLevels,previousHandType:stage.previousHandType,previousHandScore:context.previousHandScore,wager:stage.wagerSelected}};
+    return{...this.candidateInput(),boss:context.boss,sealedJokerIds:context.sealedJokerIds,challengeDisabledJokerId:context.challengeDisabledJokerId,score:{...(context.boundedClear?{boundedClear:context.boundedClear}:{}),...(context.activeMultTiming?{activeMultTiming:context.activeMultTiming}:{}),...(context.routeGrowth?{routeGrowth:context.routeGrowth}:{}),...(context.erxiangHandoff?{erxiangHandoff:context.erxiangHandoff}:{}),...(context.touyeWager?{touyeWager:context.touyeWager}:{}),...(context.laohuanTrick?{laohuanTrick:context.laohuanTrick}:{}),...(context.xiemuBurn?{xiemuBurn:context.xiemuBurn}:{}),...(context.azaoCharge?{azaoCharge:context.azaoCharge}:{}),characterId:context.characterId,amoScoreTiming:context.amoScoreTiming,jokerSlots:context.jokerSlots,handLevels:this.run.handLevels,previousHandType:stage.previousHandType,previousHandScore:context.previousHandScore,wager:stage.wagerSelected}};
   }
   private cancelAiCandidates():void {this.aiCandidates.dispose();this.aiCursor=undefined;}
   private candidateEntry():string {

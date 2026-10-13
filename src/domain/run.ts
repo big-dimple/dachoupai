@@ -336,7 +336,7 @@ export function createRun(options: StartOptions & {rulesVersion:'r2'}): R2RunSta
 export function createRun(options: StartOptions & {rulesVersion?:'r1'}): RunState;
 export function createRun(options: StartOptions & {rulesVersion?:'r1'|'r2'}): AnyRunState;
 export function createRun(options: StartOptions & {rulesVersion?:'r1'|'r2'}): AnyRunState {
-  if(options.rulesVersion==='r2'&&isR2RouteStarter(options.r2Identity??{})&&options.r2Profile===undefined&&Object.keys(options.r2Identity!).sort().join(',')==='contentHash,contentVersion'){
+  if(options.rulesVersion==='r2'&&isR2RouteStarter(options.r2Identity??{})&&options.r2Profile===undefined&&Object.getPrototypeOf(options.r2Identity!)===Object.prototype&&Object.keys(options.r2Identity!).sort().join(',')==='contentHash,contentVersion'){
     // Convenience creation records the default explicitly in the canonical receipt.
     if(isR2BoundedClear(options.r2Identity!)&&options.openingRoute===undefined)options={...options,openingRoute:'group'};
     if(!options.openingRoute||!Object.hasOwn(R2_ROUTE_STARTERS,options.openingRoute))throw Error('invalid-opening-route');

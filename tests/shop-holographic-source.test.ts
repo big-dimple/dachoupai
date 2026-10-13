@@ -22,7 +22,7 @@ it('controlled five-slot counterexample keeps holographic +2 after the specified
  expect(preview.recommendation).toMatchObject({stars:4,facts:{additiveSource:true}});expect(continuation.recommendation).toEqual(preview.recommendation);
  expect(bought.jokers.find(j=>j.definitionId==='e11')!.growth.coefficient).toEqual({n:'7',d:'5'});
  const t=score(bought);expect(t.events.find(e=>e.sourceInstanceId==='held/b07'&&e.reasonKey==='edition.holographic.add-multiplier')).toMatchObject({operation:'add-multiplier',value:{n:'2',d:'1'}});
- expect(t.finalScore).toBe('12474');expect(t.accumulator.H).toEqual({n:'184',d:'1'});expect(t.accumulator.M).toEqual({n:'2711943423',d:'40000000'});
+ expect(t.finalScore).toBe('11128');expect(t.accumulator.H).toEqual({n:'184',d:'1'});expect(t.accumulator.M).toEqual({n:'1512',d:'25'});
  expect(s).toEqual(before);expect(s.rng).toEqual(before.rng);
 });
 

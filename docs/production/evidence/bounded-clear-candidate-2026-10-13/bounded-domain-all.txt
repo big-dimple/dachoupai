@@ -1,0 +1,293 @@
+
+> dachoupai@0.1.0 test
+> vitest run
+
+
+ RUN  v4.1.11 /workspace/dachoupai
+
+ ❯ tests/c04-mode-save.test.ts (40 tests | 1 failed) 1788ms
+     × session load, takeover, import and mode resume retain old identity without replaying a reward 47ms
+ ❯ tests/recovery-save.test.ts (24 tests | 2 failed) 746ms
+     × keeps the published run after a failed start, then retries the exact unpublished candidate once 33ms
+     × launches all six characters with only Amo on assist 20ms
+ ❯ tests/touye-new-core.test.ts (25 tests | 1 failed) 1405ms
+     × forks only selected-route Touye new games; old retries and unaffected heroes preserve their identities 15ms
+ ❯ tests/route-starter.test.ts (25 tests | 18 failed) 511ms
+     × amo/group keeps three original-price offers and a truly corresponding affordable ordinary card 18ms
+     × amo/straight keeps three original-price offers and a truly corresponding affordable ordinary card 8ms
+     × amo/flush keeps three original-price offers and a truly corresponding affordable ordinary card 2ms
+     × touye/group keeps three original-price offers and a truly corresponding affordable ordinary card 3ms
+     × touye/straight keeps three original-price offers and a truly corresponding affordable ordinary card 5ms
+     × touye/flush keeps three original-price offers and a truly corresponding affordable ordinary card 3ms
+     × laohuan/group keeps three original-price offers and a truly corresponding affordable ordinary card 5ms
+     × laohuan/straight keeps three original-price offers and a truly corresponding affordable ordinary card 4ms
+     × laohuan/flush keeps three original-price offers and a truly corresponding affordable ordinary card 3ms
+     × erxiang/group keeps three original-price offers and a truly corresponding affordable ordinary card 4ms
+     × erxiang/straight keeps three original-price offers and a truly corresponding affordable ordinary card 2ms
+     × erxiang/flush keeps three original-price offers and a truly corresponding affordable ordinary card 2ms
+     × azao/group keeps three original-price offers and a truly corresponding affordable ordinary card 3ms
+     × azao/straight keeps three original-price offers and a truly corresponding affordable ordinary card 3ms
+     × azao/flush keeps three original-price offers and a truly corresponding affordable ordinary card 5ms
+     × xiemu/group keeps three original-price offers and a truly corresponding affordable ordinary card 2ms
+     × xiemu/straight keeps three original-price offers and a truly corresponding affordable ordinary card 2ms
+     × xiemu/flush keeps three original-price offers and a truly corresponding affordable ordinary card 3ms
+ ❯ tests/fixed-suit-dyes.test.ts (12 tests | 1 failed) 553ms
+   × new nine-choice identity preserves original five-choice RNG, random stock, price and retry identity 49ms
+ ❯ tests/assist-route-growth-integration.test.ts (30 tests | 3 failed) 1372ms
+     × straight-flush compares every public no-assist/side option with a real command 36ms
+     × flush-house uses only the main high-order families 29ms
+     × flush-five uses only the main high-order families 27ms
+ ❯ tests/shop-recommendation-c2.test.ts (10 tests | 1 failed) 311ms
+     × four real command clears give G1.35, and sale/buy do not erase or award run-owned history 77ms
+ ❯ tests/shop-holographic-source.test.ts (14 tests | 1 failed) 380ms
+   × controlled five-slot counterexample keeps holographic +2 after the specified sale 148ms
+ ❯ tests/amo-launch.test.ts (9 tests | 3 failed) 89ms
+     × all six normal new games use the frozen group identity; raw createRun stays v11 6ms
+     × rejects mixed, unknown, extra, conflicting and wrong-character identity inputs 6ms
+     × Q01 keeps group identity while disabling its ability; tutorial requires Erxiang 1ms
+
+⎯⎯⎯⎯⎯⎯ Failed Tests 31 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/amo-launch.test.ts > normal new-game policy and exact retry creation > all six normal new games use the frozen group identity; raw createRun stays v11
+Error: invalid-opening-route
+ ❯ createRun src/domain/run.ts:340:92
+    339|   if(options.rulesVersion==='r2'&&isR2RouteStarter(options.r2Identity?…
+    340|     // Convenience creation records the default explicitly in the cano…
+    341|     if(isR2BoundedClear(options.r2Identity!)&&options.openingRoute===u…
+       |       ^
+    342|     if(!options.openingRoute||!Object.hasOwn(R2_ROUTE_STARTERS,options…
+    343|     const mode=resolveR2ModeConfig(options.modeConfig??{mode:'standard…
+ ❯ tests/amo-launch.test.ts:17:14
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/31]⎯
+
+ FAIL  tests/amo-launch.test.ts > normal new-game policy and exact retry creation > rejects mixed, unknown, extra, conflicting and wrong-character identity inputs
+AssertionError: expected [Function] to throw error including 'invalid-r2-identity' but got 'invalid-opening-route'
+
+Expected: "invalid-r2-identity"
+Received: "invalid-opening-route"
+
+ ❯ tests/amo-launch.test.ts:39:89
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/31]⎯
+
+ FAIL  tests/amo-launch.test.ts > normal new-game policy and exact retry creation > Q01 keeps group identity while disabling its ability; tutorial requires Erxiang
+Error: invalid-opening-route
+ ❯ createRun src/domain/run.ts:340:92
+    339|   if(options.rulesVersion==='r2'&&isR2RouteStarter(options.r2Identity?…
+    340|     // Convenience creation records the default explicitly in the cano…
+    341|     if(isR2BoundedClear(options.r2Identity!)&&options.openingRoute===u…
+       |       ^
+    342|     if(!options.openingRoute||!Object.hasOwn(R2_ROUTE_STARTERS,options…
+    343|     const mode=resolveR2ModeConfig(options.modeConfig??{mode:'standard…
+ ❯ tests/amo-launch.test.ts:45:11
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/31]⎯
+
+ FAIL  tests/assist-route-growth-integration.test.ts > PR123 public assist preview integrated with C2 before-hand history > straight-flush compares every public no-assist/side option with a real command
+AssertionError: expected [ 'S' ] to deeply equal [ 'S', 'F' ]
+
+- Expected
++ Received
+
+  [
+    "S",
+-   "F",
+  ]
+
+ ❯ check tests/assist-route-growth-integration.test.ts:36:52
+     34|   if(isR2RouteGrowth(s)){
+     35|    expect(trace.routeGrowth!.before).toEqual(input.routeGrowth);
+     36|    expect(Object.keys(trace.routeGrowth!.factors)).toEqual(r2RouteFami…
+       |                                                    ^
+     37|    expect(actual.stage!.routeGrowth!.eligible).toEqual(r2RouteFamilies…
+     38|    const factors=trace.events.flatMap((e,i)=>e.operation==='route-fact…
+ ❯ tests/assist-route-growth-integration.test.ts:62:46
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/31]⎯
+
+ FAIL  tests/assist-route-growth-integration.test.ts > PR123 public assist preview integrated with C2 before-hand history > flush-house uses only the main high-order families
+ FAIL  tests/assist-route-growth-integration.test.ts > PR123 public assist preview integrated with C2 before-hand history > flush-five uses only the main high-order families
+AssertionError: expected [ 'G' ] to deeply equal [ 'G', 'F' ]
+
+- Expected
++ Received
+
+  [
+    "G",
+-   "F",
+  ]
+
+ ❯ check tests/assist-route-growth-integration.test.ts:36:52
+     34|   if(isR2RouteGrowth(s)){
+     35|    expect(trace.routeGrowth!.before).toEqual(input.routeGrowth);
+     36|    expect(Object.keys(trace.routeGrowth!.factors)).toEqual(r2RouteFami…
+       |                                                    ^
+     37|    expect(actual.stage!.routeGrowth!.eligible).toEqual(r2RouteFamilies…
+     38|    const factors=trace.events.flatMap((e,i)=>e.operation==='route-fact…
+ ❯ tests/assist-route-growth-integration.test.ts:70:3
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/31]⎯
+
+ FAIL  tests/c04-mode-save.test.ts > Amo v10/v11 production storage partition compatibility > session load, takeover, import and mode resume retain old identity without replaying a reward
+AssertionError: expected 'json-fnv-v1:7f60ad479f68b033' to be 'json-fnv-v1:5025cc23c013987f' // Object.is equality
+
+Expected: "json-fnv-v1:5025cc23c013987f"
+Received: "json-fnv-v1:7f60ad479f68b033"
+
+ ❯ tests/c04-mode-save.test.ts:471:94
+    469|     expect(session.state()?.contentHash).toBe(R2_LEGACY_CONTENT_HASH);
+    470|     // Starting creates the new profile while retaining the original o…
+    471|     await session.start('new-after-old','amo',STANDARD);expect(session…
+       |                                                                                              ^
+    472|     expect((await storage.readPartition(old.state)).current).toEqual(o…
+    473|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/31]⎯
+
+ FAIL  tests/fixed-suit-dyes.test.ts > new nine-choice identity preserves original five-choice RNG, random stock, price and retry identity
+AssertionError: expected 'json-fnv-v1:7f60ad479f68b033' to be 'json-fnv-v1:7414228d95059959' // Object.is equality
+
+Expected: "json-fnv-v1:7414228d95059959"
+Received: "json-fnv-v1:7f60ad479f68b033"
+
+ ❯ tests/fixed-suit-dyes.test.ts:19:54
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/31]⎯
+
+ FAIL  tests/recovery-save.test.ts > complete checkpoint validation and save-before-publish > keeps the published run after a failed start, then retries the exact unpublished candidate once
+AssertionError: expected 'json-fnv-v1:7f60ad479f68b033' to be 'json-fnv-v1:5025cc23c013987f' // Object.is equality
+
+Expected: "json-fnv-v1:5025cc23c013987f"
+Received: "json-fnv-v1:7f60ad479f68b033"
+
+ ❯ tests/recovery-save.test.ts:160:59
+    158|     expect(result).toBe(kind==='start'?undefined:false);expect(await s…
+    159|     const candidate=session.pendingRun;expect(candidate).toBeDefined()…
+    160|     if(kind==='start')expect(candidate.state.contentHash).toBe('json-f…
+       |                                                           ^
+    161|     const candidateJSON=candidate.exportJSON();expect(readCheckpoint(J…
+    162|     if(kind==='import')expect(candidateJSON).toBe(importedJSON);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[8/31]⎯
+
+ FAIL  tests/recovery-save.test.ts > normal session launch intent > launches all six characters with only Amo on assist
+AssertionError: expected 'json-fnv-v1:7f60ad479f68b033' to be 'json-fnv-v1:5025cc23c013987f' // Object.is equality
+
+Expected: "json-fnv-v1:5025cc23c013987f"
+Received: "json-fnv-v1:7f60ad479f68b033"
+
+ ❯ tests/recovery-save.test.ts:194:111
+    192|   it('launches all six characters with only Amo on assist',async()=>{
+    193|     const {session}=await existingSession();
+    194|     for(const id of CHARACTER_IDS){const run=await session.start('all-…
+       |                                                                                                               ^
+    195|   });
+    196|   it.each(R2_RULESETS.filter(p=>!isR2RouteStarter(p)))('retries $conte…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[9/31]⎯
+
+ FAIL  tests/route-starter.test.ts > atomic first-shelf route contract > amo/group keeps three original-price offers and a truly corresponding affordable ordinary card
+ FAIL  tests/route-starter.test.ts > atomic first-shelf route contract > amo/straight keeps three original-price offers and a truly corresponding affordable ordinary card
+ FAIL  tests/route-starter.test.ts > atomic first-shelf route contract > amo/flush keeps three original-price offers and a truly corresponding affordable ordinary card
+ FAIL  tests/route-starter.test.ts > atomic first-shelf route contract > laohuan/group keeps three original-price offers and a truly corresponding affordable ordinary card
+ FAIL  tests/route-starter.test.ts > atomic first-shelf route contract > laohuan/straight keeps three original-price offers and a truly corresponding affordable ordinary card
+ FAIL  tests/route-starter.test.ts > atomic first-shelf route contract > laohuan/flush keeps three original-price offers and a truly corresponding affordable ordinary card
+ FAIL  tests/route-starter.test.ts > atomic first-shelf route contract > erxiang/group keeps three original-price offers and a truly corresponding affordable ordinary card
+ FAIL  tests/route-starter.test.ts > atomic first-shelf route contract > erxiang/straight keeps three original-price offers and a truly corresponding affordable ordinary card
+ FAIL  tests/route-starter.test.ts > atomic first-shelf route contract > erxiang/flush keeps three original-price offers and a truly corresponding affordable ordinary card
+AssertionError: expected 'json-fnv-v1:7f60ad479f68b033' to be 'json-fnv-v1:7414228d95059959' // Object.is equality
+
+Expected: "json-fnv-v1:7414228d95059959"
+Received: "json-fnv-v1:7f60ad479f68b033"
+
+ ❯ tests/route-starter.test.ts:30:25
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[10/31]⎯
+
+ FAIL  tests/route-starter.test.ts > atomic first-shelf route contract > touye/group keeps three original-price offers and a truly corresponding affordable ordinary card
+ FAIL  tests/route-starter.test.ts > atomic first-shelf route contract > touye/straight keeps three original-price offers and a truly corresponding affordable ordinary card
+ FAIL  tests/route-starter.test.ts > atomic first-shelf route contract > touye/flush keeps three original-price offers and a truly corresponding affordable ordinary card
+ FAIL  tests/route-starter.test.ts > atomic first-shelf route contract > azao/group keeps three original-price offers and a truly corresponding affordable ordinary card
+ FAIL  tests/route-starter.test.ts > atomic first-shelf route contract > azao/straight keeps three original-price offers and a truly corresponding affordable ordinary card
+ FAIL  tests/route-starter.test.ts > atomic first-shelf route contract > azao/flush keeps three original-price offers and a truly corresponding affordable ordinary card
+ FAIL  tests/route-starter.test.ts > atomic first-shelf route contract > xiemu/group keeps three original-price offers and a truly corresponding affordable ordinary card
+ FAIL  tests/route-starter.test.ts > atomic first-shelf route contract > xiemu/straight keeps three original-price offers and a truly corresponding affordable ordinary card
+ FAIL  tests/route-starter.test.ts > atomic first-shelf route contract > xiemu/flush keeps three original-price offers and a truly corresponding affordable ordinary card
+AssertionError: expected 'json-fnv-v1:7f60ad479f68b033' to be 'json-fnv-v1:ca1e8f77913649d3' // Object.is equality
+
+Expected: "json-fnv-v1:ca1e8f77913649d3"
+Received: "json-fnv-v1:7f60ad479f68b033"
+
+ ❯ tests/route-starter.test.ts:30:25
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[11/31]⎯
+
+ FAIL  tests/shop-holographic-source.test.ts > controlled five-slot counterexample keeps holographic +2 after the specified sale
+AssertionError: expected '11128' to be '12474' // Object.is equality
+
+Expected: "12474"
+Received: "11128"
+
+ ❯ tests/shop-holographic-source.test.ts:25:23
+     23|  expect(bought.jokers.find(j=>j.definitionId==='e11')!.growth.coeffici…
+     24|  const t=score(bought);expect(t.events.find(e=>e.sourceInstanceId==='h…
+     25|  expect(t.finalScore).toBe('12474');expect(t.accumulator.H).toEqual({n…
+       |                       ^
+     26|  expect(s).toEqual(before);expect(s.rng).toEqual(before.rng);
+     27| });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[12/31]⎯
+
+ FAIL  tests/shop-recommendation-c2.test.ts > C2 reviewed semantic alignment, legacy and global ownership remain separate > four real command clears give G1.35, and sale/buy do not erase or award run-owned history
+AssertionError: expected '顺子热度与成长；热+50 · 成长+10/上限100。顺子或同花顺，整手热…' to contain 'G 4次 / ×1.35'
+
+- Expected
++ Received
+
+- G 4次 / ×1.35
++ 顺子热度与成长；热+50 · 成长+10/上限100。顺子或同花顺，整手热度+50；结算后热度成长+10，上限+100，下次起生效。每手任意牌型均读取已有成长，跨场保留。
++ 组合记录：尚无两张现持牌共同计分。
++ 过关加成：成功清场4次；成组 4次 / ×1.35；顺子 0次 / ×1；同花 0次 / ×1。
++ 本手只取实际所属族最高因子一次，单族上限×4；高牌×1。每族前三次合格清场因子为1；清场后入账，下手生效。出售不清零，买卖不增加加成。
++ 需替换
++ 未选替换：买后余额待核
+
+ ❯ tests/shop-recommendation-c2.test.ts:50:215
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[13/31]⎯
+
+ FAIL  tests/touye-new-core.test.ts > Touye actual refill ID responsibility, separate new identity > forks only selected-route Touye new games; old retries and unaffected heroes preserve their identities
+AssertionError: expected { …(2) } to deeply equal { …(2) }
+
+- Expected
++ Received
+
+  {
+-   "contentHash": "json-fnv-v1:7414228d95059959",
+-   "contentVersion": "quality-r2-route-growth-v1",
++   "contentHash": "json-fnv-v1:7f60ad479f68b033",
++   "contentVersion": "quality-r2-bounded-clear-v1",
+  }
+
+ ❯ tests/touye-new-core.test.ts:20:95
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[14/31]⎯
+
+
+ Test Files  9 failed | 219 passed (228)
+      Tests  31 failed | 3325 passed (3356)
+   Start at  17:41:52
+   Duration  68.83s (transform 10.51s, setup 0ms, import 49.77s, tests 97.39s, environment 29ms)
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice

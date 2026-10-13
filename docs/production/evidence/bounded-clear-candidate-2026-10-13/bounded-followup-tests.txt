@@ -1,0 +1,105 @@
+
+ RUN  v4.1.11 /workspace/dachoupai
+
+ ❯ tests/assist-route-growth-integration.test.ts (30 tests | 3 failed) 2719ms
+     × straight-flush compares every public no-assist/side option with a real command 35ms
+     × flush-house uses only the main high-order families 81ms
+     × flush-five uses only the main high-order families 234ms
+ ❯ tests/shop-recommendation-c2.test.ts (10 tests | 1 failed) 492ms
+     × four real command clears give G1.35, and sale/buy do not erase or award run-owned history 170ms
+ ❯ tests/shop-holographic-source.test.ts (14 tests | 1 failed) 813ms
+   × controlled five-slot counterexample keeps holographic +2 after the specified sale 135ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 5 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/assist-route-growth-integration.test.ts > PR123 public assist preview integrated with C2 before-hand history > straight-flush compares every public no-assist/side option with a real command
+AssertionError: expected [ 'S' ] to deeply equal [ 'S', 'F' ]
+
+- Expected
++ Received
+
+  [
+    "S",
+-   "F",
+  ]
+
+ ❯ check tests/assist-route-growth-integration.test.ts:36:52
+     34|   if(isR2RouteGrowth(s)){
+     35|    expect(trace.routeGrowth!.before).toEqual(input.routeGrowth);
+     36|    expect(Object.keys(trace.routeGrowth!.factors)).toEqual(r2RouteFami…
+       |                                                    ^
+     37|    expect(actual.stage!.routeGrowth!.eligible).toEqual(r2RouteFamilies…
+     38|    const factors=trace.events.flatMap((e,i)=>e.operation==='route-fact…
+ ❯ tests/assist-route-growth-integration.test.ts:62:46
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/5]⎯
+
+ FAIL  tests/assist-route-growth-integration.test.ts > PR123 public assist preview integrated with C2 before-hand history > flush-house uses only the main high-order families
+ FAIL  tests/assist-route-growth-integration.test.ts > PR123 public assist preview integrated with C2 before-hand history > flush-five uses only the main high-order families
+AssertionError: expected [ 'G' ] to deeply equal [ 'G', 'F' ]
+
+- Expected
++ Received
+
+  [
+    "G",
+-   "F",
+  ]
+
+ ❯ check tests/assist-route-growth-integration.test.ts:36:52
+     34|   if(isR2RouteGrowth(s)){
+     35|    expect(trace.routeGrowth!.before).toEqual(input.routeGrowth);
+     36|    expect(Object.keys(trace.routeGrowth!.factors)).toEqual(r2RouteFami…
+       |                                                    ^
+     37|    expect(actual.stage!.routeGrowth!.eligible).toEqual(r2RouteFamilies…
+     38|    const factors=trace.events.flatMap((e,i)=>e.operation==='route-fact…
+ ❯ tests/assist-route-growth-integration.test.ts:70:3
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/5]⎯
+
+ FAIL  tests/shop-holographic-source.test.ts > controlled five-slot counterexample keeps holographic +2 after the specified sale
+AssertionError: expected '11128' to be '12474' // Object.is equality
+
+Expected: "12474"
+Received: "11128"
+
+ ❯ tests/shop-holographic-source.test.ts:25:23
+     23|  expect(bought.jokers.find(j=>j.definitionId==='e11')!.growth.coeffici…
+     24|  const t=score(bought);expect(t.events.find(e=>e.sourceInstanceId==='h…
+     25|  expect(t.finalScore).toBe('12474');expect(t.accumulator.H).toEqual({n…
+       |                       ^
+     26|  expect(s).toEqual(before);expect(s.rng).toEqual(before.rng);
+     27| });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/5]⎯
+
+ FAIL  tests/shop-recommendation-c2.test.ts > C2 reviewed semantic alignment, legacy and global ownership remain separate > four real command clears give G1.35, and sale/buy do not erase or award run-owned history
+AssertionError: expected '顺子热度与成长；热+50 · 成长+10/上限100。顺子或同花顺，整手热…' to contain 'G 4次 / ×1.35'
+
+- Expected
++ Received
+
+- G 4次 / ×1.35
++ 顺子热度与成长；热+50 · 成长+10/上限100。顺子或同花顺，整手热度+50；结算后热度成长+10，上限+100，下次起生效。每手任意牌型均读取已有成长，跨场保留。
++ 组合记录：尚无两张现持牌共同计分。
++ 过关加成：成功清场4次；成组 4次 / ×1.35；顺子 0次 / ×1；同花 0次 / ×1。
++ 本手只取实际所属族最高因子一次，单族上限×4；高牌×1。每族前三次合格清场因子为1；清场后入账，下手生效。出售不清零，买卖不增加加成。
++ 需替换
++ 未选替换：买后余额待核
+
+ ❯ tests/shop-recommendation-c2.test.ts:50:215
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/5]⎯
+
+
+ Test Files  3 failed | 7 passed (10)
+      Tests  5 failed | 197 passed (202)
+   Start at  17:45:44
+   Duration  9.44s (transform 6.09s, setup 0ms, import 10.12s, tests 14.16s, environment 1ms)
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice

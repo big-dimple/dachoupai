@@ -1,0 +1,55 @@
+
+ RUN  v4.1.11 /workspace/dachoupai
+
+ ❯ tests/route-growth-score.test.ts (22 tests | 1 failed) 176ms
+     × UI AI preview/cache carries the exact snapshot and route events expose truthful factors 27ms
+ ❯ tests/p1a-active-mult.test.ts (19 tests | 1 failed) 1022ms
+     × forks only three route-selected heroes; every old retry retains exact identity 16ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/p1a-active-mult.test.ts > P1A exact active multiplier timing > forks only three route-selected heroes; every old retry retains exact identity
+AssertionError: expected { …(2) } to deeply equal { …(2) }
+
+- Expected
++ Received
+
+  {
+-   "contentHash": "json-fnv-v1:ca1e8f77913649d3",
+-   "contentVersion": "quality-r2-active-mult-timing-v1",
++   "contentHash": "json-fnv-v1:7f60ad479f68b033",
++   "contentVersion": "quality-r2-bounded-clear-v1",
+  }
+
+ ❯ tests/p1a-active-mult.test.ts:28:133
+     26| describe('P1A exact active multiplier timing',()=>{
+     27|  it('forks only three route-selected heroes; every old retry retains e…
+     28|   for(const h of ['touye','xiemu','azao'] as const)for(const r of ['gr…
+       |                                                                                                                                     ^
+     29|   for(const h of ['amo','erxiang','laohuan'] as const)expect(newRunIde…
+     30|   for(const p of R2_RULESETS.filter(p=>p.contentVersion!==activeIdenti…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  tests/route-growth-score.test.ts > C2 actual scorer finite comparisons > UI AI preview/cache carries the exact snapshot and route events expose truthful factors
+AssertionError: expected '成组过关加成 4 场 · 倍率×1.35 · 本手读取' to contain '成组资历 4 场'
+
+Expected: "成组资历 4 场"
+Received: "成组过关加成 4 场 · 倍率×1.35 · 本手读取"
+
+ ❯ tests/route-growth-score.test.ts:101:184
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  2 failed | 3 passed (5)
+      Tests  2 failed | 114 passed (116)
+   Start at  17:35:52
+   Duration  4.65s (transform 4.50s, setup 0ms, import 6.26s, tests 4.61s, environment 1ms)
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice

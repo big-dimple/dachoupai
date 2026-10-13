@@ -55,3 +55,12 @@ describe('bounded clear candidate',()=>{
   fail=false;expect((await saved.retry()).ok).toBe(true);expect(attempts.at(-1)).toBe(attempts.at(-2));expect(await saved.submit(cmd)).toMatchObject({ok:true,duplicate:true});expect(SavedRun.restore(store,store.slots).state).toEqual(saved.state);
  });
 });
+
+it('AI comparison carries the new policy through public snapshot and cache, using max rather than product',async()=>{
+ const {aiHandKey,rankAiHandCandidates}=await import('../src/game/AiHandCandidates');
+ const hand=activeCards([3,4,5,6,7],0,true),score=activeScoreInput(hand,[],{routeGrowth:{clears:4,G:0,S:4,F:4}}),input={hand,jokers:score.jokers,definitions:score.definitions,disabledIds:[],ordinaryPointsSuppressedIds:[],boss:null,stageIndex:0,sealedJokerIds:[],challengeDisabledJokerId:null,resources:{gold:0,handsLeft:4,playIndex:0,discardsUsed:0,stageHeat:'0',target:'400'},contentVersion:identity.contentVersion,score:{...score,boundedClear:true as const}};
+ expect(aiHandKey(input)).not.toBe(aiHandKey({...input,score:{...score}}));
+ const scoring=await import('../src/domain/scoreR2'),{vi}=await import('vitest'),actual=scoring.previewR2Hand,seen:ReturnType<typeof actual>[]=[];
+ const spy=vi.spyOn(scoring,'previewR2Hand').mockImplementation(i=>{const result=actual(i);if(result.handType==='straight-flush')seen.push(result);return result;});
+ try{expect(rankAiHandCandidates(input).status).toBe('ready');expect(seen).toHaveLength(1);expect(seen[0].routeGrowth!.factors).toEqual({S:{n:'7',d:'5'}});expect(seen[0].possibleScores).toEqual([scoreR2Hand({...score,boundedClear:true}).finalScore]);}finally{spy.mockRestore();}
+});
