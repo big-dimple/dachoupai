@@ -1,16 +1,15 @@
+import {formatScoreReview} from './ScoreReview';
 import {DetailDialog} from './DetailDialog';
 import {showCatalog} from './CatalogDialog';
 import type Phaser from 'phaser';
 import {gameSession} from './session';
 import {heatText} from './scoreText';
-import {HAND_LABELS} from '../content/handLabels';
 import {MAX_IMPORT_BYTES} from '../application/checkpoint';
 import type {GameScene} from './GameScene';
 import {buildInfo,formatBuildInfo} from '../platform/buildInfo';
 import {AudioEngine} from '../audio/AudioEngine';
 import {readAudioPreferences} from '../audio/preferences';
 import {installFullscreen} from '../platform/Fullscreen';
-import {savedAssistCopy} from './AssistSelection';
 import {characterForRun} from './CharacterRunCopy';
 import {R2_JOKERS} from '../content/r2Schema';
 import {R2_AVAILABLE_CHAPTERS} from '../domain/r2Chapter';
@@ -153,7 +152,8 @@ export function installRunMenu(game:Phaser.Game,getActions:()=>RunMenuActions|un
     const state=session.state();if(!state?.lastTrace)return;
     const scene=game.scene.getScene('game') as GameScene;
     if(scene.scene.isActive()){scene.replayLastTrace();close();return;}
-    status.textContent=HAND_LABELS[state.lastTrace.handType]+' · '+heatText(state.lastTrace.finalScore)+' 热度\n'+(state.lastTrace.assist?savedAssistCopy(state.lastTrace)+'\n':'')+state.lastTrace.events.map(e=>e.reasonKey+'：'+e.operation+' '+e.value.n+'/'+e.value.d).join('\n');
+    const review=formatScoreReview(state,state.lastTrace);close();
+    catalogDialog.open(review.title,review.diagnostics,[],{effectBody:review.summary,cards:review.cards,collapseRules:true,rulesLabel:'诊断：精确分数与原始事件'});
   },playback);
   function refreshPlayback():void {
     catalogButton.disabled=session.working||!session.loaded;

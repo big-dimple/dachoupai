@@ -1,0 +1,87 @@
+{
+  "base": "2ef9180c066308e06d7d09850983ea469aa67fd8",
+  "sourceSHA": "0cd326b1a2c1f3a420ce9bc0c7efcc28e294f2a7",
+  "protected": [
+    {
+      "path": "src/domain",
+      "base": "621572ff4e63ec7c99a593b6d88e522f37225b9b",
+      "source": "621572ff4e63ec7c99a593b6d88e522f37225b9b",
+      "same": true
+    },
+    {
+      "path": "src/content",
+      "base": "e8c3794be5b0fcb74da4aeb9e6adc63c22388345",
+      "source": "e8c3794be5b0fcb74da4aeb9e6adc63c22388345",
+      "same": true
+    },
+    {
+      "path": "src/application",
+      "base": "d7ab7bdaed8ae67f91a4f53e11ad735daacfae57",
+      "source": "d7ab7bdaed8ae67f91a4f53e11ad735daacfae57",
+      "same": true
+    },
+    {
+      "path": "src/platform",
+      "base": "860a9f8883cc158ac0c56ad6399518cc897a67b7",
+      "source": "860a9f8883cc158ac0c56ad6399518cc897a67b7",
+      "same": true
+    },
+    {
+      "path": "public",
+      "base": "c4a6ec74e7fd754b0f300b973020f8afed7542e1",
+      "source": "c4a6ec74e7fd754b0f300b973020f8afed7542e1",
+      "same": true
+    },
+    {
+      "path": "art",
+      "base": "b0caa33679b84bee932b2854734c04ad39ba0464",
+      "source": "b0caa33679b84bee932b2854734c04ad39ba0464",
+      "same": true
+    },
+    {
+      "path": "src/audio",
+      "base": "a2f0483eecaaafb40cdbb82778ec2a846fd2e000",
+      "source": "a2f0483eecaaafb40cdbb82778ec2a846fd2e000",
+      "same": true
+    },
+    {
+      "path": "src/game/HeroClimax.ts",
+      "base": "32a2c48b45077504d647d0f746b412965d06e07a",
+      "source": "32a2c48b45077504d647d0f746b412965d06e07a",
+      "same": true
+    },
+    {
+      "path": "src/game/CharacterSelectScene.ts",
+      "base": "4c589573438d1bcf06b94f8a31e5186ab5b8fe20",
+      "source": "4c589573438d1bcf06b94f8a31e5186ab5b8fe20",
+      "same": true
+    },
+    {
+      "path": "docs/production/DELIVERY_PLAN.md",
+      "base": "c74c8653cfe862d05fe6b0dbb3541e191558f834",
+      "source": "c74c8653cfe862d05fe6b0dbb3541e191558f834",
+      "same": true
+    },
+    {
+      "path": "package-lock.json",
+      "base": "acc93dcd9410bc911db279534e28522a8691dbab",
+      "source": "acc93dcd9410bc911db279534e28522a8691dbab",
+      "same": true
+    },
+    {
+      "path": ".github",
+      "base": "b923e03979ce93c9a142628f8b1099e2cd2b9150",
+      "source": "b923e03979ce93c9a142628f8b1099e2cd2b9150",
+      "same": true
+    }
+  ],
+  "changed": [
+    "docs/production/evidence/score-review-readable-2026-10-13/FAILURES.md",
+    "docs/production/evidence/score-review-readable-2026-10-13/START.md",
+    "harness/score-review.mjs",
+    "src/game/GameScene.ts",
+    "src/game/RunMenu.ts",
+    "src/game/ScoreReview.ts",
+    "tests/score-review.test.ts"
+  ]
+}

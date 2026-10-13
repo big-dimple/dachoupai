@@ -1,3 +1,4 @@
+import {formatScoreReview} from './ScoreReview';
 import {isR2ActiveMultTiming} from '../domain/r2GroupUpgrade';
 import {touyeComboCue} from './TouyeComboCue';
 import {azaoReleaseLabel,heroSkillGuide,heroOperationSteps,mountHeroSkillGuide} from './HeroSkillGuide';
@@ -24,7 +25,6 @@ import {paperSceneStart} from './PaperFlow';
 import {usesTouyeWager,usesTouyeNewCore,type TouyeBet,type TouyeTarget} from '../domain/r2TouyeWager';
 import {touyeChoice,touyeConfirmationCopy} from './TouyeWagerCopy';
 import {usesLaohuanRefill} from '../domain/r2LaohuanRefill';
-import {savedBossImpact} from './SavedBossImpact';
 import {mountScoreLanding} from './ScoreLanding';
 import {numberImpact,impactBeat,numberPulse,type NumberImpact} from './ScoreEnergy';
 import {multiplierCaption,readableMultiplierEffect} from './ScoreEventCaption';
@@ -41,7 +41,7 @@ import {BUILD_LABEL,buildDirectionCaption,buildHandTypes,currentBuildFocus,choos
 import {handRouteTransitions,handRouteTransitionDraft,handRoutePlayBudget} from './HandRouteTransition';
 import {handRouteReferences} from './HandRouteGuidance';
 import {mountHandRouteReferences} from './HandRouteGuidanceView';
-import {selectionExperience,hasActualBenefit,savedBenefit,savedExperienceCards,experienceBeat} from './JokerExperience';
+import {selectionExperience,hasActualBenefit,savedBenefit,experienceBeat} from './JokerExperience';
 import {groupGrowthCausality,savedGrowthDiscovery} from './JokerGrowthCausality';
 import {courtArtKey,queueCourtArtLoads} from './HanddrawnArt';
 import {R2HandCandidateCache,r2CandidateKey,r2HandRevision,type R2CandidateInput,type R2CandidateResult} from '../domain/r2HandCandidates';
@@ -49,7 +49,7 @@ import {AI_HAND_POLICY,AiHandCandidateCache,aiHandKey,nextAiHand,type AiHandInpu
 import {jokerMemory,jokerAbilityCopyForRun,publicJokerMemoryContext,recordedJokerMemoryContext} from './JokerMemory';
 import {fitJokerLabel,jokerLabelRoom} from './JokerLabel';
 import {r2AssistAvailability} from '../domain/r2Assist';
-import {assistCandidates,validAssistDraft,savedAssistCopy,ASSIST_EXPLANATION,ASSIST_AI_EXPLANATION} from './AssistSelection';
+import {assistCandidates,validAssistDraft,ASSIST_EXPLANATION,ASSIST_AI_EXPLANATION} from './AssistSelection';
 import {r2SelectionFacts,type R2SelectionFacts} from '../domain/r2SelectionFacts';
 import {selectionCopy,selectionCardCopy,fitConditionEntry,fourCardRuleCopy,selectionCandidateEntryBox} from './SelectionCopy';
 import {handRuleReference,handTypeRuleCards} from './HandRuleReference';
@@ -1368,15 +1368,6 @@ export class GameScene extends Phaser.Scene {
     } finally {glow.destroy();if(source.active)source.setY(rest.y).setAngle(rest.angle).setScale(rest.scaleX,rest.scaleY);}
   }
 
-  private formatBreakdown(score: ScoreTrace): string {
-    const first=score.events[0].after,impact=savedBossImpact(this.run,score);
-    return '牌型 '+fractionText(first.H)+' 热度 × '+fractionText(first.M)+' 倍率\n'
-      +'计分 '+score.sets.activeScoringIds.length+' 张 / '+(this.assistProfile?'主手':'打出')+' '+score.sets.playedIds.length+' 张\n'
-      +(score.assist?savedAssistCopy(score)+'\n':'')
-      +(impact?impact+'\n':'')
-      +'精确热度 '+fractionText(score.accumulator.H)+'\n精确倍率 '+fractionText(score.accumulator.M)+'\n向下取整入账 '+score.finalScore;
-  }
-
   private previewSelection(preview?:HandPreview):void {
     this.stopScoreFire();this.breakdownText.setText('').setVisible(false);
     this.scoreLabels.forEach(label=>label.setVisible(false));
@@ -1985,13 +1976,8 @@ export class GameScene extends Phaser.Scene {
   }
   private inspectLastTrace():void {
     const score=this.run.lastTrace;if(!score)return;
-    // The recap reads the saved ledger, never today's gold or next-hand eligibility.
-    const benefits=score.sourceJokers.flatMap(joker=>{
-      const copy=jokerAbilityCopyForRun(this.run,joker.definitionId,joker,recordedJokerMemoryContext(publicJokerMemoryContext(this.run,{hand:score.cards,scoringLimited:false,deckSize:this.run.deckInstances.length-this.run.destroyedIds.length,jokerSlots:r2JokerCapacity(this.run),jokerCount:score.sourceJokers.length}),score.bossContext),score.events);
-      const edition=score.events.filter(event=>event.sourceType==='joker'&&event.sourceInstanceId===joker.instanceId&&event.reasonKey.startsWith('edition.')).map(event=>this.operationText(event)).join('、');
-      return [this.jokerDefinition(joker.definitionId).name+'：'+copy.state+(edition?'；版次 '+edition:'')];
-    });
-    this.dialog.open('上手已入账 · '+HAND_LABELS[score.handType]+' +'+heatText(score.finalScore),this.formatBreakdown(score)+'\n\n'+score.events.filter(event=>event.phase!=='base'&&event.phase!=='finalScore').map(event=>this.eventSource(event)+' '+this.operationText(event)+(['afterHand','beforeFailure','onStageClear'].includes(event.phase)?'':' → 热度 '+fractionText(event.after.H)+' / 倍率 '+fractionText(event.after.M))).join('\n'),[{label:'继续培养',primary:true,disabled:!this.ready,run:()=>this.inspectJourney()},...(this.run.consumables.length?[{label:'打开道具箱',disabled:!this.ready,primary:true,run:()=>showConsumables(this.dialog,this.run,this.ready&&!this.pendingRefill&&!this.pendingTouye,(a,seq)=>this.command(a,seq))}]:[]),{label:'回看演出',disabled:!this.ready,run:()=>{this.dialog.close();this.replayLastTrace();}}],benefits.length?{cards:savedExperienceCards(this.run,score),effectBody:this.formatBreakdown(score),collapseRules:true,rulesLabel:'完整计分明细'}:{cards:savedExperienceCards(this.run,score)});
+    const review=formatScoreReview(this.run,score);
+    this.dialog.open(review.title,review.diagnostics,[{label:'继续培养',primary:true,disabled:!this.ready,run:()=>this.inspectJourney()},...(this.run.consumables.length?[{label:'打开道具箱',disabled:!this.ready,primary:true,run:()=>showConsumables(this.dialog,this.run,this.ready&&!this.pendingRefill&&!this.pendingTouye,(a,seq)=>this.command(a,seq))}]:[]),{label:'回看演出',disabled:!this.ready,run:()=>{this.dialog.close();this.replayLastTrace();}}],{cards:review.cards,effectBody:review.summary,collapseRules:true,rulesLabel:'诊断：精确分数与原始事件'});
     attachFirstChapterGuide(this.run,()=>this.render());
   }
 
