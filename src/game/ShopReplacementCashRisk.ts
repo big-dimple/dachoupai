@@ -9,12 +9,13 @@ import {R2_EDITIONS} from '../content/r2Tools';
 
 /** A narrow proven cost: a zero-initial-growth purchase disables retained Baochang.
  * Clone-only; no hand forecast, hidden draws, score search, save or dispatch. */
-export function shopDeferredGrowthCashRisk(before:R2RunState,offer:R2Offer,sold:R2JokerInstance,afterSale:R2RunState){
+export function shopDeferredGrowthCashRisk(before:R2RunState,offer:R2Offer,sold:R2JokerInstance|undefined,afterSale:R2RunState){
  const cashOnlyModifiers=['first-purchase-discount','interest-cap','consumable-capacity'];
- if(before.jokers.length<r2JokerCapacity(before)||before.gold<20||r2JokerDefinitionFor(before,sold.definitionId).modifiers?.some(m=>!cashOnlyModifiers.includes(m.kind)))return;
+ const replacement=sold?before.jokers.length>=r2JokerCapacity(before):before.shop?.soldJoker&&before.jokers.length===r2JokerCapacity(before)-1;
+ if(!replacement||before.gold<20||sold&&r2JokerDefinitionFor(before,sold.definitionId).modifiers?.some(m=>!cashOnlyModifiers.includes(m.kind)))return;
  const definitions=r2JokerDefinitionsFor(before),boss=before.stageIndex%3===2?before.boss:null,sealed=before.stage?.index===before.stageIndex?before.stage.sealedJokerIds:[];
  const disabled=new Set(r2ScoringDisabledJokerIds(boss,before.jokers,definitions,sealed,before.chapterDisabledJokerId));
- const retained=before.jokers.filter(j=>j.instanceId!==sold.instanceId),bao=retained.find(j=>j.definitionId==='e08'&&!disabled.has(j.instanceId));
+ const retained=before.jokers.filter(j=>j.instanceId!==sold?.instanceId),bao=retained.find(j=>j.definitionId==='e08'&&!disabled.has(j.instanceId));
  const candidate=definitions.find(d=>d.id===offer.definitionId),scorePhases=['onCardScore','onHeldCard','jokerScore'];
  if(!bao||!candidate||candidate.modifiers?.length||candidate.hooks.some(h=>h.operations.some(o=>!['read-growth','add-growth','update-score-growth'].includes(o.kind))))return;
  const candidateScoreOps=candidate.hooks.filter(h=>scorePhases.includes(h.phase)).flatMap(h=>h.operations);

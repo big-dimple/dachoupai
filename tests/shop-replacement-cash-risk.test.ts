@@ -25,6 +25,12 @@ it.each([[22,0,2,19],[23,0,4,20],[22,8,4,22]] as const)('uses actual original ca
  const s=replacementCashRiskFixture(gold);s.jokers[2].paidPrice=paidPrice;const o=s.shop!.offers[0],before=structuredClone(s);
  expect(shopRecommendation(s,o,'group',s.jokers[2]).stars).toBe(stars);expect(shopReplacementTransactionFacts(s,o,s.jokers[2])).toMatchObject({status:'ready',goldAfterPurchase:after});expect(s).toEqual(before);
 });
+it('keeps the same conservative rating after the actual sale, through a cold-readable one-slot purchase',()=>{
+ const s=replacementCashRiskFixture(),o=s.shop!.offers[0],sold=send(s,{type:'SellJoker',instanceId:s.jokers[2].instanceId});
+ expect(sold).toMatchObject({gold:23,shop:{soldJoker:true}});expect(sold.jokers).toHaveLength(4);expect(readCheckpoint(makeCheckpoint(sold,[]))).toMatchObject({ok:true});
+ expect(shopOfferGuidance(sold,o)).toMatchObject({stars:2,condition:expect.stringContaining('买后19金')});
+ const ordinary=structuredClone(sold);ordinary.shop!.soldJoker=false;expect(shopOfferGuidance(ordinary,o).stars).toBe(4);
+});
 it('coupons and removed discounts are evaluated by the real sale and buy commands',()=>{
  const s=replacementCashRiskFixture();s.purchaseCoupons=1;expect(risk(s)).toBeUndefined();expect(shopRecommendation(s,s.shop!.offers[0],'group',s.jokers[2]).stars).toBe(4);
  s.purchaseCoupons=0;s.jokers[2]=r2CreateJoker('e02','held/discount',0,'none',s);assertRunInvariants(s);

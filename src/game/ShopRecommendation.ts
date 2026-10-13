@@ -46,11 +46,12 @@ const hashes=new WeakMap<object,string>();
 /** No affordability rating, RNG, future piles or stored recommendation. Cash gates use purchase cash. */
 export function shopRecommendation(state:R2RunState,offer:R2Offer,focus?:BuildFocus,sold?:R2JokerInstance):ShopRecommendation {
  const before=state;
- const cash=offer.definitionId==='e08'||sold?shopPurchaseCashFacts(state,offer,sold):undefined;
+ const resolvingReplacement=sold||state.shop?.soldJoker&&state.jokers.length===r2JokerCapacity(state)-1;
+ const cash=offer.definitionId==='e08'||resolvingReplacement?shopPurchaseCashFacts(state,offer,sold):undefined;
  // Every specified sale removes its sources/modifiers and applies real sale hooks.
  // The original state, RNG and storage remain untouched.
  if(cash?.status==='assessed')state=cash.afterSale;
- const replacementCashRisk=sold&&cash?.status==='assessed'?shopDeferredGrowthCashRisk(before,offer,sold,cash.afterSale):undefined;
+ const replacementCashRisk=resolvingReplacement&&cash?.status==='assessed'?shopDeferredGrowthCashRisk(before,offer,sold,cash.afterSale):undefined;
  const definitions=r2JokerDefinitionsFor(state);let hash=hashes.get(definitions);if(!hash){hash=stableHash(definitions);hashes.set(definitions,hash);}
  const c2=isR2RouteGrowth(state)&&hash===SHOP_C2_RECOMMENDATION_SEMANTICS;
  const audited=c2||hash===SHOP_RECOMMENDATION_SEMANTICS;
