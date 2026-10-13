@@ -1,0 +1,111 @@
+
+ RUN  v4.1.11 /workspace/dachoupai
+
+ ❯ tests/shop-holographic-source.test.ts (12 tests | 12 failed) 128ms
+   × controlled five-slot counterexample keeps holographic +2 after the specified sale 28ms
+   × enabled holographic scores +2 even when its own conditional body cannot hit 7ms
+   × none edition is not an additive multiplier source 11ms
+   × undefined edition is not an additive multiplier source 12ms
+   × foil edition is not an additive multiplier source 13ms
+   × polychrome edition is not an additive multiplier source 4ms
+   × selling the only holographic instance removes its additive source 5ms
+   × B06 uses the actual post-sale position (unseal=false) 9ms
+   × B06 uses the actual post-sale position (unseal=true) 10ms
+   × challenge disables the whole holographic instance, including its edition 12ms
+   × holographic does not override actual purchase cash 27→2 6ms
+   × holographic does not override actual purchase cash 28→4 8ms
+
+⎯⎯⎯⎯⎯⎯ Failed Tests 12 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/shop-holographic-source.test.ts > controlled five-slot counterexample keeps holographic +2 after the specified sale
+Error: Run invariant: route history identity/ledger
+ ❯ check src/domain/r2Run.ts:145:70
+
+ ❯ assertR2Invariants src/domain/r2Run.ts:162:3
+ ❯ assertRunInvariants src/domain/run.ts:354:43
+ ❯ holographicRecommendationFixture harness/fixtures/holographic-recommendation.ts:17:2
+ ❯ tests/shop-holographic-source.test.ts:17:10
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/12]⎯
+
+ FAIL  tests/shop-holographic-source.test.ts > enabled holographic scores +2 even when its own conditional body cannot hit
+Error: Run invariant: route history identity/ledger
+ ❯ check src/domain/r2Run.ts:145:70
+
+ ❯ assertR2Invariants src/domain/r2Run.ts:162:3
+ ❯ assertRunInvariants src/domain/run.ts:354:43
+ ❯ holographicRecommendationFixture harness/fixtures/holographic-recommendation.ts:17:2
+ ❯ withoutBodySource tests/shop-holographic-source.test.ts:11:28
+ ❯ tests/shop-holographic-source.test.ts:30:10
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/12]⎯
+
+ FAIL  tests/shop-holographic-source.test.ts > none edition is not an additive multiplier source
+ FAIL  tests/shop-holographic-source.test.ts > undefined edition is not an additive multiplier source
+ FAIL  tests/shop-holographic-source.test.ts > foil edition is not an additive multiplier source
+ FAIL  tests/shop-holographic-source.test.ts > polychrome edition is not an additive multiplier source
+Error: Run invariant: route history identity/ledger
+ ❯ check src/domain/r2Run.ts:145:70
+
+ ❯ assertR2Invariants src/domain/r2Run.ts:162:3
+ ❯ assertRunInvariants src/domain/run.ts:354:43
+ ❯ holographicRecommendationFixture harness/fixtures/holographic-recommendation.ts:17:2
+ ❯ withoutBodySource tests/shop-holographic-source.test.ts:11:28
+ ❯ tests/shop-holographic-source.test.ts:38:10
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/12]⎯
+
+ FAIL  tests/shop-holographic-source.test.ts > selling the only holographic instance removes its additive source
+Error: Run invariant: route history identity/ledger
+ ❯ check src/domain/r2Run.ts:145:70
+
+ ❯ assertR2Invariants src/domain/r2Run.ts:162:3
+ ❯ assertRunInvariants src/domain/run.ts:354:43
+ ❯ holographicRecommendationFixture harness/fixtures/holographic-recommendation.ts:17:2
+ ❯ withoutBodySource tests/shop-holographic-source.test.ts:11:28
+ ❯ tests/shop-holographic-source.test.ts:43:10
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/12]⎯
+
+ FAIL  tests/shop-holographic-source.test.ts > B06 uses the actual post-sale position (unseal=false)
+ FAIL  tests/shop-holographic-source.test.ts > B06 uses the actual post-sale position (unseal=true)
+Error: Run invariant: route history identity/ledger
+ ❯ check src/domain/r2Run.ts:145:70
+
+ ❯ assertR2Invariants src/domain/r2Run.ts:162:3
+ ❯ assertRunInvariants src/domain/run.ts:354:43
+ ❯ holographicRecommendationFixture harness/fixtures/holographic-recommendation.ts:17:2
+ ❯ tests/shop-holographic-source.test.ts:49:10
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/12]⎯
+
+ FAIL  tests/shop-holographic-source.test.ts > challenge disables the whole holographic instance, including its edition
+Error: Run invariant: route history identity/ledger
+ ❯ check src/domain/r2Run.ts:145:70
+
+ ❯ assertR2Invariants src/domain/r2Run.ts:162:3
+ ❯ assertRunInvariants src/domain/run.ts:354:43
+ ❯ holographicRecommendationFixture harness/fixtures/holographic-recommendation.ts:17:2
+ ❯ tests/shop-holographic-source.test.ts:58:28
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/12]⎯
+
+ FAIL  tests/shop-holographic-source.test.ts > holographic does not override actual purchase cash 27→2
+ FAIL  tests/shop-holographic-source.test.ts > holographic does not override actual purchase cash 28→4
+Error: Run invariant: route history identity/ledger
+ ❯ check src/domain/r2Run.ts:145:70
+
+ ❯ assertR2Invariants src/domain/r2Run.ts:162:3
+ ❯ assertRunInvariants src/domain/run.ts:354:43
+ ❯ holographicRecommendationFixture harness/fixtures/holographic-recommendation.ts:17:2
+ ❯ withoutBodySource tests/shop-holographic-source.test.ts:11:28
+ ❯ tests/shop-holographic-source.test.ts:63:10
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/12]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  12 failed (12)
+   Start at  13:58:03
+   Duration  1.19s (transform 774ms, setup 0ms, import 930ms, tests 128ms, environment 0ms)
+

@@ -1,0 +1,30 @@
+
+ RUN  v4.1.11 /workspace/dachoupai
+
+ ❯ tests/shop-holographic-source.test.ts (14 tests | 1 failed) 167ms
+   × controlled five-slot counterexample keeps holographic +2 after the specified sale 51ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/shop-holographic-source.test.ts > controlled five-slot counterexample keeps holographic +2 after the specified sale
+AssertionError: expected '15178' to be '12474' // Object.is equality
+
+Expected: "12474"
+Received: "15178"
+
+ ❯ tests/shop-holographic-source.test.ts:25:23
+     23|  expect(bought.jokers.find(j=>j.definitionId==='e11')!.growth.coeffici…
+     24|  const t=score(bought);expect(t.events.find(e=>e.sourceInstanceId==='h…
+     25|  expect(t.finalScore).toBe('12474');expect(t.accumulator.H).toEqual({n…
+       |                       ^
+     26|  expect(s).toEqual(before);expect(s.rng).toEqual(before.rng);
+     27| });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 13 passed (14)
+   Start at  13:59:21
+   Duration  1.01s (transform 576ms, setup 0ms, import 718ms, tests 167ms, environment 0ms)
+
