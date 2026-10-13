@@ -33,8 +33,9 @@ async function loadImage(game:Phaser.Game,asset:WarmImage,signal:AbortSignal):Pr
 function queue(scene:Phaser.Scene):ImageWarmupQueue {
   const game=scene.game;let q=queues.get(game);if(q)return q;
   let status:ReturnType<typeof imageWarmupStatus>|undefined;
-  q=new ImageWarmupQueue((asset,signal)=>loadImage(game,asset,signal),()=>status?.refresh());queues.set(game,q);status=imageWarmupStatus(q);
-  game.events.once('destroy',()=>{q!.dispose();status?.destroy();queues.delete(game);});return q;
+  q=new ImageWarmupQueue((asset,signal)=>loadImage(game,asset,signal),()=>status?.refresh());queues.set(game,q);const lowLoad=()=>['title','character-select','shop'].some(key=>game.scene.isActive(key));status=imageWarmupStatus(q,lowLoad);
+  let visible=lowLoad();const stageChanged=()=>{const next=lowLoad();if(next!==visible){visible=next;status?.refresh();}};game.events.on('poststep',stageChanged);
+  game.events.once('destroy',()=>{game.events.off('poststep',stageChanged);q!.dispose();status?.destroy();queues.delete(game);});return q;
 }
 /** Fixed 24-texture catalog: 12 previews, 6 chosen portraits, 3 starters, 3 court faces. */
 export function warmOpeningImages(scene:Phaser.Scene):void {

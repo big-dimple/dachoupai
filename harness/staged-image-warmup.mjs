@@ -40,6 +40,8 @@ async function run(name,viewport,kind){
    await page.waitForFunction(()=>['p08-court-j','p08-court-q','p08-court-k'].every(key=>window.__harness.game.textures.exists(key)));
    const saved=await page.evaluate(()=>JSON.stringify(window.__harness.game.registry.get('runController').state));
    await tapUI(page,'shop','action/start-stage',touch);await waitScene(page,'game');await page.waitForFunction(()=>window.__harness.game.scene.getScene('game').cardViews.length===8);
+   await page.locator('[data-image-warmup]').waitFor({state:'hidden'});
+   await page.waitForFunction(()=>window.__harness.game.scene.getScene('game').cardViews.every(v=>!v.dealing));
    const gameBefore=await page.evaluate(()=>JSON.stringify(window.__harness.game.registry.get('runController').state));await page.screenshot({path:`${output}/${name}-table.png`});
    const warmKeys=await page.evaluate(()=>Object.keys(window.__harness.game.textures.list).filter(k=>/^(opening-portrait|selection-portrait|avatar-|p08-court)/.test(k)));
    await page.reload({waitUntil:'domcontentloaded'});await waitScene(page,'title');await tapUI(page,'title','action/title-continue',touch);await waitScene(page,'game');await page.waitForFunction(()=>window.__harness.game.scene.getScene('game').cardViews.length===8);

@@ -1,6 +1,6 @@
 import type {ImageWarmupQueue} from './ImageWarmupQueue';
 /** Separate, nonmodal progress surface. No canvas layout or input changes. */
-export function imageWarmupStatus(queue:ImageWarmupQueue):{refresh:()=>void;destroy:()=>void} {
+export function imageWarmupStatus(queue:ImageWarmupQueue,visibleInScene:()=>boolean):{refresh:()=>void;destroy:()=>void} {
   const host=document.createElement('div'),label=document.createElement('span'),retry=document.createElement('button');
   host.dataset.imageWarmup='';host.setAttribute('role','status');host.setAttribute('aria-live','polite');
   host.style.cssText='position:fixed;top:calc(env(safe-area-inset-top,0px) + 2px);left:50%;transform:translateX(-50%);max-width:calc(100vw - 110px);z-index:40;color:#3f606b;background:#fff9eef2;border:1px solid #c7b89d;border-radius:4px;padding:2px 6px;font:12px sans-serif;display:none;white-space:nowrap;pointer-events:none';
@@ -8,6 +8,7 @@ export function imageWarmupStatus(queue:ImageWarmupQueue):{refresh:()=>void;dest
   let timer:ReturnType<typeof setTimeout>|undefined,visible=false,destroyed=false;
   const refresh=()=>{
     if(destroyed)return;
+    if(!visibleInScene()){host.style.display='none';return;}
     const states=queue.snapshot(),loaded=states.filter(s=>s.status==='loaded').length,failed=states.filter(s=>s.status==='failed').length,pending=states.length-loaded-failed;
     if(!visible&&pending&&!timer)timer=setTimeout(()=>{timer=undefined;visible=true;refresh();},700);
     if(!pending&&!failed){clearTimeout(timer);timer=undefined;host.style.display='none';return;}
