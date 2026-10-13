@@ -1,0 +1,2597 @@
+{
+  "head": "586f70f74cbc8d628d649f4ea7ac0e25f4fab312",
+  "sourceTree": "42fccbf84292ac7bf86cd10e4af90d189705048f",
+  "sourceChanges": "",
+  "fixtureSha256": "35c5abcebda828eb86ec816e551a48c4183d7f1803a9e08f6d9d171852de93f2",
+  "harnessSha256": "9c937a1f86b067a2b296fdac95539d66039b37f52738be3f3599a3a2e7ec84f4",
+  "scope": "OPTION A: CONTROLLED 20-card five-star fixture, retained original a06/b06/a11 rules. Mobile native read-only compare/detail/cancel. Not natural play, physical phone or cross-route five-star calibration.",
+  "cases": [
+    {
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "errors": [],
+      "screenshots": [
+        "390-five-star-shelf.png",
+        "390-b06-compare.png",
+        "390-growth-cost.png",
+        "390-b06-detail.png",
+        "390-a11-compare.png",
+        "390-a11-detail.png",
+        "390-a06-compare.png",
+        "390-a06-detail.png"
+      ],
+      "offers": [
+        {
+          "id": "b06",
+          "guidance": {
+            "stars": 5,
+            "label": "推荐指数 ★★★★★",
+            "reason": "成组核心逐牌重触",
+            "condition": "最大原始同点组有效牌",
+            "recommendation": {
+              "stars": 5,
+              "reason": "成组核心逐牌重触",
+              "condition": "最大原始同点组有效牌",
+              "stage": "early",
+              "combination": "组合潜力：同点重触可接加成，待触发。\n组合记录：上手三拍子、对上眼、长期捧场共同计分（新牌未参与）。",
+              "facts": {
+                "cards": 20,
+                "largest": 8,
+                "second": 4,
+                "largestSuit": 5,
+                "groupConcentrated": true,
+                "flushConcentrated": false,
+                "straightConcentrated": false,
+                "ordinaryStraightPossible": false,
+                "ordinaryFlushPossible": true,
+                "boostedGroup": true,
+                "houseCardPayoff": true,
+                "boostedHouse": true,
+                "groupRecord": true,
+                "houseRecord": true,
+                "flushRecord": false,
+                "qualifiedRecord": true,
+                "heldCardPayoff": true,
+                "heldGroupPayoff": true,
+                "retriggerSource": true,
+                "additiveSource": true,
+                "disabledSourceCount": 0,
+                "potentialStages": 23,
+                "growthWindow": true,
+                "initialGrowth": "{}",
+                "straightFamilyPossible": false,
+                "flushFamilyPossible": true,
+                "flushHousePossible": false,
+                "flushFivePossible": false,
+                "routeGrowth": "{\"before\":{\"clears\":1,\"G\":1,\"S\":0,\"F\":0},\"factors\":{\"G\":{\"n\":\"1\",\"d\":\"1\"},\"S\":{\"n\":\"1\",\"d\":\"1\"},\"F\":{\"n\":\"1\",\"d\":\"1\"}},\"preserved\":\"本局路线资历保留，出售不丢。\",\"detail\":\"本局路线资历：成功清场1次；G 1次 / ×1；S 0次 / ×1；F 0次 / ×1。\\n资历不绑定起手或持牌实例，出售不清零；按实际主手族读取，可重叠的族分别读取。每族前三次合格清场因子为1，清场后才入账，下手读取；本次买卖不增加资历。\"}"
+              },
+              "detail": "成组核心逐牌重触；最大原始同点组有效牌。成组牌型中，主手原始计分牌里张数最多的同点组，平手取左边先出现的一组；该组有效牌各再计一次。失效牌参与选组，不改选其他组；每牌额外最多4次，深度1。\n公开依据：最大同点组8张，前两组12/20张；最大花色5/20张；已持逐牌加成有；剩余场次窗口23。\n组合潜力：同点重触可接加成，待触发。\n组合记录：上手三拍子、对上眼、长期捧场共同计分（新牌未参与）。\n共同计分不代表额外奖励或下手必触发，新现货尚未加入上手记录。\n推荐指数不等于稀有度或路线契合；星星不代表必买或稳赚，需结合替换损失。\n基于公开构筑与当前阶段的推荐；不表示指定替换净更强。\n本局路线资历：成功清场1次；G 1次 / ×1；S 0次 / ×1；F 0次 / ×1。\n资历不绑定起手或持牌实例，出售不清零；按实际主手族读取，可重叠的族分别读取。每族前三次合格清场因子为1，清场后才入账，下手读取；本次买卖不增加资历。"
+            },
+            "operation": "需替换",
+            "operationShort": "需替换",
+            "purchaseConditionLosses": [],
+            "cashBasis": "未选替换：买后余额待核",
+            "detail": "成组核心逐牌重触；最大原始同点组有效牌。成组牌型中，主手原始计分牌里张数最多的同点组，平手取左边先出现的一组；该组有效牌各再计一次。失效牌参与选组，不改选其他组；每牌额外最多4次，深度1。\n公开依据：最大同点组8张，前两组12/20张；最大花色5/20张；已持逐牌加成有；剩余场次窗口23。\n组合潜力：同点重触可接加成，待触发。\n组合记录：上手三拍子、对上眼、长期捧场共同计分（新牌未参与）。\n共同计分不代表额外奖励或下手必触发，新现货尚未加入上手记录。\n推荐指数不等于稀有度或路线契合；星星不代表必买或稳赚，需结合替换损失。\n基于公开构筑与当前阶段的推荐；不表示指定替换净更强。\n本局路线资历：成功清场1次；G 1次 / ×1；S 0次 / ×1；F 0次 / ×1。\n资历不绑定起手或持牌实例，出售不清零；按实际主手族读取，可重叠的族分别读取。每族前三次合格清场因子为1，清场后才入账，下手读取；本次买卖不增加资历。\n需替换\n未选替换：买后余额待核",
+            "routes": [
+              "group"
+            ],
+            "routeCaption": "同点"
+          },
+          "bySlot": [
+            {
+              "stars": 5,
+              "label": "推荐指数 ★★★★★",
+              "reason": "成组核心逐牌重触",
+              "condition": "最大原始同点组有效牌",
+              "recommendation": {
+                "stars": 5,
+                "reason": "成组核心逐牌重触",
+                "condition": "最大原始同点组有效牌",
+                "stage": "early",
+                "combination": "组合潜力：同点重触可接加成，待触发。\n组合记录：上手对上眼、长期捧场共同计分（新牌未参与）。",
+                "facts": {
+                  "cards": 20,
+                  "largest": 8,
+                  "second": 4,
+                  "largestSuit": 5,
+                  "groupConcentrated": true,
+                  "flushConcentrated": false,
+                  "straightConcentrated": false,
+                  "ordinaryStraightPossible": false,
+                  "ordinaryFlushPossible": true,
+                  "boostedGroup": true,
+                  "houseCardPayoff": true,
+                  "boostedHouse": true,
+                  "groupRecord": true,
+                  "houseRecord": true,
+                  "flushRecord": false,
+                  "qualifiedRecord": true,
+                  "heldCardPayoff": true,
+                  "heldGroupPayoff": true,
+                  "retriggerSource": false,
+                  "additiveSource": true,
+                  "disabledSourceCount": 0,
+                  "potentialStages": 23,
+                  "growthWindow": true,
+                  "initialGrowth": "{}",
+                  "straightFamilyPossible": false,
+                  "flushFamilyPossible": true,
+                  "flushHousePossible": false,
+                  "flushFivePossible": false,
+                  "routeGrowth": "{\"before\":{\"clears\":1,\"G\":1,\"S\":0,\"F\":0},\"factors\":{\"G\":{\"n\":\"1\",\"d\":\"1\"},\"S\":{\"n\":\"1\",\"d\":\"1\"},\"F\":{\"n\":\"1\",\"d\":\"1\"}},\"preserved\":\"本局路线资历保留，出售不丢。\",\"detail\":\"本局路线资历：成功清场1次；G 1次 / ×1；S 0次 / ×1；F 0次 / ×1。\\n资历不绑定起手或持牌实例，出售不清零；按实际主手族读取，可重叠的族分别读取。每族前三次合格清场因子为1，清场后才入账，下手读取；本次买卖不增加资历。\"}"
+                },
+                "detail": "成组核心逐牌重触；最大原始同点组有效牌。成组牌型中，主手原始计分牌里张数最多的同点组，平手取左边先出现的一组；该组有效牌各再计一次。失效牌参与选组，不改选其他组；每牌额外最多4次，深度1。\n公开依据：最大同点组8张，前两组12/20张；最大花色5/20张；已持逐牌加成有；剩余场次窗口23。\n组合潜力：同点重触可接加成，待触发。\n组合记录：上手对上眼、长期捧场共同计分（新牌未参与）。\n共同计分不代表额外奖励或下手必触发，新现货尚未加入上手记录。\n推荐指数不等于稀有度或路线契合；星星不代表必买或稳赚，需结合替换损失。\n基于公开构筑与当前阶段的推荐；不表示指定替换净更强。\n本局路线资历：成功清场1次；G 1次 / ×1；S 0次 / ×1；F 0次 / ×1。\n资历不绑定起手或持牌实例，出售不清零；按实际主手族读取，可重叠的族分别读取。每族前三次合格清场因子为1，清场后才入账，下手读取；本次买卖不增加资历。"
+              },
+              "operation": "需替换",
+              "operationShort": "需替换",
+              "purchaseConditionLosses": [],
+              "cashBasis": "指定第1槽先售后买",
+              "replaceId": "held/d11",
+              "detail": "成组核心逐牌重触；最大原始同点组有效牌。成组牌型中，主手原始计分牌里张数最多的同点组，平手取左边先出现的一组；该组有效牌各再计一次。失效牌参与选组，不改选其他组；每牌额外最多4次，深度1。\n公开依据：最大同点组8张，前两组12/20张；最大花色5/20张；已持逐牌加成有；剩余场次窗口23。\n组合潜力：同点重触可接加成，待触发。\n组合记录：上手对上眼、长期捧场共同计分（新牌未参与）。\n共同计分不代表额外奖励或下手必触发，新现货尚未加入上手记录。\n推荐指数不等于稀有度或路线契合；星星不代表必买或稳赚，需结合替换损失。\n基于公开构筑与当前阶段的推荐；不表示指定替换净更强。\n本局路线资历：成功清场1次；G 1次 / ×1；S 0次 / ×1；F 0次 / ×1。\n资历不绑定起手或持牌实例，出售不清零；按实际主手族读取，可重叠的族分别读取。每族前三次合格清场因子为1，清场后才入账，下手读取；本次买卖不增加资历。\n需替换\n指定第1槽先售后买",
+              "routes": [
+                "group"
+              ],
+              "routeCaption": "同点"
+            },
+            {
+              "stars": 5,
+              "label": "推荐指数 ★★★★★",
+              "reason": "成组核心逐牌重触",
+              "condition": "最大原始同点组有效牌",
+              "recommendation": {
+                "stars": 5,
+                "reason": "成组核心逐牌重触",
+                "condition": "最大原始同点组有效牌",
+                "stage": "early",
+                "combination": "组合潜力：同点重触可接加成，待触发。\n组合记录：上手三拍子、长期捧场共同计分（新牌未参与）。",
+                "facts": {
+                  "cards": 20,
+                  "largest": 8,
+                  "second": 4,
+                  "largestSuit": 5,
+                  "groupConcentrated": true,
+                  "flushConcentrated": false,
+                  "straightConcentrated": false,
+                  "ordinaryStraightPossible": false,
+                  "ordinaryFlushPossible": true,
+                  "boostedGroup": true,
+                  "houseCardPayoff": true,
+                  "boostedHouse": true,
+                  "groupRecord": true,
+                  "houseRecord": true,
+                  "flushRecord": false,
+                  "qualifiedRecord": true,
+                  "heldCardPayoff": false,
+                  "heldGroupPayoff": false,
+                  "retriggerSource": true,
+                  "additiveSource": false,
+                  "disabledSourceCount": 0,
+                  "potentialStages": 23,
+                  "growthWindow": true,
+                  "initialGrowth": "{}",
+                  "straightFamilyPossible": false,
+                  "flushFamilyPossible": true,
+                  "flushHousePossible": false,
+                  "flushFivePossible": false,
+                  "routeGrowth": "{\"before\":{\"clears\":1,\"G\":1,\"S\":0,\"F\":0},\"factors\":{\"G\":{\"n\":\"1\",\"d\":\"1\"},\"S\":{\"n\":\"1\",\"d\":\"1\"},\"F\":{\"n\":\"1\",\"d\":\"1\"}},\"preserved\":\"本局路线资历保留，出售不丢。\",\"detail\":\"本局路线资历：成功清场1次；G 1次 / ×1；S 0次 / ×1；F 0次 / ×1。\\n资历不绑定起手或持牌实例，出售不清零；按实际主手族读取，可重叠的族分别读取。每族前三次合格清场因子为1，清场后才入账，下手读取；本次买卖不增加资历。\"}"
+                },
+                "detail": "成组核心逐牌重触；最大原始同点组有效牌。成组牌型中，主手原始计分牌里张数最多的同点组，平手取左边先出现的一组；该组有效牌各再计一次。失效牌参与选组，不改选其他组；每牌额外最多4次，深度1。\n公开依据：最大同点组8张，前两组12/20张；最大花色5/20张；已持逐牌加成无；剩余场次窗口23。\n组合潜力：同点重触可接加成，待触发。\n组合记录：上手三拍子、长期捧场共同计分（新牌未参与）。\n共同计分不代表额外奖励或下手必触发，新现货尚未加入上手记录。\n推荐指数不等于稀有度或路线契合；星星不代表必买或稳赚，需结合替换损失。\n基于公开构筑与当前阶段的推荐；不表示指定替换净更强。\n本局路线资历：成功清场1次；G 1次 / ×1；S 0次 / ×1；F 0次 / ×1。\n资历不绑定起手或持牌实例，出售不清零；按实际主手族读取，可重叠的族分别读取。每族前三次合格清场因子为1，清场后才入账，下手读取；本次买卖不增加资历。"
+              },
+              "operation": "需替换",
+              "operationShort": "需替换",
+              "purchaseConditionLosses": [],
+              "cashBasis": "指定第2槽先售后买",
+              "replaceId": "held/b02",
+              "detail": "成组核心逐牌重触；最大原始同点组有效牌。成组牌型中，主手原始计分牌里张数最多的同点组，平手取左边先出现的一组；该组有效牌各再计一次。失效牌参与选组，不改选其他组；每牌额外最多4次，深度1。\n公开依据：最大同点组8张，前两组12/20张；最大花色5/20张；已持逐牌加成无；剩余场次窗口23。\n组合潜力：同点重触可接加成，待触发。\n组合记录：上手三拍子、长期捧场共同计分（新牌未参与）。\n共同计分不代表额外奖励或下手必触发，新现货尚未加入上手记录。\n推荐指数不等于稀有度或路线契合；星星不代表必买或稳赚，需结合替换损失。\n基于公开构筑与当前阶段的推荐；不表示指定替换净更强。\n本局路线资历：成功清场1次；G 1次 / ×1；S 0次 / ×1；F 0次 / ×1。\n资历不绑定起手或持牌实例，出售不清零；按实际主手族读取，可重叠的族分别读取。每族前三次合格清场因子为1，清场后才入账，下手读取；本次买卖不增加资历。\n需替换\n指定第2槽先售后买",
+              "routes": [
+                "group"
+              ],
+              "routeCaption": "同点"
+            },
+            {
+              "stars": 5,
+              "label": "推荐指数 ★★★★★",
+              "reason": "成组核心逐牌重触",
+              "condition": "最大原始同点组有效牌",
+              "recommendation": {
+                "stars": 5,
+                "reason": "成组核心逐牌重触",
+                "condition": "最大原始同点组有效牌",
+                "stage": "early",
+                "combination": "组合潜力：同点重触可接加成，待触发。\n组合记录：上手三拍子、对上眼共同计分（新牌未参与）。",
+                "facts": {
+                  "cards": 20,
+                  "largest": 8,
+                  "second": 4,
+                  "largestSuit": 5,
+                  "groupConcentrated": true,
+                  "flushConcentrated": false,
+                  "straightConcentrated": false,
+                  "ordinaryStraightPossible": false,
+                  "ordinaryFlushPossible": true,
+                  "boostedGroup": true,
+                  "houseCardPayoff": true,
+                  "boostedHouse": true,
+                  "groupRecord": true,
+                  "houseRecord": true,
+                  "flushRecord": false,
+                  "qualifiedRecord": true,
+                  "heldCardPayoff": true,
+                  "heldGroupPayoff": true,
+                  "retriggerSource": true,
+                  "additiveSource": true,
+                  "disabledSourceCount": 0,
+                  "potentialStages": 23,
+                  "growthWindow": true,
+                  "initialGrowth": "{}",
+                  "straightFamilyPossible": false,
+                  "flushFamilyPossible": true,
+                  "flushHousePossible": false,
+                  "flushFivePossible": false,
+                  "routeGrowth": "{\"before\":{\"clears\":1,\"G\":1,\"S\":0,\"F\":0},\"factors\":{\"G\":{\"n\":\"1\",\"d\":\"1\"},\"S\":{\"n\":\"1\",\"d\":\"1\"},\"F\":{\"n\":\"1\",\"d\":\"1\"}},\"preserved\":\"本局路线资历保留，出售不丢。\",\"detail\":\"本局路线资历：成功清场1次；G 1次 / ×1；S 0次 / ×1；F 0次 / ×1。\\n资历不绑定起手或持牌实例，出售不清零；按实际主手族读取，可重叠的族分别读取。每族前三次合格清场因子为1，清场后才入账，下手读取；本次买卖不增加资历。\"}"
+                },
+                "detail": "成组核心逐牌重触；最大原始同点组有效牌。成组牌型中，主手原始计分牌里张数最多的同点组，平手取左边先出现的一组；该组有效牌各再计一次。失效牌参与选组，不改选其他组；每牌额外最多4次，深度1。\n公开依据：最大同点组8张，前两组12/20张；最大花色5/20张；已持逐牌加成有；剩余场次窗口23。\n组合潜力：同点重触可接加成，待触发。\n组合记录：上手三拍子、对上眼共同计分（新牌未参与）。\n共同计分不代表额外奖励或下手必触发，新现货尚未加入上手记录。\n推荐指数不等于稀有度或路线契合；星星不代表必买或稳赚，需结合替换损失。\n基于公开构筑与当前阶段的推荐；不表示指定替换净更强。\n本局路线资历：成功清场1次；G 1次 / ×1；S 0次 / ×1；F 0次 / ×1。\n资历不绑定起手或持牌实例，出售不清零；按实际主手族读取，可重叠的族分别读取。每族前三次合格清场因子为1，清场后才入账，下手读取；本次买卖不增加资历。"
+              },
+              "operation": "需替换",
+              "operationShort": "需替换",
+              "purchaseConditionLosses": [],
+              "cashBasis": "指定第3槽先售后买",
+              "replaceId": "held/e11",
+              "detail": "成组核心逐牌重触；最大原始同点组有效牌。成组牌型中，主手原始计分牌里张数最多的同点组，平手取左边先出现的一组；该组有效牌各再计一次。失效牌参与选组，不改选其他组；每牌额外最多4次，深度1。\n公开依据：最大同点组8张，前两组12/20张；最大花色5/20张；已持逐牌加成有；剩余场次窗口23。\n组合潜力：同点重触可接加成，待触发。\n组合记录：上手三拍子、对上眼共同计分（新牌未参与）。\n共同计分不代表额外奖励或下手必触发，新现货尚未加入上手记录。\n推荐指数不等于稀有度或路线契合；星星不代表必买或稳赚，需结合替换损失。\n基于公开构筑与当前阶段的推荐；不表示指定替换净更强。\n本局路线资历：成功清场1次；G 1次 / ×1；S 0次 / ×1；F 0次 / ×1。\n资历不绑定起手或持牌实例，出售不清零；按实际主手族读取，可重叠的族分别读取。每族前三次合格清场因子为1，清场后才入账，下手读取；本次买卖不增加资历。\n需替换\n指定第3槽先售后买",
+              "routes": [
+                "group"
+              ],
+              "routeCaption": "同点"
+            },
+            {
+              "stars": 5,
+              "label": "推荐指数 ★★★★★",
+              "reason": "成组核心逐牌重触",
+              "condition": "最大原始同点组有效牌",
+              "recommendation": {
+                "stars": 5,
+                "reason": "成组核心逐牌重触",
+                "condition": "最大原始同点组有效牌",
+                "stage": "early",
+                "combination": "组合潜力：同点重触可接加成，待触发。\n组合记录：上手三拍子、对上眼、长期捧场共同计分（新牌未参与）。",
+                "facts": {
+                  "cards": 20,
+                  "largest": 8,
+                  "second": 4,
+                  "largestSuit": 5,
+                  "groupConcentrated": true,
+                  "flushConcentrated": false,
+                  "straightConcentrated": false,
+                  "ordinaryStraightPossible": false,
+                  "ordinaryFlushPossible": true,
+                  "boostedGroup": true,
+                  "houseCardPayoff": true,
+                  "boostedHouse": true,
+                  "groupRecord": true,
+                  "houseRecord": true,
+                  "flushRecord": false,
+                  "qualifiedRecord": true,
+                  "heldCardPayoff": true,
+                  "heldGroupPayoff": true,
+                  "retriggerSource": true,
+                  "additiveSource": true,
+                  "disabledSourceCount": 0,
+                  "potentialStages": 23,
+                  "growthWindow": true,
+                  "initialGrowth": "{}",
+                  "straightFamilyPossible": false,
+                  "flushFamilyPossible": true,
+                  "flushHousePossible": false,
+                  "flushFivePossible": false,
+                  "routeGrowth": "{\"before\":{\"clears\":1,\"G\":1,\"S\":0,\"F\":0},\"factors\":{\"G\":{\"n\":\"1\",\"d\":\"1\"},\"S\":{\"n\":\"1\",\"d\":\"1\"},\"F\":{\"n\":\"1\",\"d\":\"1\"}},\"preserved\":\"本局路线资历保留，出售不丢。\",\"detail\":\"本局路线资历：成功清场1次；G 1次 / ×1；S 0次 / ×1；F 0次 / ×1。\\n资历不绑定起手或持牌实例，出售不清零；按实际主手族读取，可重叠的族分别读取。每族前三次合格清场因子为1，清场后才入账，下手读取；本次买卖不增加资历。\"}"
+                },
+                "detail": "成组核心逐牌重触；最大原始同点组有效牌。成组牌型中，主手原始计分牌里张数最多的同点组，平手取左边先出现的一组；该组有效牌各再计一次。失效牌参与选组，不改选其他组；每牌额外最多4次，深度1。\n公开依据：最大同点组8张，前两组12/20张；最大花色5/20张；已持逐牌加成有；剩余场次窗口23。\n组合潜力：同点重触可接加成，待触发。\n组合记录：上手三拍子、对上眼、长期捧场共同计分（新牌未参与）。\n共同计分不代表额外奖励或下手必触发，新现货尚未加入上手记录。\n推荐指数不等于稀有度或路线契合；星星不代表必买或稳赚，需结合替换损失。\n基于公开构筑与当前阶段的推荐；不表示指定替换净更强。\n本局路线资历：成功清场1次；G 1次 / ×1；S 0次 / ×1；F 0次 / ×1。\n资历不绑定起手或持牌实例，出售不清零；按实际主手族读取，可重叠的族分别读取。每族前三次合格清场因子为1，清场后才入账，下手读取；本次买卖不增加资历。"
+              },
+              "operation": "需替换",
+              "operationShort": "需替换",
+              "purchaseConditionLosses": [],
+              "cashBasis": "指定第4槽先售后买",
+              "replaceId": "held/e01",
+              "detail": "成组核心逐牌重触；最大原始同点组有效牌。成组牌型中，主手原始计分牌里张数最多的同点组，平手取左边先出现的一组；该组有效牌各再计一次。失效牌参与选组，不改选其他组；每牌额外最多4次，深度1。\n公开依据：最大同点组8张，前两组12/20张；最大花色5/20张；已持逐牌加成有；剩余场次窗口23。\n组合潜力：同点重触可接加成，待触发。\n组合记录：上手三拍子、对上眼、长期捧场共同计分（新牌未参与）。\n共同计分不代表额外奖励或下手必触发，新现货尚未加入上手记录。\n推荐指数不等于稀有度或路线契合；星星不代表必买或稳赚，需结合替换损失。\n基于公开构筑与当前阶段的推荐；不表示指定替换净更强。\n本局路线资历：成功清场1次；G 1次 / ×1；S 0次 / ×1；F 0次 / ×1。\n资历不绑定起手或持牌实例，出售不清零；按实际主手族读取，可重叠的族分别读取。每族前三次合格清场因子为1，清场后才入账，下手读取；本次买卖不增加资历。\n需替换\n指定第4槽先售后买",
+              "routes": [
+                "group"
+              ],
+              "routeCaption": "同点"
+            },
+            {
+              "stars": 5,
+              "label": "推荐指数 ★★★★★",
+              "reason": "成组核心逐牌重触",
+              "condition": "最大原始同点组有效牌",
+              "recommendation": {
+                "stars": 5,
+                "reason": "成组核心逐牌重触",
+                "condition": "最大原始同点组有效牌",
+                "stage": "early",
+                "combination": "组合潜力：同点重触可接加成，待触发。\n组合记录：上手三拍子、对上眼、长期捧场共同计分（新牌未参与）。",
+                "facts": {
+                  "cards": 20,
+                  "largest": 8,
+                  "second": 4,
+                  "largestSuit": 5,
+                  "groupConcentrated": true,
+                  "flushConcentrated": false,
+                  "straightConcentrated": false,
+                  "ordinaryStraightPossible": false,
+                  "ordinaryFlushPossible": true,
+                  "boostedGroup": true,
+                  "houseCardPayoff": true,
+                  "boostedHouse": true,
+                  "groupRecord": true,
+                  "houseRecord": true,
+                  "flushRecord": false,
+                  "qualifiedRecord": true,
+                  "heldCardPayoff": true,
+                  "heldGroupPayoff": true,
+                  "retriggerSource": true,
+                  "additiveSource": true,
+                  "disabledSourceCount": 0,
+                  "potentialStages": 23,
+                  "growthWindow": true,
+                  "initialGrowth": "{}",
+                  "straightFamilyPossible": false,
+                  "flushFamilyPossible": true,
+                  "flushHousePossible": false,
+                  "flushFivePossible": false,
+                  "routeGrowth": "{\"before\":{\"clears\":1,\"G\":1,\"S\":0,\"F\":0},\"factors\":{\"G\":{\"n\":\"1\",\"d\":\"1\"},\"S\":{\"n\":\"1\",\"d\":\"1\"},\"F\":{\"n\":\"1\",\"d\":\"1\"}},\"preserved\":\"本局路线资历保留，出售不丢。\",\"detail\":\"本局路线资历：成功清场1次；G 1次 / ×1；S 0次 / ×1；F 0次 / ×1。\\n资历不绑定起手或持牌实例，出售不清零；按实际主手族读取，可重叠的族分别读取。每族前三次合格清场因子为1，清场后才入账，下手读取；本次买卖不增加资历。\"}"
+                },
+                "detail": "成组核心逐牌重触；最大原始同点组有效牌。成组牌型中，主手原始计分牌里张数最多的同点组，平手取左边先出现的一组；该组有效牌各再计一次。失效牌参与选组，不改选其他组；每牌额外最多4次，深度1。\n公开依据：最大同点组8张，前两组12/20张；最大花色5/20张；已持逐牌加成有；剩余场次窗口23。\n组合潜力：同点重触可接加成，待触发。\n组合记录：上手三拍子、对上眼、长期捧场共同计分（新牌未参与）。\n共同计分不代表额外奖励或下手必触发，新现货尚未加入上手记录。\n推荐指数不等于稀有度或路线契合；星星不代表必买或稳赚，需结合替换损失。\n基于公开构筑与当前阶段的推荐；不表示指定替换净更强。\n本局路线资历：成功清场1次；G 1次 / ×1；S 0次 / ×1；F 0次 / ×1。\n资历不绑定起手或持牌实例，出售不清零；按实际主手族读取，可重叠的族分别读取。每族前三次合格清场因子为1，清场后才入账，下手读取；本次买卖不增加资历。"
+              },
+              "operation": "需替换",
+              "operationShort": "需替换",
+              "purchaseConditionLosses": [],
+              "cashBasis": "指定第5槽先售后买",
+              "replaceId": "held/e04",
+              "detail": "成组核心逐牌重触；最大原始同点组有效牌。成组牌型中，主手原始计分牌里张数最多的同点组，平手取左边先出现的一组；该组有效牌各再计一次。失效牌参与选组，不改选其他组；每牌额外最多4次，深度1。\n公开依据：最大同点组8张，前两组12/20张；最大花色5/20张；已持逐牌加成有；剩余场次窗口23。\n组合潜力：同点重触可接加成，待触发。\n组合记录：上手三拍子、对上眼、长期捧场共同计分（新牌未参与）。\n共同计分不代表额外奖励或下手必触发，新现货尚未加入上手记录。\n推荐指数不等于稀有度或路线契合；星星不代表必买或稳赚，需结合替换损失。\n基于公开构筑与当前阶段的推荐；不表示指定替换净更强。\n本局路线资历：成功清场1次；G 1次 / ×1；S 0次 / ×1；F 0次 / ×1。\n资历不绑定起手或持牌实例，出售不清零；按实际主手族读取，可重叠的族分别读取。每族前三次合格清场因子为1，清场后才入账，下手读取；本次买卖不增加资历。\n需替换\n指定第5槽先售后买",
+              "routes": [
+                "group"
+              ],
+              "routeCaption": "同点"
+            }
+          ],
+          "compare": "现货与已持\n再说一遍 · 持有与现货比较\n\n推荐指数 ★★★★★\n成组核心逐牌重触 · 最大原始同点组有效牌\n本局路线资历保留，出售不丢。\n\n第 1 槽 · 三拍子\n\n返4金 · 实付8金 · 买后54金\n长期捧场：系数×1.6保留 · 下一场未售成长失效\n推荐指数 ★★★★★ · 成组核心逐牌重触\n\n管理这张\n条件、配合与完整损失\n第 2 槽 · 对上眼\n\n返4金 · 实付8金 · 买后54金\n长期捧场：系数×1.6保留 · 下一场未售成长失效\n推荐指数 ★★★★★ · 成组核心逐牌重触\n\n管理这张\n条件、配合与完整损失\n第 3 槽 · 长期捧场\n\n返4金 · 实付8金 · 买后54金\n失去：系数×1.6\n推荐指数 ★★★★★ · 成组核心逐牌重触\n\n管理这张\n条件、配合与完整损失\n第 4 槽 · 小费盒\n\n返4金 · 实付8金 · 买后54金\n长期捧场：系数×1.6保留 · 下一场未售成长失效\n推荐指数 ★★★★★ · 成组核心逐牌重触\n\n管理这张\n条件、配合与完整损失\n第 5 槽 · 滚个零头\n\n返4金 · 实付8金 · 买后54金\n长期捧场：系数×1.6保留 · 下一场未售成长失效\n推荐指数 ★★★★★ · 成组核心逐牌重触\n\n管理这张\n条件、配合与完整损失\n\n按现持槽位逐张比较。保留、换方向或留金入场都可以；这里不排序推荐，也不自动卖买。\n\n返回购买详情\n更换培养方向\n关闭",
+          "detail": "现货 · 确认后付款\n再说一遍 · 购买详情\n\n适用：同点\n\n✦ 稀有\n\n计分牌逐张生效\n\n打出对子、两对、三条、葫芦等同点数组合时，主手原始计分牌里张数最多的同点组\n\n各张有效牌再计1次\n同样多时取当前主手从左到右最先出现的一组\n失效牌参与选组，但不再计，也不改选另一组。\n只加给能计分的牌\n附带/停用牌不获加成。\n现在：尚未购买，买入后才会生效\n\n推荐指数 ★★★★★\n成组核心逐牌重触 · 最大原始同点组有效牌\n组合潜力：同点重触可接加成，待触发。\n组合记录：上手三拍子、对上眼、长期捧场共同计分（新牌未参与）。\n直接买入 · 实付 8 金 · 余额 58 → 50 金\n5个槽位已满。请先关闭详情，点随身牌确认出售，再购买。\n\n版次：普通（无额外计分）\n\n高清细节加载中…\n规则与操作\n比较替换\n邀请 · 8 金\n取消",
+          "detailGeometry": {
+            "line": {
+              "x": 52,
+              "y": 338.515625,
+              "right": 200.171875,
+              "bottom": 360.515625
+            },
+            "pane": {
+              "x": 36,
+              "y": 303.140625,
+              "right": 354,
+              "bottom": 666
+            }
+          }
+        },
+        {
+          "id": "a11",
+          "guidance": {
+            "stars": 5,
+            "label": "推荐指数 ★★★★★",
+            "reason": "葫芦整组重触",
+            "condition": "只读葫芦或同花葫芦",
+            "recommendation": {
+              "stars": 5,
+              "reason": "葫芦整组重触",
+              "condition": "只读葫芦或同花葫芦",
+              "stage": "early",
+              "combination": "组合潜力：葫芦重触可接加成，待触发。\n组合记录：上手三拍子、对上眼、长期捧场共同计分（新牌未参与）。",
+              "facts": {
+                "cards": 20,
+                "largest": 8,
+                "second": 4,
+                "largestSuit": 5,
+                "groupConcentrated": true,
+                "flushConcentrated": false,
+                "straightConcentrated": false,
+                "ordinaryStraightPossible": false,
+                "ordinaryFlushPossible": true,
+                "boostedGroup": true,
+                "houseCardPayoff": true,
+                "boostedHouse": true,
+                "groupRecord": true,
+                "houseRecord": true,
+                "flushRecord": false,
+                "qualifiedRecord": true,
+                "heldCardPayoff": true,
+                "heldGroupPayoff": true,
+                "retriggerSource": true,
+                "additiveSource": true,
+                "disabledSourceCount": 0,
+                "potentialStages": 23,
+                "growthWindow": true,
+                "initialGrowth": "{}",
+                "straightFamilyPossible": false,
+                "flushFamilyPossible": true,
+                "flushHousePossible": false,
+                "flushFivePossible": false,
+                "routeGrowth": "{\"before\":{\"clears\":1,\"G\":1,\"S\":0,\"F\":0},\"factors\":{\"G\":{\"n\":\"1\",\"d\":\"1\"},\"S\":{\"n\":\"1\",\"d\":\"1\"},\"F\":{\"n\":\"1\",\"d\":\"1\"}},\"preserved\":\"本局路线资历保留，出售不丢。\",\"detail\":\"本局路线资历：成功清场1次；G 1次 / ×1；S 0次 / ×1；F 0次 / ×1。\\n资历不绑定起手或持牌实例，出售不清零；按实际主手族读取，可重叠的族分别读取。每族前三次合格清场因子为1，清场后才入账，下手读取；本次买卖不增加资历。\"}"
+              },
+              "detail": "葫芦整组重触；只读葫芦或同花葫芦。主手为葫芦或同花葫芦时，每张有效计分牌请求额外重触发一次；助攻牌不触发。\n公开依据：最大同点组8张，前两组12/20张；最大花色5/20张；已持逐牌加成有；剩余场次窗口23。\n组合潜力：葫芦重触可接加成，待触发。\n组合记录：上手三拍子、对上眼、长期捧场共同计分（新牌未参与）。\n共同计分不代表额外奖励或下手必触发，新现货尚未加入上手记录。\n推荐指数不等于稀有度或路线契合；星星不代表必买或稳赚，需结合替换损失。\n基于公开构筑与当前阶段的推荐；不表示指定替换净更强。\n本局路线资历：成功清场1次；G 1次 / ×1；S 0次 / ×1；F 0次 / ×1。\n资历不绑定起手或持牌实例，出售不清零；按实际主手族读取，可重叠的族分别读取。每族前三次合格清场因子为1，清场后才入账，下手读取；本次买卖不增加资历。"
+            },
+            "operation": "需替换",
+            "operationShort": "需替换",
+            "purchaseConditionLosses": [],
+            "cashBasis": "未选替换：买后余额待核",
+            "detail": "葫芦整组重触；只读葫芦或同花葫芦。主手为葫芦或同花葫芦时，每张有效计分牌请求额外重触发一次；助攻牌不触发。\n公开依据：最大同点组8张，前两组12/20张；最大花色5/20张；已持逐牌加成有；剩余场次窗口23。\n组合潜力：葫芦重触可接加成，待触发。\n组合记录：上手三拍子、对上眼、长期捧场共同计分（新牌未参与）。\n共同计分不代表额外奖励或下手必触发，新现货尚未加入上手记录。\n推荐指数不等于稀有度或路线契合；星星不代表必买或稳赚，需结合替换损失。\n基于公开构筑与当前阶段的推荐；不表示指定替换净更强。\n本局路线资历：成功清场1次；G 1次 / ×1；S 0次 / ×1；F 0次 / ×1。\n资历不绑定起手或持牌实例，出售不清零；按实际主手族读取，可重叠的族分别读取。每族前三次合格清场因子为1，清场后才入账，下手读取；本次买卖不增加资历。\n需替换\n未选替换：买后余额待核",
+            "routes": [
+              "group"
+            ],
+            "routeCaption": "同点"
+          },
+          "bySlot": [
+            {
+              "stars": 5,
+              "label": "推荐指数 ★★★★★",
+              "reason": "葫芦整组重触",
+              "condition": "只读葫芦或同花葫芦",
+              "recommendation": {
+                "stars": 5,
+                "reason": "葫芦整组重触",
+                "condition": "只读葫芦或同花葫芦",
+                "stage": "early",
+                "combination": "组合潜力：葫芦重触可接加成，待触发。\n组合记录：上手对上眼、长期捧场共同计分（新牌未参与）。",
+                "facts": {
+                  "cards": 20,
+                  "largest": 8,
+                  "second": 4,
+                  "largestSuit": 5,
+                  "groupConcentrated": true,
+                  "flushConcentrated": false,
+                  "straightConcentrated": false,
+                  "ordinaryStraightPossible": false,
+                  "ordinaryFlushPossible": true,
+                  "boostedGroup": true,
+                  "houseCardPayoff": true,
+                  "boostedHouse": true,
+                  "groupRecord": true,
+                  "houseRecord": true,
+                  "flushRecord": false,
+                  "qualifiedRecord": true,
+                  "heldCardPayoff": true,
+                  "heldGroupPayoff": true,
+                  "retriggerSource": false,
+                  "additiveSource": true,
+                  "disabledSourceCount": 0,
+                  "potentialStages": 23,
+                  "growthWindow": true,
+                  "initialGrowth": "{}",
+                  "straightFamilyPossible": false,
+                  "flushFamilyPossible": true,
+                  "flushHousePossible": false,
+                  "flushFivePossible": false,
+                  "routeGrowth": "{\"before\":{\"clears\":1,\"G\":1,\"S\":0,\"F\":0},\"factors\":{\"G\":{\"n\":\"1\",\"d\":\"1\"},\"S\":{\"n\":\"1\",\"d\":\"1\"},\"F\":{\"n\":\"1\",\"d\":\"1\"}},\"preserved\":\"本局路线资历保留，出售不丢。\",\"detail\":\"本局路线资历：成功清场1次；G 1次 / ×1；S 0次 / ×1；F 0次 / ×1。\\n资历不绑定起手或持牌实例，出售不清零；按实际主手族读取，可重叠的族分别读取。每族前三次合格清场因子为1，清场后才入账，下手读取；本次买卖不增加资历。\"}"
+                },
+                "detail": "葫芦整组重触；只读葫芦或同花葫芦。主手为葫芦或同花葫芦时，每张有效计分牌请求额外重触发一次；助攻牌不触发。\n公开依据：最大同点组8张，前两组12/20张；最大花色5/20张；已持逐牌加成有；剩余场次窗口23。\n组合潜力：葫芦重触可接加成，待触发。\n组合记录：上手对上眼、长期捧场共同计分（新牌未参与）。\n共同计分不代表额外奖励或下手必触发，新现货尚未加入上手记录。\n推荐指数不等于稀有度或路线契合；星星不代表必买或稳赚，需结合替换损失。\n基于公开构筑与当前阶段的推荐；不表示指定替换净更强。\n本局路线资历：成功清场1次；G 1次 / ×1；S 0次 / ×1；F 0次 / ×1。\n资历不绑定起手或持牌实例，出售不清零；按实际主手族读取，可重叠的族分别读取。每族前三次合格清场因子为1，清场后才入账，下手读取；本次买卖不增加资历。"
+              },
+              "operation": "需替换",
+              "operationShort": "需替换",
+              "purchaseConditionLosses": [],
+              "cashBasis": "指定第1槽先售后买",
+              "replaceId": "held/d11",
+              "detail": "葫芦整组重触；只读葫芦或同花葫芦。主手为葫芦或同花葫芦时，每张有效计分牌请求额外重触发一次；助攻牌不触发。\n公开依据：最大同点组8张，前两组12/20张；最大花色5/20张；已持逐牌加成有；剩余场次窗口23。\n组合潜力：葫芦重触可接加成，待触发。\n组合记录：上手对上眼、长期捧场共同计分（新牌未参与）。\n共同计分不代表额外奖励或下手必触发，新现货尚未加入上手记录。\n推荐指数不等于稀有度或路线契合；星星不代表必买或稳赚，需结合替换损失。\n基于公开构筑与当前阶段的推荐；不表示指定替换净更强。\n本局路线资历：成功清场1次；G 1次 / ×1；S 0次 / ×1；F 0次 / ×1。\n资历不绑定起手或持牌实例，出售不清零；按实际主手族读取，可重叠的族分别读取。每族前三次合格清场因子为1，清场后才入账，下手读取；本次买卖不增加资历。\n需替换\n指定第1槽先售后买",
+              "routes": [
+                "group"
+              ],
+              "routeCaption": "同点"
+            },
+            {
+              "stars": 5,
+              "label": "推荐指数 ★★★★★",
+              "reason": "葫芦整组重触",
+              "condition": "只读葫芦或同花葫芦",
+              "recommendation": {
+                "stars": 5,
+                "reason": "葫芦整组重触",
+                "condition": "只读葫芦或同花葫芦",
+                "stage": "early",
+                "combination": "组合潜力：葫芦重触可接加成，待触发。\n组合记录：上手三拍子、长期捧场共同计分（新牌未参与）。",
+                "facts": {
+                  "cards": 20,
+                  "largest": 8,
+                  "second": 4,
+                  "largestSuit": 5,
+                  "groupConcentrated": true,
+                  "flushConcentrated": false,
+                  "straightConcentrated": false,
+                  "ordinaryStraightPossible": false,
+                  "ordinaryFlushPossible": true,
+                  "boostedGroup": true,
+                  "houseCardPayoff": true,
+                  "boostedHouse": true,
+                  "groupRecord": true,
+                  "houseRecord": true,
+                  "flushRecord": false,
+                  "qualifiedRecord": true,
+                  "heldCardPayoff": false,
+                  "heldGroupPayoff": false,
+                  "retriggerSource": true,
+                  "additiveSource": false,
+                  "disabledSourceCount": 0,
+                  "potentialStages": 23,
+                  "growthWindow": true,
+                  "initialGrowth": "{}",
+                  "straightFamilyPossible": false,
+                  "flushFamilyPossible": true,
+                  "flushHousePossible": false,
+                  "flushFivePossible": false,
+                  "routeGrowth": "{\"before\":{\"clears\":1,\"G\":1,\"S\":0,\"F\":0},\"factors\":{\"G\":{\"n\":\"1\",\"d\":\"1\"},\"S\":{\"n\":\"1\",\"d\":\"1\"},\"F\":{\"n\":\"1\",\"d\":\"1\"}},\"preserved\":\"本局路线资历保留，出售不丢。\",\"detail\":\"本局路线资历：成功清场1次；G 1次 / ×1；S 0次 / ×1；F 0次 / ×1。\\n资历不绑定起手或持牌实例，出售不清零；按实际主手族读取，可重叠的族分别读取。每族前三次合格清场因子为1，清场后才入账，下手读取；本次买卖不增加资历。\"}"
+                },
+                "detail": "葫芦整组重触；只读葫芦或同花葫芦。主手为葫芦或同花葫芦时，每张有效计分牌请求额外重触发一次；助攻牌不触发。\n公开依据：最大同点组8张，前两组12/20张；最大花色5/20张；已持逐牌加成无；剩余场次窗口23。\n组合潜力：葫芦重触可接加成，待触发。\n组合记录：上手三拍子、长期捧场共同计分（新牌未参与）。\n共同计分不代表额外奖励或下手必触发，新现货尚未加入上手记录。\n推荐指数不等于稀有度或路线契合；星星不代表必买或稳赚，需结合替换损失。\n基于公开构筑与当前阶段的推荐；不表示指定替换净更强。\n本局路线资历：成功清场1次；G 1次 / ×1；S 0次 / ×1；F 0次 / ×1。\n资历不绑定起手或持牌实例，出售不清零；按实际主手族读取，可重叠的族分别读取。每族前三次合格清场因子为1，清场后才入账，下手读取；本次买卖不增加资历。"
+              },
+              "operation": "需替换",
+              "operationShort": "需替换",
+              "purchaseConditionLosses": [],
+              "cashBasis": "指定第2槽先售后买",
+              "replaceId": "held/b02",
+              "detail": "葫芦整组重触；只读葫芦或同花葫芦。主手为葫芦或同花葫芦时，每张有效计分牌请求额外重触发一次；助攻牌不触发。\n公开依据：最大同点组8张，前两组12/20张；最大花色5/20张；已持逐牌加成无；剩余场次窗口23。\n组合潜力：葫芦重触可接加成，待触发。\n组合记录：上手三拍子、长期捧场共同计分（新牌未参与）。\n共同计分不代表额外奖励或下手必触发，新现货尚未加入上手记录。\n推荐指数不等于稀有度或路线契合；星星不代表必买或稳赚，需结合替换损失。\n基于公开构筑与当前阶段的推荐；不表示指定替换净更强。\n本局路线资历：成功清场1次；G 1次 / ×1；S 0次 / ×1；F 0次 / ×1。\n资历不绑定起手或持牌实例，出售不清零；按实际主手族读取，可重叠的族分别读取。每族前三次合格清场因子为1，清场后才入账，下手读取；本次买卖不增加资历。\n需替换\n指定第2槽先售后买",
+              "routes": [
+                "group"
+              ],
+              "routeCaption": "同点"
+            },
+            {
+              "stars": 5,
+              "label": "推荐指数 ★★★★★",
+              "reason": "葫芦整组重触",
+              "condition": "只读葫芦或同花葫芦",
+              "recommendation": {
+                "stars": 5,
+                "reason": "葫芦整组重触",
+                "condition": "只读葫芦或同花葫芦",
+                "stage": "early",
+                "combination": "组合潜力：葫芦重触可接加成，待触发。\n组合记录：上手三拍子、对上眼共同计分（新牌未参与）。",
+                "facts": {
+                  "cards": 20,
+                  "largest": 8,
+                  "second": 4,
+                  "largestSuit": 5,
+                  "groupConcentrated": true,
+                  "flushConcentrated": false,
+                  "straightConcentrated": false,
+                  "ordinaryStraightPossible": false,
+                  "ordinaryFlushPossible": true,
+                  "boostedGroup": true,
+                  "houseCardPayoff": true,
+                  "boostedHouse": true,
+                  "groupRecord": true,
+                  "houseRecord": true,
+                  "flushRecord": false,
+                  "qualifiedRecord": true,
+                  "heldCardPayoff": true,
+                  "heldGroupPayoff": true,
+                  "retriggerSource": true,
+                  "additiveSource": true,
+                  "disabledSourceCount": 0,
+                  "potentialStages": 23,
+                  "growthWindow": true,
+                  "initialGrowth": "{}",
+                  "straightFamilyPossible": false,
+                  "flushFamilyPossible": true,
+                  "flushHousePossible": false,
+                  "flushFivePossible": false,
+                  "routeGrowth": "{\"before\":{\"clears\":1,\"G\":1,\"S\":0,\"F\":0},\"factors\":{\"G\":{\"n\":\"1\",\"d\":\"1\"},\"S\":{\"n\":\"1\",\"d\":\"1\"},\"F\":{\"n\":\"1\",\"d\":\"1\"}},\"preserved\":\"本局路线资历保留，出售不丢。\",\"detail\":\"本局路线资历：成功清场1次；G 1次 / ×1；S 0次 / ×1；F 0次 / ×1。\\n资历不绑定起手或持牌实例，出售不清零；按实际主手族读取，可重叠的族分别读取。每族前三次合格清场因子为1，清场后才入账，下手读取；本次买卖不增加资历。\"}"
+                },
+                "detail": "葫芦整组重触；只读葫芦或同花葫芦。主手为葫芦或同花葫芦时，每张有效计分牌请求额外重触发一次；助攻牌不触发。\n公开依据：最大同点组8张，前两组12/20张；最大花色5/20张；已持逐牌加成有；剩余场次窗口23。\n组合潜力：葫芦重触可接加成，待触发。\n组合记录：上手三拍子、对上眼共同计分（新牌未参与）。\n共同计分不代表额外奖励或下手必触发，新现货尚未加入上手记录。\n推荐指数不等于稀有度或路线契合；星星不代表必买或稳赚，需结合替换损失。\n基于公开构筑与当前阶段的推荐；不表示指定替换净更强。\n本局路线资历：成功清场1次；G 1次 / ×1；S 0次 / ×1；F 0次 / ×1。\n资历不绑定起手或持牌实例，出售不清零；按实际主手族读取，可重叠的族分别读取。每族前三次合格清场因子为1，清场后才入账，下手读取；本次买卖不增加资历。"
+              },
+              "operation": "需替换",
+              "operationShort": "需替换",
+              "purchaseConditionLosses": [],
+              "cashBasis": "指定第3槽先售后买",
+              "replaceId": "held/e11",
+              "detail": "葫芦整组重触；只读葫芦或同花葫芦。主手为葫芦或同花葫芦时，每张有效计分牌请求额外重触发一次；助攻牌不触发。\n公开依据：最大同点组8张，前两组12/20张；最大花色5/20张；已持逐牌加成有；剩余场次窗口23。\n组合潜力：葫芦重触可接加成，待触发。\n组合记录：上手三拍子、对上眼共同计分（新牌未参与）。\n共同计分不代表额外奖励或下手必触发，新现货尚未加入上手记录。\n推荐指数不等于稀有度或路线契合；星星不代表必买或稳赚，需结合替换损失。\n基于公开构筑与当前阶段的推荐；不表示指定替换净更强。\n本局路线资历：成功清场1次；G 1次 / ×1；S 0次 / ×1；F 0次 / ×1。\n资历不绑定起手或持牌实例，出售不清零；按实际主手族读取，可重叠的族分别读取。每族前三次合格清场因子为1，清场后才入账，下手读取；本次买卖不增加资历。\n需替换\n指定第3槽先售后买",
+              "routes": [
+                "group"
+              ],
+              "routeCaption": "同点"
+            },
+            {
+              "stars": 5,
+              "label": "推荐指数 ★★★★★",
+              "reason": "葫芦整组重触",
+              "condition": "只读葫芦或同花葫芦",
+              "recommendation": {
+                "stars": 5,
+                "reason": "葫芦整组重触",
+                "condition": "只读葫芦或同花葫芦",
+                "stage": "early",
+                "combination": "组合潜力：葫芦重触可接加成，待触发。\n组合记录：上手三拍子、对上眼、长期捧场共同计分（新牌未参与）。",
+                "facts": {
+                  "cards": 20,
+                  "largest": 8,
+                  "second": 4,
+                  "largestSuit": 5,
+                  "groupConcentrated": true,
+                  "flushConcentrated": false,
+                  "straightConcentrated": false,
+                  "ordinaryStraightPossible": false,
+                  "ordinaryFlushPossible": true,
+                  "boostedGroup": true,
+                  "houseCardPayoff": true,
+                  "boostedHouse": true,
+                  "groupRecord": true,
+                  "houseRecord": true,
+                  "flushRecord": false,
+                  "qualifiedRecord": true,
+                  "heldCardPayoff": true,
+                  "heldGroupPayoff": true,
+                  "retriggerSource": true,
+                  "additiveSource": true,
+                  "disabledSourceCount": 0,
+                  "potentialStages": 23,
+                  "growthWindow": true,
+                  "initialGrowth": "{}",
+                  "straightFamilyPossible": false,
+                  "flushFamilyPossible": true,
+                  "flushHousePossible": false,
+                  "flushFivePossible": false,
+                  "routeGrowth": "{\"before\":{\"clears\":1,\"G\":1,\"S\":0,\"F\":0},\"factors\":{\"G\":{\"n\":\"1\",\"d\":\"1\"},\"S\":{\"n\":\"1\",\"d\":\"1\"},\"F\":{\"n\":\"1\",\"d\":\"1\"}},\"preserved\":\"本局路线资历保留，出售不丢。\",\"detail\":\"本局路线资历：成功清场1次；G 1次 / ×1；S 0次 / ×1；F 0次 / ×1。\\n资历不绑定起手或持牌实例，出售不清零；按实际主手族读取，可重叠的族分别读取。每族前三次合格清场因子为1，清场后才入账，下手读取；本次买卖不增加资历。\"}"
+                },
+                "detail": "葫芦整组重触；只读葫芦或同花葫芦。主手为葫芦或同花葫芦时，每张有效计分牌请求额外重触发一次；助攻牌不触发。\n公开依据：最大同点组8张，前两组12/20张；最大花色5/20张；已持逐牌加成有；剩余场次窗口23。\n组合潜力：葫芦重触可接加成，待触发。\n组合记录：上手三拍子、对上眼、长期捧场共同计分（新牌未参与）。\n共同计分不代表额外奖励或下手必触发，新现货尚未加入上手记录。\n推荐指数不等于稀有度或路线契合；星星不代表必买或稳赚，需结合替换损失。\n基于公开构筑与当前阶段的推荐；不表示指定替换净更强。\n本局路线资历：成功清场1次；G 1次 / ×1；S 0次 / ×1；F 0次 / ×1。\n资历不绑定起手或持牌实例，出售不清零；按实际主手族读取，可重叠的族分别读取。每族前三次合格清场因子为1，清场后才入账，下手读取；本次买卖不增加资历。"
+              },
+              "operation": "需替换",
+              "operationShort": "需替换",
+              "purchaseConditionLosses": [],
+              "cashBasis": "指定第4槽先售后买",
+              "replaceId": "held/e01",
+              "detail": "葫芦整组重触；只读葫芦或同花葫芦。主手为葫芦或同花葫芦时，每张有效计分牌请求额外重触发一次；助攻牌不触发。\n公开依据：最大同点组8张，前两组12/20张；最大花色5/20张；已持逐牌加成有；剩余场次窗口23。\n组合潜力：葫芦重触可接加成，待触发。\n组合记录：上手三拍子、对上眼、长期捧场共同计分（新牌未参与）。\n共同计分不代表额外奖励或下手必触发，新现货尚未加入上手记录。\n推荐指数不等于稀有度或路线契合；星星不代表必买或稳赚，需结合替换损失。\n基于公开构筑与当前阶段的推荐；不表示指定替换净更强。\n本局路线资历：成功清场1次；G 1次 / ×1；S 0次 / ×1；F 0次 / ×1。\n资历不绑定起手或持牌实例，出售不清零；按实际主手族读取，可重叠的族分别读取。每族前三次合格清场因子为1，清场后才入账，下手读取；本次买卖不增加资历。\n需替换\n指定第4槽先售后买",
+              "routes": [
+                "group"
+              ],
+              "routeCaption": "同点"
+            },
+            {
+              "stars": 5,
+              "label": "推荐指数 ★★★★★",
+              "reason": "葫芦整组重触",
+              "condition": "只读葫芦或同花葫芦",
+              "recommendation": {
+                "stars": 5,
+                "reason": "葫芦整组重触",
+                "condition": "只读葫芦或同花葫芦",
+                "stage": "early",
+                "combination": "组合潜力：葫芦重触可接加成，待触发。\n组合记录：上手三拍子、对上眼、长期捧场共同计分（新牌未参与）。",
+                "facts": {
+                  "cards": 20,
+                  "largest": 8,
+                  "second": 4,
+                  "largestSuit": 5,
+                  "groupConcentrated": true,
+                  "flushConcentrated": false,
+                  "straightConcentrated": false,
+                  "ordinaryStraightPossible": false,
+                  "ordinaryFlushPossible": true,
+                  "boostedGroup": true,
+                  "houseCardPayoff": true,
+                  "boostedHouse": true,
+                  "groupRecord": true,
+                  "houseRecord": true,
+                  "flushRecord": false,
+                  "qualifiedRecord": true,
+                  "heldCardPayoff": true,
+                  "heldGroupPayoff": true,
+                  "retriggerSource": true,
+                  "additiveSource": true,
+                  "disabledSourceCount": 0,
+                  "potentialStages": 23,
+                  "growthWindow": true,
+                  "initialGrowth": "{}",
+                  "straightFamilyPossible": false,
+                  "flushFamilyPossible": true,
+                  "flushHousePossible": false,
+                  "flushFivePossible": false,
+                  "routeGrowth": "{\"before\":{\"clears\":1,\"G\":1,\"S\":0,\"F\":0},\"factors\":{\"G\":{\"n\":\"1\",\"d\":\"1\"},\"S\":{\"n\":\"1\",\"d\":\"1\"},\"F\":{\"n\":\"1\",\"d\":\"1\"}},\"preserved\":\"本局路线资历保留，出售不丢。\",\"detail\":\"本局路线资历：成功清场1次；G 1次 / ×1；S 0次 / ×1；F 0次 / ×1。\\n资历不绑定起手或持牌实例，出售不清零；按实际主手族读取，可重叠的族分别读取。每族前三次合格清场因子为1，清场后才入账，下手读取；本次买卖不增加资历。\"}"
+                },
+                "detail": "葫芦整组重触；只读葫芦或同花葫芦。主手为葫芦或同花葫芦时，每张有效计分牌请求额外重触发一次；助攻牌不触发。\n公开依据：最大同点组8张，前两组12/20张；最大花色5/20张；已持逐牌加成有；剩余场次窗口23。\n组合潜力：葫芦重触可接加成，待触发。\n组合记录：上手三拍子、对上眼、长期捧场共同计分（新牌未参与）。\n共同计分不代表额外奖励或下手必触发，新现货尚未加入上手记录。\n推荐指数不等于稀有度或路线契合；星星不代表必买或稳赚，需结合替换损失。\n基于公开构筑与当前阶段的推荐；不表示指定替换净更强。\n本局路线资历：成功清场1次；G 1次 / ×1；S 0次 / ×1；F 0次 / ×1。\n资历不绑定起手或持牌实例，出售不清零；按实际主手族读取，可重叠的族分别读取。每族前三次合格清场因子为1，清场后才入账，下手读取；本次买卖不增加资历。"
+              },
+              "operation": "需替换",
+              "operationShort": "需替换",
+              "purchaseConditionLosses": [],
+              "cashBasis": "指定第5槽先售后买",
+              "replaceId": "held/e04",
+              "detail": "葫芦整组重触；只读葫芦或同花葫芦。主手为葫芦或同花葫芦时，每张有效计分牌请求额外重触发一次；助攻牌不触发。\n公开依据：最大同点组8张，前两组12/20张；最大花色5/20张；已持逐牌加成有；剩余场次窗口23。\n组合潜力：葫芦重触可接加成，待触发。\n组合记录：上手三拍子、对上眼、长期捧场共同计分（新牌未参与）。\n共同计分不代表额外奖励或下手必触发，新现货尚未加入上手记录。\n推荐指数不等于稀有度或路线契合；星星不代表必买或稳赚，需结合替换损失。\n基于公开构筑与当前阶段的推荐；不表示指定替换净更强。\n本局路线资历：成功清场1次；G 1次 / ×1；S 0次 / ×1；F 0次 / ×1。\n资历不绑定起手或持牌实例，出售不清零；按实际主手族读取，可重叠的族分别读取。每族前三次合格清场因子为1，清场后才入账，下手读取；本次买卖不增加资历。\n需替换\n指定第5槽先售后买",
+              "routes": [
+                "group"
+              ],
+              "routeCaption": "同点"
+            }
+          ],
+          "compare": "现货与已持\n返个场 · 持有与现货比较\n\n推荐指数 ★★★★★\n葫芦整组重触 · 只读葫芦或同花葫芦\n本局路线资历保留，出售不丢。\n\n第 1 槽 · 三拍子\n\n返4金 · 实付8金 · 买后54金\n长期捧场：系数×1.6保留 · 下一场未售成长失效\n推荐指数 ★★★★★ · 葫芦整组重触\n\n管理这张\n条件、配合与完整损失\n第 2 槽 · 对上眼\n\n返4金 · 实付8金 · 买后54金\n长期捧场：系数×1.6保留 · 下一场未售成长失效\n推荐指数 ★★★★★ · 葫芦整组重触\n\n管理这张\n条件、配合与完整损失\n第 3 槽 · 长期捧场\n\n返4金 · 实付8金 · 买后54金\n失去：系数×1.6\n推荐指数 ★★★★★ · 葫芦整组重触\n\n管理这张\n条件、配合与完整损失\n第 4 槽 · 小费盒\n\n返4金 · 实付8金 · 买后54金\n长期捧场：系数×1.6保留 · 下一场未售成长失效\n推荐指数 ★★★★★ · 葫芦整组重触\n\n管理这张\n条件、配合与完整损失\n第 5 槽 · 滚个零头\n\n返4金 · 实付8金 · 买后54金\n长期捧场：系数×1.6保留 · 下一场未售成长失效\n推荐指数 ★★★★★ · 葫芦整组重触\n\n管理这张\n条件、配合与完整损失\n\n按现持槽位逐张比较。保留、换方向或留金入场都可以；这里不排序推荐，也不自动卖买。\n\n返回购买详情\n更换培养方向\n关闭",
+          "detail": "现货 · 确认后付款\n返个场 · 购买详情\n\n适用：同点\n\n✦ 稀有\n葫芦/同花葫芦 → 对应有效计分牌再计1次\n助攻牌不触发；停用的主手牌不再计分。\n只加给能计分的牌；附带/停用牌不获加成。\n未购买；买入后才生效\n\n版次：普通（无额外计分）\n\n推荐指数 ★★★★★\n葫芦整组重触 · 只读葫芦或同花葫芦\n组合潜力：葫芦重触可接加成，待触发。\n组合记录：上手三拍子、对上眼、长期捧场共同计分（新牌未参与）。\n直接买入 · 实付 8 金 · 余额 58 → 50 金\n5个槽位已满。请先关闭详情，点随身牌确认出售，再购买。\n\n高清细节加载中…\n规则与操作\n比较替换\n邀请 · 8 金\n取消",
+          "detailGeometry": {
+            "line": {
+              "x": 52,
+              "y": 383.421875,
+              "right": 200.171875,
+              "bottom": 405.421875
+            },
+            "pane": {
+              "x": 36,
+              "y": 303.140625,
+              "right": 354,
+              "bottom": 666
+            }
+          }
+        },
+        {
+          "id": "a06",
+          "guidance": {
+            "stars": 5,
+            "label": "推荐指数 ★★★★★",
+            "reason": "长期相乘成长",
+            "condition": "新购×1.5 · 连续不同合格主手",
+            "recommendation": {
+              "stars": 5,
+              "reason": "长期相乘成长",
+              "condition": "新购×1.5 · 连续不同合格主手",
+              "stage": "early",
+              "combination": "组合潜力：已有加倍率来源，换型待触发。\n组合记录：上手三拍子、对上眼、长期捧场共同计分（新牌未参与）。",
+              "facts": {
+                "cards": 20,
+                "largest": 8,
+                "second": 4,
+                "largestSuit": 5,
+                "groupConcentrated": true,
+                "flushConcentrated": false,
+                "straightConcentrated": false,
+                "ordinaryStraightPossible": false,
+                "ordinaryFlushPossible": true,
+                "boostedGroup": true,
+                "houseCardPayoff": true,
+                "boostedHouse": true,
+                "groupRecord": true,
+                "houseRecord": true,
+                "flushRecord": false,
+                "qualifiedRecord": true,
+                "heldCardPayoff": true,
+                "heldGroupPayoff": true,
+                "retriggerSource": true,
+                "additiveSource": true,
+                "disabledSourceCount": 0,
+                "potentialStages": 23,
+                "growthWindow": true,
+                "initialGrowth": "{\"coefficient\":{\"n\":\"3\",\"d\":\"2\"}}",
+                "straightFamilyPossible": false,
+                "flushFamilyPossible": true,
+                "flushHousePossible": false,
+                "flushFivePossible": false,
+                "routeGrowth": "{\"before\":{\"clears\":1,\"G\":1,\"S\":0,\"F\":0},\"factors\":{\"G\":{\"n\":\"1\",\"d\":\"1\"},\"S\":{\"n\":\"1\",\"d\":\"1\"},\"F\":{\"n\":\"1\",\"d\":\"1\"}},\"preserved\":\"本局路线资历保留，出售不丢。\",\"detail\":\"本局路线资历：成功清场1次；G 1次 / ×1；S 0次 / ×1；F 0次 / ×1。\\n资历不绑定起手或持牌实例，出售不清零；按实际主手族读取，可重叠的族分别读取。每族前三次合格清场因子为1，清场后才入账，下手读取；本次买卖不增加资历。\"}"
+              },
+              "detail": "长期相乘成长；新购×1.5 · 连续不同合格主手。打出两对及以上时，倍率乘当前系数（初始×1.5）。每场首次连续两次出牌均两对及以上且牌型不同，结算后系数再×1.15，下次生效。每场只长一次，跨场保留，封顶×1000000。\n公开依据：最大同点组8张，前两组12/20张；最大花色5/20张；已持逐牌加成有；剩余场次窗口23。\n组合潜力：已有加倍率来源，换型待触发。\n组合记录：上手三拍子、对上眼、长期捧场共同计分（新牌未参与）。\n共同计分不代表额外奖励或下手必触发，新现货尚未加入上手记录。\n推荐指数不等于稀有度或路线契合；星星不代表必买或稳赚，需结合替换损失。\n基于公开构筑与当前阶段的推荐；不表示指定替换净更强。\n本局路线资历：成功清场1次；G 1次 / ×1；S 0次 / ×1；F 0次 / ×1。\n资历不绑定起手或持牌实例，出售不清零；按实际主手族读取，可重叠的族分别读取。每族前三次合格清场因子为1，清场后才入账，下手读取；本次买卖不增加资历。"
+            },
+            "operation": "需替换",
+            "operationShort": "需替换",
+            "purchaseConditionLosses": [],
+            "cashBasis": "未选替换：买后余额待核",
+            "detail": "长期相乘成长；新购×1.5 · 连续不同合格主手。打出两对及以上时，倍率乘当前系数（初始×1.5）。每场首次连续两次出牌均两对及以上且牌型不同，结算后系数再×1.15，下次生效。每场只长一次，跨场保留，封顶×1000000。\n公开依据：最大同点组8张，前两组12/20张；最大花色5/20张；已持逐牌加成有；剩余场次窗口23。\n组合潜力：已有加倍率来源，换型待触发。\n组合记录：上手三拍子、对上眼、长期捧场共同计分（新牌未参与）。\n共同计分不代表额外奖励或下手必触发，新现货尚未加入上手记录。\n推荐指数不等于稀有度或路线契合；星星不代表必买或稳赚，需结合替换损失。\n基于公开构筑与当前阶段的推荐；不表示指定替换净更强。\n本局路线资历：成功清场1次；G 1次 / ×1；S 0次 / ×1；F 0次 / ×1。\n资历不绑定起手或持牌实例，出售不清零；按实际主手族读取，可重叠的族分别读取。每族前三次合格清场因子为1，清场后才入账，下手读取；本次买卖不增加资历。\n需替换\n未选替换：买后余额待核",
+            "routes": [
+              "group",
+              "straight",
+              "flush"
+            ],
+            "routeCaption": "同点/顺子/同花"
+          },
+          "bySlot": [
+            {
+              "stars": 5,
+              "label": "推荐指数 ★★★★★",
+              "reason": "长期相乘成长",
+              "condition": "新购×1.5 · 连续不同合格主手",
+              "recommendation": {
+                "stars": 5,
+                "reason": "长期相乘成长",
+                "condition": "新购×1.5 · 连续不同合格主手",
+                "stage": "early",
+                "combination": "组合潜力：已有加倍率来源，换型待触发。\n组合记录：上手对上眼、长期捧场共同计分（新牌未参与）。",
+                "facts": {
+                  "cards": 20,
+                  "largest": 8,
+                  "second": 4,
+                  "largestSuit": 5,
+                  "groupConcentrated": true,
+                  "flushConcentrated": false,
+                  "straightConcentrated": false,
+                  "ordinaryStraightPossible": false,
+                  "ordinaryFlushPossible": true,
+                  "boostedGroup": true,
+                  "houseCardPayoff": true,
+                  "boostedHouse": true,
+                  "groupRecord": true,
+                  "houseRecord": true,
+                  "flushRecord": false,
+                  "qualifiedRecord": true,
+                  "heldCardPayoff": true,
+                  "heldGroupPayoff": true,
+                  "retriggerSource": false,
+                  "additiveSource": true,
+                  "disabledSourceCount": 0,
+                  "potentialStages": 23,
+                  "growthWindow": true,
+                  "initialGrowth": "{\"coefficient\":{\"n\":\"3\",\"d\":\"2\"}}",
+                  "straightFamilyPossible": false,
+                  "flushFamilyPossible": true,
+                  "flushHousePossible": false,
+                  "flushFivePossible": false,
+                  "routeGrowth": "{\"before\":{\"clears\":1,\"G\":1,\"S\":0,\"F\":0},\"factors\":{\"G\":{\"n\":\"1\",\"d\":\"1\"},\"S\":{\"n\":\"1\",\"d\":\"1\"},\"F\":{\"n\":\"1\",\"d\":\"1\"}},\"preserved\":\"本局路线资历保留，出售不丢。\",\"detail\":\"本局路线资历：成功清场1次；G 1次 / ×1；S 0次 / ×1；F 0次 / ×1。\\n资历不绑定起手或持牌实例，出售不清零；按实际主手族读取，可重叠的族分别读取。每族前三次合格清场因子为1，清场后才入账，下手读取；本次买卖不增加资历。\"}"
+                },
+                "detail": "长期相乘成长；新购×1.5 · 连续不同合格主手。打出两对及以上时，倍率乘当前系数（初始×1.5）。每场首次连续两次出牌均两对及以上且牌型不同，结算后系数再×1.15，下次生效。每场只长一次，跨场保留，封顶×1000000。\n公开依据：最大同点组8张，前两组12/20张；最大花色5/20张；已持逐牌加成有；剩余场次窗口23。\n组合潜力：已有加倍率来源，换型待触发。\n组合记录：上手对上眼、长期捧场共同计分（新牌未参与）。\n共同计分不代表额外奖励或下手必触发，新现货尚未加入上手记录。\n推荐指数不等于稀有度或路线契合；星星不代表必买或稳赚，需结合替换损失。\n基于公开构筑与当前阶段的推荐；不表示指定替换净更强。\n本局路线资历：成功清场1次；G 1次 / ×1；S 0次 / ×1；F 0次 / ×1。\n资历不绑定起手或持牌实例，出售不清零；按实际主手族读取，可重叠的族分别读取。每族前三次合格清场因子为1，清场后才入账，下手读取；本次买卖不增加资历。"
+              },
+              "operation": "需替换",
+              "operationShort": "需替换",
+              "purchaseConditionLosses": [],
+              "cashBasis": "指定第1槽先售后买",
+              "replaceId": "held/d11",
+              "detail": "长期相乘成长；新购×1.5 · 连续不同合格主手。打出两对及以上时，倍率乘当前系数（初始×1.5）。每场首次连续两次出牌均两对及以上且牌型不同，结算后系数再×1.15，下次生效。每场只长一次，跨场保留，封顶×1000000。\n公开依据：最大同点组8张，前两组12/20张；最大花色5/20张；已持逐牌加成有；剩余场次窗口23。\n组合潜力：已有加倍率来源，换型待触发。\n组合记录：上手对上眼、长期捧场共同计分（新牌未参与）。\n共同计分不代表额外奖励或下手必触发，新现货尚未加入上手记录。\n推荐指数不等于稀有度或路线契合；星星不代表必买或稳赚，需结合替换损失。\n基于公开构筑与当前阶段的推荐；不表示指定替换净更强。\n本局路线资历：成功清场1次；G 1次 / ×1；S 0次 / ×1；F 0次 / ×1。\n资历不绑定起手或持牌实例，出售不清零；按实际主手族读取，可重叠的族分别读取。每族前三次合格清场因子为1，清场后才入账，下手读取；本次买卖不增加资历。\n需替换\n指定第1槽先售后买",
+              "routes": [
+                "group",
+                "straight",
+                "flush"
+              ],
+              "routeCaption": "同点/顺子/同花"
+            },
+            {
+              "stars": 4,
+              "label": "推荐指数 ★★★★☆",
+              "reason": "长期相乘成长",
+              "condition": "新购×1.5 · 连续不同合格主手",
+              "recommendation": {
+                "stars": 4,
+                "reason": "长期相乘成长",
+                "condition": "新购×1.5 · 连续不同合格主手",
+                "stage": "early",
+                "combination": "组合潜力：换型待触发，核对加倍率来源。\n组合记录：上手三拍子、长期捧场共同计分（新牌未参与）。",
+                "facts": {
+                  "cards": 20,
+                  "largest": 8,
+                  "second": 4,
+                  "largestSuit": 5,
+                  "groupConcentrated": true,
+                  "flushConcentrated": false,
+                  "straightConcentrated": false,
+                  "ordinaryStraightPossible": false,
+                  "ordinaryFlushPossible": true,
+                  "boostedGroup": true,
+                  "houseCardPayoff": true,
+                  "boostedHouse": true,
+                  "groupRecord": true,
+                  "houseRecord": true,
+                  "flushRecord": false,
+                  "qualifiedRecord": true,
+                  "heldCardPayoff": false,
+                  "heldGroupPayoff": false,
+                  "retriggerSource": true,
+                  "additiveSource": false,
+                  "disabledSourceCount": 0,
+                  "potentialStages": 23,
+                  "growthWindow": true,
+                  "initialGrowth": "{\"coefficient\":{\"n\":\"3\",\"d\":\"2\"}}",
+                  "straightFamilyPossible": false,
+                  "flushFamilyPossible": true,
+                  "flushHousePossible": false,
+                  "flushFivePossible": false,
+                  "routeGrowth": "{\"before\":{\"clears\":1,\"G\":1,\"S\":0,\"F\":0},\"factors\":{\"G\":{\"n\":\"1\",\"d\":\"1\"},\"S\":{\"n\":\"1\",\"d\":\"1\"},\"F\":{\"n\":\"1\",\"d\":\"1\"}},\"preserved\":\"本局路线资历保留，出售不丢。\",\"detail\":\"本局路线资历：成功清场1次；G 1次 / ×1；S 0次 / ×1；F 0次 / ×1。\\n资历不绑定起手或持牌实例，出售不清零；按实际主手族读取，可重叠的族分别读取。每族前三次合格清场因子为1，清场后才入账，下手读取；本次买卖不增加资历。\"}"
+                },
+                "detail": "长期相乘成长；新购×1.5 · 连续不同合格主手。打出两对及以上时，倍率乘当前系数（初始×1.5）。每场首次连续两次出牌均两对及以上且牌型不同，结算后系数再×1.15，下次生效。每场只长一次，跨场保留，封顶×1000000。\n公开依据：最大同点组8张，前两组12/20张；最大花色5/20张；已持逐牌加成无；剩余场次窗口23。\n组合潜力：换型待触发，核对加倍率来源。\n组合记录：上手三拍子、长期捧场共同计分（新牌未参与）。\n共同计分不代表额外奖励或下手必触发，新现货尚未加入上手记录。\n推荐指数不等于稀有度或路线契合；星星不代表必买或稳赚，需结合替换损失。\n基于公开构筑与当前阶段的推荐；不表示指定替换净更强。\n本局路线资历：成功清场1次；G 1次 / ×1；S 0次 / ×1；F 0次 / ×1。\n资历不绑定起手或持牌实例，出售不清零；按实际主手族读取，可重叠的族分别读取。每族前三次合格清场因子为1，清场后才入账，下手读取；本次买卖不增加资历。"
+              },
+              "operation": "需替换",
+              "operationShort": "需替换",
+              "purchaseConditionLosses": [],
+              "cashBasis": "指定第2槽先售后买",
+              "replaceId": "held/b02",
+              "detail": "长期相乘成长；新购×1.5 · 连续不同合格主手。打出两对及以上时，倍率乘当前系数（初始×1.5）。每场首次连续两次出牌均两对及以上且牌型不同，结算后系数再×1.15，下次生效。每场只长一次，跨场保留，封顶×1000000。\n公开依据：最大同点组8张，前两组12/20张；最大花色5/20张；已持逐牌加成无；剩余场次窗口23。\n组合潜力：换型待触发，核对加倍率来源。\n组合记录：上手三拍子、长期捧场共同计分（新牌未参与）。\n共同计分不代表额外奖励或下手必触发，新现货尚未加入上手记录。\n推荐指数不等于稀有度或路线契合；星星不代表必买或稳赚，需结合替换损失。\n基于公开构筑与当前阶段的推荐；不表示指定替换净更强。\n本局路线资历：成功清场1次；G 1次 / ×1；S 0次 / ×1；F 0次 / ×1。\n资历不绑定起手或持牌实例，出售不清零；按实际主手族读取，可重叠的族分别读取。每族前三次合格清场因子为1，清场后才入账，下手读取；本次买卖不增加资历。\n需替换\n指定第2槽先售后买",
+              "routes": [
+                "group",
+                "straight",
+                "flush"
+              ],
+              "routeCaption": "同点/顺子/同花"
+            },
+            {
+              "stars": 5,
+              "label": "推荐指数 ★★★★★",
+              "reason": "长期相乘成长",
+              "condition": "新购×1.5 · 连续不同合格主手",
+              "recommendation": {
+                "stars": 5,
+                "reason": "长期相乘成长",
+                "condition": "新购×1.5 · 连续不同合格主手",
+                "stage": "early",
+                "combination": "组合潜力：已有加倍率来源，换型待触发。\n组合记录：上手三拍子、对上眼共同计分（新牌未参与）。",
+                "facts": {
+                  "cards": 20,
+                  "largest": 8,
+                  "second": 4,
+                  "largestSuit": 5,
+                  "groupConcentrated": true,
+                  "flushConcentrated": false,
+                  "straightConcentrated": false,
+                  "ordinaryStraightPossible": false,
+                  "ordinaryFlushPossible": true,
+                  "boostedGroup": true,
+                  "houseCardPayoff": true,
+                  "boostedHouse": true,
+                  "groupRecord": true,
+                  "houseRecord": true,
+                  "flushRecord": false,
+                  "qualifiedRecord": true,
+                  "heldCardPayoff": true,
+                  "heldGroupPayoff": true,
+                  "retriggerSource": true,
+                  "additiveSource": true,
+                  "disabledSourceCount": 0,
+                  "potentialStages": 23,
+                  "growthWindow": true,
+                  "initialGrowth": "{\"coefficient\":{\"n\":\"3\",\"d\":\"2\"}}",
+                  "straightFamilyPossible": false,
+                  "flushFamilyPossible": true,
+                  "flushHousePossible": false,
+                  "flushFivePossible": false,
+                  "routeGrowth": "{\"before\":{\"clears\":1,\"G\":1,\"S\":0,\"F\":0},\"factors\":{\"G\":{\"n\":\"1\",\"d\":\"1\"},\"S\":{\"n\":\"1\",\"d\":\"1\"},\"F\":{\"n\":\"1\",\"d\":\"1\"}},\"preserved\":\"本局路线资历保留，出售不丢。\",\"detail\":\"本局路线资历：成功清场1次；G 1次 / ×1；S 0次 / ×1；F 0次 / ×1。\\n资历不绑定起手或持牌实例，出售不清零；按实际主手族读取，可重叠的族分别读取。每族前三次合格清场因子为1，清场后才入账，下手读取；本次买卖不增加资历。\"}"
+                },
+                "detail": "长期相乘成长；新购×1.5 · 连续不同合格主手。打出两对及以上时，倍率乘当前系数（初始×1.5）。每场首次连续两次出牌均两对及以上且牌型不同，结算后系数再×1.15，下次生效。每场只长一次，跨场保留，封顶×1000000。\n公开依据：最大同点组8张，前两组12/20张；最大花色5/20张；已持逐牌加成有；剩余场次窗口23。\n组合潜力：已有加倍率来源，换型待触发。\n组合记录：上手三拍子、对上眼共同计分（新牌未参与）。\n共同计分不代表额外奖励或下手必触发，新现货尚未加入上手记录。\n推荐指数不等于稀有度或路线契合；星星不代表必买或稳赚，需结合替换损失。\n基于公开构筑与当前阶段的推荐；不表示指定替换净更强。\n本局路线资历：成功清场1次；G 1次 / ×1；S 0次 / ×1；F 0次 / ×1。\n资历不绑定起手或持牌实例，出售不清零；按实际主手族读取，可重叠的族分别读取。每族前三次合格清场因子为1，清场后才入账，下手读取；本次买卖不增加资历。"
+              },
+              "operation": "需替换",
+              "operationShort": "需替换",
+              "purchaseConditionLosses": [],
+              "cashBasis": "指定第3槽先售后买",
+              "replaceId": "held/e11",
+              "detail": "长期相乘成长；新购×1.5 · 连续不同合格主手。打出两对及以上时，倍率乘当前系数（初始×1.5）。每场首次连续两次出牌均两对及以上且牌型不同，结算后系数再×1.15，下次生效。每场只长一次，跨场保留，封顶×1000000。\n公开依据：最大同点组8张，前两组12/20张；最大花色5/20张；已持逐牌加成有；剩余场次窗口23。\n组合潜力：已有加倍率来源，换型待触发。\n组合记录：上手三拍子、对上眼共同计分（新牌未参与）。\n共同计分不代表额外奖励或下手必触发，新现货尚未加入上手记录。\n推荐指数不等于稀有度或路线契合；星星不代表必买或稳赚，需结合替换损失。\n基于公开构筑与当前阶段的推荐；不表示指定替换净更强。\n本局路线资历：成功清场1次；G 1次 / ×1；S 0次 / ×1；F 0次 / ×1。\n资历不绑定起手或持牌实例，出售不清零；按实际主手族读取，可重叠的族分别读取。每族前三次合格清场因子为1，清场后才入账，下手读取；本次买卖不增加资历。\n需替换\n指定第3槽先售后买",
+              "routes": [
+                "group",
+                "straight",
+                "flush"
+              ],
+              "routeCaption": "同点/顺子/同花"
+            },
+            {
+              "stars": 5,
+              "label": "推荐指数 ★★★★★",
+              "reason": "长期相乘成长",
+              "condition": "新购×1.5 · 连续不同合格主手",
+              "recommendation": {
+                "stars": 5,
+                "reason": "长期相乘成长",
+                "condition": "新购×1.5 · 连续不同合格主手",
+                "stage": "early",
+                "combination": "组合潜力：已有加倍率来源，换型待触发。\n组合记录：上手三拍子、对上眼、长期捧场共同计分（新牌未参与）。",
+                "facts": {
+                  "cards": 20,
+                  "largest": 8,
+                  "second": 4,
+                  "largestSuit": 5,
+                  "groupConcentrated": true,
+                  "flushConcentrated": false,
+                  "straightConcentrated": false,
+                  "ordinaryStraightPossible": false,
+                  "ordinaryFlushPossible": true,
+                  "boostedGroup": true,
+                  "houseCardPayoff": true,
+                  "boostedHouse": true,
+                  "groupRecord": true,
+                  "houseRecord": true,
+                  "flushRecord": false,
+                  "qualifiedRecord": true,
+                  "heldCardPayoff": true,
+                  "heldGroupPayoff": true,
+                  "retriggerSource": true,
+                  "additiveSource": true,
+                  "disabledSourceCount": 0,
+                  "potentialStages": 23,
+                  "growthWindow": true,
+                  "initialGrowth": "{\"coefficient\":{\"n\":\"3\",\"d\":\"2\"}}",
+                  "straightFamilyPossible": false,
+                  "flushFamilyPossible": true,
+                  "flushHousePossible": false,
+                  "flushFivePossible": false,
+                  "routeGrowth": "{\"before\":{\"clears\":1,\"G\":1,\"S\":0,\"F\":0},\"factors\":{\"G\":{\"n\":\"1\",\"d\":\"1\"},\"S\":{\"n\":\"1\",\"d\":\"1\"},\"F\":{\"n\":\"1\",\"d\":\"1\"}},\"preserved\":\"本局路线资历保留，出售不丢。\",\"detail\":\"本局路线资历：成功清场1次；G 1次 / ×1；S 0次 / ×1；F 0次 / ×1。\\n资历不绑定起手或持牌实例，出售不清零；按实际主手族读取，可重叠的族分别读取。每族前三次合格清场因子为1，清场后才入账，下手读取；本次买卖不增加资历。\"}"
+                },
+                "detail": "长期相乘成长；新购×1.5 · 连续不同合格主手。打出两对及以上时，倍率乘当前系数（初始×1.5）。每场首次连续两次出牌均两对及以上且牌型不同，结算后系数再×1.15，下次生效。每场只长一次，跨场保留，封顶×1000000。\n公开依据：最大同点组8张，前两组12/20张；最大花色5/20张；已持逐牌加成有；剩余场次窗口23。\n组合潜力：已有加倍率来源，换型待触发。\n组合记录：上手三拍子、对上眼、长期捧场共同计分（新牌未参与）。\n共同计分不代表额外奖励或下手必触发，新现货尚未加入上手记录。\n推荐指数不等于稀有度或路线契合；星星不代表必买或稳赚，需结合替换损失。\n基于公开构筑与当前阶段的推荐；不表示指定替换净更强。\n本局路线资历：成功清场1次；G 1次 / ×1；S 0次 / ×1；F 0次 / ×1。\n资历不绑定起手或持牌实例，出售不清零；按实际主手族读取，可重叠的族分别读取。每族前三次合格清场因子为1，清场后才入账，下手读取；本次买卖不增加资历。"
+              },
+              "operation": "需替换",
+              "operationShort": "需替换",
+              "purchaseConditionLosses": [],
+              "cashBasis": "指定第4槽先售后买",
+              "replaceId": "held/e01",
+              "detail": "长期相乘成长；新购×1.5 · 连续不同合格主手。打出两对及以上时，倍率乘当前系数（初始×1.5）。每场首次连续两次出牌均两对及以上且牌型不同，结算后系数再×1.15，下次生效。每场只长一次，跨场保留，封顶×1000000。\n公开依据：最大同点组8张，前两组12/20张；最大花色5/20张；已持逐牌加成有；剩余场次窗口23。\n组合潜力：已有加倍率来源，换型待触发。\n组合记录：上手三拍子、对上眼、长期捧场共同计分（新牌未参与）。\n共同计分不代表额外奖励或下手必触发，新现货尚未加入上手记录。\n推荐指数不等于稀有度或路线契合；星星不代表必买或稳赚，需结合替换损失。\n基于公开构筑与当前阶段的推荐；不表示指定替换净更强。\n本局路线资历：成功清场1次；G 1次 / ×1；S 0次 / ×1；F 0次 / ×1。\n资历不绑定起手或持牌实例，出售不清零；按实际主手族读取，可重叠的族分别读取。每族前三次合格清场因子为1，清场后才入账，下手读取；本次买卖不增加资历。\n需替换\n指定第4槽先售后买",
+              "routes": [
+                "group",
+                "straight",
+                "flush"
+              ],
+              "routeCaption": "同点/顺子/同花"
+            },
+            {
+              "stars": 5,
+              "label": "推荐指数 ★★★★★",
+              "reason": "长期相乘成长",
+              "condition": "新购×1.5 · 连续不同合格主手",
+              "recommendation": {
+                "stars": 5,
+                "reason": "长期相乘成长",
+                "condition": "新购×1.5 · 连续不同合格主手",
+                "stage": "early",
+                "combination": "组合潜力：已有加倍率来源，换型待触发。\n组合记录：上手三拍子、对上眼、长期捧场共同计分（新牌未参与）。",
+                "facts": {
+                  "cards": 20,
+                  "largest": 8,
+                  "second": 4,
+                  "largestSuit": 5,
+                  "groupConcentrated": true,
+                  "flushConcentrated": false,
+                  "straightConcentrated": false,
+                  "ordinaryStraightPossible": false,
+                  "ordinaryFlushPossible": true,
+                  "boostedGroup": true,
+                  "houseCardPayoff": true,
+                  "boostedHouse": true,
+                  "groupRecord": true,
+                  "houseRecord": true,
+                  "flushRecord": false,
+                  "qualifiedRecord": true,
+                  "heldCardPayoff": true,
+                  "heldGroupPayoff": true,
+                  "retriggerSource": true,
+                  "additiveSource": true,
+                  "disabledSourceCount": 0,
+                  "potentialStages": 23,
+                  "growthWindow": true,
+                  "initialGrowth": "{\"coefficient\":{\"n\":\"3\",\"d\":\"2\"}}",
+                  "straightFamilyPossible": false,
+                  "flushFamilyPossible": true,
+                  "flushHousePossible": false,
+                  "flushFivePossible": false,
+                  "routeGrowth": "{\"before\":{\"clears\":1,\"G\":1,\"S\":0,\"F\":0},\"factors\":{\"G\":{\"n\":\"1\",\"d\":\"1\"},\"S\":{\"n\":\"1\",\"d\":\"1\"},\"F\":{\"n\":\"1\",\"d\":\"1\"}},\"preserved\":\"本局路线资历保留，出售不丢。\",\"detail\":\"本局路线资历：成功清场1次；G 1次 / ×1；S 0次 / ×1；F 0次 / ×1。\\n资历不绑定起手或持牌实例，出售不清零；按实际主手族读取，可重叠的族分别读取。每族前三次合格清场因子为1，清场后才入账，下手读取；本次买卖不增加资历。\"}"
+                },
+                "detail": "长期相乘成长；新购×1.5 · 连续不同合格主手。打出两对及以上时，倍率乘当前系数（初始×1.5）。每场首次连续两次出牌均两对及以上且牌型不同，结算后系数再×1.15，下次生效。每场只长一次，跨场保留，封顶×1000000。\n公开依据：最大同点组8张，前两组12/20张；最大花色5/20张；已持逐牌加成有；剩余场次窗口23。\n组合潜力：已有加倍率来源，换型待触发。\n组合记录：上手三拍子、对上眼、长期捧场共同计分（新牌未参与）。\n共同计分不代表额外奖励或下手必触发，新现货尚未加入上手记录。\n推荐指数不等于稀有度或路线契合；星星不代表必买或稳赚，需结合替换损失。\n基于公开构筑与当前阶段的推荐；不表示指定替换净更强。\n本局路线资历：成功清场1次；G 1次 / ×1；S 0次 / ×1；F 0次 / ×1。\n资历不绑定起手或持牌实例，出售不清零；按实际主手族读取，可重叠的族分别读取。每族前三次合格清场因子为1，清场后才入账，下手读取；本次买卖不增加资历。"
+              },
+              "operation": "需替换",
+              "operationShort": "需替换",
+              "purchaseConditionLosses": [],
+              "cashBasis": "指定第5槽先售后买",
+              "replaceId": "held/e04",
+              "detail": "长期相乘成长；新购×1.5 · 连续不同合格主手。打出两对及以上时，倍率乘当前系数（初始×1.5）。每场首次连续两次出牌均两对及以上且牌型不同，结算后系数再×1.15，下次生效。每场只长一次，跨场保留，封顶×1000000。\n公开依据：最大同点组8张，前两组12/20张；最大花色5/20张；已持逐牌加成有；剩余场次窗口23。\n组合潜力：已有加倍率来源，换型待触发。\n组合记录：上手三拍子、对上眼、长期捧场共同计分（新牌未参与）。\n共同计分不代表额外奖励或下手必触发，新现货尚未加入上手记录。\n推荐指数不等于稀有度或路线契合；星星不代表必买或稳赚，需结合替换损失。\n基于公开构筑与当前阶段的推荐；不表示指定替换净更强。\n本局路线资历：成功清场1次；G 1次 / ×1；S 0次 / ×1；F 0次 / ×1。\n资历不绑定起手或持牌实例，出售不清零；按实际主手族读取，可重叠的族分别读取。每族前三次合格清场因子为1，清场后才入账，下手读取；本次买卖不增加资历。\n需替换\n指定第5槽先售后买",
+              "routes": [
+                "group",
+                "straight",
+                "flush"
+              ],
+              "routeCaption": "同点/顺子/同花"
+            }
+          ],
+          "compare": "现货与已持\n独家戏 · 持有与现货比较\n\n推荐指数 ★★★★★\n长期相乘成长 · 新购×1.5 · 连续不同合格主手\n本局路线资历保留，出售不丢。\n\n第 1 槽 · 三拍子\n\n返4金 · 实付8金 · 买后54金\n长期捧场：系数×1.6保留 · 下一场未售成长失效\n推荐指数 ★★★★★ · 长期相乘成长\n\n管理这张\n条件、配合与完整损失\n第 2 槽 · 对上眼\n\n返4金 · 实付8金 · 买后54金\n长期捧场：系数×1.6保留 · 下一场未售成长失效\n推荐指数 ★★★★☆ · 长期相乘成长\n\n管理这张\n条件、配合与完整损失\n第 3 槽 · 长期捧场\n\n返4金 · 实付8金 · 买后54金\n失去：系数×1.6\n推荐指数 ★★★★★ · 长期相乘成长\n\n管理这张\n条件、配合与完整损失\n第 4 槽 · 小费盒\n\n返4金 · 实付8金 · 买后54金\n长期捧场：系数×1.6保留 · 下一场未售成长失效\n推荐指数 ★★★★★ · 长期相乘成长\n\n管理这张\n条件、配合与完整损失\n第 5 槽 · 滚个零头\n\n返4金 · 实付8金 · 买后54金\n长期捧场：系数×1.6保留 · 下一场未售成长失效\n推荐指数 ★★★★★ · 长期相乘成长\n\n管理这张\n条件、配合与完整损失\n\n按现持槽位逐张比较。保留、换方向或留金入场都可以；这里不排序推荐，也不自动卖买。\n\n返回购买详情\n更换培养方向\n关闭",
+          "detail": "现货 · 确认后付款\n独家戏 · 购买详情\n\n适用：同点/顺子/同花\n\n✦ 稀有\n\n出牌时生效 · 出牌结算后更新\n\n打出两对及以上牌型时\n\n本次出牌的倍率乘当前系数（初始×1.5）\n\n每场首次连续两次出牌均为两对及以上且牌型不同\n\n结算后系数再×1.15\n两对及以上：不含对子、高牌。\n新系数下一次出牌才生效，每场只长一次\n致胜手也可成长。\n系数上限×1,000,000\n现在：尚未购买，买入后才会生效\n\n推荐指数 ★★★★★\n长期相乘成长 · 新购×1.5 · 连续不同合格主手\n组合潜力：已有加倍率来源，换型待触发。\n组合记录：上手三拍子、对上眼、长期捧场共同计分（新牌未参与）。\n直接买入 · 实付 8 金 · 余额 58 → 50 金\n5个槽位已满。请先关闭详情，点随身牌确认出售，再购买。\n\n版次：普通（无额外计分）\n\n高清细节加载中…\n规则与操作\n比较替换\n邀请 · 8 金\n取消",
+          "detailGeometry": {
+            "line": {
+              "x": 52,
+              "y": 317.0625,
+              "right": 200.171875,
+              "bottom": 339.0625
+            },
+            "pane": {
+              "x": 36,
+              "y": 303.140625,
+              "right": 354,
+              "bottom": 666
+            }
+          }
+        }
+      ],
+      "before": {
+        "identity": {
+          "contentVersion": "quality-r2-route-growth-v1",
+          "contentHash": "json-fnv-v1:7414228d95059959"
+        },
+        "commandSeq": 5
+      },
+      "geometry": [
+        {
+          "offerId": "public/b06",
+          "stars": 5,
+          "area": {
+            "x": 20.333333333333336,
+            "y": 211.2,
+            "width": 100,
+            "height": 18
+          },
+          "children": [
+            {
+              "text": "★",
+              "bounds": {
+                "type": 5,
+                "x": 23.833335876464844,
+                "y": 211.20001220703125,
+                "width": 13,
+                "height": 16
+              },
+              "fontSize": "14px"
+            },
+            {
+              "text": "★",
+              "bounds": {
+                "type": 5,
+                "x": 43.833335876464844,
+                "y": 211.20001220703125,
+                "width": 13,
+                "height": 16
+              },
+              "fontSize": "14px"
+            },
+            {
+              "text": "★",
+              "bounds": {
+                "type": 5,
+                "x": 63.833335876464844,
+                "y": 211.20001220703125,
+                "width": 13,
+                "height": 16
+              },
+              "fontSize": "14px"
+            },
+            {
+              "text": "★",
+              "bounds": {
+                "type": 5,
+                "x": 83.83333587646484,
+                "y": 211.20001220703125,
+                "width": 13,
+                "height": 16
+              },
+              "fontSize": "14px"
+            },
+            {
+              "text": "★",
+              "bounds": {
+                "type": 5,
+                "x": 103.83333587646484,
+                "y": 211.20001220703125,
+                "width": 13,
+                "height": 16
+              },
+              "fontSize": "14px"
+            }
+          ]
+        },
+        {
+          "offerId": "public/a11",
+          "stars": 5,
+          "area": {
+            "x": 145.00000000000003,
+            "y": 211.2,
+            "width": 100,
+            "height": 18
+          },
+          "children": [
+            {
+              "text": "★",
+              "bounds": {
+                "type": 5,
+                "x": 148.5,
+                "y": 211.20001220703125,
+                "width": 13,
+                "height": 16
+              },
+              "fontSize": "14px"
+            },
+            {
+              "text": "★",
+              "bounds": {
+                "type": 5,
+                "x": 168.5,
+                "y": 211.20001220703125,
+                "width": 13,
+                "height": 16
+              },
+              "fontSize": "14px"
+            },
+            {
+              "text": "★",
+              "bounds": {
+                "type": 5,
+                "x": 188.5,
+                "y": 211.20001220703125,
+                "width": 13,
+                "height": 16
+              },
+              "fontSize": "14px"
+            },
+            {
+              "text": "★",
+              "bounds": {
+                "type": 5,
+                "x": 208.5,
+                "y": 211.20001220703125,
+                "width": 13,
+                "height": 16
+              },
+              "fontSize": "14px"
+            },
+            {
+              "text": "★",
+              "bounds": {
+                "type": 5,
+                "x": 228.5,
+                "y": 211.20001220703125,
+                "width": 13,
+                "height": 16
+              },
+              "fontSize": "14px"
+            }
+          ]
+        },
+        {
+          "offerId": "public/a06",
+          "stars": 5,
+          "area": {
+            "x": 269.6666666666667,
+            "y": 211.2,
+            "width": 100,
+            "height": 18
+          },
+          "children": [
+            {
+              "text": "★",
+              "bounds": {
+                "type": 5,
+                "x": 273.1666564941406,
+                "y": 211.20001220703125,
+                "width": 13,
+                "height": 16
+              },
+              "fontSize": "14px"
+            },
+            {
+              "text": "★",
+              "bounds": {
+                "type": 5,
+                "x": 293.1666564941406,
+                "y": 211.20001220703125,
+                "width": 13,
+                "height": 16
+              },
+              "fontSize": "14px"
+            },
+            {
+              "text": "★",
+              "bounds": {
+                "type": 5,
+                "x": 313.1666564941406,
+                "y": 211.20001220703125,
+                "width": 13,
+                "height": 16
+              },
+              "fontSize": "14px"
+            },
+            {
+              "text": "★",
+              "bounds": {
+                "type": 5,
+                "x": 333.1666564941406,
+                "y": 211.20001220703125,
+                "width": 13,
+                "height": 16
+              },
+              "fontSize": "14px"
+            },
+            {
+              "text": "★",
+              "bounds": {
+                "type": 5,
+                "x": 353.1666564941406,
+                "y": 211.20001220703125,
+                "width": 13,
+                "height": 16
+              },
+              "fontSize": "14px"
+            }
+          ]
+        }
+      ],
+      "after": "Equal to before; full data in gzip",
+      "sendCalls": [],
+      "status": "PASS"
+    },
+    {
+      "width": 320,
+      "height": 640,
+      "touch": true,
+      "errors": [],
+      "screenshots": [
+        "320-five-star-shelf.png",
+        "320-b06-compare.png",
+        "320-growth-cost.png",
+        "320-b06-detail.png",
+        "320-a11-compare.png",
+        "320-a11-detail.png",
+        "320-a06-compare.png",
+        "320-a06-detail.png"
+      ],
+      "offers": [
+        {
+          "id": "b06",
+          "guidance": {
+            "stars": 5,
+            "label": "推荐指数 ★★★★★",
+            "reason": "成组核心逐牌重触",
+            "condition": "最大原始同点组有效牌",
+            "recommendation": {
+              "stars": 5,
+              "reason": "成组核心逐牌重触",
+              "condition": "最大原始同点组有效牌",
+              "stage": "early",
+              "combination": "组合潜力：同点重触可接加成，待触发。\n组合记录：上手三拍子、对上眼、长期捧场共同计分（新牌未参与）。",
+              "facts": {
+                "cards": 20,
+                "largest": 8,
+                "second": 4,
+                "largestSuit": 5,
+                "groupConcentrated": true,
+                "flushConcentrated": false,
+                "straightConcentrated": false,
+                "ordinaryStraightPossible": false,
+                "ordinaryFlushPossible": true,
+                "boostedGroup": true,
+                "houseCardPayoff": true,
+                "boostedHouse": true,
+                "groupRecord": true,
+                "houseRecord": true,
+                "flushRecord": false,
+                "qualifiedRecord": true,
+                "heldCardPayoff": true,
+                "heldGroupPayoff": true,
+                "retriggerSource": true,
+                "additiveSource": true,
+                "disabledSourceCount": 0,
+                "potentialStages": 23,
+                "growthWindow": true,
+                "initialGrowth": "{}",
+                "straightFamilyPossible": false,
+                "flushFamilyPossible": true,
+                "flushHousePossible": false,
+                "flushFivePossible": false,
+                "routeGrowth": "{\"before\":{\"clears\":1,\"G\":1,\"S\":0,\"F\":0},\"factors\":{\"G\":{\"n\":\"1\",\"d\":\"1\"},\"S\":{\"n\":\"1\",\"d\":\"1\"},\"F\":{\"n\":\"1\",\"d\":\"1\"}},\"preserved\":\"本局路线资历保留，出售不丢。\",\"detail\":\"本局路线资历：成功清场1次；G 1次 / ×1；S 0次 / ×1；F 0次 / ×1。\\n资历不绑定起手或持牌实例，出售不清零；按实际主手族读取，可重叠的族分别读取。每族前三次合格清场因子为1，清场后才入账，下手读取；本次买卖不增加资历。\"}"
+              },
+              "detail": "成组核心逐牌重触；最大原始同点组有效牌。成组牌型中，主手原始计分牌里张数最多的同点组，平手取左边先出现的一组；该组有效牌各再计一次。失效牌参与选组，不改选其他组；每牌额外最多4次，深度1。\n公开依据：最大同点组8张，前两组12/20张；最大花色5/20张；已持逐牌加成有；剩余场次窗口23。\n组合潜力：同点重触可接加成，待触发。\n组合记录：上手三拍子、对上眼、长期捧场共同计分（新牌未参与）。\n共同计分不代表额外奖励或下手必触发，新现货尚未加入上手记录。\n推荐指数不等于稀有度或路线契合；星星不代表必买或稳赚，需结合替换损失。\n基于公开构筑与当前阶段的推荐；不表示指定替换净更强。\n本局路线资历：成功清场1次；G 1次 / ×1；S 0次 / ×1；F 0次 / ×1。\n资历不绑定起手或持牌实例，出售不清零；按实际主手族读取，可重叠的族分别读取。每族前三次合格清场因子为1，清场后才入账，下手读取；本次买卖不增加资历。"
+            },
+            "operation": "需替换",
+            "operationShort": "需替换",
+            "purchaseConditionLosses": [],
+            "cashBasis": "未选替换：买后余额待核",
+            "detail": "成组核心逐牌重触；最大原始同点组有效牌。成组牌型中，主手原始计分牌里张数最多的同点组，平手取左边先出现的一组；该组有效牌各再计一次。失效牌参与选组，不改选其他组；每牌额外最多4次，深度1。\n公开依据：最大同点组8张，前两组12/20张；最大花色5/20张；已持逐牌加成有；剩余场次窗口23。\n组合潜力：同点重触可接加成，待触发。\n组合记录：上手三拍子、对上眼、长期捧场共同计分（新牌未参与）。\n共同计分不代表额外奖励或下手必触发，新现货尚未加入上手记录。\n推荐指数不等于稀有度或路线契合；星星不代表必买或稳赚，需结合替换损失。\n基于公开构筑与当前阶段的推荐；不表示指定替换净更强。\n本局路线资历：成功清场1次；G 1次 / ×1；S 0次 / ×1；F 0次 / ×1。\n资历不绑定起手或持牌实例，出售不清零；按实际主手族读取，可重叠的族分别读取。每族前三次合格清场因子为1，清场后才入账，下手读取；本次买卖不增加资历。\n需替换\n未选替换：买后余额待核",
+            "routes": [
+              "group"
+            ],
+            "routeCaption": "同点"
+          },
+          "bySlot": [
+            {
+              "stars": 5,
+              "label": "推荐指数 ★★★★★",
+              "reason": "成组核心逐牌重触",
+              "condition": "最大原始同点组有效牌",
+              "recommendation": {
+                "stars": 5,
+                "reason": "成组核心逐牌重触",
+                "condition": "最大原始同点组有效牌",
+                "stage": "early",
+                "combination": "组合潜力：同点重触可接加成，待触发。\n组合记录：上手对上眼、长期捧场共同计分（新牌未参与）。",
+                "facts": {
+                  "cards": 20,
+                  "largest": 8,
+                  "second": 4,
+                  "largestSuit": 5,
+                  "groupConcentrated": true,
+                  "flushConcentrated": false,
+                  "straightConcentrated": false,
+                  "ordinaryStraightPossible": false,
+                  "ordinaryFlushPossible": true,
+                  "boostedGroup": true,
+                  "houseCardPayoff": true,
+                  "boostedHouse": true,
+                  "groupRecord": true,
+                  "houseRecord": true,
+                  "flushRecord": false,
+                  "qualifiedRecord": true,
+                  "heldCardPayoff": true,
+                  "heldGroupPayoff": true,
+                  "retriggerSource": false,
+                  "additiveSource": true,
+                  "disabledSourceCount": 0,
+                  "potentialStages": 23,
+                  "growthWindow": true,
+                  "initialGrowth": "{}",
+                  "straightFamilyPossible": false,
+                  "flushFamilyPossible": true,
+                  "flushHousePossible": false,
+                  "flushFivePossible": false,
+                  "routeGrowth": "{\"before\":{\"clears\":1,\"G\":1,\"S\":0,\"F\":0},\"factors\":{\"G\":{\"n\":\"1\",\"d\":\"1\"},\"S\":{\"n\":\"1\",\"d\":\"1\"},\"F\":{\"n\":\"1\",\"d\":\"1\"}},\"preserved\":\"本局路线资历保留，出售不丢。\",\"detail\":\"本局路线资历：成功清场1次；G 1次 / ×1；S 0次 / ×1；F 0次 / ×1。\\n资历不绑定起手或持牌实例，出售不清零；按实际主手族读取，可重叠的族分别读取。每族前三次合格清场因子为1，清场后才入账，下手读取；本次买卖不增加资历。\"}"
+                },
+                "detail": "成组核心逐牌重触；最大原始同点组有效牌。成组牌型中，主手原始计分牌里张数最多的同点组，平手取左边先出现的一组；该组有效牌各再计一次。失效牌参与选组，不改选其他组；每牌额外最多4次，深度1。\n公开依据：最大同点组8张，前两组12/20张；最大花色5/20张；已持逐牌加成有；剩余场次窗口23。\n组合潜力：同点重触可接加成，待触发。\n组合记录：上手对上眼、长期捧场共同计分（新牌未参与）。\n共同计分不代表额外奖励或下手必触发，新现货尚未加入上手记录。\n推荐指数不等于稀有度或路线契合；星星不代表必买或稳赚，需结合替换损失。\n基于公开构筑与当前阶段的推荐；不表示指定替换净更强。\n本局路线资历：成功清场1次；G 1次 / ×1；S 0次 / ×1；F 0次 / ×1。\n资历不绑定起手或持牌实例，出售不清零；按实际主手族读取，可重叠的族分别读取。每族前三次合格清场因子为1，清场后才入账，下手读取；本次买卖不增加资历。"
+              },
+              "operation": "需替换",
+              "operationShort": "需替换",
+              "purchaseConditionLosses": [],
+              "cashBasis": "指定第1槽先售后买",
+              "replaceId": "held/d11",
+              "detail": "成组核心逐牌重触；最大原始同点组有效牌。成组牌型中，主手原始计分牌里张数最多的同点组，平手取左边先出现的一组；该组有效牌各再计一次。失效牌参与选组，不改选其他组；每牌额外最多4次，深度1。\n公开依据：最大同点组8张，前两组12/20张；最大花色5/20张；已持逐牌加成有；剩余场次窗口23。\n组合潜力：同点重触可接加成，待触发。\n组合记录：上手对上眼、长期捧场共同计分（新牌未参与）。\n共同计分不代表额外奖励或下手必触发，新现货尚未加入上手记录。\n推荐指数不等于稀有度或路线契合；星星不代表必买或稳赚，需结合替换损失。\n基于公开构筑与当前阶段的推荐；不表示指定替换净更强。\n本局路线资历：成功清场1次；G 1次 / ×1；S 0次 / ×1；F 0次 / ×1。\n资历不绑定起手或持牌实例，出售不清零；按实际主手族读取，可重叠的族分别读取。每族前三次合格清场因子为1，清场后才入账，下手读取；本次买卖不增加资历。\n需替换\n指定第1槽先售后买",
+              "routes": [
+                "group"
+              ],
+              "routeCaption": "同点"
+            },
+            {
+              "stars": 5,
+              "label": "推荐指数 ★★★★★",
+              "reason": "成组核心逐牌重触",
+              "condition": "最大原始同点组有效牌",
+              "recommendation": {
+                "stars": 5,
+                "reason": "成组核心逐牌重触",
+                "condition": "最大原始同点组有效牌",
+                "stage": "early",
+                "combination": "组合潜力：同点重触可接加成，待触发。\n组合记录：上手三拍子、长期捧场共同计分（新牌未参与）。",
+                "facts": {
+                  "cards": 20,
+                  "largest": 8,
+                  "second": 4,
+                  "largestSuit": 5,
+                  "groupConcentrated": true,
+                  "flushConcentrated": false,
+                  "straightConcentrated": false,
+                  "ordinaryStraightPossible": false,
+                  "ordinaryFlushPossible": true,
+                  "boostedGroup": true,
+                  "houseCardPayoff": true,
+                  "boostedHouse": true,
+                  "groupRecord": true,
+                  "houseRecord": true,
+                  "flushRecord": false,
+                  "qualifiedRecord": true,
+                  "heldCardPayoff": false,
+                  "heldGroupPayoff": false,
+                  "retriggerSource": true,
+                  "additiveSource": false,
+                  "disabledSourceCount": 0,
+                  "potentialStages": 23,
+                  "growthWindow": true,
+                  "initialGrowth": "{}",
+                  "straightFamilyPossible": false,
+                  "flushFamilyPossible": true,
+                  "flushHousePossible": false,
+                  "flushFivePossible": false,
+                  "routeGrowth": "{\"before\":{\"clears\":1,\"G\":1,\"S\":0,\"F\":0},\"factors\":{\"G\":{\"n\":\"1\",\"d\":\"1\"},\"S\":{\"n\":\"1\",\"d\":\"1\"},\"F\":{\"n\":\"1\",\"d\":\"1\"}},\"preserved\":\"本局路线资历保留，出售不丢。\",\"detail\":\"本局路线资历：成功清场1次；G 1次 / ×1；S 0次 / ×1；F 0次 / ×1。\\n资历不绑定起手或持牌实例，出售不清零；按实际主手族读取，可重叠的族分别读取。每族前三次合格清场因子为1，清场后才入账，下手读取；本次买卖不增加资历。\"}"
+                },
+                "detail": "成组核心逐牌重触；最大原始同点组有效牌。成组牌型中，主手原始计分牌里张数最多的同点组，平手取左边先出现的一组；该组有效牌各再计一次。失效牌参与选组，不改选其他组；每牌额外最多4次，深度1。\n公开依据：最大同点组8张，前两组12/20张；最大花色5/20张；已持逐牌加成无；剩余场次窗口23。\n组合潜力：同点重触可接加成，待触发。\n组合记录：上手三拍子、长期捧场共同计分（新牌未参与）。\n共同计分不代表额外奖励或下手必触发，新现货尚未加入上手记录。\n推荐指数不等于稀有度或路线契合；星星不代表必买或稳赚，需结合替换损失。\n基于公开构筑与当前阶段的推荐；不表示指定替换净更强。\n本局路线资历：成功清场1次；G 1次 / ×1；S 0次 / ×1；F 0次 / ×1。\n资历不绑定起手或持牌实例，出售不清零；按实际主手族读取，可重叠的族分别读取。每族前三次合格清场因子为1，清场后才入账，下手读取；本次买卖不增加资历。"
+              },
+              "operation": "需替换",
+              "operationShort": "需替换",
+              "purchaseConditionLosses": [],
+              "cashBasis": "指定第2槽先售后买",
+              "replaceId": "held/b02",
+              "detail": "成组核心逐牌重触；最大原始同点组有效牌。成组牌型中，主手原始计分牌里张数最多的同点组，平手取左边先出现的一组；该组有效牌各再计一次。失效牌参与选组，不改选其他组；每牌额外最多4次，深度1。\n公开依据：最大同点组8张，前两组12/20张；最大花色5/20张；已持逐牌加成无；剩余场次窗口23。\n组合潜力：同点重触可接加成，待触发。\n组合记录：上手三拍子、长期捧场共同计分（新牌未参与）。\n共同计分不代表额外奖励或下手必触发，新现货尚未加入上手记录。\n推荐指数不等于稀有度或路线契合；星星不代表必买或稳赚，需结合替换损失。\n基于公开构筑与当前阶段的推荐；不表示指定替换净更强。\n本局路线资历：成功清场1次；G 1次 / ×1；S 0次 / ×1；F 0次 / ×1。\n资历不绑定起手或持牌实例，出售不清零；按实际主手族读取，可重叠的族分别读取。每族前三次合格清场因子为1，清场后才入账，下手读取；本次买卖不增加资历。\n需替换\n指定第2槽先售后买",
+              "routes": [
+                "group"
+              ],
+              "routeCaption": "同点"
+            },
+            {
+              "stars": 5,
+              "label": "推荐指数 ★★★★★",
+              "reason": "成组核心逐牌重触",
+              "condition": "最大原始同点组有效牌",
+              "recommendation": {
+                "stars": 5,
+                "reason": "成组核心逐牌重触",
+                "condition": "最大原始同点组有效牌",
+                "stage": "early",
+                "combination": "组合潜力：同点重触可接加成，待触发。\n组合记录：上手三拍子、对上眼共同计分（新牌未参与）。",
+                "facts": {
+                  "cards": 20,
+                  "largest": 8,
+                  "second": 4,
+                  "largestSuit": 5,
+                  "groupConcentrated": true,
+                  "flushConcentrated": false,
+                  "straightConcentrated": false,
+                  "ordinaryStraightPossible": false,
+                  "ordinaryFlushPossible": true,
+                  "boostedGroup": true,
+                  "houseCardPayoff": true,
+                  "boostedHouse": true,
+                  "groupRecord": true,
+                  "houseRecord": true,
+                  "flushRecord": false,
+                  "qualifiedRecord": true,
+                  "heldCardPayoff": true,
+                  "heldGroupPayoff": true,
+                  "retriggerSource": true,
+                  "additiveSource": true,
+                  "disabledSourceCount": 0,
+                  "potentialStages": 23,
+                  "growthWindow": true,
+                  "initialGrowth": "{}",
+                  "straightFamilyPossible": false,
+                  "flushFamilyPossible": true,
+                  "flushHousePossible": false,
+                  "flushFivePossible": false,
+                  "routeGrowth": "{\"before\":{\"clears\":1,\"G\":1,\"S\":0,\"F\":0},\"factors\":{\"G\":{\"n\":\"1\",\"d\":\"1\"},\"S\":{\"n\":\"1\",\"d\":\"1\"},\"F\":{\"n\":\"1\",\"d\":\"1\"}},\"preserved\":\"本局路线资历保留，出售不丢。\",\"detail\":\"本局路线资历：成功清场1次；G 1次 / ×1；S 0次 / ×1；F 0次 / ×1。\\n资历不绑定起手或持牌实例，出售不清零；按实际主手族读取，可重叠的族分别读取。每族前三次合格清场因子为1，清场后才入账，下手读取；本次买卖不增加资历。\"}"
+                },
+                "detail": "成组核心逐牌重触；最大原始同点组有效牌。成组牌型中，主手原始计分牌里张数最多的同点组，平手取左边先出现的一组；该组有效牌各再计一次。失效牌参与选组，不改选其他组；每牌额外最多4次，深度1。\n公开依据：最大同点组8张，前两组12/20张；最大花色5/20张；已持逐牌加成有；剩余场次窗口23。\n组合潜力：同点重触可接加成，待触发。\n组合记录：上手三拍子、对上眼共同计分（新牌未参与）。\n共同计分不代表额外奖励或下手必触发，新现货尚未加入上手记录。\n推荐指数不等于稀有度或路线契合；星星不代表必买或稳赚，需结合替换损失。\n基于公开构筑与当前阶段的推荐；不表示指定替换净更强。\n本局路线资历：成功清场1次；G 1次 / ×1；S 0次 / ×1；F 0次 / ×1。\n资历不绑定起手或持牌实例，出售不清零；按实际主手族读取，可重叠的族分别读取。每族前三次合格清场因子为1，清场后才入账，下手读取；本次买卖不增加资历。"
+              },
+              "operation": "需替换",
+              "operationShort": "需替换",
+              "purchaseConditionLosses": [],
+              "cashBasis": "指定第3槽先售后买",
+              "replaceId": "held/e11",
+              "detail": "成组核心逐牌重触；最大原始同点组有效牌。成组牌型中，主手原始计分牌里张数最多的同点组，平手取左边先出现的一组；该组有效牌各再计一次。失效牌参与选组，不改选其他组；每牌额外最多4次，深度1。\n公开依据：最大同点组8张，前两组12/20张；最大花色5/20张；已持逐牌加成有；剩余场次窗口23。\n组合潜力：同点重触可接加成，待触发。\n组合记录：上手三拍子、对上眼共同计分（新牌未参与）。\n共同计分不代表额外奖励或下手必触发，新现货尚未加入上手记录。\n推荐指数不等于稀有度或路线契合；星星不代表必买或稳赚，需结合替换损失。\n基于公开构筑与当前阶段的推荐；不表示指定替换净更强。\n本局路线资历：成功清场1次；G 1次 / ×1；S 0次 / ×1；F 0次 / ×1。\n资历不绑定起手或持牌实例，出售不清零；按实际主手族读取，可重叠的族分别读取。每族前三次合格清场因子为1，清场后才入账，下手读取；本次买卖不增加资历。\n需替换\n指定第3槽先售后买",
+              "routes": [
+                "group"
+              ],
+              "routeCaption": "同点"
+            },
+            {
+              "stars": 5,
+              "label": "推荐指数 ★★★★★",
+              "reason": "成组核心逐牌重触",
+              "condition": "最大原始同点组有效牌",
+              "recommendation": {
+                "stars": 5,
+                "reason": "成组核心逐牌重触",
+                "condition": "最大原始同点组有效牌",
+                "stage": "early",
+                "combination": "组合潜力：同点重触可接加成，待触发。\n组合记录：上手三拍子、对上眼、长期捧场共同计分（新牌未参与）。",
+                "facts": {
+                  "cards": 20,
+                  "largest": 8,
+                  "second": 4,
+                  "largestSuit": 5,
+                  "groupConcentrated": true,
+                  "flushConcentrated": false,
+                  "straightConcentrated": false,
+                  "ordinaryStraightPossible": false,
+                  "ordinaryFlushPossible": true,
+                  "boostedGroup": true,
+                  "houseCardPayoff": true,
+                  "boostedHouse": true,
+                  "groupRecord": true,
+                  "houseRecord": true,
+                  "flushRecord": false,
+                  "qualifiedRecord": true,
+                  "heldCardPayoff": true,
+                  "heldGroupPayoff": true,
+                  "retriggerSource": true,
+                  "additiveSource": true,
+                  "disabledSourceCount": 0,
+                  "potentialStages": 23,
+                  "growthWindow": true,
+                  "initialGrowth": "{}",
+                  "straightFamilyPossible": false,
+                  "flushFamilyPossible": true,
+                  "flushHousePossible": false,
+                  "flushFivePossible": false,
+                  "routeGrowth": "{\"before\":{\"clears\":1,\"G\":1,\"S\":0,\"F\":0},\"factors\":{\"G\":{\"n\":\"1\",\"d\":\"1\"},\"S\":{\"n\":\"1\",\"d\":\"1\"},\"F\":{\"n\":\"1\",\"d\":\"1\"}},\"preserved\":\"本局路线资历保留，出售不丢。\",\"detail\":\"本局路线资历：成功清场1次；G 1次 / ×1；S 0次 / ×1；F 0次 / ×1。\\n资历不绑定起手或持牌实例，出售不清零；按实际主手族读取，可重叠的族分别读取。每族前三次合格清场因子为1，清场后才入账，下手读取；本次买卖不增加资历。\"}"
+                },
+                "detail": "成组核心逐牌重触；最大原始同点组有效牌。成组牌型中，主手原始计分牌里张数最多的同点组，平手取左边先出现的一组；该组有效牌各再计一次。失效牌参与选组，不改选其他组；每牌额外最多4次，深度1。\n公开依据：最大同点组8张，前两组12/20张；最大花色5/20张；已持逐牌加成有；剩余场次窗口23。\n组合潜力：同点重触可接加成，待触发。\n组合记录：上手三拍子、对上眼、长期捧场共同计分（新牌未参与）。\n共同计分不代表额外奖励或下手必触发，新现货尚未加入上手记录。\n推荐指数不等于稀有度或路线契合；星星不代表必买或稳赚，需结合替换损失。\n基于公开构筑与当前阶段的推荐；不表示指定替换净更强。\n本局路线资历：成功清场1次；G 1次 / ×1；S 0次 / ×1；F 0次 / ×1。\n资历不绑定起手或持牌实例，出售不清零；按实际主手族读取，可重叠的族分别读取。每族前三次合格清场因子为1，清场后才入账，下手读取；本次买卖不增加资历。"
+              },
+              "operation": "需替换",
+              "operationShort": "需替换",
+              "purchaseConditionLosses": [],
+              "cashBasis": "指定第4槽先售后买",
+              "replaceId": "held/e01",
+              "detail": "成组核心逐牌重触；最大原始同点组有效牌。成组牌型中，主手原始计分牌里张数最多的同点组，平手取左边先出现的一组；该组有效牌各再计一次。失效牌参与选组，不改选其他组；每牌额外最多4次，深度1。\n公开依据：最大同点组8张，前两组12/20张；最大花色5/20张；已持逐牌加成有；剩余场次窗口23。\n组合潜力：同点重触可接加成，待触发。\n组合记录：上手三拍子、对上眼、长期捧场共同计分（新牌未参与）。\n共同计分不代表额外奖励或下手必触发，新现货尚未加入上手记录。\n推荐指数不等于稀有度或路线契合；星星不代表必买或稳赚，需结合替换损失。\n基于公开构筑与当前阶段的推荐；不表示指定替换净更强。\n本局路线资历：成功清场1次；G 1次 / ×1；S 0次 / ×1；F 0次 / ×1。\n资历不绑定起手或持牌实例，出售不清零；按实际主手族读取，可重叠的族分别读取。每族前三次合格清场因子为1，清场后才入账，下手读取；本次买卖不增加资历。\n需替换\n指定第4槽先售后买",
+              "routes": [
+                "group"
+              ],
+              "routeCaption": "同点"
+            },
+            {
+              "stars": 5,
+              "label": "推荐指数 ★★★★★",
+              "reason": "成组核心逐牌重触",
+              "condition": "最大原始同点组有效牌",
+              "recommendation": {
+                "stars": 5,
+                "reason": "成组核心逐牌重触",
+                "condition": "最大原始同点组有效牌",
+                "stage": "early",
+                "combination": "组合潜力：同点重触可接加成，待触发。\n组合记录：上手三拍子、对上眼、长期捧场共同计分（新牌未参与）。",
+                "facts": {
+                  "cards": 20,
+                  "largest": 8,
+                  "second": 4,
+                  "largestSuit": 5,
+                  "groupConcentrated": true,
+                  "flushConcentrated": false,
+                  "straightConcentrated": false,
+                  "ordinaryStraightPossible": false,
+                  "ordinaryFlushPossible": true,
+                  "boostedGroup": true,
+                  "houseCardPayoff": true,
+                  "boostedHouse": true,
+                  "groupRecord": true,
+                  "houseRecord": true,
+                  "flushRecord": false,
+                  "qualifiedRecord": true,
+                  "heldCardPayoff": true,
+                  "heldGroupPayoff": true,
+                  "retriggerSource": true,
+                  "additiveSource": true,
+                  "disabledSourceCount": 0,
+                  "potentialStages": 23,
+                  "growthWindow": true,
+                  "initialGrowth": "{}",
+                  "straightFamilyPossible": false,
+                  "flushFamilyPossible": true,
+                  "flushHousePossible": false,
+                  "flushFivePossible": false,
+                  "routeGrowth": "{\"before\":{\"clears\":1,\"G\":1,\"S\":0,\"F\":0},\"factors\":{\"G\":{\"n\":\"1\",\"d\":\"1\"},\"S\":{\"n\":\"1\",\"d\":\"1\"},\"F\":{\"n\":\"1\",\"d\":\"1\"}},\"preserved\":\"本局路线资历保留，出售不丢。\",\"detail\":\"本局路线资历：成功清场1次；G 1次 / ×1；S 0次 / ×1；F 0次 / ×1。\\n资历不绑定起手或持牌实例，出售不清零；按实际主手族读取，可重叠的族分别读取。每族前三次合格清场因子为1，清场后才入账，下手读取；本次买卖不增加资历。\"}"
+                },
+                "detail": "成组核心逐牌重触；最大原始同点组有效牌。成组牌型中，主手原始计分牌里张数最多的同点组，平手取左边先出现的一组；该组有效牌各再计一次。失效牌参与选组，不改选其他组；每牌额外最多4次，深度1。\n公开依据：最大同点组8张，前两组12/20张；最大花色5/20张；已持逐牌加成有；剩余场次窗口23。\n组合潜力：同点重触可接加成，待触发。\n组合记录：上手三拍子、对上眼、长期捧场共同计分（新牌未参与）。\n共同计分不代表额外奖励或下手必触发，新现货尚未加入上手记录。\n推荐指数不等于稀有度或路线契合；星星不代表必买或稳赚，需结合替换损失。\n基于公开构筑与当前阶段的推荐；不表示指定替换净更强。\n本局路线资历：成功清场1次；G 1次 / ×1；S 0次 / ×1；F 0次 / ×1。\n资历不绑定起手或持牌实例，出售不清零；按实际主手族读取，可重叠的族分别读取。每族前三次合格清场因子为1，清场后才入账，下手读取；本次买卖不增加资历。"
+              },
+              "operation": "需替换",
+              "operationShort": "需替换",
+              "purchaseConditionLosses": [],
+              "cashBasis": "指定第5槽先售后买",
+              "replaceId": "held/e04",
+              "detail": "成组核心逐牌重触；最大原始同点组有效牌。成组牌型中，主手原始计分牌里张数最多的同点组，平手取左边先出现的一组；该组有效牌各再计一次。失效牌参与选组，不改选其他组；每牌额外最多4次，深度1。\n公开依据：最大同点组8张，前两组12/20张；最大花色5/20张；已持逐牌加成有；剩余场次窗口23。\n组合潜力：同点重触可接加成，待触发。\n组合记录：上手三拍子、对上眼、长期捧场共同计分（新牌未参与）。\n共同计分不代表额外奖励或下手必触发，新现货尚未加入上手记录。\n推荐指数不等于稀有度或路线契合；星星不代表必买或稳赚，需结合替换损失。\n基于公开构筑与当前阶段的推荐；不表示指定替换净更强。\n本局路线资历：成功清场1次；G 1次 / ×1；S 0次 / ×1；F 0次 / ×1。\n资历不绑定起手或持牌实例，出售不清零；按实际主手族读取，可重叠的族分别读取。每族前三次合格清场因子为1，清场后才入账，下手读取；本次买卖不增加资历。\n需替换\n指定第5槽先售后买",
+              "routes": [
+                "group"
+              ],
+              "routeCaption": "同点"
+            }
+          ],
+          "compare": "现货与已持\n再说一遍 · 持有与现货比较\n\n推荐指数 ★★★★★\n成组核心逐牌重触 · 最大原始同点组有效牌\n本局路线资历保留，出售不丢。\n\n第 1 槽 · 三拍子\n\n返4金 · 实付8金 · 买后54金\n长期捧场：系数×1.6保留 · 下一场未售成长失效\n推荐指数 ★★★★★ · 成组核心逐牌重触\n\n管理这张\n条件、配合与完整损失\n第 2 槽 · 对上眼\n\n返4金 · 实付8金 · 买后54金\n长期捧场：系数×1.6保留 · 下一场未售成长失效\n推荐指数 ★★★★★ · 成组核心逐牌重触\n\n管理这张\n条件、配合与完整损失\n第 3 槽 · 长期捧场\n\n返4金 · 实付8金 · 买后54金\n失去：系数×1.6\n推荐指数 ★★★★★ · 成组核心逐牌重触\n\n管理这张\n条件、配合与完整损失\n第 4 槽 · 小费盒\n\n返4金 · 实付8金 · 买后54金\n长期捧场：系数×1.6保留 · 下一场未售成长失效\n推荐指数 ★★★★★ · 成组核心逐牌重触\n\n管理这张\n条件、配合与完整损失\n第 5 槽 · 滚个零头\n\n返4金 · 实付8金 · 买后54金\n长期捧场：系数×1.6保留 · 下一场未售成长失效\n推荐指数 ★★★★★ · 成组核心逐牌重触\n\n管理这张\n条件、配合与完整损失\n\n按现持槽位逐张比较。保留、换方向或留金入场都可以；这里不排序推荐，也不自动卖买。\n\n返回购买详情\n更换培养方向\n关闭",
+          "detail": "现货 · 确认后付款\n再说一遍 · 购买详情\n\n适用：同点\n\n✦ 稀有\n\n计分牌逐张生效\n\n打出对子、两对、三条、葫芦等同点数组合时，主手原始计分牌里张数最多的同点组\n\n各张有效牌再计1次\n同样多时取当前主手从左到右最先出现的一组\n失效牌参与选组，但不再计，也不改选另一组。\n只加给能计分的牌\n附带/停用牌不获加成。\n现在：尚未购买，买入后才会生效\n\n推荐指数 ★★★★★\n成组核心逐牌重触 · 最大原始同点组有效牌\n组合潜力：同点重触可接加成，待触发。\n组合记录：上手三拍子、对上眼、长期捧场共同计分（新牌未参与）。\n直接买入 · 实付 8 金 · 余额 58 → 50 金\n5个槽位已满。请先关闭详情，点随身牌确认出售，再购买。\n\n版次：普通（无额外计分）\n\n高清细节加载中…\n规则与操作\n比较替换\n邀请 · 8 金\n取消",
+          "detailGeometry": {
+            "line": {
+              "x": 52,
+              "y": 252.578125,
+              "right": 200.171875,
+              "bottom": 274.578125
+            },
+            "pane": {
+              "x": 36,
+              "y": 238.859375,
+              "right": 284,
+              "bottom": 482
+            }
+          }
+        },
+        {
+          "id": "a11",
+          "guidance": {
+            "stars": 5,
+            "label": "推荐指数 ★★★★★",
+            "reason": "葫芦整组重触",
+            "condition": "只读葫芦或同花葫芦",
+            "recommendation": {
+              "stars": 5,
+              "reason": "葫芦整组重触",
+              "condition": "只读葫芦或同花葫芦",
+              "stage": "early",
+              "combination": "组合潜力：葫芦重触可接加成，待触发。\n组合记录：上手三拍子、对上眼、长期捧场共同计分（新牌未参与）。",
+              "facts": {
+                "cards": 20,
+                "largest": 8,
+                "second": 4,
+                "largestSuit": 5,
+                "groupConcentrated": true,
+                "flushConcentrated": false,
+                "straightConcentrated": false,
+                "ordinaryStraightPossible": false,
+                "ordinaryFlushPossible": true,
+                "boostedGroup": true,
+                "houseCardPayoff": true,
+                "boostedHouse": true,
+                "groupRecord": true,
+                "houseRecord": true,
+                "flushRecord": false,
+                "qualifiedRecord": true,
+                "heldCardPayoff": true,
+                "heldGroupPayoff": true,
+                "retriggerSource": true,
+                "additiveSource": true,
+                "disabledSourceCount": 0,
+                "potentialStages": 23,
+                "growthWindow": true,
+                "initialGrowth": "{}",
+                "straightFamilyPossible": false,
+                "flushFamilyPossible": true,
+                "flushHousePossible": false,
+                "flushFivePossible": false,
+                "routeGrowth": "{\"before\":{\"clears\":1,\"G\":1,\"S\":0,\"F\":0},\"factors\":{\"G\":{\"n\":\"1\",\"d\":\"1\"},\"S\":{\"n\":\"1\",\"d\":\"1\"},\"F\":{\"n\":\"1\",\"d\":\"1\"}},\"preserved\":\"本局路线资历保留，出售不丢。\",\"detail\":\"本局路线资历：成功清场1次；G 1次 / ×1；S 0次 / ×1；F 0次 / ×1。\\n资历不绑定起手或持牌实例，出售不清零；按实际主手族读取，可重叠的族分别读取。每族前三次合格清场因子为1，清场后才入账，下手读取；本次买卖不增加资历。\"}"
+              },
+              "detail": "葫芦整组重触；只读葫芦或同花葫芦。主手为葫芦或同花葫芦时，每张有效计分牌请求额外重触发一次；助攻牌不触发。\n公开依据：最大同点组8张，前两组12/20张；最大花色5/20张；已持逐牌加成有；剩余场次窗口23。\n组合潜力：葫芦重触可接加成，待触发。\n组合记录：上手三拍子、对上眼、长期捧场共同计分（新牌未参与）。\n共同计分不代表额外奖励或下手必触发，新现货尚未加入上手记录。\n推荐指数不等于稀有度或路线契合；星星不代表必买或稳赚，需结合替换损失。\n基于公开构筑与当前阶段的推荐；不表示指定替换净更强。\n本局路线资历：成功清场1次；G 1次 / ×1；S 0次 / ×1；F 0次 / ×1。\n资历不绑定起手或持牌实例，出售不清零；按实际主手族读取，可重叠的族分别读取。每族前三次合格清场因子为1，清场后才入账，下手读取；本次买卖不增加资历。"
+            },
+            "operation": "需替换",
+            "operationShort": "需替换",
+            "purchaseConditionLosses": [],
+            "cashBasis": "未选替换：买后余额待核",
+            "detail": "葫芦整组重触；只读葫芦或同花葫芦。主手为葫芦或同花葫芦时，每张有效计分牌请求额外重触发一次；助攻牌不触发。\n公开依据：最大同点组8张，前两组12/20张；最大花色5/20张；已持逐牌加成有；剩余场次窗口23。\n组合潜力：葫芦重触可接加成，待触发。\n组合记录：上手三拍子、对上眼、长期捧场共同计分（新牌未参与）。\n共同计分不代表额外奖励或下手必触发，新现货尚未加入上手记录。\n推荐指数不等于稀有度或路线契合；星星不代表必买或稳赚，需结合替换损失。\n基于公开构筑与当前阶段的推荐；不表示指定替换净更强。\n本局路线资历：成功清场1次；G 1次 / ×1；S 0次 / ×1；F 0次 / ×1。\n资历不绑定起手或持牌实例，出售不清零；按实际主手族读取，可重叠的族分别读取。每族前三次合格清场因子为1，清场后才入账，下手读取；本次买卖不增加资历。\n需替换\n未选替换：买后余额待核",
+            "routes": [
+              "group"
+            ],
+            "routeCaption": "同点"
+          },
+          "bySlot": [
+            {
+              "stars": 5,
+              "label": "推荐指数 ★★★★★",
+              "reason": "葫芦整组重触",
+              "condition": "只读葫芦或同花葫芦",
+              "recommendation": {
+                "stars": 5,
+                "reason": "葫芦整组重触",
+                "condition": "只读葫芦或同花葫芦",
+                "stage": "early",
+                "combination": "组合潜力：葫芦重触可接加成，待触发。\n组合记录：上手对上眼、长期捧场共同计分（新牌未参与）。",
+                "facts": {
+                  "cards": 20,
+                  "largest": 8,
+                  "second": 4,
+                  "largestSuit": 5,
+                  "groupConcentrated": true,
+                  "flushConcentrated": false,
+                  "straightConcentrated": false,
+                  "ordinaryStraightPossible": false,
+                  "ordinaryFlushPossible": true,
+                  "boostedGroup": true,
+                  "houseCardPayoff": true,
+                  "boostedHouse": true,
+                  "groupRecord": true,
+                  "houseRecord": true,
+                  "flushRecord": false,
+                  "qualifiedRecord": true,
+                  "heldCardPayoff": true,
+                  "heldGroupPayoff": true,
+                  "retriggerSource": false,
+                  "additiveSource": true,
+                  "disabledSourceCount": 0,
+                  "potentialStages": 23,
+                  "growthWindow": true,
+                  "initialGrowth": "{}",
+                  "straightFamilyPossible": false,
+                  "flushFamilyPossible": true,
+                  "flushHousePossible": false,
+                  "flushFivePossible": false,
+                  "routeGrowth": "{\"before\":{\"clears\":1,\"G\":1,\"S\":0,\"F\":0},\"factors\":{\"G\":{\"n\":\"1\",\"d\":\"1\"},\"S\":{\"n\":\"1\",\"d\":\"1\"},\"F\":{\"n\":\"1\",\"d\":\"1\"}},\"preserved\":\"本局路线资历保留，出售不丢。\",\"detail\":\"本局路线资历：成功清场1次；G 1次 / ×1；S 0次 / ×1；F 0次 / ×1。\\n资历不绑定起手或持牌实例，出售不清零；按实际主手族读取，可重叠的族分别读取。每族前三次合格清场因子为1，清场后才入账，下手读取；本次买卖不增加资历。\"}"
+                },
+                "detail": "葫芦整组重触；只读葫芦或同花葫芦。主手为葫芦或同花葫芦时，每张有效计分牌请求额外重触发一次；助攻牌不触发。\n公开依据：最大同点组8张，前两组12/20张；最大花色5/20张；已持逐牌加成有；剩余场次窗口23。\n组合潜力：葫芦重触可接加成，待触发。\n组合记录：上手对上眼、长期捧场共同计分（新牌未参与）。\n共同计分不代表额外奖励或下手必触发，新现货尚未加入上手记录。\n推荐指数不等于稀有度或路线契合；星星不代表必买或稳赚，需结合替换损失。\n基于公开构筑与当前阶段的推荐；不表示指定替换净更强。\n本局路线资历：成功清场1次；G 1次 / ×1；S 0次 / ×1；F 0次 / ×1。\n资历不绑定起手或持牌实例，出售不清零；按实际主手族读取，可重叠的族分别读取。每族前三次合格清场因子为1，清场后才入账，下手读取；本次买卖不增加资历。"
+              },
+              "operation": "需替换",
+              "operationShort": "需替换",
+              "purchaseConditionLosses": [],
+              "cashBasis": "指定第1槽先售后买",
+              "replaceId": "held/d11",
+              "detail": "葫芦整组重触；只读葫芦或同花葫芦。主手为葫芦或同花葫芦时，每张有效计分牌请求额外重触发一次；助攻牌不触发。\n公开依据：最大同点组8张，前两组12/20张；最大花色5/20张；已持逐牌加成有；剩余场次窗口23。\n组合潜力：葫芦重触可接加成，待触发。\n组合记录：上手对上眼、长期捧场共同计分（新牌未参与）。\n共同计分不代表额外奖励或下手必触发，新现货尚未加入上手记录。\n推荐指数不等于稀有度或路线契合；星星不代表必买或稳赚，需结合替换损失。\n基于公开构筑与当前阶段的推荐；不表示指定替换净更强。\n本局路线资历：成功清场1次；G 1次 / ×1；S 0次 / ×1；F 0次 / ×1。\n资历不绑定起手或持牌实例，出售不清零；按实际主手族读取，可重叠的族分别读取。每族前三次合格清场因子为1，清场后才入账，下手读取；本次买卖不增加资历。\n需替换\n指定第1槽先售后买",
+              "routes": [
+                "group"
+              ],
+              "routeCaption": "同点"
+            },
+            {
+              "stars": 5,
+              "label": "推荐指数 ★★★★★",
+              "reason": "葫芦整组重触",
+              "condition": "只读葫芦或同花葫芦",
+              "recommendation": {
+                "stars": 5,
+                "reason": "葫芦整组重触",
+                "condition": "只读葫芦或同花葫芦",
+                "stage": "early",
+                "combination": "组合潜力：葫芦重触可接加成，待触发。\n组合记录：上手三拍子、长期捧场共同计分（新牌未参与）。",
+                "facts": {
+                  "cards": 20,
+                  "largest": 8,
+                  "second": 4,
+                  "largestSuit": 5,
+                  "groupConcentrated": true,
+                  "flushConcentrated": false,
+                  "straightConcentrated": false,
+                  "ordinaryStraightPossible": false,
+                  "ordinaryFlushPossible": true,
+                  "boostedGroup": true,
+                  "houseCardPayoff": true,
+                  "boostedHouse": true,
+                  "groupRecord": true,
+                  "houseRecord": true,
+                  "flushRecord": false,
+                  "qualifiedRecord": true,
+                  "heldCardPayoff": false,
+                  "heldGroupPayoff": false,
+                  "retriggerSource": true,
+                  "additiveSource": false,
+                  "disabledSourceCount": 0,
+                  "potentialStages": 23,
+                  "growthWindow": true,
+                  "initialGrowth": "{}",
+                  "straightFamilyPossible": false,
+                  "flushFamilyPossible": true,
+                  "flushHousePossible": false,
+                  "flushFivePossible": false,
+                  "routeGrowth": "{\"before\":{\"clears\":1,\"G\":1,\"S\":0,\"F\":0},\"factors\":{\"G\":{\"n\":\"1\",\"d\":\"1\"},\"S\":{\"n\":\"1\",\"d\":\"1\"},\"F\":{\"n\":\"1\",\"d\":\"1\"}},\"preserved\":\"本局路线资历保留，出售不丢。\",\"detail\":\"本局路线资历：成功清场1次；G 1次 / ×1；S 0次 / ×1；F 0次 / ×1。\\n资历不绑定起手或持牌实例，出售不清零；按实际主手族读取，可重叠的族分别读取。每族前三次合格清场因子为1，清场后才入账，下手读取；本次买卖不增加资历。\"}"
+                },
+                "detail": "葫芦整组重触；只读葫芦或同花葫芦。主手为葫芦或同花葫芦时，每张有效计分牌请求额外重触发一次；助攻牌不触发。\n公开依据：最大同点组8张，前两组12/20张；最大花色5/20张；已持逐牌加成无；剩余场次窗口23。\n组合潜力：葫芦重触可接加成，待触发。\n组合记录：上手三拍子、长期捧场共同计分（新牌未参与）。\n共同计分不代表额外奖励或下手必触发，新现货尚未加入上手记录。\n推荐指数不等于稀有度或路线契合；星星不代表必买或稳赚，需结合替换损失。\n基于公开构筑与当前阶段的推荐；不表示指定替换净更强。\n本局路线资历：成功清场1次；G 1次 / ×1；S 0次 / ×1；F 0次 / ×1。\n资历不绑定起手或持牌实例，出售不清零；按实际主手族读取，可重叠的族分别读取。每族前三次合格清场因子为1，清场后才入账，下手读取；本次买卖不增加资历。"
+              },
+              "operation": "需替换",
+              "operationShort": "需替换",
+              "purchaseConditionLosses": [],
+              "cashBasis": "指定第2槽先售后买",
+              "replaceId": "held/b02",
+              "detail": "葫芦整组重触；只读葫芦或同花葫芦。主手为葫芦或同花葫芦时，每张有效计分牌请求额外重触发一次；助攻牌不触发。\n公开依据：最大同点组8张，前两组12/20张；最大花色5/20张；已持逐牌加成无；剩余场次窗口23。\n组合潜力：葫芦重触可接加成，待触发。\n组合记录：上手三拍子、长期捧场共同计分（新牌未参与）。\n共同计分不代表额外奖励或下手必触发，新现货尚未加入上手记录。\n推荐指数不等于稀有度或路线契合；星星不代表必买或稳赚，需结合替换损失。\n基于公开构筑与当前阶段的推荐；不表示指定替换净更强。\n本局路线资历：成功清场1次；G 1次 / ×1；S 0次 / ×1；F 0次 / ×1。\n资历不绑定起手或持牌实例，出售不清零；按实际主手族读取，可重叠的族分别读取。每族前三次合格清场因子为1，清场后才入账，下手读取；本次买卖不增加资历。\n需替换\n指定第2槽先售后买",
+              "routes": [
+                "group"
+              ],
+              "routeCaption": "同点"
+            },
+            {
+              "stars": 5,
+              "label": "推荐指数 ★★★★★",
+              "reason": "葫芦整组重触",
+              "condition": "只读葫芦或同花葫芦",
+              "recommendation": {
+                "stars": 5,
+                "reason": "葫芦整组重触",
+                "condition": "只读葫芦或同花葫芦",
+                "stage": "early",
+                "combination": "组合潜力：葫芦重触可接加成，待触发。\n组合记录：上手三拍子、对上眼共同计分（新牌未参与）。",
+                "facts": {
+                  "cards": 20,
+                  "largest": 8,
+                  "second": 4,
+                  "largestSuit": 5,
+                  "groupConcentrated": true,
+                  "flushConcentrated": false,
+                  "straightConcentrated": false,
+                  "ordinaryStraightPossible": false,
+                  "ordinaryFlushPossible": true,
+                  "boostedGroup": true,
+                  "houseCardPayoff": true,
+                  "boostedHouse": true,
+                  "groupRecord": true,
+                  "houseRecord": true,
+                  "flushRecord": false,
+                  "qualifiedRecord": true,
+                  "heldCardPayoff": true,
+                  "heldGroupPayoff": true,
+                  "retriggerSource": true,
+                  "additiveSource": true,
+                  "disabledSourceCount": 0,
+                  "potentialStages": 23,
+                  "growthWindow": true,
+                  "initialGrowth": "{}",
+                  "straightFamilyPossible": false,
+                  "flushFamilyPossible": true,
+                  "flushHousePossible": false,
+                  "flushFivePossible": false,
+                  "routeGrowth": "{\"before\":{\"clears\":1,\"G\":1,\"S\":0,\"F\":0},\"factors\":{\"G\":{\"n\":\"1\",\"d\":\"1\"},\"S\":{\"n\":\"1\",\"d\":\"1\"},\"F\":{\"n\":\"1\",\"d\":\"1\"}},\"preserved\":\"本局路线资历保留，出售不丢。\",\"detail\":\"本局路线资历：成功清场1次；G 1次 / ×1；S 0次 / ×1；F 0次 / ×1。\\n资历不绑定起手或持牌实例，出售不清零；按实际主手族读取，可重叠的族分别读取。每族前三次合格清场因子为1，清场后才入账，下手读取；本次买卖不增加资历。\"}"
+                },
+                "detail": "葫芦整组重触；只读葫芦或同花葫芦。主手为葫芦或同花葫芦时，每张有效计分牌请求额外重触发一次；助攻牌不触发。\n公开依据：最大同点组8张，前两组12/20张；最大花色5/20张；已持逐牌加成有；剩余场次窗口23。\n组合潜力：葫芦重触可接加成，待触发。\n组合记录：上手三拍子、对上眼共同计分（新牌未参与）。\n共同计分不代表额外奖励或下手必触发，新现货尚未加入上手记录。\n推荐指数不等于稀有度或路线契合；星星不代表必买或稳赚，需结合替换损失。\n基于公开构筑与当前阶段的推荐；不表示指定替换净更强。\n本局路线资历：成功清场1次；G 1次 / ×1；S 0次 / ×1；F 0次 / ×1。\n资历不绑定起手或持牌实例，出售不清零；按实际主手族读取，可重叠的族分别读取。每族前三次合格清场因子为1，清场后才入账，下手读取；本次买卖不增加资历。"
+              },
+              "operation": "需替换",
+              "operationShort": "需替换",
+              "purchaseConditionLosses": [],
+              "cashBasis": "指定第3槽先售后买",
+              "replaceId": "held/e11",
+              "detail": "葫芦整组重触；只读葫芦或同花葫芦。主手为葫芦或同花葫芦时，每张有效计分牌请求额外重触发一次；助攻牌不触发。\n公开依据：最大同点组8张，前两组12/20张；最大花色5/20张；已持逐牌加成有；剩余场次窗口23。\n组合潜力：葫芦重触可接加成，待触发。\n组合记录：上手三拍子、对上眼共同计分（新牌未参与）。\n共同计分不代表额外奖励或下手必触发，新现货尚未加入上手记录。\n推荐指数不等于稀有度或路线契合；星星不代表必买或稳赚，需结合替换损失。\n基于公开构筑与当前阶段的推荐；不表示指定替换净更强。\n本局路线资历：成功清场1次；G 1次 / ×1；S 0次 / ×1；F 0次 / ×1。\n资历不绑定起手或持牌实例，出售不清零；按实际主手族读取，可重叠的族分别读取。每族前三次合格清场因子为1，清场后才入账，下手读取；本次买卖不增加资历。\n需替换\n指定第3槽先售后买",
+              "routes": [
+                "group"
+              ],
+              "routeCaption": "同点"
+            },
+            {
+              "stars": 5,
+              "label": "推荐指数 ★★★★★",
+              "reason": "葫芦整组重触",
+              "condition": "只读葫芦或同花葫芦",
+              "recommendation": {
+                "stars": 5,
+                "reason": "葫芦整组重触",
+                "condition": "只读葫芦或同花葫芦",
+                "stage": "early",
+                "combination": "组合潜力：葫芦重触可接加成，待触发。\n组合记录：上手三拍子、对上眼、长期捧场共同计分（新牌未参与）。",
+                "facts": {
+                  "cards": 20,
+                  "largest": 8,
+                  "second": 4,
+                  "largestSuit": 5,
+                  "groupConcentrated": true,
+                  "flushConcentrated": false,
+                  "straightConcentrated": false,
+                  "ordinaryStraightPossible": false,
+                  "ordinaryFlushPossible": true,
+                  "boostedGroup": true,
+                  "houseCardPayoff": true,
+                  "boostedHouse": true,
+                  "groupRecord": true,
+                  "houseRecord": true,
+                  "flushRecord": false,
+                  "qualifiedRecord": true,
+                  "heldCardPayoff": true,
+                  "heldGroupPayoff": true,
+                  "retriggerSource": true,
+                  "additiveSource": true,
+                  "disabledSourceCount": 0,
+                  "potentialStages": 23,
+                  "growthWindow": true,
+                  "initialGrowth": "{}",
+                  "straightFamilyPossible": false,
+                  "flushFamilyPossible": true,
+                  "flushHousePossible": false,
+                  "flushFivePossible": false,
+                  "routeGrowth": "{\"before\":{\"clears\":1,\"G\":1,\"S\":0,\"F\":0},\"factors\":{\"G\":{\"n\":\"1\",\"d\":\"1\"},\"S\":{\"n\":\"1\",\"d\":\"1\"},\"F\":{\"n\":\"1\",\"d\":\"1\"}},\"preserved\":\"本局路线资历保留，出售不丢。\",\"detail\":\"本局路线资历：成功清场1次；G 1次 / ×1；S 0次 / ×1；F 0次 / ×1。\\n资历不绑定起手或持牌实例，出售不清零；按实际主手族读取，可重叠的族分别读取。每族前三次合格清场因子为1，清场后才入账，下手读取；本次买卖不增加资历。\"}"
+                },
+                "detail": "葫芦整组重触；只读葫芦或同花葫芦。主手为葫芦或同花葫芦时，每张有效计分牌请求额外重触发一次；助攻牌不触发。\n公开依据：最大同点组8张，前两组12/20张；最大花色5/20张；已持逐牌加成有；剩余场次窗口23。\n组合潜力：葫芦重触可接加成，待触发。\n组合记录：上手三拍子、对上眼、长期捧场共同计分（新牌未参与）。\n共同计分不代表额外奖励或下手必触发，新现货尚未加入上手记录。\n推荐指数不等于稀有度或路线契合；星星不代表必买或稳赚，需结合替换损失。\n基于公开构筑与当前阶段的推荐；不表示指定替换净更强。\n本局路线资历：成功清场1次；G 1次 / ×1；S 0次 / ×1；F 0次 / ×1。\n资历不绑定起手或持牌实例，出售不清零；按实际主手族读取，可重叠的族分别读取。每族前三次合格清场因子为1，清场后才入账，下手读取；本次买卖不增加资历。"
+              },
+              "operation": "需替换",
+              "operationShort": "需替换",
+              "purchaseConditionLosses": [],
+              "cashBasis": "指定第4槽先售后买",
+              "replaceId": "held/e01",
+              "detail": "葫芦整组重触；只读葫芦或同花葫芦。主手为葫芦或同花葫芦时，每张有效计分牌请求额外重触发一次；助攻牌不触发。\n公开依据：最大同点组8张，前两组12/20张；最大花色5/20张；已持逐牌加成有；剩余场次窗口23。\n组合潜力：葫芦重触可接加成，待触发。\n组合记录：上手三拍子、对上眼、长期捧场共同计分（新牌未参与）。\n共同计分不代表额外奖励或下手必触发，新现货尚未加入上手记录。\n推荐指数不等于稀有度或路线契合；星星不代表必买或稳赚，需结合替换损失。\n基于公开构筑与当前阶段的推荐；不表示指定替换净更强。\n本局路线资历：成功清场1次；G 1次 / ×1；S 0次 / ×1；F 0次 / ×1。\n资历不绑定起手或持牌实例，出售不清零；按实际主手族读取，可重叠的族分别读取。每族前三次合格清场因子为1，清场后才入账，下手读取；本次买卖不增加资历。\n需替换\n指定第4槽先售后买",
+              "routes": [
+                "group"
+              ],
+              "routeCaption": "同点"
+            },
+            {
+              "stars": 5,
+              "label": "推荐指数 ★★★★★",
+              "reason": "葫芦整组重触",
+              "condition": "只读葫芦或同花葫芦",
+              "recommendation": {
+                "stars": 5,
+                "reason": "葫芦整组重触",
+                "condition": "只读葫芦或同花葫芦",
+                "stage": "early",
+                "combination": "组合潜力：葫芦重触可接加成，待触发。\n组合记录：上手三拍子、对上眼、长期捧场共同计分（新牌未参与）。",
+                "facts": {
+                  "cards": 20,
+                  "largest": 8,
+                  "second": 4,
+                  "largestSuit": 5,
+                  "groupConcentrated": true,
+                  "flushConcentrated": false,
+                  "straightConcentrated": false,
+                  "ordinaryStraightPossible": false,
+                  "ordinaryFlushPossible": true,
+                  "boostedGroup": true,
+                  "houseCardPayoff": true,
+                  "boostedHouse": true,
+                  "groupRecord": true,
+                  "houseRecord": true,
+                  "flushRecord": false,
+                  "qualifiedRecord": true,
+                  "heldCardPayoff": true,
+                  "heldGroupPayoff": true,
+                  "retriggerSource": true,
+                  "additiveSource": true,
+                  "disabledSourceCount": 0,
+                  "potentialStages": 23,
+                  "growthWindow": true,
+                  "initialGrowth": "{}",
+                  "straightFamilyPossible": false,
+                  "flushFamilyPossible": true,
+                  "flushHousePossible": false,
+                  "flushFivePossible": false,
+                  "routeGrowth": "{\"before\":{\"clears\":1,\"G\":1,\"S\":0,\"F\":0},\"factors\":{\"G\":{\"n\":\"1\",\"d\":\"1\"},\"S\":{\"n\":\"1\",\"d\":\"1\"},\"F\":{\"n\":\"1\",\"d\":\"1\"}},\"preserved\":\"本局路线资历保留，出售不丢。\",\"detail\":\"本局路线资历：成功清场1次；G 1次 / ×1；S 0次 / ×1；F 0次 / ×1。\\n资历不绑定起手或持牌实例，出售不清零；按实际主手族读取，可重叠的族分别读取。每族前三次合格清场因子为1，清场后才入账，下手读取；本次买卖不增加资历。\"}"
+                },
+                "detail": "葫芦整组重触；只读葫芦或同花葫芦。主手为葫芦或同花葫芦时，每张有效计分牌请求额外重触发一次；助攻牌不触发。\n公开依据：最大同点组8张，前两组12/20张；最大花色5/20张；已持逐牌加成有；剩余场次窗口23。\n组合潜力：葫芦重触可接加成，待触发。\n组合记录：上手三拍子、对上眼、长期捧场共同计分（新牌未参与）。\n共同计分不代表额外奖励或下手必触发，新现货尚未加入上手记录。\n推荐指数不等于稀有度或路线契合；星星不代表必买或稳赚，需结合替换损失。\n基于公开构筑与当前阶段的推荐；不表示指定替换净更强。\n本局路线资历：成功清场1次；G 1次 / ×1；S 0次 / ×1；F 0次 / ×1。\n资历不绑定起手或持牌实例，出售不清零；按实际主手族读取，可重叠的族分别读取。每族前三次合格清场因子为1，清场后才入账，下手读取；本次买卖不增加资历。"
+              },
+              "operation": "需替换",
+              "operationShort": "需替换",
+              "purchaseConditionLosses": [],
+              "cashBasis": "指定第5槽先售后买",
+              "replaceId": "held/e04",
+              "detail": "葫芦整组重触；只读葫芦或同花葫芦。主手为葫芦或同花葫芦时，每张有效计分牌请求额外重触发一次；助攻牌不触发。\n公开依据：最大同点组8张，前两组12/20张；最大花色5/20张；已持逐牌加成有；剩余场次窗口23。\n组合潜力：葫芦重触可接加成，待触发。\n组合记录：上手三拍子、对上眼、长期捧场共同计分（新牌未参与）。\n共同计分不代表额外奖励或下手必触发，新现货尚未加入上手记录。\n推荐指数不等于稀有度或路线契合；星星不代表必买或稳赚，需结合替换损失。\n基于公开构筑与当前阶段的推荐；不表示指定替换净更强。\n本局路线资历：成功清场1次；G 1次 / ×1；S 0次 / ×1；F 0次 / ×1。\n资历不绑定起手或持牌实例，出售不清零；按实际主手族读取，可重叠的族分别读取。每族前三次合格清场因子为1，清场后才入账，下手读取；本次买卖不增加资历。\n需替换\n指定第5槽先售后买",
+              "routes": [
+                "group"
+              ],
+              "routeCaption": "同点"
+            }
+          ],
+          "compare": "现货与已持\n返个场 · 持有与现货比较\n\n推荐指数 ★★★★★\n葫芦整组重触 · 只读葫芦或同花葫芦\n本局路线资历保留，出售不丢。\n\n第 1 槽 · 三拍子\n\n返4金 · 实付8金 · 买后54金\n长期捧场：系数×1.6保留 · 下一场未售成长失效\n推荐指数 ★★★★★ · 葫芦整组重触\n\n管理这张\n条件、配合与完整损失\n第 2 槽 · 对上眼\n\n返4金 · 实付8金 · 买后54金\n长期捧场：系数×1.6保留 · 下一场未售成长失效\n推荐指数 ★★★★★ · 葫芦整组重触\n\n管理这张\n条件、配合与完整损失\n第 3 槽 · 长期捧场\n\n返4金 · 实付8金 · 买后54金\n失去：系数×1.6\n推荐指数 ★★★★★ · 葫芦整组重触\n\n管理这张\n条件、配合与完整损失\n第 4 槽 · 小费盒\n\n返4金 · 实付8金 · 买后54金\n长期捧场：系数×1.6保留 · 下一场未售成长失效\n推荐指数 ★★★★★ · 葫芦整组重触\n\n管理这张\n条件、配合与完整损失\n第 5 槽 · 滚个零头\n\n返4金 · 实付8金 · 买后54金\n长期捧场：系数×1.6保留 · 下一场未售成长失效\n推荐指数 ★★★★★ · 葫芦整组重触\n\n管理这张\n条件、配合与完整损失\n\n按现持槽位逐张比较。保留、换方向或留金入场都可以；这里不排序推荐，也不自动卖买。\n\n返回购买详情\n更换培养方向\n关闭",
+          "detail": "现货 · 确认后付款\n返个场 · 购买详情\n\n适用：同点\n\n✦ 稀有\n葫芦/同花葫芦 → 对应有效计分牌再计1次\n助攻牌不触发；停用的主手牌不再计分。\n只加给能计分的牌；附带/停用牌不获加成。\n未购买；买入后才生效\n\n版次：普通（无额外计分）\n\n推荐指数 ★★★★★\n葫芦整组重触 · 只读葫芦或同花葫芦\n组合潜力：葫芦重触可接加成，待触发。\n组合记录：上手三拍子、对上眼、长期捧场共同计分（新牌未参与）。\n直接买入 · 实付 8 金 · 余额 58 → 50 金\n5个槽位已满。请先关闭详情，点随身牌确认出售，再购买。\n\n高清细节加载中…\n规则与操作\n比较替换\n邀请 · 8 金\n取消",
+          "detailGeometry": {
+            "line": {
+              "x": 52,
+              "y": 253.140625,
+              "right": 200.171875,
+              "bottom": 275.140625
+            },
+            "pane": {
+              "x": 36,
+              "y": 238.859375,
+              "right": 284,
+              "bottom": 482
+            }
+          }
+        },
+        {
+          "id": "a06",
+          "guidance": {
+            "stars": 5,
+            "label": "推荐指数 ★★★★★",
+            "reason": "长期相乘成长",
+            "condition": "新购×1.5 · 连续不同合格主手",
+            "recommendation": {
+              "stars": 5,
+              "reason": "长期相乘成长",
+              "condition": "新购×1.5 · 连续不同合格主手",
+              "stage": "early",
+              "combination": "组合潜力：已有加倍率来源，换型待触发。\n组合记录：上手三拍子、对上眼、长期捧场共同计分（新牌未参与）。",
+              "facts": {
+                "cards": 20,
+                "largest": 8,
+                "second": 4,
+                "largestSuit": 5,
+                "groupConcentrated": true,
+                "flushConcentrated": false,
+                "straightConcentrated": false,
+                "ordinaryStraightPossible": false,
+                "ordinaryFlushPossible": true,
+                "boostedGroup": true,
+                "houseCardPayoff": true,
+                "boostedHouse": true,
+                "groupRecord": true,
+                "houseRecord": true,
+                "flushRecord": false,
+                "qualifiedRecord": true,
+                "heldCardPayoff": true,
+                "heldGroupPayoff": true,
+                "retriggerSource": true,
+                "additiveSource": true,
+                "disabledSourceCount": 0,
+                "potentialStages": 23,
+                "growthWindow": true,
+                "initialGrowth": "{\"coefficient\":{\"n\":\"3\",\"d\":\"2\"}}",
+                "straightFamilyPossible": false,
+                "flushFamilyPossible": true,
+                "flushHousePossible": false,
+                "flushFivePossible": false,
+                "routeGrowth": "{\"before\":{\"clears\":1,\"G\":1,\"S\":0,\"F\":0},\"factors\":{\"G\":{\"n\":\"1\",\"d\":\"1\"},\"S\":{\"n\":\"1\",\"d\":\"1\"},\"F\":{\"n\":\"1\",\"d\":\"1\"}},\"preserved\":\"本局路线资历保留，出售不丢。\",\"detail\":\"本局路线资历：成功清场1次；G 1次 / ×1；S 0次 / ×1；F 0次 / ×1。\\n资历不绑定起手或持牌实例，出售不清零；按实际主手族读取，可重叠的族分别读取。每族前三次合格清场因子为1，清场后才入账，下手读取；本次买卖不增加资历。\"}"
+              },
+              "detail": "长期相乘成长；新购×1.5 · 连续不同合格主手。打出两对及以上时，倍率乘当前系数（初始×1.5）。每场首次连续两次出牌均两对及以上且牌型不同，结算后系数再×1.15，下次生效。每场只长一次，跨场保留，封顶×1000000。\n公开依据：最大同点组8张，前两组12/20张；最大花色5/20张；已持逐牌加成有；剩余场次窗口23。\n组合潜力：已有加倍率来源，换型待触发。\n组合记录：上手三拍子、对上眼、长期捧场共同计分（新牌未参与）。\n共同计分不代表额外奖励或下手必触发，新现货尚未加入上手记录。\n推荐指数不等于稀有度或路线契合；星星不代表必买或稳赚，需结合替换损失。\n基于公开构筑与当前阶段的推荐；不表示指定替换净更强。\n本局路线资历：成功清场1次；G 1次 / ×1；S 0次 / ×1；F 0次 / ×1。\n资历不绑定起手或持牌实例，出售不清零；按实际主手族读取，可重叠的族分别读取。每族前三次合格清场因子为1，清场后才入账，下手读取；本次买卖不增加资历。"
+            },
+            "operation": "需替换",
+            "operationShort": "需替换",
+            "purchaseConditionLosses": [],
+            "cashBasis": "未选替换：买后余额待核",
+            "detail": "长期相乘成长；新购×1.5 · 连续不同合格主手。打出两对及以上时，倍率乘当前系数（初始×1.5）。每场首次连续两次出牌均两对及以上且牌型不同，结算后系数再×1.15，下次生效。每场只长一次，跨场保留，封顶×1000000。\n公开依据：最大同点组8张，前两组12/20张；最大花色5/20张；已持逐牌加成有；剩余场次窗口23。\n组合潜力：已有加倍率来源，换型待触发。\n组合记录：上手三拍子、对上眼、长期捧场共同计分（新牌未参与）。\n共同计分不代表额外奖励或下手必触发，新现货尚未加入上手记录。\n推荐指数不等于稀有度或路线契合；星星不代表必买或稳赚，需结合替换损失。\n基于公开构筑与当前阶段的推荐；不表示指定替换净更强。\n本局路线资历：成功清场1次；G 1次 / ×1；S 0次 / ×1；F 0次 / ×1。\n资历不绑定起手或持牌实例，出售不清零；按实际主手族读取，可重叠的族分别读取。每族前三次合格清场因子为1，清场后才入账，下手读取；本次买卖不增加资历。\n需替换\n未选替换：买后余额待核",
+            "routes": [
+              "group",
+              "straight",
+              "flush"
+            ],
+            "routeCaption": "同点/顺子/同花"
+          },
+          "bySlot": [
+            {
+              "stars": 5,
+              "label": "推荐指数 ★★★★★",
+              "reason": "长期相乘成长",
+              "condition": "新购×1.5 · 连续不同合格主手",
+              "recommendation": {
+                "stars": 5,
+                "reason": "长期相乘成长",
+                "condition": "新购×1.5 · 连续不同合格主手",
+                "stage": "early",
+                "combination": "组合潜力：已有加倍率来源，换型待触发。\n组合记录：上手对上眼、长期捧场共同计分（新牌未参与）。",
+                "facts": {
+                  "cards": 20,
+                  "largest": 8,
+                  "second": 4,
+                  "largestSuit": 5,
+                  "groupConcentrated": true,
+                  "flushConcentrated": false,
+                  "straightConcentrated": false,
+                  "ordinaryStraightPossible": false,
+                  "ordinaryFlushPossible": true,
+                  "boostedGroup": true,
+                  "houseCardPayoff": true,
+                  "boostedHouse": true,
+                  "groupRecord": true,
+                  "houseRecord": true,
+                  "flushRecord": false,
+                  "qualifiedRecord": true,
+                  "heldCardPayoff": true,
+                  "heldGroupPayoff": true,
+                  "retriggerSource": false,
+                  "additiveSource": true,
+                  "disabledSourceCount": 0,
+                  "potentialStages": 23,
+                  "growthWindow": true,
+                  "initialGrowth": "{\"coefficient\":{\"n\":\"3\",\"d\":\"2\"}}",
+                  "straightFamilyPossible": false,
+                  "flushFamilyPossible": true,
+                  "flushHousePossible": false,
+                  "flushFivePossible": false,
+                  "routeGrowth": "{\"before\":{\"clears\":1,\"G\":1,\"S\":0,\"F\":0},\"factors\":{\"G\":{\"n\":\"1\",\"d\":\"1\"},\"S\":{\"n\":\"1\",\"d\":\"1\"},\"F\":{\"n\":\"1\",\"d\":\"1\"}},\"preserved\":\"本局路线资历保留，出售不丢。\",\"detail\":\"本局路线资历：成功清场1次；G 1次 / ×1；S 0次 / ×1；F 0次 / ×1。\\n资历不绑定起手或持牌实例，出售不清零；按实际主手族读取，可重叠的族分别读取。每族前三次合格清场因子为1，清场后才入账，下手读取；本次买卖不增加资历。\"}"
+                },
+                "detail": "长期相乘成长；新购×1.5 · 连续不同合格主手。打出两对及以上时，倍率乘当前系数（初始×1.5）。每场首次连续两次出牌均两对及以上且牌型不同，结算后系数再×1.15，下次生效。每场只长一次，跨场保留，封顶×1000000。\n公开依据：最大同点组8张，前两组12/20张；最大花色5/20张；已持逐牌加成有；剩余场次窗口23。\n组合潜力：已有加倍率来源，换型待触发。\n组合记录：上手对上眼、长期捧场共同计分（新牌未参与）。\n共同计分不代表额外奖励或下手必触发，新现货尚未加入上手记录。\n推荐指数不等于稀有度或路线契合；星星不代表必买或稳赚，需结合替换损失。\n基于公开构筑与当前阶段的推荐；不表示指定替换净更强。\n本局路线资历：成功清场1次；G 1次 / ×1；S 0次 / ×1；F 0次 / ×1。\n资历不绑定起手或持牌实例，出售不清零；按实际主手族读取，可重叠的族分别读取。每族前三次合格清场因子为1，清场后才入账，下手读取；本次买卖不增加资历。"
+              },
+              "operation": "需替换",
+              "operationShort": "需替换",
+              "purchaseConditionLosses": [],
+              "cashBasis": "指定第1槽先售后买",
+              "replaceId": "held/d11",
+              "detail": "长期相乘成长；新购×1.5 · 连续不同合格主手。打出两对及以上时，倍率乘当前系数（初始×1.5）。每场首次连续两次出牌均两对及以上且牌型不同，结算后系数再×1.15，下次生效。每场只长一次，跨场保留，封顶×1000000。\n公开依据：最大同点组8张，前两组12/20张；最大花色5/20张；已持逐牌加成有；剩余场次窗口23。\n组合潜力：已有加倍率来源，换型待触发。\n组合记录：上手对上眼、长期捧场共同计分（新牌未参与）。\n共同计分不代表额外奖励或下手必触发，新现货尚未加入上手记录。\n推荐指数不等于稀有度或路线契合；星星不代表必买或稳赚，需结合替换损失。\n基于公开构筑与当前阶段的推荐；不表示指定替换净更强。\n本局路线资历：成功清场1次；G 1次 / ×1；S 0次 / ×1；F 0次 / ×1。\n资历不绑定起手或持牌实例，出售不清零；按实际主手族读取，可重叠的族分别读取。每族前三次合格清场因子为1，清场后才入账，下手读取；本次买卖不增加资历。\n需替换\n指定第1槽先售后买",
+              "routes": [
+                "group",
+                "straight",
+                "flush"
+              ],
+              "routeCaption": "同点/顺子/同花"
+            },
+            {
+              "stars": 4,
+              "label": "推荐指数 ★★★★☆",
+              "reason": "长期相乘成长",
+              "condition": "新购×1.5 · 连续不同合格主手",
+              "recommendation": {
+                "stars": 4,
+                "reason": "长期相乘成长",
+                "condition": "新购×1.5 · 连续不同合格主手",
+                "stage": "early",
+                "combination": "组合潜力：换型待触发，核对加倍率来源。\n组合记录：上手三拍子、长期捧场共同计分（新牌未参与）。",
+                "facts": {
+                  "cards": 20,
+                  "largest": 8,
+                  "second": 4,
+                  "largestSuit": 5,
+                  "groupConcentrated": true,
+                  "flushConcentrated": false,
+                  "straightConcentrated": false,
+                  "ordinaryStraightPossible": false,
+                  "ordinaryFlushPossible": true,
+                  "boostedGroup": true,
+                  "houseCardPayoff": true,
+                  "boostedHouse": true,
+                  "groupRecord": true,
+                  "houseRecord": true,
+                  "flushRecord": false,
+                  "qualifiedRecord": true,
+                  "heldCardPayoff": false,
+                  "heldGroupPayoff": false,
+                  "retriggerSource": true,
+                  "additiveSource": false,
+                  "disabledSourceCount": 0,
+                  "potentialStages": 23,
+                  "growthWindow": true,
+                  "initialGrowth": "{\"coefficient\":{\"n\":\"3\",\"d\":\"2\"}}",
+                  "straightFamilyPossible": false,
+                  "flushFamilyPossible": true,
+                  "flushHousePossible": false,
+                  "flushFivePossible": false,
+                  "routeGrowth": "{\"before\":{\"clears\":1,\"G\":1,\"S\":0,\"F\":0},\"factors\":{\"G\":{\"n\":\"1\",\"d\":\"1\"},\"S\":{\"n\":\"1\",\"d\":\"1\"},\"F\":{\"n\":\"1\",\"d\":\"1\"}},\"preserved\":\"本局路线资历保留，出售不丢。\",\"detail\":\"本局路线资历：成功清场1次；G 1次 / ×1；S 0次 / ×1；F 0次 / ×1。\\n资历不绑定起手或持牌实例，出售不清零；按实际主手族读取，可重叠的族分别读取。每族前三次合格清场因子为1，清场后才入账，下手读取；本次买卖不增加资历。\"}"
+                },
+                "detail": "长期相乘成长；新购×1.5 · 连续不同合格主手。打出两对及以上时，倍率乘当前系数（初始×1.5）。每场首次连续两次出牌均两对及以上且牌型不同，结算后系数再×1.15，下次生效。每场只长一次，跨场保留，封顶×1000000。\n公开依据：最大同点组8张，前两组12/20张；最大花色5/20张；已持逐牌加成无；剩余场次窗口23。\n组合潜力：换型待触发，核对加倍率来源。\n组合记录：上手三拍子、长期捧场共同计分（新牌未参与）。\n共同计分不代表额外奖励或下手必触发，新现货尚未加入上手记录。\n推荐指数不等于稀有度或路线契合；星星不代表必买或稳赚，需结合替换损失。\n基于公开构筑与当前阶段的推荐；不表示指定替换净更强。\n本局路线资历：成功清场1次；G 1次 / ×1；S 0次 / ×1；F 0次 / ×1。\n资历不绑定起手或持牌实例，出售不清零；按实际主手族读取，可重叠的族分别读取。每族前三次合格清场因子为1，清场后才入账，下手读取；本次买卖不增加资历。"
+              },
+              "operation": "需替换",
+              "operationShort": "需替换",
+              "purchaseConditionLosses": [],
+              "cashBasis": "指定第2槽先售后买",
+              "replaceId": "held/b02",
+              "detail": "长期相乘成长；新购×1.5 · 连续不同合格主手。打出两对及以上时，倍率乘当前系数（初始×1.5）。每场首次连续两次出牌均两对及以上且牌型不同，结算后系数再×1.15，下次生效。每场只长一次，跨场保留，封顶×1000000。\n公开依据：最大同点组8张，前两组12/20张；最大花色5/20张；已持逐牌加成无；剩余场次窗口23。\n组合潜力：换型待触发，核对加倍率来源。\n组合记录：上手三拍子、长期捧场共同计分（新牌未参与）。\n共同计分不代表额外奖励或下手必触发，新现货尚未加入上手记录。\n推荐指数不等于稀有度或路线契合；星星不代表必买或稳赚，需结合替换损失。\n基于公开构筑与当前阶段的推荐；不表示指定替换净更强。\n本局路线资历：成功清场1次；G 1次 / ×1；S 0次 / ×1；F 0次 / ×1。\n资历不绑定起手或持牌实例，出售不清零；按实际主手族读取，可重叠的族分别读取。每族前三次合格清场因子为1，清场后才入账，下手读取；本次买卖不增加资历。\n需替换\n指定第2槽先售后买",
+              "routes": [
+                "group",
+                "straight",
+                "flush"
+              ],
+              "routeCaption": "同点/顺子/同花"
+            },
+            {
+              "stars": 5,
+              "label": "推荐指数 ★★★★★",
+              "reason": "长期相乘成长",
+              "condition": "新购×1.5 · 连续不同合格主手",
+              "recommendation": {
+                "stars": 5,
+                "reason": "长期相乘成长",
+                "condition": "新购×1.5 · 连续不同合格主手",
+                "stage": "early",
+                "combination": "组合潜力：已有加倍率来源，换型待触发。\n组合记录：上手三拍子、对上眼共同计分（新牌未参与）。",
+                "facts": {
+                  "cards": 20,
+                  "largest": 8,
+                  "second": 4,
+                  "largestSuit": 5,
+                  "groupConcentrated": true,
+                  "flushConcentrated": false,
+                  "straightConcentrated": false,
+                  "ordinaryStraightPossible": false,
+                  "ordinaryFlushPossible": true,
+                  "boostedGroup": true,
+                  "houseCardPayoff": true,
+                  "boostedHouse": true,
+                  "groupRecord": true,
+                  "houseRecord": true,
+                  "flushRecord": false,
+                  "qualifiedRecord": true,
+                  "heldCardPayoff": true,
+                  "heldGroupPayoff": true,
+                  "retriggerSource": true,
+                  "additiveSource": true,
+                  "disabledSourceCount": 0,
+                  "potentialStages": 23,
+                  "growthWindow": true,
+                  "initialGrowth": "{\"coefficient\":{\"n\":\"3\",\"d\":\"2\"}}",
+                  "straightFamilyPossible": false,
+                  "flushFamilyPossible": true,
+                  "flushHousePossible": false,
+                  "flushFivePossible": false,
+                  "routeGrowth": "{\"before\":{\"clears\":1,\"G\":1,\"S\":0,\"F\":0},\"factors\":{\"G\":{\"n\":\"1\",\"d\":\"1\"},\"S\":{\"n\":\"1\",\"d\":\"1\"},\"F\":{\"n\":\"1\",\"d\":\"1\"}},\"preserved\":\"本局路线资历保留，出售不丢。\",\"detail\":\"本局路线资历：成功清场1次；G 1次 / ×1；S 0次 / ×1；F 0次 / ×1。\\n资历不绑定起手或持牌实例，出售不清零；按实际主手族读取，可重叠的族分别读取。每族前三次合格清场因子为1，清场后才入账，下手读取；本次买卖不增加资历。\"}"
+                },
+                "detail": "长期相乘成长；新购×1.5 · 连续不同合格主手。打出两对及以上时，倍率乘当前系数（初始×1.5）。每场首次连续两次出牌均两对及以上且牌型不同，结算后系数再×1.15，下次生效。每场只长一次，跨场保留，封顶×1000000。\n公开依据：最大同点组8张，前两组12/20张；最大花色5/20张；已持逐牌加成有；剩余场次窗口23。\n组合潜力：已有加倍率来源，换型待触发。\n组合记录：上手三拍子、对上眼共同计分（新牌未参与）。\n共同计分不代表额外奖励或下手必触发，新现货尚未加入上手记录。\n推荐指数不等于稀有度或路线契合；星星不代表必买或稳赚，需结合替换损失。\n基于公开构筑与当前阶段的推荐；不表示指定替换净更强。\n本局路线资历：成功清场1次；G 1次 / ×1；S 0次 / ×1；F 0次 / ×1。\n资历不绑定起手或持牌实例，出售不清零；按实际主手族读取，可重叠的族分别读取。每族前三次合格清场因子为1，清场后才入账，下手读取；本次买卖不增加资历。"
+              },
+              "operation": "需替换",
+              "operationShort": "需替换",
+              "purchaseConditionLosses": [],
+              "cashBasis": "指定第3槽先售后买",
+              "replaceId": "held/e11",
+              "detail": "长期相乘成长；新购×1.5 · 连续不同合格主手。打出两对及以上时，倍率乘当前系数（初始×1.5）。每场首次连续两次出牌均两对及以上且牌型不同，结算后系数再×1.15，下次生效。每场只长一次，跨场保留，封顶×1000000。\n公开依据：最大同点组8张，前两组12/20张；最大花色5/20张；已持逐牌加成有；剩余场次窗口23。\n组合潜力：已有加倍率来源，换型待触发。\n组合记录：上手三拍子、对上眼共同计分（新牌未参与）。\n共同计分不代表额外奖励或下手必触发，新现货尚未加入上手记录。\n推荐指数不等于稀有度或路线契合；星星不代表必买或稳赚，需结合替换损失。\n基于公开构筑与当前阶段的推荐；不表示指定替换净更强。\n本局路线资历：成功清场1次；G 1次 / ×1；S 0次 / ×1；F 0次 / ×1。\n资历不绑定起手或持牌实例，出售不清零；按实际主手族读取，可重叠的族分别读取。每族前三次合格清场因子为1，清场后才入账，下手读取；本次买卖不增加资历。\n需替换\n指定第3槽先售后买",
+              "routes": [
+                "group",
+                "straight",
+                "flush"
+              ],
+              "routeCaption": "同点/顺子/同花"
+            },
+            {
+              "stars": 5,
+              "label": "推荐指数 ★★★★★",
+              "reason": "长期相乘成长",
+              "condition": "新购×1.5 · 连续不同合格主手",
+              "recommendation": {
+                "stars": 5,
+                "reason": "长期相乘成长",
+                "condition": "新购×1.5 · 连续不同合格主手",
+                "stage": "early",
+                "combination": "组合潜力：已有加倍率来源，换型待触发。\n组合记录：上手三拍子、对上眼、长期捧场共同计分（新牌未参与）。",
+                "facts": {
+                  "cards": 20,
+                  "largest": 8,
+                  "second": 4,
+                  "largestSuit": 5,
+                  "groupConcentrated": true,
+                  "flushConcentrated": false,
+                  "straightConcentrated": false,
+                  "ordinaryStraightPossible": false,
+                  "ordinaryFlushPossible": true,
+                  "boostedGroup": true,
+                  "houseCardPayoff": true,
+                  "boostedHouse": true,
+                  "groupRecord": true,
+                  "houseRecord": true,
+                  "flushRecord": false,
+                  "qualifiedRecord": true,
+                  "heldCardPayoff": true,
+                  "heldGroupPayoff": true,
+                  "retriggerSource": true,
+                  "additiveSource": true,
+                  "disabledSourceCount": 0,
+                  "potentialStages": 23,
+                  "growthWindow": true,
+                  "initialGrowth": "{\"coefficient\":{\"n\":\"3\",\"d\":\"2\"}}",
+                  "straightFamilyPossible": false,
+                  "flushFamilyPossible": true,
+                  "flushHousePossible": false,
+                  "flushFivePossible": false,
+                  "routeGrowth": "{\"before\":{\"clears\":1,\"G\":1,\"S\":0,\"F\":0},\"factors\":{\"G\":{\"n\":\"1\",\"d\":\"1\"},\"S\":{\"n\":\"1\",\"d\":\"1\"},\"F\":{\"n\":\"1\",\"d\":\"1\"}},\"preserved\":\"本局路线资历保留，出售不丢。\",\"detail\":\"本局路线资历：成功清场1次；G 1次 / ×1；S 0次 / ×1；F 0次 / ×1。\\n资历不绑定起手或持牌实例，出售不清零；按实际主手族读取，可重叠的族分别读取。每族前三次合格清场因子为1，清场后才入账，下手读取；本次买卖不增加资历。\"}"
+                },
+                "detail": "长期相乘成长；新购×1.5 · 连续不同合格主手。打出两对及以上时，倍率乘当前系数（初始×1.5）。每场首次连续两次出牌均两对及以上且牌型不同，结算后系数再×1.15，下次生效。每场只长一次，跨场保留，封顶×1000000。\n公开依据：最大同点组8张，前两组12/20张；最大花色5/20张；已持逐牌加成有；剩余场次窗口23。\n组合潜力：已有加倍率来源，换型待触发。\n组合记录：上手三拍子、对上眼、长期捧场共同计分（新牌未参与）。\n共同计分不代表额外奖励或下手必触发，新现货尚未加入上手记录。\n推荐指数不等于稀有度或路线契合；星星不代表必买或稳赚，需结合替换损失。\n基于公开构筑与当前阶段的推荐；不表示指定替换净更强。\n本局路线资历：成功清场1次；G 1次 / ×1；S 0次 / ×1；F 0次 / ×1。\n资历不绑定起手或持牌实例，出售不清零；按实际主手族读取，可重叠的族分别读取。每族前三次合格清场因子为1，清场后才入账，下手读取；本次买卖不增加资历。"
+              },
+              "operation": "需替换",
+              "operationShort": "需替换",
+              "purchaseConditionLosses": [],
+              "cashBasis": "指定第4槽先售后买",
+              "replaceId": "held/e01",
+              "detail": "长期相乘成长；新购×1.5 · 连续不同合格主手。打出两对及以上时，倍率乘当前系数（初始×1.5）。每场首次连续两次出牌均两对及以上且牌型不同，结算后系数再×1.15，下次生效。每场只长一次，跨场保留，封顶×1000000。\n公开依据：最大同点组8张，前两组12/20张；最大花色5/20张；已持逐牌加成有；剩余场次窗口23。\n组合潜力：已有加倍率来源，换型待触发。\n组合记录：上手三拍子、对上眼、长期捧场共同计分（新牌未参与）。\n共同计分不代表额外奖励或下手必触发，新现货尚未加入上手记录。\n推荐指数不等于稀有度或路线契合；星星不代表必买或稳赚，需结合替换损失。\n基于公开构筑与当前阶段的推荐；不表示指定替换净更强。\n本局路线资历：成功清场1次；G 1次 / ×1；S 0次 / ×1；F 0次 / ×1。\n资历不绑定起手或持牌实例，出售不清零；按实际主手族读取，可重叠的族分别读取。每族前三次合格清场因子为1，清场后才入账，下手读取；本次买卖不增加资历。\n需替换\n指定第4槽先售后买",
+              "routes": [
+                "group",
+                "straight",
+                "flush"
+              ],
+              "routeCaption": "同点/顺子/同花"
+            },
+            {
+              "stars": 5,
+              "label": "推荐指数 ★★★★★",
+              "reason": "长期相乘成长",
+              "condition": "新购×1.5 · 连续不同合格主手",
+              "recommendation": {
+                "stars": 5,
+                "reason": "长期相乘成长",
+                "condition": "新购×1.5 · 连续不同合格主手",
+                "stage": "early",
+                "combination": "组合潜力：已有加倍率来源，换型待触发。\n组合记录：上手三拍子、对上眼、长期捧场共同计分（新牌未参与）。",
+                "facts": {
+                  "cards": 20,
+                  "largest": 8,
+                  "second": 4,
+                  "largestSuit": 5,
+                  "groupConcentrated": true,
+                  "flushConcentrated": false,
+                  "straightConcentrated": false,
+                  "ordinaryStraightPossible": false,
+                  "ordinaryFlushPossible": true,
+                  "boostedGroup": true,
+                  "houseCardPayoff": true,
+                  "boostedHouse": true,
+                  "groupRecord": true,
+                  "houseRecord": true,
+                  "flushRecord": false,
+                  "qualifiedRecord": true,
+                  "heldCardPayoff": true,
+                  "heldGroupPayoff": true,
+                  "retriggerSource": true,
+                  "additiveSource": true,
+                  "disabledSourceCount": 0,
+                  "potentialStages": 23,
+                  "growthWindow": true,
+                  "initialGrowth": "{\"coefficient\":{\"n\":\"3\",\"d\":\"2\"}}",
+                  "straightFamilyPossible": false,
+                  "flushFamilyPossible": true,
+                  "flushHousePossible": false,
+                  "flushFivePossible": false,
+                  "routeGrowth": "{\"before\":{\"clears\":1,\"G\":1,\"S\":0,\"F\":0},\"factors\":{\"G\":{\"n\":\"1\",\"d\":\"1\"},\"S\":{\"n\":\"1\",\"d\":\"1\"},\"F\":{\"n\":\"1\",\"d\":\"1\"}},\"preserved\":\"本局路线资历保留，出售不丢。\",\"detail\":\"本局路线资历：成功清场1次；G 1次 / ×1；S 0次 / ×1；F 0次 / ×1。\\n资历不绑定起手或持牌实例，出售不清零；按实际主手族读取，可重叠的族分别读取。每族前三次合格清场因子为1，清场后才入账，下手读取；本次买卖不增加资历。\"}"
+                },
+                "detail": "长期相乘成长；新购×1.5 · 连续不同合格主手。打出两对及以上时，倍率乘当前系数（初始×1.5）。每场首次连续两次出牌均两对及以上且牌型不同，结算后系数再×1.15，下次生效。每场只长一次，跨场保留，封顶×1000000。\n公开依据：最大同点组8张，前两组12/20张；最大花色5/20张；已持逐牌加成有；剩余场次窗口23。\n组合潜力：已有加倍率来源，换型待触发。\n组合记录：上手三拍子、对上眼、长期捧场共同计分（新牌未参与）。\n共同计分不代表额外奖励或下手必触发，新现货尚未加入上手记录。\n推荐指数不等于稀有度或路线契合；星星不代表必买或稳赚，需结合替换损失。\n基于公开构筑与当前阶段的推荐；不表示指定替换净更强。\n本局路线资历：成功清场1次；G 1次 / ×1；S 0次 / ×1；F 0次 / ×1。\n资历不绑定起手或持牌实例，出售不清零；按实际主手族读取，可重叠的族分别读取。每族前三次合格清场因子为1，清场后才入账，下手读取；本次买卖不增加资历。"
+              },
+              "operation": "需替换",
+              "operationShort": "需替换",
+              "purchaseConditionLosses": [],
+              "cashBasis": "指定第5槽先售后买",
+              "replaceId": "held/e04",
+              "detail": "长期相乘成长；新购×1.5 · 连续不同合格主手。打出两对及以上时，倍率乘当前系数（初始×1.5）。每场首次连续两次出牌均两对及以上且牌型不同，结算后系数再×1.15，下次生效。每场只长一次，跨场保留，封顶×1000000。\n公开依据：最大同点组8张，前两组12/20张；最大花色5/20张；已持逐牌加成有；剩余场次窗口23。\n组合潜力：已有加倍率来源，换型待触发。\n组合记录：上手三拍子、对上眼、长期捧场共同计分（新牌未参与）。\n共同计分不代表额外奖励或下手必触发，新现货尚未加入上手记录。\n推荐指数不等于稀有度或路线契合；星星不代表必买或稳赚，需结合替换损失。\n基于公开构筑与当前阶段的推荐；不表示指定替换净更强。\n本局路线资历：成功清场1次；G 1次 / ×1；S 0次 / ×1；F 0次 / ×1。\n资历不绑定起手或持牌实例，出售不清零；按实际主手族读取，可重叠的族分别读取。每族前三次合格清场因子为1，清场后才入账，下手读取；本次买卖不增加资历。\n需替换\n指定第5槽先售后买",
+              "routes": [
+                "group",
+                "straight",
+                "flush"
+              ],
+              "routeCaption": "同点/顺子/同花"
+            }
+          ],
+          "compare": "现货与已持\n独家戏 · 持有与现货比较\n\n推荐指数 ★★★★★\n长期相乘成长 · 新购×1.5 · 连续不同合格主手\n本局路线资历保留，出售不丢。\n\n第 1 槽 · 三拍子\n\n返4金 · 实付8金 · 买后54金\n长期捧场：系数×1.6保留 · 下一场未售成长失效\n推荐指数 ★★★★★ · 长期相乘成长\n\n管理这张\n条件、配合与完整损失\n第 2 槽 · 对上眼\n\n返4金 · 实付8金 · 买后54金\n长期捧场：系数×1.6保留 · 下一场未售成长失效\n推荐指数 ★★★★☆ · 长期相乘成长\n\n管理这张\n条件、配合与完整损失\n第 3 槽 · 长期捧场\n\n返4金 · 实付8金 · 买后54金\n失去：系数×1.6\n推荐指数 ★★★★★ · 长期相乘成长\n\n管理这张\n条件、配合与完整损失\n第 4 槽 · 小费盒\n\n返4金 · 实付8金 · 买后54金\n长期捧场：系数×1.6保留 · 下一场未售成长失效\n推荐指数 ★★★★★ · 长期相乘成长\n\n管理这张\n条件、配合与完整损失\n第 5 槽 · 滚个零头\n\n返4金 · 实付8金 · 买后54金\n长期捧场：系数×1.6保留 · 下一场未售成长失效\n推荐指数 ★★★★★ · 长期相乘成长\n\n管理这张\n条件、配合与完整损失\n\n按现持槽位逐张比较。保留、换方向或留金入场都可以；这里不排序推荐，也不自动卖买。\n\n返回购买详情\n更换培养方向\n关闭",
+          "detail": "现货 · 确认后付款\n独家戏 · 购买详情\n\n适用：同点/顺子/同花\n\n✦ 稀有\n\n出牌时生效 · 出牌结算后更新\n\n打出两对及以上牌型时\n\n本次出牌的倍率乘当前系数（初始×1.5）\n\n每场首次连续两次出牌均为两对及以上且牌型不同\n\n结算后系数再×1.15\n两对及以上：不含对子、高牌。\n新系数下一次出牌才生效，每场只长一次\n致胜手也可成长。\n系数上限×1,000,000\n现在：尚未购买，买入后才会生效\n\n推荐指数 ★★★★★\n长期相乘成长 · 新购×1.5 · 连续不同合格主手\n组合潜力：已有加倍率来源，换型待触发。\n组合记录：上手三拍子、对上眼、长期捧场共同计分（新牌未参与）。\n直接买入 · 实付 8 金 · 余额 58 → 50 金\n5个槽位已满。请先关闭详情，点随身牌确认出售，再购买。\n\n版次：普通（无额外计分）\n\n高清细节加载中…\n规则与操作\n比较替换\n邀请 · 8 金\n取消",
+          "detailGeometry": {
+            "line": {
+              "x": 52,
+              "y": 252.875,
+              "right": 200.171875,
+              "bottom": 274.875
+            },
+            "pane": {
+              "x": 36,
+              "y": 238.859375,
+              "right": 284,
+              "bottom": 482
+            }
+          }
+        }
+      ],
+      "before": {
+        "identity": {
+          "contentVersion": "quality-r2-route-growth-v1",
+          "contentHash": "json-fnv-v1:7414228d95059959"
+        },
+        "commandSeq": 5
+      },
+      "geometry": [
+        {
+          "offerId": "public/b06",
+          "stars": 5,
+          "area": {
+            "x": 18.666666666666664,
+            "y": 187.2,
+            "width": 80,
+            "height": 18
+          },
+          "children": [
+            {
+              "text": "★",
+              "bounds": {
+                "type": 5,
+                "x": 20.166667938232422,
+                "y": 187.20001220703125,
+                "width": 13,
+                "height": 16
+              },
+              "fontSize": "14px"
+            },
+            {
+              "text": "★",
+              "bounds": {
+                "type": 5,
+                "x": 36.16666793823242,
+                "y": 187.20001220703125,
+                "width": 13,
+                "height": 16
+              },
+              "fontSize": "14px"
+            },
+            {
+              "text": "★",
+              "bounds": {
+                "type": 5,
+                "x": 52.16666793823242,
+                "y": 187.20001220703125,
+                "width": 13,
+                "height": 16
+              },
+              "fontSize": "14px"
+            },
+            {
+              "text": "★",
+              "bounds": {
+                "type": 5,
+                "x": 68.16666793823242,
+                "y": 187.20001220703125,
+                "width": 13,
+                "height": 16
+              },
+              "fontSize": "14px"
+            },
+            {
+              "text": "★",
+              "bounds": {
+                "type": 5,
+                "x": 84.16666793823242,
+                "y": 187.20001220703125,
+                "width": 13,
+                "height": 16
+              },
+              "fontSize": "14px"
+            }
+          ]
+        },
+        {
+          "offerId": "public/a11",
+          "stars": 5,
+          "area": {
+            "x": 120,
+            "y": 187.2,
+            "width": 80,
+            "height": 18
+          },
+          "children": [
+            {
+              "text": "★",
+              "bounds": {
+                "type": 5,
+                "x": 121.5,
+                "y": 187.20001220703125,
+                "width": 13,
+                "height": 16
+              },
+              "fontSize": "14px"
+            },
+            {
+              "text": "★",
+              "bounds": {
+                "type": 5,
+                "x": 137.5,
+                "y": 187.20001220703125,
+                "width": 13,
+                "height": 16
+              },
+              "fontSize": "14px"
+            },
+            {
+              "text": "★",
+              "bounds": {
+                "type": 5,
+                "x": 153.5,
+                "y": 187.20001220703125,
+                "width": 13,
+                "height": 16
+              },
+              "fontSize": "14px"
+            },
+            {
+              "text": "★",
+              "bounds": {
+                "type": 5,
+                "x": 169.5,
+                "y": 187.20001220703125,
+                "width": 13,
+                "height": 16
+              },
+              "fontSize": "14px"
+            },
+            {
+              "text": "★",
+              "bounds": {
+                "type": 5,
+                "x": 185.5,
+                "y": 187.20001220703125,
+                "width": 13,
+                "height": 16
+              },
+              "fontSize": "14px"
+            }
+          ]
+        },
+        {
+          "offerId": "public/a06",
+          "stars": 5,
+          "area": {
+            "x": 221.33333333333331,
+            "y": 187.2,
+            "width": 80,
+            "height": 18
+          },
+          "children": [
+            {
+              "text": "★",
+              "bounds": {
+                "type": 5,
+                "x": 222.83334350585938,
+                "y": 187.20001220703125,
+                "width": 13,
+                "height": 16
+              },
+              "fontSize": "14px"
+            },
+            {
+              "text": "★",
+              "bounds": {
+                "type": 5,
+                "x": 238.83334350585938,
+                "y": 187.20001220703125,
+                "width": 13,
+                "height": 16
+              },
+              "fontSize": "14px"
+            },
+            {
+              "text": "★",
+              "bounds": {
+                "type": 5,
+                "x": 254.83334350585938,
+                "y": 187.20001220703125,
+                "width": 13,
+                "height": 16
+              },
+              "fontSize": "14px"
+            },
+            {
+              "text": "★",
+              "bounds": {
+                "type": 5,
+                "x": 270.8333435058594,
+                "y": 187.20001220703125,
+                "width": 13,
+                "height": 16
+              },
+              "fontSize": "14px"
+            },
+            {
+              "text": "★",
+              "bounds": {
+                "type": 5,
+                "x": 286.8333435058594,
+                "y": 187.20001220703125,
+                "width": 13,
+                "height": 16
+              },
+              "fontSize": "14px"
+            }
+          ]
+        }
+      ],
+      "after": "Equal to before; full data in gzip",
+      "sendCalls": [],
+      "status": "PASS"
+    }
+  ],
+  "status": "PASS"
+}

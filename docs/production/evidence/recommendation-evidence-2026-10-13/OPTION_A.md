@@ -22,3 +22,23 @@ npx vitest run tests/shop-recommendation.test.ts tests/shop-recommendation-c2.te
 npm run typecheck
 RECOMMENDATION_OUTPUT=/tmp/recommendation-option-a node harness/recommendation-five-star.mjs
 ```
+
+### 冻结与实际回执
+
+产品恢复提交：`a154c9e2d3d6e3159439300d3177d7041f8b73c8`。最终截图观察器冻结：`586f70f74cbc8d628d649f4ea7ac0e25f4fab312`；两者产品src树相同，均为 `42fccbf84292ac7bf86cd10e4af90d189705048f`。后续仅追加证据，最终PR HEAD/CI以push后的工具回执为准，不能借旧9b9绿CI代签。
+
+- [56项/6文件测试](option-a/tests.txt)、[typecheck](option-a/typecheck.txt)、[计划32包检查](option-a/plan.txt)全部通过；没有重跑无关规则或自然局。
+- [冻结浏览器报告](option-a/report.json)及[全量state/journal/IDB/localStorage](option-a/full-state-journal-storage.json.gz)：两视口均三张五星，源文件无dirty。逐件真实点击比较、返回购买详情、滚动和取消，send=0，完整前后相等，页面错误0。
+- 三张货架各五个14px实心星，bounds在本件区域内；详情完整“推荐指数 ★★★★★”首行也以DOM Range核对在滚动正文可见边界内，没有缩字或改样式。
+- a06指定卖对上眼：四星；指定卖小费盒：五星。手机比较的四星/五星同时存在，不把具体条件损失等同于全局限星。卖已养成长期捧场的“失去：系数×1.6”、真实返4/付8/买后54仍可读。
+- 两个原测试文件与原main逐字节一致，三条产品判定与原main逐行一致；ShopScene及其它产品文件与上一候选逐字节一致。对比原main仍仅推荐来源/说明与ShopScene购买摘要/比较的授权范围，不触及结算/领域/目标/倍率/资产/总计划。
+
+已实际查看的新图：
+
+- [320三张五星货架](option-a/320-five-star-shelf.png)、[390三张五星货架](option-a/390-five-star-shelf.png)。
+- [320再说一遍详情](option-a/320-b06-detail.png)、[320独家戏详情](option-a/320-a06-detail.png)。正文仍可滚动，未宣称全部内容首屏同时露出。
+- [390指定槽四/五星对照](option-a/390-a06-compare.png)、[390真实成长损失](option-a/390-growth-cost.png)。
+
+首轮截图使用居中scrollIntoView，320长摘要的推荐行滚到可见区上方；[原帧](option-a/initial-scroll/320-b06-detail.png)与[源码/观察器身份](option-a/initial-scroll/metadata.json)保留。仅调整观察器为滚到摘要起始位置，并增加首行可见范围断言；**未修改产品滚动、布局或文字**。最终16张截图均绑定586f70f，文件[SHA256清单](option-a/sha256.json)可核。
+
+仍未验收：跨路线五星统一校准、自然出现率/购买收益、父dot自然经营、物理手机/玩家理解。原三分支恢复不代表这些缺口已完成；草稿不合并。
