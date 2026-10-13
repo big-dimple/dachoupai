@@ -45,13 +45,11 @@ export interface ShopRecommendation {stars:RecommendationStars;reason:string;con
 const hashes=new WeakMap<object,string>();
 /** No affordability rating, RNG, future piles or stored recommendation. Cash gates use purchase cash. */
 export function shopRecommendation(state:R2RunState,offer:R2Offer,focus?:BuildFocus,sold?:R2JokerInstance):ShopRecommendation {
- const before=state;
- const resolvingReplacement=sold||state.shop?.soldJoker&&state.jokers.length===r2JokerCapacity(state)-1;
- const cash=offer.definitionId==='e08'||resolvingReplacement?shopPurchaseCashFacts(state,offer,sold):undefined;
+ const cash=offer.definitionId==='e08'||sold||state.jokers.length===r2JokerCapacity(state)-1?shopPurchaseCashFacts(state,offer,sold):undefined;
  // Every specified sale removes its sources/modifiers and applies real sale hooks.
  // The original state, RNG and storage remain untouched.
  if(cash?.status==='assessed')state=cash.afterSale;
- const replacementCashRisk=resolvingReplacement&&cash?.status==='assessed'?shopDeferredGrowthCashRisk(before,offer,sold,cash.afterSale):undefined;
+ const replacementCashRisk=cash?.status==='assessed'?shopDeferredGrowthCashRisk(cash.afterSale,offer):undefined;
  const definitions=r2JokerDefinitionsFor(state);let hash=hashes.get(definitions);if(!hash){hash=stableHash(definitions);hashes.set(definitions,hash);}
  const c2=isR2RouteGrowth(state)&&hash===SHOP_C2_RECOMMENDATION_SEMANTICS;
  const audited=c2||hash===SHOP_RECOMMENDATION_SEMANTICS;
@@ -129,10 +127,9 @@ export function shopRecommendation(state:R2RunState,offer:R2Offer,focus?:BuildFo
  const recorded=state.jokers.filter(j=>trace?.events.some(e=>e.sourceType==='joker'&&e.sourceInstanceId===j.instanceId&&['onCardScore','onHeldCard','jokerScore'].includes(e.phase)&&(JSON.stringify(e.before)!==JSON.stringify(e.after)||e.operation==='retrigger-card'&&Rational.fromJSON(e.value).compare(new Rational(0n))>0))).map(j=>definitions.find(d=>d.id===j.definitionId)!.name);
  const combination=(potential?'组合潜力：'+potential+'。\n':'')+(recorded.length>=2?'组合记录：上手'+recorded.join('、')+'共同计分（新牌未参与）。':'组合记录：尚无两张现持牌共同计分。');
  const result=(stars:RecommendationStars,reason:string,condition:string):ShopRecommendation=>{
-  const limited=replacementCashRisk?.status==='known-loss'&&stars>2,pending=replacementCashRisk?.status==='history-missing'&&stars>2;
-  const actualStars=pending?0:limited?2:stars,actualReason=pending?'售前组合待核':limited?'购后组合受损':reason;
-  const actualCondition=pending?`买后${replacementCashRisk.goldAfterPurchase}金；缺售前状态`:limited?`买后${replacementCashRisk.goldAfterPurchase}金，包场暂不触发 · 新购成长为0`:condition;
-  return {stars:actualStars,reason:actualReason,condition:actualCondition,stage,combination,combinationHint:potential&&actualStars>=3?'组合潜力：'+potential+'。':'',facts:{...facts,...(limited||pending?{replacementCashRisk:JSON.stringify(replacementCashRisk)}:{})},detail:(limited||pending?actualReason+'；'+actualCondition+'。\n':'')+reason+'；'+condition+(d?'。'+d.description:'')+(actualStars>=4?`\n公开依据：最大同点组${largest}张，前两组${largest+second}/${cards.length}张；最大花色${largestSuit}/${cards.length}张；已持逐牌加成${heldCardPayoff?'有':'无'}；剩余场次窗口${potentialStages}。`:'')+'\n'+combination+(routeGrowth?'\n'+routeGrowth.detail:'')};
+  const limited=replacementCashRisk&&stars>2,actualStars=limited?2:stars,actualReason=limited?'购款将停用包场':reason;
+  const actualCondition=limited?`购买前${replacementCashRisk.goldBeforePurchase}→${replacementCashRisk.goldAfterPurchase}金 · 新牌成长为0`:condition;
+  return {stars:actualStars,reason:actualReason,condition:actualCondition,stage,combination,combinationHint:potential&&actualStars>=3?'组合潜力：'+potential+'。':'',facts:{...facts,...(limited?{replacementCashRisk:JSON.stringify(replacementCashRisk)}:{})},detail:(limited?'购款将停用包场；'+actualCondition+'。\n':'')+reason+'；'+condition+(d?'。'+d.description:'')+(actualStars>=4?`\n公开依据：最大同点组${largest}张，前两组${largest+second}/${cards.length}张；最大花色${largestSuit}/${cards.length}张；已持逐牌加成${heldCardPayoff?'有':'无'}；剩余场次窗口${potentialStages}。`:'')+'\n'+combination+(routeGrowth?'\n'+routeGrowth.detail:'')};
  };
  if(sold&&cash?.status==='blocked')return result(0,'替换不可执行','先核对出售限制');
  if(!audited||!rule||!d)return result(0,'规则待核','该身份尚未审计');

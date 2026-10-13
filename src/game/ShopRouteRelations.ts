@@ -67,10 +67,10 @@ export function shopPurchaseCashFacts(state:R2RunState,offer:R2Offer,sold?:R2Jok
 export function shopPurchaseConditionLosses(state:R2RunState,offer:R2Offer,sold?:R2JokerInstance){
  const transaction=shopPurchaseCashFacts(state,offer,sold);
  if(transaction.status!=='assessed'||transaction.goldAfterPurchase<0)return [];
- const jokers=transaction.afterSale.jokers,cash=transaction.goldAfterPurchase;
+ const jokers=transaction.afterSale.jokers,cash=transaction.goldAfterPurchase,purchaseGold=transaction.afterSale.gold;
  const matches=(c:Condition,gold:number)=>c.kind==='resource-minimum'?gold>=c.minimum:c.kind==='resource-maximum'?gold<=c.maximum:c.kind==='resource'?gold===c.equals:false;
  const isGold=(c:Condition)=> (c.kind==='resource-minimum'||c.kind==='resource-maximum'||c.kind==='resource')&&c.resource==='gold';
- const retained=jokers.flatMap(j=>{const d=r2JokerDefinitionFor(state,j.definitionId);return d.hooks.filter(h=>isGold(h.condition)&&matches(h.condition,state.gold)&&!matches(h.condition,cash)).map(h=>`买后金币${state.gold}→${cash}；${d.name}买后${cash}金，暂不触发${shortEffect({...d,hooks:[h]})}（需${r2ConditionDescription(h.condition)}）；这轮先留金。`);});
+ const retained=jokers.flatMap(j=>{const d=r2JokerDefinitionFor(state,j.definitionId);return d.hooks.filter(h=>isGold(h.condition)&&matches(h.condition,purchaseGold)&&!matches(h.condition,cash)).map(h=>`购款金币${purchaseGold}→${cash}；${d.name}买后${cash}金，暂不触发${shortEffect({...d,hooks:[h]})}（需${r2ConditionDescription(h.condition)}）；这轮先留金。`);});
  // Tools/items have no Joker hooks; keep their retained-card warnings intact.
  const fresh=r2JokerDefinitionsFor(state).find(d=>d.id===offer.definitionId);
  return [...retained,...(fresh?.hooks.filter(h=>isGold(h.condition)&&!matches(h.condition,cash)).map(h=>`${fresh.name}买后${cash}金，暂不触发${shortEffect({...fresh,hooks:[h]})}（需${r2ConditionDescription(h.condition)}）。`)??[])];
