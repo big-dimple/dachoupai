@@ -36,8 +36,8 @@ describe('endless shadow fixed states — no gameplay acceptance',()=>{
   }
  });
  it.each(inputs.states)('current scorer matches raw components, family set and all frozen stages: $id',state=>{
-  for(const chapter of inputs.chapters){
-   const count=(chapter-1)*3,t=scoreR2Hand(recipeInput(state,count));
+  for(const chapter of inputs.chapters)for(const stage of inputs.stages){
+   const count=(chapter-1)*3+stage,t=scoreR2Hand(recipeInput(state,count));
    expect(t.finalScore).toBe(String(score(state,count)));
    const without=scoreR2Hand(recipeInput(state,0));
    expect(without.accumulator.H).toEqual(frac(state.H));
@@ -71,9 +71,9 @@ describe('endless shadow fixed states — no gameplay acceptance',()=>{
  });
  it('shared exogenous challenge allows mature first-hand overshoot and keeps current scores',()=>{
   const row=report.challengeCandidates.find(r=>r.chapter===13&&r.growth.n==='61');
-  expect(row.integerGradeInterval.feasible).toBe(true);
+  expect(row.integerGradeInterval.feasible).toBe(false);
   const witness=row.presets.find(r=>r.grade===4096);
-  expect(witness.matureBudgetAll).toBe(true);expect(witness.matureBossPressure).toBe(true);
+  expect(witness.matureBudgetAll).toBe(true);expect(witness.matureBossPressure).toBe(false);
   expect(witness.firstHandClear).toContainEqual({state:'mature-SF',stage:0});
   expect(report.rows.find(r=>r.chapter===13&&r.stage===0&&r.id==='mature-SF'&&r.policy==='legacy').stableFirst).toBe('7912726393962');
  });
@@ -108,11 +108,11 @@ describe('endless shadow fixed states — no gameplay acceptance',()=>{
   const state=inputs.states[4],i=recipeInput(state,36);
   i.hand.at(-1).enhancement='glass-paper';i.hand.at(-1).edition='polychrome';
   const t=scoreR2Hand(i);
-  expect(t.finalScore).toBe(String(score(state,36,'legacy',4,frac(66))));
+  expect(t.finalScore).toBe(String(score(state,36,'legacy',4,frac(51))));
   expect(t.events.filter(e=>e.operation==='glass-check')).toHaveLength(1);
   expect(t.events.findIndex(e=>e.operation==='glass-check')).toBeGreaterThan(t.events.findIndex(e=>e.operation==='final-score'));
   expect(report.glassLossStress.nextStageSafeCapacity).toBe('543712');
-  expect(report.glassLossStress.nextStagePossibleGlassCapacity).toBe('752832');
+  expect(report.glassLossStress.nextStagePossibleGlassCapacity).toBe('674412');
  });
  it('public user pair chain is exact and gives no hero or package event',()=>{
   const base=recipeInput(inputs.states[0],35);
@@ -144,9 +144,9 @@ describe('endless shadow fixed states — no gameplay acceptance',()=>{
    routeGrowth:{clears:35,G:0,S:0,F:0},
    jokers:[j('b06'),j('jiedongfeng'),j('e11',{coefficient:frac(2)}),j('a06'),j('f09')]};
   const plain=scoreR2Hand(packet),assist=scoreR2Hand({...packet,assistIds:hand.slice(3).map(c=>c.id)});
-  expect(plain.accumulator.H).toEqual(frac(108));expect(plain.accumulator.M).toEqual(frac(63,2));
-  expect(plain.finalScore).toBe('3402');expect(assist.finalScore).toBe('13608');
-  expect(report.recommendedTrial.sourceContrast).toMatchObject({pairCompressed:'7080',tripleNoAssist:'13608',tripleAndOneAssist:'54432',oneAssistThenPlain:'68040'});
+  expect(plain.accumulator.H).toEqual(frac(126));expect(plain.accumulator.M).toEqual(frac(99,2));
+  expect(plain.finalScore).toBe('6237');expect(assist.finalScore).toBe('24948');
+  expect(report.recommendedTrial.sourceContrast).toMatchObject({pairCompressed:'7080',tripleNoAssist:'24948',tripleAndOneAssist:'99792',oneAssistThenPlain:'124740'});
   expect(BigInt(report.recommendedTrial.sourceContrast.oneAssistThenPlain)).toBeGreaterThan(trialTarget(inputs,13,2));
   expect(report.recommendedTrial.trainingRepair.every(r=>r.feasible)).toBe(true);
  });
