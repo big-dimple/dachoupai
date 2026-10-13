@@ -1,5 +1,17 @@
 # 卡牌价值视觉小批接入
 
+## 本批文案收尾（当前评审入口）
+
+产品文案修订冻结 `cdd13fc5`：缺源→**缺搭档**，待核→**看条件**，可搭→**可搭配**。只是展示标签与必要宽度适配，没有改潜力取值、星数、推荐算法或交易流。窄卡给三字留44px文字签，宽卡用62px连环签；与右侧28px稀有签之间留空，不占星行。过窄的既有短屏不强塞该装饰，详情仍沿原条件说明。
+
+最终截图：[320缺搭档](wording/320-counterexamples-shelf.png) · [320看条件](wording/320-check-shelf.png) · [390可搭配/五星](wording/390-five-shelf.png) · [PC](wording/1366-check-shelf.png)。下方before/after截图是上一版历史，保持不覆盖。
+
+本次 typecheck、38项/6文件定向及九个受控局部窗口通过。新增c07窗口由当前真实普通同花尾牌条件提供“看条件”，未造推荐；原六窗口的星数/条件/组合说明与上一版逐条相同。每个徽记断言不与稀有签/星行相交，全部查看/取消/resize后的state/journal/IDB/localStorage不变、send=0。`wording/report.json` 与 `wording/artifact-index.json` 绑定运行产品提交与源码/截图哈希。
+
+已核上一HEAD `d8a4aa86` 的 [CI 38425738628](https://github.com/big-dimple/dachoupai/actions/runs/38425738628)：browser/domain/docs 均 completed/success，无真实browser失败；production-docs也success。文案修订后的最终SHA与新CI另在PR157绑定，不借旧绿灯。
+
+---
+
 基线 `2ef9180c066308e06d7d09850983ea469aa67fd8`，产品/测试冻结 `0437e401`；最终交付 SHA 与 CI 在草稿 PR 中绑定。承接 PR145 第二轮的人物优先与信息分轴，不继续扩原型，也不把原型的展示星值搬进产品。
 
 ## 行为与范围
