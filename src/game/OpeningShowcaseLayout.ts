@@ -1,7 +1,12 @@
 import type {Box} from './layout';
 /** Fixed demonstration band; portrait never shares its text or action space. */
-export function openingShowcaseLayout(b:Box,portrait:boolean,short:boolean){
+export function openingShowcaseLayout(b:Box,portrait:boolean,short:boolean,folded=false){
  const pad=short?8:portrait?10:12;
+ if(folded){
+  const artWidth=portrait?b.width*.50:short?Math.min(150,b.width*.2):Math.min(470,b.width*.42),copyX=b.x+artWidth+pad*2;
+  const copyWidth=b.width-(copyX-b.x)-pad,demoY=b.y+b.height-pad-48;
+  return {art:{x:b.x+pad,y:b.y+pad,width:artWidth,height:b.height-pad*2},copy:{x:copyX,y:b.y+pad,width:copyWidth,height:demoY-b.y-pad-8},demo:{x:copyX,y:demoY,width:copyWidth,height:48}};
+ }
  if(portrait){
   const demoHeight=Math.min(224,Math.max(184,b.height-90)),topHeight=b.height-demoHeight-pad*2;
   const artWidth=Math.min(136,b.width*.30);

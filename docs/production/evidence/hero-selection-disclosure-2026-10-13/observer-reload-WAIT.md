@@ -1,0 +1,1 @@
+Second observer run was stopped after waiting for runController on the reloaded title. The controller is attached when the player continues through the title; the observer now performs that native continue action. Product code unchanged. This interrupted run is not a PASS.
