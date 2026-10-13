@@ -6,6 +6,8 @@
 
 本任务独占规则 domain、必要 application 校验及少量显示元数据和这三份短入口；开发分支 `dev/bounded-clear-candidate-20261013`，commit/push/Draft PR已获授权。PR154只是分析，不作为产品；PR163 `7d49940390ee5e7d2b38a2dfc9fa9cf9d6069824` 为7批交互可验候选、尚未合主线。先交正常新局、锁值、GF/SF非对称max、下手生效、重复确认/失败重试与冷恢复候选，领域和局部浏览器验证；三条有限自然路线/整局由dot安排，不跑18局或无限扫描。排程只维护本页，父独审和同版自然验证后再决定集成。
 
+当前规则候选：[Draft PR164](https://github.com/big-dimple/dachoupai/pull/164)，产品src tree `1ff4f0086739464d8ba4cb1a8a21e340e225070e`；正常新局/非对称max/下手生效/锁值/固定候选保存重试与冷恢复已领域及PC1366/390局部验证，详见[本批证据](evidence/bounded-clear-candidate-2026-10-13/README.md)。旧身份断言和AI传递缺口已收敛；本地完整门C02默认5秒超时原FAIL保留，最终精确HEAD CI与dot自然验收另核。候选可测，不作为已上线/整局通过。
+
 PR159短复审（固定[f952d14c](https://github.com/big-dimple/dachoupai/blob/f952d14c84021bb2f7ae4eb028db49a3fa2aea12/docs/production/evidence/independent-followup-review-2026-10-13/README.md)）：已修/保留—骰爷新补牌核心资格、显式主动后置、c06家族成长与PR148/149/153；F04 c07已在PR162修复并进入未合PR163。归本批—F01有界加成、F03身份/锁值/严格恢复/真实单次事件、F05三处过时入口。待实测—F02第三章末至中后期经营承接、F06同版三条自然路线与整局/设备/听感，不借旧G14或受控配方签新身份自然可达。下方2026-10-13早前事实/合同与W0–W9原文保留，涉及保旧目标/仅文档暂停/未实现的旧调度由以上当前入口覆盖。
 
 ### 1 已证明的结果与仍未证明的事
