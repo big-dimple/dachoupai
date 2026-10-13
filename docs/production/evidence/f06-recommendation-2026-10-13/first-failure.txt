@@ -1,0 +1,30 @@
+
+ RUN  v4.1.11 /workspace/dachoupai
+
+ ❯ tests/f06-recommendation.test.ts (9 tests | 1 failed) 230ms
+   × chapter 13 keeps new f06 at two stars with its finite-use phrase 11ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/f06-recommendation.test.ts > chapter 13 keeps new f06 at two stars with its finite-use phrase
+Error: Run invariant: qualified endless tour
+ ❯ check src/domain/r2Run.ts:145:70
+
+ ❯ assertR2Invariants src/domain/r2Run.ts:227:33
+ ❯ assertRunInvariants src/domain/run.ts:354:43
+ ❯ f06RecommendationFixture harness/fixtures/f06-recommendation.ts:24:2
+ ❯ tests/f06-recommendation.test.ts:10:11
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 5 passed (6)
+      Tests  1 failed | 118 passed (119)
+   Start at  06:50:57
+   Duration  1.94s (transform 1.58s, setup 0ms, import 2.69s, tests 1.42s, environment 1ms)
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice
