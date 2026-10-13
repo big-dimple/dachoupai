@@ -36,7 +36,8 @@ try{
    await shot(o.definitionId+'-compare');
    if(o.definitionId==='b06'){await p.locator('.experience-card').nth(2).scrollIntoViewIfNeeded();assert.ok(entry.compare.includes('失去：系数×1.6'));await shot('growth-cost');}
    await p.getByRole('button',{name:'返回购买详情',exact:true}).click();entry.detail=await p.locator('.detail-dialog[open]').innerText();assert.ok(entry.detail.includes('推荐指数 ★★★★★'));assert.ok(entry.detail.includes('组合潜力：'));assert.ok(entry.detail.includes('组合记录：上手'));assert.ok(entry.detail.includes('新牌未参与'));
-   await p.locator('.dialog-purchase-summary').scrollIntoViewIfNeeded();await shot(o.definitionId+'-detail');
+   entry.detailGeometry=await p.locator('.dialog-purchase-summary').evaluate(e=>{const scroll=e.closest('.dialog-scroll');scroll.scrollTop+=e.getBoundingClientRect().top-scroll.getBoundingClientRect().top;const range=document.createRange();range.setStart(e.firstChild,0);range.setEnd(e.firstChild,e.textContent.indexOf('\n'));const line=range.getBoundingClientRect(),pane=scroll.getBoundingClientRect();return {line:{x:line.x,y:line.y,right:line.right,bottom:line.bottom},pane:{x:pane.x,y:pane.y,right:pane.right,bottom:pane.bottom}};});
+   assert.ok(entry.detailGeometry.line.y>=entry.detailGeometry.pane.y&&entry.detailGeometry.line.bottom<=entry.detailGeometry.pane.bottom);assert.ok(entry.detailGeometry.line.x>=entry.detailGeometry.pane.x&&entry.detailGeometry.line.right<=entry.detailGeometry.pane.right);await shot(o.definitionId+'-detail');
    await p.getByRole('button',{name:'取消',exact:true}).click();await frame(p);assert.deepEqual(await snapshot(p),row.before);
   }
   row.after=await snapshot(p);row.sendCalls=await p.evaluate(()=>window.__recommendationSendCalls);assert.deepEqual(row.sendCalls,[]);assert.deepEqual(row.errors,[]);row.status='PASS';console.log(JSON.stringify({width:spec.width,offers:row.offers.map(o=>({id:o.id,stars:o.guidance.stars})),status:row.status}));await p.close();
