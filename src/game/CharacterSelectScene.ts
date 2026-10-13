@@ -42,6 +42,7 @@ export class CharacterSelectScene extends Phaser.Scene {
   private readonly openingMotion=new Map<Phaser.GameObjects.GameObject,()=>void>();
   private sampleAfter=false;
   private view!:SceneView;
+  private readonly portraitTargets=new Map<Phaser.GameObjects.Container,{id:CharacterId;box:Box;hero:boolean}>();
   private readonly dialog=new DetailDialog();
   private readonly modeDialog=new ModeSelectDialog();
   private readonly audio=AudioEngine.shared;
@@ -56,7 +57,10 @@ export class CharacterSelectScene extends Phaser.Scene {
     this.choosing=false;this.notice='';this.animateChoice=false;this.sampleAfter=false;this.lifecycle++;
     this.cameras.main.setBackgroundColor('#F3EADB');this.audio.setScene('menu');
     this.view=new SceneView(this,()=>this.render());
-    const refreshImage=(key:string)=>{if(this.scene.isActive()&&(key.startsWith('selection-portrait-')||key.startsWith('avatar-')||key==='opening-portrait-'+(this.selectedId??'amo')))this.render();};
+    const refreshImage=(key:string)=>{
+      if(!this.scene.isActive())return;
+      for(const [holder,target] of this.portraitTargets)if(holder.active&&[selectionPortraitKey(target.id),'avatar-'+target.id,...(target.hero?['opening-portrait-'+target.id]:[])].includes(key))this.paintPortrait(holder,target.id,target.box,target.hero);
+    };
     this.textures.on('addtexture',refreshImage);this.events.once('shutdown',()=>this.textures.off('addtexture',refreshImage));warmOpeningImages(this);
     const session=gameSession();let pending=session.pendingRun;
     const unsubscribe=session.subscribe(()=>{const prior=pending;pending=session.pendingRun;
@@ -67,6 +71,7 @@ export class CharacterSelectScene extends Phaser.Scene {
     this.events.once('shutdown',()=>{settle();window.removeEventListener('blur',settle);window.removeEventListener('dachoupai-presentation',settle);document.removeEventListener('visibilitychange',hide);unsubscribe();this.lifecycle++;this.dialog.close();this.modeDialog.close();});this.render();
   }
   private render():void {
+    this.portraitTargets.clear();
     const v=this.view,l=v.layout,style=getComputedStyle(document.documentElement),bottom=parseFloat(style.getPropertyValue('--safe-bottom'))||0;
     const p=selectionLayout(l.width,l.height,l.hud.y,bottom,this.step),config=r2RunModeConfig(this.modeConfig);v.clear();v.paperBackground();
     v.text(p.x,p.top,this.step==='hero'?'英雄登场':'选一条路',p.short||p.portrait?24:30,'#26313A').setFontFamily('Georgia, "Noto Serif SC", SimSun, serif').setFontStyle('bold');
@@ -148,10 +153,16 @@ export class CharacterSelectScene extends Phaser.Scene {
     warmHeroImage(this,id);
   }
   private drawPortrait(id:CharacterId,b:Box,hero=false):void {
-    const key=hero&&this.textures.exists('opening-portrait-'+id)?'opening-portrait-'+id:selectionPortraitKey(id);if(!this.textures.exists(key)){addAvatar(this,this.view.root,getCharacter(id),b.x+b.width/2,b.y+b.height/2,Math.min(b.width,b.height));return;}
-    const image=this.add.image(0,0,key),sourceWidth=image.width,sourceHeight=image.height,scale=Math.min(b.width/sourceWidth,b.height/sourceHeight);
+    const holder=this.view.add(this.add.container(0,0));this.portraitTargets.set(holder,{id,box:b,hero});this.paintPortrait(holder,id,b,hero);
+  }
+  /** Replace only the picture; late previews must never destroy a pressed action target. */
+  private paintPortrait(holder:Phaser.GameObjects.Container,id:CharacterId,b:Box,hero:boolean):void {
+    holder.removeAll(true);
+    const key=hero&&this.textures.exists('opening-portrait-'+id)?'opening-portrait-'+id:selectionPortraitKey(id);
+    if(!this.textures.exists(key)){addAvatar(this,holder,getCharacter(id),b.x+b.width/2,b.y+b.height/2,Math.min(b.width,b.height));return;}
+    const image=this.add.image(0,0,key),scale=Math.min(b.width/image.width,b.height/image.height);
     if(hero)image.setName('opening/portrait').setData('openingBounds',b);
-    image.setScale(scale).setPosition(b.x+b.width/2,b.y+b.height/2);this.view.add(image);
+    image.setScale(scale).setPosition(b.x+b.width/2,b.y+b.height/2);holder.add(image);
   }
   /** Card content drawn since `first` is wrapped into one hoverable, liftable container. */
   private wrapCard(first:number,b:Box):{art:Phaser.GameObjects.Container;enter:()=>void;leave:()=>void} {
