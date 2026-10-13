@@ -1,0 +1,22 @@
+{
+  "base": "f23c1fc2389242bacbb8f5d35733f1c344610727",
+  "restoredFrom": "56aa86fcdeeaec75cc496399ad4387de81957325",
+  "product": "eb8b4dd04be1290dd1ad247097708f7527155b01",
+  "sampleCapture": "f23c1fc working tree before product commit; rendering/harness blobs below unchanged at commit",
+  "sourceBlobs": {
+    "src/game/IntermissionScene.ts": "5ce1b17f5827070239a72ba6699c3ac006d3bb51",
+    "src/game/SettlementPresentation.ts": "aef4f6488f59badff34e2285f9306b13d3b180b4",
+    "src/game/SettlementNumbers.ts": "097cc1fbb187eb230620c2f2bec6dfcd7a8422a3",
+    "harness/fixtures/settlement.ts": "c783c384b80c85d6e6541a04f8027a0e2c7a230f",
+    "harness/settlement-presentation.mjs": "d814946e69b985382105d39585d5f363fecad5cf",
+    "tests/settlement-presentation.test.ts": "c8ba71f0d52a2cbc35066da00b6c8bd67bc720f1",
+    "tests/settlement-numbers.test.ts": "a082e3137915158c4ab4703349f3d77d813492a1"
+  },
+  "originalImages": {
+    "libraryIds": [
+      "libfile_1abb846ab16c8191bd99e7d2f5b8fc49",
+      "libfile_006da1b55dc881919235eaaccb3d94a2"
+    ],
+    "materialization": "Resolved both IDs; current official helper failed download initially and once on supported retry. No local bytes, no original pixel review, no alternate download route."
+  }
+}
