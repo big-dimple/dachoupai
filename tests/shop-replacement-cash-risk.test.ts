@@ -10,6 +10,8 @@ import {shopC2Score} from '../harness/fixtures/shop-c2-align';
 import {recommendationFiveStarFixture} from '../harness/fixtures/recommendation-evidence';
 import {f06RecommendationFixture} from '../harness/fixtures/f06-recommendation';
 import {makeCheckpoint,readCheckpoint} from '../src/application/checkpoint';
+import {r2ScoringDisabledJokerIds,scoreR2Hand} from '../src/domain/scoreR2';
+import {r2JokerDefinitionsFor} from '../src/domain/r2ContentProfiles';
 const send=(s:R2RunState,action:Action)=>{const r=applyCommand(s,{runId:s.runId,commandId:s.runId+'/test/'+(s.commandSeq+1),expectedSeq:s.commandSeq,action});if(!r.ok)throw Error(r.code);return r.state;};
 const risk=(s:R2RunState,i=2)=>{const o=s.shop!.offers[0],sold=s.jokers[i],cash=shopPurchaseCashFacts(s,o,sold);if(cash.status!=='assessed')return;return shopDeferredGrowthCashRisk(s,o,sold,cash.afterSale);};
 it('rates the real selected trade lower when a zero-growth buy disables retained Baochang',()=>{
@@ -25,11 +27,32 @@ it.each([[22,0,2,19],[23,0,4,20],[22,8,4,22]] as const)('uses actual original ca
  const s=replacementCashRiskFixture(gold);s.jokers[2].paidPrice=paidPrice;const o=s.shop!.offers[0],before=structuredClone(s);
  expect(shopRecommendation(s,o,'group',s.jokers[2]).stars).toBe(stars);expect(shopReplacementTransactionFacts(s,o,s.jokers[2])).toMatchObject({status:'ready',goldAfterPurchase:after});expect(s).toEqual(before);
 });
-it('keeps the same conservative rating after the actual sale, through a cold-readable one-slot purchase',()=>{
+it('does not claim that the post-sale boolean preserves full trade evidence, including after checkpoint read',()=>{
  const s=replacementCashRiskFixture(),o=s.shop!.offers[0],sold=send(s,{type:'SellJoker',instanceId:s.jokers[2].instanceId});
  expect(sold).toMatchObject({gold:23,shop:{soldJoker:true}});expect(sold.jokers).toHaveLength(4);expect(readCheckpoint(makeCheckpoint(sold,[]))).toMatchObject({ok:true});
- expect(shopOfferGuidance(sold,o)).toMatchObject({stars:2,condition:expect.stringContaining('买后19金')});
+ expect(shopOfferGuidance(sold,o)).toMatchObject({stars:0,label:'推荐指数 待核',condition:expect.stringContaining('缺售前状态')});
  const ordinary=structuredClone(sold);ordinary.shop!.soldJoker=false;expect(shopOfferGuidance(ordinary,o).stars).toBe(4);
+});
+it.each(['initial-cash-19','sold-hand-rule','sale-growth'] as const)('%s: a full preview is outside the proof, continuation is unknown rather than an invented two-star proof',key=>{
+ const s=replacementCashRiskFixture(key==='initial-cash-19'?19:22),o=s.shop!.offers[0];
+ if(key==='initial-cash-19')s.jokers[2].paidPrice=8;
+ if(key==='sold-hand-rule')s.jokers[2]=r2CreateJoker('c08','held/rule',0,'none',s);
+ if(key==='sale-growth')s.jokers[3]=r2CreateJoker('e06','held/sale-growth',8,'none',s);
+ assertRunInvariants(s);const before=structuredClone(s);
+ expect(shopOfferGuidance(s,o,s.jokers[2]).stars).toBe(4);
+ const sale=send(s,{type:'SellJoker',instanceId:s.jokers[2].instanceId});expect(sale.gold).toBe(23);
+ if(key==='sale-growth')expect(sale.jokers.find(j=>j.definitionId==='e06')!.growth).toEqual({multiplier:{n:'1',d:'2'}});
+ expect(shopOfferGuidance(sale,o)).toMatchObject({stars:0,label:'推荐指数 待核'});expect(s).toEqual(before);
+});
+it.each(['growth','edition'] as const)('B06 newly enabled retained %s is outside the no-compensation proof even with identical JSON',kind=>{
+ const s=replacementCashRiskFixture();s.chapter=3;s.stageIndex=8;s.shop!.visitIndex=8;s.boss={definitionId:'B06',disabledSuit:null};s.seenBossIds.push('B06');s.routeGrowth!.settlements.push({stageIndex:5,families:[]});s.routeGrowth!.clears++;
+ const j=r2CreateJoker(kind==='growth'?'a05':'e03','held/newly-live',8,kind==='edition'?'foil':'none',s);if(kind==='growth')j.growth.heat={n:'40',d:'1'};s.jokers[3]=j;assertRunInvariants(s);
+ const sale=send(s,{type:'SellJoker',instanceId:s.jokers[2].instanceId}),bought=send(sale,{type:'BuyOffer',offerId:s.shop!.offers[0].offerId});
+ expect(sale.jokers.find(next=>next.instanceId===j.instanceId)).toEqual(j);expect(bought.jokers.find(next=>next.instanceId===j.instanceId)).toEqual(j);
+ expect(r2ScoringDisabledJokerIds(s.boss,s.jokers,r2JokerDefinitionsFor(s))).toContain(j.instanceId);expect(r2ScoringDisabledJokerIds(sale.boss,sale.jokers,r2JokerDefinitionsFor(sale))).not.toContain(j.instanceId);
+ const ids=['spades-7','hearts-7'],a=scoreR2Hand({...shopC2Score(s,ids).input,boss:s.boss}),b=scoreR2Hand({...shopC2Score(bought,ids).input,boss:bought.boss});
+ expect(a.events.some(e=>e.sourceInstanceId===j.instanceId&&e.phase==='jokerScore')).toBe(false);expect(b.events.some(e=>e.sourceInstanceId===j.instanceId&&e.phase==='jokerScore'&&['read-growth','add-heat'].includes(e.operation))).toBe(true);
+ expect(risk(s)).toBeUndefined();expect(shopOfferGuidance(s,s.shop!.offers[0],s.jokers[2]).stars).toBe(4);
 });
 it('coupons and removed discounts are evaluated by the real sale and buy commands',()=>{
  const s=replacementCashRiskFixture();s.purchaseCoupons=1;expect(risk(s)).toBeUndefined();expect(shopRecommendation(s,s.shop!.offers[0],'group',s.jokers[2]).stars).toBe(4);

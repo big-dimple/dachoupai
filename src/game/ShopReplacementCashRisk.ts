@@ -7,7 +7,8 @@ import {r2ScoringDisabledJokerIds} from '../domain/scoreR2';
 import {Rational} from '../domain/rational';
 import {R2_EDITIONS} from '../content/r2Tools';
 
-/** A narrow proven cost: a zero-initial-growth purchase disables retained Baochang.
+/** A full specified trade can prove a loss. A post-sale state cannot reconstruct
+ * its prior cash, donor or sale hooks; report missing evidence, never infer it.
  * Clone-only; no hand forecast, hidden draws, score search, save or dispatch. */
 export function shopDeferredGrowthCashRisk(before:R2RunState,offer:R2Offer,sold:R2JokerInstance|undefined,afterSale:R2RunState){
  const cashOnlyModifiers=['first-purchase-discount','interest-cap','consumable-capacity'];
@@ -27,6 +28,14 @@ export function shopDeferredGrowthCashRisk(before:R2RunState,offer:R2Offer,sold:
  const after=result.state,fresh=after.jokers.find(j=>!before.jokers.some(old=>old.instanceId===j.instanceId));
  if(!fresh||fresh.definitionId!==offer.definitionId)return;
  const afterDisabled=new Set(r2ScoringDisabledJokerIds(boss,after.jokers,r2JokerDefinitionsFor(after),sealed,after.chapterDisabledJokerId));
+ const saleDisabled=new Set(r2ScoringDisabledJokerIds(boss,afterSale.jokers,r2JokerDefinitionsFor(afterSale),sealed,afterSale.chapterDisabledJokerId));
+ // Removing a slot can enable a retained body or edition (notably B06).
+ // Identical instance JSON is not identical effective scoring availability.
+ if(retained.some(j=>{
+  const d=definitions.find(d=>d.id===j.definitionId)!,effect=R2_EDITIONS.find(e=>e.id===(j.edition??'none'))?.effect;
+  const source=d.hooks.some(h=>scorePhases.includes(h.phase)&&h.operations.length>0)||!!effect&&Rational.fromJSON(effect.value).compare(new Rational(effect.kind==='multiply-multiplier'?1n:0n))>0;
+  return source&&disabled.has(j.instanceId)&&(!saleDisabled.has(j.instanceId)||!afterDisabled.has(j.instanceId));
+ }))return;
  const edition=R2_EDITIONS.find(e=>e.id===(fresh.edition??'none'))?.effect;
  // An actual enabled numeric edition is a nonzero current source, not proof
  // that it offsets the lost multiplier. A disabled badge grants no exception.
@@ -39,5 +48,5 @@ export function shopDeferredGrowthCashRisk(before:R2RunState,offer:R2Offer,sold:
  // A cash reduction can activate a separate low-gold benefit. Do not assume it
  // cannot compensate the lost multiplier; that trade remains outside this rule.
  if(retained.some(j=>!disabled.has(j.instanceId)&&r2JokerDefinitionFor(before,j.definitionId).hooks.some(h=>scorePhases.includes(h.phase)&&h.condition.kind==='resource-maximum'&&h.condition.resource==='gold'&&before.gold>h.condition.maximum&&after.gold<=h.condition.maximum)))return;
- return {sourceInstanceId:bao.instanceId,goldBefore:before.gold,goldAfterPurchase:after.gold};
+ return {status:sold?'known-loss' as const:'history-missing' as const,sourceInstanceId:bao.instanceId,goldBefore:before.gold,goldAfterPurchase:after.gold};
 }
