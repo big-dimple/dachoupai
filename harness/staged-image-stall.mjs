@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict';
+import {execFileSync} from 'node:child_process';
 import {writeFile} from 'node:fs/promises';
 import {chromium} from 'playwright';
 import {waitScene,tapUI} from './ui.mjs';
@@ -6,7 +7,7 @@ const out='docs/production/evidence/staged-image-warmup-2026-10-13',browser=awai
 const context=await browser.newContext({viewport:{width:320,height:740},hasTouch:true}),page=await context.newPage(),requests=[],failures=[],errors=[];
 page.on('request',r=>{if(/characters\/amo\./.test(r.url()))requests.push({url:r.url(),at:Date.now()});});page.on('requestfailed',r=>{if(/characters\/amo\./.test(r.url()))failures.push({url:r.url(),at:Date.now(),error:r.failure()});});page.on('pageerror',e=>errors.push(String(e)));
 await page.route('**/assets/handdrawn-p08/characters/amo.*.webp',()=>{});
-const report={fault:'Three existing amo images never respond; fetch + decode deadline is 4500ms, one automatic transient retry.',requests,failures,errors};
+const report={head:execFileSync('git',['rev-parse','HEAD'],{encoding:'utf8'}).trim(),build:await (await fetch((process.env.WARMUP_URL??'http://127.0.0.1:5175')+'/build-info.json')).json(),viewport:{width:320,height:740},fault:'Three existing amo images never respond; fetch + decode deadline is 4500ms, one automatic transient retry.',requests,failures,errors};
 try{
  await page.goto((process.env.WARMUP_URL??'http://127.0.0.1:5175')+'/?harness=1&seed=warmup-stall',{waitUntil:'domcontentloaded'});await waitScene(page,'title');report.titleUsableMs=await page.evaluate(()=>performance.now());assert.ok(report.titleUsableMs<4500);
  await tapUI(page,'title','action/title-start',true);await waitScene(page,'character-select');await tapUI(page,'character-select','character/amo',true);

@@ -25,8 +25,8 @@ async function run(width){
    const courts=s.cardViews.filter(v=>v.card.rank>=11&&v.card.rank<=13).map(v=>({id:v.card.id,key:'p08-court-'+['j','q','k'][v.card.rank-11],art:images(v.container.list,'p08-court-'+['j','q','k'][v.card.rank-11])}));
    return {courts,avatar:images(s.roleAvatar.list,'avatar-amo'),portrait:images(s.view.root.list,'selection-portrait-amo')};
   });assert.ok(initial.courts.every(c=>!c.art),'entry uses court suit fallback before texture arrives');
-  release();
-  await p.waitForFunction(()=>['p08-court-j','p08-court-q','p08-court-k','avatar-amo','selection-portrait-amo'].every(k=>window.__harness.game.textures.exists(k)));
+  await p.screenshot({path:out+`/${width}-${kind}-before.png`});release();
+  await p.waitForFunction(()=>{const g=window.__harness.game,s=g.scene.getScene('game');return ['avatar-amo','selection-portrait-amo',...s.cardViews.filter(v=>v.card.rank>=11&&v.card.rank<=13).map(v=>'p08-court-'+['j','q','k'][v.card.rank-11])].every(k=>g.textures.exists(k));});
   await p.waitForFunction(()=>window.__harness.game.scene.getScene('game').cardViews.every(v=>!v.dealing));
   await p.evaluate(()=>new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve))));
   const actual=await p.evaluate(()=>{

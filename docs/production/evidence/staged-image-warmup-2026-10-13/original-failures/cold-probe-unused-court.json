@@ -1,0 +1,60 @@
+{
+  "head": "7040573b91bd6b9bac98328a668e4c204ec2f9f0",
+  "build": {
+    "version": "C03",
+    "builtAt": "2026-10-13T16:21:02.646Z",
+    "revision": "7040573b91bd6b9bac98328a668e4c204ec2f9f0",
+    "sourceStatus": "clean",
+    "modified": false
+  },
+  "scope": "Native first-shop fast entry and cold saved-table continue; no scoring; assets held until table and selection exist.",
+  "cases": [],
+  "failedAt": {
+    "width": 1366,
+    "requests": [
+      {
+        "url": "http://127.0.0.1:5175/assets/handdrawn-p08/characters/amo.selection.webp",
+        "at": 1791908502330
+      },
+      {
+        "url": "http://127.0.0.1:5175/assets/handdrawn-p08/characters/amo.avatar.webp",
+        "at": 1791908502334
+      },
+      {
+        "url": "http://127.0.0.1:5175/assets/handdrawn-p08/characters/amo.portrait.webp",
+        "at": 1791908507011
+      },
+      {
+        "url": "http://127.0.0.1:5175/assets/handdrawn-p08/court/k.court.webp",
+        "at": 1791908517812
+      },
+      {
+        "url": "http://127.0.0.1:5175/assets/handdrawn-p08/court/q.court.webp",
+        "at": 1791908517813
+      },
+      {
+        "url": "http://127.0.0.1:5175/assets/handdrawn-p08/court/j.court.webp",
+        "at": 1791908522999
+      },
+      {
+        "url": "http://127.0.0.1:5175/assets/handdrawn-p08/court/k.court.webp",
+        "at": 1791908523001
+      },
+      {
+        "url": "http://127.0.0.1:5175/assets/handdrawn-p08/court/q.court.webp",
+        "at": 1791908528001
+      },
+      {
+        "url": "http://127.0.0.1:5175/assets/handdrawn-p08/court/j.court.webp",
+        "at": 1791908528002
+      }
+    ],
+    "errors": [],
+    "stack": "page.waitForFunction: Timeout 30000ms exceeded.\n    at observe (/workspace/dachoupai/harness/cold-table-art.mjs:29:11)\n    at async run (/workspace/dachoupai/harness/cold-table-art.mjs:44:52)\n    at async file:///workspace/dachoupai/harness/cold-table-art.mjs:48:5",
+    "scene": [
+      "game"
+    ]
+  },
+  "status": "FAIL",
+  "error": "TimeoutError: page.waitForFunction: Timeout 30000ms exceeded."
+}

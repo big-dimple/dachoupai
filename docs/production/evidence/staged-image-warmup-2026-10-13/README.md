@@ -14,7 +14,7 @@
 
 ## 局部验证
 
-最终产品 `e68913bdafe843785009a02ffcdf2f1c8274af7d`；构建、源码与 bundle SHA256：见 [validation.json](validation.json)。typecheck、e2e build 与定向 loader/详情/演出/选角合同通过；这些是软件合同检查，不作体验验收数量。
+最终产品 `7040573b91bd6b9bac98328a668e4c204ec2f9f0`；构建、源码与 bundle SHA256：见 [validation.json](validation.json)。typecheck、e2e build 与定向 loader/详情/演出/选角合同通过；这些是软件合同检查，不作体验验收数量。
 
 - [browser.json](browser.json)：390×740，每张英雄/宫廷图增加1800ms响应延迟；1366×768，阿默三种图受控404、骰爷选角图一次网络失败。真实鼠标/触屏进入标题→选角→首店→牌桌并刷新继续；不出牌或计分。图片到达前后确认按钮对象相同，重选已热英雄没有新请求，完整run state冷刷新相等，无 pageerror。
 - [stall.json](stall.json)：320×740，阿默头像/缩略/高清永久不响应，各恰好两次请求并被abort，选角与选路线确认仍可用；不会每次重绘重开重试。
@@ -36,3 +36,14 @@
 README、最终图和数据属于各自 product/build SHA；历史失败不能删掉或从PASS统计中掩盖。5. 局部替换首次加入图片容器，却未纳入原悬浮卡片分组，实际缩略被卡片纸底遮住；stall软件检查当时PASS，像素审查仍拒收。补同一分组并加实际层级检查，最终六张预览实图重新审查。
 
 最终精确 Draft head 的CI链接/状态交父收束时另报。
+
+
+## 追加：冷入桌图片晚到（父独审返修）
+
+在原2cce74f8/e689构建实际复现：快速入桌的Q纹理已到却不换花色；冷刷新继续的头像/PC桌边图也未恢复。[原生反证及原图](original-failures/cold-table-late/report.json)保留，不借其已绿CI签返修。
+
+新增一次性 `whenTextureReady`：宫廷牌、头像与PC桌边图只替换已有图片子层，目标销毁/离场解除监听。保留牌容器、命中、手选输入、头像主体、选中牌与原发牌/过渡；未全场render、未重新发牌。原warmup harness已移除入桌前等待三张court的门禁。
+
+[返修原生四行与完整保存](cold-table-late/report.json)：1366/390分别快速首店→入桌、冷刷新→继续；进入时实际Q art=false，到达后同牌对象art=true，冷头像false→true、PC桌边图false→true。完整state/checkpoint/journal/IDB/非lease本地偏好前后相等；root、cardViews、牌容器/命中、handInput、头像/英雄命中及选中牌相同，原发牌正常完成。对应同源码before/after原尺寸PNG在同目录。
+
+原探针曾等待未显示J/K也到齐，持有请求超截止而timeout；保留cold-probe-budget/unused-court原JSON/图。最终观察先证明实际显示Q未就绪入桌，再放行网络、等当前手牌所需纹理；不再拿入桌前等资源掩盖冷路径。185定向/type/build通过，不作为整体体验计数验收。
