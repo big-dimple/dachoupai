@@ -38,3 +38,36 @@
 ## 实际验证与剩余验收
 
 验证状态、冻结源码 SHA、截图及最终 CI 在后续证据提交追加。所有本批浏览器样例均为 **受控夹具**；域命令确实生成并保存了一次合法计分 trace，但不是自然获取、自然经营或自然通关。物理手机、触感/听感、玩家理解、三路线自然经营、总体平衡和最终五星校准未验收。
+
+### 冻结回执
+
+产品与观察器冻结：`8e844d830c883c2d462d298160ebf1044d3fad75`，src树 `871a95b256f3d0d9ec3062b5800c69b4d85fa6e5`。最终追加仅证据文档，不能把先前 main 的 CI 当候选通过。
+
+- [96项定向/11文件](logs/targeted.log)通过；[typecheck＋生产build](logs/build.log)通过，Vite已有大chunk提示保留。未在本地重跑无关全库/18局。涵盖旧/新身份、三路线来源剔除、现金门槛与售购联动、禁用来源、晚到/限次、公开普通牌型见证、不可出售容量边界、潜力/真实记录分层及五完整字符。
+- [计划门](logs/plan.log)通过，32工作包；[validator自测](logs/plan-self.log)1有效/13无效样例通过。这不是玩法验收。
+- 同一最终观察器：基线精确 main 与候选冻结源码，PC1366×768、390×844各三路线，320×640仅成组窄屏边界，共7对/14次观察。[基线](baseline/report.json)、[候选](candidate/report.json)、[逐对核验](paired-verification.json)。最终两侧 sourceChanges 为空，baseline只借入同一测试fixture文件和node_modules符号链接，不改产品。
+- 成组/顺子/同花均实证：原main指定卖唯一重触来源仍四星；候选二星，保留来源的另一槽仍四星。比较页新增的每槽推荐没有自动卖买；真实send调用均0。
+- 每行查看货架→原生点击比较→滚动至已养成槽→返回详情→取消；完整 state（包括RNG/receipts/身份/真实trace）、journal、IDB所有槽位与localStorage逐行且两版本间deepEqual。原始全量分别在[基线压缩记录](baseline/full-state-journal-storage.json.gz)与[候选压缩记录](candidate/full-state-journal-storage.json.gz)。这是只读回归，不冒称本轮实际完成替换保存或后续自然兑现。
+- 货架每件5个14px完整实空星、字形bounds均在本件区域内；手绘/字号/框线/价格没有改。浏览器页面错误为0。截图为软件Chromium viewport/鼠标或触摸模拟，不是物理手机。
+- 源码差异只有ShopRecommendation和ShopScene购买摘要/比较两处；domain/content/application/platform/core/public/art/GameScene及DELIVERY_PLAN/plan.json与基线无diff。计分倍率、目标域、结算展示无改动。
+
+已实际看图的代表证据：
+
+- [PC逐槽2/4星比较](candidate/1366-straight-compare.png)、[390逐槽比较](candidate/390-group-compare.png)、[320完整五星与窄屏比较](candidate/320-group-compare.png)、[320原货架五星](candidate/320-group-shelf.png)。
+- [390已养成实例×1.6损失](candidate/390-group-growth-cost.png)。
+- [390潜力/已发生记录/新牌未参与](candidate/390-flush-detail-summary.png)、[PC同说明](candidate/1366-straight-detail.png)。手机详情正文需自然滚动，固定取消/比较按钮可达；不称所有文本首屏全露。
+- 初轮[偏长的手机解释](first-verbose/390-flush-detail.png)保留；看图后只缩短首层，完整限定移至细则。该轮为未提交工作区，不冒称冻结SHA截图，原[报告](first-verbose/report.json)与[全量记录](first-verbose/full-state-journal-storage.json.gz)保留。没有测试断言FAIL；这是本代理发现的可读性待改，不是用户拒收记录。
+- 全部原图/报告/日志[SHA256清单](sha256.json)。65张截图包含初轮1张及两版本各32张，不以截图数量证明整屏美学。
+
+复现命令：
+
+```sh
+npx vitest run tests/shop-recommendation-evidence.test.ts tests/shop-recommendation.test.ts tests/shop-recommendation-c2.test.ts tests/shop-recommendation-c07.test.ts tests/shop-post-purchase-condition.test.ts tests/shop-offer-guidance.test.ts tests/shop-route-relations.test.ts tests/shop-current-decisions.test.ts tests/shop-sale-continuation.test.ts tests/build-journey.test.ts tests/build-journey-dialog.test.ts
+npm run build
+node scripts/check-production-plan.mjs
+node scripts/check-production-plan.mjs --self-test
+RECOMMENDATION_OUTPUT=/tmp/recommendation-frozen node harness/recommendation-evidence.mjs
+RECOMMENDATION_ROOT=/tmp/dachoupai-recommendation-baseline RECOMMENDATION_BASELINE=1 RECOMMENDATION_PORT=5487 RECOMMENDATION_OUTPUT=/tmp/recommendation-baseline node harness/recommendation-evidence.mjs
+```
+
+剩余：父独审、玩家是否理解/偏好此保守五星方案、可发五星的统一成本门槛、f06等五机制的完整价值校准、真实替换后的经营收益、dot三路线自然试玩、物理设备和整体美学均OPEN。本批只修证据正确性和局部可读性，不标推荐指数整体完成。最终HEAD、draft PR和精确CI由提交后工具回执交付，不合并。
