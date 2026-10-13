@@ -1,3 +1,5 @@
+> 后续仅文案收敛：本页的规则恢复与受控五星证据保留；最终购买首层已按父审删去历史名单与重复说明，见 [COPY_REFINEMENT](COPY_REFINEMENT.md)。本页图片仍属原冻结版本。
+
 # 方案 A：五星规则恢复与指定替换 bug 分离
 
 用户本轮明确选择方案 A，输入 PR143 HEAD `9b9d3aa7cf1929ec3b5ada946c2b7ecef084fccd`。该旧HEAD CI38346093938及production-docs38346093604均success，只属于旧候选。此次不合并、不增加其他需求，总计划仍由父任务整合。
