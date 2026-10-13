@@ -1,0 +1,126 @@
+{
+  "head": "2ef9180c066308e06d7d09850983ea469aa67fd8",
+  "before": true,
+  "scope": "Legal controlled native import, shop only; Chromium CSS viewports 390x740/1366x768 DPR1, touch/mouse/keyboard. No physical device or natural acquisition claim.",
+  "cases": [
+    {
+      "width": 390,
+      "checks": [
+        "target selection keeps scroll/focus; purchase and target cancel leave complete save unchanged"
+      ],
+      "shots": [
+        "390-purchase-before.png",
+        "390-purchase-cancel.png",
+        "390-selected-target.png",
+        "390-owned-cancel.png"
+      ],
+      "errors": [],
+      "initial": {
+        "gold": 30,
+        "seq": 2,
+        "journal": 0
+      },
+      "purchaseBefore": {
+        "pane": "purchase",
+        "scroll": [
+          0,
+          554
+        ],
+        "focus": "T11"
+      },
+      "purchaseAfter": {
+        "pane": "purchase",
+        "scroll": [
+          0,
+          0
+        ]
+      },
+      "ownedBefore": {
+        "pane": "owned",
+        "scroll": [
+          0,
+          0
+        ],
+        "focus": "held/T08"
+      },
+      "targetBefore": [
+        624,
+        0,
+        0
+      ],
+      "targetAfter": [
+        624,
+        0,
+        0
+      ],
+      "ownedAfter": {
+        "pane": "purchase",
+        "scroll": [
+          0,
+          0
+        ]
+      },
+      "result": "OBSERVED"
+    },
+    {
+      "width": 1366,
+      "checks": [
+        "target selection keeps scroll/focus; purchase and target cancel leave complete save unchanged"
+      ],
+      "shots": [
+        "1366-purchase-before.png",
+        "1366-purchase-cancel.png",
+        "1366-selected-target.png",
+        "1366-owned-cancel.png"
+      ],
+      "errors": [],
+      "initial": {
+        "gold": 30,
+        "seq": 2,
+        "journal": 0
+      },
+      "purchaseBefore": {
+        "pane": "purchase",
+        "scroll": [
+          0,
+          0
+        ],
+        "focus": "T11"
+      },
+      "purchaseAfter": {
+        "pane": "purchase",
+        "scroll": [
+          0,
+          0
+        ]
+      },
+      "ownedBefore": {
+        "pane": "purchase",
+        "scroll": [
+          0,
+          0
+        ],
+        "focus": "held/T08"
+      },
+      "targetBefore": [
+        0,
+        0,
+        0
+      ],
+      "targetAfter": [
+        0,
+        0,
+        0
+      ],
+      "ownedAfter": {
+        "pane": "purchase",
+        "scroll": [
+          0,
+          0
+        ]
+      },
+      "result": "OBSERVED"
+    }
+  ],
+  "result": "OBSERVED"
+}
