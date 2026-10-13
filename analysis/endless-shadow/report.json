@@ -25,6 +25,2191 @@
     "basicWindow": "Existing D0 floor and ordinary capacity; mature overshoot allowed.",
     "strongWindow": "Only explicitly chosen challenge: T > stable first hand AND T <= finite capacity for mature benchmark states; no forced multi-hand rule in product."
   },
+  "recommendedTrial": {
+    "status": "first concrete trial point for review, not implemented or user-selected parameters",
+    "passive": {
+      "policy": "cap-max",
+      "cap": 4,
+      "graceClears": 3,
+      "rates": "keep current G/S/F rates only until cap; one maximum family factor per hand"
+    },
+    "mainTargets": [
+      400,
+      900,
+      1800,
+      3600,
+      6000,
+      9000,
+      14000,
+      20475
+    ],
+    "endlessGrowth": {
+      "n": "11",
+      "d": "10"
+    },
+    "challengeGrades": [
+      1,
+      2,
+      3,
+      4,
+      8,
+      16,
+      32,
+      64
+    ],
+    "legacy": "old saved identities exact; no silent migration",
+    "playerWording": "过关加成 ×当前值（最多×4）；主手组成与纸/重算/丑牌/英雄的实际来源分别说明",
+    "slices": [
+      {
+        "chapter": 8,
+        "stage": 0,
+        "hands": 4,
+        "target": "20475",
+        "failed": [
+          "thin-G"
+        ],
+        "stableFirstClear": [
+          "ordinary-G",
+          "mature-GF",
+          "mature-SF"
+        ],
+        "grades": [
+          {
+            "grade": 1,
+            "target": "20475",
+            "failed": [
+              "thin-G"
+            ],
+            "stableFirstClear": [
+              "ordinary-G",
+              "mature-GF",
+              "mature-SF"
+            ]
+          },
+          {
+            "grade": 2,
+            "target": "40950",
+            "failed": [
+              "thin-G"
+            ],
+            "stableFirstClear": [
+              "ordinary-G",
+              "mature-GF",
+              "mature-SF"
+            ]
+          },
+          {
+            "grade": 3,
+            "target": "61425",
+            "failed": [
+              "thin-G"
+            ],
+            "stableFirstClear": [
+              "mature-GF",
+              "mature-SF"
+            ]
+          },
+          {
+            "grade": 4,
+            "target": "81900",
+            "failed": [
+              "thin-G",
+              "ordinary-S",
+              "ordinary-F"
+            ],
+            "stableFirstClear": [
+              "mature-GF",
+              "mature-SF"
+            ]
+          },
+          {
+            "grade": 8,
+            "target": "163800",
+            "failed": [
+              "thin-G",
+              "ordinary-S",
+              "ordinary-F"
+            ],
+            "stableFirstClear": []
+          },
+          {
+            "grade": 16,
+            "target": "327600",
+            "failed": [
+              "thin-G",
+              "ordinary-G",
+              "ordinary-S",
+              "ordinary-F"
+            ],
+            "stableFirstClear": []
+          },
+          {
+            "grade": 32,
+            "target": "655200",
+            "failed": [
+              "thin-G",
+              "ordinary-G",
+              "ordinary-S",
+              "ordinary-F",
+              "mature-GF",
+              "mature-SF"
+            ],
+            "stableFirstClear": []
+          },
+          {
+            "grade": 64,
+            "target": "1310400",
+            "failed": [
+              "thin-G",
+              "ordinary-G",
+              "ordinary-S",
+              "ordinary-F",
+              "mature-GF",
+              "mature-SF"
+            ],
+            "stableFirstClear": []
+          }
+        ]
+      },
+      {
+        "chapter": 8,
+        "stage": 1,
+        "hands": 4,
+        "target": "30713",
+        "failed": [
+          "thin-G"
+        ],
+        "stableFirstClear": [
+          "ordinary-G",
+          "mature-GF",
+          "mature-SF"
+        ],
+        "grades": [
+          {
+            "grade": 1,
+            "target": "30713",
+            "failed": [
+              "thin-G"
+            ],
+            "stableFirstClear": [
+              "ordinary-G",
+              "mature-GF",
+              "mature-SF"
+            ]
+          },
+          {
+            "grade": 2,
+            "target": "61425",
+            "failed": [
+              "thin-G"
+            ],
+            "stableFirstClear": [
+              "mature-GF",
+              "mature-SF"
+            ]
+          },
+          {
+            "grade": 3,
+            "target": "92138",
+            "failed": [
+              "thin-G",
+              "ordinary-S",
+              "ordinary-F"
+            ],
+            "stableFirstClear": [
+              "mature-GF"
+            ]
+          },
+          {
+            "grade": 4,
+            "target": "122850",
+            "failed": [
+              "thin-G",
+              "ordinary-S",
+              "ordinary-F"
+            ],
+            "stableFirstClear": [
+              "mature-GF"
+            ]
+          },
+          {
+            "grade": 8,
+            "target": "245700",
+            "failed": [
+              "thin-G",
+              "ordinary-G",
+              "ordinary-S",
+              "ordinary-F"
+            ],
+            "stableFirstClear": []
+          },
+          {
+            "grade": 16,
+            "target": "491400",
+            "failed": [
+              "thin-G",
+              "ordinary-G",
+              "ordinary-S",
+              "ordinary-F",
+              "mature-SF"
+            ],
+            "stableFirstClear": []
+          },
+          {
+            "grade": 32,
+            "target": "982800",
+            "failed": [
+              "thin-G",
+              "ordinary-G",
+              "ordinary-S",
+              "ordinary-F",
+              "mature-GF",
+              "mature-SF"
+            ],
+            "stableFirstClear": []
+          },
+          {
+            "grade": 64,
+            "target": "1965600",
+            "failed": [
+              "thin-G",
+              "ordinary-G",
+              "ordinary-S",
+              "ordinary-F",
+              "mature-GF",
+              "mature-SF"
+            ],
+            "stableFirstClear": []
+          }
+        ]
+      },
+      {
+        "chapter": 8,
+        "stage": 2,
+        "hands": 3,
+        "target": "40950",
+        "failed": [
+          "thin-G"
+        ],
+        "stableFirstClear": [
+          "ordinary-G",
+          "mature-GF",
+          "mature-SF"
+        ],
+        "grades": [
+          {
+            "grade": 1,
+            "target": "40950",
+            "failed": [
+              "thin-G"
+            ],
+            "stableFirstClear": [
+              "ordinary-G",
+              "mature-GF",
+              "mature-SF"
+            ]
+          },
+          {
+            "grade": 2,
+            "target": "81900",
+            "failed": [
+              "thin-G",
+              "ordinary-S",
+              "ordinary-F"
+            ],
+            "stableFirstClear": [
+              "mature-GF",
+              "mature-SF"
+            ]
+          },
+          {
+            "grade": 3,
+            "target": "122850",
+            "failed": [
+              "thin-G",
+              "ordinary-S",
+              "ordinary-F"
+            ],
+            "stableFirstClear": [
+              "mature-GF"
+            ]
+          },
+          {
+            "grade": 4,
+            "target": "163800",
+            "failed": [
+              "thin-G",
+              "ordinary-G",
+              "ordinary-S",
+              "ordinary-F"
+            ],
+            "stableFirstClear": []
+          },
+          {
+            "grade": 8,
+            "target": "327600",
+            "failed": [
+              "thin-G",
+              "ordinary-G",
+              "ordinary-S",
+              "ordinary-F",
+              "mature-SF"
+            ],
+            "stableFirstClear": []
+          },
+          {
+            "grade": 16,
+            "target": "655200",
+            "failed": [
+              "thin-G",
+              "ordinary-G",
+              "ordinary-S",
+              "ordinary-F",
+              "mature-GF",
+              "mature-SF"
+            ],
+            "stableFirstClear": []
+          },
+          {
+            "grade": 32,
+            "target": "1310400",
+            "failed": [
+              "thin-G",
+              "ordinary-G",
+              "ordinary-S",
+              "ordinary-F",
+              "mature-GF",
+              "mature-SF"
+            ],
+            "stableFirstClear": []
+          },
+          {
+            "grade": 64,
+            "target": "2620800",
+            "failed": [
+              "thin-G",
+              "ordinary-G",
+              "ordinary-S",
+              "ordinary-F",
+              "mature-GF",
+              "mature-SF"
+            ],
+            "stableFirstClear": []
+          }
+        ]
+      },
+      {
+        "chapter": 9,
+        "stage": 0,
+        "hands": 4,
+        "target": "22523",
+        "failed": [
+          "thin-G"
+        ],
+        "stableFirstClear": [
+          "ordinary-G",
+          "mature-GF",
+          "mature-SF"
+        ],
+        "grades": [
+          {
+            "grade": 1,
+            "target": "22523",
+            "failed": [
+              "thin-G"
+            ],
+            "stableFirstClear": [
+              "ordinary-G",
+              "mature-GF",
+              "mature-SF"
+            ]
+          },
+          {
+            "grade": 2,
+            "target": "45045",
+            "failed": [
+              "thin-G"
+            ],
+            "stableFirstClear": [
+              "ordinary-G",
+              "mature-GF",
+              "mature-SF"
+            ]
+          },
+          {
+            "grade": 3,
+            "target": "67568",
+            "failed": [
+              "thin-G"
+            ],
+            "stableFirstClear": [
+              "mature-GF",
+              "mature-SF"
+            ]
+          },
+          {
+            "grade": 4,
+            "target": "90090",
+            "failed": [
+              "thin-G",
+              "ordinary-S",
+              "ordinary-F"
+            ],
+            "stableFirstClear": [
+              "mature-GF"
+            ]
+          },
+          {
+            "grade": 8,
+            "target": "180180",
+            "failed": [
+              "thin-G",
+              "ordinary-S",
+              "ordinary-F"
+            ],
+            "stableFirstClear": []
+          },
+          {
+            "grade": 16,
+            "target": "360360",
+            "failed": [
+              "thin-G",
+              "ordinary-G",
+              "ordinary-S",
+              "ordinary-F",
+              "mature-SF"
+            ],
+            "stableFirstClear": []
+          },
+          {
+            "grade": 32,
+            "target": "720720",
+            "failed": [
+              "thin-G",
+              "ordinary-G",
+              "ordinary-S",
+              "ordinary-F",
+              "mature-GF",
+              "mature-SF"
+            ],
+            "stableFirstClear": []
+          },
+          {
+            "grade": 64,
+            "target": "1441440",
+            "failed": [
+              "thin-G",
+              "ordinary-G",
+              "ordinary-S",
+              "ordinary-F",
+              "mature-GF",
+              "mature-SF"
+            ],
+            "stableFirstClear": []
+          }
+        ]
+      },
+      {
+        "chapter": 9,
+        "stage": 1,
+        "hands": 4,
+        "target": "33784",
+        "failed": [
+          "thin-G"
+        ],
+        "stableFirstClear": [
+          "ordinary-G",
+          "mature-GF",
+          "mature-SF"
+        ],
+        "grades": [
+          {
+            "grade": 1,
+            "target": "33784",
+            "failed": [
+              "thin-G"
+            ],
+            "stableFirstClear": [
+              "ordinary-G",
+              "mature-GF",
+              "mature-SF"
+            ]
+          },
+          {
+            "grade": 2,
+            "target": "67568",
+            "failed": [
+              "thin-G"
+            ],
+            "stableFirstClear": [
+              "mature-GF",
+              "mature-SF"
+            ]
+          },
+          {
+            "grade": 3,
+            "target": "101352",
+            "failed": [
+              "thin-G",
+              "ordinary-S",
+              "ordinary-F"
+            ],
+            "stableFirstClear": [
+              "mature-GF"
+            ]
+          },
+          {
+            "grade": 4,
+            "target": "135135",
+            "failed": [
+              "thin-G",
+              "ordinary-S",
+              "ordinary-F"
+            ],
+            "stableFirstClear": [
+              "mature-GF"
+            ]
+          },
+          {
+            "grade": 8,
+            "target": "270270",
+            "failed": [
+              "thin-G",
+              "ordinary-G",
+              "ordinary-S",
+              "ordinary-F"
+            ],
+            "stableFirstClear": []
+          },
+          {
+            "grade": 16,
+            "target": "540540",
+            "failed": [
+              "thin-G",
+              "ordinary-G",
+              "ordinary-S",
+              "ordinary-F",
+              "mature-SF"
+            ],
+            "stableFirstClear": []
+          },
+          {
+            "grade": 32,
+            "target": "1081080",
+            "failed": [
+              "thin-G",
+              "ordinary-G",
+              "ordinary-S",
+              "ordinary-F",
+              "mature-GF",
+              "mature-SF"
+            ],
+            "stableFirstClear": []
+          },
+          {
+            "grade": 64,
+            "target": "2162160",
+            "failed": [
+              "thin-G",
+              "ordinary-G",
+              "ordinary-S",
+              "ordinary-F",
+              "mature-GF",
+              "mature-SF"
+            ],
+            "stableFirstClear": []
+          }
+        ]
+      },
+      {
+        "chapter": 9,
+        "stage": 2,
+        "hands": 3,
+        "target": "45045",
+        "failed": [
+          "thin-G"
+        ],
+        "stableFirstClear": [
+          "ordinary-G",
+          "mature-GF",
+          "mature-SF"
+        ],
+        "grades": [
+          {
+            "grade": 1,
+            "target": "45045",
+            "failed": [
+              "thin-G"
+            ],
+            "stableFirstClear": [
+              "ordinary-G",
+              "mature-GF",
+              "mature-SF"
+            ]
+          },
+          {
+            "grade": 2,
+            "target": "90090",
+            "failed": [
+              "thin-G",
+              "ordinary-S",
+              "ordinary-F"
+            ],
+            "stableFirstClear": [
+              "mature-GF"
+            ]
+          },
+          {
+            "grade": 3,
+            "target": "135135",
+            "failed": [
+              "thin-G",
+              "ordinary-S",
+              "ordinary-F"
+            ],
+            "stableFirstClear": [
+              "mature-GF"
+            ]
+          },
+          {
+            "grade": 4,
+            "target": "180180",
+            "failed": [
+              "thin-G",
+              "ordinary-G",
+              "ordinary-S",
+              "ordinary-F"
+            ],
+            "stableFirstClear": []
+          },
+          {
+            "grade": 8,
+            "target": "360360",
+            "failed": [
+              "thin-G",
+              "ordinary-G",
+              "ordinary-S",
+              "ordinary-F",
+              "mature-SF"
+            ],
+            "stableFirstClear": []
+          },
+          {
+            "grade": 16,
+            "target": "720720",
+            "failed": [
+              "thin-G",
+              "ordinary-G",
+              "ordinary-S",
+              "ordinary-F",
+              "mature-GF",
+              "mature-SF"
+            ],
+            "stableFirstClear": []
+          },
+          {
+            "grade": 32,
+            "target": "1441440",
+            "failed": [
+              "thin-G",
+              "ordinary-G",
+              "ordinary-S",
+              "ordinary-F",
+              "mature-GF",
+              "mature-SF"
+            ],
+            "stableFirstClear": []
+          },
+          {
+            "grade": 64,
+            "target": "2882880",
+            "failed": [
+              "thin-G",
+              "ordinary-G",
+              "ordinary-S",
+              "ordinary-F",
+              "mature-GF",
+              "mature-SF"
+            ],
+            "stableFirstClear": []
+          }
+        ]
+      },
+      {
+        "chapter": 13,
+        "stage": 0,
+        "hands": 4,
+        "target": "32976",
+        "failed": [
+          "thin-G"
+        ],
+        "stableFirstClear": [
+          "ordinary-G",
+          "mature-GF",
+          "mature-SF"
+        ],
+        "grades": [
+          {
+            "grade": 1,
+            "target": "32976",
+            "failed": [
+              "thin-G"
+            ],
+            "stableFirstClear": [
+              "ordinary-G",
+              "mature-GF",
+              "mature-SF"
+            ]
+          },
+          {
+            "grade": 2,
+            "target": "65951",
+            "failed": [
+              "thin-G"
+            ],
+            "stableFirstClear": [
+              "mature-GF",
+              "mature-SF"
+            ]
+          },
+          {
+            "grade": 3,
+            "target": "98926",
+            "failed": [
+              "thin-G",
+              "ordinary-S",
+              "ordinary-F"
+            ],
+            "stableFirstClear": [
+              "mature-GF"
+            ]
+          },
+          {
+            "grade": 4,
+            "target": "131901",
+            "failed": [
+              "thin-G",
+              "ordinary-S",
+              "ordinary-F"
+            ],
+            "stableFirstClear": [
+              "mature-GF"
+            ]
+          },
+          {
+            "grade": 8,
+            "target": "263802",
+            "failed": [
+              "thin-G",
+              "ordinary-G",
+              "ordinary-S",
+              "ordinary-F"
+            ],
+            "stableFirstClear": []
+          },
+          {
+            "grade": 16,
+            "target": "527604",
+            "failed": [
+              "thin-G",
+              "ordinary-G",
+              "ordinary-S",
+              "ordinary-F",
+              "mature-SF"
+            ],
+            "stableFirstClear": []
+          },
+          {
+            "grade": 32,
+            "target": "1055207",
+            "failed": [
+              "thin-G",
+              "ordinary-G",
+              "ordinary-S",
+              "ordinary-F",
+              "mature-GF",
+              "mature-SF"
+            ],
+            "stableFirstClear": []
+          },
+          {
+            "grade": 64,
+            "target": "2110413",
+            "failed": [
+              "thin-G",
+              "ordinary-G",
+              "ordinary-S",
+              "ordinary-F",
+              "mature-GF",
+              "mature-SF"
+            ],
+            "stableFirstClear": []
+          }
+        ]
+      },
+      {
+        "chapter": 13,
+        "stage": 1,
+        "hands": 4,
+        "target": "49463",
+        "failed": [
+          "thin-G"
+        ],
+        "stableFirstClear": [
+          "mature-GF",
+          "mature-SF"
+        ],
+        "grades": [
+          {
+            "grade": 1,
+            "target": "49463",
+            "failed": [
+              "thin-G"
+            ],
+            "stableFirstClear": [
+              "mature-GF",
+              "mature-SF"
+            ]
+          },
+          {
+            "grade": 2,
+            "target": "98926",
+            "failed": [
+              "thin-G",
+              "ordinary-S",
+              "ordinary-F"
+            ],
+            "stableFirstClear": [
+              "mature-GF"
+            ]
+          },
+          {
+            "grade": 3,
+            "target": "148389",
+            "failed": [
+              "thin-G",
+              "ordinary-S",
+              "ordinary-F"
+            ],
+            "stableFirstClear": []
+          },
+          {
+            "grade": 4,
+            "target": "197852",
+            "failed": [
+              "thin-G",
+              "ordinary-G",
+              "ordinary-S",
+              "ordinary-F"
+            ],
+            "stableFirstClear": []
+          },
+          {
+            "grade": 8,
+            "target": "395703",
+            "failed": [
+              "thin-G",
+              "ordinary-G",
+              "ordinary-S",
+              "ordinary-F",
+              "mature-SF"
+            ],
+            "stableFirstClear": []
+          },
+          {
+            "grade": 16,
+            "target": "791405",
+            "failed": [
+              "thin-G",
+              "ordinary-G",
+              "ordinary-S",
+              "ordinary-F",
+              "mature-GF",
+              "mature-SF"
+            ],
+            "stableFirstClear": []
+          },
+          {
+            "grade": 32,
+            "target": "1582810",
+            "failed": [
+              "thin-G",
+              "ordinary-G",
+              "ordinary-S",
+              "ordinary-F",
+              "mature-GF",
+              "mature-SF"
+            ],
+            "stableFirstClear": []
+          },
+          {
+            "grade": 64,
+            "target": "3165619",
+            "failed": [
+              "thin-G",
+              "ordinary-G",
+              "ordinary-S",
+              "ordinary-F",
+              "mature-GF",
+              "mature-SF"
+            ],
+            "stableFirstClear": []
+          }
+        ]
+      },
+      {
+        "chapter": 13,
+        "stage": 2,
+        "hands": 3,
+        "target": "65951",
+        "failed": [
+          "thin-G",
+          "ordinary-S",
+          "ordinary-F"
+        ],
+        "stableFirstClear": [
+          "mature-GF",
+          "mature-SF"
+        ],
+        "grades": [
+          {
+            "grade": 1,
+            "target": "65951",
+            "failed": [
+              "thin-G",
+              "ordinary-S",
+              "ordinary-F"
+            ],
+            "stableFirstClear": [
+              "mature-GF",
+              "mature-SF"
+            ]
+          },
+          {
+            "grade": 2,
+            "target": "131901",
+            "failed": [
+              "thin-G",
+              "ordinary-S",
+              "ordinary-F"
+            ],
+            "stableFirstClear": [
+              "mature-GF"
+            ]
+          },
+          {
+            "grade": 3,
+            "target": "197852",
+            "failed": [
+              "thin-G",
+              "ordinary-G",
+              "ordinary-S",
+              "ordinary-F"
+            ],
+            "stableFirstClear": []
+          },
+          {
+            "grade": 4,
+            "target": "263802",
+            "failed": [
+              "thin-G",
+              "ordinary-G",
+              "ordinary-S",
+              "ordinary-F",
+              "mature-SF"
+            ],
+            "stableFirstClear": []
+          },
+          {
+            "grade": 8,
+            "target": "527604",
+            "failed": [
+              "thin-G",
+              "ordinary-G",
+              "ordinary-S",
+              "ordinary-F",
+              "mature-GF",
+              "mature-SF"
+            ],
+            "stableFirstClear": []
+          },
+          {
+            "grade": 16,
+            "target": "1055207",
+            "failed": [
+              "thin-G",
+              "ordinary-G",
+              "ordinary-S",
+              "ordinary-F",
+              "mature-GF",
+              "mature-SF"
+            ],
+            "stableFirstClear": []
+          },
+          {
+            "grade": 32,
+            "target": "2110413",
+            "failed": [
+              "thin-G",
+              "ordinary-G",
+              "ordinary-S",
+              "ordinary-F",
+              "mature-GF",
+              "mature-SF"
+            ],
+            "stableFirstClear": []
+          },
+          {
+            "grade": 64,
+            "target": "4220825",
+            "failed": [
+              "thin-G",
+              "ordinary-G",
+              "ordinary-S",
+              "ordinary-F",
+              "mature-GF",
+              "mature-SF"
+            ],
+            "stableFirstClear": []
+          }
+        ]
+      },
+      {
+        "chapter": 20,
+        "stage": 0,
+        "hands": 4,
+        "target": "64260",
+        "failed": [
+          "thin-G"
+        ],
+        "stableFirstClear": [
+          "mature-GF",
+          "mature-SF"
+        ],
+        "grades": [
+          {
+            "grade": 1,
+            "target": "64260",
+            "failed": [
+              "thin-G"
+            ],
+            "stableFirstClear": [
+              "mature-GF",
+              "mature-SF"
+            ]
+          },
+          {
+            "grade": 2,
+            "target": "128519",
+            "failed": [
+              "thin-G",
+              "ordinary-S",
+              "ordinary-F"
+            ],
+            "stableFirstClear": [
+              "mature-GF"
+            ]
+          },
+          {
+            "grade": 3,
+            "target": "192778",
+            "failed": [
+              "thin-G",
+              "ordinary-G",
+              "ordinary-S",
+              "ordinary-F"
+            ],
+            "stableFirstClear": []
+          },
+          {
+            "grade": 4,
+            "target": "257038",
+            "failed": [
+              "thin-G",
+              "ordinary-G",
+              "ordinary-S",
+              "ordinary-F"
+            ],
+            "stableFirstClear": []
+          },
+          {
+            "grade": 8,
+            "target": "514075",
+            "failed": [
+              "thin-G",
+              "ordinary-G",
+              "ordinary-S",
+              "ordinary-F",
+              "mature-SF"
+            ],
+            "stableFirstClear": []
+          },
+          {
+            "grade": 16,
+            "target": "1028150",
+            "failed": [
+              "thin-G",
+              "ordinary-G",
+              "ordinary-S",
+              "ordinary-F",
+              "mature-GF",
+              "mature-SF"
+            ],
+            "stableFirstClear": []
+          },
+          {
+            "grade": 32,
+            "target": "2056299",
+            "failed": [
+              "thin-G",
+              "ordinary-G",
+              "ordinary-S",
+              "ordinary-F",
+              "mature-GF",
+              "mature-SF"
+            ],
+            "stableFirstClear": []
+          },
+          {
+            "grade": 64,
+            "target": "4112597",
+            "failed": [
+              "thin-G",
+              "ordinary-G",
+              "ordinary-S",
+              "ordinary-F",
+              "mature-GF",
+              "mature-SF"
+            ],
+            "stableFirstClear": []
+          }
+        ]
+      },
+      {
+        "chapter": 20,
+        "stage": 1,
+        "hands": 4,
+        "target": "96389",
+        "failed": [
+          "thin-G",
+          "ordinary-S",
+          "ordinary-F"
+        ],
+        "stableFirstClear": [
+          "mature-GF"
+        ],
+        "grades": [
+          {
+            "grade": 1,
+            "target": "96389",
+            "failed": [
+              "thin-G",
+              "ordinary-S",
+              "ordinary-F"
+            ],
+            "stableFirstClear": [
+              "mature-GF"
+            ]
+          },
+          {
+            "grade": 2,
+            "target": "192778",
+            "failed": [
+              "thin-G",
+              "ordinary-G",
+              "ordinary-S",
+              "ordinary-F"
+            ],
+            "stableFirstClear": []
+          },
+          {
+            "grade": 3,
+            "target": "289167",
+            "failed": [
+              "thin-G",
+              "ordinary-G",
+              "ordinary-S",
+              "ordinary-F"
+            ],
+            "stableFirstClear": []
+          },
+          {
+            "grade": 4,
+            "target": "385556",
+            "failed": [
+              "thin-G",
+              "ordinary-G",
+              "ordinary-S",
+              "ordinary-F",
+              "mature-SF"
+            ],
+            "stableFirstClear": []
+          },
+          {
+            "grade": 8,
+            "target": "771112",
+            "failed": [
+              "thin-G",
+              "ordinary-G",
+              "ordinary-S",
+              "ordinary-F",
+              "mature-GF",
+              "mature-SF"
+            ],
+            "stableFirstClear": []
+          },
+          {
+            "grade": 16,
+            "target": "1542224",
+            "failed": [
+              "thin-G",
+              "ordinary-G",
+              "ordinary-S",
+              "ordinary-F",
+              "mature-GF",
+              "mature-SF"
+            ],
+            "stableFirstClear": []
+          },
+          {
+            "grade": 32,
+            "target": "3084448",
+            "failed": [
+              "thin-G",
+              "ordinary-G",
+              "ordinary-S",
+              "ordinary-F",
+              "mature-GF",
+              "mature-SF"
+            ],
+            "stableFirstClear": []
+          },
+          {
+            "grade": 64,
+            "target": "6168895",
+            "failed": [
+              "thin-G",
+              "ordinary-G",
+              "ordinary-S",
+              "ordinary-F",
+              "mature-GF",
+              "mature-SF"
+            ],
+            "stableFirstClear": []
+          }
+        ]
+      },
+      {
+        "chapter": 20,
+        "stage": 2,
+        "hands": 3,
+        "target": "128519",
+        "failed": [
+          "thin-G",
+          "ordinary-S",
+          "ordinary-F"
+        ],
+        "stableFirstClear": [
+          "mature-GF"
+        ],
+        "grades": [
+          {
+            "grade": 1,
+            "target": "128519",
+            "failed": [
+              "thin-G",
+              "ordinary-S",
+              "ordinary-F"
+            ],
+            "stableFirstClear": [
+              "mature-GF"
+            ]
+          },
+          {
+            "grade": 2,
+            "target": "257038",
+            "failed": [
+              "thin-G",
+              "ordinary-G",
+              "ordinary-S",
+              "ordinary-F",
+              "mature-SF"
+            ],
+            "stableFirstClear": []
+          },
+          {
+            "grade": 3,
+            "target": "385556",
+            "failed": [
+              "thin-G",
+              "ordinary-G",
+              "ordinary-S",
+              "ordinary-F",
+              "mature-SF"
+            ],
+            "stableFirstClear": []
+          },
+          {
+            "grade": 4,
+            "target": "514075",
+            "failed": [
+              "thin-G",
+              "ordinary-G",
+              "ordinary-S",
+              "ordinary-F",
+              "mature-GF",
+              "mature-SF"
+            ],
+            "stableFirstClear": []
+          },
+          {
+            "grade": 8,
+            "target": "1028150",
+            "failed": [
+              "thin-G",
+              "ordinary-G",
+              "ordinary-S",
+              "ordinary-F",
+              "mature-GF",
+              "mature-SF"
+            ],
+            "stableFirstClear": []
+          },
+          {
+            "grade": 16,
+            "target": "2056299",
+            "failed": [
+              "thin-G",
+              "ordinary-G",
+              "ordinary-S",
+              "ordinary-F",
+              "mature-GF",
+              "mature-SF"
+            ],
+            "stableFirstClear": []
+          },
+          {
+            "grade": 32,
+            "target": "4112597",
+            "failed": [
+              "thin-G",
+              "ordinary-G",
+              "ordinary-S",
+              "ordinary-F",
+              "mature-GF",
+              "mature-SF"
+            ],
+            "stableFirstClear": []
+          },
+          {
+            "grade": 64,
+            "target": "8225194",
+            "failed": [
+              "thin-G",
+              "ordinary-G",
+              "ordinary-S",
+              "ordinary-F",
+              "mature-GF",
+              "mature-SF"
+            ],
+            "stableFirstClear": []
+          }
+        ]
+      },
+      {
+        "chapter": 30,
+        "stage": 0,
+        "hands": 4,
+        "target": "166673",
+        "failed": [
+          "thin-G",
+          "ordinary-S",
+          "ordinary-F"
+        ],
+        "stableFirstClear": [],
+        "grades": [
+          {
+            "grade": 1,
+            "target": "166673",
+            "failed": [
+              "thin-G",
+              "ordinary-S",
+              "ordinary-F"
+            ],
+            "stableFirstClear": []
+          },
+          {
+            "grade": 2,
+            "target": "333345",
+            "failed": [
+              "thin-G",
+              "ordinary-G",
+              "ordinary-S",
+              "ordinary-F",
+              "mature-SF"
+            ],
+            "stableFirstClear": []
+          },
+          {
+            "grade": 3,
+            "target": "500017",
+            "failed": [
+              "thin-G",
+              "ordinary-G",
+              "ordinary-S",
+              "ordinary-F",
+              "mature-SF"
+            ],
+            "stableFirstClear": []
+          },
+          {
+            "grade": 4,
+            "target": "666689",
+            "failed": [
+              "thin-G",
+              "ordinary-G",
+              "ordinary-S",
+              "ordinary-F",
+              "mature-GF",
+              "mature-SF"
+            ],
+            "stableFirstClear": []
+          },
+          {
+            "grade": 8,
+            "target": "1333378",
+            "failed": [
+              "thin-G",
+              "ordinary-G",
+              "ordinary-S",
+              "ordinary-F",
+              "mature-GF",
+              "mature-SF"
+            ],
+            "stableFirstClear": []
+          },
+          {
+            "grade": 16,
+            "target": "2666755",
+            "failed": [
+              "thin-G",
+              "ordinary-G",
+              "ordinary-S",
+              "ordinary-F",
+              "mature-GF",
+              "mature-SF"
+            ],
+            "stableFirstClear": []
+          },
+          {
+            "grade": 32,
+            "target": "5333509",
+            "failed": [
+              "thin-G",
+              "ordinary-G",
+              "ordinary-S",
+              "ordinary-F",
+              "mature-GF",
+              "mature-SF"
+            ],
+            "stableFirstClear": []
+          },
+          {
+            "grade": 64,
+            "target": "10667017",
+            "failed": [
+              "thin-G",
+              "ordinary-G",
+              "ordinary-S",
+              "ordinary-F",
+              "mature-GF",
+              "mature-SF"
+            ],
+            "stableFirstClear": []
+          }
+        ]
+      },
+      {
+        "chapter": 30,
+        "stage": 1,
+        "hands": 4,
+        "target": "250009",
+        "failed": [
+          "thin-G",
+          "ordinary-G",
+          "ordinary-S",
+          "ordinary-F"
+        ],
+        "stableFirstClear": [],
+        "grades": [
+          {
+            "grade": 1,
+            "target": "250009",
+            "failed": [
+              "thin-G",
+              "ordinary-G",
+              "ordinary-S",
+              "ordinary-F"
+            ],
+            "stableFirstClear": []
+          },
+          {
+            "grade": 2,
+            "target": "500017",
+            "failed": [
+              "thin-G",
+              "ordinary-G",
+              "ordinary-S",
+              "ordinary-F",
+              "mature-SF"
+            ],
+            "stableFirstClear": []
+          },
+          {
+            "grade": 3,
+            "target": "750025",
+            "failed": [
+              "thin-G",
+              "ordinary-G",
+              "ordinary-S",
+              "ordinary-F",
+              "mature-GF",
+              "mature-SF"
+            ],
+            "stableFirstClear": []
+          },
+          {
+            "grade": 4,
+            "target": "1000033",
+            "failed": [
+              "thin-G",
+              "ordinary-G",
+              "ordinary-S",
+              "ordinary-F",
+              "mature-GF",
+              "mature-SF"
+            ],
+            "stableFirstClear": []
+          },
+          {
+            "grade": 8,
+            "target": "2000066",
+            "failed": [
+              "thin-G",
+              "ordinary-G",
+              "ordinary-S",
+              "ordinary-F",
+              "mature-GF",
+              "mature-SF"
+            ],
+            "stableFirstClear": []
+          },
+          {
+            "grade": 16,
+            "target": "4000132",
+            "failed": [
+              "thin-G",
+              "ordinary-G",
+              "ordinary-S",
+              "ordinary-F",
+              "mature-GF",
+              "mature-SF"
+            ],
+            "stableFirstClear": []
+          },
+          {
+            "grade": 32,
+            "target": "8000263",
+            "failed": [
+              "thin-G",
+              "ordinary-G",
+              "ordinary-S",
+              "ordinary-F",
+              "mature-GF",
+              "mature-SF"
+            ],
+            "stableFirstClear": []
+          },
+          {
+            "grade": 64,
+            "target": "16000525",
+            "failed": [
+              "thin-G",
+              "ordinary-G",
+              "ordinary-S",
+              "ordinary-F",
+              "mature-GF",
+              "mature-SF"
+            ],
+            "stableFirstClear": []
+          }
+        ]
+      },
+      {
+        "chapter": 30,
+        "stage": 2,
+        "hands": 3,
+        "target": "333345",
+        "failed": [
+          "thin-G",
+          "ordinary-G",
+          "ordinary-S",
+          "ordinary-F",
+          "mature-SF"
+        ],
+        "stableFirstClear": [],
+        "grades": [
+          {
+            "grade": 1,
+            "target": "333345",
+            "failed": [
+              "thin-G",
+              "ordinary-G",
+              "ordinary-S",
+              "ordinary-F",
+              "mature-SF"
+            ],
+            "stableFirstClear": []
+          },
+          {
+            "grade": 2,
+            "target": "666689",
+            "failed": [
+              "thin-G",
+              "ordinary-G",
+              "ordinary-S",
+              "ordinary-F",
+              "mature-GF",
+              "mature-SF"
+            ],
+            "stableFirstClear": []
+          },
+          {
+            "grade": 3,
+            "target": "1000033",
+            "failed": [
+              "thin-G",
+              "ordinary-G",
+              "ordinary-S",
+              "ordinary-F",
+              "mature-GF",
+              "mature-SF"
+            ],
+            "stableFirstClear": []
+          },
+          {
+            "grade": 4,
+            "target": "1333378",
+            "failed": [
+              "thin-G",
+              "ordinary-G",
+              "ordinary-S",
+              "ordinary-F",
+              "mature-GF",
+              "mature-SF"
+            ],
+            "stableFirstClear": []
+          },
+          {
+            "grade": 8,
+            "target": "2666755",
+            "failed": [
+              "thin-G",
+              "ordinary-G",
+              "ordinary-S",
+              "ordinary-F",
+              "mature-GF",
+              "mature-SF"
+            ],
+            "stableFirstClear": []
+          },
+          {
+            "grade": 16,
+            "target": "5333509",
+            "failed": [
+              "thin-G",
+              "ordinary-G",
+              "ordinary-S",
+              "ordinary-F",
+              "mature-GF",
+              "mature-SF"
+            ],
+            "stableFirstClear": []
+          },
+          {
+            "grade": 32,
+            "target": "10667017",
+            "failed": [
+              "thin-G",
+              "ordinary-G",
+              "ordinary-S",
+              "ordinary-F",
+              "mature-GF",
+              "mature-SF"
+            ],
+            "stableFirstClear": []
+          },
+          {
+            "grade": 64,
+            "target": "21334033",
+            "failed": [
+              "thin-G",
+              "ordinary-G",
+              "ordinary-S",
+              "ordinary-F",
+              "mature-GF",
+              "mature-SF"
+            ],
+            "stableFirstClear": []
+          }
+        ]
+      },
+      {
+        "chapter": 40,
+        "stage": 0,
+        "hands": 4,
+        "target": "432305",
+        "failed": [
+          "thin-G",
+          "ordinary-G",
+          "ordinary-S",
+          "ordinary-F",
+          "mature-SF"
+        ],
+        "stableFirstClear": [],
+        "grades": [
+          {
+            "grade": 1,
+            "target": "432305",
+            "failed": [
+              "thin-G",
+              "ordinary-G",
+              "ordinary-S",
+              "ordinary-F",
+              "mature-SF"
+            ],
+            "stableFirstClear": []
+          },
+          {
+            "grade": 2,
+            "target": "864610",
+            "failed": [
+              "thin-G",
+              "ordinary-G",
+              "ordinary-S",
+              "ordinary-F",
+              "mature-GF",
+              "mature-SF"
+            ],
+            "stableFirstClear": []
+          },
+          {
+            "grade": 3,
+            "target": "1296914",
+            "failed": [
+              "thin-G",
+              "ordinary-G",
+              "ordinary-S",
+              "ordinary-F",
+              "mature-GF",
+              "mature-SF"
+            ],
+            "stableFirstClear": []
+          },
+          {
+            "grade": 4,
+            "target": "1729219",
+            "failed": [
+              "thin-G",
+              "ordinary-G",
+              "ordinary-S",
+              "ordinary-F",
+              "mature-GF",
+              "mature-SF"
+            ],
+            "stableFirstClear": []
+          },
+          {
+            "grade": 8,
+            "target": "3458437",
+            "failed": [
+              "thin-G",
+              "ordinary-G",
+              "ordinary-S",
+              "ordinary-F",
+              "mature-GF",
+              "mature-SF"
+            ],
+            "stableFirstClear": []
+          },
+          {
+            "grade": 16,
+            "target": "6916874",
+            "failed": [
+              "thin-G",
+              "ordinary-G",
+              "ordinary-S",
+              "ordinary-F",
+              "mature-GF",
+              "mature-SF"
+            ],
+            "stableFirstClear": []
+          },
+          {
+            "grade": 32,
+            "target": "13833747",
+            "failed": [
+              "thin-G",
+              "ordinary-G",
+              "ordinary-S",
+              "ordinary-F",
+              "mature-GF",
+              "mature-SF"
+            ],
+            "stableFirstClear": []
+          },
+          {
+            "grade": 64,
+            "target": "27667494",
+            "failed": [
+              "thin-G",
+              "ordinary-G",
+              "ordinary-S",
+              "ordinary-F",
+              "mature-GF",
+              "mature-SF"
+            ],
+            "stableFirstClear": []
+          }
+        ]
+      },
+      {
+        "chapter": 40,
+        "stage": 1,
+        "hands": 4,
+        "target": "648457",
+        "failed": [
+          "thin-G",
+          "ordinary-G",
+          "ordinary-S",
+          "ordinary-F",
+          "mature-GF",
+          "mature-SF"
+        ],
+        "stableFirstClear": [],
+        "grades": [
+          {
+            "grade": 1,
+            "target": "648457",
+            "failed": [
+              "thin-G",
+              "ordinary-G",
+              "ordinary-S",
+              "ordinary-F",
+              "mature-GF",
+              "mature-SF"
+            ],
+            "stableFirstClear": []
+          },
+          {
+            "grade": 2,
+            "target": "1296914",
+            "failed": [
+              "thin-G",
+              "ordinary-G",
+              "ordinary-S",
+              "ordinary-F",
+              "mature-GF",
+              "mature-SF"
+            ],
+            "stableFirstClear": []
+          },
+          {
+            "grade": 3,
+            "target": "1945371",
+            "failed": [
+              "thin-G",
+              "ordinary-G",
+              "ordinary-S",
+              "ordinary-F",
+              "mature-GF",
+              "mature-SF"
+            ],
+            "stableFirstClear": []
+          },
+          {
+            "grade": 4,
+            "target": "2593828",
+            "failed": [
+              "thin-G",
+              "ordinary-G",
+              "ordinary-S",
+              "ordinary-F",
+              "mature-GF",
+              "mature-SF"
+            ],
+            "stableFirstClear": []
+          },
+          {
+            "grade": 8,
+            "target": "5187655",
+            "failed": [
+              "thin-G",
+              "ordinary-G",
+              "ordinary-S",
+              "ordinary-F",
+              "mature-GF",
+              "mature-SF"
+            ],
+            "stableFirstClear": []
+          },
+          {
+            "grade": 16,
+            "target": "10375310",
+            "failed": [
+              "thin-G",
+              "ordinary-G",
+              "ordinary-S",
+              "ordinary-F",
+              "mature-GF",
+              "mature-SF"
+            ],
+            "stableFirstClear": []
+          },
+          {
+            "grade": 32,
+            "target": "20750620",
+            "failed": [
+              "thin-G",
+              "ordinary-G",
+              "ordinary-S",
+              "ordinary-F",
+              "mature-GF",
+              "mature-SF"
+            ],
+            "stableFirstClear": []
+          },
+          {
+            "grade": 64,
+            "target": "41501240",
+            "failed": [
+              "thin-G",
+              "ordinary-G",
+              "ordinary-S",
+              "ordinary-F",
+              "mature-GF",
+              "mature-SF"
+            ],
+            "stableFirstClear": []
+          }
+        ]
+      },
+      {
+        "chapter": 40,
+        "stage": 2,
+        "hands": 3,
+        "target": "864610",
+        "failed": [
+          "thin-G",
+          "ordinary-G",
+          "ordinary-S",
+          "ordinary-F",
+          "mature-GF",
+          "mature-SF"
+        ],
+        "stableFirstClear": [],
+        "grades": [
+          {
+            "grade": 1,
+            "target": "864610",
+            "failed": [
+              "thin-G",
+              "ordinary-G",
+              "ordinary-S",
+              "ordinary-F",
+              "mature-GF",
+              "mature-SF"
+            ],
+            "stableFirstClear": []
+          },
+          {
+            "grade": 2,
+            "target": "1729219",
+            "failed": [
+              "thin-G",
+              "ordinary-G",
+              "ordinary-S",
+              "ordinary-F",
+              "mature-GF",
+              "mature-SF"
+            ],
+            "stableFirstClear": []
+          },
+          {
+            "grade": 3,
+            "target": "2593828",
+            "failed": [
+              "thin-G",
+              "ordinary-G",
+              "ordinary-S",
+              "ordinary-F",
+              "mature-GF",
+              "mature-SF"
+            ],
+            "stableFirstClear": []
+          },
+          {
+            "grade": 4,
+            "target": "3458437",
+            "failed": [
+              "thin-G",
+              "ordinary-G",
+              "ordinary-S",
+              "ordinary-F",
+              "mature-GF",
+              "mature-SF"
+            ],
+            "stableFirstClear": []
+          },
+          {
+            "grade": 8,
+            "target": "6916874",
+            "failed": [
+              "thin-G",
+              "ordinary-G",
+              "ordinary-S",
+              "ordinary-F",
+              "mature-GF",
+              "mature-SF"
+            ],
+            "stableFirstClear": []
+          },
+          {
+            "grade": 16,
+            "target": "13833747",
+            "failed": [
+              "thin-G",
+              "ordinary-G",
+              "ordinary-S",
+              "ordinary-F",
+              "mature-GF",
+              "mature-SF"
+            ],
+            "stableFirstClear": []
+          },
+          {
+            "grade": 32,
+            "target": "27667494",
+            "failed": [
+              "thin-G",
+              "ordinary-G",
+              "ordinary-S",
+              "ordinary-F",
+              "mature-GF",
+              "mature-SF"
+            ],
+            "stableFirstClear": []
+          },
+          {
+            "grade": 64,
+            "target": "55334987",
+            "failed": [
+              "thin-G",
+              "ordinary-G",
+              "ordinary-S",
+              "ordinary-F",
+              "mature-GF",
+              "mature-SF"
+            ],
+            "stableFirstClear": []
+          }
+        ]
+      }
+    ],
+    "trainingRepair": [
+      {
+        "chapter": 13,
+        "state": "ordinary-G",
+        "levelBefore": 5,
+        "levelAfter": 7,
+        "normalPriceBudget": 8,
+        "perHand": "59568",
+        "bossTarget": "65951",
+        "threeHandCapacity": "178704",
+        "feasible": true,
+        "availability": "hypothetical accumulated +1 offers; not guaranteed stock in one shop or natural purchase probability"
+      },
+      {
+        "chapter": 13,
+        "state": "ordinary-S",
+        "levelBefore": 5,
+        "levelAfter": 7,
+        "normalPriceBudget": 8,
+        "perHand": "23100",
+        "bossTarget": "65951",
+        "threeHandCapacity": "69300",
+        "feasible": true,
+        "availability": "hypothetical accumulated +1 offers; not guaranteed stock in one shop or natural purchase probability"
+      },
+      {
+        "chapter": 13,
+        "state": "ordinary-F",
+        "levelBefore": 5,
+        "levelAfter": 7,
+        "normalPriceBudget": 8,
+        "perHand": "24140",
+        "bossTarget": "65951",
+        "threeHandCapacity": "72420",
+        "feasible": true,
+        "availability": "hypothetical accumulated +1 offers; not guaranteed stock in one shop or natural purchase probability"
+      },
+      {
+        "chapter": 20,
+        "state": "ordinary-G",
+        "levelBefore": 5,
+        "levelAfter": 15,
+        "normalPriceBudget": 40,
+        "perHand": "131600",
+        "bossTarget": "128519",
+        "threeHandCapacity": "394800",
+        "feasible": true,
+        "availability": "hypothetical accumulated +1 offers; not guaranteed stock in one shop or natural purchase probability"
+      },
+      {
+        "chapter": 20,
+        "state": "ordinary-S",
+        "levelBefore": 5,
+        "levelAfter": 15,
+        "normalPriceBudget": 40,
+        "perHand": "48300",
+        "bossTarget": "128519",
+        "threeHandCapacity": "144900",
+        "feasible": true,
+        "availability": "hypothetical accumulated +1 offers; not guaranteed stock in one shop or natural purchase probability"
+      },
+      {
+        "chapter": 20,
+        "state": "ordinary-F",
+        "levelBefore": 5,
+        "levelAfter": 15,
+        "normalPriceBudget": 40,
+        "perHand": "49980",
+        "bossTarget": "128519",
+        "threeHandCapacity": "149940",
+        "feasible": true,
+        "availability": "hypothetical accumulated +1 offers; not guaranteed stock in one shop or natural purchase probability"
+      }
+    ],
+    "sourceContrast": {
+      "pairCompressed": "7080",
+      "pairThreeHandCapacity": "21240",
+      "tripleNoAssist": "13608",
+      "tripleAndOneAssist": "54432",
+      "oneAssistThenPlain": "68040",
+      "chapter13Boss": "65951",
+      "meaning": "constructed same-card/joker-family comparison, not a claim these extra cards are in the user current hand"
+    }
+  },
   "rows": [
     {
       "id": "thin-G",
@@ -40542,21 +42727,69 @@
         "n": "1060116274",
         "d": "4246733"
       },
-      "verifiedHand": false
+      "verifiedArithmeticChain": false,
+      "arithmeticStatus": "unverified contributions"
     },
     {
       "name": "Amo chapter13 B09 pair",
       "heat": "59",
-      "displayMultiplier": "444428.44 (rounded)",
       "score": "26221278",
       "target": "25480397",
       "gold": 206,
       "fullSave": false,
+      "exactTrace": {
+        "source": "User 14:55 public log screenshot 16227.jpg, parent read full chain; Library read resolves reference, OCR not used for long integer copying.",
+        "counts": {
+          "G": 35,
+          "S": 0,
+          "F": 0
+        },
+        "factor": {
+          "n": "6362685441135942358474828762538534230890216321",
+          "d": "429496729600000000000000000000000000000000"
+        },
+        "baseHeat": 35,
+        "rank": 6,
+        "originalCards": 2,
+        "retriggerPerCard": 1,
+        "totalCardExecutions": 4,
+        "paperMultPerExecution": 2,
+        "baseMult": 2,
+        "coefficient": {
+          "n": "2",
+          "d": "1"
+        },
+        "noDiscard": {
+          "n": "3",
+          "d": "2"
+        },
+        "preRouteM": {
+          "n": "30",
+          "d": "1"
+        },
+        "heroMultiplierEvent": false,
+        "packageEvent": false,
+        "noRouteScore": "1770",
+        "formula": "floor((35+4*6)*(2+4*2)*2*(3/2)*(27/20)^32)=26221278"
+      },
       "excess": {
         "n": "740881",
         "d": "25480397"
       },
-      "verifiedHand": false
+      "verifiedArithmeticChain": true,
+      "arithmeticStatus": "exact public chain verified; no identity clarification needed for this chain"
+    },
+    {
+      "name": "New flush-house Lv2 screenshot",
+      "type": "flush-house",
+      "level": 2,
+      "heat": "974",
+      "score": "168208975825",
+      "chainComplete": false,
+      "source": "delegated latest user screenshot; full contributions not displayed",
+      "scope": "record shown totals only; no inferred family counts, jokers or hero multipliers",
+      "verifiedArithmeticChain": false,
+      "arithmeticStatus": "unverified contributions"
     }
   ],
   "passiveSlope": {
@@ -40694,6 +42927,6 @@
     "feasible": true,
     "meaning": "one math witness for selected recipes and criteria; not production parameters or whole-game acceptance"
   },
-  "blocker": "Original full saved runs were not supplied. Constructed ready-hand supply does not prove natural acquisition, deal probability or real-save optimality.",
+  "blocker": "The public Amo pair chain is verified and has no identity blocker. Full-save supply optimality and the two other incomplete chains are not inferred; these do not block the new-profile shadow trial.",
   "execution": "pure BigInt arithmetic; no game UI, new art, gameplay parameter changes or save migration"
 }
