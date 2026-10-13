@@ -1,3 +1,4 @@
+import {isR2BoundedClear} from './r2GroupUpgrade';
 import {isR2ToolSupply,isR2BasicChoice,isR2SuitChoice,r2BasicChoiceIds,R2_BASIC_TOOL_IDS} from './r2GroupUpgrade';
 import {r2JokerDefinitionsForContext,type R2ContentIdentity} from './r2ContentProfiles';
 import {R2_JOKERS,readR2Modifiers,supportsR2Joker,type R2JokerDefinition,type R2JokerInstance} from '../content/r2Schema';
@@ -48,7 +49,7 @@ export const drawR2Edition=(rng:SeededRng):R2Edition=>pick(rng,R2_EDITIONS,row=>
 export function r2ToolAcquisitionPool(state:R2RunState):R2ToolDefinition[] {
   const live=state.deckInstances.filter(card=>!state.destroyedIds.includes(card.id)),limits=R2_TOOL_CATALOG.limits;
   const floor=state.longTermItems.includes('U08')?limits.minimalDeckFloor:limits.deckDeletionFloor;
-  const config=r2RunModeConfig(state),discovered=Object.values(state.handLevels),nextStage=!!r2StageSpec(state.stageIndex,state.tourMode,state.difficulty);
+  const config=r2RunModeConfig(state),discovered=Object.values(state.handLevels),nextStage=!!r2StageSpec(state.stageIndex,state.tourMode,state.difficulty,isR2BoundedClear(state));
   return R2_TOOLS.filter(tool=>{
     if(!r2ToolAllowed(state,tool.id)||!tool.shopWeight)return false;
     const op=tool.operation;

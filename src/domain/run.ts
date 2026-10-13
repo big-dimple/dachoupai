@@ -1,6 +1,6 @@
 import {usesTouyeNewCore} from './r2TouyeWager';
 import type {TouyeBet} from './r2TouyeWager';
-import {isR2RouteStarter,R2_ROUTE_STARTERS,type R2OpeningRoute} from './r2GroupUpgrade';
+import {isR2BoundedClear,isR2RouteStarter,R2_ROUTE_STARTERS,type R2OpeningRoute} from './r2GroupUpgrade';
 import {routeStarterStartCommand} from './r2RouteStarter';
 import { createDeck } from '../cards/deck';
 import { evaluateHand, type HandType } from '../cards/handEvaluator';
@@ -337,6 +337,8 @@ export function createRun(options: StartOptions & {rulesVersion?:'r1'}): RunStat
 export function createRun(options: StartOptions & {rulesVersion?:'r1'|'r2'}): AnyRunState;
 export function createRun(options: StartOptions & {rulesVersion?:'r1'|'r2'}): AnyRunState {
   if(options.rulesVersion==='r2'&&isR2RouteStarter(options.r2Identity??{})&&options.r2Profile===undefined&&Object.keys(options.r2Identity!).sort().join(',')==='contentHash,contentVersion'){
+    // Convenience creation records the default explicitly in the canonical receipt.
+    if(isR2BoundedClear(options.r2Identity!)&&options.openingRoute===undefined)options={...options,openingRoute:'group'};
     if(!options.openingRoute||!Object.hasOwn(R2_ROUTE_STARTERS,options.openingRoute))throw Error('invalid-opening-route');
     const mode=resolveR2ModeConfig(options.modeConfig??{mode:'standard'});if(!mode.ok)throw Error(mode.code);
     const result=applyCommand(null,routeStarterStartCommand({...options,...options.r2Identity!,...mode.config}));

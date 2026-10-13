@@ -1494,7 +1494,7 @@ export class GameScene extends Phaser.Scene {
     return r2ScoreOperationText(event,event.sourceType==='joker'?this.jokerDefinition(event.sourceDefinitionId):undefined);
   }
   private eventSource(event:ScoreEvent):string {
-    if(event.sourceType==='rule'&&event.sourceDefinitionId==='route-growth')return '路线资历';
+    if(event.sourceType==='rule'&&event.sourceDefinitionId==='route-growth')return '过关加成';
     const edition=event.reasonKey.startsWith('edition.')?editionLabel(event.reasonKey.split('.')[1] as PlayingCard['edition'])+' · ':'';
     if(event.sourceType==='joker')return edition+this.jokerDefinition(event.sourceDefinitionId).name;
     if(event.sourceType==='character'&&(event.reasonKey.startsWith('touye.won.')||event.reasonKey.startsWith('touye.lost.')))return '骰爷 · 押'+HAND_LABELS[event.reasonKey.split('.')[2] as TouyeTarget]+(event.reasonKey.startsWith('touye.won.')?'达成':usesTouyeNewCore(this.run)?'输约':'未成');

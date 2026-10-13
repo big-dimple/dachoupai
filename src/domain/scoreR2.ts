@@ -10,7 +10,7 @@ import {r2SelectionFacts} from './r2SelectionFacts';
 import { EDITIONS, type Edition, type PlayingCard } from '../cards/types';
 import { SeededRng, type RngSnapshot } from '../core/SeededRng';
 import {hasR2RouteGrowthDefinitions} from '../content/r2RouteGrowthJokers';
-import {validR2RouteProgress,r2RouteFamilies,r2RouteFactor,r2RouteGrowthTrace,R2_ROUTE_HAND_TYPES,type R2RouteFamily,type R2RouteProgress,type R2RouteGrowthTrace} from './r2RouteGrowth';
+import {validR2RouteProgress,r2RouteFamilies,r2RouteGrowthTrace,R2_ROUTE_HAND_TYPES,type R2RouteFamily,type R2RouteProgress,type R2RouteGrowthTrace} from './r2RouteGrowth';
 import { r2GrowthCaps, r2GrowthInitials, r2GrowthMinimums, validR2JokerCounters, validateR2Content, type Condition, type ScoreHookPhase, type R2JokerDefinition, type R2JokerInstance, type ScorePhase } from '../content/r2Schema';
 import { R2_EDITIONS, R2_ENHANCEMENTS, R2_TOOL_CATALOG } from '../content/r2Tools';
 import { CHARACTER_IDS, type CharacterId } from './characters';
@@ -37,6 +37,7 @@ export const R2_BASE_SCORES = R2_PUBLISHED_CONTENT.snapshot.hands as unknown as 
 export interface ScoreInput {
   /** Required for the exact C2 content profile; never inferred from Joker ownership. */
   routeGrowth?:R2RouteProgress;
+  boundedClear?:true;
   /** Only the new saved identity opts into moving explicit active multipliers. */
   activeMultTiming?:'after-route-growth';
   erxiangHandoff?:ErxiangHandoffIntent;
@@ -145,6 +146,7 @@ function resolveScore(input: PublicScoreInput, policy: ResolvePolicy): ScoreTrac
   const routeProfile=hasR2RouteGrowthDefinitions(input.definitions);
   if(input.activeMultTiming!==undefined&&(input.activeMultTiming!=='after-route-growth'||!routeProfile||!['touye','xiemu','azao','neutral'].includes(input.characterId)))throw Error('invalid-active-mult-timing');
   if(routeProfile?!validR2RouteProgress(input.routeGrowth):input.routeGrowth!==undefined)throw Error('invalid-route-growth-snapshot');
+  if(input.boundedClear!==undefined&&(input.boundedClear!==true||!routeProfile))throw Error('invalid-bounded-clear-profile');
   const errors = validateR2Content(input.definitions,routeProfile?'route-growth-v1':'published');
   if (errors.length) throw new Error(`invalid-content: ${errors.join('; ')}`);
   const needsStageContext=input.jokers.some(joker=>input.definitions.find(definition=>definition.id===joker.definitionId)?.hooks
@@ -398,9 +400,9 @@ function resolveScore(input: PublicScoreInput, policy: ResolvePolicy): ScoreTrac
     case 'xiemu': if(xiemuBurn){if(xiemuBurn.multiplier)activeChar(new Rational(BigInt(xiemuBurn.multiplier)));}else if (input.handsBeforePlay === 1) char('multiply-multiplier', new Rational(2n)); break;
   }
   hook('jokerScore');
-  const routeGrowth=routeProfile?r2RouteGrowthTrace(input.routeGrowth!,evaluated.type):undefined;
-  if(routeGrowth)for(const family of r2RouteFamilies(evaluated.type)){
-    const value=r2RouteFactor(family,routeGrowth.before[family]);
+  const routeGrowth=routeProfile?r2RouteGrowthTrace(input.routeGrowth!,evaluated.type,input.boundedClear):undefined;
+  if(routeGrowth)for(const family of r2RouteFamilies(evaluated.type).filter(f=>routeGrowth.factors[f]!==undefined)){
+    const value=Rational.fromJSON(routeGrowth.factors[family]!);
     emit('routeGrowth',{sourceType:'rule',sourceDefinitionId:'route-growth',sourceInstanceId:input.runId},'route-factor',value,()=>{M=M.multiply(value);},{kind:'hand-type-in',values:R2_ROUTE_HAND_TYPES[family]},undefined,0,undefined,{reasonKey:`route-growth.${family}.factor`,routeFamily:family,resourceBefore:routeGrowth.before[family],resourceAfter:routeGrowth.before[family]});
   }
   if(boss?.definitionId!=='B08'&&input.characterId==='amo'&&input.amoScoreTiming==='after-joker'&&played.length===1)char('multiply-multiplier',new Rational(3n),{kind:'played-count',equals:1});

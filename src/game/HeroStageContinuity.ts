@@ -12,7 +12,7 @@ import {savedXiemuBurn} from './XiemuBurnCopy';
 export interface HeroStageContinuity {last?:string;next:string;decision:string}
 /** A completed stage may remain attached in the shop. It is history, never next-stage availability. */
 export function heroStageContinuity(run:R2RunState):HeroStageContinuity|undefined {
- if(!['stage-cleared','shop','stage-ready'].includes(run.phase)||!getR2Stage(run.stageIndex,run.tourMode,run.difficulty))return;
+ if(!['stage-cleared','shop','stage-ready'].includes(run.phase)||!getR2Stage(run.stageIndex,run.tourMode,run.difficulty,run))return;
  const azao=usesAzaoCharge(run),xiemu=usesXiemuBurn(run),erxiang=usesErxiangHandoff(run),touye=usesTouyeWager(run),laohuan=usesLaohuanRefill(run),amo=r2UsesAssist(run);
  if(!azao&&!xiemu&&!erxiang&&!touye&&!laohuan&&!amo)return;
  const old=run.stage&&run.stage.index<run.stageIndex?run.stage:undefined;

@@ -98,7 +98,7 @@ describe('C2 actual scorer finite comparisons',()=>{
   it('UI AI preview/cache carries the exact snapshot and route events expose truthful factors',()=>{
     const h=cards([9,9,2]),request:AiHandInput={hand:h,jokers:[],definitions:R2_ROUTE_GROWTH_JOKERS,handRules:{fourStraight:false,fourFlush:false},disabledIds:[],ordinaryPointsSuppressedIds:[],boss:null,stageIndex:0,sealedJokerIds:[],challengeDisabledJokerId:null,resources:{gold:0,handsLeft:4,playIndex:0,discardsUsed:0,stageHeat:'0',target:'400'},contentVersion:identity.contentVersion+'/'+identity.contentHash,score:{routeGrowth:progress(4),characterId:'neutral',amoScoreTiming:'assist-v1',handLevels:{},previousHandType:null,wager:false,jokerSlots:5,previousHandScore:null}};
     const before=structuredClone(request),key=aiHandKey(request),result=rankAiHandCandidates(request);expect(result.status).toBe('ready');expect(request).toEqual(before);expect(result.ordered[0].type).toBe('pair');request.score.routeGrowth=progress(5);expect(aiHandKey(request)).not.toBe(key);
-    const t=score(cards([9,9]),[],{routeGrowth:progress(4)}),e=t.events.find(e=>e.operation==='route-factor')!;expect(scorePacketSymbol(e)).toBe('×M');expect(r2ScoreOperationText(e)).toContain('成组资历 4 场');expect(r2ScoreOperationText(e)).toContain('×1.35');
+    const t=score(cards([9,9]),[],{routeGrowth:progress(4)}),e=t.events.find(e=>e.operation==='route-factor')!;expect(scorePacketSymbol(e)).toBe('×M');expect(r2ScoreOperationText(e)).toContain('成组过关加成 4 场');expect(r2ScoreOperationText(e)).toContain('×1.35');
   });
   it('six fixes cover their upgrade families and stored additive growth still reads on high card',()=>{
     for(const ranks of [[9,9,9,9,9],[5,5,5,7,7]]){
