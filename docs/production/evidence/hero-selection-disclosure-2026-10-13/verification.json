@@ -1,0 +1,662 @@
+{
+  "base": "2ef9180c066308e06d7d09850983ea469aa67fd8",
+  "sourceHashes": {
+    "CharacterSelectScene": "e4f27abbd1f268e4e77860151759717391d8389ea3c93bd818c576f3b673bdbb",
+    "OpeningShowcaseLayout": "15bcad5db97fed1681cd7d225f48659fb5c309b34dbfcaafe8919a7126b36d1b",
+    "OpeningPlayTable": "bf482e8ea8faa5dde3f804ed45b719d0e00a66475819ccd9ce0fbb658a57eb93",
+    "ModeSelectDialog": "ab84d666e210e0f89c2db8f5688e9505a0f6d50deca43dd46189eb8a6a2d20c1"
+  },
+  "checks": [
+    {
+      "width": 390,
+      "height": 740,
+      "reduced": false,
+      "heroes": [
+        {
+          "id": "amo",
+          "portrait": {
+            "type": 5,
+            "x": 22,
+            "y": 168.73658536585367,
+            "width": 183,
+            "height": 228.52682926829266
+          },
+          "quote": "少说一句，\n照样抢你的场。",
+          "sample": "对子 ×2",
+          "replay": "native action toggled example / replayed card motion"
+        },
+        {
+          "id": "touye",
+          "portrait": {
+            "type": 5,
+            "x": 22,
+            "y": 168.73658536585367,
+            "width": 183,
+            "height": 228.52682926829266
+          },
+          "quote": "你算你的，\n我敢再押一手。",
+          "sample": "成 ×2 · 未成 ×0.85",
+          "replay": "native action toggled example / replayed card motion"
+        },
+        {
+          "id": "laohuan",
+          "portrait": {
+            "type": 5,
+            "x": 22,
+            "y": 168.73658536585367,
+            "width": 183,
+            "height": 228.52682926829266
+          },
+          "quote": "袖子空的？\n你的掌声可不空。",
+          "sample": "多看最多2张 · 自己选",
+          "replay": "native action toggled example / replayed card motion"
+        },
+        {
+          "id": "erxiang",
+          "portrait": {
+            "type": 5,
+            "x": 22,
+            "y": 168.73658536585367,
+            "width": 183,
+            "height": 228.52682926829266
+          },
+          "quote": "你刚开口，\n场子已经归我了。",
+          "sample": "+ 8 倍率",
+          "replay": "native action toggled example / replayed card motion"
+        },
+        {
+          "id": "azao",
+          "portrait": {
+            "type": 5,
+            "x": 22,
+            "y": 168.73658536585367,
+            "width": 183,
+            "height": 228.52682926829266
+          },
+          "quote": "老一套？\n我换个活儿压你一头。",
+          "sample": "再一手释放 2层 ×2.5",
+          "replay": "native action toggled example / replayed card motion"
+        },
+        {
+          "id": "xiemu",
+          "portrait": {
+            "type": 5,
+            "x": 22,
+            "y": 168.73658536585367,
+            "width": 183,
+            "height": 228.52682926829266
+          },
+          "quote": "别急着鼓掌，\n最后才轮到我。",
+          "sample": "角色 ×2",
+          "replay": "native action toggled example / replayed card motion"
+        }
+      ],
+      "routes": [
+        "group",
+        "straight",
+        "flush"
+      ],
+      "errors": [],
+      "comparison": "native selection preserved",
+      "difficulty": [
+        {
+          "id": "1",
+          "text": "进阶 · 目标比普通高20%，开局资源不变。\n\n手牌 8 · 每场出牌 4 · 弃牌 3\n开局 6 金 · 大丑牌 5 槽 · 基础利息上限 5\n付费刷新 2–10 金\n\n章节节目单开启，可选择一项或不选。确认角色并保存成功后才建立新局。继续会使用此模式上次保存的种子与进度。"
+        },
+        {
+          "id": "2",
+          "text": "严苛 · 目标比普通高20%，每场弃牌减少为2次。\n\n手牌 8 · 每场出牌 4 · 弃牌 2\n开局 6 金 · 大丑牌 5 槽 · 基础利息上限 5\n付费刷新 2–10 金\n\n章节节目单开启，可选择一项或不选。确认角色并保存成功后才建立新局。继续会使用此模式上次保存的种子与进度。"
+        },
+        {
+          "id": "3",
+          "text": "极限 · 目标比普通高20%，每场弃牌2次，4金开局，刷新起价3金。\n\n手牌 8 · 每场出牌 4 · 弃牌 2\n开局 4 金 · 大丑牌 5 槽 · 基础利息上限 5\n付费刷新 3–11 金\n\n章节节目单开启，可选择一项或不选。确认角色并保存成功后才建立新局。继续会使用此模式上次保存的种子与进度。"
+        }
+      ],
+      "savedState": "all run and IndexedDB records unchanged",
+      "confirmation": "native fresh run saved with hero/straight/ordinary mode; reload state identical; stopped in shop"
+    },
+    {
+      "width": 1366,
+      "height": 768,
+      "reduced": false,
+      "heroes": [
+        {
+          "id": "amo",
+          "portrait": {
+            "type": 5,
+            "x": 116.25,
+            "y": 116,
+            "width": 307.5,
+            "height": 384
+          },
+          "quote": "少说一句，照样抢你的场。",
+          "sample": "对子 ×2",
+          "replay": "native action toggled example / replayed card motion"
+        },
+        {
+          "id": "touye",
+          "portrait": {
+            "type": 5,
+            "x": 116.25,
+            "y": 116,
+            "width": 307.5,
+            "height": 384
+          },
+          "quote": "你算你的，我敢再押一手。",
+          "sample": "成 ×2 · 未成 ×0.85",
+          "replay": "native action toggled example / replayed card motion"
+        },
+        {
+          "id": "laohuan",
+          "portrait": {
+            "type": 5,
+            "x": 116.25,
+            "y": 116,
+            "width": 307.5,
+            "height": 384
+          },
+          "quote": "袖子空的？你的掌声可不空。",
+          "sample": "多看最多2张 · 自己选",
+          "replay": "native action toggled example / replayed card motion"
+        },
+        {
+          "id": "erxiang",
+          "portrait": {
+            "type": 5,
+            "x": 116.25,
+            "y": 116,
+            "width": 307.5,
+            "height": 384
+          },
+          "quote": "你刚开口，场子已经归我了。",
+          "sample": "+ 8 倍率",
+          "replay": "native action toggled example / replayed card motion"
+        },
+        {
+          "id": "azao",
+          "portrait": {
+            "type": 5,
+            "x": 116.25,
+            "y": 116,
+            "width": 307.5,
+            "height": 384
+          },
+          "quote": "老一套？我换个活儿压你一头。",
+          "sample": "再一手释放 2层 ×2.5",
+          "replay": "native action toggled example / replayed card motion"
+        },
+        {
+          "id": "xiemu",
+          "portrait": {
+            "type": 5,
+            "x": 116.25,
+            "y": 116,
+            "width": 307.5,
+            "height": 384
+          },
+          "quote": "别急着鼓掌，最后才轮到我。",
+          "sample": "角色 ×2",
+          "replay": "native action toggled example / replayed card motion"
+        }
+      ],
+      "routes": [
+        "group",
+        "straight",
+        "flush"
+      ],
+      "errors": [],
+      "comparison": "native selection preserved",
+      "difficulty": [
+        {
+          "id": "1",
+          "text": "进阶 · 目标比普通高20%，开局资源不变。\n\n手牌 8 · 每场出牌 4 · 弃牌 3\n开局 6 金 · 大丑牌 5 槽 · 基础利息上限 5\n付费刷新 2–10 金\n\n章节节目单开启，可选择一项或不选。确认角色并保存成功后才建立新局。继续会使用此模式上次保存的种子与进度。"
+        },
+        {
+          "id": "2",
+          "text": "严苛 · 目标比普通高20%，每场弃牌减少为2次。\n\n手牌 8 · 每场出牌 4 · 弃牌 2\n开局 6 金 · 大丑牌 5 槽 · 基础利息上限 5\n付费刷新 2–10 金\n\n章节节目单开启，可选择一项或不选。确认角色并保存成功后才建立新局。继续会使用此模式上次保存的种子与进度。"
+        },
+        {
+          "id": "3",
+          "text": "极限 · 目标比普通高20%，每场弃牌2次，4金开局，刷新起价3金。\n\n手牌 8 · 每场出牌 4 · 弃牌 2\n开局 4 金 · 大丑牌 5 槽 · 基础利息上限 5\n付费刷新 3–11 金\n\n章节节目单开启，可选择一项或不选。确认角色并保存成功后才建立新局。继续会使用此模式上次保存的种子与进度。"
+        }
+      ],
+      "savedState": "all run and IndexedDB records unchanged",
+      "confirmation": "native fresh run saved with hero/straight/ordinary mode; reload state identical; stopped in shop"
+    },
+    {
+      "width": 320,
+      "height": 640,
+      "reduced": false,
+      "heroes": [
+        {
+          "id": "amo",
+          "portrait": {
+            "type": 5,
+            "x": 22,
+            "y": 160.59024390243903,
+            "width": 148,
+            "height": 184.81951219512192
+          },
+          "quote": "少说一句，\n照样抢你的场。",
+          "sample": "对子 ×2",
+          "replay": "native action toggled example / replayed card motion"
+        },
+        {
+          "id": "touye",
+          "portrait": {
+            "type": 5,
+            "x": 22,
+            "y": 160.59024390243903,
+            "width": 148,
+            "height": 184.81951219512192
+          },
+          "quote": "你算你的，\n我敢再押一手。",
+          "sample": "成 ×2 · 未成 ×0.85",
+          "replay": "native action toggled example / replayed card motion"
+        },
+        {
+          "id": "laohuan",
+          "portrait": {
+            "type": 5,
+            "x": 22,
+            "y": 160.59024390243903,
+            "width": 148,
+            "height": 184.81951219512192
+          },
+          "quote": "袖子空的？\n你的掌声可不空。",
+          "sample": "多看最多2张 · 自己选",
+          "replay": "native action toggled example / replayed card motion"
+        },
+        {
+          "id": "erxiang",
+          "portrait": {
+            "type": 5,
+            "x": 22,
+            "y": 160.59024390243903,
+            "width": 148,
+            "height": 184.81951219512192
+          },
+          "quote": "你刚开口，\n场子已经归我了。",
+          "sample": "+ 8 倍率",
+          "replay": "native action toggled example / replayed card motion"
+        },
+        {
+          "id": "azao",
+          "portrait": {
+            "type": 5,
+            "x": 22,
+            "y": 160.59024390243903,
+            "width": 148,
+            "height": 184.81951219512192
+          },
+          "quote": "老一套？\n我换个活儿压你一头。",
+          "sample": "再一手释放 2层 ×2.5",
+          "replay": "native action toggled example / replayed card motion"
+        },
+        {
+          "id": "xiemu",
+          "portrait": {
+            "type": 5,
+            "x": 22,
+            "y": 160.59024390243903,
+            "width": 148,
+            "height": 184.81951219512192
+          },
+          "quote": "别急着鼓掌，\n最后才轮到我。",
+          "sample": "角色 ×2",
+          "replay": "native action toggled example / replayed card motion"
+        }
+      ],
+      "routes": [
+        "group",
+        "straight",
+        "flush"
+      ],
+      "errors": [],
+      "comparison": "native selection preserved",
+      "difficulty": [
+        {
+          "id": "1",
+          "text": "进阶 · 目标比普通高20%，开局资源不变。\n\n手牌 8 · 每场出牌 4 · 弃牌 3\n开局 6 金 · 大丑牌 5 槽 · 基础利息上限 5\n付费刷新 2–10 金\n\n章节节目单开启，可选择一项或不选。确认角色并保存成功后才建立新局。继续会使用此模式上次保存的种子与进度。"
+        },
+        {
+          "id": "2",
+          "text": "严苛 · 目标比普通高20%，每场弃牌减少为2次。\n\n手牌 8 · 每场出牌 4 · 弃牌 2\n开局 6 金 · 大丑牌 5 槽 · 基础利息上限 5\n付费刷新 2–10 金\n\n章节节目单开启，可选择一项或不选。确认角色并保存成功后才建立新局。继续会使用此模式上次保存的种子与进度。"
+        },
+        {
+          "id": "3",
+          "text": "极限 · 目标比普通高20%，每场弃牌2次，4金开局，刷新起价3金。\n\n手牌 8 · 每场出牌 4 · 弃牌 2\n开局 4 金 · 大丑牌 5 槽 · 基础利息上限 5\n付费刷新 3–11 金\n\n章节节目单开启，可选择一项或不选。确认角色并保存成功后才建立新局。继续会使用此模式上次保存的种子与进度。"
+        }
+      ],
+      "savedState": "all run and IndexedDB records unchanged"
+    },
+    {
+      "width": 390,
+      "height": 528,
+      "reduced": false,
+      "heroes": [
+        {
+          "id": "amo",
+          "portrait": {
+            "type": 5,
+            "x": 47.03515625,
+            "y": 114,
+            "width": 132.9296875,
+            "height": 166
+          },
+          "quote": "少说一句，\n照样抢你的场。",
+          "sample": "示例 · 对子 ×2",
+          "replay": "native action toggled example / replayed card motion"
+        },
+        {
+          "id": "touye",
+          "portrait": {
+            "type": 5,
+            "x": 47.03515625,
+            "y": 114,
+            "width": 132.9296875,
+            "height": 166
+          },
+          "quote": "你算你的，\n我敢再押一手。",
+          "sample": "示例 · 成 ×2 · 未成 ×0.85",
+          "replay": "native action toggled example / replayed card motion"
+        },
+        {
+          "id": "laohuan",
+          "portrait": {
+            "type": 5,
+            "x": 47.03515625,
+            "y": 114,
+            "width": 132.9296875,
+            "height": 166
+          },
+          "quote": "袖子空的？\n你的掌声可不空。",
+          "sample": "示例 · 多看最多2张 · 自己选",
+          "replay": "native action toggled example / replayed card motion"
+        },
+        {
+          "id": "erxiang",
+          "portrait": {
+            "type": 5,
+            "x": 47.03515625,
+            "y": 114,
+            "width": 132.9296875,
+            "height": 166
+          },
+          "quote": "你刚开口，\n场子已经归我了。",
+          "sample": "示例 · + 8 倍率",
+          "replay": "native action toggled example / replayed card motion"
+        },
+        {
+          "id": "azao",
+          "portrait": {
+            "type": 5,
+            "x": 47.03515625,
+            "y": 114,
+            "width": 132.9296875,
+            "height": 166
+          },
+          "quote": "老一套？\n我换个活儿压你一头。",
+          "sample": "示例 · 再一手释放 2层 ×2.5",
+          "replay": "native action toggled example / replayed card motion"
+        },
+        {
+          "id": "xiemu",
+          "portrait": {
+            "type": 5,
+            "x": 47.03515625,
+            "y": 114,
+            "width": 132.9296875,
+            "height": 166
+          },
+          "quote": "别急着鼓掌，\n最后才轮到我。",
+          "sample": "示例 · 角色 ×2",
+          "replay": "native action toggled example / replayed card motion"
+        }
+      ],
+      "routes": [
+        "group",
+        "straight",
+        "flush"
+      ],
+      "errors": [],
+      "comparison": "native selection preserved",
+      "difficulty": [
+        {
+          "id": "1",
+          "text": "进阶 · 目标比普通高20%，开局资源不变。\n\n手牌 8 · 每场出牌 4 · 弃牌 3\n开局 6 金 · 大丑牌 5 槽 · 基础利息上限 5\n付费刷新 2–10 金\n\n章节节目单开启，可选择一项或不选。确认角色并保存成功后才建立新局。继续会使用此模式上次保存的种子与进度。"
+        },
+        {
+          "id": "2",
+          "text": "严苛 · 目标比普通高20%，每场弃牌减少为2次。\n\n手牌 8 · 每场出牌 4 · 弃牌 2\n开局 6 金 · 大丑牌 5 槽 · 基础利息上限 5\n付费刷新 2–10 金\n\n章节节目单开启，可选择一项或不选。确认角色并保存成功后才建立新局。继续会使用此模式上次保存的种子与进度。"
+        },
+        {
+          "id": "3",
+          "text": "极限 · 目标比普通高20%，每场弃牌2次，4金开局，刷新起价3金。\n\n手牌 8 · 每场出牌 4 · 弃牌 2\n开局 4 金 · 大丑牌 5 槽 · 基础利息上限 5\n付费刷新 3–11 金\n\n章节节目单开启，可选择一项或不选。确认角色并保存成功后才建立新局。继续会使用此模式上次保存的种子与进度。"
+        }
+      ],
+      "savedState": "all run and IndexedDB records unchanged"
+    },
+    {
+      "width": 740,
+      "height": 390,
+      "reduced": false,
+      "heroes": [
+        {
+          "id": "amo",
+          "portrait": {
+            "type": 5,
+            "x": 25.13515625000001,
+            "y": 74,
+            "width": 132.9296875,
+            "height": 166
+          },
+          "quote": "少说一句，照样抢你的场。",
+          "sample": "示例 · 对子 ×2",
+          "replay": "native action toggled example / replayed card motion"
+        },
+        {
+          "id": "touye",
+          "portrait": {
+            "type": 5,
+            "x": 25.13515625000001,
+            "y": 74,
+            "width": 132.9296875,
+            "height": 166
+          },
+          "quote": "你算你的，我敢再押一手。",
+          "sample": "示例 · 成 ×2 · 未成 ×0.85",
+          "replay": "native action toggled example / replayed card motion"
+        },
+        {
+          "id": "laohuan",
+          "portrait": {
+            "type": 5,
+            "x": 25.13515625000001,
+            "y": 74,
+            "width": 132.9296875,
+            "height": 166
+          },
+          "quote": "袖子空的？你的掌声可不空。",
+          "sample": "示例 · 多看最多2张 · 自己选",
+          "replay": "native action toggled example / replayed card motion"
+        },
+        {
+          "id": "erxiang",
+          "portrait": {
+            "type": 5,
+            "x": 25.13515625000001,
+            "y": 74,
+            "width": 132.9296875,
+            "height": 166
+          },
+          "quote": "你刚开口，场子已经归我了。",
+          "sample": "示例 · + 8 倍率",
+          "replay": "native action toggled example / replayed card motion"
+        },
+        {
+          "id": "azao",
+          "portrait": {
+            "type": 5,
+            "x": 25.13515625000001,
+            "y": 74,
+            "width": 132.9296875,
+            "height": 166
+          },
+          "quote": "老一套？我换个活儿压你一头。",
+          "sample": "示例 · 再一手释放 2层 ×2.5",
+          "replay": "native action toggled example / replayed card motion"
+        },
+        {
+          "id": "xiemu",
+          "portrait": {
+            "type": 5,
+            "x": 25.13515625000001,
+            "y": 74,
+            "width": 132.9296875,
+            "height": 166
+          },
+          "quote": "别急着鼓掌，最后才轮到我。",
+          "sample": "示例 · 角色 ×2",
+          "replay": "native action toggled example / replayed card motion"
+        }
+      ],
+      "routes": [
+        "group",
+        "straight",
+        "flush"
+      ],
+      "errors": [],
+      "comparison": "native selection preserved",
+      "difficulty": [
+        {
+          "id": "1",
+          "text": "进阶 · 目标比普通高20%，开局资源不变。\n\n手牌 8 · 每场出牌 4 · 弃牌 3\n开局 6 金 · 大丑牌 5 槽 · 基础利息上限 5\n付费刷新 2–10 金\n\n章节节目单开启，可选择一项或不选。确认角色并保存成功后才建立新局。继续会使用此模式上次保存的种子与进度。"
+        },
+        {
+          "id": "2",
+          "text": "严苛 · 目标比普通高20%，每场弃牌减少为2次。\n\n手牌 8 · 每场出牌 4 · 弃牌 2\n开局 6 金 · 大丑牌 5 槽 · 基础利息上限 5\n付费刷新 2–10 金\n\n章节节目单开启，可选择一项或不选。确认角色并保存成功后才建立新局。继续会使用此模式上次保存的种子与进度。"
+        },
+        {
+          "id": "3",
+          "text": "极限 · 目标比普通高20%，每场弃牌2次，4金开局，刷新起价3金。\n\n手牌 8 · 每场出牌 4 · 弃牌 2\n开局 4 金 · 大丑牌 5 槽 · 基础利息上限 5\n付费刷新 3–11 金\n\n章节节目单开启，可选择一项或不选。确认角色并保存成功后才建立新局。继续会使用此模式上次保存的种子与进度。"
+        }
+      ],
+      "savedState": "all run and IndexedDB records unchanged"
+    },
+    {
+      "width": 390,
+      "height": 740,
+      "reduced": true,
+      "heroes": [
+        {
+          "id": "amo",
+          "portrait": {
+            "type": 5,
+            "x": 22,
+            "y": 168.73658536585367,
+            "width": 183,
+            "height": 228.52682926829266
+          },
+          "quote": "少说一句，\n照样抢你的场。",
+          "sample": "对子 ×2",
+          "replay": "not offered in reduced motion"
+        },
+        {
+          "id": "touye",
+          "portrait": {
+            "type": 5,
+            "x": 22,
+            "y": 168.73658536585367,
+            "width": 183,
+            "height": 228.52682926829266
+          },
+          "quote": "你算你的，\n我敢再押一手。",
+          "sample": "成 ×2 · 未成 ×0.85",
+          "replay": "not offered in reduced motion"
+        },
+        {
+          "id": "laohuan",
+          "portrait": {
+            "type": 5,
+            "x": 22,
+            "y": 168.73658536585367,
+            "width": 183,
+            "height": 228.52682926829266
+          },
+          "quote": "袖子空的？\n你的掌声可不空。",
+          "sample": "多看最多2张 · 自己选",
+          "replay": "not offered in reduced motion"
+        },
+        {
+          "id": "erxiang",
+          "portrait": {
+            "type": 5,
+            "x": 22,
+            "y": 168.73658536585367,
+            "width": 183,
+            "height": 228.52682926829266
+          },
+          "quote": "你刚开口，\n场子已经归我了。",
+          "sample": "+ 8 倍率",
+          "replay": "not offered in reduced motion"
+        },
+        {
+          "id": "azao",
+          "portrait": {
+            "type": 5,
+            "x": 22,
+            "y": 168.73658536585367,
+            "width": 183,
+            "height": 228.52682926829266
+          },
+          "quote": "老一套？\n我换个活儿压你一头。",
+          "sample": "再一手释放 2层 ×2.5",
+          "replay": "not offered in reduced motion"
+        },
+        {
+          "id": "xiemu",
+          "portrait": {
+            "type": 5,
+            "x": 22,
+            "y": 168.73658536585367,
+            "width": 183,
+            "height": 228.52682926829266
+          },
+          "quote": "别急着鼓掌，\n最后才轮到我。",
+          "sample": "角色 ×2",
+          "replay": "not offered in reduced motion"
+        }
+      ],
+      "routes": [
+        "group",
+        "straight",
+        "flush"
+      ],
+      "errors": [],
+      "comparison": "native selection preserved",
+      "difficulty": [
+        {
+          "id": "1",
+          "text": "进阶 · 目标比普通高20%，开局资源不变。\n\n手牌 8 · 每场出牌 4 · 弃牌 3\n开局 6 金 · 大丑牌 5 槽 · 基础利息上限 5\n付费刷新 2–10 金\n\n章节节目单开启，可选择一项或不选。确认角色并保存成功后才建立新局。继续会使用此模式上次保存的种子与进度。"
+        },
+        {
+          "id": "2",
+          "text": "严苛 · 目标比普通高20%，每场弃牌减少为2次。\n\n手牌 8 · 每场出牌 4 · 弃牌 2\n开局 6 金 · 大丑牌 5 槽 · 基础利息上限 5\n付费刷新 2–10 金\n\n章节节目单开启，可选择一项或不选。确认角色并保存成功后才建立新局。继续会使用此模式上次保存的种子与进度。"
+        },
+        {
+          "id": "3",
+          "text": "极限 · 目标比普通高20%，每场弃牌2次，4金开局，刷新起价3金。\n\n手牌 8 · 每场出牌 4 · 弃牌 2\n开局 4 金 · 大丑牌 5 槽 · 基础利息上限 5\n付费刷新 3–11 金\n\n章节节目单开启，可选择一项或不选。确认角色并保存成功后才建立新局。继续会使用此模式上次保存的种子与进度。"
+        }
+      ],
+      "savedState": "all run and IndexedDB records unchanged"
+    }
+  ],
+  "limits": [
+    "Linux Chromium Canvas/native touch and mouse only; no physical device, listening or human acceptance.",
+    "User reference 16230.jpg was not readable here (download proxy 403); parent owns original-image comparison.",
+    "No full game played. Only selector navigation and one fresh saved shop entry per main viewport."
+  ],
+  "browser": "151.0.7922.173",
+  "result": "PASS"
+}

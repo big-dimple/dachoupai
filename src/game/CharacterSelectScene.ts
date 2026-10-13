@@ -13,7 +13,7 @@ import {gameSession} from './session';
 import {routeSavedRun} from './RunMenu';
 import {SceneView} from './SceneView';
 import {DetailDialog} from './DetailDialog';
-import {ModeSelectDialog,DEFAULT_MODE_SELECTION,type ModeChoice} from './ModeSelectDialog';
+import {ModeSelectDialog,DEFAULT_MODE_SELECTION,selectionModeName,type ModeChoice} from './ModeSelectDialog';
 import {R2_MODE_CATALOG,r2RunModeConfig,type R2ModeSelection} from '../content/r2Modes';
 import {r2ModeUnlocked} from '../domain/r2Progress';
 import {readRunProgress} from '../platform/RunProgress';
@@ -40,6 +40,7 @@ export class CharacterSelectScene extends Phaser.Scene {
   private animateChoice=false;
   private readonly openingMotion=new Map<Phaser.GameObjects.GameObject,()=>void>();
   private sampleAfter=false;
+  private sampleExpanded=false;
   private readonly portraitRequests=new Set<CharacterId>();
   private view!:SceneView;
   private readonly dialog=new DetailDialog();
@@ -47,7 +48,7 @@ export class CharacterSelectScene extends Phaser.Scene {
   private readonly audio=AudioEngine.shared;
   constructor(){super('character-select');}
   init(data?:SelectionOptions):void {
-    this.step='hero';this.selectedRoute=undefined;
+    this.step='hero';this.selectedRoute=undefined;this.sampleExpanded=false;
     this.modeConfig=data?.modeConfig??DEFAULT_MODE_SELECTION;r2RunModeConfig(this.modeConfig);
     this.selectedId=this.modeConfig.mode==='tutorial'?'erxiang':data?.characterId;
     this.seed=this.modeConfig.mode==='tutorial'?R2_MODE_CATALOG.tutorial.config.seedPolicy.values[0]:data?.seed??(data?.freshSeed?String(Date.now()):undefined);
@@ -68,9 +69,9 @@ export class CharacterSelectScene extends Phaser.Scene {
     const v=this.view,l=v.layout,style=getComputedStyle(document.documentElement),bottom=parseFloat(style.getPropertyValue('--safe-bottom'))||0;
     const p=selectionLayout(l.width,l.height,l.hud.y,bottom,this.step),config=r2RunModeConfig(this.modeConfig);v.clear();v.paperBackground();
     v.text(p.x,p.top,this.step==='hero'?'英雄登场':'选一条路',p.short||p.portrait?24:30,'#26313A').setFontFamily('Georgia, "Noto Serif SC", SimSun, serif').setFontStyle('bold');
-    const modeLabel=this.modeConfig.mode==='standard'?`普通 D${this.modeConfig.difficulty}`:this.modeConfig.mode==='tutorial'?'教程':this.modeConfig.challengeId!;
-    const modeWidth=p.portrait?84:132,controlsRight=Math.max(12,parseFloat(style.getPropertyValue('--safe-right'))||0);
-    v.button({x:p.portrait?p.x+p.w-modeWidth:Math.min(p.x+p.w-modeWidth,l.width-controlsRight-148-modeWidth),y:p.portrait?p.top+45:p.top-3,width:modeWidth,height:44},p.portrait?`模式·${this.modeConfig.mode==='standard'?`D${this.modeConfig.difficulty}`:modeLabel}`:`模式 · ${modeLabel}`,'action/select-mode',()=>this.selectMode(),!this.choosing);
+    const modeLabel=selectionModeName(this.modeConfig);
+    const modeWidth=p.portrait?104:132,controlsRight=Math.max(12,parseFloat(style.getPropertyValue('--safe-right'))||0);
+    v.button({x:p.portrait?p.x+p.w-modeWidth:Math.min(p.x+p.w-modeWidth,l.width-controlsRight-148-modeWidth),y:p.portrait?p.top+45:p.top-3,width:modeWidth,height:44},`模式 · ${modeLabel}`,'action/select-mode',()=>this.selectMode(),!this.choosing);
     if(!p.short)v.text(p.x,p.top+(p.portrait?49:44),this.step==='hero'?'先选英雄，再选路线':'先定方向，进店能换',14,'#3F606B',p.portrait?p.w-modeWidth-8:p.w);
     this.showHero(p,config.characterAbilityEnabled);
     if(this.step==='hero')CHARACTERS.forEach((character,i)=>{
@@ -97,7 +98,7 @@ export class CharacterSelectScene extends Phaser.Scene {
         v.text(b.x+14,b.y+(p.short?32:62),copy.play,14,'#26313A',b.width-28);
       }
       const hit=v.rect(b).setFillStyle(0,0).setStrokeStyle(0).setData('selected',selected);
-      v.target(hit,'route/'+focus,{tap:()=>{if(!this.choosing){this.selectedRoute=focus;this.sampleAfter=false;this.notice='';this.animateChoice=true;this.audio.select();this.render();}}});
+      v.target(hit,'route/'+focus,{tap:()=>{if(!this.choosing){this.selectedRoute=focus;this.sampleAfter=false;this.sampleExpanded=false;this.notice='';this.animateChoice=true;this.audio.select();this.render();}}});
     });
     this.animateChoice=false;
     const existing=gameSession().run,canReturn=!!existing&&!['run-won','run-lost'].includes(existing.state.phase);
@@ -108,27 +109,33 @@ export class CharacterSelectScene extends Phaser.Scene {
     v.text(p.x,p.noticeY,this.notice||status,14,this.notice?'#B8473A':'#3F606B',p.w).setName('opening/status');
   }
   private showHero(p:ReturnType<typeof selectionLayout>,abilityEnabled:boolean):void {
-    const v=this.view,c=characterForNewRun(this.selectedId??'amo'),copy=HERO_OPENING[c.id],b=p.hero,q=openingShowcaseLayout(b,p.portrait,p.short);
+    const v=this.view,c=characterForNewRun(this.selectedId??'amo'),copy=HERO_OPENING[c.id],b=p.hero,q=openingShowcaseLayout(b,p.portrait,p.short,true);
     v.material(b,PAPER_THEME.jadeSoft,PAPER_THEME.jadeSoft,8);
     const trim=this.add.graphics().lineStyle(1,PAPER_THEME.jade,.25).strokeRoundedRect(b.x+4,b.y+4,b.width-8,b.height-8,6);v.add(trim);
+    if(this.sampleExpanded&&abilityEnabled){
+      this.singleLine(b.x+10,b.y+10,c.name+' · '+(this.step==='hero'?'技能示例':'路线示例'),18,copy.accent,b.width-102).setName('opening/demo-title');
+      v.button({x:b.x+b.width-80,y:b.y+6,width:70,height:44},'收起','action/close-opening-sample',()=>{this.sampleExpanded=false;this.sampleAfter=false;this.audio.cancel();this.render();},!this.choosing);
+      const demo={x:b.x+10,y:b.y+56,width:b.width-20,height:b.height-66};
+      if(this.step==='route')this.showRouteDemo(demo,c.id,p.short);else this.showSignature(demo,c.id,p.short);
+      return;
+    }
     this.queueHeroPortrait(c.id);this.drawPortrait(c.id,q.art,true);
-    const x=q.copy.x,w=q.copy.width,tightPortrait=p.portrait&&q.copy.height<100;
+    const x=q.copy.x,w=q.copy.width,tightPortrait=p.portrait&&q.copy.height<150;
     const name=v.text(x,q.copy.y,c.name,p.short?30:tightPortrait?28:p.portrait?34:p.w>=1280?66:52,copy.accent).setFontFamily('Georgia, "Noto Serif SC", SimSun, serif').setFontStyle('bold').setName('opening/name');
     const title=v.text(x,name.y+name.height+2,c.title,14,'#3F606B').setName('opening/title');
     const quote=v.text(x,tightPortrait?name.y+name.height+4:title.y+title.height+7,copy.taunt,tightPortrait?14:p.short?16:p.portrait?16:24,copy.accent,w).setFontStyle('bold').setName('opening/taunt');
     if(p.portrait){quote.setWordWrapWidth(0);if(quote.width>w)quote.setText(copy.taunt.replace(/([，？])/,'$1\n'));if(quote.width>w)quote.setFontSize(14);quote.setWordWrapWidth(w,true);}
     if(tightPortrait)title.setVisible(false);
     if(p.short){title.setPosition(x+name.width+10,name.y+14);quote.setPosition(x+name.width+title.width+24,name.y+12).setWordWrapWidth(Math.max(100,w-name.width-title.width-24),true);}
-    if(!abilityEnabled){v.text(q.demo.x,q.demo.y,'此挑战关闭角色能力',18,'#26313A',q.demo.width).setName('opening/play');v.text(q.demo.x,q.demo.y+28,'示例仅在普通局可用；原模式经济保持。',14,'#3F606B',q.demo.width);}
-    else if(this.step==='route')this.showRouteDemo(q.demo,c.id,p.short);
-    else this.showSignature(q.demo,c.id,p.short);
+    if(!abilityEnabled)v.text(q.demo.x,q.demo.y,'此挑战关闭角色能力',14,'#3F606B',q.demo.width).setName('opening/play');
+    else v.button(q.demo,this.step==='hero'?'看看技能怎么用':this.selectedRoute?'看路线怎么做牌':'先选一条路线','action/opening-sample',()=>{this.sampleExpanded=true;this.sampleAfter=false;this.animateChoice=true;this.audio.select();this.render();},!this.choosing&&(this.step==='hero'||!!this.selectedRoute));
     if(this.animateChoice&&!this.reducedMotion()){
       for(const [target,delay] of [[name,0],[quote,60]] as const){target.setAlpha(.65);this.trackOpening(target,()=>target.active&&target.setAlpha(1));this.tweens.add({targets:target,alpha:1,delay,duration:180,ease:inkSettlingEase(.24)});target.once('destroy',()=>this.tweens.killTweensOf(target));}
     }
   }
   private trackOpening(target:Phaser.GameObjects.GameObject,finish:()=>void):void {this.openingMotion.set(target,finish);target.once('destroy',()=>{this.tweens.killTweensOf(target);this.openingMotion.delete(target);});}
   private showSample(b:Box,sample:OpeningPlaySample):void {
-    const cards=drawOpeningPlayTable(this,this.view,b,sample,()=>{if(!this.choosing){this.sampleAfter=!this.sampleAfter;this.animateChoice=true;this.render();}},this.sampleAfter);
+    const cards=drawOpeningPlayTable(this,this.view,b,sample,()=>{if(!this.choosing){this.sampleAfter=!this.sampleAfter;this.animateChoice=true;this.render();}},this.sampleAfter,!this.reducedMotion());
     if(this.animateChoice&&!this.reducedMotion())cards.forEach((art,i)=>{
       const finish=()=>{if(art.active)art.setPosition(0,0).setAlpha(1);};
       art.setPosition(-8,5).setAlpha(.45);this.trackOpening(art,finish);
@@ -185,7 +192,7 @@ export class CharacterSelectScene extends Phaser.Scene {
   private select(id:CharacterId):void {
     if(this.choosing)return;
     if(this.modeConfig.mode==='tutorial'&&id!=='erxiang'){this.notice='教程固定二响；跳过教程后可自由选角。';this.audio.invalid();this.render();return;}
-    this.selectedId=id;this.sampleAfter=false;this.notice='';this.animateChoice=true;this.audio.select();this.render();
+    this.selectedId=id;this.sampleAfter=false;this.sampleExpanded=false;this.notice='';this.animateChoice=true;this.audio.select();this.render();
   }
   private compareHeroes():void {
     if(this.choosing)return;
@@ -209,13 +216,13 @@ export class CharacterSelectScene extends Phaser.Scene {
       resumed:()=>{if(this.scene.isActive())routeSavedRun(this.game);}});
   }
   private applyModeChoice(choice:ModeChoice):void {
-    if(this.choosing||!this.scene.isActive())return;this.sampleAfter=false;this.modeConfig=choice.modeConfig;this.seed=choice.seed;
+    if(this.choosing||!this.scene.isActive())return;this.sampleAfter=false;this.sampleExpanded=false;this.modeConfig=choice.modeConfig;this.seed=choice.seed;
     if(choice.modeConfig.mode==='tutorial'){this.selectedId='erxiang';this.seed=R2_MODE_CATALOG.tutorial.config.seedPolicy.values[0];}
     this.notice='';this.render();
   }
   private async cancelChoice():Promise<void> {
     if(this.choosing)return;
-    this.sampleAfter=false;
+    this.sampleAfter=false;this.sampleExpanded=false;
     if(this.step==='route'){this.step='hero';this.notice='';this.audio.cancel();this.render();return;}
     if(this.modeConfig.mode==='tutorial'){this.modeConfig=DEFAULT_MODE_SELECTION;this.selectedId=undefined;this.seed=undefined;this.notice='已跳过教程，可自由选择角色。';this.audio.cancel();this.render();return;}
     if(this.selectedId){this.selectedId=undefined;this.selectedRoute=undefined;this.notice='已取消选择，进度没有改变。';this.audio.cancel();this.render();return;}
@@ -225,7 +232,7 @@ export class CharacterSelectScene extends Phaser.Scene {
   }
   private async confirmChoice():Promise<void> {
     if(this.choosing||!this.selectedId)return;
-    if(this.step==='hero'){this.sampleAfter=false;this.step='route';this.notice='';this.audio.select();this.render();return;}
+    if(this.step==='hero'){this.sampleAfter=false;this.sampleExpanded=false;this.step='route';this.notice='';this.audio.select();this.render();return;}
     if(!this.selectedRoute)return;
     const existing=gameSession().run;
     if(existing&&!['run-won','run-lost'].includes(existing.state.phase)){

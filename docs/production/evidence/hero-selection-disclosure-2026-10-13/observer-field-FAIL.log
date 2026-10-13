@@ -1,0 +1,8 @@
+file:///workspace/dachoupai/docs/production/evidence/hero-selection-disclosure-2026-10-13/verify.mjs:35
+   await tapUI(p,'character-select','action/confirm-character',touch);await tapUI(p,'character-select','route/straight',touch);await tapUI(p,'character-select','action/confirm-character',touch);await waitScene(p,'shop');await p.waitForFunction(()=>window.__harness.game.scene.getScene('shop').ready);const saved=await saves(p);assert.equal(saved.state.characterId,'touye');assert.equal(saved.state.openingRoute,'straight');assert.equal(saved.state.modeConfig.difficulty,0);assert.ok(saved.storage.some(d=>d.stores.saves?.values.length));await p.reload();await p.waitForFunction(()=>window.__harness?.game.registry.get('runController')?.state);assert.deepEqual((await saves(p)).state,saved.state);row.confirmation='native fresh run saved with hero/straight/ordinary mode; reload state identical; stopped in shop';
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                           ^
+
+TypeError: Cannot read properties of undefined (reading 'difficulty')
+    at file:///workspace/dachoupai/docs/production/evidence/hero-selection-disclosure-2026-10-13/verify.mjs:35:460
+
+Node.js v24.19.0

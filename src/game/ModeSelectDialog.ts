@@ -5,6 +5,10 @@ import {DetailDialog} from './DetailDialog';
 import {gameSession} from './session';
 
 export const DEFAULT_MODE_SELECTION:R2ModeSelection={mode:'standard',difficulty:0,challengeId:null,programsEnabled:true};
+export const DIFFICULTY_NAMES=['普通','进阶','严苛','极限'] as const;
+export function selectionModeName(mode:R2ModeSelection):string {
+  return mode.mode==='standard'?DIFFICULTY_NAMES[mode.difficulty]:mode.mode==='tutorial'?'教程':R2_MODE_CATALOG.challenges.find(row=>row.id===mode.challengeId)!.name;
+}
 export interface ModeChoice {modeConfig:R2ModeSelection;seed?:string}
 interface ModeDialogOptions {
   initial?:ModeChoice;chooseLabel?:string;choose:(choice:ModeChoice)=>void;resumed:()=>void;
@@ -27,7 +31,7 @@ export class ModeSelectDialog {
     mode.dataset.modeField='mode';difficulty.dataset.modeField='difficulty';challenge.dataset.modeField='challenge';
     for(const row of R2_MODE_CATALOG.modes)mode.add(new Option(row.name,row.id));
     mode.value=initial.modeConfig.mode;
-    for(const row of R2_MODE_CATALOG.difficulties)difficulty.add(new Option(row.label,String(row.id)));
+    for(const row of R2_MODE_CATALOG.difficulties)difficulty.add(new Option(DIFFICULTY_NAMES[row.id],String(row.id)));
     difficulty.value=String(initial.modeConfig.difficulty);
     for(const row of R2_MODE_CATALOG.challenges)challenge.add(new Option(`${row.id} · ${row.name}`,row.id));
     challenge.value=initial.modeConfig.challengeId??'Q01';
@@ -36,7 +40,7 @@ export class ModeSelectDialog {
     seed.value=initial.modeConfig.mode==='standard'?initial.seed??'':'';seed.placeholder='留空将在确认登台时生成新种子';
     const seedField=field('普通局种子',seed),fixedSeed=document.createElement('select');fixedSeed.dataset.modeField='fixed-seed';
     const fixedSeedField=field('固定种子',fixedSeed),tutorial=document.createElement('div'),skip=document.createElement('button');
-    tutorial.style.lineHeight='1.7';tutorial.style.overflowWrap='anywhere';skip.type='button';skip.textContent='跳过教程，回普通 D0';skip.dataset.modeAction='skip-tutorial';
+    tutorial.style.lineHeight='1.7';tutorial.style.overflowWrap='anywhere';skip.type='button';skip.textContent='跳过教程，回普通模式';skip.dataset.modeAction='skip-tutorial';
     tutorial.append(document.createTextNode('教程固定二响，种子 r2/tutorial/core-v1。练习出牌、弃牌和购买；教程不发放难度或挑战资格。'),document.createElement('br'),skip);form.append(tutorial);
     const programs=document.createElement('input');programs.type='checkbox';programs.dataset.modeField='programs';
     let programsPreference=initial.modeConfig.mode==='tutorial'?true:initial.modeConfig.programsEnabled;
@@ -73,19 +77,19 @@ export class ModeSelectDialog {
       difficultyField.hidden=selected.mode!=='standard';challengeField.hidden=selected.mode!=='challenge';seedField.hidden=selected.mode!=='standard';
       fixedSeedField.hidden=selected.mode!=='challenge';tutorial.hidden=selected.mode!=='tutorial';programs.disabled=busy||selected.mode==='tutorial';programs.checked=config.programsEnabled;
       for(const field of [difficultyField,challengeField,seedField,fixedSeedField])field.style.display=field.hidden?'none':'grid';
-      for(const option of difficulty.options){const id=Number(option.value);option.textContent=`D${id}${r2DifficultyUnlocked(progress,id)?'':' · 待上一难度首通'}`;}
+      for(const option of difficulty.options){const id=Number(option.value) as R2Difficulty;option.textContent=`${DIFFICULTY_NAMES[id]}${r2DifficultyUnlocked(progress,id)?'':' · 待上一难度首通'}`;}
       mode.options[1].textContent=progress.standardWins.some(Boolean)?'挑战':'挑战 · 待标准八章首通';
       if(selected.mode==='challenge'){
         const prior=fixedSeed.value||initial.seed;fixedSeed.replaceChildren();
         config.seedPolicy.values.forEach((value,i)=>fixedSeed.add(new Option(`种子 ${i+1} · ${value}`,value)));
         if(prior&&config.seedPolicy.values.includes(prior))fixedSeed.value=prior;
       }
-      const cleared=progress.standardWins.flatMap((complete,i)=>complete?[`D${i}`]:[]);
+      const cleared=progress.standardWins.flatMap((complete,i)=>complete?[DIFFICULTY_NAMES[i]]:[]);
       progressLine.textContent=current.ok?(cleared.length?`标准八章首通：${cleared.join('、')}。角色与全部72张大丑牌始终可用。`:
-        '标准八章首通后解锁 D1 与挑战，随后逐档解锁；六位角色与72张大丑牌始终可用。'):
-        '解锁记录读取失败，普通 D0 与教程仍可新开；现有模式存档可继续。';
+        '普通八章首通后解锁进阶与挑战，随后逐档解锁；六位角色与72张大丑牌始终可用。'):
+        '解锁记录读取失败，普通模式与教程仍可新开；现有模式存档可继续。';
       const rules=selected.mode==='challenge'?R2_MODE_CATALOG.challenges.find(row=>row.id===selected.challengeId)!.description:
-        selected.mode==='tutorial'?'固定二响与教学种子，可随时跳过；节目单关闭。':`D${selected.difficulty}${selected.difficulty===0?' · 目标基准':' · 最终目标 ×6/5'}。`;
+        selected.mode==='tutorial'?'固定二响与教学种子，可随时跳过；节目单关闭。':`${DIFFICULTY_NAMES[selected.difficulty]} · ${['标准目标，6金开局，每场可弃牌3次。','目标比普通高20%，开局资源不变。','目标比普通高20%，每场弃牌减少为2次。','目标比普通高20%，每场弃牌2次，4金开局，刷新起价3金。'][selected.difficulty]}`;
       body.textContent=`${rules}\n\n手牌 ${config.baseHandSize} · 每场出牌 ${config.baseHands} · 弃牌 ${config.baseDiscards}\n开局 ${config.initialGold} 金 · 大丑牌 ${config.jokerSlots} 槽 · 基础利息上限 ${config.baseInterestCap}\n${config.reroll.allowed?`付费刷新 ${config.reroll.start}–${config.reroll.cap} 金`:'付费与免费刷新均关闭'}\n\n${config.programsEnabled?'章节节目单开启，可选择一项或不选。':'章节节目单关闭。'}确认角色并保存成功后才建立新局。继续会使用此模式上次保存的种子与进度。`;
       chooseAction.disabled=busy||!r2ModeUnlocked(progress,selected);resumeAction.disabled=busy||gameSession().working||!!gameSession().pendingRun;
       buttons[0].disabled=chooseAction.disabled;buttons[1].disabled=resumeAction.disabled;
