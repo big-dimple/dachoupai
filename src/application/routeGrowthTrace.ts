@@ -8,21 +8,23 @@ import {R2_BASE_SCORES,r2ScoringDisabledJokerIds} from '../domain/scoreR2';
 import type {R2JokerDefinition} from '../content/r2Schema';
 
 /** C2-only closure. A clear changes the run ledger, never the hand's source snapshot. */
-export function assertRouteGrowthTrace(t:ScoreTrace,history:R2RouteHistory,stage:NonNullable<R2RunState['stage']>,runId:string,successful:boolean,definitions:readonly R2JokerDefinition[],activeMultTiming=false):void {
+export function assertRouteGrowthTrace(t:ScoreTrace,history:R2RouteHistory,stage:NonNullable<R2RunState['stage']>,runId:string,successful:boolean,definitions:readonly R2JokerDefinition[],activeMultTiming=false,boundedClear=false):void {
   const fail=():never=>{throw Error('invalid-save-route-growth-trace');};
   const expected=r2RouteSnapshot(history),eligible=stage.routeGrowth!.eligible;
   if(successful){expected.clears--;for(const f of eligible)expected[f]--;}
-  if(stableHash(t.routeGrowth)!==stableHash(r2RouteGrowthTrace(expected,t.handType)))fail();
-  const families=r2RouteFamilies(t.handType),route=t.events.filter(e=>e.sourceDefinitionId==='route-growth');
+  if(stableHash(t.routeGrowth)!==stableHash(r2RouteGrowthTrace(expected,t.handType,boundedClear?'bounded-max-v1':'legacy')))fail();
+  const qualified=r2RouteFamilies(t.handType),families=boundedClear?(t.routeGrowth!.applied!.family?[t.routeGrowth!.applied!.family]:[]):qualified,route=t.events.filter(e=>e.sourceDefinitionId==='route-growth');
   const reads=route.filter(e=>e.operation==='route-factor'),clears=route.filter(e=>e.operation==='route-clear'),awards=route.filter(e=>e.operation==='route-clear-family');
   if(reads.length!==families.length||clears.length!==(successful?1:0)||awards.length!==(successful?eligible.length:0)||route.length!==reads.length+clears.length+awards.length)fail();
   const final=t.events.findIndex(e=>e.phase==='finalScore'),lastJoker=t.events.reduce((last,e,i)=>e.phase==='jokerScore'?i:last,-1);
   for(const [i,e] of reads.entries()){
     const family=families[i],index=t.events.indexOf(e);
+    if(boundedClear?(e.routePolicy!=='bounded-max-v1'||stableHash(e.routeCap)!==stableHash({n:'4',d:'1'})):Object.hasOwn(e,'routePolicy')||Object.hasOwn(e,'routeCap'))fail();
     if(e.routeFamily!==family||e.phase!=='routeGrowth'||index<=lastJoker||index>=final||i>0&&index!==t.events.indexOf(reads[i-1])+1||e.reasonKey!==`route-growth.${family}.factor`||stableHash(e.value)!==stableHash(t.routeGrowth!.factors[family])||e.resourceBefore!==expected[family]||e.resourceAfter!==expected[family]||stableHash(e.visibleCondition)!==stableHash({kind:'hand-type-in',values:R2_ROUTE_HAND_TYPES[family]}))fail();
     if(t.events.slice(index+1,final).some(next=>next.phase!=='routeGrowth'&&!(next.sourceType==='character'&&(next.sourceDefinitionId==='amo'||activeMultTiming&&(['xiemu','azao'].includes(next.sourceDefinitionId)||next.sourceDefinitionId==='touye'&&!!t.touyeWager?.commit)))))fail();
   }
   for(const e of [...clears,...awards]){
+    if(Object.hasOwn(e,'routePolicy')||Object.hasOwn(e,'routeCap'))fail();
     const family=e.routeFamily;
     if(e.phase!=='onStageClear'||t.events.indexOf(e)<=final||stableHash(e.value)!==stableHash({n:'1',d:'1'})||stableHash(e.visibleCondition)!==stableHash({kind:'always'}))fail();
     if(e.operation==='route-clear'){
@@ -30,6 +32,7 @@ export function assertRouteGrowthTrace(t:ScoreTrace,history:R2RouteHistory,stage
     }else if(!family||!eligible.includes(family)||awards[eligible.indexOf(family)]!==e||e.reasonKey!==`route-growth.${family}.clear`||e.resourceBefore!==expected[family]||e.resourceAfter!==history[family]||t.events.indexOf(e)!==t.events.indexOf(clears[0])+eligible.indexOf(family)+1)fail();
   }
   for(const e of route)if(e.sourceType!=='rule'||e.sourceInstanceId!==runId||e.rootEventId!==e.eventId||e.retriggerDepth!==0||['targetCardId','targetJokerInstanceId','targetHandType','growthBefore','growthAfter','rewardDefinitionId','programGoldBeforeReward','goldBeforeRewards'].some(k=>Object.hasOwn(e,k)))fail();
+  for(const e of t.events)if((Object.hasOwn(e,'routePolicy')||Object.hasOwn(e,'routeCap'))&&!reads.includes(e))fail();
   for(const e of t.events)if((e.phase==='routeGrowth'||e.operation.startsWith('route-')||e.routeFamily!==undefined)&&!route.includes(e))fail();
 
   // Prove the whole accumulator chain and the one final floor, including the

@@ -1,3 +1,4 @@
+import {R2_BOUNDED_CLEAR_VERSION,R2_BOUNDED_CLEAR_HASH,isR2BoundedClear} from './r2GroupUpgrade';
 import {assertTouyeCoreFacts} from './r2TouyeCoreFacts';
 import {R2_ACTIVE_MULT_VERSION,R2_ACTIVE_MULT_HASH,R2_ACTIVE_MULT_CHARACTERS,isR2ActiveMultTiming,R2_TOUYE_CORE_VERSION,R2_TOUYE_CORE_HASH,isR2TouyeNewCore} from './r2GroupUpgrade';
 import {R2_ROUTE_GROWTH_VERSION,R2_ROUTE_GROWTH_HASH,isR2RouteGrowth} from './r2GroupUpgrade';
@@ -60,6 +61,7 @@ const sharedRuntimeHash=stableHash({jokers:SHARED_R2_JOKERS,features:R2_IMPLEMEN
 if(sharedRuntimeHash!==R2_LEGACY_CONTENT_HASH)throw Error('published-r2-contract-drift');
 
 export const R2_RULESETS=Object.freeze([
+  Object.freeze({contentVersion:R2_BOUNDED_CLEAR_VERSION,contentHash:R2_BOUNDED_CLEAR_HASH,amoScoreTiming:'assist-v1' as const}),
   Object.freeze({contentVersion:R2_ACTIVE_MULT_VERSION,contentHash:R2_ACTIVE_MULT_HASH,amoScoreTiming:'assist-v1' as const}),
   Object.freeze({contentVersion:R2_TOUYE_CORE_VERSION,contentHash:R2_TOUYE_CORE_HASH,amoScoreTiming:'assist-v1' as const}),
   Object.freeze({contentVersion:R2_ROUTE_GROWTH_VERSION,contentHash:R2_ROUTE_GROWTH_HASH,amoScoreTiming:'assist-v1' as const}),
@@ -153,7 +155,7 @@ export function assertR2Invariants(state:R2RunState):void {
     }
   }else check(!Object.hasOwn(state.stage,'touyeWager'),'touye profile shape');}
   assertTouyeCoreFacts(state);
-  check(!isR2TouyeNewCore(state)||(isR2ActiveMultTiming(state)?(R2_ACTIVE_MULT_CHARACTERS as readonly string[]).includes(state.characterId):state.characterId==='touye'),'touye core character identity');
+  check(isR2BoundedClear(state)||!isR2TouyeNewCore(state)||(isR2ActiveMultTiming(state)?(R2_ACTIVE_MULT_CHARACTERS as readonly string[]).includes(state.characterId):state.characterId==='touye'),'touye core character identity');
   check(state.schemaVersion===2 && state.rulesVersion==='r2' && !!r2RulesetFor(state),'r2 versions');
   check(isR2RouteStarter(state)?!!state.openingRoute&&Object.hasOwn(R2_ROUTE_STARTERS,state.openingRoute):!Object.hasOwn(state,'openingRoute'),'opening route identity');
   check(isR2RouteStarter(state)?!!state.routeStarter:!Object.hasOwn(state,'routeStarter'),'starter identity');
@@ -252,7 +254,7 @@ export function assertR2Invariants(state:R2RunState):void {
     check(integer(state.stage.maxPlayedCount)&&state.stage.maxPlayedCount<=R2_LIMITS.maxSelected&&(state.stage.playIndex===0?state.stage.maxPlayedCount===0:state.stage.maxPlayedCount>=1),'stage played qualification');
     check([state.stage.ordinaryStraightSeen,state.stage.ordinaryFlushSeen,state.stage.quadRefundUsed,state.stage.jokerSold].every(value=>typeof value==='boolean'),'stage saved qualifications');
     check(state.stage.playIndex>0||!state.stage.ordinaryStraightSeen&&!state.stage.ordinaryFlushSeen&&!state.stage.quadRefundUsed,'unused stage qualifications');
-    check(state.stage.initialTargetHeat===getR2Stage(state.stage.index,state.tourMode,state.difficulty)?.targetHeat&&scoreString(state.stage.initialTargetHeat),'initial target');
+    check(state.stage.initialTargetHeat===getR2Stage(state.stage.index,state.tourMode,state.difficulty,state)?.targetHeat&&scoreString(state.stage.initialTargetHeat),'initial target');
     const target=BigInt(state.stage.initialTargetHeat),targetIncrease=state.stage.boss?.definitionId==='B14'?((target+19n)/20n)*BigInt(state.stage.discardsUsed):0n;
     check(state.stage.targetHeat===(target+targetIncrease).toString()&&state.stage.handsLeft<=state.stage.initialHands&&state.stage.handsLeft+state.stage.playIndex===state.stage.initialHands+(state.stage.rescueUsed?1:0)+(state.stage.quadRefundUsed?1:0),'stage target/play budget');
     const s=state.stage;
@@ -283,8 +285,8 @@ export function assertR2Invariants(state:R2RunState):void {
   for(const cursor of Object.values(state.rng))SeededRng.restore(cursor);
 }
 function refill(state:R2RunState):string[] {const refilled:string[]=[];while(state.handOrder.length<(state.stage?.handLimit??r2RunModeConfig(state).baseHandSize)&&state.drawPile.length){const id=state.drawPile.pop()!;state.handOrder.push(id);refilled.push(id);}return refilled;}
-export function getR2Stage(index:number,tourMode:R2TourMode='normal',difficulty:number=0):{index:number;name:string;intro:string;targetHeat:string}|undefined {
-  return r2StageSpec(index,tourMode,difficulty);
+export function getR2Stage(index:number,tourMode:R2TourMode='normal',difficulty:number=0,identity:{contentVersion?:unknown;contentHash?:unknown}={}):{index:number;name:string;intro:string;targetHeat:string}|undefined {
+  return r2StageSpec(index,tourMode,difficulty,isR2BoundedClear(identity)?'bounded-clear-v1':'legacy');
 }
 function makeChapter(state:R2RunState):void {
   const rule=SeededRng.restore(state.rng.rule),reward=SeededRng.restore(state.rng.reward);
@@ -300,7 +302,7 @@ export function r2ScoreContext(state:Pick<R2RunState,'gold'|'stage'|'boss'|'stag
   const modifiers=readR2Modifiers(state.jokers,r2JokerDefinitionsFor(state));
   const config=r2RunModeConfig(state),profile=r2RulesetFor(state);
   if(!profile)throw Error('incompatible-version');
-  return {...(isR2ActiveMultTiming(state)?{activeMultTiming:'after-route-growth' as const}:{}),...(isR2RouteGrowth(state)?{routeGrowth:r2RouteSnapshot(state.routeGrowth)}:{}),...(usesErxiangHandoff(state)?{erxiangHandoff:{targetId:null,beforeUsed:state.stage?.erxiangHandoffUsed??false}}:{}),...(usesTouyeWager(state)?{touyeWager:{commit:state.stage?.touyeWager?.resolution==='pending'?state.stage.touyeWager.commit:null,...(usesTouyeNewCore(state)?{newCore:true as const}:{})}}:{}),...(usesLaohuanRefill(state)?{laohuanTrick:true as const}:{}),...(usesXiemuBurn(state)?{xiemuBurn:{cost:0 as XiemuBurnCost,goldBefore:state.gold,beforeUsed:state.stage?.xiemuBurnUsed??false}}:{}),...(usesAzaoCharge(state)?{azaoCharge:{before:state.stage?.azaoCharge??emptyAzaoCharge(),release:false}}:{}),amoScoreTiming:r2ScoreTimingFor(state),characterId:config.characterAbilityEnabled?state.characterId:'neutral' as const,jokerSlots:config.jokerSlots,gold:state.gold,discardsUsed:state.stage?.discardsUsed??0,previousHandScore:state.stage?.previousHandScore??null,boss:state.stage?.boss??null,sealedJokerIds:state.stage?.sealedJokerIds??[],challengeDisabledJokerId:state.stage?.challengeDisabledJokerId??null,
+  return {...(isR2BoundedClear(state)?{routeGrowthPolicy:'bounded-max-v1' as const}:{}),...(isR2ActiveMultTiming(state)&&(R2_ACTIVE_MULT_CHARACTERS as readonly string[]).includes(state.characterId)?{activeMultTiming:'after-route-growth' as const}:{}),...(isR2RouteGrowth(state)?{routeGrowth:r2RouteSnapshot(state.routeGrowth)}:{}),...(usesErxiangHandoff(state)?{erxiangHandoff:{targetId:null,beforeUsed:state.stage?.erxiangHandoffUsed??false}}:{}),...(usesTouyeWager(state)?{touyeWager:{commit:state.stage?.touyeWager?.resolution==='pending'?state.stage.touyeWager.commit:null,...(usesTouyeNewCore(state)?{newCore:true as const}:{})}}:{}),...(usesLaohuanRefill(state)?{laohuanTrick:true as const}:{}),...(usesXiemuBurn(state)?{xiemuBurn:{cost:0 as XiemuBurnCost,goldBefore:state.gold,beforeUsed:state.stage?.xiemuBurnUsed??false}}:{}),...(usesAzaoCharge(state)?{azaoCharge:{before:state.stage?.azaoCharge??emptyAzaoCharge(),release:false}}:{}),amoScoreTiming:r2ScoreTimingFor(state),characterId:config.characterAbilityEnabled?state.characterId:'neutral' as const,jokerSlots:config.jokerSlots,gold:state.gold,discardsUsed:state.stage?.discardsUsed??0,previousHandScore:state.stage?.previousHandScore??null,boss:state.stage?.boss??null,sealedJokerIds:state.stage?.sealedJokerIds??[],challengeDisabledJokerId:state.stage?.challengeDisabledJokerId??null,
     ...(state.stage?{stageHeatBefore:state.stage.heat,stageTargetHeat:state.stage.targetHeat}:{}),
     handRules:{fourStraight:modifiers.fourStraight,fourFlush:modifiers.fourFlush},ordinaryPointsSuppressedIds:r2OrdinarySuppression(state.boss,state.stage?.index??state.stageIndex,hand,ids)};
 }
@@ -578,7 +580,7 @@ export function transactR2(input:R2RunState|null,command:Command):Transaction {
     if(identity!==undefined&&(!identity||typeof identity!=='object'||Object.getPrototypeOf(identity)!==Object.prototype||Object.keys(identity).sort().join(',')!=='contentHash,contentVersion'||action.r2Profile!==undefined||!r2RulesetFor(identity)))return fail('invalid-r2-identity');
     const profile=r2RulesetFor(identity??(action.r2Profile==='group-upgrade-v1'?{contentVersion:R2_GROUP_UPGRADE_VERSION,contentHash:R2_GROUP_UPGRADE_HASH}:action.r2Profile==='combo-growth-v1'?{contentVersion:R2_COMBO_GROWTH_VERSION,contentHash:R2_COMBO_GROWTH_HASH}:action.r2Profile==='amo-assist-v1'?{contentVersion:R2_ASSIST_VERSION,contentHash:R2_ASSIST_HASH}:{contentVersion:R2_CONTENT_VERSION,contentHash:R2_CONTENT_HASH}))!;
     if(isR2RouteStarter(profile)?!action.openingRoute||!Object.hasOwn(R2_ROUTE_STARTERS,action.openingRoute):Object.hasOwn(action,'openingRoute'))return fail('invalid-opening-route');
-    if(isR2TouyeNewCore(profile)&&(isR2ActiveMultTiming(profile)?!(R2_ACTIVE_MULT_CHARACTERS as readonly string[]).includes(action.characterId):action.characterId!=='touye'))return fail('invalid-r2-profile');
+    if(!isR2BoundedClear(profile)&&isR2TouyeNewCore(profile)&&(isR2ActiveMultTiming(profile)?!(R2_ACTIVE_MULT_CHARACTERS as readonly string[]).includes(action.characterId):action.characterId!=='touye'))return fail('invalid-r2-profile');
     const assisted=profile.amoScoreTiming==='assist-v1'&&action.characterId==='amo';
     if(profile.contentVersion===R2_ASSIST_VERSION&&action.characterId!=='amo')return fail('invalid-r2-profile');
     if(!r2ModeSeedAllowed(config,action.seed)||config.mode==='tutorial'&&action.characterId!=='erxiang')return fail('invalid-mode-seed-or-character');
@@ -605,7 +607,7 @@ export function transactR2(input:R2RunState|null,command:Command):Transaction {
         if(state.phase!=='shop')return fail('wrong-phase');if(state.shop)state.shop.freeRerolls=0;state.phase='stage-ready';break;
       case 'OpenShop':
         if(state.phase!=='stage-cleared')return fail('wrong-phase');
-        if(!getR2Stage(state.stageIndex,state.tourMode,state.difficulty))return fail('numeric-length-limit');
+        if(!getR2Stage(state.stageIndex,state.tourMode,state.difficulty,state))return fail('numeric-length-limit');
         state.phase='shop';if(state.stageIndex%3===0)makeChapter(state);makeR2Shop(state,true);break;
       case 'ContinueEndless': {
         const completion=state.normalCompletion;
@@ -685,7 +687,7 @@ export function transactR2(input:R2RunState|null,command:Command):Transaction {
       }
       case 'EnterStage': {
         if(state.phase!=='stage-ready')return fail('wrong-phase');
-        const chapter=Math.floor(state.stageIndex/3),definition=getR2Stage(state.stageIndex,state.tourMode,state.difficulty);
+        const chapter=Math.floor(state.stageIndex/3),definition=getR2Stage(state.stageIndex,state.tourMode,state.difficulty,state);
         if(!definition)return fail('unknown-stage');
         if(state.program)state.program=sealR2ProgramChoice(state.program);
         const rng=new SeededRng(`${state.seed}/r2/deck/${state.stageIndex}`);
@@ -870,7 +872,7 @@ export function transactR2(input:R2RunState|null,command:Command):Transaction {
       case 'SkipStage': {
         if(!['shop','stage-ready'].includes(state.phase))return fail('wrong-phase');
         if(state.stageIndex%3===2)return fail('boss-cannot-skip');
-        const definition=getR2Stage(state.stageIndex,state.tourMode,state.difficulty);if(!definition)return fail('unknown-stage');
+        const definition=getR2Stage(state.stageIndex,state.tourMode,state.difficulty,state);if(!definition)return fail('unknown-stage');
         let skipResult:R2SkipResult;
         if(state.stageIndex%3===0){state.purchaseCoupons++;skipResult={kind:'coupon',amount:2};}
         else if(state.consumables.length<r2ConsumableCapacity(state)){state.consumables.push({instanceId:`${state.runId}/skip/${state.stageIndex}`,definitionId:state.chapterSkipConsumable});skipResult={kind:'consumable',definitionId:state.chapterSkipConsumable};}

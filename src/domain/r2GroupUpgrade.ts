@@ -1,5 +1,6 @@
 import {R2_ROUTE_GROWTH_JOKERS} from '../content/r2RouteGrowthJokers';
-import {R2_ROUTE_GROWTH_RULE} from './r2RouteGrowth';
+import {R2_ROUTE_GROWTH_RULE,R2_BOUNDED_ROUTE_RULE} from './r2RouteGrowth';
+import {R2_BOUNDED_TARGET_CONTRACT} from './r2Chapter';
 import {TOUYE_ACCEPTED} from './r2TouyeTargets';
 import {R2_COMBO_GROWTH_HASH,isR2ComboGrowth} from './r2ComboGrowth';
 import {R2_GROUP_UPGRADE_JOKERS} from '../content/r2GroupUpgradeJokers';
@@ -52,7 +53,11 @@ export const R2_ACTIVE_MULT_VERSION='quality-r2-active-mult-timing-v1';
 export const R2_ACTIVE_MULT_CHARACTERS=Object.freeze(['touye','xiemu','azao'] as const);
 export const R2_ACTIVE_MULT_CONTRACT=Object.freeze({inherits:R2_TOUYE_CORE_HASH,launch:'selected-route-touye-xiemu-azao-only',characters:R2_ACTIVE_MULT_CHARACTERS,clock:'explicit-active-after-whole-joker-hooks-slot-editions-route-growth-before-final-floor',xiemu:'pay-before-score-10-20-30-times2-3-4-paid-balance-hooks-and-interest',touye:'new-core-win2-loss0.85-replaces-ordinary-ordinary1.15-original-clock',azao:'release1.5-2.5-4-original-qualification-charge-consumption',other:'amo-post-assist-erxiang-card-handoff-laohuan-refill-unchanged',frozen:'route-rates-grace3-six-C2-definition-overlays-targets-prices-supply-rng',legacy:'exact-no-migration'});
 export const R2_ACTIVE_MULT_HASH=stableHash(R2_ACTIVE_MULT_CONTRACT);
-export function isR2ActiveMultTiming(identity:{contentVersion?:unknown;contentHash?:unknown}):boolean{return identity.contentVersion===R2_ACTIVE_MULT_VERSION&&identity.contentHash===R2_ACTIVE_MULT_HASH;}
+export const R2_BOUNDED_CLEAR_VERSION='quality-r2-bounded-clear-v1';
+export const R2_BOUNDED_CLEAR_CONTRACT=Object.freeze({inherits:R2_ACTIVE_MULT_HASH,allCharacters:true,route:R2_BOUNDED_ROUTE_RULE,targets:R2_BOUNDED_TARGET_CONTRACT,launch:'new-selected-route',save:'same-profile-exact-refresh-no-migration',hero:'existing-character-specific-mechanisms'});
+export const R2_BOUNDED_CLEAR_HASH=stableHash(R2_BOUNDED_CLEAR_CONTRACT);
+export function isR2BoundedClear(identity:{contentVersion?:unknown;contentHash?:unknown}):boolean{return identity.contentVersion===R2_BOUNDED_CLEAR_VERSION&&identity.contentHash===R2_BOUNDED_CLEAR_HASH;}
+export function isR2ActiveMultTiming(identity:{contentVersion?:unknown;contentHash?:unknown}):boolean{return identity.contentVersion===R2_ACTIVE_MULT_VERSION&&identity.contentHash===R2_ACTIVE_MULT_HASH||isR2BoundedClear(identity);}
 export function isR2TouyeNewCore(identity:{contentVersion?:unknown;contentHash?:unknown}):boolean{return identity.contentVersion===R2_TOUYE_CORE_VERSION&&identity.contentHash===R2_TOUYE_CORE_HASH||isR2ActiveMultTiming(identity);}
 export function isR2RouteGrowth(identity:{contentVersion?:unknown;contentHash?:unknown}):boolean{return identity.contentVersion===R2_ROUTE_GROWTH_VERSION&&identity.contentHash===R2_ROUTE_GROWTH_HASH||isR2TouyeNewCore(identity);}
 export function isR2SuitChoice(identity:{contentVersion?:unknown;contentHash?:unknown}):boolean{return identity.contentVersion===R2_SUIT_CHOICE_VERSION&&identity.contentHash===R2_SUIT_CHOICE_HASH||isR2RouteGrowth(identity);}

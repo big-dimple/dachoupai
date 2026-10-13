@@ -1,3 +1,4 @@
+import {R2_BOUNDED_CLEAR_VERSION,R2_BOUNDED_CLEAR_HASH,isR2BoundedClear} from '../src/domain/r2GroupUpgrade';
 import {describe,it,expect,vi} from 'vitest';
 import * as scorer from '../src/domain/scoreR2';
 import {previewR2Hand,type ScoreInput} from '../src/domain/scoreR2';
@@ -24,10 +25,10 @@ function round(s:R2RunState){const cp=makeCheckpoint(s,[]);expect(readCheckpoint
 function input(s:R2RunState):ScoreInput{const hand=s.handOrder.map(id=>s.deckInstances.find(c=>c.id===id)!);return {rulesVersion:'r2',runId:s.runId,rootId:s.runId+'/public',hand,selectedIds:s.handOrder,disabledIds:s.stage!.disabledIds,jokers:s.jokers,definitions:r2JokerDefinitionsFor(s),handLevels:s.handLevels,playIndex:s.stage!.playIndex+1,handsBeforePlay:s.stage!.handsLeft,previousHandType:s.stage!.previousHandType,wager:false,rng:s.rng.rule,...r2ScoreContext(s,hand,s.handOrder)};}
 function late(t:ReturnType<typeof score>){const index=t.events.indexOf(role(t));expect(index).toBe(t.events.findIndex(e=>e.phase==='finalScore')-1);for(const [i,e] of t.events.entries())if(e.phase==='jokerScore'||e.phase==='routeGrowth')expect(i).toBeLessThan(index);expect(t.events.filter(e=>e.sourceType==='character'&&e.phase==='characterScore')).toHaveLength(1);}
 describe('P1A exact active multiplier timing',()=>{
- it('forks only three route-selected heroes; every old retry retains exact identity',()=>{
-  for(const h of ['touye','xiemu','azao'] as const)for(const r of ['group','straight','flush'] as const)expect(newRunIdentity(h,r)).toEqual(activeIdentity);
-  for(const h of ['amo','erxiang','laohuan'] as const)expect(newRunIdentity(h,'group')).toEqual(routeIdentity);
-  for(const p of R2_RULESETS.filter(p=>p.contentVersion!==activeIdentity.contentVersion)){
+ it('new route-selected games use bounded identity; exact active-timing fixtures retain their explicit identity',()=>{
+  for(const h of ['touye','xiemu','azao'] as const)for(const r of ['group','straight','flush'] as const)expect(newRunIdentity(h,r)).toEqual({contentVersion:R2_BOUNDED_CLEAR_VERSION,contentHash:R2_BOUNDED_CLEAR_HASH});
+  for(const h of ['amo','erxiang','laohuan'] as const)expect(newRunIdentity(h,'group')).toEqual({contentVersion:R2_BOUNDED_CLEAR_VERSION,contentHash:R2_BOUNDED_CLEAR_HASH});
+  for(const p of R2_RULESETS.filter(p=>p.contentVersion!==activeIdentity.contentVersion&&!isR2BoundedClear(p))){
    const identity={contentVersion:p.contentVersion,contentHash:p.contentHash};
    const old=createRun({rulesVersion:'r2',characterId:p.contentVersion.includes('assist')?'amo':'touye',seed:'old-fixed',runId:'old-fixed',r2Identity:identity,...(isR2RouteStarter(identity)?{openingRoute:'group' as const}:{}),modeConfig:{mode:'standard',difficulty:0,challengeId:null,programsEnabled:false}});
    expect(launchIdentity(old.characterId,{kind:'retry',run:round(old)})).toEqual(identity);expect(r2ScoreContext(old,[],[])).not.toHaveProperty('activeMultTiming');

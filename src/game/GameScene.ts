@@ -1,4 +1,4 @@
-import {isR2ActiveMultTiming} from '../domain/r2GroupUpgrade';
+import {isR2ActiveMultTiming,isR2BoundedClear} from '../domain/r2GroupUpgrade';
 import {touyeComboCue} from './TouyeComboCue';
 import {azaoReleaseLabel,heroSkillGuide,heroOperationSteps,mountHeroSkillGuide} from './HeroSkillGuide';
 import {sourceImpact} from './SourceImpact';
@@ -306,7 +306,7 @@ export class GameScene extends Phaser.Scene {
     }
     this.run=controller.state;
     if(!['await-input','pending-refill'].includes(this.run.phase)||!this.run.stage){this.scene.start('character-select');return;}
-    this.stage=getStage(this.run.stage.index,this.run.tourMode,this.run.difficulty)!;this.characterId=this.run.characterId;settings();this.audio.setScene(this.stage.index%3===2?'boss':'table');
+    this.stage=getStage(this.run.stage.index,this.run.tourMode,this.run.difficulty,this.run)!;this.characterId=this.run.characterId;settings();this.audio.setScene(this.stage.index%3===2?'boss':'table');
     this.cameras.main.setBackgroundColor(C.paper);
     this.view=new SceneView(this,()=>{
       if(this.presentation)this.fastForward();
@@ -1494,7 +1494,7 @@ export class GameScene extends Phaser.Scene {
     return r2ScoreOperationText(event,event.sourceType==='joker'?this.jokerDefinition(event.sourceDefinitionId):undefined);
   }
   private eventSource(event:ScoreEvent):string {
-    if(event.sourceType==='rule'&&event.sourceDefinitionId==='route-growth')return '路线资历';
+    if(event.sourceType==='rule'&&event.sourceDefinitionId==='route-growth')return isR2BoundedClear(this.run)?'过关加成':'路线资历';
     const edition=event.reasonKey.startsWith('edition.')?editionLabel(event.reasonKey.split('.')[1] as PlayingCard['edition'])+' · ':'';
     if(event.sourceType==='joker')return edition+this.jokerDefinition(event.sourceDefinitionId).name;
     if(event.sourceType==='character'&&(event.reasonKey.startsWith('touye.won.')||event.reasonKey.startsWith('touye.lost.')))return '骰爷 · 押'+HAND_LABELS[event.reasonKey.split('.')[2] as TouyeTarget]+(event.reasonKey.startsWith('touye.won.')?'达成':usesTouyeNewCore(this.run)?'输约':'未成');

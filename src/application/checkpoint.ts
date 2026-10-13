@@ -1,5 +1,5 @@
 import {assertRouteGrowthTrace} from './routeGrowthTrace';
-import {isR2RouteGrowth,isR2ActiveMultTiming} from '../domain/r2GroupUpgrade';
+import {isR2RouteGrowth,isR2ActiveMultTiming,isR2BoundedClear} from '../domain/r2GroupUpgrade';
 import {validR2RouteHistory,type R2RouteHistory} from '../domain/r2RouteGrowth';
 import {usesErxiangHandoff,erxiangHandoffStep,type ErxiangHandoffTrace} from '../domain/r2ErxiangHandoff';
 import {isR2ToolSupply} from '../domain/r2GroupUpgrade';
@@ -142,7 +142,7 @@ function touyeCommit(value:unknown,enhancements:boolean,newCore=false):void {
  if(newCore){const p=record(c.refill,['handLimit','handAfter','refilledIds']);integer(p.handLimit,1,14);uniqueIds(p.handAfter,14);uniqueIds(p.refilledIds,14);}
  const rules=record(c.rules,['fourStraight','fourFlush']);bool(rules.fourStraight);bool(rules.fourFlush);if(!validTouyeCommit(c as unknown as TouyeCommit,newCore))fail('invalid-save-touye-commit');
 }
-function trace(value:unknown,context:{activeMultTiming:boolean;erxiang:boolean;touye:boolean;newTouye:boolean;laohuan:boolean;xiemu:boolean;azao:boolean;phase:R2RunState['phase'];routeGrowth?:R2RouteHistory;group:boolean;combo:boolean;definitions:ReturnType<typeof r2JokerDefinitionsFor>;runId:string;characterId:string;amoScoreTiming:'before-joker'|'after-joker'|'assist-v1';discoveredHands:readonly string[];levels:R2RunState['handLevels'];stage:R2RunState['stage'];stageIndex:number;config:R2ModeConfig;program:R2ProgramState|null;usage:R2RunState['chapterHandUsage'];liveJokerIds?:readonly string[];liveJokers?:readonly R2JokerInstance[];settledGold?:number}):void {
+function trace(value:unknown,context:{boundedClear:boolean;activeMultTiming:boolean;erxiang:boolean;touye:boolean;newTouye:boolean;laohuan:boolean;xiemu:boolean;azao:boolean;phase:R2RunState['phase'];routeGrowth?:R2RouteHistory;group:boolean;combo:boolean;definitions:ReturnType<typeof r2JokerDefinitionsFor>;runId:string;characterId:string;amoScoreTiming:'before-joker'|'after-joker'|'assist-v1';discoveredHands:readonly string[];levels:R2RunState['handLevels'];stage:R2RunState['stage'];stageIndex:number;config:R2ModeConfig;program:R2ProgramState|null;usage:R2RunState['chapterHandUsage'];liveJokerIds?:readonly string[];liveJokers?:readonly R2JokerInstance[];settledGold?:number}):void {
   if(value===null)return;
   const R2_JOKERS=context.definitions,combo=context.combo,group=context.group,routeProfile=context.routeGrowth!==undefined;
   const stage=context.stage;if(!stage)return fail('invalid-save-trace-stage');
@@ -203,7 +203,7 @@ function trace(value:unknown,context:{activeMultTiming:boolean;erxiang:boolean;t
     if(['H','M'].some(key=>Rational.fromJSON(a[key]).compare(Rational.fromJSON(b[key]))!==0))fail('invalid-save-resource-score');
   };
   for(const item of events){
-    const e=record(item,['eventId','rootId','rootEventId','phase','sourceType','sourceDefinitionId','sourceInstanceId','operation','value','before','after','reasonKey','visibleCondition','retriggerDepth'],['targetCardId','targetJokerInstanceId','resourceBefore','resourceAfter','targetHandType','growthBefore','growthAfter','rewardDefinitionId','programGoldBeforeReward',...(combo?['goldBeforeRewards']:[]),...(routeProfile?['routeFamily']:[])]);
+    const e=record(item,['eventId','rootId','rootEventId','phase','sourceType','sourceDefinitionId','sourceInstanceId','operation','value','before','after','reasonKey','visibleCondition','retriggerDepth'],['targetCardId','targetJokerInstanceId','resourceBefore','resourceAfter','targetHandType','growthBefore','growthAfter','rewardDefinitionId','programGoldBeforeReward',...(combo?['goldBeforeRewards']:[]),...(routeProfile?['routeFamily']:[]),...(context.boundedClear?['routePolicy','routeCap']:[])]);
     for(const k of ['eventId','rootId','rootEventId','sourceDefinitionId','sourceInstanceId','reasonKey'])text(e[k]);
     if(e.rootId!==t.rootId||eventIds.has(e.eventId))fail('invalid-save-trace-root');eventIds.add(e.eventId);rootEventIds.push(e.rootEventId);
     oneOf(e.phase,['base','onCardScore','onHeldCard','characterScore','jokerScore',...(routeProfile?['routeGrowth']:[]),'finalScore','afterHand','beforeFailure','onStageClear']);
@@ -681,7 +681,7 @@ function trace(value:unknown,context:{activeMultTiming:boolean;erxiang:boolean;t
     if(source.definitionId==='f06'&&joker.counters?.handsScored!==lifetimeCounts.get(joker.instanceId))fail('invalid-save-lifetime-result');
     if(source.definitionId==='f08'&&!disabledJokers.has(joker.instanceId)&&(!chanceChecks.has(joker.instanceId)||chanceChecks.get(joker.instanceId)!==chanceHeat.has(joker.instanceId)))fail('invalid-save-chance-result');
   }
-  if(routeProfile)assertRouteGrowthTrace(t as unknown as ScoreTrace,context.routeGrowth!,stage,context.runId,successfulStage,R2_JOKERS,context.activeMultTiming);
+  if(routeProfile)assertRouteGrowthTrace(t as unknown as ScoreTrace,context.routeGrowth!,stage,context.runId,successfulStage,R2_JOKERS,context.activeMultTiming,context.boundedClear);
   for(const [id,cycle] of clearCycles)if((cycle===0)!==rewardSources.has(id))fail('invalid-save-clear-cycle-reward');
 }
 function action(value:unknown,state:R2RunState):void {
@@ -817,7 +817,7 @@ function validateState(value:unknown):asserts value is R2RunState {
     if(Math.floor((t.index as number)/3)+1===s.chapter&&t.challengeDisabledJokerId!==s.chapterDisabledJokerId)fail('invalid-save-stage-challenge-ban');
     if((t.index as number)%3===2){bossPlan(t.boss);if(t.boss.definitionId!==(s.seenBossIds as string[])[Math.floor((t.index as number)/3)])fail('invalid-save-stage-boss');}
     else if(t.boss!==null)fail('invalid-save-stage-boss');
-    if(t.initialTargetHeat!==r2StageSpec(t.index as number,tourMode,config.difficulty)?.targetHeat)fail('invalid-save-initial-target');
+    if(t.initialTargetHeat!==r2StageSpec(t.index as number,tourMode,config.difficulty,isR2BoundedClear(s)?'bounded-clear-v1':'legacy')?.targetHeat)fail('invalid-save-initial-target');
     integer(t.initialHands,R2_RESOURCE_CONTRACT.handsMinimum,config.baseHands+R2_RESOURCE_CONTRACT.handsMaximum-R2_LIMITS.hands);
     integer(t.initialDiscards,config.baseDiscards,config.baseDiscards+R2_RESOURCE_CONTRACT.discardsMaximum-R2_LIMITS.discards);bool(t.doubleDiscardBeforeFirstPlay);
     if(t.index===s.stageIndex&&['await-input','pending-refill','run-lost'].includes(s.phase as string)){
@@ -870,7 +870,7 @@ function validateState(value:unknown):asserts value is R2RunState {
     }
   }
   const stage=s.stage as R2RunState['stage'],sameStage=stage?.index===s.stageIndex&&['await-input','pending-refill','run-lost'].includes(s.phase as string);
-  trace(s.lastTrace,{activeMultTiming:isR2ActiveMultTiming(s),routeGrowth:isR2RouteGrowth(s)?s.routeGrowth as R2RouteHistory:undefined,erxiang:usesErxiangHandoff(s),touye:usesTouyeWager(s),newTouye:usesTouyeNewCore(s),laohuan:usesLaohuanRefill(s),xiemu:usesXiemuBurn(s),azao:usesAzaoCharge(s),phase:s.phase as R2RunState['phase'],group:hasR2GroupUpgradeContract(s),combo,definitions:r2JokerDefinitionsFor(s),runId:s.runId as string,characterId:s.characterId as string,amoScoreTiming:r2ScoreTimingFor(s),discoveredHands:Object.keys(levels),levels:levels as R2RunState['handLevels'],stage,stageIndex:s.stageIndex as number,
+  trace(s.lastTrace,{boundedClear:isR2BoundedClear(s),activeMultTiming:isR2ActiveMultTiming(s),routeGrowth:isR2RouteGrowth(s)?s.routeGrowth as R2RouteHistory:undefined,erxiang:usesErxiangHandoff(s),touye:usesTouyeWager(s),newTouye:usesTouyeNewCore(s),laohuan:usesLaohuanRefill(s),xiemu:usesXiemuBurn(s),azao:usesAzaoCharge(s),phase:s.phase as R2RunState['phase'],group:hasR2GroupUpgradeContract(s),combo,definitions:r2JokerDefinitionsFor(s),runId:s.runId as string,characterId:s.characterId as string,amoScoreTiming:r2ScoreTimingFor(s),discoveredHands:Object.keys(levels),levels:levels as R2RunState['handLevels'],stage,stageIndex:s.stageIndex as number,
     config,program:s.program as R2ProgramState|null,usage:usage as R2RunState['chapterHandUsage'],
     liveJokerIds:sameStage?(s.jokers as R2JokerInstance[]).map(joker=>joker.instanceId):undefined,liveJokers:combo||sameStage?s.jokers as R2JokerInstance[]:undefined,settledGold:['stage-cleared','run-won'].includes(s.phase as string)?s.gold as number:undefined});
   const program=s.program as R2ProgramState|null;
