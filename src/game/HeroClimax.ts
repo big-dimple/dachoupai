@@ -9,16 +9,17 @@ import type {JokerKeyHighlight} from './JokerKeyHighlight';
 import type {R2RunState} from '../domain/r2Run';
 import type {ScoreTrace} from '../domain/scoreR2';
 import {readableFractionText} from './scoreText';
-import {multiplierOverview,readableMultiplierEffect} from './ScoreEventCaption';
+import {readableMultiplierEffect} from './ScoreEventCaption';
+import {scoreSourceProcess,scoreSourceClimaxValue} from './ScoreSourceProcess';
 import {selectionPortraitKey,avatarKey} from './portraits';
 import {jokerArtKey} from './jokerArt';
 import {getCharacter} from './characters';
 import {SCORE_FONT,UI_FONT,PAPER_THEME as T,PAPER_CSS as C} from './theme';
-export interface HeroClimaxValue {label:string;before:string;after:string;note:string}
+export interface HeroClimaxValue {label:string;before:string;after:string;note:string;accumulated?:string}
 /** Saved capability payoffs and actual bursts; legacy opening keys retain their receipt checks. */
 export function heroClimaxValue(state:R2RunState,trace:ScoreTrace,key:JokerKeyHighlight,replay=false):HeroClimaxValue|undefined {
  if(replay||!key.heroId||key.heroId!==state.characterId)return;
- if(key.kind==='payoff'||key.kind==='burst'){const actual=heroPayoffs(state,trace).find(k=>k.eventId===key.eventId&&k.kind===key.kind);const event=trace.events.find(e=>e.eventId===key.eventId);if(!actual||!event)return;return {label:'实际倍率',before:'×'+multiplierOverview(event.before.M,true),after:'×'+multiplierOverview(event.after.M,true),note:readableMultiplierEffect(actual.fact.effect,event.value)};}
+ if(key.kind==='payoff'||key.kind==='burst'){const actual=heroPayoffs(state,trace).find(k=>k.eventId===key.eventId&&k.kind===key.kind);const event=trace.events.find(e=>e.eventId===key.eventId);if(!actual||!event)return;const cue=scoreSourceProcess(trace,event,actual.fact.title);return cue&&scoreSourceClimaxValue(cue,readableMultiplierEffect(actual.fact.effect,event.value));}
  if(state.phase==='run-lost')return;
  const stamp=state.openingShow;
  if(!stamp||stamp.rootId!==trace.rootId||stamp.eventId!==key.eventId||stamp.handsScored>5)return;
@@ -31,7 +32,8 @@ export function heroClimaxValue(state:R2RunState,trace:ScoreTrace,key:JokerKeyHi
   if(!before||!after)return;
   return {label:'成长已保存',before:readableFractionText(before),after:readableFractionText(after),note:'下手生效 · 不加本手分'};
  }
- if(event.before.M.n!==event.after.M.n||event.before.M.d!==event.after.M.d)return {label:'实际倍率',before:'×'+readableFractionText(event.before.M),after:'×'+readableFractionText(event.after.M),note:readableMultiplierEffect(key.fact.effect,event.value)};
+ const cue=scoreSourceProcess(trace,event,key.fact.title);
+ if(cue)return scoreSourceClimaxValue(cue,readableMultiplierEffect(key.fact.effect,event.value));
  return {label:'实际热度',before:readableFractionText(event.before.H),after:readableFractionText(event.after.H),note:readableMultiplierEffect(key.fact.effect,event.value)};
 }
 export interface HeroClimaxView {group:Phaser.GameObjects.Container;strike:()=>void;release:()=>Promise<void>;reduce:()=>void;dispose:()=>void}
@@ -60,9 +62,10 @@ export function mountHeroClimax(scene:Phaser.Scene,root:Phaser.GameObjects.Conta
  const labelY=layout.readout.y;
  // Portrait recoil can cross the number column; keep its saved facts on opaque paper.
  board.add(scene.add.rectangle(contentX+contentW/2,labelY+layout.readout.height/2-8,contentW+16,layout.readout.height+16,T.paperLight,.97).setName('hero/climax-readout-paper'));
- text(contentX,labelY,value.label,short?16:18,C.jade,contentW);
+ text(contentX,labelY,value.label,short?16:18,C.jade,contentW).setName('hero/climax-value-label');
  const readout=scene.add.text(contentX+contentW/2,layout.valueY,value.before,{fontFamily:SCORE_FONT,fontSize:(short?42:portrait?64:92)+'px',fontStyle:'800',color:C.red,resolution:Math.max(1.5,1/scene.scale.zoom)}).setOrigin(.5,0).setName('hero/climax-value');board.add(readout);
- const fitValue=()=>{readout.setScale(Math.min(1,contentW/readout.width));};fitValue();
+ const valueFit=()=>Math.min(1,contentW/readout.width,value.accumulated?(layout.noteY-layout.valueY-8)/readout.height:1);
+ const fitValue=()=>{readout.setScale(valueFit());};fitValue();
  const note=text(contentX,layout.noteY,value.note,short?14:16,C.ink,contentW).setName('hero/climax-note');
  const sourceY=layout.sourceCaption.y,sourceX=layout.sourceCaption.x,sourceW=layout.sourceCaption.width;
  board.add(scene.add.rectangle(sourceX+sourceW/2,sourceY+layout.sourceCaption.height/2,sourceW+12,layout.sourceCaption.height,T.paperLight,1).setStrokeStyle(1,T.ink,.45));
@@ -77,7 +80,7 @@ export function mountHeroClimax(scene:Phaser.Scene,root:Phaser.GameObjects.Conta
   sourceCard.setAngle(3);
  }
  text(sourceX,sourceY,(key.fact.definitionId?'实际来源 · ':'')+key.fact.title,short?14:18,C.ink,sourceW).setName('hero/climax-source-title');
- text(sourceX,sourceY+(short?22:30),key.landing,short?14:16,C.jade,sourceW).setName('hero/climax-landing');
+ text(sourceX,sourceY+(short?22:30),value.accumulated??key.landing,short?14:16,C.jade,sourceW).setName('hero/climax-landing');
  const brush=scene.add.graphics().setName('hero/climax-ink-brush');board.addAt(brush,1);
  for(let i=0;i<7;i++){const y=panelY+panelH*(.12+i*.11);brush.fillStyle(i%2?T.jade:T.ink,i%2?.16:.11).fillPoints([{x:-w*.2,y:y+14},{x:w*(.42+(i%3)*.09),y:y-22},{x:w*.56,y:y+25},{x:-w*.08,y:y+40}],true);}
  const foreground=scene.add.container(0,0);board.addAt(foreground,board.list.indexOf(hero)+1);
@@ -92,7 +95,7 @@ export function mountHeroClimax(scene:Phaser.Scene,root:Phaser.GameObjects.Conta
   strike:()=>{if(disposed||struck)return;struck=true;group.setData('phase','strike').setData('strikeAt',performance.now());readout.setText(value.after);fitValue();note.setText(value.note);if(still)return;
    for(const t of owned)t.remove();owned.clear();board.setPosition(0,0).setAlpha(1);if(sourceDetail)sourceCard?.setScale(1.06).setAngle(-2);if(sourceCard&&sourceDetail)tween({targets:sourceCard,scaleX:1,scaleY:1,angle:3,duration:340,ease:inkSettlingEase(.32)});hero.setPosition(heroX+18,heroY+(portrait?32:-18)).setScale(heroScale*1.16).setAngle(-9);brush.setPosition(-w*.05,0).setScale(1.16,1);
    burst=mountInkBurst(scene,foreground,heroX,heroY+heroH*.12,Math.min(w,h)*.48,T.red,820,24);
-   const readoutY=layout.valueY,fit=Math.min(1,contentW/readout.width);readout.setY(readoutY+8).setScale(fit,fit*1.23);
+   const readoutY=layout.valueY,fit=valueFit();readout.setY(readoutY+(value.accumulated?0:8)).setScale(fit,value.accumulated?fit:fit*1.23);
    tween({targets:hero,x:heroX,y:heroY,scaleX:heroScale,scaleY:heroScale,angle:-5,duration:420,ease:inkSettlingEase(.30)});tween({targets:brush,x:0,scaleX:1,duration:520,ease:'Cubic.easeOut'});tween({targets:readout,y:readoutY,scaleX:fit,scaleY:fit,duration:340,ease:inkSettlingEase(.32)});
   },
   release:()=>new Promise<void>(resolve=>{if(disposed||still){resolve();return;}group.setData('phase','release').setData('releaseAt',performance.now());burst?.dispose();burst=undefined;releaseDone=resolve;tween({targets:brush,x:w*.3,alpha:0,duration:180,ease:'Cubic.easeIn'});tween({targets:board,x:w*.16,alpha:0,duration:180,ease:'Cubic.easeIn',onComplete:()=>{releaseDone=undefined;resolve();}});tween({targets:dim,alpha:0,duration:180});}),

@@ -1,0 +1,13 @@
+{
+  "product": "d7d92c0aca154a145a51c5d4c989d1aa62e8f495",
+  "testCommand": "npm test -- --run tests/hero-ability-cue.test.ts tests/score-source-process.test.ts tests/hero-climax.test.ts tests/hero-payoff.test.ts tests/score-event-caption.test.ts",
+  "tests": {
+    "exitCode": 0,
+    "files": 5,
+    "passed": 34
+  },
+  "typecheck": {
+    "command": "npm run typecheck",
+    "exitCode": 0
+  }
+}

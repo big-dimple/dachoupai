@@ -1,0 +1,24 @@
+Command: npm test -- --run tests/hero-ability-cue.test.ts tests/score-source-process.test.ts tests/hero-climax.test.ts tests/hero-payoff.test.ts tests/score-event-caption.test.ts tests/source-impact.test.ts tests/score-presentation.test.ts tests/score-text-layout.test.ts
+Then: npm run typecheck
+Exit code: 0
+
+ Test Files  8 passed (8)
+      Tests  57 passed (57)
+   Start at  15:54:03
+   Duration  5.29s (transform 5.91s, setup 0ms, import 8.19s, tests 3.86s, environment 1ms)
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice
+
+> dachoupai@0.1.0 typecheck
+> tsc --noEmit
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice
+
