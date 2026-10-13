@@ -5,6 +5,7 @@ import {r2JokerCapacity} from '../domain/r2Resources';
 import {r2JokerDefinitionFor,r2JokerDefinitionsFor} from '../domain/r2ContentProfiles';
 import {r2ScoringDisabledJokerIds} from '../domain/scoreR2';
 import {Rational} from '../domain/rational';
+import {R2_EDITIONS} from '../content/r2Tools';
 
 /** A narrow proven cost: a zero-initial-growth purchase disables retained Baochang.
  * Clone-only; no hand forecast, hidden draws, score search, save or dispatch. */
@@ -15,13 +16,20 @@ export function shopDeferredGrowthCashRisk(before:R2RunState,offer:R2Offer,sold:
  const disabled=new Set(r2ScoringDisabledJokerIds(boss,before.jokers,definitions,sealed,before.chapterDisabledJokerId));
  const retained=before.jokers.filter(j=>j.instanceId!==sold.instanceId),bao=retained.find(j=>j.definitionId==='e08'&&!disabled.has(j.instanceId));
  const candidate=definitions.find(d=>d.id===offer.definitionId),scorePhases=['onCardScore','onHeldCard','jokerScore'];
- if(!bao||!candidate||(offer.edition??'none')!=='none'||candidate.modifiers?.length||candidate.hooks.some(h=>h.operations.some(o=>!['read-growth','add-growth','update-score-growth'].includes(o.kind))))return;
+ if(!bao||!candidate||candidate.modifiers?.length||candidate.hooks.some(h=>h.operations.some(o=>!['read-growth','add-growth','update-score-growth'].includes(o.kind))))return;
  const candidateScoreOps=candidate.hooks.filter(h=>scorePhases.includes(h.phase)).flatMap(h=>h.operations);
+ // Other bodies are unassessed by this zero-initial-growth rule, not certified
+ // as compensation merely because they contain another operation type.
  if(!candidateScoreOps.length||candidateScoreOps.some(o=>o.kind!=='read-growth'))return;
  const result=applyCommand(afterSale,{runId:afterSale.runId,commandId:afterSale.runId+'/recommendation-buy/'+(afterSale.commandSeq+1),expectedSeq:afterSale.commandSeq,action:{type:'BuyOffer',offerId:offer.offerId}});
  if(!result.ok||result.state.gold>=20)return;
  const after=result.state,fresh=after.jokers.find(j=>!before.jokers.some(old=>old.instanceId===j.instanceId));
- if(!fresh||fresh.definitionId!==offer.definitionId||(fresh.edition??'none')!=='none')return;
+ if(!fresh||fresh.definitionId!==offer.definitionId)return;
+ const afterDisabled=new Set(r2ScoringDisabledJokerIds(boss,after.jokers,r2JokerDefinitionsFor(after),sealed,after.chapterDisabledJokerId));
+ const edition=R2_EDITIONS.find(e=>e.id===(fresh.edition??'none'))?.effect;
+ // An actual enabled numeric edition is a nonzero current source, not proof
+ // that it offsets the lost multiplier. A disabled badge grants no exception.
+ if(!afterDisabled.has(fresh.instanceId)&&edition&&Rational.fromJSON(edition.value).compare(new Rational(edition.kind==='multiply-multiplier'?1n:0n))>0)return;
  const d=r2JokerDefinitionFor(after,fresh.definitionId);
  const scoreOps=d.hooks.filter(h=>scorePhases.includes(h.phase)).flatMap(h=>h.operations);
  if(d.modifiers?.length||!scoreOps.length||scoreOps.some(o=>o.kind!=='read-growth'||Rational.fromJSON(fresh.growth[o.key]??{n:'0',d:'1'}).compare(new Rational(0n))!==0))return;

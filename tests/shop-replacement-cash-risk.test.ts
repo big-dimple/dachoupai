@@ -42,6 +42,19 @@ it('ordinary zero-growth readers are eligible, while immediate heat, retrigger a
  for(const id of ['c04','b06','a06','f06']){const s=replacementCashRiskFixture(22,id);expect(risk(s)).toBeUndefined();}
  expect(risk(replacementCashRiskFixture(22,'b10','foil'))).toBeUndefined();
 });
+it('a live edition is a real source, while a banned edition does not exempt the same zero-growth reader',()=>{
+ const s=replacementCashRiskFixture(22,'b10','foil'),o=s.shop!.offers[0],sold=s.jokers[2];
+ const after=send(send(s,{type:'SellJoker',instanceId:sold.instanceId}),{type:'BuyOffer',offerId:o.offerId}),fresh=after.jokers.find(j=>j.definitionId==='b10')!;
+ expect(shopC2Score(after,['spades-7','hearts-7']).trace.events.some(e=>e.sourceInstanceId===fresh.instanceId&&e.operation==='add-heat'&&e.value?.n==='25')).toBe(true);
+ const banned=f06RecommendationFixture(2,{disabled:true});banned.jokers=s.jokers;banned.gold=22;banned.shop!.offers=s.shop!.offers;banned.chapterDisabledJokerId='b10';assertRunInvariants(banned);
+ expect(risk(banned)).toBeDefined();expect(shopRecommendation(banned,o,'group',banned.jokers[2]).stars).toBe(1);
+});
+it('one actual retrigger compensation improves the fixed hand, without claiming every retrigger trade pays',()=>{
+ const s=replacementCashRiskFixture(22,'b06'),o=s.shop!.offers[0],sold=s.jokers[2];
+ for(const id of ['spades-7','hearts-7']){const c=s.deckInstances.find(c=>c.id===id)!;c.enhancement='multiplier-paper';c.edition='holographic';}assertRunInvariants(s);
+ const before=shopC2Score(s,['spades-7','hearts-7']).trace,after=send(send(s,{type:'SellJoker',instanceId:sold.instanceId}),{type:'BuyOffer',offerId:o.offerId}),t=shopC2Score(after,['spades-7','hearts-7']).trace;
+ expect(t.events.some(e=>e.sourceDefinitionId==='b06'&&e.operation==='retrigger-card')).toBe(true);expect(BigInt(t.finalScore)).toBeGreaterThan(BigInt(before.finalScore));expect(risk(s)).toBeUndefined();
+});
 it('a currently banned retained cash source and a changed hand-rule donor are not assumed to supply lost strength',()=>{
  const prepared=replacementCashRiskFixture(),s=f06RecommendationFixture(2,{disabled:true});s.jokers=prepared.jokers;s.gold=22;s.shop!.offers=prepared.shop!.offers;s.chapterDisabledJokerId='e08';assertRunInvariants(s);
  expect(risk(s)).toBeUndefined();expect(shopRecommendation(s,s.shop!.offers[0],'group',s.jokers[2]).stars).toBe(4);
