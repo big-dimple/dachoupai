@@ -177,7 +177,7 @@ export function shopRecommendation(state:R2RunState,offer:R2Offer,focus?:BuildFo
   case 'route-transition':return result(straightConcentrated&&flushConcentrated&&ordinaryStraightPossible&&ordinaryFlushPossible?4:2,'普通顺花交替相乘','首手与同花顺不触发');
   case 'no-discard':return result(additiveSource&&(groupReady||flushReady||straightReady)?4:3,'未弃牌相乘','本场成功弃牌即停用');
   case 'third-play':return result(3,'第三手相乘','本场每第3次出牌');
-  case 'temporary-multiply':return result(stage==='late'?3:2,'短期爆发相乘','第4次出牌后销毁');
+  case 'temporary-multiply':return result(2,'限4次','第4次出牌后销毁');
   case 'chance-heat':return result(2,'随机补热度','每手1/3 · 未中为0');
   case 'held-face':case 'held-multiply':{const n=count(c=>c.rank>=11&&c.rank<=13);return result(n===0?1:n>=Math.ceil(cards.length*.4)?4:2,'人头持牌收益','需把JQK留下');}
   case 'held-low':return result(count(c=>c.rank<=5)===0?1:2,'低点持牌加热','前4位持牌2至5');
