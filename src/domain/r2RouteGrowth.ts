@@ -25,7 +25,16 @@ export interface R2RouteHistory extends R2RouteProgress {settlements:R2RouteSett
 export interface R2RouteHandSource {command:Command;cards:PlayingCard[];rules:{fourStraight:boolean;fourFlush:boolean}}
 export interface R2RouteStageEntry {commandId:string;seq:number;type:'EnterStage'|'SkipStage'}
 export interface R2RouteStage {entry:R2RouteStageEntry;handTypes:R2HandType[];eligible:R2RouteFamily[];sources:R2RouteHandSource[]}
-export interface R2RouteGrowthTrace {before:R2RouteProgress;factors:Partial<Record<R2RouteFamily,Fraction>>}
+export const R2_BOUNDED_ROUTE_RULE=Object.freeze({
+  policy:'bounded-max-v1' as const,cap:Object.freeze({n:'4',d:'1'}),
+  rates:R2_ROUTE_GROWTH_RULE.rates,graceClears:3,selection:'maximum-qualified-family-G-S-F-tie-order',
+  settlement:R2_ROUTE_GROWTH_RULE.settlement,snapshot:R2_ROUTE_GROWTH_RULE.snapshot,
+});
+export type R2RouteGrowthPolicy='legacy'|'bounded-max-v1';
+export interface R2RouteGrowthTrace {
+  before:R2RouteProgress;factors:Partial<Record<R2RouteFamily,Fraction>>;
+  applied?:{policy:'bounded-max-v1';factor:Fraction;family:R2RouteFamily|null;cap:Fraction};
+}
 const exact=(value:unknown,keys:readonly string[]):value is Record<string,unknown>=>!!value&&typeof value==='object'&&!Array.isArray(value)&&Object.keys(value).length===keys.length&&keys.every(k=>Object.hasOwn(value,k));
 const natural=(value:unknown):value is number=>Number.isSafeInteger(value)&&(value as number)>=0;
 export function validR2RouteProgress(value:unknown):value is R2RouteProgress {
@@ -59,9 +68,15 @@ export function r2RouteFactor(family:R2RouteFamily,clears:number):Rational {
   const values=factors[family],exponent=Math.max(clears-R2_ROUTE_GROWTH_RULE.graceClears,0);
   return values[Math.min(exponent,values.length-1)];
 }
-export function r2RouteGrowthTrace(before:R2RouteProgress,type:R2HandType):R2RouteGrowthTrace {
+export function r2RouteGrowthTrace(before:R2RouteProgress,type:R2HandType,policy:R2RouteGrowthPolicy='legacy'):R2RouteGrowthTrace {
   if(!validR2RouteProgress(before))throw Error('invalid-route-growth-snapshot');
-  return {before:structuredClone(before),factors:Object.fromEntries(r2RouteFamilies(type).map(f=>[f,r2RouteFactor(f,before[f]).toJSON()]))};
+  if(policy!=='legacy'&&policy!=='bounded-max-v1')throw Error('invalid-route-growth-policy');
+  const families=r2RouteFamilies(type),limit=Rational.fromJSON(R2_BOUNDED_ROUTE_RULE.cap);
+  const factors=Object.fromEntries(families.map(f=>{const raw=r2RouteFactor(f,before[f]);return [f,(policy==='bounded-max-v1'&&raw.compare(limit)>0?limit:raw).toJSON()];})) as R2RouteGrowthTrace['factors'];
+  if(policy==='legacy')return {before:structuredClone(before),factors};
+  let family:R2RouteFamily|null=null,factor=new Rational(1n);
+  for(const f of families){const value=Rational.fromJSON(factors[f]!);if(family===null||value.compare(factor)>0){family=f;factor=value;}}
+  return {before:structuredClone(before),factors,applied:{policy,family,factor:factor.toJSON(),cap:{...R2_BOUNDED_ROUTE_RULE.cap}}};
 }
 export function recordR2RouteHand(stage:R2RouteStage,type:R2HandType,source:R2RouteHandSource):void {
   if(evaluateR2Hand(source.cards,source.rules).type!==type)throw Error('invalid-route-main-source');

@@ -37,6 +37,7 @@ export const R2_BASE_SCORES = R2_PUBLISHED_CONTENT.snapshot.hands as unknown as 
 export interface ScoreInput {
   /** Required for the exact C2 content profile; never inferred from Joker ownership. */
   routeGrowth?:R2RouteProgress;
+  routeGrowthPolicy?:'bounded-max-v1';
   /** Only the new saved identity opts into moving explicit active multipliers. */
   activeMultTiming?:'after-route-growth';
   erxiangHandoff?:ErxiangHandoffIntent;
@@ -62,6 +63,7 @@ export interface ScoreInput {
 export interface Accumulator { H: Fraction; M: Fraction }
 export interface ScoreEvent {
   routeFamily?:R2RouteFamily;
+  routePolicy?:'bounded-max-v1';routeCap?:Fraction;
   eventId: string; rootId: string; rootEventId: string; phase: ScorePhase;
   sourceType: 'rule' | 'card' | 'character' | 'joker'; sourceDefinitionId: string; sourceInstanceId: string;
   targetCardId?: string; targetJokerInstanceId?:string; operation: string; value: Fraction; before: Accumulator; after: Accumulator;
@@ -143,6 +145,7 @@ function resolveScore(input: PublicScoreInput, policy: ResolvePolicy): ScoreTrac
   if(challengeDisabledJokerId!==null&&(typeof challengeDisabledJokerId!=='string'||!input.definitions.some(definition=>definition.id===challengeDisabledJokerId)))throw new Error('invalid-score-challenge-ban');
   for (const [type, level] of Object.entries(input.handLevels)) if (!R2_HAND_TYPES.includes(type as R2HandType) || !Number.isInteger(level) || level! < 1 || level! > SCORE_LIMITS.handLevel) throw new Error('invalid-hand-level');
   const routeProfile=hasR2RouteGrowthDefinitions(input.definitions);
+  if(input.routeGrowthPolicy!==undefined&&(!routeProfile||input.routeGrowthPolicy!=='bounded-max-v1'))throw Error('invalid-route-growth-policy');
   if(input.activeMultTiming!==undefined&&(input.activeMultTiming!=='after-route-growth'||!routeProfile||!['touye','xiemu','azao','neutral'].includes(input.characterId)))throw Error('invalid-active-mult-timing');
   if(routeProfile?!validR2RouteProgress(input.routeGrowth):input.routeGrowth!==undefined)throw Error('invalid-route-growth-snapshot');
   const errors = validateR2Content(input.definitions,routeProfile?'route-growth-v1':'published');
@@ -206,13 +209,13 @@ function resolveScore(input: PublicScoreInput, policy: ResolvePolicy): ScoreTrac
     : policy.kind === 'preview' && policy.bound === 'maximum';
   const snapshot = (): Accumulator => ({ H: H.toJSON(), M: M.toJSON() });
   type Source = Pick<ScoreEvent, 'sourceType'|'sourceDefinitionId'|'sourceInstanceId'>;
-  type EventDetails = {routeFamily?:R2RouteFamily;reasonKey?:string; resourceBefore?:number; resourceAfter?:number;growthBefore?:Fraction;growthAfter?:Fraction};
+  type EventDetails = {routeFamily?:R2RouteFamily;routePolicy?:'bounded-max-v1';routeCap?:Fraction;reasonKey?:string; resourceBefore?:number; resourceAfter?:number;growthBefore?:Fraction;growthAfter?:Fraction};
   const emit = (phase: ScorePhase, source: Source, operation: ScoreOperation, value: Rational, mutate: () => void, condition: Condition = {kind:'always'}, card?: PlayingCard, depth = 0, rootEventId?: string, details:EventDetails = {}) => {
     if (events.length >= SCORE_LIMITS.eventCount) throw new ScoreFault('event-limit', immutable(structuredClone(events)));
     const before = snapshot(); mutate();
     const eventId = `${input.rootId}/event/${events.length}`;
     events.push({ eventId, rootId: input.rootId, rootEventId: rootEventId ?? eventId, phase, ...source, ...(card ? {targetCardId:card.id} : {}), operation, value: value.toJSON(), before, after: snapshot(), reasonKey: details.reasonKey ?? `${source.sourceDefinitionId}.${operation}`, visibleCondition: structuredClone(condition), retriggerDepth: depth,
-      ...(details.routeFamily?{routeFamily:details.routeFamily}:{}),...(details.resourceBefore === undefined ? {} : {resourceBefore:details.resourceBefore,resourceAfter:details.resourceAfter}),...(details.growthBefore===undefined?{}:{growthBefore:details.growthBefore,growthAfter:details.growthAfter}) });
+      ...(details.routeFamily?{routeFamily:details.routeFamily}:{}),...(details.routePolicy?{routePolicy:details.routePolicy,routeCap:details.routeCap}:{}),...(details.resourceBefore === undefined ? {} : {resourceBefore:details.resourceBefore,resourceAfter:details.resourceAfter}),...(details.growthBefore===undefined?{}:{growthBefore:details.growthBefore,growthAfter:details.growthAfter}) });
   };
   const cardSource = (card:PlayingCard):Source => ({sourceType:'card',sourceDefinitionId:card.id,sourceInstanceId:card.id});
   type MathOperation = 'add-heat'|'add-multiplier'|'multiply-multiplier';
@@ -398,10 +401,11 @@ function resolveScore(input: PublicScoreInput, policy: ResolvePolicy): ScoreTrac
     case 'xiemu': if(xiemuBurn){if(xiemuBurn.multiplier)activeChar(new Rational(BigInt(xiemuBurn.multiplier)));}else if (input.handsBeforePlay === 1) char('multiply-multiplier', new Rational(2n)); break;
   }
   hook('jokerScore');
-  const routeGrowth=routeProfile?r2RouteGrowthTrace(input.routeGrowth!,evaluated.type):undefined;
-  if(routeGrowth)for(const family of r2RouteFamilies(evaluated.type)){
-    const value=r2RouteFactor(family,routeGrowth.before[family]);
-    emit('routeGrowth',{sourceType:'rule',sourceDefinitionId:'route-growth',sourceInstanceId:input.runId},'route-factor',value,()=>{M=M.multiply(value);},{kind:'hand-type-in',values:R2_ROUTE_HAND_TYPES[family]},undefined,0,undefined,{reasonKey:`route-growth.${family}.factor`,routeFamily:family,resourceBefore:routeGrowth.before[family],resourceAfter:routeGrowth.before[family]});
+  const routeGrowth=routeProfile?r2RouteGrowthTrace(input.routeGrowth!,evaluated.type,input.routeGrowthPolicy):undefined;
+  const routeReads=routeGrowth?.applied?(routeGrowth.applied.family?[routeGrowth.applied.family]:[]):r2RouteFamilies(evaluated.type);
+  if(routeGrowth)for(const family of routeReads){
+    const value=Rational.fromJSON(routeGrowth.factors[family]!);
+    emit('routeGrowth',{sourceType:'rule',sourceDefinitionId:'route-growth',sourceInstanceId:input.runId},'route-factor',value,()=>{M=M.multiply(value);},{kind:'hand-type-in',values:R2_ROUTE_HAND_TYPES[family]},undefined,0,undefined,{reasonKey:`route-growth.${family}.factor`,routeFamily:family,...(routeGrowth.applied?{routePolicy:routeGrowth.applied.policy,routeCap:routeGrowth.applied.cap}:{}),resourceBefore:routeGrowth.before[family],resourceAfter:routeGrowth.before[family]});
   }
   if(boss?.definitionId!=='B08'&&input.characterId==='amo'&&input.amoScoreTiming==='after-joker'&&played.length===1)char('multiply-multiplier',new Rational(3n),{kind:'played-count',equals:1});
   if(assist){const value=new Rational(BigInt(assist.assistMultiplier));emit('characterScore',character,'multiply-multiplier',value,()=>{M=M.multiply(value);},{kind:'hand-type-in',values:[...AMO_ASSIST_TYPES]},undefined,0,undefined,{reasonKey:`amo.assist.${assist.assistKind}`});}

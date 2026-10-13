@@ -229,7 +229,7 @@ export class CharacterSelectScene extends Phaser.Scene {
     if(!this.selectedRoute)return;
     const existing=gameSession().run;
     if(existing&&!['run-won','run-lost'].includes(existing.state.phase)){
-      const d=this.dialog.open('开始新局？',getCharacter(this.selectedId).name+' · '+OPENING_ROUTES[this.selectedRoute].title+'\n确认后保存所选模式的新局，并将其设为当前局。旧进度保留为备份；取消保留当前进度。',[{label:'确认开始新局',primary:true,run:async()=>{if(await this.choose())this.dialog.close(d);}}],{closeLabel:'取消'});
+      const d=this.dialog.open('开始新局？',getCharacter(this.selectedId).name+' · '+OPENING_ROUTES[this.selectedRoute].title+'\n新局使用有限过关加成（最多×4）与公开固定目标；旧局不会改算，需要新开局重新建立构筑。确认后保存新局，旧进度保留为备份；取消保留当前进度。',[{label:'确认开始新局',primary:true,run:async()=>{if(await this.choose())this.dialog.close(d);}}],{closeLabel:'取消'});
       return;
     }
     await this.choose();

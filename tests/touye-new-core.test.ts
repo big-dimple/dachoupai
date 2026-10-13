@@ -1,3 +1,4 @@
+import {R2_BOUNDED_CLEAR_VERSION,R2_BOUNDED_CLEAR_HASH} from '../src/domain/r2GroupUpgrade';
 import {describe,it,expect} from 'vitest';
 import {applyCommand,createRun,type R2RunState} from '../src/domain/run';
 import {r2ScoreContext,r2CreateJoker} from '../src/domain/r2Run';
@@ -15,9 +16,9 @@ function round(s:R2RunState){const cp=makeCheckpoint(s,[]),r=readCheckpoint(JSON
 function mutate(cp:Checkpoint,change:(s:R2RunState)=>void){const bad=structuredClone(cp);change(bad.state);const {checksum,...payload}=bad;return {...payload,checksum:stableHash(payload)};}
 function pending(kind:TouyeScenario='mature-win'){const f=touyeFixture(kind);return {...f,state:round(touyeSend(f.state,touyeBet(f.state,f.discard,f.target)))};}
 describe('Touye actual refill ID responsibility, separate new identity',()=>{
- it('forks only selected-route Touye new games; old retries and unaffected heroes preserve their identities',()=>{
+ it('new selected routes use bounded profile; Touye responsibility and explicit old retry remain unchanged',()=>{
   expect(isR2TouyeNewCore(newRunIdentity('touye','group'))).toBe(true);
-  for(const hero of ['amo','erxiang','laohuan'] as const)expect(newRunIdentity(hero,'group')).toEqual(old);
+  for(const hero of ['amo','erxiang','laohuan'] as const)expect(newRunIdentity(hero,'group')).toEqual({contentVersion:R2_BOUNDED_CLEAR_VERSION,contentHash:R2_BOUNDED_CLEAR_HASH});
   const f=touyeFixture('mature-win',{identity:old});expect(launchIdentity('touye',{kind:'retry',run:f.state})).toEqual(old);expect(touyeChoice(f.state,f.discard).choices.find(c=>c.target===f.target)!.available).toBe(false);
   expect(applyCommand(f.state,touyeCommand(f.state,touyeBet(f.state,f.discard,f.target)))).toMatchObject({ok:false,code:'touye-target-already-reachable'});
  });
