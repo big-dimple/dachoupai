@@ -24,6 +24,7 @@ async function run(name,viewport,kind){
    if(kind==='weak')await page.locator('[data-image-warmup]').waitFor({state:'visible'});
    await page.screenshot({path:`${output}/${name}-title.png`});
    await tapUI(page,'title','action/title-start',touch);await waitScene(page,'character-select');await tapUI(page,'character-select','character/amo',touch);
+   await page.evaluate(()=>{const s=window.__harness.game.scene.getScene('character-select'),walk=list=>{for(const o of list){if(o.name==='action/confirm-character')return o;if(o.list){const found=walk(o.list);if(found)return found;}}};window.__warmupButton=walk(s.children.list);});
    if(kind==='failure'){
      await page.getByRole('button',{name:'重试图片',exact:true}).waitFor({state:'visible'});
      await page.waitForFunction(()=>{const t=window.__harness.game.textures;return !t.exists('selection-portrait-amo')&&!t.exists('opening-portrait-amo');});
@@ -32,6 +33,7 @@ async function run(name,viewport,kind){
      await page.getByRole('button',{name:'重试图片',exact:true}).click();
    }
    await page.waitForFunction(()=>window.__harness.game.textures.exists('opening-portrait-amo')&&window.__harness.game.textures.exists('selection-portrait-amo'));
+   const inputTargetPreserved=await page.evaluate(()=>{const s=window.__harness.game.scene.getScene('character-select'),walk=list=>{for(const o of list){if(o.name==='action/confirm-character')return o;if(o.list){const f=walk(o.list);if(f)return f;}}};return window.__warmupButton===walk(s.children.list)&&window.__warmupButton.active;});assert.ok(inputTargetPreserved,'late pictures preserve the existing action target');
    await page.screenshot({path:`${output}/${name}-ready.png`});
    const before=requests.length;await tapUI(page,'character-select','character/amo',touch);await page.evaluate(()=>new Promise(resolve=>setTimeout(resolve,150)));const hotNewHeroRequests=requests.slice(before).filter(r=>/characters\/amo\./.test(r.url));assert.equal(hotNewHeroRequests.length,0,'loaded hero does not request again');
    await confirmHeroRoute(page,touch);await waitScene(page,'shop');
@@ -47,7 +49,7 @@ async function run(name,viewport,kind){
    await page.reload({waitUntil:'domcontentloaded'});await waitScene(page,'title');await tapUI(page,'title','action/title-continue',touch);await waitScene(page,'game');await page.waitForFunction(()=>window.__harness.game.scene.getScene('game').cardViews.length===8);
    assert.equal(await page.evaluate(()=>JSON.stringify(window.__harness.game.registry.get('runController').state)),gameBefore,'normal persisted state survives reload unchanged');assert.deepEqual(errors,[]);
    const amo404Requests=kind==='failure'?requests.filter(r=>/characters\/amo\./.test(r.url)).length:undefined;
-   report.cases.push({name,status:'PASS',viewport,kind,titleUsableMs:titleAt,hotNewHeroRequests,warmKeys,initialShop,normalSaveReload:'equal entire run state',shopStateBytes:saved.length,amo404Requests,requests,errors});
+   report.cases.push({name,status:'PASS',viewport,kind,titleUsableMs:titleAt,inputTargetPreserved,hotNewHeroRequests,warmKeys,initialShop,normalSaveReload:'equal entire run state',shopStateBytes:saved.length,amo404Requests,requests,errors});
  }catch(error){report.cases.push({name,status:'FAIL',error:String(error),requests,errors});await page.screenshot({path:`${output}/${name}-FAIL.png`});throw error;}finally{await context.close();}
 }
 try{await run('mobile-weak',{width:390,height:740},'weak');await run('pc-failure-retry',{width:1366,height:768},'failure');report.status='PASS';}catch(error){report.status='FAIL';report.error=String(error);process.exitCode=1;}finally{await browser.close();await writeFile(output+'/browser.json',JSON.stringify(report,null,2)+'\n');console.log(JSON.stringify({status:report.status,cases:report.cases.map(c=>({name:c.name,status:c.status,error:c.error,titleUsableMs:c.titleUsableMs,initialShop:c.initialShop})),error:report.error},null,2));}
