@@ -1,0 +1,85 @@
+
+> dachoupai@0.1.0 verify:ci
+> node scripts/verify-ci.mjs --scope=domain
+
+CHECK test: /opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node /opt/codex/runtimes/codex-primary-runtime/dependencies/node/lib/node_modules/npm/bin/npm-cli.js run test
+
+> dachoupai@0.1.0 test
+> vitest run
+
+
+ RUN  v4.1.11 /workspace/dachoupai
+
+ ❯ tests/tool-inventory-entry.test.ts (18 tests | 1 failed) 5444ms
+     × keeps inventory, history, primary controls and nine seats usable around 500 and the full-sidebar budget 5343ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/tool-inventory-entry.test.ts > desktop height boundary respects the usable safe viewport > keeps inventory, history, primary controls and nine seats usable around 500 and the full-sidebar budget
+Error: Test timed out in 5000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ ❯ tests/tool-inventory-entry.test.ts:33:2
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 229 passed (230)
+      Tests  1 failed | 3363 passed (3364)
+   Start at  16:45:02
+   Duration  127.91s (transform 15.63s, setup 0ms, import 105.51s, tests 173.18s, environment 48ms)
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice
+test: FAIL
+{
+  "scope": "domain",
+  "testedCommit": "c1659593d7c3dbb78d475ed8c4ad48d45e8df563",
+  "status": "FAIL",
+  "exitCode": 1,
+  "before": {
+    "source": "096ae398d1db80affc879c856fc6c044ba8b56faccbe1130b86cf722aefe7e13",
+    "index": "f2781c8816d5844680737a881c444b84c2fa1deea13067f063db1d72649f33d3",
+    "head": "c1659593d7c3dbb78d475ed8c4ad48d45e8df563",
+    "branch": "refs/heads/fix/dev-integration-frozen-five-2026-10-13"
+  },
+  "after": {
+    "source": "096ae398d1db80affc879c856fc6c044ba8b56faccbe1130b86cf722aefe7e13",
+    "index": "f2781c8816d5844680737a881c444b84c2fa1deea13067f063db1d72649f33d3",
+    "head": "c1659593d7c3dbb78d475ed8c4ad48d45e8df563",
+    "branch": "refs/heads/fix/dev-integration-frozen-five-2026-10-13"
+  },
+  "steps": [
+    {
+      "name": "test",
+      "status": "FAIL",
+      "childExitCode": 1,
+      "elapsedMs": 130706,
+      "reason": "child exited 1"
+    }
+  ],
+  "notIncluded": [
+    {
+      "name": "extended browser/recovery/fault/asset/simulation diagnostics",
+      "status": "NOT_INCLUDED",
+      "reason": "run the existing specific command only when its domain changes; P00 removes repeated default execution"
+    },
+    {
+      "name": "balance/benchmark acceptance",
+      "status": "NOT_INCLUDED",
+      "reason": "later work packages; no gameplay approval inferred from checks"
+    },
+    {
+      "name": "physical devices / human / art approval",
+      "status": "NOT_RUN"
+    }
+  ]
+}
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice

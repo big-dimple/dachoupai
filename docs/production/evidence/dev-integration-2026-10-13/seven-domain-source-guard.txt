@@ -1,0 +1,72 @@
+
+> dachoupai@0.1.0 verify:ci
+> node scripts/verify-ci.mjs --scope=domain
+
+CHECK test: /opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node /opt/codex/runtimes/codex-primary-runtime/dependencies/node/lib/node_modules/npm/bin/npm-cli.js run test
+
+> dachoupai@0.1.0 test
+> vitest run
+
+
+ RUN  v4.1.11 /workspace/dachoupai
+
+
+ Test Files  233 passed (233)
+      Tests  3379 passed (3379)
+   Start at  17:01:32
+   Duration  43.38s (transform 6.75s, setup 0ms, import 32.74s, tests 65.48s, environment 23ms)
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice
+test: FAIL
+{
+  "scope": "domain",
+  "testedCommit": "83dbed7fcdc386f05dc42a00dd0a0731f77c99e3",
+  "status": "FAIL",
+  "exitCode": 1,
+  "before": {
+    "source": "45a685e5b86066d6b4530c9e1e3852ebe5a62548f0d073092ab7e3e42cb5612d",
+    "index": "c4888569e4f8b6faeb188fe4a18606e0699fa952da4b9e83294f72e713f0a426",
+    "head": "83dbed7fcdc386f05dc42a00dd0a0731f77c99e3",
+    "branch": "refs/heads/dev/integration-frozen-batches-2026-10-13"
+  },
+  "after": {
+    "source": "3436addc111bf37839135ad7a2612b5fbd701abd04679372466da5c848b3a5f1",
+    "index": "c4888569e4f8b6faeb188fe4a18606e0699fa952da4b9e83294f72e713f0a426",
+    "head": "83dbed7fcdc386f05dc42a00dd0a0731f77c99e3",
+    "branch": "refs/heads/dev/integration-frozen-batches-2026-10-13"
+  },
+  "steps": [
+    {
+      "name": "test",
+      "status": "FAIL",
+      "childExitCode": 0,
+      "elapsedMs": 44654,
+      "reason": "checker changed source; changes retained for inspection"
+    }
+  ],
+  "notIncluded": [
+    {
+      "name": "extended browser/recovery/fault/asset/simulation diagnostics",
+      "status": "NOT_INCLUDED",
+      "reason": "run the existing specific command only when its domain changes; P00 removes repeated default execution"
+    },
+    {
+      "name": "balance/benchmark acceptance",
+      "status": "NOT_INCLUDED",
+      "reason": "later work packages; no gameplay approval inferred from checks"
+    },
+    {
+      "name": "physical devices / human / art approval",
+      "status": "NOT_RUN"
+    }
+  ]
+}
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice

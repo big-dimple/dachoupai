@@ -1,0 +1,31 @@
+import assert from 'node:assert/strict';
+import {mkdir,writeFile,readFile} from 'node:fs/promises';
+import {createHash} from 'node:crypto';
+import {execFileSync} from 'node:child_process';
+import {chromium} from '/workspace/dachoupai/node_modules/playwright/index.mjs';
+import {openSelector,tapUI,waitScene} from '/workspace/dachoupai/harness/ui.mjs';
+const dir='/tmp/integration-five/six-selector',base='c1659593d7c3dbb78d475ed8c4ad48d45e8df563',expected='848f5b55f1add44c345bc9ae6445eb8444a5b62a',files=['CharacterSelectScene','OpeningShowcaseLayout','OpeningPlayTable','ModeSelectDialog','ShopScene'];
+const git=(...args)=>execFileSync('git',args,{encoding:'utf8'}).trim();
+const hash=data=>createHash('sha256').update(data).digest('hex');
+const report={testedHead:git('rev-parse','HEAD'),previousFiveHead:base,sourceHashes:{},previousSourceHashes:{},sourceDiffFromFive:git('diff','--name-only',base,'HEAD','--',...files.map(f=>`src/game/${f}.ts`)).split('\n').filter(Boolean),checks:[],limits:['Only 390/1366 normal fresh-run smoke on this six-batch SHA; full six-hero/three-route/320 evidence stays bound to c1659593.','Linux Chromium software Canvas only; no physical-device touch, human acceptance, listening, new balance or full game.']};
+assert.equal(report.testedHead,expected);
+for(const f of files){report.sourceHashes[f]=hash(await readFile(`src/game/${f}.ts`));report.previousSourceHashes[f]=hash(execFileSync('git',['show',`${base}:src/game/${f}.ts`]));}
+assert.deepEqual(report.sourceHashes,report.previousSourceHashes);assert.deepEqual(report.sourceDiffFromFive,[]);
+const browser=await chromium.launch({executablePath:'/usr/bin/chromium',args:['--disable-gpu']});report.browser=browser.version();
+const observe=p=>p.evaluate(()=>{const s=window.__harness.game.scene.getScene('character-select'),walk=list=>list.flatMap(o=>[o,...(o.list?walk(o.list):[])]),all=walk(s.view.root.list);return {selected:s.selectedId,step:s.step,expanded:s.sampleExpanded,after:s.sampleAfter,mode:s.modeConfig,renderer:s.game.renderer.gl?'WebGL':'Canvas',objects:all.filter(o=>o.name?.startsWith('opening/')).map(o=>({name:o.name,text:o.text,visible:o.visible,alpha:o.alpha,bounds:o.getBounds(),font:o.style?.fontSize})),replay:all.some(o=>o.name==='action/opening-replay'),tweens:s.tweens.getTweens().filter(t=>t.isPlaying()).length};});
+const saves=p=>p.evaluate(async()=>{const state=window.__harness.game.registry.get('runController')?.state??null,databases=await indexedDB.databases(),storage=[];for(const info of databases.sort((a,b)=>a.name.localeCompare(b.name))){const db=await new Promise((resolve,reject)=>{const q=indexedDB.open(info.name);q.onsuccess=()=>resolve(q.result);q.onerror=()=>reject(q.error);}),stores={};for(const name of [...db.objectStoreNames])stores[name]=await new Promise((resolve,reject)=>{const tx=db.transaction(name,'readonly'),store=tx.objectStore(name),keys=store.getAllKeys(),values=store.getAll();tx.oncomplete=()=>resolve({keys:keys.result,values:values.result});tx.onerror=()=>reject(tx.error);});db.close();storage.push({name:info.name,stores});}return {state,storage};});
+const folded=o=>{assert.equal(o.expanded,false);assert.equal(o.replay,false);assert.equal(o.objects.filter(x=>x.name==='opening/sample-card').length,0);};
+
+try{
+ for(const [width,height,touch] of [[390,740,true],[1366,768,false]]){
+  console.log('start',width);const context=await browser.newContext({viewport:{width,height},hasTouch:touch}),page=await context.newPage(),errors=[],row={width,height,errors};report.checks.push(row);page.setDefaultTimeout(12000);page.on('pageerror',e=>errors.push(e.message));
+  await page.goto('http://127.0.0.1:5291/?harness=1');await openSelector(page,touch);const initial=await saves(page);
+  await tapUI(page,'character-select','character/touye',touch);let o=await observe(page);assert.equal(o.selected,'touye');assert.equal(o.mode.mode,'standard');assert.equal(o.mode.difficulty,0);folded(o);
+  await tapUI(page,'character-select','action/opening-sample',touch);o=await observe(page);assert.equal(o.expanded,true);assert.ok(o.objects.some(x=>x.name==='opening/sample-card'));assert.ok(o.objects.find(x=>x.name==='opening/sample-result')?.text);await page.screenshot({path:`${dir}/expanded-${width}.png`});
+  await tapUI(page,'character-select','action/close-opening-sample',touch);folded(await observe(page));assert.deepEqual(await saves(page),initial);row.disclosure='real expand/close; initial run and every IndexedDB record unchanged';console.log('disclosure passed',width);
+  await tapUI(page,'character-select','action/confirm-character',touch);await tapUI(page,'character-select','route/straight',touch);await tapUI(page,'character-select','action/confirm-character',touch);await waitScene(page,'shop');await page.waitForFunction(()=>window.__harness.game.scene.getScene('shop').ready);
+  const saved=await saves(page);assert.equal(saved.state.characterId,'touye');assert.equal(saved.state.openingRoute,'straight');assert.equal(saved.state.difficulty,0);assert.ok(saved.storage.some(d=>d.stores.saves?.values.length));row.created=saved;console.log('created shop passed',width);
+  await page.reload();await waitScene(page,'title');await tapUI(page,'title','action/title-continue',touch);await waitScene(page,'shop');await page.waitForFunction(()=>window.__harness?.game.registry.get('runController')?.state);const restored=await saves(page);assert.deepEqual(restored.state,saved.state);row.restored=restored;row.confirmation='normal fresh touye/straight/ordinary run saved at first shop; real reload and continue restored identical complete state';assert.deepEqual(errors,[]);row.result='PASS';console.log('passed',width);await context.close();
+ }
+ report.headAfter=git('rev-parse','HEAD');report.sourceHashesAfter={};for(const f of files)report.sourceHashesAfter[f]=hash(await readFile(`src/game/${f}.ts`));assert.equal(report.headAfter,expected);assert.deepEqual(report.sourceHashesAfter,report.sourceHashes);report.result='PASS';
+}catch(error){report.result='FAIL';report.failure=String(error);console.error(error);process.exitCode=1;}finally{await mkdir(dir,{recursive:true});await writeFile(dir+'/verification.json',JSON.stringify(report,null,2)+'\n');await browser.close();}
