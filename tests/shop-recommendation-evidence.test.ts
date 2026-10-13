@@ -1,5 +1,5 @@
 import {it,expect} from 'vitest';
-import {recommendationEvidenceFixture} from '../harness/fixtures/recommendation-evidence';
+import {recommendationEvidenceFixture,recommendationFiveStarFixture} from '../harness/fixtures/recommendation-evidence';
 import {shopRecommendation} from '../src/game/ShopRecommendation';
 import {shopOfferGuidance} from '../src/game/ShopOfferGuidance';
 import {shopReplacementTransactionFacts,shopReplacementCompactFacts} from '../src/game/ShopRouteRelations';
@@ -30,11 +30,21 @@ it('an illegal sale is pending, not rated using the source that cannot be remove
  const s=recommendationEvidenceFixture('group'),o=s.shop!.offers[0];s.jokers[0]=r2CreateJoker('e09','capacity',8,'none',s);s.consumables=['T01','T02','T03'].map((definitionId,i)=>({instanceId:'tool/'+i,definitionId}));
  const before=structuredClone(s);expect(shopRecommendation(s,o,'group',s.jokers[0])).toMatchObject({stars:0,reason:'替换不可执行'});expect(s).toEqual(before);
 });
-it.each(['group','straight','flush'] as const)('%s: no role gap, rarity, large score or rich full rack grants five stars',route=>{
+it.each(['group','straight','flush'] as const)('%s: all audited recommendations retain five complete display slots',route=>{
  const s=recommendationEvidenceFixture(route),before=structuredClone(s);
  for(const d of r2JokerDefinitionsFor(s)){
   const o={offerId:'public/'+d.id,definitionId:d.id,price:r2Price(d.id,'none',s),edition:'none' as const,consumed:false};
-  const r=shopOfferGuidance(s,o);expect(r.stars).toBeLessThanOrEqual(4);expect(r.label.match(/[★☆]/g)).toHaveLength(5);
+  const r=shopOfferGuidance(s,o);expect(r.stars).toBeLessThanOrEqual(5);expect(r.label.match(/[★☆]/g)).toHaveLength(5);
  }
  expect(shopRecommendation(s,s.shop!.offers[2],route).condition).toContain('第4次');expect(s).toEqual(before);
+});
+
+it('retains all three original five-star branches independently of the specified-sale fix',()=>{
+ const s=recommendationFiveStarFixture(),before=structuredClone(s);
+ expect(readCheckpoint(makeCheckpoint(s,[]))).toMatchObject({ok:true});
+ for(const o of s.shop!.offers)expect(shopOfferGuidance(s,o)).toMatchObject({stars:5,label:'推荐指数 ★★★★★',operation:'需替换'});
+ const coefficient=s.shop!.offers[2];
+ expect(shopOfferGuidance(s,coefficient,s.jokers[1]).recommendation).toMatchObject({stars:4,facts:{additiveSource:false}});
+ expect(shopOfferGuidance(s,coefficient,s.jokers[3]).recommendation).toMatchObject({stars:5,facts:{additiveSource:true}});
+ expect(s).toEqual(before);
 });

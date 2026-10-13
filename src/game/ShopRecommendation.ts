@@ -124,8 +124,6 @@ export function shopRecommendation(state:R2RunState,offer:R2Offer,focus?:BuildFo
   rule==='diverse-coefficient'?(additiveSource?'已有加倍率来源，换型待触发':'换型待触发，核对加倍率来源'):'';
  const recorded=state.jokers.filter(j=>trace?.events.some(e=>e.sourceType==='joker'&&e.sourceInstanceId===j.instanceId&&['onCardScore','onHeldCard','jokerScore'].includes(e.phase)&&(JSON.stringify(e.before)!==JSON.stringify(e.after)||e.operation==='retrigger-card'&&Rational.fromJSON(e.value).compare(new Rational(0n))>0))).map(j=>definitions.find(d=>d.id===j.definitionId)!.name);
  const combination=(potential?'组合潜力：'+potential+'。\n':'')+(recorded.length>=2?'组合记录：上手'+recorded.join('、')+'共同计分（新牌未参与）。':'组合记录：尚无两张现持牌共同计分。');
- // Existing group-only 5-star shortcuts lack cross-route cost/lifetime calibration.
- // Keep a five-slot scale, but reserve 5 until that evidence exists for every route.
  const result=(stars:RecommendationStars,reason:string,condition:string):ShopRecommendation=>({stars,reason,condition,stage,combination,facts,detail:reason+'；'+condition+(d?'。'+d.description:'')+(stars>=4?`\n公开依据：最大同点组${largest}张，前两组${largest+second}/${cards.length}张；最大花色${largestSuit}/${cards.length}张；已持逐牌加成${heldCardPayoff?'有':'无'}；剩余场次窗口${potentialStages}。`:'')+'\n'+combination+'\n共同计分不代表额外奖励或下手必触发，新现货尚未加入上手记录。\n推荐指数不等于稀有度或路线契合；星星不代表必买或稳赚，需结合替换损失。\n基于公开构筑与当前阶段的推荐；不表示指定替换净更强。'+(routeGrowth?'\n'+routeGrowth.detail:'')});
  if(sold&&cash?.status==='blocked')return result(0,'替换不可执行','先核对出售限制');
  if(!audited||!rule||!d)return result(0,'规则待核','该身份尚未审计');
@@ -162,11 +160,11 @@ export function shopRecommendation(state:R2RunState,offer:R2Offer,focus?:BuildFo
   case 'rising-growth':return result(growthWindow&&additiveSource?3:2,'递增得分长倍率','不升分会归零');
   case 'low-score-growth':return result(2,'低分后长热度','未过关且低于目标10%');
   case 'retrigger-growth':return retriggerSource?growth(true,'重触后长倍率','需实际额外重触'):result(2,'尚缺重触来源','新购成长为0');
-  case 'diverse-coefficient':return result(stage==='late'?(qualifiedReady?3:2):qualifiedReady?4:groupFit||flushFit||straightFit?3:2,'长期相乘成长','新购×1.5 · 连续不同合格主手');
+  case 'diverse-coefficient':return result(stage==='late'?(qualifiedReady?3:2):groupConcentrated&&boostedGroup&&additiveSource&&growthWindow?5:qualifiedReady?4:groupFit||flushFit||straightFit?3:2,'长期相乘成长','新购×1.5 · 连续不同合格主手');
   case 'sale-reset-coefficient':return result(stage==='late'?2:potentialStages>=6?4:3,'不出售跨场成长','初始×1 · 出售其他重置');
   case 'last-clear-coefficient':return result(stage==='late'?2:3,'压线过关系数成长','新购×1 · 最后一手成功');
-  case 'group-retrigger':return result(largest<2?1:groupFit||boostedGroup||heldGroupPayoff?4:2,'成组核心逐牌重触','最大原始同点组有效牌');
-  case 'house-retrigger':return result(largest<3||second<2?1:groupConcentrated||houseRecord||houseCardPayoff?4:2,'葫芦整组重触','只读葫芦或同花葫芦');
+  case 'group-retrigger':return result(largest<2?1:groupConcentrated&&(boostedGroup||heldGroupPayoff)?5:groupFit||boostedGroup||heldGroupPayoff?4:2,'成组核心逐牌重触','最大原始同点组有效牌');
+  case 'house-retrigger':return result(largest<3||second<2?1:(groupConcentrated||houseRecord)&&boostedHouse?5:groupConcentrated||houseRecord||houseCardPayoff?4:2,'葫芦整组重触','只读葫芦或同花葫芦');
   case 'flush-retrigger':return result(largestSuit<5?1:flushReady&&cards.some(boosted)||flushReady&&heldCardPayoff?4:flushFit?3:2,'同花尾牌重触','普通同花或同花顺');
   case 'third-retrigger':return result(cards.length<3?1:heldCardPayoff||count(boosted)>=3?4:3,'第三计分牌重触','第三原始牌须有效');
   case 'even-retrigger':return result(heldCardPayoff||count(boosted)>=3?4:3,'偶数手首牌重触','每场第偶数次出牌');

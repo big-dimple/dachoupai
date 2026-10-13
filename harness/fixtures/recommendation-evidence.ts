@@ -20,3 +20,13 @@ export function recommendationEvidenceFixture(route:BuildFocus){
  s.shop!.offers=['d09','a06','f06'].map(definitionId=>({offerId:'public/'+definitionId,definitionId,price:r2Price(definitionId,'none',s),edition:'none',consumed:false}));
  assertRunInvariants(s);return s;
 }
+
+/** Controlled 20-card public build exercising the three retained legacy 5-star rules. */
+export function recommendationFiveStarFixture(){
+ const s=recommendationEvidenceFixture('group');
+ const cards=s.deckInstances.filter(c=>c.rank>=7&&c.rank<=10);
+ s.deckInstances=[...cards,...cards.filter(c=>c.rank===7).map(c=>({...c,id:c.id+'/copy'}))];
+ s.drawPile=s.deckInstances.map(c=>c.id);s.handOrder=[];s.playedPile=[];s.discardPile=[];s.destroyedIds=[];
+ s.shop!.offers=['b06','a11','a06'].map(definitionId=>({offerId:'public/'+definitionId,definitionId,price:r2Price(definitionId,'none',s),edition:'none',consumed:false}));
+ assertRunInvariants(s);return s;
+}
