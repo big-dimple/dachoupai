@@ -29,7 +29,7 @@ try{
    await page.goto('http://127.0.0.1:'+port+'/?harness=1');await waitScene(page,'title');await dom(page.locator('.run-menu-toggle'));const saves=page.getByText('进度与存档',{exact:true}).locator('..');if(!await saves.evaluate(e=>e.open))await dom(saves.locator('summary'));const choose=page.waitForEvent('filechooser');await dom(page.getByRole('button',{name:'导入本局',exact:true}));await(await choose).setFiles({name:'existing-result-only.json',mimeType:'application/json',buffer:Buffer.from(JSON.stringify(f.checkpoint))});await settled();
    const before=await snap();assert.deepEqual(before.state,f.checkpoint.state);assert.deepEqual(before.journal,f.checkpoint.journal);const resultShape=await shape();row[version+'ResultShape']=resultShape;row[version+'CanvasPNGHash']=await shot('result',true);
    if(version==='baseline')previousShape=resultShape;else{assert.deepEqual(resultShape,previousShape);row.resultLayoutTextBoundsExact=true;row.resultCanvasPixelsExact=row.baselineCanvasPNGHash===row.currentCanvasPNGHash;row.before=before;row.beforeHash=sha(before);}
-   await tapUI(page,'intermission','action/last-hand',touch);const dialog=page.locator('.detail-dialog[open]');await dialog.waitFor();assert.equal(await dialog.locator('h2').innerText(),'最后一手 · 已保存的结算');
+   await tapUI(page,'intermission','action/last-hand',touch);if(f.kind==='loss')await dom(page.getByRole('button',{name:'回看最后一手',exact:true}));const dialog=page.locator('.detail-dialog[open]');await dialog.waitFor();assert.equal(await dialog.locator('h2').innerText(),'最后一手 · 已保存的结算');
    const buttons=await dialog.locator('.dialog-actions button').evaluateAll(bs=>bs.map(b=>({label:b.textContent,disabled:b.disabled,primary:b.classList.contains('dialog-primary')})));row[version+'Buttons']=buttons;if(version==='baseline')previousButtons=buttons;else assert.deepEqual(buttons,previousButtons);
    await shot('default');
    if(version==='current'){
@@ -40,7 +40,7 @@ try{
    await dom(dialog.locator('.dialog-close'));assert.deepEqual(await snap(),before);
    if(version==='current'){
     // Both original routes to the recap remain native; no Next action is executed.
-    await tapUI(page,'intermission','action/result-details',touch);await dom(page.getByRole('button',{name:'回看最后一手',exact:true}));assert.equal(await page.locator('.detail-dialog[open] .dialog-effect').innerText(),formatScoreReview(before.state,before.state.lastTrace).summary);await dom(page.locator('.detail-dialog[open] .dialog-close'));assert.deepEqual(await snap(),before);
+    if(f.kind==='loss'){await tapUI(page,'intermission','action/last-hand',touch);await dom(page.getByRole('button',{name:'本场详情',exact:true}));}else await tapUI(page,'intermission','action/result-details',touch);await dom(page.getByRole('button',{name:'回看最后一手',exact:true}));assert.equal(await page.locator('.detail-dialog[open] .dialog-effect').innerText(),formatScoreReview(before.state,before.state.lastTrace).summary);await dom(page.locator('.detail-dialog[open] .dialog-close'));assert.deepEqual(await snap(),before);
     await page.reload();await waitScene(page,'title');await tapUI(page,'title','action/title-continue',touch);await settled();const cold=await snap();assert.deepEqual(cold,before);row.coldRestoreHash=sha(cold);row.fullStateJournalStorageExact=true;row.coldRestoreExact=true;
    }
    assert.deepEqual(errors,[]);await context.close();
