@@ -288,16 +288,95 @@
     {
       "name": "Amo chapter13 B09 pair",
       "heat": "59",
-      "displayMultiplier": "444428.44 (rounded)",
       "score": "26221278",
       "target": "25480397",
       "gold": 206,
-      "fullSave": false
+      "fullSave": false,
+      "exactTrace": {
+        "source": "User 14:55 public log screenshot 16227.jpg, parent read full chain; Library read resolves reference, OCR not used for long integer copying.",
+        "counts": {
+          "G": 35,
+          "S": 0,
+          "F": 0
+        },
+        "factor": {
+          "n": "6362685441135942358474828762538534230890216321",
+          "d": "429496729600000000000000000000000000000000"
+        },
+        "baseHeat": 35,
+        "rank": 6,
+        "originalCards": 2,
+        "retriggerPerCard": 1,
+        "totalCardExecutions": 4,
+        "paperMultPerExecution": 2,
+        "baseMult": 2,
+        "coefficient": {
+          "n": "2",
+          "d": "1"
+        },
+        "noDiscard": {
+          "n": "3",
+          "d": "2"
+        },
+        "preRouteM": {
+          "n": "30",
+          "d": "1"
+        },
+        "heroMultiplierEvent": false,
+        "packageEvent": false,
+        "noRouteScore": "1770",
+        "formula": "floor((35+4*6)*(2+4*2)*2*(3/2)*(27/20)^32)=26221278"
+      }
+    },
+    {
+      "name": "New flush-house Lv2 screenshot",
+      "type": "flush-house",
+      "level": 2,
+      "heat": "974",
+      "score": "168208975825",
+      "chainComplete": false,
+      "source": "delegated latest user screenshot; full contributions not displayed",
+      "scope": "record shown totals only; no inferred family counts, jokers or hero multipliers"
     }
   ],
   "standards": {
     "strictWindow": "T > all mature stable first hands AND T <= every ordinary finite model capacity. Analytical separation criterion, not a requirement for every game or player.",
     "basicWindow": "Existing D0 floor and ordinary capacity; mature overshoot allowed.",
     "strongWindow": "Only explicitly chosen challenge: T > stable first hand AND T <= finite capacity for mature benchmark states; no forced multi-hand rule in product."
+  },
+  "recommendedTrial": {
+    "status": "first concrete trial point for review, not implemented or user-selected parameters",
+    "passive": {
+      "policy": "cap-max",
+      "cap": 4,
+      "graceClears": 3,
+      "rates": "keep current G/S/F rates only until cap; one maximum family factor per hand"
+    },
+    "mainTargets": [
+      400,
+      900,
+      1800,
+      3600,
+      6000,
+      9000,
+      14000,
+      20475
+    ],
+    "endlessGrowth": {
+      "n": "11",
+      "d": "10"
+    },
+    "challengeGrades": [
+      1,
+      2,
+      3,
+      4,
+      8,
+      16,
+      32,
+      64
+    ],
+    "legacy": "old saved identities exact; no silent migration",
+    "playerWording": "过关加成 ×当前值（最多×4）；主手组成与纸/重算/丑牌/英雄的实际来源分别说明"
   }
 }
