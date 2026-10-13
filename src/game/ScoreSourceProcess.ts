@@ -37,7 +37,7 @@ export function scoreSourceProcess(trace:ScoreTrace,event:ScoreEvent,source:stri
  if(['multiply-multiplier','read-coefficient','route-factor'].includes(event.operation)){
   const before=Rational.fromJSON(event.before.M);if(before.n===0n||!mult.n)return;
   const factor=Rational.fromJSON(event.after.M).multiply(new Rational(before.d,before.n)).toJSON();
-  const origin=event.operation==='route-factor'?'本局资历':event.reasonKey.startsWith('edition.')?'版次':reads?'读已有':'本次倍率';
+  const origin=event.operation==='route-factor'?'过关加成':event.reasonKey.startsWith('edition.')?'版次':reads?'读已有':'本次倍率';
   return {...base,kind:'multiply',factor,repeat,effect:repeated+origin+' ×'+readableFractionText(factor),exact:multiplierCaption(source,factor,event.before.M,event.after.M).exact};
  }
  // Compound effects retain the existing complete operation copy.
@@ -61,7 +61,7 @@ export function scoreSourceClimaxValue(cue:ScoreSourceProcess,note:string){
 export function fitScoreSourceProcess(text:Phaser.GameObjects.Text,cue:ScoreSourceProcess,area:Box):void {
  const full=cue.source+' · '+cue.effect,compact=compactScoreText(cue.effect);
  text.setFontSize(14).setWordWrapWidth(0).setScale(1);
- const effects=[cue.effect,compact,compact.replace('读已有','读').replace('本局资历','资历').replace('倍率','倍').replace('热度','热')];
+ const effects=[cue.effect,compact,compact.replace('读已有','读').replace('倍率','倍').replace('热度','热')];
  let display=full;
  for(const effect of effects){display=cue.source+' · '+effect;text.setText(display);if(text.width<=area.width)break;}
  if(text.width>area.width){

@@ -1,6 +1,8 @@
 # 计分过程实际来源最小接线（Draft PR155）
 
-最新补正：[父审后玩家文案补正](PLAIN_COPY_REVIEW.md)。本次标题已改“本次倍率 / 本次加成”；下方首次候选证据按各自 SHA 保留。
+最新显示词补正：[过关加成显示词补正](ROUTE_COPY_REVIEW.md)。
+
+前一轮补正：[父审后玩家文案补正](PLAIN_COPY_REVIEW.md)。本次标题已改“本次倍率 / 本次加成”；下方首次候选证据按各自 SHA 保留。
 
 基线为开工时最新 main `2ef9180c066308e06d7d09850983ea469aa67fd8`。产品提交 `da7c51eafddc570eb0db780a1f8bbb62cb3bf4fb`，`src` tree `3598be1e60d4bb90b75a9a122ec9b8c02b4965f5`；后续提交只补测试替身、局部验证脚本与本 evidence，运行时代码相同。独立开发分支 `review/score-source-process-2026-10-13`、[Draft PR155](https://github.com/big-dimple/dachoupai/pull/155)，不合并、不 push main、不强推。唯一执行计划主文件未改，由父线程整合本记录。
 
