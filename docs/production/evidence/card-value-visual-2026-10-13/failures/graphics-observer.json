@@ -1,0 +1,17 @@
+{
+  "head": "2ef9180c066308e06d7d09850983ea469aa67fd8",
+  "phase": "after",
+  "scope": "Controlled current-profile local shelf UI only; no full run or physical device",
+  "cases": [
+    {
+      "width": 320,
+      "height": 740,
+      "five": false,
+      "errors": [],
+      "offers": [],
+      "screenshots": []
+    }
+  ],
+  "status": "FAIL",
+  "failure": "Error: page.evaluate: TypeError: o.getBounds is not a function\n    at walk (eval at evaluate (:311:30), <anonymous>:1:393)\n    at walk (eval at evaluate (:311:30), <anonymous>:1:537)\n    at walk (eval at evaluate (:311:30), <anonymous>:1:537)\n    at eval (eval at evaluate (:311:30), <anonymous>:1:552)\n    at UtilityScript.evaluate (<anonymous>:313:16)\n    at UtilityScript.<anonymous> (<anonymous>:1:44)"
+}

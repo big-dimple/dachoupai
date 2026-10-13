@@ -1,0 +1,250 @@
+{
+  "head": "2ef9180c066308e06d7d09850983ea469aa67fd8",
+  "phase": "before",
+  "scope": "Controlled current-profile local shelf UI only; no full run or physical device",
+  "cases": [
+    {
+      "width": 320,
+      "height": 740,
+      "five": false,
+      "errors": [],
+      "offers": [
+        {
+          "id": "mantangcai",
+          "stars": 3,
+          "condition": "含五条与同花升级牌型",
+          "combination": "组合记录：上手对上眼、长期捧场共同计分（新牌未参与）。"
+        },
+        {
+          "id": "e08",
+          "stars": 2,
+          "condition": "买后16金，暂不触发",
+          "combination": "组合记录：上手对上眼、长期捧场共同计分（新牌未参与）。"
+        },
+        {
+          "id": "d09",
+          "stars": 2,
+          "condition": "新购成长为0",
+          "combination": "组合潜力：尚缺可用重触来源。\n组合记录：上手对上眼、长期捧场共同计分（新牌未参与）。"
+        }
+      ],
+      "screenshots": [
+        "320-counterexamples-shelf.png"
+      ],
+      "geometry": [
+        {
+          "name": "shop/offer-advice",
+          "offerId": "public/mantangcai",
+          "stars": 3,
+          "fullText": "推荐指数 ★★★☆☆",
+          "bounds": {
+            "type": 5,
+            "x": 20.166667938232422,
+            "y": 187.20001220703125,
+            "width": 77,
+            "height": 16
+          },
+          "children": [
+            {
+              "text": "★",
+              "color": "#80551F",
+              "bounds": {
+                "type": 5,
+                "x": 20.166667938232422,
+                "y": 187.20001220703125,
+                "width": 13,
+                "height": 16
+              }
+            },
+            {
+              "text": "★",
+              "color": "#80551F",
+              "bounds": {
+                "type": 5,
+                "x": 36.16666793823242,
+                "y": 187.20001220703125,
+                "width": 13,
+                "height": 16
+              }
+            },
+            {
+              "text": "★",
+              "color": "#80551F",
+              "bounds": {
+                "type": 5,
+                "x": 52.16666793823242,
+                "y": 187.20001220703125,
+                "width": 13,
+                "height": 16
+              }
+            },
+            {
+              "text": "☆",
+              "color": "#80551F",
+              "bounds": {
+                "type": 5,
+                "x": 68.16666793823242,
+                "y": 187.20001220703125,
+                "width": 13,
+                "height": 16
+              }
+            },
+            {
+              "text": "☆",
+              "color": "#80551F",
+              "bounds": {
+                "type": 5,
+                "x": 84.16666793823242,
+                "y": 187.20001220703125,
+                "width": 13,
+                "height": 16
+              }
+            }
+          ]
+        },
+        {
+          "name": "shop/offer-advice",
+          "offerId": "public/e08",
+          "stars": 2,
+          "fullText": "推荐指数 ★★☆☆☆",
+          "bounds": {
+            "type": 5,
+            "x": 121.5,
+            "y": 187.20001220703125,
+            "width": 77,
+            "height": 16
+          },
+          "children": [
+            {
+              "text": "★",
+              "color": "#80551F",
+              "bounds": {
+                "type": 5,
+                "x": 121.5,
+                "y": 187.20001220703125,
+                "width": 13,
+                "height": 16
+              }
+            },
+            {
+              "text": "★",
+              "color": "#80551F",
+              "bounds": {
+                "type": 5,
+                "x": 137.5,
+                "y": 187.20001220703125,
+                "width": 13,
+                "height": 16
+              }
+            },
+            {
+              "text": "☆",
+              "color": "#80551F",
+              "bounds": {
+                "type": 5,
+                "x": 153.5,
+                "y": 187.20001220703125,
+                "width": 13,
+                "height": 16
+              }
+            },
+            {
+              "text": "☆",
+              "color": "#80551F",
+              "bounds": {
+                "type": 5,
+                "x": 169.5,
+                "y": 187.20001220703125,
+                "width": 13,
+                "height": 16
+              }
+            },
+            {
+              "text": "☆",
+              "color": "#80551F",
+              "bounds": {
+                "type": 5,
+                "x": 185.5,
+                "y": 187.20001220703125,
+                "width": 13,
+                "height": 16
+              }
+            }
+          ]
+        },
+        {
+          "name": "shop/offer-advice",
+          "offerId": "public/d09",
+          "stars": 2,
+          "fullText": "推荐指数 ★★☆☆☆",
+          "bounds": {
+            "type": 5,
+            "x": 222.83334350585938,
+            "y": 187.20001220703125,
+            "width": 77,
+            "height": 16
+          },
+          "children": [
+            {
+              "text": "★",
+              "color": "#80551F",
+              "bounds": {
+                "type": 5,
+                "x": 222.83334350585938,
+                "y": 187.20001220703125,
+                "width": 13,
+                "height": 16
+              }
+            },
+            {
+              "text": "★",
+              "color": "#80551F",
+              "bounds": {
+                "type": 5,
+                "x": 238.83334350585938,
+                "y": 187.20001220703125,
+                "width": 13,
+                "height": 16
+              }
+            },
+            {
+              "text": "☆",
+              "color": "#80551F",
+              "bounds": {
+                "type": 5,
+                "x": 254.83334350585938,
+                "y": 187.20001220703125,
+                "width": 13,
+                "height": 16
+              }
+            },
+            {
+              "text": "☆",
+              "color": "#80551F",
+              "bounds": {
+                "type": 5,
+                "x": 270.8333435058594,
+                "y": 187.20001220703125,
+                "width": 13,
+                "height": 16
+              }
+            },
+            {
+              "text": "☆",
+              "color": "#80551F",
+              "bounds": {
+                "type": 5,
+                "x": 286.8333435058594,
+                "y": 187.20001220703125,
+                "width": 13,
+                "height": 16
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "status": "FAIL",
+  "failure": "AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:\n\n  assert.ok(copy.includes('尚缺可用重触来源'))\n"
+}
