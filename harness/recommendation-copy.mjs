@@ -29,8 +29,8 @@ try{
    row.guidance=shopOfferGuidance(s,o);assert.equal(row.guidance.stars,key==='missing'?2:key==='five-star'?5:4);
    await tapUI(p,'shop','offer/'+o.offerId,spec.touch);await p.locator('.detail-dialog[open]').waitFor();if(key!=='missing')await p.getByRole('button',{name:'返回购买详情',exact:true}).click();
    row.initialText=await p.locator('.detail-dialog[open]').innerText();row.summary=await p.locator('.dialog-purchase-summary').innerText();
-   assert.ok(row.summary.includes(key==='missing'?'组合潜力：尚缺可用重触来源。':key==='five-star'?'组合潜力：同点重触可接加成，待触发。':'组合潜力：已有重触来源，成长待触发。'));
-   assert.ok(!/组合记录|共同计分|新牌未参与|三拍子|长期捧场/.test(row.summary));assert.ok(!/组合记录|新牌未参与|必买|稳赚/.test(row.initialText));assert.equal(row.summary.match(/组合潜力：/g).length,1);
+   assert.ok(row.summary.includes(key==='missing'?'尚缺重触来源 · 新购成长为0':key==='five-star'?'组合潜力：同点重触可接加成，待触发。':'组合潜力：已有重触来源，成长待触发。'));
+   assert.ok(!/组合记录|共同计分|新牌未参与|三拍子|长期捧场/.test(row.summary));assert.ok(!/组合记录|新牌未参与|必买|稳赚/.test(row.initialText));assert.equal((row.summary.match(/组合潜力：/g)??[]).length,key==='missing'?0:1);
    await shot('first-screen');
    if(spec.width===320){await p.locator('.dialog-purchase-summary').evaluate(e=>{const scroll=e.closest('.dialog-scroll');scroll.scrollTop+=e.getBoundingClientRect().top-scroll.getBoundingClientRect().top;});await shot('summary-scroll');}
    await p.getByText('规则与操作',{exact:true}).click();row.expandedText=await p.locator('.detail-dialog[open]').innerText();assert.ok(row.expandedText.includes('组合记录：上手'));assert.ok(row.expandedText.includes('新牌未参与'));assert.ok(!/必买|稳赚|共同计分不代表|不表示指定替换净更强/.test(row.expandedText));

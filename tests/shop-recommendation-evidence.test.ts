@@ -13,7 +13,7 @@ it.each(['group','straight','flush'] as const)('%s: a specified sale cannot rema
  const shelf=shopOfferGuidance(s,o),remove=shopOfferGuidance(s,o,s.jokers[0]),keep=shopOfferGuidance(s,o,s.jokers[3]);
  expect(shelf).toMatchObject({stars:4,operation:'需替换'});
  expect(remove.recommendation).toMatchObject({stars:2,facts:{retriggerSource:false}});
- expect(remove.recommendation.combinationHint).toBe('组合潜力：尚缺可用重触来源。');
+ expect(remove.recommendation).toMatchObject({combinationHint:'',reason:'尚缺重触来源',condition:'新购成长为0'});
  expect(keep.recommendation).toMatchObject({stars:4,facts:{retriggerSource:true}});
  const tx=shopReplacementTransactionFacts(s,o,s.jokers[2]),cost=shopReplacementCompactFacts(s,s.jokers[2],tx).join('\n');
  expect(tx.status).toBe('ready');expect(cost).toContain('实付');expect(cost).toContain('买后');expect(cost).toContain('失去：系数×1.6');
@@ -47,4 +47,12 @@ it('retains all three original five-star branches independently of the specified
  expect(shopOfferGuidance(s,coefficient,s.jokers[1]).recommendation).toMatchObject({stars:4,facts:{additiveSource:false}});
  expect(shopOfferGuidance(s,coefficient,s.jokers[3]).recommendation).toMatchObject({stars:5,facts:{additiveSource:true}});
  expect(s).toEqual(before);
+});
+
+it('unmet or disabled conditions stay ahead of a potential hint without changing stars',()=>{
+ const s=recommendationEvidenceFixture('flush'),o=s.shop!.offers[0];
+ const disabled=shopRecommendation({...s,chapterDisabledJokerId:o.definitionId},o,'flush');
+ expect(disabled).toMatchObject({stars:1,combinationHint:'',reason:'本章计分停用'});
+ const late=shopRecommendation({...s,chapter:8,stageIndex:22},o,'flush');
+ expect(late).toMatchObject({stars:2,combinationHint:''});expect(late.condition).toContain('新购从初值开始');
 });
