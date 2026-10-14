@@ -1,0 +1,88 @@
+
+> dachoupai@0.1.0 verify:ci
+> node scripts/verify-ci.mjs
+
+CHECK test: /opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node /opt/codex/runtimes/codex-primary-runtime/dependencies/node/lib/node_modules/npm/bin/npm-cli.js run test
+
+> dachoupai@0.1.0 test
+> vitest run
+
+
+ RUN  v4.1.11 /workspace/dachoupai
+
+ ❯ tests/p1a-active-mult.test.ts (19 tests | 1 failed) 1728ms
+     × three authorized player-copy surfaces explain new-card participation without technical terms or state writes 11ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/p1a-active-mult.test.ts > P1A exact active multiplier timing > three authorized player-copy surfaces explain new-card participation without technical terms or state writes
+AssertionError: expected '已成型也能押 新摸牌参与成型 ×2 ／ ×0.85' to contain '用新摸的牌成型'
+
+Expected: "用新摸的牌成型"
+Received: "已成型也能押 新摸牌参与成型 ×2 ／ ×0.85"
+
+ ❯ tests/p1a-active-mult.test.ts:141:67
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 238 passed (239)
+      Tests  1 failed | 3451 passed (3452)
+   Start at  14:26:42
+   Duration  110.23s (transform 20.25s, setup 0ms, import 94.71s, tests 153.43s, environment 47ms)
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice
+test: FAIL
+{
+  "scope": "all",
+  "testedCommit": "977295b40d7d646e97b36a969308dab7b90c7917",
+  "status": "FAIL",
+  "exitCode": 1,
+  "before": {
+    "source": "32a854fe6314b0f0a2e775edd2be79c02ed917c687494b3b00ddbe3934f76ed9",
+    "index": "16b3a2095ce56570d6f467f0a4d5401274340efe3ed658197005882c0a850c4f",
+    "head": "977295b40d7d646e97b36a969308dab7b90c7917",
+    "branch": "refs/heads/dev/six-hero-selection-20261014"
+  },
+  "after": {
+    "source": "5b4a71ac3838a26c34823aab97342c6cf8251e064d69ba2e4edccc04c654af9d",
+    "index": "16b3a2095ce56570d6f467f0a4d5401274340efe3ed658197005882c0a850c4f",
+    "head": "977295b40d7d646e97b36a969308dab7b90c7917",
+    "branch": "refs/heads/dev/six-hero-selection-20261014"
+  },
+  "steps": [
+    {
+      "name": "test",
+      "status": "FAIL",
+      "childExitCode": 1,
+      "elapsedMs": 112841,
+      "reason": "checker changed source; changes retained for inspection"
+    }
+  ],
+  "notIncluded": [
+    {
+      "name": "extended browser/recovery/fault/asset/simulation diagnostics",
+      "status": "NOT_INCLUDED",
+      "reason": "run the existing specific command only when its domain changes; P00 removes repeated default execution"
+    },
+    {
+      "name": "balance/benchmark acceptance",
+      "status": "NOT_INCLUDED",
+      "reason": "later work packages; no gameplay approval inferred from checks"
+    },
+    {
+      "name": "physical devices / human / art approval",
+      "status": "NOT_RUN"
+    }
+  ]
+}
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice
