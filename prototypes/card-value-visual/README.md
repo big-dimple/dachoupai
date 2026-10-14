@@ -1,4 +1,14 @@
-# 卡牌价值样板 · 单轮收敛
+# 卡牌价值样板 · 当前第三轮独立原型
+
+2026-10-14 父授权恢复独立原型工作。本轮仅在本目录：补版次这一轴，保持原五完整实空星/人物主体/统一比较，修短视窗滚动后关闭消失及新详情继承旧滚动。星值仍为固定展示输入，未接产品。
+
+**当前可打开入口与精确前后证据见 [ROUND3.md](ROUND3.md)。** 仓库根执行 `node prototypes/card-value-visual/serve.mjs`，打开 http://127.0.0.1:5189/prototypes/card-value-visual/index.html 。当前验证 `node prototypes/card-value-visual/verify.mjs` 写入 `evidence/round3/after/`；同状态补充操作 `node prototypes/card-value-visual/inspect-round3.mjs` 写入 `evidence/round3/focused/`。
+
+以下为2026-10-13第二轮原始记录，按f16e1725及当时验证器保留。旧“结束/停止扩展”只描述第二轮，不覆盖本次父授权；历史图和结果没有被重新覆盖。
+
+---
+
+# 第二轮：卡牌价值样板 · 单轮收敛
 
 **本轮结束于视觉评审候选，不再自行扩展，也不接入产品。** 父审否决首版整体美学：人物偏小、三张长表单、每卡重复两行操作。本轮保留信息分轴，改成人物主导的卡面，去掉逐卡按钮。整体是否优于现有产品，仍交父审/用户判断；不以软件测试代签审美。
 

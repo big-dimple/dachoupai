@@ -1,0 +1,367 @@
+{
+  "kind": "Round 3: separate four display meanings and fixed close controls",
+  "previousReviewCommit": "f16e17253558d13bffd0c2316a12c44b2b1f171b",
+  "head": "544a8a705306131b664c25571afdcbc51b81dea2",
+  "trackedDirty": "",
+  "browser": "151.0.7922.173",
+  "profiles": [
+    {
+      "width": 390,
+      "height": 844,
+      "dpr": 1,
+      "metrics": {
+        "card": {
+          "width": 270,
+          "height": 423.296875
+        },
+        "art": {
+          "width": 246,
+          "height": 238,
+          "containedWidth": 190.5859375
+        },
+        "repeatedPerCardActionRows": 0,
+        "pageHeight": 844,
+        "unifiedActionVisible": true
+      },
+      "modalChecks": [
+        {
+          "kind": "detail",
+          "id": "mantangcai",
+          "closeBefore": {
+            "x": 298,
+            "y": 156.1875,
+            "width": 58,
+            "height": 44
+          },
+          "closeAfter": {
+            "x": 298,
+            "y": 156.1875,
+            "width": 58,
+            "height": 44
+          },
+          "scroll": {
+            "top": 0,
+            "height": 487,
+            "total": 487
+          }
+        },
+        {
+          "kind": "detail",
+          "id": "e08",
+          "closeBefore": {
+            "x": 298,
+            "y": 156.1875,
+            "width": 58,
+            "height": 44
+          },
+          "closeAfter": {
+            "x": 298,
+            "y": 156.1875,
+            "width": 58,
+            "height": 44
+          },
+          "scroll": {
+            "top": 0,
+            "height": 487,
+            "total": 487
+          }
+        },
+        {
+          "kind": "detail",
+          "id": "b06",
+          "closeBefore": {
+            "x": 298,
+            "y": 144.484375,
+            "width": 58,
+            "height": 44
+          },
+          "closeAfter": {
+            "x": 298,
+            "y": 144.484375,
+            "width": 58,
+            "height": 44
+          },
+          "scroll": {
+            "top": 0,
+            "height": 510,
+            "total": 510
+          }
+        },
+        {
+          "kind": "comparison",
+          "close": {
+            "x": 298,
+            "y": 52.21875,
+            "width": 58,
+            "height": 44
+          },
+          "scroll": {
+            "top": 0,
+            "height": 695,
+            "total": 695
+          }
+        }
+      ],
+      "checks": [
+        "ordinary 4 stars, rare holographic 2 stars, rare 3/5 stars stay separate",
+        "edition present in card/detail/comparison; no added per-card controls",
+        "detail/comparison close remains fixed after native wheel scrolling; detail return preserves page/rail",
+        "all three cards separately revealed; visible text and five stars uncut",
+        "intentional side peek is artwork only; no cut labels/stars",
+        "native CDP touch swipe reaches second card without accidental open; tap opens/closes detail",
+        "zero repeated per-card action rows",
+        "unified action within first viewport",
+        "all three details open/close and focus return",
+        "keyboard Enter/Escape",
+        "3↔5 sample and 1/2↔2/2",
+        "comparison mode + selection limit + remove + cancel",
+        "two comparisons; focus restore",
+        "selection preserved on fixture switch",
+        "reduced motion",
+        "no external requests or JS errors"
+      ],
+      "status": "PASS"
+    },
+    {
+      "width": 1366,
+      "height": 900,
+      "dpr": 1,
+      "metrics": {
+        "card": {
+          "width": 326,
+          "height": 474.6875
+        },
+        "art": {
+          "width": 300,
+          "height": 280,
+          "containedWidth": 224.21875
+        },
+        "repeatedPerCardActionRows": 0,
+        "pageHeight": 906,
+        "unifiedActionVisible": true
+      },
+      "modalChecks": [
+        {
+          "kind": "detail",
+          "id": "mantangcai",
+          "closeBefore": {
+            "x": 931,
+            "y": 192.25,
+            "width": 58,
+            "height": 44
+          },
+          "closeAfter": {
+            "x": 931,
+            "y": 192.25,
+            "width": 58,
+            "height": 44
+          },
+          "scroll": {
+            "top": 0,
+            "height": 474,
+            "total": 474
+          }
+        },
+        {
+          "kind": "detail",
+          "id": "e08",
+          "closeBefore": {
+            "x": 931,
+            "y": 192.25,
+            "width": 58,
+            "height": 44
+          },
+          "closeAfter": {
+            "x": 931,
+            "y": 192.25,
+            "width": 58,
+            "height": 44
+          },
+          "scroll": {
+            "top": 0,
+            "height": 474,
+            "total": 474
+          }
+        },
+        {
+          "kind": "detail",
+          "id": "b06",
+          "closeBefore": {
+            "x": 931,
+            "y": 180.5625,
+            "width": 58,
+            "height": 44
+          },
+          "closeAfter": {
+            "x": 931,
+            "y": 180.5625,
+            "width": 58,
+            "height": 44
+          },
+          "scroll": {
+            "top": 0,
+            "height": 498,
+            "total": 498
+          }
+        },
+        {
+          "kind": "comparison",
+          "close": {
+            "x": 931,
+            "y": 63.71875,
+            "width": 58,
+            "height": 44
+          },
+          "scroll": {
+            "top": 0,
+            "height": 732,
+            "total": 732
+          }
+        }
+      ],
+      "checks": [
+        "ordinary 4 stars, rare holographic 2 stars, rare 3/5 stars stay separate",
+        "edition present in card/detail/comparison; no added per-card controls",
+        "detail/comparison close remains fixed after native wheel scrolling; detail return preserves page/rail",
+        "all three cards separately revealed; visible text and five stars uncut",
+        "intentional side peek is artwork only; no cut labels/stars",
+        "zero repeated per-card action rows",
+        "unified action within first viewport",
+        "all three details open/close and focus return",
+        "keyboard Enter/Escape",
+        "3↔5 sample and 1/2↔2/2",
+        "comparison mode + selection limit + remove + cancel",
+        "two comparisons; focus restore",
+        "selection preserved on fixture switch",
+        "reduced motion",
+        "no external requests or JS errors"
+      ],
+      "status": "PASS"
+    },
+    {
+      "width": 390,
+      "height": 568,
+      "dpr": 1,
+      "metrics": {
+        "card": {
+          "width": 270,
+          "height": 423.296875
+        },
+        "art": {
+          "width": 246,
+          "height": 238,
+          "containedWidth": 190.5859375
+        },
+        "repeatedPerCardActionRows": 0,
+        "pageHeight": 817,
+        "unifiedActionVisible": false
+      },
+      "modalChecks": [
+        {
+          "kind": "detail",
+          "id": "mantangcai",
+          "closeBefore": {
+            "x": 298,
+            "y": 27,
+            "width": 58,
+            "height": 44
+          },
+          "closeAfter": {
+            "x": 298,
+            "y": 27,
+            "width": 58,
+            "height": 44
+          },
+          "scroll": {
+            "top": 18,
+            "height": 469,
+            "total": 487
+          }
+        },
+        {
+          "kind": "detail",
+          "id": "e08",
+          "closeBefore": {
+            "x": 298,
+            "y": 27,
+            "width": 58,
+            "height": 44
+          },
+          "closeAfter": {
+            "x": 298,
+            "y": 27,
+            "width": 58,
+            "height": 44
+          },
+          "scroll": {
+            "top": 18,
+            "height": 469,
+            "total": 487
+          }
+        },
+        {
+          "kind": "detail",
+          "id": "b06",
+          "closeBefore": {
+            "x": 298,
+            "y": 27,
+            "width": 58,
+            "height": 44
+          },
+          "closeAfter": {
+            "x": 298,
+            "y": 27,
+            "width": 58,
+            "height": 44
+          },
+          "scroll": {
+            "top": 41,
+            "height": 469,
+            "total": 510
+          }
+        },
+        {
+          "kind": "comparison",
+          "close": {
+            "x": 298,
+            "y": 27,
+            "width": 58,
+            "height": 44
+          },
+          "scroll": {
+            "top": 226,
+            "height": 469,
+            "total": 695
+          }
+        }
+      ],
+      "checks": [
+        "ordinary 4 stars, rare holographic 2 stars, rare 3/5 stars stay separate",
+        "edition present in card/detail/comparison; no added per-card controls",
+        "detail/comparison close remains fixed after native wheel scrolling; detail return preserves page/rail",
+        "all three cards separately revealed; visible text and five stars uncut",
+        "intentional side peek is artwork only; no cut labels/stars",
+        "native CDP touch swipe reaches second card without accidental open; tap opens/closes detail",
+        "zero repeated per-card action rows",
+        "short viewport keeps page scroll available",
+        "all three details open/close and focus return",
+        "keyboard Enter/Escape",
+        "3↔5 sample and 1/2↔2/2",
+        "comparison mode + selection limit + remove + cancel",
+        "two comparisons; focus restore",
+        "selection preserved on fixture switch",
+        "reduced motion",
+        "no external requests or JS errors"
+      ],
+      "status": "PASS"
+    }
+  ],
+  "humanAcceptance": "NOT_RUN",
+  "physicalDevice": "NOT_RUN",
+  "gameplayRecommendationCalibration": "NOT_RUN",
+  "sourceHashes": {
+    "index.html": "6bbf2caeeee8c4c78fd947e447675f7506b050fdb60592747995a6fee1d250e4",
+    "style.css": "335ada0a80ed21b664cdb0b3ef7c4baf92976b4807d1a1d87f9d5ccbf9e67345",
+    "app.js": "17a821c647ed73ce77a406fbbe0abcfc0fe1bbad6a0575a3ed2d83b2a990e168"
+  }
+}
