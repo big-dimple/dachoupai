@@ -1,0 +1,10 @@
+AssertionError [ERR_ASSERTION]: fast release plus delayed save cannot jump other cards back
+    at file:///workspace/dachoupai/harness/table-owned-joker-drag.mjs:76:186 {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: false,
+  expected: true,
+  operator: '==',
+  diff: 'simple'
+}
+FAIL /tmp/table-drag-candidate
