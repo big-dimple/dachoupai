@@ -1,51 +1,64 @@
 import sources from '../../public/assets/audio/foley-v1/sources.json';
 export const FOLEY_SAMPLES = sources.assets;
-export type Layer = { samples: string[]; duration: number; gain: number; delay?: number; rate?: number;attack?:number;hold?:number;filter?:{type:BiquadFilterType;frequency:number;end:number;sweep:number;Q:number} };
-export type FoleyRecipe = { layers: Layer[]; gap: number; cap: number };
+export type Layer = { samples: string[]; duration: number; gain: number; delay?: number; rate?: number; attack?: number; hold?: number; filter?: {type:BiquadFilterType;frequency:number;end:number;sweep:number;Q:number} };
+export type FoleyRecipe = {layers:Layer[];gap:number;cap:number;priority:number};
 const layer=(samples:string[],duration:number,gain:number,delay=0,rate=1):Layer=>({samples,duration,gain,delay,rate});
-const slides=['card-slide-1','card-slide-2','card-slide-3'],places=['card-place-1','card-place-2','card-place-3'],wood=['impactWood_light_000','impactWood_light_001'];
-// Recorded bodies, not oscillator notes. Ordinary gestures stay below the key accent.
+const low=(item:Layer,hz=2600,end=hz):Layer=>({...item,filter:{type:'lowpass',frequency:hz,end,sweep:item.duration*.8,Q:.55}});
+const air=(item:Layer):Layer=>({...item,attack:.008,hold:.24,filter:{type:'bandpass',frequency:1800,end:950,sweep:item.duration*.8,Q:.55}});
+const recipe=(layers:Layer[],gap:number,cap:number,priority=1):FoleyRecipe=>({layers,gap,cap,priority});
+const slides=['card-slide-1','card-slide-2','card-slide-3'],places=['card-place-1','card-place-2','card-place-3'];
+const wood=['impactWood_light_000','impactWood_light_001'];
+const paper=(duration:number,gain:number,delay=0)=>air(layer(slides,duration,gain,delay));
+const body=(duration:number,gain:number,delay=0,rate=.82)=>low({...layer(['impactSoft_heavy_000'],duration,gain,delay,rate),attack:.003,hold:.25},720,200);
+const bell=(duration:number,gain:number,delay=0,rate=1)=>low({...layer(['impactBell_heavy_003','impactBell_heavy_000'],duration,gain,delay,rate),attack:.006,hold:.22},2800,1500);
+const strike=(gain:number,delay=0)=>low({...layer(wood,.16,gain,delay),attack:.0005,hold:.48},3700,2200);
+// One material palette. Priority: texture 0, gesture 1, source/transaction 2,
+// chain accent 3, committed award/ending 4. Recorded bodies only, no oscillators.
 export const FOLEY = {
- deal:{layers:[layer(slides,.14,.020)],gap:.035,cap:3},
- hover:{layers:[layer(['chip-lay-1'],.06,.006)],gap:.055,cap:1},
- select:{layers:[{...layer(slides,.16,.032),attack:.008,hold:.48}],gap:.045,cap:2},
- cancel:{layers:[layer(['card-shove-1'],.16,.021)],gap:.055,cap:2},
- invalid:{layers:[layer(['impactSoft_medium_000'],.12,.027,0,.8)],gap:.12,cap:1},
- land:{layers:[layer(places,.13,.025)],gap:.035,cap:3},
- play:{layers:[layer(['card-fan-1'],.25,.029),layer(['impactWood_heavy_000'],.17,.037,.075)],gap:.08,cap:2},
- discard:{layers:[layer(['card-shove-1'],.24,.027)],gap:.08,cap:2},
- coin:{layers:[layer(['chip-lay-1','chip-lay-2'],.14,.027)],gap:.045,cap:3},
- spend:{layers:[layer(['chips-stack-1'],.13,.027)],gap:.04,cap:3},
- spendLast:{layers:[layer(['chips-stack-1'],.15,.032),layer(['impactSoft_medium_000'],.16,.024,.055)],gap:.04,cap:4},
- title:{layers:[layer(['impactBell_heavy_003'],.38,.030)],gap:.2,cap:1},
- confirm:{layers:[layer(['impactWood_light_001'],.16,.032),layer(['impactBell_heavy_003'],.30,.024,.075)],gap:.2,cap:2},
- curtain:{layers:[layer(['cloth2'],.32,.035),layer(['card-fan-1'],.22,.015,.075)],gap:.2,cap:2},
- add:{layers:[{...layer(wood,.18,.040),attack:.0005,hold:.60}],gap:.045,cap:2},
- held:{layers:[layer(places,.14,.020)],gap:.04,cap:2},
- role:{layers:[layer(['impactWood_heavy_000'],.20,.043),layer(['impactBell_heavy_003'],.30,.025,.035)],gap:.10,cap:2},
- joker:{layers:[layer(['impactSoft_medium_000'],.18,.039),layer(['chip-lay-2'],.12,.017,.04)],gap:.08,cap:3},
- boss:{layers:[layer(['impactSoft_heavy_000'],.26,.042,0,.83)],gap:.12,cap:1},
- multiply:{layers:[layer(['impactSoft_heavy_000'],.25,.056),layer(['impactBell_heavy_000'],.38,.029,.025),layer(['card-fan-1'],.18,.013,.065)],gap:.10,cap:3},
- // Inkwave679d2db audio.js726–734 thump/spray/tail structure; recorded material only.
- key:{layers:[{...layer(['impactSoft_heavy_000'],.46,.057,0,.76),attack:.002,hold:.28,filter:{type:'lowpass',frequency:620,end:180,sweep:.16,Q:.65}},{...layer(['cloth2'],.30,.025,.02,1.1),attack:.005,hold:.32,filter:{type:'bandpass',frequency:2100,end:850,sweep:.18,Q:.75}},layer(['impactWood_heavy_000'],.16,.032,.045,.9),{...layer(['impactBell_heavy_003'],.52,.027,.115,.84),attack:.006,hold:.20,filter:{type:'lowpass',frequency:2600,end:1300,sweep:.28,Q:.6}}],gap:.18,cap:4},
- award:{layers:[layer(['impactSoft_heavy_000'],.28,.049),layer(['chips-collide-1'],.23,.033,.045),layer(['impactBell_heavy_000'],.46,.033,.075)],gap:.16,cap:3},
- flight:{layers:[layer(slides,.10,.012)],gap:.04,cap:2},
- retrigger:{layers:[{...layer(wood,.14,.035),attack:.0005,hold:.60},{...layer(wood,.14,.032,.075,1.08),attack:.0005,hold:.60}],gap:.10,cap:2},
- chanceHit:{layers:[layer(['chip-lay-2'],.15,.026)],gap:.09,cap:2},
- chanceMiss:{layers:[layer(['card-shove-1'],.13,.018)],gap:.09,cap:1},
- glass:{layers:[layer(['impactGlass_heavy_002'],.38,.043)],gap:.12,cap:1},
- tarot:{layers:[layer(['cards-pack-open-1'],.28,.030),layer(['impactWood_light_001'],.12,.023,.075)],gap:.12,cap:2},
- planet:{layers:[layer(['impactBell_heavy_003'],.36,.031),layer(['card-fan-1'],.23,.022,.075)],gap:.12,cap:2},
- spectral:{layers:[layer(['impactSoft_heavy_000'],.28,.043,0,.8),layer(['cloth2'],.28,.024,.075)],gap:.12,cap:2},
- utility:{layers:[layer(['card-shuffle'],.34,.030),layer(['chip-lay-1'],.12,.023,.075)],gap:.12,cap:2},
- purchase:{layers:[layer(['chips-collide-1'],.22,.031),layer(['chip-lay-2'],.16,.025,.075)],gap:.10,cap:2},
- sale:{layers:[layer(['card-shove-1'],.20,.021),layer(['chips-stack-1'],.20,.026,.075)],gap:.10,cap:2},
- reroll:{layers:[layer(['card-shuffle'],.37,.028)],gap:.15,cap:1},
- reveal:{layers:[layer(['cards-pack-open-1'],.32,.026),layer(['impactBell_heavy_003'],.34,.030,.075)],gap:.16,cap:2},
- success:{layers:[{...layer(['impactWood_heavy_000'],.30,.044),attack:.003,hold:.3,filter:{type:'lowpass',frequency:1100,end:650,sweep:.18,Q:.6}},{...layer(['impactBell_heavy_000'],.48,.034,.075),attack:.005,hold:.25,filter:{type:'lowpass',frequency:3200,end:1800,sweep:.3,Q:.6}},layer(['chips-collide-1'],.22,.026,.17)],gap:.3,cap:3},
- failure:{layers:[{...layer(['impactSoft_heavy_000'],.42,.040,0,.75),attack:.003,hold:.25,filter:{type:'lowpass',frequency:700,end:140,sweep:.24,Q:.7}},layer(['card-shove-1'],.28,.023,.14,.8)],gap:.3,cap:2},
- rollHeat:{layers:[layer(['card-shuffle'],.18,.020)],gap:0,cap:1},
- rollMult:{layers:[layer(['chips-stack-1'],.18,.019)],gap:0,cap:1},
- rollTotal:{layers:[layer(['chips-collide-1'],.18,.021)],gap:0,cap:1},
+ deal:recipe([paper(.14,.016)],.035,3,0),
+ hover:recipe([low(layer(['chip-lay-1'],.055,.0045),2000)],.09,1,0),
+ select:recipe([low({...layer(slides,.14,.030),attack:.004,hold:.36},3100),low(layer(['chip-lay-1','chip-lay-2'],.055,.007,.022),2400)],.055,4),
+ cancel:recipe([paper(.13,.020),low(layer(places,.08,.006,.035,.9),1800)],.065,4),
+ invalid:recipe([low(layer(['impactSoft_medium_000'],.10,.023,0,.8),1000),paper(.09,.007,.04)],.16,2),
+ land:recipe([low(layer(places,.14,.026),3400),strike(.006,.025)],.055,4),
+ play:recipe([air(layer(['card-fan-1'],.24,.027)),low(layer(['impactWood_heavy_000'],.18,.031,.065),2200)],.12,4,2),
+ discard:recipe([air(layer(['card-shove-1'],.22,.025)),low(layer(places,.09,.010,.08,.82),1600)],.10,4),
+ coin:recipe([low(layer(['chip-lay-1','chip-lay-2'],.12,.022),2900)],.07,2),
+ spend:recipe([low(layer(['chips-stack-1'],.12,.024),2500)],.04,3),
+ spendLast:recipe([low(layer(['chips-stack-1'],.14,.027),2100),low(layer(['impactSoft_medium_000'],.13,.017,.055),1000)],.04,4,2),
+ title:recipe([bell(.36,.028)],.3,1,2),
+ confirm:recipe([strike(.025),bell(.28,.019,.075)],.2,2,2),
+ curtain:recipe([air(layer(['cloth2'],.32,.028)),paper(.20,.012,.075)],.3,2,2),
+ add:recipe([{...layer(wood,.18,.029),attack:.0005,hold:.60}],.055,2,1),
+ held:recipe([low(layer(places,.12,.018),2200)],.065,2,1),
+ role:recipe([low(layer(['impactWood_heavy_000'],.20,.034),2400),bell(.30,.019,.06)],.16,2,3),
+ joker:recipe([low(layer(['impactSoft_medium_000'],.14,.028),1500),low(layer(['chip-lay-2'],.10,.012,.045),2800)],.10,4,2),
+ boss:recipe([body(.26,.036,0,.75),paper(.15,.014,.075)],.2,2,3),
+ multiply:recipe([body(.25,.045),bell(.34,.023,.035),air(layer(['card-fan-1'],.16,.011,.08))],.12,6,3),
+ // Inkwave679d2db audio.js726–734 body/air/tail structure already adapted here (MIT).
+ key:recipe([body(.40,.047,0,.76),air(layer(['cloth2'],.26,.021,.02,1.1)),low(layer(['impactWood_heavy_000'],.14,.025,.05,.9),2100),bell(.43,.022,.12,.84)],.20,4,3),
+ award:recipe([body(.26,.039),low(layer(['chips-collide-1'],.18,.025,.045),3000),bell(.35,.022,.09)],.25,3,4),
+ // Absolute saved single-hand score, not the target-relative overkill tier.
+ awardMillion:recipe([body(.32,.043),strike(.023,.045),low(layer(['chips-collide-1'],.19,.023,.12),2900),bell(.43,.025,.20,1.04)],.38,4,4),
+ awardHundredMillion:recipe([body(.37,.044,0,.75),strike(.026,.055),strike(.019,.15),air(layer(['card-fan-1'],.23,.017,.21)),bell(.47,.026,.30,.9)],.5,5,4),
+ awardTrillion:recipe([body(.42,.044,0,.70),strike(.025,.07),strike(.021,.17),strike(.018,.29),air(layer(['card-fan-1'],.27,.018,.36)),bell(.52,.028,.45,.82)],.65,6,4),
+ flight:recipe([paper(.10,.009)],.065,2,0),
+ retrigger:recipe([strike(.027),{...strike(.022,.085),rate:1.08}],.13,4,2),
+ chanceHit:recipe([low(layer(['chip-lay-2'],.13,.023),2800),paper(.10,.007,.035)],.12,2,2),
+ chanceMiss:recipe([paper(.12,.015)],.12,1,1),
+ glass:recipe([low({...layer(['impactGlass_heavy_002'],.26,.032),attack:.002,hold:.22},3200,1800),body(.16,.015,.04)],.2,2,2),
+ tarot:recipe([air(layer(['cards-pack-open-1'],.26,.028)),strike(.019,.08),paper(.16,.012,.14)],.22,3,2),
+ planet:recipe([paper(.17,.020),bell(.37,.026,.085),strike(.012,.17)],.22,3,2),
+ spectral:recipe([body(.32,.033,0,.76),air(layer(['cloth2'],.27,.022,.07)),bell(.28,.012,.16,.8)],.25,3,2),
+ utility:recipe([air(layer(['card-shuffle'],.29,.026)),low(layer(places,.12,.021,.12),2600),low(layer(['chip-lay-1'],.10,.014,.18),2800)],.22,3,2),
+ purchase:recipe([low(layer(['chips-collide-1'],.18,.030),4200),low(layer(['chip-lay-2'],.13,.024,.075),3600),paper(.12,.009,.11)],.16,3,2),
+ sale:recipe([paper(.18,.019),low(layer(['chips-stack-1'],.18,.024,.075),2600)],.16,2,2),
+ reroll:recipe([air(layer(['card-shuffle'],.31,.023)),low(layer(places,.12,.015,.18),2500)],.25,2,2),
+ reveal:recipe([air(layer(['cards-pack-open-1'],.28,.025)),bell(.36,.024,.095),paper(.16,.011,.17)],.25,3,3),
+ success:recipe([low({...layer(['impactWood_heavy_000'],.26,.034),attack:.003,hold:.3},1400,700),low(layer(['chips-collide-1'],.19,.022,.08),3000),bell(.44,.025,.18),bell(.29,.013,.31,1.15)],.6,4,4),
+ failure:recipe([body(.40,.035,0,.70),air(layer(['card-shove-1'],.27,.022,.14,.8)),low(layer(places,.13,.012,.30,.72),1200)],.6,3,4),
+ rollHeat:recipe([paper(.13,.015)],0,1,0),
+ rollMult:recipe([low(layer(['chips-stack-1'],.13,.014),2200)],0,1,0),
+ rollTotal:recipe([low(layer(['chips-collide-1'],.14,.015),2400)],0,1,0),
 } satisfies Record<string,FoleyRecipe>;
 export type FoleyKind=keyof typeof FOLEY;

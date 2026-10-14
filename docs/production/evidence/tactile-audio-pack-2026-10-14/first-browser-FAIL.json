@@ -1,0 +1,9 @@
+{
+  "browser": "151.0.7922.173",
+  "heard": false,
+  "physicalDevice": false,
+  "scope": "Real Chromium/WebAudio on touch viewport; controlled loader failures/lifecycle/mix. Viewport is not physical Android/iOS or speaker acceptance.",
+  "cases": [],
+  "status": "FAIL",
+  "error": "Error: page.evaluate: TypeError: Cannot read properties of undefined (reading 'after')\n    at eval (eval at evaluate (:311:30), <anonymous>:1:28)\n    at UtilityScript.evaluate (<anonymous>:313:16)\n    at UtilityScript.<anonymous> (<anonymous>:1:44)"
+}
