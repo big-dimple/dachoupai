@@ -1,0 +1,24 @@
+{
+  "base": "f651a04ef5eb68c29a413acf8b4d8a0e9bbcde09",
+  "productCheckedHead": "a02225762dee8a6ac8441e52be50d4548f1ee112",
+  "inputHeads": {
+    "177": "bfdb7088e88b0b2605f6b9fc7ed5f90d65fe4630",
+    "179": "41692bff3d3809de6fd80503c987c716eeb8389f",
+    "180": "1c4a7259ea4e15fd87ede1a636b3c23ae0a43fa3",
+    "181": "9242ed738062568def87853d0e1d688338877a85",
+    "182": "ba89b6076054ad75063fece514c3ef96ef209135"
+  },
+  "core178": "0b41f87618e0fca3016a352d59af62353a2acafa",
+  "coreVia180": true,
+  "mergeCommits": [
+    "4f37d0d50500b76227836a4040fa328a04e19657 1f0013fb9ad39ec39d4b69b80e7b3215a2ed8b3c 9242ed738062568def87853d0e1d688338877a85 merge: integrate submitted storyboard repair 9242ed73 (PR181, visual review pending)",
+    "5872aaee6d2fc7658211db070a1401289d414098 78dbbab45f9b743ea875af30dc281e6f920a6bc8 ba89b6076054ad75063fece514c3ef96ef209135 merge: integrate six-hero selection presentation (PR182)",
+    "78dbbab45f9b743ea875af30dc281e6f920a6bc8 7e0d48ad84c441b5788f9b39395ba1f90f7738e6 41692bff3d3809de6fd80503c987c716eeb8389f merge: integrate tactile audio and bigint award boundaries (PR179)",
+    "7e0d48ad84c441b5788f9b39395ba1f90f7738e6 1ea6ebda5b3be7a636ce012b59479bbb42b68f25 1c4a7259ea4e15fd87ede1a636b3c23ae0a43fa3 merge: integrate shop journey and its core-build dependency (PR180 includes PR178)",
+    "1ea6ebda5b3be7a636ce012b59479bbb42b68f25 2db3bcd9e7fb1f59382bb9aa73a2ae8237d94940 bfdb7088e88b0b2605f6b9fc7ed5f90d65fe4630 merge: include the five-window delivery plan (PR177)",
+    "4f7ee2b44d7193b6a4bbacd060937561e2bcb391 231e1440eb76fce49156b7912145ff4892855cf7 0b41f87618e0fca3016a352d59af62353a2acafa Merge PR178 core build dependency into shop journey branch"
+  ],
+  "currentSrcTree": "29879994a072a14f5a7261e698d425eeab54b764",
+  "mainGate": "pending181-independent-visual-review-and-integration-exact-CI",
+  "audioBranchUnchanged": "41692bff3d3809de6fd80503c987c716eeb8389f"
+}
