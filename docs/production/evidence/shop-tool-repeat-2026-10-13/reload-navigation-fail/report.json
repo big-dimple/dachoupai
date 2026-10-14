@@ -1,0 +1,74 @@
+{
+  "head": "2ef9180c066308e06d7d09850983ea469aa67fd8",
+  "before": false,
+  "scope": "Legal controlled native import, shop only; Chromium CSS viewports 390x740/1366x768 DPR1, touch/mouse/keyboard. No physical device or natural acquisition claim.",
+  "cases": [
+    {
+      "width": 390,
+      "checks": [
+        "target selection keeps scroll/focus; purchase and target cancel leave complete save unchanged"
+      ],
+      "shots": [
+        "390-purchase-before.png",
+        "390-purchase-cancel.png",
+        "390-selected-target.png",
+        "390-owned-cancel.png"
+      ],
+      "errors": [],
+      "initial": {
+        "gold": 30,
+        "seq": 2,
+        "journal": 0
+      },
+      "purchaseBefore": {
+        "pane": "purchase",
+        "scroll": [
+          0,
+          554
+        ],
+        "focus": "T11"
+      },
+      "purchaseAfter": {
+        "pane": "purchase",
+        "scroll": [
+          0,
+          554
+        ],
+        "focus": "T11"
+      },
+      "ownedBefore": {
+        "pane": "owned",
+        "scroll": [
+          0,
+          0
+        ],
+        "focus": "held/T08"
+      },
+      "targetBefore": [
+        624,
+        0,
+        0
+      ],
+      "targetAfter": [
+        624,
+        0,
+        0
+      ],
+      "ownedAfter": {
+        "pane": "owned",
+        "scroll": [
+          0,
+          0
+        ],
+        "focus": "held/T08"
+      },
+      "stored": {
+        "gold": 26,
+        "seq": 3,
+        "journal": 1
+      }
+    }
+  ],
+  "result": "FAIL",
+  "error": "page.reload: Timeout 15000ms exceeded.\nCall log:\n\u001b[2m  - waiting for navigation until \"load\"\u001b[22m\n\u001b[2m    - navigated to \"http://127.0.0.1:5735/?harness=1\"\u001b[22m\n\n    at /workspace/dachoupai/harness/shop-tool-repeat.mjs:37:11"
+}

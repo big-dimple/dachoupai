@@ -5,7 +5,7 @@ import type {OpeningPlaySample} from './OpeningPlaySample';
 import {PAPER_THEME} from './theme';
 
 /** Two readable states share one paper table; movement decorates, never gates choice. */
-export function drawOpeningPlayTable(scene:Phaser.Scene,v:SceneView,b:Box,s:OpeningPlaySample,replay:()=>void,showAfter=false){
+export function drawOpeningPlayTable(scene:Phaser.Scene,v:SceneView,b:Box,s:OpeningPlaySample,replay:()=>void,showAfter=false,animateReplay=true){
  const narrow=b.width<500,short=b.height<130,pad=short?4:8;
  v.material(b,PAPER_THEME.paperLight,PAPER_THEME.paperLight,8);
  v.add(scene.add.graphics().lineStyle(1,PAPER_THEME.divider,.8).strokeRoundedRect(b.x,b.y,b.width,b.height,8));
@@ -19,8 +19,10 @@ export function drawOpeningPlayTable(scene:Phaser.Scene,v:SceneView,b:Box,s:Open
  const top=b.y+(short?2:36),colW=narrow?b.width-pad*2:(b.width-pad*2-32)/2;
  const labels=[s.before,s.after].map((row,i)=>v.text(0,0,row.label,short?14:narrow?14:18,i?'#B8473A':'#26313A',colW).setFontStyle('bold').setName('opening/sample-'+(i?'after':'before')));
  const compact=narrow&&(b.height<224||b.y+b.height-footer-top<2*(Math.max(...labels.map(label=>label.height))+3+44+2));
- const replayButton=v.button({x:b.x+b.width-replayWidth-pad,y:short?footerY:b.y+2,width:replayWidth,height:short?30:32},compact?'看变化':'再看一次','action/opening-replay',replay);
- replayButton.input!.hitArea.setTo(0,short?-7:-6,replayWidth,44);
+ if(compact||animateReplay){
+  const replayButton=v.button({x:b.x+b.width-replayWidth-pad,y:short?footerY:b.y+2,width:replayWidth,height:short?30:32},compact?(showAfter?'看原牌':'看变化'):'重播变化','action/opening-replay',replay);
+  replayButton.input!.hitArea.setTo(0,short?-7:-6,replayWidth,44);
+ }
  const rowH=narrow&&!compact?(b.y+b.height-footer-top)/2:b.y+b.height-footer-top;
  const rows=compact?[showAfter?s.after:s.before]:[s.before,s.after];
  if(compact)labels[showAfter?0:1].destroy();

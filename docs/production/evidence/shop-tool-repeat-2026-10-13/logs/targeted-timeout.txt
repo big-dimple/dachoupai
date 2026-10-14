@@ -1,0 +1,27 @@
+
+ RUN  v4.1.11 /workspace/dachoupai
+
+ ❯ tests/tool-inventory-entry.test.ts (18 tests | 1 failed) 26561ms
+     × keeps inventory, history, primary controls and nine seats usable around 500 and the full-sidebar budget 25643ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/tool-inventory-entry.test.ts > desktop height boundary respects the usable safe viewport > keeps inventory, history, primary controls and nine seats usable around 500 and the full-sidebar budget
+Error: Test timed out in 5000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ ❯ tests/tool-inventory-entry.test.ts:33:2
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 5 passed (6)
+      Tests  1 failed | 52 passed (53)
+   Start at  15:55:03
+   Duration  38.59s (transform 40.01s, setup 0ms, import 63.69s, tests 29.66s, environment 3ms)
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice

@@ -1,0 +1,495 @@
+{
+  "head": "2ef9180c066308e06d7d09850983ea469aa67fd8",
+  "phase": "before",
+  "scope": "Controlled current-profile local shelf UI only; no full run or physical device",
+  "cases": [
+    {
+      "width": 320,
+      "height": 740,
+      "five": false,
+      "errors": [],
+      "offers": [
+        {
+          "id": "b10",
+          "stars": 4,
+          "condition": "成组后增长 · 下手生效",
+          "combination": "组合记录：上手对上眼、长期捧场共同计分（新牌未参与）。"
+        },
+        {
+          "id": "e08",
+          "stars": 2,
+          "condition": "买后16金，暂不触发",
+          "combination": "组合记录：上手对上眼、长期捧场共同计分（新牌未参与）。"
+        },
+        {
+          "id": "d09",
+          "stars": 2,
+          "condition": "新购成长为0",
+          "combination": "组合潜力：尚缺可用重触来源。\n组合记录：上手对上眼、长期捧场共同计分（新牌未参与）。"
+        }
+      ],
+      "screenshots": [
+        "320-counterexamples-shelf.png",
+        "320-counterexamples-d09-detail.png"
+      ],
+      "geometry": [
+        {
+          "name": "shop/offer-advice",
+          "offerId": "public/b10",
+          "stars": 4,
+          "fullText": "推荐指数 ★★★★☆",
+          "bounds": {
+            "type": 5,
+            "x": 20.166667938232422,
+            "y": 187.20001220703125,
+            "width": 77,
+            "height": 16
+          },
+          "children": [
+            {
+              "text": "★",
+              "color": "#80551F",
+              "bounds": {
+                "type": 5,
+                "x": 20.166667938232422,
+                "y": 187.20001220703125,
+                "width": 13,
+                "height": 16
+              }
+            },
+            {
+              "text": "★",
+              "color": "#80551F",
+              "bounds": {
+                "type": 5,
+                "x": 36.16666793823242,
+                "y": 187.20001220703125,
+                "width": 13,
+                "height": 16
+              }
+            },
+            {
+              "text": "★",
+              "color": "#80551F",
+              "bounds": {
+                "type": 5,
+                "x": 52.16666793823242,
+                "y": 187.20001220703125,
+                "width": 13,
+                "height": 16
+              }
+            },
+            {
+              "text": "★",
+              "color": "#80551F",
+              "bounds": {
+                "type": 5,
+                "x": 68.16666793823242,
+                "y": 187.20001220703125,
+                "width": 13,
+                "height": 16
+              }
+            },
+            {
+              "text": "☆",
+              "color": "#80551F",
+              "bounds": {
+                "type": 5,
+                "x": 84.16666793823242,
+                "y": 187.20001220703125,
+                "width": 13,
+                "height": 16
+              }
+            }
+          ]
+        },
+        {
+          "name": "shop/offer-advice",
+          "offerId": "public/e08",
+          "stars": 2,
+          "fullText": "推荐指数 ★★☆☆☆",
+          "bounds": {
+            "type": 5,
+            "x": 121.5,
+            "y": 187.20001220703125,
+            "width": 77,
+            "height": 16
+          },
+          "children": [
+            {
+              "text": "★",
+              "color": "#80551F",
+              "bounds": {
+                "type": 5,
+                "x": 121.5,
+                "y": 187.20001220703125,
+                "width": 13,
+                "height": 16
+              }
+            },
+            {
+              "text": "★",
+              "color": "#80551F",
+              "bounds": {
+                "type": 5,
+                "x": 137.5,
+                "y": 187.20001220703125,
+                "width": 13,
+                "height": 16
+              }
+            },
+            {
+              "text": "☆",
+              "color": "#80551F",
+              "bounds": {
+                "type": 5,
+                "x": 153.5,
+                "y": 187.20001220703125,
+                "width": 13,
+                "height": 16
+              }
+            },
+            {
+              "text": "☆",
+              "color": "#80551F",
+              "bounds": {
+                "type": 5,
+                "x": 169.5,
+                "y": 187.20001220703125,
+                "width": 13,
+                "height": 16
+              }
+            },
+            {
+              "text": "☆",
+              "color": "#80551F",
+              "bounds": {
+                "type": 5,
+                "x": 185.5,
+                "y": 187.20001220703125,
+                "width": 13,
+                "height": 16
+              }
+            }
+          ]
+        },
+        {
+          "name": "shop/offer-advice",
+          "offerId": "public/d09",
+          "stars": 2,
+          "fullText": "推荐指数 ★★☆☆☆",
+          "bounds": {
+            "type": 5,
+            "x": 222.83334350585938,
+            "y": 187.20001220703125,
+            "width": 77,
+            "height": 16
+          },
+          "children": [
+            {
+              "text": "★",
+              "color": "#80551F",
+              "bounds": {
+                "type": 5,
+                "x": 222.83334350585938,
+                "y": 187.20001220703125,
+                "width": 13,
+                "height": 16
+              }
+            },
+            {
+              "text": "★",
+              "color": "#80551F",
+              "bounds": {
+                "type": 5,
+                "x": 238.83334350585938,
+                "y": 187.20001220703125,
+                "width": 13,
+                "height": 16
+              }
+            },
+            {
+              "text": "☆",
+              "color": "#80551F",
+              "bounds": {
+                "type": 5,
+                "x": 254.83334350585938,
+                "y": 187.20001220703125,
+                "width": 13,
+                "height": 16
+              }
+            },
+            {
+              "text": "☆",
+              "color": "#80551F",
+              "bounds": {
+                "type": 5,
+                "x": 270.8333435058594,
+                "y": 187.20001220703125,
+                "width": 13,
+                "height": 16
+              }
+            },
+            {
+              "text": "☆",
+              "color": "#80551F",
+              "bounds": {
+                "type": 5,
+                "x": 286.8333435058594,
+                "y": 187.20001220703125,
+                "width": 13,
+                "height": 16
+              }
+            }
+          ]
+        }
+      ],
+      "send": [],
+      "status": "PASS"
+    },
+    {
+      "width": 320,
+      "height": 740,
+      "five": true,
+      "errors": [],
+      "offers": [
+        {
+          "id": "b06",
+          "stars": 5,
+          "condition": "最大原始同点组有效牌",
+          "combination": "组合潜力：同点重触可接加成，待触发。\n组合记录：上手三拍子、对上眼、长期捧场共同计分（新牌未参与）。"
+        },
+        {
+          "id": "a11",
+          "stars": 5,
+          "condition": "只读葫芦或同花葫芦",
+          "combination": "组合潜力：葫芦重触可接加成，待触发。\n组合记录：上手三拍子、对上眼、长期捧场共同计分（新牌未参与）。"
+        },
+        {
+          "id": "a06",
+          "stars": 5,
+          "condition": "新购×1.5 · 连续不同合格主手",
+          "combination": "组合潜力：已有加倍率来源，换型待触发。\n组合记录：上手三拍子、对上眼、长期捧场共同计分（新牌未参与）。"
+        }
+      ],
+      "screenshots": [
+        "320-five-shelf.png",
+        "320-five-b06-detail.png"
+      ],
+      "geometry": [
+        {
+          "name": "shop/offer-advice",
+          "offerId": "public/b06",
+          "stars": 5,
+          "fullText": "推荐指数 ★★★★★",
+          "bounds": {
+            "type": 5,
+            "x": 20.166667938232422,
+            "y": 187.20001220703125,
+            "width": 77,
+            "height": 16
+          },
+          "children": [
+            {
+              "text": "★",
+              "color": "#80551F",
+              "bounds": {
+                "type": 5,
+                "x": 20.166667938232422,
+                "y": 187.20001220703125,
+                "width": 13,
+                "height": 16
+              }
+            },
+            {
+              "text": "★",
+              "color": "#80551F",
+              "bounds": {
+                "type": 5,
+                "x": 36.16666793823242,
+                "y": 187.20001220703125,
+                "width": 13,
+                "height": 16
+              }
+            },
+            {
+              "text": "★",
+              "color": "#80551F",
+              "bounds": {
+                "type": 5,
+                "x": 52.16666793823242,
+                "y": 187.20001220703125,
+                "width": 13,
+                "height": 16
+              }
+            },
+            {
+              "text": "★",
+              "color": "#80551F",
+              "bounds": {
+                "type": 5,
+                "x": 68.16666793823242,
+                "y": 187.20001220703125,
+                "width": 13,
+                "height": 16
+              }
+            },
+            {
+              "text": "★",
+              "color": "#80551F",
+              "bounds": {
+                "type": 5,
+                "x": 84.16666793823242,
+                "y": 187.20001220703125,
+                "width": 13,
+                "height": 16
+              }
+            }
+          ]
+        },
+        {
+          "name": "shop/offer-advice",
+          "offerId": "public/a11",
+          "stars": 5,
+          "fullText": "推荐指数 ★★★★★",
+          "bounds": {
+            "type": 5,
+            "x": 121.5,
+            "y": 187.20001220703125,
+            "width": 77,
+            "height": 16
+          },
+          "children": [
+            {
+              "text": "★",
+              "color": "#80551F",
+              "bounds": {
+                "type": 5,
+                "x": 121.5,
+                "y": 187.20001220703125,
+                "width": 13,
+                "height": 16
+              }
+            },
+            {
+              "text": "★",
+              "color": "#80551F",
+              "bounds": {
+                "type": 5,
+                "x": 137.5,
+                "y": 187.20001220703125,
+                "width": 13,
+                "height": 16
+              }
+            },
+            {
+              "text": "★",
+              "color": "#80551F",
+              "bounds": {
+                "type": 5,
+                "x": 153.5,
+                "y": 187.20001220703125,
+                "width": 13,
+                "height": 16
+              }
+            },
+            {
+              "text": "★",
+              "color": "#80551F",
+              "bounds": {
+                "type": 5,
+                "x": 169.5,
+                "y": 187.20001220703125,
+                "width": 13,
+                "height": 16
+              }
+            },
+            {
+              "text": "★",
+              "color": "#80551F",
+              "bounds": {
+                "type": 5,
+                "x": 185.5,
+                "y": 187.20001220703125,
+                "width": 13,
+                "height": 16
+              }
+            }
+          ]
+        },
+        {
+          "name": "shop/offer-advice",
+          "offerId": "public/a06",
+          "stars": 5,
+          "fullText": "推荐指数 ★★★★★",
+          "bounds": {
+            "type": 5,
+            "x": 222.83334350585938,
+            "y": 187.20001220703125,
+            "width": 77,
+            "height": 16
+          },
+          "children": [
+            {
+              "text": "★",
+              "color": "#80551F",
+              "bounds": {
+                "type": 5,
+                "x": 222.83334350585938,
+                "y": 187.20001220703125,
+                "width": 13,
+                "height": 16
+              }
+            },
+            {
+              "text": "★",
+              "color": "#80551F",
+              "bounds": {
+                "type": 5,
+                "x": 238.83334350585938,
+                "y": 187.20001220703125,
+                "width": 13,
+                "height": 16
+              }
+            },
+            {
+              "text": "★",
+              "color": "#80551F",
+              "bounds": {
+                "type": 5,
+                "x": 254.83334350585938,
+                "y": 187.20001220703125,
+                "width": 13,
+                "height": 16
+              }
+            },
+            {
+              "text": "★",
+              "color": "#80551F",
+              "bounds": {
+                "type": 5,
+                "x": 270.8333435058594,
+                "y": 187.20001220703125,
+                "width": 13,
+                "height": 16
+              }
+            },
+            {
+              "text": "★",
+              "color": "#80551F",
+              "bounds": {
+                "type": 5,
+                "x": 286.8333435058594,
+                "y": 187.20001220703125,
+                "width": 13,
+                "height": 16
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "status": "FAIL",
+  "failure": "TimeoutError: locator.click: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: '取消', exact: true })\u001b[22m\n"
+}

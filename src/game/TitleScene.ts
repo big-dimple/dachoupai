@@ -1,3 +1,4 @@
+import {warmOpeningImages} from './StageImageWarmup';
 import {paperSceneStart} from './PaperFlow';
 import Phaser from 'phaser';
 import {AudioEngine} from '../audio/AudioEngine';
@@ -19,7 +20,7 @@ export class TitleScene extends Phaser.Scene {
   init(data?:{seed?:string}):void {this.seed=data?.seed??new URLSearchParams(location.search).get('seed')??undefined;}
   create():void {
     this.leaving=false;this.firstRender=true;this.audio.setScene('menu');
-    this.cameras.main.setBackgroundColor('#F3EADB');this.view=new SceneView(this,()=>this.render());this.render();
+    this.cameras.main.setBackgroundColor('#F3EADB');this.view=new SceneView(this,()=>this.render());this.render();warmOpeningImages(this);
     const keyboardOpen=(event:KeyboardEvent)=>{
       const element=document.activeElement;
       if(element!==document.body&&element!==this.game.canvas||document.querySelector('dialog[open]'))return;

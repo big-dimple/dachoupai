@@ -1,0 +1,4043 @@
+{
+  "head": "cb8cce35bc90cfe7accc8f6fd9bc2f12de5e94f0",
+  "dirty": "",
+  "baselineSHA": "bf3944a26747ab8a1a830e098ae5857fb7f5dded",
+  "scope": "only direct native inspectLastHand recap and result-details entry; imported existing legal clear/loss checkpoints in fresh contexts, no new gameplay command; entire settlement outside method/imports and exact action callbacks compared to baseline",
+  "sourceOutsideRecapByteIdentical": true,
+  "actionCallbacksByteIdentical": true,
+  "rows": [
+    {
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      },
+      "kind": "clear",
+      "source": "docs/production/evidence/p1a-active-mult-timing-2026-10-12/native/report.json",
+      "rowIndex": 0,
+      "images": [
+        "1366-clear-baseline-result.png",
+        "1366-clear-baseline-default.png",
+        "1366-clear-current-result.png",
+        "1366-clear-current-default.png",
+        "1366-clear-current-diagnostic.png"
+      ],
+      "baselineResultShape": [
+        {
+          "name": "view",
+          "type": "Container",
+          "visible": true,
+          "alpha": 1,
+          "b": {
+            "x": 0,
+            "y": 0,
+            "width": 1366,
+            "height": 768
+          }
+        },
+        {
+          "name": "stage-identity/result",
+          "type": "Text",
+          "text": "第 1 章 · 暖场 · 谢幕人",
+          "visible": true,
+          "alpha": 1,
+          "b": {
+            "x": 193,
+            "y": 8,
+            "width": 139,
+            "height": 16
+          }
+        },
+        {
+          "name": "result/title",
+          "type": "Text",
+          "text": "一场好戏，满堂喝彩！",
+          "visible": true,
+          "alpha": 1,
+          "b": {
+            "x": 193,
+            "y": 42,
+            "width": 340,
+            "height": 36
+          }
+        },
+        {
+          "name": "result-art/stage",
+          "type": "Graphics",
+          "visible": true,
+          "alpha": 1
+        },
+        {
+          "name": "result-art/paper",
+          "type": "TileSprite",
+          "visible": true,
+          "alpha": 0.1,
+          "b": {
+            "x": 199,
+            "y": 108,
+            "width": 968,
+            "height": 410
+          }
+        },
+        {
+          "name": "result-art/ink",
+          "type": "Graphics",
+          "visible": true,
+          "alpha": 1
+        },
+        {
+          "name": "result/hand",
+          "type": "Text",
+          "text": "同花",
+          "visible": true,
+          "alpha": 1,
+          "b": {
+            "x": 826.5,
+            "y": 120,
+            "width": 33,
+            "height": 19
+          }
+        },
+        {
+          "name": "result/formula",
+          "type": "Text",
+          "text": "263 热度 × 108",
+          "visible": true,
+          "alpha": 1,
+          "b": {
+            "x": 795.5,
+            "y": 144,
+            "width": 95,
+            "height": 16
+          }
+        },
+        {
+          "name": "result/score",
+          "type": "Text",
+          "text": "+28,404",
+          "visible": true,
+          "alpha": 1,
+          "b": {
+            "x": 734,
+            "y": 166,
+            "width": 218,
+            "height": 77
+          }
+        },
+        {
+          "name": "result/gap",
+          "type": "Text",
+          "text": "全场 28,404 / 400",
+          "visible": true,
+          "alpha": 1,
+          "b": {
+            "x": 788,
+            "y": 251,
+            "width": 110,
+            "height": 16
+          }
+        },
+        {
+          "name": "result/reward",
+          "type": "Text",
+          "text": "过关奖励  +14 金",
+          "visible": true,
+          "alpha": 1,
+          "b": {
+            "x": 770,
+            "y": 446,
+            "width": 146,
+            "height": 22
+          }
+        },
+        {
+          "name": "result/next-panel",
+          "type": "Image",
+          "visible": true,
+          "alpha": 1,
+          "b": {
+            "x": 193,
+            "y": 536,
+            "width": 980,
+            "height": 112
+          }
+        },
+        {
+          "name": "",
+          "type": "Text",
+          "text": "准备下一场 · 额外关末息+2金",
+          "visible": true,
+          "alpha": 1,
+          "b": {
+            "x": 207,
+            "y": 546,
+            "width": 235,
+            "height": 21
+          }
+        },
+        {
+          "name": "result/next-body",
+          "type": "Text",
+          "text": "第 1 章 · 正场 · 目标 600\n筹备后，出牌与弃牌次数补满。\n下场燃金次数恢复为1次",
+          "visible": true,
+          "alpha": 1,
+          "b": {
+            "x": 207,
+            "y": 575,
+            "width": 196,
+            "height": 52
+          }
+        },
+        {
+          "name": "",
+          "type": "Text",
+          "text": "本场详情",
+          "visible": true,
+          "alpha": 1,
+          "b": {
+            "x": 299.5,
+            "y": 676.5,
+            "width": 61,
+            "height": 17
+          }
+        },
+        {
+          "name": "action/result-details",
+          "type": "Rectangle",
+          "visible": true,
+          "alpha": 1,
+          "b": {
+            "x": 193,
+            "y": 664,
+            "width": 274,
+            "height": 44
+          }
+        },
+        {
+          "name": "",
+          "type": "Text",
+          "text": "前往筹备商店",
+          "visible": true,
+          "alpha": 1,
+          "b": {
+            "x": 619.5,
+            "y": 678.5,
+            "width": 133,
+            "height": 25
+          }
+        },
+        {
+          "name": "action/continue-stage",
+          "type": "Rectangle",
+          "visible": true,
+          "alpha": 1,
+          "b": {
+            "x": 475,
+            "y": 664,
+            "width": 421,
+            "height": 56
+          }
+        },
+        {
+          "name": "",
+          "type": "Text",
+          "text": "回看上手",
+          "visible": true,
+          "alpha": 1,
+          "b": {
+            "x": 1008.5,
+            "y": 676.5,
+            "width": 61,
+            "height": 17
+          }
+        },
+        {
+          "name": "action/last-hand",
+          "type": "Rectangle",
+          "visible": true,
+          "alpha": 1,
+          "b": {
+            "x": 904,
+            "y": 664,
+            "width": 269,
+            "height": 44
+          }
+        },
+        {
+          "name": "",
+          "type": "Text",
+          "text": "",
+          "visible": true,
+          "alpha": 1,
+          "b": {
+            "x": 193,
+            "y": 728,
+            "width": 0,
+            "height": 16
+          }
+        },
+        {
+          "name": "result-art/source-layer",
+          "type": "Container",
+          "visible": true,
+          "alpha": 1,
+          "b": {
+            "x": 211,
+            "y": 128.35714285714286,
+            "width": 261.97428571428577,
+            "height": 196.64285714285714
+          }
+        },
+        {
+          "name": "result-art/source",
+          "type": "Image",
+          "visible": true,
+          "alpha": 1,
+          "b": {
+            "x": 249.0257142857143,
+            "y": 132.675,
+            "width": 104.52000000000004,
+            "height": 130.65000000000003
+          }
+        },
+        {
+          "name": "result-art/source",
+          "type": "Image",
+          "visible": true,
+          "alpha": 1,
+          "b": {
+            "x": 361.5457142857143,
+            "y": 128.35714285714286,
+            "width": 111.42857142857144,
+            "height": 139.28571428571425
+          }
+        },
+        {
+          "name": "result/source-continuity",
+          "type": "Text",
+          "text": "越染越深",
+          "visible": true,
+          "alpha": 1,
+          "b": {
+            "x": 211,
+            "y": 286,
+            "width": 56,
+            "height": 17
+          }
+        },
+        {
+          "name": "result/source-effect",
+          "type": "Text",
+          "text": "×1.5 倍率",
+          "visible": true,
+          "alpha": 1,
+          "b": {
+            "x": 211,
+            "y": 309,
+            "width": 60,
+            "height": 16
+          }
+        }
+      ],
+      "baselineCanvasPNGHash": "da564f6b02c21fa2b69277eac111a246ee100f44bf59aab5160c8806cc3d1818",
+      "baselineButtons": [
+        {
+          "label": "查看培养路线",
+          "disabled": false,
+          "primary": false
+        },
+        {
+          "label": "前往筹备商店继续培养",
+          "disabled": false,
+          "primary": true
+        },
+        {
+          "label": "关闭",
+          "disabled": false,
+          "primary": false
+        }
+      ],
+      "currentResultShape": [
+        {
+          "name": "view",
+          "type": "Container",
+          "visible": true,
+          "alpha": 1,
+          "b": {
+            "x": 0,
+            "y": 0,
+            "width": 1366,
+            "height": 768
+          }
+        },
+        {
+          "name": "stage-identity/result",
+          "type": "Text",
+          "text": "第 1 章 · 暖场 · 谢幕人",
+          "visible": true,
+          "alpha": 1,
+          "b": {
+            "x": 193,
+            "y": 8,
+            "width": 139,
+            "height": 16
+          }
+        },
+        {
+          "name": "result/title",
+          "type": "Text",
+          "text": "一场好戏，满堂喝彩！",
+          "visible": true,
+          "alpha": 1,
+          "b": {
+            "x": 193,
+            "y": 42,
+            "width": 340,
+            "height": 36
+          }
+        },
+        {
+          "name": "result-art/stage",
+          "type": "Graphics",
+          "visible": true,
+          "alpha": 1
+        },
+        {
+          "name": "result-art/paper",
+          "type": "TileSprite",
+          "visible": true,
+          "alpha": 0.1,
+          "b": {
+            "x": 199,
+            "y": 108,
+            "width": 968,
+            "height": 410
+          }
+        },
+        {
+          "name": "result-art/ink",
+          "type": "Graphics",
+          "visible": true,
+          "alpha": 1
+        },
+        {
+          "name": "result/hand",
+          "type": "Text",
+          "text": "同花",
+          "visible": true,
+          "alpha": 1,
+          "b": {
+            "x": 826.5,
+            "y": 120,
+            "width": 33,
+            "height": 19
+          }
+        },
+        {
+          "name": "result/formula",
+          "type": "Text",
+          "text": "263 热度 × 108",
+          "visible": true,
+          "alpha": 1,
+          "b": {
+            "x": 795.5,
+            "y": 144,
+            "width": 95,
+            "height": 16
+          }
+        },
+        {
+          "name": "result/score",
+          "type": "Text",
+          "text": "+28,404",
+          "visible": true,
+          "alpha": 1,
+          "b": {
+            "x": 734,
+            "y": 166,
+            "width": 218,
+            "height": 77
+          }
+        },
+        {
+          "name": "result/gap",
+          "type": "Text",
+          "text": "全场 28,404 / 400",
+          "visible": true,
+          "alpha": 1,
+          "b": {
+            "x": 788,
+            "y": 251,
+            "width": 110,
+            "height": 16
+          }
+        },
+        {
+          "name": "result/reward",
+          "type": "Text",
+          "text": "过关奖励  +14 金",
+          "visible": true,
+          "alpha": 1,
+          "b": {
+            "x": 770,
+            "y": 446,
+            "width": 146,
+            "height": 22
+          }
+        },
+        {
+          "name": "result/next-panel",
+          "type": "Image",
+          "visible": true,
+          "alpha": 1,
+          "b": {
+            "x": 193,
+            "y": 536,
+            "width": 980,
+            "height": 112
+          }
+        },
+        {
+          "name": "",
+          "type": "Text",
+          "text": "准备下一场 · 额外关末息+2金",
+          "visible": true,
+          "alpha": 1,
+          "b": {
+            "x": 207,
+            "y": 546,
+            "width": 235,
+            "height": 21
+          }
+        },
+        {
+          "name": "result/next-body",
+          "type": "Text",
+          "text": "第 1 章 · 正场 · 目标 600\n筹备后，出牌与弃牌次数补满。\n下场燃金次数恢复为1次",
+          "visible": true,
+          "alpha": 1,
+          "b": {
+            "x": 207,
+            "y": 575,
+            "width": 196,
+            "height": 52
+          }
+        },
+        {
+          "name": "",
+          "type": "Text",
+          "text": "本场详情",
+          "visible": true,
+          "alpha": 1,
+          "b": {
+            "x": 299.5,
+            "y": 676.5,
+            "width": 61,
+            "height": 17
+          }
+        },
+        {
+          "name": "action/result-details",
+          "type": "Rectangle",
+          "visible": true,
+          "alpha": 1,
+          "b": {
+            "x": 193,
+            "y": 664,
+            "width": 274,
+            "height": 44
+          }
+        },
+        {
+          "name": "",
+          "type": "Text",
+          "text": "前往筹备商店",
+          "visible": true,
+          "alpha": 1,
+          "b": {
+            "x": 619.5,
+            "y": 678.5,
+            "width": 133,
+            "height": 25
+          }
+        },
+        {
+          "name": "action/continue-stage",
+          "type": "Rectangle",
+          "visible": true,
+          "alpha": 1,
+          "b": {
+            "x": 475,
+            "y": 664,
+            "width": 421,
+            "height": 56
+          }
+        },
+        {
+          "name": "",
+          "type": "Text",
+          "text": "回看上手",
+          "visible": true,
+          "alpha": 1,
+          "b": {
+            "x": 1008.5,
+            "y": 676.5,
+            "width": 61,
+            "height": 17
+          }
+        },
+        {
+          "name": "action/last-hand",
+          "type": "Rectangle",
+          "visible": true,
+          "alpha": 1,
+          "b": {
+            "x": 904,
+            "y": 664,
+            "width": 269,
+            "height": 44
+          }
+        },
+        {
+          "name": "",
+          "type": "Text",
+          "text": "",
+          "visible": true,
+          "alpha": 1,
+          "b": {
+            "x": 193,
+            "y": 728,
+            "width": 0,
+            "height": 16
+          }
+        },
+        {
+          "name": "result-art/source-layer",
+          "type": "Container",
+          "visible": true,
+          "alpha": 1,
+          "b": {
+            "x": 211,
+            "y": 128.35714285714286,
+            "width": 261.97428571428577,
+            "height": 196.64285714285714
+          }
+        },
+        {
+          "name": "result-art/source",
+          "type": "Image",
+          "visible": true,
+          "alpha": 1,
+          "b": {
+            "x": 249.0257142857143,
+            "y": 132.675,
+            "width": 104.52000000000004,
+            "height": 130.65000000000003
+          }
+        },
+        {
+          "name": "result-art/source",
+          "type": "Image",
+          "visible": true,
+          "alpha": 1,
+          "b": {
+            "x": 361.5457142857143,
+            "y": 128.35714285714286,
+            "width": 111.42857142857144,
+            "height": 139.28571428571425
+          }
+        },
+        {
+          "name": "result/source-continuity",
+          "type": "Text",
+          "text": "越染越深",
+          "visible": true,
+          "alpha": 1,
+          "b": {
+            "x": 211,
+            "y": 286,
+            "width": 56,
+            "height": 17
+          }
+        },
+        {
+          "name": "result/source-effect",
+          "type": "Text",
+          "text": "×1.5 倍率",
+          "visible": true,
+          "alpha": 1,
+          "b": {
+            "x": 211,
+            "y": 309,
+            "width": 60,
+            "height": 16
+          }
+        }
+      ],
+      "currentCanvasPNGHash": "da564f6b02c21fa2b69277eac111a246ee100f44bf59aab5160c8806cc3d1818",
+      "resultLayoutTextBoundsExact": true,
+      "resultCanvasPixelsExact": true,
+      "before": {
+        "state": {
+          "routeGrowth": {
+            "clears": 1,
+            "G": 0,
+            "S": 0,
+            "F": 1,
+            "settlements": [
+              {
+                "stageIndex": 0,
+                "families": [
+                  "F"
+                ]
+              }
+            ]
+          },
+          "schemaVersion": 2,
+          "rulesVersion": "r2",
+          "contentVersion": "quality-r2-active-mult-timing-v1",
+          "contentHash": "json-fnv-v1:ca1e8f77913649d3",
+          "runId": "p1a/xiemu",
+          "seed": "p1a-bounded",
+          "commandSeq": 4,
+          "difficulty": 0,
+          "characterId": "xiemu",
+          "openingRoute": "group",
+          "openingShow": {
+            "handsScored": 1,
+            "rootId": "p1a/xiemu/hand/p1a/xiemu/command/4",
+            "eventId": "p1a/xiemu/hand/p1a/xiemu/command/4/event/9",
+            "reason": "multiply"
+          },
+          "routeStarter": {
+            "instanceId": null,
+            "rootId": null,
+            "eventId": null
+          },
+          "mode": "standard",
+          "challengeId": null,
+          "programsEnabled": false,
+          "programRerollCoupon": false,
+          "chapterDisabledJokerId": null,
+          "chapter": 1,
+          "stageIndex": 1,
+          "phase": "stage-cleared",
+          "deckInstances": [
+            {
+              "id": "spades-2",
+              "suit": "spades",
+              "rank": 2
+            },
+            {
+              "id": "spades-3",
+              "suit": "spades",
+              "rank": 3
+            },
+            {
+              "id": "spades-4",
+              "suit": "spades",
+              "rank": 4
+            },
+            {
+              "id": "spades-5",
+              "suit": "spades",
+              "rank": 5
+            },
+            {
+              "id": "spades-6",
+              "suit": "spades",
+              "rank": 6
+            },
+            {
+              "id": "spades-7",
+              "suit": "spades",
+              "rank": 7
+            },
+            {
+              "id": "spades-8",
+              "suit": "spades",
+              "rank": 8
+            },
+            {
+              "id": "spades-9",
+              "suit": "spades",
+              "rank": 9
+            },
+            {
+              "id": "spades-10",
+              "suit": "spades",
+              "rank": 10
+            },
+            {
+              "id": "spades-11",
+              "suit": "spades",
+              "rank": 11
+            },
+            {
+              "id": "spades-12",
+              "suit": "spades",
+              "rank": 12
+            },
+            {
+              "id": "spades-13",
+              "suit": "spades",
+              "rank": 13
+            },
+            {
+              "id": "spades-14",
+              "suit": "spades",
+              "rank": 14
+            },
+            {
+              "id": "hearts-2",
+              "suit": "hearts",
+              "rank": 2
+            },
+            {
+              "id": "hearts-3",
+              "suit": "hearts",
+              "rank": 3
+            },
+            {
+              "id": "hearts-4",
+              "suit": "hearts",
+              "rank": 4
+            },
+            {
+              "id": "hearts-5",
+              "suit": "hearts",
+              "rank": 5
+            },
+            {
+              "id": "hearts-6",
+              "suit": "hearts",
+              "rank": 6
+            },
+            {
+              "id": "hearts-7",
+              "suit": "hearts",
+              "rank": 7
+            },
+            {
+              "id": "hearts-8",
+              "suit": "hearts",
+              "rank": 8
+            },
+            {
+              "id": "hearts-9",
+              "suit": "hearts",
+              "rank": 9
+            },
+            {
+              "id": "hearts-10",
+              "suit": "hearts",
+              "rank": 10
+            },
+            {
+              "id": "hearts-11",
+              "suit": "hearts",
+              "rank": 11
+            },
+            {
+              "id": "hearts-12",
+              "suit": "hearts",
+              "rank": 12
+            },
+            {
+              "id": "hearts-13",
+              "suit": "hearts",
+              "rank": 13
+            },
+            {
+              "id": "hearts-14",
+              "suit": "hearts",
+              "rank": 14
+            },
+            {
+              "id": "clubs-2",
+              "suit": "clubs",
+              "rank": 2
+            },
+            {
+              "id": "clubs-3",
+              "suit": "clubs",
+              "rank": 3
+            },
+            {
+              "id": "clubs-4",
+              "suit": "clubs",
+              "rank": 4
+            },
+            {
+              "id": "clubs-5",
+              "suit": "clubs",
+              "rank": 5
+            },
+            {
+              "id": "clubs-6",
+              "suit": "clubs",
+              "rank": 6
+            },
+            {
+              "id": "clubs-7",
+              "suit": "clubs",
+              "rank": 7
+            },
+            {
+              "id": "clubs-8",
+              "suit": "clubs",
+              "rank": 8
+            },
+            {
+              "id": "clubs-9",
+              "suit": "clubs",
+              "rank": 9
+            },
+            {
+              "id": "clubs-10",
+              "suit": "clubs",
+              "rank": 10
+            },
+            {
+              "id": "clubs-11",
+              "suit": "clubs",
+              "rank": 11
+            },
+            {
+              "id": "clubs-12",
+              "suit": "clubs",
+              "rank": 12
+            },
+            {
+              "id": "clubs-13",
+              "suit": "clubs",
+              "rank": 13
+            },
+            {
+              "id": "clubs-14",
+              "suit": "clubs",
+              "rank": 14
+            },
+            {
+              "id": "diamonds-2",
+              "suit": "diamonds",
+              "rank": 2
+            },
+            {
+              "id": "diamonds-3",
+              "suit": "diamonds",
+              "rank": 3
+            },
+            {
+              "id": "diamonds-4",
+              "suit": "diamonds",
+              "rank": 4
+            },
+            {
+              "id": "diamonds-5",
+              "suit": "diamonds",
+              "rank": 5
+            },
+            {
+              "id": "diamonds-6",
+              "suit": "diamonds",
+              "rank": 6
+            },
+            {
+              "id": "diamonds-7",
+              "suit": "diamonds",
+              "rank": 7
+            },
+            {
+              "id": "diamonds-8",
+              "suit": "diamonds",
+              "rank": 8
+            },
+            {
+              "id": "diamonds-9",
+              "suit": "diamonds",
+              "rank": 9
+            },
+            {
+              "id": "diamonds-10",
+              "suit": "diamonds",
+              "rank": 10
+            },
+            {
+              "id": "diamonds-11",
+              "suit": "diamonds",
+              "rank": 11
+            },
+            {
+              "id": "diamonds-12",
+              "suit": "diamonds",
+              "rank": 12
+            },
+            {
+              "id": "diamonds-13",
+              "suit": "diamonds",
+              "rank": 13
+            },
+            {
+              "id": "diamonds-14",
+              "suit": "diamonds",
+              "rank": 14
+            }
+          ],
+          "drawPile": [
+            "spades-2",
+            "spades-3",
+            "spades-4",
+            "spades-5",
+            "spades-6",
+            "spades-7",
+            "spades-8",
+            "spades-9",
+            "spades-10",
+            "spades-11",
+            "spades-12",
+            "spades-13",
+            "spades-14",
+            "hearts-2",
+            "hearts-3",
+            "hearts-5",
+            "hearts-7",
+            "hearts-9",
+            "hearts-11",
+            "hearts-13",
+            "hearts-14",
+            "clubs-2",
+            "clubs-3",
+            "clubs-4",
+            "clubs-5",
+            "clubs-6",
+            "clubs-7",
+            "clubs-8",
+            "clubs-9",
+            "clubs-10",
+            "clubs-11",
+            "clubs-12",
+            "clubs-13",
+            "clubs-14",
+            "diamonds-2",
+            "diamonds-3",
+            "diamonds-4",
+            "diamonds-5",
+            "diamonds-6",
+            "diamonds-7",
+            "diamonds-8",
+            "diamonds-9",
+            "diamonds-10",
+            "diamonds-11",
+            "diamonds-12",
+            "diamonds-13",
+            "diamonds-14"
+          ],
+          "handOrder": [],
+          "playedPile": [
+            "hearts-4",
+            "hearts-6",
+            "hearts-8",
+            "hearts-10",
+            "hearts-12"
+          ],
+          "discardPile": [],
+          "destroyedIds": [],
+          "stage": {
+            "routeGrowth": {
+              "entry": {
+                "commandId": "p1a/xiemu/command/3",
+                "seq": 3,
+                "type": "EnterStage"
+              },
+              "handTypes": [
+                "flush"
+              ],
+              "eligible": [
+                "F"
+              ],
+              "sources": [
+                {
+                  "command": {
+                    "runId": "p1a/xiemu",
+                    "commandId": "p1a/xiemu/command/4",
+                    "expectedSeq": 3,
+                    "action": {
+                      "type": "PlayHand",
+                      "selectedIds": [
+                        "hearts-4",
+                        "hearts-6",
+                        "hearts-8",
+                        "hearts-10",
+                        "hearts-12"
+                      ],
+                      "xiemuBurn": 30
+                    }
+                  },
+                  "cards": [
+                    {
+                      "id": "hearts-4",
+                      "suit": "hearts",
+                      "rank": 4
+                    },
+                    {
+                      "id": "hearts-6",
+                      "suit": "hearts",
+                      "rank": 6
+                    },
+                    {
+                      "id": "hearts-8",
+                      "suit": "hearts",
+                      "rank": 8
+                    },
+                    {
+                      "id": "hearts-10",
+                      "suit": "hearts",
+                      "rank": 10
+                    },
+                    {
+                      "id": "hearts-12",
+                      "suit": "hearts",
+                      "rank": 12
+                    }
+                  ],
+                  "rules": {
+                    "fourStraight": false,
+                    "fourFlush": false
+                  }
+                }
+              ]
+            },
+            "xiemuBurnUsed": true,
+            "openingDiscard": null,
+            "index": 0,
+            "targetHeat": "400",
+            "initialTargetHeat": "400",
+            "heat": "28404",
+            "handsLeft": 3,
+            "initialHands": 4,
+            "discardsLeft": 3,
+            "initialDiscards": 3,
+            "discardSpent": 0,
+            "discardGained": 0,
+            "doubleDiscardBeforeFirstPlay": false,
+            "discardsUsed": 0,
+            "skipResult": null,
+            "playIndex": 1,
+            "previousHandType": "flush",
+            "previousHandScore": "28404",
+            "handLimit": 8,
+            "initialHandLimit": 8,
+            "boss": null,
+            "initialJokerIds": [
+              "e03",
+              "c06",
+              "e08"
+            ],
+            "sealedJokerIds": [],
+            "challengeDisabledJokerId": null,
+            "rescueUsed": false,
+            "clearId": "p1a/xiemu/clear/0",
+            "goldEarned": 14,
+            "disabledIds": [],
+            "wagerSelected": false,
+            "wagerUsed": false,
+            "maxPlayedCount": 5,
+            "ordinaryStraightSeen": false,
+            "ordinaryFlushSeen": true,
+            "quadRefundUsed": false,
+            "jokerSold": false
+          },
+          "totalHeat": "28404",
+          "gold": 44,
+          "jokers": [
+            {
+              "instanceId": "e03",
+              "definitionId": "e03",
+              "paidPrice": 6,
+              "growth": {},
+              "edition": "foil"
+            },
+            {
+              "instanceId": "c06",
+              "definitionId": "c06",
+              "paidPrice": 6,
+              "growth": {
+                "multiplier": {
+                  "n": "6",
+                  "d": "1"
+                }
+              },
+              "edition": "polychrome"
+            },
+            {
+              "instanceId": "e08",
+              "definitionId": "e08",
+              "paidPrice": 8,
+              "growth": {}
+            }
+          ],
+          "consumables": [],
+          "longTermItems": [],
+          "program": null,
+          "boss": {
+            "definitionId": "B04",
+            "disabledSuit": null
+          },
+          "seenBossIds": [
+            "B04"
+          ],
+          "chapterSkipConsumable": "T03",
+          "purchaseCoupons": 0,
+          "safetyNetUsed": false,
+          "shop": null,
+          "spectralModifiers": {
+            "handsPenalty": 0,
+            "handPenalty": 0,
+            "cleanSlateBonus": 0
+          },
+          "supplyRewardClaimed": false,
+          "chapterHandUsage": {
+            "flush": 1
+          },
+          "normalClearClaimed": true,
+          "tourMode": "normal",
+          "normalCompletion": null,
+          "rng": {
+            "deck": {
+              "algorithm": "fnv1a-mulberry32-v1",
+              "state": 3701451004
+            },
+            "rule": {
+              "algorithm": "fnv1a-mulberry32-v1",
+              "state": 1137198603
+            },
+            "shop": {
+              "algorithm": "fnv1a-mulberry32-v1",
+              "state": 3193837110
+            },
+            "reward": {
+              "algorithm": "fnv1a-mulberry32-v1",
+              "state": 1002954476
+            },
+            "program": {
+              "algorithm": "fnv1a-mulberry32-v1",
+              "state": 1293514758
+            },
+            "challenge": {
+              "algorithm": "fnv1a-mulberry32-v1",
+              "state": 1691593519
+            }
+          },
+          "receipts": [
+            {
+              "commandId": "p1a/xiemu/start",
+              "fingerprint": "json-fnv-v1:5219f23d29506e71",
+              "seq": 1
+            },
+            {
+              "commandId": "p1a/xiemu/command/2",
+              "fingerprint": "json-fnv-v1:4e3717d1e979eb15",
+              "seq": 2
+            },
+            {
+              "commandId": "p1a/xiemu/command/3",
+              "fingerprint": "json-fnv-v1:8c8e2e5eebff0d22",
+              "seq": 3
+            },
+            {
+              "commandId": "p1a/xiemu/command/4",
+              "fingerprint": "json-fnv-v1:0d34f2c0e2893824",
+              "seq": 4
+            }
+          ],
+          "lastTrace": {
+            "routeGrowth": {
+              "before": {
+                "clears": 0,
+                "G": 0,
+                "S": 0,
+                "F": 0
+              },
+              "factors": {
+                "F": {
+                  "n": "1",
+                  "d": "1"
+                }
+              }
+            },
+            "xiemuBurn": {
+              "cost": 30,
+              "goldBefore": 60,
+              "beforeUsed": false,
+              "goldAfter": 30,
+              "afterUsed": true,
+              "multiplier": 4
+            },
+            "rulesVersion": "r2",
+            "rootId": "p1a/xiemu/hand/p1a/xiemu/command/4",
+            "handType": "flush",
+            "level": 1,
+            "sets": {
+              "playedIds": [
+                "hearts-4",
+                "hearts-6",
+                "hearts-8",
+                "hearts-10",
+                "hearts-12"
+              ],
+              "scoringIds": [
+                "hearts-4",
+                "hearts-6",
+                "hearts-8",
+                "hearts-10",
+                "hearts-12"
+              ],
+              "activeScoringIds": [
+                "hearts-4",
+                "hearts-6",
+                "hearts-8",
+                "hearts-10",
+                "hearts-12"
+              ],
+              "heldIds": []
+            },
+            "finalScore": "28404",
+            "accumulator": {
+              "H": {
+                "n": "263",
+                "d": "1"
+              },
+              "M": {
+                "n": "108",
+                "d": "1"
+              }
+            },
+            "events": [
+              {
+                "eventId": "p1a/xiemu/hand/p1a/xiemu/command/4/event/0",
+                "rootId": "p1a/xiemu/hand/p1a/xiemu/command/4",
+                "rootEventId": "p1a/xiemu/hand/p1a/xiemu/command/4/event/0",
+                "phase": "base",
+                "sourceType": "rule",
+                "sourceDefinitionId": "flush",
+                "sourceInstanceId": "p1a/xiemu",
+                "operation": "base",
+                "value": {
+                  "n": "140",
+                  "d": "1"
+                },
+                "before": {
+                  "H": {
+                    "n": "0",
+                    "d": "1"
+                  },
+                  "M": {
+                    "n": "0",
+                    "d": "1"
+                  }
+                },
+                "after": {
+                  "H": {
+                    "n": "140",
+                    "d": "1"
+                  },
+                  "M": {
+                    "n": "4",
+                    "d": "1"
+                  }
+                },
+                "reasonKey": "flush.base",
+                "visibleCondition": {
+                  "kind": "always"
+                },
+                "retriggerDepth": 0
+              },
+              {
+                "eventId": "p1a/xiemu/hand/p1a/xiemu/command/4/event/1",
+                "rootId": "p1a/xiemu/hand/p1a/xiemu/command/4",
+                "rootEventId": "p1a/xiemu/hand/p1a/xiemu/command/4/event/1",
+                "phase": "onCardScore",
+                "sourceType": "card",
+                "sourceDefinitionId": "rank-4",
+                "sourceInstanceId": "hearts-4",
+                "targetCardId": "hearts-4",
+                "operation": "add-heat",
+                "value": {
+                  "n": "4",
+                  "d": "1"
+                },
+                "before": {
+                  "H": {
+                    "n": "140",
+                    "d": "1"
+                  },
+                  "M": {
+                    "n": "4",
+                    "d": "1"
+                  }
+                },
+                "after": {
+                  "H": {
+                    "n": "144",
+                    "d": "1"
+                  },
+                  "M": {
+                    "n": "4",
+                    "d": "1"
+                  }
+                },
+                "reasonKey": "rank-4.add-heat",
+                "visibleCondition": {
+                  "kind": "always"
+                },
+                "retriggerDepth": 0
+              },
+              {
+                "eventId": "p1a/xiemu/hand/p1a/xiemu/command/4/event/2",
+                "rootId": "p1a/xiemu/hand/p1a/xiemu/command/4",
+                "rootEventId": "p1a/xiemu/hand/p1a/xiemu/command/4/event/2",
+                "phase": "onCardScore",
+                "sourceType": "card",
+                "sourceDefinitionId": "rank-6",
+                "sourceInstanceId": "hearts-6",
+                "targetCardId": "hearts-6",
+                "operation": "add-heat",
+                "value": {
+                  "n": "6",
+                  "d": "1"
+                },
+                "before": {
+                  "H": {
+                    "n": "144",
+                    "d": "1"
+                  },
+                  "M": {
+                    "n": "4",
+                    "d": "1"
+                  }
+                },
+                "after": {
+                  "H": {
+                    "n": "150",
+                    "d": "1"
+                  },
+                  "M": {
+                    "n": "4",
+                    "d": "1"
+                  }
+                },
+                "reasonKey": "rank-6.add-heat",
+                "visibleCondition": {
+                  "kind": "always"
+                },
+                "retriggerDepth": 0
+              },
+              {
+                "eventId": "p1a/xiemu/hand/p1a/xiemu/command/4/event/3",
+                "rootId": "p1a/xiemu/hand/p1a/xiemu/command/4",
+                "rootEventId": "p1a/xiemu/hand/p1a/xiemu/command/4/event/3",
+                "phase": "onCardScore",
+                "sourceType": "card",
+                "sourceDefinitionId": "rank-8",
+                "sourceInstanceId": "hearts-8",
+                "targetCardId": "hearts-8",
+                "operation": "add-heat",
+                "value": {
+                  "n": "8",
+                  "d": "1"
+                },
+                "before": {
+                  "H": {
+                    "n": "150",
+                    "d": "1"
+                  },
+                  "M": {
+                    "n": "4",
+                    "d": "1"
+                  }
+                },
+                "after": {
+                  "H": {
+                    "n": "158",
+                    "d": "1"
+                  },
+                  "M": {
+                    "n": "4",
+                    "d": "1"
+                  }
+                },
+                "reasonKey": "rank-8.add-heat",
+                "visibleCondition": {
+                  "kind": "always"
+                },
+                "retriggerDepth": 0
+              },
+              {
+                "eventId": "p1a/xiemu/hand/p1a/xiemu/command/4/event/4",
+                "rootId": "p1a/xiemu/hand/p1a/xiemu/command/4",
+                "rootEventId": "p1a/xiemu/hand/p1a/xiemu/command/4/event/4",
+                "phase": "onCardScore",
+                "sourceType": "card",
+                "sourceDefinitionId": "rank-10",
+                "sourceInstanceId": "hearts-10",
+                "targetCardId": "hearts-10",
+                "operation": "add-heat",
+                "value": {
+                  "n": "10",
+                  "d": "1"
+                },
+                "before": {
+                  "H": {
+                    "n": "158",
+                    "d": "1"
+                  },
+                  "M": {
+                    "n": "4",
+                    "d": "1"
+                  }
+                },
+                "after": {
+                  "H": {
+                    "n": "168",
+                    "d": "1"
+                  },
+                  "M": {
+                    "n": "4",
+                    "d": "1"
+                  }
+                },
+                "reasonKey": "rank-10.add-heat",
+                "visibleCondition": {
+                  "kind": "always"
+                },
+                "retriggerDepth": 0
+              },
+              {
+                "eventId": "p1a/xiemu/hand/p1a/xiemu/command/4/event/5",
+                "rootId": "p1a/xiemu/hand/p1a/xiemu/command/4",
+                "rootEventId": "p1a/xiemu/hand/p1a/xiemu/command/4/event/5",
+                "phase": "onCardScore",
+                "sourceType": "card",
+                "sourceDefinitionId": "rank-12",
+                "sourceInstanceId": "hearts-12",
+                "targetCardId": "hearts-12",
+                "operation": "add-heat",
+                "value": {
+                  "n": "10",
+                  "d": "1"
+                },
+                "before": {
+                  "H": {
+                    "n": "168",
+                    "d": "1"
+                  },
+                  "M": {
+                    "n": "4",
+                    "d": "1"
+                  }
+                },
+                "after": {
+                  "H": {
+                    "n": "178",
+                    "d": "1"
+                  },
+                  "M": {
+                    "n": "4",
+                    "d": "1"
+                  }
+                },
+                "reasonKey": "rank-12.add-heat",
+                "visibleCondition": {
+                  "kind": "always"
+                },
+                "retriggerDepth": 0
+              },
+              {
+                "eventId": "p1a/xiemu/hand/p1a/xiemu/command/4/event/6",
+                "rootId": "p1a/xiemu/hand/p1a/xiemu/command/4",
+                "rootEventId": "p1a/xiemu/hand/p1a/xiemu/command/4/event/6",
+                "phase": "jokerScore",
+                "sourceType": "joker",
+                "sourceDefinitionId": "e03",
+                "sourceInstanceId": "e03",
+                "operation": "add-heat-per-gold",
+                "value": {
+                  "n": "60",
+                  "d": "1"
+                },
+                "before": {
+                  "H": {
+                    "n": "178",
+                    "d": "1"
+                  },
+                  "M": {
+                    "n": "4",
+                    "d": "1"
+                  }
+                },
+                "after": {
+                  "H": {
+                    "n": "238",
+                    "d": "1"
+                  },
+                  "M": {
+                    "n": "4",
+                    "d": "1"
+                  }
+                },
+                "reasonKey": "e03.add-heat-per-gold",
+                "visibleCondition": {
+                  "kind": "always"
+                },
+                "retriggerDepth": 0
+              },
+              {
+                "eventId": "p1a/xiemu/hand/p1a/xiemu/command/4/event/7",
+                "rootId": "p1a/xiemu/hand/p1a/xiemu/command/4",
+                "rootEventId": "p1a/xiemu/hand/p1a/xiemu/command/4/event/7",
+                "phase": "jokerScore",
+                "sourceType": "joker",
+                "sourceDefinitionId": "e03",
+                "sourceInstanceId": "e03",
+                "operation": "add-heat",
+                "value": {
+                  "n": "25",
+                  "d": "1"
+                },
+                "before": {
+                  "H": {
+                    "n": "238",
+                    "d": "1"
+                  },
+                  "M": {
+                    "n": "4",
+                    "d": "1"
+                  }
+                },
+                "after": {
+                  "H": {
+                    "n": "263",
+                    "d": "1"
+                  },
+                  "M": {
+                    "n": "4",
+                    "d": "1"
+                  }
+                },
+                "reasonKey": "edition.foil.add-heat",
+                "visibleCondition": {
+                  "kind": "always"
+                },
+                "retriggerDepth": 0
+              },
+              {
+                "eventId": "p1a/xiemu/hand/p1a/xiemu/command/4/event/8",
+                "rootId": "p1a/xiemu/hand/p1a/xiemu/command/4",
+                "rootEventId": "p1a/xiemu/hand/p1a/xiemu/command/4/event/8",
+                "phase": "jokerScore",
+                "sourceType": "joker",
+                "sourceDefinitionId": "c06",
+                "sourceInstanceId": "c06",
+                "operation": "read-growth",
+                "value": {
+                  "n": "6",
+                  "d": "1"
+                },
+                "before": {
+                  "H": {
+                    "n": "263",
+                    "d": "1"
+                  },
+                  "M": {
+                    "n": "4",
+                    "d": "1"
+                  }
+                },
+                "after": {
+                  "H": {
+                    "n": "263",
+                    "d": "1"
+                  },
+                  "M": {
+                    "n": "10",
+                    "d": "1"
+                  }
+                },
+                "reasonKey": "c06.read-growth",
+                "visibleCondition": {
+                  "kind": "always"
+                },
+                "retriggerDepth": 0
+              },
+              {
+                "eventId": "p1a/xiemu/hand/p1a/xiemu/command/4/event/9",
+                "rootId": "p1a/xiemu/hand/p1a/xiemu/command/4",
+                "rootEventId": "p1a/xiemu/hand/p1a/xiemu/command/4/event/9",
+                "phase": "jokerScore",
+                "sourceType": "joker",
+                "sourceDefinitionId": "c06",
+                "sourceInstanceId": "c06",
+                "operation": "multiply-multiplier",
+                "value": {
+                  "n": "3",
+                  "d": "2"
+                },
+                "before": {
+                  "H": {
+                    "n": "263",
+                    "d": "1"
+                  },
+                  "M": {
+                    "n": "10",
+                    "d": "1"
+                  }
+                },
+                "after": {
+                  "H": {
+                    "n": "263",
+                    "d": "1"
+                  },
+                  "M": {
+                    "n": "15",
+                    "d": "1"
+                  }
+                },
+                "reasonKey": "edition.polychrome.multiply-multiplier",
+                "visibleCondition": {
+                  "kind": "always"
+                },
+                "retriggerDepth": 0
+              },
+              {
+                "eventId": "p1a/xiemu/hand/p1a/xiemu/command/4/event/10",
+                "rootId": "p1a/xiemu/hand/p1a/xiemu/command/4",
+                "rootEventId": "p1a/xiemu/hand/p1a/xiemu/command/4/event/10",
+                "phase": "jokerScore",
+                "sourceType": "joker",
+                "sourceDefinitionId": "e08",
+                "sourceInstanceId": "e08",
+                "operation": "multiply-multiplier",
+                "value": {
+                  "n": "9",
+                  "d": "5"
+                },
+                "before": {
+                  "H": {
+                    "n": "263",
+                    "d": "1"
+                  },
+                  "M": {
+                    "n": "15",
+                    "d": "1"
+                  }
+                },
+                "after": {
+                  "H": {
+                    "n": "263",
+                    "d": "1"
+                  },
+                  "M": {
+                    "n": "27",
+                    "d": "1"
+                  }
+                },
+                "reasonKey": "e08.multiply-multiplier",
+                "visibleCondition": {
+                  "kind": "resource-minimum",
+                  "resource": "gold",
+                  "minimum": 20
+                },
+                "retriggerDepth": 0
+              },
+              {
+                "eventId": "p1a/xiemu/hand/p1a/xiemu/command/4/event/11",
+                "rootId": "p1a/xiemu/hand/p1a/xiemu/command/4",
+                "rootEventId": "p1a/xiemu/hand/p1a/xiemu/command/4/event/11",
+                "phase": "routeGrowth",
+                "sourceType": "rule",
+                "sourceDefinitionId": "route-growth",
+                "sourceInstanceId": "p1a/xiemu",
+                "operation": "route-factor",
+                "value": {
+                  "n": "1",
+                  "d": "1"
+                },
+                "before": {
+                  "H": {
+                    "n": "263",
+                    "d": "1"
+                  },
+                  "M": {
+                    "n": "27",
+                    "d": "1"
+                  }
+                },
+                "after": {
+                  "H": {
+                    "n": "263",
+                    "d": "1"
+                  },
+                  "M": {
+                    "n": "27",
+                    "d": "1"
+                  }
+                },
+                "reasonKey": "route-growth.F.factor",
+                "visibleCondition": {
+                  "kind": "hand-type-in",
+                  "values": [
+                    "flush",
+                    "straight-flush",
+                    "flush-house",
+                    "flush-five"
+                  ]
+                },
+                "retriggerDepth": 0,
+                "routeFamily": "F",
+                "resourceBefore": 0,
+                "resourceAfter": 0
+              },
+              {
+                "eventId": "p1a/xiemu/hand/p1a/xiemu/command/4/event/12",
+                "rootId": "p1a/xiemu/hand/p1a/xiemu/command/4",
+                "rootEventId": "p1a/xiemu/hand/p1a/xiemu/command/4/event/12",
+                "phase": "characterScore",
+                "sourceType": "character",
+                "sourceDefinitionId": "xiemu",
+                "sourceInstanceId": "p1a/xiemu/character",
+                "operation": "multiply-multiplier",
+                "value": {
+                  "n": "4",
+                  "d": "1"
+                },
+                "before": {
+                  "H": {
+                    "n": "263",
+                    "d": "1"
+                  },
+                  "M": {
+                    "n": "27",
+                    "d": "1"
+                  }
+                },
+                "after": {
+                  "H": {
+                    "n": "263",
+                    "d": "1"
+                  },
+                  "M": {
+                    "n": "108",
+                    "d": "1"
+                  }
+                },
+                "reasonKey": "xiemu.multiply-multiplier",
+                "visibleCondition": {
+                  "kind": "always"
+                },
+                "retriggerDepth": 0
+              },
+              {
+                "eventId": "p1a/xiemu/hand/p1a/xiemu/command/4/event/13",
+                "rootId": "p1a/xiemu/hand/p1a/xiemu/command/4",
+                "rootEventId": "p1a/xiemu/hand/p1a/xiemu/command/4/event/13",
+                "phase": "finalScore",
+                "sourceType": "rule",
+                "sourceDefinitionId": "flush",
+                "sourceInstanceId": "p1a/xiemu",
+                "operation": "final-score",
+                "value": {
+                  "n": "28404",
+                  "d": "1"
+                },
+                "before": {
+                  "H": {
+                    "n": "263",
+                    "d": "1"
+                  },
+                  "M": {
+                    "n": "108",
+                    "d": "1"
+                  }
+                },
+                "after": {
+                  "H": {
+                    "n": "263",
+                    "d": "1"
+                  },
+                  "M": {
+                    "n": "108",
+                    "d": "1"
+                  }
+                },
+                "reasonKey": "flush.final-score",
+                "visibleCondition": {
+                  "kind": "always"
+                },
+                "retriggerDepth": 0
+              },
+              {
+                "eventId": "p1a/xiemu/hand/p1a/xiemu/command/4/event/14",
+                "rootId": "p1a/xiemu/hand/p1a/xiemu/command/4",
+                "rootEventId": "p1a/xiemu/hand/p1a/xiemu/command/4/event/14",
+                "phase": "afterHand",
+                "sourceType": "joker",
+                "sourceDefinitionId": "c06",
+                "sourceInstanceId": "c06",
+                "operation": "add-growth",
+                "value": {
+                  "n": "0",
+                  "d": "1"
+                },
+                "before": {
+                  "H": {
+                    "n": "263",
+                    "d": "1"
+                  },
+                  "M": {
+                    "n": "108",
+                    "d": "1"
+                  }
+                },
+                "after": {
+                  "H": {
+                    "n": "263",
+                    "d": "1"
+                  },
+                  "M": {
+                    "n": "108",
+                    "d": "1"
+                  }
+                },
+                "reasonKey": "c06.add-growth",
+                "visibleCondition": {
+                  "kind": "hand-type-in",
+                  "values": [
+                    "flush",
+                    "straight-flush",
+                    "flush-house",
+                    "flush-five"
+                  ]
+                },
+                "retriggerDepth": 0
+              },
+              {
+                "eventId": "p1a/xiemu/hand/p1a/xiemu/command/4/event/15",
+                "rootId": "p1a/xiemu/hand/p1a/xiemu/command/4",
+                "rootEventId": "p1a/xiemu/hand/p1a/xiemu/command/4/event/15",
+                "phase": "onStageClear",
+                "sourceType": "character",
+                "sourceDefinitionId": "xiemu",
+                "sourceInstanceId": "p1a/xiemu/character",
+                "operation": "add-gold",
+                "value": {
+                  "n": "2",
+                  "d": "1"
+                },
+                "before": {
+                  "H": {
+                    "n": "263",
+                    "d": "1"
+                  },
+                  "M": {
+                    "n": "108",
+                    "d": "1"
+                  }
+                },
+                "after": {
+                  "H": {
+                    "n": "263",
+                    "d": "1"
+                  },
+                  "M": {
+                    "n": "108",
+                    "d": "1"
+                  }
+                },
+                "reasonKey": "xiemu.add-gold",
+                "visibleCondition": {
+                  "kind": "always"
+                },
+                "retriggerDepth": 0,
+                "resourceBefore": 42,
+                "resourceAfter": 44,
+                "goldBeforeRewards": 30
+              },
+              {
+                "eventId": "p1a/xiemu/hand/p1a/xiemu/command/4/event/16",
+                "rootId": "p1a/xiemu/hand/p1a/xiemu/command/4",
+                "rootEventId": "p1a/xiemu/hand/p1a/xiemu/command/4/event/16",
+                "phase": "onStageClear",
+                "sourceType": "rule",
+                "sourceDefinitionId": "route-growth",
+                "sourceInstanceId": "p1a/xiemu",
+                "operation": "route-clear",
+                "value": {
+                  "n": "1",
+                  "d": "1"
+                },
+                "before": {
+                  "H": {
+                    "n": "263",
+                    "d": "1"
+                  },
+                  "M": {
+                    "n": "108",
+                    "d": "1"
+                  }
+                },
+                "after": {
+                  "H": {
+                    "n": "263",
+                    "d": "1"
+                  },
+                  "M": {
+                    "n": "108",
+                    "d": "1"
+                  }
+                },
+                "visibleCondition": {
+                  "kind": "always"
+                },
+                "retriggerDepth": 0,
+                "reasonKey": "route-growth.clear",
+                "resourceBefore": 0,
+                "resourceAfter": 1
+              },
+              {
+                "eventId": "p1a/xiemu/hand/p1a/xiemu/command/4/event/17",
+                "rootId": "p1a/xiemu/hand/p1a/xiemu/command/4",
+                "rootEventId": "p1a/xiemu/hand/p1a/xiemu/command/4/event/17",
+                "phase": "onStageClear",
+                "sourceType": "rule",
+                "sourceDefinitionId": "route-growth",
+                "sourceInstanceId": "p1a/xiemu",
+                "operation": "route-clear-family",
+                "value": {
+                  "n": "1",
+                  "d": "1"
+                },
+                "before": {
+                  "H": {
+                    "n": "263",
+                    "d": "1"
+                  },
+                  "M": {
+                    "n": "108",
+                    "d": "1"
+                  }
+                },
+                "after": {
+                  "H": {
+                    "n": "263",
+                    "d": "1"
+                  },
+                  "M": {
+                    "n": "108",
+                    "d": "1"
+                  }
+                },
+                "visibleCondition": {
+                  "kind": "always"
+                },
+                "retriggerDepth": 0,
+                "reasonKey": "route-growth.F.clear",
+                "resourceBefore": 0,
+                "resourceAfter": 1,
+                "routeFamily": "F"
+              }
+            ],
+            "jokers": [
+              {
+                "instanceId": "e03",
+                "definitionId": "e03",
+                "paidPrice": 6,
+                "growth": {},
+                "edition": "foil"
+              },
+              {
+                "instanceId": "c06",
+                "definitionId": "c06",
+                "paidPrice": 6,
+                "growth": {
+                  "multiplier": {
+                    "n": "6",
+                    "d": "1"
+                  }
+                },
+                "edition": "polychrome"
+              },
+              {
+                "instanceId": "e08",
+                "definitionId": "e08",
+                "paidPrice": 8,
+                "growth": {}
+              }
+            ],
+            "rng": {
+              "algorithm": "fnv1a-mulberry32-v1",
+              "state": 1137198603
+            },
+            "goldDelta": 0,
+            "destroyedCardIds": [],
+            "destroyedJokerIds": [],
+            "cards": [
+              {
+                "id": "hearts-4",
+                "suit": "hearts",
+                "rank": 4
+              },
+              {
+                "id": "hearts-6",
+                "suit": "hearts",
+                "rank": 6
+              },
+              {
+                "id": "hearts-8",
+                "suit": "hearts",
+                "rank": 8
+              },
+              {
+                "id": "hearts-10",
+                "suit": "hearts",
+                "rank": 10
+              },
+              {
+                "id": "hearts-12",
+                "suit": "hearts",
+                "rank": 12
+              }
+            ],
+            "sourceJokers": [
+              {
+                "instanceId": "e03",
+                "definitionId": "e03",
+                "paidPrice": 6,
+                "growth": {},
+                "edition": "foil"
+              },
+              {
+                "instanceId": "c06",
+                "definitionId": "c06",
+                "paidPrice": 6,
+                "growth": {
+                  "multiplier": {
+                    "n": "6",
+                    "d": "1"
+                  }
+                },
+                "edition": "polychrome"
+              },
+              {
+                "instanceId": "e08",
+                "definitionId": "e08",
+                "paidPrice": 8,
+                "growth": {}
+              }
+            ],
+            "bossContext": {
+              "boss": null,
+              "previousHandType": null,
+              "sealedJokerIds": [],
+              "challengeDisabledJokerId": null
+            },
+            "combo": {
+              "goldBeforeRewards": 30
+            }
+          },
+          "handLevels": {
+            "flush": 1
+          },
+          "outcome": null
+        },
+        "journal": [
+          {
+            "runId": "p1a/xiemu",
+            "commandId": "p1a/xiemu/command/4",
+            "expectedSeq": 3,
+            "action": {
+              "type": "PlayHand",
+              "selectedIds": [
+                "hearts-4",
+                "hearts-6",
+                "hearts-8",
+                "hearts-10",
+                "hearts-12"
+              ],
+              "xiemuBurn": 30
+            }
+          }
+        ],
+        "storage": {
+          "revision": 1,
+          "current": {
+            "format": "dachoupai-checkpoint",
+            "formatVersion": 1,
+            "state": {
+              "routeGrowth": {
+                "clears": 1,
+                "G": 0,
+                "S": 0,
+                "F": 1,
+                "settlements": [
+                  {
+                    "stageIndex": 0,
+                    "families": [
+                      "F"
+                    ]
+                  }
+                ]
+              },
+              "schemaVersion": 2,
+              "rulesVersion": "r2",
+              "contentVersion": "quality-r2-active-mult-timing-v1",
+              "contentHash": "json-fnv-v1:ca1e8f77913649d3",
+              "runId": "p1a/xiemu",
+              "seed": "p1a-bounded",
+              "commandSeq": 4,
+              "difficulty": 0,
+              "characterId": "xiemu",
+              "openingRoute": "group",
+              "openingShow": {
+                "handsScored": 1,
+                "rootId": "p1a/xiemu/hand/p1a/xiemu/command/4",
+                "eventId": "p1a/xiemu/hand/p1a/xiemu/command/4/event/9",
+                "reason": "multiply"
+              },
+              "routeStarter": {
+                "instanceId": null,
+                "rootId": null,
+                "eventId": null
+              },
+              "mode": "standard",
+              "challengeId": null,
+              "programsEnabled": false,
+              "programRerollCoupon": false,
+              "chapterDisabledJokerId": null,
+              "chapter": 1,
+              "stageIndex": 1,
+              "phase": "stage-cleared",
+              "deckInstances": [
+                {
+                  "id": "spades-2",
+                  "suit": "spades",
+                  "rank": 2
+                },
+                {
+                  "id": "spades-3",
+                  "suit": "spades",
+                  "rank": 3
+                },
+                {
+                  "id": "spades-4",
+                  "suit": "spades",
+                  "rank": 4
+                },
+                {
+                  "id": "spades-5",
+                  "suit": "spades",
+                  "rank": 5
+                },
+                {
+                  "id": "spades-6",
+                  "suit": "spades",
+                  "rank": 6
+                },
+                {
+                  "id": "spades-7",
+                  "suit": "spades",
+                  "rank": 7
+                },
+                {
+                  "id": "spades-8",
+                  "suit": "spades",
+                  "rank": 8
+                },
+                {
+                  "id": "spades-9",
+                  "suit": "spades",
+                  "rank": 9
+                },
+                {
+                  "id": "spades-10",
+                  "suit": "spades",
+                  "rank": 10
+                },
+                {
+                  "id": "spades-11",
+                  "suit": "spades",
+                  "rank": 11
+                },
+                {
+                  "id": "spades-12",
+                  "suit": "spades",
+                  "rank": 12
+                },
+                {
+                  "id": "spades-13",
+                  "suit": "spades",
+                  "rank": 13
+                },
+                {
+                  "id": "spades-14",
+                  "suit": "spades",
+                  "rank": 14
+                },
+                {
+                  "id": "hearts-2",
+                  "suit": "hearts",
+                  "rank": 2
+                },
+                {
+                  "id": "hearts-3",
+                  "suit": "hearts",
+                  "rank": 3
+                },
+                {
+                  "id": "hearts-4",
+                  "suit": "hearts",
+                  "rank": 4
+                },
+                {
+                  "id": "hearts-5",
+                  "suit": "hearts",
+                  "rank": 5
+                },
+                {
+                  "id": "hearts-6",
+                  "suit": "hearts",
+                  "rank": 6
+                },
+                {
+                  "id": "hearts-7",
+                  "suit": "hearts",
+                  "rank": 7
+                },
+                {
+                  "id": "hearts-8",
+                  "suit": "hearts",
+                  "rank": 8
+                },
+                {
+                  "id": "hearts-9",
+                  "suit": "hearts",
+                  "rank": 9
+                },
+                {
+                  "id": "hearts-10",
+                  "suit": "hearts",
+                  "rank": 10
+                },
+                {
+                  "id": "hearts-11",
+                  "suit": "hearts",
+                  "rank": 11
+                },
+                {
+                  "id": "hearts-12",
+                  "suit": "hearts",
+                  "rank": 12
+                },
+                {
+                  "id": "hearts-13",
+                  "suit": "hearts",
+                  "rank": 13
+                },
+                {
+                  "id": "hearts-14",
+                  "suit": "hearts",
+                  "rank": 14
+                },
+                {
+                  "id": "clubs-2",
+                  "suit": "clubs",
+                  "rank": 2
+                },
+                {
+                  "id": "clubs-3",
+                  "suit": "clubs",
+                  "rank": 3
+                },
+                {
+                  "id": "clubs-4",
+                  "suit": "clubs",
+                  "rank": 4
+                },
+                {
+                  "id": "clubs-5",
+                  "suit": "clubs",
+                  "rank": 5
+                },
+                {
+                  "id": "clubs-6",
+                  "suit": "clubs",
+                  "rank": 6
+                },
+                {
+                  "id": "clubs-7",
+                  "suit": "clubs",
+                  "rank": 7
+                },
+                {
+                  "id": "clubs-8",
+                  "suit": "clubs",
+                  "rank": 8
+                },
+                {
+                  "id": "clubs-9",
+                  "suit": "clubs",
+                  "rank": 9
+                },
+                {
+                  "id": "clubs-10",
+                  "suit": "clubs",
+                  "rank": 10
+                },
+                {
+                  "id": "clubs-11",
+                  "suit": "clubs",
+                  "rank": 11
+                },
+                {
+                  "id": "clubs-12",
+                  "suit": "clubs",
+                  "rank": 12
+                },
+                {
+                  "id": "clubs-13",
+                  "suit": "clubs",
+                  "rank": 13
+                },
+                {
+                  "id": "clubs-14",
+                  "suit": "clubs",
+                  "rank": 14
+                },
+                {
+                  "id": "diamonds-2",
+                  "suit": "diamonds",
+                  "rank": 2
+                },
+                {
+                  "id": "diamonds-3",
+                  "suit": "diamonds",
+                  "rank": 3
+                },
+                {
+                  "id": "diamonds-4",
+                  "suit": "diamonds",
+                  "rank": 4
+                },
+                {
+                  "id": "diamonds-5",
+                  "suit": "diamonds",
+                  "rank": 5
+                },
+                {
+                  "id": "diamonds-6",
+                  "suit": "diamonds",
+                  "rank": 6
+                },
+                {
+                  "id": "diamonds-7",
+                  "suit": "diamonds",
+                  "rank": 7
+                },
+                {
+                  "id": "diamonds-8",
+                  "suit": "diamonds",
+                  "rank": 8
+                },
+                {
+                  "id": "diamonds-9",
+                  "suit": "diamonds",
+                  "rank": 9
+                },
+                {
+                  "id": "diamonds-10",
+                  "suit": "diamonds",
+                  "rank": 10
+                },
+                {
+                  "id": "diamonds-11",
+                  "suit": "diamonds",
+                  "rank": 11
+                },
+                {
+                  "id": "diamonds-12",
+                  "suit": "diamonds",
+                  "rank": 12
+                },
+                {
+                  "id": "diamonds-13",
+                  "suit": "diamonds",
+                  "rank": 13
+                },
+                {
+                  "id": "diamonds-14",
+                  "suit": "diamonds",
+                  "rank": 14
+                }
+              ],
+              "drawPile": [
+                "spades-2",
+                "spades-3",
+                "spades-4",
+                "spades-5",
+                "spades-6",
+                "spades-7",
+                "spades-8",
+                "spades-9",
+                "spades-10",
+                "spades-11",
+                "spades-12",
+                "spades-13",
+                "spades-14",
+                "hearts-2",
+                "hearts-3",
+                "hearts-5",
+                "hearts-7",
+                "hearts-9",
+                "hearts-11",
+                "hearts-13",
+                "hearts-14",
+                "clubs-2",
+                "clubs-3",
+                "clubs-4",
+                "clubs-5",
+                "clubs-6",
+                "clubs-7",
+                "clubs-8",
+                "clubs-9",
+                "clubs-10",
+                "clubs-11",
+                "clubs-12",
+                "clubs-13",
+                "clubs-14",
+                "diamonds-2",
+                "diamonds-3",
+                "diamonds-4",
+                "diamonds-5",
+                "diamonds-6",
+                "diamonds-7",
+                "diamonds-8",
+                "diamonds-9",
+                "diamonds-10",
+                "diamonds-11",
+                "diamonds-12",
+                "diamonds-13",
+                "diamonds-14"
+              ],
+              "handOrder": [],
+              "playedPile": [
+                "hearts-4",
+                "hearts-6",
+                "hearts-8",
+                "hearts-10",
+                "hearts-12"
+              ],
+              "discardPile": [],
+              "destroyedIds": [],
+              "stage": {
+                "routeGrowth": {
+                  "entry": {
+                    "commandId": "p1a/xiemu/command/3",
+                    "seq": 3,
+                    "type": "EnterStage"
+                  },
+                  "handTypes": [
+                    "flush"
+                  ],
+                  "eligible": [
+                    "F"
+                  ],
+                  "sources": [
+                    {
+                      "command": {
+                        "runId": "p1a/xiemu",
+                        "commandId": "p1a/xiemu/command/4",
+                        "expectedSeq": 3,
+                        "action": {
+                          "type": "PlayHand",
+                          "selectedIds": [
+                            "hearts-4",
+                            "hearts-6",
+                            "hearts-8",
+                            "hearts-10",
+                            "hearts-12"
+                          ],
+                          "xiemuBurn": 30
+                        }
+                      },
+                      "cards": [
+                        {
+                          "id": "hearts-4",
+                          "suit": "hearts",
+                          "rank": 4
+                        },
+                        {
+                          "id": "hearts-6",
+                          "suit": "hearts",
+                          "rank": 6
+                        },
+                        {
+                          "id": "hearts-8",
+                          "suit": "hearts",
+                          "rank": 8
+                        },
+                        {
+                          "id": "hearts-10",
+                          "suit": "hearts",
+                          "rank": 10
+                        },
+                        {
+                          "id": "hearts-12",
+                          "suit": "hearts",
+                          "rank": 12
+                        }
+                      ],
+                      "rules": {
+                        "fourStraight": false,
+                        "fourFlush": false
+                      }
+                    }
+                  ]
+                },
+                "xiemuBurnUsed": true,
+                "openingDiscard": null,
+                "index": 0,
+                "targetHeat": "400",
+                "initialTargetHeat": "400",
+                "heat": "28404",
+                "handsLeft": 3,
+                "initialHands": 4,
+                "discardsLeft": 3,
+                "initialDiscards": 3,
+                "discardSpent": 0,
+                "discardGained": 0,
+                "doubleDiscardBeforeFirstPlay": false,
+                "discardsUsed": 0,
+                "skipResult": null,
+                "playIndex": 1,
+                "previousHandType": "flush",
+                "previousHandScore": "28404",
+                "handLimit": 8,
+                "initialHandLimit": 8,
+                "boss": null,
+                "initialJokerIds": [
+                  "e03",
+                  "c06",
+                  "e08"
+                ],
+                "sealedJokerIds": [],
+                "challengeDisabledJokerId": null,
+                "rescueUsed": false,
+                "clearId": "p1a/xiemu/clear/0",
+                "goldEarned": 14,
+                "disabledIds": [],
+                "wagerSelected": false,
+                "wagerUsed": false,
+                "maxPlayedCount": 5,
+                "ordinaryStraightSeen": false,
+                "ordinaryFlushSeen": true,
+                "quadRefundUsed": false,
+                "jokerSold": false
+              },
+              "totalHeat": "28404",
+              "gold": 44,
+              "jokers": [
+                {
+                  "instanceId": "e03",
+                  "definitionId": "e03",
+                  "paidPrice": 6,
+                  "growth": {},
+                  "edition": "foil"
+                },
+                {
+                  "instanceId": "c06",
+                  "definitionId": "c06",
+                  "paidPrice": 6,
+                  "growth": {
+                    "multiplier": {
+                      "n": "6",
+                      "d": "1"
+                    }
+                  },
+                  "edition": "polychrome"
+                },
+                {
+                  "instanceId": "e08",
+                  "definitionId": "e08",
+                  "paidPrice": 8,
+                  "growth": {}
+                }
+              ],
+              "consumables": [],
+              "longTermItems": [],
+              "program": null,
+              "boss": {
+                "definitionId": "B04",
+                "disabledSuit": null
+              },
+              "seenBossIds": [
+                "B04"
+              ],
+              "chapterSkipConsumable": "T03",
+              "purchaseCoupons": 0,
+              "safetyNetUsed": false,
+              "shop": null,
+              "spectralModifiers": {
+                "handsPenalty": 0,
+                "handPenalty": 0,
+                "cleanSlateBonus": 0
+              },
+              "supplyRewardClaimed": false,
+              "chapterHandUsage": {
+                "flush": 1
+              },
+              "normalClearClaimed": true,
+              "tourMode": "normal",
+              "normalCompletion": null,
+              "rng": {
+                "deck": {
+                  "algorithm": "fnv1a-mulberry32-v1",
+                  "state": 3701451004
+                },
+                "rule": {
+                  "algorithm": "fnv1a-mulberry32-v1",
+                  "state": 1137198603
+                },
+                "shop": {
+                  "algorithm": "fnv1a-mulberry32-v1",
+                  "state": 3193837110
+                },
+                "reward": {
+                  "algorithm": "fnv1a-mulberry32-v1",
+                  "state": 1002954476
+                },
+                "program": {
+                  "algorithm": "fnv1a-mulberry32-v1",
+                  "state": 1293514758
+                },
+                "challenge": {
+                  "algorithm": "fnv1a-mulberry32-v1",
+                  "state": 1691593519
+                }
+              },
+              "receipts": [
+                {
+                  "commandId": "p1a/xiemu/start",
+                  "fingerprint": "json-fnv-v1:5219f23d29506e71",
+                  "seq": 1
+                },
+                {
+                  "commandId": "p1a/xiemu/command/2",
+                  "fingerprint": "json-fnv-v1:4e3717d1e979eb15",
+                  "seq": 2
+                },
+                {
+                  "commandId": "p1a/xiemu/command/3",
+                  "fingerprint": "json-fnv-v1:8c8e2e5eebff0d22",
+                  "seq": 3
+                },
+                {
+                  "commandId": "p1a/xiemu/command/4",
+                  "fingerprint": "json-fnv-v1:0d34f2c0e2893824",
+                  "seq": 4
+                }
+              ],
+              "lastTrace": {
+                "routeGrowth": {
+                  "before": {
+                    "clears": 0,
+                    "G": 0,
+                    "S": 0,
+                    "F": 0
+                  },
+                  "factors": {
+                    "F": {
+                      "n": "1",
+                      "d": "1"
+                    }
+                  }
+                },
+                "xiemuBurn": {
+                  "cost": 30,
+                  "goldBefore": 60,
+                  "beforeUsed": false,
+                  "goldAfter": 30,
+                  "afterUsed": true,
+                  "multiplier": 4
+                },
+                "rulesVersion": "r2",
+                "rootId": "p1a/xiemu/hand/p1a/xiemu/command/4",
+                "handType": "flush",
+                "level": 1,
+                "sets": {
+                  "playedIds": [
+                    "hearts-4",
+                    "hearts-6",
+                    "hearts-8",
+                    "hearts-10",
+                    "hearts-12"
+                  ],
+                  "scoringIds": [
+                    "hearts-4",
+                    "hearts-6",
+                    "hearts-8",
+                    "hearts-10",
+                    "hearts-12"
+                  ],
+                  "activeScoringIds": [
+                    "hearts-4",
+                    "hearts-6",
+                    "hearts-8",
+                    "hearts-10",
+                    "hearts-12"
+                  ],
+                  "heldIds": []
+                },
+                "finalScore": "28404",
+                "accumulator": {
+                  "H": {
+                    "n": "263",
+                    "d": "1"
+                  },
+                  "M": {
+                    "n": "108",
+                    "d": "1"
+                  }
+                },
+                "events": [
+                  {
+                    "eventId": "p1a/xiemu/hand/p1a/xiemu/command/4/event/0",
+                    "rootId": "p1a/xiemu/hand/p1a/xiemu/command/4",
+                    "rootEventId": "p1a/xiemu/hand/p1a/xiemu/command/4/event/0",
+                    "phase": "base",
+                    "sourceType": "rule",
+                    "sourceDefinitionId": "flush",
+                    "sourceInstanceId": "p1a/xiemu",
+                    "operation": "base",
+                    "value": {
+                      "n": "140",
+                      "d": "1"
+                    },
+                    "before": {
+                      "H": {
+                        "n": "0",
+                        "d": "1"
+                      },
+                      "M": {
+                        "n": "0",
+                        "d": "1"
+                      }
+                    },
+                    "after": {
+                      "H": {
+                        "n": "140",
+                        "d": "1"
+                      },
+                      "M": {
+                        "n": "4",
+                        "d": "1"
+                      }
+                    },
+                    "reasonKey": "flush.base",
+                    "visibleCondition": {
+                      "kind": "always"
+                    },
+                    "retriggerDepth": 0
+                  },
+                  {
+                    "eventId": "p1a/xiemu/hand/p1a/xiemu/command/4/event/1",
+                    "rootId": "p1a/xiemu/hand/p1a/xiemu/command/4",
+                    "rootEventId": "p1a/xiemu/hand/p1a/xiemu/command/4/event/1",
+                    "phase": "onCardScore",
+                    "sourceType": "card",
+                    "sourceDefinitionId": "rank-4",
+                    "sourceInstanceId": "hearts-4",
+                    "targetCardId": "hearts-4",
+                    "operation": "add-heat",
+                    "value": {
+                      "n": "4",
+                      "d": "1"
+                    },
+                    "before": {
+                      "H": {
+                        "n": "140",
+                        "d": "1"
+                      },
+                      "M": {
+                        "n": "4",
+                        "d": "1"
+                      }
+                    },
+                    "after": {
+                      "H": {
+                        "n": "144",
+                        "d": "1"
+                      },
+                      "M": {
+                        "n": "4",
+                        "d": "1"
+                      }
+                    },
+                    "reasonKey": "rank-4.add-heat",
+                    "visibleCondition": {
+                      "kind": "always"
+                    },
+                    "retriggerDepth": 0
+                  },
+                  {
+                    "eventId": "p1a/xiemu/hand/p1a/xiemu/command/4/event/2",
+                    "rootId": "p1a/xiemu/hand/p1a/xiemu/command/4",
+                    "rootEventId": "p1a/xiemu/hand/p1a/xiemu/command/4/event/2",
+                    "phase": "onCardScore",
+                    "sourceType": "card",
+                    "sourceDefinitionId": "rank-6",
+                    "sourceInstanceId": "hearts-6",
+                    "targetCardId": "hearts-6",
+                    "operation": "add-heat",
+                    "value": {
+                      "n": "6",
+                      "d": "1"
+                    },
+                    "before": {
+                      "H": {
+                        "n": "144",
+                        "d": "1"
+                      },
+                      "M": {
+                        "n": "4",
+                        "d": "1"
+                      }
+                    },
+                    "after": {
+                      "H": {
+                        "n": "150",
+                        "d": "1"
+                      },
+                      "M": {
+                        "n": "4",
+                        "d": "1"
+                      }
+                    },
+                    "reasonKey": "rank-6.add-heat",
+                    "visibleCondition": {
+                      "kind": "always"
+                    },
+                    "retriggerDepth": 0
+                  },
+                  {
+                    "eventId": "p1a/xiemu/hand/p1a/xiemu/command/4/event/3",
+                    "rootId": "p1a/xiemu/hand/p1a/xiemu/command/4",
+                    "rootEventId": "p1a/xiemu/hand/p1a/xiemu/command/4/event/3",
+                    "phase": "onCardScore",
+                    "sourceType": "card",
+                    "sourceDefinitionId": "rank-8",
+                    "sourceInstanceId": "hearts-8",
+                    "targetCardId": "hearts-8",
+                    "operation": "add-heat",
+                    "value": {
+                      "n": "8",
+                      "d": "1"
+                    },
+                    "before": {
+                      "H": {
+                        "n": "150",
+                        "d": "1"
+                      },
+                      "M": {
+                        "n": "4",
+                        "d": "1"
+                      }
+                    },
+                    "after": {
+                      "H": {
+                        "n": "158",
+                        "d": "1"
+                      },
+                      "M": {
+                        "n": "4",
+                        "d": "1"
+                      }
+                    },
+                    "reasonKey": "rank-8.add-heat",
+                    "visibleCondition": {
+                      "kind": "always"
+                    },
+                    "retriggerDepth": 0
+                  },
+                  {
+                    "eventId": "p1a/xiemu/hand/p1a/xiemu/command/4/event/4",
+                    "rootId": "p1a/xiemu/hand/p1a/xiemu/command/4",
+                    "rootEventId": "p1a/xiemu/hand/p1a/xiemu/command/4/event/4",
+                    "phase": "onCardScore",
+                    "sourceType": "card",
+                    "sourceDefinitionId": "rank-10",
+                    "sourceInstanceId": "hearts-10",
+                    "targetCardId": "hearts-10",
+                    "operation": "add-heat",
+                    "value": {
+                      "n": "10",
+                      "d": "1"
+                    },
+                    "before": {
+                      "H": {
+                        "n": "158",
+                        "d": "1"
+                      },
+                      "M": {
+                        "n": "4",
+                        "d": "1"
+                      }
+                    },
+                    "after": {
+                      "H": {
+                        "n": "168",
+                        "d": "1"
+                      },
+                      "M": {
+                        "n": "4",
+                        "d": "1"
+                      }
+                    },
+                    "reasonKey": "rank-10.add-heat",
+                    "visibleCondition": {
+                      "kind": "always"
+                    },
+                    "retriggerDepth": 0
+                  },
+                  {
+                    "eventId": "p1a/xiemu/hand/p1a/xiemu/command/4/event/5",
+                    "rootId": "p1a/xiemu/hand/p1a/xiemu/command/4",
+                    "rootEventId": "p1a/xiemu/hand/p1a/xiemu/command/4/event/5",
+                    "phase": "onCardScore",
+                    "sourceType": "card",
+                    "sourceDefinitionId": "rank-12",
+                    "sourceInstanceId": "hearts-12",
+                    "targetCardId": "hearts-12",
+                    "operation": "add-heat",
+                    "value": {
+                      "n": "10",
+                      "d": "1"
+                    },
+                    "before": {
+                      "H": {
+                        "n": "168",
+                        "d": "1"
+                      },
+                      "M": {
+                        "n": "4",
+                        "d": "1"
+                      }
+                    },
+                    "after": {
+                      "H": {
+                        "n": "178",
+                        "d": "1"
+                      },
+                      "M": {
+                        "n": "4",
+                        "d": "1"
+                      }
+                    },
+                    "reasonKey": "rank-12.add-heat",
+                    "visibleCondition": {
+                      "kind": "always"
+                    },
+                    "retriggerDepth": 0
+                  },
+                  {
+                    "eventId": "p1a/xiemu/hand/p1a/xiemu/command/4/event/6",
+                    "rootId": "p1a/xiemu/hand/p1a/xiemu/command/4",
+                    "rootEventId": "p1a/xiemu/hand/p1a/xiemu/command/4/event/6",
+                    "phase": "jokerScore",
+                    "sourceType": "joker",
+                    "sourceDefinitionId": "e03",
+                    "sourceInstanceId": "e03",
+                    "operation": "add-heat-per-gold",
+                    "value": {
+                      "n": "60",
+                      "d": "1"
+                    },
+                    "before": {
+                      "H": {
+                        "n": "178",
+                        "d": "1"
+                      },
+                      "M": {
+                        "n": "4",
+                        "d": "1"
+                      }
+                    },
+                    "after": {
+                      "H": {
+                        "n": "238",
+                        "d": "1"
+                      },
+                      "M": {
+                        "n": "4",
+                        "d": "1"
+                      }
+                    },
+                    "reasonKey": "e03.add-heat-per-gold",
+                    "visibleCondition": {
+                      "kind": "always"
+                    },
+                    "retriggerDepth": 0
+                  },
+                  {
+                    "eventId": "p1a/xiemu/hand/p1a/xiemu/command/4/event/7",
+                    "rootId": "p1a/xiemu/hand/p1a/xiemu/command/4",
+                    "rootEventId": "p1a/xiemu/hand/p1a/xiemu/command/4/event/7",
+                    "phase": "jokerScore",
+                    "sourceType": "joker",
+                    "sourceDefinitionId": "e03",
+                    "sourceInstanceId": "e03",
+                    "operation": "add-heat",
+                    "value": {
+                      "n": "25",
+                      "d": "1"
+                    },
+                    "before": {
+                      "H": {
+                        "n": "238",
+                        "d": "1"
+                      },
+                      "M": {
+                        "n": "4",
+                        "d": "1"
+                      }
+                    },
+                    "after": {
+                      "H": {
+                        "n": "263",
+                        "d": "1"
+                      },
+                      "M": {
+                        "n": "4",
+                        "d": "1"
+                      }
+                    },
+                    "reasonKey": "edition.foil.add-heat",
+                    "visibleCondition": {
+                      "kind": "always"
+                    },
+                    "retriggerDepth": 0
+                  },
+                  {
+                    "eventId": "p1a/xiemu/hand/p1a/xiemu/command/4/event/8",
+                    "rootId": "p1a/xiemu/hand/p1a/xiemu/command/4",
+                    "rootEventId": "p1a/xiemu/hand/p1a/xiemu/command/4/event/8",
+                    "phase": "jokerScore",
+                    "sourceType": "joker",
+                    "sourceDefinitionId": "c06",
+                    "sourceInstanceId": "c06",
+                    "operation": "read-growth",
+                    "value": {
+                      "n": "6",
+                      "d": "1"
+                    },
+                    "before": {
+                      "H": {
+                        "n": "263",
+                        "d": "1"
+                      },
+                      "M": {
+                        "n": "4",
+                        "d": "1"
+                      }
+                    },
+                    "after": {
+                      "H": {
+                        "n": "263",
+                        "d": "1"
+                      },
+                      "M": {
+                        "n": "10",
+                        "d": "1"
+                      }
+                    },
+                    "reasonKey": "c06.read-growth",
+                    "visibleCondition": {
+                      "kind": "always"
+                    },
+                    "retriggerDepth": 0
+                  },
+                  {
+                    "eventId": "p1a/xiemu/hand/p1a/xiemu/command/4/event/9",
+                    "rootId": "p1a/xiemu/hand/p1a/xiemu/command/4",
+                    "rootEventId": "p1a/xiemu/hand/p1a/xiemu/command/4/event/9",
+                    "phase": "jokerScore",
+                    "sourceType": "joker",
+                    "sourceDefinitionId": "c06",
+                    "sourceInstanceId": "c06",
+                    "operation": "multiply-multiplier",
+                    "value": {
+                      "n": "3",
+                      "d": "2"
+                    },
+                    "before": {
+                      "H": {
+                        "n": "263",
+                        "d": "1"
+                      },
+                      "M": {
+                        "n": "10",
+                        "d": "1"
+                      }
+                    },
+                    "after": {
+                      "H": {
+                        "n": "263",
+                        "d": "1"
+                      },
+                      "M": {
+                        "n": "15",
+                        "d": "1"
+                      }
+                    },
+                    "reasonKey": "edition.polychrome.multiply-multiplier",
+                    "visibleCondition": {
+                      "kind": "always"
+                    },
+                    "retriggerDepth": 0
+                  },
+                  {
+                    "eventId": "p1a/xiemu/hand/p1a/xiemu/command/4/event/10",
+                    "rootId": "p1a/xiemu/hand/p1a/xiemu/command/4",
+                    "rootEventId": "p1a/xiemu/hand/p1a/xiemu/command/4/event/10",
+                    "phase": "jokerScore",
+                    "sourceType": "joker",
+                    "sourceDefinitionId": "e08",
+                    "sourceInstanceId": "e08",
+                    "operation": "multiply-multiplier",
+                    "value": {
+                      "n": "9",
+                      "d": "5"
+                    },
+                    "before": {
+                      "H": {
+                        "n": "263",
+                        "d": "1"
+                      },
+                      "M": {
+                        "n": "15",
+                        "d": "1"
+                      }
+                    },
+                    "after": {
+                      "H": {
+                        "n": "263",
+                        "d": "1"
+                      },
+                      "M": {
+                        "n": "27",
+                        "d": "1"
+                      }
+                    },
+                    "reasonKey": "e08.multiply-multiplier",
+                    "visibleCondition": {
+                      "kind": "resource-minimum",
+                      "resource": "gold",
+                      "minimum": 20
+                    },
+                    "retriggerDepth": 0
+                  },
+                  {
+                    "eventId": "p1a/xiemu/hand/p1a/xiemu/command/4/event/11",
+                    "rootId": "p1a/xiemu/hand/p1a/xiemu/command/4",
+                    "rootEventId": "p1a/xiemu/hand/p1a/xiemu/command/4/event/11",
+                    "phase": "routeGrowth",
+                    "sourceType": "rule",
+                    "sourceDefinitionId": "route-growth",
+                    "sourceInstanceId": "p1a/xiemu",
+                    "operation": "route-factor",
+                    "value": {
+                      "n": "1",
+                      "d": "1"
+                    },
+                    "before": {
+                      "H": {
+                        "n": "263",
+                        "d": "1"
+                      },
+                      "M": {
+                        "n": "27",
+                        "d": "1"
+                      }
+                    },
+                    "after": {
+                      "H": {
+                        "n": "263",
+                        "d": "1"
+                      },
+                      "M": {
+                        "n": "27",
+                        "d": "1"
+                      }
+                    },
+                    "reasonKey": "route-growth.F.factor",
+                    "visibleCondition": {
+                      "kind": "hand-type-in",
+                      "values": [
+                        "flush",
+                        "straight-flush",
+                        "flush-house",
+                        "flush-five"
+                      ]
+                    },
+                    "retriggerDepth": 0,
+                    "routeFamily": "F",
+                    "resourceBefore": 0,
+                    "resourceAfter": 0
+                  },
+                  {
+                    "eventId": "p1a/xiemu/hand/p1a/xiemu/command/4/event/12",
+                    "rootId": "p1a/xiemu/hand/p1a/xiemu/command/4",
+                    "rootEventId": "p1a/xiemu/hand/p1a/xiemu/command/4/event/12",
+                    "phase": "characterScore",
+                    "sourceType": "character",
+                    "sourceDefinitionId": "xiemu",
+                    "sourceInstanceId": "p1a/xiemu/character",
+                    "operation": "multiply-multiplier",
+                    "value": {
+                      "n": "4",
+                      "d": "1"
+                    },
+                    "before": {
+                      "H": {
+                        "n": "263",
+                        "d": "1"
+                      },
+                      "M": {
+                        "n": "27",
+                        "d": "1"
+                      }
+                    },
+                    "after": {
+                      "H": {
+                        "n": "263",
+                        "d": "1"
+                      },
+                      "M": {
+                        "n": "108",
+                        "d": "1"
+                      }
+                    },
+                    "reasonKey": "xiemu.multiply-multiplier",
+                    "visibleCondition": {
+                      "kind": "always"
+                    },
+                    "retriggerDepth": 0
+                  },
+                  {
+                    "eventId": "p1a/xiemu/hand/p1a/xiemu/command/4/event/13",
+                    "rootId": "p1a/xiemu/hand/p1a/xiemu/command/4",
+                    "rootEventId": "p1a/xiemu/hand/p1a/xiemu/command/4/event/13",
+                    "phase": "finalScore",
+                    "sourceType": "rule",
+                    "sourceDefinitionId": "flush",
+                    "sourceInstanceId": "p1a/xiemu",
+                    "operation": "final-score",
+                    "value": {
+                      "n": "28404",
+                      "d": "1"
+                    },
+                    "before": {
+                      "H": {
+                        "n": "263",
+                        "d": "1"
+                      },
+                      "M": {
+                        "n": "108",
+                        "d": "1"
+                      }
+                    },
+                    "after": {
+                      "H": {
+                        "n": "263",
+                        "d": "1"
+                      },
+                      "M": {
+                        "n": "108",
+                        "d": "1"
+                      }
+                    },
+                    "reasonKey": "flush.final-score",
+                    "visibleCondition": {
+                      "kind": "always"
+                    },
+                    "retriggerDepth": 0
+                  },
+                  {
+                    "eventId": "p1a/xiemu/hand/p1a/xiemu/command/4/event/14",
+                    "rootId": "p1a/xiemu/hand/p1a/xiemu/command/4",
+                    "rootEventId": "p1a/xiemu/hand/p1a/xiemu/command/4/event/14",
+                    "phase": "afterHand",
+                    "sourceType": "joker",
+                    "sourceDefinitionId": "c06",
+                    "sourceInstanceId": "c06",
+                    "operation": "add-growth",
+                    "value": {
+                      "n": "0",
+                      "d": "1"
+                    },
+                    "before": {
+                      "H": {
+                        "n": "263",
+                        "d": "1"
+                      },
+                      "M": {
+                        "n": "108",
+                        "d": "1"
+                      }
+                    },
+                    "after": {
+                      "H": {
+                        "n": "263",
+                        "d": "1"
+                      },
+                      "M": {
+                        "n": "108",
+                        "d": "1"
+                      }
+                    },
+                    "reasonKey": "c06.add-growth",
+                    "visibleCondition": {
+                      "kind": "hand-type-in",
+                      "values": [
+                        "flush",
+                        "straight-flush",
+                        "flush-house",
+                        "flush-five"
+                      ]
+                    },
+                    "retriggerDepth": 0
+                  },
+                  {
+                    "eventId": "p1a/xiemu/hand/p1a/xiemu/command/4/event/15",
+                    "rootId": "p1a/xiemu/hand/p1a/xiemu/command/4",
+                    "rootEventId": "p1a/xiemu/hand/p1a/xiemu/command/4/event/15",
+                    "phase": "onStageClear",
+                    "sourceType": "character",
+                    "sourceDefinitionId": "xiemu",
+                    "sourceInstanceId": "p1a/xiemu/character",
+                    "operation": "add-gold",
+                    "value": {
+                      "n": "2",
+                      "d": "1"
+                    },
+                    "before": {
+                      "H": {
+                        "n": "263",
+                        "d": "1"
+                      },
+                      "M": {
+                        "n": "108",
+                        "d": "1"
+                      }
+                    },
+                    "after": {
+                      "H": {
+                        "n": "263",
+                        "d": "1"
+                      },
+                      "M": {
+                        "n": "108",
+                        "d": "1"
+                      }
+                    },
+                    "reasonKey": "xiemu.add-gold",
+                    "visibleCondition": {
+                      "kind": "always"
+                    },
+                    "retriggerDepth": 0,
+                    "resourceBefore": 42,
+                    "resourceAfter": 44,
+                    "goldBeforeRewards": 30
+                  },
+                  {
+                    "eventId": "p1a/xiemu/hand/p1a/xiemu/command/4/event/16",
+                    "rootId": "p1a/xiemu/hand/p1a/xiemu/command/4",
+                    "rootEventId": "p1a/xiemu/hand/p1a/xiemu/command/4/event/16",
+                    "phase": "onStageClear",
+                    "sourceType": "rule",
+                    "sourceDefinitionId": "route-growth",
+                    "sourceInstanceId": "p1a/xiemu",
+                    "operation": "route-clear",
+                    "value": {
+                      "n": "1",
+                      "d": "1"
+                    },
+                    "before": {
+                      "H": {
+                        "n": "263",
+                        "d": "1"
+                      },
+                      "M": {
+                        "n": "108",
+                        "d": "1"
+                      }
+                    },
+                    "after": {
+                      "H": {
+                        "n": "263",
+                        "d": "1"
+                      },
+                      "M": {
+                        "n": "108",
+                        "d": "1"
+                      }
+                    },
+                    "visibleCondition": {
+                      "kind": "always"
+                    },
+                    "retriggerDepth": 0,
+                    "reasonKey": "route-growth.clear",
+                    "resourceBefore": 0,
+                    "resourceAfter": 1
+                  },
+                  {
+                    "eventId": "p1a/xiemu/hand/p1a/xiemu/command/4/event/17",
+                    "rootId": "p1a/xiemu/hand/p1a/xiemu/command/4",
+                    "rootEventId": "p1a/xiemu/hand/p1a/xiemu/command/4/event/17",
+                    "phase": "onStageClear",
+                    "sourceType": "rule",
+                    "sourceDefinitionId": "route-growth",
+                    "sourceInstanceId": "p1a/xiemu",
+                    "operation": "route-clear-family",
+                    "value": {
+                      "n": "1",
+                      "d": "1"
+                    },
+                    "before": {
+                      "H": {
+                        "n": "263",
+                        "d": "1"
+                      },
+                      "M": {
+                        "n": "108",
+                        "d": "1"
+                      }
+                    },
+                    "after": {
+                      "H": {
+                        "n": "263",
+                        "d": "1"
+                      },
+                      "M": {
+                        "n": "108",
+                        "d": "1"
+                      }
+                    },
+                    "visibleCondition": {
+                      "kind": "always"
+                    },
+                    "retriggerDepth": 0,
+                    "reasonKey": "route-growth.F.clear",
+                    "resourceBefore": 0,
+                    "resourceAfter": 1,
+                    "routeFamily": "F"
+                  }
+                ],
+                "jokers": [
+                  {
+                    "instanceId": "e03",
+                    "definitionId": "e03",
+                    "paidPrice": 6,
+                    "growth": {},
+                    "edition": "foil"
+                  },
+                  {
+                    "instanceId": "c06",
+                    "definitionId": "c06",
+                    "paidPrice": 6,
+                    "growth": {
+                      "multiplier": {
+                        "n": "6",
+                        "d": "1"
+                      }
+                    },
+                    "edition": "polychrome"
+                  },
+                  {
+                    "instanceId": "e08",
+                    "definitionId": "e08",
+                    "paidPrice": 8,
+                    "growth": {}
+                  }
+                ],
+                "rng": {
+                  "algorithm": "fnv1a-mulberry32-v1",
+                  "state": 1137198603
+                },
+                "goldDelta": 0,
+                "destroyedCardIds": [],
+                "destroyedJokerIds": [],
+                "cards": [
+                  {
+                    "id": "hearts-4",
+                    "suit": "hearts",
+                    "rank": 4
+                  },
+                  {
+                    "id": "hearts-6",
+                    "suit": "hearts",
+                    "rank": 6
+                  },
+                  {
+                    "id": "hearts-8",
+                    "suit": "hearts",
+                    "rank": 8
+                  },
+                  {
+                    "id": "hearts-10",
+                    "suit": "hearts",
+                    "rank": 10
+                  },
+                  {
+                    "id": "hearts-12",
+                    "suit": "hearts",
+                    "rank": 12
+                  }
+                ],
+                "sourceJokers": [
+                  {
+                    "instanceId": "e03",
+                    "definitionId": "e03",
+                    "paidPrice": 6,
+                    "growth": {},
+                    "edition": "foil"
+                  },
+                  {
+                    "instanceId": "c06",
+                    "definitionId": "c06",
+                    "paidPrice": 6,
+                    "growth": {
+                      "multiplier": {
+                        "n": "6",
+                        "d": "1"
+                      }
+                    },
+                    "edition": "polychrome"
+                  },
+                  {
+                    "instanceId": "e08",
+                    "definitionId": "e08",
+                    "paidPrice": 8,
+                    "growth": {}
+                  }
+                ],
+                "bossContext": {
+                  "boss": null,
+                  "previousHandType": null,
+                  "sealedJokerIds": [],
+                  "challengeDisabledJokerId": null
+                },
+                "combo": {
+                  "goldBeforeRewards": 30
+                }
+              },
+              "handLevels": {
+                "flush": 1
+              },
+              "outcome": null
+            },
+            "journalBaseSeq": 3,
+            "journal": [
+              {
+                "runId": "p1a/xiemu",
+                "commandId": "p1a/xiemu/command/4",
+                "expectedSeq": 3,
+                "action": {
+                  "type": "PlayHand",
+                  "selectedIds": [
+                    "hearts-4",
+                    "hearts-6",
+                    "hearts-8",
+                    "hearts-10",
+                    "hearts-12"
+                  ],
+                  "xiemuBurn": 30
+                }
+              }
+            ],
+            "checksum": "json-fnv-v1:a11ba3703dcb82d4"
+          },
+          "previous": null
+        }
+      },
+      "beforeHash": "e16d2b7891d8e7470cf8be9b29ab69c8d737bd025c2933ce49f80e6029f699b2",
+      "currentButtons": [
+        {
+          "label": "查看培养路线",
+          "disabled": false,
+          "primary": false
+        },
+        {
+          "label": "前往筹备商店继续培养",
+          "disabled": false,
+          "primary": true
+        },
+        {
+          "label": "关闭",
+          "disabled": false,
+          "primary": false
+        }
+      ],
+      "defaultText": "最后一手 · 已保存的结算\n\n本手入账 28,404\n最终热度 263 × 倍率 108\n牌型基础 140 热度 × 4 倍率\n实际计分 5 张 · 打出 5 张\n≈ 表示显示近似值；入账按精确计算向下取整。\n\n家底 · 本手计分\n\n按当时金币加入热度 +60 · 实际触发 1 次\n\n闪箔版次 · 家底 · 本手计分\n\n+25 热度 · 实际触发 1 次\n\n越染越深 · 本手计分\n\n读取已攒倍率 +6 · 实际读取 1 次\n\n多彩版次 · 越染越深 · 本手计分\n\n×1.5 倍率 · 实际触发 1 次\n\n包场 · 本手计分\n\n×1.8 倍率 · 实际触发 1 次\n\n本局同花清场加成 · 本手计分\n\n此前0场同花有效清场 · 本手倍率 ×1\n加成归本局，不属于某张丑牌；初选路线不限制读取。 · 实际读取 1 次\n\n谢幕人 · 燃30金 · 本手计分\n\n×4 倍率 · 实际触发 1 次\n\n越染越深 · 结算后记录\n\n成长 +0 · 下手生效 · 实际记录 1 次\n\n谢幕人 · 过关时记录\n\n+2 金 · 42 → 44 · 实际记录 1 次\n\n本局清场加成 · 过关时记录\n\n本局有效清场 0 → 1 · 新记录下手起读取 · 实际记录 1 次\n\n本局同花清场加成 · 过关时记录\n\n同花有效清场 0 → 1 · 新记录下手起读取 · 实际记录 1 次\n\n扑克普通点数 · 本手计分\n\n4♥：+4 热度 · 实际触发 1 次\n6♥：+6 热度 · 实际触发 1 次\n8♥：+8 热度 · 实际触发 1 次\n10♥：+10 热度 · 实际触发 1 次\nQ♥：+10 热度 · 实际触发 1 次\n\n诊断：精确分数与原始事件\n查看培养路线\n前往筹备商店继续培养\n关闭",
+      "expandedBounds": {
+        "client": 878,
+        "scroll": 878,
+        "copyClient": 846,
+        "copyScroll": 846,
+        "buttons": [
+          {
+            "x": 264,
+            "y": 687,
+            "width": 274,
+            "height": 56,
+            "top": 687,
+            "right": 538,
+            "bottom": 743,
+            "left": 264
+          },
+          {
+            "x": 546,
+            "y": 687,
+            "width": 330,
+            "height": 56,
+            "top": 687,
+            "right": 876,
+            "bottom": 743,
+            "left": 546
+          },
+          {
+            "x": 884,
+            "y": 687,
+            "width": 218,
+            "height": 56,
+            "top": 687,
+            "right": 1102,
+            "bottom": 743,
+            "left": 884
+          }
+        ],
+        "fonts": [
+          "14px",
+          "14px",
+          "14px",
+          "14px",
+          "14px",
+          "14px",
+          "14px",
+          "14px",
+          "14px",
+          "14px",
+          "14px",
+          "14px",
+          "14px"
+        ]
+      },
+      "coldRestoreHash": "e16d2b7891d8e7470cf8be9b29ab69c8d737bd025c2933ce49f80e6029f699b2",
+      "fullStateJournalStorageExact": true,
+      "coldRestoreExact": true,
+      "status": "PASS"
+    },
+    {
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      },
+      "kind": "loss",
+      "source": "docs/production/evidence/pc-shop-2026-10-07/controlled-lose.json",
+      "images": [
+        "1366-loss-baseline-result.png"
+      ],
+      "baselineResultShape": [
+        {
+          "name": "view",
+          "type": "Container",
+          "visible": true,
+          "alpha": 1,
+          "b": {
+            "x": 0,
+            "y": 0,
+            "width": 1366,
+            "height": 768
+          }
+        },
+        {
+          "name": "stage-identity/result",
+          "type": "Text",
+          "text": "第 1 章 · 暖场 · 二响",
+          "visible": true,
+          "alpha": 1,
+          "b": {
+            "x": 193,
+            "y": 8,
+            "width": 125,
+            "height": 16
+          }
+        },
+        {
+          "name": "result/title",
+          "type": "Text",
+          "text": "此番落幕，再登台",
+          "visible": true,
+          "alpha": 1,
+          "b": {
+            "x": 193,
+            "y": 42,
+            "width": 272,
+            "height": 36
+          }
+        },
+        {
+          "name": "result-art/stage",
+          "type": "Graphics",
+          "visible": true,
+          "alpha": 1
+        },
+        {
+          "name": "result-art/paper",
+          "type": "TileSprite",
+          "visible": true,
+          "alpha": 0.1,
+          "b": {
+            "x": 199,
+            "y": 108,
+            "width": 968,
+            "height": 410
+          }
+        },
+        {
+          "name": "result-art/ink",
+          "type": "Graphics",
+          "visible": true,
+          "alpha": 1
+        },
+        {
+          "name": "result-art/hero",
+          "type": "Image",
+          "visible": true,
+          "alpha": 1,
+          "b": {
+            "x": 308.74,
+            "y": 132.675,
+            "width": 104.51999999999998,
+            "height": 130.65000000000003
+          }
+        },
+        {
+          "name": "result/source-continuity",
+          "type": "Text",
+          "text": "二响",
+          "visible": true,
+          "alpha": 1,
+          "b": {
+            "x": 211,
+            "y": 284,
+            "width": 33,
+            "height": 19
+          }
+        },
+        {
+          "name": "",
+          "type": "Text",
+          "text": "本局构筑已留影",
+          "visible": true,
+          "alpha": 1,
+          "b": {
+            "x": 211,
+            "y": 310,
+            "width": 98,
+            "height": 16
+          }
+        },
+        {
+          "name": "result/failure-reason",
+          "type": "Text",
+          "text": "出牌次数已用完",
+          "visible": true,
+          "alpha": 1,
+          "b": {
+            "x": 786.5,
+            "y": 120,
+            "width": 113,
+            "height": 19
+          }
+        },
+        {
+          "name": "result/last-hand",
+          "type": "Text",
+          "text": "最后一手：高牌 · 25 热度",
+          "visible": true,
+          "alpha": 1,
+          "b": {
+            "x": 764,
+            "y": 148,
+            "width": 158,
+            "height": 16
+          }
+        },
+        {
+          "name": "result/score",
+          "type": "Text",
+          "text": "99",
+          "visible": true,
+          "alpha": 1,
+          "b": {
+            "x": 815.5,
+            "y": 172,
+            "width": 55,
+            "height": 61
+          }
+        },
+        {
+          "name": "result/gap",
+          "type": "Text",
+          "text": "目标 400\n差 301 热度",
+          "visible": true,
+          "alpha": 1,
+          "b": {
+            "x": 806,
+            "y": 240,
+            "width": 74,
+            "height": 32
+          }
+        },
+        {
+          "name": "result/next-panel",
+          "type": "Image",
+          "visible": true,
+          "alpha": 1,
+          "b": {
+            "x": 193,
+            "y": 536,
+            "width": 980,
+            "height": 112
+          }
+        },
+        {
+          "name": "",
+          "type": "Text",
+          "text": "再登台",
+          "visible": true,
+          "alpha": 1,
+          "b": {
+            "x": 207,
+            "y": 546,
+            "width": 54,
+            "height": 21
+          }
+        },
+        {
+          "name": "result/next-body",
+          "type": "Text",
+          "text": "剩余出牌 0 次 · 弃牌 3 次\n已过关场次累计热度 0 · 余额 6 金\n同局重试从开局重新开始，构筑不继承。",
+          "visible": true,
+          "alpha": 1,
+          "b": {
+            "x": 207,
+            "y": 575,
+            "width": 252,
+            "height": 52
+          }
+        },
+        {
+          "name": "",
+          "type": "Text",
+          "text": "返回选角",
+          "visible": true,
+          "alpha": 1,
+          "b": {
+            "x": 299.5,
+            "y": 676.5,
+            "width": 61,
+            "height": 17
+          }
+        },
+        {
+          "name": "action/continue-stage",
+          "type": "Rectangle",
+          "visible": true,
+          "alpha": 1,
+          "b": {
+            "x": 193,
+            "y": 664,
+            "width": 274,
+            "height": 44
+          }
+        },
+        {
+          "name": "",
+          "type": "Text",
+          "text": "同局重试",
+          "visible": true,
+          "alpha": 1,
+          "b": {
+            "x": 641.5,
+            "y": 678.5,
+            "width": 89,
+            "height": 25
+          }
+        },
+        {
+          "name": "action/retry-seed",
+          "type": "Rectangle",
+          "visible": true,
+          "alpha": 1,
+          "b": {
+            "x": 475,
+            "y": 664,
+            "width": 421,
+            "height": 56
+          }
+        },
+        {
+          "name": "",
+          "type": "Text",
+          "text": "巡演留影",
+          "visible": true,
+          "alpha": 1,
+          "b": {
+            "x": 1008.5,
+            "y": 676.5,
+            "width": 61,
+            "height": 17
+          }
+        },
+        {
+          "name": "action/last-hand",
+          "type": "Rectangle",
+          "visible": true,
+          "alpha": 1,
+          "b": {
+            "x": 904,
+            "y": 664,
+            "width": 269,
+            "height": 44
+          }
+        },
+        {
+          "name": "",
+          "type": "Text",
+          "text": "重试从开局开始，不继承构筑。",
+          "visible": true,
+          "alpha": 1,
+          "b": {
+            "x": 193,
+            "y": 728,
+            "width": 196,
+            "height": 16
+          }
+        }
+      ],
+      "baselineCanvasPNGHash": "d876ed223e421511f8f05abddc30cd337ddcf6874b7bdf0608b11edb294b539b"
+    }
+  ],
+  "status": "FAIL",
+  "error": "AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n+ actual - expected\n\n+ '落幕留影 · 最终构筑'\n- '最后一手 · 已保存的结算'\n\n    at file:///workspace/dachoupai/harness/score-review-intermission.mjs:32:142"
+}

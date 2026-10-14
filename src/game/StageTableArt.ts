@@ -1,3 +1,4 @@
+import {whenTextureReady} from './LateTextureArt';
 import type Phaser from 'phaser';
 import {playedFootprint,intersects,type Box,type TableLayout} from './layout';
 import {toolInventoryPlayedArea} from './ToolInventoryEntry';
@@ -38,8 +39,11 @@ export function drawStageTableArt(scene:Phaser.Scene,view:SceneView,characterId:
  sheet('hand',plan.hand,T.paperLight,T.brass,true);
  sheet('stage',plan.stage,T.paperLight,T.jade,true);
  const key=selectionPortraitKey(characterId),box=plan.portrait;
- if(box&&scene.textures.exists(key)){
-  const image=scene.add.image(box.x+box.width/2,box.y+box.height/2,key);image.setScale(Math.min(box.width/image.width,box.height/image.height)).setName('table-art/character').setData('assetId',characterId+'.selection').setData('bounds',box);view.add(image);
+ if(box){
+  const holder=view.add(scene.add.container(0,0).setName('table-art/character-holder'));
+  whenTextureReady(scene,holder,key,()=>{
+  const image=scene.add.image(box.x+box.width/2,box.y+box.height/2,key);image.setScale(Math.min(box.width/image.width,box.height/image.height)).setName('table-art/character').setData('assetId',characterId+'.selection').setData('bounds',box);holder.add(image);
+  });
  }
 }
 

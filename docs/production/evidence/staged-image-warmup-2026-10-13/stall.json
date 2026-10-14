@@ -1,0 +1,119 @@
+{
+  "head": "7040573b91bd6b9bac98328a668e4c204ec2f9f0",
+  "build": {
+    "version": "C03",
+    "builtAt": "2026-10-13T16:21:02.646Z",
+    "revision": "7040573b91bd6b9bac98328a668e4c204ec2f9f0",
+    "sourceStatus": "clean",
+    "modified": false
+  },
+  "viewport": {
+    "width": 320,
+    "height": 740
+  },
+  "fault": "Three existing amo images never respond; fetch + decode deadline is 4500ms, one automatic transient retry.",
+  "requests": [
+    {
+      "url": "http://127.0.0.1:5175/assets/handdrawn-p08/characters/amo.selection.webp",
+      "at": 1791908989237
+    },
+    {
+      "url": "http://127.0.0.1:5175/assets/handdrawn-p08/characters/amo.avatar.webp",
+      "at": 1791908989239
+    },
+    {
+      "url": "http://127.0.0.1:5175/assets/handdrawn-p08/characters/amo.portrait.webp",
+      "at": 1791908993930
+    },
+    {
+      "url": "http://127.0.0.1:5175/assets/handdrawn-p08/characters/amo.selection.webp",
+      "at": 1791908998479
+    },
+    {
+      "url": "http://127.0.0.1:5175/assets/handdrawn-p08/characters/amo.avatar.webp",
+      "at": 1791908998776
+    },
+    {
+      "url": "http://127.0.0.1:5175/assets/handdrawn-p08/characters/amo.portrait.webp",
+      "at": 1791909003009
+    }
+  ],
+  "failures": [
+    {
+      "url": "http://127.0.0.1:5175/assets/handdrawn-p08/characters/amo.selection.webp",
+      "at": 1791908994081,
+      "error": {
+        "errorText": "net::ERR_ABORTED"
+      }
+    },
+    {
+      "url": "http://127.0.0.1:5175/assets/handdrawn-p08/characters/amo.avatar.webp",
+      "at": 1791908994081,
+      "error": {
+        "errorText": "net::ERR_ABORTED"
+      }
+    },
+    {
+      "url": "http://127.0.0.1:5175/assets/handdrawn-p08/characters/amo.portrait.webp",
+      "at": 1791908998535,
+      "error": {
+        "errorText": "net::ERR_ABORTED"
+      }
+    },
+    {
+      "url": "http://127.0.0.1:5175/assets/handdrawn-p08/characters/amo.selection.webp",
+      "at": 1791909003063,
+      "error": {
+        "errorText": "net::ERR_ABORTED"
+      }
+    },
+    {
+      "url": "http://127.0.0.1:5175/assets/handdrawn-p08/characters/amo.avatar.webp",
+      "at": 1791909003389,
+      "error": {
+        "errorText": "net::ERR_ABORTED"
+      }
+    },
+    {
+      "url": "http://127.0.0.1:5175/assets/handdrawn-p08/characters/amo.portrait.webp",
+      "at": 1791909007661,
+      "error": {
+        "errorText": "net::ERR_ABORTED"
+      }
+    }
+  ],
+  "errors": [],
+  "titleUsableMs": 1666.7000000001863,
+  "controls": {
+    "selectorActive": true,
+    "confirmEnabled": true,
+    "heroLoaded": false
+  },
+  "previewGrouping": [
+    {
+      "id": "amo",
+      "insideCard": true
+    },
+    {
+      "id": "touye",
+      "insideCard": true
+    },
+    {
+      "id": "laohuan",
+      "insideCard": true
+    },
+    {
+      "id": "erxiang",
+      "insideCard": true
+    },
+    {
+      "id": "azao",
+      "insideCard": true
+    },
+    {
+      "id": "xiemu",
+      "insideCard": true
+    }
+  ],
+  "status": "PASS"
+}

@@ -1,3 +1,6 @@
+import {formatScoreReview} from './ScoreReview';
+import {whenTextureReady} from './LateTextureArt';
+import {warmTableImages} from './StageImageWarmup';
 import {isR2ActiveMultTiming} from '../domain/r2GroupUpgrade';
 import {touyeComboCue} from './TouyeComboCue';
 import {azaoReleaseLabel,heroSkillGuide,heroOperationSteps,mountHeroSkillGuide} from './HeroSkillGuide';
@@ -24,10 +27,10 @@ import {paperSceneStart} from './PaperFlow';
 import {usesTouyeWager,usesTouyeNewCore,type TouyeBet,type TouyeTarget} from '../domain/r2TouyeWager';
 import {touyeChoice,touyeConfirmationCopy} from './TouyeWagerCopy';
 import {usesLaohuanRefill} from '../domain/r2LaohuanRefill';
-import {savedBossImpact} from './SavedBossImpact';
 import {mountScoreLanding} from './ScoreLanding';
 import {numberImpact,impactBeat,numberPulse,type NumberImpact} from './ScoreEnergy';
-import {multiplierCaption,readableMultiplierEffect} from './ScoreEventCaption';
+import {readableMultiplierEffect} from './ScoreEventCaption';
+import {scoreSourceProcess,fitScoreSourceProcess,presentScoreSourceProcess,type ScoreSourceProcess} from './ScoreSourceProcess';
 import {starterSelection} from './RouteStarter';
 import {firstChapterGuide,attachFirstChapterGuide} from './FirstChapterGuide';
 import {buildGrowthProgress} from './BuildGrowthProgress';
@@ -41,15 +44,15 @@ import {BUILD_LABEL,buildDirectionCaption,buildHandTypes,currentBuildFocus,choos
 import {handRouteTransitions,handRouteTransitionDraft,handRoutePlayBudget} from './HandRouteTransition';
 import {handRouteReferences} from './HandRouteGuidance';
 import {mountHandRouteReferences} from './HandRouteGuidanceView';
-import {selectionExperience,hasActualBenefit,savedBenefit,savedExperienceCards,experienceBeat} from './JokerExperience';
+import {selectionExperience,hasActualBenefit,savedBenefit,experienceBeat} from './JokerExperience';
 import {groupGrowthCausality,savedGrowthDiscovery} from './JokerGrowthCausality';
-import {courtArtKey,queueCourtArtLoads} from './HanddrawnArt';
+import {courtArtKey} from './HanddrawnArt';
 import {R2HandCandidateCache,r2CandidateKey,r2HandRevision,type R2CandidateInput,type R2CandidateResult} from '../domain/r2HandCandidates';
 import {AI_HAND_POLICY,AiHandCandidateCache,aiHandKey,nextAiHand,type AiHandInput,type AiHandCursor} from './AiHandCandidates';
 import {jokerMemory,jokerAbilityCopyForRun,publicJokerMemoryContext,recordedJokerMemoryContext} from './JokerMemory';
 import {fitJokerLabel,jokerLabelRoom} from './JokerLabel';
 import {r2AssistAvailability} from '../domain/r2Assist';
-import {assistCandidates,validAssistDraft,savedAssistCopy,ASSIST_EXPLANATION,ASSIST_AI_EXPLANATION} from './AssistSelection';
+import {assistCandidates,validAssistDraft,ASSIST_EXPLANATION,ASSIST_AI_EXPLANATION} from './AssistSelection';
 import {r2SelectionFacts,type R2SelectionFacts} from '../domain/r2SelectionFacts';
 import {selectionCopy,selectionCardCopy,fitConditionEntry,fourCardRuleCopy,selectionCandidateEntryBox} from './SelectionCopy';
 import {handRuleReference,handTypeRuleCards} from './HandRuleReference';
@@ -256,8 +259,7 @@ export class GameScene extends Phaser.Scene {
   private climaxArtRequested=false;
   preload():void {
     const xhr:Phaser.Types.Loader.XHRSettingsObject={responseType:'text',timeout:5000};this.load.maxRetries=0;
-    queueCourtArtLoads(this);
-    const hero=runController(this)?.state.characterId;if(hero&&!this.textures.exists('opening-portrait-'+hero))this.load.image('opening-portrait-'+hero,portraitURL(hero),{responseType:'blob',timeout:1800});
+    const hero=runController(this)?.state.characterId;if(hero)warmTableImages(this,hero);
     for(const asset of P00_ASSETS)if(!this.textures.exists(asset.key))this.load.svg(asset.key,assetUrl(asset.path),{width:asset.width,height:asset.height},xhr);
   }
   private get reducedMotion():boolean {return gameSession().reducedMotion||window.matchMedia('(prefers-reduced-motion: reduce)').matches;}
@@ -385,7 +387,8 @@ export class GameScene extends Phaser.Scene {
 
     const avatarSize=portrait?30:44,avatarY=h.y+(portrait?6:short?34:42);
     this.roleAvatar=v.add(this.add.container(h.x+12+avatarSize/2,avatarY+avatarSize/2)).setData('baseY',avatarY+avatarSize/2);
-    addAvatar(this,this.roleAvatar,c,0,0,avatarSize);
+    const avatarArt=this.add.container(0,0);this.roleAvatar.add(avatarArt);addAvatar(this,avatarArt,c,0,0,avatarSize);
+    if(!this.textures.exists(avatarKey(c.id)))whenTextureReady(this,avatarArt,avatarKey(c.id),()=>{avatarArt.removeAll(true);addAvatar(this,avatarArt,c,0,0,avatarSize);});
     {const hit=v.add(this.add.rectangle(h.x+12+avatarSize/2,avatarY+avatarSize/2,Math.max(44,avatarSize+8),Math.max(44,avatarSize+8),0,0));v.target(hit,usesErxiangHandoff(this.run)?'hero/erxiang-handoff':usesTouyeWager(this.run)?'hero/touye-wager':usesLaohuanRefill(this.run)?'hero/laohuan-trick':usesXiemuBurn(this.run)?'hero/xiemu-burn':usesAzaoCharge(this.run)?'hero/azao-charge':'hero/details',{tap:()=>this.inspectRole(),detail:()=>this.inspectRole()});}
     this.roleFrame=this.add.rectangle(0,0,avatarSize+4,avatarSize+4,T.brass).setFillStyle(T.brass,0).setStrokeStyle(1,T.brass,.6);this.roleAvatar.add(this.roleFrame);
     const identity=stageIdentity(this.stage.index,this.run.stage!.boss,this.run.tourMode,this.run.difficulty)!;
@@ -601,10 +604,12 @@ export class GameScene extends Phaser.Scene {
       frame.lineStyle(1,T.jade,1).strokeRoundedRect(-fw/2,fy-fh/2,fw,fh,4);
       frame.lineStyle(1,0xfff3d6,.8).strokeRoundedRect(-fw/2+3,fy-fh/2+3,fw-6,fh-6,3);
       faceArt.push(frame);
-      if(key&&this.textures.exists(key)){
+      const art=this.add.container(0,fy);faceArt.push(art);
+      art.add(this.add.text(0,0,SUIT_SYMBOL[card.suit],{fontFamily:'Georgia,serif',fontSize:`${Math.min(b.width*.4,b.height*.28)}px`,color:ink,resolution}).setOrigin(.5));
+      if(key)whenTextureReady(this,art,key,()=>{
         const source=this.textures.get(key).getSourceImage() as HTMLImageElement;
-        faceArt.push(this.add.image(0,fy,key).setScale(Math.min((fw-2)/source.width,(fh-2)/source.height)));
-      }else faceArt.push(this.add.text(0,fy,SUIT_SYMBOL[card.suit],{fontFamily:'Georgia,serif',fontSize:`${Math.min(b.width*.4,b.height*.28)}px`,color:ink,resolution}).setOrigin(.5));
+        art.removeAll(true);art.add(this.add.image(0,0,key).setScale(Math.min((fw-2)/source.width,(fh-2)/source.height)));
+      });
 
     }
     const scoringMark=this.add.text(-b.width/2+edge,b.height/2-21,'★',{fontFamily:UI_FONT,fontSize:'14px',fontStyle:'bold',color:C.jade,resolution}).setVisible(false);
@@ -1368,15 +1373,6 @@ export class GameScene extends Phaser.Scene {
     } finally {glow.destroy();if(source.active)source.setY(rest.y).setAngle(rest.angle).setScale(rest.scaleX,rest.scaleY);}
   }
 
-  private formatBreakdown(score: ScoreTrace): string {
-    const first=score.events[0].after,impact=savedBossImpact(this.run,score);
-    return '牌型 '+fractionText(first.H)+' 热度 × '+fractionText(first.M)+' 倍率\n'
-      +'计分 '+score.sets.activeScoringIds.length+' 张 / '+(this.assistProfile?'主手':'打出')+' '+score.sets.playedIds.length+' 张\n'
-      +(score.assist?savedAssistCopy(score)+'\n':'')
-      +(impact?impact+'\n':'')
-      +'精确热度 '+fractionText(score.accumulator.H)+'\n精确倍率 '+fractionText(score.accumulator.M)+'\n向下取整入账 '+score.finalScore;
-  }
-
   private previewSelection(preview?:HandPreview):void {
     this.stopScoreFire();this.breakdownText.setText('').setVisible(false);
     this.scoreLabels.forEach(label=>label.setVisible(false));
@@ -1391,7 +1387,8 @@ export class GameScene extends Phaser.Scene {
     if(!this.scoreHeat?.active)return;
     const l=this.view.layout,s=l.scoreBoard;
     const caption={x:s.x+8,y:s.y+(s.height>=108?4:1),width:s.height>=108?s.width-16:s.width*.52-16,height:s.height>=108?20:17};
-    fitScoreLine(this.resultText,caption,14);
+    const process=this.resultText.getData('scoreSourceProcess') as ScoreSourceProcess|undefined;
+    if(process)fitScoreSourceProcess(this.resultText,process,caption);else fitScoreLine(this.resultText,caption,14);
     const cells=scoreCells(s),impactCell=scoreImpactCell(s),texts=[this.scoreHeat,this.scoreMult,this.scoreTotal];
     this.scoreLabels.forEach((text,i)=>{text.setVisible(!text.getData('landingSuppressed')&&(i!==2||s.height>=108));fitScoreLine(text,{x:cells[i].x,y:i===2?impactCell.y-34:cells[i].y-18,width:cells[i].width,height:18},14);});
     texts.forEach((text,i)=>{
@@ -1681,7 +1678,10 @@ export class GameScene extends Phaser.Scene {
     const timing=key?.kind==='payoff'||key?.kind==='burst'?heroPayoffBeat(beat,this.reducedMotion):key?.kind==='starter'||key?.kind==='opening'?keyHighlightBeat(beat,this.reducedMotion,key.kind):this.reducedMotion?{...beat,windup:0,flight:0,impact:Math.min(180,beat.impact),rest:80}:beat,duration=timing.windup+timing.flight+timing.impact;
     if(number&&this.presentation&&!this.presentation.replay&&number.kind!=='add'&&!this.reducedMotion)this.audio.scoreImpact(this.presentation,event.eventId,'flight',number.tier,number.chain);
     const note=event.sourceType==='character'&&benefit?readableMultiplierEffect(benefit.effect,event.value):readableMultiplierEffect(this.operationText(event),event.value),source=this.eventSource(event),card=this.settledCards.get(event.targetCardId??'')??this.cardViews.find(view=>view.card.id===event.targetCardId);
-    this.resultText.setVisible(true).setText(source+' · '+note);this.breakdownText.setText((event.phase==='onStageClear'?'过关收益':event.phase==='beforeFailure'?'失败前救场':event.phase==='afterHand'?'结算后状态':event.sourceType==='joker'?'大丑牌连锁':'逐项计分')+' · '+source+' '+note);this.setAccumulator(event.before);
+    this.resultText.setVisible(true).setText(source+' · '+note);this.breakdownText.setText((event.phase==='onStageClear'?'过关收益':event.phase==='beforeFailure'?'失败前救场':event.phase==='afterHand'?'结算后状态':event.sourceType==='joker'?'大丑牌连锁':'逐项计分')+' · '+source+' '+note);
+    const processCue=this.presentation?scoreSourceProcess(this.presentation.score,event,source):undefined,s=this.view.layout.scoreBoard;
+    const process=processCue?presentScoreSourceProcess(this.resultText,this.scoreLabels[1],processCue,{x:s.x+8,y:s.y+(s.height>=108?4:1),width:s.height>=108?s.width-16:s.width*.52-16,height:s.height>=108?20:17},context.signal):undefined;
+    this.setAccumulator(event.before);
     this.scoreTotal.setData('eventId',event.eventId).setData('eventPhase','windup');
     const sourceEffects:Promise<void>[]=[];
     // All source reactions wait for the actual packet arrival, including slow frames.
@@ -1714,7 +1714,7 @@ export class GameScene extends Phaser.Scene {
     arrive();
     if(context.signal.aborted)return;
     // The domain result is already saved. Only the display and SFX arrive with this hit.
-    this.scoreTotal.setData('eventPhase','impact');
+    this.scoreTotal.setData('eventPhase','impact');process?.arrive();
     const impactCue=this.presentation?sourceImpact(this.presentation.score,event):undefined,impactSource=impactCue?this.jokerViews.get(impactCue.instanceId):undefined;
     const releaseSourceImpact=impactCue&&impactSource?mountSourceImpact(this,impactSource,impactCue,context.signal):undefined;
     restoreKey?.strike?.();
@@ -1738,13 +1738,7 @@ export class GameScene extends Phaser.Scene {
     // the brief compressed hold and rebound, without extending the trace timeline.
     const positive=Rational.fromJSON(event.after.H).compare(Rational.fromJSON(event.before.H))>0||Rational.fromJSON(event.after.M).compare(Rational.fromJSON(event.before.M))>0;
     const accumulator=positive?(this.setAccumulator(event.after),Promise.resolve()):this.rollAccumulator(event,impactDuration,context);
-    if(number){this.scoreTotal.setColor(number.color).setData('numberImpact',number);if(event.before.M.n!==event.after.M.n||event.before.M.d!==event.after.M.d)this.scoreMult.setColor(number.color);if(event.before.H.n!==event.after.H.n||event.before.H.d!==event.after.H.d)this.scoreHeat.setColor(number.color);if(number.factorValue){const caption=multiplierCaption(source,number.factorValue,event.before.M,event.after.M,this.view.layout.mode==='desktop');this.resultText.setText(caption.text).setData('exactMultiplierCaption',{eventId:event.eventId,text:caption.exact});}}
-    // A new-profile wager loss is a real multiplier too; retain its factor
-    // and saved before/after values when the positive-impact cue is absent.
-    if(!number?.factorValue&&isR2ActiveMultTiming(this.run)&&event.sourceType==='character'&&event.operation==='multiply-multiplier'){
-      const caption=multiplierCaption(source,event.value,event.before.M,event.after.M,this.view.layout.mode==='desktop');
-      this.resultText.setText(caption.text).setData('exactMultiplierCaption',{eventId:event.eventId,text:caption.exact});
-    }
+    if(number){this.scoreTotal.setColor(number.color).setData('numberImpact',number);if(event.before.M.n!==event.after.M.n||event.before.M.d!==event.after.M.d)this.scoreMult.setColor(number.color);if(event.before.H.n!==event.after.H.n||event.before.H.d!==event.after.H.d)this.scoreHeat.setColor(number.color);}
     const effects=[...sourceEffects,accumulator,this.pulseAccumulator(event,impactDuration,context,number),this.impactAccumulator(event,impactDuration,context,number),restoreKey&&(key?.kind==='payoff'||key?.kind==='burst')?this.waitHeroSubject(context):this.wait(impactDuration,context)],notes:Promise<void>[]=[];
     if((event.operation==='rescue-hand'||event.operation==='refund-hand')&&this.presentation&&!this.presentation.replay&&event.resourceBefore!==undefined&&event.resourceAfter!==undefined){
       this.presentation.resourcePlayLeft=event.resourceAfter;
@@ -1778,7 +1772,7 @@ export class GameScene extends Phaser.Scene {
       if(label){const value='↑'+earned.delta,previous=label.text;label.setText(value);const room=label.getData('labelRoom') as number|undefined;if(room&&label.width*1.08>room)label.setText(previous);else label.setColor(C.red).setData('growthPayoff',earned);if(!this.reducedMotion)notes.push(this.animate({targets:label,scaleX:{from:1.08,to:1},scaleY:{from:1.08,to:1},duration:Math.min(160,timing.rest),ease:'Sine.easeOut'},context));}
     }
     await Promise.all([this.wait(timing.rest,context),restoreKey?.release?.()??Promise.resolve(),...notes]);
-    releaseSourceImpact?.();
+    releaseSourceImpact?.();process?.dispose();
     if(context.signal.aborted)return;
     restoreKey?.();
     if(event.operation==='destroy-card'&&card){
@@ -1985,13 +1979,8 @@ export class GameScene extends Phaser.Scene {
   }
   private inspectLastTrace():void {
     const score=this.run.lastTrace;if(!score)return;
-    // The recap reads the saved ledger, never today's gold or next-hand eligibility.
-    const benefits=score.sourceJokers.flatMap(joker=>{
-      const copy=jokerAbilityCopyForRun(this.run,joker.definitionId,joker,recordedJokerMemoryContext(publicJokerMemoryContext(this.run,{hand:score.cards,scoringLimited:false,deckSize:this.run.deckInstances.length-this.run.destroyedIds.length,jokerSlots:r2JokerCapacity(this.run),jokerCount:score.sourceJokers.length}),score.bossContext),score.events);
-      const edition=score.events.filter(event=>event.sourceType==='joker'&&event.sourceInstanceId===joker.instanceId&&event.reasonKey.startsWith('edition.')).map(event=>this.operationText(event)).join('、');
-      return [this.jokerDefinition(joker.definitionId).name+'：'+copy.state+(edition?'；版次 '+edition:'')];
-    });
-    this.dialog.open('上手已入账 · '+HAND_LABELS[score.handType]+' +'+heatText(score.finalScore),this.formatBreakdown(score)+'\n\n'+score.events.filter(event=>event.phase!=='base'&&event.phase!=='finalScore').map(event=>this.eventSource(event)+' '+this.operationText(event)+(['afterHand','beforeFailure','onStageClear'].includes(event.phase)?'':' → 热度 '+fractionText(event.after.H)+' / 倍率 '+fractionText(event.after.M))).join('\n'),[{label:'继续培养',primary:true,disabled:!this.ready,run:()=>this.inspectJourney()},...(this.run.consumables.length?[{label:'打开道具箱',disabled:!this.ready,primary:true,run:()=>showConsumables(this.dialog,this.run,this.ready&&!this.pendingRefill&&!this.pendingTouye,(a,seq)=>this.command(a,seq))}]:[]),{label:'回看演出',disabled:!this.ready,run:()=>{this.dialog.close();this.replayLastTrace();}}],benefits.length?{cards:savedExperienceCards(this.run,score),effectBody:this.formatBreakdown(score),collapseRules:true,rulesLabel:'完整计分明细'}:{cards:savedExperienceCards(this.run,score)});
+    const review=formatScoreReview(this.run,score);
+    this.dialog.open(review.title,review.diagnostics,[{label:'继续培养',primary:true,disabled:!this.ready,run:()=>this.inspectJourney()},...(this.run.consumables.length?[{label:'打开道具箱',disabled:!this.ready,primary:true,run:()=>showConsumables(this.dialog,this.run,this.ready&&!this.pendingRefill&&!this.pendingTouye,(a,seq)=>this.command(a,seq))}]:[]),{label:'回看演出',disabled:!this.ready,run:()=>{this.dialog.close();this.replayLastTrace();}}],{cards:review.cards,effectBody:review.summary,collapseRules:true,rulesLabel:'诊断：精确分数与原始事件'});
     attachFirstChapterGuide(this.run,()=>this.render());
   }
 
