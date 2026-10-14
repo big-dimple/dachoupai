@@ -24,14 +24,15 @@ import {mountHeroClimax} from '../src/game/HeroClimax';
 // Phaser emits DESTROY before clearing `active`/`scene`; mirror that order to catch recursive destruction.
 function stageFixture(detail=true){
  const tweens:any[]=[];
- const object=(type='Object',text=''):any=>{const data=new Map(),events=new Map();const o:any={type,text,width:Math.max(10,text.length*20),height:24,scaleX:1,scaleY:1,alpha:1,active:true,list:[],scene:{},destroyCount:0};
-  for(const name of ['setName','setAlpha','setX','setY','setAngle'] as const)o[name]=(v:any)=>{o[{setName:'name',setAlpha:'alpha',setX:'x',setY:'y',setAngle:'angle'}[name]!]=v;return o;};
+ const object=(type='Object',text=''):any=>{const data=new Map(),events=new Map();const o:any={type,text,width:Math.max(10,text.length*20),height:24,scaleX:1,scaleY:1,alpha:1,active:true,list:[],scene:{},style:{fontSize:'44px'},visible:true,destroyCount:0};
+  for(const name of ['setName','setAlpha','setX','setY','setAngle','setVisible'] as const)o[name]=(v:any)=>{o[{setName:'name',setAlpha:'alpha',setX:'x',setY:'y',setAngle:'angle',setVisible:'visible'}[name]!]=v;return o;};
   for(const name of ['setOrigin','setCrop','setStrokeStyle','setDisplaySize','fillStyle','fillPoints','clear','lineStyle','strokeCircle','lineBetween','fillEllipse'])o[name]=()=>o;
-  o.setText=(v:string)=>{o.text=v;o.width=v.length*20;return o;};o.setData=(k:string,v:any)=>{data.set(k,v);return o;};o.getData=(k:string)=>data.get(k);o.setPosition=(x:number,y:number)=>{o.x=x;o.y=y;return o;};o.setScale=(x:number,y=x)=>{o.scaleX=x;o.scaleY=y;return o;};o.add=(v:any)=>{o.list.push(v);return o;};o.addAt=(v:any,i:number)=>{o.list.splice(i,0,v);return o;};o.once=(e:string,f:()=>void)=>{events.set(e,f);return o;};o.destroy=()=>{o.destroyCount++;const f=events.get('destroy');events.delete('destroy');f?.();o.active=false;o.scene=undefined;};return o;
+  Object.defineProperty(o,'displayHeight',{get:()=>o.height*o.scaleY});Object.defineProperty(o,'displayWidth',{get:()=>o.width*o.scaleX});o.setFontSize=()=>o;o.setWordWrapWidth=()=>o;
+  o.setText=(v:string)=>{o.text=v;o.width=v.length*20;return o;};o.setData=(k:string,v:any)=>{data.set(k,v);return o;};o.getData=(k:string)=>data.get(k);o.setPosition=(x:number,y:number)=>{o.x=x;o.y=y;return o;};o.setScale=(x:number,y=x)=>{o.scaleX=x;o.scaleY=y;return o;};o.add=(v:any)=>{o.list.push(...(Array.isArray(v)?v:[v]));return o;};o.addAt=(v:any,i:number)=>{o.list.splice(i,0,v);return o;};o.once=(e:string,f:()=>void)=>{events.set(e,f);return o;};o.destroy=()=>{o.destroyCount++;const f=events.get('destroy');events.delete('destroy');f?.();o.active=false;o.scene=undefined;};return o;
  };
- const scene:any={scale:{zoom:1},textures:{exists:(key:string)=>detail||!key.startsWith('climax-source/'),get:()=>({getSourceImage:()=>({width:160,height:200})})},tweens:{add:(config:any)=>{const t={config,remove:vi.fn()};tweens.push(t);return t;}},add:{container:()=>object('Container'),graphics:()=>object('Graphics'),rectangle:()=>object('Rectangle'),tileSprite:()=>object('TileSprite'),image:()=>object('Image'),text:(_:number,__:number,s:string)=>object('Text',s)}};
+ const listeners=new Set();const scene:any={events:{on:(_:string,f:any)=>listeners.add(f),off:(_:string,f:any)=>listeners.delete(f)},scale:{zoom:1},textures:{exists:(key:string)=>detail||!key.startsWith('climax-source/'),get:()=>({getSourceImage:()=>({width:160,height:200})})},tweens:{add:(config:any)=>{const t={config,remove:vi.fn()};tweens.push(t);return t;}},add:{container:()=>object('Container'),graphics:()=>object('Graphics'),rectangle:()=>object('Rectangle'),tileSprite:()=>object('TileSprite'),image:()=>object('Image'),text:(_:number,__:number,s:string)=>object('Text',s)}};
  const p=play('multiply'),key=keyHighlight(p.s,p.t)!,stage=mountHeroClimax(scene,object('Container'),{x:0,y:0,width:390,height:740},key,heroClimaxValue(p.s,p.t,key)!,false)!;
- return {stage,tweens};
+ return {stage,tweens,listeners};
 }
 it('external Phaser destruction clears owned tweens and release wait without recursively destroying the group',async()=>{
  const {stage,tweens}=stageFixture(),done=stage.release();stage.group.destroy();await done;expect((stage.group as any).destroyCount).toBe(1);expect(tweens.every(t=>t.remove.mock.calls.length===1)).toBe(true);stage.dispose();expect((stage.group as any).destroyCount).toBe(1);
@@ -44,4 +45,13 @@ it('one actual strike creates one bounded foreground motion and repeated strike 
  const {stage,tweens}=stageFixture();stage.strike();const count=tweens.length;stage.strike();expect(tweens).toHaveLength(count);stage.reduce();expect(tweens.every(t=>t.remove.mock.calls.length===1)).toBe(true);stage.dispose();
 });
 
-it('missing optional detail keeps the same-source thumbnail still during the existing impact',()=>{const {stage,tweens}=stageFixture(false),board=(stage.group as any).list.find((o:any)=>o.type==='Container'),card=board.list.find((o:any)=>o.name==='hero/climax-source-card');expect(card.getData('detail')).toBe(false);stage.strike();expect(card.scaleX).toBe(1);expect(tweens.some(t=>t.config.targets===card)).toBe(false);stage.dispose();});
+it('missing optional detail keeps the same-source thumbnail still during the existing impact',()=>{const {stage,tweens}=stageFixture(false),board=(stage.group as any).list.find((o:any)=>o.type==='Container'),card=board.list.flatMap((o:any)=>o.list??[]).find((o:any)=>o.name==='hero/climax-source-card');expect(card.getData('detail')).toBe(false);stage.strike();expect(card.scaleX).toBe(1);expect(tweens.some(t=>t.config.targets===card)).toBe(false);stage.dispose();});
+
+it('a fast strike still shows the eye shot before the subject and committed accumulator, with one visible camera layer',()=>{
+ let now=0;const clock=vi.spyOn(performance,'now').mockImplementation(()=>now),{stage,listeners}=stageFixture();
+ const board=(stage.group as any).list.find((o:any)=>o.name==='hero/climax-board'),layers=board.list.filter((o:any)=>o.name?.startsWith('hero/shot-'));
+ const tick=()=>{for(const f of listeners) (f as ()=>void)();expect(layers.filter((o:any)=>o.visible)).toHaveLength(1);};
+ expect(stage.group.getData('shot')).toBe('eyes');now=70;stage.strike();tick();expect(stage.group.getData('shot')).toBe('eyes');
+ now=180;tick();expect(stage.group.getData('shot')).toBe('skill');now=670;tick();expect(stage.group.getData('shot')).toBe('landing');
+ stage.reduce();tick();expect(stage.group.getData('shot')).toBe('landing');stage.dispose();expect(listeners.size).toBe(0);clock.mockRestore();
+});
