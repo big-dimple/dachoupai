@@ -7,7 +7,13 @@ import {toolInfo,toolFamilyLabel} from './r2ToolInfo';
 import {toolPurpose} from './RouteFitCue';
 import {DetailDialog} from './DetailDialog';
 
-export interface MakeCardsView {pane:'owned'|'purchase';positions:{owned:number;purchase:number};focusId?:string}
+export interface MakeCardsView {pane:'owned'|'purchase';positions:{owned:number;purchase:number};focusId?:string;receipt?:{seq:number;text:string}}
+
+export function basicChoiceEntryLabel(run:R2RunState):string {
+ if(run.shop?.basicChoice?.purchase)return '本店自选已购\n查看道具';
+ const prices=[...new Set(basicChoiceRows(run).filter(r=>!r.duplicate).map(r=>r.price))].sort((a,b)=>a-b);
+ return '做牌自选 · 1件\n'+prices.join(' / ')+' 金';
+}
 
 export function makeCardsRows(run:R2RunState){
  const basic=basicChoiceRows(run);
@@ -20,6 +26,7 @@ export function showMakeCards(dialog:DetailDialog,run:R2RunState,ready:()=>boole
  const rows=makeCardsRows(run),seq=run.commandSeq;
  const d=dialog.open('道具','',[],{closeLabel:'回到商店'});d.classList.add('make-cards-dialog');
  const summary=document.createElement('p');summary.className='make-cards-summary';summary.textContent=`金币 ${run.gold} · 库存 ${run.consumables.length}/${r2ConsumableCapacity(run)}`;d.querySelector('.dialog-header')!.append(summary);
+ if(view.receipt?.seq===run.commandSeq){const receipt=document.createElement('p');receipt.className='make-cards-receipt';receipt.setAttribute('role','status');receipt.textContent=view.receipt.text;d.querySelector('.dialog-header')!.append(receipt);}
  const scroll=d.querySelector<HTMLElement>('.dialog-scroll')!;scroll.replaceChildren();
  const tabs=document.createElement('nav'),workspace=document.createElement('div');tabs.className='make-cards-tabs';workspace.className='make-cards-workspace';d.dataset.makePane=view.pane;
  const remember=()=>{if(dialog.active(d))view.positions[view.pane]=scroll.scrollTop;};
@@ -37,7 +44,7 @@ export function showMakeCards(dialog:DetailDialog,run:R2RunState,ready:()=>boole
  const stock=sections.get('purchase')!;stock.querySelector('h3')!.textContent='本店现货';
  const random=grid(stock);random.classList.add('make-cards-stock');for(const r of rows.offers)tile(random,r.offer.offerId,r.info,toolPurpose(run,r.offer.definitionId),toolFamilyLabel(r.info.family)+' · '+r.price+' 金',r.offer.consumed?'已售':purchaseReason(r.offer),()=>offer(r.offer.offerId));
  if(!rows.offers.length){const empty=document.createElement('p');empty.className='make-cards-empty';empty.textContent='本店暂无随机现货，可查看下方基础自选。';random.append(empty);}
- if(rows.basic.length){const h=document.createElement('h3'),quota=document.createElement('p');h.textContent='基础自选';quota.className='make-cards-quota';quota.textContent=run.shop!.basicChoice?.purchase?'本店自选已购 · 下一店恢复':'本店自选1件 · 可买来存着或现在用';stock.append(h,quota);const choices=grid(stock);for(const r of rows.basic)tile(choices,r.id,r.info,r.purpose,r.price+' 金',r.reason,()=>basic(r.id));}
+ if(rows.basic.length){const h=document.createElement('h3'),quota=document.createElement('p');h.textContent='做牌自选 · 本店1件';quota.className='make-cards-quota';quota.textContent=run.shop!.basicChoice?.purchase?'本店自选已购 · 下一店恢复':'改牌 / 染色共用1次 · 买来存着或现在用';stock.append(h,quota);const choices=grid(stock);choices.classList.add('make-cards-basic');for(const r of rows.basic)tile(choices,r.id,r.info,r.purpose,r.price+' 金',r.reason,()=>basic(r.id));}
  scroll.append(tabs,workspace);const more=document.createElement('button');more.type='button';more.textContent='道具箱与长期物品';more.onclick=inventory;d.querySelector('.dialog-actions')!.prepend(more);
  scroll.scrollTop=view.positions[view.pane];
  const previous=[...d.querySelectorAll<HTMLButtonElement>('.make-cards-tile')].find(b=>b.dataset.makeId===view.focusId&&!b.disabled&&b.getClientRects().length);
