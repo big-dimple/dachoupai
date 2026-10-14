@@ -32,6 +32,7 @@ import {stageOutcome} from './stageOutcome';
 import {failureSummary} from './FailureSummary';
 import {finaleKeepsake} from './FinaleKeepsake';
 import {selectionPortraitKey,selectionPortraitURL} from './portraits';
+import {showHeroExplanation} from './HeroExplanation';
 import {EffectQueue} from '../core/EffectQueue';
 import {REWARD_COIN,RewardCoinCue,loadRewardCoin,addRewardCoin,animateRewardCoin} from './RewardCoin';
 import {SceneView} from './SceneView';
@@ -193,7 +194,12 @@ export class IntermissionScene extends Phaser.Scene {
   private drawResultHero(b:Box,skipped:boolean,lost:boolean,animate:boolean,compactSafe=false):void {
     const v=this.view,run=runController(this)!.state;
     const presentation=drawSettlement(this,v,b,run,this.result.cleared,skipped,this.result.stageHeat,compactSafe);
-    this.paintSourceArt=()=>{presentation.paint();};
+    const explainHero=(image:Phaser.GameObjects.Image|undefined)=>{
+      if(!image)return;
+      const hit=v.rect(image.getData('bounds')).setFillStyle(0,0).setStrokeStyle(0);image.parentContainer.add(hit);
+      v.target(hit,'result/hero-details',{tap:()=>showHeroExplanation(this.dialog,run.characterId,{run,closeLabel:'返回结算'}),detail:()=>showHeroExplanation(this.dialog,run.characterId,{run,closeLabel:'返回结算'})});
+    };
+    explainHero(presentation.hero);this.paintSourceArt=()=>{explainHero(presentation.paint());};
     if(animate&&!skipped)this.outcomeMotion=mountSettlementMotion(this,v.root,b,presentation.score,presentation.hero,presentation.facts.tier,lost);
     if(this.result.cleared&&!skipped){
       const band=presentation.reward,center=band.x+band.width/2;
@@ -215,7 +221,7 @@ export class IntermissionScene extends Phaser.Scene {
       {label:'回看最后一手',disabled:!stageOutcome(run.stage!,run.lastTrace).last,run:()=>this.inspectLastHand()},
       {label:'查看最终牌组',run:()=>showDeckInspection(this.dialog,run)},
       {label:'本场详情',run:()=>this.inspectResult()},
-    ],{keepsake:facts.keepsake,cards:facts.cards,summaryBody:facts.summary+'\n'+facts.continuation,collapseRules:true,rulesLabel:'最终持有与成长记录'});
+    ],{heroRun:run,keepsake:facts.keepsake,cards:facts.cards,summaryBody:facts.summary+'\n'+facts.continuation,collapseRules:true,rulesLabel:'最终持有与成长记录'});
   }
   private inspectJourney():void {
     const run=runController(this)!.state;

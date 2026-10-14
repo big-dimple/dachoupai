@@ -10,6 +10,7 @@ import {SCORE_LIMITS} from '../domain/scoreR2';
 import {fractionText} from './scoreText';
 import {PAPER_CSS} from './theme';
 import {goodsArtUrl} from './GoodsArt';
+import {enhancementReference,enhancementCardHelp} from './EnhancementReference';
 
 export interface ToolInfo {
   name:string;family:R2ToolFamily;label:string;summary:string;description:string;cost:string;risk:string;artUrl:string;detailArtUrl?:string;fallbackArtUrl:string;
@@ -81,14 +82,14 @@ function enhancementText(row:R2EnhancementDefinition):string {
 export function cardSpecialText(card:PlayingCard):string {
   const enhancement=card.enhancement?enhancementDefinition(card.enhancement):undefined;
   const edition=editionDefinition(card.edition);
-  return `增强：${enhancement?`${enhancement.name}（${enhancementText(enhancement)}）`:'无'}；版次：${edition.name}${edition.effect?`（${mathText(edition.effect)}）`:''}`;
+  return `增强：${enhancement?`${enhancement.name}（${enhancementText(enhancement)}）`:'无'}；版次：${edition.name}${edition.effect?`（${mathText(edition.effect)}）`:''}`+(enhancement?'\n'+enhancementCardHelp(enhancement.id):'');
 }
 
 /** Front layer keeps actual scoring/held timing, chance, cap and permanent risk. */
 export function cardSpecialSummary(card:PlayingCard):string {
  const enhancement=card.enhancement?enhancementDefinition(card.enhancement):undefined,edition=editionDefinition(card.edition);
- const effect=enhancement?enhancementSummary(enhancement).replaceAll('选中牌','此牌'):'没有增强';
- return (enhancement?enhancement.name+'：'+effect:effect)+'\n'+(edition.effect?edition.name+'：'+mathText(edition.effect):'普通版次：没有额外加成');
+ const reference=enhancement?enhancementReference(enhancement.id):undefined;
+ return (reference?reference.name+'：'+reference.summary:'没有增强')+'\n'+(edition.effect?edition.name+'：'+mathText(edition.effect):'普通版次：没有额外加成');
 }
 
 function targetText(tool:R2ToolDefinition):string {

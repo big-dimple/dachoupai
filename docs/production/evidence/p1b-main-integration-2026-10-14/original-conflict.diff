@@ -1,0 +1,96 @@
+diff --cc src/game/IntermissionScene.ts
+index 00328e2f,da2246cc..00000000
+--- a/src/game/IntermissionScene.ts
++++ b/src/game/IntermissionScene.ts
+@@@ -31,7 -34,8 +31,12 @@@ import {getCharacter} from './character
+  import {stageOutcome} from './stageOutcome';
+  import {failureSummary} from './FailureSummary';
+  import {finaleKeepsake} from './FinaleKeepsake';
+++<<<<<<< HEAD
+ +import {selectionPortraitKey,selectionPortraitURL} from './portraits';
+++=======
++ import {selectionPortraitKey} from './portraits';
++ import {showHeroExplanation} from './HeroExplanation';
+++>>>>>>> origin/main
+  import {EffectQueue} from '../core/EffectQueue';
+  import {REWARD_COIN,RewardCoinCue,loadRewardCoin,addRewardCoin,animateRewardCoin} from './RewardCoin';
+  import {SceneView} from './SceneView';
+@@@ -190,16 -184,67 +195,73 @@@ export class IntermissionScene extends 
+      this.celebrationTimer?.remove();this.celebrationTimer=undefined;
+      this.tweens.killAll();
+    }
+ -  private drawResultHero(b:Box,outcome:ReturnType<typeof stageOutcome>,skipped:boolean,lost:boolean,animate:boolean):void {
+ +  private drawResultHero(b:Box,skipped:boolean,lost:boolean,animate:boolean,compactSafe=false):void {
+      const v=this.view,run=runController(this)!.state;
+++<<<<<<< HEAD
+ +    const presentation=drawSettlement(this,v,b,run,this.result.cleared,skipped,this.result.stageHeat,compactSafe);
+ +    this.paintSourceArt=()=>{presentation.paint();};
+ +    if(animate&&!skipped)this.outcomeMotion=mountSettlementMotion(this,v.root,b,presentation.score,presentation.hero,presentation.facts.tier,lost);
+++=======
++     resultStagePaper(this,v,b,lost);
++     if(animate&&!skipped)this.outcomeMotion=mountResultEntrance(this,v.root,b,!lost);
++     if(lost){
++       const summary=failureSummary(run),plan=resultStagePlan(b,v.layout.height<500,true),source=plan.source,main=plan.score,center=main.x+main.width/2;
++       const key=selectionPortraitKey(run.characterId),portraitHeight=Math.min(156,Math.max(0,source.height-70)),portraitWidth=portraitHeight*.67;
++       if(portraitHeight>=40&&this.textures.exists(key)){
++         const image=this.add.image(source.x+source.width/2,source.y+portraitHeight/2,key).setName('result-art/hero');image.setScale(Math.min(portraitWidth/image.width,portraitHeight/image.height));v.add(image);
++         const hit=v.rect({x:source.x,y:source.y,width:source.width,height:portraitHeight}).setFillStyle(0,0).setStrokeStyle(0);v.target(hit,'result/hero-details',{tap:()=>showHeroExplanation(this.dialog,run.characterId,{run,closeLabel:'返回结算'}),detail:()=>showHeroExplanation(this.dialog,run.characterId,{run,closeLabel:'返回结算'})});
++       }
++       v.text(source.x,source.y+portraitHeight+8,getCharacter(run.characterId).name,16,PAPER_CSS.ink,source.width).setFontStyle('bold').setName('result/source-continuity');
++       v.text(source.x,source.y+portraitHeight+34,'本局构筑已留影',14,PAPER_CSS.jade,source.width);
++       v.text(center,main.y,summary.reason,16,PAPER_CSS.ink,main.width).setOrigin(.5,0).setName('result/failure-reason');
++       const last=v.text(center,main.y+28,summary.lastHand,14,PAPER_CSS.jade,main.width).setOrigin(.5,0).setName('result/last-hand');
++       const gap=(BigInt(run.stage!.targetHeat)-BigInt(this.result.stageHeat)).toString();
++       const scoreY=last.y+last.height+8,compact=main.width<220||v.layout.height<500;
++       v.text(center,scoreY,heatText(this.result.stageHeat),compact?32:54,PAPER_CSS.ink,main.width).setOrigin(.5,0).setFontFamily(SCORE_FONT).setFontStyle('bold').setName('result/score');
++       v.text(center,scoreY+(compact?44:68),`目标 ${heatText(run.stage!.targetHeat)}\n差 ${heatText(gap)} 热度`,14,PAPER_CSS.jade,main.width).setOrigin(.5,0).setName('result/gap');
++       if(animate)this.celebrationTimer=this.time.delayedCall(1000,()=>{if(this.scene.isActive()){this.firstRender=false;this.render();}});
++       return;
++     }
++     const facts=resultStageFacts(run,this.result.cleared,skipped),plan=resultStagePlan(b,v.layout.height<500),main=plan.score,center=main.x+main.width/2,short=v.layout.height<500;
++     const small=main.height<200;
++     const paint=()=>{
++       this.sourceArtLayer?.destroy();const start=v.root.length;
++       const sourceView=resultStageSources(this,v,plan.source,run.phase==='run-won'?{...facts,character:run.characterId}:facts,short),text=sourceView.text;
++       for(const image of sourceView.art)if(image.getData('assetId')===run.characterId+'.selection'){const hit=v.rect(image.getData('bounds')).setFillStyle(0,0).setStrokeStyle(0);v.target(hit,'result/hero-details',{tap:()=>showHeroExplanation(this.dialog,run.characterId,{run,closeLabel:'返回结算'}),detail:()=>showHeroExplanation(this.dialog,run.characterId,{run,closeLabel:'返回结算'})});}
++       const source=facts.source,growth=facts.growth;
++       let y=text.y;
++       if(source){const name=v.text(text.x,y,growth?.name??source.title,14,PAPER_CSS.jade,text.width).setFontStyle('bold').setName('result/source-continuity');y+=name.height+6;}
++       if(growth){
++         const prefix=growth.metric.includes('×')?'×':'+',read=v.text(text.x,y,'本手读取 '+prefix+growth.before,14,PAPER_CSS.jade,text.width).setName('result/growth-read');y+=read.height+4;
++         const saved=v.text(text.x,y,prefix+growth.before+' → '+prefix+growth.after,text.width<150?22:24,PAPER_CSS.ink,text.width).setFontStyle('bold').setName('result/growth-saved');y+=saved.height+4;
++         v.text(text.x,y,run.phase==='run-won'?'保存成长 · 本局留影':'保存成长 · 下手生效',14,PAPER_CSS.jade,text.width).setName('result/growth-next');
++       }else if(source){v.text(text.x,y,source.effect,14,PAPER_CSS.jade,text.width).setStyle({maxLines:short?3:4}).setName('result/source-effect');}
++       else if(run.phase==='run-won'){
++         const name=v.text(text.x,y,getCharacter(run.characterId).name+' · 本局角色',14,PAPER_CSS.jade,text.width).setFontStyle('bold');y+=name.height+8;
++         const live=run.deckInstances.filter(c=>!run.destroyedIds.includes(c.id));
++         v.text(text.x,y,`最终牌组 ${live.length} 张\n增强 ${live.filter(c=>c.enhancement!==undefined).length} 张 · 余额 ${run.gold} 金`,14,PAPER_CSS.jade,text.width).setStyle({maxLines:short?2:4}).setName('result/final-holdings');
++       }
++       this.sourceArtLayer=this.add.container(0,0,v.root.list.slice(start)).setName('result-art/source-layer');v.add(this.sourceArtLayer);
++       return sourceView;
++     };
++     this.paintSourceArt=()=>{paint();};const sourceView=paint();
++     const hand=facts.trace?HAND_LABELS[facts.trace.handType]:'本场热度';
++     v.text(center,main.y,hand,16,PAPER_CSS.jade,main.width-16).setOrigin(.5,0).setName('result/hand');
++     const formula=facts.trace?v.text(center,main.y+24,`${readableFractionText(facts.trace.accumulator.H)} 热度 × ${readableFractionText(facts.trace.accumulator.M)}`,14,PAPER_CSS.jade,main.width-8).setOrigin(.5,0).setName('result/formula'):undefined;
++     const scoreY=formula?formula.y+formula.height+6:main.y+26,scoreSize=short?38:main.width<220?32:small?48:68;
++     const score=v.text(center,scoreY,(facts.trace?'+':'')+heatText(facts.trace?.finalScore??this.result.stageHeat),scoreSize,facts.intensity>1?PAPER_CSS.red:PAPER_CSS.ink,main.width-8).setOrigin(.5,0).setFontFamily(SCORE_FONT).setFontStyle('bold').setName('result/score');
++     for(let font=scoreSize;score.width>main.width-8&&font>24;)score.setFontSize(--font);
++     const totalY=scoreY+score.height+8;
++     v.text(center,totalY,skipped?'本场跳过':`全场 ${heatText(this.result.stageHeat)} / ${heatText(run.stage!.targetHeat)}`,14,PAPER_CSS.jade,main.width).setOrigin(.5,0).setName('result/gap');
++     const assist=facts.trace&&savedAssistSummary(facts.trace);
++     const compact=main.width<220,rewardHeight=short?40:compact?(assist?78:58):assist?54:48;
++     const rewardY=short?main.y+main.height-42:compact?main.y+main.height-rewardHeight-8:small?main.y+136:main.y+main.height-70;
+++>>>>>>> origin/main
+      if(this.result.cleared&&!skipped){
+ -      const band={x:main.x,y:rewardY,width:main.width,height:rewardHeight};v.material(band,T.paperLight,T.paperLight,6);
+ -      const reward=v.text(center,band.y+10,(compact?'奖励  +':'过关奖励  +')+this.result.goldEarned+' 金',short||compact?16:20,PAPER_CSS.ink,main.width-12).setOrigin(.5,0).setFontStyle('bold').setName('result/reward');
+ -      if(assist&&!short)v.text(center,band.y+34,assist,14,PAPER_CSS.jade,main.width-12).setOrigin(.5,0).setName('result/assist-source');
+ -      const cue=this.firstRender&&this.rewardCue.claim(run,this.result),size=40,diameter=size*.7,gap=8;
+ +      const band=presentation.reward,center=band.x+band.width/2;
+ +      v.add(this.add.graphics().lineStyle(1,T.divider,.7).beginPath().moveTo(band.x,band.y-5).lineTo(band.x+band.width,band.y-5).strokePath());
+ +      const reward=v.text(center,band.y+7,'奖励  +'+this.result.goldEarned+' 金',band.width<220?16:20,PAPER_CSS.ink).setOrigin(.5,0).setFontStyle('bold').setName('result/reward');
+ +      const cue=this.firstRender&&this.rewardCue.claim(run,this.result),size=32,diameter=size*.7,gap=6;
+        const x=center-(reward.width+diameter+gap)/2+diameter/2,coinY=reward.y+reward.height/2-size*.04;
+        const show=()=>{reward.x=center+(diameter+gap)/2;return addRewardCoin(this,v.root,x,coinY,size,run.stage!.clearId!);};
+        if(this.result.goldEarned>0&&run.stage?.clearId){

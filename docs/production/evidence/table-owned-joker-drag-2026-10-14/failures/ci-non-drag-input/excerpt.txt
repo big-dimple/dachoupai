@@ -1,0 +1,76 @@
+Z 
+2026-10-14T00:22:58.9910418Z ⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+2026-10-14T00:22:58.9910865Z 
+2026-10-14T00:22:58.9913521Z  FAIL  tests/ai-hand-action-cancellation.test.ts > command cancels pending old work before dispatch and rebuilds it after a failed action
+2026-10-14T00:22:58.9918564Z TypeError: Cannot read properties of undefined (reading 'enabled')
+2026-10-14T00:22:58.9919908Z  ❯ GameScene.command src/game/GameScene.ts:1232:126
+2026-10-14T00:22:58.9939809Z     1230|   private async command(action:import('../domain/run').Action,expected…
+2026-10-14T00:22:58.9941173Z     1231|     if(!this.ready)return false;this.clearHover();this.cancelAiCandida…
+2026-10-14T00:22:58.9942488Z     1232|     const pendingDrag=action.type==='ReorderJokers'&&this.ownedDrag?.s…
+2026-10-14T00:22:58.9943892Z        |                                                                                                                              ^
+2026-10-14T00:22:58.9945299Z     1233|     if(pendingDrag){this.input.enabled=false;pendingDrag.pending();}
+2026-10-14T00:22:58.9946243Z     1234|     let reorderSaved=false;
+2026-10-14T00:22:58.9947395Z  ❯ invoke tests/ai-hand-action-cancellation.test.ts:17:90
+2026-10-14T00:22:58.9948537Z  ❯ tests/ai-hand-action-cancellation.test.ts:22:8
+2026-10-14T00:22:58.9949058Z 
+2026-10-14T00:22:58.9949459Z ⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+2026-10-14T00:22:58.9949821Z 
+2026-10-14T00:22:58.9965302Z 
+2026-10-14T00:22:58.9975447Z  Test Files  1 failed | 233 passed (234)
+2026-10-14T00:22:59.0016171Z       Tests  1 failed | 3392 passed (3393)
+2026-10-14T00:22:59.0019127Z    Start at  00:21:48
+2026-10-14T00:22:59.0019936Z    Duration  70.58s (transform 8.45s, setup 0ms, import 46.18s, tests 114.96s, environment 37ms)
+2026-10-14T00:22:59.0020361Z 
+2026-10-14T00:22:59.0048219Z 
+2026-10-14T00:22:59.0070639Z ##[error]TypeError: Cannot read properties of undefined (reading 'enabled')
+ ❯ GameScene.command src/game/GameScene.ts:1232:126
+ ❯ invoke tests/ai-hand-action-cancellation.test.ts:17:90
+ ❯ tests/ai-hand-action-cancellation.test.ts:22:8
+
+
+2026-10-14T00:22:59.9254925Z test: FAIL
+2026-10-14T00:22:59.9257510Z {
+2026-10-14T00:22:59.9257952Z   "scope": "domain",
+2026-10-14T00:22:59.9259081Z   "testedCommit": "00e37d61eb2a9d84c60f55ea2fb161d41ab19d11",
+2026-10-14T00:22:59.9259725Z   "status": "FAIL",
+2026-10-14T00:22:59.9260137Z   "exitCode": 1,
+2026-10-14T00:22:59.9260524Z   "before": {
+2026-10-14T00:22:59.9261214Z     "source": "216de0d0e57cddf7c5668ce1ea255e48a8f71c90b484f270443ef4ab36292e5e",
+2026-10-14T00:22:59.9262294Z     "index": "d48c7b00e15a6dec0d340b8eb805c7e7b8fd7183932e5bbb9221bca616887096",
+2026-10-14T00:22:59.9263431Z     "head": "00e37d61eb2a9d84c60f55ea2fb161d41ab19d11",
+2026-10-14T00:22:59.9263979Z     "branch": null
+2026-10-14T00:22:59.9264338Z   },
+2026-10-14T00:22:59.9266701Z   "after": {
+2026-10-14T00:22:59.9267266Z     "source": "216de0d0e57cddf7c5668ce1ea255e48a8f71c90b484f270443ef4ab36292e5e",
+2026-10-14T00:22:59.9267878Z     "index": "d48c7b00e15a6dec0d340b8eb805c7e7b8fd7183932e5bbb9221bca616887096",
+2026-10-14T00:22:59.9268369Z     "head": "00e37d61eb2a9d84c60f55ea2fb161d41ab19d11",
+2026-10-14T00:22:59.9268693Z     "branch": null
+2026-10-14T00:22:59.9268928Z   },
+2026-10-14T00:22:59.9269123Z   "steps": [
+2026-10-14T00:22:59.9269328Z     {
+2026-10-14T00:22:59.9269527Z       "name": "test",
+2026-10-14T00:22:59.9269769Z       "status": "FAIL",
+2026-10-14T00:22:59.9270004Z       "childExitCode": 1,
+2026-10-14T00:22:59.9270248Z       "elapsedMs": 72091,
+2026-10-14T00:22:59.9270514Z       "reason": "child exited 1"
+2026-10-14T00:22:59.9270755Z     }
+2026-10-14T00:22:59.9270963Z   ],
+2026-10-14T00:22:59.9271163Z   "notIncluded": [
+2026-10-14T00:22:59.9271458Z     {
+2026-10-14T00:22:59.9272492Z       "name": "extended browser/recovery/fault/asset/simulation diagnostics",
+2026-10-14T00:22:59.9274616Z       "status": "NOT_INCLUDED",
+2026-10-14T00:22:59.9275615Z       "reason": "run the existing specific command only when its domain changes; P00 removes repeated default execution"
+2026-10-14T00:22:59.9276534Z     },
+2026-10-14T00:22:59.9276857Z     {
+2026-10-14T00:22:59.9277269Z       "name": "balance/benchmark acceptance",
+2026-10-14T00:22:59.9277815Z       "status": "NOT_INCLUDED",
+2026-10-14T00:22:59.9278554Z       "reason": "later work packages; no gameplay approval inferred from checks"
+2026-10-14T00:22:59.9278967Z     },
+2026-10-14T00:22:59.9279153Z     {
+2026-10-14T00:22:59.9279459Z       "name": "physical devices / human / art approval",
+2026-10-14T00:22:59.9279783Z       "status": "NOT_RUN"
+2026-10-14T00:22:59.9280011Z     }
+2026-10-14T00:22:59.9280201Z   ]
+2026-10-14T00:22:59.9280387Z }
+2026-10-14T00:22:59.9448841Z ##[error]Process completed with exit code 1.
+2026-10-14T00:22:59.9560293Z ##[group]

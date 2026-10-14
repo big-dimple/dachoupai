@@ -1,4 +1,6 @@
 import type {BuildKeepsake} from './BuildKeepsake';
+import type {R2RunState} from '../domain/r2Run';
+import {showHeroExplanation} from './HeroExplanation';
 import {buildKeepsakeView,compactBuildKeepsakeView} from './BuildKeepsakeView';
 import {AudioEngine} from '../audio/AudioEngine';
 import {observeSuitSymbols} from './SuitSymbols';
@@ -15,7 +17,7 @@ export function modalBlocksCanvas(x:number,y:number):boolean {
 }
 interface DialogAction {label:string;run:()=>void|Promise<void>;disabled?:boolean;primary?:boolean}
 type ArtLoadStatus='unregistered'|'idle'|'loading'|'loaded'|'failed';
-interface DialogOptions {guideSteps?:{labels:readonly string[];current:number};choices?:readonly (DialogAction&{detail?:string})[];secondaryActions?:readonly DialogAction[];keepsake?:BuildKeepsake;keepsakeCompact?:boolean;shopContext?:'purchase'|'held'|'compare'|'sale';cards?:readonly ExperienceCard[];onClose?:()=>void;summaryBody?:string;effectBody?:string;editionBody?:string;ability?:CardAbilityCopy;collapseRules?:boolean;rulesLabel?:string;f09?:{inactive:boolean;bodyInactive?:boolean;alignedLayers?:boolean;reduced:boolean;reason?:string};closeLabel?:string;rarity?:JokerRarity;artLoad?:{status:ArtLoadStatus;readStatus?:()=>ArtLoadStatus;retry?:()=>Promise<boolean>};portrait?:{url:string;thumbnailUrl?:string;fallbackUrl?:string;alt:string;layout?:'card';caption?:string}}
+interface DialogOptions {heroRun?:R2RunState;guideSteps?:{labels:readonly string[];current:number};choices?:readonly (DialogAction&{detail?:string})[];secondaryActions?:readonly DialogAction[];keepsake?:BuildKeepsake;keepsakeCompact?:boolean;shopContext?:'purchase'|'held'|'compare'|'sale';cards?:readonly ExperienceCard[];onClose?:()=>void;summaryBody?:string;effectBody?:string;editionBody?:string;ability?:CardAbilityCopy;collapseRules?:boolean;rulesLabel?:string;f09?:{inactive:boolean;bodyInactive?:boolean;alignedLayers?:boolean;reduced:boolean;reason?:string};closeLabel?:string;rarity?:JokerRarity;artLoad?:{status:ArtLoadStatus;readStatus?:()=>ArtLoadStatus;retry?:()=>Promise<boolean>};portrait?:{url:string;thumbnailUrl?:string;fallbackUrl?:string;alt:string;layout?:'card';caption?:string}}
 export class DetailDialog {
   private dialog?:HTMLDialogElement;
   private lastPointer?:{x:number;y:number};
@@ -155,7 +157,9 @@ export class DetailDialog {
     if(options.summaryBody&&options.ability?.plain?.steps){const summary=document.createElement('p');summary.className='dialog-purchase-summary';summary.textContent=options.summaryBody;intro.append(summary);}
     if(options.editionBody){const edition=document.createElement('p');edition.className='dialog-edition-summary';edition.textContent=options.editionBody;intro.append(edition);}
     if(options.summaryBody&&!options.ability?.plain?.steps){const summary=document.createElement('p');summary.className='dialog-purchase-summary';summary.textContent=options.summaryBody;intro.append(summary);}
-    if(options.keepsake&&!options.keepsakeCompact)intro.prepend(buildKeepsakeView(options.keepsake,cleanups));
+    const heroDialog=options.heroRun?new DetailDialog():undefined;if(heroDialog)cleanups.push(()=>heroDialog.close());
+    const inspectHero=heroDialog?()=>showHeroExplanation(heroDialog,options.heroRun!.characterId,{run:options.heroRun,closeLabel:'返回手记'}):undefined;
+    if(options.keepsake&&!options.keepsakeCompact)intro.prepend(buildKeepsakeView(options.keepsake,cleanups,inspectHero));
     if(options.cards?.length){
       const gallery=document.createElement('section');gallery.className='experience-cards';gallery.setAttribute('aria-label','来源与下一步');
       for(const card of options.cards){
@@ -176,7 +180,7 @@ export class DetailDialog {
       const more=document.createElement('details'),label=document.createElement('summary'),buttons=document.createElement('div');more.className='dialog-secondary-actions';label.textContent='其它查看';
       for(const action of options.secondaryActions)buttons.append(actionButton(action));more.append(label,buttons);copy.append(more);
     }
-    if(options.keepsake&&options.keepsakeCompact)intro.append(compactBuildKeepsakeView(options.keepsake,cleanups));
+    if(options.keepsake&&options.keepsakeCompact)intro.append(compactBuildKeepsakeView(options.keepsake,cleanups,inspectHero));
     if(options.collapseRules||options.ability){const rules=document.createElement('details'),summary=document.createElement('summary'),text=document.createElement('p');rules.className='card-rules';summary.textContent=options.rulesLabel??'规则与操作';text.textContent=[options.ability?.plain?.details??options.ability?.rules,body].filter(Boolean).join('\n\n');rules.append(summary,text);copy.append(rules,status);}
     else copy.append(content,status);
     const scroll=document.createElement('div');scroll.className='dialog-scroll';if(intro.childElementCount)scroll.append(intro);for(const selector of ['figcaption','.detail-art-status','.detail-art-retry'])for(const node of layout.querySelectorAll(selector))scroll.append(node);scroll.append(copy);layout.append(scroll);dialog.append(layout,row);document.body.append(dialog);

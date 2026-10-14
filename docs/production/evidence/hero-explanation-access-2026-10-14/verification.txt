@@ -1,0 +1,15 @@
+Baseline: 69f46e47f250ec3ad7bc55ed11f7888326eecf8f
+Product freeze: 3d8d874b45a1caa6439f390e9b2eb2e8ce7f5e87
+2026-10-14 UTC
+Typecheck: PASS.
+Build: PASS (existing large-bundle warning retained; no dependency/config edits).
+Targeted Vitest: 6 files / 33 tests PASS at product freeze.
+check-production-plan: PLAN_VALID 32; not gameplay acceptance.
+hero-explanation browser: PASS 96 observation rows; Chromium 151.0.7922.173; PC1366x768 / touch390x740; see browser-report.json for returned exact browser version.
+GameScene SHA256: 1c1a6fd72fa9e8f1f2829dcd4e2ffaf060dde95252c19135c5f1033796fd0275 (same baseline and product freeze).
+git apply --check GameScene-parent-integration.patch: PASS. Patch NOT applied; no patch runtime/type/browser claims.
+Protected baseline diff: no changes to GameScene.ts, src/domain, src/application, src/content, package.json, package-lock.json, .github, DELIVERY_PLAN.md.
+Initial default local smoke browser launch: FAIL (Playwright headless shell absent; wrong executable override variable). No product change. Correct supported override: SMOKE_CHROMIUM_EXECUTABLE_PATH=/usr/bin/chromium; uses compiled smoke build from product freeze.
+
+Supported executable override local compiled smoke: PASS chromium/desktop and chromium/mobile at product freeze (local-smoke.json).
+Untouched first-layer additional probe: PASS 12; every details element closed at initial open; 0 example card nodes before expansion. Screenshot observer in final harness now captures before repeat-coordinate taps; product code unchanged.

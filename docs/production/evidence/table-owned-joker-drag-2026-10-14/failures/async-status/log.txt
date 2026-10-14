@@ -1,0 +1,13 @@
+AssertionError [ERR_ASSERTION]: The input did not match the regular expression /第 1 位/. Input:
+
+'顺序已保存'
+
+    at file:///workspace/dachoupai/harness/table-owned-joker-drag.mjs:63:307 {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: '顺序已保存',
+  expected: /第 1 位/,
+  operator: 'match',
+  diff: 'simple'
+}
+FAIL /tmp/table-drag-lock-check
