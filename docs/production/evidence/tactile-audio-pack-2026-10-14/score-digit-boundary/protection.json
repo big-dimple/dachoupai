@@ -1,0 +1,154 @@
+{
+  "inputSHA": "89ba7054271eab0af6753a50ea9661ae321067bb",
+  "changedProduct": [
+    "src/audio/mixPolicy.ts"
+  ],
+  "changedTest": [
+    "tests/audio-mix-policy.test.ts"
+  ],
+  "readOnlyDomainLimit": 4096,
+  "naturalOccurrence": "NOT_ESTABLISHED",
+  "subjectiveHearing": "NOT_RUN",
+  "protected": [
+    {
+      "path": "src/domain",
+      "sameAsInput": true
+    },
+    {
+      "path": "src/audio/AudioEngine.ts",
+      "sameAsInput": true
+    },
+    {
+      "path": "src/audio/foley.ts",
+      "sameAsInput": true
+    },
+    {
+      "path": "src/audio/sampleBody.ts",
+      "sameAsInput": true
+    },
+    {
+      "path": "src/audio/preferences.ts",
+      "sameAsInput": true
+    },
+    {
+      "path": "src/game",
+      "sameAsInput": true
+    },
+    {
+      "path": "src/application",
+      "sameAsInput": true
+    },
+    {
+      "path": "src/content",
+      "sameAsInput": true
+    },
+    {
+      "path": "src/platform",
+      "sameAsInput": true
+    },
+    {
+      "path": "public",
+      "sameAsInput": true
+    },
+    {
+      "path": "art",
+      "sameAsInput": true
+    },
+    {
+      "path": "package.json",
+      "sameAsInput": true
+    },
+    {
+      "path": "package-lock.json",
+      "sameAsInput": true
+    },
+    {
+      "path": ".github",
+      "sameAsInput": true
+    },
+    {
+      "path": "AGENTS.md",
+      "sameAsInput": true
+    },
+    {
+      "path": "docs/production/DELIVERY_PLAN.md",
+      "sameAsInput": true
+    },
+    {
+      "path": "third-party",
+      "sameAsInput": true
+    },
+    {
+      "path": "tests/audio-sample-loading.test.ts",
+      "sameAsInput": true
+    },
+    {
+      "path": "tests/score-recorded-audio.test.ts",
+      "sameAsInput": true
+    },
+    {
+      "path": "tests/fire-audio.test.ts",
+      "sameAsInput": true
+    },
+    {
+      "path": "tests/failure-audio.test.ts",
+      "sameAsInput": true
+    },
+    {
+      "path": "tests/audio-preferences.test.ts",
+      "sameAsInput": true
+    },
+    {
+      "path": "docs/production/evidence/tactile-audio-pack-2026-10-14/before.wav",
+      "sameAsInput": true
+    },
+    {
+      "path": "docs/production/evidence/tactile-audio-pack-2026-10-14/after.wav",
+      "sameAsInput": true
+    },
+    {
+      "path": "docs/production/evidence/tactile-audio-pack-2026-10-14/before.webm",
+      "sameAsInput": true
+    },
+    {
+      "path": "docs/production/evidence/tactile-audio-pack-2026-10-14/after.webm",
+      "sameAsInput": true
+    },
+    {
+      "path": "docs/production/evidence/tactile-audio-pack-2026-10-14/render-report.json",
+      "sameAsInput": true
+    },
+    {
+      "path": "docs/production/evidence/tactile-audio-pack-2026-10-14/audio-metrics.json",
+      "sameAsInput": true
+    },
+    {
+      "path": "docs/production/evidence/tactile-audio-pack-2026-10-14/browser-report.json",
+      "sameAsInput": true
+    },
+    {
+      "path": "docs/production/evidence/tactile-audio-pack-2026-10-14/sources-audit.json",
+      "sameAsInput": true
+    },
+    {
+      "path": "docs/production/evidence/tactile-audio-pack-2026-10-14/targeted-tests.txt",
+      "sameAsInput": true
+    },
+    {
+      "path": "docs/production/evidence/tactile-audio-pack-2026-10-14/typecheck.txt",
+      "sameAsInput": true
+    },
+    {
+      "path": "docs/production/evidence/tactile-audio-pack-2026-10-14/build.txt",
+      "sameAsInput": true
+    },
+    {
+      "path": "docs/production/evidence/tactile-audio-pack-2026-10-14/protection.json",
+      "sameAsInput": true
+    }
+  ],
+  "sha256": {
+    "src/audio/mixPolicy.ts": "07628228c0786f6d3a30885cb4101b6f19f313cb0053375816dfc114c1bcb95b",
+    "tests/audio-mix-policy.test.ts": "896965f50d9e73d4b92542320177891837d7d0ce02e93637e006330f5b9a6923"
+  }
+}

@@ -52,3 +52,7 @@
 **实际听过：无。** 本云环境没有真人耳朵或可签收的主观听音结果，23源清单与所有派生片段均保heard:false。已实际生成/捕获WebAudio、核波形指标及软件解码/行为；用户/父可用试听页和WAV审音。**未验：** 物理Android/iOS扬声器/耳机、宿主后台计时节流、长局耳疲劳、自然全流程/BGM遮盖听感与吸引力、Firefox/WebKit本地声音。不能把touch viewport、自动测试或音轨存在称作这些通过，整体W4/W6听感仍OPEN。
 
 复核：先启动上述dev服务，运行 `node docs/production/evidence/tactile-audio-pack-2026-10-14/browser-check.mjs`、`node docs/production/evidence/tactile-audio-pack-2026-10-14/render-and-check.mjs`；定向命令完整在targeted-tests日志首行。PR合并/部署与真正听验由父协调，本候选不代签。
+
+## 独审位数边界返修
+
+[合法310–4096位最终整数不降回普通award](score-digit-boundary/README.md)：从89ba7054补修声音校验上限，直接读取未改的领域MAX_INTEGER_DIGITS，以字符串位数选档、不转Number。新增309/310/4096/4097位及真实引擎六层检查，8文件83项/type通过，最终新HEAD CI见PR179。只是合法边界复现，不称常见自然局故障；上方原音轨、测试与保护哈希按原提交保留，不扩签本轮听感/设备/自然局。

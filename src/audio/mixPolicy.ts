@@ -1,4 +1,5 @@
 import type {FoleyKind} from './foley';
+import {MAX_INTEGER_DIGITS} from '../domain/rational';
 /** Voices overlapping in time, including already scheduled tails. Future deal
  * trains retain their beats; the existing 32-node retention limit is a backstop. */
 export const EFFECT_VOICE_BUDGET = 16;
@@ -7,7 +8,9 @@ export const ACCENT_TAIL_FLOOR = .38;
  * accumulated heat, a target, or provisional multiplication. */
 export function awardForScore(presentation:object):FoleyKind {
   const score=(presentation as {score?:{finalScore?:unknown}}).score?.finalScore;
-  if(typeof score!=='string'||!/^\d{1,309}$/.test(score))return 'award';
+  // Match the persisted bigint contract, not Number's finite decimal range.
+  // String validation/counting never converts the score to floating point.
+  if(typeof score!=='string'||score.length===0||score.length>MAX_INTEGER_DIGITS||/\D/.test(score))return 'award';
   const digits=score.replace(/^0+/, '').length;
   return digits>=13?'awardTrillion':digits>=9?'awardHundredMillion':digits>=7?'awardMillion':'award';
 }

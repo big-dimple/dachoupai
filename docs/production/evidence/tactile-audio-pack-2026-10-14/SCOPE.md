@@ -10,3 +10,7 @@
 - acceptance：轻触短、交易确认明确、普通结算不堆音、连锁节奏递进、大分差异靠节奏/音色而非加响；静音/设置/解锁/后台/重入/缺录音不补播，PR172加载保持；记录软件实际通过范围与未听项目。
 - stopConditions：声音无限累积、规则状态/用户偏好变化、要求把测试数冒充听感、来源不明、越过UI写入窗口。被拒写入停该行动，继续独立工作并保留原因。
 - 回退：本分支未合main，可整包撤回音路两个文件与新增策略；原始OGG/BGM字节保持基线。
+
+## 独审返修：合法大整数分档（2026-10-14）
+
+输入89ba7054271eab0af6753a50ea9661ae321067bb；仍在PR179原分支。用户/父明确授权修合法310位及以上最终分数，读取现有domain/rational.ts的MAX_INTEGER_DIGITS=4096，不改领域规则；分档以十进制字符串位数判断，不转Number。本轮仅允许src/audio/mixPolicy.ts、tests/audio-mix-policy.test.ts、本SCOPE与README追加记录、根files.txt/SHA256SUMS清单同步，以及score-digit-boundary/README.md、before-FAIL.txt、fixture-float-FAIL.txt、after-tests.txt、typecheck.txt、protection.json、SHA256SUMS。原试听音轨、配方、加载、失败日志及证据哈希范围保持原提交；本轮验证不扩签声音/物理设备或自然局频率。正常提交推送原PR、核精确新HEAD CI，继续不合main/不部署。
