@@ -48,11 +48,13 @@
 |---|---|---|
 | PC 玻璃现货规则→增强获得入口 | [原玻璃面详情](before/1366-玻璃面-old-detail.png) | [玻璃增强用途/获得](after/1366-玻璃牌-purpose.png)、[完整规则](after/1366-玻璃牌-rules.png) |
 | 390 玻璃获得入口 | [原玻璃面详情](before/390-玻璃面-old-detail.png) | [随机现货/库存选牌/牺牲路线](after/390-玻璃牌-acquisition-1.png) |
-| 390 留声生活例子 | [原留个声详情](before/390-留个声-old-detail.png) | [用途与备用牌例子](after/390-留声纸-purpose.png)、[每手一次/失效与助攻限制](after/390-留声纸-rules.png) |
+| 390 留声生活例子 | [原留个声详情](before/390-留个声-old-detail.png) | [用途与备用牌例子](after/390-留声纸-purpose.png)、[每手一次/失效与助攻限制滚动实图](rule-scroll/390-留声纸-rule-tail.png) |
 | PC 长按玻璃手牌详情 | [原首层](before/1366-glass-card-purpose.png) | [新首层](after/1366-glass-card-purpose.png)、[新例子及入口](after/1366-glass-card-rules.png) |
 | 390 长按留声手牌详情 | [原首层](before/390-voice-card-purpose.png) | [新首层](after/390-voice-card-purpose.png)、[新完整说明](after/390-voice-card-rules.png) |
 
-上述PC/390图已实际查看像素，说明及概率/代价可读；没有把DOM断言当整屏美学或完整体验验收。
+上述PC/390用途和入口图已实际查看像素。首轮手机“已展开”图只显示规则开头，没有显示下方次数与费用，因此不能用它们证明完整规则可读；原图保留，不删失败或倒写验收。
+
+补充实际滚动证据在 [rule-scroll/report.json](rule-scroll/report.json)，渲染review `021858f8df5c2ec3959822acdbb51f6ece8308e5`、clean、同一src tree。两端各3条真实查询/展开/浏览器滚轮滚动，将玻璃每原牌一次/失败手仍判、留声每手一次、玻璃面5金与消费1件的段落滚入可见区；关键短语逐行Range边界均在滚动窗口内，完整state/journal/IDB/localStorage相等。已实际查看 [390玻璃规则](rule-scroll/390-玻璃牌-rule-tail.png)、[390留声次数](rule-scroll/390-留声纸-rule-tail.png)、[390玻璃费用/覆盖代价](rule-scroll/390-玻璃面-rule-tail.png) 原尺寸像素；PC对应图亦归档。可从仓库根运行 [补充观察器](rule-scroll-observer.mjs)，它不改产品/规则。这里只签这些可读段落，不签整屏美学或完整体验。
 
 ## 针对性检查与保留的失败
 
