@@ -1,0 +1,3698 @@
+{
+  "head": "69f46e47f250ec3ad7bc55ed11f7888326eecf8f",
+  "sourceTree": "cd52a29893c8cf20af906389a0d7700fa3e2eacc",
+  "modified": "M src/game/GameScene.ts\n?? harness/table-owned-joker-drag.mjs",
+  "baseline": false,
+  "scope": "Controlled current-identity five-owned checkpoint; real mouse/CDP touch/DOM inputs. Full state/journal/local storage vs actual applyCommand; no natural acquisition, 18-combination, physical device or human acceptance.",
+  "cases": [
+    {
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "name": "390x844",
+      "checks": [],
+      "errors": [],
+      "moves": [
+        {
+          "from": 0,
+          "to": 4,
+          "style": "slow",
+          "before": {
+            "seq": 3,
+            "ids": [
+              "owned-drag/0",
+              "owned-drag/1",
+              "owned-drag/2",
+              "owned-drag/3",
+              "owned-drag/4"
+            ],
+            "revision": 1
+          },
+          "held": {
+            "drag": true,
+            "saving": false,
+            "inputEnabled": false,
+            "hint": "松手放第 1 位 · 移出取消",
+            "slots": [
+              {
+                "x": 23,
+                "y": 62,
+                "width": 64,
+                "height": 89.6
+              },
+              {
+                "x": 93,
+                "y": 62,
+                "width": 64,
+                "height": 89.6
+              },
+              {
+                "x": 163,
+                "y": 62,
+                "width": 64,
+                "height": 89.6
+              },
+              {
+                "x": 233,
+                "y": 62,
+                "width": 64,
+                "height": 89.6
+              },
+              {
+                "x": 303,
+                "y": 62,
+                "width": 64,
+                "height": 89.6
+              }
+            ],
+            "arts": [
+              {
+                "id": "owned-drag/0",
+                "x": 55,
+                "y": 90.80000000000001,
+                "scale": 1.06,
+                "active": true,
+                "bounds": {
+                  "x": 21.080001831054688,
+                  "y": 43.312005615234376,
+                  "width": 67.83999633789062,
+                  "height": 94.97599487304689
+                }
+              },
+              {
+                "id": "owned-drag/1",
+                "x": 125,
+                "y": 106.8,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 93,
+                  "y": 62.000003051757815,
+                  "width": 64,
+                  "height": 89.60000000000001
+                }
+              },
+              {
+                "id": "owned-drag/2",
+                "x": 195,
+                "y": 106.8,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 163,
+                  "y": 62.000003051757815,
+                  "width": 64,
+                  "height": 89.60000000000001
+                }
+              },
+              {
+                "id": "owned-drag/3",
+                "x": 265,
+                "y": 106.8,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 233,
+                  "y": 62.000003051757815,
+                  "width": 64,
+                  "height": 89.60000000000001
+                }
+              },
+              {
+                "id": "owned-drag/4",
+                "x": 335,
+                "y": 106.8,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 303,
+                  "y": 62.000003051757815,
+                  "width": 64,
+                  "height": 89.60000000000001
+                }
+              }
+            ],
+            "surfaceTouchAction": "none",
+            "dispatch": []
+          },
+          "heldShot": "390x844-slow-held.png",
+          "mid": {
+            "drag": true,
+            "saving": false,
+            "inputEnabled": false,
+            "hint": "松手放第 5 位 · 移出取消",
+            "slots": [
+              {
+                "x": 23,
+                "y": 62,
+                "width": 64,
+                "height": 89.6
+              },
+              {
+                "x": 93,
+                "y": 62,
+                "width": 64,
+                "height": 89.6
+              },
+              {
+                "x": 163,
+                "y": 62,
+                "width": 64,
+                "height": 89.6
+              },
+              {
+                "x": 233,
+                "y": 62,
+                "width": 64,
+                "height": 89.6
+              },
+              {
+                "x": 303,
+                "y": 62,
+                "width": 64,
+                "height": 89.6
+              }
+            ],
+            "arts": [
+              {
+                "id": "owned-drag/0",
+                "x": 335,
+                "y": 98.80000000000001,
+                "scale": 1.06,
+                "active": true,
+                "bounds": {
+                  "x": 301.0800018310547,
+                  "y": 51.312005615234376,
+                  "width": 67.83999633789062,
+                  "height": 94.97599487304689
+                }
+              },
+              {
+                "id": "owned-drag/1",
+                "x": 55,
+                "y": 106.8,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 23,
+                  "y": 62.000003051757815,
+                  "width": 64,
+                  "height": 89.60000000000001
+                }
+              },
+              {
+                "id": "owned-drag/2",
+                "x": 125,
+                "y": 106.8,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 93,
+                  "y": 62.000003051757815,
+                  "width": 64,
+                  "height": 89.60000000000001
+                }
+              },
+              {
+                "id": "owned-drag/3",
+                "x": 195,
+                "y": 106.8,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 163,
+                  "y": 62.000003051757815,
+                  "width": 64,
+                  "height": 89.60000000000001
+                }
+              },
+              {
+                "id": "owned-drag/4",
+                "x": 269.48,
+                "y": 106.8,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 237.48001098632812,
+                  "y": 62.000003051757815,
+                  "width": 64,
+                  "height": 89.60000000000001
+                }
+              }
+            ],
+            "surfaceTouchAction": "none",
+            "dispatch": []
+          },
+          "midShot": "390x844-slow-mid.png",
+          "pending": {
+            "drag": true,
+            "saving": true,
+            "inputEnabled": false,
+            "hint": "正在保存顺序…",
+            "slots": [
+              {
+                "x": 23,
+                "y": 62,
+                "width": 64,
+                "height": 89.6
+              },
+              {
+                "x": 93,
+                "y": 62,
+                "width": 64,
+                "height": 89.6
+              },
+              {
+                "x": 163,
+                "y": 62,
+                "width": 64,
+                "height": 89.6
+              },
+              {
+                "x": 233,
+                "y": 62,
+                "width": 64,
+                "height": 89.6
+              },
+              {
+                "x": 303,
+                "y": 62,
+                "width": 64,
+                "height": 89.6
+              }
+            ],
+            "arts": [
+              {
+                "id": "owned-drag/0",
+                "x": 335,
+                "y": 90.8,
+                "scale": 1.06,
+                "active": true,
+                "bounds": {
+                  "x": 301.0800018310547,
+                  "y": 43.312005615234376,
+                  "width": 67.83999633789062,
+                  "height": 94.97599487304689
+                }
+              },
+              {
+                "id": "owned-drag/1",
+                "x": 125,
+                "y": 106.8,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 93,
+                  "y": 62.000003051757815,
+                  "width": 64,
+                  "height": 89.60000000000001
+                }
+              },
+              {
+                "id": "owned-drag/2",
+                "x": 195,
+                "y": 106.8,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 163,
+                  "y": 62.000003051757815,
+                  "width": 64,
+                  "height": 89.60000000000001
+                }
+              },
+              {
+                "id": "owned-drag/3",
+                "x": 265,
+                "y": 106.8,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 233,
+                  "y": 62.000003051757815,
+                  "width": 64,
+                  "height": 89.60000000000001
+                }
+              },
+              {
+                "id": "owned-drag/4",
+                "x": 335,
+                "y": 106.8,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 303,
+                  "y": 62.000003051757815,
+                  "width": 64,
+                  "height": 89.60000000000001
+                }
+              }
+            ],
+            "surfaceTouchAction": "none",
+            "dispatch": [
+              [
+                {
+                  "type": "ReorderJokers",
+                  "ids": [
+                    "owned-drag/1",
+                    "owned-drag/2",
+                    "owned-drag/3",
+                    "owned-drag/4",
+                    "owned-drag/0"
+                  ]
+                },
+                3
+              ]
+            ]
+          },
+          "pendingShot": "390x844-saving-delay.png",
+          "resizedPending": {
+            "drag": true,
+            "saving": true,
+            "inputEnabled": false,
+            "hint": "正在保存顺序…",
+            "slots": [
+              {
+                "x": 22.5,
+                "y": 62,
+                "width": 64,
+                "height": 89.6
+              },
+              {
+                "x": 92.5,
+                "y": 62,
+                "width": 64,
+                "height": 89.6
+              },
+              {
+                "x": 162.5,
+                "y": 62,
+                "width": 64,
+                "height": 89.6
+              },
+              {
+                "x": 232.5,
+                "y": 62,
+                "width": 64,
+                "height": 89.6
+              },
+              {
+                "x": 302.5,
+                "y": 62,
+                "width": 64,
+                "height": 89.6
+              }
+            ],
+            "arts": [
+              {
+                "id": "owned-drag/0",
+                "x": 334.5,
+                "y": 90.8,
+                "scale": 1.06,
+                "active": true,
+                "bounds": {
+                  "x": 300.5800018310547,
+                  "y": 43.312005615234376,
+                  "width": 67.83999633789062,
+                  "height": 94.97599487304689
+                }
+              },
+              {
+                "id": "owned-drag/1",
+                "x": 54.5,
+                "y": 106.8,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 22.5,
+                  "y": 62.000003051757815,
+                  "width": 64,
+                  "height": 89.60000000000001
+                }
+              },
+              {
+                "id": "owned-drag/2",
+                "x": 124.5,
+                "y": 106.8,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 92.5,
+                  "y": 62.000003051757815,
+                  "width": 64,
+                  "height": 89.60000000000001
+                }
+              },
+              {
+                "id": "owned-drag/3",
+                "x": 194.5,
+                "y": 106.8,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 162.5,
+                  "y": 62.000003051757815,
+                  "width": 64,
+                  "height": 89.60000000000001
+                }
+              },
+              {
+                "id": "owned-drag/4",
+                "x": 264.5,
+                "y": 106.8,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 232.5,
+                  "y": 62.000003051757815,
+                  "width": 64,
+                  "height": 89.60000000000001
+                }
+              }
+            ],
+            "surfaceTouchAction": "none",
+            "dispatch": [
+              [
+                {
+                  "type": "ReorderJokers",
+                  "ids": [
+                    "owned-drag/1",
+                    "owned-drag/2",
+                    "owned-drag/3",
+                    "owned-drag/4",
+                    "owned-drag/0"
+                  ]
+                },
+                3
+              ]
+            ]
+          },
+          "after": {
+            "seq": 4,
+            "ids": [
+              "owned-drag/1",
+              "owned-drag/2",
+              "owned-drag/3",
+              "owned-drag/4",
+              "owned-drag/0"
+            ],
+            "revision": 2
+          },
+          "dropped": {
+            "drag": false,
+            "saving": false,
+            "inputEnabled": true,
+            "hint": "顺序已保存",
+            "slots": [
+              {
+                "x": 23,
+                "y": 62,
+                "width": 64,
+                "height": 89.6
+              },
+              {
+                "x": 93,
+                "y": 62,
+                "width": 64,
+                "height": 89.6
+              },
+              {
+                "x": 163,
+                "y": 62,
+                "width": 64,
+                "height": 89.6
+              },
+              {
+                "x": 233,
+                "y": 62,
+                "width": 64,
+                "height": 89.6
+              },
+              {
+                "x": 303,
+                "y": 62,
+                "width": 64,
+                "height": 89.6
+              }
+            ],
+            "arts": [
+              {
+                "id": "owned-drag/1",
+                "x": 55,
+                "y": 106.8,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 23,
+                  "y": 62.000003051757815,
+                  "width": 64,
+                  "height": 89.60000000000001
+                }
+              },
+              {
+                "id": "owned-drag/2",
+                "x": 125,
+                "y": 106.8,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 93,
+                  "y": 62.000003051757815,
+                  "width": 64,
+                  "height": 89.60000000000001
+                }
+              },
+              {
+                "id": "owned-drag/3",
+                "x": 195,
+                "y": 106.8,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 163,
+                  "y": 62.000003051757815,
+                  "width": 64,
+                  "height": 89.60000000000001
+                }
+              },
+              {
+                "id": "owned-drag/4",
+                "x": 265,
+                "y": 106.8,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 233,
+                  "y": 62.000003051757815,
+                  "width": 64,
+                  "height": 89.60000000000001
+                }
+              },
+              {
+                "id": "owned-drag/0",
+                "x": 335,
+                "y": 106.8,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 303,
+                  "y": 62.000003051757815,
+                  "width": 64,
+                  "height": 89.60000000000001
+                }
+              }
+            ],
+            "surfaceTouchAction": "none",
+            "dispatch": [
+              [
+                {
+                  "type": "ReorderJokers",
+                  "ids": [
+                    "owned-drag/1",
+                    "owned-drag/2",
+                    "owned-drag/3",
+                    "owned-drag/4",
+                    "owned-drag/0"
+                  ]
+                },
+                3
+              ]
+            ]
+          },
+          "dropShot": "390x844-slow-dropped.png",
+          "firstSavedFrames": [
+            {
+              "arts": [
+                {
+                  "id": "owned-drag/1",
+                  "x": 55,
+                  "y": 106.8,
+                  "scale": 1
+                },
+                {
+                  "id": "owned-drag/2",
+                  "x": 125,
+                  "y": 106.8,
+                  "scale": 1
+                },
+                {
+                  "id": "owned-drag/3",
+                  "x": 195,
+                  "y": 106.8,
+                  "scale": 1
+                },
+                {
+                  "id": "owned-drag/4",
+                  "x": 265,
+                  "y": 106.8,
+                  "scale": 1
+                },
+                {
+                  "id": "owned-drag/0",
+                  "x": 335,
+                  "y": 90.8,
+                  "scale": 1.06
+                }
+              ],
+              "slots": [
+                {
+                  "x": 23,
+                  "y": 62,
+                  "width": 64,
+                  "height": 89.6
+                },
+                {
+                  "x": 93,
+                  "y": 62,
+                  "width": 64,
+                  "height": 89.6
+                },
+                {
+                  "x": 163,
+                  "y": 62,
+                  "width": 64,
+                  "height": 89.6
+                },
+                {
+                  "x": 233,
+                  "y": 62,
+                  "width": 64,
+                  "height": 89.6
+                },
+                {
+                  "x": 303,
+                  "y": 62,
+                  "width": 64,
+                  "height": 89.6
+                }
+              ]
+            },
+            {
+              "arts": [
+                {
+                  "id": "owned-drag/1",
+                  "x": 55,
+                  "y": 106.8,
+                  "scale": 1
+                },
+                {
+                  "id": "owned-drag/2",
+                  "x": 125,
+                  "y": 106.8,
+                  "scale": 1
+                },
+                {
+                  "id": "owned-drag/3",
+                  "x": 195,
+                  "y": 106.8,
+                  "scale": 1
+                },
+                {
+                  "id": "owned-drag/4",
+                  "x": 265,
+                  "y": 106.8,
+                  "scale": 1
+                },
+                {
+                  "id": "owned-drag/0",
+                  "x": 335,
+                  "y": 94.60988207407395,
+                  "scale": 1.0457129422222227
+                }
+              ],
+              "slots": [
+                {
+                  "x": 23,
+                  "y": 62,
+                  "width": 64,
+                  "height": 89.6
+                },
+                {
+                  "x": 93,
+                  "y": 62,
+                  "width": 64,
+                  "height": 89.6
+                },
+                {
+                  "x": 163,
+                  "y": 62,
+                  "width": 64,
+                  "height": 89.6
+                },
+                {
+                  "x": 233,
+                  "y": 62,
+                  "width": 64,
+                  "height": 89.6
+                },
+                {
+                  "x": 303,
+                  "y": 62,
+                  "width": 64,
+                  "height": 89.6
+                }
+              ]
+            },
+            {
+              "arts": [
+                {
+                  "id": "owned-drag/1",
+                  "x": 55,
+                  "y": 106.8,
+                  "scale": 1
+                },
+                {
+                  "id": "owned-drag/2",
+                  "x": 125,
+                  "y": 106.8,
+                  "scale": 1
+                },
+                {
+                  "id": "owned-drag/3",
+                  "x": 195,
+                  "y": 106.8,
+                  "scale": 1
+                },
+                {
+                  "id": "owned-drag/4",
+                  "x": 265,
+                  "y": 106.8,
+                  "scale": 1
+                },
+                {
+                  "id": "owned-drag/0",
+                  "x": 335,
+                  "y": 97.9781119999999,
+                  "scale": 1.0330820800000005
+                }
+              ],
+              "slots": [
+                {
+                  "x": 23,
+                  "y": 62,
+                  "width": 64,
+                  "height": 89.6
+                },
+                {
+                  "x": 93,
+                  "y": 62,
+                  "width": 64,
+                  "height": 89.6
+                },
+                {
+                  "x": 163,
+                  "y": 62,
+                  "width": 64,
+                  "height": 89.6
+                },
+                {
+                  "x": 233,
+                  "y": 62,
+                  "width": 64,
+                  "height": 89.6
+                },
+                {
+                  "x": 303,
+                  "y": 62,
+                  "width": 64,
+                  "height": 89.6
+                }
+              ]
+            },
+            {
+              "arts": [
+                {
+                  "id": "owned-drag/1",
+                  "x": 55,
+                  "y": 106.8,
+                  "scale": 1
+                },
+                {
+                  "id": "owned-drag/2",
+                  "x": 125,
+                  "y": 106.8,
+                  "scale": 1
+                },
+                {
+                  "id": "owned-drag/3",
+                  "x": 195,
+                  "y": 106.8,
+                  "scale": 1
+                },
+                {
+                  "id": "owned-drag/4",
+                  "x": 265,
+                  "y": 106.8,
+                  "scale": 1
+                },
+                {
+                  "id": "owned-drag/0",
+                  "x": 335,
+                  "y": 99.77638399999984,
+                  "scale": 1.0263385600000006
+                }
+              ],
+              "slots": [
+                {
+                  "x": 23,
+                  "y": 62,
+                  "width": 64,
+                  "height": 89.6
+                },
+                {
+                  "x": 93,
+                  "y": 62,
+                  "width": 64,
+                  "height": 89.6
+                },
+                {
+                  "x": 163,
+                  "y": 62,
+                  "width": 64,
+                  "height": 89.6
+                },
+                {
+                  "x": 233,
+                  "y": 62,
+                  "width": 64,
+                  "height": 89.6
+                },
+                {
+                  "x": 303,
+                  "y": 62,
+                  "width": 64,
+                  "height": 89.6
+                }
+              ]
+            },
+            {
+              "arts": [
+                {
+                  "id": "owned-drag/1",
+                  "x": 55,
+                  "y": 106.8,
+                  "scale": 1
+                },
+                {
+                  "id": "owned-drag/2",
+                  "x": 125,
+                  "y": 106.8,
+                  "scale": 1
+                },
+                {
+                  "id": "owned-drag/3",
+                  "x": 195,
+                  "y": 106.8,
+                  "scale": 1
+                },
+                {
+                  "id": "owned-drag/4",
+                  "x": 265,
+                  "y": 106.8,
+                  "scale": 1
+                },
+                {
+                  "id": "owned-drag/0",
+                  "x": 335,
+                  "y": 101.31199999999986,
+                  "scale": 1.0205800000000005
+                }
+              ],
+              "slots": [
+                {
+                  "x": 23,
+                  "y": 62,
+                  "width": 64,
+                  "height": 89.6
+                },
+                {
+                  "x": 93,
+                  "y": 62,
+                  "width": 64,
+                  "height": 89.6
+                },
+                {
+                  "x": 163,
+                  "y": 62,
+                  "width": 64,
+                  "height": 89.6
+                },
+                {
+                  "x": 233,
+                  "y": 62,
+                  "width": 64,
+                  "height": 89.6
+                },
+                {
+                  "x": 303,
+                  "y": 62,
+                  "width": 64,
+                  "height": 89.6
+                }
+              ]
+            },
+            {
+              "arts": [
+                {
+                  "id": "owned-drag/1",
+                  "x": 55,
+                  "y": 106.8,
+                  "scale": 1
+                },
+                {
+                  "id": "owned-drag/2",
+                  "x": 125,
+                  "y": 106.8,
+                  "scale": 1
+                },
+                {
+                  "id": "owned-drag/3",
+                  "x": 195,
+                  "y": 106.8,
+                  "scale": 1
+                },
+                {
+                  "id": "owned-drag/4",
+                  "x": 265,
+                  "y": 106.8,
+                  "scale": 1
+                },
+                {
+                  "id": "owned-drag/0",
+                  "x": 335,
+                  "y": 103.22751525925915,
+                  "scale": 1.0133968177777781
+                }
+              ],
+              "slots": [
+                {
+                  "x": 23,
+                  "y": 62,
+                  "width": 64,
+                  "height": 89.6
+                },
+                {
+                  "x": 93,
+                  "y": 62,
+                  "width": 64,
+                  "height": 89.6
+                },
+                {
+                  "x": 163,
+                  "y": 62,
+                  "width": 64,
+                  "height": 89.6
+                },
+                {
+                  "x": 233,
+                  "y": 62,
+                  "width": 64,
+                  "height": 89.6
+                },
+                {
+                  "x": 303,
+                  "y": 62,
+                  "width": 64,
+                  "height": 89.6
+                }
+              ]
+            },
+            {
+              "arts": [
+                {
+                  "id": "owned-drag/1",
+                  "x": 55,
+                  "y": 106.8,
+                  "scale": 1
+                },
+                {
+                  "id": "owned-drag/2",
+                  "x": 125,
+                  "y": 106.8,
+                  "scale": 1
+                },
+                {
+                  "id": "owned-drag/3",
+                  "x": 195,
+                  "y": 106.8,
+                  "scale": 1
+                },
+                {
+                  "id": "owned-drag/4",
+                  "x": 265,
+                  "y": 106.8,
+                  "scale": 1
+                },
+                {
+                  "id": "owned-drag/0",
+                  "x": 335,
+                  "y": 104.9557712592592,
+                  "scale": 1.0069158577777781
+                }
+              ],
+              "slots": [
+                {
+                  "x": 23,
+                  "y": 62,
+                  "width": 64,
+                  "height": 89.6
+                },
+                {
+                  "x": 93,
+                  "y": 62,
+                  "width": 64,
+                  "height": 89.6
+                },
+                {
+                  "x": 163,
+                  "y": 62,
+                  "width": 64,
+                  "height": 89.6
+                },
+                {
+                  "x": 233,
+                  "y": 62,
+                  "width": 64,
+                  "height": 89.6
+                },
+                {
+                  "x": 303,
+                  "y": 62,
+                  "width": 64,
+                  "height": 89.6
+                }
+              ]
+            },
+            {
+              "arts": [
+                {
+                  "id": "owned-drag/1",
+                  "x": 55,
+                  "y": 106.8,
+                  "scale": 1
+                },
+                {
+                  "id": "owned-drag/2",
+                  "x": 125,
+                  "y": 106.8,
+                  "scale": 1
+                },
+                {
+                  "id": "owned-drag/3",
+                  "x": 195,
+                  "y": 106.8,
+                  "scale": 1
+                },
+                {
+                  "id": "owned-drag/4",
+                  "x": 265,
+                  "y": 106.8,
+                  "scale": 1
+                },
+                {
+                  "id": "owned-drag/0",
+                  "x": 335,
+                  "y": 106.01125925925922,
+                  "scale": 1.0029577777777778
+                }
+              ],
+              "slots": [
+                {
+                  "x": 23,
+                  "y": 62,
+                  "width": 64,
+                  "height": 89.6
+                },
+                {
+                  "x": 93,
+                  "y": 62,
+                  "width": 64,
+                  "height": 89.6
+                },
+                {
+                  "x": 163,
+                  "y": 62,
+                  "width": 64,
+                  "height": 89.6
+                },
+                {
+                  "x": 233,
+                  "y": 62,
+                  "width": 64,
+                  "height": 89.6
+                },
+                {
+                  "x": 303,
+                  "y": 62,
+                  "width": 64,
+                  "height": 89.6
+                }
+              ]
+            },
+            {
+              "arts": [
+                {
+                  "id": "owned-drag/1",
+                  "x": 55,
+                  "y": 106.8,
+                  "scale": 1
+                },
+                {
+                  "id": "owned-drag/2",
+                  "x": 125,
+                  "y": 106.8,
+                  "scale": 1
+                },
+                {
+                  "id": "owned-drag/3",
+                  "x": 195,
+                  "y": 106.8,
+                  "scale": 1
+                },
+                {
+                  "id": "owned-drag/4",
+                  "x": 265,
+                  "y": 106.8,
+                  "scale": 1
+                },
+                {
+                  "id": "owned-drag/0",
+                  "x": 335,
+                  "y": 106.55986725925924,
+                  "scale": 1.0009004977777778
+                }
+              ],
+              "slots": [
+                {
+                  "x": 23,
+                  "y": 62,
+                  "width": 64,
+                  "height": 89.6
+                },
+                {
+                  "x": 93,
+                  "y": 62,
+                  "width": 64,
+                  "height": 89.6
+                },
+                {
+                  "x": 163,
+                  "y": 62,
+                  "width": 64,
+                  "height": 89.6
+                },
+                {
+                  "x": 233,
+                  "y": 62,
+                  "width": 64,
+                  "height": 89.6
+                },
+                {
+                  "x": 303,
+                  "y": 62,
+                  "width": 64,
+                  "height": 89.6
+                }
+              ]
+            },
+            {
+              "arts": [
+                {
+                  "id": "owned-drag/1",
+                  "x": 55,
+                  "y": 106.8,
+                  "scale": 1
+                },
+                {
+                  "id": "owned-drag/2",
+                  "x": 125,
+                  "y": 106.8,
+                  "scale": 1
+                },
+                {
+                  "id": "owned-drag/3",
+                  "x": 195,
+                  "y": 106.8,
+                  "scale": 1
+                },
+                {
+                  "id": "owned-drag/4",
+                  "x": 265,
+                  "y": 106.8,
+                  "scale": 1
+                },
+                {
+                  "id": "owned-drag/0",
+                  "x": 335,
+                  "y": 106.7423194074074,
+                  "scale": 1.0002163022222224
+                }
+              ],
+              "slots": [
+                {
+                  "x": 23,
+                  "y": 62,
+                  "width": 64,
+                  "height": 89.6
+                },
+                {
+                  "x": 93,
+                  "y": 62,
+                  "width": 64,
+                  "height": 89.6
+                },
+                {
+                  "x": 163,
+                  "y": 62,
+                  "width": 64,
+                  "height": 89.6
+                },
+                {
+                  "x": 233,
+                  "y": 62,
+                  "width": 64,
+                  "height": 89.6
+                },
+                {
+                  "x": 303,
+                  "y": 62,
+                  "width": 64,
+                  "height": 89.6
+                }
+              ]
+            },
+            {
+              "arts": [
+                {
+                  "id": "owned-drag/1",
+                  "x": 55,
+                  "y": 106.8,
+                  "scale": 1
+                },
+                {
+                  "id": "owned-drag/2",
+                  "x": 125,
+                  "y": 106.8,
+                  "scale": 1
+                },
+                {
+                  "id": "owned-drag/3",
+                  "x": 195,
+                  "y": 106.8,
+                  "scale": 1
+                },
+                {
+                  "id": "owned-drag/4",
+                  "x": 265,
+                  "y": 106.8,
+                  "scale": 1
+                },
+                {
+                  "id": "owned-drag/0",
+                  "x": 335,
+                  "y": 106.7994074074074,
+                  "scale": 1.0000022222222222
+                }
+              ],
+              "slots": [
+                {
+                  "x": 23,
+                  "y": 62,
+                  "width": 64,
+                  "height": 89.6
+                },
+                {
+                  "x": 93,
+                  "y": 62,
+                  "width": 64,
+                  "height": 89.6
+                },
+                {
+                  "x": 163,
+                  "y": 62,
+                  "width": 64,
+                  "height": 89.6
+                },
+                {
+                  "x": 233,
+                  "y": 62,
+                  "width": 64,
+                  "height": 89.6
+                },
+                {
+                  "x": 303,
+                  "y": 62,
+                  "width": 64,
+                  "height": 89.6
+                }
+              ]
+            },
+            {
+              "arts": [
+                {
+                  "id": "owned-drag/1",
+                  "x": 55,
+                  "y": 106.8,
+                  "scale": 1
+                },
+                {
+                  "id": "owned-drag/2",
+                  "x": 125,
+                  "y": 106.8,
+                  "scale": 1
+                },
+                {
+                  "id": "owned-drag/3",
+                  "x": 195,
+                  "y": 106.8,
+                  "scale": 1
+                },
+                {
+                  "id": "owned-drag/4",
+                  "x": 265,
+                  "y": 106.8,
+                  "scale": 1
+                },
+                {
+                  "id": "owned-drag/0",
+                  "x": 335,
+                  "y": 106.8,
+                  "scale": 1
+                }
+              ],
+              "slots": [
+                {
+                  "x": 23,
+                  "y": 62,
+                  "width": 64,
+                  "height": 89.6
+                },
+                {
+                  "x": 93,
+                  "y": 62,
+                  "width": 64,
+                  "height": 89.6
+                },
+                {
+                  "x": 163,
+                  "y": 62,
+                  "width": 64,
+                  "height": 89.6
+                },
+                {
+                  "x": 233,
+                  "y": 62,
+                  "width": 64,
+                  "height": 89.6
+                },
+                {
+                  "x": 303,
+                  "y": 62,
+                  "width": 64,
+                  "height": 89.6
+                }
+              ]
+            },
+            {
+              "arts": [
+                {
+                  "id": "owned-drag/1",
+                  "x": 55,
+                  "y": 106.8,
+                  "scale": 1
+                },
+                {
+                  "id": "owned-drag/2",
+                  "x": 125,
+                  "y": 106.8,
+                  "scale": 1
+                },
+                {
+                  "id": "owned-drag/3",
+                  "x": 195,
+                  "y": 106.8,
+                  "scale": 1
+                },
+                {
+                  "id": "owned-drag/4",
+                  "x": 265,
+                  "y": 106.8,
+                  "scale": 1
+                },
+                {
+                  "id": "owned-drag/0",
+                  "x": 335,
+                  "y": 106.8,
+                  "scale": 1
+                }
+              ],
+              "slots": [
+                {
+                  "x": 23,
+                  "y": 62,
+                  "width": 64,
+                  "height": 89.6
+                },
+                {
+                  "x": 93,
+                  "y": 62,
+                  "width": 64,
+                  "height": 89.6
+                },
+                {
+                  "x": 163,
+                  "y": 62,
+                  "width": 64,
+                  "height": 89.6
+                },
+                {
+                  "x": 233,
+                  "y": 62,
+                  "width": 64,
+                  "height": 89.6
+                },
+                {
+                  "x": 303,
+                  "y": 62,
+                  "width": 64,
+                  "height": 89.6
+                }
+              ]
+            },
+            {
+              "arts": [
+                {
+                  "id": "owned-drag/1",
+                  "x": 55,
+                  "y": 106.8,
+                  "scale": 1
+                },
+                {
+                  "id": "owned-drag/2",
+                  "x": 125,
+                  "y": 106.8,
+                  "scale": 1
+                },
+                {
+                  "id": "owned-drag/3",
+                  "x": 195,
+                  "y": 106.8,
+                  "scale": 1
+                },
+                {
+                  "id": "owned-drag/4",
+                  "x": 265,
+                  "y": 106.8,
+                  "scale": 1
+                },
+                {
+                  "id": "owned-drag/0",
+                  "x": 335,
+                  "y": 106.8,
+                  "scale": 1
+                }
+              ],
+              "slots": [
+                {
+                  "x": 23,
+                  "y": 62,
+                  "width": 64,
+                  "height": 89.6
+                },
+                {
+                  "x": 93,
+                  "y": 62,
+                  "width": 64,
+                  "height": 89.6
+                },
+                {
+                  "x": 163,
+                  "y": 62,
+                  "width": 64,
+                  "height": 89.6
+                },
+                {
+                  "x": 233,
+                  "y": 62,
+                  "width": 64,
+                  "height": 89.6
+                },
+                {
+                  "x": 303,
+                  "y": 62,
+                  "width": 64,
+                  "height": 89.6
+                }
+              ]
+            },
+            {
+              "arts": [
+                {
+                  "id": "owned-drag/1",
+                  "x": 55,
+                  "y": 106.8,
+                  "scale": 1
+                },
+                {
+                  "id": "owned-drag/2",
+                  "x": 125,
+                  "y": 106.8,
+                  "scale": 1
+                },
+                {
+                  "id": "owned-drag/3",
+                  "x": 195,
+                  "y": 106.8,
+                  "scale": 1
+                },
+                {
+                  "id": "owned-drag/4",
+                  "x": 265,
+                  "y": 106.8,
+                  "scale": 1
+                },
+                {
+                  "id": "owned-drag/0",
+                  "x": 335,
+                  "y": 106.8,
+                  "scale": 1
+                }
+              ],
+              "slots": [
+                {
+                  "x": 23,
+                  "y": 62,
+                  "width": 64,
+                  "height": 89.6
+                },
+                {
+                  "x": 93,
+                  "y": 62,
+                  "width": 64,
+                  "height": 89.6
+                },
+                {
+                  "x": 163,
+                  "y": 62,
+                  "width": 64,
+                  "height": 89.6
+                },
+                {
+                  "x": 233,
+                  "y": 62,
+                  "width": 64,
+                  "height": 89.6
+                },
+                {
+                  "x": 303,
+                  "y": 62,
+                  "width": 64,
+                  "height": 89.6
+                }
+              ]
+            }
+          ],
+          "status": "PASS"
+        },
+        {
+          "from": 4,
+          "to": 0,
+          "style": "fast",
+          "before": {
+            "seq": 4,
+            "ids": [
+              "owned-drag/1",
+              "owned-drag/2",
+              "owned-drag/3",
+              "owned-drag/4",
+              "owned-drag/0"
+            ],
+            "revision": 2
+          },
+          "held": {
+            "drag": true,
+            "saving": false,
+            "inputEnabled": false,
+            "hint": "松手放第 5 位 · 移出取消",
+            "slots": [
+              {
+                "x": 23,
+                "y": 62,
+                "width": 64,
+                "height": 89.6
+              },
+              {
+                "x": 93,
+                "y": 62,
+                "width": 64,
+                "height": 89.6
+              },
+              {
+                "x": 163,
+                "y": 62,
+                "width": 64,
+                "height": 89.6
+              },
+              {
+                "x": 233,
+                "y": 62,
+                "width": 64,
+                "height": 89.6
+              },
+              {
+                "x": 303,
+                "y": 62,
+                "width": 64,
+                "height": 89.6
+              }
+            ],
+            "arts": [
+              {
+                "id": "owned-drag/1",
+                "x": 55,
+                "y": 106.8,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 23,
+                  "y": 62.000003051757815,
+                  "width": 64,
+                  "height": 89.60000000000001
+                }
+              },
+              {
+                "id": "owned-drag/2",
+                "x": 125,
+                "y": 106.8,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 93,
+                  "y": 62.000003051757815,
+                  "width": 64,
+                  "height": 89.60000000000001
+                }
+              },
+              {
+                "id": "owned-drag/3",
+                "x": 195,
+                "y": 106.8,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 163,
+                  "y": 62.000003051757815,
+                  "width": 64,
+                  "height": 89.60000000000001
+                }
+              },
+              {
+                "id": "owned-drag/4",
+                "x": 265,
+                "y": 106.8,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 233,
+                  "y": 62.000003051757815,
+                  "width": 64,
+                  "height": 89.60000000000001
+                }
+              },
+              {
+                "id": "owned-drag/0",
+                "x": 335,
+                "y": 90.80000000000001,
+                "scale": 1.06,
+                "active": true,
+                "bounds": {
+                  "x": 301.0800018310547,
+                  "y": 43.312005615234376,
+                  "width": 67.83999633789062,
+                  "height": 94.97599487304689
+                }
+              }
+            ],
+            "surfaceTouchAction": "none",
+            "dispatch": [
+              [
+                {
+                  "type": "ReorderJokers",
+                  "ids": [
+                    "owned-drag/1",
+                    "owned-drag/2",
+                    "owned-drag/3",
+                    "owned-drag/4",
+                    "owned-drag/0"
+                  ]
+                },
+                3
+              ]
+            ]
+          },
+          "heldShot": "390x844-fast-held.png",
+          "mid": {
+            "drag": true,
+            "saving": false,
+            "inputEnabled": false,
+            "hint": "松手放第 1 位 · 移出取消",
+            "slots": [
+              {
+                "x": 23,
+                "y": 62,
+                "width": 64,
+                "height": 89.6
+              },
+              {
+                "x": 93,
+                "y": 62,
+                "width": 64,
+                "height": 89.6
+              },
+              {
+                "x": 163,
+                "y": 62,
+                "width": 64,
+                "height": 89.6
+              },
+              {
+                "x": 233,
+                "y": 62,
+                "width": 64,
+                "height": 89.6
+              },
+              {
+                "x": 303,
+                "y": 62,
+                "width": 64,
+                "height": 89.6
+              }
+            ],
+            "arts": [
+              {
+                "id": "owned-drag/1",
+                "x": 123.84549962434261,
+                "y": 106.8,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 91.84549713134766,
+                  "y": 62.000003051757815,
+                  "width": 64,
+                  "height": 89.60000000000001
+                }
+              },
+              {
+                "id": "owned-drag/2",
+                "x": 193.8454996243426,
+                "y": 106.8,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 161.8455047607422,
+                  "y": 62.000003051757815,
+                  "width": 64,
+                  "height": 89.60000000000001
+                }
+              },
+              {
+                "id": "owned-drag/3",
+                "x": 263.8454996243426,
+                "y": 106.8,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 231.84548950195312,
+                  "y": 62.000003051757815,
+                  "width": 64,
+                  "height": 89.60000000000001
+                }
+              },
+              {
+                "id": "owned-drag/4",
+                "x": 333.8454996243426,
+                "y": 106.8,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 301.8454895019531,
+                  "y": 62.000003051757815,
+                  "width": 64,
+                  "height": 89.60000000000001
+                }
+              },
+              {
+                "id": "owned-drag/0",
+                "x": 55,
+                "y": 90.80000000000001,
+                "scale": 1.06,
+                "active": true,
+                "bounds": {
+                  "x": 21.080001831054688,
+                  "y": 43.312005615234376,
+                  "width": 67.83999633789062,
+                  "height": 94.97599487304689
+                }
+              }
+            ],
+            "surfaceTouchAction": "none",
+            "dispatch": [
+              [
+                {
+                  "type": "ReorderJokers",
+                  "ids": [
+                    "owned-drag/1",
+                    "owned-drag/2",
+                    "owned-drag/3",
+                    "owned-drag/4",
+                    "owned-drag/0"
+                  ]
+                },
+                3
+              ]
+            ]
+          },
+          "midShot": "390x844-fast-mid.png",
+          "after": {
+            "seq": 5,
+            "ids": [
+              "owned-drag/0",
+              "owned-drag/1",
+              "owned-drag/2",
+              "owned-drag/3",
+              "owned-drag/4"
+            ],
+            "revision": 3
+          },
+          "dropped": {
+            "drag": false,
+            "saving": false,
+            "inputEnabled": true,
+            "hint": "顺序已保存",
+            "slots": [
+              {
+                "x": 23,
+                "y": 62,
+                "width": 64,
+                "height": 89.6
+              },
+              {
+                "x": 93,
+                "y": 62,
+                "width": 64,
+                "height": 89.6
+              },
+              {
+                "x": 163,
+                "y": 62,
+                "width": 64,
+                "height": 89.6
+              },
+              {
+                "x": 233,
+                "y": 62,
+                "width": 64,
+                "height": 89.6
+              },
+              {
+                "x": 303,
+                "y": 62,
+                "width": 64,
+                "height": 89.6
+              }
+            ],
+            "arts": [
+              {
+                "id": "owned-drag/0",
+                "x": 55,
+                "y": 106.8,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 23,
+                  "y": 62.000003051757815,
+                  "width": 64,
+                  "height": 89.60000000000001
+                }
+              },
+              {
+                "id": "owned-drag/1",
+                "x": 125,
+                "y": 106.8,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 93,
+                  "y": 62.000003051757815,
+                  "width": 64,
+                  "height": 89.60000000000001
+                }
+              },
+              {
+                "id": "owned-drag/2",
+                "x": 195,
+                "y": 106.8,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 163,
+                  "y": 62.000003051757815,
+                  "width": 64,
+                  "height": 89.60000000000001
+                }
+              },
+              {
+                "id": "owned-drag/3",
+                "x": 265,
+                "y": 106.8,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 233,
+                  "y": 62.000003051757815,
+                  "width": 64,
+                  "height": 89.60000000000001
+                }
+              },
+              {
+                "id": "owned-drag/4",
+                "x": 335,
+                "y": 106.8,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 303,
+                  "y": 62.000003051757815,
+                  "width": 64,
+                  "height": 89.60000000000001
+                }
+              }
+            ],
+            "surfaceTouchAction": "none",
+            "dispatch": [
+              [
+                {
+                  "type": "ReorderJokers",
+                  "ids": [
+                    "owned-drag/1",
+                    "owned-drag/2",
+                    "owned-drag/3",
+                    "owned-drag/4",
+                    "owned-drag/0"
+                  ]
+                },
+                3
+              ],
+              [
+                {
+                  "type": "ReorderJokers",
+                  "ids": [
+                    "owned-drag/0",
+                    "owned-drag/1",
+                    "owned-drag/2",
+                    "owned-drag/3",
+                    "owned-drag/4"
+                  ]
+                },
+                4
+              ]
+            ]
+          },
+          "dropShot": "390x844-fast-dropped.png",
+          "status": "PASS"
+        },
+        {
+          "from": 1,
+          "to": 3,
+          "style": "middle",
+          "before": {
+            "seq": 5,
+            "ids": [
+              "owned-drag/0",
+              "owned-drag/1",
+              "owned-drag/2",
+              "owned-drag/3",
+              "owned-drag/4"
+            ],
+            "revision": 3
+          },
+          "held": {
+            "drag": true,
+            "saving": false,
+            "inputEnabled": false,
+            "hint": "松手放第 2 位 · 移出取消",
+            "slots": [
+              {
+                "x": 23,
+                "y": 62,
+                "width": 64,
+                "height": 89.6
+              },
+              {
+                "x": 93,
+                "y": 62,
+                "width": 64,
+                "height": 89.6
+              },
+              {
+                "x": 163,
+                "y": 62,
+                "width": 64,
+                "height": 89.6
+              },
+              {
+                "x": 233,
+                "y": 62,
+                "width": 64,
+                "height": 89.6
+              },
+              {
+                "x": 303,
+                "y": 62,
+                "width": 64,
+                "height": 89.6
+              }
+            ],
+            "arts": [
+              {
+                "id": "owned-drag/0",
+                "x": 55,
+                "y": 106.8,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 23,
+                  "y": 62.000003051757815,
+                  "width": 64,
+                  "height": 89.60000000000001
+                }
+              },
+              {
+                "id": "owned-drag/1",
+                "x": 125,
+                "y": 90.80000000000001,
+                "scale": 1.06,
+                "active": true,
+                "bounds": {
+                  "x": 91.08000183105469,
+                  "y": 43.312005615234376,
+                  "width": 67.83999633789062,
+                  "height": 94.97599487304689
+                }
+              },
+              {
+                "id": "owned-drag/2",
+                "x": 195,
+                "y": 106.8,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 163,
+                  "y": 62.000003051757815,
+                  "width": 64,
+                  "height": 89.60000000000001
+                }
+              },
+              {
+                "id": "owned-drag/3",
+                "x": 265,
+                "y": 106.8,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 233,
+                  "y": 62.000003051757815,
+                  "width": 64,
+                  "height": 89.60000000000001
+                }
+              },
+              {
+                "id": "owned-drag/4",
+                "x": 335,
+                "y": 106.8,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 303,
+                  "y": 62.000003051757815,
+                  "width": 64,
+                  "height": 89.60000000000001
+                }
+              }
+            ],
+            "surfaceTouchAction": "none",
+            "dispatch": [
+              [
+                {
+                  "type": "ReorderJokers",
+                  "ids": [
+                    "owned-drag/1",
+                    "owned-drag/2",
+                    "owned-drag/3",
+                    "owned-drag/4",
+                    "owned-drag/0"
+                  ]
+                },
+                3
+              ],
+              [
+                {
+                  "type": "ReorderJokers",
+                  "ids": [
+                    "owned-drag/0",
+                    "owned-drag/1",
+                    "owned-drag/2",
+                    "owned-drag/3",
+                    "owned-drag/4"
+                  ]
+                },
+                4
+              ]
+            ]
+          },
+          "heldShot": "390x844-middle-held.png",
+          "mid": {
+            "drag": true,
+            "saving": false,
+            "inputEnabled": false,
+            "hint": "松手放第 4 位 · 移出取消",
+            "slots": [
+              {
+                "x": 23,
+                "y": 62,
+                "width": 64,
+                "height": 89.6
+              },
+              {
+                "x": 93,
+                "y": 62,
+                "width": 64,
+                "height": 89.6
+              },
+              {
+                "x": 163,
+                "y": 62,
+                "width": 64,
+                "height": 89.6
+              },
+              {
+                "x": 233,
+                "y": 62,
+                "width": 64,
+                "height": 89.6
+              },
+              {
+                "x": 303,
+                "y": 62,
+                "width": 64,
+                "height": 89.6
+              }
+            ],
+            "arts": [
+              {
+                "id": "owned-drag/0",
+                "x": 55,
+                "y": 106.8,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 23,
+                  "y": 62.000003051757815,
+                  "width": 64,
+                  "height": 89.60000000000001
+                }
+              },
+              {
+                "id": "owned-drag/1",
+                "x": 265,
+                "y": 90.80000000000001,
+                "scale": 1.06,
+                "active": true,
+                "bounds": {
+                  "x": 231.0800018310547,
+                  "y": 43.312005615234376,
+                  "width": 67.83999633789062,
+                  "height": 94.97599487304689
+                }
+              },
+              {
+                "id": "owned-drag/2",
+                "x": 126.0351690458302,
+                "y": 106.8,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 94.03517150878906,
+                  "y": 62.000003051757815,
+                  "width": 64,
+                  "height": 89.60000000000001
+                }
+              },
+              {
+                "id": "owned-drag/3",
+                "x": 196.0351690458302,
+                "y": 106.8,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 164.03517150878906,
+                  "y": 62.000003051757815,
+                  "width": 64,
+                  "height": 89.60000000000001
+                }
+              },
+              {
+                "id": "owned-drag/4",
+                "x": 335,
+                "y": 106.8,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 303,
+                  "y": 62.000003051757815,
+                  "width": 64,
+                  "height": 89.60000000000001
+                }
+              }
+            ],
+            "surfaceTouchAction": "none",
+            "dispatch": [
+              [
+                {
+                  "type": "ReorderJokers",
+                  "ids": [
+                    "owned-drag/1",
+                    "owned-drag/2",
+                    "owned-drag/3",
+                    "owned-drag/4",
+                    "owned-drag/0"
+                  ]
+                },
+                3
+              ],
+              [
+                {
+                  "type": "ReorderJokers",
+                  "ids": [
+                    "owned-drag/0",
+                    "owned-drag/1",
+                    "owned-drag/2",
+                    "owned-drag/3",
+                    "owned-drag/4"
+                  ]
+                },
+                4
+              ]
+            ]
+          },
+          "midShot": "390x844-middle-mid.png",
+          "after": {
+            "seq": 6,
+            "ids": [
+              "owned-drag/0",
+              "owned-drag/2",
+              "owned-drag/3",
+              "owned-drag/1",
+              "owned-drag/4"
+            ],
+            "revision": 4
+          },
+          "dropped": {
+            "drag": false,
+            "saving": false,
+            "inputEnabled": true,
+            "hint": "顺序已保存",
+            "slots": [
+              {
+                "x": 23,
+                "y": 62,
+                "width": 64,
+                "height": 89.6
+              },
+              {
+                "x": 93,
+                "y": 62,
+                "width": 64,
+                "height": 89.6
+              },
+              {
+                "x": 163,
+                "y": 62,
+                "width": 64,
+                "height": 89.6
+              },
+              {
+                "x": 233,
+                "y": 62,
+                "width": 64,
+                "height": 89.6
+              },
+              {
+                "x": 303,
+                "y": 62,
+                "width": 64,
+                "height": 89.6
+              }
+            ],
+            "arts": [
+              {
+                "id": "owned-drag/0",
+                "x": 55,
+                "y": 106.8,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 23,
+                  "y": 62.000003051757815,
+                  "width": 64,
+                  "height": 89.60000000000001
+                }
+              },
+              {
+                "id": "owned-drag/2",
+                "x": 125,
+                "y": 106.8,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 93,
+                  "y": 62.000003051757815,
+                  "width": 64,
+                  "height": 89.60000000000001
+                }
+              },
+              {
+                "id": "owned-drag/3",
+                "x": 195,
+                "y": 106.8,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 163,
+                  "y": 62.000003051757815,
+                  "width": 64,
+                  "height": 89.60000000000001
+                }
+              },
+              {
+                "id": "owned-drag/1",
+                "x": 265,
+                "y": 106.8,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 233,
+                  "y": 62.000003051757815,
+                  "width": 64,
+                  "height": 89.60000000000001
+                }
+              },
+              {
+                "id": "owned-drag/4",
+                "x": 335,
+                "y": 106.8,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 303,
+                  "y": 62.000003051757815,
+                  "width": 64,
+                  "height": 89.60000000000001
+                }
+              }
+            ],
+            "surfaceTouchAction": "none",
+            "dispatch": [
+              [
+                {
+                  "type": "ReorderJokers",
+                  "ids": [
+                    "owned-drag/1",
+                    "owned-drag/2",
+                    "owned-drag/3",
+                    "owned-drag/4",
+                    "owned-drag/0"
+                  ]
+                },
+                3
+              ],
+              [
+                {
+                  "type": "ReorderJokers",
+                  "ids": [
+                    "owned-drag/0",
+                    "owned-drag/1",
+                    "owned-drag/2",
+                    "owned-drag/3",
+                    "owned-drag/4"
+                  ]
+                },
+                4
+              ],
+              [
+                {
+                  "type": "ReorderJokers",
+                  "ids": [
+                    "owned-drag/0",
+                    "owned-drag/2",
+                    "owned-drag/3",
+                    "owned-drag/1",
+                    "owned-drag/4"
+                  ]
+                },
+                5
+              ]
+            ]
+          },
+          "dropShot": "390x844-middle-dropped.png",
+          "status": "PASS"
+        }
+      ],
+      "cancellations": [],
+      "outsideRail": {
+        "scrollBefore": {
+          "top": 0,
+          "height": 1288,
+          "client": 766,
+          "touchAction": "auto"
+        },
+        "scrollAfter": {
+          "top": 145,
+          "touchAction": "auto"
+        },
+        "scaleBefore": 1,
+        "scaleAfter": 1,
+        "nativePinchChanged": false,
+        "meta": "width=device-width, initial-scale=1.0, viewport-fit=cover",
+        "body": {
+          "overflow": "hidden",
+          "touchAction": "auto",
+          "canvasTouchAction": "none"
+        }
+      },
+      "initial": {
+        "seq": 3,
+        "ids": [
+          "owned-drag/0",
+          "owned-drag/1",
+          "owned-drag/2",
+          "owned-drag/3",
+          "owned-drag/4"
+        ],
+        "revision": 1
+      },
+      "initialVisual": {
+        "drag": false,
+        "saving": false,
+        "inputEnabled": true,
+        "hint": "老搭档 · 同点组合长倍率 · 长按条件",
+        "slots": [
+          {
+            "x": 23,
+            "y": 62,
+            "width": 64,
+            "height": 89.6
+          },
+          {
+            "x": 93,
+            "y": 62,
+            "width": 64,
+            "height": 89.6
+          },
+          {
+            "x": 163,
+            "y": 62,
+            "width": 64,
+            "height": 89.6
+          },
+          {
+            "x": 233,
+            "y": 62,
+            "width": 64,
+            "height": 89.6
+          },
+          {
+            "x": 303,
+            "y": 62,
+            "width": 64,
+            "height": 89.6
+          }
+        ],
+        "arts": [
+          {
+            "id": "owned-drag/0",
+            "x": 55,
+            "y": 106.8,
+            "scale": 1,
+            "active": true,
+            "bounds": {
+              "x": 23,
+              "y": 62.000003051757815,
+              "width": 64,
+              "height": 89.60000000000001
+            }
+          },
+          {
+            "id": "owned-drag/1",
+            "x": 125,
+            "y": 106.8,
+            "scale": 1,
+            "active": true,
+            "bounds": {
+              "x": 93,
+              "y": 62.000003051757815,
+              "width": 64,
+              "height": 89.60000000000001
+            }
+          },
+          {
+            "id": "owned-drag/2",
+            "x": 195,
+            "y": 106.8,
+            "scale": 1,
+            "active": true,
+            "bounds": {
+              "x": 163,
+              "y": 62.000003051757815,
+              "width": 64,
+              "height": 89.60000000000001
+            }
+          },
+          {
+            "id": "owned-drag/3",
+            "x": 265,
+            "y": 106.8,
+            "scale": 1,
+            "active": true,
+            "bounds": {
+              "x": 233,
+              "y": 62.000003051757815,
+              "width": 64,
+              "height": 89.60000000000001
+            }
+          },
+          {
+            "id": "owned-drag/4",
+            "x": 335,
+            "y": 106.8,
+            "scale": 1,
+            "active": true,
+            "bounds": {
+              "x": 303,
+              "y": 62.000003051757815,
+              "width": 64,
+              "height": 89.60000000000001
+            }
+          }
+        ],
+        "surfaceTouchAction": "none",
+        "dispatch": []
+      },
+      "idleShot": "390x844-idle.png",
+      "fastDelayed": {
+        "before": "Full saved snapshot in gzip",
+        "pending": {
+          "drag": true,
+          "saving": true,
+          "inputEnabled": false,
+          "hint": "正在保存顺序…",
+          "slots": [
+            {
+              "x": 23,
+              "y": 62,
+              "width": 64,
+              "height": 89.6
+            },
+            {
+              "x": 93,
+              "y": 62,
+              "width": 64,
+              "height": 89.6
+            },
+            {
+              "x": 163,
+              "y": 62,
+              "width": 64,
+              "height": 89.6
+            },
+            {
+              "x": 233,
+              "y": 62,
+              "width": 64,
+              "height": 89.6
+            },
+            {
+              "x": 303,
+              "y": 62,
+              "width": 64,
+              "height": 89.6
+            }
+          ],
+          "arts": [
+            {
+              "id": "owned-drag/0",
+              "x": 335,
+              "y": 90.8,
+              "scale": 1.06,
+              "active": true,
+              "bounds": {
+                "x": 301.0800018310547,
+                "y": 43.312005615234376,
+                "width": 67.83999633789062,
+                "height": 94.97599487304689
+              }
+            },
+            {
+              "id": "owned-drag/2",
+              "x": 125,
+              "y": 106.8,
+              "scale": 1,
+              "active": true,
+              "bounds": {
+                "x": 93,
+                "y": 62.000003051757815,
+                "width": 64,
+                "height": 89.60000000000001
+              }
+            },
+            {
+              "id": "owned-drag/3",
+              "x": 195,
+              "y": 106.8,
+              "scale": 1,
+              "active": true,
+              "bounds": {
+                "x": 163,
+                "y": 62.000003051757815,
+                "width": 64,
+                "height": 89.60000000000001
+              }
+            },
+            {
+              "id": "owned-drag/1",
+              "x": 265,
+              "y": 106.8,
+              "scale": 1,
+              "active": true,
+              "bounds": {
+                "x": 233,
+                "y": 62.000003051757815,
+                "width": 64,
+                "height": 89.60000000000001
+              }
+            },
+            {
+              "id": "owned-drag/4",
+              "x": 335,
+              "y": 106.8,
+              "scale": 1,
+              "active": true,
+              "bounds": {
+                "x": 303,
+                "y": 62.000003051757815,
+                "width": 64,
+                "height": 89.60000000000001
+              }
+            }
+          ],
+          "surfaceTouchAction": "none",
+          "dispatch": [
+            [
+              {
+                "type": "ReorderJokers",
+                "ids": [
+                  "owned-drag/1",
+                  "owned-drag/2",
+                  "owned-drag/3",
+                  "owned-drag/4",
+                  "owned-drag/0"
+                ]
+              },
+              3
+            ],
+            [
+              {
+                "type": "ReorderJokers",
+                "ids": [
+                  "owned-drag/0",
+                  "owned-drag/1",
+                  "owned-drag/2",
+                  "owned-drag/3",
+                  "owned-drag/4"
+                ]
+              },
+              4
+            ],
+            [
+              {
+                "type": "ReorderJokers",
+                "ids": [
+                  "owned-drag/0",
+                  "owned-drag/2",
+                  "owned-drag/3",
+                  "owned-drag/1",
+                  "owned-drag/4"
+                ]
+              },
+              5
+            ],
+            [
+              {
+                "type": "ReorderJokers",
+                "ids": [
+                  "owned-drag/2",
+                  "owned-drag/3",
+                  "owned-drag/1",
+                  "owned-drag/4",
+                  "owned-drag/0"
+                ]
+              },
+              6
+            ]
+          ]
+        },
+        "pendingShot": "390x844-fast-delay-saving.png",
+        "after": "Full saved snapshot in gzip",
+        "firstSavedFrames": [
+          {
+            "arts": [
+              {
+                "id": "owned-drag/2",
+                "x": 125,
+                "y": 106.8
+              },
+              {
+                "id": "owned-drag/3",
+                "x": 195,
+                "y": 106.8
+              },
+              {
+                "id": "owned-drag/1",
+                "x": 265,
+                "y": 106.8
+              },
+              {
+                "id": "owned-drag/4",
+                "x": 335,
+                "y": 106.8
+              },
+              {
+                "id": "owned-drag/0",
+                "x": 335,
+                "y": 90.8
+              }
+            ],
+            "slots": [
+              {
+                "x": 23,
+                "y": 62,
+                "width": 64,
+                "height": 89.6
+              },
+              {
+                "x": 93,
+                "y": 62,
+                "width": 64,
+                "height": 89.6
+              },
+              {
+                "x": 163,
+                "y": 62,
+                "width": 64,
+                "height": 89.6
+              },
+              {
+                "x": 233,
+                "y": 62,
+                "width": 64,
+                "height": 89.6
+              },
+              {
+                "x": 303,
+                "y": 62,
+                "width": 64,
+                "height": 89.6
+              }
+            ]
+          },
+          {
+            "arts": [
+              {
+                "id": "owned-drag/2",
+                "x": 109.50816,
+                "y": 106.8
+              },
+              {
+                "id": "owned-drag/3",
+                "x": 179.50816,
+                "y": 106.8
+              },
+              {
+                "id": "owned-drag/1",
+                "x": 249.50816,
+                "y": 106.8
+              },
+              {
+                "id": "owned-drag/4",
+                "x": 319.50816,
+                "y": 106.8
+              },
+              {
+                "id": "owned-drag/0",
+                "x": 335,
+                "y": 94.340992
+              }
+            ],
+            "slots": [
+              {
+                "x": 23,
+                "y": 62,
+                "width": 64,
+                "height": 89.6
+              },
+              {
+                "x": 93,
+                "y": 62,
+                "width": 64,
+                "height": 89.6
+              },
+              {
+                "x": 163,
+                "y": 62,
+                "width": 64,
+                "height": 89.6
+              },
+              {
+                "x": 233,
+                "y": 62,
+                "width": 64,
+                "height": 89.6
+              },
+              {
+                "x": 303,
+                "y": 62,
+                "width": 64,
+                "height": 89.6
+              }
+            ]
+          },
+          {
+            "arts": [
+              {
+                "id": "owned-drag/2",
+                "x": 97.48498074074075,
+                "y": 106.8
+              },
+              {
+                "id": "owned-drag/3",
+                "x": 167.48498074074075,
+                "y": 106.8
+              },
+              {
+                "id": "owned-drag/1",
+                "x": 237.48498074074075,
+                "y": 106.8
+              },
+              {
+                "id": "owned-drag/4",
+                "x": 307.48498074074075,
+                "y": 106.8
+              },
+              {
+                "id": "owned-drag/0",
+                "x": 335,
+                "y": 97.08914725925925
+              }
+            ],
+            "slots": [
+              {
+                "x": 23,
+                "y": 62,
+                "width": 64,
+                "height": 89.6
+              },
+              {
+                "x": 93,
+                "y": 62,
+                "width": 64,
+                "height": 89.6
+              },
+              {
+                "x": 163,
+                "y": 62,
+                "width": 64,
+                "height": 89.6
+              },
+              {
+                "x": 233,
+                "y": 62,
+                "width": 64,
+                "height": 89.6
+              },
+              {
+                "x": 303,
+                "y": 62,
+                "width": 64,
+                "height": 89.6
+              }
+            ]
+          },
+          {
+            "arts": [
+              {
+                "id": "owned-drag/2",
+                "x": 82.60592592592593,
+                "y": 106.8
+              },
+              {
+                "id": "owned-drag/3",
+                "x": 152.60592592592593,
+                "y": 106.8
+              },
+              {
+                "id": "owned-drag/1",
+                "x": 222.60592592592593,
+                "y": 106.8
+              },
+              {
+                "id": "owned-drag/4",
+                "x": 292.60592592592593,
+                "y": 106.8
+              },
+              {
+                "id": "owned-drag/0",
+                "x": 335,
+                "y": 100.49007407407407
+              }
+            ],
+            "slots": [
+              {
+                "x": 23,
+                "y": 62,
+                "width": 64,
+                "height": 89.6
+              },
+              {
+                "x": 93,
+                "y": 62,
+                "width": 64,
+                "height": 89.6
+              },
+              {
+                "x": 163,
+                "y": 62,
+                "width": 64,
+                "height": 89.6
+              },
+              {
+                "x": 233,
+                "y": 62,
+                "width": 64,
+                "height": 89.6
+              },
+              {
+                "x": 303,
+                "y": 62,
+                "width": 64,
+                "height": 89.6
+              }
+            ]
+          },
+          {
+            "arts": [
+              {
+                "id": "owned-drag/2",
+                "x": 73.35008,
+                "y": 106.8
+              },
+              {
+                "id": "owned-drag/3",
+                "x": 143.35008,
+                "y": 106.8
+              },
+              {
+                "id": "owned-drag/1",
+                "x": 213.35008,
+                "y": 106.8
+              },
+              {
+                "id": "owned-drag/4",
+                "x": 283.35008,
+                "y": 106.8
+              },
+              {
+                "id": "owned-drag/0",
+                "x": 335,
+                "y": 102.605696
+              }
+            ],
+            "slots": [
+              {
+                "x": 23,
+                "y": 62,
+                "width": 64,
+                "height": 89.6
+              },
+              {
+                "x": 93,
+                "y": 62,
+                "width": 64,
+                "height": 89.6
+              },
+              {
+                "x": 163,
+                "y": 62,
+                "width": 64,
+                "height": 89.6
+              },
+              {
+                "x": 233,
+                "y": 62,
+                "width": 64,
+                "height": 89.6
+              },
+              {
+                "x": 303,
+                "y": 62,
+                "width": 64,
+                "height": 89.6
+              }
+            ]
+          },
+          {
+            "arts": [
+              {
+                "id": "owned-drag/2",
+                "x": 65.22599407407407,
+                "y": 106.8
+              },
+              {
+                "id": "owned-drag/3",
+                "x": 135.22599407407407,
+                "y": 106.8
+              },
+              {
+                "id": "owned-drag/1",
+                "x": 205.22599407407407,
+                "y": 106.8
+              },
+              {
+                "id": "owned-drag/4",
+                "x": 275.22599407407404,
+                "y": 106.8
+              },
+              {
+                "id": "owned-drag/0",
+                "x": 335,
+                "y": 104.46262992592592
+              }
+            ],
+            "slots": [
+              {
+                "x": 23,
+                "y": 62,
+                "width": 64,
+                "height": 89.6
+              },
+              {
+                "x": 93,
+                "y": 62,
+                "width": 64,
+                "height": 89.6
+              },
+              {
+                "x": 163,
+                "y": 62,
+                "width": 64,
+                "height": 89.6
+              },
+              {
+                "x": 233,
+                "y": 62,
+                "width": 64,
+                "height": 89.6
+              },
+              {
+                "x": 303,
+                "y": 62,
+                "width": 64,
+                "height": 89.6
+              }
+            ]
+          },
+          {
+            "arts": [
+              {
+                "id": "owned-drag/2",
+                "x": 59.943099259259256,
+                "y": 106.8
+              },
+              {
+                "id": "owned-drag/3",
+                "x": 129.94309925925927,
+                "y": 106.8
+              },
+              {
+                "id": "owned-drag/1",
+                "x": 199.94309925925927,
+                "y": 106.8
+              },
+              {
+                "id": "owned-drag/4",
+                "x": 269.94309925925927,
+                "y": 106.8
+              },
+              {
+                "id": "owned-drag/0",
+                "x": 335,
+                "y": 105.67014874074074
+              }
+            ],
+            "slots": [
+              {
+                "x": 23,
+                "y": 62,
+                "width": 64,
+                "height": 89.6
+              },
+              {
+                "x": 93,
+                "y": 62,
+                "width": 64,
+                "height": 89.6
+              },
+              {
+                "x": 163,
+                "y": 62,
+                "width": 64,
+                "height": 89.6
+              },
+              {
+                "x": 233,
+                "y": 62,
+                "width": 64,
+                "height": 89.6
+              },
+              {
+                "x": 303,
+                "y": 62,
+                "width": 64,
+                "height": 89.6
+              }
+            ]
+          },
+          {
+            "arts": [
+              {
+                "id": "owned-drag/2",
+                "x": 56.76677925925925,
+                "y": 106.8
+              },
+              {
+                "id": "owned-drag/3",
+                "x": 126.76677925925925,
+                "y": 106.8
+              },
+              {
+                "id": "owned-drag/1",
+                "x": 196.76677925925924,
+                "y": 106.8
+              },
+              {
+                "id": "owned-drag/4",
+                "x": 266.76677925925924,
+                "y": 106.8
+              },
+              {
+                "id": "owned-drag/0",
+                "x": 335,
+                "y": 106.39616474074074
+              }
+            ],
+            "slots": [
+              {
+                "x": 23,
+                "y": 62,
+                "width": 64,
+                "height": 89.6
+              },
+              {
+                "x": 93,
+                "y": 62,
+                "width": 64,
+                "height": 89.6
+              },
+              {
+                "x": 163,
+                "y": 62,
+                "width": 64,
+                "height": 89.6
+              },
+              {
+                "x": 233,
+                "y": 62,
+                "width": 64,
+                "height": 89.6
+              },
+              {
+                "x": 303,
+                "y": 62,
+                "width": 64,
+                "height": 89.6
+              }
+            ]
+          },
+          {
+            "arts": [
+              {
+                "id": "owned-drag/2",
+                "x": 55.408240000000006,
+                "y": 106.8
+              },
+              {
+                "id": "owned-drag/3",
+                "x": 125.40824,
+                "y": 106.8
+              },
+              {
+                "id": "owned-drag/1",
+                "x": 195.40824,
+                "y": 106.8
+              },
+              {
+                "id": "owned-drag/4",
+                "x": 265.40824,
+                "y": 106.8
+              },
+              {
+                "id": "owned-drag/0",
+                "x": 335,
+                "y": 106.706688
+              }
+            ],
+            "slots": [
+              {
+                "x": 23,
+                "y": 62,
+                "width": 64,
+                "height": 89.6
+              },
+              {
+                "x": 93,
+                "y": 62,
+                "width": 64,
+                "height": 89.6
+              },
+              {
+                "x": 163,
+                "y": 62,
+                "width": 64,
+                "height": 89.6
+              },
+              {
+                "x": 233,
+                "y": 62,
+                "width": 64,
+                "height": 89.6
+              },
+              {
+                "x": 303,
+                "y": 62,
+                "width": 64,
+                "height": 89.6
+              }
+            ]
+          },
+          {
+            "arts": [
+              {
+                "id": "owned-drag/2",
+                "x": 55.02074074074075,
+                "y": 106.8
+              },
+              {
+                "id": "owned-drag/3",
+                "x": 125.02074074074075,
+                "y": 106.8
+              },
+              {
+                "id": "owned-drag/1",
+                "x": 195.02074074074073,
+                "y": 106.8
+              },
+              {
+                "id": "owned-drag/4",
+                "x": 265.02074074074073,
+                "y": 106.8
+              },
+              {
+                "id": "owned-drag/0",
+                "x": 335,
+                "y": 106.79525925925925
+              }
+            ],
+            "slots": [
+              {
+                "x": 23,
+                "y": 62,
+                "width": 64,
+                "height": 89.6
+              },
+              {
+                "x": 93,
+                "y": 62,
+                "width": 64,
+                "height": 89.6
+              },
+              {
+                "x": 163,
+                "y": 62,
+                "width": 64,
+                "height": 89.6
+              },
+              {
+                "x": 233,
+                "y": 62,
+                "width": 64,
+                "height": 89.6
+              },
+              {
+                "x": 303,
+                "y": 62,
+                "width": 64,
+                "height": 89.6
+              }
+            ]
+          },
+          {
+            "arts": [
+              {
+                "id": "owned-drag/2",
+                "x": 55,
+                "y": 106.8
+              },
+              {
+                "id": "owned-drag/3",
+                "x": 125,
+                "y": 106.8
+              },
+              {
+                "id": "owned-drag/1",
+                "x": 195,
+                "y": 106.8
+              },
+              {
+                "id": "owned-drag/4",
+                "x": 265,
+                "y": 106.8
+              },
+              {
+                "id": "owned-drag/0",
+                "x": 335,
+                "y": 106.8
+              }
+            ],
+            "slots": [
+              {
+                "x": 23,
+                "y": 62,
+                "width": 64,
+                "height": 89.6
+              },
+              {
+                "x": 93,
+                "y": 62,
+                "width": 64,
+                "height": 89.6
+              },
+              {
+                "x": 163,
+                "y": 62,
+                "width": 64,
+                "height": 89.6
+              },
+              {
+                "x": 233,
+                "y": 62,
+                "width": 64,
+                "height": 89.6
+              },
+              {
+                "x": 303,
+                "y": 62,
+                "width": 64,
+                "height": 89.6
+              }
+            ]
+          },
+          {
+            "arts": [
+              {
+                "id": "owned-drag/2",
+                "x": 55,
+                "y": 106.8
+              },
+              {
+                "id": "owned-drag/3",
+                "x": 125,
+                "y": 106.8
+              },
+              {
+                "id": "owned-drag/1",
+                "x": 195,
+                "y": 106.8
+              },
+              {
+                "id": "owned-drag/4",
+                "x": 265,
+                "y": 106.8
+              },
+              {
+                "id": "owned-drag/0",
+                "x": 335,
+                "y": 106.8
+              }
+            ],
+            "slots": [
+              {
+                "x": 23,
+                "y": 62,
+                "width": 64,
+                "height": 89.6
+              },
+              {
+                "x": 93,
+                "y": 62,
+                "width": 64,
+                "height": 89.6
+              },
+              {
+                "x": 163,
+                "y": 62,
+                "width": 64,
+                "height": 89.6
+              },
+              {
+                "x": 233,
+                "y": 62,
+                "width": 64,
+                "height": 89.6
+              },
+              {
+                "x": 303,
+                "y": 62,
+                "width": 64,
+                "height": 89.6
+              }
+            ]
+          },
+          {
+            "arts": [
+              {
+                "id": "owned-drag/2",
+                "x": 55,
+                "y": 106.8
+              },
+              {
+                "id": "owned-drag/3",
+                "x": 125,
+                "y": 106.8
+              },
+              {
+                "id": "owned-drag/1",
+                "x": 195,
+                "y": 106.8
+              },
+              {
+                "id": "owned-drag/4",
+                "x": 265,
+                "y": 106.8
+              },
+              {
+                "id": "owned-drag/0",
+                "x": 335,
+                "y": 106.8
+              }
+            ],
+            "slots": [
+              {
+                "x": 23,
+                "y": 62,
+                "width": 64,
+                "height": 89.6
+              },
+              {
+                "x": 93,
+                "y": 62,
+                "width": 64,
+                "height": 89.6
+              },
+              {
+                "x": 163,
+                "y": 62,
+                "width": 64,
+                "height": 89.6
+              },
+              {
+                "x": 233,
+                "y": 62,
+                "width": 64,
+                "height": 89.6
+              },
+              {
+                "x": 303,
+                "y": 62,
+                "width": 64,
+                "height": 89.6
+              }
+            ]
+          },
+          {
+            "arts": [
+              {
+                "id": "owned-drag/2",
+                "x": 55,
+                "y": 106.8
+              },
+              {
+                "id": "owned-drag/3",
+                "x": 125,
+                "y": 106.8
+              },
+              {
+                "id": "owned-drag/1",
+                "x": 195,
+                "y": 106.8
+              },
+              {
+                "id": "owned-drag/4",
+                "x": 265,
+                "y": 106.8
+              },
+              {
+                "id": "owned-drag/0",
+                "x": 335,
+                "y": 106.8
+              }
+            ],
+            "slots": [
+              {
+                "x": 23,
+                "y": 62,
+                "width": 64,
+                "height": 89.6
+              },
+              {
+                "x": 93,
+                "y": 62,
+                "width": 64,
+                "height": 89.6
+              },
+              {
+                "x": 163,
+                "y": 62,
+                "width": 64,
+                "height": 89.6
+              },
+              {
+                "x": 233,
+                "y": 62,
+                "width": 64,
+                "height": 89.6
+              },
+              {
+                "x": 303,
+                "y": 62,
+                "width": 64,
+                "height": 89.6
+              }
+            ]
+          },
+          {
+            "arts": [
+              {
+                "id": "owned-drag/2",
+                "x": 55,
+                "y": 106.8
+              },
+              {
+                "id": "owned-drag/3",
+                "x": 125,
+                "y": 106.8
+              },
+              {
+                "id": "owned-drag/1",
+                "x": 195,
+                "y": 106.8
+              },
+              {
+                "id": "owned-drag/4",
+                "x": 265,
+                "y": 106.8
+              },
+              {
+                "id": "owned-drag/0",
+                "x": 335,
+                "y": 106.8
+              }
+            ],
+            "slots": [
+              {
+                "x": 23,
+                "y": 62,
+                "width": 64,
+                "height": 89.6
+              },
+              {
+                "x": 93,
+                "y": 62,
+                "width": 64,
+                "height": 89.6
+              },
+              {
+                "x": 163,
+                "y": 62,
+                "width": 64,
+                "height": 89.6
+              },
+              {
+                "x": 233,
+                "y": 62,
+                "width": 64,
+                "height": 89.6
+              },
+              {
+                "x": 303,
+                "y": 62,
+                "width": 64,
+                "height": 89.6
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "status": "FAIL",
+  "error": "AssertionError [ERR_ASSERTION]: fast release plus delayed save cannot jump other cards back"
+}
