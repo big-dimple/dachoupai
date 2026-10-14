@@ -1181,11 +1181,11 @@ export class GameScene extends Phaser.Scene {
     const seq=this.run.commandSeq,choice=erxiangChoice(this.run,this.selectionPreview(),this.erxiangTargetId);
     const guide=heroSkillGuide(this.run,this.selectionPreview(),[...this.selectedIds],false,{erxiangTargetId:this.erxiangTargetId});
     const actions=[
-      ...choice.candidates.map(({card,points})=>({label:(this.erxiangTargetId===card.id?'已选 ':'')+rankLabel(card.rank)+SUIT_SYMBOL[card.suit]+' · '+points+'点改加倍率',primary:this.erxiangTargetId===card.id,disabled:!this.ready,run:()=>{if(!this.ready||this.run.commandSeq!==seq||!erxiangChoice(this.run,this.selectionPreview()).candidates.some(c=>c.card.id===card.id))return;this.erxiangTargetId=card.id;this.dialog.close();this.refreshSelection();}})),
+      ...choice.candidates.map(({card,label,detail})=>({label:(this.erxiangTargetId===card.id?'已选 ':'')+label,detail,primary:this.erxiangTargetId===card.id,disabled:!this.ready,run:()=>{if(!this.ready||this.run.commandSeq!==seq||!erxiangChoice(this.run,this.selectionPreview()).candidates.some(c=>c.card.id===card.id))return;this.erxiangTargetId=card.id;this.dialog.close();this.refreshSelection();}})),
       ...(this.erxiangTargetId?[{label:'取消本手交棒',run:()=>{this.erxiangTargetId=null;this.dialog.close();this.refreshSelection();}}]:[]),
       {label:'上一手详情',disabled:!this.run.lastTrace,run:()=>this.inspectLastTrace()},
     ];
-    const dialog=this.dialog.open('二响 · 交棒',characterForRun(this.run).passiveDescription,[],{guideSteps:heroOperationSteps(this.run,guide,!!this.erxiangTargetId),summaryBody:guide.step,effectBody:choice.sentence+'\n'+guide.risk,collapseRules:true,rulesLabel:'交棒细则',closeLabel:'返回选牌',choices:actions.filter(a=>a.label!=='上一手详情'),secondaryActions:actions.filter(a=>a.label==='上一手详情')});mountHeroSkillGuide(dialog);
+    const dialog=this.dialog.open('二响 · 交棒',characterForRun(this.run).passiveDescription,[],{guideSteps:heroOperationSteps(this.run,guide,!!this.erxiangTargetId),summaryBody:guide.step,effectBody:choice.sentence+'\n'+guide.risk+(choice.candidates.length?'\n仅改首次普通点数；增强、版次和额外计分仍按各自规则生效。':''),collapseRules:true,rulesLabel:'交棒细则',closeLabel:'返回选牌',choices:actions.filter(a=>a.label!=='上一手详情'),secondaryActions:actions.filter(a=>a.label==='上一手详情')});mountHeroSkillGuide(dialog);
   }
   private inspectHeroExplanation():void {
     const guide=heroSkillGuide(this.run,this.selectionPreview(),[...this.selectedIds],this.assistProfile&&assistCandidates(this.assistInput(),r2AssistAvailability(this.run).available).length>0,{erxiangTargetId:this.erxiangTargetId,xiemuBurn:this.xiemuBurn,azaoRelease:this.azaoRelease,assistCount:this.assistIds.length});
