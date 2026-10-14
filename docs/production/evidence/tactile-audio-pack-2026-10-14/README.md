@@ -37,6 +37,8 @@
 
 [source audit](sources-audit.json)对23原始录音/220,438B全部逐件核SHA256、大小与既有CC0标注：22件Kenney Casino Audio/Impact Sounds，加原cloth2。官方[Casino Audio](https://kenney.nl/assets/casino-audio)、[Impact Sounds](https://kenney.nl/assets/impact-sounds)页面本次实读均明确CC0；固定镜像声明与RPG副本[cloth2=miss及CC0声明](https://github.com/jarlah/dungeon-haskell/blob/master/assets/CREDITS.md)本次实际取得200响应、保正文哈希及必要许可摘录。保全部现有 sources.json / License.txt / Inkwave MIT通知；没有新下载、购买、收费API或新BGM。
 
+录音里沿用的BGM另受 **Pixabay Content License，非CC0**：Franz Schubert《Serenade / Ständchen》，录音 Jérôme Chauvel / Abydos Music；[原曲](https://pixabay.com/music/solo-piano-serenade-schubert-216755/)、[许可摘要](https://pixabay.com/service/license-summary/)、[原登记](../../../../public/assets/audio/p06/recording.json)。这批只作短游戏音效事件组合比较，不提供单独原曲或音乐素材包；本次实读许可摘要允许创作性改编，禁止无创作改动的独立分发。BGM运行文件哈希保持原登记；技术复用不等于用户音乐/听感签收。
+
 参考Inkwave已有[固定版本/MIT及实际适配记录](../../../../third-party/inkwave/README.md)已核，原minGap/voice cap、75ms配对和body/air/tail结构已有复用，不重复导入。当前参考仓库公开查询404，试玩HTML可达但这批未签完整参考站试玩或听感；不把代码MIT推及所有媒体权利，不下载未经确认音频。
 
 ## 实际验证与限制
