@@ -119,8 +119,8 @@ export class IntermissionScene extends Phaser.Scene {
     this.stopCelebration();v.clear();this.paintSourceArt=undefined;this.sourceArtLayer=undefined;v.paperBackground();
     const identity=stageIdentity(stage.index,run.stage!.boss,run.tourMode,run.difficulty,run)!;
     v.text(p.x,p.top,(run.tourMode==='endless'?'无尽 · ':'')+stage.name+' · '+character.name,14,identity.isBoss?PAPER_CSS.red:PAPER_CSS.jade,p.w-116).setName('stage-identity/result');
-    const resultTier=settlementFacts(run,this.result.cleared,!!skipped).tier;
-    const title=capped?'巡演，暂歇于此':skipped?'换一场，再登台':won?(run.mode==='tutorial'?'教学巡演，谢幕！':run.mode==='challenge'?'挑战完成，谢幕！':resultTier===3?'亿分落定，满堂喝彩！':resultTier===2?'千万喝彩，八章谢幕！':'八章好戏，满堂喝彩！'):this.result.cleared?(identity.isBoss?'压轴过关 · '+identity.title:outcome.title):'此番落幕，再登台';
+    const resultFacts=settlementFacts(run,this.result.cleared,!!skipped),resultTier=resultFacts.tier;
+    const title=capped?'巡演，暂歇于此':skipped?'换一场，再登台':won?(run.mode==='tutorial'?'教学巡演，谢幕！':run.mode==='challenge'?'挑战完成，谢幕！':resultTier===3?'亿分落定，满堂喝彩！':resultTier===2?resultFacts.tag+'，八章谢幕！':'八章好戏，满堂喝彩！'):this.result.cleared?(identity.isBoss?'压轴过关 · '+identity.title:outcome.title):'此番落幕，再登台';
     v.text(p.x,p.top+(p.short?23:p.portrait?52:34),title,p.short||p.portrait&&identity.isBoss?22:p.portrait?26:34,identity.isBoss&&this.result.cleared?PAPER_CSS.red:PAPER_CSS.ink,p.w).setName('result/title').setFontFamily('Georgia, "Noto Serif SC", SimSun, serif').setFontStyle('bold');
     this.drawResultHero(p.score,!!skipped,lost,animateIn,p.compactNext);
     const trace=run.lastTrace;
