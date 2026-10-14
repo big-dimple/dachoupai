@@ -63,3 +63,22 @@ export function supportSettlementReady(){
  const ids=['spades-13','hearts-13','clubs-13','spades-9','hearts-9'];state.handOrder=[...ids,...state.deckInstances.map(c=>c.id).filter(id=>!ids.includes(id)).slice(0,state.handOrder.length-ids.length)];state.drawPile=state.deckInstances.map(c=>c.id).filter(id=>!state.handOrder.includes(id));
  return {state,action:{type:'PlayHand' as const,selectedIds:ids}};
 }
+
+/** Current cap identity, deliberately controlled inventory/levels; not natural reachability. */
+export function climaxSettlementReady(kind:'ordinary'|'million'|'billion'|'long'){
+ if(kind==='long')return settlementReady('long'); // Existing scorer-produced scientific-format boundary only.
+ const fixture=settlementReady(kind,'current');
+ if(kind==='million')fixture.state.handLevels.straight=4;
+ if(kind==='billion')fixture.state.jokers[3].growth.coefficient={n:'100',d:'1'};
+ return fixture;
+}
+
+/** Cold-result art boundary matching the reported a10 family; not the user's unseen save. */
+export function backstageSettlementReady(){
+ let state=createRun({seed:'controlled/backstage-cold-result',runId:'controlled/backstage-cold-result',characterId:'laohuan',rulesVersion:'r2',r2Identity:newRunIdentity('laohuan','group'),openingRoute:'group',modeConfig:{mode:'standard',difficulty:0,challengeId:null,programsEnabled:false}});
+ state=energySend(state,{type:'LeaveShop'});state.jokers=[r2CreateJoker('a10','controlled/backstage-source',8,'polychrome',state)];state.handLevels['high-card']=30;
+ state=energySend(state,{type:'EnterStage'});
+ const ids=['spades-8','spades-11','hearts-12','clubs-13','diamonds-4','clubs-3','hearts-2','diamonds-9'];
+ state.handOrder=ids;state.drawPile=state.deckInstances.map(c=>c.id).filter(id=>!ids.includes(id));
+ return {state,action:{type:'PlayHand' as const,selectedIds:[ids[0]]}};
+}

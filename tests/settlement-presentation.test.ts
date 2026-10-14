@@ -1,6 +1,7 @@
 import {it,expect} from 'vitest';
 import {settlementFacts,settlementPlan} from '../src/game/SettlementPresentation';
-import {settlementReady,repeatedSettlementReady,retriggerSettlementReady,growthSettlementReady,dualRouteSettlementReady,supportSettlementReady} from '../harness/fixtures/settlement';
+import {settlementReady,climaxSettlementReady,repeatedSettlementReady,retriggerSettlementReady,growthSettlementReady,dualRouteSettlementReady,supportSettlementReady} from '../harness/fixtures/settlement';
+import {savedSkillName,settlementBeat} from '../src/game/SettlementHighlights';
 import {energySend} from '../harness/fixtures/hero-climax';
 import {heatText} from '../src/game/scoreText';
 import {makeCheckpoint,readCheckpoint} from '../src/application/checkpoint';
@@ -59,7 +60,7 @@ it('a zero-change character event is not highlighted just because its avatar exi
 it('current bounded save shows its real cap rather than legacy uncapped seniority',()=>{
  const fixture=settlementReady('billion','current'),run=energySend(fixture.state,fixture.action),facts=settlementFacts(run,true);
  expect(readCheckpoint(makeCheckpoint(run,[])).ok).toBe(true);
- expect(facts.routeSummary).toBe('过关加成 · ×4');expect(facts.tier).toBe(1);
+ expect(facts.routeSummary).toBe('过关加成 · ×4');expect(facts.tier).toBe(2);
  expect(BigInt(run.lastTrace!.finalScore)).toBeLessThan(10000000n);
 });
 it('an actual e11 1.3 reading belongs to the source while Amo has no triggered ability',()=>{
@@ -70,4 +71,24 @@ it.each([{x:193,y:102,width:980,height:422},{x:12,y:116,width:366,height:452},{x
  const p=settlementPlan(b,b.height<200);
  for(const box of [p.hero,p.score,p.source]){expect(box.x).toBeGreaterThanOrEqual(b.x);expect(box.y).toBeGreaterThanOrEqual(b.y);expect(box.x+box.width).toBeLessThanOrEqual(b.x+b.width);expect(box.y+box.height).toBeLessThanOrEqual(b.y+b.height);expect(box.height).toBeGreaterThan(0);}
  expect(p.desktop||p.short?p.hero.x+p.hero.width<p.score.x:p.score.y+p.score.height<p.hero.y).toBe(true);
+});
+it('current million and billion focus the actual strongest local source, while the automatic cap stays separate',()=>{
+ for(const [kind,tier] of [['million',2],['billion',3]] as const){
+  const f=climaxSettlementReady(kind),run=energySend(f.state,f.action),before=structuredClone(run),facts=settlementFacts(run,true);
+  expect(readCheckpoint(makeCheckpoint(run,[])).ok).toBe(true);expect(facts.tier).toBe(tier);expect(facts.heroSkill).toBe('燃金');expect(facts.routeSummary).toBe('过关加成 · ×4');
+  if(kind==='billion'){expect(facts.card?.id).toBe('a06');expect(facts.cardCopy).toBe('×100');expect(facts.trace?.finalScore).toBe('458449875');}
+  expect(run).toEqual(before);
+ }
+});
+it('a portrait, unused ability or non-scoring character reward cannot supply a skill caption',()=>{
+ const run=settle('billion'),trace=run.lastTrace!,reward=trace.events.find(e=>e.sourceType==='character'&&e.phase==='onStageClear')!;
+ expect(savedSkillName(run,trace,reward)).toBeUndefined();expect(settlementFacts(settle('ordinary'),true).heroSkill).toBeUndefined();
+ expect(settlementFacts({...run,phase:'await-input'},true).heroSkill).toBeUndefined();
+});
+it('the strongest landing holds the exact receipt inside its fitted size and finishes within one real second',()=>{
+ expect(settlementBeat(0,3)).toMatchObject({phase:'charge',scale:.82});
+ expect(settlementBeat(360,3)).toMatchObject({phase:'applause',scale:1});
+ expect(settlementBeat(780,3).phase).toBe('release');expect(settlementBeat(1000,3)).toMatchObject({phase:'settled',scale:1,alpha:0});
+ for(let t=0;t<=1100;t+=10)for(let tier=0;tier<=3;tier++)expect(settlementBeat(t,tier).scale).toBeLessThanOrEqual(1);
+ expect(settlementBeat(0,3,true)).toEqual(settlementBeat(0,0));
 });
