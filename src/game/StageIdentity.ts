@@ -1,5 +1,6 @@
 import {SUIT_SYMBOL,type Suit} from '../cards/types';
-import {R2_BOSSES,r2StageSpec,type R2BossPlan,type R2TourMode} from '../domain/r2Chapter';
+import {getR2Stage} from '../domain/r2Run';
+import {R2_BOSSES,type R2BossPlan,type R2TourMode} from '../domain/r2Chapter';
 
 const suitNames:Record<Suit,string>={spades:'黑桃',hearts:'红桃',clubs:'梅花',diamonds:'方片'};
 /** Text and glyph together keep the locked parameter identifiable on both renderers. */
@@ -29,8 +30,8 @@ export function bossScope(boss:R2BossPlan):string {
   case 'B16':return '稀有大丑牌计分与版次停用';
  }
 }
-export function stageIdentity(index:number,boss:R2BossPlan|null,tourMode:R2TourMode='normal',difficulty=0){
- const spec=r2StageSpec(index,tourMode,difficulty);if(!spec)return;
+export function stageIdentity(index:number,boss:R2BossPlan|null,tourMode:R2TourMode='normal',difficulty=0,identity:{contentVersion?:unknown;contentHash?:unknown}={}){
+ const spec=getR2Stage(index,tourMode,difficulty,identity);if(!spec)return;
  const isBoss=index%3===2&&!!boss;
  return {stageName:spec.name,title:isBoss?bossIdentity(boss):['暖场','正场','压轴'][index%3],scope:isBoss?bossScope(boss):'按当前牌型与来源正常计分',isBoss};
 }

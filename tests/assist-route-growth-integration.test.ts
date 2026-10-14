@@ -1,3 +1,5 @@
+import {isR2BoundedClear} from '../src/domain/r2GroupUpgrade';
+import {r2RouteGrowthTrace} from '../src/domain/r2RouteGrowth';
 import {describe,expect,it} from 'vitest';
 import {createRun,applyCommand,type R2RunState,type Action} from '../src/domain/run';
 import {assertR2Invariants,r2CreateJoker,R2_RULESETS,r2ScoreContext} from '../src/domain/r2Run';
@@ -33,7 +35,7 @@ function check(s:R2RunState,ids=main){
   if(!ranked.random)expect(trace.finalScore).toBe(option.range.minimum);
   if(isR2RouteGrowth(s)){
    expect(trace.routeGrowth!.before).toEqual(input.routeGrowth);
-   expect(Object.keys(trace.routeGrowth!.factors)).toEqual(r2RouteFamilies(trace.handType));
+   expect(trace.routeGrowth!.factors).toEqual(r2RouteGrowthTrace(input.routeGrowth!,trace.handType,isR2BoundedClear(s)).factors);
    expect(actual.stage!.routeGrowth!.eligible).toEqual(r2RouteFamilies(trace.handType));
    const factors=trace.events.flatMap((e,i)=>e.operation==='route-factor'?[i]:[]),amo=trace.events.findIndex(e=>e.sourceDefinitionId==='amo');
    if(amo>=0)expect(factors.every(i=>i<amo)).toBe(true);

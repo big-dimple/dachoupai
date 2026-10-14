@@ -1,4 +1,4 @@
-import {R2_ROUTE_FAMILIES,r2RouteFamilies,r2RouteGrowthTrace,r2RouteSnapshot,type R2RouteHistory} from '../domain/r2RouteGrowth';
+import {R2_ROUTE_FAMILIES,r2RouteGrowthTrace,r2RouteSnapshot,type R2RouteHistory} from '../domain/r2RouteGrowth';
 import {R2_ROUTE_HAND_TYPES} from '../domain/r2RouteGrowth';
 import type {R2RunState} from '../domain/r2Run';
 import type {ScoreTrace} from '../domain/scoreR2';
@@ -8,12 +8,12 @@ import {R2_BASE_SCORES,r2ScoringDisabledJokerIds} from '../domain/scoreR2';
 import type {R2JokerDefinition} from '../content/r2Schema';
 
 /** C2-only closure. A clear changes the run ledger, never the hand's source snapshot. */
-export function assertRouteGrowthTrace(t:ScoreTrace,history:R2RouteHistory,stage:NonNullable<R2RunState['stage']>,runId:string,successful:boolean,definitions:readonly R2JokerDefinition[],activeMultTiming=false):void {
+export function assertRouteGrowthTrace(t:ScoreTrace,history:R2RouteHistory,stage:NonNullable<R2RunState['stage']>,runId:string,successful:boolean,definitions:readonly R2JokerDefinition[],activeMultTiming=false,boundedClear=false):void {
   const fail=():never=>{throw Error('invalid-save-route-growth-trace');};
   const expected=r2RouteSnapshot(history),eligible=stage.routeGrowth!.eligible;
   if(successful){expected.clears--;for(const f of eligible)expected[f]--;}
-  if(stableHash(t.routeGrowth)!==stableHash(r2RouteGrowthTrace(expected,t.handType)))fail();
-  const families=r2RouteFamilies(t.handType),route=t.events.filter(e=>e.sourceDefinitionId==='route-growth');
+  if(stableHash(t.routeGrowth)!==stableHash(r2RouteGrowthTrace(expected,t.handType,boundedClear)))fail();
+  const families=R2_ROUTE_FAMILIES.filter(f=>t.routeGrowth!.factors[f]!==undefined),route=t.events.filter(e=>e.sourceDefinitionId==='route-growth');
   const reads=route.filter(e=>e.operation==='route-factor'),clears=route.filter(e=>e.operation==='route-clear'),awards=route.filter(e=>e.operation==='route-clear-family');
   if(reads.length!==families.length||clears.length!==(successful?1:0)||awards.length!==(successful?eligible.length:0)||route.length!==reads.length+clears.length+awards.length)fail();
   const final=t.events.findIndex(e=>e.phase==='finalScore'),lastJoker=t.events.reduce((last,e,i)=>e.phase==='jokerScore'?i:last,-1);

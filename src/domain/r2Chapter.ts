@@ -13,21 +13,23 @@ export const R2_ENDLESS_CONTRACT=Object.freeze({
   stageMultipliers:Object.freeze([Object.freeze({n:'1',d:'1'}),Object.freeze({n:'3',d:'2'}),Object.freeze({n:'2',d:'1'})] as const),
   rounding:'ceil-final-target',integerDigits:MAX_INTEGER_DIGITS,bossPool:'B01-B16',
 } as const);
+export const R2_BOUNDED_TARGETS=Object.freeze([400,900,1800,3600,6000,9000,14000,20475]);
+export const R2_BOUNDED_TARGET_CONTRACT=Object.freeze({targets:R2_BOUNDED_TARGETS,multiplier:{n:'11',d:'10'},stageMultipliers:R2_ENDLESS_CONTRACT.stageMultipliers,rounding:'ceil-final-target',difficulty:'existing',boss14:'locked-initial-plus-ceil-initial-div20-per-discard'});
 const chapterMaximum=(tourMode:R2TourMode):number|undefined=>tourMode==='normal'?R2_TARGETS.length:tourMode==='endless'?R2_ENDLESS_MAX_CHAPTER:undefined;
 export interface R2StageSpec {index:number;name:string;intro:string;targetHeat:string}
 
 /** Difficulty and explicit endless lookup share one final ceiling; current runs still default to D0. */
-export function r2StageSpec(index:number,tourMode:R2TourMode='normal',difficulty:number=0):R2StageSpec|undefined {
+export function r2StageSpec(index:number,tourMode:R2TourMode='normal',difficulty:number=0,boundedClear=false):R2StageSpec|undefined {
   const maximum=chapterMaximum(tourMode),difficultyMultiplier=r2DifficultyTargetMultiplier(difficulty);
   if(maximum===undefined||!difficultyMultiplier||!Number.isSafeInteger(index)||index<0||index>=maximum*3)return undefined;
-  const chapter=Math.floor(index/3)+1,multiplier=R2_ENDLESS_CONTRACT.stageMultipliers[index%3];
+  const chapter=Math.floor(index/3)+1,multiplier=R2_ENDLESS_CONTRACT.stageMultipliers[index%3],targets=boundedClear?R2_BOUNDED_TARGETS:R2_TARGETS,growth=boundedClear?R2_BOUNDED_TARGET_CONTRACT.multiplier:R2_ENDLESS_CONTRACT.multiplier;
   let numerator:bigint,denominator:bigint;
-  if(chapter<=R2_TARGETS.length){numerator=BigInt(R2_TARGETS[chapter-1]);denominator=1n;}
+  if(chapter<=R2_TARGETS.length){numerator=BigInt(targets[chapter-1]);denominator=1n;}
   else {
     const exponent=BigInt(chapter-R2_TARGETS.length);
     // Intermediate integers exceed Rational's input limit even when their quotient fits the score service.
-    numerator=BigInt(R2_ENDLESS_CONTRACT.baseHeat)*(BigInt(R2_ENDLESS_CONTRACT.multiplier.n)**exponent);
-    denominator=BigInt(R2_ENDLESS_CONTRACT.multiplier.d)**exponent;
+    numerator=BigInt(targets[targets.length-1])*(BigInt(growth.n)**exponent);
+    denominator=BigInt(growth.d)**exponent;
   }
   numerator*=BigInt(multiplier.n)*BigInt(difficultyMultiplier.n);
   denominator*=BigInt(multiplier.d)*BigInt(difficultyMultiplier.d);

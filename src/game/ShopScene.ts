@@ -141,7 +141,7 @@ export class ShopScene extends Phaser.Scene {
     requestJokerArt(this,[...this.run.jokers.map(j=>j.definitionId),...this.run.shop!.offers.map(o=>o.definitionId)],()=>this.refreshJokerPictures());
     const selectedIndex=this.shelfOffers().findIndex(offer=>offer.offerId===this.selectedOfferId);if(selectedIndex>=0)this.shelfPage=Math.floor(selectedIndex/this.pageSize);
     this.shelfPage=Math.min(this.shelfPage,Math.max(0,Math.ceil(this.shelfOffers().length/this.pageSize)-1));
-    const v=this.view,p=this.geometry(),stage=getR2Stage(this.run.stageIndex,this.run.tourMode,this.run.difficulty)!;this.hideHoverPicture();this.ownedInput?.setBounds(undefined);this.ownedArts.clear();this.ownedHint=undefined;v.clear();this.starterMarkers=[];v.paperBackground();this.offerArts=[];this.artTargets.clear();this.jokerArtTargets.clear();
+    const v=this.view,p=this.geometry(),stage=getR2Stage(this.run.stageIndex,this.run.tourMode,this.run.difficulty,this.run)!;this.hideHoverPicture();this.ownedInput?.setBounds(undefined);this.ownedArts.clear();this.ownedHint=undefined;v.clear();this.starterMarkers=[];v.paperBackground();this.offerArts=[];this.artTargets.clear();this.jokerArtTargets.clear();
     this.game.canvas.setAttribute('aria-label',getCharacter(this.run.characterId).name+'的商店，金币'+this.run.gold+'。'+this.run.shop!.offers.map(o=>{const g=shopOfferGuidance(this.run,o);return this.jokerDefinition(o.definitionId).name+'，'+(g.stars?'推荐指数'+g.stars+'星，共5星':g.label)+'，'+g.reason;}).join('。'));
     this.pcOfferBoxes.clear();if(p.pc){this.renderPC(p);return;}
     const purse={x:p.x+p.w-(this.view.layout.width<=700?44:64)-124,y:p.top-1,width:116,height:34},purseArt=this.add.graphics();
@@ -270,7 +270,7 @@ export class ShopScene extends Phaser.Scene {
     }
   }
   private renderPC(p:ReturnType<typeof shopLayout>):void {
-    const pc=p.pc!;const v=this.view,stage=getR2Stage(this.run.stageIndex,this.run.tourMode,this.run.difficulty)!;
+    const pc=p.pc!;const v=this.view,stage=getR2Stage(this.run.stageIndex,this.run.tourMode,this.run.difficulty,this.run)!;
     drawShopArt(this,v,p);
     v.text(p.x+16,p.top+16,getCharacter(this.run.characterId).name+(this.run.tourMode==='endless'?' · 无尽筹备':' · 筹备'),this.run.tourMode==='endless'?20:24,'#26313A',pc.left.width-32).setFontStyle('bold').setName('shop/title');
     v.text(p.x+16,p.top+58,stage.name,16,'#3F606B',pc.left.width-32);
@@ -745,12 +745,12 @@ export class ShopScene extends Phaser.Scene {
   }
   private inspectChapter():void {
     const s=this.run,seq=s.commandSeq,index=s.stageIndex,start=Math.floor(index/3)*3,normal=SKIP_ITEM_LABELS[s.chapterSkipConsumable];
-    const stages=[0,1,2].map(i=>{const stage=getR2Stage(start+i,s.tourMode,s.difficulty)!;return stage.name+' · 目标 '+heatText(stage.targetHeat);}).join('\n');
+    const stages=[0,1,2].map(i=>{const stage=getR2Stage(start+i,s.tourMode,s.difficulty,s)!;return stage.name+' · 目标 '+heatText(stage.targetHeat);}).join('\n');
     const challenge=R2_MODE_CATALOG.challenges.find(row=>row.id===s.challengeId),ban=s.chapterDisabledJokerId?`\n本章封角：${this.jokerDefinition(s.chapterDisabledJokerId).name}。计分和版次暂停，静态与经济照常。`:'';
     const body=(challenge?challenge.name+'：'+challenge.description+'\n\n':'')+stages+`\n\n压轴 ${s.boss.definitionId} · `+r2BossText(s.boss)+ban+'\n\n'+programStatus(s)+`\n\n暖场跳过：下一次买牌减2金，最低1金。现有 ${s.purchaseCoupons} 张券。\n正场跳过：${normal}；库存满时改为1金。\n跳过不获得过关奖励或利息，不触发过关效果；压轴不可跳过。`;
     this.dialog.open(s.tourMode==='endless'?'无尽 · 本章节目':'本章节目',body,[...(s.program?[{label:s.program.choiceMade?'查看节目单':'选择节目单',run:()=>showPrograms(this.dialog,this.run,this.ready,(a,seq)=>this.send(a,seq))}]:[]),{label:'跳过本场',disabled:!this.ready||index%3===2,run:()=>{
       const reward=index%3===0?'下一次买牌减2金券':s.consumables.length<r2ConsumableCapacity(s)?normal:'库存已满，获得1金';
-      const d=this.dialog.open('跳场确认',`跳过「${getR2Stage(index,s.tourMode,s.difficulty)!.name}」获得 ${reward}。\n本场没有热度、过关奖金或利息，也不会触发过关效果。`,[{label:'确认跳场',primary:true,run:async()=>{if(await this.send({type:'SkipStage'},seq))this.dialog.close(d);}}],{closeLabel:'取消'});
+      const d=this.dialog.open('跳场确认',`跳过「${getR2Stage(index,s.tourMode,s.difficulty,s)!.name}」获得 ${reward}。\n本场没有热度、过关奖金或利息，也不会触发过关效果。`,[{label:'确认跳场',primary:true,run:async()=>{if(await this.send({type:'SkipStage'},seq))this.dialog.close(d);}}],{closeLabel:'取消'});
     }}]);
   }
   private inspectOffer(id:string,makeCards=false):void {

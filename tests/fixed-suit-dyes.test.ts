@@ -1,3 +1,4 @@
+import {R2_BOUNDED_CLEAR_HASH,R2_BOUNDED_CLEAR_VERSION} from '../src/domain/r2GroupUpgrade';
 import {expect,it} from 'vitest';
 import {createRun,applyCommand,type R2RunState,type Action} from '../src/domain/run';
 import {newRunIdentity,launchIdentity} from '../src/game/RunLaunch';
@@ -16,7 +17,7 @@ const available=(s:R2RunState)=>R2_SUIT_DYE_IDS.find(id=>r2BasicChoicePool(s).so
 const legacySuit=()=>createRun({seed:'group-natural-17',runId:'legacy-suit-choice',rulesVersion:'r2',characterId:'erxiang',openingRoute:'flush',r2Identity:{contentVersion:R2_SUIT_CHOICE_VERSION,contentHash:R2_SUIT_CHOICE_HASH}});
 const restore=(s:R2RunState)=>{const cp=makeCheckpoint(s,[]),r=readCheckpoint(cp);if(!r.ok)throw Error(r.code);expect(r.checkpoint).toEqual(cp);return r.checkpoint.state;};
 it('new nine-choice identity preserves original five-choice RNG, random stock, price and retry identity',()=>{
- const n=start(),o=start(true);expect(n.contentHash).toBe(R2_ROUTE_GROWTH_HASH);expect(o.contentHash).toBe(R2_BASIC_CHOICE_HASH);expect(n.rng).toEqual(o.rng);expect(n.shop!.toolOffers).toEqual(o.shop!.toolOffers);expect(basicChoiceRows(n)).toHaveLength(9);expect(basicChoiceRows(o)).toHaveLength(5);
+ const n=start(),o=start(true);expect(n.contentHash).toBe(R2_BOUNDED_CLEAR_HASH);expect(o.contentHash).toBe(R2_BASIC_CHOICE_HASH);expect(n.rng).toEqual(o.rng);expect(n.shop!.toolOffers).toEqual(o.shop!.toolOffers);expect(basicChoiceRows(n)).toHaveLength(9);expect(basicChoiceRows(o)).toHaveLength(5);
  expect(launchIdentity('erxiang',{kind:'retry',run:o})).toEqual({contentVersion:o.contentVersion,contentHash:o.contentHash});
  expect(applyCommand(o,cmd(o,buy(o,'T03')))).toMatchObject({ok:false,code:'basic-choice-not-legal'});
  for(const id of R2_SUIT_DYE_IDS)expect(r2ToolPrice(id,n)).toBe(4);expect(r2ToolPrice('T08',n)).toBe(2);
