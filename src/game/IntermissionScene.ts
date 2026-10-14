@@ -31,6 +31,7 @@ import {getCharacter} from './characters';
 import {stageOutcome} from './stageOutcome';
 import {failureSummary} from './FailureSummary';
 import {finaleKeepsake} from './FinaleKeepsake';
+import {endlessContinuationCopy} from './EndlessContinuationCopy';
 import {selectionPortraitKey,selectionPortraitURL} from './portraits';
 import {showHeroExplanation} from './HeroExplanation';
 import {EffectQueue} from '../core/EffectQueue';
@@ -254,7 +255,7 @@ export class IntermissionScene extends Phaser.Scene {
     const controller=runController(this);if(!this.ready||!controller)return;
     const run=controller.state;if(run.phase!=='run-won'||run.tourMode!=='normal'||!run.normalCompletion)return;
     const seq=run.commandSeq,runId=run.runId,lifecycle=this.lifecycle;
-    const dialog=this.dialog.open('继续无尽 · 自愿巡演','八章通关已保存。\n\n继续无尽会保留当前牌组、大丑牌、成长、道具与金币，从第九章商店接续。\n\n后续每章目标递增为上一章的 2.4 倍，新的压轴规则仍会公开。\n\n是否继续由你决定；取消可留在胜利页。',[
+    const dialog=this.dialog.open('继续无尽 · 自愿巡演',endlessContinuationCopy(run),[
       {label:'确认继续',primary:true,run:async()=>{
         if(!this.dialog.active(dialog)||!this.ready||lifecycle!==this.lifecycle)return;
         const current=runController(this);
