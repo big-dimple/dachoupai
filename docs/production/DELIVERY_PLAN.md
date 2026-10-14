@@ -2,6 +2,24 @@
 
 ## 当前统一执行计划
 
+### 当前批次：发布后五窗口完整体验（2026-10-14）
+
+**已合与有限发布回执：** PR172–176已正常合入main `f651a04ef5eb68c29a413acf8b4d8a0e9bbcde09`，精确[CI38575066453](https://github.com/big-dimple/dachoupai/actions/runs/38575066453) browser/domain/docs及[production-docs38575066487](https://github.com/big-dimple/dachoupai/actions/runs/38575066487)全success。root14:03UTC实际在正式域名菜单读到 `f651a04ef5eb`、build `13:51:21.951Z`、dirty仅package-lock.json一文件；这是有限发布回执，不签洁净构建或完整审美、听感、物理手机、全旅程/整体平衡验收。原失败与各SHA证据保持。
+
+**当前授权与推进口径：** 用户要求大批量完整体验开发，负责人自主取舍并接受必要返工，先完成现有计划。下表五个互斥窗口已实际启动、各独立开发分支并行，尚未交付/验收；此表是唯一当前批次，不另开计划。核心规则成长与三路线真实正常经营证据门继续，不重开18局或扩旧档兼容；可独立的视听/交互现在推进，不等待整套平衡人测。局部未验、失败与返修在对应包承接，不据此全局停工。
+
+| 已启动完整包 | 专属窗口与任务 | 依赖与本包验收 |
+|---|---|---|
+| 商店/卡牌全流程 | 商店与卡牌完整流程专属；`01a13ab2-ba3c-74c8-8156-77c85990003b` | 复用现行真实报价/获得/保存合同；买前理解与取舍→购买/立即用或库存→选目标/取消→真实结果→继续经营，手机/PC整屏操作及失败恢复一起验，不以单卡文案或按钮可点收口。 |
+| 结算高光 | 结算与高光专属；`01a13ab7-56a2-73ea-a19f-9a6c9edbd03b` | 读已保存的真实来源/结果；普通、多来源、合法高分、胜败的完整节奏与层级须实际看图/演出，来源因子和累计值清楚，快进/低动态/回看与保存一致，不以静态标题清楚签整段高潮。 |
+| 声音 | 声音专属；`01a13abb-a507-7574-95f0-ec0498eeb03f` | 复用已合172加载边界，与真实事件/视觉节拍协调；同设备实际试听轻重、层次、BGM与音效遮盖，解锁/静音/后台/缺音恢复分验，软件成功不代签听感。 |
+| 核心经营挑战 | 经营/挑战领域专属；`01a13abc-29a0-72a7-a785-356002286036` | 数值先交父可审查的具体方案再实现；保成长、买/留钱、做牌、英雄/Boss真实选择及坏抽取舍，三路线正常随机经营证据与受控对照分列，不据单样本宽裕定全局参数。 |
+| 六英雄选角 | 六英雄选角专属；`01a13abf-ad38-7232-a44a-ba9986bba00a` | 复用现有六英雄身份/能力及可用资产，选角→能力发现→真实操作/效果接续；双端完整体验、玩家理解与软件事实分别验，不把已有能力改写为从零待造。 |
+
+**依赖与有序集成：** 各包只占自己的窗口，共享文件/接口由父协调，最终逐包有序集成。领域数据合同如需变化，先与商店/英雄/结算/声音的展示读取方协调并锁接口，再在各包接线；数值方案先父审不阻塞可沿现行合同独立开发的部分。每包交可见完整流程与真实操作证据、适用软件检查和独审，原FAIL/未验保留；集成后核精确main CI、正式域名版本及受影响保存边界，工程完成/已合/发布/体验验收分别登记。整套平衡人测与正式质量门仍待证，不作为独立工作开工的全局前置。
+
+**本次文档边界：** 仅补本页当前入口、五窗口状态/依赖与验收，不新增增长报告、不改产品/数值或另建长计划。本开发分支文档PR留待产品包一起集成，不自动合main、不为本页单独催用户批准。下方截至c2b及更早的“当前”、串行/暂停、规则稳定后视听、候选未合等排程按各自日期/SHA保为历史；既有规格、已证事实、资产及未验门槛不改写，现行推进读取本入口。
+
 2026-10-14 F05当前入口：父07:53UTC已合[PR166计划](https://github.com/big-dimple/dachoupai/pull/166)、[PR170交互集成](https://github.com/big-dimple/dachoupai/pull/170)、[PR171结算/来源标题](https://github.com/big-dimple/dachoupai/pull/171)，精确main `c2b506174d9add1df43eb9d94dbebe2bb974090f`；[CI38531319868](https://github.com/big-dimple/dachoupai/actions/runs/38531319868) browser/domain/docs及[production-docs38531319876](https://github.com/big-dimple/dachoupai/actions/runs/38531319876)全success。root08:01UTC实际域名版本 `c2b506174d9a`、build `07:56:03.187Z`，dirty只有package-lock.json；实际老幻顺子续玩验证结果页、来源卡、结果英雄只读说明、金币与回看正确，仅有限线上实读/操作回执，未签洁净构建、完整审美、物理手机或全旅程。此前69f与合并前候选/CI回执仍按原SHA保留，不以新版本改写旧证据。
 
 **当前文件窗口与下一步：** 核心规则成长主线及成组/顺子/同花三路线真实正常经营证据门保持，不重开18局、不开展旧档兼容工作。[PR172音效](https://github.com/big-dimple/dachoupai/pull/172)最终head `f199986ab08b8c0e812a4c8eac8a1ae6aa664b5e` 的开发分支已集成main c2b50617，[CI38535772592](https://github.com/big-dimple/dachoupai/actions/runs/38535772592)/[production-docs38535772660](https://github.com/big-dimple/dachoupai/actions/runs/38535772660)成功，ready未合、独立审查通过，只沿AudioEngine必要加载路径与专属测试/证据；[PR145](https://github.com/big-dimple/dachoupai/pull/145)仍独立prototype、未产品接入。G04二响交棒候选增强版次辨认独立任务 `01a1397a-a59e-7354-825a-a8dc269ef03d` 已完成开发为[PR174](https://github.com/big-dimple/dachoupai/pull/174)，head `a2cadbabe88cdb74267ff3ac56c5623f31c784b1`、[CI38535826702](https://github.com/big-dimple/dachoupai/actions/runs/38535826702)/[production-docs38535826695](https://github.com/big-dimple/dachoupai/actions/runs/38535826695)成功，ready未合，独立审查进行中，仅GameScene.inspectErxiang等专属窗口；172/174均未上线、未签试玩验收，不交叉覆盖音效/原型/本次文档窗口。本F05只同步三份短入口与现行状态，不启动规则/美术/旧档兼容或另一份计划；后续视听/Boss样板与失败攻略仍按原优先级。
