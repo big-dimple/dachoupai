@@ -1,0 +1,40 @@
+
+ RUN  v4.1.11 /workspace/dachoupai
+
+ ❯ tests/catalog.test.ts (10 tests | 1 failed) 185ms
+   × acquisition separates current identity fixed choice, random stock, and a prohibited challenge 12ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/catalog.test.ts > acquisition separates current identity fixed choice, random stock, and a prohibited challenge
+AssertionError: expected '商店 → 道具 → 本店现货，购买“玻璃面”。这是随机现货；每店不保证出现…' to contain '不在基础自选'
+
+- Expected
++ Received
+
+- 不在基础自选
++ 商店 → 道具 → 本店现货，购买“玻璃面”。这是随机现货；每店不保证出现，还须有合法可改目标。
++ 买后从库存选“玻璃面”，选择1张扑克并确认使用。商店可选有效牌组，待出牌时只选当前手牌。成功后消耗1件工具，使用不另付金币；覆盖旧增强会永久失去旧效果。
++ 另一路是现货“献纸”：永久献出1张扑克，给1–2张未增强扑克随机增强；每张有1/7概率得到此增强，不能指定。
+
+ ❯ tests/catalog.test.ts:61:102
+     59| it('acquisition separates current identity fixed choice, random stock,…
+     60|  const s=growthPlan('d03');
+     61|  expect(one(s,'glass-paper').acquisition).toContain('随机现货');expect(one…
+       |                                                                                                      ^
+     62|  expect(one(s,'heat-paper').acquisition).toContain('基础自选');
+     63|  s.mode='challenge';s.challengeId='Q10';const before=structuredClone(s…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 3 passed (4)
+      Tests  1 failed | 112 passed (113)
+   Start at  00:15:05
+   Duration  1.26s (transform 1.20s, setup 0ms, import 1.80s, tests 894ms, environment 0ms)
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice

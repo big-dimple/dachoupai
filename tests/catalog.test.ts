@@ -6,9 +6,9 @@ import {applyCommand,createRun} from '../src/domain/run';
 import {newRunIdentity} from '../src/game/RunLaunch';
 const query:CatalogQuery={name:'',kind:'',use:'',source:''};
 const one=(s:ReturnType<typeof growthPlan>|undefined,id:string)=>catalogFacts(s).entries.find(e=>e.id===id)!;
-it('offers four public rule categories without creating a run or promising a collection ledger',()=>{
+it('offers five public rule categories without creating a run or promising a collection ledger',()=>{
  const f=catalogFacts();expect(f.identity).toEqual(newRunIdentity('erxiang','group'));expect(f.label).toBe('当前新局规则资料');
- expect(new Set(f.entries.map(e=>e.kind))).toEqual(new Set(['joker','tool','item','hand']));expect(f.entries.filter(e=>e.kind==='joker')).toHaveLength(72);expect(f.entries.filter(e=>e.kind==='hand')).toHaveLength(12);
+ expect(new Set(f.entries.map(e=>e.kind))).toEqual(new Set(['joker','tool','enhancement','item','hand']));expect(f.entries.filter(e=>e.kind==='joker')).toHaveLength(72);expect(f.entries.filter(e=>e.kind==='hand')).toHaveLength(12);
  for(const e of f.entries){expect(e.sources).toEqual([]);expect(e.current).toContain('没有当前保存局');expect(e.current).not.toMatch(/现存|已见|未见/);}
  expect(new Set(f.entries.map(e=>e.key)).size).toBe(f.entries.length);
 });
@@ -48,6 +48,22 @@ it('saved tool counts, long-term ownership and hand levels are explicit, without
 it('querying cannot mutate the checkpoint or use hidden draw order and RNG',()=>{
  const s=growthPlan('d03'),before=structuredClone(s),facts=catalogFacts(s);queryCatalog(facts.entries,{...query,use:'成长'});expect(s).toEqual(before);
  const other=structuredClone(s);other.drawPile.reverse();for(const rng of Object.values(other.rng))rng.state=(rng.state+19)>>>0;expect(catalogFacts(other)).toEqual(facts);
+});
+it('enhancement ownership counts only live public deck cards, without promising a draw or effect',()=>{
+ const s=growthPlan('d03');s.deckInstances[0].enhancement='glass-paper';s.deckInstances[1].enhancement='voice-paper';s.destroyedIds.push(s.deckInstances[0].id);
+ expect(one(s,'glass-paper').sources).toEqual([]);expect(one(s,'voice-paper').sources).toEqual(['持有']);
+ expect(one(s,'voice-paper').current).toContain('不表示现在已抽到或本手生效');
+ const before=structuredClone(s),facts=catalogFacts(s);s.drawPile.reverse();expect(catalogFacts(s)).toEqual(facts);s.drawPile.reverse();expect(s).toEqual(before);
+ expect(queryCatalog(facts.entries,{...query,kind:'enhancement',name:'玻璃牌'}).map(e=>e.id)).toEqual(['glass-paper']);
+});
+it('acquisition separates current identity fixed choice, random stock, and a prohibited challenge',()=>{
+ const s=createRun({seed:'catalog/acquisition',runId:'catalog/acquisition',characterId:'erxiang',rulesVersion:'r2',r2Identity:newRunIdentity('erxiang','group')});
+ expect(one(growthPlan('d03'),'glass-paper').acquisition).not.toContain('基础自选');
+ expect(one(s,'glass-paper').acquisition).toContain('随机现货');expect(one(s,'glass-paper').acquisition).toContain('不在基础自选');expect(one(s,'glass-paper').acquisition).toContain('玻璃面');
+ expect(one(s,'heat-paper').acquisition).toContain('基础自选');
+ s.mode='challenge';s.challengeId='Q10';const before=structuredClone(s);
+ for(const e of catalogFacts(s).entries.filter(e=>e.kind==='enhancement')){expect(e.acquisition).toContain('不可获得或使用');expect(e.acquisition).not.toContain('购买');}
+ expect(s).toEqual(before);
 });
 it('purpose tags follow actual identity operations, including rescue and permanent resource rewards',()=>{
  const current=growthPlan('d03'),legacy=growthPlan('d03',true);
