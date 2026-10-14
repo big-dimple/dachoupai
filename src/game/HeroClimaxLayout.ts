@@ -1,9 +1,20 @@
 import type {Box} from './layout';
-/** Foreground art lanes and saved-readout paper; owns no gameplay timing or targets. */
+/** One paper stage, three camera compositions. No rule or queue timing. */
 export function heroClimaxLayout(w:number,h:number,hasSource=true){
- const rightX=w*(hasSource?.65:.52),rightW=w*(hasSource?.31:.42),portrait=w<h,short=h<450,panelY=portrait?h*.105:h*.13,panelH=h*.72;
- const source:Box=portrait?{x:w*.60,y:panelY+64,width:w*.36,height:panelH*.34}:short?{x:w*.39,y:panelY+18,width:w*.19,height:panelH*.64}:{x:w*.40,y:panelY+52,width:w*.20,height:panelH*.67};
- const readout:Box=portrait?{x:20,y:panelY+panelH*.55,width:w-40,height:panelH*.27}:{x:rightX,y:panelY+panelH*.34,width:rightW,height:panelH*.38};
- const sourceCaption:Box=portrait?{x:20,y:panelY+panelH-70,width:w-40,height:56}:{x:rightX,y:panelY+panelH-(short?62:104),width:rightW,height:short?56:92};
- return {portrait,short,panelY,panelH,source,readout,sourceCaption,heroX:w*(portrait?.30:hasSource?.23:.28),heroY:panelY+panelH*(portrait?.34:.48),heroH:panelH*(portrait?.66:.94),heroW:w*(portrait?.62:hasSource?.36:.40),nameX:portrait?20:rightX,nameY:panelY+(portrait?12:panelH*.07),valueY:readout.y+(short?24:portrait?26:42),noteY:readout.y+(short?77:portrait?93:162)};
+ const portrait=w<h,short=h<450,pad=portrait?18:24;
+ const panelW=Math.min(1080,w-24),panelH=Math.min(short?h-88:h-150,portrait?580:560);
+ const panel:Box={x:(w-panelW)/2,y:Math.max(short?44:64,(h-panelH)/2-6),width:panelW,height:panelH};
+ const inner:Box={x:panel.x+pad,y:panel.y+pad,width:panel.width-pad*2,height:panel.height-pad*2};
+ const header=short?74:portrait?80:104,footer=short?82:portrait?128:118;
+ const body:Box={x:inner.x,y:panel.y+header,width:inner.width,height:panel.height-header-footer};
+ const subjectW=body.width*(hasSource?.44:.46),gap=portrait?18:28;
+ const subject:Box={...body,width:subjectW};
+ const readout:Box={x:subject.x+subject.width+gap,y:body.y+body.height*(short?.08:.18),width:body.width-subject.width-gap,height:body.height*.7};
+ const sourceCaption:Box={x:inner.x,y:panel.y+panel.height-(short?38:54),width:inner.width,height:short?30:44};
+ const valueY=readout.y+(short?20:28),noteY=panel.y+panel.height-footer+8;
+ const eyes:Box={x:inner.x,y:body.y+body.height*.08,width:inner.width,height:body.height*(short?.54:.62)};
+ const landing:Box={x:inner.x,y:body.y+10,width:inner.width,height:body.height};
+ return {portrait,short,panel,body,eyes,landing,panelY:panel.y,panelH:panel.height,source:subject,readout,sourceCaption,
+  heroX:subject.x+subject.width/2,heroY:subject.y+subject.height/2,heroH:subject.height,heroW:subject.width,
+  nameX:inner.x,nameY:panel.y+16,nameW:inner.width,valueY,noteY};
 }
