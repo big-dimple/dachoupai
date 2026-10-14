@@ -29,12 +29,12 @@
 
 ## 实际通过
 
-- [targeted-tests.txt](targeted-tests.txt)：6 文件 / 58 项通过，其中加载器 19 项。覆盖首波/解码槽位、在途去重、三路暂时失败与 HTTP/decode、三阶段超时、永久失败三次预算/重复调用、迟到三阶段、closed/replaced context、真实入口的 context 创建模拟、静音/隐藏/后台门与漏音不补播。无 timer 残留。
+- [targeted-tests.txt](targeted-tests.txt)：6 文件 / 58 项通过，其中加载器 18 项。覆盖首波/解码槽位、在途去重、三路暂时失败与 HTTP/decode、三阶段超时、永久失败三次预算/重复调用、迟到三阶段、closed/replaced context、真实入口的 context 创建模拟、静音/隐藏/后台门与漏音不补播。无 timer 残留。
 - [typecheck.txt](typecheck.txt)、[build.txt](build.txt)：通过；构建原有大包警告保留。build-info 标识测试时 base + dirty，不称已发布的洁净构建。
 - [browser-check.mjs](browser-check.mjs) 与 [browser-report.json](browser-report.json)：系统 Chromium 151.0.7922.173、真实 pointerdown/AudioContext/现有 OGG 解码，音频独立夹具，未启动游戏旅程。手势前无 context/请求，解锁后 running；故障案例实际峰值 fetch=3、共 29 次请求，网络暂时失败和损坏 OGG 各第二次恢复，卡住请求/永久404各恰三次，缓存及 body 21/23，其余样本各一次；重复 unlock 后仍29次。
 - 第二浏览器案例刻意使首个 fetch 忽略 abort、6秒晚回有效响应：超时重试后23/23缓存、24次调用，旧结果未改变 buffer/body 身份。明确缺首个录音的 flight cue 被消费，静音/后台事件不补播，fresh cue 创建一件真实录音 source，后台清至零 voices。该案例听感 `heard:false`。
 - 初次浏览器通过的 [browser-report-first-pass.json](browser-report-first-pass.json) 另存；最终脚本加强为明确缺首个 clip 的 flight cue，重复两案例后仍通过。未改产品或放宽断言。
-- [protection.json](protection.json)：src/game/domain/content/application/platform、public、art、依赖/lock、CI、AGENTS 与唯一计划逐路径同 inputSHA；PR171 文件零交集。最终产品、19项专项与浏览器脚本 SHA256 固定在该报告，[SHA256SUMS](SHA256SUMS) 绑定本批证据。
+- [protection.json](protection.json)：src/game/domain/content/application/platform、public、art、依赖/lock、CI、AGENTS 与唯一计划逐路径同 inputSHA；PR171 文件零交集。最终产品、18项专项与浏览器脚本 SHA256 固定在该报告，[SHA256SUMS](SHA256SUMS) 绑定本批证据。
 
 复核命令：`npm test -- tests/audio-sample-loading.test.ts tests/audio-preferences.test.ts tests/score-recorded-audio.test.ts tests/fire-audio.test.ts tests/failure-audio.test.ts tests/sample-body.test.ts`；`npm run typecheck`；`npm run build`。浏览器先 `npm run dev -- --host 127.0.0.1 --port 4173 --strictPort`，再 `node docs/production/evidence/audio-loader-reliability-2026-10-14/browser-check.mjs`。
 
