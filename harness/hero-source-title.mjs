@@ -72,6 +72,7 @@ try{for(const spec of specs){const mode=spec.mode??'normal',key=spec.kind+'-'+sp
   row.after=await saved(p);assert.deepEqual(row.after,row.saved,'presentation/reduce/skip/exit does not alter any saved tuple');row.timeline=await p.evaluate(()=>window.__panelTimeline);row.frames=await p.evaluate(()=>window.__titleFrames);const images=await p.evaluate(()=>window.__titleImages);for(let i=0;i<images.length;i++){const filename=key+'-'+i+'.png';await writeFile(out+'/'+filename,Buffer.from(images[i].png.split(',')[1],'base64'));row.frames[i].screenshot=filename;}
   const shots=await p.evaluate(()=>window.__shotImages);row.shots=[];
   for(const [i,sample] of shots.entries()){const filename=key+'-shot-'+i+'-'+sample.shot+'.png',png=sample.png;delete sample.png;sample.screenshot=filename;await writeFile(out+'/'+filename,Buffer.from(png.split(',')[1],'base64'));row.shots.push(sample);}
+  for(const shot of row.shots)for(const text of shot.texts){const b=text.bounds;assert.ok(b.x>=-1&&b.x+b.width<=spec.width+1&&b.y>=0&&b.y+b.height<=p.viewportSize().height+1,'painted text stays in viewport '+text.name);if(text.name==='hero/climax-value')assert.equal(text.lines.length,1,'painted primary number stays on one line');}
   if(mode==='reduce'){
    const still=row.shots.filter(s=>s.reduced&&s.subjectVisibleAt!==undefined);
    assert.ok(still.length>=2,'two real painted reduced frames');assert.ok(still.at(-1).timeMs-still[0].timeMs>=700,'static focus actually persists across painted frames');
