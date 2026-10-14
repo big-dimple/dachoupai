@@ -34,10 +34,10 @@ describe('shop whole-chain presentation uses the current authoritative facts',()
   const action={type:'SellJoker' as const,instanceId:s.jokers[1].instanceId},r=applyCommand(s,{runId:s.runId,commandId:'sale',expectedSeq:s.commandSeq,action});expect(r.ok).toBe(true);if(!r.ok)return;
   const after=shopComparisonPresentation(r.state,o);expect(after.rows).toHaveLength(4);expect(after.gold).toBe(r.state.gold);expect(after.candidate.guidance).toEqual(shopOfferGuidance(r.state,o));expect(before.rows).toHaveLength(5);
  });
- it('shows the existing per-product discounted price range and shared quota in the prominent entry',()=>{
+ it('keeps real tool prices while the core entry does not mislabel tiered service prices',()=>{
   const s=fixture();s.purchaseCoupons=1;
   const prices=[...new Set(basicChoiceRows(s).filter(r=>!r.duplicate).map(r=>r.price))].sort((a,b)=>a-b);
-  expect(basicChoiceEntryLabel(s)).toBe('做牌自选 · 1件\n'+prices.join(' / ')+' 金');
+  expect(prices).toEqual([1,2]);expect(basicChoiceEntryLabel(s)).toBe('升级 / 做牌\n本店共选1件');
   s.shop!.basicChoice!.purchase={definitionId:'T08',commandId:'already-bought',paidPrice:1,seq:s.commandSeq};
   expect(basicChoiceEntryLabel(s)).toBe('本店自选已购\n查看道具');
  });

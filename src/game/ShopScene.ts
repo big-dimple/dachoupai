@@ -3,7 +3,11 @@ import {showShopComparison,type ShopComparisonView} from './ShopComparisonDialog
 import {createShopOfferValue} from './ShopJokerPresentation';
 import {warmTableImages} from './StageImageWarmup';
 import {showHeroExplanation} from './HeroExplanation';
-import {isR2SuitChoice,R2_SUIT_DYE_IDS,r2BasicChoiceBasePrice} from '../domain/r2GroupUpgrade';
+import {isR2CoreBuild,isR2SuitChoice,R2_SUIT_DYE_IDS,r2BasicChoiceBasePrice} from '../domain/r2GroupUpgrade';
+import type {R2PracticeQuote} from '../domain/r2Practice';
+import {shopPracticeServices,shopPracticeQuota,shopPracticeConfirmation,shopPracticeAction,shopPracticeSavedReceipt,type ShopPracticeReceipt} from './ShopPracticeService';
+import {showShopServiceConfirmation} from './ShopServiceDialog';
+import {HAND_LABELS} from '../content/handLabels';
 import {routeFrame} from './RouteFrame';
 import {routeFitCue,markRouteDetail,toolPurpose} from './RouteFitCue';
 import {showMakeCards,basicChoiceEntryLabel,type MakeCardsView} from './MakeCardsDialog';
@@ -83,6 +87,7 @@ export class ShopScene extends Phaser.Scene {
   private shelfPage=0;
   private makeCardsView:MakeCardsView={pane:'purchase',positions:{owned:0,purchase:0}};
   private comparisonView:ShopComparisonView={scrollTop:0};
+  private savedPractice?:ShopPracticeReceipt;
   private pcPages={jokers:0,tools:0,items:0};
   private pcOfferBoxes=new Map<string,Box>();
   private artRefreshListeners=new Map<string,()=>void>();
@@ -123,6 +128,7 @@ export class ShopScene extends Phaser.Scene {
   create():void {
     this.makeCardsView={pane:'purchase',positions:{owned:0,purchase:0}};
     this.comparisonView={scrollTop:0};
+    this.savedPractice=undefined;
     this.busy=false;this.selectedOfferId=undefined;this.shelfKind='jokers';this.shelfPage=0;this.pcPages={jokers:0,tools:0,items:0};this.notice='';this.lifecycle++;
     this.pendingGoldRoll=undefined;this.pendingRerollFlip=false;this.pendingPurchaseFlight=undefined;this.pendingToolCue=undefined;this.pendingTransactions=[];this.lastTransactionNotes=[];this.lastPurchaseReceipt=undefined;this.pendingPayment=undefined;
     this.resultFeedback=new ShopResultFeedback();this.resultKey=undefined;this.resultNote=undefined;this.resultPlate=undefined;
@@ -291,7 +297,7 @@ export class ShopScene extends Phaser.Scene {
     v.button(p.play,'进入牌桌','action/start-stage',()=>void this.send({type:'LeaveShop'}),this.ready,true);
     v.button(p.reroll,!allowed?'禁止换牌':this.run.shop?.freeRerolls?'免费换牌':`换牌 ${cost} 金`,'action/reroll',()=>void this.send({type:'RerollShop'}),canReroll);
     v.text(p.reroll.x,p.reroll.y+56,!allowed?'本模式禁止换牌':this.run.gold<cost?`还差 ${cost-this.run.gold} 金`:'刷新丑牌与工具',14,'#3F606B',p.reroll.width);
-    if(this.run.shop?.basicChoice)v.button({x:p.reroll.x,y:p.reroll.y+86,width:p.reroll.width,height:52},basicChoiceEntryLabel(this.run),'action/basic-choice',()=>{this.makeCardsView.pane=this.run.shop!.basicChoice!.purchase?'owned':'purchase';this.inspectMakeCards();},!this.busy);
+    if(this.run.shop?.basicChoice)v.button({x:p.reroll.x,y:p.reroll.y+86,width:p.reroll.width,height:52},basicChoiceEntryLabel(this.run),'action/basic-choice',()=>{const p=this.run.shop!.basicChoice!.purchase;this.makeCardsView.pane=p&&!p.handType?'owned':'purchase';this.inspectMakeCards();},!this.busy);
     v.text(p.tabs.x,pc.shopPanel.y+6,`邀请助演 · 待售 ${this.run.shop!.offers.filter(o=>!o.consumed).length}`,14,'#3F606B');
     this.drawShopPortrait(p);
     const jokerPages=Math.max(1,Math.ceil(this.run.shop!.offers.length/3));this.pcPages.jokers=Math.min(this.pcPages.jokers,jokerPages-1);
@@ -456,9 +462,9 @@ export class ShopScene extends Phaser.Scene {
       const top=i===ids.length-1,w=Math.min(art.width*.72,art.height/1.4)*(top?1:.86),h=w*1.4,shift=top?0:[-1,-.45,.45,1][i]*Math.min(16,art.width*.12),info=toolInfo(id,this.run);
       this.drawGoodsArt(id,info.artUrl,{x:art.x+(art.width-w)/2+shift,y:art.y+(art.height-h)/2+(top?0:2),width:w,height:h},1,info.fallbackArtUrl).setAngle(top?0:[-12,-5,5,12][i]).setData('basicChoiceArt',true).setData('primary',top);
     }
-    const title=purchase?'已购 · '+toolInfo(purchase.definitionId,this.run).name:'基础自选1件';
+    const title=purchase?.handType?'已升级 · '+HAND_LABELS[purchase.handType]:purchase?'已购 · '+toolInfo(purchase.definitionId,this.run).name:isR2CoreBuild(this.run)?'升级 / 做牌':'基础自选1件';
     const titleText=v.text(copy.x,copy.y+4,title,14,PAPER_CSS.ink,copy.width).setFontStyle('bold').setName('shop/basic-choice-title');
-    v.text(copy.x,p.pc?titleText.y+titleText.height+6:copy.y+27,purchase?'下一店可再选':'选工具，再选目标牌',14,PAPER_CSS.jade,copy.width).setName('shop/basic-choice-purpose');
+    v.text(copy.x,p.pc?titleText.y+titleText.height+6:copy.y+27,purchase?'下一店可再选':isR2CoreBuild(this.run)?'升级 / 改牌 / 染色共选1件':'选工具，再选目标牌',14,PAPER_CSS.jade,copy.width).setName('shop/basic-choice-purpose');
     if(!purchase){const ink=this.offerPricePlate(o,{x:copy.x-2,y:copy.priceY-2,width:copy.width+2,height:24});v.text(copy.x,copy.priceY,(isR2SuitChoice(this.run)?r2PurchasePrice(this.run,o)+' / '+r2PurchasePrice(this.run,{...o,price:4})+' 金':r2PurchasePrice(this.run,o)+' 金'),16,ink).setFontStyle('bold').setName('shop/basic-choice-price');}
     const hover=this.hoverCard(first,copy.tile),r=v.rect(copy.tile).setFillStyle(0,0).setStrokeStyle();v.target(r,'offer/'+o.offerId,{tap:()=>this.inspectBasicChoice(),detail:()=>this.inspectBasicChoice(),...hover});this.offerArts.push(hover.art);
   }
@@ -467,7 +473,20 @@ export class ShopScene extends Phaser.Scene {
     const seq=this.run.commandSeq,shopSeq=this.run.shop!.basicChoice?.shopSeq;
     showMakeCards(this.dialog,this.run,()=>this.ready&&this.run.commandSeq===seq,o=>this.purchaseReason(o),
       id=>this.openMakeTool(id),id=>{if(shopSeq!==undefined)this.confirmBasicChoice(id,seq,shopSeq,true);},
-      id=>this.inspectOffer(id,true),()=>showConsumables(this.dialog,this.run,this.ready,(a,s)=>this.send(a,s)),this.makeCardsView);
+      id=>this.inspectOffer(id,true),()=>showConsumables(this.dialog,this.run,this.ready,(a,s)=>this.send(a,s)),this.makeCardsView,shopPracticeServices(this.run,q=>this.confirmPractice(q)),shopPracticeQuota(this.run));
+  }
+  private confirmPractice(q:R2PracticeQuote):void {
+    const action=shopPracticeAction(q);
+    const dialog=showShopServiceConfirmation(this.dialog,shopPracticeConfirmation(this.run,q),()=>this.ready&&this.run.commandSeq===q.expectedSeq,async()=>{
+      if(await this.send(action,q.expectedSeq)&&this.dialog.active(dialog)&&this.savedPractice)this.showPracticeResult(this.savedPractice);
+    },()=>this.inspectMakeCards());
+    dialog.classList.add('make-cards-practice');
+  }
+  private showPracticeResult(receipt:ShopPracticeReceipt):void {
+    const name=HAND_LABELS[receipt.handType],summary=`${name} Lv.${receipt.levelBefore} → Lv.${receipt.levelAfter}`;
+    this.makeCardsView.receipt={seq:this.run.commandSeq,text:summary+' · 实付 '+receipt.paidPrice+' 金 · 已保存'};
+    const d=this.dialog.open(name+' · 升级已保存',`金币 ${receipt.goldBefore} → ${receipt.goldAfter} 金\n本店升级 / 改牌 / 染色机会已用，刷新不恢复；下一店恢复。\n牌型已当场升级，不收入道具箱。`,[],{effectBody:summary,summaryBody:'实付 '+receipt.paidPrice+' 金 · 已保存',collapseRules:true});
+    d.classList.add('shop-practice-result');this.makeCardsReturn(d,'继续做牌');
   }
   private makeCardsReturn(d:HTMLDialogElement,label:string):void {
     const close=d.querySelector<HTMLButtonElement>('.dialog-close')!;close.textContent=label;
@@ -500,13 +519,15 @@ export class ShopScene extends Phaser.Scene {
     const command=runController(this)?.journal.at(-1);
     if(this.run.runId!==pending.before.runId||this.run.commandSeq!==pending.before.commandSeq+1||command?.expectedSeq!==pending.before.commandSeq||JSON.stringify(command.action)!==JSON.stringify(pending.action)){this.registry.remove('makeCardsPending');return;}
     this.registry.remove('makeCardsPending');
-    if(pending.action.type==='UseConsumable'){showSavedToolResult(this.dialog,pending.before,this.run,pending.action,this.resultReduced);this.continueMakeCards();}
+    if(pending.action.type==='PracticeHand'){const receipt=shopPracticeSavedReceipt(pending.before,this.run);if(receipt)this.showPracticeResult(receipt);}
+    else if(pending.action.type==='UseConsumable'){showSavedToolResult(this.dialog,pending.before,this.run,pending.action,this.resultReduced);this.continueMakeCards();}
     else if(pending.action.type==='BuyBasicTool'||pending.action.type==='BuyOffer'){
       const gained=this.run.consumables.find(c=>!pending.before.consumables.some(b=>b.instanceId===c.instanceId));
       if(gained){if(pending.purchaseIntent==='store'){this.notice='购买已恢复保存 · 已入道具箱，未使用';this.render();this.storedMakeTool(toolInfo(gained.definitionId,this.run).name,pending.before.gold-this.run.gold);}else this.openMakeTool(gained.instanceId,'购买已恢复保存 · 实付 '+(pending.before.gold-this.run.gold)+' 金 · 未使用');}
     }
   }
   private inspectBasicChoice():void {
+    if(isR2CoreBuild(this.run)){this.makeCardsView.pane='purchase';this.inspectMakeCards();return;}
     const seat=basicChoiceSeat(this.run);if(!seat||this.busy)return;
     const rows=basicChoiceRows(this.run),seq=this.run.commandSeq,shopSeq=this.run.shop!.basicChoice!.shopSeq,purchase=this.run.shop!.basicChoice!.purchase;
     this.audio.select();
@@ -907,8 +928,8 @@ export class ShopScene extends Phaser.Scene {
       if(!result.ok){
         this.audio.invalid();
         if(pendingDrag)this.notice=result.code==='save-failed'?'排序未保存 · 已恢复保存顺序 · 菜单重试': '排序未提交 · 已恢复保存顺序';
-        if(result.code==='save-failed'){if(owner?.classList.contains('make-cards-tool')||owner?.classList.contains('make-cards-purchase'))this.registry.set('makeCardsPending',{before:previous,action,purchaseIntent:owner.dataset.purchaseIntent});this.dialog.close();}
-        else this.dialog.open('操作未提交',({'slots-full':'五个槽位已满，请先出售一张。','stale-shop':'商店已变化，请重新打开基础选择；本次没有扣款。','basic-choice-consumed':'本店基础选择已购；刷新不重开，下一店恢复。','basic-choice-not-legal':'合法目标或随机位现货已变化，请重新打开选择；本次没有扣款。','consumable-slots-full':'道具箱已满，本次没有扣款。','not-enough-gold':'金币不足；本次操作没有扣款。','already-owned':'已装备同名牌。','no-reroll-candidates':'没有可换入的卡牌。','stale-sequence':'本局在预览后已变化，请重新打开详情确认；没有消耗物品或金币。','replacement-pending':'新局或导入尚未保存，请在菜单重试、导出或取消候选。'} as Record<string,string>)[result.code]??'本次操作未提交，原选择和资源仍然保留。');
+        if(result.code==='save-failed'){if(owner?.classList.contains('make-cards-tool')||owner?.classList.contains('make-cards-purchase')||owner?.classList.contains('make-cards-practice'))this.registry.set('makeCardsPending',{before:previous,action,purchaseIntent:owner.dataset.purchaseIntent});this.dialog.close();}
+        else this.dialog.open('操作未提交',({'slots-full':'五个槽位已满，请先出售一张。','stale-shop':'商店已变化，请重新打开基础选择；本次没有扣款。','basic-choice-consumed':'本店自选已用；升级、改牌、染色共用1次，刷新不恢复，下一店恢复。','stale-practice-level':'牌型等级已变化，请重新查看服务报价；本次没有扣款。','undiscovered-hand-type':'该牌型尚未发现，不能升级；本次没有扣款。','hand-level-cap':'该牌型已达30级；本次没有扣款。','basic-choice-not-legal':'合法目标或随机位现货已变化，请重新打开选择；本次没有扣款。','consumable-slots-full':'道具箱已满，本次没有扣款。','not-enough-gold':'金币不足；本次操作没有扣款。','already-owned':'已装备同名牌。','no-reroll-candidates':'没有可换入的卡牌。','stale-sequence':'本局在预览后已变化，请重新打开详情确认；没有消耗物品或金币。','replacement-pending':'新局或导入尚未保存，请在菜单重试、导出或取消候选。'} as Record<string,string>)[result.code]??'本次操作未提交，原选择和资源仍然保留。');
         return false;
       }
       this.run=result.state;reorderSaved=!!pendingDrag;
@@ -926,6 +947,9 @@ export class ShopScene extends Phaser.Scene {
         this.audio.purchase();this.pendingGoldRoll=oldGold;
         this.lastPurchaseReceipt=shopPurchaseReceipt(previous,this.run,'tools',{offerId:'basic-choice/'+action.shopSeq,definitionId:action.definitionId,price:r2BasicChoiceBasePrice(action.definitionId),consumed:false});
         this.notice='基础选择已入道具箱，尚未使用 · 刷新不重开';
+      }else if(action.type==='PracticeHand'&&!result.duplicate){
+        const event=result.events.find((e):e is Extract<DomainEvent,{type:'hand-practiced'}>=>e.type==='hand-practiced');
+        if(event){this.savedPractice=event;this.audio.purchase();this.pendingGoldRoll=oldGold;this.notice=HAND_LABELS[event.handType]+` Lv.${event.levelBefore} → Lv.${event.levelAfter} · 实付 ${event.paidPrice} 金 · 已保存`;}
       }else if(action.type==='SellJoker'&&!result.duplicate){
         const joker=previous.jokers.find(j=>j.instanceId===action.instanceId)!;this.audio.sale();
         this.notice=`已售 ${this.jokerDefinition(joker.definitionId).name} · 金币 ${oldGold} → ${this.run.gold}`;

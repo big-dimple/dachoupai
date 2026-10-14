@@ -865,6 +865,10 @@ button[aria-busy=true] { border-style:dashed; }
 .shop-service-card strong { font-size:16px;color:#26313A; }
 .shop-service-card span:last-child { color:#B8473A; }
 .shop-service-confirmation .dialog-primary { min-height:48px; }
+.shop-service-confirmation[open],.shop-practice-result[open] { display:flex;flex-direction:column;width:min(520px,calc(100vw - 24px));height:fit-content;max-height:calc(100dvh - var(--safe-top) - var(--safe-bottom) - 24px); }
+.shop-service-confirmation .dialog-content,.shop-practice-result .dialog-content { display:block;overflow:auto; }
+.shop-service-confirmation .dialog-scroll,.shop-practice-result .dialog-scroll { height:auto; }
+.shop-service-grid { margin-bottom:20px; }
 @media(max-width:760px) {
  .shop-comparison-dialog .dialog-header { padding:12px; }
  .shop-comparison-dialog .dialog-content { grid-template-columns:minmax(0,1fr);grid-template-rows:auto minmax(0,1fr);padding:12px;gap:10px; }
