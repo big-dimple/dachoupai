@@ -861,6 +861,10 @@ button[aria-busy=true] { border-style:dashed; }
 .make-cards-dialog .make-cards-tile[data-make-id]:focus-visible { outline:3px solid #3F606B;outline-offset:2px; }
 .shop-tool-paid-note { margin:4px 0;font-size:14px;line-height:20px;color:#3F606B; }
 .shop-card-uses { margin:4px 0;font-size:14px;color:#B8473A; }
+.shop-service-card { display:grid;gap:8px;text-align:left;background:#E2E8E5;min-height:96px;font-size:14px; }
+.shop-service-card strong { font-size:16px;color:#26313A; }
+.shop-service-card span:last-child { color:#B8473A; }
+.shop-service-confirmation .dialog-primary { min-height:48px; }
 @media(max-width:760px) {
  .shop-comparison-dialog .dialog-header { padding:12px; }
  .shop-comparison-dialog .dialog-content { grid-template-columns:minmax(0,1fr);grid-template-rows:auto minmax(0,1fr);padding:12px;gap:10px; }
