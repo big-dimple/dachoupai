@@ -1,4 +1,4 @@
-import {R2_BOUNDED_CLEAR_HASH,R2_BOUNDED_CLEAR_VERSION} from '../src/domain/r2GroupUpgrade';
+import {R2_CORE_BUILD_HASH,R2_CORE_BUILD_VERSION} from '../src/domain/r2GroupUpgrade';
 import {describe,it,expect} from 'vitest';
 import {applyCommand,createRun,type R2RunState} from '../src/domain/run';
 import {r2ScoreContext,r2CreateJoker} from '../src/domain/r2Run';
@@ -18,7 +18,7 @@ function pending(kind:TouyeScenario='mature-win'){const f=touyeFixture(kind);ret
 describe('Touye actual refill ID responsibility, separate new identity',()=>{
  it('keeps new-core capability in bounded launches and exact old retries',()=>{
   expect(isR2TouyeNewCore(newRunIdentity('touye','group'))).toBe(true);
-  for(const hero of ['amo','erxiang','laohuan'] as const)expect(newRunIdentity(hero,'group')).toEqual({contentVersion:R2_BOUNDED_CLEAR_VERSION,contentHash:R2_BOUNDED_CLEAR_HASH});
+  for(const hero of ['amo','erxiang','laohuan'] as const)expect(newRunIdentity(hero,'group')).toEqual({contentVersion:R2_CORE_BUILD_VERSION,contentHash:R2_CORE_BUILD_HASH});
   const f=touyeFixture('mature-win',{identity:old});expect(launchIdentity('touye',{kind:'retry',run:f.state})).toEqual(old);expect(touyeChoice(f.state,f.discard).choices.find(c=>c.target===f.target)!.available).toBe(false);
   expect(applyCommand(f.state,touyeCommand(f.state,touyeBet(f.state,f.discard,f.target)))).toMatchObject({ok:false,code:'touye-target-already-reachable'});
  });

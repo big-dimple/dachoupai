@@ -1,3 +1,5 @@
+import {isR2CoreBuild} from '../../src/domain/r2GroupUpgrade';
+import {lockR2ChapterTargets} from '../../src/domain/r2Chapter';
 import {createRun,type R2RunState} from '../../src/domain/run';
 import {R2_ROUTE_GROWTH_VERSION,R2_ROUTE_GROWTH_HASH} from '../../src/domain/r2GroupUpgrade';
 import {newRunIdentity} from '../../src/game/RunLaunch';
@@ -24,6 +26,7 @@ export function settlementReady(kind:'ordinary'|'chain'|'million'|'billion'|'lon
  state.jokers=ids.map((id,index)=>r2CreateJoker(id,'controlled/settlement/source/'+index,8,'none',state));
  state.jokers[0].growth.heat={n:'100',d:'1'};
  if(kind==='long'){state.jokers[3].growth.coefficient={n:'1000000',d:'1'};}
+ if(isR2CoreBuild(state))state.chapterTargetPlan=lockR2ChapterTargets(state.chapter,state.tourMode,state.difficulty,state.boss);
  state=energySend(state,{type:'EnterStage'});
  if(kind==='boss-loss'){while(state.stage!.handsLeft>1)state=energySend(state,{type:'PlayHand',selectedIds:[state.handOrder[0]]});return {state,action:{type:'PlayHand' as const,selectedIds:[state.handOrder[0]]}};}
  // A controlled public hand before discard; the real command owns both zone movement and rescue.
