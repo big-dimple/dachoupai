@@ -29,4 +29,12 @@
 
 `gh auth status` 显示环境GH_TOKEN无效；Git正常推送开发分支成功、已连接GitHub工具只读成功，PR/CI通过该连接处理，未重试该无效令牌。最终精确HEAD的CI结果在PR回执中核验，不借main旧绿CI。dot自然游戏及体验验收仍由父/dot独立执行，本批不代签。
 
+## 2026-10-14 父独审专项断言补正
+
+父独立复核指出：旧专项测试 `specials()` 用 `sourceDefinitionId === 'heat-paper' / 'glass-paper'` 过滤增强，但真实 trace 的该字段是扑克ID，增强类型标在 `reasonKey='enhancement.*'`。因此旧专项比较实际只覆盖版次；上方旧16/16结果仍是当时事实，不能据该断言单独签增强等价。
+
+本次仅修 `tests/g04-erxiang-candidates.test.ts`：过滤真实 `enhancement.*` 和 `edition.*`，将 reasonKey 纳入事件值/操作/源实例/目标对照；对于普通牌与热度纸两种交棒目标，各自的交棒trace和普通出牌baseline，均在**过滤后的事件数组**中明确要求热度纸目标 hearts-9 的 `add-heat +20`、玻璃纸目标 spades-9 的 `multiply-multiplier ×3/2` 实际存在，再逐项比较全部增强与版次事件。这样误过滤增强或增强事件缺失会失败，不靠版次数量或空数组相等通过。
+
+补正后再次运行两份定向测试，16/16通过，`git diff --check`通过。产品src tree保持 `54ffc284788ea4da175c61f42a58e53303a9684c`，原规则、产品、harness与既有浏览器证据均保持；scope-proof中的旧测试哈希仍按原产品提交保历史，本节记录后续专项测试补正。新HEAD精确CI在PR174回执另核，不借原 `a2cadbab` 的绿CI签新测试提交。
+
 复跑专属验证：`G04_OUTPUT=shots/g04-erxiang-candidates node harness/g04-erxiang-candidates.mjs`；基线复现需在上述基线 checkout 用 `G04_BASELINE=1`，不能用产品版本冒称旧问题复现。

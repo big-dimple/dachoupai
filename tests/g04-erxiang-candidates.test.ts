@@ -36,7 +36,14 @@ describe('G04 same-name handoff candidates',()=>{
    const s=fixture(),a=send(s,{type:'PlayHand',selectedIds:ids,erxiangTargetId:target}),b=send(s,{type:'PlayHand',selectedIds:ids});
    const t=a.lastTrace!,base=b.lastTrace!;expect(t.erxiangHandoff?.targetId).toBe(target);expect(t.erxiangHandoff?.points).toBe(9);
    expect(t.events.filter(e=>e.reasonKey==='erxiang.handoff')).toHaveLength(1);
-   const specials=(trace:typeof t)=>trace.events.filter(e=>e.reasonKey.startsWith('edition.')||e.sourceDefinitionId==='heat-paper'||e.sourceDefinitionId==='glass-paper').map(e=>[e.sourceInstanceId,e.targetCardId,e.operation,e.value]);expect(specials(t).length).toBeGreaterThan(0);expect(specials(t)).toEqual(specials(base));
+   // Enhancements retain the playing-card source ID; their identity is in reasonKey.
+   const specials=(trace:typeof t)=>trace.events.filter(e=>e.reasonKey.startsWith('edition.')||e.reasonKey.startsWith('enhancement.'));
+   for(const trace of [t,base])expect(specials(trace)).toEqual(expect.arrayContaining([
+    expect.objectContaining({reasonKey:'enhancement.heat-paper.add-heat',targetCardId:ids[1],operation:'add-heat',value:{n:'20',d:'1'}}),
+    expect.objectContaining({reasonKey:'enhancement.glass-paper.multiply-multiplier',targetCardId:ids[2],operation:'multiply-multiplier',value:{n:'3',d:'2'}}),
+   ]));
+   const values=(trace:typeof t)=>specials(trace).map(e=>[e.reasonKey,e.sourceInstanceId,e.targetCardId,e.operation,e.value]);
+   expect(values(t)).toEqual(values(base));
   }
  });
  it('used, hero ban, high card, disabled and zero ordinary points produce no invalid candidate',()=>{
