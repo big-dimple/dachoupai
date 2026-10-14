@@ -1,0 +1,31 @@
+{
+  "base": "c2b506174d9add1df43eb9d94dbebe2bb974090f",
+  "productCommit": "01a3a59080f67bd21a64b66c983fe33a1dd75f2a",
+  "productTree": "54ffc284788ea4da175c61f42a58e53303a9684c",
+  "outsideInspectErxiangIdentical": true,
+  "protectedPathsUnchanged": [
+    "src/domain",
+    "src/application",
+    "src/content",
+    "src/platform",
+    "src/audio",
+    "public/assets",
+    "art/sources",
+    "src/style.css",
+    "src/game/DetailDialog.ts",
+    "src/game/HeroExplanation.ts"
+  ],
+  "changedFiles": [
+    "harness/g04-erxiang-candidates.mjs",
+    "src/game/ErxiangHandoffCopy.ts",
+    "src/game/GameScene.ts",
+    "tests/g04-erxiang-candidates.test.ts"
+  ],
+  "gitDiffCheck": "PASS",
+  "files": {
+    "src/game/GameScene.ts": "18edbe5e6c4323426f7e9d0af0e81748bfdc664a",
+    "src/game/ErxiangHandoffCopy.ts": "99ad9e7b31e472bf1aa5e1a6206f5e053706663a",
+    "tests/g04-erxiang-candidates.test.ts": "18a05c664b955b0cb4204fd42feb600d33c71e58",
+    "harness/g04-erxiang-candidates.mjs": "d1cd2baf531018b6412a4cddbeeb32b0d889af27"
+  }
+}
