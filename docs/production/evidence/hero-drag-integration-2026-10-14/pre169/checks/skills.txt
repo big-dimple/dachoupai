@@ -1,0 +1,8 @@
+Error: Run invariant: route history identity/ledger
+    at check (/workspace/dachoupai/src/domain/r2Run.ts:194:27)
+    at assertR2Invariants (/workspace/dachoupai/src/domain/r2Run.ts:220:3)
+    at applyCommand (/workspace/dachoupai/src/domain/run.ts:130:50)
+    at send (file:///workspace/dachoupai/harness/hero-drag-integration.mjs:20:28)
+    at fixture (file:///workspace/dachoupai/harness/hero-drag-integration.mjs:25:152)
+    at file:///workspace/dachoupai/harness/hero-drag-integration.mjs:46:12
+FAIL docs/production/evidence/hero-drag-integration-2026-10-14/skills

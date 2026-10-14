@@ -1,0 +1,1258 @@
+{
+  "head": "a6044c6a0b185f479681de2d98c745cadfde3fd8",
+  "srcTree": "e3079583af23eb182faa9ff5f9e55486232b5050",
+  "harnessTree": "586d5d0ad0c1589244f2e560da395fdd9f74604d",
+  "modified": "",
+  "scope": "Six current-identity heroes, PC1366/390 software Chromium native mouse/touch/DOM operations. Public controlled first-stage hand and 15 gold, original target. Skill drafts/read-only entry, delayed real store commit, exact domain-command oracle, presentation and readonly locks. Not natural games, 18 runs, human understanding, physical vibration or full experience acceptance.",
+  "cases": [
+    {
+      "hero": "amo",
+      "viewport": {
+        "width": 1366,
+        "height": 900
+      },
+      "before": {
+        "sha256": "48f55c3b6ea093899b802ae39f0953b8184280dae0b55f47545e605efc3cd969"
+      },
+      "transactions": [
+        {
+          "action": {
+            "type": "PlayAssistedHand",
+            "selectedIds": [
+              "spades-9",
+              "hearts-9",
+              "clubs-13",
+              "diamonds-13"
+            ],
+            "assistIds": [
+              "spades-12",
+              "hearts-12",
+              "clubs-12"
+            ]
+          },
+          "command": {
+            "runId": "controlled/integration/amo",
+            "commandId": "controlled/integration/amo/command/4",
+            "expectedSeq": 3,
+            "action": {
+              "type": "PlayAssistedHand",
+              "selectedIds": [
+                "spades-9",
+                "hearts-9",
+                "clubs-13",
+                "diamonds-13"
+              ],
+              "assistIds": [
+                "spades-12",
+                "hearts-12",
+                "clubs-12"
+              ]
+            }
+          },
+          "before": {
+            "sha256": "48f55c3b6ea093899b802ae39f0953b8184280dae0b55f47545e605efc3cd969"
+          },
+          "after": {
+            "sha256": "7e89d7765385602abcc9d4e852972f967ad0cd38db49ff582566bc803e225b09"
+          },
+          "status": "PASS"
+        }
+      ],
+      "locks": [
+        {
+          "name": "delayed-commit",
+          "before": {
+            "sha256": "48f55c3b6ea093899b802ae39f0953b8184280dae0b55f47545e605efc3cd969"
+          },
+          "after": {
+            "sha256": "48f55c3b6ea093899b802ae39f0953b8184280dae0b55f47545e605efc3cd969"
+          },
+          "draft": {
+            "selected": [
+              "spades-9",
+              "hearts-9",
+              "clubs-13",
+              "diamonds-13"
+            ],
+            "assist": [
+              "spades-12",
+              "hearts-12",
+              "clubs-12"
+            ],
+            "erxiang": null,
+            "xiemu": 0,
+            "azao": false
+          },
+          "text": "阿默 · 主手＋助攻\n\n“少说一句，照样抢你的场。”\n\n做什么\n剩余对子助攻×2，三条×4\n\n何时能用\n先选两对及以上主手，剩余牌里留一组对子或三条；每场一次。\n\n现在\n正在换牌；完成后再使用技能。\n\n点开看一个技能例子\n完整能力与限制\n查看本场技能操作\n返回牌桌",
+          "shot": "1366-amo-saving-blocked.png",
+          "status": "PASS"
+        }
+      ],
+      "hapticCapability": {
+        "vibrateAPI": "function",
+        "isSecureContext": true,
+        "pointerCoarse": false,
+        "physicalVibration": "NOT_TESTED",
+        "explicitVibrationRequested": false
+      },
+      "originalOperationText": "阿默 · 换一组\n主手保持 · 4张\n9♠\n♠\n★\n9♥\n♥\n★\nK♣\n★\nK♦\n★\n推荐助攻 · ×4\nQ♠\n助\nQ♥\n助\nQ♣\n助\n\n用掉3张 · 不计留手效果\n\n选这组 ×4\n本手得分与损失\n可选助攻 · ×2\nQ♠\n助\nQ♥\n助\n\n用掉2张 · 不计留手效果\n\n选这组 ×2\n本手得分与损失\n可选助攻 · ×2\nQ♠\n助\nQ♣\n助\n\n用掉2张 · 不计留手效果\n\n选这组 ×2\n本手得分与损失\n可选助攻 · ×2\nQ♥\n助\nQ♣\n助\n\n用掉2张 · 不计留手效果\n\n选这组 ×2\n本手得分与损失\n保留副组 · 不助攻\n保留余牌与本场助攻机会\n\n本手不消耗助攻\n\n保持不助攻\n本手得分与损失\n\n助攻会一同用掉，不计主手或留手效果。最终出牌才消费本场机会。\n\n返回选牌",
+      "operationShot": "1366-amo-operation.png",
+      "chosenDraft": {
+        "selected": [
+          "spades-9",
+          "hearts-9",
+          "clubs-13",
+          "diamonds-13"
+        ],
+        "assist": [
+          "spades-12",
+          "hearts-12",
+          "clubs-12"
+        ],
+        "erxiang": null,
+        "xiemu": 0,
+        "azao": false
+      },
+      "chosenFirstLayerText": "阿默 · 主手＋助攻\n\n“少说一句，照样抢你的场。”\n\n做什么\n剩余对子助攻×2，三条×4\n\n何时能用\n先选两对及以上主手，剩余牌里留一组对子或三条；每场一次。\n\n现在\n第3步 · 已选3张助攻，返回牌桌确认出牌\n\n点开看一个技能例子\n完整能力与限制\n查看本场技能操作\n返回牌桌",
+      "chosenFirstLayerShot": "1366-amo-chosen-first.png",
+      "after": {
+        "sha256": "7e89d7765385602abcc9d4e852972f967ad0cd38db49ff582566bc803e225b09"
+      },
+      "status": "PASS"
+    },
+    {
+      "hero": "erxiang",
+      "viewport": {
+        "width": 1366,
+        "height": 900
+      },
+      "before": {
+        "sha256": "d74c0ef3981305fa9ebd28ac12af588fad5cfb3ee5eb213ddaf5cf3e459f2cf3"
+      },
+      "transactions": [
+        {
+          "action": {
+            "type": "PlayHand",
+            "selectedIds": [
+              "spades-9",
+              "hearts-9",
+              "clubs-13",
+              "diamonds-13"
+            ],
+            "erxiangTargetId": "spades-9"
+          },
+          "command": {
+            "runId": "controlled/integration/erxiang",
+            "commandId": "controlled/integration/erxiang/command/4",
+            "expectedSeq": 3,
+            "action": {
+              "type": "PlayHand",
+              "selectedIds": [
+                "spades-9",
+                "hearts-9",
+                "clubs-13",
+                "diamonds-13"
+              ],
+              "erxiangTargetId": "spades-9"
+            }
+          },
+          "before": {
+            "sha256": "d74c0ef3981305fa9ebd28ac12af588fad5cfb3ee5eb213ddaf5cf3e459f2cf3"
+          },
+          "after": {
+            "sha256": "c609fbd26e6cdc032712ebd83cc309ed93f5d3cad1b344f11825fead886bdb86"
+          },
+          "status": "PASS"
+        }
+      ],
+      "locks": [
+        {
+          "name": "delayed-commit",
+          "before": {
+            "sha256": "d74c0ef3981305fa9ebd28ac12af588fad5cfb3ee5eb213ddaf5cf3e459f2cf3"
+          },
+          "after": {
+            "sha256": "d74c0ef3981305fa9ebd28ac12af588fad5cfb3ee5eb213ddaf5cf3e459f2cf3"
+          },
+          "draft": {
+            "selected": [
+              "spades-9",
+              "hearts-9",
+              "clubs-13",
+              "diamonds-13"
+            ],
+            "assist": [],
+            "erxiang": "spades-9",
+            "xiemu": 0,
+            "azao": false
+          },
+          "text": "二响 · 交棒\n\n“你刚开口，场子已经归我了。”\n\n做什么\n这张牌的普通点数改加倍率\n\n何时能用\n先选对子及以上，再选一张有效计分牌交棒；每场一次。\n\n现在\n正在换牌；完成后再使用技能。\n\n点开看一个技能例子\n完整能力与限制\n查看本场技能操作\n返回牌桌",
+          "shot": "1366-erxiang-saving-blocked.png",
+          "status": "PASS"
+        },
+        {
+          "name": "real-score-presentation",
+          "before": {
+            "sha256": "c609fbd26e6cdc032712ebd83cc309ed93f5d3cad1b344f11825fead886bdb86"
+          },
+          "text": "二响 · 交棒\n\n“你刚开口，场子已经归我了。”\n\n做什么\n这张牌的普通点数改加倍率\n\n何时能用\n先选对子及以上，再选一张有效计分牌交棒；每场一次。\n\n现在\n正在结算；结束后再使用技能。\n\n点开看一个技能例子\n完整能力与限制\n查看本场技能操作\n返回牌桌",
+          "shot": "1366-erxiang-presentation-blocked.png",
+          "status": "PASS"
+        }
+      ],
+      "hapticCapability": {
+        "vibrateAPI": "function",
+        "isSecureContext": true,
+        "pointerCoarse": false,
+        "physicalVibration": "NOT_TESTED",
+        "explicitVibrationRequested": false
+      },
+      "originalOperationText": "二响 · 交棒\n选对子及以上\n选一张牌交棒\n确认出牌\n\n第2步 · 选一张计分牌交棒\n\n选一张核心：普通点数改加倍率，本场一次\n每场一次；选好后正常出牌才消耗，增强与版次保留。\n\n9♠ · 9点改加倍率\n9♥ · 9点改加倍率\nK♣ · 10点改加倍率\nK♦ · 10点改加倍率\n其它查看\n交棒细则\n返回选牌",
+      "operationShot": "1366-erxiang-operation.png",
+      "chosenDraft": {
+        "selected": [
+          "spades-9",
+          "hearts-9",
+          "clubs-13",
+          "diamonds-13"
+        ],
+        "assist": [],
+        "erxiang": "spades-9",
+        "xiemu": 0,
+        "azao": false
+      },
+      "chosenFirstLayerText": "二响 · 交棒\n\n“你刚开口，场子已经归我了。”\n\n做什么\n这张牌的普通点数改加倍率\n\n何时能用\n先选对子及以上，再选一张有效计分牌交棒；每场一次。\n\n现在\n第3步 · 已选9点交棒，返回牌桌确认出牌\n\n点开看一个技能例子\n完整能力与限制\n查看本场技能操作\n返回牌桌",
+      "chosenFirstLayerShot": "1366-erxiang-chosen-first.png",
+      "after": {
+        "sha256": "c609fbd26e6cdc032712ebd83cc309ed93f5d3cad1b344f11825fead886bdb86"
+      },
+      "status": "PASS"
+    },
+    {
+      "hero": "laohuan",
+      "viewport": {
+        "width": 1366,
+        "height": 900
+      },
+      "before": {
+        "sha256": "55005b28de404ac2d1d0ad16e0ce290ac88fcf5a12d8c0f749b44c08650f715f"
+      },
+      "transactions": [
+        {
+          "action": {
+            "type": "DiscardHand",
+            "selectedIds": [
+              "clubs-6"
+            ],
+            "laohuanTrick": true
+          },
+          "command": {
+            "runId": "controlled/integration/laohuan",
+            "commandId": "controlled/integration/laohuan/command/4",
+            "expectedSeq": 3,
+            "action": {
+              "type": "DiscardHand",
+              "selectedIds": [
+                "clubs-6"
+              ],
+              "laohuanTrick": true
+            }
+          },
+          "before": {
+            "sha256": "55005b28de404ac2d1d0ad16e0ce290ac88fcf5a12d8c0f749b44c08650f715f"
+          },
+          "after": {
+            "sha256": "151bd5a6513ceb77b8e99ce7d0359849f092b7f2ff8ee287a4041a0ba4e42cd2"
+          },
+          "status": "PASS"
+        },
+        {
+          "action": {
+            "type": "ChooseRefill",
+            "selectedIds": [
+              "diamonds-14"
+            ]
+          },
+          "command": {
+            "runId": "controlled/integration/laohuan",
+            "commandId": "controlled/integration/laohuan/command/5",
+            "expectedSeq": 4,
+            "action": {
+              "type": "ChooseRefill",
+              "selectedIds": [
+                "diamonds-14"
+              ]
+            }
+          },
+          "before": {
+            "sha256": "151bd5a6513ceb77b8e99ce7d0359849f092b7f2ff8ee287a4041a0ba4e42cd2"
+          },
+          "after": {
+            "sha256": "e9f1a7773dad1eed8a1e6b2721d35bd6ae4e6a6d2b3b13bb9586834340849828"
+          },
+          "status": "PASS"
+        }
+      ],
+      "locks": [
+        {
+          "name": "delayed-commit",
+          "before": {
+            "sha256": "55005b28de404ac2d1d0ad16e0ce290ac88fcf5a12d8c0f749b44c08650f715f"
+          },
+          "after": {
+            "sha256": "55005b28de404ac2d1d0ad16e0ce290ac88fcf5a12d8c0f749b44c08650f715f"
+          },
+          "draft": {
+            "selected": [
+              "clubs-6"
+            ],
+            "assist": [],
+            "erxiang": null,
+            "xiemu": 0,
+            "azao": false
+          },
+          "text": "老幻 · 戏法换牌\n\n“袖子空的？你的掌声可不空。”\n\n做什么\n多看最多2张，自己决定留下哪些\n\n何时能用\n先选1–5张弃牌，付得起本次弃牌成本；每场一次。\n\n现在\n正在换牌；完成后再使用技能。\n\n点开看一个技能例子\n完整能力与限制\n查看本场技能操作\n返回牌桌",
+          "shot": "1366-laohuan-saving-blocked.png",
+          "status": "PASS"
+        }
+      ],
+      "hapticCapability": {
+        "vibrateAPI": "function",
+        "isSecureContext": true,
+        "pointerCoarse": false,
+        "physicalVibration": "NOT_TESTED",
+        "explicitVibrationRequested": false
+      },
+      "originalOperationText": "老幻 · 技能\n选要弃的牌\n确认戏法弃牌\n从候选中留牌\n\n第2步 · 确认戏法弃牌\n\n多看最多2张，自己决定留下哪些\n每场一次；照付弃牌成本，未留候选本场不再抽。\n\n戏法弃1张 · 留应补数\n其它查看\n技能与本场细则\n返回牌桌",
+      "operationShot": "1366-laohuan-operation.png",
+      "after": {
+        "sha256": "e9f1a7773dad1eed8a1e6b2721d35bd6ae4e6a6d2b3b13bb9586834340849828"
+      },
+      "status": "PASS"
+    },
+    {
+      "hero": "azao",
+      "viewport": {
+        "width": 1366,
+        "height": 900
+      },
+      "before": {
+        "sha256": "cdda5db18266bd43f72eaeed6e80c76d73ab456bae34d87cfe897718bb5a6c90"
+      },
+      "transactions": [
+        {
+          "action": {
+            "type": "PlayHand",
+            "selectedIds": [
+              "spades-9",
+              "hearts-9",
+              "clubs-13",
+              "diamonds-13"
+            ],
+            "azaoRelease": true
+          },
+          "command": {
+            "runId": "controlled/integration/azao",
+            "commandId": "controlled/integration/azao/command/5",
+            "expectedSeq": 4,
+            "action": {
+              "type": "PlayHand",
+              "selectedIds": [
+                "spades-9",
+                "hearts-9",
+                "clubs-13",
+                "diamonds-13"
+              ],
+              "azaoRelease": true
+            }
+          },
+          "before": {
+            "sha256": "cdda5db18266bd43f72eaeed6e80c76d73ab456bae34d87cfe897718bb5a6c90"
+          },
+          "after": {
+            "sha256": "395993fe90185d870de159a0f816f8f29e2229015a1747c0636c504e727904eb"
+          },
+          "status": "PASS"
+        }
+      ],
+      "locks": [
+        {
+          "name": "delayed-commit",
+          "before": {
+            "sha256": "cdda5db18266bd43f72eaeed6e80c76d73ab456bae34d87cfe897718bb5a6c90"
+          },
+          "after": {
+            "sha256": "cdda5db18266bd43f72eaeed6e80c76d73ab456bae34d87cfe897718bb5a6c90"
+          },
+          "draft": {
+            "selected": [
+              "spades-9",
+              "hearts-9",
+              "clubs-13",
+              "diamonds-13"
+            ],
+            "assist": [],
+            "erxiang": null,
+            "xiemu": 0,
+            "azao": true
+          },
+          "text": "阿燥 · 蓄势／爆发\n\n“老一套？我换个活儿压你一头。”\n\n做什么\n当前1层，释放倍率×1.5\n\n何时能用\n先用两对及以上实际出牌蓄势；有层时，选两对及以上就能释放。\n\n现在\n正在换牌；完成后再使用技能。\n\n点开看一个技能例子\n完整能力与限制\n查看本场技能操作\n返回牌桌",
+          "shot": "1366-azao-saving-blocked.png",
+          "status": "PASS"
+        }
+      ],
+      "hapticCapability": {
+        "vibrateAPI": "function",
+        "isSecureContext": true,
+        "pointerCoarse": false,
+        "physicalVibration": "NOT_TESTED",
+        "explicitVibrationRequested": false
+      },
+      "originalOperationText": "阿燥 · 技能\n合格出牌蓄势\n选择释放\n确认出牌\n\n出牌前 · 可释放1层\n\n当前1层，释放倍率×1.5\n不释放：异型两对以上续蓄；重复型、对子或高牌出牌清空。弃牌保留，场间清空。\n\n本手释放 ×1.5\n其它查看\n技能与本场细则\n返回牌桌",
+      "operationShot": "1366-azao-operation.png",
+      "chosenDraft": {
+        "selected": [
+          "spades-9",
+          "hearts-9",
+          "clubs-13",
+          "diamonds-13"
+        ],
+        "assist": [],
+        "erxiang": null,
+        "xiemu": 0,
+        "azao": true
+      },
+      "chosenFirstLayerText": "阿燥 · 蓄势／爆发\n\n“老一套？我换个活儿压你一头。”\n\n做什么\n当前1层，释放倍率×1.5\n\n何时能用\n先用两对及以上实际出牌蓄势；有层时，选两对及以上就能释放。\n\n现在\n第3步 · 已选释放1层，返回牌桌确认出牌\n\n点开看一个技能例子\n完整能力与限制\n查看本场技能操作\n返回牌桌",
+      "chosenFirstLayerShot": "1366-azao-chosen-first.png",
+      "after": {
+        "sha256": "395993fe90185d870de159a0f816f8f29e2229015a1747c0636c504e727904eb"
+      },
+      "status": "PASS"
+    },
+    {
+      "hero": "xiemu",
+      "viewport": {
+        "width": 1366,
+        "height": 900
+      },
+      "before": {
+        "sha256": "d85b4a0f529964421d35cb6665efbe64bf188a3c789233232b8da499051dc96e"
+      },
+      "transactions": [
+        {
+          "action": {
+            "type": "PlayHand",
+            "selectedIds": [
+              "spades-9",
+              "hearts-9",
+              "clubs-13",
+              "diamonds-13"
+            ],
+            "xiemuBurn": 10
+          },
+          "command": {
+            "runId": "controlled/integration/xiemu",
+            "commandId": "controlled/integration/xiemu/command/4",
+            "expectedSeq": 3,
+            "action": {
+              "type": "PlayHand",
+              "selectedIds": [
+                "spades-9",
+                "hearts-9",
+                "clubs-13",
+                "diamonds-13"
+              ],
+              "xiemuBurn": 10
+            }
+          },
+          "before": {
+            "sha256": "d85b4a0f529964421d35cb6665efbe64bf188a3c789233232b8da499051dc96e"
+          },
+          "after": {
+            "sha256": "55cd098bf67b9eedf6f60237a78198f4661f2324b9e86aaed6a29b45922789be"
+          },
+          "status": "PASS"
+        }
+      ],
+      "locks": [
+        {
+          "name": "delayed-commit",
+          "before": {
+            "sha256": "d85b4a0f529964421d35cb6665efbe64bf188a3c789233232b8da499051dc96e"
+          },
+          "after": {
+            "sha256": "d85b4a0f529964421d35cb6665efbe64bf188a3c789233232b8da499051dc96e"
+          },
+          "draft": {
+            "selected": [
+              "spades-9",
+              "hearts-9",
+              "clubs-13",
+              "diamonds-13"
+            ],
+            "assist": [],
+            "erxiang": null,
+            "xiemu": 10,
+            "azao": false
+          },
+          "text": "谢幕人 · 留钱／燃金\n\n“别急着鼓掌，最后才轮到我。”\n\n做什么\n燃10／20／30金，出牌倍率×2／3／4\n\n何时能用\n选两对及以上，至少留有10金；每场一次。\n\n现在\n正在换牌；完成后再使用技能。\n\n点开看一个技能例子\n完整能力与限制\n查看本场技能操作\n返回牌桌",
+          "shot": "1366-xiemu-saving-blocked.png",
+          "status": "PASS"
+        }
+      ],
+      "hapticCapability": {
+        "vibrateAPI": "function",
+        "isSecureContext": true,
+        "pointerCoarse": false,
+        "physicalVibration": "NOT_TESTED",
+        "explicitVibrationRequested": false
+      },
+      "originalOperationText": "谢幕人 · 技能\n选两对及以上\n选燃金档\n确认出牌\n\n第2步 · 选燃金档，或保留金币\n\n燃10／20／30金，出牌倍率×2／3／4\n每场一次；选档不扣，出牌才扣。持币收益与关末利息读余金。\n\n燃10金 ×2\n\n花后5金；按当前本金，常规息少2、角色息少1金\n\n燃20金 ×3\n\n金币不足，不降档 · 不足5金，整档拒绝\n\n燃30金 ×4\n\n金币不足，不降档 · 不足15金，整档拒绝\n\n其它查看\n技能与本场细则\n返回牌桌",
+      "operationShot": "1366-xiemu-operation.png",
+      "chosenDraft": {
+        "selected": [
+          "spades-9",
+          "hearts-9",
+          "clubs-13",
+          "diamonds-13"
+        ],
+        "assist": [],
+        "erxiang": null,
+        "xiemu": 10,
+        "azao": false
+      },
+      "chosenFirstLayerText": "谢幕人 · 留钱／燃金\n\n“别急着鼓掌，最后才轮到我。”\n\n做什么\n燃10／20／30金，出牌倍率×2／3／4\n\n何时能用\n选两对及以上，至少留有10金；每场一次。\n\n现在\n第3步 · 已选燃10金，返回牌桌确认出牌\n\n点开看一个技能例子\n完整能力与限制\n查看本场技能操作\n返回牌桌",
+      "chosenFirstLayerShot": "1366-xiemu-chosen-first.png",
+      "after": {
+        "sha256": "55cd098bf67b9eedf6f60237a78198f4661f2324b9e86aaed6a29b45922789be"
+      },
+      "status": "PASS"
+    },
+    {
+      "hero": "touye",
+      "viewport": {
+        "width": 1366,
+        "height": 900
+      },
+      "before": {
+        "sha256": "ccfeca6d14a54f1774e784a2d5622c003e5efccf119c31b21498e277c699950d"
+      },
+      "transactions": [
+        {
+          "action": {
+            "type": "DiscardHand",
+            "selectedIds": [
+              "clubs-6"
+            ],
+            "touyeBet": {
+              "target": "two-pair",
+              "snapshotToken": "json-fnv-v1:d9f44e8c88433ee8"
+            }
+          },
+          "command": {
+            "runId": "controlled/integration/touye",
+            "commandId": "controlled/integration/touye/command/4",
+            "expectedSeq": 3,
+            "action": {
+              "type": "DiscardHand",
+              "selectedIds": [
+                "clubs-6"
+              ],
+              "touyeBet": {
+                "target": "two-pair",
+                "snapshotToken": "json-fnv-v1:d9f44e8c88433ee8"
+              }
+            }
+          },
+          "before": {
+            "sha256": "ccfeca6d14a54f1774e784a2d5622c003e5efccf119c31b21498e277c699950d"
+          },
+          "after": {
+            "sha256": "46fc34248c77211647d89431d77fe4cf540769dc031106ddf60f10f38ba209d2"
+          },
+          "status": "PASS"
+        }
+      ],
+      "locks": [
+        {
+          "name": "delayed-commit",
+          "before": {
+            "sha256": "ccfeca6d14a54f1774e784a2d5622c003e5efccf119c31b21498e277c699950d"
+          },
+          "after": {
+            "sha256": "ccfeca6d14a54f1774e784a2d5622c003e5efccf119c31b21498e277c699950d"
+          },
+          "draft": {
+            "selected": [
+              "clubs-6"
+            ],
+            "assist": [],
+            "erxiang": null,
+            "xiemu": 0,
+            "azao": false
+          },
+          "text": "骰爷 · 弃前赌约\n\n“你算你的，我敢再押一手。”\n\n做什么\n下一手用新摸牌凑成所押牌型×2；否则×0.85\n\n何时能用\n选1–5张弃牌，再押下一手牌型并换牌；每场一次。\n\n现在\n正在换牌；完成后再使用技能。\n\n点开看一个技能例子\n完整能力与限制\n查看本场技能操作\n返回牌桌",
+          "shot": "1366-touye-saving-blocked.png",
+          "status": "PASS"
+        }
+      ],
+      "hapticCapability": {
+        "vibrateAPI": "function",
+        "isSecureContext": true,
+        "pointerCoarse": false,
+        "physicalVibration": "NOT_TESTED",
+        "explicitVibrationRequested": false
+      },
+      "originalOperationText": "骰爷 · 弃前赌约\n选1–5张弃牌\n押牌型并换牌\n用新摸牌成型出牌\n\n第2步 · 已选1张弃牌，选下一手目标\n\n下一手用新摸牌凑成所押牌型×2；否则×0.85\n每场一次；已成型也可押。押后不能再弃牌或改牌；新牌只当配牌不算。不押×1.15。\n\n押两对\n押三条\n押葫芦\n押顺子\n押同花\n其它查看\n赌约细则\n返回牌桌",
+      "operationShot": "1366-touye-operation.png",
+      "wagerCancel": "PASS",
+      "after": {
+        "sha256": "46fc34248c77211647d89431d77fe4cf540769dc031106ddf60f10f38ba209d2"
+      },
+      "status": "PASS"
+    },
+    {
+      "viewport": {
+        "width": 1366,
+        "height": 900
+      },
+      "hero": "xiemu",
+      "lock": "readonly",
+      "before": {
+        "sha256": "50d8c6cea79855e93d0e17d1da15a99ccc85c61db31e06b0f8b272ed5913535c"
+      },
+      "text": "谢幕人 · 留钱／燃金\n\n“别急着鼓掌，最后才轮到我。”\n\n做什么\n燃10／20／30金，出牌倍率×2／3／4\n\n何时能用\n选两对及以上，至少留有10金；每场一次。\n\n现在\n当前进度未保存或只读；可查看说明，暂不能使用。\n\n点开看一个技能例子\n完整能力与限制\n查看本场技能操作\n返回牌桌",
+      "shot": "1366-readonly-blocked.png",
+      "after": {
+        "sha256": "50d8c6cea79855e93d0e17d1da15a99ccc85c61db31e06b0f8b272ed5913535c"
+      },
+      "status": "PASS"
+    },
+    {
+      "hero": "amo",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "before": {
+        "sha256": "48f55c3b6ea093899b802ae39f0953b8184280dae0b55f47545e605efc3cd969"
+      },
+      "transactions": [
+        {
+          "action": {
+            "type": "PlayAssistedHand",
+            "selectedIds": [
+              "spades-9",
+              "hearts-9",
+              "clubs-13",
+              "diamonds-13"
+            ],
+            "assistIds": [
+              "spades-12",
+              "hearts-12",
+              "clubs-12"
+            ]
+          },
+          "command": {
+            "runId": "controlled/integration/amo",
+            "commandId": "controlled/integration/amo/command/4",
+            "expectedSeq": 3,
+            "action": {
+              "type": "PlayAssistedHand",
+              "selectedIds": [
+                "spades-9",
+                "hearts-9",
+                "clubs-13",
+                "diamonds-13"
+              ],
+              "assistIds": [
+                "spades-12",
+                "hearts-12",
+                "clubs-12"
+              ]
+            }
+          },
+          "before": {
+            "sha256": "48f55c3b6ea093899b802ae39f0953b8184280dae0b55f47545e605efc3cd969"
+          },
+          "after": {
+            "sha256": "7e89d7765385602abcc9d4e852972f967ad0cd38db49ff582566bc803e225b09"
+          },
+          "status": "PASS"
+        }
+      ],
+      "locks": [
+        {
+          "name": "delayed-commit",
+          "before": {
+            "sha256": "48f55c3b6ea093899b802ae39f0953b8184280dae0b55f47545e605efc3cd969"
+          },
+          "after": {
+            "sha256": "48f55c3b6ea093899b802ae39f0953b8184280dae0b55f47545e605efc3cd969"
+          },
+          "draft": {
+            "selected": [
+              "spades-9",
+              "hearts-9",
+              "clubs-13",
+              "diamonds-13"
+            ],
+            "assist": [
+              "spades-12",
+              "hearts-12",
+              "clubs-12"
+            ],
+            "erxiang": null,
+            "xiemu": 0,
+            "azao": false
+          },
+          "text": "阿默 · 主手＋助攻\n\n“少说一句，照样抢你的场。”\n\n做什么\n剩余对子助攻×2，三条×4\n\n何时能用\n先选两对及以上主手，剩余牌里留一组对子或三条；每场一次。\n\n现在\n正在换牌；完成后再使用技能。\n\n点开看一个技能例子\n完整能力与限制\n查看本场技能操作\n返回牌桌",
+          "shot": "390-amo-saving-blocked.png",
+          "status": "PASS"
+        }
+      ],
+      "hapticCapability": {
+        "vibrateAPI": "function",
+        "isSecureContext": true,
+        "pointerCoarse": true,
+        "physicalVibration": "NOT_TESTED",
+        "explicitVibrationRequested": false
+      },
+      "originalOperationText": "阿默 · 换一组\n主手保持 · 4张\n9♠\n♠\n★\n9♥\n♥\n★\nK♣\n★\nK♦\n★\n推荐助攻 · ×4\nQ♠\n助\nQ♥\n助\nQ♣\n助\n\n用掉3张 · 不计留手效果\n\n选这组 ×4\n本手得分与损失\n可选助攻 · ×2\nQ♠\n助\nQ♥\n助\n\n用掉2张 · 不计留手效果\n\n选这组 ×2\n本手得分与损失\n可选助攻 · ×2\nQ♠\n助\nQ♣\n助\n\n用掉2张 · 不计留手效果\n\n选这组 ×2\n本手得分与损失\n可选助攻 · ×2\nQ♥\n助\nQ♣\n助\n\n用掉2张 · 不计留手效果\n\n选这组 ×2\n本手得分与损失\n保留副组 · 不助攻\n保留余牌与本场助攻机会\n\n本手不消耗助攻\n\n保持不助攻\n本手得分与损失\n\n助攻会一同用掉，不计主手或留手效果。最终出牌才消费本场机会。\n\n返回选牌",
+      "operationShot": "390-amo-operation.png",
+      "chosenDraft": {
+        "selected": [
+          "spades-9",
+          "hearts-9",
+          "clubs-13",
+          "diamonds-13"
+        ],
+        "assist": [
+          "spades-12",
+          "hearts-12",
+          "clubs-12"
+        ],
+        "erxiang": null,
+        "xiemu": 0,
+        "azao": false
+      },
+      "chosenFirstLayerText": "阿默 · 主手＋助攻\n\n“少说一句，照样抢你的场。”\n\n做什么\n剩余对子助攻×2，三条×4\n\n何时能用\n先选两对及以上主手，剩余牌里留一组对子或三条；每场一次。\n\n现在\n第3步 · 已选3张助攻，返回牌桌确认出牌\n\n点开看一个技能例子\n完整能力与限制\n查看本场技能操作\n返回牌桌",
+      "chosenFirstLayerShot": "390-amo-chosen-first.png",
+      "after": {
+        "sha256": "7e89d7765385602abcc9d4e852972f967ad0cd38db49ff582566bc803e225b09"
+      },
+      "status": "PASS"
+    },
+    {
+      "hero": "erxiang",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "before": {
+        "sha256": "d74c0ef3981305fa9ebd28ac12af588fad5cfb3ee5eb213ddaf5cf3e459f2cf3"
+      },
+      "transactions": [
+        {
+          "action": {
+            "type": "PlayHand",
+            "selectedIds": [
+              "spades-9",
+              "hearts-9",
+              "clubs-13",
+              "diamonds-13"
+            ],
+            "erxiangTargetId": "spades-9"
+          },
+          "command": {
+            "runId": "controlled/integration/erxiang",
+            "commandId": "controlled/integration/erxiang/command/4",
+            "expectedSeq": 3,
+            "action": {
+              "type": "PlayHand",
+              "selectedIds": [
+                "spades-9",
+                "hearts-9",
+                "clubs-13",
+                "diamonds-13"
+              ],
+              "erxiangTargetId": "spades-9"
+            }
+          },
+          "before": {
+            "sha256": "d74c0ef3981305fa9ebd28ac12af588fad5cfb3ee5eb213ddaf5cf3e459f2cf3"
+          },
+          "after": {
+            "sha256": "c609fbd26e6cdc032712ebd83cc309ed93f5d3cad1b344f11825fead886bdb86"
+          },
+          "status": "PASS"
+        }
+      ],
+      "locks": [
+        {
+          "name": "delayed-commit",
+          "before": {
+            "sha256": "d74c0ef3981305fa9ebd28ac12af588fad5cfb3ee5eb213ddaf5cf3e459f2cf3"
+          },
+          "after": {
+            "sha256": "d74c0ef3981305fa9ebd28ac12af588fad5cfb3ee5eb213ddaf5cf3e459f2cf3"
+          },
+          "draft": {
+            "selected": [
+              "spades-9",
+              "hearts-9",
+              "clubs-13",
+              "diamonds-13"
+            ],
+            "assist": [],
+            "erxiang": "spades-9",
+            "xiemu": 0,
+            "azao": false
+          },
+          "text": "二响 · 交棒\n\n“你刚开口，场子已经归我了。”\n\n做什么\n这张牌的普通点数改加倍率\n\n何时能用\n先选对子及以上，再选一张有效计分牌交棒；每场一次。\n\n现在\n正在换牌；完成后再使用技能。\n\n点开看一个技能例子\n完整能力与限制\n查看本场技能操作\n返回牌桌",
+          "shot": "390-erxiang-saving-blocked.png",
+          "status": "PASS"
+        },
+        {
+          "name": "real-score-presentation",
+          "before": {
+            "sha256": "c609fbd26e6cdc032712ebd83cc309ed93f5d3cad1b344f11825fead886bdb86"
+          },
+          "text": "二响 · 交棒\n\n“你刚开口，场子已经归我了。”\n\n做什么\n这张牌的普通点数改加倍率\n\n何时能用\n先选对子及以上，再选一张有效计分牌交棒；每场一次。\n\n现在\n正在结算；结束后再使用技能。\n\n点开看一个技能例子\n完整能力与限制\n查看本场技能操作\n返回牌桌",
+          "shot": "390-erxiang-presentation-blocked.png",
+          "status": "PASS"
+        }
+      ],
+      "hapticCapability": {
+        "vibrateAPI": "function",
+        "isSecureContext": true,
+        "pointerCoarse": true,
+        "physicalVibration": "NOT_TESTED",
+        "explicitVibrationRequested": false
+      },
+      "originalOperationText": "二响 · 交棒\n选对子及以上\n选一张牌交棒\n确认出牌\n\n第2步 · 选一张计分牌交棒\n\n选一张核心：普通点数改加倍率，本场一次\n每场一次；选好后正常出牌才消耗，增强与版次保留。\n\n9♠ · 9点改加倍率\n9♥ · 9点改加倍率\nK♣ · 10点改加倍率\nK♦ · 10点改加倍率\n其它查看\n交棒细则\n返回选牌",
+      "operationShot": "390-erxiang-operation.png",
+      "chosenDraft": {
+        "selected": [
+          "spades-9",
+          "hearts-9",
+          "clubs-13",
+          "diamonds-13"
+        ],
+        "assist": [],
+        "erxiang": "spades-9",
+        "xiemu": 0,
+        "azao": false
+      },
+      "chosenFirstLayerText": "二响 · 交棒\n\n“你刚开口，场子已经归我了。”\n\n做什么\n这张牌的普通点数改加倍率\n\n何时能用\n先选对子及以上，再选一张有效计分牌交棒；每场一次。\n\n现在\n第3步 · 已选9点交棒，返回牌桌确认出牌\n\n点开看一个技能例子\n完整能力与限制\n查看本场技能操作\n返回牌桌",
+      "chosenFirstLayerShot": "390-erxiang-chosen-first.png",
+      "after": {
+        "sha256": "c609fbd26e6cdc032712ebd83cc309ed93f5d3cad1b344f11825fead886bdb86"
+      },
+      "status": "PASS"
+    },
+    {
+      "hero": "laohuan",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "before": {
+        "sha256": "55005b28de404ac2d1d0ad16e0ce290ac88fcf5a12d8c0f749b44c08650f715f"
+      },
+      "transactions": [
+        {
+          "action": {
+            "type": "DiscardHand",
+            "selectedIds": [
+              "clubs-6"
+            ],
+            "laohuanTrick": true
+          },
+          "command": {
+            "runId": "controlled/integration/laohuan",
+            "commandId": "controlled/integration/laohuan/command/4",
+            "expectedSeq": 3,
+            "action": {
+              "type": "DiscardHand",
+              "selectedIds": [
+                "clubs-6"
+              ],
+              "laohuanTrick": true
+            }
+          },
+          "before": {
+            "sha256": "55005b28de404ac2d1d0ad16e0ce290ac88fcf5a12d8c0f749b44c08650f715f"
+          },
+          "after": {
+            "sha256": "151bd5a6513ceb77b8e99ce7d0359849f092b7f2ff8ee287a4041a0ba4e42cd2"
+          },
+          "status": "PASS"
+        },
+        {
+          "action": {
+            "type": "ChooseRefill",
+            "selectedIds": [
+              "diamonds-14"
+            ]
+          },
+          "command": {
+            "runId": "controlled/integration/laohuan",
+            "commandId": "controlled/integration/laohuan/command/5",
+            "expectedSeq": 4,
+            "action": {
+              "type": "ChooseRefill",
+              "selectedIds": [
+                "diamonds-14"
+              ]
+            }
+          },
+          "before": {
+            "sha256": "151bd5a6513ceb77b8e99ce7d0359849f092b7f2ff8ee287a4041a0ba4e42cd2"
+          },
+          "after": {
+            "sha256": "e9f1a7773dad1eed8a1e6b2721d35bd6ae4e6a6d2b3b13bb9586834340849828"
+          },
+          "status": "PASS"
+        }
+      ],
+      "locks": [
+        {
+          "name": "delayed-commit",
+          "before": {
+            "sha256": "55005b28de404ac2d1d0ad16e0ce290ac88fcf5a12d8c0f749b44c08650f715f"
+          },
+          "after": {
+            "sha256": "55005b28de404ac2d1d0ad16e0ce290ac88fcf5a12d8c0f749b44c08650f715f"
+          },
+          "draft": {
+            "selected": [
+              "clubs-6"
+            ],
+            "assist": [],
+            "erxiang": null,
+            "xiemu": 0,
+            "azao": false
+          },
+          "text": "老幻 · 戏法换牌\n\n“袖子空的？你的掌声可不空。”\n\n做什么\n多看最多2张，自己决定留下哪些\n\n何时能用\n先选1–5张弃牌，付得起本次弃牌成本；每场一次。\n\n现在\n正在换牌；完成后再使用技能。\n\n点开看一个技能例子\n完整能力与限制\n查看本场技能操作\n返回牌桌",
+          "shot": "390-laohuan-saving-blocked.png",
+          "status": "PASS"
+        }
+      ],
+      "hapticCapability": {
+        "vibrateAPI": "function",
+        "isSecureContext": true,
+        "pointerCoarse": true,
+        "physicalVibration": "NOT_TESTED",
+        "explicitVibrationRequested": false
+      },
+      "originalOperationText": "老幻 · 技能\n选要弃的牌\n确认戏法弃牌\n从候选中留牌\n\n第2步 · 确认戏法弃牌\n\n多看最多2张，自己决定留下哪些\n每场一次；照付弃牌成本，未留候选本场不再抽。\n\n戏法弃1张 · 留应补数\n其它查看\n技能与本场细则\n返回牌桌",
+      "operationShot": "390-laohuan-operation.png",
+      "after": {
+        "sha256": "e9f1a7773dad1eed8a1e6b2721d35bd6ae4e6a6d2b3b13bb9586834340849828"
+      },
+      "status": "PASS"
+    },
+    {
+      "hero": "azao",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "before": {
+        "sha256": "cdda5db18266bd43f72eaeed6e80c76d73ab456bae34d87cfe897718bb5a6c90"
+      },
+      "transactions": [
+        {
+          "action": {
+            "type": "PlayHand",
+            "selectedIds": [
+              "spades-9",
+              "hearts-9",
+              "clubs-13",
+              "diamonds-13"
+            ],
+            "azaoRelease": true
+          },
+          "command": {
+            "runId": "controlled/integration/azao",
+            "commandId": "controlled/integration/azao/command/5",
+            "expectedSeq": 4,
+            "action": {
+              "type": "PlayHand",
+              "selectedIds": [
+                "spades-9",
+                "hearts-9",
+                "clubs-13",
+                "diamonds-13"
+              ],
+              "azaoRelease": true
+            }
+          },
+          "before": {
+            "sha256": "cdda5db18266bd43f72eaeed6e80c76d73ab456bae34d87cfe897718bb5a6c90"
+          },
+          "after": {
+            "sha256": "395993fe90185d870de159a0f816f8f29e2229015a1747c0636c504e727904eb"
+          },
+          "status": "PASS"
+        }
+      ],
+      "locks": [
+        {
+          "name": "delayed-commit",
+          "before": {
+            "sha256": "cdda5db18266bd43f72eaeed6e80c76d73ab456bae34d87cfe897718bb5a6c90"
+          },
+          "after": {
+            "sha256": "cdda5db18266bd43f72eaeed6e80c76d73ab456bae34d87cfe897718bb5a6c90"
+          },
+          "draft": {
+            "selected": [
+              "spades-9",
+              "hearts-9",
+              "clubs-13",
+              "diamonds-13"
+            ],
+            "assist": [],
+            "erxiang": null,
+            "xiemu": 0,
+            "azao": true
+          },
+          "text": "阿燥 · 蓄势／爆发\n\n“老一套？我换个活儿压你一头。”\n\n做什么\n当前1层，释放倍率×1.5\n\n何时能用\n先用两对及以上实际出牌蓄势；有层时，选两对及以上就能释放。\n\n现在\n正在换牌；完成后再使用技能。\n\n点开看一个技能例子\n完整能力与限制\n查看本场技能操作\n返回牌桌",
+          "shot": "390-azao-saving-blocked.png",
+          "status": "PASS"
+        }
+      ],
+      "hapticCapability": {
+        "vibrateAPI": "function",
+        "isSecureContext": true,
+        "pointerCoarse": true,
+        "physicalVibration": "NOT_TESTED",
+        "explicitVibrationRequested": false
+      },
+      "originalOperationText": "阿燥 · 技能\n合格出牌蓄势\n选择释放\n确认出牌\n\n出牌前 · 可释放1层\n\n当前1层，释放倍率×1.5\n不释放：异型两对以上续蓄；重复型、对子或高牌出牌清空。弃牌保留，场间清空。\n\n本手释放 ×1.5\n其它查看\n技能与本场细则\n返回牌桌",
+      "operationShot": "390-azao-operation.png",
+      "chosenDraft": {
+        "selected": [
+          "spades-9",
+          "hearts-9",
+          "clubs-13",
+          "diamonds-13"
+        ],
+        "assist": [],
+        "erxiang": null,
+        "xiemu": 0,
+        "azao": true
+      },
+      "chosenFirstLayerText": "阿燥 · 蓄势／爆发\n\n“老一套？我换个活儿压你一头。”\n\n做什么\n当前1层，释放倍率×1.5\n\n何时能用\n先用两对及以上实际出牌蓄势；有层时，选两对及以上就能释放。\n\n现在\n第3步 · 已选释放1层，返回牌桌确认出牌\n\n点开看一个技能例子\n完整能力与限制\n查看本场技能操作\n返回牌桌",
+      "chosenFirstLayerShot": "390-azao-chosen-first.png",
+      "after": {
+        "sha256": "395993fe90185d870de159a0f816f8f29e2229015a1747c0636c504e727904eb"
+      },
+      "status": "PASS"
+    },
+    {
+      "hero": "xiemu",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "before": {
+        "sha256": "d85b4a0f529964421d35cb6665efbe64bf188a3c789233232b8da499051dc96e"
+      },
+      "transactions": [
+        {
+          "action": {
+            "type": "PlayHand",
+            "selectedIds": [
+              "spades-9",
+              "hearts-9",
+              "clubs-13",
+              "diamonds-13"
+            ],
+            "xiemuBurn": 10
+          },
+          "command": {
+            "runId": "controlled/integration/xiemu",
+            "commandId": "controlled/integration/xiemu/command/4",
+            "expectedSeq": 3,
+            "action": {
+              "type": "PlayHand",
+              "selectedIds": [
+                "spades-9",
+                "hearts-9",
+                "clubs-13",
+                "diamonds-13"
+              ],
+              "xiemuBurn": 10
+            }
+          },
+          "before": {
+            "sha256": "d85b4a0f529964421d35cb6665efbe64bf188a3c789233232b8da499051dc96e"
+          },
+          "after": {
+            "sha256": "55cd098bf67b9eedf6f60237a78198f4661f2324b9e86aaed6a29b45922789be"
+          },
+          "status": "PASS"
+        }
+      ],
+      "locks": [
+        {
+          "name": "delayed-commit",
+          "before": {
+            "sha256": "d85b4a0f529964421d35cb6665efbe64bf188a3c789233232b8da499051dc96e"
+          },
+          "after": {
+            "sha256": "d85b4a0f529964421d35cb6665efbe64bf188a3c789233232b8da499051dc96e"
+          },
+          "draft": {
+            "selected": [
+              "spades-9",
+              "hearts-9",
+              "clubs-13",
+              "diamonds-13"
+            ],
+            "assist": [],
+            "erxiang": null,
+            "xiemu": 10,
+            "azao": false
+          },
+          "text": "谢幕人 · 留钱／燃金\n\n“别急着鼓掌，最后才轮到我。”\n\n做什么\n燃10／20／30金，出牌倍率×2／3／4\n\n何时能用\n选两对及以上，至少留有10金；每场一次。\n\n现在\n正在换牌；完成后再使用技能。\n\n点开看一个技能例子\n完整能力与限制\n查看本场技能操作\n返回牌桌",
+          "shot": "390-xiemu-saving-blocked.png",
+          "status": "PASS"
+        }
+      ],
+      "hapticCapability": {
+        "vibrateAPI": "function",
+        "isSecureContext": true,
+        "pointerCoarse": true,
+        "physicalVibration": "NOT_TESTED",
+        "explicitVibrationRequested": false
+      },
+      "originalOperationText": "谢幕人 · 技能\n选两对及以上\n选燃金档\n确认出牌\n\n第2步 · 选燃金档，或保留金币\n\n燃10／20／30金，出牌倍率×2／3／4\n每场一次；选档不扣，出牌才扣。持币收益与关末利息读余金。\n\n燃10金 ×2\n\n花后5金；按当前本金，常规息少2、角色息少1金\n\n燃20金 ×3\n\n金币不足，不降档 · 不足5金，整档拒绝\n\n燃30金 ×4\n\n金币不足，不降档 · 不足15金，整档拒绝\n\n其它查看\n技能与本场细则\n返回牌桌",
+      "operationShot": "390-xiemu-operation.png",
+      "chosenDraft": {
+        "selected": [
+          "spades-9",
+          "hearts-9",
+          "clubs-13",
+          "diamonds-13"
+        ],
+        "assist": [],
+        "erxiang": null,
+        "xiemu": 10,
+        "azao": false
+      },
+      "chosenFirstLayerText": "谢幕人 · 留钱／燃金\n\n“别急着鼓掌，最后才轮到我。”\n\n做什么\n燃10／20／30金，出牌倍率×2／3／4\n\n何时能用\n选两对及以上，至少留有10金；每场一次。\n\n现在\n第3步 · 已选燃10金，返回牌桌确认出牌\n\n点开看一个技能例子\n完整能力与限制\n查看本场技能操作\n返回牌桌",
+      "chosenFirstLayerShot": "390-xiemu-chosen-first.png",
+      "after": {
+        "sha256": "55cd098bf67b9eedf6f60237a78198f4661f2324b9e86aaed6a29b45922789be"
+      },
+      "status": "PASS"
+    },
+    {
+      "hero": "touye",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "before": {
+        "sha256": "ccfeca6d14a54f1774e784a2d5622c003e5efccf119c31b21498e277c699950d"
+      },
+      "transactions": [
+        {
+          "action": {
+            "type": "DiscardHand",
+            "selectedIds": [
+              "clubs-6"
+            ],
+            "touyeBet": {
+              "target": "two-pair",
+              "snapshotToken": "json-fnv-v1:d9f44e8c88433ee8"
+            }
+          },
+          "command": {
+            "runId": "controlled/integration/touye",
+            "commandId": "controlled/integration/touye/command/4",
+            "expectedSeq": 3,
+            "action": {
+              "type": "DiscardHand",
+              "selectedIds": [
+                "clubs-6"
+              ],
+              "touyeBet": {
+                "target": "two-pair",
+                "snapshotToken": "json-fnv-v1:d9f44e8c88433ee8"
+              }
+            }
+          },
+          "before": {
+            "sha256": "ccfeca6d14a54f1774e784a2d5622c003e5efccf119c31b21498e277c699950d"
+          },
+          "after": {
+            "sha256": "46fc34248c77211647d89431d77fe4cf540769dc031106ddf60f10f38ba209d2"
+          },
+          "status": "PASS"
+        }
+      ],
+      "locks": [
+        {
+          "name": "delayed-commit",
+          "before": {
+            "sha256": "ccfeca6d14a54f1774e784a2d5622c003e5efccf119c31b21498e277c699950d"
+          },
+          "after": {
+            "sha256": "ccfeca6d14a54f1774e784a2d5622c003e5efccf119c31b21498e277c699950d"
+          },
+          "draft": {
+            "selected": [
+              "clubs-6"
+            ],
+            "assist": [],
+            "erxiang": null,
+            "xiemu": 0,
+            "azao": false
+          },
+          "text": "骰爷 · 弃前赌约\n\n“你算你的，我敢再押一手。”\n\n做什么\n下一手用新摸牌凑成所押牌型×2；否则×0.85\n\n何时能用\n选1–5张弃牌，再押下一手牌型并换牌；每场一次。\n\n现在\n正在换牌；完成后再使用技能。\n\n点开看一个技能例子\n完整能力与限制\n查看本场技能操作\n返回牌桌",
+          "shot": "390-touye-saving-blocked.png",
+          "status": "PASS"
+        }
+      ],
+      "hapticCapability": {
+        "vibrateAPI": "function",
+        "isSecureContext": true,
+        "pointerCoarse": true,
+        "physicalVibration": "NOT_TESTED",
+        "explicitVibrationRequested": false
+      },
+      "originalOperationText": "骰爷 · 弃前赌约\n选1–5张弃牌\n押牌型并换牌\n用新摸牌成型出牌\n\n第2步 · 已选1张弃牌，选下一手目标\n\n下一手用新摸牌凑成所押牌型×2；否则×0.85\n每场一次；已成型也可押。押后不能再弃牌或改牌；新牌只当配牌不算。不押×1.15。\n\n押两对\n押三条\n押葫芦\n押顺子\n押同花\n其它查看\n赌约细则\n返回牌桌",
+      "operationShot": "390-touye-operation.png",
+      "wagerCancel": "PASS",
+      "after": {
+        "sha256": "46fc34248c77211647d89431d77fe4cf540769dc031106ddf60f10f38ba209d2"
+      },
+      "status": "PASS"
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "hero": "xiemu",
+      "lock": "readonly",
+      "before": {
+        "sha256": "50d8c6cea79855e93d0e17d1da15a99ccc85c61db31e06b0f8b272ed5913535c"
+      },
+      "text": "谢幕人 · 留钱／燃金\n\n“别急着鼓掌，最后才轮到我。”\n\n做什么\n燃10／20／30金，出牌倍率×2／3／4\n\n何时能用\n选两对及以上，至少留有10金；每场一次。\n\n现在\n当前进度未保存或只读；可查看说明，暂不能使用。\n\n点开看一个技能例子\n完整能力与限制\n查看本场技能操作\n返回牌桌",
+      "shot": "390-readonly-blocked.png",
+      "after": {
+        "sha256": "50d8c6cea79855e93d0e17d1da15a99ccc85c61db31e06b0f8b272ed5913535c"
+      },
+      "status": "PASS"
+    }
+  ],
+  "errors": [],
+  "browser": "151.0.7922.173",
+  "status": "PASS"
+}
