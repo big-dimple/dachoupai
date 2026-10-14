@@ -312,7 +312,7 @@ export class ShopScene extends Phaser.Scene {
       visible.forEach((o,i)=>{const b=grid.boxes[i];const artWidth=Math.min(72,(b.height-16)/1.4);this.drawPCOffer(o,kind,b,{x:b.x+8,y:b.y+8,width:artWidth,height:artWidth*1.4});});
     }
     const discovery=this.ready&&!this.notice?savedGrowthDiscovery(this.run):undefined;
-    this.noticeLabel=v.text(pc.feedback.x+6,pc.feedback.y,this.busy?'正在保存…':this.notice||r2BasicToolShelfStatus(this.run)||discovery?.full||starterShopCue(this.run)||firstChapterGuide(this.run)?.cue||'点商品只看详情，确认才扣款；购买工具不会自动使用。',14,this.notice?'#B8473A':'#3F606B',pc.feedback.width-12).setStyle({maxLines:1}).setName(discovery?'growth/discovery':'');this.drawResultCue();
+    this.noticeLabel=v.text(pc.feedback.x+6,pc.feedback.y,this.busy?'正在保存…':this.notice||shopPracticeQuota(this.run)||r2BasicToolShelfStatus(this.run)||discovery?.full||starterShopCue(this.run)||firstChapterGuide(this.run)?.cue||'点商品只看详情，确认才扣款；购买工具不会自动使用。',14,this.notice?'#B8473A':'#3F606B',pc.feedback.width-12).setStyle({maxLines:1}).setName(discovery?'growth/discovery':'');this.drawResultCue();
     this.drawFirstGuide(p);
   }
   private firstGuideOptions():void {
@@ -465,7 +465,7 @@ export class ShopScene extends Phaser.Scene {
     const title=purchase?.handType?'已升级 · '+HAND_LABELS[purchase.handType]:purchase?'已购 · '+toolInfo(purchase.definitionId,this.run).name:isR2CoreBuild(this.run)?'升级 / 做牌':'基础自选1件';
     const titleText=v.text(copy.x,copy.y+4,title,14,PAPER_CSS.ink,copy.width).setFontStyle('bold').setName('shop/basic-choice-title');
     v.text(copy.x,p.pc?titleText.y+titleText.height+6:copy.y+27,purchase?'下一店可再选':isR2CoreBuild(this.run)?'升级 / 改牌 / 染色共选1件':'选工具，再选目标牌',14,PAPER_CSS.jade,copy.width).setName('shop/basic-choice-purpose');
-    if(!purchase){const ink=this.offerPricePlate(o,{x:copy.x-2,y:copy.priceY-2,width:copy.width+2,height:24});v.text(copy.x,copy.priceY,(isR2SuitChoice(this.run)?r2PurchasePrice(this.run,o)+' / '+r2PurchasePrice(this.run,{...o,price:4})+' 金':r2PurchasePrice(this.run,o)+' 金'),16,ink).setFontStyle('bold').setName('shop/basic-choice-price');}
+    if(!purchase){const ink=this.offerPricePlate(o,{x:copy.x-2,y:copy.priceY-2,width:copy.width+2,height:24});v.text(copy.x,copy.priceY,isR2CoreBuild(this.run)?'查看报价':(isR2SuitChoice(this.run)?r2PurchasePrice(this.run,o)+' / '+r2PurchasePrice(this.run,{...o,price:4})+' 金':r2PurchasePrice(this.run,o)+' 金'),16,ink).setFontStyle('bold').setName('shop/basic-choice-price');}
     const hover=this.hoverCard(first,copy.tile),r=v.rect(copy.tile).setFillStyle(0,0).setStrokeStyle();v.target(r,'offer/'+o.offerId,{tap:()=>this.inspectBasicChoice(),detail:()=>this.inspectBasicChoice(),...hover});this.offerArts.push(hover.art);
   }
   private inspectMakeCards():void {
