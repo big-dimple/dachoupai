@@ -7,6 +7,8 @@ import {scoreR2Hand,type ScoreInput} from '../src/domain/scoreR2';
 import {r2JokerDefinitionsFor} from '../src/domain/r2ContentProfiles';
 import {r2PurchasePrice,salePrice} from '../src/domain/r2Shop';
 import {stableHash} from '../src/domain/hash';
+import {R2_CORE_BUILD_VERSION,R2_CORE_BUILD_HASH} from '../src/domain/r2GroupUpgrade';
+import {r2PracticeQuotes} from '../src/domain/r2Practice';
 
 export const naturalFile='docs/production/evidence/core-build-preparation-2026-10-14/laohuan-c9-natural-save-20261014.json';
 export function send(s:R2RunState,action:Action){const c:Command={runId:s.runId,commandId:s.runId+'/window/'+(s.commandSeq+1),expectedSeq:s.commandSeq,action};const r=applyCommand(s,c);if(!r.ok)throw Error(r.code);return r.state;}
@@ -46,4 +48,15 @@ export function naturalWindow(){
  const voiceScore=sameHand(voiceUsed);
  const ablations={noRoute:scoreR2Hand({...input,routeGrowth:{clears:0,G:0,S:0,F:0}}).finalScore,noJokers:scoreR2Hand({...input,jokers:[]}).finalScore,noGrowth:scoreR2Hand({...input,jokers:input.jokers.map(j=>r2CreateJoker(j.definitionId,j.instanceId,j.paidPrice,j.edition,s))}).finalScore,level1:scoreR2Hand({...input,handLevels:{...input.handLevels,straight:1}}).finalScore};
  return {saved,preBoss,input,trace,shop,keep,voiceUsed,report:{replayedCommands:read.checkpoint.journal.length+1,exactStateReplay:true,natural:{score:trace.finalScore,accumulator:trace.accumulator,target:saved.stage!.targetHeat,goldBefore:preBoss.gold,goldAfter:saved.gold,levelBefore:input.handLevels.straight,levelAfter:saved.handLevels.straight},ablations,shop:{gold:shop.gold,boss:shop.boss,offers:shop.shop!.offers,tools:shop.shop!.toolOffers,items:shop.shop!.itemOffers,targets:[0,1,2].map(i=>getR2Stage(shop.stageIndex+i,'endless',shop.difficulty,shop)!.targetHeat)},keep:{score:keep.finalScore,gold:shop.gold},swaps,voicePaper:{price:r2PurchasePrice(shop,voiceOffer),targets:heldFaces,gold:voiceUsed.gold,score:voiceScore.finalScore,scoreDelta:String(BigInt(voiceScore.finalScore)-BigInt(keep.finalScore))}}};
+}
+
+/** The same fixed actual commands under the new policy, never a save migration. */
+export function coreBuildCounterfactual(w:ReturnType<typeof naturalWindow>){
+ const identity={contentVersion:R2_CORE_BUILD_VERSION,contentHash:R2_CORE_BUILD_HASH},start=applyCommand(null,routeStarterStartCommand({...w.saved,...identity}));if(!start.ok)throw Error(start.code);
+ let s=start.state as R2RunState;
+ for(const command of JSON.parse(readFileSync(naturalFile,'utf8')).journal as Command[]){const r=applyCommand(s,command);if(!r.ok)throw Error(r.code);s=r.state;}
+ const shop=send(s,{type:'OpenShop'}),quote=r2PracticeQuotes(shop).find(q=>q.handType==='straight')!;
+ const upgraded=send(shop,{type:'PracticeHand',handType:quote.handType,expectedLevel:quote.levelBefore,shopSeq:quote.shopSeq});
+ const frozen=(state:R2RunState)=>scoreR2Hand({...w.input,handLevels:state.handLevels,jokers:state.jokers,gold:state.gold});
+ return {scope:'same fixed natural command policy replayed offline under core-build; frozen C9 B12 hand; not a new natural sample or C10 draw prediction',identity,c9:{score:s.lastTrace!.finalScore,target:s.stage!.targetHeat,gold:s.gold},c10Plan:shop.chapterTargetPlan,quote,practice:{goldBefore:shop.gold,goldAfter:upgraded.gold,levelBefore:shop.handLevels.straight,levelAfter:upgraded.handLevels.straight,keptScore:frozen(shop).finalScore,upgradedScore:frozen(upgraded).finalScore,inventoryUnchanged:stableHash(shop.consumables)===stableHash(upgraded.consumables),targetsUnchanged:stableHash(shop.chapterTargetPlan)===stableHash(upgraded.chapterTargetPlan)},targets:[9,10,13,20,30].map(chapter=>({chapter,targets:[0,1,2].map(i=>getR2Stage((chapter-1)*3+i,'endless',0,identity)!.targetHeat)}))};
 }

@@ -3,10 +3,10 @@
 父已确认：普通八章目标/封×4保持；无尽27/20逐章；服务报价4+2×floor((等级−1)/3)、原优惠最低1金，与改牌/染色每店共享一次；随机与库存T01不变。新局身份 `quality-r2-core-build-v1` / `json-fnv-v1:6dfe1a721e4949e6`。领域分支不改ShopScene/GameScene/结算/声音。
 
 ```ts
-import {isR2CoreBuild} from 'src/domain/r2GroupUpgrade';
-import {r2PracticeQuotes} from 'src/domain/r2Practice';
-import {r2ChapterTargetPreview} from 'src/domain/r2Run';
-import {r2TargetPolicyFor} from 'src/domain/r2TargetPolicy';
+import {isR2CoreBuild} from '../domain/r2GroupUpgrade';
+import {r2PracticeQuotes} from '../domain/r2Practice';
+import {r2ChapterTargetPreview} from '../domain/r2Run';
+import {r2TargetPolicyFor} from '../domain/r2TargetPolicy';
 ```
 
 `r2PracticeQuotes(run)` 是无写入查询，返回已发现且未30级的全部牌型，每行包含 `handType, levelBefore, levelAfter, basePrice, price, goldAfter, shopSeq, expectedSeq, available, reason`。金额不足仍返回该行及 `reason='not-enough-gold'`，不能用买不起冒充未发现。非新身份、非商店或本店额度已用返回空数组。取消/查看不发送命令，不占额度。已有工具库存容量不影响这个立即升级服务。

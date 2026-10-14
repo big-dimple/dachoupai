@@ -1,6 +1,7 @@
 {
   "baseSha": "f651a04e",
-  "runtimeTree": "04097f7c7ece0d2297b787bfdf3c9c6031b4456b",
+  "runtimeSha": "06ef9d5a33bb04444802aa20ff3a726489455aa1",
+  "runtimeTree": "5e1ac31cc2011ffd0d5658ceda625a9a219cdd17",
   "inputSha256": "085d29b9fd4bcabf638f87c2eeb63f55c17ca553c65ade87e10544337d28f1b9",
   "evidenceClass": "exact natural replay; transactions on cloned C10 shelf; frozen C9 B12 hand comparisons are counterfactual, not C10 deal predictions or win rates",
   "replayedCommands": 196,
@@ -496,13 +497,53 @@
     "score": "72648",
     "scoreDelta": "8173"
   },
-  "proposedTargets": {
-    "status": "NOT_PRODUCT_PARAMETERS_PENDING_PARENT_CONFIRMATION",
-    "endlessGrowth": {
-      "n": "27",
-      "d": "20"
+  "coreBuild": {
+    "scope": "same fixed natural command policy replayed offline under core-build; frozen C9 B12 hand; not a new natural sample or C10 draw prediction",
+    "identity": {
+      "contentVersion": "quality-r2-core-build-v1",
+      "contentHash": "json-fnv-v1:6dfe1a721e4949e6"
     },
-    "rows": [
+    "c9": {
+      "score": "60047",
+      "target": "55283",
+      "gold": 264
+    },
+    "c10Plan": {
+      "policyVersion": "core-build-target-v1",
+      "chapter": 10,
+      "targets": [
+        "37316",
+        "55974",
+        "74632"
+      ],
+      "boss": {
+        "definitionId": "B13",
+        "disabledSuit": null
+      }
+    },
+    "quote": {
+      "handType": "straight",
+      "levelBefore": 15,
+      "levelAfter": 16,
+      "basePrice": 12,
+      "price": 11,
+      "goldAfter": 253,
+      "shopSeq": 197,
+      "expectedSeq": 197,
+      "available": true,
+      "reason": null
+    },
+    "practice": {
+      "goldBefore": 264,
+      "goldAfter": 253,
+      "levelBefore": 15,
+      "levelAfter": 16,
+      "keptScore": "64475",
+      "upgradedScore": "69060",
+      "inventoryUnchanged": true,
+      "targetsUnchanged": true
+    },
+    "targets": [
       {
         "chapter": 9,
         "targets": [
