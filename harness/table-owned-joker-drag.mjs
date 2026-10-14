@@ -34,7 +34,7 @@ const slot=(p,i)=>p.evaluate(i=>{const s=window.__harness.game.scene.getScene('g
 const load=async (p,checkpoint=cp)=>{await p.locator('.run-menu-toggle').click();const sec=p.getByText('进度与存档',{exact:true}).locator('..');if(!await sec.evaluate(e=>e.open))await sec.locator('summary').click();const fc=p.waitForEvent('filechooser');await p.getByRole('button',{name:'导入本局',exact:true}).click();await(await fc).setFiles({name:'controlled-owned.json',mimeType:'application/json',buffer:Buffer.from(JSON.stringify(checkpoint))});await waitScene(p,'game');await idle(p);await frame(p);await p.waitForTimeout(350);await p.waitForFunction(()=>{const s=window.__harness.game.scene.getScene('game');return s.run.jokers.every(j=>s.textures.exists('p08-joker-'+j.definitionId));});};
 const visual=p=>p.evaluate(()=>{const s=window.__harness.game.scene.getScene('game'),d=s.ownedDrag;return {drag:!!d,saving:d?.saving??false,inputEnabled:s.input.enabled,hint:s.statusText?.text,slots:s.view.layout.slots,arts:[...s.jokerViews].map(([id,a])=>({id,x:a.x,y:a.y,scale:a.scaleX,active:a.active,bounds:{x:a.getBounds().x,y:a.getBounds().y,width:a.getBounds().width,height:a.getBounds().height}})),surfaceTouchAction:s.ownedInput?.surface.style.touchAction,dispatch:window.__feedbackDispatch??[]};});
 try{
- for(const spec of [{width:390,height:844,touch:true},{width:1366,height:900,touch:false},...(!baseline?[{width:390,height:844,touch:true,reduced:true,dpr:2}]:[])].filter(s=>!smoke||!s.reduced)){
+ for(const spec of [{width:390,height:844,touch:true},{width:1366,height:900,touch:false},...(!baseline?[{width:390,height:844,touch:true,reduced:true,dpr:2}]:[])].filter(s=>(!smoke||!s.reduced)&&(process.env.TABLE_DRAG_PENDING_HOVER_ONLY!=='1'||!s.touch))){
   const {width,height,touch}=spec,name=width+'x'+height+(spec.reduced?'-reduce-dpr2':''),context=await browser.newContext({viewport:{width,height},hasTouch:touch,isMobile:touch,deviceScaleFactor:spec.dpr??1,reducedMotion:spec.reduced?'reduce':'no-preference'}),p=await context.newPage(),row={...spec,name,checks:[],errors:[],moves:[],cancellations:[]};report.cases.push(row);p.on('dialog',d=>d.accept());p.on('pageerror',e=>row.errors.push(String(e)));await p.goto(`http://127.0.0.1:${port}/?harness=1`);await waitScene(p,'title');await load(p);
   await p.evaluate(()=>{const c=window.__harness.game.registry.get('runController'),dispatch=c.dispatch;window.__feedbackDispatch=[];c.dispatch=function(...args){window.__feedbackDispatch.push(structuredClone(args));return dispatch.apply(this,args);};});
   const cdp=touch?await context.newCDPSession(p):undefined;
@@ -55,6 +55,15 @@ try{
    const before=await snapshot(p);await p.mouse.move(...Object.values(await slot(p,0)));await p.waitForTimeout(160);
    row.mouseHover=await p.evaluate(()=>{const s=window.__harness.game.scene.getScene('game');return{id:s.hoveredJokerId,preview:!!s.jokerHoverPreview?.active};});assert.equal(row.mouseHover.id,before.state.jokers[0].instanceId);assert.equal(row.mouseHover.preview,true);assert.deepEqual(await snapshot(p),before);row.mouseHover.shot=await shot('mouse-hover');await p.mouse.move(1,1);await p.waitForTimeout(160);
   }
+  if(!touch&&!baseline){
+   await load(p,locks.find(l=>l.name==='pending-touye').checkpoint);
+   const before=await snapshot(p);await p.mouse.move(1,1);await p.mouse.move(...Object.values(await slot(p,0)));await p.waitForTimeout(160);
+   row.pendingTouyeHover={before,observed:await p.evaluate(()=>{const s=window.__harness.game.scene.getScene('game');return{id:s.hoveredJokerId,preview:!!s.jokerHoverPreview?.active,reorderReady:s.ownedReady};}),shot:await shot('pending-touye-hover')};
+   assert.equal(row.pendingTouyeHover.observed.id,before.state.jokers[0].instanceId,'pending wager keeps read-only PC hover');assert.equal(row.pendingTouyeHover.observed.preview,true);assert.equal(row.pendingTouyeHover.observed.reorderReady,false);assert.deepEqual(await snapshot(p),before);
+   await tapUI(p,'game','joker/'+before.state.jokers[0].instanceId);for(const label of ['左移','右移'])assert.ok(await p.getByRole('button',{name:label,exact:true}).isDisabled());await p.locator('dialog[open] .dialog-close').click();assert.deepEqual(await snapshot(p),before);row.pendingTouyeHover.after=await snapshot(p);row.pendingTouyeHover.status='PASS';
+   await load(p);
+  }
+  if(process.env.TABLE_DRAG_PENDING_HOVER_ONLY==='1'){row.status='PASS';await context.close();continue;}
   for(const [from,to,style] of [[0,4,'slow'],[4,0,'fast'],[1,3,'middle']].slice(0,smoke?1:3)){
    const before=await snapshot(p),at=await slot(p,from),target=await slot(p,to),id=before.state.jokers[from].instanceId,v0=await visual(p),calls=v0.dispatch.length,m={from,to,style,before};row.moves.push(m);
    await start(at);await p.waitForTimeout(touch?420:30);

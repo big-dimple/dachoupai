@@ -4,6 +4,7 @@ import {warmTableImages} from './StageImageWarmup';
 import {isR2ActiveMultTiming} from '../domain/r2GroupUpgrade';
 import {touyeComboCue} from './TouyeComboCue';
 import {azaoReleaseLabel,heroSkillGuide,heroOperationSteps,mountHeroSkillGuide} from './HeroSkillGuide';
+import {showHeroExplanation} from './HeroExplanation';
 import {sourceImpact} from './SourceImpact';
 import {mountSourceImpact} from './SourceImpactView';
 import {growthPayoffs,growthEventPayoff} from './GrowthPayoff';
@@ -340,7 +341,7 @@ export class GameScene extends Phaser.Scene {
     });
     // The native rail owns dragging; keep the table's existing mouse hover inspection.
     this.ownedInput.surface.addEventListener('pointermove',event=>{
-      if(event.pointerType!=='mouse'||event.buttons||!this.ownedReady||this.ownedDrag)return;
+      if(event.pointerType!=='mouse'||event.buttons||!this.ready||this.presentation||this.run.phase!=='await-input'||this.ownedDrag)return;
       const r=this.game.canvas.getBoundingClientRect(),x=(event.clientX-r.left)*this.scale.width*this.scale.zoom/r.width,y=(event.clientY-r.top)*this.scale.height*this.scale.zoom/r.height;
       const index=this.view.layout.slots.findIndex(b=>x>=b.x&&x<=b.x+b.width&&y>=b.y&&y<=b.y+b.height),id=this.run.jokers[index]?.instanceId;
       if(this.hoveredJokerId===id)return;if(this.hoveredJokerId)this.hoverJoker(this.hoveredJokerId,false);if(id)this.hoverJoker(id,true);
@@ -401,7 +402,7 @@ export class GameScene extends Phaser.Scene {
     requestJokerArt(this,this.run.jokers.map(j=>j.definitionId),()=>{this.dialog.refreshArtLoad();if(!this.presentation&&!this.playing)this.render();});
     this.stage={...this.stage,targetHeat:this.run.stage!.targetHeat};
     this.controlsLive=false;this.stopScoreFire();
-    const v=this.view,l=v.layout;this.hoveredCardId=undefined;this.hoveredJokerId=undefined;this.jokerHoverPreview=undefined;v.clear();this.handNavigationButtons=[];v.paperBackground();drawStageTableArt(this,v,this.characterId);this.settledCards.clear();this.previewCards=undefined;
+    const v=this.view,l=v.layout;this.hoveredCardId=undefined;this.hoveredJokerId=undefined;this.jokerHoverPreview=undefined;v.clear();this.handNavigationButtons=[];v.paperBackground();drawStageTableArt(this,v,this.characterId,()=>this.inspectHeroExplanation());this.settledCards.clear();this.previewCards=undefined;
     this.playAuraPulse?.remove();this.playAuraPulse=undefined;this.playAura=undefined;
     if(this.progressBar)this.tweens.killTweensOf(this.progressBar);this.progressTarget=Number.NaN;
     const h=l.hud,c=getCharacter(this.characterId),portrait=l.mode==='portrait',short=l.mode==='landscape';
@@ -411,13 +412,13 @@ export class GameScene extends Phaser.Scene {
     this.roleAvatar=v.add(this.add.container(h.x+12+avatarSize/2,avatarY+avatarSize/2)).setData('baseY',avatarY+avatarSize/2);
     const avatarArt=this.add.container(0,0);this.roleAvatar.add(avatarArt);addAvatar(this,avatarArt,c,0,0,avatarSize);
     if(!this.textures.exists(avatarKey(c.id)))whenTextureReady(this,avatarArt,avatarKey(c.id),()=>{avatarArt.removeAll(true);addAvatar(this,avatarArt,c,0,0,avatarSize);});
-    {const hit=v.add(this.add.rectangle(h.x+12+avatarSize/2,avatarY+avatarSize/2,Math.max(44,avatarSize+8),Math.max(44,avatarSize+8),0,0));v.target(hit,usesErxiangHandoff(this.run)?'hero/erxiang-handoff':usesTouyeWager(this.run)?'hero/touye-wager':usesLaohuanRefill(this.run)?'hero/laohuan-trick':usesXiemuBurn(this.run)?'hero/xiemu-burn':usesAzaoCharge(this.run)?'hero/azao-charge':'hero/details',{tap:()=>this.inspectRole(),detail:()=>this.inspectRole()});}
+    {const hit=v.add(this.add.rectangle(h.x+12+avatarSize/2,avatarY+avatarSize/2,Math.max(44,avatarSize+8),Math.max(44,avatarSize+8),0,0));v.target(hit,usesErxiangHandoff(this.run)?'hero/erxiang-handoff':usesTouyeWager(this.run)?'hero/touye-wager':usesLaohuanRefill(this.run)?'hero/laohuan-trick':usesXiemuBurn(this.run)?'hero/xiemu-burn':usesAzaoCharge(this.run)?'hero/azao-charge':'hero/details',{tap:()=>this.inspectHeroExplanation(),detail:()=>this.inspectHeroExplanation()});}
     this.roleFrame=this.add.rectangle(0,0,avatarSize+4,avatarSize+4,T.brass).setFillStyle(T.brass,0).setStrokeStyle(1,T.brass,.6);this.roleAvatar.add(this.roleFrame);
     const identity=stageIdentity(this.stage.index,this.run.stage!.boss,this.run.tourMode,this.run.difficulty)!;
     if(!portrait)v.text(h.x+12,h.y+8,this.run.tourMode==='endless'?'无尽巡演':'大 丑 牌',short?20:28,C.paper);
     if(!portrait||!this.assistProfile&&!usesErxiangHandoff(this.run)&&!usesAzaoCharge(this.run)&&!usesXiemuBurn(this.run)&&!usesLaohuanRefill(this.run)&&!usesTouyeWager(this.run))v.text(h.x+(portrait?64:76),avatarY,(portrait&&this.run.tourMode==='endless'?'无尽 · ':'')+c.name,portrait?18:short?20:22,C.paper,portrait?h.width-160:h.width-88);
     this.roleText=v.text(h.x+(portrait?64:76),avatarY+(portrait?23:28),this.roleCaption(),14,C.mutedInk,portrait?h.width-160:h.width-88);
-    const skillEntry=v.rect({x:this.roleText.x,y:this.roleText.y,width:portrait?h.width-160:h.width-88,height:20}).setFillStyle(0,0).setStrokeStyle();v.target(skillEntry,'hero/skill-entry',{tap:()=>this.inspectRole(),detail:()=>this.inspectRole()});
+    const skillEntry=v.rect({x:this.roleText.x,y:this.roleText.y,width:portrait?h.width-160:h.width-88,height:20}).setFillStyle(0,0).setStrokeStyle();v.target(skillEntry,'hero/skill-entry',{tap:()=>this.inspectHeroExplanation(),detail:()=>this.inspectHeroExplanation()});
     if(!portrait&&!l.shortLandscape)v.text(h.x+12,h.y+96,identity.isBoss?identity.title:identity.stageName,14,C.paper,h.width-24).setName('stage-identity/current');
     this.heatText=v.text(h.x+12,h.y+(portrait?27:l.shortLandscape?94:short?108:118),'',portrait?20:short?28:24,C.paper,h.width-24).setFontStyle('bold');
     const goldY=h.y+(portrait?31:l.shortLandscape?11:180);
@@ -431,7 +432,7 @@ export class GameScene extends Phaser.Scene {
     if(portrait){this.roleText.setVisible(false);this.goldText.setFontSize(14).setOrigin(0,0).setPosition(h.x+144,h.y+6);this.heatText.setPosition(h.x+64,h.y+28).setFontSize(16).setWordWrapWidth(h.width-168);}
     if(this.assistProfile||usesErxiangHandoff(this.run)||usesAzaoCharge(this.run)||usesXiemuBurn(this.run)||usesLaohuanRefill(this.run)||usesTouyeWager(this.run)){
       if(portrait){this.roleText.setVisible(true).setPosition(h.x+64,avatarY).setFontSize(13).setColor(C.jade).setWordWrapWidth(108);this.goldText.setPosition(h.x+(this.assistProfile?182:166),h.y+6).setFontSize(12);if(this.assistProfile&&h.width<340)this.goldText.setPosition(h.x+12,avatarY+34);}
-      const hit=v.add(this.add.rectangle(this.roleText.x+54,this.roleText.y+9,108,30,0,0));v.target(hit,usesErxiangHandoff(this.run)?'hero/erxiang-handoff-label':usesTouyeWager(this.run)?'hero/touye-wager-label':usesLaohuanRefill(this.run)?'hero/laohuan-trick-label':usesXiemuBurn(this.run)?'hero/xiemu-burn-label':this.assistProfile?'hero/amo-assist-label':'hero/azao-charge-label',{tap:()=>this.inspectRole(),detail:()=>this.inspectRole()});
+      const hit=v.add(this.add.rectangle(this.roleText.x+54,this.roleText.y+9,108,30,0,0));v.target(hit,usesErxiangHandoff(this.run)?'hero/erxiang-handoff-label':usesTouyeWager(this.run)?'hero/touye-wager-label':usesLaohuanRefill(this.run)?'hero/laohuan-trick-label':usesXiemuBurn(this.run)?'hero/xiemu-burn-label':this.assistProfile?'hero/amo-assist-label':'hero/azao-charge-label',{tap:()=>this.inspectHeroExplanation(),detail:()=>this.inspectHeroExplanation()});
     }
     this.renderJokerRack();
     const s=l.scoreBoard;
@@ -1185,6 +1186,10 @@ export class GameScene extends Phaser.Scene {
       {label:'上一手详情',disabled:!this.run.lastTrace,run:()=>this.inspectLastTrace()},
     ];
     const dialog=this.dialog.open('二响 · 交棒',characterForRun(this.run).passiveDescription,[],{guideSteps:heroOperationSteps(this.run,guide,!!this.erxiangTargetId),summaryBody:guide.step,effectBody:choice.sentence+'\n'+guide.risk,collapseRules:true,rulesLabel:'交棒细则',closeLabel:'返回选牌',choices:actions.filter(a=>a.label!=='上一手详情'),secondaryActions:actions.filter(a=>a.label==='上一手详情')});mountHeroSkillGuide(dialog);
+  }
+  private inspectHeroExplanation():void {
+    const guide=heroSkillGuide(this.run,this.selectionPreview(),[...this.selectedIds],this.assistProfile&&assistCandidates(this.assistInput(),r2AssistAvailability(this.run).available).length>0,{erxiangTargetId:this.erxiangTargetId,xiemuBurn:this.xiemuBurn,azaoRelease:this.azaoRelease,assistCount:this.assistIds.length});
+    showHeroExplanation(this.dialog,this.characterId,{run:this.run,guide,status:this.presentation?'正在结算；结束后再使用技能。':this.playing?'正在换牌；完成后再使用技能。':!this.ready?'当前进度未保存或只读；可查看说明，暂不能使用。':undefined,closeLabel:'返回牌桌',actions:[{label:'查看本场技能操作',disabled:!this.ready||this.playing||!!this.presentation,run:()=>this.inspectRole()}]});
   }
   private inspectRole():void {
     if(this.ready&&this.assistProfile&&this.assistRecommendations.get(this.run,[...this.selectedIds])?.options.length!>1){this.inspectAssistChoices();return;}
