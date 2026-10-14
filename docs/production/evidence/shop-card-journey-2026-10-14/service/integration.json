@@ -1,0 +1,27 @@
+{
+  "core": "0b41f87618e0fca3016a352d59af62353a2acafa",
+  "shopBefore": "231e1440eb76fce49156b7912145ff4892855cf7",
+  "merge": "4f7ee2b44d7193b6a4bbacd060937561e2bcb391",
+  "serviceRuntime": "e8cd3532d10aae783f4fb92e9c0ef9da1657f81d",
+  "sourceTree": "e0042f97d9183ca45be680bb92484496b80b5133",
+  "coreIsAncestor": true,
+  "shopBeforeIsAncestor": true,
+  "corePathsEqual": [
+    "src/domain",
+    "src/application",
+    "src/content",
+    "src/game/RunLaunch.ts"
+  ],
+  "mainProtectedEqual": [
+    "src/game/GameScene.ts",
+    "src/game/IntermissionScene.ts",
+    "src/audio",
+    "public",
+    "art",
+    ".github",
+    "package.json",
+    "package-lock.json",
+    "AGENTS.md",
+    "docs/production/DELIVERY_PLAN.md"
+  ]
+}

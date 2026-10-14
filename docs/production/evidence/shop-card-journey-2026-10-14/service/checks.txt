@@ -1,0 +1,66 @@
+Initial new test fixture rejected unknown three-of-a-kind; corrected to schema three-kind. Old flat-price entry expectation updated to tier-aware neutral entry; real tool price assertions kept.
+
+full tests at f17bb848
+
+> dachoupai@0.1.0 test
+> vitest run
+
+
+ RUN  v4.1.11 /workspace/dachoupai
+
+
+ Test Files  243 passed (243)
+      Tests  3488 passed (3488)
+   Start at  15:32:55
+   Duration  31.15s (transform 6.48s, setup 0ms, import 26.13s, tests 42.76s, environment 15ms)
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice
+
+final targeted tests
+
+ RUN  v4.1.11 /workspace/dachoupai
+
+
+ Test Files  11 passed (11)
+      Tests  100 passed (100)
+   Start at  15:39:47
+   Duration  3.22s (transform 2.64s, setup 0ms, import 4.38s, tests 3.94s, environment 1ms)
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice
+
+build including tsc
+
+> dachoupai@0.1.0 build
+> tsc --noEmit && vite build
+
+vite v7.3.6 building client environment for production...
+transforming...
+✓ 262 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/build-info.json                0.17 kB │ gzip:   0.15 kB
+dist/index.html                     0.55 kB │ gzip:   0.36 kB
+dist/assets/index-DeHnDZKt.css     72.46 kB │ gzip:  13.76 kB
+dist/assets/index-IvWoS1tI.js   2,645.42 kB │ gzip: 771.68 kB
+
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+✓ built in 4.69s
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice
+
+plan32
+PLAN_VALID: 32 work packages; current=P08; not a gameplay acceptance
