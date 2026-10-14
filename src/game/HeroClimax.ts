@@ -57,8 +57,9 @@ export function mountHeroClimax(scene:Phaser.Scene,root:Phaser.GameObjects.Conta
  const hero=scene.add.image(heroX,heroY,heroKey).setScale(heroScale).setAngle(-5).setName('hero/climax-portrait');board.add(hero);
  const {nameX,nameY}=layout,contentX=layout.readout.x,contentW=layout.readout.width;
  const text=(x:number,y:number,s:string,size:number,color=C.ink,width?:number)=>{const t=scene.add.text(x,y,s,{fontFamily:UI_FONT,fontSize:size+'px',fontStyle:'bold',color,resolution:Math.max(1.5,1/scene.scale.zoom),...(width?{wordWrap:{width,useAdvancedWrap:true}}:{})});board.add(t);return t;};
- text(nameX,nameY,getCharacter(id).name,short?36:portrait?44:68).setName('hero/climax-name');
- text(portrait?w*.51:nameX,portrait?nameY+12:nameY+(short?44:78),key.kind==='payoff'?'能力兑现':key.kind==='burst'?'来源爆发':key.kind==='starter'?'路线首发':key.cause==='实际乘法生效'?'倍率爆发':'开场得分',short?18:22,C.red,portrait?w*.4:contentW);
+ const actualSource=!!key.fact.definitionId,headline=text(nameX,nameY,actualSource?key.fact.title:getCharacter(id).name,short?36:portrait?44:68).setName('hero/climax-name');
+ const headlineWidth=portrait?w*.43:contentW;for(let font=short?36:portrait?44:68;headline.width>headlineWidth&&font>18;)headline.setFontSize(--font);
+ text(portrait?w*.51:nameX,portrait?nameY+12:nameY+(short?44:78),actualSource?getCharacter(id).name+' · 来源兑现':key.kind==='payoff'?'能力兑现':key.kind==='burst'?'来源爆发':key.kind==='starter'?'路线首发':key.cause==='实际乘法生效'?'倍率爆发':'开场得分',short?18:22,C.red,portrait?w*.4:contentW);
  const labelY=layout.readout.y;
  // Portrait recoil can cross the number column; keep its saved facts on opaque paper.
  board.add(scene.add.rectangle(contentX+contentW/2,labelY+layout.readout.height/2-8,contentW+16,layout.readout.height+16,T.paperLight,.97).setName('hero/climax-readout-paper'));
