@@ -17,6 +17,9 @@ export const TRANSITION_MUSIC = 'Serenade - Schubert · Jérôme Chauvel / Abydo
 const bounded = (value: number, max: number): number => Number.isFinite(value) ? Math.max(0, Math.min(max, value)) : 0;
 const SOURCE_GAIN: Record<VoiceBus, number> = { music: 1, sfx: 8, ui: 7.2 };
 const MUSIC_HEADROOM=.18; // Internal mix, not a preference/slider migration.
+const SAMPLE_CONCURRENCY = 3;
+const SAMPLE_TIMEOUT_MS = 5000; // Fetch, response body and decode share one deadline.
+const SAMPLE_MAX_ATTEMPTS = 3; // Session budget; repeated gestures cannot restart it.
 
 /** One application context. The app owns gesture/visibility listeners and persistence. */
 export class AudioEngine {
@@ -26,6 +29,7 @@ export class AudioEngine {
   private scoreSamples=new Map<string,AudioBuffer>();
   private sampleBodies=new Map<string,SampleBody>();
   private scoreSampleTask?:Promise<void>;
+  private readonly sampleAttempts = new Map<string, number>();
   private readonly scoreCues=new WeakMap<object,Set<string>>();
   private voices = new Set<Voice>();
   private readonly cueTimes = new Map<FoleyKind,number>();
@@ -158,12 +162,12 @@ export class AudioEngine {
         compressor.connect(ceiling);
         ceiling.connect(context.destination);
         this.gains = gains;
-        void this.loadScoreSamples();
         for (const bus of Object.keys(gains) as AudioBus[]) this.applyVolume(bus);
 
       }
       const context = this.context;
       if (!context) return;
+      if (context.state !== 'closed') void this.loadScoreSamples();
       // Resume even when running: it also follows a pending background suspend safely.
       if (context.state !== 'closed') await context.resume();
       if (!this.suspended && !this.hidden() && !this.masterMuted) this.startMusic();
@@ -235,10 +239,57 @@ export class AudioEngine {
 
   private loadScoreSamples():Promise<void> {
     if(this.scoreSampleTask)return this.scoreSampleTask;
-    const context=this.context;if(!context)return Promise.resolve();
-    return this.scoreSampleTask=Promise.all([...FOLEY_SAMPLES,{name:'cloth2',runtimePath:'assets/audio/score-impact/cloth2.ogg'}].map(async ({name,runtimePath})=>{
-      try{const response=await fetch(new URL(runtimePath,document.baseURI));if(!response.ok)return;const buffer=await context.decodeAudioData(await response.arrayBuffer());this.scoreSamples.set(name,buffer);this.sampleBodies.set(name,sampleBody(Array.from({length:buffer.numberOfChannels},(_,i)=>buffer.getChannelData(i)),buffer.sampleRate));}catch{/* A missing clip is silent; saved source information remains. */}
-    })).then(()=>undefined);
+    const context=this.context;if(!context || context.state === 'closed')return Promise.resolve();
+    const queue = [...FOLEY_SAMPLES,{name:'cloth2',runtimePath:'assets/audio/score-impact/cloth2.ogg'}]
+      .filter(({name}) => !this.scoreSamples.has(name) && (this.sampleAttempts.get(name) ?? 0) < SAMPLE_MAX_ATTEMPTS);
+    if (!queue.length) return Promise.resolve();
+    const worker = async () => {
+      while (this.context === context && context.state !== 'closed') {
+        const sample = queue.shift();
+        if (!sample) return;
+        const attempts = (this.sampleAttempts.get(sample.name) ?? 0) + 1;
+        this.sampleAttempts.set(sample.name, attempts);
+        const loaded = await this.loadScoreSample(context, sample.name, sample.runtimePath);
+        // Failed clips go behind untried clips, so a stuck wave cannot monopolise slots.
+        if (!loaded && attempts < SAMPLE_MAX_ATTEMPTS) queue.push(sample);
+      }
+    };
+    const pending = Promise.all(Array.from({length: Math.min(SAMPLE_CONCURRENCY, queue.length)}, worker)).then(() => undefined);
+    this.scoreSampleTask = pending;
+    void pending.then(() => { if (this.scoreSampleTask === pending) this.scoreSampleTask = undefined; });
+    return pending;
+  }
+
+  private async loadScoreSample(context: AudioContext, name: string, runtimePath: string): Promise<boolean> {
+    const controller = new AbortController();
+    let active = true;
+    let timer: ReturnType<typeof setTimeout> | undefined;
+    const current = () => active && this.context === context && context.state !== 'closed';
+    const expired = new Promise<undefined>(resolve => {
+      timer = setTimeout(() => { active = false; controller.abort(); resolve(undefined); }, SAMPLE_TIMEOUT_MS);
+    });
+    const work = async () => {
+      const response = await fetch(new URL(runtimePath, document.baseURI), {signal: controller.signal});
+      if (!response.ok || !current()) return;
+      const bytes = await response.arrayBuffer();
+      if (!current()) return;
+      const buffer = await context.decodeAudioData(bytes);
+      if (!current()) return;
+      const body = sampleBody(Array.from({length: buffer.numberOfChannels}, (_, i) => buffer.getChannelData(i)), buffer.sampleRate);
+      return {buffer, body};
+    };
+    try {
+      // Abort alone cannot bound decodeAudioData or a request that ignores the signal.
+      const result = await Promise.race([work().catch(() => undefined), expired]);
+      if (!result || !current()) return false;
+      this.scoreSamples.set(name, result.buffer);
+      this.sampleBodies.set(name, result.body);
+      return true;
+    } finally {
+      active = false; // Timed-out/obsolete continuations can neither decode nor publish.
+      clearTimeout(timer);
+      controller.abort();
+    }
   }
   /** Recorded foley, one bounded hit per number arrival; no retroactive playback or synth fallback. */
   scoreImpact(presentation:object,eventId:string,kind:'add'|'key'|'multiply'|'award'|'flight',tier=0,chain=0):void {

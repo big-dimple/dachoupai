@@ -1,0 +1,74 @@
+{
+  "base": "c08a77ee573a291b7c05ed4787d27ae5299ea103",
+  "productionFiles": [
+    "src/audio/AudioEngine.ts"
+  ],
+  "protected": [
+    {
+      "path": "src/game",
+      "changed": [],
+      "sameAsBase": true
+    },
+    {
+      "path": "src/domain",
+      "changed": [],
+      "sameAsBase": true
+    },
+    {
+      "path": "src/content",
+      "changed": [],
+      "sameAsBase": true
+    },
+    {
+      "path": "src/application",
+      "changed": [],
+      "sameAsBase": true
+    },
+    {
+      "path": "src/platform",
+      "changed": [],
+      "sameAsBase": true
+    },
+    {
+      "path": "public",
+      "changed": [],
+      "sameAsBase": true
+    },
+    {
+      "path": "art",
+      "changed": [],
+      "sameAsBase": true
+    },
+    {
+      "path": "package.json",
+      "changed": [],
+      "sameAsBase": true
+    },
+    {
+      "path": "package-lock.json",
+      "changed": [],
+      "sameAsBase": true
+    },
+    {
+      "path": ".github",
+      "changed": [],
+      "sameAsBase": true
+    },
+    {
+      "path": "AGENTS.md",
+      "changed": [],
+      "sameAsBase": true
+    },
+    {
+      "path": "docs/production/DELIVERY_PLAN.md",
+      "changed": [],
+      "sameAsBase": true
+    }
+  ],
+  "fileSha256": {
+    "src/audio/AudioEngine.ts": "3a7c90ccf5b4f1b2611373f2e632ef0479dba5f42eca37bd25a61a4d223ff253",
+    "tests/audio-sample-loading.test.ts": "ff4f04049c1328961c2106550f794a3acdc2237eacbb797733e2e54bc027983f",
+    "docs/production/evidence/audio-loader-reliability-2026-10-14/browser-check.mjs": "e2078d47eb5f9b75cf0f73c9af57ee3c758fd9f1bb86d0f748eee9c065edd9fc"
+  },
+  "pr171Overlap": []
+}

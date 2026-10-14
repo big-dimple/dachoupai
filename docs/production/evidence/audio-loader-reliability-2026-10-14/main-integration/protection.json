@@ -1,0 +1,112 @@
+{
+  "main": "c2b506174d9add1df43eb9d94dbebe2bb974090f",
+  "previousHead": "13812a30ca0f1fa010b0f1387079a7db6848a2cd",
+  "testedMergeHead": "c35d09b1ad5f1a5addb9770754d3e8a2258ddc13",
+  "mergeParents": [
+    "13812a30ca0f1fa010b0f1387079a7db6848a2cd",
+    "c2b506174d9add1df43eb9d94dbebe2bb974090f"
+  ],
+  "mergeConflicts": false,
+  "changesRelativeToMain": [
+    "docs/production/evidence/audio-loader-reliability-2026-10-14/README.md",
+    "docs/production/evidence/audio-loader-reliability-2026-10-14/SHA256SUMS",
+    "docs/production/evidence/audio-loader-reliability-2026-10-14/baseline-FAIL.txt",
+    "docs/production/evidence/audio-loader-reliability-2026-10-14/baseline-cue-control-PASS.txt",
+    "docs/production/evidence/audio-loader-reliability-2026-10-14/browser-check-first-pass.txt",
+    "docs/production/evidence/audio-loader-reliability-2026-10-14/browser-check.mjs",
+    "docs/production/evidence/audio-loader-reliability-2026-10-14/browser-check.txt",
+    "docs/production/evidence/audio-loader-reliability-2026-10-14/browser-report-first-pass.json",
+    "docs/production/evidence/audio-loader-reliability-2026-10-14/browser-report.json",
+    "docs/production/evidence/audio-loader-reliability-2026-10-14/build.txt",
+    "docs/production/evidence/audio-loader-reliability-2026-10-14/files.txt",
+    "docs/production/evidence/audio-loader-reliability-2026-10-14/loader-tests.txt",
+    "docs/production/evidence/audio-loader-reliability-2026-10-14/protection.json",
+    "docs/production/evidence/audio-loader-reliability-2026-10-14/targeted-tests.txt",
+    "docs/production/evidence/audio-loader-reliability-2026-10-14/typecheck.txt",
+    "src/audio/AudioEngine.ts",
+    "tests/audio-sample-loading.test.ts"
+  ],
+  "allChangesInScope": true,
+  "upstreamChangedPaths": 335,
+  "upstreamOverlap": [],
+  "protected": [
+    {
+      "path": "src/game",
+      "sameAsMain": true
+    },
+    {
+      "path": "src/domain",
+      "sameAsMain": true
+    },
+    {
+      "path": "src/content",
+      "sameAsMain": true
+    },
+    {
+      "path": "src/application",
+      "sameAsMain": true
+    },
+    {
+      "path": "src/platform",
+      "sameAsMain": true
+    },
+    {
+      "path": "public",
+      "sameAsMain": true
+    },
+    {
+      "path": "art",
+      "sameAsMain": true
+    },
+    {
+      "path": "package.json",
+      "sameAsMain": true
+    },
+    {
+      "path": "package-lock.json",
+      "sameAsMain": true
+    },
+    {
+      "path": ".github",
+      "sameAsMain": true
+    },
+    {
+      "path": "AGENTS.md",
+      "sameAsMain": true
+    },
+    {
+      "path": "docs/production/DELIVERY_PLAN.md",
+      "sameAsMain": true
+    },
+    {
+      "path": "harness",
+      "sameAsMain": true
+    },
+    {
+      "path": "tests/settlement-presentation.test.ts",
+      "sameAsMain": true
+    }
+  ],
+  "fileSha256": {
+    "src/audio/AudioEngine.ts": "3a7c90ccf5b4f1b2611373f2e632ef0479dba5f42eca37bd25a61a4d223ff253",
+    "tests/audio-sample-loading.test.ts": "ff4f04049c1328961c2106550f794a3acdc2237eacbb797733e2e54bc027983f",
+    "docs/production/evidence/audio-loader-reliability-2026-10-14/browser-check.mjs": "e2078d47eb5f9b75cf0f73c9af57ee3c758fd9f1bb86d0f748eee9c065edd9fc"
+  },
+  "priorAudioProductTestsAndEvidenceUnchanged": true,
+  "localChecks": {
+    "targeted": {
+      "files": 7,
+      "tests": 78,
+      "exitCode": 0
+    },
+    "typecheck": {
+      "exitCode": 0
+    },
+    "build": {
+      "exitCode": 0
+    }
+  },
+  "newBrowserFaultRun": false,
+  "heard": false,
+  "physicalDevice": false
+}
