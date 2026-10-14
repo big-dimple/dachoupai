@@ -1,0 +1,12 @@
+{
+  "base": "c2b506174d9add1df43eb9d94dbebe2bb974090f",
+  "head": "471391dd5d346efd035bbd722bb4f1df92061a5d",
+  "sourceTree": "f9c10b1682d5f2a74780726083c7e7915045dfa2",
+  "status": "FAIL",
+  "browser": "system Chromium, software Canvas, DPR1",
+  "scope": "Controlled valid late-entry checkpoints and domain-generated true final clears; browser menu import and native UI only. No natural play, device/audio/balance acceptance.",
+  "sceneOutsideCopyExact": true,
+  "protectedFilesUnchanged": true,
+  "rows": [],
+  "error": "Error: Run invariant: live stage joker identities\n    at check (/workspace/dachoupai/src/domain/r2Run.ts:194:27)\n    at assertR2Invariants (/workspace/dachoupai/src/domain/r2Run.ts:318:22)\n    at fixture (file:///tmp/endless-confirmation-browser.mjs:41:2)\n    at file:///tmp/endless-confirmation-browser.mjs:50:20"
+}
