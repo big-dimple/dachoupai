@@ -2,7 +2,7 @@ import {jokerMemoryAbility,publicJokerMemoryContext} from './JokerMemory';
 import type {R2RunState} from '../domain/r2Run';
 import {r2JokerDefinitionsFor} from '../domain/r2ContentProfiles';
 import {readR2Modifiers,type R2JokerDefinition} from '../content/r2Schema';
-import {R2_TOOLS,R2_LONG_TERM_ITEMS} from '../content/r2Tools';
+import {R2_TOOLS,R2_LONG_TERM_ITEMS,R2_ENHANCEMENTS} from '../content/r2Tools';
 import {R2_HAND_TYPES} from '../domain/evaluateR2';
 import {HAND_LABELS} from '../content/handLabels';
 import {handTypeRuleReference} from './HandRuleReference';
@@ -10,11 +10,12 @@ import {newRunIdentity} from './RunLaunch';
 import {r2JokerExtraHelp,r2JokerStateText} from './r2Help';
 import {toolInfo,itemInfo,goodsArtPortrait} from './r2ToolInfo';
 import {jokerArtUrl,jokerArtPreviewUrl} from './jokerArt';
-export const CATALOG_KINDS={joker:'大丑牌',tool:'道具',item:'长期道具',hand:'牌型'} as const;
+import {enhancementReference,enhancementAcquisition,enhancementToolReference,enhancementToolAcquisition} from './EnhancementReference';
+export const CATALOG_KINDS={joker:'大丑牌',tool:'道具',enhancement:'扑克增强',item:'长期道具',hand:'牌型'} as const;
 export const CATALOG_USES=['计分','成长','重触','资源','改牌','扩容'] as const;
 export type CatalogKind=keyof typeof CATALOG_KINDS;
 export type CatalogSource='持有'|'现货'|'上手来源';
-export interface CatalogEntry {key:string;id:string;kind:CatalogKind;name:string;summary:string;rules:string;current:string;sources:CatalogSource[];uses:string[];thumbnail?:string;portrait?:Omit<ReturnType<typeof goodsArtPortrait>,'fallbackUrl'>&{fallbackUrl?:string};rarity?:R2JokerDefinition['rarity']}
+export interface CatalogEntry {key:string;id:string;kind:CatalogKind;name:string;summary:string;rules:string;current:string;sources:CatalogSource[];uses:string[];aliases?:string[];example?:string;acquisition?:string;thumbnail?:string;portrait?:Omit<ReturnType<typeof goodsArtPortrait>,'fallbackUrl'>&{fallbackUrl?:string};rarity?:R2JokerDefinition['rarity']}
 function jokerUses(d:R2JokerDefinition):string[]{
  const kinds=d.hooks.flatMap(h=>h.operations.map(o=>o.kind)),mods=d.modifiers?.map(m=>m.kind)??[],uses:string[]=[];
  if(kinds.some(k=>['add-heat','add-multiplier','multiply-multiplier','read-growth','read-coefficient','consume-growth','chance-add-heat','add-heat-per-gold','add-heat-per-empty-slot','rescue-multiplier'].includes(k))||mods.some(m=>['four-straight','four-flush'].includes(m)))uses.push('计分');
@@ -48,7 +49,12 @@ export function catalogFacts(run?:R2RunState){
   const current=owned.length?owned.map(j=>'当前持有 · 第'+(run!.jokers.indexOf(j)+1)+'槽\n现存：'+r2JokerStateText(j,d)+'\n实际买价 '+j.paidPrice+' 金').join('\n\n'):run?'未持有当前实例；以下仅为规则资料。':'没有当前保存局；以下仅为规则资料。';
   entries.push({key:'joker/'+d.id,id:d.id,kind:'joker',name:d.name,summary:reference.plain?.line??reference.condition,rules:[reference.condition,reference.value,reference.rules].filter(Boolean).join('\n'),current,sources:sources('joker',d.id),uses:jokerUses(d),thumbnail:preview,rarity:d.rarity,portrait:url?{url,thumbnailUrl:preview,alt:d.name,layout:'card',caption:d.name}:undefined});
  }
- for(const d of R2_TOOLS){const info=toolInfo(d.id,identity),count=run?.consumables.filter(c=>c.definitionId===d.id).length??0;entries.push({key:'tool/'+d.id,id:d.id,kind:'tool',name:info.name,summary:info.summary,rules:[info.description,info.cost,info.risk].filter(Boolean).join('\n\n'),current:count?'当前道具箱持有 '+count+' 件；这里只查询，不使用。':run?'当前道具箱未持有；以下仅为规则资料。':'没有当前保存局；以下仅为规则资料。',sources:sources('tool',d.id),uses:operationUses(d.operation.kind),thumbnail:info.artUrl,portrait:goodsArtPortrait(info)});}
+ for(const d of R2_TOOLS){const info=toolInfo(d.id,identity),reference=enhancementToolReference(d.id),count=run?.consumables.filter(c=>c.definitionId===d.id).length??0;entries.push({key:'tool/'+d.id,id:d.id,kind:'tool',name:info.name,summary:reference?.summary??info.summary,rules:[reference?.rules,info.description,info.cost,info.risk].filter(Boolean).join('\n\n'),...(reference?{example:reference.example,acquisition:enhancementToolAcquisition(d.id,identity,run)}:{}),current:count?'当前道具箱持有 '+count+' 件；这里只查询，不使用。':run?'当前道具箱未持有；以下仅为规则资料。':'没有当前保存局；以下仅为规则资料。',sources:sources('tool',d.id),uses:operationUses(d.operation.kind),thumbnail:info.artUrl,portrait:goodsArtPortrait(info)});}
+ for(const d of R2_ENHANCEMENTS){
+  const reference=enhancementReference(d.id),direct=R2_TOOLS.find(t=>t.operation.kind==='set-enhancement'&&t.operation.enhancement===d.id)!,info=toolInfo(direct.id,identity);
+  const count=run?.deckInstances.filter(c=>!run.destroyedIds.includes(c.id)&&c.enhancement===d.id).length??0;
+  entries.push({key:'enhancement/'+d.id,id:d.id,kind:'enhancement',name:reference.name,summary:reference.summary,rules:reference.rules,aliases:reference.aliases,example:reference.example,acquisition:enhancementAcquisition(d.id,identity,run),current:run?(count?'当前有效牌组中有 '+count+' 张；不表示现在已抽到或本手生效。':'当前有效牌组中没有此增强；以下仅为规则资料。'):'没有当前保存局；以下仅为规则资料。',sources:count?['持有']:[],uses:d.id==='gold-paper'?['资源']:d.id==='encore-paper'?['计分','重触']:d.id==='lucky-paper'?['计分','资源']:['计分'],thumbnail:info.artUrl});
+ }
  for(const d of R2_LONG_TERM_ITEMS){const info=itemInfo(d.id);entries.push({key:'item/'+d.id,id:d.id,kind:'item',name:info.name,summary:info.summary,rules:info.description,current:run?.longTermItems.includes(d.id)?'当前持有长期道具；作用按原规则时点。':run?'未持有当前实例；以下仅为规则资料。':'没有当前保存局；以下仅为规则资料。',sources:sources('item',d.id),uses:operationUses(d.operation.kind),thumbnail:info.artUrl,portrait:goodsArtPortrait(info)});}
  const mods=run?readR2Modifiers(run.jokers,definitions):{};
  for(const id of R2_HAND_TYPES){const rules=handTypeRuleReference(id,run?.handLevels??{},mods);entries.push({key:'hand/'+id,id,kind:'hand',name:HAND_LABELS[id],summary:rules.split('\n')[1],rules,current:run?.handLevels[id]!==undefined?'本局已发现 · 当前保存Lv'+run.handLevels[id]:run?'本局尚无发现记录；以下仅为Lv1规则参考。':'没有当前保存局；以下仅为Lv1规则参考。',sources:sources('hand',id),uses:['计分']});}
@@ -57,5 +63,5 @@ export function catalogFacts(run?:R2RunState){
 export interface CatalogQuery {name:string;kind:CatalogKind|'';use:string;source:CatalogSource|'公开内容'|''}
 export function queryCatalog(entries:readonly CatalogEntry[],query:CatalogQuery){
  const needle=query.name.trim().normalize('NFKC').toLocaleLowerCase();
- return entries.filter(e=>(!needle||e.name.normalize('NFKC').toLocaleLowerCase().includes(needle))&&(!query.kind||e.kind===query.kind)&&(!query.use||e.uses.includes(query.use))&&(!query.source||query.source==='公开内容'&&e.sources.length>0||e.sources.includes(query.source as CatalogSource)));
+ return entries.filter(e=>(!needle||[e.name,...e.aliases??[]].some(name=>name.normalize('NFKC').toLocaleLowerCase().includes(needle)))&&(!query.kind||e.kind===query.kind)&&(!query.use||e.uses.includes(query.use))&&(!query.source||query.source==='公开内容'&&e.sources.length>0||e.sources.includes(query.source as CatalogSource)));
 }
