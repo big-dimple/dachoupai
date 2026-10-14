@@ -1,0 +1,548 @@
+{
+  "baseSha": "f651a04e",
+  "runtimeTree": "04097f7c7ece0d2297b787bfdf3c9c6031b4456b",
+  "inputSha256": "085d29b9fd4bcabf638f87c2eeb63f55c17ca553c65ade87e10544337d28f1b9",
+  "evidenceClass": "exact natural replay; transactions on cloned C10 shelf; frozen C9 B12 hand comparisons are counterfactual, not C10 deal predictions or win rates",
+  "replayedCommands": 196,
+  "exactStateReplay": true,
+  "natural": {
+    "score": "60047",
+    "accumulator": {
+      "H": {
+        "n": "487",
+        "d": "1"
+      },
+      "M": {
+        "n": "1233",
+        "d": "10"
+      }
+    },
+    "target": "45045",
+    "goldBefore": 247,
+    "goldAfter": 264,
+    "levelBefore": 14,
+    "levelAfter": 15
+  },
+  "ablations": {
+    "noRoute": "15011",
+    "noJokers": "14154",
+    "noGrowth": "47717",
+    "level1": "16815"
+  },
+  "shop": {
+    "gold": 264,
+    "boss": {
+      "definitionId": "B13",
+      "disabledSuit": null
+    },
+    "offers": [
+      {
+        "offerId": "run/1791963651316/laohuan/shop/27/0/joker/0",
+        "definitionId": "b08",
+        "price": 6,
+        "edition": "none",
+        "consumed": false
+      },
+      {
+        "offerId": "run/1791963651316/laohuan/shop/27/0/joker/1",
+        "definitionId": "e09",
+        "price": 4,
+        "edition": "none",
+        "consumed": false
+      },
+      {
+        "offerId": "run/1791963651316/laohuan/shop/27/0/joker/2",
+        "definitionId": "b04",
+        "price": 4,
+        "edition": "none",
+        "consumed": false
+      },
+      {
+        "offerId": "run/1791963651316/laohuan/shop/27/0/joker/3",
+        "definitionId": "e06",
+        "price": 6,
+        "edition": "none",
+        "consumed": false
+      }
+    ],
+    "tools": [
+      {
+        "offerId": "run/1791963651316/laohuan/shop/27/0/tool/0",
+        "definitionId": "T13",
+        "price": 4,
+        "consumed": false
+      }
+    ],
+    "items": [],
+    "targets": [
+      "24775",
+      "37163",
+      "49550"
+    ]
+  },
+  "keep": {
+    "score": "64475",
+    "gold": 264
+  },
+  "swaps": [
+    {
+      "sold": "c04",
+      "refund": 2,
+      "bought": "b08",
+      "edition": "none",
+      "price": 5,
+      "gold": 261,
+      "score": "45305",
+      "accumulator": {
+        "H": {
+          "n": "709",
+          "d": "2"
+        },
+        "M": {
+          "n": "639",
+          "d": "5"
+        }
+      },
+      "scoreDelta": "-19170"
+    },
+    {
+      "sold": "c08",
+      "refund": 3,
+      "bought": "b08",
+      "edition": "none",
+      "price": 5,
+      "gold": 262,
+      "score": "64475",
+      "accumulator": {
+        "H": {
+          "n": "1009",
+          "d": "2"
+        },
+        "M": {
+          "n": "639",
+          "d": "5"
+        }
+      },
+      "scoreDelta": "0"
+    },
+    {
+      "sold": "f03",
+      "refund": 1,
+      "bought": "b08",
+      "edition": "none",
+      "price": 5,
+      "gold": 260,
+      "score": "57210",
+      "accumulator": {
+        "H": {
+          "n": "1009",
+          "d": "2"
+        },
+        "M": {
+          "n": "567",
+          "d": "5"
+        }
+      },
+      "scoreDelta": "-7265"
+    },
+    {
+      "sold": "a10",
+      "refund": 4,
+      "bought": "b08",
+      "edition": "none",
+      "price": 5,
+      "gold": 263,
+      "score": "47221",
+      "accumulator": {
+        "H": {
+          "n": "1009",
+          "d": "2"
+        },
+        "M": {
+          "n": "468",
+          "d": "5"
+        }
+      },
+      "scoreDelta": "-17254"
+    },
+    {
+      "sold": "e08",
+      "refund": 3,
+      "bought": "b08",
+      "edition": "none",
+      "price": 5,
+      "gold": 262,
+      "score": "35819",
+      "accumulator": {
+        "H": {
+          "n": "1009",
+          "d": "2"
+        },
+        "M": {
+          "n": "71",
+          "d": "1"
+        }
+      },
+      "scoreDelta": "-28656"
+    },
+    {
+      "sold": "c04",
+      "refund": 2,
+      "bought": "e09",
+      "edition": "none",
+      "price": 3,
+      "gold": 263,
+      "score": "45305",
+      "accumulator": {
+        "H": {
+          "n": "709",
+          "d": "2"
+        },
+        "M": {
+          "n": "639",
+          "d": "5"
+        }
+      },
+      "scoreDelta": "-19170"
+    },
+    {
+      "sold": "c08",
+      "refund": 3,
+      "bought": "e09",
+      "edition": "none",
+      "price": 3,
+      "gold": 264,
+      "score": "64475",
+      "accumulator": {
+        "H": {
+          "n": "1009",
+          "d": "2"
+        },
+        "M": {
+          "n": "639",
+          "d": "5"
+        }
+      },
+      "scoreDelta": "0"
+    },
+    {
+      "sold": "f03",
+      "refund": 1,
+      "bought": "e09",
+      "edition": "none",
+      "price": 3,
+      "gold": 262,
+      "score": "57210",
+      "accumulator": {
+        "H": {
+          "n": "1009",
+          "d": "2"
+        },
+        "M": {
+          "n": "567",
+          "d": "5"
+        }
+      },
+      "scoreDelta": "-7265"
+    },
+    {
+      "sold": "a10",
+      "refund": 4,
+      "bought": "e09",
+      "edition": "none",
+      "price": 3,
+      "gold": 265,
+      "score": "47221",
+      "accumulator": {
+        "H": {
+          "n": "1009",
+          "d": "2"
+        },
+        "M": {
+          "n": "468",
+          "d": "5"
+        }
+      },
+      "scoreDelta": "-17254"
+    },
+    {
+      "sold": "e08",
+      "refund": 3,
+      "bought": "e09",
+      "edition": "none",
+      "price": 3,
+      "gold": 264,
+      "score": "35819",
+      "accumulator": {
+        "H": {
+          "n": "1009",
+          "d": "2"
+        },
+        "M": {
+          "n": "71",
+          "d": "1"
+        }
+      },
+      "scoreDelta": "-28656"
+    },
+    {
+      "sold": "c04",
+      "refund": 2,
+      "bought": "b04",
+      "edition": "none",
+      "price": 3,
+      "gold": 263,
+      "score": "45305",
+      "accumulator": {
+        "H": {
+          "n": "709",
+          "d": "2"
+        },
+        "M": {
+          "n": "639",
+          "d": "5"
+        }
+      },
+      "scoreDelta": "-19170"
+    },
+    {
+      "sold": "c08",
+      "refund": 3,
+      "bought": "b04",
+      "edition": "none",
+      "price": 3,
+      "gold": 264,
+      "score": "64475",
+      "accumulator": {
+        "H": {
+          "n": "1009",
+          "d": "2"
+        },
+        "M": {
+          "n": "639",
+          "d": "5"
+        }
+      },
+      "scoreDelta": "0"
+    },
+    {
+      "sold": "f03",
+      "refund": 1,
+      "bought": "b04",
+      "edition": "none",
+      "price": 3,
+      "gold": 262,
+      "score": "57210",
+      "accumulator": {
+        "H": {
+          "n": "1009",
+          "d": "2"
+        },
+        "M": {
+          "n": "567",
+          "d": "5"
+        }
+      },
+      "scoreDelta": "-7265"
+    },
+    {
+      "sold": "a10",
+      "refund": 4,
+      "bought": "b04",
+      "edition": "none",
+      "price": 3,
+      "gold": 265,
+      "score": "47221",
+      "accumulator": {
+        "H": {
+          "n": "1009",
+          "d": "2"
+        },
+        "M": {
+          "n": "468",
+          "d": "5"
+        }
+      },
+      "scoreDelta": "-17254"
+    },
+    {
+      "sold": "e08",
+      "refund": 3,
+      "bought": "b04",
+      "edition": "none",
+      "price": 3,
+      "gold": 264,
+      "score": "35819",
+      "accumulator": {
+        "H": {
+          "n": "1009",
+          "d": "2"
+        },
+        "M": {
+          "n": "71",
+          "d": "1"
+        }
+      },
+      "scoreDelta": "-28656"
+    },
+    {
+      "sold": "c04",
+      "refund": 2,
+      "bought": "e06",
+      "edition": "none",
+      "price": 5,
+      "gold": 261,
+      "score": "45305",
+      "accumulator": {
+        "H": {
+          "n": "709",
+          "d": "2"
+        },
+        "M": {
+          "n": "639",
+          "d": "5"
+        }
+      },
+      "scoreDelta": "-19170"
+    },
+    {
+      "sold": "c08",
+      "refund": 3,
+      "bought": "e06",
+      "edition": "none",
+      "price": 5,
+      "gold": 262,
+      "score": "64475",
+      "accumulator": {
+        "H": {
+          "n": "1009",
+          "d": "2"
+        },
+        "M": {
+          "n": "639",
+          "d": "5"
+        }
+      },
+      "scoreDelta": "0"
+    },
+    {
+      "sold": "f03",
+      "refund": 1,
+      "bought": "e06",
+      "edition": "none",
+      "price": 5,
+      "gold": 260,
+      "score": "57210",
+      "accumulator": {
+        "H": {
+          "n": "1009",
+          "d": "2"
+        },
+        "M": {
+          "n": "567",
+          "d": "5"
+        }
+      },
+      "scoreDelta": "-7265"
+    },
+    {
+      "sold": "a10",
+      "refund": 4,
+      "bought": "e06",
+      "edition": "none",
+      "price": 5,
+      "gold": 263,
+      "score": "47221",
+      "accumulator": {
+        "H": {
+          "n": "1009",
+          "d": "2"
+        },
+        "M": {
+          "n": "468",
+          "d": "5"
+        }
+      },
+      "scoreDelta": "-17254"
+    },
+    {
+      "sold": "e08",
+      "refund": 3,
+      "bought": "e06",
+      "edition": "none",
+      "price": 5,
+      "gold": 262,
+      "score": "35819",
+      "accumulator": {
+        "H": {
+          "n": "1009",
+          "d": "2"
+        },
+        "M": {
+          "n": "71",
+          "d": "1"
+        }
+      },
+      "scoreDelta": "-28656"
+    }
+  ],
+  "voicePaper": {
+    "price": 3,
+    "targets": [
+      "spades-12",
+      "diamonds-12"
+    ],
+    "gold": 261,
+    "score": "72648",
+    "scoreDelta": "8173"
+  },
+  "proposedTargets": {
+    "status": "NOT_PRODUCT_PARAMETERS_PENDING_PARENT_CONFIRMATION",
+    "endlessGrowth": {
+      "n": "27",
+      "d": "20"
+    },
+    "rows": [
+      {
+        "chapter": 9,
+        "targets": [
+          "27642",
+          "41462",
+          "55283"
+        ]
+      },
+      {
+        "chapter": 10,
+        "targets": [
+          "37316",
+          "55974",
+          "74632"
+        ]
+      },
+      {
+        "chapter": 13,
+        "targets": [
+          "91811",
+          "137716",
+          "183622"
+        ]
+      },
+      {
+        "chapter": 20,
+        "targets": [
+          "750290",
+          "1125435",
+          "1500580"
+        ]
+      },
+      {
+        "chapter": 30,
+        "targets": [
+          "15085747",
+          "22628621",
+          "30171494"
+        ]
+      }
+    ]
+  }
+}
