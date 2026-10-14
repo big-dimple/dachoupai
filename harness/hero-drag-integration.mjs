@@ -20,14 +20,14 @@ const command=(s,action)=>({runId:s.runId,commandId:s.runId+'/command/'+(s.comma
 const send=(s,a)=>{const r=applyCommand(s,command(s,a));assert.ok(r.ok,r.code);return r.state;};
 function arrange(s,ids){const available=s.deckInstances.map(c=>c.id).filter(id=>!s.playedPile.includes(id)&&!s.discardPile.includes(id)&&!s.destroyedIds.includes(id));assert.ok(ids.every(id=>available.includes(id)));s.handOrder=[...ids];s.drawPile=available.filter(id=>!ids.includes(id));return s;}
 function fixture(hero){
- // Reuse the existing amo-assist-native disclosed stage/cash fixture, with original target.
+ // Reuse the existing amo-assist-native disclosed public hand/cash fixture at the first stage, with original target.
  let s=createRun({seed:'amo-diagnosis-controlled',runId:'controlled/integration/'+hero,rulesVersion:'r2',characterId:hero,r2Identity:newRunIdentity(hero,'group'),openingRoute:'group',modeConfig:{mode:'standard',difficulty:0,challengeId:null,programsEnabled:false}});
- s=send(s,{type:'LeaveShop'});s.stageIndex=6;s.chapter=3;s.shop=null;s.seenBossIds=['B01','B02','B04'];s.boss={definitionId:'B04',disabledSuit:null};s=send(s,{type:'EnterStage'});s.gold=15;
+ s=send(send(s,{type:'LeaveShop'}),{type:'EnterStage'});s.gold=15;
  if(hero==='azao'){const first=['spades-3','hearts-3','clubs-4','diamonds-4'];s=arrange(s,[...first,...side,'clubs-6']);s=send(s,{type:'PlayHand',selectedIds:first});assert.equal(s.phase,'await-input');assert.equal(s.stage.azaoCharge.charge,1);}
  s=arrange(s,hand);assert.ok(readCheckpoint(makeCheckpoint(s,[])).ok);return s;
 }
 const git=args=>execFileSync('git',args,{encoding:'utf8'}).trim();
-const report={head:git(['rev-parse','HEAD']),srcTree:git(['rev-parse','HEAD:src']),harnessTree:git(['rev-parse','HEAD:harness']),modified:git(['status','--short','--','src','tests','harness']),scope:'Six current-identity heroes, PC1366/390 software Chromium native mouse/touch/DOM operations. Public controlled mid-stage hand and 15 gold, original target. Skill drafts/read-only entry, delayed real store commit, exact domain-command oracle, presentation and readonly locks. Not natural games, 18 runs, human understanding, physical vibration or full experience acceptance.',cases:[],errors:[]};
+const report={head:git(['rev-parse','HEAD']),srcTree:git(['rev-parse','HEAD:src']),harnessTree:git(['rev-parse','HEAD:harness']),modified:git(['status','--short','--','src','tests','harness']),scope:'Six current-identity heroes, PC1366/390 software Chromium native mouse/touch/DOM operations. Public controlled first-stage hand and 15 gold, original target. Skill drafts/read-only entry, delayed real store commit, exact domain-command oracle, presentation and readonly locks. Not natural games, 18 runs, human understanding, physical vibration or full experience acceptance.',cases:[],errors:[]};
 const browser=await chromium.launch({executablePath:'/usr/bin/chromium',args:['--disable-gpu','--disable-software-rasterizer']});report.browser=browser.version();
 const snap=p=>p.evaluate(async()=>{const {gameSession}=await import('/src/game/session.ts'),c=window.__harness.game.registry.get('runController');return{state:c.state,journal:c.journal,storage:await gameSession().storage.read(),localStorage:JSON.stringify(localStorage)};});
 const draft=p=>p.evaluate(()=>{const s=window.__harness.game.scene.getScene('game');return{selected:[...s.selectedIds],assist:[...s.assistIds],erxiang:s.erxiangTargetId,xiemu:s.xiemuBurn,azao:s.azaoRelease};});

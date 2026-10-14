@@ -61,7 +61,7 @@ try{
    row.pendingTouyeHover={before,observed:await p.evaluate(()=>{const s=window.__harness.game.scene.getScene('game');return{id:s.hoveredJokerId,preview:!!s.jokerHoverPreview?.active,reorderReady:s.ownedReady};}),shot:await shot('pending-touye-hover')};
    assert.equal(row.pendingTouyeHover.observed.id,before.state.jokers[0].instanceId,'pending wager keeps read-only PC hover');assert.equal(row.pendingTouyeHover.observed.preview,true);assert.equal(row.pendingTouyeHover.observed.reorderReady,false);assert.deepEqual(await snapshot(p),before);
    await tapUI(p,'game','joker/'+before.state.jokers[0].instanceId);for(const label of ['左移','右移'])assert.ok(await p.getByRole('button',{name:label,exact:true}).isDisabled());await p.locator('dialog[open] .dialog-close').click();assert.deepEqual(await snapshot(p),before);row.pendingTouyeHover.after=await snapshot(p);row.pendingTouyeHover.status='PASS';
-   await load(p);
+   await load(p);await p.evaluate(()=>{const c=window.__harness.game.registry.get('runController'),dispatch=c.dispatch;window.__feedbackDispatch=[];c.dispatch=function(...args){window.__feedbackDispatch.push(structuredClone(args));return dispatch.apply(this,args);};});
   }
   if(process.env.TABLE_DRAG_PENDING_HOVER_ONLY==='1'){row.status='PASS';await context.close();continue;}
   for(const [from,to,style] of [[0,4,'slow'],[4,0,'fast'],[1,3,'middle']].slice(0,smoke?1:3)){
