@@ -1,0 +1,63 @@
+
+> dachoupai@0.1.0 test
+> vitest run tests/audio-mix-policy.test.ts
+
+
+ RUN  v4.1.11 /workspace/dachoupai
+
+ ❯ tests/audio-mix-policy.test.ts (21 tests | 4 failed) 72ms
+   × keeps a legal 310-digit bigint final score in the trillion award 8ms
+   × keeps a legal 4096-digit bigint final score in the trillion award 1ms
+   × committed 310-digit bigint award actually schedules the six-layer recipe 7ms
+   × committed 4096-digit bigint award actually schedules the six-layer recipe 4ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 4 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/audio-mix-policy.test.ts > keeps a legal 310-digit bigint final score in the trillion award
+ FAIL  tests/audio-mix-policy.test.ts > keeps a legal 4096-digit bigint final score in the trillion award
+AssertionError: expected 'award' to be 'awardTrillion' // Object.is equality
+
+Expected: "awardTrillion"
+Received: "award"
+
+ ❯ tests/audio-mix-policy.test.ts:66:46
+     64|  const finalScore=new Rational(BigInt('9'.repeat(digitCount))).floor()…
+     65|  expect(finalScore).toHaveLength(digitCount);
+     66|  expect(awardForScore({score:{finalScore}})).toBe('awardTrillion');
+       |                                              ^
+     67| });
+     68| it('rejects one digit beyond the existing domain limit without changin…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/4]⎯
+
+ FAIL  tests/audio-mix-policy.test.ts > committed 310-digit bigint award actually schedules the six-layer recipe
+ FAIL  tests/audio-mix-policy.test.ts > committed 4096-digit bigint award actually schedules the six-layer recipe
+AssertionError: expected [ { buffer: { …(2) }, …(6) }, …(2) ] to have a length of 6 but got 3
+
+- Expected
++ Received
+
+- 6
++ 3
+
+ ❯ tests/audio-mix-policy.test.ts:76:18
+     74|  const {engine,inside,sources}=fixture(),finalScore=new Rational(BigIn…
+     75|  engine.scoreImpact({score:{finalScore}},'actual-award','award');
+     76|  expect(sources).toHaveLength(6);
+       |                  ^
+     77|  expect([...inside.voices].every((voice:any)=>voice.semantic==='awardT…
+     78|  expect(sources.map(source=>source.start.mock.calls[0][0])).toEqual([1…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/4]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  4 failed | 17 passed (21)
+   Start at  15:08:04
+   Duration  579ms (transform 232ms, setup 0ms, import 274ms, tests 72ms, environment 0ms)
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice

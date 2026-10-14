@@ -1,0 +1,37 @@
+
+> dachoupai@0.1.0 test
+> vitest run tests/audio-mix-policy.test.ts tests/audio-sample-loading.test.ts tests/audio-preferences.test.ts tests/score-recorded-audio.test.ts tests/fire-audio.test.ts tests/failure-audio.test.ts tests/sample-body.test.ts
+
+
+ RUN  v4.1.11 /workspace/dachoupai
+
+ ❯ tests/audio-mix-policy.test.ts (14 tests | 1 failed) 52ms
+   × cross-semantic pressure admits a whole ending by reclaiming weak tails and denies texture eviction 15ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/audio-mix-policy.test.ts > cross-semantic pressure admits a whole ending by reclaiming weak tails and denies texture eviction
+AssertionError: expected [ { source: { …(7) }, …(8) } ] to have a length of +0 but got 1
+
+- Expected
++ Received
+
+- 0
++ 1
+
+ ❯ tests/audio-mix-policy.test.ts:34:67
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 6 passed (7)
+      Tests  1 failed | 71 passed (72)
+   Start at  14:16:33
+   Duration  1.65s (transform 1.26s, setup 0ms, import 1.68s, tests 224ms, environment 1ms)
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice

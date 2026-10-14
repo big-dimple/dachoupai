@@ -1,0 +1,118 @@
+{
+  "inputSHA": "f651a04ef5eb68c29a413acf8b4d8a0e9bbcde09",
+  "productFiles": [
+    "src/audio/AudioEngine.ts",
+    "src/audio/foley.ts",
+    "src/audio/mixPolicy.ts",
+    "tests/audio-mix-policy.test.ts",
+    "tests/score-recorded-audio.test.ts"
+  ],
+  "loaderFunctionsExactSameAsPR172Main": true,
+  "contextGraphAndVolumeApplicationExactSameAsMain": true,
+  "baselineSnapshotsExactApartFromFixtureImportPaths": true,
+  "protected": [
+    {
+      "path": "src/game",
+      "changed": [],
+      "sameAsInput": true
+    },
+    {
+      "path": "src/domain",
+      "changed": [],
+      "sameAsInput": true
+    },
+    {
+      "path": "src/application",
+      "changed": [],
+      "sameAsInput": true
+    },
+    {
+      "path": "src/content",
+      "changed": [],
+      "sameAsInput": true
+    },
+    {
+      "path": "src/platform",
+      "changed": [],
+      "sameAsInput": true
+    },
+    {
+      "path": "public",
+      "changed": [],
+      "sameAsInput": true
+    },
+    {
+      "path": "art",
+      "changed": [],
+      "sameAsInput": true
+    },
+    {
+      "path": "package.json",
+      "changed": [],
+      "sameAsInput": true
+    },
+    {
+      "path": "package-lock.json",
+      "changed": [],
+      "sameAsInput": true
+    },
+    {
+      "path": ".github",
+      "changed": [],
+      "sameAsInput": true
+    },
+    {
+      "path": "AGENTS.md",
+      "changed": [],
+      "sameAsInput": true
+    },
+    {
+      "path": "docs/production/DELIVERY_PLAN.md",
+      "changed": [],
+      "sameAsInput": true
+    },
+    {
+      "path": "third-party",
+      "changed": [],
+      "sameAsInput": true
+    },
+    {
+      "path": "src/audio/preferences.ts",
+      "changed": [],
+      "sameAsInput": true
+    },
+    {
+      "path": "src/audio/sampleBody.ts",
+      "changed": [],
+      "sameAsInput": true
+    },
+    {
+      "path": "tests/audio-sample-loading.test.ts",
+      "changed": [],
+      "sameAsInput": true
+    },
+    {
+      "path": "tests/fire-audio.test.ts",
+      "changed": [],
+      "sameAsInput": true
+    },
+    {
+      "path": "tests/failure-audio.test.ts",
+      "changed": [],
+      "sameAsInput": true
+    },
+    {
+      "path": "tests/audio-preferences.test.ts",
+      "changed": [],
+      "sameAsInput": true
+    }
+  ],
+  "productSha256": {
+    "src/audio/AudioEngine.ts": "2f603774c3671e4a1f887c6fb37400b4f556762f5cb907731b8c95b503d7b916",
+    "src/audio/foley.ts": "83c5f59f71fea8cb9116627c45a62620626bfad5af8e3119e1cfb505a03fc05d",
+    "src/audio/mixPolicy.ts": "7ce0162ae658fe1de865d06df945e795a49798eb80d9a7c624966f24b5294e35",
+    "tests/audio-mix-policy.test.ts": "6b36d88695a22384892f5623074aa84315f65eec8e29dd49d098412233015b3d",
+    "tests/score-recorded-audio.test.ts": "ea0fbb667ef64826812ae1e8a6854f0ea623bcad6bff73b0a00507afe612ad6e"
+  },
+  "scope": "No scene/UI/settlement/shop/rule/assets/BGM/preference/CI changes. WAV/WebM are evidence exports from existing licensed source recordings, not new runtime assets."
+}
