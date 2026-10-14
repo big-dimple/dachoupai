@@ -1,0 +1,109 @@
+{
+  "base": "f651a04ef5eb68c29a413acf8b4d8a0e9bbcde09",
+  "productHead": "c8df122d4cac30fe41cbbc2c08bb894d94fe4bcf",
+  "protected": [
+    {
+      "path": "src/game/GameScene.ts",
+      "baseObject": "18edbe5e6c4323426f7e9d0af0e81748bfdc664a",
+      "headObject": "18edbe5e6c4323426f7e9d0af0e81748bfdc664a",
+      "identical": true
+    },
+    {
+      "path": "src/game/ShopScene.ts",
+      "baseObject": "b11cb57502218b33ebbecb610b7dda343b391788",
+      "headObject": "b11cb57502218b33ebbecb610b7dda343b391788",
+      "identical": true
+    },
+    {
+      "path": "src/game/IntermissionScene.ts",
+      "baseObject": "056edf7c6133d7f350854b47577d8e631669e3a3",
+      "headObject": "056edf7c6133d7f350854b47577d8e631669e3a3",
+      "identical": true
+    },
+    {
+      "path": "src/audio",
+      "baseObject": "8f355cc62963fde265130d65a43dd259169d7be7",
+      "headObject": "8f355cc62963fde265130d65a43dd259169d7be7",
+      "identical": true
+    },
+    {
+      "path": "src/domain",
+      "baseObject": "b293cd1b6adaff0e318f02ac9196417085b02091",
+      "headObject": "b293cd1b6adaff0e318f02ac9196417085b02091",
+      "identical": true
+    },
+    {
+      "path": "src/content",
+      "baseObject": "e8c3794be5b0fcb74da4aeb9e6adc63c22388345",
+      "headObject": "e8c3794be5b0fcb74da4aeb9e6adc63c22388345",
+      "identical": true
+    },
+    {
+      "path": "src/application",
+      "baseObject": "7d9af1c3a9f38cdcddd88d2777cd6963aebe4237",
+      "headObject": "7d9af1c3a9f38cdcddd88d2777cd6963aebe4237",
+      "identical": true
+    },
+    {
+      "path": "src/platform",
+      "baseObject": "860a9f8883cc158ac0c56ad6399518cc897a67b7",
+      "headObject": "860a9f8883cc158ac0c56ad6399518cc897a67b7",
+      "identical": true
+    },
+    {
+      "path": "public",
+      "baseObject": "c4a6ec74e7fd754b0f300b973020f8afed7542e1",
+      "headObject": "c4a6ec74e7fd754b0f300b973020f8afed7542e1",
+      "identical": true
+    },
+    {
+      "path": "art",
+      "baseObject": "b0caa33679b84bee932b2854734c04ad39ba0464",
+      "headObject": "b0caa33679b84bee932b2854734c04ad39ba0464",
+      "identical": true
+    },
+    {
+      "path": "package.json",
+      "baseObject": "f7e7f89f05edd46636bac3acc1dfcd1b6cd94ccd",
+      "headObject": "f7e7f89f05edd46636bac3acc1dfcd1b6cd94ccd",
+      "identical": true
+    },
+    {
+      "path": "package-lock.json",
+      "baseObject": "acc93dcd9410bc911db279534e28522a8691dbab",
+      "headObject": "acc93dcd9410bc911db279534e28522a8691dbab",
+      "identical": true
+    },
+    {
+      "path": "AGENTS.md",
+      "baseObject": "afab6e7cbdf78501798af614fdd4f776e3f1c6dc",
+      "headObject": "afab6e7cbdf78501798af614fdd4f776e3f1c6dc",
+      "identical": true
+    },
+    {
+      "path": "docs/production/DELIVERY_PLAN.md",
+      "baseObject": "3cbc3f0a46868f03aa3293bff6d6dc3209c9c323",
+      "headObject": "3cbc3f0a46868f03aa3293bff6d6dc3209c9c323",
+      "identical": true
+    },
+    {
+      "path": "docs/production/ART.md",
+      "baseObject": "191fcffd550396e5cf73211a07ed37037495bab3",
+      "headObject": "191fcffd550396e5cf73211a07ed37037495bab3",
+      "identical": true
+    }
+  ],
+  "sourceFiles": [
+    "harness/hero-explanation.mjs",
+    "harness/screenshot.mjs",
+    "harness/six-hero-selection.mjs",
+    "src/game/CharacterSelectScene.ts",
+    "src/game/HeroSignature.ts",
+    "src/game/OpeningPlaySample.ts",
+    "src/game/OpeningShowcaseLayout.ts",
+    "src/game/SelectionComparison.ts",
+    "src/game/SelectionPresentation.ts",
+    "src/game/SelectionSampleDialog.ts",
+    "tests/opening-play-sample.test.ts"
+  ]
+}
