@@ -1,0 +1,81 @@
+{
+  "browser": "151.0.7922.173",
+  "heard": false,
+  "physicalDevice": false,
+  "scope": "Real Chromium/WebAudio on touch viewport; controlled loader failures/lifecycle/mix. Viewport is not physical Android/iOS or speaker acceptance.",
+  "cases": [
+    {
+      "name": "touch unlock / 150ms responses / transient recovery / permanent sibling fallback",
+      "status": "PASS",
+      "samples": 22,
+      "state": "running",
+      "volumes": {
+        "music": 0.3,
+        "sfx": 0.8
+      },
+      "peakFetch": 3,
+      "attempts": {
+        "/assets/audio/foley-v1/card-slide-1.ogg": 3,
+        "/assets/audio/foley-v1/card-slide-2.ogg": 2,
+        "/assets/audio/foley-v1/card-slide-3.ogg": 1,
+        "/assets/audio/foley-v1/card-place-1.ogg": 1,
+        "/assets/audio/foley-v1/card-place-2.ogg": 1,
+        "/assets/audio/foley-v1/card-place-3.ogg": 1,
+        "/assets/audio/foley-v1/card-shove-1.ogg": 1,
+        "/assets/audio/foley-v1/card-fan-1.ogg": 1,
+        "/assets/audio/foley-v1/card-shuffle.ogg": 1,
+        "/assets/audio/foley-v1/cards-pack-open-1.ogg": 1,
+        "/assets/audio/foley-v1/chip-lay-1.ogg": 1,
+        "/assets/audio/foley-v1/chip-lay-2.ogg": 1,
+        "/assets/audio/foley-v1/chips-stack-1.ogg": 1,
+        "/assets/audio/foley-v1/chips-collide-1.ogg": 1,
+        "/assets/audio/foley-v1/impactWood_light_000.ogg": 1,
+        "/assets/audio/foley-v1/impactWood_light_001.ogg": 1,
+        "/assets/audio/foley-v1/impactWood_heavy_000.ogg": 1,
+        "/assets/audio/foley-v1/impactSoft_medium_000.ogg": 1,
+        "/assets/audio/foley-v1/impactSoft_heavy_000.ogg": 1,
+        "/assets/audio/foley-v1/impactBell_heavy_000.ogg": 1,
+        "/assets/audio/foley-v1/impactBell_heavy_003.ogg": 1,
+        "/assets/audio/foley-v1/impactGlass_heavy_002.ogg": 1,
+        "/assets/audio/score-impact/cloth2.ogg": 1
+      }
+    },
+    {
+      "name": "real sibling fallback / muted+background cues consumed / fresh trillion rhythm / cancellation / custom7+100 / exactzero",
+      "status": "PASS",
+      "sibling": true,
+      "muted": 2,
+      "afterMuted": 2,
+      "background": 2,
+      "afterBackground": 2,
+      "fresh": 6,
+      "activeVoices": 6,
+      "cancel": 0,
+      "requestsBefore": 23,
+      "requestsAfter": 23,
+      "zero": 8,
+      "created": 8,
+      "preferences": {
+        "music": 0.07,
+        "sfx": 1
+      }
+    },
+    {
+      "name": "all semantic families / synchronous 100-round cross-event saturation / actual sources / mute cleanup",
+      "status": "PASS",
+      "maximum": 16,
+      "retained": 20,
+      "cleaned": 0,
+      "calls": 4300
+    },
+    {
+      "name": "unavailable WebAudio API / no audio fetch or crash",
+      "status": "PASS",
+      "context": false,
+      "ready": false,
+      "message": "音频未解锁：取消静音，再点击启用。",
+      "audioRequests": 0
+    }
+  ],
+  "status": "PASS"
+}

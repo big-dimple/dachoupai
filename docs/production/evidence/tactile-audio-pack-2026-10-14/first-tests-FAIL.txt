@@ -1,0 +1,161 @@
+
+> dachoupai@0.1.0 test
+> vitest run tests/audio-sample-loading.test.ts tests/audio-preferences.test.ts tests/score-recorded-audio.test.ts tests/fire-audio.test.ts tests/failure-audio.test.ts tests/sample-body.test.ts
+
+
+ RUN  v4.1.11 /workspace/dachoupai
+
+ ❯ tests/fire-audio.test.ts (15 tests | 1 failed) 37ms
+     × deduplicates by presentation/event, including after cancellation, and allows a new actual attempt 10ms
+ ❯ tests/score-recorded-audio.test.ts (12 tests | 6 failed) 72ms
+   × ordinary hits stay light and key multiplication has bounded three-layer timbre, all cancellable 14ms
+   × selection, confirmation, source multiplication and endings use actual samples without oscillator layers 5ms
+   × number rolls replace their recorded texture, remain finite and cannot restart after mute 2ms
+   × rapid ordinary input is throttled and longer sequences rotate variants under a per-semantic cap 3ms
+   × every public semantic feedback uses available distinct recorded families without synthesis 28ms
+   × key landing owns four recorded layers with low body, filtered air and bounded tail 2ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 7 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/fire-audio.test.ts > owned short drum and paper accents > deduplicates by presentation/event, including after cancellation, and allows a new actual attempt
+AssertionError: expected [ { kind: 'paper', …(9) }, …(2) ] to have a length of 6 but got 3
+
+- Expected
++ Received
+
+- 6
++ 3
+
+ ❯ tests/fire-audio.test.ts:27:104
+     25|     const f=fixture(),cue={};f.engine.scoreBrush(cue,'multiply',2);for…
+     26|     expect(f.sources).toHaveLength(3);f.engine.cancelPresentation();f.…
+     27|     (f.internal.context as any).currentTime+=.2;f.engine.scoreBrush({}…
+       |                                                                                                        ^
+     28|   });
+     29|   it.each(['volume','mute','hidden','background'] as const)('consumes …
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/7]⎯
+
+ FAIL  tests/score-recorded-audio.test.ts > ordinary hits stay light and key multiplication has bounded three-layer timbre, all cancellable
+AssertionError: expected [ 'impactSoft_heavy_000', …(2) ] to deeply equal [ 'impactSoft_heavy_000', …(2) ]
+
+- Expected
++ Received
+
+  [
+    "impactSoft_heavy_000",
+-   "impactBell_heavy_000",
++   "impactBell_heavy_003",
+    "card-fan-1",
+  ]
+
+ ❯ tests/score-recorded-audio.test.ts:6:349
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/7]⎯
+
+ FAIL  tests/score-recorded-audio.test.ts > selection, confirmation, source multiplication and endings use actual samples without oscillator layers
+AssertionError: expected [ 'card-slide-1', 'chip-lay-1', …(15) ] to deeply equal [ 'card-slide-1', …(11) ]
+
+- Expected
++ Received
+
+  [
+    "card-slide-1",
+-   "card-shove-1",
++   "chip-lay-1",
++   "card-slide-1",
++   "card-place-1",
+    "chips-collide-1",
+    "chip-lay-2",
++   "card-slide-1",
+    "impactSoft_heavy_000",
+-   "impactBell_heavy_000",
++   "impactBell_heavy_003",
+    "card-fan-1",
+    "impactWood_heavy_000",
+-   "impactBell_heavy_000",
+    "chips-collide-1",
++   "impactBell_heavy_003",
++   "impactBell_heavy_003",
+    "impactSoft_heavy_000",
+    "card-shove-1",
++   "card-place-1",
+  ]
+
+ ❯ tests/score-recorded-audio.test.ts:13:40
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/7]⎯
+
+ FAIL  tests/score-recorded-audio.test.ts > number rolls replace their recorded texture, remain finite and cannot restart after mute
+AssertionError: expected [ 'chips-stack-1' ] to deeply equal [ 'chips-stack-1', 'chips-stack-1' ]
+
+- Expected
++ Received
+
+  [
+    "chips-stack-1",
+-   "chips-stack-1",
+  ]
+
+ ❯ tests/score-recorded-audio.test.ts:19:40
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/7]⎯
+
+ FAIL  tests/score-recorded-audio.test.ts > rapid ordinary input is throttled and longer sequences rotate variants under a per-semantic cap
+AssertionError: expected [ { buffer: { …(2) }, …(6) }, …(1) ] to have a length of 1 but got 2
+
+- Expected
++ Received
+
+- 1
++ 2
+
+ ❯ tests/score-recorded-audio.test.ts:24:112
+     22|
+     23| it('rapid ordinary input is throttled and longer sequences rotate vari…
+     24|  const {engine,inside,sources}=fixture();engine.select();for(let i=0;i…
+       |                                                                                                                ^
+     25|  for(let i=0;i<7;i++){inside.context.currentTime+=.04;engine.select();}
+     26|  expect(new Set(sources.map(s=>s.buffer.name)).size).toBe(3);expect([.…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/7]⎯
+
+ FAIL  tests/score-recorded-audio.test.ts > every public semantic feedback uses available distinct recorded families without synthesis
+AssertionError: expected 17 to be greater than or equal to 19
+ ❯ tests/score-recorded-audio.test.ts:33:54
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/7]⎯
+
+ FAIL  tests/score-recorded-audio.test.ts > key landing owns four recorded layers with low body, filtered air and bounded tail
+AssertionError: expected [ 'lowpass', 'bandpass', …(2) ] to deeply equal [ 'lowpass', 'bandpass', 'lowpass' ]
+
+- Expected
++ Received
+
+  [
+    "lowpass",
+    "bandpass",
+    "lowpass",
++   "lowpass",
+  ]
+
+ ❯ tests/score-recorded-audio.test.ts:59:220
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/7]⎯
+
+
+ Test Files  2 failed | 4 passed (6)
+      Tests  7 failed | 51 passed (58)
+   Start at  14:14:03
+   Duration  1.72s (transform 1.45s, setup 0ms, import 1.84s, tests 211ms, environment 1ms)
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice

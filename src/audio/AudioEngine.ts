@@ -2,12 +2,13 @@ import recording from '../../public/assets/audio/p06/recording.json';
 import {DEFAULT_AUDIO} from './preferences';
 import {FOLEY,FOLEY_SAMPLES,type FoleyKind,type Layer} from './foley';
 import {sampleBody,type SampleBody} from './sampleBody';
+import {awardForScore,chainRate,EFFECT_VOICE_BUDGET,ACCENT_TAIL_FLOOR} from './mixPolicy';
 
 export type AudioBus = 'master' | 'music' | 'sfx' | 'ui';
 export type AudioScene = 'menu' | 'shop' | 'table' | 'boss' | 'success' | 'failure';
 export type FailureCue = { runId: string; commandSeq: number };
 type VoiceBus = Exclude<AudioBus, 'master'>;
-type Voice = { source: AudioScheduledSourceNode; gain: GainNode; filter?: BiquadFilterNode; bus: VoiceBus; scoreAccent?: boolean; roll?: ScoreRollKind; semantic?: FoleyKind; startsAt?:number; endsAt?:number };
+type Voice = { source: AudioScheduledSourceNode; gain: GainNode; filter?: BiquadFilterNode; bus: VoiceBus; scoreAccent?: boolean; roll?: ScoreRollKind; semantic?: FoleyKind; startsAt?:number; endsAt?:number; priority?:number; peak?:number };
 export type ScoreSourceCue = 'card' | 'held' | 'character' | 'joker' | 'boss' | 'retrigger';
 export type ScoreRollKind = 'heat' | 'mult' | 'total';
 
@@ -295,10 +296,11 @@ export class AudioEngine {
   scoreImpact(presentation:object,eventId:string,kind:'add'|'key'|'multiply'|'award'|'flight',tier=0,chain=0):void {
     let seen=this.scoreCues.get(presentation);if(!seen){seen=new Set();this.scoreCues.set(presentation,seen);}const id='recorded/'+eventId+'/'+kind;
     if(seen.has(id)||seen.size>=1024)return;seen.add(id);if(!this.canPlay('sfx'))return;
-    const rate=kind==='multiply'?1+bounded(chain,4)*.035:1;
-    const voices=this.cue(kind,'sfx',rate,0,kind==='add'||kind==='flight'?1:1+bounded(tier,3)*.06);
+    const rate=kind==='multiply'?chainRate(chain):1;
+    const sound=kind==='award'?awardForScore(presentation):kind;
+    const voices=this.cue(sound,'sfx',rate,0,kind==='add'||kind==='flight'?1:1+bounded(tier,3)*.035);
     for(const voice of voices)voice.scoreAccent=true;
-    if(voices.length)this.duckMusic(kind==='add'?.14:kind==='key'?.65:.4,kind==='key'?.20:.35);
+    if(voices.length)this.duckMusic(kind==='add'?.14:kind==='award'?Math.max(.4,...FOLEY[sound].layers.map(l=>(l.delay??0)+l.duration)):kind==='key'?.65:.4,kind==='key'||kind==='award'?.22:.35);
   }
 
   /** Compatibility cleanup name; no continuous burning sources remain. */
@@ -359,12 +361,13 @@ export class AudioEngine {
       // cloth2 has an 80ms quiet lead; start at its recorded cloth body, not silence.
       const body=this.sampleBodies.get(name),sampleOffset=body?.offset??(name==='cloth2'?.08:0);
       const speed=Math.max(.65,Math.min(1.4,rate)),length=Math.min(Math.max(.035,duration),(buffer.duration-sampleOffset)/speed);
+      if(!Number.isFinite(length)||length<=0)return;
       source.buffer=buffer;source.playbackRate.value=speed;
       const peak=bounded(volume,.14)*SOURCE_GAIN[bus]*(body?.gain??1),attack=Math.min(length*.2,shape?.attack??.005),hold=Math.max(attack,length*(shape?.hold??.55));
       gain.gain.setValueAtTime(0,time);gain.gain.linearRampToValueAtTime(peak,time+attack);gain.gain.setValueAtTime(peak,time+hold);gain.gain.linearRampToValueAtTime(0,time+length);
       let filter:BiquadFilterNode|undefined;const f=shape?.filter;
       if(f&&typeof context.createBiquadFilter==='function'){filter=context.createBiquadFilter();filter.type=f.type;filter.Q.value=f.Q;filter.frequency.setValueAtTime(f.frequency,time);filter.frequency.linearRampToValueAtTime(f.end,time+Math.min(length,f.sweep));source.connect(filter);filter.connect(gain);}else source.connect(gain);
-      gain.connect(this.gains![bus]);const voice={source,gain,filter,bus,startsAt:time,endsAt:time+length};this.retain(voice);source.start(time,sampleOffset);source.stop(time+length);return voice;
+      gain.connect(this.gains![bus]);const voice={source,gain,filter,bus,startsAt:time,endsAt:time+length,peak};this.retain(voice);source.start(time,sampleOffset);source.stop(time+length);return voice;
     }catch{return;}
   }
   /** minGap/per-semantic oldest-voice cap adapted from Inkwave audio.js 258–280 (MIT).
@@ -372,21 +375,63 @@ export class AudioEngine {
    * Variants rotate locally; never read the domain RNG or queue a missing recording. */
   private cue(kind:FoleyKind,bus:VoiceBus='sfx',rate=1,offset=0,strength=1,duration?:number):Voice[] {
     if(!this.canPlay(bus))return [];
-    const recipe=FOLEY[kind],time=this.context!.currentTime+offset,last=this.cueTimes.get(kind);
-    if(last!==undefined&&time>=last&&time-last<recipe.gap)return [];
+    const recipe=FOLEY[kind],now=this.context!.currentTime,time=now+offset,last=this.cueTimes.get(kind);
+    if(last!==undefined&&time>=last&&time-last+1e-6<recipe.gap)return [];
     this.cueTimes.set(kind,time);
-    const active=[...this.voices].filter(v=>v.semantic===kind&&(v.startsAt??0)<=time&&(v.endsAt??Infinity)>time);
-    while(active.length+recipe.layers.length>recipe.cap&&active.length){
-      const oldest=active.shift()!;
-      // A future train reaches its cap in the future: retain earlier audible beats.
-      if(time>this.context!.currentTime){try{oldest.source.stop(time);oldest.endsAt=time;}catch{this.release(oldest);}}
-      else this.release(oldest);
-    }
     const variant=this.variants.get(kind)??0;this.variants.set(kind,variant+1);
-    return recipe.layers.flatMap(layer=>{
-      const voice=this.recordedCue(layer.samples[variant%layer.samples.length],duration===undefined?layer.duration:Math.min(duration,layer.duration),layer.gain*strength,bus,rate*(layer.rate??1),offset+(layer.delay??0),layer);
-      if(!voice)return [];voice.semantic=kind;return [voice];
+    // A late/unavailable preferred variant may use an already decoded sibling.
+    // Missing families stay silent; this never queues or retries a past cue.
+    const layers=recipe.layers.flatMap(layer=>{
+      const rotated=layer.samples.map((_,i)=>layer.samples[(variant+i)%layer.samples.length]);
+      const name=rotated.find(sample=>this.scoreSamples.has(sample));
+      return name?[{layer,name}]:[];
     });
+    if(!layers.length)return [];
+    const end=time+Math.max(...layers.map(({layer})=>(layer.delay??0)+(duration===undefined?layer.duration:Math.min(duration,layer.duration))));
+    const overlaps=(voice:Voice)=>voice.bus!=='music'&&(voice.startsAt??0)<end&&(voice.endsAt??Infinity)>time;
+    const same=[...this.voices].filter(v=>v.semantic===kind&&overlaps(v));
+    const reclaimed:Voice[]=[];
+    while(same.length+layers.length>recipe.cap&&same.length){
+      reclaimed.push(same.shift()!);
+    }
+    // Admission is atomic per available recipe. Texture cannot evict a stronger
+    // beat; key/ending recipes may reclaim the lowest-priority/oldest tail.
+    let active=[...this.voices].filter(v=>overlaps(v)&&!reclaimed.includes(v));
+    const victims=active.filter(v=>(v.priority??1)<recipe.priority)
+      .sort((a,b)=>(a.priority??1)-(b.priority??1)||(a.startsAt??0)-(b.startsAt??0));
+    while(active.length+layers.length>EFFECT_VOICE_BUDGET&&victims.length){
+      const victim=victims.shift()!;
+      reclaimed.push(victim);
+      active=active.filter(v=>v!==victim);
+    }
+    if(active.length+layers.length>EFFECT_VOICE_BUDGET)return [];
+    // Commit reclamation only when the whole recipe fits. A rejected cue must
+    // not remove existing beats merely because some weaker tails were found.
+    for(const voice of reclaimed){
+      if(time>now){try{voice.source.stop(time);voice.endsAt=time;}catch{this.release(voice);}}
+      else this.release(voice);
+    }
+    if(recipe.priority>=3){
+      for(const voice of active)if((voice.priority??1)<recipe.priority)this.softenTail(voice,time);
+    }
+    return layers.flatMap(({layer,name})=>{
+      const voice=this.recordedCue(name,duration===undefined?layer.duration:Math.min(duration,layer.duration),layer.gain*bounded(strength,1.2),bus,rate*(layer.rate??1),offset+(layer.delay??0),layer);
+      if(!voice)return [];voice.semantic=kind;voice.priority=recipe.priority;return [voice];
+    });
+  }
+  /** Give a foreground strike room without changing preferences or its bus.
+   * Short lower-priority tails fade down; they never recover into a second hit. */
+  private softenTail(voice:Voice,time:number):void {
+    if((voice.startsAt??0)>time)return; // Preserve a future beat's attack.
+    try {
+      const param=voice.gain.gain,end=voice.endsAt??time+.1;
+      if(end<=time)return;
+      if(typeof param.cancelAndHoldAtTime==='function')param.cancelAndHoldAtTime(time);
+      else {param.cancelScheduledValues(time);param.setValueAtTime(Math.min(param.value,voice.peak??.1),time);}
+      const quiet=Math.min(voice.peak??.1,param.value)*ACCENT_TAIL_FLOOR;
+      param.linearRampToValueAtTime(quiet,Math.min(end,time+.015));
+      param.linearRampToValueAtTime(0,end);
+    } catch { /* The admission budget still bounds a device lacking automation. */ }
   }
   deal(index=0):void {this.cue('deal','sfx',1,Math.floor(bounded(index,14))*.055);}
   cardLand():void {this.cue('land');}
@@ -395,7 +440,7 @@ export class AudioEngine {
   titleBell():void {this.cue('title');}
   titleConfirm():void {if(this.cue('confirm','ui').length)this.duckMusic(.32,.3);}
   curtainOpen():void {this.duckMusic(.4);this.cue('curtain');}
-  select():void {if(this.cue('select','ui').length)this.duckMusic(.12,.6);}
+  select():void {if(this.cue('select','ui').length)this.duckMusic(.12,.7);}
   cancel():void {this.cue('cancel','ui');}
   deselect():void {this.cancel();}
   invalid():void {this.cue('invalid','ui');}
@@ -413,13 +458,13 @@ export class AudioEngine {
   cardScore(index=0):void {this.duckMusic(.14);this.cue('add','sfx',1+bounded(index,4)*.025);}
   role():void {this.duckMusic(.4);this.cue('role');}
   joker(chainIndex:number):void {this.duckMusic(.28);this.cue('joker','sfx',1+bounded(chainIndex,6)*.025);}
-  multiplier(kind:'add'|'multiply',chainIndex=0):void {this.duckMusic(kind==='multiply'?.4:.2);this.cue(kind==='multiply'?'multiply':'coin','sfx',1+bounded(chainIndex,4)*.035);}
+  multiplier(kind:'add'|'multiply',chainIndex=0):void {this.duckMusic(kind==='multiply'?.4:.2);this.cue(kind==='multiply'?'multiply':'coin','sfx',chainRate(chainIndex));}
   retrigger(chainIndex=0):void {this.duckMusic(.2);this.cue('retrigger','sfx',1+bounded(chainIndex,5)*.025);}
   chanceRoll(kind:'lucky'|'glass'|'joker',hit:boolean):void {this.duckMusic(.2);this.cue(hit?'chanceHit':'chanceMiss','sfx',kind==='glass'?1.15:1);}
   glassBreak():void {this.duckMusic(.3);this.cue('glass');}
   toolUse(family:'tarot'|'planet'|'spectral'|'utility'):void {this.duckMusic(.3);this.cue(family);}
   score(intensity=0):void {this.duckMusic(.4);this.cue(bounded(intensity,2)>0?'key':'award');}
-  overkill(tier:1|2|3):void {if(![1,2,3].includes(tier))return;this.duckMusic(.5);this.cue('award','sfx',1+(tier-1)*.04);}
+  overkill(tier:1|2|3):void {if(![1,2,3].includes(tier))return;this.duckMusic(.5);this.cue('award','sfx',1+(tier-1)*.025);}
   purchase():void {this.cue('purchase','ui');}
   sale():void {this.cue('sale','ui');}
   reroll():void {this.cue('reroll','ui');}
