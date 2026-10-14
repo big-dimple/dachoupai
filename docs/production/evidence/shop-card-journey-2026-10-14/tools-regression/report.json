@@ -1,0 +1,49 @@
+{
+  "status": "PASS",
+  "scope": "Software Chromium DPR1; PC1366 mouse and390 touch. Validator-approved public shop fixture imported through actual menu. No natural18 journey/user saves. Commands and entire state/journal/storage verified. Normal purchasing/consumption remain separate.",
+  "sourceBefore": {
+    "source": "7015d4cf3da40626972e8cd692c2614cda60a23e1338b84f79166f6117a0d884",
+    "index": "85a2f843d14b13658a6305fc49e155cea5d2cba7f782e87c7f8dfcea50067765",
+    "head": "2eaa31de34fc3acd423d7ad4a211e3b5ac8ee653",
+    "branch": "refs/heads/feat/shop-card-journey-20261014"
+  },
+  "sourceAfter": {
+    "source": "7015d4cf3da40626972e8cd692c2614cda60a23e1338b84f79166f6117a0d884",
+    "index": "85a2f843d14b13658a6305fc49e155cea5d2cba7f782e87c7f8dfcea50067765",
+    "head": "2eaa31de34fc3acd423d7ad4a211e3b5ac8ee653",
+    "branch": "refs/heads/feat/shop-card-journey-20261014"
+  },
+  "sourceUnchanged": true,
+  "cases": [
+    {
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      },
+      "status": "PASS",
+      "checks": [
+        "purchase cancel zero writes; held/duplicate/failure old full save unchanged; native retry saves original purchase once and resumes target UI without consumption",
+        "real overwrite warning and explicit replace; cancel preserves paid item and entire save; reopen clears only draft; consume duplicate/failure safe; native retry actual result and complete domain oracle",
+        "existing inventory direct use; scroll preserved across two selections; cancel/reopen/second use and continue hub; one buy/two explicit uses, final full state/journal/IDB matches canonical commands",
+        "same-name random stock has one visible seat and exact price; explicit BuyOffer continues to original selector, cancel retains purchase, direct use confirms once; final two buys/three uses match complete original oracle",
+        "actual lease loss: purchase seats disabled, held tool still inspectable, confirm disabled and native click/cancel zero write attempts/full save changes"
+      ],
+      "errors": []
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 740
+      },
+      "status": "PASS",
+      "checks": [
+        "purchase cancel zero writes; held/duplicate/failure old full save unchanged; native retry saves original purchase once and resumes target UI without consumption",
+        "real overwrite warning and explicit replace; cancel preserves paid item and entire save; reopen clears only draft; consume duplicate/failure safe; native retry actual result and complete domain oracle",
+        "existing inventory direct use; scroll preserved across two selections; cancel/reopen/second use and continue hub; one buy/two explicit uses, final full state/journal/IDB matches canonical commands",
+        "same-name random stock has one visible seat and exact price; explicit BuyOffer continues to original selector, cancel retains purchase, direct use confirms once; final two buys/three uses match complete original oracle",
+        "actual lease loss: purchase seats disabled, held tool still inspectable, confirm disabled and native click/cancel zero write attempts/full save changes"
+      ],
+      "errors": []
+    }
+  ]
+}
