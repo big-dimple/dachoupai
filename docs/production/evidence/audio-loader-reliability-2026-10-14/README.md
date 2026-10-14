@@ -15,9 +15,9 @@
 
 基线 `AudioEngine.ts:236–241` 的 Promise.all 首次解锁立刻发出全部 23 个 fetch/decode。没有请求/响应体/解码截止、并发上限或重试；单个失败被吞，scoreSampleTask 永久保留。原路径只在建立 gains 时调用加载，因此失败样本不能在本会话重新加载。
 
-产品修改前已运行 [baseline-FAIL.log](baseline-FAIL.log)：14 项全部红。可归因的产品失败包括首波 23 而非 3 请求、暂时 network/HTTP/body/decode 失败仅缓存 22/23、永久失败只尝试一次、卡住任务不结束，关闭/更换 context 后仍发布 23 个结果。
+产品修改前已运行 [baseline-FAIL.txt](baseline-FAIL.txt)：14 项全部红。可归因的产品失败包括首波 23 而非 3 请求、暂时 network/HTTP/body/decode 失败仅缓存 22/23、永久失败只尝试一次、卡住任务不结束，关闭/更换 context 后仍发布 23 个结果。
 
-该首轮也包含一个测试夹具问题：缺音时已有普通 cue 节流时间，后续 fresh cue 与其同一模拟时刻，被原有节流正确吞掉。只推进该 fresh cue 的模拟时钟 100ms，**产品修改前**该控制项 [baseline-cue-control-PASS.log](baseline-cue-control-PASS.log) 已通过，故不把它记成产品缺陷。首次 loader-tests.log 的 14 项与后续增加的专项覆盖分开读。
+该首轮也包含一个测试夹具问题：缺音时已有普通 cue 节流时间，后续 fresh cue 与其同一模拟时刻，被原有节流正确吞掉。只推进该 fresh cue 的模拟时钟 100ms，**产品修改前**该控制项 [baseline-cue-control-PASS.txt](baseline-cue-control-PASS.txt) 已通过，故不把它记成产品缺陷。首次 loader-tests.txt 的 14 项与后续增加的专项覆盖分开读。
 
 ## 最小修复
 
@@ -29,8 +29,8 @@
 
 ## 实际通过
 
-- [targeted-tests.log](targeted-tests.log)：6 文件 / 58 项通过，其中加载器 19 项。覆盖首波/解码槽位、在途去重、三路暂时失败与 HTTP/decode、三阶段超时、永久失败三次预算/重复调用、迟到三阶段、closed/replaced context、真实入口的 context 创建模拟、静音/隐藏/后台门与漏音不补播。无 timer 残留。
-- [typecheck.log](typecheck.log)、[build.log](build.log)：通过；构建原有大包警告保留。build-info 标识测试时 base + dirty，不称已发布的洁净构建。
+- [targeted-tests.txt](targeted-tests.txt)：6 文件 / 58 项通过，其中加载器 19 项。覆盖首波/解码槽位、在途去重、三路暂时失败与 HTTP/decode、三阶段超时、永久失败三次预算/重复调用、迟到三阶段、closed/replaced context、真实入口的 context 创建模拟、静音/隐藏/后台门与漏音不补播。无 timer 残留。
+- [typecheck.txt](typecheck.txt)、[build.txt](build.txt)：通过；构建原有大包警告保留。build-info 标识测试时 base + dirty，不称已发布的洁净构建。
 - [browser-check.mjs](browser-check.mjs) 与 [browser-report.json](browser-report.json)：系统 Chromium 151.0.7922.173、真实 pointerdown/AudioContext/现有 OGG 解码，音频独立夹具，未启动游戏旅程。手势前无 context/请求，解锁后 running；故障案例实际峰值 fetch=3、共 29 次请求，网络暂时失败和损坏 OGG 各第二次恢复，卡住请求/永久404各恰三次，缓存及 body 21/23，其余样本各一次；重复 unlock 后仍29次。
 - 第二浏览器案例刻意使首个 fetch 忽略 abort、6秒晚回有效响应：超时重试后23/23缓存、24次调用，旧结果未改变 buffer/body 身份。明确缺首个录音的 flight cue 被消费，静音/后台事件不补播，fresh cue 创建一件真实录音 source，后台清至零 voices。该案例听感 `heard:false`。
 - 初次浏览器通过的 [browser-report-first-pass.json](browser-report-first-pass.json) 另存；最终脚本加强为明确缺首个 clip 的 flight cue，重复两案例后仍通过。未改产品或放宽断言。

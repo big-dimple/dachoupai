@@ -1,0 +1,185 @@
+
+> dachoupai@0.1.0 test
+> vitest run tests/audio-sample-loading.test.ts
+
+
+ RUN  v4.1.11 /workspace/dachoupai
+
+ ❯ tests/audio-sample-loading.test.ts (14 tests | 14 failed) 15037ms
+   × bounds the initial request burst and shares an in-flight load 5ms
+   × a timed-out wave releases slots for later samples before retrying it 3ms
+   × recovers a temporary network failure in the same session 1ms
+   × recovers a temporary http failure in the same session 1ms
+   × recovers a temporary body failure in the same session 1ms
+   × recovers a temporary decode failure in the same session 1ms
+   × permanent failures stop after three attempts, including repeated unlocks 1ms
+   × ignores late fetch success after timeout and a successful retry 5008ms
+   × ignores late body success after timeout and a successful retry 5002ms
+   × ignores late decode success after timeout and a successful retry 5006ms
+   × does not publish results for a closed context 2ms
+   × does not publish results from a replaced context 2ms
+   × gesture unlock stays responsive during a stuck load and repeated calls never redownload success 1ms
+   × mute/background and unavailable clips consume cues, without playback on load or foreground 2ms
+
+⎯⎯⎯⎯⎯⎯ Failed Tests 14 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/audio-sample-loading.test.ts > bounds the initial request burst and shares an in-flight load
+AssertionError: expected "vi.fn()" to be called 3 times, but got 23 times
+ ❯ tests/audio-sample-loading.test.ts:49:17
+     47|   expect(load()).toBe(pending);
+     48|   await flush();
+     49|   expect(fetch).toHaveBeenCalledTimes(3);
+       |                 ^
+     50|   await vi.advanceTimersByTimeAsync(200000);
+     51|   await pending;
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/14]⎯
+
+ FAIL  tests/audio-sample-loading.test.ts > a timed-out wave releases slots for later samples before retrying it
+AssertionError: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ tests/audio-sample-loading.test.ts:71:19
+     69|   expect(signals.slice(0, 3).every(signal => signal.aborted)).toBe(tru…
+     70|   await vi.advanceTimersByTimeAsync(200000);
+     71|   expect(settled).toBe(true);
+       |                   ^
+     72|   await pending;
+     73|   expect(inside.scoreSamples.size).toBe(samples.length - 3);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/14]⎯
+
+ FAIL  tests/audio-sample-loading.test.ts > recovers a temporary network failure in the same session
+ FAIL  tests/audio-sample-loading.test.ts > recovers a temporary http failure in the same session
+ FAIL  tests/audio-sample-loading.test.ts > recovers a temporary body failure in the same session
+ FAIL  tests/audio-sample-loading.test.ts > recovers a temporary decode failure in the same session
+AssertionError: expected 22 to be 23 // Object.is equality
+
+- Expected
++ Received
+
+- 23
++ 22
+
+ ❯ tests/audio-sample-loading.test.ts:85:36
+     83|   });
+     84|   await load();
+     85|   expect(inside.scoreSamples.size).toBe(samples.length);
+       |                                    ^
+     86|   expect(inside.sampleBodies.size).toBe(samples.length);
+     87|   expect(fetch).toHaveBeenCalledTimes(samples.length + 1);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/14]⎯
+
+ FAIL  tests/audio-sample-loading.test.ts > permanent failures stop after three attempts, including repeated unlocks
+AssertionError: expected "vi.fn()" to be called 69 times, but got 23 times
+ ❯ tests/audio-sample-loading.test.ts:96:17
+     94|   const {load, inside, engine} = fixture();
+     95|   await load();
+     96|   expect(fetch).toHaveBeenCalledTimes(samples.length * 3);
+       |                 ^
+     97|   expect(inside.scoreSamples.size).toBe(0);
+     98|   for (let i = 0; i < 5; i++) { await load(); await engine.unlock(); }
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/14]⎯
+
+ FAIL  tests/audio-sample-loading.test.ts > ignores late fetch success after timeout and a successful retry
+ FAIL  tests/audio-sample-loading.test.ts > ignores late body success after timeout and a successful retry
+ FAIL  tests/audio-sample-loading.test.ts > ignores late decode success after timeout and a successful retry
+Error: Test timed out in 5000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ ❯ tests/audio-sample-loading.test.ts:104:36
+    102| });
+    103|
+    104| it.each(['fetch', 'body', 'decode'])('ignores late %s success after ti…
+       |                                    ^
+    105|   const {load, inside, context} = fixture();
+    106|   const late = deferred<any>();
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/14]⎯
+
+ FAIL  tests/audio-sample-loading.test.ts > does not publish results for a closed context
+AssertionError: expected 23 to be +0 // Object.is equality
+
+- Expected
++ Received
+
+- 0
++ 23
+
+ ❯ tests/audio-sample-loading.test.ts:134:36
+    132|   late.resolve(buffer());
+    133|   await pending;
+    134|   expect(inside.scoreSamples.size).toBe(0);
+       |                                    ^
+    135|   expect(inside.sampleBodies.size).toBe(0);
+    136| });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/14]⎯
+
+ FAIL  tests/audio-sample-loading.test.ts > does not publish results from a replaced context
+AssertionError: expected 23 to be +0 // Object.is equality
+
+- Expected
++ Received
+
+- 0
++ 23
+
+ ❯ tests/audio-sample-loading.test.ts:147:36
+    145|   late.resolve(buffer());
+    146|   await pending;
+    147|   expect(inside.scoreSamples.size).toBe(0);
+       |                                    ^
+    148|   expect(inside.sampleBodies.size).toBe(0);
+    149| });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/14]⎯
+
+ FAIL  tests/audio-sample-loading.test.ts > gesture unlock stays responsive during a stuck load and repeated calls never redownload success
+AssertionError: expected "vi.fn()" to be called 3 times, but got 0 times
+ ❯ tests/audio-sample-loading.test.ts:156:17
+    154|   await engine.unlock();
+    155|   expect(context.resume).toHaveBeenCalled();
+    156|   expect(fetch).toHaveBeenCalledTimes(3);
+       |                 ^
+    157|   vi.stubGlobal('fetch', vi.fn(async () => response()));
+    158|   await vi.advanceTimersByTimeAsync(5001);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[8/14]⎯
+
+ FAIL  tests/audio-sample-loading.test.ts > mute/background and unavailable clips consume cues, without playback on load or foreground
+AssertionError: expected [] to have a length of 1 but got +0
+
+- Expected
++ Received
+
+- 1
++ 0
+
+ ❯ tests/audio-sample-loading.test.ts:184:19
+    182|   expect(sources).toHaveLength(0);
+    183|   engine.scoreImpact(presentation, 'fresh', 'add');
+    184|   expect(sources).toHaveLength(1);
+       |                   ^
+    185|   engine.setSuspended(true);
+    186|   expect(inside.voices.size).toBe(0);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[9/14]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  14 failed (14)
+   Start at  07:35:03
+   Duration  15.25s (transform 97ms, setup 0ms, import 111ms, tests 15.04s, environment 0ms)
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice
