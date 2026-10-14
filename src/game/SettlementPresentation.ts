@@ -46,8 +46,9 @@ export function settlementFacts(run:R2RunState,cleared:boolean,skipped=false){
  const routeCopy=routes.length?'本局资历 '+routes.map(route=>route.routeFamily+String(route.resourceBefore)+' · ×'+readableFractionText(route.value)).join(' · '):undefined;
  const routeSummary=isR2BoundedClear(run)&&routes.length?'过关加成 · '+routes.map(route=>'×'+readableFractionText(route.value)).join(' · '):routes.length?'本局'+routes.map(route=>({G:'同点',S:'顺子',F:'同花'}[route.routeFamily!])+route.resourceBefore+'场').join(' · '):undefined;
  // Keep the complete ordered trace in the existing inspection. This line is a subset, never a claimed total.
+ const jokerFactorSourceCount=new Set(factors.filter(e=>e.sourceType==='joker').map(e=>e.sourceInstanceId)).size;
  const chain=factors.filter(e=>e.sourceType==='joker').slice(0,3).map(e=>r2JokerDefinitionFor(run,e.sourceDefinitionId).name+' ×'+readableFractionText(e.value));
- return {...saved,tier,tag,hero,heroCopy,card,cardCopy,operation,routeCopy,routeSummary,chain,factorCount:factors.length};
+ return {...saved,tier,tag,hero,heroCopy,card,cardCopy,operation,routeCopy,routeSummary,chain,jokerFactorSourceCount,factorCount:factors.length};
 }
 
 export function settlementPlan(b:Box,short=false,lost=false){
@@ -77,7 +78,7 @@ export function drawSettlement(scene:Phaser.Scene,view:SceneView,b:Box,run:R2Run
  ink.lineStyle(1,accent,.25).beginPath().moveTo(b.x+b.width-12,b.y+b.height-38).lineTo(b.x+b.width-12,b.y+b.height-12).lineTo(b.x+b.width-44,b.y+b.height-12).strokePath();
  if(p.desktop)ink.lineStyle(1,T.divider,.6).beginPath().moveTo(p.score.x-13,b.y+30).lineTo(p.score.x-13,b.y+b.height-30).strokePath();
  const main=p.score,center=main.x+main.width/2,compact=p.short||main.height<200;
- const tag=fit(view,main.x,main.y,facts.tag+(facts.chain.length>1?' · '+facts.chain.length+'路丑牌乘倍率':''),p.desktop?18:16,main.width,C.jade,'result/tier').setFontFamily('Georgia, "Noto Serif SC", SimSun, serif');
+ const tag=fit(view,main.x,main.y,facts.tag+(facts.jokerFactorSourceCount>1?' · '+facts.jokerFactorSourceCount+'路丑牌乘倍率':''),p.desktop?18:16,main.width,C.jade,'result/tier').setFontFamily('Georgia, "Noto Serif SC", SimSun, serif');
  if(run.stage?.boss&&!skipped){const seal=fit(view,main.x+main.width,main.y,lost?'压轴未过':'压轴击败',14,main.width/2,lost?C.jade:C.red,'result/boss-seal').setOrigin(1,0);seal.setData('savedBoss',run.stage.boss.definitionId);}
  const hand=facts.trace?HAND_LABELS[facts.trace.handType]+' · '+facts.trace.level+'级':lost?failureSummary(run).reason:'本场热度';
  const handText=p.short?tag.setText(facts.tag+(facts.trace?' · '+HAND_LABELS[facts.trace.handType]:'')):fit(view,center,tag.y+tag.height+(compact?6:12),hand,16,main.width,C.ink,'result/hand',true);
@@ -93,7 +94,7 @@ export function drawSettlement(scene:Phaser.Scene,view:SceneView,b:Box,run:R2Run
  const receipt=facts.routeSummary??(run.stage!.playIndex===1?'首手过关 · 结果已保存':'第'+run.stage!.playIndex+'手过关'+(facts.trace?.finalScore!==stageHeat?' · 本场累计 '+heatText(stageHeat):' · 结果已保存'));
  const gap=fit(view,center,formulaText.y+formulaText.height+6,skipped?'本场跳过':lost?failureSummary(run).lastHand:receipt,14,main.width,C.jade,'result/gap',true);
  const chainY=gap.y+gap.height+10;
- if(p.desktop&&facts.chain.length>1)fit(view,main.x,chainY,facts.chain.join(' · '),14,main.width,C.jade,'result/chain-sources').setData('sourceEvents',facts.trace?.events.filter(e=>multiplicative(e)&&e.sourceType==='joker').map(e=>e.eventId));
+ if(p.desktop&&facts.chain.length>1)fit(view,main.x,chainY,(facts.jokerFactorSourceCount>3?'部分来源 · ':'')+facts.chain.join(' · '),14,main.width,C.jade,'result/chain-sources').setData('sourceEvents',facts.trace?.events.filter(e=>multiplicative(e)&&e.sourceType==='joker').map(e=>e.eventId));
  const reward:Box={x:p.desktop?main.x+main.width*.6:main.x,y:p.desktop?main.y+main.height-54:b.y+b.height-50,width:p.desktop?main.width*.4:main.width,height:42};
  // Mobile keeps the reward beside the lower portrait; score receives the whole upper width.
  if(!p.desktop&&!p.short){reward.x=p.source.x;reward.width=p.source.width;}
