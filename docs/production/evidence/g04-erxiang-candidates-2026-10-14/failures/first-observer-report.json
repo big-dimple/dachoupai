@@ -1,0 +1,23 @@
+{
+  "head": "c2b506174d9add1df43eb9d94dbebe2bb974090f",
+  "baseline": false,
+  "scope": "G04 controlled public hand, software Chromium mouse/touch at 1366/390, necessary 320 inspection. Not dot natural games, physical devices, human understanding or audio acceptance.",
+  "cases": [
+    {
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      },
+      "labels": [
+        "第5张 · 9♣",
+        "第3张 · 9♣",
+        "第6张 · 9♣",
+        "第1张 · 9♣"
+      ],
+      "text": "二响 · 交棒\n选对子及以上\n选一张牌交棒\n确认出牌\n\n第2步 · 选一张计分牌交棒\n\n选一张核心：普通点数改加倍率，本场一次\n每场一次；选好后正常出牌才消耗，增强与版次保留。\n仅改首次普通点数；增强、版次和额外计分仍按各自规则生效。\n\n第5张 · 9♣\n\n增强：玻璃纸 · 计×1.5；版次：多彩。交棒：首次普通9点热度 → 倍率。\n\n第3张 · 9♣\n\n增强：热度纸 · 热+20；版次：闪箔。交棒：首次普通9点热度 → 倍率。\n\n第6张 · 9♣\n\n增强：热度纸 · 热+20；版次：闪箔。交棒：首次普通9点热度 → 倍率。\n\n第1张 · 9♣\n\n增强：无增强；版次：普通。交棒：首次普通9点热度 → 倍率。\n\n其它查看\n交棒细则\n返回选牌"
+    }
+  ],
+  "errors": [],
+  "status": "FAIL",
+  "error": "AssertionError [ERR_ASSERTION]: The input did not match the regular expression /加厚纸/. Input:\n\n'二响 · 交棒\\n' +\n  '选对子及以上\\n' +\n  '选一张牌交棒\\n' +\n  '确认出牌\\n' +\n  '\\n' +\n  '第2步 · 选一张计分牌交棒\\n' +\n  '\\n' +\n  '选一张核心：普通点数改加倍率，本场一次\\n' +\n  '每场一次；选好后正常出牌才消耗，增强与版次保留。\\n' +\n  '仅改首次普通点数；增强、版次和额外计分仍按各自规则生效。\\n' +\n  '\\n' +\n  '第5张 · 9♣\\n' +\n  '\\n' +\n  '增强：玻璃纸 · 计×1.5；版次：多彩。交棒：首次普通9点热度 → 倍率。\\n' +\n  '\\n' +\n  '第3张 · 9♣\\n' +\n  '\\n' +\n  '增强：热度纸 · 热+20；版次：闪箔。交棒：首次普通9点热度 → 倍率。\\n' +\n  '\\n' +\n  '第6张 · 9♣\\n' +\n  '\\n' +\n  '增强：热度纸 · 热+20；版次：闪箔。交棒：首次普通9点热度 → 倍率。\\n' +\n  '\\n' +\n  '第1张 · 9♣\\n' +\n  '\\n' +\n  '增强：无增强；版次：普通。交棒：首次普通9点热度 → 倍率。\\n' +\n  '\\n' +\n  '其它查看\\n' +\n  '交棒细则\\n' +\n  '返回选牌'\n\n    at file:///workspace/dachoupai/harness/g04-erxiang-candidates.mjs:48:83"
+}
