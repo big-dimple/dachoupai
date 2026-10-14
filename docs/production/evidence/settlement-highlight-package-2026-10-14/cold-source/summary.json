@@ -1,0 +1,683 @@
+{
+  "head": "f651a04ef5eb68c29a413acf8b4d8a0e9bbcde09",
+  "status": "PASS",
+  "scope": "Controlled inventory/levels/prior ledger -> unchanged real scorer. Same terminal states imported through production UI for before/after. Native command cases compare complete state, journal and IndexedDB. No natural acquisition, human aesthetic, hardware, FPS or hearing acceptance.",
+  "cases": [
+    {
+      "key": "backstage-320x740",
+      "status": "PASS",
+      "score": "4919",
+      "regions": {
+        "stage": {
+          "x": 12,
+          "y": 120,
+          "width": 296,
+          "height": 344
+        },
+        "texts": [
+          {
+            "name": "result/title",
+            "text": "一场好戏，满堂喝彩！",
+            "bounds": {
+              "type": 5,
+              "x": 12,
+              "y": 64,
+              "width": 261,
+              "height": 27
+            }
+          },
+          {
+            "name": "result/tier",
+            "text": "连锁成势",
+            "bounds": {
+              "type": 5,
+              "x": 28,
+              "y": 136,
+              "width": 72,
+              "height": 21
+            }
+          },
+          {
+            "name": "result/hand",
+            "text": "高牌 · 30级",
+            "bounds": {
+              "type": 5,
+              "x": 119.5,
+              "y": 163,
+              "width": 81,
+              "height": 19
+            }
+          },
+          {
+            "name": "result/score",
+            "text": "+4,919",
+            "bounds": {
+              "type": 5,
+              "x": 108.5,
+              "y": 187,
+              "width": 103,
+              "height": 44
+            }
+          },
+          {
+            "name": "result/formula",
+            "text": "目标 400 · 已过关",
+            "bounds": {
+              "type": 5,
+              "x": 105,
+              "y": 240,
+              "width": 110,
+              "height": 16
+            }
+          },
+          {
+            "name": "result/gap",
+            "text": "首手过关 · 结果已保存",
+            "bounds": {
+              "type": 5,
+              "x": 90.5,
+              "y": 262,
+              "width": 139,
+              "height": 16
+            }
+          },
+          {
+            "name": "result/hero-name",
+            "text": "老幻",
+            "bounds": {
+              "type": 5,
+              "x": 66.5,
+              "y": 422,
+              "width": 33,
+              "height": 19
+            }
+          },
+          {
+            "name": "result/source-focus",
+            "text": "倍率主力",
+            "bounds": {
+              "type": 5,
+              "x": 149,
+              "y": 303,
+              "width": 56,
+              "height": 17
+            }
+          },
+          {
+            "name": "result/source-continuity",
+            "text": "后台眼神",
+            "bounds": {
+              "type": 5,
+              "x": 199,
+              "y": 326,
+              "width": 56,
+              "height": 17
+            }
+          },
+          {
+            "name": "result/source-effect",
+            "text": "×1.25\n×1.5",
+            "bounds": {
+              "type": 5,
+              "x": 199,
+              "y": 347,
+              "width": 36,
+              "height": 32
+            }
+          },
+          {
+            "name": "result/reward",
+            "text": "奖励  +8 金",
+            "bounds": {
+              "type": 5,
+              "x": 181,
+              "y": 421,
+              "width": 80,
+              "height": 19
+            }
+          },
+          {
+            "name": "result/next-body",
+            "text": "第 1 章 · 正场 · 目标 600\n筹备后，出牌与弃牌次数补满。\n下场戏法次数恢复为1次",
+            "bounds": {
+              "type": 5,
+              "x": 26,
+              "y": 515,
+              "width": 196,
+              "height": 34
+            }
+          }
+        ],
+        "art": [
+          {
+            "name": "result-art/hero",
+            "asset": "laohuan.selection",
+            "bounds": {
+              "type": 5,
+              "x": 36.688,
+              "y": 303.12,
+              "width": 93.504,
+              "height": 116.88
+            }
+          },
+          {
+            "name": "result-art/source",
+            "asset": "a10.thumbnail",
+            "bounds": {
+              "type": 5,
+              "x": 149.44,
+              "y": 328.85,
+              "width": 38,
+              "height": 47.5
+            }
+          }
+        ],
+        "controls": [
+          {
+            "name": "result/hero-details",
+            "enabled": true,
+            "bounds": {
+              "type": 5,
+              "x": 28,
+              "y": 303.12,
+              "width": 110.88,
+              "height": 116.88
+            }
+          },
+          {
+            "name": "action/result-details",
+            "enabled": true,
+            "bounds": {
+              "type": 5,
+              "x": 12,
+              "y": 592,
+              "width": 144,
+              "height": 44
+            }
+          },
+          {
+            "name": "action/continue-stage",
+            "enabled": true,
+            "bounds": {
+              "type": 5,
+              "x": 12,
+              "y": 644,
+              "width": 296,
+              "height": 56
+            }
+          },
+          {
+            "name": "action/last-hand",
+            "enabled": true,
+            "bounds": {
+              "type": 5,
+              "x": 164,
+              "y": 592,
+              "width": 144,
+              "height": 44
+            }
+          }
+        ],
+        "motion": []
+      }
+    },
+    {
+      "key": "backstage-390x844",
+      "status": "PASS",
+      "score": "4919",
+      "regions": {
+        "stage": {
+          "x": 12,
+          "y": 116,
+          "width": 366,
+          "height": 452
+        },
+        "texts": [
+          {
+            "name": "result/title",
+            "text": "一场好戏，满堂喝彩！",
+            "bounds": {
+              "type": 5,
+              "x": 12,
+              "y": 60,
+              "width": 261,
+              "height": 27
+            }
+          },
+          {
+            "name": "result/tier",
+            "text": "连锁成势",
+            "bounds": {
+              "type": 5,
+              "x": 28,
+              "y": 132,
+              "width": 72,
+              "height": 21
+            }
+          },
+          {
+            "name": "result/hand",
+            "text": "高牌 · 30级",
+            "bounds": {
+              "type": 5,
+              "x": 154.5,
+              "y": 165,
+              "width": 81,
+              "height": 19
+            }
+          },
+          {
+            "name": "result/score",
+            "text": "+4,919",
+            "bounds": {
+              "type": 5,
+              "x": 127.5,
+              "y": 196,
+              "width": 135,
+              "height": 57
+            }
+          },
+          {
+            "name": "result/formula",
+            "text": "目标 400 · 已过关",
+            "bounds": {
+              "type": 5,
+              "x": 140,
+              "y": 262,
+              "width": 110,
+              "height": 16
+            }
+          },
+          {
+            "name": "result/gap",
+            "text": "首手过关 · 结果已保存",
+            "bounds": {
+              "type": 5,
+              "x": 125.5,
+              "y": 284,
+              "width": 139,
+              "height": 16
+            }
+          },
+          {
+            "name": "result/hero-name",
+            "text": "老幻",
+            "bounds": {
+              "type": 5,
+              "x": 81.5,
+              "y": 526,
+              "width": 33,
+              "height": 19
+            }
+          },
+          {
+            "name": "result/source-focus",
+            "text": "倍率主力",
+            "bounds": {
+              "type": 5,
+              "x": 182,
+              "y": 354,
+              "width": 56,
+              "height": 17
+            }
+          },
+          {
+            "name": "result/source-continuity",
+            "text": "后台眼神",
+            "bounds": {
+              "type": 5,
+              "x": 246,
+              "y": 377,
+              "width": 56,
+              "height": 17
+            }
+          },
+          {
+            "name": "result/source-effect",
+            "text": "×1.25\n×1.5",
+            "bounds": {
+              "type": 5,
+              "x": 246,
+              "y": 398,
+              "width": 36,
+              "height": 32
+            }
+          },
+          {
+            "name": "result/reward",
+            "text": "奖励  +8 金",
+            "bounds": {
+              "type": 5,
+              "x": 232,
+              "y": 525,
+              "width": 80,
+              "height": 19
+            }
+          },
+          {
+            "name": "result/next-body",
+            "text": "第 1 章 · 正场 · 目标 600\n筹备后，出牌与弃牌次数补满。\n下场戏法次数恢复为1次",
+            "bounds": {
+              "type": 5,
+              "x": 26,
+              "y": 619,
+              "width": 196,
+              "height": 34
+            }
+          }
+        ],
+        "art": [
+          {
+            "name": "result-art/hero",
+            "asset": "laohuan.selection",
+            "bounds": {
+              "type": 5,
+              "x": 30.220000000000013,
+              "y": 354.20000000000005,
+              "width": 135.83999999999997,
+              "height": 169.79999999999995
+            }
+          },
+          {
+            "name": "result-art/source",
+            "asset": "a10.thumbnail",
+            "bounds": {
+              "type": 5,
+              "x": 181.64000000000001,
+              "y": 380.9,
+              "width": 52,
+              "height": 65
+            }
+          }
+        ],
+        "controls": [
+          {
+            "name": "result/hero-details",
+            "enabled": true,
+            "bounds": {
+              "type": 5,
+              "x": 28,
+              "y": 354.20000000000005,
+              "width": 140.28,
+              "height": 169.79999999999995
+            }
+          },
+          {
+            "name": "action/result-details",
+            "enabled": true,
+            "bounds": {
+              "type": 5,
+              "x": 12,
+              "y": 696,
+              "width": 179,
+              "height": 44
+            }
+          },
+          {
+            "name": "action/continue-stage",
+            "enabled": true,
+            "bounds": {
+              "type": 5,
+              "x": 12,
+              "y": 748,
+              "width": 366,
+              "height": 56
+            }
+          },
+          {
+            "name": "action/last-hand",
+            "enabled": true,
+            "bounds": {
+              "type": 5,
+              "x": 199,
+              "y": 696,
+              "width": 179,
+              "height": 44
+            }
+          }
+        ],
+        "motion": []
+      }
+    },
+    {
+      "key": "backstage-1366x768",
+      "status": "PASS",
+      "score": "4919",
+      "regions": {
+        "stage": {
+          "x": 193,
+          "y": 102,
+          "width": 980,
+          "height": 422
+        },
+        "texts": [
+          {
+            "name": "result/title",
+            "text": "一场好戏，满堂喝彩！",
+            "bounds": {
+              "type": 5,
+              "x": 193,
+              "y": 42,
+              "width": 340,
+              "height": 36
+            }
+          },
+          {
+            "name": "result/tier",
+            "text": "连锁成势",
+            "bounds": {
+              "type": 5,
+              "x": 555,
+              "y": 130,
+              "width": 72,
+              "height": 21
+            }
+          },
+          {
+            "name": "result/hand",
+            "text": "高牌 · 30级",
+            "bounds": {
+              "type": 5,
+              "x": 809.5,
+              "y": 163,
+              "width": 81,
+              "height": 19
+            }
+          },
+          {
+            "name": "result/score",
+            "text": "+4,919",
+            "bounds": {
+              "type": 5,
+              "x": 742,
+              "y": 194,
+              "width": 216,
+              "height": 89
+            }
+          },
+          {
+            "name": "result/formula",
+            "text": "目标 400 · 已过关",
+            "bounds": {
+              "type": 5,
+              "x": 795,
+              "y": 292,
+              "width": 110,
+              "height": 16
+            }
+          },
+          {
+            "name": "result/gap",
+            "text": "首手过关 · 结果已保存",
+            "bounds": {
+              "type": 5,
+              "x": 780.5,
+              "y": 314,
+              "width": 139,
+              "height": 16
+            }
+          },
+          {
+            "name": "result/chain-sources",
+            "text": "后台眼神 ×1.25 · 后台眼神 ×1.5",
+            "bounds": {
+              "type": 5,
+              "x": 555,
+              "y": 340,
+              "width": 196,
+              "height": 16
+            }
+          },
+          {
+            "name": "result/hero-name",
+            "text": "老幻",
+            "bounds": {
+              "type": 5,
+              "x": 356,
+              "y": 434,
+              "width": 40,
+              "height": 23
+            }
+          },
+          {
+            "name": "result/hero-effect",
+            "text": "本局角色",
+            "bounds": {
+              "type": 5,
+              "x": 348,
+              "y": 461,
+              "width": 56,
+              "height": 16
+            }
+          },
+          {
+            "name": "result/source-focus",
+            "text": "倍率主力",
+            "bounds": {
+              "type": 5,
+              "x": 555,
+              "y": 392,
+              "width": 56,
+              "height": 17
+            }
+          },
+          {
+            "name": "result/source-continuity",
+            "text": "后台眼神",
+            "bounds": {
+              "type": 5,
+              "x": 619,
+              "y": 415,
+              "width": 56,
+              "height": 17
+            }
+          },
+          {
+            "name": "result/source-effect",
+            "text": "×1.25\n×1.5",
+            "bounds": {
+              "type": 5,
+              "x": 619,
+              "y": 436,
+              "width": 36,
+              "height": 32
+            }
+          },
+          {
+            "name": "result/reward",
+            "text": "奖励  +8 金",
+            "bounds": {
+              "type": 5,
+              "x": 977,
+              "y": 449,
+              "width": 100,
+              "height": 22
+            }
+          },
+          {
+            "name": "result/next-body",
+            "text": "第 1 章 · 正场 · 目标 600\n筹备后，出牌与弃牌次数补满。\n下场戏法次数恢复为1次",
+            "bounds": {
+              "type": 5,
+              "x": 207,
+              "y": 575,
+              "width": 196,
+              "height": 52
+            }
+          }
+        ],
+        "art": [
+          {
+            "name": "result-art/hero",
+            "asset": "laohuan.selection",
+            "bounds": {
+              "type": 5,
+              "x": 255.2,
+              "y": 130,
+              "width": 241.59999999999997,
+              "height": 302
+            }
+          },
+          {
+            "name": "result-art/source",
+            "asset": "a10.thumbnail",
+            "bounds": {
+              "type": 5,
+              "x": 555,
+              "y": 418.9,
+              "width": 52,
+              "height": 65
+            }
+          }
+        ],
+        "controls": [
+          {
+            "name": "result/hero-details",
+            "enabled": true,
+            "bounds": {
+              "type": 5,
+              "x": 221,
+              "y": 130,
+              "width": 310,
+              "height": 302
+            }
+          },
+          {
+            "name": "action/result-details",
+            "enabled": true,
+            "bounds": {
+              "type": 5,
+              "x": 193,
+              "y": 664,
+              "width": 274,
+              "height": 44
+            }
+          },
+          {
+            "name": "action/continue-stage",
+            "enabled": true,
+            "bounds": {
+              "type": 5,
+              "x": 475,
+              "y": 664,
+              "width": 421,
+              "height": 56
+            }
+          },
+          {
+            "name": "action/last-hand",
+            "enabled": true,
+            "bounds": {
+              "type": 5,
+              "x": 904,
+              "y": 664,
+              "width": 269,
+              "height": 44
+            }
+          }
+        ],
+        "motion": []
+      }
+    }
+  ]
+}

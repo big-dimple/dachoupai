@@ -1,0 +1,183 @@
+{
+  "base": "f651a04ef5eb68c29a413acf8b4d8a0e9bbcde09",
+  "product_commit": "7bf15367848b78786b34bc9318c54178ea541d75",
+  "product_src_tree": "702fb689f302177a166ba292636cff95c0daad88",
+  "protected": [
+    {
+      "path": "src/domain",
+      "base": "b293cd1b6adaff0e318f02ac9196417085b02091",
+      "current": "b293cd1b6adaff0e318f02ac9196417085b02091",
+      "equal": true,
+      "absent": false
+    },
+    {
+      "path": "src/content",
+      "base": "e8c3794be5b0fcb74da4aeb9e6adc63c22388345",
+      "current": "e8c3794be5b0fcb74da4aeb9e6adc63c22388345",
+      "equal": true,
+      "absent": false
+    },
+    {
+      "path": "src/application",
+      "base": "7d9af1c3a9f38cdcddd88d2777cd6963aebe4237",
+      "current": "7d9af1c3a9f38cdcddd88d2777cd6963aebe4237",
+      "equal": true,
+      "absent": false
+    },
+    {
+      "path": "src/platform",
+      "base": "860a9f8883cc158ac0c56ad6399518cc897a67b7",
+      "current": "860a9f8883cc158ac0c56ad6399518cc897a67b7",
+      "equal": true,
+      "absent": false
+    },
+    {
+      "path": "src/audio",
+      "base": "8f355cc62963fde265130d65a43dd259169d7be7",
+      "current": "8f355cc62963fde265130d65a43dd259169d7be7",
+      "equal": true,
+      "absent": false
+    },
+    {
+      "path": "src/game/GameScene.ts",
+      "base": "18edbe5e6c4323426f7e9d0af0e81748bfdc664a",
+      "current": "18edbe5e6c4323426f7e9d0af0e81748bfdc664a",
+      "equal": true,
+      "absent": false
+    },
+    {
+      "path": "public",
+      "base": "c4a6ec74e7fd754b0f300b973020f8afed7542e1",
+      "current": "c4a6ec74e7fd754b0f300b973020f8afed7542e1",
+      "equal": true,
+      "absent": false
+    },
+    {
+      "path": "art",
+      "base": "b0caa33679b84bee932b2854734c04ad39ba0464",
+      "current": "b0caa33679b84bee932b2854734c04ad39ba0464",
+      "equal": true,
+      "absent": false
+    },
+    {
+      "path": "prototypes",
+      "base": null,
+      "current": null,
+      "equal": true,
+      "absent": true
+    },
+    {
+      "path": "src/vendor",
+      "base": "96374120045a5dca22a25d2726d09fb41ebd0ef7",
+      "current": "96374120045a5dca22a25d2726d09fb41ebd0ef7",
+      "equal": true,
+      "absent": false
+    },
+    {
+      "path": "third-party",
+      "base": "bdf8cb7876416b8bf207b078e7d8a4d5402af185",
+      "current": "bdf8cb7876416b8bf207b078e7d8a4d5402af185",
+      "equal": true,
+      "absent": false
+    },
+    {
+      "path": ".github",
+      "base": "b923e03979ce93c9a142628f8b1099e2cd2b9150",
+      "current": "b923e03979ce93c9a142628f8b1099e2cd2b9150",
+      "equal": true,
+      "absent": false
+    },
+    {
+      "path": "package.json",
+      "base": "f7e7f89f05edd46636bac3acc1dfcd1b6cd94ccd",
+      "current": "f7e7f89f05edd46636bac3acc1dfcd1b6cd94ccd",
+      "equal": true,
+      "absent": false
+    },
+    {
+      "path": "package-lock.json",
+      "base": "acc93dcd9410bc911db279534e28522a8691dbab",
+      "current": "acc93dcd9410bc911db279534e28522a8691dbab",
+      "equal": true,
+      "absent": false
+    },
+    {
+      "path": "vite.config.ts",
+      "base": "42cc69aca1ea1b26c39b8b9206281ea22c422a1f",
+      "current": "42cc69aca1ea1b26c39b8b9206281ea22c422a1f",
+      "equal": true,
+      "absent": false
+    }
+  ],
+  "same_input_results": [
+    {
+      "key": "ordinary-320x740",
+      "score": "1296",
+      "state_journal_storage_equal": true
+    },
+    {
+      "key": "ordinary-390x844",
+      "score": "1296",
+      "state_journal_storage_equal": true
+    },
+    {
+      "key": "ordinary-1366x768",
+      "score": "1296",
+      "state_journal_storage_equal": true
+    },
+    {
+      "key": "million-320x740",
+      "score": "1699627",
+      "state_journal_storage_equal": true
+    },
+    {
+      "key": "million-390x844",
+      "score": "1699627",
+      "state_journal_storage_equal": true
+    },
+    {
+      "key": "million-1366x768",
+      "score": "1699627",
+      "state_journal_storage_equal": true
+    },
+    {
+      "key": "billion-320x740",
+      "score": "458449875",
+      "state_journal_storage_equal": true
+    },
+    {
+      "key": "billion-390x844",
+      "score": "458449875",
+      "state_journal_storage_equal": true
+    },
+    {
+      "key": "billion-1366x768",
+      "score": "458449875",
+      "state_journal_storage_equal": true
+    },
+    {
+      "key": "long-320x740",
+      "score": "1952400131333767",
+      "state_journal_storage_equal": true
+    },
+    {
+      "key": "long-390x844",
+      "score": "1952400131333767",
+      "state_journal_storage_equal": true
+    },
+    {
+      "key": "long-1366x768",
+      "score": "1952400131333767",
+      "state_journal_storage_equal": true
+    }
+  ],
+  "runtime_files": {
+    "src/game/HeroClimax.ts": "407438139113b9b7ea69df7892b103228f88b601b0e3425a100e10ff901d98f1",
+    "src/game/HeroClimaxLayout.ts": "0dd4d627596a99d055552e74b7a91ff17c55dea7ff89d259588ff1a81fc726e6",
+    "src/game/IntermissionScene.ts": "69c1b507eb9b6ff56b5839fcfbde1760bfe91e601707d577749ebf8b03000442",
+    "src/game/SettlementPresentation.ts": "cb9b97df4ee18efbbe52f42ae778e25e2a2d52b450fbfb9a043bc07b68b04350",
+    "src/game/SettlementHighlights.ts": "a336270ff748306cf5b5088c7006d31c7ddff9cc18b20a31eefacdeb5391964c",
+    "src/game/SkillPanelInk.ts": "521ed386d803a1c73ac76a40ce74c5c22925fdac34a92d325cfff4fa265089db"
+  },
+  "baseline_runtime_bytes_verified": true
+}
