@@ -1,8 +1,8 @@
 import {createRun,applyCommand,assertRunInvariants} from '../../src/domain/run';
 import {newRunIdentity} from '../../src/game/RunLaunch';
 import {r2Price} from '../../src/domain/r2Shop';
-import {r2ChapterBossIds} from '../../src/domain/r2Chapter';
-import {isR2RouteGrowth,R2_SUIT_CHOICE_VERSION,R2_SUIT_CHOICE_HASH} from '../../src/domain/r2GroupUpgrade';
+import {r2ChapterBossIds,lockR2ChapterTargets} from '../../src/domain/r2Chapter';
+import {isR2CoreBuild,isR2RouteGrowth,R2_SUIT_CHOICE_VERSION,R2_SUIT_CHOICE_HASH} from '../../src/domain/r2GroupUpgrade';
 
 /** Controlled invariant-valid shop projection, not natural progress or acquisition. */
 export function f06RecommendationFixture(chapter=6,options:{disabled?:boolean;boss?:boolean;legacy?:boolean}={}){
@@ -22,5 +22,6 @@ export function f06RecommendationFixture(chapter=6,options:{disabled?:boolean;bo
  if(isR2RouteGrowth(s)){const settlements=Array.from({length:chapter-1},(_,i)=>({stageIndex:i*3+2,families:[]}));s.routeGrowth={clears:settlements.length,G:0,S:0,F:0,settlements};}
  if(options.disabled)s.chapterDisabledJokerId='f06';
  s.shop!.offers=[{offerId:'public/f06',definitionId:'f06',price:r2Price('f06','none',s),edition:'none',consumed:false}];
+ if(isR2CoreBuild(s))s.chapterTargetPlan=lockR2ChapterTargets(s.chapter,s.tourMode,s.difficulty,s.boss);
  assertRunInvariants(s);return s;
 }

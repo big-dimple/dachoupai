@@ -65,7 +65,7 @@ try {
     await tapUI(page,'character-select','character/amo',touch);await confirmHeroRoute(page,touch);await waitScene(page,'shop');
     assert.equal((await state(page)).characterId,'amo');
     const initialSupply=await state(page);
-    assert.equal(initialSupply.contentVersion,'quality-r2-bounded-clear-v1');
+    assert.equal(initialSupply.contentVersion,'quality-r2-core-build-v1');
     assert.deepEqual(initialSupply.routeGrowth,{clears:0,G:0,S:0,F:0,settlements:[]});
     assert.equal(initialSupply.shop.toolOffers.length,1);
     assert.equal(new Set(initialSupply.shop.toolOffers.map(o=>o.definitionId)).size,1);
@@ -73,7 +73,7 @@ try {
     assert.deepEqual(initialSupply.shop.basicChoice,{shopSeq:initialSupply.commandSeq,purchase:null});
     assert.equal((await state(page)).openingRoute,'group');
     assert.ok((await state(page)).shop.offers.some(o=>o.definitionId==='mantangcai'&&o.edition==='none'&&o.price===4));
-    assert.equal((await state(page)).contentHash,'json-fnv-v1:7f60ad479f68b033');
+    assert.equal((await state(page)).contentHash,'json-fnv-v1:6dfe1a721e4949e6');
     const shop=await state(page),offer=shop.shop.offers.find(o=>!o.consumed&&o.price<=shop.gold);assert.ok(offer,'natural starting gold permits a purchase');
     await tapUI(page,'shop','offer/'+offer.offerId,touch);await dom(page,'取消',touch);assert.deepEqual(await state(page),shop,'cancel leaves gold, shelf and RNG untouched');
     await tapUI(page,'shop','offer/'+offer.offerId,touch);await dom(page,/^(邀请|购买) · \d+ 金$/,touch);await next(page,shop.commandSeq);

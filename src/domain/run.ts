@@ -107,6 +107,7 @@ export type Action =
   | {type:'ChooseRefill';selectedIds:readonly string[]}
   | { type: 'SellJoker'; instanceId:string }
   | { type: 'UseConsumable'; instanceId:string; targetIds:readonly string[]; handType?:import('./evaluateR2').R2HandType; secondaryHandType?:import('./evaluateR2').R2HandType; suit?:import('../cards/types').Suit; sacrificeId?:string; targetKind?:'card'|'joker' }
+  | { type:'PracticeHand';handType:import('./evaluateR2').R2HandType;expectedLevel:number;shopSeq:number }
   | { type: 'DestroyConsumable'; instanceId:string }
   | { type: 'SetWager'; enabled: boolean }
   | { type: 'BuyOffer'; offerId: string }
@@ -123,6 +124,7 @@ export interface Command {
 }
 
 export type DomainEvent =
+  | {type:'hand-practiced';handType:import('./evaluateR2').R2HandType;levelBefore:number;levelAfter:number;paidPrice:number;goldBefore:number;goldAfter:number}
   | { type: 'hand-scored'; score: ScoreResult; playedIds: string[]; playIndex: number }
   | { type: 'hand-scored-r2'; score: ScoreTrace; playedIds: string[]; playIndex: number }
   | { type: 'stage-ended'; cleared: boolean; stage: StageState | R2StageState }

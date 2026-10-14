@@ -1,4 +1,4 @@
-import {isR2BoundedClear} from './r2GroupUpgrade';
+import {isR2BoundedClear,isR2CoreBuild} from './r2GroupUpgrade';
 import {isR2ToolSupply,isR2BasicChoice,isR2SuitChoice,r2BasicChoiceIds,R2_BASIC_TOOL_IDS} from './r2GroupUpgrade';
 import {r2JokerDefinitionsForContext,type R2ContentIdentity} from './r2ContentProfiles';
 import {R2_JOKERS,readR2Modifiers,supportsR2Joker,type R2JokerDefinition,type R2JokerInstance} from '../content/r2Schema';
@@ -11,7 +11,8 @@ import {r2ItemSupported,r2ToolAllowed} from './r2ToolRuntime';
 import {r2StageSpec} from './r2Chapter';
 export const R2_ECONOMY={initialGold:6,shelfSlots:3,prices:{common:4,uncommon:6,rare:8},weights:{common:5,uncommon:3,rare:2},rerollStart:2,rerollCap:10} as const;
 export interface R2Offer {offerId:string;definitionId:string;price:number;consumed:boolean;edition?:R2Edition}
-export interface R2BasicChoice {shopSeq:number;purchase:null|{definitionId:string;commandId:string;paidPrice:number;seq:number}}
+export type R2BasicPurchase={definitionId:string;commandId:string;paidPrice:number;seq:number;handType?:never;levelBefore?:never}|{definitionId:'T01';commandId:string;paidPrice:number;seq:number;handType:import('./evaluateR2').R2HandType;levelBefore:number};
+export interface R2BasicChoice {shopSeq:number;purchase:null|R2BasicPurchase}
 export interface R2ShopState {visitIndex:number;rerollCount:number;freeRerolls:number;purchases:number;soldJoker:boolean;offers:R2Offer[];toolOffers:R2Offer[];itemOffers:R2Offer[];basicChoice?:R2BasicChoice}
 interface PurchaseContext extends R2ContentIdentity {purchaseCoupons:number;jokers?:readonly R2JokerInstance[];longTermItems?:readonly string[];shop?:Pick<R2ShopState,'purchases'>|null}
 export function getR2Joker(id:string,identity:R2ContentIdentity={}):R2JokerDefinition {
@@ -49,7 +50,7 @@ export const drawR2Edition=(rng:SeededRng):R2Edition=>pick(rng,R2_EDITIONS,row=>
 export function r2ToolAcquisitionPool(state:R2RunState):R2ToolDefinition[] {
   const live=state.deckInstances.filter(card=>!state.destroyedIds.includes(card.id)),limits=R2_TOOL_CATALOG.limits;
   const floor=state.longTermItems.includes('U08')?limits.minimalDeckFloor:limits.deckDeletionFloor;
-  const config=r2RunModeConfig(state),discovered=Object.values(state.handLevels),nextStage=!!r2StageSpec(state.stageIndex,state.tourMode,state.difficulty,isR2BoundedClear(state));
+  const config=r2RunModeConfig(state),discovered=Object.values(state.handLevels),nextStage=!!r2StageSpec(state.stageIndex,state.tourMode,state.difficulty,isR2BoundedClear(state),isR2CoreBuild(state));
   return R2_TOOLS.filter(tool=>{
     if(!r2ToolAllowed(state,tool.id)||!tool.shopWeight)return false;
     const op=tool.operation;

@@ -1,5 +1,5 @@
 import {R2_ROUTE_GROWTH_JOKERS} from '../content/r2RouteGrowthJokers';
-import {R2_BOUNDED_TARGET_CONTRACT} from './r2Chapter';
+import {R2_BOUNDED_TARGET_CONTRACT,R2_CORE_BUILD_TARGET_CONTRACT} from './r2Chapter';
 import {R2_BOUNDED_ROUTE_RULE,R2_ROUTE_GROWTH_RULE} from './r2RouteGrowth';
 import {TOUYE_ACCEPTED} from './r2TouyeTargets';
 import {R2_COMBO_GROWTH_HASH,isR2ComboGrowth} from './r2ComboGrowth';
@@ -56,7 +56,11 @@ export const R2_ACTIVE_MULT_HASH=stableHash(R2_ACTIVE_MULT_CONTRACT);
 export const R2_BOUNDED_CLEAR_VERSION='quality-r2-bounded-clear-v1';
 export const R2_BOUNDED_CLEAR_CONTRACT=Object.freeze({inherits:R2_ACTIVE_MULT_HASH,allCharacters:true,route:R2_BOUNDED_ROUTE_RULE,targets:R2_BOUNDED_TARGET_CONTRACT,legacy:'exact-no-migration',display:'过关加成'});
 export const R2_BOUNDED_CLEAR_HASH=stableHash(R2_BOUNDED_CLEAR_CONTRACT);
-export function isR2BoundedClear(identity:{contentVersion?:unknown;contentHash?:unknown}):boolean{return identity.contentVersion===R2_BOUNDED_CLEAR_VERSION&&identity.contentHash===R2_BOUNDED_CLEAR_HASH;}
+export const R2_CORE_BUILD_VERSION='quality-r2-core-build-v1';
+export const R2_CORE_BUILD_CONTRACT=Object.freeze({inherits:R2_BOUNDED_CLEAR_HASH,targets:R2_CORE_BUILD_TARGET_CONTRACT,practice:Object.freeze({basePrice:4,stepPrice:2,levelsPerStep:3,maximumLevel:30,quota:'shared-basic-choice-once-shop-visit',operation:'immediate-one-level-discovered-hand',discount:'existing-min1',randomT01:'unchanged',confirmation:'receipt-bound-shop-seq-and-level'}),legacy:'no-migration'});
+export const R2_CORE_BUILD_HASH=stableHash(R2_CORE_BUILD_CONTRACT);
+export function isR2CoreBuild(identity:{contentVersion?:unknown;contentHash?:unknown}):boolean{return identity.contentVersion===R2_CORE_BUILD_VERSION&&identity.contentHash===R2_CORE_BUILD_HASH;}
+export function isR2BoundedClear(identity:{contentVersion?:unknown;contentHash?:unknown}):boolean{return identity.contentVersion===R2_BOUNDED_CLEAR_VERSION&&identity.contentHash===R2_BOUNDED_CLEAR_HASH||isR2CoreBuild(identity);}
 export function isR2ActiveMultTiming(identity:{contentVersion?:unknown;contentHash?:unknown}):boolean{return identity.contentVersion===R2_ACTIVE_MULT_VERSION&&identity.contentHash===R2_ACTIVE_MULT_HASH||isR2BoundedClear(identity);}
 export function isR2TouyeNewCore(identity:{contentVersion?:unknown;contentHash?:unknown}):boolean{return identity.contentVersion===R2_TOUYE_CORE_VERSION&&identity.contentHash===R2_TOUYE_CORE_HASH||isR2ActiveMultTiming(identity);}
 export function isR2RouteGrowth(identity:{contentVersion?:unknown;contentHash?:unknown}):boolean{return identity.contentVersion===R2_ROUTE_GROWTH_VERSION&&identity.contentHash===R2_ROUTE_GROWTH_HASH||isR2TouyeNewCore(identity);}

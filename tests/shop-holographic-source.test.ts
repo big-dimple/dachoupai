@@ -1,3 +1,4 @@
+import {lockR2ChapterTargets} from '../src/domain/r2Chapter';
 import {it,expect} from 'vitest';
 import {holographicRecommendationFixture,holographicSend} from '../harness/fixtures/holographic-recommendation';
 import {shopOfferGuidance} from '../src/game/ShopOfferGuidance';
@@ -46,7 +47,7 @@ it('selling the only holographic instance removes its additive source',()=>{
 });
 
 it.each([[false,2],[true,4]] as const)('B06 uses the actual post-sale position (unseal=%s)',(unseal,stars)=>{
- const s=holographicRecommendationFixture();s.boss={definitionId:'B06',disabledSuit:null};s.seenBossIds[2]='B06';
+ const s=holographicRecommendationFixture();s.boss={definitionId:'B06',disabledSuit:null};s.chapterTargetPlan=lockR2ChapterTargets(s.chapter,s.tourMode,s.difficulty,s.boss);s.seenBossIds[2]='B06';
  const ids=unseal?['mantangcai','f09','b04','b07','e11']:['b04','mantangcai','b07','f09','e11'];
  s.jokers=ids.map(id=>s.jokers.find(j=>j.definitionId===id)!);assertRunInvariants(s);const before=structuredClone(s),j=s.jokers.find(j=>j.definitionId==='b04')!;
  const preview=shopOfferGuidance(s,s.shop!.offers[0],j),sold=holographicSend(s,{type:'SellJoker',instanceId:j.instanceId}),disabled=r2ScoringDisabledJokerIds(sold.boss,sold.jokers,r2JokerDefinitionsFor(sold));
@@ -60,7 +61,7 @@ it('challenge disables the whole holographic instance, including its edition',()
 });
 
 const lateBoss=(s:R2RunState,id:'B15'|'B16')=>{
- s.chapter=7;s.stageIndex=20;s.shop!.visitIndex=20;s.boss={definitionId:id,disabledSuit:null};s.seenBossIds=['B01','B02','B09','B04','B05','B06',id];
+ s.chapter=7;s.stageIndex=20;s.shop!.visitIndex=20;s.boss={definitionId:id,disabledSuit:null};s.chapterTargetPlan=lockR2ChapterTargets(s.chapter,s.tourMode,s.difficulty,s.boss);s.seenBossIds=['B01','B02','B09','B04','B05','B06',id];
  s.routeGrowth={clears:20,G:8,S:0,F:0,settlements:Array.from({length:20},(_,stageIndex)=>({stageIndex,families:stageIndex<8?['G']:[]}))};assertRunInvariants(s);return s;
 };
 it('B16 stops a rare holographic source but keeps a common holographic source',()=>{

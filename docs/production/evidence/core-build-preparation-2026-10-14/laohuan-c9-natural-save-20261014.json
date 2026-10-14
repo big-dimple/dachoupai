@@ -1,0 +1,4911 @@
+{
+  "format": "dachoupai-checkpoint",
+  "formatVersion": 1,
+  "state": {
+    "routeGrowth": {
+      "clears": 27,
+      "G": 1,
+      "S": 27,
+      "F": 0,
+      "settlements": [
+        {
+          "stageIndex": 0,
+          "families": [
+            "S"
+          ]
+        },
+        {
+          "stageIndex": 1,
+          "families": [
+            "S"
+          ]
+        },
+        {
+          "stageIndex": 2,
+          "families": [
+            "S"
+          ]
+        },
+        {
+          "stageIndex": 3,
+          "families": [
+            "S"
+          ]
+        },
+        {
+          "stageIndex": 4,
+          "families": [
+            "S"
+          ]
+        },
+        {
+          "stageIndex": 5,
+          "families": [
+            "G",
+            "S"
+          ]
+        },
+        {
+          "stageIndex": 6,
+          "families": [
+            "S"
+          ]
+        },
+        {
+          "stageIndex": 7,
+          "families": [
+            "S"
+          ]
+        },
+        {
+          "stageIndex": 8,
+          "families": [
+            "S"
+          ]
+        },
+        {
+          "stageIndex": 9,
+          "families": [
+            "S"
+          ]
+        },
+        {
+          "stageIndex": 10,
+          "families": [
+            "S"
+          ]
+        },
+        {
+          "stageIndex": 11,
+          "families": [
+            "S"
+          ]
+        },
+        {
+          "stageIndex": 12,
+          "families": [
+            "S"
+          ]
+        },
+        {
+          "stageIndex": 13,
+          "families": [
+            "S"
+          ]
+        },
+        {
+          "stageIndex": 14,
+          "families": [
+            "S"
+          ]
+        },
+        {
+          "stageIndex": 15,
+          "families": [
+            "S"
+          ]
+        },
+        {
+          "stageIndex": 16,
+          "families": [
+            "S"
+          ]
+        },
+        {
+          "stageIndex": 17,
+          "families": [
+            "S"
+          ]
+        },
+        {
+          "stageIndex": 18,
+          "families": [
+            "S"
+          ]
+        },
+        {
+          "stageIndex": 19,
+          "families": [
+            "S"
+          ]
+        },
+        {
+          "stageIndex": 20,
+          "families": [
+            "S"
+          ]
+        },
+        {
+          "stageIndex": 21,
+          "families": [
+            "S"
+          ]
+        },
+        {
+          "stageIndex": 22,
+          "families": [
+            "S"
+          ]
+        },
+        {
+          "stageIndex": 23,
+          "families": [
+            "S"
+          ]
+        },
+        {
+          "stageIndex": 24,
+          "families": [
+            "S"
+          ]
+        },
+        {
+          "stageIndex": 25,
+          "families": [
+            "S"
+          ]
+        },
+        {
+          "stageIndex": 26,
+          "families": [
+            "S"
+          ]
+        }
+      ]
+    },
+    "schemaVersion": 2,
+    "rulesVersion": "r2",
+    "contentVersion": "quality-r2-bounded-clear-v1",
+    "contentHash": "json-fnv-v1:7f60ad479f68b033",
+    "runId": "run/1791963651316/laohuan",
+    "seed": "1791963651316",
+    "commandSeq": 196,
+    "difficulty": 0,
+    "characterId": "laohuan",
+    "openingRoute": "straight",
+    "openingShow": {
+      "handsScored": 29,
+      "rootId": "run/1791963651316/laohuan/hand/run/1791963651316/laohuan/command/7",
+      "eventId": "run/1791963651316/laohuan/hand/run/1791963651316/laohuan/command/7/event/6",
+      "reason": "starter"
+    },
+    "routeStarter": {
+      "instanceId": "run/1791963651316/laohuan/joker/run/1791963651316/laohuan/command/2",
+      "rootId": "run/1791963651316/laohuan/hand/run/1791963651316/laohuan/command/7",
+      "eventId": "run/1791963651316/laohuan/hand/run/1791963651316/laohuan/command/7/event/6"
+    },
+    "mode": "standard",
+    "challengeId": null,
+    "programsEnabled": true,
+    "programRerollCoupon": false,
+    "chapterDisabledJokerId": null,
+    "pendingRefill": null,
+    "chapter": 9,
+    "stageIndex": 27,
+    "phase": "stage-cleared",
+    "deckInstances": [
+      {
+        "id": "spades-2",
+        "suit": "spades",
+        "rank": 2
+      },
+      {
+        "id": "spades-3",
+        "suit": "spades",
+        "rank": 3
+      },
+      {
+        "id": "spades-4",
+        "suit": "spades",
+        "rank": 4
+      },
+      {
+        "id": "spades-5",
+        "suit": "spades",
+        "rank": 5
+      },
+      {
+        "id": "spades-6",
+        "suit": "spades",
+        "rank": 6
+      },
+      {
+        "id": "spades-7",
+        "suit": "spades",
+        "rank": 7,
+        "enhancement": "multiplier-paper"
+      },
+      {
+        "id": "spades-8",
+        "suit": "spades",
+        "rank": 8
+      },
+      {
+        "id": "spades-9",
+        "suit": "spades",
+        "rank": 9
+      },
+      {
+        "id": "spades-10",
+        "suit": "spades",
+        "rank": 10
+      },
+      {
+        "id": "spades-11",
+        "suit": "spades",
+        "rank": 11
+      },
+      {
+        "id": "spades-12",
+        "suit": "spades",
+        "rank": 12
+      },
+      {
+        "id": "spades-13",
+        "suit": "spades",
+        "rank": 13
+      },
+      {
+        "id": "spades-14",
+        "suit": "spades",
+        "rank": 14
+      },
+      {
+        "id": "hearts-2",
+        "suit": "hearts",
+        "rank": 2
+      },
+      {
+        "id": "hearts-3",
+        "suit": "hearts",
+        "rank": 3
+      },
+      {
+        "id": "hearts-4",
+        "suit": "hearts",
+        "rank": 4
+      },
+      {
+        "id": "hearts-5",
+        "suit": "hearts",
+        "rank": 5
+      },
+      {
+        "id": "hearts-6",
+        "suit": "hearts",
+        "rank": 6
+      },
+      {
+        "id": "hearts-7",
+        "suit": "hearts",
+        "rank": 7
+      },
+      {
+        "id": "hearts-8",
+        "suit": "hearts",
+        "rank": 8
+      },
+      {
+        "id": "hearts-9",
+        "suit": "hearts",
+        "rank": 9
+      },
+      {
+        "id": "hearts-10",
+        "suit": "hearts",
+        "rank": 10
+      },
+      {
+        "id": "hearts-11",
+        "suit": "hearts",
+        "rank": 11
+      },
+      {
+        "id": "hearts-12",
+        "suit": "hearts",
+        "rank": 12
+      },
+      {
+        "id": "hearts-13",
+        "suit": "hearts",
+        "rank": 13
+      },
+      {
+        "id": "hearts-14",
+        "suit": "hearts",
+        "rank": 14
+      },
+      {
+        "id": "clubs-2",
+        "suit": "clubs",
+        "rank": 2
+      },
+      {
+        "id": "clubs-3",
+        "suit": "clubs",
+        "rank": 3
+      },
+      {
+        "id": "clubs-4",
+        "suit": "clubs",
+        "rank": 4
+      },
+      {
+        "id": "clubs-5",
+        "suit": "clubs",
+        "rank": 5
+      },
+      {
+        "id": "clubs-6",
+        "suit": "clubs",
+        "rank": 6
+      },
+      {
+        "id": "clubs-7",
+        "suit": "clubs",
+        "rank": 7,
+        "enhancement": "multiplier-paper"
+      },
+      {
+        "id": "clubs-8",
+        "suit": "clubs",
+        "rank": 8
+      },
+      {
+        "id": "clubs-9",
+        "suit": "clubs",
+        "rank": 9
+      },
+      {
+        "id": "clubs-10",
+        "suit": "clubs",
+        "rank": 10
+      },
+      {
+        "id": "clubs-11",
+        "suit": "clubs",
+        "rank": 11
+      },
+      {
+        "id": "clubs-12",
+        "suit": "clubs",
+        "rank": 12
+      },
+      {
+        "id": "clubs-13",
+        "suit": "clubs",
+        "rank": 13
+      },
+      {
+        "id": "clubs-14",
+        "suit": "clubs",
+        "rank": 14
+      },
+      {
+        "id": "diamonds-2",
+        "suit": "diamonds",
+        "rank": 2
+      },
+      {
+        "id": "diamonds-3",
+        "suit": "diamonds",
+        "rank": 3
+      },
+      {
+        "id": "diamonds-4",
+        "suit": "diamonds",
+        "rank": 4
+      },
+      {
+        "id": "diamonds-5",
+        "suit": "diamonds",
+        "rank": 5
+      },
+      {
+        "id": "diamonds-6",
+        "suit": "diamonds",
+        "rank": 6
+      },
+      {
+        "id": "diamonds-7",
+        "suit": "diamonds",
+        "rank": 7
+      },
+      {
+        "id": "diamonds-8",
+        "suit": "diamonds",
+        "rank": 8
+      },
+      {
+        "id": "diamonds-9",
+        "suit": "diamonds",
+        "rank": 9
+      },
+      {
+        "id": "diamonds-10",
+        "suit": "diamonds",
+        "rank": 10
+      },
+      {
+        "id": "diamonds-11",
+        "suit": "diamonds",
+        "rank": 11
+      },
+      {
+        "id": "diamonds-12",
+        "suit": "diamonds",
+        "rank": 12
+      },
+      {
+        "id": "diamonds-13",
+        "suit": "diamonds",
+        "rank": 13
+      },
+      {
+        "id": "diamonds-14",
+        "suit": "diamonds",
+        "rank": 14
+      }
+    ],
+    "drawPile": [
+      "clubs-3",
+      "diamonds-2",
+      "diamonds-13",
+      "spades-2",
+      "clubs-8",
+      "spades-9",
+      "diamonds-9",
+      "spades-7",
+      "spades-10",
+      "hearts-4",
+      "hearts-11",
+      "hearts-6",
+      "diamonds-3",
+      "clubs-10",
+      "spades-6",
+      "diamonds-7",
+      "clubs-11",
+      "diamonds-6",
+      "clubs-7",
+      "diamonds-8",
+      "hearts-10",
+      "hearts-9",
+      "spades-3",
+      "spades-14",
+      "clubs-6",
+      "diamonds-4",
+      "spades-5",
+      "hearts-12",
+      "hearts-5",
+      "clubs-5",
+      "spades-13",
+      "clubs-13",
+      "clubs-4",
+      "hearts-13",
+      "diamonds-5",
+      "hearts-8"
+    ],
+    "handOrder": [
+      "spades-12",
+      "hearts-14",
+      "diamonds-12",
+      "spades-11"
+    ],
+    "playedPile": [
+      "diamonds-14",
+      "hearts-3",
+      "clubs-12",
+      "clubs-9",
+      "diamonds-11",
+      "spades-8",
+      "diamonds-10"
+    ],
+    "discardPile": [
+      "hearts-7",
+      "hearts-2",
+      "clubs-14",
+      "spades-4",
+      "clubs-2"
+    ],
+    "destroyedIds": [],
+    "stage": {
+      "routeGrowth": {
+        "entry": {
+          "commandId": "run/1791963651316/laohuan/command/193",
+          "seq": 193,
+          "type": "EnterStage"
+        },
+        "handTypes": [
+          "straight"
+        ],
+        "eligible": [
+          "S"
+        ],
+        "sources": [
+          {
+            "command": {
+              "runId": "run/1791963651316/laohuan",
+              "commandId": "run/1791963651316/laohuan/command/196",
+              "expectedSeq": 195,
+              "action": {
+                "type": "PlayHand",
+                "selectedIds": [
+                  "clubs-12",
+                  "clubs-9",
+                  "diamonds-11",
+                  "spades-8",
+                  "diamonds-10"
+                ]
+              }
+            },
+            "cards": [
+              {
+                "id": "clubs-12",
+                "suit": "clubs",
+                "rank": 12
+              },
+              {
+                "id": "clubs-9",
+                "suit": "clubs",
+                "rank": 9
+              },
+              {
+                "id": "diamonds-11",
+                "suit": "diamonds",
+                "rank": 11
+              },
+              {
+                "id": "spades-8",
+                "suit": "spades",
+                "rank": 8
+              },
+              {
+                "id": "diamonds-10",
+                "suit": "diamonds",
+                "rank": 10
+              }
+            ],
+            "rules": {
+              "fourStraight": true,
+              "fourFlush": false
+            }
+          }
+        ]
+      },
+      "laohuanTrickUsed": true,
+      "openingDiscard": null,
+      "index": 26,
+      "targetHeat": "45045",
+      "initialTargetHeat": "45045",
+      "heat": "60047",
+      "handsLeft": 3,
+      "initialHands": 4,
+      "discardsLeft": 2,
+      "initialDiscards": 3,
+      "discardSpent": 1,
+      "discardGained": 0,
+      "doubleDiscardBeforeFirstPlay": false,
+      "discardsUsed": 1,
+      "skipResult": null,
+      "playIndex": 1,
+      "previousHandType": "straight",
+      "previousHandScore": "60047",
+      "handLimit": 9,
+      "initialHandLimit": 9,
+      "boss": {
+        "definitionId": "B12",
+        "disabledSuit": null
+      },
+      "initialJokerIds": [
+        "run/1791963651316/laohuan/joker/run/1791963651316/laohuan/command/2",
+        "run/1791963651316/laohuan/joker/run/1791963651316/laohuan/command/23",
+        "run/1791963651316/laohuan/joker/run/1791963651316/laohuan/command/95",
+        "run/1791963651316/laohuan/joker/run/1791963651316/laohuan/command/34",
+        "run/1791963651316/laohuan/joker/run/1791963651316/laohuan/command/82"
+      ],
+      "sealedJokerIds": [],
+      "challengeDisabledJokerId": null,
+      "rescueUsed": false,
+      "clearId": "run/1791963651316/laohuan/clear/26",
+      "goldEarned": 17,
+      "disabledIds": [],
+      "wagerSelected": false,
+      "wagerUsed": false,
+      "maxPlayedCount": 5,
+      "ordinaryStraightSeen": true,
+      "ordinaryFlushSeen": false,
+      "quadRefundUsed": false,
+      "jokerSold": false
+    },
+    "totalHeat": "1285004",
+    "gold": 264,
+    "jokers": [
+      {
+        "instanceId": "run/1791963651316/laohuan/joker/run/1791963651316/laohuan/command/2",
+        "definitionId": "c04",
+        "paidPrice": 4,
+        "growth": {
+          "heat": {
+            "n": "100",
+            "d": "1"
+          }
+        },
+        "edition": "none"
+      },
+      {
+        "instanceId": "run/1791963651316/laohuan/joker/run/1791963651316/laohuan/command/23",
+        "definitionId": "c08",
+        "paidPrice": 6,
+        "growth": {},
+        "edition": "none"
+      },
+      {
+        "instanceId": "run/1791963651316/laohuan/joker/run/1791963651316/laohuan/command/95",
+        "definitionId": "f03",
+        "paidPrice": 3,
+        "growth": {},
+        "edition": "none"
+      },
+      {
+        "instanceId": "run/1791963651316/laohuan/joker/run/1791963651316/laohuan/command/34",
+        "definitionId": "a10",
+        "paidPrice": 9,
+        "growth": {},
+        "edition": "holographic"
+      },
+      {
+        "instanceId": "run/1791963651316/laohuan/joker/run/1791963651316/laohuan/command/82",
+        "definitionId": "e08",
+        "paidPrice": 7,
+        "growth": {},
+        "edition": "none"
+      }
+    ],
+    "consumables": [],
+    "longTermItems": [
+      "U01",
+      "U05",
+      "U10",
+      "U04"
+    ],
+    "program": {
+      "chapter": 9,
+      "offerIds": [
+        "PG03",
+        "PG04"
+      ],
+      "selectedId": "PG03",
+      "choiceMade": true,
+      "abandoned": false,
+      "lastOpportunityClear": false,
+      "claimed": true
+    },
+    "boss": {
+      "definitionId": "B12",
+      "disabledSuit": null
+    },
+    "seenBossIds": [
+      "B04",
+      "B01",
+      "B02",
+      "B07",
+      "B11",
+      "B03",
+      "B08",
+      "B14",
+      "B12"
+    ],
+    "chapterSkipConsumable": "T06",
+    "purchaseCoupons": 0,
+    "safetyNetUsed": false,
+    "shop": null,
+    "spectralModifiers": {
+      "handsPenalty": 0,
+      "handPenalty": 0,
+      "cleanSlateBonus": 0
+    },
+    "supplyRewardClaimed": true,
+    "chapterHandUsage": {
+      "straight": 3
+    },
+    "normalClearClaimed": true,
+    "tourMode": "endless",
+    "normalCompletion": {
+      "clearId": "run/1791963651316/laohuan/clear/23",
+      "totalHeat": "1024388"
+    },
+    "rng": {
+      "deck": {
+        "algorithm": "fnv1a-mulberry32-v1",
+        "state": 1250969612
+      },
+      "rule": {
+        "algorithm": "fnv1a-mulberry32-v1",
+        "state": 3022424714
+      },
+      "shop": {
+        "algorithm": "fnv1a-mulberry32-v1",
+        "state": 784210165
+      },
+      "reward": {
+        "algorithm": "fnv1a-mulberry32-v1",
+        "state": 2164568518
+      },
+      "program": {
+        "algorithm": "fnv1a-mulberry32-v1",
+        "state": 3796885494
+      },
+      "challenge": {
+        "algorithm": "fnv1a-mulberry32-v1",
+        "state": 974401285
+      }
+    },
+    "receipts": [
+      {
+        "commandId": "run/1791963651316/laohuan/start",
+        "fingerprint": "json-fnv-v1:ea94b3c19924de15",
+        "seq": 1
+      },
+      {
+        "commandId": "run/1791963651316/laohuan/command/2",
+        "fingerprint": "json-fnv-v1:c48487aec6163afa",
+        "seq": 2
+      },
+      {
+        "commandId": "run/1791963651316/laohuan/command/3",
+        "fingerprint": "json-fnv-v1:cf0fb34518c199b1",
+        "seq": 3
+      },
+      {
+        "commandId": "run/1791963651316/laohuan/command/4",
+        "fingerprint": "json-fnv-v1:cf7fff76da9ba36a",
+        "seq": 4
+      },
+      {
+        "commandId": "run/1791963651316/laohuan/command/5",
+        "fingerprint": "json-fnv-v1:c7b29b4d91e75bf1",
+        "seq": 5
+      },
+      {
+        "commandId": "run/1791963651316/laohuan/command/6",
+        "fingerprint": "json-fnv-v1:14f4b822e7df4fc6",
+        "seq": 6
+      },
+      {
+        "commandId": "run/1791963651316/laohuan/command/7",
+        "fingerprint": "json-fnv-v1:f614d6470d1f0213",
+        "seq": 7
+      },
+      {
+        "commandId": "run/1791963651316/laohuan/command/8",
+        "fingerprint": "json-fnv-v1:cb820a4691734d12",
+        "seq": 8
+      },
+      {
+        "commandId": "run/1791963651316/laohuan/command/9",
+        "fingerprint": "json-fnv-v1:e09c21062a916c0a",
+        "seq": 9
+      },
+      {
+        "commandId": "run/1791963651316/laohuan/command/10",
+        "fingerprint": "json-fnv-v1:55ba7a56998351a2",
+        "seq": 10
+      },
+      {
+        "commandId": "run/1791963651316/laohuan/command/11",
+        "fingerprint": "json-fnv-v1:cf3ba90998d681b5",
+        "seq": 11
+      },
+      {
+        "commandId": "run/1791963651316/laohuan/command/12",
+        "fingerprint": "json-fnv-v1:a093299c7bcafd20",
+        "seq": 12
+      },
+      {
+        "commandId": "run/1791963651316/laohuan/command/13",
+        "fingerprint": "json-fnv-v1:d47c7835f4829809",
+        "seq": 13
+      },
+      {
+        "commandId": "run/1791963651316/laohuan/command/14",
+        "fingerprint": "json-fnv-v1:d65b927452e562f8",
+        "seq": 14
+      },
+      {
+        "commandId": "run/1791963651316/laohuan/command/15",
+        "fingerprint": "json-fnv-v1:f45bfc8054964e9c",
+        "seq": 15
+      },
+      {
+        "commandId": "run/1791963651316/laohuan/command/16",
+        "fingerprint": "json-fnv-v1:bf1e7905b4a0dc29",
+        "seq": 16
+      },
+      {
+        "commandId": "run/1791963651316/laohuan/command/17",
+        "fingerprint": "json-fnv-v1:160c89353eb5e361",
+        "seq": 17
+      },
+      {
+        "commandId": "run/1791963651316/laohuan/command/18",
+        "fingerprint": "json-fnv-v1:1c571154e51e8d10",
+        "seq": 18
+      },
+      {
+        "commandId": "run/1791963651316/laohuan/command/19",
+        "fingerprint": "json-fnv-v1:ca9db9150bf65d51",
+        "seq": 19
+      },
+      {
+        "commandId": "run/1791963651316/laohuan/command/20",
+        "fingerprint": "json-fnv-v1:6d7fec8972bfb3ed",
+        "seq": 20
+      },
+      {
+        "commandId": "run/1791963651316/laohuan/command/21",
+        "fingerprint": "json-fnv-v1:317d0bf5c51660b9",
+        "seq": 21
+      },
+      {
+        "commandId": "run/1791963651316/laohuan/command/22",
+        "fingerprint": "json-fnv-v1:f8b381bc843e0e38",
+        "seq": 22
+      },
+      {
+        "commandId": "run/1791963651316/laohuan/command/23",
+        "fingerprint": "json-fnv-v1:8e6a76c13a3a93e5",
+        "seq": 23
+      },
+      {
+        "commandId": "run/1791963651316/laohuan/command/24",
+        "fingerprint": "json-fnv-v1:fd48f203a1686d57",
+        "seq": 24
+      },
+      {
+        "commandId": "run/1791963651316/laohuan/command/25",
+        "fingerprint": "json-fnv-v1:cca6f24feb4265a3",
+        "seq": 25
+      },
+      {
+        "commandId": "run/1791963651316/laohuan/command/26",
+        "fingerprint": "json-fnv-v1:213c52b2a7556046",
+        "seq": 26
+      },
+      {
+        "commandId": "run/1791963651316/laohuan/command/27",
+        "fingerprint": "json-fnv-v1:0ec40adea48c4002",
+        "seq": 27
+      },
+      {
+        "commandId": "run/1791963651316/laohuan/command/28",
+        "fingerprint": "json-fnv-v1:43493757dea8739b",
+        "seq": 28
+      },
+      {
+        "commandId": "run/1791963651316/laohuan/command/29",
+        "fingerprint": "json-fnv-v1:e85c72e252385a26",
+        "seq": 29
+      },
+      {
+        "commandId": "run/1791963651316/laohuan/command/30",
+        "fingerprint": "json-fnv-v1:d0eff48b06e0e4c7",
+        "seq": 30
+      },
+      {
+        "commandId": "run/1791963651316/laohuan/command/31",
+        "fingerprint": "json-fnv-v1:af623314aebab970",
+        "seq": 31
+      },
+      {
+        "commandId": "run/1791963651316/laohuan/command/32",
+        "fingerprint": "json-fnv-v1:7d81dcbe2bfa675a",
+        "seq": 32
+      },
+      {
+        "commandId": "run/1791963651316/laohuan/command/33",
+        "fingerprint": "json-fnv-v1:1a239372ad57911e",
+        "seq": 33
+      },
+      {
+        "commandId": "run/1791963651316/laohuan/command/34",
+        "fingerprint": "json-fnv-v1:3963acc05b564a64",
+        "seq": 34
+      },
+      {
+        "commandId": "run/1791963651316/laohuan/command/35",
+        "fingerprint": "json-fnv-v1:1a181a1138a4c4bd",
+        "seq": 35
+      },
+      {
+        "commandId": "run/1791963651316/laohuan/command/36",
+        "fingerprint": "json-fnv-v1:20db26f88f0b493c",
+        "seq": 36
+      },
+      {
+        "commandId": "run/1791963651316/laohuan/command/37",
+        "fingerprint": "json-fnv-v1:cada2d5f2c71d193",
+        "seq": 37
+      },
+      {
+        "commandId": "run/1791963651316/laohuan/command/38",
+        "fingerprint": "json-fnv-v1:c0024cf2afbc13be",
+        "seq": 38
+      },
+      {
+        "commandId": "run/1791963651316/laohuan/command/39",
+        "fingerprint": "json-fnv-v1:b9e079f26d115c4e",
+        "seq": 39
+      },
+      {
+        "commandId": "run/1791963651316/laohuan/command/40",
+        "fingerprint": "json-fnv-v1:69ece21b2fbad597",
+        "seq": 40
+      },
+      {
+        "commandId": "run/1791963651316/laohuan/command/41",
+        "fingerprint": "json-fnv-v1:98146eadb179c6f9",
+        "seq": 41
+      },
+      {
+        "commandId": "run/1791963651316/laohuan/command/42",
+        "fingerprint": "json-fnv-v1:c4de0120972496e4",
+        "seq": 42
+      },
+      {
+        "commandId": "run/1791963651316/laohuan/command/43",
+        "fingerprint": "json-fnv-v1:2a6dd286aa0fc04a",
+        "seq": 43
+      },
+      {
+        "commandId": "run/1791963651316/laohuan/command/44",
+        "fingerprint": "json-fnv-v1:e3c9a4f678e0b49a",
+        "seq": 44
+      },
+      {
+        "commandId": "run/1791963651316/laohuan/command/45",
+        "fingerprint": "json-fnv-v1:64a33251f210354d",
+        "seq": 45
+      },
+      {
+        "commandId": "run/1791963651316/laohuan/command/46",
+        "fingerprint": "json-fnv-v1:241a9449fee8abbd",
+        "seq": 46
+      },
+      {
+        "commandId": "run/1791963651316/laohuan/command/47",
+        "fingerprint": "json-fnv-v1:1bc1ab8a299b2b16",
+        "seq": 47
+      },
+      {
+        "commandId": "run/1791963651316/laohuan/command/48",
+        "fingerprint": "json-fnv-v1:b17ea326ca1d4e52",
+        "seq": 48
+      },
+      {
+        "commandId": "run/1791963651316/laohuan/command/49",
+        "fingerprint": "json-fnv-v1:1c267c471f82dfa3",
+        "seq": 49
+      },
+      {
+        "commandId": "run/1791963651316/laohuan/command/50",
+        "fingerprint": "json-fnv-v1:9743895a254915ee",
+        "seq": 50
+      },
+      {
+        "commandId": "run/1791963651316/laohuan/command/51",
+        "fingerprint": "json-fnv-v1:3e3082c9bcf93b15",
+        "seq": 51
+      },
+      {
+        "commandId": "run/1791963651316/laohuan/command/52",
+        "fingerprint": "json-fnv-v1:5e13a9f4491b55c8",
+        "seq": 52
+      },
+      {
+        "commandId": "run/1791963651316/laohuan/command/53",
+        "fingerprint": "json-fnv-v1:ebfbe9bb3be5fcdf",
+        "seq": 53
+      },
+      {
+        "commandId": "run/1791963651316/laohuan/command/54",
+        "fingerprint": "json-fnv-v1:3cd313fcde6cf168",
+        "seq": 54
+      },
+      {
+        "commandId": "run/1791963651316/laohuan/command/55",
+        "fingerprint": "json-fnv-v1:681eb942de236d16",
+        "seq": 55
+      },
+      {
+        "commandId": "run/1791963651316/laohuan/command/56",
+        "fingerprint": "json-fnv-v1:5bc13c546aaee8a0",
+        "seq": 56
+      },
+      {
+        "commandId": "run/1791963651316/laohuan/command/57",
+        "fingerprint": "json-fnv-v1:32edc9c353b0c64f",
+        "seq": 57
+      },
+      {
+        "commandId": "run/1791963651316/laohuan/command/58",
+        "fingerprint": "json-fnv-v1:cdd2609615585d1a",
+        "seq": 58
+      },
+      {
+        "commandId": "run/1791963651316/laohuan/command/59",
+        "fingerprint": "json-fnv-v1:f661d7a99e9fb2b5",
+        "seq": 59
+      },
+      {
+        "commandId": "run/1791963651316/laohuan/command/60",
+        "fingerprint": "json-fnv-v1:f47840d0d2235cf4",
+        "seq": 60
+      },
+      {
+        "commandId": "run/1791963651316/laohuan/command/61",
+        "fingerprint": "json-fnv-v1:fbd46192d3bf9506",
+        "seq": 61
+      },
+      {
+        "commandId": "run/1791963651316/laohuan/command/62",
+        "fingerprint": "json-fnv-v1:b1a5a40eba44b722",
+        "seq": 62
+      },
+      {
+        "commandId": "run/1791963651316/laohuan/command/63",
+        "fingerprint": "json-fnv-v1:4458ffe536c60681",
+        "seq": 63
+      },
+      {
+        "commandId": "run/1791963651316/laohuan/command/64",
+        "fingerprint": "json-fnv-v1:6835ded6b60cf092",
+        "seq": 64
+      },
+      {
+        "commandId": "run/1791963651316/laohuan/command/65",
+        "fingerprint": "json-fnv-v1:b7c1eb02db9f9c8e",
+        "seq": 65
+      },
+      {
+        "commandId": "run/1791963651316/laohuan/command/66",
+        "fingerprint": "json-fnv-v1:044efd1bd73b3e07",
+        "seq": 66
+      },
+      {
+        "commandId": "run/1791963651316/laohuan/command/67",
+        "fingerprint": "json-fnv-v1:ad61f34a987ac33e",
+        "seq": 67
+      },
+      {
+        "commandId": "run/1791963651316/laohuan/command/68",
+        "fingerprint": "json-fnv-v1:715d97a63f799692",
+        "seq": 68
+      },
+      {
+        "commandId": "run/1791963651316/laohuan/command/69",
+        "fingerprint": "json-fnv-v1:f8ba5448c5ac832c",
+        "seq": 69
+      },
+      {
+        "commandId": "run/1791963651316/laohuan/command/70",
+        "fingerprint": "json-fnv-v1:ff0cf92ba1550a57",
+        "seq": 70
+      },
+      {
+        "commandId": "run/1791963651316/laohuan/command/71",
+        "fingerprint": "json-fnv-v1:d6a19dae37369e3a",
+        "seq": 71
+      },
+      {
+        "commandId": "run/1791963651316/laohuan/command/72",
+        "fingerprint": "json-fnv-v1:9b68fb6c6ef83bf0",
+        "seq": 72
+      },
+      {
+        "commandId": "run/1791963651316/laohuan/command/73",
+        "fingerprint": "json-fnv-v1:7c4b50cd7ee8c999",
+        "seq": 73
+      },
+      {
+        "commandId": "run/1791963651316/laohuan/command/74",
+        "fingerprint": "json-fnv-v1:49b49abcb92e7f38",
+        "seq": 74
+      },
+      {
+        "commandId": "run/1791963651316/laohuan/command/75",
+        "fingerprint": "json-fnv-v1:8e1a76a1e7d4dccd",
+        "seq": 75
+      },
+      {
+        "commandId": "run/1791963651316/laohuan/command/76",
+        "fingerprint": "json-fnv-v1:1331d9680dd64c6c",
+        "seq": 76
+      },
+      {
+        "commandId": "run/1791963651316/laohuan/command/77",
+        "fingerprint": "json-fnv-v1:dead6bcb14822907",
+        "seq": 77
+      },
+      {
+        "commandId": "run/1791963651316/laohuan/command/78",
+        "fingerprint": "json-fnv-v1:0406642b948dd2d7",
+        "seq": 78
+      },
+      {
+        "commandId": "run/1791963651316/laohuan/command/79",
+        "fingerprint": "json-fnv-v1:eba3d6d27d7f8b6e",
+        "seq": 79
+      },
+      {
+        "commandId": "run/1791963651316/laohuan/command/80",
+        "fingerprint": "json-fnv-v1:ee1db033c4a4f1ff",
+        "seq": 80
+      },
+      {
+        "commandId": "run/1791963651316/laohuan/command/81",
+        "fingerprint": "json-fnv-v1:aa40d6bc5d5376f8",
+        "seq": 81
+      },
+      {
+        "commandId": "run/1791963651316/laohuan/command/82",
+        "fingerprint": "json-fnv-v1:7311268bf68eeb97",
+        "seq": 82
+      },
+      {
+        "commandId": "run/1791963651316/laohuan/command/83",
+        "fingerprint": "json-fnv-v1:1a142af501cd00b1",
+        "seq": 83
+      },
+      {
+        "commandId": "run/1791963651316/laohuan/command/84",
+        "fingerprint": "json-fnv-v1:fc11188354b1c0f7",
+        "seq": 84
+      },
+      {
+        "commandId": "run/1791963651316/laohuan/command/85",
+        "fingerprint": "json-fnv-v1:fbede07aeee7c6ee",
+        "seq": 85
+      },
+      {
+        "commandId": "run/1791963651316/laohuan/command/86",
+        "fingerprint": "json-fnv-v1:e4c910a00707185c",
+        "seq": 86
+      },
+      {
+        "commandId": "run/1791963651316/laohuan/command/87",
+        "fingerprint": "json-fnv-v1:d563fff2ad18ee5e",
+        "seq": 87
+      },
+      {
+        "commandId": "run/1791963651316/laohuan/command/88",
+        "fingerprint": "json-fnv-v1:71d43557e7c05fb3",
+        "seq": 88
+      },
+      {
+        "commandId": "run/1791963651316/laohuan/command/89",
+        "fingerprint": "json-fnv-v1:b7085446f71f1a4a",
+        "seq": 89
+      },
+      {
+        "commandId": "run/1791963651316/laohuan/command/90",
+        "fingerprint": "json-fnv-v1:c38fce9acce9737e",
+        "seq": 90
+      },
+      {
+        "commandId": "run/1791963651316/laohuan/command/91",
+        "fingerprint": "json-fnv-v1:537fc6a6cd87fa7a",
+        "seq": 91
+      },
+      {
+        "commandId": "run/1791963651316/laohuan/command/92",
+        "fingerprint": "json-fnv-v1:7357134c537f82e0",
+        "seq": 92
+      },
+      {
+        "commandId": "run/1791963651316/laohuan/command/93",
+        "fingerprint": "json-fnv-v1:9865a5aa8a58fc76",
+        "seq": 93
+      },
+      {
+        "commandId": "run/1791963651316/laohuan/command/94",
+        "fingerprint": "json-fnv-v1:ca27b0960ac350c2",
+        "seq": 94
+      },
+      {
+        "commandId": "run/1791963651316/laohuan/command/95",
+        "fingerprint": "json-fnv-v1:a740773e083e4e6a",
+        "seq": 95
+      },
+      {
+        "commandId": "run/1791963651316/laohuan/command/96",
+        "fingerprint": "json-fnv-v1:265d6735673020f9",
+        "seq": 96
+      },
+      {
+        "commandId": "run/1791963651316/laohuan/command/97",
+        "fingerprint": "json-fnv-v1:5afb7b16cea7d18a",
+        "seq": 97
+      },
+      {
+        "commandId": "run/1791963651316/laohuan/command/98",
+        "fingerprint": "json-fnv-v1:1cf6b34bdea66a3f",
+        "seq": 98
+      },
+      {
+        "commandId": "run/1791963651316/laohuan/command/99",
+        "fingerprint": "json-fnv-v1:a052347638a3577a",
+        "seq": 99
+      },
+      {
+        "commandId": "run/1791963651316/laohuan/command/100",
+        "fingerprint": "json-fnv-v1:b6260adbeb60fbbf",
+        "seq": 100
+      },
+      {
+        "commandId": "run/1791963651316/laohuan/command/101",
+        "fingerprint": "json-fnv-v1:2dc75957baf22453",
+        "seq": 101
+      },
+      {
+        "commandId": "run/1791963651316/laohuan/command/102",
+        "fingerprint": "json-fnv-v1:f3b52ceb59708f8f",
+        "seq": 102
+      },
+      {
+        "commandId": "run/1791963651316/laohuan/command/103",
+        "fingerprint": "json-fnv-v1:eb68ad0936ef0bed",
+        "seq": 103
+      },
+      {
+        "commandId": "run/1791963651316/laohuan/command/104",
+        "fingerprint": "json-fnv-v1:e5b4f0209bd0cf34",
+        "seq": 104
+      },
+      {
+        "commandId": "run/1791963651316/laohuan/command/105",
+        "fingerprint": "json-fnv-v1:5b7a25336a5550b7",
+        "seq": 105
+      },
+      {
+        "commandId": "run/1791963651316/laohuan/command/106",
+        "fingerprint": "json-fnv-v1:d33d0f80ed441d04",
+        "seq": 106
+      },
+      {
+        "commandId": "run/1791963651316/laohuan/command/107",
+        "fingerprint": "json-fnv-v1:b7542212f5c1877e",
+        "seq": 107
+      },
+      {
+        "commandId": "run/1791963651316/laohuan/command/108",
+        "fingerprint": "json-fnv-v1:8a6adef80657c21c",
+        "seq": 108
+      },
+      {
+        "commandId": "run/1791963651316/laohuan/command/109",
+        "fingerprint": "json-fnv-v1:22db2a40bc20895c",
+        "seq": 109
+      },
+      {
+        "commandId": "run/1791963651316/laohuan/command/110",
+        "fingerprint": "json-fnv-v1:68e32657725b821b",
+        "seq": 110
+      },
+      {
+        "commandId": "run/1791963651316/laohuan/command/111",
+        "fingerprint": "json-fnv-v1:51710dfdf90244f9",
+        "seq": 111
+      },
+      {
+        "commandId": "run/1791963651316/laohuan/command/112",
+        "fingerprint": "json-fnv-v1:2257ecd2927a130e",
+        "seq": 112
+      },
+      {
+        "commandId": "run/1791963651316/laohuan/command/113",
+        "fingerprint": "json-fnv-v1:675b15c6ad891812",
+        "seq": 113
+      },
+      {
+        "commandId": "run/1791963651316/laohuan/command/114",
+        "fingerprint": "json-fnv-v1:44438ec479f14ae0",
+        "seq": 114
+      },
+      {
+        "commandId": "run/1791963651316/laohuan/command/115",
+        "fingerprint": "json-fnv-v1:0d864f54d41d2990",
+        "seq": 115
+      },
+      {
+        "commandId": "run/1791963651316/laohuan/command/116",
+        "fingerprint": "json-fnv-v1:356eb38a5a127bee",
+        "seq": 116
+      },
+      {
+        "commandId": "run/1791963651316/laohuan/command/117",
+        "fingerprint": "json-fnv-v1:bdce49e94b777a05",
+        "seq": 117
+      },
+      {
+        "commandId": "run/1791963651316/laohuan/command/118",
+        "fingerprint": "json-fnv-v1:b5a3c6bd3ce18869",
+        "seq": 118
+      },
+      {
+        "commandId": "run/1791963651316/laohuan/command/119",
+        "fingerprint": "json-fnv-v1:153521f2e86e0c76",
+        "seq": 119
+      },
+      {
+        "commandId": "run/1791963651316/laohuan/command/120",
+        "fingerprint": "json-fnv-v1:53b39310f7b48424",
+        "seq": 120
+      },
+      {
+        "commandId": "run/1791963651316/laohuan/command/121",
+        "fingerprint": "json-fnv-v1:3633c6373cf990cb",
+        "seq": 121
+      },
+      {
+        "commandId": "run/1791963651316/laohuan/command/122",
+        "fingerprint": "json-fnv-v1:9445b04e1ba0b04a",
+        "seq": 122
+      },
+      {
+        "commandId": "run/1791963651316/laohuan/command/123",
+        "fingerprint": "json-fnv-v1:4f563fa2678a253e",
+        "seq": 123
+      },
+      {
+        "commandId": "run/1791963651316/laohuan/command/124",
+        "fingerprint": "json-fnv-v1:c4d1640c0a4eb5f0",
+        "seq": 124
+      },
+      {
+        "commandId": "run/1791963651316/laohuan/command/125",
+        "fingerprint": "json-fnv-v1:527bc50b4adf6c6f",
+        "seq": 125
+      },
+      {
+        "commandId": "run/1791963651316/laohuan/command/126",
+        "fingerprint": "json-fnv-v1:5cf5fe8cd8d1e7f0",
+        "seq": 126
+      },
+      {
+        "commandId": "run/1791963651316/laohuan/command/127",
+        "fingerprint": "json-fnv-v1:864385b04e0dc08c",
+        "seq": 127
+      },
+      {
+        "commandId": "run/1791963651316/laohuan/command/128",
+        "fingerprint": "json-fnv-v1:c1838860d8e29e2c",
+        "seq": 128
+      },
+      {
+        "commandId": "run/1791963651316/laohuan/command/129",
+        "fingerprint": "json-fnv-v1:ce250e71d1e4eccd",
+        "seq": 129
+      },
+      {
+        "commandId": "run/1791963651316/laohuan/command/130",
+        "fingerprint": "json-fnv-v1:cf698a6f9d36a53b",
+        "seq": 130
+      },
+      {
+        "commandId": "run/1791963651316/laohuan/command/131",
+        "fingerprint": "json-fnv-v1:67ec2449faa6c6e5",
+        "seq": 131
+      },
+      {
+        "commandId": "run/1791963651316/laohuan/command/132",
+        "fingerprint": "json-fnv-v1:d6f68822387db4de",
+        "seq": 132
+      },
+      {
+        "commandId": "run/1791963651316/laohuan/command/133",
+        "fingerprint": "json-fnv-v1:13ad8cc59fa60239",
+        "seq": 133
+      },
+      {
+        "commandId": "run/1791963651316/laohuan/command/134",
+        "fingerprint": "json-fnv-v1:9952137ae865f096",
+        "seq": 134
+      },
+      {
+        "commandId": "run/1791963651316/laohuan/command/135",
+        "fingerprint": "json-fnv-v1:474d5682caea007e",
+        "seq": 135
+      },
+      {
+        "commandId": "run/1791963651316/laohuan/command/136",
+        "fingerprint": "json-fnv-v1:19513086f1817fda",
+        "seq": 136
+      },
+      {
+        "commandId": "run/1791963651316/laohuan/command/137",
+        "fingerprint": "json-fnv-v1:ee8c9e55277f39c1",
+        "seq": 137
+      },
+      {
+        "commandId": "run/1791963651316/laohuan/command/138",
+        "fingerprint": "json-fnv-v1:8f74a5e9ca56d035",
+        "seq": 138
+      },
+      {
+        "commandId": "run/1791963651316/laohuan/command/139",
+        "fingerprint": "json-fnv-v1:f3f169a26a862c26",
+        "seq": 139
+      },
+      {
+        "commandId": "run/1791963651316/laohuan/command/140",
+        "fingerprint": "json-fnv-v1:0ee823a64ba085fa",
+        "seq": 140
+      },
+      {
+        "commandId": "run/1791963651316/laohuan/command/141",
+        "fingerprint": "json-fnv-v1:a42630b89471b5a4",
+        "seq": 141
+      },
+      {
+        "commandId": "run/1791963651316/laohuan/command/142",
+        "fingerprint": "json-fnv-v1:dc2ac57d9b2fa6c1",
+        "seq": 142
+      },
+      {
+        "commandId": "run/1791963651316/laohuan/command/143",
+        "fingerprint": "json-fnv-v1:55f35dc70143cfe3",
+        "seq": 143
+      },
+      {
+        "commandId": "run/1791963651316/laohuan/command/144",
+        "fingerprint": "json-fnv-v1:26ac41600e43a094",
+        "seq": 144
+      },
+      {
+        "commandId": "run/1791963651316/laohuan/command/145",
+        "fingerprint": "json-fnv-v1:d888139747aebba3",
+        "seq": 145
+      },
+      {
+        "commandId": "run/1791963651316/laohuan/command/146",
+        "fingerprint": "json-fnv-v1:76b465d0c77af304",
+        "seq": 146
+      },
+      {
+        "commandId": "run/1791963651316/laohuan/command/147",
+        "fingerprint": "json-fnv-v1:88f189d7e6d052bb",
+        "seq": 147
+      },
+      {
+        "commandId": "run/1791963651316/laohuan/command/148",
+        "fingerprint": "json-fnv-v1:e93358501806e83c",
+        "seq": 148
+      },
+      {
+        "commandId": "run/1791963651316/laohuan/command/149",
+        "fingerprint": "json-fnv-v1:0c60b89f3e73b87b",
+        "seq": 149
+      },
+      {
+        "commandId": "run/1791963651316/laohuan/command/150",
+        "fingerprint": "json-fnv-v1:8b5e1eecd10dabc8",
+        "seq": 150
+      },
+      {
+        "commandId": "run/1791963651316/laohuan/command/151",
+        "fingerprint": "json-fnv-v1:c4895f648cd07768",
+        "seq": 151
+      },
+      {
+        "commandId": "run/1791963651316/laohuan/command/152",
+        "fingerprint": "json-fnv-v1:aaecfbca119595ce",
+        "seq": 152
+      },
+      {
+        "commandId": "run/1791963651316/laohuan/command/153",
+        "fingerprint": "json-fnv-v1:9c066b5104367f2d",
+        "seq": 153
+      },
+      {
+        "commandId": "run/1791963651316/laohuan/command/154",
+        "fingerprint": "json-fnv-v1:6eb15df320b891a7",
+        "seq": 154
+      },
+      {
+        "commandId": "run/1791963651316/laohuan/command/155",
+        "fingerprint": "json-fnv-v1:ef0ac0fd6e8324f9",
+        "seq": 155
+      },
+      {
+        "commandId": "run/1791963651316/laohuan/command/156",
+        "fingerprint": "json-fnv-v1:31667fe22180911e",
+        "seq": 156
+      },
+      {
+        "commandId": "run/1791963651316/laohuan/command/157",
+        "fingerprint": "json-fnv-v1:16c75d7d8fc73d19",
+        "seq": 157
+      },
+      {
+        "commandId": "run/1791963651316/laohuan/command/158",
+        "fingerprint": "json-fnv-v1:84be290232a5a46e",
+        "seq": 158
+      },
+      {
+        "commandId": "run/1791963651316/laohuan/command/159",
+        "fingerprint": "json-fnv-v1:8d6137c57f258ca1",
+        "seq": 159
+      },
+      {
+        "commandId": "run/1791963651316/laohuan/command/160",
+        "fingerprint": "json-fnv-v1:eb810f23d5da96af",
+        "seq": 160
+      },
+      {
+        "commandId": "run/1791963651316/laohuan/command/161",
+        "fingerprint": "json-fnv-v1:d5eda943ec820387",
+        "seq": 161
+      },
+      {
+        "commandId": "run/1791963651316/laohuan/command/162",
+        "fingerprint": "json-fnv-v1:4c05b74b5f419237",
+        "seq": 162
+      },
+      {
+        "commandId": "run/1791963651316/laohuan/command/163",
+        "fingerprint": "json-fnv-v1:faa93c40a6388f4c",
+        "seq": 163
+      },
+      {
+        "commandId": "run/1791963651316/laohuan/command/164",
+        "fingerprint": "json-fnv-v1:5dcb1d973ce4526b",
+        "seq": 164
+      },
+      {
+        "commandId": "run/1791963651316/laohuan/command/165",
+        "fingerprint": "json-fnv-v1:afc3fc1f3d2eca73",
+        "seq": 165
+      },
+      {
+        "commandId": "run/1791963651316/laohuan/command/166",
+        "fingerprint": "json-fnv-v1:7f6e3d86619a6e2a",
+        "seq": 166
+      },
+      {
+        "commandId": "run/1791963651316/laohuan/command/167",
+        "fingerprint": "json-fnv-v1:3a8946bcdcae0a28",
+        "seq": 167
+      },
+      {
+        "commandId": "run/1791963651316/laohuan/command/168",
+        "fingerprint": "json-fnv-v1:083859572607e20b",
+        "seq": 168
+      },
+      {
+        "commandId": "run/1791963651316/laohuan/command/169",
+        "fingerprint": "json-fnv-v1:65e807823e44bc6e",
+        "seq": 169
+      },
+      {
+        "commandId": "run/1791963651316/laohuan/command/170",
+        "fingerprint": "json-fnv-v1:1f94be078e2b1ae3",
+        "seq": 170
+      },
+      {
+        "commandId": "run/1791963651316/laohuan/command/171",
+        "fingerprint": "json-fnv-v1:e7f593898a786745",
+        "seq": 171
+      },
+      {
+        "commandId": "run/1791963651316/laohuan/command/172",
+        "fingerprint": "json-fnv-v1:a6f260f200b7b84e",
+        "seq": 172
+      },
+      {
+        "commandId": "run/1791963651316/laohuan/command/173",
+        "fingerprint": "json-fnv-v1:b75416d7c7640c7b",
+        "seq": 173
+      },
+      {
+        "commandId": "run/1791963651316/laohuan/command/174",
+        "fingerprint": "json-fnv-v1:9538604b5248c60f",
+        "seq": 174
+      },
+      {
+        "commandId": "run/1791963651316/laohuan/command/175",
+        "fingerprint": "json-fnv-v1:485ae4e0365218f4",
+        "seq": 175
+      },
+      {
+        "commandId": "run/1791963651316/laohuan/command/176",
+        "fingerprint": "json-fnv-v1:efa18862964bf4f6",
+        "seq": 176
+      },
+      {
+        "commandId": "run/1791963651316/laohuan/command/177",
+        "fingerprint": "json-fnv-v1:344c7f0d8b7e96e9",
+        "seq": 177
+      },
+      {
+        "commandId": "run/1791963651316/laohuan/command/178",
+        "fingerprint": "json-fnv-v1:740e18d2c6d2bd76",
+        "seq": 178
+      },
+      {
+        "commandId": "run/1791963651316/laohuan/command/179",
+        "fingerprint": "json-fnv-v1:7388d60208e840be",
+        "seq": 179
+      },
+      {
+        "commandId": "run/1791963651316/laohuan/command/180",
+        "fingerprint": "json-fnv-v1:58c5582c2dcf8c28",
+        "seq": 180
+      },
+      {
+        "commandId": "run/1791963651316/laohuan/command/181",
+        "fingerprint": "json-fnv-v1:80177ba0ae3e86cc",
+        "seq": 181
+      },
+      {
+        "commandId": "run/1791963651316/laohuan/command/182",
+        "fingerprint": "json-fnv-v1:51b2643ba37e8737",
+        "seq": 182
+      },
+      {
+        "commandId": "run/1791963651316/laohuan/command/183",
+        "fingerprint": "json-fnv-v1:f089d2146426bfd0",
+        "seq": 183
+      },
+      {
+        "commandId": "run/1791963651316/laohuan/command/184",
+        "fingerprint": "json-fnv-v1:dc9a5c541c3678d8",
+        "seq": 184
+      },
+      {
+        "commandId": "run/1791963651316/laohuan/command/185",
+        "fingerprint": "json-fnv-v1:c0fb8cee21d92c62",
+        "seq": 185
+      },
+      {
+        "commandId": "run/1791963651316/laohuan/command/186",
+        "fingerprint": "json-fnv-v1:e19cbab09d95e9e4",
+        "seq": 186
+      },
+      {
+        "commandId": "run/1791963651316/laohuan/command/187",
+        "fingerprint": "json-fnv-v1:97ef53bcb6e6b800",
+        "seq": 187
+      },
+      {
+        "commandId": "run/1791963651316/laohuan/command/188",
+        "fingerprint": "json-fnv-v1:abff914793d9123b",
+        "seq": 188
+      },
+      {
+        "commandId": "run/1791963651316/laohuan/command/189",
+        "fingerprint": "json-fnv-v1:c4e75564e89f6380",
+        "seq": 189
+      },
+      {
+        "commandId": "run/1791963651316/laohuan/command/190",
+        "fingerprint": "json-fnv-v1:6842016a614dd4a6",
+        "seq": 190
+      },
+      {
+        "commandId": "run/1791963651316/laohuan/command/191",
+        "fingerprint": "json-fnv-v1:56b0571af3f0b636",
+        "seq": 191
+      },
+      {
+        "commandId": "run/1791963651316/laohuan/command/192",
+        "fingerprint": "json-fnv-v1:beb5c451696afa95",
+        "seq": 192
+      },
+      {
+        "commandId": "run/1791963651316/laohuan/command/193",
+        "fingerprint": "json-fnv-v1:78f72f2adc19cc1e",
+        "seq": 193
+      },
+      {
+        "commandId": "run/1791963651316/laohuan/command/194",
+        "fingerprint": "json-fnv-v1:02618dde2de335ea",
+        "seq": 194
+      },
+      {
+        "commandId": "run/1791963651316/laohuan/command/195",
+        "fingerprint": "json-fnv-v1:fe86cae56e590c51",
+        "seq": 195
+      },
+      {
+        "commandId": "run/1791963651316/laohuan/command/196",
+        "fingerprint": "json-fnv-v1:17d3e8e41651bb70",
+        "seq": 196
+      }
+    ],
+    "lastTrace": {
+      "routeGrowth": {
+        "before": {
+          "clears": 26,
+          "G": 1,
+          "S": 26,
+          "F": 0
+        },
+        "factors": {
+          "S": {
+            "n": "4",
+            "d": "1"
+          }
+        }
+      },
+      "laohuanTrick": true,
+      "rulesVersion": "r2",
+      "rootId": "run/1791963651316/laohuan/hand/run/1791963651316/laohuan/command/196",
+      "handType": "straight",
+      "level": 14,
+      "sets": {
+        "playedIds": [
+          "clubs-12",
+          "clubs-9",
+          "diamonds-11",
+          "spades-8",
+          "diamonds-10"
+        ],
+        "scoringIds": [
+          "clubs-12",
+          "clubs-9",
+          "diamonds-11",
+          "spades-8",
+          "diamonds-10"
+        ],
+        "activeScoringIds": [
+          "clubs-12",
+          "clubs-9",
+          "diamonds-11",
+          "spades-8",
+          "diamonds-10"
+        ],
+        "heldIds": [
+          "spades-12",
+          "hearts-14",
+          "diamonds-12",
+          "spades-11"
+        ]
+      },
+      "finalScore": "60047",
+      "accumulator": {
+        "H": {
+          "n": "487",
+          "d": "1"
+        },
+        "M": {
+          "n": "1233",
+          "d": "10"
+        }
+      },
+      "events": [
+        {
+          "eventId": "run/1791963651316/laohuan/hand/run/1791963651316/laohuan/command/196/event/0",
+          "rootId": "run/1791963651316/laohuan/hand/run/1791963651316/laohuan/command/196",
+          "rootEventId": "run/1791963651316/laohuan/hand/run/1791963651316/laohuan/command/196/event/0",
+          "phase": "base",
+          "sourceType": "rule",
+          "sourceDefinitionId": "straight",
+          "sourceInstanceId": "run/1791963651316/laohuan",
+          "operation": "base",
+          "value": {
+            "n": "580",
+            "d": "1"
+          },
+          "before": {
+            "H": {
+              "n": "0",
+              "d": "1"
+            },
+            "M": {
+              "n": "0",
+              "d": "1"
+            }
+          },
+          "after": {
+            "H": {
+              "n": "580",
+              "d": "1"
+            },
+            "M": {
+              "n": "21",
+              "d": "2"
+            }
+          },
+          "reasonKey": "straight.base",
+          "visibleCondition": {
+            "kind": "always"
+          },
+          "retriggerDepth": 0
+        },
+        {
+          "eventId": "run/1791963651316/laohuan/hand/run/1791963651316/laohuan/command/196/event/1",
+          "rootId": "run/1791963651316/laohuan/hand/run/1791963651316/laohuan/command/196",
+          "rootEventId": "run/1791963651316/laohuan/hand/run/1791963651316/laohuan/command/196/event/1",
+          "phase": "base",
+          "sourceType": "rule",
+          "sourceDefinitionId": "B12",
+          "sourceInstanceId": "run/1791963651316/laohuan",
+          "operation": "halve-base-heat",
+          "value": {
+            "n": "1",
+            "d": "2"
+          },
+          "before": {
+            "H": {
+              "n": "580",
+              "d": "1"
+            },
+            "M": {
+              "n": "21",
+              "d": "2"
+            }
+          },
+          "after": {
+            "H": {
+              "n": "290",
+              "d": "1"
+            },
+            "M": {
+              "n": "21",
+              "d": "2"
+            }
+          },
+          "reasonKey": "B12.halve-base-heat",
+          "visibleCondition": {
+            "kind": "always"
+          },
+          "retriggerDepth": 0
+        },
+        {
+          "eventId": "run/1791963651316/laohuan/hand/run/1791963651316/laohuan/command/196/event/2",
+          "rootId": "run/1791963651316/laohuan/hand/run/1791963651316/laohuan/command/196",
+          "rootEventId": "run/1791963651316/laohuan/hand/run/1791963651316/laohuan/command/196/event/2",
+          "phase": "onCardScore",
+          "sourceType": "card",
+          "sourceDefinitionId": "rank-12",
+          "sourceInstanceId": "clubs-12",
+          "targetCardId": "clubs-12",
+          "operation": "add-heat",
+          "value": {
+            "n": "10",
+            "d": "1"
+          },
+          "before": {
+            "H": {
+              "n": "290",
+              "d": "1"
+            },
+            "M": {
+              "n": "21",
+              "d": "2"
+            }
+          },
+          "after": {
+            "H": {
+              "n": "300",
+              "d": "1"
+            },
+            "M": {
+              "n": "21",
+              "d": "2"
+            }
+          },
+          "reasonKey": "rank-12.add-heat",
+          "visibleCondition": {
+            "kind": "always"
+          },
+          "retriggerDepth": 0
+        },
+        {
+          "eventId": "run/1791963651316/laohuan/hand/run/1791963651316/laohuan/command/196/event/3",
+          "rootId": "run/1791963651316/laohuan/hand/run/1791963651316/laohuan/command/196",
+          "rootEventId": "run/1791963651316/laohuan/hand/run/1791963651316/laohuan/command/196/event/3",
+          "phase": "onCardScore",
+          "sourceType": "card",
+          "sourceDefinitionId": "rank-9",
+          "sourceInstanceId": "clubs-9",
+          "targetCardId": "clubs-9",
+          "operation": "add-heat",
+          "value": {
+            "n": "9",
+            "d": "1"
+          },
+          "before": {
+            "H": {
+              "n": "300",
+              "d": "1"
+            },
+            "M": {
+              "n": "21",
+              "d": "2"
+            }
+          },
+          "after": {
+            "H": {
+              "n": "309",
+              "d": "1"
+            },
+            "M": {
+              "n": "21",
+              "d": "2"
+            }
+          },
+          "reasonKey": "rank-9.add-heat",
+          "visibleCondition": {
+            "kind": "always"
+          },
+          "retriggerDepth": 0
+        },
+        {
+          "eventId": "run/1791963651316/laohuan/hand/run/1791963651316/laohuan/command/196/event/4",
+          "rootId": "run/1791963651316/laohuan/hand/run/1791963651316/laohuan/command/196",
+          "rootEventId": "run/1791963651316/laohuan/hand/run/1791963651316/laohuan/command/196/event/4",
+          "phase": "onCardScore",
+          "sourceType": "card",
+          "sourceDefinitionId": "rank-11",
+          "sourceInstanceId": "diamonds-11",
+          "targetCardId": "diamonds-11",
+          "operation": "add-heat",
+          "value": {
+            "n": "10",
+            "d": "1"
+          },
+          "before": {
+            "H": {
+              "n": "309",
+              "d": "1"
+            },
+            "M": {
+              "n": "21",
+              "d": "2"
+            }
+          },
+          "after": {
+            "H": {
+              "n": "319",
+              "d": "1"
+            },
+            "M": {
+              "n": "21",
+              "d": "2"
+            }
+          },
+          "reasonKey": "rank-11.add-heat",
+          "visibleCondition": {
+            "kind": "always"
+          },
+          "retriggerDepth": 0
+        },
+        {
+          "eventId": "run/1791963651316/laohuan/hand/run/1791963651316/laohuan/command/196/event/5",
+          "rootId": "run/1791963651316/laohuan/hand/run/1791963651316/laohuan/command/196",
+          "rootEventId": "run/1791963651316/laohuan/hand/run/1791963651316/laohuan/command/196/event/5",
+          "phase": "onCardScore",
+          "sourceType": "card",
+          "sourceDefinitionId": "rank-8",
+          "sourceInstanceId": "spades-8",
+          "targetCardId": "spades-8",
+          "operation": "add-heat",
+          "value": {
+            "n": "8",
+            "d": "1"
+          },
+          "before": {
+            "H": {
+              "n": "319",
+              "d": "1"
+            },
+            "M": {
+              "n": "21",
+              "d": "2"
+            }
+          },
+          "after": {
+            "H": {
+              "n": "327",
+              "d": "1"
+            },
+            "M": {
+              "n": "21",
+              "d": "2"
+            }
+          },
+          "reasonKey": "rank-8.add-heat",
+          "visibleCondition": {
+            "kind": "always"
+          },
+          "retriggerDepth": 0
+        },
+        {
+          "eventId": "run/1791963651316/laohuan/hand/run/1791963651316/laohuan/command/196/event/6",
+          "rootId": "run/1791963651316/laohuan/hand/run/1791963651316/laohuan/command/196",
+          "rootEventId": "run/1791963651316/laohuan/hand/run/1791963651316/laohuan/command/196/event/6",
+          "phase": "onCardScore",
+          "sourceType": "card",
+          "sourceDefinitionId": "rank-10",
+          "sourceInstanceId": "diamonds-10",
+          "targetCardId": "diamonds-10",
+          "operation": "add-heat",
+          "value": {
+            "n": "10",
+            "d": "1"
+          },
+          "before": {
+            "H": {
+              "n": "327",
+              "d": "1"
+            },
+            "M": {
+              "n": "21",
+              "d": "2"
+            }
+          },
+          "after": {
+            "H": {
+              "n": "337",
+              "d": "1"
+            },
+            "M": {
+              "n": "21",
+              "d": "2"
+            }
+          },
+          "reasonKey": "rank-10.add-heat",
+          "visibleCondition": {
+            "kind": "always"
+          },
+          "retriggerDepth": 0
+        },
+        {
+          "eventId": "run/1791963651316/laohuan/hand/run/1791963651316/laohuan/command/196/event/7",
+          "rootId": "run/1791963651316/laohuan/hand/run/1791963651316/laohuan/command/196",
+          "rootEventId": "run/1791963651316/laohuan/hand/run/1791963651316/laohuan/command/196/event/7",
+          "phase": "onHeldCard",
+          "sourceType": "joker",
+          "sourceDefinitionId": "a10",
+          "sourceInstanceId": "run/1791963651316/laohuan/joker/run/1791963651316/laohuan/command/34",
+          "targetCardId": "spades-12",
+          "operation": "multiply-multiplier",
+          "value": {
+            "n": "5",
+            "d": "4"
+          },
+          "before": {
+            "H": {
+              "n": "337",
+              "d": "1"
+            },
+            "M": {
+              "n": "21",
+              "d": "2"
+            }
+          },
+          "after": {
+            "H": {
+              "n": "337",
+              "d": "1"
+            },
+            "M": {
+              "n": "105",
+              "d": "8"
+            }
+          },
+          "reasonKey": "a10.multiply-multiplier",
+          "visibleCondition": {
+            "kind": "held-rank-first",
+            "values": [
+              11,
+              12,
+              13
+            ],
+            "limit": 1
+          },
+          "retriggerDepth": 0
+        },
+        {
+          "eventId": "run/1791963651316/laohuan/hand/run/1791963651316/laohuan/command/196/event/8",
+          "rootId": "run/1791963651316/laohuan/hand/run/1791963651316/laohuan/command/196",
+          "rootEventId": "run/1791963651316/laohuan/hand/run/1791963651316/laohuan/command/196/event/8",
+          "phase": "jokerScore",
+          "sourceType": "joker",
+          "sourceDefinitionId": "c04",
+          "sourceInstanceId": "run/1791963651316/laohuan/joker/run/1791963651316/laohuan/command/2",
+          "operation": "add-heat",
+          "value": {
+            "n": "50",
+            "d": "1"
+          },
+          "before": {
+            "H": {
+              "n": "337",
+              "d": "1"
+            },
+            "M": {
+              "n": "105",
+              "d": "8"
+            }
+          },
+          "after": {
+            "H": {
+              "n": "387",
+              "d": "1"
+            },
+            "M": {
+              "n": "105",
+              "d": "8"
+            }
+          },
+          "reasonKey": "c04.add-heat",
+          "visibleCondition": {
+            "kind": "hand-type-in",
+            "values": [
+              "straight",
+              "straight-flush"
+            ]
+          },
+          "retriggerDepth": 0
+        },
+        {
+          "eventId": "run/1791963651316/laohuan/hand/run/1791963651316/laohuan/command/196/event/9",
+          "rootId": "run/1791963651316/laohuan/hand/run/1791963651316/laohuan/command/196",
+          "rootEventId": "run/1791963651316/laohuan/hand/run/1791963651316/laohuan/command/196/event/9",
+          "phase": "jokerScore",
+          "sourceType": "joker",
+          "sourceDefinitionId": "c04",
+          "sourceInstanceId": "run/1791963651316/laohuan/joker/run/1791963651316/laohuan/command/2",
+          "operation": "read-growth",
+          "value": {
+            "n": "100",
+            "d": "1"
+          },
+          "before": {
+            "H": {
+              "n": "387",
+              "d": "1"
+            },
+            "M": {
+              "n": "105",
+              "d": "8"
+            }
+          },
+          "after": {
+            "H": {
+              "n": "487",
+              "d": "1"
+            },
+            "M": {
+              "n": "105",
+              "d": "8"
+            }
+          },
+          "reasonKey": "c04.read-growth",
+          "visibleCondition": {
+            "kind": "always"
+          },
+          "retriggerDepth": 0
+        },
+        {
+          "eventId": "run/1791963651316/laohuan/hand/run/1791963651316/laohuan/command/196/event/10",
+          "rootId": "run/1791963651316/laohuan/hand/run/1791963651316/laohuan/command/196",
+          "rootEventId": "run/1791963651316/laohuan/hand/run/1791963651316/laohuan/command/196/event/10",
+          "phase": "jokerScore",
+          "sourceType": "joker",
+          "sourceDefinitionId": "f03",
+          "sourceInstanceId": "run/1791963651316/laohuan/joker/run/1791963651316/laohuan/command/95",
+          "operation": "add-multiplier",
+          "value": {
+            "n": "2",
+            "d": "1"
+          },
+          "before": {
+            "H": {
+              "n": "487",
+              "d": "1"
+            },
+            "M": {
+              "n": "105",
+              "d": "8"
+            }
+          },
+          "after": {
+            "H": {
+              "n": "487",
+              "d": "1"
+            },
+            "M": {
+              "n": "121",
+              "d": "8"
+            }
+          },
+          "reasonKey": "f03.add-multiplier",
+          "visibleCondition": {
+            "kind": "resource",
+            "resource": "play-index",
+            "equals": 1
+          },
+          "retriggerDepth": 0
+        },
+        {
+          "eventId": "run/1791963651316/laohuan/hand/run/1791963651316/laohuan/command/196/event/11",
+          "rootId": "run/1791963651316/laohuan/hand/run/1791963651316/laohuan/command/196",
+          "rootEventId": "run/1791963651316/laohuan/hand/run/1791963651316/laohuan/command/196/event/11",
+          "phase": "jokerScore",
+          "sourceType": "joker",
+          "sourceDefinitionId": "a10",
+          "sourceInstanceId": "run/1791963651316/laohuan/joker/run/1791963651316/laohuan/command/34",
+          "operation": "add-multiplier",
+          "value": {
+            "n": "2",
+            "d": "1"
+          },
+          "before": {
+            "H": {
+              "n": "487",
+              "d": "1"
+            },
+            "M": {
+              "n": "121",
+              "d": "8"
+            }
+          },
+          "after": {
+            "H": {
+              "n": "487",
+              "d": "1"
+            },
+            "M": {
+              "n": "137",
+              "d": "8"
+            }
+          },
+          "reasonKey": "edition.holographic.add-multiplier",
+          "visibleCondition": {
+            "kind": "always"
+          },
+          "retriggerDepth": 0
+        },
+        {
+          "eventId": "run/1791963651316/laohuan/hand/run/1791963651316/laohuan/command/196/event/12",
+          "rootId": "run/1791963651316/laohuan/hand/run/1791963651316/laohuan/command/196",
+          "rootEventId": "run/1791963651316/laohuan/hand/run/1791963651316/laohuan/command/196/event/12",
+          "phase": "jokerScore",
+          "sourceType": "joker",
+          "sourceDefinitionId": "e08",
+          "sourceInstanceId": "run/1791963651316/laohuan/joker/run/1791963651316/laohuan/command/82",
+          "operation": "multiply-multiplier",
+          "value": {
+            "n": "9",
+            "d": "5"
+          },
+          "before": {
+            "H": {
+              "n": "487",
+              "d": "1"
+            },
+            "M": {
+              "n": "137",
+              "d": "8"
+            }
+          },
+          "after": {
+            "H": {
+              "n": "487",
+              "d": "1"
+            },
+            "M": {
+              "n": "1233",
+              "d": "40"
+            }
+          },
+          "reasonKey": "e08.multiply-multiplier",
+          "visibleCondition": {
+            "kind": "resource-minimum",
+            "resource": "gold",
+            "minimum": 20
+          },
+          "retriggerDepth": 0
+        },
+        {
+          "eventId": "run/1791963651316/laohuan/hand/run/1791963651316/laohuan/command/196/event/13",
+          "rootId": "run/1791963651316/laohuan/hand/run/1791963651316/laohuan/command/196",
+          "rootEventId": "run/1791963651316/laohuan/hand/run/1791963651316/laohuan/command/196/event/13",
+          "phase": "routeGrowth",
+          "sourceType": "rule",
+          "sourceDefinitionId": "route-growth",
+          "sourceInstanceId": "run/1791963651316/laohuan",
+          "operation": "route-factor",
+          "value": {
+            "n": "4",
+            "d": "1"
+          },
+          "before": {
+            "H": {
+              "n": "487",
+              "d": "1"
+            },
+            "M": {
+              "n": "1233",
+              "d": "40"
+            }
+          },
+          "after": {
+            "H": {
+              "n": "487",
+              "d": "1"
+            },
+            "M": {
+              "n": "1233",
+              "d": "10"
+            }
+          },
+          "reasonKey": "route-growth.S.factor",
+          "visibleCondition": {
+            "kind": "hand-type-in",
+            "values": [
+              "straight",
+              "straight-flush"
+            ]
+          },
+          "retriggerDepth": 0,
+          "routeFamily": "S",
+          "resourceBefore": 26,
+          "resourceAfter": 26
+        },
+        {
+          "eventId": "run/1791963651316/laohuan/hand/run/1791963651316/laohuan/command/196/event/14",
+          "rootId": "run/1791963651316/laohuan/hand/run/1791963651316/laohuan/command/196",
+          "rootEventId": "run/1791963651316/laohuan/hand/run/1791963651316/laohuan/command/196/event/14",
+          "phase": "finalScore",
+          "sourceType": "rule",
+          "sourceDefinitionId": "straight",
+          "sourceInstanceId": "run/1791963651316/laohuan",
+          "operation": "final-score",
+          "value": {
+            "n": "60047",
+            "d": "1"
+          },
+          "before": {
+            "H": {
+              "n": "487",
+              "d": "1"
+            },
+            "M": {
+              "n": "1233",
+              "d": "10"
+            }
+          },
+          "after": {
+            "H": {
+              "n": "487",
+              "d": "1"
+            },
+            "M": {
+              "n": "1233",
+              "d": "10"
+            }
+          },
+          "reasonKey": "straight.final-score",
+          "visibleCondition": {
+            "kind": "always"
+          },
+          "retriggerDepth": 0
+        },
+        {
+          "eventId": "run/1791963651316/laohuan/hand/run/1791963651316/laohuan/command/196/event/15",
+          "rootId": "run/1791963651316/laohuan/hand/run/1791963651316/laohuan/command/196",
+          "rootEventId": "run/1791963651316/laohuan/hand/run/1791963651316/laohuan/command/196/event/15",
+          "phase": "afterHand",
+          "sourceType": "joker",
+          "sourceDefinitionId": "c04",
+          "sourceInstanceId": "run/1791963651316/laohuan/joker/run/1791963651316/laohuan/command/2",
+          "operation": "add-growth",
+          "value": {
+            "n": "0",
+            "d": "1"
+          },
+          "before": {
+            "H": {
+              "n": "487",
+              "d": "1"
+            },
+            "M": {
+              "n": "1233",
+              "d": "10"
+            }
+          },
+          "after": {
+            "H": {
+              "n": "487",
+              "d": "1"
+            },
+            "M": {
+              "n": "1233",
+              "d": "10"
+            }
+          },
+          "reasonKey": "c04.add-growth",
+          "visibleCondition": {
+            "kind": "hand-type-in",
+            "values": [
+              "straight",
+              "straight-flush"
+            ]
+          },
+          "retriggerDepth": 0
+        },
+        {
+          "eventId": "run/1791963651316/laohuan/hand/run/1791963651316/laohuan/command/196/event/16",
+          "rootId": "run/1791963651316/laohuan/hand/run/1791963651316/laohuan/command/196",
+          "rootEventId": "run/1791963651316/laohuan/hand/run/1791963651316/laohuan/command/196/event/16",
+          "phase": "onStageClear",
+          "sourceType": "rule",
+          "sourceDefinitionId": "U04",
+          "sourceInstanceId": "run/1791963651316/laohuan",
+          "operation": "add-gold",
+          "value": {
+            "n": "2",
+            "d": "1"
+          },
+          "before": {
+            "H": {
+              "n": "487",
+              "d": "1"
+            },
+            "M": {
+              "n": "1233",
+              "d": "10"
+            }
+          },
+          "after": {
+            "H": {
+              "n": "487",
+              "d": "1"
+            },
+            "M": {
+              "n": "1233",
+              "d": "10"
+            }
+          },
+          "reasonKey": "U04.add-gold",
+          "visibleCondition": {
+            "kind": "always"
+          },
+          "retriggerDepth": 0,
+          "resourceBefore": 262,
+          "resourceAfter": 264
+        },
+        {
+          "eventId": "run/1791963651316/laohuan/hand/run/1791963651316/laohuan/command/196/event/17",
+          "rootId": "run/1791963651316/laohuan/hand/run/1791963651316/laohuan/command/196",
+          "rootEventId": "run/1791963651316/laohuan/hand/run/1791963651316/laohuan/command/196/event/17",
+          "phase": "onStageClear",
+          "sourceType": "rule",
+          "sourceDefinitionId": "PG03",
+          "sourceInstanceId": "run/1791963651316/laohuan",
+          "operation": "upgrade-hand",
+          "value": {
+            "n": "1",
+            "d": "1"
+          },
+          "before": {
+            "H": {
+              "n": "487",
+              "d": "1"
+            },
+            "M": {
+              "n": "1233",
+              "d": "10"
+            }
+          },
+          "after": {
+            "H": {
+              "n": "487",
+              "d": "1"
+            },
+            "M": {
+              "n": "1233",
+              "d": "10"
+            }
+          },
+          "reasonKey": "PG03.upgrade-hand",
+          "visibleCondition": {
+            "kind": "always"
+          },
+          "retriggerDepth": 0,
+          "resourceBefore": 14,
+          "resourceAfter": 15,
+          "targetHandType": "straight",
+          "programGoldBeforeReward": 247
+        },
+        {
+          "eventId": "run/1791963651316/laohuan/hand/run/1791963651316/laohuan/command/196/event/18",
+          "rootId": "run/1791963651316/laohuan/hand/run/1791963651316/laohuan/command/196",
+          "rootEventId": "run/1791963651316/laohuan/hand/run/1791963651316/laohuan/command/196/event/18",
+          "phase": "onStageClear",
+          "sourceType": "rule",
+          "sourceDefinitionId": "route-growth",
+          "sourceInstanceId": "run/1791963651316/laohuan",
+          "operation": "route-clear",
+          "value": {
+            "n": "1",
+            "d": "1"
+          },
+          "before": {
+            "H": {
+              "n": "487",
+              "d": "1"
+            },
+            "M": {
+              "n": "1233",
+              "d": "10"
+            }
+          },
+          "after": {
+            "H": {
+              "n": "487",
+              "d": "1"
+            },
+            "M": {
+              "n": "1233",
+              "d": "10"
+            }
+          },
+          "visibleCondition": {
+            "kind": "always"
+          },
+          "retriggerDepth": 0,
+          "reasonKey": "route-growth.clear",
+          "resourceBefore": 26,
+          "resourceAfter": 27
+        },
+        {
+          "eventId": "run/1791963651316/laohuan/hand/run/1791963651316/laohuan/command/196/event/19",
+          "rootId": "run/1791963651316/laohuan/hand/run/1791963651316/laohuan/command/196",
+          "rootEventId": "run/1791963651316/laohuan/hand/run/1791963651316/laohuan/command/196/event/19",
+          "phase": "onStageClear",
+          "sourceType": "rule",
+          "sourceDefinitionId": "route-growth",
+          "sourceInstanceId": "run/1791963651316/laohuan",
+          "operation": "route-clear-family",
+          "value": {
+            "n": "1",
+            "d": "1"
+          },
+          "before": {
+            "H": {
+              "n": "487",
+              "d": "1"
+            },
+            "M": {
+              "n": "1233",
+              "d": "10"
+            }
+          },
+          "after": {
+            "H": {
+              "n": "487",
+              "d": "1"
+            },
+            "M": {
+              "n": "1233",
+              "d": "10"
+            }
+          },
+          "visibleCondition": {
+            "kind": "always"
+          },
+          "retriggerDepth": 0,
+          "reasonKey": "route-growth.S.clear",
+          "resourceBefore": 26,
+          "resourceAfter": 27,
+          "routeFamily": "S"
+        }
+      ],
+      "jokers": [
+        {
+          "instanceId": "run/1791963651316/laohuan/joker/run/1791963651316/laohuan/command/2",
+          "definitionId": "c04",
+          "paidPrice": 4,
+          "growth": {
+            "heat": {
+              "n": "100",
+              "d": "1"
+            }
+          },
+          "edition": "none"
+        },
+        {
+          "instanceId": "run/1791963651316/laohuan/joker/run/1791963651316/laohuan/command/23",
+          "definitionId": "c08",
+          "paidPrice": 6,
+          "growth": {},
+          "edition": "none"
+        },
+        {
+          "instanceId": "run/1791963651316/laohuan/joker/run/1791963651316/laohuan/command/95",
+          "definitionId": "f03",
+          "paidPrice": 3,
+          "growth": {},
+          "edition": "none"
+        },
+        {
+          "instanceId": "run/1791963651316/laohuan/joker/run/1791963651316/laohuan/command/34",
+          "definitionId": "a10",
+          "paidPrice": 9,
+          "growth": {},
+          "edition": "holographic"
+        },
+        {
+          "instanceId": "run/1791963651316/laohuan/joker/run/1791963651316/laohuan/command/82",
+          "definitionId": "e08",
+          "paidPrice": 7,
+          "growth": {},
+          "edition": "none"
+        }
+      ],
+      "rng": {
+        "algorithm": "fnv1a-mulberry32-v1",
+        "state": 3022424714
+      },
+      "goldDelta": 0,
+      "destroyedCardIds": [],
+      "destroyedJokerIds": [],
+      "cards": [
+        {
+          "id": "clubs-12",
+          "suit": "clubs",
+          "rank": 12
+        },
+        {
+          "id": "clubs-9",
+          "suit": "clubs",
+          "rank": 9
+        },
+        {
+          "id": "diamonds-11",
+          "suit": "diamonds",
+          "rank": 11
+        },
+        {
+          "id": "spades-12",
+          "suit": "spades",
+          "rank": 12
+        },
+        {
+          "id": "hearts-14",
+          "suit": "hearts",
+          "rank": 14
+        },
+        {
+          "id": "spades-8",
+          "suit": "spades",
+          "rank": 8
+        },
+        {
+          "id": "diamonds-12",
+          "suit": "diamonds",
+          "rank": 12
+        },
+        {
+          "id": "spades-11",
+          "suit": "spades",
+          "rank": 11
+        },
+        {
+          "id": "diamonds-10",
+          "suit": "diamonds",
+          "rank": 10
+        }
+      ],
+      "sourceJokers": [
+        {
+          "instanceId": "run/1791963651316/laohuan/joker/run/1791963651316/laohuan/command/2",
+          "definitionId": "c04",
+          "paidPrice": 4,
+          "growth": {
+            "heat": {
+              "n": "100",
+              "d": "1"
+            }
+          },
+          "edition": "none"
+        },
+        {
+          "instanceId": "run/1791963651316/laohuan/joker/run/1791963651316/laohuan/command/23",
+          "definitionId": "c08",
+          "paidPrice": 6,
+          "growth": {},
+          "edition": "none"
+        },
+        {
+          "instanceId": "run/1791963651316/laohuan/joker/run/1791963651316/laohuan/command/95",
+          "definitionId": "f03",
+          "paidPrice": 3,
+          "growth": {},
+          "edition": "none"
+        },
+        {
+          "instanceId": "run/1791963651316/laohuan/joker/run/1791963651316/laohuan/command/34",
+          "definitionId": "a10",
+          "paidPrice": 9,
+          "growth": {},
+          "edition": "holographic"
+        },
+        {
+          "instanceId": "run/1791963651316/laohuan/joker/run/1791963651316/laohuan/command/82",
+          "definitionId": "e08",
+          "paidPrice": 7,
+          "growth": {},
+          "edition": "none"
+        }
+      ],
+      "bossContext": {
+        "boss": {
+          "definitionId": "B12",
+          "disabledSuit": null
+        },
+        "previousHandType": null,
+        "sealedJokerIds": [],
+        "challengeDisabledJokerId": null
+      },
+      "combo": {
+        "goldBeforeRewards": 247
+      }
+    },
+    "handLevels": {
+      "straight": 15,
+      "pair": 1,
+      "high-card": 1
+    },
+    "outcome": null
+  },
+  "journalBaseSeq": 1,
+  "journal": [
+    {
+      "runId": "run/1791963651316/laohuan",
+      "commandId": "run/1791963651316/laohuan/command/2",
+      "expectedSeq": 1,
+      "action": {
+        "type": "BuyOffer",
+        "offerId": "run/1791963651316/laohuan/shop/0/0/joker/2"
+      }
+    },
+    {
+      "runId": "run/1791963651316/laohuan",
+      "commandId": "run/1791963651316/laohuan/command/3",
+      "expectedSeq": 2,
+      "action": {
+        "type": "LeaveShop"
+      }
+    },
+    {
+      "runId": "run/1791963651316/laohuan",
+      "commandId": "run/1791963651316/laohuan/command/4",
+      "expectedSeq": 3,
+      "action": {
+        "type": "EnterStage"
+      }
+    },
+    {
+      "runId": "run/1791963651316/laohuan",
+      "commandId": "run/1791963651316/laohuan/command/5",
+      "expectedSeq": 4,
+      "action": {
+        "type": "DiscardHand",
+        "selectedIds": [
+          "diamonds-2",
+          "spades-14",
+          "hearts-4",
+          "clubs-2",
+          "clubs-6"
+        ],
+        "laohuanTrick": true
+      }
+    },
+    {
+      "runId": "run/1791963651316/laohuan",
+      "commandId": "run/1791963651316/laohuan/command/6",
+      "expectedSeq": 5,
+      "action": {
+        "type": "ChooseRefill",
+        "selectedIds": [
+          "clubs-5",
+          "spades-6",
+          "diamonds-4",
+          "clubs-7",
+          "clubs-10"
+        ]
+      }
+    },
+    {
+      "runId": "run/1791963651316/laohuan",
+      "commandId": "run/1791963651316/laohuan/command/7",
+      "expectedSeq": 6,
+      "action": {
+        "type": "PlayHand",
+        "selectedIds": [
+          "hearts-8",
+          "clubs-5",
+          "spades-6",
+          "diamonds-4",
+          "clubs-7"
+        ]
+      }
+    },
+    {
+      "runId": "run/1791963651316/laohuan",
+      "commandId": "run/1791963651316/laohuan/command/8",
+      "expectedSeq": 7,
+      "action": {
+        "type": "OpenShop"
+      }
+    },
+    {
+      "runId": "run/1791963651316/laohuan",
+      "commandId": "run/1791963651316/laohuan/command/9",
+      "expectedSeq": 8,
+      "action": {
+        "type": "BuyOffer",
+        "offerId": "run/1791963651316/laohuan/shop/1/0/tool/0"
+      }
+    },
+    {
+      "runId": "run/1791963651316/laohuan",
+      "commandId": "run/1791963651316/laohuan/command/10",
+      "expectedSeq": 9,
+      "action": {
+        "type": "UseConsumable",
+        "instanceId": "run/1791963651316/laohuan/tool/run/1791963651316/laohuan/command/9",
+        "targetIds": []
+      }
+    },
+    {
+      "runId": "run/1791963651316/laohuan",
+      "commandId": "run/1791963651316/laohuan/command/11",
+      "expectedSeq": 10,
+      "action": {
+        "type": "LeaveShop"
+      }
+    },
+    {
+      "runId": "run/1791963651316/laohuan",
+      "commandId": "run/1791963651316/laohuan/command/12",
+      "expectedSeq": 11,
+      "action": {
+        "type": "EnterStage"
+      }
+    },
+    {
+      "runId": "run/1791963651316/laohuan",
+      "commandId": "run/1791963651316/laohuan/command/13",
+      "expectedSeq": 12,
+      "action": {
+        "type": "PlayHand",
+        "selectedIds": [
+          "spades-10",
+          "diamonds-9",
+          "hearts-11",
+          "diamonds-12",
+          "spades-13"
+        ]
+      }
+    },
+    {
+      "runId": "run/1791963651316/laohuan",
+      "commandId": "run/1791963651316/laohuan/command/14",
+      "expectedSeq": 13,
+      "action": {
+        "type": "OpenShop"
+      }
+    },
+    {
+      "runId": "run/1791963651316/laohuan",
+      "commandId": "run/1791963651316/laohuan/command/15",
+      "expectedSeq": 14,
+      "action": {
+        "type": "BuyOffer",
+        "offerId": "run/1791963651316/laohuan/shop/2/0/item/0"
+      }
+    },
+    {
+      "runId": "run/1791963651316/laohuan",
+      "commandId": "run/1791963651316/laohuan/command/16",
+      "expectedSeq": 15,
+      "action": {
+        "type": "BuyOffer",
+        "offerId": "run/1791963651316/laohuan/shop/2/0/joker/1"
+      }
+    },
+    {
+      "runId": "run/1791963651316/laohuan",
+      "commandId": "run/1791963651316/laohuan/command/17",
+      "expectedSeq": 16,
+      "action": {
+        "type": "LeaveShop"
+      }
+    },
+    {
+      "runId": "run/1791963651316/laohuan",
+      "commandId": "run/1791963651316/laohuan/command/18",
+      "expectedSeq": 17,
+      "action": {
+        "type": "EnterStage"
+      }
+    },
+    {
+      "runId": "run/1791963651316/laohuan",
+      "commandId": "run/1791963651316/laohuan/command/19",
+      "expectedSeq": 18,
+      "action": {
+        "type": "DiscardHand",
+        "selectedIds": [
+          "clubs-13",
+          "hearts-11",
+          "diamonds-14",
+          "spades-13",
+          "diamonds-4"
+        ],
+        "laohuanTrick": true
+      }
+    },
+    {
+      "runId": "run/1791963651316/laohuan",
+      "commandId": "run/1791963651316/laohuan/command/20",
+      "expectedSeq": 19,
+      "action": {
+        "type": "ChooseRefill",
+        "selectedIds": [
+          "diamonds-5",
+          "clubs-3",
+          "clubs-7",
+          "spades-7",
+          "hearts-14"
+        ]
+      }
+    },
+    {
+      "runId": "run/1791963651316/laohuan",
+      "commandId": "run/1791963651316/laohuan/command/21",
+      "expectedSeq": 20,
+      "action": {
+        "type": "PlayHand",
+        "selectedIds": [
+          "spades-4",
+          "spades-2",
+          "diamonds-5",
+          "clubs-3",
+          "hearts-14"
+        ]
+      }
+    },
+    {
+      "runId": "run/1791963651316/laohuan",
+      "commandId": "run/1791963651316/laohuan/command/22",
+      "expectedSeq": 21,
+      "action": {
+        "type": "OpenShop"
+      }
+    },
+    {
+      "runId": "run/1791963651316/laohuan",
+      "commandId": "run/1791963651316/laohuan/command/23",
+      "expectedSeq": 22,
+      "action": {
+        "type": "BuyOffer",
+        "offerId": "run/1791963651316/laohuan/shop/3/0/joker/2"
+      }
+    },
+    {
+      "runId": "run/1791963651316/laohuan",
+      "commandId": "run/1791963651316/laohuan/command/24",
+      "expectedSeq": 23,
+      "action": {
+        "type": "UseConsumable",
+        "instanceId": "run/1791963651316/laohuan/first-boss/supply",
+        "targetIds": []
+      }
+    },
+    {
+      "runId": "run/1791963651316/laohuan",
+      "commandId": "run/1791963651316/laohuan/command/25",
+      "expectedSeq": 24,
+      "action": {
+        "type": "BuyBasicTool",
+        "definitionId": "T11",
+        "shopSeq": 22
+      }
+    },
+    {
+      "runId": "run/1791963651316/laohuan",
+      "commandId": "run/1791963651316/laohuan/command/26",
+      "expectedSeq": 25,
+      "action": {
+        "type": "UseConsumable",
+        "instanceId": "run/1791963651316/laohuan/tool/run/1791963651316/laohuan/command/25",
+        "targetIds": [
+          "spades-7",
+          "clubs-7"
+        ]
+      }
+    },
+    {
+      "runId": "run/1791963651316/laohuan",
+      "commandId": "run/1791963651316/laohuan/command/27",
+      "expectedSeq": 26,
+      "action": {
+        "type": "ChooseProgram",
+        "programId": "PG03"
+      }
+    },
+    {
+      "runId": "run/1791963651316/laohuan",
+      "commandId": "run/1791963651316/laohuan/command/28",
+      "expectedSeq": 27,
+      "action": {
+        "type": "LeaveShop"
+      }
+    },
+    {
+      "runId": "run/1791963651316/laohuan",
+      "commandId": "run/1791963651316/laohuan/command/29",
+      "expectedSeq": 28,
+      "action": {
+        "type": "EnterStage"
+      }
+    },
+    {
+      "runId": "run/1791963651316/laohuan",
+      "commandId": "run/1791963651316/laohuan/command/30",
+      "expectedSeq": 29,
+      "action": {
+        "type": "DiscardHand",
+        "selectedIds": [
+          "spades-2",
+          "diamonds-13",
+          "hearts-3",
+          "diamonds-7",
+          "clubs-2"
+        ],
+        "laohuanTrick": true
+      }
+    },
+    {
+      "runId": "run/1791963651316/laohuan",
+      "commandId": "run/1791963651316/laohuan/command/31",
+      "expectedSeq": 30,
+      "action": {
+        "type": "ChooseRefill",
+        "selectedIds": [
+          "diamonds-8",
+          "diamonds-11",
+          "spades-13",
+          "clubs-10",
+          "spades-12"
+        ]
+      }
+    },
+    {
+      "runId": "run/1791963651316/laohuan",
+      "commandId": "run/1791963651316/laohuan/command/32",
+      "expectedSeq": 31,
+      "action": {
+        "type": "PlayHand",
+        "selectedIds": [
+          "spades-7",
+          "spades-9",
+          "spades-10",
+          "hearts-6",
+          "diamonds-8"
+        ]
+      }
+    },
+    {
+      "runId": "run/1791963651316/laohuan",
+      "commandId": "run/1791963651316/laohuan/command/33",
+      "expectedSeq": 32,
+      "action": {
+        "type": "OpenShop"
+      }
+    },
+    {
+      "runId": "run/1791963651316/laohuan",
+      "commandId": "run/1791963651316/laohuan/command/34",
+      "expectedSeq": 33,
+      "action": {
+        "type": "BuyOffer",
+        "offerId": "run/1791963651316/laohuan/shop/4/0/joker/2"
+      }
+    },
+    {
+      "runId": "run/1791963651316/laohuan",
+      "commandId": "run/1791963651316/laohuan/command/35",
+      "expectedSeq": 34,
+      "action": {
+        "type": "LeaveShop"
+      }
+    },
+    {
+      "runId": "run/1791963651316/laohuan",
+      "commandId": "run/1791963651316/laohuan/command/36",
+      "expectedSeq": 35,
+      "action": {
+        "type": "EnterStage"
+      }
+    },
+    {
+      "runId": "run/1791963651316/laohuan",
+      "commandId": "run/1791963651316/laohuan/command/37",
+      "expectedSeq": 36,
+      "action": {
+        "type": "DiscardHand",
+        "selectedIds": [
+          "clubs-14",
+          "diamonds-5",
+          "diamonds-14",
+          "clubs-7"
+        ],
+        "laohuanTrick": true
+      }
+    },
+    {
+      "runId": "run/1791963651316/laohuan",
+      "commandId": "run/1791963651316/laohuan/command/38",
+      "expectedSeq": 37,
+      "action": {
+        "type": "ChooseRefill",
+        "selectedIds": [
+          "clubs-12",
+          "clubs-11",
+          "hearts-8",
+          "hearts-10"
+        ]
+      }
+    },
+    {
+      "runId": "run/1791963651316/laohuan",
+      "commandId": "run/1791963651316/laohuan/command/39",
+      "expectedSeq": 38,
+      "action": {
+        "type": "PlayHand",
+        "selectedIds": [
+          "spades-7",
+          "diamonds-9",
+          "clubs-11",
+          "hearts-8",
+          "hearts-10"
+        ]
+      }
+    },
+    {
+      "runId": "run/1791963651316/laohuan",
+      "commandId": "run/1791963651316/laohuan/command/40",
+      "expectedSeq": 39,
+      "action": {
+        "type": "OpenShop"
+      }
+    },
+    {
+      "runId": "run/1791963651316/laohuan",
+      "commandId": "run/1791963651316/laohuan/command/41",
+      "expectedSeq": 40,
+      "action": {
+        "type": "LeaveShop"
+      }
+    },
+    {
+      "runId": "run/1791963651316/laohuan",
+      "commandId": "run/1791963651316/laohuan/command/42",
+      "expectedSeq": 41,
+      "action": {
+        "type": "EnterStage"
+      }
+    },
+    {
+      "runId": "run/1791963651316/laohuan",
+      "commandId": "run/1791963651316/laohuan/command/43",
+      "expectedSeq": 42,
+      "action": {
+        "type": "DiscardHand",
+        "selectedIds": [
+          "hearts-6",
+          "diamonds-6",
+          "hearts-3",
+          "clubs-6"
+        ],
+        "laohuanTrick": true
+      }
+    },
+    {
+      "runId": "run/1791963651316/laohuan",
+      "commandId": "run/1791963651316/laohuan/command/44",
+      "expectedSeq": 43,
+      "action": {
+        "type": "ChooseRefill",
+        "selectedIds": [
+          "spades-5",
+          "clubs-4",
+          "hearts-13",
+          "spades-3"
+        ]
+      }
+    },
+    {
+      "runId": "run/1791963651316/laohuan",
+      "commandId": "run/1791963651316/laohuan/command/45",
+      "expectedSeq": 44,
+      "action": {
+        "type": "PlayHand",
+        "selectedIds": [
+          "spades-13",
+          "hearts-13"
+        ]
+      }
+    },
+    {
+      "runId": "run/1791963651316/laohuan",
+      "commandId": "run/1791963651316/laohuan/command/46",
+      "expectedSeq": 45,
+      "action": {
+        "type": "PlayHand",
+        "selectedIds": [
+          "clubs-10",
+          "spades-9",
+          "hearts-11",
+          "spades-12"
+        ]
+      }
+    },
+    {
+      "runId": "run/1791963651316/laohuan",
+      "commandId": "run/1791963651316/laohuan/command/47",
+      "expectedSeq": 46,
+      "action": {
+        "type": "OpenShop"
+      }
+    },
+    {
+      "runId": "run/1791963651316/laohuan",
+      "commandId": "run/1791963651316/laohuan/command/48",
+      "expectedSeq": 47,
+      "action": {
+        "type": "BuyOffer",
+        "offerId": "run/1791963651316/laohuan/shop/6/0/item/0"
+      }
+    },
+    {
+      "runId": "run/1791963651316/laohuan",
+      "commandId": "run/1791963651316/laohuan/command/49",
+      "expectedSeq": 48,
+      "action": {
+        "type": "BuyOffer",
+        "offerId": "run/1791963651316/laohuan/shop/6/0/joker/1"
+      }
+    },
+    {
+      "runId": "run/1791963651316/laohuan",
+      "commandId": "run/1791963651316/laohuan/command/50",
+      "expectedSeq": 49,
+      "action": {
+        "type": "ChooseProgram",
+        "programId": "PG02"
+      }
+    },
+    {
+      "runId": "run/1791963651316/laohuan",
+      "commandId": "run/1791963651316/laohuan/command/51",
+      "expectedSeq": 50,
+      "action": {
+        "type": "LeaveShop"
+      }
+    },
+    {
+      "runId": "run/1791963651316/laohuan",
+      "commandId": "run/1791963651316/laohuan/command/52",
+      "expectedSeq": 51,
+      "action": {
+        "type": "EnterStage"
+      }
+    },
+    {
+      "runId": "run/1791963651316/laohuan",
+      "commandId": "run/1791963651316/laohuan/command/53",
+      "expectedSeq": 52,
+      "action": {
+        "type": "DiscardHand",
+        "selectedIds": [
+          "diamonds-9",
+          "hearts-6",
+          "clubs-2",
+          "spades-14",
+          "clubs-3"
+        ],
+        "laohuanTrick": true
+      }
+    },
+    {
+      "runId": "run/1791963651316/laohuan",
+      "commandId": "run/1791963651316/laohuan/command/54",
+      "expectedSeq": 53,
+      "action": {
+        "type": "ChooseRefill",
+        "selectedIds": [
+          "clubs-4",
+          "spades-10",
+          "hearts-5",
+          "hearts-3",
+          "hearts-13"
+        ]
+      }
+    },
+    {
+      "runId": "run/1791963651316/laohuan",
+      "commandId": "run/1791963651316/laohuan/command/55",
+      "expectedSeq": 54,
+      "action": {
+        "type": "PlayHand",
+        "selectedIds": [
+          "spades-6",
+          "clubs-7",
+          "clubs-4",
+          "hearts-5",
+          "hearts-3"
+        ]
+      }
+    },
+    {
+      "runId": "run/1791963651316/laohuan",
+      "commandId": "run/1791963651316/laohuan/command/56",
+      "expectedSeq": 55,
+      "action": {
+        "type": "OpenShop"
+      }
+    },
+    {
+      "runId": "run/1791963651316/laohuan",
+      "commandId": "run/1791963651316/laohuan/command/57",
+      "expectedSeq": 56,
+      "action": {
+        "type": "BuyOffer",
+        "offerId": "run/1791963651316/laohuan/shop/7/0/item/0"
+      }
+    },
+    {
+      "runId": "run/1791963651316/laohuan",
+      "commandId": "run/1791963651316/laohuan/command/58",
+      "expectedSeq": 57,
+      "action": {
+        "type": "BuyOffer",
+        "offerId": "run/1791963651316/laohuan/shop/7/0/tool/0"
+      }
+    },
+    {
+      "runId": "run/1791963651316/laohuan",
+      "commandId": "run/1791963651316/laohuan/command/59",
+      "expectedSeq": 58,
+      "action": {
+        "type": "UseConsumable",
+        "instanceId": "run/1791963651316/laohuan/tool/run/1791963651316/laohuan/command/58",
+        "targetIds": []
+      }
+    },
+    {
+      "runId": "run/1791963651316/laohuan",
+      "commandId": "run/1791963651316/laohuan/command/60",
+      "expectedSeq": 59,
+      "action": {
+        "type": "LeaveShop"
+      }
+    },
+    {
+      "runId": "run/1791963651316/laohuan",
+      "commandId": "run/1791963651316/laohuan/command/61",
+      "expectedSeq": 60,
+      "action": {
+        "type": "EnterStage"
+      }
+    },
+    {
+      "runId": "run/1791963651316/laohuan",
+      "commandId": "run/1791963651316/laohuan/command/62",
+      "expectedSeq": 61,
+      "action": {
+        "type": "DiscardHand",
+        "selectedIds": [
+          "spades-2",
+          "clubs-5",
+          "spades-3",
+          "clubs-3",
+          "spades-10"
+        ],
+        "laohuanTrick": true
+      }
+    },
+    {
+      "runId": "run/1791963651316/laohuan",
+      "commandId": "run/1791963651316/laohuan/command/63",
+      "expectedSeq": 62,
+      "action": {
+        "type": "ChooseRefill",
+        "selectedIds": [
+          "diamonds-9",
+          "hearts-7",
+          "hearts-12",
+          "spades-13",
+          "spades-8"
+        ]
+      }
+    },
+    {
+      "runId": "run/1791963651316/laohuan",
+      "commandId": "run/1791963651316/laohuan/command/64",
+      "expectedSeq": 63,
+      "action": {
+        "type": "PlayHand",
+        "selectedIds": [
+          "hearts-10",
+          "clubs-12",
+          "hearts-11",
+          "diamonds-9",
+          "spades-13"
+        ]
+      }
+    },
+    {
+      "runId": "run/1791963651316/laohuan",
+      "commandId": "run/1791963651316/laohuan/command/65",
+      "expectedSeq": 64,
+      "action": {
+        "type": "OpenShop"
+      }
+    },
+    {
+      "runId": "run/1791963651316/laohuan",
+      "commandId": "run/1791963651316/laohuan/command/66",
+      "expectedSeq": 65,
+      "action": {
+        "type": "LeaveShop"
+      }
+    },
+    {
+      "runId": "run/1791963651316/laohuan",
+      "commandId": "run/1791963651316/laohuan/command/67",
+      "expectedSeq": 66,
+      "action": {
+        "type": "EnterStage"
+      }
+    },
+    {
+      "runId": "run/1791963651316/laohuan",
+      "commandId": "run/1791963651316/laohuan/command/68",
+      "expectedSeq": 67,
+      "action": {
+        "type": "DiscardHand",
+        "selectedIds": [
+          "diamonds-3",
+          "diamonds-5",
+          "diamonds-11",
+          "clubs-2",
+          "spades-2"
+        ],
+        "laohuanTrick": true
+      }
+    },
+    {
+      "runId": "run/1791963651316/laohuan",
+      "commandId": "run/1791963651316/laohuan/command/69",
+      "expectedSeq": 68,
+      "action": {
+        "type": "ChooseRefill",
+        "selectedIds": [
+          "hearts-13",
+          "hearts-10",
+          "spades-14",
+          "spades-8",
+          "spades-7"
+        ]
+      }
+    },
+    {
+      "runId": "run/1791963651316/laohuan",
+      "commandId": "run/1791963651316/laohuan/command/70",
+      "expectedSeq": 69,
+      "action": {
+        "type": "PlayHand",
+        "selectedIds": [
+          "spades-9",
+          "clubs-11",
+          "hearts-10",
+          "spades-8",
+          "spades-7"
+        ]
+      }
+    },
+    {
+      "runId": "run/1791963651316/laohuan",
+      "commandId": "run/1791963651316/laohuan/command/71",
+      "expectedSeq": 70,
+      "action": {
+        "type": "OpenShop"
+      }
+    },
+    {
+      "runId": "run/1791963651316/laohuan",
+      "commandId": "run/1791963651316/laohuan/command/72",
+      "expectedSeq": 71,
+      "action": {
+        "type": "BuyOffer",
+        "offerId": "run/1791963651316/laohuan/shop/9/0/tool/0"
+      }
+    },
+    {
+      "runId": "run/1791963651316/laohuan",
+      "commandId": "run/1791963651316/laohuan/command/73",
+      "expectedSeq": 72,
+      "action": {
+        "type": "UseConsumable",
+        "instanceId": "run/1791963651316/laohuan/tool/run/1791963651316/laohuan/command/72",
+        "targetIds": []
+      }
+    },
+    {
+      "runId": "run/1791963651316/laohuan",
+      "commandId": "run/1791963651316/laohuan/command/74",
+      "expectedSeq": 73,
+      "action": {
+        "type": "ChooseProgram",
+        "programId": "PG03"
+      }
+    },
+    {
+      "runId": "run/1791963651316/laohuan",
+      "commandId": "run/1791963651316/laohuan/command/75",
+      "expectedSeq": 74,
+      "action": {
+        "type": "LeaveShop"
+      }
+    },
+    {
+      "runId": "run/1791963651316/laohuan",
+      "commandId": "run/1791963651316/laohuan/command/76",
+      "expectedSeq": 75,
+      "action": {
+        "type": "EnterStage"
+      }
+    },
+    {
+      "runId": "run/1791963651316/laohuan",
+      "commandId": "run/1791963651316/laohuan/command/77",
+      "expectedSeq": 76,
+      "action": {
+        "type": "DiscardHand",
+        "selectedIds": [
+          "clubs-5",
+          "spades-14",
+          "hearts-9",
+          "diamonds-14",
+          "clubs-14"
+        ],
+        "laohuanTrick": true
+      }
+    },
+    {
+      "runId": "run/1791963651316/laohuan",
+      "commandId": "run/1791963651316/laohuan/command/78",
+      "expectedSeq": 77,
+      "action": {
+        "type": "ChooseRefill",
+        "selectedIds": [
+          "clubs-2",
+          "diamonds-13",
+          "diamonds-12",
+          "clubs-9",
+          "hearts-14"
+        ]
+      }
+    },
+    {
+      "runId": "run/1791963651316/laohuan",
+      "commandId": "run/1791963651316/laohuan/command/79",
+      "expectedSeq": 78,
+      "action": {
+        "type": "PlayHand",
+        "selectedIds": [
+          "clubs-11",
+          "diamonds-13",
+          "diamonds-12",
+          "hearts-14"
+        ]
+      }
+    },
+    {
+      "runId": "run/1791963651316/laohuan",
+      "commandId": "run/1791963651316/laohuan/command/80",
+      "expectedSeq": 79,
+      "action": {
+        "type": "OpenShop"
+      }
+    },
+    {
+      "runId": "run/1791963651316/laohuan",
+      "commandId": "run/1791963651316/laohuan/command/81",
+      "expectedSeq": 80,
+      "action": {
+        "type": "SellJoker",
+        "instanceId": "run/1791963651316/laohuan/joker/run/1791963651316/laohuan/command/49"
+      }
+    },
+    {
+      "runId": "run/1791963651316/laohuan",
+      "commandId": "run/1791963651316/laohuan/command/82",
+      "expectedSeq": 81,
+      "action": {
+        "type": "BuyOffer",
+        "offerId": "run/1791963651316/laohuan/shop/10/0/joker/0"
+      }
+    },
+    {
+      "runId": "run/1791963651316/laohuan",
+      "commandId": "run/1791963651316/laohuan/command/83",
+      "expectedSeq": 82,
+      "action": {
+        "type": "BuyOffer",
+        "offerId": "run/1791963651316/laohuan/shop/10/0/item/0"
+      }
+    },
+    {
+      "runId": "run/1791963651316/laohuan",
+      "commandId": "run/1791963651316/laohuan/command/84",
+      "expectedSeq": 83,
+      "action": {
+        "type": "LeaveShop"
+      }
+    },
+    {
+      "runId": "run/1791963651316/laohuan",
+      "commandId": "run/1791963651316/laohuan/command/85",
+      "expectedSeq": 84,
+      "action": {
+        "type": "EnterStage"
+      }
+    },
+    {
+      "runId": "run/1791963651316/laohuan",
+      "commandId": "run/1791963651316/laohuan/command/86",
+      "expectedSeq": 85,
+      "action": {
+        "type": "PlayHand",
+        "selectedIds": [
+          "spades-6",
+          "spades-8",
+          "spades-5",
+          "spades-7"
+        ]
+      }
+    },
+    {
+      "runId": "run/1791963651316/laohuan",
+      "commandId": "run/1791963651316/laohuan/command/87",
+      "expectedSeq": 86,
+      "action": {
+        "type": "OpenShop"
+      }
+    },
+    {
+      "runId": "run/1791963651316/laohuan",
+      "commandId": "run/1791963651316/laohuan/command/88",
+      "expectedSeq": 87,
+      "action": {
+        "type": "BuyOffer",
+        "offerId": "run/1791963651316/laohuan/shop/11/0/tool/0"
+      }
+    },
+    {
+      "runId": "run/1791963651316/laohuan",
+      "commandId": "run/1791963651316/laohuan/command/89",
+      "expectedSeq": 88,
+      "action": {
+        "type": "UseConsumable",
+        "instanceId": "run/1791963651316/laohuan/tool/run/1791963651316/laohuan/command/88",
+        "targetIds": [],
+        "handType": "straight",
+        "secondaryHandType": "pair"
+      }
+    },
+    {
+      "runId": "run/1791963651316/laohuan",
+      "commandId": "run/1791963651316/laohuan/command/90",
+      "expectedSeq": 89,
+      "action": {
+        "type": "LeaveShop"
+      }
+    },
+    {
+      "runId": "run/1791963651316/laohuan",
+      "commandId": "run/1791963651316/laohuan/command/91",
+      "expectedSeq": 90,
+      "action": {
+        "type": "EnterStage"
+      }
+    },
+    {
+      "runId": "run/1791963651316/laohuan",
+      "commandId": "run/1791963651316/laohuan/command/92",
+      "expectedSeq": 91,
+      "action": {
+        "type": "PlayHand",
+        "selectedIds": [
+          "clubs-4",
+          "hearts-7",
+          "diamonds-5",
+          "spades-3",
+          "clubs-6"
+        ]
+      }
+    },
+    {
+      "runId": "run/1791963651316/laohuan",
+      "commandId": "run/1791963651316/laohuan/command/93",
+      "expectedSeq": 92,
+      "action": {
+        "type": "OpenShop"
+      }
+    },
+    {
+      "runId": "run/1791963651316/laohuan",
+      "commandId": "run/1791963651316/laohuan/command/94",
+      "expectedSeq": 93,
+      "action": {
+        "type": "SellJoker",
+        "instanceId": "run/1791963651316/laohuan/joker/run/1791963651316/laohuan/command/16"
+      }
+    },
+    {
+      "runId": "run/1791963651316/laohuan",
+      "commandId": "run/1791963651316/laohuan/command/95",
+      "expectedSeq": 94,
+      "action": {
+        "type": "BuyOffer",
+        "offerId": "run/1791963651316/laohuan/shop/12/0/joker/1"
+      }
+    },
+    {
+      "runId": "run/1791963651316/laohuan",
+      "commandId": "run/1791963651316/laohuan/command/96",
+      "expectedSeq": 95,
+      "action": {
+        "type": "ReorderJokers",
+        "ids": [
+          "run/1791963651316/laohuan/joker/run/1791963651316/laohuan/command/2",
+          "run/1791963651316/laohuan/joker/run/1791963651316/laohuan/command/23",
+          "run/1791963651316/laohuan/joker/run/1791963651316/laohuan/command/95",
+          "run/1791963651316/laohuan/joker/run/1791963651316/laohuan/command/34",
+          "run/1791963651316/laohuan/joker/run/1791963651316/laohuan/command/82"
+        ]
+      }
+    },
+    {
+      "runId": "run/1791963651316/laohuan",
+      "commandId": "run/1791963651316/laohuan/command/97",
+      "expectedSeq": 96,
+      "action": {
+        "type": "ChooseProgram",
+        "programId": "PG03"
+      }
+    },
+    {
+      "runId": "run/1791963651316/laohuan",
+      "commandId": "run/1791963651316/laohuan/command/98",
+      "expectedSeq": 97,
+      "action": {
+        "type": "LeaveShop"
+      }
+    },
+    {
+      "runId": "run/1791963651316/laohuan",
+      "commandId": "run/1791963651316/laohuan/command/99",
+      "expectedSeq": 98,
+      "action": {
+        "type": "EnterStage"
+      }
+    },
+    {
+      "runId": "run/1791963651316/laohuan",
+      "commandId": "run/1791963651316/laohuan/command/100",
+      "expectedSeq": 99,
+      "action": {
+        "type": "DiscardHand",
+        "selectedIds": [
+          "hearts-10",
+          "diamonds-2",
+          "diamonds-4",
+          "clubs-5"
+        ],
+        "laohuanTrick": true
+      }
+    },
+    {
+      "runId": "run/1791963651316/laohuan",
+      "commandId": "run/1791963651316/laohuan/command/101",
+      "expectedSeq": 100,
+      "action": {
+        "type": "ChooseRefill",
+        "selectedIds": [
+          "clubs-13",
+          "spades-5",
+          "spades-12",
+          "spades-4"
+        ]
+      }
+    },
+    {
+      "runId": "run/1791963651316/laohuan",
+      "commandId": "run/1791963651316/laohuan/command/102",
+      "expectedSeq": 101,
+      "action": {
+        "type": "DiscardHand",
+        "selectedIds": [
+          "clubs-13",
+          "spades-5",
+          "spades-12",
+          "spades-4"
+        ]
+      }
+    },
+    {
+      "runId": "run/1791963651316/laohuan",
+      "commandId": "run/1791963651316/laohuan/command/103",
+      "expectedSeq": 102,
+      "action": {
+        "type": "PlayHand",
+        "selectedIds": [
+          "spades-10",
+          "clubs-8",
+          "diamonds-12",
+          "hearts-9",
+          "spades-11"
+        ]
+      }
+    },
+    {
+      "runId": "run/1791963651316/laohuan",
+      "commandId": "run/1791963651316/laohuan/command/104",
+      "expectedSeq": 103,
+      "action": {
+        "type": "OpenShop"
+      }
+    },
+    {
+      "runId": "run/1791963651316/laohuan",
+      "commandId": "run/1791963651316/laohuan/command/105",
+      "expectedSeq": 104,
+      "action": {
+        "type": "LeaveShop"
+      }
+    },
+    {
+      "runId": "run/1791963651316/laohuan",
+      "commandId": "run/1791963651316/laohuan/command/106",
+      "expectedSeq": 105,
+      "action": {
+        "type": "EnterStage"
+      }
+    },
+    {
+      "runId": "run/1791963651316/laohuan",
+      "commandId": "run/1791963651316/laohuan/command/107",
+      "expectedSeq": 106,
+      "action": {
+        "type": "PlayHand",
+        "selectedIds": [
+          "hearts-13",
+          "spades-12",
+          "hearts-14",
+          "clubs-11",
+          "hearts-10"
+        ]
+      }
+    },
+    {
+      "runId": "run/1791963651316/laohuan",
+      "commandId": "run/1791963651316/laohuan/command/108",
+      "expectedSeq": 107,
+      "action": {
+        "type": "OpenShop"
+      }
+    },
+    {
+      "runId": "run/1791963651316/laohuan",
+      "commandId": "run/1791963651316/laohuan/command/109",
+      "expectedSeq": 108,
+      "action": {
+        "type": "BuyOffer",
+        "offerId": "run/1791963651316/laohuan/shop/14/0/tool/0"
+      }
+    },
+    {
+      "runId": "run/1791963651316/laohuan",
+      "commandId": "run/1791963651316/laohuan/command/110",
+      "expectedSeq": 109,
+      "action": {
+        "type": "UseConsumable",
+        "instanceId": "run/1791963651316/laohuan/tool/run/1791963651316/laohuan/command/109",
+        "targetIds": []
+      }
+    },
+    {
+      "runId": "run/1791963651316/laohuan",
+      "commandId": "run/1791963651316/laohuan/command/111",
+      "expectedSeq": 110,
+      "action": {
+        "type": "LeaveShop"
+      }
+    },
+    {
+      "runId": "run/1791963651316/laohuan",
+      "commandId": "run/1791963651316/laohuan/command/112",
+      "expectedSeq": 111,
+      "action": {
+        "type": "EnterStage"
+      }
+    },
+    {
+      "runId": "run/1791963651316/laohuan",
+      "commandId": "run/1791963651316/laohuan/command/113",
+      "expectedSeq": 112,
+      "action": {
+        "type": "DiscardHand",
+        "selectedIds": [
+          "diamonds-13",
+          "diamonds-7",
+          "diamonds-14",
+          "clubs-9"
+        ],
+        "laohuanTrick": true
+      }
+    },
+    {
+      "runId": "run/1791963651316/laohuan",
+      "commandId": "run/1791963651316/laohuan/command/114",
+      "expectedSeq": 113,
+      "action": {
+        "type": "ChooseRefill",
+        "selectedIds": [
+          "hearts-12",
+          "spades-11",
+          "spades-4",
+          "clubs-5"
+        ]
+      }
+    },
+    {
+      "runId": "run/1791963651316/laohuan",
+      "commandId": "run/1791963651316/laohuan/command/115",
+      "expectedSeq": 114,
+      "action": {
+        "type": "PlayHand",
+        "selectedIds": [
+          "clubs-6",
+          "spades-7",
+          "spades-4",
+          "clubs-5"
+        ]
+      }
+    },
+    {
+      "runId": "run/1791963651316/laohuan",
+      "commandId": "run/1791963651316/laohuan/command/116",
+      "expectedSeq": 115,
+      "action": {
+        "type": "OpenShop"
+      }
+    },
+    {
+      "runId": "run/1791963651316/laohuan",
+      "commandId": "run/1791963651316/laohuan/command/117",
+      "expectedSeq": 116,
+      "action": {
+        "type": "ChooseProgram",
+        "programId": "PG02"
+      }
+    },
+    {
+      "runId": "run/1791963651316/laohuan",
+      "commandId": "run/1791963651316/laohuan/command/118",
+      "expectedSeq": 117,
+      "action": {
+        "type": "LeaveShop"
+      }
+    },
+    {
+      "runId": "run/1791963651316/laohuan",
+      "commandId": "run/1791963651316/laohuan/command/119",
+      "expectedSeq": 118,
+      "action": {
+        "type": "EnterStage"
+      }
+    },
+    {
+      "runId": "run/1791963651316/laohuan",
+      "commandId": "run/1791963651316/laohuan/command/120",
+      "expectedSeq": 119,
+      "action": {
+        "type": "DiscardHand",
+        "selectedIds": [
+          "clubs-14",
+          "spades-14",
+          "spades-2",
+          "diamonds-13"
+        ],
+        "laohuanTrick": true
+      }
+    },
+    {
+      "runId": "run/1791963651316/laohuan",
+      "commandId": "run/1791963651316/laohuan/command/121",
+      "expectedSeq": 120,
+      "action": {
+        "type": "ChooseRefill",
+        "selectedIds": [
+          "spades-11",
+          "hearts-9",
+          "hearts-10",
+          "clubs-11"
+        ]
+      }
+    },
+    {
+      "runId": "run/1791963651316/laohuan",
+      "commandId": "run/1791963651316/laohuan/command/122",
+      "expectedSeq": 121,
+      "action": {
+        "type": "DiscardHand",
+        "selectedIds": [
+          "spades-5",
+          "clubs-13",
+          "spades-3",
+          "clubs-11"
+        ]
+      }
+    },
+    {
+      "runId": "run/1791963651316/laohuan",
+      "commandId": "run/1791963651316/laohuan/command/123",
+      "expectedSeq": 122,
+      "action": {
+        "type": "PlayHand",
+        "selectedIds": [
+          "diamonds-7",
+          "spades-11",
+          "hearts-9",
+          "hearts-10",
+          "clubs-8"
+        ]
+      }
+    },
+    {
+      "runId": "run/1791963651316/laohuan",
+      "commandId": "run/1791963651316/laohuan/command/124",
+      "expectedSeq": 123,
+      "action": {
+        "type": "OpenShop"
+      }
+    },
+    {
+      "runId": "run/1791963651316/laohuan",
+      "commandId": "run/1791963651316/laohuan/command/125",
+      "expectedSeq": 124,
+      "action": {
+        "type": "LeaveShop"
+      }
+    },
+    {
+      "runId": "run/1791963651316/laohuan",
+      "commandId": "run/1791963651316/laohuan/command/126",
+      "expectedSeq": 125,
+      "action": {
+        "type": "EnterStage"
+      }
+    },
+    {
+      "runId": "run/1791963651316/laohuan",
+      "commandId": "run/1791963651316/laohuan/command/127",
+      "expectedSeq": 126,
+      "action": {
+        "type": "DiscardHand",
+        "selectedIds": [
+          "clubs-2",
+          "spades-13",
+          "diamonds-7",
+          "diamonds-12"
+        ],
+        "laohuanTrick": true
+      }
+    },
+    {
+      "runId": "run/1791963651316/laohuan",
+      "commandId": "run/1791963651316/laohuan/command/128",
+      "expectedSeq": 127,
+      "action": {
+        "type": "ChooseRefill",
+        "selectedIds": [
+          "clubs-9",
+          "clubs-10",
+          "hearts-10",
+          "clubs-5"
+        ]
+      }
+    },
+    {
+      "runId": "run/1791963651316/laohuan",
+      "commandId": "run/1791963651316/laohuan/command/129",
+      "expectedSeq": 128,
+      "action": {
+        "type": "PlayHand",
+        "selectedIds": [
+          "diamonds-11",
+          "clubs-12",
+          "clubs-9",
+          "clubs-10"
+        ]
+      }
+    },
+    {
+      "runId": "run/1791963651316/laohuan",
+      "commandId": "run/1791963651316/laohuan/command/130",
+      "expectedSeq": 129,
+      "action": {
+        "type": "OpenShop"
+      }
+    },
+    {
+      "runId": "run/1791963651316/laohuan",
+      "commandId": "run/1791963651316/laohuan/command/131",
+      "expectedSeq": 130,
+      "action": {
+        "type": "LeaveShop"
+      }
+    },
+    {
+      "runId": "run/1791963651316/laohuan",
+      "commandId": "run/1791963651316/laohuan/command/132",
+      "expectedSeq": 131,
+      "action": {
+        "type": "EnterStage"
+      }
+    },
+    {
+      "runId": "run/1791963651316/laohuan",
+      "commandId": "run/1791963651316/laohuan/command/133",
+      "expectedSeq": 132,
+      "action": {
+        "type": "PlayHand",
+        "selectedIds": [
+          "hearts-11",
+          "diamonds-10",
+          "clubs-13",
+          "hearts-12",
+          "diamonds-14"
+        ]
+      }
+    },
+    {
+      "runId": "run/1791963651316/laohuan",
+      "commandId": "run/1791963651316/laohuan/command/134",
+      "expectedSeq": 133,
+      "action": {
+        "type": "OpenShop"
+      }
+    },
+    {
+      "runId": "run/1791963651316/laohuan",
+      "commandId": "run/1791963651316/laohuan/command/135",
+      "expectedSeq": 134,
+      "action": {
+        "type": "BuyOffer",
+        "offerId": "run/1791963651316/laohuan/shop/18/0/tool/0"
+      }
+    },
+    {
+      "runId": "run/1791963651316/laohuan",
+      "commandId": "run/1791963651316/laohuan/command/136",
+      "expectedSeq": 135,
+      "action": {
+        "type": "UseConsumable",
+        "instanceId": "run/1791963651316/laohuan/tool/run/1791963651316/laohuan/command/135",
+        "targetIds": [],
+        "handType": "straight"
+      }
+    },
+    {
+      "runId": "run/1791963651316/laohuan",
+      "commandId": "run/1791963651316/laohuan/command/137",
+      "expectedSeq": 136,
+      "action": {
+        "type": "ChooseProgram",
+        "programId": null
+      }
+    },
+    {
+      "runId": "run/1791963651316/laohuan",
+      "commandId": "run/1791963651316/laohuan/command/138",
+      "expectedSeq": 137,
+      "action": {
+        "type": "LeaveShop"
+      }
+    },
+    {
+      "runId": "run/1791963651316/laohuan",
+      "commandId": "run/1791963651316/laohuan/command/139",
+      "expectedSeq": 138,
+      "action": {
+        "type": "EnterStage"
+      }
+    },
+    {
+      "runId": "run/1791963651316/laohuan",
+      "commandId": "run/1791963651316/laohuan/command/140",
+      "expectedSeq": 139,
+      "action": {
+        "type": "DiscardHand",
+        "selectedIds": [
+          "clubs-2",
+          "spades-9",
+          "diamonds-5",
+          "hearts-10"
+        ],
+        "laohuanTrick": true
+      }
+    },
+    {
+      "runId": "run/1791963651316/laohuan",
+      "commandId": "run/1791963651316/laohuan/command/141",
+      "expectedSeq": 140,
+      "action": {
+        "type": "ChooseRefill",
+        "selectedIds": [
+          "hearts-14",
+          "hearts-5",
+          "clubs-9",
+          "spades-13"
+        ]
+      }
+    },
+    {
+      "runId": "run/1791963651316/laohuan",
+      "commandId": "run/1791963651316/laohuan/command/142",
+      "expectedSeq": 141,
+      "action": {
+        "type": "DiscardHand",
+        "selectedIds": [
+          "diamonds-6",
+          "hearts-14",
+          "hearts-5",
+          "clubs-9"
+        ]
+      }
+    },
+    {
+      "runId": "run/1791963651316/laohuan",
+      "commandId": "run/1791963651316/laohuan/command/143",
+      "expectedSeq": 142,
+      "action": {
+        "type": "PlayHand",
+        "selectedIds": [
+          "diamonds-9",
+          "clubs-8",
+          "diamonds-10",
+          "diamonds-12",
+          "diamonds-11"
+        ]
+      }
+    },
+    {
+      "runId": "run/1791963651316/laohuan",
+      "commandId": "run/1791963651316/laohuan/command/144",
+      "expectedSeq": 143,
+      "action": {
+        "type": "OpenShop"
+      }
+    },
+    {
+      "runId": "run/1791963651316/laohuan",
+      "commandId": "run/1791963651316/laohuan/command/145",
+      "expectedSeq": 144,
+      "action": {
+        "type": "BuyOffer",
+        "offerId": "run/1791963651316/laohuan/shop/19/0/tool/0"
+      }
+    },
+    {
+      "runId": "run/1791963651316/laohuan",
+      "commandId": "run/1791963651316/laohuan/command/146",
+      "expectedSeq": 145,
+      "action": {
+        "type": "UseConsumable",
+        "instanceId": "run/1791963651316/laohuan/tool/run/1791963651316/laohuan/command/145",
+        "targetIds": []
+      }
+    },
+    {
+      "runId": "run/1791963651316/laohuan",
+      "commandId": "run/1791963651316/laohuan/command/147",
+      "expectedSeq": 146,
+      "action": {
+        "type": "LeaveShop"
+      }
+    },
+    {
+      "runId": "run/1791963651316/laohuan",
+      "commandId": "run/1791963651316/laohuan/command/148",
+      "expectedSeq": 147,
+      "action": {
+        "type": "EnterStage"
+      }
+    },
+    {
+      "runId": "run/1791963651316/laohuan",
+      "commandId": "run/1791963651316/laohuan/command/149",
+      "expectedSeq": 148,
+      "action": {
+        "type": "DiscardHand",
+        "selectedIds": [
+          "hearts-3",
+          "diamonds-4",
+          "diamonds-9",
+          "diamonds-7",
+          "diamonds-5"
+        ],
+        "laohuanTrick": true
+      }
+    },
+    {
+      "runId": "run/1791963651316/laohuan",
+      "commandId": "run/1791963651316/laohuan/command/150",
+      "expectedSeq": 149,
+      "action": {
+        "type": "ChooseRefill",
+        "selectedIds": [
+          "spades-12",
+          "clubs-14",
+          "diamonds-12",
+          "clubs-8",
+          "spades-8"
+        ]
+      }
+    },
+    {
+      "runId": "run/1791963651316/laohuan",
+      "commandId": "run/1791963651316/laohuan/command/151",
+      "expectedSeq": 150,
+      "action": {
+        "type": "PlayHand",
+        "selectedIds": [
+          "clubs-13",
+          "clubs-12",
+          "clubs-11",
+          "clubs-14"
+        ]
+      }
+    },
+    {
+      "runId": "run/1791963651316/laohuan",
+      "commandId": "run/1791963651316/laohuan/command/152",
+      "expectedSeq": 151,
+      "action": {
+        "type": "OpenShop"
+      }
+    },
+    {
+      "runId": "run/1791963651316/laohuan",
+      "commandId": "run/1791963651316/laohuan/command/153",
+      "expectedSeq": 152,
+      "action": {
+        "type": "BuyOffer",
+        "offerId": "run/1791963651316/laohuan/shop/20/0/tool/0"
+      }
+    },
+    {
+      "runId": "run/1791963651316/laohuan",
+      "commandId": "run/1791963651316/laohuan/command/154",
+      "expectedSeq": 153,
+      "action": {
+        "type": "UseConsumable",
+        "instanceId": "run/1791963651316/laohuan/tool/run/1791963651316/laohuan/command/153",
+        "targetIds": []
+      }
+    },
+    {
+      "runId": "run/1791963651316/laohuan",
+      "commandId": "run/1791963651316/laohuan/command/155",
+      "expectedSeq": 154,
+      "action": {
+        "type": "LeaveShop"
+      }
+    },
+    {
+      "runId": "run/1791963651316/laohuan",
+      "commandId": "run/1791963651316/laohuan/command/156",
+      "expectedSeq": 155,
+      "action": {
+        "type": "EnterStage"
+      }
+    },
+    {
+      "runId": "run/1791963651316/laohuan",
+      "commandId": "run/1791963651316/laohuan/command/157",
+      "expectedSeq": 156,
+      "action": {
+        "type": "PlayHand",
+        "selectedIds": [
+          "spades-4",
+          "hearts-2",
+          "spades-5",
+          "spades-3"
+        ]
+      }
+    },
+    {
+      "runId": "run/1791963651316/laohuan",
+      "commandId": "run/1791963651316/laohuan/command/158",
+      "expectedSeq": 157,
+      "action": {
+        "type": "OpenShop"
+      }
+    },
+    {
+      "runId": "run/1791963651316/laohuan",
+      "commandId": "run/1791963651316/laohuan/command/159",
+      "expectedSeq": 158,
+      "action": {
+        "type": "ChooseProgram",
+        "programId": null
+      }
+    },
+    {
+      "runId": "run/1791963651316/laohuan",
+      "commandId": "run/1791963651316/laohuan/command/160",
+      "expectedSeq": 159,
+      "action": {
+        "type": "BuyOffer",
+        "offerId": "run/1791963651316/laohuan/shop/21/0/tool/0"
+      }
+    },
+    {
+      "runId": "run/1791963651316/laohuan",
+      "commandId": "run/1791963651316/laohuan/command/161",
+      "expectedSeq": 160,
+      "action": {
+        "type": "UseConsumable",
+        "instanceId": "run/1791963651316/laohuan/tool/run/1791963651316/laohuan/command/160",
+        "targetIds": []
+      }
+    },
+    {
+      "runId": "run/1791963651316/laohuan",
+      "commandId": "run/1791963651316/laohuan/command/162",
+      "expectedSeq": 161,
+      "action": {
+        "type": "LeaveShop"
+      }
+    },
+    {
+      "runId": "run/1791963651316/laohuan",
+      "commandId": "run/1791963651316/laohuan/command/163",
+      "expectedSeq": 162,
+      "action": {
+        "type": "EnterStage"
+      }
+    },
+    {
+      "runId": "run/1791963651316/laohuan",
+      "commandId": "run/1791963651316/laohuan/command/164",
+      "expectedSeq": 163,
+      "action": {
+        "type": "DiscardHand",
+        "selectedIds": [
+          "spades-8",
+          "hearts-3",
+          "clubs-6",
+          "clubs-2",
+          "diamonds-6"
+        ],
+        "laohuanTrick": true
+      }
+    },
+    {
+      "runId": "run/1791963651316/laohuan",
+      "commandId": "run/1791963651316/laohuan/command/165",
+      "expectedSeq": 164,
+      "action": {
+        "type": "ChooseRefill",
+        "selectedIds": [
+          "hearts-6",
+          "clubs-10",
+          "diamonds-10",
+          "hearts-7",
+          "spades-12"
+        ]
+      }
+    },
+    {
+      "runId": "run/1791963651316/laohuan",
+      "commandId": "run/1791963651316/laohuan/command/166",
+      "expectedSeq": 165,
+      "action": {
+        "type": "DiscardHand",
+        "selectedIds": [
+          "clubs-14",
+          "hearts-12",
+          "hearts-6",
+          "diamonds-10",
+          "hearts-7"
+        ]
+      }
+    },
+    {
+      "runId": "run/1791963651316/laohuan",
+      "commandId": "run/1791963651316/laohuan/command/167",
+      "expectedSeq": 166,
+      "action": {
+        "type": "DiscardHand",
+        "selectedIds": [
+          "spades-5",
+          "clubs-11",
+          "hearts-4",
+          "clubs-7",
+          "clubs-5"
+        ]
+      }
+    },
+    {
+      "runId": "run/1791963651316/laohuan",
+      "commandId": "run/1791963651316/laohuan/command/168",
+      "expectedSeq": 167,
+      "action": {
+        "type": "PlayHand",
+        "selectedIds": [
+          "spades-3",
+          "clubs-4",
+          "hearts-14",
+          "clubs-8"
+        ]
+      }
+    },
+    {
+      "runId": "run/1791963651316/laohuan",
+      "commandId": "run/1791963651316/laohuan/command/169",
+      "expectedSeq": 168,
+      "action": {
+        "type": "PlayHand",
+        "selectedIds": [
+          "clubs-12",
+          "spades-11",
+          "clubs-10",
+          "clubs-9",
+          "diamonds-8"
+        ]
+      }
+    },
+    {
+      "runId": "run/1791963651316/laohuan",
+      "commandId": "run/1791963651316/laohuan/command/170",
+      "expectedSeq": 169,
+      "action": {
+        "type": "OpenShop"
+      }
+    },
+    {
+      "runId": "run/1791963651316/laohuan",
+      "commandId": "run/1791963651316/laohuan/command/171",
+      "expectedSeq": 170,
+      "action": {
+        "type": "LeaveShop"
+      }
+    },
+    {
+      "runId": "run/1791963651316/laohuan",
+      "commandId": "run/1791963651316/laohuan/command/172",
+      "expectedSeq": 171,
+      "action": {
+        "type": "EnterStage"
+      }
+    },
+    {
+      "runId": "run/1791963651316/laohuan",
+      "commandId": "run/1791963651316/laohuan/command/173",
+      "expectedSeq": 172,
+      "action": {
+        "type": "DiscardHand",
+        "selectedIds": [
+          "spades-2",
+          "hearts-4",
+          "spades-14",
+          "spades-5",
+          "hearts-5"
+        ],
+        "laohuanTrick": true
+      }
+    },
+    {
+      "runId": "run/1791963651316/laohuan",
+      "commandId": "run/1791963651316/laohuan/command/174",
+      "expectedSeq": 173,
+      "action": {
+        "type": "ChooseRefill",
+        "selectedIds": [
+          "spades-7",
+          "diamonds-13",
+          "diamonds-10",
+          "hearts-11",
+          "clubs-6"
+        ]
+      }
+    },
+    {
+      "runId": "run/1791963651316/laohuan",
+      "commandId": "run/1791963651316/laohuan/command/175",
+      "expectedSeq": 174,
+      "action": {
+        "type": "PlayHand",
+        "selectedIds": [
+          "clubs-9",
+          "spades-8",
+          "spades-11",
+          "spades-7",
+          "diamonds-10"
+        ]
+      }
+    },
+    {
+      "runId": "run/1791963651316/laohuan",
+      "commandId": "run/1791963651316/laohuan/command/176",
+      "expectedSeq": 175,
+      "action": {
+        "type": "OpenShop"
+      }
+    },
+    {
+      "runId": "run/1791963651316/laohuan",
+      "commandId": "run/1791963651316/laohuan/command/177",
+      "expectedSeq": 176,
+      "action": {
+        "type": "LeaveShop"
+      }
+    },
+    {
+      "runId": "run/1791963651316/laohuan",
+      "commandId": "run/1791963651316/laohuan/command/178",
+      "expectedSeq": 177,
+      "action": {
+        "type": "EnterStage"
+      }
+    },
+    {
+      "runId": "run/1791963651316/laohuan",
+      "commandId": "run/1791963651316/laohuan/command/179",
+      "expectedSeq": 178,
+      "action": {
+        "type": "PlayHand",
+        "selectedIds": [
+          "spades-8",
+          "spades-5",
+          "hearts-6",
+          "diamonds-7"
+        ]
+      }
+    },
+    {
+      "runId": "run/1791963651316/laohuan",
+      "commandId": "run/1791963651316/laohuan/command/180",
+      "expectedSeq": 179,
+      "action": {
+        "type": "ContinueEndless"
+      }
+    },
+    {
+      "runId": "run/1791963651316/laohuan",
+      "commandId": "run/1791963651316/laohuan/command/181",
+      "expectedSeq": 180,
+      "action": {
+        "type": "ChooseProgram",
+        "programId": "PG03"
+      }
+    },
+    {
+      "runId": "run/1791963651316/laohuan",
+      "commandId": "run/1791963651316/laohuan/command/182",
+      "expectedSeq": 181,
+      "action": {
+        "type": "LeaveShop"
+      }
+    },
+    {
+      "runId": "run/1791963651316/laohuan",
+      "commandId": "run/1791963651316/laohuan/command/183",
+      "expectedSeq": 182,
+      "action": {
+        "type": "EnterStage"
+      }
+    },
+    {
+      "runId": "run/1791963651316/laohuan",
+      "commandId": "run/1791963651316/laohuan/command/184",
+      "expectedSeq": 183,
+      "action": {
+        "type": "DiscardHand",
+        "selectedIds": [
+          "clubs-3",
+          "spades-10",
+          "diamonds-11",
+          "clubs-10",
+          "hearts-5"
+        ],
+        "laohuanTrick": true
+      }
+    },
+    {
+      "runId": "run/1791963651316/laohuan",
+      "commandId": "run/1791963651316/laohuan/command/185",
+      "expectedSeq": 184,
+      "action": {
+        "type": "ChooseRefill",
+        "selectedIds": [
+          "clubs-6",
+          "diamonds-13",
+          "hearts-8",
+          "clubs-7",
+          "hearts-9"
+        ]
+      }
+    },
+    {
+      "runId": "run/1791963651316/laohuan",
+      "commandId": "run/1791963651316/laohuan/command/186",
+      "expectedSeq": 185,
+      "action": {
+        "type": "PlayHand",
+        "selectedIds": [
+          "spades-5",
+          "hearts-6",
+          "hearts-8",
+          "clubs-7",
+          "hearts-9"
+        ]
+      }
+    },
+    {
+      "runId": "run/1791963651316/laohuan",
+      "commandId": "run/1791963651316/laohuan/command/187",
+      "expectedSeq": 186,
+      "action": {
+        "type": "OpenShop"
+      }
+    },
+    {
+      "runId": "run/1791963651316/laohuan",
+      "commandId": "run/1791963651316/laohuan/command/188",
+      "expectedSeq": 187,
+      "action": {
+        "type": "LeaveShop"
+      }
+    },
+    {
+      "runId": "run/1791963651316/laohuan",
+      "commandId": "run/1791963651316/laohuan/command/189",
+      "expectedSeq": 188,
+      "action": {
+        "type": "EnterStage"
+      }
+    },
+    {
+      "runId": "run/1791963651316/laohuan",
+      "commandId": "run/1791963651316/laohuan/command/190",
+      "expectedSeq": 189,
+      "action": {
+        "type": "PlayHand",
+        "selectedIds": [
+          "diamonds-2",
+          "clubs-4",
+          "hearts-3",
+          "spades-14"
+        ]
+      }
+    },
+    {
+      "runId": "run/1791963651316/laohuan",
+      "commandId": "run/1791963651316/laohuan/command/191",
+      "expectedSeq": 190,
+      "action": {
+        "type": "OpenShop"
+      }
+    },
+    {
+      "runId": "run/1791963651316/laohuan",
+      "commandId": "run/1791963651316/laohuan/command/192",
+      "expectedSeq": 191,
+      "action": {
+        "type": "LeaveShop"
+      }
+    },
+    {
+      "runId": "run/1791963651316/laohuan",
+      "commandId": "run/1791963651316/laohuan/command/193",
+      "expectedSeq": 192,
+      "action": {
+        "type": "EnterStage"
+      }
+    },
+    {
+      "runId": "run/1791963651316/laohuan",
+      "commandId": "run/1791963651316/laohuan/command/194",
+      "expectedSeq": 193,
+      "action": {
+        "type": "DiscardHand",
+        "selectedIds": [
+          "hearts-7",
+          "hearts-2",
+          "clubs-14",
+          "spades-4",
+          "clubs-2"
+        ],
+        "laohuanTrick": true
+      }
+    },
+    {
+      "runId": "run/1791963651316/laohuan",
+      "commandId": "run/1791963651316/laohuan/command/195",
+      "expectedSeq": 194,
+      "action": {
+        "type": "ChooseRefill",
+        "selectedIds": [
+          "hearts-14",
+          "spades-8",
+          "diamonds-12",
+          "spades-11",
+          "diamonds-10"
+        ]
+      }
+    },
+    {
+      "runId": "run/1791963651316/laohuan",
+      "commandId": "run/1791963651316/laohuan/command/196",
+      "expectedSeq": 195,
+      "action": {
+        "type": "PlayHand",
+        "selectedIds": [
+          "clubs-12",
+          "clubs-9",
+          "diamonds-11",
+          "spades-8",
+          "diamonds-10"
+        ]
+      }
+    }
+  ],
+  "checksum": "json-fnv-v1:9419c7ef97b1d82b"
+}
