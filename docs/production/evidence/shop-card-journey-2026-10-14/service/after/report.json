@@ -1,0 +1,986 @@
+{
+  "head": "e8cd3532d10aae783f4fb92e9c0ef9da1657f81d",
+  "sourceTree": "e0042f97d9183ca45be680bb92484496b80b5133",
+  "modified": "",
+  "core": "0b41f87618e0fca3016a352d59af62353a2acafa",
+  "scope": "Current core identity, public validator-approved level/gold/stock checkpoints; native mouse/touch/DOM and actual SavedRun/IDB, full oracle. Not natural acquisition, physical device, gameplay balance or legacy save migration.",
+  "cases": [
+    {
+      "width": 320,
+      "height": 844,
+      "errors": [],
+      "checks": [
+        "only discovered uncapped rows, quote matches authority; cancel/Escape preserve complete state with zero commands",
+        "full inventory does not block service; delayed double click/escape one candidate, quota failure unchanged, fixed retry paid/upgraded once with no inventory/RNG/target drift",
+        "original held T01 uses without gold and random T01 buy-store uses original price/inventory despite consumed service quota",
+        "real reroll does not reset shared quota; cold restore full state/journal/IDB equality",
+        "basic tool purchase consumes service quota; real reroll cannot reopen it",
+        "unaffordable discovered rows stay visible with shortfall, disabled and zero commands",
+        "direct delayed success consumes actual hand-practiced, one dispatch/payment, quoted minimum1 and no optimistic publication",
+        "actual dye purchase also consumes the same service quota and remains an unused inventory tool",
+        "native endless confirmation displays authority 1.35; cancel zero commands, original ContinueEndless saves C9 target27642"
+      ],
+      "shots": [
+        "320-shop.png",
+        "320-services.png",
+        "320-confirmation.png",
+        "320-saving.png",
+        "320-save-failure.png",
+        "320-saved.png",
+        "320-shared-quota-used.png",
+        "320-original-T01-purchase.png",
+        "320-refresh-keeps-quota.png",
+        "320-basic-blocks-service.png",
+        "320-insufficient-gold.png",
+        "320-direct-saved-minimum-price.png",
+        "320-dye-blocks-service.png",
+        "320-endless-confirmation.png"
+      ],
+      "transactions": [
+        {
+          "action": {
+            "type": "PracticeHand",
+            "handType": "pair",
+            "expectedLevel": 4,
+            "shopSeq": 4
+          },
+          "beforeSeq": 4,
+          "afterSeq": 5,
+          "events": [
+            {
+              "type": "hand-practiced",
+              "handType": "pair",
+              "levelBefore": 4,
+              "levelAfter": 5,
+              "paidPrice": 3,
+              "goldBefore": 30,
+              "goldAfter": 27
+            }
+          ]
+        },
+        {
+          "action": {
+            "type": "UseConsumable",
+            "instanceId": "kept/T01",
+            "handType": "pair",
+            "targetIds": []
+          },
+          "beforeSeq": 5,
+          "afterSeq": 6,
+          "events": [
+            {
+              "type": "consumable-used",
+              "definitionId": "T01",
+              "instanceId": "kept/T01",
+              "targetIds": [],
+              "createdCardIds": [],
+              "destroyedCardIds": []
+            }
+          ]
+        },
+        {
+          "action": {
+            "type": "BuyOffer",
+            "offerId": "practice/tool/0"
+          },
+          "beforeSeq": 6,
+          "afterSeq": 7,
+          "events": []
+        },
+        {
+          "action": {
+            "type": "RerollShop"
+          },
+          "beforeSeq": 7,
+          "afterSeq": 8,
+          "events": []
+        },
+        {
+          "action": {
+            "type": "BuyBasicTool",
+            "definitionId": "T08",
+            "shopSeq": 4
+          },
+          "beforeSeq": 4,
+          "afterSeq": 5,
+          "events": []
+        },
+        {
+          "action": {
+            "type": "RerollShop"
+          },
+          "beforeSeq": 5,
+          "afterSeq": 6,
+          "events": []
+        },
+        {
+          "action": {
+            "type": "PracticeHand",
+            "handType": "high-card",
+            "expectedLevel": 1,
+            "shopSeq": 4
+          },
+          "beforeSeq": 4,
+          "afterSeq": 5,
+          "events": [
+            {
+              "type": "hand-practiced",
+              "handType": "high-card",
+              "levelBefore": 1,
+              "levelAfter": 2,
+              "paidPrice": 1,
+              "goldBefore": 30,
+              "goldAfter": 29
+            }
+          ]
+        },
+        {
+          "action": {
+            "type": "BuyBasicTool",
+            "definitionId": "T03",
+            "shopSeq": 4
+          },
+          "beforeSeq": 4,
+          "afterSeq": 5,
+          "events": []
+        },
+        {
+          "action": {
+            "type": "ContinueEndless"
+          },
+          "beforeSeq": 179,
+          "afterSeq": 180,
+          "events": []
+        }
+      ],
+      "last": {
+        "seq": 180,
+        "gold": 218,
+        "levels": {
+          "straight": 14,
+          "pair": 1,
+          "high-card": 1
+        },
+        "quota": {
+          "shopSeq": 180,
+          "purchase": null
+        }
+      },
+      "initial": {
+        "seq": 4,
+        "gold": 30,
+        "levels": {
+          "high-card": 1,
+          "pair": 4,
+          "three-kind": 30
+        },
+        "quota": {
+          "shopSeq": 4,
+          "purchase": null
+        }
+      },
+      "quote": {
+        "handType": "pair",
+        "levelBefore": 4,
+        "levelAfter": 5,
+        "basePrice": 6,
+        "price": 3,
+        "goldAfter": 27,
+        "shopSeq": 4,
+        "expectedSeq": 4,
+        "available": true,
+        "reason": null
+      },
+      "restored": {
+        "seq": 8,
+        "gold": 21,
+        "levels": {
+          "high-card": 1,
+          "pair": 6,
+          "three-kind": 30
+        },
+        "quota": {
+          "shopSeq": 4,
+          "purchase": {
+            "definitionId": "T01",
+            "handType": "pair",
+            "levelBefore": 4,
+            "commandId": "practice-ui/normal/command/5",
+            "paidPrice": 3,
+            "seq": 5
+          }
+        }
+      },
+      "endlessCopy": "八章通关已保存。\n\n继续无尽会保留当前牌组、大丑牌、成长、道具与金币，从第九章商店接续。\n\n后续每章同场次目标按 1.35 倍递增，最终向上取整；新的压轴规则仍会公开。\n\n是否继续由你决定；取消可留在胜利页。",
+      "targetPolicy": {
+        "targets": [
+          400,
+          900,
+          1800,
+          3600,
+          6000,
+          9000,
+          14000,
+          20475
+        ],
+        "multiplier": {
+          "n": "27",
+          "d": "20"
+        },
+        "stageMultipliers": [
+          {
+            "n": "1",
+            "d": "1"
+          },
+          {
+            "n": "3",
+            "d": "2"
+          },
+          {
+            "n": "2",
+            "d": "1"
+          }
+        ],
+        "rounding": "ceil-final-target",
+        "difficulty": "existing",
+        "boss14": "locked-initial-plus-ceil-initial-div20-per-discard",
+        "publication": "chapter-before-preparation",
+        "locking": "no-player-score-input"
+      },
+      "status": "PASS"
+    },
+    {
+      "width": 390,
+      "height": 740,
+      "errors": [],
+      "checks": [
+        "only discovered uncapped rows, quote matches authority; cancel/Escape preserve complete state with zero commands",
+        "full inventory does not block service; delayed double click/escape one candidate, quota failure unchanged, fixed retry paid/upgraded once with no inventory/RNG/target drift",
+        "original held T01 uses without gold and random T01 buy-store uses original price/inventory despite consumed service quota",
+        "real reroll does not reset shared quota; cold restore full state/journal/IDB equality",
+        "basic tool purchase consumes service quota; real reroll cannot reopen it",
+        "unaffordable discovered rows stay visible with shortfall, disabled and zero commands",
+        "direct delayed success consumes actual hand-practiced, one dispatch/payment, quoted minimum1 and no optimistic publication",
+        "actual dye purchase also consumes the same service quota and remains an unused inventory tool",
+        "native endless confirmation displays authority 1.35; cancel zero commands, original ContinueEndless saves C9 target27642"
+      ],
+      "shots": [
+        "390-shop.png",
+        "390-services.png",
+        "390-confirmation.png",
+        "390-saving.png",
+        "390-save-failure.png",
+        "390-saved.png",
+        "390-shared-quota-used.png",
+        "390-original-T01-purchase.png",
+        "390-refresh-keeps-quota.png",
+        "390-basic-blocks-service.png",
+        "390-insufficient-gold.png",
+        "390-direct-saved-minimum-price.png",
+        "390-dye-blocks-service.png",
+        "390-endless-confirmation.png"
+      ],
+      "transactions": [
+        {
+          "action": {
+            "type": "PracticeHand",
+            "handType": "pair",
+            "expectedLevel": 4,
+            "shopSeq": 4
+          },
+          "beforeSeq": 4,
+          "afterSeq": 5,
+          "events": [
+            {
+              "type": "hand-practiced",
+              "handType": "pair",
+              "levelBefore": 4,
+              "levelAfter": 5,
+              "paidPrice": 3,
+              "goldBefore": 30,
+              "goldAfter": 27
+            }
+          ]
+        },
+        {
+          "action": {
+            "type": "UseConsumable",
+            "instanceId": "kept/T01",
+            "handType": "pair",
+            "targetIds": []
+          },
+          "beforeSeq": 5,
+          "afterSeq": 6,
+          "events": [
+            {
+              "type": "consumable-used",
+              "definitionId": "T01",
+              "instanceId": "kept/T01",
+              "targetIds": [],
+              "createdCardIds": [],
+              "destroyedCardIds": []
+            }
+          ]
+        },
+        {
+          "action": {
+            "type": "BuyOffer",
+            "offerId": "practice/tool/0"
+          },
+          "beforeSeq": 6,
+          "afterSeq": 7,
+          "events": []
+        },
+        {
+          "action": {
+            "type": "RerollShop"
+          },
+          "beforeSeq": 7,
+          "afterSeq": 8,
+          "events": []
+        },
+        {
+          "action": {
+            "type": "BuyBasicTool",
+            "definitionId": "T08",
+            "shopSeq": 4
+          },
+          "beforeSeq": 4,
+          "afterSeq": 5,
+          "events": []
+        },
+        {
+          "action": {
+            "type": "RerollShop"
+          },
+          "beforeSeq": 5,
+          "afterSeq": 6,
+          "events": []
+        },
+        {
+          "action": {
+            "type": "PracticeHand",
+            "handType": "high-card",
+            "expectedLevel": 1,
+            "shopSeq": 4
+          },
+          "beforeSeq": 4,
+          "afterSeq": 5,
+          "events": [
+            {
+              "type": "hand-practiced",
+              "handType": "high-card",
+              "levelBefore": 1,
+              "levelAfter": 2,
+              "paidPrice": 1,
+              "goldBefore": 30,
+              "goldAfter": 29
+            }
+          ]
+        },
+        {
+          "action": {
+            "type": "BuyBasicTool",
+            "definitionId": "T03",
+            "shopSeq": 4
+          },
+          "beforeSeq": 4,
+          "afterSeq": 5,
+          "events": []
+        },
+        {
+          "action": {
+            "type": "ContinueEndless"
+          },
+          "beforeSeq": 179,
+          "afterSeq": 180,
+          "events": []
+        }
+      ],
+      "last": {
+        "seq": 180,
+        "gold": 218,
+        "levels": {
+          "straight": 14,
+          "pair": 1,
+          "high-card": 1
+        },
+        "quota": {
+          "shopSeq": 180,
+          "purchase": null
+        }
+      },
+      "initial": {
+        "seq": 4,
+        "gold": 30,
+        "levels": {
+          "high-card": 1,
+          "pair": 4,
+          "three-kind": 30
+        },
+        "quota": {
+          "shopSeq": 4,
+          "purchase": null
+        }
+      },
+      "quote": {
+        "handType": "pair",
+        "levelBefore": 4,
+        "levelAfter": 5,
+        "basePrice": 6,
+        "price": 3,
+        "goldAfter": 27,
+        "shopSeq": 4,
+        "expectedSeq": 4,
+        "available": true,
+        "reason": null
+      },
+      "restored": {
+        "seq": 8,
+        "gold": 21,
+        "levels": {
+          "high-card": 1,
+          "pair": 6,
+          "three-kind": 30
+        },
+        "quota": {
+          "shopSeq": 4,
+          "purchase": {
+            "definitionId": "T01",
+            "handType": "pair",
+            "levelBefore": 4,
+            "commandId": "practice-ui/normal/command/5",
+            "paidPrice": 3,
+            "seq": 5
+          }
+        }
+      },
+      "endlessCopy": "八章通关已保存。\n\n继续无尽会保留当前牌组、大丑牌、成长、道具与金币，从第九章商店接续。\n\n后续每章同场次目标按 1.35 倍递增，最终向上取整；新的压轴规则仍会公开。\n\n是否继续由你决定；取消可留在胜利页。",
+      "targetPolicy": {
+        "targets": [
+          400,
+          900,
+          1800,
+          3600,
+          6000,
+          9000,
+          14000,
+          20475
+        ],
+        "multiplier": {
+          "n": "27",
+          "d": "20"
+        },
+        "stageMultipliers": [
+          {
+            "n": "1",
+            "d": "1"
+          },
+          {
+            "n": "3",
+            "d": "2"
+          },
+          {
+            "n": "2",
+            "d": "1"
+          }
+        ],
+        "rounding": "ceil-final-target",
+        "difficulty": "existing",
+        "boss14": "locked-initial-plus-ceil-initial-div20-per-discard",
+        "publication": "chapter-before-preparation",
+        "locking": "no-player-score-input"
+      },
+      "status": "PASS"
+    },
+    {
+      "width": 1180,
+      "height": 757,
+      "errors": [],
+      "checks": [
+        "only discovered uncapped rows, quote matches authority; cancel/Escape preserve complete state with zero commands",
+        "full inventory does not block service; delayed double click/escape one candidate, quota failure unchanged, fixed retry paid/upgraded once with no inventory/RNG/target drift",
+        "original held T01 uses without gold and random T01 buy-store uses original price/inventory despite consumed service quota",
+        "real reroll does not reset shared quota; cold restore full state/journal/IDB equality",
+        "basic tool purchase consumes service quota; real reroll cannot reopen it",
+        "unaffordable discovered rows stay visible with shortfall, disabled and zero commands",
+        "direct delayed success consumes actual hand-practiced, one dispatch/payment, quoted minimum1 and no optimistic publication",
+        "actual dye purchase also consumes the same service quota and remains an unused inventory tool",
+        "native endless confirmation displays authority 1.35; cancel zero commands, original ContinueEndless saves C9 target27642"
+      ],
+      "shots": [
+        "1180-shop.png",
+        "1180-services.png",
+        "1180-confirmation.png",
+        "1180-saving.png",
+        "1180-save-failure.png",
+        "1180-saved.png",
+        "1180-shared-quota-used.png",
+        "1180-original-T01-purchase.png",
+        "1180-refresh-keeps-quota.png",
+        "1180-basic-blocks-service.png",
+        "1180-insufficient-gold.png",
+        "1180-direct-saved-minimum-price.png",
+        "1180-dye-blocks-service.png",
+        "1180-endless-confirmation.png"
+      ],
+      "transactions": [
+        {
+          "action": {
+            "type": "PracticeHand",
+            "handType": "pair",
+            "expectedLevel": 4,
+            "shopSeq": 4
+          },
+          "beforeSeq": 4,
+          "afterSeq": 5,
+          "events": [
+            {
+              "type": "hand-practiced",
+              "handType": "pair",
+              "levelBefore": 4,
+              "levelAfter": 5,
+              "paidPrice": 3,
+              "goldBefore": 30,
+              "goldAfter": 27
+            }
+          ]
+        },
+        {
+          "action": {
+            "type": "UseConsumable",
+            "instanceId": "kept/T01",
+            "handType": "pair",
+            "targetIds": []
+          },
+          "beforeSeq": 5,
+          "afterSeq": 6,
+          "events": [
+            {
+              "type": "consumable-used",
+              "definitionId": "T01",
+              "instanceId": "kept/T01",
+              "targetIds": [],
+              "createdCardIds": [],
+              "destroyedCardIds": []
+            }
+          ]
+        },
+        {
+          "action": {
+            "type": "BuyOffer",
+            "offerId": "practice/tool/0"
+          },
+          "beforeSeq": 6,
+          "afterSeq": 7,
+          "events": []
+        },
+        {
+          "action": {
+            "type": "RerollShop"
+          },
+          "beforeSeq": 7,
+          "afterSeq": 8,
+          "events": []
+        },
+        {
+          "action": {
+            "type": "BuyBasicTool",
+            "definitionId": "T08",
+            "shopSeq": 4
+          },
+          "beforeSeq": 4,
+          "afterSeq": 5,
+          "events": []
+        },
+        {
+          "action": {
+            "type": "RerollShop"
+          },
+          "beforeSeq": 5,
+          "afterSeq": 6,
+          "events": []
+        },
+        {
+          "action": {
+            "type": "PracticeHand",
+            "handType": "high-card",
+            "expectedLevel": 1,
+            "shopSeq": 4
+          },
+          "beforeSeq": 4,
+          "afterSeq": 5,
+          "events": [
+            {
+              "type": "hand-practiced",
+              "handType": "high-card",
+              "levelBefore": 1,
+              "levelAfter": 2,
+              "paidPrice": 1,
+              "goldBefore": 30,
+              "goldAfter": 29
+            }
+          ]
+        },
+        {
+          "action": {
+            "type": "BuyBasicTool",
+            "definitionId": "T03",
+            "shopSeq": 4
+          },
+          "beforeSeq": 4,
+          "afterSeq": 5,
+          "events": []
+        },
+        {
+          "action": {
+            "type": "ContinueEndless"
+          },
+          "beforeSeq": 179,
+          "afterSeq": 180,
+          "events": []
+        }
+      ],
+      "last": {
+        "seq": 180,
+        "gold": 218,
+        "levels": {
+          "straight": 14,
+          "pair": 1,
+          "high-card": 1
+        },
+        "quota": {
+          "shopSeq": 180,
+          "purchase": null
+        }
+      },
+      "initial": {
+        "seq": 4,
+        "gold": 30,
+        "levels": {
+          "high-card": 1,
+          "pair": 4,
+          "three-kind": 30
+        },
+        "quota": {
+          "shopSeq": 4,
+          "purchase": null
+        }
+      },
+      "quote": {
+        "handType": "pair",
+        "levelBefore": 4,
+        "levelAfter": 5,
+        "basePrice": 6,
+        "price": 3,
+        "goldAfter": 27,
+        "shopSeq": 4,
+        "expectedSeq": 4,
+        "available": true,
+        "reason": null
+      },
+      "restored": {
+        "seq": 8,
+        "gold": 21,
+        "levels": {
+          "high-card": 1,
+          "pair": 6,
+          "three-kind": 30
+        },
+        "quota": {
+          "shopSeq": 4,
+          "purchase": {
+            "definitionId": "T01",
+            "handType": "pair",
+            "levelBefore": 4,
+            "commandId": "practice-ui/normal/command/5",
+            "paidPrice": 3,
+            "seq": 5
+          }
+        }
+      },
+      "endlessCopy": "八章通关已保存。\n\n继续无尽会保留当前牌组、大丑牌、成长、道具与金币，从第九章商店接续。\n\n后续每章同场次目标按 1.35 倍递增，最终向上取整；新的压轴规则仍会公开。\n\n是否继续由你决定；取消可留在胜利页。",
+      "targetPolicy": {
+        "targets": [
+          400,
+          900,
+          1800,
+          3600,
+          6000,
+          9000,
+          14000,
+          20475
+        ],
+        "multiplier": {
+          "n": "27",
+          "d": "20"
+        },
+        "stageMultipliers": [
+          {
+            "n": "1",
+            "d": "1"
+          },
+          {
+            "n": "3",
+            "d": "2"
+          },
+          {
+            "n": "2",
+            "d": "1"
+          }
+        ],
+        "rounding": "ceil-final-target",
+        "difficulty": "existing",
+        "boss14": "locked-initial-plus-ceil-initial-div20-per-discard",
+        "publication": "chapter-before-preparation",
+        "locking": "no-player-score-input"
+      },
+      "status": "PASS"
+    },
+    {
+      "width": 1366,
+      "height": 900,
+      "errors": [],
+      "checks": [
+        "only discovered uncapped rows, quote matches authority; cancel/Escape preserve complete state with zero commands",
+        "full inventory does not block service; delayed double click/escape one candidate, quota failure unchanged, fixed retry paid/upgraded once with no inventory/RNG/target drift",
+        "original held T01 uses without gold and random T01 buy-store uses original price/inventory despite consumed service quota",
+        "real reroll does not reset shared quota; cold restore full state/journal/IDB equality",
+        "basic tool purchase consumes service quota; real reroll cannot reopen it",
+        "unaffordable discovered rows stay visible with shortfall, disabled and zero commands",
+        "direct delayed success consumes actual hand-practiced, one dispatch/payment, quoted minimum1 and no optimistic publication",
+        "actual dye purchase also consumes the same service quota and remains an unused inventory tool",
+        "native endless confirmation displays authority 1.35; cancel zero commands, original ContinueEndless saves C9 target27642"
+      ],
+      "shots": [
+        "1366-shop.png",
+        "1366-services.png",
+        "1366-confirmation.png",
+        "1366-saving.png",
+        "1366-save-failure.png",
+        "1366-saved.png",
+        "1366-shared-quota-used.png",
+        "1366-original-T01-purchase.png",
+        "1366-refresh-keeps-quota.png",
+        "1366-basic-blocks-service.png",
+        "1366-insufficient-gold.png",
+        "1366-direct-saved-minimum-price.png",
+        "1366-dye-blocks-service.png",
+        "1366-endless-confirmation.png"
+      ],
+      "transactions": [
+        {
+          "action": {
+            "type": "PracticeHand",
+            "handType": "pair",
+            "expectedLevel": 4,
+            "shopSeq": 4
+          },
+          "beforeSeq": 4,
+          "afterSeq": 5,
+          "events": [
+            {
+              "type": "hand-practiced",
+              "handType": "pair",
+              "levelBefore": 4,
+              "levelAfter": 5,
+              "paidPrice": 3,
+              "goldBefore": 30,
+              "goldAfter": 27
+            }
+          ]
+        },
+        {
+          "action": {
+            "type": "UseConsumable",
+            "instanceId": "kept/T01",
+            "handType": "pair",
+            "targetIds": []
+          },
+          "beforeSeq": 5,
+          "afterSeq": 6,
+          "events": [
+            {
+              "type": "consumable-used",
+              "definitionId": "T01",
+              "instanceId": "kept/T01",
+              "targetIds": [],
+              "createdCardIds": [],
+              "destroyedCardIds": []
+            }
+          ]
+        },
+        {
+          "action": {
+            "type": "BuyOffer",
+            "offerId": "practice/tool/0"
+          },
+          "beforeSeq": 6,
+          "afterSeq": 7,
+          "events": []
+        },
+        {
+          "action": {
+            "type": "RerollShop"
+          },
+          "beforeSeq": 7,
+          "afterSeq": 8,
+          "events": []
+        },
+        {
+          "action": {
+            "type": "BuyBasicTool",
+            "definitionId": "T08",
+            "shopSeq": 4
+          },
+          "beforeSeq": 4,
+          "afterSeq": 5,
+          "events": []
+        },
+        {
+          "action": {
+            "type": "RerollShop"
+          },
+          "beforeSeq": 5,
+          "afterSeq": 6,
+          "events": []
+        },
+        {
+          "action": {
+            "type": "PracticeHand",
+            "handType": "high-card",
+            "expectedLevel": 1,
+            "shopSeq": 4
+          },
+          "beforeSeq": 4,
+          "afterSeq": 5,
+          "events": [
+            {
+              "type": "hand-practiced",
+              "handType": "high-card",
+              "levelBefore": 1,
+              "levelAfter": 2,
+              "paidPrice": 1,
+              "goldBefore": 30,
+              "goldAfter": 29
+            }
+          ]
+        },
+        {
+          "action": {
+            "type": "BuyBasicTool",
+            "definitionId": "T03",
+            "shopSeq": 4
+          },
+          "beforeSeq": 4,
+          "afterSeq": 5,
+          "events": []
+        },
+        {
+          "action": {
+            "type": "ContinueEndless"
+          },
+          "beforeSeq": 179,
+          "afterSeq": 180,
+          "events": []
+        }
+      ],
+      "last": {
+        "seq": 180,
+        "gold": 218,
+        "levels": {
+          "straight": 14,
+          "pair": 1,
+          "high-card": 1
+        },
+        "quota": {
+          "shopSeq": 180,
+          "purchase": null
+        }
+      },
+      "initial": {
+        "seq": 4,
+        "gold": 30,
+        "levels": {
+          "high-card": 1,
+          "pair": 4,
+          "three-kind": 30
+        },
+        "quota": {
+          "shopSeq": 4,
+          "purchase": null
+        }
+      },
+      "quote": {
+        "handType": "pair",
+        "levelBefore": 4,
+        "levelAfter": 5,
+        "basePrice": 6,
+        "price": 3,
+        "goldAfter": 27,
+        "shopSeq": 4,
+        "expectedSeq": 4,
+        "available": true,
+        "reason": null
+      },
+      "restored": {
+        "seq": 8,
+        "gold": 21,
+        "levels": {
+          "high-card": 1,
+          "pair": 6,
+          "three-kind": 30
+        },
+        "quota": {
+          "shopSeq": 4,
+          "purchase": {
+            "definitionId": "T01",
+            "handType": "pair",
+            "levelBefore": 4,
+            "commandId": "practice-ui/normal/command/5",
+            "paidPrice": 3,
+            "seq": 5
+          }
+        }
+      },
+      "endlessCopy": "八章通关已保存。\n\n继续无尽会保留当前牌组、大丑牌、成长、道具与金币，从第九章商店接续。\n\n后续每章同场次目标按 1.35 倍递增，最终向上取整；新的压轴规则仍会公开。\n\n是否继续由你决定；取消可留在胜利页。",
+      "targetPolicy": {
+        "targets": [
+          400,
+          900,
+          1800,
+          3600,
+          6000,
+          9000,
+          14000,
+          20475
+        ],
+        "multiplier": {
+          "n": "27",
+          "d": "20"
+        },
+        "stageMultipliers": [
+          {
+            "n": "1",
+            "d": "1"
+          },
+          {
+            "n": "3",
+            "d": "2"
+          },
+          {
+            "n": "2",
+            "d": "1"
+          }
+        ],
+        "rounding": "ceil-final-target",
+        "difficulty": "existing",
+        "boss14": "locked-initial-plus-ceil-initial-div20-per-discard",
+        "publication": "chapter-before-preparation",
+        "locking": "no-player-score-input"
+      },
+      "status": "PASS"
+    }
+  ],
+  "status": "PASS"
+}

@@ -1,0 +1,448 @@
+{
+  "head": "f17bb848f3c74187fdebbe2f96c55ac31c19ac2b",
+  "sourceTree": "3bafef6c0071108e6aef76c1902ffedc396d9453",
+  "modified": "",
+  "beforeMode": false,
+  "scope": "Controlled current-identity full shop chain, native browser mouse/touch/DOM. Public fixtures, no natural acquisition or physical device/human acceptance.",
+  "cases": [
+    {
+      "width": 320,
+      "shots": [
+        "320-shop.png",
+        "320-compare-first.png",
+        "320-compare-fifth.png",
+        "320-held-fifth.png",
+        "320-compare-return.png",
+        "320-sale-confirm.png",
+        "320-buy-after-sale.png",
+        "320-replacement-saved.png",
+        "320-tools-stock.png",
+        "320-tool-purchase.png",
+        "320-tool-stored.png",
+        "320-tool-target.png",
+        "320-tool-cancel-kept.png",
+        "320-tool-used.png",
+        "320-returned-stock.png",
+        "320-quick-use-target.png",
+        "320-use-save-failure.png",
+        "320-use-save-retried.png"
+      ],
+      "checks": [
+        "native touch scroll over comparison stays browser owned",
+        "real candidate and five slots show original art, explicit real stars, price and losses; compare return restores fifth slot",
+        "sale cancel returns to same held card; explicit sell then buy remain separate original saved transactions",
+        "store returns to stock; owned target cancel preserves paid item; explicit use returns to inventory/stock with same context",
+        "basic quick-use purchase enters original target selector; cancel keeps inventory and stock scroll",
+        "quota failure publishes no new state; retry saves exactly the original use and restores continuation",
+        "complete cold restored state/journal/IDB equals final saved chain"
+      ],
+      "errors": [],
+      "transactions": [
+        {
+          "action": {
+            "type": "SellJoker",
+            "instanceId": "journey-held/4"
+          },
+          "beforeSeq": 4,
+          "afterSeq": 5
+        },
+        {
+          "action": {
+            "type": "BuyOffer",
+            "offerId": "journey-offer/0"
+          },
+          "beforeSeq": 5,
+          "afterSeq": 6
+        },
+        {
+          "action": {
+            "type": "BuyOffer",
+            "offerId": "journey/tool/0"
+          },
+          "beforeSeq": 6,
+          "afterSeq": 7
+        },
+        {
+          "action": {
+            "type": "UseConsumable",
+            "instanceId": "shop-card-journey/tool/shop-card-journey/command/7",
+            "targetIds": [
+              "hearts-9"
+            ]
+          },
+          "beforeSeq": 7,
+          "afterSeq": 8
+        },
+        {
+          "action": {
+            "type": "BuyBasicTool",
+            "definitionId": "T11",
+            "shopSeq": 4
+          },
+          "beforeSeq": 8,
+          "afterSeq": 9
+        },
+        {
+          "action": {
+            "type": "UseConsumable",
+            "instanceId": "shop-card-journey/tool/shop-card-journey/command/9",
+            "targetIds": [
+              "clubs-9"
+            ]
+          },
+          "beforeSeq": 9,
+          "afterSeq": 10
+        }
+      ],
+      "initial": {
+        "seq": 4,
+        "revision": 1
+      },
+      "last": {
+        "seq": 10,
+        "revision": 7
+      },
+      "compare": {
+        "candidateImages": 1,
+        "stars": 30,
+        "slots": 5,
+        "text": "现货与已持\n比较替换 · 金币 40\n待买 · 练对子\n● 普通\n版次 · 普通\n实付 4 金\n推荐指数\n\n持续长热度 · 成组后增长 · 下手生效\n\n已持 5/5 · 选一槽查看出售损失\n\n第 1 槽 · 满堂彩\n● 普通\n版次 · 普通\n\n返4金 · 实付4金 · 买后40金\n\n换此槽后的推荐\n\n持续长热度 · 成组后增长 · 下手生效\n\n管理这张\n条件、配合与完整损失\n第 2 槽 · 老搭档\n◆ 特别\n版次 · 普通\n\n返4金 · 实付4金 · 买后40金\n\n换此槽后的推荐\n\n持续长热度 · 成组后增长 · 下手生效\n\n管理这张\n条件、配合与完整损失\n第 3 槽 · 小费盒\n● 普通\n版次 · 普通\n\n返4金 · 实付4金 · 买后40金\n\n换此槽后的推荐\n\n持续长热度 · 成组后增长 · 下手生效\n\n管理这张\n条件、配合与完整损失\n第 4 槽 · 滚个零头\n◆ 特别\n版次 · 普通\n\n返4金 · 实付4金 · 买后40金\n\n换此槽后的推荐\n\n持续长热度 · 成组后增长 · 下手生效\n\n管理这张\n条件、配合与完整损失\n第 5 槽 · 少一级\n◆ 特别\n版次 · 闪箔\n\n返4金 · 实付4金 · 买后40金\n\n失去：闪箔（热度+25）\n\n换此槽后的推荐\n\n持续长热度 · 成组后增长 · 下手生效\n\n管理这张\n条件、配合与完整损失\n返回购买详情\n更换培养方向\n返回现货"
+      },
+      "compareScroll": 1597,
+      "final": {
+        "seq": 10,
+        "revision": 7
+      },
+      "status": "PASS"
+    },
+    {
+      "width": 390,
+      "shots": [
+        "390-shop.png",
+        "390-compare-first.png",
+        "390-compare-fifth.png",
+        "390-held-fifth.png",
+        "390-compare-return.png",
+        "390-sale-confirm.png",
+        "390-buy-after-sale.png",
+        "390-replacement-saved.png",
+        "390-tools-stock.png",
+        "390-tool-purchase.png",
+        "390-tool-stored.png",
+        "390-tool-target.png",
+        "390-tool-cancel-kept.png",
+        "390-tool-used.png",
+        "390-returned-stock.png",
+        "390-quick-use-target.png",
+        "390-use-save-failure.png",
+        "390-use-save-retried.png"
+      ],
+      "checks": [
+        "native touch scroll over comparison stays browser owned",
+        "real candidate and five slots show original art, explicit real stars, price and losses; compare return restores fifth slot",
+        "sale cancel returns to same held card; explicit sell then buy remain separate original saved transactions",
+        "store returns to stock; owned target cancel preserves paid item; explicit use returns to inventory/stock with same context",
+        "basic quick-use purchase enters original target selector; cancel keeps inventory and stock scroll",
+        "quota failure publishes no new state; retry saves exactly the original use and restores continuation",
+        "complete cold restored state/journal/IDB equals final saved chain"
+      ],
+      "errors": [],
+      "transactions": [
+        {
+          "action": {
+            "type": "SellJoker",
+            "instanceId": "journey-held/4"
+          },
+          "beforeSeq": 4,
+          "afterSeq": 5
+        },
+        {
+          "action": {
+            "type": "BuyOffer",
+            "offerId": "journey-offer/0"
+          },
+          "beforeSeq": 5,
+          "afterSeq": 6
+        },
+        {
+          "action": {
+            "type": "BuyOffer",
+            "offerId": "journey/tool/0"
+          },
+          "beforeSeq": 6,
+          "afterSeq": 7
+        },
+        {
+          "action": {
+            "type": "UseConsumable",
+            "instanceId": "shop-card-journey/tool/shop-card-journey/command/7",
+            "targetIds": [
+              "hearts-9"
+            ]
+          },
+          "beforeSeq": 7,
+          "afterSeq": 8
+        },
+        {
+          "action": {
+            "type": "BuyBasicTool",
+            "definitionId": "T11",
+            "shopSeq": 4
+          },
+          "beforeSeq": 8,
+          "afterSeq": 9
+        },
+        {
+          "action": {
+            "type": "UseConsumable",
+            "instanceId": "shop-card-journey/tool/shop-card-journey/command/9",
+            "targetIds": [
+              "clubs-9"
+            ]
+          },
+          "beforeSeq": 9,
+          "afterSeq": 10
+        }
+      ],
+      "initial": {
+        "seq": 4,
+        "revision": 1
+      },
+      "last": {
+        "seq": 10,
+        "revision": 7
+      },
+      "compare": {
+        "candidateImages": 1,
+        "stars": 30,
+        "slots": 5,
+        "text": "现货与已持\n比较替换 · 金币 40\n待买 · 练对子\n● 普通\n版次 · 普通\n实付 4 金\n推荐指数\n\n持续长热度 · 成组后增长 · 下手生效\n\n已持 5/5 · 选一槽查看出售损失\n\n第 1 槽 · 满堂彩\n● 普通\n版次 · 普通\n\n返4金 · 实付4金 · 买后40金\n\n换此槽后的推荐\n\n持续长热度 · 成组后增长 · 下手生效\n\n管理这张\n条件、配合与完整损失\n第 2 槽 · 老搭档\n◆ 特别\n版次 · 普通\n\n返4金 · 实付4金 · 买后40金\n\n换此槽后的推荐\n\n持续长热度 · 成组后增长 · 下手生效\n\n管理这张\n条件、配合与完整损失\n第 3 槽 · 小费盒\n● 普通\n版次 · 普通\n\n返4金 · 实付4金 · 买后40金\n\n换此槽后的推荐\n\n持续长热度 · 成组后增长 · 下手生效\n\n管理这张\n条件、配合与完整损失\n第 4 槽 · 滚个零头\n◆ 特别\n版次 · 普通\n\n返4金 · 实付4金 · 买后40金\n\n换此槽后的推荐\n\n持续长热度 · 成组后增长 · 下手生效\n\n管理这张\n条件、配合与完整损失\n第 5 槽 · 少一级\n◆ 特别\n版次 · 闪箔\n\n返4金 · 实付4金 · 买后40金\n\n失去：闪箔（热度+25）\n\n换此槽后的推荐\n\n持续长热度 · 成组后增长 · 下手生效\n\n管理这张\n条件、配合与完整损失\n返回购买详情\n更换培养方向\n返回现货"
+      },
+      "compareScroll": 1264,
+      "final": {
+        "seq": 10,
+        "revision": 7
+      },
+      "status": "PASS"
+    },
+    {
+      "width": 1180,
+      "shots": [
+        "1180-shop.png",
+        "1180-compare-first.png",
+        "1180-compare-fifth.png",
+        "1180-held-fifth.png",
+        "1180-compare-return.png",
+        "1180-sale-confirm.png",
+        "1180-buy-after-sale.png",
+        "1180-replacement-saved.png",
+        "1180-tools-stock.png",
+        "1180-tool-purchase.png",
+        "1180-tool-stored.png",
+        "1180-tool-target.png",
+        "1180-tool-cancel-kept.png",
+        "1180-tool-used.png",
+        "1180-returned-stock.png",
+        "1180-quick-use-target.png",
+        "1180-use-save-failure.png",
+        "1180-use-save-retried.png"
+      ],
+      "checks": [
+        "real candidate and five slots show original art, explicit real stars, price and losses; compare return restores fifth slot",
+        "sale cancel returns to same held card; explicit sell then buy remain separate original saved transactions",
+        "store returns to stock; owned target cancel preserves paid item; explicit use returns to inventory/stock with same context",
+        "basic quick-use purchase enters original target selector; cancel keeps inventory and stock scroll",
+        "quota failure publishes no new state; retry saves exactly the original use and restores continuation",
+        "complete cold restored state/journal/IDB equals final saved chain"
+      ],
+      "errors": [],
+      "transactions": [
+        {
+          "action": {
+            "type": "SellJoker",
+            "instanceId": "journey-held/4"
+          },
+          "beforeSeq": 4,
+          "afterSeq": 5
+        },
+        {
+          "action": {
+            "type": "BuyOffer",
+            "offerId": "journey-offer/0"
+          },
+          "beforeSeq": 5,
+          "afterSeq": 6
+        },
+        {
+          "action": {
+            "type": "BuyOffer",
+            "offerId": "journey/tool/0"
+          },
+          "beforeSeq": 6,
+          "afterSeq": 7
+        },
+        {
+          "action": {
+            "type": "UseConsumable",
+            "instanceId": "shop-card-journey/tool/shop-card-journey/command/7",
+            "targetIds": [
+              "hearts-9"
+            ]
+          },
+          "beforeSeq": 7,
+          "afterSeq": 8
+        },
+        {
+          "action": {
+            "type": "BuyBasicTool",
+            "definitionId": "T11",
+            "shopSeq": 4
+          },
+          "beforeSeq": 8,
+          "afterSeq": 9
+        },
+        {
+          "action": {
+            "type": "UseConsumable",
+            "instanceId": "shop-card-journey/tool/shop-card-journey/command/9",
+            "targetIds": [
+              "clubs-9"
+            ]
+          },
+          "beforeSeq": 9,
+          "afterSeq": 10
+        }
+      ],
+      "initial": {
+        "seq": 4,
+        "revision": 1
+      },
+      "last": {
+        "seq": 10,
+        "revision": 7
+      },
+      "compare": {
+        "candidateImages": 1,
+        "stars": 30,
+        "slots": 5,
+        "text": "现货与已持\n比较替换 · 金币 40\n待买 · 练对子\n● 普通\n版次 · 普通\n实付 4 金\n推荐指数\n\n持续长热度 · 成组后增长 · 下手生效\n\n已持 5/5 · 选一槽查看出售损失\n\n第 1 槽 · 满堂彩\n● 普通\n版次 · 普通\n\n返4金 · 实付4金 · 买后40金\n\n换此槽后的推荐\n\n持续长热度 · 成组后增长 · 下手生效\n\n管理这张\n条件、配合与完整损失\n第 2 槽 · 老搭档\n◆ 特别\n版次 · 普通\n\n返4金 · 实付4金 · 买后40金\n\n换此槽后的推荐\n\n持续长热度 · 成组后增长 · 下手生效\n\n管理这张\n条件、配合与完整损失\n第 3 槽 · 小费盒\n● 普通\n版次 · 普通\n\n返4金 · 实付4金 · 买后40金\n\n换此槽后的推荐\n\n持续长热度 · 成组后增长 · 下手生效\n\n管理这张\n条件、配合与完整损失\n第 4 槽 · 滚个零头\n◆ 特别\n版次 · 普通\n\n返4金 · 实付4金 · 买后40金\n\n换此槽后的推荐\n\n持续长热度 · 成组后增长 · 下手生效\n\n管理这张\n条件、配合与完整损失\n第 5 槽 · 少一级\n◆ 特别\n版次 · 闪箔\n\n返4金 · 实付4金 · 买后40金\n\n失去：闪箔（热度+25）\n\n换此槽后的推荐\n\n持续长热度 · 成组后增长 · 下手生效\n\n管理这张\n条件、配合与完整损失\n返回购买详情\n更换培养方向\n返回现货"
+      },
+      "compareScroll": 374,
+      "final": {
+        "seq": 10,
+        "revision": 7
+      },
+      "status": "PASS"
+    },
+    {
+      "width": 1366,
+      "shots": [
+        "1366-shop.png",
+        "1366-compare-first.png",
+        "1366-compare-fifth.png",
+        "1366-held-fifth.png",
+        "1366-compare-return.png",
+        "1366-sale-confirm.png",
+        "1366-buy-after-sale.png",
+        "1366-replacement-saved.png",
+        "1366-tools-stock.png",
+        "1366-tool-purchase.png",
+        "1366-tool-stored.png",
+        "1366-tool-target.png",
+        "1366-tool-cancel-kept.png",
+        "1366-tool-used.png",
+        "1366-returned-stock.png",
+        "1366-quick-use-target.png",
+        "1366-use-save-failure.png",
+        "1366-use-save-retried.png"
+      ],
+      "checks": [
+        "real candidate and five slots show original art, explicit real stars, price and losses; compare return restores fifth slot",
+        "sale cancel returns to same held card; explicit sell then buy remain separate original saved transactions",
+        "store returns to stock; owned target cancel preserves paid item; explicit use returns to inventory/stock with same context",
+        "basic quick-use purchase enters original target selector; cancel keeps inventory and stock scroll",
+        "quota failure publishes no new state; retry saves exactly the original use and restores continuation",
+        "complete cold restored state/journal/IDB equals final saved chain"
+      ],
+      "errors": [],
+      "transactions": [
+        {
+          "action": {
+            "type": "SellJoker",
+            "instanceId": "journey-held/4"
+          },
+          "beforeSeq": 4,
+          "afterSeq": 5
+        },
+        {
+          "action": {
+            "type": "BuyOffer",
+            "offerId": "journey-offer/0"
+          },
+          "beforeSeq": 5,
+          "afterSeq": 6
+        },
+        {
+          "action": {
+            "type": "BuyOffer",
+            "offerId": "journey/tool/0"
+          },
+          "beforeSeq": 6,
+          "afterSeq": 7
+        },
+        {
+          "action": {
+            "type": "UseConsumable",
+            "instanceId": "shop-card-journey/tool/shop-card-journey/command/7",
+            "targetIds": [
+              "hearts-9"
+            ]
+          },
+          "beforeSeq": 7,
+          "afterSeq": 8
+        },
+        {
+          "action": {
+            "type": "BuyBasicTool",
+            "definitionId": "T11",
+            "shopSeq": 4
+          },
+          "beforeSeq": 8,
+          "afterSeq": 9
+        },
+        {
+          "action": {
+            "type": "UseConsumable",
+            "instanceId": "shop-card-journey/tool/shop-card-journey/command/9",
+            "targetIds": [
+              "clubs-9"
+            ]
+          },
+          "beforeSeq": 9,
+          "afterSeq": 10
+        }
+      ],
+      "initial": {
+        "seq": 4,
+        "revision": 1
+      },
+      "last": {
+        "seq": 10,
+        "revision": 7
+      },
+      "compare": {
+        "candidateImages": 1,
+        "stars": 30,
+        "slots": 5,
+        "text": "现货与已持\n比较替换 · 金币 40\n待买 · 练对子\n● 普通\n版次 · 普通\n实付 4 金\n推荐指数\n\n持续长热度 · 成组后增长 · 下手生效\n\n已持 5/5 · 选一槽查看出售损失\n\n第 1 槽 · 满堂彩\n● 普通\n版次 · 普通\n\n返4金 · 实付4金 · 买后40金\n\n换此槽后的推荐\n\n持续长热度 · 成组后增长 · 下手生效\n\n管理这张\n条件、配合与完整损失\n第 2 槽 · 老搭档\n◆ 特别\n版次 · 普通\n\n返4金 · 实付4金 · 买后40金\n\n换此槽后的推荐\n\n持续长热度 · 成组后增长 · 下手生效\n\n管理这张\n条件、配合与完整损失\n第 3 槽 · 小费盒\n● 普通\n版次 · 普通\n\n返4金 · 实付4金 · 买后40金\n\n换此槽后的推荐\n\n持续长热度 · 成组后增长 · 下手生效\n\n管理这张\n条件、配合与完整损失\n第 4 槽 · 滚个零头\n◆ 特别\n版次 · 普通\n\n返4金 · 实付4金 · 买后40金\n\n换此槽后的推荐\n\n持续长热度 · 成组后增长 · 下手生效\n\n管理这张\n条件、配合与完整损失\n第 5 槽 · 少一级\n◆ 特别\n版次 · 闪箔\n\n返4金 · 实付4金 · 买后40金\n\n失去：闪箔（热度+25）\n\n换此槽后的推荐\n\n持续长热度 · 成组后增长 · 下手生效\n\n管理这张\n条件、配合与完整损失\n返回购买详情\n更换培养方向\n返回现货"
+      },
+      "compareScroll": 327,
+      "final": {
+        "seq": 10,
+        "revision": 7
+      },
+      "status": "PASS"
+    }
+  ],
+  "status": "PASS"
+}

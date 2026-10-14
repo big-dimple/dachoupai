@@ -822,3 +822,75 @@ button[aria-busy=true] { border-style:dashed; }
 .stage-identity-entry .dialog-effect { border-left:3px solid #B8473A;padding-left:12px; }
 .stage-identity-entry .dialog-primary:hover { background:#9F3228;color:#FFF9EE; }
 @media (max-width:560px) { .stage-identity-entry .dialog-header h2 { font-size:24px; } }
+
+/* Shop journey: candidate stays in view while the real owned slots scroll. */
+.shop-comparison-dialog[open] { width:min(1100px,calc(100vw - 24px)); }
+.shop-comparison-dialog .dialog-header h2 { font-size:22px; }
+.shop-comparison-dialog .dialog-content { display:grid;grid-template-columns:240px minmax(0,1fr);gap:16px; }
+.shop-comparison-dialog .dialog-scroll { overflow-anchor:none; }
+.shop-compare-candidate { min-width:0;align-self:start;padding:12px;background:#FFF9EE;border:1px solid #A38B66;border-radius:5px; }
+.shop-compare-candidate figure,.shop-compare-slot figure { margin:0; }
+.shop-compare-candidate figure { text-align:center; }
+.shop-compare-candidate img { width:140px;height:182px;object-fit:contain; }
+.shop-compare-candidate h3 { margin:8px 0;font:700 20px/1.35 Georgia,SimSun,serif; }
+.shop-candidate-price { display:block;margin:8px 0;font-size:20px;color:#B8473A; }
+.shop-card-tags { display:flex;flex-wrap:wrap;align-items:center;gap:6px;font-size:14px;color:#3F606B; }
+.shop-card-tags .joker-rarity-badge { min-width:0;height:20px;font-size:12px; }
+.shop-offer-value { margin:10px 0;font-size:14px;line-height:1.5; }
+.shop-value-heading { display:flex;flex-wrap:wrap;align-items:center;gap:6px;color:#3F606B; }
+.shop-value-stars { display:inline-flex;gap:3px;flex:none;color:#3F606B; }
+.shop-value-stars[data-stars="5"] { color:#765422; }
+.shop-value-stars svg { width:18px;height:18px;flex:none;overflow:visible; }
+.shop-value-stars path { fill:#FFF9EE;stroke:currentColor;stroke-width:1.7;stroke-linejoin:round; }
+.shop-value-stars svg[data-filled="true"] path { fill:currentColor; }
+.shop-offer-value p { margin:5px 0;font-size:14px;white-space:pre-line;overflow-wrap:anywhere; }
+.shop-offer-value .shop-value-combination { color:#3F606B;font-weight:400; }
+.shop-compare-step { margin:10px 0 0;padding-top:8px;border-top:1px solid #C7B89D;font-size:14px; }
+.shop-compare-slots { display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px; }
+.shop-compare-slot.experience-card { display:grid;grid-template-columns:76px minmax(0,1fr);gap:10px;padding:12px;background:#FFF9EE; }
+.shop-compare-slot.is-selected { border:2px solid #26313A;padding:11px; }
+.shop-compare-slot figure img { width:76px;height:106px;object-fit:contain; }
+.shop-compare-slot h3 { font-size:16px;color:#26313A; }
+.shop-compare-costs { margin:8px 0;padding:6px 8px;background:#E2E8E5;border-left:2px solid #3F606B; }
+.shop-compare-costs p { margin:3px 0;font-size:14px;line-height:1.45; }
+.shop-compare-slot button { width:100%;min-height:48px; }
+.shop-comparison-dialog .dialog-actions { display:flex;flex-wrap:wrap; }
+.shop-comparison-dialog .dialog-actions button { flex:1 1 140px; }
+.shop-joker-purchase .shop-offer-value { margin-top:0;padding-bottom:10px;border-bottom:1px solid #C7B89D; }
+.make-cards-dialog .make-cards-tabs { position:sticky;top:0;z-index:2;padding:8px 0;background:#F3EADB; }
+.make-cards-dialog .make-cards-tile[data-make-id]:focus-visible { outline:3px solid #3F606B;outline-offset:2px; }
+.shop-tool-paid-note { margin:4px 0;font-size:14px;line-height:20px;color:#3F606B; }
+.shop-card-uses { margin:4px 0;font-size:14px;color:#B8473A; }
+.shop-service-card { display:grid;gap:8px;text-align:left;background:#E2E8E5;min-height:96px;font-size:14px; }
+.shop-service-card strong { font-size:16px;color:#26313A; }
+.shop-service-card span:last-child { color:#B8473A; }
+.shop-service-confirmation .dialog-primary { min-height:48px; }
+.shop-service-confirmation[open],.shop-practice-result[open] { display:flex;flex-direction:column;width:min(520px,calc(100vw - 24px));height:fit-content;max-height:calc(100dvh - var(--safe-top) - var(--safe-bottom) - 24px); }
+.shop-service-confirmation .dialog-content,.shop-practice-result .dialog-content { display:block;overflow:auto; }
+.shop-service-confirmation .dialog-scroll,.shop-practice-result .dialog-scroll { height:auto; }
+.shop-service-grid { margin-bottom:20px; }
+@media(max-width:760px) {
+ .shop-comparison-dialog .dialog-header { padding:12px; }
+ .shop-comparison-dialog .dialog-content { grid-template-columns:minmax(0,1fr);grid-template-rows:auto minmax(0,1fr);padding:12px;gap:10px; }
+ .shop-compare-candidate { display:grid;grid-template-columns:80px minmax(0,1fr);gap:10px;padding:8px; }
+ .shop-compare-candidate img { width:80px;height:112px; }
+ .shop-compare-candidate h3 { margin:0 0 4px;font-size:18px; }
+ .shop-candidate-price { margin:4px 0;font-size:18px; }
+ .shop-compare-candidate .shop-offer-value { margin:4px 0; }
+ .shop-compare-candidate .shop-value-combination { font-size:14px; }
+ .shop-compare-step { margin-top:4px;padding-top:4px; }
+ .shop-compare-slots { grid-template-columns:minmax(0,1fr);gap:10px; }
+ .shop-compare-slot.experience-card { grid-template-columns:76px minmax(0,1fr);padding:10px; }
+ .shop-compare-slot.is-selected { padding:9px; }
+ .shop-comparison-dialog .dialog-actions { padding:10px 12px;gap:8px; }
+ .shop-comparison-dialog .dialog-actions button { flex-basis:100px;padding:8px; }
+ .shop-compare-candidate .shop-card-tags { gap:4px; }
+ .shop-compare-candidate .shop-value-stars { gap:2px; }
+ .shop-compare-candidate .shop-value-stars svg { width:16px;height:16px; }
+}
+@media(min-width:761px) {
+ .shop-comparison-dialog .dialog-actions button { flex:0 1 auto;min-width:180px; }
+ .make-cards-workspace { grid-template-columns:minmax(180px,220px) minmax(0,1fr);gap:20px; }
+ .make-cards-tile { padding:8px;gap:8px; }
+ .make-cards-grid { gap:10px; }
+}

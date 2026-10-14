@@ -5,7 +5,7 @@ import {newRunIdentity,launchIdentity} from '../src/game/RunLaunch';
 import {CHARACTER_IDS} from '../src/domain/characters';
 import {isR2RouteGrowth,isR2RouteStarter,R2_ROUTE_STARTERS,type R2OpeningRoute} from '../src/domain/r2GroupUpgrade';
 import {r2RouteSnapshot,type R2RouteFamily} from '../src/domain/r2RouteGrowth';
-import {r2DisabledCards,type R2BossPlan} from '../src/domain/r2Chapter';
+import {r2DisabledCards,lockR2ChapterTargets,type R2BossPlan} from '../src/domain/r2Chapter';
 import {makeCheckpoint,readCheckpoint,type Checkpoint} from '../src/application/checkpoint';
 import {SavedRun,type SaveStore,type SaveSlots} from '../src/application/SavedRun';
 import {stableHash} from '../src/domain/hash';
@@ -23,6 +23,7 @@ function fixture(ids:string[]=[],boss?:R2BossPlan){let s=send(start(),{type:'Lea
  const number=Number(boss.definitionId.slice(1)),chapter=number<=4?1:number<=12?3:7,index=chapter*3-1;
  const history=['B01','B02','B03','B04','B05','B06'].slice(0,chapter-1);
  Object.assign(s,{chapter,stageIndex:index,seenBossIds:[...history,boss.definitionId],boss});
+ s.chapterTargetPlan=lockR2ChapterTargets(chapter,s.tourMode,s.difficulty,boss);
  for(let i=2;i<index;i+=3){s.routeGrowth!.settlements.push({stageIndex:i,families:[]});s.routeGrowth!.clears++;}
  }return send(s,{type:'EnterStage'});}
 function round(s:R2RunState,journal:Command[]=[]){const cp=makeCheckpoint(s,journal),result=readCheckpoint(JSON.parse(JSON.stringify(cp)));expect(result).toEqual({ok:true,checkpoint:cp});return cp;}
