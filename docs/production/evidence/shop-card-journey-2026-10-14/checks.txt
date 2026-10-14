@@ -1,0 +1,79 @@
+Frozen product source: 58ab68f8 (src tree d384e371c3599e677fb345228105aab875b33219).
+Current b96d72e3 differs only in harness/shop-make-cards.mjs visible-tile observation.
+Initial new projection test attempted expired f06 counter=4; invariant rejected this impossible live card. Corrected fixture to 0/3; product guard unchanged.
+Initial full-chain fixture used a tool offer ID without /tool/0 suffix; checkpoint rejected before browser launch. Corrected validated fixture; guard unchanged.
+
+build
+
+> dachoupai@0.1.0 build
+> tsc --noEmit && vite build
+
+vite v7.3.6 building client environment for production...
+transforming...
+✓ 258 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/build-info.json                0.17 kB │ gzip:   0.15 kB
+dist/index.html                     0.55 kB │ gzip:   0.36 kB
+dist/assets/index-CWSWqSda.css     72.00 kB │ gzip:  13.71 kB
+dist/assets/index-DbXiI4Qh.js   2,636.28 kB │ gzip: 769.11 kB
+
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+✓ built in 5.42s
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice
+
+95 targeted tests
+
+ RUN  v4.1.11 /workspace/dachoupai
+
+
+ Test Files  11 passed (11)
+      Tests  95 passed (95)
+   Start at  14:32:39
+   Duration  2.35s (transform 2.34s, setup 0ms, import 3.72s, tests 1.36s, environment 1ms)
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice
+
+production plan
+PLAN_VALID: 32 work packages; current=P08; not a gameplay acceptance
+
+Frozen older tool browser regression:
+{"status":"PASS","cases":[{"viewport":{"width":1366,"height":768},"status":"PASS","checks":["purchase cancel zero writes; held/duplicate/failure old full save unchanged; native retry saves original purchase once and resumes target UI without consumption","real overwrite warning and explicit replace; cancel preserves paid item and entire save; reopen clears only draft; consume duplicate/failure safe; native retry actual result and complete domain oracle","existing inventory direct use; scroll preserved across two selections; cancel/reopen/second use and continue hub; one buy/two explicit uses, final full state/journal/IDB matches canonical commands","same-name random stock has one visible seat and exact price; explicit BuyOffer continues to original selector, cancel retains purchase, direct use confirms once; final two buys/three uses match complete original oracle","actual lease loss: purchase seats disabled, held tool still inspectable, confirm disabled and native click/cancel zero write attempts/full save changes"]},{"viewport":{"width":390,"height":740},"status":"PASS","checks":["purchase cancel zero writes; held/duplicate/failure old full save unchanged; native retry saves original purchase once and resumes target UI without consumption","real overwrite warning and explicit replace; cancel preserves paid item and entire save; reopen clears only draft; consume duplicate/failure safe; native retry actual result and complete domain oracle","existing inventory direct use; scroll preserved across two selections; cancel/reopen/second use and continue hub; one buy/two explicit uses, final full state/journal/IDB matches canonical commands","same-name random stock has one visible seat and exact price; explicit BuyOffer continues to original selector, cancel retains purchase, direct use confirms once; final two buys/three uses match complete original oracle","actual lease loss: purchase seats disabled, held tool still inspectable, confirm disabled and native click/cancel zero write attempts/full save changes"]}],"sourceUnchanged":true}
+
+Protected paths byte-for-byte same as origin/main f651a04e: src/domain, src/application, src/content, src/audio, src/platform, src/game/GameScene.ts, src/game/IntermissionScene.ts, src/game/OwnedJokerInput.ts, src/game/OwnedJokerDragVisual.ts, public, art, .github, AGENTS.md, docs/production/DELIVERY_PLAN.md, package.json, package-lock.json
+
+Existing sale-continuation mock before repair: four failures, confirmation.querySelector missing; native product chain had passed. Original ownership/state/consequence assertions unchanged.
+
+ RUN  v4.1.11 /workspace/dachoupai
+
+
+ Test Files  12 passed (12)
+      Tests  99 passed (99)
+   Start at  14:45:17
+   Duration  1.99s (transform 2.02s, setup 0ms, import 3.38s, tests 1.23s, environment 1ms)
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice
+
+> dachoupai@0.1.0 typecheck
+> tsc --noEmit
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice
