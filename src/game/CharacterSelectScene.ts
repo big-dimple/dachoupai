@@ -22,7 +22,9 @@ import {readRunProgress} from '../platform/RunProgress';
 import type {Box} from './layout';
 import {selectionLayout} from './SelectionLayout';
 import {openingShowcaseLayout} from './OpeningShowcaseLayout';
-import {heroSignature} from './HeroSignature';
+import {SELECTION_PRESENTATION} from './SelectionPresentation';
+import {showSelectionComparison} from './SelectionComparison';
+import {showSelectionSample} from './SelectionSampleDialog';
 import {heroPlaySample,routePlaySample,type OpeningPlaySample} from './OpeningPlaySample';
 import {drawOpeningPlayTable} from './OpeningPlayTable';
 import {PAPER_THEME} from './theme';
@@ -86,12 +88,18 @@ export class CharacterSelectScene extends Phaser.Scene {
       const b=p.cards[i],selected=character.id===this.selectedId,first=v.root.length;
       const accent=HERO_OPENING[character.id].accent,color=parseInt(accent.slice(1),16);
       v.material(b,selected?0xe2e8e5:0xfff9ee,0xfff9ee,6);
-      const picture={x:b.x+4,y:b.y+3,width:b.width-8,height:b.height-27};this.drawPortrait(character.id,picture);
-      this.singleLine(b.x+b.width/2,b.y+b.height-24,character.name,16,selected?accent:'#26313A',b.width-8,14,true).setOrigin(.5,0);
+      const identity=SELECTION_PRESENTATION[character.id];
+      const compact=p.portrait||p.short;
+      const picture=compact?{x:b.x+4,y:b.y+3,width:Math.min(36,b.width*.32),height:b.height-25}:{x:b.x+6,y:b.y+5,width:b.width*.44,height:b.height-10};
+      this.drawPortrait(character.id,picture);
+      const tx=compact?b.x+picture.width+7:b.x+b.width*.48,tw=b.x+b.width-tx-5;
+      this.singleLine(tx,b.y+(compact?7:29),character.name,compact?16:20,selected?accent:'#26313A',tw,14,true).setName('opening/seat-name');
+      this.singleLine(compact?b.x+b.width/2:tx,b.y+(compact?b.height-23:62),identity.tag,14,'#3F606B',compact?b.width-8:tw).setOrigin(compact?.5:0,0).setName('opening/seat-tag');
+      if(selected)v.text(b.x+b.width-5,b.y+b.height-22,'✓',14,accent).setOrigin(1,0).setName('opening/selected-mark');
       v.add(this.add.graphics().lineStyle(selected?2:1,selected?color:0xc7b89d).strokeRoundedRect(b.x+.5,b.y+.5,b.width-1,b.height-1,6));
       const wrap=this.wrapCard(first,b),hit=v.rect(b).setFillStyle(0,0).setStrokeStyle(0);
       if(selected)hit.setData('selected',true);
-      v.target(hit,`character/${character.id}`,{tap:()=>{this.select(character.id);this.inspect(character.id);},detail:()=>this.inspect(character.id),enter:wrap.enter,leave:wrap.leave});
+      v.target(hit,`character/${character.id}`,{tap:()=>this.select(character.id),detail:()=>this.inspect(character.id),enter:wrap.enter,leave:wrap.leave});
     });
     else BUILD_FOCUS.forEach((focus,i)=>{
       const b=p.routes[i],copy=OPENING_ROUTES[focus],selected=this.selectedRoute===focus;
@@ -111,7 +119,7 @@ export class CharacterSelectScene extends Phaser.Scene {
     this.animateChoice=false;
     const existing=gameSession().run,canReturn=!!existing&&!['run-won','run-lost'].includes(existing.state.phase);
     v.button(p.cancel,this.step==='route'?'返回':this.modeConfig.mode==='tutorial'?'跳过':this.selectedId?'取消':canReturn?'回本局':'返回','action/cancel-character',()=>void this.cancelChoice(),!this.choosing);
-    v.button(p.details,'比较','action/character-details',()=>this.compareHeroes(),!this.choosing&&!!this.selectedId);
+    v.button(p.details,'比一比','action/character-details',()=>this.compareHeroes(),!this.choosing);
     v.button(p.confirm,this.choosing?'正在登台…':this.step==='hero'?'选路线 →':'一起登台','action/confirm-character',()=>void this.confirmChoice(),!this.choosing&&!!this.selectedId&&(this.step==='hero'||!!this.selectedRoute),true);
     const status=this.selectedId?getCharacter(this.selectedId).name+(this.step==='route'?(this.selectedRoute?' · '+OPENING_ROUTES[this.selectedRoute].title+' · 确认才开局':' · 三条路线都能玩'):this.modeConfig.mode==='tutorial'?' · 教程固定角色':' · 下一步选路线'):'点一位英雄，决定谁来撑场。';
     v.text(p.x,p.noticeY,this.notice||status,14,this.notice?'#B8473A':'#3F606B',p.w).setName('opening/status');
@@ -120,6 +128,10 @@ export class CharacterSelectScene extends Phaser.Scene {
     const v=this.view,c=characterForNewRun(this.selectedId??'amo'),copy=HERO_OPENING[c.id],b=p.hero,q=openingShowcaseLayout(b,p.portrait,p.short,true);
     v.material(b,PAPER_THEME.jadeSoft,PAPER_THEME.jadeSoft,8);
     const trim=this.add.graphics().lineStyle(1,PAPER_THEME.jade,.25).strokeRoundedRect(b.x+4,b.y+4,b.width-8,b.height-8,6);v.add(trim);
+    if(this.sampleExpanded&&abilityEnabled&&b.height<300){
+      this.sampleExpanded=false;
+      showSelectionSample(this.dialog,c.name+' · '+(this.step==='hero'?'技能例子':'路线例子'),this.step==='hero'?heroPlaySample(c.id):routePlaySample(this.selectedRoute!,c.id),this.sampleAfter);
+    }
     if(this.sampleExpanded&&abilityEnabled){
       this.singleLine(b.x+10,b.y+10,c.name+' · '+(this.step==='hero'?'技能示例':'路线示例'),18,copy.accent,b.width-102).setName('opening/demo-title');
       v.button({x:b.x+b.width-80,y:b.y+6,width:70,height:44},'收起','action/close-opening-sample',()=>{this.sampleExpanded=false;this.sampleAfter=false;this.audio.cancel();this.render();},!this.choosing);
@@ -128,7 +140,8 @@ export class CharacterSelectScene extends Phaser.Scene {
       return;
     }
     this.queueHeroPortrait(c.id);this.drawPortrait(c.id,q.art,true);
-    const portraitHit=v.rect(q.art).setFillStyle(0,0).setStrokeStyle(0);v.target(portraitHit,'opening/hero-details',{tap:()=>this.inspect(c.id),detail:()=>this.inspect(c.id)});
+    const portraitHit=v.rect({...q.art,height:q.art.height+(p.short?0:24)}).setFillStyle(0,0).setStrokeStyle(0);v.target(portraitHit,'opening/hero-details',{tap:()=>this.inspect(c.id),detail:()=>this.inspect(c.id)});
+    if(!p.short)v.text(q.art.x+q.art.width/2,q.art.y+q.art.height+4,'点立绘 · 技能说明',14,'#3F606B').setOrigin(.5,0).setName('opening/portrait-hint');
     const x=q.copy.x,w=q.copy.width,tightPortrait=p.portrait&&q.copy.height<150;
     const name=v.text(x,q.copy.y,c.name,p.short?30:tightPortrait?28:p.portrait?34:p.w>=1280?66:52,copy.accent).setFontFamily('Georgia, "Noto Serif SC", SimSun, serif').setFontStyle('bold').setName('opening/name');
     const title=v.text(x,name.y+name.height+2,c.title,14,'#3F606B').setName('opening/title');
@@ -136,8 +149,22 @@ export class CharacterSelectScene extends Phaser.Scene {
     if(p.portrait){quote.setWordWrapWidth(0);if(quote.width>w)quote.setText(copy.taunt.replace(/([，？])/,'$1\n'));if(quote.width>w)quote.setFontSize(14);quote.setWordWrapWidth(w,true);}
     if(tightPortrait)title.setVisible(false);
     if(p.short){title.setPosition(x+name.width+10,name.y+14);quote.setPosition(x+name.width+title.width+24,name.y+12).setWordWrapWidth(Math.max(100,w-name.width-title.width-24),true);}
+    if(abilityEnabled&&!p.short){
+      const identity=SELECTION_PRESENTATION[c.id],space=q.copy.y+q.copy.height-(quote.y+quote.height),compact=p.portrait||space<145;
+      // Keep a short operation promise on phones; reserve full facts for PC and comparison.
+      const y=quote.y+quote.height+(compact?10:20);
+      if(space>=64){
+        const tag=v.text(x,y,identity.tag,16,'#3F606B',w).setFontStyle('bold').setName('opening/skill-tag');
+        const hook=v.text(x,tag.y+tag.height+5,identity.hook,14,'#26313A',w).setName('opening/skill-hook');
+        if(!compact){
+          const entry=v.text(x,hook.y+hook.height+16,identity.entry,16,'#26313A',w).setName('opening/entry');
+          const when=v.text(x,entry.y+entry.height+8,'可用 · '+identity.when,14,'#3F606B',w).setName('opening/when');
+          v.text(x,when.y+when.height+6,'代价 · '+identity.cost,14,'#3F606B',w).setName('opening/selection-cost');
+        }
+      }
+    }
     if(!abilityEnabled)v.text(q.demo.x,q.demo.y,'此挑战关闭角色能力',14,'#3F606B',q.demo.width).setName('opening/play');
-    else v.button(q.demo,this.step==='hero'?'看看技能怎么用':this.selectedRoute?'看路线怎么做牌':'先选一条路线','action/opening-sample',()=>{this.sampleExpanded=true;this.sampleAfter=false;this.animateChoice=true;this.audio.select();this.render();},!this.choosing&&(this.step==='hero'||!!this.selectedRoute));
+    else v.button(q.demo,this.step==='hero'?'看技能例子 ›':this.selectedRoute?'看路线怎么做牌':'先选一条路线','action/opening-sample',()=>{this.audio.select();if(b.height<300)showSelectionSample(this.dialog,c.name+' · '+(this.step==='hero'?'技能例子':'路线例子'),this.step==='hero'?heroPlaySample(c.id):routePlaySample(this.selectedRoute!,c.id));else {this.sampleExpanded=true;this.sampleAfter=false;this.animateChoice=true;this.render();}},!this.choosing&&(this.step==='hero'||!!this.selectedRoute));
     if(this.animateChoice&&!this.reducedMotion()){
       for(const [target,delay] of [[name,0],[quote,60]] as const){target.setAlpha(.65);this.trackOpening(target,()=>target.active&&target.setAlpha(1));this.tweens.add({targets:target,alpha:1,delay,duration:180,ease:inkSettlingEase(.24)});target.once('destroy',()=>this.tweens.killTweensOf(target));}
     }
@@ -200,11 +227,7 @@ export class CharacterSelectScene extends Phaser.Scene {
   }
   private compareHeroes():void {
     if(this.choosing)return;
-    const enabled=r2RunModeConfig(this.modeConfig).characterAbilityEnabled;
-    const d=this.dialog.open('谁来撑这场戏？',enabled?'每位英雄都能玩三路，差别在操作与代价。':'普通局玩法参考；当前挑战关闭角色能力。',[{label:'所选英雄完整能力',run:()=>{if(this.selectedId)this.inspect(this.selectedId);}}],{closeLabel:'回到选角'});
-    const grid=document.createElement('section');grid.className='hero-comparison';
-    for(const c of CHARACTERS){const s=heroSignature(c.id),button=document.createElement('button'),title=document.createElement('strong'),claim=document.createElement('span'),cost=document.createElement('small');button.type='button';button.disabled=this.modeConfig.mode==='tutorial'&&c.id!=='erxiang';button.dataset.hero=c.id;button.setAttribute('aria-pressed',String(c.id===this.selectedId));title.textContent=c.name+' · '+s.tag;claim.textContent=s.beats.map(b=>b.result).join(' → ');cost.textContent=s.cost;button.append(title,claim,cost);button.onclick=()=>{this.select(c.id);this.dialog.close(d);};grid.append(button);}
-    d.querySelector('.dialog-copy')!.append(grid);
+    showSelectionComparison(this.dialog,{selectedId:this.selectedId,abilityEnabled:r2RunModeConfig(this.modeConfig).characterAbilityEnabled,tutorial:this.modeConfig.mode==='tutorial',select:id=>this.select(id),inspect:id=>this.inspect(id)});
   }
 
   private inspect(id:CharacterId):void {

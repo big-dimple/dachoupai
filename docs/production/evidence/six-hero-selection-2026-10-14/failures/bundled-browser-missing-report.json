@@ -1,0 +1,61 @@
+{
+  "scope": "all",
+  "testedCommit": "c8df122d4cac30fe41cbbc2c08bb894d94fe4bcf",
+  "status": "FAIL",
+  "exitCode": 1,
+  "before": {
+    "source": "b579b7bce527e70b91bc4b0a1abc8c0a5720a50b644e25f7a2b11308e6ac0468",
+    "index": "bf2767b80f1588bcc0daac4f258794fde8d7b882950f391738b00c88f9048d2f",
+    "head": "c8df122d4cac30fe41cbbc2c08bb894d94fe4bcf",
+    "branch": "refs/heads/dev/six-hero-selection-20261014"
+  },
+  "after": {
+    "source": "b579b7bce527e70b91bc4b0a1abc8c0a5720a50b644e25f7a2b11308e6ac0468",
+    "index": "bf2767b80f1588bcc0daac4f258794fde8d7b882950f391738b00c88f9048d2f",
+    "head": "c8df122d4cac30fe41cbbc2c08bb894d94fe4bcf",
+    "branch": "refs/heads/dev/six-hero-selection-20261014"
+  },
+  "steps": [
+    {
+      "name": "test",
+      "status": "PASS",
+      "childExitCode": 0,
+      "elapsedMs": 78841
+    },
+    {
+      "name": "verify:content",
+      "status": "PASS",
+      "childExitCode": 0,
+      "elapsedMs": 6516
+    },
+    {
+      "name": "build",
+      "status": "PASS",
+      "childExitCode": 0,
+      "elapsedMs": 26367
+    },
+    {
+      "name": "verify:smoke",
+      "status": "FAIL",
+      "childExitCode": 1,
+      "elapsedMs": 10752,
+      "reason": "child exited 1"
+    }
+  ],
+  "notIncluded": [
+    {
+      "name": "extended browser/recovery/fault/asset/simulation diagnostics",
+      "status": "NOT_INCLUDED",
+      "reason": "run the existing specific command only when its domain changes; P00 removes repeated default execution"
+    },
+    {
+      "name": "balance/benchmark acceptance",
+      "status": "NOT_INCLUDED",
+      "reason": "later work packages; no gameplay approval inferred from checks"
+    },
+    {
+      "name": "physical devices / human / art approval",
+      "status": "NOT_RUN"
+    }
+  ]
+}
