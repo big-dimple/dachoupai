@@ -1,3 +1,4 @@
+import {lockR2ChapterTargets} from '../src/domain/r2Chapter';
 import {it,expect} from 'vitest';
 import {replacementCashRiskFixture} from '../harness/fixtures/replacement-cash-risk';
 import {shopDeferredGrowthCashRisk} from '../src/game/ShopReplacementCashRisk';
@@ -45,7 +46,7 @@ it.each(['initial-cash-19','sold-hand-rule','sale-growth'] as const)('%s: previe
  const continuation=shopOfferGuidance(sale,o);expect(continuation).toMatchObject({stars:2,label:'推荐指数 ★★☆☆☆'});expect(continuation.recommendation).toEqual(preview.recommendation);expect(preview.purchaseConditionLosses).toEqual(continuation.purchaseConditionLosses);expect(preview.purchaseConditionLosses.join('\n')).toContain('购款金币23→19');expect(s).toEqual(before);
 });
 it.each(['growth','edition'] as const)('B06 sale-enabled retained %s is already in the purchase baseline, not a buy reward',kind=>{
- const s=replacementCashRiskFixture();s.chapter=3;s.stageIndex=8;s.shop!.visitIndex=8;s.boss={definitionId:'B06',disabledSuit:null};s.seenBossIds.push('B06');s.routeGrowth!.settlements.push({stageIndex:5,families:[]});s.routeGrowth!.clears++;
+ const s=replacementCashRiskFixture();s.chapter=3;s.stageIndex=8;s.shop!.visitIndex=8;s.boss={definitionId:'B06',disabledSuit:null};s.chapterTargetPlan=lockR2ChapterTargets(s.chapter,s.tourMode,s.difficulty,s.boss);s.seenBossIds.push('B06');s.routeGrowth!.settlements.push({stageIndex:5,families:[]});s.routeGrowth!.clears++;
  const j=r2CreateJoker(kind==='growth'?'a05':'e03','held/newly-live',8,kind==='edition'?'foil':'none',s);if(kind==='growth')j.growth.heat={n:'40',d:'1'};s.jokers[3]=j;assertRunInvariants(s);
  const sale=send(s,{type:'SellJoker',instanceId:s.jokers[2].instanceId}),bought=send(sale,{type:'BuyOffer',offerId:s.shop!.offers[0].offerId});
  expect(sale.jokers.find(next=>next.instanceId===j.instanceId)).toEqual(j);expect(bought.jokers.find(next=>next.instanceId===j.instanceId)).toEqual(j);
@@ -67,7 +68,7 @@ it('removed Baochang and positive purchase-growth hooks remain outside the downg
  s=replacementCashRiskFixture();s.jokers[3]=r2CreateJoker('e05','held/buy-growth',8,'none',s);expect(risk(s)).toBeUndefined();expect(shopRecommendation(s,s.shop!.offers[0],'group',s.jokers[2]).stars).toBe(4);
 });
 it('a purchase hook on a still-disabled B06 receiver is not a current scoring compensation',()=>{
- const s=replacementCashRiskFixture();s.chapter=3;s.stageIndex=8;s.shop!.visitIndex=8;s.boss={definitionId:'B06',disabledSuit:null};s.seenBossIds.push('B06');s.routeGrowth!.settlements.push({stageIndex:5,families:[]});s.routeGrowth!.clears++;
+ const s=replacementCashRiskFixture();s.chapter=3;s.stageIndex=8;s.shop!.visitIndex=8;s.boss={definitionId:'B06',disabledSuit:null};s.chapterTargetPlan=lockR2ChapterTargets(s.chapter,s.tourMode,s.difficulty,s.boss);s.seenBossIds.push('B06');s.routeGrowth!.settlements.push({stageIndex:5,families:[]});s.routeGrowth!.clears++;
  s.jokers[1]=r2CreateJoker('e05','held/disabled-buy-growth',8,'none',s);assertRunInvariants(s);
  const sale=send(s,{type:'SellJoker',instanceId:s.jokers[2].instanceId}),buy=send(sale,{type:'BuyOffer',offerId:s.shop!.offers[0].offerId}),j=buy.jokers.find(j=>j.definitionId==='e05')!;
  expect(j.growth.heat).toEqual({n:'8',d:'1'});expect(r2ScoringDisabledJokerIds(buy.boss,buy.jokers,r2JokerDefinitionsFor(buy))).toContain(j.instanceId);

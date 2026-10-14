@@ -1,3 +1,5 @@
+import {isR2CoreBuild} from '../src/domain/r2GroupUpgrade';
+import {lockR2ChapterTargets} from '../src/domain/r2Chapter';
 import {isR2BoundedClear} from '../src/domain/r2GroupUpgrade';
 import {r2RouteGrowthTrace} from '../src/domain/r2RouteGrowth';
 import {describe,expect,it} from 'vitest';
@@ -19,6 +21,7 @@ function fixture(n=4,profile=newRunIdentity('amo','group')){
  s=send(s,{type:'LeaveShop'});s.shop=null;
  if(isR2RouteGrowth(s))s.routeGrowth={clears:n,G:n,S:n,F:n,settlements:Array.from({length:n},(_,stageIndex)=>({stageIndex,families:['G','S','F']}))};
  s.stageIndex=n;s.chapter=Math.floor(n/3)+1;s.seenBossIds=['B01','B02'].slice(0,s.chapter);s.boss={definitionId:s.seenBossIds.at(-1)! as 'B01'|'B02',disabledSuit:null};
+ if(isR2CoreBuild(s))s.chapterTargetPlan=lockR2ChapterTargets(s.chapter,s.tourMode,s.difficulty,s.boss);
  s=send(s,{type:'EnterStage'});return arrange(s,main);
 }
 function arrange(s:R2RunState,ids:string[]){s.handOrder=[...ids,...side,...s.deckInstances.filter(c=>!ids.includes(c.id)&&!side.includes(c.id)).map(c=>c.id)].slice(0,s.stage!.handLimit);s.drawPile=s.deckInstances.map(c=>c.id).filter(id=>!s.handOrder.includes(id));assertR2Invariants(s);return s;}

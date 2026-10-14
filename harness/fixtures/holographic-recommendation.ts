@@ -1,3 +1,4 @@
+import {lockR2ChapterTargets} from '../../src/domain/r2Chapter';
 import {createRun,applyCommand,assertRunInvariants,type R2RunState,type Action} from '../../src/domain/run';
 import {newRunIdentity} from '../../src/game/RunLaunch';
 import {r2CreateJoker} from '../../src/domain/r2Run';
@@ -14,6 +15,7 @@ export function holographicRecommendationFixture(challenge=false){
  s.routeGrowth={clears:8,G:8,S:0,F:0,settlements:Array.from({length:8},(_,stageIndex)=>({stageIndex,families:['G']}))};s.handLevels.pair=1;
  if(challenge)s.chapterDisabledJokerId='b07';
  s.shop!.offers=[{offerId:'public/e08',definitionId:'e08',price:r2Price('e08','none',s),edition:'none',consumed:false}];
+ s.chapterTargetPlan=lockR2ChapterTargets(s.chapter,s.tourMode,s.difficulty,s.boss);
  assertRunInvariants(s);return s;
 }
 export function holographicSend(s:R2RunState,action:Action){

@@ -13,6 +13,12 @@ const refreshDisabled=(state:R2RunState):void=>{
 };
 
 /** Mutates only the caller's transaction copy. A rejection discards that entire transaction. */
+export function upgradeR2HandLevel(state:R2RunState,handType:R2HandType,levels:number):string|undefined {
+ if(!Object.hasOwn(state.handLevels,handType))return 'undiscovered-hand-type';
+ const level=state.handLevels[handType]!;
+ if(!Number.isSafeInteger(levels)||levels<1||level+levels>R2_TOOL_CATALOG.limits.handLevelMaximum)return 'hand-level-cap';
+ state.handLevels[handType]=level+levels;
+}
 export function applyR2Tool(state:R2RunState,command:Command,events:DomainEvent[]):string|undefined {
   const action=command.action;
   if(action.type!=='UseConsumable')return 'invalid-command';
@@ -52,9 +58,7 @@ export function applyR2Tool(state:R2RunState,command:Command,events:DomainEvent[
   switch(operation.kind){
     case 'upgrade-hand': {
       if(tool.target.kind!=='discovered-hand'||!handType)return 'wrong-consumable-target';
-      const level=state.handLevels[handType]!;
-      if(level+operation.levels>R2_TOOL_CATALOG.limits.handLevelMaximum)return 'hand-level-cap';
-      state.handLevels[handType]=level+operation.levels;break;
+      const code=upgradeR2HandLevel(state,handType,operation.levels);if(code)return code;break;
     }
     case 'restore-discard': {
       if(!state.stage||state.phase!=='await-input')return 'wrong-consumable-target';

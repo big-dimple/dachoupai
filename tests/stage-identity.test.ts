@@ -1,3 +1,4 @@
+import {lockR2ChapterTargets} from '../src/domain/r2Chapter';
 import {describe,expect,it} from 'vitest';
 import {SUITS,SUIT_SYMBOL} from '../src/cards/types';
 import {createRun,applyCommand,assertRunInvariants,type R2RunState,type Action} from '../src/domain/run';
@@ -19,7 +20,7 @@ describe('locked Boss identity across preview, entry and recovery',()=>{
   run=send(send(send(run,{type:'LeaveShop'}),{type:'SkipStage'}),{type:'OpenShop'});
   run=send(send(run,{type:'LeaveShop'}),{type:'SkipStage'});
   // Explicit valid controlled plan; no claim of natural suit acquisition or seed reproduction.
-  run.boss={definitionId:'B03',disabledSuit:suit};run.seenBossIds=['B03'];
+  run.boss={definitionId:'B03',disabledSuit:suit};run.seenBossIds=['B03'];run.chapterTargetPlan=lockR2ChapterTargets(run.chapter,run.tourMode,run.difficulty,run.boss);
   const before=JSON.stringify(run),ruleCursor=structuredClone(run.rng.rule),preview=stageIdentity(run.stageIndex,run.boss)!;
   expect(preview.title).toContain(stageSuitLabel(suit));expect(preview.title).toContain(SUIT_SYMBOL[suit]);expect(JSON.stringify(run)).toBe(before);
   run=send(send(send(run,{type:'OpenShop'}),{type:'LeaveShop'}),{type:'EnterStage'});

@@ -16,7 +16,7 @@
 
 实际现货留个声3金，买后原 UseConsumable 改原冻结持牌Q♠/Q♦，现金264→261、耗品消耗，切片64475→72648（+8173）。普通点数、等级、过关加成和未知下张牌均未赠送；它是有效留牌做牌收益，不能保证以后每手留到两Q。合法买用后的严格 checkpoint通过。
 
-完整有限数值在 [window.json](window.json)，复算入口 [core-build-window.mjs](../../../../analysis/core-build-window.mjs)，直接复用现有 scorer/交易，不用旧核算 runner 冒签新基线。
+完整有限数值在 [window.json](window.json)，复算入口 [core-build-window-run.mjs](../../../../analysis/core-build-window-run.mjs)，直接复用现有 scorer/交易，不用旧核算 runner 冒签新基线。
 
 ## 建议锁定的一整个实现合同
 
