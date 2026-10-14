@@ -1,0 +1,59 @@
+{
+  "observedAt": "2026-10-14T17:17:17.083Z",
+  "baseSha": "4a52fd0b0fb9ac0a49b8cb5e79abc8db4326e2d7",
+  "origin": "https://pai.hp666.cc",
+  "browser": "151.0.7922.173",
+  "pageUrl": "chrome-error://chromewebdata/",
+  "productionNavigation": {
+    "status": "ENVIRONMENT_BLOCKED",
+    "error": "page.goto: net::ERR_TUNNEL_CONNECTION_FAILED at https://pai.hp666.cc/",
+    "waitUntil": "networkidle"
+  },
+  "normalCurl": {
+    "status": "ENVIRONMENT_BLOCKED",
+    "exitCode": 56,
+    "httpStatus": 403,
+    "server": "envoy",
+    "error": "CONNECT tunnel failed, response 403",
+    "observedAt": "2026-10-14T17:16:44Z"
+  },
+  "checks": [
+    {
+      "viewport": "390x844",
+      "result": "NOT_RUN",
+      "reason": "Navigation blocked before application boot"
+    },
+    {
+      "viewport": "320x568",
+      "result": "NOT_RUN",
+      "reason": "Same origin blocked; no additional navigation retry"
+    },
+    {
+      "viewport": "390x568 short screen",
+      "result": "NOT_RUN",
+      "reason": "Same origin blocked; no additional navigation retry"
+    }
+  ],
+  "newRandomRun": {
+    "result": "NOT_RUN",
+    "contentVersionRequested": "quality-r2-core-build-v1",
+    "seed": null,
+    "created": false
+  },
+  "skillExampleReturn": "NOT_RUN",
+  "firstChapterManagement": "NOT_RUN",
+  "practiceQuotesAndBuyOrKeep": "NOT_RUN",
+  "saveRecovery": "NOT_RUN",
+  "noBypass": true,
+  "noImportedFixture": true,
+  "noSeedSearch": true,
+  "requestedViewport": {
+    "width": 390,
+    "height": 844
+  },
+  "cdpReconnectViewport": null,
+  "screenshotDimensions": {
+    "width": 390,
+    "height": 844
+  }
+}

@@ -1,0 +1,16 @@
+2026-10-14 17:16 UTC; cloud environment; unmodified network route
+Browser requested viewport: 390x844
+page.goto: net::ERR_TUNNEL_CONNECTION_FAILED at https://pai.hp666.cc/
+waitUntil: networkidle
+Application did not boot.
+
+2026-10-14 17:16:44 UTC; normal curl -I --max-time 15 https://pai.hp666.cc
+curl: (56) CONNECT tunnel failed, response 403
+HTTP/1.1 403 Forbidden
+content-length: 16
+content-type: text/plain
+server: envoy
+connection: close
+
+GitHub gh GraphQL/REST metadata reads also returned Forbidden.
+Authorized GitHub connector read succeeded; no proxy, ACL, credentials or safety configuration changed.
