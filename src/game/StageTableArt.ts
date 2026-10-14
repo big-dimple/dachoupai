@@ -20,8 +20,8 @@ export function stageTableArtPlan(l:TableLayout):StageTableArtPlan {
  if(l.mode==='desktop'&&imageHeight>=112)plan.portrait={x:l.hud.x+(l.hud.width-100)/2,y:imageTop,width:100,height:imageHeight};
  return plan;
 }
-/** Existing prepared paper/character art and sparse ink seams only; all layers are noninteractive. */
-export function drawStageTableArt(scene:Phaser.Scene,view:SceneView,characterId:CharacterId):void {
+/** Existing paper/character art; an optional hero entry owns only its portrait bounds. */
+export function drawStageTableArt(scene:Phaser.Scene,view:SceneView,characterId:CharacterId,inspectHero?:()=>void):void {
  const plan=stageTableArtPlan(view.layout);
  function sheet(name:string,b:Box,color:number,edge:number,shadow=false):void {
   if(b.width<=0||b.height<=0)return;
@@ -41,6 +41,7 @@ export function drawStageTableArt(scene:Phaser.Scene,view:SceneView,characterId:
  const key=selectionPortraitKey(characterId),box=plan.portrait;
  if(box){
   const holder=view.add(scene.add.container(0,0).setName('table-art/character-holder'));
+  if(inspectHero){const hit=view.rect(box).setFillStyle(0,0).setStrokeStyle(0);view.target(hit,'table-art/hero-details',{tap:inspectHero,detail:inspectHero});}
   whenTextureReady(scene,holder,key,()=>{
   const image=scene.add.image(box.x+box.width/2,box.y+box.height/2,key);image.setScale(Math.min(box.width/image.width,box.height/image.height)).setName('table-art/character').setData('assetId',characterId+'.selection').setData('bounds',box);holder.add(image);
   });

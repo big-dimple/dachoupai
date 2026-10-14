@@ -1,4 +1,5 @@
 import {warmOpeningImages,warmHeroImage} from './StageImageWarmup';
+import {showHeroExplanation} from './HeroExplanation';
 import {paperSceneStart} from './PaperFlow';
 import {inkSettlingEase} from './inkwaveSpring';
 import {characterForNewRun} from './CharacterRunCopy';
@@ -8,7 +9,7 @@ import {deferOpeningIntent} from './HeroOpeningIntent';
 import Phaser from 'phaser';
 import {AudioEngine} from '../audio/AudioEngine';
 import {CHARACTERS,getCharacter,type CharacterId} from './characters';
-import {addAvatar,selectionPortraitKey,selectionPortraitURL,portraitURL} from './portraits';
+import {addAvatar,selectionPortraitKey} from './portraits';
 import {startRun} from './runAdapter';
 import {gameSession} from './session';
 import {routeSavedRun} from './RunMenu';
@@ -90,7 +91,7 @@ export class CharacterSelectScene extends Phaser.Scene {
       v.add(this.add.graphics().lineStyle(selected?2:1,selected?color:0xc7b89d).strokeRoundedRect(b.x+.5,b.y+.5,b.width-1,b.height-1,6));
       const wrap=this.wrapCard(first,b),hit=v.rect(b).setFillStyle(0,0).setStrokeStyle(0);
       if(selected)hit.setData('selected',true);
-      v.target(hit,`character/${character.id}`,{tap:()=>this.select(character.id),detail:()=>this.inspect(character.id),enter:wrap.enter,leave:wrap.leave});
+      v.target(hit,`character/${character.id}`,{tap:()=>{this.select(character.id);this.inspect(character.id);},detail:()=>this.inspect(character.id),enter:wrap.enter,leave:wrap.leave});
     });
     else BUILD_FOCUS.forEach((focus,i)=>{
       const b=p.routes[i],copy=OPENING_ROUTES[focus],selected=this.selectedRoute===focus;
@@ -127,6 +128,7 @@ export class CharacterSelectScene extends Phaser.Scene {
       return;
     }
     this.queueHeroPortrait(c.id);this.drawPortrait(c.id,q.art,true);
+    const portraitHit=v.rect(q.art).setFillStyle(0,0).setStrokeStyle(0);v.target(portraitHit,'opening/hero-details',{tap:()=>this.inspect(c.id),detail:()=>this.inspect(c.id)});
     const x=q.copy.x,w=q.copy.width,tightPortrait=p.portrait&&q.copy.height<150;
     const name=v.text(x,q.copy.y,c.name,p.short?30:tightPortrait?28:p.portrait?34:p.w>=1280?66:52,copy.accent).setFontFamily('Georgia, "Noto Serif SC", SimSun, serif').setFontStyle('bold').setName('opening/name');
     const title=v.text(x,name.y+name.height+2,c.title,14,'#3F606B').setName('opening/title');
@@ -206,12 +208,9 @@ export class CharacterSelectScene extends Phaser.Scene {
   }
 
   private inspect(id:CharacterId):void {
-    if(this.choosing)return;const c=characterForNewRun(id);
-    const body=[HERO_OPENING[id].story,c.passiveName+'\n'+c.passiveDescription,'构筑思路\n'+c.buildTip,'“'+c.quote+'”'];
-    if(!r2RunModeConfig(this.modeConfig).characterAbilityEnabled)body.unshift('当前挑战关闭角色被动与初始赠送，以下能力供普通局参考。');
-    const tutorialOther=this.modeConfig.mode==='tutorial'&&id!=='erxiang';if(tutorialOther)body.push('教程固定二响；跳过教程后可选用此角色。');
-    if(this.selectedId===id)body.push('该角色已选中。关闭详情后，选择路线并一起确认登台。');
-    this.dialog.open(c.name+' · '+c.title,body.join('\n\n'),this.selectedId===id||tutorialOther?[]:[{label:'选中角色',run:()=>{this.select(id);this.dialog.close();}}],{portrait:{url:portraitURL(id),thumbnailUrl:selectionPortraitURL(id),alt:c.name+'的完整巡演立绘'}});
+    if(this.choosing)return;
+    const tutorialOther=this.modeConfig.mode==='tutorial'&&id!=='erxiang';
+    showHeroExplanation(this.dialog,id,{abilityEnabled:r2RunModeConfig(this.modeConfig).characterAbilityEnabled,closeLabel:'回到选角',status:tutorialOther?'教程固定二响；退出教程后可选择这位英雄。':undefined,actions:this.selectedId===id||tutorialOther?[]:[{label:'选中角色',run:()=>{this.select(id);this.dialog.close();}}]});
   }
   private selectMode():void {
     if(this.choosing)return;this.dialog.close();this.modeDialog.open({initial:{modeConfig:this.modeConfig,seed:this.seed},chooseLabel:'使用此模式',choose:choice=>this.applyModeChoice(choice),

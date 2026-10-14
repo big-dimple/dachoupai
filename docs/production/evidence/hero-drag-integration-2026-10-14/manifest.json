@@ -1,0 +1,3062 @@
+{
+  "productHead": "a6044c6a0b185f479681de2d98c745cadfde3fd8",
+  "srcTree": "e3079583af23eb182faa9ff5f9e55486232b5050",
+  "harnessTree": "586d5d0ad0c1589244f2e560da395fdd9f74604d",
+  "artifacts": [
+    {
+      "path": "audit-snapshots.mjs",
+      "bytes": 3418,
+      "sha256": "588dc4b83b20bc5a68a0c64b9b42ac8277c6817fefa491b18b4c0932e0bd8099"
+    },
+    {
+      "path": "checks/build.txt",
+      "bytes": 1017,
+      "sha256": "8bd7f0b95b7f0729d254fdeb07193e7b9307c30f418a24e5566fa108f2118610"
+    },
+    {
+      "path": "checks/drag.txt",
+      "bytes": 68,
+      "sha256": "cb89c48714f753429bd7b02b6e1d6c46110ec65cc17833070dfe2af842403670"
+    },
+    {
+      "path": "checks/enhancement-rule-scroll.txt",
+      "bytes": 158,
+      "sha256": "fc1fbc921494cf1b4067d8767a7e24d9a151b99339afb79d616925124ae6f35a"
+    },
+    {
+      "path": "checks/enhancements.txt",
+      "bytes": 193,
+      "sha256": "736e5bbcebaa8870cba8077f26d70602f1b794e1b9b0347288ee2ff0400a484f"
+    },
+    {
+      "path": "checks/explanations.txt",
+      "bytes": 10,
+      "sha256": "115ce19fa6821cd3480f5cadf4073f82fb148d93b119777a32c7cff387f9cbe0"
+    },
+    {
+      "path": "checks/production-plan.txt",
+      "bytes": 69,
+      "sha256": "4ac412cb7d8dabcb0857d651e1f1800b2142284bb826518fe5fd749bb54b6e27"
+    },
+    {
+      "path": "checks/skills.txt",
+      "bytes": 258,
+      "sha256": "e0b65fc2e6527f19d6a8d9cea02e617d19e3070e7a27f406c6650271dc4b61b4"
+    },
+    {
+      "path": "checks/snapshot-audit.txt",
+      "bytes": 51,
+      "sha256": "2b59c00a8d35f13878c1a3b6effaea33a1bbeb34b4be7924b0d632f13dd2d45a"
+    },
+    {
+      "path": "checks/targeted-save-rules.txt",
+      "bytes": 419,
+      "sha256": "2704a1abddbc57f2eae9855ca17fd67abee4c19eae05747356b330ef5c8e3c0e"
+    },
+    {
+      "path": "checks/targeted-tests.txt",
+      "bytes": 420,
+      "sha256": "f570e5a836d307989904c92fd9d0906b706eb5c89ef5ab407bebd3e402e33b2a"
+    },
+    {
+      "path": "checks/typecheck.txt",
+      "bytes": 253,
+      "sha256": "74f919f77aaafd9e103ae561073b59a64c21a6860376204d97779934238403aa"
+    },
+    {
+      "path": "drag/1366x900-fast-delay-saving.png",
+      "bytes": 210052,
+      "sha256": "1738d56e175e250daa2ae3cdc7350cacbb14c574a9618d4d80aab180a83afed3"
+    },
+    {
+      "path": "drag/1366x900-fast-dropped.png",
+      "bytes": 205134,
+      "sha256": "9462cda6f887496a5afcd72b5ecf3392493954204cedb0ee0d61f597bbd9c75a"
+    },
+    {
+      "path": "drag/1366x900-fast-held.png",
+      "bytes": 212655,
+      "sha256": "bad79b07d39729f0f84114eccb904368a7713c23b705396dd9fcbfe6c619c0f9"
+    },
+    {
+      "path": "drag/1366x900-fast-mid.png",
+      "bytes": 212346,
+      "sha256": "4453c0aa72fb17d4045704b33edd058517b1e3f1c5f004b6dc298bc3203044f3"
+    },
+    {
+      "path": "drag/1366x900-idle.png",
+      "bytes": 208740,
+      "sha256": "dae7e65954717c8ce6226ae87dd265e9b6d374408414af95fb3d448d1387993a"
+    },
+    {
+      "path": "drag/1366x900-middle-dropped.png",
+      "bytes": 205130,
+      "sha256": "c47d7eeaa3721b7f26769b27c29d25e488b0d1c7ac17ee54c33f8b542aa93c6e"
+    },
+    {
+      "path": "drag/1366x900-middle-held.png",
+      "bytes": 212949,
+      "sha256": "f83365d8ae887733200fcd8f4cdf7b3781ea4d1545c9f8e0ed882d8285009dd0"
+    },
+    {
+      "path": "drag/1366x900-middle-mid.png",
+      "bytes": 212957,
+      "sha256": "cc39c69866a1be35a1a1749aabd1d0126e1806c9cadf0c5e01681dcd2ef5af54"
+    },
+    {
+      "path": "drag/1366x900-mouse-hover.png",
+      "bytes": 261132,
+      "sha256": "3b1993dc5a73bdf50f73b947e79230c4240b6bf2fdbe3b3589fe391a48d30bbd"
+    },
+    {
+      "path": "drag/1366x900-pending-touye-hover.png",
+      "bytes": 252365,
+      "sha256": "4c495cba1a804f00e2240f4aaf31be26cf1843d59272660d13ccf8eea4165d75"
+    },
+    {
+      "path": "drag/1366x900-save-failure.png",
+      "bytes": 208031,
+      "sha256": "af6f4439e4d2a5fddfc2cb5250b5a7a46949180434ae7d908d55734544b5ee18"
+    },
+    {
+      "path": "drag/1366x900-save-retry.png",
+      "bytes": 209304,
+      "sha256": "0c8a4e40610a8d0674ed3132a5512ec84f02f0bea1578a4dbab5c47b2e2eb335"
+    },
+    {
+      "path": "drag/1366x900-saving-delay.png",
+      "bytes": 209955,
+      "sha256": "31ad96f0f349731de37bc5a1f786c5bdd72d6c57a88edbbddf07f61835c0b115"
+    },
+    {
+      "path": "drag/1366x900-slow-dropped.png",
+      "bytes": 205071,
+      "sha256": "a0e7f63e4c9f6bcc07fd26c1c09c135abc8dbcc2f48c4e564e8afe035cd60d22"
+    },
+    {
+      "path": "drag/1366x900-slow-held.png",
+      "bytes": 212926,
+      "sha256": "47a6ea6ac1e24d211f1b5be161e59e7ae5de636dfcf1fcd42bac03fe945c666d"
+    },
+    {
+      "path": "drag/1366x900-slow-mid.png",
+      "bytes": 212303,
+      "sha256": "a47ad3578642e3dff271e15b64b518d285ac967740cdd5570178efc6c2aa71bc"
+    },
+    {
+      "path": "drag/1366x900-vertical.png",
+      "bytes": 210447,
+      "sha256": "0ef02e664857d4547300282abee716a2f40fbba27b0ab38384755954171c2194"
+    },
+    {
+      "path": "drag/390x844-fast-delay-saving.png",
+      "bytes": 108067,
+      "sha256": "e73f4e26c9d3aa6163f151587d59484bff12a03c7669e3f9260c4a45012c8e9f"
+    },
+    {
+      "path": "drag/390x844-fast-dropped.png",
+      "bytes": 104072,
+      "sha256": "ee4f6f0f6e53e24c814eee34f44c2ad01b8247d54dc3bd8b13a1532e4ca6e8f5"
+    },
+    {
+      "path": "drag/390x844-fast-held.png",
+      "bytes": 110145,
+      "sha256": "1e923cab63b835771fe978af7031e79a0da834fc983ff6111759d2634f6a3708"
+    },
+    {
+      "path": "drag/390x844-fast-mid.png",
+      "bytes": 109986,
+      "sha256": "892f1bc9086a53c668dd217034d8d5e609daa39a283969ba4c2c7e82e94156d6"
+    },
+    {
+      "path": "drag/390x844-idle.png",
+      "bytes": 107368,
+      "sha256": "32ddf460d24f1b985fe702d6d667e3d7ffe6495231badd1db4ee179aa1127e62"
+    },
+    {
+      "path": "drag/390x844-middle-dropped.png",
+      "bytes": 104158,
+      "sha256": "383c396cf1891d812953892b78ceafabe23a788e9c8df03a9bef7b2cb4a12884"
+    },
+    {
+      "path": "drag/390x844-middle-held.png",
+      "bytes": 109255,
+      "sha256": "69e271e80ae6da3d078a87fafca3345ec776933cf3f2bb143592e2c8ab67b6e8"
+    },
+    {
+      "path": "drag/390x844-middle-mid.png",
+      "bytes": 110518,
+      "sha256": "40a346adb4b3557193692929d67fa77ee71e29a7a01e002472f52ed1cbe22dcc"
+    },
+    {
+      "path": "drag/390x844-reduce-dpr2-fast-delay-saving.png",
+      "bytes": 109835,
+      "sha256": "5cc34576ed412b67ac81e83e40c13d5aa8eea1401ead0b3ce61b772bdf17feb2"
+    },
+    {
+      "path": "drag/390x844-reduce-dpr2-fast-dropped.png",
+      "bytes": 105980,
+      "sha256": "b95dc5b9601d8d21bb09f62670c5835cc22ea9c87dea2cd7e280942d0bc6dc52"
+    },
+    {
+      "path": "drag/390x844-reduce-dpr2-fast-held.png",
+      "bytes": 111789,
+      "sha256": "f12799ad4a8be78852c6861b60c30bde82735b9651219121bba890e2dda8b7aa"
+    },
+    {
+      "path": "drag/390x844-reduce-dpr2-fast-mid.png",
+      "bytes": 111715,
+      "sha256": "ed34debe370c30c4459d9d7b7a614998c30e9256963b3c4e0a0b4f1422ed9768"
+    },
+    {
+      "path": "drag/390x844-reduce-dpr2-idle.png",
+      "bytes": 109451,
+      "sha256": "b0b3a48b96a7c9671b6a237e3fae1a890a810e0a8ba4b7f59980068b2b3ec392"
+    },
+    {
+      "path": "drag/390x844-reduce-dpr2-middle-dropped.png",
+      "bytes": 105993,
+      "sha256": "09ce660510074cb4b9e48c536eadcbbebac40ee2c4f1d4d2402fd1b187ab7d91"
+    },
+    {
+      "path": "drag/390x844-reduce-dpr2-middle-held.png",
+      "bytes": 111024,
+      "sha256": "e650f7dfa527c5b5f3f2eec8c529449a98ad72b0982ffb013b5d4d83a36d5440"
+    },
+    {
+      "path": "drag/390x844-reduce-dpr2-middle-mid.png",
+      "bytes": 112435,
+      "sha256": "55611fdbfa4fb1ac6080be5fb4bc8a188c3777dc8bcd2da4d0e1f8d6c34fc8a9"
+    },
+    {
+      "path": "drag/390x844-reduce-dpr2-save-failure.png",
+      "bytes": 51779,
+      "sha256": "b774bd73aab57d90a0be1fc4207b57826d6e958da7c114523cc22070799a6d0f"
+    },
+    {
+      "path": "drag/390x844-reduce-dpr2-save-retry.png",
+      "bytes": 110113,
+      "sha256": "f4f6224100b08e9d86afca636eeb0642c4c0b2a4c274ff41916b1822283dddef"
+    },
+    {
+      "path": "drag/390x844-reduce-dpr2-saving-delay.png",
+      "bytes": 109771,
+      "sha256": "a79889273b0488138fff27d4fe48de418eddc117fbffba76a1234f4c4a60366c"
+    },
+    {
+      "path": "drag/390x844-reduce-dpr2-slow-dropped.png",
+      "bytes": 106086,
+      "sha256": "5fe33167b405e05f216e0e76eb6be3d215b31fb069db8b4c2531d24e0ce0351a"
+    },
+    {
+      "path": "drag/390x844-reduce-dpr2-slow-held.png",
+      "bytes": 111834,
+      "sha256": "6fccac4bc255ee910fb9db26bda0055783b4beee88e354c542d7405b84e07061"
+    },
+    {
+      "path": "drag/390x844-reduce-dpr2-slow-mid.png",
+      "bytes": 111708,
+      "sha256": "c074623a8697ec647cd8914011b4884c0675286afd889139fda6552d86f714f2"
+    },
+    {
+      "path": "drag/390x844-reduce-dpr2-vertical.png",
+      "bytes": 110699,
+      "sha256": "8e5e26ed52d7fe6feb0a4da41645d941a47503e6005ad9662b6ed6cc35e628c7"
+    },
+    {
+      "path": "drag/390x844-save-failure.png",
+      "bytes": 50150,
+      "sha256": "679947ceae4fb4fbb8eae1a7239ff36598b234ba575f7d5e00a96647e4b22a9e"
+    },
+    {
+      "path": "drag/390x844-save-retry.png",
+      "bytes": 108176,
+      "sha256": "e7db6c94692e5ba8ae62d96c9715cc60106bb2d79100e55fe5f831270e37919f"
+    },
+    {
+      "path": "drag/390x844-saving-delay.png",
+      "bytes": 108034,
+      "sha256": "09043a104dec78639157087545b8370362c2c3938ac4791abb8c9fa927e75f84"
+    },
+    {
+      "path": "drag/390x844-slow-dropped.png",
+      "bytes": 104287,
+      "sha256": "a7b2f949e4a6b7581bb3cff3bbab88b5a9f822a40a45ab9e59fc2959e285a8db"
+    },
+    {
+      "path": "drag/390x844-slow-held.png",
+      "bytes": 110097,
+      "sha256": "b66171d9f65151300f492e29f00317bfca37dc436eebb10ef648b91cd1100c8c"
+    },
+    {
+      "path": "drag/390x844-slow-mid.png",
+      "bytes": 110101,
+      "sha256": "81c42f937c39bd8fe2d25b928725e28cd610ca1df60567d8358745b374b91e90"
+    },
+    {
+      "path": "drag/390x844-vertical.png",
+      "bytes": 108745,
+      "sha256": "754084a39c3bd58785062d25e7c38e93b6f9dbde7287acc0bb1ee9fcd8dceaac"
+    },
+    {
+      "path": "drag/full-state-journal-storage.json.gz",
+      "bytes": 46343,
+      "sha256": "9eb64766679f754839cf965227f3c9fdc28e7db23796e2953f0c1004599fd6fb"
+    },
+    {
+      "path": "drag/report.json",
+      "bytes": 1665511,
+      "sha256": "0f76c32a6148621f4f57887756b0b9a1a8f45db1afca4eb80908fb7e12485d0b"
+    },
+    {
+      "path": "enhancement-rule-scroll/1366-玻璃牌-rule-tail.png",
+      "bytes": 267528,
+      "sha256": "27556db7313c835d7a76bceebd517dca982a25a59a3f07d4e54c25bdca96221a"
+    },
+    {
+      "path": "enhancement-rule-scroll/1366-玻璃面-rule-tail.png",
+      "bytes": 303215,
+      "sha256": "69b0999fcefab27662ff04783f4881c898e485ebf79325981437cc7614aaf7ab"
+    },
+    {
+      "path": "enhancement-rule-scroll/1366-留声纸-rule-tail.png",
+      "bytes": 251887,
+      "sha256": "8cec378defd02b9dbd7ad8274415f69581f2a1407821e9d78f17fd4b9a5dd051"
+    },
+    {
+      "path": "enhancement-rule-scroll/390-玻璃牌-rule-tail.png",
+      "bytes": 109639,
+      "sha256": "d517a55316abc0f25d9452905aea4b1f20e901f7ebbdd0ac0cbc5c1dee6f61d7"
+    },
+    {
+      "path": "enhancement-rule-scroll/390-玻璃面-rule-tail.png",
+      "bytes": 101132,
+      "sha256": "328eec925ae60b28b291d2ddc1fdf01d69b01bc8d490c45cbf3d82d9db50cb08"
+    },
+    {
+      "path": "enhancement-rule-scroll/390-留声纸-rule-tail.png",
+      "bytes": 107373,
+      "sha256": "2de986c3175333dfe0890501ce4f0b47cba42519c94a16a47149fee8eceeab1d"
+    },
+    {
+      "path": "enhancement-rule-scroll/report.json",
+      "bytes": 123211,
+      "sha256": "9ce28f74681223356ee3d54a3f2618d03de89597d4d31fae3b207a9c7d054d6b"
+    },
+    {
+      "path": "enhancements/1366-enhancement-list.png",
+      "bytes": 195024,
+      "sha256": "d3f11b876fa58d98774d5449a4165555cdb002eb9a42879dd4fba8c79e64f56e"
+    },
+    {
+      "path": "enhancements/1366-glass-card-purpose.png",
+      "bytes": 116872,
+      "sha256": "73dff6ae145923996bd9c706e3e65ca3a0b5007af91d943dff7d83c32b4b89dc"
+    },
+    {
+      "path": "enhancements/1366-glass-card-rules.png",
+      "bytes": 178199,
+      "sha256": "409fa1ea326b4f092d3a420ddda0c2316ded1b1fe7e421a774aaf942f25f9baf"
+    },
+    {
+      "path": "enhancements/1366-voice-card-purpose.png",
+      "bytes": 119756,
+      "sha256": "e629e36494daaac884741e6bf475d6d53b33bd5775dc21b484f1c58db51e60bf"
+    },
+    {
+      "path": "enhancements/1366-voice-card-rules.png",
+      "bytes": 167277,
+      "sha256": "73a2f8b9c0fa2be1247762608c72debd34a59905f55ce64c062131ae51356632"
+    },
+    {
+      "path": "enhancements/1366-幸运纸-acquisition-1.png",
+      "bytes": 213513,
+      "sha256": "b25567f8845a14521e1f30ebe9c9a017b38c1ea453c4fac69ab4edc84bb2decb"
+    },
+    {
+      "path": "enhancements/1366-幸运纸-acquisition-2.png",
+      "bytes": 213513,
+      "sha256": "b25567f8845a14521e1f30ebe9c9a017b38c1ea453c4fac69ab4edc84bb2decb"
+    },
+    {
+      "path": "enhancements/1366-幸运纸-acquisition-3.png",
+      "bytes": 213513,
+      "sha256": "b25567f8845a14521e1f30ebe9c9a017b38c1ea453c4fac69ab4edc84bb2decb"
+    },
+    {
+      "path": "enhancements/1366-幸运纸-example.png",
+      "bytes": 213513,
+      "sha256": "b25567f8845a14521e1f30ebe9c9a017b38c1ea453c4fac69ab4edc84bb2decb"
+    },
+    {
+      "path": "enhancements/1366-幸运纸-purpose.png",
+      "bytes": 213513,
+      "sha256": "b25567f8845a14521e1f30ebe9c9a017b38c1ea453c4fac69ab4edc84bb2decb"
+    },
+    {
+      "path": "enhancements/1366-幸运纸-query.png",
+      "bytes": 183270,
+      "sha256": "62476e5d7f0fc556237b698f9f79bc07c6ed7e4dceabca9c08b6c2f4a82cf305"
+    },
+    {
+      "path": "enhancements/1366-幸运纸-rules.png",
+      "bytes": 252380,
+      "sha256": "5bbae60c92c1b7786923d41594700c5360f57a489be41c48d4ae48c29b692edc"
+    },
+    {
+      "path": "enhancements/1366-玻璃牌-acquisition-1.png",
+      "bytes": 215926,
+      "sha256": "beb687a3eb5b1e9d5dd990638aeb38c028c70121af45770c27df8d39a15ff573"
+    },
+    {
+      "path": "enhancements/1366-玻璃牌-acquisition-2.png",
+      "bytes": 215926,
+      "sha256": "beb687a3eb5b1e9d5dd990638aeb38c028c70121af45770c27df8d39a15ff573"
+    },
+    {
+      "path": "enhancements/1366-玻璃牌-acquisition-3.png",
+      "bytes": 215926,
+      "sha256": "beb687a3eb5b1e9d5dd990638aeb38c028c70121af45770c27df8d39a15ff573"
+    },
+    {
+      "path": "enhancements/1366-玻璃牌-example.png",
+      "bytes": 215926,
+      "sha256": "beb687a3eb5b1e9d5dd990638aeb38c028c70121af45770c27df8d39a15ff573"
+    },
+    {
+      "path": "enhancements/1366-玻璃牌-purpose.png",
+      "bytes": 215926,
+      "sha256": "beb687a3eb5b1e9d5dd990638aeb38c028c70121af45770c27df8d39a15ff573"
+    },
+    {
+      "path": "enhancements/1366-玻璃牌-query.png",
+      "bytes": 181788,
+      "sha256": "9e33302ab2d756fb53d7e91fed37c5c6d42089d126b94cccda50d3ec16b9ed1f"
+    },
+    {
+      "path": "enhancements/1366-玻璃牌-rules.png",
+      "bytes": 267669,
+      "sha256": "b72372dd2aa43e2f79056d3e9ba1c007b750bd7748198979ca1bf75aceaa964c"
+    },
+    {
+      "path": "enhancements/1366-玻璃面-purpose.png",
+      "bytes": 251687,
+      "sha256": "ffdb5f57e7d79cae846b5e46ee51dba009f51c7e70ea970c3e0e9c313a07fcf8"
+    },
+    {
+      "path": "enhancements/1366-玻璃面-rules.png",
+      "bytes": 289622,
+      "sha256": "13aaa34714841df833f76c1d976dd3932b264e53a073dddf122e312c1a0b2317"
+    },
+    {
+      "path": "enhancements/1366-留声纸-acquisition-1.png",
+      "bytes": 210823,
+      "sha256": "8e216689595cf7e535969ee97357ee2150dc0b64e1ce5c1dbb5a8f41b667a29f"
+    },
+    {
+      "path": "enhancements/1366-留声纸-acquisition-2.png",
+      "bytes": 210823,
+      "sha256": "8e216689595cf7e535969ee97357ee2150dc0b64e1ce5c1dbb5a8f41b667a29f"
+    },
+    {
+      "path": "enhancements/1366-留声纸-acquisition-3.png",
+      "bytes": 210823,
+      "sha256": "8e216689595cf7e535969ee97357ee2150dc0b64e1ce5c1dbb5a8f41b667a29f"
+    },
+    {
+      "path": "enhancements/1366-留声纸-example.png",
+      "bytes": 210823,
+      "sha256": "8e216689595cf7e535969ee97357ee2150dc0b64e1ce5c1dbb5a8f41b667a29f"
+    },
+    {
+      "path": "enhancements/1366-留声纸-purpose.png",
+      "bytes": 210823,
+      "sha256": "8e216689595cf7e535969ee97357ee2150dc0b64e1ce5c1dbb5a8f41b667a29f"
+    },
+    {
+      "path": "enhancements/1366-留声纸-query.png",
+      "bytes": 180567,
+      "sha256": "268ed19426b3744f6279ad2d84ea7a05e3752a0a186717bd42566d1df06b0282"
+    },
+    {
+      "path": "enhancements/1366-留声纸-rules.png",
+      "bytes": 252022,
+      "sha256": "357ce2728bd77c3fb62ee6b1174dcf180cdbf9c3d4f55a62a1b5a659029f88e3"
+    },
+    {
+      "path": "enhancements/1366-返场纸-acquisition-1.png",
+      "bytes": 213895,
+      "sha256": "070962115db1d0e257896b95913fe0fa8038c31a31ef30f5ebfd255e4e8887aa"
+    },
+    {
+      "path": "enhancements/1366-返场纸-acquisition-2.png",
+      "bytes": 213895,
+      "sha256": "070962115db1d0e257896b95913fe0fa8038c31a31ef30f5ebfd255e4e8887aa"
+    },
+    {
+      "path": "enhancements/1366-返场纸-acquisition-3.png",
+      "bytes": 213895,
+      "sha256": "070962115db1d0e257896b95913fe0fa8038c31a31ef30f5ebfd255e4e8887aa"
+    },
+    {
+      "path": "enhancements/1366-返场纸-example.png",
+      "bytes": 213895,
+      "sha256": "070962115db1d0e257896b95913fe0fa8038c31a31ef30f5ebfd255e4e8887aa"
+    },
+    {
+      "path": "enhancements/1366-返场纸-purpose.png",
+      "bytes": 213895,
+      "sha256": "070962115db1d0e257896b95913fe0fa8038c31a31ef30f5ebfd255e4e8887aa"
+    },
+    {
+      "path": "enhancements/1366-返场纸-query.png",
+      "bytes": 180259,
+      "sha256": "0b25c2a8c92508c229e634d12d3043e84b9e934b0f8ca1f11ed1a3c4490f19c2"
+    },
+    {
+      "path": "enhancements/1366-返场纸-rules.png",
+      "bytes": 252718,
+      "sha256": "b32d006c042450461cf99d6f48b3cc2315f5b5a92a674d17087ec4c8dc25c455"
+    },
+    {
+      "path": "enhancements/1366-金纸-acquisition-1.png",
+      "bytes": 217368,
+      "sha256": "9dd2106f20460fefd1ce49cc96dfd8b8a619acf0a69933cc6eb4085597cd82c7"
+    },
+    {
+      "path": "enhancements/1366-金纸-acquisition-2.png",
+      "bytes": 217368,
+      "sha256": "9dd2106f20460fefd1ce49cc96dfd8b8a619acf0a69933cc6eb4085597cd82c7"
+    },
+    {
+      "path": "enhancements/1366-金纸-acquisition-3.png",
+      "bytes": 217368,
+      "sha256": "9dd2106f20460fefd1ce49cc96dfd8b8a619acf0a69933cc6eb4085597cd82c7"
+    },
+    {
+      "path": "enhancements/1366-金纸-example.png",
+      "bytes": 217368,
+      "sha256": "9dd2106f20460fefd1ce49cc96dfd8b8a619acf0a69933cc6eb4085597cd82c7"
+    },
+    {
+      "path": "enhancements/1366-金纸-purpose.png",
+      "bytes": 217368,
+      "sha256": "9dd2106f20460fefd1ce49cc96dfd8b8a619acf0a69933cc6eb4085597cd82c7"
+    },
+    {
+      "path": "enhancements/1366-金纸-query.png",
+      "bytes": 181513,
+      "sha256": "87880bac420aff6b680e42babdbc13314dfe62310c57d6c05b9c0960484db8c8"
+    },
+    {
+      "path": "enhancements/1366-金纸-rules.png",
+      "bytes": 256874,
+      "sha256": "0f34905967763fce34b46dce8c4fdf6561a57a4a6a05e3952844eb53863c5515"
+    },
+    {
+      "path": "enhancements/390-enhancement-list.png",
+      "bytes": 69499,
+      "sha256": "3c48dcf294b8aaf0e04f7180f2b73342c3d55b64690612dfd177982058dcfa08"
+    },
+    {
+      "path": "enhancements/390-glass-card-purpose.png",
+      "bytes": 52144,
+      "sha256": "454773ea347106980d594441eb9ca55dc5223c48a67510e5d369c608aa51cf31"
+    },
+    {
+      "path": "enhancements/390-glass-card-rules.png",
+      "bytes": 79022,
+      "sha256": "d529626ab8d4dafbb3aacd643315ac3361d099d75ebf473abe099396b0c3cb21"
+    },
+    {
+      "path": "enhancements/390-voice-card-purpose.png",
+      "bytes": 54286,
+      "sha256": "7b1005ede5c146546bac26155ff5b22fda82012bb579f3493547cd7e43b02572"
+    },
+    {
+      "path": "enhancements/390-voice-card-rules.png",
+      "bytes": 76847,
+      "sha256": "c8a4a9731f27f992c555f6da531880498e744896dca57fa48288a87095ba361c"
+    },
+    {
+      "path": "enhancements/390-幸运纸-acquisition-1.png",
+      "bytes": 91360,
+      "sha256": "9c4ad0e5d522c3af2b0351554e4beed9cb4dabc2815a80e5f2b53b842d986a8b"
+    },
+    {
+      "path": "enhancements/390-幸运纸-acquisition-2.png",
+      "bytes": 91360,
+      "sha256": "9c4ad0e5d522c3af2b0351554e4beed9cb4dabc2815a80e5f2b53b842d986a8b"
+    },
+    {
+      "path": "enhancements/390-幸运纸-acquisition-3.png",
+      "bytes": 91360,
+      "sha256": "9c4ad0e5d522c3af2b0351554e4beed9cb4dabc2815a80e5f2b53b842d986a8b"
+    },
+    {
+      "path": "enhancements/390-幸运纸-example.png",
+      "bytes": 91360,
+      "sha256": "9c4ad0e5d522c3af2b0351554e4beed9cb4dabc2815a80e5f2b53b842d986a8b"
+    },
+    {
+      "path": "enhancements/390-幸运纸-purpose.png",
+      "bytes": 91360,
+      "sha256": "9c4ad0e5d522c3af2b0351554e4beed9cb4dabc2815a80e5f2b53b842d986a8b"
+    },
+    {
+      "path": "enhancements/390-幸运纸-query.png",
+      "bytes": 61714,
+      "sha256": "4eb88ce4c1f27c9fd43e3b217f5c3cae69876a270d5dab6ab53315b99471ddec"
+    },
+    {
+      "path": "enhancements/390-幸运纸-rules.png",
+      "bytes": 100315,
+      "sha256": "a9268932744a17ad6735a4644b23075a3de0e5cfdc91e213b422955c7b0340c1"
+    },
+    {
+      "path": "enhancements/390-玻璃牌-acquisition-1.png",
+      "bytes": 94172,
+      "sha256": "a4b7b8edb0d24e50f00ad6b8b48d71bd0993d7826a6f5ff315a8102f4ec973c3"
+    },
+    {
+      "path": "enhancements/390-玻璃牌-acquisition-2.png",
+      "bytes": 94172,
+      "sha256": "a4b7b8edb0d24e50f00ad6b8b48d71bd0993d7826a6f5ff315a8102f4ec973c3"
+    },
+    {
+      "path": "enhancements/390-玻璃牌-acquisition-3.png",
+      "bytes": 94172,
+      "sha256": "a4b7b8edb0d24e50f00ad6b8b48d71bd0993d7826a6f5ff315a8102f4ec973c3"
+    },
+    {
+      "path": "enhancements/390-玻璃牌-example.png",
+      "bytes": 94172,
+      "sha256": "a4b7b8edb0d24e50f00ad6b8b48d71bd0993d7826a6f5ff315a8102f4ec973c3"
+    },
+    {
+      "path": "enhancements/390-玻璃牌-purpose.png",
+      "bytes": 94172,
+      "sha256": "a4b7b8edb0d24e50f00ad6b8b48d71bd0993d7826a6f5ff315a8102f4ec973c3"
+    },
+    {
+      "path": "enhancements/390-玻璃牌-query.png",
+      "bytes": 60464,
+      "sha256": "8184cd1d3d2e0597b624e2c70d029c409b974f7c7b8daf7d47542471bcbb064b"
+    },
+    {
+      "path": "enhancements/390-玻璃牌-rules.png",
+      "bytes": 99712,
+      "sha256": "517bad8bab11b9146a336e225225b4b8b2ba763d3973c9d9406c986989b8684b"
+    },
+    {
+      "path": "enhancements/390-玻璃面-purpose.png",
+      "bytes": 96371,
+      "sha256": "2cb2f90519addd661878d31fb16310476ff15f34af84ab674f8e4d4c38cc988a"
+    },
+    {
+      "path": "enhancements/390-玻璃面-rules.png",
+      "bytes": 91150,
+      "sha256": "3dc226ebb8a12e26031ca1dbc456a3b97e759746cb824109001cc708b90408dd"
+    },
+    {
+      "path": "enhancements/390-留声纸-acquisition-1.png",
+      "bytes": 89384,
+      "sha256": "f2487e4c23873ccd4cda6e38d04b9dc42f9cc72a4cf6179df1755619231fa8bd"
+    },
+    {
+      "path": "enhancements/390-留声纸-acquisition-2.png",
+      "bytes": 89384,
+      "sha256": "f2487e4c23873ccd4cda6e38d04b9dc42f9cc72a4cf6179df1755619231fa8bd"
+    },
+    {
+      "path": "enhancements/390-留声纸-acquisition-3.png",
+      "bytes": 89384,
+      "sha256": "f2487e4c23873ccd4cda6e38d04b9dc42f9cc72a4cf6179df1755619231fa8bd"
+    },
+    {
+      "path": "enhancements/390-留声纸-example.png",
+      "bytes": 89384,
+      "sha256": "f2487e4c23873ccd4cda6e38d04b9dc42f9cc72a4cf6179df1755619231fa8bd"
+    },
+    {
+      "path": "enhancements/390-留声纸-purpose.png",
+      "bytes": 89384,
+      "sha256": "f2487e4c23873ccd4cda6e38d04b9dc42f9cc72a4cf6179df1755619231fa8bd"
+    },
+    {
+      "path": "enhancements/390-留声纸-query.png",
+      "bytes": 59931,
+      "sha256": "bce797ff78ac1e0032fe7a1efffe8c89c601c83b38c44ebf29e6a5b9b3fe3aa8"
+    },
+    {
+      "path": "enhancements/390-留声纸-rules.png",
+      "bytes": 98335,
+      "sha256": "0c9a1d1c1796a8135a28278f53098531a0a36c01ff24165fa696c93d08a2af5e"
+    },
+    {
+      "path": "enhancements/390-返场纸-acquisition-1.png",
+      "bytes": 92733,
+      "sha256": "9e56c84f23c3bc602f74f28743fcd70dba13bd38c65d50d7772ac46ea1844a21"
+    },
+    {
+      "path": "enhancements/390-返场纸-acquisition-2.png",
+      "bytes": 92733,
+      "sha256": "9e56c84f23c3bc602f74f28743fcd70dba13bd38c65d50d7772ac46ea1844a21"
+    },
+    {
+      "path": "enhancements/390-返场纸-acquisition-3.png",
+      "bytes": 92733,
+      "sha256": "9e56c84f23c3bc602f74f28743fcd70dba13bd38c65d50d7772ac46ea1844a21"
+    },
+    {
+      "path": "enhancements/390-返场纸-example.png",
+      "bytes": 92733,
+      "sha256": "9e56c84f23c3bc602f74f28743fcd70dba13bd38c65d50d7772ac46ea1844a21"
+    },
+    {
+      "path": "enhancements/390-返场纸-purpose.png",
+      "bytes": 92733,
+      "sha256": "9e56c84f23c3bc602f74f28743fcd70dba13bd38c65d50d7772ac46ea1844a21"
+    },
+    {
+      "path": "enhancements/390-返场纸-query.png",
+      "bytes": 58955,
+      "sha256": "f64d8d16ed41728d165717a4c72ddc589dd07515e5af78b45366ce080ad2da9f"
+    },
+    {
+      "path": "enhancements/390-返场纸-rules.png",
+      "bytes": 100197,
+      "sha256": "29a8c87e79ac5d1e3e005e16415a39a79e912a9a8a46e657b7c9fcd83ee612bf"
+    },
+    {
+      "path": "enhancements/390-金纸-acquisition-1.png",
+      "bytes": 95206,
+      "sha256": "4db97f5ad7aa658b369497c1ab640082286a8cd8590ab134e52f00951fb10abc"
+    },
+    {
+      "path": "enhancements/390-金纸-acquisition-2.png",
+      "bytes": 95206,
+      "sha256": "4db97f5ad7aa658b369497c1ab640082286a8cd8590ab134e52f00951fb10abc"
+    },
+    {
+      "path": "enhancements/390-金纸-acquisition-3.png",
+      "bytes": 95206,
+      "sha256": "4db97f5ad7aa658b369497c1ab640082286a8cd8590ab134e52f00951fb10abc"
+    },
+    {
+      "path": "enhancements/390-金纸-example.png",
+      "bytes": 95206,
+      "sha256": "4db97f5ad7aa658b369497c1ab640082286a8cd8590ab134e52f00951fb10abc"
+    },
+    {
+      "path": "enhancements/390-金纸-purpose.png",
+      "bytes": 95206,
+      "sha256": "4db97f5ad7aa658b369497c1ab640082286a8cd8590ab134e52f00951fb10abc"
+    },
+    {
+      "path": "enhancements/390-金纸-query.png",
+      "bytes": 60656,
+      "sha256": "5c5a7280f6a6031a538220ac60f3f19c84b12221eaf2cbf047998886b7ad5d98"
+    },
+    {
+      "path": "enhancements/390-金纸-rules.png",
+      "bytes": 104094,
+      "sha256": "7e4267b7473ec9acefdb26f25c0ac4b9b8bbe678c51c93fc6100f67f59f5e6ff"
+    },
+    {
+      "path": "enhancements/report.json",
+      "bytes": 513625,
+      "sha256": "a43b562faba657afd4f63931c7a95062da75c67b99a4b0c4240ead668f5474f0"
+    },
+    {
+      "path": "explanations/1366-amo-finale-keepsake-Escape.png",
+      "bytes": 168078,
+      "sha256": "8d291666946beb1a547a99423d558800c6fa5fd97112465ad18234cbc8baecb5"
+    },
+    {
+      "path": "explanations/1366-amo-finale-keepsake-close.png",
+      "bytes": 168078,
+      "sha256": "8d291666946beb1a547a99423d558800c6fa5fd97112465ad18234cbc8baecb5"
+    },
+    {
+      "path": "explanations/1366-amo-lost-result-example.png",
+      "bytes": 182919,
+      "sha256": "b99cb9932261379a8fa16f44569b36c1a6b811e7110eec5a4c7092f1709637cd"
+    },
+    {
+      "path": "explanations/1366-amo-lost-result-first.png",
+      "bytes": 174879,
+      "sha256": "d4dc1c26bd81db059493075d5bd4ec44001d6675fbce9ed11eb10a844e836daf"
+    },
+    {
+      "path": "explanations/1366-amo-portrait-example.png",
+      "bytes": 236452,
+      "sha256": "f55b34b8d0a95a369d41ba1507ca61f08fca3642476275c5df8e1e6af9e8d3fc"
+    },
+    {
+      "path": "explanations/1366-amo-portrait-first.png",
+      "bytes": 228936,
+      "sha256": "d1526cf28f4953ae084f29b4cc21d5d00d29fd8bb53e0dde6387afe8137587ef"
+    },
+    {
+      "path": "explanations/1366-amo-selection-example.png",
+      "bytes": 236452,
+      "sha256": "f55b34b8d0a95a369d41ba1507ca61f08fca3642476275c5df8e1e6af9e8d3fc"
+    },
+    {
+      "path": "explanations/1366-amo-selection-first.png",
+      "bytes": 228936,
+      "sha256": "d1526cf28f4953ae084f29b4cc21d5d00d29fd8bb53e0dde6387afe8137587ef"
+    },
+    {
+      "path": "explanations/1366-amo-shop-example.png",
+      "bytes": 253940,
+      "sha256": "f19accdb11d1c06e8928f99238c7a3f6c5b9d7809b9263c4c5120397fc35cd43"
+    },
+    {
+      "path": "explanations/1366-amo-shop-first.png",
+      "bytes": 245803,
+      "sha256": "3a3a6fb4452040c16d293ace4369e9379e4dd1a81f1eab03b3d231201b4ed659"
+    },
+    {
+      "path": "explanations/1366-amo-shop-keepsake-Escape.png",
+      "bytes": 221153,
+      "sha256": "c6fe6a3d17f1922c01ea4a72c3c74ce87db4bf09ca41506ea1a3041a7328ff8d"
+    },
+    {
+      "path": "explanations/1366-amo-shop-keepsake-close.png",
+      "bytes": 221153,
+      "sha256": "c6fe6a3d17f1922c01ea4a72c3c74ce87db4bf09ca41506ea1a3041a7328ff8d"
+    },
+    {
+      "path": "explanations/1366-amo-table-HUD-example.png",
+      "bytes": 227188,
+      "sha256": "86bb4b7d39786a8daa1010d5b91f82f0ebca25871e3ad2a593692ef38d87d852"
+    },
+    {
+      "path": "explanations/1366-amo-table-HUD-first.png",
+      "bytes": 219093,
+      "sha256": "dbb8c79afa1a713b770131b56d3a42ecccb4396c199007d4bbfb57ceaad90c69"
+    },
+    {
+      "path": "explanations/1366-amo-table-decoration-example.png",
+      "bytes": 227207,
+      "sha256": "d2955ae8b6351fe1083440c0a7aed131be5e048ef5fd9ab3dcfea4bf12359c82"
+    },
+    {
+      "path": "explanations/1366-amo-table-decoration-first.png",
+      "bytes": 219891,
+      "sha256": "93b38ed6f70baabe659bae2e47ab6cff733244643576ec3ffc9857302f37cdbd"
+    },
+    {
+      "path": "explanations/1366-azao-finale-keepsake-Escape.png",
+      "bytes": 207774,
+      "sha256": "33734e2755853c1867444fbf17f6a445f4c508d1ea9964c62d583523bd93ef21"
+    },
+    {
+      "path": "explanations/1366-azao-finale-keepsake-close.png",
+      "bytes": 207774,
+      "sha256": "33734e2755853c1867444fbf17f6a445f4c508d1ea9964c62d583523bd93ef21"
+    },
+    {
+      "path": "explanations/1366-azao-lost-result-example.png",
+      "bytes": 222325,
+      "sha256": "11b9e09813e24cad15a4a51e37a1da500c0a941fbf4529156cf0adb011772fba"
+    },
+    {
+      "path": "explanations/1366-azao-lost-result-first.png",
+      "bytes": 214554,
+      "sha256": "3be53efea5dd73d7e79061039bb365bd29146382c65cdde82dfc3180f0aacbeb"
+    },
+    {
+      "path": "explanations/1366-azao-portrait-example.png",
+      "bytes": 293039,
+      "sha256": "b3470690b5d00f1dd8b7ec8f55fafa8fc9f38c7e9a02091a9136fa9052c30dae"
+    },
+    {
+      "path": "explanations/1366-azao-portrait-first.png",
+      "bytes": 285525,
+      "sha256": "fb6888a993f9be3fbc447b6cc67bd1d9990d2b5ca5d24774be3f2750666413e3"
+    },
+    {
+      "path": "explanations/1366-azao-selection-example.png",
+      "bytes": 293039,
+      "sha256": "b3470690b5d00f1dd8b7ec8f55fafa8fc9f38c7e9a02091a9136fa9052c30dae"
+    },
+    {
+      "path": "explanations/1366-azao-selection-first.png",
+      "bytes": 285525,
+      "sha256": "fb6888a993f9be3fbc447b6cc67bd1d9990d2b5ca5d24774be3f2750666413e3"
+    },
+    {
+      "path": "explanations/1366-azao-shop-example.png",
+      "bytes": 310642,
+      "sha256": "879fe0db58fe334ca4da931c2eee94a34de46ea699f9c39b10dc66dd8537d299"
+    },
+    {
+      "path": "explanations/1366-azao-shop-first.png",
+      "bytes": 302395,
+      "sha256": "e65e920a3fa3e526aafef65ccb710a7c79c4b660db79aca8dcc8946b233e8aea"
+    },
+    {
+      "path": "explanations/1366-azao-shop-keepsake-Escape.png",
+      "bytes": 274576,
+      "sha256": "cb1fecc4093e346d60e824cf50f3ae2d82f42019d6635e2d8397b9ff2d474740"
+    },
+    {
+      "path": "explanations/1366-azao-shop-keepsake-close.png",
+      "bytes": 274576,
+      "sha256": "cb1fecc4093e346d60e824cf50f3ae2d82f42019d6635e2d8397b9ff2d474740"
+    },
+    {
+      "path": "explanations/1366-azao-table-HUD-example.png",
+      "bytes": 265660,
+      "sha256": "e76db5eb789557bae664b18574a5aa3da50bb16b93716a3e4e3eac1b6ed91d49"
+    },
+    {
+      "path": "explanations/1366-azao-table-HUD-first.png",
+      "bytes": 257650,
+      "sha256": "a0970e8205d5ace6131dfdffa67d35e5ade899675cf6521b2386c2c46c81d804"
+    },
+    {
+      "path": "explanations/1366-azao-table-decoration-example.png",
+      "bytes": 265659,
+      "sha256": "10a3cfbc5382ef93faf878a1abd8dc10eb8e040a7fb966e7fe91b257897095cd"
+    },
+    {
+      "path": "explanations/1366-azao-table-decoration-first.png",
+      "bytes": 258426,
+      "sha256": "240432956219b71b76c47c41fb7201c6bb294364d9b7c450529874242c5cfb57"
+    },
+    {
+      "path": "explanations/1366-erxiang-finale-keepsake-Escape.png",
+      "bytes": 239649,
+      "sha256": "6e3510c633f5b7bd10508b2ffcfc20b9c928ebd13c5770cf609a22a76e317fea"
+    },
+    {
+      "path": "explanations/1366-erxiang-finale-keepsake-close.png",
+      "bytes": 239649,
+      "sha256": "6e3510c633f5b7bd10508b2ffcfc20b9c928ebd13c5770cf609a22a76e317fea"
+    },
+    {
+      "path": "explanations/1366-erxiang-lost-result-example.png",
+      "bytes": 254194,
+      "sha256": "029a0da07cee223b920e17ce2f9c0d6da7e88e6627fb001dcbe45684f2227570"
+    },
+    {
+      "path": "explanations/1366-erxiang-lost-result-first.png",
+      "bytes": 246109,
+      "sha256": "99d9dec0676be809b537b796458c48d9f152638479d9705c8ef33a791ea24764"
+    },
+    {
+      "path": "explanations/1366-erxiang-portrait-example.png",
+      "bytes": 342017,
+      "sha256": "39fbee5c8d9a85d645c97b182ced32492a24a987763bc19203b77085472269f9"
+    },
+    {
+      "path": "explanations/1366-erxiang-portrait-first.png",
+      "bytes": 334258,
+      "sha256": "68a3199e085947d04946bbb80b75add70d107020331479c5eda25a011bd8147d"
+    },
+    {
+      "path": "explanations/1366-erxiang-selection-example.png",
+      "bytes": 342017,
+      "sha256": "39fbee5c8d9a85d645c97b182ced32492a24a987763bc19203b77085472269f9"
+    },
+    {
+      "path": "explanations/1366-erxiang-selection-first.png",
+      "bytes": 334258,
+      "sha256": "68a3199e085947d04946bbb80b75add70d107020331479c5eda25a011bd8147d"
+    },
+    {
+      "path": "explanations/1366-erxiang-shop-example.png",
+      "bytes": 355377,
+      "sha256": "1089908a8c411716e1fe9c13ccde41466b145281ad440e3b3742559bdb08fc2c"
+    },
+    {
+      "path": "explanations/1366-erxiang-shop-first.png",
+      "bytes": 347064,
+      "sha256": "e400413204d7c8ba5023e718c2577f802a5f5cb78db055d09281501e91a3a476"
+    },
+    {
+      "path": "explanations/1366-erxiang-shop-keepsake-Escape.png",
+      "bytes": 317320,
+      "sha256": "aaade3e997ed27176d5d9d3494e2560805f80901e4924d5020a9be0aee62c88d"
+    },
+    {
+      "path": "explanations/1366-erxiang-shop-keepsake-close.png",
+      "bytes": 317320,
+      "sha256": "aaade3e997ed27176d5d9d3494e2560805f80901e4924d5020a9be0aee62c88d"
+    },
+    {
+      "path": "explanations/1366-erxiang-table-HUD-example.png",
+      "bytes": 298012,
+      "sha256": "41267a52a5a6ba0563be9ff6c63bbe87a4acaa41faea43fd445f8bc317747dc5"
+    },
+    {
+      "path": "explanations/1366-erxiang-table-HUD-first.png",
+      "bytes": 289786,
+      "sha256": "5f8f304e0d1adca4d209a93fc2264b8b423fbf801527ecf4c77e6b5794de23f2"
+    },
+    {
+      "path": "explanations/1366-erxiang-table-decoration-example.png",
+      "bytes": 298012,
+      "sha256": "41267a52a5a6ba0563be9ff6c63bbe87a4acaa41faea43fd445f8bc317747dc5"
+    },
+    {
+      "path": "explanations/1366-erxiang-table-decoration-first.png",
+      "bytes": 290561,
+      "sha256": "cd5a95d8e8da30b9e0c117a68b2cf52df50f3c76075b5c547782b714945727e2"
+    },
+    {
+      "path": "explanations/1366-laohuan-finale-keepsake-Escape.png",
+      "bytes": 189923,
+      "sha256": "1f1aee37d953acf3cf3e76120705319bb8cb35c7444fbb10425371b47b878a9f"
+    },
+    {
+      "path": "explanations/1366-laohuan-finale-keepsake-close.png",
+      "bytes": 189923,
+      "sha256": "1f1aee37d953acf3cf3e76120705319bb8cb35c7444fbb10425371b47b878a9f"
+    },
+    {
+      "path": "explanations/1366-laohuan-lost-result-example.png",
+      "bytes": 205600,
+      "sha256": "cdb0d22813028459dfba6cfe0fa7ac0108d544666a289d3c3a165abe1862a9b3"
+    },
+    {
+      "path": "explanations/1366-laohuan-lost-result-first.png",
+      "bytes": 196724,
+      "sha256": "0cb4828836d1fc83713164374492ead8be3ec79ea0ce32f46e4c7edb653d45ca"
+    },
+    {
+      "path": "explanations/1366-laohuan-portrait-example.png",
+      "bytes": 270855,
+      "sha256": "f20940a55a87f0e21372742478754c0a5b7e1fdcb4f97dfb962977c8d86965ce"
+    },
+    {
+      "path": "explanations/1366-laohuan-portrait-first.png",
+      "bytes": 262259,
+      "sha256": "ef15cbe3b353bd521af95cbdf5b1b2021895b13b929a848439c2de71304fd8aa"
+    },
+    {
+      "path": "explanations/1366-laohuan-selection-example.png",
+      "bytes": 270855,
+      "sha256": "f20940a55a87f0e21372742478754c0a5b7e1fdcb4f97dfb962977c8d86965ce"
+    },
+    {
+      "path": "explanations/1366-laohuan-selection-first.png",
+      "bytes": 262259,
+      "sha256": "ef15cbe3b353bd521af95cbdf5b1b2021895b13b929a848439c2de71304fd8aa"
+    },
+    {
+      "path": "explanations/1366-laohuan-shop-example.png",
+      "bytes": 283290,
+      "sha256": "fab11312acab8a31a50ed721abdd5239200925e2d4133468f10985c1fb4aafe6"
+    },
+    {
+      "path": "explanations/1366-laohuan-shop-first.png",
+      "bytes": 274453,
+      "sha256": "12ff0225d6b7136e1e0fe22d86fb982c50dea9579118fa3c99cd5f26ba4138de"
+    },
+    {
+      "path": "explanations/1366-laohuan-shop-keepsake-Escape.png",
+      "bytes": 248752,
+      "sha256": "c8967dad8aea4dfe023a47b1903897f5ddf761185de28fd546bb504b36e69e08"
+    },
+    {
+      "path": "explanations/1366-laohuan-shop-keepsake-close.png",
+      "bytes": 248752,
+      "sha256": "c8967dad8aea4dfe023a47b1903897f5ddf761185de28fd546bb504b36e69e08"
+    },
+    {
+      "path": "explanations/1366-laohuan-table-HUD-example.png",
+      "bytes": 244834,
+      "sha256": "1225fd7e5ed9abaa99b48f8ff4c183710dd3626e85940a23b82c5ababff9e455"
+    },
+    {
+      "path": "explanations/1366-laohuan-table-HUD-first.png",
+      "bytes": 235710,
+      "sha256": "e03b4ec2c1cb1ebae1c77d0b83c9426b58874a9872a670a617be0e6cdec780d4"
+    },
+    {
+      "path": "explanations/1366-laohuan-table-decoration-example.png",
+      "bytes": 244834,
+      "sha256": "1225fd7e5ed9abaa99b48f8ff4c183710dd3626e85940a23b82c5ababff9e455"
+    },
+    {
+      "path": "explanations/1366-laohuan-table-decoration-first.png",
+      "bytes": 236488,
+      "sha256": "4b0c02765a584be177e36a4da9504fc52c182a119f3cc88e1fb4e7758adece8b"
+    },
+    {
+      "path": "explanations/1366-touye-finale-keepsake-Escape.png",
+      "bytes": 193706,
+      "sha256": "7abe00716926779789928472142dc8219cedba81f9eded89810e45e77c62321a"
+    },
+    {
+      "path": "explanations/1366-touye-finale-keepsake-close.png",
+      "bytes": 193706,
+      "sha256": "7abe00716926779789928472142dc8219cedba81f9eded89810e45e77c62321a"
+    },
+    {
+      "path": "explanations/1366-touye-lost-result-example.png",
+      "bytes": 209725,
+      "sha256": "5ea964c53453691a17396781fea4baff42502b5f9f629ca2026ff2fe6c185aab"
+    },
+    {
+      "path": "explanations/1366-touye-lost-result-first.png",
+      "bytes": 200566,
+      "sha256": "c9732248029ff2f3b48a02d9637fe9daa95dd12ed6229b4d711a90bb6f692443"
+    },
+    {
+      "path": "explanations/1366-touye-portrait-example.png",
+      "bytes": 273984,
+      "sha256": "bc3aba5fe645d4ffbb2c33ca95e02fce6be328f85a11e734270d53a1f4a8a78d"
+    },
+    {
+      "path": "explanations/1366-touye-portrait-first.png",
+      "bytes": 265084,
+      "sha256": "19aa9acce1f35c7ebcb1e96760d014ffce231ca0c69c753fe94049f1b9d6b005"
+    },
+    {
+      "path": "explanations/1366-touye-result-example.png",
+      "bytes": 206303,
+      "sha256": "bdf9f53043ed14e6d437ff915217053f97a3ebe3fde23df38145bf58e1b622be"
+    },
+    {
+      "path": "explanations/1366-touye-result-first.png",
+      "bytes": 196823,
+      "sha256": "ffcba30cd9346b468b29f83715799f18938c099dfdd323ff2abf3be2dcd6d7b9"
+    },
+    {
+      "path": "explanations/1366-touye-selection-example.png",
+      "bytes": 273984,
+      "sha256": "bc3aba5fe645d4ffbb2c33ca95e02fce6be328f85a11e734270d53a1f4a8a78d"
+    },
+    {
+      "path": "explanations/1366-touye-selection-first.png",
+      "bytes": 265084,
+      "sha256": "19aa9acce1f35c7ebcb1e96760d014ffce231ca0c69c753fe94049f1b9d6b005"
+    },
+    {
+      "path": "explanations/1366-touye-shop-example.png",
+      "bytes": 288778,
+      "sha256": "c621b8ca48b12bebf3e55dda40d8dd440e2ba01df421ff19dc5041c34bc82657"
+    },
+    {
+      "path": "explanations/1366-touye-shop-first.png",
+      "bytes": 279583,
+      "sha256": "4ffdd9b4ec117e23162d27083266d28694cea2735f2fe3004e9ef0007ffa548e"
+    },
+    {
+      "path": "explanations/1366-touye-shop-keepsake-Escape.png",
+      "bytes": 253245,
+      "sha256": "0993c01e2b8e564e0ef3022f95b0f1a0ed8e0accda5bcd28ce78c1920777982c"
+    },
+    {
+      "path": "explanations/1366-touye-shop-keepsake-close.png",
+      "bytes": 253245,
+      "sha256": "0993c01e2b8e564e0ef3022f95b0f1a0ed8e0accda5bcd28ce78c1920777982c"
+    },
+    {
+      "path": "explanations/1366-touye-table-HUD-example.png",
+      "bytes": 251758,
+      "sha256": "7c85b38aa3ef680d652a3caeeef29e0446ef221c7a041c3f9ddd5f8aa1b57971"
+    },
+    {
+      "path": "explanations/1366-touye-table-HUD-first.png",
+      "bytes": 242554,
+      "sha256": "54029201bce5693c439816e788a84f1a1dffb82dd1fb5a79df05eee2441370c3"
+    },
+    {
+      "path": "explanations/1366-touye-table-decoration-example.png",
+      "bytes": 251757,
+      "sha256": "0df48baa35dd5ab4efdcd6186432462ace502b4b286fb842cff8df39f9ef2753"
+    },
+    {
+      "path": "explanations/1366-touye-table-decoration-first.png",
+      "bytes": 243354,
+      "sha256": "c59347164072c9e1095248225d612bd4c2a3c500b0ce39e093f361509d67a85e"
+    },
+    {
+      "path": "explanations/1366-xiemu-finale-keepsake-Escape.png",
+      "bytes": 224918,
+      "sha256": "a1d1b711424967ee2a9965f7e5f4087881a32c419e11ecd7d4ce4709dfcf6a43"
+    },
+    {
+      "path": "explanations/1366-xiemu-finale-keepsake-close.png",
+      "bytes": 224918,
+      "sha256": "a1d1b711424967ee2a9965f7e5f4087881a32c419e11ecd7d4ce4709dfcf6a43"
+    },
+    {
+      "path": "explanations/1366-xiemu-lost-result-example.png",
+      "bytes": 239979,
+      "sha256": "0e4f81f3262e3738645c592e26ac2b8bb0948900e728a798beb6366e6a5190eb"
+    },
+    {
+      "path": "explanations/1366-xiemu-lost-result-first.png",
+      "bytes": 231987,
+      "sha256": "d3c04c09d8efd4f3cbf13cfe36be89f469b2378b56d4c721a1fd0bdfb9c0dba6"
+    },
+    {
+      "path": "explanations/1366-xiemu-portrait-example.png",
+      "bytes": 320906,
+      "sha256": "ff6756b36c85a120f830208b9ce1c9fcc41d3b588776c5b2e60f257aa0953c45"
+    },
+    {
+      "path": "explanations/1366-xiemu-portrait-first.png",
+      "bytes": 313084,
+      "sha256": "7d8de473215e9d40c15118d3dadd75cfa0c14e2f601916f1f23bc166333ccaf7"
+    },
+    {
+      "path": "explanations/1366-xiemu-result-example.png",
+      "bytes": 236606,
+      "sha256": "d267cda8252be5e6e9836cec3b4b32a0e38c14708021d79458728d015ed5371a"
+    },
+    {
+      "path": "explanations/1366-xiemu-result-first.png",
+      "bytes": 228635,
+      "sha256": "b37e2f404076dbe7ee191f87c6bd589acec9f48799b5ff3f5f87859af892bc64"
+    },
+    {
+      "path": "explanations/1366-xiemu-selection-example.png",
+      "bytes": 320906,
+      "sha256": "ff6756b36c85a120f830208b9ce1c9fcc41d3b588776c5b2e60f257aa0953c45"
+    },
+    {
+      "path": "explanations/1366-xiemu-selection-first.png",
+      "bytes": 313084,
+      "sha256": "7d8de473215e9d40c15118d3dadd75cfa0c14e2f601916f1f23bc166333ccaf7"
+    },
+    {
+      "path": "explanations/1366-xiemu-shop-example.png",
+      "bytes": 335201,
+      "sha256": "8e5f5acb38097bb171ecf2880c03cde289f9f799ba88e166d2a24c2820091ed8"
+    },
+    {
+      "path": "explanations/1366-xiemu-shop-first.png",
+      "bytes": 327216,
+      "sha256": "0be76a2783518bf4c3e5501110d0453217c8114919a2b46cf3e8695f4fd1fdf4"
+    },
+    {
+      "path": "explanations/1366-xiemu-shop-keepsake-Escape.png",
+      "bytes": 299126,
+      "sha256": "c6535afa18920da355db4c33cc8cbd9da95517b67be0a90edad28d3470fe8671"
+    },
+    {
+      "path": "explanations/1366-xiemu-shop-keepsake-close.png",
+      "bytes": 299126,
+      "sha256": "c6535afa18920da355db4c33cc8cbd9da95517b67be0a90edad28d3470fe8671"
+    },
+    {
+      "path": "explanations/1366-xiemu-table-HUD-example.png",
+      "bytes": 284141,
+      "sha256": "3b75746563ccef0c3c540d1a6bbeca6f7ba2075fffaf597b73fbfb11aedb8b82"
+    },
+    {
+      "path": "explanations/1366-xiemu-table-HUD-first.png",
+      "bytes": 276047,
+      "sha256": "65238aa04cc60df56cf750bff4dd3dcc682e5840294507135e0483323a6075d9"
+    },
+    {
+      "path": "explanations/1366-xiemu-table-decoration-example.png",
+      "bytes": 284142,
+      "sha256": "f68487ca0ddb671ef5c4d69e705ecc4ac0be1e7d22b7d0452a5c342de5d57b73"
+    },
+    {
+      "path": "explanations/1366-xiemu-table-decoration-first.png",
+      "bytes": 276836,
+      "sha256": "3326856fb70cc15d1ecbc73b203b2292adb0afd257cd745461d1249a91de2558"
+    },
+    {
+      "path": "explanations/390-amo-finale-keepsake-Escape.png",
+      "bytes": 70848,
+      "sha256": "f8d7a4c71067f0370deb9380cb9b143735f63f4bfbaa66b149d19f29c39eedc9"
+    },
+    {
+      "path": "explanations/390-amo-finale-keepsake-close.png",
+      "bytes": 70850,
+      "sha256": "3f131121a50fe02cab1d905a96e6826c2e977ff3f162ff1ed214dc72b73ebe94"
+    },
+    {
+      "path": "explanations/390-amo-lost-result-example.png",
+      "bytes": 79169,
+      "sha256": "0f50aaa6ce0650e72c8ea588f9844f7bec8b138f0735627d68eb56a279147622"
+    },
+    {
+      "path": "explanations/390-amo-lost-result-first.png",
+      "bytes": 77020,
+      "sha256": "6dbaaeaa1035a7ec259626e45a3ff50bb5ae38aead682d5a1c49054f4d539666"
+    },
+    {
+      "path": "explanations/390-amo-portrait-example.png",
+      "bytes": 80338,
+      "sha256": "5569440b66791e4d299f4a55edb8ec978c69e5ed161152d886e4f0154d8e50ad"
+    },
+    {
+      "path": "explanations/390-amo-portrait-first.png",
+      "bytes": 78912,
+      "sha256": "b3ea87d5dfa225dcedbafbe6734246e0dc818c0ef4e21ddde7448d1314e4a30a"
+    },
+    {
+      "path": "explanations/390-amo-selection-example.png",
+      "bytes": 80339,
+      "sha256": "e543f830576528663df44c2d2709718294e9b2158c28321eeef3a4b24678f0da"
+    },
+    {
+      "path": "explanations/390-amo-selection-first.png",
+      "bytes": 78891,
+      "sha256": "a24a9801551bc27de54dd7d144b0a0ffdb073bd562dabcd27c620c816d169edc"
+    },
+    {
+      "path": "explanations/390-amo-shop-example.png",
+      "bytes": 82185,
+      "sha256": "f2f6a61fd4f8d32d0e79323502264d95f4b9846885119b6853bcf46d9443590e"
+    },
+    {
+      "path": "explanations/390-amo-shop-first.png",
+      "bytes": 80062,
+      "sha256": "ac3fe53cdc56ccfc42119afd60df4846627bb6ec0c6e6c86139f49696b6ee5ec"
+    },
+    {
+      "path": "explanations/390-amo-shop-keepsake-Escape.png",
+      "bytes": 73243,
+      "sha256": "ca5378ebec426a1dcfc82c760dd24cc0962c7d2fea00e5ec9e360de437d59b4f"
+    },
+    {
+      "path": "explanations/390-amo-shop-keepsake-close.png",
+      "bytes": 73242,
+      "sha256": "ccf09f9ac2b75b82339304f9efa84679584e133bdc8c6b97895508a497eccc26"
+    },
+    {
+      "path": "explanations/390-amo-table-HUD-example.png",
+      "bytes": 84523,
+      "sha256": "9eae929181dc56aa792aad4cc89da22ac194d5cf7e2c294419615ae750aba410"
+    },
+    {
+      "path": "explanations/390-amo-table-HUD-first.png",
+      "bytes": 78784,
+      "sha256": "eb0d6c98eb453f28dd2812741ec461b112d42a9f66f00460c497c49499a65122"
+    },
+    {
+      "path": "explanations/390-azao-finale-keepsake-Escape.png",
+      "bytes": 78311,
+      "sha256": "849517b0939959b6b52a63a481789c687f159cf38f578f71840655adeb5464b8"
+    },
+    {
+      "path": "explanations/390-azao-finale-keepsake-close.png",
+      "bytes": 78312,
+      "sha256": "e92e1a655b3f280292a2068ac1e720de5eb260d4eff7d8c1b81d8f002b2be9cd"
+    },
+    {
+      "path": "explanations/390-azao-lost-result-example.png",
+      "bytes": 85865,
+      "sha256": "3299945c08040525e776af4a764ff3359a39e53e41aa7773385439be1eb5c729"
+    },
+    {
+      "path": "explanations/390-azao-lost-result-first.png",
+      "bytes": 84437,
+      "sha256": "04c5feec3fe47ec88b083470517380b4d92c8d1f252e8bd6ad5432053c7f9054"
+    },
+    {
+      "path": "explanations/390-azao-portrait-example.png",
+      "bytes": 86835,
+      "sha256": "63b9302092630eaa023fde6ce39b69dda68b73c41f15f937e1e2b9dcf510d0df"
+    },
+    {
+      "path": "explanations/390-azao-portrait-first.png",
+      "bytes": 86155,
+      "sha256": "1b218737784de5e742f156d6171a0cb16d6cceb18d9be9983d78e96d2d1dc3c0"
+    },
+    {
+      "path": "explanations/390-azao-selection-example.png",
+      "bytes": 86836,
+      "sha256": "ddd268704b1bbba71ae20da447bdfedd39fe6a0c46b9f15874c8d90a203ccd38"
+    },
+    {
+      "path": "explanations/390-azao-selection-first.png",
+      "bytes": 86182,
+      "sha256": "99da3b1d7ca817789def975592e42fcb771612d7b6c8e9b0f5cb46d8a3233619"
+    },
+    {
+      "path": "explanations/390-azao-shop-example.png",
+      "bytes": 89021,
+      "sha256": "cac01488dc26be48c7ba52dc3790934263a251102a396ef413d0dee6a3d5156c"
+    },
+    {
+      "path": "explanations/390-azao-shop-first.png",
+      "bytes": 87622,
+      "sha256": "cd42e564f6ce309634f15b3fa2e824a11de2cc51e632752c9fc63b8a09ea6641"
+    },
+    {
+      "path": "explanations/390-azao-shop-keepsake-Escape.png",
+      "bytes": 80898,
+      "sha256": "96e17b68045df212222641732a47e4ed46ed512607f047cea6f1e15086dc2d2f"
+    },
+    {
+      "path": "explanations/390-azao-shop-keepsake-close.png",
+      "bytes": 80897,
+      "sha256": "8e4b74c97c6d5c29171f16c1143d3ab3f11291498f862c36790acaefadb8a0f3"
+    },
+    {
+      "path": "explanations/390-azao-table-HUD-example.png",
+      "bytes": 88618,
+      "sha256": "2297abb9817883e7118935bd1d50c980c32c989a1bf4332e207151788af6348b"
+    },
+    {
+      "path": "explanations/390-azao-table-HUD-first.png",
+      "bytes": 86638,
+      "sha256": "63cedc763311719a6519f2c66e340ab144e468f718a90d2967d1230407bd45ba"
+    },
+    {
+      "path": "explanations/390-erxiang-finale-keepsake-Escape.png",
+      "bytes": 79258,
+      "sha256": "f92753bc9a96c670a05458c00895f1c0aa8204331447b3e72b66375701a89efa"
+    },
+    {
+      "path": "explanations/390-erxiang-finale-keepsake-close.png",
+      "bytes": 79256,
+      "sha256": "0b5e2c46cdc5fc30eef32c26f201dd999111562d24fdef09ae87d425326ca51a"
+    },
+    {
+      "path": "explanations/390-erxiang-lost-result-example.png",
+      "bytes": 87578,
+      "sha256": "85ff797bb9df80e48cb59836fe5c1eace51a72a17c5deacce8e1f0120c19c541"
+    },
+    {
+      "path": "explanations/390-erxiang-lost-result-first.png",
+      "bytes": 85024,
+      "sha256": "8aeac494d706dc161fdec234c80d3cd3e8b68965ab66a6b20f93449a27721c13"
+    },
+    {
+      "path": "explanations/390-erxiang-portrait-example.png",
+      "bytes": 88709,
+      "sha256": "43810a3a1e80636976b8b91fdb8cd6eccb3c815e1a14957230558a2fb7d9ffd1"
+    },
+    {
+      "path": "explanations/390-erxiang-portrait-first.png",
+      "bytes": 86889,
+      "sha256": "152c1bb0182b8a93e6397fca85d04da6075c2be255439a08de1d5316d46d5d99"
+    },
+    {
+      "path": "explanations/390-erxiang-selection-example.png",
+      "bytes": 88708,
+      "sha256": "e53b964047624c006a7c59761da2a32bf38da5c524d7eff617b849e0c5941185"
+    },
+    {
+      "path": "explanations/390-erxiang-selection-first.png",
+      "bytes": 86895,
+      "sha256": "5111d2b3867cb18b6dba928d327789779cfc424e21e92e4b168be6016c3ceb3f"
+    },
+    {
+      "path": "explanations/390-erxiang-shop-example.png",
+      "bytes": 90836,
+      "sha256": "5aa9e0809c1e0960af414a8ca3a549f79dc1577953614830bdd4997a2e560dd9"
+    },
+    {
+      "path": "explanations/390-erxiang-shop-first.png",
+      "bytes": 88294,
+      "sha256": "8022cfe139a794fc3a30c2c9674f0a04623505457c99191fbe97d0aff75f5cc8"
+    },
+    {
+      "path": "explanations/390-erxiang-shop-keepsake-Escape.png",
+      "bytes": 81914,
+      "sha256": "46708352f0f2b7e82a9e2cc7d22c03512f9fcb7be3d69c71cdf7476497a9f74e"
+    },
+    {
+      "path": "explanations/390-erxiang-shop-keepsake-close.png",
+      "bytes": 81912,
+      "sha256": "2515826f6a2b810e8dd53ac66c6dd3a90563c295154cfaaf65f2c0e3a15b0596"
+    },
+    {
+      "path": "explanations/390-erxiang-table-HUD-example.png",
+      "bytes": 91257,
+      "sha256": "b25e26eeaeaa9c11378b9a485a62b51bd9a3f07ceb43789e661b1cfc664980f7"
+    },
+    {
+      "path": "explanations/390-erxiang-table-HUD-first.png",
+      "bytes": 84179,
+      "sha256": "7fdf74ce63e8b383285e11f7d3f37b4cef3f12e762110e27ccab6e426c082308"
+    },
+    {
+      "path": "explanations/390-laohuan-finale-keepsake-Escape.png",
+      "bytes": 73765,
+      "sha256": "3d56e0abddde6cbee8ef48ecf05cfc06a5dbf616f1e6e54c70d3e2876f1cf77a"
+    },
+    {
+      "path": "explanations/390-laohuan-finale-keepsake-close.png",
+      "bytes": 73760,
+      "sha256": "957cd3f6f096bdd64f75b55e490948e704abf79bdafc3126ad713054951472e6"
+    },
+    {
+      "path": "explanations/390-laohuan-lost-result-example.png",
+      "bytes": 85374,
+      "sha256": "737886356a7c20075ff036a59e7502290dc7bc3f3020eab7d4459f9395ce1598"
+    },
+    {
+      "path": "explanations/390-laohuan-lost-result-first.png",
+      "bytes": 79902,
+      "sha256": "30b8a102ba13e3b8340d304720cf7316e356cd8be1ca217965c9d0da86094e4c"
+    },
+    {
+      "path": "explanations/390-laohuan-portrait-example.png",
+      "bytes": 86598,
+      "sha256": "203af3fe145551ad6f67923eb53618b369dcb4e8169759ac41393f310357ab2a"
+    },
+    {
+      "path": "explanations/390-laohuan-portrait-first.png",
+      "bytes": 81849,
+      "sha256": "bb91a17b4992a26c9191dc48cf8334b58e47cace856929b927e42606a250b48e"
+    },
+    {
+      "path": "explanations/390-laohuan-selection-example.png",
+      "bytes": 86600,
+      "sha256": "6e70726b45410a664f5e28dc377030cf651163fe6798ac173525f8e1bd16ae83"
+    },
+    {
+      "path": "explanations/390-laohuan-selection-first.png",
+      "bytes": 81840,
+      "sha256": "df08b1707ff92cf7475827bbca947a5503fed1369b59f21f88d333fda575aec5"
+    },
+    {
+      "path": "explanations/390-laohuan-shop-example.png",
+      "bytes": 88422,
+      "sha256": "e51e5863f9401a4e5e54885657cfb0e2d2ea33abd70b2220c1ab356349f71351"
+    },
+    {
+      "path": "explanations/390-laohuan-shop-first.png",
+      "bytes": 82974,
+      "sha256": "bfaa10495d69750f464341cbff0d2df4132380bde48224304a7edad2bee392f5"
+    },
+    {
+      "path": "explanations/390-laohuan-shop-keepsake-Escape.png",
+      "bytes": 76327,
+      "sha256": "a134314f51014f8f615ab55f8f0ad75095d2a7c2f7e00e3237341bb9791e6817"
+    },
+    {
+      "path": "explanations/390-laohuan-shop-keepsake-close.png",
+      "bytes": 76326,
+      "sha256": "fed52b6eb7033ac28ae9933e6eecfe1d04f8d435c1cd7da64235eac46711b731"
+    },
+    {
+      "path": "explanations/390-laohuan-table-HUD-example.png",
+      "bytes": 87105,
+      "sha256": "226756e6607b7407d098ab24b9621f659598c1c44a722410a232ea772fb87e11"
+    },
+    {
+      "path": "explanations/390-laohuan-table-HUD-first.png",
+      "bytes": 81068,
+      "sha256": "80f204863aeddc35bc8dfa22c09233ab958d0a6d4331e2f8373d9a352365e546"
+    },
+    {
+      "path": "explanations/390-touye-finale-keepsake-Escape.png",
+      "bytes": 73803,
+      "sha256": "c238e931da6cec036d4cde983c4aad6ef6828db5fdc0567463ba633ca62f7309"
+    },
+    {
+      "path": "explanations/390-touye-finale-keepsake-close.png",
+      "bytes": 73799,
+      "sha256": "8eef6afbe97c7d6cd8000efbfb508ae0ac1c11b3bf764df375ed4e2e75e53df7"
+    },
+    {
+      "path": "explanations/390-touye-lost-result-example.png",
+      "bytes": 83396,
+      "sha256": "5b964a2b8ca71cda98749b436959244c47b78c3b7a469b8d120404b6dc2a42b3"
+    },
+    {
+      "path": "explanations/390-touye-lost-result-first.png",
+      "bytes": 79973,
+      "sha256": "4f7cdb925be6f9eab036b8c3a439af14465f565e428313e38cb2a56c2154aebf"
+    },
+    {
+      "path": "explanations/390-touye-portrait-example.png",
+      "bytes": 84474,
+      "sha256": "a6cb2d5bafc785cc393db8e13f646b66adba636a701a09793a67a68d01282068"
+    },
+    {
+      "path": "explanations/390-touye-portrait-first.png",
+      "bytes": 81753,
+      "sha256": "30a0700f0edbf425f8be602669d4348561aad34bb986a1b5bf3189722548d080"
+    },
+    {
+      "path": "explanations/390-touye-result-example.png",
+      "bytes": 81423,
+      "sha256": "390e07994abd2183139152e71acfb799b5c4b3068f27d935ca8f342959c0ae4b"
+    },
+    {
+      "path": "explanations/390-touye-result-first.png",
+      "bytes": 78003,
+      "sha256": "9e3087119bf9ca525e661d8f20c6da2536f4f928ee7120f76dae089d4bb6cb13"
+    },
+    {
+      "path": "explanations/390-touye-selection-example.png",
+      "bytes": 84482,
+      "sha256": "50e007b1b384638ca60a3efc80e0d107d0f4dd7e84c5b4b0bd45bfccf634f397"
+    },
+    {
+      "path": "explanations/390-touye-selection-first.png",
+      "bytes": 81749,
+      "sha256": "a91b20aa945e647713b9a026d77985b110682d77e1c3cd3b17029ec34d4ea106"
+    },
+    {
+      "path": "explanations/390-touye-shop-example.png",
+      "bytes": 86493,
+      "sha256": "e8772fd73e155b4d146e24e8032240fe30b5999ef07abd22050a5a8c70f636ff"
+    },
+    {
+      "path": "explanations/390-touye-shop-first.png",
+      "bytes": 83078,
+      "sha256": "61c4aaee50b352b9101e8f9f61164703d4b35ff9ec103533bdb261e68d05e9b7"
+    },
+    {
+      "path": "explanations/390-touye-shop-keepsake-Escape.png",
+      "bytes": 76351,
+      "sha256": "a85b1ccc97167dfee9c45079836da1caf5e1ab3d279fccb2272304b5edf8efae"
+    },
+    {
+      "path": "explanations/390-touye-shop-keepsake-close.png",
+      "bytes": 76350,
+      "sha256": "ebb6d5c68343ade7acedcaf5e4a945cf228c49d4204b8f0332e08d5b80d2db57"
+    },
+    {
+      "path": "explanations/390-touye-table-HUD-example.png",
+      "bytes": 89411,
+      "sha256": "0c8da019bedcacdfa3f9ff328f0e3a0d21dc43d5cf429948dca435a2e1eb77aa"
+    },
+    {
+      "path": "explanations/390-touye-table-HUD-first.png",
+      "bytes": 83406,
+      "sha256": "7aaa1b9d8ff57ed58e24b9acee3a1a709afa72d1bc31dde1d7681261fe354834"
+    },
+    {
+      "path": "explanations/390-xiemu-finale-keepsake-Escape.png",
+      "bytes": 78212,
+      "sha256": "b4ca4abfb2a5c4b2174184d53d307755cc021b13e9ec05adc9397de0a74d94ee"
+    },
+    {
+      "path": "explanations/390-xiemu-finale-keepsake-close.png",
+      "bytes": 78209,
+      "sha256": "abc356691d013b44d0ee2778fd7dcefc32fc6ebb13bc334b8874ee4474895c78"
+    },
+    {
+      "path": "explanations/390-xiemu-lost-result-example.png",
+      "bytes": 88376,
+      "sha256": "22e04d9944952d07e47660f6d7e8c90b5e1f2f6836fdda62bf5220609d2e16af"
+    },
+    {
+      "path": "explanations/390-xiemu-lost-result-first.png",
+      "bytes": 84649,
+      "sha256": "b43bf4f56218cd73f1a457219b7e28ed8d6f0f91dd6a625e3376f5deaefc2b43"
+    },
+    {
+      "path": "explanations/390-xiemu-portrait-example.png",
+      "bytes": 89618,
+      "sha256": "decb302eed3a3ad478210c87d9c4fa1e7275984486008d6bb411e73b2a285caf"
+    },
+    {
+      "path": "explanations/390-xiemu-portrait-first.png",
+      "bytes": 86576,
+      "sha256": "ac1825ac1bf412413954ca75fdbc4668656ae5a60fde82ae7a6d690a22395c6c"
+    },
+    {
+      "path": "explanations/390-xiemu-result-example.png",
+      "bytes": 86491,
+      "sha256": "ac7c900e8463cee2328b28ffca8ebe24c86802efcf1f28caa50e368153740aa7"
+    },
+    {
+      "path": "explanations/390-xiemu-result-first.png",
+      "bytes": 82756,
+      "sha256": "c60f7b12453c925ac350a2e9d57f9b2c20a294ab31c39d21fc4ab048e3d5d37d"
+    },
+    {
+      "path": "explanations/390-xiemu-selection-example.png",
+      "bytes": 89620,
+      "sha256": "dcd0eb9b4348a097a7b69997a28977b2002e588ab2a65e70500096c7d570548b"
+    },
+    {
+      "path": "explanations/390-xiemu-selection-first.png",
+      "bytes": 86584,
+      "sha256": "63eb83670f73c426bc061e882cecc8f51517edadfa4a2273a76c65eb989f8a38"
+    },
+    {
+      "path": "explanations/390-xiemu-shop-example.png",
+      "bytes": 91938,
+      "sha256": "c7e22b8252cfe27a10d0c6ce239ef5322b666d6d1113a1f32fd762b3b80c81e9"
+    },
+    {
+      "path": "explanations/390-xiemu-shop-first.png",
+      "bytes": 87867,
+      "sha256": "9c29fe662375ead9b613d2d7bfd96bab6baf105df76808a6a7b5ab9d2a59d89d"
+    },
+    {
+      "path": "explanations/390-xiemu-shop-keepsake-Escape.png",
+      "bytes": 80802,
+      "sha256": "ab267fc5f27ffd12634a1109839b8331127f783223149819e81bfc65a675289a"
+    },
+    {
+      "path": "explanations/390-xiemu-shop-keepsake-close.png",
+      "bytes": 80801,
+      "sha256": "67a8dd2ce66f560e247f17e5c4337bbb986e1c8f251e39be0c3b7d350a898132"
+    },
+    {
+      "path": "explanations/390-xiemu-table-HUD-example.png",
+      "bytes": 90834,
+      "sha256": "c21c4360391155e371843d88d7fb3bef15e118f44b526f7bb732d7de6cbb362b"
+    },
+    {
+      "path": "explanations/390-xiemu-table-HUD-first.png",
+      "bytes": 86025,
+      "sha256": "6be6b7d00360fd3e9b3e1dfc4e311eac218ba3f9649c5b31014009723ad612f7"
+    },
+    {
+      "path": "explanations/full-state-journal-storage-localStorage.json.gz",
+      "bytes": 195772,
+      "sha256": "55c6d38bf87c8000f2c402eaef5019e859b46933278a07ec127601a831810885"
+    },
+    {
+      "path": "explanations/report.json",
+      "bytes": 102434,
+      "sha256": "61aafb303b7ccc7b9f0d3cfa2dae21991711f35898de15659fb1bcb1f340cf85"
+    },
+    {
+      "path": "failures/pending-touye-hover/1366x900-idle.png",
+      "bytes": 208740,
+      "sha256": "0f6f483379f0e065353468d0902e3c75d65d31e521e79ba16e32c5f5cb97f5f4"
+    },
+    {
+      "path": "failures/pending-touye-hover/1366x900-mouse-hover.png",
+      "bytes": 261132,
+      "sha256": "3b1993dc5a73bdf50f73b947e79230c4240b6bf2fdbe3b3589fe391a48d30bbd"
+    },
+    {
+      "path": "failures/pending-touye-hover/1366x900-pending-touye-hover.png",
+      "bytes": 200012,
+      "sha256": "44ce15c79ecbe47ca6b98c8f1b553e110643e15ac44387a06ac27e80eeede928"
+    },
+    {
+      "path": "failures/pending-touye-hover/excerpt.txt",
+      "bytes": 267,
+      "sha256": "c0d47d8868b652450c988a7e598b1a6f1d55680e1076d7dea1465adba411be38"
+    },
+    {
+      "path": "failures/pending-touye-hover/full-state-journal-storage.json.gz",
+      "bytes": 3723,
+      "sha256": "13a157fc397b87361a8c676ec9567fde88e5bb1866373032e65dd13849d04a31"
+    },
+    {
+      "path": "failures/pending-touye-hover/report.json",
+      "bytes": 65638,
+      "sha256": "3b026d4ccc04243318828599e67f30ff56f170111e30eb3a3c3391f6873596e1"
+    },
+    {
+      "path": "pre169/checks/build.txt",
+      "bytes": 1016,
+      "sha256": "f224859c2deafb57b84f54a824796e96240a8628930b6080291fa5b4d7b209df"
+    },
+    {
+      "path": "pre169/checks/drag.txt",
+      "bytes": 352,
+      "sha256": "164b34d6ea48bc3b02a9b25462e2d12e54fb7820589c620113b2482c5180ffff"
+    },
+    {
+      "path": "pre169/checks/explanations.txt",
+      "bytes": 10,
+      "sha256": "115ce19fa6821cd3480f5cadf4073f82fb148d93b119777a32c7cff387f9cbe0"
+    },
+    {
+      "path": "pre169/checks/production-plan.txt",
+      "bytes": 69,
+      "sha256": "4ac412cb7d8dabcb0857d651e1f1800b2142284bb826518fe5fd749bb54b6e27"
+    },
+    {
+      "path": "pre169/checks/skills.txt",
+      "bytes": 571,
+      "sha256": "320ac0bdbf3a5c7cfce4bf1c49f36c452b7fb8f2cddcb764d04a3d0345777415"
+    },
+    {
+      "path": "pre169/checks/targeted-tests.txt",
+      "bytes": 419,
+      "sha256": "ae6a9c73a6d8e84d491786e6340fcf7f13767b546229ef678053f7ee3d519124"
+    },
+    {
+      "path": "pre169/checks/typecheck.txt",
+      "bytes": 253,
+      "sha256": "74f919f77aaafd9e103ae561073b59a64c21a6860376204d97779934238403aa"
+    },
+    {
+      "path": "pre169/drag/1366x900-idle.png",
+      "bytes": 208740,
+      "sha256": "dae7e65954717c8ce6226ae87dd265e9b6d374408414af95fb3d448d1387993a"
+    },
+    {
+      "path": "pre169/drag/1366x900-mouse-hover.png",
+      "bytes": 261132,
+      "sha256": "3b1993dc5a73bdf50f73b947e79230c4240b6bf2fdbe3b3589fe391a48d30bbd"
+    },
+    {
+      "path": "pre169/drag/1366x900-pending-touye-hover.png",
+      "bytes": 252365,
+      "sha256": "4c495cba1a804f00e2240f4aaf31be26cf1843d59272660d13ccf8eea4165d75"
+    },
+    {
+      "path": "pre169/drag/1366x900-saving-delay.png",
+      "bytes": 209955,
+      "sha256": "31ad96f0f349731de37bc5a1f786c5bdd72d6c57a88edbbddf07f61835c0b115"
+    },
+    {
+      "path": "pre169/drag/1366x900-slow-held.png",
+      "bytes": 212933,
+      "sha256": "8ee90f94c1410b1177fd20f407b1052120cec102722cabe07e888a28a36031b5"
+    },
+    {
+      "path": "pre169/drag/1366x900-slow-mid.png",
+      "bytes": 212303,
+      "sha256": "a47ad3578642e3dff271e15b64b518d285ac967740cdd5570178efc6c2aa71bc"
+    },
+    {
+      "path": "pre169/drag/390x844-fast-delay-saving.png",
+      "bytes": 108067,
+      "sha256": "e73f4e26c9d3aa6163f151587d59484bff12a03c7669e3f9260c4a45012c8e9f"
+    },
+    {
+      "path": "pre169/drag/390x844-fast-dropped.png",
+      "bytes": 104072,
+      "sha256": "ee4f6f0f6e53e24c814eee34f44c2ad01b8247d54dc3bd8b13a1532e4ca6e8f5"
+    },
+    {
+      "path": "pre169/drag/390x844-fast-held.png",
+      "bytes": 110145,
+      "sha256": "1e923cab63b835771fe978af7031e79a0da834fc983ff6111759d2634f6a3708"
+    },
+    {
+      "path": "pre169/drag/390x844-fast-mid.png",
+      "bytes": 110179,
+      "sha256": "cffc8a01f44358ecb04ef8cdc1320a42d6cabf69d8c2af5aa4ef1bc6ad918dbd"
+    },
+    {
+      "path": "pre169/drag/390x844-idle.png",
+      "bytes": 107368,
+      "sha256": "32ddf460d24f1b985fe702d6d667e3d7ffe6495231badd1db4ee179aa1127e62"
+    },
+    {
+      "path": "pre169/drag/390x844-middle-dropped.png",
+      "bytes": 104158,
+      "sha256": "383c396cf1891d812953892b78ceafabe23a788e9c8df03a9bef7b2cb4a12884"
+    },
+    {
+      "path": "pre169/drag/390x844-middle-held.png",
+      "bytes": 109255,
+      "sha256": "69e271e80ae6da3d078a87fafca3345ec776933cf3f2bb143592e2c8ab67b6e8"
+    },
+    {
+      "path": "pre169/drag/390x844-middle-mid.png",
+      "bytes": 111220,
+      "sha256": "e6895385a201552aee9b242e60f5551944cf2907f3435838443b9605a09f28a3"
+    },
+    {
+      "path": "pre169/drag/390x844-save-failure.png",
+      "bytes": 50150,
+      "sha256": "679947ceae4fb4fbb8eae1a7239ff36598b234ba575f7d5e00a96647e4b22a9e"
+    },
+    {
+      "path": "pre169/drag/390x844-save-retry.png",
+      "bytes": 108176,
+      "sha256": "e7db6c94692e5ba8ae62d96c9715cc60106bb2d79100e55fe5f831270e37919f"
+    },
+    {
+      "path": "pre169/drag/390x844-saving-delay.png",
+      "bytes": 108034,
+      "sha256": "09043a104dec78639157087545b8370362c2c3938ac4791abb8c9fa927e75f84"
+    },
+    {
+      "path": "pre169/drag/390x844-slow-dropped.png",
+      "bytes": 104287,
+      "sha256": "a7b2f949e4a6b7581bb3cff3bbab88b5a9f822a40a45ab9e59fc2959e285a8db"
+    },
+    {
+      "path": "pre169/drag/390x844-slow-held.png",
+      "bytes": 110097,
+      "sha256": "b66171d9f65151300f492e29f00317bfca37dc436eebb10ef648b91cd1100c8c"
+    },
+    {
+      "path": "pre169/drag/390x844-slow-mid.png",
+      "bytes": 110163,
+      "sha256": "dce9fd6b24c19719c8ec37139c388d2cc873d34887651cbfd578161c2952c8b1"
+    },
+    {
+      "path": "pre169/drag/390x844-vertical.png",
+      "bytes": 108660,
+      "sha256": "017af00a95cae3830301fb875a3a86e8355235007221d0c7787bb99bc4fbed03"
+    },
+    {
+      "path": "pre169/drag/full-state-journal-storage.json.gz",
+      "bytes": 19378,
+      "sha256": "d804238555ec92adca4ccbc9b7eb1b41d9642bc38b71e546c71410e8882e5b55"
+    },
+    {
+      "path": "pre169/drag/report.json",
+      "bytes": 674988,
+      "sha256": "fe3477e1df13699a843007d2b52b85603ab3db68d77034aeeb4071e2aafff46d"
+    },
+    {
+      "path": "pre169/explanations/1366-amo-finale-keepsake-Escape.png",
+      "bytes": 168078,
+      "sha256": "8d291666946beb1a547a99423d558800c6fa5fd97112465ad18234cbc8baecb5"
+    },
+    {
+      "path": "pre169/explanations/1366-amo-finale-keepsake-close.png",
+      "bytes": 168078,
+      "sha256": "8d291666946beb1a547a99423d558800c6fa5fd97112465ad18234cbc8baecb5"
+    },
+    {
+      "path": "pre169/explanations/1366-amo-lost-result-example.png",
+      "bytes": 182919,
+      "sha256": "0b35200abd203e40c985a952c0845aec2602130c1cafa8f42448fa7d21f4c413"
+    },
+    {
+      "path": "pre169/explanations/1366-amo-lost-result-first.png",
+      "bytes": 174879,
+      "sha256": "37add2575c41cf6562f0c95f0bcc264731bf6625b9bcdaf5626b78fcc64ee619"
+    },
+    {
+      "path": "pre169/explanations/1366-amo-portrait-example.png",
+      "bytes": 236452,
+      "sha256": "f55b34b8d0a95a369d41ba1507ca61f08fca3642476275c5df8e1e6af9e8d3fc"
+    },
+    {
+      "path": "pre169/explanations/1366-amo-portrait-first.png",
+      "bytes": 228936,
+      "sha256": "d1526cf28f4953ae084f29b4cc21d5d00d29fd8bb53e0dde6387afe8137587ef"
+    },
+    {
+      "path": "pre169/explanations/1366-amo-selection-example.png",
+      "bytes": 236452,
+      "sha256": "f55b34b8d0a95a369d41ba1507ca61f08fca3642476275c5df8e1e6af9e8d3fc"
+    },
+    {
+      "path": "pre169/explanations/1366-amo-selection-first.png",
+      "bytes": 228936,
+      "sha256": "d1526cf28f4953ae084f29b4cc21d5d00d29fd8bb53e0dde6387afe8137587ef"
+    },
+    {
+      "path": "pre169/explanations/1366-amo-shop-example.png",
+      "bytes": 253940,
+      "sha256": "f19accdb11d1c06e8928f99238c7a3f6c5b9d7809b9263c4c5120397fc35cd43"
+    },
+    {
+      "path": "pre169/explanations/1366-amo-shop-first.png",
+      "bytes": 245803,
+      "sha256": "3a3a6fb4452040c16d293ace4369e9379e4dd1a81f1eab03b3d231201b4ed659"
+    },
+    {
+      "path": "pre169/explanations/1366-amo-shop-keepsake-Escape.png",
+      "bytes": 221153,
+      "sha256": "c6fe6a3d17f1922c01ea4a72c3c74ce87db4bf09ca41506ea1a3041a7328ff8d"
+    },
+    {
+      "path": "pre169/explanations/1366-amo-shop-keepsake-close.png",
+      "bytes": 221153,
+      "sha256": "c6fe6a3d17f1922c01ea4a72c3c74ce87db4bf09ca41506ea1a3041a7328ff8d"
+    },
+    {
+      "path": "pre169/explanations/1366-amo-table-HUD-example.png",
+      "bytes": 227207,
+      "sha256": "d2955ae8b6351fe1083440c0a7aed131be5e048ef5fd9ab3dcfea4bf12359c82"
+    },
+    {
+      "path": "pre169/explanations/1366-amo-table-HUD-first.png",
+      "bytes": 219093,
+      "sha256": "6d7aef2363132587daa6943dc2ada4d339c8914c1883d666b155d58e7d92c8f7"
+    },
+    {
+      "path": "pre169/explanations/1366-amo-table-decoration-example.png",
+      "bytes": 227208,
+      "sha256": "a99d77eb1587afcfffd2624484afd07ac26c6ef55140ceefeac91bb28641509f"
+    },
+    {
+      "path": "pre169/explanations/1366-amo-table-decoration-first.png",
+      "bytes": 219892,
+      "sha256": "10b4b37241cc3edf977a6114f96020265031a93d4f26fd5bd003c5638ce6fc34"
+    },
+    {
+      "path": "pre169/explanations/1366-azao-finale-keepsake-Escape.png",
+      "bytes": 207774,
+      "sha256": "33734e2755853c1867444fbf17f6a445f4c508d1ea9964c62d583523bd93ef21"
+    },
+    {
+      "path": "pre169/explanations/1366-azao-finale-keepsake-close.png",
+      "bytes": 207774,
+      "sha256": "33734e2755853c1867444fbf17f6a445f4c508d1ea9964c62d583523bd93ef21"
+    },
+    {
+      "path": "pre169/explanations/1366-azao-lost-result-example.png",
+      "bytes": 222326,
+      "sha256": "020866ba3057b90961e35e921e2805d1e10e9c8f9dec213933a55cc38a2c27b1"
+    },
+    {
+      "path": "pre169/explanations/1366-azao-lost-result-first.png",
+      "bytes": 214555,
+      "sha256": "cddd867ba4a979fa6b601ab06ee4cabb7064e80bbaf9c111f567660875be0149"
+    },
+    {
+      "path": "pre169/explanations/1366-azao-portrait-example.png",
+      "bytes": 293039,
+      "sha256": "b3470690b5d00f1dd8b7ec8f55fafa8fc9f38c7e9a02091a9136fa9052c30dae"
+    },
+    {
+      "path": "pre169/explanations/1366-azao-portrait-first.png",
+      "bytes": 285525,
+      "sha256": "fb6888a993f9be3fbc447b6cc67bd1d9990d2b5ca5d24774be3f2750666413e3"
+    },
+    {
+      "path": "pre169/explanations/1366-azao-selection-example.png",
+      "bytes": 293039,
+      "sha256": "b3470690b5d00f1dd8b7ec8f55fafa8fc9f38c7e9a02091a9136fa9052c30dae"
+    },
+    {
+      "path": "pre169/explanations/1366-azao-selection-first.png",
+      "bytes": 285525,
+      "sha256": "fb6888a993f9be3fbc447b6cc67bd1d9990d2b5ca5d24774be3f2750666413e3"
+    },
+    {
+      "path": "pre169/explanations/1366-azao-shop-example.png",
+      "bytes": 310642,
+      "sha256": "879fe0db58fe334ca4da931c2eee94a34de46ea699f9c39b10dc66dd8537d299"
+    },
+    {
+      "path": "pre169/explanations/1366-azao-shop-first.png",
+      "bytes": 302395,
+      "sha256": "e65e920a3fa3e526aafef65ccb710a7c79c4b660db79aca8dcc8946b233e8aea"
+    },
+    {
+      "path": "pre169/explanations/1366-azao-shop-keepsake-Escape.png",
+      "bytes": 274576,
+      "sha256": "cb1fecc4093e346d60e824cf50f3ae2d82f42019d6635e2d8397b9ff2d474740"
+    },
+    {
+      "path": "pre169/explanations/1366-azao-shop-keepsake-close.png",
+      "bytes": 274576,
+      "sha256": "cb1fecc4093e346d60e824cf50f3ae2d82f42019d6635e2d8397b9ff2d474740"
+    },
+    {
+      "path": "pre169/explanations/1366-azao-table-HUD-example.png",
+      "bytes": 265659,
+      "sha256": "10a3cfbc5382ef93faf878a1abd8dc10eb8e040a7fb966e7fe91b257897095cd"
+    },
+    {
+      "path": "pre169/explanations/1366-azao-table-HUD-first.png",
+      "bytes": 257649,
+      "sha256": "005b835a8aeebfc4533a96b35850563a4a054bf21b87b81d5394db12794578b0"
+    },
+    {
+      "path": "pre169/explanations/1366-azao-table-decoration-example.png",
+      "bytes": 265659,
+      "sha256": "10a3cfbc5382ef93faf878a1abd8dc10eb8e040a7fb966e7fe91b257897095cd"
+    },
+    {
+      "path": "pre169/explanations/1366-azao-table-decoration-first.png",
+      "bytes": 258426,
+      "sha256": "240432956219b71b76c47c41fb7201c6bb294364d9b7c450529874242c5cfb57"
+    },
+    {
+      "path": "pre169/explanations/1366-erxiang-finale-keepsake-Escape.png",
+      "bytes": 239649,
+      "sha256": "6e3510c633f5b7bd10508b2ffcfc20b9c928ebd13c5770cf609a22a76e317fea"
+    },
+    {
+      "path": "pre169/explanations/1366-erxiang-finale-keepsake-close.png",
+      "bytes": 239649,
+      "sha256": "6e3510c633f5b7bd10508b2ffcfc20b9c928ebd13c5770cf609a22a76e317fea"
+    },
+    {
+      "path": "pre169/explanations/1366-erxiang-lost-result-example.png",
+      "bytes": 254194,
+      "sha256": "029a0da07cee223b920e17ce2f9c0d6da7e88e6627fb001dcbe45684f2227570"
+    },
+    {
+      "path": "pre169/explanations/1366-erxiang-lost-result-first.png",
+      "bytes": 246109,
+      "sha256": "99d9dec0676be809b537b796458c48d9f152638479d9705c8ef33a791ea24764"
+    },
+    {
+      "path": "pre169/explanations/1366-erxiang-portrait-example.png",
+      "bytes": 342017,
+      "sha256": "39fbee5c8d9a85d645c97b182ced32492a24a987763bc19203b77085472269f9"
+    },
+    {
+      "path": "pre169/explanations/1366-erxiang-portrait-first.png",
+      "bytes": 334258,
+      "sha256": "68a3199e085947d04946bbb80b75add70d107020331479c5eda25a011bd8147d"
+    },
+    {
+      "path": "pre169/explanations/1366-erxiang-selection-example.png",
+      "bytes": 342017,
+      "sha256": "39fbee5c8d9a85d645c97b182ced32492a24a987763bc19203b77085472269f9"
+    },
+    {
+      "path": "pre169/explanations/1366-erxiang-selection-first.png",
+      "bytes": 334258,
+      "sha256": "68a3199e085947d04946bbb80b75add70d107020331479c5eda25a011bd8147d"
+    },
+    {
+      "path": "pre169/explanations/1366-erxiang-shop-example.png",
+      "bytes": 355377,
+      "sha256": "1089908a8c411716e1fe9c13ccde41466b145281ad440e3b3742559bdb08fc2c"
+    },
+    {
+      "path": "pre169/explanations/1366-erxiang-shop-first.png",
+      "bytes": 347064,
+      "sha256": "e400413204d7c8ba5023e718c2577f802a5f5cb78db055d09281501e91a3a476"
+    },
+    {
+      "path": "pre169/explanations/1366-erxiang-shop-keepsake-Escape.png",
+      "bytes": 317320,
+      "sha256": "aaade3e997ed27176d5d9d3494e2560805f80901e4924d5020a9be0aee62c88d"
+    },
+    {
+      "path": "pre169/explanations/1366-erxiang-shop-keepsake-close.png",
+      "bytes": 317320,
+      "sha256": "aaade3e997ed27176d5d9d3494e2560805f80901e4924d5020a9be0aee62c88d"
+    },
+    {
+      "path": "pre169/explanations/1366-erxiang-table-HUD-example.png",
+      "bytes": 298015,
+      "sha256": "1d5b9b5cf984559cfe93a88fc73283022dd6a2ce5451f9351e600314a6333feb"
+    },
+    {
+      "path": "pre169/explanations/1366-erxiang-table-HUD-first.png",
+      "bytes": 289788,
+      "sha256": "86f7dedbaf90a3d5d24da3a34223ed408d5e1504c7a4d3fc57ec06eab1c83037"
+    },
+    {
+      "path": "pre169/explanations/1366-erxiang-table-decoration-example.png",
+      "bytes": 298012,
+      "sha256": "41267a52a5a6ba0563be9ff6c63bbe87a4acaa41faea43fd445f8bc317747dc5"
+    },
+    {
+      "path": "pre169/explanations/1366-erxiang-table-decoration-first.png",
+      "bytes": 290561,
+      "sha256": "cd5a95d8e8da30b9e0c117a68b2cf52df50f3c76075b5c547782b714945727e2"
+    },
+    {
+      "path": "pre169/explanations/1366-laohuan-finale-keepsake-Escape.png",
+      "bytes": 189923,
+      "sha256": "1f1aee37d953acf3cf3e76120705319bb8cb35c7444fbb10425371b47b878a9f"
+    },
+    {
+      "path": "pre169/explanations/1366-laohuan-finale-keepsake-close.png",
+      "bytes": 189923,
+      "sha256": "1f1aee37d953acf3cf3e76120705319bb8cb35c7444fbb10425371b47b878a9f"
+    },
+    {
+      "path": "pre169/explanations/1366-laohuan-lost-result-example.png",
+      "bytes": 205600,
+      "sha256": "cdb0d22813028459dfba6cfe0fa7ac0108d544666a289d3c3a165abe1862a9b3"
+    },
+    {
+      "path": "pre169/explanations/1366-laohuan-lost-result-first.png",
+      "bytes": 196724,
+      "sha256": "0cb4828836d1fc83713164374492ead8be3ec79ea0ce32f46e4c7edb653d45ca"
+    },
+    {
+      "path": "pre169/explanations/1366-laohuan-portrait-example.png",
+      "bytes": 270855,
+      "sha256": "f20940a55a87f0e21372742478754c0a5b7e1fdcb4f97dfb962977c8d86965ce"
+    },
+    {
+      "path": "pre169/explanations/1366-laohuan-portrait-first.png",
+      "bytes": 262259,
+      "sha256": "ef15cbe3b353bd521af95cbdf5b1b2021895b13b929a848439c2de71304fd8aa"
+    },
+    {
+      "path": "pre169/explanations/1366-laohuan-selection-example.png",
+      "bytes": 270855,
+      "sha256": "f20940a55a87f0e21372742478754c0a5b7e1fdcb4f97dfb962977c8d86965ce"
+    },
+    {
+      "path": "pre169/explanations/1366-laohuan-selection-first.png",
+      "bytes": 262259,
+      "sha256": "ef15cbe3b353bd521af95cbdf5b1b2021895b13b929a848439c2de71304fd8aa"
+    },
+    {
+      "path": "pre169/explanations/1366-laohuan-shop-example.png",
+      "bytes": 283290,
+      "sha256": "fab11312acab8a31a50ed721abdd5239200925e2d4133468f10985c1fb4aafe6"
+    },
+    {
+      "path": "pre169/explanations/1366-laohuan-shop-first.png",
+      "bytes": 274453,
+      "sha256": "12ff0225d6b7136e1e0fe22d86fb982c50dea9579118fa3c99cd5f26ba4138de"
+    },
+    {
+      "path": "pre169/explanations/1366-laohuan-shop-keepsake-Escape.png",
+      "bytes": 248752,
+      "sha256": "c8967dad8aea4dfe023a47b1903897f5ddf761185de28fd546bb504b36e69e08"
+    },
+    {
+      "path": "pre169/explanations/1366-laohuan-shop-keepsake-close.png",
+      "bytes": 248752,
+      "sha256": "c8967dad8aea4dfe023a47b1903897f5ddf761185de28fd546bb504b36e69e08"
+    },
+    {
+      "path": "pre169/explanations/1366-laohuan-table-HUD-example.png",
+      "bytes": 244834,
+      "sha256": "1225fd7e5ed9abaa99b48f8ff4c183710dd3626e85940a23b82c5ababff9e455"
+    },
+    {
+      "path": "pre169/explanations/1366-laohuan-table-HUD-first.png",
+      "bytes": 235710,
+      "sha256": "e03b4ec2c1cb1ebae1c77d0b83c9426b58874a9872a670a617be0e6cdec780d4"
+    },
+    {
+      "path": "pre169/explanations/1366-laohuan-table-decoration-example.png",
+      "bytes": 244834,
+      "sha256": "1225fd7e5ed9abaa99b48f8ff4c183710dd3626e85940a23b82c5ababff9e455"
+    },
+    {
+      "path": "pre169/explanations/1366-laohuan-table-decoration-first.png",
+      "bytes": 236488,
+      "sha256": "4b0c02765a584be177e36a4da9504fc52c182a119f3cc88e1fb4e7758adece8b"
+    },
+    {
+      "path": "pre169/explanations/1366-touye-finale-keepsake-Escape.png",
+      "bytes": 193706,
+      "sha256": "7abe00716926779789928472142dc8219cedba81f9eded89810e45e77c62321a"
+    },
+    {
+      "path": "pre169/explanations/1366-touye-finale-keepsake-close.png",
+      "bytes": 193706,
+      "sha256": "7abe00716926779789928472142dc8219cedba81f9eded89810e45e77c62321a"
+    },
+    {
+      "path": "pre169/explanations/1366-touye-lost-result-example.png",
+      "bytes": 209725,
+      "sha256": "5ea964c53453691a17396781fea4baff42502b5f9f629ca2026ff2fe6c185aab"
+    },
+    {
+      "path": "pre169/explanations/1366-touye-lost-result-first.png",
+      "bytes": 200566,
+      "sha256": "c9732248029ff2f3b48a02d9637fe9daa95dd12ed6229b4d711a90bb6f692443"
+    },
+    {
+      "path": "pre169/explanations/1366-touye-portrait-example.png",
+      "bytes": 273984,
+      "sha256": "bc3aba5fe645d4ffbb2c33ca95e02fce6be328f85a11e734270d53a1f4a8a78d"
+    },
+    {
+      "path": "pre169/explanations/1366-touye-portrait-first.png",
+      "bytes": 265084,
+      "sha256": "19aa9acce1f35c7ebcb1e96760d014ffce231ca0c69c753fe94049f1b9d6b005"
+    },
+    {
+      "path": "pre169/explanations/1366-touye-result-example.png",
+      "bytes": 206303,
+      "sha256": "bdf9f53043ed14e6d437ff915217053f97a3ebe3fde23df38145bf58e1b622be"
+    },
+    {
+      "path": "pre169/explanations/1366-touye-result-first.png",
+      "bytes": 196823,
+      "sha256": "ffcba30cd9346b468b29f83715799f18938c099dfdd323ff2abf3be2dcd6d7b9"
+    },
+    {
+      "path": "pre169/explanations/1366-touye-selection-example.png",
+      "bytes": 273984,
+      "sha256": "bc3aba5fe645d4ffbb2c33ca95e02fce6be328f85a11e734270d53a1f4a8a78d"
+    },
+    {
+      "path": "pre169/explanations/1366-touye-selection-first.png",
+      "bytes": 265084,
+      "sha256": "19aa9acce1f35c7ebcb1e96760d014ffce231ca0c69c753fe94049f1b9d6b005"
+    },
+    {
+      "path": "pre169/explanations/1366-touye-shop-example.png",
+      "bytes": 288778,
+      "sha256": "c621b8ca48b12bebf3e55dda40d8dd440e2ba01df421ff19dc5041c34bc82657"
+    },
+    {
+      "path": "pre169/explanations/1366-touye-shop-first.png",
+      "bytes": 279583,
+      "sha256": "4ffdd9b4ec117e23162d27083266d28694cea2735f2fe3004e9ef0007ffa548e"
+    },
+    {
+      "path": "pre169/explanations/1366-touye-shop-keepsake-Escape.png",
+      "bytes": 253245,
+      "sha256": "0993c01e2b8e564e0ef3022f95b0f1a0ed8e0accda5bcd28ce78c1920777982c"
+    },
+    {
+      "path": "pre169/explanations/1366-touye-shop-keepsake-close.png",
+      "bytes": 253245,
+      "sha256": "0993c01e2b8e564e0ef3022f95b0f1a0ed8e0accda5bcd28ce78c1920777982c"
+    },
+    {
+      "path": "pre169/explanations/1366-touye-table-HUD-example.png",
+      "bytes": 251757,
+      "sha256": "0df48baa35dd5ab4efdcd6186432462ace502b4b286fb842cff8df39f9ef2753"
+    },
+    {
+      "path": "pre169/explanations/1366-touye-table-HUD-first.png",
+      "bytes": 242554,
+      "sha256": "b1c9133a538fbcb24cd42df9e4d869ad111d91243175e45f85fe503b32f245b8"
+    },
+    {
+      "path": "pre169/explanations/1366-touye-table-decoration-example.png",
+      "bytes": 251757,
+      "sha256": "0df48baa35dd5ab4efdcd6186432462ace502b4b286fb842cff8df39f9ef2753"
+    },
+    {
+      "path": "pre169/explanations/1366-touye-table-decoration-first.png",
+      "bytes": 243354,
+      "sha256": "c59347164072c9e1095248225d612bd4c2a3c500b0ce39e093f361509d67a85e"
+    },
+    {
+      "path": "pre169/explanations/1366-xiemu-finale-keepsake-Escape.png",
+      "bytes": 224918,
+      "sha256": "a1d1b711424967ee2a9965f7e5f4087881a32c419e11ecd7d4ce4709dfcf6a43"
+    },
+    {
+      "path": "pre169/explanations/1366-xiemu-finale-keepsake-close.png",
+      "bytes": 224918,
+      "sha256": "a1d1b711424967ee2a9965f7e5f4087881a32c419e11ecd7d4ce4709dfcf6a43"
+    },
+    {
+      "path": "pre169/explanations/1366-xiemu-lost-result-example.png",
+      "bytes": 239979,
+      "sha256": "41b6d5bc8e20f011e7c442ae1643b4b6f983e83d09d3c92488b702348a812420"
+    },
+    {
+      "path": "pre169/explanations/1366-xiemu-lost-result-first.png",
+      "bytes": 231987,
+      "sha256": "6f7e9325aa420b625add641080c669666b113a79994ab48fe3b3824f18fa1e0d"
+    },
+    {
+      "path": "pre169/explanations/1366-xiemu-portrait-example.png",
+      "bytes": 320906,
+      "sha256": "ff6756b36c85a120f830208b9ce1c9fcc41d3b588776c5b2e60f257aa0953c45"
+    },
+    {
+      "path": "pre169/explanations/1366-xiemu-portrait-first.png",
+      "bytes": 313084,
+      "sha256": "7d8de473215e9d40c15118d3dadd75cfa0c14e2f601916f1f23bc166333ccaf7"
+    },
+    {
+      "path": "pre169/explanations/1366-xiemu-result-example.png",
+      "bytes": 236606,
+      "sha256": "d267cda8252be5e6e9836cec3b4b32a0e38c14708021d79458728d015ed5371a"
+    },
+    {
+      "path": "pre169/explanations/1366-xiemu-result-first.png",
+      "bytes": 228635,
+      "sha256": "b37e2f404076dbe7ee191f87c6bd589acec9f48799b5ff3f5f87859af892bc64"
+    },
+    {
+      "path": "pre169/explanations/1366-xiemu-selection-example.png",
+      "bytes": 320906,
+      "sha256": "ff6756b36c85a120f830208b9ce1c9fcc41d3b588776c5b2e60f257aa0953c45"
+    },
+    {
+      "path": "pre169/explanations/1366-xiemu-selection-first.png",
+      "bytes": 313084,
+      "sha256": "7d8de473215e9d40c15118d3dadd75cfa0c14e2f601916f1f23bc166333ccaf7"
+    },
+    {
+      "path": "pre169/explanations/1366-xiemu-shop-example.png",
+      "bytes": 335201,
+      "sha256": "8e5f5acb38097bb171ecf2880c03cde289f9f799ba88e166d2a24c2820091ed8"
+    },
+    {
+      "path": "pre169/explanations/1366-xiemu-shop-first.png",
+      "bytes": 327216,
+      "sha256": "0be76a2783518bf4c3e5501110d0453217c8114919a2b46cf3e8695f4fd1fdf4"
+    },
+    {
+      "path": "pre169/explanations/1366-xiemu-shop-keepsake-Escape.png",
+      "bytes": 299126,
+      "sha256": "c6535afa18920da355db4c33cc8cbd9da95517b67be0a90edad28d3470fe8671"
+    },
+    {
+      "path": "pre169/explanations/1366-xiemu-shop-keepsake-close.png",
+      "bytes": 299126,
+      "sha256": "c6535afa18920da355db4c33cc8cbd9da95517b67be0a90edad28d3470fe8671"
+    },
+    {
+      "path": "pre169/explanations/1366-xiemu-table-HUD-example.png",
+      "bytes": 284141,
+      "sha256": "3b75746563ccef0c3c540d1a6bbeca6f7ba2075fffaf597b73fbfb11aedb8b82"
+    },
+    {
+      "path": "pre169/explanations/1366-xiemu-table-HUD-first.png",
+      "bytes": 276047,
+      "sha256": "65238aa04cc60df56cf750bff4dd3dcc682e5840294507135e0483323a6075d9"
+    },
+    {
+      "path": "pre169/explanations/1366-xiemu-table-decoration-example.png",
+      "bytes": 284141,
+      "sha256": "3b75746563ccef0c3c540d1a6bbeca6f7ba2075fffaf597b73fbfb11aedb8b82"
+    },
+    {
+      "path": "pre169/explanations/1366-xiemu-table-decoration-first.png",
+      "bytes": 276835,
+      "sha256": "1cb89cef914d6ba2af57075a5c077bc126ed3a51781a2f1062ae8d4c5aa866f9"
+    },
+    {
+      "path": "pre169/explanations/390-amo-finale-keepsake-Escape.png",
+      "bytes": 70854,
+      "sha256": "aaa36b70a369304a2949aac4428bf1c361fa810a60aa39e545625d1804fb9fa7"
+    },
+    {
+      "path": "pre169/explanations/390-amo-finale-keepsake-close.png",
+      "bytes": 70850,
+      "sha256": "3f131121a50fe02cab1d905a96e6826c2e977ff3f162ff1ed214dc72b73ebe94"
+    },
+    {
+      "path": "pre169/explanations/390-amo-lost-result-example.png",
+      "bytes": 79169,
+      "sha256": "0f50aaa6ce0650e72c8ea588f9844f7bec8b138f0735627d68eb56a279147622"
+    },
+    {
+      "path": "pre169/explanations/390-amo-lost-result-first.png",
+      "bytes": 77020,
+      "sha256": "6dbaaeaa1035a7ec259626e45a3ff50bb5ae38aead682d5a1c49054f4d539666"
+    },
+    {
+      "path": "pre169/explanations/390-amo-portrait-example.png",
+      "bytes": 80318,
+      "sha256": "f722f1f88dc11e0a07098eb19df65dc2740dfb7b0f3ef1389161dcfd155b9908"
+    },
+    {
+      "path": "pre169/explanations/390-amo-portrait-first.png",
+      "bytes": 78894,
+      "sha256": "4d1a872abcec8c0b755462abebd303f116d2a815b304975e82f6af1ffa5c80ec"
+    },
+    {
+      "path": "pre169/explanations/390-amo-selection-example.png",
+      "bytes": 80338,
+      "sha256": "5569440b66791e4d299f4a55edb8ec978c69e5ed161152d886e4f0154d8e50ad"
+    },
+    {
+      "path": "pre169/explanations/390-amo-selection-first.png",
+      "bytes": 78890,
+      "sha256": "1267d85422d1b4f60f50f464a1eb47d39ee3c2c43a59f331e03f7e04f767f63e"
+    },
+    {
+      "path": "pre169/explanations/390-amo-shop-example.png",
+      "bytes": 82187,
+      "sha256": "b6b4df61f4802be4407bc3e5b2919454f1f80f3c3120aa37673e3ffec72fc1e0"
+    },
+    {
+      "path": "pre169/explanations/390-amo-shop-first.png",
+      "bytes": 80076,
+      "sha256": "be3ec9b5abdbc86c3a3f4b4563cd22547ccbc3fd4b9716f502855dc6ca33656e"
+    },
+    {
+      "path": "pre169/explanations/390-amo-shop-keepsake-Escape.png",
+      "bytes": 73243,
+      "sha256": "a8156371873339ddf21d25d8dcf412c3d3df8064b5d2869777a622298ea0bbfe"
+    },
+    {
+      "path": "pre169/explanations/390-amo-shop-keepsake-close.png",
+      "bytes": 73242,
+      "sha256": "ccf09f9ac2b75b82339304f9efa84679584e133bdc8c6b97895508a497eccc26"
+    },
+    {
+      "path": "pre169/explanations/390-amo-table-HUD-example.png",
+      "bytes": 84523,
+      "sha256": "9eae929181dc56aa792aad4cc89da22ac194d5cf7e2c294419615ae750aba410"
+    },
+    {
+      "path": "pre169/explanations/390-amo-table-HUD-first.png",
+      "bytes": 78784,
+      "sha256": "eb0d6c98eb453f28dd2812741ec461b112d42a9f66f00460c497c49499a65122"
+    },
+    {
+      "path": "pre169/explanations/390-azao-finale-keepsake-Escape.png",
+      "bytes": 78313,
+      "sha256": "e85150b9879da6293867c0556e3596f36b911b2684d71d55a1f52d357e9150ab"
+    },
+    {
+      "path": "pre169/explanations/390-azao-finale-keepsake-close.png",
+      "bytes": 78312,
+      "sha256": "e92e1a655b3f280292a2068ac1e720de5eb260d4eff7d8c1b81d8f002b2be9cd"
+    },
+    {
+      "path": "pre169/explanations/390-azao-lost-result-example.png",
+      "bytes": 85865,
+      "sha256": "3299945c08040525e776af4a764ff3359a39e53e41aa7773385439be1eb5c729"
+    },
+    {
+      "path": "pre169/explanations/390-azao-lost-result-first.png",
+      "bytes": 84437,
+      "sha256": "04c5feec3fe47ec88b083470517380b4d92c8d1f252e8bd6ad5432053c7f9054"
+    },
+    {
+      "path": "pre169/explanations/390-azao-portrait-example.png",
+      "bytes": 86803,
+      "sha256": "48a15781fd731d871e49b30c9ff301a96e317f08dfc1b185c03617b76a45047c"
+    },
+    {
+      "path": "pre169/explanations/390-azao-portrait-first.png",
+      "bytes": 86155,
+      "sha256": "1b218737784de5e742f156d6171a0cb16d6cceb18d9be9983d78e96d2d1dc3c0"
+    },
+    {
+      "path": "pre169/explanations/390-azao-selection-example.png",
+      "bytes": 86835,
+      "sha256": "63b9302092630eaa023fde6ce39b69dda68b73c41f15f937e1e2b9dcf510d0df"
+    },
+    {
+      "path": "pre169/explanations/390-azao-selection-first.png",
+      "bytes": 86166,
+      "sha256": "e66d72ec78379fbb77189e1414055adbfe2628e09c523a356de2dedb3d607dbd"
+    },
+    {
+      "path": "pre169/explanations/390-azao-shop-example.png",
+      "bytes": 89021,
+      "sha256": "cac01488dc26be48c7ba52dc3790934263a251102a396ef413d0dee6a3d5156c"
+    },
+    {
+      "path": "pre169/explanations/390-azao-shop-first.png",
+      "bytes": 87622,
+      "sha256": "cd42e564f6ce309634f15b3fa2e824a11de2cc51e632752c9fc63b8a09ea6641"
+    },
+    {
+      "path": "pre169/explanations/390-azao-shop-keepsake-Escape.png",
+      "bytes": 80898,
+      "sha256": "733f8d310c20dc5c74f63b19ef622ea0db071bf3f4377f0d4d76be939244fdd8"
+    },
+    {
+      "path": "pre169/explanations/390-azao-shop-keepsake-close.png",
+      "bytes": 80897,
+      "sha256": "8e4b74c97c6d5c29171f16c1143d3ab3f11291498f862c36790acaefadb8a0f3"
+    },
+    {
+      "path": "pre169/explanations/390-azao-table-HUD-example.png",
+      "bytes": 88618,
+      "sha256": "2297abb9817883e7118935bd1d50c980c32c989a1bf4332e207151788af6348b"
+    },
+    {
+      "path": "pre169/explanations/390-azao-table-HUD-first.png",
+      "bytes": 86638,
+      "sha256": "63cedc763311719a6519f2c66e340ab144e468f718a90d2967d1230407bd45ba"
+    },
+    {
+      "path": "pre169/explanations/390-erxiang-finale-keepsake-Escape.png",
+      "bytes": 79258,
+      "sha256": "335a3e7e60ec730b3bc76d23397cf177adc8efaad13cefd0418e05135123e4bd"
+    },
+    {
+      "path": "pre169/explanations/390-erxiang-finale-keepsake-close.png",
+      "bytes": 79254,
+      "sha256": "7bf98bce8bce9830de6e8ac12dfe3e32184b6e3bced1fe9471288f3f131425c0"
+    },
+    {
+      "path": "pre169/explanations/390-erxiang-lost-result-example.png",
+      "bytes": 87578,
+      "sha256": "85ff797bb9df80e48cb59836fe5c1eace51a72a17c5deacce8e1f0120c19c541"
+    },
+    {
+      "path": "pre169/explanations/390-erxiang-lost-result-first.png",
+      "bytes": 85024,
+      "sha256": "8aeac494d706dc161fdec234c80d3cd3e8b68965ab66a6b20f93449a27721c13"
+    },
+    {
+      "path": "pre169/explanations/390-erxiang-portrait-example.png",
+      "bytes": 88689,
+      "sha256": "c95d09b7fc12db14036095deb39712a4d0da4d400e83cf4f96d7b7a95cc8ec48"
+    },
+    {
+      "path": "pre169/explanations/390-erxiang-portrait-first.png",
+      "bytes": 86876,
+      "sha256": "88c0ebfe9fa230683146664c9473f335f91e97793c4c3f0bd89ea0604bda3bc3"
+    },
+    {
+      "path": "pre169/explanations/390-erxiang-selection-example.png",
+      "bytes": 88722,
+      "sha256": "b1b09a3f838695baef18fbb469fd9c405f78d8d2ae67339a4baf0b661b049252"
+    },
+    {
+      "path": "pre169/explanations/390-erxiang-selection-first.png",
+      "bytes": 86884,
+      "sha256": "55812853824d2f591f1806b1e4e9d3145bd3700adcda2dedf39dde5172f2a619"
+    },
+    {
+      "path": "pre169/explanations/390-erxiang-shop-example.png",
+      "bytes": 90837,
+      "sha256": "63f2af70127f2d7518977162e0af2eafc8a6073f2b1dfdb5f4633e392f68863f"
+    },
+    {
+      "path": "pre169/explanations/390-erxiang-shop-first.png",
+      "bytes": 88282,
+      "sha256": "d33b659a37be208460deb925520579614afe60fa0537b3033f08f7225146ff3d"
+    },
+    {
+      "path": "pre169/explanations/390-erxiang-shop-keepsake-Escape.png",
+      "bytes": 81914,
+      "sha256": "b4ca748a22d44da7bf231ef7d49793c22a7223efdd4c141fe1f0e677d7efe728"
+    },
+    {
+      "path": "pre169/explanations/390-erxiang-shop-keepsake-close.png",
+      "bytes": 81912,
+      "sha256": "2515826f6a2b810e8dd53ac66c6dd3a90563c295154cfaaf65f2c0e3a15b0596"
+    },
+    {
+      "path": "pre169/explanations/390-erxiang-table-HUD-example.png",
+      "bytes": 91257,
+      "sha256": "b25e26eeaeaa9c11378b9a485a62b51bd9a3f07ceb43789e661b1cfc664980f7"
+    },
+    {
+      "path": "pre169/explanations/390-erxiang-table-HUD-first.png",
+      "bytes": 84179,
+      "sha256": "7fdf74ce63e8b383285e11f7d3f37b4cef3f12e762110e27ccab6e426c082308"
+    },
+    {
+      "path": "pre169/explanations/390-laohuan-finale-keepsake-Escape.png",
+      "bytes": 73765,
+      "sha256": "3d56e0abddde6cbee8ef48ecf05cfc06a5dbf616f1e6e54c70d3e2876f1cf77a"
+    },
+    {
+      "path": "pre169/explanations/390-laohuan-finale-keepsake-close.png",
+      "bytes": 73763,
+      "sha256": "cef1c91d9a07a2412158aedc8cfa976b7ba25763d68ddd6e22f3271e2054ab89"
+    },
+    {
+      "path": "pre169/explanations/390-laohuan-lost-result-example.png",
+      "bytes": 85374,
+      "sha256": "737886356a7c20075ff036a59e7502290dc7bc3f3020eab7d4459f9395ce1598"
+    },
+    {
+      "path": "pre169/explanations/390-laohuan-lost-result-first.png",
+      "bytes": 79902,
+      "sha256": "30b8a102ba13e3b8340d304720cf7316e356cd8be1ca217965c9d0da86094e4c"
+    },
+    {
+      "path": "pre169/explanations/390-laohuan-portrait-example.png",
+      "bytes": 86579,
+      "sha256": "f88f7d7c1e71e9e25b5e3f304c85331a435cdd898d9d7320452b0624504bab0e"
+    },
+    {
+      "path": "pre169/explanations/390-laohuan-portrait-first.png",
+      "bytes": 81822,
+      "sha256": "9868917ffdd668abde5619721f56bd43026559a3ba2d167e17408a11453fca25"
+    },
+    {
+      "path": "pre169/explanations/390-laohuan-selection-example.png",
+      "bytes": 86603,
+      "sha256": "ace06b701a929331e36aad0a9dc08dff413cc798cd9370ac07b39a7b4e450cb8"
+    },
+    {
+      "path": "pre169/explanations/390-laohuan-selection-first.png",
+      "bytes": 81844,
+      "sha256": "3e84ca6129a2f3f517c9ba30dcd31b09365c82e159707fc3f1e6f7a0f9ad253a"
+    },
+    {
+      "path": "pre169/explanations/390-laohuan-shop-example.png",
+      "bytes": 88411,
+      "sha256": "aead51d88817098750f064f29f3cad82e7499b6335c7c113c1508a48f3935300"
+    },
+    {
+      "path": "pre169/explanations/390-laohuan-shop-first.png",
+      "bytes": 82804,
+      "sha256": "a45b8fcc2839b5054fe9cb77af750d6c1404155b538a83b2137066fd5f4db2f5"
+    },
+    {
+      "path": "pre169/explanations/390-laohuan-shop-keepsake-Escape.png",
+      "bytes": 76327,
+      "sha256": "a134314f51014f8f615ab55f8f0ad75095d2a7c2f7e00e3237341bb9791e6817"
+    },
+    {
+      "path": "pre169/explanations/390-laohuan-shop-keepsake-close.png",
+      "bytes": 76326,
+      "sha256": "fed52b6eb7033ac28ae9933e6eecfe1d04f8d435c1cd7da64235eac46711b731"
+    },
+    {
+      "path": "pre169/explanations/390-laohuan-table-HUD-example.png",
+      "bytes": 87105,
+      "sha256": "226756e6607b7407d098ab24b9621f659598c1c44a722410a232ea772fb87e11"
+    },
+    {
+      "path": "pre169/explanations/390-laohuan-table-HUD-first.png",
+      "bytes": 81068,
+      "sha256": "80f204863aeddc35bc8dfa22c09233ab958d0a6d4331e2f8373d9a352365e546"
+    },
+    {
+      "path": "pre169/explanations/390-touye-finale-keepsake-Escape.png",
+      "bytes": 73803,
+      "sha256": "c238e931da6cec036d4cde983c4aad6ef6828db5fdc0567463ba633ca62f7309"
+    },
+    {
+      "path": "pre169/explanations/390-touye-finale-keepsake-close.png",
+      "bytes": 73801,
+      "sha256": "1b99b964531c028430b5d2c7428943e096ba8e4283c8bf1e16adc834c1e64d1f"
+    },
+    {
+      "path": "pre169/explanations/390-touye-lost-result-example.png",
+      "bytes": 83396,
+      "sha256": "5b964a2b8ca71cda98749b436959244c47b78c3b7a469b8d120404b6dc2a42b3"
+    },
+    {
+      "path": "pre169/explanations/390-touye-lost-result-first.png",
+      "bytes": 79973,
+      "sha256": "4f7cdb925be6f9eab036b8c3a439af14465f565e428313e38cb2a56c2154aebf"
+    },
+    {
+      "path": "pre169/explanations/390-touye-portrait-example.png",
+      "bytes": 84458,
+      "sha256": "d0a5215995f18beaedec1223fca8a1deee0017d40cdf34eb04d370150cdb1c25"
+    },
+    {
+      "path": "pre169/explanations/390-touye-portrait-first.png",
+      "bytes": 81729,
+      "sha256": "4d93e8d9f103583df45ebbfc4db06ba61afe7a7e8cb79fdf86792298487bacf6"
+    },
+    {
+      "path": "pre169/explanations/390-touye-result-example.png",
+      "bytes": 81423,
+      "sha256": "390e07994abd2183139152e71acfb799b5c4b3068f27d935ca8f342959c0ae4b"
+    },
+    {
+      "path": "pre169/explanations/390-touye-result-first.png",
+      "bytes": 78003,
+      "sha256": "9e3087119bf9ca525e661d8f20c6da2536f4f928ee7120f76dae089d4bb6cb13"
+    },
+    {
+      "path": "pre169/explanations/390-touye-selection-example.png",
+      "bytes": 84482,
+      "sha256": "50e007b1b384638ca60a3efc80e0d107d0f4dd7e84c5b4b0bd45bfccf634f397"
+    },
+    {
+      "path": "pre169/explanations/390-touye-selection-first.png",
+      "bytes": 81739,
+      "sha256": "8dd08e9a86f479c8e4f9ae90b85cea7ff21b7ca7d2e6290abb11e63d6fa5041e"
+    },
+    {
+      "path": "pre169/explanations/390-touye-shop-example.png",
+      "bytes": 86502,
+      "sha256": "8e190daf0822d079eb6113ea11b1a0974d52f78359981bf161d832e741c98055"
+    },
+    {
+      "path": "pre169/explanations/390-touye-shop-first.png",
+      "bytes": 83077,
+      "sha256": "13441f447b5d14e1786f9a16e1c6c43828c1d009cb7a0a396cceb3895490c9f2"
+    },
+    {
+      "path": "pre169/explanations/390-touye-shop-keepsake-Escape.png",
+      "bytes": 76351,
+      "sha256": "0c359ea0872e2ac092794da7d0a29002e6c6f33b75556b077a55290ae3b0e3c2"
+    },
+    {
+      "path": "pre169/explanations/390-touye-shop-keepsake-close.png",
+      "bytes": 76350,
+      "sha256": "ebb6d5c68343ade7acedcaf5e4a945cf228c49d4204b8f0332e08d5b80d2db57"
+    },
+    {
+      "path": "pre169/explanations/390-touye-table-HUD-example.png",
+      "bytes": 89411,
+      "sha256": "0c8da019bedcacdfa3f9ff328f0e3a0d21dc43d5cf429948dca435a2e1eb77aa"
+    },
+    {
+      "path": "pre169/explanations/390-touye-table-HUD-first.png",
+      "bytes": 83406,
+      "sha256": "7aaa1b9d8ff57ed58e24b9acee3a1a709afa72d1bc31dde1d7681261fe354834"
+    },
+    {
+      "path": "pre169/explanations/390-xiemu-finale-keepsake-Escape.png",
+      "bytes": 78207,
+      "sha256": "453083074a9ef6552a84900e9fccb8ab06d89d80b6cd840422632eb5f7e1bc6f"
+    },
+    {
+      "path": "pre169/explanations/390-xiemu-finale-keepsake-close.png",
+      "bytes": 78207,
+      "sha256": "453083074a9ef6552a84900e9fccb8ab06d89d80b6cd840422632eb5f7e1bc6f"
+    },
+    {
+      "path": "pre169/explanations/390-xiemu-lost-result-example.png",
+      "bytes": 88376,
+      "sha256": "22e04d9944952d07e47660f6d7e8c90b5e1f2f6836fdda62bf5220609d2e16af"
+    },
+    {
+      "path": "pre169/explanations/390-xiemu-lost-result-first.png",
+      "bytes": 84649,
+      "sha256": "b43bf4f56218cd73f1a457219b7e28ed8d6f0f91dd6a625e3376f5deaefc2b43"
+    },
+    {
+      "path": "pre169/explanations/390-xiemu-portrait-example.png",
+      "bytes": 89583,
+      "sha256": "deb0697e62ac9fb871ddeb96bf8e1cd40712d867bb9800e379ffc0d29a78c20d"
+    },
+    {
+      "path": "pre169/explanations/390-xiemu-portrait-first.png",
+      "bytes": 86560,
+      "sha256": "176763f259a71f70589dd7ac40bf8ffe6fda783d64ef34a5f4a6f8d0a8401c1c"
+    },
+    {
+      "path": "pre169/explanations/390-xiemu-result-example.png",
+      "bytes": 86490,
+      "sha256": "1165978858fc92e0213c5d651d3f40db39d2c0c1ef084437882e77a074c76498"
+    },
+    {
+      "path": "pre169/explanations/390-xiemu-result-first.png",
+      "bytes": 82756,
+      "sha256": "c60f7b12453c925ac350a2e9d57f9b2c20a294ab31c39d21fc4ab048e3d5d37d"
+    },
+    {
+      "path": "pre169/explanations/390-xiemu-selection-example.png",
+      "bytes": 89618,
+      "sha256": "decb302eed3a3ad478210c87d9c4fa1e7275984486008d6bb411e73b2a285caf"
+    },
+    {
+      "path": "pre169/explanations/390-xiemu-selection-first.png",
+      "bytes": 86579,
+      "sha256": "81f6d787c7743bd251c880d27ad31a02f6a226b3de78a1afb42cbec7b0992ce0"
+    },
+    {
+      "path": "pre169/explanations/390-xiemu-shop-example.png",
+      "bytes": 91939,
+      "sha256": "1f987bc822eb82f583ef48c1901eee274d4b986e5972f4eca40d1677ea677373"
+    },
+    {
+      "path": "pre169/explanations/390-xiemu-shop-first.png",
+      "bytes": 88244,
+      "sha256": "d606e5c25b9ef2eddfd1e4b99ee2b016384662ffb37b31532b1e3eb7be2a2d3a"
+    },
+    {
+      "path": "pre169/explanations/390-xiemu-shop-keepsake-Escape.png",
+      "bytes": 80802,
+      "sha256": "ab267fc5f27ffd12634a1109839b8331127f783223149819e81bfc65a675289a"
+    },
+    {
+      "path": "pre169/explanations/390-xiemu-shop-keepsake-close.png",
+      "bytes": 80801,
+      "sha256": "67a8dd2ce66f560e247f17e5c4337bbb986e1c8f251e39be0c3b7d350a898132"
+    },
+    {
+      "path": "pre169/explanations/390-xiemu-table-HUD-example.png",
+      "bytes": 90834,
+      "sha256": "c21c4360391155e371843d88d7fb3bef15e118f44b526f7bb732d7de6cbb362b"
+    },
+    {
+      "path": "pre169/explanations/390-xiemu-table-HUD-first.png",
+      "bytes": 86025,
+      "sha256": "6be6b7d00360fd3e9b3e1dfc4e311eac218ba3f9649c5b31014009723ad612f7"
+    },
+    {
+      "path": "pre169/explanations/full-state-journal-storage-localStorage.json.gz",
+      "bytes": 195769,
+      "sha256": "1e7bafe3f6be340cff9b64c23638175e5d251b1ab4d53fe10ee608e65addc1d5"
+    },
+    {
+      "path": "pre169/explanations/report.json",
+      "bytes": 102434,
+      "sha256": "01bd08a33c04e1105d08d2806972653d89ca8b31aebf4da2e90cd025dc75ed20"
+    },
+    {
+      "path": "pre169/skills/full-state-journal-storage-localStorage.json.gz",
+      "bytes": 635,
+      "sha256": "e582e3bed1551afa40d277ba12f717fbfd202b12e82c8edfe1f4c951c778db3d"
+    },
+    {
+      "path": "pre169/skills/report.json",
+      "bytes": 1184,
+      "sha256": "42bdb07490b0429499be09f44645efaf865413bd8659a25aca25fe9972ab3858"
+    },
+    {
+      "path": "protected-and-sources.json",
+      "bytes": 7286,
+      "sha256": "19c6bf249738b510187a71672e056c94020909c3127085a6f45d9581dec92190"
+    },
+    {
+      "path": "skills/1366-amo-chosen-first.png",
+      "bytes": 237726,
+      "sha256": "6c2c3b8567a6fac60f28e507653a33533b6fc92d96a5b2d05b8f01c091cc0aa5"
+    },
+    {
+      "path": "skills/1366-amo-operation.png",
+      "bytes": 150040,
+      "sha256": "b4b1e3b18b621a9388f8a7d1b21242954c2417d9109ddaa73791317134f6f493"
+    },
+    {
+      "path": "skills/1366-amo-saving-blocked.png",
+      "bytes": 234642,
+      "sha256": "3e464e0605da0ca1148b8573212ab88b771b8799d4601549c8d246d1e1e7465f"
+    },
+    {
+      "path": "skills/1366-azao-chosen-first.png",
+      "bytes": 280485,
+      "sha256": "a7c675e08d7afda5cd263882afc4b4c3fa30152afd0f4236f7602e3b728c57b7"
+    },
+    {
+      "path": "skills/1366-azao-operation.png",
+      "bytes": 191493,
+      "sha256": "93ed6651f4c21c61e09f26e97f1970e167d3e24a692a137b4372dd31aaac19e8"
+    },
+    {
+      "path": "skills/1366-azao-saving-blocked.png",
+      "bytes": 273627,
+      "sha256": "4a12221c8638a1d80c886b4bf0dffe41637f6ab1041b8742fe883312b7d80594"
+    },
+    {
+      "path": "skills/1366-erxiang-chosen-first.png",
+      "bytes": 310955,
+      "sha256": "d592334f97c1a8d8e3a9b4054acaea28241a6752d6b8b642b83eb266509e86eb"
+    },
+    {
+      "path": "skills/1366-erxiang-operation.png",
+      "bytes": 153376,
+      "sha256": "3cdfd89e71a82ba4ea09c16341deed233a8d29ff19750b1995b870d29b932755"
+    },
+    {
+      "path": "skills/1366-erxiang-presentation-blocked.png",
+      "bytes": 298111,
+      "sha256": "dc50800685b90fddd83cf9586c3d1458033c004b66d43d54aad169b7b949c806"
+    },
+    {
+      "path": "skills/1366-erxiang-saving-blocked.png",
+      "bytes": 307240,
+      "sha256": "045428357dc2e3cf71f6fbbcde2fd620b924a7751620d004dbd2fc31c1ab67d9"
+    },
+    {
+      "path": "skills/1366-laohuan-operation.png",
+      "bytes": 182693,
+      "sha256": "811a445cd87f34a5973c7b5123ca7d33a410eed310a9d8f839860143cc014ea6"
+    },
+    {
+      "path": "skills/1366-laohuan-saving-blocked.png",
+      "bytes": 254855,
+      "sha256": "f0ebb611622f279efa6b87b8855daa3f9da5abaa3395c92034bae4c556301cf3"
+    },
+    {
+      "path": "skills/1366-readonly-blocked.png",
+      "bytes": 298541,
+      "sha256": "b34d78381f5fbdbfe39d7aced5d262f476ecfc1c556a711ea897721748bdf073"
+    },
+    {
+      "path": "skills/1366-touye-operation.png",
+      "bytes": 144641,
+      "sha256": "4212875766503c5e37ed117a565af6294e0089cff95e32cf88bf57d138c8beeb"
+    },
+    {
+      "path": "skills/1366-touye-saving-blocked.png",
+      "bytes": 260439,
+      "sha256": "57cc7c8aa8e84b8e1daea8ae5cd3bba70d446a6dee07fe6568c7858992fed76f"
+    },
+    {
+      "path": "skills/1366-xiemu-chosen-first.png",
+      "bytes": 296630,
+      "sha256": "5df26aad55152f8f19764f238b7676e22900362bb067c03877d9c6f8d064955f"
+    },
+    {
+      "path": "skills/1366-xiemu-operation.png",
+      "bytes": 194932,
+      "sha256": "7f59552927f5b90db2fa6a42d7af1a953a5429c939b8acbd44945b3eb9b09c0a"
+    },
+    {
+      "path": "skills/1366-xiemu-saving-blocked.png",
+      "bytes": 294047,
+      "sha256": "39632b74ef9ad77681240412bf03ee9d656e61f5adc6a334a4409275e819b654"
+    },
+    {
+      "path": "skills/390-amo-chosen-first.png",
+      "bytes": 85933,
+      "sha256": "953c4bca03ae64cb9195e949515425823a2406eee6e8856c0d7f0801360a78a6"
+    },
+    {
+      "path": "skills/390-amo-operation.png",
+      "bytes": 62833,
+      "sha256": "31aff8c01a05fcd99280d23e1fc9ce3644b93f11c19a702ec8c2ea7448c50d25"
+    },
+    {
+      "path": "skills/390-amo-saving-blocked.png",
+      "bytes": 82913,
+      "sha256": "9c0d570437a2b4952b56825f61fe26256ebb6010662d14c0f0a5beac590a9849"
+    },
+    {
+      "path": "skills/390-azao-chosen-first.png",
+      "bytes": 96674,
+      "sha256": "4a42c9b4a9c34fbf4022b2b8859678190dcc465bdce6426b75db5509421c824a"
+    },
+    {
+      "path": "skills/390-azao-operation.png",
+      "bytes": 51884,
+      "sha256": "c2a4263f582cda304233d3076572c462a4c4098f9f0d384ac4026f5186487922"
+    },
+    {
+      "path": "skills/390-azao-saving-blocked.png",
+      "bytes": 90109,
+      "sha256": "b4962f4df11ee15f4d63fac80460e269ef4bede789214b77ccd72a9f3891c294"
+    },
+    {
+      "path": "skills/390-erxiang-chosen-first.png",
+      "bytes": 92986,
+      "sha256": "0810544f74089192e5706ae7de3ccdb86f74ae9b44d2e0cb3ca734cb30e170f9"
+    },
+    {
+      "path": "skills/390-erxiang-operation.png",
+      "bytes": 52789,
+      "sha256": "e493989eb51c6ebe1016337005c62d4d5e8a44421d1403866ac0f76d023d8e64"
+    },
+    {
+      "path": "skills/390-erxiang-presentation-blocked.png",
+      "bytes": 86467,
+      "sha256": "98dfd354025b7866792a9505a71293530f5b9e7046f481dc2b200a0c962da2b3"
+    },
+    {
+      "path": "skills/390-erxiang-saving-blocked.png",
+      "bytes": 89471,
+      "sha256": "49aa77886daa1a283d0b74af423cdd117a4c482944a84c205215749a83654689"
+    },
+    {
+      "path": "skills/390-laohuan-operation.png",
+      "bytes": 49834,
+      "sha256": "647de3f336e35fae7907aff9ee6ed6ab9dbd7e3b15cd5e834e00e59f0b9f5bae"
+    },
+    {
+      "path": "skills/390-laohuan-saving-blocked.png",
+      "bytes": 87392,
+      "sha256": "a29698ed36be6dd0a4d6ca89c3cd7116cb27dcbeedd3b5c263c7e46286476e52"
+    },
+    {
+      "path": "skills/390-readonly-blocked.png",
+      "bytes": 96529,
+      "sha256": "a7ff8b2ca005ffff590b511e715e6ad95fc65e85f3589c677aae9a4ea5ed4aa5"
+    },
+    {
+      "path": "skills/390-touye-operation.png",
+      "bytes": 55703,
+      "sha256": "ac33e41828d033dc75c118e8d7843aba16ed506977af5bca85033c908897293f"
+    },
+    {
+      "path": "skills/390-touye-saving-blocked.png",
+      "bytes": 88690,
+      "sha256": "10ace131c22422b9ff496320b3e59d3d666b9028c876f99f1bd169394431f2d3"
+    },
+    {
+      "path": "skills/390-xiemu-chosen-first.png",
+      "bytes": 93827,
+      "sha256": "a08315c6759c52988b3b7b9d241fdd1d6404cc4483ecc74f07dfc01516995600"
+    },
+    {
+      "path": "skills/390-xiemu-operation.png",
+      "bytes": 64293,
+      "sha256": "4679c15f519c528dbc7835a34f14f706a96a84cfc5c9407e5814a269c0222c3b"
+    },
+    {
+      "path": "skills/390-xiemu-saving-blocked.png",
+      "bytes": 91360,
+      "sha256": "e4669295489923c8ae76b34527b02f3fca3c70d1f745c5542f30711205fba6fe"
+    },
+    {
+      "path": "skills/full-state-journal-storage-localStorage.json.gz",
+      "bytes": 71172,
+      "sha256": "9d1099f2c2cb3c69f26137e81a4b51ee5f617fb80ff050427e3136b478710e09"
+    },
+    {
+      "path": "skills/report.json",
+      "bytes": 50052,
+      "sha256": "79449b507eaaec93d58ee26a7aa10c980f03e375cd11042203569050d1862220"
+    },
+    {
+      "path": "snapshot-audit.json",
+      "bytes": 13268,
+      "sha256": "a4d848cec083d1d0873d97473531620173ab25994f8de0c5db04846fa7cae996"
+    }
+  ]
+}

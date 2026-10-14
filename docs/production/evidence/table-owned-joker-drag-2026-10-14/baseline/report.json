@@ -1,0 +1,1260 @@
+{
+  "head": "69f46e47f250ec3ad7bc55ed11f7888326eecf8f",
+  "sourceTree": "cd52a29893c8cf20af906389a0d7700fa3e2eacc",
+  "modified": "M src/game/GameScene.ts\n?? harness/table-owned-joker-drag.mjs",
+  "baseline": true,
+  "scope": "Controlled current-identity five-owned checkpoint; real mouse/CDP touch/DOM inputs. Full state/journal/local storage vs actual applyCommand; no natural acquisition, 18-combination, physical device or human acceptance.",
+  "cases": [
+    {
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "name": "390x844",
+      "checks": [],
+      "errors": [],
+      "moves": [
+        {
+          "from": 0,
+          "to": 4,
+          "style": "slow",
+          "before": {
+            "seq": 3,
+            "ids": [
+              "owned-drag/0",
+              "owned-drag/1",
+              "owned-drag/2",
+              "owned-drag/3",
+              "owned-drag/4"
+            ],
+            "revision": 1
+          },
+          "held": {
+            "drag": false,
+            "saving": false,
+            "inputEnabled": true,
+            "hint": "老搭档 · 同点组合长倍率 · 长按条件",
+            "slots": [
+              {
+                "x": 23,
+                "y": 62,
+                "width": 64,
+                "height": 89.6
+              },
+              {
+                "x": 93,
+                "y": 62,
+                "width": 64,
+                "height": 89.6
+              },
+              {
+                "x": 163,
+                "y": 62,
+                "width": 64,
+                "height": 89.6
+              },
+              {
+                "x": 233,
+                "y": 62,
+                "width": 64,
+                "height": 89.6
+              },
+              {
+                "x": 303,
+                "y": 62,
+                "width": 64,
+                "height": 89.6
+              }
+            ],
+            "arts": [
+              {
+                "id": "owned-drag/0",
+                "x": 55,
+                "y": 106.8,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 23,
+                  "y": 62.000003051757815,
+                  "width": 64,
+                  "height": 89.60000000000001
+                }
+              },
+              {
+                "id": "owned-drag/1",
+                "x": 125,
+                "y": 106.8,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 93,
+                  "y": 62.000003051757815,
+                  "width": 64,
+                  "height": 89.60000000000001
+                }
+              },
+              {
+                "id": "owned-drag/2",
+                "x": 195,
+                "y": 106.8,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 163,
+                  "y": 62.000003051757815,
+                  "width": 64,
+                  "height": 89.60000000000001
+                }
+              },
+              {
+                "id": "owned-drag/3",
+                "x": 265,
+                "y": 106.8,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 233,
+                  "y": 62.000003051757815,
+                  "width": 64,
+                  "height": 89.60000000000001
+                }
+              },
+              {
+                "id": "owned-drag/4",
+                "x": 335,
+                "y": 106.8,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 303,
+                  "y": 62.000003051757815,
+                  "width": 64,
+                  "height": 89.60000000000001
+                }
+              }
+            ],
+            "dispatch": []
+          },
+          "heldShot": "390x844-slow-held.png",
+          "mid": {
+            "drag": false,
+            "saving": false,
+            "inputEnabled": true,
+            "hint": "老搭档 · 同点组合长倍率 · 长按条件",
+            "slots": [
+              {
+                "x": 23,
+                "y": 62,
+                "width": 64,
+                "height": 89.6
+              },
+              {
+                "x": 93,
+                "y": 62,
+                "width": 64,
+                "height": 89.6
+              },
+              {
+                "x": 163,
+                "y": 62,
+                "width": 64,
+                "height": 89.6
+              },
+              {
+                "x": 233,
+                "y": 62,
+                "width": 64,
+                "height": 89.6
+              },
+              {
+                "x": 303,
+                "y": 62,
+                "width": 64,
+                "height": 89.6
+              }
+            ],
+            "arts": [
+              {
+                "id": "owned-drag/0",
+                "x": 55,
+                "y": 106.8,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 23,
+                  "y": 62.000003051757815,
+                  "width": 64,
+                  "height": 89.60000000000001
+                }
+              },
+              {
+                "id": "owned-drag/1",
+                "x": 125,
+                "y": 106.8,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 93,
+                  "y": 62.000003051757815,
+                  "width": 64,
+                  "height": 89.60000000000001
+                }
+              },
+              {
+                "id": "owned-drag/2",
+                "x": 195,
+                "y": 106.8,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 163,
+                  "y": 62.000003051757815,
+                  "width": 64,
+                  "height": 89.60000000000001
+                }
+              },
+              {
+                "id": "owned-drag/3",
+                "x": 265,
+                "y": 106.8,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 233,
+                  "y": 62.000003051757815,
+                  "width": 64,
+                  "height": 89.60000000000001
+                }
+              },
+              {
+                "id": "owned-drag/4",
+                "x": 335,
+                "y": 106.8,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 303,
+                  "y": 62.000003051757815,
+                  "width": 64,
+                  "height": 89.60000000000001
+                }
+              }
+            ],
+            "dispatch": []
+          },
+          "midShot": "390x844-slow-mid.png",
+          "after": {
+            "seq": 4,
+            "ids": [
+              "owned-drag/1",
+              "owned-drag/2",
+              "owned-drag/3",
+              "owned-drag/4",
+              "owned-drag/0"
+            ],
+            "revision": 2
+          },
+          "dropped": {
+            "drag": false,
+            "saving": false,
+            "inputEnabled": true,
+            "hint": "练对子 · 同点组合长热度 · 长按条件",
+            "slots": [
+              {
+                "x": 23,
+                "y": 62,
+                "width": 64,
+                "height": 89.6
+              },
+              {
+                "x": 93,
+                "y": 62,
+                "width": 64,
+                "height": 89.6
+              },
+              {
+                "x": 163,
+                "y": 62,
+                "width": 64,
+                "height": 89.6
+              },
+              {
+                "x": 233,
+                "y": 62,
+                "width": 64,
+                "height": 89.6
+              },
+              {
+                "x": 303,
+                "y": 62,
+                "width": 64,
+                "height": 89.6
+              }
+            ],
+            "arts": [
+              {
+                "id": "owned-drag/1",
+                "x": 55,
+                "y": 106.8,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 23,
+                  "y": 62.000003051757815,
+                  "width": 64,
+                  "height": 89.60000000000001
+                }
+              },
+              {
+                "id": "owned-drag/2",
+                "x": 125,
+                "y": 106.8,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 93,
+                  "y": 62.000003051757815,
+                  "width": 64,
+                  "height": 89.60000000000001
+                }
+              },
+              {
+                "id": "owned-drag/3",
+                "x": 195,
+                "y": 106.8,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 163,
+                  "y": 62.000003051757815,
+                  "width": 64,
+                  "height": 89.60000000000001
+                }
+              },
+              {
+                "id": "owned-drag/4",
+                "x": 265,
+                "y": 106.8,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 233,
+                  "y": 62.000003051757815,
+                  "width": 64,
+                  "height": 89.60000000000001
+                }
+              },
+              {
+                "id": "owned-drag/0",
+                "x": 335,
+                "y": 106.8,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 303,
+                  "y": 62.000003051757815,
+                  "width": 64,
+                  "height": 89.60000000000001
+                }
+              }
+            ],
+            "dispatch": [
+              [
+                {
+                  "type": "ReorderJokers",
+                  "ids": [
+                    "owned-drag/1",
+                    "owned-drag/2",
+                    "owned-drag/3",
+                    "owned-drag/4",
+                    "owned-drag/0"
+                  ]
+                },
+                null
+              ]
+            ]
+          },
+          "dropShot": "390x844-slow-dropped.png",
+          "status": "PASS"
+        }
+      ],
+      "cancellations": [],
+      "initial": {
+        "seq": 3,
+        "ids": [
+          "owned-drag/0",
+          "owned-drag/1",
+          "owned-drag/2",
+          "owned-drag/3",
+          "owned-drag/4"
+        ],
+        "revision": 1
+      },
+      "initialVisual": {
+        "drag": false,
+        "saving": false,
+        "inputEnabled": true,
+        "hint": "老搭档 · 同点组合长倍率 · 长按条件",
+        "slots": [
+          {
+            "x": 23,
+            "y": 62,
+            "width": 64,
+            "height": 89.6
+          },
+          {
+            "x": 93,
+            "y": 62,
+            "width": 64,
+            "height": 89.6
+          },
+          {
+            "x": 163,
+            "y": 62,
+            "width": 64,
+            "height": 89.6
+          },
+          {
+            "x": 233,
+            "y": 62,
+            "width": 64,
+            "height": 89.6
+          },
+          {
+            "x": 303,
+            "y": 62,
+            "width": 64,
+            "height": 89.6
+          }
+        ],
+        "arts": [
+          {
+            "id": "owned-drag/0",
+            "x": 55,
+            "y": 106.8,
+            "scale": 1,
+            "active": true,
+            "bounds": {
+              "x": 23,
+              "y": 62.000003051757815,
+              "width": 64,
+              "height": 89.60000000000001
+            }
+          },
+          {
+            "id": "owned-drag/1",
+            "x": 125,
+            "y": 106.8,
+            "scale": 1,
+            "active": true,
+            "bounds": {
+              "x": 93,
+              "y": 62.000003051757815,
+              "width": 64,
+              "height": 89.60000000000001
+            }
+          },
+          {
+            "id": "owned-drag/2",
+            "x": 195,
+            "y": 106.8,
+            "scale": 1,
+            "active": true,
+            "bounds": {
+              "x": 163,
+              "y": 62.000003051757815,
+              "width": 64,
+              "height": 89.60000000000001
+            }
+          },
+          {
+            "id": "owned-drag/3",
+            "x": 265,
+            "y": 106.8,
+            "scale": 1,
+            "active": true,
+            "bounds": {
+              "x": 233,
+              "y": 62.000003051757815,
+              "width": 64,
+              "height": 89.60000000000001
+            }
+          },
+          {
+            "id": "owned-drag/4",
+            "x": 335,
+            "y": 106.8,
+            "scale": 1,
+            "active": true,
+            "bounds": {
+              "x": 303,
+              "y": 62.000003051757815,
+              "width": 64,
+              "height": 89.60000000000001
+            }
+          }
+        ],
+        "dispatch": []
+      },
+      "idleShot": "390x844-idle.png",
+      "vertical": {
+        "drag": false,
+        "saving": false,
+        "inputEnabled": true,
+        "hint": "练对子 · 同点组合长热度 · 长按条件",
+        "slots": [
+          {
+            "x": 23,
+            "y": 62,
+            "width": 64,
+            "height": 89.6
+          },
+          {
+            "x": 93,
+            "y": 62,
+            "width": 64,
+            "height": 89.6
+          },
+          {
+            "x": 163,
+            "y": 62,
+            "width": 64,
+            "height": 89.6
+          },
+          {
+            "x": 233,
+            "y": 62,
+            "width": 64,
+            "height": 89.6
+          },
+          {
+            "x": 303,
+            "y": 62,
+            "width": 64,
+            "height": 89.6
+          }
+        ],
+        "arts": [
+          {
+            "id": "owned-drag/1",
+            "x": 55,
+            "y": 106.8,
+            "scale": 1,
+            "active": true,
+            "bounds": {
+              "x": 23,
+              "y": 62.000003051757815,
+              "width": 64,
+              "height": 89.60000000000001
+            }
+          },
+          {
+            "id": "owned-drag/2",
+            "x": 125,
+            "y": 106.8,
+            "scale": 1,
+            "active": true,
+            "bounds": {
+              "x": 93,
+              "y": 62.000003051757815,
+              "width": 64,
+              "height": 89.60000000000001
+            }
+          },
+          {
+            "id": "owned-drag/3",
+            "x": 195,
+            "y": 106.8,
+            "scale": 1,
+            "active": true,
+            "bounds": {
+              "x": 163,
+              "y": 62.000003051757815,
+              "width": 64,
+              "height": 89.60000000000001
+            }
+          },
+          {
+            "id": "owned-drag/4",
+            "x": 265,
+            "y": 106.8,
+            "scale": 1,
+            "active": true,
+            "bounds": {
+              "x": 233,
+              "y": 62.000003051757815,
+              "width": 64,
+              "height": 89.60000000000001
+            }
+          },
+          {
+            "id": "owned-drag/0",
+            "x": 335,
+            "y": 106.8,
+            "scale": 1,
+            "active": true,
+            "bounds": {
+              "x": 303,
+              "y": 62.000003051757815,
+              "width": 64,
+              "height": 89.60000000000001
+            }
+          }
+        ],
+        "dispatch": [
+          [
+            {
+              "type": "ReorderJokers",
+              "ids": [
+                "owned-drag/1",
+                "owned-drag/2",
+                "owned-drag/3",
+                "owned-drag/4",
+                "owned-drag/0"
+              ]
+            },
+            null
+          ]
+        ]
+      },
+      "verticalShot": "390x844-vertical.png",
+      "restored": {
+        "seq": 4,
+        "ids": [
+          "owned-drag/1",
+          "owned-drag/2",
+          "owned-drag/3",
+          "owned-drag/4",
+          "owned-drag/0"
+        ],
+        "revision": 2
+      },
+      "status": "PASS"
+    },
+    {
+      "width": 1366,
+      "height": 900,
+      "touch": false,
+      "name": "1366x900",
+      "checks": [],
+      "errors": [],
+      "moves": [
+        {
+          "from": 0,
+          "to": 4,
+          "style": "slow",
+          "before": {
+            "seq": 3,
+            "ids": [
+              "owned-drag/0",
+              "owned-drag/1",
+              "owned-drag/2",
+              "owned-drag/3",
+              "owned-drag/4"
+            ],
+            "revision": 1
+          },
+          "held": {
+            "drag": false,
+            "saving": false,
+            "inputEnabled": true,
+            "hint": "老搭档 · 同点组合长倍率 · 长按条件",
+            "slots": [
+              {
+                "x": 517,
+                "y": 64,
+                "width": 80,
+                "height": 112
+              },
+              {
+                "x": 603,
+                "y": 64,
+                "width": 80,
+                "height": 112
+              },
+              {
+                "x": 689,
+                "y": 64,
+                "width": 80,
+                "height": 112
+              },
+              {
+                "x": 775,
+                "y": 64,
+                "width": 80,
+                "height": 112
+              },
+              {
+                "x": 861,
+                "y": 64,
+                "width": 80,
+                "height": 112
+              }
+            ],
+            "arts": [
+              {
+                "id": "owned-drag/0",
+                "x": 557,
+                "y": 114,
+                "scale": 1.045,
+                "active": true,
+                "bounds": {
+                  "x": 515.2000017166138,
+                  "y": 55.48000240325928,
+                  "width": 83.59999656677246,
+                  "height": 117.03999519348145
+                }
+              },
+              {
+                "id": "owned-drag/1",
+                "x": 643,
+                "y": 120,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 603,
+                  "y": 64,
+                  "width": 80,
+                  "height": 112
+                }
+              },
+              {
+                "id": "owned-drag/2",
+                "x": 729,
+                "y": 120,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 689,
+                  "y": 64,
+                  "width": 80,
+                  "height": 112
+                }
+              },
+              {
+                "id": "owned-drag/3",
+                "x": 815,
+                "y": 120,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 775,
+                  "y": 64,
+                  "width": 80,
+                  "height": 112
+                }
+              },
+              {
+                "id": "owned-drag/4",
+                "x": 901,
+                "y": 120,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 861,
+                  "y": 64,
+                  "width": 80,
+                  "height": 112
+                }
+              }
+            ],
+            "dispatch": []
+          },
+          "heldShot": "1366x900-slow-held.png",
+          "mid": {
+            "drag": false,
+            "saving": false,
+            "inputEnabled": true,
+            "hint": "老搭档 · 同点组合长倍率 · 长按条件",
+            "slots": [
+              {
+                "x": 517,
+                "y": 64,
+                "width": 80,
+                "height": 112
+              },
+              {
+                "x": 603,
+                "y": 64,
+                "width": 80,
+                "height": 112
+              },
+              {
+                "x": 689,
+                "y": 64,
+                "width": 80,
+                "height": 112
+              },
+              {
+                "x": 775,
+                "y": 64,
+                "width": 80,
+                "height": 112
+              },
+              {
+                "x": 861,
+                "y": 64,
+                "width": 80,
+                "height": 112
+              }
+            ],
+            "arts": [
+              {
+                "id": "owned-drag/0",
+                "x": 557,
+                "y": 120,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 517,
+                  "y": 64,
+                  "width": 80,
+                  "height": 112
+                }
+              },
+              {
+                "id": "owned-drag/1",
+                "x": 643,
+                "y": 120,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 603,
+                  "y": 64,
+                  "width": 80,
+                  "height": 112
+                }
+              },
+              {
+                "id": "owned-drag/2",
+                "x": 729,
+                "y": 120,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 689,
+                  "y": 64,
+                  "width": 80,
+                  "height": 112
+                }
+              },
+              {
+                "id": "owned-drag/3",
+                "x": 815,
+                "y": 119.68158077697063,
+                "scale": 1.0023881441727203,
+                "active": true,
+                "bounds": {
+                  "x": 774.9044752120972,
+                  "y": 63.547844886779785,
+                  "width": 80.19104957580566,
+                  "height": 112.26746940612793
+                }
+              },
+              {
+                "id": "owned-drag/4",
+                "x": 901,
+                "y": 114.31841922302937,
+                "scale": 1.0426118558272797,
+                "active": true,
+                "bounds": {
+                  "x": 859.2955265045166,
+                  "y": 55.93215751647949,
+                  "width": 83.4089469909668,
+                  "height": 116.77252578735352
+                }
+              }
+            ],
+            "dispatch": []
+          },
+          "midShot": "1366x900-slow-mid.png",
+          "after": {
+            "seq": 4,
+            "ids": [
+              "owned-drag/1",
+              "owned-drag/2",
+              "owned-drag/3",
+              "owned-drag/4",
+              "owned-drag/0"
+            ],
+            "revision": 2
+          },
+          "dropped": {
+            "drag": false,
+            "saving": false,
+            "inputEnabled": true,
+            "hint": "练对子 · 同点组合长热度 · 长按条件",
+            "slots": [
+              {
+                "x": 517,
+                "y": 64,
+                "width": 80,
+                "height": 112
+              },
+              {
+                "x": 603,
+                "y": 64,
+                "width": 80,
+                "height": 112
+              },
+              {
+                "x": 689,
+                "y": 64,
+                "width": 80,
+                "height": 112
+              },
+              {
+                "x": 775,
+                "y": 64,
+                "width": 80,
+                "height": 112
+              },
+              {
+                "x": 861,
+                "y": 64,
+                "width": 80,
+                "height": 112
+              }
+            ],
+            "arts": [
+              {
+                "id": "owned-drag/1",
+                "x": 557,
+                "y": 120,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 517,
+                  "y": 64,
+                  "width": 80,
+                  "height": 112
+                }
+              },
+              {
+                "id": "owned-drag/2",
+                "x": 643,
+                "y": 120,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 603,
+                  "y": 64,
+                  "width": 80,
+                  "height": 112
+                }
+              },
+              {
+                "id": "owned-drag/3",
+                "x": 729,
+                "y": 120,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 689,
+                  "y": 64,
+                  "width": 80,
+                  "height": 112
+                }
+              },
+              {
+                "id": "owned-drag/4",
+                "x": 815,
+                "y": 120,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 775,
+                  "y": 64,
+                  "width": 80,
+                  "height": 112
+                }
+              },
+              {
+                "id": "owned-drag/0",
+                "x": 901,
+                "y": 120,
+                "scale": 1,
+                "active": true,
+                "bounds": {
+                  "x": 861,
+                  "y": 64,
+                  "width": 80,
+                  "height": 112
+                }
+              }
+            ],
+            "dispatch": [
+              [
+                {
+                  "type": "ReorderJokers",
+                  "ids": [
+                    "owned-drag/1",
+                    "owned-drag/2",
+                    "owned-drag/3",
+                    "owned-drag/4",
+                    "owned-drag/0"
+                  ]
+                },
+                null
+              ]
+            ]
+          },
+          "dropShot": "1366x900-slow-dropped.png",
+          "status": "PASS"
+        }
+      ],
+      "cancellations": [],
+      "initial": {
+        "seq": 3,
+        "ids": [
+          "owned-drag/0",
+          "owned-drag/1",
+          "owned-drag/2",
+          "owned-drag/3",
+          "owned-drag/4"
+        ],
+        "revision": 1
+      },
+      "initialVisual": {
+        "drag": false,
+        "saving": false,
+        "inputEnabled": true,
+        "hint": "老搭档 · 同点组合长倍率 · 长按条件",
+        "slots": [
+          {
+            "x": 517,
+            "y": 64,
+            "width": 80,
+            "height": 112
+          },
+          {
+            "x": 603,
+            "y": 64,
+            "width": 80,
+            "height": 112
+          },
+          {
+            "x": 689,
+            "y": 64,
+            "width": 80,
+            "height": 112
+          },
+          {
+            "x": 775,
+            "y": 64,
+            "width": 80,
+            "height": 112
+          },
+          {
+            "x": 861,
+            "y": 64,
+            "width": 80,
+            "height": 112
+          }
+        ],
+        "arts": [
+          {
+            "id": "owned-drag/0",
+            "x": 557,
+            "y": 120,
+            "scale": 1,
+            "active": true,
+            "bounds": {
+              "x": 517,
+              "y": 64,
+              "width": 80,
+              "height": 112
+            }
+          },
+          {
+            "id": "owned-drag/1",
+            "x": 643,
+            "y": 120,
+            "scale": 1,
+            "active": true,
+            "bounds": {
+              "x": 603,
+              "y": 64,
+              "width": 80,
+              "height": 112
+            }
+          },
+          {
+            "id": "owned-drag/2",
+            "x": 729,
+            "y": 120,
+            "scale": 1,
+            "active": true,
+            "bounds": {
+              "x": 689,
+              "y": 64,
+              "width": 80,
+              "height": 112
+            }
+          },
+          {
+            "id": "owned-drag/3",
+            "x": 815,
+            "y": 120,
+            "scale": 1,
+            "active": true,
+            "bounds": {
+              "x": 775,
+              "y": 64,
+              "width": 80,
+              "height": 112
+            }
+          },
+          {
+            "id": "owned-drag/4",
+            "x": 901,
+            "y": 120,
+            "scale": 1,
+            "active": true,
+            "bounds": {
+              "x": 861,
+              "y": 64,
+              "width": 80,
+              "height": 112
+            }
+          }
+        ],
+        "dispatch": []
+      },
+      "idleShot": "1366x900-idle.png",
+      "vertical": {
+        "drag": false,
+        "saving": false,
+        "inputEnabled": true,
+        "hint": "练对子 · 同点组合长热度 · 长按条件",
+        "slots": [
+          {
+            "x": 517,
+            "y": 64,
+            "width": 80,
+            "height": 112
+          },
+          {
+            "x": 603,
+            "y": 64,
+            "width": 80,
+            "height": 112
+          },
+          {
+            "x": 689,
+            "y": 64,
+            "width": 80,
+            "height": 112
+          },
+          {
+            "x": 775,
+            "y": 64,
+            "width": 80,
+            "height": 112
+          },
+          {
+            "x": 861,
+            "y": 64,
+            "width": 80,
+            "height": 112
+          }
+        ],
+        "arts": [
+          {
+            "id": "owned-drag/1",
+            "x": 557,
+            "y": 114,
+            "scale": 1.045,
+            "active": true,
+            "bounds": {
+              "x": 515.2000017166138,
+              "y": 55.48000240325928,
+              "width": 83.59999656677246,
+              "height": 117.03999519348145
+            }
+          },
+          {
+            "id": "owned-drag/2",
+            "x": 643,
+            "y": 120,
+            "scale": 1,
+            "active": true,
+            "bounds": {
+              "x": 603,
+              "y": 64,
+              "width": 80,
+              "height": 112
+            }
+          },
+          {
+            "id": "owned-drag/3",
+            "x": 729,
+            "y": 120,
+            "scale": 1,
+            "active": true,
+            "bounds": {
+              "x": 689,
+              "y": 64,
+              "width": 80,
+              "height": 112
+            }
+          },
+          {
+            "id": "owned-drag/4",
+            "x": 815,
+            "y": 120,
+            "scale": 1,
+            "active": true,
+            "bounds": {
+              "x": 775,
+              "y": 64,
+              "width": 80,
+              "height": 112
+            }
+          },
+          {
+            "id": "owned-drag/0",
+            "x": 901,
+            "y": 120,
+            "scale": 1,
+            "active": true,
+            "bounds": {
+              "x": 861,
+              "y": 64,
+              "width": 80,
+              "height": 112
+            }
+          }
+        ],
+        "dispatch": [
+          [
+            {
+              "type": "ReorderJokers",
+              "ids": [
+                "owned-drag/1",
+                "owned-drag/2",
+                "owned-drag/3",
+                "owned-drag/4",
+                "owned-drag/0"
+              ]
+            },
+            null
+          ]
+        ]
+      },
+      "verticalShot": "1366x900-vertical.png",
+      "restored": {
+        "seq": 4,
+        "ids": [
+          "owned-drag/1",
+          "owned-drag/2",
+          "owned-drag/3",
+          "owned-drag/4",
+          "owned-drag/0"
+        ],
+        "revision": 2
+      },
+      "status": "PASS"
+    }
+  ],
+  "status": "PASS"
+}

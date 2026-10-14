@@ -1,0 +1,220 @@
+{
+  "baseline": "69f46e47f250ec3ad7bc55ed11f7888326eecf8f",
+  "productHead": "a6044c6a0b185f479681de2d98c745cadfde3fd8",
+  "sources": [
+    {
+      "pr": 167,
+      "head": "f6282cc6eb6cf443ca7560b27a65ea884c1bacaf",
+      "allCommitsRetained": true,
+      "srcTree": "c599d9e62e80c0b334b0e313e7268aeb50a1772a"
+    },
+    {
+      "pr": 168,
+      "head": "ae7b733d819d6258a7e48c7c41610279e188d4f3",
+      "allCommitsRetained": true,
+      "srcTree": "3fd2879ba597be3a53a219bfe7fa1b9e941bb20b"
+    },
+    {
+      "pr": 169,
+      "head": "9bab8b3f01f67c8b1a96c2911b0047a692b4d92a",
+      "allCommitsRetained": true,
+      "srcTree": "6f3fa266c186e25756dff95f8d4814bb1dc347aa"
+    }
+  ],
+  "protected": [
+    {
+      "path": "src/domain",
+      "baseObject": "b293cd1b6adaff0e318f02ac9196417085b02091",
+      "integrationObject": "b293cd1b6adaff0e318f02ac9196417085b02091",
+      "unchanged": true
+    },
+    {
+      "path": "src/content",
+      "baseObject": "e8c3794be5b0fcb74da4aeb9e6adc63c22388345",
+      "integrationObject": "e8c3794be5b0fcb74da4aeb9e6adc63c22388345",
+      "unchanged": true
+    },
+    {
+      "path": "src/application",
+      "baseObject": "7d9af1c3a9f38cdcddd88d2777cd6963aebe4237",
+      "integrationObject": "7d9af1c3a9f38cdcddd88d2777cd6963aebe4237",
+      "unchanged": true
+    },
+    {
+      "path": "src/platform",
+      "baseObject": "860a9f8883cc158ac0c56ad6399518cc897a67b7",
+      "integrationObject": "860a9f8883cc158ac0c56ad6399518cc897a67b7",
+      "unchanged": true
+    },
+    {
+      "path": "src/audio",
+      "baseObject": "a2f0483eecaaafb40cdbb82778ec2a846fd2e000",
+      "integrationObject": "a2f0483eecaaafb40cdbb82778ec2a846fd2e000",
+      "unchanged": true
+    },
+    {
+      "path": "public",
+      "baseObject": "c4a6ec74e7fd754b0f300b973020f8afed7542e1",
+      "integrationObject": "c4a6ec74e7fd754b0f300b973020f8afed7542e1",
+      "unchanged": true
+    },
+    {
+      "path": "art",
+      "baseObject": "b0caa33679b84bee932b2854734c04ad39ba0464",
+      "integrationObject": "b0caa33679b84bee932b2854734c04ad39ba0464",
+      "unchanged": true
+    },
+    {
+      "path": "package.json",
+      "baseObject": "f7e7f89f05edd46636bac3acc1dfcd1b6cd94ccd",
+      "integrationObject": "f7e7f89f05edd46636bac3acc1dfcd1b6cd94ccd",
+      "unchanged": true
+    },
+    {
+      "path": "package-lock.json",
+      "baseObject": "acc93dcd9410bc911db279534e28522a8691dbab",
+      "integrationObject": "acc93dcd9410bc911db279534e28522a8691dbab",
+      "unchanged": true
+    },
+    {
+      "path": ".github",
+      "baseObject": "b923e03979ce93c9a142628f8b1099e2cd2b9150",
+      "integrationObject": "b923e03979ce93c9a142628f8b1099e2cd2b9150",
+      "unchanged": true
+    },
+    {
+      "path": "AGENTS.md",
+      "baseObject": "c2cd3158b69c9df5ef50f9d26be4e7473897d7e0",
+      "integrationObject": "c2cd3158b69c9df5ef50f9d26be4e7473897d7e0",
+      "unchanged": true
+    },
+    {
+      "path": "docs/production/DELIVERY_PLAN.md",
+      "baseObject": "f3ae191d02caf4a6e980ed44989034530fad32f1",
+      "integrationObject": "f3ae191d02caf4a6e980ed44989034530fad32f1",
+      "unchanged": true
+    },
+    {
+      "path": "src/game/OwnedJokerInput.ts",
+      "baseObject": "9bff75e748f5af5e162c6fdb6343e2f25d4699fe",
+      "integrationObject": "9bff75e748f5af5e162c6fdb6343e2f25d4699fe",
+      "unchanged": true
+    },
+    {
+      "path": "src/game/OwnedJokerDragVisual.ts",
+      "baseObject": "6f839644f4ec25eb4a3d809ffe0cda0c216fa91d",
+      "integrationObject": "6f839644f4ec25eb4a3d809ffe0cda0c216fa91d",
+      "unchanged": true
+    },
+    {
+      "path": "src/game/ShopRecommendation.ts",
+      "baseObject": "c482f663a51a5bfa7e733f46f74e5b2ee7c3ddf2",
+      "integrationObject": "c482f663a51a5bfa7e733f46f74e5b2ee7c3ddf2",
+      "unchanged": true
+    },
+    {
+      "path": "src/game/RouteFitCue.ts",
+      "baseObject": "be09a0f10c6c87d7eb4e327218ffef4882ee0d87",
+      "integrationObject": "be09a0f10c6c87d7eb4e327218ffef4882ee0d87",
+      "unchanged": true
+    },
+    {
+      "path": "src/game/AssistRecommendation.ts",
+      "baseObject": "30af7579094a697df9289634b74bda859e7662d0",
+      "integrationObject": "30af7579094a697df9289634b74bda859e7662d0",
+      "unchanged": true
+    },
+    {
+      "path": "src/game/layout.ts",
+      "baseObject": "906355862dd3701cd9f22c06a2d58e356736d3ab",
+      "integrationObject": "906355862dd3701cd9f22c06a2d58e356736d3ab",
+      "unchanged": true
+    }
+  ],
+  "sourcePreservation": [
+    {
+      "pr": 167,
+      "path": "src/game/BuildJourneyDialog.ts",
+      "sourceObject": "22de9f5d0efa64a654a12a977fe7c9e8bfa8e4d7",
+      "integrationObject": "22de9f5d0efa64a654a12a977fe7c9e8bfa8e4d7",
+      "unchanged": true
+    },
+    {
+      "pr": 167,
+      "path": "src/game/BuildKeepsakeView.ts",
+      "sourceObject": "c4e79de48a201de73e5c79c6cd4b2d0e96e5d390",
+      "integrationObject": "c4e79de48a201de73e5c79c6cd4b2d0e96e5d390",
+      "unchanged": true
+    },
+    {
+      "pr": 167,
+      "path": "src/game/CharacterSelectScene.ts",
+      "sourceObject": "4eddb6a4ab4f56b634f8f6fdc9bb11dbda2d2694",
+      "integrationObject": "4eddb6a4ab4f56b634f8f6fdc9bb11dbda2d2694",
+      "unchanged": true
+    },
+    {
+      "pr": 167,
+      "path": "src/game/DetailDialog.ts",
+      "sourceObject": "9917095339ede7d0ef564b8164e815b9523cdcde",
+      "integrationObject": "9917095339ede7d0ef564b8164e815b9523cdcde",
+      "unchanged": true
+    },
+    {
+      "pr": 167,
+      "path": "src/game/HeroExplanation.ts",
+      "sourceObject": "75f903a91b499dcd5e6024590f9746aacd60d802",
+      "integrationObject": "75f903a91b499dcd5e6024590f9746aacd60d802",
+      "unchanged": true
+    },
+    {
+      "pr": 167,
+      "path": "src/game/IntermissionScene.ts",
+      "sourceObject": "da2246cc564fa84bdb827fe71f90ec74b6aa6ea4",
+      "integrationObject": "da2246cc564fa84bdb827fe71f90ec74b6aa6ea4",
+      "unchanged": true
+    },
+    {
+      "pr": 167,
+      "path": "src/game/ShopScene.ts",
+      "sourceObject": "b11cb57502218b33ebbecb610b7dda343b391788",
+      "integrationObject": "b11cb57502218b33ebbecb610b7dda343b391788",
+      "unchanged": true
+    },
+    {
+      "pr": 167,
+      "path": "src/game/StageTableArt.ts",
+      "sourceObject": "05bb5fac2e4e4d81ab3ede706b21237682c7c9c0",
+      "integrationObject": "05bb5fac2e4e4d81ab3ede706b21237682c7c9c0",
+      "unchanged": true
+    },
+    {
+      "pr": 169,
+      "path": "src/game/Catalog.ts",
+      "sourceObject": "bc57cbc057120e678e0343085ebb3ad0b2404f0c",
+      "integrationObject": "bc57cbc057120e678e0343085ebb3ad0b2404f0c",
+      "unchanged": true
+    },
+    {
+      "pr": 169,
+      "path": "src/game/CatalogDialog.ts",
+      "sourceObject": "24b67ccfd128ba68ba43d4c1aa8acc3607088bfb",
+      "integrationObject": "24b67ccfd128ba68ba43d4c1aa8acc3607088bfb",
+      "unchanged": true
+    },
+    {
+      "pr": 169,
+      "path": "src/game/EnhancementReference.ts",
+      "sourceObject": "9c5aa290cbf986e737f13dc66f96559df4763c56",
+      "integrationObject": "9c5aa290cbf986e737f13dc66f96559df4763c56",
+      "unchanged": true
+    },
+    {
+      "pr": 169,
+      "path": "src/game/r2ToolInfo.ts",
+      "sourceObject": "647dd17d1682d0acbda9a2a23d38f019bdd08843",
+      "integrationObject": "647dd17d1682d0acbda9a2a23d38f019bdd08843",
+      "unchanged": true
+    }
+  ]
+}

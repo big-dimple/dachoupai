@@ -1,0 +1,512 @@
+{
+  "head": "a6044c6a0b185f479681de2d98c745cadfde3fd8",
+  "scope": "Offline audit of full snapshots captured by native browser runs. This supplements those observations; it is not another browser run.",
+  "reorders": [
+    {
+      "viewport": "390x844",
+      "kind": "slow",
+      "command": {
+        "runId": "owned-drag-fixed",
+        "commandId": "owned-drag-fixed/command/4",
+        "expectedSeq": 3,
+        "action": {
+          "type": "ReorderJokers",
+          "ids": [
+            "owned-drag/1",
+            "owned-drag/2",
+            "owned-drag/3",
+            "owned-drag/4",
+            "owned-drag/0"
+          ]
+        }
+      },
+      "beforeSeq": 3,
+      "afterSeq": 4,
+      "completeStateJournalIDB": "PASS",
+      "applicationLocalStorageExcludingLease": "PASS"
+    },
+    {
+      "viewport": "390x844",
+      "kind": "fast",
+      "command": {
+        "runId": "owned-drag-fixed",
+        "commandId": "owned-drag-fixed/command/5",
+        "expectedSeq": 4,
+        "action": {
+          "type": "ReorderJokers",
+          "ids": [
+            "owned-drag/0",
+            "owned-drag/1",
+            "owned-drag/2",
+            "owned-drag/3",
+            "owned-drag/4"
+          ]
+        }
+      },
+      "beforeSeq": 4,
+      "afterSeq": 5,
+      "completeStateJournalIDB": "PASS",
+      "applicationLocalStorageExcludingLease": "PASS"
+    },
+    {
+      "viewport": "390x844",
+      "kind": "middle",
+      "command": {
+        "runId": "owned-drag-fixed",
+        "commandId": "owned-drag-fixed/command/6",
+        "expectedSeq": 5,
+        "action": {
+          "type": "ReorderJokers",
+          "ids": [
+            "owned-drag/0",
+            "owned-drag/2",
+            "owned-drag/3",
+            "owned-drag/1",
+            "owned-drag/4"
+          ]
+        }
+      },
+      "beforeSeq": 5,
+      "afterSeq": 6,
+      "completeStateJournalIDB": "PASS",
+      "applicationLocalStorageExcludingLease": "PASS"
+    },
+    {
+      "viewport": "390x844",
+      "kind": "fast-delayed",
+      "command": {
+        "runId": "owned-drag-fixed",
+        "commandId": "owned-drag-fixed/command/7",
+        "expectedSeq": 6,
+        "action": {
+          "type": "ReorderJokers",
+          "ids": [
+            "owned-drag/2",
+            "owned-drag/3",
+            "owned-drag/1",
+            "owned-drag/4",
+            "owned-drag/0"
+          ]
+        }
+      },
+      "beforeSeq": 6,
+      "afterSeq": 7,
+      "completeStateJournalIDB": "PASS",
+      "applicationLocalStorageExcludingLease": "PASS"
+    },
+    {
+      "viewport": "390x844",
+      "kind": "quota-fixed-candidate-retry",
+      "command": {
+        "runId": "owned-drag-fixed",
+        "commandId": "owned-drag-fixed/command/8",
+        "expectedSeq": 7,
+        "action": {
+          "type": "ReorderJokers",
+          "ids": [
+            "owned-drag/3",
+            "owned-drag/1",
+            "owned-drag/4",
+            "owned-drag/0",
+            "owned-drag/2"
+          ]
+        }
+      },
+      "beforeSeq": 7,
+      "afterSeq": 8,
+      "completeStateJournalIDB": "PASS",
+      "applicationLocalStorageExcludingLease": "PASS"
+    },
+    {
+      "viewport": "1366x900",
+      "kind": "slow",
+      "command": {
+        "runId": "owned-drag-fixed",
+        "commandId": "owned-drag-fixed/command/4",
+        "expectedSeq": 3,
+        "action": {
+          "type": "ReorderJokers",
+          "ids": [
+            "owned-drag/1",
+            "owned-drag/2",
+            "owned-drag/3",
+            "owned-drag/4",
+            "owned-drag/0"
+          ]
+        }
+      },
+      "beforeSeq": 3,
+      "afterSeq": 4,
+      "completeStateJournalIDB": "PASS",
+      "applicationLocalStorageExcludingLease": "PASS"
+    },
+    {
+      "viewport": "1366x900",
+      "kind": "fast",
+      "command": {
+        "runId": "owned-drag-fixed",
+        "commandId": "owned-drag-fixed/command/5",
+        "expectedSeq": 4,
+        "action": {
+          "type": "ReorderJokers",
+          "ids": [
+            "owned-drag/0",
+            "owned-drag/1",
+            "owned-drag/2",
+            "owned-drag/3",
+            "owned-drag/4"
+          ]
+        }
+      },
+      "beforeSeq": 4,
+      "afterSeq": 5,
+      "completeStateJournalIDB": "PASS",
+      "applicationLocalStorageExcludingLease": "PASS"
+    },
+    {
+      "viewport": "1366x900",
+      "kind": "middle",
+      "command": {
+        "runId": "owned-drag-fixed",
+        "commandId": "owned-drag-fixed/command/6",
+        "expectedSeq": 5,
+        "action": {
+          "type": "ReorderJokers",
+          "ids": [
+            "owned-drag/0",
+            "owned-drag/2",
+            "owned-drag/3",
+            "owned-drag/1",
+            "owned-drag/4"
+          ]
+        }
+      },
+      "beforeSeq": 5,
+      "afterSeq": 6,
+      "completeStateJournalIDB": "PASS",
+      "applicationLocalStorageExcludingLease": "PASS"
+    },
+    {
+      "viewport": "1366x900",
+      "kind": "fast-delayed",
+      "command": {
+        "runId": "owned-drag-fixed",
+        "commandId": "owned-drag-fixed/command/7",
+        "expectedSeq": 6,
+        "action": {
+          "type": "ReorderJokers",
+          "ids": [
+            "owned-drag/2",
+            "owned-drag/3",
+            "owned-drag/1",
+            "owned-drag/4",
+            "owned-drag/0"
+          ]
+        }
+      },
+      "beforeSeq": 6,
+      "afterSeq": 7,
+      "completeStateJournalIDB": "PASS",
+      "applicationLocalStorageExcludingLease": "PASS"
+    },
+    {
+      "viewport": "1366x900",
+      "kind": "quota-fixed-candidate-retry",
+      "command": {
+        "runId": "owned-drag-fixed",
+        "commandId": "owned-drag-fixed/command/8",
+        "expectedSeq": 7,
+        "action": {
+          "type": "ReorderJokers",
+          "ids": [
+            "owned-drag/3",
+            "owned-drag/1",
+            "owned-drag/4",
+            "owned-drag/0",
+            "owned-drag/2"
+          ]
+        }
+      },
+      "beforeSeq": 7,
+      "afterSeq": 8,
+      "completeStateJournalIDB": "PASS",
+      "applicationLocalStorageExcludingLease": "PASS"
+    },
+    {
+      "viewport": "390x844-reduce-dpr2",
+      "kind": "slow",
+      "command": {
+        "runId": "owned-drag-fixed",
+        "commandId": "owned-drag-fixed/command/4",
+        "expectedSeq": 3,
+        "action": {
+          "type": "ReorderJokers",
+          "ids": [
+            "owned-drag/1",
+            "owned-drag/2",
+            "owned-drag/3",
+            "owned-drag/4",
+            "owned-drag/0"
+          ]
+        }
+      },
+      "beforeSeq": 3,
+      "afterSeq": 4,
+      "completeStateJournalIDB": "PASS",
+      "applicationLocalStorageExcludingLease": "PASS"
+    },
+    {
+      "viewport": "390x844-reduce-dpr2",
+      "kind": "fast",
+      "command": {
+        "runId": "owned-drag-fixed",
+        "commandId": "owned-drag-fixed/command/5",
+        "expectedSeq": 4,
+        "action": {
+          "type": "ReorderJokers",
+          "ids": [
+            "owned-drag/0",
+            "owned-drag/1",
+            "owned-drag/2",
+            "owned-drag/3",
+            "owned-drag/4"
+          ]
+        }
+      },
+      "beforeSeq": 4,
+      "afterSeq": 5,
+      "completeStateJournalIDB": "PASS",
+      "applicationLocalStorageExcludingLease": "PASS"
+    },
+    {
+      "viewport": "390x844-reduce-dpr2",
+      "kind": "middle",
+      "command": {
+        "runId": "owned-drag-fixed",
+        "commandId": "owned-drag-fixed/command/6",
+        "expectedSeq": 5,
+        "action": {
+          "type": "ReorderJokers",
+          "ids": [
+            "owned-drag/0",
+            "owned-drag/2",
+            "owned-drag/3",
+            "owned-drag/1",
+            "owned-drag/4"
+          ]
+        }
+      },
+      "beforeSeq": 5,
+      "afterSeq": 6,
+      "completeStateJournalIDB": "PASS",
+      "applicationLocalStorageExcludingLease": "PASS"
+    },
+    {
+      "viewport": "390x844-reduce-dpr2",
+      "kind": "fast-delayed",
+      "command": {
+        "runId": "owned-drag-fixed",
+        "commandId": "owned-drag-fixed/command/7",
+        "expectedSeq": 6,
+        "action": {
+          "type": "ReorderJokers",
+          "ids": [
+            "owned-drag/2",
+            "owned-drag/3",
+            "owned-drag/1",
+            "owned-drag/4",
+            "owned-drag/0"
+          ]
+        }
+      },
+      "beforeSeq": 6,
+      "afterSeq": 7,
+      "completeStateJournalIDB": "PASS",
+      "applicationLocalStorageExcludingLease": "PASS"
+    },
+    {
+      "viewport": "390x844-reduce-dpr2",
+      "kind": "quota-fixed-candidate-retry",
+      "command": {
+        "runId": "owned-drag-fixed",
+        "commandId": "owned-drag-fixed/command/8",
+        "expectedSeq": 7,
+        "action": {
+          "type": "ReorderJokers",
+          "ids": [
+            "owned-drag/3",
+            "owned-drag/1",
+            "owned-drag/4",
+            "owned-drag/0",
+            "owned-drag/2"
+          ]
+        }
+      },
+      "beforeSeq": 7,
+      "afterSeq": 8,
+      "completeStateJournalIDB": "PASS",
+      "applicationLocalStorageExcludingLease": "PASS"
+    }
+  ],
+  "coldRestores": [
+    {
+      "viewport": "390x844",
+      "fullStateJournalIDBAndApplicationLocalStorage": "PASS"
+    },
+    {
+      "viewport": "1366x900",
+      "fullStateJournalIDBAndApplicationLocalStorage": "PASS"
+    },
+    {
+      "viewport": "390x844-reduce-dpr2",
+      "fullStateJournalIDBAndApplicationLocalStorage": "PASS"
+    }
+  ],
+  "nested": [
+    {
+      "hero": "amo",
+      "width": 1366,
+      "scene": "shop-keepsake",
+      "completeStateJournalIDBLocalStorageForCloseAndEscape": "PASS"
+    },
+    {
+      "hero": "amo",
+      "width": 1366,
+      "scene": "finale-keepsake",
+      "completeStateJournalIDBLocalStorageForCloseAndEscape": "PASS"
+    },
+    {
+      "hero": "touye",
+      "width": 1366,
+      "scene": "shop-keepsake",
+      "completeStateJournalIDBLocalStorageForCloseAndEscape": "PASS"
+    },
+    {
+      "hero": "touye",
+      "width": 1366,
+      "scene": "finale-keepsake",
+      "completeStateJournalIDBLocalStorageForCloseAndEscape": "PASS"
+    },
+    {
+      "hero": "laohuan",
+      "width": 1366,
+      "scene": "shop-keepsake",
+      "completeStateJournalIDBLocalStorageForCloseAndEscape": "PASS"
+    },
+    {
+      "hero": "laohuan",
+      "width": 1366,
+      "scene": "finale-keepsake",
+      "completeStateJournalIDBLocalStorageForCloseAndEscape": "PASS"
+    },
+    {
+      "hero": "erxiang",
+      "width": 1366,
+      "scene": "shop-keepsake",
+      "completeStateJournalIDBLocalStorageForCloseAndEscape": "PASS"
+    },
+    {
+      "hero": "erxiang",
+      "width": 1366,
+      "scene": "finale-keepsake",
+      "completeStateJournalIDBLocalStorageForCloseAndEscape": "PASS"
+    },
+    {
+      "hero": "azao",
+      "width": 1366,
+      "scene": "shop-keepsake",
+      "completeStateJournalIDBLocalStorageForCloseAndEscape": "PASS"
+    },
+    {
+      "hero": "azao",
+      "width": 1366,
+      "scene": "finale-keepsake",
+      "completeStateJournalIDBLocalStorageForCloseAndEscape": "PASS"
+    },
+    {
+      "hero": "xiemu",
+      "width": 1366,
+      "scene": "shop-keepsake",
+      "completeStateJournalIDBLocalStorageForCloseAndEscape": "PASS"
+    },
+    {
+      "hero": "xiemu",
+      "width": 1366,
+      "scene": "finale-keepsake",
+      "completeStateJournalIDBLocalStorageForCloseAndEscape": "PASS"
+    },
+    {
+      "hero": "amo",
+      "width": 390,
+      "scene": "shop-keepsake",
+      "completeStateJournalIDBLocalStorageForCloseAndEscape": "PASS"
+    },
+    {
+      "hero": "amo",
+      "width": 390,
+      "scene": "finale-keepsake",
+      "completeStateJournalIDBLocalStorageForCloseAndEscape": "PASS"
+    },
+    {
+      "hero": "touye",
+      "width": 390,
+      "scene": "shop-keepsake",
+      "completeStateJournalIDBLocalStorageForCloseAndEscape": "PASS"
+    },
+    {
+      "hero": "touye",
+      "width": 390,
+      "scene": "finale-keepsake",
+      "completeStateJournalIDBLocalStorageForCloseAndEscape": "PASS"
+    },
+    {
+      "hero": "laohuan",
+      "width": 390,
+      "scene": "shop-keepsake",
+      "completeStateJournalIDBLocalStorageForCloseAndEscape": "PASS"
+    },
+    {
+      "hero": "laohuan",
+      "width": 390,
+      "scene": "finale-keepsake",
+      "completeStateJournalIDBLocalStorageForCloseAndEscape": "PASS"
+    },
+    {
+      "hero": "erxiang",
+      "width": 390,
+      "scene": "shop-keepsake",
+      "completeStateJournalIDBLocalStorageForCloseAndEscape": "PASS"
+    },
+    {
+      "hero": "erxiang",
+      "width": 390,
+      "scene": "finale-keepsake",
+      "completeStateJournalIDBLocalStorageForCloseAndEscape": "PASS"
+    },
+    {
+      "hero": "azao",
+      "width": 390,
+      "scene": "shop-keepsake",
+      "completeStateJournalIDBLocalStorageForCloseAndEscape": "PASS"
+    },
+    {
+      "hero": "azao",
+      "width": 390,
+      "scene": "finale-keepsake",
+      "completeStateJournalIDBLocalStorageForCloseAndEscape": "PASS"
+    },
+    {
+      "hero": "xiemu",
+      "width": 390,
+      "scene": "shop-keepsake",
+      "completeStateJournalIDBLocalStorageForCloseAndEscape": "PASS"
+    },
+    {
+      "hero": "xiemu",
+      "width": 390,
+      "scene": "finale-keepsake",
+      "completeStateJournalIDBLocalStorageForCloseAndEscape": "PASS"
+    }
+  ],
+  "status": "PASS"
+}

@@ -4,6 +4,7 @@ import {warmTableImages} from './StageImageWarmup';
 import {isR2ActiveMultTiming} from '../domain/r2GroupUpgrade';
 import {touyeComboCue} from './TouyeComboCue';
 import {azaoReleaseLabel,heroSkillGuide,heroOperationSteps,mountHeroSkillGuide} from './HeroSkillGuide';
+import {showHeroExplanation} from './HeroExplanation';
 import {sourceImpact} from './SourceImpact';
 import {mountSourceImpact} from './SourceImpactView';
 import {growthPayoffs,growthEventPayoff} from './GrowthPayoff';
@@ -99,7 +100,9 @@ import type {HandSelectionUpdate} from './HandSelectionGesture';
 import {DetailDialog} from './DetailDialog';
 import {showDeckInspection} from './DeckInspector';
 import {dispatchRun,runController} from './runAdapter';
-import {reorderJokerIds} from './JokerReorder';
+import {reorderJokerIds,ownedJokerDropIndex} from './JokerReorder';
+import {OwnedJokerInput} from './OwnedJokerInput';
+import {OwnedJokerDragVisual} from './OwnedJokerDragVisual';
 import {gameSession} from './session';
 import type {RunMenuActions} from './RunMenu';
 import {R2_BOSSES,r2BossText,r2DisabledCards} from '../domain/r2Chapter';
@@ -192,6 +195,8 @@ export class GameScene extends Phaser.Scene {
   private get handsLeft(): number { return this.run.stage?.handsLeft ?? 0; }
   private get heat(): string { return this.run.stage?.heat ?? '0'; }
   private playing = false;
+  private ownedInput?:OwnedJokerInput;
+  private ownedDrag?:OwnedJokerDragVisual;
   private lifecycle=0;
   private intent=0;
   private presentation?:{generation:number;lifecycle:number;intent:number;state:RunState;score:ScoreTrace;hand:readonly PlayingCard[];displayHeat:string;originHeat:string;replay:boolean;previousTrace:ScoreTrace|null;credited:boolean;resourcePlayLeft?:number;resourceGold?:number};
@@ -286,10 +291,12 @@ export class GameScene extends Phaser.Scene {
         if(this.presentation)this.fastForward();
         if(this.run?.phase==='await-input'&&this.view){this.cardViews.forEach((view,i)=>this.restingCard(view,i,false));this.jokerViews.forEach(view=>this.restingJoker(view,false));this.updateControls();}
       }else if(this.ready&&this.controlsLive){this.jokerViews.forEach(view=>this.restingJoker(view,false));this.updateControls();}
+      if(this.ownedDrag?.saving)this.ownedDrag.pending();else this.ownedInput?.cancel();
     };
     window.addEventListener('dachoupai-presentation',settings);
     this.events.once('shutdown',()=>{
       this.game.canvas.removeAttribute('data-hand-input');this.stopHandHint();window.removeEventListener('pointerdown',this.pointerFocus,true);document.removeEventListener('focusin',this.focusFeedback);document.removeEventListener('focusout',this.focusFeedback);window.removeEventListener('blur',this.stopHandHint);document.removeEventListener('visibilitychange',this.hintVisibility);
+      this.ownedInput?.destroy();this.ownedInput=undefined;if(this.ownedDrag?.saving)this.input.enabled=true;this.ownedDrag?.destroy();this.ownedDrag=undefined;
       this.candidates.dispose();this.aiCandidates.dispose();this.aiCursor=undefined;this.candidateGhost=undefined;this.candidateUndo=undefined;this.handInput?.destroy();this.handInput=undefined;this.assistIds=[];this.assistGestureStart=undefined;this.controlsLive=false;this.stopScoreFire();
       if(this.registry.get('runMenuActions')===this.menuActions)this.registry.remove('runMenuActions');
       this.menuActions=undefined;
@@ -325,6 +332,21 @@ export class GameScene extends Phaser.Scene {
         const previous=this.hoveredCardId;if(previous)this.hoverCard(previous,false);if(id)this.hoverCard(id,true);
       },
     });
+    this.ownedInput=new OwnedJokerInput(this,{
+      ready:()=>this.ownedReady,inspectable:()=>!this.playing&&!this.presentation&&this.run.phase==='await-input',
+      cards:()=>this.run.jokers.map((j,i)=>({...this.view.layout.slots[i],id:j.instanceId})),
+      cancelCanvas:()=>{this.view.cancelInteraction();this.handInput?.cancel();},tap:id=>this.inspectJoker(id),
+      lift:(id,x,y)=>this.liftOwned(id,x,y),move:(x,y)=>this.ownedDrag?.preview(x,y),
+      drop:(id,x,y)=>this.dropOwned(id,x,y),cancel:()=>this.cancelOwned(),
+    });
+    // The native rail owns dragging; keep the table's existing mouse hover inspection.
+    this.ownedInput.surface.addEventListener('pointermove',event=>{
+      if(event.pointerType!=='mouse'||event.buttons||!this.ready||this.presentation||this.run.phase!=='await-input'||this.ownedDrag)return;
+      const r=this.game.canvas.getBoundingClientRect(),x=(event.clientX-r.left)*this.scale.width*this.scale.zoom/r.width,y=(event.clientY-r.top)*this.scale.height*this.scale.zoom/r.height;
+      const index=this.view.layout.slots.findIndex(b=>x>=b.x&&x<=b.x+b.width&&y>=b.y&&y<=b.y+b.height),id=this.run.jokers[index]?.instanceId;
+      if(this.hoveredJokerId===id)return;if(this.hoveredJokerId)this.hoverJoker(this.hoveredJokerId,false);if(id)this.hoverJoker(id,true);
+    });
+    this.ownedInput.surface.addEventListener('pointerleave',()=>{if(this.hoveredJokerId&&!this.ownedDrag)this.hoverJoker(this.hoveredJokerId,false);});
     this.menuActions={viewDeck:()=>this.inspectDeck(),viewRules:()=>this.inspectRole()};
     this.registry.set('runMenuActions',this.menuActions);
     window.addEventListener('keydown',this.keyboard);
@@ -360,6 +382,7 @@ export class GameScene extends Phaser.Scene {
     paintCardFeedback(view,{selected:this.selectedIds.has(view.card.id),scoring:!!view.container.getData('activeScoring'),hovered:this.hoveredCardId===view.card.id,focused:this.keyboardFocus&&document.activeElement===this.game.canvas&&index===this.focusIndex});
   }
   private get ready():boolean {const session=gameSession();return !this.playing&&runController(this)?.status==='idle'&&session.lease.writable&&!session.pendingRun&&!session.working;}
+  private get ownedReady():boolean {return this.ready&&!this.presentation&&this.run.phase==='await-input'&&!this.pendingRefill&&!this.pendingTouye;}
   private get inventoryInspectable():boolean {
     const session=gameSession(),status=runController(this)?.status;
     return !this.playing&&!this.presentation&&['idle','paused','readonly'].includes(status??'')&&!session.pendingRun&&!session.working&&this.run.phase==='await-input'&&!this.pendingRefill&&!this.pendingTouye;
@@ -375,11 +398,11 @@ export class GameScene extends Phaser.Scene {
   private render():void {
     this.stopHandHint();
     this.dialog.refreshArtLoad();
-    this.handInput?.cancel();
+    this.handInput?.cancel();this.ownedInput?.setBounds(undefined);
     requestJokerArt(this,this.run.jokers.map(j=>j.definitionId),()=>{this.dialog.refreshArtLoad();if(!this.presentation&&!this.playing)this.render();});
     this.stage={...this.stage,targetHeat:this.run.stage!.targetHeat};
     this.controlsLive=false;this.stopScoreFire();
-    const v=this.view,l=v.layout;this.hoveredCardId=undefined;this.hoveredJokerId=undefined;this.jokerHoverPreview=undefined;v.clear();this.handNavigationButtons=[];v.paperBackground();drawStageTableArt(this,v,this.characterId);this.settledCards.clear();this.previewCards=undefined;
+    const v=this.view,l=v.layout;this.hoveredCardId=undefined;this.hoveredJokerId=undefined;this.jokerHoverPreview=undefined;v.clear();this.handNavigationButtons=[];v.paperBackground();drawStageTableArt(this,v,this.characterId,()=>this.inspectHeroExplanation());this.settledCards.clear();this.previewCards=undefined;
     this.playAuraPulse?.remove();this.playAuraPulse=undefined;this.playAura=undefined;
     if(this.progressBar)this.tweens.killTweensOf(this.progressBar);this.progressTarget=Number.NaN;
     const h=l.hud,c=getCharacter(this.characterId),portrait=l.mode==='portrait',short=l.mode==='landscape';
@@ -389,13 +412,13 @@ export class GameScene extends Phaser.Scene {
     this.roleAvatar=v.add(this.add.container(h.x+12+avatarSize/2,avatarY+avatarSize/2)).setData('baseY',avatarY+avatarSize/2);
     const avatarArt=this.add.container(0,0);this.roleAvatar.add(avatarArt);addAvatar(this,avatarArt,c,0,0,avatarSize);
     if(!this.textures.exists(avatarKey(c.id)))whenTextureReady(this,avatarArt,avatarKey(c.id),()=>{avatarArt.removeAll(true);addAvatar(this,avatarArt,c,0,0,avatarSize);});
-    {const hit=v.add(this.add.rectangle(h.x+12+avatarSize/2,avatarY+avatarSize/2,Math.max(44,avatarSize+8),Math.max(44,avatarSize+8),0,0));v.target(hit,usesErxiangHandoff(this.run)?'hero/erxiang-handoff':usesTouyeWager(this.run)?'hero/touye-wager':usesLaohuanRefill(this.run)?'hero/laohuan-trick':usesXiemuBurn(this.run)?'hero/xiemu-burn':usesAzaoCharge(this.run)?'hero/azao-charge':'hero/details',{tap:()=>this.inspectRole(),detail:()=>this.inspectRole()});}
+    {const hit=v.add(this.add.rectangle(h.x+12+avatarSize/2,avatarY+avatarSize/2,Math.max(44,avatarSize+8),Math.max(44,avatarSize+8),0,0));v.target(hit,usesErxiangHandoff(this.run)?'hero/erxiang-handoff':usesTouyeWager(this.run)?'hero/touye-wager':usesLaohuanRefill(this.run)?'hero/laohuan-trick':usesXiemuBurn(this.run)?'hero/xiemu-burn':usesAzaoCharge(this.run)?'hero/azao-charge':'hero/details',{tap:()=>this.inspectHeroExplanation(),detail:()=>this.inspectHeroExplanation()});}
     this.roleFrame=this.add.rectangle(0,0,avatarSize+4,avatarSize+4,T.brass).setFillStyle(T.brass,0).setStrokeStyle(1,T.brass,.6);this.roleAvatar.add(this.roleFrame);
     const identity=stageIdentity(this.stage.index,this.run.stage!.boss,this.run.tourMode,this.run.difficulty)!;
     if(!portrait)v.text(h.x+12,h.y+8,this.run.tourMode==='endless'?'无尽巡演':'大 丑 牌',short?20:28,C.paper);
     if(!portrait||!this.assistProfile&&!usesErxiangHandoff(this.run)&&!usesAzaoCharge(this.run)&&!usesXiemuBurn(this.run)&&!usesLaohuanRefill(this.run)&&!usesTouyeWager(this.run))v.text(h.x+(portrait?64:76),avatarY,(portrait&&this.run.tourMode==='endless'?'无尽 · ':'')+c.name,portrait?18:short?20:22,C.paper,portrait?h.width-160:h.width-88);
     this.roleText=v.text(h.x+(portrait?64:76),avatarY+(portrait?23:28),this.roleCaption(),14,C.mutedInk,portrait?h.width-160:h.width-88);
-    const skillEntry=v.rect({x:this.roleText.x,y:this.roleText.y,width:portrait?h.width-160:h.width-88,height:20}).setFillStyle(0,0).setStrokeStyle();v.target(skillEntry,'hero/skill-entry',{tap:()=>this.inspectRole(),detail:()=>this.inspectRole()});
+    const skillEntry=v.rect({x:this.roleText.x,y:this.roleText.y,width:portrait?h.width-160:h.width-88,height:20}).setFillStyle(0,0).setStrokeStyle();v.target(skillEntry,'hero/skill-entry',{tap:()=>this.inspectHeroExplanation(),detail:()=>this.inspectHeroExplanation()});
     if(!portrait&&!l.shortLandscape)v.text(h.x+12,h.y+96,identity.isBoss?identity.title:identity.stageName,14,C.paper,h.width-24).setName('stage-identity/current');
     this.heatText=v.text(h.x+12,h.y+(portrait?27:l.shortLandscape?94:short?108:118),'',portrait?20:short?28:24,C.paper,h.width-24).setFontStyle('bold');
     const goldY=h.y+(portrait?31:l.shortLandscape?11:180);
@@ -409,7 +432,7 @@ export class GameScene extends Phaser.Scene {
     if(portrait){this.roleText.setVisible(false);this.goldText.setFontSize(14).setOrigin(0,0).setPosition(h.x+144,h.y+6);this.heatText.setPosition(h.x+64,h.y+28).setFontSize(16).setWordWrapWidth(h.width-168);}
     if(this.assistProfile||usesErxiangHandoff(this.run)||usesAzaoCharge(this.run)||usesXiemuBurn(this.run)||usesLaohuanRefill(this.run)||usesTouyeWager(this.run)){
       if(portrait){this.roleText.setVisible(true).setPosition(h.x+64,avatarY).setFontSize(13).setColor(C.jade).setWordWrapWidth(108);this.goldText.setPosition(h.x+(this.assistProfile?182:166),h.y+6).setFontSize(12);if(this.assistProfile&&h.width<340)this.goldText.setPosition(h.x+12,avatarY+34);}
-      const hit=v.add(this.add.rectangle(this.roleText.x+54,this.roleText.y+9,108,30,0,0));v.target(hit,usesErxiangHandoff(this.run)?'hero/erxiang-handoff-label':usesTouyeWager(this.run)?'hero/touye-wager-label':usesLaohuanRefill(this.run)?'hero/laohuan-trick-label':usesXiemuBurn(this.run)?'hero/xiemu-burn-label':this.assistProfile?'hero/amo-assist-label':'hero/azao-charge-label',{tap:()=>this.inspectRole(),detail:()=>this.inspectRole()});
+      const hit=v.add(this.add.rectangle(this.roleText.x+54,this.roleText.y+9,108,30,0,0));v.target(hit,usesErxiangHandoff(this.run)?'hero/erxiang-handoff-label':usesTouyeWager(this.run)?'hero/touye-wager-label':usesLaohuanRefill(this.run)?'hero/laohuan-trick-label':usesXiemuBurn(this.run)?'hero/xiemu-burn-label':this.assistProfile?'hero/amo-assist-label':'hero/azao-charge-label',{tap:()=>this.inspectHeroExplanation(),detail:()=>this.inspectHeroExplanation()});
     }
     this.renderJokerRack();
     const s=l.scoreBoard;
@@ -463,7 +486,7 @@ export class GameScene extends Phaser.Scene {
     this.inventoryButton=v.button(gameToolInventoryBox(l),toolInventoryLabel(this.run),'action/tool-inventory',()=>this.inspectInventory());
     inventoryFeedback(this,this.inventoryButton,this.run,this.ready,this.reducedMotion);
     this.controlsLive=true;
-    this.updateHud();this.renderHand();
+    this.updateHud();this.renderHand();this.ownedDrag?.rebind();
   }
   private renderJokerRack(jokers:readonly R2JokerInstance[]=this.run.jokers):void {
     const v=this.view,l=v.layout;this.jokerViews.clear();
@@ -505,8 +528,10 @@ export class GameScene extends Phaser.Scene {
       if(disabled.has(j.instanceId)){r.setStrokeStyle(2,T.red);marker.setData('bossDisabled',true);}
       this.jokerViews.set(j.instanceId,marker);
       const hit=v.rect({x:b.x,y:b.y,width:b.width+(sideLabels?labelBox.width+6:0),height:b.height},T.ink).setFillStyle(T.ink,.001).setStrokeStyle();marker.setData('hit',hit);
-      v.target(hit,'joker/'+j.instanceId,{tap:()=>this.inspectJoker(j.instanceId),detail:()=>this.inspectJoker(j.instanceId),drag:x=>void this.reorderJoker(j.instanceId,x),holdToDrag:true,enter:()=>this.hoverJoker(j.instanceId,true),leave:()=>this.hoverJoker(j.instanceId,false)});
+      v.target(hit,'joker/'+j.instanceId,{tap:()=>this.inspectJoker(j.instanceId),detail:()=>this.inspectJoker(j.instanceId),enter:()=>this.hoverJoker(j.instanceId,true),leave:()=>this.hoverJoker(j.instanceId,false)});
     });
+    const first=l.slots[0],last=l.slots[jokers.length-1];
+    this.ownedInput?.setBounds(!this.presentation&&this.run.phase==='await-input'&&last?{x:first.x,y:first.y,width:last.x+last.width-first.x,height:first.height}:undefined);
   }
   private jokerMechanism(marker:Phaser.GameObjects.Container,x:number,y:number,size:number,joker:R2JokerInstance):void {
     drawJokerMotif(this,marker,joker.definitionId,x,y,size,this.jokerDefinition(joker.definitionId));
@@ -759,6 +784,7 @@ export class GameScene extends Phaser.Scene {
     if(!this.reducedMotion){panel.setAlpha(0).setY(top+5);this.tweens.add({targets:panel,alpha:1,y:top,duration:130,ease:'Sine.easeOut'});}
   }
   private restingJoker(view:Phaser.GameObjects.Container,animate:boolean):void {
+    if(this.ownedDrag)return;
     if(!view.active||this.playing||this.presentation)return;
     const frame=view.getData('frame') as Phaser.GameObjects.Rectangle,hit=view.getData('hit') as Phaser.GameObjects.Rectangle,hovered=this.jokerViews.get(this.hoveredJokerId??'')===view,x=Number(view.getData('baseX')),baseY=Number(view.getData('baseY')),lift=Math.min(6,Math.max(0,baseY-frame.height/2-6)*.5),y=baseY-(hovered&&!this.reducedMotion?lift:0),scale=hovered&&!this.reducedMotion?1.045:1;
     this.tweens.killTweensOf(view);frame.setStrokeStyle(hovered?4:2,hovered?0xffdea3:Number(view.getData('frameColor')));
@@ -923,6 +949,7 @@ export class GameScene extends Phaser.Scene {
   }
   private updateControls():void {
     if(!this.controlsLive)return;
+    const dragHint=this.ownedDrag?this.statusText.text:undefined;
     this.updateInventoryControl();
     this.view.setEnabled(this.rankButton,this.ready&&!this.pendingRefill);this.view.setEnabled(this.suitButton,this.ready&&!this.pendingRefill);
     const aiInput=this.aiInput(),aiResult=this.aiCandidates.result;
@@ -971,6 +998,7 @@ export class GameScene extends Phaser.Scene {
     this.updateHeroControl();
     this.resourceCounts.play.setVisible(!this.pendingRefill);this.resourceCounts.discard.setVisible(!this.pendingRefill);
     if(this.pendingRefill){this.view.setEnabled(this.aiButton,false);this.view.setEnabled(this.playButton,this.ready&&!this.refillHidden&&this.selectedIds.size===this.pendingRefill.required);(this.playButton.getData('label') as Phaser.GameObjects.Text).setText('确认留'+this.pendingRefill.required);this.view.setEnabled(this.discardButton,this.ready);(this.discardButton.getData('label') as Phaser.GameObjects.Text).setText(this.refillHidden?'继续选牌':'收起候选');}
+    if(dragHint)this.statusText.setText(dragHint);
     // Balatro-style call-to-action: the playable state breathes a warm aura.
     const auraOn=!!this.playButton.input?.enabled&&this.selectedIds.size>0&&!this.presentation&&!this.playing;
     if(this.playAura){
@@ -1109,6 +1137,7 @@ export class GameScene extends Phaser.Scene {
     });
   }
   update(time:number):void {
+    if(this.ownedDrag&&!this.ownedDrag.saving&&!this.ownedReady)this.ownedInput?.cancel();
     if(!this.roleFrame?.active)return;
     const blocked=!!(this.playing||this.presentation||document.hidden||document.querySelector('dialog[open]'));
     const visual=heroShortcutReminder(!!this.roleFrame.getData('abilityAvailable'),!!this.roleFrame.getData('abilityChosen'),this.ready,blocked,this.reducedMotion,time);
@@ -1158,6 +1187,10 @@ export class GameScene extends Phaser.Scene {
     ];
     const dialog=this.dialog.open('二响 · 交棒',characterForRun(this.run).passiveDescription,[],{guideSteps:heroOperationSteps(this.run,guide,!!this.erxiangTargetId),summaryBody:guide.step,effectBody:choice.sentence+'\n'+guide.risk,collapseRules:true,rulesLabel:'交棒细则',closeLabel:'返回选牌',choices:actions.filter(a=>a.label!=='上一手详情'),secondaryActions:actions.filter(a=>a.label==='上一手详情')});mountHeroSkillGuide(dialog);
   }
+  private inspectHeroExplanation():void {
+    const guide=heroSkillGuide(this.run,this.selectionPreview(),[...this.selectedIds],this.assistProfile&&assistCandidates(this.assistInput(),r2AssistAvailability(this.run).available).length>0,{erxiangTargetId:this.erxiangTargetId,xiemuBurn:this.xiemuBurn,azaoRelease:this.azaoRelease,assistCount:this.assistIds.length});
+    showHeroExplanation(this.dialog,this.characterId,{run:this.run,guide,status:this.presentation?'正在结算；结束后再使用技能。':this.playing?'正在换牌；完成后再使用技能。':!this.ready?'当前进度未保存或只读；可查看说明，暂不能使用。':undefined,closeLabel:'返回牌桌',actions:[{label:'查看本场技能操作',disabled:!this.ready||this.playing||!!this.presentation,run:()=>this.inspectRole()}]});
+  }
   private inspectRole():void {
     if(this.ready&&this.assistProfile&&this.assistRecommendations.get(this.run,[...this.selectedIds])?.options.length!>1){this.inspectAssistChoices();return;}
     if(usesErxiangHandoff(this.run)){this.inspectErxiang();return;}
@@ -1184,7 +1217,7 @@ export class GameScene extends Phaser.Scene {
     const body=ability?rarity.label+restriction+'\n版次：'+editionEffectText(j.edition)+'\n第 '+(index+1)+' 槽'+(notice?.jokerScoreDirection==='right-to-left'?' · 从右向左结算':' · 从左向右结算')+'。\n用下方按钮调序；出售须在商店确认。':rarity.symbol+' '+rarity.label+' · 当前 '+this.jokerValue(j)+restriction+'\n'+editionEffectText(j.edition)+'\n'+d.description+r2JokerExtraHelp(d)+'\n当前实例：'+r2JokerStateText(j,d)+'\n第 '+(index+1)+' 槽'+(notice?.jokerScoreDirection==='right-to-left'?' · 整手计分从右向左':' · 整手计分从左向右')+'；长按后拖动可调序，出售只在商店确认。';
     const dialog=this.dialog.open(d.name,body,[
       ...(growth?[{label:'成长因果',disabled:!this.ready,run:()=>{const saved=groupGrowthCausality(this.run,j);if(saved)this.dialog.open(saved.title,saved.body);}}]:[]),
-      {label:'左移',disabled:!this.ready||!!this.pendingTouye||index===0,run:()=>move(-1)},{label:'右移',disabled:!this.ready||!!this.pendingTouye||index===this.run.jokers.length-1,run:()=>move(1)},
+      {label:'左移',disabled:!this.ownedReady||index===0,run:()=>move(-1)},{label:'右移',disabled:!this.ownedReady||index===this.run.jokers.length-1,run:()=>move(1)},
     ],{rarity:d.rarity,artLoad:{status:jokerArtLoadState(this,d.id).status,readStatus:()=>jokerArtLoadState(this,d.id).status,retry:()=>retryJokerArt(this,[d.id],()=>{this.dialog.refreshArtLoad();if(!this.presentation&&!this.playing)this.render();})},ability,collapseRules:!!ability,...(ability?{editionBody:'版次：'+editionEffectText(j.edition).split('。')[0]+(restriction?' · '+(this.presentation?'本手暂停':'当前暂停'):'')} :{}),...(j.definitionId==='f09'?{f09:{inactive:!!restriction,bodyInactive:this.presentation?ability?.bodyActive===false:(this.run.stage?.discardsUsed??0)>0,reduced:this.reducedMotion,alignedLayers:jokerArtAlignedLayers(j.definitionId),reason:restriction||undefined}}:{}),...(art?{portrait:{url:art,thumbnailUrl:jokerArtPreviewUrl(d.id),alt:d.name+'完整卡面',layout:'card' as const,caption:d.name}}:{})});
     markRouteDetail(dialog,routeFitCue(this.run,'jokers',d.id,j.instanceId));
     if(!artKey||!this.textures.exists(artKey))this.attachJokerFallback(dialog,d.id);
@@ -1201,14 +1234,18 @@ export class GameScene extends Phaser.Scene {
   }
   private async command(action:import('../domain/run').Action,expectedSeq?:number):Promise<boolean> {
     if(!this.ready)return false;this.clearHover();this.cancelAiCandidates();this.playing=true;const lifecycle=this.lifecycle,intent=++this.intent;this.updateControls();
+    const pendingDrag=action.type==='ReorderJokers'&&this.ownedDrag?.saving?this.ownedDrag:undefined,inputEnabled=pendingDrag?this.input.enabled:true;
+    if(pendingDrag){this.input.enabled=false;pendingDrag.pending();}
+    let reorderSaved=false;
     const focusedId=this.hand[this.focusIndex]?.id,beforeTool=this.run,toolOwner=action.type==='UseConsumable'?this.dialog.current:undefined;
     const beforeGold=this.run.gold,beforeDiscards=this.run.stage?.discardsLeft,beforeHand=this.hand,used=action.type==='UseConsumable'?this.run.consumables.find(item=>item.instanceId===action.instanceId):undefined;
     try {
       const result=await dispatchRun(this,action,expectedSeq);if(!this.alive(lifecycle,intent))return false;
-      if(!result.ok){this.statusMessage=result.code==='stale-sequence'?'预览已过期，请重新打开；本次没有消耗物品或资源。':'操作未提交：'+result.code;return false;}
+      if(!result.ok){if(pendingDrag){this.statusMessage=result.code==='save-failed'?'排序未保存 · 已恢复保存顺序 · 菜单重试':'排序未提交 · 已恢复保存顺序';return false;}this.statusMessage=result.code==='stale-sequence'?'预览已过期，请重新打开；本次没有消耗物品或资源。':'操作未提交：'+result.code;return false;}
       this.run=result.state;this.refreshToolInventory();this.statusMessage='';
+      if(pendingDrag){reorderSaved=true;this.statusMessage='顺序已保存';this.audio.select();}
       if(action.type==='ReorderHand'){if(focusedId)this.focusIndex=Math.max(0,this.run.handOrder.indexOf(focusedId));this.showFocusedCard();this.renderHand();}
-      else if(action.type==='ReorderJokers'||action.type==='DestroyConsumable')this.render();
+      else if(action.type==='ReorderJokers'&&!pendingDrag||action.type==='DestroyConsumable')this.render();
       if(used){
         this.toolHand=beforeHand;
         const info=toolInfo(used.definitionId);this.audio.toolUse(info.family);this.effects.clear();
@@ -1230,7 +1267,11 @@ export class GameScene extends Phaser.Scene {
       }
       return true;
     }
-    finally{if(this.alive(lifecycle,intent)){this.playing=false;this.refreshSelection();}}
+    finally{if(this.alive(lifecycle,intent)){
+      this.playing=false;
+      if(pendingDrag){pendingDrag.capture();this.ownedDrag=undefined;this.input.enabled=inputEnabled;this.render();pendingDrag.settle(reorderSaved);}
+      this.refreshSelection();
+    }}
   }
   /** FLIP slide: after a committed reorder, cards glide from their old seats to the new order. */
   private slideHandFrom(previous:Map<string,{x:number;y:number}>):void {
@@ -1269,7 +1310,20 @@ export class GameScene extends Phaser.Scene {
     this.handHintTimer=this.time.delayedCall((this.reducedMotion?3000:1860)*gameSession().speed,this.stopHandHint);
   }
   private async moveHandCard(id:string,delta:-1|1):Promise<void> {const ids=[...this.run.handOrder],from=ids.indexOf(id),to=from+delta;if(from<0||to<0||to>=ids.length)return;const before=this.handPositions();ids.splice(from,1);ids.splice(to,0,id);if(await this.command({type:'ReorderHand',ids}))this.slideHandFrom(before);}
-  private async reorderJoker(id:string,x:number):Promise<void> {if(this.pendingTouye)return;const current=this.run.jokers.map(j=>j.instanceId),l=this.view.layout,to=l.slots.findIndex((b,i)=>x>=b.x&&x<=b.x+b.width+(l.mode==='landscape'?l.jokerLabels[i].width+6:0)),ids=reorderJokerIds(current,id,to);if(ids===current)return;await this.command({type:'ReorderJokers',ids});}
+  private liftOwned(id:string,x:number,y:number):void {
+    if(!this.ownedReady)return;this.clearHover();this.stopHandHint();
+    for(const art of this.jokerViews.values())this.tweens.killTweensOf(art);
+    this.ownedDrag=new OwnedJokerDragVisual(this,id,this.run.commandSeq,{x,y},()=>({root:this.view.root,arts:this.jokerViews,slots:this.view.layout.slots,ids:this.run.jokers.map(j=>j.instanceId),hint:this.statusText}),()=>this.reducedMotion);
+  }
+  private cancelOwned():void {
+    const drag=this.ownedDrag;if(!drag||drag.saving)return;
+    this.ownedDrag=undefined;drag.cancel();if(this.controlsLive)this.updateControls();
+  }
+  private dropOwned(id:string,x:number,y:number):void {
+    const drag=this.ownedDrag,current=this.run.jokers.map(j=>j.instanceId),to=ownedJokerDropIndex(this.view.layout.slots,current.length,x,y),ids=reorderJokerIds(current,id,to);
+    if(!this.ownedReady||drag?.id!==id||ids===current){this.cancelOwned();return;}
+    drag.preview(x,y);drag.pending();void this.command({type:'ReorderJokers',ids},drag.seq);
+  }
 
   /** Denied actions shake the offending card instead of only showing text. */
   private wiggleCard(view:CardView,index:number):void {

@@ -35,6 +35,7 @@ import {stageOutcome} from './stageOutcome';
 import {failureSummary} from './FailureSummary';
 import {finaleKeepsake} from './FinaleKeepsake';
 import {selectionPortraitKey} from './portraits';
+import {showHeroExplanation} from './HeroExplanation';
 import {EffectQueue} from '../core/EffectQueue';
 import {REWARD_COIN,RewardCoinCue,loadRewardCoin,addRewardCoin,animateRewardCoin} from './RewardCoin';
 import {SceneView} from './SceneView';
@@ -192,6 +193,7 @@ export class IntermissionScene extends Phaser.Scene {
       const key=selectionPortraitKey(run.characterId),portraitHeight=Math.min(156,Math.max(0,source.height-70)),portraitWidth=portraitHeight*.67;
       if(portraitHeight>=40&&this.textures.exists(key)){
         const image=this.add.image(source.x+source.width/2,source.y+portraitHeight/2,key).setName('result-art/hero');image.setScale(Math.min(portraitWidth/image.width,portraitHeight/image.height));v.add(image);
+        const hit=v.rect({x:source.x,y:source.y,width:source.width,height:portraitHeight}).setFillStyle(0,0).setStrokeStyle(0);v.target(hit,'result/hero-details',{tap:()=>showHeroExplanation(this.dialog,run.characterId,{run,closeLabel:'返回结算'}),detail:()=>showHeroExplanation(this.dialog,run.characterId,{run,closeLabel:'返回结算'})});
       }
       v.text(source.x,source.y+portraitHeight+8,getCharacter(run.characterId).name,16,PAPER_CSS.ink,source.width).setFontStyle('bold').setName('result/source-continuity');
       v.text(source.x,source.y+portraitHeight+34,'本局构筑已留影',14,PAPER_CSS.jade,source.width);
@@ -209,6 +211,7 @@ export class IntermissionScene extends Phaser.Scene {
     const paint=()=>{
       this.sourceArtLayer?.destroy();const start=v.root.length;
       const sourceView=resultStageSources(this,v,plan.source,run.phase==='run-won'?{...facts,character:run.characterId}:facts,short),text=sourceView.text;
+      for(const image of sourceView.art)if(image.getData('assetId')===run.characterId+'.selection'){const hit=v.rect(image.getData('bounds')).setFillStyle(0,0).setStrokeStyle(0);v.target(hit,'result/hero-details',{tap:()=>showHeroExplanation(this.dialog,run.characterId,{run,closeLabel:'返回结算'}),detail:()=>showHeroExplanation(this.dialog,run.characterId,{run,closeLabel:'返回结算'})});}
       const source=facts.source,growth=facts.growth;
       let y=text.y;
       if(source){const name=v.text(text.x,y,growth?.name??source.title,14,PAPER_CSS.jade,text.width).setFontStyle('bold').setName('result/source-continuity');y+=name.height+6;}
@@ -262,7 +265,7 @@ export class IntermissionScene extends Phaser.Scene {
       {label:'回看最后一手',disabled:!stageOutcome(run.stage!,run.lastTrace).last,run:()=>this.inspectLastHand()},
       {label:'查看最终牌组',run:()=>showDeckInspection(this.dialog,run)},
       {label:'本场详情',run:()=>this.inspectResult()},
-    ],{keepsake:facts.keepsake,cards:facts.cards,summaryBody:facts.summary+'\n'+facts.continuation,collapseRules:true,rulesLabel:'最终持有与成长记录'});
+    ],{heroRun:run,keepsake:facts.keepsake,cards:facts.cards,summaryBody:facts.summary+'\n'+facts.continuation,collapseRules:true,rulesLabel:'最终持有与成长记录'});
   }
   private inspectJourney():void {
     const run=runController(this)!.state;

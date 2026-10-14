@@ -1,0 +1,11 @@
+/workspace/dachoupai/src/domain/r2Run.ts:194
+    if (!condition) throw new Error(`Run invariant: ${label}`);
+                          ^
+
+Error: Run invariant: live stage joker identities
+    at check (/workspace/dachoupai/src/domain/r2Run.ts:194:27)
+    at assertR2Invariants (/workspace/dachoupai/src/domain/r2Run.ts:318:22)
+    at assertRunInvariants (/workspace/dachoupai/src/domain/run.ts:283:88)
+    at file:///workspace/dachoupai/harness/table-owned-joker-drag.mjs:14:93
+
+Node.js v24.19.0
