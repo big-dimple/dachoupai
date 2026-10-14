@@ -1,0 +1,144 @@
+{
+  "base": "69f46e47f250ec3ad7bc55ed11f7888326eecf8f",
+  "product": "25bf187018d3820234c831ea50d5a4aec85b3813",
+  "srcTree": "6f3fa266c186e25756dff95f8d4814bb1dc347aa",
+  "protectedObjects": [
+    {
+      "path": "src/domain",
+      "base": "b293cd1b6adaff0e318f02ac9196417085b02091",
+      "head": "b293cd1b6adaff0e318f02ac9196417085b02091"
+    },
+    {
+      "path": "src/content",
+      "base": "e8c3794be5b0fcb74da4aeb9e6adc63c22388345",
+      "head": "e8c3794be5b0fcb74da4aeb9e6adc63c22388345"
+    },
+    {
+      "path": "src/application",
+      "base": "7d9af1c3a9f38cdcddd88d2777cd6963aebe4237",
+      "head": "7d9af1c3a9f38cdcddd88d2777cd6963aebe4237"
+    },
+    {
+      "path": "src/platform",
+      "base": "860a9f8883cc158ac0c56ad6399518cc897a67b7",
+      "head": "860a9f8883cc158ac0c56ad6399518cc897a67b7"
+    },
+    {
+      "path": "src/audio",
+      "base": "a2f0483eecaaafb40cdbb82778ec2a846fd2e000",
+      "head": "a2f0483eecaaafb40cdbb82778ec2a846fd2e000"
+    },
+    {
+      "path": "public",
+      "base": "c4a6ec74e7fd754b0f300b973020f8afed7542e1",
+      "head": "c4a6ec74e7fd754b0f300b973020f8afed7542e1"
+    },
+    {
+      "path": "art",
+      "base": "b0caa33679b84bee932b2854734c04ad39ba0464",
+      "head": "b0caa33679b84bee932b2854734c04ad39ba0464"
+    },
+    {
+      "path": ".github",
+      "base": "b923e03979ce93c9a142628f8b1099e2cd2b9150",
+      "head": "b923e03979ce93c9a142628f8b1099e2cd2b9150"
+    },
+    {
+      "path": "package.json",
+      "base": "f7e7f89f05edd46636bac3acc1dfcd1b6cd94ccd",
+      "head": "f7e7f89f05edd46636bac3acc1dfcd1b6cd94ccd"
+    },
+    {
+      "path": "package-lock.json",
+      "base": "acc93dcd9410bc911db279534e28522a8691dbab",
+      "head": "acc93dcd9410bc911db279534e28522a8691dbab"
+    },
+    {
+      "path": "src/game/GameScene.ts",
+      "base": "39ff4e4aae84b801f5f68299942b0b2b271236fb",
+      "head": "39ff4e4aae84b801f5f68299942b0b2b271236fb"
+    },
+    {
+      "path": "src/game/ShopScene.ts",
+      "base": "9723ba539f6353d0ee543c6cf34ffb86a61c9b83",
+      "head": "9723ba539f6353d0ee543c6cf34ffb86a61c9b83"
+    },
+    {
+      "path": "src/game/HeroSkillGuide.ts",
+      "base": "b0874e7b4c4247cc11271f256f5ecd05a2f90cb6",
+      "head": "b0874e7b4c4247cc11271f256f5ecd05a2f90cb6"
+    },
+    {
+      "path": "src/game/TouyeWagerCopy.ts",
+      "base": "8eee42ee44bb702a6f84136df026d9e62bae1852",
+      "head": "8eee42ee44bb702a6f84136df026d9e62bae1852"
+    },
+    {
+      "path": "src/game/AzaoChargeCopy.ts",
+      "base": "987922c654ec19d889911cd9f0aad638f947a1b1",
+      "head": "987922c654ec19d889911cd9f0aad638f947a1b1"
+    },
+    {
+      "path": "src/game/ErxiangHandoffCopy.ts",
+      "base": "4fdcc8d8b2e3752d9f39c503e577f968cad17432",
+      "head": "4fdcc8d8b2e3752d9f39c503e577f968cad17432"
+    },
+    {
+      "path": "src/game/XiemuBurnCopy.ts",
+      "base": "29e5be116b85491989dd289a7bebae7ec25ebc1d",
+      "head": "29e5be116b85491989dd289a7bebae7ec25ebc1d"
+    },
+    {
+      "path": "docs/production/DELIVERY_PLAN.md",
+      "base": "f3ae191d02caf4a6e980ed44989034530fad32f1",
+      "head": "f3ae191d02caf4a6e980ed44989034530fad32f1"
+    },
+    {
+      "path": "AGENTS.md",
+      "base": "c2cd3158b69c9df5ef50f9d26be4e7473897d7e0",
+      "head": "c2cd3158b69c9df5ef50f9d26be4e7473897d7e0"
+    }
+  ],
+  "authority": [
+    {
+      "path": "src/content/r2-tools.json",
+      "blob": "e4bc54ed62405a7b7fc83295004f77f9335047ba",
+      "sha256": "b5c0970d6e5c4ca6104f81cc33ac57c0b59efedd382a901602a9a5336d8d259e"
+    },
+    {
+      "path": "src/domain/r2ToolRuntime.ts",
+      "blob": "43686871f90884209860dfd7edae265cda2567c6",
+      "sha256": "e0682c9ea5bf7720056c7e021f5f162976440c63bb676526228b2a5e37b00b1d"
+    },
+    {
+      "path": "src/domain/r2Shop.ts",
+      "blob": "c706d335daef6d6afddc9f1eaa963990215f6610",
+      "sha256": "13043b8572ae8807fd196685a812b4654e891bf40fb486f79e09c1eb7a67acef"
+    },
+    {
+      "path": "src/domain/r2ToolCommands.ts",
+      "blob": "494a86019813a872d0f4aea024385f0709d7fe58",
+      "sha256": "916bf358c094e68e1b31919869a927b846d49d3f2727343ea02a9e12aab65a9f"
+    },
+    {
+      "path": "src/domain/r2SpectralTools.ts",
+      "blob": "c75ed3a34500c34bf5df1093c86d61b5756b1570",
+      "sha256": "32a9be620bfe27d3cb8fb6431a0faa8a3d7e593788e9324de84a06f78064dcae"
+    },
+    {
+      "path": "src/domain/scoreR2.ts",
+      "blob": "9438159256ed333841c6e7130507d81d38578123",
+      "sha256": "aa8baaf75f31152c99afb7557dac47be95fd1ae6662046c29ebe90997ab21baf"
+    },
+    {
+      "path": "src/domain/r2Run.ts",
+      "blob": "6fc2e78db6acb8fdf601e46010b5af552a997511",
+      "sha256": "c5b0d0ebc9034548f377cb15e0c7f42d365c4f79b5c1e599f6a24f28f23a0d17"
+    },
+    {
+      "path": "src/domain/r2GroupUpgrade.ts",
+      "blob": "bba1e4b454c45462df9d63c38756c2c695c55725",
+      "sha256": "4aaed2ecc69ed9a6f5fa572b8e6e18c684657d1d96ea54f28b875cdc75badbce"
+    }
+  ]
+}
