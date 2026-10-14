@@ -3,7 +3,7 @@ import {heroPayoffs} from './HeroPayoff';
 import {heroClimaxLayout} from './HeroClimaxLayout';
 import {climaxSourceKey} from './ClimaxSourceArt';
 import {inkSettlingEase} from './inkwaveSpring';
-import {mountInkBurst,type InkBurstView} from './InkBurst';
+import {mountSkillPanelInk} from './SkillPanelInk';
 import type {Box} from './layout';
 import type {JokerKeyHighlight} from './JokerKeyHighlight';
 import type {R2RunState} from '../domain/r2Run';
@@ -14,12 +14,13 @@ import {scoreSourceProcess,scoreSourceClimaxValue} from './ScoreSourceProcess';
 import {selectionPortraitKey,avatarKey} from './portraits';
 import {jokerArtKey} from './jokerArt';
 import {getCharacter} from './characters';
+import {savedSkillName} from './SettlementHighlights';
 import {SCORE_FONT,UI_FONT,PAPER_THEME as T,PAPER_CSS as C} from './theme';
-export interface HeroClimaxValue {label:string;before:string;after:string;note:string;accumulated?:string}
+export interface HeroClimaxValue {label:string;before:string;after:string;note:string;accumulated?:string;skillName?:string}
 /** Saved capability payoffs and actual bursts; legacy opening keys retain their receipt checks. */
 export function heroClimaxValue(state:R2RunState,trace:ScoreTrace,key:JokerKeyHighlight,replay=false):HeroClimaxValue|undefined {
  if(replay||!key.heroId||key.heroId!==state.characterId)return;
- if(key.kind==='payoff'||key.kind==='burst'){const actual=heroPayoffs(state,trace).find(k=>k.eventId===key.eventId&&k.kind===key.kind);const event=trace.events.find(e=>e.eventId===key.eventId);if(!actual||!event)return;const cue=scoreSourceProcess(trace,event,actual.fact.title);return cue&&scoreSourceClimaxValue(cue,readableMultiplierEffect(actual.fact.effect,event.value));}
+ if(key.kind==='payoff'||key.kind==='burst'){const actual=heroPayoffs(state,trace).find(k=>k.eventId===key.eventId&&k.kind===key.kind);const event=trace.events.find(e=>e.eventId===key.eventId);if(!actual||!event)return;const cue=scoreSourceProcess(trace,event,actual.fact.title),value=cue&&scoreSourceClimaxValue(cue,readableMultiplierEffect(actual.fact.effect,event.value));return value&&{...value,skillName:savedSkillName(state,trace,event)};}
  if(state.phase==='run-lost')return;
  const stamp=state.openingShow;
  if(!stamp||stamp.rootId!==trace.rootId||stamp.eventId!==key.eventId||stamp.handsScored>5)return;
@@ -43,7 +44,8 @@ export function mountHeroClimax(scene:Phaser.Scene,root:Phaser.GameObjects.Conta
  const heroKey=['opening-portrait-'+id,selectionPortraitKey(id),avatarKey(id)].find(k=>scene.textures.exists(k));if(!heroKey)return;
  const {width:w,height:h}=viewport,layout=heroClimaxLayout(w,h,!!key.fact.definitionId),{portrait,short,panelY,panelH}=layout;
  const group=scene.add.container(0,0).setName('joker/key-focus').setData('eventId',key.eventId).setData('benefit',key.fact).setData('heroClimax',true).setData('starter',key.kind==='starter').setData('phase',reduced?'still':'charge').setData('bounds',viewport);root.add(group);
- const dim=scene.add.rectangle(w/2,h/2,w,h,T.ink,.66);group.add(dim);
+ // The cut-in is opaque paper inside its own panel; the surrounding table stays bright.
+ const dim=scene.add.rectangle(w/2,h/2,w,h,T.ink,0);group.add(dim);
  const board=scene.add.container(0,0),shapes=scene.add.graphics();group.add(board);board.add(shapes);
  shapes.fillStyle(T.red,1).fillPoints([{x:-w*.04,y:panelY+24},{x:w*1.04,y:panelY-10},{x:w*1.04,y:panelY+panelH-12},{x:-w*.04,y:panelY+panelH+26}],true);
  shapes.fillStyle(T.ink,1).fillPoints([{x:-w*.03,y:panelY+8},{x:w*1.04,y:panelY-18},{x:w*1.02,y:panelY+panelH-30},{x:-w*.04,y:panelY+panelH+8}],true);
@@ -57,9 +59,20 @@ export function mountHeroClimax(scene:Phaser.Scene,root:Phaser.GameObjects.Conta
  const hero=scene.add.image(heroX,heroY,heroKey).setScale(heroScale).setAngle(-5).setName('hero/climax-portrait');board.add(hero);
  const {nameX,nameY}=layout,contentX=layout.readout.x,contentW=layout.readout.width;
  const text=(x:number,y:number,s:string,size:number,color=C.ink,width?:number)=>{const t=scene.add.text(x,y,s,{fontFamily:UI_FONT,fontSize:size+'px',fontStyle:'bold',color,resolution:Math.max(1.5,1/scene.scale.zoom),...(width?{wordWrap:{width,useAdvancedWrap:true}}:{})});board.add(t);return t;};
- const actualSource=!!key.fact.definitionId,headline=text(nameX,nameY,actualSource?key.fact.title:getCharacter(id).name,short?36:portrait?44:68).setName('hero/climax-name');
+ const actualSource=!!key.fact.definitionId,headline=text(nameX,nameY,actualSource?key.fact.title:value.skillName??getCharacter(id).name,short?36:portrait?44:68).setName('hero/climax-name');
  const headlineWidth=portrait?w*.43:contentW;for(let font=short?36:portrait?44:68;headline.width>headlineWidth&&font>18;)headline.setFontSize(--font);
- text(portrait?w*.51:nameX,portrait?nameY+12:nameY+(short?44:78),actualSource?getCharacter(id).name+' · 来源兑现':key.kind==='payoff'?'能力兑现':key.kind==='burst'?'来源爆发':key.kind==='starter'?'路线首发':key.cause==='实际乘法生效'?'倍率爆发':'开场得分',short?18:22,C.red,portrait?w*.4:contentW);
+ text(portrait?w*.51:nameX,portrait?nameY+12:nameY+(short?44:78),actualSource?getCharacter(id).name+' · 来源兑现':value.skillName?getCharacter(id).name+' · 技能兑现':key.kind==='payoff'?'能力兑现':key.kind==='burst'?'来源爆发':key.kind==='starter'?'路线首发':key.cause==='实际乘法生效'?'倍率爆发':'开场得分',short?18:22,C.red,portrait?w*.4:contentW).setName('hero/climax-owner');
+ // Reviewed independent face crops supply the eyes, never a guessed full-body slice.
+ // The narrow frame focuses an existing expression; it does not invent a new one.
+ const faceKey=avatarKey(id),face=layout.face;
+ if(!short&&scene.textures.exists(faceKey)){
+  const original=scene.textures.get(faceKey).getSourceImage() as HTMLImageElement,crop={x:original.width*.08,y:original.height*.30,width:original.width*.78,height:original.height*.26};
+  const scale=Math.min(face.width/crop.width,face.height/crop.height);
+  board.add(scene.add.rectangle(face.x+face.width/2,face.y+face.height/2,face.width+8,face.height+8,T.paperLight,1).setStrokeStyle(1,T.ink,.8).setName('hero/climax-face-frame'));
+  const eyes=scene.add.image(face.x+face.width/2,face.y+face.height/2,faceKey).setOrigin(.5).setCrop(crop.x,crop.y,crop.width,crop.height).setScale(scale).setName('hero/climax-eyes').setData('assetId',id+'.avatar');
+  // Phaser crops retain the source's original origin; offset its crop centre into the frame.
+  eyes.setPosition(face.x+face.width/2+(original.width/2-crop.x-crop.width/2)*scale,face.y+face.height/2+(original.height/2-crop.y-crop.height/2)*scale);board.add(eyes);
+ }
  const labelY=layout.readout.y;
  // Portrait recoil can cross the number column; keep its saved facts on opaque paper.
  board.add(scene.add.rectangle(contentX+contentW/2,labelY+layout.readout.height/2-8,contentW+16,layout.readout.height+16,T.paperLight,.97).setName('hero/climax-readout-paper'));
@@ -85,7 +98,7 @@ export function mountHeroClimax(scene:Phaser.Scene,root:Phaser.GameObjects.Conta
  const brush=scene.add.graphics().setName('hero/climax-ink-brush');board.addAt(brush,1);
  for(let i=0;i<7;i++){const y=panelY+panelH*(.12+i*.11);brush.fillStyle(i%2?T.jade:T.ink,i%2?.16:.11).fillPoints([{x:-w*.2,y:y+14},{x:w*(.42+(i%3)*.09),y:y-22},{x:w*.56,y:y+25},{x:-w*.08,y:y+40}],true);}
  const foreground=scene.add.container(0,0);board.addAt(foreground,board.list.indexOf(hero)+1);
- const owned=new Set<Phaser.Tweens.Tween>();let disposed=false,still=reduced,struck=false,burst:InkBurstView|undefined,releaseDone:(()=>void)|undefined;
+ const owned=new Set<Phaser.Tweens.Tween>();let disposed=false,still=reduced,struck=false,burst:ReturnType<typeof mountSkillPanelInk>|undefined,releaseDone:(()=>void)|undefined;
  const tween=(config:Phaser.Types.Tweens.TweenBuilderConfig)=>{if(disposed)return;const t=scene.tweens.add(config);owned.add(t);return t;};
  const neutral=()=>{burst?.dispose();burst=undefined;brush.setPosition(0,0).setAlpha(1).setScale(1);board.setPosition(0,0).setAlpha(1);hero.setPosition(heroX,heroY).setScale(heroScale).setAngle(-5);readout.setY(layout.valueY);fitValue();sourceCard?.setPosition(layout.source.x+layout.source.width/2,layout.source.y+layout.source.height/2).setScale(1).setAngle(3);};
  if(!still){board.setX(-w*.72).setAlpha(.25);hero.setPosition(heroX-w*.18,heroY+28).setScale(heroScale*.84).setAngle(-12);brush.setX(-w*.6);readout.setScale(readout.scaleX*.88);tween({targets:board,x:0,alpha:1,duration:200,ease:'Cubic.easeOut'});tween({targets:brush,x:0,duration:260,ease:'Cubic.easeOut'});tween({targets:hero,scaleX:heroScale*.96,scaleY:heroScale*.96,x:heroX-8,y:heroY,angle:-5,duration:250,ease:inkSettlingEase(.28)});}
@@ -95,7 +108,7 @@ export function mountHeroClimax(scene:Phaser.Scene,root:Phaser.GameObjects.Conta
   reduce:()=>{still=true;for(const t of owned)t.remove();owned.clear();neutral();releaseDone?.();releaseDone=undefined;},
   strike:()=>{if(disposed||struck)return;struck=true;group.setData('phase','strike').setData('strikeAt',performance.now());readout.setText(value.after);fitValue();note.setText(value.note);if(still)return;
    for(const t of owned)t.remove();owned.clear();board.setPosition(0,0).setAlpha(1);if(sourceDetail)sourceCard?.setScale(1.06).setAngle(-2);if(sourceCard&&sourceDetail)tween({targets:sourceCard,scaleX:1,scaleY:1,angle:3,duration:340,ease:inkSettlingEase(.32)});hero.setPosition(heroX+18,heroY+(portrait?32:-18)).setScale(heroScale*1.16).setAngle(-9);brush.setPosition(-w*.05,0).setScale(1.16,1);
-   burst=mountInkBurst(scene,foreground,heroX,heroY+heroH*.12,Math.min(w,h)*.48,T.red,820,24);
+   burst=mountSkillPanelInk(scene,foreground,{x:12,y:panelY+20,width:w-24,height:panelH-56});
    const readoutY=layout.valueY,fit=valueFit();readout.setY(readoutY+(value.accumulated?0:8)).setScale(fit,value.accumulated?fit:fit*1.23);
    tween({targets:hero,x:heroX,y:heroY,scaleX:heroScale,scaleY:heroScale,angle:-5,duration:420,ease:inkSettlingEase(.30)});tween({targets:brush,x:0,scaleX:1,duration:520,ease:'Cubic.easeOut'});tween({targets:readout,y:readoutY,scaleX:fit,scaleY:fit,duration:340,ease:inkSettlingEase(.32)});
   },
