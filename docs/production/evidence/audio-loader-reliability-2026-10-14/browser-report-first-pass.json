@@ -1,0 +1,172 @@
+{
+  "browser": "151.0.7922.173",
+  "origin": "http://127.0.0.1:4173",
+  "heard": false,
+  "physicalDevice": false,
+  "checks": [
+    {
+      "name": "real pointer unlock / abort / transient network+decode / permanent 404 / cache",
+      "status": "PASS",
+      "cached": 21,
+      "bodies": 21,
+      "requests": 29,
+      "before": 29,
+      "maxActive": 3,
+      "contextState": "running",
+      "requestLog": [
+        {
+          "path": "/assets/audio/foley-v1/card-slide-1.ogg",
+          "at": 203.20000000001164
+        },
+        {
+          "path": "/assets/audio/foley-v1/card-slide-2.ogg",
+          "at": 204.09999999997672
+        },
+        {
+          "path": "/assets/audio/foley-v1/card-slide-3.ogg",
+          "at": 204.20000000001164
+        },
+        {
+          "path": "/assets/audio/foley-v1/card-place-1.ogg",
+          "at": 212.5
+        },
+        {
+          "path": "/assets/audio/foley-v1/card-place-2.ogg",
+          "at": 213.20000000001164
+        },
+        {
+          "path": "/assets/audio/foley-v1/card-place-3.ogg",
+          "at": 234.70000000001164
+        },
+        {
+          "path": "/assets/audio/foley-v1/card-shove-1.ogg",
+          "at": 247.79999999998836
+        },
+        {
+          "path": "/assets/audio/foley-v1/card-fan-1.ogg",
+          "at": 265.0999999999767
+        },
+        {
+          "path": "/assets/audio/foley-v1/card-shuffle.ogg",
+          "at": 268.8999999999651
+        },
+        {
+          "path": "/assets/audio/foley-v1/cards-pack-open-1.ogg",
+          "at": 282.70000000001164
+        },
+        {
+          "path": "/assets/audio/foley-v1/chip-lay-1.ogg",
+          "at": 290.3999999999651
+        },
+        {
+          "path": "/assets/audio/foley-v1/chip-lay-2.ogg",
+          "at": 295.29999999998836
+        },
+        {
+          "path": "/assets/audio/foley-v1/chips-stack-1.ogg",
+          "at": 300.79999999998836
+        },
+        {
+          "path": "/assets/audio/foley-v1/chips-collide-1.ogg",
+          "at": 305.20000000001164
+        },
+        {
+          "path": "/assets/audio/foley-v1/impactWood_light_000.ogg",
+          "at": 308.79999999998836
+        },
+        {
+          "path": "/assets/audio/foley-v1/impactWood_light_001.ogg",
+          "at": 314.0999999999767
+        },
+        {
+          "path": "/assets/audio/foley-v1/impactWood_heavy_000.ogg",
+          "at": 317.79999999998836
+        },
+        {
+          "path": "/assets/audio/foley-v1/impactSoft_medium_000.ogg",
+          "at": 324
+        },
+        {
+          "path": "/assets/audio/foley-v1/impactSoft_heavy_000.ogg",
+          "at": 333.5999999999767
+        },
+        {
+          "path": "/assets/audio/foley-v1/impactBell_heavy_000.ogg",
+          "at": 334.3999999999651
+        },
+        {
+          "path": "/assets/audio/foley-v1/impactBell_heavy_003.ogg",
+          "at": 339.20000000001164
+        },
+        {
+          "path": "/assets/audio/foley-v1/impactGlass_heavy_002.ogg",
+          "at": 341.70000000001164
+        },
+        {
+          "path": "/assets/audio/score-impact/cloth2.ogg",
+          "at": 347.8999999999651
+        },
+        {
+          "path": "/assets/audio/foley-v1/card-slide-1.ogg",
+          "at": 348.29999999998836
+        },
+        {
+          "path": "/assets/audio/foley-v1/card-slide-3.ogg",
+          "at": 361.5
+        },
+        {
+          "path": "/assets/audio/foley-v1/card-place-1.ogg",
+          "at": 363.79999999998836
+        },
+        {
+          "path": "/assets/audio/foley-v1/card-slide-3.ogg",
+          "at": 364
+        },
+        {
+          "path": "/assets/audio/foley-v1/card-slide-2.ogg",
+          "at": 5204.5
+        },
+        {
+          "path": "/assets/audio/foley-v1/card-slide-2.ogg",
+          "at": 10204.700000000012
+        }
+      ],
+      "attempts": {
+        "assets/audio/foley-v1/card-slide-1.ogg": 2,
+        "assets/audio/foley-v1/card-slide-2.ogg": 3,
+        "assets/audio/foley-v1/card-slide-3.ogg": 3,
+        "assets/audio/foley-v1/card-place-1.ogg": 2,
+        "assets/audio/foley-v1/card-place-2.ogg": 1,
+        "assets/audio/foley-v1/card-place-3.ogg": 1,
+        "assets/audio/foley-v1/card-shove-1.ogg": 1,
+        "assets/audio/foley-v1/card-fan-1.ogg": 1,
+        "assets/audio/foley-v1/card-shuffle.ogg": 1,
+        "assets/audio/foley-v1/cards-pack-open-1.ogg": 1,
+        "assets/audio/foley-v1/chip-lay-1.ogg": 1,
+        "assets/audio/foley-v1/chip-lay-2.ogg": 1,
+        "assets/audio/foley-v1/chips-stack-1.ogg": 1,
+        "assets/audio/foley-v1/chips-collide-1.ogg": 1,
+        "assets/audio/foley-v1/impactWood_light_000.ogg": 1,
+        "assets/audio/foley-v1/impactWood_light_001.ogg": 1,
+        "assets/audio/foley-v1/impactWood_heavy_000.ogg": 1,
+        "assets/audio/foley-v1/impactSoft_medium_000.ogg": 1,
+        "assets/audio/foley-v1/impactSoft_heavy_000.ogg": 1,
+        "assets/audio/foley-v1/impactBell_heavy_000.ogg": 1,
+        "assets/audio/foley-v1/impactBell_heavy_003.ogg": 1,
+        "assets/audio/foley-v1/impactGlass_heavy_002.ogg": 1,
+        "assets/audio/score-impact/cloth2.ogg": 1
+      }
+    },
+    {
+      "name": "late success ignored / mute+background / missed cues consumed / fresh recording plays",
+      "status": "PASS",
+      "sameBuffer": true,
+      "sameBody": true,
+      "cached": 23,
+      "requests": 24,
+      "freshSources": 1,
+      "voices": 0
+    }
+  ],
+  "status": "PASS"
+}
