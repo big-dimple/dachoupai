@@ -52,3 +52,28 @@ Frozen older tool browser regression:
 {"status":"PASS","cases":[{"viewport":{"width":1366,"height":768},"status":"PASS","checks":["purchase cancel zero writes; held/duplicate/failure old full save unchanged; native retry saves original purchase once and resumes target UI without consumption","real overwrite warning and explicit replace; cancel preserves paid item and entire save; reopen clears only draft; consume duplicate/failure safe; native retry actual result and complete domain oracle","existing inventory direct use; scroll preserved across two selections; cancel/reopen/second use and continue hub; one buy/two explicit uses, final full state/journal/IDB matches canonical commands","same-name random stock has one visible seat and exact price; explicit BuyOffer continues to original selector, cancel retains purchase, direct use confirms once; final two buys/three uses match complete original oracle","actual lease loss: purchase seats disabled, held tool still inspectable, confirm disabled and native click/cancel zero write attempts/full save changes"]},{"viewport":{"width":390,"height":740},"status":"PASS","checks":["purchase cancel zero writes; held/duplicate/failure old full save unchanged; native retry saves original purchase once and resumes target UI without consumption","real overwrite warning and explicit replace; cancel preserves paid item and entire save; reopen clears only draft; consume duplicate/failure safe; native retry actual result and complete domain oracle","existing inventory direct use; scroll preserved across two selections; cancel/reopen/second use and continue hub; one buy/two explicit uses, final full state/journal/IDB matches canonical commands","same-name random stock has one visible seat and exact price; explicit BuyOffer continues to original selector, cancel retains purchase, direct use confirms once; final two buys/three uses match complete original oracle","actual lease loss: purchase seats disabled, held tool still inspectable, confirm disabled and native click/cancel zero write attempts/full save changes"]}],"sourceUnchanged":true}
 
 Protected paths byte-for-byte same as origin/main f651a04e: src/domain, src/application, src/content, src/audio, src/platform, src/game/GameScene.ts, src/game/IntermissionScene.ts, src/game/OwnedJokerInput.ts, src/game/OwnedJokerDragVisual.ts, public, art, .github, AGENTS.md, docs/production/DELIVERY_PLAN.md, package.json, package-lock.json
+
+Existing sale-continuation mock before repair: four failures, confirmation.querySelector missing; native product chain had passed. Original ownership/state/consequence assertions unchanged.
+
+ RUN  v4.1.11 /workspace/dachoupai
+
+
+ Test Files  12 passed (12)
+      Tests  99 passed (99)
+   Start at  14:45:17
+   Duration  1.99s (transform 2.02s, setup 0ms, import 3.38s, tests 1.23s, environment 1ms)
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice
+
+> dachoupai@0.1.0 typecheck
+> tsc --noEmit
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice
