@@ -1,10 +1,10 @@
 import {createRun,applyCommand,type R2RunState,type Action,type Command} from '../../src/domain/run';
 import {assertR2Invariants,r2CreateJoker} from '../../src/domain/r2Run';
-import {newRunIdentity} from '../../src/game/RunLaunch';
+import {R2_BOUNDED_CLEAR_VERSION,R2_BOUNDED_CLEAR_HASH} from '../../src/domain/r2GroupUpgrade';
 import {r2DisabledCards} from '../../src/domain/r2Chapter';
 export function boundedCommand(s:R2RunState,action:Action):Command{return {runId:s.runId,commandId:s.runId+'/command/'+(s.commandSeq+1),expectedSeq:s.commandSeq,action};}
 export function boundedSend(s:R2RunState,action:Action){const r=applyCommand(s,boundedCommand(s,action));if(!r.ok)throw Error(r.code);return r.state;}
-export function boundedStart(hero:R2RunState['characterId']='amo'){return createRun({rulesVersion:'r2',characterId:hero,seed:'bounded-fixed',runId:'bounded/'+hero,r2Identity:newRunIdentity(hero,'group'),openingRoute:'group',modeConfig:{mode:'standard',difficulty:0,challengeId:null,programsEnabled:false}});}
+export function boundedStart(hero:R2RunState['characterId']='amo'){return createRun({rulesVersion:'r2',characterId:hero,seed:'bounded-fixed',runId:'bounded/'+hero,r2Identity:{contentVersion:R2_BOUNDED_CLEAR_VERSION,contentHash:R2_BOUNDED_CLEAR_HASH},openingRoute:'group',modeConfig:{mode:'standard',difficulty:0,challengeId:null,programsEnabled:false}});}
 /** Explicit planted chapter3 budget, not natural supply evidence. */
 export function boundedBossFixture(boss:'B09'|'B14'='B09',upgraded=false){
  let s=boundedStart();s.handLevels.pair=1;s.jokers=[r2CreateJoker('mantangcai','bounded-mantangcai',6,undefined,s)];s.consumables=[{instanceId:'bounded-t01',definitionId:'T01'}];

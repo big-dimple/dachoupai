@@ -15,14 +15,16 @@ export const R2_ENDLESS_CONTRACT=Object.freeze({
 } as const);
 export const R2_BOUNDED_TARGETS=Object.freeze([400,900,1800,3600,6000,9000,14000,20475]);
 export const R2_BOUNDED_TARGET_CONTRACT=Object.freeze({targets:R2_BOUNDED_TARGETS,multiplier:{n:'11',d:'10'},stageMultipliers:R2_ENDLESS_CONTRACT.stageMultipliers,rounding:'ceil-final-target',difficulty:'existing',boss14:'locked-initial-plus-ceil-initial-div20-per-discard'});
+export const R2_CORE_BUILD_TARGET_CONTRACT=Object.freeze({...R2_BOUNDED_TARGET_CONTRACT,multiplier:Object.freeze({n:'27',d:'20'}),publication:'chapter-before-preparation',locking:'no-player-score-input'});
+export interface R2ChapterTargetPlan {policyVersion:'core-build-target-v1';chapter:number;targets:[string,string,string];boss:R2BossPlan}
 const chapterMaximum=(tourMode:R2TourMode):number|undefined=>tourMode==='normal'?R2_TARGETS.length:tourMode==='endless'?R2_ENDLESS_MAX_CHAPTER:undefined;
 export interface R2StageSpec {index:number;name:string;intro:string;targetHeat:string}
 
 /** Difficulty and explicit endless lookup share one final ceiling; current runs still default to D0. */
-export function r2StageSpec(index:number,tourMode:R2TourMode='normal',difficulty:number=0,boundedClear=false):R2StageSpec|undefined {
+export function r2StageSpec(index:number,tourMode:R2TourMode='normal',difficulty:number=0,boundedClear=false,coreBuild=false):R2StageSpec|undefined {
   const maximum=chapterMaximum(tourMode),difficultyMultiplier=r2DifficultyTargetMultiplier(difficulty);
   if(maximum===undefined||!difficultyMultiplier||!Number.isSafeInteger(index)||index<0||index>=maximum*3)return undefined;
-  const chapter=Math.floor(index/3)+1,multiplier=R2_ENDLESS_CONTRACT.stageMultipliers[index%3],targets=boundedClear?R2_BOUNDED_TARGETS:R2_TARGETS,growth=boundedClear?R2_BOUNDED_TARGET_CONTRACT.multiplier:R2_ENDLESS_CONTRACT.multiplier;
+  const chapter=Math.floor(index/3)+1,multiplier=R2_ENDLESS_CONTRACT.stageMultipliers[index%3],targets=boundedClear||coreBuild?R2_BOUNDED_TARGETS:R2_TARGETS,growth=coreBuild?R2_CORE_BUILD_TARGET_CONTRACT.multiplier:boundedClear?R2_BOUNDED_TARGET_CONTRACT.multiplier:R2_ENDLESS_CONTRACT.multiplier;
   let numerator:bigint,denominator:bigint;
   if(chapter<=R2_TARGETS.length){numerator=BigInt(targets[chapter-1]);denominator=1n;}
   else {
@@ -36,6 +38,13 @@ export function r2StageSpec(index:number,tourMode:R2TourMode='normal',difficulty
   const targetHeat=((numerator+denominator-1n)/denominator).toString();
   if(targetHeat.length>R2_ENDLESS_CONTRACT.integerDigits)return undefined;
   return {index,name:`第 ${chapter} 章 · ${['暖场','正场','压轴'][index%3]}`,intro:'打到目标热度即可过场，出牌和弃牌次数每场补满。',targetHeat};
+}
+
+/** Constructed before the chapter shop. No cards, scores, cash or RNG input. */
+export function lockR2ChapterTargets(chapter:number,tourMode:R2TourMode,difficulty:number,boss:R2BossPlan):R2ChapterTargetPlan {
+  const targets=[0,1,2].map(i=>r2StageSpec((chapter-1)*3+i,tourMode,difficulty,true,true)?.targetHeat);
+  if(targets.some(t=>t===undefined))throw Error('numeric-length-limit');
+  return {policyVersion:'core-build-target-v1',chapter,targets:targets as [string,string,string],boss:structuredClone(boss)};
 }
 
 const NOMINAL_R2_BOSS_IDS=['B01','B02','B03','B04','B05','B06','B07','B08','B09','B10','B11','B12','B13','B14','B15','B16'] as const;

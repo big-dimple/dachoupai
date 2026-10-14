@@ -1,4 +1,7 @@
 import {assertTouyeCoreFacts} from './r2TouyeCoreFacts';
+import {isR2CoreBuild,R2_CORE_BUILD_VERSION,R2_CORE_BUILD_HASH} from './r2GroupUpgrade';
+import {lockR2ChapterTargets,type R2ChapterTargetPlan} from './r2Chapter';
+import {r2PracticeQuotes} from './r2Practice';
 import {R2_BOUNDED_CLEAR_VERSION,R2_BOUNDED_CLEAR_HASH,isR2BoundedClear,R2_ACTIVE_MULT_VERSION,R2_ACTIVE_MULT_HASH,R2_ACTIVE_MULT_CHARACTERS,isR2ActiveMultTiming,R2_TOUYE_CORE_VERSION,R2_TOUYE_CORE_HASH,isR2TouyeNewCore} from './r2GroupUpgrade';
 import {R2_ROUTE_GROWTH_VERSION,R2_ROUTE_GROWTH_HASH,isR2RouteGrowth} from './r2GroupUpgrade';
 import {freshR2RouteHistory,freshR2RouteStage,r2RouteSnapshot,validR2RouteHistory,validR2RouteStage,recordR2RouteHand,settleR2RouteGrowth,R2_ROUTE_FAMILIES,type R2RouteHistory,type R2RouteStage} from './r2RouteGrowth';
@@ -38,7 +41,7 @@ import {R2_LIMITS,R2_RESOURCE_CONTRACT,r2HandLimit,r2HandsBudget,r2DiscardBudget
 export {R2_LIMITS,R2_RESOURCE_CONTRACT,r2HandLimit,r2HandsBudget,r2DiscardBudget,r2ConsumableCapacity,r2InterestCap} from './r2Resources';
 import {R2_ENHANCEMENTS,R2_LONG_TERM_ITEMS,R2_TOOLS,R2_TOOL_CATALOG} from '../content/r2Tools';
 import {R2_IMPLEMENTED_TOOL_FEATURES,R2_IMPLEMENTED_ITEM_IDS,r2CardSpecialsSupported,r2CardSpecialsAllowed,r2ToolAllowed,r2EditionSupported,r2ItemSupported,r2ToolSupported} from './r2ToolRuntime';
-import {applyR2Tool} from './r2ToolCommands';
+import {applyR2Tool,upgradeR2HandLevel} from './r2ToolCommands';
 import {R2_TARGETS,R2_AVAILABLE_CHAPTERS,R2_ENDLESS_MAX_CHAPTER,R2_ENDLESS_CONTRACT,R2_BOSSES,R2_SKIP_CONSUMABLES,r2StageSpec,drawR2Boss,r2BossHistoryValid,r2BossPlanValid,r2DisabledCards,r2OrdinarySuppression,type R2TourMode,type R2BossPlan,type R2SkipConsumable,type R2SkipResult} from './r2Chapter';
 export {R2_TARGETS} from './r2Chapter';
 import { scoreR2Hand, ScoreFault, SCORE_LIMITS, R2_BASE_SCORES, type ScoreTrace, type ScoreEvent } from './scoreR2';
@@ -60,6 +63,7 @@ const sharedRuntimeHash=stableHash({jokers:SHARED_R2_JOKERS,features:R2_IMPLEMEN
 if(sharedRuntimeHash!==R2_LEGACY_CONTENT_HASH)throw Error('published-r2-contract-drift');
 
 export const R2_RULESETS=Object.freeze([
+  Object.freeze({contentVersion:R2_CORE_BUILD_VERSION,contentHash:R2_CORE_BUILD_HASH,amoScoreTiming:'assist-v1' as const}),
   Object.freeze({contentVersion:R2_BOUNDED_CLEAR_VERSION,contentHash:R2_BOUNDED_CLEAR_HASH,amoScoreTiming:'assist-v1' as const}),
   Object.freeze({contentVersion:R2_ACTIVE_MULT_VERSION,contentHash:R2_ACTIVE_MULT_HASH,amoScoreTiming:'assist-v1' as const}),
   Object.freeze({contentVersion:R2_TOUYE_CORE_VERSION,contentHash:R2_TOUYE_CORE_HASH,amoScoreTiming:'assist-v1' as const}),
@@ -97,6 +101,7 @@ interface R2StageBase extends Omit<StageState,'targetHeat'|'heat'|'previousHandT
 /** Profile parsing requires assistUsed for the prototype and forbids it for published runs. */
 export type R2StageState = R2StageBase & {routeGrowth?:R2RouteStage} & {erxiangHandoffUsed?:boolean} & {touyeWager?:TouyeWager} & {laohuanTrickUsed?:boolean} & ({assistUsed:boolean}|{assistUsed?:never}) & ({openingDiscard:R2OpeningDiscard|null}|{openingDiscard?:never}) & ({azaoCharge:AzaoCharge}|{azaoCharge?:never}) & ({xiemuBurnUsed:boolean}|{xiemuBurnUsed?:never});
 export interface R2RunState extends Omit<RunState,'schemaVersion'|'rulesVersion'|'stage'|'totalHeat'|'jokers'|'lastScore'|'shop'|'boss'|'outcome'|'difficulty'|'program'|'rng'> {
+  chapterTargetPlan?:R2ChapterTargetPlan;
   routeGrowth?:R2RouteHistory;
   pendingRefill?:PendingRefill|null;
   openingRoute?:R2OpeningRoute;
@@ -160,6 +165,7 @@ export function assertR2Invariants(state:R2RunState):void {
   check(isR2RouteStarter(state)?!!state.routeStarter:!Object.hasOwn(state,'routeStarter'),'starter identity');
   check(state.contentVersion!==R2_ASSIST_VERSION||state.characterId==='amo','assist character identity');
   const config=r2RunModeConfig(state);
+  check(isR2CoreBuild(state)?stableHash(state.chapterTargetPlan)===stableHash(lockR2ChapterTargets(state.chapter,state.tourMode,state.difficulty,state.boss)):!Object.hasOwn(state,'chapterTargetPlan'),'chapter public target lock');
   check(isR2RouteGrowth(state)?validR2RouteHistory(state.routeGrowth,config.startingStageIndex,state.stageIndex):!Object.hasOwn(state,'routeGrowth'),'route history identity/ledger');
   if(state.stage){
     const route=state.stage.routeGrowth;
@@ -284,9 +290,12 @@ export function assertR2Invariants(state:R2RunState):void {
   for(const cursor of Object.values(state.rng))SeededRng.restore(cursor);
 }
 function refill(state:R2RunState):string[] {const refilled:string[]=[];while(state.handOrder.length<(state.stage?.handLimit??r2RunModeConfig(state).baseHandSize)&&state.drawPile.length){const id=state.drawPile.pop()!;state.handOrder.push(id);refilled.push(id);}return refilled;}
-export function getR2Stage(index:number,tourMode:R2TourMode='normal',difficulty:number=0,identity:{contentVersion?:unknown;contentHash?:unknown}={}):{index:number;name:string;intro:string;targetHeat:string}|undefined {
-  return r2StageSpec(index,tourMode,difficulty,isR2BoundedClear(identity));
+export function getR2Stage(index:number,tourMode:R2TourMode='normal',difficulty:number=0,identity:{contentVersion?:unknown;contentHash?:unknown;chapterTargetPlan?:R2ChapterTargetPlan}={}):{index:number;name:string;intro:string;targetHeat:string}|undefined {
+  const spec=r2StageSpec(index,tourMode,difficulty,isR2BoundedClear(identity),isR2CoreBuild(identity));
+  if(spec&&isR2CoreBuild(identity)&&identity.chapterTargetPlan?.chapter===Math.floor(index/3)+1)return {...spec,targetHeat:identity.chapterTargetPlan.targets[index%3]};
+  return spec;
 }
+export function r2ChapterTargetPreview(state:R2RunState):R2ChapterTargetPlan|undefined {return isR2CoreBuild(state)?structuredClone(state.chapterTargetPlan):undefined;}
 function makeChapter(state:R2RunState):void {
   const rule=SeededRng.restore(state.rng.rule),reward=SeededRng.restore(state.rng.reward);
   state.chapter=Math.floor(state.stageIndex/3)+1;state.chapterHandUsage={};state.normalClearClaimed=false;state.boss=drawR2Boss(rule,state.seenBossIds,state.chapter,state.tourMode);state.seenBossIds.push(state.boss.definitionId);
@@ -295,6 +304,7 @@ function makeChapter(state:R2RunState):void {
   state.program=locked.program;state.rng.program=locked.cursor;
   if(config.chapterJokerBanCount){const challenge=SeededRng.restore(state.rng.challenge);state.chapterDisabledJokerId=R2_JOKERS[challenge.integer(0,R2_JOKERS.length-1)].id;state.rng.challenge=challenge.snapshot();}
   else state.chapterDisabledJokerId=null;
+  if(isR2CoreBuild(state))state.chapterTargetPlan=lockR2ChapterTargets(state.chapter,state.tourMode,state.difficulty,state.boss);
 }
 function refreshDisabled(state:R2RunState):void {if(state.stage)state.stage.disabledIds=state.stage.boss?r2DisabledCards(state.stage.boss,state.stage.index,state.handOrder.map(id=>state.deckInstances.find(c=>c.id===id)!)):[];}
 export function r2ScoreContext(state:Pick<R2RunState,'gold'|'stage'|'boss'|'stageIndex'|'jokers'|'characterId'|'mode'|'difficulty'|'challengeId'|'programsEnabled'|'contentVersion'|'contentHash'|'routeGrowth'>,hand:readonly PlayingCard[],ids:readonly string[]) {
@@ -625,6 +635,23 @@ export function transactR2(input:R2RunState|null,command:Command):Transaction {
         state.gold-=price;state.shop.purchases++;if(state.purchaseCoupons>0)state.purchaseCoupons--;
         state.consumables.push({instanceId:`${state.runId}/tool/${command.commandId}`,definitionId:action.definitionId});
         state.shop.basicChoice.purchase={definitionId:action.definitionId,commandId:command.commandId,paidPrice:price,seq:state.commandSeq+1};
+        break;
+      }
+      case 'PracticeHand': {
+        if(!isR2CoreBuild(state))return fail('practice-unavailable');
+        if(state.phase!=='shop'||!state.shop)return fail('wrong-phase');
+        if(action.shopSeq!==state.shop.basicChoice?.shopSeq)return fail('stale-shop');
+        if(state.shop.basicChoice.purchase)return fail('basic-choice-consumed');
+        if(!Object.hasOwn(state.handLevels,action.handType))return fail('undiscovered-hand-type');
+        const level=state.handLevels[action.handType]!;
+        if(level>=R2_TOOL_CATALOG.limits.handLevelMaximum)return fail('hand-level-cap');
+        if(action.expectedLevel!==level)return fail('stale-practice-level');
+        const quote=r2PracticeQuotes(state).find(q=>q.handType===action.handType);if(!quote)return fail('practice-unavailable');
+        if(!quote.available)return fail('not-enough-gold');
+        const goldBefore=state.gold,code=upgradeR2HandLevel(state,action.handType,1);if(code)return fail(code);
+        state.gold-=quote.price;state.shop.purchases++;if(state.purchaseCoupons>0)state.purchaseCoupons--;
+        state.shop.basicChoice.purchase={definitionId:'T01',handType:action.handType,levelBefore:level,commandId:command.commandId,paidPrice:quote.price,seq:state.commandSeq+1};
+        events.push({type:'hand-practiced',handType:action.handType,levelBefore:level,levelAfter:level+1,paidPrice:quote.price,goldBefore,goldAfter:state.gold});
         break;
       }
       case 'BuyOffer': {
