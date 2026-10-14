@@ -1,0 +1,3 @@
+First browser probe FAIL: Xiemu's first example beat has no poker cards by design. Observer incorrectly waited for visible empty .example-cards span (18s timeout). Changed observer to attached, retained 3-step and default-collapsed assertions; product did not change for this failure.
+Second expanded fixture probe FAIL: observer used nonexistent action/finale-keepsake. Actual production finale control is action/last-hand. Corrected only fixture target; raw report retained as fixture-target-FAIL.json.
+Initial typecheck FAIL: new read-only phase copy used stage-preview; actual saved phase is stage-ready. Corrected display comparison. Final typecheck/test/build results recorded separately.

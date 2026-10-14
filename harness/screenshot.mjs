@@ -56,6 +56,8 @@ try {
     await tapUI(page,'character-select','character/amo',touch);
     assert.equal(await page.evaluate(()=>window.__harness.game.scene.getScene('character-select').selectedId),'amo');
     assert.equal(await page.evaluate(()=>window.__harness.game.scene.isActive('shop')),false,'selection requires confirmation');
+    assert.equal(await page.locator('dialog.hero-explanation[open][data-hero="amo"]').count(),1,'avatar opens the corresponding explanation');
+    await dom(page,'回到选角',touch);
     await tapUI(page,'character-select','action/cancel-character',touch);
     assert.equal((await point(page,'character-select','action/confirm-character')).enabled,false);
     await tapUI(page,'character-select','character/amo',touch);await confirmHeroRoute(page,touch);await waitScene(page,'shop');

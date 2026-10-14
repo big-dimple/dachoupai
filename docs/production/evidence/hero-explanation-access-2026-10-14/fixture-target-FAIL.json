@@ -1,0 +1,219 @@
+{
+  "head": "69f46e47f250ec3ad7bc55ed11f7888326eecf8f",
+  "sourceTree": "harness/screenshot.mjs           |  2 ++\n harness/ui.mjs                   |  1 +\n src/game/BuildJourneyDialog.ts   |  6 +++---\n src/game/BuildKeepsakeView.ts    | 10 ++++++----\n src/game/CharacterSelectScene.ts | 15 +++++++--------\n src/game/DetailDialog.ts         | 10 +++++++---\n src/game/IntermissionScene.ts    |  5 ++++-\n src/game/ShopScene.ts            |  7 ++++---\n src/game/StageTableArt.ts        |  3 ++-\n 9 files changed, 36 insertions(+), 23 deletions(-)",
+  "browser": "151.0.7922.173",
+  "scope": "PC1366/390 software Chromium actual pointer/touch operations. Six heroes; controlled valid public-hand/cash saves, not natural acquisition or complete games. GameScene unchanged: table decoration wiring remains parent patch. No human/device/audio/full experience acceptance.",
+  "rows": [
+    {
+      "id": "amo",
+      "width": 1366,
+      "scene": "character-select",
+      "target": "character/amo",
+      "firstText": "阿默 · 主手＋助攻\n\n“少说一句，照样抢你的场。”\n\n做什么\n两对及以上，出牌前可用剩余同点牌助攻；副组真消耗，本场一次。\n\n何时能用\n先选两对及以上主手，剩余牌里留一组对子或三条；每场一次。\n\n现在\n选路线并登台后，在牌桌点英雄使用技能。\n\n点开看一个技能例子\n完整能力与限制\n回到选角",
+      "closeBounds": {
+        "x": 264,
+        "y": 613,
+        "width": 838,
+        "height": 48
+      },
+      "openCloseRepeatEscapeFocusState": "PASS"
+    },
+    {
+      "id": "amo",
+      "width": 1366,
+      "scene": "character-select",
+      "target": "opening/hero-details",
+      "firstText": "阿默 · 主手＋助攻\n\n“少说一句，照样抢你的场。”\n\n做什么\n两对及以上，出牌前可用剩余同点牌助攻；副组真消耗，本场一次。\n\n何时能用\n先选两对及以上主手，剩余牌里留一组对子或三条；每场一次。\n\n现在\n选路线并登台后，在牌桌点英雄使用技能。\n\n点开看一个技能例子\n完整能力与限制\n回到选角",
+      "closeBounds": {
+        "x": 264,
+        "y": 613,
+        "width": 838,
+        "height": 48
+      },
+      "openCloseRepeatEscapeFocusState": "PASS"
+    },
+    {
+      "id": "touye",
+      "width": 1366,
+      "scene": "character-select",
+      "target": "character/touye",
+      "firstText": "骰爷 · 弃前赌约\n\n“你算你的，我敢再押一手。”\n\n做什么\n1选弃牌，2押牌型换牌，3用新摸牌成型。已成型也可押；成×2／不成×0.85。\n\n何时能用\n选1–5张弃牌，再押下一手牌型并换牌；每场一次。\n\n现在\n选路线并登台后，在牌桌点英雄使用技能。\n\n点开看一个技能例子\n完整能力与限制\n回到选角",
+      "closeBounds": {
+        "x": 264,
+        "y": 613,
+        "width": 838,
+        "height": 48
+      },
+      "openCloseRepeatEscapeFocusState": "PASS"
+    },
+    {
+      "id": "touye",
+      "width": 1366,
+      "scene": "character-select",
+      "target": "opening/hero-details",
+      "firstText": "骰爷 · 弃前赌约\n\n“你算你的，我敢再押一手。”\n\n做什么\n1选弃牌，2押牌型换牌，3用新摸牌成型。已成型也可押；成×2／不成×0.85。\n\n何时能用\n选1–5张弃牌，再押下一手牌型并换牌；每场一次。\n\n现在\n选路线并登台后，在牌桌点英雄使用技能。\n\n点开看一个技能例子\n完整能力与限制\n回到选角",
+      "closeBounds": {
+        "x": 264,
+        "y": 613,
+        "width": 838,
+        "height": 48
+      },
+      "openCloseRepeatEscapeFocusState": "PASS"
+    },
+    {
+      "id": "laohuan",
+      "width": 1366,
+      "scene": "character-select",
+      "target": "character/laohuan",
+      "firstText": "老幻 · 戏法换牌\n\n“袖子空的？你的掌声可不空。”\n\n做什么\n弃牌前点英雄用戏法，多看最多两张并自己留牌，本场一次。\n\n何时能用\n先选1–5张弃牌，付得起本次弃牌成本；每场一次。\n\n现在\n选路线并登台后，在牌桌点英雄使用技能。\n\n点开看一个技能例子\n完整能力与限制\n回到选角",
+      "closeBounds": {
+        "x": 264,
+        "y": 613,
+        "width": 838,
+        "height": 48
+      },
+      "openCloseRepeatEscapeFocusState": "PASS"
+    },
+    {
+      "id": "laohuan",
+      "width": 1366,
+      "scene": "character-select",
+      "target": "opening/hero-details",
+      "firstText": "老幻 · 戏法换牌\n\n“袖子空的？你的掌声可不空。”\n\n做什么\n弃牌前点英雄用戏法，多看最多两张并自己留牌，本场一次。\n\n何时能用\n先选1–5张弃牌，付得起本次弃牌成本；每场一次。\n\n现在\n选路线并登台后，在牌桌点英雄使用技能。\n\n点开看一个技能例子\n完整能力与限制\n回到选角",
+      "closeBounds": {
+        "x": 264,
+        "y": 613,
+        "width": 838,
+        "height": 48
+      },
+      "openCloseRepeatEscapeFocusState": "PASS"
+    },
+    {
+      "id": "erxiang",
+      "width": 1366,
+      "scene": "character-select",
+      "target": "character/erxiang",
+      "firstText": "二响 · 交棒\n\n“你刚开口，场子已经归我了。”\n\n做什么\n对子及以上，出牌前点英雄选交棒：一张核心普通点数改加倍率，本场一次。\n\n何时能用\n先选对子及以上，再选一张有效计分牌交棒；每场一次。\n\n现在\n选路线并登台后，在牌桌点英雄使用技能。\n\n点开看一个技能例子\n高清细节加载中…\n完整能力与限制\n回到选角",
+      "closeBounds": {
+        "x": 264,
+        "y": 613,
+        "width": 838,
+        "height": 48
+      },
+      "openCloseRepeatEscapeFocusState": "PASS"
+    },
+    {
+      "id": "erxiang",
+      "width": 1366,
+      "scene": "character-select",
+      "target": "opening/hero-details",
+      "firstText": "二响 · 交棒\n\n“你刚开口，场子已经归我了。”\n\n做什么\n对子及以上，出牌前点英雄选交棒：一张核心普通点数改加倍率，本场一次。\n\n何时能用\n先选对子及以上，再选一张有效计分牌交棒；每场一次。\n\n现在\n选路线并登台后，在牌桌点英雄使用技能。\n\n点开看一个技能例子\n完整能力与限制\n回到选角",
+      "closeBounds": {
+        "x": 264,
+        "y": 613,
+        "width": 838,
+        "height": 48
+      },
+      "openCloseRepeatEscapeFocusState": "PASS"
+    },
+    {
+      "id": "azao",
+      "width": 1366,
+      "scene": "character-select",
+      "target": "character/azao",
+      "firstText": "阿燥 · 蓄势／爆发\n\n“老一套？我换个活儿压你一头。”\n\n做什么\n两对及以上先蓄势；有层时出牌前点英雄释放，换型可继续蓄。\n\n何时能用\n先用两对及以上实际出牌蓄势；有层时，选两对及以上就能释放。\n\n现在\n选路线并登台后，在牌桌点英雄使用技能。\n\n点开看一个技能例子\n完整能力与限制\n回到选角",
+      "closeBounds": {
+        "x": 264,
+        "y": 613,
+        "width": 838,
+        "height": 48
+      },
+      "openCloseRepeatEscapeFocusState": "PASS"
+    },
+    {
+      "id": "azao",
+      "width": 1366,
+      "scene": "character-select",
+      "target": "opening/hero-details",
+      "firstText": "阿燥 · 蓄势／爆发\n\n“老一套？我换个活儿压你一头。”\n\n做什么\n两对及以上先蓄势；有层时出牌前点英雄释放，换型可继续蓄。\n\n何时能用\n先用两对及以上实际出牌蓄势；有层时，选两对及以上就能释放。\n\n现在\n选路线并登台后，在牌桌点英雄使用技能。\n\n点开看一个技能例子\n完整能力与限制\n回到选角",
+      "closeBounds": {
+        "x": 264,
+        "y": 613,
+        "width": 838,
+        "height": 48
+      },
+      "openCloseRepeatEscapeFocusState": "PASS"
+    },
+    {
+      "id": "xiemu",
+      "width": 1366,
+      "scene": "character-select",
+      "target": "character/xiemu",
+      "firstText": "谢幕人 · 留钱／燃金\n\n“别急着鼓掌，最后才轮到我。”\n\n做什么\n两对及以上，出牌前可燃10／20／30金换倍率，也可留钱收息。\n\n何时能用\n选两对及以上，至少留有10金；每场一次。\n\n现在\n选路线并登台后，在牌桌点英雄使用技能。\n\n点开看一个技能例子\n完整能力与限制\n回到选角",
+      "closeBounds": {
+        "x": 264,
+        "y": 613,
+        "width": 838,
+        "height": 48
+      },
+      "openCloseRepeatEscapeFocusState": "PASS"
+    },
+    {
+      "id": "xiemu",
+      "width": 1366,
+      "scene": "character-select",
+      "target": "opening/hero-details",
+      "firstText": "谢幕人 · 留钱／燃金\n\n“别急着鼓掌，最后才轮到我。”\n\n做什么\n两对及以上，出牌前可燃10／20／30金换倍率，也可留钱收息。\n\n何时能用\n选两对及以上，至少留有10金；每场一次。\n\n现在\n选路线并登台后，在牌桌点英雄使用技能。\n\n点开看一个技能例子\n完整能力与限制\n回到选角",
+      "closeBounds": {
+        "x": 264,
+        "y": 613,
+        "width": 838,
+        "height": 48
+      },
+      "openCloseRepeatEscapeFocusState": "PASS"
+    },
+    {
+      "id": "amo",
+      "width": 1366,
+      "scene": "shop",
+      "target": "shop/hero-preparation",
+      "firstText": "阿默 · 主手＋助攻\n\n“少说一句，照样抢你的场。”\n\n做什么\n两对及以上，出牌前可用剩余同点牌助攻；副组真消耗，本场一次。\n\n何时能用\n先选两对及以上主手，剩余牌里留一组对子或三条；每场一次。\n\n现在\n现在是筹备商店；技能要到牌桌使用。\n\n点开看一个技能例子\n完整能力与限制\n返回商店",
+      "closeBounds": {
+        "x": 264,
+        "y": 613,
+        "width": 838,
+        "height": 48
+      },
+      "openCloseRepeatEscapeFocusState": "PASS"
+    },
+    {
+      "id": "amo",
+      "width": 1366,
+      "scene": "shop-keepsake",
+      "nestedFocusState": "PASS"
+    },
+    {
+      "id": "amo",
+      "width": 1366,
+      "scene": "intermission",
+      "status": "NO_HERO_DISPLAYED_IN_THIS_CLEAR"
+    },
+    {
+      "id": "amo",
+      "width": 1366,
+      "scene": "intermission",
+      "target": "result/hero-details",
+      "firstText": "阿默 · 主手＋助攻\n\n“少说一句，照样抢你的场。”\n\n做什么\n两对及以上，出牌前可用剩余同点牌助攻；副组真消耗，本场一次。\n\n何时能用\n先选两对及以上主手，剩余牌里留一组对子或三条；每场一次。\n\n现在\n本场已结束；这里只查看说明，不会发动技能。\n\n点开看一个技能例子\n完整能力与限制\n返回结算",
+      "closeBounds": {
+        "x": 264,
+        "y": 613,
+        "width": 838,
+        "height": 48
+      },
+      "openCloseRepeatEscapeFocusState": "PASS"
+    }
+  ],
+  "errors": [],
+  "status": "FAIL",
+  "error": "page.waitForFunction: Timeout 18000ms exceeded.\n    at point (/workspace/dachoupai/harness/ui.mjs:5:14)\n    at tapUI (/workspace/dachoupai/harness/ui.mjs:25:17)\n    at /workspace/dachoupai/harness/hero-explanation.mjs:40:8"
+}

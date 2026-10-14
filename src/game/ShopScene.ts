@@ -1,5 +1,6 @@
 import {createShopRarityFrame,createShopRecommendationStars,createShopRecommendationAccent,createShopCombinationMark,createShopRouteTag,shopCombinationVisual,shopCombinationMarkLayout,shopRecommendationVisual} from './ShopCardValueVisual';
 import {warmTableImages} from './StageImageWarmup';
+import {showHeroExplanation} from './HeroExplanation';
 import {isR2SuitChoice,R2_SUIT_DYE_IDS,r2BasicChoiceBasePrice} from '../domain/r2GroupUpgrade';
 import {routeFrame} from './RouteFrame';
 import {routeFitCue,markRouteDetail,toolPurpose} from './RouteFitCue';
@@ -147,7 +148,7 @@ export class ShopScene extends Phaser.Scene {
     const purse={x:p.x+p.w-(this.view.layout.width<=700?44:64)-124,y:p.top-1,width:116,height:34},purseArt=this.add.graphics();
     const character=getCharacter(this.run.characterId),titleRight=Math.min(...[purse,p.reroll,p.build].filter(b=>b.y<p.top+32&&b.y+b.height>p.top&&b.x>=p.x).map(b=>b.x),p.x+p.w)-6;
     const avatar=avatarKey(character.id),withAvatar=p.portrait&&titleRight-p.x>=Math.max(68,38+character.name.length*14)&&this.textures.exists(avatar),titleX=p.x+(withAvatar?38:0);
-    if(withAvatar){const image=this.add.image(p.x+16,p.top+16,avatar);image.setScale(32/image.width).setName('shop/hero-avatar').setData('assetId',character.id+'.avatar');v.add(image);}
+    if(withAvatar){const image=this.add.image(p.x+16,p.top+16,avatar);image.setScale(32/image.width).setName('shop/hero-avatar').setData('assetId',character.id+'.avatar');v.add(image);const hit=v.rect({x:p.x-6,y:p.top-6,width:44,height:44}).setFillStyle(0,0).setStrokeStyle(0);v.target(hit,'shop/hero-details',{tap:()=>showHeroExplanation(this.dialog,character.id,{run:this.run,closeLabel:'返回商店'}),detail:()=>showHeroExplanation(this.dialog,character.id,{run:this.run,closeLabel:'返回商店'})});}
     const title=v.text(titleX,p.top+3,character.name+(this.run.tourMode==='endless'?' · 无尽筹备':' · 筹备'),18,'#26313A').setFontFamily('Georgia, "Noto Serif SC", SimSun, serif').setFontStyle('bold').setName('shop/title');
     if(title.x+title.width>titleRight)title.setText(character.name);
     for(let font=18;title.x+title.width>titleRight&&font>14;)title.setFontSize(--font);
@@ -230,8 +231,8 @@ export class ShopScene extends Phaser.Scene {
     const scale=Math.min(width/source.width,height/source.height),x=p.x+pc.left.width/2;
     this.view.add(this.add.image(x,y+height/2,key).setScale(scale).setName('shop/hero-art'));
     const hit=this.view.add(this.add.rectangle(x,y+height/2,width,height,0,0));
-    this.view.target(hit,'shop/hero-preparation',{tap:()=>this.inspectJourney(true),detail:()=>this.inspectJourney(true)});
-    this.view.text(x,y+height+8,character.name+' · 下场准备↗',16,'#3F606B').setOrigin(.5,0).setName('shop/hero-caption');
+    this.view.target(hit,'shop/hero-preparation',{tap:()=>showHeroExplanation(this.dialog,character.id,{run:this.run,closeLabel:'返回商店'}),detail:()=>showHeroExplanation(this.dialog,character.id,{run:this.run,closeLabel:'返回商店'})});
+    this.view.text(x,y+height+8,character.name+' · 技能说明↗',16,'#3F606B').setOrigin(.5,0).setName('shop/hero-caption');
   }
   private drawOwned(p:ReturnType<typeof shopLayout>):void {
     const v=this.view;
