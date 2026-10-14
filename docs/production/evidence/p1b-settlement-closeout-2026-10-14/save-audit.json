@@ -1,0 +1,180 @@
+{
+  "head": "c5ff7d4035fb89d13831ce1aa30c3b727d8fc040",
+  "scope": "Offline re-evaluation of snapshots from native controls, not another gameplay run.",
+  "cases": [
+    {
+      "key": "native-current-e11-1366",
+      "command": {
+        "runId": "controlled/settlement/e11-current",
+        "commandId": "controlled/settlement/e11-current/command/4",
+        "expectedSeq": 3,
+        "action": {
+          "type": "PlayHand",
+          "selectedIds": [
+            "spades-13",
+            "hearts-13",
+            "clubs-13",
+            "spades-9",
+            "hearts-9"
+          ]
+        }
+      },
+      "contentVersion": "quality-r2-bounded-clear-v1",
+      "contentHash": "json-fnv-v1:7f60ad479f68b033",
+      "score": "3931",
+      "status": "PASS",
+      "fullStateJournalIDB": "PASS",
+      "coldRecovery": "PASS",
+      "mode": "1x",
+      "fastForward": false
+    },
+    {
+      "key": "native-current-e11-390",
+      "command": {
+        "runId": "controlled/settlement/e11-current",
+        "commandId": "controlled/settlement/e11-current/command/4",
+        "expectedSeq": 3,
+        "action": {
+          "type": "PlayHand",
+          "selectedIds": [
+            "spades-13",
+            "hearts-13",
+            "clubs-13",
+            "spades-9",
+            "hearts-9"
+          ]
+        }
+      },
+      "contentVersion": "quality-r2-bounded-clear-v1",
+      "contentHash": "json-fnv-v1:7f60ad479f68b033",
+      "score": "3931",
+      "status": "PASS",
+      "fullStateJournalIDB": "PASS",
+      "coldRecovery": "PASS",
+      "mode": "1x",
+      "fastForward": false
+    },
+    {
+      "key": "native-current-chain-1366",
+      "command": {
+        "runId": "controlled/settlement/chain",
+        "commandId": "controlled/settlement/chain/command/5",
+        "expectedSeq": 4,
+        "action": {
+          "type": "PlayHand",
+          "selectedIds": [
+            "hearts-9",
+            "diamonds-7",
+            "spades-8",
+            "diamonds-12",
+            "spades-5"
+          ],
+          "xiemuBurn": 30
+        }
+      },
+      "contentVersion": "quality-r2-bounded-clear-v1",
+      "contentHash": "json-fnv-v1:7f60ad479f68b033",
+      "score": "41990",
+      "status": "PASS",
+      "fullStateJournalIDB": "PASS",
+      "coldRecovery": "PASS",
+      "mode": "4x",
+      "fastForward": false
+    },
+    {
+      "key": "native-current-chain-390",
+      "command": {
+        "runId": "controlled/settlement/chain",
+        "commandId": "controlled/settlement/chain/command/5",
+        "expectedSeq": 4,
+        "action": {
+          "type": "PlayHand",
+          "selectedIds": [
+            "hearts-9",
+            "diamonds-7",
+            "spades-8",
+            "diamonds-12",
+            "spades-5"
+          ],
+          "xiemuBurn": 30
+        }
+      },
+      "contentVersion": "quality-r2-bounded-clear-v1",
+      "contentHash": "json-fnv-v1:7f60ad479f68b033",
+      "score": "41990",
+      "status": "PASS",
+      "fullStateJournalIDB": "PASS",
+      "coldRecovery": "PASS",
+      "mode": "4x",
+      "fastForward": false
+    },
+    {
+      "key": "native-billion-1366",
+      "command": {
+        "runId": "controlled/settlement/billion",
+        "commandId": "controlled/settlement/billion/command/5",
+        "expectedSeq": 4,
+        "action": {
+          "type": "PlayHand",
+          "selectedIds": [
+            "spades-12",
+            "hearts-6",
+            "diamonds-4",
+            "clubs-4",
+            "hearts-5"
+          ],
+          "xiemuBurn": 30
+        }
+      },
+      "contentVersion": "quality-r2-route-growth-v1",
+      "contentHash": "json-fnv-v1:7414228d95059959",
+      "score": "733884590",
+      "status": "PASS",
+      "fullStateJournalIDB": "PASS",
+      "coldRecovery": "PASS",
+      "mode": "4x",
+      "fastForward": "REAL_MENU_INPUT"
+    },
+    {
+      "key": "native-billion-390",
+      "command": {
+        "runId": "controlled/settlement/billion",
+        "commandId": "controlled/settlement/billion/command/5",
+        "expectedSeq": 4,
+        "action": {
+          "type": "PlayHand",
+          "selectedIds": [
+            "spades-12",
+            "hearts-6",
+            "diamonds-4",
+            "clubs-4",
+            "hearts-5"
+          ],
+          "xiemuBurn": 30
+        }
+      },
+      "contentVersion": "quality-r2-route-growth-v1",
+      "contentHash": "json-fnv-v1:7414228d95059959",
+      "score": "733884590",
+      "status": "PASS",
+      "fullStateJournalIDB": "PASS",
+      "coldRecovery": "PASS",
+      "mode": "reduced",
+      "fastForward": false
+    },
+    {
+      "key": "boundary-repeat-continue",
+      "command": {
+        "runId": "controlled/settlement/chain",
+        "commandId": "controlled/settlement/chain/command/6",
+        "expectedSeq": 5,
+        "action": {
+          "type": "OpenShop"
+        }
+      },
+      "status": "PASS",
+      "fullStateJournalIDB": "PASS"
+    }
+  ],
+  "status": "PASS"
+}

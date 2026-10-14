@@ -1,0 +1,13 @@
+{
+  "head": "d3d6f4e027f420d584af2f68a9444464fc47537d",
+  "srcTree": "5252e684a4863f5169ef5a9538dddc0abf9d7770",
+  "status": "FAIL",
+  "error": "locator.click: Timeout 45000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: 'K♠ K♥ · 助攻 ×2', exact: true })\u001b[22m\n\n    at /workspace/dachoupai/harness/hero-source-title.mjs:36:277",
+  "cases": [
+    {
+      "key": "amo-390-normal",
+      "status": "FAIL",
+      "failure": "locator.click: Timeout 45000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: 'K♠ K♥ · 助攻 ×2', exact: true })\u001b[22m\n\n    at /workspace/dachoupai/harness/hero-source-title.mjs:36:277"
+    }
+  ]
+}
