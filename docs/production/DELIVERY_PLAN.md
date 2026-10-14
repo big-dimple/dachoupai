@@ -2,7 +2,15 @@
 
 ## 当前统一执行计划
 
-### 当前批次：发布后五窗口完整体验（2026-10-14）
+### 当前批次：main4a52有限发布后的手机QA（2026-10-14）
+
+**已合/发布与本次实测分列：** 原PR177→178→180→179→182→181已正常合入main `4a52fd0b0fb9ac0a49b8cb5e79abc8db4326e2d7`，五窗口工程已合。父委派确认[CI38601884508](https://github.com/big-dimple/dachoupai/actions/runs/38601884508)全success，正式[pai.hp666.cc](https://pai.hp666.cc)已读同版本、build `2026-10-14T16:55:57.761Z`，PC选角/技能示例/商店实际可用；这些为父有限发布回执，不是本代理的手机实测或洁净构建证明。
+
+**本批QA当前结果：ENVIRONMENT_BLOCKED。** 云环境2026-10-14 17:16UTC以系统Chromium151在390×844正常导航正式站，启动前返回 `ERR_TUNNEL_CONNECTION_FAILED`；普通curl CONNECT同时403/envoy。未绕过代理/权限、未改用用户电脑或本地替代站。390/320/短屏选角、技能示例返回、随机core-build新局、首章升级报价/买或留钱及保存恢复均NOT_RUN；没有新局、seed或自然存档。详见[本次证据与原错误页](evidence/post-release-phone-2026-10-14/README.md)。这不是产品FAIL，也不能据此签手机通过；待可访问正式站的授权云环境完成同一有限批，不重开18局、不导入假牌、不刷seed、不改规则。
+
+**复用与下一步：** [PR183](https://github.com/big-dimple/dachoupai/pull/183)最终集成head6015f069的src/tests/harness/public/art与main4a52五树相同，原受控报价/交易/额度/入场/恢复及181分镜有限验收可按原head复用；[树证明与原证据范围](evidence/post-release-phone-2026-10-14/README.md#原证据的有限复用)不当线上手机自然证据。PR183仅验证draft、不合；本QA也只证据与本页当前入口，开发分支交draft供父审，不合main、不部署。核心三路线正常经营证据门保持，实体设备、听感、完整美学/整体平衡与全旅程仍OPEN。下方五窗口“已启动/尚未交付”等按f651历史读取，不再作为当前未合状态；不另建计划。
+
+### 历史批次：发布后五窗口启动记录（2026-10-14，f651a04e）
 
 **已合与有限发布回执：** PR172–176已正常合入main `f651a04ef5eb68c29a413acf8b4d8a0e9bbcde09`，精确[CI38575066453](https://github.com/big-dimple/dachoupai/actions/runs/38575066453) browser/domain/docs及[production-docs38575066487](https://github.com/big-dimple/dachoupai/actions/runs/38575066487)全success。root14:03UTC实际在正式域名菜单读到 `f651a04ef5eb`、build `13:51:21.951Z`、dirty仅package-lock.json一文件；这是有限发布回执，不签洁净构建或完整审美、听感、物理手机、全旅程/整体平衡验收。原失败与各SHA证据保持。
 
