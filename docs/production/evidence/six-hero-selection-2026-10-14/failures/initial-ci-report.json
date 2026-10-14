@@ -1,0 +1,43 @@
+{
+  "scope": "all",
+  "testedCommit": "977295b40d7d646e97b36a969308dab7b90c7917",
+  "status": "FAIL",
+  "exitCode": 1,
+  "before": {
+    "source": "32a854fe6314b0f0a2e775edd2be79c02ed917c687494b3b00ddbe3934f76ed9",
+    "index": "16b3a2095ce56570d6f467f0a4d5401274340efe3ed658197005882c0a850c4f",
+    "head": "977295b40d7d646e97b36a969308dab7b90c7917",
+    "branch": "refs/heads/dev/six-hero-selection-20261014"
+  },
+  "after": {
+    "source": "5b4a71ac3838a26c34823aab97342c6cf8251e064d69ba2e4edccc04c654af9d",
+    "index": "16b3a2095ce56570d6f467f0a4d5401274340efe3ed658197005882c0a850c4f",
+    "head": "977295b40d7d646e97b36a969308dab7b90c7917",
+    "branch": "refs/heads/dev/six-hero-selection-20261014"
+  },
+  "steps": [
+    {
+      "name": "test",
+      "status": "FAIL",
+      "childExitCode": 1,
+      "elapsedMs": 112841,
+      "reason": "checker changed source; changes retained for inspection"
+    }
+  ],
+  "notIncluded": [
+    {
+      "name": "extended browser/recovery/fault/asset/simulation diagnostics",
+      "status": "NOT_INCLUDED",
+      "reason": "run the existing specific command only when its domain changes; P00 removes repeated default execution"
+    },
+    {
+      "name": "balance/benchmark acceptance",
+      "status": "NOT_INCLUDED",
+      "reason": "later work packages; no gameplay approval inferred from checks"
+    },
+    {
+      "name": "physical devices / human / art approval",
+      "status": "NOT_RUN"
+    }
+  ]
+}
