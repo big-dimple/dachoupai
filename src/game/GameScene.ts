@@ -1229,7 +1229,7 @@ export class GameScene extends Phaser.Scene {
   }
   private async command(action:import('../domain/run').Action,expectedSeq?:number):Promise<boolean> {
     if(!this.ready)return false;this.clearHover();this.cancelAiCandidates();this.playing=true;const lifecycle=this.lifecycle,intent=++this.intent;this.updateControls();
-    const pendingDrag=action.type==='ReorderJokers'&&this.ownedDrag?.saving?this.ownedDrag:undefined,inputEnabled=this.input.enabled;
+    const pendingDrag=action.type==='ReorderJokers'&&this.ownedDrag?.saving?this.ownedDrag:undefined,inputEnabled=pendingDrag?this.input.enabled:true;
     if(pendingDrag){this.input.enabled=false;pendingDrag.pending();}
     let reorderSaved=false;
     const focusedId=this.hand[this.focusIndex]?.id,beforeTool=this.run,toolOwner=action.type==='UseConsumable'?this.dialog.current:undefined;
