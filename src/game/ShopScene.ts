@@ -15,7 +15,7 @@ import {drawShopArt,shopSheet} from './ShopArt';
 import {r2BasicToolShelfStatus} from '../domain/r2Shop';
 import {starterOffer,starterShopCue} from './RouteStarter';
 import {firstChapterGuide,firstChapterShopPrompt,dismissFirstChapterGuide,attachFirstChapterGuide} from './FirstChapterGuide';
-import {shopRouteRelation,shopOfferRelation,shopReplacementFacts,shopReplacementTransactionFacts,shopReplacementCompactFacts,shopSaleConsequences,shopPurchaseConditionLosses} from './ShopRouteRelations';
+import {shopRouteRelation,shopOfferRelation,shopSaleConsequences,shopPurchaseConditionLosses} from './ShopRouteRelations';
 import {buildGrowthProgress} from './BuildGrowthProgress';
 import {shopInvestment} from './ShopInvestment';
 import {currentBuildFocus,BUILD_LABEL,toolSupportsFocus} from './BuildJourney';
@@ -45,7 +45,6 @@ import {dispatchRun,runController} from './runAdapter';
 import {reorderJokerIds,ownedJokerDropIndex} from './JokerReorder';
 import {OwnedJokerInput} from './OwnedJokerInput';
 import {OwnedJokerDragVisual,ownedOrderHint,ownedOrderReversed} from './OwnedJokerDragVisual';
-import {shopRouteGrowthFacts} from './ShopRouteGrowthFacts';
 import {heatText,fractionText} from './scoreText';
 import {toolInfo,itemInfo,goodsArtPortrait,editionLabel,editionEffectText,toolFamilyLabel} from './r2ToolInfo';
 import {SceneView} from './SceneView';
@@ -485,7 +484,7 @@ export class ShopScene extends Phaser.Scene {
     if(targets){const notes=document.createElement('details'),title=document.createElement('summary');notes.className='make-cards-notes';title.textContent='工具卡与用途';notes.append(title);for(const node of scroll.querySelectorAll(':scope > .dialog-card-art,:scope > .dialog-intro'))notes.append(node);scroll.prepend(targets);scroll.append(notes);}
     if(purchase){
       const receipt=document.createElement('p');receipt.className='make-cards-receipt';receipt.textContent=purchase;d.querySelector('.dialog-header')!.append(receipt);
-      const paid=document.createElement('p');paid.className='shop-tool-paid-note';paid.textContent='实付 '+purchase.match(/实付 (\d+) 金/)?.[1]+' 金 · 已入库存，未使用';d.querySelector('.tool-short-instruction')?.after(paid);
+      const paid=document.createElement('p'),amount=purchase.match(/实付 (\d+) 金/)?.[1];paid.className='shop-tool-paid-note';paid.textContent=amount?'实付 '+amount+' 金 · 已入库存，未使用':purchase;d.querySelector('.tool-short-instruction')?.after(paid);
     }
   }
   private continueMakeCards():void {
