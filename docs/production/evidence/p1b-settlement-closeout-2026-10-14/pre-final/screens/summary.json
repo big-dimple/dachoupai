@@ -1,0 +1,3363 @@
+{
+  "head": "c4174a0c1523d0aa1d0ad3e223245b4565b06d2e",
+  "status": "PASS",
+  "scope": "Controlled inventory/levels/prior ledger -> unchanged real scorer. Same terminal states imported through production UI for before/after. Native command cases compare complete state, journal and IndexedDB. No natural acquisition, human aesthetic, hardware, FPS or hearing acceptance.",
+  "cases": [
+    {
+      "key": "ordinary-1366x768",
+      "status": "PASS",
+      "score": "1296",
+      "regions": {
+        "stage": {
+          "x": 193,
+          "y": 102,
+          "width": 980,
+          "height": 422
+        },
+        "texts": [
+          {
+            "name": "result/title",
+            "text": "一场好戏，满堂喝彩！",
+            "bounds": {
+              "type": 5,
+              "x": 193,
+              "y": 42,
+              "width": 340,
+              "height": 36
+            }
+          },
+          {
+            "name": "result/tier",
+            "text": "好戏收束",
+            "bounds": {
+              "type": 5,
+              "x": 555,
+              "y": 130,
+              "width": 72,
+              "height": 21
+            }
+          },
+          {
+            "name": "result/hand",
+            "text": "顺子 · 1级",
+            "bounds": {
+              "type": 5,
+              "x": 814,
+              "y": 163,
+              "width": 72,
+              "height": 19
+            }
+          },
+          {
+            "name": "result/score",
+            "text": "+1,296",
+            "bounds": {
+              "type": 5,
+              "x": 753,
+              "y": 194,
+              "width": 194,
+              "height": 81
+            }
+          },
+          {
+            "name": "result/formula",
+            "text": "目标 400 · 已过关",
+            "bounds": {
+              "type": 5,
+              "x": 795,
+              "y": 281,
+              "width": 110,
+              "height": 16
+            }
+          },
+          {
+            "name": "result/gap",
+            "text": "首手过关 · 结果已保存",
+            "bounds": {
+              "type": 5,
+              "x": 780.5,
+              "y": 303,
+              "width": 139,
+              "height": 16
+            }
+          },
+          {
+            "name": "result/hero-name",
+            "text": "谢幕人",
+            "bounds": {
+              "type": 5,
+              "x": 346,
+              "y": 434,
+              "width": 60,
+              "height": 23
+            }
+          },
+          {
+            "name": "result/hero-effect",
+            "text": "本局角色",
+            "bounds": {
+              "type": 5,
+              "x": 348,
+              "y": 463,
+              "width": 56,
+              "height": 16
+            }
+          },
+          {
+            "name": "result/source-continuity",
+            "text": "搭台阶",
+            "bounds": {
+              "type": 5,
+              "x": 629,
+              "y": 404,
+              "width": 42,
+              "height": 17
+            }
+          },
+          {
+            "name": "result/source-effect",
+            "text": "热度 +50\n读取 +100 热度",
+            "bounds": {
+              "type": 5,
+              "x": 629,
+              "y": 425,
+              "width": 96,
+              "height": 32
+            }
+          },
+          {
+            "name": "result/reward",
+            "text": "奖励  +14 金",
+            "bounds": {
+              "type": 5,
+              "x": 971.5,
+              "y": 449,
+              "width": 111,
+              "height": 22
+            }
+          },
+          {
+            "name": "result/next-body",
+            "text": "第 1 章 · 正场 · 目标 600\n筹备后，出牌与弃牌次数补满。\n下场燃金次数恢复为1次",
+            "bounds": {
+              "type": 5,
+              "x": 207,
+              "y": 575,
+              "width": 196,
+              "height": 52
+            }
+          }
+        ],
+        "art": [
+          {
+            "name": "result-art/hero",
+            "asset": "xiemu.selection",
+            "bounds": {
+              "type": 5,
+              "x": 255.2,
+              "y": 130,
+              "width": 241.59999999999997,
+              "height": 302
+            }
+          },
+          {
+            "name": "result-art/source",
+            "asset": "c04.thumbnail",
+            "bounds": {
+              "type": 5,
+              "x": 555,
+              "y": 408.65,
+              "width": 62,
+              "height": 77.5
+            }
+          }
+        ],
+        "controls": [
+          {
+            "name": "action/result-details",
+            "enabled": true,
+            "bounds": {
+              "type": 5,
+              "x": 193,
+              "y": 664,
+              "width": 274,
+              "height": 44
+            }
+          },
+          {
+            "name": "action/continue-stage",
+            "enabled": true,
+            "bounds": {
+              "type": 5,
+              "x": 475,
+              "y": 664,
+              "width": 421,
+              "height": 56
+            }
+          },
+          {
+            "name": "action/last-hand",
+            "enabled": true,
+            "bounds": {
+              "type": 5,
+              "x": 904,
+              "y": 664,
+              "width": 269,
+              "height": 44
+            }
+          }
+        ],
+        "motion": []
+      }
+    },
+    {
+      "key": "ordinary-390x844",
+      "status": "PASS",
+      "score": "1296",
+      "regions": {
+        "stage": {
+          "x": 12,
+          "y": 116,
+          "width": 366,
+          "height": 452
+        },
+        "texts": [
+          {
+            "name": "result/title",
+            "text": "一场好戏，满堂喝彩！",
+            "bounds": {
+              "type": 5,
+              "x": 12,
+              "y": 60,
+              "width": 261,
+              "height": 27
+            }
+          },
+          {
+            "name": "result/tier",
+            "text": "好戏收束",
+            "bounds": {
+              "type": 5,
+              "x": 28,
+              "y": 132,
+              "width": 65,
+              "height": 18
+            }
+          },
+          {
+            "name": "result/hand",
+            "text": "顺子 · 1级",
+            "bounds": {
+              "type": 5,
+              "x": 159,
+              "y": 162,
+              "width": 72,
+              "height": 19
+            }
+          },
+          {
+            "name": "result/score",
+            "text": "+1,296",
+            "bounds": {
+              "type": 5,
+              "x": 130,
+              "y": 193,
+              "width": 130,
+              "height": 55
+            }
+          },
+          {
+            "name": "result/formula",
+            "text": "目标 400 · 已过关",
+            "bounds": {
+              "type": 5,
+              "x": 140,
+              "y": 254,
+              "width": 110,
+              "height": 16
+            }
+          },
+          {
+            "name": "result/gap",
+            "text": "首手过关 · 结果已保存",
+            "bounds": {
+              "type": 5,
+              "x": 125.5,
+              "y": 276,
+              "width": 139,
+              "height": 16
+            }
+          },
+          {
+            "name": "result/hero-name",
+            "text": "谢幕人",
+            "bounds": {
+              "type": 5,
+              "x": 73.5,
+              "y": 526,
+              "width": 49,
+              "height": 19
+            }
+          },
+          {
+            "name": "result/source-continuity",
+            "text": "搭台阶",
+            "bounds": {
+              "type": 5,
+              "x": 246,
+              "y": 354,
+              "width": 42,
+              "height": 17
+            }
+          },
+          {
+            "name": "result/source-effect",
+            "text": "热度 +50\n读取 +100 热度",
+            "bounds": {
+              "type": 5,
+              "x": 246,
+              "y": 375,
+              "width": 96,
+              "height": 32
+            }
+          },
+          {
+            "name": "result/reward",
+            "text": "奖励  +14 金",
+            "bounds": {
+              "type": 5,
+              "x": 227.5,
+              "y": 525,
+              "width": 89,
+              "height": 19
+            }
+          },
+          {
+            "name": "result/next-body",
+            "text": "第 1 章 · 正场 · 目标 600\n筹备后，出牌与弃牌次数补满。\n下场燃金次数恢复为1次",
+            "bounds": {
+              "type": 5,
+              "x": 26,
+              "y": 619,
+              "width": 196,
+              "height": 34
+            }
+          }
+        ],
+        "art": [
+          {
+            "name": "result-art/hero",
+            "asset": "xiemu.selection",
+            "bounds": {
+              "type": 5,
+              "x": 30.220000000000013,
+              "y": 354.20000000000005,
+              "width": 135.83999999999997,
+              "height": 169.79999999999995
+            }
+          },
+          {
+            "name": "result-art/source",
+            "asset": "c04.thumbnail",
+            "bounds": {
+              "type": 5,
+              "x": 181.64000000000001,
+              "y": 358.1,
+              "width": 52,
+              "height": 65
+            }
+          }
+        ],
+        "controls": [
+          {
+            "name": "action/result-details",
+            "enabled": true,
+            "bounds": {
+              "type": 5,
+              "x": 12,
+              "y": 696,
+              "width": 179,
+              "height": 44
+            }
+          },
+          {
+            "name": "action/continue-stage",
+            "enabled": true,
+            "bounds": {
+              "type": 5,
+              "x": 12,
+              "y": 748,
+              "width": 366,
+              "height": 56
+            }
+          },
+          {
+            "name": "action/last-hand",
+            "enabled": true,
+            "bounds": {
+              "type": 5,
+              "x": 199,
+              "y": 696,
+              "width": 179,
+              "height": 44
+            }
+          }
+        ],
+        "motion": []
+      }
+    },
+    {
+      "key": "chain-1366x768",
+      "status": "PASS",
+      "score": "41990",
+      "regions": {
+        "stage": {
+          "x": 193,
+          "y": 102,
+          "width": 980,
+          "height": 422
+        },
+        "texts": [
+          {
+            "name": "result/title",
+            "text": "一场好戏，满堂喝彩！",
+            "bounds": {
+              "type": 5,
+              "x": 193,
+              "y": 42,
+              "width": 340,
+              "height": 36
+            }
+          },
+          {
+            "name": "result/tier",
+            "text": "连锁成势 · 3路丑牌乘倍率",
+            "bounds": {
+              "type": 5,
+              "x": 555,
+              "y": 130,
+              "width": 204,
+              "height": 21
+            }
+          },
+          {
+            "name": "result/hand",
+            "text": "顺子 · 1级",
+            "bounds": {
+              "type": 5,
+              "x": 814,
+              "y": 163,
+              "width": 72,
+              "height": 19
+            }
+          },
+          {
+            "name": "result/score",
+            "text": "+41,990",
+            "bounds": {
+              "type": 5,
+              "x": 734.5,
+              "y": 194,
+              "width": 231,
+              "height": 81
+            }
+          },
+          {
+            "name": "result/formula",
+            "text": "目标 400 · 已过关",
+            "bounds": {
+              "type": 5,
+              "x": 795,
+              "y": 281,
+              "width": 110,
+              "height": 16
+            }
+          },
+          {
+            "name": "result/gap",
+            "text": "首手过关 · 结果已保存",
+            "bounds": {
+              "type": 5,
+              "x": 780.5,
+              "y": 303,
+              "width": 139,
+              "height": 16
+            }
+          },
+          {
+            "name": "result/chain-sources",
+            "text": "冷场救火 ×3 · 包场 ×1.8 · 独家戏 ×1.5",
+            "bounds": {
+              "type": 5,
+              "x": 555,
+              "y": 329,
+              "width": 234,
+              "height": 16
+            }
+          },
+          {
+            "name": "result/hero-name",
+            "text": "谢幕人",
+            "bounds": {
+              "type": 5,
+              "x": 346,
+              "y": 434,
+              "width": 60,
+              "height": 23
+            }
+          },
+          {
+            "name": "result/hero-effect",
+            "text": "燃30金 · ×4",
+            "bounds": {
+              "type": 5,
+              "x": 340,
+              "y": 463,
+              "width": 72,
+              "height": 16
+            }
+          },
+          {
+            "name": "result/source-continuity",
+            "text": "冷场救火",
+            "bounds": {
+              "type": 5,
+              "x": 629,
+              "y": 404,
+              "width": 56,
+              "height": 17
+            }
+          },
+          {
+            "name": "result/source-effect",
+            "text": "×3",
+            "bounds": {
+              "type": 5,
+              "x": 629,
+              "y": 425,
+              "width": 16,
+              "height": 16
+            }
+          },
+          {
+            "name": "result/reward",
+            "text": "奖励  +14 金",
+            "bounds": {
+              "type": 5,
+              "x": 971.5,
+              "y": 449,
+              "width": 111,
+              "height": 22
+            }
+          },
+          {
+            "name": "result/next-body",
+            "text": "第 1 章 · 正场 · 目标 600\n筹备后，出牌与弃牌次数补满。\n下场燃金次数恢复为1次",
+            "bounds": {
+              "type": 5,
+              "x": 207,
+              "y": 575,
+              "width": 196,
+              "height": 52
+            }
+          }
+        ],
+        "art": [
+          {
+            "name": "result-art/hero",
+            "asset": "xiemu.selection",
+            "bounds": {
+              "type": 5,
+              "x": 255.2,
+              "y": 130,
+              "width": 241.59999999999997,
+              "height": 302
+            }
+          },
+          {
+            "name": "result-art/source",
+            "asset": "f10.thumbnail",
+            "bounds": {
+              "type": 5,
+              "x": 555,
+              "y": 408.65,
+              "width": 62,
+              "height": 77.5
+            }
+          }
+        ],
+        "controls": [
+          {
+            "name": "action/result-details",
+            "enabled": true,
+            "bounds": {
+              "type": 5,
+              "x": 193,
+              "y": 664,
+              "width": 274,
+              "height": 44
+            }
+          },
+          {
+            "name": "action/continue-stage",
+            "enabled": true,
+            "bounds": {
+              "type": 5,
+              "x": 475,
+              "y": 664,
+              "width": 421,
+              "height": 56
+            }
+          },
+          {
+            "name": "action/last-hand",
+            "enabled": true,
+            "bounds": {
+              "type": 5,
+              "x": 904,
+              "y": 664,
+              "width": 269,
+              "height": 44
+            }
+          }
+        ],
+        "motion": []
+      }
+    },
+    {
+      "key": "chain-390x844",
+      "status": "PASS",
+      "score": "41990",
+      "regions": {
+        "stage": {
+          "x": 12,
+          "y": 116,
+          "width": 366,
+          "height": 452
+        },
+        "texts": [
+          {
+            "name": "result/title",
+            "text": "一场好戏，满堂喝彩！",
+            "bounds": {
+              "type": 5,
+              "x": 12,
+              "y": 60,
+              "width": 261,
+              "height": 27
+            }
+          },
+          {
+            "name": "result/tier",
+            "text": "连锁成势 · 3路丑牌乘倍率",
+            "bounds": {
+              "type": 5,
+              "x": 28,
+              "y": 132,
+              "width": 182,
+              "height": 18
+            }
+          },
+          {
+            "name": "result/hand",
+            "text": "顺子 · 1级",
+            "bounds": {
+              "type": 5,
+              "x": 159,
+              "y": 162,
+              "width": 72,
+              "height": 19
+            }
+          },
+          {
+            "name": "result/score",
+            "text": "+41,990",
+            "bounds": {
+              "type": 5,
+              "x": 118,
+              "y": 193,
+              "width": 154,
+              "height": 55
+            }
+          },
+          {
+            "name": "result/formula",
+            "text": "目标 400 · 已过关",
+            "bounds": {
+              "type": 5,
+              "x": 140,
+              "y": 254,
+              "width": 110,
+              "height": 16
+            }
+          },
+          {
+            "name": "result/gap",
+            "text": "首手过关 · 结果已保存",
+            "bounds": {
+              "type": 5,
+              "x": 125.5,
+              "y": 276,
+              "width": 139,
+              "height": 16
+            }
+          },
+          {
+            "name": "result/hero-name",
+            "text": "谢幕人",
+            "bounds": {
+              "type": 5,
+              "x": 73.5,
+              "y": 504,
+              "width": 49,
+              "height": 19
+            }
+          },
+          {
+            "name": "result/hero-effect",
+            "text": "燃30金 · ×4",
+            "bounds": {
+              "type": 5,
+              "x": 62,
+              "y": 529,
+              "width": 72,
+              "height": 16
+            }
+          },
+          {
+            "name": "result/source-continuity",
+            "text": "冷场救火",
+            "bounds": {
+              "type": 5,
+              "x": 246,
+              "y": 354,
+              "width": 56,
+              "height": 17
+            }
+          },
+          {
+            "name": "result/source-effect",
+            "text": "×3",
+            "bounds": {
+              "type": 5,
+              "x": 246,
+              "y": 375,
+              "width": 16,
+              "height": 16
+            }
+          },
+          {
+            "name": "result/reward",
+            "text": "奖励  +14 金",
+            "bounds": {
+              "type": 5,
+              "x": 227.5,
+              "y": 525,
+              "width": 89,
+              "height": 19
+            }
+          },
+          {
+            "name": "result/next-body",
+            "text": "第 1 章 · 正场 · 目标 600\n筹备后，出牌与弃牌次数补满。\n下场燃金次数恢复为1次",
+            "bounds": {
+              "type": 5,
+              "x": 26,
+              "y": 619,
+              "width": 196,
+              "height": 34
+            }
+          }
+        ],
+        "art": [
+          {
+            "name": "result-art/hero",
+            "asset": "xiemu.selection",
+            "bounds": {
+              "type": 5,
+              "x": 39.02000000000001,
+              "y": 354.20000000000005,
+              "width": 118.23999999999998,
+              "height": 147.79999999999995
+            }
+          },
+          {
+            "name": "result-art/source",
+            "asset": "f10.thumbnail",
+            "bounds": {
+              "type": 5,
+              "x": 181.64000000000001,
+              "y": 358.1,
+              "width": 52,
+              "height": 65
+            }
+          }
+        ],
+        "controls": [
+          {
+            "name": "action/result-details",
+            "enabled": true,
+            "bounds": {
+              "type": 5,
+              "x": 12,
+              "y": 696,
+              "width": 179,
+              "height": 44
+            }
+          },
+          {
+            "name": "action/continue-stage",
+            "enabled": true,
+            "bounds": {
+              "type": 5,
+              "x": 12,
+              "y": 748,
+              "width": 366,
+              "height": 56
+            }
+          },
+          {
+            "name": "action/last-hand",
+            "enabled": true,
+            "bounds": {
+              "type": 5,
+              "x": 199,
+              "y": 696,
+              "width": 179,
+              "height": 44
+            }
+          }
+        ],
+        "motion": []
+      }
+    },
+    {
+      "key": "billion-1366x768",
+      "status": "PASS",
+      "score": "733884590",
+      "regions": {
+        "stage": {
+          "x": 193,
+          "y": 102,
+          "width": 980,
+          "height": 422
+        },
+        "texts": [
+          {
+            "name": "result/title",
+            "text": "亿分落定，满堂喝彩！",
+            "bounds": {
+              "type": 5,
+              "x": 193,
+              "y": 42,
+              "width": 340,
+              "height": 36
+            }
+          },
+          {
+            "name": "result/tier",
+            "text": "亿分落定 · 3路丑牌乘倍率",
+            "bounds": {
+              "type": 5,
+              "x": 555,
+              "y": 130,
+              "width": 204,
+              "height": 21
+            }
+          },
+          {
+            "name": "result/boss-seal",
+            "text": "压轴击败",
+            "bounds": {
+              "type": 5,
+              "x": 1089,
+              "y": 130,
+              "width": 56,
+              "height": 16
+            }
+          },
+          {
+            "name": "result/hand",
+            "text": "顺子 · 18级",
+            "bounds": {
+              "type": 5,
+              "x": 809.5,
+              "y": 163,
+              "width": 81,
+              "height": 19
+            }
+          },
+          {
+            "name": "result/score",
+            "text": "+733,884,590",
+            "bounds": {
+              "type": 5,
+              "x": 609.5,
+              "y": 194,
+              "width": 481,
+              "height": 98
+            }
+          },
+          {
+            "name": "result/formula",
+            "text": "目标 320,000 · 已过关",
+            "bounds": {
+              "type": 5,
+              "x": 781.5,
+              "y": 298,
+              "width": 137,
+              "height": 16
+            }
+          },
+          {
+            "name": "result/gap",
+            "text": "本局顺子21场",
+            "bounds": {
+              "type": 5,
+              "x": 807,
+              "y": 320,
+              "width": 86,
+              "height": 16
+            }
+          },
+          {
+            "name": "result/chain-sources",
+            "text": "冷场救火 ×3 · 包场 ×1.8 · 独家戏 ×1.5",
+            "bounds": {
+              "type": 5,
+              "x": 555,
+              "y": 346,
+              "width": 234,
+              "height": 16
+            }
+          },
+          {
+            "name": "result/hero-name",
+            "text": "谢幕人",
+            "bounds": {
+              "type": 5,
+              "x": 346,
+              "y": 434,
+              "width": 60,
+              "height": 23
+            }
+          },
+          {
+            "name": "result/hero-effect",
+            "text": "燃30金 · ×4",
+            "bounds": {
+              "type": 5,
+              "x": 340,
+              "y": 463,
+              "width": 72,
+              "height": 16
+            }
+          },
+          {
+            "name": "result/source-continuity",
+            "text": "冷场救火",
+            "bounds": {
+              "type": 5,
+              "x": 629,
+              "y": 404,
+              "width": 56,
+              "height": 17
+            }
+          },
+          {
+            "name": "result/source-effect",
+            "text": "×3",
+            "bounds": {
+              "type": 5,
+              "x": 629,
+              "y": 425,
+              "width": 16,
+              "height": 16
+            }
+          },
+          {
+            "name": "result/reward",
+            "text": "奖励  +17 金",
+            "bounds": {
+              "type": 5,
+              "x": 971.5,
+              "y": 449,
+              "width": 111,
+              "height": 22
+            }
+          },
+          {
+            "name": "result/next-body",
+            "text": "谢幕人 · 已过关场次累计热度 733,885,590\n构筑与金币已保留，可自愿继续无尽巡演。\nD1 与挑战已解锁。",
+            "bounds": {
+              "type": 5,
+              "x": 207,
+              "y": 575,
+              "width": 266,
+              "height": 52
+            }
+          }
+        ],
+        "art": [
+          {
+            "name": "result-art/hero",
+            "asset": "xiemu.selection",
+            "bounds": {
+              "type": 5,
+              "x": 255.2,
+              "y": 130,
+              "width": 241.59999999999997,
+              "height": 302
+            }
+          },
+          {
+            "name": "result-art/source",
+            "asset": "f10.thumbnail",
+            "bounds": {
+              "type": 5,
+              "x": 555,
+              "y": 408.65,
+              "width": 62,
+              "height": 77.5
+            }
+          }
+        ],
+        "controls": [
+          {
+            "name": "action/return-select",
+            "enabled": true,
+            "bounds": {
+              "type": 5,
+              "x": 193,
+              "y": 664,
+              "width": 274,
+              "height": 44
+            }
+          },
+          {
+            "name": "action/continue-endless",
+            "enabled": true,
+            "bounds": {
+              "type": 5,
+              "x": 475,
+              "y": 664,
+              "width": 421,
+              "height": 56
+            }
+          },
+          {
+            "name": "action/last-hand",
+            "enabled": true,
+            "bounds": {
+              "type": 5,
+              "x": 904,
+              "y": 664,
+              "width": 269,
+              "height": 44
+            }
+          }
+        ],
+        "motion": []
+      }
+    },
+    {
+      "key": "billion-390x844",
+      "status": "PASS",
+      "score": "733884590",
+      "regions": {
+        "stage": {
+          "x": 12,
+          "y": 116,
+          "width": 366,
+          "height": 452
+        },
+        "texts": [
+          {
+            "name": "result/title",
+            "text": "亿分落定，满堂喝彩！",
+            "bounds": {
+              "type": 5,
+              "x": 12,
+              "y": 60,
+              "width": 221,
+              "height": 23
+            }
+          },
+          {
+            "name": "result/tier",
+            "text": "亿分落定 · 3路丑牌乘倍率",
+            "bounds": {
+              "type": 5,
+              "x": 28,
+              "y": 132,
+              "width": 182,
+              "height": 18
+            }
+          },
+          {
+            "name": "result/boss-seal",
+            "text": "压轴击败",
+            "bounds": {
+              "type": 5,
+              "x": 306,
+              "y": 132,
+              "width": 56,
+              "height": 16
+            }
+          },
+          {
+            "name": "result/hand",
+            "text": "顺子 · 18级",
+            "bounds": {
+              "type": 5,
+              "x": 154.5,
+              "y": 162,
+              "width": 81,
+              "height": 19
+            }
+          },
+          {
+            "name": "result/score",
+            "text": "+733,884,590",
+            "bounds": {
+              "type": 5,
+              "x": 50,
+              "y": 193,
+              "width": 290,
+              "height": 61
+            }
+          },
+          {
+            "name": "result/formula",
+            "text": "目标 320,000 · 已过关",
+            "bounds": {
+              "type": 5,
+              "x": 126.5,
+              "y": 260,
+              "width": 137,
+              "height": 16
+            }
+          },
+          {
+            "name": "result/gap",
+            "text": "本局顺子21场",
+            "bounds": {
+              "type": 5,
+              "x": 152,
+              "y": 282,
+              "width": 86,
+              "height": 16
+            }
+          },
+          {
+            "name": "result/hero-name",
+            "text": "谢幕人",
+            "bounds": {
+              "type": 5,
+              "x": 73.5,
+              "y": 504,
+              "width": 49,
+              "height": 19
+            }
+          },
+          {
+            "name": "result/hero-effect",
+            "text": "燃30金 · ×4",
+            "bounds": {
+              "type": 5,
+              "x": 62,
+              "y": 529,
+              "width": 72,
+              "height": 16
+            }
+          },
+          {
+            "name": "result/source-continuity",
+            "text": "冷场救火",
+            "bounds": {
+              "type": 5,
+              "x": 246,
+              "y": 354,
+              "width": 56,
+              "height": 17
+            }
+          },
+          {
+            "name": "result/source-effect",
+            "text": "×3",
+            "bounds": {
+              "type": 5,
+              "x": 246,
+              "y": 375,
+              "width": 16,
+              "height": 16
+            }
+          },
+          {
+            "name": "result/reward",
+            "text": "奖励  +17 金",
+            "bounds": {
+              "type": 5,
+              "x": 227.5,
+              "y": 525,
+              "width": 89,
+              "height": 19
+            }
+          },
+          {
+            "name": "result/next-body",
+            "text": "谢幕人 · 已过关场次累计热度 733,885,590\n构筑与金币已保留，可自愿继续无尽巡演。\nD1 与挑战已解锁。",
+            "bounds": {
+              "type": 5,
+              "x": 26,
+              "y": 619,
+              "width": 266,
+              "height": 34
+            }
+          }
+        ],
+        "art": [
+          {
+            "name": "result-art/hero",
+            "asset": "xiemu.selection",
+            "bounds": {
+              "type": 5,
+              "x": 39.02000000000001,
+              "y": 354.20000000000005,
+              "width": 118.23999999999998,
+              "height": 147.79999999999995
+            }
+          },
+          {
+            "name": "result-art/source",
+            "asset": "f10.thumbnail",
+            "bounds": {
+              "type": 5,
+              "x": 181.64000000000001,
+              "y": 358.1,
+              "width": 52,
+              "height": 65
+            }
+          }
+        ],
+        "controls": [
+          {
+            "name": "action/return-select",
+            "enabled": true,
+            "bounds": {
+              "type": 5,
+              "x": 12,
+              "y": 696,
+              "width": 179,
+              "height": 44
+            }
+          },
+          {
+            "name": "action/continue-endless",
+            "enabled": true,
+            "bounds": {
+              "type": 5,
+              "x": 12,
+              "y": 748,
+              "width": 366,
+              "height": 56
+            }
+          },
+          {
+            "name": "action/last-hand",
+            "enabled": true,
+            "bounds": {
+              "type": 5,
+              "x": 199,
+              "y": 696,
+              "width": 179,
+              "height": 44
+            }
+          }
+        ],
+        "motion": []
+      }
+    },
+    {
+      "key": "long-1366x768",
+      "status": "PASS",
+      "score": "1952400131333767",
+      "regions": {
+        "stage": {
+          "x": 193,
+          "y": 102,
+          "width": 980,
+          "height": 422
+        },
+        "texts": [
+          {
+            "name": "result/title",
+            "text": "亿分落定，满堂喝彩！",
+            "bounds": {
+              "type": 5,
+              "x": 193,
+              "y": 42,
+              "width": 340,
+              "height": 36
+            }
+          },
+          {
+            "name": "result/tier",
+            "text": "亿分落定 · 3路丑牌乘倍率",
+            "bounds": {
+              "type": 5,
+              "x": 555,
+              "y": 130,
+              "width": 204,
+              "height": 21
+            }
+          },
+          {
+            "name": "result/boss-seal",
+            "text": "压轴击败",
+            "bounds": {
+              "type": 5,
+              "x": 1089,
+              "y": 130,
+              "width": 56,
+              "height": 16
+            }
+          },
+          {
+            "name": "result/hand",
+            "text": "顺子 · 30级",
+            "bounds": {
+              "type": 5,
+              "x": 809.5,
+              "y": 163,
+              "width": 81,
+              "height": 19
+            }
+          },
+          {
+            "name": "result/score",
+            "text": "+≈1.95e15",
+            "bounds": {
+              "type": 5,
+              "x": 664.5,
+              "y": 194,
+              "width": 371,
+              "height": 98
+            }
+          },
+          {
+            "name": "result/formula",
+            "text": "目标 320,000 · 已过关",
+            "bounds": {
+              "type": 5,
+              "x": 781.5,
+              "y": 298,
+              "width": 137,
+              "height": 16
+            }
+          },
+          {
+            "name": "result/gap",
+            "text": "本局顺子23场",
+            "bounds": {
+              "type": 5,
+              "x": 807,
+              "y": 320,
+              "width": 86,
+              "height": 16
+            }
+          },
+          {
+            "name": "result/chain-sources",
+            "text": "冷场救火 ×3 · 包场 ×1.8 · 独家戏 ×1000000",
+            "bounds": {
+              "type": 5,
+              "x": 555,
+              "y": 346,
+              "width": 269,
+              "height": 16
+            }
+          },
+          {
+            "name": "result/hero-name",
+            "text": "谢幕人",
+            "bounds": {
+              "type": 5,
+              "x": 346,
+              "y": 434,
+              "width": 60,
+              "height": 23
+            }
+          },
+          {
+            "name": "result/hero-effect",
+            "text": "燃30金 · ×4",
+            "bounds": {
+              "type": 5,
+              "x": 340,
+              "y": 463,
+              "width": 72,
+              "height": 16
+            }
+          },
+          {
+            "name": "result/source-continuity",
+            "text": "冷场救火",
+            "bounds": {
+              "type": 5,
+              "x": 629,
+              "y": 404,
+              "width": 56,
+              "height": 17
+            }
+          },
+          {
+            "name": "result/source-effect",
+            "text": "×3",
+            "bounds": {
+              "type": 5,
+              "x": 629,
+              "y": 425,
+              "width": 16,
+              "height": 16
+            }
+          },
+          {
+            "name": "result/reward",
+            "text": "奖励  +17 金",
+            "bounds": {
+              "type": 5,
+              "x": 971.5,
+              "y": 449,
+              "width": 111,
+              "height": 22
+            }
+          },
+          {
+            "name": "result/next-body",
+            "text": "谢幕人 · 已过关场次累计热度 1.95e15\n构筑与金币已保留，可自愿继续无尽巡演。\nD1 与挑战已解锁。",
+            "bounds": {
+              "type": 5,
+              "x": 207,
+              "y": 575,
+              "width": 266,
+              "height": 52
+            }
+          }
+        ],
+        "art": [
+          {
+            "name": "result-art/hero",
+            "asset": "xiemu.selection",
+            "bounds": {
+              "type": 5,
+              "x": 255.2,
+              "y": 130,
+              "width": 241.59999999999997,
+              "height": 302
+            }
+          },
+          {
+            "name": "result-art/source",
+            "asset": "f10.thumbnail",
+            "bounds": {
+              "type": 5,
+              "x": 555,
+              "y": 408.65,
+              "width": 62,
+              "height": 77.5
+            }
+          }
+        ],
+        "controls": [
+          {
+            "name": "action/return-select",
+            "enabled": true,
+            "bounds": {
+              "type": 5,
+              "x": 193,
+              "y": 664,
+              "width": 274,
+              "height": 44
+            }
+          },
+          {
+            "name": "action/continue-endless",
+            "enabled": true,
+            "bounds": {
+              "type": 5,
+              "x": 475,
+              "y": 664,
+              "width": 421,
+              "height": 56
+            }
+          },
+          {
+            "name": "action/last-hand",
+            "enabled": true,
+            "bounds": {
+              "type": 5,
+              "x": 904,
+              "y": 664,
+              "width": 269,
+              "height": 44
+            }
+          }
+        ],
+        "motion": []
+      }
+    },
+    {
+      "key": "long-390x844",
+      "status": "PASS",
+      "score": "1952400131333767",
+      "regions": {
+        "stage": {
+          "x": 12,
+          "y": 116,
+          "width": 366,
+          "height": 452
+        },
+        "texts": [
+          {
+            "name": "result/title",
+            "text": "亿分落定，满堂喝彩！",
+            "bounds": {
+              "type": 5,
+              "x": 12,
+              "y": 60,
+              "width": 221,
+              "height": 23
+            }
+          },
+          {
+            "name": "result/tier",
+            "text": "亿分落定 · 3路丑牌乘倍率",
+            "bounds": {
+              "type": 5,
+              "x": 28,
+              "y": 132,
+              "width": 182,
+              "height": 18
+            }
+          },
+          {
+            "name": "result/boss-seal",
+            "text": "压轴击败",
+            "bounds": {
+              "type": 5,
+              "x": 306,
+              "y": 132,
+              "width": 56,
+              "height": 16
+            }
+          },
+          {
+            "name": "result/hand",
+            "text": "顺子 · 30级",
+            "bounds": {
+              "type": 5,
+              "x": 154.5,
+              "y": 162,
+              "width": 81,
+              "height": 19
+            }
+          },
+          {
+            "name": "result/score",
+            "text": "+≈1.95e15",
+            "bounds": {
+              "type": 5,
+              "x": 81,
+              "y": 193,
+              "width": 228,
+              "height": 61
+            }
+          },
+          {
+            "name": "result/formula",
+            "text": "目标 320,000 · 已过关",
+            "bounds": {
+              "type": 5,
+              "x": 126.5,
+              "y": 260,
+              "width": 137,
+              "height": 16
+            }
+          },
+          {
+            "name": "result/gap",
+            "text": "本局顺子23场",
+            "bounds": {
+              "type": 5,
+              "x": 152,
+              "y": 282,
+              "width": 86,
+              "height": 16
+            }
+          },
+          {
+            "name": "result/hero-name",
+            "text": "谢幕人",
+            "bounds": {
+              "type": 5,
+              "x": 73.5,
+              "y": 504,
+              "width": 49,
+              "height": 19
+            }
+          },
+          {
+            "name": "result/hero-effect",
+            "text": "燃30金 · ×4",
+            "bounds": {
+              "type": 5,
+              "x": 62,
+              "y": 529,
+              "width": 72,
+              "height": 16
+            }
+          },
+          {
+            "name": "result/source-continuity",
+            "text": "冷场救火",
+            "bounds": {
+              "type": 5,
+              "x": 246,
+              "y": 354,
+              "width": 56,
+              "height": 17
+            }
+          },
+          {
+            "name": "result/source-effect",
+            "text": "×3",
+            "bounds": {
+              "type": 5,
+              "x": 246,
+              "y": 375,
+              "width": 16,
+              "height": 16
+            }
+          },
+          {
+            "name": "result/reward",
+            "text": "奖励  +17 金",
+            "bounds": {
+              "type": 5,
+              "x": 227.5,
+              "y": 525,
+              "width": 89,
+              "height": 19
+            }
+          },
+          {
+            "name": "result/next-body",
+            "text": "谢幕人 · 已过关场次累计热度 1.95e15\n构筑与金币已保留，可自愿继续无尽巡演。\nD1 与挑战已解锁。",
+            "bounds": {
+              "type": 5,
+              "x": 26,
+              "y": 619,
+              "width": 266,
+              "height": 34
+            }
+          }
+        ],
+        "art": [
+          {
+            "name": "result-art/hero",
+            "asset": "xiemu.selection",
+            "bounds": {
+              "type": 5,
+              "x": 39.02000000000001,
+              "y": 354.20000000000005,
+              "width": 118.23999999999998,
+              "height": 147.79999999999995
+            }
+          },
+          {
+            "name": "result-art/source",
+            "asset": "f10.thumbnail",
+            "bounds": {
+              "type": 5,
+              "x": 181.64000000000001,
+              "y": 358.1,
+              "width": 52,
+              "height": 65
+            }
+          }
+        ],
+        "controls": [
+          {
+            "name": "action/return-select",
+            "enabled": true,
+            "bounds": {
+              "type": 5,
+              "x": 12,
+              "y": 696,
+              "width": 179,
+              "height": 44
+            }
+          },
+          {
+            "name": "action/continue-endless",
+            "enabled": true,
+            "bounds": {
+              "type": 5,
+              "x": 12,
+              "y": 748,
+              "width": 366,
+              "height": 56
+            }
+          },
+          {
+            "name": "action/last-hand",
+            "enabled": true,
+            "bounds": {
+              "type": 5,
+              "x": 199,
+              "y": 696,
+              "width": 179,
+              "height": 44
+            }
+          }
+        ],
+        "motion": []
+      }
+    },
+    {
+      "key": "current-e11-1366x768",
+      "status": "PASS",
+      "score": "3931",
+      "regions": {
+        "stage": {
+          "x": 193,
+          "y": 102,
+          "width": 980,
+          "height": 422
+        },
+        "texts": [
+          {
+            "name": "result/title",
+            "text": "一场好戏，满堂喝彩！",
+            "bounds": {
+              "type": 5,
+              "x": 193,
+              "y": 42,
+              "width": 340,
+              "height": 36
+            }
+          },
+          {
+            "name": "result/tier",
+            "text": "好戏收束",
+            "bounds": {
+              "type": 5,
+              "x": 555,
+              "y": 130,
+              "width": 72,
+              "height": 21
+            }
+          },
+          {
+            "name": "result/hand",
+            "text": "葫芦 · 4级",
+            "bounds": {
+              "type": 5,
+              "x": 814,
+              "y": 163,
+              "width": 72,
+              "height": 19
+            }
+          },
+          {
+            "name": "result/score",
+            "text": "+3,931",
+            "bounds": {
+              "type": 5,
+              "x": 753,
+              "y": 194,
+              "width": 194,
+              "height": 81
+            }
+          },
+          {
+            "name": "result/formula",
+            "text": "目标 400 · 已过关",
+            "bounds": {
+              "type": 5,
+              "x": 795,
+              "y": 281,
+              "width": 110,
+              "height": 16
+            }
+          },
+          {
+            "name": "result/gap",
+            "text": "首手过关 · 结果已保存",
+            "bounds": {
+              "type": 5,
+              "x": 780.5,
+              "y": 303,
+              "width": 139,
+              "height": 16
+            }
+          },
+          {
+            "name": "result/hero-name",
+            "text": "阿默",
+            "bounds": {
+              "type": 5,
+              "x": 356,
+              "y": 434,
+              "width": 40,
+              "height": 23
+            }
+          },
+          {
+            "name": "result/hero-effect",
+            "text": "本局角色",
+            "bounds": {
+              "type": 5,
+              "x": 348,
+              "y": 463,
+              "width": 56,
+              "height": 16
+            }
+          },
+          {
+            "name": "result/source-continuity",
+            "text": "长期捧场",
+            "bounds": {
+              "type": 5,
+              "x": 629,
+              "y": 404,
+              "width": 56,
+              "height": 17
+            }
+          },
+          {
+            "name": "result/source-effect",
+            "text": "×1.3",
+            "bounds": {
+              "type": 5,
+              "x": 629,
+              "y": 425,
+              "width": 28,
+              "height": 16
+            }
+          },
+          {
+            "name": "result/growth-saved",
+            "text": "手后1.3→1.4",
+            "bounds": {
+              "type": 5,
+              "x": 629,
+              "y": 445,
+              "width": 81,
+              "height": 16
+            }
+          },
+          {
+            "name": "result/reward",
+            "text": "奖励  +8 金",
+            "bounds": {
+              "type": 5,
+              "x": 977,
+              "y": 449,
+              "width": 100,
+              "height": 22
+            }
+          },
+          {
+            "name": "result/next-body",
+            "text": "第 1 章 · 正场 · 目标 600\n筹备后，出牌与弃牌次数补满。\n下场助攻次数恢复为1次",
+            "bounds": {
+              "type": 5,
+              "x": 207,
+              "y": 575,
+              "width": 196,
+              "height": 52
+            }
+          }
+        ],
+        "art": [
+          {
+            "name": "result-art/hero",
+            "asset": "amo.selection",
+            "bounds": {
+              "type": 5,
+              "x": 255.2,
+              "y": 130,
+              "width": 241.59999999999997,
+              "height": 302
+            }
+          },
+          {
+            "name": "result-art/source",
+            "asset": "e11.thumbnail",
+            "bounds": {
+              "type": 5,
+              "x": 555,
+              "y": 408.65,
+              "width": 62,
+              "height": 77.5
+            }
+          }
+        ],
+        "controls": [
+          {
+            "name": "action/result-details",
+            "enabled": true,
+            "bounds": {
+              "type": 5,
+              "x": 193,
+              "y": 664,
+              "width": 274,
+              "height": 44
+            }
+          },
+          {
+            "name": "action/continue-stage",
+            "enabled": true,
+            "bounds": {
+              "type": 5,
+              "x": 475,
+              "y": 664,
+              "width": 421,
+              "height": 56
+            }
+          },
+          {
+            "name": "action/last-hand",
+            "enabled": true,
+            "bounds": {
+              "type": 5,
+              "x": 904,
+              "y": 664,
+              "width": 269,
+              "height": 44
+            }
+          }
+        ],
+        "motion": []
+      }
+    },
+    {
+      "key": "current-e11-390x844",
+      "status": "PASS",
+      "score": "3931",
+      "regions": {
+        "stage": {
+          "x": 12,
+          "y": 116,
+          "width": 366,
+          "height": 452
+        },
+        "texts": [
+          {
+            "name": "result/title",
+            "text": "一场好戏，满堂喝彩！",
+            "bounds": {
+              "type": 5,
+              "x": 12,
+              "y": 60,
+              "width": 261,
+              "height": 27
+            }
+          },
+          {
+            "name": "result/tier",
+            "text": "好戏收束",
+            "bounds": {
+              "type": 5,
+              "x": 28,
+              "y": 132,
+              "width": 65,
+              "height": 18
+            }
+          },
+          {
+            "name": "result/hand",
+            "text": "葫芦 · 4级",
+            "bounds": {
+              "type": 5,
+              "x": 159,
+              "y": 162,
+              "width": 72,
+              "height": 19
+            }
+          },
+          {
+            "name": "result/score",
+            "text": "+3,931",
+            "bounds": {
+              "type": 5,
+              "x": 130,
+              "y": 193,
+              "width": 130,
+              "height": 55
+            }
+          },
+          {
+            "name": "result/formula",
+            "text": "目标 400 · 已过关",
+            "bounds": {
+              "type": 5,
+              "x": 140,
+              "y": 254,
+              "width": 110,
+              "height": 16
+            }
+          },
+          {
+            "name": "result/gap",
+            "text": "首手过关 · 结果已保存",
+            "bounds": {
+              "type": 5,
+              "x": 125.5,
+              "y": 276,
+              "width": 139,
+              "height": 16
+            }
+          },
+          {
+            "name": "result/hero-name",
+            "text": "阿默",
+            "bounds": {
+              "type": 5,
+              "x": 81.5,
+              "y": 526,
+              "width": 33,
+              "height": 19
+            }
+          },
+          {
+            "name": "result/source-continuity",
+            "text": "长期捧场",
+            "bounds": {
+              "type": 5,
+              "x": 246,
+              "y": 354,
+              "width": 56,
+              "height": 17
+            }
+          },
+          {
+            "name": "result/source-effect",
+            "text": "×1.3",
+            "bounds": {
+              "type": 5,
+              "x": 246,
+              "y": 375,
+              "width": 28,
+              "height": 16
+            }
+          },
+          {
+            "name": "result/growth-saved",
+            "text": "手后1.3→1.4",
+            "bounds": {
+              "type": 5,
+              "x": 246,
+              "y": 395,
+              "width": 81,
+              "height": 16
+            }
+          },
+          {
+            "name": "result/reward",
+            "text": "奖励  +8 金",
+            "bounds": {
+              "type": 5,
+              "x": 232,
+              "y": 525,
+              "width": 80,
+              "height": 19
+            }
+          },
+          {
+            "name": "result/next-body",
+            "text": "第 1 章 · 正场 · 目标 600\n筹备后，出牌与弃牌次数补满。\n下场助攻次数恢复为1次",
+            "bounds": {
+              "type": 5,
+              "x": 26,
+              "y": 619,
+              "width": 196,
+              "height": 34
+            }
+          }
+        ],
+        "art": [
+          {
+            "name": "result-art/hero",
+            "asset": "amo.selection",
+            "bounds": {
+              "type": 5,
+              "x": 30.220000000000013,
+              "y": 354.20000000000005,
+              "width": 135.83999999999997,
+              "height": 169.79999999999995
+            }
+          },
+          {
+            "name": "result-art/source",
+            "asset": "e11.thumbnail",
+            "bounds": {
+              "type": 5,
+              "x": 181.64000000000001,
+              "y": 358.1,
+              "width": 52,
+              "height": 65
+            }
+          }
+        ],
+        "controls": [
+          {
+            "name": "action/result-details",
+            "enabled": true,
+            "bounds": {
+              "type": 5,
+              "x": 12,
+              "y": 696,
+              "width": 179,
+              "height": 44
+            }
+          },
+          {
+            "name": "action/continue-stage",
+            "enabled": true,
+            "bounds": {
+              "type": 5,
+              "x": 12,
+              "y": 748,
+              "width": 366,
+              "height": 56
+            }
+          },
+          {
+            "name": "action/last-hand",
+            "enabled": true,
+            "bounds": {
+              "type": 5,
+              "x": 199,
+              "y": 696,
+              "width": 179,
+              "height": 44
+            }
+          }
+        ],
+        "motion": []
+      }
+    },
+    {
+      "key": "current-chain-1366x768",
+      "status": "PASS",
+      "score": "41990",
+      "regions": {
+        "stage": {
+          "x": 193,
+          "y": 102,
+          "width": 980,
+          "height": 422
+        },
+        "texts": [
+          {
+            "name": "result/title",
+            "text": "一场好戏，满堂喝彩！",
+            "bounds": {
+              "type": 5,
+              "x": 193,
+              "y": 42,
+              "width": 340,
+              "height": 36
+            }
+          },
+          {
+            "name": "result/tier",
+            "text": "连锁成势 · 3路丑牌乘倍率",
+            "bounds": {
+              "type": 5,
+              "x": 555,
+              "y": 130,
+              "width": 204,
+              "height": 21
+            }
+          },
+          {
+            "name": "result/hand",
+            "text": "顺子 · 1级",
+            "bounds": {
+              "type": 5,
+              "x": 814,
+              "y": 163,
+              "width": 72,
+              "height": 19
+            }
+          },
+          {
+            "name": "result/score",
+            "text": "+41,990",
+            "bounds": {
+              "type": 5,
+              "x": 734.5,
+              "y": 194,
+              "width": 231,
+              "height": 81
+            }
+          },
+          {
+            "name": "result/formula",
+            "text": "目标 400 · 已过关",
+            "bounds": {
+              "type": 5,
+              "x": 795,
+              "y": 281,
+              "width": 110,
+              "height": 16
+            }
+          },
+          {
+            "name": "result/gap",
+            "text": "首手过关 · 结果已保存",
+            "bounds": {
+              "type": 5,
+              "x": 780.5,
+              "y": 303,
+              "width": 139,
+              "height": 16
+            }
+          },
+          {
+            "name": "result/chain-sources",
+            "text": "冷场救火 ×3 · 包场 ×1.8 · 独家戏 ×1.5",
+            "bounds": {
+              "type": 5,
+              "x": 555,
+              "y": 329,
+              "width": 234,
+              "height": 16
+            }
+          },
+          {
+            "name": "result/hero-name",
+            "text": "谢幕人",
+            "bounds": {
+              "type": 5,
+              "x": 346,
+              "y": 434,
+              "width": 60,
+              "height": 23
+            }
+          },
+          {
+            "name": "result/hero-effect",
+            "text": "燃30金 · ×4",
+            "bounds": {
+              "type": 5,
+              "x": 340,
+              "y": 463,
+              "width": 72,
+              "height": 16
+            }
+          },
+          {
+            "name": "result/source-continuity",
+            "text": "冷场救火",
+            "bounds": {
+              "type": 5,
+              "x": 629,
+              "y": 404,
+              "width": 56,
+              "height": 17
+            }
+          },
+          {
+            "name": "result/source-effect",
+            "text": "×3",
+            "bounds": {
+              "type": 5,
+              "x": 629,
+              "y": 425,
+              "width": 16,
+              "height": 16
+            }
+          },
+          {
+            "name": "result/reward",
+            "text": "奖励  +14 金",
+            "bounds": {
+              "type": 5,
+              "x": 971.5,
+              "y": 449,
+              "width": 111,
+              "height": 22
+            }
+          },
+          {
+            "name": "result/next-body",
+            "text": "第 1 章 · 正场 · 目标 600\n筹备后，出牌与弃牌次数补满。\n下场燃金次数恢复为1次",
+            "bounds": {
+              "type": 5,
+              "x": 207,
+              "y": 575,
+              "width": 196,
+              "height": 52
+            }
+          }
+        ],
+        "art": [
+          {
+            "name": "result-art/hero",
+            "asset": "xiemu.selection",
+            "bounds": {
+              "type": 5,
+              "x": 255.2,
+              "y": 130,
+              "width": 241.59999999999997,
+              "height": 302
+            }
+          },
+          {
+            "name": "result-art/source",
+            "asset": "f10.thumbnail",
+            "bounds": {
+              "type": 5,
+              "x": 555,
+              "y": 408.65,
+              "width": 62,
+              "height": 77.5
+            }
+          }
+        ],
+        "controls": [
+          {
+            "name": "action/result-details",
+            "enabled": true,
+            "bounds": {
+              "type": 5,
+              "x": 193,
+              "y": 664,
+              "width": 274,
+              "height": 44
+            }
+          },
+          {
+            "name": "action/continue-stage",
+            "enabled": true,
+            "bounds": {
+              "type": 5,
+              "x": 475,
+              "y": 664,
+              "width": 421,
+              "height": 56
+            }
+          },
+          {
+            "name": "action/last-hand",
+            "enabled": true,
+            "bounds": {
+              "type": 5,
+              "x": 904,
+              "y": 664,
+              "width": 269,
+              "height": 44
+            }
+          }
+        ],
+        "motion": []
+      }
+    },
+    {
+      "key": "current-chain-390x844",
+      "status": "PASS",
+      "score": "41990",
+      "regions": {
+        "stage": {
+          "x": 12,
+          "y": 116,
+          "width": 366,
+          "height": 452
+        },
+        "texts": [
+          {
+            "name": "result/title",
+            "text": "一场好戏，满堂喝彩！",
+            "bounds": {
+              "type": 5,
+              "x": 12,
+              "y": 60,
+              "width": 261,
+              "height": 27
+            }
+          },
+          {
+            "name": "result/tier",
+            "text": "连锁成势 · 3路丑牌乘倍率",
+            "bounds": {
+              "type": 5,
+              "x": 28,
+              "y": 132,
+              "width": 182,
+              "height": 18
+            }
+          },
+          {
+            "name": "result/hand",
+            "text": "顺子 · 1级",
+            "bounds": {
+              "type": 5,
+              "x": 159,
+              "y": 162,
+              "width": 72,
+              "height": 19
+            }
+          },
+          {
+            "name": "result/score",
+            "text": "+41,990",
+            "bounds": {
+              "type": 5,
+              "x": 118,
+              "y": 193,
+              "width": 154,
+              "height": 55
+            }
+          },
+          {
+            "name": "result/formula",
+            "text": "目标 400 · 已过关",
+            "bounds": {
+              "type": 5,
+              "x": 140,
+              "y": 254,
+              "width": 110,
+              "height": 16
+            }
+          },
+          {
+            "name": "result/gap",
+            "text": "首手过关 · 结果已保存",
+            "bounds": {
+              "type": 5,
+              "x": 125.5,
+              "y": 276,
+              "width": 139,
+              "height": 16
+            }
+          },
+          {
+            "name": "result/hero-name",
+            "text": "谢幕人",
+            "bounds": {
+              "type": 5,
+              "x": 73.5,
+              "y": 504,
+              "width": 49,
+              "height": 19
+            }
+          },
+          {
+            "name": "result/hero-effect",
+            "text": "燃30金 · ×4",
+            "bounds": {
+              "type": 5,
+              "x": 62,
+              "y": 529,
+              "width": 72,
+              "height": 16
+            }
+          },
+          {
+            "name": "result/source-continuity",
+            "text": "冷场救火",
+            "bounds": {
+              "type": 5,
+              "x": 246,
+              "y": 354,
+              "width": 56,
+              "height": 17
+            }
+          },
+          {
+            "name": "result/source-effect",
+            "text": "×3",
+            "bounds": {
+              "type": 5,
+              "x": 246,
+              "y": 375,
+              "width": 16,
+              "height": 16
+            }
+          },
+          {
+            "name": "result/reward",
+            "text": "奖励  +14 金",
+            "bounds": {
+              "type": 5,
+              "x": 227.5,
+              "y": 525,
+              "width": 89,
+              "height": 19
+            }
+          },
+          {
+            "name": "result/next-body",
+            "text": "第 1 章 · 正场 · 目标 600\n筹备后，出牌与弃牌次数补满。\n下场燃金次数恢复为1次",
+            "bounds": {
+              "type": 5,
+              "x": 26,
+              "y": 619,
+              "width": 196,
+              "height": 34
+            }
+          }
+        ],
+        "art": [
+          {
+            "name": "result-art/hero",
+            "asset": "xiemu.selection",
+            "bounds": {
+              "type": 5,
+              "x": 39.02000000000001,
+              "y": 354.20000000000005,
+              "width": 118.23999999999998,
+              "height": 147.79999999999995
+            }
+          },
+          {
+            "name": "result-art/source",
+            "asset": "f10.thumbnail",
+            "bounds": {
+              "type": 5,
+              "x": 181.64000000000001,
+              "y": 358.1,
+              "width": 52,
+              "height": 65
+            }
+          }
+        ],
+        "controls": [
+          {
+            "name": "action/result-details",
+            "enabled": true,
+            "bounds": {
+              "type": 5,
+              "x": 12,
+              "y": 696,
+              "width": 179,
+              "height": 44
+            }
+          },
+          {
+            "name": "action/continue-stage",
+            "enabled": true,
+            "bounds": {
+              "type": 5,
+              "x": 12,
+              "y": 748,
+              "width": 366,
+              "height": 56
+            }
+          },
+          {
+            "name": "action/last-hand",
+            "enabled": true,
+            "bounds": {
+              "type": 5,
+              "x": 199,
+              "y": 696,
+              "width": 179,
+              "height": 44
+            }
+          }
+        ],
+        "motion": []
+      }
+    },
+    {
+      "key": "current-capped-1366x768",
+      "status": "PASS",
+      "score": "6876748",
+      "regions": {
+        "stage": {
+          "x": 193,
+          "y": 102,
+          "width": 980,
+          "height": 422
+        },
+        "texts": [
+          {
+            "name": "result/title",
+            "text": "八章好戏，满堂喝彩！",
+            "bounds": {
+              "type": 5,
+              "x": 193,
+              "y": 42,
+              "width": 340,
+              "height": 36
+            }
+          },
+          {
+            "name": "result/tier",
+            "text": "连锁成势 · 3路丑牌乘倍率",
+            "bounds": {
+              "type": 5,
+              "x": 555,
+              "y": 130,
+              "width": 204,
+              "height": 21
+            }
+          },
+          {
+            "name": "result/boss-seal",
+            "text": "压轴击败",
+            "bounds": {
+              "type": 5,
+              "x": 1089,
+              "y": 130,
+              "width": 56,
+              "height": 16
+            }
+          },
+          {
+            "name": "result/hand",
+            "text": "顺子 · 18级",
+            "bounds": {
+              "type": 5,
+              "x": 809.5,
+              "y": 163,
+              "width": 81,
+              "height": 19
+            }
+          },
+          {
+            "name": "result/score",
+            "text": "+6,876,748",
+            "bounds": {
+              "type": 5,
+              "x": 690,
+              "y": 194,
+              "width": 320,
+              "height": 81
+            }
+          },
+          {
+            "name": "result/formula",
+            "text": "目标 40,950 · 已过关",
+            "bounds": {
+              "type": 5,
+              "x": 785,
+              "y": 281,
+              "width": 130,
+              "height": 16
+            }
+          },
+          {
+            "name": "result/gap",
+            "text": "过关加成 · ×4",
+            "bounds": {
+              "type": 5,
+              "x": 807.5,
+              "y": 303,
+              "width": 85,
+              "height": 16
+            }
+          },
+          {
+            "name": "result/chain-sources",
+            "text": "冷场救火 ×3 · 包场 ×1.8 · 独家戏 ×1.5",
+            "bounds": {
+              "type": 5,
+              "x": 555,
+              "y": 329,
+              "width": 234,
+              "height": 16
+            }
+          },
+          {
+            "name": "result/hero-name",
+            "text": "谢幕人",
+            "bounds": {
+              "type": 5,
+              "x": 346,
+              "y": 434,
+              "width": 60,
+              "height": 23
+            }
+          },
+          {
+            "name": "result/hero-effect",
+            "text": "燃30金 · ×4",
+            "bounds": {
+              "type": 5,
+              "x": 340,
+              "y": 463,
+              "width": 72,
+              "height": 16
+            }
+          },
+          {
+            "name": "result/source-continuity",
+            "text": "冷场救火",
+            "bounds": {
+              "type": 5,
+              "x": 629,
+              "y": 404,
+              "width": 56,
+              "height": 17
+            }
+          },
+          {
+            "name": "result/source-effect",
+            "text": "×3",
+            "bounds": {
+              "type": 5,
+              "x": 629,
+              "y": 425,
+              "width": 16,
+              "height": 16
+            }
+          },
+          {
+            "name": "result/reward",
+            "text": "奖励  +17 金",
+            "bounds": {
+              "type": 5,
+              "x": 971.5,
+              "y": 449,
+              "width": 111,
+              "height": 22
+            }
+          },
+          {
+            "name": "result/next-body",
+            "text": "谢幕人 · 已过关场次累计热度 6,877,748\n构筑与金币已保留，可自愿继续无尽巡演。\nD1 与挑战已解锁。",
+            "bounds": {
+              "type": 5,
+              "x": 207,
+              "y": 575,
+              "width": 266,
+              "height": 52
+            }
+          }
+        ],
+        "art": [
+          {
+            "name": "result-art/hero",
+            "asset": "xiemu.selection",
+            "bounds": {
+              "type": 5,
+              "x": 255.2,
+              "y": 130,
+              "width": 241.59999999999997,
+              "height": 302
+            }
+          },
+          {
+            "name": "result-art/source",
+            "asset": "f10.thumbnail",
+            "bounds": {
+              "type": 5,
+              "x": 555,
+              "y": 408.65,
+              "width": 62,
+              "height": 77.5
+            }
+          }
+        ],
+        "controls": [
+          {
+            "name": "action/return-select",
+            "enabled": true,
+            "bounds": {
+              "type": 5,
+              "x": 193,
+              "y": 664,
+              "width": 274,
+              "height": 44
+            }
+          },
+          {
+            "name": "action/continue-endless",
+            "enabled": true,
+            "bounds": {
+              "type": 5,
+              "x": 475,
+              "y": 664,
+              "width": 421,
+              "height": 56
+            }
+          },
+          {
+            "name": "action/last-hand",
+            "enabled": true,
+            "bounds": {
+              "type": 5,
+              "x": 904,
+              "y": 664,
+              "width": 269,
+              "height": 44
+            }
+          }
+        ],
+        "motion": []
+      }
+    },
+    {
+      "key": "current-capped-390x844",
+      "status": "PASS",
+      "score": "6876748",
+      "regions": {
+        "stage": {
+          "x": 12,
+          "y": 116,
+          "width": 366,
+          "height": 452
+        },
+        "texts": [
+          {
+            "name": "result/title",
+            "text": "八章好戏，满堂喝彩！",
+            "bounds": {
+              "type": 5,
+              "x": 12,
+              "y": 60,
+              "width": 221,
+              "height": 23
+            }
+          },
+          {
+            "name": "result/tier",
+            "text": "连锁成势 · 3路丑牌乘倍率",
+            "bounds": {
+              "type": 5,
+              "x": 28,
+              "y": 132,
+              "width": 182,
+              "height": 18
+            }
+          },
+          {
+            "name": "result/boss-seal",
+            "text": "压轴击败",
+            "bounds": {
+              "type": 5,
+              "x": 306,
+              "y": 132,
+              "width": 56,
+              "height": 16
+            }
+          },
+          {
+            "name": "result/hand",
+            "text": "顺子 · 18级",
+            "bounds": {
+              "type": 5,
+              "x": 154.5,
+              "y": 162,
+              "width": 81,
+              "height": 19
+            }
+          },
+          {
+            "name": "result/score",
+            "text": "+6,876,748",
+            "bounds": {
+              "type": 5,
+              "x": 88,
+              "y": 193,
+              "width": 214,
+              "height": 55
+            }
+          },
+          {
+            "name": "result/formula",
+            "text": "目标 40,950 · 已过关",
+            "bounds": {
+              "type": 5,
+              "x": 130,
+              "y": 254,
+              "width": 130,
+              "height": 16
+            }
+          },
+          {
+            "name": "result/gap",
+            "text": "过关加成 · ×4",
+            "bounds": {
+              "type": 5,
+              "x": 152.5,
+              "y": 276,
+              "width": 85,
+              "height": 16
+            }
+          },
+          {
+            "name": "result/hero-name",
+            "text": "谢幕人",
+            "bounds": {
+              "type": 5,
+              "x": 73.5,
+              "y": 504,
+              "width": 49,
+              "height": 19
+            }
+          },
+          {
+            "name": "result/hero-effect",
+            "text": "燃30金 · ×4",
+            "bounds": {
+              "type": 5,
+              "x": 62,
+              "y": 529,
+              "width": 72,
+              "height": 16
+            }
+          },
+          {
+            "name": "result/source-continuity",
+            "text": "冷场救火",
+            "bounds": {
+              "type": 5,
+              "x": 246,
+              "y": 354,
+              "width": 56,
+              "height": 17
+            }
+          },
+          {
+            "name": "result/source-effect",
+            "text": "×3",
+            "bounds": {
+              "type": 5,
+              "x": 246,
+              "y": 375,
+              "width": 16,
+              "height": 16
+            }
+          },
+          {
+            "name": "result/reward",
+            "text": "奖励  +17 金",
+            "bounds": {
+              "type": 5,
+              "x": 227.5,
+              "y": 525,
+              "width": 89,
+              "height": 19
+            }
+          },
+          {
+            "name": "result/next-body",
+            "text": "谢幕人 · 已过关场次累计热度 6,877,748\n构筑与金币已保留，可自愿继续无尽巡演。\nD1 与挑战已解锁。",
+            "bounds": {
+              "type": 5,
+              "x": 26,
+              "y": 619,
+              "width": 266,
+              "height": 34
+            }
+          }
+        ],
+        "art": [
+          {
+            "name": "result-art/hero",
+            "asset": "xiemu.selection",
+            "bounds": {
+              "type": 5,
+              "x": 39.02000000000001,
+              "y": 354.20000000000005,
+              "width": 118.23999999999998,
+              "height": 147.79999999999995
+            }
+          },
+          {
+            "name": "result-art/source",
+            "asset": "f10.thumbnail",
+            "bounds": {
+              "type": 5,
+              "x": 181.64000000000001,
+              "y": 358.1,
+              "width": 52,
+              "height": 65
+            }
+          }
+        ],
+        "controls": [
+          {
+            "name": "action/return-select",
+            "enabled": true,
+            "bounds": {
+              "type": 5,
+              "x": 12,
+              "y": 696,
+              "width": 179,
+              "height": 44
+            }
+          },
+          {
+            "name": "action/continue-endless",
+            "enabled": true,
+            "bounds": {
+              "type": 5,
+              "x": 12,
+              "y": 748,
+              "width": 366,
+              "height": 56
+            }
+          },
+          {
+            "name": "action/last-hand",
+            "enabled": true,
+            "bounds": {
+              "type": 5,
+              "x": 199,
+              "y": 696,
+              "width": 179,
+              "height": 44
+            }
+          }
+        ],
+        "motion": []
+      }
+    },
+    {
+      "key": "boss-loss-1366x768",
+      "status": "PASS",
+      "score": "130",
+      "regions": {
+        "stage": {
+          "x": 193,
+          "y": 102,
+          "width": 980,
+          "height": 422
+        },
+        "texts": [
+          {
+            "name": "result/title",
+            "text": "此番落幕，再登台",
+            "bounds": {
+              "type": 5,
+              "x": 193,
+              "y": 42,
+              "width": 272,
+              "height": 36
+            }
+          },
+          {
+            "name": "result/tier",
+            "text": "此番落幕",
+            "bounds": {
+              "type": 5,
+              "x": 555,
+              "y": 130,
+              "width": 72,
+              "height": 21
+            }
+          },
+          {
+            "name": "result/boss-seal",
+            "text": "压轴未过",
+            "bounds": {
+              "type": 5,
+              "x": 1089,
+              "y": 130,
+              "width": 56,
+              "height": 16
+            }
+          },
+          {
+            "name": "result/hand",
+            "text": "出牌次数已用完",
+            "bounds": {
+              "type": 5,
+              "x": 793.5,
+              "y": 163,
+              "width": 113,
+              "height": 19
+            }
+          },
+          {
+            "name": "result/score",
+            "text": "519",
+            "bounds": {
+              "type": 5,
+              "x": 795,
+              "y": 194,
+              "width": 110,
+              "height": 81
+            }
+          },
+          {
+            "name": "result/formula",
+            "text": "目标 800 · 差 281",
+            "bounds": {
+              "type": 5,
+              "x": 795.5,
+              "y": 281,
+              "width": 109,
+              "height": 16
+            }
+          },
+          {
+            "name": "result/gap",
+            "text": "最后一手：高牌 · 130 热度",
+            "bounds": {
+              "type": 5,
+              "x": 767,
+              "y": 303,
+              "width": 166,
+              "height": 16
+            }
+          },
+          {
+            "name": "result/hero-name",
+            "text": "谢幕人",
+            "bounds": {
+              "type": 5,
+              "x": 346,
+              "y": 434,
+              "width": 60,
+              "height": 23
+            }
+          },
+          {
+            "name": "result/hero-effect",
+            "text": "本局角色",
+            "bounds": {
+              "type": 5,
+              "x": 348,
+              "y": 463,
+              "width": 56,
+              "height": 16
+            }
+          },
+          {
+            "name": "result/next-body",
+            "text": "剩余出牌 0 次 · 弃牌 3 次\n已过关场次累计热度 1,000 · 余额 80 金\n同局重试从开局重新开始，构筑不继承。",
+            "bounds": {
+              "type": 5,
+              "x": 207,
+              "y": 575,
+              "width": 252,
+              "height": 52
+            }
+          }
+        ],
+        "art": [
+          {
+            "name": "result-art/hero",
+            "asset": "xiemu.selection",
+            "bounds": {
+              "type": 5,
+              "x": 255.2,
+              "y": 130,
+              "width": 241.59999999999997,
+              "height": 302
+            }
+          }
+        ],
+        "controls": [
+          {
+            "name": "action/continue-stage",
+            "enabled": true,
+            "bounds": {
+              "type": 5,
+              "x": 193,
+              "y": 664,
+              "width": 274,
+              "height": 44
+            }
+          },
+          {
+            "name": "action/retry-seed",
+            "enabled": true,
+            "bounds": {
+              "type": 5,
+              "x": 475,
+              "y": 664,
+              "width": 421,
+              "height": 56
+            }
+          },
+          {
+            "name": "action/last-hand",
+            "enabled": true,
+            "bounds": {
+              "type": 5,
+              "x": 904,
+              "y": 664,
+              "width": 269,
+              "height": 44
+            }
+          }
+        ],
+        "motion": []
+      }
+    },
+    {
+      "key": "boss-loss-390x844",
+      "status": "PASS",
+      "score": "130",
+      "regions": {
+        "stage": {
+          "x": 12,
+          "y": 116,
+          "width": 366,
+          "height": 452
+        },
+        "texts": [
+          {
+            "name": "result/title",
+            "text": "此番落幕，再登台",
+            "bounds": {
+              "type": 5,
+              "x": 12,
+              "y": 60,
+              "width": 177,
+              "height": 23
+            }
+          },
+          {
+            "name": "result/tier",
+            "text": "此番落幕",
+            "bounds": {
+              "type": 5,
+              "x": 28,
+              "y": 132,
+              "width": 65,
+              "height": 18
+            }
+          },
+          {
+            "name": "result/boss-seal",
+            "text": "压轴未过",
+            "bounds": {
+              "type": 5,
+              "x": 306,
+              "y": 132,
+              "width": 56,
+              "height": 16
+            }
+          },
+          {
+            "name": "result/hand",
+            "text": "出牌次数已用完",
+            "bounds": {
+              "type": 5,
+              "x": 138.5,
+              "y": 156,
+              "width": 113,
+              "height": 19
+            }
+          },
+          {
+            "name": "result/score",
+            "text": "519",
+            "bounds": {
+              "type": 5,
+              "x": 166,
+              "y": 180,
+              "width": 58,
+              "height": 44
+            }
+          },
+          {
+            "name": "result/formula",
+            "text": "目标 800 · 差 281",
+            "bounds": {
+              "type": 5,
+              "x": 140.5,
+              "y": 230,
+              "width": 109,
+              "height": 16
+            }
+          },
+          {
+            "name": "result/gap",
+            "text": "最后一手：高牌 · 130 热度",
+            "bounds": {
+              "type": 5,
+              "x": 112,
+              "y": 252,
+              "width": 166,
+              "height": 16
+            }
+          },
+          {
+            "name": "result/hero-name",
+            "text": "谢幕人",
+            "bounds": {
+              "type": 5,
+              "x": 170.5,
+              "y": 526,
+              "width": 49,
+              "height": 19
+            }
+          },
+          {
+            "name": "result/next-body",
+            "text": "剩余出牌 0 次 · 弃牌 3 次\n已过关场次累计热度 1,000 · 余额 80 金\n同局重试从开局重新开始，构筑不继承。",
+            "bounds": {
+              "type": 5,
+              "x": 26,
+              "y": 619,
+              "width": 243,
+              "height": 34
+            }
+          }
+        ],
+        "art": [
+          {
+            "name": "result-art/hero",
+            "asset": "xiemu.selection",
+            "bounds": {
+              "type": 5,
+              "x": 107.8,
+              "y": 306,
+              "width": 174.39999999999998,
+              "height": 218
+            }
+          }
+        ],
+        "controls": [
+          {
+            "name": "action/continue-stage",
+            "enabled": true,
+            "bounds": {
+              "type": 5,
+              "x": 12,
+              "y": 696,
+              "width": 179,
+              "height": 44
+            }
+          },
+          {
+            "name": "action/retry-seed",
+            "enabled": true,
+            "bounds": {
+              "type": 5,
+              "x": 12,
+              "y": 748,
+              "width": 366,
+              "height": 56
+            }
+          },
+          {
+            "name": "action/last-hand",
+            "enabled": true,
+            "bounds": {
+              "type": 5,
+              "x": 199,
+              "y": 696,
+              "width": 179,
+              "height": 44
+            }
+          }
+        ],
+        "motion": []
+      }
+    }
+  ]
+}

@@ -1,0 +1,129 @@
+{
+  "baseline": "69f46e47f250ec3ad7bc55ed11f7888326eecf8f",
+  "runtimeHead": "c5ff7d4035fb89d13831ce1aa30c3b727d8fc040",
+  "srcTree": "2b84606e0d598d26fefbad9953b167f886e63eb6",
+  "sourcePR133": "56aa86fcdeeaec75cc496399ad4387de81957325",
+  "mergedPR163": "7d49940390ee5e7d2b38a2dfc9fa9cf9d6069824",
+  "protected": [
+    {
+      "path": "src/game/GameScene.ts",
+      "baselineObject": "39ff4e4aae84b801f5f68299942b0b2b271236fb",
+      "candidateObject": "39ff4e4aae84b801f5f68299942b0b2b271236fb",
+      "unchanged": true
+    },
+    {
+      "path": "src/game/ShopScene.ts",
+      "baselineObject": "9723ba539f6353d0ee543c6cf34ffb86a61c9b83",
+      "candidateObject": "9723ba539f6353d0ee543c6cf34ffb86a61c9b83",
+      "unchanged": true
+    },
+    {
+      "path": "src/game/HeroClimax.ts",
+      "baselineObject": "2aed8942dd77cf4544135139c85eaa948e8c86f4",
+      "candidateObject": "2aed8942dd77cf4544135139c85eaa948e8c86f4",
+      "unchanged": true
+    },
+    {
+      "path": "src/game/ScoreSourceProcess.ts",
+      "baselineObject": "0c5c56648794f0d23cd03bfd2b75367a5bffd7b1",
+      "candidateObject": "0c5c56648794f0d23cd03bfd2b75367a5bffd7b1",
+      "unchanged": true
+    },
+    {
+      "path": "src/game/ScoreReview.ts",
+      "baselineObject": "ca22c1227ec9d2a8fe087b4664d38ea6b5d93567",
+      "candidateObject": "ca22c1227ec9d2a8fe087b4664d38ea6b5d93567",
+      "unchanged": true
+    },
+    {
+      "path": "src/game/HeroClimaxLayout.ts",
+      "baselineObject": "ebf5b36f01f28c7a4a463558614b02c843f649cd",
+      "candidateObject": "ebf5b36f01f28c7a4a463558614b02c843f649cd",
+      "unchanged": true
+    },
+    {
+      "path": "src/game/ResultStage.ts",
+      "baselineObject": "587889170a15d76c89b39761a9d750083049243e",
+      "candidateObject": "587889170a15d76c89b39761a9d750083049243e",
+      "unchanged": true
+    },
+    {
+      "path": "src/game/ResultStageArt.ts",
+      "baselineObject": "eb74b270950e3640327077438834cdd407a18d10",
+      "candidateObject": "eb74b270950e3640327077438834cdd407a18d10",
+      "unchanged": true
+    },
+    {
+      "path": "src/domain",
+      "baselineObject": "b293cd1b6adaff0e318f02ac9196417085b02091",
+      "candidateObject": "b293cd1b6adaff0e318f02ac9196417085b02091",
+      "unchanged": true
+    },
+    {
+      "path": "src/content",
+      "baselineObject": "e8c3794be5b0fcb74da4aeb9e6adc63c22388345",
+      "candidateObject": "e8c3794be5b0fcb74da4aeb9e6adc63c22388345",
+      "unchanged": true
+    },
+    {
+      "path": "src/application",
+      "baselineObject": "7d9af1c3a9f38cdcddd88d2777cd6963aebe4237",
+      "candidateObject": "7d9af1c3a9f38cdcddd88d2777cd6963aebe4237",
+      "unchanged": true
+    },
+    {
+      "path": "src/platform",
+      "baselineObject": "860a9f8883cc158ac0c56ad6399518cc897a67b7",
+      "candidateObject": "860a9f8883cc158ac0c56ad6399518cc897a67b7",
+      "unchanged": true
+    },
+    {
+      "path": "src/audio",
+      "baselineObject": "a2f0483eecaaafb40cdbb82778ec2a846fd2e000",
+      "candidateObject": "a2f0483eecaaafb40cdbb82778ec2a846fd2e000",
+      "unchanged": true
+    },
+    {
+      "path": "public",
+      "baselineObject": "c4a6ec74e7fd754b0f300b973020f8afed7542e1",
+      "candidateObject": "c4a6ec74e7fd754b0f300b973020f8afed7542e1",
+      "unchanged": true
+    },
+    {
+      "path": "art",
+      "baselineObject": "b0caa33679b84bee932b2854734c04ad39ba0464",
+      "candidateObject": "b0caa33679b84bee932b2854734c04ad39ba0464",
+      "unchanged": true
+    },
+    {
+      "path": "package.json",
+      "baselineObject": "f7e7f89f05edd46636bac3acc1dfcd1b6cd94ccd",
+      "candidateObject": "f7e7f89f05edd46636bac3acc1dfcd1b6cd94ccd",
+      "unchanged": true
+    },
+    {
+      "path": "package-lock.json",
+      "baselineObject": "acc93dcd9410bc911db279534e28522a8691dbab",
+      "candidateObject": "acc93dcd9410bc911db279534e28522a8691dbab",
+      "unchanged": true
+    },
+    {
+      "path": ".github",
+      "baselineObject": "b923e03979ce93c9a142628f8b1099e2cd2b9150",
+      "candidateObject": "b923e03979ce93c9a142628f8b1099e2cd2b9150",
+      "unchanged": true
+    },
+    {
+      "path": "AGENTS.md",
+      "baselineObject": "c2cd3158b69c9df5ef50f9d26be4e7473897d7e0",
+      "candidateObject": "c2cd3158b69c9df5ef50f9d26be4e7473897d7e0",
+      "unchanged": true
+    },
+    {
+      "path": "docs/production/DELIVERY_PLAN.md",
+      "baselineObject": "f3ae191d02caf4a6e980ed44989034530fad32f1",
+      "candidateObject": "f3ae191d02caf4a6e980ed44989034530fad32f1",
+      "unchanged": true
+    }
+  ]
+}

@@ -1,0 +1,4 @@
+Actual commands run 2026-10-14 UTC after minimal patch:
+npm run typecheck -> exit 0
+npx vitest run tests/hero-climax.test.ts tests/hero-payoff.test.ts tests/score-source-process.test.ts tests/joker-key-highlight.test.ts -> 4 files / 28 tests passed, duration 2.37s
+This is a transcription of completed terminal results; full build output is build.log. New exact-head CI will be independently read back.

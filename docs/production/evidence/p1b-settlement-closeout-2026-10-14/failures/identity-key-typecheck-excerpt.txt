@@ -1,0 +1,4 @@
+Typecheck excerpt before fixture constructor key correction:
+TS2769: r2Identity { version: string; hash: string; } is not assignable to { contentVersion: string; contentHash: string; }.
+Object literal may only specify known properties, and 'version' does not exist in type { contentVersion: string; contentHash: string; }.
+Remaining never-intersection errors cascaded from this fixture constructor mismatch. Product/domain API unchanged.

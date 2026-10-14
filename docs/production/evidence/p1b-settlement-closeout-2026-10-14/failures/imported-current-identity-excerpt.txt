@@ -1,0 +1,4 @@
+First import of PR133 tests: 5 FAIL / 35 PASS, 3 files.
+Legacy million/billion recipes used current newRunIdentity; expected old uncapped S21 factor ≈426.88 but actual current cap is ×4.
+Old dual-route expected both independent factors; current profile applies its existing max rule.
+No scorer bug or rule edit. Pin inherited legacy recipes to their actual PR133 archived identity quality-r2-route-growth-v1 / json-fnv-v1:7414228d95059959; add current-identity checks separately.
