@@ -41,4 +41,4 @@
 
 受控fixture不是自然获得或真实玩家存档。未验实体设备/触感/听感、自然整局、全部72卡逐卡截图、全部39工具实用、短横屏与整体审美；本包不签这些，不部署或合main。最终精确PR HEAD与CI结果在PR另核，不借旧main或源PR绿灯。
 
-工具全链在冻结 `2eaa31de4`（精确值见报告sourceBefore.head）的PC1366×768/390×740复跑最终PASS，source/index/HEAD/branch前后完全相等；[摘要](tools-regression/report.json)、[完整state/journal/storage报告](tools-regression/full-state-report.json.gz)。两端额外核真实延迟/连点/购买失败重试、增强覆盖取消及确认、使用失败重试、滚动保持、实际lease失去后的禁购与只读预览。未改工具规则或保存。
+工具全链在冻结 `2eaa31de34fc3acd423d7ad4a211e3b5ac8ee653`（精确值见报告sourceBefore.head）的PC1366×768/390×740复跑最终PASS，source/index/HEAD/branch前后完全相等；[摘要](tools-regression/report.json)、[完整state/journal/storage报告](tools-regression/full-state-report.json.gz)。两端额外核真实延迟/连点/购买失败重试、增强覆盖取消及确认、使用失败重试、滚动保持、实际lease失去后的禁购与只读预览。未改工具规则或保存。
