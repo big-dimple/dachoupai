@@ -48,6 +48,7 @@ export async function openSelector(page,touch=false){
 }
 /** Follow the production hero → route → joint confirmation, including old-save prompts. */
 export async function confirmHeroRoute(page,touch=false,focus='group'){
+  const hero=page.locator('dialog.hero-explanation[open]');if(await hero.count()){const close=hero.getByRole('button',{name:'回到选角',exact:true});if(touch)await close.tap();else await close.click();}
   if(await page.evaluate(()=>window.__harness.game.scene.getScene('character-select').step==='hero'))await tapUI(page,'character-select','action/confirm-character',touch);
   await tapUI(page,'character-select','route/'+focus,touch);
   await tapUI(page,'character-select','action/confirm-character',touch);
