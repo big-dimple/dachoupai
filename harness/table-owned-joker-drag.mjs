@@ -51,6 +51,10 @@ try{
   }
   if(process.env.TABLE_DRAG_BOUNDARY_ONLY==='1'){row.initial=await snapshot(p);row.status=touch?'OBSERVED':'NOT_APPLICABLE';await context.close();continue;}
   row.initial=await snapshot(p);row.initialVisual=await visual(p);row.idleShot=await shot('idle');
+  if(!touch&&!baseline){
+   const before=await snapshot(p);await p.mouse.move(...Object.values(await slot(p,0)));await p.waitForTimeout(160);
+   row.mouseHover=await p.evaluate(()=>{const s=window.__harness.game.scene.getScene('game');return{id:s.hoveredJokerId,preview:!!s.jokerHoverPreview?.active};});assert.equal(row.mouseHover.id,before.state.jokers[0].instanceId);assert.equal(row.mouseHover.preview,true);assert.deepEqual(await snapshot(p),before);row.mouseHover.shot=await shot('mouse-hover');await p.mouse.move(1,1);await p.waitForTimeout(160);
+  }
   for(const [from,to,style] of [[0,4,'slow'],[4,0,'fast'],[1,3,'middle']].slice(0,smoke?1:3)){
    const before=await snapshot(p),at=await slot(p,from),target=await slot(p,to),id=before.state.jokers[from].instanceId,v0=await visual(p),calls=v0.dispatch.length,m={from,to,style,before};row.moves.push(m);
    await start(at);await p.waitForTimeout(touch?420:30);

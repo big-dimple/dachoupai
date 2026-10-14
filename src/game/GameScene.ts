@@ -338,6 +338,14 @@ export class GameScene extends Phaser.Scene {
       lift:(id,x,y)=>this.liftOwned(id,x,y),move:(x,y)=>this.ownedDrag?.preview(x,y),
       drop:(id,x,y)=>this.dropOwned(id,x,y),cancel:()=>this.cancelOwned(),
     });
+    // The native rail owns dragging; keep the table's existing mouse hover inspection.
+    this.ownedInput.surface.addEventListener('pointermove',event=>{
+      if(event.pointerType!=='mouse'||event.buttons||!this.ownedReady||this.ownedDrag)return;
+      const r=this.game.canvas.getBoundingClientRect(),x=(event.clientX-r.left)*this.scale.width*this.scale.zoom/r.width,y=(event.clientY-r.top)*this.scale.height*this.scale.zoom/r.height;
+      const index=this.view.layout.slots.findIndex(b=>x>=b.x&&x<=b.x+b.width&&y>=b.y&&y<=b.y+b.height),id=this.run.jokers[index]?.instanceId;
+      if(this.hoveredJokerId===id)return;if(this.hoveredJokerId)this.hoverJoker(this.hoveredJokerId,false);if(id)this.hoverJoker(id,true);
+    });
+    this.ownedInput.surface.addEventListener('pointerleave',()=>{if(this.hoveredJokerId&&!this.ownedDrag)this.hoverJoker(this.hoveredJokerId,false);});
     this.menuActions={viewDeck:()=>this.inspectDeck(),viewRules:()=>this.inspectRole()};
     this.registry.set('runMenuActions',this.menuActions);
     window.addEventListener('keydown',this.keyboard);
