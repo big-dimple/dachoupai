@@ -1,4 +1,4 @@
-import {R2_CORE_BUILD_HASH,R2_CORE_BUILD_VERSION} from '../src/domain/r2GroupUpgrade';
+import {R2_S04_FINISH_HASH,R2_S04_FINISH_VERSION} from '../src/domain/r2GroupUpgrade';
 import {afterEach,beforeEach,describe,expect,it,vi} from 'vitest';
 import v9 from './fixtures/c04-v9-checkpoint.json';
 import legacyAmo from './fixtures/r2-v10-amo-checkpoints.json';
@@ -469,7 +469,7 @@ describe('Amo v10/v11 production storage partition compatibility',()=>{
     expect(await session.resumeMode(STANDARD)).toBe(true);expect(session.state()).toEqual(old.state);
     expect(session.state()?.contentHash).toBe(R2_LEGACY_CONTENT_HASH);
     // Starting creates the new profile while retaining the original old partition.
-    await session.start('new-after-old','amo',STANDARD);expect(session.state()?.contentHash).toBe(R2_CORE_BUILD_HASH);
+    await session.start('new-after-old','amo',STANDARD);expect(session.state()?.contentHash).toBe(R2_S04_FINISH_HASH);
     expect((await storage.readPartition(old.state)).current).toEqual(old);
   });
   it('legacy failed persistence retries the exact pending candidate once, duplicate command has no events',async()=>{

@@ -1,4 +1,9 @@
-import {describe,it,expect} from 'vitest';
+import {describe,it,expect,vi} from 'vitest';
+// The historical analysis models and their saved hashes remain frozen at the prior core launch.
+vi.mock('../src/game/RunLaunch',async()=>{
+ const {R2_CORE_BUILD_VERSION,R2_CORE_BUILD_HASH}=await import('../src/domain/r2GroupUpgrade');
+ return {newRunIdentity:()=>({contentVersion:R2_CORE_BUILD_VERSION,contentHash:R2_CORE_BUILD_HASH})};
+});
 import {fixture,acquire,probes} from '../analysis/s04-window';
 import {isR2BoundedClear,isR2CoreBuild} from '../src/domain/r2GroupUpgrade';
 

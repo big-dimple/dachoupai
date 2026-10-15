@@ -5,7 +5,7 @@ import {Rational} from '../src/domain/rational';
 import {createRun,applyCommand,type R2RunState,type Action} from '../src/domain/run';
 import {completeControlledRouteHistory} from './fixtures/route-growth-history';
 import {r2ScoreContext,r2RulesetFor,r2CreateJoker} from '../src/domain/r2Run';
-import {isR2BoundedClear,R2_CORE_BUILD_VERSION,R2_CORE_BUILD_HASH,R2_TOUYE_CORE_VERSION,R2_TOUYE_CORE_HASH,isR2RouteStarter} from '../src/domain/r2GroupUpgrade';
+import {isR2BoundedClear,R2_S04_FINISH_VERSION,R2_S04_FINISH_HASH,R2_TOUYE_CORE_VERSION,R2_TOUYE_CORE_HASH,isR2RouteStarter} from '../src/domain/r2GroupUpgrade';
 import {R2_RULESETS} from '../src/domain/r2Run';
 import {newRunIdentity,launchIdentity} from '../src/game/RunLaunch';
 import {makeCheckpoint,readCheckpoint} from '../src/application/checkpoint';
@@ -25,7 +25,7 @@ function input(s:R2RunState):ScoreInput{const hand=s.handOrder.map(id=>s.deckIns
 function late(t:ReturnType<typeof score>){const index=t.events.indexOf(role(t));expect(index).toBe(t.events.findIndex(e=>e.phase==='finalScore')-1);for(const [i,e] of t.events.entries())if(e.phase==='jokerScore'||e.phase==='routeGrowth')expect(i).toBeLessThan(index);expect(t.events.filter(e=>e.sourceType==='character'&&e.phase==='characterScore')).toHaveLength(1);}
 describe('P1A exact active multiplier timing',()=>{
  it('keeps historical active profiles exact while normal launches use bounded clear',()=>{
-  for(const h of ['touye','xiemu','azao'] as const)for(const r of ['group','straight','flush'] as const)expect(newRunIdentity(h,r)).toEqual({contentVersion:R2_CORE_BUILD_VERSION,contentHash:R2_CORE_BUILD_HASH});
+  for(const h of ['touye','xiemu','azao'] as const)for(const r of ['group','straight','flush'] as const)expect(newRunIdentity(h,r)).toEqual({contentVersion:R2_S04_FINISH_VERSION,contentHash:R2_S04_FINISH_HASH});
   for(const h of ['amo','erxiang','laohuan'] as const)expect(isR2BoundedClear(newRunIdentity(h,'group'))).toBe(true);
   for(const p of R2_RULESETS.filter(p=>p.contentVersion!==activeIdentity.contentVersion&&!isR2BoundedClear(p))){
    const identity={contentVersion:p.contentVersion,contentHash:p.contentHash};

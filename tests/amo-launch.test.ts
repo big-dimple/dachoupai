@@ -1,4 +1,4 @@
-import {R2_CORE_BUILD_HASH,R2_CORE_BUILD_VERSION} from '../src/domain/r2GroupUpgrade';
+import {R2_S04_FINISH_HASH,R2_S04_FINISH_VERSION} from '../src/domain/r2GroupUpgrade';
 import {isR2RouteStarter} from '../src/domain/r2GroupUpgrade';
 import {describe,expect,it} from 'vitest';
 import {createRun,applyCommand,assertRunInvariants,type R2RunState} from '../src/domain/run';
@@ -16,8 +16,8 @@ describe('normal new-game policy and exact retry creation',()=>{
  it('all six normal new games use core build; raw createRun stays v11',()=>{
   for(const characterId of CHARACTER_IDS){
    const run=createRun({...base,characterId,r2Identity:newRunIdentity(characterId)});assertRunInvariants(run);
-   expect(run.contentHash).toBe(R2_CORE_BUILD_HASH);
-   expect(run.contentVersion).toBe(R2_CORE_BUILD_VERSION);
+   expect(run.contentHash).toBe(R2_S04_FINISH_HASH);
+   expect(run.contentVersion).toBe(R2_S04_FINISH_VERSION);
    expect(run.handLevels).toEqual({});expect(readCheckpoint(makeCheckpoint(run,[])).ok).toBe(true);
   }
   expect(createRun(base).contentHash).toBe('json-fnv-v1:bd4a1230833ab884');
@@ -44,7 +44,7 @@ describe('normal new-game policy and exact retry creation',()=>{
  });
  it('Q01 keeps core build identity while disabling its ability; tutorial requires Erxiang',()=>{
   const q=createRun({...base,seed:'challenge/q01/0',r2Identity:newRunIdentity('amo'),modeConfig:{mode:'challenge',difficulty:0,challengeId:'Q01',programsEnabled:false}});
-  expect(q.contentHash).toBe(R2_CORE_BUILD_HASH);expect(q.handLevels).toEqual({});
+  expect(q.contentHash).toBe(R2_S04_FINISH_HASH);expect(q.handLevels).toEqual({});
   expect(()=>createRun({...base,r2Identity:newRunIdentity('amo'),modeConfig:{mode:'tutorial',difficulty:0,challengeId:null,programsEnabled:false}})).toThrow();
  });
  it('selector copy shares new-game policy without changing legacy or other character definitions',()=>{

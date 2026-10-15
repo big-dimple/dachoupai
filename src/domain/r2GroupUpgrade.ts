@@ -59,7 +59,11 @@ export const R2_BOUNDED_CLEAR_HASH=stableHash(R2_BOUNDED_CLEAR_CONTRACT);
 export const R2_CORE_BUILD_VERSION='quality-r2-core-build-v1';
 export const R2_CORE_BUILD_CONTRACT=Object.freeze({inherits:R2_BOUNDED_CLEAR_HASH,targets:R2_CORE_BUILD_TARGET_CONTRACT,practice:Object.freeze({basePrice:4,stepPrice:2,levelsPerStep:3,maximumLevel:30,quota:'shared-basic-choice-once-shop-visit',operation:'immediate-one-level-discovered-hand',discount:'existing-min1',randomT01:'unchanged',confirmation:'receipt-bound-shop-seq-and-level'}),legacy:'no-migration'});
 export const R2_CORE_BUILD_HASH=stableHash(R2_CORE_BUILD_CONTRACT);
-export function isR2CoreBuild(identity:{contentVersion?:unknown;contentHash?:unknown}):boolean{return identity.contentVersion===R2_CORE_BUILD_VERSION&&identity.contentHash===R2_CORE_BUILD_HASH;}
+export const R2_S04_FINISH_VERSION='quality-r2-s04-finish-v1';
+export const R2_S04_FINISH_CONTRACT=Object.freeze({inherits:R2_CORE_BUILD_HASH,minimumChapter:3,numerator:1,denominator:2,scope:'living-persistent-deck-selected-suit',acquisition:'any-qualified-noncomplete-suit',use:'recheck-selected-suit-no-stored-bypass',operation:'original-whole-deck-suit-only',price:6,handPenalty:1,shelf:'entry-or-original-reroll-only-no-dye-restock',legacy:'exact-no-migration'});
+export const R2_S04_FINISH_HASH=stableHash(R2_S04_FINISH_CONTRACT);
+export function isR2S04Finish(identity:{contentVersion?:unknown;contentHash?:unknown}):boolean{return identity.contentVersion===R2_S04_FINISH_VERSION&&identity.contentHash===R2_S04_FINISH_HASH;}
+export function isR2CoreBuild(identity:{contentVersion?:unknown;contentHash?:unknown}):boolean{return identity.contentVersion===R2_CORE_BUILD_VERSION&&identity.contentHash===R2_CORE_BUILD_HASH||isR2S04Finish(identity);}
 export function isR2BoundedClear(identity:{contentVersion?:unknown;contentHash?:unknown}):boolean{return identity.contentVersion===R2_BOUNDED_CLEAR_VERSION&&identity.contentHash===R2_BOUNDED_CLEAR_HASH||isR2CoreBuild(identity);}
 export function isR2ActiveMultTiming(identity:{contentVersion?:unknown;contentHash?:unknown}):boolean{return identity.contentVersion===R2_ACTIVE_MULT_VERSION&&identity.contentHash===R2_ACTIVE_MULT_HASH||isR2BoundedClear(identity);}
 export function isR2TouyeNewCore(identity:{contentVersion?:unknown;contentHash?:unknown}):boolean{return identity.contentVersion===R2_TOUYE_CORE_VERSION&&identity.contentHash===R2_TOUYE_CORE_HASH||isR2ActiveMultTiming(identity);}
