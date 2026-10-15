@@ -18,6 +18,9 @@ export class OwnedJokerInput {
   private contacts=new Map<number,string>();
   private timer?:ReturnType<typeof setTimeout>;
   private savedInput=true;
+  private bounds?:Box;
+  private destroyed=false;
+  private readonly canvasResize?:ResizeObserver;
   constructor(private readonly scene:Phaser.Scene,private readonly options:Options){
     this.surface.className='shop-owned-input';this.surface.setAttribute('aria-hidden','true');
     // pan-y lets the browser cancel a contact after it has already lifted a card.
@@ -40,6 +43,11 @@ export class OwnedJokerInput {
     document.addEventListener('visibilitychange',this.visibility);
     document.addEventListener('focusin',this.focus);
     document.body.append(this.surface);
+    // Canvas CSS can settle after the scene has laid out the owned-card rail.
+    if(typeof ResizeObserver!=='undefined'){
+      this.canvasResize=new ResizeObserver(()=>this.syncBounds());
+      this.canvasResize.observe(this.scene.game.canvas);
+    }
   }
   private coordinates(e:PointerEvent){const r=this.scene.game.canvas.getBoundingClientRect(),zoom=this.scene.scale.zoom;return{x:(e.clientX-r.left)*this.scene.scale.width*zoom/r.width,y:(e.clientY-r.top)*this.scene.scale.height*zoom/r.height};}
   private blocked(e:PointerEvent){return !!this.owner&&(this.owner.width!==innerWidth||this.owner.height!==innerHeight)||!this.options.inspectable()||modalBlocksCanvas(e.clientX,e.clientY)||e.clientX<0||e.clientY<0||e.clientX>=innerWidth||e.clientY>=innerHeight;}
@@ -91,9 +99,12 @@ export class OwnedJokerInput {
   cancel(){clearTimeout(this.timer);this.intent.cancel();if(this.owner)this.owner.canceled=true;this.options.cancel();}
   private finish(){clearTimeout(this.timer);const o=this.owner;this.owner=undefined;this.surface.style.cursor='grab';if(o){this.scene.input.enabled=this.savedInput;if(this.surface.hasPointerCapture(o.pointerId))this.surface.releasePointerCapture(o.pointerId);}}
   setBounds(b:Box|undefined){
-    this.cancel();this.finish();this.surface.hidden=!b;if(!b)return;
+    this.cancel();this.finish();this.bounds=b;this.surface.hidden=!b;this.syncBounds();
+  }
+  private syncBounds(){
+    const b=this.bounds;if(this.destroyed||!b)return;
     const r=this.scene.game.canvas.getBoundingClientRect(),sx=r.width/(this.scene.scale.width*this.scene.scale.zoom),sy=r.height/(this.scene.scale.height*this.scene.scale.zoom);
     Object.assign(this.surface.style,{left:r.left+b.x*sx+'px',top:r.top+b.y*sy+'px',width:b.width*sx+'px',height:b.height*sy+'px'});
   }
-  destroy(){this.cancel();this.finish();this.surface.remove();window.removeEventListener('pointerdown',this.contact,true);window.removeEventListener('pointermove',this.move,true);window.removeEventListener('pointerup',this.up,true);window.removeEventListener('pointercancel',this.interrupt,true);window.removeEventListener('pointerout',this.out,true);window.removeEventListener('blur',this.blur);window.removeEventListener('resize',this.resize);window.removeEventListener('keydown',this.key);document.removeEventListener('visibilitychange',this.visibility);document.removeEventListener('focusin',this.focus);}
+  destroy(){if(this.destroyed)return;this.destroyed=true;this.canvasResize?.disconnect();this.cancel();this.finish();this.surface.remove();window.removeEventListener('pointerdown',this.contact,true);window.removeEventListener('pointermove',this.move,true);window.removeEventListener('pointerup',this.up,true);window.removeEventListener('pointercancel',this.interrupt,true);window.removeEventListener('pointerout',this.out,true);window.removeEventListener('blur',this.blur);window.removeEventListener('resize',this.resize);window.removeEventListener('keydown',this.key);document.removeEventListener('visibilitychange',this.visibility);document.removeEventListener('focusin',this.focus);}
 }
