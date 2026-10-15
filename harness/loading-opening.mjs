@@ -27,6 +27,14 @@ try{
   assert.equal(row.zero.value,row.zero.loaded);assert.equal(row.zero.overflow,false);assert.equal(row.zero.scrollX,false);assert.equal(row.zero.scroll,false);
   if(!spec.osReduce&&!spec.appReduce)assert.ok(row.zero.animations>0);
   else assert.equal(row.zero.animations,0,'both motion preferences suppress all decorative animation');
+  if(spec.weak){
+   // On a throttled renderer, screenshot capture itself can consume most of the
+   // product's 12s deadline. Release transport now; measure native loading while
+   // the renderer works, rather than holding its images during more screenshots.
+   await p.evaluate(()=>{window.__loadingBeats=[];const h=document.querySelector('#resource-loading');new MutationObserver(()=>window.__loadingBeats.push({loaded:+h.dataset.loaded,total:+h.dataset.total,value:h.querySelector('progress').value,cards:h.querySelectorAll('.load-card-seat.is-inked').length,chapters:h.querySelectorAll('.load-chapters .is-inked').length})).observe(h,{attributes:true,attributeFilter:['data-loaded']});});
+   release();await p.waitForFunction(()=>window.__harness?.game.scene.isActive('title')&&window.__harness.game.registry.get('resourcePreparation')?.status==='ready',undefined,{timeout:30000});
+   row.titleMs=Date.now()-start;row.beats=await p.evaluate(()=>window.__loadingBeats);assert.ok(row.beats.some(b=>b.loaded>8&&b.loaded<67&&b.cards===1));assert.ok(row.beats.some(b=>b.loaded>=67&&b.loaded<134&&b.cards===2));assert.ok(row.beats.some(b=>b.loaded===134&&b.cards===3));assert.ok(row.beats.every(b=>b.value===b.loaded&&b.chapters===b.cards));assert.equal(await p.locator('#resource-loading').count(),0);assert.deepEqual(errors,[]);row.status='PASS';console.log('PASS',name,row.titleMs);await ctx.close();continue;
+  }
   await p.waitForTimeout(950);
   row.settled=await snap();await p.screenshot({path:`${out}/${name}-settled.png`,scale:'css'});
   assert.ok(row.settled.actions.every(a=>a.height>=44));assert.ok(row.settled.cardTop-row.settled.taglineBottom>=8,'tagline stays clear of the card fan');
