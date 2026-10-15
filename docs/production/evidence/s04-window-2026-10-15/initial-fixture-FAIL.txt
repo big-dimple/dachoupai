@@ -1,0 +1,12 @@
+file:///tmp/dachoupai-s04-7IF0eS/window.mjs:12410
+    if (!condition) throw new Error(`Run invariant: ${label}`);
+                          ^
+
+Error: Run invariant: basic choice visit/receipt/quota
+    at check (file:///tmp/dachoupai-s04-7IF0eS/window.mjs:12410:27)
+    at assertR2Invariants (file:///tmp/dachoupai-s04-7IF0eS/window.mjs:12561:5)
+    at fixture (file:///tmp/dachoupai-s04-7IF0eS/window.mjs:13974:3)
+    at makeReport (file:///tmp/dachoupai-s04-7IF0eS/window.mjs:14095:16)
+    at file:///workspace/dachoupai/analysis/s04-window-run.mjs:21:190
+
+Node.js v24.19.0
