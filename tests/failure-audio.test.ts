@@ -5,6 +5,7 @@ vi.mock('phaser',()=>({default:{Scene:class {
   events={once:()=>{}};cameras={main:{setBackgroundColor:()=>{}}};
   registry={get:()=>({state:fixture.run})};scene={start:()=>{}};
 }}}));
+vi.mock('../src/game/StageImageWarmup',()=>({warmNextSceneImages:()=>{}}));
 vi.mock('../src/game/SceneView',()=>({SceneView:class {}}));
 vi.mock('../src/game/session',()=>({gameSession:()=>({reducedMotion:true})}));
 

@@ -11,6 +11,7 @@ vi.mock('phaser',()=>({default:{Scene:class {
   // Phaser queues scene.start; the old scene remains active until the next frame.
   scene={isActive:()=>true,start:fixture.sceneStart};
 }}}));
+vi.mock('../src/game/LoadingScreen',()=>({prepareDestination:async()=>true}));
 vi.mock('../src/game/SceneView',()=>({SceneView:class {}}));
 vi.mock('../src/game/session',()=>({gameSession:()=>fixture.session}));
 vi.mock('../src/game/runAdapter',()=>({

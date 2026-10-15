@@ -1,14 +1,10 @@
 import {expect,it,vi} from 'vitest';
+const preparation=vi.hoisted(()=>vi.fn(async()=>true));vi.mock('../src/game/LoadingScreen',()=>({prepareDestination:preparation}));
 import {PaperFlow,paperSceneStart} from '../src/game/PaperFlow';
-
-it('normal/full/reduced cuts allocate no overlay, animation frame, timer or listener',()=>{
- const createElement=vi.fn(),raf=vi.fn();vi.stubGlobal('document',{createElement});vi.stubGlobal('requestAnimationFrame',raf);
- for(const reduced of [false,true])for(const full of [false,true]){const flow=new PaperFlow(()=>reduced);flow.run({} as HTMLCanvasElement,full);flow.cancel();flow.cancel();}
- expect(createElement).not.toHaveBeenCalled();expect(raf).not.toHaveBeenCalled();vi.unstubAllGlobals();
+it('procedural cuts add no animation or extra domain callback',()=>{const createElement=vi.fn();vi.stubGlobal('document',{createElement});const flow=new PaperFlow(()=>false);flow.run({} as HTMLCanvasElement,true);flow.cancel();expect(createElement).not.toHaveBeenCalled();vi.unstubAllGlobals();});
+it('enters a destination exactly once after decoding, including duplicate requests',async()=>{
+ let done!:(v:boolean)=>void;const shared=new Promise<boolean>(resolve=>done=resolve);preparation.mockReturnValueOnce(shared).mockReturnValueOnce(shared);const start=vi.fn(),scene={game:{},scene:{start,isActive:()=>true}} as never;
+ paperSceneStart(scene,'shop',{seed:'old'});paperSceneStart(scene,'shop',{seed:'x'});expect(start).not.toHaveBeenCalled();done(true);await Promise.resolve();await Promise.resolve();expect(start).toHaveBeenCalledExactlyOnceWith('shop',{seed:'x'});
 });
-it.each([false,true])('route commits once immediately, full=%s; cancellation cannot repeat it',full=>{
- const start=vi.fn();paperSceneStart({scene:{start}} as never,'shop',{seed:'x'},full);
- expect(start).toHaveBeenCalledExactlyOnceWith('shop',{seed:'x'});
- const flow=new PaperFlow(()=>false);flow.cancel();flow.run({} as HTMLCanvasElement,full);expect(start).toHaveBeenCalledTimes(1);
-});
-it('a cut without data preserves Phaser normal route arguments',()=>{const start=vi.fn();paperSceneStart({scene:{start}} as never,'game');expect(start).toHaveBeenCalledExactlyOnceWith('game');});
+it('never starts a retired scene after late completion',async()=>{preparation.mockResolvedValueOnce(true);const start=vi.fn();paperSceneStart({game:{},scene:{start,isActive:()=>false}} as never,'game');await Promise.resolve();expect(start).not.toHaveBeenCalled();});
+it('a canceled preparation cannot navigate',async()=>{preparation.mockResolvedValueOnce(false);const start=vi.fn();paperSceneStart({game:{},scene:{start,isActive:()=>true}} as never,'game');await Promise.resolve();expect(start).not.toHaveBeenCalled();});

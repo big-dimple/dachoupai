@@ -72,8 +72,8 @@ export class DetailDialog {
     for(const action of actions)row.append(actionButton(action));
     const close=document.createElement('button');close.textContent=options.closeLabel??'关闭';close.className='dialog-close';close.onclick=()=>{AudioEngine.shared.cancel();this.close(dialog);};row.append(close);
     dialog.append(header);
-    if(options.portrait){
-      const portrait=options.portrait,image=document.createElement('img'),card=portrait.layout==='card';image.className=card?'dialog-card-image':'dialog-portrait';image.alt=portrait.alt;image.decoding='async';
+    if(options.portrait?.url){
+      const portrait=options.portrait,image=document.createElement('img'),card=portrait.layout==='card';image.hidden=true;image.className=card?'dialog-card-image':'dialog-portrait';image.alt=portrait.alt;image.decoding='async';
       dialog.classList.add('detail-dialog--illustrated');
       if(card){
         const frame=document.createElement('figure'),visual=this.artVisual(image);frame.className='dialog-card-art';frame.append(visual);
@@ -101,14 +101,14 @@ export class DetailDialog {
           showingFallback=true;frame.dataset.artFallback='mechanism';image.src=fallback.url;image.alt=fallback.alt;syncLayers();updateStatus();
         };
         const showReal=()=>{
-          thumbnailFailed=false;showingFallback=false;delete frame.dataset.artFallback;frame.classList.remove('art-unavailable');image.alt=portrait.alt;syncLayers();updateStatus();
+          image.hidden=false;thumbnailFailed=false;showingFallback=false;delete frame.dataset.artFallback;frame.classList.remove('art-unavailable');image.alt=portrait.alt;syncLayers();updateStatus();
         };
         this.attachFallback=(url,alt)=>{if(closed)return;fallback={url,alt};showFallback();};
         image.onerror=()=>{
-          if(closed)return;if(showingFallback){image.alt='机制示意暂未加载';return;}
+          if(closed)return;image.hidden=true;if(showingFallback){image.alt='机制示意暂未加载';return;}
           thumbnailFailed=true;detailReady=false;image.alt='卡面暂未加载';frame.classList.add('art-unavailable');showFallback();updateStatus();
         };
-        image.onload=()=>{if(!closed&&!showingFallback)showReal();};
+        image.onload=async()=>{const source=image.src;try{await image.decode();if(closed||image.src!==source)return;image.hidden=false;if(!showingFallback)showReal();}catch{if(!closed&&image.src===source)image.onerror?.(new Event('error'));}};
         retry.onclick=async()=>{
           if(closed||retry.disabled)return;retry.disabled=true;retry.setAttribute('aria-busy','true');loadStatus.hidden=false;loadStatus.textContent='正在重试卡面…';
           retryDecode?.abort();retryDecode=new AbortController();const signal=retryDecode.signal,retryThumbnail=thumbnailFailed;

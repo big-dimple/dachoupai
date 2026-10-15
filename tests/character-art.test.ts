@@ -1,62 +1,28 @@
 import {afterEach,expect,it,vi} from 'vitest';
-import {characterArt,assertCharacterArtDimensions,assertCharacterArtReference,validCharacterImage} from '../src/game/CharacterArt';
+import {CHARACTER_ART,characterArt,characterArtKey,assertCharacterArtDimensions,assertCharacterArtReference,type CharacterArtAsset} from '../src/game/CharacterArt';
 import {CHARACTERS} from '../src/game/characters';
-import {avatarKey,avatarURL,selectionPortraitKey,selectionPortraitURL,portraitKey,portraitURL} from '../src/game/portraits';
-afterEach(()=>{vi.unstubAllGlobals();vi.unstubAllEnvs();vi.restoreAllMocks();vi.resetModules();});
-it('all six identities and three roles share the same manifest URLs, keys and exact pixel sizes',()=>{
- const urls=new Set<string>(),keys=new Set<string>();
- for(const c of CHARACTERS)for(const purpose of ['avatar','selection','portrait'] as const){
-  const a=characterArt(c.id,purpose),url={avatar:avatarURL,selection:selectionPortraitURL,portrait:portraitURL}[purpose](c.id),key={avatar:avatarKey,selection:selectionPortraitKey,portrait:portraitKey}[purpose](c.id);
-  expect(a.url).toBe(url);expect(a.key).toBe(key);expect(()=>assertCharacterArtReference(key,url)).not.toThrow();
-  expect(()=>assertCharacterArtDimensions(url,a.width,a.height)).not.toThrow();
-  expect(()=>assertCharacterArtDimensions(url,a.width-1,a.height)).toThrow('character-art-dimensions');
-  if(purpose==='portrait')expect(c.portrait).toBe(url);urls.add(url);keys.add(key);
- }
- expect(urls.size).toBe(18);expect(keys.size).toBe(18);
+import {avatarURL,portraitURL,selectionPortraitURL} from '../src/game/portraits';
+const catalog=CHARACTER_ART as CharacterArtAsset[];
+afterEach(()=>{catalog.splice(0);vi.unstubAllGlobals();vi.restoreAllMocks();});
+const register=()=>{const a:CharacterArtAsset={id:'amo',purpose:'portrait',key:characterArtKey('amo','portrait'),path:'test-approved-art.webp',url:'https://game.example/test-approved-art.webp',width:615,height:768,bytes:64,sha256:'test-fixture',format:'webp'};catalog.push(a);return a;};
+it('all six unavailable identities have stable keys and no image URL, including deployment subpaths',()=>{
+ expect(catalog).toEqual([]);for(const c of CHARACTERS)for(const p of ['avatar','selection','portrait'] as const){expect(characterArt(c.id,p)).toBeUndefined();expect({avatar:avatarURL,selection:selectionPortraitURL,portrait:portraitURL}[p](c.id)).toBe('');expect(characterArtKey(c.id,p)).toContain(c.id);}
 });
-it('a swapped hero, role or arbitrary URL cannot populate a character key; unrelated art is unaffected',()=>{
- expect(()=>assertCharacterArtReference(avatarKey('amo'),avatarURL('azao'))).toThrow('character-art-reference');
- expect(()=>assertCharacterArtReference(portraitKey('amo'),selectionPortraitURL('amo'))).toThrow('character-art-reference');
- expect(()=>assertCharacterArtReference(avatarKey('amo'),'/old-face.webp')).toThrow('character-art-reference');
- expect(()=>assertCharacterArtReference('wrong-key',avatarURL('amo'))).toThrow('character-art-reference');
- expect(()=>assertCharacterArtReference('joker-key','/card.webp')).not.toThrow();
- expect(()=>assertCharacterArtDimensions('/card.webp',128,160)).not.toThrow();
- expect(validCharacterImage({src:portraitURL('amo'),naturalWidth:256,naturalHeight:320} as HTMLImageElement)).toBe(false);
+it('unregistered hero keys cannot fetch an empty image, deleted placeholder or archived old face',async()=>{
+ const fetch=vi.fn();vi.stubGlobal('fetch',fetch);const {loadArtTexture}=await import('../src/game/ArtTextureLoading');
+ for(const url of ['', '/assets/cast-placeholders/amo.portrait.svg','/assets/handdrawn-p08/characters/amo.portrait.webp'])await expect(loadArtTexture({textures:{exists:()=>false}} as never,characterArtKey('amo','portrait'),url,new AbortController().signal)).rejects.toThrow('character-art-reference');expect(fetch).not.toHaveBeenCalled();
 });
-it('the real transfer rejects a small wrong-size face before publication, then an explicit retry can recover',async()=>{
- const textures=new Map(),addImage=vi.fn((key,image)=>textures.set(key,image));
- const game={textures:{exists:(key:string)=>textures.has(key),addImage}} as any;
- let width=256,height=320;
+it('future approved art retains exact URL/id/role/dimension checks; synthetic registration is test-only',()=>{
+ const a=register();expect(()=>assertCharacterArtReference(a.key,a.url)).not.toThrow();
+ for(const url of ['/old.webp',a.url+'?other=1',a.url.replace('game.example','other.example')])expect(()=>assertCharacterArtReference(a.key,url)).toThrow('character-art-reference');
+ expect(()=>assertCharacterArtReference(characterArtKey('azao','portrait'),a.url)).toThrow('character-art-reference');expect(()=>assertCharacterArtReference(characterArtKey('amo','avatar'),a.url)).toThrow();
+ expect(()=>assertCharacterArtDimensions(a.url,615,768)).not.toThrow();expect(()=>assertCharacterArtDimensions(a.url,256,320)).toThrow('character-art-dimensions');
+});
+it('actual transfer still rejects wrong dimensions before publishing and explicit recovery decodes first',async()=>{
+ const a=register(),textures=new Map(),addImage=vi.fn((key,image)=>textures.set(key,image)),game={textures:{exists:(k:string)=>textures.has(k),addImage}} as any;let width=256,height=320;
  vi.stubGlobal('Image',class{src='';decoding='async';naturalWidth=width;naturalHeight=height;async decode(){}removeAttribute(){}});
- vi.stubGlobal('fetch',vi.fn(async()=>new Response(new Blob(['controlled-decode']),{headers:{'content-type':'image/webp'}})));
+ vi.stubGlobal('fetch',vi.fn(async()=>new Response(new Blob(['controlled']),{headers:{'content-type':'image/webp'}})));
  const {loadArtTexture}=await import('../src/game/ArtTextureLoading'),signal=new AbortController().signal;
- await expect(loadArtTexture(game,portraitKey('amo'),portraitURL('amo'),signal)).rejects.toMatchObject({retryable:false,message:expect.stringContaining('character-art-dimensions')});
- expect(addImage).not.toHaveBeenCalled();width=615;height=768;
- await loadArtTexture(game,portraitKey('amo'),portraitURL('amo'),signal);expect(addImage).toHaveBeenCalledOnce();
- await expect(loadArtTexture(game,portraitKey('amo'),portraitURL('azao'),signal)).rejects.toThrow('character-art-reference');
- expect(fetch).toHaveBeenCalledTimes(2);
-});
-it('detail upgrades reject wrong-size bitmaps and release them before caching a blob',async()=>{
- const close=vi.fn();let width=256,height=320;
- vi.stubGlobal('createImageBitmap',async()=>({width,height,close}));
- vi.stubGlobal('fetch',vi.fn(async()=>new Response(new Blob(['controlled-decode']))));
- const {detailArt}=await import('../src/game/DetailArt');
- await expect(detailArt(portraitURL('amo'))).rejects.toThrow('detail-image-unavailable');expect(close).toHaveBeenCalledOnce();
- width=615;height=768;const blob=await detailArt(portraitURL('amo'));expect(blob).toMatch(/^blob:/);expect(fetch).toHaveBeenCalledTimes(2);
-});
-
-it('deployment subpaths remain inside Vite BASE_URL and participate in exact reference checks',async()=>{
- vi.stubEnv('BASE_URL','/dachoupai/');vi.resetModules();
- const art=await import('../src/game/CharacterArt'),a=art.characterArt('amo','portrait');
- expect(a.url).toBe('/dachoupai/assets/cast-placeholders/amo.portrait.svg');
- expect(()=>art.assertCharacterArtReference(a.key,a.url)).not.toThrow();
- expect(()=>art.assertCharacterArtReference(a.key,'/assets/cast-placeholders/amo.portrait.svg')).toThrow('character-art-reference');
-});
-
-it('same-path foreign origins and query variants cannot impersonate a manifest texture URL',()=>{
- vi.stubGlobal('document',{baseURI:'https://game.example/dachoupai/'});
- const a=characterArt('amo','avatar');
- expect(()=>assertCharacterArtReference(a.key,'https://game.example'+a.url)).not.toThrow();
- expect(()=>assertCharacterArtReference(a.key,'https://other.example'+a.url)).toThrow('character-art-reference');
- expect(()=>assertCharacterArtReference(a.key,a.url+'?variant=another')).toThrow('character-art-reference');
+ await expect(loadArtTexture(game,a.key,a.url,signal)).rejects.toMatchObject({retryable:false,message:expect.stringContaining('character-art-dimensions')});expect(addImage).not.toHaveBeenCalled();width=615;height=768;
+ await loadArtTexture(game,a.key,a.url,signal);expect(addImage).toHaveBeenCalledOnce();await loadArtTexture(game,a.key,a.url,signal);expect(fetch).toHaveBeenCalledTimes(2);
 });

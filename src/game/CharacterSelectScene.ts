@@ -93,8 +93,8 @@ export class CharacterSelectScene extends Phaser.Scene {
       const identity=SELECTION_PRESENTATION[character.id];
       const compact=p.portrait||p.short;
       const picture=compact?{x:b.x+4,y:b.y+3,width:Math.min(36,b.width*.32),height:b.height-25}:{x:b.x+6,y:b.y+5,width:b.width*.44,height:b.height-10};
-      this.drawPortrait(character.id,picture);
-      const tx=compact?b.x+picture.width+7:b.x+b.width*.48,tw=b.x+b.width-tx-5;
+      if(character.portrait)this.drawPortrait(character.id,picture);
+      const tx=!character.portrait?b.x+8:compact?b.x+picture.width+7:b.x+b.width*.48,tw=b.x+b.width-tx-5;
       this.singleLine(tx,b.y+(compact?7:29),character.name,compact?16:20,selected?accent:'#26313A',tw,14,true).setName('opening/seat-name');
       this.singleLine(compact?b.x+b.width/2:tx,b.y+(compact?b.height-23:62),identity.tag,14,'#3F606B',compact?b.width-8:tw).setOrigin(compact?.5:0,0).setName('opening/seat-tag');
       if(selected)v.text(b.x+b.width-5,b.y+b.height-22,'✓',14,accent).setOrigin(1,0).setName('opening/selected-mark');
@@ -128,6 +128,7 @@ export class CharacterSelectScene extends Phaser.Scene {
   }
   private showHero(p:ReturnType<typeof selectionLayout>,abilityEnabled:boolean):void {
     const v=this.view,c=characterForNewRun(this.selectedId??'amo'),copy=HERO_OPENING[c.id],b=p.hero,q=openingShowcaseLayout(b,p.portrait,p.short,true);
+    if(!c.portrait){q.copy.x=b.x+16;q.copy.width=b.width-32;q.demo.x=q.copy.x;q.demo.width=q.copy.width;}
     v.material(b,PAPER_THEME.jadeSoft,PAPER_THEME.jadeSoft,8);
     const trim=this.add.graphics().lineStyle(1,PAPER_THEME.jade,.25).strokeRoundedRect(b.x+4,b.y+4,b.width-8,b.height-8,6);v.add(trim);
     if(this.sampleExpanded&&abilityEnabled&&b.height<300){
@@ -141,9 +142,9 @@ export class CharacterSelectScene extends Phaser.Scene {
       if(this.step==='route')this.showRouteDemo(demo,c.id,p.short);else this.showSignature(demo,c.id,p.short);
       return;
     }
-    this.queueHeroPortrait(c.id);this.drawPortrait(c.id,q.art,true);
-    const portraitHit=v.rect({...q.art,height:q.art.height+(p.short?0:24)}).setFillStyle(0,0).setStrokeStyle(0);v.target(portraitHit,'opening/hero-details',{tap:()=>this.inspect(c.id),detail:()=>this.inspect(c.id)});
-    if(!p.short)v.text(q.art.x+q.art.width/2,q.art.y+q.art.height+4,'人物图待交付 · 技能说明',14,'#3F606B').setOrigin(.5,0).setName('opening/portrait-hint');
+    if(c.portrait){this.queueHeroPortrait(c.id);this.drawPortrait(c.id,q.art,true);}
+    const portraitHit=v.rect(c.portrait?{...q.art,height:q.art.height+(p.short?0:24)}:{x:q.copy.x,y:q.copy.y,width:q.copy.width,height:44}).setFillStyle(0,0).setStrokeStyle(0);v.target(portraitHit,'opening/hero-details',{tap:()=>this.inspect(c.id),detail:()=>this.inspect(c.id)});
+    if(c.portrait&&!p.short)v.text(q.art.x+q.art.width/2,q.art.y+q.art.height+4,'人物图待交付 · 技能说明',14,'#3F606B').setOrigin(.5,0).setName('opening/portrait-hint');
     const x=q.copy.x,w=q.copy.width,tightPortrait=p.portrait&&q.copy.height<150;
     const name=v.text(x,q.copy.y,c.name,p.short?30:tightPortrait?28:p.portrait?34:p.w>=1280?66:52,copy.accent).setFontFamily('Georgia, "Noto Serif SC", SimSun, serif').setFontStyle('bold').setName('opening/name');
     for(let size=parseInt(name.style.fontSize.toString());name.width>w&&size>18;)name.setFontSize(--size);

@@ -1,3 +1,4 @@
+import {sceneResources} from './SceneResources';
 import type Phaser from 'phaser';
 import type {R2RunState} from '../domain/r2Run';
 import {ImageWarmupQueue,type WarmImage} from './ImageWarmupQueue';
@@ -46,12 +47,17 @@ function warmRunImages(scene:Phaser.Scene):void {
 }
 
 export function warmOpeningImages(scene:Phaser.Scene):void {
-  queue(scene).request(CHARACTERS.flatMap(c=>[{key:selectionPortraitKey(c.id),url:selectionPortraitURL(c.id)},{key:avatarKey(c.id),url:avatarURL(c.id)}]));
-  if(speculative())warmRunImages(scene);
+  queue(scene).request(CHARACTERS.flatMap(c=>[{key:selectionPortraitKey(c.id),url:selectionPortraitURL(c.id)},{key:avatarKey(c.id),url:avatarURL(c.id)}]).filter(a=>!!a.url));
+  if(speculative())warmRunImages(scene);warmNextSceneImages(scene,'character-select');
 }
-export function warmHeroImage(scene:Phaser.Scene,id:CharacterId):void {queue(scene).request([{key:portraitKey(id),url:portraitURL(id),visible:true}],true);}
+export function warmHeroImage(scene:Phaser.Scene,id:CharacterId):void {if(!portraitURL(id))return;queue(scene).request([{key:portraitKey(id),url:portraitURL(id),visible:true}],true);}
 export function warmTableImages(scene:Phaser.Scene,id:CharacterId):void {
   warmRunImages(scene);
   queue(scene).request(COURT_ART.map(a=>({key:a.key,url:assetUrl(a.path)})),true);
-  warmHeroImage(scene,id);
+  warmHeroImage(scene,id);warmNextSceneImages(scene,'game');
+}
+
+export function warmNextSceneImages(scene:Phaser.Scene,target:string):void {
+ if(!speculative())return;const run=scene.game.registry.get('runController')?.state as R2RunState|undefined;
+ queue(scene).request(sceneResources(target,run).map(a=>({key:a.key,url:a.url})),true);
 }
