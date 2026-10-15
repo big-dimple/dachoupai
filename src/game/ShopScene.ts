@@ -1,3 +1,4 @@
+import {canCarryTool,type ToolCarryIntent} from './ToolCarryIntent';
 import {heroText} from './HeroIdentity';
 import {createShopRarityFrame,createShopEditionMark,createShopRecommendationStars,createShopRecommendationAccent,createShopCombinationMark,createShopRouteTag,shopCombinationVisual,shopCombinationMarkLayout,shopRecommendationVisual} from './ShopCardValueVisual';
 import {showShopComparison,type ShopComparisonView} from './ShopComparisonDialog';
@@ -529,6 +530,23 @@ export class ShopScene extends Phaser.Scene {
   private continueMakeCards():void {
     const d=this.dialog.current;if(d?.classList.contains('tool-saved-result'))this.makeCardsReturn(d,'继续查看道具');
   }
+  /** A saved purchase chooses its destination; this modal never spends or consumes. */
+  private purchasedMakeTool(instanceId:string,purchase:string):void {
+    if(!canCarryTool(this.run,instanceId)){this.openMakeTool(instanceId,purchase);return;}
+    const item=this.run.consumables.find(c=>c.instanceId===instanceId)!;
+    const info=toolInfo(item.definitionId,this.run),seq=this.run.commandSeq;
+    const d=this.dialog.open(info.name+' · 已购入',purchase+'\n工具已保存。现在改持久牌组，或明确带入牌桌后再选当前手牌；都需选目标并确认使用。',[
+      {label:'现在改牌组',primary:true,disabled:!this.ready,run:()=>{if(this.dialog.active(d)&&this.ready&&this.run.commandSeq===seq)this.openMakeTool(instanceId,purchase);}},
+      {label:'带入牌桌 · 选手牌',disabled:!this.ready,run:async()=>{
+        await this.carryMakeTool(instanceId,seq,d);
+      }},
+    ],{closeLabel:'继续经营 · 保留工具',effectBody:info.summary,summaryBody:'已入库存 · 未使用'});
+    d.classList.add('tool-purchased-destination');d.dataset.instanceId=instanceId;
+  }
+  private async carryMakeTool(instanceId:string,seq:number,owner:HTMLDialogElement):Promise<void> {
+    if(!this.dialog.active(owner)||!this.ready||this.run.commandSeq!==seq||!canCarryTool(this.run,instanceId))return;
+    await this.send({type:'LeaveShop'},seq,{runId:this.run.runId,stageIndex:this.run.stageIndex,shopSeq:seq,instanceId});
+  }
   private storedMakeTool(name:string,price:number):void {
     this.makeCardsView.receipt={seq:this.run.commandSeq,text:name+' · 实付 '+price+' 金 · 已保存入库存，未使用'};
     this.inspectMakeCards();
@@ -545,7 +563,7 @@ export class ShopScene extends Phaser.Scene {
     else if(pending.action.type==='UseConsumable'){showSavedToolResult(this.dialog,pending.before,this.run,pending.action,this.resultReduced);this.continueMakeCards();}
     else if(pending.action.type==='BuyBasicTool'||pending.action.type==='BuyOffer'){
       const gained=this.run.consumables.find(c=>!pending.before.consumables.some(b=>b.instanceId===c.instanceId));
-      if(gained){if(pending.purchaseIntent==='store'){this.notice='购买已恢复保存 · 已入道具箱，未使用';this.render();this.storedMakeTool(toolInfo(gained.definitionId,this.run).name,pending.before.gold-this.run.gold);}else this.openMakeTool(gained.instanceId,'购买已恢复保存 · 实付 '+(pending.before.gold-this.run.gold)+' 金 · 未使用');}
+      if(gained){if(pending.purchaseIntent==='store'){this.notice='购买已恢复保存 · 已入道具箱，未使用';this.render();this.storedMakeTool(toolInfo(gained.definitionId,this.run).name,pending.before.gold-this.run.gold);}else this.purchasedMakeTool(gained.instanceId,'购买已恢复保存 · 实付 '+(pending.before.gold-this.run.gold)+' 金 · 未使用');}
     }
   }
   private inspectBasicChoice():void {
@@ -580,8 +598,8 @@ export class ShopScene extends Phaser.Scene {
       if(await this.send({type:'BuyBasicTool',definitionId,shopSeq},seq)){
         if(!this.dialog.active(dialog))return;
         const gained=this.run.consumables.find(c=>!purchaseBefore.has(c.instanceId)&&c.definitionId===definitionId);if(!gained){this.dialog.close(dialog);return;}
-        if(makeCards){if(now)this.openMakeTool(gained.instanceId,'已购 '+info.name+' · 实付 '+price+' 金 · 未使用');else this.storedMakeTool(info.name,price);return;}
-        const result=this.dialog.open(info.name+' · 已购入',`本店已购，下店恢复。购买已保存，尚未使用。`,[{label:'立即使用',primary:true,run:()=>this.openMakeTool(gained.instanceId)},{label:'查看道具箱',run:()=>{this.makeCardsView.pane='owned';this.inspectMakeCards();}}],{closeLabel:'回到经营',portrait:goodsArtPortrait(info),effectBody:row.purpose,summaryBody:`实付 ${price} 金 · 余额 ${this.run.gold} 金`,collapseRules:true});result.classList.add('tool-purchased-result','basic-choice-receipt');
+        if(makeCards){if(now)this.purchasedMakeTool(gained.instanceId,'已购 '+info.name+' · 实付 '+price+' 金 · 未使用');else this.storedMakeTool(info.name,price);return;}
+        const result=this.dialog.open(info.name+' · 已购入',`本店已购，下店恢复。购买已保存，尚未使用。`,[{label:'立即使用',primary:true,run:()=>this.openMakeTool(gained.instanceId)},...(canCarryTool(this.run,gained.instanceId)?[{label:'带入牌桌 · 选手牌',disabled:!this.ready,run:()=>this.carryMakeTool(gained.instanceId,seq+1,result)}]:[]),{label:'查看道具箱',run:()=>{this.makeCardsView.pane='owned';this.inspectMakeCards();}}],{closeLabel:'回到经营',portrait:goodsArtPortrait(info),effectBody:row.purpose,summaryBody:`实付 ${price} 金 · 余额 ${this.run.gold} 金`,collapseRules:true});result.classList.add('tool-purchased-result','basic-choice-receipt');
       }
     };
     const dialog=this.dialog.open(info.name+' · 基础选购',info.description+'\n'+info.cost+'\n'+info.risk+'\n购买先入道具箱；现在用也要选目标并确认。',[...(makeCards?[{label:`买来存着 · ${price}金`,disabled:!this.ready,run:()=>buy(false)}]:[]),{label:makeCards?`买来使用 · ${price}金`:`购买 · ${price} 金`,primary:true,disabled:!this.ready,run:()=>buy(true)}],{shopContext:'purchase',closeLabel:'取消',portrait:goodsArtPortrait(info),effectBody:info.summary,summaryBody:`实付 ${price} 金 · 余额 ${this.run.gold} → ${this.run.gold-price} 金`,collapseRules:true});
@@ -829,7 +847,7 @@ export class ShopScene extends Phaser.Scene {
     const purchaseBefore=new Set(this.run.consumables.map(c=>c.instanceId));
     const name=d?.name??info!.name,portrait=d?this.jokerPortrait(d.id):goodsArtPortrait(info!);
     const plainSummary=(d||info)?`直接买入 · 实付 ${price} 金 · `+(after<0?`现有 ${this.run.gold} 金，差 ${-after} 金`:`余额 ${this.run.gold} → ${after} 金`)+(reason&&after>=0?'\n'+reason:'')+(discount?`\n优惠 ${discount} 金${this.run.purchaseCoupons?' · 使用1张减2金券':''}`:'')+shopPurchaseConditionLosses(this.run,o).map(loss=>'\n'+loss).join('')+(kind==='tools'&&toolPermanentValue(this.run,o.definitionId)?'\n'+toolPermanentValue(this.run,o.definitionId):''):undefined;
-    const buy=async(now:boolean)=>{if(!this.dialog.active(dialog)||!this.ready)return;dialog.dataset.purchaseIntent=now?'use':'store';if(await this.send({type:'BuyOffer',offerId:id},seq)){if(kind==='tools'&&this.dialog.active(dialog)){const gained=this.run.consumables.find(c=>!purchaseBefore.has(c.instanceId)&&c.definitionId===o.definitionId);if(gained){if(makeCards){if(now)this.openMakeTool(gained.instanceId,'已购 '+info!.name+' · 实付 '+price+' 金 · 未使用');else this.storedMakeTool(info!.name,price);return;}const purchased=this.dialog.open(info!.name+' · 已购入',`购买已保存 · 余额 ${this.run.gold} 金\n道具箱 ${this.run.consumables.length}/${r2ConsumableCapacity(this.run)} · 尚未使用\n${toolPurpose(this.run,o.definitionId)}`, [{label:'立即使用',primary:true,run:()=>this.openMakeTool(gained.instanceId)},{label:'查看道具箱',run:()=>{this.makeCardsView.pane='owned';this.inspectMakeCards();}}],{closeLabel:'回到经营'});purchased.classList.add('tool-purchased-result');}else this.dialog.close(dialog);}else this.dialog.close(dialog);}};
+    const buy=async(now:boolean)=>{if(!this.dialog.active(dialog)||!this.ready)return;dialog.dataset.purchaseIntent=now?'use':'store';if(await this.send({type:'BuyOffer',offerId:id},seq)){if(kind==='tools'&&this.dialog.active(dialog)){const gained=this.run.consumables.find(c=>!purchaseBefore.has(c.instanceId)&&c.definitionId===o.definitionId);if(gained){if(makeCards){if(now)this.purchasedMakeTool(gained.instanceId,'已购 '+info!.name+' · 实付 '+price+' 金 · 未使用');else this.storedMakeTool(info!.name,price);return;}const purchased=this.dialog.open(info!.name+' · 已购入',`购买已保存 · 余额 ${this.run.gold} 金\n道具箱 ${this.run.consumables.length}/${r2ConsumableCapacity(this.run)} · 尚未使用\n${toolPurpose(this.run,o.definitionId)}`, [{label:'立即使用',primary:true,run:()=>this.openMakeTool(gained.instanceId)},...(canCarryTool(this.run,gained.instanceId)?[{label:'带入牌桌 · 选手牌',disabled:!this.ready,run:()=>this.carryMakeTool(gained.instanceId,seq+1,purchased)}]:[]),{label:'查看道具箱',run:()=>{this.makeCardsView.pane='owned';this.inspectMakeCards();}}],{closeLabel:'回到经营'});purchased.classList.add('tool-purchased-result');}else this.dialog.close(dialog);}else this.dialog.close(dialog);}};
     const dialog=this.dialog.open(name+' · 购买详情',body,[...(d&&this.run.jokers.length?[{label:'比较替换',run:()=>this.inspectReplacement(id)}]:[]),...(makeCards&&kind==='tools'?[{label:`买来存着 · ${price}金`,disabled:!!reason,run:()=>buy(false)}]:[]),{label:d?`邀请 · ${price} 金`:makeCards?`买来使用 · ${price}金`:`购买 · ${price} 金`,primary:true,disabled:!!reason,run:()=>buy(true)}],{shopContext:'purchase',closeLabel:'取消',portrait,rarity:d?.rarity,...(d?{artLoad:this.jokerArtStatus(d.id)}:info?.detailArtUrl?{artLoad:{status:goodsArtLoadState(this,o.definitionId).status,readStatus:()=>goodsArtLoadState(this,o.definitionId).status,retry:()=>retryGoodsArt(this,o.definitionId,info.artUrl,()=>{this.paintGoodsArt(goodsArtKey(o.definitionId));this.dialog.refreshArtLoad();})}}:{}),summaryBody:plainSummary??(d?shopOfferRelation(this.run,o,currentBuildFocus(this.run,this.run.openingRoute)).label+' · ':'')+`实付 ${price} 金 · `+(after<0?`现有 ${this.run.gold} 金，差 ${-after} 金`:`余额 ${this.run.gold} → ${after} 金`)+'\n'+trade+(investment?'\n'+investment.next:'')+(d?.id==='f04'&&after>=0?'\n购后余额仅供参考；+3 条件在每手开始时检查。':'')+(reason?'\n'+reason:''),effectBody:d?shopOfferRelation(this.run,o,currentBuildFocus(this.run,this.run.openingRoute)).body:[info!.summary,o.definitionId==='S04'?s04QualificationText(this.run):undefined].filter(Boolean).join('\n'),editionBody:ability?this.jokerEditionSummary(o.edition,d!.id):undefined,ability,collapseRules:true});
     if(kind==='tools')dialog.classList.add('shop-tool-purchase');
     if(guidance){dialog.classList.add('shop-joker-purchase');const value=createShopOfferValue(guidance);dialog.querySelector('.dialog-intro')?.prepend(createShopIdentityTags(d!.rarity,o.edition),value);const money=dialog.querySelector('.dialog-purchase-summary');if(money)value.after(money);}
@@ -848,7 +866,7 @@ export class ShopScene extends Phaser.Scene {
     const joker=receipt.kind==='jokers',info=joker?undefined:receipt.kind==='tools'?toolInfo(receipt.definitionId,this.run):itemInfo(receipt.definitionId);
     const url=joker?jokerArtUrl(receipt.definitionId):undefined,portrait=joker?(url?{url,thumbnailUrl:jokerArtPreviewUrl(receipt.definitionId),alt:receipt.name,layout:'card' as const}:undefined):goodsArtPortrait(info!);
     const role=shopInvestment(this.run,{offerId:'receipt',definitionId:receipt.definitionId,price:0,consumed:true},receipt.kind)?.role;
-    const detail=this.dialog.open(receipt.name+' · 购物已保存',receipt.body,[{label:joker?'查看新牌':receipt.kind==='tools'?(role==='升型'?'选择升级目标':role==='改牌'?'选择改牌目标':'选择工具与目标'):'物品与道具',run:()=>joker?this.inspectJoker(receipt.id):showConsumables(this.dialog,this.run,this.ready,(a,seq)=>this.send(a,seq),receipt.kind==='tools'?receipt.id:undefined)},{label:'继续培养',primary:true,run:()=>this.inspectJourney()},{label:'构筑详情',run:()=>this.inspectBuild()}],{portrait});
+    const detail=this.dialog.open(receipt.name+' · 购物已保存',receipt.body,[{label:joker?'查看新牌':receipt.kind==='tools'?(role==='升型'?'选择升级目标':role==='改牌'?'选择改牌目标':'选择工具与目标'):'物品与道具',run:()=>joker?this.inspectJoker(receipt.id):receipt.kind==='tools'&&canCarryTool(this.run,receipt.id)?this.purchasedMakeTool(receipt.id,receipt.body):showConsumables(this.dialog,this.run,this.ready,(a,seq)=>this.send(a,seq),receipt.kind==='tools'?receipt.id:undefined)},{label:'继续培养',primary:true,run:()=>this.inspectJourney()},{label:'构筑详情',run:()=>this.inspectBuild()}],{portrait});
     if(joker)this.attachJokerFallback(detail,receipt.definitionId);
   }
   private inspectJoker(id:string,offerId?:string):void {
@@ -941,7 +959,7 @@ export class ShopScene extends Phaser.Scene {
       if(this.resultFeedback.enqueue(this.run.commandSeq,pages,performance.now()))this.drawResultCue();
     }
   }
-  private async send(action:Action,expectedSeq?:number):Promise<boolean> {
+  private async send(action:Action,expectedSeq?:number,carriedTool?:ToolCarryIntent):Promise<boolean> {
     if(!this.ready)return false;
     const previous=this.run,oldGold=previous.gold,owner=this.dialog.current;this.busy=true;const lifecycle=this.lifecycle;
     const purchase=action.type==='BuyOffer'?this.findOffer(action.offerId):undefined;
@@ -992,7 +1010,7 @@ export class ShopScene extends Phaser.Scene {
         if(oldGold!==this.run.gold)this.pendingGoldRoll=oldGold;
         if(previous.shop!.rerollCount!==this.run.shop!.rerollCount){this.selectedOfferId=undefined;this.audio.reroll();this.pendingRerollFlip=this.shelfKind!=='items';}
       }
-      if(action.type==='LeaveShop'){this.audio.select();paperSceneStart(this,'game');}
+      if(action.type==='LeaveShop'){this.audio.select();paperSceneStart(this,'game',carriedTool?{carriedTool}:undefined);}
       else if(action.type==='SkipStage'){
         const s=this.run.stage!;paperSceneStart(this,'intermission',{cleared:true,stageIndex:s.index,stageHeat:s.heat,handsLeft:s.handsLeft,goldEarned:s.goldEarned} satisfies IntermissionResult);
       }

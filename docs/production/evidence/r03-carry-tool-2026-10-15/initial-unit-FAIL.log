@@ -1,0 +1,54 @@
+
+ RUN  v4.1.11 /workspace/dachoupai
+
+ ❯ tests/tool-carry-intent.test.ts (2 tests | 1 failed) 42ms
+   × only supported card-target tools with both phases qualify, honoring mode restrictions 9ms
+ ❯ tests/game-inventory-control.test.ts (5 tests | 1 failed) 87ms
+   × inventory inspection passes write readiness separately and rechecks lease, sequence and phase on old confirmations 31ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/game-inventory-control.test.ts > inventory inspection passes write readiness separately and rechecks lease, sequence and phase on old confirmations
+AssertionError: expected last "vi.fn()" call to have been called with [ undefined, …(3) ]
+
+- Expected
++ Received
+
+@@ -516,6 +516,7 @@
+      "totalHeat": "0",
+      "tourMode": "normal",
+    },
+    true,
+    [Function anonymous],
++   undefined,
+  ]
+
+ ❯ tests/game-inventory-control.test.ts:65:26
+     63|  const run=pending(),state=send(run,{type:'ChooseRefill',selectedIds:r…
+     64|  s.inspectInventory();const sendTool=vi.mocked(showConsumables).mock.c…
+     65|  expect(showConsumables).toHaveBeenLastCalledWith(s.dialog,state,true,…
+       |                          ^
+     66|  expect(await sendTool(action,state.commandSeq-1)).toBe(false);expect(…
+     67|  gate.session.lease.writable=false;expect(await sendTool(action,state.…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  tests/tool-carry-intent.test.ts > only supported card-target tools with both phases qualify, honoring mode restrictions
+Error: invalid-mode-seed-or-character
+ ❯ createRun src/domain/run.ts:353:25
+
+ ❯ tests/tool-carry-intent.test.ts:19:18
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  2 failed | 2 passed (4)
+      Tests  2 failed | 13 passed (15)
+   Start at  15:38:35
+   Duration  2.27s (transform 3.63s, setup 0ms, import 4.73s, tests 211ms, environment 0ms)
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice
