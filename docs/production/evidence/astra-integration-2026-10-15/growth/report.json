@@ -1,0 +1,1484 @@
+{
+  "sourceBefore": "de6e9941a930695a7b5870afd467526e11e60cf77fad2a8808f1a4f7ae2afab0",
+  "head": "b9c48bb828e6a5f0402f3535184792198cf3aa4e",
+  "dirty": "",
+  "browser": "151.0.7922.173",
+  "scope": "Controlled validated current-identity save imports, native selection/details/play/reload; software Canvas only, no natural play or physical device approval.",
+  "cases": [
+    {
+      "width": 1366,
+      "height": 768,
+      "errors": [],
+      "consoleErrors": [
+        "Failed to load resource: the server responded with a status of 404 (Not Found)",
+        "Failed to load resource: the server responded with a status of 404 (Not Found)",
+        "Failed to load resource: the server responded with a status of 404 (Not Found)"
+      ],
+      "networkErrors": [],
+      "steps": [
+        {
+          "type": "full-house",
+          "selected": [
+            "hearts-7",
+            "spades-7",
+            "clubs-7",
+            "hearts-9",
+            "spades-9"
+          ],
+          "labels": [
+            {
+              "id": "controlled/growth-selection/joker/controlled/growth-selection/command/2",
+              "label": "本手倍+1",
+              "full": "本手倍+1",
+              "growth": "不成长",
+              "ready": "ready",
+              "bounds": {
+                "type": 5,
+                "x": 520,
+                "y": 160,
+                "width": 58,
+                "height": 16
+              },
+              "room": 74,
+              "font": "14px"
+            },
+            {
+              "id": "controlled/a06",
+              "label": "本手×2",
+              "full": "本手×2",
+              "growth": "先接续",
+              "ready": "ready",
+              "bounds": {
+                "type": 5,
+                "x": 606,
+                "y": 160,
+                "width": 44,
+                "height": 16
+              },
+              "room": 74,
+              "font": "14px"
+            },
+            {
+              "id": "controlled/c05",
+              "label": "本手热+40",
+              "full": "本手热+40",
+              "growth": "不成长",
+              "ready": "ready",
+              "bounds": {
+                "type": 5,
+                "x": 692,
+                "y": 160,
+                "width": 66,
+                "height": 16
+              },
+              "room": 74,
+              "font": "14px"
+            },
+            {
+              "id": "controlled/c04",
+              "label": "本手热+10",
+              "full": "本手热+10",
+              "growth": "不成长",
+              "ready": "ready",
+              "bounds": {
+                "type": 5,
+                "x": 778,
+                "y": 160,
+                "width": 66,
+                "height": 16
+              },
+              "room": 74,
+              "font": "14px"
+            },
+            {
+              "id": "controlled/b10",
+              "label": "本手热+100",
+              "full": "本手热+100",
+              "growth": "成长满",
+              "ready": "ready",
+              "bounds": {
+                "type": 5,
+                "x": 864,
+                "y": 160,
+                "width": 74,
+                "height": 16
+              },
+              "room": 74,
+              "font": "14px"
+            }
+          ]
+        },
+        {
+          "type": "pair",
+          "selected": [
+            "hearts-7",
+            "spades-7"
+          ],
+          "labels": [
+            {
+              "id": "controlled/growth-selection/joker/controlled/growth-selection/command/2",
+              "label": "本手倍+1",
+              "full": "本手倍+1",
+              "growth": "不成长",
+              "ready": "ready",
+              "bounds": {
+                "type": 5,
+                "x": 520,
+                "y": 160,
+                "width": 58,
+                "height": 16
+              },
+              "room": 74,
+              "font": "14px"
+            },
+            {
+              "id": "controlled/a06",
+              "label": "本手不读取",
+              "full": "本手不读取",
+              "growth": "不成长",
+              "ready": "unmet",
+              "bounds": {
+                "type": 5,
+                "x": 606,
+                "y": 160,
+                "width": 70,
+                "height": 16
+              },
+              "room": 74,
+              "font": "14px"
+            },
+            {
+              "id": "controlled/c05",
+              "label": "本手热+40",
+              "full": "本手热+40",
+              "growth": "不成长",
+              "ready": "ready",
+              "bounds": {
+                "type": 5,
+                "x": 692,
+                "y": 160,
+                "width": 66,
+                "height": 16
+              },
+              "room": 74,
+              "font": "14px"
+            },
+            {
+              "id": "controlled/c04",
+              "label": "本手热+10",
+              "full": "本手热+10",
+              "growth": "不成长",
+              "ready": "ready",
+              "bounds": {
+                "type": 5,
+                "x": 778,
+                "y": 160,
+                "width": 66,
+                "height": 16
+              },
+              "room": 74,
+              "font": "14px"
+            },
+            {
+              "id": "controlled/b10",
+              "label": "本手热+100",
+              "full": "本手热+100",
+              "growth": "成长满",
+              "ready": "ready",
+              "bounds": {
+                "type": 5,
+                "x": 864,
+                "y": 160,
+                "width": 74,
+                "height": 16
+              },
+              "room": 74,
+              "font": "14px"
+            }
+          ]
+        },
+        {
+          "type": "flush",
+          "selected": [
+            "hearts-7",
+            "hearts-9",
+            "hearts-2",
+            "hearts-4",
+            "hearts-11"
+          ],
+          "labels": [
+            {
+              "id": "controlled/growth-selection/joker/controlled/growth-selection/command/2",
+              "label": "本手倍+1",
+              "full": "本手倍+1",
+              "growth": "可成长",
+              "ready": "ready",
+              "bounds": {
+                "type": 5,
+                "x": 520,
+                "y": 160,
+                "width": 58,
+                "height": 16
+              },
+              "room": 74,
+              "font": "14px"
+            },
+            {
+              "id": "controlled/a06",
+              "label": "本手×2",
+              "full": "本手×2",
+              "growth": "先接续",
+              "ready": "ready",
+              "bounds": {
+                "type": 5,
+                "x": 606,
+                "y": 160,
+                "width": 44,
+                "height": 16
+              },
+              "room": 74,
+              "font": "14px"
+            },
+            {
+              "id": "controlled/c05",
+              "label": "本手热+40",
+              "full": "本手热+40",
+              "growth": "弃牌可蓄",
+              "ready": "ready",
+              "bounds": {
+                "type": 5,
+                "x": 692,
+                "y": 160,
+                "width": 66,
+                "height": 16
+              },
+              "room": 74,
+              "font": "14px"
+            },
+            {
+              "id": "controlled/c04",
+              "label": "本手热+10",
+              "full": "本手热+10",
+              "growth": "不成长",
+              "ready": "ready",
+              "bounds": {
+                "type": 5,
+                "x": 778,
+                "y": 160,
+                "width": 66,
+                "height": 16
+              },
+              "room": 74,
+              "font": "14px"
+            },
+            {
+              "id": "controlled/b10",
+              "label": "本手热+100",
+              "full": "本手热+100",
+              "growth": "成长满",
+              "ready": "ready",
+              "bounds": {
+                "type": 5,
+                "x": 864,
+                "y": 160,
+                "width": 74,
+                "height": 16
+              },
+              "room": 74,
+              "font": "14px"
+            }
+          ]
+        },
+        {
+          "type": "full-house",
+          "selected": [
+            "hearts-7",
+            "spades-7",
+            "clubs-7",
+            "hearts-9",
+            "spades-9"
+          ],
+          "labels": [
+            {
+              "id": "controlled/growth-selection/joker/controlled/growth-selection/command/2",
+              "label": "本手倍+1",
+              "full": "本手倍+1",
+              "growth": "不成长",
+              "ready": "ready",
+              "bounds": {
+                "type": 5,
+                "x": 520,
+                "y": 160,
+                "width": 58,
+                "height": 16
+              },
+              "room": 74,
+              "font": "14px"
+            },
+            {
+              "id": "controlled/a06",
+              "label": "本手×2",
+              "full": "本手×2",
+              "growth": "先接续",
+              "ready": "ready",
+              "bounds": {
+                "type": 5,
+                "x": 606,
+                "y": 160,
+                "width": 44,
+                "height": 16
+              },
+              "room": 74,
+              "font": "14px"
+            },
+            {
+              "id": "controlled/c05",
+              "label": "本手热+40",
+              "full": "本手热+40",
+              "growth": "不成长",
+              "ready": "ready",
+              "bounds": {
+                "type": 5,
+                "x": 692,
+                "y": 160,
+                "width": 66,
+                "height": 16
+              },
+              "room": 74,
+              "font": "14px"
+            },
+            {
+              "id": "controlled/c04",
+              "label": "本手热+10",
+              "full": "本手热+10",
+              "growth": "不成长",
+              "ready": "ready",
+              "bounds": {
+                "type": 5,
+                "x": 778,
+                "y": 160,
+                "width": 66,
+                "height": 16
+              },
+              "room": 74,
+              "font": "14px"
+            },
+            {
+              "id": "controlled/b10",
+              "label": "本手热+100",
+              "full": "本手热+100",
+              "growth": "成长满",
+              "ready": "ready",
+              "bounds": {
+                "type": 5,
+                "x": 864,
+                "y": 160,
+                "width": 74,
+                "height": 16
+              },
+              "room": 74,
+              "font": "14px"
+            }
+          ]
+        }
+      ],
+      "initialHash": "714a60bfd2a98d63191c471628deac10d013c6373ab136817d7689e1c8059209",
+      "identity": {
+        "contentVersion": "quality-r2-core-build-v1",
+        "contentHash": "json-fnv-v1:6dfe1a721e4949e6"
+      },
+      "detailText": "葫芦 · 已选5张\n\n所选条件 · 满足不代表已发动\n\n越染越深 · 本手倍+1\n\n本手读取：倍率+1；读取条件：任意牌型。\n新增成长：现存+1 倍率 · 上限6\n不新增成长：这组不满足新增成长条件，仍可自由出牌。\n只有成功保存才兑现；新成长从后续读取生效。\n计分收益须成功出牌与保存。\n\n查看来源与成长\n条件、配合与完整损失\n独家戏 · 本手×2\n\n本手读取：倍率×2；读取条件：实际牌型是两对／三条／顺子／同花／葫芦／四条／同花顺／五条／同花葫芦／同花五条（精确牌型，不自动包含其他型）。\n新增成长：现存×2 系数 · 上限×1,000,000\n建立接续：本组先建立葫芦接续；同场下一手换另一合格型才检查成长，可能本手已过关。\n只有成功保存才兑现；新成长从后续读取生效。\n计分收益须成功出牌与保存。\n\n查看来源与成长\n条件、配合与完整损失\n换布景 · 本手热+40\n\n本手读取：热度+40；读取条件：任意牌型；下一次实际读取后消耗，场末清空。\n新增成长：现存+40 蓄热 · 上限80\n不新增成长：所选不满足这次弃牌条件；出牌不会蓄热。\n下一次实际读取后消耗；场末清空。\n只有成功保存才兑现；新成长从后续读取生效。\n计分收益须成功出牌与保存。\n\n查看来源与成长\n条件、配合与完整损失\n搭台阶 · 本手热+10\n\n本手读取：热度+10；读取条件：任意牌型。\n即时效果：热度+50；所选不满足；实际牌型是顺子／同花顺（精确牌型，不自动包含其他型）。\n新增成长：现存+10 热度 · 上限100\n不新增成长：这组不满足新增成长条件，仍可自由出牌。\n只有成功保存才兑现；新成长从后续读取生效。\n计分收益须成功出牌与保存。\n\n查看来源与成长\n条件、配合与完整损失\n练对子 · 本手热+100\n\n本手读取：热度+100；读取条件：任意牌型。\n新增成长：现存+100 热度 · 上限100\n成长已封顶：已封顶，不再新增；已存值按读取条件使用。\n只有成功保存才兑现；新成长从后续读取生效。\n计分收益须成功出牌与保存。\n\n查看来源与成长\n条件、配合与完整损失\n\n3张同点＋另2张同点\n计分牌5张 · 附带0张\n★代表当前计分牌；附带也随本手打出。\n成型：7♥、7♠、7♣、9♥、9♠\n附带：无（随本手打出，仍可参与其他规则）\n\n\n\n选1–5张；按全部所选牌判型。三条可选3／4／5张，但补成另一对子会转葫芦，第四张同点会转四条。失效牌仍参与判型，其效果停用；点数0只停普通点数。\n\n本轮可成牌型\n关闭",
+      "finalStateHash": "d3e3021e516bf1e6af4d339fb92ae9c74dd2b7f712471b13312c05f6671128cf",
+      "events": [
+        {
+          "eventId": "controlled/growth-selection/hand/controlled/growth-selection/command/5/event/6",
+          "rootId": "controlled/growth-selection/hand/controlled/growth-selection/command/5",
+          "rootEventId": "controlled/growth-selection/hand/controlled/growth-selection/command/5/event/6",
+          "phase": "jokerScore",
+          "sourceType": "joker",
+          "sourceDefinitionId": "c06",
+          "sourceInstanceId": "controlled/growth-selection/joker/controlled/growth-selection/command/2",
+          "operation": "read-growth",
+          "value": {
+            "n": "1",
+            "d": "1"
+          },
+          "before": {
+            "H": {
+              "n": "249",
+              "d": "1"
+            },
+            "M": {
+              "n": "5",
+              "d": "1"
+            }
+          },
+          "after": {
+            "H": {
+              "n": "249",
+              "d": "1"
+            },
+            "M": {
+              "n": "6",
+              "d": "1"
+            }
+          },
+          "reasonKey": "c06.read-growth",
+          "visibleCondition": {
+            "kind": "always"
+          },
+          "retriggerDepth": 0
+        },
+        {
+          "eventId": "controlled/growth-selection/hand/controlled/growth-selection/command/5/event/7",
+          "rootId": "controlled/growth-selection/hand/controlled/growth-selection/command/5",
+          "rootEventId": "controlled/growth-selection/hand/controlled/growth-selection/command/5/event/7",
+          "phase": "jokerScore",
+          "sourceType": "joker",
+          "sourceDefinitionId": "a06",
+          "sourceInstanceId": "controlled/a06",
+          "operation": "read-coefficient",
+          "value": {
+            "n": "2",
+            "d": "1"
+          },
+          "before": {
+            "H": {
+              "n": "249",
+              "d": "1"
+            },
+            "M": {
+              "n": "6",
+              "d": "1"
+            }
+          },
+          "after": {
+            "H": {
+              "n": "249",
+              "d": "1"
+            },
+            "M": {
+              "n": "12",
+              "d": "1"
+            }
+          },
+          "reasonKey": "a06.read-coefficient",
+          "visibleCondition": {
+            "kind": "hand-type-in",
+            "values": [
+              "two-pair",
+              "three-kind",
+              "straight",
+              "flush",
+              "full-house",
+              "four-kind",
+              "straight-flush",
+              "five-kind",
+              "flush-house",
+              "flush-five"
+            ]
+          },
+          "retriggerDepth": 0
+        },
+        {
+          "eventId": "controlled/growth-selection/hand/controlled/growth-selection/command/5/event/8",
+          "rootId": "controlled/growth-selection/hand/controlled/growth-selection/command/5",
+          "rootEventId": "controlled/growth-selection/hand/controlled/growth-selection/command/5/event/8",
+          "phase": "jokerScore",
+          "sourceType": "joker",
+          "sourceDefinitionId": "c05",
+          "sourceInstanceId": "controlled/c05",
+          "operation": "consume-growth",
+          "value": {
+            "n": "40",
+            "d": "1"
+          },
+          "before": {
+            "H": {
+              "n": "249",
+              "d": "1"
+            },
+            "M": {
+              "n": "12",
+              "d": "1"
+            }
+          },
+          "after": {
+            "H": {
+              "n": "289",
+              "d": "1"
+            },
+            "M": {
+              "n": "12",
+              "d": "1"
+            }
+          },
+          "reasonKey": "c05.consume-growth",
+          "visibleCondition": {
+            "kind": "always"
+          },
+          "retriggerDepth": 0
+        },
+        {
+          "eventId": "controlled/growth-selection/hand/controlled/growth-selection/command/5/event/9",
+          "rootId": "controlled/growth-selection/hand/controlled/growth-selection/command/5",
+          "rootEventId": "controlled/growth-selection/hand/controlled/growth-selection/command/5/event/9",
+          "phase": "jokerScore",
+          "sourceType": "joker",
+          "sourceDefinitionId": "c04",
+          "sourceInstanceId": "controlled/c04",
+          "operation": "read-growth",
+          "value": {
+            "n": "10",
+            "d": "1"
+          },
+          "before": {
+            "H": {
+              "n": "289",
+              "d": "1"
+            },
+            "M": {
+              "n": "12",
+              "d": "1"
+            }
+          },
+          "after": {
+            "H": {
+              "n": "299",
+              "d": "1"
+            },
+            "M": {
+              "n": "12",
+              "d": "1"
+            }
+          },
+          "reasonKey": "c04.read-growth",
+          "visibleCondition": {
+            "kind": "always"
+          },
+          "retriggerDepth": 0
+        },
+        {
+          "eventId": "controlled/growth-selection/hand/controlled/growth-selection/command/5/event/10",
+          "rootId": "controlled/growth-selection/hand/controlled/growth-selection/command/5",
+          "rootEventId": "controlled/growth-selection/hand/controlled/growth-selection/command/5/event/10",
+          "phase": "jokerScore",
+          "sourceType": "joker",
+          "sourceDefinitionId": "b10",
+          "sourceInstanceId": "controlled/b10",
+          "operation": "read-growth",
+          "value": {
+            "n": "100",
+            "d": "1"
+          },
+          "before": {
+            "H": {
+              "n": "299",
+              "d": "1"
+            },
+            "M": {
+              "n": "12",
+              "d": "1"
+            }
+          },
+          "after": {
+            "H": {
+              "n": "399",
+              "d": "1"
+            },
+            "M": {
+              "n": "12",
+              "d": "1"
+            }
+          },
+          "reasonKey": "b10.read-growth",
+          "visibleCondition": {
+            "kind": "always"
+          },
+          "retriggerDepth": 0
+        },
+        {
+          "eventId": "controlled/growth-selection/hand/controlled/growth-selection/command/5/event/13",
+          "rootId": "controlled/growth-selection/hand/controlled/growth-selection/command/5",
+          "rootEventId": "controlled/growth-selection/hand/controlled/growth-selection/command/5/event/13",
+          "phase": "afterHand",
+          "sourceType": "joker",
+          "sourceDefinitionId": "b10",
+          "sourceInstanceId": "controlled/b10",
+          "operation": "add-growth",
+          "value": {
+            "n": "0",
+            "d": "1"
+          },
+          "before": {
+            "H": {
+              "n": "399",
+              "d": "1"
+            },
+            "M": {
+              "n": "12",
+              "d": "1"
+            }
+          },
+          "after": {
+            "H": {
+              "n": "399",
+              "d": "1"
+            },
+            "M": {
+              "n": "12",
+              "d": "1"
+            }
+          },
+          "reasonKey": "b10.add-growth",
+          "visibleCondition": {
+            "kind": "hand-type-in",
+            "values": [
+              "pair",
+              "two-pair",
+              "three-kind",
+              "full-house",
+              "four-kind",
+              "five-kind",
+              "flush-house",
+              "flush-five"
+            ]
+          },
+          "retriggerDepth": 0
+        }
+      ],
+      "reloadHash": "3e01f64ad238ef63863b785d8e5f74f32800a3e9d49c3b9c34faa619c44696de",
+      "limited": {
+        "type": "flush",
+        "selected": [
+          "hearts-7",
+          "hearts-9",
+          "hearts-2",
+          "hearts-4",
+          "hearts-11"
+        ],
+        "labels": [
+          {
+            "id": "controlled/filler",
+            "label": "所选未满足",
+            "full": "所选未满足",
+            "ready": "unmet",
+            "bounds": {
+              "type": 5,
+              "x": 520,
+              "y": 160,
+              "width": 70,
+              "height": 16
+            },
+            "room": 74,
+            "font": "14px"
+          },
+          {
+            "id": "controlled/growth-selection/joker/controlled/growth-selection/command/2",
+            "label": "计分停用",
+            "full": "计分停用",
+            "growth": "可成长",
+            "ready": "limited",
+            "bounds": {
+              "type": 5,
+              "x": 606,
+              "y": 160,
+              "width": 56,
+              "height": 16
+            },
+            "room": 74,
+            "font": "14px"
+          }
+        ]
+      },
+      "limitedDetail": "同花 · 已选5张\n\n所选条件 · 满足不代表已发动\n\n满堂彩 · 所选未满足\n\n对子等同点组合 → 每手一次，热度+90\n所选同花、5张；需对子等同点组合\n五条、同花葫芦、同花五条也生效；普通顺子、普通同花与高牌不生效。\n计分收益须成功出牌与保存。\n\n查看来源与成长\n条件、配合与完整损失\n越染越深 · 计分停用\n\n本手读取：计分停用，已存倍率+1不计入；读取条件：任意牌型。\n新增成长：现存+1 倍率 · 上限6\n成长条件可用：公开成长条件可用，成功出牌并保存后才新增。\n倍率最多新增+0.5\n本手计分停用；成长仍按独立阶段条件检查。\n只有成功保存才兑现；新成长从后续读取生效。\n计分收益须成功出牌与保存。\n\n查看来源与成长\n条件、配合与完整损失\n\n同一花色，点数不限\n计分牌5张 · 附带0张\n★代表当前计分牌；附带也随本手打出。\n成型：7♥、9♥、2♥、4♥、J♥\n附带：无（随本手打出，仍可参与其他规则）\n\n\n\n选1–5张；按全部所选牌判型。三条可选3／4／5张，但补成另一对子会转葫芦，第四张同点会转四条。失效牌仍参与判型，其效果停用；点数0只停普通点数。\n\n本轮可成牌型\n关闭",
+      "limitedFinalStateHash": "126889dc6e9f3b85e5bdd72c35b948b5caf958ba5e09ee75fffe72a73b4b8190",
+      "limitedEvents": [
+        {
+          "eventId": "controlled/growth-selection/hand/controlled/growth-selection/command/5/event/8",
+          "rootId": "controlled/growth-selection/hand/controlled/growth-selection/command/5",
+          "rootEventId": "controlled/growth-selection/hand/controlled/growth-selection/command/5/event/8",
+          "phase": "afterHand",
+          "sourceType": "joker",
+          "sourceDefinitionId": "c06",
+          "sourceInstanceId": "controlled/growth-selection/joker/controlled/growth-selection/command/2",
+          "operation": "add-growth",
+          "value": {
+            "n": "1",
+            "d": "2"
+          },
+          "before": {
+            "H": {
+              "n": "172",
+              "d": "1"
+            },
+            "M": {
+              "n": "4",
+              "d": "1"
+            }
+          },
+          "after": {
+            "H": {
+              "n": "172",
+              "d": "1"
+            },
+            "M": {
+              "n": "4",
+              "d": "1"
+            }
+          },
+          "reasonKey": "c06.add-growth",
+          "visibleCondition": {
+            "kind": "hand-type-in",
+            "values": [
+              "flush",
+              "straight-flush",
+              "flush-house",
+              "flush-five"
+            ]
+          },
+          "retriggerDepth": 0
+        }
+      ],
+      "status": "PASS"
+    },
+    {
+      "width": 390,
+      "height": 740,
+      "errors": [],
+      "consoleErrors": [
+        "Failed to load resource: the server responded with a status of 404 (Not Found)",
+        "Failed to load resource: the server responded with a status of 404 (Not Found)"
+      ],
+      "networkErrors": [],
+      "steps": [
+        {
+          "type": "full-house",
+          "selected": [
+            "hearts-7",
+            "spades-7",
+            "clubs-7",
+            "hearts-9",
+            "spades-9"
+          ],
+          "labels": [
+            {
+              "id": "controlled/growth-selection/joker/controlled/growth-selection/command/2",
+              "label": "本手倍+1",
+              "full": "本手倍+1",
+              "growth": "不成长",
+              "ready": "ready",
+              "bounds": {
+                "type": 5,
+                "x": 26,
+                "y": 135.60000305175782,
+                "width": 58,
+                "height": 16
+              },
+              "room": 58,
+              "font": "14px"
+            },
+            {
+              "id": "controlled/a06",
+              "label": "本手×2",
+              "full": "本手×2",
+              "growth": "先接续",
+              "ready": "ready",
+              "bounds": {
+                "type": 5,
+                "x": 96,
+                "y": 135.60000305175782,
+                "width": 44,
+                "height": 16
+              },
+              "room": 58,
+              "font": "14px"
+            },
+            {
+              "id": "controlled/c05",
+              "label": "读热+40",
+              "full": "本手热+40",
+              "growth": "不成长",
+              "ready": "ready",
+              "bounds": {
+                "type": 5,
+                "x": 166,
+                "y": 135.60000305175782,
+                "width": 52,
+                "height": 16
+              },
+              "room": 58,
+              "font": "14px"
+            },
+            {
+              "id": "controlled/c04",
+              "label": "读热+10",
+              "full": "本手热+10",
+              "growth": "不成长",
+              "ready": "ready",
+              "bounds": {
+                "type": 5,
+                "x": 236,
+                "y": 135.60000305175782,
+                "width": 52,
+                "height": 16
+              },
+              "room": 58,
+              "font": "14px"
+            },
+            {
+              "id": "controlled/b10",
+              "label": "热+100",
+              "full": "本手热+100",
+              "growth": "成长满",
+              "ready": "ready",
+              "bounds": {
+                "type": 5,
+                "x": 306,
+                "y": 135.60000305175782,
+                "width": 46,
+                "height": 16
+              },
+              "room": 58,
+              "font": "14px"
+            }
+          ]
+        },
+        {
+          "type": "pair",
+          "selected": [
+            "hearts-7",
+            "spades-7"
+          ],
+          "labels": [
+            {
+              "id": "controlled/growth-selection/joker/controlled/growth-selection/command/2",
+              "label": "本手倍+1",
+              "full": "本手倍+1",
+              "growth": "不成长",
+              "ready": "ready",
+              "bounds": {
+                "type": 5,
+                "x": 26,
+                "y": 135.60000305175782,
+                "width": 58,
+                "height": 16
+              },
+              "room": 58,
+              "font": "14px"
+            },
+            {
+              "id": "controlled/a06",
+              "label": "不读取",
+              "full": "本手不读取",
+              "growth": "不成长",
+              "ready": "unmet",
+              "bounds": {
+                "type": 5,
+                "x": 96,
+                "y": 135.60000305175782,
+                "width": 42,
+                "height": 16
+              },
+              "room": 58,
+              "font": "14px"
+            },
+            {
+              "id": "controlled/c05",
+              "label": "读热+40",
+              "full": "本手热+40",
+              "growth": "不成长",
+              "ready": "ready",
+              "bounds": {
+                "type": 5,
+                "x": 166,
+                "y": 135.60000305175782,
+                "width": 52,
+                "height": 16
+              },
+              "room": 58,
+              "font": "14px"
+            },
+            {
+              "id": "controlled/c04",
+              "label": "读热+10",
+              "full": "本手热+10",
+              "growth": "不成长",
+              "ready": "ready",
+              "bounds": {
+                "type": 5,
+                "x": 236,
+                "y": 135.60000305175782,
+                "width": 52,
+                "height": 16
+              },
+              "room": 58,
+              "font": "14px"
+            },
+            {
+              "id": "controlled/b10",
+              "label": "热+100",
+              "full": "本手热+100",
+              "growth": "成长满",
+              "ready": "ready",
+              "bounds": {
+                "type": 5,
+                "x": 306,
+                "y": 135.60000305175782,
+                "width": 46,
+                "height": 16
+              },
+              "room": 58,
+              "font": "14px"
+            }
+          ]
+        },
+        {
+          "type": "flush",
+          "selected": [
+            "hearts-7",
+            "hearts-9",
+            "hearts-2",
+            "hearts-4",
+            "hearts-11"
+          ],
+          "labels": [
+            {
+              "id": "controlled/growth-selection/joker/controlled/growth-selection/command/2",
+              "label": "本手倍+1",
+              "full": "本手倍+1",
+              "growth": "可成长",
+              "ready": "ready",
+              "bounds": {
+                "type": 5,
+                "x": 26,
+                "y": 135.60000305175782,
+                "width": 58,
+                "height": 16
+              },
+              "room": 58,
+              "font": "14px"
+            },
+            {
+              "id": "controlled/a06",
+              "label": "本手×2",
+              "full": "本手×2",
+              "growth": "先接续",
+              "ready": "ready",
+              "bounds": {
+                "type": 5,
+                "x": 96,
+                "y": 135.60000305175782,
+                "width": 44,
+                "height": 16
+              },
+              "room": 58,
+              "font": "14px"
+            },
+            {
+              "id": "controlled/c05",
+              "label": "读热+40",
+              "full": "本手热+40",
+              "growth": "弃牌可蓄",
+              "ready": "ready",
+              "bounds": {
+                "type": 5,
+                "x": 166,
+                "y": 135.60000305175782,
+                "width": 52,
+                "height": 16
+              },
+              "room": 58,
+              "font": "14px"
+            },
+            {
+              "id": "controlled/c04",
+              "label": "读热+10",
+              "full": "本手热+10",
+              "growth": "不成长",
+              "ready": "ready",
+              "bounds": {
+                "type": 5,
+                "x": 236,
+                "y": 135.60000305175782,
+                "width": 52,
+                "height": 16
+              },
+              "room": 58,
+              "font": "14px"
+            },
+            {
+              "id": "controlled/b10",
+              "label": "热+100",
+              "full": "本手热+100",
+              "growth": "成长满",
+              "ready": "ready",
+              "bounds": {
+                "type": 5,
+                "x": 306,
+                "y": 135.60000305175782,
+                "width": 46,
+                "height": 16
+              },
+              "room": 58,
+              "font": "14px"
+            }
+          ]
+        },
+        {
+          "type": "full-house",
+          "selected": [
+            "hearts-7",
+            "spades-7",
+            "clubs-7",
+            "hearts-9",
+            "spades-9"
+          ],
+          "labels": [
+            {
+              "id": "controlled/growth-selection/joker/controlled/growth-selection/command/2",
+              "label": "本手倍+1",
+              "full": "本手倍+1",
+              "growth": "不成长",
+              "ready": "ready",
+              "bounds": {
+                "type": 5,
+                "x": 26,
+                "y": 135.60000305175782,
+                "width": 58,
+                "height": 16
+              },
+              "room": 58,
+              "font": "14px"
+            },
+            {
+              "id": "controlled/a06",
+              "label": "本手×2",
+              "full": "本手×2",
+              "growth": "先接续",
+              "ready": "ready",
+              "bounds": {
+                "type": 5,
+                "x": 96,
+                "y": 135.60000305175782,
+                "width": 44,
+                "height": 16
+              },
+              "room": 58,
+              "font": "14px"
+            },
+            {
+              "id": "controlled/c05",
+              "label": "读热+40",
+              "full": "本手热+40",
+              "growth": "不成长",
+              "ready": "ready",
+              "bounds": {
+                "type": 5,
+                "x": 166,
+                "y": 135.60000305175782,
+                "width": 52,
+                "height": 16
+              },
+              "room": 58,
+              "font": "14px"
+            },
+            {
+              "id": "controlled/c04",
+              "label": "读热+10",
+              "full": "本手热+10",
+              "growth": "不成长",
+              "ready": "ready",
+              "bounds": {
+                "type": 5,
+                "x": 236,
+                "y": 135.60000305175782,
+                "width": 52,
+                "height": 16
+              },
+              "room": 58,
+              "font": "14px"
+            },
+            {
+              "id": "controlled/b10",
+              "label": "热+100",
+              "full": "本手热+100",
+              "growth": "成长满",
+              "ready": "ready",
+              "bounds": {
+                "type": 5,
+                "x": 306,
+                "y": 135.60000305175782,
+                "width": 46,
+                "height": 16
+              },
+              "room": 58,
+              "font": "14px"
+            }
+          ]
+        }
+      ],
+      "initialHash": "714a60bfd2a98d63191c471628deac10d013c6373ab136817d7689e1c8059209",
+      "identity": {
+        "contentVersion": "quality-r2-core-build-v1",
+        "contentHash": "json-fnv-v1:6dfe1a721e4949e6"
+      },
+      "detailText": "葫芦 · 已选5张\n\n所选条件 · 满足不代表已发动\n\n越染越深 · 本手倍+1\n\n本手读取：倍率+1；读取条件：任意牌型。\n新增成长：现存+1 倍率 · 上限6\n不新增成长：这组不满足新增成长条件，仍可自由出牌。\n只有成功保存才兑现；新成长从后续读取生效。\n计分收益须成功出牌与保存。\n\n查看来源与成长\n条件、配合与完整损失\n独家戏 · 本手×2\n\n本手读取：倍率×2；读取条件：实际牌型是两对／三条／顺子／同花／葫芦／四条／同花顺／五条／同花葫芦／同花五条（精确牌型，不自动包含其他型）。\n新增成长：现存×2 系数 · 上限×1,000,000\n建立接续：本组先建立葫芦接续；同场下一手换另一合格型才检查成长，可能本手已过关。\n只有成功保存才兑现；新成长从后续读取生效。\n计分收益须成功出牌与保存。\n\n查看来源与成长\n条件、配合与完整损失\n换布景 · 本手热+40\n\n本手读取：热度+40；读取条件：任意牌型；下一次实际读取后消耗，场末清空。\n新增成长：现存+40 蓄热 · 上限80\n不新增成长：所选不满足这次弃牌条件；出牌不会蓄热。\n下一次实际读取后消耗；场末清空。\n只有成功保存才兑现；新成长从后续读取生效。\n计分收益须成功出牌与保存。\n\n查看来源与成长\n条件、配合与完整损失\n搭台阶 · 本手热+10\n\n本手读取：热度+10；读取条件：任意牌型。\n即时效果：热度+50；所选不满足；实际牌型是顺子／同花顺（精确牌型，不自动包含其他型）。\n新增成长：现存+10 热度 · 上限100\n不新增成长：这组不满足新增成长条件，仍可自由出牌。\n只有成功保存才兑现；新成长从后续读取生效。\n计分收益须成功出牌与保存。\n\n查看来源与成长\n条件、配合与完整损失\n练对子 · 本手热+100\n\n本手读取：热度+100；读取条件：任意牌型。\n新增成长：现存+100 热度 · 上限100\n成长已封顶：已封顶，不再新增；已存值按读取条件使用。\n只有成功保存才兑现；新成长从后续读取生效。\n计分收益须成功出牌与保存。\n\n查看来源与成长\n条件、配合与完整损失\n\n3张同点＋另2张同点\n计分牌5张 · 附带0张\n★代表当前计分牌；附带也随本手打出。\n成型：7♥、7♠、7♣、9♥、9♠\n附带：无（随本手打出，仍可参与其他规则）\n\n\n\n选1–5张；按全部所选牌判型。三条可选3／4／5张，但补成另一对子会转葫芦，第四张同点会转四条。失效牌仍参与判型，其效果停用；点数0只停普通点数。\n\n本轮可成牌型\n关闭",
+      "finalStateHash": "d3e3021e516bf1e6af4d339fb92ae9c74dd2b7f712471b13312c05f6671128cf",
+      "events": [
+        {
+          "eventId": "controlled/growth-selection/hand/controlled/growth-selection/command/5/event/6",
+          "rootId": "controlled/growth-selection/hand/controlled/growth-selection/command/5",
+          "rootEventId": "controlled/growth-selection/hand/controlled/growth-selection/command/5/event/6",
+          "phase": "jokerScore",
+          "sourceType": "joker",
+          "sourceDefinitionId": "c06",
+          "sourceInstanceId": "controlled/growth-selection/joker/controlled/growth-selection/command/2",
+          "operation": "read-growth",
+          "value": {
+            "n": "1",
+            "d": "1"
+          },
+          "before": {
+            "H": {
+              "n": "249",
+              "d": "1"
+            },
+            "M": {
+              "n": "5",
+              "d": "1"
+            }
+          },
+          "after": {
+            "H": {
+              "n": "249",
+              "d": "1"
+            },
+            "M": {
+              "n": "6",
+              "d": "1"
+            }
+          },
+          "reasonKey": "c06.read-growth",
+          "visibleCondition": {
+            "kind": "always"
+          },
+          "retriggerDepth": 0
+        },
+        {
+          "eventId": "controlled/growth-selection/hand/controlled/growth-selection/command/5/event/7",
+          "rootId": "controlled/growth-selection/hand/controlled/growth-selection/command/5",
+          "rootEventId": "controlled/growth-selection/hand/controlled/growth-selection/command/5/event/7",
+          "phase": "jokerScore",
+          "sourceType": "joker",
+          "sourceDefinitionId": "a06",
+          "sourceInstanceId": "controlled/a06",
+          "operation": "read-coefficient",
+          "value": {
+            "n": "2",
+            "d": "1"
+          },
+          "before": {
+            "H": {
+              "n": "249",
+              "d": "1"
+            },
+            "M": {
+              "n": "6",
+              "d": "1"
+            }
+          },
+          "after": {
+            "H": {
+              "n": "249",
+              "d": "1"
+            },
+            "M": {
+              "n": "12",
+              "d": "1"
+            }
+          },
+          "reasonKey": "a06.read-coefficient",
+          "visibleCondition": {
+            "kind": "hand-type-in",
+            "values": [
+              "two-pair",
+              "three-kind",
+              "straight",
+              "flush",
+              "full-house",
+              "four-kind",
+              "straight-flush",
+              "five-kind",
+              "flush-house",
+              "flush-five"
+            ]
+          },
+          "retriggerDepth": 0
+        },
+        {
+          "eventId": "controlled/growth-selection/hand/controlled/growth-selection/command/5/event/8",
+          "rootId": "controlled/growth-selection/hand/controlled/growth-selection/command/5",
+          "rootEventId": "controlled/growth-selection/hand/controlled/growth-selection/command/5/event/8",
+          "phase": "jokerScore",
+          "sourceType": "joker",
+          "sourceDefinitionId": "c05",
+          "sourceInstanceId": "controlled/c05",
+          "operation": "consume-growth",
+          "value": {
+            "n": "40",
+            "d": "1"
+          },
+          "before": {
+            "H": {
+              "n": "249",
+              "d": "1"
+            },
+            "M": {
+              "n": "12",
+              "d": "1"
+            }
+          },
+          "after": {
+            "H": {
+              "n": "289",
+              "d": "1"
+            },
+            "M": {
+              "n": "12",
+              "d": "1"
+            }
+          },
+          "reasonKey": "c05.consume-growth",
+          "visibleCondition": {
+            "kind": "always"
+          },
+          "retriggerDepth": 0
+        },
+        {
+          "eventId": "controlled/growth-selection/hand/controlled/growth-selection/command/5/event/9",
+          "rootId": "controlled/growth-selection/hand/controlled/growth-selection/command/5",
+          "rootEventId": "controlled/growth-selection/hand/controlled/growth-selection/command/5/event/9",
+          "phase": "jokerScore",
+          "sourceType": "joker",
+          "sourceDefinitionId": "c04",
+          "sourceInstanceId": "controlled/c04",
+          "operation": "read-growth",
+          "value": {
+            "n": "10",
+            "d": "1"
+          },
+          "before": {
+            "H": {
+              "n": "289",
+              "d": "1"
+            },
+            "M": {
+              "n": "12",
+              "d": "1"
+            }
+          },
+          "after": {
+            "H": {
+              "n": "299",
+              "d": "1"
+            },
+            "M": {
+              "n": "12",
+              "d": "1"
+            }
+          },
+          "reasonKey": "c04.read-growth",
+          "visibleCondition": {
+            "kind": "always"
+          },
+          "retriggerDepth": 0
+        },
+        {
+          "eventId": "controlled/growth-selection/hand/controlled/growth-selection/command/5/event/10",
+          "rootId": "controlled/growth-selection/hand/controlled/growth-selection/command/5",
+          "rootEventId": "controlled/growth-selection/hand/controlled/growth-selection/command/5/event/10",
+          "phase": "jokerScore",
+          "sourceType": "joker",
+          "sourceDefinitionId": "b10",
+          "sourceInstanceId": "controlled/b10",
+          "operation": "read-growth",
+          "value": {
+            "n": "100",
+            "d": "1"
+          },
+          "before": {
+            "H": {
+              "n": "299",
+              "d": "1"
+            },
+            "M": {
+              "n": "12",
+              "d": "1"
+            }
+          },
+          "after": {
+            "H": {
+              "n": "399",
+              "d": "1"
+            },
+            "M": {
+              "n": "12",
+              "d": "1"
+            }
+          },
+          "reasonKey": "b10.read-growth",
+          "visibleCondition": {
+            "kind": "always"
+          },
+          "retriggerDepth": 0
+        },
+        {
+          "eventId": "controlled/growth-selection/hand/controlled/growth-selection/command/5/event/13",
+          "rootId": "controlled/growth-selection/hand/controlled/growth-selection/command/5",
+          "rootEventId": "controlled/growth-selection/hand/controlled/growth-selection/command/5/event/13",
+          "phase": "afterHand",
+          "sourceType": "joker",
+          "sourceDefinitionId": "b10",
+          "sourceInstanceId": "controlled/b10",
+          "operation": "add-growth",
+          "value": {
+            "n": "0",
+            "d": "1"
+          },
+          "before": {
+            "H": {
+              "n": "399",
+              "d": "1"
+            },
+            "M": {
+              "n": "12",
+              "d": "1"
+            }
+          },
+          "after": {
+            "H": {
+              "n": "399",
+              "d": "1"
+            },
+            "M": {
+              "n": "12",
+              "d": "1"
+            }
+          },
+          "reasonKey": "b10.add-growth",
+          "visibleCondition": {
+            "kind": "hand-type-in",
+            "values": [
+              "pair",
+              "two-pair",
+              "three-kind",
+              "full-house",
+              "four-kind",
+              "five-kind",
+              "flush-house",
+              "flush-five"
+            ]
+          },
+          "retriggerDepth": 0
+        }
+      ],
+      "reloadHash": "3e01f64ad238ef63863b785d8e5f74f32800a3e9d49c3b9c34faa619c44696de",
+      "limited": {
+        "type": "flush",
+        "selected": [
+          "hearts-7",
+          "hearts-9",
+          "hearts-2",
+          "hearts-4",
+          "hearts-11"
+        ],
+        "labels": [
+          {
+            "id": "controlled/filler",
+            "label": "状态 ›",
+            "full": "所选未满足",
+            "ready": "unmet",
+            "bounds": {
+              "type": 5,
+              "x": 26,
+              "y": 135.60000305175782,
+              "width": 37,
+              "height": 16
+            },
+            "room": 58,
+            "font": "14px"
+          },
+          {
+            "id": "controlled/growth-selection/joker/controlled/growth-selection/command/2",
+            "label": "计分停用",
+            "full": "计分停用",
+            "growth": "可成长",
+            "ready": "limited",
+            "bounds": {
+              "type": 5,
+              "x": 96,
+              "y": 135.60000305175782,
+              "width": 56,
+              "height": 16
+            },
+            "room": 58,
+            "font": "14px"
+          }
+        ]
+      },
+      "limitedDetail": "同花 · 已选5张\n\n所选条件 · 满足不代表已发动\n\n满堂彩 · 所选未满足\n\n对子等同点组合 → 每手一次，热度+90\n所选同花、5张；需对子等同点组合\n五条、同花葫芦、同花五条也生效；普通顺子、普通同花与高牌不生效。\n计分收益须成功出牌与保存。\n\n查看来源与成长\n条件、配合与完整损失\n越染越深 · 计分停用\n\n本手读取：计分停用，已存倍率+1不计入；读取条件：任意牌型。\n新增成长：现存+1 倍率 · 上限6\n成长条件可用：公开成长条件可用，成功出牌并保存后才新增。\n倍率最多新增+0.5\n本手计分停用；成长仍按独立阶段条件检查。\n只有成功保存才兑现；新成长从后续读取生效。\n计分收益须成功出牌与保存。\n\n查看来源与成长\n条件、配合与完整损失\n\n同一花色，点数不限\n计分牌5张 · 附带0张\n★代表当前计分牌；附带也随本手打出。\n成型：7♥、9♥、2♥、4♥、J♥\n附带：无（随本手打出，仍可参与其他规则）\n\n\n\n选1–5张；按全部所选牌判型。三条可选3／4／5张，但补成另一对子会转葫芦，第四张同点会转四条。失效牌仍参与判型，其效果停用；点数0只停普通点数。\n\n本轮可成牌型\n关闭",
+      "limitedFinalStateHash": "126889dc6e9f3b85e5bdd72c35b948b5caf958ba5e09ee75fffe72a73b4b8190",
+      "limitedEvents": [
+        {
+          "eventId": "controlled/growth-selection/hand/controlled/growth-selection/command/5/event/8",
+          "rootId": "controlled/growth-selection/hand/controlled/growth-selection/command/5",
+          "rootEventId": "controlled/growth-selection/hand/controlled/growth-selection/command/5/event/8",
+          "phase": "afterHand",
+          "sourceType": "joker",
+          "sourceDefinitionId": "c06",
+          "sourceInstanceId": "controlled/growth-selection/joker/controlled/growth-selection/command/2",
+          "operation": "add-growth",
+          "value": {
+            "n": "1",
+            "d": "2"
+          },
+          "before": {
+            "H": {
+              "n": "172",
+              "d": "1"
+            },
+            "M": {
+              "n": "4",
+              "d": "1"
+            }
+          },
+          "after": {
+            "H": {
+              "n": "172",
+              "d": "1"
+            },
+            "M": {
+              "n": "4",
+              "d": "1"
+            }
+          },
+          "reasonKey": "c06.add-growth",
+          "visibleCondition": {
+            "kind": "hand-type-in",
+            "values": [
+              "flush",
+              "straight-flush",
+              "flush-house",
+              "flush-five"
+            ]
+          },
+          "retriggerDepth": 0
+        }
+      ],
+      "status": "PASS"
+    }
+  ],
+  "status": "PASS",
+  "sourceAfter": "de6e9941a930695a7b5870afd467526e11e60cf77fad2a8808f1a4f7ae2afab0"
+}
