@@ -1,0 +1,280 @@
+{
+  "base": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+  "runtimeCommit": "66994ac8fb347b865a7169aad3837502266144e1",
+  "browserCommit": "f418a15cb4176650053d1baf0ed0c9e2ff88be25",
+  "sourceTree": "504188800d34181a90349362a78a451d72b34f0d",
+  "status": "PASS_WITH_PHYSICAL_DEVICE_NOT_RUN",
+  "areas": {
+    "table": [
+      {
+        "viewport": "390x844",
+        "status": "PASS",
+        "moves": 3,
+        "cancellations": [
+          "stationary",
+          "same-slot",
+          "outside",
+          "pointercancel",
+          "prehold",
+          "multitouch",
+          "hidden-signal",
+          "resize",
+          "escape",
+          "blur",
+          "lost-capture",
+          "modal-focus",
+          "lock-mid-drag"
+        ],
+        "hapticFallbacks": [
+          {
+            "mode": "unsupported",
+            "status": "PASS",
+            "visualDrag": true
+          },
+          {
+            "mode": "denied",
+            "status": "PASS",
+            "visualDrag": true
+          },
+          {
+            "mode": "throwing",
+            "status": "PASS",
+            "visualDrag": true
+          }
+        ],
+        "pageErrors": []
+      },
+      {
+        "viewport": "1366x900",
+        "status": "PASS",
+        "moves": 3,
+        "cancellations": [
+          "stationary",
+          "same-slot",
+          "outside",
+          "pointercancel",
+          "hidden-signal",
+          "resize",
+          "escape",
+          "blur",
+          "lost-capture",
+          "modal-focus",
+          "lock-mid-drag"
+        ],
+        "hapticFallbacks": [],
+        "pageErrors": []
+      },
+      {
+        "viewport": "390x844-reduce-dpr2",
+        "status": "PASS",
+        "moves": 3,
+        "cancellations": [
+          "stationary",
+          "same-slot",
+          "outside",
+          "pointercancel",
+          "prehold",
+          "multitouch",
+          "hidden-signal",
+          "resize",
+          "escape",
+          "blur",
+          "lost-capture",
+          "modal-focus",
+          "lock-mid-drag"
+        ],
+        "hapticFallbacks": [
+          {
+            "mode": "unsupported",
+            "status": "PASS",
+            "visualDrag": true
+          },
+          {
+            "mode": "denied",
+            "status": "PASS",
+            "visualDrag": true
+          },
+          {
+            "mode": "throwing",
+            "status": "PASS",
+            "visualDrag": true
+          }
+        ],
+        "pageErrors": []
+      }
+    ],
+    "shop": [
+      {
+        "viewport": "320x740",
+        "status": "PASS",
+        "moves": 3,
+        "cancellations": [
+          "stationary",
+          "same-slot",
+          "outside",
+          "pointercancel",
+          "prehold",
+          "multitouch",
+          "hidden-signal",
+          "resize",
+          "escape",
+          "blur",
+          "lock-mid-drag"
+        ],
+        "hapticFallbacks": [
+          {
+            "mode": "unsupported",
+            "status": "PASS",
+            "visualDrag": true
+          },
+          {
+            "mode": "denied",
+            "status": "PASS",
+            "visualDrag": true
+          },
+          {
+            "mode": "throwing",
+            "status": "PASS",
+            "visualDrag": true
+          }
+        ],
+        "pageErrors": []
+      },
+      {
+        "viewport": "390x844",
+        "status": "PASS",
+        "moves": 3,
+        "cancellations": [
+          "stationary",
+          "same-slot",
+          "outside",
+          "pointercancel",
+          "prehold",
+          "multitouch",
+          "hidden-signal",
+          "resize",
+          "escape",
+          "blur",
+          "lock-mid-drag"
+        ],
+        "hapticFallbacks": [
+          {
+            "mode": "unsupported",
+            "status": "PASS",
+            "visualDrag": true
+          },
+          {
+            "mode": "denied",
+            "status": "PASS",
+            "visualDrag": true
+          },
+          {
+            "mode": "throwing",
+            "status": "PASS",
+            "visualDrag": true
+          }
+        ],
+        "pageErrors": []
+      },
+      {
+        "viewport": "412x915",
+        "status": "PASS",
+        "moves": 3,
+        "cancellations": [
+          "stationary",
+          "same-slot",
+          "outside",
+          "pointercancel",
+          "prehold",
+          "multitouch",
+          "hidden-signal",
+          "resize",
+          "escape",
+          "blur",
+          "lock-mid-drag"
+        ],
+        "hapticFallbacks": [
+          {
+            "mode": "unsupported",
+            "status": "PASS",
+            "visualDrag": true
+          },
+          {
+            "mode": "denied",
+            "status": "PASS",
+            "visualDrag": true
+          },
+          {
+            "mode": "throwing",
+            "status": "PASS",
+            "visualDrag": true
+          }
+        ],
+        "pageErrors": []
+      },
+      {
+        "viewport": "1366x900",
+        "status": "PASS",
+        "moves": 3,
+        "cancellations": [
+          "stationary",
+          "same-slot",
+          "outside",
+          "pointercancel",
+          "hidden-signal",
+          "resize",
+          "escape",
+          "blur",
+          "lock-mid-drag"
+        ],
+        "hapticFallbacks": [],
+        "pageErrors": []
+      },
+      {
+        "viewport": "390x844-reduce-dpr2",
+        "status": "PASS",
+        "moves": 3,
+        "cancellations": [
+          "stationary",
+          "same-slot",
+          "outside",
+          "pointercancel",
+          "prehold",
+          "multitouch",
+          "hidden-signal",
+          "resize",
+          "escape",
+          "blur",
+          "lock-mid-drag"
+        ],
+        "hapticFallbacks": [
+          {
+            "mode": "unsupported",
+            "status": "PASS",
+            "visualDrag": true
+          },
+          {
+            "mode": "denied",
+            "status": "PASS",
+            "visualDrag": true
+          },
+          {
+            "mode": "throwing",
+            "status": "PASS",
+            "visualDrag": true
+          }
+        ],
+        "pageErrors": []
+      }
+    ]
+  },
+  "actualViewedScreenshots": [
+    "table/390x844-slow-held.png",
+    "table/390x844-slow-mid.png",
+    "table/1366x900-slow-mid.png",
+    "table/390x844-save-retry.png",
+    "shop/320x740-slow-mid.png",
+    "shop/390x844-slow-mid.png",
+    "shop/1366x900-slow-mid.png"
+  ]
+}
