@@ -38,3 +38,11 @@ B05 完整矩阵产品源码为 7dfebc1e；随后仅新增牌型规则只读文�
 `hand-rule-order/` 共8项原生：当前与旧谢幕 PC/390/320，当前骰爷/阿燥390，均走选牌→怎么凑牌→完整牌型规则→展开→关闭，完整 state/journal/IndexedDB 与本地选牌不变。9项新专项以三角色新旧实际 PlayHand 保存事件验证角色早/晚顺序，合法 checkpoint 均通过。首次旧骰爷夹具“mature-win”在旧规则已能凑目标，被原规则拒绝；改为旧规则合法未成型夹具，不削规则。原生首轮是观察器嵌套 locator 无匹配，修定位而不改产品；两项原 FAIL 保留在 hand-rule-order-first-fail。
 
 新立绘 `libfile_e987d3b4f244819182e0adb15d0f932e` 与眼神 `libfile_68f2c8b2c0b881918a90cc386ed232c6` 均正规 prepare_materialize 成功，但实际授权 GET 返回 HTTP403／curl22，没有文件、没有核 SHA 或看像素；未重试或换路径绕过。见 asset-blockers.json。新素材输入仍未可用，人物/眼神接入与最终美术继续 OPEN。
+
+## P2 320短屏裁切返修（2026-10-15）
+
+父独审确认原 final/320-repeat-key.png 与 320-changed-key.png 末行越过面板；原13项PASS只覆盖viewport与保存，**不代表面板containment通过**。原图/报告保持，最新关键帧请看 containment-repair/final。
+
+正规回放 a2a469f0：host bottom312.390625、p bottom316.453125，确实超出4.0625px；新检测在此版本实际FAIL，并同时抓到标题越界。矮面板只收紧留白、将反应字改18px、明确行距和底部对齐，三行完整保留；未增高面板覆盖下方操作。新检测要求面板和三行真实存在，逐一核元素及Range文字行框位于父面板内边距区域。首次修复仍有字体行框超过内容顶界约0.94px，原FAIL也保留，未放宽检测。
+
+最终产品70c0fe0d：两种320关键帧p bottom均309.390625，距host bottom3px，全部文字行框也在内容区内。PC/390/320全13项原生重新通过，低动态/回看/取消/恢复/终局保持；13项全部已记录的完整state/journal/IndexedDB与trace逐字段等同旧交付。43定向/type通过；新精确HEAD的CI另核，不借a2a469f0旧绿勾。GameScene/映射/规则详情/夹具/domain/application/content/audio/样式全局及其他独占窗口对象均同a2，只有OpponentPresentation局部布局和harness改变，见protected-objects.json。没有再次请求403素材，也未接入图像。

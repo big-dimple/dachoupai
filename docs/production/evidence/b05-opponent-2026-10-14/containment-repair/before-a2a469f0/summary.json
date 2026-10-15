@@ -1,0 +1,232 @@
+{
+  "head": "a2a469f091e6fbc3e328e9d1fc38ae9747e2850d",
+  "status": "FAIL",
+  "baseline": false,
+  "scope": "Controlled chapter3 current identity, planted U01 and public card arrangement; actual prior and current PlayHand. Software Chromium PC/touch inputs; no natural acquisition, physical-device, human-understanding or final-art acceptance.",
+  "error": "AssertionError [ERR_ASSERTION]: 320-repeat-key content stays within opponent panel {\"text\":\"回音墙 · 同招回响\",\"bounds\":{\"x\":27,\"y\":235.953125,\"width\":270,\"height\":20,\"top\":235.953125,\"right\":297,\"bottom\":255.953125,\"left\":27},\"parent\":{\"left\":27,\"right\":297,\"top\":251,\"bottom\":301.390625}}\n    at shot (file:///workspace/dachoupai/harness/b05-opponent.mjs:40:129)\n    at async file:///workspace/dachoupai/harness/b05-opponent.mjs:60:87\n    at async scenario (file:///workspace/dachoupai/harness/b05-opponent.mjs:45:7)\n    at async file:///workspace/dachoupai/harness/b05-opponent.mjs:54:104",
+  "cases": [
+    {
+      "key": "320-repeat",
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "reduced": false,
+      "errors": [],
+      "shots": [
+        {
+          "key": "320-repeat-choices",
+          "bounds": [
+            {
+              "tag": "BUTTON",
+              "host": false,
+              "text": "同型硬闯 · 对子",
+              "bounds": {
+                "x": 44,
+                "y": 229.6875,
+                "width": 232,
+                "height": 44,
+                "top": 229.6875,
+                "right": 276,
+                "bottom": 273.6875,
+                "left": 44
+              },
+              "scrollWidth": 230,
+              "clientWidth": 230,
+              "textBounds": []
+            },
+            {
+              "tag": "BUTTON",
+              "host": false,
+              "text": "换型避开 · 高牌",
+              "bounds": {
+                "x": 44,
+                "y": 370.859375,
+                "width": 232,
+                "height": 44,
+                "top": 370.859375,
+                "right": 276,
+                "bottom": 414.859375,
+                "left": 44
+              },
+              "scrollWidth": 230,
+              "clientWidth": 230,
+              "textBounds": []
+            },
+            {
+              "tag": "BUTTON",
+              "host": false,
+              "text": "规则 / 物品",
+              "bounds": {
+                "x": 36,
+                "y": 497,
+                "width": 126.53125,
+                "height": 48,
+                "top": 497,
+                "right": 162.53125,
+                "bottom": 545,
+                "left": 36
+              },
+              "scrollWidth": 125,
+              "clientWidth": 125,
+              "textBounds": []
+            },
+            {
+              "tag": "BUTTON",
+              "host": false,
+              "text": "自己选牌",
+              "bounds": {
+                "x": 170.53125,
+                "y": 497,
+                "width": 113.46875,
+                "height": 48,
+                "top": 497,
+                "right": 284,
+                "bottom": 545,
+                "left": 170.53125
+              },
+              "scrollWidth": 111,
+              "clientWidth": 111,
+              "textBounds": []
+            }
+          ]
+        },
+        {
+          "key": "320-repeat-key",
+          "bounds": [
+            {
+              "tag": "SECTION",
+              "host": true,
+              "text": "\n  .detail-dialog.opponent-dialog[open] {border-color:#3f606b;width:min(650px,calc(100vw - var(--safe-left) - var(--safe-right) - 24px));height:auto;top:calc(50% + (var(--safe-top) - var(--safe-bottom)) / 2);bottom:auto;transform:translateY(-50%)}\n  .opponent-dialog .dialog-content {overflow:auto}\n  .opponent-dialog .dialog-scroll {height:auto;overflow:visible}\n  .opponent-dialog .dialog-eyebrow {display:block;color:#3f606b}\n  .opponent-dialog .dialog-effect {font-size:17px;color:#26313a;white-space:pre-line}\n  .opponent-dialog .dialog-purchase-summary {color:#3f606b;font-size:15px}\n  .opponent-dialog .opponent-quote {font-size:21px;font-weight:700;color:#3f606b;margin:0 0 12px}\n  .opponent-dialog .opponent-options {display:grid;gap:10px;margin:12px 0}\n  .opponent-dialog .opponent-option {border:1px solid #c7b89d;padding:10px;border-radius:6px;background:#fff9ee}\n  .opponent-dialog .opponent-option p {font-size:14px;line-height:1.6;white-space:pre-line;margin:8px 0 0}\n  .opponent-dialog .opponent-option button {min-height:44px;width:100%;font-weight:700}\n  .opponent-beat {box-sizing:border-box;position:fixed;z-index:12;pointer-events:none;background:#fff9ee;color:#26313a;border:1px solid #3f606b;border-left:5px solid #3f606b;padding:10px 14px;font-family:\"Microsoft YaHei\", \"PingFang SC\", \"Noto Sans SC\", sans-serif;display:flex;flex-direction:column;justify-content:center;gap:7px;overflow:hidden}\n  .opponent-beat[data-kind=\"repeat\"] {border-color:#b8473a}\n  .opponent-beat small {font-size:14px;color:#59646a}\n  .opponent-beat strong {font-size:21px;line-height:1.25}\n  .opponent-beat p {font-size:15px;line-height:1.35;margin:0}\n  @media(min-width:700px) {.opponent-dialog .opponent-options {grid-template-columns:1fr 1fr}}\n  @media(max-height:620px) {.opponent-dialog .opponent-quote {font-size:18px;margin-bottom:6px}.opponent-dialog .opponent-options {gap:6px;margin:6px 0}.opponent-dialog .opponent-option {padding:7px}}\n  回音墙 · 同招回响“同一招，我听过了。”牌型基础 35 → 17.5",
+              "bounds": {
+                "x": 8,
+                "y": 240,
+                "width": 304,
+                "height": 72.390625,
+                "top": 240,
+                "right": 312,
+                "bottom": 312.390625,
+                "left": 8
+              },
+              "scrollWidth": 298,
+              "clientWidth": 298,
+              "textBounds": []
+            },
+            {
+              "tag": "SMALL",
+              "host": false,
+              "text": "回音墙 · 同招回响",
+              "bounds": {
+                "x": 27,
+                "y": 235.953125,
+                "width": 270,
+                "height": 20,
+                "top": 235.953125,
+                "right": 297,
+                "bottom": 255.953125,
+                "left": 27
+              },
+              "scrollWidth": 270,
+              "clientWidth": 270,
+              "parent": {
+                "left": 27,
+                "right": 297,
+                "top": 251,
+                "bottom": 301.390625
+              },
+              "textBounds": [
+                {
+                  "x": 27,
+                  "y": 235.953125,
+                  "width": 118.28125,
+                  "height": 20,
+                  "top": 235.953125,
+                  "right": 145.28125,
+                  "bottom": 255.953125,
+                  "left": 27
+                }
+              ]
+            },
+            {
+              "tag": "STRONG",
+              "host": false,
+              "text": "“同一招，我听过了。”",
+              "bounds": {
+                "x": 27,
+                "y": 262.953125,
+                "width": 270,
+                "height": 26.25,
+                "top": 262.953125,
+                "right": 297,
+                "bottom": 289.203125,
+                "left": 27
+              },
+              "scrollWidth": 270,
+              "clientWidth": 270,
+              "parent": {
+                "left": 27,
+                "right": 297,
+                "top": 251,
+                "bottom": 301.390625
+              },
+              "textBounds": [
+                {
+                  "x": 27,
+                  "y": 260.953125,
+                  "width": 220.5,
+                  "height": 30,
+                  "top": 260.953125,
+                  "right": 247.5,
+                  "bottom": 290.953125,
+                  "left": 27
+                }
+              ]
+            },
+            {
+              "tag": "P",
+              "host": false,
+              "text": "牌型基础 35 → 17.5",
+              "bounds": {
+                "x": 27,
+                "y": 296.203125,
+                "width": 270,
+                "height": 20.25,
+                "top": 296.203125,
+                "right": 297,
+                "bottom": 316.453125,
+                "left": 27
+              },
+              "scrollWidth": 270,
+              "clientWidth": 270,
+              "parent": {
+                "left": 27,
+                "right": 297,
+                "top": 251,
+                "bottom": 301.390625
+              },
+              "textBounds": [
+                {
+                  "x": 27,
+                  "y": 295.203125,
+                  "width": 130.890625,
+                  "height": 21,
+                  "top": 295.203125,
+                  "right": 157.890625,
+                  "bottom": 316.203125,
+                  "left": 27
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "status": "FAIL",
+      "error": "AssertionError [ERR_ASSERTION]: 320-repeat-key content stays within opponent panel {\"text\":\"回音墙 · 同招回响\",\"bounds\":{\"x\":27,\"y\":235.953125,\"width\":270,\"height\":20,\"top\":235.953125,\"right\":297,\"bottom\":255.953125,\"left\":27},\"parent\":{\"left\":27,\"right\":297,\"top\":251,\"bottom\":301.390625}}\n    at shot (file:///workspace/dachoupai/harness/b05-opponent.mjs:40:129)\n    at async file:///workspace/dachoupai/harness/b05-opponent.mjs:60:87\n    at async scenario (file:///workspace/dachoupai/harness/b05-opponent.mjs:45:7)\n    at async file:///workspace/dachoupai/harness/b05-opponent.mjs:54:104",
+      "score": "43",
+      "selected": [
+        "spades-2",
+        "hearts-2"
+      ]
+    }
+  ]
+}
