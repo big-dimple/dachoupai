@@ -7,6 +7,7 @@ import {DetailDialog} from './DetailDialog';
 import {B05_OPPONENT,type OpponentCue,type OpponentChoice} from './OpponentFacts';
 import {heatText} from './scoreText';
 import {PAPER_CSS as C,UI_FONT} from './theme';
+import {cssViewport} from '../platform/Viewport';
 
 /** Scoped paper/ink UI. Portrait and eye art can be supplied independently; no borrowed player face. */
 function style(host:HTMLElement):void {
@@ -69,7 +70,8 @@ export async function presentOpponentBeat(scene:Phaser.Scene,area:Box,beat:Oppon
   if(signal.aborted)return;
   const host=document.createElement('section');host.className='opponent-beat';host.dataset.kind=beat.kind;host.dataset.opponent=beat.opponentId;host.dataset.eventId=beat.eventId;host.dataset.phase=beat.phase;host.dataset.attitude=beat.attitude;host.dataset.placement=beat.placement;host.dataset.artMode='text-only';host.setAttribute('role','status');style(host);
   const title=document.createElement('small'),quote=document.createElement('strong'),effect=document.createElement('p');title.textContent=beat.title;quote.textContent='“'+beat.quote+'”';effect.textContent=beat.effect;host.append(title,quote,effect);document.body.append(host);
-  const position=()=>{const r=scene.game.canvas.getBoundingClientRect(),x=r.width/scene.scale.width,y=r.height/scene.scale.height;host.dataset.compact=String(area.height*y<96);Object.assign(host.style,{left:r.left+area.x*x+'px',top:r.top+area.y*y+'px',width:area.width*x+'px',height:area.height*y+'px'});};position();
+  // The played area uses CSS layout coordinates, independent of framebuffer density.
+  const position=()=>{const r=scene.game.canvas.getBoundingClientRect(),viewport=cssViewport(scene),x=r.width/viewport.width,y=r.height/viewport.height;host.dataset.compact=String(area.height*y<96);Object.assign(host.style,{left:r.left+area.x*x+'px',top:r.top+area.y*y+'px',width:area.width*x+'px',height:area.height*y+'px'});};position();
   const animation=reduced?undefined:host.animate([{opacity:0,transform:'translateX(9px)'},{opacity:1,transform:'translateX(0)'}],{duration:140,fill:'both'});
   try {await new Promise<void>(resolve=>{const finish=()=>{clearTimeout(timer);signal.removeEventListener('abort',finish);resolve();},timer=setTimeout(finish,beat.kind==='won'||beat.kind==='lost'?900:850);signal.addEventListener('abort',finish,{once:true});});}
   finally {animation?.cancel();host.remove();}
