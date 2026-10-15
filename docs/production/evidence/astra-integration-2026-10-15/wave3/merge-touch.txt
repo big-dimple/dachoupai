@@ -1,0 +1,74 @@
+Auto-merging src/game/OwnedJokerInput.ts
+Merge made by the 'ort' strategy.
+ .../dynamic-viewport-touch-2026-10-15/README.md    |   44 +
+ .../before-reuse/after-play.png                    |  Bin 0 -> 59807 bytes
+ .../before-reuse/before-play.png                   |  Bin 0 -> 58132 bytes
+ .../before-reuse/report.json                       | 2164 +++++++++++++
+ .../build-info.json                                |    7 +
+ .../dynamic-viewport-touch-2026-10-15/checks.json  |  267 ++
+ .../dynamic-final/mouse-0-390x740-after.png        |  Bin 0 -> 91058 bytes
+ .../dynamic-final/mouse-0-390x740-modal.png        |  Bin 0 -> 91446 bytes
+ .../dynamic-final/mouse-1-740x390-after.png        |  Bin 0 -> 87980 bytes
+ .../dynamic-final/mouse-1-740x390-modal.png        |  Bin 0 -> 75566 bytes
+ .../dynamic-final/mouse-2-1366x768-after.png       |  Bin 0 -> 174474 bytes
+ .../dynamic-final/mouse-2-1366x768-modal.png       |  Bin 0 -> 254141 bytes
+ .../dynamic-final/report.json.gz                   |  Bin 0 -> 77426 bytes
+ .../dynamic-final/summary.json                     | 3239 ++++++++++++++++++++
+ .../dynamic-final/touch-0-320x568-after.png        |  Bin 0 -> 67634 bytes
+ .../dynamic-final/touch-0-320x568-modal.png        |  Bin 0 -> 66259 bytes
+ .../dynamic-final/touch-1-740x320-after.png        |  Bin 0 -> 75712 bytes
+ .../dynamic-final/touch-1-740x320-modal.png        |  Bin 0 -> 59317 bytes
+ .../dynamic-final/touch-2-390x740-after.png        |  Bin 0 -> 91058 bytes
+ .../dynamic-final/touch-2-390x740-modal.png        |  Bin 0 -> 91446 bytes
+ .../dynamic-final/touch-3-1366x768-after.png       |  Bin 0 -> 174495 bytes
+ .../dynamic-final/touch-3-1366x768-modal.png       |  Bin 0 -> 254141 bytes
+ .../dynamic-final/touch-4-320x568-after.png        |  Bin 0 -> 67634 bytes
+ .../dynamic-final/touch-4-320x568-modal.png        |  Bin 0 -> 66230 bytes
+ .../exact-final/after-play.png                     |  Bin 0 -> 55750 bytes
+ .../exact-final/before-play.png                    |  Bin 0 -> 57995 bytes
+ .../exact-final/report.json                        | 2164 +++++++++++++
+ .../reused-owned-rail-failure/FAIL.png             |  Bin 0 -> 60434 bytes
+ .../reused-owned-rail-failure/report.json.gz       |  Bin 0 -> 8013 bytes
+ .../reused-owned-rail-failure/summary.json         | 1157 +++++++
+ harness/viewport-touch-reproduce.mjs               |   35 +
+ harness/viewport-touch-resize.mjs                  |   68 +
+ src/game/HandSelectionInput.ts                     |   13 +-
+ src/game/OwnedJokerInput.ts                        |   15 +-
+ src/platform/Viewport.ts                           |   10 +-
+ tests/hand-selection-input.test.ts                 |   19 +
+ tests/owned-joker-input.test.ts                    |   34 +
+ tests/viewport-density.test.ts                     |   21 +-
+ 38 files changed, 9250 insertions(+), 7 deletions(-)
+ create mode 100644 docs/production/evidence/dynamic-viewport-touch-2026-10-15/README.md
+ create mode 100644 docs/production/evidence/dynamic-viewport-touch-2026-10-15/before-reuse/after-play.png
+ create mode 100644 docs/production/evidence/dynamic-viewport-touch-2026-10-15/before-reuse/before-play.png
+ create mode 100644 docs/production/evidence/dynamic-viewport-touch-2026-10-15/before-reuse/report.json
+ create mode 100644 docs/production/evidence/dynamic-viewport-touch-2026-10-15/build-info.json
+ create mode 100644 docs/production/evidence/dynamic-viewport-touch-2026-10-15/checks.json
+ create mode 100644 docs/production/evidence/dynamic-viewport-touch-2026-10-15/dynamic-final/mouse-0-390x740-after.png
+ create mode 100644 docs/production/evidence/dynamic-viewport-touch-2026-10-15/dynamic-final/mouse-0-390x740-modal.png
+ create mode 100644 docs/production/evidence/dynamic-viewport-touch-2026-10-15/dynamic-final/mouse-1-740x390-after.png
+ create mode 100644 docs/production/evidence/dynamic-viewport-touch-2026-10-15/dynamic-final/mouse-1-740x390-modal.png
+ create mode 100644 docs/production/evidence/dynamic-viewport-touch-2026-10-15/dynamic-final/mouse-2-1366x768-after.png
+ create mode 100644 docs/production/evidence/dynamic-viewport-touch-2026-10-15/dynamic-final/mouse-2-1366x768-modal.png
+ create mode 100644 docs/production/evidence/dynamic-viewport-touch-2026-10-15/dynamic-final/report.json.gz
+ create mode 100644 docs/production/evidence/dynamic-viewport-touch-2026-10-15/dynamic-final/summary.json
+ create mode 100644 docs/production/evidence/dynamic-viewport-touch-2026-10-15/dynamic-final/touch-0-320x568-after.png
+ create mode 100644 docs/production/evidence/dynamic-viewport-touch-2026-10-15/dynamic-final/touch-0-320x568-modal.png
+ create mode 100644 docs/production/evidence/dynamic-viewport-touch-2026-10-15/dynamic-final/touch-1-740x320-after.png
+ create mode 100644 docs/production/evidence/dynamic-viewport-touch-2026-10-15/dynamic-final/touch-1-740x320-modal.png
+ create mode 100644 docs/production/evidence/dynamic-viewport-touch-2026-10-15/dynamic-final/touch-2-390x740-after.png
+ create mode 100644 docs/production/evidence/dynamic-viewport-touch-2026-10-15/dynamic-final/touch-2-390x740-modal.png
+ create mode 100644 docs/production/evidence/dynamic-viewport-touch-2026-10-15/dynamic-final/touch-3-1366x768-after.png
+ create mode 100644 docs/production/evidence/dynamic-viewport-touch-2026-10-15/dynamic-final/touch-3-1366x768-modal.png
+ create mode 100644 docs/production/evidence/dynamic-viewport-touch-2026-10-15/dynamic-final/touch-4-320x568-after.png
+ create mode 100644 docs/production/evidence/dynamic-viewport-touch-2026-10-15/dynamic-final/touch-4-320x568-modal.png
+ create mode 100644 docs/production/evidence/dynamic-viewport-touch-2026-10-15/exact-final/after-play.png
+ create mode 100644 docs/production/evidence/dynamic-viewport-touch-2026-10-15/exact-final/before-play.png
+ create mode 100644 docs/production/evidence/dynamic-viewport-touch-2026-10-15/exact-final/report.json
+ create mode 100644 docs/production/evidence/dynamic-viewport-touch-2026-10-15/reused-owned-rail-failure/FAIL.png
+ create mode 100644 docs/production/evidence/dynamic-viewport-touch-2026-10-15/reused-owned-rail-failure/report.json.gz
+ create mode 100644 docs/production/evidence/dynamic-viewport-touch-2026-10-15/reused-owned-rail-failure/summary.json
+ create mode 100644 harness/viewport-touch-reproduce.mjs
+ create mode 100644 harness/viewport-touch-resize.mjs
+ create mode 100644 tests/owned-joker-input.test.ts

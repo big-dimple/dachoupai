@@ -1,0 +1,2585 @@
+{
+  "previous": "388853308ea0a67ed33ecc4488ae8d6f624d11bf",
+  "mergeHead": "87b2b8bd833daec3adf97a039e678debc189fd8e",
+  "verifiedHead": "6ada1c3426d4db8f2f12aa8017156897bdaa65dc",
+  "sources": [
+    {
+      "task": "touch",
+      "head": "9422a579c9e14a15f05d89172d1e1e0b049b5028",
+      "deltaBase": "ef009924377e7ac337c7b38cec5a694a0f4856a7"
+    },
+    {
+      "task": "s04",
+      "head": "f7e7f61338e92964a230c9b3c27e527a9207f913",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "b05",
+      "head": "886bf87c03f855d7e9793250fb37753e0cb7cf0d",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    }
+  ],
+  "merges": [
+    "6d950e79d21b5e53f6bce62787ab5fab89ce9421 87b2b8bd833daec3adf97a039e678debc189fd8e test: parameterize dynamic touch regression for high DPR",
+    "87b2b8bd833daec3adf97a039e678debc189fd8e fb5fb19a16c483f73ab0764280ec24861e73a6e7 886bf87c03f855d7e9793250fb37753e0cb7cf0d merge: B05 saved-result reactions and CSS-density geometry",
+    "fb5fb19a16c483f73ab0764280ec24861e73a6e7 a4db46fb249f5accec900a94f054b90d799bc19c f7e7f61338e92964a230c9b3c27e527a9207f913 merge: approved S04 chapter and living suit finishing gate",
+    "a4db46fb249f5accec900a94f054b90d799bc19c 388853308ea0a67ed33ecc4488ae8d6f624d11bf 9422a579c9e14a15f05d89172d1e1e0b049b5028 merge: dynamic canvas pointer and owned input rail resize fixes"
+  ],
+  "conflicts": [],
+  "compositionMethod": "Independent three-way merge of exact current/base/source bytes; exact comparison with merge tree",
+  "exactComposedUnion": true,
+  "files": [
+    {
+      "task": "touch",
+      "path": "docs/production/evidence/dynamic-viewport-touch-2026-10-15/README.md",
+      "source": "9422a579c9e14a15f05d89172d1e1e0b049b5028",
+      "deltaBase": "ef009924377e7ac337c7b38cec5a694a0f4856a7",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "touch",
+      "path": "docs/production/evidence/dynamic-viewport-touch-2026-10-15/before-reuse/after-play.png",
+      "source": "9422a579c9e14a15f05d89172d1e1e0b049b5028",
+      "deltaBase": "ef009924377e7ac337c7b38cec5a694a0f4856a7",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "touch",
+      "path": "docs/production/evidence/dynamic-viewport-touch-2026-10-15/before-reuse/before-play.png",
+      "source": "9422a579c9e14a15f05d89172d1e1e0b049b5028",
+      "deltaBase": "ef009924377e7ac337c7b38cec5a694a0f4856a7",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "touch",
+      "path": "docs/production/evidence/dynamic-viewport-touch-2026-10-15/before-reuse/report.json",
+      "source": "9422a579c9e14a15f05d89172d1e1e0b049b5028",
+      "deltaBase": "ef009924377e7ac337c7b38cec5a694a0f4856a7",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "touch",
+      "path": "docs/production/evidence/dynamic-viewport-touch-2026-10-15/build-info.json",
+      "source": "9422a579c9e14a15f05d89172d1e1e0b049b5028",
+      "deltaBase": "ef009924377e7ac337c7b38cec5a694a0f4856a7",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "touch",
+      "path": "docs/production/evidence/dynamic-viewport-touch-2026-10-15/checks.json",
+      "source": "9422a579c9e14a15f05d89172d1e1e0b049b5028",
+      "deltaBase": "ef009924377e7ac337c7b38cec5a694a0f4856a7",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "touch",
+      "path": "docs/production/evidence/dynamic-viewport-touch-2026-10-15/dynamic-final/mouse-0-390x740-after.png",
+      "source": "9422a579c9e14a15f05d89172d1e1e0b049b5028",
+      "deltaBase": "ef009924377e7ac337c7b38cec5a694a0f4856a7",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "touch",
+      "path": "docs/production/evidence/dynamic-viewport-touch-2026-10-15/dynamic-final/mouse-0-390x740-modal.png",
+      "source": "9422a579c9e14a15f05d89172d1e1e0b049b5028",
+      "deltaBase": "ef009924377e7ac337c7b38cec5a694a0f4856a7",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "touch",
+      "path": "docs/production/evidence/dynamic-viewport-touch-2026-10-15/dynamic-final/mouse-1-740x390-after.png",
+      "source": "9422a579c9e14a15f05d89172d1e1e0b049b5028",
+      "deltaBase": "ef009924377e7ac337c7b38cec5a694a0f4856a7",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "touch",
+      "path": "docs/production/evidence/dynamic-viewport-touch-2026-10-15/dynamic-final/mouse-1-740x390-modal.png",
+      "source": "9422a579c9e14a15f05d89172d1e1e0b049b5028",
+      "deltaBase": "ef009924377e7ac337c7b38cec5a694a0f4856a7",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "touch",
+      "path": "docs/production/evidence/dynamic-viewport-touch-2026-10-15/dynamic-final/mouse-2-1366x768-after.png",
+      "source": "9422a579c9e14a15f05d89172d1e1e0b049b5028",
+      "deltaBase": "ef009924377e7ac337c7b38cec5a694a0f4856a7",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "touch",
+      "path": "docs/production/evidence/dynamic-viewport-touch-2026-10-15/dynamic-final/mouse-2-1366x768-modal.png",
+      "source": "9422a579c9e14a15f05d89172d1e1e0b049b5028",
+      "deltaBase": "ef009924377e7ac337c7b38cec5a694a0f4856a7",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "touch",
+      "path": "docs/production/evidence/dynamic-viewport-touch-2026-10-15/dynamic-final/report.json.gz",
+      "source": "9422a579c9e14a15f05d89172d1e1e0b049b5028",
+      "deltaBase": "ef009924377e7ac337c7b38cec5a694a0f4856a7",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "touch",
+      "path": "docs/production/evidence/dynamic-viewport-touch-2026-10-15/dynamic-final/summary.json",
+      "source": "9422a579c9e14a15f05d89172d1e1e0b049b5028",
+      "deltaBase": "ef009924377e7ac337c7b38cec5a694a0f4856a7",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "touch",
+      "path": "docs/production/evidence/dynamic-viewport-touch-2026-10-15/dynamic-final/touch-0-320x568-after.png",
+      "source": "9422a579c9e14a15f05d89172d1e1e0b049b5028",
+      "deltaBase": "ef009924377e7ac337c7b38cec5a694a0f4856a7",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "touch",
+      "path": "docs/production/evidence/dynamic-viewport-touch-2026-10-15/dynamic-final/touch-0-320x568-modal.png",
+      "source": "9422a579c9e14a15f05d89172d1e1e0b049b5028",
+      "deltaBase": "ef009924377e7ac337c7b38cec5a694a0f4856a7",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "touch",
+      "path": "docs/production/evidence/dynamic-viewport-touch-2026-10-15/dynamic-final/touch-1-740x320-after.png",
+      "source": "9422a579c9e14a15f05d89172d1e1e0b049b5028",
+      "deltaBase": "ef009924377e7ac337c7b38cec5a694a0f4856a7",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "touch",
+      "path": "docs/production/evidence/dynamic-viewport-touch-2026-10-15/dynamic-final/touch-1-740x320-modal.png",
+      "source": "9422a579c9e14a15f05d89172d1e1e0b049b5028",
+      "deltaBase": "ef009924377e7ac337c7b38cec5a694a0f4856a7",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "touch",
+      "path": "docs/production/evidence/dynamic-viewport-touch-2026-10-15/dynamic-final/touch-2-390x740-after.png",
+      "source": "9422a579c9e14a15f05d89172d1e1e0b049b5028",
+      "deltaBase": "ef009924377e7ac337c7b38cec5a694a0f4856a7",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "touch",
+      "path": "docs/production/evidence/dynamic-viewport-touch-2026-10-15/dynamic-final/touch-2-390x740-modal.png",
+      "source": "9422a579c9e14a15f05d89172d1e1e0b049b5028",
+      "deltaBase": "ef009924377e7ac337c7b38cec5a694a0f4856a7",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "touch",
+      "path": "docs/production/evidence/dynamic-viewport-touch-2026-10-15/dynamic-final/touch-3-1366x768-after.png",
+      "source": "9422a579c9e14a15f05d89172d1e1e0b049b5028",
+      "deltaBase": "ef009924377e7ac337c7b38cec5a694a0f4856a7",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "touch",
+      "path": "docs/production/evidence/dynamic-viewport-touch-2026-10-15/dynamic-final/touch-3-1366x768-modal.png",
+      "source": "9422a579c9e14a15f05d89172d1e1e0b049b5028",
+      "deltaBase": "ef009924377e7ac337c7b38cec5a694a0f4856a7",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "touch",
+      "path": "docs/production/evidence/dynamic-viewport-touch-2026-10-15/dynamic-final/touch-4-320x568-after.png",
+      "source": "9422a579c9e14a15f05d89172d1e1e0b049b5028",
+      "deltaBase": "ef009924377e7ac337c7b38cec5a694a0f4856a7",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "touch",
+      "path": "docs/production/evidence/dynamic-viewport-touch-2026-10-15/dynamic-final/touch-4-320x568-modal.png",
+      "source": "9422a579c9e14a15f05d89172d1e1e0b049b5028",
+      "deltaBase": "ef009924377e7ac337c7b38cec5a694a0f4856a7",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "touch",
+      "path": "docs/production/evidence/dynamic-viewport-touch-2026-10-15/exact-final/after-play.png",
+      "source": "9422a579c9e14a15f05d89172d1e1e0b049b5028",
+      "deltaBase": "ef009924377e7ac337c7b38cec5a694a0f4856a7",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "touch",
+      "path": "docs/production/evidence/dynamic-viewport-touch-2026-10-15/exact-final/before-play.png",
+      "source": "9422a579c9e14a15f05d89172d1e1e0b049b5028",
+      "deltaBase": "ef009924377e7ac337c7b38cec5a694a0f4856a7",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "touch",
+      "path": "docs/production/evidence/dynamic-viewport-touch-2026-10-15/exact-final/report.json",
+      "source": "9422a579c9e14a15f05d89172d1e1e0b049b5028",
+      "deltaBase": "ef009924377e7ac337c7b38cec5a694a0f4856a7",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "touch",
+      "path": "docs/production/evidence/dynamic-viewport-touch-2026-10-15/reused-owned-rail-failure/FAIL.png",
+      "source": "9422a579c9e14a15f05d89172d1e1e0b049b5028",
+      "deltaBase": "ef009924377e7ac337c7b38cec5a694a0f4856a7",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "touch",
+      "path": "docs/production/evidence/dynamic-viewport-touch-2026-10-15/reused-owned-rail-failure/report.json.gz",
+      "source": "9422a579c9e14a15f05d89172d1e1e0b049b5028",
+      "deltaBase": "ef009924377e7ac337c7b38cec5a694a0f4856a7",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "touch",
+      "path": "docs/production/evidence/dynamic-viewport-touch-2026-10-15/reused-owned-rail-failure/summary.json",
+      "source": "9422a579c9e14a15f05d89172d1e1e0b049b5028",
+      "deltaBase": "ef009924377e7ac337c7b38cec5a694a0f4856a7",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "touch",
+      "path": "harness/viewport-touch-reproduce.mjs",
+      "source": "9422a579c9e14a15f05d89172d1e1e0b049b5028",
+      "deltaBase": "ef009924377e7ac337c7b38cec5a694a0f4856a7",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "touch",
+      "path": "harness/viewport-touch-resize.mjs",
+      "source": "9422a579c9e14a15f05d89172d1e1e0b049b5028",
+      "deltaBase": "ef009924377e7ac337c7b38cec5a694a0f4856a7",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "touch",
+      "path": "src/game/HandSelectionInput.ts",
+      "source": "9422a579c9e14a15f05d89172d1e1e0b049b5028",
+      "deltaBase": "ef009924377e7ac337c7b38cec5a694a0f4856a7",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "touch",
+      "path": "src/game/OwnedJokerInput.ts",
+      "source": "9422a579c9e14a15f05d89172d1e1e0b049b5028",
+      "deltaBase": "ef009924377e7ac337c7b38cec5a694a0f4856a7",
+      "composed": true,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "touch",
+      "path": "src/platform/Viewport.ts",
+      "source": "9422a579c9e14a15f05d89172d1e1e0b049b5028",
+      "deltaBase": "ef009924377e7ac337c7b38cec5a694a0f4856a7",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "touch",
+      "path": "tests/hand-selection-input.test.ts",
+      "source": "9422a579c9e14a15f05d89172d1e1e0b049b5028",
+      "deltaBase": "ef009924377e7ac337c7b38cec5a694a0f4856a7",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "touch",
+      "path": "tests/owned-joker-input.test.ts",
+      "source": "9422a579c9e14a15f05d89172d1e1e0b049b5028",
+      "deltaBase": "ef009924377e7ac337c7b38cec5a694a0f4856a7",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "touch",
+      "path": "tests/viewport-density.test.ts",
+      "source": "9422a579c9e14a15f05d89172d1e1e0b049b5028",
+      "deltaBase": "ef009924377e7ac337c7b38cec5a694a0f4856a7",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "s04",
+      "path": "AGENTS.md",
+      "source": "f7e7f61338e92964a230c9b3c27e527a9207f913",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "s04",
+      "path": "analysis/s04-gate-compare-run.mjs",
+      "source": "f7e7f61338e92964a230c9b3c27e527a9207f913",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "s04",
+      "path": "analysis/s04-gate-compare.ts",
+      "source": "f7e7f61338e92964a230c9b3c27e527a9207f913",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "s04",
+      "path": "analysis/s04-window-run.mjs",
+      "source": "f7e7f61338e92964a230c9b3c27e527a9207f913",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "s04",
+      "path": "analysis/s04-window.ts",
+      "source": "f7e7f61338e92964a230c9b3c27e527a9207f913",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "s04",
+      "path": "docs/production/DELIVERY_PLAN.md",
+      "source": "f7e7f61338e92964a230c9b3c27e527a9207f913",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": true,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "s04",
+      "path": "docs/production/evidence/s04-finish-2026-10-15/README.md",
+      "source": "f7e7f61338e92964a230c9b3c27e527a9207f913",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "s04",
+      "path": "docs/production/evidence/s04-finish-2026-10-15/binding.json",
+      "source": "f7e7f61338e92964a230c9b3c27e527a9207f913",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "s04",
+      "path": "docs/production/evidence/s04-finish-2026-10-15/build-final.txt",
+      "source": "f7e7f61338e92964a230c9b3c27e527a9207f913",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "s04",
+      "path": "docs/production/evidence/s04-finish-2026-10-15/build.txt",
+      "source": "f7e7f61338e92964a230c9b3c27e527a9207f913",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "s04",
+      "path": "docs/production/evidence/s04-finish-2026-10-15/content.txt",
+      "source": "f7e7f61338e92964a230c9b3c27e527a9207f913",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "s04",
+      "path": "docs/production/evidence/s04-finish-2026-10-15/domain.txt",
+      "source": "f7e7f61338e92964a230c9b3c27e527a9207f913",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "s04",
+      "path": "docs/production/evidence/s04-finish-2026-10-15/failures/attempt-1/FAIL.png",
+      "source": "f7e7f61338e92964a230c9b3c27e527a9207f913",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "s04",
+      "path": "docs/production/evidence/s04-finish-2026-10-15/failures/attempt-1/execution.txt",
+      "source": "f7e7f61338e92964a230c9b3c27e527a9207f913",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "s04",
+      "path": "docs/production/evidence/s04-finish-2026-10-15/failures/attempt-1/full-state-journal-storage.json.gz",
+      "source": "f7e7f61338e92964a230c9b3c27e527a9207f913",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "s04",
+      "path": "docs/production/evidence/s04-finish-2026-10-15/failures/attempt-1/report.json",
+      "source": "f7e7f61338e92964a230c9b3c27e527a9207f913",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "s04",
+      "path": "docs/production/evidence/s04-finish-2026-10-15/failures/attempt-2/FAIL.png",
+      "source": "f7e7f61338e92964a230c9b3c27e527a9207f913",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "s04",
+      "path": "docs/production/evidence/s04-finish-2026-10-15/failures/attempt-2/execution.txt",
+      "source": "f7e7f61338e92964a230c9b3c27e527a9207f913",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "s04",
+      "path": "docs/production/evidence/s04-finish-2026-10-15/failures/attempt-2/full-state-journal-storage.json.gz",
+      "source": "f7e7f61338e92964a230c9b3c27e527a9207f913",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "s04",
+      "path": "docs/production/evidence/s04-finish-2026-10-15/failures/attempt-2/report.json",
+      "source": "f7e7f61338e92964a230c9b3c27e527a9207f913",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "s04",
+      "path": "docs/production/evidence/s04-finish-2026-10-15/failures/attempt-3/FAIL.png",
+      "source": "f7e7f61338e92964a230c9b3c27e527a9207f913",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "s04",
+      "path": "docs/production/evidence/s04-finish-2026-10-15/failures/attempt-3/execution.txt",
+      "source": "f7e7f61338e92964a230c9b3c27e527a9207f913",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "s04",
+      "path": "docs/production/evidence/s04-finish-2026-10-15/failures/attempt-3/full-state-journal-storage.json.gz",
+      "source": "f7e7f61338e92964a230c9b3c27e527a9207f913",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "s04",
+      "path": "docs/production/evidence/s04-finish-2026-10-15/failures/attempt-3/report.json",
+      "source": "f7e7f61338e92964a230c9b3c27e527a9207f913",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "s04",
+      "path": "docs/production/evidence/s04-finish-2026-10-15/failures/attempt-4/FAIL.png",
+      "source": "f7e7f61338e92964a230c9b3c27e527a9207f913",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "s04",
+      "path": "docs/production/evidence/s04-finish-2026-10-15/failures/attempt-4/execution.txt",
+      "source": "f7e7f61338e92964a230c9b3c27e527a9207f913",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "s04",
+      "path": "docs/production/evidence/s04-finish-2026-10-15/failures/attempt-4/full-state-journal-storage.json.gz",
+      "source": "f7e7f61338e92964a230c9b3c27e527a9207f913",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "s04",
+      "path": "docs/production/evidence/s04-finish-2026-10-15/failures/attempt-4/report.json",
+      "source": "f7e7f61338e92964a230c9b3c27e527a9207f913",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "s04",
+      "path": "docs/production/evidence/s04-finish-2026-10-15/failures/attempt-5/FAIL.png",
+      "source": "f7e7f61338e92964a230c9b3c27e527a9207f913",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "s04",
+      "path": "docs/production/evidence/s04-finish-2026-10-15/failures/attempt-5/execution.txt",
+      "source": "f7e7f61338e92964a230c9b3c27e527a9207f913",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "s04",
+      "path": "docs/production/evidence/s04-finish-2026-10-15/failures/attempt-5/full-state-journal-storage.json.gz",
+      "source": "f7e7f61338e92964a230c9b3c27e527a9207f913",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "s04",
+      "path": "docs/production/evidence/s04-finish-2026-10-15/failures/attempt-5/report.json",
+      "source": "f7e7f61338e92964a230c9b3c27e527a9207f913",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "s04",
+      "path": "docs/production/evidence/s04-finish-2026-10-15/full-tests-final.txt",
+      "source": "f7e7f61338e92964a230c9b3c27e527a9207f913",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "s04",
+      "path": "docs/production/evidence/s04-finish-2026-10-15/full-tests.txt",
+      "source": "f7e7f61338e92964a230c9b3c27e527a9207f913",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "s04",
+      "path": "docs/production/evidence/s04-finish-2026-10-15/initial-domain.txt",
+      "source": "f7e7f61338e92964a230c9b3c27e527a9207f913",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "s04",
+      "path": "docs/production/evidence/s04-finish-2026-10-15/initial-regression.txt",
+      "source": "f7e7f61338e92964a230c9b3c27e527a9207f913",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "s04",
+      "path": "docs/production/evidence/s04-finish-2026-10-15/initial-typecheck.txt",
+      "source": "f7e7f61338e92964a230c9b3c27e527a9207f913",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "s04",
+      "path": "docs/production/evidence/s04-finish-2026-10-15/native.txt",
+      "source": "f7e7f61338e92964a230c9b3c27e527a9207f913",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "s04",
+      "path": "docs/production/evidence/s04-finish-2026-10-15/native/1366-chapter2.png",
+      "source": "f7e7f61338e92964a230c9b3c27e527a9207f913",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "s04",
+      "path": "docs/production/evidence/s04-finish-2026-10-15/native/1366-crossing-refresh.png",
+      "source": "f7e7f61338e92964a230c9b3c27e527a9207f913",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "s04",
+      "path": "docs/production/evidence/s04-finish-2026-10-15/native/1366-density25.png",
+      "source": "f7e7f61338e92964a230c9b3c27e527a9207f913",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "s04",
+      "path": "docs/production/evidence/s04-finish-2026-10-15/native/1366-next-stage.png",
+      "source": "f7e7f61338e92964a230c9b3c27e527a9207f913",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "s04",
+      "path": "docs/production/evidence/s04-finish-2026-10-15/native/1366-purchase.png",
+      "source": "f7e7f61338e92964a230c9b3c27e527a9207f913",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "s04",
+      "path": "docs/production/evidence/s04-finish-2026-10-15/native/1366-saved.png",
+      "source": "f7e7f61338e92964a230c9b3c27e527a9207f913",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "s04",
+      "path": "docs/production/evidence/s04-finish-2026-10-15/native/1366-selected.png",
+      "source": "f7e7f61338e92964a230c9b3c27e527a9207f913",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "s04",
+      "path": "docs/production/evidence/s04-finish-2026-10-15/native/320-chapter2.png",
+      "source": "f7e7f61338e92964a230c9b3c27e527a9207f913",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "s04",
+      "path": "docs/production/evidence/s04-finish-2026-10-15/native/320-crossing-refresh.png",
+      "source": "f7e7f61338e92964a230c9b3c27e527a9207f913",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "s04",
+      "path": "docs/production/evidence/s04-finish-2026-10-15/native/320-density25.png",
+      "source": "f7e7f61338e92964a230c9b3c27e527a9207f913",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "s04",
+      "path": "docs/production/evidence/s04-finish-2026-10-15/native/320-next-stage.png",
+      "source": "f7e7f61338e92964a230c9b3c27e527a9207f913",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "s04",
+      "path": "docs/production/evidence/s04-finish-2026-10-15/native/320-purchase.png",
+      "source": "f7e7f61338e92964a230c9b3c27e527a9207f913",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "s04",
+      "path": "docs/production/evidence/s04-finish-2026-10-15/native/320-saved.png",
+      "source": "f7e7f61338e92964a230c9b3c27e527a9207f913",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "s04",
+      "path": "docs/production/evidence/s04-finish-2026-10-15/native/320-selected.png",
+      "source": "f7e7f61338e92964a230c9b3c27e527a9207f913",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "s04",
+      "path": "docs/production/evidence/s04-finish-2026-10-15/native/390-chapter2.png",
+      "source": "f7e7f61338e92964a230c9b3c27e527a9207f913",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "s04",
+      "path": "docs/production/evidence/s04-finish-2026-10-15/native/390-crossing-refresh.png",
+      "source": "f7e7f61338e92964a230c9b3c27e527a9207f913",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "s04",
+      "path": "docs/production/evidence/s04-finish-2026-10-15/native/390-density25.png",
+      "source": "f7e7f61338e92964a230c9b3c27e527a9207f913",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "s04",
+      "path": "docs/production/evidence/s04-finish-2026-10-15/native/390-next-stage.png",
+      "source": "f7e7f61338e92964a230c9b3c27e527a9207f913",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "s04",
+      "path": "docs/production/evidence/s04-finish-2026-10-15/native/390-purchase.png",
+      "source": "f7e7f61338e92964a230c9b3c27e527a9207f913",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "s04",
+      "path": "docs/production/evidence/s04-finish-2026-10-15/native/390-saved.png",
+      "source": "f7e7f61338e92964a230c9b3c27e527a9207f913",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "s04",
+      "path": "docs/production/evidence/s04-finish-2026-10-15/native/390-selected.png",
+      "source": "f7e7f61338e92964a230c9b3c27e527a9207f913",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "s04",
+      "path": "docs/production/evidence/s04-finish-2026-10-15/native/full-state-journal-storage.json.gz",
+      "source": "f7e7f61338e92964a230c9b3c27e527a9207f913",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "s04",
+      "path": "docs/production/evidence/s04-finish-2026-10-15/native/report.json",
+      "source": "f7e7f61338e92964a230c9b3c27e527a9207f913",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "s04",
+      "path": "docs/production/evidence/s04-finish-2026-10-15/plan-check.txt",
+      "source": "f7e7f61338e92964a230c9b3c27e527a9207f913",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "s04",
+      "path": "docs/production/evidence/s04-finish-2026-10-15/regression.txt",
+      "source": "f7e7f61338e92964a230c9b3c27e527a9207f913",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "s04",
+      "path": "docs/production/evidence/s04-finish-2026-10-15/second-domain-FAIL.txt",
+      "source": "f7e7f61338e92964a230c9b3c27e527a9207f913",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "s04",
+      "path": "docs/production/evidence/s04-finish-2026-10-15/second-regression-FAIL.txt",
+      "source": "f7e7f61338e92964a230c9b3c27e527a9207f913",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "s04",
+      "path": "docs/production/evidence/s04-window-2026-10-15/README.md",
+      "source": "f7e7f61338e92964a230c9b3c27e527a9207f913",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "s04",
+      "path": "docs/production/evidence/s04-window-2026-10-15/gate-comparison-run.txt",
+      "source": "f7e7f61338e92964a230c9b3c27e527a9207f913",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "s04",
+      "path": "docs/production/evidence/s04-window-2026-10-15/gate-comparison.json.gz",
+      "source": "f7e7f61338e92964a230c9b3c27e527a9207f913",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "s04",
+      "path": "docs/production/evidence/s04-window-2026-10-15/gate-plan-check.txt",
+      "source": "f7e7f61338e92964a230c9b3c27e527a9207f913",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "s04",
+      "path": "docs/production/evidence/s04-window-2026-10-15/gate-reproduction.txt",
+      "source": "f7e7f61338e92964a230c9b3c27e527a9207f913",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "s04",
+      "path": "docs/production/evidence/s04-window-2026-10-15/gate-rule-checks.txt",
+      "source": "f7e7f61338e92964a230c9b3c27e527a9207f913",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "s04",
+      "path": "docs/production/evidence/s04-window-2026-10-15/gate-typecheck.txt",
+      "source": "f7e7f61338e92964a230c9b3c27e527a9207f913",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "s04",
+      "path": "docs/production/evidence/s04-window-2026-10-15/initial-fixture-FAIL.txt",
+      "source": "f7e7f61338e92964a230c9b3c27e527a9207f913",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "s04",
+      "path": "docs/production/evidence/s04-window-2026-10-15/initial-typecheck-FAIL.txt",
+      "source": "f7e7f61338e92964a230c9b3c27e527a9207f913",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "s04",
+      "path": "docs/production/evidence/s04-window-2026-10-15/plan-check.txt",
+      "source": "f7e7f61338e92964a230c9b3c27e527a9207f913",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "s04",
+      "path": "docs/production/evidence/s04-window-2026-10-15/reproduction.txt",
+      "source": "f7e7f61338e92964a230c9b3c27e527a9207f913",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "s04",
+      "path": "docs/production/evidence/s04-window-2026-10-15/results.json.gz",
+      "source": "f7e7f61338e92964a230c9b3c27e527a9207f913",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "s04",
+      "path": "docs/production/evidence/s04-window-2026-10-15/rule-checks.txt",
+      "source": "f7e7f61338e92964a230c9b3c27e527a9207f913",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "s04",
+      "path": "docs/production/evidence/s04-window-2026-10-15/typecheck.txt",
+      "source": "f7e7f61338e92964a230c9b3c27e527a9207f913",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "s04",
+      "path": "harness/fixtures/s04-finish.ts",
+      "source": "f7e7f61338e92964a230c9b3c27e527a9207f913",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "s04",
+      "path": "harness/s04-finish.mjs",
+      "source": "f7e7f61338e92964a230c9b3c27e527a9207f913",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "s04",
+      "path": "harness/screenshot.mjs",
+      "source": "f7e7f61338e92964a230c9b3c27e527a9207f913",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "s04",
+      "path": "src/domain/r2GroupUpgrade.ts",
+      "source": "f7e7f61338e92964a230c9b3c27e527a9207f913",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "s04",
+      "path": "src/domain/r2Run.ts",
+      "source": "f7e7f61338e92964a230c9b3c27e527a9207f913",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "s04",
+      "path": "src/domain/r2S04.ts",
+      "source": "f7e7f61338e92964a230c9b3c27e527a9207f913",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "s04",
+      "path": "src/domain/r2Shop.ts",
+      "source": "f7e7f61338e92964a230c9b3c27e527a9207f913",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "s04",
+      "path": "src/domain/r2SpectralTools.ts",
+      "source": "f7e7f61338e92964a230c9b3c27e527a9207f913",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "s04",
+      "path": "src/game/ConsumableDialog.ts",
+      "source": "f7e7f61338e92964a230c9b3c27e527a9207f913",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "s04",
+      "path": "src/game/RouteFitCue.ts",
+      "source": "f7e7f61338e92964a230c9b3c27e527a9207f913",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "s04",
+      "path": "src/game/RunLaunch.ts",
+      "source": "f7e7f61338e92964a230c9b3c27e527a9207f913",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "s04",
+      "path": "src/game/S04Qualification.ts",
+      "source": "f7e7f61338e92964a230c9b3c27e527a9207f913",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "s04",
+      "path": "src/game/ShopScene.ts",
+      "source": "f7e7f61338e92964a230c9b3c27e527a9207f913",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": true,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "s04",
+      "path": "src/game/r2ToolInfo.ts",
+      "source": "f7e7f61338e92964a230c9b3c27e527a9207f913",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "s04",
+      "path": "tests/amo-launch.test.ts",
+      "source": "f7e7f61338e92964a230c9b3c27e527a9207f913",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "s04",
+      "path": "tests/c04-mode-save.test.ts",
+      "source": "f7e7f61338e92964a230c9b3c27e527a9207f913",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "s04",
+      "path": "tests/core-build.test.ts",
+      "source": "f7e7f61338e92964a230c9b3c27e527a9207f913",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "s04",
+      "path": "tests/fixed-suit-dyes.test.ts",
+      "source": "f7e7f61338e92964a230c9b3c27e527a9207f913",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "s04",
+      "path": "tests/p1a-active-mult.test.ts",
+      "source": "f7e7f61338e92964a230c9b3c27e527a9207f913",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "s04",
+      "path": "tests/recovery-save.test.ts",
+      "source": "f7e7f61338e92964a230c9b3c27e527a9207f913",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "s04",
+      "path": "tests/route-starter.test.ts",
+      "source": "f7e7f61338e92964a230c9b3c27e527a9207f913",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "s04",
+      "path": "tests/s04-finish.test.ts",
+      "source": "f7e7f61338e92964a230c9b3c27e527a9207f913",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "s04",
+      "path": "tests/s04-gate-compare.test.ts",
+      "source": "f7e7f61338e92964a230c9b3c27e527a9207f913",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "s04",
+      "path": "tests/s04-window.test.ts",
+      "source": "f7e7f61338e92964a230c9b3c27e527a9207f913",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "s04",
+      "path": "tests/touye-new-core.test.ts",
+      "source": "f7e7f61338e92964a230c9b3c27e527a9207f913",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "b05",
+      "path": "docs/production/evidence/b05-opponent-2026-10-15/README.md",
+      "source": "886bf87c03f855d7e9793250fb37753e0cb7cf0d",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "b05",
+      "path": "docs/production/evidence/b05-opponent-2026-10-15/baseline/390-real-base-half.png",
+      "source": "886bf87c03f855d7e9793250fb37753e0cb7cf0d",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "b05",
+      "path": "docs/production/evidence/b05-opponent-2026-10-15/baseline/390-repeat-choices.png",
+      "source": "886bf87c03f855d7e9793250fb37753e0cb7cf0d",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "b05",
+      "path": "docs/production/evidence/b05-opponent-2026-10-15/baseline/390-repeat-key.png",
+      "source": "886bf87c03f855d7e9793250fb37753e0cb7cf0d",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "b05",
+      "path": "docs/production/evidence/b05-opponent-2026-10-15/baseline/390-repeat-saved.png",
+      "source": "886bf87c03f855d7e9793250fb37753e0cb7cf0d",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "b05",
+      "path": "docs/production/evidence/b05-opponent-2026-10-15/baseline/choices-controlled.json",
+      "source": "886bf87c03f855d7e9793250fb37753e0cb7cf0d",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "b05",
+      "path": "docs/production/evidence/b05-opponent-2026-10-15/baseline/entrance-controlled.json",
+      "source": "886bf87c03f855d7e9793250fb37753e0cb7cf0d",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "b05",
+      "path": "docs/production/evidence/b05-opponent-2026-10-15/baseline/lost-controlled.json",
+      "source": "886bf87c03f855d7e9793250fb37753e0cb7cf0d",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "b05",
+      "path": "docs/production/evidence/b05-opponent-2026-10-15/baseline/report.json.gz",
+      "source": "886bf87c03f855d7e9793250fb37753e0cb7cf0d",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "b05",
+      "path": "docs/production/evidence/b05-opponent-2026-10-15/baseline/summary.json",
+      "source": "886bf87c03f855d7e9793250fb37753e0cb7cf0d",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "b05",
+      "path": "docs/production/evidence/b05-opponent-2026-10-15/baseline/won-controlled.json",
+      "source": "886bf87c03f855d7e9793250fb37753e0cb7cf0d",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "b05",
+      "path": "docs/production/evidence/b05-opponent-2026-10-15/final/1366-changed-choices.png",
+      "source": "886bf87c03f855d7e9793250fb37753e0cb7cf0d",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "b05",
+      "path": "docs/production/evidence/b05-opponent-2026-10-15/final/1366-changed-key.png",
+      "source": "886bf87c03f855d7e9793250fb37753e0cb7cf0d",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "b05",
+      "path": "docs/production/evidence/b05-opponent-2026-10-15/final/1366-changed-saved.png",
+      "source": "886bf87c03f855d7e9793250fb37753e0cb7cf0d",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "b05",
+      "path": "docs/production/evidence/b05-opponent-2026-10-15/final/1366-entrance.png",
+      "source": "886bf87c03f855d7e9793250fb37753e0cb7cf0d",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "b05",
+      "path": "docs/production/evidence/b05-opponent-2026-10-15/final/1366-opening-choices.png",
+      "source": "886bf87c03f855d7e9793250fb37753e0cb7cf0d",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "b05",
+      "path": "docs/production/evidence/b05-opponent-2026-10-15/final/1366-real-base-half.png",
+      "source": "886bf87c03f855d7e9793250fb37753e0cb7cf0d",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "b05",
+      "path": "docs/production/evidence/b05-opponent-2026-10-15/final/1366-repeat-choices.png",
+      "source": "886bf87c03f855d7e9793250fb37753e0cb7cf0d",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "b05",
+      "path": "docs/production/evidence/b05-opponent-2026-10-15/final/1366-repeat-key.png",
+      "source": "886bf87c03f855d7e9793250fb37753e0cb7cf0d",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "b05",
+      "path": "docs/production/evidence/b05-opponent-2026-10-15/final/1366-repeat-saved.png",
+      "source": "886bf87c03f855d7e9793250fb37753e0cb7cf0d",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "b05",
+      "path": "docs/production/evidence/b05-opponent-2026-10-15/final/320-changed-choices.png",
+      "source": "886bf87c03f855d7e9793250fb37753e0cb7cf0d",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "b05",
+      "path": "docs/production/evidence/b05-opponent-2026-10-15/final/320-changed-key.png",
+      "source": "886bf87c03f855d7e9793250fb37753e0cb7cf0d",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "b05",
+      "path": "docs/production/evidence/b05-opponent-2026-10-15/final/320-changed-saved.png",
+      "source": "886bf87c03f855d7e9793250fb37753e0cb7cf0d",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "b05",
+      "path": "docs/production/evidence/b05-opponent-2026-10-15/final/320-entrance.png",
+      "source": "886bf87c03f855d7e9793250fb37753e0cb7cf0d",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "b05",
+      "path": "docs/production/evidence/b05-opponent-2026-10-15/final/320-opening-choices.png",
+      "source": "886bf87c03f855d7e9793250fb37753e0cb7cf0d",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "b05",
+      "path": "docs/production/evidence/b05-opponent-2026-10-15/final/320-real-base-half.png",
+      "source": "886bf87c03f855d7e9793250fb37753e0cb7cf0d",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "b05",
+      "path": "docs/production/evidence/b05-opponent-2026-10-15/final/320-repeat-choices.png",
+      "source": "886bf87c03f855d7e9793250fb37753e0cb7cf0d",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "b05",
+      "path": "docs/production/evidence/b05-opponent-2026-10-15/final/320-repeat-key.png",
+      "source": "886bf87c03f855d7e9793250fb37753e0cb7cf0d",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "b05",
+      "path": "docs/production/evidence/b05-opponent-2026-10-15/final/320-repeat-saved.png",
+      "source": "886bf87c03f855d7e9793250fb37753e0cb7cf0d",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "b05",
+      "path": "docs/production/evidence/b05-opponent-2026-10-15/final/390-changed-choices.png",
+      "source": "886bf87c03f855d7e9793250fb37753e0cb7cf0d",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "b05",
+      "path": "docs/production/evidence/b05-opponent-2026-10-15/final/390-changed-key.png",
+      "source": "886bf87c03f855d7e9793250fb37753e0cb7cf0d",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "b05",
+      "path": "docs/production/evidence/b05-opponent-2026-10-15/final/390-changed-saved.png",
+      "source": "886bf87c03f855d7e9793250fb37753e0cb7cf0d",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "b05",
+      "path": "docs/production/evidence/b05-opponent-2026-10-15/final/390-entrance.png",
+      "source": "886bf87c03f855d7e9793250fb37753e0cb7cf0d",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "b05",
+      "path": "docs/production/evidence/b05-opponent-2026-10-15/final/390-lost-opponent.png",
+      "source": "886bf87c03f855d7e9793250fb37753e0cb7cf0d",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "b05",
+      "path": "docs/production/evidence/b05-opponent-2026-10-15/final/390-lost-result.png",
+      "source": "886bf87c03f855d7e9793250fb37753e0cb7cf0d",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "b05",
+      "path": "docs/production/evidence/b05-opponent-2026-10-15/final/390-opening-choices.png",
+      "source": "886bf87c03f855d7e9793250fb37753e0cb7cf0d",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "b05",
+      "path": "docs/production/evidence/b05-opponent-2026-10-15/final/390-real-base-half.png",
+      "source": "886bf87c03f855d7e9793250fb37753e0cb7cf0d",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "b05",
+      "path": "docs/production/evidence/b05-opponent-2026-10-15/final/390-reduced-repeat.png",
+      "source": "886bf87c03f855d7e9793250fb37753e0cb7cf0d",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "b05",
+      "path": "docs/production/evidence/b05-opponent-2026-10-15/final/390-repeat-choices.png",
+      "source": "886bf87c03f855d7e9793250fb37753e0cb7cf0d",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "b05",
+      "path": "docs/production/evidence/b05-opponent-2026-10-15/final/390-repeat-key.png",
+      "source": "886bf87c03f855d7e9793250fb37753e0cb7cf0d",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "b05",
+      "path": "docs/production/evidence/b05-opponent-2026-10-15/final/390-repeat-saved.png",
+      "source": "886bf87c03f855d7e9793250fb37753e0cb7cf0d",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "b05",
+      "path": "docs/production/evidence/b05-opponent-2026-10-15/final/390-won-opponent.png",
+      "source": "886bf87c03f855d7e9793250fb37753e0cb7cf0d",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "b05",
+      "path": "docs/production/evidence/b05-opponent-2026-10-15/final/390-won-result.png",
+      "source": "886bf87c03f855d7e9793250fb37753e0cb7cf0d",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "b05",
+      "path": "docs/production/evidence/b05-opponent-2026-10-15/final/choices-controlled.json",
+      "source": "886bf87c03f855d7e9793250fb37753e0cb7cf0d",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "b05",
+      "path": "docs/production/evidence/b05-opponent-2026-10-15/final/entrance-controlled.json",
+      "source": "886bf87c03f855d7e9793250fb37753e0cb7cf0d",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "b05",
+      "path": "docs/production/evidence/b05-opponent-2026-10-15/final/lost-controlled.json",
+      "source": "886bf87c03f855d7e9793250fb37753e0cb7cf0d",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "b05",
+      "path": "docs/production/evidence/b05-opponent-2026-10-15/final/report.json.gz",
+      "source": "886bf87c03f855d7e9793250fb37753e0cb7cf0d",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "b05",
+      "path": "docs/production/evidence/b05-opponent-2026-10-15/final/run.log",
+      "source": "886bf87c03f855d7e9793250fb37753e0cb7cf0d",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "b05",
+      "path": "docs/production/evidence/b05-opponent-2026-10-15/final/summary.json",
+      "source": "886bf87c03f855d7e9793250fb37753e0cb7cf0d",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "b05",
+      "path": "docs/production/evidence/b05-opponent-2026-10-15/final/won-controlled.json",
+      "source": "886bf87c03f855d7e9793250fb37753e0cb7cf0d",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "b05",
+      "path": "docs/production/evidence/b05-opponent-2026-10-15/implementation-checks.json",
+      "source": "886bf87c03f855d7e9793250fb37753e0cb7cf0d",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "b05",
+      "path": "docs/production/evidence/b05-opponent-2026-10-15/source.json",
+      "source": "886bf87c03f855d7e9793250fb37753e0cb7cf0d",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "b05",
+      "path": "docs/production/evidence/b05-opponent-2026-10-15/verification.json",
+      "source": "886bf87c03f855d7e9793250fb37753e0cb7cf0d",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "b05",
+      "path": "docs/production/evidence/b05-opponent-density-2026-10-15/390-dpr3-snapshot/390-dpr3.png",
+      "source": "886bf87c03f855d7e9793250fb37753e0cb7cf0d",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "b05",
+      "path": "docs/production/evidence/b05-opponent-density-2026-10-15/390-dpr3-snapshot/report.json.gz",
+      "source": "886bf87c03f855d7e9793250fb37753e0cb7cf0d",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "b05",
+      "path": "docs/production/evidence/b05-opponent-density-2026-10-15/390-dpr3-snapshot/summary.json",
+      "source": "886bf87c03f855d7e9793250fb37753e0cb7cf0d",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "b05",
+      "path": "docs/production/evidence/b05-opponent-density-2026-10-15/README.md",
+      "source": "886bf87c03f855d7e9793250fb37753e0cb7cf0d",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "b05",
+      "path": "docs/production/evidence/b05-opponent-density-2026-10-15/before/1366-dpr2-FAIL.png",
+      "source": "886bf87c03f855d7e9793250fb37753e0cb7cf0d",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "b05",
+      "path": "docs/production/evidence/b05-opponent-density-2026-10-15/before/1366-dpr2.png",
+      "source": "886bf87c03f855d7e9793250fb37753e0cb7cf0d",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "b05",
+      "path": "docs/production/evidence/b05-opponent-density-2026-10-15/before/320-dpr3-FAIL.png",
+      "source": "886bf87c03f855d7e9793250fb37753e0cb7cf0d",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "b05",
+      "path": "docs/production/evidence/b05-opponent-density-2026-10-15/before/320-dpr3.png",
+      "source": "886bf87c03f855d7e9793250fb37753e0cb7cf0d",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "b05",
+      "path": "docs/production/evidence/b05-opponent-density-2026-10-15/before/390-dpr3-FAIL.png",
+      "source": "886bf87c03f855d7e9793250fb37753e0cb7cf0d",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "b05",
+      "path": "docs/production/evidence/b05-opponent-density-2026-10-15/before/390-dpr3.png",
+      "source": "886bf87c03f855d7e9793250fb37753e0cb7cf0d",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "b05",
+      "path": "docs/production/evidence/b05-opponent-density-2026-10-15/before/report.json.gz",
+      "source": "886bf87c03f855d7e9793250fb37753e0cb7cf0d",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "b05",
+      "path": "docs/production/evidence/b05-opponent-density-2026-10-15/before/summary.json",
+      "source": "886bf87c03f855d7e9793250fb37753e0cb7cf0d",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "b05",
+      "path": "docs/production/evidence/b05-opponent-density-2026-10-15/capture-probe-early/390-dpr3.png",
+      "source": "886bf87c03f855d7e9793250fb37753e0cb7cf0d",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "b05",
+      "path": "docs/production/evidence/b05-opponent-density-2026-10-15/capture-probe-early/report.json.gz",
+      "source": "886bf87c03f855d7e9793250fb37753e0cb7cf0d",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "b05",
+      "path": "docs/production/evidence/b05-opponent-density-2026-10-15/capture-probe-early/summary.json",
+      "source": "886bf87c03f855d7e9793250fb37753e0cb7cf0d",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "b05",
+      "path": "docs/production/evidence/b05-opponent-density-2026-10-15/capture-probe/390-dpr3-FAIL.png",
+      "source": "886bf87c03f855d7e9793250fb37753e0cb7cf0d",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "b05",
+      "path": "docs/production/evidence/b05-opponent-density-2026-10-15/capture-probe/report.json.gz",
+      "source": "886bf87c03f855d7e9793250fb37753e0cb7cf0d",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "b05",
+      "path": "docs/production/evidence/b05-opponent-density-2026-10-15/capture-probe/summary.json",
+      "source": "886bf87c03f855d7e9793250fb37753e0cb7cf0d",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "b05",
+      "path": "docs/production/evidence/b05-opponent-density-2026-10-15/capture-settled-probe/390-dpr3.png",
+      "source": "886bf87c03f855d7e9793250fb37753e0cb7cf0d",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "b05",
+      "path": "docs/production/evidence/b05-opponent-density-2026-10-15/capture-settled-probe/report.json.gz",
+      "source": "886bf87c03f855d7e9793250fb37753e0cb7cf0d",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "b05",
+      "path": "docs/production/evidence/b05-opponent-density-2026-10-15/capture-settled-probe/summary.json",
+      "source": "886bf87c03f855d7e9793250fb37753e0cb7cf0d",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "b05",
+      "path": "docs/production/evidence/b05-opponent-density-2026-10-15/checks.json",
+      "source": "886bf87c03f855d7e9793250fb37753e0cb7cf0d",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "b05",
+      "path": "docs/production/evidence/b05-opponent-density-2026-10-15/debugger-capture-aborted/attempt.json",
+      "source": "886bf87c03f855d7e9793250fb37753e0cb7cf0d",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "b05",
+      "path": "docs/production/evidence/b05-opponent-density-2026-10-15/first-capture-timeout/1366-dpr2-FAIL.png",
+      "source": "886bf87c03f855d7e9793250fb37753e0cb7cf0d",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "b05",
+      "path": "docs/production/evidence/b05-opponent-density-2026-10-15/first-capture-timeout/1366-dpr2-resized.png",
+      "source": "886bf87c03f855d7e9793250fb37753e0cb7cf0d",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "b05",
+      "path": "docs/production/evidence/b05-opponent-density-2026-10-15/first-capture-timeout/1366-dpr2.png",
+      "source": "886bf87c03f855d7e9793250fb37753e0cb7cf0d",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "b05",
+      "path": "docs/production/evidence/b05-opponent-density-2026-10-15/first-capture-timeout/320-dpr3.png",
+      "source": "886bf87c03f855d7e9793250fb37753e0cb7cf0d",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "b05",
+      "path": "docs/production/evidence/b05-opponent-density-2026-10-15/first-capture-timeout/390-dpr3-FAIL.png",
+      "source": "886bf87c03f855d7e9793250fb37753e0cb7cf0d",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "b05",
+      "path": "docs/production/evidence/b05-opponent-density-2026-10-15/first-capture-timeout/390-dpr3-resized.png",
+      "source": "886bf87c03f855d7e9793250fb37753e0cb7cf0d",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "b05",
+      "path": "docs/production/evidence/b05-opponent-density-2026-10-15/first-capture-timeout/390-dpr3.png",
+      "source": "886bf87c03f855d7e9793250fb37753e0cb7cf0d",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "b05",
+      "path": "docs/production/evidence/b05-opponent-density-2026-10-15/first-capture-timeout/report.json.gz",
+      "source": "886bf87c03f855d7e9793250fb37753e0cb7cf0d",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "b05",
+      "path": "docs/production/evidence/b05-opponent-density-2026-10-15/first-capture-timeout/summary.json",
+      "source": "886bf87c03f855d7e9793250fb37753e0cb7cf0d",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "b05",
+      "path": "docs/production/evidence/b05-opponent-density-2026-10-15/harness-before-capture-fix.mjs",
+      "source": "886bf87c03f855d7e9793250fb37753e0cb7cf0d",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "b05",
+      "path": "docs/production/evidence/b05-opponent-density-2026-10-15/harness-capture-probe.mjs",
+      "source": "886bf87c03f855d7e9793250fb37753e0cb7cf0d",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "b05",
+      "path": "docs/production/evidence/b05-opponent-density-2026-10-15/harness-clip-capture.mjs",
+      "source": "886bf87c03f855d7e9793250fb37753e0cb7cf0d",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "b05",
+      "path": "docs/production/evidence/b05-opponent-density-2026-10-15/harness-debugger-attempt.mjs",
+      "source": "886bf87c03f855d7e9793250fb37753e0cb7cf0d",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "b05",
+      "path": "docs/production/evidence/b05-opponent-density-2026-10-15/harness-early-live.mjs",
+      "source": "886bf87c03f855d7e9793250fb37753e0cb7cf0d",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "b05",
+      "path": "docs/production/evidence/b05-opponent-density-2026-10-15/harness-live-snapshots.mjs",
+      "source": "886bf87c03f855d7e9793250fb37753e0cb7cf0d",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "b05",
+      "path": "docs/production/evidence/b05-opponent-density-2026-10-15/harness-native-normal-live.mjs",
+      "source": "886bf87c03f855d7e9793250fb37753e0cb7cf0d",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "b05",
+      "path": "docs/production/evidence/b05-opponent-density-2026-10-15/harness-second-capture.mjs",
+      "source": "886bf87c03f855d7e9793250fb37753e0cb7cf0d",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "b05",
+      "path": "docs/production/evidence/b05-opponent-density-2026-10-15/live-extra-skip-timeout/1366-dpr2-FAIL.png",
+      "source": "886bf87c03f855d7e9793250fb37753e0cb7cf0d",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "b05",
+      "path": "docs/production/evidence/b05-opponent-density-2026-10-15/live-extra-skip-timeout/390-dpr3-FAIL.png",
+      "source": "886bf87c03f855d7e9793250fb37753e0cb7cf0d",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "b05",
+      "path": "docs/production/evidence/b05-opponent-density-2026-10-15/live-extra-skip-timeout/report.json.gz",
+      "source": "886bf87c03f855d7e9793250fb37753e0cb7cf0d",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "b05",
+      "path": "docs/production/evidence/b05-opponent-density-2026-10-15/live-extra-skip-timeout/summary.json",
+      "source": "886bf87c03f855d7e9793250fb37753e0cb7cf0d",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "b05",
+      "path": "docs/production/evidence/b05-opponent-density-2026-10-15/live/report.json.gz",
+      "source": "886bf87c03f855d7e9793250fb37753e0cb7cf0d",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "b05",
+      "path": "docs/production/evidence/b05-opponent-density-2026-10-15/live/summary.json",
+      "source": "886bf87c03f855d7e9793250fb37753e0cb7cf0d",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "b05",
+      "path": "docs/production/evidence/b05-opponent-density-2026-10-15/normal-live-sampling-failure/1366-dpr2-FAIL.png",
+      "source": "886bf87c03f855d7e9793250fb37753e0cb7cf0d",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "b05",
+      "path": "docs/production/evidence/b05-opponent-density-2026-10-15/normal-live-sampling-failure/report.json.gz",
+      "source": "886bf87c03f855d7e9793250fb37753e0cb7cf0d",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "b05",
+      "path": "docs/production/evidence/b05-opponent-density-2026-10-15/normal-live-sampling-failure/summary.json",
+      "source": "886bf87c03f855d7e9793250fb37753e0cb7cf0d",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "b05",
+      "path": "docs/production/evidence/b05-opponent-density-2026-10-15/post-validation.json",
+      "source": "886bf87c03f855d7e9793250fb37753e0cb7cf0d",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "b05",
+      "path": "docs/production/evidence/b05-opponent-density-2026-10-15/resize-capture-sampling-failure/1366-dpr2-FAIL.png",
+      "source": "886bf87c03f855d7e9793250fb37753e0cb7cf0d",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "b05",
+      "path": "docs/production/evidence/b05-opponent-density-2026-10-15/resize-capture-sampling-failure/390-dpr3-resized.png",
+      "source": "886bf87c03f855d7e9793250fb37753e0cb7cf0d",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "b05",
+      "path": "docs/production/evidence/b05-opponent-density-2026-10-15/resize-capture-sampling-failure/report.json.gz",
+      "source": "886bf87c03f855d7e9793250fb37753e0cb7cf0d",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "b05",
+      "path": "docs/production/evidence/b05-opponent-density-2026-10-15/resize-capture-sampling-failure/summary.json",
+      "source": "886bf87c03f855d7e9793250fb37753e0cb7cf0d",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "b05",
+      "path": "docs/production/evidence/b05-opponent-density-2026-10-15/resize-snapshots/1366-dpr2-resized.png",
+      "source": "886bf87c03f855d7e9793250fb37753e0cb7cf0d",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "b05",
+      "path": "docs/production/evidence/b05-opponent-density-2026-10-15/resize-snapshots/390-dpr3-resized.png",
+      "source": "886bf87c03f855d7e9793250fb37753e0cb7cf0d",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "b05",
+      "path": "docs/production/evidence/b05-opponent-density-2026-10-15/resize-snapshots/report.json.gz",
+      "source": "886bf87c03f855d7e9793250fb37753e0cb7cf0d",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "b05",
+      "path": "docs/production/evidence/b05-opponent-density-2026-10-15/resize-snapshots/summary.json",
+      "source": "886bf87c03f855d7e9793250fb37753e0cb7cf0d",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "b05",
+      "path": "docs/production/evidence/b05-opponent-density-2026-10-15/second-capture-timeout/1366-dpr2-FAIL.png",
+      "source": "886bf87c03f855d7e9793250fb37753e0cb7cf0d",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "b05",
+      "path": "docs/production/evidence/b05-opponent-density-2026-10-15/second-capture-timeout/1366-dpr2.png",
+      "source": "886bf87c03f855d7e9793250fb37753e0cb7cf0d",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "b05",
+      "path": "docs/production/evidence/b05-opponent-density-2026-10-15/second-capture-timeout/320-dpr3-FAIL.png",
+      "source": "886bf87c03f855d7e9793250fb37753e0cb7cf0d",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "b05",
+      "path": "docs/production/evidence/b05-opponent-density-2026-10-15/second-capture-timeout/320-dpr3.png",
+      "source": "886bf87c03f855d7e9793250fb37753e0cb7cf0d",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "b05",
+      "path": "docs/production/evidence/b05-opponent-density-2026-10-15/second-capture-timeout/390-dpr3-FAIL.png",
+      "source": "886bf87c03f855d7e9793250fb37753e0cb7cf0d",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "b05",
+      "path": "docs/production/evidence/b05-opponent-density-2026-10-15/second-capture-timeout/390-dpr3.png",
+      "source": "886bf87c03f855d7e9793250fb37753e0cb7cf0d",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "b05",
+      "path": "docs/production/evidence/b05-opponent-density-2026-10-15/second-capture-timeout/report.json.gz",
+      "source": "886bf87c03f855d7e9793250fb37753e0cb7cf0d",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "b05",
+      "path": "docs/production/evidence/b05-opponent-density-2026-10-15/second-capture-timeout/summary.json",
+      "source": "886bf87c03f855d7e9793250fb37753e0cb7cf0d",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "b05",
+      "path": "docs/production/evidence/b05-opponent-density-2026-10-15/snapshots/1366-dpr2.png",
+      "source": "886bf87c03f855d7e9793250fb37753e0cb7cf0d",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "b05",
+      "path": "docs/production/evidence/b05-opponent-density-2026-10-15/snapshots/320-dpr3.png",
+      "source": "886bf87c03f855d7e9793250fb37753e0cb7cf0d",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "b05",
+      "path": "docs/production/evidence/b05-opponent-density-2026-10-15/snapshots/390-dpr3.png",
+      "source": "886bf87c03f855d7e9793250fb37753e0cb7cf0d",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "b05",
+      "path": "docs/production/evidence/b05-opponent-density-2026-10-15/snapshots/report.json.gz",
+      "source": "886bf87c03f855d7e9793250fb37753e0cb7cf0d",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "b05",
+      "path": "docs/production/evidence/b05-opponent-density-2026-10-15/snapshots/summary.json",
+      "source": "886bf87c03f855d7e9793250fb37753e0cb7cf0d",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "b05",
+      "path": "docs/production/evidence/b05-opponent-phases-2026-10-15/README.md",
+      "source": "886bf87c03f855d7e9793250fb37753e0cb7cf0d",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "b05",
+      "path": "docs/production/evidence/b05-opponent-phases-2026-10-15/after-surface-fix-failure/1366-changed.png",
+      "source": "886bf87c03f855d7e9793250fb37753e0cb7cf0d",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "b05",
+      "path": "docs/production/evidence/b05-opponent-phases-2026-10-15/after-surface-fix-failure/320-reaction.png",
+      "source": "886bf87c03f855d7e9793250fb37753e0cb7cf0d",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "b05",
+      "path": "docs/production/evidence/b05-opponent-phases-2026-10-15/after-surface-fix-failure/390-changed-FAIL.png",
+      "source": "886bf87c03f855d7e9793250fb37753e0cb7cf0d",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "b05",
+      "path": "docs/production/evidence/b05-opponent-phases-2026-10-15/after-surface-fix-failure/390-changed.png",
+      "source": "886bf87c03f855d7e9793250fb37753e0cb7cf0d",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "b05",
+      "path": "docs/production/evidence/b05-opponent-phases-2026-10-15/after-surface-fix-failure/report.json.gz",
+      "source": "886bf87c03f855d7e9793250fb37753e0cb7cf0d",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "b05",
+      "path": "docs/production/evidence/b05-opponent-phases-2026-10-15/after-surface-fix-failure/summary.json",
+      "source": "886bf87c03f855d7e9793250fb37753e0cb7cf0d",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "b05",
+      "path": "docs/production/evidence/b05-opponent-phases-2026-10-15/checks.json",
+      "source": "886bf87c03f855d7e9793250fb37753e0cb7cf0d",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "b05",
+      "path": "docs/production/evidence/b05-opponent-phases-2026-10-15/final/1366-changed.png",
+      "source": "886bf87c03f855d7e9793250fb37753e0cb7cf0d",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "b05",
+      "path": "docs/production/evidence/b05-opponent-phases-2026-10-15/final/320-reaction.png",
+      "source": "886bf87c03f855d7e9793250fb37753e0cb7cf0d",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "b05",
+      "path": "docs/production/evidence/b05-opponent-phases-2026-10-15/final/390-changed.png",
+      "source": "886bf87c03f855d7e9793250fb37753e0cb7cf0d",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "b05",
+      "path": "docs/production/evidence/b05-opponent-phases-2026-10-15/final/390-reduced-replay.png",
+      "source": "886bf87c03f855d7e9793250fb37753e0cb7cf0d",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "b05",
+      "path": "docs/production/evidence/b05-opponent-phases-2026-10-15/final/390-reduced-skip.png",
+      "source": "886bf87c03f855d7e9793250fb37753e0cb7cf0d",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "b05",
+      "path": "docs/production/evidence/b05-opponent-phases-2026-10-15/final/report.json.gz",
+      "source": "886bf87c03f855d7e9793250fb37753e0cb7cf0d",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "b05",
+      "path": "docs/production/evidence/b05-opponent-phases-2026-10-15/final/summary.json",
+      "source": "886bf87c03f855d7e9793250fb37753e0cb7cf0d",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "b05",
+      "path": "docs/production/evidence/b05-opponent-phases-2026-10-15/initial-observer-failure/1366-changed.png",
+      "source": "886bf87c03f855d7e9793250fb37753e0cb7cf0d",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "b05",
+      "path": "docs/production/evidence/b05-opponent-phases-2026-10-15/initial-observer-failure/320-reaction.png",
+      "source": "886bf87c03f855d7e9793250fb37753e0cb7cf0d",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "b05",
+      "path": "docs/production/evidence/b05-opponent-phases-2026-10-15/initial-observer-failure/390-changed-FAIL.png",
+      "source": "886bf87c03f855d7e9793250fb37753e0cb7cf0d",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "b05",
+      "path": "docs/production/evidence/b05-opponent-phases-2026-10-15/initial-observer-failure/390-changed.png",
+      "source": "886bf87c03f855d7e9793250fb37753e0cb7cf0d",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "b05",
+      "path": "docs/production/evidence/b05-opponent-phases-2026-10-15/initial-observer-failure/report.json.gz",
+      "source": "886bf87c03f855d7e9793250fb37753e0cb7cf0d",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "b05",
+      "path": "docs/production/evidence/b05-opponent-phases-2026-10-15/initial-observer-failure/summary.json",
+      "source": "886bf87c03f855d7e9793250fb37753e0cb7cf0d",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "b05",
+      "path": "docs/production/evidence/b05-opponent-phases-2026-10-15/pre-resume-resize-failure/1366-changed.png",
+      "source": "886bf87c03f855d7e9793250fb37753e0cb7cf0d",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "b05",
+      "path": "docs/production/evidence/b05-opponent-phases-2026-10-15/pre-resume-resize-failure/320-reaction.png",
+      "source": "886bf87c03f855d7e9793250fb37753e0cb7cf0d",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "b05",
+      "path": "docs/production/evidence/b05-opponent-phases-2026-10-15/pre-resume-resize-failure/390-changed-FAIL.png",
+      "source": "886bf87c03f855d7e9793250fb37753e0cb7cf0d",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "b05",
+      "path": "docs/production/evidence/b05-opponent-phases-2026-10-15/pre-resume-resize-failure/390-changed.png",
+      "source": "886bf87c03f855d7e9793250fb37753e0cb7cf0d",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "b05",
+      "path": "docs/production/evidence/b05-opponent-phases-2026-10-15/pre-resume-resize-failure/report.json.gz",
+      "source": "886bf87c03f855d7e9793250fb37753e0cb7cf0d",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "b05",
+      "path": "docs/production/evidence/b05-opponent-phases-2026-10-15/pre-resume-resize-failure/summary.json",
+      "source": "886bf87c03f855d7e9793250fb37753e0cb7cf0d",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "b05",
+      "path": "docs/production/evidence/b05-opponent-phases-2026-10-15/resume-input-diagnosis/320-reaction.png",
+      "source": "886bf87c03f855d7e9793250fb37753e0cb7cf0d",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "b05",
+      "path": "docs/production/evidence/b05-opponent-phases-2026-10-15/resume-input-diagnosis/390-changed-FAIL.png",
+      "source": "886bf87c03f855d7e9793250fb37753e0cb7cf0d",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "b05",
+      "path": "docs/production/evidence/b05-opponent-phases-2026-10-15/resume-input-diagnosis/390-changed.png",
+      "source": "886bf87c03f855d7e9793250fb37753e0cb7cf0d",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "b05",
+      "path": "docs/production/evidence/b05-opponent-phases-2026-10-15/resume-input-diagnosis/report.json.gz",
+      "source": "886bf87c03f855d7e9793250fb37753e0cb7cf0d",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "b05",
+      "path": "docs/production/evidence/b05-opponent-phases-2026-10-15/resume-input-diagnosis/summary.json",
+      "source": "886bf87c03f855d7e9793250fb37753e0cb7cf0d",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "b05",
+      "path": "harness/b05-opponent-density.mjs",
+      "source": "886bf87c03f855d7e9793250fb37753e0cb7cf0d",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "b05",
+      "path": "harness/b05-opponent-phases.mjs",
+      "source": "886bf87c03f855d7e9793250fb37753e0cb7cf0d",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "b05",
+      "path": "src/game/GameScene.ts",
+      "source": "886bf87c03f855d7e9793250fb37753e0cb7cf0d",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": true,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "b05",
+      "path": "src/game/HandSelectionInput.ts",
+      "source": "886bf87c03f855d7e9793250fb37753e0cb7cf0d",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": true
+    },
+    {
+      "task": "b05",
+      "path": "src/game/OpponentFacts.ts",
+      "source": "886bf87c03f855d7e9793250fb37753e0cb7cf0d",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "b05",
+      "path": "src/game/OpponentPresentation.ts",
+      "source": "886bf87c03f855d7e9793250fb37753e0cb7cf0d",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "b05",
+      "path": "src/platform/Viewport.ts",
+      "source": "886bf87c03f855d7e9793250fb37753e0cb7cf0d",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": true
+    },
+    {
+      "task": "b05",
+      "path": "tests/hand-selection-input.test.ts",
+      "source": "886bf87c03f855d7e9793250fb37753e0cb7cf0d",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": true
+    },
+    {
+      "task": "b05",
+      "path": "tests/opponent-cues.test.ts",
+      "source": "886bf87c03f855d7e9793250fb37753e0cb7cf0d",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": false
+    },
+    {
+      "task": "b05",
+      "path": "tests/viewport-density.test.ts",
+      "source": "886bf87c03f855d7e9793250fb37753e0cb7cf0d",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+      "composed": false,
+      "identicalDuplicate": true
+    }
+  ],
+  "protected": [
+    {
+      "path": "src/application",
+      "before": "1a325d51795f54526ec9f3f313cceb69763a1971",
+      "after": "1a325d51795f54526ec9f3f313cceb69763a1971",
+      "identical": true
+    },
+    {
+      "path": "src/content",
+      "before": "e8c3794be5b0fcb74da4aeb9e6adc63c22388345",
+      "after": "e8c3794be5b0fcb74da4aeb9e6adc63c22388345",
+      "identical": true
+    },
+    {
+      "path": "src/audio",
+      "before": "7f6d2d0dd34313a4099d34cfd36b2baa748f83c2",
+      "after": "7f6d2d0dd34313a4099d34cfd36b2baa748f83c2",
+      "identical": true
+    },
+    {
+      "path": "public",
+      "before": "c4a6ec74e7fd754b0f300b973020f8afed7542e1",
+      "after": "c4a6ec74e7fd754b0f300b973020f8afed7542e1",
+      "identical": true
+    },
+    {
+      "path": "art",
+      "before": "b0caa33679b84bee932b2854734c04ad39ba0464",
+      "after": "b0caa33679b84bee932b2854734c04ad39ba0464",
+      "identical": true
+    },
+    {
+      "path": ".github",
+      "before": "b5e57fc9519888116dbc7ae4da36d23aa187bfb1",
+      "after": "b5e57fc9519888116dbc7ae4da36d23aa187bfb1",
+      "identical": true
+    },
+    {
+      "path": "src/main.ts",
+      "before": "2e84a33fed97aa5c553a6df1b6fdde6f879d7b1a",
+      "after": "2e84a33fed97aa5c553a6df1b6fdde6f879d7b1a",
+      "identical": true
+    },
+    {
+      "path": "src/platform/Renderer.ts",
+      "before": "2a21c97610eeaaa64433a33b05c50ccd9e99b9bf",
+      "after": "2a21c97610eeaaa64433a33b05c50ccd9e99b9bf",
+      "identical": true
+    },
+    {
+      "path": "src/style.css",
+      "before": "f36e4acfdb9795ad1b60d15db6aa6efc13610ace",
+      "after": "f36e4acfdb9795ad1b60d15db6aa6efc13610ace",
+      "identical": true
+    },
+    {
+      "path": "src/game/HeroClimax.ts",
+      "before": "b10e4d12b7f0d8f7b7e85608ac1ce5f0cbe93a31",
+      "after": "b10e4d12b7f0d8f7b7e85608ac1ce5f0cbe93a31",
+      "identical": true
+    },
+    {
+      "path": "src/game/HeroClimaxCaption.ts",
+      "before": "6f716f16ae319f994599d8751ae820cf874fa593",
+      "after": "6f716f16ae319f994599d8751ae820cf874fa593",
+      "identical": true
+    },
+    {
+      "path": "src/game/OwnedJokerHaptics.ts",
+      "before": "eb816d6c5bfee61c75d14db8e15cfc2cf458028c",
+      "after": "eb816d6c5bfee61c75d14db8e15cfc2cf458028c",
+      "identical": true
+    },
+    {
+      "path": "package-lock.json",
+      "before": "acc93dcd9410bc911db279534e28522a8691dbab",
+      "after": "acc93dcd9410bc911db279534e28522a8691dbab",
+      "identical": true
+    }
+  ],
+  "hapticCallRetained": true,
+  "extraHarnessOnly": "DPR selection/metadata, camera-projected CSS geometry, backing-to-CSS pointer observation; original 0.1px and full command/state assertions retained",
+  "extraHarnessCommits": [
+    "6ada1c3426d4db8f2f12aa8017156897bdaa65dc test: normalize observed backing pointer to CSS for DPR regression",
+    "19680e5d6c6ced69746e446fef1fb6c5b4efa670 test: compare resize rail with actual fractional density projection",
+    "6d950e79d21b5e53f6bce62787ab5fab89ce9421 test: parameterize dynamic touch regression for high DPR"
+  ],
+  "productTreeUnchangedAfterMerge": true
+}

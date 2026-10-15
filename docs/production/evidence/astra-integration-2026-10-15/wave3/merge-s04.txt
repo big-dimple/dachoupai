@@ -1,0 +1,192 @@
+Auto-merging docs/production/DELIVERY_PLAN.md
+Auto-merging src/game/ShopScene.ts
+Merge made by the 'ort' strategy.
+ AGENTS.md                                          |   2 +-
+ analysis/s04-gate-compare-run.mjs                  |  49 ++
+ analysis/s04-gate-compare.ts                       | 170 +++++
+ analysis/s04-window-run.mjs                        |  27 +
+ analysis/s04-window.ts                             | 185 +++++
+ docs/production/DELIVERY_PLAN.md                   |  36 +-
+ .../evidence/s04-finish-2026-10-15/README.md       |  55 ++
+ .../evidence/s04-finish-2026-10-15/binding.json    |  31 +
+ .../evidence/s04-finish-2026-10-15/build-final.txt |  24 +
+ .../evidence/s04-finish-2026-10-15/build.txt       |  24 +
+ .../evidence/s04-finish-2026-10-15/content.txt     | 192 +++++
+ .../evidence/s04-finish-2026-10-15/domain.txt      |  14 +
+ .../failures/attempt-1/FAIL.png                    | Bin 0 -> 146772 bytes
+ .../failures/attempt-1/execution.txt               |  13 +
+ .../attempt-1/full-state-journal-storage.json.gz   | Bin 0 -> 5079 bytes
+ .../failures/attempt-1/report.json                 | 322 ++++++++
+ .../failures/attempt-2/FAIL.png                    | Bin 0 -> 146772 bytes
+ .../failures/attempt-2/execution.txt               |  13 +
+ .../attempt-2/full-state-journal-storage.json.gz   | Bin 0 -> 5488 bytes
+ .../failures/attempt-2/report.json                 | 356 +++++++++
+ .../failures/attempt-3/FAIL.png                    | Bin 0 -> 130854 bytes
+ .../failures/attempt-3/execution.txt               |  12 +
+ .../attempt-3/full-state-journal-storage.json.gz   | Bin 0 -> 5545 bytes
+ .../failures/attempt-3/report.json                 | 357 +++++++++
+ .../failures/attempt-4/FAIL.png                    | Bin 0 -> 44344 bytes
+ .../failures/attempt-4/execution.txt               |  46 ++
+ .../attempt-4/full-state-journal-storage.json.gz   | Bin 0 -> 13725 bytes
+ .../failures/attempt-4/report.json                 | 579 +++++++++++++++
+ .../failures/attempt-5/FAIL.png                    | Bin 0 -> 44112 bytes
+ .../failures/attempt-5/execution.txt               |  45 ++
+ .../attempt-5/full-state-journal-storage.json.gz   | Bin 0 -> 14052 bytes
+ .../failures/attempt-5/report.json                 | 580 +++++++++++++++
+ .../s04-finish-2026-10-15/full-tests-final.txt     |  18 +
+ .../evidence/s04-finish-2026-10-15/full-tests.txt  |  18 +
+ .../s04-finish-2026-10-15/initial-domain.txt       | 131 ++++
+ .../s04-finish-2026-10-15/initial-regression.txt   | 280 +++++++
+ .../s04-finish-2026-10-15/initial-typecheck.txt    |   9 +
+ .../evidence/s04-finish-2026-10-15/native.txt      |   4 +
+ .../s04-finish-2026-10-15/native/1366-chapter2.png | Bin 0 -> 146607 bytes
+ .../native/1366-crossing-refresh.png               | Bin 0 -> 337539 bytes
+ .../native/1366-density25.png                      | Bin 0 -> 143271 bytes
+ .../native/1366-next-stage.png                     | Bin 0 -> 151100 bytes
+ .../s04-finish-2026-10-15/native/1366-purchase.png | Bin 0 -> 329895 bytes
+ .../s04-finish-2026-10-15/native/1366-saved.png    | Bin 0 -> 176632 bytes
+ .../s04-finish-2026-10-15/native/1366-selected.png | Bin 0 -> 143806 bytes
+ .../s04-finish-2026-10-15/native/320-chapter2.png  | Bin 0 -> 48405 bytes
+ .../native/320-crossing-refresh.png                | Bin 0 -> 95145 bytes
+ .../s04-finish-2026-10-15/native/320-density25.png | Bin 0 -> 45831 bytes
+ .../native/320-next-stage.png                      | Bin 0 -> 77437 bytes
+ .../s04-finish-2026-10-15/native/320-purchase.png  | Bin 0 -> 75422 bytes
+ .../s04-finish-2026-10-15/native/320-saved.png     | Bin 0 -> 52058 bytes
+ .../s04-finish-2026-10-15/native/320-selected.png  | Bin 0 -> 45980 bytes
+ .../s04-finish-2026-10-15/native/390-chapter2.png  | Bin 0 -> 46962 bytes
+ .../native/390-crossing-refresh.png                | Bin 0 -> 117086 bytes
+ .../s04-finish-2026-10-15/native/390-density25.png | Bin 0 -> 44344 bytes
+ .../native/390-next-stage.png                      | Bin 0 -> 80526 bytes
+ .../s04-finish-2026-10-15/native/390-purchase.png  | Bin 0 -> 82427 bytes
+ .../s04-finish-2026-10-15/native/390-saved.png     | Bin 0 -> 50666 bytes
+ .../s04-finish-2026-10-15/native/390-selected.png  | Bin 0 -> 43721 bytes
+ .../native/full-state-journal-storage.json.gz      | Bin 0 -> 20543 bytes
+ .../s04-finish-2026-10-15/native/report.json       | 806 +++++++++++++++++++++
+ .../evidence/s04-finish-2026-10-15/plan-check.txt  |   1 +
+ .../evidence/s04-finish-2026-10-15/regression.txt  |  14 +
+ .../s04-finish-2026-10-15/second-domain-FAIL.txt   | 295 ++++++++
+ .../second-regression-FAIL.txt                     | 295 ++++++++
+ .../evidence/s04-window-2026-10-15/README.md       |  84 +++
+ .../s04-window-2026-10-15/gate-comparison-run.txt  |   1 +
+ .../s04-window-2026-10-15/gate-comparison.json.gz  | Bin 0 -> 276896 bytes
+ .../s04-window-2026-10-15/gate-plan-check.txt      |   1 +
+ .../s04-window-2026-10-15/gate-reproduction.txt    |   1 +
+ .../s04-window-2026-10-15/gate-rule-checks.txt     |  14 +
+ .../s04-window-2026-10-15/gate-typecheck.txt       |   9 +
+ .../s04-window-2026-10-15/initial-fixture-FAIL.txt |  12 +
+ .../initial-typecheck-FAIL.txt                     |  10 +
+ .../evidence/s04-window-2026-10-15/plan-check.txt  |   1 +
+ .../s04-window-2026-10-15/reproduction.txt         |   1 +
+ .../evidence/s04-window-2026-10-15/results.json.gz | Bin 0 -> 62813 bytes
+ .../evidence/s04-window-2026-10-15/rule-checks.txt |  14 +
+ .../evidence/s04-window-2026-10-15/typecheck.txt   |   9 +
+ harness/fixtures/s04-finish.ts                     |  27 +
+ harness/s04-finish.mjs                             |  80 ++
+ harness/screenshot.mjs                             |   4 +-
+ src/domain/r2GroupUpgrade.ts                       |   6 +-
+ src/domain/r2Run.ts                                |   2 +
+ src/domain/r2S04.ts                                |  24 +
+ src/domain/r2Shop.ts                               |   3 +-
+ src/domain/r2SpectralTools.ts                      |   2 +
+ src/game/ConsumableDialog.ts                       |  12 +-
+ src/game/RouteFitCue.ts                            |   4 +-
+ src/game/RunLaunch.ts                              |   4 +-
+ src/game/S04Qualification.ts                       |  19 +
+ src/game/ShopScene.ts                              |   6 +-
+ src/game/r2ToolInfo.ts                             |   5 +-
+ tests/amo-launch.test.ts                           |   8 +-
+ tests/c04-mode-save.test.ts                        |   4 +-
+ tests/core-build.test.ts                           |   4 +-
+ tests/fixed-suit-dyes.test.ts                      |   4 +-
+ tests/p1a-active-mult.test.ts                      |   4 +-
+ tests/recovery-save.test.ts                        |   6 +-
+ tests/route-starter.test.ts                        |   4 +-
+ tests/s04-finish.test.ts                           |  82 +++
+ tests/s04-gate-compare.test.ts                     |  46 ++
+ tests/s04-window.test.ts                           |  36 +
+ tests/touye-new-core.test.ts                       |   4 +-
+ 104 files changed, 5523 insertions(+), 37 deletions(-)
+ create mode 100644 analysis/s04-gate-compare-run.mjs
+ create mode 100644 analysis/s04-gate-compare.ts
+ create mode 100644 analysis/s04-window-run.mjs
+ create mode 100644 analysis/s04-window.ts
+ create mode 100644 docs/production/evidence/s04-finish-2026-10-15/README.md
+ create mode 100644 docs/production/evidence/s04-finish-2026-10-15/binding.json
+ create mode 100644 docs/production/evidence/s04-finish-2026-10-15/build-final.txt
+ create mode 100644 docs/production/evidence/s04-finish-2026-10-15/build.txt
+ create mode 100644 docs/production/evidence/s04-finish-2026-10-15/content.txt
+ create mode 100644 docs/production/evidence/s04-finish-2026-10-15/domain.txt
+ create mode 100644 docs/production/evidence/s04-finish-2026-10-15/failures/attempt-1/FAIL.png
+ create mode 100644 docs/production/evidence/s04-finish-2026-10-15/failures/attempt-1/execution.txt
+ create mode 100644 docs/production/evidence/s04-finish-2026-10-15/failures/attempt-1/full-state-journal-storage.json.gz
+ create mode 100644 docs/production/evidence/s04-finish-2026-10-15/failures/attempt-1/report.json
+ create mode 100644 docs/production/evidence/s04-finish-2026-10-15/failures/attempt-2/FAIL.png
+ create mode 100644 docs/production/evidence/s04-finish-2026-10-15/failures/attempt-2/execution.txt
+ create mode 100644 docs/production/evidence/s04-finish-2026-10-15/failures/attempt-2/full-state-journal-storage.json.gz
+ create mode 100644 docs/production/evidence/s04-finish-2026-10-15/failures/attempt-2/report.json
+ create mode 100644 docs/production/evidence/s04-finish-2026-10-15/failures/attempt-3/FAIL.png
+ create mode 100644 docs/production/evidence/s04-finish-2026-10-15/failures/attempt-3/execution.txt
+ create mode 100644 docs/production/evidence/s04-finish-2026-10-15/failures/attempt-3/full-state-journal-storage.json.gz
+ create mode 100644 docs/production/evidence/s04-finish-2026-10-15/failures/attempt-3/report.json
+ create mode 100644 docs/production/evidence/s04-finish-2026-10-15/failures/attempt-4/FAIL.png
+ create mode 100644 docs/production/evidence/s04-finish-2026-10-15/failures/attempt-4/execution.txt
+ create mode 100644 docs/production/evidence/s04-finish-2026-10-15/failures/attempt-4/full-state-journal-storage.json.gz
+ create mode 100644 docs/production/evidence/s04-finish-2026-10-15/failures/attempt-4/report.json
+ create mode 100644 docs/production/evidence/s04-finish-2026-10-15/failures/attempt-5/FAIL.png
+ create mode 100644 docs/production/evidence/s04-finish-2026-10-15/failures/attempt-5/execution.txt
+ create mode 100644 docs/production/evidence/s04-finish-2026-10-15/failures/attempt-5/full-state-journal-storage.json.gz
+ create mode 100644 docs/production/evidence/s04-finish-2026-10-15/failures/attempt-5/report.json
+ create mode 100644 docs/production/evidence/s04-finish-2026-10-15/full-tests-final.txt
+ create mode 100644 docs/production/evidence/s04-finish-2026-10-15/full-tests.txt
+ create mode 100644 docs/production/evidence/s04-finish-2026-10-15/initial-domain.txt
+ create mode 100644 docs/production/evidence/s04-finish-2026-10-15/initial-regression.txt
+ create mode 100644 docs/production/evidence/s04-finish-2026-10-15/initial-typecheck.txt
+ create mode 100644 docs/production/evidence/s04-finish-2026-10-15/native.txt
+ create mode 100644 docs/production/evidence/s04-finish-2026-10-15/native/1366-chapter2.png
+ create mode 100644 docs/production/evidence/s04-finish-2026-10-15/native/1366-crossing-refresh.png
+ create mode 100644 docs/production/evidence/s04-finish-2026-10-15/native/1366-density25.png
+ create mode 100644 docs/production/evidence/s04-finish-2026-10-15/native/1366-next-stage.png
+ create mode 100644 docs/production/evidence/s04-finish-2026-10-15/native/1366-purchase.png
+ create mode 100644 docs/production/evidence/s04-finish-2026-10-15/native/1366-saved.png
+ create mode 100644 docs/production/evidence/s04-finish-2026-10-15/native/1366-selected.png
+ create mode 100644 docs/production/evidence/s04-finish-2026-10-15/native/320-chapter2.png
+ create mode 100644 docs/production/evidence/s04-finish-2026-10-15/native/320-crossing-refresh.png
+ create mode 100644 docs/production/evidence/s04-finish-2026-10-15/native/320-density25.png
+ create mode 100644 docs/production/evidence/s04-finish-2026-10-15/native/320-next-stage.png
+ create mode 100644 docs/production/evidence/s04-finish-2026-10-15/native/320-purchase.png
+ create mode 100644 docs/production/evidence/s04-finish-2026-10-15/native/320-saved.png
+ create mode 100644 docs/production/evidence/s04-finish-2026-10-15/native/320-selected.png
+ create mode 100644 docs/production/evidence/s04-finish-2026-10-15/native/390-chapter2.png
+ create mode 100644 docs/production/evidence/s04-finish-2026-10-15/native/390-crossing-refresh.png
+ create mode 100644 docs/production/evidence/s04-finish-2026-10-15/native/390-density25.png
+ create mode 100644 docs/production/evidence/s04-finish-2026-10-15/native/390-next-stage.png
+ create mode 100644 docs/production/evidence/s04-finish-2026-10-15/native/390-purchase.png
+ create mode 100644 docs/production/evidence/s04-finish-2026-10-15/native/390-saved.png
+ create mode 100644 docs/production/evidence/s04-finish-2026-10-15/native/390-selected.png
+ create mode 100644 docs/production/evidence/s04-finish-2026-10-15/native/full-state-journal-storage.json.gz
+ create mode 100644 docs/production/evidence/s04-finish-2026-10-15/native/report.json
+ create mode 100644 docs/production/evidence/s04-finish-2026-10-15/plan-check.txt
+ create mode 100644 docs/production/evidence/s04-finish-2026-10-15/regression.txt
+ create mode 100644 docs/production/evidence/s04-finish-2026-10-15/second-domain-FAIL.txt
+ create mode 100644 docs/production/evidence/s04-finish-2026-10-15/second-regression-FAIL.txt
+ create mode 100644 docs/production/evidence/s04-window-2026-10-15/README.md
+ create mode 100644 docs/production/evidence/s04-window-2026-10-15/gate-comparison-run.txt
+ create mode 100644 docs/production/evidence/s04-window-2026-10-15/gate-comparison.json.gz
+ create mode 100644 docs/production/evidence/s04-window-2026-10-15/gate-plan-check.txt
+ create mode 100644 docs/production/evidence/s04-window-2026-10-15/gate-reproduction.txt
+ create mode 100644 docs/production/evidence/s04-window-2026-10-15/gate-rule-checks.txt
+ create mode 100644 docs/production/evidence/s04-window-2026-10-15/gate-typecheck.txt
+ create mode 100644 docs/production/evidence/s04-window-2026-10-15/initial-fixture-FAIL.txt
+ create mode 100644 docs/production/evidence/s04-window-2026-10-15/initial-typecheck-FAIL.txt
+ create mode 100644 docs/production/evidence/s04-window-2026-10-15/plan-check.txt
+ create mode 100644 docs/production/evidence/s04-window-2026-10-15/reproduction.txt
+ create mode 100644 docs/production/evidence/s04-window-2026-10-15/results.json.gz
+ create mode 100644 docs/production/evidence/s04-window-2026-10-15/rule-checks.txt
+ create mode 100644 docs/production/evidence/s04-window-2026-10-15/typecheck.txt
+ create mode 100644 harness/fixtures/s04-finish.ts
+ create mode 100644 harness/s04-finish.mjs
+ create mode 100644 src/domain/r2S04.ts
+ create mode 100644 src/game/S04Qualification.ts
+ create mode 100644 tests/s04-finish.test.ts
+ create mode 100644 tests/s04-gate-compare.test.ts
+ create mode 100644 tests/s04-window.test.ts

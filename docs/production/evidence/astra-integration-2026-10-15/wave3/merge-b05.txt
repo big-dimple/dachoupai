@@ -1,0 +1,324 @@
+Auto-merging src/game/GameScene.ts
+Merge made by the 'ort' strategy.
+ .../evidence/b05-opponent-2026-10-15/README.md     |   39 +
+ .../baseline/390-real-base-half.png                |  Bin 0 -> 70619 bytes
+ .../baseline/390-repeat-choices.png                |  Bin 0 -> 64356 bytes
+ .../baseline/390-repeat-key.png                    |  Bin 0 -> 60954 bytes
+ .../baseline/390-repeat-saved.png                  |  Bin 0 -> 90823 bytes
+ .../baseline/choices-controlled.json               |    1 +
+ .../baseline/entrance-controlled.json              |    1 +
+ .../baseline/lost-controlled.json                  |    1 +
+ .../baseline/report.json.gz                        |  Bin 0 -> 9610 bytes
+ .../b05-opponent-2026-10-15/baseline/summary.json  |  394 +++
+ .../baseline/won-controlled.json                   |    1 +
+ .../final/1366-changed-choices.png                 |  Bin 0 -> 158512 bytes
+ .../final/1366-changed-key.png                     |  Bin 0 -> 150936 bytes
+ .../final/1366-changed-saved.png                   |  Bin 0 -> 175330 bytes
+ .../final/1366-entrance.png                        |  Bin 0 -> 35605 bytes
+ .../final/1366-opening-choices.png                 |  Bin 0 -> 146503 bytes
+ .../final/1366-real-base-half.png                  |  Bin 0 -> 160361 bytes
+ .../final/1366-repeat-choices.png                  |  Bin 0 -> 158512 bytes
+ .../final/1366-repeat-key.png                      |  Bin 0 -> 152726 bytes
+ .../final/1366-repeat-saved.png                    |  Bin 0 -> 185834 bytes
+ .../final/320-changed-choices.png                  |  Bin 0 -> 48804 bytes
+ .../final/320-changed-key.png                      |  Bin 0 -> 57454 bytes
+ .../final/320-changed-saved.png                    |  Bin 0 -> 56866 bytes
+ .../b05-opponent-2026-10-15/final/320-entrance.png |  Bin 0 -> 28077 bytes
+ .../final/320-opening-choices.png                  |  Bin 0 -> 43311 bytes
+ .../final/320-real-base-half.png                   |  Bin 0 -> 55523 bytes
+ .../final/320-repeat-choices.png                   |  Bin 0 -> 48804 bytes
+ .../final/320-repeat-key.png                       |  Bin 0 -> 56406 bytes
+ .../final/320-repeat-saved.png                     |  Bin 0 -> 62792 bytes
+ .../final/390-changed-choices.png                  |  Bin 0 -> 64356 bytes
+ .../final/390-changed-key.png                      |  Bin 0 -> 61795 bytes
+ .../final/390-changed-saved.png                    |  Bin 0 -> 91618 bytes
+ .../b05-opponent-2026-10-15/final/390-entrance.png |  Bin 0 -> 30452 bytes
+ .../final/390-lost-opponent.png                    |  Bin 0 -> 61988 bytes
+ .../final/390-lost-result.png                      |  Bin 0 -> 85587 bytes
+ .../final/390-opening-choices.png                  |  Bin 0 -> 63192 bytes
+ .../final/390-real-base-half.png                   |  Bin 0 -> 70619 bytes
+ .../final/390-reduced-repeat.png                   |  Bin 0 -> 60954 bytes
+ .../final/390-repeat-choices.png                   |  Bin 0 -> 64356 bytes
+ .../final/390-repeat-key.png                       |  Bin 0 -> 60954 bytes
+ .../final/390-repeat-saved.png                     |  Bin 0 -> 92516 bytes
+ .../final/390-won-opponent.png                     |  Bin 0 -> 62524 bytes
+ .../final/390-won-result.png                       |  Bin 0 -> 94503 bytes
+ .../final/choices-controlled.json                  |    1 +
+ .../final/entrance-controlled.json                 |    1 +
+ .../final/lost-controlled.json                     |    1 +
+ .../b05-opponent-2026-10-15/final/report.json.gz   |  Bin 0 -> 43123 bytes
+ .../evidence/b05-opponent-2026-10-15/final/run.log |    1 +
+ .../b05-opponent-2026-10-15/final/summary.json     | 2915 ++++++++++++++++++++
+ .../final/won-controlled.json                      |    1 +
+ .../implementation-checks.json                     |   27 +
+ .../evidence/b05-opponent-2026-10-15/source.json   |  747 +++++
+ .../b05-opponent-2026-10-15/verification.json      |  148 +
+ .../390-dpr3-snapshot/390-dpr3.png                 |  Bin 0 -> 49915 bytes
+ .../390-dpr3-snapshot/report.json.gz               |  Bin 0 -> 17631 bytes
+ .../390-dpr3-snapshot/summary.json                 |  471 ++++
+ .../b05-opponent-density-2026-10-15/README.md      |   53 +
+ .../before/1366-dpr2-FAIL.png                      |  Bin 0 -> 169734 bytes
+ .../before/1366-dpr2.png                           |  Bin 0 -> 176577 bytes
+ .../before/320-dpr3-FAIL.png                       |  Bin 0 -> 41936 bytes
+ .../before/320-dpr3.png                            |  Bin 0 -> 41178 bytes
+ .../before/390-dpr3-FAIL.png                       |  Bin 0 -> 65848 bytes
+ .../before/390-dpr3.png                            |  Bin 0 -> 54044 bytes
+ .../before/report.json.gz                          |  Bin 0 -> 22128 bytes
+ .../before/summary.json                            |  827 ++++++
+ .../capture-probe-early/390-dpr3.png               |  Bin 0 -> 91047 bytes
+ .../capture-probe-early/report.json.gz             |  Bin 0 -> 17591 bytes
+ .../capture-probe-early/summary.json               |  455 +++
+ .../capture-probe/390-dpr3-FAIL.png                |  Bin 0 -> 65251 bytes
+ .../capture-probe/report.json.gz                   |  Bin 0 -> 18434 bytes
+ .../capture-probe/summary.json                     |  443 +++
+ .../capture-settled-probe/390-dpr3.png             |  Bin 0 -> 91047 bytes
+ .../capture-settled-probe/report.json.gz           |  Bin 0 -> 17619 bytes
+ .../capture-settled-probe/summary.json             |  455 +++
+ .../b05-opponent-density-2026-10-15/checks.json    |   49 +
+ .../debugger-capture-aborted/attempt.json          |    5 +
+ .../first-capture-timeout/1366-dpr2-FAIL.png       |  Bin 0 -> 108282 bytes
+ .../first-capture-timeout/1366-dpr2-resized.png    |  Bin 0 -> 131035 bytes
+ .../first-capture-timeout/1366-dpr2.png            |  Bin 0 -> 178562 bytes
+ .../first-capture-timeout/320-dpr3.png             |  Bin 0 -> 45093 bytes
+ .../first-capture-timeout/390-dpr3-FAIL.png        |  Bin 0 -> 32241 bytes
+ .../first-capture-timeout/390-dpr3-resized.png     |  Bin 0 -> 45718 bytes
+ .../first-capture-timeout/390-dpr3.png             |  Bin 0 -> 65251 bytes
+ .../first-capture-timeout/report.json.gz           |  Bin 0 -> 23743 bytes
+ .../first-capture-timeout/summary.json             | 1022 +++++++
+ .../harness-before-capture-fix.mjs                 |   89 +
+ .../harness-capture-probe.mjs                      |  108 +
+ .../harness-clip-capture.mjs                       |  105 +
+ .../harness-debugger-attempt.mjs                   |  104 +
+ .../harness-early-live.mjs                         |  107 +
+ .../harness-live-snapshots.mjs                     |  108 +
+ .../harness-native-normal-live.mjs                 |  107 +
+ .../harness-second-capture.mjs                     |   94 +
+ .../live-extra-skip-timeout/1366-dpr2-FAIL.png     |  Bin 0 -> 108282 bytes
+ .../live-extra-skip-timeout/390-dpr3-FAIL.png      |  Bin 0 -> 32248 bytes
+ .../live-extra-skip-timeout/report.json.gz         |  Bin 0 -> 23866 bytes
+ .../live-extra-skip-timeout/summary.json           | 1029 +++++++
+ .../live/report.json.gz                            |  Bin 0 -> 24885 bytes
+ .../live/summary.json                              | 1028 +++++++
+ .../1366-dpr2-FAIL.png                             |  Bin 0 -> 174688 bytes
+ .../normal-live-sampling-failure/report.json.gz    |  Bin 0 -> 22614 bytes
+ .../normal-live-sampling-failure/summary.json      |  748 +++++
+ .../post-validation.json                           |  248 ++
+ .../1366-dpr2-FAIL.png                             |  Bin 0 -> 173966 bytes
+ .../390-dpr3-resized.png                           |  Bin 0 -> 45716 bytes
+ .../resize-capture-sampling-failure/report.json.gz |  Bin 0 -> 19447 bytes
+ .../resize-capture-sampling-failure/summary.json   |  627 +++++
+ .../resize-snapshots/1366-dpr2-resized.png         |  Bin 0 -> 110138 bytes
+ .../resize-snapshots/390-dpr3-resized.png          |  Bin 0 -> 45716 bytes
+ .../resize-snapshots/report.json.gz                |  Bin 0 -> 19866 bytes
+ .../resize-snapshots/summary.json                  |  658 +++++
+ .../second-capture-timeout/1366-dpr2-FAIL.png      |  Bin 0 -> 173959 bytes
+ .../second-capture-timeout/1366-dpr2.png           |  Bin 0 -> 64970 bytes
+ .../second-capture-timeout/320-dpr3-FAIL.png       |  Bin 0 -> 43561 bytes
+ .../second-capture-timeout/320-dpr3.png            |  Bin 0 -> 11299 bytes
+ .../second-capture-timeout/390-dpr3-FAIL.png       |  Bin 0 -> 66026 bytes
+ .../second-capture-timeout/390-dpr3.png            |  Bin 0 -> 17055 bytes
+ .../second-capture-timeout/report.json.gz          |  Bin 0 -> 22004 bytes
+ .../second-capture-timeout/summary.json            |  747 +++++
+ .../snapshots/1366-dpr2.png                        |  Bin 0 -> 148478 bytes
+ .../snapshots/320-dpr3.png                         |  Bin 0 -> 45399 bytes
+ .../snapshots/390-dpr3.png                         |  Bin 0 -> 49915 bytes
+ .../snapshots/report.json.gz                       |  Bin 0 -> 21980 bytes
+ .../snapshots/summary.json                         |  840 ++++++
+ .../b05-opponent-phases-2026-10-15/README.md       |   47 +
+ .../after-surface-fix-failure/1366-changed.png     |  Bin 0 -> 150166 bytes
+ .../after-surface-fix-failure/320-reaction.png     |  Bin 0 -> 57915 bytes
+ .../after-surface-fix-failure/390-changed-FAIL.png |  Bin 0 -> 77014 bytes
+ .../after-surface-fix-failure/390-changed.png      |  Bin 0 -> 61050 bytes
+ .../after-surface-fix-failure/report.json.gz       |  Bin 0 -> 21649 bytes
+ .../after-surface-fix-failure/summary.json         | 2009 ++++++++++++++
+ .../b05-opponent-phases-2026-10-15/checks.json     |   50 +
+ .../final/1366-changed.png                         |  Bin 0 -> 150166 bytes
+ .../final/320-reaction.png                         |  Bin 0 -> 57915 bytes
+ .../final/390-changed.png                          |  Bin 0 -> 61050 bytes
+ .../final/390-reduced-replay.png                   |  Bin 0 -> 61919 bytes
+ .../final/390-reduced-skip.png                     |  Bin 0 -> 61050 bytes
+ .../final/report.json.gz                           |  Bin 0 -> 26799 bytes
+ .../final/summary.json                             | 2905 +++++++++++++++++++
+ .../initial-observer-failure/1366-changed.png      |  Bin 0 -> 150166 bytes
+ .../initial-observer-failure/320-reaction.png      |  Bin 0 -> 61197 bytes
+ .../initial-observer-failure/390-changed-FAIL.png  |  Bin 0 -> 89306 bytes
+ .../initial-observer-failure/390-changed.png       |  Bin 0 -> 61050 bytes
+ .../initial-observer-failure/report.json.gz        |  Bin 0 -> 20867 bytes
+ .../initial-observer-failure/summary.json          | 1689 ++++++++++++
+ .../pre-resume-resize-failure/1366-changed.png     |  Bin 0 -> 150166 bytes
+ .../pre-resume-resize-failure/320-reaction.png     |  Bin 0 -> 57915 bytes
+ .../pre-resume-resize-failure/390-changed-FAIL.png |  Bin 0 -> 89306 bytes
+ .../pre-resume-resize-failure/390-changed.png      |  Bin 0 -> 61050 bytes
+ .../pre-resume-resize-failure/report.json.gz       |  Bin 0 -> 21208 bytes
+ .../pre-resume-resize-failure/summary.json         | 1837 ++++++++++++
+ .../resume-input-diagnosis/320-reaction.png        |  Bin 0 -> 57915 bytes
+ .../resume-input-diagnosis/390-changed-FAIL.png    |  Bin 0 -> 89306 bytes
+ .../resume-input-diagnosis/390-changed.png         |  Bin 0 -> 61050 bytes
+ .../resume-input-diagnosis/report.json.gz          |  Bin 0 -> 18862 bytes
+ .../resume-input-diagnosis/summary.json            | 1300 +++++++++
+ harness/b05-opponent-density.mjs                   |  108 +
+ harness/b05-opponent-phases.mjs                    |   35 +
+ src/game/GameScene.ts                              |   20 +-
+ src/game/OpponentFacts.ts                          |   28 +-
+ src/game/OpponentPresentation.ts                   |   16 +-
+ tests/opponent-cues.test.ts                        |   48 +
+ 162 files changed, 24880 insertions(+), 18 deletions(-)
+ create mode 100644 docs/production/evidence/b05-opponent-2026-10-15/README.md
+ create mode 100644 docs/production/evidence/b05-opponent-2026-10-15/baseline/390-real-base-half.png
+ create mode 100644 docs/production/evidence/b05-opponent-2026-10-15/baseline/390-repeat-choices.png
+ create mode 100644 docs/production/evidence/b05-opponent-2026-10-15/baseline/390-repeat-key.png
+ create mode 100644 docs/production/evidence/b05-opponent-2026-10-15/baseline/390-repeat-saved.png
+ create mode 100644 docs/production/evidence/b05-opponent-2026-10-15/baseline/choices-controlled.json
+ create mode 100644 docs/production/evidence/b05-opponent-2026-10-15/baseline/entrance-controlled.json
+ create mode 100644 docs/production/evidence/b05-opponent-2026-10-15/baseline/lost-controlled.json
+ create mode 100644 docs/production/evidence/b05-opponent-2026-10-15/baseline/report.json.gz
+ create mode 100644 docs/production/evidence/b05-opponent-2026-10-15/baseline/summary.json
+ create mode 100644 docs/production/evidence/b05-opponent-2026-10-15/baseline/won-controlled.json
+ create mode 100644 docs/production/evidence/b05-opponent-2026-10-15/final/1366-changed-choices.png
+ create mode 100644 docs/production/evidence/b05-opponent-2026-10-15/final/1366-changed-key.png
+ create mode 100644 docs/production/evidence/b05-opponent-2026-10-15/final/1366-changed-saved.png
+ create mode 100644 docs/production/evidence/b05-opponent-2026-10-15/final/1366-entrance.png
+ create mode 100644 docs/production/evidence/b05-opponent-2026-10-15/final/1366-opening-choices.png
+ create mode 100644 docs/production/evidence/b05-opponent-2026-10-15/final/1366-real-base-half.png
+ create mode 100644 docs/production/evidence/b05-opponent-2026-10-15/final/1366-repeat-choices.png
+ create mode 100644 docs/production/evidence/b05-opponent-2026-10-15/final/1366-repeat-key.png
+ create mode 100644 docs/production/evidence/b05-opponent-2026-10-15/final/1366-repeat-saved.png
+ create mode 100644 docs/production/evidence/b05-opponent-2026-10-15/final/320-changed-choices.png
+ create mode 100644 docs/production/evidence/b05-opponent-2026-10-15/final/320-changed-key.png
+ create mode 100644 docs/production/evidence/b05-opponent-2026-10-15/final/320-changed-saved.png
+ create mode 100644 docs/production/evidence/b05-opponent-2026-10-15/final/320-entrance.png
+ create mode 100644 docs/production/evidence/b05-opponent-2026-10-15/final/320-opening-choices.png
+ create mode 100644 docs/production/evidence/b05-opponent-2026-10-15/final/320-real-base-half.png
+ create mode 100644 docs/production/evidence/b05-opponent-2026-10-15/final/320-repeat-choices.png
+ create mode 100644 docs/production/evidence/b05-opponent-2026-10-15/final/320-repeat-key.png
+ create mode 100644 docs/production/evidence/b05-opponent-2026-10-15/final/320-repeat-saved.png
+ create mode 100644 docs/production/evidence/b05-opponent-2026-10-15/final/390-changed-choices.png
+ create mode 100644 docs/production/evidence/b05-opponent-2026-10-15/final/390-changed-key.png
+ create mode 100644 docs/production/evidence/b05-opponent-2026-10-15/final/390-changed-saved.png
+ create mode 100644 docs/production/evidence/b05-opponent-2026-10-15/final/390-entrance.png
+ create mode 100644 docs/production/evidence/b05-opponent-2026-10-15/final/390-lost-opponent.png
+ create mode 100644 docs/production/evidence/b05-opponent-2026-10-15/final/390-lost-result.png
+ create mode 100644 docs/production/evidence/b05-opponent-2026-10-15/final/390-opening-choices.png
+ create mode 100644 docs/production/evidence/b05-opponent-2026-10-15/final/390-real-base-half.png
+ create mode 100644 docs/production/evidence/b05-opponent-2026-10-15/final/390-reduced-repeat.png
+ create mode 100644 docs/production/evidence/b05-opponent-2026-10-15/final/390-repeat-choices.png
+ create mode 100644 docs/production/evidence/b05-opponent-2026-10-15/final/390-repeat-key.png
+ create mode 100644 docs/production/evidence/b05-opponent-2026-10-15/final/390-repeat-saved.png
+ create mode 100644 docs/production/evidence/b05-opponent-2026-10-15/final/390-won-opponent.png
+ create mode 100644 docs/production/evidence/b05-opponent-2026-10-15/final/390-won-result.png
+ create mode 100644 docs/production/evidence/b05-opponent-2026-10-15/final/choices-controlled.json
+ create mode 100644 docs/production/evidence/b05-opponent-2026-10-15/final/entrance-controlled.json
+ create mode 100644 docs/production/evidence/b05-opponent-2026-10-15/final/lost-controlled.json
+ create mode 100644 docs/production/evidence/b05-opponent-2026-10-15/final/report.json.gz
+ create mode 100644 docs/production/evidence/b05-opponent-2026-10-15/final/run.log
+ create mode 100644 docs/production/evidence/b05-opponent-2026-10-15/final/summary.json
+ create mode 100644 docs/production/evidence/b05-opponent-2026-10-15/final/won-controlled.json
+ create mode 100644 docs/production/evidence/b05-opponent-2026-10-15/implementation-checks.json
+ create mode 100644 docs/production/evidence/b05-opponent-2026-10-15/source.json
+ create mode 100644 docs/production/evidence/b05-opponent-2026-10-15/verification.json
+ create mode 100644 docs/production/evidence/b05-opponent-density-2026-10-15/390-dpr3-snapshot/390-dpr3.png
+ create mode 100644 docs/production/evidence/b05-opponent-density-2026-10-15/390-dpr3-snapshot/report.json.gz
+ create mode 100644 docs/production/evidence/b05-opponent-density-2026-10-15/390-dpr3-snapshot/summary.json
+ create mode 100644 docs/production/evidence/b05-opponent-density-2026-10-15/README.md
+ create mode 100644 docs/production/evidence/b05-opponent-density-2026-10-15/before/1366-dpr2-FAIL.png
+ create mode 100644 docs/production/evidence/b05-opponent-density-2026-10-15/before/1366-dpr2.png
+ create mode 100644 docs/production/evidence/b05-opponent-density-2026-10-15/before/320-dpr3-FAIL.png
+ create mode 100644 docs/production/evidence/b05-opponent-density-2026-10-15/before/320-dpr3.png
+ create mode 100644 docs/production/evidence/b05-opponent-density-2026-10-15/before/390-dpr3-FAIL.png
+ create mode 100644 docs/production/evidence/b05-opponent-density-2026-10-15/before/390-dpr3.png
+ create mode 100644 docs/production/evidence/b05-opponent-density-2026-10-15/before/report.json.gz
+ create mode 100644 docs/production/evidence/b05-opponent-density-2026-10-15/before/summary.json
+ create mode 100644 docs/production/evidence/b05-opponent-density-2026-10-15/capture-probe-early/390-dpr3.png
+ create mode 100644 docs/production/evidence/b05-opponent-density-2026-10-15/capture-probe-early/report.json.gz
+ create mode 100644 docs/production/evidence/b05-opponent-density-2026-10-15/capture-probe-early/summary.json
+ create mode 100644 docs/production/evidence/b05-opponent-density-2026-10-15/capture-probe/390-dpr3-FAIL.png
+ create mode 100644 docs/production/evidence/b05-opponent-density-2026-10-15/capture-probe/report.json.gz
+ create mode 100644 docs/production/evidence/b05-opponent-density-2026-10-15/capture-probe/summary.json
+ create mode 100644 docs/production/evidence/b05-opponent-density-2026-10-15/capture-settled-probe/390-dpr3.png
+ create mode 100644 docs/production/evidence/b05-opponent-density-2026-10-15/capture-settled-probe/report.json.gz
+ create mode 100644 docs/production/evidence/b05-opponent-density-2026-10-15/capture-settled-probe/summary.json
+ create mode 100644 docs/production/evidence/b05-opponent-density-2026-10-15/checks.json
+ create mode 100644 docs/production/evidence/b05-opponent-density-2026-10-15/debugger-capture-aborted/attempt.json
+ create mode 100644 docs/production/evidence/b05-opponent-density-2026-10-15/first-capture-timeout/1366-dpr2-FAIL.png
+ create mode 100644 docs/production/evidence/b05-opponent-density-2026-10-15/first-capture-timeout/1366-dpr2-resized.png
+ create mode 100644 docs/production/evidence/b05-opponent-density-2026-10-15/first-capture-timeout/1366-dpr2.png
+ create mode 100644 docs/production/evidence/b05-opponent-density-2026-10-15/first-capture-timeout/320-dpr3.png
+ create mode 100644 docs/production/evidence/b05-opponent-density-2026-10-15/first-capture-timeout/390-dpr3-FAIL.png
+ create mode 100644 docs/production/evidence/b05-opponent-density-2026-10-15/first-capture-timeout/390-dpr3-resized.png
+ create mode 100644 docs/production/evidence/b05-opponent-density-2026-10-15/first-capture-timeout/390-dpr3.png
+ create mode 100644 docs/production/evidence/b05-opponent-density-2026-10-15/first-capture-timeout/report.json.gz
+ create mode 100644 docs/production/evidence/b05-opponent-density-2026-10-15/first-capture-timeout/summary.json
+ create mode 100644 docs/production/evidence/b05-opponent-density-2026-10-15/harness-before-capture-fix.mjs
+ create mode 100644 docs/production/evidence/b05-opponent-density-2026-10-15/harness-capture-probe.mjs
+ create mode 100644 docs/production/evidence/b05-opponent-density-2026-10-15/harness-clip-capture.mjs
+ create mode 100644 docs/production/evidence/b05-opponent-density-2026-10-15/harness-debugger-attempt.mjs
+ create mode 100644 docs/production/evidence/b05-opponent-density-2026-10-15/harness-early-live.mjs
+ create mode 100644 docs/production/evidence/b05-opponent-density-2026-10-15/harness-live-snapshots.mjs
+ create mode 100644 docs/production/evidence/b05-opponent-density-2026-10-15/harness-native-normal-live.mjs
+ create mode 100644 docs/production/evidence/b05-opponent-density-2026-10-15/harness-second-capture.mjs
+ create mode 100644 docs/production/evidence/b05-opponent-density-2026-10-15/live-extra-skip-timeout/1366-dpr2-FAIL.png
+ create mode 100644 docs/production/evidence/b05-opponent-density-2026-10-15/live-extra-skip-timeout/390-dpr3-FAIL.png
+ create mode 100644 docs/production/evidence/b05-opponent-density-2026-10-15/live-extra-skip-timeout/report.json.gz
+ create mode 100644 docs/production/evidence/b05-opponent-density-2026-10-15/live-extra-skip-timeout/summary.json
+ create mode 100644 docs/production/evidence/b05-opponent-density-2026-10-15/live/report.json.gz
+ create mode 100644 docs/production/evidence/b05-opponent-density-2026-10-15/live/summary.json
+ create mode 100644 docs/production/evidence/b05-opponent-density-2026-10-15/normal-live-sampling-failure/1366-dpr2-FAIL.png
+ create mode 100644 docs/production/evidence/b05-opponent-density-2026-10-15/normal-live-sampling-failure/report.json.gz
+ create mode 100644 docs/production/evidence/b05-opponent-density-2026-10-15/normal-live-sampling-failure/summary.json
+ create mode 100644 docs/production/evidence/b05-opponent-density-2026-10-15/post-validation.json
+ create mode 100644 docs/production/evidence/b05-opponent-density-2026-10-15/resize-capture-sampling-failure/1366-dpr2-FAIL.png
+ create mode 100644 docs/production/evidence/b05-opponent-density-2026-10-15/resize-capture-sampling-failure/390-dpr3-resized.png
+ create mode 100644 docs/production/evidence/b05-opponent-density-2026-10-15/resize-capture-sampling-failure/report.json.gz
+ create mode 100644 docs/production/evidence/b05-opponent-density-2026-10-15/resize-capture-sampling-failure/summary.json
+ create mode 100644 docs/production/evidence/b05-opponent-density-2026-10-15/resize-snapshots/1366-dpr2-resized.png
+ create mode 100644 docs/production/evidence/b05-opponent-density-2026-10-15/resize-snapshots/390-dpr3-resized.png
+ create mode 100644 docs/production/evidence/b05-opponent-density-2026-10-15/resize-snapshots/report.json.gz
+ create mode 100644 docs/production/evidence/b05-opponent-density-2026-10-15/resize-snapshots/summary.json
+ create mode 100644 docs/production/evidence/b05-opponent-density-2026-10-15/second-capture-timeout/1366-dpr2-FAIL.png
+ create mode 100644 docs/production/evidence/b05-opponent-density-2026-10-15/second-capture-timeout/1366-dpr2.png
+ create mode 100644 docs/production/evidence/b05-opponent-density-2026-10-15/second-capture-timeout/320-dpr3-FAIL.png
+ create mode 100644 docs/production/evidence/b05-opponent-density-2026-10-15/second-capture-timeout/320-dpr3.png
+ create mode 100644 docs/production/evidence/b05-opponent-density-2026-10-15/second-capture-timeout/390-dpr3-FAIL.png
+ create mode 100644 docs/production/evidence/b05-opponent-density-2026-10-15/second-capture-timeout/390-dpr3.png
+ create mode 100644 docs/production/evidence/b05-opponent-density-2026-10-15/second-capture-timeout/report.json.gz
+ create mode 100644 docs/production/evidence/b05-opponent-density-2026-10-15/second-capture-timeout/summary.json
+ create mode 100644 docs/production/evidence/b05-opponent-density-2026-10-15/snapshots/1366-dpr2.png
+ create mode 100644 docs/production/evidence/b05-opponent-density-2026-10-15/snapshots/320-dpr3.png
+ create mode 100644 docs/production/evidence/b05-opponent-density-2026-10-15/snapshots/390-dpr3.png
+ create mode 100644 docs/production/evidence/b05-opponent-density-2026-10-15/snapshots/report.json.gz
+ create mode 100644 docs/production/evidence/b05-opponent-density-2026-10-15/snapshots/summary.json
+ create mode 100644 docs/production/evidence/b05-opponent-phases-2026-10-15/README.md
+ create mode 100644 docs/production/evidence/b05-opponent-phases-2026-10-15/after-surface-fix-failure/1366-changed.png
+ create mode 100644 docs/production/evidence/b05-opponent-phases-2026-10-15/after-surface-fix-failure/320-reaction.png
+ create mode 100644 docs/production/evidence/b05-opponent-phases-2026-10-15/after-surface-fix-failure/390-changed-FAIL.png
+ create mode 100644 docs/production/evidence/b05-opponent-phases-2026-10-15/after-surface-fix-failure/390-changed.png
+ create mode 100644 docs/production/evidence/b05-opponent-phases-2026-10-15/after-surface-fix-failure/report.json.gz
+ create mode 100644 docs/production/evidence/b05-opponent-phases-2026-10-15/after-surface-fix-failure/summary.json
+ create mode 100644 docs/production/evidence/b05-opponent-phases-2026-10-15/checks.json
+ create mode 100644 docs/production/evidence/b05-opponent-phases-2026-10-15/final/1366-changed.png
+ create mode 100644 docs/production/evidence/b05-opponent-phases-2026-10-15/final/320-reaction.png
+ create mode 100644 docs/production/evidence/b05-opponent-phases-2026-10-15/final/390-changed.png
+ create mode 100644 docs/production/evidence/b05-opponent-phases-2026-10-15/final/390-reduced-replay.png
+ create mode 100644 docs/production/evidence/b05-opponent-phases-2026-10-15/final/390-reduced-skip.png
+ create mode 100644 docs/production/evidence/b05-opponent-phases-2026-10-15/final/report.json.gz
+ create mode 100644 docs/production/evidence/b05-opponent-phases-2026-10-15/final/summary.json
+ create mode 100644 docs/production/evidence/b05-opponent-phases-2026-10-15/initial-observer-failure/1366-changed.png
+ create mode 100644 docs/production/evidence/b05-opponent-phases-2026-10-15/initial-observer-failure/320-reaction.png
+ create mode 100644 docs/production/evidence/b05-opponent-phases-2026-10-15/initial-observer-failure/390-changed-FAIL.png
+ create mode 100644 docs/production/evidence/b05-opponent-phases-2026-10-15/initial-observer-failure/390-changed.png
+ create mode 100644 docs/production/evidence/b05-opponent-phases-2026-10-15/initial-observer-failure/report.json.gz
+ create mode 100644 docs/production/evidence/b05-opponent-phases-2026-10-15/initial-observer-failure/summary.json
+ create mode 100644 docs/production/evidence/b05-opponent-phases-2026-10-15/pre-resume-resize-failure/1366-changed.png
+ create mode 100644 docs/production/evidence/b05-opponent-phases-2026-10-15/pre-resume-resize-failure/320-reaction.png
+ create mode 100644 docs/production/evidence/b05-opponent-phases-2026-10-15/pre-resume-resize-failure/390-changed-FAIL.png
+ create mode 100644 docs/production/evidence/b05-opponent-phases-2026-10-15/pre-resume-resize-failure/390-changed.png
+ create mode 100644 docs/production/evidence/b05-opponent-phases-2026-10-15/pre-resume-resize-failure/report.json.gz
+ create mode 100644 docs/production/evidence/b05-opponent-phases-2026-10-15/pre-resume-resize-failure/summary.json
+ create mode 100644 docs/production/evidence/b05-opponent-phases-2026-10-15/resume-input-diagnosis/320-reaction.png
+ create mode 100644 docs/production/evidence/b05-opponent-phases-2026-10-15/resume-input-diagnosis/390-changed-FAIL.png
+ create mode 100644 docs/production/evidence/b05-opponent-phases-2026-10-15/resume-input-diagnosis/390-changed.png
+ create mode 100644 docs/production/evidence/b05-opponent-phases-2026-10-15/resume-input-diagnosis/report.json.gz
+ create mode 100644 docs/production/evidence/b05-opponent-phases-2026-10-15/resume-input-diagnosis/summary.json
+ create mode 100644 harness/b05-opponent-density.mjs
+ create mode 100644 harness/b05-opponent-phases.mjs
+ create mode 100644 tests/opponent-cues.test.ts
