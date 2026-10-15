@@ -17,7 +17,7 @@ const fixtures=Object.fromEntries(['hands','cards','abandoned','boss'].map(kind=
 for(const state of Object.values(fixtures)){assert.equal(state.phase,'run-lost');assert.ok(readCheckpoint(makeCheckpoint(state,[])).ok);}
 await server.listen();
 const browser=await chromium.launch({executablePath:process.env.SMOKE_CHROMIUM_EXECUTABLE_PATH??'/usr/bin/chromium',args:['--no-sandbox','--disable-gpu','--disable-software-rasterizer']});
-const report={startedAt:new Date().toISOString(),sourceHead:execFileSync('git',['rev-parse','HEAD'],{encoding:'utf8'}).trim(),scope:'Local E2E build; controlled terminal fixtures end through original commands, strict production import, native clicks/taps, full state/journal/checkpoint/revision comparison. Not formal-site QA, natural runs, physical devices, hearing or balance acceptance.',cases:[],failures:[]},full=[];
+const report={startedAt:new Date().toISOString(),sourceHead:execFileSync('git',['rev-parse','HEAD'],{encoding:'utf8'}).trim(),sourceStatusBefore:execFileSync('git',['status','--porcelain'],{encoding:'utf8'}).trim(),scope:'Local E2E build; controlled terminal fixtures end through original commands, strict production import, native clicks/taps, full state/journal/checkpoint/revision comparison. Not formal-site QA, natural runs, physical devices, hearing or balance acceptance.',cases:[],failures:[]},full=[];
 const observe=page=>page.evaluate(async()=>{
  const {gameSession}=await import('/src/game/session.ts'),s=gameSession(),c=window.__harness.game.registry.get('runController');
  return {state:c.state,journal:c.journal,storage:await c.store.read(),status:c.status,pending:s.pendingRun?{state:s.pendingRun.state,journal:s.pendingRun.journal,json:s.pendingRun.exportJSON(),status:s.pendingRun.status}:null};
@@ -30,6 +30,16 @@ async function importState(page,state){
 }
 async function shot(page,key){await page.screenshot({path:out+'/'+key+'.png',scale:'css',fullPage:true});}
 async function same(page,initial){assert.deepEqual(await observe(page),initial);}
+async function resultGeometry(page,viewport){
+ const facts=await page.evaluate(()=>{
+  const scene=window.__harness.game.scene.getScene('intermission'),all=[],walk=list=>{for(const o of list){all.push(o);if(o.list)walk(o.list);}};walk(scene.view.root.list);
+  return {texts:all.filter(o=>['result/formula','result/gap','result/score','result/title','result/hero-name'].includes(o.name)).map(o=>({name:o.name,text:o.text,box:o.getBounds()})),hero:all.find(o=>o.name==='result-art/hero')?.getBounds(),controls:all.filter(o=>o.input?.enabled&&o.name.startsWith('action/')).map(o=>({name:o.name,box:o.getBounds()}))};
+ });
+ const intersects=(a,b)=>a.x<b.x+b.width&&a.x+a.width>b.x&&a.y<b.y+b.height&&a.y+a.height>b.y;
+ for(const t of facts.texts){assert.ok(t.box.x>=-1&&t.box.x+t.box.width<=viewport.width+1,'result text horizontal '+t.name);assert.ok(t.box.y>=0&&t.box.y+t.box.height<=viewport.height+1,'result text vertical '+t.name);if(facts.hero&&['result/formula','result/gap','result/score'].includes(t.name))assert.ok(!intersects(t.box,facts.hero),'saved facts clear hero '+t.name);}
+ for(const c of facts.controls){assert.ok(c.box.height>=44&&c.box.y>=0&&c.box.y+c.box.height<=viewport.height+1,'result action reachable '+c.name);for(const t of facts.texts)assert.ok(!intersects(c.box,t.box),'result action leaves facts clear '+c.name);}
+ return facts;
+}
 async function buttonBounds(page){
  return page.locator('.detail-dialog[open] .dialog-actions button').evaluateAll(nodes=>nodes.map(n=>({text:n.textContent,disabled:n.disabled,rect:{x:n.getBoundingClientRect().x,y:n.getBoundingClientRect().y,width:n.getBoundingClientRect().width,height:n.getBoundingClientRect().height}})));
 }
@@ -67,7 +77,7 @@ try{
  for(const viewport of sizes)for(const kind of ['hands','cards','abandoned']){
   const context=await browser.newContext({viewport:{width:viewport.width,height:viewport.height},hasTouch:viewport.width<700,deviceScaleFactor:1}),page=await context.newPage(),row={key:viewport.name+'-'+kind,kind,viewport,errors:[]};report.cases.push(row);page.on('pageerror',e=>row.errors.push(e.message));page.on('dialog',d=>d.accept());page.setDefaultTimeout(15000);
   try{
-   await importState(page,fixtures[kind]);const initial=await observe(page);full.push({key:row.key+'/initial',saved:initial});await shot(page,row.key+'-failure');
+   await importState(page,fixtures[kind]);const initial=await observe(page);full.push({key:row.key+'/initial',saved:initial});row.resultGeometry=await resultGeometry(page,viewport);await shot(page,row.key+'-failure');
    const hit=await point(page,'intermission','action/failure-guidance');assert.ok(hit.enabled&&hit.x>=0&&hit.x<=viewport.width&&hit.y>=0&&hit.y<=viewport.height);
    await tapUI(page,'intermission','action/failure-guidance',viewport.width<700);row.dialog=await checkDialog(page,viewport);await shot(page,row.key+'-advice');await same(page,initial);
    const review=page.getByRole('button',{name:'回看最后一手',exact:true});
@@ -95,4 +105,4 @@ try{
  }
  report.status='PASS';
 }catch(e){report.status='FAIL';report.failures.push(e.stack);process.exitCode=1;console.error(e.stack);}
-finally{report.completedAt=new Date().toISOString();await browser.close();await server.close();await writeFile(out+'/report.json',JSON.stringify(report,null,2)+'\n');await writeFile(out+'/full-state.json.gz',gzipSync(JSON.stringify({fixtures,observations:full})));console.log('Result:',report.status,'in',out);}
+finally{report.completedAt=new Date().toISOString();report.sourceHeadAfter=execFileSync('git',['rev-parse','HEAD'],{encoding:'utf8'}).trim();report.sourceStatusAfter=execFileSync('git',['status','--porcelain'],{encoding:'utf8'}).trim();if(report.sourceHead!==report.sourceHeadAfter||report.sourceStatusBefore!==report.sourceStatusAfter){report.status='FAIL';report.failures.push('source changed during QA');process.exitCode=1;}await browser.close();await server.close();await writeFile(out+'/report.json',JSON.stringify(report,null,2)+'\n');await writeFile(out+'/full-state.json.gz',gzipSync(JSON.stringify({fixtures,observations:full})));console.log('Result:',report.status,'in',out);}
