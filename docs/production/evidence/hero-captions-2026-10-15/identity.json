@@ -1,0 +1,98 @@
+{
+  "base": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+  "product": "f2386c09795011785a7848a8b92257e7018c0965",
+  "sourceTree": "9fda5d40ac1bc1c17a95d77fffec0ee746e3c89c",
+  "protected": [
+    {
+      "path": "src/domain",
+      "baseObject": "bd1f9b2c5a2b7eb4d143b59a094694b12adc8485",
+      "productObject": "bd1f9b2c5a2b7eb4d143b59a094694b12adc8485",
+      "unchanged": true
+    },
+    {
+      "path": "src/application",
+      "baseObject": "1a325d51795f54526ec9f3f313cceb69763a1971",
+      "productObject": "1a325d51795f54526ec9f3f313cceb69763a1971",
+      "unchanged": true
+    },
+    {
+      "path": "src/content",
+      "baseObject": "e8c3794be5b0fcb74da4aeb9e6adc63c22388345",
+      "productObject": "e8c3794be5b0fcb74da4aeb9e6adc63c22388345",
+      "unchanged": true
+    },
+    {
+      "path": "src/audio",
+      "baseObject": "7f6d2d0dd34313a4099d34cfd36b2baa748f83c2",
+      "productObject": "7f6d2d0dd34313a4099d34cfd36b2baa748f83c2",
+      "unchanged": true
+    },
+    {
+      "path": "src/platform",
+      "baseObject": "1db66e1b48ed188e9b50897e207ca0555d92062b",
+      "productObject": "1db66e1b48ed188e9b50897e207ca0555d92062b",
+      "unchanged": true
+    },
+    {
+      "path": "src/game/TextRaster.ts",
+      "baseObject": "eb286927140dd627750de5daf1c49731711d0846",
+      "productObject": "eb286927140dd627750de5daf1c49731711d0846",
+      "unchanged": true
+    },
+    {
+      "path": "src/game/ShopScene.ts",
+      "baseObject": "82831f96368f67fae6824d111d77f4577744a494",
+      "productObject": "82831f96368f67fae6824d111d77f4577744a494",
+      "unchanged": true
+    },
+    {
+      "path": "src/game/HeroExplanation.ts",
+      "baseObject": "75f903a91b499dcd5e6024590f9746aacd60d802",
+      "productObject": "75f903a91b499dcd5e6024590f9746aacd60d802",
+      "unchanged": true
+    },
+    {
+      "path": "src/game/CharacterRunCopy.ts",
+      "baseObject": "d893ed232e358e64fed0ac48b5374ea8975b7cd4",
+      "productObject": "d893ed232e358e64fed0ac48b5374ea8975b7cd4",
+      "unchanged": true
+    },
+    {
+      "path": "src/game/HeroSkillGuide.ts",
+      "baseObject": "b0874e7b4c4247cc11271f256f5ecd05a2f90cb6",
+      "productObject": "b0874e7b4c4247cc11271f256f5ecd05a2f90cb6",
+      "unchanged": true
+    },
+    {
+      "path": "src/game/HeroPayoff.ts",
+      "baseObject": "93977d3a9d23ca1d3d233296b7f33d68c79e73a5",
+      "productObject": "93977d3a9d23ca1d3d233296b7f33d68c79e73a5",
+      "unchanged": true
+    },
+    {
+      "path": "src/game/HeroClimaxLayout.ts",
+      "baseObject": "6359655b29449f7052dbeba7b01a7420dde6a996",
+      "productObject": "6359655b29449f7052dbeba7b01a7420dde6a996",
+      "unchanged": true
+    },
+    {
+      "path": "public",
+      "baseObject": "c4a6ec74e7fd754b0f300b973020f8afed7542e1",
+      "productObject": "c4a6ec74e7fd754b0f300b973020f8afed7542e1",
+      "unchanged": true
+    },
+    {
+      "path": "art",
+      "baseObject": "b0caa33679b84bee932b2854734c04ad39ba0464",
+      "productObject": "b0caa33679b84bee932b2854734c04ad39ba0464",
+      "unchanged": true
+    }
+  ],
+  "productFiles": [
+    "src/game/GameScene.ts",
+    "src/game/HeroClimax.ts",
+    "src/game/HeroClimaxCaption.ts",
+    "tests/hero-climax.test.ts"
+  ],
+  "notes": "before and original initial explanation runner read base. after/mobile/source-boundaries runners started with uncommitted product files later frozen exactly as f2386c09; their recorded HEAD is deliberately retained. PC rerun and Laohuan final ran at f2386c09. No product mutation since this freeze."
+}
