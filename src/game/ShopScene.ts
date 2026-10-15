@@ -1,3 +1,4 @@
+import {heroText} from './HeroIdentity';
 import {createShopRarityFrame,createShopEditionMark,createShopRecommendationStars,createShopRecommendationAccent,createShopCombinationMark,createShopRouteTag,shopCombinationVisual,shopCombinationMarkLayout,shopRecommendationVisual} from './ShopCardValueVisual';
 import {showShopComparison,type ShopComparisonView} from './ShopComparisonDialog';
 import {createShopOfferValue,createShopIdentityTags} from './ShopJokerPresentation';
@@ -802,7 +803,7 @@ export class ShopScene extends Phaser.Scene {
     const s=this.run,seq=s.commandSeq,index=s.stageIndex,start=Math.floor(index/3)*3,normal=SKIP_ITEM_LABELS[s.chapterSkipConsumable];
     const stages=[0,1,2].map(i=>{const stage=getR2Stage(start+i,s.tourMode,s.difficulty,s)!;return stage.name+' · 目标 '+heatText(stage.targetHeat);}).join('\n');
     const challenge=R2_MODE_CATALOG.challenges.find(row=>row.id===s.challengeId),ban=s.chapterDisabledJokerId?`\n本章封角：${this.jokerDefinition(s.chapterDisabledJokerId).name}。计分和版次暂停，静态与经济照常。`:'';
-    const body=(challenge?challenge.name+'：'+challenge.description+'\n\n':'')+stages+`\n\n压轴 ${s.boss.definitionId} · `+r2BossText(s.boss)+ban+'\n\n'+programStatus(s)+`\n\n暖场跳过：下一次买牌减2金，最低1金。现有 ${s.purchaseCoupons} 张券。\n正场跳过：${normal}；库存满时改为1金。\n跳过不获得过关奖励或利息，不触发过关效果；压轴不可跳过。`;
+    const body=(challenge?challenge.name+'：'+challenge.description+'\n\n':'')+stages+`\n\n压轴 ${s.boss.definitionId} · `+heroText(r2BossText(s.boss))+ban+'\n\n'+programStatus(s)+`\n\n暖场跳过：下一次买牌减2金，最低1金。现有 ${s.purchaseCoupons} 张券。\n正场跳过：${normal}；库存满时改为1金。\n跳过不获得过关奖励或利息，不触发过关效果；压轴不可跳过。`;
     this.dialog.open(s.tourMode==='endless'?'无尽 · 本章节目':'本章节目',body,[...(s.program?[{label:s.program.choiceMade?'查看节目单':'选择节目单',run:()=>showPrograms(this.dialog,this.run,this.ready,(a,seq)=>this.send(a,seq))}]:[]),{label:'跳过本场',disabled:!this.ready||index%3===2,run:()=>{
       const reward=index%3===0?'下一次买牌减2金券':s.consumables.length<r2ConsumableCapacity(s)?normal:'库存已满，获得1金';
       const d=this.dialog.open('跳场确认',`跳过「${getR2Stage(index,s.tourMode,s.difficulty,s)!.name}」获得 ${reward}。\n本场没有热度、过关奖金或利息，也不会触发过关效果。`,[{label:'确认跳场',primary:true,run:async()=>{if(await this.send({type:'SkipStage'},seq))this.dialog.close(d);}}],{closeLabel:'取消'});

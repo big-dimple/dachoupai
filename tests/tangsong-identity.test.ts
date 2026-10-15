@@ -1,3 +1,4 @@
+import {R2_BOSSES,r2BossText} from '../src/domain/r2Chapter';
 import {expect,it} from 'vitest';
 import {readFileSync} from 'node:fs';
 import {createHash} from 'node:crypto';
@@ -32,4 +33,11 @@ it('every visible face role points at a named typographic placeholder, never an 
   expect(()=>assertCharacterArtReference(a.key,`/assets/handdrawn-p08/characters/${c.id}.${purpose}.webp`)).toThrow('character-art-reference');
  }
  expect(getCharacter('azao').name.length).toBe(4);
+});
+
+it('adapts legacy boss references for display without changing the published rule text',()=>{
+ const boss=R2_BOSSES.find(b=>b.id==='B08')!,before=JSON.stringify(boss);
+ expect(boss.rule).toContain('骰爷');expect(boss.response).toContain('谢幕人');
+ const display=heroText(r2BossText({definitionId:'B08',disabledSuit:null}));
+ expect(display).toContain('秦琼');expect(display).toContain('花蕊夫人');expect(display).not.toMatch(/骰爷|谢幕人/);expect(JSON.stringify(boss)).toBe(before);
 });

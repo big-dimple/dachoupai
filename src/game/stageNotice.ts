@@ -1,3 +1,4 @@
+import {heroText} from './HeroIdentity';
 import {SUIT_SYMBOL} from '../cards/types';
 import {HAND_LABELS} from '../content/handLabels';
 import {r2JokerDefinitionsForContext} from '../domain/r2ContentProfiles';
@@ -50,7 +51,7 @@ function enteredNotice(run:StageNoticeInput,selectedIds:readonly string[]=[]):St
   const stoppedScope=['B06','B15','B16'].includes(boss.definitionId)
     ?'\n封禁只影响计分和版次，计分概率不判定；静态、经济、非数学成长和寿命仍有效，未执行的待用热度不消耗。':'';
   const hand=run.handOrder.map(id=>run.deckInstances.find(card=>card.id===id)!);
-  const notice:StageNotice={...normal,warning:true,symbol:'!',details:definition.rule+stoppedScope+'\n\n应对：'+definition.response,
+  const notice:StageNotice={...normal,warning:true,symbol:'!',details:heroText(definition.rule)+stoppedScope+'\n\n应对：'+heroText(definition.response),
     disabledCardIds:r2DisabledCards(boss,index,hand),ordinarySuppressedIds:r2OrdinarySuppression(boss,index,hand,selectedIds),
     disabledJokerIds:r2ScoringDisabledJokerIds(boss,run.jokers??[],r2JokerDefinitionsForContext(run),stage.sealedJokerIds)};
   switch(boss.definitionId){

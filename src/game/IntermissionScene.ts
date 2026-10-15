@@ -1,3 +1,4 @@
+import {heroText} from './HeroIdentity';
 import {formatScoreReview} from './ScoreReview';
 import {heroStageContinuity} from './HeroStageContinuity';
 import {drawSettlement,mountSettlementMotion,settlementFacts} from './SettlementPresentation';
@@ -256,7 +257,7 @@ export class IntermissionScene extends Phaser.Scene {
   private inspectResult():void {
     const run=runController(this)!.state,stage={...getR2Stage(this.result.stageIndex,run.tourMode,run.difficulty,run)!,targetHeat:run.stage!.targetHeat};
     const last=stageOutcome(run.stage!,run.lastTrace).last,impact=last?savedBossImpact(run,last):'';
-    this.dialog.open('本场详情',`${run.tourMode==='endless'?'无尽 · ':''}${stage.name}\n热度 ${heatText(this.result.stageHeat)} / ${heatText(stage.targetHeat)}\n${this.result.cleared?'过关收益':'本场收益'} ${this.result.goldEarned} 金 · 余额 ${run.gold} 金\n剩余出牌 ${this.result.handsLeft} · 剩余弃牌 ${run.stage?.discardsLeft??0}\n\n当前构筑：`+(run.jokers.map(j=>this.jokerDefinition(j.definitionId).name).join('、')||'空')+'\n\n'+(run.stage?.boss?'本场压轴：'+r2BossText(run.stage.boss):'本场为普通场。')+(impact?'\n\n'+impact:''),[...(last?[{label:'回看最后一手',run:()=>this.inspectLastHand()}]:[]),...(run.phase==='run-lost'?[{label:'再战建议',run:()=>this.inspectFailure()}]:[])]);
+    this.dialog.open('本场详情',`${run.tourMode==='endless'?'无尽 · ':''}${stage.name}\n热度 ${heatText(this.result.stageHeat)} / ${heatText(stage.targetHeat)}\n${this.result.cleared?'过关收益':'本场收益'} ${this.result.goldEarned} 金 · 余额 ${run.gold} 金\n剩余出牌 ${this.result.handsLeft} · 剩余弃牌 ${run.stage?.discardsLeft??0}\n\n当前构筑：`+(run.jokers.map(j=>this.jokerDefinition(j.definitionId).name).join('、')||'空')+'\n\n'+(run.stage?.boss?'本场压轴：'+heroText(r2BossText(run.stage.boss)):'本场为普通场。')+(impact?'\n\n'+impact:''),[...(last?[{label:'回看最后一手',run:()=>this.inspectLastHand()}]:[]),...(run.phase==='run-lost'?[{label:'再战建议',run:()=>this.inspectFailure()}]:[])]);
   }
   private inspectLastHand():void {
     const run=runController(this)!.state,trace=stageOutcome(run.stage!,run.lastTrace).last;if(!trace)return;
