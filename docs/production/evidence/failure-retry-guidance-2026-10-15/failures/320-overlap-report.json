@@ -1,0 +1,3415 @@
+{
+  "startedAt": "2026-10-15T00:01:08.995Z",
+  "sourceHead": "836544c62021a6f53712afc71fe6bf32e833120f",
+  "scope": "Local E2E build; controlled terminal fixtures end through original commands, strict production import, native clicks/taps, full state/journal/checkpoint/revision comparison. Not formal-site QA, natural runs, physical devices, hearing or balance acceptance.",
+  "cases": [
+    {
+      "key": "pc-hands",
+      "kind": "hands",
+      "viewport": {
+        "name": "pc",
+        "width": 1366,
+        "height": 768
+      },
+      "errors": [],
+      "dialog": {
+        "bounds": {
+          "x": 243,
+          "y": 12,
+          "width": 880,
+          "height": 744
+        },
+        "buttons": [
+          {
+            "text": "回看最后一手",
+            "disabled": false,
+            "rect": {
+              "x": 264,
+              "y": 687,
+              "width": 221,
+              "height": 56
+            }
+          },
+          {
+            "text": "返回选角",
+            "disabled": false,
+            "rect": {
+              "x": 493,
+              "y": 687,
+              "width": 193,
+              "height": 56
+            }
+          },
+          {
+            "text": "同局重试",
+            "disabled": false,
+            "rect": {
+              "x": 694,
+              "y": 687,
+              "width": 193,
+              "height": 56
+            }
+          },
+          {
+            "text": "返回失败页",
+            "disabled": false,
+            "rect": {
+              "x": 895,
+              "y": 687,
+              "width": 207,
+              "height": 56
+            }
+          }
+        ],
+        "text": "出牌用尽，准备再战\n\n出牌次数已用完 · 本场还差 291 热度\n最后一手：高牌 · 31 热度\n剩余出牌 0 次 · 弃牌 3 次\n\n重试从开局开始；金币、构筑、工具与成长不继承，建议不保证过关。\n\n1. 先把一手凑完整\n\n末手是高牌，保存热度31；这是记录，不代表它一定是失败原因。\n若摸到同点对子，先留对子、换散牌；例如留两张7，再找第三张7。出牌前核对实际牌型。\n\n2. 升级、做牌或留钱\n\n筹备店升级只选已发现且未30级的牌型；Lv.1原价4金，之后按等级报价，确认后当场升一级。\n基础改牌原价2金、染色原价4金；升级与改牌/染色共用每店一次。\n实付、现货同名入口、可用目标与库存容量以当店确认页为准；买不起或没有合适目标时可以留钱。\n\n其它查看\n升级与做牌的实际规则\n回看最后一手\n返回选角\n同局重试\n返回失败页",
+        "scroll": {
+          "height": 742,
+          "scrollHeight": 742
+        }
+      },
+      "expanded": {
+        "bounds": {
+          "x": 243,
+          "y": 12,
+          "width": 880,
+          "height": 744
+        },
+        "buttons": [
+          {
+            "text": "回看最后一手",
+            "disabled": false,
+            "rect": {
+              "x": 264,
+              "y": 687,
+              "width": 221,
+              "height": 56
+            }
+          },
+          {
+            "text": "返回选角",
+            "disabled": false,
+            "rect": {
+              "x": 493,
+              "y": 687,
+              "width": 193,
+              "height": 56
+            }
+          },
+          {
+            "text": "同局重试",
+            "disabled": false,
+            "rect": {
+              "x": 694,
+              "y": 687,
+              "width": 193,
+              "height": 56
+            }
+          },
+          {
+            "text": "返回失败页",
+            "disabled": false,
+            "rect": {
+              "x": 895,
+              "y": 687,
+              "width": 207,
+              "height": 56
+            }
+          }
+        ],
+        "text": "出牌用尽，准备再战\n\n出牌次数已用完 · 本场还差 291 热度\n最后一手：高牌 · 31 热度\n剩余出牌 0 次 · 弃牌 3 次\n\n重试从开局开始；金币、构筑、工具与成长不继承，建议不保证过关。\n\n1. 先把一手凑完整\n\n末手是高牌，保存热度31；这是记录，不代表它一定是失败原因。\n若摸到同点对子，先留对子、换散牌；例如留两张7，再找第三张7。出牌前核对实际牌型。\n\n2. 升级、做牌或留钱\n\n筹备店升级只选已发现且未30级的牌型；Lv.1原价4金，之后按等级报价，确认后当场升一级。\n基础改牌原价2金、染色原价4金；升级与改牌/染色共用每店一次。\n实付、现货同名入口、可用目标与库存容量以当店确认页为准；买不起或没有合适目标时可以留钱。\n\n其它查看\n升级与做牌的实际规则\n\n筹备店升级只选已发现且未30级的牌型；Lv.1原价4金，之后按等级报价，确认后当场升一级。\n基础改牌原价2金、染色原价4金；升级与改牌/染色共用每店一次。\n实付、现货同名入口、可用目标与库存容量以当店确认页为准；买不起或没有合适目标时可以留钱。\n\n回看最后一手\n返回选角\n同局重试\n返回失败页",
+        "scroll": {
+          "height": 742,
+          "scrollHeight": 742
+        }
+      },
+      "readOnlyFlow": "PASS",
+      "retry": {
+        "status": "PASS",
+        "commitAttempts": 1,
+        "successfulRevisionDelta": 1,
+        "singleNewState": true
+      },
+      "coldRecovery": "PASS",
+      "status": "PASS"
+    },
+    {
+      "key": "pc-cards",
+      "kind": "cards",
+      "viewport": {
+        "name": "pc",
+        "width": 1366,
+        "height": 768
+      },
+      "errors": [],
+      "dialog": {
+        "bounds": {
+          "x": 243,
+          "y": 12,
+          "width": 880,
+          "height": 744
+        },
+        "buttons": [
+          {
+            "text": "回看最后一手",
+            "disabled": false,
+            "rect": {
+              "x": 264,
+              "y": 687,
+              "width": 221,
+              "height": 56
+            }
+          },
+          {
+            "text": "返回选角",
+            "disabled": false,
+            "rect": {
+              "x": 493,
+              "y": 687,
+              "width": 193,
+              "height": 56
+            }
+          },
+          {
+            "text": "同局重试",
+            "disabled": false,
+            "rect": {
+              "x": 694,
+              "y": 687,
+              "width": 193,
+              "height": 56
+            }
+          },
+          {
+            "text": "返回失败页",
+            "disabled": false,
+            "rect": {
+              "x": 895,
+              "y": 687,
+              "width": 207,
+              "height": 56
+            }
+          }
+        ],
+        "text": "已无可出牌，准备再战\n\n已无可出牌 · 本场还差 369 热度\n最后一手：高牌 · 31 热度\n剩余出牌 3 次 · 弃牌 3 次\n\n重试从开局开始；金币、构筑、工具与成长不继承，建议不保证过关。\n\n1. 先保住可出的牌\n\n剩余出牌 3 次 · 弃牌 3 次，但本局已无可出牌。下一局用删牌、破碎或改牌工具前，先查看牌组与工具代价，再确认目标；留钱也可以。\n\n2. 重新开局再培养\n\n筹备店升级只选已发现且未30级的牌型；Lv.1原价4金，之后按等级报价，确认后当场升一级。\n基础改牌原价2金、染色原价4金；升级与改牌/染色共用每店一次。\n实付、现货同名入口、可用目标与库存容量以当店确认页为准；买不起或没有合适目标时可以留钱。\n\n其它查看\n升级与做牌的实际规则\n回看最后一手\n返回选角\n同局重试\n返回失败页",
+        "scroll": {
+          "height": 742,
+          "scrollHeight": 742
+        }
+      },
+      "expanded": {
+        "bounds": {
+          "x": 243,
+          "y": 12,
+          "width": 880,
+          "height": 744
+        },
+        "buttons": [
+          {
+            "text": "回看最后一手",
+            "disabled": false,
+            "rect": {
+              "x": 264,
+              "y": 687,
+              "width": 221,
+              "height": 56
+            }
+          },
+          {
+            "text": "返回选角",
+            "disabled": false,
+            "rect": {
+              "x": 493,
+              "y": 687,
+              "width": 193,
+              "height": 56
+            }
+          },
+          {
+            "text": "同局重试",
+            "disabled": false,
+            "rect": {
+              "x": 694,
+              "y": 687,
+              "width": 193,
+              "height": 56
+            }
+          },
+          {
+            "text": "返回失败页",
+            "disabled": false,
+            "rect": {
+              "x": 895,
+              "y": 687,
+              "width": 207,
+              "height": 56
+            }
+          }
+        ],
+        "text": "已无可出牌，准备再战\n\n已无可出牌 · 本场还差 369 热度\n最后一手：高牌 · 31 热度\n剩余出牌 3 次 · 弃牌 3 次\n\n重试从开局开始；金币、构筑、工具与成长不继承，建议不保证过关。\n\n1. 先保住可出的牌\n\n剩余出牌 3 次 · 弃牌 3 次，但本局已无可出牌。下一局用删牌、破碎或改牌工具前，先查看牌组与工具代价，再确认目标；留钱也可以。\n\n2. 重新开局再培养\n\n筹备店升级只选已发现且未30级的牌型；Lv.1原价4金，之后按等级报价，确认后当场升一级。\n基础改牌原价2金、染色原价4金；升级与改牌/染色共用每店一次。\n实付、现货同名入口、可用目标与库存容量以当店确认页为准；买不起或没有合适目标时可以留钱。\n\n其它查看\n升级与做牌的实际规则\n\n筹备店升级只选已发现且未30级的牌型；Lv.1原价4金，之后按等级报价，确认后当场升一级。\n基础改牌原价2金、染色原价4金；升级与改牌/染色共用每店一次。\n实付、现货同名入口、可用目标与库存容量以当店确认页为准；买不起或没有合适目标时可以留钱。\n\n回看最后一手\n返回选角\n同局重试\n返回失败页",
+        "scroll": {
+          "height": 742,
+          "scrollHeight": 742
+        }
+      },
+      "readOnlyFlow": "PASS",
+      "status": "PASS"
+    },
+    {
+      "key": "pc-abandoned",
+      "kind": "abandoned",
+      "viewport": {
+        "name": "pc",
+        "width": 1366,
+        "height": 768
+      },
+      "errors": [],
+      "dialog": {
+        "bounds": {
+          "x": 243,
+          "y": 12,
+          "width": 880,
+          "height": 744
+        },
+        "buttons": [
+          {
+            "text": "回看最后一手",
+            "disabled": true,
+            "rect": {
+              "x": 264,
+              "y": 687,
+              "width": 221,
+              "height": 56
+            }
+          },
+          {
+            "text": "返回选角",
+            "disabled": false,
+            "rect": {
+              "x": 493,
+              "y": 687,
+              "width": 193,
+              "height": 56
+            }
+          },
+          {
+            "text": "同局重试",
+            "disabled": false,
+            "rect": {
+              "x": 694,
+              "y": 687,
+              "width": 193,
+              "height": 56
+            }
+          },
+          {
+            "text": "返回失败页",
+            "disabled": false,
+            "rect": {
+              "x": 895,
+              "y": 687,
+              "width": 207,
+              "height": 56
+            }
+          }
+        ],
+        "text": "已结束本局，重新选择\n\n已结束本局 · 本场还差 400 热度\n最后一手记录不可用\n剩余出牌 4 次 · 弃牌 3 次\n\n重试从开局开始；金币、构筑、工具与成长不继承，建议不保证过关。\n\n1. 先决定这次想怎么打\n\n这是主动结束本局，不据此判定构筑强弱。可回看已保存的末手，再返回选角换英雄或开局方向。\n\n2. 重试或换个开局\n\n同局重试沿用种子、英雄、模式与本局规则；返回选角可以重新选择。两种开局都从初始资源开始。\n\n其它查看\n升级与做牌的实际规则\n回看最后一手\n返回选角\n同局重试\n返回失败页",
+        "scroll": {
+          "height": 742,
+          "scrollHeight": 742
+        }
+      },
+      "expanded": {
+        "bounds": {
+          "x": 243,
+          "y": 12,
+          "width": 880,
+          "height": 744
+        },
+        "buttons": [
+          {
+            "text": "回看最后一手",
+            "disabled": true,
+            "rect": {
+              "x": 264,
+              "y": 687,
+              "width": 221,
+              "height": 56
+            }
+          },
+          {
+            "text": "返回选角",
+            "disabled": false,
+            "rect": {
+              "x": 493,
+              "y": 687,
+              "width": 193,
+              "height": 56
+            }
+          },
+          {
+            "text": "同局重试",
+            "disabled": false,
+            "rect": {
+              "x": 694,
+              "y": 687,
+              "width": 193,
+              "height": 56
+            }
+          },
+          {
+            "text": "返回失败页",
+            "disabled": false,
+            "rect": {
+              "x": 895,
+              "y": 687,
+              "width": 207,
+              "height": 56
+            }
+          }
+        ],
+        "text": "已结束本局，重新选择\n\n已结束本局 · 本场还差 400 热度\n最后一手记录不可用\n剩余出牌 4 次 · 弃牌 3 次\n\n重试从开局开始；金币、构筑、工具与成长不继承，建议不保证过关。\n\n1. 先决定这次想怎么打\n\n这是主动结束本局，不据此判定构筑强弱。可回看已保存的末手，再返回选角换英雄或开局方向。\n\n2. 重试或换个开局\n\n同局重试沿用种子、英雄、模式与本局规则；返回选角可以重新选择。两种开局都从初始资源开始。\n\n其它查看\n升级与做牌的实际规则\n\n筹备店升级只选已发现且未30级的牌型；Lv.1原价4金，之后按等级报价，确认后当场升一级。\n基础改牌原价2金、染色原价4金；升级与改牌/染色共用每店一次。\n实付、现货同名入口、可用目标与库存容量以当店确认页为准；买不起或没有合适目标时可以留钱。\n\n回看最后一手\n返回选角\n同局重试\n返回失败页",
+        "scroll": {
+          "height": 742,
+          "scrollHeight": 742
+        }
+      },
+      "readOnlyFlow": "PASS",
+      "status": "PASS"
+    },
+    {
+      "key": "390-hands",
+      "kind": "hands",
+      "viewport": {
+        "name": "390",
+        "width": 390,
+        "height": 844
+      },
+      "errors": [],
+      "dialog": {
+        "bounds": {
+          "x": 19,
+          "y": 32,
+          "width": 352,
+          "height": 780
+        },
+        "buttons": [
+          {
+            "text": "回看最后一手",
+            "disabled": false,
+            "rect": {
+              "x": 36,
+              "y": 689,
+              "width": 119.328125,
+              "height": 56
+            }
+          },
+          {
+            "text": "返回选角",
+            "disabled": false,
+            "rect": {
+              "x": 163.328125,
+              "y": 689,
+              "width": 91.34375,
+              "height": 56
+            }
+          },
+          {
+            "text": "同局重试",
+            "disabled": false,
+            "rect": {
+              "x": 262.671875,
+              "y": 689,
+              "width": 91.328125,
+              "height": 56
+            }
+          },
+          {
+            "text": "返回失败页",
+            "disabled": false,
+            "rect": {
+              "x": 36,
+              "y": 753,
+              "width": 318,
+              "height": 48
+            }
+          }
+        ],
+        "text": "出牌用尽，准备再战\n\n出牌次数已用完 · 本场还差 291 热度\n最后一手：高牌 · 31 热度\n剩余出牌 0 次 · 弃牌 3 次\n\n重试从开局开始；金币、构筑、工具与成长不继承，建议不保证过关。\n\n1. 先把一手凑完整\n\n末手是高牌，保存热度31；这是记录，不代表它一定是失败原因。\n若摸到同点对子，先留对子、换散牌；例如留两张7，再找第三张7。出牌前核对实际牌型。\n\n2. 升级、做牌或留钱\n\n筹备店升级只选已发现且未30级的牌型；Lv.1原价4金，之后按等级报价，确认后当场升一级。\n基础改牌原价2金、染色原价4金；升级与改牌/染色共用每店一次。\n实付、现货同名入口、可用目标与库存容量以当店确认页为准；买不起或没有合适目标时可以留钱。\n\n其它查看\n升级与做牌的实际规则\n回看最后一手\n返回选角\n同局重试\n返回失败页",
+        "scroll": {
+          "height": 778,
+          "scrollHeight": 778
+        }
+      },
+      "expanded": {
+        "bounds": {
+          "x": 19,
+          "y": 32,
+          "width": 352,
+          "height": 780
+        },
+        "buttons": [
+          {
+            "text": "回看最后一手",
+            "disabled": false,
+            "rect": {
+              "x": 36,
+              "y": 689,
+              "width": 119.328125,
+              "height": 56
+            }
+          },
+          {
+            "text": "返回选角",
+            "disabled": false,
+            "rect": {
+              "x": 163.328125,
+              "y": 689,
+              "width": 91.34375,
+              "height": 56
+            }
+          },
+          {
+            "text": "同局重试",
+            "disabled": false,
+            "rect": {
+              "x": 262.671875,
+              "y": 689,
+              "width": 91.328125,
+              "height": 56
+            }
+          },
+          {
+            "text": "返回失败页",
+            "disabled": false,
+            "rect": {
+              "x": 36,
+              "y": 753,
+              "width": 318,
+              "height": 48
+            }
+          }
+        ],
+        "text": "出牌用尽，准备再战\n\n出牌次数已用完 · 本场还差 291 热度\n最后一手：高牌 · 31 热度\n剩余出牌 0 次 · 弃牌 3 次\n\n重试从开局开始；金币、构筑、工具与成长不继承，建议不保证过关。\n\n1. 先把一手凑完整\n\n末手是高牌，保存热度31；这是记录，不代表它一定是失败原因。\n若摸到同点对子，先留对子、换散牌；例如留两张7，再找第三张7。出牌前核对实际牌型。\n\n2. 升级、做牌或留钱\n\n筹备店升级只选已发现且未30级的牌型；Lv.1原价4金，之后按等级报价，确认后当场升一级。\n基础改牌原价2金、染色原价4金；升级与改牌/染色共用每店一次。\n实付、现货同名入口、可用目标与库存容量以当店确认页为准；买不起或没有合适目标时可以留钱。\n\n其它查看\n升级与做牌的实际规则\n\n筹备店升级只选已发现且未30级的牌型；Lv.1原价4金，之后按等级报价，确认后当场升一级。\n基础改牌原价2金、染色原价4金；升级与改牌/染色共用每店一次。\n实付、现货同名入口、可用目标与库存容量以当店确认页为准；买不起或没有合适目标时可以留钱。\n\n回看最后一手\n返回选角\n同局重试\n返回失败页",
+        "scroll": {
+          "height": 778,
+          "scrollHeight": 778
+        }
+      },
+      "readOnlyFlow": "PASS",
+      "retry": {
+        "status": "PASS",
+        "commitAttempts": 1,
+        "successfulRevisionDelta": 1,
+        "singleNewState": true
+      },
+      "coldRecovery": "PASS",
+      "status": "PASS"
+    },
+    {
+      "key": "390-cards",
+      "kind": "cards",
+      "viewport": {
+        "name": "390",
+        "width": 390,
+        "height": 844
+      },
+      "errors": [],
+      "dialog": {
+        "bounds": {
+          "x": 19,
+          "y": 32,
+          "width": 352,
+          "height": 780
+        },
+        "buttons": [
+          {
+            "text": "回看最后一手",
+            "disabled": false,
+            "rect": {
+              "x": 36,
+              "y": 689,
+              "width": 119.328125,
+              "height": 56
+            }
+          },
+          {
+            "text": "返回选角",
+            "disabled": false,
+            "rect": {
+              "x": 163.328125,
+              "y": 689,
+              "width": 91.34375,
+              "height": 56
+            }
+          },
+          {
+            "text": "同局重试",
+            "disabled": false,
+            "rect": {
+              "x": 262.671875,
+              "y": 689,
+              "width": 91.328125,
+              "height": 56
+            }
+          },
+          {
+            "text": "返回失败页",
+            "disabled": false,
+            "rect": {
+              "x": 36,
+              "y": 753,
+              "width": 318,
+              "height": 48
+            }
+          }
+        ],
+        "text": "已无可出牌，准备再战\n\n已无可出牌 · 本场还差 369 热度\n最后一手：高牌 · 31 热度\n剩余出牌 3 次 · 弃牌 3 次\n\n重试从开局开始；金币、构筑、工具与成长不继承，建议不保证过关。\n\n1. 先保住可出的牌\n\n剩余出牌 3 次 · 弃牌 3 次，但本局已无可出牌。下一局用删牌、破碎或改牌工具前，先查看牌组与工具代价，再确认目标；留钱也可以。\n\n2. 重新开局再培养\n\n筹备店升级只选已发现且未30级的牌型；Lv.1原价4金，之后按等级报价，确认后当场升一级。\n基础改牌原价2金、染色原价4金；升级与改牌/染色共用每店一次。\n实付、现货同名入口、可用目标与库存容量以当店确认页为准；买不起或没有合适目标时可以留钱。\n\n其它查看\n升级与做牌的实际规则\n回看最后一手\n返回选角\n同局重试\n返回失败页",
+        "scroll": {
+          "height": 778,
+          "scrollHeight": 778
+        }
+      },
+      "expanded": {
+        "bounds": {
+          "x": 19,
+          "y": 32,
+          "width": 352,
+          "height": 780
+        },
+        "buttons": [
+          {
+            "text": "回看最后一手",
+            "disabled": false,
+            "rect": {
+              "x": 36,
+              "y": 689,
+              "width": 119.328125,
+              "height": 56
+            }
+          },
+          {
+            "text": "返回选角",
+            "disabled": false,
+            "rect": {
+              "x": 163.328125,
+              "y": 689,
+              "width": 91.34375,
+              "height": 56
+            }
+          },
+          {
+            "text": "同局重试",
+            "disabled": false,
+            "rect": {
+              "x": 262.671875,
+              "y": 689,
+              "width": 91.328125,
+              "height": 56
+            }
+          },
+          {
+            "text": "返回失败页",
+            "disabled": false,
+            "rect": {
+              "x": 36,
+              "y": 753,
+              "width": 318,
+              "height": 48
+            }
+          }
+        ],
+        "text": "已无可出牌，准备再战\n\n已无可出牌 · 本场还差 369 热度\n最后一手：高牌 · 31 热度\n剩余出牌 3 次 · 弃牌 3 次\n\n重试从开局开始；金币、构筑、工具与成长不继承，建议不保证过关。\n\n1. 先保住可出的牌\n\n剩余出牌 3 次 · 弃牌 3 次，但本局已无可出牌。下一局用删牌、破碎或改牌工具前，先查看牌组与工具代价，再确认目标；留钱也可以。\n\n2. 重新开局再培养\n\n筹备店升级只选已发现且未30级的牌型；Lv.1原价4金，之后按等级报价，确认后当场升一级。\n基础改牌原价2金、染色原价4金；升级与改牌/染色共用每店一次。\n实付、现货同名入口、可用目标与库存容量以当店确认页为准；买不起或没有合适目标时可以留钱。\n\n其它查看\n升级与做牌的实际规则\n\n筹备店升级只选已发现且未30级的牌型；Lv.1原价4金，之后按等级报价，确认后当场升一级。\n基础改牌原价2金、染色原价4金；升级与改牌/染色共用每店一次。\n实付、现货同名入口、可用目标与库存容量以当店确认页为准；买不起或没有合适目标时可以留钱。\n\n回看最后一手\n返回选角\n同局重试\n返回失败页",
+        "scroll": {
+          "height": 778,
+          "scrollHeight": 778
+        }
+      },
+      "readOnlyFlow": "PASS",
+      "status": "PASS"
+    },
+    {
+      "key": "390-abandoned",
+      "kind": "abandoned",
+      "viewport": {
+        "name": "390",
+        "width": 390,
+        "height": 844
+      },
+      "errors": [],
+      "dialog": {
+        "bounds": {
+          "x": 19,
+          "y": 32,
+          "width": 352,
+          "height": 780
+        },
+        "buttons": [
+          {
+            "text": "回看最后一手",
+            "disabled": true,
+            "rect": {
+              "x": 36,
+              "y": 689,
+              "width": 119.328125,
+              "height": 56
+            }
+          },
+          {
+            "text": "返回选角",
+            "disabled": false,
+            "rect": {
+              "x": 163.328125,
+              "y": 689,
+              "width": 91.34375,
+              "height": 56
+            }
+          },
+          {
+            "text": "同局重试",
+            "disabled": false,
+            "rect": {
+              "x": 262.671875,
+              "y": 689,
+              "width": 91.328125,
+              "height": 56
+            }
+          },
+          {
+            "text": "返回失败页",
+            "disabled": false,
+            "rect": {
+              "x": 36,
+              "y": 753,
+              "width": 318,
+              "height": 48
+            }
+          }
+        ],
+        "text": "已结束本局，重新选择\n\n已结束本局 · 本场还差 400 热度\n最后一手记录不可用\n剩余出牌 4 次 · 弃牌 3 次\n\n重试从开局开始；金币、构筑、工具与成长不继承，建议不保证过关。\n\n1. 先决定这次想怎么打\n\n这是主动结束本局，不据此判定构筑强弱。可回看已保存的末手，再返回选角换英雄或开局方向。\n\n2. 重试或换个开局\n\n同局重试沿用种子、英雄、模式与本局规则；返回选角可以重新选择。两种开局都从初始资源开始。\n\n其它查看\n升级与做牌的实际规则\n回看最后一手\n返回选角\n同局重试\n返回失败页",
+        "scroll": {
+          "height": 778,
+          "scrollHeight": 778
+        }
+      },
+      "expanded": {
+        "bounds": {
+          "x": 19,
+          "y": 32,
+          "width": 352,
+          "height": 780
+        },
+        "buttons": [
+          {
+            "text": "回看最后一手",
+            "disabled": true,
+            "rect": {
+              "x": 36,
+              "y": 689,
+              "width": 119.328125,
+              "height": 56
+            }
+          },
+          {
+            "text": "返回选角",
+            "disabled": false,
+            "rect": {
+              "x": 163.328125,
+              "y": 689,
+              "width": 91.34375,
+              "height": 56
+            }
+          },
+          {
+            "text": "同局重试",
+            "disabled": false,
+            "rect": {
+              "x": 262.671875,
+              "y": 689,
+              "width": 91.328125,
+              "height": 56
+            }
+          },
+          {
+            "text": "返回失败页",
+            "disabled": false,
+            "rect": {
+              "x": 36,
+              "y": 753,
+              "width": 318,
+              "height": 48
+            }
+          }
+        ],
+        "text": "已结束本局，重新选择\n\n已结束本局 · 本场还差 400 热度\n最后一手记录不可用\n剩余出牌 4 次 · 弃牌 3 次\n\n重试从开局开始；金币、构筑、工具与成长不继承，建议不保证过关。\n\n1. 先决定这次想怎么打\n\n这是主动结束本局，不据此判定构筑强弱。可回看已保存的末手，再返回选角换英雄或开局方向。\n\n2. 重试或换个开局\n\n同局重试沿用种子、英雄、模式与本局规则；返回选角可以重新选择。两种开局都从初始资源开始。\n\n其它查看\n升级与做牌的实际规则\n\n筹备店升级只选已发现且未30级的牌型；Lv.1原价4金，之后按等级报价，确认后当场升一级。\n基础改牌原价2金、染色原价4金；升级与改牌/染色共用每店一次。\n实付、现货同名入口、可用目标与库存容量以当店确认页为准；买不起或没有合适目标时可以留钱。\n\n回看最后一手\n返回选角\n同局重试\n返回失败页",
+        "scroll": {
+          "height": 778,
+          "scrollHeight": 778
+        }
+      },
+      "readOnlyFlow": "PASS",
+      "status": "PASS"
+    },
+    {
+      "key": "320-short-hands",
+      "kind": "hands",
+      "viewport": {
+        "name": "320-short",
+        "width": 320,
+        "height": 568
+      },
+      "errors": [],
+      "dialog": {
+        "bounds": {
+          "x": 19,
+          "y": 12,
+          "width": 282,
+          "height": 544
+        },
+        "buttons": [
+          {
+            "text": "回看最后一手",
+            "disabled": false,
+            "rect": {
+              "x": 36,
+              "y": 437,
+              "width": 134,
+              "height": 44
+            }
+          },
+          {
+            "text": "返回选角",
+            "disabled": false,
+            "rect": {
+              "x": 178,
+              "y": 437,
+              "width": 106,
+              "height": 44
+            }
+          },
+          {
+            "text": "同局重试",
+            "disabled": false,
+            "rect": {
+              "x": 36,
+              "y": 489,
+              "width": 113,
+              "height": 56
+            }
+          },
+          {
+            "text": "返回失败页",
+            "disabled": false,
+            "rect": {
+              "x": 157,
+              "y": 489,
+              "width": 127,
+              "height": 56
+            }
+          }
+        ],
+        "text": "出牌用尽，准备再战\n\n出牌次数已用完 · 本场还差 291 热度\n最后一手：高牌 · 31 热度\n剩余出牌 0 次 · 弃牌 3 次\n\n重试从开局开始；金币、构筑、工具与成长不继承，建议不保证过关。\n\n1. 先把一手凑完整\n\n末手是高牌，保存热度31；这是记录，不代表它一定是失败原因。\n若摸到同点对子，先留对子、换散牌；例如留两张7，再找第三张7。出牌前核对实际牌型。\n\n2. 升级、做牌或留钱\n\n筹备店升级只选已发现且未30级的牌型；Lv.1原价4金，之后按等级报价，确认后当场升一级。\n基础改牌原价2金、染色原价4金；升级与改牌/染色共用每店一次。\n实付、现货同名入口、可用目标与库存容量以当店确认页为准；买不起或没有合适目标时可以留钱。\n\n其它查看\n升级与做牌的实际规则\n回看最后一手\n返回选角\n同局重试\n返回失败页",
+        "scroll": {
+          "height": 542,
+          "scrollHeight": 542
+        }
+      },
+      "expanded": {
+        "bounds": {
+          "x": 19,
+          "y": 12,
+          "width": 282,
+          "height": 544
+        },
+        "buttons": [
+          {
+            "text": "回看最后一手",
+            "disabled": false,
+            "rect": {
+              "x": 36,
+              "y": 437,
+              "width": 134,
+              "height": 44
+            }
+          },
+          {
+            "text": "返回选角",
+            "disabled": false,
+            "rect": {
+              "x": 178,
+              "y": 437,
+              "width": 106,
+              "height": 44
+            }
+          },
+          {
+            "text": "同局重试",
+            "disabled": false,
+            "rect": {
+              "x": 36,
+              "y": 489,
+              "width": 113,
+              "height": 56
+            }
+          },
+          {
+            "text": "返回失败页",
+            "disabled": false,
+            "rect": {
+              "x": 157,
+              "y": 489,
+              "width": 127,
+              "height": 56
+            }
+          }
+        ],
+        "text": "出牌用尽，准备再战\n\n出牌次数已用完 · 本场还差 291 热度\n最后一手：高牌 · 31 热度\n剩余出牌 0 次 · 弃牌 3 次\n\n重试从开局开始；金币、构筑、工具与成长不继承，建议不保证过关。\n\n1. 先把一手凑完整\n\n末手是高牌，保存热度31；这是记录，不代表它一定是失败原因。\n若摸到同点对子，先留对子、换散牌；例如留两张7，再找第三张7。出牌前核对实际牌型。\n\n2. 升级、做牌或留钱\n\n筹备店升级只选已发现且未30级的牌型；Lv.1原价4金，之后按等级报价，确认后当场升一级。\n基础改牌原价2金、染色原价4金；升级与改牌/染色共用每店一次。\n实付、现货同名入口、可用目标与库存容量以当店确认页为准；买不起或没有合适目标时可以留钱。\n\n其它查看\n升级与做牌的实际规则\n\n筹备店升级只选已发现且未30级的牌型；Lv.1原价4金，之后按等级报价，确认后当场升一级。\n基础改牌原价2金、染色原价4金；升级与改牌/染色共用每店一次。\n实付、现货同名入口、可用目标与库存容量以当店确认页为准；买不起或没有合适目标时可以留钱。\n\n回看最后一手\n返回选角\n同局重试\n返回失败页",
+        "scroll": {
+          "height": 542,
+          "scrollHeight": 542
+        }
+      },
+      "readOnlyFlow": "PASS",
+      "retry": {
+        "status": "PASS",
+        "commitAttempts": 1,
+        "successfulRevisionDelta": 1,
+        "singleNewState": true
+      },
+      "coldRecovery": "PASS",
+      "status": "PASS"
+    },
+    {
+      "key": "320-short-cards",
+      "kind": "cards",
+      "viewport": {
+        "name": "320-short",
+        "width": 320,
+        "height": 568
+      },
+      "errors": [],
+      "dialog": {
+        "bounds": {
+          "x": 19,
+          "y": 12,
+          "width": 282,
+          "height": 544
+        },
+        "buttons": [
+          {
+            "text": "回看最后一手",
+            "disabled": false,
+            "rect": {
+              "x": 36,
+              "y": 437,
+              "width": 134,
+              "height": 44
+            }
+          },
+          {
+            "text": "返回选角",
+            "disabled": false,
+            "rect": {
+              "x": 178,
+              "y": 437,
+              "width": 106,
+              "height": 44
+            }
+          },
+          {
+            "text": "同局重试",
+            "disabled": false,
+            "rect": {
+              "x": 36,
+              "y": 489,
+              "width": 113,
+              "height": 56
+            }
+          },
+          {
+            "text": "返回失败页",
+            "disabled": false,
+            "rect": {
+              "x": 157,
+              "y": 489,
+              "width": 127,
+              "height": 56
+            }
+          }
+        ],
+        "text": "已无可出牌，准备再战\n\n已无可出牌 · 本场还差 369 热度\n最后一手：高牌 · 31 热度\n剩余出牌 3 次 · 弃牌 3 次\n\n重试从开局开始；金币、构筑、工具与成长不继承，建议不保证过关。\n\n1. 先保住可出的牌\n\n剩余出牌 3 次 · 弃牌 3 次，但本局已无可出牌。下一局用删牌、破碎或改牌工具前，先查看牌组与工具代价，再确认目标；留钱也可以。\n\n2. 重新开局再培养\n\n筹备店升级只选已发现且未30级的牌型；Lv.1原价4金，之后按等级报价，确认后当场升一级。\n基础改牌原价2金、染色原价4金；升级与改牌/染色共用每店一次。\n实付、现货同名入口、可用目标与库存容量以当店确认页为准；买不起或没有合适目标时可以留钱。\n\n其它查看\n升级与做牌的实际规则\n回看最后一手\n返回选角\n同局重试\n返回失败页",
+        "scroll": {
+          "height": 542,
+          "scrollHeight": 542
+        }
+      },
+      "expanded": {
+        "bounds": {
+          "x": 19,
+          "y": 12,
+          "width": 282,
+          "height": 544
+        },
+        "buttons": [
+          {
+            "text": "回看最后一手",
+            "disabled": false,
+            "rect": {
+              "x": 36,
+              "y": 437,
+              "width": 134,
+              "height": 44
+            }
+          },
+          {
+            "text": "返回选角",
+            "disabled": false,
+            "rect": {
+              "x": 178,
+              "y": 437,
+              "width": 106,
+              "height": 44
+            }
+          },
+          {
+            "text": "同局重试",
+            "disabled": false,
+            "rect": {
+              "x": 36,
+              "y": 489,
+              "width": 113,
+              "height": 56
+            }
+          },
+          {
+            "text": "返回失败页",
+            "disabled": false,
+            "rect": {
+              "x": 157,
+              "y": 489,
+              "width": 127,
+              "height": 56
+            }
+          }
+        ],
+        "text": "已无可出牌，准备再战\n\n已无可出牌 · 本场还差 369 热度\n最后一手：高牌 · 31 热度\n剩余出牌 3 次 · 弃牌 3 次\n\n重试从开局开始；金币、构筑、工具与成长不继承，建议不保证过关。\n\n1. 先保住可出的牌\n\n剩余出牌 3 次 · 弃牌 3 次，但本局已无可出牌。下一局用删牌、破碎或改牌工具前，先查看牌组与工具代价，再确认目标；留钱也可以。\n\n2. 重新开局再培养\n\n筹备店升级只选已发现且未30级的牌型；Lv.1原价4金，之后按等级报价，确认后当场升一级。\n基础改牌原价2金、染色原价4金；升级与改牌/染色共用每店一次。\n实付、现货同名入口、可用目标与库存容量以当店确认页为准；买不起或没有合适目标时可以留钱。\n\n其它查看\n升级与做牌的实际规则\n\n筹备店升级只选已发现且未30级的牌型；Lv.1原价4金，之后按等级报价，确认后当场升一级。\n基础改牌原价2金、染色原价4金；升级与改牌/染色共用每店一次。\n实付、现货同名入口、可用目标与库存容量以当店确认页为准；买不起或没有合适目标时可以留钱。\n\n回看最后一手\n返回选角\n同局重试\n返回失败页",
+        "scroll": {
+          "height": 542,
+          "scrollHeight": 542
+        }
+      },
+      "readOnlyFlow": "PASS",
+      "status": "PASS"
+    },
+    {
+      "key": "320-short-abandoned",
+      "kind": "abandoned",
+      "viewport": {
+        "name": "320-short",
+        "width": 320,
+        "height": 568
+      },
+      "errors": [],
+      "dialog": {
+        "bounds": {
+          "x": 19,
+          "y": 12,
+          "width": 282,
+          "height": 544
+        },
+        "buttons": [
+          {
+            "text": "回看最后一手",
+            "disabled": true,
+            "rect": {
+              "x": 36,
+              "y": 437,
+              "width": 134,
+              "height": 44
+            }
+          },
+          {
+            "text": "返回选角",
+            "disabled": false,
+            "rect": {
+              "x": 178,
+              "y": 437,
+              "width": 106,
+              "height": 44
+            }
+          },
+          {
+            "text": "同局重试",
+            "disabled": false,
+            "rect": {
+              "x": 36,
+              "y": 489,
+              "width": 113,
+              "height": 56
+            }
+          },
+          {
+            "text": "返回失败页",
+            "disabled": false,
+            "rect": {
+              "x": 157,
+              "y": 489,
+              "width": 127,
+              "height": 56
+            }
+          }
+        ],
+        "text": "已结束本局，重新选择\n\n已结束本局 · 本场还差 400 热度\n最后一手记录不可用\n剩余出牌 4 次 · 弃牌 3 次\n\n重试从开局开始；金币、构筑、工具与成长不继承，建议不保证过关。\n\n1. 先决定这次想怎么打\n\n这是主动结束本局，不据此判定构筑强弱。可回看已保存的末手，再返回选角换英雄或开局方向。\n\n2. 重试或换个开局\n\n同局重试沿用种子、英雄、模式与本局规则；返回选角可以重新选择。两种开局都从初始资源开始。\n\n其它查看\n升级与做牌的实际规则\n回看最后一手\n返回选角\n同局重试\n返回失败页",
+        "scroll": {
+          "height": 542,
+          "scrollHeight": 542
+        }
+      },
+      "expanded": {
+        "bounds": {
+          "x": 19,
+          "y": 12,
+          "width": 282,
+          "height": 544
+        },
+        "buttons": [
+          {
+            "text": "回看最后一手",
+            "disabled": true,
+            "rect": {
+              "x": 36,
+              "y": 437,
+              "width": 134,
+              "height": 44
+            }
+          },
+          {
+            "text": "返回选角",
+            "disabled": false,
+            "rect": {
+              "x": 178,
+              "y": 437,
+              "width": 106,
+              "height": 44
+            }
+          },
+          {
+            "text": "同局重试",
+            "disabled": false,
+            "rect": {
+              "x": 36,
+              "y": 489,
+              "width": 113,
+              "height": 56
+            }
+          },
+          {
+            "text": "返回失败页",
+            "disabled": false,
+            "rect": {
+              "x": 157,
+              "y": 489,
+              "width": 127,
+              "height": 56
+            }
+          }
+        ],
+        "text": "已结束本局，重新选择\n\n已结束本局 · 本场还差 400 热度\n最后一手记录不可用\n剩余出牌 4 次 · 弃牌 3 次\n\n重试从开局开始；金币、构筑、工具与成长不继承，建议不保证过关。\n\n1. 先决定这次想怎么打\n\n这是主动结束本局，不据此判定构筑强弱。可回看已保存的末手，再返回选角换英雄或开局方向。\n\n2. 重试或换个开局\n\n同局重试沿用种子、英雄、模式与本局规则；返回选角可以重新选择。两种开局都从初始资源开始。\n\n其它查看\n升级与做牌的实际规则\n\n筹备店升级只选已发现且未30级的牌型；Lv.1原价4金，之后按等级报价，确认后当场升一级。\n基础改牌原价2金、染色原价4金；升级与改牌/染色共用每店一次。\n实付、现货同名入口、可用目标与库存容量以当店确认页为准；买不起或没有合适目标时可以留钱。\n\n回看最后一手\n返回选角\n同局重试\n返回失败页",
+        "scroll": {
+          "height": 542,
+          "scrollHeight": 542
+        }
+      },
+      "readOnlyFlow": "PASS",
+      "status": "PASS"
+    },
+    {
+      "key": "390-short-boss",
+      "kind": "boss",
+      "viewport": {
+        "width": 390,
+        "height": 568
+      },
+      "errors": [],
+      "dialog": {
+        "bounds": {
+          "x": 19,
+          "y": 12,
+          "width": 352,
+          "height": 544
+        },
+        "buttons": [
+          {
+            "text": "回看最后一手",
+            "disabled": false,
+            "rect": {
+              "x": 36,
+              "y": 433,
+              "width": 119.328125,
+              "height": 56
+            }
+          },
+          {
+            "text": "返回选角",
+            "disabled": false,
+            "rect": {
+              "x": 163.328125,
+              "y": 433,
+              "width": 91.34375,
+              "height": 56
+            }
+          },
+          {
+            "text": "同局重试",
+            "disabled": false,
+            "rect": {
+              "x": 262.671875,
+              "y": 433,
+              "width": 91.328125,
+              "height": 56
+            }
+          },
+          {
+            "text": "返回失败页",
+            "disabled": false,
+            "rect": {
+              "x": 36,
+              "y": 497,
+              "width": 318,
+              "height": 48
+            }
+          }
+        ],
+        "text": "出牌用尽，准备再战\n\n出牌次数已用完 · 本场还差 321 热度\n最后一手：对子 · 90 热度\n剩余出牌 0 次 · 弃牌 3 次\n\n重试从开局开始；金币、构筑、工具与成长不继承，建议不保证过关。\n\n1. 先把一手凑完整\n\n末手是对子，保存热度90；这是记录，不代表它一定是失败原因。\n先留连续点数、换掉无关牌；例如留5、6、7、8，再找4或9。用“怎么凑牌”查看当前手牌能补哪一张。\n\n2. 按压轴实际影响换招\n\n压轴实际影响 · 低调点\nK♥ 普通点数归零；仍可成型和触发大丑牌效果。\n下一局遇到此压轴时，把要读取普通点数的牌放在出牌顺序前三张；第4、5张仍能成型和触发大丑牌。\n\n3. 升级、做牌或留钱\n\n筹备店升级只选已发现且未30级的牌型；Lv.1原价4金，之后按等级报价，确认后当场升一级。\n基础改牌原价2金、染色原价4金；升级与改牌/染色共用每店一次。\n实付、现货同名入口、可用目标与库存容量以当店确认页为准；买不起或没有合适目标时可以留钱。\n\n其它查看\n升级与做牌的实际规则\n回看最后一手\n返回选角\n同局重试\n返回失败页",
+        "scroll": {
+          "height": 542,
+          "scrollHeight": 542
+        }
+      },
+      "status": "PASS"
+    },
+    {
+      "key": "390-short-fault",
+      "kind": "fault",
+      "viewport": {
+        "width": 390,
+        "height": 568
+      },
+      "errors": [],
+      "failed": {
+        "state": {
+          "routeGrowth": {
+            "clears": 0,
+            "G": 0,
+            "S": 0,
+            "F": 0,
+            "settlements": []
+          },
+          "schemaVersion": 2,
+          "rulesVersion": "r2",
+          "contentVersion": "quality-r2-core-build-v1",
+          "contentHash": "json-fnv-v1:6dfe1a721e4949e6",
+          "runId": "controlled/failure-retry/hands",
+          "seed": "controlled/failure-retry/hands",
+          "commandSeq": 7,
+          "difficulty": 0,
+          "characterId": "laohuan",
+          "openingRoute": "group",
+          "openingShow": {
+            "handsScored": 4,
+            "rootId": "controlled/failure-retry/hands/hand/controlled/failure-retry/hands/command/7",
+            "eventId": "controlled/failure-retry/hands/hand/controlled/failure-retry/hands/command/7/event/2",
+            "reason": "score"
+          },
+          "routeStarter": {
+            "instanceId": null,
+            "rootId": null,
+            "eventId": null
+          },
+          "mode": "standard",
+          "challengeId": null,
+          "programsEnabled": false,
+          "programRerollCoupon": false,
+          "chapterDisabledJokerId": null,
+          "pendingRefill": null,
+          "chapter": 1,
+          "stageIndex": 0,
+          "phase": "run-lost",
+          "deckInstances": [
+            {
+              "id": "spades-2",
+              "suit": "spades",
+              "rank": 2
+            },
+            {
+              "id": "spades-3",
+              "suit": "spades",
+              "rank": 3
+            },
+            {
+              "id": "spades-4",
+              "suit": "spades",
+              "rank": 4
+            },
+            {
+              "id": "spades-5",
+              "suit": "spades",
+              "rank": 5
+            },
+            {
+              "id": "spades-6",
+              "suit": "spades",
+              "rank": 6
+            },
+            {
+              "id": "spades-7",
+              "suit": "spades",
+              "rank": 7
+            },
+            {
+              "id": "spades-8",
+              "suit": "spades",
+              "rank": 8
+            },
+            {
+              "id": "spades-9",
+              "suit": "spades",
+              "rank": 9
+            },
+            {
+              "id": "spades-10",
+              "suit": "spades",
+              "rank": 10
+            },
+            {
+              "id": "spades-11",
+              "suit": "spades",
+              "rank": 11
+            },
+            {
+              "id": "spades-12",
+              "suit": "spades",
+              "rank": 12
+            },
+            {
+              "id": "spades-13",
+              "suit": "spades",
+              "rank": 13
+            },
+            {
+              "id": "spades-14",
+              "suit": "spades",
+              "rank": 14
+            },
+            {
+              "id": "hearts-2",
+              "suit": "hearts",
+              "rank": 2
+            },
+            {
+              "id": "hearts-3",
+              "suit": "hearts",
+              "rank": 3
+            },
+            {
+              "id": "hearts-4",
+              "suit": "hearts",
+              "rank": 4
+            },
+            {
+              "id": "hearts-5",
+              "suit": "hearts",
+              "rank": 5
+            },
+            {
+              "id": "hearts-6",
+              "suit": "hearts",
+              "rank": 6
+            },
+            {
+              "id": "hearts-7",
+              "suit": "hearts",
+              "rank": 7
+            },
+            {
+              "id": "hearts-8",
+              "suit": "hearts",
+              "rank": 8
+            },
+            {
+              "id": "hearts-9",
+              "suit": "hearts",
+              "rank": 9
+            },
+            {
+              "id": "hearts-10",
+              "suit": "hearts",
+              "rank": 10
+            },
+            {
+              "id": "hearts-11",
+              "suit": "hearts",
+              "rank": 11
+            },
+            {
+              "id": "hearts-12",
+              "suit": "hearts",
+              "rank": 12
+            },
+            {
+              "id": "hearts-13",
+              "suit": "hearts",
+              "rank": 13
+            },
+            {
+              "id": "hearts-14",
+              "suit": "hearts",
+              "rank": 14
+            },
+            {
+              "id": "clubs-2",
+              "suit": "clubs",
+              "rank": 2
+            },
+            {
+              "id": "clubs-3",
+              "suit": "clubs",
+              "rank": 3
+            },
+            {
+              "id": "clubs-4",
+              "suit": "clubs",
+              "rank": 4
+            },
+            {
+              "id": "clubs-5",
+              "suit": "clubs",
+              "rank": 5
+            },
+            {
+              "id": "clubs-6",
+              "suit": "clubs",
+              "rank": 6
+            },
+            {
+              "id": "clubs-7",
+              "suit": "clubs",
+              "rank": 7
+            },
+            {
+              "id": "clubs-8",
+              "suit": "clubs",
+              "rank": 8
+            },
+            {
+              "id": "clubs-9",
+              "suit": "clubs",
+              "rank": 9
+            },
+            {
+              "id": "clubs-10",
+              "suit": "clubs",
+              "rank": 10
+            },
+            {
+              "id": "clubs-11",
+              "suit": "clubs",
+              "rank": 11
+            },
+            {
+              "id": "clubs-12",
+              "suit": "clubs",
+              "rank": 12
+            },
+            {
+              "id": "clubs-13",
+              "suit": "clubs",
+              "rank": 13
+            },
+            {
+              "id": "clubs-14",
+              "suit": "clubs",
+              "rank": 14
+            },
+            {
+              "id": "diamonds-2",
+              "suit": "diamonds",
+              "rank": 2
+            },
+            {
+              "id": "diamonds-3",
+              "suit": "diamonds",
+              "rank": 3
+            },
+            {
+              "id": "diamonds-4",
+              "suit": "diamonds",
+              "rank": 4
+            },
+            {
+              "id": "diamonds-5",
+              "suit": "diamonds",
+              "rank": 5
+            },
+            {
+              "id": "diamonds-6",
+              "suit": "diamonds",
+              "rank": 6
+            },
+            {
+              "id": "diamonds-7",
+              "suit": "diamonds",
+              "rank": 7
+            },
+            {
+              "id": "diamonds-8",
+              "suit": "diamonds",
+              "rank": 8
+            },
+            {
+              "id": "diamonds-9",
+              "suit": "diamonds",
+              "rank": 9
+            },
+            {
+              "id": "diamonds-10",
+              "suit": "diamonds",
+              "rank": 10
+            },
+            {
+              "id": "diamonds-11",
+              "suit": "diamonds",
+              "rank": 11
+            },
+            {
+              "id": "diamonds-12",
+              "suit": "diamonds",
+              "rank": 12
+            },
+            {
+              "id": "diamonds-13",
+              "suit": "diamonds",
+              "rank": 13
+            },
+            {
+              "id": "diamonds-14",
+              "suit": "diamonds",
+              "rank": 14
+            }
+          ],
+          "drawPile": [
+            "hearts-5",
+            "diamonds-11",
+            "hearts-14",
+            "spades-5",
+            "clubs-4",
+            "clubs-2",
+            "clubs-3",
+            "diamonds-5",
+            "hearts-7",
+            "clubs-5",
+            "hearts-2",
+            "spades-8",
+            "clubs-9",
+            "hearts-4",
+            "spades-4",
+            "hearts-12",
+            "spades-3",
+            "diamonds-2",
+            "clubs-11",
+            "diamonds-8",
+            "spades-10",
+            "hearts-13",
+            "hearts-3",
+            "spades-12",
+            "clubs-13",
+            "diamonds-12",
+            "spades-11",
+            "hearts-8",
+            "spades-13",
+            "hearts-11",
+            "diamonds-3",
+            "diamonds-9",
+            "clubs-12",
+            "clubs-6",
+            "diamonds-4",
+            "clubs-10",
+            "spades-7",
+            "clubs-14",
+            "clubs-7",
+            "spades-2",
+            "clubs-8"
+          ],
+          "handOrder": [
+            "diamonds-13",
+            "spades-9",
+            "hearts-9",
+            "diamonds-10",
+            "spades-14",
+            "diamonds-7",
+            "hearts-10"
+          ],
+          "playedPile": [
+            "spades-6",
+            "diamonds-6",
+            "hearts-6",
+            "diamonds-14"
+          ],
+          "discardPile": [],
+          "destroyedIds": [],
+          "stage": {
+            "routeGrowth": {
+              "entry": {
+                "commandId": "controlled/failure-retry/hands/command/3",
+                "seq": 3,
+                "type": "EnterStage"
+              },
+              "handTypes": [
+                "high-card",
+                "high-card",
+                "high-card",
+                "high-card"
+              ],
+              "eligible": [],
+              "sources": [
+                {
+                  "command": {
+                    "runId": "controlled/failure-retry/hands",
+                    "commandId": "controlled/failure-retry/hands/command/4",
+                    "expectedSeq": 3,
+                    "action": {
+                      "type": "PlayHand",
+                      "selectedIds": [
+                        "spades-6"
+                      ]
+                    }
+                  },
+                  "cards": [
+                    {
+                      "id": "spades-6",
+                      "suit": "spades",
+                      "rank": 6
+                    }
+                  ],
+                  "rules": {
+                    "fourStraight": false,
+                    "fourFlush": false
+                  }
+                },
+                {
+                  "command": {
+                    "runId": "controlled/failure-retry/hands",
+                    "commandId": "controlled/failure-retry/hands/command/5",
+                    "expectedSeq": 4,
+                    "action": {
+                      "type": "PlayHand",
+                      "selectedIds": [
+                        "diamonds-6"
+                      ]
+                    }
+                  },
+                  "cards": [
+                    {
+                      "id": "diamonds-6",
+                      "suit": "diamonds",
+                      "rank": 6
+                    }
+                  ],
+                  "rules": {
+                    "fourStraight": false,
+                    "fourFlush": false
+                  }
+                },
+                {
+                  "command": {
+                    "runId": "controlled/failure-retry/hands",
+                    "commandId": "controlled/failure-retry/hands/command/6",
+                    "expectedSeq": 5,
+                    "action": {
+                      "type": "PlayHand",
+                      "selectedIds": [
+                        "hearts-6"
+                      ]
+                    }
+                  },
+                  "cards": [
+                    {
+                      "id": "hearts-6",
+                      "suit": "hearts",
+                      "rank": 6
+                    }
+                  ],
+                  "rules": {
+                    "fourStraight": false,
+                    "fourFlush": false
+                  }
+                },
+                {
+                  "command": {
+                    "runId": "controlled/failure-retry/hands",
+                    "commandId": "controlled/failure-retry/hands/command/7",
+                    "expectedSeq": 6,
+                    "action": {
+                      "type": "PlayHand",
+                      "selectedIds": [
+                        "diamonds-14"
+                      ]
+                    }
+                  },
+                  "cards": [
+                    {
+                      "id": "diamonds-14",
+                      "suit": "diamonds",
+                      "rank": 14
+                    }
+                  ],
+                  "rules": {
+                    "fourStraight": false,
+                    "fourFlush": false
+                  }
+                }
+              ]
+            },
+            "laohuanTrickUsed": false,
+            "openingDiscard": null,
+            "index": 0,
+            "targetHeat": "400",
+            "initialTargetHeat": "400",
+            "heat": "109",
+            "handsLeft": 0,
+            "initialHands": 4,
+            "discardsLeft": 3,
+            "initialDiscards": 3,
+            "discardSpent": 0,
+            "discardGained": 0,
+            "doubleDiscardBeforeFirstPlay": false,
+            "discardsUsed": 0,
+            "skipResult": null,
+            "playIndex": 4,
+            "previousHandType": "high-card",
+            "previousHandScore": "31",
+            "handLimit": 8,
+            "initialHandLimit": 8,
+            "boss": null,
+            "initialJokerIds": [],
+            "sealedJokerIds": [],
+            "challengeDisabledJokerId": null,
+            "rescueUsed": false,
+            "clearId": null,
+            "goldEarned": 0,
+            "disabledIds": [],
+            "wagerSelected": false,
+            "wagerUsed": false,
+            "maxPlayedCount": 1,
+            "ordinaryStraightSeen": false,
+            "ordinaryFlushSeen": false,
+            "quadRefundUsed": false,
+            "jokerSold": false
+          },
+          "totalHeat": "0",
+          "gold": 6,
+          "jokers": [],
+          "consumables": [],
+          "longTermItems": [],
+          "program": null,
+          "boss": {
+            "definitionId": "B01",
+            "disabledSuit": null
+          },
+          "seenBossIds": [
+            "B01"
+          ],
+          "chapterSkipConsumable": "T04",
+          "purchaseCoupons": 0,
+          "safetyNetUsed": false,
+          "shop": null,
+          "spectralModifiers": {
+            "handsPenalty": 0,
+            "handPenalty": 0,
+            "cleanSlateBonus": 0
+          },
+          "supplyRewardClaimed": false,
+          "chapterHandUsage": {
+            "high-card": 4
+          },
+          "normalClearClaimed": false,
+          "tourMode": "normal",
+          "normalCompletion": null,
+          "rng": {
+            "deck": {
+              "algorithm": "fnv1a-mulberry32-v1",
+              "state": 4153116755
+            },
+            "rule": {
+              "algorithm": "fnv1a-mulberry32-v1",
+              "state": 1505119064
+            },
+            "shop": {
+              "algorithm": "fnv1a-mulberry32-v1",
+              "state": 1033452459
+            },
+            "reward": {
+              "algorithm": "fnv1a-mulberry32-v1",
+              "state": 262562183
+            },
+            "program": {
+              "algorithm": "fnv1a-mulberry32-v1",
+              "state": 1619836885
+            },
+            "challenge": {
+              "algorithm": "fnv1a-mulberry32-v1",
+              "state": 2138790588
+            }
+          },
+          "receipts": [
+            {
+              "commandId": "controlled/failure-retry/hands/start",
+              "fingerprint": "json-fnv-v1:8e1e38ca3b349e36",
+              "seq": 1
+            },
+            {
+              "commandId": "controlled/failure-retry/hands/command/2",
+              "fingerprint": "json-fnv-v1:effacd2dd7663581",
+              "seq": 2
+            },
+            {
+              "commandId": "controlled/failure-retry/hands/command/3",
+              "fingerprint": "json-fnv-v1:038b3b7e89269ce2",
+              "seq": 3
+            },
+            {
+              "commandId": "controlled/failure-retry/hands/command/4",
+              "fingerprint": "json-fnv-v1:36546e5b27d30c07",
+              "seq": 4
+            },
+            {
+              "commandId": "controlled/failure-retry/hands/command/5",
+              "fingerprint": "json-fnv-v1:693e8d789aec6cfc",
+              "seq": 5
+            },
+            {
+              "commandId": "controlled/failure-retry/hands/command/6",
+              "fingerprint": "json-fnv-v1:aa2892c042e76e3c",
+              "seq": 6
+            },
+            {
+              "commandId": "controlled/failure-retry/hands/command/7",
+              "fingerprint": "json-fnv-v1:bec79f094d3e4a1d",
+              "seq": 7
+            }
+          ],
+          "lastTrace": {
+            "routeGrowth": {
+              "before": {
+                "clears": 0,
+                "G": 0,
+                "S": 0,
+                "F": 0
+              },
+              "factors": {}
+            },
+            "laohuanTrick": true,
+            "rulesVersion": "r2",
+            "rootId": "controlled/failure-retry/hands/hand/controlled/failure-retry/hands/command/7",
+            "handType": "high-card",
+            "level": 1,
+            "sets": {
+              "playedIds": [
+                "diamonds-14"
+              ],
+              "scoringIds": [
+                "diamonds-14"
+              ],
+              "activeScoringIds": [
+                "diamonds-14"
+              ],
+              "heldIds": [
+                "diamonds-13",
+                "spades-9",
+                "hearts-9",
+                "diamonds-10",
+                "spades-14",
+                "diamonds-7",
+                "hearts-10"
+              ]
+            },
+            "finalScore": "31",
+            "accumulator": {
+              "H": {
+                "n": "31",
+                "d": "1"
+              },
+              "M": {
+                "n": "1",
+                "d": "1"
+              }
+            },
+            "events": [
+              {
+                "eventId": "controlled/failure-retry/hands/hand/controlled/failure-retry/hands/command/7/event/0",
+                "rootId": "controlled/failure-retry/hands/hand/controlled/failure-retry/hands/command/7",
+                "rootEventId": "controlled/failure-retry/hands/hand/controlled/failure-retry/hands/command/7/event/0",
+                "phase": "base",
+                "sourceType": "rule",
+                "sourceDefinitionId": "high-card",
+                "sourceInstanceId": "controlled/failure-retry/hands",
+                "operation": "base",
+                "value": {
+                  "n": "20",
+                  "d": "1"
+                },
+                "before": {
+                  "H": {
+                    "n": "0",
+                    "d": "1"
+                  },
+                  "M": {
+                    "n": "0",
+                    "d": "1"
+                  }
+                },
+                "after": {
+                  "H": {
+                    "n": "20",
+                    "d": "1"
+                  },
+                  "M": {
+                    "n": "1",
+                    "d": "1"
+                  }
+                },
+                "reasonKey": "high-card.base",
+                "visibleCondition": {
+                  "kind": "always"
+                },
+                "retriggerDepth": 0
+              },
+              {
+                "eventId": "controlled/failure-retry/hands/hand/controlled/failure-retry/hands/command/7/event/1",
+                "rootId": "controlled/failure-retry/hands/hand/controlled/failure-retry/hands/command/7",
+                "rootEventId": "controlled/failure-retry/hands/hand/controlled/failure-retry/hands/command/7/event/1",
+                "phase": "onCardScore",
+                "sourceType": "card",
+                "sourceDefinitionId": "rank-14",
+                "sourceInstanceId": "diamonds-14",
+                "targetCardId": "diamonds-14",
+                "operation": "add-heat",
+                "value": {
+                  "n": "11",
+                  "d": "1"
+                },
+                "before": {
+                  "H": {
+                    "n": "20",
+                    "d": "1"
+                  },
+                  "M": {
+                    "n": "1",
+                    "d": "1"
+                  }
+                },
+                "after": {
+                  "H": {
+                    "n": "31",
+                    "d": "1"
+                  },
+                  "M": {
+                    "n": "1",
+                    "d": "1"
+                  }
+                },
+                "reasonKey": "rank-14.add-heat",
+                "visibleCondition": {
+                  "kind": "always"
+                },
+                "retriggerDepth": 0
+              },
+              {
+                "eventId": "controlled/failure-retry/hands/hand/controlled/failure-retry/hands/command/7/event/2",
+                "rootId": "controlled/failure-retry/hands/hand/controlled/failure-retry/hands/command/7",
+                "rootEventId": "controlled/failure-retry/hands/hand/controlled/failure-retry/hands/command/7/event/2",
+                "phase": "finalScore",
+                "sourceType": "rule",
+                "sourceDefinitionId": "high-card",
+                "sourceInstanceId": "controlled/failure-retry/hands",
+                "operation": "final-score",
+                "value": {
+                  "n": "31",
+                  "d": "1"
+                },
+                "before": {
+                  "H": {
+                    "n": "31",
+                    "d": "1"
+                  },
+                  "M": {
+                    "n": "1",
+                    "d": "1"
+                  }
+                },
+                "after": {
+                  "H": {
+                    "n": "31",
+                    "d": "1"
+                  },
+                  "M": {
+                    "n": "1",
+                    "d": "1"
+                  }
+                },
+                "reasonKey": "high-card.final-score",
+                "visibleCondition": {
+                  "kind": "always"
+                },
+                "retriggerDepth": 0
+              }
+            ],
+            "jokers": [],
+            "rng": {
+              "algorithm": "fnv1a-mulberry32-v1",
+              "state": 1505119064
+            },
+            "goldDelta": 0,
+            "destroyedCardIds": [],
+            "destroyedJokerIds": [],
+            "cards": [
+              {
+                "id": "diamonds-14",
+                "suit": "diamonds",
+                "rank": 14
+              },
+              {
+                "id": "diamonds-13",
+                "suit": "diamonds",
+                "rank": 13
+              },
+              {
+                "id": "spades-9",
+                "suit": "spades",
+                "rank": 9
+              },
+              {
+                "id": "hearts-9",
+                "suit": "hearts",
+                "rank": 9
+              },
+              {
+                "id": "diamonds-10",
+                "suit": "diamonds",
+                "rank": 10
+              },
+              {
+                "id": "spades-14",
+                "suit": "spades",
+                "rank": 14
+              },
+              {
+                "id": "diamonds-7",
+                "suit": "diamonds",
+                "rank": 7
+              },
+              {
+                "id": "hearts-10",
+                "suit": "hearts",
+                "rank": 10
+              }
+            ],
+            "sourceJokers": [],
+            "bossContext": {
+              "boss": null,
+              "previousHandType": "high-card",
+              "sealedJokerIds": [],
+              "challengeDisabledJokerId": null
+            },
+            "combo": {
+              "goldBeforeRewards": null
+            }
+          },
+          "handLevels": {
+            "high-card": 1
+          },
+          "outcome": {
+            "reason": "hands-exhausted",
+            "stageIndex": 0
+          },
+          "chapterTargetPlan": {
+            "policyVersion": "core-build-target-v1",
+            "chapter": 1,
+            "targets": [
+              "400",
+              "600",
+              "800"
+            ],
+            "boss": {
+              "definitionId": "B01",
+              "disabledSuit": null
+            }
+          }
+        },
+        "journal": [],
+        "storage": {
+          "revision": 1,
+          "current": {
+            "format": "dachoupai-checkpoint",
+            "formatVersion": 1,
+            "state": {
+              "routeGrowth": {
+                "clears": 0,
+                "G": 0,
+                "S": 0,
+                "F": 0,
+                "settlements": []
+              },
+              "schemaVersion": 2,
+              "rulesVersion": "r2",
+              "contentVersion": "quality-r2-core-build-v1",
+              "contentHash": "json-fnv-v1:6dfe1a721e4949e6",
+              "runId": "controlled/failure-retry/hands",
+              "seed": "controlled/failure-retry/hands",
+              "commandSeq": 7,
+              "difficulty": 0,
+              "characterId": "laohuan",
+              "openingRoute": "group",
+              "openingShow": {
+                "handsScored": 4,
+                "rootId": "controlled/failure-retry/hands/hand/controlled/failure-retry/hands/command/7",
+                "eventId": "controlled/failure-retry/hands/hand/controlled/failure-retry/hands/command/7/event/2",
+                "reason": "score"
+              },
+              "routeStarter": {
+                "instanceId": null,
+                "rootId": null,
+                "eventId": null
+              },
+              "mode": "standard",
+              "challengeId": null,
+              "programsEnabled": false,
+              "programRerollCoupon": false,
+              "chapterDisabledJokerId": null,
+              "pendingRefill": null,
+              "chapter": 1,
+              "stageIndex": 0,
+              "phase": "run-lost",
+              "deckInstances": [
+                {
+                  "id": "spades-2",
+                  "suit": "spades",
+                  "rank": 2
+                },
+                {
+                  "id": "spades-3",
+                  "suit": "spades",
+                  "rank": 3
+                },
+                {
+                  "id": "spades-4",
+                  "suit": "spades",
+                  "rank": 4
+                },
+                {
+                  "id": "spades-5",
+                  "suit": "spades",
+                  "rank": 5
+                },
+                {
+                  "id": "spades-6",
+                  "suit": "spades",
+                  "rank": 6
+                },
+                {
+                  "id": "spades-7",
+                  "suit": "spades",
+                  "rank": 7
+                },
+                {
+                  "id": "spades-8",
+                  "suit": "spades",
+                  "rank": 8
+                },
+                {
+                  "id": "spades-9",
+                  "suit": "spades",
+                  "rank": 9
+                },
+                {
+                  "id": "spades-10",
+                  "suit": "spades",
+                  "rank": 10
+                },
+                {
+                  "id": "spades-11",
+                  "suit": "spades",
+                  "rank": 11
+                },
+                {
+                  "id": "spades-12",
+                  "suit": "spades",
+                  "rank": 12
+                },
+                {
+                  "id": "spades-13",
+                  "suit": "spades",
+                  "rank": 13
+                },
+                {
+                  "id": "spades-14",
+                  "suit": "spades",
+                  "rank": 14
+                },
+                {
+                  "id": "hearts-2",
+                  "suit": "hearts",
+                  "rank": 2
+                },
+                {
+                  "id": "hearts-3",
+                  "suit": "hearts",
+                  "rank": 3
+                },
+                {
+                  "id": "hearts-4",
+                  "suit": "hearts",
+                  "rank": 4
+                },
+                {
+                  "id": "hearts-5",
+                  "suit": "hearts",
+                  "rank": 5
+                },
+                {
+                  "id": "hearts-6",
+                  "suit": "hearts",
+                  "rank": 6
+                },
+                {
+                  "id": "hearts-7",
+                  "suit": "hearts",
+                  "rank": 7
+                },
+                {
+                  "id": "hearts-8",
+                  "suit": "hearts",
+                  "rank": 8
+                },
+                {
+                  "id": "hearts-9",
+                  "suit": "hearts",
+                  "rank": 9
+                },
+                {
+                  "id": "hearts-10",
+                  "suit": "hearts",
+                  "rank": 10
+                },
+                {
+                  "id": "hearts-11",
+                  "suit": "hearts",
+                  "rank": 11
+                },
+                {
+                  "id": "hearts-12",
+                  "suit": "hearts",
+                  "rank": 12
+                },
+                {
+                  "id": "hearts-13",
+                  "suit": "hearts",
+                  "rank": 13
+                },
+                {
+                  "id": "hearts-14",
+                  "suit": "hearts",
+                  "rank": 14
+                },
+                {
+                  "id": "clubs-2",
+                  "suit": "clubs",
+                  "rank": 2
+                },
+                {
+                  "id": "clubs-3",
+                  "suit": "clubs",
+                  "rank": 3
+                },
+                {
+                  "id": "clubs-4",
+                  "suit": "clubs",
+                  "rank": 4
+                },
+                {
+                  "id": "clubs-5",
+                  "suit": "clubs",
+                  "rank": 5
+                },
+                {
+                  "id": "clubs-6",
+                  "suit": "clubs",
+                  "rank": 6
+                },
+                {
+                  "id": "clubs-7",
+                  "suit": "clubs",
+                  "rank": 7
+                },
+                {
+                  "id": "clubs-8",
+                  "suit": "clubs",
+                  "rank": 8
+                },
+                {
+                  "id": "clubs-9",
+                  "suit": "clubs",
+                  "rank": 9
+                },
+                {
+                  "id": "clubs-10",
+                  "suit": "clubs",
+                  "rank": 10
+                },
+                {
+                  "id": "clubs-11",
+                  "suit": "clubs",
+                  "rank": 11
+                },
+                {
+                  "id": "clubs-12",
+                  "suit": "clubs",
+                  "rank": 12
+                },
+                {
+                  "id": "clubs-13",
+                  "suit": "clubs",
+                  "rank": 13
+                },
+                {
+                  "id": "clubs-14",
+                  "suit": "clubs",
+                  "rank": 14
+                },
+                {
+                  "id": "diamonds-2",
+                  "suit": "diamonds",
+                  "rank": 2
+                },
+                {
+                  "id": "diamonds-3",
+                  "suit": "diamonds",
+                  "rank": 3
+                },
+                {
+                  "id": "diamonds-4",
+                  "suit": "diamonds",
+                  "rank": 4
+                },
+                {
+                  "id": "diamonds-5",
+                  "suit": "diamonds",
+                  "rank": 5
+                },
+                {
+                  "id": "diamonds-6",
+                  "suit": "diamonds",
+                  "rank": 6
+                },
+                {
+                  "id": "diamonds-7",
+                  "suit": "diamonds",
+                  "rank": 7
+                },
+                {
+                  "id": "diamonds-8",
+                  "suit": "diamonds",
+                  "rank": 8
+                },
+                {
+                  "id": "diamonds-9",
+                  "suit": "diamonds",
+                  "rank": 9
+                },
+                {
+                  "id": "diamonds-10",
+                  "suit": "diamonds",
+                  "rank": 10
+                },
+                {
+                  "id": "diamonds-11",
+                  "suit": "diamonds",
+                  "rank": 11
+                },
+                {
+                  "id": "diamonds-12",
+                  "suit": "diamonds",
+                  "rank": 12
+                },
+                {
+                  "id": "diamonds-13",
+                  "suit": "diamonds",
+                  "rank": 13
+                },
+                {
+                  "id": "diamonds-14",
+                  "suit": "diamonds",
+                  "rank": 14
+                }
+              ],
+              "drawPile": [
+                "hearts-5",
+                "diamonds-11",
+                "hearts-14",
+                "spades-5",
+                "clubs-4",
+                "clubs-2",
+                "clubs-3",
+                "diamonds-5",
+                "hearts-7",
+                "clubs-5",
+                "hearts-2",
+                "spades-8",
+                "clubs-9",
+                "hearts-4",
+                "spades-4",
+                "hearts-12",
+                "spades-3",
+                "diamonds-2",
+                "clubs-11",
+                "diamonds-8",
+                "spades-10",
+                "hearts-13",
+                "hearts-3",
+                "spades-12",
+                "clubs-13",
+                "diamonds-12",
+                "spades-11",
+                "hearts-8",
+                "spades-13",
+                "hearts-11",
+                "diamonds-3",
+                "diamonds-9",
+                "clubs-12",
+                "clubs-6",
+                "diamonds-4",
+                "clubs-10",
+                "spades-7",
+                "clubs-14",
+                "clubs-7",
+                "spades-2",
+                "clubs-8"
+              ],
+              "handOrder": [
+                "diamonds-13",
+                "spades-9",
+                "hearts-9",
+                "diamonds-10",
+                "spades-14",
+                "diamonds-7",
+                "hearts-10"
+              ],
+              "playedPile": [
+                "spades-6",
+                "diamonds-6",
+                "hearts-6",
+                "diamonds-14"
+              ],
+              "discardPile": [],
+              "destroyedIds": [],
+              "stage": {
+                "routeGrowth": {
+                  "entry": {
+                    "commandId": "controlled/failure-retry/hands/command/3",
+                    "seq": 3,
+                    "type": "EnterStage"
+                  },
+                  "handTypes": [
+                    "high-card",
+                    "high-card",
+                    "high-card",
+                    "high-card"
+                  ],
+                  "eligible": [],
+                  "sources": [
+                    {
+                      "command": {
+                        "runId": "controlled/failure-retry/hands",
+                        "commandId": "controlled/failure-retry/hands/command/4",
+                        "expectedSeq": 3,
+                        "action": {
+                          "type": "PlayHand",
+                          "selectedIds": [
+                            "spades-6"
+                          ]
+                        }
+                      },
+                      "cards": [
+                        {
+                          "id": "spades-6",
+                          "suit": "spades",
+                          "rank": 6
+                        }
+                      ],
+                      "rules": {
+                        "fourStraight": false,
+                        "fourFlush": false
+                      }
+                    },
+                    {
+                      "command": {
+                        "runId": "controlled/failure-retry/hands",
+                        "commandId": "controlled/failure-retry/hands/command/5",
+                        "expectedSeq": 4,
+                        "action": {
+                          "type": "PlayHand",
+                          "selectedIds": [
+                            "diamonds-6"
+                          ]
+                        }
+                      },
+                      "cards": [
+                        {
+                          "id": "diamonds-6",
+                          "suit": "diamonds",
+                          "rank": 6
+                        }
+                      ],
+                      "rules": {
+                        "fourStraight": false,
+                        "fourFlush": false
+                      }
+                    },
+                    {
+                      "command": {
+                        "runId": "controlled/failure-retry/hands",
+                        "commandId": "controlled/failure-retry/hands/command/6",
+                        "expectedSeq": 5,
+                        "action": {
+                          "type": "PlayHand",
+                          "selectedIds": [
+                            "hearts-6"
+                          ]
+                        }
+                      },
+                      "cards": [
+                        {
+                          "id": "hearts-6",
+                          "suit": "hearts",
+                          "rank": 6
+                        }
+                      ],
+                      "rules": {
+                        "fourStraight": false,
+                        "fourFlush": false
+                      }
+                    },
+                    {
+                      "command": {
+                        "runId": "controlled/failure-retry/hands",
+                        "commandId": "controlled/failure-retry/hands/command/7",
+                        "expectedSeq": 6,
+                        "action": {
+                          "type": "PlayHand",
+                          "selectedIds": [
+                            "diamonds-14"
+                          ]
+                        }
+                      },
+                      "cards": [
+                        {
+                          "id": "diamonds-14",
+                          "suit": "diamonds",
+                          "rank": 14
+                        }
+                      ],
+                      "rules": {
+                        "fourStraight": false,
+                        "fourFlush": false
+                      }
+                    }
+                  ]
+                },
+                "laohuanTrickUsed": false,
+                "openingDiscard": null,
+                "index": 0,
+                "targetHeat": "400",
+                "initialTargetHeat": "400",
+                "heat": "109",
+                "handsLeft": 0,
+                "initialHands": 4,
+                "discardsLeft": 3,
+                "initialDiscards": 3,
+                "discardSpent": 0,
+                "discardGained": 0,
+                "doubleDiscardBeforeFirstPlay": false,
+                "discardsUsed": 0,
+                "skipResult": null,
+                "playIndex": 4,
+                "previousHandType": "high-card",
+                "previousHandScore": "31",
+                "handLimit": 8,
+                "initialHandLimit": 8,
+                "boss": null,
+                "initialJokerIds": [],
+                "sealedJokerIds": [],
+                "challengeDisabledJokerId": null,
+                "rescueUsed": false,
+                "clearId": null,
+                "goldEarned": 0,
+                "disabledIds": [],
+                "wagerSelected": false,
+                "wagerUsed": false,
+                "maxPlayedCount": 1,
+                "ordinaryStraightSeen": false,
+                "ordinaryFlushSeen": false,
+                "quadRefundUsed": false,
+                "jokerSold": false
+              },
+              "totalHeat": "0",
+              "gold": 6,
+              "jokers": [],
+              "consumables": [],
+              "longTermItems": [],
+              "program": null,
+              "boss": {
+                "definitionId": "B01",
+                "disabledSuit": null
+              },
+              "seenBossIds": [
+                "B01"
+              ],
+              "chapterSkipConsumable": "T04",
+              "purchaseCoupons": 0,
+              "safetyNetUsed": false,
+              "shop": null,
+              "spectralModifiers": {
+                "handsPenalty": 0,
+                "handPenalty": 0,
+                "cleanSlateBonus": 0
+              },
+              "supplyRewardClaimed": false,
+              "chapterHandUsage": {
+                "high-card": 4
+              },
+              "normalClearClaimed": false,
+              "tourMode": "normal",
+              "normalCompletion": null,
+              "rng": {
+                "deck": {
+                  "algorithm": "fnv1a-mulberry32-v1",
+                  "state": 4153116755
+                },
+                "rule": {
+                  "algorithm": "fnv1a-mulberry32-v1",
+                  "state": 1505119064
+                },
+                "shop": {
+                  "algorithm": "fnv1a-mulberry32-v1",
+                  "state": 1033452459
+                },
+                "reward": {
+                  "algorithm": "fnv1a-mulberry32-v1",
+                  "state": 262562183
+                },
+                "program": {
+                  "algorithm": "fnv1a-mulberry32-v1",
+                  "state": 1619836885
+                },
+                "challenge": {
+                  "algorithm": "fnv1a-mulberry32-v1",
+                  "state": 2138790588
+                }
+              },
+              "receipts": [
+                {
+                  "commandId": "controlled/failure-retry/hands/start",
+                  "fingerprint": "json-fnv-v1:8e1e38ca3b349e36",
+                  "seq": 1
+                },
+                {
+                  "commandId": "controlled/failure-retry/hands/command/2",
+                  "fingerprint": "json-fnv-v1:effacd2dd7663581",
+                  "seq": 2
+                },
+                {
+                  "commandId": "controlled/failure-retry/hands/command/3",
+                  "fingerprint": "json-fnv-v1:038b3b7e89269ce2",
+                  "seq": 3
+                },
+                {
+                  "commandId": "controlled/failure-retry/hands/command/4",
+                  "fingerprint": "json-fnv-v1:36546e5b27d30c07",
+                  "seq": 4
+                },
+                {
+                  "commandId": "controlled/failure-retry/hands/command/5",
+                  "fingerprint": "json-fnv-v1:693e8d789aec6cfc",
+                  "seq": 5
+                },
+                {
+                  "commandId": "controlled/failure-retry/hands/command/6",
+                  "fingerprint": "json-fnv-v1:aa2892c042e76e3c",
+                  "seq": 6
+                },
+                {
+                  "commandId": "controlled/failure-retry/hands/command/7",
+                  "fingerprint": "json-fnv-v1:bec79f094d3e4a1d",
+                  "seq": 7
+                }
+              ],
+              "lastTrace": {
+                "routeGrowth": {
+                  "before": {
+                    "clears": 0,
+                    "G": 0,
+                    "S": 0,
+                    "F": 0
+                  },
+                  "factors": {}
+                },
+                "laohuanTrick": true,
+                "rulesVersion": "r2",
+                "rootId": "controlled/failure-retry/hands/hand/controlled/failure-retry/hands/command/7",
+                "handType": "high-card",
+                "level": 1,
+                "sets": {
+                  "playedIds": [
+                    "diamonds-14"
+                  ],
+                  "scoringIds": [
+                    "diamonds-14"
+                  ],
+                  "activeScoringIds": [
+                    "diamonds-14"
+                  ],
+                  "heldIds": [
+                    "diamonds-13",
+                    "spades-9",
+                    "hearts-9",
+                    "diamonds-10",
+                    "spades-14",
+                    "diamonds-7",
+                    "hearts-10"
+                  ]
+                },
+                "finalScore": "31",
+                "accumulator": {
+                  "H": {
+                    "n": "31",
+                    "d": "1"
+                  },
+                  "M": {
+                    "n": "1",
+                    "d": "1"
+                  }
+                },
+                "events": [
+                  {
+                    "eventId": "controlled/failure-retry/hands/hand/controlled/failure-retry/hands/command/7/event/0",
+                    "rootId": "controlled/failure-retry/hands/hand/controlled/failure-retry/hands/command/7",
+                    "rootEventId": "controlled/failure-retry/hands/hand/controlled/failure-retry/hands/command/7/event/0",
+                    "phase": "base",
+                    "sourceType": "rule",
+                    "sourceDefinitionId": "high-card",
+                    "sourceInstanceId": "controlled/failure-retry/hands",
+                    "operation": "base",
+                    "value": {
+                      "n": "20",
+                      "d": "1"
+                    },
+                    "before": {
+                      "H": {
+                        "n": "0",
+                        "d": "1"
+                      },
+                      "M": {
+                        "n": "0",
+                        "d": "1"
+                      }
+                    },
+                    "after": {
+                      "H": {
+                        "n": "20",
+                        "d": "1"
+                      },
+                      "M": {
+                        "n": "1",
+                        "d": "1"
+                      }
+                    },
+                    "reasonKey": "high-card.base",
+                    "visibleCondition": {
+                      "kind": "always"
+                    },
+                    "retriggerDepth": 0
+                  },
+                  {
+                    "eventId": "controlled/failure-retry/hands/hand/controlled/failure-retry/hands/command/7/event/1",
+                    "rootId": "controlled/failure-retry/hands/hand/controlled/failure-retry/hands/command/7",
+                    "rootEventId": "controlled/failure-retry/hands/hand/controlled/failure-retry/hands/command/7/event/1",
+                    "phase": "onCardScore",
+                    "sourceType": "card",
+                    "sourceDefinitionId": "rank-14",
+                    "sourceInstanceId": "diamonds-14",
+                    "targetCardId": "diamonds-14",
+                    "operation": "add-heat",
+                    "value": {
+                      "n": "11",
+                      "d": "1"
+                    },
+                    "before": {
+                      "H": {
+                        "n": "20",
+                        "d": "1"
+                      },
+                      "M": {
+                        "n": "1",
+                        "d": "1"
+                      }
+                    },
+                    "after": {
+                      "H": {
+                        "n": "31",
+                        "d": "1"
+                      },
+                      "M": {
+                        "n": "1",
+                        "d": "1"
+                      }
+                    },
+                    "reasonKey": "rank-14.add-heat",
+                    "visibleCondition": {
+                      "kind": "always"
+                    },
+                    "retriggerDepth": 0
+                  },
+                  {
+                    "eventId": "controlled/failure-retry/hands/hand/controlled/failure-retry/hands/command/7/event/2",
+                    "rootId": "controlled/failure-retry/hands/hand/controlled/failure-retry/hands/command/7",
+                    "rootEventId": "controlled/failure-retry/hands/hand/controlled/failure-retry/hands/command/7/event/2",
+                    "phase": "finalScore",
+                    "sourceType": "rule",
+                    "sourceDefinitionId": "high-card",
+                    "sourceInstanceId": "controlled/failure-retry/hands",
+                    "operation": "final-score",
+                    "value": {
+                      "n": "31",
+                      "d": "1"
+                    },
+                    "before": {
+                      "H": {
+                        "n": "31",
+                        "d": "1"
+                      },
+                      "M": {
+                        "n": "1",
+                        "d": "1"
+                      }
+                    },
+                    "after": {
+                      "H": {
+                        "n": "31",
+                        "d": "1"
+                      },
+                      "M": {
+                        "n": "1",
+                        "d": "1"
+                      }
+                    },
+                    "reasonKey": "high-card.final-score",
+                    "visibleCondition": {
+                      "kind": "always"
+                    },
+                    "retriggerDepth": 0
+                  }
+                ],
+                "jokers": [],
+                "rng": {
+                  "algorithm": "fnv1a-mulberry32-v1",
+                  "state": 1505119064
+                },
+                "goldDelta": 0,
+                "destroyedCardIds": [],
+                "destroyedJokerIds": [],
+                "cards": [
+                  {
+                    "id": "diamonds-14",
+                    "suit": "diamonds",
+                    "rank": 14
+                  },
+                  {
+                    "id": "diamonds-13",
+                    "suit": "diamonds",
+                    "rank": 13
+                  },
+                  {
+                    "id": "spades-9",
+                    "suit": "spades",
+                    "rank": 9
+                  },
+                  {
+                    "id": "hearts-9",
+                    "suit": "hearts",
+                    "rank": 9
+                  },
+                  {
+                    "id": "diamonds-10",
+                    "suit": "diamonds",
+                    "rank": 10
+                  },
+                  {
+                    "id": "spades-14",
+                    "suit": "spades",
+                    "rank": 14
+                  },
+                  {
+                    "id": "diamonds-7",
+                    "suit": "diamonds",
+                    "rank": 7
+                  },
+                  {
+                    "id": "hearts-10",
+                    "suit": "hearts",
+                    "rank": 10
+                  }
+                ],
+                "sourceJokers": [],
+                "bossContext": {
+                  "boss": null,
+                  "previousHandType": "high-card",
+                  "sealedJokerIds": [],
+                  "challengeDisabledJokerId": null
+                },
+                "combo": {
+                  "goldBeforeRewards": null
+                }
+              },
+              "handLevels": {
+                "high-card": 1
+              },
+              "outcome": {
+                "reason": "hands-exhausted",
+                "stageIndex": 0
+              },
+              "chapterTargetPlan": {
+                "policyVersion": "core-build-target-v1",
+                "chapter": 1,
+                "targets": [
+                  "400",
+                  "600",
+                  "800"
+                ],
+                "boss": {
+                  "definitionId": "B01",
+                  "disabledSuit": null
+                }
+              }
+            },
+            "journalBaseSeq": 7,
+            "journal": [],
+            "checksum": "json-fnv-v1:9b75774d7c902d51"
+          },
+          "previous": null
+        },
+        "status": "idle",
+        "pending": {
+          "state": {
+            "routeGrowth": {
+              "clears": 0,
+              "G": 0,
+              "S": 0,
+              "F": 0,
+              "settlements": []
+            },
+            "schemaVersion": 2,
+            "rulesVersion": "r2",
+            "contentVersion": "quality-r2-core-build-v1",
+            "contentHash": "json-fnv-v1:6dfe1a721e4949e6",
+            "runId": "run/controlled/failure-retry/hands/laohuan",
+            "seed": "controlled/failure-retry/hands",
+            "commandSeq": 1,
+            "difficulty": 0,
+            "characterId": "laohuan",
+            "openingRoute": "group",
+            "openingShow": {
+              "handsScored": 0,
+              "rootId": null,
+              "eventId": null,
+              "reason": null
+            },
+            "routeStarter": {
+              "instanceId": null,
+              "rootId": null,
+              "eventId": null
+            },
+            "mode": "standard",
+            "challengeId": null,
+            "programsEnabled": false,
+            "programRerollCoupon": false,
+            "chapterDisabledJokerId": null,
+            "pendingRefill": null,
+            "chapter": 1,
+            "stageIndex": 0,
+            "phase": "shop",
+            "deckInstances": [
+              {
+                "id": "spades-2",
+                "suit": "spades",
+                "rank": 2
+              },
+              {
+                "id": "spades-3",
+                "suit": "spades",
+                "rank": 3
+              },
+              {
+                "id": "spades-4",
+                "suit": "spades",
+                "rank": 4
+              },
+              {
+                "id": "spades-5",
+                "suit": "spades",
+                "rank": 5
+              },
+              {
+                "id": "spades-6",
+                "suit": "spades",
+                "rank": 6
+              },
+              {
+                "id": "spades-7",
+                "suit": "spades",
+                "rank": 7
+              },
+              {
+                "id": "spades-8",
+                "suit": "spades",
+                "rank": 8
+              },
+              {
+                "id": "spades-9",
+                "suit": "spades",
+                "rank": 9
+              },
+              {
+                "id": "spades-10",
+                "suit": "spades",
+                "rank": 10
+              },
+              {
+                "id": "spades-11",
+                "suit": "spades",
+                "rank": 11
+              },
+              {
+                "id": "spades-12",
+                "suit": "spades",
+                "rank": 12
+              },
+              {
+                "id": "spades-13",
+                "suit": "spades",
+                "rank": 13
+              },
+              {
+                "id": "spades-14",
+                "suit": "spades",
+                "rank": 14
+              },
+              {
+                "id": "hearts-2",
+                "suit": "hearts",
+                "rank": 2
+              },
+              {
+                "id": "hearts-3",
+                "suit": "hearts",
+                "rank": 3
+              },
+              {
+                "id": "hearts-4",
+                "suit": "hearts",
+                "rank": 4
+              },
+              {
+                "id": "hearts-5",
+                "suit": "hearts",
+                "rank": 5
+              },
+              {
+                "id": "hearts-6",
+                "suit": "hearts",
+                "rank": 6
+              },
+              {
+                "id": "hearts-7",
+                "suit": "hearts",
+                "rank": 7
+              },
+              {
+                "id": "hearts-8",
+                "suit": "hearts",
+                "rank": 8
+              },
+              {
+                "id": "hearts-9",
+                "suit": "hearts",
+                "rank": 9
+              },
+              {
+                "id": "hearts-10",
+                "suit": "hearts",
+                "rank": 10
+              },
+              {
+                "id": "hearts-11",
+                "suit": "hearts",
+                "rank": 11
+              },
+              {
+                "id": "hearts-12",
+                "suit": "hearts",
+                "rank": 12
+              },
+              {
+                "id": "hearts-13",
+                "suit": "hearts",
+                "rank": 13
+              },
+              {
+                "id": "hearts-14",
+                "suit": "hearts",
+                "rank": 14
+              },
+              {
+                "id": "clubs-2",
+                "suit": "clubs",
+                "rank": 2
+              },
+              {
+                "id": "clubs-3",
+                "suit": "clubs",
+                "rank": 3
+              },
+              {
+                "id": "clubs-4",
+                "suit": "clubs",
+                "rank": 4
+              },
+              {
+                "id": "clubs-5",
+                "suit": "clubs",
+                "rank": 5
+              },
+              {
+                "id": "clubs-6",
+                "suit": "clubs",
+                "rank": 6
+              },
+              {
+                "id": "clubs-7",
+                "suit": "clubs",
+                "rank": 7
+              },
+              {
+                "id": "clubs-8",
+                "suit": "clubs",
+                "rank": 8
+              },
+              {
+                "id": "clubs-9",
+                "suit": "clubs",
+                "rank": 9
+              },
+              {
+                "id": "clubs-10",
+                "suit": "clubs",
+                "rank": 10
+              },
+              {
+                "id": "clubs-11",
+                "suit": "clubs",
+                "rank": 11
+              },
+              {
+                "id": "clubs-12",
+                "suit": "clubs",
+                "rank": 12
+              },
+              {
+                "id": "clubs-13",
+                "suit": "clubs",
+                "rank": 13
+              },
+              {
+                "id": "clubs-14",
+                "suit": "clubs",
+                "rank": 14
+              },
+              {
+                "id": "diamonds-2",
+                "suit": "diamonds",
+                "rank": 2
+              },
+              {
+                "id": "diamonds-3",
+                "suit": "diamonds",
+                "rank": 3
+              },
+              {
+                "id": "diamonds-4",
+                "suit": "diamonds",
+                "rank": 4
+              },
+              {
+                "id": "diamonds-5",
+                "suit": "diamonds",
+                "rank": 5
+              },
+              {
+                "id": "diamonds-6",
+                "suit": "diamonds",
+                "rank": 6
+              },
+              {
+                "id": "diamonds-7",
+                "suit": "diamonds",
+                "rank": 7
+              },
+              {
+                "id": "diamonds-8",
+                "suit": "diamonds",
+                "rank": 8
+              },
+              {
+                "id": "diamonds-9",
+                "suit": "diamonds",
+                "rank": 9
+              },
+              {
+                "id": "diamonds-10",
+                "suit": "diamonds",
+                "rank": 10
+              },
+              {
+                "id": "diamonds-11",
+                "suit": "diamonds",
+                "rank": 11
+              },
+              {
+                "id": "diamonds-12",
+                "suit": "diamonds",
+                "rank": 12
+              },
+              {
+                "id": "diamonds-13",
+                "suit": "diamonds",
+                "rank": 13
+              },
+              {
+                "id": "diamonds-14",
+                "suit": "diamonds",
+                "rank": 14
+              }
+            ],
+            "drawPile": [
+              "spades-2",
+              "spades-3",
+              "spades-4",
+              "spades-5",
+              "spades-6",
+              "spades-7",
+              "spades-8",
+              "spades-9",
+              "spades-10",
+              "spades-11",
+              "spades-12",
+              "spades-13",
+              "spades-14",
+              "hearts-2",
+              "hearts-3",
+              "hearts-4",
+              "hearts-5",
+              "hearts-6",
+              "hearts-7",
+              "hearts-8",
+              "hearts-9",
+              "hearts-10",
+              "hearts-11",
+              "hearts-12",
+              "hearts-13",
+              "hearts-14",
+              "clubs-2",
+              "clubs-3",
+              "clubs-4",
+              "clubs-5",
+              "clubs-6",
+              "clubs-7",
+              "clubs-8",
+              "clubs-9",
+              "clubs-10",
+              "clubs-11",
+              "clubs-12",
+              "clubs-13",
+              "clubs-14",
+              "diamonds-2",
+              "diamonds-3",
+              "diamonds-4",
+              "diamonds-5",
+              "diamonds-6",
+              "diamonds-7",
+              "diamonds-8",
+              "diamonds-9",
+              "diamonds-10",
+              "diamonds-11",
+              "diamonds-12",
+              "diamonds-13",
+              "diamonds-14"
+            ],
+            "handOrder": [],
+            "playedPile": [],
+            "discardPile": [],
+            "destroyedIds": [],
+            "stage": null,
+            "totalHeat": "0",
+            "gold": 6,
+            "jokers": [],
+            "consumables": [],
+            "longTermItems": [],
+            "program": null,
+            "boss": {
+              "definitionId": "B01",
+              "disabledSuit": null
+            },
+            "seenBossIds": [
+              "B01"
+            ],
+            "chapterSkipConsumable": "T04",
+            "purchaseCoupons": 0,
+            "safetyNetUsed": false,
+            "shop": {
+              "visitIndex": 0,
+              "rerollCount": 0,
+              "purchases": 0,
+              "soldJoker": false,
+              "freeRerolls": 0,
+              "offers": [
+                {
+                  "offerId": "run/controlled/failure-retry/hands/laohuan/shop/0/0/joker/0",
+                  "definitionId": "e01",
+                  "price": 4,
+                  "edition": "none",
+                  "consumed": false
+                },
+                {
+                  "offerId": "run/controlled/failure-retry/hands/laohuan/shop/0/0/joker/1",
+                  "definitionId": "f03",
+                  "price": 4,
+                  "edition": "none",
+                  "consumed": false
+                },
+                {
+                  "offerId": "run/controlled/failure-retry/hands/laohuan/shop/0/0/joker/2",
+                  "definitionId": "mantangcai",
+                  "price": 4,
+                  "edition": "none",
+                  "consumed": false
+                }
+              ],
+              "toolOffers": [
+                {
+                  "offerId": "run/controlled/failure-retry/hands/laohuan/shop/0/0/tool/0",
+                  "definitionId": "T18",
+                  "price": 4,
+                  "consumed": false
+                }
+              ],
+              "itemOffers": [
+                {
+                  "offerId": "run/controlled/failure-retry/hands/laohuan/shop/0/0/item/0",
+                  "definitionId": "U09",
+                  "price": 14,
+                  "consumed": false
+                }
+              ],
+              "basicChoice": {
+                "shopSeq": 1,
+                "purchase": null
+              }
+            },
+            "spectralModifiers": {
+              "handsPenalty": 0,
+              "handPenalty": 0,
+              "cleanSlateBonus": 0
+            },
+            "supplyRewardClaimed": false,
+            "chapterHandUsage": {},
+            "normalClearClaimed": false,
+            "tourMode": "normal",
+            "normalCompletion": null,
+            "rng": {
+              "deck": {
+                "algorithm": "fnv1a-mulberry32-v1",
+                "state": 937573508
+              },
+              "rule": {
+                "algorithm": "fnv1a-mulberry32-v1",
+                "state": 1505119064
+              },
+              "shop": {
+                "algorithm": "fnv1a-mulberry32-v1",
+                "state": 1033452459
+              },
+              "reward": {
+                "algorithm": "fnv1a-mulberry32-v1",
+                "state": 262562183
+              },
+              "program": {
+                "algorithm": "fnv1a-mulberry32-v1",
+                "state": 1619836885
+              },
+              "challenge": {
+                "algorithm": "fnv1a-mulberry32-v1",
+                "state": 2138790588
+              }
+            },
+            "receipts": [
+              {
+                "commandId": "run/controlled/failure-retry/hands/laohuan/start",
+                "fingerprint": "json-fnv-v1:9bdb91b082b61964",
+                "seq": 1
+              }
+            ],
+            "lastTrace": null,
+            "handLevels": {},
+            "outcome": null,
+            "chapterTargetPlan": {
+              "policyVersion": "core-build-target-v1",
+              "chapter": 1,
+              "targets": [
+                "400",
+                "600",
+                "800"
+              ],
+              "boss": {
+                "definitionId": "B01",
+                "disabledSuit": null
+              }
+            }
+          },
+          "journal": [],
+          "json": "{\n  \"format\": \"dachoupai-checkpoint\",\n  \"formatVersion\": 1,\n  \"state\": {\n    \"routeGrowth\": {\n      \"clears\": 0,\n      \"G\": 0,\n      \"S\": 0,\n      \"F\": 0,\n      \"settlements\": []\n    },\n    \"schemaVersion\": 2,\n    \"rulesVersion\": \"r2\",\n    \"contentVersion\": \"quality-r2-core-build-v1\",\n    \"contentHash\": \"json-fnv-v1:6dfe1a721e4949e6\",\n    \"runId\": \"run/controlled/failure-retry/hands/laohuan\",\n    \"seed\": \"controlled/failure-retry/hands\",\n    \"commandSeq\": 1,\n    \"difficulty\": 0,\n    \"characterId\": \"laohuan\",\n    \"openingRoute\": \"group\",\n    \"openingShow\": {\n      \"handsScored\": 0,\n      \"rootId\": null,\n      \"eventId\": null,\n      \"reason\": null\n    },\n    \"routeStarter\": {\n      \"instanceId\": null,\n      \"rootId\": null,\n      \"eventId\": null\n    },\n    \"mode\": \"standard\",\n    \"challengeId\": null,\n    \"programsEnabled\": false,\n    \"programRerollCoupon\": false,\n    \"chapterDisabledJokerId\": null,\n    \"pendingRefill\": null,\n    \"chapter\": 1,\n    \"stageIndex\": 0,\n    \"phase\": \"shop\",\n    \"deckInstances\": [\n      {\n        \"id\": \"spades-2\",\n        \"suit\": \"spades\",\n        \"rank\": 2\n      },\n      {\n        \"id\": \"spades-3\",\n        \"suit\": \"spades\",\n        \"rank\": 3\n      },\n      {\n        \"id\": \"spades-4\",\n        \"suit\": \"spades\",\n        \"rank\": 4\n      },\n      {\n        \"id\": \"spades-5\",\n        \"suit\": \"spades\",\n        \"rank\": 5\n      },\n      {\n        \"id\": \"spades-6\",\n        \"suit\": \"spades\",\n        \"rank\": 6\n      },\n      {\n        \"id\": \"spades-7\",\n        \"suit\": \"spades\",\n        \"rank\": 7\n      },\n      {\n        \"id\": \"spades-8\",\n        \"suit\": \"spades\",\n        \"rank\": 8\n      },\n      {\n        \"id\": \"spades-9\",\n        \"suit\": \"spades\",\n        \"rank\": 9\n      },\n      {\n        \"id\": \"spades-10\",\n        \"suit\": \"spades\",\n        \"rank\": 10\n      },\n      {\n        \"id\": \"spades-11\",\n        \"suit\": \"spades\",\n        \"rank\": 11\n      },\n      {\n        \"id\": \"spades-12\",\n        \"suit\": \"spades\",\n        \"rank\": 12\n      },\n      {\n        \"id\": \"spades-13\",\n        \"suit\": \"spades\",\n        \"rank\": 13\n      },\n      {\n        \"id\": \"spades-14\",\n        \"suit\": \"spades\",\n        \"rank\": 14\n      },\n      {\n        \"id\": \"hearts-2\",\n        \"suit\": \"hearts\",\n        \"rank\": 2\n      },\n      {\n        \"id\": \"hearts-3\",\n        \"suit\": \"hearts\",\n        \"rank\": 3\n      },\n      {\n        \"id\": \"hearts-4\",\n        \"suit\": \"hearts\",\n        \"rank\": 4\n      },\n      {\n        \"id\": \"hearts-5\",\n        \"suit\": \"hearts\",\n        \"rank\": 5\n      },\n      {\n        \"id\": \"hearts-6\",\n        \"suit\": \"hearts\",\n        \"rank\": 6\n      },\n      {\n        \"id\": \"hearts-7\",\n        \"suit\": \"hearts\",\n        \"rank\": 7\n      },\n      {\n        \"id\": \"hearts-8\",\n        \"suit\": \"hearts\",\n        \"rank\": 8\n      },\n      {\n        \"id\": \"hearts-9\",\n        \"suit\": \"hearts\",\n        \"rank\": 9\n      },\n      {\n        \"id\": \"hearts-10\",\n        \"suit\": \"hearts\",\n        \"rank\": 10\n      },\n      {\n        \"id\": \"hearts-11\",\n        \"suit\": \"hearts\",\n        \"rank\": 11\n      },\n      {\n        \"id\": \"hearts-12\",\n        \"suit\": \"hearts\",\n        \"rank\": 12\n      },\n      {\n        \"id\": \"hearts-13\",\n        \"suit\": \"hearts\",\n        \"rank\": 13\n      },\n      {\n        \"id\": \"hearts-14\",\n        \"suit\": \"hearts\",\n        \"rank\": 14\n      },\n      {\n        \"id\": \"clubs-2\",\n        \"suit\": \"clubs\",\n        \"rank\": 2\n      },\n      {\n        \"id\": \"clubs-3\",\n        \"suit\": \"clubs\",\n        \"rank\": 3\n      },\n      {\n        \"id\": \"clubs-4\",\n        \"suit\": \"clubs\",\n        \"rank\": 4\n      },\n      {\n        \"id\": \"clubs-5\",\n        \"suit\": \"clubs\",\n        \"rank\": 5\n      },\n      {\n        \"id\": \"clubs-6\",\n        \"suit\": \"clubs\",\n        \"rank\": 6\n      },\n      {\n        \"id\": \"clubs-7\",\n        \"suit\": \"clubs\",\n        \"rank\": 7\n      },\n      {\n        \"id\": \"clubs-8\",\n        \"suit\": \"clubs\",\n        \"rank\": 8\n      },\n      {\n        \"id\": \"clubs-9\",\n        \"suit\": \"clubs\",\n        \"rank\": 9\n      },\n      {\n        \"id\": \"clubs-10\",\n        \"suit\": \"clubs\",\n        \"rank\": 10\n      },\n      {\n        \"id\": \"clubs-11\",\n        \"suit\": \"clubs\",\n        \"rank\": 11\n      },\n      {\n        \"id\": \"clubs-12\",\n        \"suit\": \"clubs\",\n        \"rank\": 12\n      },\n      {\n        \"id\": \"clubs-13\",\n        \"suit\": \"clubs\",\n        \"rank\": 13\n      },\n      {\n        \"id\": \"clubs-14\",\n        \"suit\": \"clubs\",\n        \"rank\": 14\n      },\n      {\n        \"id\": \"diamonds-2\",\n        \"suit\": \"diamonds\",\n        \"rank\": 2\n      },\n      {\n        \"id\": \"diamonds-3\",\n        \"suit\": \"diamonds\",\n        \"rank\": 3\n      },\n      {\n        \"id\": \"diamonds-4\",\n        \"suit\": \"diamonds\",\n        \"rank\": 4\n      },\n      {\n        \"id\": \"diamonds-5\",\n        \"suit\": \"diamonds\",\n        \"rank\": 5\n      },\n      {\n        \"id\": \"diamonds-6\",\n        \"suit\": \"diamonds\",\n        \"rank\": 6\n      },\n      {\n        \"id\": \"diamonds-7\",\n        \"suit\": \"diamonds\",\n        \"rank\": 7\n      },\n      {\n        \"id\": \"diamonds-8\",\n        \"suit\": \"diamonds\",\n        \"rank\": 8\n      },\n      {\n        \"id\": \"diamonds-9\",\n        \"suit\": \"diamonds\",\n        \"rank\": 9\n      },\n      {\n        \"id\": \"diamonds-10\",\n        \"suit\": \"diamonds\",\n        \"rank\": 10\n      },\n      {\n        \"id\": \"diamonds-11\",\n        \"suit\": \"diamonds\",\n        \"rank\": 11\n      },\n      {\n        \"id\": \"diamonds-12\",\n        \"suit\": \"diamonds\",\n        \"rank\": 12\n      },\n      {\n        \"id\": \"diamonds-13\",\n        \"suit\": \"diamonds\",\n        \"rank\": 13\n      },\n      {\n        \"id\": \"diamonds-14\",\n        \"suit\": \"diamonds\",\n        \"rank\": 14\n      }\n    ],\n    \"drawPile\": [\n      \"spades-2\",\n      \"spades-3\",\n      \"spades-4\",\n      \"spades-5\",\n      \"spades-6\",\n      \"spades-7\",\n      \"spades-8\",\n      \"spades-9\",\n      \"spades-10\",\n      \"spades-11\",\n      \"spades-12\",\n      \"spades-13\",\n      \"spades-14\",\n      \"hearts-2\",\n      \"hearts-3\",\n      \"hearts-4\",\n      \"hearts-5\",\n      \"hearts-6\",\n      \"hearts-7\",\n      \"hearts-8\",\n      \"hearts-9\",\n      \"hearts-10\",\n      \"hearts-11\",\n      \"hearts-12\",\n      \"hearts-13\",\n      \"hearts-14\",\n      \"clubs-2\",\n      \"clubs-3\",\n      \"clubs-4\",\n      \"clubs-5\",\n      \"clubs-6\",\n      \"clubs-7\",\n      \"clubs-8\",\n      \"clubs-9\",\n      \"clubs-10\",\n      \"clubs-11\",\n      \"clubs-12\",\n      \"clubs-13\",\n      \"clubs-14\",\n      \"diamonds-2\",\n      \"diamonds-3\",\n      \"diamonds-4\",\n      \"diamonds-5\",\n      \"diamonds-6\",\n      \"diamonds-7\",\n      \"diamonds-8\",\n      \"diamonds-9\",\n      \"diamonds-10\",\n      \"diamonds-11\",\n      \"diamonds-12\",\n      \"diamonds-13\",\n      \"diamonds-14\"\n    ],\n    \"handOrder\": [],\n    \"playedPile\": [],\n    \"discardPile\": [],\n    \"destroyedIds\": [],\n    \"stage\": null,\n    \"totalHeat\": \"0\",\n    \"gold\": 6,\n    \"jokers\": [],\n    \"consumables\": [],\n    \"longTermItems\": [],\n    \"program\": null,\n    \"boss\": {\n      \"definitionId\": \"B01\",\n      \"disabledSuit\": null\n    },\n    \"seenBossIds\": [\n      \"B01\"\n    ],\n    \"chapterSkipConsumable\": \"T04\",\n    \"purchaseCoupons\": 0,\n    \"safetyNetUsed\": false,\n    \"shop\": {\n      \"visitIndex\": 0,\n      \"rerollCount\": 0,\n      \"purchases\": 0,\n      \"soldJoker\": false,\n      \"freeRerolls\": 0,\n      \"offers\": [\n        {\n          \"offerId\": \"run/controlled/failure-retry/hands/laohuan/shop/0/0/joker/0\",\n          \"definitionId\": \"e01\",\n          \"price\": 4,\n          \"edition\": \"none\",\n          \"consumed\": false\n        },\n        {\n          \"offerId\": \"run/controlled/failure-retry/hands/laohuan/shop/0/0/joker/1\",\n          \"definitionId\": \"f03\",\n          \"price\": 4,\n          \"edition\": \"none\",\n          \"consumed\": false\n        },\n        {\n          \"offerId\": \"run/controlled/failure-retry/hands/laohuan/shop/0/0/joker/2\",\n          \"definitionId\": \"mantangcai\",\n          \"price\": 4,\n          \"edition\": \"none\",\n          \"consumed\": false\n        }\n      ],\n      \"toolOffers\": [\n        {\n          \"offerId\": \"run/controlled/failure-retry/hands/laohuan/shop/0/0/tool/0\",\n          \"definitionId\": \"T18\",\n          \"price\": 4,\n          \"consumed\": false\n        }\n      ],\n      \"itemOffers\": [\n        {\n          \"offerId\": \"run/controlled/failure-retry/hands/laohuan/shop/0/0/item/0\",\n          \"definitionId\": \"U09\",\n          \"price\": 14,\n          \"consumed\": false\n        }\n      ],\n      \"basicChoice\": {\n        \"shopSeq\": 1,\n        \"purchase\": null\n      }\n    },\n    \"spectralModifiers\": {\n      \"handsPenalty\": 0,\n      \"handPenalty\": 0,\n      \"cleanSlateBonus\": 0\n    },\n    \"supplyRewardClaimed\": false,\n    \"chapterHandUsage\": {},\n    \"normalClearClaimed\": false,\n    \"tourMode\": \"normal\",\n    \"normalCompletion\": null,\n    \"rng\": {\n      \"deck\": {\n        \"algorithm\": \"fnv1a-mulberry32-v1\",\n        \"state\": 937573508\n      },\n      \"rule\": {\n        \"algorithm\": \"fnv1a-mulberry32-v1\",\n        \"state\": 1505119064\n      },\n      \"shop\": {\n        \"algorithm\": \"fnv1a-mulberry32-v1\",\n        \"state\": 1033452459\n      },\n      \"reward\": {\n        \"algorithm\": \"fnv1a-mulberry32-v1\",\n        \"state\": 262562183\n      },\n      \"program\": {\n        \"algorithm\": \"fnv1a-mulberry32-v1\",\n        \"state\": 1619836885\n      },\n      \"challenge\": {\n        \"algorithm\": \"fnv1a-mulberry32-v1\",\n        \"state\": 2138790588\n      }\n    },\n    \"receipts\": [\n      {\n        \"commandId\": \"run/controlled/failure-retry/hands/laohuan/start\",\n        \"fingerprint\": \"json-fnv-v1:9bdb91b082b61964\",\n        \"seq\": 1\n      }\n    ],\n    \"lastTrace\": null,\n    \"handLevels\": {},\n    \"outcome\": null,\n    \"chapterTargetPlan\": {\n      \"policyVersion\": \"core-build-target-v1\",\n      \"chapter\": 1,\n      \"targets\": [\n        \"400\",\n        \"600\",\n        \"800\"\n      ],\n      \"boss\": {\n        \"definitionId\": \"B01\",\n        \"disabledSuit\": null\n      }\n    }\n  },\n  \"journalBaseSeq\": 1,\n  \"journal\": [],\n  \"checksum\": \"json-fnv-v1:cf4ad35f71f4492b\"\n}",
+          "status": "paused"
+        }
+      },
+      "fixedCandidateAfterRepeatedFault": true,
+      "retry": {
+        "status": "PASS",
+        "commitAttempts": 3,
+        "successfulRevisionDelta": 1,
+        "singleNewState": true
+      },
+      "coldRecovery": "PASS",
+      "status": "PASS"
+    }
+  ],
+  "failures": [],
+  "status": "PASS",
+  "completedAt": "2026-10-15T00:01:53.817Z"
+}
