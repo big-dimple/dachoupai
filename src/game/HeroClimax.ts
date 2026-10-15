@@ -1,3 +1,4 @@
+import {HERO_ART_NOTICE} from './HeroIdentity';
 import type Phaser from 'phaser';
 import {heroPayoffs} from './HeroPayoff';
 import {heroClimaxLayout} from './HeroClimaxLayout';
@@ -54,7 +55,7 @@ export function mountHeroClimax(scene:Phaser.Scene,root:Phaser.GameObjects.Conta
  if(scene.textures.exists('p00-paper'))board.add(scene.add.tileSprite(p.x+3,p.y+7,p.width-6,p.height-12,'p00-paper').setOrigin(0).setAlpha(.07));
  const text=(parent:Phaser.GameObjects.Container,x:number,y:number,s:string,size:number,color=C.ink,width?:number)=>{const t=scene.add.text(x,y,s,{fontFamily:UI_FONT,fontSize:size+'px',fontStyle:'bold',color,resolution:textDensity(scene),...(width?{wordWrap:{width,useAdvancedWrap:true}}:{})});parent.add(t);crispText(t);return t;};
  const actualSource=!!key.fact.definitionId,title=actualSource?key.fact.title:value.skillName??getCharacter(id).name;
- mountHeroClimaxCaption(scene,board,l,{title,owner:actualSource?getCharacter(id).name+' · 来源兑现':value.skillName?getCharacter(id).name+' · 技能兑现':'这一手 · 实际兑现',effect:value.note});
+ mountHeroClimaxCaption(scene,board,l,{title,owner:(actualSource?getCharacter(id).name+' · 来源兑现':value.skillName?getCharacter(id).name+' · 技能兑现':'这一手 · 实际兑现')+' · '+HERO_ART_NOTICE,effect:value.note});
  const eyesLayer=scene.add.container(0,0).setName('hero/shot-eyes'),skillLayer=scene.add.container(0,0).setName('hero/shot-skill'),landingLayer=scene.add.container(0,0).setName('hero/shot-landing');board.add([eyesLayer,skillLayer,landingLayer]);
  // Existing 615×768 artwork supports an honest portrait focus, not a panoramic eye strip.
  // A dedicated eye painting is absent. Never enlarge any sampled pixel on the framebuffer.
