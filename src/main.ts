@@ -9,11 +9,12 @@ import { ShopScene } from './game/ShopScene';
 import {installRunMenu} from './game/RunMenu';
 import {AudioEngine} from './audio/AudioEngine';
 import {installViewport,viewportMetrics} from './platform/Viewport';
+import {prefersCanvasRenderer} from './platform/Renderer';
 
 const viewport=viewportMetrics();
 
 const config: Phaser.Types.Core.GameConfig = {
-  type: Phaser.AUTO,
+  type: prefersCanvasRenderer()?Phaser.CANVAS:Phaser.AUTO,
   parent: 'app',
   width: Math.ceil(viewport.width*viewport.density),
   height: Math.ceil(viewport.height*viewport.density),

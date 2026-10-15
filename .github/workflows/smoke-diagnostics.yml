@@ -1,0 +1,106 @@
+name: Smoke diagnostics
+on:
+  push:
+    branches: [diagnose/shop-smoke-perf-20261015, fix/shop-upgrade-base-stats-20261015]
+    paths: [harness/smoke-diagnostics.mjs, harness/summarize-smoke-diagnostics.mjs, .github/workflows/smoke-diagnostics.yml, src/platform/Renderer.ts, src/main.ts]
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  compare:
+    if: startsWith(github.ref, 'refs/heads/diagnose/')
+    strategy:
+      fail-fast: false
+      matrix:
+        ref: [4d2ff4ca8487f2f00b55516822d1a28ac3c1751f, 3db8b777a2b7e213f912fa9f980890c363c5b042]
+        browser: [chromium, firefox]
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    container:
+      image: mcr.microsoft.com/playwright:v1.63.0-noble@sha256:eff16c30e6f3f4af0a03fa4b706120d5e9b0891c344a27d64559aff5900a4a27
+      options: --user 1001 --ipc=host
+    steps:
+      - uses: actions/checkout@v4
+      - run: cp harness/smoke-diagnostics.mjs /tmp/smoke-diagnostics.mjs
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ matrix.ref }}
+      - run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22.23.3
+          cache: npm
+      - run: npm ci
+      - run: npm run verify:smoke
+        env:
+          SMOKE_BROWSERS: ${{ matrix.browser }}
+          SHOT_PROFILES: mobile
+          NODE_OPTIONS: --import=/tmp/smoke-diagnostics.mjs
+          SMOKE_DIAGNOSTICS_OUTPUT: shots/ci/smoke-diagnostics.jsonl
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: smoke-${{ matrix.ref }}-${{ matrix.browser }}
+          path: |
+            shots/ci/smoke-diagnostics.jsonl
+            shots/smoke-result.json
+  fixed:
+    if: startsWith(github.ref, 'refs/heads/fix/')
+    strategy:
+      fail-fast: false
+      matrix:
+        browser: [chromium, firefox]
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    container:
+      image: mcr.microsoft.com/playwright:v1.63.0-noble@sha256:eff16c30e6f3f4af0a03fa4b706120d5e9b0891c344a27d64559aff5900a4a27
+      options: --user 1001 --ipc=host
+    steps:
+      - uses: actions/checkout@v4
+      - run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22.23.3
+          cache: npm
+      - run: npm ci
+      - run: npm run verify:smoke
+        env:
+          SMOKE_BROWSERS: ${{ matrix.browser }}
+          SHOT_PROFILES: mobile
+          NODE_OPTIONS: --import=./harness/smoke-diagnostics.mjs
+          SMOKE_DIAGNOSTICS_OUTPUT: shots/ci/smoke-diagnostics.jsonl
+      - if: always()
+        run: node harness/summarize-smoke-diagnostics.mjs shots/ci/smoke-diagnostics.jsonl
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: fixed-${{ github.sha }}-${{ matrix.browser }}
+          path: |
+            shots/ci/smoke-diagnostics.jsonl
+            shots/smoke-result.json
+  original-evidence:
+    if: startsWith(github.ref, 'refs/heads/fix/')
+    needs: fixed
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22.23.3
+      - uses: actions/github-script@v7
+        with:
+          script: |
+            for (let attempt = 0; attempt < 18; attempt++) {
+              const {data} = await github.rest.actions.getWorkflowRun({...context.repo, run_id: 38690306580});
+              if (data.status === 'completed') return;
+              await new Promise(resolve => setTimeout(resolve, 10000));
+            }
+            throw new Error('Original comparison is still running; preserve its existing timeout.');
+      - uses: actions/download-artifact@v4
+        with:
+          run-id: 38690306580
+          github-token: ${{ github.token }}
+          path: original-evidence
+      - run: node harness/summarize-smoke-diagnostics.mjs original-evidence/*/ci/smoke-diagnostics.jsonl
