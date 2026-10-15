@@ -1,0 +1,725 @@
+{
+  "head": "d5dca4aba0ddd56e431f4cfb7a1636be2a74cbd9",
+  "sourceHashes": {
+    "index.html": "4abda4b473c9b4a9be27e980a3601935f6e41de72f5cebbf524f376d343f6e3a",
+    "src/game/LoadingScreen.ts": "86697131a9c9370231ad780964fe7794b444d50026e3ab38314e7e9b9e2819ae",
+    "src/game/PaperFlow.ts": "5507d3244d36a7bcb53b331ff2a9593bda7bfb8136d2a18728dc6c06e783c4db",
+    "src/game/GameScene.ts": "b0cc96e51dd11927cee4f7cc314c66386d958e3075e7497a00f8111375176589",
+    "src/game/ShopScene.ts": "017f1547bdab1eb0d255f9e543f4401ac78eaf8cec8d5bd4aa83352d5d19ba99",
+    "src/game/ToolCarryIntent.ts": "fbd50f13871dbb35f62223a1a9ff30e053d70e95bf3cca0c58afeb231eef1a43"
+  },
+  "scope": "Native fresh standard run with ordinary starting gold, real hero/route selection and public tool choice. No imported state, stock overrides, domain replacements or natural full-tour acceptance. PC alone evicts one already-loaded display texture to exercise delayed scene-data handoff.",
+  "cases": [
+    {
+      "viewport": {
+        "width": 1366,
+        "height": 900
+      },
+      "errors": [],
+      "startup": {
+        "loaded": 10,
+        "total": 134,
+        "progress": 10,
+        "scrollX": false,
+        "scrollY": false
+      },
+      "loadingReady": {
+        "key": "title",
+        "total": 134,
+        "loaded": 134,
+        "failed": 0,
+        "pending": 0,
+        "keys": [
+          "p00-paper",
+          "p00-card-back",
+          "p00-frame-common",
+          "p00-frame-uncommon",
+          "p00-frame-rare",
+          "p00-mark-joker",
+          "p00-mark-plus",
+          "p00-mark-times",
+          "p08-court-j",
+          "p08-court-q",
+          "p08-court-k",
+          "p08-joker-mantangcai",
+          "p08-joker-jiedongfeng",
+          "p08-joker-c04",
+          "p08-joker-b10",
+          "p08-joker-b03",
+          "p08-joker-c06",
+          "p08-joker-f04",
+          "p08-joker-e07",
+          "p08-joker-f09",
+          "p08-joker-f07",
+          "p08-joker-d07",
+          "p08-joker-a07",
+          "p08-joker-a08",
+          "p08-joker-c03",
+          "p08-joker-d02",
+          "p08-joker-e02",
+          "p08-joker-e09",
+          "p08-joker-tiesuanpan",
+          "p08-joker-f10",
+          "p08-joker-c08",
+          "p08-joker-c09",
+          "p08-joker-pengci",
+          "p08-joker-huimaqiang",
+          "p08-joker-b07",
+          "p08-joker-a09",
+          "p08-joker-d06",
+          "p08-joker-a04",
+          "p08-joker-e04",
+          "p08-joker-c05",
+          "p08-joker-c02",
+          "p08-joker-f03",
+          "p08-joker-a03",
+          "p08-joker-b02",
+          "p08-joker-b04",
+          "p08-joker-d01",
+          "p08-joker-f02",
+          "p08-joker-d10",
+          "p08-joker-e01",
+          "p08-joker-b05",
+          "p08-joker-b08",
+          "p08-joker-d05",
+          "p08-joker-e03",
+          "p08-joker-e06",
+          "p08-joker-f05",
+          "p08-joker-f11",
+          "p08-joker-b06",
+          "p08-joker-a11",
+          "p08-joker-d04",
+          "p08-joker-c07",
+          "p08-joker-d11",
+          "p08-joker-d08",
+          "p08-joker-d09",
+          "p08-joker-b12",
+          "p08-joker-a05",
+          "p08-joker-d03",
+          "p08-joker-a10",
+          "p08-joker-b11",
+          "p08-joker-c10",
+          "p08-joker-d12",
+          "p08-joker-a06",
+          "p08-joker-a12",
+          "p08-joker-b09",
+          "p08-joker-c11",
+          "p08-joker-c12",
+          "p08-joker-e10",
+          "p08-joker-e12",
+          "p08-joker-e05",
+          "p08-joker-e08",
+          "p08-joker-e11",
+          "p08-joker-f06",
+          "p08-joker-f08",
+          "p08-joker-f12",
+          "goods-art/T12",
+          "goods-art/U07",
+          "goods-art/P11",
+          "goods-art/S02",
+          "goods-art/U01",
+          "goods-art/U02",
+          "goods-art/U03",
+          "goods-art/U04",
+          "goods-art/U05",
+          "goods-art/U06",
+          "goods-art/U08",
+          "goods-art/U09",
+          "goods-art/U10",
+          "goods-art/U11",
+          "goods-art/U12",
+          "goods-art/T06",
+          "goods-art/T07",
+          "goods-art/T08",
+          "goods-art/T09",
+          "goods-art/T10",
+          "goods-art/T11",
+          "goods-art/T13",
+          "goods-art/T14",
+          "goods-art/T15",
+          "goods-art/T16",
+          "goods-art/T17",
+          "goods-art/T18",
+          "goods-art/T01",
+          "goods-art/T02",
+          "goods-art/T03",
+          "goods-art/T04",
+          "goods-art/T05",
+          "goods-art/P01",
+          "goods-art/P02",
+          "goods-art/P03",
+          "goods-art/P04",
+          "goods-art/P05",
+          "goods-art/P06",
+          "goods-art/P07",
+          "goods-art/P08",
+          "goods-art/P09",
+          "goods-art/P10",
+          "goods-art/P12",
+          "goods-art/S01",
+          "goods-art/T19",
+          "goods-art/S03",
+          "goods-art/S04",
+          "goods-art/S05",
+          "goods-art/S06",
+          "goods-art/S07",
+          "goods-art/S08"
+        ],
+        "status": "ready"
+      },
+      "purchaseChoice": {
+        "id": "T08",
+        "kind": "basic",
+        "price": 2,
+        "startingGold": 6
+      },
+      "purchase": {
+        "commands": [
+          {
+            "runId": "run/tangsong-native-carry/laohuan",
+            "commandId": "run/tangsong-native-carry/laohuan/command/2",
+            "expectedSeq": 1,
+            "action": {
+              "type": "BuyBasicTool",
+              "definitionId": "T08",
+              "shopSeq": 1
+            }
+          }
+        ],
+        "fullStateJournalStorageRngEqual": true
+      },
+      "instanceId": "run/tangsong-native-carry/laohuan/tool/run/tangsong-native-carry/laohuan/command/2",
+      "destinationGate": {
+        "active": [
+          "shop"
+        ],
+        "preparation": {
+          "key": "game",
+          "total": 4,
+          "loaded": 3,
+          "failed": 0,
+          "pending": 1,
+          "keys": [
+            "p08-court-j",
+            "p08-court-q",
+            "p08-court-k",
+            "goods-art/T08"
+          ],
+          "status": "loading"
+        }
+      },
+      "entry": {
+        "commands": [
+          {
+            "runId": "run/tangsong-native-carry/laohuan",
+            "commandId": "run/tangsong-native-carry/laohuan/command/3",
+            "expectedSeq": 2,
+            "action": {
+              "type": "LeaveShop"
+            }
+          },
+          {
+            "runId": "run/tangsong-native-carry/laohuan",
+            "commandId": "run/tangsong-native-carry/laohuan/command/4",
+            "expectedSeq": 3,
+            "action": {
+              "type": "EnterStage"
+            }
+          }
+        ],
+        "fullStateJournalStorageRngEqual": true
+      },
+      "guard": {
+        "allDealt": true,
+        "intentCleared": true,
+        "ready": true
+      },
+      "target": "spades-13",
+      "use": {
+        "commands": [
+          {
+            "runId": "run/tangsong-native-carry/laohuan",
+            "commandId": "run/tangsong-native-carry/laohuan/command/5",
+            "expectedSeq": 4,
+            "action": {
+              "type": "UseConsumable",
+              "instanceId": "run/tangsong-native-carry/laohuan/tool/run/tangsong-native-carry/laohuan/command/2",
+              "targetIds": [
+                "spades-13"
+              ]
+            }
+          }
+        ],
+        "fullStateJournalStorageRngEqual": true
+      },
+      "rankChange": {
+        "before": 13,
+        "after": 14
+      },
+      "coldRestore": "entire state/journal/storage unchanged; no carried selector revival",
+      "status": "PASS"
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "errors": [],
+      "startup": {
+        "loaded": 10,
+        "total": 134,
+        "progress": 10,
+        "scrollX": false,
+        "scrollY": false
+      },
+      "loadingReady": {
+        "key": "title",
+        "total": 134,
+        "loaded": 134,
+        "failed": 0,
+        "pending": 0,
+        "keys": [
+          "p00-paper",
+          "p00-card-back",
+          "p00-frame-common",
+          "p00-frame-uncommon",
+          "p00-frame-rare",
+          "p00-mark-joker",
+          "p00-mark-plus",
+          "p00-mark-times",
+          "p08-court-j",
+          "p08-court-q",
+          "p08-court-k",
+          "p08-joker-mantangcai",
+          "p08-joker-jiedongfeng",
+          "p08-joker-c04",
+          "p08-joker-b10",
+          "p08-joker-b03",
+          "p08-joker-c06",
+          "p08-joker-f04",
+          "p08-joker-e07",
+          "p08-joker-f09",
+          "p08-joker-f07",
+          "p08-joker-d07",
+          "p08-joker-a07",
+          "p08-joker-a08",
+          "p08-joker-c03",
+          "p08-joker-d02",
+          "p08-joker-e02",
+          "p08-joker-e09",
+          "p08-joker-tiesuanpan",
+          "p08-joker-f10",
+          "p08-joker-c08",
+          "p08-joker-c09",
+          "p08-joker-pengci",
+          "p08-joker-huimaqiang",
+          "p08-joker-b07",
+          "p08-joker-a09",
+          "p08-joker-d06",
+          "p08-joker-a04",
+          "p08-joker-e04",
+          "p08-joker-c05",
+          "p08-joker-c02",
+          "p08-joker-f03",
+          "p08-joker-a03",
+          "p08-joker-b02",
+          "p08-joker-b04",
+          "p08-joker-d01",
+          "p08-joker-f02",
+          "p08-joker-d10",
+          "p08-joker-e01",
+          "p08-joker-b05",
+          "p08-joker-b08",
+          "p08-joker-d05",
+          "p08-joker-e03",
+          "p08-joker-e06",
+          "p08-joker-f05",
+          "p08-joker-f11",
+          "p08-joker-b06",
+          "p08-joker-a11",
+          "p08-joker-d04",
+          "p08-joker-c07",
+          "p08-joker-d11",
+          "p08-joker-d08",
+          "p08-joker-d09",
+          "p08-joker-b12",
+          "p08-joker-a05",
+          "p08-joker-d03",
+          "p08-joker-a10",
+          "p08-joker-b11",
+          "p08-joker-c10",
+          "p08-joker-d12",
+          "p08-joker-a06",
+          "p08-joker-a12",
+          "p08-joker-b09",
+          "p08-joker-c11",
+          "p08-joker-c12",
+          "p08-joker-e10",
+          "p08-joker-e12",
+          "p08-joker-e05",
+          "p08-joker-e08",
+          "p08-joker-e11",
+          "p08-joker-f06",
+          "p08-joker-f08",
+          "p08-joker-f12",
+          "goods-art/T12",
+          "goods-art/U07",
+          "goods-art/P11",
+          "goods-art/S02",
+          "goods-art/U01",
+          "goods-art/U02",
+          "goods-art/U03",
+          "goods-art/U04",
+          "goods-art/U05",
+          "goods-art/U06",
+          "goods-art/U08",
+          "goods-art/U09",
+          "goods-art/U10",
+          "goods-art/U11",
+          "goods-art/U12",
+          "goods-art/T06",
+          "goods-art/T07",
+          "goods-art/T08",
+          "goods-art/T09",
+          "goods-art/T10",
+          "goods-art/T11",
+          "goods-art/T13",
+          "goods-art/T14",
+          "goods-art/T15",
+          "goods-art/T16",
+          "goods-art/T17",
+          "goods-art/T18",
+          "goods-art/T01",
+          "goods-art/T02",
+          "goods-art/T03",
+          "goods-art/T04",
+          "goods-art/T05",
+          "goods-art/P01",
+          "goods-art/P02",
+          "goods-art/P03",
+          "goods-art/P04",
+          "goods-art/P05",
+          "goods-art/P06",
+          "goods-art/P07",
+          "goods-art/P08",
+          "goods-art/P09",
+          "goods-art/P10",
+          "goods-art/P12",
+          "goods-art/S01",
+          "goods-art/T19",
+          "goods-art/S03",
+          "goods-art/S04",
+          "goods-art/S05",
+          "goods-art/S06",
+          "goods-art/S07",
+          "goods-art/S08"
+        ],
+        "status": "ready"
+      },
+      "purchaseChoice": {
+        "id": "T08",
+        "kind": "basic",
+        "price": 2,
+        "startingGold": 6
+      },
+      "purchase": {
+        "commands": [
+          {
+            "runId": "run/tangsong-native-carry/laohuan",
+            "commandId": "run/tangsong-native-carry/laohuan/command/2",
+            "expectedSeq": 1,
+            "action": {
+              "type": "BuyBasicTool",
+              "definitionId": "T08",
+              "shopSeq": 1
+            }
+          }
+        ],
+        "fullStateJournalStorageRngEqual": true
+      },
+      "instanceId": "run/tangsong-native-carry/laohuan/tool/run/tangsong-native-carry/laohuan/command/2",
+      "entry": {
+        "commands": [
+          {
+            "runId": "run/tangsong-native-carry/laohuan",
+            "commandId": "run/tangsong-native-carry/laohuan/command/3",
+            "expectedSeq": 2,
+            "action": {
+              "type": "LeaveShop"
+            }
+          },
+          {
+            "runId": "run/tangsong-native-carry/laohuan",
+            "commandId": "run/tangsong-native-carry/laohuan/command/4",
+            "expectedSeq": 3,
+            "action": {
+              "type": "EnterStage"
+            }
+          }
+        ],
+        "fullStateJournalStorageRngEqual": true
+      },
+      "guard": {
+        "allDealt": true,
+        "intentCleared": true,
+        "ready": true
+      },
+      "target": "spades-13",
+      "use": {
+        "commands": [
+          {
+            "runId": "run/tangsong-native-carry/laohuan",
+            "commandId": "run/tangsong-native-carry/laohuan/command/5",
+            "expectedSeq": 4,
+            "action": {
+              "type": "UseConsumable",
+              "instanceId": "run/tangsong-native-carry/laohuan/tool/run/tangsong-native-carry/laohuan/command/2",
+              "targetIds": [
+                "spades-13"
+              ]
+            }
+          }
+        ],
+        "fullStateJournalStorageRngEqual": true
+      },
+      "rankChange": {
+        "before": 13,
+        "after": 14
+      },
+      "coldRestore": "entire state/journal/storage unchanged; no carried selector revival",
+      "status": "PASS"
+    },
+    {
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "errors": [],
+      "startup": {
+        "loaded": 12,
+        "total": 134,
+        "progress": 12,
+        "scrollX": false,
+        "scrollY": false
+      },
+      "loadingReady": {
+        "key": "title",
+        "total": 134,
+        "loaded": 134,
+        "failed": 0,
+        "pending": 0,
+        "keys": [
+          "p00-paper",
+          "p00-card-back",
+          "p00-frame-common",
+          "p00-frame-uncommon",
+          "p00-frame-rare",
+          "p00-mark-joker",
+          "p00-mark-plus",
+          "p00-mark-times",
+          "p08-court-j",
+          "p08-court-q",
+          "p08-court-k",
+          "p08-joker-mantangcai",
+          "p08-joker-jiedongfeng",
+          "p08-joker-c04",
+          "p08-joker-b10",
+          "p08-joker-b03",
+          "p08-joker-c06",
+          "p08-joker-f04",
+          "p08-joker-e07",
+          "p08-joker-f09",
+          "p08-joker-f07",
+          "p08-joker-d07",
+          "p08-joker-a07",
+          "p08-joker-a08",
+          "p08-joker-c03",
+          "p08-joker-d02",
+          "p08-joker-e02",
+          "p08-joker-e09",
+          "p08-joker-tiesuanpan",
+          "p08-joker-f10",
+          "p08-joker-c08",
+          "p08-joker-c09",
+          "p08-joker-pengci",
+          "p08-joker-huimaqiang",
+          "p08-joker-b07",
+          "p08-joker-a09",
+          "p08-joker-d06",
+          "p08-joker-a04",
+          "p08-joker-e04",
+          "p08-joker-c05",
+          "p08-joker-c02",
+          "p08-joker-f03",
+          "p08-joker-a03",
+          "p08-joker-b02",
+          "p08-joker-b04",
+          "p08-joker-d01",
+          "p08-joker-f02",
+          "p08-joker-d10",
+          "p08-joker-e01",
+          "p08-joker-b05",
+          "p08-joker-b08",
+          "p08-joker-d05",
+          "p08-joker-e03",
+          "p08-joker-e06",
+          "p08-joker-f05",
+          "p08-joker-f11",
+          "p08-joker-b06",
+          "p08-joker-a11",
+          "p08-joker-d04",
+          "p08-joker-c07",
+          "p08-joker-d11",
+          "p08-joker-d08",
+          "p08-joker-d09",
+          "p08-joker-b12",
+          "p08-joker-a05",
+          "p08-joker-d03",
+          "p08-joker-a10",
+          "p08-joker-b11",
+          "p08-joker-c10",
+          "p08-joker-d12",
+          "p08-joker-a06",
+          "p08-joker-a12",
+          "p08-joker-b09",
+          "p08-joker-c11",
+          "p08-joker-c12",
+          "p08-joker-e10",
+          "p08-joker-e12",
+          "p08-joker-e05",
+          "p08-joker-e08",
+          "p08-joker-e11",
+          "p08-joker-f06",
+          "p08-joker-f08",
+          "p08-joker-f12",
+          "goods-art/T12",
+          "goods-art/U07",
+          "goods-art/P11",
+          "goods-art/S02",
+          "goods-art/U01",
+          "goods-art/U02",
+          "goods-art/U03",
+          "goods-art/U04",
+          "goods-art/U05",
+          "goods-art/U06",
+          "goods-art/U08",
+          "goods-art/U09",
+          "goods-art/U10",
+          "goods-art/U11",
+          "goods-art/U12",
+          "goods-art/T06",
+          "goods-art/T07",
+          "goods-art/T08",
+          "goods-art/T09",
+          "goods-art/T10",
+          "goods-art/T11",
+          "goods-art/T13",
+          "goods-art/T14",
+          "goods-art/T15",
+          "goods-art/T16",
+          "goods-art/T17",
+          "goods-art/T18",
+          "goods-art/T01",
+          "goods-art/T02",
+          "goods-art/T03",
+          "goods-art/T04",
+          "goods-art/T05",
+          "goods-art/P01",
+          "goods-art/P02",
+          "goods-art/P03",
+          "goods-art/P04",
+          "goods-art/P05",
+          "goods-art/P06",
+          "goods-art/P07",
+          "goods-art/P08",
+          "goods-art/P09",
+          "goods-art/P10",
+          "goods-art/P12",
+          "goods-art/S01",
+          "goods-art/T19",
+          "goods-art/S03",
+          "goods-art/S04",
+          "goods-art/S05",
+          "goods-art/S06",
+          "goods-art/S07",
+          "goods-art/S08"
+        ],
+        "status": "ready"
+      },
+      "purchaseChoice": {
+        "id": "T08",
+        "kind": "basic",
+        "price": 2,
+        "startingGold": 6
+      },
+      "purchase": {
+        "commands": [
+          {
+            "runId": "run/tangsong-native-carry/laohuan",
+            "commandId": "run/tangsong-native-carry/laohuan/command/2",
+            "expectedSeq": 1,
+            "action": {
+              "type": "BuyBasicTool",
+              "definitionId": "T08",
+              "shopSeq": 1
+            }
+          }
+        ],
+        "fullStateJournalStorageRngEqual": true
+      },
+      "instanceId": "run/tangsong-native-carry/laohuan/tool/run/tangsong-native-carry/laohuan/command/2",
+      "entry": {
+        "commands": [
+          {
+            "runId": "run/tangsong-native-carry/laohuan",
+            "commandId": "run/tangsong-native-carry/laohuan/command/3",
+            "expectedSeq": 2,
+            "action": {
+              "type": "LeaveShop"
+            }
+          },
+          {
+            "runId": "run/tangsong-native-carry/laohuan",
+            "commandId": "run/tangsong-native-carry/laohuan/command/4",
+            "expectedSeq": 3,
+            "action": {
+              "type": "EnterStage"
+            }
+          }
+        ],
+        "fullStateJournalStorageRngEqual": true
+      },
+      "guard": {
+        "allDealt": true,
+        "intentCleared": true,
+        "ready": true
+      },
+      "target": "spades-13",
+      "use": {
+        "commands": [
+          {
+            "runId": "run/tangsong-native-carry/laohuan",
+            "commandId": "run/tangsong-native-carry/laohuan/command/5",
+            "expectedSeq": 4,
+            "action": {
+              "type": "UseConsumable",
+              "instanceId": "run/tangsong-native-carry/laohuan/tool/run/tangsong-native-carry/laohuan/command/2",
+              "targetIds": [
+                "spades-13"
+              ]
+            }
+          }
+        ],
+        "fullStateJournalStorageRngEqual": true
+      },
+      "rankChange": {
+        "before": 13,
+        "after": 14
+      },
+      "coldRestore": "entire state/journal/storage unchanged; no carried selector revival",
+      "status": "PASS"
+    }
+  ],
+  "sourceUnchanged": true,
+  "status": "PASS"
+}
