@@ -1,3 +1,4 @@
+import {artTransfer} from './ArtTextureLoading';
 /** Bounded, same-origin detail upgrade queue. Thumbnails remain visible on every failure. */
 const MAX_ACTIVE=2,MAX_CACHED=4,MAX_BYTES=2*1024*1024,DEADLINE_MS=6000;
 type Work={url:string;promise:Promise<string>;resolve:(value:string)=>void;reject:(reason:Error)=>void;controller:AbortController;consumers:number;retained:boolean};
@@ -22,26 +23,34 @@ function subscribe(work:Work,signal?:AbortSignal):Promise<string> {
 function pump():void {
   while(active<MAX_ACTIVE&&queue.length){
     const work=queue.shift()!,controller=work.controller;active++;
-    let abort!:()=>void;
-    const canceled=new Promise<never>((_resolve,reject)=>{abort=()=>reject(new Error('detail-image-aborted'));controller.signal.addEventListener('abort',abort,{once:true});});
-    const timer=setTimeout(()=>controller.abort(),DEADLINE_MS);
-    const transfer=async()=>{
-      const response=await fetch(work.url,{signal:controller.signal,credentials:'same-origin',priority:'low'});
-      if(!response.ok)throw new Error('detail-image-http');const blob=await response.blob();if(blob.size>MAX_BYTES)throw new Error('detail-image-budget');
-      if(controller.signal.aborted)throw new Error('detail-image-aborted');
-      const bitmap=await createImageBitmap(blob);const pixels=bitmap.width*bitmap.height;bitmap.close();
-      if(controller.signal.aborted)throw new Error('detail-image-aborted');
-      if(pixels>1_600_000)throw new Error('detail-image-pixels');return blob;
-    };
-    // Abort/deadline also settle uncancelable body/bitmap work. Late results never enter the cache.
     void (async()=>{
       let result:string|undefined;
       try {
-        const blob=await Promise.race([transfer(),canceled]);
+        const blob=await artTransfer(async signal=>{
+          const timer=setTimeout(()=>controller.abort(),DEADLINE_MS),stopDeadline=()=>clearTimeout(timer);
+          signal.addEventListener('abort',stopDeadline,{once:true});
+          try {
+            const response=await fetch(work.url,{signal,credentials:'same-origin',priority:'low'});
+            if(!response.ok)throw new Error('detail-image-http');
+            if(Number(response.headers?.get('content-length'))>MAX_BYTES)throw new Error('detail-image-budget');
+            // Read incrementally in browsers; the fallback also supports simple Response adapters.
+            let blob:Blob;
+            if(response.body){
+              const reader=response.body.getReader(),chunks:Uint8Array[]=[];let bytes=0;
+              try{while(true){const next=await reader.read();if(next.done)break;bytes+=next.value.byteLength;if(bytes>MAX_BYTES){await reader.cancel();throw Error('detail-image-budget');}chunks.push(next.value);}}finally{reader.releaseLock();}
+              blob=new Blob(chunks as BlobPart[],{type:response.headers.get('content-type')??'image/webp'});
+            }else blob=await response.blob();
+            if(blob.size>MAX_BYTES)throw new Error('detail-image-budget');
+            if(signal.aborted)throw new Error('detail-image-aborted');
+            const bitmap=await createImageBitmap(blob);const pixels=bitmap.width*bitmap.height;bitmap.close();
+            if(signal.aborted)throw new Error('detail-image-aborted');
+            if(pixels>1_600_000)throw new Error('detail-image-pixels');return blob;
+          }finally{clearTimeout(timer);signal.removeEventListener('abort',stopDeadline);}
+        },1,controller.signal);
         if(!controller.signal.aborted){result=URL.createObjectURL(blob);cache.set(work.url,result);
           while(cache.size>MAX_CACHED){const oldest=cache.keys().next().value!;URL.revokeObjectURL(cache.get(oldest)!);cache.delete(oldest);}}
-      }catch { /* A failed attempt remains retryable, including synchronous fetch failures. */ }
-      finally {clearTimeout(timer);controller.signal.removeEventListener('abort',abort);if(pending.get(work.url)===work)pending.delete(work.url);active--;pump();}
+      }catch { /* An explicit retry can recover without replacing an available face. */ }
+      finally {if(pending.get(work.url)===work)pending.delete(work.url);active--;pump();}
       if(result)work.resolve(result);else work.reject(new Error('detail-image-unavailable'));
     })();
   }

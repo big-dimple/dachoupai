@@ -1,4 +1,4 @@
-export interface WarmImage {key:string;url:string}
+export interface WarmImage {key:string;url:string;visible?:boolean}
 export interface WarmImageState extends WarmImage {status:'queued'|'loading'|'loaded'|'failed';attempts:number}
 /** Small fixed catalog, two transfers, one automatic retry; explicit retries stay possible. */
 export class ImageWarmupQueue {
@@ -15,7 +15,7 @@ export class ImageWarmupQueue {
       if(this.entries.has(asset.key)){
         const index=this.pending.indexOf(asset.key);if(priority&&index>=0)this.pending.unshift(...this.pending.splice(index,1));continue;
       }
-      if(this.entries.size>=this.limit)continue;
+      if(this.entries.size>=this.limit){const settled=[...this.entries.values()].find(entry=>entry.status==='loaded'||entry.status==='failed');if(settled)this.entries.delete(settled.key);else continue;}
       this.entries.set(asset.key,{...asset,status:'queued',attempts:0});
       if(priority)this.pending.unshift(asset.key);else this.pending.push(asset.key);
     }

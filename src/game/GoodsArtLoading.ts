@@ -1,11 +1,11 @@
 import type Phaser from 'phaser';
-import {detailArt,decodeArtImage,invalidateArt} from './DetailArt';
+import {loadArtTexture} from './ArtTextureLoading';
 
 type Status='idle'|'loading'|'loaded'|'failed';
 interface Entry {status:Status;attempts:number;controller?:AbortController;promise?:Promise<boolean>}
 const loaders=new WeakMap<Phaser.Scene,GoodsLoads>();
 export const goodsArtKey=(id:string)=>'goods-art/'+id;
-/** Reuses the bounded fetch/decode queue; no HD prefetch or scene loader listeners. */
+/** Visible thumbnails share the texture queue with Jokers and stage warmup. */
 class GoodsLoads {
   readonly entries=new Map<string,Entry>();
   private disposed=false;
@@ -18,12 +18,11 @@ class GoodsLoads {
     if(entry.status==='loading')return entry.promise!;
     if(entry.status==='failed'&&!retry)return Promise.resolve(false);
     const controller=new AbortController();entry.controller=controller;entry.status='loading';entry.attempts++;
-    const current=entry;let cachedSource:string|undefined;
-    return entry.promise=detailArt(url,true,controller.signal).then(src=>{cachedSource=src;return decodeArtImage(src,controller.signal);}).then(image=>{
+    const current=entry;
+    return entry.promise=loadArtTexture(this.scene.game,key,url,controller.signal).then(()=>{
       if(this.disposed||controller.signal.aborted)return false;
-      if(!this.scene.textures.exists(key))this.scene.textures.addImage(key,image);
       current.status=this.scene.textures.exists(key)?'loaded':'failed';refresh();return current.status==='loaded';
-    }).catch(()=>{if(!this.disposed&&!controller.signal.aborted){if(cachedSource)invalidateArt(url,cachedSource);current.status='failed';refresh();}return false;});
+    }).catch(()=>{if(!this.disposed&&!controller.signal.aborted){current.status='failed';refresh();}return false;});
   }
   private readonly dispose=()=>{
     if(this.disposed)return;this.disposed=true;
