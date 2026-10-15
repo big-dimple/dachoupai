@@ -1,0 +1,114 @@
+{
+  "baseline": "4a52fd0b0fb9ac0a49b8cb5e79abc8db4326e2d7",
+  "product": "d43a901ed116256c68eadb68e2f44f290e150c3b",
+  "fullUnitTests": {
+    "files": 245,
+    "tests": 3436,
+    "status": "PASS"
+  },
+  "targetedLoadingTests": {
+    "files": 5,
+    "tests": 41,
+    "status": "PASS"
+  },
+  "typecheckAndE2EBuild": "PASS",
+  "nativeFaultCases": [
+    "404",
+    "decode",
+    "cancel/cold-reenter"
+  ],
+  "timingBuild": "0caddfa40ce863d5fb922591ca015756bcf0606b",
+  "faultBuild": "d43a901ed116256c68eadb68e2f44f290e150c3b",
+  "sourceFiles": [
+    {
+      "path": "src/game/ArtTextureLoading.ts",
+      "sha256": "ef603bb3b3d0c218e3eaf13fc6a25b6d19d76f081d83bf5a0a50ef06aadfb349"
+    },
+    {
+      "path": "src/game/DetailArt.ts",
+      "sha256": "48649c99a9cdbeaac27c4124f38039731538e8fc5557e5ff474749538df50e46"
+    },
+    {
+      "path": "src/game/GoodsArtLoading.ts",
+      "sha256": "ed4e578d777270d95bb13e13c2141fcf83cf4a8a684659094150bdf1df3ee106"
+    },
+    {
+      "path": "src/game/ImageWarmupQueue.ts",
+      "sha256": "809c572e5dc83d0e769a992ffb418fd7a5e2efc023851e80d39f76787dadf845"
+    },
+    {
+      "path": "src/game/JokerArtLoading.ts",
+      "sha256": "072511a4fd384bb3da43423e196ed69068a41aa11af8d942d81c42f18066f064"
+    },
+    {
+      "path": "src/game/StageImageWarmup.ts",
+      "sha256": "c35f27714dccc0020c2def78e8ee8b7e35abf1682636abf4c7dcc3e8c83b263e"
+    },
+    {
+      "path": "tests/art-texture-loading.test.ts",
+      "sha256": "fb71d1842fe52a068afc356bff8e20ceff049ba3a0436d3f3d2101a6df051e9d"
+    },
+    {
+      "path": "tests/goods-art-loading.test.ts",
+      "sha256": "186192816e5e63a8844cc6a1209d5c7d8423a20c59a517bd8705dbb998ad1548"
+    },
+    {
+      "path": "tests/image-warmup-queue.test.ts",
+      "sha256": "ca781e948471db7dbff19973299703f7bde22e5817d0148b91d6c85da86a99a2"
+    },
+    {
+      "path": "tests/joker-art-loading.test.ts",
+      "sha256": "165b506878437deaba0ef8b6c3a87157d1d15de32d390e44c50c350e303480d7"
+    }
+  ],
+  "protected": [
+    {
+      "path": "src/domain",
+      "baseObject": "bd1f9b2c5a2b7eb4d143b59a094694b12adc8485",
+      "productObject": "bd1f9b2c5a2b7eb4d143b59a094694b12adc8485",
+      "identical": true
+    },
+    {
+      "path": "src/content",
+      "baseObject": "e8c3794be5b0fcb74da4aeb9e6adc63c22388345",
+      "productObject": "e8c3794be5b0fcb74da4aeb9e6adc63c22388345",
+      "identical": true
+    },
+    {
+      "path": "src/application",
+      "baseObject": "1a325d51795f54526ec9f3f313cceb69763a1971",
+      "productObject": "1a325d51795f54526ec9f3f313cceb69763a1971",
+      "identical": true
+    },
+    {
+      "path": "public/assets",
+      "baseObject": "809823e118712c2e2e27b2921e0a3c648368ba26",
+      "productObject": "809823e118712c2e2e27b2921e0a3c648368ba26",
+      "identical": true
+    },
+    {
+      "path": "src/game/ShopScene.ts",
+      "baseObject": "9dd8743986a4f45a3921c6bcf34326c4209c9e88",
+      "productObject": "9dd8743986a4f45a3921c6bcf34326c4209c9e88",
+      "identical": true
+    },
+    {
+      "path": "src/game/GameScene.ts",
+      "baseObject": "18edbe5e6c4323426f7e9d0af0e81748bfdc664a",
+      "productObject": "18edbe5e6c4323426f7e9d0af0e81748bfdc664a",
+      "identical": true
+    },
+    {
+      "path": "src/audio",
+      "baseObject": "7f6d2d0dd34313a4099d34cfd36b2baa748f83c2",
+      "productObject": "7f6d2d0dd34313a4099d34cfd36b2baa748f83c2",
+      "identical": true
+    }
+  ],
+  "remaining": [
+    "production-site measurement",
+    "physical device",
+    "human aesthetics",
+    "statistical latency/whole journey"
+  ]
+}
