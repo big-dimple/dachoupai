@@ -1,0 +1,104 @@
+{
+  "integrationBase": "d31df43d615e358542661a4a01f41feac071928b",
+  "priorRecommendationHead": "d91455e9a4dae993e30a216e230b92aefd9b3c0c",
+  "mergeCommit": "96eb4d137d3e2c0eea2c06fbac5b5742d9b1622b",
+  "productCommit": "8e1baf21fcf557f9511f5ee7800586c9bbba2628",
+  "bothParentsRetained": true,
+  "checks": [
+    {
+      "path": "src/domain",
+      "baseObject": "be0f17abfa3e771373da5f7ba5b38a5126bbec3b",
+      "productObject": "be0f17abfa3e771373da5f7ba5b38a5126bbec3b",
+      "equal": true,
+      "baseCommit": "d31df43d615e358542661a4a01f41feac071928b"
+    },
+    {
+      "path": "src/content",
+      "baseObject": "e8c3794be5b0fcb74da4aeb9e6adc63c22388345",
+      "productObject": "e8c3794be5b0fcb74da4aeb9e6adc63c22388345",
+      "equal": true,
+      "baseCommit": "d31df43d615e358542661a4a01f41feac071928b"
+    },
+    {
+      "path": "src/cards",
+      "baseObject": "76fb723100aec6137061fd303d6328fc510ac458",
+      "productObject": "76fb723100aec6137061fd303d6328fc510ac458",
+      "equal": true,
+      "baseCommit": "d31df43d615e358542661a4a01f41feac071928b"
+    },
+    {
+      "path": "src/application",
+      "baseObject": "1a325d51795f54526ec9f3f313cceb69763a1971",
+      "productObject": "1a325d51795f54526ec9f3f313cceb69763a1971",
+      "equal": true,
+      "baseCommit": "d31df43d615e358542661a4a01f41feac071928b"
+    },
+    {
+      "path": "src/audio",
+      "baseObject": "7f6d2d0dd34313a4099d34cfd36b2baa748f83c2",
+      "productObject": "7f6d2d0dd34313a4099d34cfd36b2baa748f83c2",
+      "equal": true,
+      "baseCommit": "d31df43d615e358542661a4a01f41feac071928b"
+    },
+    {
+      "path": "public",
+      "baseObject": "c4a6ec74e7fd754b0f300b973020f8afed7542e1",
+      "productObject": "c4a6ec74e7fd754b0f300b973020f8afed7542e1",
+      "equal": true,
+      "baseCommit": "d31df43d615e358542661a4a01f41feac071928b"
+    },
+    {
+      "path": "src/game/ShopCardValueVisual.ts",
+      "baseObject": "7822696902a352832d49ed3e21598f5f8e778377",
+      "productObject": "7822696902a352832d49ed3e21598f5f8e778377",
+      "equal": true,
+      "baseCommit": "d31df43d615e358542661a4a01f41feac071928b"
+    },
+    {
+      "path": "src/game/ShopLayout.ts",
+      "baseObject": "1b48fc1e7a51ce51ab31447bebc55bcb4e2cdff6",
+      "productObject": "1b48fc1e7a51ce51ab31447bebc55bcb4e2cdff6",
+      "equal": true,
+      "baseCommit": "d31df43d615e358542661a4a01f41feac071928b"
+    },
+    {
+      "path": "src/game/RunLaunch.ts",
+      "baseObject": "9d6689620499540748006bdc5f11cd749bcf8596",
+      "productObject": "9d6689620499540748006bdc5f11cd749bcf8596",
+      "equal": true,
+      "baseCommit": "d31df43d615e358542661a4a01f41feac071928b"
+    },
+    {
+      "path": "src/style.css",
+      "baseObject": "f36e4acfdb9795ad1b60d15db6aa6efc13610ace",
+      "productObject": "f36e4acfdb9795ad1b60d15db6aa6efc13610ace",
+      "equal": true,
+      "baseCommit": "d31df43d615e358542661a4a01f41feac071928b"
+    },
+    {
+      "path": "AGENTS.md",
+      "baseObject": "8d8fcd8de72a1361078d1c95e7ba8ed82f22ed11",
+      "productObject": "8d8fcd8de72a1361078d1c95e7ba8ed82f22ed11",
+      "equal": true,
+      "baseCommit": "d31df43d615e358542661a4a01f41feac071928b"
+    },
+    {
+      "path": "docs/production/HERO_ART_HANDOFF_20261015.md",
+      "baseObject": "5564f85d5d4373fc6846f085ced7f74e43b15038",
+      "productObject": "5564f85d5d4373fc6846f085ced7f74e43b15038",
+      "equal": true,
+      "baseCommit": "d31df43d615e358542661a4a01f41feac071928b"
+    },
+    {
+      "path": "analysis/recommendation-cost-lifetime/model.ts",
+      "baseObject": "9c1af93abae8c1f0c0b25e016589fb1579846b2f",
+      "productObject": "9c1af93abae8c1f0c0b25e016589fb1579846b2f",
+      "equal": true,
+      "baseCommit": "d91455e9a4dae993e30a216e230b92aefd9b3c0c"
+    }
+  ],
+  "shopSceneEqualsIntegrationAfterRemovingOnlyPriorRecommendationAdditions": true,
+  "consumableDialogEqualsIntegrationAfterRemovingOnlyPriorRecommendationAdditions": true,
+  "onBuyOfferLossPredicateUnchanged": true,
+  "status": "PASS"
+}

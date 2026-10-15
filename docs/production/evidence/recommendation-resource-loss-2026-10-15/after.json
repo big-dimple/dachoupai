@@ -1,0 +1,662 @@
+{
+  "head": "96eb4d137d3e2c0eea2c06fbac5b5742d9b1622b",
+  "sourceHashes": {
+    "src/game/ShopPurchaseValue.ts": "b16ddd13ccd1f08e9dd70b46118e2ba686f8063d9459b4913cf46e91e9f78fec",
+    "src/game/ShopRecommendation.ts": "02c3e980b135cea350d41b7ee62b3be25b7b88184b952082d96d423d0000abb1",
+    "harness/fixtures/recommendation-resource-loss.ts": "dd238933a36204a4ce83aebf8c0c8a6b15cf9ecd603fcb80158a84dcd12eb505"
+  },
+  "scope": "Executed cloned public purchase evaluation, no browser or natural gameplay; source hashes identify working code.",
+  "rows": [
+    {
+      "donor": "d05",
+      "hooks": [
+        {
+          "phase": "onDiscard",
+          "condition": {
+            "kind": "resource",
+            "resource": "discards-used",
+            "equals": 1
+          },
+          "operations": [
+            {
+              "kind": "refund-discard",
+              "amount": 1
+            }
+          ]
+        }
+      ],
+      "value": {
+        "policy": "public-one-play-v1",
+        "calibrated": true,
+        "status": "assessed",
+        "paid": 8,
+        "refund": 3,
+        "net": 5,
+        "goldAfter": 35,
+        "rows": [
+          {
+            "label": "普通单张",
+            "ids": [
+              "clubs-2"
+            ],
+            "cards": "2♣",
+            "keep": {
+              "minimum": "22",
+              "maximum": "22"
+            },
+            "change": {
+              "minimum": "39",
+              "maximum": "39"
+            },
+            "delta": {
+              "minimum": "17",
+              "maximum": "17"
+            }
+          },
+          {
+            "label": "路线条件手",
+            "ids": [
+              "clubs-7",
+              "diamonds-7"
+            ],
+            "cards": "7♣ 7♦",
+            "keep": {
+              "minimum": "122",
+              "maximum": "122"
+            },
+            "change": {
+              "minimum": "220",
+              "maximum": "220"
+            },
+            "delta": {
+              "minimum": "98",
+              "maximum": "98"
+            }
+          }
+        ],
+        "ceiling": 2,
+        "negative": false,
+        "positive": true,
+        "allPositive": true,
+        "lostInvestment": false,
+        "unmeasuredLoss": true,
+        "unmeasuredLossReasons": [
+          "弃牌返还"
+        ],
+        "cashLoss": false,
+        "interestLoss": false,
+        "detail": "以保留不买为基线；实付8金，已发生返金3金，净支出5金；余额40→35金。\n当前利息档5→5，仅按过关时余额结算，不计未来收入。\n新实例：无成长或使用计数\n失去来源：彩排；无成长或使用计数；版次 普通\n本局过关加成保留，出售不丢。\n未估代价：失去所售牌的弃牌返还；是否兑现未知，未纳入本手分差，不能据此认定净补强。\n一次条件对照（公开牌组样例，非下一手预测；假定下场首手、未弃牌、只打所列牌且不留牌；主动技能未用）：\n普通单张 2♣：保留 22 → 变更 39；分差 17\n路线条件手 7♣ 7♦：保留 122 → 变更 220；分差 98\n只计本手已有值；手后成长、未来抽牌、收入和存活次数未知。\n推荐还需兼顾实付、已有来源和永久代价；条件增分不保证回本或通关。"
+      },
+      "stars": 2,
+      "reason": "替换有未估代价",
+      "stateUnchanged": true
+    },
+    {
+      "donor": "a07",
+      "hooks": [
+        {
+          "phase": "onDiscard",
+          "condition": {
+            "kind": "discard-count",
+            "equals": 1
+          },
+          "operations": [
+            {
+              "kind": "add-gold-limited",
+              "amount": 1,
+              "limit": 2
+            }
+          ]
+        }
+      ],
+      "value": {
+        "policy": "public-one-play-v1",
+        "calibrated": true,
+        "status": "assessed",
+        "paid": 8,
+        "refund": 2,
+        "net": 6,
+        "goldAfter": 34,
+        "rows": [
+          {
+            "label": "普通单张",
+            "ids": [
+              "clubs-2"
+            ],
+            "cards": "2♣",
+            "keep": {
+              "minimum": "22",
+              "maximum": "22"
+            },
+            "change": {
+              "minimum": "39",
+              "maximum": "39"
+            },
+            "delta": {
+              "minimum": "17",
+              "maximum": "17"
+            }
+          },
+          {
+            "label": "路线条件手",
+            "ids": [
+              "clubs-7",
+              "diamonds-7"
+            ],
+            "cards": "7♣ 7♦",
+            "keep": {
+              "minimum": "122",
+              "maximum": "122"
+            },
+            "change": {
+              "minimum": "220",
+              "maximum": "220"
+            },
+            "delta": {
+              "minimum": "98",
+              "maximum": "98"
+            }
+          }
+        ],
+        "ceiling": 2,
+        "negative": false,
+        "positive": true,
+        "allPositive": true,
+        "lostInvestment": false,
+        "unmeasuredLoss": true,
+        "unmeasuredLossReasons": [
+          "弃牌收入"
+        ],
+        "cashLoss": false,
+        "interestLoss": false,
+        "detail": "以保留不买为基线；实付8金，已发生返金2金，净支出6金；余额40→34金。\n当前利息档5→5，仅按过关时余额结算，不计未来收入。\n新实例：无成长或使用计数\n失去来源：偷闲；本场收益 0 / 2 次；版次 普通\n本局过关加成保留，出售不丢。\n未估代价：失去所售牌的弃牌收入；是否兑现未知，未纳入本手分差，不能据此认定净补强。\n一次条件对照（公开牌组样例，非下一手预测；假定下场首手、未弃牌、只打所列牌且不留牌；主动技能未用）：\n普通单张 2♣：保留 22 → 变更 39；分差 17\n路线条件手 7♣ 7♦：保留 122 → 变更 220；分差 98\n只计本手已有值；手后成长、未来抽牌、收入和存活次数未知。\n推荐还需兼顾实付、已有来源和永久代价；条件增分不保证回本或通关。"
+      },
+      "stars": 2,
+      "reason": "替换有未估代价",
+      "stateUnchanged": true
+    },
+    {
+      "donor": "f07",
+      "hooks": [
+        {
+          "phase": "beforeFailure",
+          "condition": {
+            "kind": "exhausted-hands"
+          },
+          "operations": [
+            {
+              "kind": "rescue-hand",
+              "amount": 1
+            }
+          ]
+        }
+      ],
+      "value": {
+        "policy": "public-one-play-v1",
+        "calibrated": true,
+        "status": "assessed",
+        "paid": 8,
+        "refund": 3,
+        "net": 5,
+        "goldAfter": 35,
+        "rows": [
+          {
+            "label": "普通单张",
+            "ids": [
+              "clubs-2"
+            ],
+            "cards": "2♣",
+            "keep": {
+              "minimum": "22",
+              "maximum": "22"
+            },
+            "change": {
+              "minimum": "39",
+              "maximum": "39"
+            },
+            "delta": {
+              "minimum": "17",
+              "maximum": "17"
+            }
+          },
+          {
+            "label": "路线条件手",
+            "ids": [
+              "clubs-7",
+              "diamonds-7"
+            ],
+            "cards": "7♣ 7♦",
+            "keep": {
+              "minimum": "122",
+              "maximum": "122"
+            },
+            "change": {
+              "minimum": "220",
+              "maximum": "220"
+            },
+            "delta": {
+              "minimum": "98",
+              "maximum": "98"
+            }
+          }
+        ],
+        "ceiling": 2,
+        "negative": false,
+        "positive": true,
+        "allPositive": true,
+        "lostInvestment": false,
+        "unmeasuredLoss": true,
+        "unmeasuredLossReasons": [
+          "失败前救场"
+        ],
+        "cashLoss": false,
+        "interestLoss": false,
+        "detail": "以保留不买为基线；实付8金，已发生返金3金，净支出5金；余额40→35金。\n当前利息档5→5，仅按过关时余额结算，不计未来收入。\n新实例：无成长或使用计数\n失去来源：安全网；无成长或使用计数；版次 普通\n本局过关加成保留，出售不丢。\n未估代价：失去所售牌的失败前救场；是否兑现未知，未纳入本手分差，不能据此认定净补强。\n一次条件对照（公开牌组样例，非下一手预测；假定下场首手、未弃牌、只打所列牌且不留牌；主动技能未用）：\n普通单张 2♣：保留 22 → 变更 39；分差 17\n路线条件手 7♣ 7♦：保留 122 → 变更 220；分差 98\n只计本手已有值；手后成长、未来抽牌、收入和存活次数未知。\n推荐还需兼顾实付、已有来源和永久代价；条件增分不保证回本或通关。"
+      },
+      "stars": 2,
+      "reason": "替换有未估代价",
+      "stateUnchanged": true
+    },
+    {
+      "donor": "e12",
+      "hooks": [
+        {
+          "phase": "jokerScore",
+          "condition": {
+            "kind": "always"
+          },
+          "operations": [
+            {
+              "kind": "read-growth",
+              "key": "heat",
+              "target": "heat"
+            }
+          ]
+        },
+        {
+          "phase": "onReroll",
+          "condition": {
+            "kind": "always"
+          },
+          "operations": [
+            {
+              "kind": "add-growth",
+              "key": "heat",
+              "value": {
+                "n": "3",
+                "d": "1"
+              },
+              "cap": {
+                "n": "60",
+                "d": "1"
+              }
+            }
+          ]
+        }
+      ],
+      "value": {
+        "policy": "public-one-play-v1",
+        "calibrated": true,
+        "status": "assessed",
+        "paid": 8,
+        "refund": 3,
+        "net": 5,
+        "goldAfter": 35,
+        "rows": [
+          {
+            "label": "普通单张",
+            "ids": [
+              "clubs-2"
+            ],
+            "cards": "2♣",
+            "keep": {
+              "minimum": "22",
+              "maximum": "22"
+            },
+            "change": {
+              "minimum": "39",
+              "maximum": "39"
+            },
+            "delta": {
+              "minimum": "17",
+              "maximum": "17"
+            }
+          },
+          {
+            "label": "路线条件手",
+            "ids": [
+              "clubs-7",
+              "diamonds-7"
+            ],
+            "cards": "7♣ 7♦",
+            "keep": {
+              "minimum": "122",
+              "maximum": "122"
+            },
+            "change": {
+              "minimum": "220",
+              "maximum": "220"
+            },
+            "delta": {
+              "minimum": "98",
+              "maximum": "98"
+            }
+          }
+        ],
+        "ceiling": 2,
+        "negative": false,
+        "positive": true,
+        "allPositive": true,
+        "lostInvestment": false,
+        "unmeasuredLoss": true,
+        "unmeasuredLossReasons": [
+          "刷新后成长"
+        ],
+        "cashLoss": false,
+        "interestLoss": false,
+        "detail": "以保留不买为基线；实付8金，已发生返金3金，净支出5金；余额40→35金。\n当前利息档5→5，仅按过关时余额结算，不计未来收入。\n新实例：无成长或使用计数\n失去来源：淘旧摊；无成长或使用计数；版次 普通\n本局过关加成保留，出售不丢。\n未估代价：失去所售牌的刷新后成长；是否兑现未知，未纳入本手分差，不能据此认定净补强。\n一次条件对照（公开牌组样例，非下一手预测；假定下场首手、未弃牌、只打所列牌且不留牌；主动技能未用）：\n普通单张 2♣：保留 22 → 变更 39；分差 17\n路线条件手 7♣ 7♦：保留 122 → 变更 220；分差 98\n只计本手已有值；手后成长、未来抽牌、收入和存活次数未知。\n推荐还需兼顾实付、已有来源和永久代价；条件增分不保证回本或通关。"
+      },
+      "stars": 2,
+      "reason": "替换有未估代价",
+      "stateUnchanged": true
+    },
+    {
+      "donor": "b03",
+      "hooks": [
+        {
+          "phase": "jokerScore",
+          "condition": {
+            "kind": "always"
+          },
+          "operations": [
+            {
+              "kind": "read-growth",
+              "key": "multiplier",
+              "target": "multiplier"
+            }
+          ]
+        },
+        {
+          "phase": "afterHand",
+          "condition": {
+            "kind": "hand-type-in",
+            "values": [
+              "pair",
+              "two-pair",
+              "three-kind",
+              "full-house",
+              "four-kind",
+              "five-kind",
+              "flush-house",
+              "flush-five"
+            ]
+          },
+          "operations": [
+            {
+              "kind": "add-growth",
+              "key": "multiplier",
+              "value": {
+                "n": "1",
+                "d": "4"
+              },
+              "cap": {
+                "n": "3",
+                "d": "1"
+              }
+            }
+          ]
+        }
+      ],
+      "value": {
+        "policy": "public-one-play-v1",
+        "calibrated": true,
+        "status": "assessed",
+        "paid": 8,
+        "refund": 3,
+        "net": 5,
+        "goldAfter": 35,
+        "rows": [
+          {
+            "label": "普通单张",
+            "ids": [
+              "clubs-2"
+            ],
+            "cards": "2♣",
+            "keep": {
+              "minimum": "22",
+              "maximum": "22"
+            },
+            "change": {
+              "minimum": "39",
+              "maximum": "39"
+            },
+            "delta": {
+              "minimum": "17",
+              "maximum": "17"
+            }
+          },
+          {
+            "label": "路线条件手",
+            "ids": [
+              "clubs-7",
+              "diamonds-7"
+            ],
+            "cards": "7♣ 7♦",
+            "keep": {
+              "minimum": "122",
+              "maximum": "122"
+            },
+            "change": {
+              "minimum": "220",
+              "maximum": "220"
+            },
+            "delta": {
+              "minimum": "98",
+              "maximum": "98"
+            }
+          }
+        ],
+        "ceiling": 2,
+        "negative": false,
+        "positive": true,
+        "allPositive": true,
+        "lostInvestment": false,
+        "unmeasuredLoss": true,
+        "unmeasuredLossReasons": [
+          "结算后成长／返还"
+        ],
+        "cashLoss": false,
+        "interestLoss": false,
+        "detail": "以保留不买为基线；实付8金，已发生返金3金，净支出5金；余额40→35金。\n当前利息档5→5，仅按过关时余额结算，不计未来收入。\n新实例：无成长或使用计数\n失去来源：老搭档；无成长或使用计数；版次 普通\n本局过关加成保留，出售不丢。\n未估代价：失去所售牌的结算后成长／返还；是否兑现未知，未纳入本手分差，不能据此认定净补强。\n一次条件对照（公开牌组样例，非下一手预测；假定下场首手、未弃牌、只打所列牌且不留牌；主动技能未用）：\n普通单张 2♣：保留 22 → 变更 39；分差 17\n路线条件手 7♣ 7♦：保留 122 → 变更 220；分差 98\n只计本手已有值；手后成长、未来抽牌、收入和存活次数未知。\n推荐还需兼顾实付、已有来源和永久代价；条件增分不保证回本或通关。"
+      },
+      "stars": 2,
+      "reason": "替换有未估代价",
+      "stateUnchanged": true
+    },
+    {
+      "donor": "d07",
+      "hooks": [
+        {
+          "phase": "jokerScore",
+          "condition": {
+            "kind": "all-played-active",
+            "minimum": 1
+          },
+          "operations": [
+            {
+              "kind": "add-multiplier",
+              "value": {
+                "n": "1",
+                "d": "2"
+              }
+            }
+          ]
+        }
+      ],
+      "value": {
+        "policy": "public-one-play-v1",
+        "calibrated": true,
+        "status": "assessed",
+        "paid": 8,
+        "refund": 2,
+        "net": 6,
+        "goldAfter": 34,
+        "rows": [
+          {
+            "label": "普通单张",
+            "ids": [
+              "clubs-2"
+            ],
+            "cards": "2♣",
+            "keep": {
+              "minimum": "33",
+              "maximum": "33"
+            },
+            "change": {
+              "minimum": "39",
+              "maximum": "39"
+            },
+            "delta": {
+              "minimum": "6",
+              "maximum": "6"
+            }
+          },
+          {
+            "label": "路线条件手",
+            "ids": [
+              "clubs-7",
+              "diamonds-7"
+            ],
+            "cards": "7♣ 7♦",
+            "keep": {
+              "minimum": "147",
+              "maximum": "147"
+            },
+            "change": {
+              "minimum": "220",
+              "maximum": "220"
+            },
+            "delta": {
+              "minimum": "73",
+              "maximum": "73"
+            }
+          }
+        ],
+        "ceiling": 4,
+        "negative": false,
+        "positive": true,
+        "allPositive": true,
+        "lostInvestment": false,
+        "unmeasuredLoss": false,
+        "unmeasuredLossReasons": [],
+        "cashLoss": false,
+        "interestLoss": false,
+        "detail": "以保留不买为基线；实付8金，已发生返金2金，净支出6金；余额40→34金。\n当前利息档5→5，仅按过关时余额结算，不计未来收入。\n新实例：无成长或使用计数\n失去来源：镜头不空；无成长或使用计数；版次 普通\n本局过关加成保留，出售不丢。\n一次条件对照（公开牌组样例，非下一手预测；假定下场首手、未弃牌、只打所列牌且不留牌；主动技能未用）：\n普通单张 2♣：保留 33 → 变更 39；分差 6\n路线条件手 7♣ 7♦：保留 147 → 变更 220；分差 73\n只计本手已有值；手后成长、未来抽牌、收入和存活次数未知。\n推荐还需兼顾实付、已有来源和永久代价；条件增分不保证回本或通关。"
+      },
+      "stars": 4,
+      "reason": "持金放大倍率",
+      "stateUnchanged": true
+    },
+    {
+      "donor": "e05",
+      "hooks": [
+        {
+          "phase": "jokerScore",
+          "condition": {
+            "kind": "always"
+          },
+          "operations": [
+            {
+              "kind": "read-growth",
+              "key": "heat",
+              "target": "heat"
+            }
+          ]
+        },
+        {
+          "phase": "onBuyOffer",
+          "condition": {
+            "kind": "always"
+          },
+          "operations": [
+            {
+              "kind": "add-growth",
+              "key": "heat",
+              "value": {
+                "n": "8",
+                "d": "1"
+              },
+              "cap": {
+                "n": "80",
+                "d": "1"
+              }
+            }
+          ]
+        }
+      ],
+      "value": {
+        "policy": "public-one-play-v1",
+        "calibrated": true,
+        "status": "assessed",
+        "paid": 8,
+        "refund": 3,
+        "net": 5,
+        "goldAfter": 35,
+        "rows": [
+          {
+            "label": "普通单张",
+            "ids": [
+              "clubs-2"
+            ],
+            "cards": "2♣",
+            "keep": {
+              "minimum": "22",
+              "maximum": "22"
+            },
+            "change": {
+              "minimum": "39",
+              "maximum": "39"
+            },
+            "delta": {
+              "minimum": "17",
+              "maximum": "17"
+            }
+          },
+          {
+            "label": "路线条件手",
+            "ids": [
+              "clubs-7",
+              "diamonds-7"
+            ],
+            "cards": "7♣ 7♦",
+            "keep": {
+              "minimum": "122",
+              "maximum": "122"
+            },
+            "change": {
+              "minimum": "220",
+              "maximum": "220"
+            },
+            "delta": {
+              "minimum": "98",
+              "maximum": "98"
+            }
+          }
+        ],
+        "ceiling": 2,
+        "negative": false,
+        "positive": true,
+        "allPositive": true,
+        "lostInvestment": true,
+        "unmeasuredLoss": false,
+        "unmeasuredLossReasons": [],
+        "cashLoss": false,
+        "interestLoss": false,
+        "detail": "以保留不买为基线；实付8金，已发生返金3金，净支出5金；余额40→35金。\n当前利息档5→5，仅按过关时余额结算，不计未来收入。\n新实例：无成长或使用计数\n失去来源：置办行头；无成长或使用计数；版次 普通\n本局过关加成保留，出售不丢。\n一次条件对照（公开牌组样例，非下一手预测；假定下场首手、未弃牌、只打所列牌且不留牌；主动技能未用）：\n普通单张 2♣：保留 22 → 变更 39；分差 17\n路线条件手 7♣ 7♦：保留 122 → 变更 220；分差 98\n只计本手已有值；手后成长、未来抽牌、收入和存活次数未知。\n推荐还需兼顾实付、已有来源和永久代价；条件增分不保证回本或通关。"
+      },
+      "stars": 2,
+      "reason": "替换会丢已有收益",
+      "stateUnchanged": true
+    }
+  ]
+}

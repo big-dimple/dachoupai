@@ -55,6 +55,7 @@ try{for(const [width,height] of [[1366,768],[390,844]]){
   await dom(card.locator('summary'));assert.equal(await card.locator('details').evaluate(e=>e.open),false);
   await dom(card.getByRole('button',{name:'管理这张',exact:true}));const held=p.locator('.detail-dialog[data-shop-context=held][open]');await held.waitFor();
   assert.equal(await held.locator('.shop-value-stars').getAttribute('data-stars'),String(stars));
+  if(label){const value=held.locator('.shop-offer-value');await value.scrollIntoViewIfNeeded();assert.ok(await value.isVisible());row.selectedScreenshot=width+'-'+donor+'-selected-recommendation.png';await p.screenshot({path:out+'/'+row.selectedScreenshot,scale:'css'});}
   await dom(held.locator('.dialog-close'));if(await dialog.count())await dom(dialog.locator('.dialog-close'));
   row.after=await snap();assert.deepEqual(row.after,before);row.send=await p.evaluate(()=>window.__resourceSend);assert.deepEqual(row.send,[]);assert.deepEqual(errors,[]);row.status='PASS';
  }
