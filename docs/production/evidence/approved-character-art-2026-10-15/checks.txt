@@ -1,0 +1,11 @@
+Executed in /workspace/dachoupai on branch feat/approved-character-art-20261015.
+Base: 9c41dfff2a66ffa66b5cf812c2742caae9cdf125
+npm run typecheck: PASS
+npx vitest run tests/tangsong-identity.test.ts tests/character-art.test.ts tests/hero-climax.test.ts tests/hero-explanation.test.ts
+Test Files 4 passed (4), Tests 19 passed (19), duration 1.88s: PASS
+node harness/approved-art-themes.mjs: PASS (3 viewports x 6 identities)
+npm run build: PASS (existing large-chunk warning)
+npm run verify:content: PASS
+git diff --check: PASS
+Protected directories vs base unchanged: src/domain src/application src/content src/platform src/core src/audio public art
+No attachment bytes available locally, no image pixel inspection claimed.

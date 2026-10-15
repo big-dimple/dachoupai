@@ -1,5 +1,7 @@
 # 当前执行入口
 
+2026-10-15 六正式图接入独立候选：基于加载分支9c41dfff，feat/approved-character-art-20261015。已接用户六主题（苏轼风起赤壁/秦琼踏破山河/辛弃疾墨影醉里挑灯看剑/刘娥大宋之母/文成藏地迎宾/花蕊执剑凌风），选角/说明/高光字幕沿用真实能力。Library六ID可解析文件名，但官方materialize首取及明确云端目标重试均失败、代理Tunnel403，两目标目录为空，未实际看图；CharacterArt/manifest未虚构注册，原图/规则/保存保持。主题19项/type及PC390320逐六人原生说明通过，截图仅文字入口，正式立绘/头像/眼裁切/解码预算/带图恢复仍BLOCKED；父可另派仅取Windows备份，开发仍只在云端。见docs/production/evidence/approved-character-art-2026-10-15/README.md。仅开发分支push，不合main/部署。
+
 2026-10-15 开场加载/下一场景预载：基于 main8e217，分支 feat/loading-preload-20261015，产品805d3893、补充样板75ac549e。复用共享加载/缓存/解码守卫，真实134项进度、常用牌优先、实际持牌现货预载、12秒重试/文字降级，高清/音乐不阻首屏。用户最新要求覆盖下方保留姓名占位指令：18姓名SVG和manifest已删，六英雄采用文字入口，旧脸/正式图源与历史不动。3641全量/type/build/content/plan及PC/390/320弱网、缺图重试/文字、冷恢复及双端HTTP缓存受控通过，非自然试玩/物理设备/线上性能签收；正式图仍待。证据 docs/production/evidence/loading-preload-2026-10-15/README.md。仅开发分支正常push，不查CI/域名、不合main、不部署。
 
 2026-10-15 Astra三来源整合收尾：目标dev/astra-integration-20261015，保留d31全部祖先与功能，正常合入品牌4df0db49、成长6be7ecbc、推荐2aa1c197。人工统一scoring/growth接口、heroText和系数短标签，f10 consume-rescue不再误列结算后成长/返还；产品dbd9818d、核验c7860c7f同src树，3637全量/type/build/content/plan，成长2+24、推荐12、品牌5组受控原生PASS，见docs/production/evidence/astra-brand-growth-recommendation-2026-10-15/README.md。六最终姓名/三男三女和明确待图占位保持，正式立绘缺件不阻代码。新整合仅开发分支push、不合main/不重试Forbidden PR；独立d31发布已明确授权，但CI38724687012 GET Forbidden、域名build-info HTTP403，本次未main push/部署，不拿旧CI或push当上线。下方原分支范围与早期四男草案按历史读取，不替代本轮收尾。

@@ -60,7 +60,7 @@ export function showHeroExplanation(dialog:DetailDialog,id:CharacterId,options:{
  d.classList.add('hero-explanation');if(!portraitURL(id))d.classList.add('hero-explanation--text');d.dataset.hero=id;
  const style=document.createElement('style');style.textContent=css+' .hero-explanation--text .dialog-content{display:block}.hero-explanation--text .dialog-intro{max-width:680px}';d.append(style);
  d.querySelector('.dialog-eyebrow')!.textContent='英雄说明 · 只查看不消耗';
- const intro=document.createElement('div'),motto=document.createElement('p');intro.className='dialog-intro';motto.className='hero-motto';motto.textContent='“'+HERO_OPENING[id].taunt+'”';intro.append(motto);const bio=document.createElement('p');bio.className='hero-fact';bio.textContent=hero.intro+' '+HERO_CAST_NOTICE;intro.append(bio);
+ const intro=document.createElement('div'),motto=document.createElement('p');intro.className='dialog-intro';motto.className='hero-motto';motto.textContent='“'+HERO_OPENING[id].taunt+'”';const theme=document.createElement('p');theme.className='hero-fact hero-theme';theme.textContent=hero.title;intro.append(theme,motto);const bio=document.createElement('p');bio.className='hero-fact';bio.textContent=hero.intro+' '+HERO_CAST_NOTICE;intro.append(bio);
  for(const [label,value] of [['做什么',copy.effect],['何时能用',copy.when],['现在',copy.now]]){const p=document.createElement('p'),title=document.createElement('strong');p.className='hero-fact';title.textContent=label;p.append(title,document.createTextNode(value));intro.append(p);}
  if(copy.current){
   const example=document.createElement('details'),summary=document.createElement('summary');example.className='card-rules hero-example';summary.textContent='点开看一个技能例子';example.append(summary);

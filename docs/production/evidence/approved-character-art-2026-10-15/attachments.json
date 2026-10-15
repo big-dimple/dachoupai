@@ -1,0 +1,64 @@
+{
+  "status": "BLOCKED",
+  "reason": "Library helper materialize failed for all six files; fresh prepare_materialize and explicit destination retry also failed. urllib HEAD diagnostic: URLError Tunnel connection failed: 403 Forbidden.",
+  "destinations": [
+    "/workspace/approved-character-art",
+    "/workspace/approved-character-art-retry"
+  ],
+  "files": [
+    {
+      "library_file_id": "libfile_5741f3edc23c81918c3e3c0db5af0c2e",
+      "file_id": "file_00000000c8f881f49e8229f6536160e6",
+      "file_name": "苏轼：风起赤壁.png",
+      "size_bytes": 3149640,
+      "mime_type": "image/png",
+      "local_file_present": false,
+      "pixel_verified": false
+    },
+    {
+      "library_file_id": "libfile_e795b9f0030c8191ad1d06b02f3297f3",
+      "file_id": "file_00000000ca5881fbbc9c6aad8ab74d6b",
+      "file_name": "秦琼：踏破山河人體藝術.png",
+      "size_bytes": 3747155,
+      "mime_type": "image/png",
+      "local_file_present": false,
+      "pixel_verified": false
+    },
+    {
+      "library_file_id": "libfile_7b8c124a3c908191ba5b30397884be1b",
+      "file_id": "file_00000000e7f481f680638d5090600d9b",
+      "file_name": "辛弃疾：墨影醉里挑灯看剑.png",
+      "size_bytes": 3347735,
+      "mime_type": "image/png",
+      "local_file_present": false,
+      "pixel_verified": false
+    },
+    {
+      "library_file_id": "libfile_0f135a7efb6c8191816fdbd719a10295",
+      "file_id": "file_00000000dd0481fda142bbf97400d5d4",
+      "file_name": "花蕊夫人：执剑凌风.png",
+      "size_bytes": 3606869,
+      "mime_type": "image/png",
+      "local_file_present": false,
+      "pixel_verified": false
+    },
+    {
+      "library_file_id": "libfile_14101902b1608191911a333ca7641343",
+      "file_id": "file_0000000029f881f886cd5ccac1b82e04",
+      "file_name": "文成公主：藏地迎宾.png",
+      "size_bytes": 3206001,
+      "mime_type": "image/png",
+      "local_file_present": false,
+      "pixel_verified": false
+    },
+    {
+      "library_file_id": "libfile_0160f20227a08191aa3b27e6ef2d6261",
+      "file_id": "file_000000005a2481f5873fdcff32f53f0a",
+      "file_name": "刘娥：大宋之母(2).png",
+      "size_bytes": 2958458,
+      "mime_type": "image/png",
+      "local_file_present": false,
+      "pixel_verified": false
+    }
+  ]
+}
