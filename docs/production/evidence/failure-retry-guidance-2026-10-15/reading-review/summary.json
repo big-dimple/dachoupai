@@ -1,0 +1,1177 @@
+{
+  "sourceHead": "0155ebfd0509979a01f57d27da4af26c7162ed02",
+  "sourceStatusBefore": "",
+  "sourceStatusAfter": "",
+  "status": "PASS",
+  "scope": "Six targeted short-screen reading cases; not a rerun of all thirteen transaction cases. Native wheel reads actual .dialog-scroll; every advice/rules text line was fully inside its clipped body at least once; fixed actions and h2 clipping checked on every frame.",
+  "cases": [
+    {
+      "key": "320-short-reading-hands",
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "status": "PASS",
+      "readOnlyReturns": "PASS",
+      "body": {
+        "x": 36,
+        "y": 84.5,
+        "width": 248,
+        "height": 325.5,
+        "top": 561,
+        "bottom": 410,
+        "left": 36,
+        "right": 284,
+        "clientHeight": 326,
+        "scrollHeight": 887,
+        "overflowY": "auto"
+      },
+      "outer": {
+        "x": 19,
+        "y": 12,
+        "width": 282,
+        "height": 544,
+        "top": 12,
+        "bottom": 556,
+        "left": 19,
+        "right": 301,
+        "scrollTop": 0,
+        "clientHeight": 542,
+        "scrollHeight": 542
+      },
+      "heading": {
+        "text": "出牌用尽，准备再战",
+        "box": {
+          "x": 36,
+          "y": 28,
+          "width": 248,
+          "height": 27.5,
+          "top": 28,
+          "bottom": 55.5,
+          "left": 36,
+          "right": 284
+        },
+        "lines": [
+          {
+            "top": 26,
+            "bottom": 57,
+            "left": 36,
+            "right": 234.015625
+          }
+        ],
+        "fontSize": "22px",
+        "lineHeight": "27.5px",
+        "ancestors": [
+          {
+            "tag": "HEADER",
+            "className": "dialog-header",
+            "box": {
+              "x": 20,
+              "y": 13,
+              "width": 280,
+              "height": 55.5,
+              "top": 13,
+              "bottom": 68.5,
+              "left": 20,
+              "right": 300
+            },
+            "overflowX": "visible",
+            "overflowY": "visible"
+          },
+          {
+            "tag": "DIALOG",
+            "className": "detail-dialog",
+            "box": {
+              "x": 19,
+              "y": 12,
+              "width": 282,
+              "height": 544,
+              "top": 12,
+              "bottom": 556,
+              "left": 19,
+              "right": 301
+            },
+            "overflowX": "hidden",
+            "overflowY": "hidden"
+          },
+          {
+            "tag": "BODY",
+            "className": "",
+            "box": {
+              "x": 0,
+              "y": 0,
+              "width": 320,
+              "height": 568,
+              "top": 0,
+              "bottom": 568,
+              "left": 0,
+              "right": 320
+            },
+            "overflowX": "hidden",
+            "overflowY": "hidden"
+          },
+          {
+            "tag": "HTML",
+            "className": "",
+            "box": {
+              "x": 0,
+              "y": 0,
+              "width": 320,
+              "height": 568,
+              "top": 0,
+              "bottom": 568,
+              "left": 0,
+              "right": 320
+            },
+            "overflowX": "hidden",
+            "overflowY": "hidden"
+          }
+        ]
+      },
+      "covered": [
+        {
+          "id": "advice/1/title",
+          "text": "1. 先把一手凑完整",
+          "lineCount": 1,
+          "seen": [
+            0
+          ]
+        },
+        {
+          "id": "advice/1/body",
+          "text": "末手是高牌，保存热度31；这是记录，不代表它一定是失败原因。\n若摸到同点对子，先留对子、换散牌；例如留两张7，再找第三张7。出牌前核对实际牌型。",
+          "lineCount": 5,
+          "seen": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "id": "advice/2/title",
+          "text": "2. 升级、做牌或留钱",
+          "lineCount": 1,
+          "seen": [
+            0
+          ]
+        },
+        {
+          "id": "advice/2/body",
+          "text": "筹备店升级只选已发现且未30级的牌型；Lv.1原价4金，之后按等级报价，确认后当场升一级。\n基础改牌原价2金、染色原价4金；升级与改牌/染色共用每店一次。\n实付、现货同名入口、可用目标与库存容量以当店确认页为准；买不起或没有合适目标时可以留钱。",
+          "lineCount": 8,
+          "seen": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ]
+        },
+        {
+          "id": "rules/body",
+          "text": "筹备店升级只选已发现且未30级的牌型；Lv.1原价4金，之后按等级报价，确认后当场升一级。\n基础改牌原价2金、染色原价4金；升级与改牌/染色共用每店一次。\n实付、现货同名入口、可用目标与库存容量以当店确认页为准；买不起或没有合适目标时可以留钱。",
+          "lineCount": 8,
+          "seen": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ]
+        }
+      ],
+      "frames": [
+        "320-short-reading-hands-read-00.png",
+        "320-short-reading-hands-read-01.png",
+        "320-short-reading-hands-read-02.png",
+        "320-short-reading-hands-read-03.png"
+      ]
+    },
+    {
+      "key": "320-short-reading-boss",
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "status": "PASS",
+      "readOnlyReturns": "PASS",
+      "body": {
+        "x": 36,
+        "y": 84.5,
+        "width": 248,
+        "height": 325.5,
+        "top": 751,
+        "bottom": 410,
+        "left": 36,
+        "right": 284,
+        "clientHeight": 326,
+        "scrollHeight": 1077,
+        "overflowY": "auto"
+      },
+      "outer": {
+        "x": 19,
+        "y": 12,
+        "width": 282,
+        "height": 544,
+        "top": 12,
+        "bottom": 556,
+        "left": 19,
+        "right": 301,
+        "scrollTop": 0,
+        "clientHeight": 542,
+        "scrollHeight": 542
+      },
+      "heading": {
+        "text": "出牌用尽，准备再战",
+        "box": {
+          "x": 36,
+          "y": 28,
+          "width": 248,
+          "height": 27.5,
+          "top": 28,
+          "bottom": 55.5,
+          "left": 36,
+          "right": 284
+        },
+        "lines": [
+          {
+            "top": 26,
+            "bottom": 57,
+            "left": 36,
+            "right": 234.015625
+          }
+        ],
+        "fontSize": "22px",
+        "lineHeight": "27.5px",
+        "ancestors": [
+          {
+            "tag": "HEADER",
+            "className": "dialog-header",
+            "box": {
+              "x": 20,
+              "y": 13,
+              "width": 280,
+              "height": 55.5,
+              "top": 13,
+              "bottom": 68.5,
+              "left": 20,
+              "right": 300
+            },
+            "overflowX": "visible",
+            "overflowY": "visible"
+          },
+          {
+            "tag": "DIALOG",
+            "className": "detail-dialog",
+            "box": {
+              "x": 19,
+              "y": 12,
+              "width": 282,
+              "height": 544,
+              "top": 12,
+              "bottom": 556,
+              "left": 19,
+              "right": 301
+            },
+            "overflowX": "hidden",
+            "overflowY": "hidden"
+          },
+          {
+            "tag": "BODY",
+            "className": "",
+            "box": {
+              "x": 0,
+              "y": 0,
+              "width": 320,
+              "height": 568,
+              "top": 0,
+              "bottom": 568,
+              "left": 0,
+              "right": 320
+            },
+            "overflowX": "hidden",
+            "overflowY": "hidden"
+          },
+          {
+            "tag": "HTML",
+            "className": "",
+            "box": {
+              "x": 0,
+              "y": 0,
+              "width": 320,
+              "height": 568,
+              "top": 0,
+              "bottom": 568,
+              "left": 0,
+              "right": 320
+            },
+            "overflowX": "hidden",
+            "overflowY": "hidden"
+          }
+        ]
+      },
+      "covered": [
+        {
+          "id": "advice/1/title",
+          "text": "1. 先把一手凑完整",
+          "lineCount": 1,
+          "seen": [
+            0
+          ]
+        },
+        {
+          "id": "advice/1/body",
+          "text": "末手是对子，保存热度90；这是记录，不代表它一定是失败原因。\n先留连续点数、换掉无关牌；例如留5、6、7、8，再找4或9。用“怎么凑牌”查看当前手牌能补哪一张。",
+          "lineCount": 5,
+          "seen": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "id": "advice/2/title",
+          "text": "2. 按压轴实际影响换招",
+          "lineCount": 1,
+          "seen": [
+            0
+          ]
+        },
+        {
+          "id": "advice/2/body",
+          "text": "压轴实际影响 · 低调点\nK♥ 普通点数归零；仍可成型和触发大丑牌效果。\n下一局遇到此压轴时，把要读取普通点数的牌放在出牌顺序前三张；第4、5张仍能成型和触发大丑牌。",
+          "lineCount": 9,
+          "seen": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ]
+        },
+        {
+          "id": "advice/3/title",
+          "text": "3. 升级、做牌或留钱",
+          "lineCount": 1,
+          "seen": [
+            0
+          ]
+        },
+        {
+          "id": "advice/3/body",
+          "text": "筹备店升级只选已发现且未30级的牌型；Lv.1原价4金，之后按等级报价，确认后当场升一级。\n基础改牌原价2金、染色原价4金；升级与改牌/染色共用每店一次。\n实付、现货同名入口、可用目标与库存容量以当店确认页为准；买不起或没有合适目标时可以留钱。",
+          "lineCount": 8,
+          "seen": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ]
+        },
+        {
+          "id": "rules/body",
+          "text": "筹备店升级只选已发现且未30级的牌型；Lv.1原价4金，之后按等级报价，确认后当场升一级。\n基础改牌原价2金、染色原价4金；升级与改牌/染色共用每店一次。\n实付、现货同名入口、可用目标与库存容量以当店确认页为准；买不起或没有合适目标时可以留钱。",
+          "lineCount": 8,
+          "seen": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ]
+        }
+      ],
+      "frames": [
+        "320-short-reading-boss-read-00.png",
+        "320-short-reading-boss-read-01.png",
+        "320-short-reading-boss-read-02.png",
+        "320-short-reading-boss-read-03.png",
+        "320-short-reading-boss-read-04.png"
+      ]
+    },
+    {
+      "key": "320-short-reading-post-skip",
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "status": "PASS",
+      "readOnlyReturns": "PASS",
+      "body": {
+        "x": 36,
+        "y": 84.5,
+        "width": 248,
+        "height": 325.5,
+        "top": 409,
+        "bottom": 410,
+        "left": 36,
+        "right": 284,
+        "clientHeight": 326,
+        "scrollHeight": 735,
+        "overflowY": "auto"
+      },
+      "outer": {
+        "x": 19,
+        "y": 12,
+        "width": 282,
+        "height": 544,
+        "top": 12,
+        "bottom": 556,
+        "left": 19,
+        "right": 301,
+        "scrollTop": 0,
+        "clientHeight": 542,
+        "scrollHeight": 542
+      },
+      "heading": {
+        "text": "已结束本局，重新选择",
+        "box": {
+          "x": 36,
+          "y": 28,
+          "width": 248,
+          "height": 27.5,
+          "top": 28,
+          "bottom": 55.5,
+          "left": 36,
+          "right": 284
+        },
+        "lines": [
+          {
+            "top": 26,
+            "bottom": 57,
+            "left": 36,
+            "right": 256.015625
+          }
+        ],
+        "fontSize": "22px",
+        "lineHeight": "27.5px",
+        "ancestors": [
+          {
+            "tag": "HEADER",
+            "className": "dialog-header",
+            "box": {
+              "x": 20,
+              "y": 13,
+              "width": 280,
+              "height": 55.5,
+              "top": 13,
+              "bottom": 68.5,
+              "left": 20,
+              "right": 300
+            },
+            "overflowX": "visible",
+            "overflowY": "visible"
+          },
+          {
+            "tag": "DIALOG",
+            "className": "detail-dialog",
+            "box": {
+              "x": 19,
+              "y": 12,
+              "width": 282,
+              "height": 544,
+              "top": 12,
+              "bottom": 556,
+              "left": 19,
+              "right": 301
+            },
+            "overflowX": "hidden",
+            "overflowY": "hidden"
+          },
+          {
+            "tag": "BODY",
+            "className": "",
+            "box": {
+              "x": 0,
+              "y": 0,
+              "width": 320,
+              "height": 568,
+              "top": 0,
+              "bottom": 568,
+              "left": 0,
+              "right": 320
+            },
+            "overflowX": "hidden",
+            "overflowY": "hidden"
+          },
+          {
+            "tag": "HTML",
+            "className": "",
+            "box": {
+              "x": 0,
+              "y": 0,
+              "width": 320,
+              "height": 568,
+              "top": 0,
+              "bottom": 568,
+              "left": 0,
+              "right": 320
+            },
+            "overflowX": "hidden",
+            "overflowY": "hidden"
+          }
+        ]
+      },
+      "covered": [
+        {
+          "id": "advice/1/title",
+          "text": "1. 先决定这次想怎么打",
+          "lineCount": 1,
+          "seen": [
+            0
+          ]
+        },
+        {
+          "id": "advice/1/body",
+          "text": "这是主动结束本局，不据此判定构筑强弱。可回看已保存的末手，再返回选角换英雄或开局方向。",
+          "lineCount": 3,
+          "seen": [
+            0,
+            1,
+            2
+          ]
+        },
+        {
+          "id": "advice/2/title",
+          "text": "2. 重试或换个开局",
+          "lineCount": 1,
+          "seen": [
+            0
+          ]
+        },
+        {
+          "id": "advice/2/body",
+          "text": "同局重试沿用种子、英雄、模式与本局规则；返回选角可以重新选择。两种开局都从初始资源开始。",
+          "lineCount": 3,
+          "seen": [
+            0,
+            1,
+            2
+          ]
+        },
+        {
+          "id": "rules/body",
+          "text": "筹备店升级只选已发现且未30级的牌型；Lv.1原价4金，之后按等级报价，确认后当场升一级。\n基础改牌原价2金、染色原价4金；升级与改牌/染色共用每店一次。\n实付、现货同名入口、可用目标与库存容量以当店确认页为准；买不起或没有合适目标时可以留钱。",
+          "lineCount": 8,
+          "seen": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ]
+        }
+      ],
+      "frames": [
+        "320-short-reading-post-skip-read-00.png",
+        "320-short-reading-post-skip-read-01.png",
+        "320-short-reading-post-skip-read-02.png",
+        "320-short-reading-post-skip-read-03.png"
+      ]
+    },
+    {
+      "key": "390-short-reading-hands",
+      "viewport": {
+        "width": 390,
+        "height": 568
+      },
+      "status": "PASS",
+      "readOnlyReturns": "PASS",
+      "body": {
+        "x": 36,
+        "y": 84.5,
+        "width": 318,
+        "height": 321.5,
+        "top": 462,
+        "bottom": 406,
+        "left": 36,
+        "right": 354,
+        "clientHeight": 322,
+        "scrollHeight": 784,
+        "overflowY": "auto"
+      },
+      "outer": {
+        "x": 19,
+        "y": 12,
+        "width": 352,
+        "height": 544,
+        "top": 12,
+        "bottom": 556,
+        "left": 19,
+        "right": 371,
+        "scrollTop": 0,
+        "clientHeight": 542,
+        "scrollHeight": 542
+      },
+      "heading": {
+        "text": "出牌用尽，准备再战",
+        "box": {
+          "x": 36,
+          "y": 28,
+          "width": 318,
+          "height": 27.5,
+          "top": 28,
+          "bottom": 55.5,
+          "left": 36,
+          "right": 354
+        },
+        "lines": [
+          {
+            "top": 26,
+            "bottom": 57,
+            "left": 36,
+            "right": 234.015625
+          }
+        ],
+        "fontSize": "22px",
+        "lineHeight": "27.5px",
+        "ancestors": [
+          {
+            "tag": "HEADER",
+            "className": "dialog-header",
+            "box": {
+              "x": 20,
+              "y": 13,
+              "width": 350,
+              "height": 55.5,
+              "top": 13,
+              "bottom": 68.5,
+              "left": 20,
+              "right": 370
+            },
+            "overflowX": "visible",
+            "overflowY": "visible"
+          },
+          {
+            "tag": "DIALOG",
+            "className": "detail-dialog",
+            "box": {
+              "x": 19,
+              "y": 12,
+              "width": 352,
+              "height": 544,
+              "top": 12,
+              "bottom": 556,
+              "left": 19,
+              "right": 371
+            },
+            "overflowX": "hidden",
+            "overflowY": "hidden"
+          },
+          {
+            "tag": "BODY",
+            "className": "",
+            "box": {
+              "x": 0,
+              "y": 0,
+              "width": 390,
+              "height": 568,
+              "top": 0,
+              "bottom": 568,
+              "left": 0,
+              "right": 390
+            },
+            "overflowX": "hidden",
+            "overflowY": "hidden"
+          },
+          {
+            "tag": "HTML",
+            "className": "",
+            "box": {
+              "x": 0,
+              "y": 0,
+              "width": 390,
+              "height": 568,
+              "top": 0,
+              "bottom": 568,
+              "left": 0,
+              "right": 390
+            },
+            "overflowX": "hidden",
+            "overflowY": "hidden"
+          }
+        ]
+      },
+      "covered": [
+        {
+          "id": "advice/1/title",
+          "text": "1. 先把一手凑完整",
+          "lineCount": 1,
+          "seen": [
+            0
+          ]
+        },
+        {
+          "id": "advice/1/body",
+          "text": "末手是高牌，保存热度31；这是记录，不代表它一定是失败原因。\n若摸到同点对子，先留对子、换散牌；例如留两张7，再找第三张7。出牌前核对实际牌型。",
+          "lineCount": 4,
+          "seen": [
+            0,
+            1,
+            2,
+            3
+          ]
+        },
+        {
+          "id": "advice/2/title",
+          "text": "2. 升级、做牌或留钱",
+          "lineCount": 1,
+          "seen": [
+            0
+          ]
+        },
+        {
+          "id": "advice/2/body",
+          "text": "筹备店升级只选已发现且未30级的牌型；Lv.1原价4金，之后按等级报价，确认后当场升一级。\n基础改牌原价2金、染色原价4金；升级与改牌/染色共用每店一次。\n实付、现货同名入口、可用目标与库存容量以当店确认页为准；买不起或没有合适目标时可以留钱。",
+          "lineCount": 8,
+          "seen": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ]
+        },
+        {
+          "id": "rules/body",
+          "text": "筹备店升级只选已发现且未30级的牌型；Lv.1原价4金，之后按等级报价，确认后当场升一级。\n基础改牌原价2金、染色原价4金；升级与改牌/染色共用每店一次。\n实付、现货同名入口、可用目标与库存容量以当店确认页为准；买不起或没有合适目标时可以留钱。",
+          "lineCount": 6,
+          "seen": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ]
+        }
+      ],
+      "frames": [
+        "390-short-reading-hands-read-00.png",
+        "390-short-reading-hands-read-01.png",
+        "390-short-reading-hands-read-02.png",
+        "390-short-reading-hands-read-03.png"
+      ]
+    },
+    {
+      "key": "390-short-reading-boss",
+      "viewport": {
+        "width": 390,
+        "height": 568
+      },
+      "status": "PASS",
+      "readOnlyReturns": "PASS",
+      "body": {
+        "x": 36,
+        "y": 84.5,
+        "width": 318,
+        "height": 321.5,
+        "top": 681,
+        "bottom": 406,
+        "left": 36,
+        "right": 354,
+        "clientHeight": 322,
+        "scrollHeight": 1003,
+        "overflowY": "auto"
+      },
+      "outer": {
+        "x": 19,
+        "y": 12,
+        "width": 352,
+        "height": 544,
+        "top": 12,
+        "bottom": 556,
+        "left": 19,
+        "right": 371,
+        "scrollTop": 0,
+        "clientHeight": 542,
+        "scrollHeight": 542
+      },
+      "heading": {
+        "text": "出牌用尽，准备再战",
+        "box": {
+          "x": 36,
+          "y": 28,
+          "width": 318,
+          "height": 27.5,
+          "top": 28,
+          "bottom": 55.5,
+          "left": 36,
+          "right": 354
+        },
+        "lines": [
+          {
+            "top": 26,
+            "bottom": 57,
+            "left": 36,
+            "right": 234.015625
+          }
+        ],
+        "fontSize": "22px",
+        "lineHeight": "27.5px",
+        "ancestors": [
+          {
+            "tag": "HEADER",
+            "className": "dialog-header",
+            "box": {
+              "x": 20,
+              "y": 13,
+              "width": 350,
+              "height": 55.5,
+              "top": 13,
+              "bottom": 68.5,
+              "left": 20,
+              "right": 370
+            },
+            "overflowX": "visible",
+            "overflowY": "visible"
+          },
+          {
+            "tag": "DIALOG",
+            "className": "detail-dialog",
+            "box": {
+              "x": 19,
+              "y": 12,
+              "width": 352,
+              "height": 544,
+              "top": 12,
+              "bottom": 556,
+              "left": 19,
+              "right": 371
+            },
+            "overflowX": "hidden",
+            "overflowY": "hidden"
+          },
+          {
+            "tag": "BODY",
+            "className": "",
+            "box": {
+              "x": 0,
+              "y": 0,
+              "width": 390,
+              "height": 568,
+              "top": 0,
+              "bottom": 568,
+              "left": 0,
+              "right": 390
+            },
+            "overflowX": "hidden",
+            "overflowY": "hidden"
+          },
+          {
+            "tag": "HTML",
+            "className": "",
+            "box": {
+              "x": 0,
+              "y": 0,
+              "width": 390,
+              "height": 568,
+              "top": 0,
+              "bottom": 568,
+              "left": 0,
+              "right": 390
+            },
+            "overflowX": "hidden",
+            "overflowY": "hidden"
+          }
+        ]
+      },
+      "covered": [
+        {
+          "id": "advice/1/title",
+          "text": "1. 先把一手凑完整",
+          "lineCount": 1,
+          "seen": [
+            0
+          ]
+        },
+        {
+          "id": "advice/1/body",
+          "text": "末手是对子，保存热度90；这是记录，不代表它一定是失败原因。\n先留连续点数、换掉无关牌；例如留5、6、7、8，再找4或9。用“怎么凑牌”查看当前手牌能补哪一张。",
+          "lineCount": 5,
+          "seen": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "id": "advice/2/title",
+          "text": "2. 按压轴实际影响换招",
+          "lineCount": 1,
+          "seen": [
+            0
+          ]
+        },
+        {
+          "id": "advice/2/body",
+          "text": "压轴实际影响 · 低调点\nK♥ 普通点数归零；仍可成型和触发大丑牌效果。\n下一局遇到此压轴时，把要读取普通点数的牌放在出牌顺序前三张；第4、5张仍能成型和触发大丑牌。",
+          "lineCount": 9,
+          "seen": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ]
+        },
+        {
+          "id": "advice/3/title",
+          "text": "3. 升级、做牌或留钱",
+          "lineCount": 1,
+          "seen": [
+            0
+          ]
+        },
+        {
+          "id": "advice/3/body",
+          "text": "筹备店升级只选已发现且未30级的牌型；Lv.1原价4金，之后按等级报价，确认后当场升一级。\n基础改牌原价2金、染色原价4金；升级与改牌/染色共用每店一次。\n实付、现货同名入口、可用目标与库存容量以当店确认页为准；买不起或没有合适目标时可以留钱。",
+          "lineCount": 8,
+          "seen": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ]
+        },
+        {
+          "id": "rules/body",
+          "text": "筹备店升级只选已发现且未30级的牌型；Lv.1原价4金，之后按等级报价，确认后当场升一级。\n基础改牌原价2金、染色原价4金；升级与改牌/染色共用每店一次。\n实付、现货同名入口、可用目标与库存容量以当店确认页为准；买不起或没有合适目标时可以留钱。",
+          "lineCount": 6,
+          "seen": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ]
+        }
+      ],
+      "frames": [
+        "390-short-reading-boss-read-00.png",
+        "390-short-reading-boss-read-01.png",
+        "390-short-reading-boss-read-02.png",
+        "390-short-reading-boss-read-03.png",
+        "390-short-reading-boss-read-04.png"
+      ]
+    },
+    {
+      "key": "390-short-reading-post-skip",
+      "viewport": {
+        "width": 390,
+        "height": 568
+      },
+      "status": "PASS",
+      "readOnlyReturns": "PASS",
+      "body": {
+        "x": 36,
+        "y": 84.5,
+        "width": 318,
+        "height": 321.5,
+        "top": 359,
+        "bottom": 406,
+        "left": 36,
+        "right": 354,
+        "clientHeight": 322,
+        "scrollHeight": 681,
+        "overflowY": "auto"
+      },
+      "outer": {
+        "x": 19,
+        "y": 12,
+        "width": 352,
+        "height": 544,
+        "top": 12,
+        "bottom": 556,
+        "left": 19,
+        "right": 371,
+        "scrollTop": 0,
+        "clientHeight": 542,
+        "scrollHeight": 542
+      },
+      "heading": {
+        "text": "已结束本局，重新选择",
+        "box": {
+          "x": 36,
+          "y": 28,
+          "width": 318,
+          "height": 27.5,
+          "top": 28,
+          "bottom": 55.5,
+          "left": 36,
+          "right": 354
+        },
+        "lines": [
+          {
+            "top": 26,
+            "bottom": 57,
+            "left": 36,
+            "right": 256.015625
+          }
+        ],
+        "fontSize": "22px",
+        "lineHeight": "27.5px",
+        "ancestors": [
+          {
+            "tag": "HEADER",
+            "className": "dialog-header",
+            "box": {
+              "x": 20,
+              "y": 13,
+              "width": 350,
+              "height": 55.5,
+              "top": 13,
+              "bottom": 68.5,
+              "left": 20,
+              "right": 370
+            },
+            "overflowX": "visible",
+            "overflowY": "visible"
+          },
+          {
+            "tag": "DIALOG",
+            "className": "detail-dialog",
+            "box": {
+              "x": 19,
+              "y": 12,
+              "width": 352,
+              "height": 544,
+              "top": 12,
+              "bottom": 556,
+              "left": 19,
+              "right": 371
+            },
+            "overflowX": "hidden",
+            "overflowY": "hidden"
+          },
+          {
+            "tag": "BODY",
+            "className": "",
+            "box": {
+              "x": 0,
+              "y": 0,
+              "width": 390,
+              "height": 568,
+              "top": 0,
+              "bottom": 568,
+              "left": 0,
+              "right": 390
+            },
+            "overflowX": "hidden",
+            "overflowY": "hidden"
+          },
+          {
+            "tag": "HTML",
+            "className": "",
+            "box": {
+              "x": 0,
+              "y": 0,
+              "width": 390,
+              "height": 568,
+              "top": 0,
+              "bottom": 568,
+              "left": 0,
+              "right": 390
+            },
+            "overflowX": "hidden",
+            "overflowY": "hidden"
+          }
+        ]
+      },
+      "covered": [
+        {
+          "id": "advice/1/title",
+          "text": "1. 先决定这次想怎么打",
+          "lineCount": 1,
+          "seen": [
+            0
+          ]
+        },
+        {
+          "id": "advice/1/body",
+          "text": "这是主动结束本局，不据此判定构筑强弱。可回看已保存的末手，再返回选角换英雄或开局方向。",
+          "lineCount": 3,
+          "seen": [
+            0,
+            1,
+            2
+          ]
+        },
+        {
+          "id": "advice/2/title",
+          "text": "2. 重试或换个开局",
+          "lineCount": 1,
+          "seen": [
+            0
+          ]
+        },
+        {
+          "id": "advice/2/body",
+          "text": "同局重试沿用种子、英雄、模式与本局规则；返回选角可以重新选择。两种开局都从初始资源开始。",
+          "lineCount": 3,
+          "seen": [
+            0,
+            1,
+            2
+          ]
+        },
+        {
+          "id": "rules/body",
+          "text": "筹备店升级只选已发现且未30级的牌型；Lv.1原价4金，之后按等级报价，确认后当场升一级。\n基础改牌原价2金、染色原价4金；升级与改牌/染色共用每店一次。\n实付、现货同名入口、可用目标与库存容量以当店确认页为准；买不起或没有合适目标时可以留钱。",
+          "lineCount": 6,
+          "seen": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ]
+        }
+      ],
+      "frames": [
+        "390-short-reading-post-skip-read-00.png",
+        "390-short-reading-post-skip-read-01.png",
+        "390-short-reading-post-skip-read-02.png"
+      ]
+    }
+  ]
+}

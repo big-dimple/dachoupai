@@ -1,0 +1,142 @@
+
+> dachoupai@0.1.0 verify:ci
+> node scripts/verify-ci.mjs --scope=all
+
+CHECK test: /opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node /opt/codex/runtimes/codex-primary-runtime/dependencies/node/lib/node_modules/npm/bin/npm-cli.js run test
+
+> dachoupai@0.1.0 test
+> vitest run
+
+
+ RUN  v4.1.11 /workspace/dachoupai
+
+ ❯ tests/shop-sale-continuation.test.ts (4 tests | 4 failed) 47ms
+   × closing during save preserves the committed sale and never reopens the purchase page 31ms
+   × a newer dialog retains ownership when the old sale finishes 6ms
+   × the still-active confirmation closes after saving and opens current offer details once 4ms
+   × comparison and actual sale confirmation both expose retained reset, growth and qualification consequences 5ms
+ ❯ tests/make-cards-flow.test.ts (5 tests | 1 failed) 120ms
+   × a recovered practice consumes its durable receipt without quoting or dispatching again 33ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 5 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/make-cards-flow.test.ts > a recovered practice consumes its durable receipt without quoting or dispatching again
+AssertionError: expected "vi.fn()" to be called once with arguments: [ { handType: 'pair', …(5) } ]
+
+Received:
+
+  1st vi.fn() call:
+
+@@ -5,6 +5,7 @@
+      "handType": "pair",
+      "levelAfter": 2,
+      "levelBefore": 1,
+      "paidPrice": 4,
+    },
++   undefined,
+  ]
+
+
+Number of calls: 1
+
+ ❯ tests/make-cards-flow.test.ts:21:31
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/5]⎯
+
+ FAIL  tests/shop-sale-continuation.test.ts > closing during save preserves the committed sale and never reopens the purchase page
+TypeError: Cannot read properties of undefined (reading 'add')
+ ❯ ShopScene.inspectJoker src/game/ShopScene.ts:860:22
+
+ ❯ pendingSale tests/shop-sale-continuation.test.ts:27:47
+ ❯ tests/shop-sale-continuation.test.ts:33:10
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/5]⎯
+
+ FAIL  tests/shop-sale-continuation.test.ts > a newer dialog retains ownership when the old sale finishes
+TypeError: Cannot read properties of undefined (reading 'add')
+ ❯ ShopScene.inspectJoker src/game/ShopScene.ts:860:22
+
+ ❯ pendingSale tests/shop-sale-continuation.test.ts:27:47
+ ❯ tests/shop-sale-continuation.test.ts:37:10
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/5]⎯
+
+ FAIL  tests/shop-sale-continuation.test.ts > the still-active confirmation closes after saving and opens current offer details once
+TypeError: Cannot read properties of undefined (reading 'add')
+ ❯ ShopScene.inspectJoker src/game/ShopScene.ts:860:22
+
+ ❯ pendingSale tests/shop-sale-continuation.test.ts:27:47
+ ❯ tests/shop-sale-continuation.test.ts:41:10
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/5]⎯
+
+ FAIL  tests/shop-sale-continuation.test.ts > comparison and actual sale confirmation both expose retained reset, growth and qualification consequences
+TypeError: Cannot read properties of undefined (reading 'add')
+ ❯ ShopScene.inspectJoker src/game/ShopScene.ts:860:22
+
+ ❯ pendingSale tests/shop-sale-continuation.test.ts:27:47
+ ❯ tests/shop-sale-continuation.test.ts:45:10
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/5]⎯
+
+
+ Test Files  2 failed | 247 passed (249)
+      Tests  5 failed | 3473 passed (3478)
+   Start at  01:18:41
+   Duration  56.56s (transform 9.38s, setup 0ms, import 46.55s, tests 77.62s, environment 25ms)
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice
+test: FAIL
+{
+  "scope": "all",
+  "testedCommit": "563e5a9bf28ad306ad911aecca5eb12e0ff25681",
+  "status": "FAIL",
+  "exitCode": 1,
+  "before": {
+    "source": "d52dd2bf691d1ee4804479d3c62f50c7785493203d7d4ac2c197f21a7671fba6",
+    "index": "baad00c30921c7ccfd2bfdc912d75487fd4186717d9fbaf4e8c35a386626195c",
+    "head": "563e5a9bf28ad306ad911aecca5eb12e0ff25681",
+    "branch": "refs/heads/fix/shop-integration-20261015"
+  },
+  "after": {
+    "source": "d52dd2bf691d1ee4804479d3c62f50c7785493203d7d4ac2c197f21a7671fba6",
+    "index": "baad00c30921c7ccfd2bfdc912d75487fd4186717d9fbaf4e8c35a386626195c",
+    "head": "563e5a9bf28ad306ad911aecca5eb12e0ff25681",
+    "branch": "refs/heads/fix/shop-integration-20261015"
+  },
+  "steps": [
+    {
+      "name": "test",
+      "status": "FAIL",
+      "childExitCode": 1,
+      "elapsedMs": 58554,
+      "reason": "child exited 1"
+    }
+  ],
+  "notIncluded": [
+    {
+      "name": "extended browser/recovery/fault/asset/simulation diagnostics",
+      "status": "NOT_INCLUDED",
+      "reason": "run the existing specific command only when its domain changes; P00 removes repeated default execution"
+    },
+    {
+      "name": "balance/benchmark acceptance",
+      "status": "NOT_INCLUDED",
+      "reason": "later work packages; no gameplay approval inferred from checks"
+    },
+    {
+      "name": "physical devices / human / art approval",
+      "status": "NOT_RUN"
+    }
+  ]
+}
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice

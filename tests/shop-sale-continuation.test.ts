@@ -9,7 +9,7 @@ vi.mock('../src/game/ShopComparisonDialog',()=>({showShopComparison:vi.fn(()=>{f
 vi.mock('../src/game/DetailDialog',()=>({DetailDialog:class {
  active(token:object){return fixture.active===token;}
  close(token?:object){if(!token||fixture.active===token)fixture.active=undefined;}
- open(title:string,body:string,actions:{label:string;run:()=>void|Promise<void>}[]=[],options?:{cards?:{body:string;details?:string}[]}){const token={querySelector:()=>({onclick:undefined}),addEventListener:vi.fn()};fixture.active=token;fixture.dialogs.push({title,body,actions,token,options});return token;}
+ open(title:string,body:string,actions:{label:string;run:()=>void|Promise<void>}[]=[],options?:{cards?:{body:string;details?:string}[]}){const token={classList:{add:vi.fn()},querySelector:(selector:string)=>selector==='.dialog-close'?{onclick:undefined}:null,addEventListener:vi.fn()};fixture.active=token;fixture.dialogs.push({title,body,actions,token,options});return token;}
 }}));
 import {ShopScene} from '../src/game/ShopScene';
 import {showShopComparison} from '../src/game/ShopComparisonDialog';

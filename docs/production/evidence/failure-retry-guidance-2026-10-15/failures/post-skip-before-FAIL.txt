@@ -1,0 +1,34 @@
+
+> dachoupai@0.1.0 test
+> vitest run tests/failure-guidance.test.ts
+
+
+ RUN  v4.1.11 /workspace/dachoupai
+
+ ❯ tests/failure-guidance.test.ts (9 tests | 1 failed) 165ms
+     × active ending after a skipped stage is not presented as a scored defeat 9ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/failure-guidance.test.ts > failure guidance reads real saved terminal facts > active ending after a skipped stage is not presented as a scored defeat
+AssertionError: expected '本场还差 400 热度' to be '最近一场已跳过，没有计分结果' // Object.is equality
+
+Expected: "最近一场已跳过，没有计分结果"
+Received: "本场还差 400 热度"
+
+ ❯ tests/failure-guidance.test.ts:29:179
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 8 passed (9)
+   Start at  00:17:08
+   Duration  949ms (transform 545ms, setup 0ms, import 678ms, tests 165ms, environment 0ms)
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice

@@ -1,0 +1,2836 @@
+{
+  "head": "40b9f31e1d37ec6f7b06fce46f8eb72b65307bd5",
+  "sourceTree": "5789ae02a57e28860297b3134bcbbbe8ef6f43bb",
+  "build": {
+    "version": "C03",
+    "builtAt": "2026-10-15T01:25:24.648Z",
+    "revision": "40b9f31e1d37ec6f7b06fce46f8eb72b65307bd5",
+    "sourceStatus": "clean",
+    "modified": false
+  },
+  "scope": "Frozen compiled source; six normal selected heroes, each reads three routes and starts one distributed route, actual starter purchase with save fault/retry, build views, one public first hand and cold continue. Not 18 complete runs, six-hero skill-payoff/balance, physical device or human/art/audio acceptance.",
+  "cases": [
+    {
+      "id": "amo",
+      "route": "group",
+      "width": 1366,
+      "height": 768,
+      "shots": [
+        "amo-selector-hero.png",
+        "amo-shop.png",
+        "amo-offer-view.png",
+        "amo-purchase-failure.png",
+        "amo-purchase-saved.png",
+        "amo-build-simple.png",
+        "amo-build-all.png",
+        "amo-build-bottom.png",
+        "amo-table-hero.png",
+        "amo-first-hand.png",
+        "amo-cold-continue.png"
+      ],
+      "errors": [],
+      "transactions": [
+        {
+          "actions": [
+            {
+              "type": "BuyOffer",
+              "offerId": "run/integration-continuation-amo/amo/shop/0/0/joker/2"
+            }
+          ],
+          "beforeSeq": 1,
+          "afterSeq": 2
+        },
+        {
+          "actions": [
+            {
+              "type": "LeaveShop"
+            },
+            {
+              "type": "EnterStage"
+            }
+          ],
+          "beforeSeq": 2,
+          "afterSeq": 4
+        },
+        {
+          "actions": [
+            {
+              "type": "PlayHand",
+              "selectedIds": [
+                "diamonds-12",
+                "hearts-13",
+                "hearts-7",
+                "clubs-6",
+                "clubs-12"
+              ]
+            }
+          ],
+          "beforeSeq": 4,
+          "afterSeq": 5
+        }
+      ],
+      "textAudits": [
+        {
+          "label": "selector-hero",
+          "title": "阿默 · 主手＋助攻",
+          "clipped": [],
+          "buttons": [
+            {
+              "label": "回到选角",
+              "box": {
+                "x": 264,
+                "y": 613,
+                "width": 838,
+                "height": 48,
+                "top": 613,
+                "right": 1102,
+                "bottom": 661,
+                "left": 264
+              }
+            }
+          ]
+        },
+        {
+          "label": "shop",
+          "title": null,
+          "clipped": [],
+          "buttons": []
+        },
+        {
+          "label": "offer-view",
+          "title": "满堂彩 · 购买详情",
+          "clipped": [],
+          "buttons": [
+            {
+              "label": "邀请 · 4 金",
+              "box": {
+                "x": 264,
+                "y": 687,
+                "width": 415,
+                "height": 56,
+                "top": 687,
+                "right": 679,
+                "bottom": 743,
+                "left": 264
+              }
+            },
+            {
+              "label": "取消",
+              "box": {
+                "x": 687,
+                "y": 687,
+                "width": 415,
+                "height": 56,
+                "top": 687,
+                "right": 1102,
+                "bottom": 743,
+                "left": 687
+              }
+            }
+          ]
+        },
+        {
+          "label": "purchase-failure",
+          "title": null,
+          "clipped": [],
+          "buttons": []
+        },
+        {
+          "label": "purchase-saved",
+          "title": null,
+          "clipped": [],
+          "buttons": []
+        },
+        {
+          "label": "build-simple",
+          "title": "这轮怎么选 · 同点成组",
+          "clipped": [],
+          "buttons": [
+            {
+              "label": "查看全部现货与持牌",
+              "box": {
+                "x": 264,
+                "y": 687,
+                "width": 246.984375,
+                "height": 56,
+                "top": 687,
+                "right": 510.984375,
+                "bottom": 743,
+                "left": 264
+              }
+            },
+            {
+              "label": "更换方向",
+              "box": {
+                "x": 518.984375,
+                "y": 687,
+                "width": 177,
+                "height": 56,
+                "top": 687,
+                "right": 695.984375,
+                "bottom": 743,
+                "left": 518.984375
+              }
+            },
+            {
+              "label": "先留2金，进入牌桌",
+              "box": {
+                "x": 703.984375,
+                "y": 687,
+                "width": 241.015625,
+                "height": 56,
+                "top": 687,
+                "right": 945,
+                "bottom": 743,
+                "left": 703.984375
+              }
+            },
+            {
+              "label": "关闭",
+              "box": {
+                "x": 953,
+                "y": 687,
+                "width": 149,
+                "height": 56,
+                "top": 687,
+                "right": 1102,
+                "bottom": 743,
+                "left": 953
+              }
+            }
+          ]
+        },
+        {
+          "label": "build-all",
+          "title": "培养路线 · 同点成组",
+          "clipped": [],
+          "buttons": [
+            {
+              "label": "回到这轮建议",
+              "box": {
+                "x": 264,
+                "y": 687,
+                "width": 111.75,
+                "height": 56,
+                "top": 687,
+                "right": 375.75,
+                "bottom": 743,
+                "left": 264
+              }
+            },
+            {
+              "label": "更换方向",
+              "box": {
+                "x": 383.75,
+                "y": 687,
+                "width": 83.75,
+                "height": 56,
+                "top": 687,
+                "right": 467.5,
+                "bottom": 743,
+                "left": 383.75
+              }
+            },
+            {
+              "label": "查看公开牌组",
+              "box": {
+                "x": 475.5,
+                "y": 687,
+                "width": 111.75,
+                "height": 56,
+                "top": 687,
+                "right": 587.25,
+                "bottom": 743,
+                "left": 475.5
+              }
+            },
+            {
+              "label": "本章节目",
+              "box": {
+                "x": 595.25,
+                "y": 687,
+                "width": 83.75,
+                "height": 56,
+                "top": 687,
+                "right": 679,
+                "bottom": 743,
+                "left": 595.25
+              }
+            },
+            {
+              "label": "持有牌管理",
+              "box": {
+                "x": 687,
+                "y": 687,
+                "width": 97.75,
+                "height": 56,
+                "top": 687,
+                "right": 784.75,
+                "bottom": 743,
+                "left": 687
+              }
+            },
+            {
+              "label": "打开道具箱",
+              "box": {
+                "x": 792.75,
+                "y": 687,
+                "width": 97.75,
+                "height": 56,
+                "top": 687,
+                "right": 890.5,
+                "bottom": 743,
+                "left": 792.75
+              }
+            },
+            {
+              "label": "保留金币进入牌桌",
+              "box": {
+                "x": 898.5,
+                "y": 687,
+                "width": 139.75,
+                "height": 56,
+                "top": 687,
+                "right": 1038.25,
+                "bottom": 743,
+                "left": 898.5
+              }
+            },
+            {
+              "label": "关闭",
+              "box": {
+                "x": 1046.25,
+                "y": 687,
+                "width": 55.75,
+                "height": 56,
+                "top": 687,
+                "right": 1102,
+                "bottom": 743,
+                "left": 1046.25
+              }
+            }
+          ]
+        },
+        {
+          "label": "build-bottom",
+          "title": "培养路线 · 同点成组",
+          "clipped": [],
+          "buttons": [
+            {
+              "label": "回到这轮建议",
+              "box": {
+                "x": 264,
+                "y": 687,
+                "width": 111.75,
+                "height": 56,
+                "top": 687,
+                "right": 375.75,
+                "bottom": 743,
+                "left": 264
+              }
+            },
+            {
+              "label": "更换方向",
+              "box": {
+                "x": 383.75,
+                "y": 687,
+                "width": 83.75,
+                "height": 56,
+                "top": 687,
+                "right": 467.5,
+                "bottom": 743,
+                "left": 383.75
+              }
+            },
+            {
+              "label": "查看公开牌组",
+              "box": {
+                "x": 475.5,
+                "y": 687,
+                "width": 111.75,
+                "height": 56,
+                "top": 687,
+                "right": 587.25,
+                "bottom": 743,
+                "left": 475.5
+              }
+            },
+            {
+              "label": "本章节目",
+              "box": {
+                "x": 595.25,
+                "y": 687,
+                "width": 83.75,
+                "height": 56,
+                "top": 687,
+                "right": 679,
+                "bottom": 743,
+                "left": 595.25
+              }
+            },
+            {
+              "label": "持有牌管理",
+              "box": {
+                "x": 687,
+                "y": 687,
+                "width": 97.75,
+                "height": 56,
+                "top": 687,
+                "right": 784.75,
+                "bottom": 743,
+                "left": 687
+              }
+            },
+            {
+              "label": "打开道具箱",
+              "box": {
+                "x": 792.75,
+                "y": 687,
+                "width": 97.75,
+                "height": 56,
+                "top": 687,
+                "right": 890.5,
+                "bottom": 743,
+                "left": 792.75
+              }
+            },
+            {
+              "label": "保留金币进入牌桌",
+              "box": {
+                "x": 898.5,
+                "y": 687,
+                "width": 139.75,
+                "height": 56,
+                "top": 687,
+                "right": 1038.25,
+                "bottom": 743,
+                "left": 898.5
+              }
+            },
+            {
+              "label": "关闭",
+              "box": {
+                "x": 1046.25,
+                "y": 687,
+                "width": 55.75,
+                "height": 56,
+                "top": 687,
+                "right": 1102,
+                "bottom": 743,
+                "left": 1046.25
+              }
+            }
+          ]
+        },
+        {
+          "label": "table-hero",
+          "title": "阿默 · 主手＋助攻",
+          "clipped": [],
+          "buttons": [
+            {
+              "label": "查看本场技能操作",
+              "box": {
+                "x": 264,
+                "y": 613,
+                "width": 443,
+                "height": 48,
+                "top": 613,
+                "right": 707,
+                "bottom": 661,
+                "left": 264
+              }
+            },
+            {
+              "label": "返回牌桌",
+              "box": {
+                "x": 715,
+                "y": 613,
+                "width": 387,
+                "height": 48,
+                "top": 613,
+                "right": 1102,
+                "bottom": 661,
+                "left": 715
+              }
+            }
+          ]
+        },
+        {
+          "label": "first-hand",
+          "title": null,
+          "clipped": [],
+          "buttons": []
+        },
+        {
+          "label": "cold-continue",
+          "title": null,
+          "clipped": [],
+          "buttons": []
+        }
+      ],
+      "initial": {
+        "seq": 1,
+        "phase": "shop"
+      },
+      "firstScore": "290",
+      "phaseAfterFirstHand": "await-input",
+      "restored": {
+        "seq": 5,
+        "phase": "await-input"
+      },
+      "status": "PASS"
+    },
+    {
+      "id": "touye",
+      "route": "straight",
+      "width": 390,
+      "height": 740,
+      "shots": [
+        "touye-selector-hero.png",
+        "touye-shop.png",
+        "touye-offer-view.png",
+        "touye-purchase-failure.png",
+        "touye-purchase-saved.png",
+        "touye-build-simple.png",
+        "touye-build-all.png",
+        "touye-build-bottom.png",
+        "touye-table-hero.png",
+        "touye-first-hand.png",
+        "touye-cold-continue.png"
+      ],
+      "errors": [],
+      "transactions": [
+        {
+          "actions": [
+            {
+              "type": "BuyOffer",
+              "offerId": "run/integration-continuation-touye/touye/shop/0/0/joker/2"
+            }
+          ],
+          "beforeSeq": 1,
+          "afterSeq": 2
+        },
+        {
+          "actions": [
+            {
+              "type": "LeaveShop"
+            },
+            {
+              "type": "EnterStage"
+            }
+          ],
+          "beforeSeq": 2,
+          "afterSeq": 4
+        },
+        {
+          "actions": [
+            {
+              "type": "PlayHand",
+              "selectedIds": [
+                "hearts-3",
+                "spades-2",
+                "hearts-8",
+                "hearts-7",
+                "spades-6"
+              ]
+            }
+          ],
+          "beforeSeq": 4,
+          "afterSeq": 5
+        }
+      ],
+      "textAudits": [
+        {
+          "label": "selector-hero",
+          "title": "骰爷 · 弃前赌约",
+          "clipped": [],
+          "buttons": [
+            {
+              "label": "回到选角",
+              "box": {
+                "x": 36,
+                "y": 601,
+                "width": 318,
+                "height": 48,
+                "top": 601,
+                "right": 354,
+                "bottom": 649,
+                "left": 36
+              }
+            }
+          ]
+        },
+        {
+          "label": "shop",
+          "title": null,
+          "clipped": [],
+          "buttons": []
+        },
+        {
+          "label": "offer-view",
+          "title": "搭台阶 · 购买详情",
+          "clipped": [],
+          "buttons": [
+            {
+              "label": "邀请 · 4 金",
+              "box": {
+                "x": 36,
+                "y": 609,
+                "width": 318,
+                "height": 56,
+                "top": 609,
+                "right": 354,
+                "bottom": 665,
+                "left": 36
+              }
+            },
+            {
+              "label": "取消",
+              "box": {
+                "x": 36,
+                "y": 673,
+                "width": 318,
+                "height": 44,
+                "top": 673,
+                "right": 354,
+                "bottom": 717,
+                "left": 36
+              }
+            }
+          ]
+        },
+        {
+          "label": "purchase-failure",
+          "title": null,
+          "clipped": [],
+          "buttons": []
+        },
+        {
+          "label": "purchase-saved",
+          "title": null,
+          "clipped": [],
+          "buttons": []
+        },
+        {
+          "label": "build-simple",
+          "title": "这轮怎么选 · 顺子接续",
+          "clipped": [],
+          "buttons": [
+            {
+              "label": "查看全部现货与持牌",
+              "box": {
+                "x": 36,
+                "y": 609,
+                "width": 190,
+                "height": 44,
+                "top": 609,
+                "right": 226,
+                "bottom": 653,
+                "left": 36
+              }
+            },
+            {
+              "label": "更换方向",
+              "box": {
+                "x": 234,
+                "y": 609,
+                "width": 120,
+                "height": 44,
+                "top": 609,
+                "right": 354,
+                "bottom": 653,
+                "left": 234
+              }
+            },
+            {
+              "label": "先留2金，进入牌桌",
+              "box": {
+                "x": 36,
+                "y": 661,
+                "width": 201,
+                "height": 56,
+                "top": 661,
+                "right": 237,
+                "bottom": 717,
+                "left": 36
+              }
+            },
+            {
+              "label": "关闭",
+              "box": {
+                "x": 245,
+                "y": 661,
+                "width": 109,
+                "height": 56,
+                "top": 661,
+                "right": 354,
+                "bottom": 717,
+                "left": 245
+              }
+            }
+          ]
+        },
+        {
+          "label": "build-all",
+          "title": "培养路线 · 顺子接续",
+          "clipped": [],
+          "buttons": [
+            {
+              "label": "回到这轮建议",
+              "box": {
+                "x": 36,
+                "y": 557,
+                "width": 110,
+                "height": 44,
+                "top": 557,
+                "right": 146,
+                "bottom": 601,
+                "left": 36
+              }
+            },
+            {
+              "label": "更换方向",
+              "box": {
+                "x": 154,
+                "y": 557,
+                "width": 82,
+                "height": 44,
+                "top": 557,
+                "right": 236,
+                "bottom": 601,
+                "left": 154
+              }
+            },
+            {
+              "label": "查看公开牌组",
+              "box": {
+                "x": 244,
+                "y": 557,
+                "width": 110,
+                "height": 44,
+                "top": 557,
+                "right": 354,
+                "bottom": 601,
+                "left": 244
+              }
+            },
+            {
+              "label": "本章节目",
+              "box": {
+                "x": 36,
+                "y": 609,
+                "width": 91.328125,
+                "height": 44,
+                "top": 609,
+                "right": 127.328125,
+                "bottom": 653,
+                "left": 36
+              }
+            },
+            {
+              "label": "持有牌管理",
+              "box": {
+                "x": 135.328125,
+                "y": 609,
+                "width": 105.34375,
+                "height": 44,
+                "top": 609,
+                "right": 240.671875,
+                "bottom": 653,
+                "left": 135.328125
+              }
+            },
+            {
+              "label": "打开道具箱",
+              "box": {
+                "x": 248.671875,
+                "y": 609,
+                "width": 105.328125,
+                "height": 44,
+                "top": 609,
+                "right": 354,
+                "bottom": 653,
+                "left": 248.671875
+              }
+            },
+            {
+              "label": "保留金币进入牌桌",
+              "box": {
+                "x": 36,
+                "y": 661,
+                "width": 197,
+                "height": 56,
+                "top": 661,
+                "right": 233,
+                "bottom": 717,
+                "left": 36
+              }
+            },
+            {
+              "label": "关闭",
+              "box": {
+                "x": 241,
+                "y": 661,
+                "width": 113,
+                "height": 56,
+                "top": 661,
+                "right": 354,
+                "bottom": 717,
+                "left": 241
+              }
+            }
+          ]
+        },
+        {
+          "label": "build-bottom",
+          "title": "培养路线 · 顺子接续",
+          "clipped": [],
+          "buttons": [
+            {
+              "label": "回到这轮建议",
+              "box": {
+                "x": 36,
+                "y": 557,
+                "width": 110,
+                "height": 44,
+                "top": 557,
+                "right": 146,
+                "bottom": 601,
+                "left": 36
+              }
+            },
+            {
+              "label": "更换方向",
+              "box": {
+                "x": 154,
+                "y": 557,
+                "width": 82,
+                "height": 44,
+                "top": 557,
+                "right": 236,
+                "bottom": 601,
+                "left": 154
+              }
+            },
+            {
+              "label": "查看公开牌组",
+              "box": {
+                "x": 244,
+                "y": 557,
+                "width": 110,
+                "height": 44,
+                "top": 557,
+                "right": 354,
+                "bottom": 601,
+                "left": 244
+              }
+            },
+            {
+              "label": "本章节目",
+              "box": {
+                "x": 36,
+                "y": 609,
+                "width": 91.328125,
+                "height": 44,
+                "top": 609,
+                "right": 127.328125,
+                "bottom": 653,
+                "left": 36
+              }
+            },
+            {
+              "label": "持有牌管理",
+              "box": {
+                "x": 135.328125,
+                "y": 609,
+                "width": 105.34375,
+                "height": 44,
+                "top": 609,
+                "right": 240.671875,
+                "bottom": 653,
+                "left": 135.328125
+              }
+            },
+            {
+              "label": "打开道具箱",
+              "box": {
+                "x": 248.671875,
+                "y": 609,
+                "width": 105.328125,
+                "height": 44,
+                "top": 609,
+                "right": 354,
+                "bottom": 653,
+                "left": 248.671875
+              }
+            },
+            {
+              "label": "保留金币进入牌桌",
+              "box": {
+                "x": 36,
+                "y": 661,
+                "width": 197,
+                "height": 56,
+                "top": 661,
+                "right": 233,
+                "bottom": 717,
+                "left": 36
+              }
+            },
+            {
+              "label": "关闭",
+              "box": {
+                "x": 241,
+                "y": 661,
+                "width": 113,
+                "height": 56,
+                "top": 661,
+                "right": 354,
+                "bottom": 717,
+                "left": 241
+              }
+            }
+          ]
+        },
+        {
+          "label": "table-hero",
+          "title": "骰爷 · 弃前赌约",
+          "clipped": [],
+          "buttons": [
+            {
+              "label": "查看本场技能操作",
+              "box": {
+                "x": 36,
+                "y": 601,
+                "width": 183,
+                "height": 48,
+                "top": 601,
+                "right": 219,
+                "bottom": 649,
+                "left": 36
+              }
+            },
+            {
+              "label": "返回牌桌",
+              "box": {
+                "x": 227,
+                "y": 601,
+                "width": 127,
+                "height": 48,
+                "top": 601,
+                "right": 354,
+                "bottom": 649,
+                "left": 227
+              }
+            }
+          ]
+        },
+        {
+          "label": "first-hand",
+          "title": null,
+          "clipped": [],
+          "buttons": []
+        },
+        {
+          "label": "cold-continue",
+          "title": null,
+          "clipped": [],
+          "buttons": []
+        }
+      ],
+      "initial": {
+        "seq": 1,
+        "phase": "shop"
+      },
+      "firstScore": "32",
+      "phaseAfterFirstHand": "await-input",
+      "restored": {
+        "seq": 5,
+        "phase": "await-input"
+      },
+      "status": "PASS"
+    },
+    {
+      "id": "laohuan",
+      "route": "flush",
+      "width": 320,
+      "height": 568,
+      "shots": [
+        "laohuan-selector-hero.png",
+        "laohuan-shop.png",
+        "laohuan-offer-view.png",
+        "laohuan-purchase-failure.png",
+        "laohuan-purchase-saved.png",
+        "laohuan-build-simple.png",
+        "laohuan-build-all.png",
+        "laohuan-build-bottom.png",
+        "laohuan-table-hero.png",
+        "laohuan-first-hand.png",
+        "laohuan-cold-continue.png"
+      ],
+      "errors": [],
+      "transactions": [
+        {
+          "actions": [
+            {
+              "type": "BuyOffer",
+              "offerId": "run/integration-continuation-laohuan/laohuan/shop/0/0/joker/2"
+            }
+          ],
+          "beforeSeq": 1,
+          "afterSeq": 2
+        },
+        {
+          "actions": [
+            {
+              "type": "LeaveShop"
+            },
+            {
+              "type": "EnterStage"
+            }
+          ],
+          "beforeSeq": 2,
+          "afterSeq": 4
+        },
+        {
+          "actions": [
+            {
+              "type": "PlayHand",
+              "selectedIds": [
+                "diamonds-11",
+                "clubs-11",
+                "diamonds-8",
+                "spades-10",
+                "hearts-6"
+              ]
+            }
+          ],
+          "beforeSeq": 4,
+          "afterSeq": 5
+        }
+      ],
+      "textAudits": [
+        {
+          "label": "selector-hero",
+          "title": "老幻 · 戏法换牌",
+          "clipped": [],
+          "buttons": [
+            {
+              "label": "回到选角",
+              "box": {
+                "x": 36,
+                "y": 497,
+                "width": 248,
+                "height": 48,
+                "top": 497,
+                "right": 284,
+                "bottom": 545,
+                "left": 36
+              }
+            }
+          ]
+        },
+        {
+          "label": "shop",
+          "title": null,
+          "clipped": [],
+          "buttons": []
+        },
+        {
+          "label": "offer-view",
+          "title": "越染越深 · 购买详情",
+          "clipped": [],
+          "buttons": [
+            {
+              "label": "邀请 · 6 金",
+              "box": {
+                "x": 36,
+                "y": 437,
+                "width": 248,
+                "height": 56,
+                "top": 437,
+                "right": 284,
+                "bottom": 493,
+                "left": 36
+              }
+            },
+            {
+              "label": "取消",
+              "box": {
+                "x": 36,
+                "y": 501,
+                "width": 248,
+                "height": 44,
+                "top": 501,
+                "right": 284,
+                "bottom": 545,
+                "left": 36
+              }
+            }
+          ]
+        },
+        {
+          "label": "purchase-failure",
+          "title": null,
+          "clipped": [],
+          "buttons": []
+        },
+        {
+          "label": "purchase-saved",
+          "title": null,
+          "clipped": [],
+          "buttons": []
+        },
+        {
+          "label": "build-simple",
+          "title": "这轮怎么选 · 同花集中",
+          "clipped": [],
+          "buttons": [
+            {
+              "label": "查看全部现货与持牌",
+              "box": {
+                "x": 36,
+                "y": 437,
+                "width": 155,
+                "height": 44,
+                "top": 437,
+                "right": 191,
+                "bottom": 481,
+                "left": 36
+              }
+            },
+            {
+              "label": "更换方向",
+              "box": {
+                "x": 199,
+                "y": 437,
+                "width": 85,
+                "height": 44,
+                "top": 437,
+                "right": 284,
+                "bottom": 481,
+                "left": 199
+              }
+            },
+            {
+              "label": "先留0金，进入牌桌",
+              "box": {
+                "x": 36,
+                "y": 489,
+                "width": 166,
+                "height": 56,
+                "top": 489,
+                "right": 202,
+                "bottom": 545,
+                "left": 36
+              }
+            },
+            {
+              "label": "关闭",
+              "box": {
+                "x": 210,
+                "y": 489,
+                "width": 74,
+                "height": 56,
+                "top": 489,
+                "right": 284,
+                "bottom": 545,
+                "left": 210
+              }
+            }
+          ]
+        },
+        {
+          "label": "build-all",
+          "title": "培养路线 · 同花集中",
+          "clipped": [],
+          "buttons": [
+            {
+              "label": "回到这轮建议",
+              "box": {
+                "x": 36,
+                "y": 333,
+                "width": 134,
+                "height": 44,
+                "top": 333,
+                "right": 170,
+                "bottom": 377,
+                "left": 36
+              }
+            },
+            {
+              "label": "更换方向",
+              "box": {
+                "x": 178,
+                "y": 333,
+                "width": 106,
+                "height": 44,
+                "top": 333,
+                "right": 284,
+                "bottom": 377,
+                "left": 178
+              }
+            },
+            {
+              "label": "查看公开牌组",
+              "box": {
+                "x": 36,
+                "y": 385,
+                "width": 134,
+                "height": 44,
+                "top": 385,
+                "right": 170,
+                "bottom": 429,
+                "left": 36
+              }
+            },
+            {
+              "label": "本章节目",
+              "box": {
+                "x": 178,
+                "y": 385,
+                "width": 106,
+                "height": 44,
+                "top": 385,
+                "right": 284,
+                "bottom": 429,
+                "left": 178
+              }
+            },
+            {
+              "label": "持有牌管理",
+              "box": {
+                "x": 36,
+                "y": 437,
+                "width": 120,
+                "height": 44,
+                "top": 437,
+                "right": 156,
+                "bottom": 481,
+                "left": 36
+              }
+            },
+            {
+              "label": "打开道具箱",
+              "box": {
+                "x": 164,
+                "y": 437,
+                "width": 120,
+                "height": 44,
+                "top": 437,
+                "right": 284,
+                "bottom": 481,
+                "left": 164
+              }
+            },
+            {
+              "label": "保留金币进入牌桌",
+              "box": {
+                "x": 36,
+                "y": 489,
+                "width": 162,
+                "height": 56,
+                "top": 489,
+                "right": 198,
+                "bottom": 545,
+                "left": 36
+              }
+            },
+            {
+              "label": "关闭",
+              "box": {
+                "x": 206,
+                "y": 489,
+                "width": 78,
+                "height": 56,
+                "top": 489,
+                "right": 284,
+                "bottom": 545,
+                "left": 206
+              }
+            }
+          ]
+        },
+        {
+          "label": "build-bottom",
+          "title": "培养路线 · 同花集中",
+          "clipped": [],
+          "buttons": [
+            {
+              "label": "回到这轮建议",
+              "box": {
+                "x": 36,
+                "y": 333,
+                "width": 134,
+                "height": 44,
+                "top": 333,
+                "right": 170,
+                "bottom": 377,
+                "left": 36
+              }
+            },
+            {
+              "label": "更换方向",
+              "box": {
+                "x": 178,
+                "y": 333,
+                "width": 106,
+                "height": 44,
+                "top": 333,
+                "right": 284,
+                "bottom": 377,
+                "left": 178
+              }
+            },
+            {
+              "label": "查看公开牌组",
+              "box": {
+                "x": 36,
+                "y": 385,
+                "width": 134,
+                "height": 44,
+                "top": 385,
+                "right": 170,
+                "bottom": 429,
+                "left": 36
+              }
+            },
+            {
+              "label": "本章节目",
+              "box": {
+                "x": 178,
+                "y": 385,
+                "width": 106,
+                "height": 44,
+                "top": 385,
+                "right": 284,
+                "bottom": 429,
+                "left": 178
+              }
+            },
+            {
+              "label": "持有牌管理",
+              "box": {
+                "x": 36,
+                "y": 437,
+                "width": 120,
+                "height": 44,
+                "top": 437,
+                "right": 156,
+                "bottom": 481,
+                "left": 36
+              }
+            },
+            {
+              "label": "打开道具箱",
+              "box": {
+                "x": 164,
+                "y": 437,
+                "width": 120,
+                "height": 44,
+                "top": 437,
+                "right": 284,
+                "bottom": 481,
+                "left": 164
+              }
+            },
+            {
+              "label": "保留金币进入牌桌",
+              "box": {
+                "x": 36,
+                "y": 489,
+                "width": 162,
+                "height": 56,
+                "top": 489,
+                "right": 198,
+                "bottom": 545,
+                "left": 36
+              }
+            },
+            {
+              "label": "关闭",
+              "box": {
+                "x": 206,
+                "y": 489,
+                "width": 78,
+                "height": 56,
+                "top": 489,
+                "right": 284,
+                "bottom": 545,
+                "left": 206
+              }
+            }
+          ]
+        },
+        {
+          "label": "table-hero",
+          "title": "老幻 · 戏法换牌",
+          "clipped": [],
+          "buttons": [
+            {
+              "label": "查看本场技能操作",
+              "box": {
+                "x": 36,
+                "y": 497,
+                "width": 148,
+                "height": 48,
+                "top": 497,
+                "right": 184,
+                "bottom": 545,
+                "left": 36
+              }
+            },
+            {
+              "label": "返回牌桌",
+              "box": {
+                "x": 192,
+                "y": 497,
+                "width": 92,
+                "height": 48,
+                "top": 497,
+                "right": 284,
+                "bottom": 545,
+                "left": 192
+              }
+            }
+          ]
+        },
+        {
+          "label": "first-hand",
+          "title": null,
+          "clipped": [],
+          "buttons": []
+        },
+        {
+          "label": "cold-continue",
+          "title": null,
+          "clipped": [],
+          "buttons": []
+        }
+      ],
+      "initial": {
+        "seq": 1,
+        "phase": "shop"
+      },
+      "firstScore": "110",
+      "phaseAfterFirstHand": "await-input",
+      "restored": {
+        "seq": 5,
+        "phase": "await-input"
+      },
+      "status": "PASS"
+    },
+    {
+      "id": "erxiang",
+      "route": "group",
+      "width": 1366,
+      "height": 768,
+      "shots": [
+        "erxiang-selector-hero.png",
+        "erxiang-shop.png",
+        "erxiang-offer-view.png",
+        "erxiang-purchase-failure.png",
+        "erxiang-purchase-saved.png",
+        "erxiang-build-simple.png",
+        "erxiang-build-all.png",
+        "erxiang-build-bottom.png",
+        "erxiang-table-hero.png",
+        "erxiang-first-hand.png",
+        "erxiang-cold-continue.png"
+      ],
+      "errors": [],
+      "transactions": [
+        {
+          "actions": [
+            {
+              "type": "BuyOffer",
+              "offerId": "run/integration-continuation-erxiang/erxiang/shop/0/0/joker/2"
+            }
+          ],
+          "beforeSeq": 1,
+          "afterSeq": 2
+        },
+        {
+          "actions": [
+            {
+              "type": "LeaveShop"
+            },
+            {
+              "type": "EnterStage"
+            }
+          ],
+          "beforeSeq": 2,
+          "afterSeq": 4
+        },
+        {
+          "actions": [
+            {
+              "type": "PlayHand",
+              "selectedIds": [
+                "diamonds-7",
+                "spades-8",
+                "diamonds-10",
+                "hearts-14",
+                "diamonds-4"
+              ]
+            }
+          ],
+          "beforeSeq": 4,
+          "afterSeq": 5
+        }
+      ],
+      "textAudits": [
+        {
+          "label": "selector-hero",
+          "title": "二响 · 交棒",
+          "clipped": [],
+          "buttons": [
+            {
+              "label": "回到选角",
+              "box": {
+                "x": 264,
+                "y": 613,
+                "width": 838,
+                "height": 48,
+                "top": 613,
+                "right": 1102,
+                "bottom": 661,
+                "left": 264
+              }
+            }
+          ]
+        },
+        {
+          "label": "shop",
+          "title": null,
+          "clipped": [],
+          "buttons": []
+        },
+        {
+          "label": "offer-view",
+          "title": "满堂彩 · 购买详情",
+          "clipped": [],
+          "buttons": [
+            {
+              "label": "邀请 · 4 金",
+              "box": {
+                "x": 264,
+                "y": 687,
+                "width": 415,
+                "height": 56,
+                "top": 687,
+                "right": 679,
+                "bottom": 743,
+                "left": 264
+              }
+            },
+            {
+              "label": "取消",
+              "box": {
+                "x": 687,
+                "y": 687,
+                "width": 415,
+                "height": 56,
+                "top": 687,
+                "right": 1102,
+                "bottom": 743,
+                "left": 687
+              }
+            }
+          ]
+        },
+        {
+          "label": "purchase-failure",
+          "title": null,
+          "clipped": [],
+          "buttons": []
+        },
+        {
+          "label": "purchase-saved",
+          "title": null,
+          "clipped": [],
+          "buttons": []
+        },
+        {
+          "label": "build-simple",
+          "title": "这轮怎么选 · 同点成组",
+          "clipped": [],
+          "buttons": [
+            {
+              "label": "查看全部现货与持牌",
+              "box": {
+                "x": 264,
+                "y": 687,
+                "width": 246.984375,
+                "height": 56,
+                "top": 687,
+                "right": 510.984375,
+                "bottom": 743,
+                "left": 264
+              }
+            },
+            {
+              "label": "更换方向",
+              "box": {
+                "x": 518.984375,
+                "y": 687,
+                "width": 177,
+                "height": 56,
+                "top": 687,
+                "right": 695.984375,
+                "bottom": 743,
+                "left": 518.984375
+              }
+            },
+            {
+              "label": "先留2金，进入牌桌",
+              "box": {
+                "x": 703.984375,
+                "y": 687,
+                "width": 241.015625,
+                "height": 56,
+                "top": 687,
+                "right": 945,
+                "bottom": 743,
+                "left": 703.984375
+              }
+            },
+            {
+              "label": "关闭",
+              "box": {
+                "x": 953,
+                "y": 687,
+                "width": 149,
+                "height": 56,
+                "top": 687,
+                "right": 1102,
+                "bottom": 743,
+                "left": 953
+              }
+            }
+          ]
+        },
+        {
+          "label": "build-all",
+          "title": "培养路线 · 同点成组",
+          "clipped": [],
+          "buttons": [
+            {
+              "label": "回到这轮建议",
+              "box": {
+                "x": 264,
+                "y": 687,
+                "width": 111.75,
+                "height": 56,
+                "top": 687,
+                "right": 375.75,
+                "bottom": 743,
+                "left": 264
+              }
+            },
+            {
+              "label": "更换方向",
+              "box": {
+                "x": 383.75,
+                "y": 687,
+                "width": 83.75,
+                "height": 56,
+                "top": 687,
+                "right": 467.5,
+                "bottom": 743,
+                "left": 383.75
+              }
+            },
+            {
+              "label": "查看公开牌组",
+              "box": {
+                "x": 475.5,
+                "y": 687,
+                "width": 111.75,
+                "height": 56,
+                "top": 687,
+                "right": 587.25,
+                "bottom": 743,
+                "left": 475.5
+              }
+            },
+            {
+              "label": "本章节目",
+              "box": {
+                "x": 595.25,
+                "y": 687,
+                "width": 83.75,
+                "height": 56,
+                "top": 687,
+                "right": 679,
+                "bottom": 743,
+                "left": 595.25
+              }
+            },
+            {
+              "label": "持有牌管理",
+              "box": {
+                "x": 687,
+                "y": 687,
+                "width": 97.75,
+                "height": 56,
+                "top": 687,
+                "right": 784.75,
+                "bottom": 743,
+                "left": 687
+              }
+            },
+            {
+              "label": "打开道具箱",
+              "box": {
+                "x": 792.75,
+                "y": 687,
+                "width": 97.75,
+                "height": 56,
+                "top": 687,
+                "right": 890.5,
+                "bottom": 743,
+                "left": 792.75
+              }
+            },
+            {
+              "label": "保留金币进入牌桌",
+              "box": {
+                "x": 898.5,
+                "y": 687,
+                "width": 139.75,
+                "height": 56,
+                "top": 687,
+                "right": 1038.25,
+                "bottom": 743,
+                "left": 898.5
+              }
+            },
+            {
+              "label": "关闭",
+              "box": {
+                "x": 1046.25,
+                "y": 687,
+                "width": 55.75,
+                "height": 56,
+                "top": 687,
+                "right": 1102,
+                "bottom": 743,
+                "left": 1046.25
+              }
+            }
+          ]
+        },
+        {
+          "label": "build-bottom",
+          "title": "培养路线 · 同点成组",
+          "clipped": [],
+          "buttons": [
+            {
+              "label": "回到这轮建议",
+              "box": {
+                "x": 264,
+                "y": 687,
+                "width": 111.75,
+                "height": 56,
+                "top": 687,
+                "right": 375.75,
+                "bottom": 743,
+                "left": 264
+              }
+            },
+            {
+              "label": "更换方向",
+              "box": {
+                "x": 383.75,
+                "y": 687,
+                "width": 83.75,
+                "height": 56,
+                "top": 687,
+                "right": 467.5,
+                "bottom": 743,
+                "left": 383.75
+              }
+            },
+            {
+              "label": "查看公开牌组",
+              "box": {
+                "x": 475.5,
+                "y": 687,
+                "width": 111.75,
+                "height": 56,
+                "top": 687,
+                "right": 587.25,
+                "bottom": 743,
+                "left": 475.5
+              }
+            },
+            {
+              "label": "本章节目",
+              "box": {
+                "x": 595.25,
+                "y": 687,
+                "width": 83.75,
+                "height": 56,
+                "top": 687,
+                "right": 679,
+                "bottom": 743,
+                "left": 595.25
+              }
+            },
+            {
+              "label": "持有牌管理",
+              "box": {
+                "x": 687,
+                "y": 687,
+                "width": 97.75,
+                "height": 56,
+                "top": 687,
+                "right": 784.75,
+                "bottom": 743,
+                "left": 687
+              }
+            },
+            {
+              "label": "打开道具箱",
+              "box": {
+                "x": 792.75,
+                "y": 687,
+                "width": 97.75,
+                "height": 56,
+                "top": 687,
+                "right": 890.5,
+                "bottom": 743,
+                "left": 792.75
+              }
+            },
+            {
+              "label": "保留金币进入牌桌",
+              "box": {
+                "x": 898.5,
+                "y": 687,
+                "width": 139.75,
+                "height": 56,
+                "top": 687,
+                "right": 1038.25,
+                "bottom": 743,
+                "left": 898.5
+              }
+            },
+            {
+              "label": "关闭",
+              "box": {
+                "x": 1046.25,
+                "y": 687,
+                "width": 55.75,
+                "height": 56,
+                "top": 687,
+                "right": 1102,
+                "bottom": 743,
+                "left": 1046.25
+              }
+            }
+          ]
+        },
+        {
+          "label": "table-hero",
+          "title": "二响 · 交棒",
+          "clipped": [],
+          "buttons": [
+            {
+              "label": "查看本场技能操作",
+              "box": {
+                "x": 264,
+                "y": 613,
+                "width": 443,
+                "height": 48,
+                "top": 613,
+                "right": 707,
+                "bottom": 661,
+                "left": 264
+              }
+            },
+            {
+              "label": "返回牌桌",
+              "box": {
+                "x": 715,
+                "y": 613,
+                "width": 387,
+                "height": 48,
+                "top": 613,
+                "right": 1102,
+                "bottom": 661,
+                "left": 715
+              }
+            }
+          ]
+        },
+        {
+          "label": "first-hand",
+          "title": null,
+          "clipped": [],
+          "buttons": []
+        },
+        {
+          "label": "cold-continue",
+          "title": null,
+          "clipped": [],
+          "buttons": []
+        }
+      ],
+      "initial": {
+        "seq": 1,
+        "phase": "shop"
+      },
+      "firstScore": "31",
+      "phaseAfterFirstHand": "await-input",
+      "restored": {
+        "seq": 5,
+        "phase": "await-input"
+      },
+      "status": "PASS"
+    },
+    {
+      "id": "azao",
+      "route": "straight",
+      "width": 390,
+      "height": 740,
+      "shots": [
+        "azao-selector-hero.png",
+        "azao-shop.png",
+        "azao-offer-view.png",
+        "azao-purchase-failure.png",
+        "azao-purchase-saved.png",
+        "azao-build-simple.png",
+        "azao-build-all.png",
+        "azao-build-bottom.png",
+        "azao-table-hero.png",
+        "azao-first-hand.png",
+        "azao-cold-continue.png"
+      ],
+      "errors": [],
+      "transactions": [
+        {
+          "actions": [
+            {
+              "type": "BuyOffer",
+              "offerId": "run/integration-continuation-azao/azao/shop/0/0/joker/2"
+            }
+          ],
+          "beforeSeq": 1,
+          "afterSeq": 2
+        },
+        {
+          "actions": [
+            {
+              "type": "LeaveShop"
+            },
+            {
+              "type": "EnterStage"
+            }
+          ],
+          "beforeSeq": 2,
+          "afterSeq": 4
+        },
+        {
+          "actions": [
+            {
+              "type": "PlayHand",
+              "selectedIds": [
+                "spades-4",
+                "hearts-13",
+                "clubs-3",
+                "hearts-4",
+                "clubs-7"
+              ],
+              "azaoRelease": false
+            }
+          ],
+          "beforeSeq": 4,
+          "afterSeq": 5
+        }
+      ],
+      "textAudits": [
+        {
+          "label": "selector-hero",
+          "title": "阿燥 · 蓄势／爆发",
+          "clipped": [],
+          "buttons": [
+            {
+              "label": "回到选角",
+              "box": {
+                "x": 36,
+                "y": 601,
+                "width": 318,
+                "height": 48,
+                "top": 601,
+                "right": 354,
+                "bottom": 649,
+                "left": 36
+              }
+            }
+          ]
+        },
+        {
+          "label": "shop",
+          "title": null,
+          "clipped": [],
+          "buttons": []
+        },
+        {
+          "label": "offer-view",
+          "title": "搭台阶 · 购买详情",
+          "clipped": [],
+          "buttons": [
+            {
+              "label": "邀请 · 4 金",
+              "box": {
+                "x": 36,
+                "y": 609,
+                "width": 318,
+                "height": 56,
+                "top": 609,
+                "right": 354,
+                "bottom": 665,
+                "left": 36
+              }
+            },
+            {
+              "label": "取消",
+              "box": {
+                "x": 36,
+                "y": 673,
+                "width": 318,
+                "height": 44,
+                "top": 673,
+                "right": 354,
+                "bottom": 717,
+                "left": 36
+              }
+            }
+          ]
+        },
+        {
+          "label": "purchase-failure",
+          "title": null,
+          "clipped": [],
+          "buttons": []
+        },
+        {
+          "label": "purchase-saved",
+          "title": null,
+          "clipped": [],
+          "buttons": []
+        },
+        {
+          "label": "build-simple",
+          "title": "这轮怎么选 · 顺子接续",
+          "clipped": [],
+          "buttons": [
+            {
+              "label": "查看全部现货与持牌",
+              "box": {
+                "x": 36,
+                "y": 609,
+                "width": 190,
+                "height": 44,
+                "top": 609,
+                "right": 226,
+                "bottom": 653,
+                "left": 36
+              }
+            },
+            {
+              "label": "更换方向",
+              "box": {
+                "x": 234,
+                "y": 609,
+                "width": 120,
+                "height": 44,
+                "top": 609,
+                "right": 354,
+                "bottom": 653,
+                "left": 234
+              }
+            },
+            {
+              "label": "先留2金，进入牌桌",
+              "box": {
+                "x": 36,
+                "y": 661,
+                "width": 201,
+                "height": 56,
+                "top": 661,
+                "right": 237,
+                "bottom": 717,
+                "left": 36
+              }
+            },
+            {
+              "label": "关闭",
+              "box": {
+                "x": 245,
+                "y": 661,
+                "width": 109,
+                "height": 56,
+                "top": 661,
+                "right": 354,
+                "bottom": 717,
+                "left": 245
+              }
+            }
+          ]
+        },
+        {
+          "label": "build-all",
+          "title": "培养路线 · 顺子接续",
+          "clipped": [],
+          "buttons": [
+            {
+              "label": "回到这轮建议",
+              "box": {
+                "x": 36,
+                "y": 557,
+                "width": 110,
+                "height": 44,
+                "top": 557,
+                "right": 146,
+                "bottom": 601,
+                "left": 36
+              }
+            },
+            {
+              "label": "更换方向",
+              "box": {
+                "x": 154,
+                "y": 557,
+                "width": 82,
+                "height": 44,
+                "top": 557,
+                "right": 236,
+                "bottom": 601,
+                "left": 154
+              }
+            },
+            {
+              "label": "查看公开牌组",
+              "box": {
+                "x": 244,
+                "y": 557,
+                "width": 110,
+                "height": 44,
+                "top": 557,
+                "right": 354,
+                "bottom": 601,
+                "left": 244
+              }
+            },
+            {
+              "label": "本章节目",
+              "box": {
+                "x": 36,
+                "y": 609,
+                "width": 91.328125,
+                "height": 44,
+                "top": 609,
+                "right": 127.328125,
+                "bottom": 653,
+                "left": 36
+              }
+            },
+            {
+              "label": "持有牌管理",
+              "box": {
+                "x": 135.328125,
+                "y": 609,
+                "width": 105.34375,
+                "height": 44,
+                "top": 609,
+                "right": 240.671875,
+                "bottom": 653,
+                "left": 135.328125
+              }
+            },
+            {
+              "label": "打开道具箱",
+              "box": {
+                "x": 248.671875,
+                "y": 609,
+                "width": 105.328125,
+                "height": 44,
+                "top": 609,
+                "right": 354,
+                "bottom": 653,
+                "left": 248.671875
+              }
+            },
+            {
+              "label": "保留金币进入牌桌",
+              "box": {
+                "x": 36,
+                "y": 661,
+                "width": 197,
+                "height": 56,
+                "top": 661,
+                "right": 233,
+                "bottom": 717,
+                "left": 36
+              }
+            },
+            {
+              "label": "关闭",
+              "box": {
+                "x": 241,
+                "y": 661,
+                "width": 113,
+                "height": 56,
+                "top": 661,
+                "right": 354,
+                "bottom": 717,
+                "left": 241
+              }
+            }
+          ]
+        },
+        {
+          "label": "build-bottom",
+          "title": "培养路线 · 顺子接续",
+          "clipped": [],
+          "buttons": [
+            {
+              "label": "回到这轮建议",
+              "box": {
+                "x": 36,
+                "y": 557,
+                "width": 110,
+                "height": 44,
+                "top": 557,
+                "right": 146,
+                "bottom": 601,
+                "left": 36
+              }
+            },
+            {
+              "label": "更换方向",
+              "box": {
+                "x": 154,
+                "y": 557,
+                "width": 82,
+                "height": 44,
+                "top": 557,
+                "right": 236,
+                "bottom": 601,
+                "left": 154
+              }
+            },
+            {
+              "label": "查看公开牌组",
+              "box": {
+                "x": 244,
+                "y": 557,
+                "width": 110,
+                "height": 44,
+                "top": 557,
+                "right": 354,
+                "bottom": 601,
+                "left": 244
+              }
+            },
+            {
+              "label": "本章节目",
+              "box": {
+                "x": 36,
+                "y": 609,
+                "width": 91.328125,
+                "height": 44,
+                "top": 609,
+                "right": 127.328125,
+                "bottom": 653,
+                "left": 36
+              }
+            },
+            {
+              "label": "持有牌管理",
+              "box": {
+                "x": 135.328125,
+                "y": 609,
+                "width": 105.34375,
+                "height": 44,
+                "top": 609,
+                "right": 240.671875,
+                "bottom": 653,
+                "left": 135.328125
+              }
+            },
+            {
+              "label": "打开道具箱",
+              "box": {
+                "x": 248.671875,
+                "y": 609,
+                "width": 105.328125,
+                "height": 44,
+                "top": 609,
+                "right": 354,
+                "bottom": 653,
+                "left": 248.671875
+              }
+            },
+            {
+              "label": "保留金币进入牌桌",
+              "box": {
+                "x": 36,
+                "y": 661,
+                "width": 197,
+                "height": 56,
+                "top": 661,
+                "right": 233,
+                "bottom": 717,
+                "left": 36
+              }
+            },
+            {
+              "label": "关闭",
+              "box": {
+                "x": 241,
+                "y": 661,
+                "width": 113,
+                "height": 56,
+                "top": 661,
+                "right": 354,
+                "bottom": 717,
+                "left": 241
+              }
+            }
+          ]
+        },
+        {
+          "label": "table-hero",
+          "title": "阿燥 · 蓄势／爆发",
+          "clipped": [],
+          "buttons": [
+            {
+              "label": "查看本场技能操作",
+              "box": {
+                "x": 36,
+                "y": 601,
+                "width": 183,
+                "height": 48,
+                "top": 601,
+                "right": 219,
+                "bottom": 649,
+                "left": 36
+              }
+            },
+            {
+              "label": "返回牌桌",
+              "box": {
+                "x": 227,
+                "y": 601,
+                "width": 127,
+                "height": 48,
+                "top": 601,
+                "right": 354,
+                "bottom": 649,
+                "left": 227
+              }
+            }
+          ]
+        },
+        {
+          "label": "first-hand",
+          "title": null,
+          "clipped": [],
+          "buttons": []
+        },
+        {
+          "label": "cold-continue",
+          "title": null,
+          "clipped": [],
+          "buttons": []
+        }
+      ],
+      "initial": {
+        "seq": 1,
+        "phase": "shop"
+      },
+      "firstScore": "86",
+      "phaseAfterFirstHand": "await-input",
+      "restored": {
+        "seq": 5,
+        "phase": "await-input"
+      },
+      "status": "PASS"
+    },
+    {
+      "id": "xiemu",
+      "route": "flush",
+      "width": 320,
+      "height": 568,
+      "shots": [
+        "xiemu-selector-hero.png",
+        "xiemu-shop.png",
+        "xiemu-offer-view.png",
+        "xiemu-purchase-failure.png",
+        "xiemu-purchase-saved.png",
+        "xiemu-build-simple.png",
+        "xiemu-build-all.png",
+        "xiemu-build-bottom.png",
+        "xiemu-table-hero.png",
+        "xiemu-first-hand.png",
+        "xiemu-cold-continue.png"
+      ],
+      "errors": [],
+      "transactions": [
+        {
+          "actions": [
+            {
+              "type": "BuyOffer",
+              "offerId": "run/integration-continuation-xiemu/xiemu/shop/0/0/joker/2"
+            }
+          ],
+          "beforeSeq": 1,
+          "afterSeq": 2
+        },
+        {
+          "actions": [
+            {
+              "type": "LeaveShop"
+            },
+            {
+              "type": "EnterStage"
+            }
+          ],
+          "beforeSeq": 2,
+          "afterSeq": 4
+        },
+        {
+          "actions": [
+            {
+              "type": "PlayHand",
+              "selectedIds": [
+                "clubs-13",
+                "clubs-6",
+                "clubs-7",
+                "clubs-4",
+                "hearts-12"
+              ]
+            }
+          ],
+          "beforeSeq": 4,
+          "afterSeq": 5
+        }
+      ],
+      "textAudits": [
+        {
+          "label": "selector-hero",
+          "title": "谢幕人 · 留钱／燃金",
+          "clipped": [],
+          "buttons": [
+            {
+              "label": "回到选角",
+              "box": {
+                "x": 36,
+                "y": 497,
+                "width": 248,
+                "height": 48,
+                "top": 497,
+                "right": 284,
+                "bottom": 545,
+                "left": 36
+              }
+            }
+          ]
+        },
+        {
+          "label": "shop",
+          "title": null,
+          "clipped": [],
+          "buttons": []
+        },
+        {
+          "label": "offer-view",
+          "title": "越染越深 · 购买详情",
+          "clipped": [],
+          "buttons": [
+            {
+              "label": "邀请 · 6 金",
+              "box": {
+                "x": 36,
+                "y": 437,
+                "width": 248,
+                "height": 56,
+                "top": 437,
+                "right": 284,
+                "bottom": 493,
+                "left": 36
+              }
+            },
+            {
+              "label": "取消",
+              "box": {
+                "x": 36,
+                "y": 501,
+                "width": 248,
+                "height": 44,
+                "top": 501,
+                "right": 284,
+                "bottom": 545,
+                "left": 36
+              }
+            }
+          ]
+        },
+        {
+          "label": "purchase-failure",
+          "title": null,
+          "clipped": [],
+          "buttons": []
+        },
+        {
+          "label": "purchase-saved",
+          "title": null,
+          "clipped": [],
+          "buttons": []
+        },
+        {
+          "label": "build-simple",
+          "title": "这轮怎么选 · 同花集中",
+          "clipped": [],
+          "buttons": [
+            {
+              "label": "查看全部现货与持牌",
+              "box": {
+                "x": 36,
+                "y": 437,
+                "width": 155,
+                "height": 44,
+                "top": 437,
+                "right": 191,
+                "bottom": 481,
+                "left": 36
+              }
+            },
+            {
+              "label": "更换方向",
+              "box": {
+                "x": 199,
+                "y": 437,
+                "width": 85,
+                "height": 44,
+                "top": 437,
+                "right": 284,
+                "bottom": 481,
+                "left": 199
+              }
+            },
+            {
+              "label": "先留0金，进入牌桌",
+              "box": {
+                "x": 36,
+                "y": 489,
+                "width": 166,
+                "height": 56,
+                "top": 489,
+                "right": 202,
+                "bottom": 545,
+                "left": 36
+              }
+            },
+            {
+              "label": "关闭",
+              "box": {
+                "x": 210,
+                "y": 489,
+                "width": 74,
+                "height": 56,
+                "top": 489,
+                "right": 284,
+                "bottom": 545,
+                "left": 210
+              }
+            }
+          ]
+        },
+        {
+          "label": "build-all",
+          "title": "培养路线 · 同花集中",
+          "clipped": [],
+          "buttons": [
+            {
+              "label": "回到这轮建议",
+              "box": {
+                "x": 36,
+                "y": 333,
+                "width": 134,
+                "height": 44,
+                "top": 333,
+                "right": 170,
+                "bottom": 377,
+                "left": 36
+              }
+            },
+            {
+              "label": "更换方向",
+              "box": {
+                "x": 178,
+                "y": 333,
+                "width": 106,
+                "height": 44,
+                "top": 333,
+                "right": 284,
+                "bottom": 377,
+                "left": 178
+              }
+            },
+            {
+              "label": "查看公开牌组",
+              "box": {
+                "x": 36,
+                "y": 385,
+                "width": 134,
+                "height": 44,
+                "top": 385,
+                "right": 170,
+                "bottom": 429,
+                "left": 36
+              }
+            },
+            {
+              "label": "本章节目",
+              "box": {
+                "x": 178,
+                "y": 385,
+                "width": 106,
+                "height": 44,
+                "top": 385,
+                "right": 284,
+                "bottom": 429,
+                "left": 178
+              }
+            },
+            {
+              "label": "持有牌管理",
+              "box": {
+                "x": 36,
+                "y": 437,
+                "width": 120,
+                "height": 44,
+                "top": 437,
+                "right": 156,
+                "bottom": 481,
+                "left": 36
+              }
+            },
+            {
+              "label": "打开道具箱",
+              "box": {
+                "x": 164,
+                "y": 437,
+                "width": 120,
+                "height": 44,
+                "top": 437,
+                "right": 284,
+                "bottom": 481,
+                "left": 164
+              }
+            },
+            {
+              "label": "保留金币进入牌桌",
+              "box": {
+                "x": 36,
+                "y": 489,
+                "width": 162,
+                "height": 56,
+                "top": 489,
+                "right": 198,
+                "bottom": 545,
+                "left": 36
+              }
+            },
+            {
+              "label": "关闭",
+              "box": {
+                "x": 206,
+                "y": 489,
+                "width": 78,
+                "height": 56,
+                "top": 489,
+                "right": 284,
+                "bottom": 545,
+                "left": 206
+              }
+            }
+          ]
+        },
+        {
+          "label": "build-bottom",
+          "title": "培养路线 · 同花集中",
+          "clipped": [],
+          "buttons": [
+            {
+              "label": "回到这轮建议",
+              "box": {
+                "x": 36,
+                "y": 333,
+                "width": 134,
+                "height": 44,
+                "top": 333,
+                "right": 170,
+                "bottom": 377,
+                "left": 36
+              }
+            },
+            {
+              "label": "更换方向",
+              "box": {
+                "x": 178,
+                "y": 333,
+                "width": 106,
+                "height": 44,
+                "top": 333,
+                "right": 284,
+                "bottom": 377,
+                "left": 178
+              }
+            },
+            {
+              "label": "查看公开牌组",
+              "box": {
+                "x": 36,
+                "y": 385,
+                "width": 134,
+                "height": 44,
+                "top": 385,
+                "right": 170,
+                "bottom": 429,
+                "left": 36
+              }
+            },
+            {
+              "label": "本章节目",
+              "box": {
+                "x": 178,
+                "y": 385,
+                "width": 106,
+                "height": 44,
+                "top": 385,
+                "right": 284,
+                "bottom": 429,
+                "left": 178
+              }
+            },
+            {
+              "label": "持有牌管理",
+              "box": {
+                "x": 36,
+                "y": 437,
+                "width": 120,
+                "height": 44,
+                "top": 437,
+                "right": 156,
+                "bottom": 481,
+                "left": 36
+              }
+            },
+            {
+              "label": "打开道具箱",
+              "box": {
+                "x": 164,
+                "y": 437,
+                "width": 120,
+                "height": 44,
+                "top": 437,
+                "right": 284,
+                "bottom": 481,
+                "left": 164
+              }
+            },
+            {
+              "label": "保留金币进入牌桌",
+              "box": {
+                "x": 36,
+                "y": 489,
+                "width": 162,
+                "height": 56,
+                "top": 489,
+                "right": 198,
+                "bottom": 545,
+                "left": 36
+              }
+            },
+            {
+              "label": "关闭",
+              "box": {
+                "x": 206,
+                "y": 489,
+                "width": 78,
+                "height": 56,
+                "top": 489,
+                "right": 284,
+                "bottom": 545,
+                "left": 206
+              }
+            }
+          ]
+        },
+        {
+          "label": "table-hero",
+          "title": "谢幕人 · 留钱／燃金",
+          "clipped": [],
+          "buttons": [
+            {
+              "label": "查看本场技能操作",
+              "box": {
+                "x": 36,
+                "y": 497,
+                "width": 148,
+                "height": 48,
+                "top": 497,
+                "right": 184,
+                "bottom": 545,
+                "left": 36
+              }
+            },
+            {
+              "label": "返回牌桌",
+              "box": {
+                "x": 192,
+                "y": 497,
+                "width": 92,
+                "height": 48,
+                "top": 497,
+                "right": 284,
+                "bottom": 545,
+                "left": 192
+              }
+            }
+          ]
+        },
+        {
+          "label": "first-hand",
+          "title": null,
+          "clipped": [],
+          "buttons": []
+        },
+        {
+          "label": "cold-continue",
+          "title": null,
+          "clipped": [],
+          "buttons": []
+        }
+      ],
+      "initial": {
+        "seq": 1,
+        "phase": "shop"
+      },
+      "firstScore": "30",
+      "phaseAfterFirstHand": "await-input",
+      "restored": {
+        "seq": 5,
+        "phase": "await-input"
+      },
+      "status": "PASS"
+    }
+  ],
+  "status": "PASS"
+}

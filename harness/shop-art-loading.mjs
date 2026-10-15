@@ -4,7 +4,7 @@ import {createHash} from 'node:crypto';
 import {execFileSync} from 'node:child_process';
 import {chromium} from 'playwright';
 import {waitScene,tapUI,confirmHeroRoute} from './ui.mjs';
-const label=process.env.ART_LABEL??'before',base=process.env.ART_URL??'http://127.0.0.1:5173',out='docs/production/evidence/shop-art-loading-2026-10-15';
+const label=process.env.ART_LABEL??'before',base=process.env.ART_URL??'http://127.0.0.1:5173',out=process.env.ART_OUTPUT??'docs/production/evidence/shop-art-loading-2026-10-15';
 await mkdir(out,{recursive:true});
 const browser=await chromium.launch({executablePath:'/usr/bin/chromium',args:['--no-sandbox']});
 let currentPage;

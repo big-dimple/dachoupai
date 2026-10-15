@@ -29,7 +29,7 @@ import {runController,dispatchRun,startRun} from './runAdapter';
 import {gameSession} from './session';
 import {getCharacter} from './characters';
 import {stageOutcome} from './stageOutcome';
-import {failureSummary} from './FailureSummary';
+import {failureSummary,failureGuidance} from './FailureSummary';
 import {finaleKeepsake} from './FinaleKeepsake';
 import {endlessContinuationCopy} from './EndlessContinuationCopy';
 import {selectionPortraitKey,selectionPortraitURL} from './portraits';
@@ -43,10 +43,10 @@ import type {Box} from './layout';
 import {PAPER_CSS,PAPER_THEME as T} from './theme';
 
 export interface IntermissionResult {cleared:boolean;stageIndex:number;stageHeat:string;handsLeft:number;goldEarned:number;failureCue?:FailureCue;rewardClearId?:string}
-function resultLayout(width:number,height:number,top:number,bottom:number,nextBoss=false){
+function resultLayout(width:number,height:number,top:number,bottom:number,nextBoss=false,failure=false){
   const short=height<500,portrait=width<700&&height>width,tight=portrait&&height<=700,compactNext=tight&&bottom>0,w=Math.min(980,width-24),x=(width-w)/2;
   const footerY=height-bottom-(portrait?(tight?132:148):104),bodyY=top+(short?64:portrait?(tight?(compactNext?88:100):108):94),available=footerY-16-bodyY;
-  const nextHeight=short?available:Math.min(tight?(compactNext?32:60):nextBoss?132:portrait?100:112,available*(nextBoss ? .30 : .26));
+  const nextHeight=short?available:Math.min(failure?(tight?60:100):tight?(compactNext?32:60):nextBoss?132:portrait?100:112,failure?Math.max(52,available*.26):available*(nextBoss ? .30 : .26));
   const score:Box=short?{x,y:bodyY,width:w*.64-12,height:available}:{x,y:bodyY,width:w,height:available-nextHeight-(compactNext?8:12)};
   const next:Box=short?{x:x+w*.64,y:bodyY,width:w*.36,height:available}:{x,y:score.y+score.height+(compactNext?8:12),width:w,height:nextHeight};
   const sideWidth=Math.floor(w*.28),primaryWidth=Math.floor(w*.43),rightWidth=w-sideWidth-primaryWidth-16;
@@ -100,7 +100,7 @@ export class IntermissionScene extends Phaser.Scene {
     this.events.once('shutdown',retire);this.events.once('destroy',retire);
     const run=runController(this)?.state;if(!run?.stage){this.scene.start('character-select');return;}
     this.cameras.main.setBackgroundColor('#F3EADB');
-    const skipped=!!run.stage.skipResult;this.audio.setScene(this.result.cleared?'success':'failure');
+    const skipped=run.phase==='run-lost'?false:!!run.stage.skipResult;this.audio.setScene(this.result.cleared?'success':'failure');
     if(!skipped){
       if(this.result.cleared){const outcome=stageOutcome(run.stage,run.lastTrace);if(outcome.intensity>1)this.audio.overkill(outcome.intensity);else this.audio.success();}
       else {
@@ -113,16 +113,17 @@ export class IntermissionScene extends Phaser.Scene {
   private render():void {
     if(this.busy)this.stopSourceArt();
     const v=this.view,l=v.layout,bottom=parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--safe-bottom'))||0;
-    const run=runController(this)!.state,p=resultLayout(l.width,l.height,l.hud.y,bottom,this.result.cleared&&run.phase==='stage-cleared'&&run.stageIndex%3===2),stage={...getR2Stage(this.result.stageIndex,run.tourMode,run.difficulty,run)!,targetHeat:run.stage!.targetHeat},character=getCharacter(run.characterId);
-    const nextStage=this.result.cleared&&run.phase==='stage-cleared'?getR2Stage(run.stageIndex,run.tourMode,run.difficulty,run):undefined,skipped=run.stage?.skipResult,won=run.phase==='run-won',capped=this.result.cleared&&run.phase==='stage-cleared'&&!nextStage,lost=!this.result.cleared&&!skipped&&!won;
+    const run=runController(this)!.state,p=resultLayout(l.width,l.height,l.hud.y,bottom,this.result.cleared&&run.phase==='stage-cleared'&&run.stageIndex%3===2,!this.result.cleared&&run.phase==='run-lost'),stage={...getR2Stage(this.result.stageIndex,run.tourMode,run.difficulty,run)!,targetHeat:run.stage!.targetHeat},character=getCharacter(run.characterId);
+    const nextStage=this.result.cleared&&run.phase==='stage-cleared'?getR2Stage(run.stageIndex,run.tourMode,run.difficulty,run):undefined,skipped=run.phase==='run-lost'?null:run.stage?.skipResult,won=run.phase==='run-won',capped=this.result.cleared&&run.phase==='stage-cleared'&&!nextStage,lost=!this.result.cleared&&!skipped&&!won;
     const outcome=stageOutcome(run.stage!,run.lastTrace),animateIn=this.firstRender&&!gameSession().reducedMotion&&!window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     this.stopCelebration();v.clear();this.paintSourceArt=undefined;this.sourceArtLayer=undefined;v.paperBackground();
     const identity=stageIdentity(stage.index,run.stage!.boss,run.tourMode,run.difficulty,run)!;
     v.text(p.x,p.top,(run.tourMode==='endless'?'无尽 · ':'')+stage.name+' · '+character.name,14,identity.isBoss?PAPER_CSS.red:PAPER_CSS.jade,p.w-116).setName('stage-identity/result');
     const resultFacts=settlementFacts(run,this.result.cleared,!!skipped),resultTier=resultFacts.tier;
-    const title=capped?'巡演，暂歇于此':skipped?'换一场，再登台':won?(run.mode==='tutorial'?'教学巡演，谢幕！':run.mode==='challenge'?'挑战完成，谢幕！':resultTier===3?'亿分落定，满堂喝彩！':resultTier===2?resultFacts.tag+'，八章谢幕！':'八章好戏，满堂喝彩！'):this.result.cleared?(identity.isBoss?'压轴过关 · '+identity.title:outcome.title):'此番落幕，再登台';
+    const guidance=lost?failureGuidance(run):undefined;
+    const title=capped?'巡演，暂歇于此':skipped?'换一场，再登台':won?(run.mode==='tutorial'?'教学巡演，谢幕！':run.mode==='challenge'?'挑战完成，谢幕！':resultTier===3?'亿分落定，满堂喝彩！':resultTier===2?resultFacts.tag+'，八章谢幕！':'八章好戏，满堂喝彩！'):this.result.cleared?(identity.isBoss?'压轴过关 · '+identity.title:outcome.title):guidance?.title??'此番落幕，再登台';
     v.text(p.x,p.top+(p.short?23:p.portrait?52:34),title,p.short||p.portrait&&identity.isBoss?22:p.portrait?26:34,identity.isBoss&&this.result.cleared?PAPER_CSS.red:PAPER_CSS.ink,p.w).setName('result/title').setFontFamily('Georgia, "Noto Serif SC", SimSun, serif').setFontStyle('bold');
-    this.drawResultHero(p.score,!!skipped,lost,animateIn,p.compactNext);
+    this.drawResultHero(p.score,!!skipped,lost,animateIn,p.compactNext||lost&&p.tight);
     const trace=run.lastTrace;
     const n=p.next;
     let heading='下一步',body='';
@@ -148,7 +149,10 @@ export class IntermissionScene extends Phaser.Scene {
     const xiemuInterest=trace?.events.find(e=>e.sourceType==='character'&&e.sourceDefinitionId==='xiemu'&&e.phase==='onStageClear');
     if(!p.short&&!skipped&&this.result.cleared&&xiemuInterest)heading+=' · 额外关末息+'+xiemuInterest.value.n+'金';
     if(p.short&&trace&&!skipped&&this.result.cleared&&(!nextStage||nextStage.index%3!==2)){const assist=savedAssistSummary(trace);if(assist)body=assist+'\n'+body;const fact=victorySourceFact(run,trace);if(fact)body=fact.title+' · '+fact.effect+'\n'+body;}
-    {
+    if(lost){
+      const prompt=run.outcome?.reason==='abandoned'?'主动结束，可以重新选择':run.outcome?.reason==='no-legal-cards'?'先查牌组，再准备开局':'先看末手，再选下一步';
+      v.button(n,'再战建议 ›\n'+prompt,'action/failure-guidance',()=>this.inspectFailure(),!this.busy);
+    }else {
       v.material(n,T.paper,T.paper,4).setName('result/next-panel');
       v.add(this.add.graphics().lineStyle(1,T.divider,.75).beginPath().moveTo(n.x,n.y).lineTo(n.x+n.width,n.y).strokePath());
       if(nextStage&&nextStage.index%3===2)v.add(this.add.graphics().lineStyle(2,T.red,.8).beginPath().moveTo(n.x+2,n.y+5).lineTo(n.x+2,n.y+n.height-5).strokePath()).setName('stage-identity/next-seal');
@@ -178,7 +182,7 @@ export class IntermissionScene extends Phaser.Scene {
     }
     v.button(p.right,won||lost?'巡演留影':'回看上手','action/last-hand',()=>{if(won||lost)this.inspectFinale();else this.inspectLastHand();},!this.busy&&(won||lost||!!trace));
     const discovery=this.ready&&!this.notice&&!lost&&!skipped?savedGrowthDiscovery(run):undefined,gift=this.ready&&!this.notice&&!lost&&!skipped?stageGiftReceipt(run):undefined;
-    v.text(p.x,p.noticeY,this.busy?'正在保存…':this.notice||(!this.ready?'当前进度未保存或只读，请查看菜单。':capped?'已达数值上限，进度已保存':won?run.mode==='standard'?'八章通关已保存，继续无尽由你决定。':'本模式结果已保存，可重试或返回选角。':nextStage?gift?.banner||discovery?.full||'':lost?'重试从开局开始，不继承构筑。':''),14,this.notice?'#ffd0b1':'#3F606B',p.w).setName(gift&&nextStage?'gift/discovery':discovery&&nextStage?'growth/discovery':'');
+    v.text(p.x,p.noticeY,this.busy?'正在保存…':this.notice||(!this.ready?'当前进度未保存或只读，请查看菜单。':capped?'已达数值上限，进度已保存':won?run.mode==='standard'?'八章通关已保存，继续无尽由你决定。':'本模式结果已保存，可重试或返回选角。':nextStage?gift?.banner||discovery?.full||'':lost?'重试从开局开始，金币与构筑不继承。':''),14,this.notice?'#ffd0b1':'#3F606B',p.w).setName(gift&&nextStage?'gift/discovery':discovery&&nextStage?'growth/discovery':'');
     this.firstRender=false;
   }
   private jokerDefinition(id:string){return r2JokerDefinitionFor(runController(this)!.state,id);}
@@ -200,6 +204,10 @@ export class IntermissionScene extends Phaser.Scene {
       const hit=v.rect(image.getData('bounds')).setFillStyle(0,0).setStrokeStyle(0);image.parentContainer.add(hit);
       v.target(hit,'result/hero-details',{tap:()=>showHeroExplanation(this.dialog,run.characterId,{run,closeLabel:'返回结算'}),detail:()=>showHeroExplanation(this.dialog,run.characterId,{run,closeLabel:'返回结算'})});
     };
+    if(lost&&run.outcome?.reason==='abandoned'){
+      const formula=v.root.list.find(o=>o.name==='result/formula') as Phaser.GameObjects.Text|undefined;
+      formula?.setText(run.stage?.skipResult?'上一场已跳过 · 没有计分记录':run.outcome.stageIndex!==run.stage?.index?'上一场已结束 · 本局主动结束':'本局主动结束 · 目标 '+heatText(run.stage!.targetHeat));
+    }
     explainHero(presentation.hero);this.paintSourceArt=()=>{explainHero(presentation.paint());};
     if(animate&&!skipped)this.outcomeMotion=mountSettlementMotion(this,v.root,b,presentation.score,presentation.hero,presentation.facts.tier,lost);
     if(this.result.cleared&&!skipped){
@@ -216,12 +224,24 @@ export class IntermissionScene extends Phaser.Scene {
       if(cue)void this.rewardEffects.drain().catch(()=>{});
     }
   }
+  private inspectFailure():void {
+    const run=runController(this)!.state,facts=failureGuidance(run);if(!facts||this.busy)return;
+    this.dialog.open(facts.title,facts.shopOptions,[
+      {label:'回看最后一手',disabled:!facts.canReview,run:()=>this.inspectLastHand()},
+      {label:'返回选角',run:()=>this.returnToSelect()},
+      {label:'同局重试',primary:true,disabled:!this.ready,run:()=>{this.dialog.close();return this.retrySeed();}},
+    ],{closeLabel:'返回失败页',effectBody:facts.reason+' · '+facts.gap+'\n'+facts.lastHand+'\n'+facts.resources,
+      summaryBody:'重试从开局开始；金币、构筑、工具与成长不继承，建议不保证过关。',
+      cards:facts.advice.map((row,index)=>({title:(index+1)+'. '+row.title,body:row.body})),
+      collapseRules:true,rulesLabel:'升级与做牌的实际规则',secondaryActions:[{label:'巡演留影',run:()=>this.inspectFinale()}]});
+  }
   private inspectFinale():void {
     const run=runController(this)!.state,facts=finaleKeepsake(run);if(!facts||this.busy)return;
     this.dialog.open(run.phase==='run-won'?'谢幕留影 · 最终构筑':'落幕留影 · 最终构筑',facts.summary+'\n\n'+facts.continuation,[
       {label:'回看最后一手',disabled:!stageOutcome(run.stage!,run.lastTrace).last,run:()=>this.inspectLastHand()},
       {label:'查看最终牌组',run:()=>showDeckInspection(this.dialog,run)},
       {label:'本场详情',run:()=>this.inspectResult()},
+      ...(run.phase==='run-lost'?[{label:'再战建议',run:()=>this.inspectFailure()}]:[]),
     ],{heroRun:run,keepsake:facts.keepsake,cards:facts.cards,summaryBody:facts.summary+'\n'+facts.continuation,collapseRules:true,rulesLabel:'最终持有与成长记录'});
   }
   private inspectJourney():void {
@@ -236,12 +256,12 @@ export class IntermissionScene extends Phaser.Scene {
   private inspectResult():void {
     const run=runController(this)!.state,stage={...getR2Stage(this.result.stageIndex,run.tourMode,run.difficulty,run)!,targetHeat:run.stage!.targetHeat};
     const last=stageOutcome(run.stage!,run.lastTrace).last,impact=last?savedBossImpact(run,last):'';
-    this.dialog.open('本场详情',`${run.tourMode==='endless'?'无尽 · ':''}${stage.name}\n热度 ${heatText(this.result.stageHeat)} / ${heatText(stage.targetHeat)}\n${this.result.cleared?'过关收益':'本场收益'} ${this.result.goldEarned} 金 · 余额 ${run.gold} 金\n剩余出牌 ${this.result.handsLeft} · 剩余弃牌 ${run.stage?.discardsLeft??0}\n\n当前构筑：`+(run.jokers.map(j=>this.jokerDefinition(j.definitionId).name).join('、')||'空')+'\n\n'+(run.stage?.boss?'本场压轴：'+r2BossText(run.stage.boss):'本场为普通场。')+(impact?'\n\n'+impact:''),last?[{label:'回看最后一手',run:()=>this.inspectLastHand()}]:[]);
+    this.dialog.open('本场详情',`${run.tourMode==='endless'?'无尽 · ':''}${stage.name}\n热度 ${heatText(this.result.stageHeat)} / ${heatText(stage.targetHeat)}\n${this.result.cleared?'过关收益':'本场收益'} ${this.result.goldEarned} 金 · 余额 ${run.gold} 金\n剩余出牌 ${this.result.handsLeft} · 剩余弃牌 ${run.stage?.discardsLeft??0}\n\n当前构筑：`+(run.jokers.map(j=>this.jokerDefinition(j.definitionId).name).join('、')||'空')+'\n\n'+(run.stage?.boss?'本场压轴：'+r2BossText(run.stage.boss):'本场为普通场。')+(impact?'\n\n'+impact:''),[...(last?[{label:'回看最后一手',run:()=>this.inspectLastHand()}]:[]),...(run.phase==='run-lost'?[{label:'再战建议',run:()=>this.inspectFailure()}]:[])]);
   }
   private inspectLastHand():void {
     const run=runController(this)!.state,trace=stageOutcome(run.stage!,run.lastTrace).last;if(!trace)return;
     const review=formatScoreReview(run,trace);
-    this.dialog.open('最后一手 · 已保存的结算',review.diagnostics,run.phase==='stage-cleared'?[{label:'查看培养路线',disabled:!this.ready,run:()=>this.inspectJourney()},{label:'前往筹备商店继续培养',primary:true,disabled:!this.ready,run:()=>this.next()}]:[],{cards:review.cards,effectBody:review.summary,collapseRules:true,rulesLabel:'诊断：精确分数与原始事件'});
+    this.dialog.open('最后一手 · 已保存的结算',review.diagnostics,run.phase==='stage-cleared'?[{label:'查看培养路线',disabled:!this.ready,run:()=>this.inspectJourney()},{label:'前往筹备商店继续培养',primary:true,disabled:!this.ready,run:()=>this.next()}]:run.phase==='run-lost'?[{label:'返回再战建议',run:()=>this.inspectFailure()}]:[],{cards:review.cards,effectBody:review.summary,collapseRules:true,rulesLabel:'诊断：精确分数与原始事件'});
   }
   private returnToSelect():void {
     if(this.busy)return;this.exitResult('character-select',{freshSeed:true});
@@ -282,7 +302,7 @@ export class IntermissionScene extends Phaser.Scene {
     try {
       const controller=await startRun(this,run.seed,run.characterId,{mode:run.mode,difficulty:run.difficulty,challengeId:run.challengeId,programsEnabled:run.programsEnabled},{kind:'retry',run});if(lifecycle!==this.lifecycle||!this.scene.isActive())return;
       if(controller?.status==='idle'){this.exitResult('shop');return;}
-      this.notice=gameSession().notice||'新局未保存，请在菜单重试保存。';this.audio.invalid();
+      this.notice=run.phase==='run-lost'?(gameSession().pendingRun?'新局未保存；菜单重试，原局保留。':'未开新局；请看菜单，原局保留。'):gameSession().notice||'新局未保存，请在菜单重试保存。';this.audio.invalid();
     }finally {if(lifecycle===this.lifecycle&&this.scene.isActive()){this.busy=false;this.render();}}
   }
   private async next():Promise<void> {

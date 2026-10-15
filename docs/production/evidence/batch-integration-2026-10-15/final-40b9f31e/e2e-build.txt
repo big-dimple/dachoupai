@@ -1,0 +1,20 @@
+vite v7.3.6 building client environment for e2e...
+transforming...
+✓ 271 modules transformed.
+rendering chunks...
+computing gzip size...
+shots/shop-integration-build/build-info.json                0.17 kB │ gzip:   0.15 kB
+shots/shop-integration-build/index.html                     0.55 kB │ gzip:   0.36 kB
+shots/shop-integration-build/assets/index-Dnp42xQl.css     72.93 kB │ gzip:  13.84 kB
+shots/shop-integration-build/assets/index-Bdce7IXZ.js   2,686.82 kB │ gzip: 786.41 kB
+
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+✓ built in 8.49s
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice
