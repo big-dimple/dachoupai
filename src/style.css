@@ -835,6 +835,10 @@ button[aria-busy=true] { border-style:dashed; }
 .shop-compare-candidate h3 { margin:8px 0;font:700 20px/1.35 Georgia,SimSun,serif; }
 .shop-candidate-price { display:block;margin:8px 0;font-size:20px;color:#B8473A; }
 .shop-card-tags { display:flex;flex-wrap:wrap;align-items:center;gap:6px;font-size:14px;color:#3F606B; }
+.shop-edition-tag { display:inline-block;padding:1px 6px;border:1px solid #3F606B;border-bottom:3px double #3F606B;border-radius:3px;background:#FFF9EE;color:#3F606B;font-size:12px;line-height:18px;white-space:nowrap; }
+.shop-joker-purchase .shop-card-tags,.shop-joker-held .shop-card-tags { margin-bottom:8px; }
+.shop-comparison-dialog.shop-comparison-compact .dialog-content { grid-template-rows:minmax(0,1fr); }
+.shop-comparison-compact .shop-compare-candidate { margin-bottom:10px; }
 .shop-card-tags .joker-rarity-badge { min-width:0;height:20px;font-size:12px; }
 .shop-offer-value { margin:10px 0;font-size:14px;line-height:1.5; }
 .shop-value-heading { display:flex;flex-wrap:wrap;align-items:center;gap:6px;color:#3F606B; }

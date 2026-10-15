@@ -1,8 +1,7 @@
 import type {R2RunState} from '../domain/run';
 import type {R2Offer} from '../domain/r2Shop';
 import {DetailDialog} from './DetailDialog';
-import {createJokerRarityElement} from './JokerRarity';
-import {createShopOfferValue,shopComparisonPresentation} from './ShopJokerPresentation';
+import {createShopOfferValue,createShopIdentityTags,shopComparisonPresentation} from './ShopJokerPresentation';
 
 export interface ShopComparisonView {offerId?:string;scrollTop:number;selectedId?:string}
 /** A visual comparison over the same five real instances; management keeps the old commands. */
@@ -14,10 +13,9 @@ export function showShopComparison(dialog:DetailDialog,run:R2RunState,offer:R2Of
   d.classList.add('shop-comparison-dialog');
   const content=d.querySelector('.dialog-content')!,scroll=d.querySelector<HTMLElement>('.dialog-scroll')!;scroll.replaceChildren();
   const image=(url:string|undefined,alt:string)=>{if(!url){const text=document.createElement('span');text.textContent=alt;return text;}const img=document.createElement('img');img.src=url;img.alt=alt+'卡面';img.decoding='async';return img;};
-  const tags=(rarity:typeof candidate.rarity,edition:string)=>{const row=document.createElement('div'),label=document.createElement('span');row.className='shop-card-tags';label.textContent='版次 · '+edition;row.append(createJokerRarityElement(rarity),label);return row;};
   const next=document.createElement('section'),art=document.createElement('figure'),copy=document.createElement('div'),name=document.createElement('h3'),price=document.createElement('strong'),step=document.createElement('p');
   next.className='shop-compare-candidate';art.append(image(candidate.url,candidate.name));name.textContent='待买 · '+candidate.name;price.className='shop-candidate-price';price.textContent='实付 '+candidate.price+' 金';step.className='shop-compare-step';step.textContent=`已持 ${data.rows.length}/${data.capacity} · 选一槽查看出售损失`;
-  copy.append(name,tags(candidate.rarity,candidate.edition),price,createShopOfferValue(candidate.guidance),step);next.append(art,copy);content.prepend(next);
+  copy.append(name,createShopIdentityTags(candidate.rarity,candidate.editionId),price,createShopOfferValue(candidate.guidance),step);next.append(art,copy);content.prepend(next);
   if(candidate.uses){const usage=document.createElement('p');usage.className='shop-card-uses';usage.textContent=candidate.uses;price.after(usage);}
   const grid=document.createElement('section');grid.className='experience-cards shop-compare-slots';grid.setAttribute('aria-label','现持槽位比较');
   for(const row of data.rows){
@@ -26,9 +24,11 @@ export function showShopComparison(dialog:DetailDialog,run:R2RunState,offer:R2Of
     costs.className='shop-compare-costs';for(const line of row.costs){const p=document.createElement('p');p.textContent=line;costs.append(p);}
     button.type='button';button.textContent='管理这张';button.onclick=()=>{view.scrollTop=scroll.scrollTop;view.selectedId=row.id;inspect(row.id);};
     more.className='card-rules';summary.textContent='条件、配合与完整损失';full.textContent=row.details;more.append(summary,full);
-    copy.append(name,tags(row.rarity,row.edition),costs,createShopOfferValue(row.guidance,'换此槽后的推荐'),button,more);card.append(art,copy);grid.append(card);
+    copy.append(name,createShopIdentityTags(row.rarity,row.editionId),costs,createShopOfferValue(row.guidance,'换此槽后的推荐'),button,more);card.append(art,copy);grid.append(card);
     if(row.uses){const usage=document.createElement('p');usage.className='shop-card-uses';usage.textContent=row.uses;costs.before(usage);}
   }
+  // Short screens share one native scroll surface so a long candidate cannot hide the slots.
+  if(window.innerHeight<=650&&window.innerWidth<=760){d.classList.add('shop-comparison-compact');scroll.append(next);}
   scroll.append(grid);scroll.addEventListener('scroll',()=>{if(dialog.active(d))view.scrollTop=scroll.scrollTop;});
   scroll.scrollTop=view.scrollTop;
   const selected=[...grid.querySelectorAll<HTMLElement>('.shop-compare-slot')].find(card=>card.dataset.instanceId===view.selectedId);

@@ -1,6 +1,6 @@
-import {createShopRarityFrame,createShopRecommendationStars,createShopRecommendationAccent,createShopCombinationMark,createShopRouteTag,shopCombinationVisual,shopCombinationMarkLayout,shopRecommendationVisual} from './ShopCardValueVisual';
+import {createShopRarityFrame,createShopEditionMark,createShopRecommendationStars,createShopRecommendationAccent,createShopCombinationMark,createShopRouteTag,shopCombinationVisual,shopCombinationMarkLayout,shopRecommendationVisual} from './ShopCardValueVisual';
 import {showShopComparison,type ShopComparisonView} from './ShopComparisonDialog';
-import {createShopOfferValue} from './ShopJokerPresentation';
+import {createShopOfferValue,createShopIdentityTags} from './ShopJokerPresentation';
 import {warmTableImages} from './StageImageWarmup';
 import {showHeroExplanation} from './HeroExplanation';
 import {isR2CoreBuild,isR2SuitChoice,R2_SUIT_DYE_IDS,r2BasicChoiceBasePrice} from '../domain/r2GroupUpgrade';
@@ -50,7 +50,7 @@ import {reorderJokerIds,ownedJokerDropIndex} from './JokerReorder';
 import {OwnedJokerInput} from './OwnedJokerInput';
 import {OwnedJokerDragVisual,ownedOrderHint,ownedOrderReversed} from './OwnedJokerDragVisual';
 import {heatText,fractionText} from './scoreText';
-import {toolInfo,itemInfo,goodsArtPortrait,editionLabel,editionEffectText,toolFamilyLabel} from './r2ToolInfo';
+import {toolInfo,itemInfo,goodsArtPortrait,editionEffectText,toolFamilyLabel} from './r2ToolInfo';
 import {SceneView} from './SceneView';
 import {getCharacter} from './characters';
 import {selectionPortraitKey,avatarKey} from './portraits';
@@ -367,7 +367,7 @@ export class ShopScene extends Phaser.Scene {
     // A long full rule owns the right column; the price stays below the art on the left.
     const priceX=column?tile.x+8:initialX;
     const priceInk=this.offerPricePlate(o,{x:priceX-2,y:priceY-2,width:column?66:tile.x+tile.width-priceX-8,height:24});
-    v.text(priceX,priceY,o.consumed?'已购':`${r2PurchasePrice(this.run,o)} 金${column?'':` · ${d?(this.run.jokers.length>=r2JokerCapacity(this.run)?'比较替换':editionLabel(o.edition)):'查看'}`}`,16,priceInk).setFontStyle('bold').setName('shop/offer-price').setData('offerId',o.offerId);
+    v.text(priceX,priceY,o.consumed?'已购':`${r2PurchasePrice(this.run,o)} 金${column?'':` · ${d&&this.run.jokers.length>=r2JokerCapacity(this.run)?'比较替换':'查看'}`}`,16,priceInk).setFontStyle('bold').setName('shop/offer-price').setData('offerId',o.offerId);
     this.markBuildOffer(o,kind,tile,{x:initialX+width-44,y:initialY,width:44,height:22});
     if(d)this.drawOfferGuidance(o,{x:initialX,y:priceY-guidanceHeight,width,height:guidanceHeight});
     const reason=o.consumed?'':this.purchaseReason(o,true);if(reason){const note=v.text(priceX,priceY+20,reason,14,'#B8473A').setName('shop/offer-reason').setData('offerId',o.offerId);this.ellipsis(note,column?64:width);}
@@ -740,11 +740,12 @@ export class ShopScene extends Phaser.Scene {
     return this.view.add(createShopRecommendationStars(this,b,g.stars,o.offerId,g.label,g.detail));
   }
   private drawOfferFaceMarks(o:R2Offer,face:Box):void {
+    this.view.add(createShopEditionMark(this,face.x+face.width-45,face.y+1,o.edition).setData('offerId',o.offerId));
     if(o.consumed)return;
     const cue=routeFitCue(this.run,'jokers',o.definitionId),combination=shopCombinationVisual(shopOfferGuidance(this.run,o).recommendation);
-    if(cue)this.view.add(createShopRouteTag(this,face.x+1,face.y+1,cue.focus,cue.label).setData('offerId',o.offerId));
-    const combinationLayout=shopCombinationMarkLayout(face.width-30);
-    if(combination&&combinationLayout)this.view.add(createShopCombinationMark(this,face.x+1,face.y+face.height-18,combination,combinationLayout).setData('offerId',o.offerId));
+    if(cue)this.view.add(createShopRouteTag(this,face.x+1,face.y+(face.width<80?21:1),cue.focus,cue.label).setData('offerId',o.offerId));
+    const besideRarity=shopCombinationMarkLayout(face.width-30),combinationLayout=besideRarity??shopCombinationMarkLayout(face.width-2);
+    if(combination&&combinationLayout)this.view.add(createShopCombinationMark(this,face.x+1,face.y+face.height-(besideRarity?18:38),combination,combinationLayout).setData('offerId',o.offerId));
   }
   private drawOfferGuidance(o:R2Offer,b:Box):void {
     const g=shopOfferGuidance(this.run,o),v=this.view;
@@ -808,7 +809,7 @@ export class ShopScene extends Phaser.Scene {
     const buy=async(now:boolean)=>{if(!this.dialog.active(dialog)||!this.ready)return;dialog.dataset.purchaseIntent=now?'use':'store';if(await this.send({type:'BuyOffer',offerId:id},seq)){if(kind==='tools'&&this.dialog.active(dialog)){const gained=this.run.consumables.find(c=>!purchaseBefore.has(c.instanceId)&&c.definitionId===o.definitionId);if(gained){if(makeCards){if(now)this.openMakeTool(gained.instanceId,'已购 '+info!.name+' · 实付 '+price+' 金 · 未使用');else this.storedMakeTool(info!.name,price);return;}const purchased=this.dialog.open(info!.name+' · 已购入',`购买已保存 · 余额 ${this.run.gold} 金\n道具箱 ${this.run.consumables.length}/${r2ConsumableCapacity(this.run)} · 尚未使用\n${toolPurpose(this.run,o.definitionId)}`, [{label:'立即使用',primary:true,run:()=>this.openMakeTool(gained.instanceId)},{label:'查看道具箱',run:()=>{this.makeCardsView.pane='owned';this.inspectMakeCards();}}],{closeLabel:'回到经营'});purchased.classList.add('tool-purchased-result');}else this.dialog.close(dialog);}else this.dialog.close(dialog);}};
     const dialog=this.dialog.open(name+' · 购买详情',body,[...(d&&this.run.jokers.length?[{label:'比较替换',run:()=>this.inspectReplacement(id)}]:[]),...(makeCards&&kind==='tools'?[{label:`买来存着 · ${price}金`,disabled:!!reason,run:()=>buy(false)}]:[]),{label:d?`邀请 · ${price} 金`:makeCards?`买来使用 · ${price}金`:`购买 · ${price} 金`,primary:true,disabled:!!reason,run:()=>buy(true)}],{shopContext:'purchase',closeLabel:'取消',portrait,rarity:d?.rarity,...(d?{artLoad:this.jokerArtStatus(d.id)}:info?.detailArtUrl?{artLoad:{status:goodsArtLoadState(this,o.definitionId).status,readStatus:()=>goodsArtLoadState(this,o.definitionId).status,retry:()=>retryGoodsArt(this,o.definitionId,info.artUrl,()=>{this.paintGoodsArt(goodsArtKey(o.definitionId));this.dialog.refreshArtLoad();})}}:{}),summaryBody:plainSummary??(d?shopOfferRelation(this.run,o,currentBuildFocus(this.run,this.run.openingRoute)).label+' · ':'')+`实付 ${price} 金 · `+(after<0?`现有 ${this.run.gold} 金，差 ${-after} 金`:`余额 ${this.run.gold} → ${after} 金`)+'\n'+trade+(investment?'\n'+investment.next:'')+(d?.id==='f04'&&after>=0?'\n购后余额仅供参考；+3 条件在每手开始时检查。':'')+(reason?'\n'+reason:''),effectBody:d?shopOfferRelation(this.run,o,currentBuildFocus(this.run,this.run.openingRoute)).body:info!.summary,editionBody:ability?this.jokerEditionSummary(o.edition,d!.id):undefined,ability,collapseRules:true});
     if(kind==='tools')dialog.classList.add('shop-tool-purchase');
-    if(guidance){dialog.classList.add('shop-joker-purchase');const value=createShopOfferValue(guidance);dialog.querySelector('.dialog-intro')?.prepend(value);const money=dialog.querySelector('.dialog-purchase-summary');if(money)value.after(money);}
+    if(guidance){dialog.classList.add('shop-joker-purchase');const value=createShopOfferValue(guidance);dialog.querySelector('.dialog-intro')?.prepend(createShopIdentityTags(d!.rarity,o.edition),value);const money=dialog.querySelector('.dialog-purchase-summary');if(money)value.after(money);}
     if(makeCards&&kind==='tools'){dialog.classList.add('make-cards-purchase');this.makeCardsReturn(dialog,'取消购买');}
     markRouteDetail(dialog,routeFitCue(this.run,kind,o.definitionId));
     attachFirstChapterGuide(this.run,()=>this.render());
@@ -839,6 +840,10 @@ export class ShopScene extends Phaser.Scene {
       {label:'右移',disabled:!this.ready||index===this.run.jokers.length-1,run:async()=>{if(await this.reorder(index,index+1,seq)&&this.dialog.active(dialog))this.inspectJoker(id,offerId);}},
       {label:'出售',disabled:!this.ready,run:()=>{const confirmation=this.dialog.open('出售确认',`出售第 ${index+1} 槽的「${d.name}」基础卖价 ${salePrice(j.paidPrice)} 金币。\n当前余额 ${this.run.gold} 金；交易来源与售后余额以实际保存结果为准。\n\n该牌成长将丢失，当前成长：${growth}。`+(saleEffects.length?'\n\n成功出售后保留牌的确定影响：\n'+saleEffects.join('\n'):''),[{label:'确认出售',primary:true,run:async()=>{if(await this.send({type:'SellJoker',instanceId:id},seq)&&this.dialog.active(confirmation)){this.dialog.close(confirmation);if(offerId)this.inspectOffer(offerId);}}}],{shopContext:'sale',closeLabel:'取消',portrait:this.jokerPortrait(d.id),rarity:d.rarity,summaryBody:`出售「${d.name}」 · 基础返还 ${salePrice(j.paidPrice)} 金\n失去当前成长：${growth}`});if(offerId){confirmation.querySelector<HTMLButtonElement>('.dialog-close')!.onclick=()=>this.inspectJoker(id,offerId);confirmation.addEventListener('cancel',()=>this.inspectJoker(id,offerId));}}},
     ],{shopContext:'held',summaryBody:relation.body+'\n现存：'+growth,portrait:this.jokerPortrait(d.id),rarity:d.rarity,artLoad:this.jokerArtStatus(d.id),editionBody:ability?this.jokerEditionSummary(j.edition,d.id):undefined,ability,collapseRules:!!ability});
+    dialog.classList.add('shop-joker-held');dialog.querySelector('.dialog-intro')?.prepend(createShopIdentityTags(d.rarity,j.edition));
+    const candidate=offerId?this.findOffer(offerId)?.offer:undefined;
+    if(candidate)dialog.querySelector('.dialog-intro')?.append(createShopOfferValue(shopOfferGuidance(this.run,candidate,j),'换入「'+this.jokerDefinition(candidate.definitionId).name+'」的推荐'));
+    if(offerId){const back=()=>this.inspectReplacement(offerId);dialog.querySelector<HTMLButtonElement>('.dialog-close')!.onclick=back;dialog.addEventListener('cancel',back);}
     markRouteDetail(dialog,routeFitCue(this.run,'jokers',d.id,j.instanceId));this.attachJokerFallback(dialog,d.id);
   }
   private async reorder(from:number,to:number,expectedSeq?:number):Promise<boolean> {
