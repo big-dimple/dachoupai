@@ -8,7 +8,7 @@ import {execFileSync} from 'node:child_process';
 import {createHash} from 'node:crypto';
 import {openSelector,tapUI,confirmHeroRoute,waitScene} from './ui.mjs';
 const out=process.env.DELIVERY_OUTPUT??'docs/production/evidence/tangsong-delivery-integration-2026-10-15/native';await mkdir(out,{recursive:true});
-const paths=['index.html','src/game/LoadingScreen.ts','src/game/PaperFlow.ts','src/game/GameScene.ts','src/game/ShopScene.ts','src/game/ToolCarryIntent.ts'];
+const paths=['index.html','src/game/LoadingScreen.ts','src/game/PaperFlow.ts','src/game/GameScene.ts','src/game/ShopScene.ts','src/game/ToolCarryIntent.ts','src/game/CharacterArt.ts','src/game/SceneResources.ts','src/game/HeroClimax.ts','src/game/HeroClimaxCaption.ts','src/game/HeroClimaxLayout.ts'];
 const hash=async()=>Object.fromEntries(await Promise.all(paths.map(async p=>[p,createHash('sha256').update(await readFile(p)).digest('hex')])));
 const report={head:execFileSync('git',['rev-parse','HEAD'],{encoding:'utf8'}).trim(),sourceHashes:await hash(),scope:'Native fresh standard run with ordinary starting gold, real hero/route selection and public tool choice. No imported state, stock overrides, domain replacements or natural full-tour acceptance. PC alone evicts one already-loaded display texture to exercise delayed scene-data handoff.',cases:[]};
 const server=await createServer({mode:'e2e',cacheDir:'/tmp/tangsong-integration-vite',server:{host:'127.0.0.1',port:5594,strictPort:true},logLevel:'error'});await server.listen();
