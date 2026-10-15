@@ -15,8 +15,8 @@ const viewport=viewportMetrics();
 const config: Phaser.Types.Core.GameConfig = {
   type: Phaser.AUTO,
   parent: 'app',
-  width: viewport.width*viewport.density,
-  height: viewport.height*viewport.density,
+  width: Math.ceil(viewport.width*viewport.density),
+  height: Math.ceil(viewport.height*viewport.density),
   backgroundColor: '#F3EADB',
   scene: [BootScene, TitleScene, CharacterSelectScene, GameScene, IntermissionScene, ShopScene],
   scale: {

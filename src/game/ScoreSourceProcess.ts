@@ -1,4 +1,5 @@
 import type Phaser from 'phaser';
+import {crispText} from './TextRaster';
 import type {ScoreEvent,ScoreTrace} from '../domain/scoreR2';
 import {Rational,type Fraction} from '../domain/rational';
 import {rankLabel,SUIT_SYMBOL} from '../cards/types';
@@ -70,6 +71,7 @@ export function fitScoreSourceProcess(text:Phaser.GameObjects.Text,cue:ScoreSour
  }
  text.setText(display).setPosition(area.x+area.width/2,area.y).setOrigin(.5,0)
   .setData('fullText',full).setData('fittedText',display).setData('scoreSourceProcess',cue);
+ crispText(text);
 }
 
 /** Uses the current caption and accumulator label; owns no animations, input or clocks. */

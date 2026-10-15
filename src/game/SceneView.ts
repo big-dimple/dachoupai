@@ -7,6 +7,7 @@ import {pointerReleaseTime,releasePointerIntent} from './PointerReleaseTime';
 import {modalBlocksCanvas} from './DetailDialog';
 import {PAPER_THEME,PAPER_CSS,UI_FONT} from './theme';
 import {alignViewportCamera,cssViewport} from '../platform/Viewport';
+import {crispText} from './TextRaster';
 import {drawHandActionGlyph,type HandButtonSkin} from './HandActionArt';
 
 type TouchActions={tap:()=>void;detail?:()=>void;drag?:(x:number,y:number)=>void;dragMove?:(x:number,y:number)=>void;swipe?:(dx:number,dy:number)=>void;cancel?:()=>void;press?:()=>void;release?:()=>void;enter?:()=>void;leave?:()=>void;holdToDrag?:boolean};
@@ -94,7 +95,7 @@ export class SceneView {
   }
   text(x:number,y:number,value:string,size=14,color=PAPER_CSS.ink,wrap?:number):Phaser.GameObjects.Text {
     const rgb=parseInt(color.replace('#',''),16);if(color.startsWith('#')&&((rgb>>16&255)+(rgb>>8&255)+(rgb&255))/3>150)color=PAPER_CSS.ink;
-    return this.add(this.scene.add.text(Math.round(x),Math.round(y),value,{fontFamily:UI_FONT,fontSize:`${size}px`,color,resolution:Math.max(1.5,1/this.scene.scale.zoom),wordWrap:wrap?{width:wrap,useAdvancedWrap:true}:undefined}));
+    return this.add(this.scene.add.text(Math.round(x),Math.round(y),value,{fontFamily:UI_FONT,fontSize:`${size}px`,color,resolution:Math.max(1,1/this.scene.scale.zoom),wordWrap:wrap?{width:wrap,useAdvancedWrap:true}:undefined}));
   }
   rect(b:Box,color:number=PAPER_THEME.paper):Phaser.GameObjects.Rectangle {return this.add(this.scene.add.rectangle(b.x+b.width/2,b.y+b.height/2,b.width,b.height,color).setStrokeStyle(1,PAPER_THEME.jade,.65));}
   target(object:Phaser.GameObjects.Rectangle,name:string,actions:TouchActions):void {
@@ -121,7 +122,7 @@ export class SceneView {
     const r=this.rect(b).setFillStyle(0,0).setStrokeStyle();
     r.setData('label',t).setData('buttonArt',art).setData('buttonFace',g).setData('buttonBounds',b).setData('buttonPrimary',primary).setData('buttonSkin',skin).setData('buttonGlyph',glyph);
     const stop=()=>this.scene.tweens.killTweensOf([art,t]);
-    const rest=()=>{stop();art.setScale(1).setPosition(b.x,b.y);t.setScale(1);t.y=Number(t.getData('restY')??b.y+b.height/2-1);glow.setAlpha(0);};
+    const rest=()=>{stop();art.setScale(1).setPosition(b.x,b.y);t.setScale(1);t.y=Number(t.getData('restY')??b.y+b.height/2-1);crispText(t);glow.setAlpha(0);};
     const press=()=>{
       stop();glow.setAlpha(.6);
       if(gameSession().reducedMotion||window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;

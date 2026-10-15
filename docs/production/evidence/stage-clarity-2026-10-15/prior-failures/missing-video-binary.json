@@ -1,0 +1,9 @@
+{
+  "head": "4a52fd0b0fb9ac0a49b8cb5e79abc8db4326e2d7",
+  "after": false,
+  "browser": "151.0.7922.173",
+  "scope": "Native legal imported saved-event fixtures; raw framebuffer PNGs and browser videos, software Canvas. Effective DPR 1/1.25/2/3; no physical-device or subjective user acceptance claim.",
+  "cases": [],
+  "status": "FAIL",
+  "error": "Error: browserContext.newPage: Executable doesn't exist at /home/agent/.cache/ms-playwright/ffmpeg-1011/ffmpeg-linux\n╔═════════════════════════════════════════════════════════════════╗\n║ Video rendering requires ffmpeg binary.                         ║\n║ Downloading it will not affect any of the system-wide settings. ║\n║ Please run the following command:                               ║\n║                                                                 ║\n║     npx playwright install ffmpeg                               ║\n║                                                                 ║\n║ <3 Playwright Team                                              ║\n╚═════════════════════════════════════════════════════════════════╝"
+}

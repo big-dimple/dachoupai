@@ -1,4 +1,5 @@
 import type Phaser from 'phaser';
+import {textDensity} from './TextRaster';
 import type {Box,LayoutMode} from './layout';
 import {jokerArtKey} from './jokerArt';
 import {SCORE_FONT,PAPER_THEME as T,PAPER_CSS as C,UI_FONT} from './theme';
@@ -20,7 +21,7 @@ export function mountKeyHighlight(scene:Phaser.Scene,root:Phaser.GameObjects.Con
  root.add(group);
  group.add(scene.add.rectangle(box.width/2,box.height/2,box.width,box.height,T.paperLight,.98).setStrokeStyle(2,T.brass));
  const art= jokerArtKey(key.fact.definitionId),horizontal=box.width>box.height*1.6;
- const text=(x:number,y:number,value:string,size:number,width:number)=>{const t=scene.add.text(x,y,value,{fontFamily:UI_FONT,fontSize:size+'px',color:C.ink,wordWrap:{width,useAdvancedWrap:true}});group.add(t);return t;};
+ const text=(x:number,y:number,value:string,size:number,width:number)=>{const t=scene.add.text(x,y,value,{fontFamily:UI_FONT,fontSize:size+'px',color:C.ink,resolution:textDensity(scene),wordWrap:{width,useAdvancedWrap:true}});group.add(t);return t;};
  const artHeight=!art?0:compact?Math.max(24,box.height-24):horizontal?box.height-12:Math.min(110,box.height*.43),artWidth=artHeight*.8;
  if(art&&scene.textures.exists(art))group.add(scene.add.image(horizontal?artWidth/2+6:box.width/2,compact?24+artHeight/2:horizontal?box.height/2:12+artHeight/2,art).setDisplaySize(artWidth,artHeight).setName('joker/key-art'));
  if(compact){text(3,3,key.fact.title,14,box.width-6).setMaxLines(1);return group;}
@@ -36,13 +37,13 @@ function mountStarterHighlight(scene:Phaser.Scene,root:Phaser.GameObjects.Contai
  const hero=key.heroId!,route=key.route,group=scene.add.container(box.x,box.y).setName('joker/key-focus').setData('eventId',key.eventId).setData('benefit',key.fact).setData('bounds',box).setData('route',route).setData('starter',key.kind==='starter'||key.kind==='opening');
  root.add(group);group.add(scene.add.rectangle(box.width/2+3,box.height/2+4,box.width,box.height,T.ink,.16));group.add(scene.add.rectangle(box.width/2,box.height/2,box.width,box.height,T.paperLight,1).setStrokeStyle(2,T.ink));group.add(scene.add.rectangle(3,box.height/2,6,box.height,T.red));const hatch=scene.add.graphics().lineStyle(1,T.red,.55);for(let i=0;i<5;i++)hatch.lineBetween(box.width-10-i*7,6,box.width-4-i*7,2);group.add(hatch);
  const horizontal=box.width>box.height*1.6,small=compact||box.height<92;
- const text=(x:number,y:number,value:string,size:number,width:number,name:string)=>{const t=scene.add.text(x,y,value,{fontFamily:UI_FONT,fontSize:size+'px',color:C.ink,resolution:Math.max(1.5,1/scene.scale.zoom),wordWrap:{width,useAdvancedWrap:true}}).setName(name);group.add(t);return t;};
+ const text=(x:number,y:number,value:string,size:number,width:number,name:string)=>{const t=scene.add.text(x,y,value,{fontFamily:UI_FONT,fontSize:size+'px',color:C.ink,resolution:Math.max(1,1/scene.scale.zoom),wordWrap:{width,useAdvancedWrap:true}}).setName(name);group.add(t);return t;};
  const image=(key:string|undefined,b:Box,name:string)=>{if(!key||!scene.textures.exists(key))return;const source=scene.textures.get(key).getSourceImage() as HTMLImageElement;group.add(scene.add.image(b.x+b.width/2,b.y+b.height/2,key).setScale(Math.min(b.width/source.width,b.height/source.height)).setName(name));};
  const heroKey=['opening-portrait-'+hero,selectionPortraitKey(hero),avatarKey(hero)].find(k=>scene.textures.exists(k));
  const h=small?Math.max(22,box.height-42):horizontal?box.height-16:Math.min(96,box.height*.4),w=small?Math.min(26,(box.width-12)/2):h*.65;
  const start=horizontal?6:Math.max(6,(box.width-w*2-8)/2),top=small?22:horizontal?8:10;
  image(heroKey,{x:start,y:top,width:w,height:h},'joker/starter-hero');image(jokerArtKey(key.fact.definitionId),{x:start+w+8,y:top,width:w,height:h},'joker/key-art');
- if(!key.fact.definitionId&&!small){const value=key.fact.effect.match(/[\d,.]+$/)?.[0]??'×';group.add(scene.add.text(start+w+12,top+h*.25,value,{fontFamily:SCORE_FONT,fontSize:Math.min(40,h*.6)+'px',fontStyle:'800',color:C.red}).setName('joker/opening-number'));}
+ if(!key.fact.definitionId&&!small){const value=key.fact.effect.match(/[\d,.]+$/)?.[0]??'×';group.add(scene.add.text(start+w+12,top+h*.25,value,{fontFamily:SCORE_FONT,fontSize:Math.min(40,h*.6)+'px',fontStyle:'800',color:C.red,resolution:textDensity(scene)}).setName('joker/opening-number'));}
  if(small){text(4,3,key.fact.title,14,box.width-8,'joker/key-title');return group;}
  const x=horizontal?start+w*2+18:8,y=horizontal?6:top+h+8,width=box.width-x-8;
  text(x,y,getCharacter(hero).name+' · '+(route?STARTER_ROUTE_LABEL[route]+'首发':key.kind==='opening'?(key.cause==='实际乘法生效'?'倍率爆发':'开场得分'):'倍率冲击'),16,width,'joker/starter-title').setFontStyle('bold');

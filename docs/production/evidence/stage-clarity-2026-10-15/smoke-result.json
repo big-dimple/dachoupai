@@ -1,0 +1,62 @@
+{
+  "testedCommit": "fa904746ddd377886c8f3a17501a039096b485fa",
+  "dirty": "M src/game/GameScene.ts\n M src/game/HeroClimax.ts\n M src/game/JokerKeyHighlightView.ts\n M src/game/PaperFlow.ts\n M src/game/SceneView.ts\n M src/game/ScoreLanding.ts\n M src/game/ScoreSourceProcess.ts\n M src/game/ScoreTextLayout.ts\n M src/main.ts\n M src/platform/Viewport.ts\n M tests/hero-climax.test.ts\n M tests/paper-flow.test.ts\n M tests/score-landing.test.ts\n?? docs/production/evidence/stage-clarity-2026-10-15/\n?? harness/stage-clarity.mjs\n?? src/game/TextRaster.ts\n?? tests/viewport-density.test.ts",
+  "checks": [
+    {
+      "engine": "chromium",
+      "browserVersion": "151.0.7922.173",
+      "profile": "mobile",
+      "viewport": {
+        "width": 390,
+        "height": 740
+      },
+      "deviceScaleFactor": 3,
+      "framebufferDensity": 3,
+      "fullscreen": "PASS (menu browser API; physical toolbar/orientation NOT_RUN)",
+      "resourceFeedback": {
+        "discard": {
+          "commandSeq": 7,
+          "text": "2 次",
+          "scaleX": 1.6,
+          "pollingStarted": {
+            "commandSeq": 7,
+            "text": "2 次",
+            "scaleX": 1.6,
+            "capturedBeforeWait": true
+          }
+        },
+        "play": {
+          "commandSeq": 8,
+          "text": "3 次",
+          "scaleX": 1.6,
+          "pollingStarted": {
+            "commandSeq": 8,
+            "text": "3 次",
+            "scaleX": 1.6,
+            "capturedBeforeWait": true
+          }
+        }
+      },
+      "status": "PASS",
+      "input": "touchscreen.tap / DOM tap",
+      "covered": [
+        "select-confirm-cancel",
+        "buy-cancel",
+        "rank/suit-sort",
+        "discard-refill",
+        "live-discard-count-pulse",
+        "live-play-count-pulse",
+        "play-preview-feedback",
+        "reload-continue",
+        "fixed-menu-anchor",
+        "menu-preserves-selection",
+        "high-DPR",
+        "left/right-selected-rank-visible",
+        "rotation-preserves-state"
+      ]
+    }
+  ],
+  "physicalDevice": "NOT_RUN",
+  "humanAcceptance": "NOT_RUN",
+  "build": "existing shots/smoke-build (SMOKE_REUSE_BUILD=1)"
+}

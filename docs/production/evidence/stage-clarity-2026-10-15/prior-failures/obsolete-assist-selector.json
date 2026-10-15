@@ -1,0 +1,925 @@
+{
+  "head": "fa904746ddd377886c8f3a17501a039096b485fa",
+  "after": false,
+  "browser": "151.0.7922.173",
+  "scope": "Native legal imported saved-event fixtures; raw framebuffer PNGs and browser videos, software Canvas. Effective DPR 1/1.25/2/3; no physical-device or subjective user acceptance claim.",
+  "cases": [
+    {
+      "key": "1366-dpr1-normal",
+      "spec": {
+        "width": 1366,
+        "height": 768,
+        "dpr": 1
+      },
+      "errors": [],
+      "transition": 1,
+      "idle": {
+        "dpr": 1,
+        "canvas": {
+          "width": 1366,
+          "height": 768,
+          "cssWidth": 1366,
+          "cssHeight": 768
+        },
+        "zoom": 1,
+        "cameraZoom": 1,
+        "texts": [
+          {
+            "name": "",
+            "text": "大 丑 牌",
+            "resolution": 1.5,
+            "scaleX": 1,
+            "scaleY": 1,
+            "x": 24,
+            "y": 16,
+            "fontSize": "28px"
+          },
+          {
+            "name": "",
+            "text": "阿默",
+            "resolution": 1.5,
+            "scaleX": 1,
+            "scaleY": 1,
+            "x": 88,
+            "y": 50,
+            "fontSize": "22px"
+          },
+          {
+            "name": "",
+            "text": "技能 · 先凑主副组",
+            "resolution": 1.5,
+            "scaleX": 1,
+            "scaleY": 1,
+            "x": 88,
+            "y": 78,
+            "fontSize": "14px"
+          },
+          {
+            "name": "stage-identity/current",
+            "text": "第 1 章 · 暖场",
+            "resolution": 1.5,
+            "scaleX": 1,
+            "scaleY": 1,
+            "x": 24,
+            "y": 104,
+            "fontSize": "14px"
+          },
+          {
+            "name": "",
+            "text": "0",
+            "resolution": 1.5,
+            "scaleX": 1,
+            "scaleY": 1,
+            "x": 24,
+            "y": 126,
+            "fontSize": "24px"
+          },
+          {
+            "name": "",
+            "text": "金币 20\n还需 400 热度",
+            "resolution": 1.5,
+            "scaleX": 1,
+            "scaleY": 1,
+            "x": 124,
+            "y": 188,
+            "fontSize": "14px"
+          },
+          {
+            "name": "hud/target",
+            "text": "目标 400",
+            "resolution": 1.5,
+            "scaleX": 1,
+            "scaleY": 1,
+            "x": 24,
+            "y": 164,
+            "fontSize": "14px"
+          },
+          {
+            "name": "rarity-badge/label",
+            "text": "特",
+            "resolution": 1.5,
+            "scaleX": 1,
+            "scaleY": 1,
+            "x": 12,
+            "y": 9,
+            "fontSize": "12px"
+          },
+          {
+            "name": "",
+            "text": "不换词",
+            "resolution": 1.5,
+            "scaleX": 1,
+            "scaleY": 1,
+            "x": -37,
+            "y": -55,
+            "fontSize": "14px"
+          },
+          {
+            "name": "",
+            "text": "不弃×倍",
+            "resolution": 1.5,
+            "scaleX": 1,
+            "scaleY": 1,
+            "x": -37,
+            "y": 40,
+            "fontSize": "14px"
+          },
+          {
+            "name": "rarity-badge/label",
+            "text": "稀",
+            "resolution": 1.5,
+            "scaleX": 1,
+            "scaleY": 1,
+            "x": 12,
+            "y": 9,
+            "fontSize": "12px"
+          },
+          {
+            "name": "",
+            "text": "一次性招牌",
+            "resolution": 1.5,
+            "scaleX": 1,
+            "scaleY": 1,
+            "x": -37,
+            "y": -55,
+            "fontSize": "14px"
+          },
+          {
+            "name": "",
+            "text": "余4手",
+            "resolution": 1.5,
+            "scaleX": 1,
+            "scaleY": 1,
+            "x": -37,
+            "y": 40,
+            "fontSize": "14px"
+          },
+          {
+            "name": "rarity-badge/label",
+            "text": "稀",
+            "resolution": 1.5,
+            "scaleX": 1,
+            "scaleY": 1,
+            "x": 12,
+            "y": 9,
+            "fontSize": "12px"
+          },
+          {
+            "name": "",
+            "text": "包场",
+            "resolution": 1.5,
+            "scaleX": 1,
+            "scaleY": 1,
+            "x": -37,
+            "y": -55,
+            "fontSize": "14px"
+          },
+          {
+            "name": "",
+            "text": "≥20金×",
+            "resolution": 1.5,
+            "scaleX": 1,
+            "scaleY": 1,
+            "x": -37,
+            "y": 40,
+            "fontSize": "14px"
+          },
+          {
+            "name": "score/source",
+            "text": "第 1 章 · 暖场",
+            "resolution": 1.5,
+            "scaleX": 1,
+            "scaleY": 1,
+            "x": 72,
+            "y": 277,
+            "fontSize": "16px"
+          },
+          {
+            "name": "table/played-label",
+            "text": "待出牌",
+            "resolution": 1.5,
+            "scaleX": 1,
+            "scaleY": 1,
+            "x": 459,
+            "y": 256,
+            "fontSize": "14px"
+          },
+          {
+            "name": "",
+            "text": "上手记录：本场第一手",
+            "resolution": 1.5,
+            "scaleX": 1,
+            "scaleY": 1,
+            "x": 24,
+            "y": 518,
+            "fontSize": "14px"
+          },
+          {
+            "name": "",
+            "text": "点数排序",
+            "resolution": 1.5,
+            "scaleX": 1,
+            "scaleY": 1,
+            "x": 1284,
+            "y": 537,
+            "fontSize": "14px"
+          },
+          {
+            "name": "",
+            "text": "花色排序",
+            "resolution": 1.5,
+            "scaleX": 1,
+            "scaleY": 1,
+            "x": 1284,
+            "y": 593,
+            "fontSize": "14px"
+          },
+          {
+            "name": "",
+            "text": "AI\n主手",
+            "resolution": 1.5,
+            "scaleX": 1,
+            "scaleY": 1,
+            "x": 1284,
+            "y": 649,
+            "fontSize": "14px"
+          },
+          {
+            "name": "",
+            "text": "助攻",
+            "resolution": 1.5,
+            "scaleX": 1,
+            "scaleY": 1,
+            "x": 579,
+            "y": 707,
+            "fontSize": "14px"
+          },
+          {
+            "name": "",
+            "text": "弃牌",
+            "resolution": 1.5,
+            "scaleX": 1,
+            "scaleY": 1,
+            "x": 535,
+            "y": 695,
+            "fontSize": "14px"
+          },
+          {
+            "name": "",
+            "text": "出牌",
+            "resolution": 1.5,
+            "scaleX": 1,
+            "scaleY": 1,
+            "x": 803,
+            "y": 695,
+            "fontSize": "16px"
+          },
+          {
+            "name": "button/play-left",
+            "text": "4 次",
+            "resolution": 1.5,
+            "scaleX": 1,
+            "scaleY": 1,
+            "x": 803,
+            "y": 717,
+            "fontSize": "14px"
+          },
+          {
+            "name": "button/discard-left",
+            "text": "3 次",
+            "resolution": 1.5,
+            "scaleX": 1,
+            "scaleY": 1,
+            "x": 535,
+            "y": 717,
+            "fontSize": "14px"
+          },
+          {
+            "name": "",
+            "text": "不换词 · 不弃×倍 · 长按条件",
+            "resolution": 1.5,
+            "scaleX": 1,
+            "scaleY": 1,
+            "x": 252,
+            "y": 740,
+            "fontSize": "14px"
+          },
+          {
+            "name": "",
+            "text": "道具箱 0/2",
+            "resolution": 1.5,
+            "scaleX": 1,
+            "scaleY": 1,
+            "x": 134,
+            "y": 467,
+            "fontSize": "15px"
+          },
+          {
+            "name": "card-pip",
+            "text": "♣",
+            "resolution": 1.5,
+            "scaleX": 1,
+            "scaleY": 1,
+            "x": -15.931584000000003,
+            "y": -46.2938112,
+            "fontSize": "19.680192px"
+          },
+          {
+            "name": "card-pip",
+            "text": "♣",
+            "resolution": 1.5,
+            "scaleX": 1,
+            "scaleY": 1,
+            "x": 15.931584000000003,
+            "y": -46.2938112,
+            "fontSize": "19.680192px"
+          },
+          {
+            "name": "card-pip",
+            "text": "♣",
+            "resolution": 1.5,
+            "scaleX": 1,
+            "scaleY": 1,
+            "x": 0,
+            "y": -23.1469056,
+            "fontSize": "19.680192px"
+          },
+          {
+            "name": "card-pip",
+            "text": "♣",
+            "resolution": 1.5,
+            "scaleX": 1,
+            "scaleY": 1,
+            "x": -15.931584000000003,
+            "y": 0,
+            "fontSize": "19.680192px"
+          },
+          {
+            "name": "card-pip",
+            "text": "♣",
+            "resolution": 1.5,
+            "scaleX": 1,
+            "scaleY": 1,
+            "x": 15.931584000000003,
+            "y": 0,
+            "fontSize": "19.680192px"
+          },
+          {
+            "name": "card-pip",
+            "text": "♣",
+            "resolution": 1.5,
+            "scaleX": 1,
+            "scaleY": 1,
+            "x": -15.931584000000003,
+            "y": 46.2938112,
+            "fontSize": "19.680192px"
+          },
+          {
+            "name": "card-pip",
+            "text": "♣",
+            "resolution": 1.5,
+            "scaleX": 1,
+            "scaleY": 1,
+            "x": 15.931584000000003,
+            "y": 46.2938112,
+            "fontSize": "19.680192px"
+          },
+          {
+            "name": "rank-index",
+            "text": "7\n♣",
+            "resolution": 1.5,
+            "scaleX": 1,
+            "scaleY": 1,
+            "x": -44.4288,
+            "y": -64.39679999999998,
+            "fontSize": "22px"
+          },
+          {
+            "name": "",
+            "text": "7\n♣",
+            "resolution": 1.5,
+            "scaleX": 1,
+            "scaleY": 1,
+            "x": 44.4288,
+            "y": 64.39679999999998,
+            "fontSize": "19.968000000000004px"
+          },
+          {
+            "name": "card-pip",
+            "text": "♥",
+            "resolution": 1.5,
+            "scaleX": 1,
+            "scaleY": 1,
+            "x": -16.611584000000004,
+            "y": -46.2938112,
+            "fontSize": "20.520192px"
+          },
+          {
+            "name": "card-pip",
+            "text": "♥",
+            "resolution": 1.5,
+            "scaleX": 1,
+            "scaleY": 1,
+            "x": 16.611584000000004,
+            "y": -46.2938112,
+            "fontSize": "20.520192px"
+          },
+          {
+            "name": "card-pip",
+            "text": "♥",
+            "resolution": 1.5,
+            "scaleX": 1,
+            "scaleY": 1,
+            "x": 0,
+            "y": -23.1469056,
+            "fontSize": "20.520192px"
+          },
+          {
+            "name": "card-pip",
+            "text": "♥",
+            "resolution": 1.5,
+            "scaleX": 1,
+            "scaleY": 1,
+            "x": -16.611584000000004,
+            "y": 0,
+            "fontSize": "20.520192px"
+          },
+          {
+            "name": "card-pip",
+            "text": "♥",
+            "resolution": 1.5,
+            "scaleX": 1,
+            "scaleY": 1,
+            "x": 16.611584000000004,
+            "y": 0,
+            "fontSize": "20.520192px"
+          },
+          {
+            "name": "card-pip",
+            "text": "♥",
+            "resolution": 1.5,
+            "scaleX": 1,
+            "scaleY": 1,
+            "x": -16.611584000000004,
+            "y": 46.2938112,
+            "fontSize": "20.520192px"
+          },
+          {
+            "name": "card-pip",
+            "text": "♥",
+            "resolution": 1.5,
+            "scaleX": 1,
+            "scaleY": 1,
+            "x": 16.611584000000004,
+            "y": 46.2938112,
+            "fontSize": "20.520192px"
+          },
+          {
+            "name": "rank-index",
+            "text": "7\n♥",
+            "resolution": 1.5,
+            "scaleX": 1,
+            "scaleY": 1,
+            "x": -44.4288,
+            "y": -64.39679999999998,
+            "fontSize": "22px"
+          },
+          {
+            "name": "",
+            "text": "7\n♥",
+            "resolution": 1.5,
+            "scaleX": 1,
+            "scaleY": 1,
+            "x": 44.4288,
+            "y": 64.39679999999998,
+            "fontSize": "19.968000000000004px"
+          },
+          {
+            "name": "card-pip",
+            "text": "♠",
+            "resolution": 1.5,
+            "scaleX": 1,
+            "scaleY": 1,
+            "x": -17.971584000000004,
+            "y": -50.31935999999999,
+            "fontSize": "22.200192px"
+          },
+          {
+            "name": "card-pip",
+            "text": "♠",
+            "resolution": 1.5,
+            "scaleX": 1,
+            "scaleY": 1,
+            "x": 17.971584000000004,
+            "y": -50.31935999999999,
+            "fontSize": "22.200192px"
+          },
+          {
+            "name": "card-pip",
+            "text": "♠",
+            "resolution": 1.5,
+            "scaleX": 1,
+            "scaleY": 1,
+            "x": -17.971584000000004,
+            "y": -17.1085824,
+            "fontSize": "22.200192px"
+          },
+          {
+            "name": "card-pip",
+            "text": "♠",
+            "resolution": 1.5,
+            "scaleX": 1,
+            "scaleY": 1,
+            "x": 17.971584000000004,
+            "y": -17.1085824,
+            "fontSize": "22.200192px"
+          },
+          {
+            "name": "card-pip",
+            "text": "♠",
+            "resolution": 1.5,
+            "scaleX": 1,
+            "scaleY": 1,
+            "x": 0,
+            "y": 0,
+            "fontSize": "22.200192px"
+          },
+          {
+            "name": "card-pip",
+            "text": "♠",
+            "resolution": 1.5,
+            "scaleX": 1,
+            "scaleY": 1,
+            "x": -17.971584000000004,
+            "y": 17.1085824,
+            "fontSize": "22.200192px"
+          },
+          {
+            "name": "card-pip",
+            "text": "♠",
+            "resolution": 1.5,
+            "scaleX": 1,
+            "scaleY": 1,
+            "x": 17.971584000000004,
+            "y": 17.1085824,
+            "fontSize": "22.200192px"
+          },
+          {
+            "name": "card-pip",
+            "text": "♠",
+            "resolution": 1.5,
+            "scaleX": 1,
+            "scaleY": 1,
+            "x": -17.971584000000004,
+            "y": 50.31935999999999,
+            "fontSize": "22.200192px"
+          },
+          {
+            "name": "card-pip",
+            "text": "♠",
+            "resolution": 1.5,
+            "scaleX": 1,
+            "scaleY": 1,
+            "x": 17.971584000000004,
+            "y": 50.31935999999999,
+            "fontSize": "22.200192px"
+          },
+          {
+            "name": "rank-index",
+            "text": "9\n♠",
+            "resolution": 1.5,
+            "scaleX": 1,
+            "scaleY": 1,
+            "x": -44.4288,
+            "y": -64.39679999999998,
+            "fontSize": "22px"
+          },
+          {
+            "name": "",
+            "text": "9\n♠",
+            "resolution": 1.5,
+            "scaleX": 1,
+            "scaleY": 1,
+            "x": 44.4288,
+            "y": 64.39679999999998,
+            "fontSize": "19.968000000000004px"
+          },
+          {
+            "name": "card-pip",
+            "text": "♦",
+            "resolution": 1.5,
+            "scaleX": 1,
+            "scaleY": 1,
+            "x": -17.971584000000004,
+            "y": -50.31935999999999,
+            "fontSize": "22.200192px"
+          },
+          {
+            "name": "card-pip",
+            "text": "♦",
+            "resolution": 1.5,
+            "scaleX": 1,
+            "scaleY": 1,
+            "x": 17.971584000000004,
+            "y": -50.31935999999999,
+            "fontSize": "22.200192px"
+          },
+          {
+            "name": "card-pip",
+            "text": "♦",
+            "resolution": 1.5,
+            "scaleX": 1,
+            "scaleY": 1,
+            "x": -17.971584000000004,
+            "y": -17.1085824,
+            "fontSize": "22.200192px"
+          },
+          {
+            "name": "card-pip",
+            "text": "♦",
+            "resolution": 1.5,
+            "scaleX": 1,
+            "scaleY": 1,
+            "x": 17.971584000000004,
+            "y": -17.1085824,
+            "fontSize": "22.200192px"
+          },
+          {
+            "name": "card-pip",
+            "text": "♦",
+            "resolution": 1.5,
+            "scaleX": 1,
+            "scaleY": 1,
+            "x": 0,
+            "y": 0,
+            "fontSize": "22.200192px"
+          },
+          {
+            "name": "card-pip",
+            "text": "♦",
+            "resolution": 1.5,
+            "scaleX": 1,
+            "scaleY": 1,
+            "x": -17.971584000000004,
+            "y": 17.1085824,
+            "fontSize": "22.200192px"
+          },
+          {
+            "name": "card-pip",
+            "text": "♦",
+            "resolution": 1.5,
+            "scaleX": 1,
+            "scaleY": 1,
+            "x": 17.971584000000004,
+            "y": 17.1085824,
+            "fontSize": "22.200192px"
+          },
+          {
+            "name": "card-pip",
+            "text": "♦",
+            "resolution": 1.5,
+            "scaleX": 1,
+            "scaleY": 1,
+            "x": -17.971584000000004,
+            "y": 50.31935999999999,
+            "fontSize": "22.200192px"
+          },
+          {
+            "name": "card-pip",
+            "text": "♦",
+            "resolution": 1.5,
+            "scaleX": 1,
+            "scaleY": 1,
+            "x": 17.971584000000004,
+            "y": 50.31935999999999,
+            "fontSize": "22.200192px"
+          },
+          {
+            "name": "rank-index",
+            "text": "9\n♦",
+            "resolution": 1.5,
+            "scaleX": 1,
+            "scaleY": 1,
+            "x": -44.4288,
+            "y": -64.39679999999998,
+            "fontSize": "22px"
+          },
+          {
+            "name": "",
+            "text": "9\n♦",
+            "resolution": 1.5,
+            "scaleX": 1,
+            "scaleY": 1,
+            "x": 44.4288,
+            "y": 64.39679999999998,
+            "fontSize": "19.968000000000004px"
+          },
+          {
+            "name": "card-pip",
+            "text": "♣",
+            "resolution": 1.5,
+            "scaleX": 1,
+            "scaleY": 1,
+            "x": 0,
+            "y": -46.2938112,
+            "fontSize": "19.680192px"
+          },
+          {
+            "name": "card-pip",
+            "text": "♣",
+            "resolution": 1.5,
+            "scaleX": 1,
+            "scaleY": 1,
+            "x": 0,
+            "y": 46.2938112,
+            "fontSize": "19.680192px"
+          },
+          {
+            "name": "rank-index",
+            "text": "2\n♣",
+            "resolution": 1.5,
+            "scaleX": 1,
+            "scaleY": 1,
+            "x": -44.4288,
+            "y": -64.39679999999998,
+            "fontSize": "22px"
+          },
+          {
+            "name": "",
+            "text": "2\n♣",
+            "resolution": 1.5,
+            "scaleX": 1,
+            "scaleY": 1,
+            "x": 44.4288,
+            "y": 64.39679999999998,
+            "fontSize": "19.968000000000004px"
+          },
+          {
+            "name": "card-pip",
+            "text": "♠",
+            "resolution": 1.5,
+            "scaleX": 1,
+            "scaleY": 1,
+            "x": 0,
+            "y": -46.2938112,
+            "fontSize": "22.200192px"
+          },
+          {
+            "name": "card-pip",
+            "text": "♠",
+            "resolution": 1.5,
+            "scaleX": 1,
+            "scaleY": 1,
+            "x": 0,
+            "y": 46.2938112,
+            "fontSize": "22.200192px"
+          },
+          {
+            "name": "rank-index",
+            "text": "2\n♠",
+            "resolution": 1.5,
+            "scaleX": 1,
+            "scaleY": 1,
+            "x": -44.4288,
+            "y": -64.39679999999998,
+            "fontSize": "22px"
+          },
+          {
+            "name": "",
+            "text": "2\n♠",
+            "resolution": 1.5,
+            "scaleX": 1,
+            "scaleY": 1,
+            "x": 44.4288,
+            "y": 64.39679999999998,
+            "fontSize": "19.968000000000004px"
+          },
+          {
+            "name": "rank-index",
+            "text": "J\n♥",
+            "resolution": 1.5,
+            "scaleX": 1,
+            "scaleY": 1,
+            "x": -44.4288,
+            "y": -64.39679999999998,
+            "fontSize": "22px"
+          },
+          {
+            "name": "",
+            "text": "J\n♥",
+            "resolution": 1.5,
+            "scaleX": 1,
+            "scaleY": 1,
+            "x": 44.4288,
+            "y": 64.39679999999998,
+            "fontSize": "19.968000000000004px"
+          },
+          {
+            "name": "rank-index",
+            "text": "Q\n♦",
+            "resolution": 1.5,
+            "scaleX": 1,
+            "scaleY": 1,
+            "x": -44.4288,
+            "y": -64.39679999999998,
+            "fontSize": "22px"
+          },
+          {
+            "name": "",
+            "text": "Q\n♦",
+            "resolution": 1.5,
+            "scaleX": 1,
+            "scaleY": 1,
+            "x": 44.4288,
+            "y": 64.39679999999998,
+            "fontSize": "19.968000000000004px"
+          },
+          {
+            "name": "selection/assist-copy",
+            "text": "主手：先选1–5张",
+            "resolution": 1.5,
+            "scaleX": 1,
+            "scaleY": 1,
+            "x": 124,
+            "y": 322,
+            "fontSize": "14px"
+          },
+          {
+            "name": "selection/assist-copy",
+            "text": "先组成两对、三条或更高",
+            "resolution": 1.5,
+            "scaleX": 1,
+            "scaleY": 1,
+            "x": 1105,
+            "y": 206.4,
+            "fontSize": "14px"
+          },
+          {
+            "name": "selection/assist-copy",
+            "text": "本场助攻 1/1",
+            "resolution": 1.5,
+            "scaleX": 1,
+            "scaleY": 1,
+            "x": 1105,
+            "y": 244.4,
+            "fontSize": "14px"
+          },
+          {
+            "name": "selection/assist-copy",
+            "text": "助攻会一同用掉",
+            "resolution": 1.5,
+            "scaleX": 1,
+            "scaleY": 1,
+            "x": 124,
+            "y": 346,
+            "fontSize": "14px"
+          },
+          {
+            "name": "selection/assist-copy",
+            "text": "不算主手或留手牌",
+            "resolution": 1.5,
+            "scaleX": 1,
+            "scaleY": 1,
+            "x": 124,
+            "y": 364,
+            "fontSize": "14px"
+          },
+          {
+            "name": "selection/assist-copy",
+            "text": "AI只整理主手，助攻自己选",
+            "resolution": 1.5,
+            "scaleX": 1,
+            "scaleY": 1,
+            "x": 124,
+            "y": 388,
+            "fontSize": "14px"
+          },
+          {
+            "name": "selection/quick-label",
+            "text": "来源\n条件",
+            "resolution": 1.5,
+            "scaleX": 1,
+            "scaleY": 1,
+            "x": 158,
+            "y": 293,
+            "fontSize": "14px"
+          },
+          {
+            "name": "selection/quick-label",
+            "text": "怎么\n凑牌",
+            "resolution": 1.5,
+            "scaleX": 1,
+            "scaleY": 1,
+            "x": 206,
+            "y": 293,
+            "fontSize": "14px"
+          }
+        ]
+      },
+      "status": "FAIL",
+      "error": "page.waitForFunction: Timeout 25000ms exceeded.\n    at point (/workspace/dachoupai/harness/ui.mjs:5:14)\n    at tapUI (/workspace/dachoupai/harness/ui.mjs:25:17)\n    at /workspace/dachoupai/harness/stage-clarity.mjs:32:109"
+    }
+  ],
+  "status": "FAIL",
+  "error": "TimeoutError: page.waitForFunction: Timeout 25000ms exceeded."
+}

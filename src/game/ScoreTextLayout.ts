@@ -1,5 +1,6 @@
 import type Phaser from 'phaser';
 import {scoreCells,type Box} from './layout';
+import {crispText} from './TextRaster';
 
 /** A source lands outside the numeric cell; its centre never aims through the digits. */
 export function scoreFlightLanding(source:{x:number;y:number},cell:Box,outset=14):{x:number;y:number} {
@@ -36,6 +37,7 @@ export function fitScoreLine(text:Phaser.GameObjects.Text,area:Box,baseSize:numb
   if(numeric&&text.width>area.width)text.setWordWrapWidth(area.width,true);
   text.setPosition(area.x+area.width/2,area.y).setOrigin(.5,0)
     .setData('fullText',value).setData('fittedText',text.text);
+  crispText(text);
 }
 
 /** Primary score gets the existing pedestal's vertical room; cards/actions never move. */

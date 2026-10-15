@@ -111,6 +111,7 @@ import {R2_BOSSES,r2BossText,r2DisabledCards} from '../domain/r2Chapter';
 import {showConsumables} from './ConsumableDialog';
 import {gameToolInventoryBox,toolInventoryLabel,toolInventoryPlayedArea,toolInventoryProgressY} from './ToolInventoryEntry';
 import {fitScoreLine,scoreImpactCell,scoreFlightLanding} from './ScoreTextLayout';
+import {crispText} from './TextRaster';
 import {SCORE_FONT,PAPER_THEME as T,PAPER_CSS as C,UI_FONT,P00_ASSETS,assetUrl} from './theme';
 import {cardPipRowOffset} from './CardPipLayout';
 import {scoreCells,scorePedestal,playedFootprint} from './layout';
@@ -525,7 +526,7 @@ export class GameScene extends Phaser.Scene {
       const marker=v.add(this.add.container(b.x+b.width/2,b.y+b.height/2)).setData('baseX',b.x+b.width/2).setData('baseY',b.y+b.height/2);
       const route=routeFitCue(this.run,'jokers',j.definitionId,j.instanceId);const r=this.add.rectangle(0,0,b.width,b.height,T.paperLight).setStrokeStyle(1,T.ink,.5);
       marker.add(r);if(route)marker.add(routeFrame(this,{x:-b.width/2,y:-b.height/2,width:b.width,height:b.height},route,d.rarity==='rare').setName('held/route-fit'));
-      const resolution=Math.max(1.5,1/this.scale.zoom),labelX=sideLabels?labelBox.x-b.x-b.width/2:-b.width/2+3;
+      const resolution=Math.max(1,1/this.scale.zoom),labelX=sideLabels?labelBox.x-b.x-b.width/2:-b.width/2+3;
       const name=this.add.text(labelX,-b.height/2+1,d.name,{fontFamily:UI_FONT,fontSize:'14px',color:C.ink,resolution});
       const current=this.add.text(labelX,b.height/2-16,disabled.has(j.instanceId)?'封禁':this.jokerValue(j),{fontFamily:UI_FONT,fontSize:'14px',color:C.red,resolution});
       const room=jokerLabelRoom(l,i);
@@ -604,7 +605,7 @@ export class GameScene extends Phaser.Scene {
     faceGlow.lineStyle(1,0xfffbdf,.85);for(let i=0;i<3;i++)faceGlow.beginPath().moveTo(-b.width*.3,-b.height*.3+i*4).lineTo(b.width*.28,-b.height*.15+i*4).strokePath();
     c.add([edgeLines,faceGlow]);
 
-    const small=b.width<90,tiny=b.width<64,edge=Math.max(4,Math.min(9,b.width*.055)),resolution=Math.max(1.5,1/this.scale.zoom);
+    const small=b.width<90,tiny=b.width<64,edge=Math.max(4,Math.min(9,b.width*.055)),resolution=Math.max(1,1/this.scale.zoom);
     const inkHex=SUIT_INK[card.suit],ink='#'+inkHex.toString(16).padStart(6,'0');
     // Reserve the exposed index column before arranging any pip / court art.
     const pointSize=Math.max(14,Math.min(small?19:b.width<=112?22:30,b.width*.23,b.height*.19)),label=this.add.text(-b.width/2+edge,-b.height/2+edge,rankLabel(card.rank)+'\n'+SUIT_SYMBOL[card.suit],{fontFamily:'Georgia,serif',fontSize:`${pointSize}px`,fontStyle:'bold',color:ink,lineSpacing:-4,resolution}).setName('rank-index');
@@ -687,7 +688,7 @@ export class GameScene extends Phaser.Scene {
     colors.forEach((color,i)=>{rim.lineStyle(edition==='polychrome'?2:1.5,color,.9).strokeRoundedRect(-width/2+3+i*1.7,-height/2+3+i*1.7,width-6-i*3.4,height-6-i*3.4,5);});
     const label=edition==='foil'?'箔':edition==='holographic'?'虹':'彩',labelY=joker?-height/2+12:height/2-12;
     rim.fillStyle(colors[0],.9).fillCircle(width/2-12,labelY,8);container.add(rim);container.setData('editionRim',rim);
-    container.add(this.add.text(width/2-12,labelY,label,{fontFamily:UI_FONT,fontSize:'11px',fontStyle:'bold',color:'#17383c',resolution:Math.max(1.5,1/this.scale.zoom)}).setOrigin(.5).setName('edition-badge'));
+    container.add(this.add.text(width/2-12,labelY,label,{fontFamily:UI_FONT,fontSize:'11px',fontStyle:'bold',color:'#17383c',resolution:Math.max(1,1/this.scale.zoom)}).setOrigin(.5).setName('edition-badge'));
     if(!this.reducedMotion){const shimmer=this.tweens.add({targets:rim,alpha:{from:.55,to:1},duration:1100,yoyo:true,repeat:-1,ease:'Sine.easeInOut'});rim.setData('editionTween',shimmer);rim.once('destroy',()=>shimmer.remove());}
   }
   private revealCard(view:CardView):void {
@@ -851,12 +852,12 @@ export class GameScene extends Phaser.Scene {
     if(!preview){
       const notice=stageNotice(this.run),identity=stageIdentity(this.stage.index,this.run.stage!.boss,this.run.tourMode,this.run.difficulty)!,hint=notice?.warning?identity.stageName+' · '+notice.title+(p.height>=90?'\n'+notice.description:''):this.run.stage!.playIndex===0?identity.stageName+'\n选1–5张出牌，不合适可弃牌换新':'选牌，准备下一手';
       const payoffs=notice?.warning?[]:growthPayoffs(this.run),payoff=payoffs.find(p=>p.change!=='same')??payoffs[0],shown=payoff&&showGrowthPayoff(this.view,this,this.previewCards,p,payoff);
-      const text=!shown?this.add.text(p.x+p.width/2,p.y+p.height/2,hint,{fontFamily:UI_FONT,fontSize:p.height<90||notice?.warning?'14px':'18px',color:notice?.warning?C.red:C.mutedInk,align:'center',lineSpacing:4,wordWrap:{width:p.width-24,useAdvancedWrap:true},resolution:Math.max(1.5,1/this.scale.zoom)}).setOrigin(.5):undefined;
+      const text=!shown?this.add.text(p.x+p.width/2,p.y+p.height/2,hint,{fontFamily:UI_FONT,fontSize:p.height<90||notice?.warning?'14px':'18px',color:notice?.warning?C.red:C.mutedInk,align:'center',lineSpacing:4,wordWrap:{width:p.width-24,useAdvancedWrap:true},resolution:Math.max(1,1/this.scale.zoom)}).setOrigin(.5):undefined;
       if(text)this.previewCards.add(text);
       const score=this.view.layout.scoreBoard,mods=readR2Modifiers(this.run.jokers,this.jokerDefinitions),handRules=r2ScoreContext(this.run,this.hand,[]).handRules;
       const rule=fourCardRuleCopy({fourStraight:mods.fourStraight||handRules?.fourStraight,fourFlush:mods.fourFlush||handRules?.fourFlush});
       const idleRows=score.height>=90?['按全部所选牌判型，最多5张',...(rule?[rule]:[])]:rule?[rule]:[];
-      idleRows.forEach((line,i)=>{const area={x:score.x+10,y:score.y+(score.height>=130?38:score.height>=90?34:24)+i*18,width:score.width-20-(this.selectionQuickInScore(score)?104:0),height:18};const lineText=this.add.text(area.x,area.y,line,{fontFamily:UI_FONT,fontSize:'14px',color:C.jade,resolution:Math.max(1.5,1/this.scale.zoom)}).setName('selection/fact-line');fitScoreLine(lineText,area,14);this.previewCards!.add(lineText);});
+      idleRows.forEach((line,i)=>{const area={x:score.x+10,y:score.y+(score.height>=130?38:score.height>=90?34:24)+i*18,width:score.width-20-(this.selectionQuickInScore(score)?104:0),height:18};const lineText=this.add.text(area.x,area.y,line,{fontFamily:UI_FONT,fontSize:'14px',color:C.jade,resolution:Math.max(1,1/this.scale.zoom)}).setName('selection/fact-line');fitScoreLine(lineText,area,14);this.previewCards!.add(lineText);});
       this.renderCandidateEntry(score);
       const hit=this.view.rect(score).setFillStyle(0,0).setStrokeStyle();this.previewCards.add(hit);this.view.target(hit,'selection/facts',{tap:()=>this.inspectCandidates(),detail:()=>this.inspectCandidates()});
       this.renderSelectionQuickButtons(score);return;
@@ -869,7 +870,7 @@ export class GameScene extends Phaser.Scene {
       rows=[...(score.height>=130?[facts.pattern]:[]),facts.membership,...facts.restrictions,...(facts.rules?[facts.rules]:[])];
       step=rows.length>3||score.height<120?18:20;start=score.height>=130?38:34;
     }
-    rows.forEach((copy,i)=>{const text=this.add.text(score.x+10,score.y+start+i*step,copy,{fontFamily:UI_FONT,fontSize:'14px',color:copy.includes('停用')||copy.includes('点数0')?C.red:C.jade,resolution:Math.max(1.5,1/this.scale.zoom)}).setName('selection/fact-line').setData('fullText',copy);this.previewCards!.add(text);fitScoreLine(text,{x:score.x+10,y:score.y+start+i*step,width:score.width-20-(this.selectionQuickInScore(score)?104:0),height:step},14);});
+    rows.forEach((copy,i)=>{const text=this.add.text(score.x+10,score.y+start+i*step,copy,{fontFamily:UI_FONT,fontSize:'14px',color:copy.includes('停用')||copy.includes('点数0')?C.red:C.jade,resolution:Math.max(1,1/this.scale.zoom)}).setName('selection/fact-line').setData('fullText',copy);this.previewCards!.add(text);fitScoreLine(text,{x:score.x+10,y:score.y+start+i*step,width:score.width-20-(this.selectionQuickInScore(score)?104:0),height:step},14);});
     this.renderCandidateEntry(score);
     const hit=this.view.rect(score).setFillStyle(0,0).setStrokeStyle();this.previewCards.add(hit);
     this.view.target(hit,'selection/facts',{tap:()=>this.inspectCandidates(),detail:()=>this.inspectSelection(preview)});
@@ -900,7 +901,7 @@ export class GameScene extends Phaser.Scene {
     const current=validAssistDraft(this.assistInput(),availability.available,this.assistIds);
     const status=availability.available?'本场助攻 1/1':availability.reason==='used'?'本场助攻已用':availability.reason==='disabled'?'本场助攻停用':'助攻暂不可用';
     const label=(ids:readonly string[])=>this.hand.filter(c=>ids.includes(c.id)).map(c=>rankLabel(c.rank)+SUIT_SYMBOL[c.suit]).join(' ');
-    const text=(x:number,y:number,value:string,width:number)=>{const t=this.add.text(x,y,value,{fontFamily:UI_FONT,fontSize:'14px',color:C.jade,resolution:Math.max(1.5,1/this.scale.zoom)}).setName('selection/assist-copy').setData('fullText',value);this.previewCards!.add(t);fitScoreLine(t,{x,y,width,height:18},14);return t;};
+    const text=(x:number,y:number,value:string,width:number)=>{const t=this.add.text(x,y,value,{fontFamily:UI_FONT,fontSize:'14px',color:C.jade,resolution:Math.max(1,1/this.scale.zoom)}).setName('selection/assist-copy').setData('fullText',value);this.previewCards!.add(t);fitScoreLine(t,{x,y,width,height:18},14);return t;};
     text(score.x+10,score.y+(desktop?52:score.height<90?24:34),preview?'主手 '+preview.playedIds.length+' · 计分 '+preview.activeScoringIds.length+' · 留手 '+preview.heldIds.length:'主手：先选1–5张',score.width-20);
     const railWidth=Math.min(194,p.width-8),rail:Box=room?{x:score.x+10,y:score.y+Math.min(60,score.height-66),width:score.width-20,height:44}:{x:p.x+p.width-railWidth-4,y:p.y,width:railWidth,height:44};
     const first=this.view.root.length;
@@ -940,7 +941,7 @@ export class GameScene extends Phaser.Scene {
   }
   private renderCandidateEntry(score:Box):void {
     if(score.height<78)return;
-    const footer=this.add.text(score.x+10,score.y+score.height-20,this.candidateEntry(),{fontFamily:UI_FONT,fontSize:'14px',color:C.jade,resolution:Math.max(1.5,1/this.scale.zoom)}).setName('selection/rules-entry');this.previewCards!.add(footer);
+    const footer=this.add.text(score.x+10,score.y+score.height-20,this.candidateEntry(),{fontFamily:UI_FONT,fontSize:'14px',color:C.jade,resolution:Math.max(1,1/this.scale.zoom)}).setName('selection/rules-entry');this.previewCards!.add(footer);
   }
   private selectionQuickInScore(score:Box):boolean {return this.assistProfile||this.view.layout.mode!=='desktop'||score.width>=300;}
   private renderSelectionQuickButtons(score:Box):void {
@@ -1468,6 +1469,7 @@ export class GameScene extends Phaser.Scene {
       const pulse=Number(text.getData('scorePulseScale')??1);
       text.setOrigin(.5).setPosition(cell.x+cell.width/2,cell.y+cell.height/2+Number(text.getData('scorePulseY')??0));
       text.setScale(Math.min(pulse,cell.width/Math.max(1,text.width),cell.height/Math.max(1,text.height)));
+      crispText(text);
     });
     const guarded=[this.resultText,...this.scoreLabels,...texts,this.breakdownText,this.previousHandText].filter(t=>t?.active&&t.visible);
     const bodies=[...this.cardViews.map(v=>v.container),...[...this.settledCards.values()].map(v=>v.container),
@@ -1611,7 +1613,7 @@ export class GameScene extends Phaser.Scene {
     } finally {if(glow.active)glow.setAlpha(0);if(edge?.active)edge.setAlpha(edgeAlpha);}
   }
   private floatNote(note:string,x:number,y:number,color:string,duration:number,context:EffectContext):Promise<void> {
-    const group=this.view.add(this.add.container(x,y)),text=this.add.text(0,0,note,{fontFamily:UI_FONT,fontSize:this.view.layout.mode==='desktop'?'22px':'18px',fontStyle:'bold',color:C.ink,resolution:Math.max(1.5,1/this.scale.zoom)}).setOrigin(.5);
+    const group=this.view.add(this.add.container(x,y)),text=this.add.text(0,0,note,{fontFamily:UI_FONT,fontSize:this.view.layout.mode==='desktop'?'22px':'18px',fontStyle:'bold',color:C.ink,resolution:Math.max(1,1/this.scale.zoom)}).setOrigin(.5);
     const width=text.width+16,height=text.height+8,plate=this.view.material({x:-width/2,y:-height/2,width,height},0x30545a,0x17323c,5).setAlpha(.94);
     x=Phaser.Math.Clamp(x,width/2+6,this.view.layout.width-width/2-6);y=Math.max(y,height/2+28);group.setPosition(x,y);
     const edge=this.add.graphics().lineStyle(1,0xc9d1b0,.65).strokeRoundedRect(-width/2,-height/2,width,height,5);
@@ -1683,7 +1685,7 @@ export class GameScene extends Phaser.Scene {
     const mask=safety.createGeometryMask();trail.setMask(mask);packet.setMask(mask).setData('landing',end).setData('cell',cell);
     if(multiply){shape.fillStyle(0x762f32,.96).fillPoints([{x:0,y:-15},{x:20,y:0},{x:0,y:15},{x:-20,y:0}],true);shape.lineStyle(2,T.brass,.9).strokePoints([{x:0,y:-15},{x:20,y:0},{x:0,y:15},{x:-20,y:0}],true);}
     else shape.fillStyle(multChanged?0x285a54:0x715736,.96).fillRoundedRect(-18,-13,36,26,10).lineStyle(1,light,.85).strokeRoundedRect(-18,-13,36,26,10);
-    const symbol=this.add.text(0,-1,packetSymbol,{fontFamily:UI_FONT,fontSize:multiply?'18px':'16px',fontStyle:'bold',color:'#fff3d0',resolution:Math.max(1.5,1/this.scale.zoom)}).setOrigin(.5);
+    const symbol=this.add.text(0,-1,packetSymbol,{fontFamily:UI_FONT,fontSize:multiply?'18px':'16px',fontStyle:'bold',color:'#fff3d0',resolution:Math.max(1,1/this.scale.zoom)}).setOrigin(.5);
     packet.add([shape,symbol]);this.keepScoreReadable();
     const flight={t:0};
     return Promise.all([
@@ -1880,7 +1882,7 @@ export class GameScene extends Phaser.Scene {
     marker.add(frame);drawJokerMotif(this,marker,definition.id,0,0,Math.min(b.width,b.height)*.75,definition);
     marker.add(this.add.text(labelX,-b.height/2+5,definition.name,{fontFamily:UI_FONT,fontSize:'14px',fontStyle:'bold',color:sideLabels?'#fff0cf':rarityStyle.css.ink,wordWrap:{width:sideLabels?labelBox.width:b.width-10,useAdvancedWrap:true},maxLines:l.shortLandscape?1:2}));
     const stackValue=!sideLabels&&b.width<64,label=this.add.text(labelX,sideLabels?-b.height/2+26:b.height/2-(stackValue?24:3),'回看来源',{fontFamily:UI_FONT,fontSize:'12px',color:sideLabels?'#ffd0af':rarityStyle.css.ink,wordWrap:{width:sideLabels?labelBox.width:stackValue?b.width-10:b.width-40,useAdvancedWrap:true},maxLines:l.shortLandscape?1:2}).setOrigin(0,sideLabels?0:1);marker.add(label);
-    marker.add(createJokerRarityBadge(this,definition.rarity,{x:b.width/2-31,y:b.height/2-21,compact:true,resolution:Math.max(1.5,1/this.scale.zoom)}).setData('definitionId',definition.id).setData('surface','trace'));
+    marker.add(createJokerRarityBadge(this,definition.rarity,{x:b.width/2-31,y:b.height/2-21,compact:true,resolution:Math.max(1,1/this.scale.zoom)}).setData('definitionId',definition.id).setData('surface','trace'));
     marker.setData('frame',frame).setData('frameColor',rarityStyle.edge).setData('valueLabel',label).setData('baseX',marker.x).setData('baseY',marker.y);this.jokerViews.set(event.sourceInstanceId,marker);
   }
   private showTraceHeldCard(id:string):void {
