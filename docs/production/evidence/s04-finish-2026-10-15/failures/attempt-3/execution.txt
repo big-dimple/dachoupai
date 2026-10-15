@@ -1,0 +1,12 @@
+locator.isDisabled: Timeout 30000ms exceeded.
+Call log:
+[2m  - waiting for getByRole('button', { name: '确认使用', exact: true })[22m
+
+    at failAndRetry (/workspace/dachoupai/harness/s04-finish.mjs:50:118)
+    at async file:///workspace/dachoupai/harness/s04-finish.mjs:61:157 {
+  log: [
+    "  - waiting for getByRole('button', { name: '确认使用', exact: true })"
+  ],
+  name: 'TimeoutError'
+}
+FAIL /tmp/s04-finish-attempt3
