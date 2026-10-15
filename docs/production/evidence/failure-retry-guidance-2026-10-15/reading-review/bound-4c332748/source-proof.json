@@ -1,0 +1,37 @@
+{
+  "runHead": "4c3327482c03e659acc69b0675b7588849cb2382",
+  "observerBlob": "93158249b0a126472d3ef0e3a87123b2e51be692",
+  "unchangedProductAndFixtureTrees": {
+    "src": {
+      "prior3fb": "cb5ddf2e5ea9ba284c52a129f1eccb9140f15385",
+      "bound": "cb5ddf2e5ea9ba284c52a129f1eccb9140f15385",
+      "equal": true
+    },
+    "tests": {
+      "prior3fb": "203e1d9177dffbb6cf8f6100ebdda3e8426c1a01",
+      "bound": "203e1d9177dffbb6cf8f6100ebdda3e8426c1a01",
+      "equal": true
+    },
+    "src/style.css": {
+      "prior3fb": "561a420fc415768ae33300d34350b84ee9ba16c2",
+      "bound": "561a420fc415768ae33300d34350b84ee9ba16c2",
+      "equal": true
+    },
+    "public": {
+      "prior3fb": "c4a6ec74e7fd754b0f300b973020f8afed7542e1",
+      "bound": "c4a6ec74e7fd754b0f300b973020f8afed7542e1",
+      "equal": true
+    },
+    "art": {
+      "prior3fb": "b0caa33679b84bee932b2854734c04ad39ba0464",
+      "bound": "b0caa33679b84bee932b2854734c04ad39ba0464",
+      "equal": true
+    },
+    "harness/fixtures/failure-retry.ts": {
+      "prior3fb": "73d546fd7e33f6df6012ccda5ef85aee24384191",
+      "bound": "73d546fd7e33f6df6012ccda5ef85aee24384191",
+      "equal": true
+    }
+  },
+  "method": "Current 6 short cases and default 13 regression cases both ran on this same clean immutable head; document-only follow-up preserves this observer blob."
+}
