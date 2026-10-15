@@ -1,0 +1,45 @@
+name: Smoke diagnostics
+on:
+  push:
+    branches: [diagnose/shop-smoke-perf-20261015]
+    paths: [harness/smoke-diagnostics.mjs, .github/workflows/smoke-diagnostics.yml]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  compare:
+    strategy:
+      fail-fast: false
+      matrix:
+        ref: [4d2ff4ca8487f2f00b55516822d1a28ac3c1751f, 3db8b777a2b7e213f912fa9f980890c363c5b042]
+        browser: [chromium, firefox]
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    container:
+      image: mcr.microsoft.com/playwright:v1.63.0-noble@sha256:eff16c30e6f3f4af0a03fa4b706120d5e9b0891c344a27d64559aff5900a4a27
+      options: --user 1001 --ipc=host
+    steps:
+      - uses: actions/checkout@v4
+      - run: cp harness/smoke-diagnostics.mjs /tmp/smoke-diagnostics.mjs
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ matrix.ref }}
+      - run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22.23.3
+          cache: npm
+      - run: npm ci
+      - run: npm run verify:smoke
+        env:
+          SMOKE_BROWSERS: ${{ matrix.browser }}
+          SHOT_PROFILES: mobile
+          NODE_OPTIONS: --import=/tmp/smoke-diagnostics.mjs
+          SMOKE_DIAGNOSTICS_OUTPUT: shots/ci/smoke-diagnostics.jsonl
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: smoke-${{ matrix.ref }}-${{ matrix.browser }}
+          path: |
+            shots/ci/smoke-diagnostics.jsonl
+            shots/smoke-result.json
