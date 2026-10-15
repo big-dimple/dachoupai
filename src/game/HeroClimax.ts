@@ -81,15 +81,17 @@ export function mountHeroClimax(scene:Phaser.Scene,root:Phaser.GameObjects.Conta
  text(skillLayer,l.readout.x,l.readout.y,value.label,l.short?14:18,C.jade,l.readout.width).setName('hero/climax-value-label');
  const format=(s:string)=>/^\d{16,}$/.test(s)?'≈'+heatText(s):s;
  const number=(parent:Phaser.GameObjects.Container,x:number,y:number,s:string,size:number,width:number,height:number,name:string)=>{const t=scene.add.text(x,y,format(s),{fontFamily:SCORE_FONT,fontSize:size+'px',fontStyle:'800',color:C.red,resolution:density}).setName(name).setData('exactValue',s);parent.add(t);fitScoreLine(t,{x:x-width/2,y,width,height},size,true);return t;};
- const readout=number(skillLayer,l.readout.x+l.readout.width/2,l.valueY,value.after,l.short?48:l.portrait?82:112,l.readout.width,Math.max(1,Math.min(l.short?70:120,l.noteY-l.valueY-12)),'hero/climax-value');
- if(value.accumulated)text(skillLayer,l.readout.x,l.valueY+readout.displayHeight+18,value.accumulated,l.short?14:18,C.jade,l.readout.width).setName('hero/climax-landing');
+ const accumulated=value.accumulated?text(skillLayer,l.readout.x,0,value.accumulated,l.short?14:18,C.jade,l.readout.width).setName('hero/climax-landing'):undefined;
+ const readout=number(skillLayer,l.readout.x+l.readout.width/2,l.valueY,value.after,l.short?48:l.portrait?82:112,l.readout.width,Math.max(1,Math.min(l.short?70:120,l.noteY-l.valueY-(accumulated?accumulated.height+26:12))),'hero/climax-value');
+ if(accumulated){accumulated.setY(l.valueY+readout.displayHeight+18);crispText(accumulated);}
  text(skillLayer,l.sourceCaption.x,l.sourceCaption.y,(actualSource?'实际来源 · ':'')+key.fact.title,l.short?14:16,C.jade,l.sourceCaption.width).setName('hero/climax-source-title');
  // Last shot places the actual after-accumulator, never a future hand forecast.
  const landingY=l.landing.y+(l.short?20:52),landingValue=value.landingValue??value.after;
  text(landingLayer,l.nameX,l.landing.y,value.landingLabel??value.label,l.short?16:20,C.jade,l.nameW).setName('hero/climax-value-label');
- const landed=number(landingLayer,p.x+p.width/2,landingY,landingValue,l.short?74:l.portrait?138:190,l.nameW,Math.max(1,Math.min(l.landing.height*.63,l.noteY-landingY-(value.landingValue?48:16))),'hero/climax-value');
- // The persistent caption already owns note; only a distinct local factor needs another line.
- if(value.landingValue)text(landingLayer,l.nameX,Math.min(landingY+landed.displayHeight+16,l.noteY-(l.short?28:32)),value.label+' '+value.after,l.short?14:20,C.red,l.nameW).setName('hero/climax-local-effect');
+ const localEffect=value.landingValue?text(landingLayer,l.nameX,0,value.label+' '+format(value.after),l.short?14:20,C.red,l.nameW).setName('hero/climax-local-effect'):undefined;
+ const landed=number(landingLayer,p.x+p.width/2,landingY,landingValue,l.short?74:l.portrait?138:190,l.nameW,Math.max(1,Math.min(l.landing.height*.63,l.noteY-landingY-(localEffect?localEffect.height+24:16))),'hero/climax-value');
+ // The persistent caption already owns note; reserve space only for a distinct local factor.
+ if(localEffect){localEffect.setY(landingY+landed.displayHeight+16);crispText(localEffect);}
  text(landingLayer,l.sourceCaption.x,l.sourceCaption.y,value.accumulated??key.landing,l.short?14:18,C.jade,l.sourceCaption.width).setName('hero/climax-landing');
  const owned=new Set<Phaser.Tweens.Tween>();let disposed=false,still=reduced,struck=false,strikeAt=0,shotAt=performance.now(),shot='',releaseDone:(()=>void)|undefined;
  const started=performance.now();
