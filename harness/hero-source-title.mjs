@@ -5,10 +5,10 @@ import {mkdir,writeFile} from 'node:fs/promises';
 import {gzipSync} from 'node:zlib';
 import {execFileSync} from 'node:child_process';
 import {tapUI,waitScene,tapMenuAction} from './ui.mjs';
-const port=Number(process.env.HERO_TITLE_PORT??5591);
+const port=Number(process.env.HERO_TITLE_PORT??5591),dpr=Number(process.env.HERO_TITLE_DPR??1);
 const out=process.env.HERO_TITLE_OUT??'shots/hero-source-title';await mkdir(out,{recursive:true});
 const v=await createServer({root:process.env.HERO_TITLE_ROOT??process.cwd(),cacheDir:process.env.HERO_TITLE_ROOT?process.env.HERO_TITLE_ROOT+'/.vite-cache':undefined,mode:'e2e',server:{host:'127.0.0.1',port,strictPort:true},logLevel:'error'});await v.listen();
-const helperLoader=await createServer({logLevel:'error'}),{savedSkillName}=await helperLoader.ssrLoadModule('/src/game/SettlementHighlights.ts');await helperLoader.close();
+const helperLoader=await createServer({logLevel:'error'}),{savedSkillName}=await helperLoader.ssrLoadModule('/src/game/SettlementHighlights.ts'),{heroClimaxValue}=await helperLoader.ssrLoadModule('/src/game/HeroClimax.ts');await helperLoader.close();
 const {createRun,applyCommand}=await v.ssrLoadModule('/src/domain/run.ts'),{newRunIdentity}=await v.ssrLoadModule('/src/game/RunLaunch.ts'),{makeCheckpoint,readCheckpoint}=await v.ssrLoadModule('/src/application/checkpoint.ts'),{r2CreateJoker}=await v.ssrLoadModule('/src/domain/r2Run.ts'),{touyeChoice}=await v.ssrLoadModule('/src/game/TouyeWagerCopy.ts'),{heroPayoffs}=await v.ssrLoadModule('/src/game/HeroPayoff.ts'),{getCharacter}=await v.ssrLoadModule('/src/game/characters.ts'),{supportSettlementReady}=await v.ssrLoadModule('/harness/fixtures/settlement.ts');
 const hand=['spades-8','hearts-8','clubs-7','diamonds-7','spades-13','hearts-13','clubs-2','diamonds-4'];
 function send(s,action,commandId='setup/'+s.commandSeq){const command={runId:s.runId,commandId,expectedSeq:s.commandSeq,action},r=applyCommand(s,command);assert.ok(r.ok,r.code);return {state:r.state,command};}
@@ -29,7 +29,7 @@ const browser=await chromium.launch({executablePath:'/usr/bin/chromium',args:['-
 const saved=p=>p.evaluate(async()=>{const c=window.__harness.game.registry.get('runController');return {state:c.state,journal:c.journal,storage:await c.store.read(),localStorage:Object.fromEntries(Object.entries(localStorage).sort())};});
 const settle=p=>p.waitForFunction(()=>{const g=window.__harness.game,s=g.scene.getScene('game');return g.scene.isActive('intermission')&&g.scene.getScene('intermission').ready||s.ready&&!s.playing&&!s.presentation&&s.cardViews.every(x=>!x.dealing&&!s.tweens.isTweening(x.container));});
 async function transaction(p,before,action){await p.waitForFunction(seq=>window.__harness.game.registry.get('runController').state.commandSeq===seq+1,before.state.commandSeq);const after=await saved(p),receipt=after.state.receipts.at(-1),expected=send(before.state,action,receipt.commandId);assert.deepEqual(after.state,expected.state);assert.deepEqual(after.journal,[...before.journal,expected.command]);assert.deepEqual(after.storage.current,makeCheckpoint(after.state,after.journal));assert.equal(after.storage.revision,before.storage.revision+1);assert.deepEqual(after.localStorage,before.localStorage);return after;}
-try{for(const spec of specs){const mode=spec.mode??'normal',key=spec.kind+'-'+spec.width+'-'+mode;if(process.env.HERO_TITLE_CASES&&!process.env.HERO_TITLE_CASES.split(',').includes(key))continue;const row={key,...spec,mode,errors:[]};report.cases.push(row);const touch=spec.width<800,p=await browser.newPage({viewport:{width:spec.width,height:spec.width===1366?768:740},hasTouch:touch,reducedMotion:mode==='reduce'?'reduce':'no-preference'});p.setDefaultTimeout(45000);p.on('dialog',d=>d.accept());p.on('pageerror',e=>row.errors.push(e.stack));
+try{for(const spec of specs){const mode=spec.mode??'normal',key=spec.kind+'-'+spec.width+'-'+mode;if(process.env.HERO_TITLE_CASES&&!process.env.HERO_TITLE_CASES.split(',').includes(key))continue;const row={key,...spec,mode,dpr,errors:[]};report.cases.push(row);const touch=spec.width<800,p=await browser.newPage({viewport:{width:spec.width,height:spec.width===1366?768:740},hasTouch:touch,deviceScaleFactor:dpr,reducedMotion:mode==='reduce'?'reduce':'no-preference'});p.setDefaultTimeout(45000);p.on('dialog',d=>d.accept());p.on('pageerror',e=>row.errors.push(e.stack));
  try{if(mode==='fast')await p.addInitScript(()=>localStorage.setItem('dachoupai-presentation-v1',JSON.stringify({speed:4,reducedMotion:false})));const f=fixture(spec.kind);assert.ok(readCheckpoint(makeCheckpoint(f.state,[])).ok);row.fixture=makeCheckpoint(f.state,[]);
   await p.goto('http://127.0.0.1:'+port+'/?harness=1');await waitScene(p,'title');await p.locator('.run-menu-toggle').click();const sec=p.getByText('进度与存档',{exact:true}).locator('..');if(!await sec.evaluate(e=>e.open))await sec.locator('summary').click();const fc=p.waitForEvent('filechooser');await p.getByRole('button',{name:'导入本局',exact:true}).click();await(await fc).setFiles({name:'source-title.json',mimeType:'application/json',buffer:Buffer.from(JSON.stringify(row.fixture))});await waitScene(p,'game');await settle(p);const intro=p.getByRole('button',{name:'开始出牌',exact:true});if(await intro.count())await intro.click();if(await p.locator('.detail-dialog[open]').count())await p.getByRole('button',{name:'关闭',exact:true}).click();await p.evaluate(()=>document.fonts.ready);assert.deepEqual((await saved(p)).state,f.state);
   row.initial=await saved(p);
@@ -44,7 +44,8 @@ try{for(const spec of specs){const mode=spec.mode??'normal',key=spec.kind+'-'+sp
    const pixels=(name,texts)=>{
     const b=texts.find(t=>t.name===name)?.bounds;if(!b)return 0;
     const c=document.createElement('canvas');c.width=g.canvas.width;c.height=g.canvas.height;const ctx=c.getContext('2d');ctx.drawImage(g.canvas,0,0);
-    const x=Math.max(0,Math.floor(b.x)),y=Math.max(0,Math.floor(b.y)),w=Math.min(c.width-x,Math.ceil(b.width)),h=Math.min(c.height-y,Math.ceil(b.height));if(w<=0||h<=0)return 0;
+    const css=g.canvas.getBoundingClientRect(),dx=c.width/css.width,dy=c.height/css.height;
+    const x=Math.max(0,Math.floor(b.x*dx)),y=Math.max(0,Math.floor(b.y*dy)),w=Math.min(c.width-x,Math.ceil(b.width*dx)),h=Math.min(c.height-y,Math.ceil(b.height*dy));if(w<=0||h<=0)return 0;
     const a=ctx.getImageData(x,y,w,h).data;let count=0;
     for(let i=0;i<a.length;i+=4)if(name==='hero/climax-value'?Math.abs(a[i]-184)<42&&Math.abs(a[i+1]-71)<42&&Math.abs(a[i+2]-58)<42:a[i]<100&&a[i+1]<110&&a[i+2]<110)count++;
     return count;
@@ -53,7 +54,7 @@ try{for(const spec of specs){const mode=spec.mode??'normal',key=spec.kind+'-'+sp
     const scene=g.scene.getScene('game'),group=scene.heroClimax?.group;if(!renderer||!group?.active||!group.visible||group.alpha===0)return;
     const now=performance.now(),id=group.getData('eventId'),shot=group.getData('shot')??'old-single-panel',subjectVisibleAt=group.getData('subjectVisibleAt');
     window.__panelTimeline.push({eventId:id,phase:group.getData('phase'),shot,timeMs:now,subjectVisibleAt,strikeAt:group.getData('strikeAt')});
-    const texts=visible(group.list).filter(o=>o.type==='Text').map(o=>({name:o.name,text:o.text,font:o.style.fontSize,lines:o.getWrappedText(),bounds:o.getBounds()}));
+    const texts=visible(group.list).filter(o=>o.type==='Text').map(o=>({name:o.name,text:o.text,font:o.style.fontSize,lines:o.getWrappedText(),bounds:o.getBounds(),scaleX:o.scaleX,scaleY:o.scaleY,resolution:o.style.resolution}));
     const sample=()=>({eventId:id,fact:group.getData('benefit'),phase:group.getData('phase'),shot,timeMs:now,subjectVisibleAt,reduced:scene.reducedMotion,playing:scene.playing,ready:scene.ready,headlineWidth:group.getData('headlineWidth'),texts,pixelEvidence:{headline:pixels('hero/climax-name',texts),value:pixels('hero/climax-value',texts)}});
     if(subjectVisibleAt!==undefined&&shot!=='eyes'&&!seen.has(id)){
      seen.add(id);window.__titleFrames.push(sample());window.__titleImages.push({eventId:id,png:g.canvas.toDataURL('image/png')});
@@ -73,6 +74,19 @@ try{for(const spec of specs){const mode=spec.mode??'normal',key=spec.kind+'-'+sp
   const shots=await p.evaluate(()=>window.__shotImages);row.shots=[];
   for(const [i,sample] of shots.entries()){const filename=key+'-shot-'+i+'-'+sample.shot+'.png',png=sample.png;delete sample.png;sample.screenshot=filename;await writeFile(out+'/'+filename,Buffer.from(png.split(',')[1],'base64'));row.shots.push(sample);}
   for(const shot of row.shots)for(const text of shot.texts){const b=text.bounds;assert.ok(b.x>=-1&&b.x+b.width<=spec.width+1&&b.y>=0&&b.y+b.height<=p.viewportSize().height+1,'painted text stays in viewport '+text.name);if(text.name==='hero/climax-value')assert.equal(text.lines.length,1,'painted primary number stays on one line');}
+  if(process.env.HERO_TITLE_CAPTIONS){
+   for(const shot of row.shots){
+    const note=shot.texts.filter(t=>t.name==='hero/climax-note');assert.equal(note.length,1,'one persistent effect caption on every camera shot');
+    const source=row.expectedKeys.find(k=>k.eventId===shot.eventId);assert.ok(source,'caption belongs to a saved source');
+    assert.equal(note[0].text,heroClimaxValue(row.saved.state,row.saved.state.lastTrace,source).note,'effect reads the same saved source description');
+    const first=row.shots.find(s=>s.eventId===shot.eventId).texts.find(t=>t.name==='hero/climax-note');assert.equal(note[0].text,first.text,'effect survives camera cuts unchanged');
+    for(const text of shot.texts){assert.equal(text.scaleX,1,'glyphs rendered independently at font size');assert.equal(text.scaleY,1);}
+    const intersects=(a,b)=>a.x<b.x+b.width&&a.x+a.width>b.x&&a.y<b.y+b.height&&a.y+a.height>b.y;
+    for(const other of shot.texts.filter(t=>t!==note[0]))assert.equal(intersects(note[0].bounds,other.bounds),false,'effect caption does not overlap '+other.name);
+   }
+   row.captionTiming=row.expectedKeys.map(k=>{const frames=row.timeline.filter(f=>f.eventId===k.eventId),start=frames.find(f=>f.subjectVisibleAt!==undefined)?.subjectVisibleAt,release=frames.find(f=>f.phase==='release');return {eventId:k.eventId,firstPaint:frames[0]?.timeMs,lastPaint:frames.at(-1)?.timeMs,subjectMs:start===undefined?undefined:(release?.timeMs??frames.at(-1)?.timeMs)-start};});
+   if(!['skip','exit'].includes(mode))for(const timing of row.captionTiming)assert.ok(timing.subjectMs>=980,'real-time subject hold survives camera cuts and 4x speed');
+  }
   if(mode==='reduce'){
    const still=row.shots.filter(s=>s.reduced&&s.subjectVisibleAt!==undefined);
    assert.ok(still.length>=2,'two real painted reduced frames');assert.ok(still.at(-1).timeMs-still[0].timeMs>=700,'static focus actually persists across painted frames');

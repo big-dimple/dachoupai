@@ -1,0 +1,408 @@
+{
+  "head": "f2386c09795011785a7848a8b92257e7018c0965",
+  "dirty": "M harness/hero-explanation.mjs\n M harness/hero-source-title.mjs\n?? harness/hero-caption-laohuan.mjs",
+  "status": "FAIL",
+  "error": "locator.waitFor: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('dialog.hero-explanation[open]') to be visible\u001b[22m\n\n    at /workspace/dachoupai/harness/hero-caption-laohuan.mjs:38:205",
+  "cases": [
+    {
+      "key": "1366-normal",
+      "status": "FAIL",
+      "error": "locator.waitFor: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('dialog.hero-explanation[open]') to be visible\u001b[22m\n\n    at /workspace/dachoupai/harness/hero-caption-laohuan.mjs:38:205",
+      "subjectDuration": 1014.9000000000233,
+      "shots": [
+        {
+          "timeMs": 8529.299999999988,
+          "shot": "eyes",
+          "phase": "charge",
+          "eventId": "controlled/caption/laohuan/command/5/laohuan-refill",
+          "texts": [
+            {
+              "name": "hero/climax-name",
+              "text": "戏法换牌",
+              "bounds": {
+                "type": 5,
+                "x": 167,
+                "y": 114,
+                "width": 209,
+                "height": 59
+              },
+              "lines": [
+                "戏法换牌"
+              ]
+            },
+            {
+              "name": "hero/climax-owner",
+              "text": "老幻 · 技能兑现",
+              "bounds": {
+                "type": 5,
+                "x": 167,
+                "y": 177,
+                "width": 111,
+                "height": 19
+              },
+              "lines": [
+                "老幻 · 技能兑现"
+              ]
+            },
+            {
+              "name": "hero/climax-note",
+              "text": "多看2张 · A♦；不增加计分",
+              "bounds": {
+                "type": 5,
+                "x": 167,
+                "y": 548,
+                "width": 199,
+                "height": 19
+              },
+              "lines": [
+                "多看2张 · A♦；不增加计分"
+              ]
+            },
+            {
+              "name": "hero/climax-eye-quote",
+              "text": "袖子是空的，分不是。",
+              "bounds": {
+                "type": 5,
+                "x": 670,
+                "y": 263,
+                "width": 200,
+                "height": 22
+              },
+              "lines": [
+                "袖子是空的，分不是。"
+              ]
+            },
+            {
+              "name": "hero/climax-focus-effect",
+              "text": "实际留牌 1张",
+              "bounds": {
+                "type": 5,
+                "x": 670,
+                "y": 337,
+                "width": 164,
+                "height": 31
+              },
+              "lines": [
+                "实际留牌 1张"
+              ]
+            }
+          ],
+          "screenshot": "1366-normal-0-eyes.png"
+        },
+        {
+          "timeMs": 8802.700000000012,
+          "shot": "skill",
+          "phase": "strike",
+          "subjectVisibleAt": 8801,
+          "strikeAt": 8785,
+          "eventId": "controlled/caption/laohuan/command/5/laohuan-refill",
+          "texts": [
+            {
+              "name": "hero/climax-name",
+              "text": "戏法换牌",
+              "bounds": {
+                "type": 5,
+                "x": 167,
+                "y": 114,
+                "width": 209,
+                "height": 59
+              },
+              "lines": [
+                "戏法换牌"
+              ]
+            },
+            {
+              "name": "hero/climax-owner",
+              "text": "老幻 · 技能兑现",
+              "bounds": {
+                "type": 5,
+                "x": 167,
+                "y": 177,
+                "width": 111,
+                "height": 19
+              },
+              "lines": [
+                "老幻 · 技能兑现"
+              ]
+            },
+            {
+              "name": "hero/climax-note",
+              "text": "多看2张 · A♦；不增加计分",
+              "bounds": {
+                "type": 5,
+                "x": 167,
+                "y": 548,
+                "width": 199,
+                "height": 19
+              },
+              "lines": [
+                "多看2张 · A♦；不增加计分"
+              ]
+            },
+            {
+              "name": "hero/climax-value-label",
+              "text": "实际留牌",
+              "bounds": {
+                "type": 5,
+                "x": 670,
+                "y": 263,
+                "width": 72,
+                "height": 21
+              },
+              "lines": [
+                "实际留牌"
+              ]
+            },
+            {
+              "name": "hero/climax-value",
+              "text": "1张",
+              "bounds": {
+                "type": 5,
+                "x": 854,
+                "y": 291,
+                "width": 160,
+                "height": 119
+              },
+              "lines": [
+                "1张"
+              ]
+            },
+            {
+              "name": "hero/climax-source-title",
+              "text": "老幻 · 戏法留牌",
+              "bounds": {
+                "type": 5,
+                "x": 167,
+                "y": 604,
+                "width": 111,
+                "height": 19
+              },
+              "lines": [
+                "老幻 · 戏法留牌"
+              ]
+            }
+          ],
+          "screenshot": "1366-normal-1-skill.png"
+        },
+        {
+          "timeMs": 9397.900000000023,
+          "shot": "landing",
+          "phase": "strike",
+          "subjectVisibleAt": 8801,
+          "strikeAt": 8785,
+          "eventId": "controlled/caption/laohuan/command/5/laohuan-refill",
+          "texts": [
+            {
+              "name": "hero/climax-name",
+              "text": "戏法换牌",
+              "bounds": {
+                "type": 5,
+                "x": 167,
+                "y": 114,
+                "width": 209,
+                "height": 59
+              },
+              "lines": [
+                "戏法换牌"
+              ]
+            },
+            {
+              "name": "hero/climax-owner",
+              "text": "老幻 · 技能兑现",
+              "bounds": {
+                "type": 5,
+                "x": 167,
+                "y": 177,
+                "width": 111,
+                "height": 19
+              },
+              "lines": [
+                "老幻 · 技能兑现"
+              ]
+            },
+            {
+              "name": "hero/climax-note",
+              "text": "多看2张 · A♦；不增加计分",
+              "bounds": {
+                "type": 5,
+                "x": 167,
+                "y": 548,
+                "width": 199,
+                "height": 19
+              },
+              "lines": [
+                "多看2张 · A♦；不增加计分"
+              ]
+            },
+            {
+              "name": "hero/climax-value-label",
+              "text": "实际留牌",
+              "bounds": {
+                "type": 5,
+                "x": 167,
+                "y": 212,
+                "width": 80,
+                "height": 22
+              },
+              "lines": [
+                "实际留牌"
+              ]
+            },
+            {
+              "name": "hero/climax-value",
+              "text": "1张",
+              "bounds": {
+                "type": 5,
+                "x": 540,
+                "y": 264,
+                "width": 287,
+                "height": 212
+              },
+              "lines": [
+                "1张"
+              ]
+            },
+            {
+              "name": "hero/climax-local-effect",
+              "text": "多看2张 · A♦；不增加计分",
+              "bounds": {
+                "type": 5,
+                "x": 167,
+                "y": 492,
+                "width": 234,
+                "height": 22
+              },
+              "lines": [
+                "多看2张 · A♦；不增加计分"
+              ]
+            },
+            {
+              "name": "hero/climax-landing",
+              "text": "留1张 · 已保存",
+              "bounds": {
+                "type": 5,
+                "x": 167,
+                "y": 604,
+                "width": 117,
+                "height": 21
+              },
+              "lines": [
+                "留1张 · 已保存"
+              ]
+            }
+          ],
+          "screenshot": "1366-normal-2-landing.png"
+        },
+        {
+          "timeMs": 9613.900000000023,
+          "shot": "landing",
+          "phase": "strike",
+          "subjectVisibleAt": 8801,
+          "strikeAt": 8785,
+          "eventId": "controlled/caption/laohuan/command/5/laohuan-refill",
+          "texts": [
+            {
+              "name": "hero/climax-name",
+              "text": "戏法换牌",
+              "bounds": {
+                "type": 5,
+                "x": 167,
+                "y": 114,
+                "width": 209,
+                "height": 59
+              },
+              "lines": [
+                "戏法换牌"
+              ]
+            },
+            {
+              "name": "hero/climax-owner",
+              "text": "老幻 · 技能兑现",
+              "bounds": {
+                "type": 5,
+                "x": 167,
+                "y": 177,
+                "width": 111,
+                "height": 19
+              },
+              "lines": [
+                "老幻 · 技能兑现"
+              ]
+            },
+            {
+              "name": "hero/climax-note",
+              "text": "多看2张 · A♦；不增加计分",
+              "bounds": {
+                "type": 5,
+                "x": 167,
+                "y": 548,
+                "width": 199,
+                "height": 19
+              },
+              "lines": [
+                "多看2张 · A♦；不增加计分"
+              ]
+            },
+            {
+              "name": "hero/climax-value-label",
+              "text": "实际留牌",
+              "bounds": {
+                "type": 5,
+                "x": 167,
+                "y": 212,
+                "width": 80,
+                "height": 22
+              },
+              "lines": [
+                "实际留牌"
+              ]
+            },
+            {
+              "name": "hero/climax-value",
+              "text": "1张",
+              "bounds": {
+                "type": 5,
+                "x": 540,
+                "y": 264,
+                "width": 287,
+                "height": 212
+              },
+              "lines": [
+                "1张"
+              ]
+            },
+            {
+              "name": "hero/climax-local-effect",
+              "text": "多看2张 · A♦；不增加计分",
+              "bounds": {
+                "type": 5,
+                "x": 167,
+                "y": 492,
+                "width": 234,
+                "height": 22
+              },
+              "lines": [
+                "多看2张 · A♦；不增加计分"
+              ]
+            },
+            {
+              "name": "hero/climax-landing",
+              "text": "留1张 · 已保存",
+              "bounds": {
+                "type": 5,
+                "x": 167,
+                "y": 604,
+                "width": 117,
+                "height": 21
+              },
+              "lines": [
+                "留1张 · 已保存"
+              ]
+            }
+          ],
+          "screenshot": "1366-normal-3-landing.png"
+        }
+      ]
+    }
+  ]
+}

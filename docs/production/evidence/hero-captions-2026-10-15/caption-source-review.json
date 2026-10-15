@@ -1,0 +1,169 @@
+{
+  "status": "PASS",
+  "scope": "Offline review of actual postrender observation records against unchanged authoritative saved-source copy; not a new browser run.",
+  "reports": [
+    {
+      "name": "after",
+      "rows": [
+        {
+          "key": "amo-390-normal",
+          "shots": 4,
+          "sameSavedSource": true,
+          "noCaptionTextOverlap": true,
+          "notes": [
+            "副组2张已用 · 实际×2"
+          ]
+        },
+        {
+          "key": "erxiang-390-normal",
+          "shots": 4,
+          "sameSavedSource": true,
+          "noCaptionTextOverlap": true,
+          "notes": [
+            "8点热度改加倍率（首次普通计分）"
+          ]
+        },
+        {
+          "key": "xiemu-390-normal",
+          "shots": 4,
+          "sameSavedSource": true,
+          "noCaptionTextOverlap": true,
+          "notes": [
+            "支付10金，20→10；本手实际×2"
+          ]
+        },
+        {
+          "key": "azao-390-normal",
+          "shots": 4,
+          "sameSavedSource": true,
+          "noCaptionTextOverlap": true,
+          "notes": [
+            "消耗1层，实际 ×1.5"
+          ]
+        },
+        {
+          "key": "touye-390-normal",
+          "shots": 4,
+          "sameSavedSource": true,
+          "noCaptionTextOverlap": true,
+          "notes": [
+            "押三条 · 实际三条 · 达成×2"
+          ]
+        },
+        {
+          "key": "xiemu-1366-normal",
+          "shots": 4,
+          "sameSavedSource": true,
+          "noCaptionTextOverlap": true,
+          "notes": [
+            "支付10金，20→10；本手实际×2"
+          ]
+        },
+        {
+          "key": "xiemu-320-normal",
+          "shots": 4,
+          "sameSavedSource": true,
+          "noCaptionTextOverlap": true,
+          "notes": [
+            "支付10金，20→10；本手实际×2"
+          ]
+        },
+        {
+          "key": "xiemu-390-fast",
+          "shots": 4,
+          "sameSavedSource": true,
+          "noCaptionTextOverlap": true,
+          "notes": [
+            "支付10金，20→10；本手实际×2"
+          ]
+        },
+        {
+          "key": "e11-390-normal",
+          "shots": 4,
+          "sameSavedSource": true,
+          "noCaptionTextOverlap": true,
+          "notes": [
+            "读取已有 ×1.3 倍率"
+          ]
+        },
+        {
+          "key": "f06-320-normal",
+          "shots": 4,
+          "sameSavedSource": true,
+          "noCaptionTextOverlap": true,
+          "notes": [
+            "×2 倍率"
+          ]
+        },
+        {
+          "key": "erxiang-390-reduce",
+          "shots": 2,
+          "sameSavedSource": true,
+          "noCaptionTextOverlap": true,
+          "notes": [
+            "8点热度改加倍率（首次普通计分）"
+          ]
+        },
+        {
+          "key": "erxiang-390-skip",
+          "shots": 4,
+          "sameSavedSource": true,
+          "noCaptionTextOverlap": true,
+          "notes": [
+            "8点热度改加倍率（首次普通计分）"
+          ]
+        },
+        {
+          "key": "erxiang-390-exit",
+          "shots": 4,
+          "sameSavedSource": true,
+          "noCaptionTextOverlap": true,
+          "notes": [
+            "8点热度改加倍率（首次普通计分）"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "caption-boundaries",
+      "rows": [
+        {
+          "key": "xiemu-390-fast",
+          "shots": 4,
+          "sameSavedSource": true,
+          "noCaptionTextOverlap": true,
+          "notes": [
+            "支付10金，20→10；本手实际×2"
+          ]
+        },
+        {
+          "key": "erxiang-390-reduce",
+          "shots": 2,
+          "sameSavedSource": true,
+          "noCaptionTextOverlap": true,
+          "notes": [
+            "8点热度改加倍率（首次普通计分）"
+          ]
+        },
+        {
+          "key": "erxiang-390-skip",
+          "shots": 2,
+          "sameSavedSource": true,
+          "noCaptionTextOverlap": true,
+          "notes": [
+            "8点热度改加倍率（首次普通计分）"
+          ]
+        },
+        {
+          "key": "erxiang-390-exit",
+          "shots": 2,
+          "sameSavedSource": true,
+          "noCaptionTextOverlap": true,
+          "notes": [
+            "8点热度改加倍率（首次普通计分）"
+          ]
+        }
+      ]
+    }
+  ]
+}

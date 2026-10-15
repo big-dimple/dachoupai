@@ -41,7 +41,7 @@ async function nested(p,id,width,scene){
  }
  await p.locator('dialog[open] .dialog-close').click();assert.deepEqual(await saved(p),row.before);row.after=await saved(p);row.nestedFocusFullStateJournalStorageLocalStorage='PASS';
 }
-try{for(const viewport of [{width:1366,height:768},{width:390,height:740}]){
+try{for(const viewport of [{width:1366,height:768},{width:390,height:740}].filter(v=>!process.env.HERO_EXPLANATION_WIDTHS||process.env.HERO_EXPLANATION_WIDTHS.split(',').includes(String(v.width)))){
  const width=viewport.width,c=await browser.newContext({viewport,hasTouch:width===390,reducedMotion:'reduce'}),p=await c.newPage();p.setDefaultTimeout(18000);p.on('pageerror',e=>report.errors.push(String(e)));p.on('dialog',d=>d.accept());await p.goto('http://127.0.0.1:5571/?harness=1');await openSelector(p,width===390);
  for(const id of CHARACTER_IDS){await tapUI(p,'character-select','character/'+id,width===390);await inspect(p,'character-select','opening/hero-details',id,width,'selection',heroExplanationCopy(id));await tapUI(p,'character-select','character/'+id,width===390);await inspect(p,'character-select','opening/hero-details',id,width,'portrait',heroExplanationCopy(id));}
  for(const id of CHARACTER_IDS){const f=heroStageFixture(id);await imp(p,f.shop,'shop');await inspect(p,'shop',width===390?'shop/hero-details':'shop/hero-preparation',id,width,'shop',heroExplanationCopy(id,f.shop));
