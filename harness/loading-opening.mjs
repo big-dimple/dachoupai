@@ -32,8 +32,14 @@ try{
    // product's 12s deadline. Release transport now; measure native loading while
    // the renderer works, rather than holding its images during more screenshots.
    await p.evaluate(()=>{window.__loadingBeats=[];const h=document.querySelector('#resource-loading');new MutationObserver(()=>window.__loadingBeats.push({loaded:+h.dataset.loaded,total:+h.dataset.total,value:h.querySelector('progress').value,cards:h.querySelectorAll('.load-card-seat.is-inked').length,chapters:h.querySelectorAll('.load-chapters .is-inked').length})).observe(h,{attributes:true,attributeFilter:['data-loaded']});});
-   release();await p.waitForFunction(()=>window.__harness?.game.scene.isActive('title')&&window.__harness.game.registry.get('resourcePreparation')?.status==='ready',undefined,{timeout:30000});
-   row.titleMs=Date.now()-start;row.beats=await p.evaluate(()=>window.__loadingBeats);assert.ok(row.beats.some(b=>b.loaded>8&&b.loaded<67&&b.cards===1));assert.ok(row.beats.some(b=>b.loaded>=67&&b.loaded<134&&b.cards===2));assert.ok(row.beats.some(b=>b.loaded===134&&b.cards===3));assert.ok(row.beats.every(b=>b.value===b.loaded&&b.chapters===b.cards));assert.equal(await p.locator('#resource-loading').count(),0);assert.deepEqual(errors,[]);row.status='PASS';console.log('PASS',name,row.titleMs);await ctx.close();continue;
+   release();await p.waitForFunction(()=>['ready','needs-choice'].includes(window.__harness?.game.registry.get('resourcePreparation')?.status),undefined,{timeout:30000});
+   row.preparation=await p.evaluate(()=>JSON.parse(JSON.stringify(window.__harness.game.registry.get('resourcePreparation'))));
+   if(row.preparation.status==='needs-choice'){
+    assert.ok(row.preparation.loaded<134);const current=await snap();assert.equal(current.value,current.loaded);assert.ok(current.cards<3);row.deadline=current;
+    await p.screenshot({path:`${out}/${name}-deadline.png`,scale:'css'});await p.getByRole('button',{name:'使用文字牌面继续',exact:true}).click();row.completion='12s deadline -> native text continuation';
+   }else row.completion='all 134 decoded';
+   await p.waitForFunction(()=>window.__harness?.game.scene.isActive('title'),undefined,{timeout:30000});
+   row.titleMs=Date.now()-start;row.beats=await p.evaluate(()=>window.__loadingBeats);assert.ok(row.beats.length>0);assert.ok(row.beats.every(b=>b.value===b.loaded&&b.chapters===b.cards&&b.cards===(b.loaded===134?3:b.loaded>=67?2:b.loaded>0?1:0)));if(row.preparation.status==='ready')assert.ok(row.beats.some(b=>b.loaded===134&&b.cards===3));assert.equal(await p.locator('#resource-loading').count(),0);assert.deepEqual(errors,[]);row.status='PASS';console.log('PASS',name,row.titleMs,row.completion);await ctx.close();continue;
   }
   await p.waitForTimeout(950);
   row.settled=await snap();await p.screenshot({path:`${out}/${name}-settled.png`,scale:'css'});
