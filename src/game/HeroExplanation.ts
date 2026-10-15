@@ -2,12 +2,12 @@ import {HERO_CAST_NOTICE,HERO_ART_NOTICE} from './HeroIdentity';
 import type {R2RunState} from '../domain/r2Run';
 import type {CharacterId} from './characters';
 import type {DetailDialog} from './DetailDialog';
-import {characterForNewRun,characterForRun} from './CharacterRunCopy';
+import {mountHeroTags} from './HeroText';
+import {characterForNewRun,characterForRun,usesCurrentHeroText} from './CharacterRunCopy';
 import {HERO_OPENING} from './HeroOpeningCopy';
 import {heroSignature} from './HeroSignature';
 import {heroSkillGuide} from './HeroSkillGuide';
 import {r2RunModeConfig} from '../content/r2Modes';
-import {usesTouyeNewCore} from '../domain/r2TouyeWager';
 import {portraitURL,selectionPortraitURL} from './portraits';
 
 const conditions:Record<CharacterId,string>={
@@ -21,9 +21,9 @@ const conditions:Record<CharacterId,string>={
 
 /** A read-only explanation follows the saved identity, including old passive abilities. */
 export function heroExplanationCopy(id:CharacterId,run?:R2RunState,abilityEnabled=true){
- const hero=run?characterForRun(run):characterForNewRun(id),current=hero.passiveName===characterForNewRun(id).passiveName&&(!run||id!=='touye'||usesTouyeNewCore(run));
+ const hero=run?characterForRun(run):characterForNewRun(id),current=!run||usesCurrentHeroText(run);
  let now=abilityEnabled?'选路线并登台后，在牌桌点英雄使用技能。':'当前模式关闭角色能力，以下仅供普通局参考。';
- let effect=hero.openingPlay;
+ let effect=hero.quickEffect;
  if(run){
   if(!r2RunModeConfig(run).characterAbilityEnabled)now='本模式关闭角色能力，当前不能使用。';
   else if(run.phase==='shop')now='现在是筹备商店；技能要到牌桌使用。';
@@ -56,12 +56,15 @@ export function showHeroExplanation(dialog:DetailDialog,id:CharacterId,options:{
  if(options.guide){copy.now=options.guide.step;copy.effect=options.guide.effect;}if(options.status)copy.now=options.status;
  // Canvas entries are focusable; closing returns keyboard control to the same surface.
  if(!document.querySelector('dialog[open]'))document.querySelector<HTMLCanvasElement>('canvas')?.focus({preventScroll:true});
- const d=dialog.open(hero.name+' · '+hero.passiveName,hero.passiveDescription+'\n\n'+hero.buildTip,options.actions??[],{closeLabel:options.closeLabel??'返回',onClose:options.onClose,collapseRules:true,rulesLabel:'完整能力与限制',portrait:{url:portraitURL(id),thumbnailUrl:selectionPortraitURL(id),alt:hero.name+' · '+HERO_ART_NOTICE}});
+ const d=dialog.open(hero.name+' · '+hero.passiveName,hero.detailRules+'\n\n'+hero.passiveDescription+'\n\n'+hero.buildTip,options.actions??[],{closeLabel:options.closeLabel??'返回',onClose:options.onClose,collapseRules:true,rulesLabel:'完整能力与限制',portrait:{url:portraitURL(id),thumbnailUrl:selectionPortraitURL(id),alt:hero.name+' · '+HERO_ART_NOTICE}});
  d.classList.add('hero-explanation');if(!portraitURL(id))d.classList.add('hero-explanation--text');d.dataset.hero=id;
  const style=document.createElement('style');style.textContent=css+' .hero-explanation--text .dialog-content{display:block}.hero-explanation--text .dialog-intro{max-width:680px}';d.append(style);
  d.querySelector('.dialog-eyebrow')!.textContent='英雄说明 · 只查看不消耗';
- const intro=document.createElement('div'),motto=document.createElement('p');intro.className='dialog-intro';motto.className='hero-motto';motto.textContent='“'+HERO_OPENING[id].taunt+'”';const theme=document.createElement('p');theme.className='hero-fact hero-theme';theme.textContent=hero.title;intro.append(theme,motto);const bio=document.createElement('p');bio.className='hero-fact';bio.textContent=hero.intro+' '+HERO_CAST_NOTICE;intro.append(bio);
- for(const [label,value] of [['做什么',copy.effect],['何时能用',copy.when],['现在',copy.now]]){const p=document.createElement('p'),title=document.createElement('strong');p.className='hero-fact';title.textContent=label;p.append(title,document.createTextNode(value));intro.append(p);}
+ const intro=document.createElement('div');intro.className='dialog-intro';
+ const story=document.createElement('details'),storyLabel=document.createElement('summary'),motto=document.createElement('p'),bio=document.createElement('p');
+ story.className='card-rules hero-story';storyLabel.textContent='人物故事与宣言';motto.className='hero-motto';motto.textContent='“'+HERO_OPENING[id].taunt+'”';bio.className='hero-fact';bio.textContent=hero.intro+' '+HERO_CAST_NOTICE;story.append(storyLabel,motto,bio);
+ for(const [label,value] of [['做什么',copy.effect],...(!copy.current?[['何时能用',copy.when]]:[]),['现在',copy.now]]){const p=document.createElement('p'),title=document.createElement('strong');p.className='hero-fact';title.textContent=label;p.append(title,document.createTextNode(value));intro.append(p);}
+ const theme=document.createElement('p');theme.className='hero-fact hero-theme';theme.textContent=hero.title;intro.append(theme,story);
  if(copy.current){
   const example=document.createElement('details'),summary=document.createElement('summary');example.className='card-rules hero-example';summary.textContent='点开看一个技能例子';example.append(summary);
   // Examples are educational public cards, created only after the player asks to see them.
@@ -69,6 +72,6 @@ export function showHeroExplanation(dialog:DetailDialog,id:CharacterId,options:{
   intro.append(example);
  }
  // DetailDialog omits an empty intro; this explanation supplies its own compact first layer.
- d.querySelector('.dialog-scroll')!.prepend(intro);
+ d.querySelector('.dialog-scroll')!.prepend(intro);mountHeroTags(d,hero.skillTags);
  return d;
 }

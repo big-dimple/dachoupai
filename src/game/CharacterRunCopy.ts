@@ -3,6 +3,7 @@ import {usesTouyeWager,usesTouyeNewCore} from '../domain/r2TouyeWager';
 import {usesLaohuanRefill} from '../domain/r2LaohuanRefill';
 import {usesXiemuBurn} from '../domain/r2XiemuBurn';
 import {isR2AzaoCharge} from '../domain/r2GroupUpgrade';
+import {heroTextSpec,HERO_QUICK_COPY,heroDetailRules} from './HeroText';
 import {newRunIdentity} from './RunLaunch';
 import type {CharacterId} from '../domain/characters';
 import {getCharacter} from './characters';
@@ -28,4 +29,15 @@ function characterDetailsForRun(run:Pick<R2RunState,'characterId'|'contentVersio
 
 export function characterForNewRun(characterId:CharacterId){return characterForRun({characterId,...newRunIdentity(characterId,characterId==='erxiang'||characterId==='azao'||characterId==='xiemu'||characterId==='laohuan'||characterId==='touye'?'group':undefined)});}
 
-export function characterForRun(run:Pick<R2RunState,'characterId'|'contentVersion'|'contentHash'>){const c=characterDetailsForRun(run);return {...c,openingPlay:'openingPlay' in c?c.openingPlay:c.buildTip};}
+export function usesCurrentHeroText(run:Pick<R2RunState,'characterId'|'contentVersion'|'contentHash'>):boolean {
+ const identity=newRunIdentity(run.characterId);
+ return run.contentVersion===identity.contentVersion&&run.contentHash===identity.contentHash;
+}
+export function characterForRun(run:Pick<R2RunState,'characterId'|'contentVersion'|'contentHash'>){
+ const c=characterDetailsForRun(run),current=usesCurrentHeroText(run),quick=HERO_QUICK_COPY[run.characterId];
+ return {...c,openingPlay:'openingPlay' in c?c.openingPlay:c.buildTip,
+  passiveName:current?heroTextSpec(run.characterId).skillName:c.passiveName,
+  quickEffect:current?quick.effect:('openingPlay' in c?c.openingPlay:c.buildTip),
+  skillTags:current?quick.tags:[] as readonly string[],
+  detailRules:current?heroDetailRules(run.characterId):c.passiveDescription};
+}

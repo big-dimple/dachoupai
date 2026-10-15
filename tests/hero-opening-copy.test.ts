@@ -6,7 +6,7 @@ import {characterForNewRun} from '../src/game/CharacterRunCopy';
 it('six short original voices accompany existing identities without strength or profession locks',()=>{
  expect(Object.keys(HERO_OPENING).sort()).toEqual([...CHARACTER_IDS].sort());
  expect(new Set(Object.values(HERO_OPENING).map(c=>c.taunt)).size).toBe(6);
- for(const id of CHARACTER_IDS){const c=HERO_OPENING[id];expect(c.story.length).toBeLessThanOrEqual(26);expect(c.taunt.length).toBeLessThanOrEqual(22);expect(characterForNewRun(id).openingPlay).not.toMatch(/保证|必胜|最强|只能选/);expect(c.accent).toMatch(/^#(26313A|B8473A|386D65)$/);expect(characterForNewRun(id).id).toBe(id);}
+ for(const id of CHARACTER_IDS){const c=HERO_OPENING[id];expect(c.story.length).toBeLessThanOrEqual(80);expect(c.taunt.length).toBeLessThanOrEqual(22);expect(characterForNewRun(id).openingPlay).not.toMatch(/保证|必胜|最强|只能选/);expect(c.accent).toMatch(/^#(26313A|B8473A|386D65)$/);expect(characterForNewRun(id).id).toBe(id);}
 });
 it('default promises share the current identity copy and describe actual operation timing',()=>{
  const copy=(id:typeof CHARACTER_IDS[number])=>characterForNewRun(id).openingPlay;

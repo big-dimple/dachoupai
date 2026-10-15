@@ -1,6 +1,7 @@
 import {it,expect,vi} from 'vitest';
 vi.mock('phaser',()=>({default:{Scene:class {}}}));
 import {createRun,type R2RunState,type Action} from '../src/domain/run';
+import {characterForRun} from '../src/game/CharacterRunCopy';
 import {newRunIdentity} from '../src/game/RunLaunch';
 import {energySend,scoreEnergyFixture} from '../harness/fixtures/score-energy';
 import {finaleReady} from '../harness/fixtures/finale';
@@ -21,7 +22,7 @@ const saved=(s:R2RunState,a:Action)=>{const next=energySend(s,a);expect(readChec
 it('all five scoring abilities use their actual saved contribution, independently of opening stamps',()=>{
  const cases:[CharacterId,Action][]=[['amo',{type:'PlayAssistedHand',selectedIds:hand.slice(0,4),assistIds:hand.slice(4,6)}],['erxiang',{type:'PlayHand',selectedIds:hand.slice(0,2),erxiangTargetId:hand[0]}],['xiemu',{type:'PlayHand',selectedIds:hand.slice(0,4),xiemuBurn:10}],['azao',{type:'PlayHand',selectedIds:hand.slice(0,4),azaoRelease:true}]];
  for(const [id,a] of cases){let s=entered(id);if(id==='xiemu')s.gold=20;if(id==='azao'){s=arrange(entered(id),['spades-2','hearts-2','clubs-3','diamonds-3',...hand.slice(4)]);s=arrange(saved(s,{type:'PlayHand',selectedIds:s.handOrder.slice(0,4)}));}
-  s=saved(s,a);const before=JSON.stringify(s),keys=heroPayoffs(s,s.lastTrace!);expect(keys.filter(k=>k.kind==='payoff')).toHaveLength(1);for(const k of keys){const value=heroClimaxValue({...s,openingShow:undefined},s.lastTrace!,k);expect(value?.label).toBe(id==='erxiang'?'本次加成':'本次倍率');expect(value?.skillName).toBe({amo:'主手＋助攻',erxiang:'交棒',xiemu:'燃金',azao:'蓄势爆发'}[id as 'amo'|'erxiang'|'xiemu'|'azao']);}expect(heroPayoffs(s,s.lastTrace!,true)).toEqual([]);expect(JSON.stringify(s)).toBe(before);
+  s=saved(s,a);const before=JSON.stringify(s),keys=heroPayoffs(s,s.lastTrace!);expect(keys.filter(k=>k.kind==='payoff')).toHaveLength(1);for(const k of keys){const value=heroClimaxValue({...s,openingShow:undefined},s.lastTrace!,k);expect(value?.label).toBe(id==='erxiang'?'本次加成':'本次倍率');expect(value?.skillName).toBe(characterForRun(s).passiveName);}expect(heroPayoffs(s,s.lastTrace!,true)).toEqual([]);expect(JSON.stringify(s)).toBe(before);
  }
  const ids=hand.slice(6),s=arrange(entered('touye'),hand,['clubs-8','diamonds-6']),bet={target:'three-kind' as const,snapshotToken:touyeChoice(s,ids).snapshotToken};const pending=saved(s,{type:'DiscardHand',selectedIds:ids,touyeBet:bet});const won=saved(pending,{type:'PlayHand',selectedIds:[hand[0],hand[1],'clubs-8']});expect(won.lastTrace!.touyeWager?.outcome).toBe('won');expect(heroPayoffs(won,won.lastTrace!).filter(k=>k.kind==='payoff')).toHaveLength(1);
  const lost=saved(pending,{type:'PlayHand',selectedIds:['diamonds-6']});expect(heroPayoffs(lost,lost.lastTrace!)).toEqual([]);

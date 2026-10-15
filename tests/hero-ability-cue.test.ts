@@ -36,7 +36,7 @@ it('money, qualification, no discard budget, used handoff and old identities nev
 });
 it('committed handoff and wager results explain actual sources; promises and altered events cannot become receipts',()=>{
  const s=entered('erxiang'),a=send(s,{type:'PlayHand',selectedIds:cards.slice(0,2),erxiangTargetId:cards[0]}),t=a.lastTrace!,e=t.events.find(e=>e.reasonKey==='erxiang.handoff')!;
- expect(savedHeroResult(a)).toContain('8点热度 → 倍率');expect(savedBenefit(a,t,e)).toMatchObject({title:'刘娥 · 交棒已兑现',effect:'8点热度改加倍率（首次普通计分）'});
+ expect(savedHeroResult(a)).toContain('8点热度 → 倍率');expect(savedBenefit(a,t,e)).toMatchObject({title:'刘娥 · 移筹定势 · 已兑现',effect:'8点热度改加倍率（首次普通计分）'});
  expect(savedBenefit(a,t,{...e,eventId:'not-saved'})).toBeUndefined();
  const amo=entered('amo'),b=send(amo,{type:'PlayAssistedHand',selectedIds:main,assistIds:cards.slice(4,6)}),bt=b.lastTrace!,be=bt.events.find(e=>e.reasonKey==='amo.assist.pair')!;
  expect(savedBenefit(b,bt,be)?.effect).toBe('副组2张已用 · 实际×2');expect(savedHeroResult(b)).toBe('苏轼·助攻2张已用 · 实际×2');
