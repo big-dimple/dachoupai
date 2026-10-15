@@ -869,6 +869,7 @@ button[aria-busy=true] { border-style:dashed; }
 .shop-service-card strong { font-size:16px;color:#26313A; }
 .shop-service-card span:last-child { color:#B8473A; }
 .shop-service-confirmation .dialog-primary { min-height:48px; }
+.shop-service-confirmation .dialog-effect,.shop-practice-result .dialog-effect { white-space:pre-line; }
 .shop-service-confirmation[open],.shop-practice-result[open] { display:flex;flex-direction:column;width:min(520px,calc(100vw - 24px));height:fit-content;max-height:calc(100dvh - var(--safe-top) - var(--safe-bottom) - 24px); }
 .shop-service-confirmation .dialog-content,.shop-practice-result .dialog-content { display:block;overflow:auto; }
 .shop-service-confirmation .dialog-scroll,.shop-practice-result .dialog-scroll { height:auto; }
