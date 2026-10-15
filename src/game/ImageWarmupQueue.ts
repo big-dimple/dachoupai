@@ -21,6 +21,11 @@ export class ImageWarmupQueue {
     }
     this.changed();this.pump();
   }
+  /** A visible owner can recover a texture whose speculative attempt failed. */
+  markLoaded(key:string):void {
+    const entry=this.entries.get(key);if(this.disposed||!entry||entry.status==='loaded')return;
+    entry.status='loaded';this.pending=this.pending.filter(candidate=>candidate!==key);this.changed();this.pump();
+  }
   retry():void {
     if(this.disposed)return;
     for(const entry of this.entries.values())if(entry.status==='failed'){entry.status='queued';this.pending.push(entry.key);}

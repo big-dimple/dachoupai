@@ -28,8 +28,9 @@ function queue(scene:Phaser.Scene):ImageWarmupQueue {
   const game=scene.game;let q=queues.get(game);if(q)return q;
   let status:ReturnType<typeof imageWarmupStatus>|undefined;
   q=new ImageWarmupQueue((asset,signal)=>loadImage(game,asset,signal),()=>status?.refresh());queues.set(game,q);const lowLoad=()=>['title','character-select','shop'].some(key=>game.scene.isActive(key));status=imageWarmupStatus(q,lowLoad);
+  const recovered=(key:string)=>q!.markLoaded(key);game.textures.on('addtexture',recovered);
   let visible=lowLoad();const stageChanged=()=>{retireShop(game);const next=lowLoad();if(next!==visible){visible=next;status?.refresh();}};game.events.on('poststep',stageChanged);
-  game.events.once('destroy',()=>{game.events.off('poststep',stageChanged);shops.get(game)?.controller.abort();shops.delete(game);q!.dispose();status?.destroy();queues.delete(game);});return q;
+  game.events.once('destroy',()=>{game.events.off('poststep',stageChanged);game.textures.off('addtexture',recovered);shops.get(game)?.controller.abort();shops.delete(game);q!.dispose();status?.destroy();queues.delete(game);});return q;
 }
 /** Fixed portrait/table catalog plus only the actual saved shop and held assets. */
 function warmRunImages(scene:Phaser.Scene):void {

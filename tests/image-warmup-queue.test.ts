@@ -30,4 +30,9 @@ describe('staged image queue',()=>{
     expect(queue.snapshot()).toEqual([]);queue.retry();expect(load).toHaveBeenCalledOnce();queue.dispose();
   });
 
+  it('reconciles a failed speculative image recovered by a visible owner without another request',async()=>{
+    const load=vi.fn(async()=>{throw Object.assign(Error('404'),{retryable:false});});const changed=vi.fn(),queue=new ImageWarmupQueue(load,changed);queue.request([asset('tool')]);await tick();
+    expect(queue.snapshot()[0].status).toBe('failed');queue.markLoaded('tool');expect(queue.snapshot()[0].status).toBe('loaded');queue.retry();expect(load).toHaveBeenCalledOnce();queue.dispose();
+  });
+
 });
