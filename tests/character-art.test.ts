@@ -52,3 +52,11 @@ it('deployment subpaths remain inside Vite BASE_URL and participate in exact ref
  expect(()=>art.assertCharacterArtReference(a.key,a.url)).not.toThrow();
  expect(()=>art.assertCharacterArtReference(a.key,'/assets/handdrawn-p08/characters/amo.portrait.webp')).toThrow('character-art-reference');
 });
+
+it('same-path foreign origins and query variants cannot impersonate a manifest texture URL',()=>{
+ vi.stubGlobal('document',{baseURI:'https://game.example/dachoupai/'});
+ const a=characterArt('amo','avatar');
+ expect(()=>assertCharacterArtReference(a.key,'https://game.example'+a.url)).not.toThrow();
+ expect(()=>assertCharacterArtReference(a.key,'https://other.example'+a.url)).toThrow('character-art-reference');
+ expect(()=>assertCharacterArtReference(a.key,a.url+'?variant=another')).toThrow('character-art-reference');
+});

@@ -71,6 +71,16 @@
 
 portrait/selection/avatar沿当前加载预算，不扩大公共loader。旧图眼部裁切约554×384像素，受DPR约束无法承担任意宽屏眼带；因此独立eyes是新制作需求，不能给旧图加锐化/放大后声称高清解决。若未来需要透明抠图，另交真实RGBA与边缘检查结果，不把白底称透明；本批不默认要求透明。
 
+### 展示像素依据与预加载/回退合同
+
+新eyes规格按 `HeroClimaxLayout.ts` 现有区域推导，保持2:1 contain、禁止帧缓冲像素放大。桌面面板最多1080 CSS px，内宽1032、无来源牌时人物区最宽474.72；2:1眼图展示474.72×237.36，在有效密度3时需约1425×713源像素。390×740的眼区宽330，contain后330×165，在密度3时需990×495；320×640宽260，密度2时需520×260。1536×768覆盖这些当前区域。它不支持未来任意全屏眼带；若另改布局，须重新按实际CSS框×有效密度核算，不能靠扩大纹理显示。
+
+有效密度读取 `TextRaster.textDensity(scene)=max(1,1/scene.scale.zoom)`，`platform/Viewport.ts`同时受最高DPR3和帧缓冲总像素约束；不能只用浏览器devicePixelRatio声称实际渲染分辨率。后续截图应同时记CSS视口、devicePixelRatio、canvas backing尺寸、scale.zoom、最终图像缩放及源尺寸。本轮未修改数值字体、渲染密度或高光排版，不给高清文字另签完成。
+
+现行Boot只阻塞轻量纸桌；可操作标题之后 `warmOpeningImages` 预热六人avatar/selection，`warmHeroImage`优先请求选中人物portrait，进入商店/牌桌复用同一key。ImageWarmupQueue同时最多2项，公共ArtTextureLoading总传输最多4、每lane2，重复消费者共享任务，4500ms截止、128KiB/600,000像素上限保持；错误尺寸和引用不自动重试，显式重试仍能恢复。详情沿原2并发/4缓存、6000ms、2MiB/1,600,000像素合同，并额外核英雄精确尺寸。没有为新eyes扩大这些公共预算。
+
+同ID回退顺序：选角主图portrait→selection→avatar/姓名；HUD缺avatar为纸框+姓名首字；高光portrait→selection→avatar，三图全缺走既有文字/静态来源路径，不等待下载或新增计分等待。DOM详情失败保文字、关闭与重试；有合法缩略时保缩略。迟到的A角色只可缓存为A，不能替换已切至B的显示；关闭详情取消订阅、弃用迟到解码结果。未来eyes必须单独按需、仅当前同ID一张、切场abort，失败回退同一批portrait/文字；不得回退到旧老年眼图。上述eyes工程接线及新素材回退仍未实施，当前18图仍是过渡资源。
+
 ## 5. dot 在 ChatGPT Chat 的出图顺序与可复制提示
 
 先只出阿默立绘，下载原图，评审人物设计及PC1366/手机390与320合成样板；阿默通过后再出阿默独立eyes，复核同人一致性及相同窗口。两个代表用途通过，锁定风格参考后才出其余五人的立绘与eyes。合成样板是图审，不改产品、不自然试玩，也不代表全批验收。
@@ -118,7 +128,7 @@ portrait/selection/avatar沿当前加载预算，不扩大公共loader。旧图�
 
 字段与固定尺寸以 `art/hero-replacement-contract.json` 为准。`node scripts/verify-hero-art.mjs --template` 打印待填写模板；`node scripts/verify-hero-art.mjs` 只审计现行18图；`node scripts/verify-hero-art.mjs --incoming <manifest>` 校验新批12张原图与24个输出候选，不发布、不接入。模板不是已验资产。若原始下载不符合固定尺寸，记录真实值并交人工处理，不伪填模板使它过验。
 
-每个角色 `sources.portrait/eyes` 含 path、width、height、format、alpha、bytes、sha256、characterId、purpose、original:true、version 及 provenance 的 origin/license/licenseEvidence。人工 `review` 含 status、reviewer、reviewedAt、youngAdult、distinctIdentity、samePersonEyes、evidence 与绑定原图 SHA 的 sourceHashes。不能在未图审时填 approved/true。脚本只检查声明和证据字段完整性，不会判断视觉年龄或同人。
+每个角色 `sources.portrait/eyes` 含 path、width、height、format、alpha、bytes、sha256、characterId、purpose、original:true、version 及 provenance 的 origin/license/licenseEvidence。人工 `review` 含 status、reviewer、reviewedAt、youngAdult、distinctIdentity、samePersonEyes、evidence、绑定原图 SHA 的 sourceHashes，以及四用途 outputApprovals（逐项绑定实际输出sha256、cropPixels、safeAreaPixels）。改裁切、安全区或产物后必须重新记录图审，不能沿用旧批准。不能在未图审时填 approved/true。脚本只检查声明和证据字段完整性，不会判断视觉年龄或同人。
 
 每个输出的 sourcePurpose、cropPixels、safeAreaPixels 用**原图像素坐标**，safeArea 必须落在实际 center-cover 后保留下来的区域；第4节归一化构图目标不是自动填值。固定导出为 sharp 0.35.5：先 extract crop，再 resize cover/centre、lanczos3、withoutEnlargement，WebP quality88/effort6；校验重算导出，源与产物可追溯。portrait 的96KiB是本批交接更紧上限，现有loader仍为128KiB/600,000像素，不能混写。eyes仅候选合同，超过当前loader预算且runtimeIntegrated:false。
 

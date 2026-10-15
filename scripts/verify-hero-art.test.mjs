@@ -30,10 +30,12 @@ test('incoming contract accepts reproducible fixtures and rejects invalid handof
       await fs.writeFile(path.join(root, entry.path), data); buffers[purpose] = data;
     }
     hero.review = {status: 'approved', reviewer: 'fixture reviewer', reviewedAt: '2026-10-15T00:00:00Z', youngAdult: true, distinctIdentity: true, samePersonEyes: true, evidence: 'synthetic fixture attestation; not real art review', sourceHashes: Object.fromEntries(Object.entries(hero.sources).map(([k, v]) => [k, v.sha256]))};
+    hero.review.outputApprovals = {};
     for (const output of hero.outputs) {
       const data = await renderOutput(buffers[output.sourcePurpose], output);
       Object.assign(output, {bytes: data.length, sha256: digest(data)});
       await fs.writeFile(path.join(root, output.path), data);
+      hero.review.outputApprovals[output.purpose] = {sha256: output.sha256, cropPixels: structuredClone(output.cropPixels), safeAreaPixels: structuredClone(output.safeAreaPixels)};
     }
   }
   const manifestFile = path.join(root, 'manifest.json');
@@ -51,6 +53,30 @@ test('incoming contract accepts reproducible fixtures and rejects invalid handof
   await rejects('missing license', m => m.characters[0].sources.portrait.provenance.license = '', /license/);
   await rejects('unreviewed old age', m => m.characters[0].review.youngAdult = false, /review required/);
   await rejects('review hash detached', m => m.characters[0].review.sourceHashes.portrait = 'a'.repeat(64), /bind/);
+  await rejects('missing output approvals', m => delete m.characters[0].review.outputApprovals, /exact set/);
+  await rejects('stale output hash approval', m => m.characters[0].review.outputApprovals.avatar.sha256 = '0'.repeat(64), /review must bind exact output/);
+  await rejects('safe area changed after review', m => m.characters[0].outputs[0].safeAreaPixels.left++, /review must bind exact output/);
+  await t.test('valid crop re-export cannot reuse old review', async () => {
+    const bad = structuredClone(good), hero = bad.characters[0], entry = hero.outputs[0], file = path.join(root, entry.path), original = await fs.readFile(file);
+    entry.cropPixels.top = 1;
+    const source = await fs.readFile(path.join(root, hero.sources.portrait.path));
+    const data = await renderOutput(source, entry);
+    Object.assign(entry, {bytes: data.length, sha256: digest(data)}); await fs.writeFile(file, data); await save(bad);
+    await assert.rejects(verifyIncoming(manifestFile), /review must bind exact output/); await fs.writeFile(file, original);
+  });
+  await t.test('new valid output hash cannot reuse prior output approval', async () => {
+    const bad = structuredClone(good), hero = bad.characters[0], source = hero.sources.portrait, entry = hero.outputs[0];
+    const sourceFile = path.join(root, source.path), file = path.join(root, entry.path);
+    const originalSource = await fs.readFile(sourceFile), originalOutput = await fs.readFile(file);
+    const sourceData = await sharp(originalSource).negate().png().toBuffer();
+    Object.assign(source, {bytes: sourceData.length, sha256: digest(sourceData)});
+    hero.review.sourceHashes.portrait = source.sha256;
+    const data = await renderOutput(sourceData, entry);
+    Object.assign(entry, {bytes: data.length, sha256: digest(data)});
+    await fs.writeFile(sourceFile, sourceData); await fs.writeFile(file, data); await save(bad);
+    await assert.rejects(verifyIncoming(manifestFile), /review must bind exact output/);
+    await fs.writeFile(sourceFile, originalSource); await fs.writeFile(file, originalOutput);
+  });
   await rejects('crop out of image', m => m.characters[0].outputs[0].cropPixels.left = 9999, /out of bounds/);
   await rejects('safe area clipped', m => m.characters[0].outputs[0].safeAreaPixels.top = 1700, /clipped/);
   await rejects('wrong declared size', m => m.characters[0].outputs[0].width = 255, /dimensions mismatch/);

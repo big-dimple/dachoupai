@@ -11,8 +11,8 @@ export function characterArt(id:CharacterId,purpose:CharacterArtPurpose){
   return {...output,id,purpose,key:prefixes[purpose]+id,path,url:import.meta.env.BASE_URL+path};
 }
 const assets=manifest.assets.filter(a=>a.category==='character').flatMap(a=>(['avatar','selection','portrait'] as const).map(p=>characterArt(a.id as CharacterId,p)));
-const pathname=(url:string)=>new URL(url,'https://local.invalid').pathname;
-export function characterArtByURL(url:string){return assets.find(a=>pathname(a.url)===pathname(url));}
+const absoluteURL=(url:string)=>new URL(url,typeof document==='undefined'?'https://local.invalid/':document.baseURI||'https://local.invalid/').href;
+export function characterArtByURL(url:string){return assets.find(a=>absoluteURL(a.url)===absoluteURL(url));}
 export function characterArtByKey(key:string){return assets.find(a=>a.key===key);}
 /** Reject swapped roles/IDs before a transfer or cache hit; non-character textures retain their own contracts. */
 export function assertCharacterArtReference(key:string,url:string):void {

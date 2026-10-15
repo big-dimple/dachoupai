@@ -80,6 +80,7 @@ export async function verifyIncoming(manifestFile) {
     requireThat(review?.status === 'approved' && review.youngAdult === true && review.distinctIdentity === true && review.samePersonEyes === true && text(review.reviewer) && text(review.evidence) && text(review.reviewedAt) && Number.isFinite(Date.parse(review.reviewedAt)), 'young-adult/identity/eyes human review required');
     requireThat(['portrait', 'eyes'].every(p => review.sourceHashes?.[p] === sources[p].sha256), 'review must bind exact source hashes');
     exactKeys(hero.outputs?.map(o => o.purpose), Object.keys(contract.outputs), `${hero.id} outputs`);
+    exactKeys(Object.keys(review.outputApprovals ?? {}), Object.keys(contract.outputs), `${hero.id} output approvals`);
     for (const output of hero.outputs) {
       const spec = contract.outputs[output.purpose];
       requireThat(output.characterId === hero.id && output.path === `outputs/${hero.id}.${output.purpose}.webp` && output.sourcePurpose === spec.sourcePurpose, 'wrong output character mapping');
@@ -94,6 +95,10 @@ export async function verifyIncoming(manifestFile) {
       const checked = await readImage(path.dirname(manifestFile), output, spec, used);
       requireThat(!oldHashes.has(checked.sha256) && !newHashes.has(checked.sha256), 'legacy/duplicate image hash'); newHashes.add(checked.sha256);
       requireThat(checked.data.equals(await renderOutput(source.data, output)), 'output is not exact non-stretched source crop/resize (fixed sharp recipe)');
+      const approval = review.outputApprovals[output.purpose];
+      requireThat(approval?.sha256 === checked.sha256 && ['cropPixels', 'safeAreaPixels'].every(field =>
+        ['left', 'top', 'width', 'height'].every(key => approval[field]?.[key] === output[field][key])),
+      'review must bind exact output hash, cropPixels and safeAreaPixels');
     }
   }
   return {status: 'PASS_INCOMING_TECHNICAL_ONLY', characters: 6, originals: 12, outputs: 24, runtimeIntegrated: false, automaticPublication: false, visualReview: 'Recorded human attestation checked; image semantics are not machine certified.'};
@@ -102,7 +107,7 @@ export async function verifyIncoming(manifestFile) {
 export function template() {
   return {schemaVersion: 1, contractId: contract.id, characters: contract.characterIds.map(id => ({id,
     sources: Object.fromEntries(Object.entries(contract.sources).map(([purpose, spec]) => [purpose, {characterId: id, purpose, path: `originals/${id}.${purpose}.png`, width: spec.width, height: spec.height, format: 'png', alpha: false, bytes: 0, sha256: 'REPLACE', original: true, version: 'REPLACE', provenance: {origin: 'REPLACE original download URL/reference', license: 'REPLACE applicable rights', licenseEvidence: 'REPLACE source/permission reference'}}])),
-    review: {status: 'pending', reviewer: 'REPLACE', reviewedAt: 'REPLACE ISO timestamp', youngAdult: false, distinctIdentity: false, samePersonEyes: false, evidence: 'REPLACE review record including face/crop safety', sourceHashes: {portrait: 'REPLACE', eyes: 'REPLACE'}},
+    review: {status: 'pending', reviewer: 'REPLACE', reviewedAt: 'REPLACE ISO timestamp', youngAdult: false, distinctIdentity: false, samePersonEyes: false, evidence: 'REPLACE review record including face/crop safety', sourceHashes: {portrait: 'REPLACE', eyes: 'REPLACE'}, outputApprovals: Object.fromEntries(Object.keys(contract.outputs).map(purpose => [purpose, {sha256: 'REPLACE reviewed output hash', cropPixels: {left: null, top: null, width: null, height: null}, safeAreaPixels: {left: null, top: null, width: null, height: null}}]))},
     outputs: Object.entries(contract.outputs).map(([purpose, spec]) => ({characterId: id, purpose, sourcePurpose: spec.sourcePurpose, path: `outputs/${id}.${purpose}.webp`, width: spec.width, height: spec.height, bytes: 0, sha256: 'REPLACE', cropPixels: {left: 0, top: 0, width: 1536, height: purpose === 'eyes' ? 768 : purpose === 'avatar' ? 1536 : 1920}, safeAreaPixels: {left: 100, top: 100, width: 100, height: 100}}))}))};
 }
 

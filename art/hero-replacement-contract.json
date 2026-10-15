@@ -13,5 +13,6 @@
     "eyes": {"width": 1536, "height": 768, "format": "webp", "maxBytes": 262144, "maxPixels": 1179648, "sourcePurpose": "eyes", "runtimeIntegrated": false}
   },
   "recipe": {"fit": "cover", "position": "centre", "kernel": "lanczos3", "quality": 88, "effort": 6},
+  "reviewBinding": {"sourceHashes": ["portrait", "eyes"], "outputApprovals": {"purposes": ["avatar", "selection", "portrait", "eyes"], "requiredExactFields": ["sha256", "cropPixels", "safeAreaPixels"]}},
   "publication": "manual-only; technical verification never grants visual approval or publication"
 }
