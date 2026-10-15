@@ -1,0 +1,9 @@
+{
+  "status": "FAIL",
+  "kind": "incorrect test expectation, product table was correct",
+  "time": "04:50:47 UTC",
+  "command": "npm test -- tests/shop-practice-service.test.ts tests/make-cards-flow.test.ts tests/build-practice.test.ts tests/build-journey-dialog.test.ts tests/r2-practice.test.ts",
+  "result": "1 failed, 27 passed; 1 failed file, 3 passed files (r2-practice.test.ts does not exist)",
+  "failure": "high-card Lv.1: expected 基础热度 8 → 18（+10）; received 基础热度 20 → 30（+10）",
+  "resolution": "Corrected the test fixture expectation to match R2_BASE_SCORES; no domain/content change."
+}
