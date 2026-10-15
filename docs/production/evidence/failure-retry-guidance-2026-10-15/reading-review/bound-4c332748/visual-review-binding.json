@@ -76,7 +76,14 @@
       "priorRGB": "6c307fb75012219383bcbbe3845a56692e74203fe40eca230e41d2d03fd722c7",
       "boundRGB": "a31e903aa44a327a839cd78b7ca704acdbc24069bff348ec09c83303580d61aa",
       "pixelEqual": false,
-      "visualReview": "Bound PNG separately actually viewed; only return-button focus differs, header audit unchanged"
+      "visualReview": "Bound PNG separately actually viewed. Full-image RGB differs; no exclusive cause attributed. The complete title-region RGB audit remains equal.",
+      "pixelDifference": {
+        "count": 4653,
+        "minX": 164,
+        "minY": 434,
+        "maxX": 254,
+        "maxY": 488
+      }
     }
   ]
 }
