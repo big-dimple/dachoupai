@@ -22,7 +22,7 @@ try{for(const [width,height] of [[1366,768],[390,844]]){
  const dom=loc=>touch?loc.tap():loc.click();
  const snap=()=>p.evaluate(async()=>{const {gameSession}=await import('/src/game/session.ts'),s=gameSession();return{state:s.run.state,journal:s.run.journal,storage:await s.storage.read(),localStorage:{...localStorage}};});
  await p.goto('http://127.0.0.1:5495/?harness=1');await waitScene(p,'title');
- for(const [donor,label,stars] of [['d05','弃牌返还',2],['a07','弃牌收入',2],['f07','失败前救场',2],['e05',undefined,2],['d07',undefined,4]]){
+ for(const [donor,label,stars] of [['d05','弃牌返还',2],['a07','弃牌收入',2],['f07','失败前救场',2],['f10','弃牌后的条件效果',2],['e05',undefined,2],['d07',undefined,4]]){
   const {state,offer,sold}=resourceLossFixture(donor),cp=makeCheckpoint(state,[]);assert.ok(readCheckpoint(cp).ok);
   await dom(p.locator('.run-menu-toggle'));const section=p.getByText('进度与存档',{exact:true}).locator('..');if(!await section.evaluate(e=>e.open))await dom(section.locator('summary'));
   const chooser=p.waitForEvent('filechooser');await dom(p.getByRole('button',{name:'导入本局',exact:true}));await(await chooser).setFiles({name:'resource-loss.json',mimeType:'application/json',buffer:Buffer.from(JSON.stringify(cp))});
@@ -36,6 +36,7 @@ try{for(const [width,height] of [[1366,768],[390,844]]){
   if(label)assert.ok((await card.locator('.shop-offer-value').innerText()).includes('替换有未估代价'));
   await dom(card.locator('summary'));assert.ok(await card.locator('details').evaluate(e=>e.open));const text=await card.locator('details').innerText();
   assert.ok(text.includes('以保留不买为基线')&&text.includes('非下一手预测'));
+  if(donor==='f10')assert.ok(!text.includes('结算后成长／返还'),'rescue consumption is not a future growth/refund benefit');
   const row={width,height,donor,stars,text,errors:[],before};report.cases.push(row);
   if(label){
    assert.ok(text.includes(label)&&text.includes('是否兑现未知')&&text.includes('未纳入本手分差'));

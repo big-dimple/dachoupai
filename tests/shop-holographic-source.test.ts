@@ -11,16 +11,18 @@ import {assertRunInvariants,type R2RunState} from '../src/domain/run';
 
 const withoutBodySource=(s=holographicRecommendationFixture())=>holographicSend(s,{type:'SellJoker',instanceId:'held/b04'});
 const guidance=(s:R2RunState)=>shopOfferGuidance(s,s.shop!.offers[0]);
+const economicReceipt=(g:ReturnType<typeof shopOfferGuidance>)=>JSON.parse(g.recommendation.facts.purchaseValue as string) as {refund:number;net:number;goldAfter:number;lostInvestment:boolean;interestLoss:boolean};
 const pairIds=['spades-2','hearts-2'];
 const score=(s:R2RunState)=>{const {input}=shopC2Score(s,pairIds);return scoreR2Hand({...input,boss:s.stageIndex%3===2?s.boss:null,challengeDisabledJokerId:s.chapterDisabledJokerId});};
 
 it('controlled five-slot counterexample keeps holographic +2 after the specified sale',()=>{
  const s=holographicRecommendationFixture(),before=structuredClone(s),o=s.shop!.offers[0];
- // All five comparisons retain either the enabled edition or a body additive source.
- for(const sold of s.jokers)expect(shopOfferGuidance(s,o,sold).stars).toBe(4);
+ // The +2 source remains real; its presence does not erase the specified sale's cost.
+ for(const sold of s.jokers){const g=shopOfferGuidance(s,o,sold);expect(g.recommendation.facts.additiveSource).toBe(true);expect(g.stars).toBe(sold.definitionId==='b07'?1:2);expect(economicReceipt(g).lostInvestment).toBe(true);}
  const preview=shopOfferGuidance(s,o,s.jokers[2]),sold=withoutBodySource(s),continuation=guidance(sold),bought=holographicSend(sold,{type:'BuyOffer',offerId:o.offerId});
  expect([s.gold,sold.gold,bought.gold]).toEqual([38,40,32]);
- expect(preview.recommendation).toMatchObject({stars:4,facts:{additiveSource:true}});expect(continuation.recommendation).toEqual(preview.recommendation);
+ expect(preview.recommendation).toMatchObject({stars:2,facts:{additiveSource:true}});expect(continuation.recommendation).toMatchObject({stars:4,facts:{additiveSource:true}});
+ expect(economicReceipt(preview)).toMatchObject({refund:2,net:6,goldAfter:32,lostInvestment:true});expect(economicReceipt(continuation)).toMatchObject({refund:0,net:8,goldAfter:32,lostInvestment:false});
  expect(bought.jokers.find(j=>j.definitionId==='e11')!.growth.coefficient).toEqual({n:'7',d:'5'});
  const t=score(bought);expect(t.events.find(e=>e.sourceInstanceId==='held/b07'&&e.reasonKey==='edition.holographic.add-multiplier')).toMatchObject({operation:'add-multiplier',value:{n:'2',d:'1'}});
  expect(t.finalScore).toBe('11128');expect(t.accumulator.H).toEqual({n:'184',d:'1'});expect(t.accumulator.M).toEqual({n:'1512',d:'25'});
@@ -43,16 +45,16 @@ it.each(['none',undefined,'foil','polychrome'] as const)('%s edition is not an a
 it('selling the only holographic instance removes its additive source',()=>{
  const s=withoutBodySource(),before=structuredClone(s),o=s.shop!.offers[0],j=s.jokers[1];
  const preview=shopOfferGuidance(s,o,j),sold=holographicSend(s,{type:'SellJoker',instanceId:j.instanceId});
- expect(preview.recommendation).toMatchObject({stars:2,facts:{additiveSource:false}});expect(guidance(sold).recommendation).toEqual(preview.recommendation);expect(s).toEqual(before);
+ expect(preview.recommendation).toMatchObject({stars:1,facts:{additiveSource:false}});expect(guidance(sold).recommendation).toMatchObject({stars:2,facts:{additiveSource:false}});expect(s).toEqual(before);
 });
 
-it.each([[false,2],[true,4]] as const)('B06 uses the actual post-sale position (unseal=%s)',(unseal,stars)=>{
+it.each([[false,2],[true,2]] as const)('B06 uses the actual post-sale position (unseal=%s)',(unseal,stars)=>{
  const s=holographicRecommendationFixture();s.boss={definitionId:'B06',disabledSuit:null};s.chapterTargetPlan=lockR2ChapterTargets(s.chapter,s.tourMode,s.difficulty,s.boss);s.seenBossIds[2]='B06';
  const ids=unseal?['mantangcai','f09','b04','b07','e11']:['b04','mantangcai','b07','f09','e11'];
  s.jokers=ids.map(id=>s.jokers.find(j=>j.definitionId===id)!);assertRunInvariants(s);const before=structuredClone(s),j=s.jokers.find(j=>j.definitionId==='b04')!;
  const preview=shopOfferGuidance(s,s.shop!.offers[0],j),sold=holographicSend(s,{type:'SellJoker',instanceId:j.instanceId}),disabled=r2ScoringDisabledJokerIds(sold.boss,sold.jokers,r2JokerDefinitionsFor(sold));
  expect(disabled.includes('held/b07')).toBe(!unseal);expect(preview.recommendation).toMatchObject({stars,facts:{additiveSource:unseal}});
- expect(guidance(sold).recommendation).toEqual(preview.recommendation);expect(score(sold).events.some(e=>e.reasonKey==='edition.holographic.add-multiplier')).toBe(unseal);expect(s).toEqual(before);
+ expect(guidance(sold).recommendation.facts.additiveSource).toBe(unseal);expect(economicReceipt(preview)).toMatchObject({refund:2,net:6,goldAfter:32,lostInvestment:true});expect(economicReceipt(guidance(sold))).toMatchObject({refund:0,net:8,goldAfter:32,lostInvestment:false});expect(score(sold).events.some(e=>e.reasonKey==='edition.holographic.add-multiplier')).toBe(unseal);expect(s).toEqual(before);
 });
 
 it('challenge disables the whole holographic instance, including its edition',()=>{
@@ -86,7 +88,7 @@ it('B15 real seal follows the holographic instance after reordering',()=>{
  expect(before.stage!.sealedJokerIds).toEqual(s.stage!.sealedJokerIds);
 });
 
-it.each([[27,2,19],[28,4,20]] as const)('holographic does not override actual purchase cash (before=%i stars=%i after=%i)', (gold,stars,after)=>{
+it.each([[27,2,19],[28,3,20]] as const)('holographic does not override actual purchase cash (before=%i stars=%i after=%i)', (gold,stars,after)=>{
  const s=withoutBodySource();s.gold=gold;assertRunInvariants(s);const g=guidance(s),bought=holographicSend(s,{type:'BuyOffer',offerId:s.shop!.offers[0].offerId});
- expect(bought.gold).toBe(after);expect(g.recommendation).toMatchObject({stars,facts:{additiveSource:true}});expect(g.condition).toContain(`买后${after}金`);
+ expect(bought.gold).toBe(after);expect(g.recommendation).toMatchObject({stars,facts:{additiveSource:true}});expect(g.condition).toContain(`买后${after}金`);expect(economicReceipt(g).interestLoss).toBe(true);
 });
