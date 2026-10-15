@@ -1,0 +1,112 @@
+{
+  "base": "4a52fd0b0fb9ac0a49b8cb5e79abc8db4326e2d7",
+  "candidate": "7d1071cefa3eeb63966af3a2a46ec3afede3848a",
+  "srcTree": "cb5ddf2e5ea9ba284c52a129f1eccb9140f15385",
+  "actualProductChanges": [
+    "src/game/FailureSummary.ts",
+    "src/game/IntermissionScene.ts"
+  ],
+  "protectedPaths": {
+    "src/domain": {
+      "base": "bd1f9b2c5a2b7eb4d143b59a094694b12adc8485",
+      "candidate": "bd1f9b2c5a2b7eb4d143b59a094694b12adc8485",
+      "equal": true
+    },
+    "src/application": {
+      "base": "1a325d51795f54526ec9f3f313cceb69763a1971",
+      "candidate": "1a325d51795f54526ec9f3f313cceb69763a1971",
+      "equal": true
+    },
+    "src/content": {
+      "base": "e8c3794be5b0fcb74da4aeb9e6adc63c22388345",
+      "candidate": "e8c3794be5b0fcb74da4aeb9e6adc63c22388345",
+      "equal": true
+    },
+    "src/platform": {
+      "base": "860a9f8883cc158ac0c56ad6399518cc897a67b7",
+      "candidate": "860a9f8883cc158ac0c56ad6399518cc897a67b7",
+      "equal": true
+    },
+    "src/audio": {
+      "base": "7f6d2d0dd34313a4099d34cfd36b2baa748f83c2",
+      "candidate": "7f6d2d0dd34313a4099d34cfd36b2baa748f83c2",
+      "equal": true
+    },
+    "src/vendor": {
+      "base": "96374120045a5dca22a25d2726d09fb41ebd0ef7",
+      "candidate": "96374120045a5dca22a25d2726d09fb41ebd0ef7",
+      "equal": true
+    },
+    "public": {
+      "base": "c4a6ec74e7fd754b0f300b973020f8afed7542e1",
+      "candidate": "c4a6ec74e7fd754b0f300b973020f8afed7542e1",
+      "equal": true
+    },
+    "art": {
+      "base": "b0caa33679b84bee932b2854734c04ad39ba0464",
+      "candidate": "b0caa33679b84bee932b2854734c04ad39ba0464",
+      "equal": true
+    },
+    "src/style.css": {
+      "base": "561a420fc415768ae33300d34350b84ee9ba16c2",
+      "candidate": "561a420fc415768ae33300d34350b84ee9ba16c2",
+      "equal": true
+    },
+    "src/game/SettlementPresentation.ts": {
+      "base": "80320d3c1327edcebf7f7faa9ff9ab1878a011b5",
+      "candidate": "80320d3c1327edcebf7f7faa9ff9ab1878a011b5",
+      "equal": true
+    },
+    "src/game/SceneView.ts": {
+      "base": "c9a20c0cbba66aee3fa419882559e823281ad189",
+      "candidate": "c9a20c0cbba66aee3fa419882559e823281ad189",
+      "equal": true
+    },
+    "src/game/DetailDialog.ts": {
+      "base": "9917095339ede7d0ef564b8164e815b9523cdcde",
+      "candidate": "9917095339ede7d0ef564b8164e815b9523cdcde",
+      "equal": true
+    },
+    "src/game/RunLaunch.ts": {
+      "base": "4143823e15c57194b15961721e7701bb793d83a2",
+      "candidate": "4143823e15c57194b15961721e7701bb793d83a2",
+      "equal": true
+    },
+    "src/game/runAdapter.ts": {
+      "base": "6fd12f0dca99fe38c9f9b1b9238cfb220c8c168a",
+      "candidate": "6fd12f0dca99fe38c9f9b1b9238cfb220c8c168a",
+      "equal": true
+    },
+    "src/game/session.ts": {
+      "base": "589a2710688a15f99018b1d38eb5b49f506477b3",
+      "candidate": "589a2710688a15f99018b1d38eb5b49f506477b3",
+      "equal": true
+    },
+    "src/game/RunMenu.ts": {
+      "base": "acad82dec101618c60fdae7508ffe0d287c27a9f",
+      "candidate": "acad82dec101618c60fdae7508ffe0d287c27a9f",
+      "equal": true
+    },
+    "src/game/SavedBossImpact.ts": {
+      "base": "676cab6ed3470fcf1cc72047435f0c0fce6e4c8a",
+      "candidate": "676cab6ed3470fcf1cc72047435f0c0fce6e4c8a",
+      "equal": true
+    },
+    "package.json": {
+      "base": "f7e7f89f05edd46636bac3acc1dfcd1b6cd94ccd",
+      "candidate": "f7e7f89f05edd46636bac3acc1dfcd1b6cd94ccd",
+      "equal": true
+    },
+    "package-lock.json": {
+      "base": "acc93dcd9410bc911db279534e28522a8691dbab",
+      "candidate": "acc93dcd9410bc911db279534e28522a8691dbab",
+      "equal": true
+    },
+    ".github": {
+      "base": "b923e03979ce93c9a142628f8b1099e2cd2b9150",
+      "candidate": "b923e03979ce93c9a142628f8b1099e2cd2b9150",
+      "equal": true
+    }
+  },
+  "scope": "Final 13-case source; earlier source-proof.json belongs to the earlier 12-case stage only."
+}

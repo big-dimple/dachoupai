@@ -1,0 +1,222 @@
+{
+  "status": "PASS",
+  "sourceHead": "7d1071cefa3eeb63966af3a2a46ec3afede3848a",
+  "sourceStatusBefore": "",
+  "sourceHeadAfter": "7d1071cefa3eeb63966af3a2a46ec3afede3848a",
+  "sourceStatusAfter": "",
+  "caseCount": 13,
+  "scope": "Local E2E build; controlled terminal fixtures end through original commands, strict production import, native clicks/taps, full state/journal/checkpoint/revision comparison. Not formal-site QA, natural runs, physical devices, hearing or balance acceptance.",
+  "cases": [
+    {
+      "key": "pc-hands",
+      "kind": "hands",
+      "viewport": {
+        "name": "pc",
+        "width": 1366,
+        "height": 768
+      },
+      "status": "PASS",
+      "readOnlyFlow": "PASS",
+      "retry": {
+        "status": "PASS",
+        "commitAttempts": 1,
+        "successfulRevisionDelta": 1,
+        "singleNewState": true
+      },
+      "coldRecovery": "PASS",
+      "singleReplacement": null,
+      "originalPartitionPreserved": null
+    },
+    {
+      "key": "pc-cards",
+      "kind": "cards",
+      "viewport": {
+        "name": "pc",
+        "width": 1366,
+        "height": 768
+      },
+      "status": "PASS",
+      "readOnlyFlow": "PASS",
+      "retry": null,
+      "coldRecovery": null,
+      "singleReplacement": null,
+      "originalPartitionPreserved": null
+    },
+    {
+      "key": "pc-abandoned",
+      "kind": "abandoned",
+      "viewport": {
+        "name": "pc",
+        "width": 1366,
+        "height": 768
+      },
+      "status": "PASS",
+      "readOnlyFlow": "PASS",
+      "retry": null,
+      "coldRecovery": null,
+      "singleReplacement": null,
+      "originalPartitionPreserved": null
+    },
+    {
+      "key": "390-hands",
+      "kind": "hands",
+      "viewport": {
+        "name": "390",
+        "width": 390,
+        "height": 844
+      },
+      "status": "PASS",
+      "readOnlyFlow": "PASS",
+      "retry": {
+        "status": "PASS",
+        "commitAttempts": 1,
+        "successfulRevisionDelta": 1,
+        "singleNewState": true
+      },
+      "coldRecovery": "PASS",
+      "singleReplacement": null,
+      "originalPartitionPreserved": null
+    },
+    {
+      "key": "390-cards",
+      "kind": "cards",
+      "viewport": {
+        "name": "390",
+        "width": 390,
+        "height": 844
+      },
+      "status": "PASS",
+      "readOnlyFlow": "PASS",
+      "retry": null,
+      "coldRecovery": null,
+      "singleReplacement": null,
+      "originalPartitionPreserved": null
+    },
+    {
+      "key": "390-abandoned",
+      "kind": "abandoned",
+      "viewport": {
+        "name": "390",
+        "width": 390,
+        "height": 844
+      },
+      "status": "PASS",
+      "readOnlyFlow": "PASS",
+      "retry": null,
+      "coldRecovery": null,
+      "singleReplacement": null,
+      "originalPartitionPreserved": null
+    },
+    {
+      "key": "320-short-hands",
+      "kind": "hands",
+      "viewport": {
+        "name": "320-short",
+        "width": 320,
+        "height": 568
+      },
+      "status": "PASS",
+      "readOnlyFlow": "PASS",
+      "retry": {
+        "status": "PASS",
+        "commitAttempts": 1,
+        "successfulRevisionDelta": 1,
+        "singleNewState": true
+      },
+      "coldRecovery": "PASS",
+      "singleReplacement": null,
+      "originalPartitionPreserved": null
+    },
+    {
+      "key": "320-short-cards",
+      "kind": "cards",
+      "viewport": {
+        "name": "320-short",
+        "width": 320,
+        "height": 568
+      },
+      "status": "PASS",
+      "readOnlyFlow": "PASS",
+      "retry": null,
+      "coldRecovery": null,
+      "singleReplacement": null,
+      "originalPartitionPreserved": null
+    },
+    {
+      "key": "320-short-abandoned",
+      "kind": "abandoned",
+      "viewport": {
+        "name": "320-short",
+        "width": 320,
+        "height": 568
+      },
+      "status": "PASS",
+      "readOnlyFlow": "PASS",
+      "retry": null,
+      "coldRecovery": null,
+      "singleReplacement": null,
+      "originalPartitionPreserved": null
+    },
+    {
+      "key": "390-short-boss",
+      "kind": "boss",
+      "viewport": {
+        "width": 390,
+        "height": 568
+      },
+      "status": "PASS",
+      "readOnlyFlow": null,
+      "retry": null,
+      "coldRecovery": null,
+      "singleReplacement": null,
+      "originalPartitionPreserved": null
+    },
+    {
+      "key": "390-short-fault",
+      "kind": "fault",
+      "viewport": {
+        "width": 390,
+        "height": 568
+      },
+      "status": "PASS",
+      "readOnlyFlow": null,
+      "retry": {
+        "status": "PASS",
+        "commitAttempts": 3,
+        "successfulRevisionDelta": 1,
+        "singleNewState": true
+      },
+      "coldRecovery": "PASS",
+      "singleReplacement": null,
+      "originalPartitionPreserved": null
+    },
+    {
+      "key": "390-short-post-skip",
+      "kind": "post-skip",
+      "viewport": {
+        "width": 390,
+        "height": 568
+      },
+      "status": "PASS",
+      "readOnlyFlow": null,
+      "retry": null,
+      "coldRecovery": null,
+      "singleReplacement": null,
+      "originalPartitionPreserved": null
+    },
+    {
+      "key": "390-short-new-selection",
+      "kind": "new-selection",
+      "viewport": {
+        "width": 390,
+        "height": 568
+      },
+      "status": "PASS",
+      "readOnlyFlow": null,
+      "retry": null,
+      "coldRecovery": "PASS",
+      "singleReplacement": "PASS",
+      "originalPartitionPreserved": true
+    }
+  ]
+}
