@@ -1,0 +1,163 @@
+
+> dachoupai@0.1.0 test
+> vitest run
+
+
+ RUN  v4.1.11 /workspace/astra-integration
+
+ ❯ tests/shop-holographic-source.test.ts (14 tests | 5 failed) 471ms
+   × controlled five-slot counterexample keeps holographic +2 after the specified sale 113ms
+   × selling the only holographic instance removes its additive source 29ms
+   × B06 uses the actual post-sale position (unseal=false) 45ms
+   × B06 uses the actual post-sale position (unseal=true) 15ms
+   × holographic does not override actual purchase cash (before=28 stars=4 after=20) 14ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 5 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/shop-holographic-source.test.ts > controlled five-slot counterexample keeps holographic +2 after the specified sale
+AssertionError: expected 2 to be 4 // Object.is equality
+
+- Expected
++ Received
+
+- 4
++ 2
+
+ ❯ tests/shop-holographic-source.test.ts:20:71
+     18|  const s=holographicRecommendationFixture(),before=structuredClone(s),…
+     19|  // All five comparisons retain either the enabled edition or a body a…
+     20|  for(const sold of s.jokers)expect(shopOfferGuidance(s,o,sold).stars).…
+       |                                                                       ^
+     21|  const preview=shopOfferGuidance(s,o,s.jokers[2]),sold=withoutBodySour…
+     22|  expect([s.gold,sold.gold,bought.gold]).toEqual([38,40,32]);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/5]⎯
+
+ FAIL  tests/shop-holographic-source.test.ts > selling the only holographic instance removes its additive source
+AssertionError: expected { stars: 1, reason: '保留对照更高', …(6) } to match object { stars: 2, facts: { …(1) } }
+(6 matching properties omitted from actual)
+
+- Expected
++ Received
+
+  {
+    "facts": {
+      "additiveSource": false,
+    },
+-   "stars": 2,
++   "stars": 1,
+  }
+
+ ❯ tests/shop-holographic-source.test.ts:46:33
+     44|  const s=withoutBodySource(),before=structuredClone(s),o=s.shop!.offer…
+     45|  const preview=shopOfferGuidance(s,o,j),sold=holographicSend(s,{type:'…
+     46|  expect(preview.recommendation).toMatchObject({stars:2,facts:{additive…
+       |                                 ^
+     47| });
+     48|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/5]⎯
+
+ FAIL  tests/shop-holographic-source.test.ts > B06 uses the actual post-sale position (unseal=false)
+AssertionError: expected { stars: 2, reason: '持金放大倍率', …(6) } to deeply equal { stars: 2, reason: '持金放大倍率', …(6) }
+
+- Expected
++ Received
+
+@@ -1,18 +1,15 @@
+  {
+    "combination": "组合记录：尚无两张现持牌共同计分。",
+    "combinationHint": "",
+    "condition": "买后32金，满足20金门槛",
+-   "detail": "以保留不买为基线；实付8金，已发生返金2金，净支出6金；余额38→32金。
++   "detail": "以保留不买为基线；实付8金，已发生返金0金，净支出8金；余额40→32金。
+  当前利息档5→5，仅按过关时余额结算，不计未来收入。
+  新实例：无成长或使用计数
+- 失去来源：一唱一和；无成长或使用计数；版次 普通
+- 长期捧场：已有系数×1.4保留；本次出售将使下一场“本场未出售”的过关成长条件不满足；不会在这里获得过关成长。
+- 本局过关加成保留，出售不丢。
+  一次条件对照（公开牌组样例，非下一手预测；假定下场首手、未弃牌、只打所列牌且不留牌；主动技能未用）：
+- 普通单张 2♣：保留 92 → 变更 126；分差 34
+- 路线条件手 7♣ 7♦：保留 1769 → 变更 3542；分差 1773
++ 普通单张 2♣：保留 70 → 变更 126；分差 56
++ 路线条件手 7♣ 7♦：保留 1968 → 变更 3542；分差 1574
+  只计本手已有值；手后成长、未来抽牌、收入和存活次数未知。
+  推荐还需兼顾实付、已有来源和永久代价；条件增分不保证回本或通关。
+  持金放大倍率；买后32金，满足20金门槛。当前金币至少20时，整手倍率 ×1.8。
+  组合记录：尚无两张现持牌共同计分。
+  过关加成：成功清场8次；成组 8次 / ×4；顺子 0次 / ×1；同花 0次 / ×1。
+@@ -39,11 +36,11 @@
+      "largest": 4,
+      "largestSuit": 13,
+      "ordinaryFlushPossible": true,
+      "ordinaryStraightPossible": true,
+      "potentialStages": 16,
+-     "purchaseValue": "{\"policy\":\"public-one-play-v1\",\"calibrated\":true,\"status\":\"assessed\",\"paid\":8,\"refund\":2,\"net\":6,\"goldAfter\":32,\"rows\":[{\"label\":\"普通单张\",\"ids\":[\"clubs-2\"],\"cards\":\"2♣\",\"keep\":{\"minimum\":\"92\",\"maximum\":\"92\"},\"change\":{\"minimum\":\"126\",\"maximum\":\"126\"},\"delta\":{\"minimum\":\"34\",\"maximum\":\"34\"}},{\"label\":\"路线条件手\",\"ids\":[\"clubs-7\",\"diamonds-7\"],\"cards\":\"7♣ 7♦\",\"keep\":{\"minimum\":\"1769\",\"maximum\":\"1769\"},\"change\":{\"minimum\":\"3542\",\"maximum\":\"3542\"},\"delta\":{\"minimum\":\"1773\",\"maximum\":\"1773\"}}],\"ceiling\":2,\"negative\":false,\"positive\":true,\"allPositive\":true,\"lostInvestment\":true,\"unmeasuredLoss\":false,\"unmeasuredLossReasons\":[],\"cashLoss\":false,\"interestLoss\":false,\"detail\":\"以保留不买为基线；实付8金，已发生返金2金，净支出6金；余额38→32金。\\n当前利息档5→5，仅按过关时余额结算，不计未来收入。\\n新实例：无成长或使用计数\\n失去来源：一唱一和；无成长或使用计数；版次 普通\\n长期捧场：已有系数×1.4保留；本次出售将使下一场“本场未出售”的过关成长条件不满足；不会在这里获得过关成长。\\n本局过关加成保留，出售不丢。\\n一次条件对照（公开牌组样例，非下一手预测；假定下场首手、未弃牌、只打所列牌且不留牌；主动技能未用）：\\n普通单张 2♣：保留 92 → 变更 126；分差 34\\n路线条件手 7♣ 7♦：保留 1769 → 变更 3542；分差 1773\\n只计本手已有值；手后成长、未来抽牌、收入和存活次数未知。\\n推荐还需兼顾实付、已有来源和永久代价；条件增分不保证回本或通关。\"}",
++     "purchaseValue": "{\"policy\":\"public-one-play-v1\",\"calibrated\":true,\"status\":\"assessed\",\"paid\":8,\"refund\":0,\"net\":8,\"goldAfter\":32,\"rows\":[{\"label\":\"普通单张\",\"ids\":[\"clubs-2\"],\"cards\":\"2♣\",\"keep\":{\"minimum\":\"70\",\"maximum\":\"70\"},\"change\":{\"minimum\":\"126\",\"maximum\":\"126\"},\"delta\":{\"minimum\":\"56\",\"maximum\":\"56\"}},{\"label\":\"路线条件手\",\"ids\":[\"clubs-7\",\"diamonds-7\"],\"cards\":\"7♣ 7♦\",\"keep\":{\"minimum\":\"1968\",\"maximum\":\"1968\"},\"change\":{\"minimum\":\"3542\",\"maximum\":\"3542\"},\"delta\":{\"minimum\":\"1574\",\"maximum\":\"1574\"}}],\"ceiling\":4,\"negative\":false,\"positive\":true,\"allPositive\":true,\"lostInvestment\":false,\"unmeasuredLoss\":false,\"unmeasuredLossReasons\":[],\"cashLoss\":false,\"interestLoss\":false,\"detail\":\"以保留不买为基线；实付8金，已发生返金0金，净支出8金；余额40→32金。\\n当前利息档5→5，仅按过关时余额结算，不计未来收入。\\n新实例：无成长或使用计数\\n一次条件对照（公开牌组样例，非下一手预测；假定下场首手、未弃牌、只打所列牌且不留牌；主动技能未用）：\\n普通单张 2♣：保留 70 → 变更 126；分差 56\\n路线条件手 7♣ 7♦：保留 1968 → 变更 3542；分差 1574\\n只计本手已有值；手后成长、未来抽牌、收入和存活次数未知。\\n推荐还需兼顾实付、已有来源和永久代价；条件增分不保证回本或通关。\"}",
+      "qualifiedRecord": false,
+      "retriggerSource": false,
+      "routeGrowth": "{\"before\":{\"clears\":8,\"G\":8,\"S\":0,\"F\":0},\"factors\":{\"G\":{\"n\":\"4\",\"d\":\"1\"},\"S\":{\"n\":\"1\",\"d\":\"1\"},\"F\":{\"n\":\"1\",\"d\":\"1\"}},\"preserved\":\"本局过关加成保留，出售不丢。\",\"detail\":\"过关加成：成功清场8次；成组 8次 / ×4；顺子 0次 / ×1；同花 0次 / ×1。\\n本手只取实际所属族最高因子一次，单族上限×4；高牌×1。每族前三次合格清场因子为1；清场后入账，下手生效。出售不清零，买卖不增加加成。\"}",
+      "second": 4,
+      "straightConcentrated": false,
+
+ ❯ tests/shop-holographic-source.test.ts:55:40
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/5]⎯
+
+ FAIL  tests/shop-holographic-source.test.ts > B06 uses the actual post-sale position (unseal=true)
+AssertionError: expected { stars: 2, reason: '替换会丢已有收益', …(6) } to match object { stars: 4, facts: { …(1) } }
+(6 matching properties omitted from actual)
+
+- Expected
++ Received
+
+  {
+    "facts": {
+      "additiveSource": true,
+    },
+-   "stars": 4,
++   "stars": 2,
+  }
+
+ ❯ tests/shop-holographic-source.test.ts:54:85
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/5]⎯
+
+ FAIL  tests/shop-holographic-source.test.ts > holographic does not override actual purchase cash (before=28 stars=4 after=20)
+AssertionError: expected { stars: 3, reason: '购款降低利息档', …(6) } to match object { stars: 4, facts: { …(1) } }
+(6 matching properties omitted from actual)
+
+- Expected
++ Received
+
+  {
+    "facts": {
+      "additiveSource": true,
+    },
+-   "stars": 4,
++   "stars": 3,
+  }
+
+ ❯ tests/shop-holographic-source.test.ts:91:59
+     89| it.each([[27,2,19],[28,4,20]] as const)('holographic does not override…
+     90|  const s=withoutBodySource();s.gold=gold;assertRunInvariants(s);const …
+     91|  expect(bought.gold).toBe(after);expect(g.recommendation).toMatchObjec…
+       |                                                           ^
+     92| });
+     93|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/5]⎯
+
+
+ Test Files  1 failed | 265 passed (266)
+      Tests  5 failed | 3632 passed (3637)
+   Start at  13:29:08
+   Duration  81.45s (transform 11.27s, setup 0ms, import 71.82s, tests 109.86s, environment 45ms)
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice

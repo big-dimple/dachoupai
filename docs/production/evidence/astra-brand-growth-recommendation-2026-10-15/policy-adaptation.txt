@@ -1,0 +1,33 @@
+
+ RUN  v4.1.11 /workspace/astra-integration
+
+ ❯ tests/shop-holographic-source.test.ts (14 tests | 1 failed) 366ms
+   × holographic does not override actual purchase cash (before=27 stars=2 after=19) 32ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/shop-holographic-source.test.ts > holographic does not override actual purchase cash (before=27 stars=2 after=19)
+AssertionError: expected true to be false // Object.is equality
+
+- Expected
++ Received
+
+- false
++ true
+
+ ❯ tests/shop-holographic-source.test.ts:93:195
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 3 passed (4)
+      Tests  1 failed | 55 passed (56)
+   Start at  13:32:17
+   Duration  1.73s (transform 2.12s, setup 0ms, import 2.87s, tests 1.31s, environment 0ms)
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice

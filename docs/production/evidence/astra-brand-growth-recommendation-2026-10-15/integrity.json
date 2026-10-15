@@ -1,0 +1,87 @@
+{
+  "head": "dbd9818de5282c9325f9d89e50e8ae2fdc2cfa4c",
+  "srcTree": "480673431beaad9022d2bef4d9644829a6de9d48",
+  "base": "d31df43d615e358542661a4a01f41feac071928b",
+  "inputs": [
+    "4df0db49859bcbaede710a2243842a6ce43c8aeb",
+    "6be7ecbc737fea108cbbd1ab762d382850ada0c3",
+    "2aa1c1975a85044c59e6ce6778b6434b01a924a7"
+  ],
+  "protected": [
+    {
+      "path": "src/domain",
+      "base": "be0f17abfa3e771373da5f7ba5b38a5126bbec3b",
+      "head": "be0f17abfa3e771373da5f7ba5b38a5126bbec3b"
+    },
+    {
+      "path": "src/application",
+      "base": "1a325d51795f54526ec9f3f313cceb69763a1971",
+      "head": "1a325d51795f54526ec9f3f313cceb69763a1971"
+    },
+    {
+      "path": "src/content",
+      "base": "e8c3794be5b0fcb74da4aeb9e6adc63c22388345",
+      "head": "e8c3794be5b0fcb74da4aeb9e6adc63c22388345"
+    },
+    {
+      "path": "src/platform",
+      "base": "51f99e5222a5a91f4f3ceac9049f477a442c13a2",
+      "head": "51f99e5222a5a91f4f3ceac9049f477a442c13a2"
+    },
+    {
+      "path": "src/core",
+      "base": "0ff7bdff28720a91b072c5c376b34416902bbbe0",
+      "head": "0ff7bdff28720a91b072c5c376b34416902bbbe0"
+    },
+    {
+      "path": "src/audio",
+      "base": "7f6d2d0dd34313a4099d34cfd36b2baa748f83c2",
+      "head": "7f6d2d0dd34313a4099d34cfd36b2baa748f83c2"
+    },
+    {
+      "path": ".github",
+      "base": "b5e57fc9519888116dbc7ae4da36d23aa187bfb1",
+      "head": "b5e57fc9519888116dbc7ae4da36d23aa187bfb1"
+    },
+    {
+      "path": "package-lock.json",
+      "base": "acc93dcd9410bc911db279534e28522a8691dbab",
+      "head": "acc93dcd9410bc911db279534e28522a8691dbab"
+    },
+    {
+      "path": "public/assets/handdrawn-p08",
+      "base": "522c5cd5b17336e40557687489fdb7d1d18330a7",
+      "head": "522c5cd5b17336e40557687489fdb7d1d18330a7"
+    }
+  ],
+  "mergeCommits": [
+    "7fb19b589e60ec5329d112892c55d256f72c6eb1 7aa2bdc4b902bd1fffd74315232b4062717c42ea 2aa1c1975a85044c59e6ce6778b6434b01a924a7 merge: integrate exact resource-loss recommendation source",
+    "7aa2bdc4b902bd1fffd74315232b4062717c42ea 4df0db49859bcbaede710a2243842a6ce43c8aeb 6be7ecbc737fea108cbbd1ab762d382850ada0c3 merge: integrate growth display source with current scoring and brand interfaces",
+    "96eb4d137d3e2c0eea2c06fbac5b5742d9b1622b d31df43d615e358542661a4a01f41feac071928b d91455e9a4dae993e30a216e230b92aefd9b3c0c Merge commit 'd91455e9a4dae993e30a216e230b92aefd9b3c0c' into dev/recommendation-resource-loss-20261015"
+  ],
+  "finalValidatedHead": "c7860c7fdbef8f3a4068fd4e40f5353217b7df9b",
+  "finalValidatedSourceTree": "480673431beaad9022d2bef4d9644829a6de9d48",
+  "sourceUnchangedSinceFirstNativeHead": true,
+  "brandBindings": [
+    {
+      "path": "src/game/HeroIdentity.ts",
+      "brand": "7b7580a8cb0850d50febb75b697b70098dfabc58",
+      "integrated": "7b7580a8cb0850d50febb75b697b70098dfabc58"
+    },
+    {
+      "path": "src/game/Brand.ts",
+      "brand": "6b10d78f1fe284c885e0117cdbe4a44e3c2f8b76",
+      "integrated": "6b10d78f1fe284c885e0117cdbe4a44e3c2f8b76"
+    },
+    {
+      "path": "src/game/CharacterArt.ts",
+      "brand": "c896d9395298099703c8b1b73cb41ad460441756",
+      "integrated": "c896d9395298099703c8b1b73cb41ad460441756"
+    },
+    {
+      "path": "public/assets/cast-placeholders",
+      "brand": "200301538e5e5e62da3fd641d3366652d7e43fca",
+      "integrated": "200301538e5e5e62da3fd641d3366652d7e43fca"
+    }
+  ]
+}

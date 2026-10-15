@@ -1,0 +1,11 @@
+Authorized exact release candidate: d31df43d615e358542661a4a01f41feac071928b
+Read-only origin/main fetch: 4a52fd0b0fb9ac0a49b8cb5e79abc8db4326e2d7
+main is an ancestor of candidate; normal forward update possible.
+Independent clean detached worktree: /workspace/release-d31-20261015
+Single required CI query: gh api repos/big-dimple/dachoupai/actions/runs/38724687012
+ERROR: Get "https://api.github.com/repos/big-dimple/dachoupai/actions/runs/38724687012": Forbidden
+Stopped release at CI gate. No main push, deployment, retry or alternate API. This is an API Forbidden response, not a reported auto-review rejection of a Git push.
+
+Independent live-version read: curl --fail --silent --show-error https://pai.hp666.cc/build-info.json
+ERROR: curl: (22) The requested URL returned error: 403
+No alternate domain/route used. Live build version remains unverified.
