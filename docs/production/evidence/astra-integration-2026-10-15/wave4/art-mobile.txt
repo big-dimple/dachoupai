@@ -1,0 +1,32 @@
+390-dpr3-normal importing fixture
+390-dpr3-normal play fixture {
+  selectedIds: [ 'spades-2', 'spades-3', 'spades-4', 'spades-5' ],
+  assistIds: [ 'spades-6', 'spades-7' ],
+  ready: true,
+  playing: false,
+  presentation: false
+}
+390-dpr3-normal PASS
+390-dpr3-missing importing fixture
+390-dpr3-missing play fixture {
+  selectedIds: [ 'spades-2', 'spades-3', 'spades-4', 'spades-5' ],
+  assistIds: [ 'spades-6', 'spades-7' ],
+  ready: true,
+  playing: false,
+  presentation: false
+}
+390-dpr3-missing PASS
+390-dpr3-wrong-size importing fixture
+390-dpr3-wrong-size play fixture {
+  selectedIds: [ 'spades-2', 'spades-3', 'spades-4', 'spades-5' ],
+  assistIds: [ 'spades-6', 'spades-7' ],
+  ready: true,
+  playing: false,
+  presentation: false
+}
+390-dpr3-wrong-size PASS
+390-dpr3-late PASS
+390-dpr3-avatar-only PASS
+390-dpr3-name-only PASS
+320-dpr2-normal PASS
+PASS 

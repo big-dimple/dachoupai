@@ -1,0 +1,84 @@
+{
+  "status": "PASS",
+  "sourceTree": "319a00327ec13e4b7dda0d2b73576c2301f4bcd0",
+  "cases": 9,
+  "screenshots": 53,
+  "checked": [
+    {
+      "directory": "/tmp/astra-wave4/art-pc",
+      "key": "1366-dpr1-normal",
+      "screenshots": 7,
+      "receipt": {
+        "file": "1366-dpr1-normal-state.json.gz",
+        "sha256": "b0e912dbf36fa82e2aa7bf9652bcf53876adab01c2d0dc482a74f2f1cdd0765f",
+        "stateJournalStorage": "PASS",
+        "canonicalFinalScore": "2095"
+      }
+    },
+    {
+      "directory": "/tmp/astra-wave4/art-pc",
+      "key": "1366-dpr1-wrong-size",
+      "screenshots": 6,
+      "receipt": {
+        "file": "1366-dpr1-wrong-size-state.json.gz",
+        "sha256": "b0e912dbf36fa82e2aa7bf9652bcf53876adab01c2d0dc482a74f2f1cdd0765f",
+        "stateJournalStorage": "PASS",
+        "canonicalFinalScore": "2095"
+      }
+    },
+    {
+      "directory": "/tmp/astra-wave4/art-mobile",
+      "key": "390-dpr3-normal",
+      "screenshots": 7,
+      "receipt": {
+        "file": "390-dpr3-normal-state.json.gz",
+        "sha256": "b0e912dbf36fa82e2aa7bf9652bcf53876adab01c2d0dc482a74f2f1cdd0765f",
+        "stateJournalStorage": "PASS",
+        "canonicalFinalScore": "2095"
+      }
+    },
+    {
+      "directory": "/tmp/astra-wave4/art-mobile",
+      "key": "390-dpr3-missing",
+      "screenshots": 6,
+      "receipt": {
+        "file": "390-dpr3-missing-state.json.gz",
+        "sha256": "b0e912dbf36fa82e2aa7bf9652bcf53876adab01c2d0dc482a74f2f1cdd0765f",
+        "stateJournalStorage": "PASS",
+        "canonicalFinalScore": "2095"
+      }
+    },
+    {
+      "directory": "/tmp/astra-wave4/art-mobile",
+      "key": "390-dpr3-wrong-size",
+      "screenshots": 6,
+      "receipt": {
+        "file": "390-dpr3-wrong-size-state.json.gz",
+        "sha256": "b0e912dbf36fa82e2aa7bf9652bcf53876adab01c2d0dc482a74f2f1cdd0765f",
+        "stateJournalStorage": "PASS",
+        "canonicalFinalScore": "2095"
+      }
+    },
+    {
+      "directory": "/tmp/astra-wave4/art-mobile",
+      "key": "390-dpr3-late",
+      "screenshots": 6
+    },
+    {
+      "directory": "/tmp/astra-wave4/art-mobile",
+      "key": "390-dpr3-avatar-only",
+      "screenshots": 5
+    },
+    {
+      "directory": "/tmp/astra-wave4/art-mobile",
+      "key": "390-dpr3-name-only",
+      "screenshots": 5
+    },
+    {
+      "directory": "/tmp/astra-wave4/art-mobile",
+      "key": "320-dpr2-normal",
+      "screenshots": 5
+    }
+  ],
+  "scope": "Original PNG decode/pixels and complete controlled state/journal/storage receipts only; no art or whole-game acceptance."
+}

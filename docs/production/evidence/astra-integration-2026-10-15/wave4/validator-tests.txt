@@ -1,0 +1,34 @@
+✔ current 18 images fully decode and match metadata, but do not grant final art acceptance (186.976974ms)
+▶ incoming contract accepts reproducible fixtures and rejects invalid handoffs
+  ✔ missing role (10.432099ms)
+  ✔ duplicate role (1.364807ms)
+  ✔ wrong role mapping (10.832994ms)
+  ✔ missing original (7.382718ms)
+  ✔ missing license (1.675769ms)
+  ✔ unreviewed old age (13.49159ms)
+  ✔ review hash detached (19.605173ms)
+  ✔ missing output approvals (11.242053ms)
+  ✔ stale output hash approval (26.274747ms)
+  ✔ safe area changed after review (28.881519ms)
+  ✔ valid crop re-export cannot reuse old review (40.434805ms)
+  ✔ new valid output hash cannot reuse prior output approval (48.469718ms)
+  ✔ crop out of image (11.047658ms)
+  ✔ safe area clipped (12.651316ms)
+  ✔ wrong declared size (20.572004ms)
+  ✔ wrong bytes (18.279828ms)
+  ✔ wrong hash (18.123086ms)
+  ✔ missing actual file (16.055979ms)
+  ✔ actual wrong size despite self-consistent metadata (28.887759ms)
+  ✔ actual wrong format with matching dimensions/hash is rejected (25.15627ms)
+  ✔ corrupt full image with matching hash is rejected (5.918528ms)
+  ✔ wrong pixels with correct size/hash cannot pose as a source-derived output (35.298584ms)
+  ✔ legacy hash cannot be relabelled as replacement (186.103781ms)
+✔ incoming contract accepts reproducible fixtures and rejects invalid handoffs (2889.857925ms)
+ℹ tests 25
+ℹ suites 0
+ℹ pass 25
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 3216.128251

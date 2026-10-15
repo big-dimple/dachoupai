@@ -1,0 +1,911 @@
+{
+  "previous": "ab690f20c3c55cb61cf45d5628bea5e66adf48b3",
+  "source": "ce2239586f0220f29d3ed3c87b1ebbf957e772f3",
+  "mergeHead": "2f845a11d3a92e1016db02be0e1f37837f002d71",
+  "parents": "ab690f20c3c55cb61cf45d5628bea5e66adf48b3 ce2239586f0220f29d3ed3c87b1ebbf957e772f3",
+  "conflicts": {
+    "AGENTS.md": "latest Tang Song art entry plus current S04 implemented paragraph",
+    "docs/production/DELIVERY_PLAN.md": "latest refined comic art conflict sections; existing S04 implementation and other integrated plan sections retained"
+  },
+  "files": [
+    {
+      "path": "art/hero-replacement-contract.json",
+      "sourcePreserved": true
+    },
+    {
+      "path": "docs/production/ART.md",
+      "sourcePreserved": true
+    },
+    {
+      "path": "docs/production/HERO_ART_HANDOFF_20261015.md",
+      "sourcePreserved": true
+    },
+    {
+      "path": "docs/production/evidence/hero-art-contract-2026-10-15/README.md",
+      "sourcePreserved": true
+    },
+    {
+      "path": "docs/production/evidence/hero-art-contract-2026-10-15/canvas-mobile-final/320-dpr2-normal-details.png",
+      "sourcePreserved": true
+    },
+    {
+      "path": "docs/production/evidence/hero-art-contract-2026-10-15/canvas-mobile-final/320-dpr2-normal-selection-amo.png",
+      "sourcePreserved": true
+    },
+    {
+      "path": "docs/production/evidence/hero-art-contract-2026-10-15/canvas-mobile-final/320-dpr2-normal-shop.png",
+      "sourcePreserved": true
+    },
+    {
+      "path": "docs/production/evidence/hero-art-contract-2026-10-15/canvas-mobile-final/320-dpr2-normal-table-details.png",
+      "sourcePreserved": true
+    },
+    {
+      "path": "docs/production/evidence/hero-art-contract-2026-10-15/canvas-mobile-final/320-dpr2-normal-table.png",
+      "sourcePreserved": true
+    },
+    {
+      "path": "docs/production/evidence/hero-art-contract-2026-10-15/canvas-mobile-final/390-dpr3-avatar-only-details.png",
+      "sourcePreserved": true
+    },
+    {
+      "path": "docs/production/evidence/hero-art-contract-2026-10-15/canvas-mobile-final/390-dpr3-avatar-only-selection-amo.png",
+      "sourcePreserved": true
+    },
+    {
+      "path": "docs/production/evidence/hero-art-contract-2026-10-15/canvas-mobile-final/390-dpr3-avatar-only-shop.png",
+      "sourcePreserved": true
+    },
+    {
+      "path": "docs/production/evidence/hero-art-contract-2026-10-15/canvas-mobile-final/390-dpr3-avatar-only-table-details.png",
+      "sourcePreserved": true
+    },
+    {
+      "path": "docs/production/evidence/hero-art-contract-2026-10-15/canvas-mobile-final/390-dpr3-avatar-only-table.png",
+      "sourcePreserved": true
+    },
+    {
+      "path": "docs/production/evidence/hero-art-contract-2026-10-15/canvas-mobile-final/390-dpr3-late-after-switch.png",
+      "sourcePreserved": true
+    },
+    {
+      "path": "docs/production/evidence/hero-art-contract-2026-10-15/canvas-mobile-final/390-dpr3-late-details.png",
+      "sourcePreserved": true
+    },
+    {
+      "path": "docs/production/evidence/hero-art-contract-2026-10-15/canvas-mobile-final/390-dpr3-late-selection-amo.png",
+      "sourcePreserved": true
+    },
+    {
+      "path": "docs/production/evidence/hero-art-contract-2026-10-15/canvas-mobile-final/390-dpr3-late-shop.png",
+      "sourcePreserved": true
+    },
+    {
+      "path": "docs/production/evidence/hero-art-contract-2026-10-15/canvas-mobile-final/390-dpr3-late-table-details.png",
+      "sourcePreserved": true
+    },
+    {
+      "path": "docs/production/evidence/hero-art-contract-2026-10-15/canvas-mobile-final/390-dpr3-late-table.png",
+      "sourcePreserved": true
+    },
+    {
+      "path": "docs/production/evidence/hero-art-contract-2026-10-15/canvas-mobile-final/390-dpr3-missing-climax.png",
+      "sourcePreserved": true
+    },
+    {
+      "path": "docs/production/evidence/hero-art-contract-2026-10-15/canvas-mobile-final/390-dpr3-missing-details.png",
+      "sourcePreserved": true
+    },
+    {
+      "path": "docs/production/evidence/hero-art-contract-2026-10-15/canvas-mobile-final/390-dpr3-missing-selection-amo.png",
+      "sourcePreserved": true
+    },
+    {
+      "path": "docs/production/evidence/hero-art-contract-2026-10-15/canvas-mobile-final/390-dpr3-missing-shop.png",
+      "sourcePreserved": true
+    },
+    {
+      "path": "docs/production/evidence/hero-art-contract-2026-10-15/canvas-mobile-final/390-dpr3-missing-state.json.gz",
+      "sourcePreserved": true
+    },
+    {
+      "path": "docs/production/evidence/hero-art-contract-2026-10-15/canvas-mobile-final/390-dpr3-missing-table-details.png",
+      "sourcePreserved": true
+    },
+    {
+      "path": "docs/production/evidence/hero-art-contract-2026-10-15/canvas-mobile-final/390-dpr3-missing-table.png",
+      "sourcePreserved": true
+    },
+    {
+      "path": "docs/production/evidence/hero-art-contract-2026-10-15/canvas-mobile-final/390-dpr3-name-only-details.png",
+      "sourcePreserved": true
+    },
+    {
+      "path": "docs/production/evidence/hero-art-contract-2026-10-15/canvas-mobile-final/390-dpr3-name-only-selection-amo.png",
+      "sourcePreserved": true
+    },
+    {
+      "path": "docs/production/evidence/hero-art-contract-2026-10-15/canvas-mobile-final/390-dpr3-name-only-shop.png",
+      "sourcePreserved": true
+    },
+    {
+      "path": "docs/production/evidence/hero-art-contract-2026-10-15/canvas-mobile-final/390-dpr3-name-only-table-details.png",
+      "sourcePreserved": true
+    },
+    {
+      "path": "docs/production/evidence/hero-art-contract-2026-10-15/canvas-mobile-final/390-dpr3-name-only-table.png",
+      "sourcePreserved": true
+    },
+    {
+      "path": "docs/production/evidence/hero-art-contract-2026-10-15/canvas-mobile-final/390-dpr3-normal-climax.png",
+      "sourcePreserved": true
+    },
+    {
+      "path": "docs/production/evidence/hero-art-contract-2026-10-15/canvas-mobile-final/390-dpr3-normal-details.png",
+      "sourcePreserved": true
+    },
+    {
+      "path": "docs/production/evidence/hero-art-contract-2026-10-15/canvas-mobile-final/390-dpr3-normal-selection-amo.png",
+      "sourcePreserved": true
+    },
+    {
+      "path": "docs/production/evidence/hero-art-contract-2026-10-15/canvas-mobile-final/390-dpr3-normal-selection-xiemu.png",
+      "sourcePreserved": true
+    },
+    {
+      "path": "docs/production/evidence/hero-art-contract-2026-10-15/canvas-mobile-final/390-dpr3-normal-shop.png",
+      "sourcePreserved": true
+    },
+    {
+      "path": "docs/production/evidence/hero-art-contract-2026-10-15/canvas-mobile-final/390-dpr3-normal-state.json.gz",
+      "sourcePreserved": true
+    },
+    {
+      "path": "docs/production/evidence/hero-art-contract-2026-10-15/canvas-mobile-final/390-dpr3-normal-table-details.png",
+      "sourcePreserved": true
+    },
+    {
+      "path": "docs/production/evidence/hero-art-contract-2026-10-15/canvas-mobile-final/390-dpr3-normal-table.png",
+      "sourcePreserved": true
+    },
+    {
+      "path": "docs/production/evidence/hero-art-contract-2026-10-15/canvas-mobile-final/390-dpr3-wrong-size-climax.png",
+      "sourcePreserved": true
+    },
+    {
+      "path": "docs/production/evidence/hero-art-contract-2026-10-15/canvas-mobile-final/390-dpr3-wrong-size-details.png",
+      "sourcePreserved": true
+    },
+    {
+      "path": "docs/production/evidence/hero-art-contract-2026-10-15/canvas-mobile-final/390-dpr3-wrong-size-selection-amo.png",
+      "sourcePreserved": true
+    },
+    {
+      "path": "docs/production/evidence/hero-art-contract-2026-10-15/canvas-mobile-final/390-dpr3-wrong-size-shop.png",
+      "sourcePreserved": true
+    },
+    {
+      "path": "docs/production/evidence/hero-art-contract-2026-10-15/canvas-mobile-final/390-dpr3-wrong-size-state.json.gz",
+      "sourcePreserved": true
+    },
+    {
+      "path": "docs/production/evidence/hero-art-contract-2026-10-15/canvas-mobile-final/390-dpr3-wrong-size-table-details.png",
+      "sourcePreserved": true
+    },
+    {
+      "path": "docs/production/evidence/hero-art-contract-2026-10-15/canvas-mobile-final/390-dpr3-wrong-size-table.png",
+      "sourcePreserved": true
+    },
+    {
+      "path": "docs/production/evidence/hero-art-contract-2026-10-15/canvas-mobile-final/README.md",
+      "sourcePreserved": true
+    },
+    {
+      "path": "docs/production/evidence/hero-art-contract-2026-10-15/canvas-mobile-final/report.json",
+      "sourcePreserved": true
+    },
+    {
+      "path": "docs/production/evidence/hero-art-contract-2026-10-15/canvas-pc-final/1366-dpr1-normal-climax.png",
+      "sourcePreserved": true
+    },
+    {
+      "path": "docs/production/evidence/hero-art-contract-2026-10-15/canvas-pc-final/1366-dpr1-normal-details.png",
+      "sourcePreserved": true
+    },
+    {
+      "path": "docs/production/evidence/hero-art-contract-2026-10-15/canvas-pc-final/1366-dpr1-normal-selection-amo.png",
+      "sourcePreserved": true
+    },
+    {
+      "path": "docs/production/evidence/hero-art-contract-2026-10-15/canvas-pc-final/1366-dpr1-normal-selection-xiemu.png",
+      "sourcePreserved": true
+    },
+    {
+      "path": "docs/production/evidence/hero-art-contract-2026-10-15/canvas-pc-final/1366-dpr1-normal-shop.png",
+      "sourcePreserved": true
+    },
+    {
+      "path": "docs/production/evidence/hero-art-contract-2026-10-15/canvas-pc-final/1366-dpr1-normal-state.json.gz",
+      "sourcePreserved": true
+    },
+    {
+      "path": "docs/production/evidence/hero-art-contract-2026-10-15/canvas-pc-final/1366-dpr1-normal-table-details.png",
+      "sourcePreserved": true
+    },
+    {
+      "path": "docs/production/evidence/hero-art-contract-2026-10-15/canvas-pc-final/1366-dpr1-normal-table.png",
+      "sourcePreserved": true
+    },
+    {
+      "path": "docs/production/evidence/hero-art-contract-2026-10-15/canvas-pc-final/1366-dpr1-wrong-size-climax.png",
+      "sourcePreserved": true
+    },
+    {
+      "path": "docs/production/evidence/hero-art-contract-2026-10-15/canvas-pc-final/1366-dpr1-wrong-size-details.png",
+      "sourcePreserved": true
+    },
+    {
+      "path": "docs/production/evidence/hero-art-contract-2026-10-15/canvas-pc-final/1366-dpr1-wrong-size-selection-amo.png",
+      "sourcePreserved": true
+    },
+    {
+      "path": "docs/production/evidence/hero-art-contract-2026-10-15/canvas-pc-final/1366-dpr1-wrong-size-shop.png",
+      "sourcePreserved": true
+    },
+    {
+      "path": "docs/production/evidence/hero-art-contract-2026-10-15/canvas-pc-final/1366-dpr1-wrong-size-state.json.gz",
+      "sourcePreserved": true
+    },
+    {
+      "path": "docs/production/evidence/hero-art-contract-2026-10-15/canvas-pc-final/1366-dpr1-wrong-size-table-details.png",
+      "sourcePreserved": true
+    },
+    {
+      "path": "docs/production/evidence/hero-art-contract-2026-10-15/canvas-pc-final/1366-dpr1-wrong-size-table.png",
+      "sourcePreserved": true
+    },
+    {
+      "path": "docs/production/evidence/hero-art-contract-2026-10-15/canvas-pc-final/report.json",
+      "sourcePreserved": true
+    },
+    {
+      "path": "docs/production/evidence/hero-art-contract-2026-10-15/canvas-pc/1366-dpr1-normal-FAIL.png",
+      "sourcePreserved": true
+    },
+    {
+      "path": "docs/production/evidence/hero-art-contract-2026-10-15/canvas-pc/1366-dpr1-normal-climax.png",
+      "sourcePreserved": true
+    },
+    {
+      "path": "docs/production/evidence/hero-art-contract-2026-10-15/canvas-pc/1366-dpr1-normal-details.png",
+      "sourcePreserved": true
+    },
+    {
+      "path": "docs/production/evidence/hero-art-contract-2026-10-15/canvas-pc/1366-dpr1-normal-selection-amo.png",
+      "sourcePreserved": true
+    },
+    {
+      "path": "docs/production/evidence/hero-art-contract-2026-10-15/canvas-pc/1366-dpr1-normal-selection-xiemu.png",
+      "sourcePreserved": true
+    },
+    {
+      "path": "docs/production/evidence/hero-art-contract-2026-10-15/canvas-pc/1366-dpr1-normal-shop.png",
+      "sourcePreserved": true
+    },
+    {
+      "path": "docs/production/evidence/hero-art-contract-2026-10-15/canvas-pc/1366-dpr1-normal-state.json.gz",
+      "sourcePreserved": true
+    },
+    {
+      "path": "docs/production/evidence/hero-art-contract-2026-10-15/canvas-pc/1366-dpr1-normal-table-details.png",
+      "sourcePreserved": true
+    },
+    {
+      "path": "docs/production/evidence/hero-art-contract-2026-10-15/canvas-pc/1366-dpr1-normal-table.png",
+      "sourcePreserved": true
+    },
+    {
+      "path": "docs/production/evidence/hero-art-contract-2026-10-15/canvas-pc/report.json",
+      "sourcePreserved": true
+    },
+    {
+      "path": "docs/production/evidence/hero-art-contract-2026-10-15/checks/browser-evidence-check.json",
+      "sourcePreserved": true
+    },
+    {
+      "path": "docs/production/evidence/hero-art-contract-2026-10-15/checks/build.txt",
+      "sourcePreserved": true
+    },
+    {
+      "path": "docs/production/evidence/hero-art-contract-2026-10-15/checks/current-assets.json",
+      "sourcePreserved": true
+    },
+    {
+      "path": "docs/production/evidence/hero-art-contract-2026-10-15/checks/independent-review.md",
+      "sourcePreserved": true
+    },
+    {
+      "path": "docs/production/evidence/hero-art-contract-2026-10-15/checks/pc-evidence-check.json",
+      "sourcePreserved": true
+    },
+    {
+      "path": "docs/production/evidence/hero-art-contract-2026-10-15/checks/product-scope.json",
+      "sourcePreserved": true
+    },
+    {
+      "path": "docs/production/evidence/hero-art-contract-2026-10-15/checks/typecheck.txt",
+      "sourcePreserved": true
+    },
+    {
+      "path": "docs/production/evidence/hero-art-contract-2026-10-15/checks/unit-tests.txt",
+      "sourcePreserved": true
+    },
+    {
+      "path": "docs/production/evidence/hero-art-contract-2026-10-15/checks/url-normalization-first-failure.md",
+      "sourcePreserved": true
+    },
+    {
+      "path": "docs/production/evidence/hero-art-contract-2026-10-15/checks/validator-tests.txt",
+      "sourcePreserved": true
+    },
+    {
+      "path": "docs/production/evidence/hero-art-contract-2026-10-15/diagnostic/1366-dpr1-normal-FAIL.png",
+      "sourcePreserved": true
+    },
+    {
+      "path": "docs/production/evidence/hero-art-contract-2026-10-15/diagnostic/1366-dpr1-normal-selection-amo.png",
+      "sourcePreserved": true
+    },
+    {
+      "path": "docs/production/evidence/hero-art-contract-2026-10-15/diagnostic/1366-dpr1-normal-selection-erxiang.png",
+      "sourcePreserved": true
+    },
+    {
+      "path": "docs/production/evidence/hero-art-contract-2026-10-15/diagnostic/1366-dpr1-normal-selection-laohuan.png",
+      "sourcePreserved": true
+    },
+    {
+      "path": "docs/production/evidence/hero-art-contract-2026-10-15/diagnostic/1366-dpr1-normal-selection-touye.png",
+      "sourcePreserved": true
+    },
+    {
+      "path": "docs/production/evidence/hero-art-contract-2026-10-15/diagnostic/report.json",
+      "sourcePreserved": true
+    },
+    {
+      "path": "docs/production/evidence/hero-art-contract-2026-10-15/diagnostic2/1366-dpr1-normal-TIMEOUT.png",
+      "sourcePreserved": true
+    },
+    {
+      "path": "docs/production/evidence/hero-art-contract-2026-10-15/diagnostic2/1366-dpr1-normal-details.png",
+      "sourcePreserved": true
+    },
+    {
+      "path": "docs/production/evidence/hero-art-contract-2026-10-15/diagnostic2/1366-dpr1-normal-selection-amo.png",
+      "sourcePreserved": true
+    },
+    {
+      "path": "docs/production/evidence/hero-art-contract-2026-10-15/diagnostic2/1366-dpr1-normal-selection-azao.png",
+      "sourcePreserved": true
+    },
+    {
+      "path": "docs/production/evidence/hero-art-contract-2026-10-15/diagnostic2/1366-dpr1-normal-selection-erxiang.png",
+      "sourcePreserved": true
+    },
+    {
+      "path": "docs/production/evidence/hero-art-contract-2026-10-15/diagnostic2/1366-dpr1-normal-selection-laohuan.png",
+      "sourcePreserved": true
+    },
+    {
+      "path": "docs/production/evidence/hero-art-contract-2026-10-15/diagnostic2/1366-dpr1-normal-selection-touye.png",
+      "sourcePreserved": true
+    },
+    {
+      "path": "docs/production/evidence/hero-art-contract-2026-10-15/diagnostic2/1366-dpr1-normal-selection-xiemu.png",
+      "sourcePreserved": true
+    },
+    {
+      "path": "docs/production/evidence/hero-art-contract-2026-10-15/diagnostic2/1366-dpr1-normal-shop.png",
+      "sourcePreserved": true
+    },
+    {
+      "path": "docs/production/evidence/hero-art-contract-2026-10-15/diagnostic2/1366-dpr1-normal-table-details.png",
+      "sourcePreserved": true
+    },
+    {
+      "path": "docs/production/evidence/hero-art-contract-2026-10-15/diagnostic2/1366-dpr1-normal-table.png",
+      "sourcePreserved": true
+    },
+    {
+      "path": "docs/production/evidence/hero-art-contract-2026-10-15/diagnostic3/1366-dpr1-normal-FAIL.png",
+      "sourcePreserved": true
+    },
+    {
+      "path": "docs/production/evidence/hero-art-contract-2026-10-15/diagnostic3/1366-dpr1-normal-details.png",
+      "sourcePreserved": true
+    },
+    {
+      "path": "docs/production/evidence/hero-art-contract-2026-10-15/diagnostic3/1366-dpr1-normal-selection-amo.png",
+      "sourcePreserved": true
+    },
+    {
+      "path": "docs/production/evidence/hero-art-contract-2026-10-15/diagnostic3/1366-dpr1-normal-selection-azao.png",
+      "sourcePreserved": true
+    },
+    {
+      "path": "docs/production/evidence/hero-art-contract-2026-10-15/diagnostic3/1366-dpr1-normal-selection-erxiang.png",
+      "sourcePreserved": true
+    },
+    {
+      "path": "docs/production/evidence/hero-art-contract-2026-10-15/diagnostic3/1366-dpr1-normal-selection-laohuan.png",
+      "sourcePreserved": true
+    },
+    {
+      "path": "docs/production/evidence/hero-art-contract-2026-10-15/diagnostic3/1366-dpr1-normal-selection-touye.png",
+      "sourcePreserved": true
+    },
+    {
+      "path": "docs/production/evidence/hero-art-contract-2026-10-15/diagnostic3/1366-dpr1-normal-selection-xiemu.png",
+      "sourcePreserved": true
+    },
+    {
+      "path": "docs/production/evidence/hero-art-contract-2026-10-15/diagnostic3/1366-dpr1-normal-shop.png",
+      "sourcePreserved": true
+    },
+    {
+      "path": "docs/production/evidence/hero-art-contract-2026-10-15/diagnostic3/1366-dpr1-normal-table-details.png",
+      "sourcePreserved": true
+    },
+    {
+      "path": "docs/production/evidence/hero-art-contract-2026-10-15/diagnostic3/1366-dpr1-normal-table.png",
+      "sourcePreserved": true
+    },
+    {
+      "path": "docs/production/evidence/hero-art-contract-2026-10-15/diagnostic3/report.json",
+      "sourcePreserved": true
+    },
+    {
+      "path": "docs/production/evidence/hero-art-contract-2026-10-15/final/1366-dpr1-normal-FAIL.png",
+      "sourcePreserved": true
+    },
+    {
+      "path": "docs/production/evidence/hero-art-contract-2026-10-15/final/1366-dpr1-normal-details.png",
+      "sourcePreserved": true
+    },
+    {
+      "path": "docs/production/evidence/hero-art-contract-2026-10-15/final/1366-dpr1-normal-selection-amo.png",
+      "sourcePreserved": true
+    },
+    {
+      "path": "docs/production/evidence/hero-art-contract-2026-10-15/final/1366-dpr1-normal-selection-azao.png",
+      "sourcePreserved": true
+    },
+    {
+      "path": "docs/production/evidence/hero-art-contract-2026-10-15/final/1366-dpr1-normal-selection-erxiang.png",
+      "sourcePreserved": true
+    },
+    {
+      "path": "docs/production/evidence/hero-art-contract-2026-10-15/final/1366-dpr1-normal-selection-laohuan.png",
+      "sourcePreserved": true
+    },
+    {
+      "path": "docs/production/evidence/hero-art-contract-2026-10-15/final/1366-dpr1-normal-selection-touye.png",
+      "sourcePreserved": true
+    },
+    {
+      "path": "docs/production/evidence/hero-art-contract-2026-10-15/final/1366-dpr1-normal-selection-xiemu.png",
+      "sourcePreserved": true
+    },
+    {
+      "path": "docs/production/evidence/hero-art-contract-2026-10-15/final/1366-dpr1-normal-shop.png",
+      "sourcePreserved": true
+    },
+    {
+      "path": "docs/production/evidence/hero-art-contract-2026-10-15/final/1366-dpr1-normal-table-details.png",
+      "sourcePreserved": true
+    },
+    {
+      "path": "docs/production/evidence/hero-art-contract-2026-10-15/final/1366-dpr1-normal-table.png",
+      "sourcePreserved": true
+    },
+    {
+      "path": "docs/production/evidence/hero-art-contract-2026-10-15/final/report.json",
+      "sourcePreserved": true
+    },
+    {
+      "path": "docs/production/evidence/hero-art-contract-2026-10-15/resumed-diagnostic/1366-dpr1-normal-FAIL.png",
+      "sourcePreserved": true
+    },
+    {
+      "path": "docs/production/evidence/hero-art-contract-2026-10-15/resumed-diagnostic/1366-dpr1-normal-details.png",
+      "sourcePreserved": true
+    },
+    {
+      "path": "docs/production/evidence/hero-art-contract-2026-10-15/resumed-diagnostic/1366-dpr1-normal-selection-amo.png",
+      "sourcePreserved": true
+    },
+    {
+      "path": "docs/production/evidence/hero-art-contract-2026-10-15/resumed-diagnostic/1366-dpr1-normal-selection-azao.png",
+      "sourcePreserved": true
+    },
+    {
+      "path": "docs/production/evidence/hero-art-contract-2026-10-15/resumed-diagnostic/1366-dpr1-normal-selection-erxiang.png",
+      "sourcePreserved": true
+    },
+    {
+      "path": "docs/production/evidence/hero-art-contract-2026-10-15/resumed-diagnostic/1366-dpr1-normal-selection-laohuan.png",
+      "sourcePreserved": true
+    },
+    {
+      "path": "docs/production/evidence/hero-art-contract-2026-10-15/resumed-diagnostic/1366-dpr1-normal-selection-touye.png",
+      "sourcePreserved": true
+    },
+    {
+      "path": "docs/production/evidence/hero-art-contract-2026-10-15/resumed-diagnostic/1366-dpr1-normal-selection-xiemu.png",
+      "sourcePreserved": true
+    },
+    {
+      "path": "docs/production/evidence/hero-art-contract-2026-10-15/resumed-diagnostic/1366-dpr1-normal-shop.png",
+      "sourcePreserved": true
+    },
+    {
+      "path": "docs/production/evidence/hero-art-contract-2026-10-15/resumed-diagnostic/1366-dpr1-normal-table-details.png",
+      "sourcePreserved": true
+    },
+    {
+      "path": "docs/production/evidence/hero-art-contract-2026-10-15/resumed-diagnostic/1366-dpr1-normal-table.png",
+      "sourcePreserved": true
+    },
+    {
+      "path": "docs/production/evidence/hero-art-contract-2026-10-15/resumed-diagnostic/report.json",
+      "sourcePreserved": true
+    },
+    {
+      "path": "docs/production/evidence/hero-art-contract-2026-10-15/resumed-mobile/390-dpr3-normal-FAIL.png",
+      "sourcePreserved": true
+    },
+    {
+      "path": "docs/production/evidence/hero-art-contract-2026-10-15/resumed-mobile/390-dpr3-normal-details.png",
+      "sourcePreserved": true
+    },
+    {
+      "path": "docs/production/evidence/hero-art-contract-2026-10-15/resumed-mobile/390-dpr3-normal-selection-amo.png",
+      "sourcePreserved": true
+    },
+    {
+      "path": "docs/production/evidence/hero-art-contract-2026-10-15/resumed-mobile/390-dpr3-normal-selection-xiemu.png",
+      "sourcePreserved": true
+    },
+    {
+      "path": "docs/production/evidence/hero-art-contract-2026-10-15/resumed-mobile/390-dpr3-normal-shop.png",
+      "sourcePreserved": true
+    },
+    {
+      "path": "docs/production/evidence/hero-art-contract-2026-10-15/resumed-mobile/390-dpr3-normal-table-details.png",
+      "sourcePreserved": true
+    },
+    {
+      "path": "docs/production/evidence/hero-art-contract-2026-10-15/resumed-mobile/390-dpr3-normal-table.png",
+      "sourcePreserved": true
+    },
+    {
+      "path": "docs/production/evidence/hero-art-contract-2026-10-15/resumed-mobile/README.md",
+      "sourcePreserved": true
+    },
+    {
+      "path": "docs/production/evidence/hero-art-contract-2026-10-15/resumed-mobile/report.json",
+      "sourcePreserved": true
+    },
+    {
+      "path": "docs/production/evidence/hero-art-contract-2026-10-15/resumed-pc-wrong-size-corrected/1366-dpr1-wrong-size-FAIL.png",
+      "sourcePreserved": true
+    },
+    {
+      "path": "docs/production/evidence/hero-art-contract-2026-10-15/resumed-pc-wrong-size-corrected/1366-dpr1-wrong-size-details.png",
+      "sourcePreserved": true
+    },
+    {
+      "path": "docs/production/evidence/hero-art-contract-2026-10-15/resumed-pc-wrong-size-corrected/1366-dpr1-wrong-size-selection-amo.png",
+      "sourcePreserved": true
+    },
+    {
+      "path": "docs/production/evidence/hero-art-contract-2026-10-15/resumed-pc-wrong-size-corrected/1366-dpr1-wrong-size-shop.png",
+      "sourcePreserved": true
+    },
+    {
+      "path": "docs/production/evidence/hero-art-contract-2026-10-15/resumed-pc-wrong-size-corrected/1366-dpr1-wrong-size-table-details.png",
+      "sourcePreserved": true
+    },
+    {
+      "path": "docs/production/evidence/hero-art-contract-2026-10-15/resumed-pc-wrong-size-corrected/1366-dpr1-wrong-size-table.png",
+      "sourcePreserved": true
+    },
+    {
+      "path": "docs/production/evidence/hero-art-contract-2026-10-15/resumed-pc-wrong-size-corrected/report.json",
+      "sourcePreserved": true
+    },
+    {
+      "path": "docs/production/evidence/hero-art-contract-2026-10-15/resumed-pc-wrong-size/1366-dpr1-wrong-size-FAIL.png",
+      "sourcePreserved": true
+    },
+    {
+      "path": "docs/production/evidence/hero-art-contract-2026-10-15/resumed-pc-wrong-size/1366-dpr1-wrong-size-details.png",
+      "sourcePreserved": true
+    },
+    {
+      "path": "docs/production/evidence/hero-art-contract-2026-10-15/resumed-pc-wrong-size/1366-dpr1-wrong-size-selection-amo.png",
+      "sourcePreserved": true
+    },
+    {
+      "path": "docs/production/evidence/hero-art-contract-2026-10-15/resumed-pc-wrong-size/1366-dpr1-wrong-size-shop.png",
+      "sourcePreserved": true
+    },
+    {
+      "path": "docs/production/evidence/hero-art-contract-2026-10-15/resumed-pc-wrong-size/1366-dpr1-wrong-size-table-details.png",
+      "sourcePreserved": true
+    },
+    {
+      "path": "docs/production/evidence/hero-art-contract-2026-10-15/resumed-pc-wrong-size/1366-dpr1-wrong-size-table.png",
+      "sourcePreserved": true
+    },
+    {
+      "path": "docs/production/evidence/hero-art-contract-2026-10-15/resumed-pc-wrong-size/report.json",
+      "sourcePreserved": true
+    },
+    {
+      "path": "docs/production/evidence/hero-art-contract-2026-10-15/resumed-pc/1366-dpr1-normal-FAIL.png",
+      "sourcePreserved": true
+    },
+    {
+      "path": "docs/production/evidence/hero-art-contract-2026-10-15/resumed-pc/1366-dpr1-normal-climax.png",
+      "sourcePreserved": true
+    },
+    {
+      "path": "docs/production/evidence/hero-art-contract-2026-10-15/resumed-pc/1366-dpr1-normal-details.png",
+      "sourcePreserved": true
+    },
+    {
+      "path": "docs/production/evidence/hero-art-contract-2026-10-15/resumed-pc/1366-dpr1-normal-selection-amo.png",
+      "sourcePreserved": true
+    },
+    {
+      "path": "docs/production/evidence/hero-art-contract-2026-10-15/resumed-pc/1366-dpr1-normal-selection-xiemu.png",
+      "sourcePreserved": true
+    },
+    {
+      "path": "docs/production/evidence/hero-art-contract-2026-10-15/resumed-pc/1366-dpr1-normal-shop.png",
+      "sourcePreserved": true
+    },
+    {
+      "path": "docs/production/evidence/hero-art-contract-2026-10-15/resumed-pc/1366-dpr1-normal-table-details.png",
+      "sourcePreserved": true
+    },
+    {
+      "path": "docs/production/evidence/hero-art-contract-2026-10-15/resumed-pc/1366-dpr1-normal-table.png",
+      "sourcePreserved": true
+    },
+    {
+      "path": "docs/production/evidence/hero-art-contract-2026-10-15/resumed-pc/report.json",
+      "sourcePreserved": true
+    },
+    {
+      "path": "docs/production/evidence/hero-art-contract-2026-10-15/verified-mobile/390-dpr3-normal-FAIL.png",
+      "sourcePreserved": true
+    },
+    {
+      "path": "docs/production/evidence/hero-art-contract-2026-10-15/verified-mobile/390-dpr3-normal-details.png",
+      "sourcePreserved": true
+    },
+    {
+      "path": "docs/production/evidence/hero-art-contract-2026-10-15/verified-mobile/390-dpr3-normal-selection-amo.png",
+      "sourcePreserved": true
+    },
+    {
+      "path": "docs/production/evidence/hero-art-contract-2026-10-15/verified-mobile/390-dpr3-normal-selection-xiemu.png",
+      "sourcePreserved": true
+    },
+    {
+      "path": "docs/production/evidence/hero-art-contract-2026-10-15/verified-mobile/390-dpr3-normal-shop.png",
+      "sourcePreserved": true
+    },
+    {
+      "path": "docs/production/evidence/hero-art-contract-2026-10-15/verified-mobile/390-dpr3-normal-table-details.png",
+      "sourcePreserved": true
+    },
+    {
+      "path": "docs/production/evidence/hero-art-contract-2026-10-15/verified-mobile/390-dpr3-normal-table.png",
+      "sourcePreserved": true
+    },
+    {
+      "path": "docs/production/evidence/hero-art-contract-2026-10-15/verified-mobile/README.md",
+      "sourcePreserved": true
+    },
+    {
+      "path": "docs/production/evidence/hero-art-contract-2026-10-15/verified-mobile/report.json",
+      "sourcePreserved": true
+    },
+    {
+      "path": "docs/production/evidence/hero-art-contract-2026-10-15/verified-pc/1366-dpr1-normal-FAIL.png",
+      "sourcePreserved": true
+    },
+    {
+      "path": "docs/production/evidence/hero-art-contract-2026-10-15/verified-pc/1366-dpr1-normal-climax.png",
+      "sourcePreserved": true
+    },
+    {
+      "path": "docs/production/evidence/hero-art-contract-2026-10-15/verified-pc/1366-dpr1-normal-details.png",
+      "sourcePreserved": true
+    },
+    {
+      "path": "docs/production/evidence/hero-art-contract-2026-10-15/verified-pc/1366-dpr1-normal-selection-amo.png",
+      "sourcePreserved": true
+    },
+    {
+      "path": "docs/production/evidence/hero-art-contract-2026-10-15/verified-pc/1366-dpr1-normal-selection-xiemu.png",
+      "sourcePreserved": true
+    },
+    {
+      "path": "docs/production/evidence/hero-art-contract-2026-10-15/verified-pc/1366-dpr1-normal-shop.png",
+      "sourcePreserved": true
+    },
+    {
+      "path": "docs/production/evidence/hero-art-contract-2026-10-15/verified-pc/1366-dpr1-normal-state.json.gz",
+      "sourcePreserved": true
+    },
+    {
+      "path": "docs/production/evidence/hero-art-contract-2026-10-15/verified-pc/1366-dpr1-normal-table-details.png",
+      "sourcePreserved": true
+    },
+    {
+      "path": "docs/production/evidence/hero-art-contract-2026-10-15/verified-pc/1366-dpr1-normal-table.png",
+      "sourcePreserved": true
+    },
+    {
+      "path": "docs/production/evidence/hero-art-contract-2026-10-15/verified-pc/report.json",
+      "sourcePreserved": true
+    },
+    {
+      "path": "harness/hero-art-contract.mjs",
+      "sourcePreserved": true
+    },
+    {
+      "path": "harness/verify-hero-art-evidence.mjs",
+      "sourcePreserved": true
+    },
+    {
+      "path": "scripts/verify-hero-art.mjs",
+      "sourcePreserved": true
+    },
+    {
+      "path": "scripts/verify-hero-art.test.mjs",
+      "sourcePreserved": true
+    },
+    {
+      "path": "src/game/ArtTextureLoading.ts",
+      "sourcePreserved": true
+    },
+    {
+      "path": "src/game/BuildKeepsakeView.ts",
+      "sourcePreserved": true
+    },
+    {
+      "path": "src/game/CharacterArt.ts",
+      "sourcePreserved": true
+    },
+    {
+      "path": "src/game/CharacterSelectScene.ts",
+      "sourcePreserved": true
+    },
+    {
+      "path": "src/game/DetailArt.ts",
+      "sourcePreserved": true
+    },
+    {
+      "path": "src/game/DetailDialog.ts",
+      "sourcePreserved": true
+    },
+    {
+      "path": "src/game/HeroClimax.ts",
+      "sourcePreserved": true
+    },
+    {
+      "path": "src/game/JokerKeyHighlightView.ts",
+      "sourcePreserved": true
+    },
+    {
+      "path": "src/game/SelectionComparison.ts",
+      "sourcePreserved": true
+    },
+    {
+      "path": "src/game/StageImageWarmup.ts",
+      "sourcePreserved": true
+    },
+    {
+      "path": "src/game/characters.ts",
+      "sourcePreserved": true
+    },
+    {
+      "path": "src/game/portraits.ts",
+      "sourcePreserved": true
+    },
+    {
+      "path": "tests/character-art.test.ts",
+      "sourcePreserved": true
+    }
+  ],
+  "protected": [
+    {
+      "path": "src/domain",
+      "before": "be0f17abfa3e771373da5f7ba5b38a5126bbec3b",
+      "after": "be0f17abfa3e771373da5f7ba5b38a5126bbec3b",
+      "identical": true
+    },
+    {
+      "path": "src/application",
+      "before": "1a325d51795f54526ec9f3f313cceb69763a1971",
+      "after": "1a325d51795f54526ec9f3f313cceb69763a1971",
+      "identical": true
+    },
+    {
+      "path": "src/content",
+      "before": "e8c3794be5b0fcb74da4aeb9e6adc63c22388345",
+      "after": "e8c3794be5b0fcb74da4aeb9e6adc63c22388345",
+      "identical": true
+    },
+    {
+      "path": "src/platform",
+      "before": "51f99e5222a5a91f4f3ceac9049f477a442c13a2",
+      "after": "51f99e5222a5a91f4f3ceac9049f477a442c13a2",
+      "identical": true
+    },
+    {
+      "path": "src/audio",
+      "before": "7f6d2d0dd34313a4099d34cfd36b2baa748f83c2",
+      "after": "7f6d2d0dd34313a4099d34cfd36b2baa748f83c2",
+      "identical": true
+    },
+    {
+      "path": "public",
+      "before": "c4a6ec74e7fd754b0f300b973020f8afed7542e1",
+      "after": "c4a6ec74e7fd754b0f300b973020f8afed7542e1",
+      "identical": true
+    },
+    {
+      "path": "src/game/GameScene.ts",
+      "before": "3840ee7ee7c2679d5680f0133fd3ca029c643d1a",
+      "after": "3840ee7ee7c2679d5680f0133fd3ca029c643d1a",
+      "identical": true
+    },
+    {
+      "path": "src/game/ShopScene.ts",
+      "before": "079fe0157bbfb8c6d215988d1d766699ac5fc0d6",
+      "after": "079fe0157bbfb8c6d215988d1d766699ac5fc0d6",
+      "identical": true
+    },
+    {
+      "path": "src/game/HeroClimaxCaption.ts",
+      "before": "6f716f16ae319f994599d8751ae820cf874fa593",
+      "after": "6f716f16ae319f994599d8751ae820cf874fa593",
+      "identical": true
+    },
+    {
+      "path": "src/game/OwnedJokerHaptics.ts",
+      "before": "eb816d6c5bfee61c75d14db8e15cfc2cf458028c",
+      "after": "eb816d6c5bfee61c75d14db8e15cfc2cf458028c",
+      "identical": true
+    },
+    {
+      "path": ".github",
+      "before": "b5e57fc9519888116dbc7ae4da36d23aa187bfb1",
+      "after": "b5e57fc9519888116dbc7ae4da36d23aa187bfb1",
+      "identical": true
+    },
+    {
+      "path": "package-lock.json",
+      "before": "acc93dcd9410bc911db279534e28522a8691dbab",
+      "after": "acc93dcd9410bc911db279534e28522a8691dbab",
+      "identical": true
+    }
+  ],
+  "heroClimaxDelta": "diff --git a/src/game/HeroClimax.ts b/src/game/HeroClimax.ts\nindex b10e4d12..4a904b47 100644\n--- a/src/game/HeroClimax.ts\n+++ b/src/game/HeroClimax.ts\n@@ -12,7 +12,7 @@ import type {ScoreTrace} from '../domain/scoreR2';\n import {readableFractionText,heatText} from './scoreText';\n import {readableMultiplierEffect} from './ScoreEventCaption';\n import {scoreSourceProcess,scoreSourceClimaxValue} from './ScoreSourceProcess';\n-import {selectionPortraitKey,avatarKey} from './portraits';\n+import {selectionPortraitKey,avatarKey,portraitKey} from './portraits';\n import {jokerArtKey} from './jokerArt';\n import {getCharacter} from './characters';\n import {savedSkillName} from './SettlementHighlights';\n@@ -42,7 +42,7 @@ export interface HeroClimaxView {group:Phaser.GameObjects.Container;strike:()=>v\n /** Three shots inside the existing queue slot. Owns no input, command or extra hold. */\n export function mountHeroClimax(scene:Phaser.Scene,root:Phaser.GameObjects.Container,viewport:Box,key:JokerKeyHighlight,value:HeroClimaxValue,reduced:boolean):HeroClimaxView|undefined {\n  const id=key.heroId;if(!id)return;\n- const heroKey=['opening-portrait-'+id,selectionPortraitKey(id),avatarKey(id)].find(k=>scene.textures.exists(k));if(!heroKey)return;\n+ const heroKey=[portraitKey(id),selectionPortraitKey(id),avatarKey(id)].find(k=>scene.textures.exists(k));if(!heroKey)return;\n  const {width:w,height:h}=viewport,l=heroClimaxLayout(w,h,!!key.fact.definitionId),p=l.panel;\n  const group=scene.add.container(0,0).setName('joker/key-focus').setData('eventId',key.eventId).setData('benefit',key.fact).setData('heroClimax',true).setData('starter',key.kind==='starter').setData('phase',reduced?'still':'charge').setData('bounds',viewport).setData('panel',p).setData('headlineWidth',l.nameW);root.add(group);\n  const board=scene.add.container(0,0).setName('hero/climax-board');group.add(board);"
+}

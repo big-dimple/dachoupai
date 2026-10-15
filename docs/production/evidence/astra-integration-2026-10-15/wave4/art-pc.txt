@@ -1,0 +1,19 @@
+1366-dpr1-normal importing fixture
+1366-dpr1-normal play fixture {
+  selectedIds: [ 'spades-2', 'spades-3', 'spades-4', 'spades-5' ],
+  assistIds: [ 'spades-6', 'spades-7' ],
+  ready: true,
+  playing: false,
+  presentation: false
+}
+1366-dpr1-normal PASS
+1366-dpr1-wrong-size importing fixture
+1366-dpr1-wrong-size play fixture {
+  selectedIds: [ 'spades-2', 'spades-3', 'spades-4', 'spades-5' ],
+  assistIds: [ 'spades-6', 'spades-7' ],
+  ready: true,
+  playing: false,
+  presentation: false
+}
+1366-dpr1-wrong-size PASS
+PASS 
