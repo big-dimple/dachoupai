@@ -1,0 +1,52 @@
+
+> dachoupai@0.1.0 test
+> vitest run --maxWorkers=1
+
+
+ RUN  v4.1.11 /workspace/dachoupai
+
+ ❯ tests/azao-charge.test.ts (10 tests | 1 failed) 731ms
+     × public choice needs selected qualification and shows consequence; saved repeat uses short hero cue 49ms
+ ❯ tests/amo-launch.test.ts (9 tests | 1 failed) 196ms
+     × selector copy shares new-game policy without changing legacy or other character definitions 7ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/amo-launch.test.ts > normal new-game policy and exact retry creation > selector copy shares new-game policy without changing legacy or other character definitions
+AssertionError: expected '余韵相和' to be '主手＋助攻' // Object.is equality
+
+Expected: "主手＋助攻"
+Received: "余韵相和"
+
+ ❯ tests/amo-launch.test.ts:51:63
+     49|  });
+     50|  it('selector copy shares new-game policy without changing legacy or o…
+     51|   const amo=characterForNewRun('amo');expect(amo.passiveName).toBe('主手…
+       |                                                               ^
+     52|   expect(amo.buildTip).not.toMatch(/单张|Lv3|高牌升级/);expect(amo.buildTip)…
+     53|   expect(amo.passiveDescription).toMatch(/每场1次/);expect(amo.passiveDes…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  tests/azao-charge.test.ts > stage-local azao charge candidate > public choice needs selected qualification and shows consequence; saved repeat uses short hero cue
+AssertionError: expected '文成公主 · 步步成势 · 已兑现' to contain '主动爆发'
+
+Expected: "主动爆发"
+Received: "文成公主 · 步步成势 · 已兑现"
+
+ ❯ tests/azao-charge.test.ts:30:641
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  2 failed | 268 passed (270)
+      Tests  2 failed | 3650 passed (3652)
+   Start at  17:13:44
+   Duration  211.20s (transform 8.93s, setup 0ms, import 53.71s, tests 108.41s, environment 28ms)
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice
