@@ -23,7 +23,7 @@ const load=async p=>{await p.locator('.run-menu-toggle').click();const sec=p.get
 const visual=p=>p.evaluate(()=>{const s=window.__harness.game.scene.getScene('shop'),d=s.ownedDrag;return {drag:!!d,saving:d?.saving??false,inputEnabled:s.input.enabled,hint:s.ownedHint?.text,slots:s.geometry().slots,arts:[...s.ownedArts].map(([id,a])=>({id,x:a.x,y:a.y,scale:a.scaleX,active:a.active,bounds:{x:a.getBounds().x,y:a.getBounds().y,width:a.getBounds().width,height:a.getBounds().height}})),surfaceTouchAction:s.ownedInput.surface.style.touchAction,dispatch:window.__feedbackDispatch??[]};});
 try{
  for(const spec of [{width:320,height:740,touch:true},{width:390,height:844,touch:true},{width:412,height:915,touch:true},{width:1366,height:900,touch:false},...(!baseline?[{width:390,height:844,touch:true,reduced:true,dpr:2}]:[])].filter(s=>!smoke||s.touch&&!s.reduced&&[320,390].includes(s.width))){
-  const {width,height,touch}=spec,name=width+'x'+height+(spec.reduced?'-reduce-dpr2':''),context=await browser.newContext({viewport:{width,height},hasTouch:touch,isMobile:touch,deviceScaleFactor:spec.dpr??1,reducedMotion:spec.reduced?'reduce':'no-preference'}),p=await context.newPage(),row={...spec,name,checks:[],errors:[],moves:[],cancellations:[]};report.cases.push(row);p.on('dialog',d=>d.accept());p.on('pageerror',e=>row.errors.push(String(e)));await p.goto(`http://127.0.0.1:${port}/?harness=1`);await waitScene(p,'title');await load(p);
+  const {width,height,touch}=spec,name=width+'x'+height+(spec.reduced?'-reduce-dpr2':''),context=await browser.newContext({viewport:{width,height},hasTouch:touch,isMobile:touch,deviceScaleFactor:spec.dpr??1,reducedMotion:spec.reduced?'reduce':'no-preference'}),p=await context.newPage(),row={...spec,name,checks:[],errors:[],moves:[],cancellations:[]};report.cases.push(row);p.on('dialog',d=>d.accept());p.on('pageerror',e=>row.errors.push(String(e)));await p.addInitScript(()=>{window.__nativeVibrationAPI=typeof navigator.vibrate==='function';window.__pickupPulses=[];Object.defineProperty(navigator,'vibrate',{configurable:true,writable:true,value:ms=>{window.__pickupPulses.push(ms);return true;}});});await p.goto(`http://127.0.0.1:${port}/?harness=1`);await waitScene(p,'title');await load(p);
   await p.evaluate(()=>{const c=window.__harness.game.registry.get('runController'),dispatch=c.dispatch;window.__feedbackDispatch=[];c.dispatch=function(...args){window.__feedbackDispatch.push(structuredClone(args));return dispatch.apply(this,args);};});
   const cdp=touch?await context.newCDPSession(p):undefined;
   let touchAt;
@@ -40,10 +40,10 @@ try{
   if(process.env.DRAG_BOUNDARY_ONLY==='1'){row.initial=await snapshot(p);row.status=touch?'OBSERVED':'NOT_APPLICABLE';await context.close();continue;}
   row.initial=await snapshot(p);row.initialVisual=await visual(p);row.idleShot=await shot('idle');
   for(const [from,to,style] of [[0,4,'slow'],[4,0,'fast'],[1,3,'middle']].slice(0,smoke?1:3)){
-   const before=await snapshot(p),at=await slot(p,from),target=await slot(p,to),id=before.state.jokers[from].instanceId,v0=await visual(p),calls=v0.dispatch.length,m={from,to,style,before};row.moves.push(m);
+   const before=await snapshot(p),at=await slot(p,from),target=await slot(p,to),id=before.state.jokers[from].instanceId,v0=await visual(p),calls=v0.dispatch.length,m={from,to,style,before};row.moves.push(m);const pulsesBefore=await p.evaluate(()=>window.__pickupPulses.length);
    await start(at);await p.waitForTimeout(touch?420:30);
    if(!touch)await move({x:at.x+12,y:at.y});
-   m.held=await visual(p);m.heldShot=await shot(style+'-held');assert.deepEqual(await snapshot(p),before);
+   m.pickupPulses=await p.evaluate(()=>window.__pickupPulses);if(!baseline){assert.equal(m.pickupPulses.length-pulsesBefore,touch?1:0,'one optional pulse per touch pickup; mouse stays silent');if(touch)assert.equal(m.pickupPulses.at(-1),12);}m.held=await visual(p);m.heldShot=await shot(style+'-held');assert.deepEqual(await snapshot(p),before);
    if(!baseline){const a=m.held.arts.find(a=>a.id===id),original=v0.arts.find(a=>a.id===id);assert.ok(m.held.drag);assert.ok(Math.abs(a.y-(original.y-16))<1);assert.ok(Math.abs(a.scale-1.06)<.001);}
    if(style==='slow')for(let t=1;t<=6;t++)await move({x:at.x+(target.x-at.x)*t/6,y:at.y+8});
    else await move(target);
@@ -62,7 +62,7 @@ try{
    await idle(p);await p.waitForTimeout(210);m.after=await snapshot(p);m.dropped=await visual(p);m.dropShot=await shot(style+'-dropped');if(!baseline&&style==='slow'){m.firstSavedFrames=await p.evaluate(()=>window.__feedbackLandingFrames);assert.ok(m.firstSavedFrames.length);for(const f of m.firstSavedFrames)for(const [i,j] of m.after.state.jokers.entries())if(j.instanceId!==id){const a=f.arts.find(a=>a.id===j.instanceId),b=f.slots[i];assert.ok(Math.abs(a.x-(b.x+b.width/2))<1,'other cards never jump back after a delayed save');assert.ok(Math.abs(a.y-(b.y+b.height/2))<1);}}
    const ids=before.state.jokers.map(j=>j.instanceId);ids.splice(to,0,ids.splice(from,1)[0]);const action={type:'ReorderJokers',ids},command={runId:before.state.runId,commandId:before.state.runId+'/command/'+(before.state.commandSeq+1),expectedSeq:before.state.commandSeq,action},expected=applyCommand(before.state,command);assert.ok(expected.ok,expected.code);assert.deepEqual(m.after.state,expected.state);assert.deepEqual(m.after.journal,[...before.journal,command]);assert.deepEqual(m.after.slots.current,makeCheckpoint(m.after.state,m.after.journal));assert.equal(m.after.slots.revision,before.slots.revision+1);assert.equal(m.dropped.dispatch.length,calls+1);assert.deepEqual(m.after.storage,before.storage);assert.equal(await p.locator('.detail-dialog[open]').count(),0);
    for(const [i,j] of m.after.state.jokers.entries()){const a=m.dropped.arts.find(a=>a.id===j.instanceId),b=m.dropped.slots[i];assert.ok(Math.abs(a.x-(b.x+b.width/2))<1);assert.ok(Math.abs(a.y-(b.y+b.height/2))<1);assert.equal(a.scale,1);}
-   m.status='PASS';
+   if(!baseline)assert.equal(await p.evaluate(()=>window.__pickupPulses.length),pulsesBefore+(touch?1:0),'move/drop/save never repeat the pickup pulse');m.status='PASS';
   }
   if(!baseline&&!smoke){
    const before=await snapshot(p),id=before.state.jokers[0].instanceId,calls=(await visual(p)).dispatch.length,delayed={before};row.fastDelayed=delayed;
@@ -74,6 +74,13 @@ try{
    await idle(p);await p.waitForTimeout(210);delayed.after=await snapshot(p);delayed.firstSavedFrames=await p.evaluate(()=>window.__feedbackLandingFrames);assert.ok(delayed.firstSavedFrames.length);
    for(const f of delayed.firstSavedFrames)for(const [i,j] of delayed.after.state.jokers.entries())if(j.instanceId!==id){const a=f.arts.find(a=>a.id===j.instanceId),b=f.slots[i];assert.ok(Math.abs(a.x-(b.x+b.width/2))<1,'fast release plus delayed save cannot jump other cards back');assert.ok(Math.abs(a.y-(b.y+b.height/2))<1);}
    const ids=before.state.jokers.map(j=>j.instanceId);ids.push(ids.shift());const command={runId:before.state.runId,commandId:before.state.runId+'/command/'+(before.state.commandSeq+1),expectedSeq:before.state.commandSeq,action:{type:'ReorderJokers',ids}},expected=applyCommand(before.state,command);assert.ok(expected.ok);assert.deepEqual(delayed.after.state,expected.state);assert.deepEqual(delayed.after.journal,[...before.journal,command]);assert.deepEqual(delayed.after.slots.current,makeCheckpoint(delayed.after.state,delayed.after.journal));assert.equal((await visual(p)).dispatch.length,calls+1);delayed.status='PASS';
+  }
+  // Browser fallbacks validate visuals/state only; no physical vibration is claimed.
+  row.hapticFallbacks=[];row.nativeVibrationAPI=await p.evaluate(()=>window.__nativeVibrationAPI);
+  if(touch&&!baseline)for(const mode of ['unsupported','denied','throwing']){
+   const before=await snapshot(p);await p.evaluate(mode=>{window.__restoreVibration=navigator.vibrate;Object.defineProperty(navigator,'vibrate',{configurable:true,writable:true,value:mode==='unsupported'?undefined:()=>{if(mode==='throwing')throw Error('controlled vibration denial');return false;}});},mode);
+   const at=await slot(p,0);await start(at);await p.waitForTimeout(420);await move({x:at.x+5,y:at.y+20});const observed=await visual(p);assert.equal(observed.drag,true,mode+' keeps full visual drag');await up();await frame(p);assert.deepEqual(await snapshot(p),before,mode+' same-slot release stays unchanged');
+   row.hapticFallbacks.push({mode,status:'PASS',visualDrag:observed.drag});await p.evaluate(()=>Object.defineProperty(navigator,'vibrate',{configurable:true,writable:true,value:window.__restoreVibration}));
   }
   // Long-held vertical follow reproduces Chromium's pan-y cancellation, independent of pixels.
   let before=await snapshot(p),at=await slot(p,0);await start(at);await p.waitForTimeout(420);await move({x:at.x+5,y:at.y+20});row.vertical=await visual(p);row.verticalShot=await shot('vertical');await up();await frame(p);assert.deepEqual(await snapshot(p),before);

@@ -1,0 +1,23 @@
+{
+  "head": "66994ac8fb347b865a7169aad3837502266144e1",
+  "sourceTree": "504188800d34181a90349362a78a451d72b34f0d",
+  "modified": "",
+  "baseline": false,
+  "scope": "Controlled current-identity five-owned checkpoint; real mouse/CDP touch/DOM inputs. Full state/journal/local storage vs actual applyCommand; no natural acquisition, 18-combination, physical device or human acceptance.",
+  "cases": [
+    {
+      "width": 320,
+      "height": 740,
+      "touch": true,
+      "name": "320x740",
+      "checks": [],
+      "errors": [
+        "TypeError: Cannot assign to read only property 'vibrate' of object '#<Navigator>'"
+      ],
+      "moves": [],
+      "cancellations": []
+    }
+  ],
+  "status": "FAIL",
+  "error": "TimeoutError: page.waitForFunction: Timeout 30000ms exceeded."
+}
