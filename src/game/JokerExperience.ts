@@ -1,3 +1,4 @@
+import {coefficientLabelCandidates} from './JokerLabel';
 import {handGrowthChanges} from './SavedGrowthChange';
 import {growthOpportunity} from './GrowthOpportunity';
 import {r2GrowthMinimums,type R2JokerDefinition,type R2JokerInstance} from '../content/r2Schema';
@@ -24,7 +25,7 @@ function growthScoring(definition:R2JokerDefinition,joker:R2JokerInstance,ctx:Jo
   if(op.kind!=='read-growth'&&op.kind!=='consume-growth'&&op.kind!=='read-coefficient')return [];
   const value=stored[op.key],coefficient=op.kind==='read-coefficient',amount=fractionText(value),unit=coefficient?'倍率×':op.target==='heat'?'热度+':'倍率+';
   const compact=coefficient?'×'+amount:(op.target==='heat'?'热+':'倍+')+amount,status=memory.hooks[index].status;
-  return [{status,compact,effect:unit+amount,condition:hook.condition.kind==='always'?'任意牌型':r2ConditionDescription(hook.condition),consumed:op.kind==='consume-growth',positive:Rational.fromJSON(value).compare(new Rational(coefficient?1n:0n))>0}];
+  return [{status,compact,displayCandidates:coefficient?coefficientLabelCandidates(value):[compact],effect:unit+amount,condition:hook.condition.kind==='always'?'任意牌型':r2ConditionDescription(hook.condition),consumed:op.kind==='consume-growth',positive:Rational.fromJSON(value).compare(new Rational(coefficient?1n:0n))>0}];
  }));
  const immediate=definition.hooks.flatMap((hook,index)=>hook.operations.flatMap(op=>{
   if(op.kind!=='add-heat'&&op.kind!=='add-multiplier')return [];
@@ -35,7 +36,7 @@ function growthScoring(definition:R2JokerDefinition,joker:R2JokerInstance,ctx:Jo
  const label=ctx.scoringLimited?'计分停用':!ctx.facts?'待选·'+reads.map(r=>r.compact).join('／'):active.length?'本手'+active.map(r=>r.compact).join('／'):'本手不读取';
  const body=reads.map(r=>'本手读取：'+(ctx.scoringLimited?'计分停用，已存'+r.effect+'不计入':r.status==='条件满足'?r.effect:r.status==='当前未满足'?'所选不满足读取条件；已存'+r.effect:'待选牌确认；已存'+r.effect)+'；读取条件：'+r.condition+(r.consumed?'；下一次实际读取后消耗，场末清空。':'。')).join('\n')+
   immediate.map(r=>'\n即时效果：'+r.effect+'；'+(ctx.scoringLimited?'本手计分停用':r.status==='条件满足'?'所选满足':r.status==='当前未满足'?'所选不满足':'待选牌确认')+'；'+r.condition+'。').join('');
- const labelCandidates=ctx.scoringLimited?[label,'停用 ›']:!ctx.facts?[label,'待选 ›']:active.length?[label,...active.map(r=>'读'+r.compact),...active.map(r=>r.compact)]:[label,'不读取'];
+ const labelCandidates=ctx.scoringLimited?[label,'停用 ›']:!ctx.facts?[label,'待选 ›']:active.length?['本手'+active.map(r=>r.displayCandidates[0]).join('／'),...active.flatMap(r=>r.displayCandidates.flatMap(text=>['读'+text,text]))]:[label,'不读取'];
  return {readiness,label,labelCandidates,body};
 }
 /** Public condition facts only: no score projection, future hand, RNG or command. */

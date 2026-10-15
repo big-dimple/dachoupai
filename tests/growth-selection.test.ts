@@ -51,3 +51,20 @@ it('Dataijie keeps immediate +50 separate from always-read heat, and neutral new
  const hand=s.handOrder.map(id=>s.deckInstances.find(c=>c.id===id)!);hand.slice(0,5).forEach((c,i)=>Object.assign(c,{rank:i+2,suit:i%2?'clubs':'hearts'}));const straight=selectionExperience(s,j,ctx(s.handOrder.slice(0,5)));expect(straight.body).toContain('即时效果：热度+50；所选满足');expect(straight.growth!.status).toBe('ready');
  const empty=fixture();empty.j.growth.multiplier={n:'0',d:'1'};const zero=selectionExperience(empty.s,empty.j,empty.ctx());expect(zero.label).toBe('本手倍+0');expect(zero.readiness).toBe('unmet');expect(selectionExperience(empty.s,empty.j,{...empty.ctx(),facts:undefined}).label).toBe('待选·倍+0');
 });
+
+it.each([
+ ['1587','800','×≈1.98','1,587/800'],
+ ['36501','16000','×≈2.28','36,501/16,000'],
+ ['1000000','1','×100万','1,000,000'],
+])('offers short honest first-layer a06 reads for %s/%s and keeps the scorer and details exact',async(n,d,short,exact)=>{
+ const {jokerMemory}=await import('../src/game/JokerMemory');
+ const {s,j,ctx,fullHouse}=fixture('a06');j.growth.coefficient={n,d};const before=JSON.stringify(s);
+ const selected=selectionExperience(s,j,ctx()),idle=jokerMemory(r2JokerDefinitionFor(s,'a06'),j,{...ctx(),facts:undefined});
+ expect(selected.scoring!.labelCandidates).toContain(short);expect(idle.labelCandidates).toContain(short);
+ expect(selected.label).toBe('本手×'+exact);expect(selected.body).toContain('本手读取：倍率×'+exact);expect(idle.saved).toContain(exact);
+ expect(selectionExperience(s,j,ctx(fullHouse.slice(0,2))).scoring!.labelCandidates).toEqual(['本手不读取','不读取']);
+ expect(selectionExperience(s,j,ctx(fullHouse,true)).scoring!.labelCandidates).toEqual(['计分停用','停用 ›']);
+ const r=applyCommand(s,{runId:s.runId,commandId:s.runId+'/command/'+(s.commandSeq+1),expectedSeq:s.commandSeq,action:{type:'PlayHand',selectedIds:fullHouse}});
+ expect(r.ok).toBe(true);if(r.ok)expect(r.state.lastTrace!.events.find(e=>e.sourceDefinitionId==='a06'&&e.operation==='read-coefficient')!.value).toEqual({n,d});
+ expect(JSON.stringify(s)).toBe(before);
+});
