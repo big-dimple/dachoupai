@@ -9,7 +9,8 @@ export function showShopComparison(dialog:DetailDialog,run:R2RunState,offer:R2Of
   inspect:(id:string)=>void,details:()=>void,direction:()=>void):void {
   if(view.offerId!==offer.offerId){view.offerId=offer.offerId;view.scrollTop=0;view.selectedId=undefined;}
   const data=shopComparisonPresentation(run,offer),candidate=data.candidate;
-  const d=dialog.open('比较替换 · 金币 '+data.gold,'',[{label:'返回购买详情',run:details},{label:'更换培养方向',run:direction}],{shopContext:'compare',closeLabel:'返回现货'});
+  let stopResize=()=>{};
+  const d=dialog.open('比较替换 · 金币 '+data.gold,'',[{label:'返回购买详情',run:details},{label:'更换培养方向',run:direction}],{shopContext:'compare',closeLabel:'返回现货',onClose:()=>stopResize()});
   d.classList.add('shop-comparison-dialog');
   const content=d.querySelector('.dialog-content')!,scroll=d.querySelector<HTMLElement>('.dialog-scroll')!;scroll.replaceChildren();
   const image=(url:string|undefined,alt:string)=>{if(!url){const text=document.createElement('span');text.textContent=alt;return text;}const img=document.createElement('img');img.src=url;img.alt=alt+'卡面';img.decoding='async';return img;};
@@ -27,9 +28,22 @@ export function showShopComparison(dialog:DetailDialog,run:R2RunState,offer:R2Of
     copy.append(name,createShopIdentityTags(row.rarity,row.editionId),costs,createShopOfferValue(row.guidance,'换此槽后的推荐'),button,more);card.append(art,copy);grid.append(card);
     if(row.uses){const usage=document.createElement('p');usage.className='shop-card-uses';usage.textContent=row.uses;costs.before(usage);}
   }
-  // Short screens share one native scroll surface so a long candidate cannot hide the slots.
-  if(window.innerHeight<=650&&window.innerWidth<=760){d.classList.add('shop-comparison-compact');scroll.append(next);}
-  scroll.append(grid);scroll.addEventListener('scroll',()=>{if(dialog.active(d))view.scrollTop=scroll.scrollTop;});
+  // Reflow the open dialog as browser chrome / viewport height changes. Keep the
+  // current slot at the same visible offset when the candidate enters/leaves its scroll.
+  scroll.append(grid);
+  const compact=window.matchMedia('(max-height:650px) and (max-width:760px)');
+  const reflow=()=>{
+    if(d.classList.contains('shop-comparison-compact')===compact.matches)return;
+    const focused=document.activeElement;
+    const top=scroll.getBoundingClientRect().top,anchor=scroll.scrollTop>0?[...grid.children].find(card=>card.getBoundingClientRect().bottom>top):undefined;
+    const anchorTop=anchor?.getBoundingClientRect().top;
+    d.classList.toggle('shop-comparison-compact',compact.matches);
+    if(compact.matches)scroll.prepend(next);else content.prepend(next);
+    if(anchor&&anchorTop!==undefined)scroll.scrollTop+=anchor.getBoundingClientRect().top-anchorTop;
+    if(focused instanceof HTMLElement&&scroll.contains(focused))focused.scrollIntoView({block:'nearest'});
+  };
+  reflow();compact.addEventListener('change',reflow);stopResize=()=>compact.removeEventListener('change',reflow);
+  scroll.addEventListener('scroll',()=>{if(dialog.active(d))view.scrollTop=scroll.scrollTop;});
   scroll.scrollTop=view.scrollTop;
   const selected=[...grid.querySelectorAll<HTMLElement>('.shop-compare-slot')].find(card=>card.dataset.instanceId===view.selectedId);
   selected?.querySelector<HTMLButtonElement>('button')?.focus({preventScroll:true});
