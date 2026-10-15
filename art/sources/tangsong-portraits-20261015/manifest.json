@@ -1,0 +1,91 @@
+{
+  "schemaVersion": 1,
+  "transferDate": "2026-10-15",
+  "source": {
+    "kind": "user-approved-local-originals",
+    "directory": "D:\\ai\\dachoupai\\lihui",
+    "description": "用户明确授权从预设备份目录取回六张已验收正式立绘，作为原始资源传输到开发分支，供云端后续接入。"
+  },
+  "verification": {
+    "originalBytesPreserved": true,
+    "originalFilesRetained": true,
+    "imagesIndividuallyViewed": true,
+    "sha256SourceAndCopyMatch": true,
+    "note": "仅传输原始PNG及本清单，未裁切、缩放、转码或接入游戏。实际原图均1122×1402；不宣称达到历史1536×1920目标或已交付独立眼图。秦琼原文件名的标题后含异常字符，完整文件名记录于originalFilename；人物以已查看的画面秦琼题字和用户映射确认。"
+  },
+  "mappingBasis": "用户委托及仓库AGENTS.md最新映射：amo苏轼、touye秦琼、laohuan辛弃疾、erxiang刘娥、azao文成公主、xiemu花蕊夫人；技术ID保持。",
+  "entries": [
+    {
+      "heroId": "amo",
+      "person": "苏轼",
+      "title": "风起赤壁",
+      "file": "amo-su-shi.png",
+      "originalFilename": "苏轼：风起赤壁.png",
+      "width": 1122,
+      "height": 1402,
+      "bytes": 3171533,
+      "sha256": "6a15b2231aa91103e50c04b61dacc6e4fd85497d0b950928ba543a17a6da4e3e",
+      "pixelReview": "画面左侧题字苏轼，执笔青年文士，赤壁诗文。"
+    },
+    {
+      "heroId": "touye",
+      "person": "秦琼",
+      "title": "踏破山河",
+      "file": "touye-qin-qiong.png",
+      "originalFilename": "秦琼：踏破山河人體藝術.png",
+      "width": 1122,
+      "height": 1402,
+      "bytes": 3770821,
+      "sha256": "dd291f88cc6954cfa1110cce5cb3edb472fdf811e04854f5c31884fa604d904d",
+      "pixelReview": "画面右侧旗帜题字秦琼，披甲持双兵器的青年武将。"
+    },
+    {
+      "heroId": "laohuan",
+      "person": "辛弃疾",
+      "title": "墨影醉里挑灯看剑",
+      "file": "laohuan-xin-qi-ji.png",
+      "originalFilename": "辛弃疾：墨影醉里挑灯看剑.png",
+      "width": 1122,
+      "height": 1402,
+      "bytes": 3369628,
+      "sha256": "464b9d821e41e6a1b3df683ffe795195be2ee2b529a7fb729e469fa5dacefad8",
+      "pixelReview": "画面右侧题字辛弃疾，持剑青年，左侧醉里挑灯看剑旗文。"
+    },
+    {
+      "heroId": "erxiang",
+      "person": "刘娥",
+      "title": "大宋之母",
+      "file": "erxiang-liu-e.png",
+      "originalFilename": "刘娥：大宋之母.png",
+      "width": 1122,
+      "height": 1402,
+      "bytes": 2980351,
+      "sha256": "ea19ce9d27d0ccde2a5fc6cbb5cf692babf5e77fb6d6c9ec1057fb0aafa114b7",
+      "pixelReview": "画面右上题字刘娥、大宋之母，红金服饰宫廷女性。"
+    },
+    {
+      "heroId": "azao",
+      "person": "文成公主",
+      "title": "藏地迎宾",
+      "file": "azao-wen-cheng-gong-zhu.png",
+      "originalFilename": "文成公主：藏地迎宾.png",
+      "width": 1122,
+      "height": 1402,
+      "bytes": 3227894,
+      "sha256": "7c3128ac3581610337464a2d0273ceb9276f045c40f2e149e00d2b01cdd14821",
+      "pixelReview": "藏地雪山与宫殿迎宾场景，前景盛装青年女性；结合用户已验收映射确认文成公主。"
+    },
+    {
+      "heroId": "xiemu",
+      "person": "花蕊夫人",
+      "title": "执剑凌风",
+      "file": "xiemu-hua-rui-fu-ren.png",
+      "originalFilename": "花蕊夫人：执剑凌风.png",
+      "width": 1122,
+      "height": 1402,
+      "bytes": 3630535,
+      "sha256": "7ecbd42d132cd1512ec84d2e8b623ffe970ead931f37ee45d70ea80648ec52bd",
+      "pixelReview": "画面右侧题字花蕊夫人，花饰红衣执剑青年女性。"
+    }
+  ]
+}
