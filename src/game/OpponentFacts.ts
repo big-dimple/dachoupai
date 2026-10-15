@@ -26,7 +26,7 @@ export function opponentSavedStatus(trace:ScoreTrace|null|undefined):string {
 export function opponentOutcome(run:Pick<R2RunState,'phase'|'stage'>,trace:ScoreTrace):OpponentBeat|undefined {
   if(run.stage?.boss?.definitionId!=='B05'||trace.bossContext?.boss?.definitionId!=='B05')return;
   if(run.phase==='stage-cleared'||run.phase==='run-won')return {kind:'won',quote:'你的招，我认了。',title:'回音墙 · 你赢了这场',effect:heatText(run.stage.heat)+' / '+heatText(run.stage.targetHeat)+' 热度'};
-  if(run.phase==='run-lost')return {kind:'lost',quote:'这场回响，还没结束。',title:'回音墙 · 本场未过',effect:heatText(run.stage.heat)+' / '+heatText(run.stage.targetHeat)+' 热度'};
+  if(run.phase==='run-lost')return {kind:'lost',quote:'这一场，我接住了。',title:'回音墙 · 本场未过',effect:heatText(run.stage.heat)+' / '+heatText(run.stage.targetHeat)+' 热度'};
 }
 export interface OpponentChoice {kind:'repeat'|'change'|'opening';type:R2HandType;ids:string[];label:string;detail:string}
 /** Public formed cards only, no scoring simulation, hidden draw, ability choice or RNG. */

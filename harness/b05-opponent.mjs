@@ -76,6 +76,6 @@ try{
   }
   report.status='PASS';
 }catch(e){report.status='FAIL';report.error=e.stack;process.exitCode=1;}finally{
-  await writeFile(out+'/report.json.gz',gzipSync(JSON.stringify(report)));await writeFile(out+'/summary.json',JSON.stringify({head:report.head,status:report.status,baseline,scope:report.scope,error:report.error,cases:report.cases.map(({before,initial,selected,committed,after,entered,timeline,...r})=>({...r,score:committed?.state.lastTrace?.finalScore,selected,timeline}))},null,2));
+  await writeFile(out+'/report.json.gz',gzipSync(JSON.stringify(report)));await writeFile(out+'/summary.json',JSON.stringify({head:report.head,status:report.status,baseline,scope:report.scope,error:report.error,cases:report.cases.map(({before,initial,selected,committed,after,entered,timeline,ordinary,...r})=>({...r,score:committed?.state.lastTrace?.finalScore,selected,timeline,ordinary:ordinary?{score:ordinary.committed.state.lastTrace.finalScore,phase:ordinary.committed.state.phase}:undefined}))},null,2));
   await browser.close();await server.close();console.log(JSON.stringify({status:report.status,error:report.error,cases:report.cases.length}));
 }

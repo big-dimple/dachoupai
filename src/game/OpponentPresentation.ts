@@ -11,7 +11,7 @@ import {PAPER_CSS as C,UI_FONT} from './theme';
 /** Scoped paper/ink UI. Portrait and eye art can be supplied independently; no borrowed player face. */
 function style(host:HTMLElement):void {
   const sheet=document.createElement('style');sheet.textContent=`
-  .detail-dialog.opponent-dialog[open] {border-color:${C.jade};width:min(650px,calc(100vw - var(--safe-left) - var(--safe-right) - 24px));height:auto}
+  .detail-dialog.opponent-dialog[open] {border-color:${C.jade};width:min(650px,calc(100vw - var(--safe-left) - var(--safe-right) - 24px));height:auto;top:calc(50% + (var(--safe-top) - var(--safe-bottom)) / 2);bottom:auto;transform:translateY(-50%)}
   .opponent-dialog .dialog-content {overflow:auto}
   .opponent-dialog .dialog-scroll {height:auto;overflow:visible}
   .opponent-dialog .dialog-eyebrow {display:block;color:${C.jade}}
