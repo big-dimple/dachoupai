@@ -1,0 +1,43 @@
+{
+  "scope": "all",
+  "testedCommit": "563e5a9bf28ad306ad911aecca5eb12e0ff25681",
+  "status": "FAIL",
+  "exitCode": 1,
+  "before": {
+    "source": "d52dd2bf691d1ee4804479d3c62f50c7785493203d7d4ac2c197f21a7671fba6",
+    "index": "baad00c30921c7ccfd2bfdc912d75487fd4186717d9fbaf4e8c35a386626195c",
+    "head": "563e5a9bf28ad306ad911aecca5eb12e0ff25681",
+    "branch": "refs/heads/fix/shop-integration-20261015"
+  },
+  "after": {
+    "source": "d52dd2bf691d1ee4804479d3c62f50c7785493203d7d4ac2c197f21a7671fba6",
+    "index": "baad00c30921c7ccfd2bfdc912d75487fd4186717d9fbaf4e8c35a386626195c",
+    "head": "563e5a9bf28ad306ad911aecca5eb12e0ff25681",
+    "branch": "refs/heads/fix/shop-integration-20261015"
+  },
+  "steps": [
+    {
+      "name": "test",
+      "status": "FAIL",
+      "childExitCode": 1,
+      "elapsedMs": 58554,
+      "reason": "child exited 1"
+    }
+  ],
+  "notIncluded": [
+    {
+      "name": "extended browser/recovery/fault/asset/simulation diagnostics",
+      "status": "NOT_INCLUDED",
+      "reason": "run the existing specific command only when its domain changes; P00 removes repeated default execution"
+    },
+    {
+      "name": "balance/benchmark acceptance",
+      "status": "NOT_INCLUDED",
+      "reason": "later work packages; no gameplay approval inferred from checks"
+    },
+    {
+      "name": "physical devices / human / art approval",
+      "status": "NOT_RUN"
+    }
+  ]
+}
