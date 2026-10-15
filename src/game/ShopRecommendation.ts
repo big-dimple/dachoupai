@@ -16,6 +16,7 @@ import {shopRouteGrowthFacts} from './ShopRouteGrowthFacts';
 import {shopPurchaseCashFacts} from './ShopRouteRelations';
 import type {R2JokerInstance} from '../content/r2Schema';
 import {shopDeferredGrowthCashRisk} from './ShopReplacementCashRisk';
+import {shopPurchaseValue} from './ShopPurchaseValue';
 
 /** Audited against e48fd07's resolved 72 definitions. Changed/older semantics require review. */
 export const SHOP_RECOMMENDATION_SEMANTICS='json-fnv-v1:bd8fa974db581460';
@@ -45,6 +46,7 @@ export interface ShopRecommendation {stars:RecommendationStars;reason:string;con
 const hashes=new WeakMap<object,string>();
 /** No affordability rating, RNG, future piles or stored recommendation. Cash gates use purchase cash. */
 export function shopRecommendation(state:R2RunState,offer:R2Offer,focus?:BuildFocus,sold?:R2JokerInstance):ShopRecommendation {
+ const value=shopPurchaseValue(state,offer,focus,sold);
  const cash=offer.definitionId==='e08'||sold||state.jokers.length===r2JokerCapacity(state)-1?shopPurchaseCashFacts(state,offer,sold):undefined;
  // Every specified sale removes its sources/modifiers and applies real sale hooks.
  // The original state, RNG and storage remain untouched.
@@ -134,7 +136,10 @@ export function shopRecommendation(state:R2RunState,offer:R2Offer,focus?:BuildFo
  const result=(stars:RecommendationStars,reason:string,condition:string):ShopRecommendation=>{
   const limited=replacementCashRisk&&stars>2,actualStars=limited?2:stars,actualReason=limited?'购款将停用包场':reason;
   const actualCondition=limited?`购买前${replacementCashRisk.goldBeforePurchase}→${replacementCashRisk.goldAfterPurchase}金 · 新牌成长为0`:condition;
-  return {stars:actualStars,reason:actualReason,condition:actualCondition,stage,combination,combinationHint:potential&&actualStars>=3?'组合潜力：'+potential+'。':'',facts:{...facts,...(limited?{replacementCashRisk:JSON.stringify(replacementCashRisk)}:{})},detail:(limited?'购款将停用包场；'+actualCondition+'。\n':'')+reason+'；'+condition+(d?'。'+d.description:'')+(actualStars>=4?`\n公开依据：最大同点组${largest}张，前两组${largest+second}/${cards.length}张；最大花色${largestSuit}/${cards.length}张；已持逐牌加成${heldCardPayoff?'有':'无'}；剩余场次窗口${potentialStages}。`:'')+'\n'+combination+(routeGrowth?'\n'+routeGrowth.detail:'')};
+  const cap=value?.calibrated&&value.status==='blocked'?1:value?.calibrated&&value.status==='needs-selection'?2:value?.status==='assessed'&&value.calibrated?value.ceiling:5;
+  const finalStars=Math.min(actualStars,cap) as RecommendationStars;
+  const valueReason=stars<=1?actualReason:value?.calibrated&&value.status==='needs-selection'?'替换待核':value?.calibrated&&value.status==='blocked'?'当前不可购买':value?.status==='assessed'&&value.calibrated&&value.negative?(value.positive?'条件对照有得失':'保留对照更高'):value?.status==='assessed'&&value.calibrated&&actualStars>cap?(value.cashLoss?'购后条件受损':value.lostInvestment?'替换会丢已有收益':value.interestLoss?'购款降低利息档':!value.positive?'新购收益待成长':actualReason):actualReason;
+  return {stars:finalStars,reason:valueReason,condition:value?.status==='needs-selection'?'先指定替换对象，再核净补强 · '+actualCondition:actualCondition,stage,combination,combinationHint:potential&&finalStars>=3?'组合潜力：'+potential+'。':'',facts:{...facts,...(value?{purchaseValue:JSON.stringify(value)}:{}),...(limited?{replacementCashRisk:JSON.stringify(replacementCashRisk)}:{})},detail:(value?value.detail+'\n':'')+(limited?'购款将停用包场；'+actualCondition+'。\n':'')+reason+'；'+condition+(d?'。'+d.description:'')+(finalStars>=4?`\n公开依据：最大同点组${largest}张，前两组${largest+second}/${cards.length}张；最大花色${largestSuit}/${cards.length}张；已持逐牌加成${heldCardPayoff?'有':'无'}；剩余场次窗口${potentialStages}。`:'')+'\n'+combination+(routeGrowth?'\n'+routeGrowth.detail:'')};
  };
  if(sold&&cash?.status==='blocked')return result(0,'替换不可执行','先核对出售限制');
  if(!audited||!rule||!d)return result(0,'规则待核','该身份尚未审计');

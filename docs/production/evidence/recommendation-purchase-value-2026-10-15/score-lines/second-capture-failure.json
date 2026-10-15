@@ -1,0 +1,16 @@
+{
+  "scope": "Only score-line visibility and read-only state preservation; supplements the completed 208aebbb dual-viewport matrix.",
+  "sourceHashes": {
+    "src/game/ShopPurchaseValue.ts": "13faa07c5d1e53483a2dc180134ca6eb928978823ad53b04f841461cd44541c5",
+    "src/game/ToolPermanentValue.ts": "f9ff240d26a8385af6dcde51e2add950e2b0d11dab5ef5189a092c7b14202f86",
+    "src/game/ShopRecommendation.ts": "4bb1dd56fa1513b6d70d5c516969830895e02471dfe10ab53be6d2872c41398e",
+    "src/game/ConsumableDialog.ts": "f29d6a63ece89f53a8491120b1201cd3bb0b84e0d2e91d8f8c68ea0f10f7a703",
+    "src/game/ShopScene.ts": "922a4f1e354e070a2d95a6612cd4703d480630dcbf767700d2f2e563d98e2674",
+    "src/game/ShopCardValueVisual.ts": "865e400ee64e6767fb9378bbce4a2419cbae0e81bc0613f557970ad6956bf776",
+    "src/game/ShopOfferGuidance.ts": "2139f3c4edfa747f7c3e2ba37bf469328cb57c5b80d881a73699317ed223d702",
+    "harness/recommendation-purchase-value.mjs": "2b40393e863b7b2d642b29bab15d14896513c9396c01073bf9d5bb8dc1b43861"
+  },
+  "cases": [],
+  "status": "FAIL",
+  "error": "locator.evaluate: Error: missing score line: 以保留不买为基线；实付8金，已发生返金3金，净支出5金；余额40→35金。\n当前利息档5→5，仅按过关时余额结算，不计未来收入。\n新实例：累计出牌 0 / 4 手，余 4 手\n新牌余4次出牌；封禁也消耗，第4次后销毁；不预支全部次数的收益。\n失去来源：搭台阶；热度成长 100；版次 闪箔\n长期捧场：已有系数×1.5保留；本次出售将使下一场“本场未出售”的过关成长条件不满足；不会在这里获得过关成长。\n本局过关加成保留，出售不丢。\n一次条件对照（公开牌组样例，非下一手预测；假定下场首手、未弃牌、只打所列牌且不留牌；主动技能未用）：\n普通单张 2♣：保留 220 → 变更 66；分差 -154\n路线条件手 6♠ 7♥ 8♣ 9♦ 10♠：保留 2805 → 变更 2722；分差 -83\n只计本手已有值；手后成长、未来抽牌、收入和存活次数未知。\n推荐还需兼顾实付、已有来源和永久代价；条件增分不保证回本或通关。\n限4次；第4次出牌后销毁。整手倍率 ×2；买入后第4次合法出牌本手仍有效，结算后销毁自身，次数跨场保留。\n组合记录：尚无两张现持牌共同计分。\n过关加成：成功清场7次；成组 0次 / ×1；顺子 0次 / ×1；同花 0次 / ×1。\n本手只取实际所属族最高因子一次，单族上限×4；高牌×1。每族前三次合格清场因子为1；清场后入账，下手生效。出售不清零，买卖不增加加成。\n需替换\n指定第1槽先售后买\n指定替换 · 先售后买：40→43金；售后实付8金；买后35金。新牌在末槽，从初值开始。\n失去版次：闪箔（热度+25）；新牌版次：普通（无额外计分）\n出售将失去「搭台阶」的效果、版次和当前实例：热度成长 100\n已积攒 +100 热度；从当前保存值继续培养。同名新购牌从新实例初值开始，不继承成长。\n未记录与现持其它牌在上手共同触发；这不代表没有配合机会。\n当前余额 40 金；该牌基础卖价 3 金；现货「一次性招牌」当前实付 8 金。出售和购买分别确认，交易来源、优惠和售后余额以实际保存结果重算。\n路线直接条件 · 明确条件涉及顺子接续／同花集中。\n顺子或同花顺，整手热度+50；结算后热度成长+10，上限+100，下次起生效。每手任意牌型均读取已有成长，跨场保留。\n实际牌型是顺子／同花顺（精确牌型，不自动包含其他型）\n用途不表示已发动或最优；仍按实际条件、封禁和保存事件检查。\n    at eval (eval at evaluate (:311:30), <anonymous>:3:21)\n    at UtilityScript.evaluate (<anonymous>:313:16)\n    at UtilityScript.<anonymous> (<anonymous>:1:44)\n    at /workspace/dachoupai/docs/production/evidence/recommendation-purchase-value-2026-10-15/capture-score-lines.mjs:37:50"
+}

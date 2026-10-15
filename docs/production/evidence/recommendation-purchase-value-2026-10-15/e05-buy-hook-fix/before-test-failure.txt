@@ -1,0 +1,38 @@
+
+ RUN  v4.1.11 /workspace/dachoupai
+
+ ❯ tests/shop-purchase-value.test.ts (20 tests | 1 failed | 19 skipped) 87ms
+   × selling fresh ordinary e05 loses its onBuyOffer business source despite positive e08 samples 84ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/shop-purchase-value.test.ts > selling fresh ordinary e05 loses its onBuyOffer business source despite positive e08 samples
+AssertionError: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ tests/shop-purchase-value.test.ts:47:31
+     45|  const value=shopPurchaseValue(s,o,'group',sold);if(value?.status!=='a…
+     46|  expect(value).toMatchObject({refund:3,paid:8,net:5,goldAfter:35,allPo…
+     47|  expect(value.lostInvestment).toBe(true);expect(value.ceiling).toBe(2);
+       |                               ^
+     48|  expect(shopRecommendation(s,o,'group',sold).stars).toBe(2);
+     49|  expect(send(s,{type:'BuyOffer',offerId:o.offerId}).jokers.find(j=>j.d…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 19 skipped (20)
+   Start at  07:21:36
+   Duration  1.38s (transform 911ms, setup 0ms, import 1.12s, tests 87ms, environment 0ms)
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice

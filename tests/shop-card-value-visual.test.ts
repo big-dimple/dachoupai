@@ -23,9 +23,9 @@ describe('shop card value presentation',()=>{
   expect(shopCombinationMarkLayout(43)).toBeUndefined();
   for(const width of [44,50,61,62,70]){const layout=shopCombinationMarkLayout(width)!;expect(layout.width).toBeLessThanOrEqual(width);expect(layout.textX+36).toBeLessThanOrEqual(layout.width-4);}
  });
- it('takes genuine high ordinary and low rare recommendations without conflating their frames',()=>{
+ it('keeps current purchase recommendations separate from rarity frames',()=>{
   const s=cardValueVisualFixture(),before=JSON.stringify(s),rows=s.shop!.offers.map(o=>shopOfferGuidance(s,o));
-  expect(rows.map(r=>r.stars)).toEqual([4,2,2]);
+  expect(rows.map(r=>r.stars)).toEqual([2,2,2]);
   expect(shopRecommendationVisual(rows[0].stars,88).ink).toBe(shopRecommendationVisual(rows[1].stars,88).ink);
   expect(JOKER_RARITY.common.edge).not.toBe(JOKER_RARITY.rare.edge);
   expect(shopCombinationVisual(rows[2].recommendation)).toEqual({cue:'missing',label:'缺搭档',fullText:'组合潜力：尚缺可用重触来源。'});

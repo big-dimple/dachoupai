@@ -1,0 +1,39 @@
+
+ RUN  v4.1.11 /workspace/dachoupai
+
+ ❯ tests/recommendation-cost-lifetime.test.ts (19 tests | 2 failed) 1210ms
+   × a last known hand cannot read its own newly earned growth; three routes use identical timing 5ms
+   × formation witnesses expose a uniform fresh-hand assumption and permanent resource reduction 0ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/recommendation-cost-lifetime.test.ts > a last known hand cannot read its own newly earned growth; three routes use identical timing
+ReferenceError: r is not defined
+ ❯ tests/recommendation-cost-lifetime.test.ts:74:19
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  tests/recommendation-cost-lifetime.test.ts > formation witnesses expose a uniform fresh-hand assumption and permanent resource reduction
+ReferenceError: r is not defined
+ ❯ tests/recommendation-cost-lifetime.test.ts:77:19
+     75| });
+     76| it('formation witnesses expose a uniform fresh-hand assumption and per…
+     77|  const [copy,dye]=r.tools;expect(copy.formation!.after.K).toBe(6);expe…
+       |                   ^
+     78|  expect(BigInt(dye.formation!.after.favorable)).toBe(BigInt(dye.format…
+     79| });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  1 failed | 3 passed (4)
+      Tests  2 failed | 53 passed (55)
+   Start at  04:54:33
+   Duration  3.21s (transform 2.45s, setup 0ms, import 4.35s, tests 2.39s, environment 1ms)
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice

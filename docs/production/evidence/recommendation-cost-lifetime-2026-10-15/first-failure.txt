@@ -1,0 +1,15 @@
+file:///tmp/dachoupai-calibration-ftyINr/report.mjs:12374
+    if (!condition) throw new Error(`Run invariant: ${label}`);
+                          ^
+
+Error: Run invariant: boss parameter
+    at check (file:///tmp/dachoupai-calibration-ftyINr/report.mjs:12374:27)
+    at assertR2Invariants (file:///tmp/dachoupai-calibration-ftyINr/report.mjs:12466:3)
+    at assertRunInvariants (file:///tmp/dachoupai-calibration-ftyINr/report.mjs:13880:43)
+    at fixture (file:///tmp/dachoupai-calibration-ftyINr/report.mjs:17878:3)
+    at file:///tmp/dachoupai-calibration-ftyINr/report.mjs:17985:22
+    at Array.map (<anonymous>)
+    at makeReport (file:///tmp/dachoupai-calibration-ftyINr/report.mjs:17976:50)
+    at file:///workspace/dachoupai/analysis/recommendation-cost-lifetime/run.mjs:17:16
+
+Node.js v24.19.0
