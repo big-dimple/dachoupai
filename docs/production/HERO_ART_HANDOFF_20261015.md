@@ -77,7 +77,7 @@ portrait/selection/avatar沿当前加载预算，不扩大公共loader。旧图�
 
 有效密度读取 `TextRaster.textDensity(scene)=max(1,1/scene.scale.zoom)`，`platform/Viewport.ts`同时受最高DPR3和帧缓冲总像素约束；不能只用浏览器devicePixelRatio声称实际渲染分辨率。后续截图应同时记CSS视口、devicePixelRatio、canvas backing尺寸、scale.zoom、最终图像缩放及源尺寸。本轮未修改数值字体、渲染密度或高光排版，不给高清文字另签完成。
 
-现行Boot只阻塞轻量纸桌；可操作标题之后 `warmOpeningImages` 预热六人avatar/selection，`warmHeroImage`优先请求选中人物portrait，进入商店/牌桌复用同一key。ImageWarmupQueue同时最多2项，公共ArtTextureLoading总传输最多4、每lane2，重复消费者共享任务，4500ms截止、128KiB/600,000像素上限保持；错误尺寸和引用不自动重试，显式重试仍能恢复。详情沿原2并发/4缓存、6000ms、2MiB/1,600,000像素合同，并额外核英雄精确尺寸。没有为新eyes扩大这些公共预算。
+现行Boot素材预加载仅含轻量纸桌，create阶段仍等待会话初始化及最多800ms字体加载；可操作标题之后 `warmOpeningImages` 预热六人avatar/selection，`warmHeroImage`优先请求选中人物portrait，进入商店/牌桌复用同一key。ImageWarmupQueue同时最多2项，公共ArtTextureLoading总传输最多4、每lane2，重复消费者共享任务，4500ms截止、128KiB/600,000像素上限保持；错误尺寸和引用不自动重试，显式重试仍能恢复。详情沿原2并发/4缓存、6000ms、2MiB/1,600,000像素合同，并额外核英雄精确尺寸。没有为新eyes扩大这些公共预算。
 
 同ID回退顺序：选角主图portrait→selection→avatar/姓名；HUD缺avatar为纸框+姓名首字；高光portrait→selection→avatar，三图全缺走既有文字/静态来源路径，不等待下载或新增计分等待。DOM详情失败保文字、关闭与重试；有合法缩略时保缩略。迟到的A角色只可缓存为A，不能替换已切至B的显示；关闭详情取消订阅、弃用迟到解码结果。未来eyes必须单独按需、仅当前同ID一张、切场abort，失败回退同一批portrait/文字；不得回退到旧老年眼图。上述eyes工程接线及新素材回退仍未实施，当前18图仍是过渡资源。
 

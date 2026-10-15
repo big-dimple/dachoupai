@@ -1,0 +1,2343 @@
+{
+  "head": "fe2cf0bcfe6d78480c7a7091df8060c401671808",
+  "diff": "",
+  "browser": "151.0.7922.173",
+  "scope": "Controlled software Chromium viewports, native-size device-scale PNGs, existing transitional artwork only. Not physical devices, natural gameplay, aesthetics, or new art acceptance.",
+  "cases": [
+    {
+      "key": "1366-dpr1-normal",
+      "spec": {
+        "width": 1366,
+        "height": 768,
+        "dpr": 1
+      },
+      "mode": "normal",
+      "frames": [
+        {
+          "label": "1366-dpr1-normal-selection-amo",
+          "png": "1366-dpr1-normal-selection-amo.png",
+          "actualDPR": 1,
+          "viewport": {
+            "width": 1366,
+            "height": 768
+          },
+          "framebuffer": {
+            "width": 1366,
+            "height": 768
+          },
+          "cssCanvas": {
+            "width": 1366,
+            "height": 768
+          },
+          "scale": {
+            "width": 1366,
+            "height": 768
+          },
+          "images": [
+            {
+              "name": "",
+              "key": "bf272294-09b5-4a64-9e6c-3e063d13ce83",
+              "width": 120,
+              "height": 32,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "",
+              "key": "c1ae4653-a856-4ad1-a742-ae4e3127935d",
+              "width": 74,
+              "height": 17,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "",
+              "key": "5b23074e-da23-49f3-9937-c718a25e645a",
+              "width": 126,
+              "height": 16,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "",
+              "key": "d44-paper-14870757-1.6-2.5",
+              "width": 256,
+              "height": 128,
+              "scaleX": 5.15625,
+              "scaleY": 3.1875
+            },
+            {
+              "name": "opening/portrait",
+              "key": "opening-portrait-amo",
+              "width": 615,
+              "height": 768,
+              "source": "blob:http://127.0.0.1:5587/631c2d88-75ad-4cd5-85b2-4c1b6c458b05",
+              "scaleX": 0.46875,
+              "scaleY": 0.46875
+            },
+            {
+              "name": "opening/portrait-hint",
+              "key": "f19c784e-89c9-4981-8073-10a87ac3a578",
+              "width": 111,
+              "height": 16,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "opening/name",
+              "key": "e64461d0-6be3-42ed-8e41-c9a654359be3",
+              "width": 132,
+              "height": 71,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "opening/title",
+              "key": "0a3abdc7-f6ac-4d2b-b395-15d04b931c6d",
+              "width": 42,
+              "height": 16,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "opening/taunt",
+              "key": "32b4acf2-3452-4064-8a28-a1a12290088d",
+              "width": 288,
+              "height": 27,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "opening/skill-tag",
+              "key": "ffa88c3b-f19d-414a-a712-b165156d54ef",
+              "width": 65,
+              "height": 19,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "opening/skill-hook",
+              "key": "7746f3e4-00df-40e8-9b26-d0d25bc133fa",
+              "width": 140,
+              "height": 16,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "opening/entry",
+              "key": "77de9984-8513-40b8-9447-3a68eb40f620",
+              "width": 194,
+              "height": 19,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "opening/when",
+              "key": "72ffbf9e-0703-44e0-8d4e-97e5302edd74",
+              "width": 251,
+              "height": 16,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "opening/selection-cost",
+              "key": "3b32bfb7-36e2-47e1-8aa0-2cf744952934",
+              "width": 223,
+              "height": 16,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "",
+              "key": "2fb24b3b-2a57-4653-b3a7-8489b0747153",
+              "width": 85,
+              "height": 17,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "",
+              "key": "d44-paper-14870757-7.3-6.1",
+              "width": 256,
+              "height": 128,
+              "scaleX": 0.8203125,
+              "scaleY": 0.984375
+            },
+            {
+              "name": "",
+              "key": "selection-portrait-amo",
+              "width": 256,
+              "height": 320,
+              "source": "blob:http://127.0.0.1:5587/57561dc1-d20b-470d-96e6-cf62d452aea9",
+              "scaleX": 0.3609375,
+              "scaleY": 0.3609375
+            },
+            {
+              "name": "opening/seat-name",
+              "key": "e9d9ac2d-e9b6-4d97-a0d3-bf0c229d569e",
+              "width": 40,
+              "height": 22,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "opening/seat-tag",
+              "key": "b9a04704-4dbd-4905-a0db-939299693a2c",
+              "width": 56,
+              "height": 16,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "opening/selected-mark",
+              "key": "8d80e800-e749-4395-926a-bb1bef297623",
+              "width": 12,
+              "height": 16,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "",
+              "key": "d44-paper-16775662-7.3-6.1",
+              "width": 256,
+              "height": 128,
+              "scaleX": 0.8203125,
+              "scaleY": 0.984375
+            },
+            {
+              "name": "",
+              "key": "selection-portrait-touye",
+              "width": 256,
+              "height": 320,
+              "source": "blob:http://127.0.0.1:5587/47fedd19-3cf9-4fa7-818b-f8925743e2a9",
+              "scaleX": 0.3609375,
+              "scaleY": 0.3609375
+            },
+            {
+              "name": "opening/seat-name",
+              "key": "be2aea59-bceb-49de-929c-49a69170dfdf",
+              "width": 40,
+              "height": 22,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "opening/seat-tag",
+              "key": "b2c745fc-681c-4018-a53f-1348f433aef1",
+              "width": 56,
+              "height": 16,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "",
+              "key": "d44-paper-16775662-7.3-6.1",
+              "width": 256,
+              "height": 128,
+              "scaleX": 0.8203125,
+              "scaleY": 0.984375
+            },
+            {
+              "name": "",
+              "key": "selection-portrait-laohuan",
+              "width": 256,
+              "height": 320,
+              "source": "blob:http://127.0.0.1:5587/4a6c7a9c-60d8-40a1-833c-16b0fe109dab",
+              "scaleX": 0.3609375,
+              "scaleY": 0.3609375
+            },
+            {
+              "name": "opening/seat-name",
+              "key": "9d9fa3e8-8ae7-45c4-bc03-d5338dd635c3",
+              "width": 40,
+              "height": 22,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "opening/seat-tag",
+              "key": "b10fda2a-fb27-420e-8d7d-0d0703baaa14",
+              "width": 56,
+              "height": 16,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "",
+              "key": "d44-paper-16775662-7.3-6.1",
+              "width": 256,
+              "height": 128,
+              "scaleX": 0.8203125,
+              "scaleY": 0.984375
+            },
+            {
+              "name": "",
+              "key": "selection-portrait-erxiang",
+              "width": 256,
+              "height": 320,
+              "source": "blob:http://127.0.0.1:5587/7f617b78-3fee-4065-8577-69ef182613e1",
+              "scaleX": 0.3609375,
+              "scaleY": 0.3609375
+            },
+            {
+              "name": "opening/seat-name",
+              "key": "ccc64520-e021-4ca4-8873-dc4a6a6e300d",
+              "width": 40,
+              "height": 22,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "opening/seat-tag",
+              "key": "af242479-21fc-4b60-a120-ed4e7e2c6340",
+              "width": 56,
+              "height": 16,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "",
+              "key": "d44-paper-16775662-7.3-6.1",
+              "width": 256,
+              "height": 128,
+              "scaleX": 0.8203125,
+              "scaleY": 0.984375
+            },
+            {
+              "name": "",
+              "key": "selection-portrait-azao",
+              "width": 256,
+              "height": 320,
+              "source": "blob:http://127.0.0.1:5587/e4089048-eee9-4369-a581-ddaa42a6f92a",
+              "scaleX": 0.3609375,
+              "scaleY": 0.3609375
+            },
+            {
+              "name": "opening/seat-name",
+              "key": "da466094-65a3-462a-aa29-2342d87b7f6b",
+              "width": 40,
+              "height": 22,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "opening/seat-tag",
+              "key": "6846e9e0-13e7-4744-81b5-e60959274d3b",
+              "width": 56,
+              "height": 16,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "",
+              "key": "d44-paper-16775662-7.3-6.1",
+              "width": 256,
+              "height": 128,
+              "scaleX": 0.8203125,
+              "scaleY": 0.984375
+            },
+            {
+              "name": "",
+              "key": "selection-portrait-xiemu",
+              "width": 256,
+              "height": 320,
+              "source": "blob:http://127.0.0.1:5587/3a821add-872d-40b1-a66b-daf23e460973",
+              "scaleX": 0.3609375,
+              "scaleY": 0.3609375
+            },
+            {
+              "name": "opening/seat-name",
+              "key": "172062c4-cf08-4a4c-a223-e954a1602fed",
+              "width": 60,
+              "height": 22,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "opening/seat-tag",
+              "key": "36bcf091-edb8-4cd2-9a5b-2ab8ea2d6aa9",
+              "width": 56,
+              "height": 16,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "",
+              "key": "28c01c14-3d6a-4055-bf8f-7fcdf5ed7f80",
+              "width": 31,
+              "height": 17,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "",
+              "key": "cbd3956c-6bf6-4d0d-9145-db15f9d9f55f",
+              "width": 46,
+              "height": 17,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "",
+              "key": "f7e427f1-e052-4436-8c5f-cdf8ae936136",
+              "width": 95,
+              "height": 25,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "opening/status",
+              "key": "e6f9c7e3-c3b5-4c46-8614-0eab76253c96",
+              "width": 125,
+              "height": 16,
+              "scaleX": 1,
+              "scaleY": 1
+            }
+          ],
+          "texts": [
+            {
+              "name": "",
+              "text": "英雄登场"
+            },
+            {
+              "name": "",
+              "text": "模式 · 普通"
+            },
+            {
+              "name": "",
+              "text": "先选英雄，再选路线"
+            },
+            {
+              "name": "opening/portrait-hint",
+              "text": "点立绘 · 技能说明"
+            },
+            {
+              "name": "opening/name",
+              "text": "阿默"
+            },
+            {
+              "name": "opening/title",
+              "text": "默剧王"
+            },
+            {
+              "name": "opening/taunt",
+              "text": "少说一句，照样抢你的场。"
+            },
+            {
+              "name": "opening/skill-tag",
+              "text": "剩牌助攻"
+            },
+            {
+              "name": "opening/skill-hook",
+              "text": "主手之外，再搭一组。"
+            },
+            {
+              "name": "opening/entry",
+              "text": "选主手 → 点英雄 → 选助攻"
+            },
+            {
+              "name": "opening/when",
+              "text": "可用 · 两对及以上，剩牌有对子或三条。"
+            },
+            {
+              "name": "opening/selection-cost",
+              "text": "代价 · 助攻牌一起用掉；每场一次。"
+            },
+            {
+              "name": "",
+              "text": "看技能例子 ›"
+            },
+            {
+              "name": "opening/seat-name",
+              "text": "阿默"
+            },
+            {
+              "name": "opening/seat-tag",
+              "text": "剩牌助攻"
+            },
+            {
+              "name": "opening/selected-mark",
+              "text": "✓"
+            },
+            {
+              "name": "opening/seat-name",
+              "text": "骰爷"
+            },
+            {
+              "name": "opening/seat-tag",
+              "text": "押型换牌"
+            },
+            {
+              "name": "opening/seat-name",
+              "text": "老幻"
+            },
+            {
+              "name": "opening/seat-tag",
+              "text": "多看自选"
+            },
+            {
+              "name": "opening/seat-name",
+              "text": "二响"
+            },
+            {
+              "name": "opening/seat-tag",
+              "text": "点数交棒"
+            },
+            {
+              "name": "opening/seat-name",
+              "text": "阿燥"
+            },
+            {
+              "name": "opening/seat-tag",
+              "text": "换型蓄势"
+            },
+            {
+              "name": "opening/seat-name",
+              "text": "谢幕人"
+            },
+            {
+              "name": "opening/seat-tag",
+              "text": "留钱燃金"
+            },
+            {
+              "name": "",
+              "text": "取消"
+            },
+            {
+              "name": "",
+              "text": "比一比"
+            },
+            {
+              "name": "",
+              "text": "选路线 →"
+            },
+            {
+              "name": "opening/status",
+              "text": "阿默 · 下一步选路线"
+            }
+          ],
+          "domImages": [],
+          "textures": [
+            {
+              "key": "selection-portrait-amo",
+              "width": 256,
+              "height": 320
+            },
+            {
+              "key": "avatar-amo",
+              "width": 256,
+              "height": 256
+            },
+            {
+              "key": "selection-portrait-touye",
+              "width": 256,
+              "height": 320
+            },
+            {
+              "key": "avatar-touye",
+              "width": 256,
+              "height": 256
+            },
+            {
+              "key": "selection-portrait-laohuan",
+              "width": 256,
+              "height": 320
+            },
+            {
+              "key": "avatar-laohuan",
+              "width": 256,
+              "height": 256
+            },
+            {
+              "key": "selection-portrait-erxiang",
+              "width": 256,
+              "height": 320
+            },
+            {
+              "key": "avatar-erxiang",
+              "width": 256,
+              "height": 256
+            },
+            {
+              "key": "selection-portrait-azao",
+              "width": 256,
+              "height": 320
+            },
+            {
+              "key": "avatar-azao",
+              "width": 256,
+              "height": 256
+            },
+            {
+              "key": "selection-portrait-xiemu",
+              "width": 256,
+              "height": 320
+            },
+            {
+              "key": "avatar-xiemu",
+              "width": 256,
+              "height": 256
+            },
+            {
+              "key": "opening-portrait-amo",
+              "width": 615,
+              "height": 768
+            }
+          ]
+        },
+        {
+          "label": "1366-dpr1-normal-selection-touye",
+          "png": "1366-dpr1-normal-selection-touye.png",
+          "actualDPR": 1,
+          "viewport": {
+            "width": 1366,
+            "height": 768
+          },
+          "framebuffer": {
+            "width": 1366,
+            "height": 768
+          },
+          "cssCanvas": {
+            "width": 1366,
+            "height": 768
+          },
+          "scale": {
+            "width": 1366,
+            "height": 768
+          },
+          "images": [
+            {
+              "name": "",
+              "key": "26e3e21c-50f0-42b5-8fe8-a59ecada4682",
+              "width": 120,
+              "height": 32,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "",
+              "key": "88fb7fdc-7c20-4f78-8cda-fad27982db4f",
+              "width": 74,
+              "height": 17,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "",
+              "key": "08f6f17d-8e19-46a6-9db0-8e68ff54b4df",
+              "width": 126,
+              "height": 16,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "",
+              "key": "d44-paper-14870757-1.6-2.5",
+              "width": 256,
+              "height": 128,
+              "scaleX": 5.15625,
+              "scaleY": 3.1875
+            },
+            {
+              "name": "opening/portrait",
+              "key": "opening-portrait-touye",
+              "width": 615,
+              "height": 768,
+              "source": "blob:http://127.0.0.1:5587/061f5de0-ea39-4a3a-bd68-8481718ade80",
+              "scaleX": 0.46875,
+              "scaleY": 0.46875
+            },
+            {
+              "name": "opening/portrait-hint",
+              "key": "65c09907-f640-4d41-8685-d7ce6cf405b8",
+              "width": 111,
+              "height": 16,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "opening/name",
+              "key": "2dc5a14e-691e-4a2c-a4c0-5549da548465",
+              "width": 132,
+              "height": 71,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "opening/title",
+              "key": "a5d5550f-8322-49da-927b-c31a56971de7",
+              "width": 42,
+              "height": 16,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "opening/taunt",
+              "key": "a826f3be-6053-4f6b-86b3-e6be8f0f50e0",
+              "width": 288,
+              "height": 27,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "opening/skill-tag",
+              "key": "78d09f31-c3cf-4172-b950-df8306c8d406",
+              "width": 65,
+              "height": 19,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "opening/skill-hook",
+              "key": "e88f8a52-3b92-45c4-b270-7255a434a9aa",
+              "width": 168,
+              "height": 16,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "opening/entry",
+              "key": "334704d3-2a4f-48c7-bc2b-6ad081fba5bd",
+              "width": 201,
+              "height": 19,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "opening/when",
+              "key": "8a0b8b89-cbed-4d8d-9981-cea838850771",
+              "width": 232,
+              "height": 16,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "opening/selection-cost",
+              "key": "3dc60240-c827-46e2-9eaf-a7a974ed79ec",
+              "width": 372,
+              "height": 16,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "",
+              "key": "fbac4b86-6729-4a79-adf4-901f2dc5e005",
+              "width": 85,
+              "height": 17,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "",
+              "key": "d44-paper-16775662-7.3-6.1",
+              "width": 256,
+              "height": 128,
+              "scaleX": 0.8203125,
+              "scaleY": 0.984375
+            },
+            {
+              "name": "",
+              "key": "selection-portrait-amo",
+              "width": 256,
+              "height": 320,
+              "source": "blob:http://127.0.0.1:5587/57561dc1-d20b-470d-96e6-cf62d452aea9",
+              "scaleX": 0.3609375,
+              "scaleY": 0.3609375
+            },
+            {
+              "name": "opening/seat-name",
+              "key": "be649c0a-49b4-4169-8050-b94cf3f60900",
+              "width": 40,
+              "height": 22,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "opening/seat-tag",
+              "key": "ed210108-e1ff-4862-bfa4-e6af05855031",
+              "width": 56,
+              "height": 16,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "",
+              "key": "d44-paper-14870757-7.3-6.1",
+              "width": 256,
+              "height": 128,
+              "scaleX": 0.8203125,
+              "scaleY": 0.984375
+            },
+            {
+              "name": "",
+              "key": "selection-portrait-touye",
+              "width": 256,
+              "height": 320,
+              "source": "blob:http://127.0.0.1:5587/47fedd19-3cf9-4fa7-818b-f8925743e2a9",
+              "scaleX": 0.3609375,
+              "scaleY": 0.3609375
+            },
+            {
+              "name": "opening/seat-name",
+              "key": "b6117b75-b69e-48a0-ae24-5ce40535a558",
+              "width": 40,
+              "height": 22,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "opening/seat-tag",
+              "key": "d6d11963-a2ff-4fde-bac7-1241fe2027c6",
+              "width": 56,
+              "height": 16,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "opening/selected-mark",
+              "key": "dd3cf3d5-60a9-4735-8d7e-0e2f6ccff715",
+              "width": 12,
+              "height": 16,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "",
+              "key": "d44-paper-16775662-7.3-6.1",
+              "width": 256,
+              "height": 128,
+              "scaleX": 0.8203125,
+              "scaleY": 0.984375
+            },
+            {
+              "name": "",
+              "key": "selection-portrait-laohuan",
+              "width": 256,
+              "height": 320,
+              "source": "blob:http://127.0.0.1:5587/4a6c7a9c-60d8-40a1-833c-16b0fe109dab",
+              "scaleX": 0.3609375,
+              "scaleY": 0.3609375
+            },
+            {
+              "name": "opening/seat-name",
+              "key": "f91da3d6-187c-4db5-89c4-aca43072c3f1",
+              "width": 40,
+              "height": 22,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "opening/seat-tag",
+              "key": "f2e1711b-d7b8-420f-8997-ea4f9fd7554d",
+              "width": 56,
+              "height": 16,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "",
+              "key": "d44-paper-16775662-7.3-6.1",
+              "width": 256,
+              "height": 128,
+              "scaleX": 0.8203125,
+              "scaleY": 0.984375
+            },
+            {
+              "name": "",
+              "key": "selection-portrait-erxiang",
+              "width": 256,
+              "height": 320,
+              "source": "blob:http://127.0.0.1:5587/7f617b78-3fee-4065-8577-69ef182613e1",
+              "scaleX": 0.3609375,
+              "scaleY": 0.3609375
+            },
+            {
+              "name": "opening/seat-name",
+              "key": "cae3cf79-47a8-4d11-b09d-4ca1ef6ac818",
+              "width": 40,
+              "height": 22,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "opening/seat-tag",
+              "key": "610ba79b-2d34-46d6-98dd-8d96658d976d",
+              "width": 56,
+              "height": 16,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "",
+              "key": "d44-paper-16775662-7.3-6.1",
+              "width": 256,
+              "height": 128,
+              "scaleX": 0.8203125,
+              "scaleY": 0.984375
+            },
+            {
+              "name": "",
+              "key": "selection-portrait-azao",
+              "width": 256,
+              "height": 320,
+              "source": "blob:http://127.0.0.1:5587/e4089048-eee9-4369-a581-ddaa42a6f92a",
+              "scaleX": 0.3609375,
+              "scaleY": 0.3609375
+            },
+            {
+              "name": "opening/seat-name",
+              "key": "4fdd3d90-2ded-4049-97da-4133752b59b0",
+              "width": 40,
+              "height": 22,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "opening/seat-tag",
+              "key": "47a60257-ce26-4b6e-b694-cf06c07ee626",
+              "width": 56,
+              "height": 16,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "",
+              "key": "d44-paper-16775662-7.3-6.1",
+              "width": 256,
+              "height": 128,
+              "scaleX": 0.8203125,
+              "scaleY": 0.984375
+            },
+            {
+              "name": "",
+              "key": "selection-portrait-xiemu",
+              "width": 256,
+              "height": 320,
+              "source": "blob:http://127.0.0.1:5587/3a821add-872d-40b1-a66b-daf23e460973",
+              "scaleX": 0.3609375,
+              "scaleY": 0.3609375
+            },
+            {
+              "name": "opening/seat-name",
+              "key": "3df46c50-e833-4f0d-97d3-7dbb3db4b9bd",
+              "width": 60,
+              "height": 22,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "opening/seat-tag",
+              "key": "e267a1b2-6126-48e1-bd1c-3c9be15f8b12",
+              "width": 56,
+              "height": 16,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "",
+              "key": "9cd312c9-ab2e-43b8-94d6-19bfb98ea557",
+              "width": 31,
+              "height": 17,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "",
+              "key": "429d097f-c6cb-49b6-ad08-eff0a9ff0fc9",
+              "width": 46,
+              "height": 17,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "",
+              "key": "b86eae43-ead0-491a-9d88-1f0e085e12a5",
+              "width": 95,
+              "height": 25,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "opening/status",
+              "key": "71bbc31f-2812-4245-9252-9e99728ce045",
+              "width": 125,
+              "height": 16,
+              "scaleX": 1,
+              "scaleY": 1
+            }
+          ],
+          "texts": [
+            {
+              "name": "",
+              "text": "英雄登场"
+            },
+            {
+              "name": "",
+              "text": "模式 · 普通"
+            },
+            {
+              "name": "",
+              "text": "先选英雄，再选路线"
+            },
+            {
+              "name": "opening/portrait-hint",
+              "text": "点立绘 · 技能说明"
+            },
+            {
+              "name": "opening/name",
+              "text": "骰爷"
+            },
+            {
+              "name": "opening/title",
+              "text": "赌命客"
+            },
+            {
+              "name": "opening/taunt",
+              "text": "你算你的，我敢再押一手。"
+            },
+            {
+              "name": "opening/skill-tag",
+              "text": "押型换牌"
+            },
+            {
+              "name": "opening/skill-hook",
+              "text": "赌刚摸的牌，撑起下一手。"
+            },
+            {
+              "name": "opening/entry",
+              "text": "选弃牌 → 点英雄押型并换牌"
+            },
+            {
+              "name": "opening/when",
+              "text": "可用 · 选1–5张弃牌；已成型也能押。"
+            },
+            {
+              "name": "opening/selection-cost",
+              "text": "代价 · 成×2／否则×0.85；每场一次，押后不能再弃或改牌。"
+            },
+            {
+              "name": "",
+              "text": "看技能例子 ›"
+            },
+            {
+              "name": "opening/seat-name",
+              "text": "阿默"
+            },
+            {
+              "name": "opening/seat-tag",
+              "text": "剩牌助攻"
+            },
+            {
+              "name": "opening/seat-name",
+              "text": "骰爷"
+            },
+            {
+              "name": "opening/seat-tag",
+              "text": "押型换牌"
+            },
+            {
+              "name": "opening/selected-mark",
+              "text": "✓"
+            },
+            {
+              "name": "opening/seat-name",
+              "text": "老幻"
+            },
+            {
+              "name": "opening/seat-tag",
+              "text": "多看自选"
+            },
+            {
+              "name": "opening/seat-name",
+              "text": "二响"
+            },
+            {
+              "name": "opening/seat-tag",
+              "text": "点数交棒"
+            },
+            {
+              "name": "opening/seat-name",
+              "text": "阿燥"
+            },
+            {
+              "name": "opening/seat-tag",
+              "text": "换型蓄势"
+            },
+            {
+              "name": "opening/seat-name",
+              "text": "谢幕人"
+            },
+            {
+              "name": "opening/seat-tag",
+              "text": "留钱燃金"
+            },
+            {
+              "name": "",
+              "text": "取消"
+            },
+            {
+              "name": "",
+              "text": "比一比"
+            },
+            {
+              "name": "",
+              "text": "选路线 →"
+            },
+            {
+              "name": "opening/status",
+              "text": "骰爷 · 下一步选路线"
+            }
+          ],
+          "domImages": [],
+          "textures": [
+            {
+              "key": "selection-portrait-amo",
+              "width": 256,
+              "height": 320
+            },
+            {
+              "key": "avatar-amo",
+              "width": 256,
+              "height": 256
+            },
+            {
+              "key": "selection-portrait-touye",
+              "width": 256,
+              "height": 320
+            },
+            {
+              "key": "avatar-touye",
+              "width": 256,
+              "height": 256
+            },
+            {
+              "key": "selection-portrait-laohuan",
+              "width": 256,
+              "height": 320
+            },
+            {
+              "key": "avatar-laohuan",
+              "width": 256,
+              "height": 256
+            },
+            {
+              "key": "selection-portrait-erxiang",
+              "width": 256,
+              "height": 320
+            },
+            {
+              "key": "avatar-erxiang",
+              "width": 256,
+              "height": 256
+            },
+            {
+              "key": "selection-portrait-azao",
+              "width": 256,
+              "height": 320
+            },
+            {
+              "key": "avatar-azao",
+              "width": 256,
+              "height": 256
+            },
+            {
+              "key": "selection-portrait-xiemu",
+              "width": 256,
+              "height": 320
+            },
+            {
+              "key": "avatar-xiemu",
+              "width": 256,
+              "height": 256
+            },
+            {
+              "key": "opening-portrait-amo",
+              "width": 615,
+              "height": 768
+            },
+            {
+              "key": "opening-portrait-touye",
+              "width": 615,
+              "height": 768
+            }
+          ]
+        },
+        {
+          "label": "1366-dpr1-normal-selection-laohuan",
+          "png": "1366-dpr1-normal-selection-laohuan.png",
+          "actualDPR": 1,
+          "viewport": {
+            "width": 1366,
+            "height": 768
+          },
+          "framebuffer": {
+            "width": 1366,
+            "height": 768
+          },
+          "cssCanvas": {
+            "width": 1366,
+            "height": 768
+          },
+          "scale": {
+            "width": 1366,
+            "height": 768
+          },
+          "images": [
+            {
+              "name": "",
+              "key": "28fc3f19-f714-4c0b-8c9c-9a05574d6e2d",
+              "width": 120,
+              "height": 32,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "",
+              "key": "60799d52-1db6-412b-8f9a-a21daafb0257",
+              "width": 74,
+              "height": 17,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "",
+              "key": "2d6ff138-59ee-44d6-9f31-83a2b83799fa",
+              "width": 126,
+              "height": 16,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "",
+              "key": "d44-paper-14870757-1.6-2.5",
+              "width": 256,
+              "height": 128,
+              "scaleX": 5.15625,
+              "scaleY": 3.1875
+            },
+            {
+              "name": "opening/portrait",
+              "key": "opening-portrait-laohuan",
+              "width": 615,
+              "height": 768,
+              "source": "blob:http://127.0.0.1:5587/c8eb2e04-738b-4066-bcb4-81830328bbb1",
+              "scaleX": 0.46875,
+              "scaleY": 0.46875
+            },
+            {
+              "name": "opening/portrait-hint",
+              "key": "20b0261b-a044-4970-b9c6-0f535acc3ebb",
+              "width": 111,
+              "height": 16,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "opening/name",
+              "key": "d91df81f-73f7-4f67-a23d-47d46ab38712",
+              "width": 132,
+              "height": 71,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "opening/title",
+              "key": "7a9751d2-b888-4208-9194-fe0fc8e810b9",
+              "width": 28,
+              "height": 16,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "opening/taunt",
+              "key": "891b12bf-b960-42a7-b2a8-ea163dab2e8e",
+              "width": 312,
+              "height": 27,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "opening/skill-tag",
+              "key": "d8d27dc5-53b1-4512-9c06-f227f451d788",
+              "width": 65,
+              "height": 19,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "opening/skill-hook",
+              "key": "c724c7d3-a7f5-418f-b3f0-462397a0f7c5",
+              "width": 154,
+              "height": 16,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "opening/entry",
+              "key": "b768bc16-1c29-4bdc-978e-44b0a235ff8e",
+              "width": 210,
+              "height": 19,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "opening/when",
+              "key": "7bf0c576-0495-4d14-a67c-fa7e71f309ed",
+              "width": 246,
+              "height": 16,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "opening/selection-cost",
+              "key": "ad6e8df4-78b6-42fa-b57d-69845bd945ad",
+              "width": 237,
+              "height": 16,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "",
+              "key": "041ec3bf-58ad-42f1-b762-c399d0e0d8d2",
+              "width": 85,
+              "height": 17,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "",
+              "key": "d44-paper-16775662-7.3-6.1",
+              "width": 256,
+              "height": 128,
+              "scaleX": 0.8203125,
+              "scaleY": 0.984375
+            },
+            {
+              "name": "",
+              "key": "selection-portrait-amo",
+              "width": 256,
+              "height": 320,
+              "source": "blob:http://127.0.0.1:5587/57561dc1-d20b-470d-96e6-cf62d452aea9",
+              "scaleX": 0.3609375,
+              "scaleY": 0.3609375
+            },
+            {
+              "name": "opening/seat-name",
+              "key": "27847225-bbf7-4cb0-893c-c140bcfbfd1a",
+              "width": 40,
+              "height": 22,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "opening/seat-tag",
+              "key": "a213b942-f22a-4f4e-a660-f3781305b33e",
+              "width": 56,
+              "height": 16,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "",
+              "key": "d44-paper-16775662-7.3-6.1",
+              "width": 256,
+              "height": 128,
+              "scaleX": 0.8203125,
+              "scaleY": 0.984375
+            },
+            {
+              "name": "",
+              "key": "selection-portrait-touye",
+              "width": 256,
+              "height": 320,
+              "source": "blob:http://127.0.0.1:5587/47fedd19-3cf9-4fa7-818b-f8925743e2a9",
+              "scaleX": 0.3609375,
+              "scaleY": 0.3609375
+            },
+            {
+              "name": "opening/seat-name",
+              "key": "7738141d-7c45-4d16-a7ba-53be29089b8e",
+              "width": 40,
+              "height": 22,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "opening/seat-tag",
+              "key": "b2f005a6-21e2-4723-be47-11f028b877b2",
+              "width": 56,
+              "height": 16,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "",
+              "key": "d44-paper-14870757-7.3-6.1",
+              "width": 256,
+              "height": 128,
+              "scaleX": 0.8203125,
+              "scaleY": 0.984375
+            },
+            {
+              "name": "",
+              "key": "selection-portrait-laohuan",
+              "width": 256,
+              "height": 320,
+              "source": "blob:http://127.0.0.1:5587/4a6c7a9c-60d8-40a1-833c-16b0fe109dab",
+              "scaleX": 0.3609375,
+              "scaleY": 0.3609375
+            },
+            {
+              "name": "opening/seat-name",
+              "key": "dd2a96fd-4440-4c24-a0d6-38555c07174a",
+              "width": 40,
+              "height": 22,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "opening/seat-tag",
+              "key": "883b4e18-da01-4b1c-a3bc-79d88ff8f519",
+              "width": 56,
+              "height": 16,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "opening/selected-mark",
+              "key": "13436925-10af-4a51-8b33-9d33a01133f8",
+              "width": 12,
+              "height": 16,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "",
+              "key": "d44-paper-16775662-7.3-6.1",
+              "width": 256,
+              "height": 128,
+              "scaleX": 0.8203125,
+              "scaleY": 0.984375
+            },
+            {
+              "name": "",
+              "key": "selection-portrait-erxiang",
+              "width": 256,
+              "height": 320,
+              "source": "blob:http://127.0.0.1:5587/7f617b78-3fee-4065-8577-69ef182613e1",
+              "scaleX": 0.3609375,
+              "scaleY": 0.3609375
+            },
+            {
+              "name": "opening/seat-name",
+              "key": "f2fcf5bc-e78d-4702-b40a-ac1cdf236222",
+              "width": 40,
+              "height": 22,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "opening/seat-tag",
+              "key": "f33cffbd-e854-4652-868d-9dbe30ff7d8e",
+              "width": 56,
+              "height": 16,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "",
+              "key": "d44-paper-16775662-7.3-6.1",
+              "width": 256,
+              "height": 128,
+              "scaleX": 0.8203125,
+              "scaleY": 0.984375
+            },
+            {
+              "name": "",
+              "key": "selection-portrait-azao",
+              "width": 256,
+              "height": 320,
+              "source": "blob:http://127.0.0.1:5587/e4089048-eee9-4369-a581-ddaa42a6f92a",
+              "scaleX": 0.3609375,
+              "scaleY": 0.3609375
+            },
+            {
+              "name": "opening/seat-name",
+              "key": "c93b992d-05eb-42a2-9315-836865e74d86",
+              "width": 40,
+              "height": 22,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "opening/seat-tag",
+              "key": "ed4595ee-b428-416a-89d5-f45fbdeeda5b",
+              "width": 56,
+              "height": 16,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "",
+              "key": "d44-paper-16775662-7.3-6.1",
+              "width": 256,
+              "height": 128,
+              "scaleX": 0.8203125,
+              "scaleY": 0.984375
+            },
+            {
+              "name": "",
+              "key": "selection-portrait-xiemu",
+              "width": 256,
+              "height": 320,
+              "source": "blob:http://127.0.0.1:5587/3a821add-872d-40b1-a66b-daf23e460973",
+              "scaleX": 0.3609375,
+              "scaleY": 0.3609375
+            },
+            {
+              "name": "opening/seat-name",
+              "key": "0363a5d0-744e-4bb6-a5f1-af9fa080d185",
+              "width": 60,
+              "height": 22,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "opening/seat-tag",
+              "key": "676125b6-d012-4881-82ff-5c4223c5162b",
+              "width": 56,
+              "height": 16,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "",
+              "key": "788e4080-e156-4ec4-89ed-f316e0a9f1fc",
+              "width": 31,
+              "height": 17,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "",
+              "key": "0144864a-7e5f-45a2-bf5f-5c5c3ee94d86",
+              "width": 46,
+              "height": 17,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "",
+              "key": "b4a0de62-dccb-4861-9fc2-3e3d94c3b2fd",
+              "width": 95,
+              "height": 25,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "opening/status",
+              "key": "956e04a2-b12d-4f47-b3ed-7f73c1cd83d4",
+              "width": 125,
+              "height": 16,
+              "scaleX": 1,
+              "scaleY": 1
+            }
+          ],
+          "texts": [
+            {
+              "name": "",
+              "text": "英雄登场"
+            },
+            {
+              "name": "",
+              "text": "模式 · 普通"
+            },
+            {
+              "name": "",
+              "text": "先选英雄，再选路线"
+            },
+            {
+              "name": "opening/portrait-hint",
+              "text": "点立绘 · 技能说明"
+            },
+            {
+              "name": "opening/name",
+              "text": "老幻"
+            },
+            {
+              "name": "opening/title",
+              "text": "空袖"
+            },
+            {
+              "name": "opening/taunt",
+              "text": "袖子空的？你的掌声可不空。"
+            },
+            {
+              "name": "opening/skill-tag",
+              "text": "多看自选"
+            },
+            {
+              "name": "opening/skill-hook",
+              "text": "最多多看两张，自己挑。"
+            },
+            {
+              "name": "opening/entry",
+              "text": "选弃牌 → 点英雄 → 戏法换牌"
+            },
+            {
+              "name": "opening/when",
+              "text": "可用 · 选1–5张弃牌，付得起弃牌成本。"
+            },
+            {
+              "name": "opening/selection-cost",
+              "text": "代价 · 没留的本场不再抽；每场一次。"
+            },
+            {
+              "name": "",
+              "text": "看技能例子 ›"
+            },
+            {
+              "name": "opening/seat-name",
+              "text": "阿默"
+            },
+            {
+              "name": "opening/seat-tag",
+              "text": "剩牌助攻"
+            },
+            {
+              "name": "opening/seat-name",
+              "text": "骰爷"
+            },
+            {
+              "name": "opening/seat-tag",
+              "text": "押型换牌"
+            },
+            {
+              "name": "opening/seat-name",
+              "text": "老幻"
+            },
+            {
+              "name": "opening/seat-tag",
+              "text": "多看自选"
+            },
+            {
+              "name": "opening/selected-mark",
+              "text": "✓"
+            },
+            {
+              "name": "opening/seat-name",
+              "text": "二响"
+            },
+            {
+              "name": "opening/seat-tag",
+              "text": "点数交棒"
+            },
+            {
+              "name": "opening/seat-name",
+              "text": "阿燥"
+            },
+            {
+              "name": "opening/seat-tag",
+              "text": "换型蓄势"
+            },
+            {
+              "name": "opening/seat-name",
+              "text": "谢幕人"
+            },
+            {
+              "name": "opening/seat-tag",
+              "text": "留钱燃金"
+            },
+            {
+              "name": "",
+              "text": "取消"
+            },
+            {
+              "name": "",
+              "text": "比一比"
+            },
+            {
+              "name": "",
+              "text": "选路线 →"
+            },
+            {
+              "name": "opening/status",
+              "text": "老幻 · 下一步选路线"
+            }
+          ],
+          "domImages": [],
+          "textures": [
+            {
+              "key": "selection-portrait-amo",
+              "width": 256,
+              "height": 320
+            },
+            {
+              "key": "avatar-amo",
+              "width": 256,
+              "height": 256
+            },
+            {
+              "key": "selection-portrait-touye",
+              "width": 256,
+              "height": 320
+            },
+            {
+              "key": "avatar-touye",
+              "width": 256,
+              "height": 256
+            },
+            {
+              "key": "selection-portrait-laohuan",
+              "width": 256,
+              "height": 320
+            },
+            {
+              "key": "avatar-laohuan",
+              "width": 256,
+              "height": 256
+            },
+            {
+              "key": "selection-portrait-erxiang",
+              "width": 256,
+              "height": 320
+            },
+            {
+              "key": "avatar-erxiang",
+              "width": 256,
+              "height": 256
+            },
+            {
+              "key": "selection-portrait-azao",
+              "width": 256,
+              "height": 320
+            },
+            {
+              "key": "avatar-azao",
+              "width": 256,
+              "height": 256
+            },
+            {
+              "key": "selection-portrait-xiemu",
+              "width": 256,
+              "height": 320
+            },
+            {
+              "key": "avatar-xiemu",
+              "width": 256,
+              "height": 256
+            },
+            {
+              "key": "opening-portrait-amo",
+              "width": 615,
+              "height": 768
+            },
+            {
+              "key": "opening-portrait-touye",
+              "width": 615,
+              "height": 768
+            },
+            {
+              "key": "opening-portrait-laohuan",
+              "width": 615,
+              "height": 768
+            }
+          ]
+        },
+        {
+          "label": "1366-dpr1-normal-selection-erxiang",
+          "png": "1366-dpr1-normal-selection-erxiang.png",
+          "actualDPR": 1,
+          "viewport": {
+            "width": 1366,
+            "height": 768
+          },
+          "framebuffer": {
+            "width": 1366,
+            "height": 768
+          },
+          "cssCanvas": {
+            "width": 1366,
+            "height": 768
+          },
+          "scale": {
+            "width": 1366,
+            "height": 768
+          },
+          "images": [
+            {
+              "name": "",
+              "key": "c20f1cb5-e88b-4080-a8ff-0a9b3ba53cca",
+              "width": 120,
+              "height": 32,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "",
+              "key": "6d9ac628-fd4d-4863-bef2-a9abd942e5ce",
+              "width": 74,
+              "height": 17,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "",
+              "key": "00387276-6251-4811-a8ce-452fc8508857",
+              "width": 126,
+              "height": 16,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "",
+              "key": "d44-paper-14870757-1.6-2.5",
+              "width": 256,
+              "height": 128,
+              "scaleX": 5.15625,
+              "scaleY": 3.1875
+            },
+            {
+              "name": "opening/portrait",
+              "key": "opening-portrait-erxiang",
+              "width": 615,
+              "height": 768,
+              "source": "blob:http://127.0.0.1:5587/1a636231-c1e7-4af7-bb34-1e0e69db9e94",
+              "scaleX": 0.46875,
+              "scaleY": 0.46875
+            },
+            {
+              "name": "opening/portrait-hint",
+              "key": "09624348-99a6-4a61-8289-9c5eef0f2bc7",
+              "width": 111,
+              "height": 16,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "opening/name",
+              "key": "28bb0488-fc75-41b7-bdb6-f57158457640",
+              "width": 132,
+              "height": 71,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "opening/title",
+              "key": "e15c094f-309a-4883-98cf-e7a0cfcd9e64",
+              "width": 42,
+              "height": 16,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "opening/taunt",
+              "key": "eb50bd17-e175-4ad7-954b-4d1b006f20d3",
+              "width": 312,
+              "height": 27,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "opening/skill-tag",
+              "key": "cc8ebf42-5e67-412c-bf6e-01a974e515f0",
+              "width": 65,
+              "height": 19,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "opening/skill-hook",
+              "key": "192f2ed6-6156-4a20-b60b-d916eb9c5a4e",
+              "width": 182,
+              "height": 16,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "opening/entry",
+              "key": "7ee2486b-e5b3-4220-bcc2-05ae3d71b02b",
+              "width": 210,
+              "height": 19,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "opening/when",
+              "key": "84567ce5-6ff8-4b4c-98b9-0be53b008e13",
+              "width": 251,
+              "height": 16,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "opening/selection-cost",
+              "key": "0c60d669-0a23-4b2d-82f7-3152e408f729",
+              "width": 265,
+              "height": 16,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "",
+              "key": "68518a6a-4189-4fe8-8b32-605a7a95e7e5",
+              "width": 85,
+              "height": 17,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "",
+              "key": "d44-paper-16775662-7.3-6.1",
+              "width": 256,
+              "height": 128,
+              "scaleX": 0.8203125,
+              "scaleY": 0.984375
+            },
+            {
+              "name": "",
+              "key": "selection-portrait-amo",
+              "width": 256,
+              "height": 320,
+              "source": "blob:http://127.0.0.1:5587/57561dc1-d20b-470d-96e6-cf62d452aea9",
+              "scaleX": 0.3609375,
+              "scaleY": 0.3609375
+            },
+            {
+              "name": "opening/seat-name",
+              "key": "070c32ed-6c65-4b87-a688-92ed4d4bcfc4",
+              "width": 40,
+              "height": 22,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "opening/seat-tag",
+              "key": "5353f5cb-38f8-4352-9024-c3dc5b3ea71c",
+              "width": 56,
+              "height": 16,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "",
+              "key": "d44-paper-16775662-7.3-6.1",
+              "width": 256,
+              "height": 128,
+              "scaleX": 0.8203125,
+              "scaleY": 0.984375
+            },
+            {
+              "name": "",
+              "key": "selection-portrait-touye",
+              "width": 256,
+              "height": 320,
+              "source": "blob:http://127.0.0.1:5587/47fedd19-3cf9-4fa7-818b-f8925743e2a9",
+              "scaleX": 0.3609375,
+              "scaleY": 0.3609375
+            },
+            {
+              "name": "opening/seat-name",
+              "key": "3e1b65d1-bf17-4b01-8276-d667b04fa167",
+              "width": 40,
+              "height": 22,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "opening/seat-tag",
+              "key": "f0d04754-4333-4a21-95e8-b59255dddc48",
+              "width": 56,
+              "height": 16,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "",
+              "key": "d44-paper-16775662-7.3-6.1",
+              "width": 256,
+              "height": 128,
+              "scaleX": 0.8203125,
+              "scaleY": 0.984375
+            },
+            {
+              "name": "",
+              "key": "selection-portrait-laohuan",
+              "width": 256,
+              "height": 320,
+              "source": "blob:http://127.0.0.1:5587/4a6c7a9c-60d8-40a1-833c-16b0fe109dab",
+              "scaleX": 0.3609375,
+              "scaleY": 0.3609375
+            },
+            {
+              "name": "opening/seat-name",
+              "key": "d5fa2962-439b-4244-9c3c-3b12625d01a9",
+              "width": 40,
+              "height": 22,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "opening/seat-tag",
+              "key": "24f6e998-0dd3-4ea3-9f17-c13c474c8a36",
+              "width": 56,
+              "height": 16,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "",
+              "key": "d44-paper-14870757-7.3-6.1",
+              "width": 256,
+              "height": 128,
+              "scaleX": 0.8203125,
+              "scaleY": 0.984375
+            },
+            {
+              "name": "",
+              "key": "selection-portrait-erxiang",
+              "width": 256,
+              "height": 320,
+              "source": "blob:http://127.0.0.1:5587/7f617b78-3fee-4065-8577-69ef182613e1",
+              "scaleX": 0.3609375,
+              "scaleY": 0.3609375
+            },
+            {
+              "name": "opening/seat-name",
+              "key": "7d2629aa-8096-4dcd-8904-9ed7925031f1",
+              "width": 40,
+              "height": 22,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "opening/seat-tag",
+              "key": "1419482b-8a59-424c-ba32-3c6e5f9e5f30",
+              "width": 56,
+              "height": 16,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "opening/selected-mark",
+              "key": "49682911-0a29-4f7a-872a-ab298288ee77",
+              "width": 12,
+              "height": 16,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "",
+              "key": "d44-paper-16775662-7.3-6.1",
+              "width": 256,
+              "height": 128,
+              "scaleX": 0.8203125,
+              "scaleY": 0.984375
+            },
+            {
+              "name": "",
+              "key": "selection-portrait-azao",
+              "width": 256,
+              "height": 320,
+              "source": "blob:http://127.0.0.1:5587/e4089048-eee9-4369-a581-ddaa42a6f92a",
+              "scaleX": 0.3609375,
+              "scaleY": 0.3609375
+            },
+            {
+              "name": "opening/seat-name",
+              "key": "b65c4d82-532f-44de-8517-30f2074ee91d",
+              "width": 40,
+              "height": 22,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "opening/seat-tag",
+              "key": "85234d5f-298a-470e-8d36-e2ec21743b5b",
+              "width": 56,
+              "height": 16,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "",
+              "key": "d44-paper-16775662-7.3-6.1",
+              "width": 256,
+              "height": 128,
+              "scaleX": 0.8203125,
+              "scaleY": 0.984375
+            },
+            {
+              "name": "",
+              "key": "selection-portrait-xiemu",
+              "width": 256,
+              "height": 320,
+              "source": "blob:http://127.0.0.1:5587/3a821add-872d-40b1-a66b-daf23e460973",
+              "scaleX": 0.3609375,
+              "scaleY": 0.3609375
+            },
+            {
+              "name": "opening/seat-name",
+              "key": "52775a08-d1bd-46a8-8451-f21b290016ba",
+              "width": 60,
+              "height": 22,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "opening/seat-tag",
+              "key": "a0e82687-b2c0-49fd-9382-5afb35b3e863",
+              "width": 56,
+              "height": 16,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "",
+              "key": "92b61919-8ff4-42a1-8dda-9b5c389a5b1e",
+              "width": 31,
+              "height": 17,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "",
+              "key": "2ea1ec80-d568-44ae-b892-233996edaa12",
+              "width": 46,
+              "height": 17,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "",
+              "key": "53a139dc-97f3-4963-857a-db310a79db4d",
+              "width": 95,
+              "height": 25,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "opening/status",
+              "key": "dd85c585-c28a-41d2-8a69-98e8019ae55a",
+              "width": 125,
+              "height": 16,
+              "scaleX": 1,
+              "scaleY": 1
+            }
+          ],
+          "texts": [
+            {
+              "name": "",
+              "text": "英雄登场"
+            },
+            {
+              "name": "",
+              "text": "模式 · 普通"
+            },
+            {
+              "name": "",
+              "text": "先选英雄，再选路线"
+            },
+            {
+              "name": "opening/portrait-hint",
+              "text": "点立绘 · 技能说明"
+            },
+            {
+              "name": "opening/name",
+              "text": "二响"
+            },
+            {
+              "name": "opening/title",
+              "text": "捧哏王"
+            },
+            {
+              "name": "opening/taunt",
+              "text": "你刚开口，场子已经归我了。"
+            },
+            {
+              "name": "opening/skill-tag",
+              "text": "点数交棒"
+            },
+            {
+              "name": "opening/skill-hook",
+              "text": "让一张牌的点数，接住倍率。"
+            },
+            {
+              "name": "opening/entry",
+              "text": "选主手 → 点英雄 → 选牌交棒"
+            },
+            {
+              "name": "opening/when",
+              "text": "可用 · 对子及以上，选一张有效计分牌。"
+            },
+            {
+              "name": "opening/selection-cost",
+              "text": "代价 · 这张普通点数不加热度；每场一次。"
+            },
+            {
+              "name": "",
+              "text": "看技能例子 ›"
+            },
+            {
+              "name": "opening/seat-name",
+              "text": "阿默"
+            },
+            {
+              "name": "opening/seat-tag",
+              "text": "剩牌助攻"
+            },
+            {
+              "name": "opening/seat-name",
+              "text": "骰爷"
+            },
+            {
+              "name": "opening/seat-tag",
+              "text": "押型换牌"
+            },
+            {
+              "name": "opening/seat-name",
+              "text": "老幻"
+            },
+            {
+              "name": "opening/seat-tag",
+              "text": "多看自选"
+            },
+            {
+              "name": "opening/seat-name",
+              "text": "二响"
+            },
+            {
+              "name": "opening/seat-tag",
+              "text": "点数交棒"
+            },
+            {
+              "name": "opening/selected-mark",
+              "text": "✓"
+            },
+            {
+              "name": "opening/seat-name",
+              "text": "阿燥"
+            },
+            {
+              "name": "opening/seat-tag",
+              "text": "换型蓄势"
+            },
+            {
+              "name": "opening/seat-name",
+              "text": "谢幕人"
+            },
+            {
+              "name": "opening/seat-tag",
+              "text": "留钱燃金"
+            },
+            {
+              "name": "",
+              "text": "取消"
+            },
+            {
+              "name": "",
+              "text": "比一比"
+            },
+            {
+              "name": "",
+              "text": "选路线 →"
+            },
+            {
+              "name": "opening/status",
+              "text": "二响 · 下一步选路线"
+            }
+          ],
+          "domImages": [],
+          "textures": [
+            {
+              "key": "selection-portrait-amo",
+              "width": 256,
+              "height": 320
+            },
+            {
+              "key": "avatar-amo",
+              "width": 256,
+              "height": 256
+            },
+            {
+              "key": "selection-portrait-touye",
+              "width": 256,
+              "height": 320
+            },
+            {
+              "key": "avatar-touye",
+              "width": 256,
+              "height": 256
+            },
+            {
+              "key": "selection-portrait-laohuan",
+              "width": 256,
+              "height": 320
+            },
+            {
+              "key": "avatar-laohuan",
+              "width": 256,
+              "height": 256
+            },
+            {
+              "key": "selection-portrait-erxiang",
+              "width": 256,
+              "height": 320
+            },
+            {
+              "key": "avatar-erxiang",
+              "width": 256,
+              "height": 256
+            },
+            {
+              "key": "selection-portrait-azao",
+              "width": 256,
+              "height": 320
+            },
+            {
+              "key": "avatar-azao",
+              "width": 256,
+              "height": 256
+            },
+            {
+              "key": "selection-portrait-xiemu",
+              "width": 256,
+              "height": 320
+            },
+            {
+              "key": "avatar-xiemu",
+              "width": 256,
+              "height": 256
+            },
+            {
+              "key": "opening-portrait-amo",
+              "width": 615,
+              "height": 768
+            },
+            {
+              "key": "opening-portrait-touye",
+              "width": 615,
+              "height": 768
+            },
+            {
+              "key": "opening-portrait-laohuan",
+              "width": 615,
+              "height": 768
+            },
+            {
+              "key": "opening-portrait-erxiang",
+              "width": 615,
+              "height": 768
+            }
+          ]
+        }
+      ],
+      "errors": [],
+      "intercepts": [],
+      "status": "FAIL",
+      "error": "page.evaluate: Execution context was destroyed, most likely because of a navigation\n    at /workspace/dachoupai/harness/hero-art-contract.mjs:24:405"
+    }
+  ],
+  "status": "FAIL",
+  "error": "page.evaluate: Execution context was destroyed, most likely because of a navigation\n    at /workspace/dachoupai/harness/hero-art-contract.mjs:24:405"
+}

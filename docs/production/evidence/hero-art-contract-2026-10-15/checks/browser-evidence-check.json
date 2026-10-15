@@ -1,0 +1,84 @@
+{
+  "status": "PASS",
+  "sourceTree": "7fc85b9bca2019f2ad776b697f9a3f866c5dae8b",
+  "cases": 9,
+  "screenshots": 53,
+  "checked": [
+    {
+      "directory": "docs/production/evidence/hero-art-contract-2026-10-15/canvas-pc-final",
+      "key": "1366-dpr1-normal",
+      "screenshots": 7,
+      "receipt": {
+        "file": "1366-dpr1-normal-state.json.gz",
+        "sha256": "4f1a6a254ee0acd5707b342741f5eae11151509f0f92b1c2f35e98d0ded9954b",
+        "stateJournalStorage": "PASS",
+        "canonicalFinalScore": "2095"
+      }
+    },
+    {
+      "directory": "docs/production/evidence/hero-art-contract-2026-10-15/canvas-pc-final",
+      "key": "1366-dpr1-wrong-size",
+      "screenshots": 6,
+      "receipt": {
+        "file": "1366-dpr1-wrong-size-state.json.gz",
+        "sha256": "4f1a6a254ee0acd5707b342741f5eae11151509f0f92b1c2f35e98d0ded9954b",
+        "stateJournalStorage": "PASS",
+        "canonicalFinalScore": "2095"
+      }
+    },
+    {
+      "directory": "docs/production/evidence/hero-art-contract-2026-10-15/canvas-mobile-final",
+      "key": "390-dpr3-normal",
+      "screenshots": 7,
+      "receipt": {
+        "file": "390-dpr3-normal-state.json.gz",
+        "sha256": "4f1a6a254ee0acd5707b342741f5eae11151509f0f92b1c2f35e98d0ded9954b",
+        "stateJournalStorage": "PASS",
+        "canonicalFinalScore": "2095"
+      }
+    },
+    {
+      "directory": "docs/production/evidence/hero-art-contract-2026-10-15/canvas-mobile-final",
+      "key": "390-dpr3-missing",
+      "screenshots": 6,
+      "receipt": {
+        "file": "390-dpr3-missing-state.json.gz",
+        "sha256": "4f1a6a254ee0acd5707b342741f5eae11151509f0f92b1c2f35e98d0ded9954b",
+        "stateJournalStorage": "PASS",
+        "canonicalFinalScore": "2095"
+      }
+    },
+    {
+      "directory": "docs/production/evidence/hero-art-contract-2026-10-15/canvas-mobile-final",
+      "key": "390-dpr3-wrong-size",
+      "screenshots": 6,
+      "receipt": {
+        "file": "390-dpr3-wrong-size-state.json.gz",
+        "sha256": "4f1a6a254ee0acd5707b342741f5eae11151509f0f92b1c2f35e98d0ded9954b",
+        "stateJournalStorage": "PASS",
+        "canonicalFinalScore": "2095"
+      }
+    },
+    {
+      "directory": "docs/production/evidence/hero-art-contract-2026-10-15/canvas-mobile-final",
+      "key": "390-dpr3-late",
+      "screenshots": 6
+    },
+    {
+      "directory": "docs/production/evidence/hero-art-contract-2026-10-15/canvas-mobile-final",
+      "key": "390-dpr3-avatar-only",
+      "screenshots": 5
+    },
+    {
+      "directory": "docs/production/evidence/hero-art-contract-2026-10-15/canvas-mobile-final",
+      "key": "390-dpr3-name-only",
+      "screenshots": 5
+    },
+    {
+      "directory": "docs/production/evidence/hero-art-contract-2026-10-15/canvas-mobile-final",
+      "key": "320-dpr2-normal",
+      "screenshots": 5
+    }
+  ],
+  "scope": "Original PNG decode/pixels and complete controlled state/journal/storage receipts only; no art or whole-game acceptance."
+}

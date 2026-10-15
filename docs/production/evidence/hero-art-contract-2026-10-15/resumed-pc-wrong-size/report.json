@@ -1,0 +1,5953 @@
+{
+  "head": "7ae1d5d75d0fc39de69bfdacdb14947598286c06",
+  "diff": "docs/production/HERO_ART_HANDOFF_20261015.md | 2 +-\n 1 file changed, 1 insertion(+), 1 deletion(-)",
+  "browser": "151.0.7922.173",
+  "sourceTree": "7fc85b9bca2019f2ad776b697f9a3f866c5dae8b",
+  "capture": "Device-scale PNG. Climax only: observer stops game loop after strike detection and resumes immediately after screenshot; not elapsed animation timing evidence.",
+  "scope": "Controlled software Chromium viewports, native-size device-scale PNGs, existing transitional artwork only. Not physical devices, natural gameplay, aesthetics, or new art acceptance.",
+  "cases": [
+    {
+      "key": "1366-dpr1-wrong-size",
+      "spec": {
+        "width": 1366,
+        "height": 768,
+        "dpr": 1
+      },
+      "mode": "wrong-size",
+      "frames": [
+        {
+          "label": "1366-dpr1-wrong-size-selection-amo",
+          "png": "1366-dpr1-wrong-size-selection-amo.png",
+          "actualDPR": 1,
+          "viewport": {
+            "width": 1366,
+            "height": 768
+          },
+          "framebuffer": {
+            "width": 1366,
+            "height": 768
+          },
+          "cssCanvas": {
+            "width": 1366,
+            "height": 768
+          },
+          "scale": {
+            "width": 1366,
+            "height": 768
+          },
+          "images": [
+            {
+              "name": "",
+              "key": "a64b2f55-4919-4461-b94f-551e7986801d",
+              "width": 120,
+              "height": 32,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "",
+              "key": "7291b81b-2a5f-4b61-81da-f332e29ff0fd",
+              "width": 74,
+              "height": 17,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "",
+              "key": "c8344599-7af3-4446-84f4-45227d237644",
+              "width": 126,
+              "height": 16,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "",
+              "key": "d44-paper-14870757-1.6-2.5",
+              "width": 256,
+              "height": 128,
+              "scaleX": 5.15625,
+              "scaleY": 3.1875
+            },
+            {
+              "name": "opening/portrait",
+              "key": "selection-portrait-amo",
+              "width": 256,
+              "height": 320,
+              "source": "blob:http://127.0.0.1:5589/56e81d5b-e420-4bd5-b11a-8cb7e0ba7751",
+              "scaleX": 1.125,
+              "scaleY": 1.125,
+              "manifestSource": {
+                "id": "amo",
+                "purpose": "selection",
+                "path": "characters/amo.selection.webp",
+                "sha256": "5d32af6c79a4a702f51760432447515bf1cbd05e289b2c157602c207fa1ae9cf"
+              }
+            },
+            {
+              "name": "opening/portrait-hint",
+              "key": "32631f7d-90b3-46e0-80b0-7d038dfd8027",
+              "width": 111,
+              "height": 16,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "opening/name",
+              "key": "18b5f58d-0c9b-4c76-ab84-6f7960a468a4",
+              "width": 132,
+              "height": 71,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "opening/title",
+              "key": "845328fe-6be0-4c86-a7b5-e603c0b54402",
+              "width": 42,
+              "height": 16,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "opening/taunt",
+              "key": "322f4d35-0107-47ef-89bb-ccd89f7d1bd8",
+              "width": 288,
+              "height": 27,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "opening/skill-tag",
+              "key": "e038577d-fe78-4ae3-9a9b-a5c4a81bea9e",
+              "width": 65,
+              "height": 19,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "opening/skill-hook",
+              "key": "de4e2c1f-4d4b-4259-95ca-e9de5c3fffe9",
+              "width": 140,
+              "height": 16,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "opening/entry",
+              "key": "5c41ab08-1197-4c03-aa17-73b8e157f7ed",
+              "width": 194,
+              "height": 19,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "opening/when",
+              "key": "2444d29f-9383-446b-a404-a09e76a0ede6",
+              "width": 251,
+              "height": 16,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "opening/selection-cost",
+              "key": "62752c50-5cb5-426c-af6f-3361b47c8fbb",
+              "width": 223,
+              "height": 16,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "",
+              "key": "fd2c7a2c-4bc2-4543-8125-9b0eedef6afd",
+              "width": 85,
+              "height": 17,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "",
+              "key": "d44-paper-14870757-7.3-6.1",
+              "width": 256,
+              "height": 128,
+              "scaleX": 0.8203125,
+              "scaleY": 0.984375
+            },
+            {
+              "name": "",
+              "key": "selection-portrait-amo",
+              "width": 256,
+              "height": 320,
+              "source": "blob:http://127.0.0.1:5589/56e81d5b-e420-4bd5-b11a-8cb7e0ba7751",
+              "scaleX": 0.3609375,
+              "scaleY": 0.3609375,
+              "manifestSource": {
+                "id": "amo",
+                "purpose": "selection",
+                "path": "characters/amo.selection.webp",
+                "sha256": "5d32af6c79a4a702f51760432447515bf1cbd05e289b2c157602c207fa1ae9cf"
+              }
+            },
+            {
+              "name": "opening/seat-name",
+              "key": "d80eb413-5129-49c6-8bdc-23779c81d472",
+              "width": 40,
+              "height": 22,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "opening/seat-tag",
+              "key": "f4399608-c5d8-4617-8505-1ac99d7d4601",
+              "width": 56,
+              "height": 16,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "opening/selected-mark",
+              "key": "f2f1fe22-2dfb-4726-97f0-501f2798d78f",
+              "width": 12,
+              "height": 16,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "",
+              "key": "d44-paper-16775662-7.3-6.1",
+              "width": 256,
+              "height": 128,
+              "scaleX": 0.8203125,
+              "scaleY": 0.984375
+            },
+            {
+              "name": "",
+              "key": "selection-portrait-touye",
+              "width": 256,
+              "height": 320,
+              "source": "blob:http://127.0.0.1:5589/0e0446f3-315a-49a7-a1da-2ed51e321011",
+              "scaleX": 0.3609375,
+              "scaleY": 0.3609375,
+              "manifestSource": {
+                "id": "touye",
+                "purpose": "selection",
+                "path": "characters/touye.selection.webp",
+                "sha256": "147cc72c96df68aa20ce63692f87729e896afb46feb0be6cb092bba2339edd71"
+              }
+            },
+            {
+              "name": "opening/seat-name",
+              "key": "553ecdbd-cc5f-490e-9ff8-22b7ffee41d5",
+              "width": 40,
+              "height": 22,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "opening/seat-tag",
+              "key": "b76525a9-265a-44e9-80e7-66198340d55d",
+              "width": 56,
+              "height": 16,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "",
+              "key": "d44-paper-16775662-7.3-6.1",
+              "width": 256,
+              "height": 128,
+              "scaleX": 0.8203125,
+              "scaleY": 0.984375
+            },
+            {
+              "name": "",
+              "key": "selection-portrait-laohuan",
+              "width": 256,
+              "height": 320,
+              "source": "blob:http://127.0.0.1:5589/892c2546-4fef-42f1-8641-e725443f603d",
+              "scaleX": 0.3609375,
+              "scaleY": 0.3609375,
+              "manifestSource": {
+                "id": "laohuan",
+                "purpose": "selection",
+                "path": "characters/laohuan.selection.webp",
+                "sha256": "4a5b998fe57e0a9df7e6ac31da39aada99bac10e92f66c144f0af85e10422657"
+              }
+            },
+            {
+              "name": "opening/seat-name",
+              "key": "cec01feb-f1aa-41d9-a5b6-d871b83612a0",
+              "width": 40,
+              "height": 22,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "opening/seat-tag",
+              "key": "d3dd8f46-8263-4ef2-acaa-a349f1fae235",
+              "width": 56,
+              "height": 16,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "",
+              "key": "d44-paper-16775662-7.3-6.1",
+              "width": 256,
+              "height": 128,
+              "scaleX": 0.8203125,
+              "scaleY": 0.984375
+            },
+            {
+              "name": "",
+              "key": "selection-portrait-erxiang",
+              "width": 256,
+              "height": 320,
+              "source": "blob:http://127.0.0.1:5589/5c9baf20-8dd2-4cd3-a478-be2555b777e2",
+              "scaleX": 0.3609375,
+              "scaleY": 0.3609375,
+              "manifestSource": {
+                "id": "erxiang",
+                "purpose": "selection",
+                "path": "characters/erxiang.selection.webp",
+                "sha256": "a5071c29da50d8dac41aff04aee757454d9375da9cb2e84e7f7b45305af0f431"
+              }
+            },
+            {
+              "name": "opening/seat-name",
+              "key": "ca47144f-19d4-4684-8093-063710bcf158",
+              "width": 40,
+              "height": 22,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "opening/seat-tag",
+              "key": "d7676e20-64a6-429f-b622-c361a9026f6c",
+              "width": 56,
+              "height": 16,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "",
+              "key": "d44-paper-16775662-7.3-6.1",
+              "width": 256,
+              "height": 128,
+              "scaleX": 0.8203125,
+              "scaleY": 0.984375
+            },
+            {
+              "name": "",
+              "key": "selection-portrait-azao",
+              "width": 256,
+              "height": 320,
+              "source": "blob:http://127.0.0.1:5589/5dedc2d5-cb9b-470a-a86f-9f45a0f9c147",
+              "scaleX": 0.3609375,
+              "scaleY": 0.3609375,
+              "manifestSource": {
+                "id": "azao",
+                "purpose": "selection",
+                "path": "characters/azao.selection.webp",
+                "sha256": "d4d3966ff707fca6a8f2c4b7af0809547d2696299ae22b3b66032183dbde85c8"
+              }
+            },
+            {
+              "name": "opening/seat-name",
+              "key": "79f0b6fd-6530-4d08-91c8-e393c4966c6c",
+              "width": 40,
+              "height": 22,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "opening/seat-tag",
+              "key": "3454c555-950a-470d-86cd-c93082d58755",
+              "width": 56,
+              "height": 16,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "",
+              "key": "d44-paper-16775662-7.3-6.1",
+              "width": 256,
+              "height": 128,
+              "scaleX": 0.8203125,
+              "scaleY": 0.984375
+            },
+            {
+              "name": "",
+              "key": "selection-portrait-xiemu",
+              "width": 256,
+              "height": 320,
+              "source": "blob:http://127.0.0.1:5589/d45a43da-97c4-4cad-8d22-89777d224f36",
+              "scaleX": 0.3609375,
+              "scaleY": 0.3609375,
+              "manifestSource": {
+                "id": "xiemu",
+                "purpose": "selection",
+                "path": "characters/xiemu.selection.webp",
+                "sha256": "b6d6db151f5bbb75c73feeef8ab5a58af53bb6bfa8e32cb149a5a003843c5efe"
+              }
+            },
+            {
+              "name": "opening/seat-name",
+              "key": "25a3fff5-6934-4360-9612-bf389f4d3a90",
+              "width": 60,
+              "height": 22,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "opening/seat-tag",
+              "key": "83999b4c-e6c6-41ab-b500-3fd08dec493a",
+              "width": 56,
+              "height": 16,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "",
+              "key": "9bb78056-464c-41b6-8967-9bca8d540525",
+              "width": 31,
+              "height": 17,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "",
+              "key": "95fcb647-6da6-42b2-abcc-b5b79684f2ab",
+              "width": 46,
+              "height": 17,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "",
+              "key": "8a66687e-9ff8-4974-a315-9e908ce5cf5e",
+              "width": 95,
+              "height": 25,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "opening/status",
+              "key": "c3bb2315-a179-44c6-8605-fed452ea0f50",
+              "width": 125,
+              "height": 16,
+              "scaleX": 1,
+              "scaleY": 1
+            }
+          ],
+          "texts": [
+            {
+              "name": "",
+              "text": "英雄登场"
+            },
+            {
+              "name": "",
+              "text": "模式 · 普通"
+            },
+            {
+              "name": "",
+              "text": "先选英雄，再选路线"
+            },
+            {
+              "name": "opening/portrait-hint",
+              "text": "点立绘 · 技能说明"
+            },
+            {
+              "name": "opening/name",
+              "text": "阿默"
+            },
+            {
+              "name": "opening/title",
+              "text": "默剧王"
+            },
+            {
+              "name": "opening/taunt",
+              "text": "少说一句，照样抢你的场。"
+            },
+            {
+              "name": "opening/skill-tag",
+              "text": "剩牌助攻"
+            },
+            {
+              "name": "opening/skill-hook",
+              "text": "主手之外，再搭一组。"
+            },
+            {
+              "name": "opening/entry",
+              "text": "选主手 → 点英雄 → 选助攻"
+            },
+            {
+              "name": "opening/when",
+              "text": "可用 · 两对及以上，剩牌有对子或三条。"
+            },
+            {
+              "name": "opening/selection-cost",
+              "text": "代价 · 助攻牌一起用掉；每场一次。"
+            },
+            {
+              "name": "",
+              "text": "看技能例子 ›"
+            },
+            {
+              "name": "opening/seat-name",
+              "text": "阿默"
+            },
+            {
+              "name": "opening/seat-tag",
+              "text": "剩牌助攻"
+            },
+            {
+              "name": "opening/selected-mark",
+              "text": "✓"
+            },
+            {
+              "name": "opening/seat-name",
+              "text": "骰爷"
+            },
+            {
+              "name": "opening/seat-tag",
+              "text": "押型换牌"
+            },
+            {
+              "name": "opening/seat-name",
+              "text": "老幻"
+            },
+            {
+              "name": "opening/seat-tag",
+              "text": "多看自选"
+            },
+            {
+              "name": "opening/seat-name",
+              "text": "二响"
+            },
+            {
+              "name": "opening/seat-tag",
+              "text": "点数交棒"
+            },
+            {
+              "name": "opening/seat-name",
+              "text": "阿燥"
+            },
+            {
+              "name": "opening/seat-tag",
+              "text": "换型蓄势"
+            },
+            {
+              "name": "opening/seat-name",
+              "text": "谢幕人"
+            },
+            {
+              "name": "opening/seat-tag",
+              "text": "留钱燃金"
+            },
+            {
+              "name": "",
+              "text": "取消"
+            },
+            {
+              "name": "",
+              "text": "比一比"
+            },
+            {
+              "name": "",
+              "text": "选路线 →"
+            },
+            {
+              "name": "opening/status",
+              "text": "阿默 · 下一步选路线"
+            }
+          ],
+          "domImages": [],
+          "textures": [
+            {
+              "key": "selection-portrait-amo",
+              "width": 256,
+              "height": 320,
+              "manifestSource": {
+                "id": "amo",
+                "purpose": "selection",
+                "path": "characters/amo.selection.webp",
+                "sha256": "5d32af6c79a4a702f51760432447515bf1cbd05e289b2c157602c207fa1ae9cf"
+              }
+            },
+            {
+              "key": "avatar-amo",
+              "width": 256,
+              "height": 256,
+              "manifestSource": {
+                "id": "amo",
+                "purpose": "avatar",
+                "path": "characters/amo.avatar.webp",
+                "sha256": "a26037e3f0b3c1eb8733a6b1e85fb1c3cf63ddfae55005f0fb643dcae445ae1c"
+              }
+            },
+            {
+              "key": "selection-portrait-touye",
+              "width": 256,
+              "height": 320,
+              "manifestSource": {
+                "id": "touye",
+                "purpose": "selection",
+                "path": "characters/touye.selection.webp",
+                "sha256": "147cc72c96df68aa20ce63692f87729e896afb46feb0be6cb092bba2339edd71"
+              }
+            },
+            {
+              "key": "avatar-touye",
+              "width": 256,
+              "height": 256,
+              "manifestSource": {
+                "id": "touye",
+                "purpose": "avatar",
+                "path": "characters/touye.avatar.webp",
+                "sha256": "4cf98904271b32dfdab221bc5d49b0584b6fe201fa136aca7fedc678bf4f169d"
+              }
+            },
+            {
+              "key": "selection-portrait-laohuan",
+              "width": 256,
+              "height": 320,
+              "manifestSource": {
+                "id": "laohuan",
+                "purpose": "selection",
+                "path": "characters/laohuan.selection.webp",
+                "sha256": "4a5b998fe57e0a9df7e6ac31da39aada99bac10e92f66c144f0af85e10422657"
+              }
+            },
+            {
+              "key": "avatar-laohuan",
+              "width": 256,
+              "height": 256,
+              "manifestSource": {
+                "id": "laohuan",
+                "purpose": "avatar",
+                "path": "characters/laohuan.avatar.webp",
+                "sha256": "ac44afd5e9821758b59a0172c561ba1f5bb547826ea360e1435a1d4c25b9bfa2"
+              }
+            },
+            {
+              "key": "selection-portrait-erxiang",
+              "width": 256,
+              "height": 320,
+              "manifestSource": {
+                "id": "erxiang",
+                "purpose": "selection",
+                "path": "characters/erxiang.selection.webp",
+                "sha256": "a5071c29da50d8dac41aff04aee757454d9375da9cb2e84e7f7b45305af0f431"
+              }
+            },
+            {
+              "key": "avatar-erxiang",
+              "width": 256,
+              "height": 256,
+              "manifestSource": {
+                "id": "erxiang",
+                "purpose": "avatar",
+                "path": "characters/erxiang.avatar.webp",
+                "sha256": "9e6ad8631633b5dd22da9edcaef2fd40df037e1c2930bfc8db8b5e3e522342f9"
+              }
+            },
+            {
+              "key": "selection-portrait-azao",
+              "width": 256,
+              "height": 320,
+              "manifestSource": {
+                "id": "azao",
+                "purpose": "selection",
+                "path": "characters/azao.selection.webp",
+                "sha256": "d4d3966ff707fca6a8f2c4b7af0809547d2696299ae22b3b66032183dbde85c8"
+              }
+            },
+            {
+              "key": "avatar-azao",
+              "width": 256,
+              "height": 256,
+              "manifestSource": {
+                "id": "azao",
+                "purpose": "avatar",
+                "path": "characters/azao.avatar.webp",
+                "sha256": "01bf61873bbf6be5f7101e16e3e8aa04ede6f0086ad18e003266053ac1898a4a"
+              }
+            },
+            {
+              "key": "selection-portrait-xiemu",
+              "width": 256,
+              "height": 320,
+              "manifestSource": {
+                "id": "xiemu",
+                "purpose": "selection",
+                "path": "characters/xiemu.selection.webp",
+                "sha256": "b6d6db151f5bbb75c73feeef8ab5a58af53bb6bfa8e32cb149a5a003843c5efe"
+              }
+            },
+            {
+              "key": "avatar-xiemu",
+              "width": 256,
+              "height": 256,
+              "manifestSource": {
+                "id": "xiemu",
+                "purpose": "avatar",
+                "path": "characters/xiemu.avatar.webp",
+                "sha256": "7f4782df5faec333971a231052c610e4b78c9ac8d011a620e6e14e620aef9cad"
+              }
+            }
+          ]
+        },
+        {
+          "label": "1366-dpr1-wrong-size-details",
+          "png": "1366-dpr1-wrong-size-details.png",
+          "actualDPR": 1,
+          "viewport": {
+            "width": 1366,
+            "height": 768
+          },
+          "framebuffer": {
+            "width": 1366,
+            "height": 768
+          },
+          "cssCanvas": {
+            "width": 1366,
+            "height": 768
+          },
+          "scale": {
+            "width": 1366,
+            "height": 768
+          },
+          "images": [
+            {
+              "name": "",
+              "key": "a64b2f55-4919-4461-b94f-551e7986801d",
+              "width": 120,
+              "height": 32,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "",
+              "key": "7291b81b-2a5f-4b61-81da-f332e29ff0fd",
+              "width": 74,
+              "height": 17,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "",
+              "key": "c8344599-7af3-4446-84f4-45227d237644",
+              "width": 126,
+              "height": 16,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "",
+              "key": "d44-paper-14870757-1.6-2.5",
+              "width": 256,
+              "height": 128,
+              "scaleX": 5.15625,
+              "scaleY": 3.1875
+            },
+            {
+              "name": "opening/portrait",
+              "key": "selection-portrait-amo",
+              "width": 256,
+              "height": 320,
+              "source": "blob:http://127.0.0.1:5589/56e81d5b-e420-4bd5-b11a-8cb7e0ba7751",
+              "scaleX": 1.125,
+              "scaleY": 1.125,
+              "manifestSource": {
+                "id": "amo",
+                "purpose": "selection",
+                "path": "characters/amo.selection.webp",
+                "sha256": "5d32af6c79a4a702f51760432447515bf1cbd05e289b2c157602c207fa1ae9cf"
+              }
+            },
+            {
+              "name": "opening/portrait-hint",
+              "key": "32631f7d-90b3-46e0-80b0-7d038dfd8027",
+              "width": 111,
+              "height": 16,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "opening/name",
+              "key": "18b5f58d-0c9b-4c76-ab84-6f7960a468a4",
+              "width": 132,
+              "height": 71,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "opening/title",
+              "key": "845328fe-6be0-4c86-a7b5-e603c0b54402",
+              "width": 42,
+              "height": 16,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "opening/taunt",
+              "key": "322f4d35-0107-47ef-89bb-ccd89f7d1bd8",
+              "width": 288,
+              "height": 27,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "opening/skill-tag",
+              "key": "e038577d-fe78-4ae3-9a9b-a5c4a81bea9e",
+              "width": 65,
+              "height": 19,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "opening/skill-hook",
+              "key": "de4e2c1f-4d4b-4259-95ca-e9de5c3fffe9",
+              "width": 140,
+              "height": 16,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "opening/entry",
+              "key": "5c41ab08-1197-4c03-aa17-73b8e157f7ed",
+              "width": 194,
+              "height": 19,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "opening/when",
+              "key": "2444d29f-9383-446b-a404-a09e76a0ede6",
+              "width": 251,
+              "height": 16,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "opening/selection-cost",
+              "key": "62752c50-5cb5-426c-af6f-3361b47c8fbb",
+              "width": 223,
+              "height": 16,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "",
+              "key": "fd2c7a2c-4bc2-4543-8125-9b0eedef6afd",
+              "width": 85,
+              "height": 17,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "",
+              "key": "d44-paper-14870757-7.3-6.1",
+              "width": 256,
+              "height": 128,
+              "scaleX": 0.8203125,
+              "scaleY": 0.984375
+            },
+            {
+              "name": "",
+              "key": "selection-portrait-amo",
+              "width": 256,
+              "height": 320,
+              "source": "blob:http://127.0.0.1:5589/56e81d5b-e420-4bd5-b11a-8cb7e0ba7751",
+              "scaleX": 0.3609375,
+              "scaleY": 0.3609375,
+              "manifestSource": {
+                "id": "amo",
+                "purpose": "selection",
+                "path": "characters/amo.selection.webp",
+                "sha256": "5d32af6c79a4a702f51760432447515bf1cbd05e289b2c157602c207fa1ae9cf"
+              }
+            },
+            {
+              "name": "opening/seat-name",
+              "key": "d80eb413-5129-49c6-8bdc-23779c81d472",
+              "width": 40,
+              "height": 22,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "opening/seat-tag",
+              "key": "f4399608-c5d8-4617-8505-1ac99d7d4601",
+              "width": 56,
+              "height": 16,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "opening/selected-mark",
+              "key": "f2f1fe22-2dfb-4726-97f0-501f2798d78f",
+              "width": 12,
+              "height": 16,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "",
+              "key": "d44-paper-16775662-7.3-6.1",
+              "width": 256,
+              "height": 128,
+              "scaleX": 0.8203125,
+              "scaleY": 0.984375
+            },
+            {
+              "name": "",
+              "key": "selection-portrait-touye",
+              "width": 256,
+              "height": 320,
+              "source": "blob:http://127.0.0.1:5589/0e0446f3-315a-49a7-a1da-2ed51e321011",
+              "scaleX": 0.3609375,
+              "scaleY": 0.3609375,
+              "manifestSource": {
+                "id": "touye",
+                "purpose": "selection",
+                "path": "characters/touye.selection.webp",
+                "sha256": "147cc72c96df68aa20ce63692f87729e896afb46feb0be6cb092bba2339edd71"
+              }
+            },
+            {
+              "name": "opening/seat-name",
+              "key": "553ecdbd-cc5f-490e-9ff8-22b7ffee41d5",
+              "width": 40,
+              "height": 22,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "opening/seat-tag",
+              "key": "b76525a9-265a-44e9-80e7-66198340d55d",
+              "width": 56,
+              "height": 16,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "",
+              "key": "d44-paper-16775662-7.3-6.1",
+              "width": 256,
+              "height": 128,
+              "scaleX": 0.8203125,
+              "scaleY": 0.984375
+            },
+            {
+              "name": "",
+              "key": "selection-portrait-laohuan",
+              "width": 256,
+              "height": 320,
+              "source": "blob:http://127.0.0.1:5589/892c2546-4fef-42f1-8641-e725443f603d",
+              "scaleX": 0.3609375,
+              "scaleY": 0.3609375,
+              "manifestSource": {
+                "id": "laohuan",
+                "purpose": "selection",
+                "path": "characters/laohuan.selection.webp",
+                "sha256": "4a5b998fe57e0a9df7e6ac31da39aada99bac10e92f66c144f0af85e10422657"
+              }
+            },
+            {
+              "name": "opening/seat-name",
+              "key": "cec01feb-f1aa-41d9-a5b6-d871b83612a0",
+              "width": 40,
+              "height": 22,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "opening/seat-tag",
+              "key": "d3dd8f46-8263-4ef2-acaa-a349f1fae235",
+              "width": 56,
+              "height": 16,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "",
+              "key": "d44-paper-16775662-7.3-6.1",
+              "width": 256,
+              "height": 128,
+              "scaleX": 0.8203125,
+              "scaleY": 0.984375
+            },
+            {
+              "name": "",
+              "key": "selection-portrait-erxiang",
+              "width": 256,
+              "height": 320,
+              "source": "blob:http://127.0.0.1:5589/5c9baf20-8dd2-4cd3-a478-be2555b777e2",
+              "scaleX": 0.3609375,
+              "scaleY": 0.3609375,
+              "manifestSource": {
+                "id": "erxiang",
+                "purpose": "selection",
+                "path": "characters/erxiang.selection.webp",
+                "sha256": "a5071c29da50d8dac41aff04aee757454d9375da9cb2e84e7f7b45305af0f431"
+              }
+            },
+            {
+              "name": "opening/seat-name",
+              "key": "ca47144f-19d4-4684-8093-063710bcf158",
+              "width": 40,
+              "height": 22,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "opening/seat-tag",
+              "key": "d7676e20-64a6-429f-b622-c361a9026f6c",
+              "width": 56,
+              "height": 16,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "",
+              "key": "d44-paper-16775662-7.3-6.1",
+              "width": 256,
+              "height": 128,
+              "scaleX": 0.8203125,
+              "scaleY": 0.984375
+            },
+            {
+              "name": "",
+              "key": "selection-portrait-azao",
+              "width": 256,
+              "height": 320,
+              "source": "blob:http://127.0.0.1:5589/5dedc2d5-cb9b-470a-a86f-9f45a0f9c147",
+              "scaleX": 0.3609375,
+              "scaleY": 0.3609375,
+              "manifestSource": {
+                "id": "azao",
+                "purpose": "selection",
+                "path": "characters/azao.selection.webp",
+                "sha256": "d4d3966ff707fca6a8f2c4b7af0809547d2696299ae22b3b66032183dbde85c8"
+              }
+            },
+            {
+              "name": "opening/seat-name",
+              "key": "79f0b6fd-6530-4d08-91c8-e393c4966c6c",
+              "width": 40,
+              "height": 22,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "opening/seat-tag",
+              "key": "3454c555-950a-470d-86cd-c93082d58755",
+              "width": 56,
+              "height": 16,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "",
+              "key": "d44-paper-16775662-7.3-6.1",
+              "width": 256,
+              "height": 128,
+              "scaleX": 0.8203125,
+              "scaleY": 0.984375
+            },
+            {
+              "name": "",
+              "key": "selection-portrait-xiemu",
+              "width": 256,
+              "height": 320,
+              "source": "blob:http://127.0.0.1:5589/d45a43da-97c4-4cad-8d22-89777d224f36",
+              "scaleX": 0.3609375,
+              "scaleY": 0.3609375,
+              "manifestSource": {
+                "id": "xiemu",
+                "purpose": "selection",
+                "path": "characters/xiemu.selection.webp",
+                "sha256": "b6d6db151f5bbb75c73feeef8ab5a58af53bb6bfa8e32cb149a5a003843c5efe"
+              }
+            },
+            {
+              "name": "opening/seat-name",
+              "key": "25a3fff5-6934-4360-9612-bf389f4d3a90",
+              "width": 60,
+              "height": 22,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "opening/seat-tag",
+              "key": "83999b4c-e6c6-41ab-b500-3fd08dec493a",
+              "width": 56,
+              "height": 16,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "",
+              "key": "9bb78056-464c-41b6-8967-9bca8d540525",
+              "width": 31,
+              "height": 17,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "",
+              "key": "95fcb647-6da6-42b2-abcc-b5b79684f2ab",
+              "width": 46,
+              "height": 17,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "",
+              "key": "8a66687e-9ff8-4974-a315-9e908ce5cf5e",
+              "width": 95,
+              "height": 25,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "opening/status",
+              "key": "c3bb2315-a179-44c6-8605-fed452ea0f50",
+              "width": 125,
+              "height": 16,
+              "scaleX": 1,
+              "scaleY": 1
+            }
+          ],
+          "texts": [
+            {
+              "name": "",
+              "text": "英雄登场"
+            },
+            {
+              "name": "",
+              "text": "模式 · 普通"
+            },
+            {
+              "name": "",
+              "text": "先选英雄，再选路线"
+            },
+            {
+              "name": "opening/portrait-hint",
+              "text": "点立绘 · 技能说明"
+            },
+            {
+              "name": "opening/name",
+              "text": "阿默"
+            },
+            {
+              "name": "opening/title",
+              "text": "默剧王"
+            },
+            {
+              "name": "opening/taunt",
+              "text": "少说一句，照样抢你的场。"
+            },
+            {
+              "name": "opening/skill-tag",
+              "text": "剩牌助攻"
+            },
+            {
+              "name": "opening/skill-hook",
+              "text": "主手之外，再搭一组。"
+            },
+            {
+              "name": "opening/entry",
+              "text": "选主手 → 点英雄 → 选助攻"
+            },
+            {
+              "name": "opening/when",
+              "text": "可用 · 两对及以上，剩牌有对子或三条。"
+            },
+            {
+              "name": "opening/selection-cost",
+              "text": "代价 · 助攻牌一起用掉；每场一次。"
+            },
+            {
+              "name": "",
+              "text": "看技能例子 ›"
+            },
+            {
+              "name": "opening/seat-name",
+              "text": "阿默"
+            },
+            {
+              "name": "opening/seat-tag",
+              "text": "剩牌助攻"
+            },
+            {
+              "name": "opening/selected-mark",
+              "text": "✓"
+            },
+            {
+              "name": "opening/seat-name",
+              "text": "骰爷"
+            },
+            {
+              "name": "opening/seat-tag",
+              "text": "押型换牌"
+            },
+            {
+              "name": "opening/seat-name",
+              "text": "老幻"
+            },
+            {
+              "name": "opening/seat-tag",
+              "text": "多看自选"
+            },
+            {
+              "name": "opening/seat-name",
+              "text": "二响"
+            },
+            {
+              "name": "opening/seat-tag",
+              "text": "点数交棒"
+            },
+            {
+              "name": "opening/seat-name",
+              "text": "阿燥"
+            },
+            {
+              "name": "opening/seat-tag",
+              "text": "换型蓄势"
+            },
+            {
+              "name": "opening/seat-name",
+              "text": "谢幕人"
+            },
+            {
+              "name": "opening/seat-tag",
+              "text": "留钱燃金"
+            },
+            {
+              "name": "",
+              "text": "取消"
+            },
+            {
+              "name": "",
+              "text": "比一比"
+            },
+            {
+              "name": "",
+              "text": "选路线 →"
+            },
+            {
+              "name": "opening/status",
+              "text": "阿默 · 下一步选路线"
+            }
+          ],
+          "domImages": [
+            {
+              "src": "http://127.0.0.1:5589/assets/handdrawn-p08/characters/amo.selection.webp",
+              "width": 256,
+              "height": 320,
+              "alt": "阿默完整立绘",
+              "hidden": false,
+              "display": "block",
+              "visibility": "visible"
+            }
+          ],
+          "textures": [
+            {
+              "key": "selection-portrait-amo",
+              "width": 256,
+              "height": 320,
+              "manifestSource": {
+                "id": "amo",
+                "purpose": "selection",
+                "path": "characters/amo.selection.webp",
+                "sha256": "5d32af6c79a4a702f51760432447515bf1cbd05e289b2c157602c207fa1ae9cf"
+              }
+            },
+            {
+              "key": "avatar-amo",
+              "width": 256,
+              "height": 256,
+              "manifestSource": {
+                "id": "amo",
+                "purpose": "avatar",
+                "path": "characters/amo.avatar.webp",
+                "sha256": "a26037e3f0b3c1eb8733a6b1e85fb1c3cf63ddfae55005f0fb643dcae445ae1c"
+              }
+            },
+            {
+              "key": "selection-portrait-touye",
+              "width": 256,
+              "height": 320,
+              "manifestSource": {
+                "id": "touye",
+                "purpose": "selection",
+                "path": "characters/touye.selection.webp",
+                "sha256": "147cc72c96df68aa20ce63692f87729e896afb46feb0be6cb092bba2339edd71"
+              }
+            },
+            {
+              "key": "avatar-touye",
+              "width": 256,
+              "height": 256,
+              "manifestSource": {
+                "id": "touye",
+                "purpose": "avatar",
+                "path": "characters/touye.avatar.webp",
+                "sha256": "4cf98904271b32dfdab221bc5d49b0584b6fe201fa136aca7fedc678bf4f169d"
+              }
+            },
+            {
+              "key": "selection-portrait-laohuan",
+              "width": 256,
+              "height": 320,
+              "manifestSource": {
+                "id": "laohuan",
+                "purpose": "selection",
+                "path": "characters/laohuan.selection.webp",
+                "sha256": "4a5b998fe57e0a9df7e6ac31da39aada99bac10e92f66c144f0af85e10422657"
+              }
+            },
+            {
+              "key": "avatar-laohuan",
+              "width": 256,
+              "height": 256,
+              "manifestSource": {
+                "id": "laohuan",
+                "purpose": "avatar",
+                "path": "characters/laohuan.avatar.webp",
+                "sha256": "ac44afd5e9821758b59a0172c561ba1f5bb547826ea360e1435a1d4c25b9bfa2"
+              }
+            },
+            {
+              "key": "selection-portrait-erxiang",
+              "width": 256,
+              "height": 320,
+              "manifestSource": {
+                "id": "erxiang",
+                "purpose": "selection",
+                "path": "characters/erxiang.selection.webp",
+                "sha256": "a5071c29da50d8dac41aff04aee757454d9375da9cb2e84e7f7b45305af0f431"
+              }
+            },
+            {
+              "key": "avatar-erxiang",
+              "width": 256,
+              "height": 256,
+              "manifestSource": {
+                "id": "erxiang",
+                "purpose": "avatar",
+                "path": "characters/erxiang.avatar.webp",
+                "sha256": "9e6ad8631633b5dd22da9edcaef2fd40df037e1c2930bfc8db8b5e3e522342f9"
+              }
+            },
+            {
+              "key": "selection-portrait-azao",
+              "width": 256,
+              "height": 320,
+              "manifestSource": {
+                "id": "azao",
+                "purpose": "selection",
+                "path": "characters/azao.selection.webp",
+                "sha256": "d4d3966ff707fca6a8f2c4b7af0809547d2696299ae22b3b66032183dbde85c8"
+              }
+            },
+            {
+              "key": "avatar-azao",
+              "width": 256,
+              "height": 256,
+              "manifestSource": {
+                "id": "azao",
+                "purpose": "avatar",
+                "path": "characters/azao.avatar.webp",
+                "sha256": "01bf61873bbf6be5f7101e16e3e8aa04ede6f0086ad18e003266053ac1898a4a"
+              }
+            },
+            {
+              "key": "selection-portrait-xiemu",
+              "width": 256,
+              "height": 320,
+              "manifestSource": {
+                "id": "xiemu",
+                "purpose": "selection",
+                "path": "characters/xiemu.selection.webp",
+                "sha256": "b6d6db151f5bbb75c73feeef8ab5a58af53bb6bfa8e32cb149a5a003843c5efe"
+              }
+            },
+            {
+              "key": "avatar-xiemu",
+              "width": 256,
+              "height": 256,
+              "manifestSource": {
+                "id": "xiemu",
+                "purpose": "avatar",
+                "path": "characters/xiemu.avatar.webp",
+                "sha256": "7f4782df5faec333971a231052c610e4b78c9ac8d011a620e6e14e620aef9cad"
+              }
+            }
+          ]
+        },
+        {
+          "label": "1366-dpr1-wrong-size-shop",
+          "png": "1366-dpr1-wrong-size-shop.png",
+          "actualDPR": 1,
+          "viewport": {
+            "width": 1366,
+            "height": 768
+          },
+          "framebuffer": {
+            "width": 1366,
+            "height": 768
+          },
+          "cssCanvas": {
+            "width": 1366,
+            "height": 768
+          },
+          "scale": {
+            "width": 1366,
+            "height": 768
+          },
+          "images": [
+            {
+              "name": "shop-art/program-paper",
+              "key": "b9ac1ab2-2b93-40d3-b378-219d02e6b32c",
+              "width": 216,
+              "height": 744,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "shop-art/owned-paper",
+              "key": "60a2ebc1-e308-4163-9b76-70be66010ac6",
+              "width": 1062,
+              "height": 196,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "shop-art/stock-paper",
+              "key": "7871df9f-5e11-4185-b0cd-2c1d09d4f99e",
+              "width": 1062,
+              "height": 536,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "shop-art/actions-paper",
+              "key": "1d6b799d-75e8-43d9-9f99-a8a45d598bf6",
+              "width": 132,
+              "height": 524,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "shop/title",
+              "key": "f6c8868f-dcb8-4841-849a-cbe2eb32d185",
+              "width": 118,
+              "height": 27,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "",
+              "key": "7aafcf8c-5731-4fd4-a3fb-3c0a28bfe13c",
+              "width": 97,
+              "height": 19,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "",
+              "key": "ee61ba7f-12d7-46d0-bc93-9c8c68adbc4d",
+              "width": 72,
+              "height": 21,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "shop/gold",
+              "key": "c227b556-5d1d-41d3-b31b-9b2d9db9981a",
+              "width": 80,
+              "height": 31,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "",
+              "key": "ddee2952-87f9-42da-bf48-f21e7ce674fc",
+              "width": 104,
+              "height": 17,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "shop/owned-heading",
+              "key": "2163aa00-955d-4671-bd60-26d12e42f4fd",
+              "width": 201,
+              "height": 19,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "",
+              "key": "6909837b-d51f-496a-95d3-8863b75a0f39",
+              "width": 104,
+              "height": 17,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "",
+              "key": "d44-paper-14870757-16.0-5.7",
+              "width": 256,
+              "height": 128,
+              "scaleX": 0.3125,
+              "scaleY": 0.875
+            },
+            {
+              "name": "",
+              "key": "p00-card-back",
+              "width": 240,
+              "height": 336,
+              "source": "blob:http://127.0.0.1:5589/b8703978-6e1d-4b37-a993-7828eae324b1",
+              "scaleX": 0.30833333333333335,
+              "scaleY": 0.31547619047619047
+            },
+            {
+              "name": "",
+              "key": "6a8d2907-186d-4f8d-992e-9959595dcb38",
+              "width": 40,
+              "height": 16,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "",
+              "key": "d44-paper-14870757-16.0-5.7",
+              "width": 256,
+              "height": 128,
+              "scaleX": 0.3125,
+              "scaleY": 0.875
+            },
+            {
+              "name": "",
+              "key": "p00-card-back",
+              "width": 240,
+              "height": 336,
+              "source": "blob:http://127.0.0.1:5589/b8703978-6e1d-4b37-a993-7828eae324b1",
+              "scaleX": 0.30833333333333335,
+              "scaleY": 0.31547619047619047
+            },
+            {
+              "name": "",
+              "key": "7da49858-8a42-49ed-8c8c-b8d1cdc3e744",
+              "width": 40,
+              "height": 16,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "",
+              "key": "d44-paper-14870757-16.0-5.7",
+              "width": 256,
+              "height": 128,
+              "scaleX": 0.3125,
+              "scaleY": 0.875
+            },
+            {
+              "name": "",
+              "key": "p00-card-back",
+              "width": 240,
+              "height": 336,
+              "source": "blob:http://127.0.0.1:5589/b8703978-6e1d-4b37-a993-7828eae324b1",
+              "scaleX": 0.30833333333333335,
+              "scaleY": 0.31547619047619047
+            },
+            {
+              "name": "",
+              "key": "a009c1d0-5aae-479d-82f8-dfc3a135c0c1",
+              "width": 40,
+              "height": 16,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "",
+              "key": "d44-paper-14870757-16.0-5.7",
+              "width": 256,
+              "height": 128,
+              "scaleX": 0.3125,
+              "scaleY": 0.875
+            },
+            {
+              "name": "",
+              "key": "p00-card-back",
+              "width": 240,
+              "height": 336,
+              "source": "blob:http://127.0.0.1:5589/b8703978-6e1d-4b37-a993-7828eae324b1",
+              "scaleX": 0.30833333333333335,
+              "scaleY": 0.31547619047619047
+            },
+            {
+              "name": "",
+              "key": "617dfc12-43b2-40d4-ab04-d10497f54e46",
+              "width": 40,
+              "height": 16,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "",
+              "key": "d44-paper-14870757-16.0-5.7",
+              "width": 256,
+              "height": 128,
+              "scaleX": 0.3125,
+              "scaleY": 0.875
+            },
+            {
+              "name": "",
+              "key": "p00-card-back",
+              "width": 240,
+              "height": 336,
+              "source": "blob:http://127.0.0.1:5589/b8703978-6e1d-4b37-a993-7828eae324b1",
+              "scaleX": 0.30833333333333335,
+              "scaleY": 0.31547619047619047
+            },
+            {
+              "name": "",
+              "key": "d90c91af-bd3b-4c3f-be8a-ad042aa36cd2",
+              "width": 40,
+              "height": 16,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "",
+              "key": "aa62330e-b775-4bb8-b905-33dbad921672",
+              "width": 126,
+              "height": 25,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "",
+              "key": "beb1571c-9d36-4eeb-a26d-5624dd33c758",
+              "width": 80,
+              "height": 16,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "",
+              "key": "456646dd-74b3-40b3-b3d3-671f0339e9f6",
+              "width": 89,
+              "height": 25,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "",
+              "key": "a6db8fc0-2c93-496a-94ae-3ec4e7bd0928",
+              "width": 62,
+              "height": 17,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "",
+              "key": "286fc14a-e013-4e2c-a3f9-da15ab914d51",
+              "width": 98,
+              "height": 16,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "",
+              "key": "1828ea0c-3ce6-4d70-8385-3beaae1af279",
+              "width": 84,
+              "height": 34,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "",
+              "key": "2c4ca5e0-2904-4ed0-a83c-5243d2e6cb46",
+              "width": 109,
+              "height": 16,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "shop/hero-art",
+              "key": "selection-portrait-amo",
+              "width": 256,
+              "height": 320,
+              "source": "blob:http://127.0.0.1:5589/56e81d5b-e420-4bd5-b11a-8cb7e0ba7751",
+              "scaleX": 0.75,
+              "scaleY": 0.75,
+              "manifestSource": {
+                "id": "amo",
+                "purpose": "selection",
+                "path": "characters/amo.selection.webp",
+                "sha256": "5d32af6c79a4a702f51760432447515bf1cbd05e289b2c157602c207fa1ae9cf"
+              }
+            },
+            {
+              "name": "shop/hero-caption",
+              "key": "5c3642ee-be44-4b6d-8cb0-674cbe03208e",
+              "width": 127,
+              "height": 19,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "shop-art/offer-paper",
+              "key": "d83253a3-3ac4-4036-b021-f4b7f61896e4",
+              "width": 282,
+              "height": 300,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "shop-art/offer-stage-paper",
+              "key": "176ae0a8-6cdc-4d1e-8365-22d1da519366",
+              "width": 274,
+              "height": 136,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "shop-art/offer-paper",
+              "key": "e72b906a-0856-459c-ad35-408c46b9fb70",
+              "width": 282,
+              "height": 300,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "shop-art/offer-stage-paper",
+              "key": "96a17190-f621-42ad-b813-3bc61e6d123d",
+              "width": 274,
+              "height": 136,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "shop-art/offer-paper",
+              "key": "c35a3163-7078-4f5b-af58-81b106946227",
+              "width": 282,
+              "height": 300,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "shop-art/offer-stage-paper",
+              "key": "8eeb268c-bae1-4875-a4e5-4452b7fd9094",
+              "width": 274,
+              "height": 136,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "",
+              "key": "46ac2480-f074-4537-9f97-5b68db6fc7fa",
+              "width": 109,
+              "height": 16,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "shop-art/offer-paper",
+              "key": "f608b87a-fb85-40c3-aa1a-5879a9d623d0",
+              "width": 207,
+              "height": 120,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "shop-art/offer-paper",
+              "key": "85530ec7-53dc-4ffa-ad63-afc7e41e9bfc",
+              "width": 207,
+              "height": 120,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "",
+              "key": "44d87530-dd96-47da-b445-5dfda8e03ad5",
+              "width": 109,
+              "height": 16,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "shop-art/offer-paper",
+              "key": "92b9a357-84c8-4b5a-b1a1-62551e025678",
+              "width": 431,
+              "height": 120,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "",
+              "key": "9eec5569-dd62-4c80-8056-938388361856",
+              "width": 396,
+              "height": 16,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "",
+              "key": "d44-paper-14870757-7.7-5.6",
+              "width": 256,
+              "height": 128,
+              "scaleX": 0.78125,
+              "scaleY": 1.0625
+            },
+            {
+              "name": "first-guide/shop-heading",
+              "key": "3d9e26cd-31e6-4cef-afd4-3506bfb240b7",
+              "width": 125,
+              "height": 16,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "first-guide/shop-copy",
+              "key": "ba0aa33e-7983-4065-9d01-fba66c48dff6",
+              "width": 175,
+              "height": 17,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "",
+              "key": "990920cd-bbf3-41d6-b7da-a6407f09728e",
+              "width": 46,
+              "height": 17,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "",
+              "key": "9fde5af6-db02-4be8-aae9-3565002cec7c",
+              "width": 61,
+              "height": 17,
+              "scaleX": 1,
+              "scaleY": 1
+            }
+          ],
+          "texts": [
+            {
+              "name": "shop/title",
+              "text": "阿默 · 筹备"
+            },
+            {
+              "name": "",
+              "text": "第 1 章 · 暖场"
+            },
+            {
+              "name": "",
+              "text": "目标 400"
+            },
+            {
+              "name": "shop/gold",
+              "text": "金币 6"
+            },
+            {
+              "name": "",
+              "text": "本章节目 · 待选"
+            },
+            {
+              "name": "shop/owned-heading",
+              "text": "当前构筑 0/5 · 从左至右触发"
+            },
+            {
+              "name": "",
+              "text": "培养 · 同点成组"
+            },
+            {
+              "name": "",
+              "text": "空槽 1"
+            },
+            {
+              "name": "",
+              "text": "空槽 2"
+            },
+            {
+              "name": "",
+              "text": "空槽 3"
+            },
+            {
+              "name": "",
+              "text": "空槽 4"
+            },
+            {
+              "name": "",
+              "text": "空槽 5"
+            },
+            {
+              "name": "",
+              "text": "道具 · 库存 0"
+            },
+            {
+              "name": "",
+              "text": "长期物品 0/4"
+            },
+            {
+              "name": "",
+              "text": "进入牌桌"
+            },
+            {
+              "name": "",
+              "text": "换牌 2 金"
+            },
+            {
+              "name": "",
+              "text": "刷新丑牌与工具"
+            },
+            {
+              "name": "",
+              "text": "升级 / 做牌\n本店共选1件"
+            },
+            {
+              "name": "",
+              "text": "邀请助演 · 待售 3"
+            },
+            {
+              "name": "shop/hero-caption",
+              "text": "阿默 · 技能说明↗"
+            },
+            {
+              "name": "",
+              "text": "购买道具 · 待售 2"
+            },
+            {
+              "name": "",
+              "text": "长期道具 · 待售 1"
+            },
+            {
+              "name": "",
+              "text": "升级 / 改牌 / 染色共用本店1次 · 只显示已发现且未30级的牌型。"
+            },
+            {
+              "name": "first-guide/shop-heading",
+              "text": "同点成组 · 可选筹备"
+            },
+            {
+              "name": "first-guide/shop-copy",
+              "text": "满堂彩 · 4金，查看后再决定"
+            },
+            {
+              "name": "",
+              "text": "看起手"
+            },
+            {
+              "name": "",
+              "text": "提示选项"
+            }
+          ],
+          "domImages": [],
+          "textures": [
+            {
+              "key": "selection-portrait-amo",
+              "width": 256,
+              "height": 320,
+              "manifestSource": {
+                "id": "amo",
+                "purpose": "selection",
+                "path": "characters/amo.selection.webp",
+                "sha256": "5d32af6c79a4a702f51760432447515bf1cbd05e289b2c157602c207fa1ae9cf"
+              }
+            },
+            {
+              "key": "avatar-amo",
+              "width": 256,
+              "height": 256,
+              "manifestSource": {
+                "id": "amo",
+                "purpose": "avatar",
+                "path": "characters/amo.avatar.webp",
+                "sha256": "a26037e3f0b3c1eb8733a6b1e85fb1c3cf63ddfae55005f0fb643dcae445ae1c"
+              }
+            },
+            {
+              "key": "selection-portrait-touye",
+              "width": 256,
+              "height": 320,
+              "manifestSource": {
+                "id": "touye",
+                "purpose": "selection",
+                "path": "characters/touye.selection.webp",
+                "sha256": "147cc72c96df68aa20ce63692f87729e896afb46feb0be6cb092bba2339edd71"
+              }
+            },
+            {
+              "key": "avatar-touye",
+              "width": 256,
+              "height": 256,
+              "manifestSource": {
+                "id": "touye",
+                "purpose": "avatar",
+                "path": "characters/touye.avatar.webp",
+                "sha256": "4cf98904271b32dfdab221bc5d49b0584b6fe201fa136aca7fedc678bf4f169d"
+              }
+            },
+            {
+              "key": "selection-portrait-laohuan",
+              "width": 256,
+              "height": 320,
+              "manifestSource": {
+                "id": "laohuan",
+                "purpose": "selection",
+                "path": "characters/laohuan.selection.webp",
+                "sha256": "4a5b998fe57e0a9df7e6ac31da39aada99bac10e92f66c144f0af85e10422657"
+              }
+            },
+            {
+              "key": "avatar-laohuan",
+              "width": 256,
+              "height": 256,
+              "manifestSource": {
+                "id": "laohuan",
+                "purpose": "avatar",
+                "path": "characters/laohuan.avatar.webp",
+                "sha256": "ac44afd5e9821758b59a0172c561ba1f5bb547826ea360e1435a1d4c25b9bfa2"
+              }
+            },
+            {
+              "key": "selection-portrait-erxiang",
+              "width": 256,
+              "height": 320,
+              "manifestSource": {
+                "id": "erxiang",
+                "purpose": "selection",
+                "path": "characters/erxiang.selection.webp",
+                "sha256": "a5071c29da50d8dac41aff04aee757454d9375da9cb2e84e7f7b45305af0f431"
+              }
+            },
+            {
+              "key": "avatar-erxiang",
+              "width": 256,
+              "height": 256,
+              "manifestSource": {
+                "id": "erxiang",
+                "purpose": "avatar",
+                "path": "characters/erxiang.avatar.webp",
+                "sha256": "9e6ad8631633b5dd22da9edcaef2fd40df037e1c2930bfc8db8b5e3e522342f9"
+              }
+            },
+            {
+              "key": "selection-portrait-azao",
+              "width": 256,
+              "height": 320,
+              "manifestSource": {
+                "id": "azao",
+                "purpose": "selection",
+                "path": "characters/azao.selection.webp",
+                "sha256": "d4d3966ff707fca6a8f2c4b7af0809547d2696299ae22b3b66032183dbde85c8"
+              }
+            },
+            {
+              "key": "avatar-azao",
+              "width": 256,
+              "height": 256,
+              "manifestSource": {
+                "id": "azao",
+                "purpose": "avatar",
+                "path": "characters/azao.avatar.webp",
+                "sha256": "01bf61873bbf6be5f7101e16e3e8aa04ede6f0086ad18e003266053ac1898a4a"
+              }
+            },
+            {
+              "key": "selection-portrait-xiemu",
+              "width": 256,
+              "height": 320,
+              "manifestSource": {
+                "id": "xiemu",
+                "purpose": "selection",
+                "path": "characters/xiemu.selection.webp",
+                "sha256": "b6d6db151f5bbb75c73feeef8ab5a58af53bb6bfa8e32cb149a5a003843c5efe"
+              }
+            },
+            {
+              "key": "avatar-xiemu",
+              "width": 256,
+              "height": 256,
+              "manifestSource": {
+                "id": "xiemu",
+                "purpose": "avatar",
+                "path": "characters/xiemu.avatar.webp",
+                "sha256": "7f4782df5faec333971a231052c610e4b78c9ac8d011a620e6e14e620aef9cad"
+              }
+            }
+          ]
+        },
+        {
+          "label": "1366-dpr1-wrong-size-table",
+          "png": "1366-dpr1-wrong-size-table.png",
+          "actualDPR": 1,
+          "viewport": {
+            "width": 1366,
+            "height": 768
+          },
+          "framebuffer": {
+            "width": 1366,
+            "height": 768
+          },
+          "cssCanvas": {
+            "width": 1366,
+            "height": 768
+          },
+          "scale": {
+            "width": 1366,
+            "height": 768
+          },
+          "images": [
+            {
+              "name": "table-art/surface-paper",
+              "key": "8272a60a-a029-445d-a704-8a86b4034ff3",
+              "width": 962,
+              "height": 676,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "table-art/program-paper",
+              "key": "0995a372-2682-4188-80c2-bd8bd34aed33",
+              "width": 216,
+              "height": 720,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "table-art/rack-paper",
+              "key": "5014c849-d8d9-4fc2-8650-d1f6512f0e19",
+              "width": 430,
+              "height": 114,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "table-art/hand-paper",
+              "key": "77fb024d-b1a1-49ef-8c26-0af0165dd844",
+              "width": 952,
+              "height": 157,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "table-art/stage-paper",
+              "key": "a9a8d1a9-cf86-474f-b6a9-4867bf95ae7a",
+              "width": 532,
+              "height": 152,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "table-art/character",
+              "key": "selection-portrait-amo",
+              "width": 256,
+              "height": 320,
+              "source": "blob:http://127.0.0.1:5589/56e81d5b-e420-4bd5-b11a-8cb7e0ba7751",
+              "scaleX": 0.390625,
+              "scaleY": 0.390625,
+              "manifestSource": {
+                "id": "amo",
+                "purpose": "selection",
+                "path": "characters/amo.selection.webp",
+                "sha256": "5d32af6c79a4a702f51760432447515bf1cbd05e289b2c157602c207fa1ae9cf"
+              }
+            },
+            {
+              "name": "",
+              "key": "avatar-amo",
+              "width": 256,
+              "height": 256,
+              "source": "blob:http://127.0.0.1:5589/ddf516c3-b142-43f1-a421-8c9899cf1458",
+              "scaleX": 0.171875,
+              "scaleY": 0.171875,
+              "manifestSource": {
+                "id": "amo",
+                "purpose": "avatar",
+                "path": "characters/amo.avatar.webp",
+                "sha256": "a26037e3f0b3c1eb8733a6b1e85fb1c3cf63ddfae55005f0fb643dcae445ae1c"
+              }
+            },
+            {
+              "name": "",
+              "key": "b0440153-043e-4fa8-96ff-09226d15c69b",
+              "width": 100,
+              "height": 31,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "",
+              "key": "c5147b2d-27d7-4d3a-9542-2ccf7f039da4",
+              "width": 45,
+              "height": 25,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "",
+              "key": "50e61fc9-45c2-49c9-92e5-773df2e56e2a",
+              "width": 111,
+              "height": 16,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "stage-identity/current",
+              "key": "1217b897-1cd3-4db1-9444-4800ec538605",
+              "width": 85,
+              "height": 16,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "",
+              "key": "366e9e3c-ae71-452a-a873-55436ef3fa5c",
+              "width": 14,
+              "height": 27,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "",
+              "key": "b7091725-69b4-463a-afbb-b9034c398b00",
+              "width": 88,
+              "height": 32,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "hud/target",
+              "key": "1d526158-1625-42dd-977b-87bce730b29f",
+              "width": 56,
+              "height": 16,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "",
+              "key": "d44-paper-16775662-16.0-5.7",
+              "width": 256,
+              "height": 128,
+              "scaleX": 0.3125,
+              "scaleY": 0.875
+            },
+            {
+              "name": "",
+              "key": "p00-card-back",
+              "width": 240,
+              "height": 336,
+              "source": "blob:http://127.0.0.1:5589/b8703978-6e1d-4b37-a993-7828eae324b1",
+              "scaleX": 0.30833333333333335,
+              "scaleY": 0.31547619047619047
+            },
+            {
+              "name": "",
+              "key": "d44-paper-16775662-16.0-5.7",
+              "width": 256,
+              "height": 128,
+              "scaleX": 0.3125,
+              "scaleY": 0.875
+            },
+            {
+              "name": "",
+              "key": "p00-card-back",
+              "width": 240,
+              "height": 336,
+              "source": "blob:http://127.0.0.1:5589/b8703978-6e1d-4b37-a993-7828eae324b1",
+              "scaleX": 0.30833333333333335,
+              "scaleY": 0.31547619047619047
+            },
+            {
+              "name": "",
+              "key": "d44-paper-16775662-16.0-5.7",
+              "width": 256,
+              "height": 128,
+              "scaleX": 0.3125,
+              "scaleY": 0.875
+            },
+            {
+              "name": "",
+              "key": "p00-card-back",
+              "width": 240,
+              "height": 336,
+              "source": "blob:http://127.0.0.1:5589/b8703978-6e1d-4b37-a993-7828eae324b1",
+              "scaleX": 0.30833333333333335,
+              "scaleY": 0.31547619047619047
+            },
+            {
+              "name": "",
+              "key": "d44-paper-16775662-16.0-5.7",
+              "width": 256,
+              "height": 128,
+              "scaleX": 0.3125,
+              "scaleY": 0.875
+            },
+            {
+              "name": "",
+              "key": "p00-card-back",
+              "width": 240,
+              "height": 336,
+              "source": "blob:http://127.0.0.1:5589/b8703978-6e1d-4b37-a993-7828eae324b1",
+              "scaleX": 0.30833333333333335,
+              "scaleY": 0.31547619047619047
+            },
+            {
+              "name": "",
+              "key": "d44-paper-16775662-16.0-5.7",
+              "width": 256,
+              "height": 128,
+              "scaleX": 0.3125,
+              "scaleY": 0.875
+            },
+            {
+              "name": "",
+              "key": "p00-card-back",
+              "width": 240,
+              "height": 336,
+              "source": "blob:http://127.0.0.1:5589/b8703978-6e1d-4b37-a993-7828eae324b1",
+              "scaleX": 0.30833333333333335,
+              "scaleY": 0.31547619047619047
+            },
+            {
+              "name": "score/board-paper",
+              "key": "d44-paper-16775662-4.6-3.1",
+              "width": 256,
+              "height": 128,
+              "scaleX": 0.875,
+              "scaleY": 1.28125
+            },
+            {
+              "name": "score/source",
+              "key": "ca105206-c677-4663-b731-92c920902bb8",
+              "width": 97,
+              "height": 19,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "table/played-label",
+              "key": "715503c1-44e2-40f4-90b9-2e33a81f170d",
+              "width": 42,
+              "height": 16,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "",
+              "key": "f7437648-5dc9-44da-8e81-d160d4442d02",
+              "width": 140,
+              "height": 16,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "",
+              "key": "9a88ffde-f20b-49cd-b881-d5a33430220a",
+              "width": 56,
+              "height": 17,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "",
+              "key": "58cb4840-02f4-4910-8e11-c2bedfadbb8a",
+              "width": 56,
+              "height": 17,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "",
+              "key": "9b975218-3b34-4662-be74-02bba7bc4e82",
+              "width": 28,
+              "height": 34,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "",
+              "key": "287a2a80-8d0c-4b60-807a-a1c64c618123",
+              "width": 28,
+              "height": 17,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "",
+              "key": "120d7ffd-0585-4186-bde5-eb5ac4d572c8",
+              "width": 28,
+              "height": 17,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "",
+              "key": "bab4788e-d8e5-4324-8e93-9177dd3ac1d8",
+              "width": 33,
+              "height": 19,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "button/play-left",
+              "key": "6b59e298-a8e2-48dd-a3ac-e5f652e588ea",
+              "width": 26,
+              "height": 16,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "button/discard-left",
+              "key": "73ffb9ac-ea94-4910-b4af-207711d588b6",
+              "width": 26,
+              "height": 16,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "",
+              "key": "2ffdf346-a14d-4712-8bfd-63e7bb9b0472",
+              "width": 168,
+              "height": 16,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "",
+              "key": "4012213d-23f0-4ffc-bfad-9b618f018d4a",
+              "width": 71,
+              "height": 16,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "selection/assist-copy",
+              "key": "f9f90ec7-0b69-4b1e-a3a6-a5d91242f844",
+              "width": 108,
+              "height": 16,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "selection/assist-copy",
+              "key": "c4b7330a-8d45-49e5-aac1-0353a3c905a1",
+              "width": 154,
+              "height": 16,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "selection/assist-copy",
+              "key": "2907ef9a-466e-4c8f-b2d7-adb53330ff62",
+              "width": 80,
+              "height": 16,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "selection/assist-copy",
+              "key": "142cb81a-2838-45ae-a5f7-7ca21deab738",
+              "width": 98,
+              "height": 16,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "selection/assist-copy",
+              "key": "424d0ad9-6332-49dc-83f9-e3d0abb02624",
+              "width": 112,
+              "height": 16,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "selection/assist-copy",
+              "key": "9f3c2d79-0d3b-4e2e-b948-b4b90b90436b",
+              "width": 168,
+              "height": 16,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "selection/quick-label",
+              "key": "5330950c-256e-4386-9c67-f7f0dac3d2b3",
+              "width": 28,
+              "height": 34,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "selection/quick-label",
+              "key": "eb73ff46-b2ba-4577-ba3f-475778a08100",
+              "width": 28,
+              "height": 34,
+              "scaleX": 1,
+              "scaleY": 1
+            }
+          ],
+          "texts": [
+            {
+              "name": "",
+              "text": "大 丑 牌"
+            },
+            {
+              "name": "",
+              "text": "阿默"
+            },
+            {
+              "name": "",
+              "text": "技能 · 先凑主副组"
+            },
+            {
+              "name": "stage-identity/current",
+              "text": "第 1 章 · 暖场"
+            },
+            {
+              "name": "",
+              "text": "0"
+            },
+            {
+              "name": "",
+              "text": "金币 6\n还需 400 热度"
+            },
+            {
+              "name": "hud/target",
+              "text": "目标 400"
+            },
+            {
+              "name": "score/source",
+              "text": "第 1 章 · 暖场"
+            },
+            {
+              "name": "table/played-label",
+              "text": "待出牌"
+            },
+            {
+              "name": "",
+              "text": "上手记录：本场第一手"
+            },
+            {
+              "name": "",
+              "text": "点数排序"
+            },
+            {
+              "name": "",
+              "text": "花色排序"
+            },
+            {
+              "name": "",
+              "text": "AI\n主手"
+            },
+            {
+              "name": "",
+              "text": "助攻"
+            },
+            {
+              "name": "",
+              "text": "弃牌"
+            },
+            {
+              "name": "",
+              "text": "出牌"
+            },
+            {
+              "name": "button/play-left",
+              "text": "4 次"
+            },
+            {
+              "name": "button/discard-left",
+              "text": "3 次"
+            },
+            {
+              "name": "",
+              "text": "首次：点怎么凑牌，看留换"
+            },
+            {
+              "name": "",
+              "text": "道具箱 0/2"
+            },
+            {
+              "name": "selection/assist-copy",
+              "text": "主手：先选1–5张"
+            },
+            {
+              "name": "selection/assist-copy",
+              "text": "先组成两对、三条或更高"
+            },
+            {
+              "name": "selection/assist-copy",
+              "text": "本场助攻 1/1"
+            },
+            {
+              "name": "selection/assist-copy",
+              "text": "助攻会一同用掉"
+            },
+            {
+              "name": "selection/assist-copy",
+              "text": "不算主手或留手牌"
+            },
+            {
+              "name": "selection/assist-copy",
+              "text": "AI只整理主手，助攻自己选"
+            },
+            {
+              "name": "selection/quick-label",
+              "text": "来源\n条件"
+            },
+            {
+              "name": "selection/quick-label",
+              "text": "怎么\n凑牌"
+            }
+          ],
+          "domImages": [],
+          "textures": [
+            {
+              "key": "selection-portrait-amo",
+              "width": 256,
+              "height": 320,
+              "manifestSource": {
+                "id": "amo",
+                "purpose": "selection",
+                "path": "characters/amo.selection.webp",
+                "sha256": "5d32af6c79a4a702f51760432447515bf1cbd05e289b2c157602c207fa1ae9cf"
+              }
+            },
+            {
+              "key": "avatar-amo",
+              "width": 256,
+              "height": 256,
+              "manifestSource": {
+                "id": "amo",
+                "purpose": "avatar",
+                "path": "characters/amo.avatar.webp",
+                "sha256": "a26037e3f0b3c1eb8733a6b1e85fb1c3cf63ddfae55005f0fb643dcae445ae1c"
+              }
+            },
+            {
+              "key": "selection-portrait-touye",
+              "width": 256,
+              "height": 320,
+              "manifestSource": {
+                "id": "touye",
+                "purpose": "selection",
+                "path": "characters/touye.selection.webp",
+                "sha256": "147cc72c96df68aa20ce63692f87729e896afb46feb0be6cb092bba2339edd71"
+              }
+            },
+            {
+              "key": "avatar-touye",
+              "width": 256,
+              "height": 256,
+              "manifestSource": {
+                "id": "touye",
+                "purpose": "avatar",
+                "path": "characters/touye.avatar.webp",
+                "sha256": "4cf98904271b32dfdab221bc5d49b0584b6fe201fa136aca7fedc678bf4f169d"
+              }
+            },
+            {
+              "key": "selection-portrait-laohuan",
+              "width": 256,
+              "height": 320,
+              "manifestSource": {
+                "id": "laohuan",
+                "purpose": "selection",
+                "path": "characters/laohuan.selection.webp",
+                "sha256": "4a5b998fe57e0a9df7e6ac31da39aada99bac10e92f66c144f0af85e10422657"
+              }
+            },
+            {
+              "key": "avatar-laohuan",
+              "width": 256,
+              "height": 256,
+              "manifestSource": {
+                "id": "laohuan",
+                "purpose": "avatar",
+                "path": "characters/laohuan.avatar.webp",
+                "sha256": "ac44afd5e9821758b59a0172c561ba1f5bb547826ea360e1435a1d4c25b9bfa2"
+              }
+            },
+            {
+              "key": "selection-portrait-erxiang",
+              "width": 256,
+              "height": 320,
+              "manifestSource": {
+                "id": "erxiang",
+                "purpose": "selection",
+                "path": "characters/erxiang.selection.webp",
+                "sha256": "a5071c29da50d8dac41aff04aee757454d9375da9cb2e84e7f7b45305af0f431"
+              }
+            },
+            {
+              "key": "avatar-erxiang",
+              "width": 256,
+              "height": 256,
+              "manifestSource": {
+                "id": "erxiang",
+                "purpose": "avatar",
+                "path": "characters/erxiang.avatar.webp",
+                "sha256": "9e6ad8631633b5dd22da9edcaef2fd40df037e1c2930bfc8db8b5e3e522342f9"
+              }
+            },
+            {
+              "key": "selection-portrait-azao",
+              "width": 256,
+              "height": 320,
+              "manifestSource": {
+                "id": "azao",
+                "purpose": "selection",
+                "path": "characters/azao.selection.webp",
+                "sha256": "d4d3966ff707fca6a8f2c4b7af0809547d2696299ae22b3b66032183dbde85c8"
+              }
+            },
+            {
+              "key": "avatar-azao",
+              "width": 256,
+              "height": 256,
+              "manifestSource": {
+                "id": "azao",
+                "purpose": "avatar",
+                "path": "characters/azao.avatar.webp",
+                "sha256": "01bf61873bbf6be5f7101e16e3e8aa04ede6f0086ad18e003266053ac1898a4a"
+              }
+            },
+            {
+              "key": "selection-portrait-xiemu",
+              "width": 256,
+              "height": 320,
+              "manifestSource": {
+                "id": "xiemu",
+                "purpose": "selection",
+                "path": "characters/xiemu.selection.webp",
+                "sha256": "b6d6db151f5bbb75c73feeef8ab5a58af53bb6bfa8e32cb149a5a003843c5efe"
+              }
+            },
+            {
+              "key": "avatar-xiemu",
+              "width": 256,
+              "height": 256,
+              "manifestSource": {
+                "id": "xiemu",
+                "purpose": "avatar",
+                "path": "characters/xiemu.avatar.webp",
+                "sha256": "7f4782df5faec333971a231052c610e4b78c9ac8d011a620e6e14e620aef9cad"
+              }
+            }
+          ]
+        },
+        {
+          "label": "1366-dpr1-wrong-size-table-details",
+          "png": "1366-dpr1-wrong-size-table-details.png",
+          "actualDPR": 1,
+          "viewport": {
+            "width": 1366,
+            "height": 768
+          },
+          "framebuffer": {
+            "width": 1366,
+            "height": 768
+          },
+          "cssCanvas": {
+            "width": 1366,
+            "height": 768
+          },
+          "scale": {
+            "width": 1366,
+            "height": 768
+          },
+          "images": [
+            {
+              "name": "table-art/surface-paper",
+              "key": "8272a60a-a029-445d-a704-8a86b4034ff3",
+              "width": 962,
+              "height": 676,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "table-art/program-paper",
+              "key": "0995a372-2682-4188-80c2-bd8bd34aed33",
+              "width": 216,
+              "height": 720,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "table-art/rack-paper",
+              "key": "5014c849-d8d9-4fc2-8650-d1f6512f0e19",
+              "width": 430,
+              "height": 114,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "table-art/hand-paper",
+              "key": "77fb024d-b1a1-49ef-8c26-0af0165dd844",
+              "width": 952,
+              "height": 157,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "table-art/stage-paper",
+              "key": "a9a8d1a9-cf86-474f-b6a9-4867bf95ae7a",
+              "width": 532,
+              "height": 152,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "table-art/character",
+              "key": "selection-portrait-amo",
+              "width": 256,
+              "height": 320,
+              "source": "blob:http://127.0.0.1:5589/56e81d5b-e420-4bd5-b11a-8cb7e0ba7751",
+              "scaleX": 0.390625,
+              "scaleY": 0.390625,
+              "manifestSource": {
+                "id": "amo",
+                "purpose": "selection",
+                "path": "characters/amo.selection.webp",
+                "sha256": "5d32af6c79a4a702f51760432447515bf1cbd05e289b2c157602c207fa1ae9cf"
+              }
+            },
+            {
+              "name": "",
+              "key": "avatar-amo",
+              "width": 256,
+              "height": 256,
+              "source": "blob:http://127.0.0.1:5589/ddf516c3-b142-43f1-a421-8c9899cf1458",
+              "scaleX": 0.171875,
+              "scaleY": 0.171875,
+              "manifestSource": {
+                "id": "amo",
+                "purpose": "avatar",
+                "path": "characters/amo.avatar.webp",
+                "sha256": "a26037e3f0b3c1eb8733a6b1e85fb1c3cf63ddfae55005f0fb643dcae445ae1c"
+              }
+            },
+            {
+              "name": "",
+              "key": "b0440153-043e-4fa8-96ff-09226d15c69b",
+              "width": 100,
+              "height": 31,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "",
+              "key": "c5147b2d-27d7-4d3a-9542-2ccf7f039da4",
+              "width": 45,
+              "height": 25,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "",
+              "key": "50e61fc9-45c2-49c9-92e5-773df2e56e2a",
+              "width": 111,
+              "height": 16,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "stage-identity/current",
+              "key": "1217b897-1cd3-4db1-9444-4800ec538605",
+              "width": 85,
+              "height": 16,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "",
+              "key": "366e9e3c-ae71-452a-a873-55436ef3fa5c",
+              "width": 14,
+              "height": 27,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "",
+              "key": "b7091725-69b4-463a-afbb-b9034c398b00",
+              "width": 88,
+              "height": 32,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "hud/target",
+              "key": "1d526158-1625-42dd-977b-87bce730b29f",
+              "width": 56,
+              "height": 16,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "",
+              "key": "d44-paper-16775662-16.0-5.7",
+              "width": 256,
+              "height": 128,
+              "scaleX": 0.3125,
+              "scaleY": 0.875
+            },
+            {
+              "name": "",
+              "key": "p00-card-back",
+              "width": 240,
+              "height": 336,
+              "source": "blob:http://127.0.0.1:5589/b8703978-6e1d-4b37-a993-7828eae324b1",
+              "scaleX": 0.30833333333333335,
+              "scaleY": 0.31547619047619047
+            },
+            {
+              "name": "",
+              "key": "d44-paper-16775662-16.0-5.7",
+              "width": 256,
+              "height": 128,
+              "scaleX": 0.3125,
+              "scaleY": 0.875
+            },
+            {
+              "name": "",
+              "key": "p00-card-back",
+              "width": 240,
+              "height": 336,
+              "source": "blob:http://127.0.0.1:5589/b8703978-6e1d-4b37-a993-7828eae324b1",
+              "scaleX": 0.30833333333333335,
+              "scaleY": 0.31547619047619047
+            },
+            {
+              "name": "",
+              "key": "d44-paper-16775662-16.0-5.7",
+              "width": 256,
+              "height": 128,
+              "scaleX": 0.3125,
+              "scaleY": 0.875
+            },
+            {
+              "name": "",
+              "key": "p00-card-back",
+              "width": 240,
+              "height": 336,
+              "source": "blob:http://127.0.0.1:5589/b8703978-6e1d-4b37-a993-7828eae324b1",
+              "scaleX": 0.30833333333333335,
+              "scaleY": 0.31547619047619047
+            },
+            {
+              "name": "",
+              "key": "d44-paper-16775662-16.0-5.7",
+              "width": 256,
+              "height": 128,
+              "scaleX": 0.3125,
+              "scaleY": 0.875
+            },
+            {
+              "name": "",
+              "key": "p00-card-back",
+              "width": 240,
+              "height": 336,
+              "source": "blob:http://127.0.0.1:5589/b8703978-6e1d-4b37-a993-7828eae324b1",
+              "scaleX": 0.30833333333333335,
+              "scaleY": 0.31547619047619047
+            },
+            {
+              "name": "",
+              "key": "d44-paper-16775662-16.0-5.7",
+              "width": 256,
+              "height": 128,
+              "scaleX": 0.3125,
+              "scaleY": 0.875
+            },
+            {
+              "name": "",
+              "key": "p00-card-back",
+              "width": 240,
+              "height": 336,
+              "source": "blob:http://127.0.0.1:5589/b8703978-6e1d-4b37-a993-7828eae324b1",
+              "scaleX": 0.30833333333333335,
+              "scaleY": 0.31547619047619047
+            },
+            {
+              "name": "score/board-paper",
+              "key": "d44-paper-16775662-4.6-3.1",
+              "width": 256,
+              "height": 128,
+              "scaleX": 0.875,
+              "scaleY": 1.28125
+            },
+            {
+              "name": "score/source",
+              "key": "ca105206-c677-4663-b731-92c920902bb8",
+              "width": 97,
+              "height": 19,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "table/played-label",
+              "key": "715503c1-44e2-40f4-90b9-2e33a81f170d",
+              "width": 42,
+              "height": 16,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "",
+              "key": "f7437648-5dc9-44da-8e81-d160d4442d02",
+              "width": 140,
+              "height": 16,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "",
+              "key": "9a88ffde-f20b-49cd-b881-d5a33430220a",
+              "width": 56,
+              "height": 17,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "",
+              "key": "58cb4840-02f4-4910-8e11-c2bedfadbb8a",
+              "width": 56,
+              "height": 17,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "",
+              "key": "9b975218-3b34-4662-be74-02bba7bc4e82",
+              "width": 28,
+              "height": 34,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "",
+              "key": "287a2a80-8d0c-4b60-807a-a1c64c618123",
+              "width": 28,
+              "height": 17,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "",
+              "key": "120d7ffd-0585-4186-bde5-eb5ac4d572c8",
+              "width": 28,
+              "height": 17,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "",
+              "key": "bab4788e-d8e5-4324-8e93-9177dd3ac1d8",
+              "width": 33,
+              "height": 19,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "button/play-left",
+              "key": "6b59e298-a8e2-48dd-a3ac-e5f652e588ea",
+              "width": 26,
+              "height": 16,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "button/discard-left",
+              "key": "73ffb9ac-ea94-4910-b4af-207711d588b6",
+              "width": 26,
+              "height": 16,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "",
+              "key": "2ffdf346-a14d-4712-8bfd-63e7bb9b0472",
+              "width": 168,
+              "height": 16,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "",
+              "key": "4012213d-23f0-4ffc-bfad-9b618f018d4a",
+              "width": 71,
+              "height": 16,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "",
+              "key": "d44-paper-16775662-18.3-6.5",
+              "width": 256,
+              "height": 128,
+              "scaleX": 0.3821875,
+              "scaleY": 1.0763749999999999
+            },
+            {
+              "name": "card-pip",
+              "key": "ef860497-0fe9-499f-ac65-8bafcb0040fb",
+              "width": 12,
+              "height": 25,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "card-pip",
+              "key": "a07c0db9-606d-4910-a696-7520c1a9fd43",
+              "width": 12,
+              "height": 25,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "rank-index",
+              "key": "e052aaae-5c18-47c0-9831-ca44f95a07bb",
+              "width": 12,
+              "height": 42,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "",
+              "key": "1554bc68-bef3-4fec-b089-5c4c6e8a3a42",
+              "width": 11,
+              "height": 42,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "",
+              "key": "d44-paper-16775662-18.3-6.5",
+              "width": 256,
+              "height": 128,
+              "scaleX": 0.3821875,
+              "scaleY": 1.0763749999999999
+            },
+            {
+              "name": "card-pip",
+              "key": "9a629518-8bb2-4790-9bef-696abcaa969f",
+              "width": 12,
+              "height": 25,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "card-pip",
+              "key": "9461e8ef-d232-4f10-a73d-3fccbcc9de49",
+              "width": 12,
+              "height": 25,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "card-pip",
+              "key": "6acaceb2-4494-4483-814b-6ec4903c5d58",
+              "width": 12,
+              "height": 25,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "card-pip",
+              "key": "e0f98998-a245-417a-b4d9-91edaa0ed821",
+              "width": 12,
+              "height": 25,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "card-pip",
+              "key": "7864afe0-7e26-43d4-b16e-436adecd4494",
+              "width": 12,
+              "height": 25,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "card-pip",
+              "key": "5b60908c-da2b-4cd2-8c8d-ea30dde7db2c",
+              "width": 12,
+              "height": 25,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "card-pip",
+              "key": "4f775355-38ee-499a-a22e-7c2593032411",
+              "width": 12,
+              "height": 25,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "card-pip",
+              "key": "2ffea8f4-aa39-4f9a-8560-32ce3a9ac9e2",
+              "width": 12,
+              "height": 25,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "card-pip",
+              "key": "f4239f8d-7844-420d-a85c-bc6797e99444",
+              "width": 12,
+              "height": 25,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "rank-index",
+              "key": "c06e7cf9-41b4-4891-ac46-972751ab8875",
+              "width": 12,
+              "height": 42,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "",
+              "key": "b8e9a9c0-7b3d-4370-bb62-0c5ec87ac5af",
+              "width": 11,
+              "height": 42,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "",
+              "key": "d44-paper-16775662-18.3-6.5",
+              "width": 256,
+              "height": 128,
+              "scaleX": 0.3821875,
+              "scaleY": 1.0763749999999999
+            },
+            {
+              "name": "card-pip",
+              "key": "909df6a2-0200-44f4-b45c-26aafffd01f5",
+              "width": 12,
+              "height": 25,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "card-pip",
+              "key": "40f31016-e6f4-4c1d-97c9-fba100163700",
+              "width": 12,
+              "height": 25,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "card-pip",
+              "key": "b98d0e5c-9424-423c-9c17-6bf4f44a76ba",
+              "width": 12,
+              "height": 25,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "card-pip",
+              "key": "99e5e9b5-0f50-4dbd-9d19-cf41c66f4368",
+              "width": 12,
+              "height": 25,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "card-pip",
+              "key": "cee6f35a-8ceb-46c8-80f0-eb7f468a383e",
+              "width": 12,
+              "height": 25,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "card-pip",
+              "key": "533553f1-a170-409b-a7f8-f194747eaca2",
+              "width": 12,
+              "height": 25,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "card-pip",
+              "key": "f1f429c8-9011-4d2c-a3ec-2d5cd1cca2b6",
+              "width": 12,
+              "height": 25,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "card-pip",
+              "key": "8523a3fe-7a92-470a-ad00-3532e7931a43",
+              "width": 12,
+              "height": 25,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "rank-index",
+              "key": "e8f83d36-946e-4717-bed4-fad6ead03d61",
+              "width": 12,
+              "height": 42,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "",
+              "key": "d2118823-5f14-428f-b847-8071d9d889b2",
+              "width": 11,
+              "height": 42,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "",
+              "key": "d44-paper-16775662-18.3-6.5",
+              "width": 256,
+              "height": 128,
+              "scaleX": 0.3821875,
+              "scaleY": 1.0763749999999999
+            },
+            {
+              "name": "",
+              "key": "p08-court-q",
+              "width": 256,
+              "height": 384,
+              "source": "blob:http://127.0.0.1:5589/956e8ecd-d1f6-40dd-8b3b-110433886df7",
+              "scaleX": 0.16741250000000002,
+              "scaleY": 0.16741250000000002
+            },
+            {
+              "name": "rank-index",
+              "key": "caea971e-d474-45e5-8359-dfcac4402477",
+              "width": 18,
+              "height": 42,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "",
+              "key": "177f8405-b819-4155-aaa6-a50553fa82a9",
+              "width": 16,
+              "height": 42,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "",
+              "key": "d44-paper-16775662-18.3-6.5",
+              "width": 256,
+              "height": 128,
+              "scaleX": 0.3821875,
+              "scaleY": 1.0763749999999999
+            },
+            {
+              "name": "card-pip",
+              "key": "528e144b-806d-4911-8f39-c82d0096036e",
+              "width": 13,
+              "height": 21,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "card-pip",
+              "key": "1d90f4b9-29cf-4e61-84f9-256d56944a00",
+              "width": 13,
+              "height": 21,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "card-pip",
+              "key": "1c865c4e-09db-412c-ad65-bf710af34d0f",
+              "width": 13,
+              "height": 21,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "card-pip",
+              "key": "e4f0c3b3-72ce-41b9-8bd9-307e3589e17f",
+              "width": 13,
+              "height": 21,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "card-pip",
+              "key": "b0f4b5b6-be70-4930-a1b5-2aeff6147c5f",
+              "width": 13,
+              "height": 21,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "card-pip",
+              "key": "3e16f8f9-c2bb-48ff-b927-a291f1b09d32",
+              "width": 13,
+              "height": 21,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "card-pip",
+              "key": "f709d15b-c13a-46b2-be75-84376f6c97c6",
+              "width": 13,
+              "height": 21,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "card-pip",
+              "key": "0065c6d5-a3c6-4acd-b310-1aa65eb8b1ae",
+              "width": 13,
+              "height": 21,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "rank-index",
+              "key": "47348e4e-d1aa-42ad-b09b-dd1159667f1e",
+              "width": 15,
+              "height": 42,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "",
+              "key": "6c22447f-238f-4d33-9687-70b0e40dd68a",
+              "width": 14,
+              "height": 42,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "",
+              "key": "d44-paper-16775662-18.3-6.5",
+              "width": 256,
+              "height": 128,
+              "scaleX": 0.3821875,
+              "scaleY": 1.0763749999999999
+            },
+            {
+              "name": "card-pip",
+              "key": "71e7e424-9ae0-48ad-bd19-e317edf1a7d3",
+              "width": 13,
+              "height": 24,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "card-pip",
+              "key": "0fa14c39-07bc-4453-a2dd-5c501e74e9fb",
+              "width": 13,
+              "height": 24,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "card-pip",
+              "key": "20628829-8e39-4bb6-a139-2a495a2ce699",
+              "width": 13,
+              "height": 24,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "card-pip",
+              "key": "b1f0d5ee-e44a-453e-8739-5f8dd3c8073d",
+              "width": 13,
+              "height": 24,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "card-pip",
+              "key": "d7ac41b1-6a30-4b32-bfd8-ce7876b41529",
+              "width": 13,
+              "height": 24,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "card-pip",
+              "key": "5373820f-d3ee-4ba4-93bc-5f1f433de22f",
+              "width": 13,
+              "height": 24,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "card-pip",
+              "key": "291fd876-fc4a-420d-b739-92207a33608a",
+              "width": 13,
+              "height": 24,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "card-pip",
+              "key": "11f6a0d8-5129-4474-bae2-10402c33ac45",
+              "width": 13,
+              "height": 24,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "card-pip",
+              "key": "a69ab2a1-ebdc-449d-9c00-8b265f75bb46",
+              "width": 13,
+              "height": 24,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "rank-index",
+              "key": "addcecca-4c15-4e80-a7a1-4f3516a5c9ef",
+              "width": 14,
+              "height": 42,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "",
+              "key": "7661685b-5601-4972-a53f-d77a99b3312d",
+              "width": 12,
+              "height": 42,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "",
+              "key": "d44-paper-16775662-18.3-6.5",
+              "width": 256,
+              "height": 128,
+              "scaleX": 0.3821875,
+              "scaleY": 1.0763749999999999
+            },
+            {
+              "name": "card-pip",
+              "key": "622bfeba-4c94-4748-acea-7defce4a6cf2",
+              "width": 10,
+              "height": 15,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "card-pip",
+              "key": "6f132dda-aedc-4906-87ae-a9dbd2c2471e",
+              "width": 10,
+              "height": 15,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "card-pip",
+              "key": "865bf205-95f5-4b3c-922d-d6ed8a824487",
+              "width": 10,
+              "height": 15,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "card-pip",
+              "key": "81967feb-c09e-45bd-9e61-008bd4073fa1",
+              "width": 10,
+              "height": 15,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "card-pip",
+              "key": "087d9927-1210-4d53-b95b-60fc60db0fed",
+              "width": 10,
+              "height": 15,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "card-pip",
+              "key": "41e4051d-0d59-4ea5-b45e-2a473be38873",
+              "width": 10,
+              "height": 15,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "card-pip",
+              "key": "8e1cc85a-e295-42dc-9473-c39187343c0e",
+              "width": 10,
+              "height": 15,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "card-pip",
+              "key": "91a3c9f7-9ba1-4687-b3cc-fd292c450a7f",
+              "width": 10,
+              "height": 15,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "card-pip",
+              "key": "77f37c52-2ae5-4262-aae0-2cc24e45dbdf",
+              "width": 10,
+              "height": 15,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "card-pip",
+              "key": "bdf6edea-215d-47b9-b5b7-efd03d69421c",
+              "width": 10,
+              "height": 15,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "rank-index",
+              "key": "e54cb0b8-a3cc-4955-89bd-db8b25b5e2c1",
+              "width": 22,
+              "height": 42,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "",
+              "key": "11f183b6-6712-443c-8f48-36207084f2e3",
+              "width": 20,
+              "height": 42,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "",
+              "key": "d44-paper-16775662-18.3-6.5",
+              "width": 256,
+              "height": 128,
+              "scaleX": 0.3821875,
+              "scaleY": 1.0763749999999999
+            },
+            {
+              "name": "card-pip",
+              "key": "5ad03624-cd41-4577-a575-cd9eac40b9a0",
+              "width": 8,
+              "height": 15,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "card-pip",
+              "key": "2d672574-fbf8-41b8-af91-d27db3f3e551",
+              "width": 8,
+              "height": 15,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "card-pip",
+              "key": "07de6a6a-9c98-4bf1-9f3d-7af2ccacd91b",
+              "width": 8,
+              "height": 15,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "card-pip",
+              "key": "b245845c-b653-411b-82b0-a6a2a8154f50",
+              "width": 8,
+              "height": 15,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "card-pip",
+              "key": "6a73b6da-dcd0-4268-aa2e-ba6ac60dd796",
+              "width": 8,
+              "height": 15,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "card-pip",
+              "key": "536953c8-20d4-4cc3-abb5-4883a19bed69",
+              "width": 8,
+              "height": 15,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "card-pip",
+              "key": "d3d62f17-8fd1-4b25-a026-b67016016421",
+              "width": 8,
+              "height": 15,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "card-pip",
+              "key": "2614a96e-a603-4b14-8904-b7652c798802",
+              "width": 8,
+              "height": 15,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "card-pip",
+              "key": "30e319c5-9ecb-44f8-9417-67f80070d50c",
+              "width": 8,
+              "height": 15,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "card-pip",
+              "key": "c49d841c-d544-4791-95ef-143e142473d3",
+              "width": 8,
+              "height": 15,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "rank-index",
+              "key": "2bbf6981-dcf2-4a0b-96e7-3cf241a80726",
+              "width": 22,
+              "height": 42,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "",
+              "key": "608d09a1-46bc-4730-9bbf-4fa7b19eb3ee",
+              "width": 20,
+              "height": 42,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "selection/assist-copy",
+              "key": "f9f90ec7-0b69-4b1e-a3a6-a5d91242f844",
+              "width": 108,
+              "height": 16,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "selection/assist-copy",
+              "key": "c4b7330a-8d45-49e5-aac1-0353a3c905a1",
+              "width": 154,
+              "height": 16,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "selection/assist-copy",
+              "key": "2907ef9a-466e-4c8f-b2d7-adb53330ff62",
+              "width": 80,
+              "height": 16,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "selection/assist-copy",
+              "key": "142cb81a-2838-45ae-a5f7-7ca21deab738",
+              "width": 98,
+              "height": 16,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "selection/assist-copy",
+              "key": "424d0ad9-6332-49dc-83f9-e3d0abb02624",
+              "width": 112,
+              "height": 16,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "selection/assist-copy",
+              "key": "9f3c2d79-0d3b-4e2e-b948-b4b90b90436b",
+              "width": 168,
+              "height": 16,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "selection/quick-label",
+              "key": "5330950c-256e-4386-9c67-f7f0dac3d2b3",
+              "width": 28,
+              "height": 34,
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "selection/quick-label",
+              "key": "eb73ff46-b2ba-4577-ba3f-475778a08100",
+              "width": 28,
+              "height": 34,
+              "scaleX": 1,
+              "scaleY": 1
+            }
+          ],
+          "texts": [
+            {
+              "name": "",
+              "text": "大 丑 牌"
+            },
+            {
+              "name": "",
+              "text": "阿默"
+            },
+            {
+              "name": "",
+              "text": "技能 · 先凑主副组"
+            },
+            {
+              "name": "stage-identity/current",
+              "text": "第 1 章 · 暖场"
+            },
+            {
+              "name": "",
+              "text": "0"
+            },
+            {
+              "name": "",
+              "text": "金币 6\n还需 400 热度"
+            },
+            {
+              "name": "hud/target",
+              "text": "目标 400"
+            },
+            {
+              "name": "score/source",
+              "text": "第 1 章 · 暖场"
+            },
+            {
+              "name": "table/played-label",
+              "text": "待出牌"
+            },
+            {
+              "name": "",
+              "text": "上手记录：本场第一手"
+            },
+            {
+              "name": "",
+              "text": "点数排序"
+            },
+            {
+              "name": "",
+              "text": "花色排序"
+            },
+            {
+              "name": "",
+              "text": "AI\n主手"
+            },
+            {
+              "name": "",
+              "text": "助攻"
+            },
+            {
+              "name": "",
+              "text": "弃牌"
+            },
+            {
+              "name": "",
+              "text": "出牌"
+            },
+            {
+              "name": "button/play-left",
+              "text": "4 次"
+            },
+            {
+              "name": "button/discard-left",
+              "text": "3 次"
+            },
+            {
+              "name": "",
+              "text": "首次：点怎么凑牌，看留换"
+            },
+            {
+              "name": "",
+              "text": "道具箱 0/2"
+            },
+            {
+              "name": "card-pip",
+              "text": "♠"
+            },
+            {
+              "name": "card-pip",
+              "text": "♠"
+            },
+            {
+              "name": "rank-index",
+              "text": "2\n♠"
+            },
+            {
+              "name": "",
+              "text": "2\n♠"
+            },
+            {
+              "name": "card-pip",
+              "text": "♠"
+            },
+            {
+              "name": "card-pip",
+              "text": "♠"
+            },
+            {
+              "name": "card-pip",
+              "text": "♠"
+            },
+            {
+              "name": "card-pip",
+              "text": "♠"
+            },
+            {
+              "name": "card-pip",
+              "text": "♠"
+            },
+            {
+              "name": "card-pip",
+              "text": "♠"
+            },
+            {
+              "name": "card-pip",
+              "text": "♠"
+            },
+            {
+              "name": "card-pip",
+              "text": "♠"
+            },
+            {
+              "name": "card-pip",
+              "text": "♠"
+            },
+            {
+              "name": "rank-index",
+              "text": "9\n♠"
+            },
+            {
+              "name": "",
+              "text": "9\n♠"
+            },
+            {
+              "name": "card-pip",
+              "text": "♠"
+            },
+            {
+              "name": "card-pip",
+              "text": "♠"
+            },
+            {
+              "name": "card-pip",
+              "text": "♠"
+            },
+            {
+              "name": "card-pip",
+              "text": "♠"
+            },
+            {
+              "name": "card-pip",
+              "text": "♠"
+            },
+            {
+              "name": "card-pip",
+              "text": "♠"
+            },
+            {
+              "name": "card-pip",
+              "text": "♠"
+            },
+            {
+              "name": "card-pip",
+              "text": "♠"
+            },
+            {
+              "name": "rank-index",
+              "text": "8\n♠"
+            },
+            {
+              "name": "",
+              "text": "8\n♠"
+            },
+            {
+              "name": "rank-index",
+              "text": "Q\n♠"
+            },
+            {
+              "name": "",
+              "text": "Q\n♠"
+            },
+            {
+              "name": "card-pip",
+              "text": "♣"
+            },
+            {
+              "name": "card-pip",
+              "text": "♣"
+            },
+            {
+              "name": "card-pip",
+              "text": "♣"
+            },
+            {
+              "name": "card-pip",
+              "text": "♣"
+            },
+            {
+              "name": "card-pip",
+              "text": "♣"
+            },
+            {
+              "name": "card-pip",
+              "text": "♣"
+            },
+            {
+              "name": "card-pip",
+              "text": "♣"
+            },
+            {
+              "name": "card-pip",
+              "text": "♣"
+            },
+            {
+              "name": "rank-index",
+              "text": "8\n♣"
+            },
+            {
+              "name": "",
+              "text": "8\n♣"
+            },
+            {
+              "name": "card-pip",
+              "text": "♥"
+            },
+            {
+              "name": "card-pip",
+              "text": "♥"
+            },
+            {
+              "name": "card-pip",
+              "text": "♥"
+            },
+            {
+              "name": "card-pip",
+              "text": "♥"
+            },
+            {
+              "name": "card-pip",
+              "text": "♥"
+            },
+            {
+              "name": "card-pip",
+              "text": "♥"
+            },
+            {
+              "name": "card-pip",
+              "text": "♥"
+            },
+            {
+              "name": "card-pip",
+              "text": "♥"
+            },
+            {
+              "name": "card-pip",
+              "text": "♥"
+            },
+            {
+              "name": "rank-index",
+              "text": "9\n♥"
+            },
+            {
+              "name": "",
+              "text": "9\n♥"
+            },
+            {
+              "name": "card-pip",
+              "text": "♣"
+            },
+            {
+              "name": "card-pip",
+              "text": "♣"
+            },
+            {
+              "name": "card-pip",
+              "text": "♣"
+            },
+            {
+              "name": "card-pip",
+              "text": "♣"
+            },
+            {
+              "name": "card-pip",
+              "text": "♣"
+            },
+            {
+              "name": "card-pip",
+              "text": "♣"
+            },
+            {
+              "name": "card-pip",
+              "text": "♣"
+            },
+            {
+              "name": "card-pip",
+              "text": "♣"
+            },
+            {
+              "name": "card-pip",
+              "text": "♣"
+            },
+            {
+              "name": "card-pip",
+              "text": "♣"
+            },
+            {
+              "name": "rank-index",
+              "text": "10\n♣"
+            },
+            {
+              "name": "",
+              "text": "10\n♣"
+            },
+            {
+              "name": "card-pip",
+              "text": "♦"
+            },
+            {
+              "name": "card-pip",
+              "text": "♦"
+            },
+            {
+              "name": "card-pip",
+              "text": "♦"
+            },
+            {
+              "name": "card-pip",
+              "text": "♦"
+            },
+            {
+              "name": "card-pip",
+              "text": "♦"
+            },
+            {
+              "name": "card-pip",
+              "text": "♦"
+            },
+            {
+              "name": "card-pip",
+              "text": "♦"
+            },
+            {
+              "name": "card-pip",
+              "text": "♦"
+            },
+            {
+              "name": "card-pip",
+              "text": "♦"
+            },
+            {
+              "name": "card-pip",
+              "text": "♦"
+            },
+            {
+              "name": "rank-index",
+              "text": "10\n♦"
+            },
+            {
+              "name": "",
+              "text": "10\n♦"
+            },
+            {
+              "name": "selection/assist-copy",
+              "text": "主手：先选1–5张"
+            },
+            {
+              "name": "selection/assist-copy",
+              "text": "先组成两对、三条或更高"
+            },
+            {
+              "name": "selection/assist-copy",
+              "text": "本场助攻 1/1"
+            },
+            {
+              "name": "selection/assist-copy",
+              "text": "助攻会一同用掉"
+            },
+            {
+              "name": "selection/assist-copy",
+              "text": "不算主手或留手牌"
+            },
+            {
+              "name": "selection/assist-copy",
+              "text": "AI只整理主手，助攻自己选"
+            },
+            {
+              "name": "selection/quick-label",
+              "text": "来源\n条件"
+            },
+            {
+              "name": "selection/quick-label",
+              "text": "怎么\n凑牌"
+            }
+          ],
+          "domImages": [
+            {
+              "src": "http://127.0.0.1:5589/assets/handdrawn-p08/characters/amo.selection.webp",
+              "width": 256,
+              "height": 320,
+              "alt": "阿默完整立绘",
+              "hidden": false,
+              "display": "block",
+              "visibility": "visible"
+            }
+          ],
+          "textures": [
+            {
+              "key": "selection-portrait-amo",
+              "width": 256,
+              "height": 320,
+              "manifestSource": {
+                "id": "amo",
+                "purpose": "selection",
+                "path": "characters/amo.selection.webp",
+                "sha256": "5d32af6c79a4a702f51760432447515bf1cbd05e289b2c157602c207fa1ae9cf"
+              }
+            },
+            {
+              "key": "avatar-amo",
+              "width": 256,
+              "height": 256,
+              "manifestSource": {
+                "id": "amo",
+                "purpose": "avatar",
+                "path": "characters/amo.avatar.webp",
+                "sha256": "a26037e3f0b3c1eb8733a6b1e85fb1c3cf63ddfae55005f0fb643dcae445ae1c"
+              }
+            },
+            {
+              "key": "selection-portrait-touye",
+              "width": 256,
+              "height": 320,
+              "manifestSource": {
+                "id": "touye",
+                "purpose": "selection",
+                "path": "characters/touye.selection.webp",
+                "sha256": "147cc72c96df68aa20ce63692f87729e896afb46feb0be6cb092bba2339edd71"
+              }
+            },
+            {
+              "key": "avatar-touye",
+              "width": 256,
+              "height": 256,
+              "manifestSource": {
+                "id": "touye",
+                "purpose": "avatar",
+                "path": "characters/touye.avatar.webp",
+                "sha256": "4cf98904271b32dfdab221bc5d49b0584b6fe201fa136aca7fedc678bf4f169d"
+              }
+            },
+            {
+              "key": "selection-portrait-laohuan",
+              "width": 256,
+              "height": 320,
+              "manifestSource": {
+                "id": "laohuan",
+                "purpose": "selection",
+                "path": "characters/laohuan.selection.webp",
+                "sha256": "4a5b998fe57e0a9df7e6ac31da39aada99bac10e92f66c144f0af85e10422657"
+              }
+            },
+            {
+              "key": "avatar-laohuan",
+              "width": 256,
+              "height": 256,
+              "manifestSource": {
+                "id": "laohuan",
+                "purpose": "avatar",
+                "path": "characters/laohuan.avatar.webp",
+                "sha256": "ac44afd5e9821758b59a0172c561ba1f5bb547826ea360e1435a1d4c25b9bfa2"
+              }
+            },
+            {
+              "key": "selection-portrait-erxiang",
+              "width": 256,
+              "height": 320,
+              "manifestSource": {
+                "id": "erxiang",
+                "purpose": "selection",
+                "path": "characters/erxiang.selection.webp",
+                "sha256": "a5071c29da50d8dac41aff04aee757454d9375da9cb2e84e7f7b45305af0f431"
+              }
+            },
+            {
+              "key": "avatar-erxiang",
+              "width": 256,
+              "height": 256,
+              "manifestSource": {
+                "id": "erxiang",
+                "purpose": "avatar",
+                "path": "characters/erxiang.avatar.webp",
+                "sha256": "9e6ad8631633b5dd22da9edcaef2fd40df037e1c2930bfc8db8b5e3e522342f9"
+              }
+            },
+            {
+              "key": "selection-portrait-azao",
+              "width": 256,
+              "height": 320,
+              "manifestSource": {
+                "id": "azao",
+                "purpose": "selection",
+                "path": "characters/azao.selection.webp",
+                "sha256": "d4d3966ff707fca6a8f2c4b7af0809547d2696299ae22b3b66032183dbde85c8"
+              }
+            },
+            {
+              "key": "avatar-azao",
+              "width": 256,
+              "height": 256,
+              "manifestSource": {
+                "id": "azao",
+                "purpose": "avatar",
+                "path": "characters/azao.avatar.webp",
+                "sha256": "01bf61873bbf6be5f7101e16e3e8aa04ede6f0086ad18e003266053ac1898a4a"
+              }
+            },
+            {
+              "key": "selection-portrait-xiemu",
+              "width": 256,
+              "height": 320,
+              "manifestSource": {
+                "id": "xiemu",
+                "purpose": "selection",
+                "path": "characters/xiemu.selection.webp",
+                "sha256": "b6d6db151f5bbb75c73feeef8ab5a58af53bb6bfa8e32cb149a5a003843c5efe"
+              }
+            },
+            {
+              "key": "avatar-xiemu",
+              "width": 256,
+              "height": 256,
+              "manifestSource": {
+                "id": "xiemu",
+                "purpose": "avatar",
+                "path": "characters/xiemu.avatar.webp",
+                "sha256": "7f4782df5faec333971a231052c610e4b78c9ac8d011a620e6e14e620aef9cad"
+              }
+            }
+          ]
+        }
+      ],
+      "errors": [],
+      "intercepts": [
+        {
+          "url": "http://127.0.0.1:5589/assets/handdrawn-p08/characters/amo.portrait.webp",
+          "action": "selection bytes at portrait URL"
+        },
+        {
+          "url": "http://127.0.0.1:5589/assets/handdrawn-p08/characters/amo.portrait.webp",
+          "action": "selection bytes at portrait URL"
+        },
+        {
+          "url": "http://127.0.0.1:5589/assets/handdrawn-p08/characters/amo.portrait.webp",
+          "action": "selection bytes at portrait URL"
+        }
+      ],
+      "status": "FAIL",
+      "error": "AssertionError [ERR_ASSERTION]: wrong portrait bytes are hidden in direct DOM detail\n    at file:///workspace/dachoupai/harness/hero-art-contract.mjs:28:800",
+      "failureState": {
+        "state": {
+          "routeGrowth": {
+            "clears": 0,
+            "G": 0,
+            "S": 0,
+            "F": 0,
+            "settlements": []
+          },
+          "schemaVersion": 2,
+          "rulesVersion": "r2",
+          "contentVersion": "quality-r2-core-build-v1",
+          "contentHash": "json-fnv-v1:6dfe1a721e4949e6",
+          "runId": "run/1792048549660/amo",
+          "seed": "1792048549660",
+          "commandSeq": 3,
+          "difficulty": 0,
+          "characterId": "amo",
+          "openingRoute": "group",
+          "openingShow": {
+            "handsScored": 0,
+            "rootId": null,
+            "eventId": null,
+            "reason": null
+          },
+          "routeStarter": {
+            "instanceId": null,
+            "rootId": null,
+            "eventId": null
+          },
+          "mode": "standard",
+          "challengeId": null,
+          "programsEnabled": true,
+          "programRerollCoupon": false,
+          "chapterDisabledJokerId": null,
+          "chapter": 1,
+          "stageIndex": 0,
+          "phase": "await-input",
+          "deckInstances": [
+            {
+              "id": "spades-2",
+              "suit": "spades",
+              "rank": 2
+            },
+            {
+              "id": "spades-3",
+              "suit": "spades",
+              "rank": 3
+            },
+            {
+              "id": "spades-4",
+              "suit": "spades",
+              "rank": 4
+            },
+            {
+              "id": "spades-5",
+              "suit": "spades",
+              "rank": 5
+            },
+            {
+              "id": "spades-6",
+              "suit": "spades",
+              "rank": 6
+            },
+            {
+              "id": "spades-7",
+              "suit": "spades",
+              "rank": 7
+            },
+            {
+              "id": "spades-8",
+              "suit": "spades",
+              "rank": 8
+            },
+            {
+              "id": "spades-9",
+              "suit": "spades",
+              "rank": 9
+            },
+            {
+              "id": "spades-10",
+              "suit": "spades",
+              "rank": 10
+            },
+            {
+              "id": "spades-11",
+              "suit": "spades",
+              "rank": 11
+            },
+            {
+              "id": "spades-12",
+              "suit": "spades",
+              "rank": 12
+            },
+            {
+              "id": "spades-13",
+              "suit": "spades",
+              "rank": 13
+            },
+            {
+              "id": "spades-14",
+              "suit": "spades",
+              "rank": 14
+            },
+            {
+              "id": "hearts-2",
+              "suit": "hearts",
+              "rank": 2
+            },
+            {
+              "id": "hearts-3",
+              "suit": "hearts",
+              "rank": 3
+            },
+            {
+              "id": "hearts-4",
+              "suit": "hearts",
+              "rank": 4
+            },
+            {
+              "id": "hearts-5",
+              "suit": "hearts",
+              "rank": 5
+            },
+            {
+              "id": "hearts-6",
+              "suit": "hearts",
+              "rank": 6
+            },
+            {
+              "id": "hearts-7",
+              "suit": "hearts",
+              "rank": 7
+            },
+            {
+              "id": "hearts-8",
+              "suit": "hearts",
+              "rank": 8
+            },
+            {
+              "id": "hearts-9",
+              "suit": "hearts",
+              "rank": 9
+            },
+            {
+              "id": "hearts-10",
+              "suit": "hearts",
+              "rank": 10
+            },
+            {
+              "id": "hearts-11",
+              "suit": "hearts",
+              "rank": 11
+            },
+            {
+              "id": "hearts-12",
+              "suit": "hearts",
+              "rank": 12
+            },
+            {
+              "id": "hearts-13",
+              "suit": "hearts",
+              "rank": 13
+            },
+            {
+              "id": "hearts-14",
+              "suit": "hearts",
+              "rank": 14
+            },
+            {
+              "id": "clubs-2",
+              "suit": "clubs",
+              "rank": 2
+            },
+            {
+              "id": "clubs-3",
+              "suit": "clubs",
+              "rank": 3
+            },
+            {
+              "id": "clubs-4",
+              "suit": "clubs",
+              "rank": 4
+            },
+            {
+              "id": "clubs-5",
+              "suit": "clubs",
+              "rank": 5
+            },
+            {
+              "id": "clubs-6",
+              "suit": "clubs",
+              "rank": 6
+            },
+            {
+              "id": "clubs-7",
+              "suit": "clubs",
+              "rank": 7
+            },
+            {
+              "id": "clubs-8",
+              "suit": "clubs",
+              "rank": 8
+            },
+            {
+              "id": "clubs-9",
+              "suit": "clubs",
+              "rank": 9
+            },
+            {
+              "id": "clubs-10",
+              "suit": "clubs",
+              "rank": 10
+            },
+            {
+              "id": "clubs-11",
+              "suit": "clubs",
+              "rank": 11
+            },
+            {
+              "id": "clubs-12",
+              "suit": "clubs",
+              "rank": 12
+            },
+            {
+              "id": "clubs-13",
+              "suit": "clubs",
+              "rank": 13
+            },
+            {
+              "id": "clubs-14",
+              "suit": "clubs",
+              "rank": 14
+            },
+            {
+              "id": "diamonds-2",
+              "suit": "diamonds",
+              "rank": 2
+            },
+            {
+              "id": "diamonds-3",
+              "suit": "diamonds",
+              "rank": 3
+            },
+            {
+              "id": "diamonds-4",
+              "suit": "diamonds",
+              "rank": 4
+            },
+            {
+              "id": "diamonds-5",
+              "suit": "diamonds",
+              "rank": 5
+            },
+            {
+              "id": "diamonds-6",
+              "suit": "diamonds",
+              "rank": 6
+            },
+            {
+              "id": "diamonds-7",
+              "suit": "diamonds",
+              "rank": 7
+            },
+            {
+              "id": "diamonds-8",
+              "suit": "diamonds",
+              "rank": 8
+            },
+            {
+              "id": "diamonds-9",
+              "suit": "diamonds",
+              "rank": 9
+            },
+            {
+              "id": "diamonds-10",
+              "suit": "diamonds",
+              "rank": 10
+            },
+            {
+              "id": "diamonds-11",
+              "suit": "diamonds",
+              "rank": 11
+            },
+            {
+              "id": "diamonds-12",
+              "suit": "diamonds",
+              "rank": 12
+            },
+            {
+              "id": "diamonds-13",
+              "suit": "diamonds",
+              "rank": 13
+            },
+            {
+              "id": "diamonds-14",
+              "suit": "diamonds",
+              "rank": 14
+            }
+          ],
+          "drawPile": [
+            "clubs-6",
+            "diamonds-4",
+            "spades-10",
+            "spades-11",
+            "clubs-11",
+            "clubs-12",
+            "clubs-2",
+            "clubs-5",
+            "spades-14",
+            "diamonds-14",
+            "spades-13",
+            "diamonds-3",
+            "hearts-10",
+            "diamonds-5",
+            "spades-4",
+            "clubs-4",
+            "spades-6",
+            "hearts-13",
+            "diamonds-13",
+            "hearts-4",
+            "hearts-12",
+            "diamonds-6",
+            "spades-5",
+            "diamonds-11",
+            "hearts-2",
+            "clubs-7",
+            "clubs-9",
+            "spades-3",
+            "hearts-6",
+            "hearts-5",
+            "diamonds-12",
+            "hearts-14",
+            "hearts-3",
+            "diamonds-9",
+            "diamonds-7",
+            "hearts-11",
+            "diamonds-2",
+            "hearts-8",
+            "clubs-3",
+            "clubs-13",
+            "hearts-7",
+            "clubs-14",
+            "diamonds-8",
+            "spades-7"
+          ],
+          "handOrder": [
+            "spades-2",
+            "spades-9",
+            "spades-8",
+            "spades-12",
+            "clubs-8",
+            "hearts-9",
+            "clubs-10",
+            "diamonds-10"
+          ],
+          "playedPile": [],
+          "discardPile": [],
+          "destroyedIds": [],
+          "stage": {
+            "routeGrowth": {
+              "entry": {
+                "commandId": "run/1792048549660/amo/command/3",
+                "seq": 3,
+                "type": "EnterStage"
+              },
+              "handTypes": [],
+              "eligible": [],
+              "sources": []
+            },
+            "openingDiscard": null,
+            "assistUsed": false,
+            "index": 0,
+            "targetHeat": "400",
+            "initialTargetHeat": "400",
+            "heat": "0",
+            "handsLeft": 4,
+            "initialHands": 4,
+            "discardsLeft": 3,
+            "initialDiscards": 3,
+            "discardSpent": 0,
+            "discardGained": 0,
+            "doubleDiscardBeforeFirstPlay": false,
+            "discardsUsed": 0,
+            "skipResult": null,
+            "playIndex": 0,
+            "previousHandType": null,
+            "previousHandScore": null,
+            "handLimit": 8,
+            "initialHandLimit": 8,
+            "boss": null,
+            "initialJokerIds": [],
+            "sealedJokerIds": [],
+            "challengeDisabledJokerId": null,
+            "rescueUsed": false,
+            "clearId": null,
+            "goldEarned": 0,
+            "disabledIds": [],
+            "wagerSelected": false,
+            "wagerUsed": false,
+            "maxPlayedCount": 0,
+            "ordinaryStraightSeen": false,
+            "ordinaryFlushSeen": false,
+            "quadRefundUsed": false,
+            "jokerSold": false
+          },
+          "totalHeat": "0",
+          "gold": 6,
+          "jokers": [],
+          "consumables": [],
+          "longTermItems": [],
+          "program": {
+            "chapter": 1,
+            "offerIds": [
+              "PG01",
+              "PG03"
+            ],
+            "selectedId": null,
+            "choiceMade": true,
+            "abandoned": false,
+            "lastOpportunityClear": false,
+            "claimed": false
+          },
+          "boss": {
+            "definitionId": "B01",
+            "disabledSuit": null
+          },
+          "seenBossIds": [
+            "B01"
+          ],
+          "chapterSkipConsumable": "T01",
+          "purchaseCoupons": 0,
+          "safetyNetUsed": false,
+          "shop": null,
+          "spectralModifiers": {
+            "handsPenalty": 0,
+            "handPenalty": 0,
+            "cleanSlateBonus": 0
+          },
+          "supplyRewardClaimed": false,
+          "chapterHandUsage": {},
+          "normalClearClaimed": false,
+          "tourMode": "normal",
+          "normalCompletion": null,
+          "rng": {
+            "deck": {
+              "algorithm": "fnv1a-mulberry32-v1",
+              "state": 740973741
+            },
+            "rule": {
+              "algorithm": "fnv1a-mulberry32-v1",
+              "state": 3194043190
+            },
+            "shop": {
+              "algorithm": "fnv1a-mulberry32-v1",
+              "state": 2271423525
+            },
+            "reward": {
+              "algorithm": "fnv1a-mulberry32-v1",
+              "state": 2493951237
+            },
+            "program": {
+              "algorithm": "fnv1a-mulberry32-v1",
+              "state": 1923889213
+            },
+            "challenge": {
+              "algorithm": "fnv1a-mulberry32-v1",
+              "state": 2749788814
+            }
+          },
+          "receipts": [
+            {
+              "commandId": "run/1792048549660/amo/start",
+              "fingerprint": "json-fnv-v1:9863dbbe71ecbbea",
+              "seq": 1
+            },
+            {
+              "commandId": "run/1792048549660/amo/command/2",
+              "fingerprint": "json-fnv-v1:a348f919fdda61ed",
+              "seq": 2
+            },
+            {
+              "commandId": "run/1792048549660/amo/command/3",
+              "fingerprint": "json-fnv-v1:11224e62eff1d506",
+              "seq": 3
+            }
+          ],
+          "lastTrace": null,
+          "handLevels": {},
+          "outcome": null,
+          "chapterTargetPlan": {
+            "policyVersion": "core-build-target-v1",
+            "chapter": 1,
+            "targets": [
+              "400",
+              "600",
+              "800"
+            ],
+            "boss": {
+              "definitionId": "B01",
+              "disabledSuit": null
+            }
+          }
+        },
+        "journal": [
+          {
+            "runId": "run/1792048549660/amo",
+            "commandId": "run/1792048549660/amo/command/2",
+            "expectedSeq": 1,
+            "action": {
+              "type": "LeaveShop"
+            }
+          },
+          {
+            "runId": "run/1792048549660/amo",
+            "commandId": "run/1792048549660/amo/command/3",
+            "expectedSeq": 2,
+            "action": {
+              "type": "EnterStage"
+            }
+          }
+        ],
+        "stored": {
+          "revision": 3,
+          "current": {
+            "format": "dachoupai-checkpoint",
+            "formatVersion": 1,
+            "state": {
+              "routeGrowth": {
+                "clears": 0,
+                "G": 0,
+                "S": 0,
+                "F": 0,
+                "settlements": []
+              },
+              "schemaVersion": 2,
+              "rulesVersion": "r2",
+              "contentVersion": "quality-r2-core-build-v1",
+              "contentHash": "json-fnv-v1:6dfe1a721e4949e6",
+              "runId": "run/1792048549660/amo",
+              "seed": "1792048549660",
+              "commandSeq": 3,
+              "difficulty": 0,
+              "characterId": "amo",
+              "openingRoute": "group",
+              "openingShow": {
+                "handsScored": 0,
+                "rootId": null,
+                "eventId": null,
+                "reason": null
+              },
+              "routeStarter": {
+                "instanceId": null,
+                "rootId": null,
+                "eventId": null
+              },
+              "mode": "standard",
+              "challengeId": null,
+              "programsEnabled": true,
+              "programRerollCoupon": false,
+              "chapterDisabledJokerId": null,
+              "chapter": 1,
+              "stageIndex": 0,
+              "phase": "await-input",
+              "deckInstances": [
+                {
+                  "id": "spades-2",
+                  "suit": "spades",
+                  "rank": 2
+                },
+                {
+                  "id": "spades-3",
+                  "suit": "spades",
+                  "rank": 3
+                },
+                {
+                  "id": "spades-4",
+                  "suit": "spades",
+                  "rank": 4
+                },
+                {
+                  "id": "spades-5",
+                  "suit": "spades",
+                  "rank": 5
+                },
+                {
+                  "id": "spades-6",
+                  "suit": "spades",
+                  "rank": 6
+                },
+                {
+                  "id": "spades-7",
+                  "suit": "spades",
+                  "rank": 7
+                },
+                {
+                  "id": "spades-8",
+                  "suit": "spades",
+                  "rank": 8
+                },
+                {
+                  "id": "spades-9",
+                  "suit": "spades",
+                  "rank": 9
+                },
+                {
+                  "id": "spades-10",
+                  "suit": "spades",
+                  "rank": 10
+                },
+                {
+                  "id": "spades-11",
+                  "suit": "spades",
+                  "rank": 11
+                },
+                {
+                  "id": "spades-12",
+                  "suit": "spades",
+                  "rank": 12
+                },
+                {
+                  "id": "spades-13",
+                  "suit": "spades",
+                  "rank": 13
+                },
+                {
+                  "id": "spades-14",
+                  "suit": "spades",
+                  "rank": 14
+                },
+                {
+                  "id": "hearts-2",
+                  "suit": "hearts",
+                  "rank": 2
+                },
+                {
+                  "id": "hearts-3",
+                  "suit": "hearts",
+                  "rank": 3
+                },
+                {
+                  "id": "hearts-4",
+                  "suit": "hearts",
+                  "rank": 4
+                },
+                {
+                  "id": "hearts-5",
+                  "suit": "hearts",
+                  "rank": 5
+                },
+                {
+                  "id": "hearts-6",
+                  "suit": "hearts",
+                  "rank": 6
+                },
+                {
+                  "id": "hearts-7",
+                  "suit": "hearts",
+                  "rank": 7
+                },
+                {
+                  "id": "hearts-8",
+                  "suit": "hearts",
+                  "rank": 8
+                },
+                {
+                  "id": "hearts-9",
+                  "suit": "hearts",
+                  "rank": 9
+                },
+                {
+                  "id": "hearts-10",
+                  "suit": "hearts",
+                  "rank": 10
+                },
+                {
+                  "id": "hearts-11",
+                  "suit": "hearts",
+                  "rank": 11
+                },
+                {
+                  "id": "hearts-12",
+                  "suit": "hearts",
+                  "rank": 12
+                },
+                {
+                  "id": "hearts-13",
+                  "suit": "hearts",
+                  "rank": 13
+                },
+                {
+                  "id": "hearts-14",
+                  "suit": "hearts",
+                  "rank": 14
+                },
+                {
+                  "id": "clubs-2",
+                  "suit": "clubs",
+                  "rank": 2
+                },
+                {
+                  "id": "clubs-3",
+                  "suit": "clubs",
+                  "rank": 3
+                },
+                {
+                  "id": "clubs-4",
+                  "suit": "clubs",
+                  "rank": 4
+                },
+                {
+                  "id": "clubs-5",
+                  "suit": "clubs",
+                  "rank": 5
+                },
+                {
+                  "id": "clubs-6",
+                  "suit": "clubs",
+                  "rank": 6
+                },
+                {
+                  "id": "clubs-7",
+                  "suit": "clubs",
+                  "rank": 7
+                },
+                {
+                  "id": "clubs-8",
+                  "suit": "clubs",
+                  "rank": 8
+                },
+                {
+                  "id": "clubs-9",
+                  "suit": "clubs",
+                  "rank": 9
+                },
+                {
+                  "id": "clubs-10",
+                  "suit": "clubs",
+                  "rank": 10
+                },
+                {
+                  "id": "clubs-11",
+                  "suit": "clubs",
+                  "rank": 11
+                },
+                {
+                  "id": "clubs-12",
+                  "suit": "clubs",
+                  "rank": 12
+                },
+                {
+                  "id": "clubs-13",
+                  "suit": "clubs",
+                  "rank": 13
+                },
+                {
+                  "id": "clubs-14",
+                  "suit": "clubs",
+                  "rank": 14
+                },
+                {
+                  "id": "diamonds-2",
+                  "suit": "diamonds",
+                  "rank": 2
+                },
+                {
+                  "id": "diamonds-3",
+                  "suit": "diamonds",
+                  "rank": 3
+                },
+                {
+                  "id": "diamonds-4",
+                  "suit": "diamonds",
+                  "rank": 4
+                },
+                {
+                  "id": "diamonds-5",
+                  "suit": "diamonds",
+                  "rank": 5
+                },
+                {
+                  "id": "diamonds-6",
+                  "suit": "diamonds",
+                  "rank": 6
+                },
+                {
+                  "id": "diamonds-7",
+                  "suit": "diamonds",
+                  "rank": 7
+                },
+                {
+                  "id": "diamonds-8",
+                  "suit": "diamonds",
+                  "rank": 8
+                },
+                {
+                  "id": "diamonds-9",
+                  "suit": "diamonds",
+                  "rank": 9
+                },
+                {
+                  "id": "diamonds-10",
+                  "suit": "diamonds",
+                  "rank": 10
+                },
+                {
+                  "id": "diamonds-11",
+                  "suit": "diamonds",
+                  "rank": 11
+                },
+                {
+                  "id": "diamonds-12",
+                  "suit": "diamonds",
+                  "rank": 12
+                },
+                {
+                  "id": "diamonds-13",
+                  "suit": "diamonds",
+                  "rank": 13
+                },
+                {
+                  "id": "diamonds-14",
+                  "suit": "diamonds",
+                  "rank": 14
+                }
+              ],
+              "drawPile": [
+                "clubs-6",
+                "diamonds-4",
+                "spades-10",
+                "spades-11",
+                "clubs-11",
+                "clubs-12",
+                "clubs-2",
+                "clubs-5",
+                "spades-14",
+                "diamonds-14",
+                "spades-13",
+                "diamonds-3",
+                "hearts-10",
+                "diamonds-5",
+                "spades-4",
+                "clubs-4",
+                "spades-6",
+                "hearts-13",
+                "diamonds-13",
+                "hearts-4",
+                "hearts-12",
+                "diamonds-6",
+                "spades-5",
+                "diamonds-11",
+                "hearts-2",
+                "clubs-7",
+                "clubs-9",
+                "spades-3",
+                "hearts-6",
+                "hearts-5",
+                "diamonds-12",
+                "hearts-14",
+                "hearts-3",
+                "diamonds-9",
+                "diamonds-7",
+                "hearts-11",
+                "diamonds-2",
+                "hearts-8",
+                "clubs-3",
+                "clubs-13",
+                "hearts-7",
+                "clubs-14",
+                "diamonds-8",
+                "spades-7"
+              ],
+              "handOrder": [
+                "spades-2",
+                "spades-9",
+                "spades-8",
+                "spades-12",
+                "clubs-8",
+                "hearts-9",
+                "clubs-10",
+                "diamonds-10"
+              ],
+              "playedPile": [],
+              "discardPile": [],
+              "destroyedIds": [],
+              "stage": {
+                "routeGrowth": {
+                  "entry": {
+                    "commandId": "run/1792048549660/amo/command/3",
+                    "seq": 3,
+                    "type": "EnterStage"
+                  },
+                  "handTypes": [],
+                  "eligible": [],
+                  "sources": []
+                },
+                "openingDiscard": null,
+                "assistUsed": false,
+                "index": 0,
+                "targetHeat": "400",
+                "initialTargetHeat": "400",
+                "heat": "0",
+                "handsLeft": 4,
+                "initialHands": 4,
+                "discardsLeft": 3,
+                "initialDiscards": 3,
+                "discardSpent": 0,
+                "discardGained": 0,
+                "doubleDiscardBeforeFirstPlay": false,
+                "discardsUsed": 0,
+                "skipResult": null,
+                "playIndex": 0,
+                "previousHandType": null,
+                "previousHandScore": null,
+                "handLimit": 8,
+                "initialHandLimit": 8,
+                "boss": null,
+                "initialJokerIds": [],
+                "sealedJokerIds": [],
+                "challengeDisabledJokerId": null,
+                "rescueUsed": false,
+                "clearId": null,
+                "goldEarned": 0,
+                "disabledIds": [],
+                "wagerSelected": false,
+                "wagerUsed": false,
+                "maxPlayedCount": 0,
+                "ordinaryStraightSeen": false,
+                "ordinaryFlushSeen": false,
+                "quadRefundUsed": false,
+                "jokerSold": false
+              },
+              "totalHeat": "0",
+              "gold": 6,
+              "jokers": [],
+              "consumables": [],
+              "longTermItems": [],
+              "program": {
+                "chapter": 1,
+                "offerIds": [
+                  "PG01",
+                  "PG03"
+                ],
+                "selectedId": null,
+                "choiceMade": true,
+                "abandoned": false,
+                "lastOpportunityClear": false,
+                "claimed": false
+              },
+              "boss": {
+                "definitionId": "B01",
+                "disabledSuit": null
+              },
+              "seenBossIds": [
+                "B01"
+              ],
+              "chapterSkipConsumable": "T01",
+              "purchaseCoupons": 0,
+              "safetyNetUsed": false,
+              "shop": null,
+              "spectralModifiers": {
+                "handsPenalty": 0,
+                "handPenalty": 0,
+                "cleanSlateBonus": 0
+              },
+              "supplyRewardClaimed": false,
+              "chapterHandUsage": {},
+              "normalClearClaimed": false,
+              "tourMode": "normal",
+              "normalCompletion": null,
+              "rng": {
+                "deck": {
+                  "algorithm": "fnv1a-mulberry32-v1",
+                  "state": 740973741
+                },
+                "rule": {
+                  "algorithm": "fnv1a-mulberry32-v1",
+                  "state": 3194043190
+                },
+                "shop": {
+                  "algorithm": "fnv1a-mulberry32-v1",
+                  "state": 2271423525
+                },
+                "reward": {
+                  "algorithm": "fnv1a-mulberry32-v1",
+                  "state": 2493951237
+                },
+                "program": {
+                  "algorithm": "fnv1a-mulberry32-v1",
+                  "state": 1923889213
+                },
+                "challenge": {
+                  "algorithm": "fnv1a-mulberry32-v1",
+                  "state": 2749788814
+                }
+              },
+              "receipts": [
+                {
+                  "commandId": "run/1792048549660/amo/start",
+                  "fingerprint": "json-fnv-v1:9863dbbe71ecbbea",
+                  "seq": 1
+                },
+                {
+                  "commandId": "run/1792048549660/amo/command/2",
+                  "fingerprint": "json-fnv-v1:a348f919fdda61ed",
+                  "seq": 2
+                },
+                {
+                  "commandId": "run/1792048549660/amo/command/3",
+                  "fingerprint": "json-fnv-v1:11224e62eff1d506",
+                  "seq": 3
+                }
+              ],
+              "lastTrace": null,
+              "handLevels": {},
+              "outcome": null,
+              "chapterTargetPlan": {
+                "policyVersion": "core-build-target-v1",
+                "chapter": 1,
+                "targets": [
+                  "400",
+                  "600",
+                  "800"
+                ],
+                "boss": {
+                  "definitionId": "B01",
+                  "disabledSuit": null
+                }
+              }
+            },
+            "journalBaseSeq": 1,
+            "journal": [
+              {
+                "runId": "run/1792048549660/amo",
+                "commandId": "run/1792048549660/amo/command/2",
+                "expectedSeq": 1,
+                "action": {
+                  "type": "LeaveShop"
+                }
+              },
+              {
+                "runId": "run/1792048549660/amo",
+                "commandId": "run/1792048549660/amo/command/3",
+                "expectedSeq": 2,
+                "action": {
+                  "type": "EnterStage"
+                }
+              }
+            ],
+            "checksum": "json-fnv-v1:c1f8f4d796d8c70b"
+          },
+          "previous": {
+            "format": "dachoupai-checkpoint",
+            "formatVersion": 1,
+            "state": {
+              "routeGrowth": {
+                "clears": 0,
+                "G": 0,
+                "S": 0,
+                "F": 0,
+                "settlements": []
+              },
+              "schemaVersion": 2,
+              "rulesVersion": "r2",
+              "contentVersion": "quality-r2-core-build-v1",
+              "contentHash": "json-fnv-v1:6dfe1a721e4949e6",
+              "runId": "run/1792048549660/amo",
+              "seed": "1792048549660",
+              "commandSeq": 2,
+              "difficulty": 0,
+              "characterId": "amo",
+              "openingRoute": "group",
+              "openingShow": {
+                "handsScored": 0,
+                "rootId": null,
+                "eventId": null,
+                "reason": null
+              },
+              "routeStarter": {
+                "instanceId": null,
+                "rootId": null,
+                "eventId": null
+              },
+              "mode": "standard",
+              "challengeId": null,
+              "programsEnabled": true,
+              "programRerollCoupon": false,
+              "chapterDisabledJokerId": null,
+              "chapter": 1,
+              "stageIndex": 0,
+              "phase": "stage-ready",
+              "deckInstances": [
+                {
+                  "id": "spades-2",
+                  "suit": "spades",
+                  "rank": 2
+                },
+                {
+                  "id": "spades-3",
+                  "suit": "spades",
+                  "rank": 3
+                },
+                {
+                  "id": "spades-4",
+                  "suit": "spades",
+                  "rank": 4
+                },
+                {
+                  "id": "spades-5",
+                  "suit": "spades",
+                  "rank": 5
+                },
+                {
+                  "id": "spades-6",
+                  "suit": "spades",
+                  "rank": 6
+                },
+                {
+                  "id": "spades-7",
+                  "suit": "spades",
+                  "rank": 7
+                },
+                {
+                  "id": "spades-8",
+                  "suit": "spades",
+                  "rank": 8
+                },
+                {
+                  "id": "spades-9",
+                  "suit": "spades",
+                  "rank": 9
+                },
+                {
+                  "id": "spades-10",
+                  "suit": "spades",
+                  "rank": 10
+                },
+                {
+                  "id": "spades-11",
+                  "suit": "spades",
+                  "rank": 11
+                },
+                {
+                  "id": "spades-12",
+                  "suit": "spades",
+                  "rank": 12
+                },
+                {
+                  "id": "spades-13",
+                  "suit": "spades",
+                  "rank": 13
+                },
+                {
+                  "id": "spades-14",
+                  "suit": "spades",
+                  "rank": 14
+                },
+                {
+                  "id": "hearts-2",
+                  "suit": "hearts",
+                  "rank": 2
+                },
+                {
+                  "id": "hearts-3",
+                  "suit": "hearts",
+                  "rank": 3
+                },
+                {
+                  "id": "hearts-4",
+                  "suit": "hearts",
+                  "rank": 4
+                },
+                {
+                  "id": "hearts-5",
+                  "suit": "hearts",
+                  "rank": 5
+                },
+                {
+                  "id": "hearts-6",
+                  "suit": "hearts",
+                  "rank": 6
+                },
+                {
+                  "id": "hearts-7",
+                  "suit": "hearts",
+                  "rank": 7
+                },
+                {
+                  "id": "hearts-8",
+                  "suit": "hearts",
+                  "rank": 8
+                },
+                {
+                  "id": "hearts-9",
+                  "suit": "hearts",
+                  "rank": 9
+                },
+                {
+                  "id": "hearts-10",
+                  "suit": "hearts",
+                  "rank": 10
+                },
+                {
+                  "id": "hearts-11",
+                  "suit": "hearts",
+                  "rank": 11
+                },
+                {
+                  "id": "hearts-12",
+                  "suit": "hearts",
+                  "rank": 12
+                },
+                {
+                  "id": "hearts-13",
+                  "suit": "hearts",
+                  "rank": 13
+                },
+                {
+                  "id": "hearts-14",
+                  "suit": "hearts",
+                  "rank": 14
+                },
+                {
+                  "id": "clubs-2",
+                  "suit": "clubs",
+                  "rank": 2
+                },
+                {
+                  "id": "clubs-3",
+                  "suit": "clubs",
+                  "rank": 3
+                },
+                {
+                  "id": "clubs-4",
+                  "suit": "clubs",
+                  "rank": 4
+                },
+                {
+                  "id": "clubs-5",
+                  "suit": "clubs",
+                  "rank": 5
+                },
+                {
+                  "id": "clubs-6",
+                  "suit": "clubs",
+                  "rank": 6
+                },
+                {
+                  "id": "clubs-7",
+                  "suit": "clubs",
+                  "rank": 7
+                },
+                {
+                  "id": "clubs-8",
+                  "suit": "clubs",
+                  "rank": 8
+                },
+                {
+                  "id": "clubs-9",
+                  "suit": "clubs",
+                  "rank": 9
+                },
+                {
+                  "id": "clubs-10",
+                  "suit": "clubs",
+                  "rank": 10
+                },
+                {
+                  "id": "clubs-11",
+                  "suit": "clubs",
+                  "rank": 11
+                },
+                {
+                  "id": "clubs-12",
+                  "suit": "clubs",
+                  "rank": 12
+                },
+                {
+                  "id": "clubs-13",
+                  "suit": "clubs",
+                  "rank": 13
+                },
+                {
+                  "id": "clubs-14",
+                  "suit": "clubs",
+                  "rank": 14
+                },
+                {
+                  "id": "diamonds-2",
+                  "suit": "diamonds",
+                  "rank": 2
+                },
+                {
+                  "id": "diamonds-3",
+                  "suit": "diamonds",
+                  "rank": 3
+                },
+                {
+                  "id": "diamonds-4",
+                  "suit": "diamonds",
+                  "rank": 4
+                },
+                {
+                  "id": "diamonds-5",
+                  "suit": "diamonds",
+                  "rank": 5
+                },
+                {
+                  "id": "diamonds-6",
+                  "suit": "diamonds",
+                  "rank": 6
+                },
+                {
+                  "id": "diamonds-7",
+                  "suit": "diamonds",
+                  "rank": 7
+                },
+                {
+                  "id": "diamonds-8",
+                  "suit": "diamonds",
+                  "rank": 8
+                },
+                {
+                  "id": "diamonds-9",
+                  "suit": "diamonds",
+                  "rank": 9
+                },
+                {
+                  "id": "diamonds-10",
+                  "suit": "diamonds",
+                  "rank": 10
+                },
+                {
+                  "id": "diamonds-11",
+                  "suit": "diamonds",
+                  "rank": 11
+                },
+                {
+                  "id": "diamonds-12",
+                  "suit": "diamonds",
+                  "rank": 12
+                },
+                {
+                  "id": "diamonds-13",
+                  "suit": "diamonds",
+                  "rank": 13
+                },
+                {
+                  "id": "diamonds-14",
+                  "suit": "diamonds",
+                  "rank": 14
+                }
+              ],
+              "drawPile": [
+                "spades-2",
+                "spades-3",
+                "spades-4",
+                "spades-5",
+                "spades-6",
+                "spades-7",
+                "spades-8",
+                "spades-9",
+                "spades-10",
+                "spades-11",
+                "spades-12",
+                "spades-13",
+                "spades-14",
+                "hearts-2",
+                "hearts-3",
+                "hearts-4",
+                "hearts-5",
+                "hearts-6",
+                "hearts-7",
+                "hearts-8",
+                "hearts-9",
+                "hearts-10",
+                "hearts-11",
+                "hearts-12",
+                "hearts-13",
+                "hearts-14",
+                "clubs-2",
+                "clubs-3",
+                "clubs-4",
+                "clubs-5",
+                "clubs-6",
+                "clubs-7",
+                "clubs-8",
+                "clubs-9",
+                "clubs-10",
+                "clubs-11",
+                "clubs-12",
+                "clubs-13",
+                "clubs-14",
+                "diamonds-2",
+                "diamonds-3",
+                "diamonds-4",
+                "diamonds-5",
+                "diamonds-6",
+                "diamonds-7",
+                "diamonds-8",
+                "diamonds-9",
+                "diamonds-10",
+                "diamonds-11",
+                "diamonds-12",
+                "diamonds-13",
+                "diamonds-14"
+              ],
+              "handOrder": [],
+              "playedPile": [],
+              "discardPile": [],
+              "destroyedIds": [],
+              "stage": null,
+              "totalHeat": "0",
+              "gold": 6,
+              "jokers": [],
+              "consumables": [],
+              "longTermItems": [],
+              "program": {
+                "chapter": 1,
+                "offerIds": [
+                  "PG01",
+                  "PG03"
+                ],
+                "selectedId": null,
+                "choiceMade": false,
+                "abandoned": false,
+                "lastOpportunityClear": false,
+                "claimed": false
+              },
+              "boss": {
+                "definitionId": "B01",
+                "disabledSuit": null
+              },
+              "seenBossIds": [
+                "B01"
+              ],
+              "chapterSkipConsumable": "T01",
+              "purchaseCoupons": 0,
+              "safetyNetUsed": false,
+              "shop": {
+                "visitIndex": 0,
+                "rerollCount": 0,
+                "purchases": 0,
+                "soldJoker": false,
+                "freeRerolls": 0,
+                "offers": [
+                  {
+                    "offerId": "run/1792048549660/amo/shop/0/0/joker/0",
+                    "definitionId": "a08",
+                    "price": 4,
+                    "edition": "none",
+                    "consumed": false
+                  },
+                  {
+                    "offerId": "run/1792048549660/amo/shop/0/0/joker/1",
+                    "definitionId": "d10",
+                    "price": 4,
+                    "edition": "none",
+                    "consumed": false
+                  },
+                  {
+                    "offerId": "run/1792048549660/amo/shop/0/0/joker/2",
+                    "definitionId": "mantangcai",
+                    "price": 4,
+                    "edition": "none",
+                    "consumed": false
+                  }
+                ],
+                "toolOffers": [
+                  {
+                    "offerId": "run/1792048549660/amo/shop/0/0/tool/0",
+                    "definitionId": "T08",
+                    "price": 2,
+                    "consumed": false
+                  }
+                ],
+                "itemOffers": [
+                  {
+                    "offerId": "run/1792048549660/amo/shop/0/0/item/0",
+                    "definitionId": "U01",
+                    "price": 10,
+                    "consumed": false
+                  }
+                ],
+                "basicChoice": {
+                  "shopSeq": 1,
+                  "purchase": null
+                }
+              },
+              "spectralModifiers": {
+                "handsPenalty": 0,
+                "handPenalty": 0,
+                "cleanSlateBonus": 0
+              },
+              "supplyRewardClaimed": false,
+              "chapterHandUsage": {},
+              "normalClearClaimed": false,
+              "tourMode": "normal",
+              "normalCompletion": null,
+              "rng": {
+                "deck": {
+                  "algorithm": "fnv1a-mulberry32-v1",
+                  "state": 1820397790
+                },
+                "rule": {
+                  "algorithm": "fnv1a-mulberry32-v1",
+                  "state": 3194043190
+                },
+                "shop": {
+                  "algorithm": "fnv1a-mulberry32-v1",
+                  "state": 2271423525
+                },
+                "reward": {
+                  "algorithm": "fnv1a-mulberry32-v1",
+                  "state": 2493951237
+                },
+                "program": {
+                  "algorithm": "fnv1a-mulberry32-v1",
+                  "state": 1923889213
+                },
+                "challenge": {
+                  "algorithm": "fnv1a-mulberry32-v1",
+                  "state": 2749788814
+                }
+              },
+              "receipts": [
+                {
+                  "commandId": "run/1792048549660/amo/start",
+                  "fingerprint": "json-fnv-v1:9863dbbe71ecbbea",
+                  "seq": 1
+                },
+                {
+                  "commandId": "run/1792048549660/amo/command/2",
+                  "fingerprint": "json-fnv-v1:a348f919fdda61ed",
+                  "seq": 2
+                }
+              ],
+              "lastTrace": null,
+              "handLevels": {},
+              "outcome": null,
+              "chapterTargetPlan": {
+                "policyVersion": "core-build-target-v1",
+                "chapter": 1,
+                "targets": [
+                  "400",
+                  "600",
+                  "800"
+                ],
+                "boss": {
+                  "definitionId": "B01",
+                  "disabledSuit": null
+                }
+              }
+            },
+            "journalBaseSeq": 1,
+            "journal": [
+              {
+                "runId": "run/1792048549660/amo",
+                "commandId": "run/1792048549660/amo/command/2",
+                "expectedSeq": 1,
+                "action": {
+                  "type": "LeaveShop"
+                }
+              }
+            ],
+            "checksum": "json-fnv-v1:afa4935d6d8768d9"
+          }
+        }
+      },
+      "failureScene": {
+        "selectedIds": [],
+        "assistIds": [],
+        "ready": true,
+        "playing": false,
+        "presentation": false,
+        "status": "",
+        "phase": "await-input",
+        "commandSeq": 3,
+        "heroClimax": false
+      }
+    }
+  ],
+  "status": "FAIL",
+  "error": "AssertionError [ERR_ASSERTION]: wrong portrait bytes are hidden in direct DOM detail\n    at file:///workspace/dachoupai/harness/hero-art-contract.mjs:28:800"
+}
