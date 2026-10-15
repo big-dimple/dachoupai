@@ -1,0 +1,19 @@
+{
+  "sourceBefore": "e6034d6634b5663308b0291ba8c1006a5a28b6db0f2ff7c0c3df30bee90fada2",
+  "head": "5d4c406b1d1cefbf0dcaf4eb955ca0aebfc63dde",
+  "dirty": "?? docs/production/evidence/growth-selection-2026-10-15/",
+  "browser": "151.0.7922.173",
+  "scope": "Controlled validated current-identity save imports, native selection/details/play/reload; software Canvas only, no natural play or physical device approval.",
+  "cases": [
+    {
+      "width": 1366,
+      "height": 768,
+      "errors": [],
+      "steps": [],
+      "status": "FAIL"
+    }
+  ],
+  "status": "FAIL",
+  "error": "page.waitForFunction: Timeout 30000ms exceeded.\n    at waitScene (/workspace/dachoupai/harness/ui.mjs:3:41)\n    at /workspace/dachoupai/harness/growth-selection.mjs:29:58",
+  "sourceAfter": "e6034d6634b5663308b0291ba8c1006a5a28b6db0f2ff7c0c3df30bee90fada2"
+}
