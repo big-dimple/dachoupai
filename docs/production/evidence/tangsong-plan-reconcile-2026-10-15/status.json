@@ -1,0 +1,118 @@
+{
+  "taskId": "P08",
+  "testedCommit": "8e2174141920ef001b95a30485e70525920d3d9f",
+  "date": "2026-10-15",
+  "kind": "read_only_document_reconciliation",
+  "entryPoint": "docs/production/DELIVERY_PLAN.md#当前统一执行计划",
+  "runtimeChanged": false,
+  "components": [
+    {
+      "id": "main",
+      "sha": "8e2174141920ef001b95a30485e70525920d3d9f",
+      "state": "main",
+      "owner": "统筹/发布负责人",
+      "scope": "main代码基线；部署状态本轮未核，不是重新验收或线上性能回执",
+      "evidencePath": "docs/production/evidence/astra-brand-growth-recommendation-2026-10-15/README.md",
+      "evidenceUrl": "https://github.com/big-dimple/dachoupai/blob/8e2174141920ef001b95a30485e70525920d3d9f/docs/production/evidence/astra-brand-growth-recommendation-2026-10-15/README.md"
+    },
+    {
+      "id": "preload",
+      "sha": "9c41dfff2a66ffa66b5cf812c2742caae9cdf125",
+      "state": "development_complete_not_main",
+      "owner": "加载负责人",
+      "scope": "共享加载/解码/缓存/场景预载、真实134项、截止重试和文字继续；不含六正式图后的146项目录",
+      "evidencePath": "docs/production/evidence/loading-preload-2026-10-15/README.md",
+      "evidenceUrl": "https://github.com/big-dimple/dachoupai/blob/9c41dfff2a66ffa66b5cf812c2742caae9cdf125/docs/production/evidence/loading-preload-2026-10-15/README.md"
+    },
+    {
+      "id": "carry",
+      "sha": "7dfab9a678d2701219234bc63dea0e987de5cbf5",
+      "state": "development_complete_in_integration",
+      "owner": "R03负责人（已结束开发）",
+      "scope": "体验审查R03：确切工具实例、显式携带、当前手牌选目标确认；12组受控证据，不是原R03工作包重开",
+      "evidencePath": "docs/production/evidence/r03-carry-tool-2026-10-15/README.md",
+      "evidenceUrl": "https://github.com/big-dimple/dachoupai/blob/7dfab9a678d2701219234bc63dea0e987de5cbf5/docs/production/evidence/r03-carry-tool-2026-10-15/README.md"
+    },
+    {
+      "id": "opening",
+      "sha": "eba6c158954039dddbe9adeac40fd99df693d565",
+      "state": "development_complete_in_integration",
+      "owner": "加载动画负责人（已结束开发）",
+      "scope": "山河/日印/三牌与真实进度、低动态；原生图/录屏/134项回归；指定参考站实看仍未完成",
+      "evidencePath": "docs/production/evidence/loading-opening-2026-10-15/README.md",
+      "evidenceUrl": "https://github.com/big-dimple/dachoupai/blob/eba6c158954039dddbe9adeac40fd99df693d565/docs/production/evidence/loading-opening-2026-10-15/README.md"
+    },
+    {
+      "id": "portrait-sources",
+      "sha": "e6922f8d56cf42b9dedd4eab00d772591a7b79ad",
+      "state": "source_delivered_user_accepted_originals_only",
+      "owner": "原图转存负责人",
+      "scope": "六张原始1122×1402 PNG与manifest；用户验收六原图；不等于运行时或独立眼原画验收",
+      "evidencePath": "art/sources/tangsong-portraits-20261015/manifest.json",
+      "evidenceUrl": "https://github.com/big-dimple/dachoupai/blob/e6922f8d56cf42b9dedd4eab00d772591a7b79ad/art/sources/tangsong-portraits-20261015/manifest.json"
+    },
+    {
+      "id": "themes",
+      "sha": "53b5283a1ae8a02255a124fc8f450743583f0e23",
+      "state": "development_complete_superseded_by_portrait_runtime",
+      "owner": "角色展示负责人",
+      "scope": "六主题接入/旧转存阻塞回执为当时历史；原图不可读阻塞已由后续转存与运行时解除",
+      "evidencePath": "docs/production/evidence/approved-character-art-2026-10-15/README.md",
+      "evidenceUrl": "https://github.com/big-dimple/dachoupai/blob/53b5283a1ae8a02255a124fc8f450743583f0e23/docs/production/evidence/approved-character-art-2026-10-15/README.md"
+    },
+    {
+      "id": "portrait-runtime",
+      "sha": "bd626e84c429b0e45aa61a52bba10af2eb953714",
+      "state": "development_complete_pending_integration",
+      "owner": "正式图接线负责人（本轮另路）",
+      "scope": "选角/说明/头像/筹备/结果/高光，146项17.01MiB/20MiB；安全头脸特写不是独立眼原画；待同版整合与体验验收",
+      "evidencePath": "docs/production/evidence/approved-character-art-2026-10-15/README.md",
+      "evidenceUrl": "https://github.com/big-dimple/dachoupai/blob/bd626e84c429b0e45aa61a52bba10af2eb953714/docs/production/evidence/approved-character-art-2026-10-15/README.md"
+    },
+    {
+      "id": "integration",
+      "sha": "a85be2a8817d5985746c9caeb5f978b2e66ac74e",
+      "state": "loading_and_carry_integrated_portraits_in_progress",
+      "owner": "dev/tangsong-delivery-20261015整合负责人",
+      "scope": "已含加载动画+R03，三尺寸正常新局前段及保存同态已记录；此快照尚不含bd626e84，另路正在合入六图；不得预记最终同版通过",
+      "evidencePath": "docs/production/evidence/tangsong-delivery-integration-2026-10-15/README.md",
+      "evidenceUrl": "https://github.com/big-dimple/dachoupai/blob/a85be2a8817d5985746c9caeb5f978b2e66ac74e/docs/production/evidence/tangsong-delivery-integration-2026-10-15/README.md"
+    }
+  ],
+  "alreadyImplemented": [
+    {
+      "id": "skill-reminder",
+      "state": "implemented_in_main_do_not_redevelop",
+      "source": "src/game/HeroPlayReminder.ts",
+      "evidence": "docs/production/evidence/l25-hero-play-reminder-2026-10-15/README.md",
+      "scope": "仅登记新手局前两场各一次/每局最多两次，真实可用性，取消/Escape计入额度，原偏好与保存合同"
+    },
+    {
+      "id": "failure-retry",
+      "state": "implemented_in_main_do_not_redevelop",
+      "source": "src/game/IntermissionScene.ts",
+      "evidence": "docs/production/evidence/failure-retry-guidance-2026-10-15/README.md",
+      "scope": "失败回顾与同种子同身份重试；真实保存新开候选不污染原局；自然长期学习效果仍未签"
+    },
+    {
+      "id": "b05-text-event",
+      "state": "implemented_in_main_do_not_redevelop",
+      "source": "src/game/OpponentPresentation.ts",
+      "evidence": "docs/production/evidence/b05-opponent-2026-10-15/README.md",
+      "scope": "入场、当前手牌应对与计分事件文字反馈；保留原B05规则，无新增人物图/配音验收"
+    }
+  ],
+  "humanAcceptance": {
+    "sixPortraitOriginals": "accepted_by_user_only_for_these_six_originals",
+    "runtimePresentation": "pending",
+    "independentEyeOriginals": "not_delivered_crop_is_not_original",
+    "physicalDeviceAndAudio": "pending",
+    "wholeGame": "not_accepted"
+  },
+  "limits": [
+    "分支/提交状态不是部署验收；本轮不查CI/域名、不合main。",
+    "证据按各自提交读取；134项目录结果不签146项目录；未将同名截图跨版本拼成终验。",
+    "角色新文本只在文档/JSON，运行时采用待后续专属接线。"
+  ],
+  "testedCommitMeaning": "计划校验器所需字段：本次只读规则/实现核对基线，不表示本轮重新跑过运行时测试或用户验收。"
+}
