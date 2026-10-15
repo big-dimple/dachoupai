@@ -1,0 +1,267 @@
+{
+  "sourceCommit": "e8702e673bb428b357373556b5cc97e3d5a970d5",
+  "sourceStatusAtFinalBrowserRuns": "clean",
+  "branchBase": "ef009924377e7ac337c7b38cec5a694a0f4856a7",
+  "status": "PASS",
+  "reusedOriginalCommits": [
+    "653d23c2ec87133907c0cfd4ba4679260137a344",
+    "af08a36ab45fc3a60edd0dd8c902ddfd85496db5"
+  ],
+  "localIsolatedCommits": [
+    "e340b946db2b261d96db90ccb3f18e128b569b45",
+    "e573b05afa52790eb48c0a93367c8be8657d2ce6"
+  ],
+  "reusedFilesByteIdenticalToB05": true,
+  "newProductFile": "src/game/OwnedJokerInput.ts",
+  "protectedTreesUnchanged": [
+    "src/domain",
+    "src/application",
+    "src/content",
+    "src/audio",
+    "src/main.ts",
+    "src/style.css",
+    "src/game/GameScene.ts",
+    "src/game/ShopScene.ts",
+    "public"
+  ],
+  "tests": {
+    "files": 7,
+    "tests": 94,
+    "status": "PASS",
+    "run": "npm test -- tests/owned-joker-input.test.ts tests/viewport-density.test.ts tests/hand-selection-input.test.ts tests/hand-selection-gesture.test.ts tests/scene-view-refresh.test.ts tests/owned-joker-drag-visual.test.ts tests/pointer-release-time.test.ts",
+    "sourceNote": "Completed before freeze with the same product and test bytes; no unrelated suite repeated."
+  },
+  "typecheck": "PASS",
+  "build": {
+    "version": "C03",
+    "builtAt": "2026-10-15T07:28:19.593Z",
+    "revision": "e8702e673bb428b357373556b5cc97e3d5a970d5",
+    "sourceStatus": "clean",
+    "modified": false
+  },
+  "browserCases": [
+    {
+      "name": "touch-0-320x568",
+      "status": "PASS",
+      "type": "ReorderJokers",
+      "oneSave": true,
+      "fullCanonicalStateAndStorageEqual": true
+    },
+    {
+      "name": "touch-1-740x320",
+      "status": "PASS",
+      "type": "ReorderJokers",
+      "oneSave": true,
+      "fullCanonicalStateAndStorageEqual": true
+    },
+    {
+      "name": "touch-2-390x740",
+      "status": "PASS",
+      "type": "ReorderJokers",
+      "oneSave": true,
+      "fullCanonicalStateAndStorageEqual": true
+    },
+    {
+      "name": "touch-3-1366x768",
+      "status": "PASS",
+      "type": "ReorderJokers",
+      "oneSave": true,
+      "fullCanonicalStateAndStorageEqual": true
+    },
+    {
+      "name": "touch-4-320x568",
+      "status": "PASS",
+      "type": "ReorderJokers",
+      "oneSave": true,
+      "fullCanonicalStateAndStorageEqual": true
+    },
+    {
+      "name": "touch-original-play",
+      "status": "PASS",
+      "type": "PlayHand",
+      "oneSave": true,
+      "fullCanonicalStateAndStorageEqual": true
+    },
+    {
+      "name": "mouse-0-390x740",
+      "status": "PASS",
+      "type": "ReorderJokers",
+      "oneSave": true,
+      "fullCanonicalStateAndStorageEqual": true
+    },
+    {
+      "name": "mouse-1-740x390",
+      "status": "PASS",
+      "type": "ReorderJokers",
+      "oneSave": true,
+      "fullCanonicalStateAndStorageEqual": true
+    },
+    {
+      "name": "mouse-2-1366x768",
+      "status": "PASS",
+      "type": "ReorderJokers",
+      "oneSave": true,
+      "fullCanonicalStateAndStorageEqual": true
+    },
+    {
+      "name": "mouse-original-play",
+      "status": "PASS",
+      "type": "PlayHand",
+      "oneSave": true,
+      "fullCanonicalStateAndStorageEqual": true
+    }
+  ],
+  "screenshotsVisuallyInspected": [
+    "dynamic-final/touch-1-740x320-after.png",
+    "dynamic-final/mouse-2-1366x768-after.png",
+    "exact-final/after-play.png"
+  ],
+  "notAccepted": [
+    "physical phone/orientation sensor",
+    "DPR or GPU/performance",
+    "natural gameplay or overall game acceptance",
+    "CI or production deployment"
+  ],
+  "artifacts": [
+    {
+      "path": "before-reuse/after-play.png",
+      "bytes": 59807,
+      "sha256": "bac8513932becb2b42b2f9ed67dfd2b9f49a1b6783e294f3d63b93271de8b404"
+    },
+    {
+      "path": "before-reuse/before-play.png",
+      "bytes": 58132,
+      "sha256": "51ce45d746c99a47bfcce317fa69b51869faa972b415c5c2a7797608deaccd2a"
+    },
+    {
+      "path": "before-reuse/report.json",
+      "bytes": 51066,
+      "sha256": "06edaa654c95a5713a8a1bc24c680d95923f26d00c3948a9364b4704e400e8c2"
+    },
+    {
+      "path": "build-info.json",
+      "bytes": 169,
+      "sha256": "e02bf572a5c0679ed36f7d73c307a0ac70eff89d08570bb5e13ef605f11fb4ca"
+    },
+    {
+      "path": "dynamic-final/mouse-0-390x740-after.png",
+      "bytes": 91058,
+      "sha256": "3bae688a73c5a8b098f7fcf9733f7a7c5bff42ff194efd64d007d4b70cc6feb3"
+    },
+    {
+      "path": "dynamic-final/mouse-0-390x740-modal.png",
+      "bytes": 91446,
+      "sha256": "7398776e2be748655baaa30e5cee5fbc90b79e0bf5249b6d51a8529064f7f925"
+    },
+    {
+      "path": "dynamic-final/mouse-1-740x390-after.png",
+      "bytes": 87980,
+      "sha256": "0bbe793b11607059c73cba3609d3f64c89a78a241897f9854a1ad95f24935314"
+    },
+    {
+      "path": "dynamic-final/mouse-1-740x390-modal.png",
+      "bytes": 75566,
+      "sha256": "8992290a356213465ba37b26738c8bc0ebb13467b7f9f95f8bdc9e345042f1b7"
+    },
+    {
+      "path": "dynamic-final/mouse-2-1366x768-after.png",
+      "bytes": 174474,
+      "sha256": "2232bebc96b475c5a3abce28b24cde21207d78f31d387a7b7af1435421c79884"
+    },
+    {
+      "path": "dynamic-final/mouse-2-1366x768-modal.png",
+      "bytes": 254141,
+      "sha256": "28dce50d1667a5481a1d093f5b73f215939d184ca31db69445221dff91da2ece"
+    },
+    {
+      "path": "dynamic-final/report.json.gz",
+      "bytes": 77426,
+      "sha256": "9d6c441fe135965ba1b715058395ab3b1c51c2ccbb7426179830cdd62b8397c9"
+    },
+    {
+      "path": "dynamic-final/summary.json",
+      "bytes": 77652,
+      "sha256": "df8765993aa7b01dfa2b10ef43cef22f62545615520d5c37b41063855095095d"
+    },
+    {
+      "path": "dynamic-final/touch-0-320x568-after.png",
+      "bytes": 67634,
+      "sha256": "8adb10c626e015170439a5d95fbb6437ad6b1f01e1a4d742aa0ef7217be6d4de"
+    },
+    {
+      "path": "dynamic-final/touch-0-320x568-modal.png",
+      "bytes": 66259,
+      "sha256": "2de6189c71a22935a0427caf0ad7bda98d8978d9710ea9889a803d8084eefd04"
+    },
+    {
+      "path": "dynamic-final/touch-1-740x320-after.png",
+      "bytes": 75712,
+      "sha256": "a22df938f83b86250838a5f6371a3f3507088055b109ae6f74c57737b6bdeed7"
+    },
+    {
+      "path": "dynamic-final/touch-1-740x320-modal.png",
+      "bytes": 59317,
+      "sha256": "b66a7921ae3ac5196c2e49d34b43ef6111c03482d17ef7875cc56b0ed5752dcb"
+    },
+    {
+      "path": "dynamic-final/touch-2-390x740-after.png",
+      "bytes": 91058,
+      "sha256": "3bae688a73c5a8b098f7fcf9733f7a7c5bff42ff194efd64d007d4b70cc6feb3"
+    },
+    {
+      "path": "dynamic-final/touch-2-390x740-modal.png",
+      "bytes": 91446,
+      "sha256": "7398776e2be748655baaa30e5cee5fbc90b79e0bf5249b6d51a8529064f7f925"
+    },
+    {
+      "path": "dynamic-final/touch-3-1366x768-after.png",
+      "bytes": 174495,
+      "sha256": "2c381471570e5be530ae18dc6a17babe9a469e1341a4bdf944cfd8543ffcbca7"
+    },
+    {
+      "path": "dynamic-final/touch-3-1366x768-modal.png",
+      "bytes": 254141,
+      "sha256": "42b039baba5bd5e1db5fd452954f0db44ca0ad764ffca8cbb7390319d836e17c"
+    },
+    {
+      "path": "dynamic-final/touch-4-320x568-after.png",
+      "bytes": 67634,
+      "sha256": "8adb10c626e015170439a5d95fbb6437ad6b1f01e1a4d742aa0ef7217be6d4de"
+    },
+    {
+      "path": "dynamic-final/touch-4-320x568-modal.png",
+      "bytes": 66230,
+      "sha256": "4555dd91caacf91a6d7d4705d56b2c81c459f0e846d759dc8b1a72f17d4ebe9a"
+    },
+    {
+      "path": "exact-final/after-play.png",
+      "bytes": 55750,
+      "sha256": "46f1a9cfbc14b4e99297ff5341f2dc4612763bcad5cd396ba6dec702e7b6a1a9"
+    },
+    {
+      "path": "exact-final/before-play.png",
+      "bytes": 57995,
+      "sha256": "f5d89555e028dcce9c91bc313a89cc216134f74200d2c13de89cc7eeccb86947"
+    },
+    {
+      "path": "exact-final/report.json",
+      "bytes": 50892,
+      "sha256": "c9652697dd8902e4682c9ca96d542510c7f3dba6fd2ab3bbad308b72c3767adf"
+    },
+    {
+      "path": "reused-owned-rail-failure/FAIL.png",
+      "bytes": 60434,
+      "sha256": "e10cf263214d6e853b3ff3c88aef3a6f814d01b47137beb409e2d6fd6dc14870"
+    },
+    {
+      "path": "reused-owned-rail-failure/report.json.gz",
+      "bytes": 8013,
+      "sha256": "d5adf0174e47db6b7a8fddbe2432c85068b8591dee00c1685ac4214b4160f443"
+    },
+    {
+      "path": "reused-owned-rail-failure/summary.json",
+      "bytes": 26460,
+      "sha256": "1733524c03c2cf9b26d40c2caedc58d8c81f42859f53c01ebfc4b47d4782d41b"
+    }
+  ]
+}
