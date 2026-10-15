@@ -39,4 +39,9 @@ describe('scene Joker leases on the shared thumbnail queue',()=>{
  it('aborts removed reroll offers but retains currently owned/requested IDs',async()=>{
   const f=fixture();shared.load.mockImplementation(()=>new Promise(()=>{}));requestJokerArt(f.scene,['b07','c05'],vi.fn());const signals=shared.load.mock.calls.map(c=>c[3] as AbortSignal);requestJokerArt(f.scene,['c05','mantangcai'],vi.fn());expect(signals[0].aborted).toBe(true);expect(signals[1].aborted).toBe(false);f.shutdown();
  });
+ it('shares the automatic retry promise with explicit retries and settles all owners on shutdown',async()=>{
+  const f=fixture();shared.load.mockRejectedValue(Error('network'));requestJokerArt(f.scene,['b07'],vi.fn());await tick();
+  const retry=retryJokerArt(f.scene,['b07'],vi.fn());f.shutdown();await expect(retry).resolves.toBe(false);await vi.runAllTimersAsync();expect(shared.load).toHaveBeenCalledOnce();
+ });
+
 });

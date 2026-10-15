@@ -1,4 +1,4 @@
-export interface WarmImage {key:string;url:string;visible?:boolean}
+export interface WarmImage {key:string;url:string;visible?:boolean;scope?:AbortSignal}
 export interface WarmImageState extends WarmImage {status:'queued'|'loading'|'loaded'|'failed';attempts:number}
 /** Small fixed catalog, two transfers, one automatic retry; explicit retries stay possible. */
 export class ImageWarmupQueue {
@@ -31,6 +31,7 @@ export class ImageWarmupQueue {
     while(!this.disposed&&this.active<2&&this.pending.length){
       const entry=this.entries.get(this.pending.shift()!)!;entry.status='loading';entry.attempts++;this.active++;this.changed();
       void this.load(entry,this.controller.signal).then(()=>{entry.status='loaded';},error=>{
+        if((error as {canceled?:boolean})?.canceled){this.entries.delete(entry.key);return;}
         entry.status='failed';
         if(entry.attempts===1&&(error as {retryable?:boolean})?.retryable!==false&&!this.disposed){entry.status='queued';this.pending.push(entry.key);}
       }).finally(()=>{this.active--;if(!this.disposed){this.changed();this.pump();}});

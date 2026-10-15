@@ -23,4 +23,11 @@ describe('staged image queue',()=>{
     let finish!:()=>void,signal!:AbortSignal;const changed=vi.fn();const queue=new ImageWarmupQueue((_a,s)=>{signal=s;return new Promise<void>(resolve=>finish=resolve);},changed);
     queue.request(['hero','court','next'].map(asset));queue.dispose();expect(signal.aborted).toBe(true);const calls=changed.mock.calls.length;finish();await tick();expect(changed).toHaveBeenCalledTimes(calls);expect(queue.snapshot()).toEqual([]);
   });
+  it('retires obsolete shop warmup without recording a failed image or re-arming a retry',async()=>{
+    const owner=new AbortController();let fail!:(error:Error)=>void;
+    const load=vi.fn(()=>new Promise<void>((_resolve,reject)=>fail=reject));
+    const queue=new ImageWarmupQueue(load,()=>{});queue.request([{...asset('old-shop'),scope:owner.signal}]);owner.abort();fail(Object.assign(Error('retired'),{canceled:true,retryable:false}));await tick();
+    expect(queue.snapshot()).toEqual([]);queue.retry();expect(load).toHaveBeenCalledOnce();queue.dispose();
+  });
+
 });
