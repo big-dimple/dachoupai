@@ -23,6 +23,7 @@ import {AssistRecommendationCache} from './AssistRecommendation';
 import {showAssistChoices} from './AssistChoiceDialog';
 import {heroPayoffs,heroPayoffBeat} from './HeroPayoff';
 import {heroAbilityCue,savedHeroResult} from './HeroAbilityCue';
+import {unusedHeroAbility,heroPlayReminders,showHeroPlayReminder} from './HeroPlayReminder';
 import {usesErxiangHandoff} from '../domain/r2ErxiangHandoff';
 import {erxiangChoice,savedErxiangHandoff} from './ErxiangHandoffCopy';
 import {drawStageTableArt,playedCaptionBox} from './StageTableArt';
@@ -1543,7 +1544,16 @@ export class GameScene extends Phaser.Scene {
   }
   private async playSelected():Promise<void> {
     if(this.pendingRefill){await this.chooseRefill();return;}
-    if(!this.ready||this.selectedIds.size===0||this.handsLeft<=0)return;
+    if(!this.ready||this.presentation||this.dialog.current||this.selectedIds.size===0||this.handsLeft<=0)return;
+    const facts=this.selectionPreview(),ids=[...this.selectedIds],draft={erxiangTargetId:this.erxiangTargetId,xiemuBurn:this.xiemuBurn,azaoRelease:this.azaoRelease,assistCount:this.assistIds.length};
+    const assistAvailable=this.assistProfile&&assistCandidates(this.assistInput(),r2AssistAvailability(this.run).available).length>0;
+    if(unusedHeroAbility(this.run,facts,ids,assistAvailable,draft)&&heroPlayReminders.claim(this.run)){
+      const state=this.run,lifecycle=this.lifecycle,selection=JSON.stringify(ids),chosen=JSON.stringify(draft);
+      showHeroPlayReminder(this.dialog,this.run,facts!,ids,assistAvailable,{
+        valid:()=>this.lifecycle===lifecycle&&this.run===state&&this.ready&&!this.presentation&&JSON.stringify([...this.selectedIds])===selection&&JSON.stringify({erxiangTargetId:this.erxiangTargetId,xiemuBurn:this.xiemuBurn,azaoRelease:this.azaoRelease,assistCount:this.assistIds.length})===chosen&&unusedHeroAbility(this.run,this.selectionPreview(),[...this.selectedIds],this.assistProfile&&assistCandidates(this.assistInput(),r2AssistAvailability(this.run).available).length>0,draft),
+        back:()=>this.inspectRole(),play:()=>{void this.playSelected();},disable:()=>heroPlayReminders.disable(),
+      });return;
+    }
     const erxiangTargetId=this.erxiangTargetId,xiemuBurn=this.xiemuBurn,azaoRelease=this.azaoRelease,selectedIds=[...this.selectedIds],assistIds=[...this.assistIds],lifecycle=this.lifecycle,intent=++this.intent,beforeHeat=this.heat,previousTrace=this.run.lastTrace,beforeHands=this.handsLeft,beforeGold=this.run.gold;
     this.clearHover();this.cancelAiCandidates();this.playing=true;this.statusMessage='';this.updateControls();
     const selectedViews=this.cardViews.filter(v=>selectedIds.includes(v.card.id)||assistIds.includes(v.card.id));

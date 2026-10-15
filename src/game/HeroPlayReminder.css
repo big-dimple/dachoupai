@@ -1,0 +1,14 @@
+/* This short decision stays compact; the existing modal owns scroll/focus and action targets. */
+.detail-dialog.hero-play-reminder[open] {
+ width:min(520px,calc(100vw - var(--safe-left) - var(--safe-right) - 24px));
+ height:auto;inset:auto;top:50%;left:50%;transform:translate(-50%,-50%);
+}
+.hero-play-reminder .dialog-scroll { height:auto; }
+.hero-play-reminder .dialog-purchase-summary { margin-top:0!important; }
+.hero-play-reminder .hero-reminder-disable { min-height:44px;margin-top:4px;background:transparent;box-shadow:none; }
+.hero-play-reminder .dialog-actions { display:grid;grid-template-columns:1fr 1fr; }
+.hero-play-reminder .dialog-close { grid-column:1/-1; }
+@media(max-height:420px) and (min-width:561px) {
+ .hero-play-reminder .dialog-actions { grid-template-columns:1fr 1fr 1fr; }
+ .hero-play-reminder .dialog-close { grid-column:auto; }
+}

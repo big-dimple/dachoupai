@@ -1,0 +1,247 @@
+{
+  "sourceCommit": "7b127e35430daf9cb4a05eeb0196c987eb3310f2",
+  "sourceStatusAtBrowserRun": "clean",
+  "sourceUnchangedAtResume": true,
+  "status": "PASS",
+  "reportSha256": "d6b1401f7f9d0fe1c00de7aa80a5ebaa889c15b8709e6bf56848ef2e7ff69247",
+  "reportFormat": "gzip of original complete JSON, bytes verified",
+  "build": {
+    "version": "C03",
+    "builtAt": "2026-10-15T06:19:02.867Z",
+    "revision": "7b127e35430daf9cb4a05eeb0196c987eb3310f2",
+    "sourceStatus": "clean",
+    "modified": false
+  },
+  "completedChecksBeforePause": {
+    "buildIncludingTypecheck": "PASS",
+    "targetedVitest": {
+      "files": 5,
+      "tests": 59,
+      "status": "PASS",
+      "provenance": "completed command output in task conversation; not rerun after resume"
+    }
+  },
+  "browserCases": [
+    {
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      },
+      "heroes": [
+        "erxiang",
+        "amo",
+        "azao",
+        "xiemu",
+        "touye",
+        "laohuan"
+      ],
+      "nativeSavedHands": 6,
+      "saveFailureFixedCandidateStorageEqual": true,
+      "status": "PASS",
+      "coldRestoreEqual": true,
+      "staleSelectionAndBusyNoSubmit": true,
+      "escapeAndReloadNoRepeat": true
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 740
+      },
+      "heroes": [
+        "erxiang",
+        "amo",
+        "azao",
+        "xiemu",
+        "touye",
+        "laohuan"
+      ],
+      "nativeSavedHands": 6,
+      "saveFailureFixedCandidateStorageEqual": true,
+      "status": "PASS",
+      "coldRestoreEqual": true,
+      "staleSelectionAndBusyNoSubmit": true,
+      "escapeAndReloadNoRepeat": true,
+      "disableNoAutomaticPlay": true,
+      "disabledNewRunNoReminder": true
+    }
+  ],
+  "coldViewportChecks": [
+    {
+      "width": 320,
+      "height": 568
+    },
+    {
+      "width": 740,
+      "height": 320
+    }
+  ],
+  "baselineResizeLimitation": "390 touch context resized to320 without reload selects extra K at play coordinate; independently reproduced on baseline 4d2ff4ca; not fixed or signed passed",
+  "sourceBlobs": {
+    "src/game/GameScene.ts": "c272d8aaa21e158879dc0d5a72d584ef3bb87070",
+    "src/game/HeroPlayReminder.ts": "388a98feb48b5226d676ba89bcac540b4807559e",
+    "src/game/HeroPlayReminder.css": "a8f48438f7da3785d2ff50575778c8f4aa966430",
+    "tests/hero-play-reminder.test.ts": "716329ccff25f9914132ee8aca198533be3ddef7",
+    "harness/hero-play-reminder.mjs": "847f389d90a78761d0d85b6e2c1c01309cff8cc5"
+  },
+  "screenshots": [
+    {
+      "file": "screenshots/1366-amo-reminder.png",
+      "sha256": "36c386e7ad5c28eee5a92bf74c5304fa7f3ac3bc8a5fc55d08f907a09527b874",
+      "bytes": 155553
+    },
+    {
+      "file": "screenshots/1366-amo-returned.png",
+      "sha256": "b7287acf28a5baac15852ad91c512cd7ad947eb81f691574332b3d2e4f75c354",
+      "bytes": 134993
+    },
+    {
+      "file": "screenshots/1366-azao-reminder.png",
+      "sha256": "a53ad5358aacb881a71ff875f67dde207d9c28c9d686352b19a525a46f0b3482",
+      "bytes": 161569
+    },
+    {
+      "file": "screenshots/1366-azao-returned.png",
+      "sha256": "ccaaf71786b8e13f26c444c717ececee4f69eeae3f8f1f7f1c3fa3206507a60b",
+      "bytes": 179228
+    },
+    {
+      "file": "screenshots/1366-erxiang-reminder.png",
+      "sha256": "8dc670f2b6e37251bf0b1df271cb2aa56165b33ea9962275c924c57d2b026c3d",
+      "bytes": 156793
+    },
+    {
+      "file": "screenshots/1366-erxiang-returned.png",
+      "sha256": "c60b1cd6fcb00b9987a576173bfb1300c3fbce07e0cff291f481590a81c2c129",
+      "bytes": 152402
+    },
+    {
+      "file": "screenshots/1366-laohuan-reminder.png",
+      "sha256": "77e7db9c26ea295b4b1ddff6c94aa9976608792edcaf3539f5ba5bd9fba18977",
+      "bytes": 152050
+    },
+    {
+      "file": "screenshots/1366-laohuan-returned.png",
+      "sha256": "4308647811b9e9e01e5ce1280cfaf42f6215e1cbe83b2ef0d68af5f6f5fb9282",
+      "bytes": 170252
+    },
+    {
+      "file": "screenshots/1366-save-failed.png",
+      "sha256": "ae7e7fb43fffb40ea2899ab194aa5425bc9e257c11c41160afa0050acddd2309",
+      "bytes": 159844
+    },
+    {
+      "file": "screenshots/1366-touye-reminder.png",
+      "sha256": "05c5d75bd360c0221da85aa3c4b58633f53d6c04b92f328bb9b78b73f65bddf3",
+      "bytes": 156797
+    },
+    {
+      "file": "screenshots/1366-touye-returned.png",
+      "sha256": "a18b40b0d8a8b835fab9218b3a72713697c450e53ecb5c01b6746826b4ce1e75",
+      "bytes": 132429
+    },
+    {
+      "file": "screenshots/1366-xiemu-reminder.png",
+      "sha256": "155259a2c9c77c8a3cbd0f111bd8a06a66f1a3f5267ebcac7611a6845ee095a6",
+      "bytes": 158164
+    },
+    {
+      "file": "screenshots/1366-xiemu-returned.png",
+      "sha256": "64b30049711bba492b9e25f24e26335ab2ed1f67e1a0d839591a6ae7f15ee2f2",
+      "bytes": 179667
+    },
+    {
+      "file": "screenshots/320-reminder-bottom.png",
+      "sha256": "69ffb859fd1d7be87bea9f1fbeba63fc0d04a22040e2d5c1114069e5877cc49a",
+      "bytes": 55761
+    },
+    {
+      "file": "screenshots/320-reminder.png",
+      "sha256": "f77d80a08ccda461fe121f3013d478a88e60c87df441374c40fea78d39a58023",
+      "bytes": 55744
+    },
+    {
+      "file": "screenshots/390-amo-reminder.png",
+      "sha256": "7a2ddd264bdcb4c27548e0852e5d69eba83402c858d00c79fd702452c47c4669",
+      "bytes": 66026
+    },
+    {
+      "file": "screenshots/390-amo-returned.png",
+      "sha256": "71ec48595b9a28ccbe04e08401072adbd97f58a0ab26a8795da68c1368a08cbf",
+      "bytes": 47977
+    },
+    {
+      "file": "screenshots/390-azao-reminder.png",
+      "sha256": "dcab02118e7090ba57dd0fe518f521a69bd2086c1fd69170532a757ea07b62dd",
+      "bytes": 72425
+    },
+    {
+      "file": "screenshots/390-azao-returned.png",
+      "sha256": "dd9e154298414c6e436848af661b1e560e60e1b543bb6db04a24ff2ed8cf124d",
+      "bytes": 41430
+    },
+    {
+      "file": "screenshots/390-erxiang-reminder.png",
+      "sha256": "546972b5d6015e1800497026c5a1c71fe77690bb15795ffbd5f8f018d28fe80f",
+      "bytes": 66783
+    },
+    {
+      "file": "screenshots/390-erxiang-returned.png",
+      "sha256": "e5447bc33d1739f0260ef2eafa32ee432fceba484a721528b57db4cf20bc8df7",
+      "bytes": 56881
+    },
+    {
+      "file": "screenshots/390-laohuan-reminder.png",
+      "sha256": "504b1e4930dd209e89b2be52c7eb0a43b9656fc2a10ee9394fd7a896c6a10c68",
+      "bytes": 65983
+    },
+    {
+      "file": "screenshots/390-laohuan-returned.png",
+      "sha256": "04a7a5ab27709fd8899f64ba76161b6f3f4a93a294a6a1f661ef8bd74c3a6b5e",
+      "bytes": 43561
+    },
+    {
+      "file": "screenshots/390-save-failed.png",
+      "sha256": "5bcd80de3b4f090e6e1b158690afa61f67deaf929377745fe6570412e495bef2",
+      "bytes": 49836
+    },
+    {
+      "file": "screenshots/390-touye-reminder.png",
+      "sha256": "ade53fe641fa6c85b4395514543df8e5a7752c6218a4da40f4f1ebb2acfd393e",
+      "bytes": 69358
+    },
+    {
+      "file": "screenshots/390-touye-returned.png",
+      "sha256": "56c3224983dd65ec0f0abddff4fa97959f367c87d031663eaba2d866c99f6472",
+      "bytes": 49512
+    },
+    {
+      "file": "screenshots/390-xiemu-reminder.png",
+      "sha256": "c703ad83b3e872e7955feeadc329374176928807cdfebd4c6e9a6cd13781079d",
+      "bytes": 68035
+    },
+    {
+      "file": "screenshots/390-xiemu-returned.png",
+      "sha256": "5952fe38283598c9e50a67a1259824dfdcc25901efebaeeebc6e46e182319b92",
+      "bytes": 56485
+    },
+    {
+      "file": "screenshots/740-reminder-bottom.png",
+      "sha256": "a111454e848568fac9c81c485e6e03312755b9a763abfbd8e7029235ee467925",
+      "bytes": 57315
+    },
+    {
+      "file": "screenshots/740-reminder.png",
+      "sha256": "a780931419363c8eb374adb6fb9461a4809fd1bbdf1e7bbff8e37075f3eb71c3",
+      "bytes": 57117
+    }
+  ],
+  "notAccepted": [
+    "physical devices",
+    "high DPR visual quality",
+    "human understanding/experience",
+    "audio",
+    "natural gameplay/economy/balance",
+    "whole game acceptance",
+    "CI or production deployment"
+  ]
+}
