@@ -9,7 +9,7 @@ const server=await createServer({mode:'e2e',cacheDir:'/tmp/loading-opening-vite'
 const browser=await chromium.launch({executablePath:'/usr/bin/chromium',args:['--no-sandbox','--disable-gpu']});
 const report={base:'9c41dfff2a66ffa66b5cf812c2742caae9cdf125',head:execFileSync('git',['rev-parse','HEAD'],{encoding:'utf8'}).trim(),dirty:execFileSync('git',['status','--short'],{encoding:'utf8'}).trim(),browser:browser.version(),scope:'Native real preload, software Chromium; bounded controlled transport delays expose animation. No physical device / subjective user acceptance.',cases:[]};
 try{
- for(const spec of [{width:1366,height:900},{width:390,height:844},{width:320,height:568},{width:390,height:844,osReduce:true},{width:320,height:740,appReduce:true},{width:1366,height:900,weak:true}]){
+ for(const spec of [{width:1366,height:900},{width:390,height:844},{width:320,height:568},{width:390,height:844,osReduce:true},{width:320,height:740,appReduce:true},{width:1366,height:900,weak:true}].filter(s=>!process.env.LOADING_ART_CASE||process.env.LOADING_ART_CASE===`${s.width}-${s.osReduce?'os-reduce':s.appReduce?'app-reduce':s.weak?'cpu4':'motion'}`)){
   const name=`${spec.width}-${spec.osReduce?'os-reduce':spec.appReduce?'app-reduce':spec.weak?'cpu4':'motion'}`;
   const ctx=await browser.newContext({...(process.env.LOADING_VIDEO==='1'&&!spec.weak&&!spec.appReduce&&!spec.osReduce?{recordVideo:{dir:out+'/video',size:{width:spec.width,height:spec.height}}}:{}),viewport:{width:spec.width,height:spec.height},deviceScaleFactor:spec.width<700?2:1,reducedMotion:spec.osReduce?'reduce':'no-preference'}),p=await ctx.newPage(),errors=[];
   p.on('pageerror',e=>errors.push(String(e)));const row={...spec,name,errors};report.cases.push(row);
