@@ -1,5 +1,5 @@
 import {formatScoreReview} from './ScoreReview';
-import {opponentChoices,opponentHandBeat,opponentOutcome,opponentSavedStatus,remainingScoreEvents,isEchoReduction} from './OpponentFacts';
+import {opponentChoices,opponentCuePlan,opponentSavedStatus,remainingScoreEvents} from './OpponentFacts';
 import {presentOpponentEntrance,showOpponentChoices,presentOpponentBeat} from './OpponentPresentation';
 import {whenTextureReady} from './LateTextureArt';
 import {warmTableImages} from './StageImageWarmup';
@@ -2022,17 +2022,21 @@ export class GameScene extends Phaser.Scene {
     const payoffs=heroPayoffs(state,score,replay),payoffByEvent=new Map(payoffs.map(k=>[k.eventId,k])),key=payoffs.find(k=>k.fact.definitionId);
     if(!this.climaxArtRequested&&key?.fact.definitionId&&heroClimaxValue(state,score,key,replay)){this.climaxArtRequested=true;this.climaxArtId=key.fact.definitionId;const abort=new AbortController();this.climaxArtAbort=abort;void loadClimaxSourceArt(this,key.fact.definitionId,abort.signal,()=>this.alive(lifecycle,intent)&&this.presentation===presentation&&this.effects.isCurrent(generation));}
     let jokerIndex=0,scoreOrdinal=0,multiplyOrdinal=0,previousSource:string|undefined;
-    const opponent=opponentHandBeat(score);
-    const opponentKey=opponent&&(replay||!this.shownOpponentKinds.has(opponent.kind));
-    if(opponentKey&&opponent?.kind==='changed'){this.shownOpponentKinds.add(opponent.kind);this.effects.enqueue(context=>presentOpponentBeat(this,toolInventoryPlayedArea(this.view.layout),opponent,context.signal,this.reducedMotion));}
+    const opponentCues=opponentCuePlan(state,score,this.shownOpponentKinds,replay);
+    const queueOpponent=(cue:typeof opponentCues[number])=>{this.shownOpponentKinds.add(cue.kind);this.effects.enqueue(context=>presentOpponentBeat(this,toolInventoryPlayedArea(this.view.layout),cue,context.signal,this.reducedMotion));};
     for(const event of remainingScoreEvents(score)){
-      if(isEchoReduction(event)&&opponent&&opponentKey){this.shownOpponentKinds.add(opponent.kind);this.effects.enqueue(context=>presentOpponentBeat(this,toolInventoryPlayedArea(this.view.layout),opponent,context.signal,this.reducedMotion));}
-      if(event.phase==='finalScore'){this.effects.enqueue(context=>this.award(score,presentation,context));continue;}
+      for(const cue of opponentCues.filter(cue=>cue.eventId===event.eventId&&cue.placement==='before-event'))queueOpponent(cue);
+      if(event.phase==='finalScore'){
+        this.effects.enqueue(context=>this.award(score,presentation,context));
+        // EffectQueue is serial: the result and cumulative heat land before a reaction.
+        for(const cue of opponentCues.filter(cue=>cue.eventId===event.eventId&&cue.placement==='after-result'&&cue.phase==='reaction'))queueOpponent(cue);
+        continue;
+      }
       const index=event.sourceType==='joker'?jokerIndex++:event.sourceType==='character'?0:score.sets.activeScoringIds.indexOf(event.targetCardId??'');
       let number=numberImpact(event,this.stage.targetHeat,multiplyOrdinal+1);if(number?.kind==='multiply')multiplyOrdinal++;let beat=impactBeat(experienceBeat(event,previousSource,scoreBeat(event,scoreOrdinal++)),number);if(event.sourceInstanceId===state.routeStarter?.instanceId&&!payoffByEvent.has(event.eventId))beat=starterRepeatBeat(beat,this.reducedMotion);if(event.sourceType==='joker'&&hasActualBenefit(event))previousSource=event.sourceInstanceId;else previousSource=undefined;this.effects.enqueue(context=>this.showScoreEvent(event,Math.max(0,index),beat,context,payoffByEvent.get(event.eventId),number));
     }
-    const opponentEnd=opponentOutcome(state,score);
-    if(opponentEnd)this.effects.enqueue(context=>presentOpponentBeat(this,toolInventoryPlayedArea(this.view.layout),opponentEnd,context.signal,this.reducedMotion));
+    // Outcome follows every score/resource event, including post-result settlements.
+    for(const cue of opponentCues.filter(cue=>cue.phase==='outcome'))queueOpponent(cue);
     let failed=false;
     try {await this.effects.drain();}
     catch {failed=true;if(this.alive(lifecycle,intent))this.resultText.setText('演出已停止，确定结果已保存。');}
