@@ -18,3 +18,11 @@ export function heroClimaxLayout(w:number,h:number,hasSource=true){
   heroX:subject.x+subject.width/2,heroY:subject.y+subject.height/2,heroH:subject.height,heroW:subject.width,
   nameX:inner.x,nameY:panel.y+16,nameW:inner.width,valueY,noteY};
 }
+
+/** Reserve measured wrapped title/owner height without moving the committed footer facts. */
+export function reserveHeroClimaxHeader(l:ReturnType<typeof heroClimaxLayout>,headerBottom:number){
+ if(!Number.isFinite(headerBottom)||headerBottom+12<=l.body.y)return l;
+ const y=Math.ceil(headerBottom)+12,height=Math.max(1,l.body.y+l.body.height-y),body={...l.body,y,height};
+ const source={...l.source,y,height},readout={...l.readout,y:y+height*(l.short?.08:.18),height:height*.7};
+ return {...l,body,source,readout,eyes:{...l.eyes,y:y+height*.08,height:height*(l.short?.54:.62)},landing:{...l.landing,y:y+10,height},heroY:y+height/2,heroH:height,valueY:readout.y+(l.short?20:28)};
+}

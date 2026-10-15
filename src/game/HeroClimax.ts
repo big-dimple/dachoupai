@@ -1,7 +1,7 @@
 import {HERO_ART_NOTICE} from './HeroIdentity';
 import type Phaser from 'phaser';
 import {heroPayoffs} from './HeroPayoff';
-import {heroClimaxLayout} from './HeroClimaxLayout';
+import {heroClimaxLayout,reserveHeroClimaxHeader} from './HeroClimaxLayout';
 import {mountHeroClimaxCaption} from './HeroClimaxCaption';
 import {climaxSourceKey} from './ClimaxSourceArt';
 import {crispText,textDensity} from './TextRaster';
@@ -44,7 +44,7 @@ export interface HeroClimaxView {group:Phaser.GameObjects.Container;strike:()=>v
 export function mountHeroClimax(scene:Phaser.Scene,root:Phaser.GameObjects.Container,viewport:Box,key:JokerKeyHighlight,value:HeroClimaxValue,reduced:boolean):HeroClimaxView|undefined {
  const id=key.heroId;if(!id)return;
  const heroKey=[portraitKey(id),selectionPortraitKey(id),avatarKey(id)].find(k=>scene.textures.exists(k));if(!heroKey)return;
- const {width:w,height:h}=viewport,l=heroClimaxLayout(w,h,!!key.fact.definitionId),p=l.panel;
+ const {width:w,height:h}=viewport;let l=heroClimaxLayout(w,h,!!key.fact.definitionId);const p=l.panel;
  const group=scene.add.container(0,0).setName('joker/key-focus').setData('eventId',key.eventId).setData('benefit',key.fact).setData('heroClimax',true).setData('starter',key.kind==='starter').setData('phase',reduced?'still':'charge').setData('bounds',viewport).setData('panel',p).setData('headlineWidth',l.nameW);root.add(group);
  const board=scene.add.container(0,0).setName('hero/climax-board');group.add(board);
  const shapes=scene.add.graphics();board.add(shapes);
@@ -55,7 +55,8 @@ export function mountHeroClimax(scene:Phaser.Scene,root:Phaser.GameObjects.Conta
  if(scene.textures.exists('p00-paper'))board.add(scene.add.tileSprite(p.x+3,p.y+7,p.width-6,p.height-12,'p00-paper').setOrigin(0).setAlpha(.07));
  const text=(parent:Phaser.GameObjects.Container,x:number,y:number,s:string,size:number,color=C.ink,width?:number)=>{const t=scene.add.text(x,y,s,{fontFamily:UI_FONT,fontSize:size+'px',fontStyle:'bold',color,resolution:textDensity(scene),...(width?{wordWrap:{width,useAdvancedWrap:true}}:{})});parent.add(t);crispText(t);return t;};
  const actualSource=!!key.fact.definitionId,title=actualSource?key.fact.title:value.skillName??getCharacter(id).name;
- mountHeroClimaxCaption(scene,board,l,{title,owner:(actualSource?getCharacter(id).name+' · '+getCharacter(id).title+' · 来源兑现':value.skillName?getCharacter(id).name+' · '+getCharacter(id).title+' · 技能兑现':'这一手 · 实际兑现')+' · '+HERO_ART_NOTICE,effect:value.note});
+ const headerBottom=mountHeroClimaxCaption(scene,board,l,{title,owner:(actualSource?getCharacter(id).name+' · '+getCharacter(id).title+' · 来源兑现':value.skillName?getCharacter(id).name+' · '+getCharacter(id).title+' · 技能兑现':'这一手 · 实际兑现')+' · '+HERO_ART_NOTICE,effect:value.note});
+ l=reserveHeroClimaxHeader(l,headerBottom);
  const eyesLayer=scene.add.container(0,0).setName('hero/shot-eyes'),skillLayer=scene.add.container(0,0).setName('hero/shot-skill'),landingLayer=scene.add.container(0,0).setName('hero/shot-landing');board.add([eyesLayer,skillLayer,landingLayer]);
  // Reviewed head crops exclude baked text. They come from the portrait, not independent eye artwork.
  // Never enlarge sampled pixels on the framebuffer; missing focus uses the full-subject shot.
@@ -80,14 +81,15 @@ export function mountHeroClimax(scene:Phaser.Scene,root:Phaser.GameObjects.Conta
  text(skillLayer,l.readout.x,l.readout.y,value.label,l.short?14:18,C.jade,l.readout.width).setName('hero/climax-value-label');
  const format=(s:string)=>/^\d{16,}$/.test(s)?'≈'+heatText(s):s;
  const number=(parent:Phaser.GameObjects.Container,x:number,y:number,s:string,size:number,width:number,height:number,name:string)=>{const t=scene.add.text(x,y,format(s),{fontFamily:SCORE_FONT,fontSize:size+'px',fontStyle:'800',color:C.red,resolution:density}).setName(name).setData('exactValue',s);parent.add(t);fitScoreLine(t,{x:x-width/2,y,width,height},size,true);return t;};
- const readout=number(skillLayer,l.readout.x+l.readout.width/2,l.valueY,value.after,l.short?48:l.portrait?82:112,l.readout.width,l.short?70:120,'hero/climax-value');
+ const readout=number(skillLayer,l.readout.x+l.readout.width/2,l.valueY,value.after,l.short?48:l.portrait?82:112,l.readout.width,Math.max(1,Math.min(l.short?70:120,l.noteY-l.valueY-12)),'hero/climax-value');
  if(value.accumulated)text(skillLayer,l.readout.x,l.valueY+readout.displayHeight+18,value.accumulated,l.short?14:18,C.jade,l.readout.width).setName('hero/climax-landing');
  text(skillLayer,l.sourceCaption.x,l.sourceCaption.y,(actualSource?'实际来源 · ':'')+key.fact.title,l.short?14:16,C.jade,l.sourceCaption.width).setName('hero/climax-source-title');
  // Last shot places the actual after-accumulator, never a future hand forecast.
  const landingY=l.landing.y+(l.short?20:52),landingValue=value.landingValue??value.after;
  text(landingLayer,l.nameX,l.landing.y,value.landingLabel??value.label,l.short?16:20,C.jade,l.nameW).setName('hero/climax-value-label');
- const landed=number(landingLayer,p.x+p.width/2,landingY,landingValue,l.short?74:l.portrait?138:190,l.nameW,l.landing.height*.63,'hero/climax-value');
- text(landingLayer,l.nameX,landingY+landed.displayHeight+16,value.landingValue?value.label+' '+value.after:value.note,l.short?14:20,C.red,l.nameW).setName('hero/climax-local-effect');
+ const landed=number(landingLayer,p.x+p.width/2,landingY,landingValue,l.short?74:l.portrait?138:190,l.nameW,Math.max(1,Math.min(l.landing.height*.63,l.noteY-landingY-(value.landingValue?48:16))),'hero/climax-value');
+ // The persistent caption already owns note; only a distinct local factor needs another line.
+ if(value.landingValue)text(landingLayer,l.nameX,Math.min(landingY+landed.displayHeight+16,l.noteY-(l.short?28:32)),value.label+' '+value.after,l.short?14:20,C.red,l.nameW).setName('hero/climax-local-effect');
  text(landingLayer,l.sourceCaption.x,l.sourceCaption.y,value.accumulated??key.landing,l.short?14:18,C.jade,l.sourceCaption.width).setName('hero/climax-landing');
  const owned=new Set<Phaser.Tweens.Tween>();let disposed=false,still=reduced,struck=false,strikeAt=0,shotAt=performance.now(),shot='',releaseDone:(()=>void)|undefined;
  const started=performance.now();

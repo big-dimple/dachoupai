@@ -6,7 +6,7 @@ import {UI_FONT,PAPER_CSS as C} from './theme';
 /** Saved source facts stay readable across camera cuts, independent of any artwork.
  * No clocks, input or game commands: the existing subject hold/skip owns lifetime. */
 export function mountHeroClimaxCaption(scene:Phaser.Scene,board:Phaser.GameObjects.Container,
- layout:ReturnType<typeof heroClimaxLayout>,copy:{title:string;owner:string;effect:string}):void {
+ layout:ReturnType<typeof heroClimaxLayout>,copy:{title:string;owner:string;effect:string}):number {
  const l=layout;
  const text=(x:number,y:number,value:string,size:number,color:string,name:string)=>{
   const t=scene.add.text(x,y,value,{fontFamily:UI_FONT,fontSize:size+'px',fontStyle:'bold',color,resolution:textDensity(scene)}).setName(name);
@@ -21,4 +21,5 @@ export function mountHeroClimaxCaption(scene:Phaser.Scene,board:Phaser.GameObjec
  // Fit real glyph bounds in the reserved footer; never scale a text bitmap with the image.
  for(let size=l.short?14:17;effect.height>l.sourceCaption.y-l.noteY-8&&size>14;)effect.setFontSize(--size);
  crispText(effect);
+ return owner.y+owner.height;
 }
