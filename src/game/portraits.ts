@@ -10,6 +10,8 @@ export const selectionPortraitURL=(id:CharacterId):string=>(characterArt(id,'sel
 /** Same portrait is warmed for the selected hero and requested by details/highlights. */
 export const portraitKey=(id:CharacterId):string=>characterArtKey(id,'portrait');
 export const portraitURL=(id:CharacterId):string=>(characterArt(id,'portrait')?.url??'');
+export const portraitFocusKey=(id:CharacterId):string=>characterArtKey(id,'focus');
+export const portraitFocusURL=(id:CharacterId):string=>(characterArt(id,'focus')?.url??'');
 /** The HUD uses reviewed face crops, never a stretched full portrait. */
 export function addAvatar(scene:Phaser.Scene,container:Phaser.GameObjects.Container,character:CharacterDefinition,x:number,y:number,size=64):void {
   const key=avatarKey(character.id);

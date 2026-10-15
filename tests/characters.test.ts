@@ -3,7 +3,7 @@ import { readFileSync } from 'node:fs';
 import { CHARACTERS, resolveCharacterModifier } from '../src/game/characters';
 
 describe('character portrait config', () => {
-  it('六位角色没有正式立绘时保留姓名而不引用占位或旧脸',()=>{for(const c of CHARACTERS){expect(c.portrait).toBe('');expect(c.name).toBeTruthy();}});
+  it('六位角色引用各自正式立绘且保留姓名',()=>{for(const c of CHARACTERS){expect(c.portrait).toContain('/assets/tangsong-portraits/'+c.id+'.portrait.webp');expect(c.name).toBeTruthy();}});
   it('focal 对焦点都在 0~1 有效区间内', () => {
     for (const character of CHARACTERS) {
       expect(character.portraitFocusX).toBeGreaterThanOrEqual(0);

@@ -144,7 +144,7 @@ export class CharacterSelectScene extends Phaser.Scene {
     }
     if(c.portrait){this.queueHeroPortrait(c.id);this.drawPortrait(c.id,q.art,true);}
     const portraitHit=v.rect(c.portrait?{...q.art,height:q.art.height+(p.short?0:24)}:{x:q.copy.x,y:q.copy.y,width:q.copy.width,height:44}).setFillStyle(0,0).setStrokeStyle(0);v.target(portraitHit,'opening/hero-details',{tap:()=>this.inspect(c.id),detail:()=>this.inspect(c.id)});
-    if(c.portrait&&!p.short)v.text(q.art.x+q.art.width/2,q.art.y+q.art.height+4,'人物图待交付 · 技能说明',14,'#3F606B').setOrigin(.5,0).setName('opening/portrait-hint');
+    if(c.portrait&&!p.short)v.text(q.art.x+q.art.width/2,q.art.y+q.art.height+4,'查看立绘 · 技能说明',14,'#3F606B').setOrigin(.5,0).setName('opening/portrait-hint');
     const x=q.copy.x,w=q.copy.width,tightPortrait=p.portrait&&q.copy.height<150;
     const name=v.text(x,q.copy.y,c.name,p.short?30:tightPortrait?28:p.portrait?34:p.w>=1280?66:52,copy.accent).setFontFamily('Georgia, "Noto Serif SC", SimSun, serif').setFontStyle('bold').setName('opening/name');
     for(let size=parseInt(name.style.fontSize.toString());name.width>w&&size>18;)name.setFontSize(--size);

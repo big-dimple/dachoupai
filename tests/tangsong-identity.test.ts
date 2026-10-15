@@ -26,9 +26,9 @@ it('keeps the current skills and real costs while changing their displayed owner
  expect(heroText('二响 · 交棒已兑现')).toBe('刘娥 · 交棒已兑现');
  expect(heroText('谢幕·燃金↗')).toBe('花蕊夫人·燃金↗');expect(heroText('逐个谢幕 · 已封禁')).toBe('逐个谢幕 · 已封禁');
 });
-it('unavailable named-person art has no placeholder files or old face URL',()=>{
+it('approved named-person art has no placeholder files or old face URL',()=>{
  expect(existsSync('public/assets/cast-placeholders')).toBe(false);
- for(const c of CHARACTERS)for(const purpose of ['avatar','selection','portrait'] as const)expect(characterArt(c.id,purpose)).toBeUndefined();
+ for(const c of CHARACTERS)for(const purpose of ['avatar','selection','portrait'] as const)expect(characterArt(c.id,purpose)?.path).toMatch(/^assets\/tangsong-portraits\//);
  expect(getCharacter('azao').name).toBe('文成公主');
 });
 

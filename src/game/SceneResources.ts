@@ -9,12 +9,13 @@ import {assetUrl,P00_ASSETS} from './theme';
 import {ImageWarmupQueue,type WarmImageState} from './ImageWarmupQueue';
 import {loadArtTexture} from './ArtTextureLoading';
 export interface SceneResource {key:string;url:string;pixels:number}
-export const PRELOAD_PIXEL_BUDGET=4*1024*1024; // <=16MiB decoded RGBA; no HD detail or music in this catalog.
+export const PRELOAD_PIXEL_BUDGET=5*1024*1024; // <=20MiB decoded RGBA, including all six small hero pairs; no optional portrait/focus or music.
 const paper=P00_ASSETS.map(a=>({key:a.key,url:assetUrl(a.path),pixels:a.width*a.height}));
 const joker=JOKER_ART.map(a=>{const out=HANDDRAWN_ART.find(d=>d.id===a.id)?.outputs.find(o=>o.purpose==='thumbnail');return {key:a.key,url:assetUrl(a.path),pixels:(out?.width??128)*(out?.height??160)};});
 const goods=GOODS_ART.flatMap(a=>{const out=a.outputs.find(o=>o.purpose==='thumbnail'),url=goodsArtUrl(a.domainId,a.category as 'tool-card'|'item-card','thumbnail');return out&&url?[{key:goodsArtKey(a.domainId),url,pixels:out.width*out.height}]:[];});
 const court=COURT_ART.map(a=>({key:a.key,url:assetUrl(a.path),pixels:256*384}));
-const heroes=CHARACTER_ART.map(a=>({key:a.key,url:a.url,pixels:a.width*a.height}));
+// Full portraits and native head crops stay optional; all six small faces fit beside the complete card catalog.
+const heroes=CHARACTER_ART.filter(a=>a.purpose==='avatar'||a.purpose==='selection').map(a=>({key:a.key,url:a.url,pixels:a.width*a.height}));
 export function boundedResources(assets:readonly SceneResource[],budget=PRELOAD_PIXEL_BUDGET):SceneResource[]{
  const seen=new Set<string>(),rows:SceneResource[]=[];let pixels=0;
  for(const a of assets){if(!a.url||seen.has(a.key)||a.pixels<=0||pixels+a.pixels>budget)continue;seen.add(a.key);pixels+=a.pixels;rows.push(a);}return rows;
