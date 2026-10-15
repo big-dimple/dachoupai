@@ -1,0 +1,236 @@
+
+> dachoupai@0.1.0 test
+> vitest run
+
+
+ RUN  v4.1.11 /workspace/dachoupai
+
+ ❯ tests/handdrawn-art.test.ts (16 tests | 1 failed) 6462ms
+   × six role IDs own their portrait/avatar/selection; JQK are rank-specific independent faces 21ms
+ ❯ tests/hero-stage-continuity.test.ts (15 tests | 6 failed) 379ms
+   × amo distinguishes the upcoming stage from absent history without mutation 72ms
+   × touye distinguishes the upcoming stage from absent history without mutation 24ms
+   × laohuan distinguishes the upcoming stage from absent history without mutation 20ms
+   × erxiang distinguishes the upcoming stage from absent history without mutation 5ms
+   × azao distinguishes the upcoming stage from absent history without mutation 12ms
+   × xiemu distinguishes the upcoming stage from absent history without mutation 5ms
+ ❯ tests/build-keepsake.test.ts (10 tests | 6 failed) 251ms
+   × amo uses its actual new identity with no unapproved portrait without changing a state 103ms
+   × touye uses its actual new identity with no unapproved portrait without changing a state 56ms
+   × laohuan uses its actual new identity with no unapproved portrait without changing a state 10ms
+   × erxiang uses its actual new identity with no unapproved portrait without changing a state 4ms
+   × azao uses its actual new identity with no unapproved portrait without changing a state 4ms
+   × xiemu uses its actual new identity with no unapproved portrait without changing a state 3ms
+ ❯ tests/characters.test.ts (6 tests | 1 failed) 19ms
+     × 六位角色没有正式立绘时保留姓名而不引用占位或旧脸 11ms
+ ❯ tests/v00-bot.test.ts (5 tests | 1 failed) 25861ms
+     × groups emits only valid ordinary commands on a natural run 10887ms
+
+⎯⎯⎯⎯⎯⎯ Failed Tests 15 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/build-keepsake.test.ts > amo uses its actual new identity with no unapproved portrait without changing a state
+AssertionError: expected '/assets/tangsong-portraits/amo.select…' to be '' // Object.is equality
+
+- Expected
++ Received
+
++ /assets/tangsong-portraits/amo.selection.webp
+
+ ❯ tests/build-keepsake.test.ts:11:21
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/15]⎯
+
+ FAIL  tests/build-keepsake.test.ts > touye uses its actual new identity with no unapproved portrait without changing a state
+AssertionError: expected '/assets/tangsong-portraits/touye.sele…' to be '' // Object.is equality
+
+- Expected
++ Received
+
++ /assets/tangsong-portraits/touye.selection.webp
+
+ ❯ tests/build-keepsake.test.ts:11:21
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/15]⎯
+
+ FAIL  tests/build-keepsake.test.ts > laohuan uses its actual new identity with no unapproved portrait without changing a state
+AssertionError: expected '/assets/tangsong-portraits/laohuan.se…' to be '' // Object.is equality
+
+- Expected
++ Received
+
++ /assets/tangsong-portraits/laohuan.selection.webp
+
+ ❯ tests/build-keepsake.test.ts:11:21
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/15]⎯
+
+ FAIL  tests/build-keepsake.test.ts > erxiang uses its actual new identity with no unapproved portrait without changing a state
+AssertionError: expected '/assets/tangsong-portraits/erxiang.se…' to be '' // Object.is equality
+
+- Expected
++ Received
+
++ /assets/tangsong-portraits/erxiang.selection.webp
+
+ ❯ tests/build-keepsake.test.ts:11:21
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/15]⎯
+
+ FAIL  tests/build-keepsake.test.ts > azao uses its actual new identity with no unapproved portrait without changing a state
+AssertionError: expected '/assets/tangsong-portraits/azao.selec…' to be '' // Object.is equality
+
+- Expected
++ Received
+
++ /assets/tangsong-portraits/azao.selection.webp
+
+ ❯ tests/build-keepsake.test.ts:11:21
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/15]⎯
+
+ FAIL  tests/build-keepsake.test.ts > xiemu uses its actual new identity with no unapproved portrait without changing a state
+AssertionError: expected '/assets/tangsong-portraits/xiemu.sele…' to be '' // Object.is equality
+
+- Expected
++ Received
+
++ /assets/tangsong-portraits/xiemu.selection.webp
+
+ ❯ tests/build-keepsake.test.ts:11:21
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/15]⎯
+
+ FAIL  tests/characters.test.ts > character portrait config > 六位角色没有正式立绘时保留姓名而不引用占位或旧脸
+AssertionError: expected '/assets/tangsong-portraits/amo.portra…' to be '' // Object.is equality
+
+- Expected
++ Received
+
++ /assets/tangsong-portraits/amo.portrait.webp
+
+ ❯ tests/characters.test.ts:6:84
+      4|
+      5| describe('character portrait config', () => {
+      6|   it('六位角色没有正式立绘时保留姓名而不引用占位或旧脸',()=>{for(const c of CHARACTERS){expect…
+       |                                                                                    ^
+      7|   it('focal 对焦点都在 0~1 有效区间内', () => {
+      8|     for (const character of CHARACTERS) {
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/15]⎯
+
+ FAIL  tests/handdrawn-art.test.ts > six role IDs own their portrait/avatar/selection; JQK are rank-specific independent faces
+AssertionError: expected '/assets/tangsong-portraits/amo.portra…' to be '' // Object.is equality
+
+- Expected
++ Received
+
++ /assets/tangsong-portraits/amo.portrait.webp
+
+ ❯ tests/handdrawn-art.test.ts:3:147
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[8/15]⎯
+
+ FAIL  tests/hero-stage-continuity.test.ts > amo distinguishes the upcoming stage from absent history without mutation
+AssertionError: expected '/assets/tangsong-portraits/amo.select…' to be '' // Object.is equality
+
+- Expected
++ Received
+
++ /assets/tangsong-portraits/amo.selection.webp
+
+ ❯ tests/hero-stage-continuity.test.ts:11:195
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[9/15]⎯
+
+ FAIL  tests/hero-stage-continuity.test.ts > touye distinguishes the upcoming stage from absent history without mutation
+AssertionError: expected '/assets/tangsong-portraits/touye.sele…' to be '' // Object.is equality
+
+- Expected
++ Received
+
++ /assets/tangsong-portraits/touye.selection.webp
+
+ ❯ tests/hero-stage-continuity.test.ts:11:195
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[10/15]⎯
+
+ FAIL  tests/hero-stage-continuity.test.ts > laohuan distinguishes the upcoming stage from absent history without mutation
+AssertionError: expected '/assets/tangsong-portraits/laohuan.se…' to be '' // Object.is equality
+
+- Expected
++ Received
+
++ /assets/tangsong-portraits/laohuan.selection.webp
+
+ ❯ tests/hero-stage-continuity.test.ts:11:195
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[11/15]⎯
+
+ FAIL  tests/hero-stage-continuity.test.ts > erxiang distinguishes the upcoming stage from absent history without mutation
+AssertionError: expected '/assets/tangsong-portraits/erxiang.se…' to be '' // Object.is equality
+
+- Expected
++ Received
+
++ /assets/tangsong-portraits/erxiang.selection.webp
+
+ ❯ tests/hero-stage-continuity.test.ts:11:195
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[12/15]⎯
+
+ FAIL  tests/hero-stage-continuity.test.ts > azao distinguishes the upcoming stage from absent history without mutation
+AssertionError: expected '/assets/tangsong-portraits/azao.selec…' to be '' // Object.is equality
+
+- Expected
++ Received
+
++ /assets/tangsong-portraits/azao.selection.webp
+
+ ❯ tests/hero-stage-continuity.test.ts:11:195
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[13/15]⎯
+
+ FAIL  tests/hero-stage-continuity.test.ts > xiemu distinguishes the upcoming stage from absent history without mutation
+AssertionError: expected '/assets/tangsong-portraits/xiemu.sele…' to be '' // Object.is equality
+
+- Expected
++ Received
+
++ /assets/tangsong-portraits/xiemu.selection.webp
+
+ ❯ tests/hero-stage-continuity.test.ts:11:195
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[14/15]⎯
+
+ FAIL  tests/v00-bot.test.ts > V00 policies receive only player-visible information > groups emits only valid ordinary commands on a natural run
+Error: Test timed out in 10000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ ❯ tests/v00-bot.test.ts:20:51
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[15/15]⎯
+
+
+ Test Files  5 failed | 262 passed (267)
+      Tests  15 failed | 3626 passed (3641)
+   Start at  15:51:27
+   Duration  135.86s (transform 20.24s, setup 0ms, import 111.16s, tests 187.97s, environment 91ms)
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice

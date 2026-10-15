@@ -26,3 +26,11 @@ Reference file SHA-256 (downloaded exact revision, not bundled wholesale):
 - `src_ui_menus.js`: `891956f92b600674f359aaa25cf6c10097d42baa0f51f82d4fb446a233a33111`
 - `src_ui_menu-art.js`: `6b4d3ef8a227b507f09acb4731efb088399c4a0e424cc093f9e1a7bf305ef7a3`
 - `src_audio_audio.js`: `402a7dedc9a7cea7aefbdff540dd62fb02c22a966b71cdeb83a83fe7bdb98e9b`
+
+## 2026-10-15 loading theatre
+
+`src/game/LoadingScreen.ts` reuses the existing attributed `inkSettlingEase(.5)` from `src/game/inkwaveSpring.ts` for three bounded decorative card-outline echoes. That module is the MIT spring adaptation documented above (98ea296, `src/ui/ui-util.js` L81–96). The full original MIT notice remains here and in the runtime distribution at `public/assets/licenses/Inkwave-MIT.txt`; both SHA-256 `aa94b137dc8ec64c7f78f66c71070a78c528a100e26fcfbd30eec06737413f41`.
+
+The new inline SVG mountains, concentric sun, river lines, motes, suit paths, paper-card ornament, CSS entrances and layout in `index.html` are original to this project. No upstream artwork, font, music, logo, loading code, or full-screen ink wipe was copied. Progress uses actual decoded counts, with no animation completion awaited.
+
+Reference access was attempted again on 2026-10-15. `https://inkwave-aah.pages.dev/` returned a proxy CONNECT 403 / Chromium `ERR_TUNNEL_CONNECTION_FAILED` in this execution environment. Git clone, GitHub API metadata and raw historic revision retrieval for `jaydendavisnc/inkwave` returned 404. The web reader returned only the live page title, no source or loading visuals. Therefore this change does **not** claim a fresh inspection of the live reference loading performance or its current source/license; attribution relies on the preserved prior licensed adaptation, which was actually read locally. See this batch's reference-access evidence for exact results.

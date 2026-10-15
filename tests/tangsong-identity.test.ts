@@ -1,6 +1,6 @@
 import {R2_BOSSES,r2BossText} from '../src/domain/r2Chapter';
 import {expect,it} from 'vitest';
-import {readFileSync} from 'node:fs';
+import {readFileSync,existsSync} from 'node:fs';
 import {createHash} from 'node:crypto';
 import {HERO_CAST,HERO_CAST_NOTICE,heroName,heroText} from '../src/game/HeroIdentity';
 import {GAME_NAME} from '../src/game/Brand';
@@ -26,13 +26,10 @@ it('keeps the current skills and real costs while changing their displayed owner
  expect(heroText('二响 · 交棒已兑现')).toBe('刘娥 · 交棒已兑现');
  expect(heroText('谢幕·燃金↗')).toBe('花蕊夫人·燃金↗');expect(heroText('逐个谢幕 · 已封禁')).toBe('逐个谢幕 · 已封禁');
 });
-it('every visible face role points at a named typographic placeholder, never an old likeness',()=>{
- for(const c of CHARACTERS)for(const purpose of ['avatar','selection','portrait'] as const){
-  const a=characterArt(c.id,purpose);expect(a.path).toBe(`assets/cast-placeholders/${c.id}.${purpose}.svg`);
-  const svg=readFileSync('public/'+a.path,'utf8');expect(a.format).toBe('svg');expect(createHash('sha256').update(svg).digest('hex')).toBe(a.sha256);expect(svg).toContain(c.name);expect(svg).toContain('人物图待交付');expect(svg).toContain(`width="${a.width}" height="${a.height}"`);expect(svg).not.toContain('<image');
-  expect(()=>assertCharacterArtReference(a.key,`/assets/handdrawn-p08/characters/${c.id}.${purpose}.webp`)).toThrow('character-art-reference');
- }
- expect(getCharacter('azao').name.length).toBe(4);
+it('approved named-person art has no placeholder files or old face URL',()=>{
+ expect(existsSync('public/assets/cast-placeholders')).toBe(false);
+ for(const c of CHARACTERS)for(const purpose of ['avatar','selection','portrait'] as const)expect(characterArt(c.id,purpose)?.path).toMatch(/^assets\/tangsong-portraits\//);
+ expect(getCharacter('azao').name).toBe('文成公主');
 });
 
 it('adapts legacy boss references for display without changing the published rule text',()=>{

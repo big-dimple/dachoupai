@@ -1,0 +1,218 @@
+{
+  "testedSourceCommit": "d5dca4aba0ddd56e431f4cfb7a1636be2a74cbd9",
+  "mergeCommit": "086ea57f2b44ff6e0e9623d2a611f9abfdd51afa",
+  "mergeParents": [
+    "eba6c158954039dddbe9adeac40fd99df693d565",
+    "7dfab9a678d2701219234bc63dea0e987de5cbf5"
+  ],
+  "commonBase": "9c41dfff2a66ffa66b5cf812c2742caae9cdf125",
+  "srcTree": "6e253136bfc0ac154b5bd043d05b96a15f5ac996",
+  "sameSrcAsMerge": true,
+  "noMergeConflict": true,
+  "loadingFilesIdenticalToLoadingParent": [
+    "index.html",
+    "src/game/LoadingScreen.ts",
+    "src/game/PaperFlow.ts",
+    "src/game/SceneResources.ts",
+    "src/game/BootScene.ts"
+  ],
+  "r03FilesIdenticalToR03Parent": [
+    "src/game/GameScene.ts",
+    "src/game/ShopScene.ts",
+    "src/game/ToolCarryIntent.ts"
+  ],
+  "protectedTreesIdenticalToCommonBase": [
+    "src/domain",
+    "src/application",
+    "src/content",
+    "src/game/CharacterArt.ts",
+    "public",
+    "art"
+  ],
+  "agentsAndPlanIdenticalToR03Parent": true,
+  "historicalEvidenceUnchanged": true,
+  "actualRuntimeWindow": [
+    "index.html",
+    "src/game/GameScene.ts",
+    "src/game/LoadingScreen.ts",
+    "src/game/ShopScene.ts",
+    "src/game/ToolCarryIntent.ts"
+  ],
+  "files": {
+    "index.html": {
+      "blob": "5684eaead3b95a7bb1c849ce4535e250d5617dc8",
+      "sha256": "4abda4b473c9b4a9be27e980a3601935f6e41de72f5cebbf524f376d343f6e3a"
+    },
+    "src/game/LoadingScreen.ts": {
+      "blob": "f917295f3aa9e114903a016481c2d49328fdc274",
+      "sha256": "86697131a9c9370231ad780964fe7794b444d50026e3ab38314e7e9b9e2819ae"
+    },
+    "src/game/PaperFlow.ts": {
+      "blob": "82e70a0797e0f74e6b2ea7b417413b825551cc49",
+      "sha256": "5507d3244d36a7bcb53b331ff2a9593bda7bfb8136d2a18728dc6c06e783c4db"
+    },
+    "src/game/SceneResources.ts": {
+      "blob": "13e2477e266f223cdac4b5a4459959ed948cd8f6",
+      "sha256": "e12d7ee9de9287634174c981c261b494728272191a4b5c204793c6324a43fcc0"
+    },
+    "src/game/BootScene.ts": {
+      "blob": "6cf4c7f7fd26dcb6649013b69c33c27d33e4877d",
+      "sha256": "8827c81957761ff72a98b81093a11df22864534820da211bea48fad0de2505ce"
+    },
+    "src/game/GameScene.ts": {
+      "blob": "f8cee0687251a3245f81a129299bb87b7a945062",
+      "sha256": "b0cc96e51dd11927cee4f7cc314c66386d958e3075e7497a00f8111375176589"
+    },
+    "src/game/ShopScene.ts": {
+      "blob": "cee06262bc105f379daafe3a60f5281aaa68083b",
+      "sha256": "017f1547bdab1eb0d255f9e543f4401ac78eaf8cec8d5bd4aa83352d5d19ba99"
+    },
+    "src/game/ToolCarryIntent.ts": {
+      "blob": "50fe615eee865d62ed8443c6e6b6bd86f07378b4",
+      "sha256": "fbd50f13871dbb35f62223a1a9ff30e053d70e95bf3cca0c58afeb231eef1a43"
+    },
+    "harness/tangsong-delivery-integration.mjs": {
+      "blob": "75d7b0a832150a0ecb44737e3016267144d5fe85",
+      "sha256": "e2ea70469da46fa8ca20a9587358c7402201c72c6a8ab0695adb215c9cbc7c90"
+    }
+  },
+  "nativeCases": [
+    {
+      "width": 1366,
+      "startingGold": 6,
+      "paidPrice": 2,
+      "purchaseCommand": "BuyBasicTool",
+      "carriedInstance": "run/tangsong-native-carry/laohuan/tool/run/tangsong-native-carry/laohuan/command/2",
+      "target": "spades-13",
+      "rankChange": {
+        "before": 13,
+        "after": 14
+      },
+      "actualTwoAcesInHand": [
+        "clubs-14",
+        "spades-13"
+      ],
+      "purchaseEqual": true,
+      "entryEqual": true,
+      "useEqual": true,
+      "onceOnlyGuard": {
+        "allDealt": true,
+        "intentCleared": true,
+        "ready": true
+      },
+      "coldRestore": "entire state/journal/storage unchanged; no carried selector revival"
+    },
+    {
+      "width": 390,
+      "startingGold": 6,
+      "paidPrice": 2,
+      "purchaseCommand": "BuyBasicTool",
+      "carriedInstance": "run/tangsong-native-carry/laohuan/tool/run/tangsong-native-carry/laohuan/command/2",
+      "target": "spades-13",
+      "rankChange": {
+        "before": 13,
+        "after": 14
+      },
+      "actualTwoAcesInHand": [
+        "clubs-14",
+        "spades-13"
+      ],
+      "purchaseEqual": true,
+      "entryEqual": true,
+      "useEqual": true,
+      "onceOnlyGuard": {
+        "allDealt": true,
+        "intentCleared": true,
+        "ready": true
+      },
+      "coldRestore": "entire state/journal/storage unchanged; no carried selector revival"
+    },
+    {
+      "width": 320,
+      "startingGold": 6,
+      "paidPrice": 2,
+      "purchaseCommand": "BuyBasicTool",
+      "carriedInstance": "run/tangsong-native-carry/laohuan/tool/run/tangsong-native-carry/laohuan/command/2",
+      "target": "spades-13",
+      "rankChange": {
+        "before": 13,
+        "after": 14
+      },
+      "actualTwoAcesInHand": [
+        "clubs-14",
+        "spades-13"
+      ],
+      "purchaseEqual": true,
+      "entryEqual": true,
+      "useEqual": true,
+      "onceOnlyGuard": {
+        "allDealt": true,
+        "intentCleared": true,
+        "ready": true
+      },
+      "coldRestore": "entire state/journal/storage unchanged; no carried selector revival"
+    }
+  ],
+  "pcDelayedResourceGate": {
+    "active": [
+      "shop"
+    ],
+    "preparation": {
+      "key": "game",
+      "total": 4,
+      "loaded": 3,
+      "failed": 0,
+      "pending": 1,
+      "keys": [
+        "p08-court-j",
+        "p08-court-q",
+        "p08-court-k",
+        "goods-art/T08"
+      ],
+      "status": "loading"
+    }
+  },
+  "checks": {
+    "affected": {
+      "files": 7,
+      "tests": 34,
+      "status": "PASS"
+    },
+    "fullUnit": {
+      "files": 268,
+      "tests": 3644,
+      "status": "PASS"
+    },
+    "typecheckAndBuild": "PASS",
+    "content": "PASS",
+    "planStructure": "PASS",
+    "nativeNewRun": {
+      "cases": 3,
+      "status": "PASS"
+    },
+    "r03Original": {
+      "cases": 12,
+      "status": "PASS"
+    },
+    "loadingOriginal": {
+      "cases": 8,
+      "status": "PASS"
+    },
+    "compiledSmoke": {
+      "profiles": [
+        "desktop",
+        "mobile"
+      ],
+      "status": "PASS"
+    }
+  },
+  "notPerformed": [
+    "main merge or push",
+    "CI lookup",
+    "deployment",
+    "domain management",
+    "unfinished formal-character integration",
+    "physical device/human/full-tour acceptance"
+  ],
+  "status": "PASS"
+}

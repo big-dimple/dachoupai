@@ -1,0 +1,10 @@
+PASS 1366-motion 12118
+PASS 390-motion 7014
+PASS 320-motion 6441
+PASS 390-os-reduce 6050
+PASS 320-app-reduce 6010
+page.waitForFunction: Timeout 30000ms exceeded.
+    at /workspace/dachoupai/harness/loading-opening.mjs:41:11 {
+  log: [],
+  name: 'TimeoutError'
+}

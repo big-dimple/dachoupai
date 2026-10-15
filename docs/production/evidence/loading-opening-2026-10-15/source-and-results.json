@@ -1,0 +1,159 @@
+{
+  "base": "9c41dfff2a66ffa66b5cf812c2742caae9cdf125",
+  "deliverySourceCommit": "6c91667db50f8c879f8dd3c0468cd0ea1634f668",
+  "productCommit": "29a253e3efbb82ac5204991bd65b5dc170cebe04",
+  "testedSource": {
+    "index.html": {
+      "blob": "5684eaead3b95a7bb1c849ce4535e250d5617dc8",
+      "committedBlob": "5684eaead3b95a7bb1c849ce4535e250d5617dc8",
+      "sha256": "4abda4b473c9b4a9be27e980a3601935f6e41de72f5cebbf524f376d343f6e3a"
+    },
+    "src/game/LoadingScreen.ts": {
+      "blob": "f917295f3aa9e114903a016481c2d49328fdc274",
+      "committedBlob": "f917295f3aa9e114903a016481c2d49328fdc274",
+      "sha256": "86697131a9c9370231ad780964fe7794b444d50026e3ab38314e7e9b9e2819ae"
+    },
+    "harness/loading-opening.mjs": {
+      "blob": "790d66ef2973b72a38b136905704d7cb874e082c",
+      "committedBlob": "790d66ef2973b72a38b136905704d7cb874e082c",
+      "sha256": "ada753c418558aa6b4d7ef492842f69ce7749a1c2f7ee88af1c6d9deb0b99a0e"
+    },
+    "third-party/inkwave/README.md": {
+      "blob": "10156f2047bb41a36abd640d4cfa6bb1686734eb",
+      "committedBlob": "10156f2047bb41a36abd640d4cfa6bb1686734eb",
+      "sha256": "6f1f3ffca0412b231b609274dc418095c2e65bcb3460d374fba109f467267802"
+    }
+  },
+  "protectedPathsUnchangedFromBase": [
+    "src/game/CharacterArt.ts",
+    "src/game/SceneResources.ts",
+    "src/game/BootScene.ts",
+    "src/game/ImageWarmupQueue.ts",
+    "public",
+    "art"
+  ],
+  "productUnchangedAfter29a253e3": true,
+  "pipeline": {
+    "head": "6c91667db50f8c879f8dd3c0468cd0ea1634f668",
+    "status": "PASS",
+    "cases": [
+      {
+        "name": "pc-cold",
+        "status": "PASS",
+        "titleMs": 4407,
+        "domainEquality": "entire state equals original LeaveShop + EnterStage",
+        "coldRestore": "entire persisted run equal"
+      },
+      {
+        "name": "pc-weak",
+        "status": "PASS",
+        "titleMs": 10537,
+        "domainEquality": "entire state equals original LeaveShop + EnterStage",
+        "coldRestore": "entire persisted run equal"
+      },
+      {
+        "name": "phone-cold",
+        "status": "PASS",
+        "titleMs": 3343,
+        "domainEquality": "entire state equals original LeaveShop + EnterStage",
+        "coldRestore": "entire persisted run equal"
+      },
+      {
+        "name": "phone-weak",
+        "status": "PASS",
+        "titleMs": 11071,
+        "domainEquality": "entire state equals original LeaveShop + EnterStage",
+        "coldRestore": "entire persisted run equal"
+      },
+      {
+        "name": "pc-missing-retry",
+        "status": "PASS",
+        "titleMs": 4344,
+        "domainEquality": "entire state equals original LeaveShop + EnterStage",
+        "coldRestore": "entire persisted run equal"
+      },
+      {
+        "name": "phone-text-fallback",
+        "status": "PASS",
+        "titleMs": 3733,
+        "domainEquality": "entire state equals original LeaveShop + EnterStage",
+        "coldRestore": null
+      },
+      {
+        "name": "http-cache-1366",
+        "status": "PASS",
+        "titleMs": null,
+        "domainEquality": null,
+        "coldRestore": null
+      },
+      {
+        "name": "http-cache-390",
+        "status": "PASS",
+        "titleMs": null,
+        "domainEquality": null,
+        "coldRestore": null
+      }
+    ]
+  },
+  "visual": {
+    "status": "PASS",
+    "normalVisualSource": "29a253e3efbb82ac5204991bd65b5dc170cebe04",
+    "isolatedCPUSource": "6c91667db50f8c879f8dd3c0468cd0ea1634f668",
+    "cases": [
+      {
+        "name": "1366-motion",
+        "status": "PASS",
+        "titleMs": 12118,
+        "livePreferenceChange": "PASS",
+        "completion": null
+      },
+      {
+        "name": "390-motion",
+        "status": "PASS",
+        "titleMs": 7014,
+        "livePreferenceChange": null,
+        "completion": null
+      },
+      {
+        "name": "320-motion",
+        "status": "PASS",
+        "titleMs": 6441,
+        "livePreferenceChange": null,
+        "completion": null
+      },
+      {
+        "name": "390-os-reduce",
+        "status": "PASS",
+        "titleMs": 6050,
+        "livePreferenceChange": null,
+        "completion": null
+      },
+      {
+        "name": "320-app-reduce",
+        "status": "PASS",
+        "titleMs": 6010,
+        "livePreferenceChange": null,
+        "completion": null
+      },
+      {
+        "name": "1366-cpu4",
+        "status": "PASS",
+        "titleMs": 14103,
+        "livePreferenceChange": null,
+        "completion": "all 134 decoded"
+      }
+    ]
+  },
+  "build": "raw/build-compact-final.txt PASS TypeScript+Vite; product identical to current source",
+  "affectedTests": "raw/affected-compact-final.txt 7 files / 41 PASS",
+  "finalPixelInspection": "1366x900 / 390x844 / 320x568 PNGs opened; subtitle/card clearance >=8px asserted",
+  "remainingBlocker": "Live reference loading performance + current upstream source inaccessible (proxy/404); preserved local MIT code and licence inspected",
+  "notPerformed": [
+    "main merge",
+    "CI lookup",
+    "deployment",
+    "domain management",
+    "physical-device acceptance",
+    "natural-gameplay acceptance"
+  ]
+}

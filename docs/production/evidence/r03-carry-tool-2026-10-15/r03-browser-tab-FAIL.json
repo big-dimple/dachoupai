@@ -1,0 +1,23 @@
+{
+  "base": "9c41dfff2a66ffa66b5cf812c2742caae9cdf125",
+  "head": "9c41dfff2a66ffa66b5cf812c2742caae9cdf125",
+  "sourceHashes": {
+    "src/game/ShopScene.ts": "c9b5b812e56b95f4a25872e1e0fb81392a792803b7e13e62f13dfdae13bc4f69",
+    "src/game/GameScene.ts": "b0cc96e51dd11927cee4f7cc314c66386d958e3075e7497a00f8111375176589",
+    "src/game/ToolCarryIntent.ts": "fbd50f13871dbb35f62223a1a9ff30e053d70e95bf3cca0c58afeb231eef1a43"
+  },
+  "scope": "System Chromium software Canvas DPR1, PC mouse and 320/390 touch. Controlled strict-checkpoint shop stock/gold/duplicate inventory; real purchase, leave, enter and use UI. No physical device or natural acquisition-rate claim.",
+  "cases": [
+    {
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      },
+      "errors": [],
+      "checks": [],
+      "failureText": "菜单\n做牌与道具\n\n金币 30 · 库存 1/2\n\n已有工具\n往上挪\n选1–2张牌，点数+1\n选目标\n本店现货\n往上挪\n把相邻点数改成同点，培养对子／两对；不必等复制牌。\n塔罗 · 2 金\n升级牌型 · 商店服务\n\n升级 / 改牌 / 染色共用本店1次 · 只显示已发现且未30级的牌型。\n\n做牌自选 · 本店1件\n\n升级 / 改牌 / 染色共用1次 · 工具可买来存着或现在用\n\n精简节目\n永久删除1–2张牌\n2 金\n往下挪\n选1–2张牌，点数−1\n2 金\n加厚纸\n选1–2张牌，选中牌打出且每次有效计分时，热度+20\n2 金\n大字号\n选1–2张牌，选中牌打出且每次有效计分时，倍率+2\n2 金\n红桃染\n选1–3张改花色，点数保留\n4 金\n方片染\n选1–3张改花色，点数保留\n4 金\n梅花染\n选1–3张改花色，点数保留\n4 金\n黑桃染\n选1–3张改花色，点数保留\n4 金\n道具箱与长期物品\n回到商店"
+    }
+  ],
+  "status": "FAIL",
+  "error": "locator.click: Timeout 20000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: '选购工具', exact: true })\u001b[22m\n\n    at purchase (/workspace/dachoupai/harness/r03-carry-tool.mjs:35:320)\n    at async file:///workspace/dachoupai/harness/r03-carry-tool.mjs:44:78"
+}

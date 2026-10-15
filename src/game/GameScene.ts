@@ -1,3 +1,4 @@
+import {carriedToolAtEntry,carriedToolAtHand,type ToolCarryIntent} from './ToolCarryIntent';
 import {heroText} from './HeroIdentity';
 import {GAME_NAME} from './Brand';
 import {formatScoreReview} from './ScoreReview';
@@ -277,7 +278,9 @@ export class GameScene extends Phaser.Scene {
   }
   private get reducedMotion():boolean {return gameSession().reducedMotion||window.matchMedia('(prefers-reduced-motion: reduce)').matches;}
 
-  async create(): Promise<void> {
+  private carriedTool?:ToolCarryIntent;
+  async create(data?:{carriedTool?:ToolCarryIntent}): Promise<void> {
+    this.carriedTool=undefined;
     // Phaser reuses this Scene instance. Its former controls were destroyed on shutdown.
     this.controlsLive=false;this.candidates.dispose();this.aiCandidates.dispose();this.aiCursor=undefined;this.candidateGhost=undefined;this.candidateUndo=undefined;
     // Default Phaser lag smoothing turns every >500ms frame into only 33ms.
@@ -314,6 +317,7 @@ export class GameScene extends Phaser.Scene {
     });
     const controller=runController(this);
     if(!controller){this.scene.start('character-select');return;}
+    const carried=carriedToolAtEntry(controller.state,data?.carriedTool)?data?.carriedTool:undefined;
     let enteredStage=false;
     if(controller.state.phase==='stage-ready'){
       const enter=await presentOpponentEntrance(this.dialog,controller.state);
@@ -325,6 +329,7 @@ export class GameScene extends Phaser.Scene {
       enteredStage=true;
     }
     this.run=controller.state;
+    if(enteredStage&&carriedToolAtHand(this.run,carried))this.carriedTool=carried;
     if(!['await-input','pending-refill'].includes(this.run.phase)||!this.run.stage){this.scene.start('character-select');return;}
     this.stage=getStage(this.run.stage.index,this.run.tourMode,this.run.difficulty,this.run)!;this.characterId=this.run.characterId;settings();this.audio.setScene(this.stage.index%3===2?'boss':'table');
     this.cameras.main.setBackgroundColor(C.paper);
@@ -411,9 +416,9 @@ export class GameScene extends Phaser.Scene {
   private updateInventoryControl():void {
     if(this.controlsLive&&this.inventoryButton?.active)this.view.setEnabled(this.inventoryButton,this.inventoryInspectable);
   }
-  private inspectInventory():void {
+  private inspectInventory(initialInstanceId?:string):void {
     if(!this.inventoryInspectable)return;
-    showConsumables(this.dialog,this.run,this.ready,(action,seq)=>this.inventoryInspectable&&this.ready&&seq===this.run.commandSeq?this.command(action,seq):Promise.resolve(false));
+    showConsumables(this.dialog,this.run,this.ready,(action,seq)=>this.inventoryInspectable&&this.ready&&seq===this.run.commandSeq?this.command(action,seq):Promise.resolve(false),initialInstanceId);
   }
   get isPresenting():boolean {return !!this.presentation;}
   private render():void {
@@ -1170,6 +1175,13 @@ export class GameScene extends Phaser.Scene {
     });
   }
   update(time:number):void {
+    if(this.carriedTool&&this.run&&this.controlsLive){
+      if(!carriedToolAtHand(this.run,this.carriedTool))this.carriedTool=undefined;
+      else if(this.ready&&this.inventoryInspectable&&!this.refillPresentation&&!this.toolHand&&!document.hidden&&!document.querySelector('dialog[open]')&&this.cardViews.every(v=>!v.dealing)){
+        const id=this.carriedTool.instanceId;this.carriedTool=undefined;
+        this.inspectInventory(id);
+      }
+    }
     if(this.ownedDrag&&!this.ownedDrag.saving&&!this.ownedReady)this.ownedInput?.cancel();
     if(!this.roleFrame?.active)return;
     const blocked=!!(this.playing||this.presentation||document.hidden||document.querySelector('dialog[open]'));
@@ -1240,7 +1252,7 @@ export class GameScene extends Phaser.Scene {
     const auxiliary=new Set(['培养手记','查看物品','上一手详情','本章节目单']);
     const choices=actions.filter(a=>!auxiliary.has(a.label));
     if(this.assistProfile)choices.push({label:'查看主手与助攻组合',primary:true,disabled:!this.ready||!r2AssistAvailability(this.run).available,run:()=>this.inspectCandidates()});
-    const dialog=this.dialog.open(c.name+' · 技能',body,[],{guideSteps:heroOperationSteps(this.run,guide,!!(this.xiemuBurn||this.azaoRelease||this.assistIds.length)),summaryBody:guide.step,effectBody:guide.effect+(guide.risk?'\n'+guide.risk:''),collapseRules:true,rulesLabel:'技能与本场细则',closeLabel:'返回牌桌',choices,secondaryActions:actions.filter(a=>auxiliary.has(a.label)),portrait:{url:portraitURL(c.id),alt:c.name+' · 人物图待交付'}});mountHeroSkillGuide(dialog);
+    const dialog=this.dialog.open(c.name+' · 技能',body,[],{guideSteps:heroOperationSteps(this.run,guide,!!(this.xiemuBurn||this.azaoRelease||this.assistIds.length)),summaryBody:guide.step,effectBody:guide.effect+(guide.risk?'\n'+guide.risk:''),collapseRules:true,rulesLabel:'技能与本场细则',closeLabel:'返回牌桌',choices,secondaryActions:actions.filter(a=>auxiliary.has(a.label)),portrait:{url:portraitURL(c.id),alt:c.name+' · 正式立绘'}});mountHeroSkillGuide(dialog);
   }
   private inspectJoker(id:string):void {
     const j=this.run.jokers.find(j=>j.instanceId===id);if(!j)return;const d=this.jokerDefinition(j.definitionId),index=this.run.jokers.indexOf(j),art=jokerArtUrl(d.id),artKey=jokerArtKey(d.id),rarity=JOKER_RARITY[d.rarity];

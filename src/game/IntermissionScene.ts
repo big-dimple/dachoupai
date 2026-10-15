@@ -1,3 +1,4 @@
+import {warmNextSceneImages} from './StageImageWarmup';
 import {heroText} from './HeroIdentity';
 import {formatScoreReview} from './ScoreReview';
 import {heroStageContinuity} from './HeroStageContinuity';
@@ -88,6 +89,7 @@ export class IntermissionScene extends Phaser.Scene {
     });
   }
   create():void {
+    warmNextSceneImages(this,'shop');
     this.lifecycle++;this.busy=false;this.notice='';this.firstRender=true;
     const motion=typeof window==='undefined'?undefined:window.matchMedia('(prefers-reduced-motion: reduce)');
     const preference=()=>{if((gameSession().reducedMotion||motion?.matches)&&this.scene.isActive()){this.firstRender=false;this.render();}};

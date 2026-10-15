@@ -8,7 +8,7 @@ import {heroStageFixture,heroSend} from '../harness/fixtures/hero-stage-continui
 import {R2_TOOL_SUPPLY_VERSION,R2_TOOL_SUPPLY_HASH} from '../src/domain/r2GroupUpgrade';
 const initial=(id:typeof CHARACTER_IDS[number])=>createRun({rulesVersion:'r2',openingRoute:'group',runId:'continuity/'+id,seed:'continuity',characterId:id,r2Identity:newRunIdentity(id,'group'),modeConfig:{mode:'standard',difficulty:0,challengeId:null,programsEnabled:false}});
 it.each(CHARACTER_IDS)('%s distinguishes the upcoming stage from absent history without mutation',id=>{
- const s=initial(id),before=JSON.stringify(s),c=heroStageContinuity(s);expect(c).toBeDefined();expect(c!.last).toBeUndefined();expect(c!.decision).toBeTruthy();expect(buildKeepsake(s).hero.url).toContain('/'+id+'.selection.svg');expect(JSON.stringify(s)).toBe(before);
+ const s=initial(id),before=JSON.stringify(s),c=heroStageContinuity(s);expect(c).toBeDefined();expect(c!.last).toBeUndefined();expect(c!.decision).toBeTruthy();expect(buildKeepsake(s).hero.url).toContain('/assets/tangsong-portraits/'+id+'.selection.webp');expect(JSON.stringify(s)).toBe(before);
 });
 it('the saved one-layer gain is history, while stage end and next entry really reset charge',()=>{
  const f=heroStageFixture('azao');expect(f.cleared.phase).toBe('stage-cleared');expect(f.cleared.lastTrace!.azaoCharge!.after.charge).toBe(1);expect(f.cleared.stage!.azaoCharge!.charge).toBe(0);

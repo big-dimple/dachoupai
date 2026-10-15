@@ -1,0 +1,8 @@
+PASS pc-cold 4392ms
+PASS phone-cold 8075ms
+PASS phone-weak 12303ms
+FAIL AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+10 !== 0
+
+    at file:///workspace/loading-preload/harness/loading-preload.mjs:30:11

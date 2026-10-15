@@ -11,6 +11,7 @@ class Element {
   readonly children:Element[]=[];
   parentElement:Element|null=null;
   className='';dataset:Record<string,string>={};hidden=false;disabled=false;
+  decode=vi.fn(async()=>{});
   src='';alt='';width=0;height=0;naturalWidth=0;complete=false;scrollTop=0;title='';type='';decoding='';
   onclick:((event:Event)=>unknown)|null=null;
   onerror:((event:Event)=>unknown)|null=null;
@@ -122,6 +123,13 @@ describe('detail art recovery and stable rarity',()=>{
     currentStatus='loading';owner.refreshArtLoad();expect(status.textContent).toContain('加载中');expect(retry.hidden).toBe(true);
     currentStatus='loaded';owner.refreshArtLoad();expect(status.hidden).toBe(true);expect(retry.hidden).toBe(true);expect(image.src).toBe('blob:hd');expect(frame.classList.contains('art-unavailable')).toBe(false);expect(owner.active(dialog)).toBe(true);
     owner.close();const reads=readStatus.mock.calls.length;owner.refreshArtLoad();expect(readStatus).toHaveBeenCalledTimes(reads);
+  });
+
+  it('keeps a thumbnail hidden until decode completes and ignores a late load after close',async()=>{
+    const owner=new DetailDialog(),dialog=owner.open('不换词','规则',[],{portrait}),image=find(dialog,'.dialog-card-image');
+    let decoded!:()=>void;image.decode.mockImplementationOnce(()=>new Promise<void>(resolve=>decoded=resolve));
+    image.dispatchEvent(new Event('load'));expect(image.hidden).toBe(true);decoded();await flush();expect(image.hidden).toBe(false);
+    const next=owner.open('下一张','规则',[],{portrait}),late=find(next,'.dialog-card-image');let lateDecode!:()=>void;late.decode.mockImplementationOnce(()=>new Promise<void>(resolve=>lateDecode=resolve));late.dispatchEvent(new Event('load'));owner.close(next);lateDecode();await flush();expect(late.hidden).toBe(true);
   });
 
   it('exposes Phaser terminal failure after opening while loading even if the HTML thumbnail loaded',()=>{

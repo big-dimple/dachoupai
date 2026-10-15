@@ -29,12 +29,12 @@ describe('readable fault artwork uses the existing paper palette',()=>{
   const palette=new Set<number>(Object.values(PAPER_THEME));
   for(const d of R2_JOKERS){const {geometry,colors}=motif(d.id);expect(colors.length,d.id).toBeGreaterThan(3);expect(colors.every(c=>palette.has(c)),d.id).toBe(true);expect(geometry.some(g=>g[0]==='lineStyle'&&Number(g[1])>=1.5),d.id).toBe(true);}
  });
- it.each(CHARACTERS)('$id missing avatar keeps its own initial in dark ink on an opaque30px paper tile',character=>{
+ it.each(CHARACTERS)('$id missing avatar keeps its own initial in dark ink without a placeholder image or tile',character=>{
   const rectangle={setStrokeStyle:vi.fn().mockReturnThis()},text={setOrigin:vi.fn().mockReturnThis()},add=vi.fn(),scene={textures:{exists:()=>false},add:{rectangle:vi.fn(()=>rectangle),text:vi.fn(()=>text)}};
   vi.stubGlobal('devicePixelRatio',3);
   try{addAvatar(scene as unknown as Phaser.Scene,{add} as unknown as Phaser.GameObjects.Container,character,17,23,30);
-   expect(scene.add.rectangle).toHaveBeenCalledWith(17,23,30,30,PAPER_THEME.paper,1);expect(rectangle.setStrokeStyle).toHaveBeenCalledWith(1,PAPER_THEME.jade);
-   expect(scene.add.text).toHaveBeenCalledWith(17,23,character.name[0],expect.objectContaining({fontFamily:UI_FONT,fontSize:'22px',color:PAPER_CSS.ink,resolution:2}));expect(text.setOrigin).toHaveBeenCalledWith(.5);expect(add).toHaveBeenCalledTimes(2);
+   expect(scene.add.rectangle).not.toHaveBeenCalled();
+   expect(scene.add.text).toHaveBeenCalledWith(17,23,character.name[0],expect.objectContaining({fontFamily:UI_FONT,fontSize:'22px',color:PAPER_CSS.ink,resolution:2}));expect(text.setOrigin).toHaveBeenCalledWith(.5);expect(add).toHaveBeenCalledTimes(1);
    expect((luminance(PAPER_THEME.paper)+.05)/(luminance(PAPER_THEME.ink)+.05)).toBeGreaterThan(7);
   }finally{vi.unstubAllGlobals();}
  });

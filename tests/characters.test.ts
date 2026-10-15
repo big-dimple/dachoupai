@@ -3,15 +3,7 @@ import { readFileSync } from 'node:fs';
 import { CHARACTERS, resolveCharacterModifier } from '../src/game/characters';
 
 describe('character portrait config', () => {
-  it('六位角色的立绘路径均指向自己的资源文件', () => {
-    expect(new Set(CHARACTERS.map(character=>character.portrait)).size).toBe(6);
-    for (const character of CHARACTERS) {
-      expect(character.portrait).toContain(`assets/cast-placeholders/${character.id}.portrait.svg`);
-      const relative=character.portrait.slice(character.portrait.indexOf('assets/'));
-      const bytes=readFileSync(new URL('../public/'+relative,import.meta.url));
-      expect(bytes.toString()).toContain('人物图待交付');expect(bytes.toString()).toContain(character.name);
-    }
-  });
+  it('六位角色引用各自正式立绘且保留姓名',()=>{for(const c of CHARACTERS){expect(c.portrait).toContain('/assets/tangsong-portraits/'+c.id+'.portrait.webp');expect(c.name).toBeTruthy();}});
   it('focal 对焦点都在 0~1 有效区间内', () => {
     for (const character of CHARACTERS) {
       expect(character.portraitFocusX).toBeGreaterThanOrEqual(0);

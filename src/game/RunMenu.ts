@@ -1,3 +1,4 @@
+import {prepareDestination} from './LoadingScreen';
 import {formatScoreReview} from './ScoreReview';
 import {DetailDialog} from './DetailDialog';
 import {showCatalog} from './CatalogDialog';
@@ -29,7 +30,7 @@ export function routeSavedRun(game:Phaser.Game):void {
   const state=run.state;
   const target=state.phase==='shop'?'shop':['stage-ready','await-input','pending-refill'].includes(state.phase)?'game':state.stage?'intermission':'character-select';
   for(const key of ['title','character-select','shop','game','intermission'])game.scene.stop(key);
-  game.scene.start(target,target==='intermission'?{cleared:state.phase==='stage-cleared'||state.phase==='run-won',stageIndex:state.stage!.index,stageHeat:state.stage!.heat,handsLeft:state.stage!.handsLeft,goldEarned:state.stage!.goldEarned}:undefined);
+  void prepareDestination(game,target).then(prepared=>{if(!prepared)return;game.scene.start(target,target==='intermission'?{cleared:state.phase==='stage-cleared'||state.phase==='run-won',stageIndex:state.stage!.index,stageHeat:state.stage!.heat,handsLeft:state.stage!.handsLeft,goldEarned:state.stage!.goldEarned}:undefined);});
 }
 
 /** Progress and presentation preferences survive scene changes. */
