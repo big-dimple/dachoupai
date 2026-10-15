@@ -10,6 +10,10 @@
 
 只改FailureSummary（新增独立只读指引，原failureSummary返回合同不变）与Intermission失败支路。短屏失败启用既有compact-safe留影空间，320中不挤入立绘来盖差额/末手；成功、高光、声音及领域/保存/RNG模块没有修改。当前保护树与实际窗口见[final-source-proof](final-source-proof.json)；旧source-proof只对应此前12项阶段。
 
+## 复审后的当前读屏结论
+
+[真实滚动与标题核查补证](reading-review/README.md)为当前入口：旧13项保功能/事务范围，原外层滚动不能签全文。现新增320/390短屏6个真实`.dialog-scroll`窗口，实际看完第二/第三建议及规则正文底部，逐行覆盖、固定操作条/实际返回、完整保存不变均通过。未确认给定标题原字节或新视窗有裁切，不把工具预览误判写成产品修复。本轮仅修观察器与证据，产品同3fb6eea3。
+
 ## 已执行的有限软件验证
 
 [最终13项汇总](final-validation.json)及[原生完整报告](final-native-report.json.gz)在产品/观察器同一冻结head `7d1071cefa3eeb63966af3a2a46ec3afede3848a` 一整轮全部PASS，source/index/HEAD前后均不变。真实快照见[最终完整state](final-full-state.json.gz)，[最终截图映射](final-screenshots.json)只在PNG逐字节相同时复用旧文件，否则另存final前缀，不改旧图身份。
@@ -18,19 +22,19 @@
 
 | 尺寸/窗口 | 实际操作与结果 |
 |---|---|
-| PC1366×768、390×844、320×568，各三种结束原因，共9项 | 严格生产导入原命令结束的合法受控终态；主屏/建议截图、真实回看/返回建议、展开资格规则/滚动底部、返回失败页、留影→建议、返回选角→返回原失败页。完整state、journal、checkpoint、revision只读不变。各端次数用尽另做快速重复重试，实际仅1次commit、seq1空journal，完整新局等于原createRun，原局为同分区备份；刷新标题继续完整相等。 |
+| PC1366×768、390×844、320×568，各三种结束原因，共9项 | 严格生产导入原命令结束的合法受控终态；主屏/建议截图、真实回看/返回建议、展开资格规则（旧外层滚动不构成正文底部验收）、返回失败页、留影→建议、返回选角→返回原失败页。完整state、journal、checkpoint、revision只读不变。各端次数用尽另做快速重复重试，实际仅1次commit、seq1空journal，完整新局等于原createRun，原局为同分区备份；刷新标题继续完整相等。 |
 | 390×568 B02窗口 | 末手实际1笔计分牌普通点数抑制事件（第5张；第4张是陪衬牌），[原trace复核与计数勘误](boss-event-audit.json)，保存热度90、本场479/800、差321；3条建议包含真实前三张应对，不归因成单一败因。查看/返回完整保存不变。 |
 | 390×568新局保存故障 | 原store.commit的受控quota故障；旧state/存储保留，pending为精确原createRun候选。重复保存失败不重建候选，恢复后共3次尝试、仅1次成功revision，菜单接回商店，冷恢复完整相等。 |
 | 390×568跳场后主动结束 | 原SkipStage→AbandonRun真实命令终态；显示主动结束/最近场已跳过未计分，建议可达、无末手回看禁用、查看和返回完整保存不变。 |
 | 390×568换英雄/方向 | 建议→返回选角，选择二响/同花，确认前原保存不变；确认后新随机种子、新局完整等于createRun，单次revision，冷恢复相等。原局节目关闭分区current/previous原样保留，新局节目开启分区独立保存，不能错要求两分区共用备份。 |
 
-完整输入/逐点保存以[最终完整state](final-full-state.json.gz)为准；旧native/selection快照保原源码身份。它们为本地E2E构建的受控公开终态，不是自然获取、自然经营/18局、新手理解、实体触控或发布验收。所有原生操作通过鼠标/触控/DOM；只读观察窗口与store.commit故障封装未调用领域命令或编辑应用状态。320/390短屏需要滚动读完建议，原弹窗固定操作条始终可达；不是手机首屏全文可见声明。
+完整输入/逐点保存以[最终完整state](final-full-state.json.gz)为准；旧native/selection快照保原源码身份。它们为本地E2E构建的受控公开终态，不是自然获取、自然经营/18局、新手理解、实体触控或发布验收。所有原生操作通过鼠标/触控/DOM；只读观察窗口与store.commit故障封装未调用领域命令或编辑应用状态。320/390短屏全文滚动结论以reading-review新证据为准；旧报告/截图不签正文底部或第二/第三建议全文。
 
 最终相关8文件98项、typecheck通过，[新日志](final-targeted-checks.txt)对应最终7d1071ce代码；plan32及校验器自测仍通过。远端精确最终HEAD CI另在[draft PR186](https://github.com/big-dimple/dachoupai/pull/186)据实登记，不借原main/旧候选CI签本批。没有本地再跑全量或18局。
 
 ## 实际看过的代表画面与原失败
 
-- [PC建议](pc-hands-advice.png)、[390建议](390-hands-advice.png)、[320建议](final-320-short-hands-advice.png)、[320底部规则/操作](final-320-short-hands-rules-bottom.png)。
+- [PC建议](pc-hands-advice.png)、[390建议](390-hands-advice.png)、[320建议](final-320-short-hands-advice.png)、[原错目标截图：只展开标签、正文未到达](final-320-short-hands-rules-bottom.png)。
 - [320主屏，事实避让留影](320-short-hands-failure.png)、[390无可出牌](390-cards-advice.png)、[390主动结束](390-abandoned-advice.png)、[390 B02建议首段](final-390-short-boss-advice.png)。这些PNG已实际查看；B02后续建议需滚动，未冒称首屏3条全文。
 - [跳场后主动结束](final-390-short-post-skip-advice.png)、[对应主屏](final-390-short-post-skip-failure.png)已实际查看。
 - [新选角到商店](final-390-short-new-selection-shop.png)及故障页/恢复商店PNG另留原图，不按未查看图签审美。
