@@ -41,13 +41,13 @@ export function hasActualBenefit(e:ScoreEvent):boolean {
 export interface SavedBenefit {eventId:string;sourceInstanceId:string;definitionId:string;title:string;effect:string;condition:string;destination:string;next:string;toolId?:string;url?:string}
 /** Ordered saved events; current balances never pretend to be the historic transaction. */
 export function savedBenefit(state:R2RunState,trace:ScoreTrace,e:ScoreEvent):SavedBenefit|undefined {
- const skill=(fallback:string)=>usesCurrentHeroText(state)?characterForRun(state).name+' · '+characterForRun(state).passiveName+' · 已兑现':heroText(fallback);
+ const skill=(fallback:string,status='已兑现')=>usesCurrentHeroText(state)?characterForRun(state).name+' · '+characterForRun(state).passiveName+' · '+status:heroText(fallback);
  if(e.sourceType==='character'&&trace.events.some(saved=>saved===e||saved.eventId===e.eventId&&JSON.stringify(saved)===JSON.stringify(e))){
   const fact=(title:string,effect:string,condition:string,next:string):SavedBenefit=>({eventId:e.eventId,sourceInstanceId:e.sourceInstanceId,definitionId:'',title,effect,condition,destination:'本手真实结果 · 已保存',next});
   const handoff=trace.erxiangHandoff;
   if(handoff?.targetId&&e.reasonKey==='erxiang.handoff'&&e.targetCardId===handoff.targetId)return fact(skill('二响 · 交棒已兑现'),handoff.points+'点热度改加倍率（首次普通计分）','所选计分牌，本场一次','本场已用；增强、版次、后续重触保持');
   const wager=trace.touyeWager;
-  if(wager?.commit&&e.reasonKey.startsWith('touye.'+(wager.outcome==='won'?'won.':'lost.')))return fact(skill('骰爷 · 赌约已结算'),'押'+HAND_LABELS[wager.commit.target]+' · 实际'+HAND_LABELS[trace.handType]+' · '+(wager.outcome==='won'?'达成×2':wager.core?.lossReason==='new-core'?'新摸牌没参与成型×0.85':'未成×0.85'),'之前的押注在这一手结算',wager.core?'本场已用；输约不是收益':'本场已用；未成不是收益');
+  if(wager?.commit&&e.reasonKey.startsWith('touye.'+(wager.outcome==='won'?'won.':'lost.')))return fact(skill('骰爷 · 赌约已结算','已结算'),'押'+HAND_LABELS[wager.commit.target]+' · 实际'+HAND_LABELS[trace.handType]+' · '+(wager.outcome==='won'?'达成×2':wager.core?.lossReason==='new-core'?'新摸牌没参与成型×0.85':'未成×0.85'),'之前的押注在这一手结算',wager.core?'本场已用；输约不是收益':'本场已用；未成不是收益');
   if(trace.assist&&e.reasonKey==='amo.assist.'+trace.assist.kind)return fact(skill('阿默 · 助攻已兑现'),'副组'+trace.assist.ids.length+'张已用 · 实际×'+trace.assist.multiplier,'有效主手及剩余同点副组','本场已用；副组不再留手');
  }
  if(!hasActualBenefit(e)||e.phase==='base'||e.phase==='finalScore')return;

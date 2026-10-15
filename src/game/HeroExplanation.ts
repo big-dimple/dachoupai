@@ -56,7 +56,7 @@ export function showHeroExplanation(dialog:DetailDialog,id:CharacterId,options:{
  if(options.guide){copy.now=options.guide.step;copy.effect=options.guide.effect;}if(options.status)copy.now=options.status;
  // Canvas entries are focusable; closing returns keyboard control to the same surface.
  if(!document.querySelector('dialog[open]'))document.querySelector<HTMLCanvasElement>('canvas')?.focus({preventScroll:true});
- const d=dialog.open(hero.name+' · '+hero.passiveName,hero.detailRules+'\n\n'+hero.passiveDescription+'\n\n'+hero.buildTip,options.actions??[],{closeLabel:options.closeLabel??'返回',onClose:options.onClose,collapseRules:true,rulesLabel:'完整能力与限制',portrait:{url:portraitURL(id),thumbnailUrl:selectionPortraitURL(id),alt:hero.name+' · '+HERO_ART_NOTICE}});
+ const d=dialog.open(hero.name+' · '+hero.passiveName,hero.detailRules,options.actions??[],{closeLabel:options.closeLabel??'返回',onClose:options.onClose,collapseRules:true,rulesLabel:'完整能力与限制',portrait:{url:portraitURL(id),thumbnailUrl:selectionPortraitURL(id),alt:hero.name+' · '+HERO_ART_NOTICE}});
  d.classList.add('hero-explanation');if(!portraitURL(id))d.classList.add('hero-explanation--text');d.dataset.hero=id;
  const style=document.createElement('style');style.textContent=css+' .hero-explanation--text .dialog-content{display:block}.hero-explanation--text .dialog-intro{max-width:680px}';d.append(style);
  d.querySelector('.dialog-eyebrow')!.textContent='英雄说明 · 只查看不消耗';

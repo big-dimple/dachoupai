@@ -11,6 +11,7 @@ import type {R2RunState} from '../domain/r2Run';
 import {R2_ASSIST_CONTRACT} from '../domain/r2Assist';
 import {r2UsesAssist} from '../domain/r2Run';
 import {R2_PUBLISHED_CONTENT} from '../domain/r2PublishedContent';
+import {R2_S04_FINISH_VERSION,R2_S04_FINISH_HASH} from '../domain/r2GroupUpgrade';
 
 /** Saved-run copy is scoped to its identity; character selection uses the actual new-game identity. */
 function characterDetailsForRun(run:Pick<R2RunState,'characterId'|'contentVersion'|'contentHash'>){
@@ -30,8 +31,7 @@ function characterDetailsForRun(run:Pick<R2RunState,'characterId'|'contentVersio
 export function characterForNewRun(characterId:CharacterId){return characterForRun({characterId,...newRunIdentity(characterId,characterId==='erxiang'||characterId==='azao'||characterId==='xiemu'||characterId==='laohuan'||characterId==='touye'?'group':undefined)});}
 
 export function usesCurrentHeroText(run:Pick<R2RunState,'characterId'|'contentVersion'|'contentHash'>):boolean {
- const identity=newRunIdentity(run.characterId);
- return run.contentVersion===identity.contentVersion&&run.contentHash===identity.contentHash;
+ return run.contentVersion===R2_S04_FINISH_VERSION&&run.contentHash===R2_S04_FINISH_HASH;
 }
 export function characterForRun(run:Pick<R2RunState,'characterId'|'contentVersion'|'contentHash'>){
  const c=characterDetailsForRun(run),current=usesCurrentHeroText(run),quick=HERO_QUICK_COPY[run.characterId];

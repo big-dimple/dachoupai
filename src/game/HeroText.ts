@@ -15,7 +15,14 @@ export const HERO_QUICK_COPY:Record<CharacterId,{effect:string;tags:readonly str
 /** Keep implementation terms in the document, out of the player-facing rules. */
 export function heroDetailRules(id:CharacterId):string {
  const hero=heroTextSpec(id);
- return [hero.skillSummary,...hero.detailRules].join('\n\n').replaceAll('现行AMO_ASSIST_TYPES集合','现行合格牌型').replaceAll('pending-refill','待选补牌').replaceAll('Joker','大丑牌');
+ return [hero.skillSummary,...hero.detailRules].join('\n\n').replaceAll('现行AMO_ASSIST_TYPES集合','现行合格牌型').replaceAll('pending-refill','待选补牌').replaceAll('Joker','大丑牌')
+  .replaceAll('B08静场','静场').replaceAll('Q01等','所有')
+  .replace('为同一事务','一起确认')
+  .replace('；旧身份的未成目标资格/随机押注仍按自身规则，禁止套用此新局说明','')
+  .replace('；替代旧顺同+120，不恢复旧被动','')
+  .replace('；不要把有增强的牌误当成普通点数为0','；有增强也仍按普通点数判断')
+  .replace('，不能误写“重复型不能放”','')
+  .replace('不能许诺付钱一定净增分或过关','付钱不保证净增分或过关');
 }
 
 export function mountHeroTags(dialog:HTMLDialogElement,tags:readonly string[]):void {

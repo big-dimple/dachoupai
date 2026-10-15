@@ -21,7 +21,7 @@ it('adopts the exact six approved identities while keeping first-layer copy comp
  for(const id of CHARACTER_IDS){const approved=spec.heroes.find(h=>h.id===id)!,copy=characterForNewRun(id);
   expect(copy.passiveName).toBe(approved.skillName);expect(HERO_CAST[id]).toMatchObject({name:approved.name,title:approved.theme,intro:approved.story,quote:approved.motto});
   expect(copy.quickEffect).not.toBe(approved.skillSummary);expect(copy.quickEffect.length).toBeLessThanOrEqual(32);expect(copy.skillTags.length).toBeGreaterThanOrEqual(2);
-  expect(copy.detailRules).toContain(approved.skillSummary);expect(copy.detailRules).not.toMatch(/AMO_ASSIST_TYPES|pending-refill/);expect(HERO_QUICK_COPY[id].tags.every(t=>t.length<=10)).toBe(true);
+  expect(copy.detailRules).toContain(approved.skillSummary);expect(copy.detailRules).not.toMatch(/AMO_ASSIST_TYPES|pending-refill|禁止套用|不能误写|不能许诺/);expect(HERO_QUICK_COPY[id].tags.every(t=>t.length<=10)).toBe(true);
  }
 });
 it('keeps old passive and old wager identities out of the new names, examples and claims',()=>{
