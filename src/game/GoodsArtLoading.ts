@@ -1,8 +1,8 @@
 import type Phaser from 'phaser';
-import {loadArtTexture} from './ArtTextureLoading';
+import {loadArtTexture,promoteArtTexture} from './ArtTextureLoading';
 
 type Status='idle'|'loading'|'loaded'|'failed';
-interface Entry {status:Status;attempts:number;controller?:AbortController;promise?:Promise<boolean>}
+interface Entry {status:Status;attempts:number;controller?:AbortController;promise?:Promise<boolean>;visible?:boolean;promotionPending?:boolean}
 const loaders=new WeakMap<Phaser.Scene,GoodsLoads>();
 export const goodsArtKey=(id:string)=>'goods-art/'+id;
 /** Read the completed render tree: only the top card of a basic-choice fan is visible.
@@ -25,11 +25,22 @@ class GoodsLoads {
     const key=goodsArtKey(id);
     if(this.scene.textures.exists(key))return Promise.resolve(true);
     let entry=this.entries.get(id);if(!entry){entry={status:'idle',attempts:0};this.entries.set(id,entry);}
-    if(entry.status==='loading')return entry.promise!;
+    if(entry.status==='loading'){
+      const current=entry;
+      if(!current.visible&&!current.promotionPending){
+        current.promotionPending=true;
+        void Promise.resolve().then(()=>{
+          current.promotionPending=false;
+          if(this.disposed||current.controller?.signal.aborted||current.status!=='loading'||this.entries.get(id)!==current)return;
+          if(retry||foreground(this.scene,id)){current.visible=true;promoteArtTexture(this.scene.game,key);}
+        });
+      }
+      return entry.promise!;
+    }
     if(entry.status==='failed'&&!retry)return Promise.resolve(false);
     const controller=new AbortController();entry.controller=controller;entry.status='loading';entry.attempts++;
     const current=entry;
-    return entry.promise=Promise.resolve().then(()=>loadArtTexture(this.scene.game,key,url,controller.signal,retry||foreground(this.scene,id))).then(()=>{
+    return entry.promise=Promise.resolve().then(()=>{current.visible=retry||foreground(this.scene,id);return loadArtTexture(this.scene.game,key,url,controller.signal,current.visible);}).then(()=>{
       if(this.disposed||controller.signal.aborted)return false;
       current.status=this.scene.textures.exists(key)?'loaded':'failed';refresh();return current.status==='loaded';
     }).catch(()=>{if(!this.disposed&&!controller.signal.aborted){current.status='failed';refresh();}return false;});

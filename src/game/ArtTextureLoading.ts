@@ -13,11 +13,14 @@ export function artTransfer<T>(run:(signal:AbortSignal)=>Promise<T>,priority:num
       work.controller?.abort();
     }};
     signal?.addEventListener('abort',work.cancel,{once:true});waiting.push(work);
-    // Only detail (priority 1) is interrupted. Background thumbnails finish once,
-    // avoiding duplicate requests when the next stage needs the same texture.
-    if(priority===2)for(const active of running)if(active.priority===1){active.preempted=true;active.controller?.abort();}
-    pump();
+    schedule(priority);
   });
+}
+/** All newly visible demand, including shared-job promotion, uses the same preemption rule. */
+function schedule(priority:number):void {
+  // Never interrupt an already preempted HD again while its abort settles.
+  if(priority===2)for(const active of running)if(active.priority===1&&!active.preempted&&!active.controller?.signal.aborted){active.preempted=true;active.controller?.abort();}
+  pump();
 }
 function pump():void {
   waiting.sort((a,b)=>b.priority-a.priority);
@@ -40,6 +43,13 @@ function pump():void {
 
 type TextureWork={url:string;controller:AbortController;consumers:number;promise?:Promise<void>;priority:{value:number}};
 const games=new WeakMap<Phaser.Game,Map<string,TextureWork>>();
+/** Promote without adding a subscriber, restarting a transfer, or spending a retry. */
+export function promoteArtTexture(game:Phaser.Game,key:string):void {
+  const work=games.get(game)?.get(key);if(!work||work.controller.signal.aborted||work.priority.value===2)return;
+  work.priority.value=2;
+  const transfer=[...waiting,...running].find(candidate=>candidate.signal===work.controller.signal);
+  if(transfer){transfer.priority=2;schedule(2);}
+}
 /** Texture manager is the only thumbnail cache. Jobs are shared across scene/warmup owners. */
 export function loadArtTexture(game:Phaser.Game,key:string,url:string,signal:AbortSignal,visible=true):Promise<void> {
   if(signal.aborted)return Promise.reject(Error('art-aborted'));
@@ -71,12 +81,7 @@ export function loadArtTexture(game:Phaser.Game,key:string,url:string,signal:Abo
         if(!game.textures.exists(key))game.textures.addImage(key,image);
       }finally{clearTimeout(deadline);transferSignal.removeEventListener('abort',cleanup);if(source)URL.revokeObjectURL(source);}
     },priority.value,controller.signal,key.startsWith('goods-art/')?'goods':key.includes('joker-')?'joker':'optional').finally(()=>{if(jobs!.get(key)===current)jobs!.delete(key);});
-  }else if(visible){
-    work.priority.value=2;
-    // Promote the queued shared job without creating another request.
-    const queued=waiting.find(candidate=>candidate.signal===work!.controller.signal);if(queued)queued.priority=2;
-    pump();
-  }
+  }else if(visible)promoteArtTexture(game,key);
   const current=work;current.consumers++;
   return new Promise((resolve,reject)=>{
     let settled=false;

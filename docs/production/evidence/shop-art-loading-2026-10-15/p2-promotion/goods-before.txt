@@ -1,0 +1,33 @@
+
+> dachoupai@0.1.0 test
+> vitest run --run tests/goods-art-loading.test.ts -t promotes a loading covered card
+
+
+ RUN  v4.1.11 /workspace/dachoupai
+
+ ❯ tests/goods-art-loading.test.ts (6 tests | 1 failed | 5 skipped) 6ms
+     × promotes a loading covered card when the same ID becomes primary without subscribing or retrying again 5ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/goods-art-loading.test.ts > scene-owned tool/item thumbnail loading > promotes a loading covered card when the same ID becomes primary without subscribing or retrying again
+AssertionError: expected "vi.fn()" to be called once with arguments: [ {}, 'goods-art/T09' ]
+
+Number of calls: 0
+
+ ❯ tests/goods-art-loading.test.ts:38:25
+     36|     requestGoodsArt(f.scene,'T09','/top',refresh);await tick();expect(…
+     37|     primary=true;requestGoodsArt(f.scene,'T09','/top',refresh);request…
+     38|     expect(art.promote).toHaveBeenCalledExactlyOnceWith(f.scene.game,g…
+       |                         ^
+     39|     f.add(goodsArtKey('T09'),{});finish();await tick();expect(refresh)…
+     40|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 5 skipped (6)
+   Start at  00:42:48
+   Duration  176ms (transform 51ms, setup 0ms, import 68ms, tests 6ms, environment 0ms)
+
