@@ -1,0 +1,3411 @@
+{
+  "label": "frozen-after-final",
+  "sourceHead": "e76d23884f00aab18ee8ce7093b98f49c7adbcff",
+  "build": {
+    "version": "C03",
+    "builtAt": "2026-10-15T00:24:21.134Z",
+    "revision": "e76d23884f00aab18ee8ce7093b98f49c7adbcff",
+    "sourceStatus": "clean",
+    "modified": false
+  },
+  "delayMs": 900,
+  "cases": [
+    {
+      "width": 1366,
+      "kind": "first-shop",
+      "firstMs": 626,
+      "allMs": 3257,
+      "visibleKeys": [
+        "p08-joker-b07",
+        "p08-joker-c05",
+        "p08-joker-mantangcai",
+        "goods-art/T17",
+        "goods-art/T08",
+        "goods-art/U05"
+      ],
+      "requests": [
+        {
+          "url": "/assets/handdrawn-p08/characters/amo.selection.webp",
+          "at": 1792023876250
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/amo.avatar.webp",
+          "at": 1792023876251
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/touye.selection.webp",
+          "at": 1792023877345
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/touye.avatar.webp",
+          "at": 1792023877411
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/amo.portrait.webp",
+          "at": 1792023878526
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/laohuan.selection.webp",
+          "at": 1792023878632
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/laohuan.avatar.webp",
+          "at": 1792023879742
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/erxiang.selection.webp",
+          "at": 1792023879908
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/erxiang.avatar.webp",
+          "at": 1792023880950
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/azao.selection.webp",
+          "at": 1792023881168
+        },
+        {
+          "url": "/assets/handdrawn-p08/cards/b07.thumbnail.webp",
+          "at": 1792023881420
+        },
+        {
+          "url": "/assets/handdrawn-p08/cards/c05.thumbnail.webp",
+          "at": 1792023881421
+        },
+        {
+          "url": "/assets/handdrawn-tools/tool-t17.thumbnail.webp",
+          "at": 1792023882651
+        },
+        {
+          "url": "/assets/handdrawn-tools/tool-t08.thumbnail.webp",
+          "at": 1792023882656
+        },
+        {
+          "url": "/assets/handdrawn-p08/cards/mantangcai.thumbnail.webp",
+          "at": 1792023882848
+        },
+        {
+          "url": "/assets/handdrawn-p08/court/k.court.webp",
+          "at": 1792023882849
+        },
+        {
+          "url": "/assets/handdrawn-tools/item-u05.thumbnail.webp",
+          "at": 1792023884099
+        },
+        {
+          "url": "/assets/handdrawn-tools/tool-t02.thumbnail.webp",
+          "at": 1792023884106
+        },
+        {
+          "url": "/assets/handdrawn-p08/court/q.court.webp",
+          "at": 1792023884307
+        },
+        {
+          "url": "/assets/handdrawn-p08/court/j.court.webp",
+          "at": 1792023884309
+        },
+        {
+          "url": "/assets/handdrawn-tools/tool-t09.thumbnail.webp",
+          "at": 1792023885694
+        },
+        {
+          "url": "/assets/handdrawn-tools/tool-t10.thumbnail.webp",
+          "at": 1792023885694
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/azao.avatar.webp",
+          "at": 1792023885696
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/xiemu.selection.webp",
+          "at": 1792023885896
+        },
+        {
+          "url": "/assets/handdrawn-tools/tool-t11.thumbnail.webp",
+          "at": 1792023887139
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/xiemu.avatar.webp",
+          "at": 1792023887320
+        }
+      ],
+      "resources": [
+        {
+          "url": "/assets/handdrawn-p08/characters/amo.selection.webp",
+          "start": 817.5999999999767,
+          "end": 1756.5999999999767,
+          "bytes": 8470
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/amo.avatar.webp",
+          "start": 818.0999999999767,
+          "end": 1757.0999999999767,
+          "bytes": 9954
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/touye.selection.webp",
+          "start": 1932.0999999999767,
+          "end": 2851.4000000000233,
+          "bytes": 10132
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/touye.avatar.webp",
+          "start": 2000.4000000000233,
+          "end": 2914.3000000000466,
+          "bytes": 11046
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/amo.portrait.webp",
+          "start": 3116.5,
+          "end": 4021.8000000000466,
+          "bytes": 34664
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/laohuan.selection.webp",
+          "start": 3218.4000000000233,
+          "end": 4139.199999999953,
+          "bytes": 10208
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/laohuan.avatar.webp",
+          "start": 4330.900000000023,
+          "end": 5241,
+          "bytes": 10836
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/erxiang.selection.webp",
+          "start": 4498,
+          "end": 5405.800000000047,
+          "bytes": 18316
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/erxiang.avatar.webp",
+          "start": 5539.900000000023,
+          "end": 6459.300000000047,
+          "bytes": 15880
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/azao.selection.webp",
+          "start": 5757.900000000023,
+          "end": 6674.599999999977,
+          "bytes": 13164
+        },
+        {
+          "url": "/assets/handdrawn-p08/cards/b07.thumbnail.webp",
+          "start": 5761.5,
+          "end": 6922.599999999977,
+          "bytes": 4310
+        },
+        {
+          "url": "/assets/handdrawn-p08/cards/c05.thumbnail.webp",
+          "start": 5761.699999999953,
+          "end": 6923,
+          "bytes": 4338
+        },
+        {
+          "url": "/assets/handdrawn-tools/tool-t17.thumbnail.webp",
+          "start": 7241.099999999977,
+          "end": 8151.699999999953,
+          "bytes": 2348
+        },
+        {
+          "url": "/assets/handdrawn-tools/tool-t08.thumbnail.webp",
+          "start": 7245.599999999977,
+          "end": 8156.300000000047,
+          "bytes": 2480
+        },
+        {
+          "url": "/assets/handdrawn-p08/cards/mantangcai.thumbnail.webp",
+          "start": 7436.400000000023,
+          "end": 8348.300000000047,
+          "bytes": 4278
+        },
+        {
+          "url": "/assets/handdrawn-p08/court/k.court.webp",
+          "start": 7437.699999999953,
+          "end": 8348.400000000023,
+          "bytes": 24632
+        },
+        {
+          "url": "/assets/handdrawn-tools/item-u05.thumbnail.webp",
+          "start": 8689.300000000047,
+          "end": 9611.199999999953,
+          "bytes": 3046
+        },
+        {
+          "url": "/assets/handdrawn-tools/tool-t02.thumbnail.webp",
+          "start": 8692.300000000047,
+          "end": 9612,
+          "bytes": 2704
+        },
+        {
+          "url": "/assets/handdrawn-p08/court/q.court.webp",
+          "start": 8896.300000000047,
+          "end": 9808,
+          "bytes": 23292
+        },
+        {
+          "url": "/assets/handdrawn-p08/court/j.court.webp",
+          "start": 8899.199999999953,
+          "end": 9809.300000000047,
+          "bytes": 23858
+        },
+        {
+          "url": "/assets/handdrawn-tools/tool-t09.thumbnail.webp",
+          "start": 10282.199999999953,
+          "end": 11191.900000000023,
+          "bytes": 1972
+        },
+        {
+          "url": "/assets/handdrawn-tools/tool-t10.thumbnail.webp",
+          "start": 10283.099999999977,
+          "end": 11192.900000000023,
+          "bytes": 1648
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/azao.avatar.webp",
+          "start": 10285.900000000023,
+          "end": 11193.099999999977,
+          "bytes": 11572
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/xiemu.selection.webp",
+          "start": 10484.099999999977,
+          "end": 11441.599999999977,
+          "bytes": 15154
+        }
+      ],
+      "requestCount": 26,
+      "bytes": 268302,
+      "responses": [
+        {
+          "url": "/assets/handdrawn-p08/characters/amo.selection.webp",
+          "bytes": 8470
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/amo.avatar.webp",
+          "bytes": 9954
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/touye.selection.webp",
+          "bytes": 10132
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/touye.avatar.webp",
+          "bytes": 11046
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/amo.portrait.webp",
+          "bytes": 34664
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/laohuan.selection.webp",
+          "bytes": 10208
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/laohuan.avatar.webp",
+          "bytes": 10836
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/erxiang.selection.webp",
+          "bytes": 18316
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/erxiang.avatar.webp",
+          "bytes": 15880
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/azao.selection.webp",
+          "bytes": 13164
+        },
+        {
+          "url": "/assets/handdrawn-p08/cards/b07.thumbnail.webp",
+          "bytes": 4310
+        },
+        {
+          "url": "/assets/handdrawn-p08/cards/c05.thumbnail.webp",
+          "bytes": 4338
+        },
+        {
+          "url": "/assets/handdrawn-tools/tool-t17.thumbnail.webp",
+          "bytes": 2348
+        },
+        {
+          "url": "/assets/handdrawn-tools/tool-t08.thumbnail.webp",
+          "bytes": 2480
+        },
+        {
+          "url": "/assets/handdrawn-p08/cards/mantangcai.thumbnail.webp",
+          "bytes": 4278
+        },
+        {
+          "url": "/assets/handdrawn-p08/court/k.court.webp",
+          "bytes": 24632
+        },
+        {
+          "url": "/assets/handdrawn-tools/item-u05.thumbnail.webp",
+          "bytes": 3046
+        },
+        {
+          "url": "/assets/handdrawn-tools/tool-t02.thumbnail.webp",
+          "bytes": 2704
+        },
+        {
+          "url": "/assets/handdrawn-p08/court/q.court.webp",
+          "bytes": 23292
+        },
+        {
+          "url": "/assets/handdrawn-p08/court/j.court.webp",
+          "bytes": 23858
+        },
+        {
+          "url": "/assets/handdrawn-tools/tool-t09.thumbnail.webp",
+          "bytes": 1972
+        },
+        {
+          "url": "/assets/handdrawn-tools/tool-t10.thumbnail.webp",
+          "bytes": 1648
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/azao.avatar.webp",
+          "bytes": 11572
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/xiemu.selection.webp",
+          "bytes": 15154
+        }
+      ],
+      "stateUnchanged": true,
+      "stateSHA256": "9e3479d560b692df2c49de37e48c87ed9c84875cc4d1d9225a2ac44c96060d3a",
+      "inputPreserved": true,
+      "errors": []
+    },
+    {
+      "width": 1366,
+      "kind": "owned",
+      "firstMs": 0,
+      "allMs": 0,
+      "visibleKeys": [
+        "p08-joker-mantangcai",
+        "p08-joker-b07",
+        "p08-joker-c05",
+        "goods-art/T17",
+        "goods-art/T08",
+        "goods-art/U05"
+      ],
+      "requests": [
+        {
+          "url": "/assets/handdrawn-p08/characters/amo.selection.webp",
+          "at": 1792023876250
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/amo.avatar.webp",
+          "at": 1792023876251
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/touye.selection.webp",
+          "at": 1792023877345
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/touye.avatar.webp",
+          "at": 1792023877411
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/amo.portrait.webp",
+          "at": 1792023878526
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/laohuan.selection.webp",
+          "at": 1792023878632
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/laohuan.avatar.webp",
+          "at": 1792023879742
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/erxiang.selection.webp",
+          "at": 1792023879908
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/erxiang.avatar.webp",
+          "at": 1792023880950
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/azao.selection.webp",
+          "at": 1792023881168
+        },
+        {
+          "url": "/assets/handdrawn-p08/cards/b07.thumbnail.webp",
+          "at": 1792023881420
+        },
+        {
+          "url": "/assets/handdrawn-p08/cards/c05.thumbnail.webp",
+          "at": 1792023881421
+        },
+        {
+          "url": "/assets/handdrawn-tools/tool-t17.thumbnail.webp",
+          "at": 1792023882651
+        },
+        {
+          "url": "/assets/handdrawn-tools/tool-t08.thumbnail.webp",
+          "at": 1792023882656
+        },
+        {
+          "url": "/assets/handdrawn-p08/cards/mantangcai.thumbnail.webp",
+          "at": 1792023882848
+        },
+        {
+          "url": "/assets/handdrawn-p08/court/k.court.webp",
+          "at": 1792023882849
+        },
+        {
+          "url": "/assets/handdrawn-tools/item-u05.thumbnail.webp",
+          "at": 1792023884099
+        },
+        {
+          "url": "/assets/handdrawn-tools/tool-t02.thumbnail.webp",
+          "at": 1792023884106
+        },
+        {
+          "url": "/assets/handdrawn-p08/court/q.court.webp",
+          "at": 1792023884307
+        },
+        {
+          "url": "/assets/handdrawn-p08/court/j.court.webp",
+          "at": 1792023884309
+        },
+        {
+          "url": "/assets/handdrawn-tools/tool-t09.thumbnail.webp",
+          "at": 1792023885694
+        },
+        {
+          "url": "/assets/handdrawn-tools/tool-t10.thumbnail.webp",
+          "at": 1792023885694
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/azao.avatar.webp",
+          "at": 1792023885696
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/xiemu.selection.webp",
+          "at": 1792023885896
+        },
+        {
+          "url": "/assets/handdrawn-tools/tool-t11.thumbnail.webp",
+          "at": 1792023887139
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/xiemu.avatar.webp",
+          "at": 1792023887320
+        },
+        {
+          "url": "/assets/handdrawn-p08/cards/mantangcai.detail.webp",
+          "at": 1792023889510
+        },
+        {
+          "url": "/assets/handdrawn-p08/cards/mantangcai.thumbnail.webp",
+          "at": 1792023889510
+        }
+      ],
+      "resources": [
+        {
+          "url": "/assets/handdrawn-p08/characters/amo.selection.webp",
+          "start": 817.5999999999767,
+          "end": 1756.5999999999767,
+          "bytes": 8470
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/amo.avatar.webp",
+          "start": 818.0999999999767,
+          "end": 1757.0999999999767,
+          "bytes": 9954
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/touye.selection.webp",
+          "start": 1932.0999999999767,
+          "end": 2851.4000000000233,
+          "bytes": 10132
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/touye.avatar.webp",
+          "start": 2000.4000000000233,
+          "end": 2914.3000000000466,
+          "bytes": 11046
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/amo.portrait.webp",
+          "start": 3116.5,
+          "end": 4021.8000000000466,
+          "bytes": 34664
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/laohuan.selection.webp",
+          "start": 3218.4000000000233,
+          "end": 4139.199999999953,
+          "bytes": 10208
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/laohuan.avatar.webp",
+          "start": 4330.900000000023,
+          "end": 5241,
+          "bytes": 10836
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/erxiang.selection.webp",
+          "start": 4498,
+          "end": 5405.800000000047,
+          "bytes": 18316
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/erxiang.avatar.webp",
+          "start": 5539.900000000023,
+          "end": 6459.300000000047,
+          "bytes": 15880
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/azao.selection.webp",
+          "start": 5757.900000000023,
+          "end": 6674.599999999977,
+          "bytes": 13164
+        },
+        {
+          "url": "/assets/handdrawn-p08/cards/b07.thumbnail.webp",
+          "start": 5761.5,
+          "end": 6922.599999999977,
+          "bytes": 4310
+        },
+        {
+          "url": "/assets/handdrawn-p08/cards/c05.thumbnail.webp",
+          "start": 5761.699999999953,
+          "end": 6923,
+          "bytes": 4338
+        },
+        {
+          "url": "/assets/handdrawn-tools/tool-t17.thumbnail.webp",
+          "start": 7241.099999999977,
+          "end": 8151.699999999953,
+          "bytes": 2348
+        },
+        {
+          "url": "/assets/handdrawn-tools/tool-t08.thumbnail.webp",
+          "start": 7245.599999999977,
+          "end": 8156.300000000047,
+          "bytes": 2480
+        },
+        {
+          "url": "/assets/handdrawn-p08/cards/mantangcai.thumbnail.webp",
+          "start": 7436.400000000023,
+          "end": 8348.300000000047,
+          "bytes": 4278
+        },
+        {
+          "url": "/assets/handdrawn-p08/court/k.court.webp",
+          "start": 7437.699999999953,
+          "end": 8348.400000000023,
+          "bytes": 24632
+        },
+        {
+          "url": "/assets/handdrawn-tools/item-u05.thumbnail.webp",
+          "start": 8689.300000000047,
+          "end": 9611.199999999953,
+          "bytes": 3046
+        },
+        {
+          "url": "/assets/handdrawn-tools/tool-t02.thumbnail.webp",
+          "start": 8692.300000000047,
+          "end": 9612,
+          "bytes": 2704
+        },
+        {
+          "url": "/assets/handdrawn-p08/court/q.court.webp",
+          "start": 8896.300000000047,
+          "end": 9808,
+          "bytes": 23292
+        },
+        {
+          "url": "/assets/handdrawn-p08/court/j.court.webp",
+          "start": 8899.199999999953,
+          "end": 9809.300000000047,
+          "bytes": 23858
+        },
+        {
+          "url": "/assets/handdrawn-tools/tool-t09.thumbnail.webp",
+          "start": 10282.199999999953,
+          "end": 11191.900000000023,
+          "bytes": 1972
+        },
+        {
+          "url": "/assets/handdrawn-tools/tool-t10.thumbnail.webp",
+          "start": 10283.099999999977,
+          "end": 11192.900000000023,
+          "bytes": 1648
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/azao.avatar.webp",
+          "start": 10285.900000000023,
+          "end": 11193.099999999977,
+          "bytes": 11572
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/xiemu.selection.webp",
+          "start": 10484.099999999977,
+          "end": 11441.599999999977,
+          "bytes": 15154
+        },
+        {
+          "url": "/assets/handdrawn-tools/tool-t11.thumbnail.webp",
+          "start": 11728.099999999977,
+          "end": 12634.5,
+          "bytes": 2084
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/xiemu.avatar.webp",
+          "start": 11909.199999999953,
+          "end": 12816.400000000023,
+          "bytes": 14322
+        },
+        {
+          "url": "/assets/handdrawn-p08/cards/mantangcai.detail.webp",
+          "start": 14066.5,
+          "end": 15013.099999999977,
+          "bytes": 57250
+        },
+        {
+          "url": "/assets/handdrawn-p08/cards/mantangcai.thumbnail.webp",
+          "start": 14098.199999999953,
+          "end": 15013.199999999953,
+          "bytes": 4278
+        }
+      ],
+      "requestCount": 28,
+      "bytes": 346236,
+      "responses": [
+        {
+          "url": "/assets/handdrawn-p08/characters/amo.selection.webp",
+          "bytes": 8470
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/amo.avatar.webp",
+          "bytes": 9954
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/touye.selection.webp",
+          "bytes": 10132
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/touye.avatar.webp",
+          "bytes": 11046
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/amo.portrait.webp",
+          "bytes": 34664
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/laohuan.selection.webp",
+          "bytes": 10208
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/laohuan.avatar.webp",
+          "bytes": 10836
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/erxiang.selection.webp",
+          "bytes": 18316
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/erxiang.avatar.webp",
+          "bytes": 15880
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/azao.selection.webp",
+          "bytes": 13164
+        },
+        {
+          "url": "/assets/handdrawn-p08/cards/b07.thumbnail.webp",
+          "bytes": 4310
+        },
+        {
+          "url": "/assets/handdrawn-p08/cards/c05.thumbnail.webp",
+          "bytes": 4338
+        },
+        {
+          "url": "/assets/handdrawn-tools/tool-t17.thumbnail.webp",
+          "bytes": 2348
+        },
+        {
+          "url": "/assets/handdrawn-tools/tool-t08.thumbnail.webp",
+          "bytes": 2480
+        },
+        {
+          "url": "/assets/handdrawn-p08/cards/mantangcai.thumbnail.webp",
+          "bytes": 4278
+        },
+        {
+          "url": "/assets/handdrawn-p08/court/k.court.webp",
+          "bytes": 24632
+        },
+        {
+          "url": "/assets/handdrawn-tools/item-u05.thumbnail.webp",
+          "bytes": 3046
+        },
+        {
+          "url": "/assets/handdrawn-tools/tool-t02.thumbnail.webp",
+          "bytes": 2704
+        },
+        {
+          "url": "/assets/handdrawn-p08/court/q.court.webp",
+          "bytes": 23292
+        },
+        {
+          "url": "/assets/handdrawn-p08/court/j.court.webp",
+          "bytes": 23858
+        },
+        {
+          "url": "/assets/handdrawn-tools/tool-t09.thumbnail.webp",
+          "bytes": 1972
+        },
+        {
+          "url": "/assets/handdrawn-tools/tool-t10.thumbnail.webp",
+          "bytes": 1648
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/azao.avatar.webp",
+          "bytes": 11572
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/xiemu.selection.webp",
+          "bytes": 15154
+        },
+        {
+          "url": "/assets/handdrawn-tools/tool-t11.thumbnail.webp",
+          "bytes": 2084
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/xiemu.avatar.webp",
+          "bytes": 14322
+        },
+        {
+          "url": "/assets/handdrawn-p08/cards/mantangcai.thumbnail.webp",
+          "bytes": 4278
+        },
+        {
+          "url": "/assets/handdrawn-p08/cards/mantangcai.detail.webp",
+          "bytes": 57250
+        }
+      ],
+      "stateUnchanged": true,
+      "stateSHA256": "4149860c6911f68f58303258f93ce249995801e5058ae79d95cbe57183c108d2",
+      "inputPreserved": true,
+      "errors": []
+    },
+    {
+      "width": 1366,
+      "kind": "reroll",
+      "firstMs": 0,
+      "allMs": 2626,
+      "visibleKeys": [
+        "p08-joker-mantangcai",
+        "p08-joker-d09",
+        "p08-joker-a06",
+        "p08-joker-e07",
+        "goods-art/S04",
+        "goods-art/T08",
+        "goods-art/U05"
+      ],
+      "requests": [
+        {
+          "url": "/assets/handdrawn-p08/characters/amo.selection.webp",
+          "at": 1792023876250
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/amo.avatar.webp",
+          "at": 1792023876251
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/touye.selection.webp",
+          "at": 1792023877345
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/touye.avatar.webp",
+          "at": 1792023877411
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/amo.portrait.webp",
+          "at": 1792023878526
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/laohuan.selection.webp",
+          "at": 1792023878632
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/laohuan.avatar.webp",
+          "at": 1792023879742
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/erxiang.selection.webp",
+          "at": 1792023879908
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/erxiang.avatar.webp",
+          "at": 1792023880950
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/azao.selection.webp",
+          "at": 1792023881168
+        },
+        {
+          "url": "/assets/handdrawn-p08/cards/b07.thumbnail.webp",
+          "at": 1792023881420
+        },
+        {
+          "url": "/assets/handdrawn-p08/cards/c05.thumbnail.webp",
+          "at": 1792023881421
+        },
+        {
+          "url": "/assets/handdrawn-tools/tool-t17.thumbnail.webp",
+          "at": 1792023882651
+        },
+        {
+          "url": "/assets/handdrawn-tools/tool-t08.thumbnail.webp",
+          "at": 1792023882656
+        },
+        {
+          "url": "/assets/handdrawn-p08/cards/mantangcai.thumbnail.webp",
+          "at": 1792023882848
+        },
+        {
+          "url": "/assets/handdrawn-p08/court/k.court.webp",
+          "at": 1792023882849
+        },
+        {
+          "url": "/assets/handdrawn-tools/item-u05.thumbnail.webp",
+          "at": 1792023884099
+        },
+        {
+          "url": "/assets/handdrawn-tools/tool-t02.thumbnail.webp",
+          "at": 1792023884106
+        },
+        {
+          "url": "/assets/handdrawn-p08/court/q.court.webp",
+          "at": 1792023884307
+        },
+        {
+          "url": "/assets/handdrawn-p08/court/j.court.webp",
+          "at": 1792023884309
+        },
+        {
+          "url": "/assets/handdrawn-tools/tool-t09.thumbnail.webp",
+          "at": 1792023885694
+        },
+        {
+          "url": "/assets/handdrawn-tools/tool-t10.thumbnail.webp",
+          "at": 1792023885694
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/azao.avatar.webp",
+          "at": 1792023885696
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/xiemu.selection.webp",
+          "at": 1792023885896
+        },
+        {
+          "url": "/assets/handdrawn-tools/tool-t11.thumbnail.webp",
+          "at": 1792023887139
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/xiemu.avatar.webp",
+          "at": 1792023887320
+        },
+        {
+          "url": "/assets/handdrawn-p08/cards/mantangcai.detail.webp",
+          "at": 1792023889510
+        },
+        {
+          "url": "/assets/handdrawn-p08/cards/mantangcai.thumbnail.webp",
+          "at": 1792023889510
+        },
+        {
+          "url": "/assets/handdrawn-p08/cards/d09.thumbnail.webp",
+          "at": 1792023898954
+        },
+        {
+          "url": "/assets/handdrawn-p08/cards/a06.thumbnail.webp",
+          "at": 1792023898954
+        },
+        {
+          "url": "/assets/handdrawn-tools/tool-s04.thumbnail.webp",
+          "at": 1792023898956
+        },
+        {
+          "url": "/assets/handdrawn-p08/cards/e07.thumbnail.webp",
+          "at": 1792023900321
+        }
+      ],
+      "resources": [
+        {
+          "url": "/assets/handdrawn-p08/characters/amo.selection.webp",
+          "start": 817.5999999999767,
+          "end": 1756.5999999999767,
+          "bytes": 8470
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/amo.avatar.webp",
+          "start": 818.0999999999767,
+          "end": 1757.0999999999767,
+          "bytes": 9954
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/touye.selection.webp",
+          "start": 1932.0999999999767,
+          "end": 2851.4000000000233,
+          "bytes": 10132
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/touye.avatar.webp",
+          "start": 2000.4000000000233,
+          "end": 2914.3000000000466,
+          "bytes": 11046
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/amo.portrait.webp",
+          "start": 3116.5,
+          "end": 4021.8000000000466,
+          "bytes": 34664
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/laohuan.selection.webp",
+          "start": 3218.4000000000233,
+          "end": 4139.199999999953,
+          "bytes": 10208
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/laohuan.avatar.webp",
+          "start": 4330.900000000023,
+          "end": 5241,
+          "bytes": 10836
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/erxiang.selection.webp",
+          "start": 4498,
+          "end": 5405.800000000047,
+          "bytes": 18316
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/erxiang.avatar.webp",
+          "start": 5539.900000000023,
+          "end": 6459.300000000047,
+          "bytes": 15880
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/azao.selection.webp",
+          "start": 5757.900000000023,
+          "end": 6674.599999999977,
+          "bytes": 13164
+        },
+        {
+          "url": "/assets/handdrawn-p08/cards/b07.thumbnail.webp",
+          "start": 5761.5,
+          "end": 6922.599999999977,
+          "bytes": 4310
+        },
+        {
+          "url": "/assets/handdrawn-p08/cards/c05.thumbnail.webp",
+          "start": 5761.699999999953,
+          "end": 6923,
+          "bytes": 4338
+        },
+        {
+          "url": "/assets/handdrawn-tools/tool-t17.thumbnail.webp",
+          "start": 7241.099999999977,
+          "end": 8151.699999999953,
+          "bytes": 2348
+        },
+        {
+          "url": "/assets/handdrawn-tools/tool-t08.thumbnail.webp",
+          "start": 7245.599999999977,
+          "end": 8156.300000000047,
+          "bytes": 2480
+        },
+        {
+          "url": "/assets/handdrawn-p08/cards/mantangcai.thumbnail.webp",
+          "start": 7436.400000000023,
+          "end": 8348.300000000047,
+          "bytes": 4278
+        },
+        {
+          "url": "/assets/handdrawn-p08/court/k.court.webp",
+          "start": 7437.699999999953,
+          "end": 8348.400000000023,
+          "bytes": 24632
+        },
+        {
+          "url": "/assets/handdrawn-tools/item-u05.thumbnail.webp",
+          "start": 8689.300000000047,
+          "end": 9611.199999999953,
+          "bytes": 3046
+        },
+        {
+          "url": "/assets/handdrawn-tools/tool-t02.thumbnail.webp",
+          "start": 8692.300000000047,
+          "end": 9612,
+          "bytes": 2704
+        },
+        {
+          "url": "/assets/handdrawn-p08/court/q.court.webp",
+          "start": 8896.300000000047,
+          "end": 9808,
+          "bytes": 23292
+        },
+        {
+          "url": "/assets/handdrawn-p08/court/j.court.webp",
+          "start": 8899.199999999953,
+          "end": 9809.300000000047,
+          "bytes": 23858
+        },
+        {
+          "url": "/assets/handdrawn-tools/tool-t09.thumbnail.webp",
+          "start": 10282.199999999953,
+          "end": 11191.900000000023,
+          "bytes": 1972
+        },
+        {
+          "url": "/assets/handdrawn-tools/tool-t10.thumbnail.webp",
+          "start": 10283.099999999977,
+          "end": 11192.900000000023,
+          "bytes": 1648
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/azao.avatar.webp",
+          "start": 10285.900000000023,
+          "end": 11193.099999999977,
+          "bytes": 11572
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/xiemu.selection.webp",
+          "start": 10484.099999999977,
+          "end": 11441.599999999977,
+          "bytes": 15154
+        },
+        {
+          "url": "/assets/handdrawn-tools/tool-t11.thumbnail.webp",
+          "start": 11728.099999999977,
+          "end": 12634.5,
+          "bytes": 2084
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/xiemu.avatar.webp",
+          "start": 11909.199999999953,
+          "end": 12816.400000000023,
+          "bytes": 14322
+        },
+        {
+          "url": "/assets/handdrawn-p08/cards/mantangcai.detail.webp",
+          "start": 14066.5,
+          "end": 15013.099999999977,
+          "bytes": 57250
+        },
+        {
+          "url": "/assets/handdrawn-p08/cards/mantangcai.thumbnail.webp",
+          "start": 14098.199999999953,
+          "end": 15013.199999999953,
+          "bytes": 4278
+        },
+        {
+          "url": "/assets/handdrawn-p08/cards/d09.thumbnail.webp",
+          "start": 23379.199999999953,
+          "end": 24451.199999999953,
+          "bytes": 4044
+        },
+        {
+          "url": "/assets/handdrawn-p08/cards/a06.thumbnail.webp",
+          "start": 23379.400000000023,
+          "end": 24452.400000000023,
+          "bytes": 4054
+        },
+        {
+          "url": "/assets/handdrawn-tools/tool-s04.thumbnail.webp",
+          "start": 23543.800000000047,
+          "end": 24452.5,
+          "bytes": 4414
+        },
+        {
+          "url": "/assets/handdrawn-p08/cards/e07.thumbnail.webp",
+          "start": 24909,
+          "end": 25817.099999999977,
+          "bytes": 6054
+        }
+      ],
+      "requestCount": 32,
+      "bytes": 364802,
+      "responses": [
+        {
+          "url": "/assets/handdrawn-p08/characters/amo.selection.webp",
+          "bytes": 8470
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/amo.avatar.webp",
+          "bytes": 9954
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/touye.selection.webp",
+          "bytes": 10132
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/touye.avatar.webp",
+          "bytes": 11046
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/amo.portrait.webp",
+          "bytes": 34664
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/laohuan.selection.webp",
+          "bytes": 10208
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/laohuan.avatar.webp",
+          "bytes": 10836
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/erxiang.selection.webp",
+          "bytes": 18316
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/erxiang.avatar.webp",
+          "bytes": 15880
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/azao.selection.webp",
+          "bytes": 13164
+        },
+        {
+          "url": "/assets/handdrawn-p08/cards/b07.thumbnail.webp",
+          "bytes": 4310
+        },
+        {
+          "url": "/assets/handdrawn-p08/cards/c05.thumbnail.webp",
+          "bytes": 4338
+        },
+        {
+          "url": "/assets/handdrawn-tools/tool-t17.thumbnail.webp",
+          "bytes": 2348
+        },
+        {
+          "url": "/assets/handdrawn-tools/tool-t08.thumbnail.webp",
+          "bytes": 2480
+        },
+        {
+          "url": "/assets/handdrawn-p08/cards/mantangcai.thumbnail.webp",
+          "bytes": 4278
+        },
+        {
+          "url": "/assets/handdrawn-p08/court/k.court.webp",
+          "bytes": 24632
+        },
+        {
+          "url": "/assets/handdrawn-tools/item-u05.thumbnail.webp",
+          "bytes": 3046
+        },
+        {
+          "url": "/assets/handdrawn-tools/tool-t02.thumbnail.webp",
+          "bytes": 2704
+        },
+        {
+          "url": "/assets/handdrawn-p08/court/q.court.webp",
+          "bytes": 23292
+        },
+        {
+          "url": "/assets/handdrawn-p08/court/j.court.webp",
+          "bytes": 23858
+        },
+        {
+          "url": "/assets/handdrawn-tools/tool-t09.thumbnail.webp",
+          "bytes": 1972
+        },
+        {
+          "url": "/assets/handdrawn-tools/tool-t10.thumbnail.webp",
+          "bytes": 1648
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/azao.avatar.webp",
+          "bytes": 11572
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/xiemu.selection.webp",
+          "bytes": 15154
+        },
+        {
+          "url": "/assets/handdrawn-tools/tool-t11.thumbnail.webp",
+          "bytes": 2084
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/xiemu.avatar.webp",
+          "bytes": 14322
+        },
+        {
+          "url": "/assets/handdrawn-p08/cards/mantangcai.thumbnail.webp",
+          "bytes": 4278
+        },
+        {
+          "url": "/assets/handdrawn-p08/cards/mantangcai.detail.webp",
+          "bytes": 57250
+        },
+        {
+          "url": "/assets/handdrawn-p08/cards/d09.thumbnail.webp",
+          "bytes": 4044
+        },
+        {
+          "url": "/assets/handdrawn-p08/cards/a06.thumbnail.webp",
+          "bytes": 4054
+        },
+        {
+          "url": "/assets/handdrawn-tools/tool-s04.thumbnail.webp",
+          "bytes": 4414
+        },
+        {
+          "url": "/assets/handdrawn-p08/cards/e07.thumbnail.webp",
+          "bytes": 6054
+        }
+      ],
+      "stateUnchanged": true,
+      "stateSHA256": "54b1e402a86f180cf2c63b9d56d6e6874e4494a662293ef0ca1051f2dcf5e119",
+      "inputPreserved": true,
+      "errors": []
+    },
+    {
+      "width": 1366,
+      "kind": "cold-continue",
+      "firstMs": 372,
+      "allMs": 2182,
+      "visibleKeys": [
+        "p08-joker-mantangcai",
+        "p08-joker-d09",
+        "p08-joker-a06",
+        "p08-joker-e07",
+        "goods-art/S04",
+        "goods-art/T08",
+        "goods-art/U05"
+      ],
+      "requests": [
+        {
+          "url": "/assets/handdrawn-p08/characters/amo.selection.webp",
+          "at": 1792023876250
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/amo.avatar.webp",
+          "at": 1792023876251
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/touye.selection.webp",
+          "at": 1792023877345
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/touye.avatar.webp",
+          "at": 1792023877411
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/amo.portrait.webp",
+          "at": 1792023878526
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/laohuan.selection.webp",
+          "at": 1792023878632
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/laohuan.avatar.webp",
+          "at": 1792023879742
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/erxiang.selection.webp",
+          "at": 1792023879908
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/erxiang.avatar.webp",
+          "at": 1792023880950
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/azao.selection.webp",
+          "at": 1792023881168
+        },
+        {
+          "url": "/assets/handdrawn-p08/cards/b07.thumbnail.webp",
+          "at": 1792023881420
+        },
+        {
+          "url": "/assets/handdrawn-p08/cards/c05.thumbnail.webp",
+          "at": 1792023881421
+        },
+        {
+          "url": "/assets/handdrawn-tools/tool-t17.thumbnail.webp",
+          "at": 1792023882651
+        },
+        {
+          "url": "/assets/handdrawn-tools/tool-t08.thumbnail.webp",
+          "at": 1792023882656
+        },
+        {
+          "url": "/assets/handdrawn-p08/cards/mantangcai.thumbnail.webp",
+          "at": 1792023882848
+        },
+        {
+          "url": "/assets/handdrawn-p08/court/k.court.webp",
+          "at": 1792023882849
+        },
+        {
+          "url": "/assets/handdrawn-tools/item-u05.thumbnail.webp",
+          "at": 1792023884099
+        },
+        {
+          "url": "/assets/handdrawn-tools/tool-t02.thumbnail.webp",
+          "at": 1792023884106
+        },
+        {
+          "url": "/assets/handdrawn-p08/court/q.court.webp",
+          "at": 1792023884307
+        },
+        {
+          "url": "/assets/handdrawn-p08/court/j.court.webp",
+          "at": 1792023884309
+        },
+        {
+          "url": "/assets/handdrawn-tools/tool-t09.thumbnail.webp",
+          "at": 1792023885694
+        },
+        {
+          "url": "/assets/handdrawn-tools/tool-t10.thumbnail.webp",
+          "at": 1792023885694
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/azao.avatar.webp",
+          "at": 1792023885696
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/xiemu.selection.webp",
+          "at": 1792023885896
+        },
+        {
+          "url": "/assets/handdrawn-tools/tool-t11.thumbnail.webp",
+          "at": 1792023887139
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/xiemu.avatar.webp",
+          "at": 1792023887320
+        },
+        {
+          "url": "/assets/handdrawn-p08/cards/mantangcai.detail.webp",
+          "at": 1792023889510
+        },
+        {
+          "url": "/assets/handdrawn-p08/cards/mantangcai.thumbnail.webp",
+          "at": 1792023889510
+        },
+        {
+          "url": "/assets/handdrawn-p08/cards/d09.thumbnail.webp",
+          "at": 1792023898954
+        },
+        {
+          "url": "/assets/handdrawn-p08/cards/a06.thumbnail.webp",
+          "at": 1792023898954
+        },
+        {
+          "url": "/assets/handdrawn-tools/tool-s04.thumbnail.webp",
+          "at": 1792023898956
+        },
+        {
+          "url": "/assets/handdrawn-p08/cards/e07.thumbnail.webp",
+          "at": 1792023900321
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/amo.selection.webp",
+          "at": 1792023906396
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/amo.avatar.webp",
+          "at": 1792023906397
+        },
+        {
+          "url": "/assets/handdrawn-tools/item-u05.thumbnail.webp",
+          "at": 1792023907477
+        },
+        {
+          "url": "/assets/handdrawn-p08/cards/mantangcai.thumbnail.webp",
+          "at": 1792023907668
+        },
+        {
+          "url": "/assets/handdrawn-p08/cards/d09.thumbnail.webp",
+          "at": 1792023907668
+        },
+        {
+          "url": "/assets/handdrawn-tools/tool-s04.thumbnail.webp",
+          "at": 1792023907861
+        },
+        {
+          "url": "/assets/handdrawn-tools/tool-t08.thumbnail.webp",
+          "at": 1792023908802
+        },
+        {
+          "url": "/assets/handdrawn-p08/cards/a06.thumbnail.webp",
+          "at": 1792023909016
+        },
+        {
+          "url": "/assets/handdrawn-p08/cards/e07.thumbnail.webp",
+          "at": 1792023909017
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/amo.portrait.webp",
+          "at": 1792023909205
+        },
+        {
+          "url": "/assets/handdrawn-tools/tool-t02.thumbnail.webp",
+          "at": 1792023910188
+        },
+        {
+          "url": "/assets/handdrawn-tools/tool-t09.thumbnail.webp",
+          "at": 1792023910405
+        },
+        {
+          "url": "/assets/handdrawn-p08/court/k.court.webp",
+          "at": 1792023910610
+        },
+        {
+          "url": "/assets/handdrawn-p08/court/q.court.webp",
+          "at": 1792023910616
+        },
+        {
+          "url": "/assets/handdrawn-tools/tool-t10.thumbnail.webp",
+          "at": 1792023911762
+        },
+        {
+          "url": "/assets/handdrawn-tools/tool-t11.thumbnail.webp",
+          "at": 1792023912009
+        },
+        {
+          "url": "/assets/handdrawn-p08/court/j.court.webp",
+          "at": 1792023912010
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/touye.selection.webp",
+          "at": 1792023912012
+        }
+      ],
+      "resources": [
+        {
+          "url": "/assets/handdrawn-p08/characters/amo.selection.webp",
+          "start": 614.9000000000233,
+          "end": 1545.4000000000233,
+          "bytes": 8470
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/amo.avatar.webp",
+          "start": 615.1000000000931,
+          "end": 1545.6000000000931,
+          "bytes": 9954
+        },
+        {
+          "url": "/assets/handdrawn-tools/item-u05.thumbnail.webp",
+          "start": 1711.1000000000931,
+          "end": 2624.70000000007,
+          "bytes": 3046
+        },
+        {
+          "url": "/assets/handdrawn-p08/cards/mantangcai.thumbnail.webp",
+          "start": 1717.1000000000931,
+          "end": 2830.4000000000233,
+          "bytes": 4278
+        },
+        {
+          "url": "/assets/handdrawn-p08/cards/d09.thumbnail.webp",
+          "start": 1717.5,
+          "end": 2830.600000000093,
+          "bytes": 4044
+        },
+        {
+          "url": "/assets/handdrawn-tools/tool-s04.thumbnail.webp",
+          "start": 2093.20000000007,
+          "end": 3024.600000000093,
+          "bytes": 4414
+        },
+        {
+          "url": "/assets/handdrawn-tools/tool-t08.thumbnail.webp",
+          "start": 3039.20000000007,
+          "end": 3946.600000000093,
+          "bytes": 2480
+        },
+        {
+          "url": "/assets/handdrawn-p08/cards/a06.thumbnail.webp",
+          "start": 3248.8000000000466,
+          "end": 4165.5,
+          "bytes": 4054
+        },
+        {
+          "url": "/assets/handdrawn-p08/cards/e07.thumbnail.webp",
+          "start": 3252.5,
+          "end": 4166.70000000007,
+          "bytes": 6054
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/amo.portrait.webp",
+          "start": 3438.9000000000233,
+          "end": 4350.20000000007,
+          "bytes": 34664
+        },
+        {
+          "url": "/assets/handdrawn-tools/tool-t02.thumbnail.webp",
+          "start": 4425.100000000093,
+          "end": 5341.20000000007,
+          "bytes": 2704
+        },
+        {
+          "url": "/assets/handdrawn-tools/tool-t09.thumbnail.webp",
+          "start": 4639.70000000007,
+          "end": 5549.100000000093,
+          "bytes": 1972
+        },
+        {
+          "url": "/assets/handdrawn-p08/court/k.court.webp",
+          "start": 4844.800000000047,
+          "end": 5757.900000000023,
+          "bytes": 24632
+        },
+        {
+          "url": "/assets/handdrawn-p08/court/q.court.webp",
+          "start": 4853.300000000047,
+          "end": 5758.300000000047,
+          "bytes": 23292
+        },
+        {
+          "url": "/assets/handdrawn-tools/tool-t10.thumbnail.webp",
+          "start": 5998.900000000023,
+          "end": 6926.20000000007,
+          "bytes": 1648
+        }
+      ],
+      "requestCount": 50,
+      "bytes": 500508,
+      "responses": [
+        {
+          "url": "/assets/handdrawn-p08/characters/amo.selection.webp",
+          "bytes": 8470
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/amo.avatar.webp",
+          "bytes": 9954
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/touye.selection.webp",
+          "bytes": 10132
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/touye.avatar.webp",
+          "bytes": 11046
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/amo.portrait.webp",
+          "bytes": 34664
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/laohuan.selection.webp",
+          "bytes": 10208
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/laohuan.avatar.webp",
+          "bytes": 10836
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/erxiang.selection.webp",
+          "bytes": 18316
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/erxiang.avatar.webp",
+          "bytes": 15880
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/azao.selection.webp",
+          "bytes": 13164
+        },
+        {
+          "url": "/assets/handdrawn-p08/cards/b07.thumbnail.webp",
+          "bytes": 4310
+        },
+        {
+          "url": "/assets/handdrawn-p08/cards/c05.thumbnail.webp",
+          "bytes": 4338
+        },
+        {
+          "url": "/assets/handdrawn-tools/tool-t17.thumbnail.webp",
+          "bytes": 2348
+        },
+        {
+          "url": "/assets/handdrawn-tools/tool-t08.thumbnail.webp",
+          "bytes": 2480
+        },
+        {
+          "url": "/assets/handdrawn-p08/cards/mantangcai.thumbnail.webp",
+          "bytes": 4278
+        },
+        {
+          "url": "/assets/handdrawn-p08/court/k.court.webp",
+          "bytes": 24632
+        },
+        {
+          "url": "/assets/handdrawn-tools/item-u05.thumbnail.webp",
+          "bytes": 3046
+        },
+        {
+          "url": "/assets/handdrawn-tools/tool-t02.thumbnail.webp",
+          "bytes": 2704
+        },
+        {
+          "url": "/assets/handdrawn-p08/court/q.court.webp",
+          "bytes": 23292
+        },
+        {
+          "url": "/assets/handdrawn-p08/court/j.court.webp",
+          "bytes": 23858
+        },
+        {
+          "url": "/assets/handdrawn-tools/tool-t09.thumbnail.webp",
+          "bytes": 1972
+        },
+        {
+          "url": "/assets/handdrawn-tools/tool-t10.thumbnail.webp",
+          "bytes": 1648
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/azao.avatar.webp",
+          "bytes": 11572
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/xiemu.selection.webp",
+          "bytes": 15154
+        },
+        {
+          "url": "/assets/handdrawn-tools/tool-t11.thumbnail.webp",
+          "bytes": 2084
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/xiemu.avatar.webp",
+          "bytes": 14322
+        },
+        {
+          "url": "/assets/handdrawn-p08/cards/mantangcai.thumbnail.webp",
+          "bytes": 4278
+        },
+        {
+          "url": "/assets/handdrawn-p08/cards/mantangcai.detail.webp",
+          "bytes": 57250
+        },
+        {
+          "url": "/assets/handdrawn-p08/cards/d09.thumbnail.webp",
+          "bytes": 4044
+        },
+        {
+          "url": "/assets/handdrawn-p08/cards/a06.thumbnail.webp",
+          "bytes": 4054
+        },
+        {
+          "url": "/assets/handdrawn-tools/tool-s04.thumbnail.webp",
+          "bytes": 4414
+        },
+        {
+          "url": "/assets/handdrawn-p08/cards/e07.thumbnail.webp",
+          "bytes": 6054
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/amo.selection.webp",
+          "bytes": 8470
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/amo.avatar.webp",
+          "bytes": 9954
+        },
+        {
+          "url": "/assets/handdrawn-tools/item-u05.thumbnail.webp",
+          "bytes": 3046
+        },
+        {
+          "url": "/assets/handdrawn-p08/cards/mantangcai.thumbnail.webp",
+          "bytes": 4278
+        },
+        {
+          "url": "/assets/handdrawn-p08/cards/d09.thumbnail.webp",
+          "bytes": 4044
+        },
+        {
+          "url": "/assets/handdrawn-tools/tool-s04.thumbnail.webp",
+          "bytes": 4414
+        },
+        {
+          "url": "/assets/handdrawn-tools/tool-t08.thumbnail.webp",
+          "bytes": 2480
+        },
+        {
+          "url": "/assets/handdrawn-p08/cards/a06.thumbnail.webp",
+          "bytes": 4054
+        },
+        {
+          "url": "/assets/handdrawn-p08/cards/e07.thumbnail.webp",
+          "bytes": 6054
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/amo.portrait.webp",
+          "bytes": 34664
+        },
+        {
+          "url": "/assets/handdrawn-tools/tool-t02.thumbnail.webp",
+          "bytes": 2704
+        },
+        {
+          "url": "/assets/handdrawn-tools/tool-t09.thumbnail.webp",
+          "bytes": 1972
+        },
+        {
+          "url": "/assets/handdrawn-p08/court/k.court.webp",
+          "bytes": 24632
+        },
+        {
+          "url": "/assets/handdrawn-p08/court/q.court.webp",
+          "bytes": 23292
+        },
+        {
+          "url": "/assets/handdrawn-tools/tool-t10.thumbnail.webp",
+          "bytes": 1648
+        }
+      ],
+      "stateUnchanged": true,
+      "stateSHA256": "54b1e402a86f180cf2c63b9d56d6e6874e4494a662293ef0ca1051f2dcf5e119",
+      "inputPreserved": true,
+      "errors": []
+    },
+    {
+      "width": 390,
+      "kind": "first-shop",
+      "firstMs": 880,
+      "allMs": 1898,
+      "visibleKeys": [
+        "p08-joker-b07",
+        "p08-joker-c05",
+        "p08-joker-mantangcai"
+      ],
+      "requests": [
+        {
+          "url": "/assets/handdrawn-p08/characters/amo.selection.webp",
+          "at": 1792023914787
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/amo.avatar.webp",
+          "at": 1792023914787
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/amo.portrait.webp",
+          "at": 1792023915837
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/touye.selection.webp",
+          "at": 1792023915839
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/touye.avatar.webp",
+          "at": 1792023916843
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/laohuan.selection.webp",
+          "at": 1792023916875
+        },
+        {
+          "url": "/assets/handdrawn-p08/cards/b07.thumbnail.webp",
+          "at": 1792023917072
+        },
+        {
+          "url": "/assets/handdrawn-p08/cards/c05.thumbnail.webp",
+          "at": 1792023917073
+        },
+        {
+          "url": "/assets/handdrawn-p08/court/k.court.webp",
+          "at": 1792023917892
+        },
+        {
+          "url": "/assets/handdrawn-p08/court/q.court.webp",
+          "at": 1792023917926
+        },
+        {
+          "url": "/assets/handdrawn-p08/cards/mantangcai.thumbnail.webp",
+          "at": 1792023918069
+        },
+        {
+          "url": "/assets/handdrawn-p08/court/j.court.webp",
+          "at": 1792023918916
+        },
+        {
+          "url": "/assets/handdrawn-tools/item-u05.thumbnail.webp",
+          "at": 1792023918949
+        }
+      ],
+      "resources": [
+        {
+          "url": "/assets/handdrawn-p08/characters/amo.selection.webp",
+          "start": 539.5,
+          "end": 1462.1999999999534,
+          "bytes": 8470
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/amo.avatar.webp",
+          "start": 539.6999999999534,
+          "end": 1462.4000000000233,
+          "bytes": 9954
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/amo.portrait.webp",
+          "start": 1604.0999999999767,
+          "end": 2513,
+          "bytes": 34664
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/touye.selection.webp",
+          "start": 1605.8000000000466,
+          "end": 2513.0999999999767,
+          "bytes": 10132
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/touye.avatar.webp",
+          "start": 2610.6999999999534,
+          "end": 3516.6999999999534,
+          "bytes": 11046
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/laohuan.selection.webp",
+          "start": 2642.3000000000466,
+          "end": 3554.5,
+          "bytes": 10208
+        },
+        {
+          "url": "/assets/handdrawn-p08/cards/b07.thumbnail.webp",
+          "start": 2752.0999999999767,
+          "end": 3746.5,
+          "bytes": 4310
+        },
+        {
+          "url": "/assets/handdrawn-p08/cards/c05.thumbnail.webp",
+          "start": 2752.4000000000233,
+          "end": 3746.6999999999534,
+          "bytes": 4338
+        },
+        {
+          "url": "/assets/handdrawn-p08/court/k.court.webp",
+          "start": 3658.6999999999534,
+          "end": 4565.300000000047,
+          "bytes": 24632
+        },
+        {
+          "url": "/assets/handdrawn-p08/court/q.court.webp",
+          "start": 3692.9000000000233,
+          "end": 4598.300000000047,
+          "bytes": 23292
+        },
+        {
+          "url": "/assets/handdrawn-p08/cards/mantangcai.thumbnail.webp",
+          "start": 3836.5,
+          "end": 4743.599999999977,
+          "bytes": 4278
+        }
+      ],
+      "requestCount": 13,
+      "bytes": 145324,
+      "responses": [
+        {
+          "url": "/assets/handdrawn-p08/characters/amo.selection.webp",
+          "bytes": 8470
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/amo.avatar.webp",
+          "bytes": 9954
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/amo.portrait.webp",
+          "bytes": 34664
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/touye.selection.webp",
+          "bytes": 10132
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/touye.avatar.webp",
+          "bytes": 11046
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/laohuan.selection.webp",
+          "bytes": 10208
+        },
+        {
+          "url": "/assets/handdrawn-p08/cards/b07.thumbnail.webp",
+          "bytes": 4310
+        },
+        {
+          "url": "/assets/handdrawn-p08/cards/c05.thumbnail.webp",
+          "bytes": 4338
+        },
+        {
+          "url": "/assets/handdrawn-p08/court/k.court.webp",
+          "bytes": 24632
+        },
+        {
+          "url": "/assets/handdrawn-p08/court/q.court.webp",
+          "bytes": 23292
+        },
+        {
+          "url": "/assets/handdrawn-p08/cards/mantangcai.thumbnail.webp",
+          "bytes": 4278
+        }
+      ],
+      "stateUnchanged": true,
+      "stateSHA256": "9e3479d560b692df2c49de37e48c87ed9c84875cc4d1d9225a2ac44c96060d3a",
+      "inputPreserved": true,
+      "errors": []
+    },
+    {
+      "width": 390,
+      "kind": "owned",
+      "firstMs": 1,
+      "allMs": 1,
+      "visibleKeys": [
+        "p08-joker-mantangcai",
+        "p08-joker-b07",
+        "p08-joker-c05"
+      ],
+      "requests": [
+        {
+          "url": "/assets/handdrawn-p08/characters/amo.selection.webp",
+          "at": 1792023914787
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/amo.avatar.webp",
+          "at": 1792023914787
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/amo.portrait.webp",
+          "at": 1792023915837
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/touye.selection.webp",
+          "at": 1792023915839
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/touye.avatar.webp",
+          "at": 1792023916843
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/laohuan.selection.webp",
+          "at": 1792023916875
+        },
+        {
+          "url": "/assets/handdrawn-p08/cards/b07.thumbnail.webp",
+          "at": 1792023917072
+        },
+        {
+          "url": "/assets/handdrawn-p08/cards/c05.thumbnail.webp",
+          "at": 1792023917073
+        },
+        {
+          "url": "/assets/handdrawn-p08/court/k.court.webp",
+          "at": 1792023917892
+        },
+        {
+          "url": "/assets/handdrawn-p08/court/q.court.webp",
+          "at": 1792023917926
+        },
+        {
+          "url": "/assets/handdrawn-p08/cards/mantangcai.thumbnail.webp",
+          "at": 1792023918069
+        },
+        {
+          "url": "/assets/handdrawn-p08/court/j.court.webp",
+          "at": 1792023918916
+        },
+        {
+          "url": "/assets/handdrawn-tools/item-u05.thumbnail.webp",
+          "at": 1792023918949
+        },
+        {
+          "url": "/assets/handdrawn-p08/cards/mantangcai.detail.webp",
+          "at": 1792023919974
+        },
+        {
+          "url": "/assets/handdrawn-p08/cards/mantangcai.thumbnail.webp",
+          "at": 1792023919974
+        },
+        {
+          "url": "/assets/handdrawn-tools/tool-t17.thumbnail.webp",
+          "at": 1792023920032
+        },
+        {
+          "url": "/assets/handdrawn-p08/cards/mantangcai.detail.webp",
+          "at": 1792023920032
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/laohuan.avatar.webp",
+          "at": 1792023920061
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/erxiang.selection.webp",
+          "at": 1792023921103
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/erxiang.avatar.webp",
+          "at": 1792023921142
+        }
+      ],
+      "resources": [
+        {
+          "url": "/assets/handdrawn-p08/characters/amo.selection.webp",
+          "start": 539.5,
+          "end": 1462.1999999999534,
+          "bytes": 8470
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/amo.avatar.webp",
+          "start": 539.6999999999534,
+          "end": 1462.4000000000233,
+          "bytes": 9954
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/amo.portrait.webp",
+          "start": 1604.0999999999767,
+          "end": 2513,
+          "bytes": 34664
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/touye.selection.webp",
+          "start": 1605.8000000000466,
+          "end": 2513.0999999999767,
+          "bytes": 10132
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/touye.avatar.webp",
+          "start": 2610.6999999999534,
+          "end": 3516.6999999999534,
+          "bytes": 11046
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/laohuan.selection.webp",
+          "start": 2642.3000000000466,
+          "end": 3554.5,
+          "bytes": 10208
+        },
+        {
+          "url": "/assets/handdrawn-p08/cards/b07.thumbnail.webp",
+          "start": 2752.0999999999767,
+          "end": 3746.5,
+          "bytes": 4310
+        },
+        {
+          "url": "/assets/handdrawn-p08/cards/c05.thumbnail.webp",
+          "start": 2752.4000000000233,
+          "end": 3746.6999999999534,
+          "bytes": 4338
+        },
+        {
+          "url": "/assets/handdrawn-p08/court/k.court.webp",
+          "start": 3658.6999999999534,
+          "end": 4565.300000000047,
+          "bytes": 24632
+        },
+        {
+          "url": "/assets/handdrawn-p08/court/q.court.webp",
+          "start": 3692.9000000000233,
+          "end": 4598.300000000047,
+          "bytes": 23292
+        },
+        {
+          "url": "/assets/handdrawn-p08/cards/mantangcai.thumbnail.webp",
+          "start": 3836.5,
+          "end": 4743.599999999977,
+          "bytes": 4278
+        },
+        {
+          "url": "/assets/handdrawn-p08/court/j.court.webp",
+          "start": 4682.300000000047,
+          "end": 5588.699999999953,
+          "bytes": 23858
+        },
+        {
+          "url": "/assets/handdrawn-tools/item-u05.thumbnail.webp",
+          "start": 4716.699999999953,
+          "end": 5621.300000000047,
+          "bytes": 3046
+        },
+        {
+          "url": "/assets/handdrawn-p08/cards/mantangcai.detail.webp",
+          "start": 5729,
+          "end": 5827.300000000047,
+          "bytes": 0
+        },
+        {
+          "url": "/assets/handdrawn-p08/cards/mantangcai.thumbnail.webp",
+          "start": 5740.900000000023,
+          "end": 6657.800000000047,
+          "bytes": 4278
+        },
+        {
+          "url": "/assets/handdrawn-tools/tool-t17.thumbnail.webp",
+          "start": 5788.800000000047,
+          "end": 6704.800000000047,
+          "bytes": 2348
+        },
+        {
+          "url": "/assets/handdrawn-p08/cards/mantangcai.detail.webp",
+          "start": 5789.099999999977,
+          "end": 6465.300000000047,
+          "bytes": 0
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/laohuan.avatar.webp",
+          "start": 5828.699999999953,
+          "end": 6736.800000000047,
+          "bytes": 10836
+        }
+      ],
+      "requestCount": 20,
+      "bytes": 189690,
+      "responses": [
+        {
+          "url": "/assets/handdrawn-p08/characters/amo.selection.webp",
+          "bytes": 8470
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/amo.avatar.webp",
+          "bytes": 9954
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/amo.portrait.webp",
+          "bytes": 34664
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/touye.selection.webp",
+          "bytes": 10132
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/touye.avatar.webp",
+          "bytes": 11046
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/laohuan.selection.webp",
+          "bytes": 10208
+        },
+        {
+          "url": "/assets/handdrawn-p08/cards/b07.thumbnail.webp",
+          "bytes": 4310
+        },
+        {
+          "url": "/assets/handdrawn-p08/cards/c05.thumbnail.webp",
+          "bytes": 4338
+        },
+        {
+          "url": "/assets/handdrawn-p08/court/k.court.webp",
+          "bytes": 24632
+        },
+        {
+          "url": "/assets/handdrawn-p08/court/q.court.webp",
+          "bytes": 23292
+        },
+        {
+          "url": "/assets/handdrawn-p08/cards/mantangcai.thumbnail.webp",
+          "bytes": 4278
+        },
+        {
+          "url": "/assets/handdrawn-p08/court/j.court.webp",
+          "bytes": 23858
+        },
+        {
+          "url": "/assets/handdrawn-tools/item-u05.thumbnail.webp",
+          "bytes": 3046
+        },
+        {
+          "url": "/assets/handdrawn-p08/cards/mantangcai.thumbnail.webp",
+          "bytes": 4278
+        },
+        {
+          "url": "/assets/handdrawn-tools/tool-t17.thumbnail.webp",
+          "bytes": 2348
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/laohuan.avatar.webp",
+          "bytes": 10836
+        }
+      ],
+      "stateUnchanged": true,
+      "stateSHA256": "4149860c6911f68f58303258f93ce249995801e5058ae79d95cbe57183c108d2",
+      "inputPreserved": true,
+      "errors": []
+    },
+    {
+      "width": 390,
+      "kind": "reroll",
+      "firstMs": 0,
+      "allMs": 1990,
+      "visibleKeys": [
+        "p08-joker-mantangcai",
+        "p08-joker-d09",
+        "p08-joker-a06",
+        "p08-joker-e07"
+      ],
+      "requests": [
+        {
+          "url": "/assets/handdrawn-p08/characters/amo.selection.webp",
+          "at": 1792023914787
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/amo.avatar.webp",
+          "at": 1792023914787
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/amo.portrait.webp",
+          "at": 1792023915837
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/touye.selection.webp",
+          "at": 1792023915839
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/touye.avatar.webp",
+          "at": 1792023916843
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/laohuan.selection.webp",
+          "at": 1792023916875
+        },
+        {
+          "url": "/assets/handdrawn-p08/cards/b07.thumbnail.webp",
+          "at": 1792023917072
+        },
+        {
+          "url": "/assets/handdrawn-p08/cards/c05.thumbnail.webp",
+          "at": 1792023917073
+        },
+        {
+          "url": "/assets/handdrawn-p08/court/k.court.webp",
+          "at": 1792023917892
+        },
+        {
+          "url": "/assets/handdrawn-p08/court/q.court.webp",
+          "at": 1792023917926
+        },
+        {
+          "url": "/assets/handdrawn-p08/cards/mantangcai.thumbnail.webp",
+          "at": 1792023918069
+        },
+        {
+          "url": "/assets/handdrawn-p08/court/j.court.webp",
+          "at": 1792023918916
+        },
+        {
+          "url": "/assets/handdrawn-tools/item-u05.thumbnail.webp",
+          "at": 1792023918949
+        },
+        {
+          "url": "/assets/handdrawn-p08/cards/mantangcai.detail.webp",
+          "at": 1792023919974
+        },
+        {
+          "url": "/assets/handdrawn-p08/cards/mantangcai.thumbnail.webp",
+          "at": 1792023919974
+        },
+        {
+          "url": "/assets/handdrawn-tools/tool-t17.thumbnail.webp",
+          "at": 1792023920032
+        },
+        {
+          "url": "/assets/handdrawn-p08/cards/mantangcai.detail.webp",
+          "at": 1792023920032
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/laohuan.avatar.webp",
+          "at": 1792023920061
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/erxiang.selection.webp",
+          "at": 1792023921103
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/erxiang.avatar.webp",
+          "at": 1792023921142
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/azao.selection.webp",
+          "at": 1792023922193
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/azao.avatar.webp",
+          "at": 1792023922235
+        },
+        {
+          "url": "/assets/handdrawn-p08/cards/d09.thumbnail.webp",
+          "at": 1792023922657
+        },
+        {
+          "url": "/assets/handdrawn-p08/cards/a06.thumbnail.webp",
+          "at": 1792023922658
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/xiemu.selection.webp",
+          "at": 1792023923259
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/xiemu.avatar.webp",
+          "at": 1792023923306
+        },
+        {
+          "url": "/assets/handdrawn-p08/cards/e07.thumbnail.webp",
+          "at": 1792023923703
+        }
+      ],
+      "resources": [
+        {
+          "url": "/assets/handdrawn-p08/characters/amo.selection.webp",
+          "start": 539.5,
+          "end": 1462.1999999999534,
+          "bytes": 8470
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/amo.avatar.webp",
+          "start": 539.6999999999534,
+          "end": 1462.4000000000233,
+          "bytes": 9954
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/amo.portrait.webp",
+          "start": 1604.0999999999767,
+          "end": 2513,
+          "bytes": 34664
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/touye.selection.webp",
+          "start": 1605.8000000000466,
+          "end": 2513.0999999999767,
+          "bytes": 10132
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/touye.avatar.webp",
+          "start": 2610.6999999999534,
+          "end": 3516.6999999999534,
+          "bytes": 11046
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/laohuan.selection.webp",
+          "start": 2642.3000000000466,
+          "end": 3554.5,
+          "bytes": 10208
+        },
+        {
+          "url": "/assets/handdrawn-p08/cards/b07.thumbnail.webp",
+          "start": 2752.0999999999767,
+          "end": 3746.5,
+          "bytes": 4310
+        },
+        {
+          "url": "/assets/handdrawn-p08/cards/c05.thumbnail.webp",
+          "start": 2752.4000000000233,
+          "end": 3746.6999999999534,
+          "bytes": 4338
+        },
+        {
+          "url": "/assets/handdrawn-p08/court/k.court.webp",
+          "start": 3658.6999999999534,
+          "end": 4565.300000000047,
+          "bytes": 24632
+        },
+        {
+          "url": "/assets/handdrawn-p08/court/q.court.webp",
+          "start": 3692.9000000000233,
+          "end": 4598.300000000047,
+          "bytes": 23292
+        },
+        {
+          "url": "/assets/handdrawn-p08/cards/mantangcai.thumbnail.webp",
+          "start": 3836.5,
+          "end": 4743.599999999977,
+          "bytes": 4278
+        },
+        {
+          "url": "/assets/handdrawn-p08/court/j.court.webp",
+          "start": 4682.300000000047,
+          "end": 5588.699999999953,
+          "bytes": 23858
+        },
+        {
+          "url": "/assets/handdrawn-tools/item-u05.thumbnail.webp",
+          "start": 4716.699999999953,
+          "end": 5621.300000000047,
+          "bytes": 3046
+        },
+        {
+          "url": "/assets/handdrawn-p08/cards/mantangcai.detail.webp",
+          "start": 5729,
+          "end": 5827.300000000047,
+          "bytes": 0
+        },
+        {
+          "url": "/assets/handdrawn-p08/cards/mantangcai.thumbnail.webp",
+          "start": 5740.900000000023,
+          "end": 6657.800000000047,
+          "bytes": 4278
+        },
+        {
+          "url": "/assets/handdrawn-tools/tool-t17.thumbnail.webp",
+          "start": 5788.800000000047,
+          "end": 6704.800000000047,
+          "bytes": 2348
+        },
+        {
+          "url": "/assets/handdrawn-p08/cards/mantangcai.detail.webp",
+          "start": 5789.099999999977,
+          "end": 6465.300000000047,
+          "bytes": 0
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/laohuan.avatar.webp",
+          "start": 5828.699999999953,
+          "end": 6736.800000000047,
+          "bytes": 10836
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/erxiang.selection.webp",
+          "start": 6868.800000000047,
+          "end": 7781.300000000047,
+          "bytes": 18316
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/erxiang.avatar.webp",
+          "start": 6908.699999999953,
+          "end": 7814.599999999977,
+          "bytes": 15880
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/azao.selection.webp",
+          "start": 7959.400000000023,
+          "end": 8893.599999999977,
+          "bytes": 13164
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/azao.avatar.webp",
+          "start": 8001.900000000023,
+          "end": 8908.199999999953,
+          "bytes": 11572
+        },
+        {
+          "url": "/assets/handdrawn-p08/cards/d09.thumbnail.webp",
+          "start": 8372.800000000047,
+          "end": 9330.699999999953,
+          "bytes": 4044
+        },
+        {
+          "url": "/assets/handdrawn-p08/cards/a06.thumbnail.webp",
+          "start": 8373,
+          "end": 9330.800000000047,
+          "bytes": 4054
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/xiemu.selection.webp",
+          "start": 9026.5,
+          "end": 9936.300000000047,
+          "bytes": 15154
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/xiemu.avatar.webp",
+          "start": 9072.5,
+          "end": 9978.400000000023,
+          "bytes": 14322
+        },
+        {
+          "url": "/assets/handdrawn-p08/cards/e07.thumbnail.webp",
+          "start": 9470,
+          "end": 10380.099999999977,
+          "bytes": 6054
+        }
+      ],
+      "requestCount": 27,
+      "bytes": 292250,
+      "responses": [
+        {
+          "url": "/assets/handdrawn-p08/characters/amo.selection.webp",
+          "bytes": 8470
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/amo.avatar.webp",
+          "bytes": 9954
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/amo.portrait.webp",
+          "bytes": 34664
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/touye.selection.webp",
+          "bytes": 10132
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/touye.avatar.webp",
+          "bytes": 11046
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/laohuan.selection.webp",
+          "bytes": 10208
+        },
+        {
+          "url": "/assets/handdrawn-p08/cards/b07.thumbnail.webp",
+          "bytes": 4310
+        },
+        {
+          "url": "/assets/handdrawn-p08/cards/c05.thumbnail.webp",
+          "bytes": 4338
+        },
+        {
+          "url": "/assets/handdrawn-p08/court/k.court.webp",
+          "bytes": 24632
+        },
+        {
+          "url": "/assets/handdrawn-p08/court/q.court.webp",
+          "bytes": 23292
+        },
+        {
+          "url": "/assets/handdrawn-p08/cards/mantangcai.thumbnail.webp",
+          "bytes": 4278
+        },
+        {
+          "url": "/assets/handdrawn-p08/court/j.court.webp",
+          "bytes": 23858
+        },
+        {
+          "url": "/assets/handdrawn-tools/item-u05.thumbnail.webp",
+          "bytes": 3046
+        },
+        {
+          "url": "/assets/handdrawn-p08/cards/mantangcai.thumbnail.webp",
+          "bytes": 4278
+        },
+        {
+          "url": "/assets/handdrawn-tools/tool-t17.thumbnail.webp",
+          "bytes": 2348
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/laohuan.avatar.webp",
+          "bytes": 10836
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/erxiang.selection.webp",
+          "bytes": 18316
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/erxiang.avatar.webp",
+          "bytes": 15880
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/azao.selection.webp",
+          "bytes": 13164
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/azao.avatar.webp",
+          "bytes": 11572
+        },
+        {
+          "url": "/assets/handdrawn-p08/cards/d09.thumbnail.webp",
+          "bytes": 4044
+        },
+        {
+          "url": "/assets/handdrawn-p08/cards/a06.thumbnail.webp",
+          "bytes": 4054
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/xiemu.selection.webp",
+          "bytes": 15154
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/xiemu.avatar.webp",
+          "bytes": 14322
+        },
+        {
+          "url": "/assets/handdrawn-p08/cards/e07.thumbnail.webp",
+          "bytes": 6054
+        }
+      ],
+      "stateUnchanged": true,
+      "stateSHA256": "54b1e402a86f180cf2c63b9d56d6e6874e4494a662293ef0ca1051f2dcf5e119",
+      "inputPreserved": true,
+      "errors": []
+    },
+    {
+      "width": 390,
+      "kind": "items",
+      "firstMs": 0,
+      "allMs": 0,
+      "visibleKeys": [
+        "p08-joker-mantangcai",
+        "goods-art/U05"
+      ],
+      "requests": [
+        {
+          "url": "/assets/handdrawn-p08/characters/amo.selection.webp",
+          "at": 1792023914787
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/amo.avatar.webp",
+          "at": 1792023914787
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/amo.portrait.webp",
+          "at": 1792023915837
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/touye.selection.webp",
+          "at": 1792023915839
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/touye.avatar.webp",
+          "at": 1792023916843
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/laohuan.selection.webp",
+          "at": 1792023916875
+        },
+        {
+          "url": "/assets/handdrawn-p08/cards/b07.thumbnail.webp",
+          "at": 1792023917072
+        },
+        {
+          "url": "/assets/handdrawn-p08/cards/c05.thumbnail.webp",
+          "at": 1792023917073
+        },
+        {
+          "url": "/assets/handdrawn-p08/court/k.court.webp",
+          "at": 1792023917892
+        },
+        {
+          "url": "/assets/handdrawn-p08/court/q.court.webp",
+          "at": 1792023917926
+        },
+        {
+          "url": "/assets/handdrawn-p08/cards/mantangcai.thumbnail.webp",
+          "at": 1792023918069
+        },
+        {
+          "url": "/assets/handdrawn-p08/court/j.court.webp",
+          "at": 1792023918916
+        },
+        {
+          "url": "/assets/handdrawn-tools/item-u05.thumbnail.webp",
+          "at": 1792023918949
+        },
+        {
+          "url": "/assets/handdrawn-p08/cards/mantangcai.detail.webp",
+          "at": 1792023919974
+        },
+        {
+          "url": "/assets/handdrawn-p08/cards/mantangcai.thumbnail.webp",
+          "at": 1792023919974
+        },
+        {
+          "url": "/assets/handdrawn-tools/tool-t17.thumbnail.webp",
+          "at": 1792023920032
+        },
+        {
+          "url": "/assets/handdrawn-p08/cards/mantangcai.detail.webp",
+          "at": 1792023920032
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/laohuan.avatar.webp",
+          "at": 1792023920061
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/erxiang.selection.webp",
+          "at": 1792023921103
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/erxiang.avatar.webp",
+          "at": 1792023921142
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/azao.selection.webp",
+          "at": 1792023922193
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/azao.avatar.webp",
+          "at": 1792023922235
+        },
+        {
+          "url": "/assets/handdrawn-p08/cards/d09.thumbnail.webp",
+          "at": 1792023922657
+        },
+        {
+          "url": "/assets/handdrawn-p08/cards/a06.thumbnail.webp",
+          "at": 1792023922658
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/xiemu.selection.webp",
+          "at": 1792023923259
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/xiemu.avatar.webp",
+          "at": 1792023923306
+        },
+        {
+          "url": "/assets/handdrawn-p08/cards/e07.thumbnail.webp",
+          "at": 1792023923703
+        }
+      ],
+      "resources": [
+        {
+          "url": "/assets/handdrawn-p08/characters/amo.selection.webp",
+          "start": 539.5,
+          "end": 1462.1999999999534,
+          "bytes": 8470
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/amo.avatar.webp",
+          "start": 539.6999999999534,
+          "end": 1462.4000000000233,
+          "bytes": 9954
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/amo.portrait.webp",
+          "start": 1604.0999999999767,
+          "end": 2513,
+          "bytes": 34664
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/touye.selection.webp",
+          "start": 1605.8000000000466,
+          "end": 2513.0999999999767,
+          "bytes": 10132
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/touye.avatar.webp",
+          "start": 2610.6999999999534,
+          "end": 3516.6999999999534,
+          "bytes": 11046
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/laohuan.selection.webp",
+          "start": 2642.3000000000466,
+          "end": 3554.5,
+          "bytes": 10208
+        },
+        {
+          "url": "/assets/handdrawn-p08/cards/b07.thumbnail.webp",
+          "start": 2752.0999999999767,
+          "end": 3746.5,
+          "bytes": 4310
+        },
+        {
+          "url": "/assets/handdrawn-p08/cards/c05.thumbnail.webp",
+          "start": 2752.4000000000233,
+          "end": 3746.6999999999534,
+          "bytes": 4338
+        },
+        {
+          "url": "/assets/handdrawn-p08/court/k.court.webp",
+          "start": 3658.6999999999534,
+          "end": 4565.300000000047,
+          "bytes": 24632
+        },
+        {
+          "url": "/assets/handdrawn-p08/court/q.court.webp",
+          "start": 3692.9000000000233,
+          "end": 4598.300000000047,
+          "bytes": 23292
+        },
+        {
+          "url": "/assets/handdrawn-p08/cards/mantangcai.thumbnail.webp",
+          "start": 3836.5,
+          "end": 4743.599999999977,
+          "bytes": 4278
+        },
+        {
+          "url": "/assets/handdrawn-p08/court/j.court.webp",
+          "start": 4682.300000000047,
+          "end": 5588.699999999953,
+          "bytes": 23858
+        },
+        {
+          "url": "/assets/handdrawn-tools/item-u05.thumbnail.webp",
+          "start": 4716.699999999953,
+          "end": 5621.300000000047,
+          "bytes": 3046
+        },
+        {
+          "url": "/assets/handdrawn-p08/cards/mantangcai.detail.webp",
+          "start": 5729,
+          "end": 5827.300000000047,
+          "bytes": 0
+        },
+        {
+          "url": "/assets/handdrawn-p08/cards/mantangcai.thumbnail.webp",
+          "start": 5740.900000000023,
+          "end": 6657.800000000047,
+          "bytes": 4278
+        },
+        {
+          "url": "/assets/handdrawn-tools/tool-t17.thumbnail.webp",
+          "start": 5788.800000000047,
+          "end": 6704.800000000047,
+          "bytes": 2348
+        },
+        {
+          "url": "/assets/handdrawn-p08/cards/mantangcai.detail.webp",
+          "start": 5789.099999999977,
+          "end": 6465.300000000047,
+          "bytes": 0
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/laohuan.avatar.webp",
+          "start": 5828.699999999953,
+          "end": 6736.800000000047,
+          "bytes": 10836
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/erxiang.selection.webp",
+          "start": 6868.800000000047,
+          "end": 7781.300000000047,
+          "bytes": 18316
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/erxiang.avatar.webp",
+          "start": 6908.699999999953,
+          "end": 7814.599999999977,
+          "bytes": 15880
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/azao.selection.webp",
+          "start": 7959.400000000023,
+          "end": 8893.599999999977,
+          "bytes": 13164
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/azao.avatar.webp",
+          "start": 8001.900000000023,
+          "end": 8908.199999999953,
+          "bytes": 11572
+        },
+        {
+          "url": "/assets/handdrawn-p08/cards/d09.thumbnail.webp",
+          "start": 8372.800000000047,
+          "end": 9330.699999999953,
+          "bytes": 4044
+        },
+        {
+          "url": "/assets/handdrawn-p08/cards/a06.thumbnail.webp",
+          "start": 8373,
+          "end": 9330.800000000047,
+          "bytes": 4054
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/xiemu.selection.webp",
+          "start": 9026.5,
+          "end": 9936.300000000047,
+          "bytes": 15154
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/xiemu.avatar.webp",
+          "start": 9072.5,
+          "end": 9978.400000000023,
+          "bytes": 14322
+        },
+        {
+          "url": "/assets/handdrawn-p08/cards/e07.thumbnail.webp",
+          "start": 9470,
+          "end": 10380.099999999977,
+          "bytes": 6054
+        }
+      ],
+      "requestCount": 27,
+      "bytes": 292250,
+      "responses": [
+        {
+          "url": "/assets/handdrawn-p08/characters/amo.selection.webp",
+          "bytes": 8470
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/amo.avatar.webp",
+          "bytes": 9954
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/amo.portrait.webp",
+          "bytes": 34664
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/touye.selection.webp",
+          "bytes": 10132
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/touye.avatar.webp",
+          "bytes": 11046
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/laohuan.selection.webp",
+          "bytes": 10208
+        },
+        {
+          "url": "/assets/handdrawn-p08/cards/b07.thumbnail.webp",
+          "bytes": 4310
+        },
+        {
+          "url": "/assets/handdrawn-p08/cards/c05.thumbnail.webp",
+          "bytes": 4338
+        },
+        {
+          "url": "/assets/handdrawn-p08/court/k.court.webp",
+          "bytes": 24632
+        },
+        {
+          "url": "/assets/handdrawn-p08/court/q.court.webp",
+          "bytes": 23292
+        },
+        {
+          "url": "/assets/handdrawn-p08/cards/mantangcai.thumbnail.webp",
+          "bytes": 4278
+        },
+        {
+          "url": "/assets/handdrawn-p08/court/j.court.webp",
+          "bytes": 23858
+        },
+        {
+          "url": "/assets/handdrawn-tools/item-u05.thumbnail.webp",
+          "bytes": 3046
+        },
+        {
+          "url": "/assets/handdrawn-p08/cards/mantangcai.thumbnail.webp",
+          "bytes": 4278
+        },
+        {
+          "url": "/assets/handdrawn-tools/tool-t17.thumbnail.webp",
+          "bytes": 2348
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/laohuan.avatar.webp",
+          "bytes": 10836
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/erxiang.selection.webp",
+          "bytes": 18316
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/erxiang.avatar.webp",
+          "bytes": 15880
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/azao.selection.webp",
+          "bytes": 13164
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/azao.avatar.webp",
+          "bytes": 11572
+        },
+        {
+          "url": "/assets/handdrawn-p08/cards/d09.thumbnail.webp",
+          "bytes": 4044
+        },
+        {
+          "url": "/assets/handdrawn-p08/cards/a06.thumbnail.webp",
+          "bytes": 4054
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/xiemu.selection.webp",
+          "bytes": 15154
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/xiemu.avatar.webp",
+          "bytes": 14322
+        },
+        {
+          "url": "/assets/handdrawn-p08/cards/e07.thumbnail.webp",
+          "bytes": 6054
+        }
+      ],
+      "stateUnchanged": true,
+      "stateSHA256": "54b1e402a86f180cf2c63b9d56d6e6874e4494a662293ef0ca1051f2dcf5e119",
+      "inputPreserved": true,
+      "errors": []
+    },
+    {
+      "width": 390,
+      "kind": "cold-continue",
+      "firstMs": 907,
+      "allMs": 1961,
+      "visibleKeys": [
+        "p08-joker-mantangcai",
+        "p08-joker-d09",
+        "p08-joker-a06",
+        "p08-joker-e07"
+      ],
+      "requests": [
+        {
+          "url": "/assets/handdrawn-p08/characters/amo.selection.webp",
+          "at": 1792023914787
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/amo.avatar.webp",
+          "at": 1792023914787
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/amo.portrait.webp",
+          "at": 1792023915837
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/touye.selection.webp",
+          "at": 1792023915839
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/touye.avatar.webp",
+          "at": 1792023916843
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/laohuan.selection.webp",
+          "at": 1792023916875
+        },
+        {
+          "url": "/assets/handdrawn-p08/cards/b07.thumbnail.webp",
+          "at": 1792023917072
+        },
+        {
+          "url": "/assets/handdrawn-p08/cards/c05.thumbnail.webp",
+          "at": 1792023917073
+        },
+        {
+          "url": "/assets/handdrawn-p08/court/k.court.webp",
+          "at": 1792023917892
+        },
+        {
+          "url": "/assets/handdrawn-p08/court/q.court.webp",
+          "at": 1792023917926
+        },
+        {
+          "url": "/assets/handdrawn-p08/cards/mantangcai.thumbnail.webp",
+          "at": 1792023918069
+        },
+        {
+          "url": "/assets/handdrawn-p08/court/j.court.webp",
+          "at": 1792023918916
+        },
+        {
+          "url": "/assets/handdrawn-tools/item-u05.thumbnail.webp",
+          "at": 1792023918949
+        },
+        {
+          "url": "/assets/handdrawn-p08/cards/mantangcai.detail.webp",
+          "at": 1792023919974
+        },
+        {
+          "url": "/assets/handdrawn-p08/cards/mantangcai.thumbnail.webp",
+          "at": 1792023919974
+        },
+        {
+          "url": "/assets/handdrawn-tools/tool-t17.thumbnail.webp",
+          "at": 1792023920032
+        },
+        {
+          "url": "/assets/handdrawn-p08/cards/mantangcai.detail.webp",
+          "at": 1792023920032
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/laohuan.avatar.webp",
+          "at": 1792023920061
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/erxiang.selection.webp",
+          "at": 1792023921103
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/erxiang.avatar.webp",
+          "at": 1792023921142
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/azao.selection.webp",
+          "at": 1792023922193
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/azao.avatar.webp",
+          "at": 1792023922235
+        },
+        {
+          "url": "/assets/handdrawn-p08/cards/d09.thumbnail.webp",
+          "at": 1792023922657
+        },
+        {
+          "url": "/assets/handdrawn-p08/cards/a06.thumbnail.webp",
+          "at": 1792023922658
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/xiemu.selection.webp",
+          "at": 1792023923259
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/xiemu.avatar.webp",
+          "at": 1792023923306
+        },
+        {
+          "url": "/assets/handdrawn-p08/cards/e07.thumbnail.webp",
+          "at": 1792023923703
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/amo.selection.webp",
+          "at": 1792023927289
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/amo.avatar.webp",
+          "at": 1792023927289
+        },
+        {
+          "url": "/assets/handdrawn-p08/cards/mantangcai.thumbnail.webp",
+          "at": 1792023928007
+        },
+        {
+          "url": "/assets/handdrawn-p08/cards/d09.thumbnail.webp",
+          "at": 1792023928007
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/amo.portrait.webp",
+          "at": 1792023928322
+        },
+        {
+          "url": "/assets/handdrawn-p08/court/k.court.webp",
+          "at": 1792023928323
+        },
+        {
+          "url": "/assets/handdrawn-p08/cards/a06.thumbnail.webp",
+          "at": 1792023929061
+        },
+        {
+          "url": "/assets/handdrawn-p08/cards/e07.thumbnail.webp",
+          "at": 1792023929111
+        },
+        {
+          "url": "/assets/handdrawn-p08/court/q.court.webp",
+          "at": 1792023929347
+        },
+        {
+          "url": "/assets/handdrawn-p08/court/j.court.webp",
+          "at": 1792023929395
+        },
+        {
+          "url": "/assets/handdrawn-tools/item-u05.thumbnail.webp",
+          "at": 1792023930358
+        },
+        {
+          "url": "/assets/handdrawn-tools/tool-s04.thumbnail.webp",
+          "at": 1792023930406
+        }
+      ],
+      "resources": [
+        {
+          "url": "/assets/handdrawn-p08/characters/amo.selection.webp",
+          "start": 349.0999999999767,
+          "end": 1269.9000000000233,
+          "bytes": 8470
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/amo.avatar.webp",
+          "start": 349.5,
+          "end": 1270.3000000000466,
+          "bytes": 9954
+        },
+        {
+          "url": "/assets/handdrawn-p08/cards/mantangcai.thumbnail.webp",
+          "start": 997.5999999999767,
+          "end": 1993.6999999999534,
+          "bytes": 4278
+        },
+        {
+          "url": "/assets/handdrawn-p08/cards/d09.thumbnail.webp",
+          "start": 998.4000000000233,
+          "end": 1994.0999999999767,
+          "bytes": 4044
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/amo.portrait.webp",
+          "start": 1395.9000000000233,
+          "end": 2303.4000000000233,
+          "bytes": 34664
+        },
+        {
+          "url": "/assets/handdrawn-p08/court/k.court.webp",
+          "start": 1398,
+          "end": 2303.5,
+          "bytes": 24632
+        },
+        {
+          "url": "/assets/handdrawn-p08/cards/a06.thumbnail.webp",
+          "start": 2135.1999999999534,
+          "end": 3042.5,
+          "bytes": 4054
+        },
+        {
+          "url": "/assets/handdrawn-p08/cards/e07.thumbnail.webp",
+          "start": 2186.5,
+          "end": 3092.0999999999767,
+          "bytes": 6054
+        },
+        {
+          "url": "/assets/handdrawn-p08/court/q.court.webp",
+          "start": 2421.5999999999767,
+          "end": 3328.5999999999767,
+          "bytes": 23292
+        },
+        {
+          "url": "/assets/handdrawn-p08/court/j.court.webp",
+          "start": 2470.5999999999767,
+          "end": 3377.0999999999767,
+          "bytes": 23858
+        }
+      ],
+      "requestCount": 39,
+      "bytes": 435550,
+      "responses": [
+        {
+          "url": "/assets/handdrawn-p08/characters/amo.selection.webp",
+          "bytes": 8470
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/amo.avatar.webp",
+          "bytes": 9954
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/amo.portrait.webp",
+          "bytes": 34664
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/touye.selection.webp",
+          "bytes": 10132
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/touye.avatar.webp",
+          "bytes": 11046
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/laohuan.selection.webp",
+          "bytes": 10208
+        },
+        {
+          "url": "/assets/handdrawn-p08/cards/b07.thumbnail.webp",
+          "bytes": 4310
+        },
+        {
+          "url": "/assets/handdrawn-p08/cards/c05.thumbnail.webp",
+          "bytes": 4338
+        },
+        {
+          "url": "/assets/handdrawn-p08/court/k.court.webp",
+          "bytes": 24632
+        },
+        {
+          "url": "/assets/handdrawn-p08/court/q.court.webp",
+          "bytes": 23292
+        },
+        {
+          "url": "/assets/handdrawn-p08/cards/mantangcai.thumbnail.webp",
+          "bytes": 4278
+        },
+        {
+          "url": "/assets/handdrawn-p08/court/j.court.webp",
+          "bytes": 23858
+        },
+        {
+          "url": "/assets/handdrawn-tools/item-u05.thumbnail.webp",
+          "bytes": 3046
+        },
+        {
+          "url": "/assets/handdrawn-p08/cards/mantangcai.thumbnail.webp",
+          "bytes": 4278
+        },
+        {
+          "url": "/assets/handdrawn-tools/tool-t17.thumbnail.webp",
+          "bytes": 2348
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/laohuan.avatar.webp",
+          "bytes": 10836
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/erxiang.selection.webp",
+          "bytes": 18316
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/erxiang.avatar.webp",
+          "bytes": 15880
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/azao.selection.webp",
+          "bytes": 13164
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/azao.avatar.webp",
+          "bytes": 11572
+        },
+        {
+          "url": "/assets/handdrawn-p08/cards/d09.thumbnail.webp",
+          "bytes": 4044
+        },
+        {
+          "url": "/assets/handdrawn-p08/cards/a06.thumbnail.webp",
+          "bytes": 4054
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/xiemu.selection.webp",
+          "bytes": 15154
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/xiemu.avatar.webp",
+          "bytes": 14322
+        },
+        {
+          "url": "/assets/handdrawn-p08/cards/e07.thumbnail.webp",
+          "bytes": 6054
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/amo.selection.webp",
+          "bytes": 8470
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/amo.avatar.webp",
+          "bytes": 9954
+        },
+        {
+          "url": "/assets/handdrawn-p08/cards/mantangcai.thumbnail.webp",
+          "bytes": 4278
+        },
+        {
+          "url": "/assets/handdrawn-p08/cards/d09.thumbnail.webp",
+          "bytes": 4044
+        },
+        {
+          "url": "/assets/handdrawn-p08/characters/amo.portrait.webp",
+          "bytes": 34664
+        },
+        {
+          "url": "/assets/handdrawn-p08/court/k.court.webp",
+          "bytes": 24632
+        },
+        {
+          "url": "/assets/handdrawn-p08/cards/a06.thumbnail.webp",
+          "bytes": 4054
+        },
+        {
+          "url": "/assets/handdrawn-p08/cards/e07.thumbnail.webp",
+          "bytes": 6054
+        },
+        {
+          "url": "/assets/handdrawn-p08/court/q.court.webp",
+          "bytes": 23292
+        },
+        {
+          "url": "/assets/handdrawn-p08/court/j.court.webp",
+          "bytes": 23858
+        }
+      ],
+      "stateUnchanged": true,
+      "stateSHA256": "54b1e402a86f180cf2c63b9d56d6e6874e4494a662293ef0ca1051f2dcf5e119",
+      "inputPreserved": true,
+      "errors": []
+    }
+  ],
+  "physicalDevice": "NOT_RUN",
+  "humanAcceptance": "NOT_RUN",
+  "status": "PASS"
+}
