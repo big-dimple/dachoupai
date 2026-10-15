@@ -1,7 +1,26 @@
 import {afterEach,expect,it,vi} from 'vitest';
-import {viewportMetrics,FRAMEBUFFER_PIXELS} from '../src/platform/Viewport';
+import {viewportMetrics,FRAMEBUFFER_PIXELS,installViewport} from '../src/platform/Viewport';
 import {crispText} from '../src/game/TextRaster';
 afterEach(()=>vi.unstubAllGlobals());
+it.each([1,1.25])('keeps native canvas pointer coordinates aligned after CSS resize at DPR%s',dpr=>{
+ let width=320,height=568,resized!:()=>void;
+ const canvas={style:{width:'320px',height:'568px'},getBoundingClientRect(){return {width:parseFloat(this.style.width),height:parseFloat(this.style.height)};}};
+ const displayScale={x:dpr,y:dpr,set(x:number,y:number){this.x=x;this.y=y;}};
+ const scale={width:Math.ceil(width*dpr),height:Math.ceil(height*dpr),zoom:1/dpr,baseSize:{width:Math.ceil(width*dpr),height:Math.ceil(height*dpr)},canvasBounds:{width:320,height:568},displayScale,
+  updateBounds(){this.canvasBounds=canvas.getBoundingClientRect();},
+  resize(w:number,h:number){this.width=w;this.height=h;this.baseSize={width:w,height:h};this.updateBounds();displayScale.set(w/this.canvasBounds.width,h/this.canvasBounds.height);}
+ };
+ vi.stubGlobal('document',{getElementById:()=>({getBoundingClientRect:()=>({width,height})})});
+ vi.stubGlobal('window',{devicePixelRatio:dpr,addEventListener:vi.fn(),matchMedia:()=>({addEventListener:vi.fn()})});
+ vi.stubGlobal('ResizeObserver',class {constructor(callback:()=>void){resized=callback;}observe(){}disconnect(){}});
+ installViewport({canvas,scale,events:{once:vi.fn()}} as any);
+ width=390;height=740;resized();
+ expect(195*displayScale.x).toBeCloseTo(scale.baseSize.width/2);
+ expect(370*displayScale.y).toBeCloseTo(scale.baseSize.height/2);
+ resized(); // The already-sized branch must preserve the same native mapping.
+ expect(195*displayScale.x).toBeCloseTo(scale.baseSize.width/2);
+ expect(370*displayScale.y).toBeCloseTo(scale.baseSize.height/2);
+});
 it.each([[390,740,3],[320,568,3],[1366,768,1.25],[1366,768,2],[1920,1080,2],[2560,1440,2]])('uses native effective DPR subject to the bounded pixel budget (%s × %s, %s)',(width,height,dpr)=>{
  vi.stubGlobal('document',{getElementById:()=>({getBoundingClientRect:()=>({width,height})})});vi.stubGlobal('window',{devicePixelRatio:dpr});
  const m=viewportMetrics();expect(m.width).toBe(width);expect(m.height).toBe(height);expect(m.density).toBe(Math.min(dpr,Math.sqrt(9000000/(width*height))));
