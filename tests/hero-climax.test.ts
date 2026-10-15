@@ -50,7 +50,9 @@ it('missing optional detail keeps the same-source thumbnail still during the exi
 it('a fast strike still shows the eye shot before the subject and committed accumulator, with one visible camera layer',()=>{
  let now=0;const clock=vi.spyOn(performance,'now').mockImplementation(()=>now),{stage,listeners}=stageFixture();
  const board=(stage.group as any).list.find((o:any)=>o.name==='hero/climax-board'),layers=board.list.filter((o:any)=>o.name?.startsWith('hero/shot-'));
- const tick=()=>{for(const f of listeners) (f as ()=>void)();expect(layers.filter((o:any)=>o.visible)).toHaveLength(1);};
+ const caption=board.list.find((o:any)=>o.name==='hero/climax-note');
+ expect(caption.text).toBeTruthy();
+ const tick=()=>{for(const f of listeners) (f as ()=>void)();expect(layers.filter((o:any)=>o.visible)).toHaveLength(1);expect(caption.visible).toBe(true);expect(caption.scaleX).toBe(1);expect(layers.flatMap((o:any)=>o.list).filter((o:any)=>o.name==='hero/climax-note')).toHaveLength(0);};
  expect(stage.group.getData('shot')).toBe('eyes');now=70;stage.strike();tick();expect(stage.group.getData('shot')).toBe('eyes');
  now=180;tick();expect(stage.group.getData('shot')).toBe('skill');now=670;tick();expect(stage.group.getData('shot')).toBe('landing');
  stage.reduce();tick();expect(stage.group.getData('shot')).toBe('landing');stage.dispose();expect(listeners.size).toBe(0);clock.mockRestore();

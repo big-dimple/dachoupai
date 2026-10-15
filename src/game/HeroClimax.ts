@@ -1,6 +1,7 @@
 import type Phaser from 'phaser';
 import {heroPayoffs} from './HeroPayoff';
 import {heroClimaxLayout} from './HeroClimaxLayout';
+import {mountHeroClimaxCaption} from './HeroClimaxCaption';
 import {climaxSourceKey} from './ClimaxSourceArt';
 import {crispText,textDensity} from './TextRaster';
 import {fitScoreLine} from './ScoreTextLayout';
@@ -53,9 +54,7 @@ export function mountHeroClimax(scene:Phaser.Scene,root:Phaser.GameObjects.Conta
  if(scene.textures.exists('p00-paper'))board.add(scene.add.tileSprite(p.x+3,p.y+7,p.width-6,p.height-12,'p00-paper').setOrigin(0).setAlpha(.07));
  const text=(parent:Phaser.GameObjects.Container,x:number,y:number,s:string,size:number,color=C.ink,width?:number)=>{const t=scene.add.text(x,y,s,{fontFamily:UI_FONT,fontSize:size+'px',fontStyle:'bold',color,resolution:textDensity(scene),...(width?{wordWrap:{width,useAdvancedWrap:true}}:{})});parent.add(t);crispText(t);return t;};
  const actualSource=!!key.fact.definitionId,title=actualSource?key.fact.title:value.skillName??getCharacter(id).name;
- const headline=text(board,l.nameX,l.nameY,title,l.short?26:l.portrait?36:52).setName('hero/climax-name');
- const fitTitle=()=>{headline.setFontSize(l.short?26:l.portrait?36:52).setWordWrapWidth(0);for(let n=parseInt(headline.style.fontSize.toString());headline.width>l.nameW&&n>18;)headline.setFontSize(--n);};fitTitle();
- const owner=text(board,l.nameX,headline.y+headline.height+4,actualSource?getCharacter(id).name+' · 来源兑现':value.skillName?getCharacter(id).name+' · 技能兑现':'这一手 · 实际兑现',l.short?14:16,C.jade,l.nameW).setName('hero/climax-owner');
+ mountHeroClimaxCaption(scene,board,l,{title,owner:actualSource?getCharacter(id).name+' · 来源兑现':value.skillName?getCharacter(id).name+' · 技能兑现':'这一手 · 实际兑现',effect:value.note});
  const eyesLayer=scene.add.container(0,0).setName('hero/shot-eyes'),skillLayer=scene.add.container(0,0).setName('hero/shot-skill'),landingLayer=scene.add.container(0,0).setName('hero/shot-landing');board.add([eyesLayer,skillLayer,landingLayer]);
  // Existing 615×768 artwork supports an honest portrait focus, not a panoramic eye strip.
  // A dedicated eye painting is absent. Never enlarge any sampled pixel on the framebuffer.
@@ -84,18 +83,16 @@ export function mountHeroClimax(scene:Phaser.Scene,root:Phaser.GameObjects.Conta
  const number=(parent:Phaser.GameObjects.Container,x:number,y:number,s:string,size:number,width:number,height:number,name:string)=>{const t=scene.add.text(x,y,format(s),{fontFamily:SCORE_FONT,fontSize:size+'px',fontStyle:'800',color:C.red,resolution:density}).setName(name).setData('exactValue',s);parent.add(t);fitScoreLine(t,{x:x-width/2,y,width,height},size,true);return t;};
  const readout=number(skillLayer,l.readout.x+l.readout.width/2,l.valueY,value.after,l.short?48:l.portrait?82:112,l.readout.width,l.short?70:120,'hero/climax-value');
  if(value.accumulated)text(skillLayer,l.readout.x,l.valueY+readout.displayHeight+18,value.accumulated,l.short?14:18,C.jade,l.readout.width).setName('hero/climax-landing');
- text(skillLayer,l.nameX,l.noteY,value.note,l.short?14:17,C.ink,l.nameW).setName('hero/climax-note');
  text(skillLayer,l.sourceCaption.x,l.sourceCaption.y,(actualSource?'实际来源 · ':'')+key.fact.title,l.short?14:16,C.jade,l.sourceCaption.width).setName('hero/climax-source-title');
  // Last shot places the actual after-accumulator, never a future hand forecast.
  const landingY=l.landing.y+(l.short?20:52),landingValue=value.landingValue??value.after;
  text(landingLayer,l.nameX,l.landing.y,value.landingLabel??value.label,l.short?16:20,C.jade,l.nameW).setName('hero/climax-value-label');
  const landed=number(landingLayer,p.x+p.width/2,landingY,landingValue,l.short?74:l.portrait?138:190,l.nameW,l.landing.height*.63,'hero/climax-value');
  text(landingLayer,l.nameX,landingY+landed.displayHeight+16,value.landingValue?value.label+' '+value.after:value.note,l.short?14:20,C.red,l.nameW).setName('hero/climax-local-effect');
- text(landingLayer,l.nameX,l.noteY,value.note,l.short?14:17,C.ink,l.nameW).setName('hero/climax-note');
  text(landingLayer,l.sourceCaption.x,l.sourceCaption.y,value.accumulated??key.landing,l.short?14:18,C.jade,l.sourceCaption.width).setName('hero/climax-landing');
  const owned=new Set<Phaser.Tweens.Tween>();let disposed=false,still=reduced,struck=false,strikeAt=0,shotAt=performance.now(),shot='',releaseDone:(()=>void)|undefined;
  const started=performance.now();
- const show=(next:string)=>{if(next===shot)return;shot=next;shotAt=performance.now();eyesLayer.setVisible(next==='eyes');skillLayer.setVisible(next==='skill');landingLayer.setVisible(next==='landing');group.setData('shot',next).setData('shotAt',shotAt);headline.setText(title);fitTitle();crispText(headline);owner.setText(actualSource?getCharacter(id).name+' · 来源兑现':value.skillName?getCharacter(id).name+' · 技能兑现':'这一手 · 实际兑现').setY(headline.y+headline.height+4);crispText(owner);};
+ const show=(next:string)=>{if(next===shot)return;shot=next;shotAt=performance.now();eyesLayer.setVisible(next==='eyes');skillLayer.setVisible(next==='skill');landingLayer.setVisible(next==='landing');group.setData('shot',next).setData('shotAt',shotAt);};
  const update=()=>{
   if(disposed||group.getData('phase')==='release')return;
   const now=performance.now();show(still?'landing':(!struck||now-started<180)?(hasFocus?'eyes':'skill'):now-strikeAt<600?'skill':'landing');
