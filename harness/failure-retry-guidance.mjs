@@ -7,17 +7,19 @@ import {mkdir,writeFile} from 'node:fs/promises';
 import {gzipSync} from 'node:zlib';
 import {execFileSync} from 'node:child_process';
 import {waitScene,tapUI,point,confirmHeroRoute} from './ui.mjs';
+const selectionOnly=process.env.FAILURE_QA_SELECTION_ONLY==='1';
 const out=process.env.FAILURE_QA_OUT??'/tmp/failure-retry-guidance',port=Number(process.env.FAILURE_QA_PORT??4181);
 await mkdir(out,{recursive:true});
 const server=await createServer({mode:'e2e',server:{host:'127.0.0.1',port,strictPort:true},logLevel:'error'});
 const {failureRetryFixture}=await server.ssrLoadModule('/harness/fixtures/failure-retry.ts');
 const {makeCheckpoint,readCheckpoint}=await server.ssrLoadModule('/src/application/checkpoint.ts');
+const {r2ModeStorageKey}=await server.ssrLoadModule('/src/content/r2Modes.ts');
 const {createRun}=await server.ssrLoadModule('/src/domain/run.ts');
 const fixtures=Object.fromEntries(['hands','cards','abandoned','boss'].map(kind=>[kind,failureRetryFixture(kind).after]));
 for(const state of Object.values(fixtures)){assert.equal(state.phase,'run-lost');assert.ok(readCheckpoint(makeCheckpoint(state,[])).ok);}
 await server.listen();
 const browser=await chromium.launch({executablePath:process.env.SMOKE_CHROMIUM_EXECUTABLE_PATH??'/usr/bin/chromium',args:['--no-sandbox','--disable-gpu','--disable-software-rasterizer']});
-const report={startedAt:new Date().toISOString(),sourceHead:execFileSync('git',['rev-parse','HEAD'],{encoding:'utf8'}).trim(),sourceStatusBefore:execFileSync('git',['status','--porcelain'],{encoding:'utf8'}).trim(),scope:'Local E2E build; controlled terminal fixtures end through original commands, strict production import, native clicks/taps, full state/journal/checkpoint/revision comparison. Not formal-site QA, natural runs, physical devices, hearing or balance acceptance.',cases:[],failures:[]},full=[];
+const report={selectionOnly,startedAt:new Date().toISOString(),sourceHead:execFileSync('git',['rev-parse','HEAD'],{encoding:'utf8'}).trim(),sourceStatusBefore:execFileSync('git',['status','--porcelain'],{encoding:'utf8'}).trim(),scope:'Local E2E build; controlled terminal fixtures end through original commands, strict production import, native clicks/taps, full state/journal/checkpoint/revision comparison. Not formal-site QA, natural runs, physical devices, hearing or balance acceptance.',cases:[],failures:[]},full=[];
 const observe=page=>page.evaluate(async()=>{
  const {gameSession}=await import('/src/game/session.ts'),s=gameSession(),c=window.__harness.game.registry.get('runController');
  return {state:c.state,journal:c.journal,storage:await c.store.read(),status:c.status,pending:s.pendingRun?{state:s.pendingRun.state,journal:s.pendingRun.journal,json:s.pendingRun.exportJSON(),status:s.pendingRun.status}:null};
@@ -74,7 +76,7 @@ async function retryFlow(page,row,initial,viewport,fault){
 }
 try{
  const sizes=[{name:'pc',width:1366,height:768},{name:'390',width:390,height:844},{name:'320-short',width:320,height:568}];
- for(const viewport of sizes)for(const kind of ['hands','cards','abandoned']){
+ for(const viewport of (selectionOnly?[]:sizes))for(const kind of ['hands','cards','abandoned']){
   const context=await browser.newContext({viewport:{width:viewport.width,height:viewport.height},hasTouch:viewport.width<700,deviceScaleFactor:1}),page=await context.newPage(),row={key:viewport.name+'-'+kind,kind,viewport,errors:[]};report.cases.push(row);page.on('pageerror',e=>row.errors.push(e.message));page.on('dialog',d=>d.accept());page.setDefaultTimeout(15000);
   try{
    await importState(page,fixtures[kind]);const initial=await observe(page);full.push({key:row.key+'/initial',saved:initial});row.resultGeometry=await resultGeometry(page,viewport);await shot(page,row.key+'-failure');
@@ -94,7 +96,7 @@ try{
    assert.deepEqual(row.errors,[]);row.status='PASS';console.log('PASS',row.key);
   }catch(e){row.status='FAIL';row.error=e.stack;await shot(page,row.key+'-FAIL').catch(()=>{});throw e;}finally{await context.close();}
  }
- for(const kind of ['boss','fault']){
+ for(const kind of (selectionOnly?[]:['boss','fault'])){
   const viewport={width:390,height:568},context=await browser.newContext({viewport,hasTouch:true,deviceScaleFactor:1}),page=await context.newPage(),row={key:'390-short-'+kind,kind,viewport,errors:[]};report.cases.push(row);page.on('pageerror',e=>row.errors.push(e.message));page.on('dialog',d=>d.accept());
   try{
    await importState(page,fixtures[kind==='boss'?'boss':'hands']);const initial=await observe(page);full.push({key:row.key+'/initial',saved:initial});
@@ -109,7 +111,9 @@ try{
    await importState(page,fixtures.hands);const initial=await observe(page);full.push({key:row.key+'/initial',saved:initial});await tapUI(page,'intermission','action/failure-guidance',true);
    await page.getByRole('button',{name:'返回选角',exact:true}).click();await waitScene(page,'character-select');await same(page,initial);
    await tapUI(page,'character-select','character/erxiang',true);await same(page,initial);await confirmHeroRoute(page,true,'flush');await waitScene(page,'shop');await page.waitForFunction(()=>window.__harness.game.scene.getScene('shop').ready);
-   const after=await observe(page);assert.equal(after.state.characterId,'erxiang');assert.equal(after.state.openingRoute,'flush');assert.notEqual(after.state.seed,initial.state.seed);assert.deepEqual(after.state,expectedRestart(after.state));assert.equal(after.state.commandSeq,1);assert.deepEqual(after.journal,[]);assert.equal(after.storage.revision,initial.storage.revision+1);assert.deepEqual(after.storage.previous,initial.storage.current);assert.deepEqual(row.errors,[]);full.push({key:row.key+'/new',saved:after});await shot(page,row.key+'-shop');
+   const after=await observe(page);assert.equal(after.state.characterId,'erxiang');assert.equal(after.state.openingRoute,'flush');assert.notEqual(after.state.seed,initial.state.seed);assert.deepEqual(after.state,expectedRestart(after.state));assert.equal(after.state.commandSeq,1);assert.deepEqual(after.journal,[]);assert.equal(after.storage.revision,initial.storage.revision+1);if(r2ModeStorageKey(after.state,after.state.contentHash)===r2ModeStorageKey(initial.state,initial.state.contentHash))assert.deepEqual(after.storage.previous,initial.storage.current);
+   else {const original=await page.evaluate(async state=>{const {gameSession}=await import('/src/game/session.ts');return gameSession().storage.readPartition(state);},initial.state);assert.deepEqual(original.current,initial.storage.current);assert.deepEqual(original.previous,initial.storage.previous);full.push({key:row.key+'/original-partition-preserved',saved:original});row.originalPartitionPreserved=true;}
+   assert.deepEqual(row.errors,[]);full.push({key:row.key+'/new',saved:after});await shot(page,row.key+'-shop');
    await page.reload({waitUntil:'networkidle'});await waitScene(page,'title');await tapUI(page,'title','action/title-continue',true);await waitScene(page,'shop');await page.waitForFunction(()=>window.__harness.game.scene.getScene('shop').ready);assert.deepEqual(await observe(page),after);row.coldRecovery='PASS';row.singleReplacement='PASS';row.status='PASS';console.log('PASS',row.key);
   }catch(e){row.status='FAIL';row.error=e.stack;await shot(page,row.key+'-FAIL').catch(()=>{});throw e;}finally{await context.close();}
  }
