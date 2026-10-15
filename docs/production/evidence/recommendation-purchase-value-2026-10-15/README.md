@@ -37,6 +37,8 @@ f06正常仍2星，不能因为上限3就升3；b03/c06新购初值0早中晚最
 
 ## 验证范围
 
-定向测试和双端验收结果在完成后写入 `VALIDATION.md`。首轮旧测试冲突保留在 `first-test-failure.txt`：旧用例把推荐等同售后购买、给成长补未来价值，现改为分别核真实现金探针及整笔交易值；未放宽领域/事务/完整保存断言。第一轮浏览器失败 `first-browser-failure.txt` / `first-browser-report.json` 是手机 `.tool-preview` 位于未打开的“查看预览”页签，观察器滚动超时；修为真实点击页签，不force或修改产品布局。
+产品提交 `208aebbbb6db3792555aa77d3a4d052dd8aabc7f`；203项定向测试、type/content/build和PC1366×768／390×844受控流程通过，详见[验证回执](VALIDATION.md)、[原生报告](browser/report.json)、[完整状态／日志／存档](browser/full-state-journal-storage.json.gz)及[受测源码哈希](source-sha256.json)。恢复后沿用现存完整验收，仅补未拍到分差行的只读截图；不重跑已完成矩阵。最终证据提交只整理本目录与原计划回执，产品源仍逐哈希等同208aebbb。
+
+首轮旧测试冲突保留在 `first-test-failure.txt`：旧用例把推荐等同售后购买、给成长补未来价值，现改为分别核真实现金探针及整笔交易值；未放宽领域/事务/完整保存断言。补充四轴测试的旧成长星预期失败另保留于 `additional-test-failure.txt`。第一轮浏览器失败 `first-browser-failure.txt` / `first-browser-report.json` 是手机 `.tool-preview` 位于未打开的“查看预览”页签，观察器滚动超时；修为真实点击页签，不force或修改产品布局。
 
 未做自然经营、全库重审、完整平衡、物理手机/真人理解/审美或听感签收。S04整体数值取舍、完整五星公平性和长期机会估计仍OPEN。本任务不合main、不部署、不重试被拒PR。
