@@ -1,7 +1,7 @@
 import {applyCommand,type R2RunState,type Action} from '../domain/run';
 import type {R2Offer} from '../domain/r2Shop';
 import {r2PurchasePrice} from '../domain/r2Shop';
-import {readR2Modifiers,type R2JokerInstance} from '../content/r2Schema';
+import {readR2Modifiers,type R2JokerInstance,type R2JokerDefinition} from '../content/r2Schema';
 import {r2JokerDefinitionsFor,r2JokerDefinitionFor} from '../domain/r2ContentProfiles';
 import {r2ScoreContext,r2CreateJoker} from '../domain/r2Run';
 import {Rational} from '../domain/rational';
@@ -18,6 +18,24 @@ import {shopPurchaseConditionLosses,shopSaleConsequences} from './ShopRouteRelat
 export const PURCHASE_VALUE_POLICY='public-one-play-v1';
 const calibrated=new Set(['f06','b03','c04','c06','e08','b10']);
 const transact=(s:R2RunState,action:Action)=>applyCommand(s,{runId:s.runId,commandId:s.runId+'/value/'+action.type+'/'+(s.commandSeq+1),expectedSeq:s.commandSeq,action});
+/** Capabilities omitted by the isolated first-play score, not promised future payouts. */
+function unmeasuredReplacementLosses(definition:R2JokerDefinition){
+ const reasons=new Set<string>();
+ if(definition.modifiers?.length)reasons.add('静态资源／规则');
+ for(const hook of definition.hooks){
+  if(hook.phase==='onHeldCard')reasons.add('持牌计分');
+  if(hook.phase==='onDiscard'){
+   if(hook.operations.some(op=>op.kind==='refund-discard'))reasons.add('弃牌返还');
+   else if(hook.operations.some(op=>op.kind==='add-gold-limited'))reasons.add('弃牌收入');
+   else reasons.add('弃牌后的条件效果');
+  }
+  if(hook.phase==='beforeFailure')reasons.add('失败前救场');
+  if(hook.phase==='onReroll')reasons.add('刷新后成长');
+  // Expiry alone is a cost; do not invent a lost future benefit from it.
+  if(hook.phase==='afterHand'&&hook.operations.some(op=>op.kind!=='expire-after-hands'))reasons.add('结算后成长／返还');
+ }
+ return [...reasons];
+}
 /** Bounded witnesses, not a search for the best hand. Public deck order is
  * canonicalized, so rearranging a hidden pile cannot change the advice. */
 export function purchaseValueHands(s:R2RunState,focus:BuildFocus='group'){
@@ -82,13 +100,14 @@ export function shopPurchaseValue(state:R2RunState,offer:R2Offer,focus?:BuildFoc
  const negative=rows.some(r=>BigInt(r.delta.maximum)<0n),positive=rows.some(r=>BigInt(r.delta.minimum)>0n),allPositive=rows.length>=2&&rows.every(r=>BigInt(r.delta.minimum)>0n);
  const initial=sold?r2CreateJoker(sold.definitionId,'value/initial',sold.paidPrice,sold.edition,state):undefined;
  const lostInvestment=!!sold&&(sold.edition!==undefined&&sold.edition!=='none'||Object.entries(sold.growth).some(([key,v])=>Rational.fromJSON(v).compare(Rational.fromJSON(initial!.growth[key]??{n:'0',d:'1'}))>0)||r2JokerDefinitionFor(state,sold.definitionId).hooks.some(h=>h.phase==='onStageClear'||h.phase==='onSellJoker'||h.phase==='onBuyOffer'))||!!sold&&shopSaleConsequences(state,sold).some(t=>t.includes('不满足'));
- const unmeasuredLoss=!!sold&&(r2JokerDefinitionFor(state,sold.definitionId).hooks.some(h=>h.phase==='onHeldCard')||!!r2JokerDefinitionFor(state,sold.definitionId).modifiers?.length);
+ const unmeasuredLossReasons=sold?unmeasuredReplacementLosses(r2JokerDefinitionFor(state,sold.definitionId)):[];
+ const unmeasuredLoss=unmeasuredLossReasons.length>0;
  const cashLoss=shopPurchaseConditionLosses(state,offer,sold).length>0;
  const ceiling=negative?(positive?2:1):!positive||lostInvestment||unmeasuredLoss||cashLoss?2:interestLoss?3:allPositive&&offer.definitionId!=='f06'?4:3;
  const remaining=fresh?.definitionId==='f06'?Math.max(0,4-(fresh.counters?.handsScored??0)):undefined;
  const detail=`以保留不买为基线；实付${paid}金，已发生返金${refund}金，净支出${net}金；余额${state.gold}→${after.gold}金。\n当前利息档${interest(state)}→${interest(after)}，仅按过关时余额结算，不计未来收入。`+
   (fresh?'\n新实例：'+r2JokerStateText(fresh,r2JokerDefinitionFor(after,fresh.definitionId)):'')+
   (remaining!==undefined?`\n新牌余${remaining}次出牌；封禁也消耗，第4次后销毁；不预支全部次数的收益。`:'')+
-  (losses.length?'\n'+losses.join('\n'):'')+(unmeasuredLoss?'\n所售牌的持牌／资源收益未纳入此无持牌分数样例，不能据此认定净补强。':'')+(rows.length?'\n'+purchaseValueWindowText(rows)+'\n推荐还需兼顾实付、已有来源和永久代价；条件增分不保证回本或通关。':'\n仅供当前条件适配参考；后续收益和整体回本未知。');
- return {...base,status:'assessed' as const,paid,refund,net,goldAfter:after.gold,rows,ceiling,negative,positive,allPositive,lostInvestment,unmeasuredLoss,cashLoss,interestLoss,remaining,detail};
+  (losses.length?'\n'+losses.join('\n'):'')+(unmeasuredLoss?'\n未估代价：失去所售牌的'+unmeasuredLossReasons.join('、')+'；是否兑现未知，未纳入本手分差，不能据此认定净补强。':'')+(rows.length?'\n'+purchaseValueWindowText(rows)+'\n推荐还需兼顾实付、已有来源和永久代价；条件增分不保证回本或通关。':'\n仅供当前条件适配参考；后续收益和整体回本未知。');
+ return {...base,status:'assessed' as const,paid,refund,net,goldAfter:after.gold,rows,ceiling,negative,positive,allPositive,lostInvestment,unmeasuredLoss,unmeasuredLossReasons,cashLoss,interestLoss,remaining,detail};
 }

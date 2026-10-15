@@ -6,6 +6,7 @@ import {toolPermanentValue} from '../src/game/ToolPermanentValue';
 import {r2CreateJoker} from '../src/domain/r2Run';
 import {r2Price} from '../src/domain/r2Shop';
 import {recommendationFiveStarFixture} from '../harness/fixtures/recommendation-evidence';
+import {resourceLossFixture} from '../harness/fixtures/recommendation-resource-loss';
 
 it.each([1,3,8])('chapter %i does not give a new zero-growth body mature or future value',chapter=>{
  for(const [id,route] of [['b03','group'],['c06','flush']] as const){const s=fixture(route,chapter),o=stock(s,id),before=structuredClone(s),v=shopPurchaseValue(s,o,route)!;
@@ -49,6 +50,22 @@ it('selling fresh ordinary e05 loses its onBuyOffer business source despite posi
  expect(send(s,{type:'BuyOffer',offerId:o.offerId}).jokers.find(j=>j.definitionId==='e05')!.growth).toEqual({heat:{n:'8',d:'1'}});
  expect(s).toEqual(before);
 });
+it.each([
+ ['d05','弃牌返还'],['a07','弃牌收入'],['f07','失败前救场'],
+ ['e12','刷新后成长'],['b03','结算后成长／返还'],
+])('selling %s cannot turn omitted %s value into a four-star trade',(id,label)=>{
+ const {state,offer,sold}=resourceLossFixture(id),before=structuredClone(state);
+ const value=shopPurchaseValue(state,offer,'group',sold);if(value?.status!=='assessed')throw Error('transaction');
+ expect(value).toMatchObject({allPositive:true,interestLoss:false,lostInvestment:false,unmeasuredLoss:true,ceiling:2});
+ expect(value.detail).toContain(label);expect(value.detail).toContain('是否兑现未知');
+ expect(shopRecommendation(state,offer,'group',sold)).toMatchObject({stars:2,reason:'替换有未估代价'});
+ expect(state).toEqual(before);
+});
+it('keeps a purely sampled scoring donor outside the unknown resource-loss cap',()=>{
+ const {state,offer,sold}=resourceLossFixture('d07'),value=shopPurchaseValue(state,offer,'group',sold);
+ expect(value).toMatchObject({unmeasuredLoss:false,lostInvestment:false,allPositive:true,ceiling:4});
+ expect(shopRecommendation(state,offer,'group',sold).stars).toBe(4);
+});
 it('public random intervals are conservative and ignore hidden draw order and rule cursor',()=>{
  const s=held(fixture(),['f08']),o=stock(s,'f06'),before=structuredClone(s),a=shopPurchaseValue(s,o,'group');
  s.drawPile.reverse();s.rng.rule={...s.rng.rule,state:123};const b=shopPurchaseValue(s,o,'group');expect(b).toEqual(a);
@@ -69,7 +86,9 @@ it('keeps all three original five-star branches outside this limited calibration
  const s=recommendationFiveStarFixture();for(const o of s.shop!.offers){expect(shopRecommendation(s,o,'group').stars).toBe(5);expect(shopRecommendation(s,o,'group').condition).toContain('先指定替换对象');expect(shopPurchaseValue(s,o,'group')).toMatchObject({calibrated:false,status:'needs-selection'});}
 });
 it.each(['S03','S04','S07'])('%s shows permanent cost and actual selected use without changing source state',id=>{
- const s=held(fixture('straight'),['c04','e06','e11']);s.jokers[0].growth={heat:{n:'100',d:'1'}};s.jokers[0].edition='foil';s.jokers[0].paidPrice=r2Price('c04','foil',s);s.consumables=[{instanceId:'tool',definitionId:id}];const before=structuredClone(s);
+ const s=held(fixture('straight',id==='S04'?3:1),['c04','e06','e11']);
+ if(id==='S04'){s.deckInstances=s.deckInstances.filter(c=>c.suit==='hearts'||c.suit==='spades');s.drawPile=s.deckInstances.map(c=>c.id);}
+ s.jokers[0].growth={heat:{n:'100',d:'1'}};s.jokers[0].edition='foil';s.jokers[0].paidPrice=r2Price('c04','foil',s);s.consumables=[{instanceId:'tool',definitionId:id}];const before=structuredClone(s);
  const action={type:'UseConsumable' as const,instanceId:'tool',targetIds:id==='S03'?['spades-7']:id==='S07'?[s.jokers[1].instanceId]:[],...(id==='S04'?{suit:'hearts' as const}:{}),...(id==='S07'?{sacrificeId:s.jokers[0].instanceId}:{})};
  const text=toolPermanentValue(s,id,action);expect(text).toContain('使用净支出0金');expect(text).toContain('以保留不用为基线');expect(text).toContain('非下一手预测');expect(s).toEqual(before);
  if(id==='S07'){expect(text).toContain('不返出售金币');expect(text).toContain('热度成长 100');s.jokers[1].edition='polychrome';expect(toolPermanentValue(s,id,action)).toContain('target-already-polychrome');}

@@ -1,8 +1,16 @@
-import {describe,it,expect} from 'vitest';
+import {describe,it,expect,vi} from 'vitest';
 import {makeReport,fixture,held,stock,sequence,scoreInput,atLeast} from '../analysis/recommendation-cost-lifetime/model';
 import {assertRunInvariants} from '../src/domain/run';
 import {scoreR2Hand} from '../src/domain/scoreR2';
 import {exactScore} from '../analysis/scoring-calibration/model';
+
+// This report's frozen domain baseline predates S04's chapter/density policy.
+// Exercise that saved profile; current-identity S04 is covered by purchase-value tests.
+vi.mock('../src/game/RunLaunch',async importOriginal=>{
+ const original=await importOriginal<typeof import('../src/game/RunLaunch')>();
+ const {R2_CORE_BUILD_VERSION,R2_CORE_BUILD_HASH}=await import('../src/domain/r2GroupUpgrade');
+ return {...original,newRunIdentity:()=>({contentVersion:R2_CORE_BUILD_VERSION,contentHash:R2_CORE_BUILD_HASH})};
+});
 
 describe('five-mechanism cost contract — controlled evidence, not natural play',()=>{
  const r=makeReport(),scores=(s:ReturnType<typeof sequence>)=>s.map(t=>t.score);
