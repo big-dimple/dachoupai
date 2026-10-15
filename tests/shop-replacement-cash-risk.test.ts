@@ -18,32 +18,32 @@ const risk=(s:R2RunState,i=2)=>{const o=s.shop!.offers[0],sold=s.jokers[i],cash=
 it('rates the real selected trade lower when a zero-growth buy disables retained Baochang',()=>{
  const s=replacementCashRiskFixture(),o=s.shop!.offers[0],sold=s.jokers[2],before=structuredClone(s);
  expect(readCheckpoint(makeCheckpoint(s,[]))).toMatchObject({ok:true});expect(risk(s)).toMatchObject({basis:'current-purchase',goldBeforePurchase:23,goldAfterPurchase:19});
- expect(shopRecommendation(s,o,'group',sold)).toMatchObject({stars:2,reason:'购款将停用包场',combinationHint:'',condition:expect.stringContaining('购买前23→19金')});
- expect(shopOfferGuidance(s,o,sold)).toMatchObject({stars:2,label:'推荐指数 ★★☆☆☆'});
+ expect(shopRecommendation(s,o,'group',sold)).toMatchObject({stars:1,reason:'保留对照更高',combinationHint:'',condition:expect.stringContaining('购买前23→19金')});
+ expect(shopOfferGuidance(s,o,sold)).toMatchObject({stars:1,label:'推荐指数 ★☆☆☆☆'});
  const scoreBefore=shopC2Score(s,['spades-7','hearts-7']).trace,afterSale=send(s,{type:'SellJoker',instanceId:sold.instanceId}),after=send(afterSale,{type:'BuyOffer',offerId:o.offerId}),scoreAfter=shopC2Score(after,['spades-7','hearts-7']).trace;
  expect([s.gold,afterSale.gold,after.gold]).toEqual([22,23,19]);expect([scoreBefore.finalScore,scoreAfter.finalScore]).toEqual(['418','217']);expect(after.jokers.find(j=>j.definitionId==='b10')!.growth).toEqual({});
  expect(scoreBefore.events.some(e=>e.sourceDefinitionId==='e08'&&e.operation==='multiply-multiplier')).toBe(true);expect(scoreAfter.events.some(e=>e.sourceDefinitionId==='e08')).toBe(false);expect(s).toEqual(before);
 });
-it.each([[22,0,2,19],[23,0,4,20],[22,8,4,22]] as const)('uses actual original cash %i and sold paid price %i at the 20-gold boundary', (gold,paidPrice,stars,after)=>{
+it.each([[22,0,1,19],[23,0,1,20],[22,8,2,22]] as const)('uses actual original cash %i and sold paid price %i at the 20-gold boundary', (gold,paidPrice,stars,after)=>{
  const s=replacementCashRiskFixture(gold);s.jokers[2].paidPrice=paidPrice;const o=s.shop!.offers[0],before=structuredClone(s);
  expect(shopRecommendation(s,o,'group',s.jokers[2]).stars).toBe(stars);expect(shopReplacementTransactionFacts(s,o,s.jokers[2])).toMatchObject({status:'ready',goldAfterPurchase:after});expect(s).toEqual(before);
 });
 it('uses the same authoritative purchase baseline after a sale, after checkpoint read and without sale history',()=>{
  const s=replacementCashRiskFixture(),o=s.shop!.offers[0],sold=send(s,{type:'SellJoker',instanceId:s.jokers[2].instanceId});
  expect(sold).toMatchObject({gold:23,shop:{soldJoker:true}});expect(sold.jokers).toHaveLength(4);expect(readCheckpoint(makeCheckpoint(sold,[]))).toMatchObject({ok:true});
- expect(shopOfferGuidance(sold,o)).toMatchObject({stars:2,label:'推荐指数 ★★☆☆☆',condition:expect.stringContaining('购买前23→19金')});
- const ordinary=structuredClone(sold);ordinary.shop!.soldJoker=false;expect(shopOfferGuidance(ordinary,o).stars).toBe(2);
+ expect(shopOfferGuidance(sold,o)).toMatchObject({stars:1,label:'推荐指数 ★☆☆☆☆',condition:expect.stringContaining('购买前23→19金')});
+ const ordinary=structuredClone(sold);ordinary.shop!.soldJoker=false;expect(shopOfferGuidance(ordinary,o).stars).toBe(1);
 });
-it.each(['initial-cash-19','sold-hand-rule','sale-growth'] as const)('%s: preview and actual continuation share the post-sale buy baseline',key=>{
+it.each(['initial-cash-19','sold-hand-rule','sale-growth'] as const)('%s: the cash-risk fact shares the post-sale baseline while whole-trade value keeps its original baseline',key=>{
  const s=replacementCashRiskFixture(key==='initial-cash-19'?19:22),o=s.shop!.offers[0];
  if(key==='initial-cash-19')s.jokers[2].paidPrice=8;
  if(key==='sold-hand-rule')s.jokers[2]=r2CreateJoker('c08','held/rule',0,'none',s);
  if(key==='sale-growth')s.jokers[3]=r2CreateJoker('e06','held/sale-growth',8,'none',s);
  assertRunInvariants(s);const before=structuredClone(s);
- const preview=shopOfferGuidance(s,o,s.jokers[2]);expect(preview.stars).toBe(2);
+ const preview=shopOfferGuidance(s,o,s.jokers[2]);expect(preview.stars).toBe(key==='initial-cash-19'?2:1);
  const sale=send(s,{type:'SellJoker',instanceId:s.jokers[2].instanceId});expect(sale.gold).toBe(23);
  if(key==='sale-growth')expect(sale.jokers.find(j=>j.definitionId==='e06')!.growth).toEqual({multiplier:{n:'1',d:'2'}});
- const continuation=shopOfferGuidance(sale,o);expect(continuation).toMatchObject({stars:2,label:'推荐指数 ★★☆☆☆'});expect(continuation.recommendation).toEqual(preview.recommendation);expect(preview.purchaseConditionLosses).toEqual(continuation.purchaseConditionLosses);expect(preview.purchaseConditionLosses.join('\n')).toContain('购款金币23→19');expect(s).toEqual(before);
+ const continuation=shopOfferGuidance(sale,o);expect(continuation).toMatchObject({stars:1,label:'推荐指数 ★☆☆☆☆'});expect(continuation.recommendation.facts.replacementCashRisk).toEqual(preview.recommendation.facts.replacementCashRisk);expect(continuation.recommendation.detail).toContain('以保留不买为基线');expect(preview.purchaseConditionLosses).toEqual(continuation.purchaseConditionLosses);expect(preview.purchaseConditionLosses.join('\n')).toContain('购款金币23→19');expect(s).toEqual(before);
 });
 it.each(['growth','edition'] as const)('B06 sale-enabled retained %s is already in the purchase baseline, not a buy reward',kind=>{
  const s=replacementCashRiskFixture();s.chapter=3;s.stageIndex=8;s.shop!.visitIndex=8;s.boss={definitionId:'B06',disabledSuit:null};s.chapterTargetPlan=lockR2ChapterTargets(s.chapter,s.tourMode,s.difficulty,s.boss);s.seenBossIds.push('B06');s.routeGrowth!.settlements.push({stageIndex:5,families:[]});s.routeGrowth!.clears++;
@@ -53,26 +53,26 @@ it.each(['growth','edition'] as const)('B06 sale-enabled retained %s is already 
  expect(r2ScoringDisabledJokerIds(s.boss,s.jokers,r2JokerDefinitionsFor(s))).toContain(j.instanceId);expect(r2ScoringDisabledJokerIds(sale.boss,sale.jokers,r2JokerDefinitionsFor(sale))).not.toContain(j.instanceId);
  const ids=['spades-7','hearts-7'],a=scoreR2Hand({...shopC2Score(s,ids).input,boss:s.boss}),b=scoreR2Hand({...shopC2Score(bought,ids).input,boss:bought.boss});
  expect(a.events.some(e=>e.sourceInstanceId===j.instanceId&&e.phase==='jokerScore')).toBe(false);expect(b.events.some(e=>e.sourceInstanceId===j.instanceId&&e.phase==='jokerScore'&&['read-growth','add-heat'].includes(e.operation))).toBe(true);
- expect(risk(s)).toBeDefined();const preview=shopOfferGuidance(s,s.shop!.offers[0],s.jokers[2]),continuation=shopOfferGuidance(sale,sale.shop!.offers[0]);expect(preview.stars).toBe(2);expect(continuation.recommendation).toEqual(preview.recommendation);
+ expect(risk(s)).toBeDefined();const preview=shopOfferGuidance(s,s.shop!.offers[0],s.jokers[2]),continuation=shopOfferGuidance(sale,sale.shop!.offers[0]);expect(preview.stars).toBeLessThanOrEqual(2);expect(continuation.recommendation.facts.replacementCashRisk).toEqual(preview.recommendation.facts.replacementCashRisk);expect(continuation.recommendation.detail).toContain('以保留不买为基线');
 });
 it('coupons and removed discounts are evaluated by the real sale and buy commands',()=>{
- const s=replacementCashRiskFixture();s.purchaseCoupons=1;expect(risk(s)).toBeUndefined();expect(shopRecommendation(s,s.shop!.offers[0],'group',s.jokers[2]).stars).toBe(4);
+ const s=replacementCashRiskFixture();s.purchaseCoupons=1;expect(risk(s)).toBeUndefined();expect(shopRecommendation(s,s.shop!.offers[0],'group',s.jokers[2]).stars).toBe(1);
  s.purchaseCoupons=0;s.jokers[2]=r2CreateJoker('e02','held/discount',0,'none',s);assertRunInvariants(s);
- expect(risk(s)).toMatchObject({goldAfterPurchase:19});expect(shopReplacementTransactionFacts(s,s.shop!.offers[0],s.jokers[2])).toMatchObject({price:4,goldAfterPurchase:19});expect(shopRecommendation(s,s.shop!.offers[0],'group',s.jokers[2]).stars).toBe(2);
+ expect(risk(s)).toMatchObject({goldAfterPurchase:19});expect(shopReplacementTransactionFacts(s,s.shop!.offers[0],s.jokers[2])).toMatchObject({price:4,goldAfterPurchase:19});expect(shopRecommendation(s,s.shop!.offers[0],'group',s.jokers[2]).stars).toBe(1);
 });
 it('does not project an unspecified full shop, and only checks the authoritative buy baseline cash',()=>{
- const s=replacementCashRiskFixture(),o=s.shop!.offers[0];expect(shopRecommendation(s,o,'group').stars).toBe(4);s.gold=18;expect(risk(s)).toBeUndefined();expect(shopRecommendation(s,o,'group',s.jokers[2]).stars).toBe(4);
+ const s=replacementCashRiskFixture(),o=s.shop!.offers[0];expect(shopRecommendation(s,o,'group').stars).toBe(2);s.gold=18;expect(risk(s)).toBeUndefined();expect(shopRecommendation(s,o,'group',s.jokers[2]).stars).toBe(1);
 });
 it('removed Baochang and positive purchase-growth hooks remain outside the downgrade',()=>{
  let s=replacementCashRiskFixture();expect(risk(s,0)).toBeUndefined();
- s=replacementCashRiskFixture();s.jokers[3]=r2CreateJoker('e05','held/buy-growth',8,'none',s);expect(risk(s)).toBeUndefined();expect(shopRecommendation(s,s.shop!.offers[0],'group',s.jokers[2]).stars).toBe(4);
+ s=replacementCashRiskFixture();s.jokers[3]=r2CreateJoker('e05','held/buy-growth',8,'none',s);expect(risk(s)).toBeUndefined();expect(shopRecommendation(s,s.shop!.offers[0],'group',s.jokers[2]).stars).toBe(1);
 });
 it('a purchase hook on a still-disabled B06 receiver is not a current scoring compensation',()=>{
  const s=replacementCashRiskFixture();s.chapter=3;s.stageIndex=8;s.shop!.visitIndex=8;s.boss={definitionId:'B06',disabledSuit:null};s.chapterTargetPlan=lockR2ChapterTargets(s.chapter,s.tourMode,s.difficulty,s.boss);s.seenBossIds.push('B06');s.routeGrowth!.settlements.push({stageIndex:5,families:[]});s.routeGrowth!.clears++;
  s.jokers[1]=r2CreateJoker('e05','held/disabled-buy-growth',8,'none',s);assertRunInvariants(s);
  const sale=send(s,{type:'SellJoker',instanceId:s.jokers[2].instanceId}),buy=send(sale,{type:'BuyOffer',offerId:s.shop!.offers[0].offerId}),j=buy.jokers.find(j=>j.definitionId==='e05')!;
  expect(j.growth.heat).toEqual({n:'8',d:'1'});expect(r2ScoringDisabledJokerIds(buy.boss,buy.jokers,r2JokerDefinitionsFor(buy))).toContain(j.instanceId);
- expect(shopOfferGuidance(s,s.shop!.offers[0],s.jokers[2]).stars).toBe(2);expect(shopOfferGuidance(sale,sale.shop!.offers[0]).stars).toBe(2);
+ expect(shopOfferGuidance(s,s.shop!.offers[0],s.jokers[2]).stars).toBe(2);expect(shopOfferGuidance(sale,sale.shop!.offers[0]).stars).toBe(1);
 });
 it('ordinary zero-growth readers are eligible, while immediate heat, retrigger and edition benefits are not',()=>{
  for(const id of ['b03','c06','d09']){const s=replacementCashRiskFixture(22,id);if(id==='d09')s.jokers[3]=r2CreateJoker('d11','held/retrigger',8,'none',s);expect(risk(s)).toBeDefined();expect(shopRecommendation(s,s.shop!.offers[0],'group',s.jokers[2]).stars).toBeLessThanOrEqual(2);}
@@ -94,7 +94,7 @@ it('one actual retrigger compensation improves the fixed hand, without claiming 
 });
 it('a currently banned retained cash source and a changed hand-rule donor are not assumed to supply lost strength',()=>{
  const prepared=replacementCashRiskFixture(),s=f06RecommendationFixture(2,{disabled:true});s.jokers=prepared.jokers;s.gold=22;s.shop!.offers=prepared.shop!.offers;s.chapterDisabledJokerId='e08';assertRunInvariants(s);
- expect(risk(s)).toBeUndefined();expect(shopRecommendation(s,s.shop!.offers[0],'group',s.jokers[2]).stars).toBe(4);
+ expect(risk(s)).toBeUndefined();expect(shopRecommendation(s,s.shop!.offers[0],'group',s.jokers[2]).stars).toBe(1);
  const boss=f06RecommendationFixture(8,{boss:true});boss.jokers=prepared.jokers;boss.gold=22;boss.shop!.offers=prepared.shop!.offers;assertRunInvariants(boss);expect(risk(boss)).toBeUndefined();
  const modifiers=replacementCashRiskFixture();modifiers.jokers[2]=r2CreateJoker('c08','held/rule',0,'none',modifiers);expect(risk(modifiers)).toBeDefined();
 });

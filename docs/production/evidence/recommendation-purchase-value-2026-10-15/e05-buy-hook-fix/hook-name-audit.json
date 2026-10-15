@@ -1,0 +1,93 @@
+{
+  "baseCommit": "d3e4c288108ac6059019373498b72d6c60f7e769",
+  "schemaPhases": [
+    "afterHand",
+    "beforeFailure",
+    "jokerScore",
+    "onBuyOffer",
+    "onCardScore",
+    "onDiscard",
+    "onHeldCard",
+    "onReroll",
+    "onSellJoker",
+    "onStageClear"
+  ],
+  "scope": "Existing phase-name spellings in five affected shop/value helpers only; no expansion of the business-phase policy or full definition audit.",
+  "files": [
+    {
+      "file": "src/game/ShopPurchaseValue.ts",
+      "beforeNames": [
+        "onBuyJoker",
+        "onHeldCard",
+        "onSellJoker",
+        "onStageClear"
+      ],
+      "beforeUnknown": [
+        "onBuyJoker"
+      ],
+      "afterNames": [
+        "onBuyOffer",
+        "onHeldCard",
+        "onSellJoker",
+        "onStageClear"
+      ],
+      "afterUnknown": [],
+      "afterSha256": "4218058e5e52bfcb1cd409a4df74396160d19fd0962ebf2839a495fb1df366dc"
+    },
+    {
+      "file": "src/game/ShopRecommendation.ts",
+      "beforeNames": [
+        "jokerScore",
+        "onCardScore",
+        "onHeldCard"
+      ],
+      "beforeUnknown": [],
+      "afterNames": [
+        "jokerScore",
+        "onCardScore",
+        "onHeldCard"
+      ],
+      "afterUnknown": [],
+      "afterSha256": "4bb1dd56fa1513b6d70d5c516969830895e02471dfe10ab53be6d2872c41398e"
+    },
+    {
+      "file": "src/game/ShopReplacementCashRisk.ts",
+      "beforeNames": [
+        "jokerScore",
+        "onCardScore",
+        "onHeldCard"
+      ],
+      "beforeUnknown": [],
+      "afterNames": [
+        "jokerScore",
+        "onCardScore",
+        "onHeldCard"
+      ],
+      "afterUnknown": [],
+      "afterSha256": "7a61ae21c1ebbc9fa187ed51ae9cf1b934b6a378559d452d6a3c942b4864cd1b"
+    },
+    {
+      "file": "src/game/ShopRouteRelations.ts",
+      "beforeNames": [
+        "onSellJoker",
+        "onStageClear"
+      ],
+      "beforeUnknown": [],
+      "afterNames": [
+        "onSellJoker",
+        "onStageClear"
+      ],
+      "afterUnknown": [],
+      "afterSha256": "32fa25bdff9458d5c61a8273ea65d4f8c0440903a67d48da410918f7765d6026"
+    },
+    {
+      "file": "src/game/ToolPermanentValue.ts",
+      "beforeNames": [],
+      "beforeUnknown": [],
+      "afterNames": [],
+      "afterUnknown": [],
+      "afterSha256": "f9ff240d26a8385af6dcde51e2add950e2b0d11dab5ef5189a092c7b14202f86"
+    }
+  ],
+  "status": "PASS"
+}

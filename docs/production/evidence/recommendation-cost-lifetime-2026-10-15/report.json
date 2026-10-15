@@ -1,0 +1,4772 @@
+{
+  "baseSha": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+  "scope": "Controlled scorer sequences and clone-only current domain transactions. Not natural play, acquisition, predictive formation probability, lifetime EV or product calibration; formation fractions are conditional uniform fresh-sample calculations only.",
+  "fixtureContract": "Chapter-8 state is an invariant-valid projection with seven mandatory Boss ledger entries and zero family qualifications, not a proven acquisition/clear history. Fixed public cards repeat across scorer calls; budgets reset for the fifth call, no draw or clear reward simulation. Gold and owned equipment are explicit controlled inputs.",
+  "scoreCards": {
+    "group": [
+      {
+        "id": "spades-7",
+        "suit": "spades",
+        "rank": 7
+      },
+      {
+        "id": "hearts-7",
+        "suit": "hearts",
+        "rank": 7
+      }
+    ],
+    "straight": [
+      {
+        "id": "spades-6",
+        "suit": "spades",
+        "rank": 6
+      },
+      {
+        "id": "hearts-7",
+        "suit": "hearts",
+        "rank": 7
+      },
+      {
+        "id": "clubs-8",
+        "suit": "clubs",
+        "rank": 8
+      },
+      {
+        "id": "diamonds-9",
+        "suit": "diamonds",
+        "rank": 9
+      },
+      {
+        "id": "spades-10",
+        "suit": "spades",
+        "rank": 10
+      }
+    ],
+    "flush": [
+      {
+        "id": "hearts-2",
+        "suit": "hearts",
+        "rank": 2
+      },
+      {
+        "id": "hearts-5",
+        "suit": "hearts",
+        "rank": 5
+      },
+      {
+        "id": "hearts-8",
+        "suit": "hearts",
+        "rank": 8
+      },
+      {
+        "id": "hearts-10",
+        "suit": "hearts",
+        "rank": 10
+      },
+      {
+        "id": "hearts-13",
+        "suit": "hearts",
+        "rank": 13
+      }
+    ]
+  },
+  "identity": {
+    "contentVersion": "quality-r2-core-build-v1",
+    "contentHash": "json-fnv-v1:6dfe1a721e4949e6"
+  },
+  "lifetimeWindows": [
+    {
+      "route": "group",
+      "chapter": 1,
+      "stageIndex": 1,
+      "cost": {
+        "goldBefore": 40,
+        "paid": 8,
+        "useFee": 0,
+        "refund": 0,
+        "goldAfter": 32,
+        "slotDelta": 1,
+        "newUses": 4
+      },
+      "fixedCards": [
+        {
+          "id": "spades-7",
+          "suit": "spades",
+          "rank": 7
+        },
+        {
+          "id": "hearts-7",
+          "suit": "hearts",
+          "rank": 7
+        }
+      ],
+      "baselineHeat": {
+        "n": "49",
+        "d": "1"
+      },
+      "baselineMultiplier": {
+        "n": "2",
+        "d": "1"
+      },
+      "keep": [
+        {
+          "score": "98",
+          "heat": {
+            "n": "49",
+            "d": "1"
+          },
+          "multiplier": {
+            "n": "2",
+            "d": "1"
+          },
+          "handType": "pair",
+          "jokers": [],
+          "relevantEvents": []
+        },
+        {
+          "score": "98",
+          "heat": {
+            "n": "49",
+            "d": "1"
+          },
+          "multiplier": {
+            "n": "2",
+            "d": "1"
+          },
+          "handType": "pair",
+          "jokers": [],
+          "relevantEvents": []
+        },
+        {
+          "score": "98",
+          "heat": {
+            "n": "49",
+            "d": "1"
+          },
+          "multiplier": {
+            "n": "2",
+            "d": "1"
+          },
+          "handType": "pair",
+          "jokers": [],
+          "relevantEvents": []
+        },
+        {
+          "score": "98",
+          "heat": {
+            "n": "49",
+            "d": "1"
+          },
+          "multiplier": {
+            "n": "2",
+            "d": "1"
+          },
+          "handType": "pair",
+          "jokers": [],
+          "relevantEvents": []
+        },
+        {
+          "score": "98",
+          "heat": {
+            "n": "49",
+            "d": "1"
+          },
+          "multiplier": {
+            "n": "2",
+            "d": "1"
+          },
+          "handType": "pair",
+          "jokers": [],
+          "relevantEvents": []
+        }
+      ],
+      "change": [
+        {
+          "score": "196",
+          "heat": {
+            "n": "49",
+            "d": "1"
+          },
+          "multiplier": {
+            "n": "4",
+            "d": "1"
+          },
+          "handType": "pair",
+          "jokers": [
+            {
+              "id": "f06",
+              "growth": {},
+              "counters": {
+                "handsScored": 1
+              }
+            }
+          ],
+          "relevantEvents": [
+            {
+              "id": "f06",
+              "phase": "jokerScore",
+              "operation": "multiply-multiplier",
+              "value": {
+                "n": "2",
+                "d": "1"
+              }
+            },
+            {
+              "id": "f06",
+              "phase": "afterHand",
+              "operation": "increment-hands-scored",
+              "value": {
+                "n": "1",
+                "d": "1"
+              }
+            }
+          ]
+        },
+        {
+          "score": "196",
+          "heat": {
+            "n": "49",
+            "d": "1"
+          },
+          "multiplier": {
+            "n": "4",
+            "d": "1"
+          },
+          "handType": "pair",
+          "jokers": [
+            {
+              "id": "f06",
+              "growth": {},
+              "counters": {
+                "handsScored": 2
+              }
+            }
+          ],
+          "relevantEvents": [
+            {
+              "id": "f06",
+              "phase": "jokerScore",
+              "operation": "multiply-multiplier",
+              "value": {
+                "n": "2",
+                "d": "1"
+              }
+            },
+            {
+              "id": "f06",
+              "phase": "afterHand",
+              "operation": "increment-hands-scored",
+              "value": {
+                "n": "2",
+                "d": "1"
+              }
+            }
+          ]
+        },
+        {
+          "score": "196",
+          "heat": {
+            "n": "49",
+            "d": "1"
+          },
+          "multiplier": {
+            "n": "4",
+            "d": "1"
+          },
+          "handType": "pair",
+          "jokers": [
+            {
+              "id": "f06",
+              "growth": {},
+              "counters": {
+                "handsScored": 3
+              }
+            }
+          ],
+          "relevantEvents": [
+            {
+              "id": "f06",
+              "phase": "jokerScore",
+              "operation": "multiply-multiplier",
+              "value": {
+                "n": "2",
+                "d": "1"
+              }
+            },
+            {
+              "id": "f06",
+              "phase": "afterHand",
+              "operation": "increment-hands-scored",
+              "value": {
+                "n": "3",
+                "d": "1"
+              }
+            }
+          ]
+        },
+        {
+          "score": "196",
+          "heat": {
+            "n": "49",
+            "d": "1"
+          },
+          "multiplier": {
+            "n": "4",
+            "d": "1"
+          },
+          "handType": "pair",
+          "jokers": [],
+          "relevantEvents": [
+            {
+              "id": "f06",
+              "phase": "jokerScore",
+              "operation": "multiply-multiplier",
+              "value": {
+                "n": "2",
+                "d": "1"
+              }
+            },
+            {
+              "id": "f06",
+              "phase": "afterHand",
+              "operation": "increment-hands-scored",
+              "value": {
+                "n": "4",
+                "d": "1"
+              }
+            },
+            {
+              "id": "f06",
+              "phase": "afterHand",
+              "operation": "destroy-joker",
+              "value": {
+                "n": "0",
+                "d": "1"
+              }
+            }
+          ]
+        },
+        {
+          "score": "98",
+          "heat": {
+            "n": "49",
+            "d": "1"
+          },
+          "multiplier": {
+            "n": "2",
+            "d": "1"
+          },
+          "handType": "pair",
+          "jokers": [],
+          "relevantEvents": []
+        }
+      ],
+      "windows": [
+        {
+          "hands": 1,
+          "keep": "98",
+          "change": "196",
+          "delta": "98"
+        },
+        {
+          "hands": 4,
+          "keep": "392",
+          "change": "784",
+          "delta": "392"
+        },
+        {
+          "hands": 5,
+          "keep": "490",
+          "change": "882",
+          "delta": "392"
+        }
+      ],
+      "plus50": {
+        "source": "existing b10 heat=50, ordinary edition; not new-purchase growth",
+        "score": "198",
+        "delta": "100",
+        "f06FirstDelta": "98"
+      },
+      "unknown": [
+        "future legal hand count",
+        "formation odds",
+        "clear rewards",
+        "future supply",
+        "resale",
+        "slot replacement",
+        "liquidity value"
+      ],
+      "sourceUnchanged": true
+    },
+    {
+      "route": "straight",
+      "chapter": 1,
+      "stageIndex": 1,
+      "cost": {
+        "goldBefore": 40,
+        "paid": 8,
+        "useFee": 0,
+        "refund": 0,
+        "goldAfter": 32,
+        "slotDelta": 1,
+        "newUses": 4
+      },
+      "fixedCards": [
+        {
+          "id": "spades-6",
+          "suit": "spades",
+          "rank": 6
+        },
+        {
+          "id": "hearts-7",
+          "suit": "hearts",
+          "rank": 7
+        },
+        {
+          "id": "clubs-8",
+          "suit": "clubs",
+          "rank": 8
+        },
+        {
+          "id": "diamonds-9",
+          "suit": "diamonds",
+          "rank": 9
+        },
+        {
+          "id": "spades-10",
+          "suit": "spades",
+          "rank": 10
+        }
+      ],
+      "baselineHeat": {
+        "n": "165",
+        "d": "1"
+      },
+      "baselineMultiplier": {
+        "n": "4",
+        "d": "1"
+      },
+      "keep": [
+        {
+          "score": "660",
+          "heat": {
+            "n": "165",
+            "d": "1"
+          },
+          "multiplier": {
+            "n": "4",
+            "d": "1"
+          },
+          "handType": "straight",
+          "jokers": [],
+          "relevantEvents": []
+        },
+        {
+          "score": "660",
+          "heat": {
+            "n": "165",
+            "d": "1"
+          },
+          "multiplier": {
+            "n": "4",
+            "d": "1"
+          },
+          "handType": "straight",
+          "jokers": [],
+          "relevantEvents": []
+        },
+        {
+          "score": "660",
+          "heat": {
+            "n": "165",
+            "d": "1"
+          },
+          "multiplier": {
+            "n": "4",
+            "d": "1"
+          },
+          "handType": "straight",
+          "jokers": [],
+          "relevantEvents": []
+        },
+        {
+          "score": "660",
+          "heat": {
+            "n": "165",
+            "d": "1"
+          },
+          "multiplier": {
+            "n": "4",
+            "d": "1"
+          },
+          "handType": "straight",
+          "jokers": [],
+          "relevantEvents": []
+        },
+        {
+          "score": "660",
+          "heat": {
+            "n": "165",
+            "d": "1"
+          },
+          "multiplier": {
+            "n": "4",
+            "d": "1"
+          },
+          "handType": "straight",
+          "jokers": [],
+          "relevantEvents": []
+        }
+      ],
+      "change": [
+        {
+          "score": "1320",
+          "heat": {
+            "n": "165",
+            "d": "1"
+          },
+          "multiplier": {
+            "n": "8",
+            "d": "1"
+          },
+          "handType": "straight",
+          "jokers": [
+            {
+              "id": "f06",
+              "growth": {},
+              "counters": {
+                "handsScored": 1
+              }
+            }
+          ],
+          "relevantEvents": [
+            {
+              "id": "f06",
+              "phase": "jokerScore",
+              "operation": "multiply-multiplier",
+              "value": {
+                "n": "2",
+                "d": "1"
+              }
+            },
+            {
+              "id": "f06",
+              "phase": "afterHand",
+              "operation": "increment-hands-scored",
+              "value": {
+                "n": "1",
+                "d": "1"
+              }
+            }
+          ]
+        },
+        {
+          "score": "1320",
+          "heat": {
+            "n": "165",
+            "d": "1"
+          },
+          "multiplier": {
+            "n": "8",
+            "d": "1"
+          },
+          "handType": "straight",
+          "jokers": [
+            {
+              "id": "f06",
+              "growth": {},
+              "counters": {
+                "handsScored": 2
+              }
+            }
+          ],
+          "relevantEvents": [
+            {
+              "id": "f06",
+              "phase": "jokerScore",
+              "operation": "multiply-multiplier",
+              "value": {
+                "n": "2",
+                "d": "1"
+              }
+            },
+            {
+              "id": "f06",
+              "phase": "afterHand",
+              "operation": "increment-hands-scored",
+              "value": {
+                "n": "2",
+                "d": "1"
+              }
+            }
+          ]
+        },
+        {
+          "score": "1320",
+          "heat": {
+            "n": "165",
+            "d": "1"
+          },
+          "multiplier": {
+            "n": "8",
+            "d": "1"
+          },
+          "handType": "straight",
+          "jokers": [
+            {
+              "id": "f06",
+              "growth": {},
+              "counters": {
+                "handsScored": 3
+              }
+            }
+          ],
+          "relevantEvents": [
+            {
+              "id": "f06",
+              "phase": "jokerScore",
+              "operation": "multiply-multiplier",
+              "value": {
+                "n": "2",
+                "d": "1"
+              }
+            },
+            {
+              "id": "f06",
+              "phase": "afterHand",
+              "operation": "increment-hands-scored",
+              "value": {
+                "n": "3",
+                "d": "1"
+              }
+            }
+          ]
+        },
+        {
+          "score": "1320",
+          "heat": {
+            "n": "165",
+            "d": "1"
+          },
+          "multiplier": {
+            "n": "8",
+            "d": "1"
+          },
+          "handType": "straight",
+          "jokers": [],
+          "relevantEvents": [
+            {
+              "id": "f06",
+              "phase": "jokerScore",
+              "operation": "multiply-multiplier",
+              "value": {
+                "n": "2",
+                "d": "1"
+              }
+            },
+            {
+              "id": "f06",
+              "phase": "afterHand",
+              "operation": "increment-hands-scored",
+              "value": {
+                "n": "4",
+                "d": "1"
+              }
+            },
+            {
+              "id": "f06",
+              "phase": "afterHand",
+              "operation": "destroy-joker",
+              "value": {
+                "n": "0",
+                "d": "1"
+              }
+            }
+          ]
+        },
+        {
+          "score": "660",
+          "heat": {
+            "n": "165",
+            "d": "1"
+          },
+          "multiplier": {
+            "n": "4",
+            "d": "1"
+          },
+          "handType": "straight",
+          "jokers": [],
+          "relevantEvents": []
+        }
+      ],
+      "windows": [
+        {
+          "hands": 1,
+          "keep": "660",
+          "change": "1320",
+          "delta": "660"
+        },
+        {
+          "hands": 4,
+          "keep": "2640",
+          "change": "5280",
+          "delta": "2640"
+        },
+        {
+          "hands": 5,
+          "keep": "3300",
+          "change": "5940",
+          "delta": "2640"
+        }
+      ],
+      "plus50": {
+        "source": "existing b10 heat=50, ordinary edition; not new-purchase growth",
+        "score": "860",
+        "delta": "200",
+        "f06FirstDelta": "660"
+      },
+      "unknown": [
+        "future legal hand count",
+        "formation odds",
+        "clear rewards",
+        "future supply",
+        "resale",
+        "slot replacement",
+        "liquidity value"
+      ],
+      "sourceUnchanged": true
+    },
+    {
+      "route": "flush",
+      "chapter": 1,
+      "stageIndex": 1,
+      "cost": {
+        "goldBefore": 40,
+        "paid": 8,
+        "useFee": 0,
+        "refund": 0,
+        "goldAfter": 32,
+        "slotDelta": 1,
+        "newUses": 4
+      },
+      "fixedCards": [
+        {
+          "id": "hearts-2",
+          "suit": "hearts",
+          "rank": 2
+        },
+        {
+          "id": "hearts-5",
+          "suit": "hearts",
+          "rank": 5
+        },
+        {
+          "id": "hearts-8",
+          "suit": "hearts",
+          "rank": 8
+        },
+        {
+          "id": "hearts-10",
+          "suit": "hearts",
+          "rank": 10
+        },
+        {
+          "id": "hearts-13",
+          "suit": "hearts",
+          "rank": 13
+        }
+      ],
+      "baselineHeat": {
+        "n": "175",
+        "d": "1"
+      },
+      "baselineMultiplier": {
+        "n": "4",
+        "d": "1"
+      },
+      "keep": [
+        {
+          "score": "700",
+          "heat": {
+            "n": "175",
+            "d": "1"
+          },
+          "multiplier": {
+            "n": "4",
+            "d": "1"
+          },
+          "handType": "flush",
+          "jokers": [],
+          "relevantEvents": []
+        },
+        {
+          "score": "700",
+          "heat": {
+            "n": "175",
+            "d": "1"
+          },
+          "multiplier": {
+            "n": "4",
+            "d": "1"
+          },
+          "handType": "flush",
+          "jokers": [],
+          "relevantEvents": []
+        },
+        {
+          "score": "700",
+          "heat": {
+            "n": "175",
+            "d": "1"
+          },
+          "multiplier": {
+            "n": "4",
+            "d": "1"
+          },
+          "handType": "flush",
+          "jokers": [],
+          "relevantEvents": []
+        },
+        {
+          "score": "700",
+          "heat": {
+            "n": "175",
+            "d": "1"
+          },
+          "multiplier": {
+            "n": "4",
+            "d": "1"
+          },
+          "handType": "flush",
+          "jokers": [],
+          "relevantEvents": []
+        },
+        {
+          "score": "700",
+          "heat": {
+            "n": "175",
+            "d": "1"
+          },
+          "multiplier": {
+            "n": "4",
+            "d": "1"
+          },
+          "handType": "flush",
+          "jokers": [],
+          "relevantEvents": []
+        }
+      ],
+      "change": [
+        {
+          "score": "1400",
+          "heat": {
+            "n": "175",
+            "d": "1"
+          },
+          "multiplier": {
+            "n": "8",
+            "d": "1"
+          },
+          "handType": "flush",
+          "jokers": [
+            {
+              "id": "f06",
+              "growth": {},
+              "counters": {
+                "handsScored": 1
+              }
+            }
+          ],
+          "relevantEvents": [
+            {
+              "id": "f06",
+              "phase": "jokerScore",
+              "operation": "multiply-multiplier",
+              "value": {
+                "n": "2",
+                "d": "1"
+              }
+            },
+            {
+              "id": "f06",
+              "phase": "afterHand",
+              "operation": "increment-hands-scored",
+              "value": {
+                "n": "1",
+                "d": "1"
+              }
+            }
+          ]
+        },
+        {
+          "score": "1400",
+          "heat": {
+            "n": "175",
+            "d": "1"
+          },
+          "multiplier": {
+            "n": "8",
+            "d": "1"
+          },
+          "handType": "flush",
+          "jokers": [
+            {
+              "id": "f06",
+              "growth": {},
+              "counters": {
+                "handsScored": 2
+              }
+            }
+          ],
+          "relevantEvents": [
+            {
+              "id": "f06",
+              "phase": "jokerScore",
+              "operation": "multiply-multiplier",
+              "value": {
+                "n": "2",
+                "d": "1"
+              }
+            },
+            {
+              "id": "f06",
+              "phase": "afterHand",
+              "operation": "increment-hands-scored",
+              "value": {
+                "n": "2",
+                "d": "1"
+              }
+            }
+          ]
+        },
+        {
+          "score": "1400",
+          "heat": {
+            "n": "175",
+            "d": "1"
+          },
+          "multiplier": {
+            "n": "8",
+            "d": "1"
+          },
+          "handType": "flush",
+          "jokers": [
+            {
+              "id": "f06",
+              "growth": {},
+              "counters": {
+                "handsScored": 3
+              }
+            }
+          ],
+          "relevantEvents": [
+            {
+              "id": "f06",
+              "phase": "jokerScore",
+              "operation": "multiply-multiplier",
+              "value": {
+                "n": "2",
+                "d": "1"
+              }
+            },
+            {
+              "id": "f06",
+              "phase": "afterHand",
+              "operation": "increment-hands-scored",
+              "value": {
+                "n": "3",
+                "d": "1"
+              }
+            }
+          ]
+        },
+        {
+          "score": "1400",
+          "heat": {
+            "n": "175",
+            "d": "1"
+          },
+          "multiplier": {
+            "n": "8",
+            "d": "1"
+          },
+          "handType": "flush",
+          "jokers": [],
+          "relevantEvents": [
+            {
+              "id": "f06",
+              "phase": "jokerScore",
+              "operation": "multiply-multiplier",
+              "value": {
+                "n": "2",
+                "d": "1"
+              }
+            },
+            {
+              "id": "f06",
+              "phase": "afterHand",
+              "operation": "increment-hands-scored",
+              "value": {
+                "n": "4",
+                "d": "1"
+              }
+            },
+            {
+              "id": "f06",
+              "phase": "afterHand",
+              "operation": "destroy-joker",
+              "value": {
+                "n": "0",
+                "d": "1"
+              }
+            }
+          ]
+        },
+        {
+          "score": "700",
+          "heat": {
+            "n": "175",
+            "d": "1"
+          },
+          "multiplier": {
+            "n": "4",
+            "d": "1"
+          },
+          "handType": "flush",
+          "jokers": [],
+          "relevantEvents": []
+        }
+      ],
+      "windows": [
+        {
+          "hands": 1,
+          "keep": "700",
+          "change": "1400",
+          "delta": "700"
+        },
+        {
+          "hands": 4,
+          "keep": "2800",
+          "change": "5600",
+          "delta": "2800"
+        },
+        {
+          "hands": 5,
+          "keep": "3500",
+          "change": "6300",
+          "delta": "2800"
+        }
+      ],
+      "plus50": {
+        "source": "existing b10 heat=50, ordinary edition; not new-purchase growth",
+        "score": "900",
+        "delta": "200",
+        "f06FirstDelta": "700"
+      },
+      "unknown": [
+        "future legal hand count",
+        "formation odds",
+        "clear rewards",
+        "future supply",
+        "resale",
+        "slot replacement",
+        "liquidity value"
+      ],
+      "sourceUnchanged": true
+    }
+  ],
+  "lifetime": {
+    "early": {
+      "stars": 2,
+      "reason": "限4次",
+      "condition": "第4次出牌后销毁",
+      "basis": {
+        "potentialStages": 23,
+        "growthWindow": true,
+        "initialGrowth": "{}",
+        "additiveSource": false
+      }
+    },
+    "late": {
+      "stars": 2,
+      "reason": "限4次",
+      "condition": "第4次出牌后销毁",
+      "basis": {
+        "potentialStages": 3,
+        "growthWindow": false,
+        "initialGrowth": "{}",
+        "additiveSource": false
+      }
+    },
+    "suppressedRating": {
+      "stars": 1,
+      "reason": "本场稀有计分停用",
+      "condition": "封禁结束再考虑",
+      "basis": {
+        "potentialStages": 1,
+        "growthWindow": false,
+        "initialGrowth": "{}",
+        "additiveSource": false
+      }
+    },
+    "fresh": [
+      {
+        "score": "196",
+        "heat": {
+          "n": "49",
+          "d": "1"
+        },
+        "multiplier": {
+          "n": "4",
+          "d": "1"
+        },
+        "handType": "pair",
+        "jokers": [
+          {
+            "id": "f06",
+            "growth": {},
+            "counters": {
+              "handsScored": 1
+            }
+          }
+        ],
+        "relevantEvents": [
+          {
+            "id": "f06",
+            "phase": "jokerScore",
+            "operation": "multiply-multiplier",
+            "value": {
+              "n": "2",
+              "d": "1"
+            }
+          },
+          {
+            "id": "f06",
+            "phase": "afterHand",
+            "operation": "increment-hands-scored",
+            "value": {
+              "n": "1",
+              "d": "1"
+            }
+          }
+        ]
+      },
+      {
+        "score": "196",
+        "heat": {
+          "n": "49",
+          "d": "1"
+        },
+        "multiplier": {
+          "n": "4",
+          "d": "1"
+        },
+        "handType": "pair",
+        "jokers": [
+          {
+            "id": "f06",
+            "growth": {},
+            "counters": {
+              "handsScored": 2
+            }
+          }
+        ],
+        "relevantEvents": [
+          {
+            "id": "f06",
+            "phase": "jokerScore",
+            "operation": "multiply-multiplier",
+            "value": {
+              "n": "2",
+              "d": "1"
+            }
+          },
+          {
+            "id": "f06",
+            "phase": "afterHand",
+            "operation": "increment-hands-scored",
+            "value": {
+              "n": "2",
+              "d": "1"
+            }
+          }
+        ]
+      },
+      {
+        "score": "196",
+        "heat": {
+          "n": "49",
+          "d": "1"
+        },
+        "multiplier": {
+          "n": "4",
+          "d": "1"
+        },
+        "handType": "pair",
+        "jokers": [
+          {
+            "id": "f06",
+            "growth": {},
+            "counters": {
+              "handsScored": 3
+            }
+          }
+        ],
+        "relevantEvents": [
+          {
+            "id": "f06",
+            "phase": "jokerScore",
+            "operation": "multiply-multiplier",
+            "value": {
+              "n": "2",
+              "d": "1"
+            }
+          },
+          {
+            "id": "f06",
+            "phase": "afterHand",
+            "operation": "increment-hands-scored",
+            "value": {
+              "n": "3",
+              "d": "1"
+            }
+          }
+        ]
+      },
+      {
+        "score": "196",
+        "heat": {
+          "n": "49",
+          "d": "1"
+        },
+        "multiplier": {
+          "n": "4",
+          "d": "1"
+        },
+        "handType": "pair",
+        "jokers": [],
+        "relevantEvents": [
+          {
+            "id": "f06",
+            "phase": "jokerScore",
+            "operation": "multiply-multiplier",
+            "value": {
+              "n": "2",
+              "d": "1"
+            }
+          },
+          {
+            "id": "f06",
+            "phase": "afterHand",
+            "operation": "increment-hands-scored",
+            "value": {
+              "n": "4",
+              "d": "1"
+            }
+          },
+          {
+            "id": "f06",
+            "phase": "afterHand",
+            "operation": "destroy-joker",
+            "value": {
+              "n": "0",
+              "d": "1"
+            }
+          }
+        ]
+      },
+      {
+        "score": "98",
+        "heat": {
+          "n": "49",
+          "d": "1"
+        },
+        "multiplier": {
+          "n": "2",
+          "d": "1"
+        },
+        "handType": "pair",
+        "jokers": [],
+        "relevantEvents": []
+      }
+    ],
+    "usedThree": [
+      {
+        "score": "196",
+        "heat": {
+          "n": "49",
+          "d": "1"
+        },
+        "multiplier": {
+          "n": "4",
+          "d": "1"
+        },
+        "handType": "pair",
+        "jokers": [],
+        "relevantEvents": [
+          {
+            "id": "f06",
+            "phase": "jokerScore",
+            "operation": "multiply-multiplier",
+            "value": {
+              "n": "2",
+              "d": "1"
+            }
+          },
+          {
+            "id": "f06",
+            "phase": "afterHand",
+            "operation": "increment-hands-scored",
+            "value": {
+              "n": "4",
+              "d": "1"
+            }
+          },
+          {
+            "id": "f06",
+            "phase": "afterHand",
+            "operation": "destroy-joker",
+            "value": {
+              "n": "0",
+              "d": "1"
+            }
+          }
+        ]
+      },
+      {
+        "score": "98",
+        "heat": {
+          "n": "49",
+          "d": "1"
+        },
+        "multiplier": {
+          "n": "2",
+          "d": "1"
+        },
+        "handType": "pair",
+        "jokers": [],
+        "relevantEvents": []
+      }
+    ],
+    "suppressed": [
+      {
+        "score": "98",
+        "heat": {
+          "n": "49",
+          "d": "1"
+        },
+        "multiplier": {
+          "n": "2",
+          "d": "1"
+        },
+        "handType": "pair",
+        "jokers": [
+          {
+            "id": "f06",
+            "growth": {},
+            "counters": {
+              "handsScored": 1
+            }
+          }
+        ],
+        "relevantEvents": [
+          {
+            "id": "f06",
+            "phase": "afterHand",
+            "operation": "increment-hands-scored",
+            "value": {
+              "n": "1",
+              "d": "1"
+            }
+          }
+        ]
+      },
+      {
+        "score": "98",
+        "heat": {
+          "n": "49",
+          "d": "1"
+        },
+        "multiplier": {
+          "n": "2",
+          "d": "1"
+        },
+        "handType": "pair",
+        "jokers": [
+          {
+            "id": "f06",
+            "growth": {},
+            "counters": {
+              "handsScored": 2
+            }
+          }
+        ],
+        "relevantEvents": [
+          {
+            "id": "f06",
+            "phase": "afterHand",
+            "operation": "increment-hands-scored",
+            "value": {
+              "n": "2",
+              "d": "1"
+            }
+          }
+        ]
+      },
+      {
+        "score": "98",
+        "heat": {
+          "n": "49",
+          "d": "1"
+        },
+        "multiplier": {
+          "n": "2",
+          "d": "1"
+        },
+        "handType": "pair",
+        "jokers": [
+          {
+            "id": "f06",
+            "growth": {},
+            "counters": {
+              "handsScored": 3
+            }
+          }
+        ],
+        "relevantEvents": [
+          {
+            "id": "f06",
+            "phase": "afterHand",
+            "operation": "increment-hands-scored",
+            "value": {
+              "n": "3",
+              "d": "1"
+            }
+          }
+        ]
+      },
+      {
+        "score": "98",
+        "heat": {
+          "n": "49",
+          "d": "1"
+        },
+        "multiplier": {
+          "n": "2",
+          "d": "1"
+        },
+        "handType": "pair",
+        "jokers": [],
+        "relevantEvents": [
+          {
+            "id": "f06",
+            "phase": "afterHand",
+            "operation": "increment-hands-scored",
+            "value": {
+              "n": "4",
+              "d": "1"
+            }
+          },
+          {
+            "id": "f06",
+            "phase": "afterHand",
+            "operation": "destroy-joker",
+            "value": {
+              "n": "0",
+              "d": "1"
+            }
+          }
+        ]
+      },
+      {
+        "score": "98",
+        "heat": {
+          "n": "49",
+          "d": "1"
+        },
+        "multiplier": {
+          "n": "2",
+          "d": "1"
+        },
+        "handType": "pair",
+        "jokers": [],
+        "relevantEvents": []
+      }
+    ]
+  },
+  "growth": [
+    {
+      "route": "group",
+      "id": "b03",
+      "mid": {
+        "stars": 4,
+        "reason": "持续长倍率",
+        "condition": "成组后增长 · 下手生效",
+        "basis": {
+          "potentialStages": 18,
+          "growthWindow": true,
+          "initialGrowth": "{}",
+          "additiveSource": false
+        }
+      },
+      "lastKnownHand": [
+        {
+          "score": "98",
+          "heat": {
+            "n": "49",
+            "d": "1"
+          },
+          "multiplier": {
+            "n": "2",
+            "d": "1"
+          },
+          "handType": "pair",
+          "jokers": [
+            {
+              "id": "b03",
+              "growth": {
+                "multiplier": {
+                  "n": "1",
+                  "d": "4"
+                }
+              }
+            }
+          ],
+          "relevantEvents": [
+            {
+              "id": "b03",
+              "phase": "jokerScore",
+              "operation": "read-growth",
+              "value": {
+                "n": "0",
+                "d": "1"
+              }
+            },
+            {
+              "id": "b03",
+              "phase": "afterHand",
+              "operation": "add-growth",
+              "value": {
+                "n": "1",
+                "d": "4"
+              }
+            }
+          ]
+        }
+      ],
+      "late": {
+        "stars": 2,
+        "reason": "持续长倍率",
+        "condition": "成组后增长 · 下手生效 · 新购从初值开始",
+        "basis": {
+          "potentialStages": 3,
+          "growthWindow": false,
+          "initialGrowth": "{}",
+          "additiveSource": false
+        }
+      },
+      "early": {
+        "stars": 4,
+        "reason": "持续长倍率",
+        "condition": "成组后增长 · 下手生效",
+        "basis": {
+          "potentialStages": 23,
+          "growthWindow": true,
+          "initialGrowth": "{}",
+          "additiveSource": false
+        }
+      },
+      "missing": {
+        "stars": 1,
+        "reason": "缺成组成长条件",
+        "condition": "新购成长为0",
+        "basis": {
+          "potentialStages": 3,
+          "growthWindow": false,
+          "initialGrowth": "{}",
+          "additiveSource": false
+        }
+      },
+      "cost": {
+        "goldBefore": 40,
+        "paid": 6,
+        "useFee": 0,
+        "refund": 0
+      },
+      "new": [
+        {
+          "score": "98",
+          "heat": {
+            "n": "49",
+            "d": "1"
+          },
+          "multiplier": {
+            "n": "2",
+            "d": "1"
+          },
+          "handType": "pair",
+          "jokers": [
+            {
+              "id": "b03",
+              "growth": {
+                "multiplier": {
+                  "n": "1",
+                  "d": "4"
+                }
+              }
+            }
+          ],
+          "relevantEvents": [
+            {
+              "id": "b03",
+              "phase": "jokerScore",
+              "operation": "read-growth",
+              "value": {
+                "n": "0",
+                "d": "1"
+              }
+            },
+            {
+              "id": "b03",
+              "phase": "afterHand",
+              "operation": "add-growth",
+              "value": {
+                "n": "1",
+                "d": "4"
+              }
+            }
+          ]
+        },
+        {
+          "score": "110",
+          "heat": {
+            "n": "49",
+            "d": "1"
+          },
+          "multiplier": {
+            "n": "9",
+            "d": "4"
+          },
+          "handType": "pair",
+          "jokers": [
+            {
+              "id": "b03",
+              "growth": {
+                "multiplier": {
+                  "n": "1",
+                  "d": "2"
+                }
+              }
+            }
+          ],
+          "relevantEvents": [
+            {
+              "id": "b03",
+              "phase": "jokerScore",
+              "operation": "read-growth",
+              "value": {
+                "n": "1",
+                "d": "4"
+              }
+            },
+            {
+              "id": "b03",
+              "phase": "afterHand",
+              "operation": "add-growth",
+              "value": {
+                "n": "1",
+                "d": "4"
+              }
+            }
+          ]
+        }
+      ],
+      "mature": [
+        {
+          "score": "245",
+          "heat": {
+            "n": "49",
+            "d": "1"
+          },
+          "multiplier": {
+            "n": "5",
+            "d": "1"
+          },
+          "handType": "pair",
+          "jokers": [
+            {
+              "id": "b03",
+              "growth": {
+                "multiplier": {
+                  "n": "3",
+                  "d": "1"
+                }
+              }
+            }
+          ],
+          "relevantEvents": [
+            {
+              "id": "b03",
+              "phase": "jokerScore",
+              "operation": "read-growth",
+              "value": {
+                "n": "3",
+                "d": "1"
+              }
+            },
+            {
+              "id": "b03",
+              "phase": "afterHand",
+              "operation": "add-growth",
+              "value": {
+                "n": "0",
+                "d": "1"
+              }
+            }
+          ]
+        },
+        {
+          "score": "245",
+          "heat": {
+            "n": "49",
+            "d": "1"
+          },
+          "multiplier": {
+            "n": "5",
+            "d": "1"
+          },
+          "handType": "pair",
+          "jokers": [
+            {
+              "id": "b03",
+              "growth": {
+                "multiplier": {
+                  "n": "3",
+                  "d": "1"
+                }
+              }
+            }
+          ],
+          "relevantEvents": [
+            {
+              "id": "b03",
+              "phase": "jokerScore",
+              "operation": "read-growth",
+              "value": {
+                "n": "3",
+                "d": "1"
+              }
+            },
+            {
+              "id": "b03",
+              "phase": "afterHand",
+              "operation": "add-growth",
+              "value": {
+                "n": "0",
+                "d": "1"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "route": "straight",
+      "id": "c04",
+      "mid": {
+        "stars": 4,
+        "reason": "顺子热度与成长",
+        "condition": "热+50 · 成长+10/上限100",
+        "basis": {
+          "potentialStages": 18,
+          "growthWindow": true,
+          "initialGrowth": "{}",
+          "additiveSource": false
+        }
+      },
+      "lastKnownHand": [
+        {
+          "score": "860",
+          "heat": {
+            "n": "215",
+            "d": "1"
+          },
+          "multiplier": {
+            "n": "4",
+            "d": "1"
+          },
+          "handType": "straight",
+          "jokers": [
+            {
+              "id": "c04",
+              "growth": {
+                "heat": {
+                  "n": "10",
+                  "d": "1"
+                }
+              }
+            }
+          ],
+          "relevantEvents": [
+            {
+              "id": "c04",
+              "phase": "jokerScore",
+              "operation": "read-growth",
+              "value": {
+                "n": "0",
+                "d": "1"
+              }
+            },
+            {
+              "id": "c04",
+              "phase": "afterHand",
+              "operation": "add-growth",
+              "value": {
+                "n": "10",
+                "d": "1"
+              }
+            }
+          ]
+        }
+      ],
+      "late": {
+        "stars": 2,
+        "reason": "顺子热度与成长",
+        "condition": "热+50 · 成长+10/上限100 · 新购从初值开始",
+        "basis": {
+          "potentialStages": 3,
+          "growthWindow": false,
+          "initialGrowth": "{}",
+          "additiveSource": false
+        }
+      },
+      "early": {
+        "stars": 4,
+        "reason": "顺子热度与成长",
+        "condition": "热+50 · 成长+10/上限100",
+        "basis": {
+          "potentialStages": 23,
+          "growthWindow": true,
+          "initialGrowth": "{}",
+          "additiveSource": false
+        }
+      },
+      "missing": {
+        "stars": 1,
+        "reason": "缺顺子成长条件",
+        "condition": "新购成长为0",
+        "basis": {
+          "potentialStages": 3,
+          "growthWindow": false,
+          "initialGrowth": "{}",
+          "additiveSource": false
+        }
+      },
+      "cost": {
+        "goldBefore": 40,
+        "paid": 4,
+        "useFee": 0,
+        "refund": 0
+      },
+      "new": [
+        {
+          "score": "860",
+          "heat": {
+            "n": "215",
+            "d": "1"
+          },
+          "multiplier": {
+            "n": "4",
+            "d": "1"
+          },
+          "handType": "straight",
+          "jokers": [
+            {
+              "id": "c04",
+              "growth": {
+                "heat": {
+                  "n": "10",
+                  "d": "1"
+                }
+              }
+            }
+          ],
+          "relevantEvents": [
+            {
+              "id": "c04",
+              "phase": "jokerScore",
+              "operation": "read-growth",
+              "value": {
+                "n": "0",
+                "d": "1"
+              }
+            },
+            {
+              "id": "c04",
+              "phase": "afterHand",
+              "operation": "add-growth",
+              "value": {
+                "n": "10",
+                "d": "1"
+              }
+            }
+          ]
+        },
+        {
+          "score": "900",
+          "heat": {
+            "n": "225",
+            "d": "1"
+          },
+          "multiplier": {
+            "n": "4",
+            "d": "1"
+          },
+          "handType": "straight",
+          "jokers": [
+            {
+              "id": "c04",
+              "growth": {
+                "heat": {
+                  "n": "20",
+                  "d": "1"
+                }
+              }
+            }
+          ],
+          "relevantEvents": [
+            {
+              "id": "c04",
+              "phase": "jokerScore",
+              "operation": "read-growth",
+              "value": {
+                "n": "10",
+                "d": "1"
+              }
+            },
+            {
+              "id": "c04",
+              "phase": "afterHand",
+              "operation": "add-growth",
+              "value": {
+                "n": "10",
+                "d": "1"
+              }
+            }
+          ]
+        }
+      ],
+      "mature": [
+        {
+          "score": "1260",
+          "heat": {
+            "n": "315",
+            "d": "1"
+          },
+          "multiplier": {
+            "n": "4",
+            "d": "1"
+          },
+          "handType": "straight",
+          "jokers": [
+            {
+              "id": "c04",
+              "growth": {
+                "heat": {
+                  "n": "100",
+                  "d": "1"
+                }
+              }
+            }
+          ],
+          "relevantEvents": [
+            {
+              "id": "c04",
+              "phase": "jokerScore",
+              "operation": "read-growth",
+              "value": {
+                "n": "100",
+                "d": "1"
+              }
+            },
+            {
+              "id": "c04",
+              "phase": "afterHand",
+              "operation": "add-growth",
+              "value": {
+                "n": "0",
+                "d": "1"
+              }
+            }
+          ]
+        },
+        {
+          "score": "1260",
+          "heat": {
+            "n": "315",
+            "d": "1"
+          },
+          "multiplier": {
+            "n": "4",
+            "d": "1"
+          },
+          "handType": "straight",
+          "jokers": [
+            {
+              "id": "c04",
+              "growth": {
+                "heat": {
+                  "n": "100",
+                  "d": "1"
+                }
+              }
+            }
+          ],
+          "relevantEvents": [
+            {
+              "id": "c04",
+              "phase": "jokerScore",
+              "operation": "read-growth",
+              "value": {
+                "n": "100",
+                "d": "1"
+              }
+            },
+            {
+              "id": "c04",
+              "phase": "afterHand",
+              "operation": "add-growth",
+              "value": {
+                "n": "0",
+                "d": "1"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "route": "flush",
+      "id": "c06",
+      "mid": {
+        "stars": 4,
+        "reason": "同花族长倍率",
+        "condition": "含同花升级 · +0.5/上限6",
+        "basis": {
+          "potentialStages": 18,
+          "growthWindow": true,
+          "initialGrowth": "{}",
+          "additiveSource": false
+        }
+      },
+      "lastKnownHand": [
+        {
+          "score": "700",
+          "heat": {
+            "n": "175",
+            "d": "1"
+          },
+          "multiplier": {
+            "n": "4",
+            "d": "1"
+          },
+          "handType": "flush",
+          "jokers": [
+            {
+              "id": "c06",
+              "growth": {
+                "multiplier": {
+                  "n": "1",
+                  "d": "2"
+                }
+              }
+            }
+          ],
+          "relevantEvents": [
+            {
+              "id": "c06",
+              "phase": "jokerScore",
+              "operation": "read-growth",
+              "value": {
+                "n": "0",
+                "d": "1"
+              }
+            },
+            {
+              "id": "c06",
+              "phase": "afterHand",
+              "operation": "add-growth",
+              "value": {
+                "n": "1",
+                "d": "2"
+              }
+            }
+          ]
+        }
+      ],
+      "late": {
+        "stars": 2,
+        "reason": "同花族长倍率",
+        "condition": "含同花升级 · +0.5/上限6 · 新购从初值开始",
+        "basis": {
+          "potentialStages": 3,
+          "growthWindow": false,
+          "initialGrowth": "{}",
+          "additiveSource": false
+        }
+      },
+      "early": {
+        "stars": 4,
+        "reason": "同花族长倍率",
+        "condition": "含同花升级 · +0.5/上限6",
+        "basis": {
+          "potentialStages": 23,
+          "growthWindow": true,
+          "initialGrowth": "{}",
+          "additiveSource": false
+        }
+      },
+      "missing": {
+        "stars": 1,
+        "reason": "缺同花族成长条件",
+        "condition": "新购成长为0",
+        "basis": {
+          "potentialStages": 3,
+          "growthWindow": false,
+          "initialGrowth": "{}",
+          "additiveSource": false
+        }
+      },
+      "cost": {
+        "goldBefore": 40,
+        "paid": 6,
+        "useFee": 0,
+        "refund": 0
+      },
+      "new": [
+        {
+          "score": "700",
+          "heat": {
+            "n": "175",
+            "d": "1"
+          },
+          "multiplier": {
+            "n": "4",
+            "d": "1"
+          },
+          "handType": "flush",
+          "jokers": [
+            {
+              "id": "c06",
+              "growth": {
+                "multiplier": {
+                  "n": "1",
+                  "d": "2"
+                }
+              }
+            }
+          ],
+          "relevantEvents": [
+            {
+              "id": "c06",
+              "phase": "jokerScore",
+              "operation": "read-growth",
+              "value": {
+                "n": "0",
+                "d": "1"
+              }
+            },
+            {
+              "id": "c06",
+              "phase": "afterHand",
+              "operation": "add-growth",
+              "value": {
+                "n": "1",
+                "d": "2"
+              }
+            }
+          ]
+        },
+        {
+          "score": "787",
+          "heat": {
+            "n": "175",
+            "d": "1"
+          },
+          "multiplier": {
+            "n": "9",
+            "d": "2"
+          },
+          "handType": "flush",
+          "jokers": [
+            {
+              "id": "c06",
+              "growth": {
+                "multiplier": {
+                  "n": "1",
+                  "d": "1"
+                }
+              }
+            }
+          ],
+          "relevantEvents": [
+            {
+              "id": "c06",
+              "phase": "jokerScore",
+              "operation": "read-growth",
+              "value": {
+                "n": "1",
+                "d": "2"
+              }
+            },
+            {
+              "id": "c06",
+              "phase": "afterHand",
+              "operation": "add-growth",
+              "value": {
+                "n": "1",
+                "d": "2"
+              }
+            }
+          ]
+        }
+      ],
+      "mature": [
+        {
+          "score": "1750",
+          "heat": {
+            "n": "175",
+            "d": "1"
+          },
+          "multiplier": {
+            "n": "10",
+            "d": "1"
+          },
+          "handType": "flush",
+          "jokers": [
+            {
+              "id": "c06",
+              "growth": {
+                "multiplier": {
+                  "n": "6",
+                  "d": "1"
+                }
+              }
+            }
+          ],
+          "relevantEvents": [
+            {
+              "id": "c06",
+              "phase": "jokerScore",
+              "operation": "read-growth",
+              "value": {
+                "n": "6",
+                "d": "1"
+              }
+            },
+            {
+              "id": "c06",
+              "phase": "afterHand",
+              "operation": "add-growth",
+              "value": {
+                "n": "0",
+                "d": "1"
+              }
+            }
+          ]
+        },
+        {
+          "score": "1750",
+          "heat": {
+            "n": "175",
+            "d": "1"
+          },
+          "multiplier": {
+            "n": "10",
+            "d": "1"
+          },
+          "handType": "flush",
+          "jokers": [
+            {
+              "id": "c06",
+              "growth": {
+                "multiplier": {
+                  "n": "6",
+                  "d": "1"
+                }
+              }
+            }
+          ],
+          "relevantEvents": [
+            {
+              "id": "c06",
+              "phase": "jokerScore",
+              "operation": "read-growth",
+              "value": {
+                "n": "6",
+                "d": "1"
+              }
+            },
+            {
+              "id": "c06",
+              "phase": "afterHand",
+              "operation": "add-growth",
+              "value": {
+                "n": "0",
+                "d": "1"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "replacement": {
+    "before": [
+      {
+        "score": "2805",
+        "heat": {
+          "n": "340",
+          "d": "1"
+        },
+        "multiplier": {
+          "n": "33",
+          "d": "4"
+        },
+        "handType": "straight",
+        "jokers": [
+          {
+            "id": "c04",
+            "growth": {
+              "heat": {
+                "n": "100",
+                "d": "1"
+              }
+            }
+          },
+          {
+            "id": "jiedongfeng",
+            "growth": {}
+          },
+          {
+            "id": "e11",
+            "growth": {
+              "coefficient": {
+                "n": "3",
+                "d": "2"
+              }
+            }
+          },
+          {
+            "id": "e01",
+            "growth": {}
+          },
+          {
+            "id": "e04",
+            "growth": {}
+          }
+        ],
+        "relevantEvents": [
+          {
+            "id": "c04",
+            "phase": "jokerScore",
+            "operation": "read-growth",
+            "value": {
+              "n": "100",
+              "d": "1"
+            }
+          },
+          {
+            "id": "e11",
+            "phase": "jokerScore",
+            "operation": "read-coefficient",
+            "value": {
+              "n": "3",
+              "d": "2"
+            }
+          },
+          {
+            "id": "c04",
+            "phase": "afterHand",
+            "operation": "add-growth",
+            "value": {
+              "n": "0",
+              "d": "1"
+            }
+          }
+        ]
+      },
+      {
+        "score": "2805",
+        "heat": {
+          "n": "340",
+          "d": "1"
+        },
+        "multiplier": {
+          "n": "33",
+          "d": "4"
+        },
+        "handType": "straight",
+        "jokers": [
+          {
+            "id": "c04",
+            "growth": {
+              "heat": {
+                "n": "100",
+                "d": "1"
+              }
+            }
+          },
+          {
+            "id": "jiedongfeng",
+            "growth": {}
+          },
+          {
+            "id": "e11",
+            "growth": {
+              "coefficient": {
+                "n": "3",
+                "d": "2"
+              }
+            }
+          },
+          {
+            "id": "e01",
+            "growth": {}
+          },
+          {
+            "id": "e04",
+            "growth": {}
+          }
+        ],
+        "relevantEvents": [
+          {
+            "id": "c04",
+            "phase": "jokerScore",
+            "operation": "read-growth",
+            "value": {
+              "n": "100",
+              "d": "1"
+            }
+          },
+          {
+            "id": "e11",
+            "phase": "jokerScore",
+            "operation": "read-coefficient",
+            "value": {
+              "n": "3",
+              "d": "2"
+            }
+          },
+          {
+            "id": "c04",
+            "phase": "afterHand",
+            "operation": "add-growth",
+            "value": {
+              "n": "0",
+              "d": "1"
+            }
+          }
+        ]
+      },
+      {
+        "score": "2805",
+        "heat": {
+          "n": "340",
+          "d": "1"
+        },
+        "multiplier": {
+          "n": "33",
+          "d": "4"
+        },
+        "handType": "straight",
+        "jokers": [
+          {
+            "id": "c04",
+            "growth": {
+              "heat": {
+                "n": "100",
+                "d": "1"
+              }
+            }
+          },
+          {
+            "id": "jiedongfeng",
+            "growth": {}
+          },
+          {
+            "id": "e11",
+            "growth": {
+              "coefficient": {
+                "n": "3",
+                "d": "2"
+              }
+            }
+          },
+          {
+            "id": "e01",
+            "growth": {}
+          },
+          {
+            "id": "e04",
+            "growth": {}
+          }
+        ],
+        "relevantEvents": [
+          {
+            "id": "c04",
+            "phase": "jokerScore",
+            "operation": "read-growth",
+            "value": {
+              "n": "100",
+              "d": "1"
+            }
+          },
+          {
+            "id": "e11",
+            "phase": "jokerScore",
+            "operation": "read-coefficient",
+            "value": {
+              "n": "3",
+              "d": "2"
+            }
+          },
+          {
+            "id": "c04",
+            "phase": "afterHand",
+            "operation": "add-growth",
+            "value": {
+              "n": "0",
+              "d": "1"
+            }
+          }
+        ]
+      },
+      {
+        "score": "2805",
+        "heat": {
+          "n": "340",
+          "d": "1"
+        },
+        "multiplier": {
+          "n": "33",
+          "d": "4"
+        },
+        "handType": "straight",
+        "jokers": [
+          {
+            "id": "c04",
+            "growth": {
+              "heat": {
+                "n": "100",
+                "d": "1"
+              }
+            }
+          },
+          {
+            "id": "jiedongfeng",
+            "growth": {}
+          },
+          {
+            "id": "e11",
+            "growth": {
+              "coefficient": {
+                "n": "3",
+                "d": "2"
+              }
+            }
+          },
+          {
+            "id": "e01",
+            "growth": {}
+          },
+          {
+            "id": "e04",
+            "growth": {}
+          }
+        ],
+        "relevantEvents": [
+          {
+            "id": "c04",
+            "phase": "jokerScore",
+            "operation": "read-growth",
+            "value": {
+              "n": "100",
+              "d": "1"
+            }
+          },
+          {
+            "id": "e11",
+            "phase": "jokerScore",
+            "operation": "read-coefficient",
+            "value": {
+              "n": "3",
+              "d": "2"
+            }
+          },
+          {
+            "id": "c04",
+            "phase": "afterHand",
+            "operation": "add-growth",
+            "value": {
+              "n": "0",
+              "d": "1"
+            }
+          }
+        ]
+      },
+      {
+        "score": "2805",
+        "heat": {
+          "n": "340",
+          "d": "1"
+        },
+        "multiplier": {
+          "n": "33",
+          "d": "4"
+        },
+        "handType": "straight",
+        "jokers": [
+          {
+            "id": "c04",
+            "growth": {
+              "heat": {
+                "n": "100",
+                "d": "1"
+              }
+            }
+          },
+          {
+            "id": "jiedongfeng",
+            "growth": {}
+          },
+          {
+            "id": "e11",
+            "growth": {
+              "coefficient": {
+                "n": "3",
+                "d": "2"
+              }
+            }
+          },
+          {
+            "id": "e01",
+            "growth": {}
+          },
+          {
+            "id": "e04",
+            "growth": {}
+          }
+        ],
+        "relevantEvents": [
+          {
+            "id": "c04",
+            "phase": "jokerScore",
+            "operation": "read-growth",
+            "value": {
+              "n": "100",
+              "d": "1"
+            }
+          },
+          {
+            "id": "e11",
+            "phase": "jokerScore",
+            "operation": "read-coefficient",
+            "value": {
+              "n": "3",
+              "d": "2"
+            }
+          },
+          {
+            "id": "c04",
+            "phase": "afterHand",
+            "operation": "add-growth",
+            "value": {
+              "n": "0",
+              "d": "1"
+            }
+          }
+        ]
+      }
+    ],
+    "choices": [
+      {
+        "sold": "c04",
+        "rating": {
+          "stars": 2,
+          "reason": "限4次",
+          "condition": "第4次出牌后销毁",
+          "basis": {
+            "potentialStages": 3,
+            "growthWindow": false,
+            "initialGrowth": "{}",
+            "additiveSource": true
+          }
+        },
+        "transaction": {
+          "status": "ready",
+          "summary": "指定替换 · 先售后买：40→43金；售后实付8金；买后35金。新牌在末槽，从初值开始。\n失去版次：闪箔（热度+25）；新牌版次：普通（无额外计分）",
+          "growthEffects": [],
+          "cashLosses": [],
+          "refund": 3,
+          "price": 8,
+          "goldAfterSale": 43,
+          "goldAfterPurchase": 35
+        },
+        "compact": [
+          "返3金 · 实付8金 · 买后35金",
+          "失去：热度+100",
+          "失去：闪箔（热度+25）",
+          "长期捧场：系数×1.5保留 · 下一场未售成长失效"
+        ],
+        "gold": 35,
+        "retainedE11": {
+          "coefficient": {
+            "n": "3",
+            "d": "2"
+          }
+        },
+        "soldFlag": true,
+        "after": [
+          {
+            "score": "2722",
+            "heat": {
+              "n": "165",
+              "d": "1"
+            },
+            "multiplier": {
+              "n": "33",
+              "d": "2"
+            },
+            "handType": "straight",
+            "jokers": [
+              {
+                "id": "jiedongfeng",
+                "growth": {}
+              },
+              {
+                "id": "e11",
+                "growth": {
+                  "coefficient": {
+                    "n": "3",
+                    "d": "2"
+                  }
+                }
+              },
+              {
+                "id": "e01",
+                "growth": {}
+              },
+              {
+                "id": "e04",
+                "growth": {}
+              },
+              {
+                "id": "f06",
+                "growth": {},
+                "counters": {
+                  "handsScored": 1
+                }
+              }
+            ],
+            "relevantEvents": [
+              {
+                "id": "e11",
+                "phase": "jokerScore",
+                "operation": "read-coefficient",
+                "value": {
+                  "n": "3",
+                  "d": "2"
+                }
+              },
+              {
+                "id": "f06",
+                "phase": "jokerScore",
+                "operation": "multiply-multiplier",
+                "value": {
+                  "n": "2",
+                  "d": "1"
+                }
+              },
+              {
+                "id": "f06",
+                "phase": "afterHand",
+                "operation": "increment-hands-scored",
+                "value": {
+                  "n": "1",
+                  "d": "1"
+                }
+              }
+            ]
+          },
+          {
+            "score": "2722",
+            "heat": {
+              "n": "165",
+              "d": "1"
+            },
+            "multiplier": {
+              "n": "33",
+              "d": "2"
+            },
+            "handType": "straight",
+            "jokers": [
+              {
+                "id": "jiedongfeng",
+                "growth": {}
+              },
+              {
+                "id": "e11",
+                "growth": {
+                  "coefficient": {
+                    "n": "3",
+                    "d": "2"
+                  }
+                }
+              },
+              {
+                "id": "e01",
+                "growth": {}
+              },
+              {
+                "id": "e04",
+                "growth": {}
+              },
+              {
+                "id": "f06",
+                "growth": {},
+                "counters": {
+                  "handsScored": 2
+                }
+              }
+            ],
+            "relevantEvents": [
+              {
+                "id": "e11",
+                "phase": "jokerScore",
+                "operation": "read-coefficient",
+                "value": {
+                  "n": "3",
+                  "d": "2"
+                }
+              },
+              {
+                "id": "f06",
+                "phase": "jokerScore",
+                "operation": "multiply-multiplier",
+                "value": {
+                  "n": "2",
+                  "d": "1"
+                }
+              },
+              {
+                "id": "f06",
+                "phase": "afterHand",
+                "operation": "increment-hands-scored",
+                "value": {
+                  "n": "2",
+                  "d": "1"
+                }
+              }
+            ]
+          },
+          {
+            "score": "2722",
+            "heat": {
+              "n": "165",
+              "d": "1"
+            },
+            "multiplier": {
+              "n": "33",
+              "d": "2"
+            },
+            "handType": "straight",
+            "jokers": [
+              {
+                "id": "jiedongfeng",
+                "growth": {}
+              },
+              {
+                "id": "e11",
+                "growth": {
+                  "coefficient": {
+                    "n": "3",
+                    "d": "2"
+                  }
+                }
+              },
+              {
+                "id": "e01",
+                "growth": {}
+              },
+              {
+                "id": "e04",
+                "growth": {}
+              },
+              {
+                "id": "f06",
+                "growth": {},
+                "counters": {
+                  "handsScored": 3
+                }
+              }
+            ],
+            "relevantEvents": [
+              {
+                "id": "e11",
+                "phase": "jokerScore",
+                "operation": "read-coefficient",
+                "value": {
+                  "n": "3",
+                  "d": "2"
+                }
+              },
+              {
+                "id": "f06",
+                "phase": "jokerScore",
+                "operation": "multiply-multiplier",
+                "value": {
+                  "n": "2",
+                  "d": "1"
+                }
+              },
+              {
+                "id": "f06",
+                "phase": "afterHand",
+                "operation": "increment-hands-scored",
+                "value": {
+                  "n": "3",
+                  "d": "1"
+                }
+              }
+            ]
+          },
+          {
+            "score": "2722",
+            "heat": {
+              "n": "165",
+              "d": "1"
+            },
+            "multiplier": {
+              "n": "33",
+              "d": "2"
+            },
+            "handType": "straight",
+            "jokers": [
+              {
+                "id": "jiedongfeng",
+                "growth": {}
+              },
+              {
+                "id": "e11",
+                "growth": {
+                  "coefficient": {
+                    "n": "3",
+                    "d": "2"
+                  }
+                }
+              },
+              {
+                "id": "e01",
+                "growth": {}
+              },
+              {
+                "id": "e04",
+                "growth": {}
+              }
+            ],
+            "relevantEvents": [
+              {
+                "id": "e11",
+                "phase": "jokerScore",
+                "operation": "read-coefficient",
+                "value": {
+                  "n": "3",
+                  "d": "2"
+                }
+              },
+              {
+                "id": "f06",
+                "phase": "jokerScore",
+                "operation": "multiply-multiplier",
+                "value": {
+                  "n": "2",
+                  "d": "1"
+                }
+              },
+              {
+                "id": "f06",
+                "phase": "afterHand",
+                "operation": "increment-hands-scored",
+                "value": {
+                  "n": "4",
+                  "d": "1"
+                }
+              },
+              {
+                "id": "f06",
+                "phase": "afterHand",
+                "operation": "destroy-joker",
+                "value": {
+                  "n": "0",
+                  "d": "1"
+                }
+              }
+            ]
+          },
+          {
+            "score": "1361",
+            "heat": {
+              "n": "165",
+              "d": "1"
+            },
+            "multiplier": {
+              "n": "33",
+              "d": "4"
+            },
+            "handType": "straight",
+            "jokers": [
+              {
+                "id": "jiedongfeng",
+                "growth": {}
+              },
+              {
+                "id": "e11",
+                "growth": {
+                  "coefficient": {
+                    "n": "3",
+                    "d": "2"
+                  }
+                }
+              },
+              {
+                "id": "e01",
+                "growth": {}
+              },
+              {
+                "id": "e04",
+                "growth": {}
+              }
+            ],
+            "relevantEvents": [
+              {
+                "id": "e11",
+                "phase": "jokerScore",
+                "operation": "read-coefficient",
+                "value": {
+                  "n": "3",
+                  "d": "2"
+                }
+              }
+            ]
+          }
+        ],
+        "windows": [
+          {
+            "hands": 1,
+            "keep": "2805",
+            "change": "2722",
+            "delta": "-83"
+          },
+          {
+            "hands": 4,
+            "keep": "11220",
+            "change": "10888",
+            "delta": "-332"
+          },
+          {
+            "hands": 5,
+            "keep": "14025",
+            "change": "12249",
+            "delta": "-1776"
+          }
+        ]
+      },
+      {
+        "sold": "e01",
+        "rating": {
+          "stars": 2,
+          "reason": "限4次",
+          "condition": "第4次出牌后销毁",
+          "basis": {
+            "potentialStages": 3,
+            "growthWindow": false,
+            "initialGrowth": "{}",
+            "additiveSource": true
+          }
+        },
+        "transaction": {
+          "status": "ready",
+          "summary": "指定替换 · 先售后买：40→42金；售后实付8金；买后34金。新牌在末槽，从初值开始。\n失去版次：普通（无额外计分）；新牌版次：普通（无额外计分）",
+          "growthEffects": [],
+          "cashLosses": [],
+          "refund": 2,
+          "price": 8,
+          "goldAfterSale": 42,
+          "goldAfterPurchase": 34
+        },
+        "compact": [
+          "返2金 · 实付8金 · 买后34金",
+          "长期捧场：系数×1.5保留 · 下一场未售成长失效"
+        ],
+        "gold": 34,
+        "retainedE11": {
+          "coefficient": {
+            "n": "3",
+            "d": "2"
+          }
+        },
+        "soldFlag": true,
+        "after": [
+          {
+            "score": "5610",
+            "heat": {
+              "n": "340",
+              "d": "1"
+            },
+            "multiplier": {
+              "n": "33",
+              "d": "2"
+            },
+            "handType": "straight",
+            "jokers": [
+              {
+                "id": "c04",
+                "growth": {
+                  "heat": {
+                    "n": "100",
+                    "d": "1"
+                  }
+                }
+              },
+              {
+                "id": "jiedongfeng",
+                "growth": {}
+              },
+              {
+                "id": "e11",
+                "growth": {
+                  "coefficient": {
+                    "n": "3",
+                    "d": "2"
+                  }
+                }
+              },
+              {
+                "id": "e04",
+                "growth": {}
+              },
+              {
+                "id": "f06",
+                "growth": {},
+                "counters": {
+                  "handsScored": 1
+                }
+              }
+            ],
+            "relevantEvents": [
+              {
+                "id": "c04",
+                "phase": "jokerScore",
+                "operation": "read-growth",
+                "value": {
+                  "n": "100",
+                  "d": "1"
+                }
+              },
+              {
+                "id": "e11",
+                "phase": "jokerScore",
+                "operation": "read-coefficient",
+                "value": {
+                  "n": "3",
+                  "d": "2"
+                }
+              },
+              {
+                "id": "f06",
+                "phase": "jokerScore",
+                "operation": "multiply-multiplier",
+                "value": {
+                  "n": "2",
+                  "d": "1"
+                }
+              },
+              {
+                "id": "c04",
+                "phase": "afterHand",
+                "operation": "add-growth",
+                "value": {
+                  "n": "0",
+                  "d": "1"
+                }
+              },
+              {
+                "id": "f06",
+                "phase": "afterHand",
+                "operation": "increment-hands-scored",
+                "value": {
+                  "n": "1",
+                  "d": "1"
+                }
+              }
+            ]
+          },
+          {
+            "score": "5610",
+            "heat": {
+              "n": "340",
+              "d": "1"
+            },
+            "multiplier": {
+              "n": "33",
+              "d": "2"
+            },
+            "handType": "straight",
+            "jokers": [
+              {
+                "id": "c04",
+                "growth": {
+                  "heat": {
+                    "n": "100",
+                    "d": "1"
+                  }
+                }
+              },
+              {
+                "id": "jiedongfeng",
+                "growth": {}
+              },
+              {
+                "id": "e11",
+                "growth": {
+                  "coefficient": {
+                    "n": "3",
+                    "d": "2"
+                  }
+                }
+              },
+              {
+                "id": "e04",
+                "growth": {}
+              },
+              {
+                "id": "f06",
+                "growth": {},
+                "counters": {
+                  "handsScored": 2
+                }
+              }
+            ],
+            "relevantEvents": [
+              {
+                "id": "c04",
+                "phase": "jokerScore",
+                "operation": "read-growth",
+                "value": {
+                  "n": "100",
+                  "d": "1"
+                }
+              },
+              {
+                "id": "e11",
+                "phase": "jokerScore",
+                "operation": "read-coefficient",
+                "value": {
+                  "n": "3",
+                  "d": "2"
+                }
+              },
+              {
+                "id": "f06",
+                "phase": "jokerScore",
+                "operation": "multiply-multiplier",
+                "value": {
+                  "n": "2",
+                  "d": "1"
+                }
+              },
+              {
+                "id": "c04",
+                "phase": "afterHand",
+                "operation": "add-growth",
+                "value": {
+                  "n": "0",
+                  "d": "1"
+                }
+              },
+              {
+                "id": "f06",
+                "phase": "afterHand",
+                "operation": "increment-hands-scored",
+                "value": {
+                  "n": "2",
+                  "d": "1"
+                }
+              }
+            ]
+          },
+          {
+            "score": "5610",
+            "heat": {
+              "n": "340",
+              "d": "1"
+            },
+            "multiplier": {
+              "n": "33",
+              "d": "2"
+            },
+            "handType": "straight",
+            "jokers": [
+              {
+                "id": "c04",
+                "growth": {
+                  "heat": {
+                    "n": "100",
+                    "d": "1"
+                  }
+                }
+              },
+              {
+                "id": "jiedongfeng",
+                "growth": {}
+              },
+              {
+                "id": "e11",
+                "growth": {
+                  "coefficient": {
+                    "n": "3",
+                    "d": "2"
+                  }
+                }
+              },
+              {
+                "id": "e04",
+                "growth": {}
+              },
+              {
+                "id": "f06",
+                "growth": {},
+                "counters": {
+                  "handsScored": 3
+                }
+              }
+            ],
+            "relevantEvents": [
+              {
+                "id": "c04",
+                "phase": "jokerScore",
+                "operation": "read-growth",
+                "value": {
+                  "n": "100",
+                  "d": "1"
+                }
+              },
+              {
+                "id": "e11",
+                "phase": "jokerScore",
+                "operation": "read-coefficient",
+                "value": {
+                  "n": "3",
+                  "d": "2"
+                }
+              },
+              {
+                "id": "f06",
+                "phase": "jokerScore",
+                "operation": "multiply-multiplier",
+                "value": {
+                  "n": "2",
+                  "d": "1"
+                }
+              },
+              {
+                "id": "c04",
+                "phase": "afterHand",
+                "operation": "add-growth",
+                "value": {
+                  "n": "0",
+                  "d": "1"
+                }
+              },
+              {
+                "id": "f06",
+                "phase": "afterHand",
+                "operation": "increment-hands-scored",
+                "value": {
+                  "n": "3",
+                  "d": "1"
+                }
+              }
+            ]
+          },
+          {
+            "score": "5610",
+            "heat": {
+              "n": "340",
+              "d": "1"
+            },
+            "multiplier": {
+              "n": "33",
+              "d": "2"
+            },
+            "handType": "straight",
+            "jokers": [
+              {
+                "id": "c04",
+                "growth": {
+                  "heat": {
+                    "n": "100",
+                    "d": "1"
+                  }
+                }
+              },
+              {
+                "id": "jiedongfeng",
+                "growth": {}
+              },
+              {
+                "id": "e11",
+                "growth": {
+                  "coefficient": {
+                    "n": "3",
+                    "d": "2"
+                  }
+                }
+              },
+              {
+                "id": "e04",
+                "growth": {}
+              }
+            ],
+            "relevantEvents": [
+              {
+                "id": "c04",
+                "phase": "jokerScore",
+                "operation": "read-growth",
+                "value": {
+                  "n": "100",
+                  "d": "1"
+                }
+              },
+              {
+                "id": "e11",
+                "phase": "jokerScore",
+                "operation": "read-coefficient",
+                "value": {
+                  "n": "3",
+                  "d": "2"
+                }
+              },
+              {
+                "id": "f06",
+                "phase": "jokerScore",
+                "operation": "multiply-multiplier",
+                "value": {
+                  "n": "2",
+                  "d": "1"
+                }
+              },
+              {
+                "id": "c04",
+                "phase": "afterHand",
+                "operation": "add-growth",
+                "value": {
+                  "n": "0",
+                  "d": "1"
+                }
+              },
+              {
+                "id": "f06",
+                "phase": "afterHand",
+                "operation": "increment-hands-scored",
+                "value": {
+                  "n": "4",
+                  "d": "1"
+                }
+              },
+              {
+                "id": "f06",
+                "phase": "afterHand",
+                "operation": "destroy-joker",
+                "value": {
+                  "n": "0",
+                  "d": "1"
+                }
+              }
+            ]
+          },
+          {
+            "score": "2805",
+            "heat": {
+              "n": "340",
+              "d": "1"
+            },
+            "multiplier": {
+              "n": "33",
+              "d": "4"
+            },
+            "handType": "straight",
+            "jokers": [
+              {
+                "id": "c04",
+                "growth": {
+                  "heat": {
+                    "n": "100",
+                    "d": "1"
+                  }
+                }
+              },
+              {
+                "id": "jiedongfeng",
+                "growth": {}
+              },
+              {
+                "id": "e11",
+                "growth": {
+                  "coefficient": {
+                    "n": "3",
+                    "d": "2"
+                  }
+                }
+              },
+              {
+                "id": "e04",
+                "growth": {}
+              }
+            ],
+            "relevantEvents": [
+              {
+                "id": "c04",
+                "phase": "jokerScore",
+                "operation": "read-growth",
+                "value": {
+                  "n": "100",
+                  "d": "1"
+                }
+              },
+              {
+                "id": "e11",
+                "phase": "jokerScore",
+                "operation": "read-coefficient",
+                "value": {
+                  "n": "3",
+                  "d": "2"
+                }
+              },
+              {
+                "id": "c04",
+                "phase": "afterHand",
+                "operation": "add-growth",
+                "value": {
+                  "n": "0",
+                  "d": "1"
+                }
+              }
+            ]
+          }
+        ],
+        "windows": [
+          {
+            "hands": 1,
+            "keep": "2805",
+            "change": "5610",
+            "delta": "2805"
+          },
+          {
+            "hands": 4,
+            "keep": "11220",
+            "change": "22440",
+            "delta": "11220"
+          },
+          {
+            "hands": 5,
+            "keep": "14025",
+            "change": "25245",
+            "delta": "11220"
+          }
+        ]
+      }
+    ]
+  },
+  "cash": [
+    {
+      "before": 26,
+      "rating": {
+        "stars": 2,
+        "reason": "暂不触发",
+        "condition": "买后18金，暂不触发",
+        "basis": {
+          "potentialStages": 23,
+          "growthWindow": true,
+          "initialGrowth": "{}",
+          "additiveSource": true
+        }
+      },
+      "after": 18,
+      "score": [
+        {
+          "score": "122",
+          "heat": {
+            "n": "49",
+            "d": "1"
+          },
+          "multiplier": {
+            "n": "5",
+            "d": "2"
+          },
+          "handType": "pair",
+          "jokers": [
+            {
+              "id": "b02",
+              "growth": {}
+            },
+            {
+              "id": "e08",
+              "growth": {}
+            }
+          ],
+          "relevantEvents": []
+        }
+      ]
+    },
+    {
+      "before": 28,
+      "rating": {
+        "stars": 4,
+        "reason": "持金放大倍率",
+        "condition": "买后20金，满足20金门槛",
+        "basis": {
+          "potentialStages": 23,
+          "growthWindow": true,
+          "initialGrowth": "{}",
+          "additiveSource": true
+        }
+      },
+      "after": 20,
+      "score": [
+        {
+          "score": "220",
+          "heat": {
+            "n": "49",
+            "d": "1"
+          },
+          "multiplier": {
+            "n": "9",
+            "d": "2"
+          },
+          "handType": "pair",
+          "jokers": [
+            {
+              "id": "b02",
+              "growth": {}
+            },
+            {
+              "id": "e08",
+              "growth": {}
+            }
+          ],
+          "relevantEvents": [
+            {
+              "id": "e08",
+              "phase": "jokerScore",
+              "operation": "multiply-multiplier",
+              "value": {
+                "n": "9",
+                "d": "5"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "specified": {
+    "unselected": {
+      "status": "needs-selection"
+    },
+    "choices": [
+      {
+        "sold": "e02",
+        "rating": {
+          "stars": 2,
+          "reason": "暂不触发",
+          "condition": "买后19金，暂不触发",
+          "basis": {
+            "potentialStages": 23,
+            "growthWindow": true,
+            "initialGrowth": "{}",
+            "additiveSource": true
+          }
+        },
+        "transaction": {
+          "status": "ready",
+          "summary": "指定替换 · 先售后买：24→25金；售后实付6金；买后19金。新牌在末槽，从初值开始。\n失去版次：普通（无额外计分）；新牌版次：普通（无额外计分）\n包场买后19金，暂不触发倍率×1.8（需本手开始金币至少20；本手新收入不改变资格）。",
+          "growthEffects": [
+            "旧物新用 · 售后：无成长或使用计数 → 倍率成长 0.5",
+            "置办行头 · 购后：无成长或使用计数 → 热度成长 8"
+          ],
+          "cashLosses": [
+            "包场买后19金，暂不触发倍率×1.8（需本手开始金币至少20；本手新收入不改变资格）。"
+          ],
+          "refund": 1,
+          "price": 6,
+          "goldAfterSale": 25,
+          "goldAfterPurchase": 19
+        },
+        "after": [
+          {
+            "score": "256",
+            "heat": {
+              "n": "57",
+              "d": "1"
+            },
+            "multiplier": {
+              "n": "9",
+              "d": "2"
+            },
+            "handType": "pair",
+            "jokers": [
+              {
+                "id": "b02",
+                "growth": {}
+              },
+              {
+                "id": "e06",
+                "growth": {
+                  "multiplier": {
+                    "n": "1",
+                    "d": "2"
+                  }
+                }
+              },
+              {
+                "id": "e05",
+                "growth": {
+                  "heat": {
+                    "n": "8",
+                    "d": "1"
+                  }
+                }
+              },
+              {
+                "id": "e11",
+                "growth": {
+                  "coefficient": {
+                    "n": "3",
+                    "d": "2"
+                  }
+                }
+              },
+              {
+                "id": "e08",
+                "growth": {}
+              }
+            ],
+            "relevantEvents": [
+              {
+                "id": "e06",
+                "phase": "jokerScore",
+                "operation": "read-growth",
+                "value": {
+                  "n": "1",
+                  "d": "2"
+                }
+              },
+              {
+                "id": "e05",
+                "phase": "jokerScore",
+                "operation": "read-growth",
+                "value": {
+                  "n": "8",
+                  "d": "1"
+                }
+              },
+              {
+                "id": "e11",
+                "phase": "jokerScore",
+                "operation": "read-coefficient",
+                "value": {
+                  "n": "3",
+                  "d": "2"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "sold": "e11",
+        "rating": {
+          "stars": 4,
+          "reason": "持金放大倍率",
+          "condition": "买后23金，满足20金门槛",
+          "basis": {
+            "potentialStages": 23,
+            "growthWindow": true,
+            "initialGrowth": "{}",
+            "additiveSource": true
+          }
+        },
+        "transaction": {
+          "status": "ready",
+          "summary": "指定替换 · 先售后买：24→28金；售后实付5金；买后23金。新牌在末槽，从初值开始。\n失去版次：普通（无额外计分）；新牌版次：普通（无额外计分）",
+          "growthEffects": [
+            "旧物新用 · 售后：无成长或使用计数 → 倍率成长 0.5",
+            "置办行头 · 购后：无成长或使用计数 → 热度成长 8"
+          ],
+          "cashLosses": [],
+          "refund": 4,
+          "price": 5,
+          "goldAfterSale": 28,
+          "goldAfterPurchase": 23
+        },
+        "after": [
+          {
+            "score": "307",
+            "heat": {
+              "n": "57",
+              "d": "1"
+            },
+            "multiplier": {
+              "n": "27",
+              "d": "5"
+            },
+            "handType": "pair",
+            "jokers": [
+              {
+                "id": "b02",
+                "growth": {}
+              },
+              {
+                "id": "e02",
+                "growth": {}
+              },
+              {
+                "id": "e06",
+                "growth": {
+                  "multiplier": {
+                    "n": "1",
+                    "d": "2"
+                  }
+                }
+              },
+              {
+                "id": "e05",
+                "growth": {
+                  "heat": {
+                    "n": "8",
+                    "d": "1"
+                  }
+                }
+              },
+              {
+                "id": "e08",
+                "growth": {}
+              }
+            ],
+            "relevantEvents": [
+              {
+                "id": "e06",
+                "phase": "jokerScore",
+                "operation": "read-growth",
+                "value": {
+                  "n": "1",
+                  "d": "2"
+                }
+              },
+              {
+                "id": "e05",
+                "phase": "jokerScore",
+                "operation": "read-growth",
+                "value": {
+                  "n": "8",
+                  "d": "1"
+                }
+              },
+              {
+                "id": "e08",
+                "phase": "jokerScore",
+                "operation": "multiply-multiplier",
+                "value": {
+                  "n": "9",
+                  "d": "5"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "retainedCash": {
+    "rating": {
+      "stars": 4,
+      "reason": "持续长热度",
+      "condition": "成组后增长 · 下手生效",
+      "basis": {
+        "potentialStages": 23,
+        "growthWindow": true,
+        "initialGrowth": "{}",
+        "additiveSource": true
+      }
+    },
+    "losses": [
+      "购款金币23→19；包场买后19金，暂不触发倍率×1.8（需本手开始金币至少20；本手新收入不改变资格）；这轮先留金。"
+    ],
+    "before": [
+      {
+        "score": "220",
+        "heat": {
+          "n": "49",
+          "d": "1"
+        },
+        "multiplier": {
+          "n": "9",
+          "d": "2"
+        },
+        "handType": "pair",
+        "jokers": [
+          {
+            "id": "b02",
+            "growth": {}
+          },
+          {
+            "id": "e08",
+            "growth": {}
+          }
+        ],
+        "relevantEvents": [
+          {
+            "id": "e08",
+            "phase": "jokerScore",
+            "operation": "multiply-multiplier",
+            "value": {
+              "n": "9",
+              "d": "5"
+            }
+          }
+        ]
+      }
+    ],
+    "after": [
+      {
+        "score": "122",
+        "heat": {
+          "n": "49",
+          "d": "1"
+        },
+        "multiplier": {
+          "n": "5",
+          "d": "2"
+        },
+        "handType": "pair",
+        "jokers": [
+          {
+            "id": "b02",
+            "growth": {}
+          },
+          {
+            "id": "e08",
+            "growth": {}
+          },
+          {
+            "id": "b10",
+            "growth": {
+              "heat": {
+                "n": "10",
+                "d": "1"
+              }
+            }
+          }
+        ],
+        "relevantEvents": [
+          {
+            "id": "b10",
+            "phase": "jokerScore",
+            "operation": "read-growth",
+            "value": {
+              "n": "0",
+              "d": "1"
+            }
+          },
+          {
+            "id": "b10",
+            "phase": "afterHand",
+            "operation": "add-growth",
+            "value": {
+              "n": "10",
+              "d": "1"
+            }
+          }
+        ]
+      }
+    ],
+    "gold": 19
+  },
+  "tools": [
+    {
+      "id": "S03",
+      "formation": {
+        "event": "at least three rank-7 cards in fresh hand",
+        "assumption": "uniform without replacement, fresh stage hand, no disabled cards or hero manipulation; existence only, no score/clear probability",
+        "before": {
+          "N": 52,
+          "h": 8,
+          "K": 4,
+          "favorable": "7043796",
+          "total": "752538150"
+        },
+        "after": {
+          "N": 54,
+          "h": 8,
+          "K": 6,
+          "favorable": "37269684",
+          "total": "1040465790"
+        }
+      },
+      "purchaseGold": [
+        40,
+        34
+      ],
+      "useGold": [
+        34,
+        34
+      ],
+      "beforeResources": {
+        "hands": 4,
+        "hand": 8,
+        "cards": 52
+      },
+      "afterResources": {
+        "hands": 3,
+        "hand": 8,
+        "cards": 54
+      },
+      "entry": {
+        "hands": 3,
+        "hand": 8
+      },
+      "beforeJokers": [
+        {
+          "instanceId": "held/0",
+          "definitionId": "c04",
+          "paidPrice": 6,
+          "growth": {
+            "heat": {
+              "n": "100",
+              "d": "1"
+            }
+          },
+          "edition": "foil"
+        },
+        {
+          "instanceId": "held/1",
+          "definitionId": "e06",
+          "paidPrice": 6,
+          "growth": {},
+          "edition": "none"
+        },
+        {
+          "instanceId": "held/2",
+          "definitionId": "e11",
+          "paidPrice": 8,
+          "growth": {
+            "coefficient": {
+              "n": "3",
+              "d": "2"
+            }
+          },
+          "edition": "none"
+        }
+      ],
+      "afterJokers": [
+        {
+          "instanceId": "held/0",
+          "definitionId": "c04",
+          "paidPrice": 6,
+          "growth": {
+            "heat": {
+              "n": "100",
+              "d": "1"
+            }
+          },
+          "edition": "foil"
+        },
+        {
+          "instanceId": "held/1",
+          "definitionId": "e06",
+          "paidPrice": 6,
+          "growth": {},
+          "edition": "none"
+        },
+        {
+          "instanceId": "held/2",
+          "definitionId": "e11",
+          "paidPrice": 8,
+          "growth": {
+            "coefficient": {
+              "n": "3",
+              "d": "2"
+            }
+          },
+          "edition": "none"
+        }
+      ],
+      "soldFlag": false,
+      "beforeScore": [
+        {
+          "score": "2040",
+          "heat": {
+            "n": "340",
+            "d": "1"
+          },
+          "multiplier": {
+            "n": "6",
+            "d": "1"
+          },
+          "handType": "straight",
+          "jokers": [
+            {
+              "id": "c04",
+              "growth": {
+                "heat": {
+                  "n": "100",
+                  "d": "1"
+                }
+              }
+            },
+            {
+              "id": "e06",
+              "growth": {}
+            },
+            {
+              "id": "e11",
+              "growth": {
+                "coefficient": {
+                  "n": "3",
+                  "d": "2"
+                }
+              }
+            }
+          ],
+          "relevantEvents": [
+            {
+              "id": "c04",
+              "phase": "jokerScore",
+              "operation": "read-growth",
+              "value": {
+                "n": "100",
+                "d": "1"
+              }
+            },
+            {
+              "id": "e06",
+              "phase": "jokerScore",
+              "operation": "read-growth",
+              "value": {
+                "n": "0",
+                "d": "1"
+              }
+            },
+            {
+              "id": "e11",
+              "phase": "jokerScore",
+              "operation": "read-coefficient",
+              "value": {
+                "n": "3",
+                "d": "2"
+              }
+            },
+            {
+              "id": "c04",
+              "phase": "afterHand",
+              "operation": "add-growth",
+              "value": {
+                "n": "0",
+                "d": "1"
+              }
+            }
+          ]
+        }
+      ],
+      "afterScore": [
+        {
+          "score": "2040",
+          "heat": {
+            "n": "340",
+            "d": "1"
+          },
+          "multiplier": {
+            "n": "6",
+            "d": "1"
+          },
+          "handType": "straight",
+          "jokers": [
+            {
+              "id": "c04",
+              "growth": {
+                "heat": {
+                  "n": "100",
+                  "d": "1"
+                }
+              }
+            },
+            {
+              "id": "e06",
+              "growth": {}
+            },
+            {
+              "id": "e11",
+              "growth": {
+                "coefficient": {
+                  "n": "3",
+                  "d": "2"
+                }
+              }
+            }
+          ],
+          "relevantEvents": [
+            {
+              "id": "c04",
+              "phase": "jokerScore",
+              "operation": "read-growth",
+              "value": {
+                "n": "100",
+                "d": "1"
+              }
+            },
+            {
+              "id": "e06",
+              "phase": "jokerScore",
+              "operation": "read-growth",
+              "value": {
+                "n": "0",
+                "d": "1"
+              }
+            },
+            {
+              "id": "e11",
+              "phase": "jokerScore",
+              "operation": "read-coefficient",
+              "value": {
+                "n": "3",
+                "d": "2"
+              }
+            },
+            {
+              "id": "c04",
+              "phase": "afterHand",
+              "operation": "add-growth",
+              "value": {
+                "n": "0",
+                "d": "1"
+              }
+            }
+          ]
+        }
+      ],
+      "failure": {
+        "code": "resource-floor",
+        "unchanged": true
+      },
+      "rngUnchanged": true
+    },
+    {
+      "id": "S04",
+      "formation": {
+        "event": "at least five hearts in fresh hand",
+        "assumption": "uniform without replacement, fresh stage hand, no disabled cards or hero manipulation; existence only, no score/clear probability",
+        "before": {
+          "N": 52,
+          "h": 8,
+          "K": 13,
+          "favorable": "13101660",
+          "total": "752538150"
+        },
+        "after": {
+          "N": 52,
+          "h": 7,
+          "K": 52,
+          "favorable": "133784560",
+          "total": "133784560"
+        }
+      },
+      "purchaseGold": [
+        40,
+        34
+      ],
+      "useGold": [
+        34,
+        34
+      ],
+      "beforeResources": {
+        "hands": 4,
+        "hand": 8,
+        "cards": 52
+      },
+      "afterResources": {
+        "hands": 4,
+        "hand": 7,
+        "cards": 52
+      },
+      "entry": {
+        "hands": 4,
+        "hand": 7
+      },
+      "beforeJokers": [
+        {
+          "instanceId": "held/0",
+          "definitionId": "c04",
+          "paidPrice": 6,
+          "growth": {
+            "heat": {
+              "n": "100",
+              "d": "1"
+            }
+          },
+          "edition": "foil"
+        },
+        {
+          "instanceId": "held/1",
+          "definitionId": "e06",
+          "paidPrice": 6,
+          "growth": {},
+          "edition": "none"
+        },
+        {
+          "instanceId": "held/2",
+          "definitionId": "e11",
+          "paidPrice": 8,
+          "growth": {
+            "coefficient": {
+              "n": "3",
+              "d": "2"
+            }
+          },
+          "edition": "none"
+        }
+      ],
+      "afterJokers": [
+        {
+          "instanceId": "held/0",
+          "definitionId": "c04",
+          "paidPrice": 6,
+          "growth": {
+            "heat": {
+              "n": "100",
+              "d": "1"
+            }
+          },
+          "edition": "foil"
+        },
+        {
+          "instanceId": "held/1",
+          "definitionId": "e06",
+          "paidPrice": 6,
+          "growth": {},
+          "edition": "none"
+        },
+        {
+          "instanceId": "held/2",
+          "definitionId": "e11",
+          "paidPrice": 8,
+          "growth": {
+            "coefficient": {
+              "n": "3",
+              "d": "2"
+            }
+          },
+          "edition": "none"
+        }
+      ],
+      "soldFlag": false,
+      "beforeScore": [
+        {
+          "score": "2040",
+          "heat": {
+            "n": "340",
+            "d": "1"
+          },
+          "multiplier": {
+            "n": "6",
+            "d": "1"
+          },
+          "handType": "straight",
+          "jokers": [
+            {
+              "id": "c04",
+              "growth": {
+                "heat": {
+                  "n": "100",
+                  "d": "1"
+                }
+              }
+            },
+            {
+              "id": "e06",
+              "growth": {}
+            },
+            {
+              "id": "e11",
+              "growth": {
+                "coefficient": {
+                  "n": "3",
+                  "d": "2"
+                }
+              }
+            }
+          ],
+          "relevantEvents": [
+            {
+              "id": "c04",
+              "phase": "jokerScore",
+              "operation": "read-growth",
+              "value": {
+                "n": "100",
+                "d": "1"
+              }
+            },
+            {
+              "id": "e06",
+              "phase": "jokerScore",
+              "operation": "read-growth",
+              "value": {
+                "n": "0",
+                "d": "1"
+              }
+            },
+            {
+              "id": "e11",
+              "phase": "jokerScore",
+              "operation": "read-coefficient",
+              "value": {
+                "n": "3",
+                "d": "2"
+              }
+            },
+            {
+              "id": "c04",
+              "phase": "afterHand",
+              "operation": "add-growth",
+              "value": {
+                "n": "0",
+                "d": "1"
+              }
+            }
+          ]
+        }
+      ],
+      "afterScore": [
+        {
+          "score": "8977",
+          "heat": {
+            "n": "665",
+            "d": "1"
+          },
+          "multiplier": {
+            "n": "27",
+            "d": "2"
+          },
+          "handType": "straight-flush",
+          "jokers": [
+            {
+              "id": "c04",
+              "growth": {
+                "heat": {
+                  "n": "100",
+                  "d": "1"
+                }
+              }
+            },
+            {
+              "id": "e06",
+              "growth": {}
+            },
+            {
+              "id": "e11",
+              "growth": {
+                "coefficient": {
+                  "n": "3",
+                  "d": "2"
+                }
+              }
+            }
+          ],
+          "relevantEvents": [
+            {
+              "id": "c04",
+              "phase": "jokerScore",
+              "operation": "read-growth",
+              "value": {
+                "n": "100",
+                "d": "1"
+              }
+            },
+            {
+              "id": "e06",
+              "phase": "jokerScore",
+              "operation": "read-growth",
+              "value": {
+                "n": "0",
+                "d": "1"
+              }
+            },
+            {
+              "id": "e11",
+              "phase": "jokerScore",
+              "operation": "read-coefficient",
+              "value": {
+                "n": "3",
+                "d": "2"
+              }
+            },
+            {
+              "id": "c04",
+              "phase": "afterHand",
+              "operation": "add-growth",
+              "value": {
+                "n": "0",
+                "d": "1"
+              }
+            }
+          ]
+        }
+      ],
+      "failure": {
+        "code": "no-effect",
+        "unchanged": true
+      },
+      "rngUnchanged": true
+    },
+    {
+      "id": "S07",
+      "formation": null,
+      "purchaseGold": [
+        40,
+        32
+      ],
+      "useGold": [
+        32,
+        32
+      ],
+      "beforeResources": {
+        "hands": 4,
+        "hand": 8,
+        "cards": 52
+      },
+      "afterResources": {
+        "hands": 4,
+        "hand": 8,
+        "cards": 52
+      },
+      "entry": {
+        "hands": 4,
+        "hand": 8
+      },
+      "beforeJokers": [
+        {
+          "instanceId": "held/0",
+          "definitionId": "c04",
+          "paidPrice": 6,
+          "growth": {
+            "heat": {
+              "n": "100",
+              "d": "1"
+            }
+          },
+          "edition": "foil"
+        },
+        {
+          "instanceId": "held/1",
+          "definitionId": "e06",
+          "paidPrice": 6,
+          "growth": {},
+          "edition": "none"
+        },
+        {
+          "instanceId": "held/2",
+          "definitionId": "e11",
+          "paidPrice": 8,
+          "growth": {
+            "coefficient": {
+              "n": "3",
+              "d": "2"
+            }
+          },
+          "edition": "none"
+        }
+      ],
+      "afterJokers": [
+        {
+          "instanceId": "held/1",
+          "definitionId": "e06",
+          "paidPrice": 6,
+          "growth": {},
+          "edition": "polychrome"
+        },
+        {
+          "instanceId": "held/2",
+          "definitionId": "e11",
+          "paidPrice": 8,
+          "growth": {
+            "coefficient": {
+              "n": "3",
+              "d": "2"
+            }
+          },
+          "edition": "none"
+        }
+      ],
+      "soldFlag": false,
+      "beforeScore": [
+        {
+          "score": "2040",
+          "heat": {
+            "n": "340",
+            "d": "1"
+          },
+          "multiplier": {
+            "n": "6",
+            "d": "1"
+          },
+          "handType": "straight",
+          "jokers": [
+            {
+              "id": "c04",
+              "growth": {
+                "heat": {
+                  "n": "100",
+                  "d": "1"
+                }
+              }
+            },
+            {
+              "id": "e06",
+              "growth": {}
+            },
+            {
+              "id": "e11",
+              "growth": {
+                "coefficient": {
+                  "n": "3",
+                  "d": "2"
+                }
+              }
+            }
+          ],
+          "relevantEvents": [
+            {
+              "id": "c04",
+              "phase": "jokerScore",
+              "operation": "read-growth",
+              "value": {
+                "n": "100",
+                "d": "1"
+              }
+            },
+            {
+              "id": "e06",
+              "phase": "jokerScore",
+              "operation": "read-growth",
+              "value": {
+                "n": "0",
+                "d": "1"
+              }
+            },
+            {
+              "id": "e11",
+              "phase": "jokerScore",
+              "operation": "read-coefficient",
+              "value": {
+                "n": "3",
+                "d": "2"
+              }
+            },
+            {
+              "id": "c04",
+              "phase": "afterHand",
+              "operation": "add-growth",
+              "value": {
+                "n": "0",
+                "d": "1"
+              }
+            }
+          ]
+        }
+      ],
+      "afterScore": [
+        {
+          "score": "1485",
+          "heat": {
+            "n": "165",
+            "d": "1"
+          },
+          "multiplier": {
+            "n": "9",
+            "d": "1"
+          },
+          "handType": "straight",
+          "jokers": [
+            {
+              "id": "e06",
+              "growth": {}
+            },
+            {
+              "id": "e11",
+              "growth": {
+                "coefficient": {
+                  "n": "3",
+                  "d": "2"
+                }
+              }
+            }
+          ],
+          "relevantEvents": [
+            {
+              "id": "e06",
+              "phase": "jokerScore",
+              "operation": "read-growth",
+              "value": {
+                "n": "0",
+                "d": "1"
+              }
+            },
+            {
+              "id": "e06",
+              "phase": "jokerScore",
+              "operation": "multiply-multiplier",
+              "value": {
+                "n": "3",
+                "d": "2"
+              }
+            },
+            {
+              "id": "e11",
+              "phase": "jokerScore",
+              "operation": "read-coefficient",
+              "value": {
+                "n": "3",
+                "d": "2"
+              }
+            }
+          ]
+        }
+      ],
+      "failure": {
+        "code": "target-already-polychrome",
+        "unchanged": true
+      },
+      "rngUnchanged": true
+    }
+  ],
+  "provenance": {
+    "runtimeTree": "0e29164c0a149c3e9d56aceb2aea19d564089fb7",
+    "files": {
+      "analysis/recommendation-cost-lifetime/model.ts": "b78783aa151e3f154d5fb5bddc8682724d8209d007a16cc8630a0e9fa831d348",
+      "analysis/recommendation-cost-lifetime/run.mjs": "9acf82cbe39555cee4954f6d909a8fd7a6970fc45fb7e36df37b0d4cb34add38",
+      "analysis/scoring-calibration/model.ts": "337c26232e1583d9775e9b2e70789d6377a46cf39e4fb7d2569d0ed66e4311b1",
+      "tests/recommendation-cost-lifetime.test.ts": "843d2f0a88367135e09ddb1faf38f772f7f0c34dbf6ca951cb9de082b4f3dd9e"
+    }
+  }
+}

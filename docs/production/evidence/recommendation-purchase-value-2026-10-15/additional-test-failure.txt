@@ -1,0 +1,42 @@
+
+ RUN  v4.1.11 /workspace/dachoupai
+
+ ❯ tests/shop-card-value-visual.test.ts (5 tests | 1 failed) 249ms
+     × takes genuine high ordinary and low rare recommendations without conflating their frames 43ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/shop-card-value-visual.test.ts > shop card value presentation > takes genuine high ordinary and low rare recommendations without conflating their frames
+AssertionError: expected [ 2, 2, 2 ] to deeply equal [ 4, 2, 2 ]
+
+- Expected
++ Received
+
+  [
+-   4,
++   2,
+    2,
+    2,
+  ]
+
+ ❯ tests/shop-card-value-visual.test.ts:28:32
+     26|  it('takes genuine high ordinary and low rare recommendations without …
+     27|   const s=cardValueVisualFixture(),before=JSON.stringify(s),rows=s.sho…
+     28|   expect(rows.map(r=>r.stars)).toEqual([4,2,2]);
+       |                                ^
+     29|   expect(shopRecommendationVisual(rows[0].stars,88).ink).toBe(shopReco…
+     30|   expect(JOKER_RARITY.common.edge).not.toBe(JOKER_RARITY.rare.edge);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 12 passed (13)
+      Tests  1 failed | 124 passed (125)
+   Start at  06:13:38
+   Duration  4.88s (transform 4.48s, setup 0ms, import 8.50s, tests 2.92s, environment 2ms)
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice
