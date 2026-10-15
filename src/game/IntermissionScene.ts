@@ -100,7 +100,7 @@ export class IntermissionScene extends Phaser.Scene {
     this.events.once('shutdown',retire);this.events.once('destroy',retire);
     const run=runController(this)?.state;if(!run?.stage){this.scene.start('character-select');return;}
     this.cameras.main.setBackgroundColor('#F3EADB');
-    const skipped=!!run.stage.skipResult;this.audio.setScene(this.result.cleared?'success':'failure');
+    const skipped=run.phase==='run-lost'?false:!!run.stage.skipResult;this.audio.setScene(this.result.cleared?'success':'failure');
     if(!skipped){
       if(this.result.cleared){const outcome=stageOutcome(run.stage,run.lastTrace);if(outcome.intensity>1)this.audio.overkill(outcome.intensity);else this.audio.success();}
       else {
@@ -114,7 +114,7 @@ export class IntermissionScene extends Phaser.Scene {
     if(this.busy)this.stopSourceArt();
     const v=this.view,l=v.layout,bottom=parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--safe-bottom'))||0;
     const run=runController(this)!.state,p=resultLayout(l.width,l.height,l.hud.y,bottom,this.result.cleared&&run.phase==='stage-cleared'&&run.stageIndex%3===2,!this.result.cleared&&run.phase==='run-lost'),stage={...getR2Stage(this.result.stageIndex,run.tourMode,run.difficulty,run)!,targetHeat:run.stage!.targetHeat},character=getCharacter(run.characterId);
-    const nextStage=this.result.cleared&&run.phase==='stage-cleared'?getR2Stage(run.stageIndex,run.tourMode,run.difficulty,run):undefined,skipped=run.stage?.skipResult,won=run.phase==='run-won',capped=this.result.cleared&&run.phase==='stage-cleared'&&!nextStage,lost=!this.result.cleared&&!skipped&&!won;
+    const nextStage=this.result.cleared&&run.phase==='stage-cleared'?getR2Stage(run.stageIndex,run.tourMode,run.difficulty,run):undefined,skipped=run.phase==='run-lost'?null:run.stage?.skipResult,won=run.phase==='run-won',capped=this.result.cleared&&run.phase==='stage-cleared'&&!nextStage,lost=!this.result.cleared&&!skipped&&!won;
     const outcome=stageOutcome(run.stage!,run.lastTrace),animateIn=this.firstRender&&!gameSession().reducedMotion&&!window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     this.stopCelebration();v.clear();this.paintSourceArt=undefined;this.sourceArtLayer=undefined;v.paperBackground();
     const identity=stageIdentity(stage.index,run.stage!.boss,run.tourMode,run.difficulty,run)!;
@@ -204,6 +204,10 @@ export class IntermissionScene extends Phaser.Scene {
       const hit=v.rect(image.getData('bounds')).setFillStyle(0,0).setStrokeStyle(0);image.parentContainer.add(hit);
       v.target(hit,'result/hero-details',{tap:()=>showHeroExplanation(this.dialog,run.characterId,{run,closeLabel:'返回结算'}),detail:()=>showHeroExplanation(this.dialog,run.characterId,{run,closeLabel:'返回结算'})});
     };
+    if(lost&&run.outcome?.reason==='abandoned'){
+      const formula=v.root.list.find(o=>o.name==='result/formula') as Phaser.GameObjects.Text|undefined;
+      formula?.setText(run.stage?.skipResult?'上一场已跳过 · 没有计分记录':run.outcome.stageIndex!==run.stage?.index?'上一场已结束 · 本局主动结束':'本局主动结束 · 目标 '+heatText(run.stage!.targetHeat));
+    }
     explainHero(presentation.hero);this.paintSourceArt=()=>{explainHero(presentation.paint());};
     if(animate&&!skipped)this.outcomeMotion=mountSettlementMotion(this,v.root,b,presentation.score,presentation.hero,presentation.facts.tier,lost);
     if(this.result.cleared&&!skipped){

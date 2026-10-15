@@ -5,7 +5,7 @@ import {energySend} from './hero-climax';
 import {settlementReady} from './settlement';
 
 /** Controlled terminal fixtures, scored/ended by original domain commands. Not natural runs. */
-export function failureRetryFixture(kind:'hands'|'cards'|'abandoned'|'boss'):{before:R2RunState;after:R2RunState}{
+export function failureRetryFixture(kind:'hands'|'cards'|'abandoned'|'boss'|'post-skip'):{before:R2RunState;after:R2RunState}{
  if(kind==='boss'){
   const f=settlementReady('boss-loss','current');
   f.state.boss={definitionId:'B02',disabledSuit:null};f.state.stage!.boss=structuredClone(f.state.boss);f.state.stage!.disabledIds=[];f.state.seenBossIds=['B02'];
@@ -16,7 +16,9 @@ export function failureRetryFixture(kind:'hands'|'cards'|'abandoned'|'boss'):{be
   return {before:f.state,after:energySend(f.state,f.action)};
  }
  let s=createRun({seed:'controlled/failure-retry/'+kind,runId:'controlled/failure-retry/'+kind,characterId:'laohuan',rulesVersion:'r2',r2Identity:newRunIdentity('laohuan','group'),openingRoute:'group',modeConfig:{mode:'standard',difficulty:0,challengeId:null,programsEnabled:false}});
- s=energySend(s,{type:'LeaveShop'});s=energySend(s,{type:'EnterStage'});
+ s=energySend(s,{type:'LeaveShop'});
+ if(kind==='post-skip'){s=energySend(s,{type:'SkipStage'});return {before:s,after:energySend(s,{type:'AbandonRun'})};}
+ s=energySend(s,{type:'EnterStage'});
  if(kind==='cards'){
   // Exhausted stage zones retain the complete deck; the final real Play ends it with unused hands.
   const id=s.handOrder[0];s.handOrder=[id];s.drawPile=[];s.discardPile=s.deckInstances.map(c=>c.id).filter(c=>c!==id);assertRunInvariants(s);

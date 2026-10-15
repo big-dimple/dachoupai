@@ -39,7 +39,7 @@ export function failureGuidance(run:R2RunState){
   const summary=failureSummary(run),stage=run.stage,reason=run.outcome?.reason;
   const last=stage&&run.outcome?.stageIndex===stage.index?stageOutcome(stage,run.lastTrace).last:null;
   const remaining=stage?BigInt(stage.targetHeat)-BigInt(stage.heat):null;
-  const gap=remaining===null?'本场差额记录不可用':remaining>0n?'本场还差 '+heatText(remaining.toString())+' 热度':'本场热度已达目标';
+  const gap=reason==='abandoned'&&stage?.skipResult?'最近一场已跳过，没有计分结果':reason==='abandoned'&&stage&&run.outcome?.stageIndex!==stage.index?'最近一场已结束；本局主动结束':remaining===null?'本场差额记录不可用':remaining>0n?'本场还差 '+heatText(remaining.toString())+' 热度':'本场热度已达目标';
   const title=reason==='hands-exhausted'?'出牌用尽，准备再战':reason==='no-legal-cards'?'已无可出牌，准备再战':reason==='abandoned'?'已结束本局，重新选择':'本局已结束，准备再战';
   const advice:FailureAdvice[]=[];
   if(reason==='abandoned')advice.push({title:'先决定这次想怎么打',body:'这是主动结束本局，不据此判定构筑强弱。可回看已保存的末手，再返回选角换英雄或开局方向。'});

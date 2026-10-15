@@ -15,7 +15,7 @@ const {failureRetryFixture}=await server.ssrLoadModule('/harness/fixtures/failur
 const {makeCheckpoint,readCheckpoint}=await server.ssrLoadModule('/src/application/checkpoint.ts');
 const {r2ModeStorageKey}=await server.ssrLoadModule('/src/content/r2Modes.ts');
 const {createRun}=await server.ssrLoadModule('/src/domain/run.ts');
-const fixtures=Object.fromEntries(['hands','cards','abandoned','boss'].map(kind=>[kind,failureRetryFixture(kind).after]));
+const fixtures=Object.fromEntries(['hands','cards','abandoned','boss','post-skip'].map(kind=>[kind,failureRetryFixture(kind).after]));
 for(const state of Object.values(fixtures)){assert.equal(state.phase,'run-lost');assert.ok(readCheckpoint(makeCheckpoint(state,[])).ok);}
 await server.listen();
 const browser=await chromium.launch({executablePath:process.env.SMOKE_CHROMIUM_EXECUTABLE_PATH??'/usr/bin/chromium',args:['--no-sandbox','--disable-gpu','--disable-software-rasterizer']});
@@ -96,12 +96,13 @@ try{
    assert.deepEqual(row.errors,[]);row.status='PASS';console.log('PASS',row.key);
   }catch(e){row.status='FAIL';row.error=e.stack;await shot(page,row.key+'-FAIL').catch(()=>{});throw e;}finally{await context.close();}
  }
- for(const kind of (selectionOnly?[]:['boss','fault'])){
+ for(const kind of (selectionOnly?[]:['boss','fault','post-skip'])){
   const viewport={width:390,height:568},context=await browser.newContext({viewport,hasTouch:true,deviceScaleFactor:1}),page=await context.newPage(),row={key:'390-short-'+kind,kind,viewport,errors:[]};report.cases.push(row);page.on('pageerror',e=>row.errors.push(e.message));page.on('dialog',d=>d.accept());
   try{
-   await importState(page,fixtures[kind==='boss'?'boss':'hands']);const initial=await observe(page);full.push({key:row.key+'/initial',saved:initial});
+   await importState(page,fixtures[kind==='fault'?'hands':kind]);const initial=await observe(page);full.push({key:row.key+'/initial',saved:initial});
    if(kind==='boss'){await tapUI(page,'intermission','action/failure-guidance',true);row.dialog=await checkDialog(page,viewport);assert.ok(row.dialog.text.includes('普通点数归零'));assert.ok(row.dialog.text.includes('前三张'));await shot(page,row.key+'-advice');await same(page,initial);await page.getByRole('button',{name:'返回失败页',exact:true}).click();await same(page,initial);}
-   else await retryFlow(page,row,initial,viewport,true);
+   else if(kind==='fault')await retryFlow(page,row,initial,viewport,true);
+   else {row.resultGeometry=await resultGeometry(page,viewport);await shot(page,row.key+'-failure');await tapUI(page,'intermission','action/failure-guidance',true);row.dialog=await checkDialog(page,viewport);assert.ok(row.dialog.text.includes('最近一场已跳过，没有计分结果'));assert.ok(row.dialog.text.includes('主动结束'));assert.ok(await page.getByRole('button',{name:'回看最后一手',exact:true}).isDisabled());await shot(page,row.key+'-advice');await same(page,initial);await page.getByRole('button',{name:'返回失败页',exact:true}).click();await same(page,initial);}
    assert.deepEqual(row.errors,[]);row.status='PASS';console.log('PASS',row.key);
   }catch(e){row.status='FAIL';row.error=e.stack;await shot(page,row.key+'-FAIL').catch(()=>{});throw e;}finally{await context.close();}
  }

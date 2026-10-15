@@ -25,6 +25,9 @@ describe('failure guidance reads real saved terminal facts',()=>{
   after.lastTrace=null;const missing=failureGuidance(after)!;expect(missing.canReview).toBe(false);expect(missing.lastHand).toBe('最后一手记录不可用');expect(missing.advice.some(a=>a.title.includes('压轴'))).toBe(false);
   expect(missing.advice[0].body).toContain('不推断');
  });
+ it('active ending after a skipped stage is not presented as a scored defeat',()=>{
+  const {after}=failureRetryFixture('post-skip');expect(after.outcome!.reason).toBe('abandoned');expect(after.stage!.skipResult).toBeTruthy();expect(failureGuidance(after)!.gap).toBe('最近一场已跳过，没有计分结果');expect(failureGuidance(after)!.canReview).toBe(false);
+ });
  it('rejects stale last-hand attribution even when a boss exists',()=>{
   const {after}=failureRetryFixture('boss');after.stage!.previousHandScore='9999';expect(failureGuidance(after)!.canReview).toBe(false);expect(failureGuidance(after)!.advice.some(a=>a.title.includes('压轴'))).toBe(false);
  });
