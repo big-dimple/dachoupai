@@ -31,8 +31,8 @@ function unmeasuredReplacementLosses(definition:R2JokerDefinition){
   }
   if(hook.phase==='beforeFailure')reasons.add('失败前救场');
   if(hook.phase==='onReroll')reasons.add('刷新后成长');
-  // Expiry alone is a cost; do not invent a lost future benefit from it.
-  if(hook.phase==='afterHand'&&hook.operations.some(op=>op.kind!=='expire-after-hands'))reasons.add('结算后成长／返还');
+  // Expiry and consuming armed rescue are bookkeeping costs, not future growth or refunds.
+  if(hook.phase==='afterHand'&&hook.operations.some(op=>!['expire-after-hands','consume-rescue'].includes(op.kind)))reasons.add('结算后成长／返还');
  }
  return [...reasons];
 }

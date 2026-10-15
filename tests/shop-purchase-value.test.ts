@@ -98,3 +98,11 @@ it('uses an owned four-straight prerequisite and removes it for a selected sale'
  if(v?.status!=='assessed')throw Error('transaction');expect(v.rows[1].ids).toHaveLength(4);expect(BigInt(v.rows[1].delta.minimum)).toBeGreaterThan(0n);
  const sold=shopPurchaseValue(s,o,'straight',s.jokers[0]);if(sold?.status!=='assessed')throw Error('transaction');expect(sold.unmeasuredLoss).toBe(true);expect(sold.ceiling).toBeLessThanOrEqual(2);
 });
+
+it('f10 rescue consumption is not an omitted after-hand growth or refund benefit',()=>{
+ const {state,offer,sold}=resourceLossFixture('f10'),before=structuredClone(state),value=shopPurchaseValue(state,offer,'group',sold)!;
+ expect(value.status).toBe('assessed');if(value.status!=='assessed')throw Error('transaction');
+ expect(value.unmeasuredLossReasons).toEqual(['弃牌后的条件效果']);
+ expect(value.detail).not.toContain('结算后成长／返还');expect(value.ceiling).toBeLessThanOrEqual(2);
+ expect(state).toEqual(before);
+});
