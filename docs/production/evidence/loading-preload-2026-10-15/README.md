@@ -27,7 +27,7 @@
 | 热纹理缓存 / 冷保存恢复 | 正常转场无新增缩略图请求；PC 人为清除的 J 仅补一张。五组刷新后的完整局 state 相等 |
 | 状态保护 | 五组完整入场 state 均等于原 LeaveShop + EnterStage；所有组无页面 JS 错误、无可见破图；领域/应用/内容/平台/音频与正式图源保护树相等 |
 
-浏览器报告 [五组](browser.json.gz)、[缺 Q 补充](browser-text-court.json.gz)、[PC 弱网](browser-pcweak.json.gz)、[双端 HTTP 缓存](browser-http-cache.json.gz) 记录各自精确 HEAD 和 clean 工作区。全部是 Chromium 软件浏览器的受控鼠标/触摸输入，没有自然试玩、实体手机、真实运营网络、GPU 峰值或整体美术签收。加载耗时来自本地开发服务与模拟延迟，不作为线上性能承诺。五组主要样板的 HTTP 路由拦截关闭浏览器网络缓存，其热缓存特指游戏内已解码纹理。另以无路由拦截的 PC/手机专门验证 HTTP 条件请求缓存，见 browser-http-cache.json.gz；这些本地数值不外推为线上性能。PC 弱网和 HTTP 补充报告中 dirty 仅计划/入口与本目录证据，src/index/tests/harness 均来自所记录 HEAD，没有运行中修改产品源码。
+浏览器报告 [五组](browser.json.gz)、[缺 Q 补充](browser-text-court.json.gz)、[PC 弱网](browser-pcweak.json.gz)、[双端 HTTP 缓存](browser-http-cache.json.gz) 记录各自精确 HEAD；主五组/缺 Q 工作区 clean，PC 弱网/HTTP 补充仅有下述文档与证据脏区。全部是 Chromium 软件浏览器的受控鼠标/触摸输入，没有自然试玩、实体手机、真实运营网络、GPU 峰值或整体美术签收。加载耗时来自本地开发服务与模拟延迟，不作为线上性能承诺。五组主要样板的 HTTP 路由拦截关闭浏览器网络缓存，其热缓存特指游戏内已解码纹理。另以无路由拦截的 PC/手机专门验证 HTTP 条件请求缓存，见 browser-http-cache.json.gz；这些本地数值不外推为线上性能。PC 弱网和 HTTP 补充报告中 dirty 仅计划/入口与本目录证据，src/index/tests/harness 均来自所记录 HEAD，没有运行中修改产品源码。
 
 已实际查看 PC/390/320 加载页、PC 下一场景 2/3、133/134 缺图选择、无图选角，以及手机 Q♣降级牌桌 PNG。
 
