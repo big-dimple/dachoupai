@@ -531,11 +531,13 @@ export class ShopScene extends Phaser.Scene {
     this.inspectMakeCards();
   }
   private resumeMakeCards():void {
-    const pending=this.registry.get('makeCardsPending') as {before:R2RunState;action:Action;purchaseIntent?:string;practiceOrigin?:JourneyPracticeOrigin}|undefined;
+    const pending=this.registry.get('makeCardsPending') as {before:R2RunState;action:Action;purchaseIntent?:string;practiceOrigin?:JourneyPracticeOrigin;view?:MakeCardsView}|undefined;
     if(!pending)return;
     const command=runController(this)?.journal.at(-1);
     if(this.run.runId!==pending.before.runId||this.run.commandSeq!==pending.before.commandSeq+1||command?.expectedSeq!==pending.before.commandSeq||JSON.stringify(command.action)!==JSON.stringify(pending.action)){this.registry.remove('makeCardsPending');return;}
     this.registry.remove('makeCardsPending');
+    // Restore only the UI context paired with this exact durable command; never replay it.
+    if(pending.view)this.makeCardsView=structuredClone(pending.view);
     if(pending.action.type==='PracticeHand'){const receipt=shopPracticeSavedReceipt(pending.before,this.run);if(receipt)this.showPracticeResult(receipt,pending.practiceOrigin);}
     else if(pending.action.type==='UseConsumable'){showSavedToolResult(this.dialog,pending.before,this.run,pending.action,this.resultReduced);this.continueMakeCards();}
     else if(pending.action.type==='BuyBasicTool'||pending.action.type==='BuyOffer'){
@@ -950,7 +952,7 @@ export class ShopScene extends Phaser.Scene {
       if(!result.ok){
         this.audio.invalid();
         if(pendingDrag)this.notice=result.code==='save-failed'?'排序未保存 · 已恢复保存顺序 · 菜单重试': '排序未提交 · 已恢复保存顺序';
-        if(result.code==='save-failed'){if(owner?.classList.contains('make-cards-tool')||owner?.classList.contains('make-cards-purchase')||owner?.classList.contains('make-cards-practice'))this.registry.set('makeCardsPending',{before:previous,action,purchaseIntent:owner.dataset.purchaseIntent,...(action.type==='PracticeHand'?{practiceOrigin:this.practiceOrigin}:{})});this.dialog.close();}
+        if(result.code==='save-failed'){if(owner?.classList.contains('make-cards-tool')||owner?.classList.contains('make-cards-purchase')||owner?.classList.contains('make-cards-practice'))this.registry.set('makeCardsPending',{before:previous,action,view:structuredClone(this.makeCardsView),purchaseIntent:owner.dataset.purchaseIntent,...(action.type==='PracticeHand'?{practiceOrigin:this.practiceOrigin}:{})});this.dialog.close();}
         else this.dialog.open('操作未提交',({'slots-full':'五个槽位已满，请先出售一张。','stale-shop':'商店已变化，请重新打开基础选择；本次没有扣款。','basic-choice-consumed':'本店自选已用；升级、改牌、染色共用1次，刷新不恢复，下一店恢复。','stale-practice-level':'牌型等级已变化，请重新查看服务报价；本次没有扣款。','undiscovered-hand-type':'该牌型尚未发现，不能升级；本次没有扣款。','hand-level-cap':'该牌型已达30级；本次没有扣款。','basic-choice-not-legal':'合法目标或随机位现货已变化，请重新打开选择；本次没有扣款。','consumable-slots-full':'道具箱已满，本次没有扣款。','not-enough-gold':'金币不足；本次操作没有扣款。','already-owned':'已装备同名牌。','no-reroll-candidates':'没有可换入的卡牌。','stale-sequence':'本局在预览后已变化，请重新打开详情确认；没有消耗物品或金币。','replacement-pending':'新局或导入尚未保存，请在菜单重试、导出或取消候选。'} as Record<string,string>)[result.code]??'本次操作未提交，原选择和资源仍然保留。');
         return false;
       }
@@ -976,7 +978,7 @@ export class ShopScene extends Phaser.Scene {
         const joker=previous.jokers.find(j=>j.instanceId===action.instanceId)!;this.audio.sale();
         this.notice=`已售 ${this.jokerDefinition(joker.definitionId).name} · 金币 ${oldGold} → ${this.run.gold}`;
         this.pendingGoldRoll=oldGold;
-      }else if(action.type==='RerollShop'&&!result.duplicate){this.selectedOfferId=undefined;this.audio.reroll();this.notice=`大丑牌与工具已更新 · 道具保留 · 金币 ${oldGold} → ${this.run.gold}`;this.pendingGoldRoll=oldGold;this.pendingRerollFlip=this.shelfKind!=='items';}
+      }else if(action.type==='RerollShop'&&!result.duplicate){this.makeCardsView={pane:'purchase',positions:{...this.makeCardsView.positions,purchase:0}};this.selectedOfferId=undefined;this.audio.reroll();this.notice=`大丑牌与工具已更新 · 道具保留 · 金币 ${oldGold} → ${this.run.gold}`;this.pendingGoldRoll=oldGold;this.pendingRerollFlip=this.shelfKind!=='items';}
       else if(action.type==='ReorderJokers'){this.audio.select();this.notice='顺序已保存 · '+(ownedOrderReversed(this.run)?'本关整手从右至左结算':'通常从左至右结算');}
       else if(action.type==='ChooseProgram'||action.type==='AbandonProgram'){this.audio.select();this.notice=programStatus(this.run);}
       else if((action.type==='UseConsumable'||action.type==='DestroyConsumable')&&!result.duplicate){

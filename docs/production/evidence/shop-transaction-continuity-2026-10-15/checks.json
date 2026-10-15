@@ -1,0 +1,78 @@
+{
+  "candidate": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+  "productCommit": "27004423dbd2a1ac7aceda37576e07e0c1613e4f",
+  "sourceSHA256": {
+    "src/game/MakeCardsDialog.ts": "bbb537ea978d32e9246797b6a5e8adb4faf2c2600d9e1aa1649bf48bfb3ebfca",
+    "src/game/ShopScene.ts": "c0a0cb8696cbc542b032db0c84818d7a8dffafc0b28d860750a7363c6c21120a",
+    "src/game/ConsumableDialog.ts": "bfac31f3677aad5ac6a6c0eefecf0b52230adf044254691729467e244cff5e8c",
+    "src/game/GameScene.ts": "25ce1d83ea95f5f2583abff560af8001152041eac6a7af5ae789e138cf83bed0",
+    "src/style.css": "ac73ea1de1db3cdedc7321f5461213c6e5e0b6e807e3af20f997c2499dcbf940",
+    "tests/make-cards-flow.test.ts": "f9181c16bc6d121cea5c6596827fccc11265a7be3a4c7899e0c79d6076a5b1bc"
+  },
+  "protectedObjects": {
+    "src/domain": {
+      "before": "bd1f9b2c5a2b7eb4d143b59a094694b12adc8485",
+      "after": "bd1f9b2c5a2b7eb4d143b59a094694b12adc8485"
+    },
+    "src/application": {
+      "before": "1a325d51795f54526ec9f3f313cceb69763a1971",
+      "after": "1a325d51795f54526ec9f3f313cceb69763a1971"
+    },
+    "src/content": {
+      "before": "e8c3794be5b0fcb74da4aeb9e6adc63c22388345",
+      "after": "e8c3794be5b0fcb74da4aeb9e6adc63c22388345"
+    },
+    "src/audio": {
+      "before": "7f6d2d0dd34313a4099d34cfd36b2baa748f83c2",
+      "after": "7f6d2d0dd34313a4099d34cfd36b2baa748f83c2"
+    },
+    "src/platform": {
+      "before": "1db66e1b48ed188e9b50897e207ca0555d92062b",
+      "after": "1db66e1b48ed188e9b50897e207ca0555d92062b"
+    },
+    "public": {
+      "before": "c4a6ec74e7fd754b0f300b973020f8afed7542e1",
+      "after": "c4a6ec74e7fd754b0f300b973020f8afed7542e1"
+    },
+    "art": {
+      "before": "b0caa33679b84bee932b2854734c04ad39ba0464",
+      "after": "b0caa33679b84bee932b2854734c04ad39ba0464"
+    },
+    ".github": {
+      "before": "b923e03979ce93c9a142628f8b1099e2cd2b9150",
+      "after": "b923e03979ce93c9a142628f8b1099e2cd2b9150"
+    },
+    "src/game/GameScene.ts": {
+      "before": "2fac030c42e419753d40d0ffcd0c8f1d8c1aed75",
+      "after": "2fac030c42e419753d40d0ffcd0c8f1d8c1aed75"
+    },
+    "src/game/ConsumableDialog.ts": {
+      "before": "9640075c3b56e61240b6f26586ab76b66cddbe16",
+      "after": "9640075c3b56e61240b6f26586ab76b66cddbe16"
+    },
+    "src/style.css": {
+      "before": "997c27018c8a175cee2e55a85ac23e739904e30c",
+      "after": "997c27018c8a175cee2e55a85ac23e739904e30c"
+    }
+  },
+  "checks": {
+    "targeted": {
+      "files": 8,
+      "tests": 113,
+      "result": "PASS",
+      "command": "npx vitest run tests/make-cards-flow.test.ts tests/shop-practice-service.test.ts tests/tool-target-directory.test.ts tests/saved-tool-result.test.ts tests/basic-tool-choice.test.ts tests/recovery-save.test.ts tests/c01-enhancement-tools.test.ts tests/tool-change-preview.test.ts"
+    },
+    "build": {
+      "result": "PASS",
+      "command": "npm run build",
+      "warning": "Existing chunk exceeds 500 kB; warning retained"
+    },
+    "plan": {
+      "result": "PASS",
+      "workPackages": 32,
+      "command": "node scripts/check-production-plan.mjs"
+    },
+    "diffCheck": "PASS"
+  },
+  "checkProvenance": "Observed execution outputs recorded by root; tests/build preceded the product commit and its comment-only addition. No fabricated raw logs."
+}
