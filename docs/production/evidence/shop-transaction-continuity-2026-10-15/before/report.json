@@ -1,0 +1,656 @@
+{
+  "head": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+  "modified": false,
+  "baseline": "89a96c432f32814bf6e17c2def8013a15d7303a5",
+  "scope": "Controlled legal current-identity fixture imported via normal menu; actual BuyOffer/UseConsumable and native Chromium IndexedDB. Software CSS viewports/DPR1; short heights reserve 112px for browser bars, not physical browser chrome. No natural acquisition, original user image, device or production acceptance claim.",
+  "cases": [
+    {
+      "spec": {
+        "width": 320,
+        "height": 640
+      },
+      "shots": [
+        "320x640-purchase-first-view.png",
+        "320x640-preview.png",
+        "320x640-sacrifice-selected.png"
+      ],
+      "errors": [],
+      "checks": [
+        "actual purchase saved exactly once; store/use choices retained",
+        "independent donor; 1–2 beneficiaries retained across rank/suit sort/filter; no jump to top",
+        "selection/cancel full state, journal and storage unchanged",
+        "full committed state/RNG/journal/storage equals existing command; no repeat payment/use"
+      ],
+      "initial": {
+        "gold": 30,
+        "commandSeq": 2,
+        "journal": 0
+      },
+      "stockPosition": {
+        "tile": {
+          "x": 36,
+          "y": 340.28125,
+          "width": 248,
+          "height": 134.765625,
+          "top": 340.28125,
+          "right": 284,
+          "bottom": 475.046875,
+          "left": 36
+        },
+        "scroll": {
+          "x": 36,
+          "y": 111.5,
+          "width": 248,
+          "height": 430.5,
+          "top": 111.5,
+          "right": 284,
+          "bottom": 542,
+          "left": 36
+        }
+      },
+      "bought": {
+        "gold": 22,
+        "commandSeq": 3,
+        "journal": 1
+      },
+      "scrollOperations": [
+        {
+          "type": "click",
+          "element": "INPUT",
+          "before": 0,
+          "after": 0,
+          "max": 3637
+        },
+        {
+          "type": "change",
+          "element": "INPUT",
+          "before": 0,
+          "after": 0,
+          "max": 3637
+        },
+        {
+          "type": "click",
+          "element": "INPUT",
+          "before": 2553,
+          "after": 2553,
+          "max": 3637
+        },
+        {
+          "type": "change",
+          "element": "INPUT",
+          "before": 2553,
+          "after": 2553,
+          "max": 3637
+        },
+        {
+          "type": "click",
+          "element": "BUTTON",
+          "before": 1743,
+          "after": 1743,
+          "max": 3637
+        },
+        {
+          "type": "click",
+          "element": "BUTTON",
+          "before": 1743,
+          "after": 1743,
+          "max": 3687
+        },
+        {
+          "type": "change",
+          "element": "SELECT",
+          "before": 1743,
+          "after": 1743,
+          "max": 2140
+        },
+        {
+          "type": "change",
+          "element": "SELECT",
+          "before": 1743,
+          "after": 1743,
+          "max": 3687
+        },
+        {
+          "type": "change",
+          "element": "SELECT",
+          "before": 1743,
+          "after": 1743,
+          "max": 3687
+        },
+        {
+          "type": "change",
+          "element": "SELECT",
+          "before": 1743,
+          "after": 1743,
+          "max": 3687
+        },
+        {
+          "type": "click",
+          "element": "INPUT",
+          "before": 2825,
+          "after": 2825,
+          "max": 3687
+        },
+        {
+          "type": "change",
+          "element": "INPUT",
+          "before": 2825,
+          "after": 2825,
+          "max": 3687
+        },
+        {
+          "type": "click",
+          "element": "INPUT",
+          "before": 2825,
+          "after": 2825,
+          "max": 3687
+        },
+        {
+          "type": "change",
+          "element": "INPUT",
+          "before": 2825,
+          "after": 2825,
+          "max": 3687
+        }
+      ],
+      "targetBudget": {
+        "dialog-header": {
+          "x": 20,
+          "y": 13,
+          "width": 280,
+          "height": 165,
+          "top": 13,
+          "right": 300,
+          "bottom": 178,
+          "left": 20
+        },
+        "tool-workspace": {
+          "x": 20,
+          "y": 178,
+          "width": 280,
+          "height": 384,
+          "top": 178,
+          "right": 300,
+          "bottom": 562,
+          "left": 20
+        },
+        "dialog-actions": {
+          "x": 20,
+          "y": 562,
+          "width": 280,
+          "height": 65,
+          "top": 562,
+          "right": 300,
+          "bottom": 627,
+          "left": 20
+        }
+      },
+      "used": {
+        "gold": 22,
+        "commandSeq": 4,
+        "journal": 2
+      },
+      "result": "PASS"
+    },
+    {
+      "spec": {
+        "width": 390,
+        "height": 640
+      },
+      "shots": [
+        "390x640-purchase-first-view.png",
+        "390x640-preview.png",
+        "390x640-sacrifice-selected.png",
+        "390x640-replacement-risk.png"
+      ],
+      "errors": [],
+      "checks": [
+        "actual purchase saved exactly once; store/use choices retained",
+        "independent donor; 1–2 beneficiaries retained across rank/suit sort/filter; no jump to top",
+        "selection/cancel full state, journal and storage unchanged",
+        "full committed state/RNG/journal/storage equals existing command; no repeat payment/use",
+        "actual buy-to-store only purchases; no use",
+        "enhancement overwrite risk remains beside confirmation; cancel preserves tool and full saved tuple"
+      ],
+      "initial": {
+        "gold": 30,
+        "commandSeq": 2,
+        "journal": 0
+      },
+      "stockPosition": {
+        "tile": {
+          "x": 36,
+          "y": 340.28125,
+          "width": 318,
+          "height": 115.171875,
+          "top": 340.28125,
+          "right": 354,
+          "bottom": 455.453125,
+          "left": 36
+        },
+        "scroll": {
+          "x": 36,
+          "y": 111.5,
+          "width": 318,
+          "height": 430.5,
+          "top": 111.5,
+          "right": 354,
+          "bottom": 542,
+          "left": 36
+        }
+      },
+      "bought": {
+        "gold": 22,
+        "commandSeq": 3,
+        "journal": 1
+      },
+      "scrollOperations": [
+        {
+          "type": "click",
+          "element": "INPUT",
+          "before": 0,
+          "after": 0,
+          "max": 2770
+        },
+        {
+          "type": "change",
+          "element": "INPUT",
+          "before": 0,
+          "after": 0,
+          "max": 2770
+        },
+        {
+          "type": "click",
+          "element": "INPUT",
+          "before": 1918,
+          "after": 1918,
+          "max": 2770
+        },
+        {
+          "type": "change",
+          "element": "INPUT",
+          "before": 1918,
+          "after": 1918,
+          "max": 2770
+        },
+        {
+          "type": "click",
+          "element": "INPUT",
+          "before": 1918,
+          "after": 1918,
+          "max": 2770
+        },
+        {
+          "type": "change",
+          "element": "INPUT",
+          "before": 1918,
+          "after": 1918,
+          "max": 2770
+        },
+        {
+          "type": "click",
+          "element": "BUTTON",
+          "before": 1298,
+          "after": 1298,
+          "max": 2770
+        },
+        {
+          "type": "click",
+          "element": "BUTTON",
+          "before": 1298,
+          "after": 1298,
+          "max": 2845
+        },
+        {
+          "type": "change",
+          "element": "SELECT",
+          "before": 1298,
+          "after": 1298,
+          "max": 1612
+        },
+        {
+          "type": "change",
+          "element": "SELECT",
+          "before": 1298,
+          "after": 1298,
+          "max": 2845
+        },
+        {
+          "type": "change",
+          "element": "SELECT",
+          "before": 1298,
+          "after": 1298,
+          "max": 1982
+        },
+        {
+          "type": "change",
+          "element": "SELECT",
+          "before": 1298,
+          "after": 1298,
+          "max": 2845
+        },
+        {
+          "type": "click",
+          "element": "INPUT",
+          "before": 2083,
+          "after": 2083,
+          "max": 2845
+        },
+        {
+          "type": "change",
+          "element": "INPUT",
+          "before": 2083,
+          "after": 2083,
+          "max": 2845
+        },
+        {
+          "type": "click",
+          "element": "INPUT",
+          "before": 2083,
+          "after": 2083,
+          "max": 2845
+        },
+        {
+          "type": "change",
+          "element": "INPUT",
+          "before": 2083,
+          "after": 2083,
+          "max": 2845
+        }
+      ],
+      "targetBudget": {
+        "dialog-header": {
+          "x": 20,
+          "y": 13,
+          "width": 350,
+          "height": 165,
+          "top": 13,
+          "right": 370,
+          "bottom": 178,
+          "left": 20
+        },
+        "tool-workspace": {
+          "x": 20,
+          "y": 178,
+          "width": 350,
+          "height": 384,
+          "top": 178,
+          "right": 370,
+          "bottom": 562,
+          "left": 20
+        },
+        "dialog-actions": {
+          "x": 20,
+          "y": 562,
+          "width": 350,
+          "height": 65,
+          "top": 562,
+          "right": 370,
+          "bottom": 627,
+          "left": 20
+        }
+      },
+      "used": {
+        "gold": 22,
+        "commandSeq": 4,
+        "journal": 2
+      },
+      "storeBefore": {
+        "gold": 30,
+        "commandSeq": 2,
+        "journal": 0
+      },
+      "stored": {
+        "gold": 22,
+        "commandSeq": 3,
+        "journal": 1
+      },
+      "replacementBefore": {
+        "gold": 30,
+        "commandSeq": 2,
+        "journal": 0
+      },
+      "result": "PASS"
+    },
+    {
+      "spec": {
+        "width": 412,
+        "height": 740
+      },
+      "shots": [
+        "412x740-purchase-first-view.png",
+        "412x740-preview.png",
+        "412x740-sacrifice-selected.png"
+      ],
+      "errors": [],
+      "checks": [
+        "actual purchase saved exactly once; store/use choices retained",
+        "independent donor; 1–2 beneficiaries retained across rank/suit sort/filter; no jump to top",
+        "selection/cancel full state, journal and storage unchanged",
+        "full committed state/RNG/journal/storage equals existing command; no repeat payment/use"
+      ],
+      "initial": {
+        "gold": 30,
+        "commandSeq": 2,
+        "journal": 0
+      },
+      "stockPosition": {
+        "tile": {
+          "x": 36,
+          "y": 340.28125,
+          "width": 340,
+          "height": 115.171875,
+          "top": 340.28125,
+          "right": 376,
+          "bottom": 455.453125,
+          "left": 36
+        },
+        "scroll": {
+          "x": 36,
+          "y": 111.5,
+          "width": 340,
+          "height": 530.5,
+          "top": 111.5,
+          "right": 376,
+          "bottom": 642,
+          "left": 36
+        }
+      },
+      "bought": {
+        "gold": 22,
+        "commandSeq": 3,
+        "journal": 1
+      },
+      "scrollOperations": [
+        {
+          "type": "click",
+          "element": "INPUT",
+          "before": 0,
+          "after": 0,
+          "max": 2641
+        },
+        {
+          "type": "change",
+          "element": "INPUT",
+          "before": 0,
+          "after": 0,
+          "max": 2641
+        },
+        {
+          "type": "click",
+          "element": "INPUT",
+          "before": 1854,
+          "after": 1854,
+          "max": 2641
+        },
+        {
+          "type": "change",
+          "element": "INPUT",
+          "before": 1854,
+          "after": 1854,
+          "max": 2641
+        },
+        {
+          "type": "click",
+          "element": "INPUT",
+          "before": 1854,
+          "after": 1854,
+          "max": 2641
+        },
+        {
+          "type": "change",
+          "element": "INPUT",
+          "before": 1854,
+          "after": 1854,
+          "max": 2641
+        },
+        {
+          "type": "click",
+          "element": "BUTTON",
+          "before": 1233,
+          "after": 1233,
+          "max": 2641
+        },
+        {
+          "type": "click",
+          "element": "BUTTON",
+          "before": 1233,
+          "after": 1233,
+          "max": 2717
+        },
+        {
+          "type": "change",
+          "element": "SELECT",
+          "before": 1233,
+          "after": 1233,
+          "max": 1498
+        },
+        {
+          "type": "change",
+          "element": "SELECT",
+          "before": 1233,
+          "after": 1233,
+          "max": 2717
+        },
+        {
+          "type": "change",
+          "element": "SELECT",
+          "before": 1233,
+          "after": 1233,
+          "max": 1853
+        },
+        {
+          "type": "change",
+          "element": "SELECT",
+          "before": 1233,
+          "after": 1233,
+          "max": 2717
+        },
+        {
+          "type": "click",
+          "element": "INPUT",
+          "before": 2019,
+          "after": 2019,
+          "max": 2717
+        },
+        {
+          "type": "change",
+          "element": "INPUT",
+          "before": 2019,
+          "after": 2019,
+          "max": 2717
+        },
+        {
+          "type": "click",
+          "element": "INPUT",
+          "before": 2019,
+          "after": 2019,
+          "max": 2717
+        },
+        {
+          "type": "change",
+          "element": "INPUT",
+          "before": 2019,
+          "after": 2019,
+          "max": 2717
+        }
+      ],
+      "targetBudget": {
+        "dialog-header": {
+          "x": 20,
+          "y": 13,
+          "width": 372,
+          "height": 165,
+          "top": 13,
+          "right": 392,
+          "bottom": 178,
+          "left": 20
+        },
+        "tool-workspace": {
+          "x": 20,
+          "y": 178,
+          "width": 372,
+          "height": 484,
+          "top": 178,
+          "right": 392,
+          "bottom": 662,
+          "left": 20
+        },
+        "dialog-actions": {
+          "x": 20,
+          "y": 662,
+          "width": 372,
+          "height": 65,
+          "top": 662,
+          "right": 392,
+          "bottom": 727,
+          "left": 20
+        }
+      },
+      "used": {
+        "gold": 22,
+        "commandSeq": 4,
+        "journal": 2
+      },
+      "result": "PASS"
+    },
+    {
+      "spec": {
+        "width": 320,
+        "height": 528
+      },
+      "shots": [],
+      "errors": [],
+      "checks": [],
+      "initial": {
+        "gold": 30,
+        "commandSeq": 2,
+        "journal": 0
+      },
+      "stockPosition": {
+        "tile": {
+          "x": 36,
+          "y": 340.28125,
+          "width": 248,
+          "height": 134.765625,
+          "top": 340.28125,
+          "right": 284,
+          "bottom": 475.046875,
+          "left": 36
+        },
+        "scroll": {
+          "x": 36,
+          "y": 111.5,
+          "width": 248,
+          "height": 318.5,
+          "top": 111.5,
+          "right": 284,
+          "bottom": 430,
+          "left": 36
+        }
+      }
+    }
+  ],
+  "result": "FAIL",
+  "error": "AssertionError [ERR_ASSERTION]: entire random stock tile visible on first screen\n    at file:///workspace/dachoupai/harness/mobile-tool-workspace.mjs:38:10"
+}

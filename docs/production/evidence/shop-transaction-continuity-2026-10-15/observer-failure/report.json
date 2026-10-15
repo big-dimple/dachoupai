@@ -1,0 +1,109 @@
+{
+  "head": "27004423dbd2a1ac7aceda37576e07e0c1613e4f",
+  "originalCandidate": "4d2ff4ca",
+  "modified": "?? docs/production/evidence/shop-transaction-continuity-2026-10-15/\n?? harness/shop-transaction-continuity.mjs",
+  "sourceBefore": {
+    "src/game/MakeCardsDialog.ts": "bbb537ea978d32e9246797b6a5e8adb4faf2c2600d9e1aa1649bf48bfb3ebfca",
+    "src/game/ShopScene.ts": "c0a0cb8696cbc542b032db0c84818d7a8dffafc0b28d860750a7363c6c21120a",
+    "src/game/ConsumableDialog.ts": "bfac31f3677aad5ac6a6c0eefecf0b52230adf044254691729467e244cff5e8c",
+    "src/style.css": "ac73ea1de1db3cdedc7321f5461213c6e5e0b6e807e3af20f997c2499dcbf940",
+    "harness/shop-transaction-continuity.mjs": "841e5292413b8eef907142080942525fb2322c73cf9e41c493cb1b717eece498"
+  },
+  "scope": "Validator-approved controlled current-identity fixtures. Native Chromium mouse/touch, CSS viewports DPR1, IndexedDB quota injection. No natural acquisition, physical device, balance, deployment or production acceptance claim.",
+  "cases": [
+    {
+      "spec": {
+        "width": 1366,
+        "height": 768
+      },
+      "purchaseFailure": false,
+      "shots": [
+        "1366x768-direct-first-stock.png",
+        "1366x768-direct-cancel-restored.png",
+        "1366x768-direct-stored-context.png"
+      ],
+      "checks": [],
+      "transactions": [
+        {
+          "command": {
+            "runId": "controlled/transaction-continuity",
+            "commandId": "controlled/transaction-continuity/command/3",
+            "expectedSeq": 2,
+            "action": {
+              "type": "BuyBasicTool",
+              "definitionId": "T11",
+              "shopSeq": 1
+            }
+          },
+          "beforeSeq": 2,
+          "afterSeq": 3
+        }
+      ],
+      "errors": [],
+      "initial": {
+        "seq": 2,
+        "gold": 40
+      },
+      "stock": {
+        "tile": {
+          "x": 390,
+          "y": 155.5,
+          "width": 268.65625,
+          "height": 111.171875,
+          "top": 155.5,
+          "right": 658.65625,
+          "bottom": 266.671875,
+          "left": 390
+        },
+        "viewport": {
+          "x": 150,
+          "y": 117.5,
+          "width": 1066,
+          "height": 546.5,
+          "top": 117.5,
+          "right": 1216,
+          "bottom": 664,
+          "left": 150
+        }
+      },
+      "cancelBefore": {
+        "pane": "purchase",
+        "scroll": 419,
+        "max": 419,
+        "focus": "T11"
+      },
+      "cancelAfter": {
+        "pane": "purchase",
+        "scroll": 419,
+        "max": 419,
+        "focus": "T11"
+      },
+      "purchaseBefore": {
+        "pane": "purchase",
+        "scroll": 419,
+        "max": 419,
+        "focus": "T11"
+      },
+      "bought": {
+        "seq": 3,
+        "gold": 38
+      },
+      "purchaseAfter": {
+        "pane": "purchase",
+        "scroll": 165,
+        "max": 165,
+        "focus": null
+      }
+    }
+  ],
+  "result": "FAIL",
+  "error": "page.waitForFunction: Timeout 20000ms exceeded.\n    at point (/workspace/dachoupai/harness/ui.mjs:5:14)\n    at tapUI (/workspace/dachoupai/harness/ui.mjs:25:17)\n    at /workspace/dachoupai/harness/shop-transaction-continuity.mjs:38:22",
+  "sourceAfter": {
+    "src/game/MakeCardsDialog.ts": "bbb537ea978d32e9246797b6a5e8adb4faf2c2600d9e1aa1649bf48bfb3ebfca",
+    "src/game/ShopScene.ts": "c0a0cb8696cbc542b032db0c84818d7a8dffafc0b28d860750a7363c6c21120a",
+    "src/game/ConsumableDialog.ts": "bfac31f3677aad5ac6a6c0eefecf0b52230adf044254691729467e244cff5e8c",
+    "src/style.css": "ac73ea1de1db3cdedc7321f5461213c6e5e0b6e807e3af20f997c2499dcbf940",
+    "harness/shop-transaction-continuity.mjs": "27c3aedf736c9b4a1701103a53f9c0c2d21de8bd7bdb12475a64aef6c808aa5d"
+  },
+  "sourceStable": false
+}
