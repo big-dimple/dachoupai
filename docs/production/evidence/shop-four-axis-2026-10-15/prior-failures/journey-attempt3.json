@@ -1,0 +1,498 @@
+{
+  "head": "4a52fd0b0fb9ac0a49b8cb5e79abc8db4326e2d7",
+  "sourceTree": "29879994a072a14f5a7261e698d425eeab54b764",
+  "modified": "M harness/card-value-visual.mjs\n M src/game/ShopCardValueVisual.ts\n M src/game/ShopComparisonDialog.ts\n M src/game/ShopJokerPresentation.ts\n M src/game/ShopScene.ts\n M src/style.css\n M tests/shop-card-journey.test.ts\n M tests/shop-card-value-visual.test.ts\n?? harness/shop-four-axis-journey.mjs",
+  "beforeMode": false,
+  "scope": "Controlled current-identity full shop chain, native browser mouse/touch/DOM. Public fixtures, no natural acquisition or physical device/human acceptance.",
+  "cases": [
+    {
+      "width": 1366,
+      "height": 768,
+      "shots": [
+        "1366x768-combo-partner-missing.png",
+        "1366x768-combo-partner-present.png",
+        "1366x768-shop.png",
+        "1366x768-purchase-b10.png",
+        "1366x768-purchase-e08.png",
+        "1366x768-purchase-f06.png",
+        "1366x768-shelf-reviewed.png",
+        "1366x768-purchase-first.png",
+        "1366x768-compare-first.png",
+        "1366x768-compare-fifth.png",
+        "1366x768-held-fifth.png",
+        "1366x768-compare-return.png",
+        "1366x768-sale-confirm.png",
+        "1366x768-buy-after-sale.png",
+        "1366x768-purchase-save-failure.png",
+        "1366x768-replacement-saved.png",
+        "1366x768-tools-stock.png",
+        "1366x768-tool-purchase.png",
+        "1366x768-tool-stored.png",
+        "1366x768-tool-target.png",
+        "1366x768-tool-cancel-kept.png",
+        "1366x768-tool-used.png",
+        "1366x768-returned-stock.png",
+        "1366x768-quick-use-target.png",
+        "1366x768-use-save-failure.png",
+        "1366x768-use-save-retried.png"
+      ],
+      "checks": [
+        "real candidate and five slots show original art, explicit real stars, price and losses; compare return restores fifth slot",
+        "held close and Escape both restore comparison fifth-slot scroll/focus without commands",
+        "purchase quota failure preserves complete state/journal/storage; retry saves one original BuyOffer",
+        "sale cancel returns to same held card; explicit sell then buy remain separate original saved transactions",
+        "store returns to stock; owned target cancel preserves paid item; explicit use returns to inventory/stock with same context",
+        "basic quick-use purchase enters original target selector; cancel keeps inventory and stock scroll",
+        "quota failure publishes no new state; retry saves exactly the original use and restores continuation",
+        "complete cold restored state/journal/IDB equals final saved chain"
+      ],
+      "errors": [],
+      "transactions": [
+        {
+          "action": {
+            "type": "SellJoker",
+            "instanceId": "journey-held/4"
+          },
+          "beforeSeq": 4,
+          "afterSeq": 5
+        },
+        {
+          "action": {
+            "type": "BuyOffer",
+            "offerId": "journey-offer/0"
+          },
+          "beforeSeq": 5,
+          "afterSeq": 6
+        },
+        {
+          "action": {
+            "type": "BuyOffer",
+            "offerId": "journey/tool/0"
+          },
+          "beforeSeq": 6,
+          "afterSeq": 7
+        },
+        {
+          "action": {
+            "type": "UseConsumable",
+            "instanceId": "shop-four-axis-journey/tool/shop-four-axis-journey/command/7",
+            "targetIds": [
+              "hearts-9"
+            ]
+          },
+          "beforeSeq": 7,
+          "afterSeq": 8
+        },
+        {
+          "action": {
+            "type": "BuyBasicTool",
+            "definitionId": "T11",
+            "shopSeq": 4
+          },
+          "beforeSeq": 8,
+          "afterSeq": 9
+        },
+        {
+          "action": {
+            "type": "UseConsumable",
+            "instanceId": "shop-four-axis-journey/tool/shop-four-axis-journey/command/9",
+            "targetIds": [
+              "clubs-9"
+            ]
+          },
+          "beforeSeq": 9,
+          "afterSeq": 10
+        }
+      ],
+      "combinations": [
+        {
+          "partnered": false,
+          "expected": "组合潜力：尚缺可用重触来源。\n组合记录：尚无两张现持牌共同计分。",
+          "text": "待买 · 回声越来越近\n◆ 特别\n版次 · 普通\n实付 6 金\n推荐指数\n\n尚缺重触来源 · 新购成长为0\n\n组合潜力：尚缺可用重触来源。\n\n已持 5/5 · 选一槽查看出售损失"
+        },
+        {
+          "partnered": true,
+          "expected": "组合潜力：已有重触来源，成长待触发。\n组合记录：尚无两张现持牌共同计分。",
+          "text": "待买 · 回声越来越近\n◆ 特别\n版次 · 普通\n实付 6 金\n推荐指数\n\n重触后长倍率 · 需实际额外重触\n\n组合潜力：已有重触来源，成长待触发。\n\n已持 5/5 · 选一槽查看出售损失"
+        }
+      ],
+      "initial": {
+        "seq": 4,
+        "revision": 3
+      },
+      "last": {
+        "seq": 10,
+        "revision": 9
+      },
+      "axisExamples": [
+        {
+          "definitionId": "b10",
+          "rarity": "common",
+          "edition": "普通",
+          "stars": 4,
+          "text": "现货 · 确认后付款\n练对子 · 购买详情\n\n适用：同点\n\n● 普通\n● 普通\n版次 · 普通\n推荐指数\n\n持续长热度 · 成组后增长 · 下手生效\n\n组合条件：未列专属组合，仍需满足卡牌自身条件。\n\n直接买入 · 实付 4 金 · 余额 40 → 36 金\n5个槽位已满。请先关闭详情，点随身牌确认出售，再购买。\n\n对子等同点组合出牌后 → 热度成长最多+10；上限100，新增下次用\n本次出牌使用旧值；新成长从下一次出牌起生效，每次出牌只长一次，额外计分不会多长。\n普通顺子、普通同花不增长。\n未购买；新购保存热度+0\n\n版次：普通（无额外计分）\n\n规则与操作\n比较替换\n邀请 · 4 金\n取消"
+        },
+        {
+          "definitionId": "e08",
+          "rarity": "rare",
+          "edition": "普通",
+          "stars": 2,
+          "text": "现货 · 确认后付款\n包场 · 购买详情\n\n适用：同点/顺子/同花\n\n✦ 稀有\n✦ 稀有\n版次 · 普通\n推荐指数\n\n替换待核 · 先指定替换对象，再核20金\n\n组合条件：未列专属组合，仍需满足卡牌自身条件。\n\n直接买入 · 实付 8 金 · 余额 40 → 32 金\n5个槽位已满。请先关闭详情，点随身牌确认出售，再购买。\n\n出牌前≥20金 → 每手一次，倍率×1.8\n按出牌开始时的金币判断，不花费金币。\n现在40金 · 金币条件目前够；未购，买后重查\n\n版次：普通（无额外计分）\n\n规则与操作\n比较替换\n邀请 · 8 金\n取消"
+        },
+        {
+          "definitionId": "f06",
+          "rarity": "rare",
+          "edition": "闪箔",
+          "stars": 2,
+          "text": "现货 · 确认后付款\n一次性招牌 · 购买详情\n\n适用：同点/顺子/同花\n\n✦ 稀有\n✦ 稀有\n版次 · 闪箔\n推荐指数\n\n限4次 · 第4次出牌后销毁\n\n组合条件：未列专属组合，仍需满足卡牌自身条件。\n\n直接买入 · 实付 10 金 · 余额 40 → 30 金\n5个槽位已满。请先关闭详情，点随身牌确认出售，再购买。\n\n出牌时生效 · 出牌结算后更新\n\n本牌共可用 4 手\n\n本次出牌的倍率 ×2\n最后一手结算后消失\n最后一手仍有加成。\n计分加成暂停时仍扣剩余手数\n换场不重置。\n现在：尚未购买，买入后才会生效\n\n版次：闪箔（热度+25） · 独立于本体条件\n\n规则与操作\n比较替换\n邀请 · 10 金\n取消"
+        }
+      ],
+      "compare": {
+        "candidateImages": 1,
+        "stars": 30,
+        "slots": 5,
+        "text": "现货与已持\n比较替换 · 金币 40\n待买 · 练对子\n● 普通\n版次 · 普通\n实付 4 金\n推荐指数\n\n持续长热度 · 成组后增长 · 下手生效\n\n组合条件：未列专属组合，仍需满足卡牌自身条件。\n\n已持 5/5 · 选一槽查看出售损失\n\n第 1 槽 · 满堂彩\n● 普通\n版次 · 普通\n\n返4金 · 实付4金 · 买后40金\n\n换此槽后的推荐\n\n持续长热度 · 成组后增长 · 下手生效\n\n组合条件：未列专属组合，仍需满足卡牌自身条件。\n\n管理这张\n条件、配合与完整损失\n第 2 槽 · 老搭档\n◆ 特别\n版次 · 普通\n\n返4金 · 实付4金 · 买后40金\n\n换此槽后的推荐\n\n持续长热度 · 成组后增长 · 下手生效\n\n组合条件：未列专属组合，仍需满足卡牌自身条件。\n\n管理这张\n条件、配合与完整损失\n第 3 槽 · 小费盒\n● 普通\n版次 · 普通\n\n返4金 · 实付4金 · 买后40金\n\n换此槽后的推荐\n\n持续长热度 · 成组后增长 · 下手生效\n\n组合条件：未列专属组合，仍需满足卡牌自身条件。\n\n管理这张\n条件、配合与完整损失\n第 4 槽 · 滚个零头\n◆ 特别\n版次 · 普通\n\n返4金 · 实付4金 · 买后40金\n\n换此槽后的推荐\n\n持续长热度 · 成组后增长 · 下手生效\n\n组合条件：未列专属组合，仍需满足卡牌自身条件。\n\n管理这张\n条件、配合与完整损失\n第 5 槽 · 少一级\n◆ 特别\n版次 · 闪箔\n\n返4金 · 实付4金 · 买后40金\n\n失去：闪箔（热度+25）\n\n换此槽后的推荐\n\n持续长热度 · 成组后增长 · 下手生效\n\n组合条件：未列专属组合，仍需满足卡牌自身条件。\n\n管理这张\n条件、配合与完整损失\n返回购买详情\n更换培养方向\n返回现货"
+      },
+      "compareScroll": 517,
+      "dispatches": [
+        {
+          "type": "SellJoker",
+          "instanceId": "journey-held/4"
+        },
+        {
+          "type": "BuyOffer",
+          "offerId": "journey-offer/0"
+        },
+        {
+          "type": "BuyOffer",
+          "offerId": "journey/tool/0"
+        },
+        {
+          "type": "UseConsumable",
+          "instanceId": "shop-four-axis-journey/tool/shop-four-axis-journey/command/7",
+          "targetIds": [
+            "hearts-9"
+          ]
+        },
+        {
+          "type": "BuyBasicTool",
+          "definitionId": "T11",
+          "shopSeq": 4
+        },
+        {
+          "type": "UseConsumable",
+          "instanceId": "shop-four-axis-journey/tool/shop-four-axis-journey/command/9",
+          "targetIds": [
+            "clubs-9"
+          ]
+        }
+      ],
+      "final": {
+        "seq": 10,
+        "revision": 9
+      },
+      "status": "PASS"
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "shots": [
+        "390x844-combo-partner-missing.png",
+        "390x844-combo-partner-present.png",
+        "390x844-shop.png",
+        "390x844-purchase-b10.png",
+        "390x844-purchase-e08.png",
+        "390x844-purchase-f06.png",
+        "390x844-shelf-reviewed.png",
+        "390x844-purchase-first.png",
+        "390x844-compare-first.png",
+        "390x844-compare-fifth.png",
+        "390x844-held-fifth.png",
+        "390x844-compare-return.png",
+        "390x844-sale-confirm.png",
+        "390x844-buy-after-sale.png",
+        "390x844-purchase-save-failure.png",
+        "390x844-replacement-saved.png",
+        "390x844-tools-stock.png",
+        "390x844-tool-purchase.png",
+        "390x844-tool-stored.png",
+        "390x844-tool-target.png",
+        "390x844-tool-cancel-kept.png",
+        "390x844-tool-used.png",
+        "390x844-returned-stock.png",
+        "390x844-quick-use-target.png",
+        "390x844-use-save-failure.png",
+        "390x844-use-save-retried.png"
+      ],
+      "checks": [
+        "native touch scroll over comparison stays browser owned",
+        "real candidate and five slots show original art, explicit real stars, price and losses; compare return restores fifth slot",
+        "held close and Escape both restore comparison fifth-slot scroll/focus without commands",
+        "purchase quota failure preserves complete state/journal/storage; retry saves one original BuyOffer",
+        "sale cancel returns to same held card; explicit sell then buy remain separate original saved transactions",
+        "store returns to stock; owned target cancel preserves paid item; explicit use returns to inventory/stock with same context",
+        "basic quick-use purchase enters original target selector; cancel keeps inventory and stock scroll",
+        "quota failure publishes no new state; retry saves exactly the original use and restores continuation",
+        "complete cold restored state/journal/IDB equals final saved chain"
+      ],
+      "errors": [],
+      "transactions": [
+        {
+          "action": {
+            "type": "SellJoker",
+            "instanceId": "journey-held/4"
+          },
+          "beforeSeq": 4,
+          "afterSeq": 5
+        },
+        {
+          "action": {
+            "type": "BuyOffer",
+            "offerId": "journey-offer/0"
+          },
+          "beforeSeq": 5,
+          "afterSeq": 6
+        },
+        {
+          "action": {
+            "type": "BuyOffer",
+            "offerId": "journey/tool/0"
+          },
+          "beforeSeq": 6,
+          "afterSeq": 7
+        },
+        {
+          "action": {
+            "type": "UseConsumable",
+            "instanceId": "shop-four-axis-journey/tool/shop-four-axis-journey/command/7",
+            "targetIds": [
+              "hearts-9"
+            ]
+          },
+          "beforeSeq": 7,
+          "afterSeq": 8
+        },
+        {
+          "action": {
+            "type": "BuyBasicTool",
+            "definitionId": "T11",
+            "shopSeq": 4
+          },
+          "beforeSeq": 8,
+          "afterSeq": 9
+        },
+        {
+          "action": {
+            "type": "UseConsumable",
+            "instanceId": "shop-four-axis-journey/tool/shop-four-axis-journey/command/9",
+            "targetIds": [
+              "clubs-9"
+            ]
+          },
+          "beforeSeq": 9,
+          "afterSeq": 10
+        }
+      ],
+      "combinations": [
+        {
+          "partnered": false,
+          "expected": "组合潜力：尚缺可用重触来源。\n组合记录：尚无两张现持牌共同计分。",
+          "text": "待买 · 回声越来越近\n◆ 特别\n版次 · 普通\n实付 6 金\n推荐指数\n\n尚缺重触来源 · 新购成长为0\n\n组合潜力：尚缺可用重触来源。\n\n已持 5/5 · 选一槽查看出售损失"
+        },
+        {
+          "partnered": true,
+          "expected": "组合潜力：已有重触来源，成长待触发。\n组合记录：尚无两张现持牌共同计分。",
+          "text": "待买 · 回声越来越近\n◆ 特别\n版次 · 普通\n实付 6 金\n推荐指数\n\n重触后长倍率 · 需实际额外重触\n\n组合潜力：已有重触来源，成长待触发。\n\n已持 5/5 · 选一槽查看出售损失"
+        }
+      ],
+      "initial": {
+        "seq": 4,
+        "revision": 3
+      },
+      "last": {
+        "seq": 10,
+        "revision": 9
+      },
+      "axisExamples": [
+        {
+          "definitionId": "b10",
+          "rarity": "common",
+          "edition": "普通",
+          "stars": 4,
+          "text": "现货 · 确认后付款\n练对子 · 购买详情\n\n适用：同点\n\n● 普通\n● 普通\n版次 · 普通\n推荐指数\n\n持续长热度 · 成组后增长 · 下手生效\n\n组合条件：未列专属组合，仍需满足卡牌自身条件。\n\n直接买入 · 实付 4 金 · 余额 40 → 36 金\n5个槽位已满。请先关闭详情，点随身牌确认出售，再购买。\n\n对子等同点组合出牌后 → 热度成长最多+10；上限100，新增下次用\n本次出牌使用旧值；新成长从下一次出牌起生效，每次出牌只长一次，额外计分不会多长。\n普通顺子、普通同花不增长。\n未购买；新购保存热度+0\n\n版次：普通（无额外计分）\n\n规则与操作\n比较替换\n邀请 · 4 金\n取消"
+        },
+        {
+          "definitionId": "e08",
+          "rarity": "rare",
+          "edition": "普通",
+          "stars": 2,
+          "text": "现货 · 确认后付款\n包场 · 购买详情\n\n适用：同点/顺子/同花\n\n✦ 稀有\n✦ 稀有\n版次 · 普通\n推荐指数\n\n替换待核 · 先指定替换对象，再核20金\n\n组合条件：未列专属组合，仍需满足卡牌自身条件。\n\n直接买入 · 实付 8 金 · 余额 40 → 32 金\n5个槽位已满。请先关闭详情，点随身牌确认出售，再购买。\n\n出牌前≥20金 → 每手一次，倍率×1.8\n按出牌开始时的金币判断，不花费金币。\n现在40金 · 金币条件目前够；未购，买后重查\n\n版次：普通（无额外计分）\n\n规则与操作\n比较替换\n邀请 · 8 金\n取消"
+        },
+        {
+          "definitionId": "f06",
+          "rarity": "rare",
+          "edition": "闪箔",
+          "stars": 2,
+          "text": "现货 · 确认后付款\n一次性招牌 · 购买详情\n\n适用：同点/顺子/同花\n\n✦ 稀有\n✦ 稀有\n版次 · 闪箔\n推荐指数\n\n限4次 · 第4次出牌后销毁\n\n组合条件：未列专属组合，仍需满足卡牌自身条件。\n\n直接买入 · 实付 10 金 · 余额 40 → 30 金\n5个槽位已满。请先关闭详情，点随身牌确认出售，再购买。\n\n出牌时生效 · 出牌结算后更新\n\n本牌共可用 4 手\n\n本次出牌的倍率 ×2\n最后一手结算后消失\n最后一手仍有加成。\n计分加成暂停时仍扣剩余手数\n换场不重置。\n现在：尚未购买，买入后才会生效\n\n版次：闪箔（热度+25） · 独立于本体条件\n\n规则与操作\n比较替换\n邀请 · 10 金\n取消"
+        }
+      ],
+      "compare": {
+        "candidateImages": 1,
+        "stars": 30,
+        "slots": 5,
+        "text": "现货与已持\n比较替换 · 金币 40\n待买 · 练对子\n● 普通\n版次 · 普通\n实付 4 金\n推荐指数\n\n持续长热度 · 成组后增长 · 下手生效\n\n组合条件：未列专属组合，仍需满足卡牌自身条件。\n\n已持 5/5 · 选一槽查看出售损失\n\n第 1 槽 · 满堂彩\n● 普通\n版次 · 普通\n\n返4金 · 实付4金 · 买后40金\n\n换此槽后的推荐\n\n持续长热度 · 成组后增长 · 下手生效\n\n组合条件：未列专属组合，仍需满足卡牌自身条件。\n\n管理这张\n条件、配合与完整损失\n第 2 槽 · 老搭档\n◆ 特别\n版次 · 普通\n\n返4金 · 实付4金 · 买后40金\n\n换此槽后的推荐\n\n持续长热度 · 成组后增长 · 下手生效\n\n组合条件：未列专属组合，仍需满足卡牌自身条件。\n\n管理这张\n条件、配合与完整损失\n第 3 槽 · 小费盒\n● 普通\n版次 · 普通\n\n返4金 · 实付4金 · 买后40金\n\n换此槽后的推荐\n\n持续长热度 · 成组后增长 · 下手生效\n\n组合条件：未列专属组合，仍需满足卡牌自身条件。\n\n管理这张\n条件、配合与完整损失\n第 4 槽 · 滚个零头\n◆ 特别\n版次 · 普通\n\n返4金 · 实付4金 · 买后40金\n\n换此槽后的推荐\n\n持续长热度 · 成组后增长 · 下手生效\n\n组合条件：未列专属组合，仍需满足卡牌自身条件。\n\n管理这张\n条件、配合与完整损失\n第 5 槽 · 少一级\n◆ 特别\n版次 · 闪箔\n\n返4金 · 实付4金 · 买后40金\n\n失去：闪箔（热度+25）\n\n换此槽后的推荐\n\n持续长热度 · 成组后增长 · 下手生效\n\n组合条件：未列专属组合，仍需满足卡牌自身条件。\n\n管理这张\n条件、配合与完整损失\n返回购买详情\n更换培养方向\n返回现货"
+      },
+      "compareScroll": 1571,
+      "dispatches": [
+        {
+          "type": "SellJoker",
+          "instanceId": "journey-held/4"
+        },
+        {
+          "type": "BuyOffer",
+          "offerId": "journey-offer/0"
+        },
+        {
+          "type": "BuyOffer",
+          "offerId": "journey/tool/0"
+        },
+        {
+          "type": "UseConsumable",
+          "instanceId": "shop-four-axis-journey/tool/shop-four-axis-journey/command/7",
+          "targetIds": [
+            "hearts-9"
+          ]
+        },
+        {
+          "type": "BuyBasicTool",
+          "definitionId": "T11",
+          "shopSeq": 4
+        },
+        {
+          "type": "UseConsumable",
+          "instanceId": "shop-four-axis-journey/tool/shop-four-axis-journey/command/9",
+          "targetIds": [
+            "clubs-9"
+          ]
+        }
+      ],
+      "final": {
+        "seq": 10,
+        "revision": 9
+      },
+      "status": "PASS"
+    },
+    {
+      "width": 320,
+      "height": 568,
+      "shots": [
+        "320x568-combo-partner-missing.png",
+        "320x568-combo-partner-present.png",
+        "320x568-shop.png",
+        "320x568-purchase-b10.png",
+        "320x568-purchase-e08.png",
+        "320x568-purchase-f06.png",
+        "320x568-shelf-reviewed.png",
+        "320x568-purchase-first.png",
+        "320x568-compare-first.png",
+        "320x568-compare-fifth.png",
+        "320x568-held-fifth.png",
+        "320x568-compare-return.png",
+        "320x568-sale-confirm.png",
+        "320x568-buy-after-sale.png",
+        "320x568-purchase-save-failure.png",
+        "320x568-replacement-saved.png",
+        "320x568-tools-stock.png",
+        "320x568-tool-purchase.png",
+        "320x568-tool-stored.png"
+      ],
+      "checks": [
+        "native touch scroll over comparison stays browser owned",
+        "real candidate and five slots show original art, explicit real stars, price and losses; compare return restores fifth slot",
+        "held close and Escape both restore comparison fifth-slot scroll/focus without commands",
+        "purchase quota failure preserves complete state/journal/storage; retry saves one original BuyOffer",
+        "sale cancel returns to same held card; explicit sell then buy remain separate original saved transactions"
+      ],
+      "errors": [],
+      "transactions": [
+        {
+          "action": {
+            "type": "SellJoker",
+            "instanceId": "journey-held/4"
+          },
+          "beforeSeq": 4,
+          "afterSeq": 5
+        },
+        {
+          "action": {
+            "type": "BuyOffer",
+            "offerId": "journey-offer/0"
+          },
+          "beforeSeq": 5,
+          "afterSeq": 6
+        },
+        {
+          "action": {
+            "type": "BuyOffer",
+            "offerId": "journey/tool/0"
+          },
+          "beforeSeq": 6,
+          "afterSeq": 7
+        }
+      ],
+      "combinations": [
+        {
+          "partnered": false,
+          "expected": "组合潜力：尚缺可用重触来源。\n组合记录：尚无两张现持牌共同计分。",
+          "text": "待买 · 回声越来越近\n◆ 特别\n版次 · 普通\n实付 6 金\n推荐指数\n\n尚缺重触来源 · 新购成长为0\n\n组合潜力：尚缺可用重触来源。\n\n已持 5/5 · 选一槽查看出售损失"
+        },
+        {
+          "partnered": true,
+          "expected": "组合潜力：已有重触来源，成长待触发。\n组合记录：尚无两张现持牌共同计分。",
+          "text": "待买 · 回声越来越近\n◆ 特别\n版次 · 普通\n实付 6 金\n推荐指数\n\n重触后长倍率 · 需实际额外重触\n\n组合潜力：已有重触来源，成长待触发。\n\n已持 5/5 · 选一槽查看出售损失"
+        }
+      ],
+      "initial": {
+        "seq": 4,
+        "revision": 3
+      },
+      "last": {
+        "seq": 7,
+        "revision": 6
+      },
+      "axisExamples": [
+        {
+          "definitionId": "b10",
+          "rarity": "common",
+          "edition": "普通",
+          "stars": 4,
+          "text": "现货 · 确认后付款\n练对子 · 购买详情\n\n适用：同点\n\n● 普通\n● 普通\n版次 · 普通\n推荐指数\n\n持续长热度 · 成组后增长 · 下手生效\n\n组合条件：未列专属组合，仍需满足卡牌自身条件。\n\n直接买入 · 实付 4 金 · 余额 40 → 36 金\n5个槽位已满。请先关闭详情，点随身牌确认出售，再购买。\n\n对子等同点组合出牌后 → 热度成长最多+10；上限100，新增下次用\n本次出牌使用旧值；新成长从下一次出牌起生效，每次出牌只长一次，额外计分不会多长。\n普通顺子、普通同花不增长。\n未购买；新购保存热度+0\n\n版次：普通（无额外计分）\n\n规则与操作\n比较替换\n邀请 · 4 金\n取消"
+        },
+        {
+          "definitionId": "e08",
+          "rarity": "rare",
+          "edition": "普通",
+          "stars": 2,
+          "text": "现货 · 确认后付款\n包场 · 购买详情\n\n适用：同点/顺子/同花\n\n✦ 稀有\n✦ 稀有\n版次 · 普通\n推荐指数\n\n替换待核 · 先指定替换对象，再核20金\n\n组合条件：未列专属组合，仍需满足卡牌自身条件。\n\n直接买入 · 实付 8 金 · 余额 40 → 32 金\n5个槽位已满。请先关闭详情，点随身牌确认出售，再购买。\n\n出牌前≥20金 → 每手一次，倍率×1.8\n按出牌开始时的金币判断，不花费金币。\n现在40金 · 金币条件目前够；未购，买后重查\n\n版次：普通（无额外计分）\n\n规则与操作\n比较替换\n邀请 · 8 金\n取消"
+        },
+        {
+          "definitionId": "f06",
+          "rarity": "rare",
+          "edition": "闪箔",
+          "stars": 2,
+          "text": "现货 · 确认后付款\n一次性招牌 · 购买详情\n\n适用：同点/顺子/同花\n\n✦ 稀有\n✦ 稀有\n版次 · 闪箔\n推荐指数\n\n限4次 · 第4次出牌后销毁\n\n组合条件：未列专属组合，仍需满足卡牌自身条件。\n\n直接买入 · 实付 10 金 · 余额 40 → 30 金\n5个槽位已满。请先关闭详情，点随身牌确认出售，再购买。\n\n出牌时生效 · 出牌结算后更新\n\n本牌共可用 4 手\n\n本次出牌的倍率 ×2\n最后一手结算后消失\n最后一手仍有加成。\n计分加成暂停时仍扣剩余手数\n换场不重置。\n现在：尚未购买，买入后才会生效\n\n版次：闪箔（热度+25） · 独立于本体条件\n\n规则与操作\n比较替换\n邀请 · 10 金\n取消"
+        }
+      ],
+      "compare": {
+        "candidateImages": 1,
+        "stars": 30,
+        "slots": 5,
+        "text": "现货与已持\n比较替换 · 金币 40\n待买 · 练对子\n● 普通\n版次 · 普通\n实付 4 金\n推荐指数\n\n持续长热度 · 成组后增长 · 下手生效\n\n组合条件：未列专属组合，仍需满足卡牌自身条件。\n\n已持 5/5 · 选一槽查看出售损失\n\n第 1 槽 · 满堂彩\n● 普通\n版次 · 普通\n\n返4金 · 实付4金 · 买后40金\n\n换此槽后的推荐\n\n持续长热度 · 成组后增长 · 下手生效\n\n组合条件：未列专属组合，仍需满足卡牌自身条件。\n\n管理这张\n条件、配合与完整损失\n第 2 槽 · 老搭档\n◆ 特别\n版次 · 普通\n\n返4金 · 实付4金 · 买后40金\n\n换此槽后的推荐\n\n持续长热度 · 成组后增长 · 下手生效\n\n组合条件：未列专属组合，仍需满足卡牌自身条件。\n\n管理这张\n条件、配合与完整损失\n第 3 槽 · 小费盒\n● 普通\n版次 · 普通\n\n返4金 · 实付4金 · 买后40金\n\n换此槽后的推荐\n\n持续长热度 · 成组后增长 · 下手生效\n\n组合条件：未列专属组合，仍需满足卡牌自身条件。\n\n管理这张\n条件、配合与完整损失\n第 4 槽 · 滚个零头\n◆ 特别\n版次 · 普通\n\n返4金 · 实付4金 · 买后40金\n\n换此槽后的推荐\n\n持续长热度 · 成组后增长 · 下手生效\n\n组合条件：未列专属组合，仍需满足卡牌自身条件。\n\n管理这张\n条件、配合与完整损失\n第 5 槽 · 少一级\n◆ 特别\n版次 · 闪箔\n\n返4金 · 实付4金 · 买后40金\n\n失去：闪箔（热度+25）\n\n换此槽后的推荐\n\n持续长热度 · 成组后增长 · 下手生效\n\n组合条件：未列专属组合，仍需满足卡牌自身条件。\n\n管理这张\n条件、配合与完整损失\n返回购买详情\n更换培养方向\n返回现货"
+      },
+      "compareScroll": 2335,
+      "status": "FAIL"
+    }
+  ],
+  "status": "FAIL",
+  "error": "page.waitForFunction: Timeout 30000ms exceeded.\n    at shot (/workspace/dachoupai/harness/shop-four-axis-journey.mjs:32:35)\n    at /workspace/dachoupai/harness/shop-four-axis-journey.mjs:63:128"
+}
