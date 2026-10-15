@@ -1,6 +1,7 @@
 import type Phaser from 'phaser';
 import {prepareSceneResources,sceneResources,type PreparationProgress} from './SceneResources';
 import type {R2RunState} from '../domain/r2Run';
+import {inkSettlingEase} from './inkwaveSpring';
 let template:HTMLElement|undefined;
 /** Initial HTML is already visible before the application bundle. Native dialog owns keyboard/focus during preparation. */
 export class LoadingScreen {
@@ -10,16 +11,46 @@ export class LoadingScreen {
  private counter:HTMLElement;
  private next:HTMLButtonElement;
  private retry:HTMLButtonElement;
+ private motion=matchMedia('(prefers-reduced-motion: reduce)');
+ private flourishes:Animation[]=[];
+ private lastTotal=-1;
+ private lastBeat=0;
+ private syncMotion=()=>{
+  let reduced=this.motion.matches;
+  try{reduced ||= JSON.parse(localStorage.getItem('dachoupai-presentation-v1')??'null')?.reducedMotion===true;}catch{/* Optional preference cannot block preparation. */}
+  this.host.dataset.loadMotion=reduced?'reduce':'full';
+  if(reduced||document.hidden)this.cancelFlourishes();
+  this.host.toggleAttribute('data-load-paused',document.hidden);
+ };
+ private cancelFlourishes(){for(const a of this.flourishes)a.cancel();this.flourishes=[];}
  constructor(title='为你铺开这一局'){
   let host=document.querySelector<HTMLDialogElement>('#resource-loading');
   if(!template&&host)template=host.cloneNode(true) as HTMLElement;
   if(!host){host=template?.cloneNode(true) as HTMLDialogElement;if(!host){host=document.createElement('dialog');host.id='resource-loading';host.innerHTML='<h1>唐宋牌</h1><h2 data-load-title></h2><progress></progress><p data-load-caption></p><p data-load-counter></p><button data-load-retry>重试缺图</button><button data-load-next>继续</button>'; }document.body.append(host);}
   this.host=host;this.progress=host.querySelector('progress')!;this.caption=host.querySelector('[data-load-caption]')!;this.counter=host.querySelector('[data-load-counter]')!;this.next=host.querySelector('[data-load-next]')!;this.retry=host.querySelector('[data-load-retry]')!;
   host.querySelector('[data-load-title]')!.textContent=title;this.next.hidden=true;this.retry.hidden=true;
+  this.syncMotion();this.motion.addEventListener('change',this.syncMotion);document.addEventListener('visibilitychange',this.syncMotion);
   if(host.open)host.close();host.showModal();host.addEventListener('cancel',e=>e.preventDefault());
  }
  update(p:PreparationProgress,label='准备常用牌面'){
   this.progress.max=Math.max(1,p.total);this.progress.value=p.loaded;this.caption.textContent=label;this.counter.textContent=`已解码 ${p.loaded} / ${p.total}`+(p.failed?` · ${p.failed} 张暂未就绪`:'');this.host.dataset.loaded=String(p.loaded);this.host.dataset.total=String(p.total);
+  // Three decorative beats follow decoded counts only. No elapsed-time progress or entrance gate.
+  const ratio=p.total?Math.min(1,p.loaded/p.total):0,beat=ratio===1?3:ratio>=.5?2:ratio>0?1:0;
+  this.host.style.setProperty('--load-ratio',String(ratio));
+  if(p.total!==this.lastTotal){this.lastBeat=0;this.lastTotal=p.total;this.cancelFlourishes();}
+  const cards=this.host.querySelectorAll<HTMLElement>('.load-card-seat');
+  this.host.querySelectorAll('.load-chapters span').forEach((e,i)=>e.classList.toggle('is-inked',i<beat));
+  cards.forEach((card,i)=>card.classList.toggle('is-inked',i<beat));
+  if(beat>this.lastBeat&&this.host.dataset.loadMotion!=='reduce'&&!document.hidden){
+   this.cancelFlourishes();
+   // Reuse the attributed Inkwave spring lookup on ornaments only; DOM lettering stays unscaled.
+   const ease=inkSettlingEase(.5);
+   for(let i=this.lastBeat;i<beat;i++){
+    const echo=cards[i]?.querySelector('.load-card-echo');
+    if(echo?.animate)this.flourishes.push(echo.animate(Array.from({length:31},(_,n)=>({offset:n/30,transform:`scale(${1+.35*ease(n/30)})`,opacity:.65*(1-n/30)})),{duration:650,easing:'linear'}));
+   }
+  }
+  this.lastBeat=beat;
  }
  base(loaded:number,total:number){this.update({loaded,total,failed:0,pending:total-loaded,states:[]},'铺好纸面与纹样');}
  allowContinue(run:()=>void){this.next.hidden=false;this.next.textContent='先用文字牌面进入';this.next.onclick=run;}
@@ -28,7 +59,7 @@ export class LoadingScreen {
   return new Promise(resolve=>{const finish=(v:'retry'|'continue')=>{signal.removeEventListener('abort',abort);resolve(v);},abort=()=>finish('continue');signal.addEventListener('abort',abort,{once:true});if(signal.aborted){abort();return;}this.retry.onclick=()=>finish('retry');this.next.onclick=()=>finish('continue');});
  }
  busy(){this.retry.hidden=true;this.next.hidden=true;this.retry.onclick=null;this.next.onclick=null;}
- close(){this.retry.onclick=null;this.next.onclick=null;if(this.host.isConnected)this.host.close();this.host.remove();}
+ close(){this.cancelFlourishes();this.motion.removeEventListener('change',this.syncMotion);document.removeEventListener('visibilitychange',this.syncMotion);this.retry.onclick=null;this.next.onclick=null;if(this.host.isConnected)this.host.close();this.host.remove();}
 }
 type Preparation={key:string;cancel:()=>void;promise:Promise<boolean>};
 const pending=new WeakMap<Phaser.Game,Preparation>();

@@ -7,8 +7,58 @@
     <meta name="description" content="唐宋牌 · 唐宋人物题材的牌组构筑游戏" />
     <title>唐宋牌</title>
     <style>
+      /* Original Tang/Song paper theatre. Motion never owns loading or navigation. */
       #resource-loading{position:fixed;inset:0;box-sizing:border-box;width:100%;height:100%;height:100dvh;max-width:none;max-height:none;margin:0;border:0;padding:max(22px,env(safe-area-inset-top)) max(24px,env(safe-area-inset-right)) max(22px,env(safe-area-inset-bottom));background:#f3eadb;color:#26313a;font:16px/1.6 "PingFang SC","Microsoft YaHei",sans-serif;overflow:auto}
-      #resource-loading::backdrop{background:#f3eadb}#resource-loading:not([open]){display:none}.load-wrap{width:min(100%,1040px);min-height:100%;margin:auto;display:flex;flex-direction:column;justify-content:center;position:relative}.load-top{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #bfb19b;padding-bottom:15px;color:#59646a;font-size:12px;letter-spacing:.2em}.load-seal{writing-mode:vertical-rl;color:#b8473a;border:1px solid #b8473a;padding:7px 3px;font:16px Georgia,serif;letter-spacing:0}.load-scene{position:relative;min-height:300px;height:46vh;max-height:420px;display:flex;justify-content:center;align-items:center;isolation:isolate}.load-landscape{position:absolute;inset:5% 0;width:100%;height:90%;opacity:.58;z-index:-1}.load-brand{text-align:center;position:relative;transform:translateY(-20px)}.load-brand h1{margin:0;font:clamp(54px,8vw,96px)/1.2 Georgia,"Noto Serif SC",SimSun,serif;font-weight:bold;letter-spacing:.12em;text-shadow:1px 2px #fff9ee}.load-brand p{font-size:13px;letter-spacing:.24em;color:#3f606b}.load-fan{position:absolute;bottom:6px;left:50%;display:flex;gap:0;transform:translateX(-50%)}.load-card{width:54px;height:76px;background:#fff9ee;border:1px solid #9b927e;box-shadow:2px 3px 0 #26313a12;border-radius:5px;display:grid;place-items:center;font:30px Georgia,serif;animation:load-breathe 2.8s ease-in-out infinite;transform:rotate(-13deg)}.load-card:nth-child(2){color:#b8473a;transform:translateY(-8px);animation-delay:.2s}.load-card:nth-child(3){transform:rotate(13deg);animation-delay:.4s}.load-copy{max-width:600px;width:100%;margin:28px auto 0}.load-copy h2{margin:0 0 18px;font-size:18px;font-weight:500;text-align:center}.load-progress-line{display:flex;justify-content:space-between;gap:14px;align-items:center;font-size:13px;color:#3f606b}.load-copy progress{display:block;width:100%;height:5px;margin:12px 0;accent-color:#b8473a;border:0;border-radius:4px;overflow:hidden;background:#d8ccba}.load-copy progress::-webkit-progress-bar{background:#d8ccba}.load-copy progress::-webkit-progress-value{background:#b8473a;transition:width .2s ease-out}.load-copy progress::-moz-progress-bar{background:#b8473a}.load-note{text-align:center;font-size:12px;color:#59646a;margin:22px 0}.load-actions{display:flex;justify-content:center;gap:12px;flex-wrap:wrap}.load-actions button{min-height:44px;padding:10px 20px;border:1px solid #3f606b;border-radius:5px;color:#3f606b;background:#fff9ee;font:14px sans-serif;cursor:pointer}.load-actions button[data-load-retry]{background:#3f606b;color:#fff9ee}.load-actions button[hidden]{display:none}.load-footer{margin-top:32px;text-align:center;font-size:11px;letter-spacing:.08em;color:#7b7365}@keyframes load-breathe{50%{box-shadow:2px 9px 9px #26313a15}}@media(max-width:560px){#resource-loading{padding:20px}.load-scene{min-height:260px;height:43vh}.load-progress-line{font-size:12px}.load-copy{margin-top:14px}.load-brand h1{font-size:58px}.load-note{margin:16px 0}.load-footer{margin-top:20px}}@media(max-height:500px){.load-scene{height:180px;min-height:180px}.load-top{padding-bottom:8px}.load-brand h1{font-size:46px}.load-fan{display:none}.load-copy{margin-top:4px}.load-copy h2{margin-bottom:4px}.load-note,.load-footer{margin:8px 0}}@media(prefers-reduced-motion:reduce){.load-card{animation:none}.load-copy progress::-webkit-progress-value{transition:none}}
+      #resource-loading::backdrop{background:#f3eadb}#resource-loading:not([open]){display:none}
+      .load-wrap{width:min(100%,1040px);min-height:100%;margin:auto;display:flex;flex-direction:column;justify-content:center;position:relative}
+      .load-top{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #bfb19b;padding-bottom:15px;color:#59646a;font-size:12px;letter-spacing:.2em}
+      .load-seal{writing-mode:vertical-rl;color:#b8473a;border:1px solid #b8473a;padding:7px 3px;font:16px Georgia,serif;letter-spacing:0;animation:load-seal-arrive .65s both}
+      .load-scene{position:relative;min-height:300px;height:46vh;max-height:420px;display:flex;justify-content:center;align-items:center;isolation:isolate}
+      .load-world{position:absolute;inset:0;overflow:hidden;z-index:-1}
+      .load-landscape{position:absolute;inset:0;width:100%;height:100%;z-index:-1;overflow:visible}
+      .load-sun{transform-origin:500px 128px;animation:load-sun-arrive 1.1s cubic-bezier(.16,1,.3,1) both}
+      .load-sun-ring{transform-origin:500px 128px;animation:load-ring-arrive 1.4s .12s both}
+      .load-hill-far{animation:load-hills-left 1.3s cubic-bezier(.16,1,.3,1) both}
+      .load-hill-near{animation:load-hills-right 1.2s .1s cubic-bezier(.16,1,.3,1) both}
+      .load-river{animation:load-river-arrive 1.1s .2s both}
+      .load-river-drift{animation:load-river-drift 7s ease-in-out infinite alternate}
+      .load-mote{animation:load-mote 6s ease-in-out infinite alternate;transform-origin:center}.load-mote:nth-child(2n){animation-delay:-3s}.load-mote:nth-child(3n){animation-duration:8s}
+      .load-brand{text-align:center;position:relative;margin-top:-32px}
+      .load-brand h1{display:flex;justify-content:center;gap:.1em;margin:0;font:bold clamp(60px,8vw,96px)/1.2 "Noto Serif CJK SC","Noto Serif SC",SimSun,serif;letter-spacing:.02em;text-shadow:1px 2px #fff9ee}
+      .load-brand h1 span{display:inline-block;animation:load-letter-arrive .85s cubic-bezier(.16,1,.3,1) both}.load-brand h1 span:nth-child(2){animation-delay:.09s}.load-brand h1 span:nth-child(3){animation-delay:.18s}
+      .load-brand p{font-size:12px;letter-spacing:.28em;color:#3f606b;margin:16px 0 0;animation:load-letter-arrive 1s .22s both}
+      .load-side{position:absolute;top:34%;writing-mode:vertical-rl;letter-spacing:.3em;color:#7b7365;font:12px/1.7 "Noto Serif CJK SC",SimSun,serif}.load-side-left{left:4%}.load-side-right{right:4%}
+      .load-fan{position:absolute;bottom:0;left:50%;display:flex;gap:0;transform:translateX(-50%);perspective:600px}
+      .load-card-seat{--angle:-16deg;--lift:6px;--delay:.14s;position:relative;transform:translateY(var(--lift)) rotate(var(--angle));animation:load-deal .9s var(--delay) cubic-bezier(.16,1,.3,1) both}
+      .load-card-seat:nth-child(2){--angle:0deg;--lift:-7px;--delay:.05s;z-index:1}.load-card-seat:nth-child(3){--angle:16deg;--delay:.23s}
+      .load-card{width:60px;height:84px;box-sizing:border-box;position:relative;background:#fff9ee;border:1px solid #a49a85;box-shadow:2px 5px 0 #26313a0d;border-radius:4px;display:grid;place-items:center;color:#8c8d82;animation:load-card-float 4.8s 1s ease-in-out infinite;transition:color .22s,border-color .22s,background-color .22s}
+      .load-card::before{content:"";position:absolute;inset:5px;border:1px solid #b99a6155;border-radius:1px}.load-card::after{content:"";position:absolute;bottom:9px;left:50%;width:3px;height:3px;background:#b99a61;transform:rotate(45deg)}
+      .load-card svg{width:29px;height:33px}.load-card-seat:nth-child(2) .load-card{animation-delay:1.3s}.load-card-seat:nth-child(3) .load-card{animation-delay:1.6s}
+      .load-card-seat.is-inked .load-card{color:#26313a;border-color:#3f606b;background:#fffaf0}.load-card-seat.is-inked:nth-child(2) .load-card{color:#b8473a;border-color:#b8473a}
+      .load-card-echo{position:absolute;inset:-7px;border:1px solid #b99a61;border-radius:5px;opacity:0;pointer-events:none}
+      .load-copy{max-width:600px;width:100%;margin:32px auto 0}.load-copy h2{margin:0 0 16px;font:500 18px/1.6 "Noto Serif CJK SC",SimSun,serif;text-align:center;letter-spacing:.08em}
+      .load-progress-line{display:flex;justify-content:space-between;gap:14px;align-items:center;font-size:12px;color:#3f606b}.load-progress-line [data-load-counter]{font-variant-numeric:tabular-nums;flex-shrink:0}
+      .load-track{position:relative}.load-copy progress{display:block;width:100%;height:3px;margin:13px 0;accent-color:#b8473a;border:0;border-radius:4px;overflow:hidden;background:#d8ccba}.load-copy progress::-webkit-progress-bar{background:#d8ccba}.load-copy progress::-webkit-progress-value{background:linear-gradient(90deg,#3f606b,#b8473a);transition:width .15s ease-out}.load-copy progress::-moz-progress-bar{background:#b8473a}
+      .load-track::after{content:"";position:absolute;top:-3px;left:calc(var(--load-ratio,0) * (100% - 9px));width:7px;height:7px;border:1px solid #f3eadb;background:#b8473a;transform:rotate(45deg);transition:left .15s ease-out}
+      .load-chapters{display:flex;justify-content:space-between;color:#7b7365;font:11px/1.5 "Noto Serif CJK SC",SimSun,serif;letter-spacing:.13em}.load-chapters span::before{content:"◇";margin-right:6px;color:#9c8c70}.load-chapters .is-inked{color:#3f606b}.load-chapters .is-inked::before{content:"◆";color:#b8473a}
+      .load-note{text-align:center;font-size:12px;color:#59646a;margin:18px 0}.load-actions{display:flex;justify-content:center;gap:12px;flex-wrap:wrap}.load-actions button{min-height:44px;padding:10px 20px;border:1px solid #3f606b;border-radius:3px;color:#3f606b;background:#fff9ee;font:14px sans-serif;cursor:pointer}.load-actions button[data-load-retry]{background:#3f606b;color:#fff9ee}.load-actions button[hidden]{display:none}.load-actions button:focus-visible{outline:2px solid #b8473a;outline-offset:4px}
+      .load-footer{margin-top:24px;text-align:center;font-size:11px;letter-spacing:.08em;color:#7b7365}
+      @keyframes load-seal-arrive{from{opacity:0;transform:translateY(-8px) rotate(-8deg)}to{opacity:1;transform:none}}
+      @keyframes load-sun-arrive{from{opacity:0;transform:translateY(24px) scale(.75)}to{opacity:1;transform:none}}
+      @keyframes load-ring-arrive{from{opacity:0;transform:scale(.65) rotate(-12deg)}to{opacity:1;transform:none}}
+      @keyframes load-hills-left{from{opacity:0;transform:translateX(-28px) translateY(12px)}to{opacity:1;transform:none}}
+      @keyframes load-hills-right{from{opacity:0;transform:translateX(28px) translateY(16px)}to{opacity:1;transform:none}}
+      @keyframes load-river-arrive{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+      @keyframes load-letter-arrive{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
+      @keyframes load-deal{from{opacity:0;transform:translateY(45px) rotate(0deg)}to{opacity:1;transform:translateY(var(--lift)) rotate(var(--angle))}}
+      @keyframes load-card-float{50%{transform:translateY(-5px);box-shadow:2px 9px 0 #26313a08}}
+      @keyframes load-river-drift{to{transform:translateX(12px)}}@keyframes load-mote{50%{opacity:.3}to{transform:translate(8px,-12px);opacity:.7}}
+      #resource-loading[data-load-paused] *,#resource-loading[data-load-paused] *::before,#resource-loading[data-load-paused] *::after{animation-play-state:paused!important}
+      @media(max-width:560px){#resource-loading{padding:20px}.load-top{font-size:10px}.load-scene{min-height:280px;height:40vh}.load-landscape{width:150%;left:-25%}.load-brand h1{font-size:62px}.load-brand p{font-size:10px;letter-spacing:.21em}.load-side{font-size:10px;top:29%}.load-side-left{left:0}.load-side-right{right:0}.load-progress-line{font-size:11px;flex-wrap:wrap;gap:4px}.load-copy{margin-top:22px}.load-copy h2{font-size:17px;margin-bottom:14px}.load-note{margin:16px 0}.load-footer{margin-top:18px}.load-card{width:53px;height:75px}.load-card svg{width:26px;height:29px}}
+      @media(max-height:640px){.load-scene{height:228px;min-height:228px}.load-top{padding-bottom:8px}.load-copy{margin-top:18px}.load-copy h2{margin-bottom:8px}.load-note,.load-footer{margin:10px 0}.load-brand h1{font-size:60px}}
+      @media(max-height:500px){.load-scene{height:170px;min-height:170px}.load-brand{margin-top:0}.load-brand h1{font-size:46px}.load-fan,.load-side{display:none}.load-copy{margin-top:4px}.load-copy h2{margin-bottom:4px}.load-note,.load-footer{margin:8px 0}}
+      #resource-loading[data-load-motion="reduce"] *,#resource-loading[data-load-motion="reduce"] *::before,#resource-loading[data-load-motion="reduce"] *::after{animation:none!important;transition:none!important}
+      @media(prefers-reduced-motion:reduce){#resource-loading *,#resource-loading *::before,#resource-loading *::after{animation:none!important;transition:none!important}}
     </style>
   </head>
   <body>
@@ -16,14 +66,30 @@
       <div class="load-wrap">
         <header class="load-top"><span>纸上山河 · 一局相逢</span><span class="load-seal" aria-hidden="true">开卷</span></header>
         <div class="load-scene" aria-hidden="true">
-          <svg class="load-landscape" viewBox="0 0 1000 360" preserveAspectRatio="xMidYMid meet"><circle cx="758" cy="78" r="28" fill="#b8473a" opacity=".78"/><path d="M0 300 65 265 105 280 180 190 204 220 265 140 318 215 355 190 430 280 500 260 565 220 625 155 680 220 735 190 830 270 895 225 1000 305Z" fill="#3f606b" opacity=".13"/><path d="m0 315 85-28 55 12 75-55 48 29 42-17 80 50 65-9 80 15 70-46 48 18 64-40 72 44 50-10 94 30" fill="none" stroke="#3f606b" stroke-width="1.4"/><path d="m92 299 75-27m620 25 85-16M300 327q200-20 389 2m-290 14q154-7 241 0" fill="none" stroke="#7b7365" stroke-width=".8" opacity=".7"/></svg>
-          <div class="load-brand"><h1>唐宋牌</h1><p>唐宋群英 · 牌局争锋</p></div>
-          <div class="load-fan"><span class="load-card">♠</span><span class="load-card">♥</span><span class="load-card">♣</span></div>
+          <div class="load-world"><svg class="load-landscape" viewBox="0 0 1000 400" preserveAspectRatio="xMidYMid meet">
+            <g class="load-sun"><circle cx="500" cy="128" r="76" fill="#b8473a" opacity=".12"/><circle cx="500" cy="128" r="64" fill="#b8473a" opacity=".1"/><circle cx="500" cy="128" r="54" fill="#b8473a" opacity=".14"/></g>
+            <g class="load-sun-ring" fill="none" stroke="#b99a61"><circle cx="500" cy="128" r="88" opacity=".6" stroke-dasharray="1 7"/><path d="M406 128a94 94 0 0 1 155-72m33 72a94 94 0 0 1-155 72" opacity=".5"/><path d="m500 27 0 9m0 184 0 9m-101-101 9 0m184 0 9 0" opacity=".65"/></g>
+            <g class="load-hill-far"><path d="M0 302 59 273 84 279 153 200 171 217 220 145 249 180 267 168 340 271 399 249 458 298 529 279 594 237 626 263 689 184 713 202 747 149 781 199 801 189 863 266 906 239 1000 302Z" fill="#3f606b" opacity=".11"/><path d="m153 200 18 45 49-100 29 62 18-39m422 16 24 45 34-80 34 70 20-30" fill="none" stroke="#3f606b" opacity=".17"/></g>
+            <g class="load-hill-near"><path d="m0 322 74-34 28 9 72-44 36 18 47-39 37 28 30-9 69 57 71-16 50 30 63-27 38 6 68-51 35 19 39-44 36 24 29-9 80 60 63-7 70 29Z" fill="#3f606b" opacity=".13"/><path d="m0 322 74-34 28 9 72-44 36 18 47-39 37 28 30-9 69 57m204-7 68-51 35 19 39-44 36 24 29-9 80 60 63-7 70 29" fill="none" stroke="#3f606b" opacity=".45" stroke-width="1.1"/></g>
+            <g class="load-river" fill="none" stroke="#9b885f" stroke-width=".8"><g class="load-river-drift"><path d="M98 331q137-20 265 1m279 0q135-17 266-2M212 346q111-9 185 0m215 2q100-12 176-4M306 366q190-15 387-1" opacity=".45"/></g><path d="m90 304 36-10m697 18 40-9" opacity=".6"/></g>
+            <g fill="#b99a61"><path class="load-mote" d="m336 106 3-4 3 4-3 4Z" opacity=".6"/><circle class="load-mote" cx="636" cy="87" r="2" opacity=".55"/><circle class="load-mote" cx="297" cy="201" r="1.5" opacity=".6"/><path class="load-mote" d="m673 191 2-4 2 4-2 4Z" opacity=".55"/><circle class="load-mote" cx="389" cy="53" r="1.5" opacity=".65"/><circle class="load-mote" cx="585" cy="218" r="1.5" opacity=".55"/></g>
+          </svg></div>
+          <span class="load-side load-side-left">一纸纳山河</span><span class="load-side load-side-right">落子会群英</span>
+          <div class="load-brand"><h1 aria-label="唐宋牌"><span>唐</span><span>宋</span><span>牌</span></h1><p>唐宋群英 · 牌局争锋</p></div>
+          <div class="load-fan">
+            <span class="load-card-seat"><i class="load-card-echo"></i><span class="load-card"><svg viewBox="0 0 32 36"><path d="M16 2C11 9 2 13 2 21c0 7 8 9 13 4-1 5-3 7-6 9h14c-3-2-5-4-6-9 5 5 13 3 13-4C30 13 21 9 16 2Z" fill="currentColor"/></svg></span></span>
+            <span class="load-card-seat"><i class="load-card-echo"></i><span class="load-card"><svg viewBox="0 0 32 36"><path d="M16 32C12 27 2 20 2 12 2 2 13 1 16 8 19 1 30 2 30 12c0 8-10 15-14 20Z" fill="currentColor"/></svg></span></span>
+            <span class="load-card-seat"><i class="load-card-echo"></i><span class="load-card"><svg viewBox="0 0 32 36"><path d="M16 2a8 8 0 0 0-7 12C0 11-3 28 8 28c3 0 5-2 7-4-1 5-3 8-6 10h14c-3-2-5-5-6-10 2 2 4 4 7 4 11 0 8-17-1-14A8 8 0 0 0 16 2Z" fill="currentColor"/></svg></span></span>
+          </div>
         </div>
-        <section class="load-copy"><h2 data-load-title>为你铺开这一局</h2><div class="load-progress-line"><span data-load-caption>正在打开牌局…</span><span data-load-counter aria-live="polite"></span></div><progress aria-label="已解码图片进度"></progress><p id="load-notice" class="load-note">先备好常用牌面，再从容入场。</p><div class="load-actions"><button data-load-retry hidden type="button">重试缺图</button><button data-load-next hidden type="button">先用文字牌面进入</button></div></section>
+        <section class="load-copy"><h2 data-load-title>为你铺开这一局</h2><div class="load-progress-line"><span data-load-caption>正在打开牌局…</span><span data-load-counter aria-live="polite"></span></div><div class="load-track"><progress aria-label="已解码图片进度"></progress></div><div class="load-chapters" aria-hidden="true"><span>纸上初逢</span><span>山河入局</span><span>好戏将启</span></div><p id="load-notice" class="load-note">先备好常用牌面，再从容入场。</p><div class="load-actions"><button data-load-retry hidden type="button">重试缺图</button><button data-load-next hidden type="button">先用文字牌面进入</button></div></section>
         <footer class="load-footer">人物形象待绘 · 六位英雄先以文字登场</footer>
       </div>
     </dialog>
+    <script>
+      // Honor saved app motion preference before the module bundle or first painted animation.
+      try{if(JSON.parse(localStorage.getItem('dachoupai-presentation-v1')||'null')?.reducedMotion)document.querySelector('#resource-loading').dataset.loadMotion='reduce';}catch{}
+    </script>
     <noscript>请启用 JavaScript 以打开唐宋牌。</noscript>
     <div id="app"></div>
     <script type="module" src="/src/main.ts"></script>
