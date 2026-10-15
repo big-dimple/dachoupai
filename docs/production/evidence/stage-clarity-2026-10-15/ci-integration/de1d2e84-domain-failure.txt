@@ -1,0 +1,65 @@
+2026-10-15T01:52:29.2569606Z  FAIL  tests/make-cards-flow.test.ts > a recovered practice consumes its durable receipt without quoting or dispatching again
+2026-10-15T01:52:29.2576549Z AssertionError: expected "vi.fn()" to be called once with arguments: [ { handType: 'pair', …(5) } ]
+2026-10-15T01:52:29.2577210Z 
+2026-10-15T01:52:29.2577433Z Received:
+2026-10-15T01:52:29.2577676Z 
+2026-10-15T01:52:29.2577972Z   1st vi.fn() call:
+2026-10-15T01:52:29.2578269Z 
+2026-10-15T01:52:29.2578597Z @@ -5,6 +5,7 @@
+2026-10-15T01:52:29.2579101Z       "handType": "pair",
+2026-10-15T01:52:29.2579675Z       "levelAfter": 2,
+2026-10-15T01:52:29.2580206Z       "levelBefore": 1,
+2026-10-15T01:52:29.2580730Z       "paidPrice": 4,
+2026-10-15T01:52:29.2581175Z     },
+2026-10-15T01:52:29.2581603Z +   undefined,
+2026-10-15T01:52:29.2582025Z   ]
+2026-10-15T01:52:29.2582392Z 
+2026-10-15T01:52:29.2582638Z 
+2026-10-15T01:52:29.2582915Z Number of calls: 1
+2026-10-15T01:52:29.2583308Z 
+2026-10-15T01:52:29.2584514Z  ❯ tests/make-cards-flow.test.ts:21:31
+2026-10-15T01:52:29.2618183Z 
+2026-10-15T01:52:29.2620291Z 
+2026-10-15T01:52:29.2621847Z ⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/5]⎯
+2026-10-15T01:52:29.2622152Z 
+2026-10-15T01:52:29.2623064Z  FAIL  tests/shop-sale-continuation.test.ts > closing during save preserves the committed sale and never reopens the purchase page
+2026-10-15T01:52:29.2624462Z TypeError: Cannot read properties of undefined (reading 'add')
+2026-10-15T01:52:29.2625364Z  ❯ ShopScene.inspectJoker src/game/ShopScene.ts:860:22
+2026-10-15T01:52:29.2630423Z 
+2026-10-15T01:52:29.2632657Z  ❯ pendingSale tests/shop-sale-continuation.test.ts:27:47
+2026-10-15T01:52:29.2633638Z  ❯ tests/shop-sale-continuation.test.ts:33:10
+2026-10-15T01:52:29.2633951Z 
+2026-10-15T01:52:29.2634232Z ⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/5]⎯
+2026-10-15T01:52:29.2634455Z 
+2026-10-15T01:52:29.2635560Z  FAIL  tests/shop-sale-continuation.test.ts > a newer dialog retains ownership when the old sale finishes
+2026-10-15T01:52:29.2636619Z TypeError: Cannot read properties of undefined (reading 'add')
+2026-10-15T01:52:29.2637175Z  ❯ ShopScene.inspectJoker src/game/ShopScene.ts:860:22
+2026-10-15T01:52:29.2641139Z 
+2026-10-15T01:52:29.2641797Z  ❯ pendingSale tests/shop-sale-continuation.test.ts:27:47
+2026-10-15T01:52:29.2642701Z  ❯ tests/shop-sale-continuation.test.ts:37:10
+2026-10-15T01:52:29.2643058Z 
+2026-10-15T01:52:29.2645814Z ⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/5]⎯
+2026-10-15T01:52:29.2646057Z 
+2026-10-15T01:52:29.2646645Z  FAIL  tests/shop-sale-continuation.test.ts > the still-active confirmation closes after saving and opens current offer details once
+2026-10-15T01:52:29.2647370Z TypeError: Cannot read properties of undefined (reading 'add')
+2026-10-15T01:52:29.2647895Z  ❯ ShopScene.inspectJoker src/game/ShopScene.ts:860:22
+2026-10-15T01:52:29.2649776Z 
+2026-10-15T01:52:29.2650242Z  ❯ pendingSale tests/shop-sale-continuation.test.ts:27:47
+2026-10-15T01:52:29.2651249Z  ❯ tests/shop-sale-continuation.test.ts:41:10
+2026-10-15T01:52:29.2651752Z 
+2026-10-15T01:52:29.2652220Z ⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/5]⎯
+2026-10-15T01:52:29.2652512Z 
+2026-10-15T01:52:29.2653826Z  FAIL  tests/shop-sale-continuation.test.ts > comparison and actual sale confirmation both expose retained reset, growth and qualification consequences
+2026-10-15T01:52:29.2655112Z TypeError: Cannot read properties of undefined (reading 'add')
+2026-10-15T01:52:29.2655989Z  ❯ ShopScene.inspectJoker src/game/ShopScene.ts:860:22
+2026-10-15T01:52:29.2660751Z 
+2026-10-15T01:52:29.2661607Z  ❯ pendingSale tests/shop-sale-continuation.test.ts:27:47
+2026-10-15T01:52:29.2662482Z  ❯ tests/shop-sale-continuation.test.ts:45:10
+2026-10-15T01:52:29.2662832Z 
+2026-10-15T01:52:29.2663139Z ⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/5]⎯
+2026-10-15T01:52:29.2663524Z 
+2026-10-15T01:52:29.2665292Z 
+2026-10-15T01:52:29.2678170Z  Test Files  2 failed | 247 passed (249)
+2026-10-15T01:52:29.2700939Z       Tests  5 failed | 3466 passed (3471)
+2026-10-15T01:52:29.2701836Z    Start at  01:51:32
+2026-10-15T01:52:29.2704166Z    Duration  56.33s (transform 7.64s, setup 0ms, import 38.51s, tests 92.35s, environment 24ms)

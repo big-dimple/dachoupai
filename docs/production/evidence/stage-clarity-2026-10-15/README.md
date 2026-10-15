@@ -1,5 +1,7 @@
 # Stage 特写／切场／文字清晰度返修
 
+2026-10-15 精确CI返修续交：正常merge父给定最终集成 `2ecb859a7b001193c235c48e8bfd15813873ea21`，双亲merge为 `8a31d77812d02a1aeb720a8797a43ab099230344`；旧 `de1d2e84` 的精确CI domain红不隐去。合并后完整250文件/3480单测及content、type、docs通过，源码/index/HEAD检查一致。旧失败合同、合并来源和本地完整回执见 [ci-integration](ci-integration/README.md)。最终远端CI按最新push SHA读取，不借旧74专项或父集成绿CI代签。
+
 独立分支 `fix/stage-clarity-20261015`，基线为远端父集成 `fa904746ddd377886c8f3a17501a039096b485fa`。不推 main，不创建 PR。AGENTS.md、DELIVERY_PLAN 当前入口已读；工作区与仓库未找到 `.skills`/SKILL.md。未改全局计划或其他任务窗口。
 
 ## 实际根因
