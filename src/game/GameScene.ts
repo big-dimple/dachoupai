@@ -1,4 +1,6 @@
 import {formatScoreReview} from './ScoreReview';
+import {opponentChoices,opponentHandBeat,opponentOutcome,opponentSavedStatus,remainingScoreEvents,isEchoReduction} from './OpponentFacts';
+import {presentOpponentEntrance,showOpponentChoices,presentOpponentBeat} from './OpponentPresentation';
 import {whenTextureReady} from './LateTextureArt';
 import {warmTableImages} from './StageImageWarmup';
 import {isR2ActiveMultTiming} from '../domain/r2GroupUpgrade';
@@ -167,6 +169,7 @@ interface CardView {
 type HandPreview=R2SelectionFacts;
 
 export class GameScene extends Phaser.Scene {
+  private readonly shownOpponentKinds=new Set<string>();
   private refillHidden=false;
   private get pendingTouye(){return usesTouyeWager(this.run)&&this.run.stage?.touyeWager?.resolution==='pending';}
   private get pendingRefill(){return this.run?.pendingRefill;}
@@ -276,7 +279,7 @@ export class GameScene extends Phaser.Scene {
     // Keep committed score playback moving on slow renderers; bound background gaps to 1s.
     this.tweens.setLagSmooth(1000,1000);
     const lifecycle=++this.lifecycle;this.intent++;
-    this.shownPayoffs.clear();this.climaxArtAbort?.abort();this.climaxArtRequested=false;this.refillHidden=false;this.effects.clear();this.erxiangTargetId=null;this.azaoRelease=false;this.xiemuBurn=0;this.jokerViews.clear();this.cardViews=[];this.selectedIds.clear();this.assistIds=[];this.assistPage=0;this.assistGestureStart=undefined;this.hoveredCardId=undefined;this.hoveredJokerId=undefined;this.playing=false;this.presentation=undefined;this.toolHand=undefined;this.statusMessage='';this.focusIndex=0;this.keyboardFocus=false;this.handStart=0;this.handNavigationButtons=[];
+    this.shownOpponentKinds.clear();this.shownPayoffs.clear();this.climaxArtAbort?.abort();this.climaxArtRequested=false;this.refillHidden=false;this.effects.clear();this.erxiangTargetId=null;this.azaoRelease=false;this.xiemuBurn=0;this.jokerViews.clear();this.cardViews=[];this.selectedIds.clear();this.assistIds=[];this.assistPage=0;this.assistGestureStart=undefined;this.hoveredCardId=undefined;this.hoveredJokerId=undefined;this.jokerHoverPreview=undefined;this.playing=false;this.presentation=undefined;this.toolHand=undefined;this.statusMessage='';this.focusIndex=0;this.keyboardFocus=false;this.handStart=0;this.handNavigationButtons=[];
     const settings=()=>{
       const hintVisible=!!this.handHint;this.stopHandHint();if(hintVisible&&this.reducedMotion)this.showHandHint(false);
       this.tweens.timeScale=gameSession().speed;this.time.timeScale=gameSession().speed;
@@ -308,6 +311,9 @@ export class GameScene extends Phaser.Scene {
     if(!controller){this.scene.start('character-select');return;}
     let enteredStage=false;
     if(controller.state.phase==='stage-ready'){
+      const enter=await presentOpponentEntrance(this.dialog,controller.state);
+      if(lifecycle!==this.lifecycle||!this.scene.isActive())return;
+      if(!enter){this.scene.start('character-select');return;}
       const entered=await dispatchRun(this,{type:'EnterStage'});
       if(lifecycle!==this.lifecycle||!this.scene.isActive())return;
       if(!entered.ok){this.scene.start('character-select');return;}
@@ -347,17 +353,27 @@ export class GameScene extends Phaser.Scene {
       if(this.hoveredJokerId===id)return;if(this.hoveredJokerId)this.hoverJoker(this.hoveredJokerId,false);if(id)this.hoverJoker(id,true);
     });
     this.ownedInput.surface.addEventListener('pointerleave',()=>{if(this.hoveredJokerId&&!this.ownedDrag)this.hoverJoker(this.hoveredJokerId,false);});
-    this.menuActions={viewDeck:()=>this.inspectDeck(),viewRules:()=>this.inspectRole()};
+    const inspectOpponent=()=>{
+      if(this.run.stage?.boss?.definitionId!=='B05'){this.inspectRole();return;}
+      const seq=this.run.commandSeq,choices=opponentChoices(this.hand,r2ScoreContext(this.run,this.hand,[]).handRules,this.run.stage.previousHandType);
+      showOpponentChoices(this.dialog,this.run,choices,choice=>{
+        this.erxiangTargetId=null;this.assistIds=[];
+        this.applyHandSelection({phase:'committed',pointerId:0,mode:'select',selectedIds:choice.ids,visitedIds:choice.ids,limitReached:false});
+      },()=>this.inspectRole(),()=>this.ready&&this.run.phase==='await-input'&&this.run.commandSeq===seq);
+    };
+    this.menuActions={viewDeck:()=>this.inspectDeck(),viewRules:inspectOpponent};
     this.registry.set('runMenuActions',this.menuActions);
     window.addEventListener('keydown',this.keyboard);
     this.game.canvas.setAttribute('data-hand-input','pointer');
     window.addEventListener('pointerdown',this.pointerFocus,true);document.addEventListener('focusin',this.focusFeedback);document.addEventListener('focusout',this.focusFeedback);window.addEventListener('blur',this.stopHandHint);document.addEventListener('visibilitychange',this.hintVisibility);
+    if(this.run.stage.boss?.definitionId==='B05')this.statusMessage=opponentSavedStatus(this.run.lastTrace);
     this.render();
     const unsubscribeInventory=gameSession().subscribe(()=>{this.updateInventoryControl();if(this.controlsLive)this.updateHeroControl();});
     this.events.once('shutdown',unsubscribeInventory);
     if(enteredStage)this.revealDrawnCards([]);
     const notice=stageNotice(this.run);
-    if(enteredStage&&notice?.warning){
+    if(enteredStage&&this.run.stage.boss?.definitionId==='B05')inspectOpponent();
+    else if(enteredStage&&notice?.warning){
       const identity=stageIdentity(this.run.stage.index,this.run.stage.boss,this.run.tourMode,this.run.difficulty)!;
       const dialog=this.dialog.open(identity.title,notice.details,[{label:'开始出牌',primary:true,run:()=>this.dialog.close()}],{summaryBody:identity.stageName+' · 目标 '+heatText(this.run.stage.targetHeat),effectBody:notice.description,collapseRules:true,rulesLabel:'完整限制与应对'});
       dialog.classList.add('stage-identity-entry');
@@ -945,7 +961,7 @@ export class GameScene extends Phaser.Scene {
     if(!this.ready||this.presentation||this.run.phase!=='await-input')return;
     this.handInput?.cancel();this.view.cancelInteraction();this.candidateGhost=undefined;
     const context=r2ScoreContext(this.run,this.hand,[]),mods=readR2Modifiers(this.run.jokers,this.jokerDefinitions);
-    this.dialog.open('牌型规则',(this.assistProfile?ASSIST_AI_EXPLANATION+'\n'+ASSIST_EXPLANATION+'\n\n':'')+AI_HAND_POLICY+'\n\n'+handRuleReference(this.run.handLevels,{fourStraight:!!(context.handRules?.fourStraight||mods.fourStraight),fourFlush:!!(context.handRules?.fourFlush||mods.fourFlush)}),[{label:'看当前手牌怎么凑',primary:true,run:()=>this.inspectCandidates()}],{effectBody:'凑成牌型后，计分牌点数加进热度，最后热度×倍率。',cards:handTypeRuleCards(this.run.handLevels,{fourStraight:!!(context.handRules?.fourStraight||mods.fourStraight),fourFlush:!!(context.handRules?.fourFlush||mods.fourFlush)}),collapseRules:true,rulesLabel:'计分顺序与完整规则'});attachFirstChapterGuide(this.run,()=>this.render());
+    this.dialog.open('牌型规则',(this.assistProfile?ASSIST_AI_EXPLANATION+'\n'+ASSIST_EXPLANATION+'\n\n':'')+AI_HAND_POLICY+'\n\n'+handRuleReference(this.run.handLevels,{fourStraight:!!(context.handRules?.fourStraight||mods.fourStraight),fourFlush:!!(context.handRules?.fourFlush||mods.fourFlush)},this.run),[{label:'看当前手牌怎么凑',primary:true,run:()=>this.inspectCandidates()}],{effectBody:'凑成牌型后，计分牌点数加进热度，最后热度×倍率。',cards:handTypeRuleCards(this.run.handLevels,{fourStraight:!!(context.handRules?.fourStraight||mods.fourStraight),fourFlush:!!(context.handRules?.fourFlush||mods.fourFlush)}),collapseRules:true,rulesLabel:'计分顺序与完整规则'});attachFirstChapterGuide(this.run,()=>this.render());
   }
   private updateControls():void {
     if(!this.controlsLive)return;
@@ -2004,12 +2020,17 @@ export class GameScene extends Phaser.Scene {
     const payoffs=heroPayoffs(state,score,replay),payoffByEvent=new Map(payoffs.map(k=>[k.eventId,k])),key=payoffs.find(k=>k.fact.definitionId);
     if(!this.climaxArtRequested&&key?.fact.definitionId&&heroClimaxValue(state,score,key,replay)){this.climaxArtRequested=true;this.climaxArtId=key.fact.definitionId;const abort=new AbortController();this.climaxArtAbort=abort;void loadClimaxSourceArt(this,key.fact.definitionId,abort.signal,()=>this.alive(lifecycle,intent)&&this.presentation===presentation&&this.effects.isCurrent(generation));}
     let jokerIndex=0,scoreOrdinal=0,multiplyOrdinal=0,previousSource:string|undefined;
-    for(const event of score.events){
-      if(event.phase==='base')continue;
+    const opponent=opponentHandBeat(score);
+    const opponentKey=opponent&&(replay||!this.shownOpponentKinds.has(opponent.kind));
+    if(opponentKey&&opponent?.kind==='changed'){this.shownOpponentKinds.add(opponent.kind);this.effects.enqueue(context=>presentOpponentBeat(this,toolInventoryPlayedArea(this.view.layout),opponent,context.signal,this.reducedMotion));}
+    for(const event of remainingScoreEvents(score)){
+      if(isEchoReduction(event)&&opponent&&opponentKey){this.shownOpponentKinds.add(opponent.kind);this.effects.enqueue(context=>presentOpponentBeat(this,toolInventoryPlayedArea(this.view.layout),opponent,context.signal,this.reducedMotion));}
       if(event.phase==='finalScore'){this.effects.enqueue(context=>this.award(score,presentation,context));continue;}
       const index=event.sourceType==='joker'?jokerIndex++:event.sourceType==='character'?0:score.sets.activeScoringIds.indexOf(event.targetCardId??'');
       let number=numberImpact(event,this.stage.targetHeat,multiplyOrdinal+1);if(number?.kind==='multiply')multiplyOrdinal++;let beat=impactBeat(experienceBeat(event,previousSource,scoreBeat(event,scoreOrdinal++)),number);if(event.sourceInstanceId===state.routeStarter?.instanceId&&!payoffByEvent.has(event.eventId))beat=starterRepeatBeat(beat,this.reducedMotion);if(event.sourceType==='joker'&&hasActualBenefit(event))previousSource=event.sourceInstanceId;else previousSource=undefined;this.effects.enqueue(context=>this.showScoreEvent(event,Math.max(0,index),beat,context,payoffByEvent.get(event.eventId),number));
     }
+    const opponentEnd=opponentOutcome(state,score);
+    if(opponentEnd)this.effects.enqueue(context=>presentOpponentBeat(this,toolInventoryPlayedArea(this.view.layout),opponentEnd,context.signal,this.reducedMotion));
     let failed=false;
     try {await this.effects.drain();}
     catch {failed=true;if(this.alive(lifecycle,intent))this.resultText.setText('演出已停止，确定结果已保存。');}
@@ -2019,7 +2040,7 @@ export class GameScene extends Phaser.Scene {
   private completePresentation(presentation:NonNullable<GameScene['presentation']>):void {
     if(!this.alive(presentation.lifecycle,presentation.intent))return;
     this.climaxArtAbort?.abort();this.stopScoreFire();
-    this.erxiangTargetId=null;this.azaoRelease=false;this.xiemuBurn=0;this.presentation=undefined;this.run=presentation.state;this.selectedIds.clear();this.assistIds=[];this.assistGestureStart=undefined;this.statusMessage=savedHeroResult(this.run)||handGrowthChanges(this.run)[0]?.line||'';this.updateHud();
+    this.erxiangTargetId=null;this.azaoRelease=false;this.xiemuBurn=0;this.presentation=undefined;this.run=presentation.state;this.selectedIds.clear();this.assistIds=[];this.assistGestureStart=undefined;this.statusMessage=opponentSavedStatus(presentation.score)||savedHeroResult(this.run)||handGrowthChanges(this.run)[0]?.line||'';this.updateHud();
     if(this.run.phase==='stage-cleared'||this.run.phase==='run-won'){this.finishStage(true,true,!presentation.replay);return;}
     if(this.run.phase==='run-lost'){this.finishStage(false,!presentation.replay);return;}
     this.playing=false;this.render();this.revealDrawnCards(presentation.hand.map(card=>card.id));

@@ -1,0 +1,162 @@
+{
+  "beforeHead": "a2a469f091e6fbc3e328e9d1fc38ae9747e2850d",
+  "productHead": "70c0fe0d4461e51a88d98476d2a1c5104fba1960",
+  "beforeStatus": "FAIL",
+  "before": {
+    "hostBottom": 312.390625,
+    "pBottom": 316.453125,
+    "overflowPx": 4.0625
+  },
+  "afterStatus": "PASS",
+  "after": [
+    {
+      "key": "320-repeat",
+      "hostBottom": 312.390625,
+      "pBottom": 309.390625,
+      "textLineBottom": 309.140625,
+      "outerBottomMargin": 3.0,
+      "containment": "PASS"
+    },
+    {
+      "key": "320-changed",
+      "hostBottom": 312.390625,
+      "pBottom": 309.390625,
+      "textLineBottom": 309.140625,
+      "outerBottomMargin": 3.0,
+      "containment": "PASS"
+    }
+  ],
+  "nativeCases": 13,
+  "saveComparisons": [
+    {
+      "key": "1366-entrance",
+      "fields": [
+        "before",
+        "entered"
+      ],
+      "fullStateJournalStorage": "identical",
+      "fullTrace": "identical"
+    },
+    {
+      "key": "1366-repeat",
+      "fields": [
+        "before",
+        "initial",
+        "committed",
+        "after"
+      ],
+      "fullStateJournalStorage": "identical",
+      "fullTrace": "identical"
+    },
+    {
+      "key": "1366-changed",
+      "fields": [
+        "before",
+        "initial",
+        "committed",
+        "after"
+      ],
+      "fullStateJournalStorage": "identical",
+      "fullTrace": "identical"
+    },
+    {
+      "key": "390-entrance",
+      "fields": [
+        "before",
+        "entered"
+      ],
+      "fullStateJournalStorage": "identical",
+      "fullTrace": "identical"
+    },
+    {
+      "key": "390-repeat",
+      "fields": [
+        "before",
+        "initial",
+        "committed",
+        "after",
+        "ordinary"
+      ],
+      "fullStateJournalStorage": "identical",
+      "fullTrace": "identical"
+    },
+    {
+      "key": "390-changed",
+      "fields": [
+        "before",
+        "initial",
+        "committed",
+        "after"
+      ],
+      "fullStateJournalStorage": "identical",
+      "fullTrace": "identical"
+    },
+    {
+      "key": "320-entrance",
+      "fields": [
+        "before",
+        "entered"
+      ],
+      "fullStateJournalStorage": "identical",
+      "fullTrace": "identical"
+    },
+    {
+      "key": "320-repeat",
+      "fields": [
+        "before",
+        "initial",
+        "committed",
+        "after"
+      ],
+      "fullStateJournalStorage": "identical",
+      "fullTrace": "identical"
+    },
+    {
+      "key": "320-changed",
+      "fields": [
+        "before",
+        "initial",
+        "committed",
+        "after"
+      ],
+      "fullStateJournalStorage": "identical",
+      "fullTrace": "identical"
+    },
+    {
+      "key": "390-reduced-skip-resize",
+      "fields": [
+        "before",
+        "committed"
+      ],
+      "fullStateJournalStorage": "identical",
+      "fullTrace": "identical"
+    },
+    {
+      "key": "390-cancel-restore",
+      "fields": [
+        "before",
+        "committed"
+      ],
+      "fullStateJournalStorage": "identical",
+      "fullTrace": "identical"
+    },
+    {
+      "key": "390-won",
+      "fields": [
+        "before",
+        "committed"
+      ],
+      "fullStateJournalStorage": "identical",
+      "fullTrace": "identical"
+    },
+    {
+      "key": "390-lost",
+      "fields": [
+        "before",
+        "committed"
+      ],
+      "fullStateJournalStorage": "identical",
+      "fullTrace": "identical"
+    }
+  ]
+}

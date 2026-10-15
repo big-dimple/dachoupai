@@ -1,0 +1,1 @@
+首次检查为未提交工作树，summary.head只是基线HEAD，不代表基线源码。该轮中修改局部样式触发Vite full reload，低动态回看FAIL保留。此轮不用于最终源码验收。严格夹具首轮6 FAIL来自旧货架引用，实际错误 Run invariant: shelf references/capacity；修夹具移除旧商店，不修改守卫。第一typecheck缺HandSelectionUpdate.pointerId/mode/visitedIds，已补齐。最终见 final/ 7dfebc1e。
