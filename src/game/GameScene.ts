@@ -961,7 +961,7 @@ export class GameScene extends Phaser.Scene {
     if(!this.ready||this.presentation||this.run.phase!=='await-input')return;
     this.handInput?.cancel();this.view.cancelInteraction();this.candidateGhost=undefined;
     const context=r2ScoreContext(this.run,this.hand,[]),mods=readR2Modifiers(this.run.jokers,this.jokerDefinitions);
-    this.dialog.open('牌型规则',(this.assistProfile?ASSIST_AI_EXPLANATION+'\n'+ASSIST_EXPLANATION+'\n\n':'')+AI_HAND_POLICY+'\n\n'+handRuleReference(this.run.handLevels,{fourStraight:!!(context.handRules?.fourStraight||mods.fourStraight),fourFlush:!!(context.handRules?.fourFlush||mods.fourFlush)}),[{label:'看当前手牌怎么凑',primary:true,run:()=>this.inspectCandidates()}],{effectBody:'凑成牌型后，计分牌点数加进热度，最后热度×倍率。',cards:handTypeRuleCards(this.run.handLevels,{fourStraight:!!(context.handRules?.fourStraight||mods.fourStraight),fourFlush:!!(context.handRules?.fourFlush||mods.fourFlush)}),collapseRules:true,rulesLabel:'计分顺序与完整规则'});attachFirstChapterGuide(this.run,()=>this.render());
+    this.dialog.open('牌型规则',(this.assistProfile?ASSIST_AI_EXPLANATION+'\n'+ASSIST_EXPLANATION+'\n\n':'')+AI_HAND_POLICY+'\n\n'+handRuleReference(this.run.handLevels,{fourStraight:!!(context.handRules?.fourStraight||mods.fourStraight),fourFlush:!!(context.handRules?.fourFlush||mods.fourFlush)},this.run),[{label:'看当前手牌怎么凑',primary:true,run:()=>this.inspectCandidates()}],{effectBody:'凑成牌型后，计分牌点数加进热度，最后热度×倍率。',cards:handTypeRuleCards(this.run.handLevels,{fourStraight:!!(context.handRules?.fourStraight||mods.fourStraight),fourFlush:!!(context.handRules?.fourFlush||mods.fourFlush)}),collapseRules:true,rulesLabel:'计分顺序与完整规则'});attachFirstChapterGuide(this.run,()=>this.render());
   }
   private updateControls():void {
     if(!this.controlsLive)return;
