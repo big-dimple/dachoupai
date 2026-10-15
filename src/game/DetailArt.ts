@@ -1,3 +1,4 @@
+import {assertCharacterArtDimensions} from './CharacterArt';
 import {artTransfer} from './ArtTextureLoading';
 /** Bounded, same-origin detail upgrade queue. Thumbnails remain visible on every failure. */
 const MAX_ACTIVE=2,MAX_CACHED=4,MAX_BYTES=2*1024*1024,DEADLINE_MS=6000;
@@ -42,7 +43,8 @@ function pump():void {
             }else blob=await response.blob();
             if(blob.size>MAX_BYTES)throw new Error('detail-image-budget');
             if(signal.aborted)throw new Error('detail-image-aborted');
-            const bitmap=await createImageBitmap(blob);const pixels=bitmap.width*bitmap.height;bitmap.close();
+            const bitmap=await createImageBitmap(blob);const pixels=bitmap.width*bitmap.height;
+            try{assertCharacterArtDimensions(work.url,bitmap.width,bitmap.height);}finally{bitmap.close();}
             if(signal.aborted)throw new Error('detail-image-aborted');
             if(pixels>1_600_000)throw new Error('detail-image-pixels');return blob;
           }finally{clearTimeout(timer);signal.removeEventListener('abort',stopDeadline);}
@@ -67,7 +69,7 @@ export function decodeArtImage(src:string,signal?:AbortSignal):Promise<HTMLImage
     const abort=()=>finish(new Error('detail-image-aborted'));
     const timer=setTimeout(()=>finish(new Error('detail-image-timeout')),DEADLINE_MS);
     signal?.addEventListener('abort',abort,{once:true});decoded.onerror=()=>finish(new Error('detail-image-decode'));
-    try {decoded.src=src;void decoded.decode().then(()=>finish(),()=>finish(new Error('detail-image-decode')));}
+    try {decoded.src=src;void decoded.decode().then(()=>{try{assertCharacterArtDimensions(src,decoded.naturalWidth,decoded.naturalHeight);finish();}catch{finish(new Error('character-art-dimensions'));}},()=>finish(new Error('detail-image-decode')));}
     catch {finish(new Error('detail-image-decode'));}
   });
 }

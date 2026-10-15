@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "id": "young-adult-heroes-v1",
+  "characterIds": ["azao", "amo", "touye", "laohuan", "erxiang", "xiemu"],
+  "sources": {
+    "portrait": {"width": 1536, "height": 1920, "format": "png", "maxBytes": 20971520},
+    "eyes": {"width": 1536, "height": 768, "format": "png", "maxBytes": 20971520}
+  },
+  "outputs": {
+    "avatar": {"width": 256, "height": 256, "format": "webp", "maxBytes": 131072, "maxPixels": 600000, "sourcePurpose": "portrait"},
+    "selection": {"width": 256, "height": 320, "format": "webp", "maxBytes": 131072, "maxPixels": 600000, "sourcePurpose": "portrait"},
+    "portrait": {"width": 615, "height": 768, "format": "webp", "maxBytes": 98304, "maxPixels": 600000, "sourcePurpose": "portrait"},
+    "eyes": {"width": 1536, "height": 768, "format": "webp", "maxBytes": 262144, "maxPixels": 1179648, "sourcePurpose": "eyes", "runtimeIntegrated": false}
+  },
+  "recipe": {"fit": "cover", "position": "centre", "kernel": "lanczos3", "quality": 88, "effort": 6},
+  "publication": "manual-only; technical verification never grants visual approval or publication"
+}

@@ -3,7 +3,7 @@ import type {R2RunState} from '../domain/r2Run';
 import {ImageWarmupQueue,type WarmImage} from './ImageWarmupQueue';
 import {imageWarmupStatus} from './ImageWarmupStatus';
 import {CHARACTERS,type CharacterId} from './characters';
-import {avatarKey,avatarURL,selectionPortraitKey,selectionPortraitURL,portraitURL} from './portraits';
+import {avatarKey,avatarURL,selectionPortraitKey,selectionPortraitURL,portraitURL,portraitKey} from './portraits';
 import {COURT_ART} from './HanddrawnArt';
 import {JOKER_ART} from './jokerArt';
 import {assetUrl} from './theme';
@@ -49,7 +49,7 @@ export function warmOpeningImages(scene:Phaser.Scene):void {
   queue(scene).request(CHARACTERS.flatMap(c=>[{key:selectionPortraitKey(c.id),url:selectionPortraitURL(c.id)},{key:avatarKey(c.id),url:avatarURL(c.id)}]));
   if(speculative())warmRunImages(scene);
 }
-export function warmHeroImage(scene:Phaser.Scene,id:CharacterId):void {queue(scene).request([{key:'opening-portrait-'+id,url:portraitURL(id),visible:true}],true);}
+export function warmHeroImage(scene:Phaser.Scene,id:CharacterId):void {queue(scene).request([{key:portraitKey(id),url:portraitURL(id),visible:true}],true);}
 export function warmTableImages(scene:Phaser.Scene,id:CharacterId):void {
   warmRunImages(scene);
   queue(scene).request(COURT_ART.map(a=>({key:a.key,url:assetUrl(a.path)})),true);

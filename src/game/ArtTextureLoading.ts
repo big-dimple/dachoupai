@@ -1,4 +1,5 @@
 import type Phaser from 'phaser';
+import {assertCharacterArtReference,assertCharacterArtDimensions} from './CharacterArt';
 
 /** At most four transfers (original separate pools allowed six), two per lane: visible faces > optional detail > speculative stage images.
  * Preempted optional work keeps its subscribers and resumes after the visible faces.
@@ -53,6 +54,7 @@ export function promoteArtTexture(game:Phaser.Game,key:string):void {
 /** Texture manager is the only thumbnail cache. Jobs are shared across scene/warmup owners. */
 export function loadArtTexture(game:Phaser.Game,key:string,url:string,signal:AbortSignal,visible=true):Promise<void> {
   if(signal.aborted)return Promise.reject(Error('art-aborted'));
+  try{assertCharacterArtReference(key,url);}catch(error){return Promise.reject(error);}
   if(game.textures.exists(key))return Promise.resolve();
   let jobs=games.get(game);if(!jobs){jobs=new Map();games.set(game,jobs);}
   let work=jobs.get(key);
@@ -77,6 +79,7 @@ export function loadArtTexture(game:Phaser.Game,key:string,url:string,signal:Abo
         image=new Image();image.decoding='async';image.src=source;
         try{await image.decode();}catch{throw Object.assign(Error('art-decode'),{retryable:false});}
         if(transferSignal.aborted)throw Error('art-aborted');
+        assertCharacterArtDimensions(url,image.naturalWidth,image.naturalHeight);
         if(image.naturalWidth*image.naturalHeight>600000)throw Object.assign(Error('art-pixels'),{retryable:false});
         if(!game.textures.exists(key))game.textures.addImage(key,image);
       }finally{clearTimeout(deadline);transferSignal.removeEventListener('abort',cleanup);if(source)URL.revokeObjectURL(source);}

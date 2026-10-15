@@ -1,8 +1,9 @@
+import {validCharacterImage} from './CharacterArt';
 import type {BuildKeepsake} from './BuildKeepsake';
 /** A shared hand-painted keepsake; text remains readable if a reused preview fails. */
 export function buildKeepsakeView(facts:BuildKeepsake,cleanups:(()=>void)[],inspectHero?:()=>void):HTMLElement {
  const section=document.createElement('section');section.className='build-keepsake';section.setAttribute('aria-label','角色与成长手记');
- const image=(url:string,alt:string)=>{const img=document.createElement('img');img.src=url;img.alt=alt;img.decoding='async';img.onerror=()=>{img.hidden=true;};cleanups.push(()=>{img.onerror=null;});return img;};
+ const image=(url:string,alt:string)=>{const img=document.createElement('img');img.src=url;img.alt=alt;img.decoding='async';img.onerror=()=>{img.hidden=true;};img.onload=()=>{img.hidden=!validCharacterImage(img);};cleanups.push(()=>{img.onerror=null;img.onload=null;});return img;};
  const p=(text:string,cls?:string)=>{const node=document.createElement('p');node.textContent=text;if(cls)node.className=cls;return node;};
  const hero=document.createElement('article'),copy=document.createElement('div'),heading=document.createElement('h3');hero.className='build-keepsake-hero';heading.textContent=facts.hero.name+' · '+facts.hero.ability;
  copy.append(heading,p(facts.hero.modeNote,'build-keepsake-note'));

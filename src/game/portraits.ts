@@ -1,19 +1,15 @@
 import Phaser from 'phaser';
-import {getCharacter,type CharacterDefinition,type CharacterId} from './characters';
+import {type CharacterDefinition,type CharacterId} from './characters';
+import {characterArt} from './CharacterArt';
 import {portraitSquareCrop} from './portraitCrop';
 import {PAPER_THEME,PAPER_CSS,UI_FONT} from './theme';
-export const avatarKey=(id:CharacterId):string=>`avatar-${id}`;
-export const avatarURL=(id:CharacterId):string=>`${import.meta.env.BASE_URL}assets/handdrawn-p08/characters/${id}.avatar.webp`;
-export const selectionPortraitKey=(id:CharacterId):string=>`selection-portrait-${id}`;
-export const selectionPortraitURL=(id:CharacterId):string=>`${import.meta.env.BASE_URL}assets/handdrawn-p08/characters/${id}.selection.webp`;
-/** Full portraits are loaded only when the player opens character details. */
-export const portraitURL=(id:CharacterId):string=>getCharacter(id).portrait;
-export function queueCharacterPreviewLoads(scene:Phaser.Scene,characters:CharacterDefinition[],xhrSettings?:Phaser.Types.Loader.XHRSettingsObject):void {
-  for(const character of characters){
-    if(!scene.textures.exists(avatarKey(character.id)))scene.load.image(avatarKey(character.id),avatarURL(character.id),xhrSettings);
-    if(!scene.textures.exists(selectionPortraitKey(character.id)))scene.load.image(selectionPortraitKey(character.id),selectionPortraitURL(character.id),xhrSettings);
-  }
-}
+export const avatarKey=(id:CharacterId):string=>characterArt(id,'avatar').key;
+export const avatarURL=(id:CharacterId):string=>characterArt(id,'avatar').url;
+export const selectionPortraitKey=(id:CharacterId):string=>characterArt(id,'selection').key;
+export const selectionPortraitURL=(id:CharacterId):string=>characterArt(id,'selection').url;
+/** Same portrait is warmed for the selected hero and requested by details/highlights. */
+export const portraitKey=(id:CharacterId):string=>characterArt(id,'portrait').key;
+export const portraitURL=(id:CharacterId):string=>characterArt(id,'portrait').url;
 /** The HUD uses reviewed face crops, never a stretched full portrait. */
 export function addAvatar(scene:Phaser.Scene,container:Phaser.GameObjects.Container,character:CharacterDefinition,x:number,y:number,size=64):void {
   const key=avatarKey(character.id);
