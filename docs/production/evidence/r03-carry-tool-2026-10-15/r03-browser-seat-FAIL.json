@@ -1,0 +1,22 @@
+{
+  "base": "9c41dfff2a66ffa66b5cf812c2742caae9cdf125",
+  "head": "9c41dfff2a66ffa66b5cf812c2742caae9cdf125",
+  "sourceHashes": {
+    "src/game/ShopScene.ts": "c9b5b812e56b95f4a25872e1e0fb81392a792803b7e13e62f13dfdae13bc4f69",
+    "src/game/GameScene.ts": "b0cc96e51dd11927cee4f7cc314c66386d958e3075e7497a00f8111375176589",
+    "src/game/ToolCarryIntent.ts": "fbd50f13871dbb35f62223a1a9ff30e053d70e95bf3cca0c58afeb231eef1a43"
+  },
+  "scope": "System Chromium software Canvas DPR1, PC mouse and 320/390 touch. Controlled strict-checkpoint shop stock/gold/duplicate inventory; real purchase, leave, enter and use UI. No physical device or natural acquisition-rate claim.",
+  "cases": [
+    {
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      },
+      "errors": [],
+      "checks": []
+    }
+  ],
+  "status": "FAIL",
+  "error": "page.waitForFunction: Timeout 20000ms exceeded.\n    at point (/workspace/dachoupai/harness/ui.mjs:5:14)\n    at tapUI (/workspace/dachoupai/harness/ui.mjs:25:17)\n    at purchase (/workspace/dachoupai/harness/r03-carry-tool.mjs:35:106)\n    at /workspace/dachoupai/harness/r03-carry-tool.mjs:44:84"
+}

@@ -1,5 +1,7 @@
 # 当前执行入口
 
+2026-10-15 R03 显式携带工具候选：基于9c41dfff，分支feat/r03-carry-tool-to-hand-20261015，产品fd1cafda。买来使用后可选现在改牌组/带入牌桌选当前手牌/继续经营，确切instanceId与唯一离店入场序列绑定，仍选目标确认；原立即使用/存着保持。3644全量/type/build/content/plan及PC1366/390/320三主线+九边界受控原生PASS，完整state/journal/storage/RNG同原命令；B05、取消、同名、连点、保存重试/冷恢复保持。规则/数值/身份/CharacterArt/manifest/加载预载核心不改。证据docs/production/evidence/r03-carry-tool-2026-10-15/README.md；仅开发分支push、不合main、不查CI/域名，非自然经营/真人设备/整体签收。
+
 2026-10-15 开场加载/下一场景预载：基于 main8e217，分支 feat/loading-preload-20261015，产品805d3893、补充样板75ac549e。复用共享加载/缓存/解码守卫，真实134项进度、常用牌优先、实际持牌现货预载、12秒重试/文字降级，高清/音乐不阻首屏。用户最新要求覆盖下方保留姓名占位指令：18姓名SVG和manifest已删，六英雄采用文字入口，旧脸/正式图源与历史不动。3641全量/type/build/content/plan及PC/390/320弱网、缺图重试/文字、冷恢复及双端HTTP缓存受控通过，非自然试玩/物理设备/线上性能签收；正式图仍待。证据 docs/production/evidence/loading-preload-2026-10-15/README.md。仅开发分支正常push，不查CI/域名、不合main、不部署。
 
 2026-10-15 Astra三来源整合收尾：目标dev/astra-integration-20261015，保留d31全部祖先与功能，正常合入品牌4df0db49、成长6be7ecbc、推荐2aa1c197。人工统一scoring/growth接口、heroText和系数短标签，f10 consume-rescue不再误列结算后成长/返还；产品dbd9818d、核验c7860c7f同src树，3637全量/type/build/content/plan，成长2+24、推荐12、品牌5组受控原生PASS，见docs/production/evidence/astra-brand-growth-recommendation-2026-10-15/README.md。六最终姓名/三男三女和明确待图占位保持，正式立绘缺件不阻代码。新整合仅开发分支push、不合main/不重试Forbidden PR；独立d31发布已明确授权，但CI38724687012 GET Forbidden、域名build-info HTTP403，本次未main push/部署，不拿旧CI或push当上线。下方原分支范围与早期四男草案按历史读取，不替代本轮收尾。

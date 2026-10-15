@@ -1,0 +1,22 @@
+{
+  "base": "9c41dfff2a66ffa66b5cf812c2742caae9cdf125",
+  "head": "9c41dfff2a66ffa66b5cf812c2742caae9cdf125",
+  "sourceHashes": {
+    "src/game/ShopScene.ts": "c9b5b812e56b95f4a25872e1e0fb81392a792803b7e13e62f13dfdae13bc4f69",
+    "src/game/GameScene.ts": "b0cc96e51dd11927cee4f7cc314c66386d958e3075e7497a00f8111375176589",
+    "src/game/ToolCarryIntent.ts": "fbd50f13871dbb35f62223a1a9ff30e053d70e95bf3cca0c58afeb231eef1a43"
+  },
+  "scope": "System Chromium software Canvas DPR1, PC mouse and 320/390 touch. Controlled strict-checkpoint shop stock/gold/duplicate inventory; real purchase, leave, enter and use UI. No physical device or natural acquisition-rate claim.",
+  "cases": [
+    {
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      },
+      "errors": [],
+      "checks": []
+    }
+  ],
+  "status": "FAIL",
+  "error": "Error: invalid-save-opening-state\n    at fail (/workspace/dachoupai/src/application/checkpoint.ts:109:9)\n    at validateState (/workspace/dachoupai/src/application/checkpoint.ts:1278:132)\n    at makeCheckpoint (/workspace/dachoupai/src/application/checkpoint.ts:1339:3)\n    at imp (file:///workspace/dachoupai/harness/r03-carry-tool.mjs:34:50)\n    at file:///workspace/dachoupai/harness/r03-carry-tool.mjs:44:32\n    at runNextTicks (node:internal/process/task_queues:65:5)\n    at process.processImmediate (node:internal/timers:502:9)"
+}
