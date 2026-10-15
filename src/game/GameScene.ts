@@ -1212,15 +1212,15 @@ export class GameScene extends Phaser.Scene {
   private inspectTouye():void {
     const copy=touyeChoice(this.run,[...this.selectedIds]),seq=this.run.commandSeq,ids=[...this.selectedIds];
     const guide=heroSkillGuide(this.run,this.selectionPreview(),ids);
-    const dialog=this.dialog.open(heroText('骰爷 · 弃前赌约'),copy.details,[],{
-      guideSteps:heroOperationSteps(this.run,guide),summaryBody:guide.step,effectBody:guide.effect+'\n'+guide.risk+(copy.enabled&&touyeComboCue(this.run)?'\n'+touyeComboCue(this.run):''),collapseRules:true,rulesLabel:'赌约细则',closeLabel:copy.pending?'返回出牌':ids.length?'返回牌桌':'返回选弃牌',
+    const dialog=this.dialog.open(characterForRun(this.run).name+' · '+characterForRun(this.run).passiveName,copy.details,[],{
+      guideSteps:heroOperationSteps(this.run,guide),summaryBody:guide.step,effectBody:guide.effect+(copy.enabled&&touyeComboCue(this.run)?'\n'+touyeComboCue(this.run):''),collapseRules:true,rulesLabel:'赌约细则',closeLabel:copy.pending?'返回出牌':ids.length?'返回牌桌':'返回选弃牌',
       choices:copy.pending?[]:copy.choices.map(c=>({label:'押'+c.label,detail:c.reason==='当前整手已可达，不能押'?'整手已可凑出'+c.label+'，不能押':c.reason||undefined,disabled:!this.ready||!c.available,run:()=>this.confirmTouye(c.target,copy.snapshotToken,seq,ids,c.accepted)})),
       secondaryActions:[{label:'培养手记',run:()=>this.inspectJourney()},{label:'查看物品',run:()=>showConsumables(this.dialog,this.run,this.ready&&!this.pendingTouye,(a,seq)=>this.command(a,seq))},{label:'上一手详情',disabled:!this.run.lastTrace,run:()=>this.inspectLastTrace()}],
-    });mountHeroSkillGuide(dialog);
+    });mountHeroSkillGuide(dialog,this.run);
   }
   private confirmTouye(target:TouyeTarget,snapshotToken:string,seq:number,ids:string[],accepted:string):void {
     const cost=r2DiscardCost(this.run),gold=stageNotice(this.run)?.discardGoldCost??0,copy=touyeConfirmationCopy(this.run,ids);
-    const dialog=this.dialog.open('押'+HAND_LABELS[target]+' · 弃'+ids.length+'张',copy.risk+'。\n'+copy.success+'，替代普通×1.15。\n'+copy.qualification+'；接受：'+accepted+'。\n本次实际弃牌：'+ids.map(id=>{const c=this.hand.find(c=>c.id===id)!;return rankLabel(c.rank)+SUIT_SYMBOL[c.suit];}).join(' ')+'。\n花'+cost+'次弃牌'+(gold?'＋'+gold+'金币':'，不另收金币')+'；确认保存后才补牌，不能取消重抽。',[{label:'确认押'+HAND_LABELS[target]+'并弃'+ids.length+'张',primary:true,run:()=>{this.dialog.close();void this.discardSelected(false,{target,snapshotToken},seq,ids);}}],{closeLabel:'取消 · 不弃牌',guideSteps:{labels:['选要弃的牌','选押注目标','确认补牌'],current:2},summaryBody:'③ 确认押'+HAND_LABELS[target]+'并补牌',effectBody:'弃'+ids.length+'张，补'+copy.refillCount+'张 · 花'+cost+'次弃牌'+(gold?'＋'+gold+'金币':'')+'\n'+copy.risk+'；'+copy.success+'。',collapseRules:true,rulesLabel:'目标与弃牌明细'});mountHeroSkillGuide(dialog);dialog.classList.add('hero-confirm-dialog');
+    const dialog=this.dialog.open('押'+HAND_LABELS[target]+' · 弃'+ids.length+'张',copy.risk+'。\n'+copy.success+'，替代普通×1.15。\n'+copy.qualification+'；接受：'+accepted+'。\n本次实际弃牌：'+ids.map(id=>{const c=this.hand.find(c=>c.id===id)!;return rankLabel(c.rank)+SUIT_SYMBOL[c.suit];}).join(' ')+'。\n花'+cost+'次弃牌'+(gold?'＋'+gold+'金币':'，不另收金币')+'；确认保存后才补牌，不能取消重抽。',[{label:'确认押'+HAND_LABELS[target]+'并弃'+ids.length+'张',primary:true,run:()=>{this.dialog.close();void this.discardSelected(false,{target,snapshotToken},seq,ids);}}],{closeLabel:'取消 · 不弃牌',guideSteps:{labels:['选要弃的牌','选押注目标','确认补牌'],current:2},summaryBody:'③ 确认押'+HAND_LABELS[target]+'并补牌',effectBody:'弃'+ids.length+'张，补'+copy.refillCount+'张 · 花'+cost+'次弃牌'+(gold?'＋'+gold+'金币':'')+'\n'+copy.risk+'；'+copy.success+'。',collapseRules:true,rulesLabel:'目标与弃牌明细'});mountHeroSkillGuide(dialog,this.run);dialog.classList.add('hero-confirm-dialog');
   }
   private inspectErxiang():void {
     const seq=this.run.commandSeq,choice=erxiangChoice(this.run,this.selectionPreview(),this.erxiangTargetId);
@@ -1230,7 +1230,7 @@ export class GameScene extends Phaser.Scene {
       ...(this.erxiangTargetId?[{label:'取消本手交棒',run:()=>{this.erxiangTargetId=null;this.dialog.close();this.refreshSelection();}}]:[]),
       {label:'上一手详情',disabled:!this.run.lastTrace,run:()=>this.inspectLastTrace()},
     ];
-    const dialog=this.dialog.open(heroText('二响 · 交棒'),characterForRun(this.run).passiveDescription,[],{guideSteps:heroOperationSteps(this.run,guide,!!this.erxiangTargetId),summaryBody:guide.step,effectBody:choice.sentence+'\n'+guide.risk+(choice.candidates.length?'\n仅改首次普通点数；增强、版次和额外计分仍按各自规则生效。':''),collapseRules:true,rulesLabel:'交棒细则',closeLabel:'返回选牌',choices:actions.filter(a=>a.label!=='上一手详情'),secondaryActions:actions.filter(a=>a.label==='上一手详情')});mountHeroSkillGuide(dialog);
+    const dialog=this.dialog.open(characterForRun(this.run).name+' · '+characterForRun(this.run).passiveName,characterForRun(this.run).passiveDescription,[],{guideSteps:heroOperationSteps(this.run,guide,!!this.erxiangTargetId),summaryBody:guide.step,effectBody:choice.sentence,collapseRules:true,rulesLabel:'交棒细则',closeLabel:'返回选牌',choices:actions.filter(a=>a.label!=='上一手详情'),secondaryActions:actions.filter(a=>a.label==='上一手详情')});mountHeroSkillGuide(dialog,this.run);
   }
   private inspectHeroExplanation():void {
     const guide=heroSkillGuide(this.run,this.selectionPreview(),[...this.selectedIds],this.assistProfile&&assistCandidates(this.assistInput(),r2AssistAvailability(this.run).available).length>0,{erxiangTargetId:this.erxiangTargetId,xiemuBurn:this.xiemuBurn,azaoRelease:this.azaoRelease,assistCount:this.assistIds.length});
@@ -1252,7 +1252,7 @@ export class GameScene extends Phaser.Scene {
     const auxiliary=new Set(['培养手记','查看物品','上一手详情','本章节目单']);
     const choices=actions.filter(a=>!auxiliary.has(a.label));
     if(this.assistProfile)choices.push({label:'查看主手与助攻组合',primary:true,disabled:!this.ready||!r2AssistAvailability(this.run).available,run:()=>this.inspectCandidates()});
-    const dialog=this.dialog.open(c.name+' · 技能',body,[],{guideSteps:heroOperationSteps(this.run,guide,!!(this.xiemuBurn||this.azaoRelease||this.assistIds.length)),summaryBody:guide.step,effectBody:guide.effect+(guide.risk?'\n'+guide.risk:''),collapseRules:true,rulesLabel:'技能与本场细则',closeLabel:'返回牌桌',choices,secondaryActions:actions.filter(a=>auxiliary.has(a.label)),portrait:{url:portraitURL(c.id),alt:c.name+' · 正式立绘'}});mountHeroSkillGuide(dialog);
+    const dialog=this.dialog.open(c.name+' · '+c.passiveName,body,[],{guideSteps:heroOperationSteps(this.run,guide,!!(this.xiemuBurn||this.azaoRelease||this.assistIds.length)),summaryBody:guide.step,effectBody:guide.effect,collapseRules:true,rulesLabel:'技能与本场细则',closeLabel:'返回牌桌',choices,secondaryActions:actions.filter(a=>auxiliary.has(a.label)),portrait:{url:portraitURL(c.id),alt:c.name+' · 正式立绘'}});mountHeroSkillGuide(dialog,this.run);
   }
   private inspectJoker(id:string):void {
     const j=this.run.jokers.find(j=>j.instanceId===id);if(!j)return;const d=this.jokerDefinition(j.definitionId),index=this.run.jokers.indexOf(j),art=jokerArtUrl(d.id),artKey=jokerArtKey(d.id),rarity=JOKER_RARITY[d.rarity];
@@ -1553,7 +1553,7 @@ export class GameScene extends Phaser.Scene {
     const receipt=this.run.receipts.find(r=>r.seq===this.run.commandSeq);if(!receipt)return;
     const eventId=receipt.commandId+'/laohuan-refill';if(this.shownPayoffs.has(eventId))return;
     const cards=ids.map(id=>this.run.deckInstances.find(c=>c.id===id)).filter((c):c is PlayingCard=>!!c),names=cards.map(c=>rankLabel(c.rank)+SUIT_SYMBOL[c.suit]).join(' ');
-    const key:JokerKeyHighlight={eventId,kind:'payoff',heroId:'laohuan',cause:'戏法实际留牌',landing:'留'+cards.length+'张 · 已保存',fact:{eventId,sourceInstanceId:this.run.runId+'/character',definitionId:'',title:heroText('老幻 · 戏法留牌'),effect:'实际留下 '+names,condition:'原戏法弃/留牌命令成功保存',destination:'当前手牌 · 不增加计分',next:'继续自主选牌'}};
+    const key:JokerKeyHighlight={eventId,kind:'payoff',heroId:'laohuan',cause:'戏法实际留牌',landing:'留'+cards.length+'张 · 已保存',fact:{eventId,sourceInstanceId:this.run.runId+'/character',definitionId:'',title:characterForRun(this.run).name+' · '+characterForRun(this.run).passiveName+' · 实际留牌',effect:'实际留下 '+names,condition:'原戏法弃/留牌命令成功保存',destination:'当前手牌 · 不增加计分',next:'继续自主选牌'}};
     this.effects.clear();this.effects.enqueue(async context=>{this.refillPresentation=context;try {const stage=mountHeroClimax(this,this.view.root,{x:0,y:0,...cssViewport(this)},key,{skillName:characterForRun(this.run).passiveName,label:'实际留牌',before:cards.length+'张',after:cards.length+'张',note:'多看'+looked+'张 · '+names+'；不增加计分'},this.reducedMotion);if(!stage){
       const viewport=cssViewport(this),width=Math.min(480,viewport.width-32),height=140;
       const group=mountKeyHighlight(this,this.view.root,{x:(viewport.width-width)/2,y:(viewport.height-height)/2,width,height},{...key,heroId:undefined,cause:key.landing+' · 不增加计分'});

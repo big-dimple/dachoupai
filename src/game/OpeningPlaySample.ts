@@ -14,7 +14,7 @@ export function heroPlaySample(id:CharacterId):OpeningPlaySample {
   touye:{before:{label:'选红框5张弃牌 → 押两对',cards:['7♠','7♥','Q♣','5♦','9♣','2♥','4♣','K♦'],marked:[3,4,5,6,7]},after:{label:'新摸Q♦参与两对 → 示例成功',cards:['7♠','7♥','Q♣','Q♦','3♥','5♣','8♦','A♠'],marked:[3,4,5,6,7]},result:'新牌成型×2 · 否则×0.85（非必中）',cost:'本场一次 · 押后不能再弃、用工具或调大丑牌'},
   laohuan:{before:{label:'弃1张 → 看3张候选',cards:['7♠','9♥','Q♣'],marked:[0]},after:{label:'点选7♠ → 只补回1张',cards:['7♠'],marked:[0]},result:'多看最多2张 · 自己选',cost:s.cost+' · 未留候选本场不抽'},
   erxiang:{before:{label:'对子以上 → 点红框8交棒',cards:['8♠','8♥'],marked:[0]},after:{label:'仍计这张牌 · 普通热度转倍率',cards:['8♠','8♥'],marked:[0]},result:s.beats[2].result,cost:'失去这张普通热度 · 增强／版次保留 · 本场一次'},
-  azao:{before:{label:'先出两对 → 存1层',cards:['7♠','7♥','Q♣','Q♦'],marked:[]},after:{label:'再出三条 → 换型存2层',cards:['7♠','7♥','7♣'],marked:[2]},result:'再一手释放 '+s.beats[2].result,cost:'重复不放／对子／高牌会清空 · 最高3层'},
+  azao:{before:{label:'先出两对 → 存1层',cards:['7♠','7♥','Q♣','Q♦'],marked:[]},after:{label:'再出三条 → 换型存2层',cards:['7♠','7♥','7♣'],marked:[2]},result:'再一手释放 '+s.beats[2].result,cost:'同牌型未释放则清空；对子／高牌也清空 · 最高3层'},
   xiemu:{before:{label:'先留10金 · 两对以上才可燃',cards:['7♠','7♥','Q♣','Q♦'],marked:[]},after:{label:'出牌前燃10金 → 示例余0金',cards:['7♠','7♥','Q♣','Q♦'],marked:[0,1,2,3]},result:s.beats[2].result,cost:'真扣金、影响持币与利息 · 本场一次'},
  };
  return {tag:s.tag,...samples[id]};

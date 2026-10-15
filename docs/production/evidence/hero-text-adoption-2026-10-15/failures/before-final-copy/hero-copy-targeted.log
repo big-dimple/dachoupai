@@ -1,0 +1,39 @@
+
+> dachoupai@0.1.0 test
+> vitest run tests/hero-opening-copy.test.ts tests/hero-explanation.test.ts tests/hero-skill-guide.test.ts tests/hero-payoff.test.ts tests/hero-ability-cue.test.ts tests/settlement-presentation.test.ts tests/tangsong-identity.test.ts --maxWorkers=1
+
+
+ RUN  v4.1.11 /workspace/dachoupai
+
+ ❯ tests/settlement-presentation.test.ts (23 tests | 1 failed) 342ms
+   × current million and billion focus the actual strongest local source, while the automatic cap stays separate 30ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/settlement-presentation.test.ts > current million and billion focus the actual strongest local source, while the automatic cap stays separate
+AssertionError: expected '藏锋散金' to be '燃金' // Object.is equality
+
+Expected: "燃金"
+Received: "藏锋散金"
+
+ ❯ tests/settlement-presentation.test.ts:78:118
+     76|  for(const [kind,tier] of [['million',2],['billion',3]] as const){
+     77|   const f=climaxSettlementReady(kind),run=energySend(f.state,f.action)…
+     78|   expect(readCheckpoint(makeCheckpoint(run,[])).ok).toBe(true);expect(…
+       |                                                                                                                      ^
+     79|   if(kind==='billion'){expect(facts.card?.id).toBe('a06');expect(facts…
+     80|   expect(run).toEqual(before);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 6 passed (7)
+      Tests  1 failed | 49 passed (50)
+   Start at  17:07:13
+   Duration  8.66s (transform 3.12s, setup 0ms, import 4.90s, tests 2.37s, environment 1ms)
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice
