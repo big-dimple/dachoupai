@@ -1,0 +1,34 @@
+{
+  "head": "25f7de9f53e8f8e864107c47018ec0ea75c8577e",
+  "scope": "Read-only title/selector, actual canvas allocation and browser clicks; no run creation or natural play",
+  "cases": [
+    {
+      "width": 390,
+      "height": 740,
+      "dpr": 3,
+      "errors": [],
+      "metrics": {
+        "backing": [
+          1170,
+          2220
+        ],
+        "pixels": 2597400,
+        "css": [
+          390,
+          740
+        ],
+        "layout": [
+          390,
+          740
+        ],
+        "camera": [
+          3,
+          3
+        ]
+      },
+      "status": "FAIL",
+      "error": "page.evaluate: TypeError: Cannot read properties of undefined (reading 'state')\n    at eval (eval at evaluate (:311:30), <anonymous>:1:56)\n    at UtilityScript.evaluate (<anonymous>:313:16)\n    at UtilityScript.<anonymous> (<anonymous>:1:44)\n    at /workspace/dachoupai/harness/viewport-budget.mjs:16:105"
+    }
+  ],
+  "status": "FAIL"
+}
