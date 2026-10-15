@@ -1,0 +1,77 @@
+Merge made by the 'ort' strategy.
+ .github/workflows/smoke-diagnostics.yml            |  106 ++
+ .../shop-smoke-performance-2026-10-15/README.md    |   56 +
+ .../checks/browser-install.log.gz                  |  Bin 0 -> 527 bytes
+ .../checks/container-pull.log.gz                   |  Bin 0 -> 356 bytes
+ .../checks/fixed-startup-failure.log.gz            |  Bin 0 -> 489 bytes
+ .../checks/renderer-final.log.gz                   |  Bin 0 -> 298 bytes
+ .../checks/targeted.log.gz                         |  Bin 0 -> 297 bytes
+ .../ci-fixed-chromium-summary.json                 |  475 +++++
+ .../ci-fixed-firefox-summary.json                  |  475 +++++
+ .../ci-original-summaries.json                     | 1910 ++++++++++++++++++++
+ .../ci-status.json                                 |  255 +++
+ .../comparison-head-chromium.log.gz                |  Bin 0 -> 9428 bytes
+ .../final-local.jsonl.gz                           |  Bin 0 -> 23794 bytes
+ .../final-local.log.gz                             |  Bin 0 -> 601 bytes
+ .../fixed-chromium-job.log.gz                      |  Bin 0 -> 13276 bytes
+ .../fixed-chromium.jsonl.gz                        |  Bin 0 -> 17610 bytes
+ .../fixed-chromium.log.gz                          |  Bin 0 -> 568 bytes
+ .../fixed-firefox-job.log.gz                       |  Bin 0 -> 13276 bytes
+ .../local-chromium.jsonl.gz                        |  Bin 0 -> 29764 bytes
+ .../local-chromium.log.gz                          |  Bin 0 -> 568 bytes
+ .../local-final-smoke-result.json                  |  111 ++
+ .../local-final-summary.json                       |  886 +++++++++
+ .../local-fixed-summary.json                       |  477 +++++
+ .../local-original-summary.json                    |  481 +++++
+ .../original-artifact-summary.log.gz               |  Bin 0 -> 23401 bytes
+ .../original-ci-38684066600.log.gz                 |  Bin 0 -> 9235 bytes
+ .../product-ci-browser.log.gz                      |  Bin 0 -> 10472 bytes
+ .../protected-trees.json                           |   27 +
+ .../screenshots.json                               |   18 +
+ .../screenshots/desktop-game.png                   |  Bin 0 -> 170819 bytes
+ .../screenshots/mobile-game.png                    |  Bin 0 -> 379670 bytes
+ .../screenshots/mobile-rotated.png                 |  Bin 0 -> 307905 bytes
+ .../screenshots/mobile-short.png                   |  Bin 0 -> 296398 bytes
+ harness/smoke-diagnostics.mjs                      |   57 +
+ harness/summarize-smoke-diagnostics.mjs            |   14 +
+ src/main.ts                                        |    3 +-
+ src/platform/Renderer.ts                           |   17 +
+ tests/renderer.test.ts                             |   31 +
+ 38 files changed, 5398 insertions(+), 1 deletion(-)
+ create mode 100644 .github/workflows/smoke-diagnostics.yml
+ create mode 100644 docs/production/evidence/shop-smoke-performance-2026-10-15/README.md
+ create mode 100644 docs/production/evidence/shop-smoke-performance-2026-10-15/checks/browser-install.log.gz
+ create mode 100644 docs/production/evidence/shop-smoke-performance-2026-10-15/checks/container-pull.log.gz
+ create mode 100644 docs/production/evidence/shop-smoke-performance-2026-10-15/checks/fixed-startup-failure.log.gz
+ create mode 100644 docs/production/evidence/shop-smoke-performance-2026-10-15/checks/renderer-final.log.gz
+ create mode 100644 docs/production/evidence/shop-smoke-performance-2026-10-15/checks/targeted.log.gz
+ create mode 100644 docs/production/evidence/shop-smoke-performance-2026-10-15/ci-fixed-chromium-summary.json
+ create mode 100644 docs/production/evidence/shop-smoke-performance-2026-10-15/ci-fixed-firefox-summary.json
+ create mode 100644 docs/production/evidence/shop-smoke-performance-2026-10-15/ci-original-summaries.json
+ create mode 100644 docs/production/evidence/shop-smoke-performance-2026-10-15/ci-status.json
+ create mode 100644 docs/production/evidence/shop-smoke-performance-2026-10-15/comparison-head-chromium.log.gz
+ create mode 100644 docs/production/evidence/shop-smoke-performance-2026-10-15/final-local.jsonl.gz
+ create mode 100644 docs/production/evidence/shop-smoke-performance-2026-10-15/final-local.log.gz
+ create mode 100644 docs/production/evidence/shop-smoke-performance-2026-10-15/fixed-chromium-job.log.gz
+ create mode 100644 docs/production/evidence/shop-smoke-performance-2026-10-15/fixed-chromium.jsonl.gz
+ create mode 100644 docs/production/evidence/shop-smoke-performance-2026-10-15/fixed-chromium.log.gz
+ create mode 100644 docs/production/evidence/shop-smoke-performance-2026-10-15/fixed-firefox-job.log.gz
+ create mode 100644 docs/production/evidence/shop-smoke-performance-2026-10-15/local-chromium.jsonl.gz
+ create mode 100644 docs/production/evidence/shop-smoke-performance-2026-10-15/local-chromium.log.gz
+ create mode 100644 docs/production/evidence/shop-smoke-performance-2026-10-15/local-final-smoke-result.json
+ create mode 100644 docs/production/evidence/shop-smoke-performance-2026-10-15/local-final-summary.json
+ create mode 100644 docs/production/evidence/shop-smoke-performance-2026-10-15/local-fixed-summary.json
+ create mode 100644 docs/production/evidence/shop-smoke-performance-2026-10-15/local-original-summary.json
+ create mode 100644 docs/production/evidence/shop-smoke-performance-2026-10-15/original-artifact-summary.log.gz
+ create mode 100644 docs/production/evidence/shop-smoke-performance-2026-10-15/original-ci-38684066600.log.gz
+ create mode 100644 docs/production/evidence/shop-smoke-performance-2026-10-15/product-ci-browser.log.gz
+ create mode 100644 docs/production/evidence/shop-smoke-performance-2026-10-15/protected-trees.json
+ create mode 100644 docs/production/evidence/shop-smoke-performance-2026-10-15/screenshots.json
+ create mode 100644 docs/production/evidence/shop-smoke-performance-2026-10-15/screenshots/desktop-game.png
+ create mode 100644 docs/production/evidence/shop-smoke-performance-2026-10-15/screenshots/mobile-game.png
+ create mode 100644 docs/production/evidence/shop-smoke-performance-2026-10-15/screenshots/mobile-rotated.png
+ create mode 100644 docs/production/evidence/shop-smoke-performance-2026-10-15/screenshots/mobile-short.png
+ create mode 100644 harness/smoke-diagnostics.mjs
+ create mode 100644 harness/summarize-smoke-diagnostics.mjs
+ create mode 100644 src/platform/Renderer.ts
+ create mode 100644 tests/renderer.test.ts

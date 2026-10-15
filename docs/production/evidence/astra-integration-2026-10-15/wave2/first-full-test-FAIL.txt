@@ -1,0 +1,37 @@
+
+> dachoupai@0.1.0 test
+> vitest run
+
+
+ RUN  v4.1.11 /workspace/dachoupai
+
+ ❯ tests/ai-hand-action-cancellation.test.ts (6 tests | 1 failed) 63ms
+   × playSelected cancels pending old work before dispatch and rebuilds it after a failed action 18ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/ai-hand-action-cancellation.test.ts > playSelected cancels pending old work before dispatch and rebuilds it after a failed action
+TypeError: Cannot read properties of undefined (reading 'current')
+ ❯ GameScene.playSelected src/game/GameScene.ts:1547:52
+    1545|   private async playSelected():Promise<void> {
+    1546|     if(this.pendingRefill){await this.chooseRefill();return;}
+    1547|     if(!this.ready||this.presentation||this.dialog.current||this.selec…
+       |                                                    ^
+    1548|     const facts=this.selectionPreview(),ids=[...this.selectedIds],draf…
+    1549|     const assistAvailable=this.assistProfile&&assistCandidates(this.as…
+ ❯ invoke tests/ai-hand-action-cancellation.test.ts:17:145
+ ❯ tests/ai-hand-action-cancellation.test.ts:22:8
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 255 passed (256)
+      Tests  1 failed | 3541 passed (3542)
+   Start at  07:20:18
+   Duration  61.36s (transform 9.66s, setup 0ms, import 47.71s, tests 94.05s, environment 30ms)
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice

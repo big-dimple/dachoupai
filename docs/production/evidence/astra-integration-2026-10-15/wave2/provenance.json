@@ -1,0 +1,3197 @@
+{
+  "previous": "6dfc2a63a604a9068d7468189c0c189a6fbaeb58",
+  "commonBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+  "integratedHead": "154c7942da696f8bec7bde3dc8e082d3fab8eafa",
+  "sources": [
+    {
+      "task": "transactions",
+      "head": "b28d36de9ebc4f6016b4dcd48b00362d40f2b9f0",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "drag",
+      "head": "b276b07e7b84880e0aa313251da8a0db874faf38",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "captions",
+      "head": "a8e420ca5ecdcc1556800470cba1299e2e332daf",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "performance",
+      "head": "e84ed553d303e38ee01892cef436581ec7e4410c",
+      "deltaBase": "3db8b777a2b7e213f912fa9f980890c363c5b042"
+    },
+    {
+      "task": "reminder",
+      "head": "ef009924377e7ac337c7b38cec5a694a0f4856a7",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    }
+  ],
+  "merges": [
+    "154c7942da696f8bec7bde3dc8e082d3fab8eafa 8cab2c526486a978eaa63211962c01cf7f9e934c ef009924377e7ac337c7b38cec5a694a0f4856a7 merge: bounded reminder for available unused hero skill",
+    "8cab2c526486a978eaa63211962c01cf7f9e934c e82d2b1a259638d0edda21ef4beaf4f995feae43 e84ed553d303e38ee01892cef436581ec7e4410c merge: software renderer Canvas fallback and performance evidence",
+    "e82d2b1a259638d0edda21ef4beaf4f995feae43 6a907e293f0623792ee119346b7b4e1cb8f756e8 a8e420ca5ecdcc1556800470cba1299e2e332daf merge: persistent hero effect captions and skill names",
+    "6a907e293f0623792ee119346b7b4e1cb8f756e8 db7289b0b1502d8f3eb6d27860c23f86241981bd b276b07e7b84880e0aa313251da8a0db874faf38 merge: owned joker drag ordering and optional pickup haptics",
+    "db7289b0b1502d8f3eb6d27860c23f86241981bd 6dfc2a63a604a9068d7468189c0c189a6fbaeb58 b28d36de9ebc4f6016b4dcd48b00362d40f2b9f0 merge: shop transaction retry and refresh continuity"
+  ],
+  "conflicts": [],
+  "sourceFiles": [
+    {
+      "task": "transactions",
+      "path": "docs/production/evidence/shop-transaction-continuity-2026-10-15/README.md",
+      "sharedWithExisting": false,
+      "source": "b28d36de9ebc4f6016b4dcd48b00362d40f2b9f0",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "transactions",
+      "path": "docs/production/evidence/shop-transaction-continuity-2026-10-15/before/FAIL.png",
+      "sharedWithExisting": false,
+      "source": "b28d36de9ebc4f6016b4dcd48b00362d40f2b9f0",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "transactions",
+      "path": "docs/production/evidence/shop-transaction-continuity-2026-10-15/before/full-state-journal-storage.json.gz",
+      "sharedWithExisting": false,
+      "source": "b28d36de9ebc4f6016b4dcd48b00362d40f2b9f0",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "transactions",
+      "path": "docs/production/evidence/shop-transaction-continuity-2026-10-15/before/report.json",
+      "sharedWithExisting": false,
+      "source": "b28d36de9ebc4f6016b4dcd48b00362d40f2b9f0",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "transactions",
+      "path": "docs/production/evidence/shop-transaction-continuity-2026-10-15/checks.json",
+      "sharedWithExisting": false,
+      "source": "b28d36de9ebc4f6016b4dcd48b00362d40f2b9f0",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "transactions",
+      "path": "docs/production/evidence/shop-transaction-continuity-2026-10-15/continuity/1366x768-retry-first-stock.png",
+      "sharedWithExisting": false,
+      "source": "b28d36de9ebc4f6016b4dcd48b00362d40f2b9f0",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "transactions",
+      "path": "docs/production/evidence/shop-transaction-continuity-2026-10-15/continuity/1366x768-retry-owned-restored.png",
+      "sharedWithExisting": false,
+      "source": "b28d36de9ebc4f6016b4dcd48b00362d40f2b9f0",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "transactions",
+      "path": "docs/production/evidence/shop-transaction-continuity-2026-10-15/continuity/320x528-retry-fresh-cancel-keeps-tool.png",
+      "sharedWithExisting": false,
+      "source": "b28d36de9ebc4f6016b4dcd48b00362d40f2b9f0",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "transactions",
+      "path": "docs/production/evidence/shop-transaction-continuity-2026-10-15/continuity/320x528-retry-fresh-purchased-tool.png",
+      "sharedWithExisting": false,
+      "source": "b28d36de9ebc4f6016b4dcd48b00362d40f2b9f0",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "transactions",
+      "path": "docs/production/evidence/shop-transaction-continuity-2026-10-15/continuity/320x528-retry-rerolled-first-screen.png",
+      "sharedWithExisting": false,
+      "source": "b28d36de9ebc4f6016b4dcd48b00362d40f2b9f0",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "transactions",
+      "path": "docs/production/evidence/shop-transaction-continuity-2026-10-15/continuity/390x640-retry-owned-restored.png",
+      "sharedWithExisting": false,
+      "source": "b28d36de9ebc4f6016b4dcd48b00362d40f2b9f0",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "transactions",
+      "path": "docs/production/evidence/shop-transaction-continuity-2026-10-15/continuity/full-state-journal-storage.json.gz",
+      "sharedWithExisting": false,
+      "source": "b28d36de9ebc4f6016b4dcd48b00362d40f2b9f0",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "transactions",
+      "path": "docs/production/evidence/shop-transaction-continuity-2026-10-15/continuity/report.json",
+      "sharedWithExisting": false,
+      "source": "b28d36de9ebc4f6016b4dcd48b00362d40f2b9f0",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "transactions",
+      "path": "docs/production/evidence/shop-transaction-continuity-2026-10-15/mobile/1366x768-sacrifice-selected.png",
+      "sharedWithExisting": false,
+      "source": "b28d36de9ebc4f6016b4dcd48b00362d40f2b9f0",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "transactions",
+      "path": "docs/production/evidence/shop-transaction-continuity-2026-10-15/mobile/320x528-purchase-first-view.png",
+      "sharedWithExisting": false,
+      "source": "b28d36de9ebc4f6016b4dcd48b00362d40f2b9f0",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "transactions",
+      "path": "docs/production/evidence/shop-transaction-continuity-2026-10-15/mobile/320x528-sacrifice-selected.png",
+      "sharedWithExisting": false,
+      "source": "b28d36de9ebc4f6016b4dcd48b00362d40f2b9f0",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "transactions",
+      "path": "docs/production/evidence/shop-transaction-continuity-2026-10-15/mobile/390x528-save-failed.png",
+      "sharedWithExisting": false,
+      "source": "b28d36de9ebc4f6016b4dcd48b00362d40f2b9f0",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "transactions",
+      "path": "docs/production/evidence/shop-transaction-continuity-2026-10-15/mobile/390x640-sacrifice-selected.png",
+      "sharedWithExisting": false,
+      "source": "b28d36de9ebc4f6016b4dcd48b00362d40f2b9f0",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "transactions",
+      "path": "docs/production/evidence/shop-transaction-continuity-2026-10-15/mobile/full-state-journal-storage.json.gz",
+      "sharedWithExisting": false,
+      "source": "b28d36de9ebc4f6016b4dcd48b00362d40f2b9f0",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "transactions",
+      "path": "docs/production/evidence/shop-transaction-continuity-2026-10-15/mobile/report.json",
+      "sharedWithExisting": false,
+      "source": "b28d36de9ebc4f6016b4dcd48b00362d40f2b9f0",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "transactions",
+      "path": "docs/production/evidence/shop-transaction-continuity-2026-10-15/observer-failure/FAIL.png",
+      "sharedWithExisting": false,
+      "source": "b28d36de9ebc4f6016b4dcd48b00362d40f2b9f0",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "transactions",
+      "path": "docs/production/evidence/shop-transaction-continuity-2026-10-15/observer-failure/full-state-journal-storage.json.gz",
+      "sharedWithExisting": false,
+      "source": "b28d36de9ebc4f6016b4dcd48b00362d40f2b9f0",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "transactions",
+      "path": "docs/production/evidence/shop-transaction-continuity-2026-10-15/observer-failure/report.json",
+      "sharedWithExisting": false,
+      "source": "b28d36de9ebc4f6016b4dcd48b00362d40f2b9f0",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "transactions",
+      "path": "docs/production/evidence/shop-transaction-continuity-2026-10-15/raw-screenshot-index.json",
+      "sharedWithExisting": false,
+      "source": "b28d36de9ebc4f6016b4dcd48b00362d40f2b9f0",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "transactions",
+      "path": "harness/shop-transaction-continuity.mjs",
+      "sharedWithExisting": false,
+      "source": "b28d36de9ebc4f6016b4dcd48b00362d40f2b9f0",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "transactions",
+      "path": "src/game/MakeCardsDialog.ts",
+      "sharedWithExisting": false,
+      "source": "b28d36de9ebc4f6016b4dcd48b00362d40f2b9f0",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "transactions",
+      "path": "src/game/ShopScene.ts",
+      "sharedWithExisting": true,
+      "source": "b28d36de9ebc4f6016b4dcd48b00362d40f2b9f0",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "transactions",
+      "path": "tests/make-cards-flow.test.ts",
+      "sharedWithExisting": false,
+      "source": "b28d36de9ebc4f6016b4dcd48b00362d40f2b9f0",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "drag",
+      "path": "docs/production/evidence/joker-drag-audit-2026-10-15/README.md",
+      "sharedWithExisting": false,
+      "source": "b276b07e7b84880e0aa313251da8a0db874faf38",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "drag",
+      "path": "docs/production/evidence/joker-drag-audit-2026-10-15/checks/build.txt",
+      "sharedWithExisting": false,
+      "source": "b276b07e7b84880e0aa313251da8a0db874faf38",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "drag",
+      "path": "docs/production/evidence/joker-drag-audit-2026-10-15/checks/shop-browser.txt",
+      "sharedWithExisting": false,
+      "source": "b276b07e7b84880e0aa313251da8a0db874faf38",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "drag",
+      "path": "docs/production/evidence/joker-drag-audit-2026-10-15/checks/shop-observer-fail.txt",
+      "sharedWithExisting": false,
+      "source": "b276b07e7b84880e0aa313251da8a0db874faf38",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "drag",
+      "path": "docs/production/evidence/joker-drag-audit-2026-10-15/checks/table-browser.txt",
+      "sharedWithExisting": false,
+      "source": "b276b07e7b84880e0aa313251da8a0db874faf38",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "drag",
+      "path": "docs/production/evidence/joker-drag-audit-2026-10-15/checks/table-observer-fail.txt",
+      "sharedWithExisting": false,
+      "source": "b276b07e7b84880e0aa313251da8a0db874faf38",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "drag",
+      "path": "docs/production/evidence/joker-drag-audit-2026-10-15/checks/targeted.txt",
+      "sharedWithExisting": false,
+      "source": "b276b07e7b84880e0aa313251da8a0db874faf38",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "drag",
+      "path": "docs/production/evidence/joker-drag-audit-2026-10-15/checks/typecheck.txt",
+      "sharedWithExisting": false,
+      "source": "b276b07e7b84880e0aa313251da8a0db874faf38",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "drag",
+      "path": "docs/production/evidence/joker-drag-audit-2026-10-15/manifest.json",
+      "sharedWithExisting": false,
+      "source": "b276b07e7b84880e0aa313251da8a0db874faf38",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "drag",
+      "path": "docs/production/evidence/joker-drag-audit-2026-10-15/shop-observer-fail/full-state-journal-storage.json.gz",
+      "sharedWithExisting": false,
+      "source": "b276b07e7b84880e0aa313251da8a0db874faf38",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "drag",
+      "path": "docs/production/evidence/joker-drag-audit-2026-10-15/shop-observer-fail/report.json",
+      "sharedWithExisting": false,
+      "source": "b276b07e7b84880e0aa313251da8a0db874faf38",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "drag",
+      "path": "docs/production/evidence/joker-drag-audit-2026-10-15/shop/1366x900-fast-delay-saving.png",
+      "sharedWithExisting": false,
+      "source": "b276b07e7b84880e0aa313251da8a0db874faf38",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "drag",
+      "path": "docs/production/evidence/joker-drag-audit-2026-10-15/shop/1366x900-fast-dropped.png",
+      "sharedWithExisting": false,
+      "source": "b276b07e7b84880e0aa313251da8a0db874faf38",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "drag",
+      "path": "docs/production/evidence/joker-drag-audit-2026-10-15/shop/1366x900-fast-held.png",
+      "sharedWithExisting": false,
+      "source": "b276b07e7b84880e0aa313251da8a0db874faf38",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "drag",
+      "path": "docs/production/evidence/joker-drag-audit-2026-10-15/shop/1366x900-fast-mid.png",
+      "sharedWithExisting": false,
+      "source": "b276b07e7b84880e0aa313251da8a0db874faf38",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "drag",
+      "path": "docs/production/evidence/joker-drag-audit-2026-10-15/shop/1366x900-idle.png",
+      "sharedWithExisting": false,
+      "source": "b276b07e7b84880e0aa313251da8a0db874faf38",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "drag",
+      "path": "docs/production/evidence/joker-drag-audit-2026-10-15/shop/1366x900-middle-dropped.png",
+      "sharedWithExisting": false,
+      "source": "b276b07e7b84880e0aa313251da8a0db874faf38",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "drag",
+      "path": "docs/production/evidence/joker-drag-audit-2026-10-15/shop/1366x900-middle-held.png",
+      "sharedWithExisting": false,
+      "source": "b276b07e7b84880e0aa313251da8a0db874faf38",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "drag",
+      "path": "docs/production/evidence/joker-drag-audit-2026-10-15/shop/1366x900-middle-mid.png",
+      "sharedWithExisting": false,
+      "source": "b276b07e7b84880e0aa313251da8a0db874faf38",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "drag",
+      "path": "docs/production/evidence/joker-drag-audit-2026-10-15/shop/1366x900-save-failure.png",
+      "sharedWithExisting": false,
+      "source": "b276b07e7b84880e0aa313251da8a0db874faf38",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "drag",
+      "path": "docs/production/evidence/joker-drag-audit-2026-10-15/shop/1366x900-save-retry.png",
+      "sharedWithExisting": false,
+      "source": "b276b07e7b84880e0aa313251da8a0db874faf38",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "drag",
+      "path": "docs/production/evidence/joker-drag-audit-2026-10-15/shop/1366x900-saving-delay.png",
+      "sharedWithExisting": false,
+      "source": "b276b07e7b84880e0aa313251da8a0db874faf38",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "drag",
+      "path": "docs/production/evidence/joker-drag-audit-2026-10-15/shop/1366x900-slow-dropped.png",
+      "sharedWithExisting": false,
+      "source": "b276b07e7b84880e0aa313251da8a0db874faf38",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "drag",
+      "path": "docs/production/evidence/joker-drag-audit-2026-10-15/shop/1366x900-slow-held.png",
+      "sharedWithExisting": false,
+      "source": "b276b07e7b84880e0aa313251da8a0db874faf38",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "drag",
+      "path": "docs/production/evidence/joker-drag-audit-2026-10-15/shop/1366x900-slow-mid.png",
+      "sharedWithExisting": false,
+      "source": "b276b07e7b84880e0aa313251da8a0db874faf38",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "drag",
+      "path": "docs/production/evidence/joker-drag-audit-2026-10-15/shop/1366x900-table-idle-end.png",
+      "sharedWithExisting": false,
+      "source": "b276b07e7b84880e0aa313251da8a0db874faf38",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "drag",
+      "path": "docs/production/evidence/joker-drag-audit-2026-10-15/shop/1366x900-table-idle-start.png",
+      "sharedWithExisting": false,
+      "source": "b276b07e7b84880e0aa313251da8a0db874faf38",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "drag",
+      "path": "docs/production/evidence/joker-drag-audit-2026-10-15/shop/1366x900-vertical.png",
+      "sharedWithExisting": false,
+      "source": "b276b07e7b84880e0aa313251da8a0db874faf38",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "drag",
+      "path": "docs/production/evidence/joker-drag-audit-2026-10-15/shop/320x740-fast-delay-saving.png",
+      "sharedWithExisting": false,
+      "source": "b276b07e7b84880e0aa313251da8a0db874faf38",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "drag",
+      "path": "docs/production/evidence/joker-drag-audit-2026-10-15/shop/320x740-fast-dropped.png",
+      "sharedWithExisting": false,
+      "source": "b276b07e7b84880e0aa313251da8a0db874faf38",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "drag",
+      "path": "docs/production/evidence/joker-drag-audit-2026-10-15/shop/320x740-fast-held.png",
+      "sharedWithExisting": false,
+      "source": "b276b07e7b84880e0aa313251da8a0db874faf38",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "drag",
+      "path": "docs/production/evidence/joker-drag-audit-2026-10-15/shop/320x740-fast-mid.png",
+      "sharedWithExisting": false,
+      "source": "b276b07e7b84880e0aa313251da8a0db874faf38",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "drag",
+      "path": "docs/production/evidence/joker-drag-audit-2026-10-15/shop/320x740-idle.png",
+      "sharedWithExisting": false,
+      "source": "b276b07e7b84880e0aa313251da8a0db874faf38",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "drag",
+      "path": "docs/production/evidence/joker-drag-audit-2026-10-15/shop/320x740-middle-dropped.png",
+      "sharedWithExisting": false,
+      "source": "b276b07e7b84880e0aa313251da8a0db874faf38",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "drag",
+      "path": "docs/production/evidence/joker-drag-audit-2026-10-15/shop/320x740-middle-held.png",
+      "sharedWithExisting": false,
+      "source": "b276b07e7b84880e0aa313251da8a0db874faf38",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "drag",
+      "path": "docs/production/evidence/joker-drag-audit-2026-10-15/shop/320x740-middle-mid.png",
+      "sharedWithExisting": false,
+      "source": "b276b07e7b84880e0aa313251da8a0db874faf38",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "drag",
+      "path": "docs/production/evidence/joker-drag-audit-2026-10-15/shop/320x740-save-failure.png",
+      "sharedWithExisting": false,
+      "source": "b276b07e7b84880e0aa313251da8a0db874faf38",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "drag",
+      "path": "docs/production/evidence/joker-drag-audit-2026-10-15/shop/320x740-save-retry.png",
+      "sharedWithExisting": false,
+      "source": "b276b07e7b84880e0aa313251da8a0db874faf38",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "drag",
+      "path": "docs/production/evidence/joker-drag-audit-2026-10-15/shop/320x740-saving-delay.png",
+      "sharedWithExisting": false,
+      "source": "b276b07e7b84880e0aa313251da8a0db874faf38",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "drag",
+      "path": "docs/production/evidence/joker-drag-audit-2026-10-15/shop/320x740-slow-dropped.png",
+      "sharedWithExisting": false,
+      "source": "b276b07e7b84880e0aa313251da8a0db874faf38",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "drag",
+      "path": "docs/production/evidence/joker-drag-audit-2026-10-15/shop/320x740-slow-held.png",
+      "sharedWithExisting": false,
+      "source": "b276b07e7b84880e0aa313251da8a0db874faf38",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "drag",
+      "path": "docs/production/evidence/joker-drag-audit-2026-10-15/shop/320x740-slow-mid.png",
+      "sharedWithExisting": false,
+      "source": "b276b07e7b84880e0aa313251da8a0db874faf38",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "drag",
+      "path": "docs/production/evidence/joker-drag-audit-2026-10-15/shop/320x740-table-idle-end.png",
+      "sharedWithExisting": false,
+      "source": "b276b07e7b84880e0aa313251da8a0db874faf38",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "drag",
+      "path": "docs/production/evidence/joker-drag-audit-2026-10-15/shop/320x740-table-idle-start.png",
+      "sharedWithExisting": false,
+      "source": "b276b07e7b84880e0aa313251da8a0db874faf38",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "drag",
+      "path": "docs/production/evidence/joker-drag-audit-2026-10-15/shop/320x740-vertical.png",
+      "sharedWithExisting": false,
+      "source": "b276b07e7b84880e0aa313251da8a0db874faf38",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "drag",
+      "path": "docs/production/evidence/joker-drag-audit-2026-10-15/shop/390x844-fast-delay-saving.png",
+      "sharedWithExisting": false,
+      "source": "b276b07e7b84880e0aa313251da8a0db874faf38",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "drag",
+      "path": "docs/production/evidence/joker-drag-audit-2026-10-15/shop/390x844-fast-dropped.png",
+      "sharedWithExisting": false,
+      "source": "b276b07e7b84880e0aa313251da8a0db874faf38",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "drag",
+      "path": "docs/production/evidence/joker-drag-audit-2026-10-15/shop/390x844-fast-held.png",
+      "sharedWithExisting": false,
+      "source": "b276b07e7b84880e0aa313251da8a0db874faf38",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "drag",
+      "path": "docs/production/evidence/joker-drag-audit-2026-10-15/shop/390x844-fast-mid.png",
+      "sharedWithExisting": false,
+      "source": "b276b07e7b84880e0aa313251da8a0db874faf38",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "drag",
+      "path": "docs/production/evidence/joker-drag-audit-2026-10-15/shop/390x844-idle.png",
+      "sharedWithExisting": false,
+      "source": "b276b07e7b84880e0aa313251da8a0db874faf38",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "drag",
+      "path": "docs/production/evidence/joker-drag-audit-2026-10-15/shop/390x844-middle-dropped.png",
+      "sharedWithExisting": false,
+      "source": "b276b07e7b84880e0aa313251da8a0db874faf38",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "drag",
+      "path": "docs/production/evidence/joker-drag-audit-2026-10-15/shop/390x844-middle-held.png",
+      "sharedWithExisting": false,
+      "source": "b276b07e7b84880e0aa313251da8a0db874faf38",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "drag",
+      "path": "docs/production/evidence/joker-drag-audit-2026-10-15/shop/390x844-middle-mid.png",
+      "sharedWithExisting": false,
+      "source": "b276b07e7b84880e0aa313251da8a0db874faf38",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "drag",
+      "path": "docs/production/evidence/joker-drag-audit-2026-10-15/shop/390x844-reduce-dpr2-fast-delay-saving.png",
+      "sharedWithExisting": false,
+      "source": "b276b07e7b84880e0aa313251da8a0db874faf38",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "drag",
+      "path": "docs/production/evidence/joker-drag-audit-2026-10-15/shop/390x844-reduce-dpr2-fast-dropped.png",
+      "sharedWithExisting": false,
+      "source": "b276b07e7b84880e0aa313251da8a0db874faf38",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "drag",
+      "path": "docs/production/evidence/joker-drag-audit-2026-10-15/shop/390x844-reduce-dpr2-fast-held.png",
+      "sharedWithExisting": false,
+      "source": "b276b07e7b84880e0aa313251da8a0db874faf38",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "drag",
+      "path": "docs/production/evidence/joker-drag-audit-2026-10-15/shop/390x844-reduce-dpr2-fast-mid.png",
+      "sharedWithExisting": false,
+      "source": "b276b07e7b84880e0aa313251da8a0db874faf38",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "drag",
+      "path": "docs/production/evidence/joker-drag-audit-2026-10-15/shop/390x844-reduce-dpr2-idle.png",
+      "sharedWithExisting": false,
+      "source": "b276b07e7b84880e0aa313251da8a0db874faf38",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "drag",
+      "path": "docs/production/evidence/joker-drag-audit-2026-10-15/shop/390x844-reduce-dpr2-middle-dropped.png",
+      "sharedWithExisting": false,
+      "source": "b276b07e7b84880e0aa313251da8a0db874faf38",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "drag",
+      "path": "docs/production/evidence/joker-drag-audit-2026-10-15/shop/390x844-reduce-dpr2-middle-held.png",
+      "sharedWithExisting": false,
+      "source": "b276b07e7b84880e0aa313251da8a0db874faf38",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "drag",
+      "path": "docs/production/evidence/joker-drag-audit-2026-10-15/shop/390x844-reduce-dpr2-middle-mid.png",
+      "sharedWithExisting": false,
+      "source": "b276b07e7b84880e0aa313251da8a0db874faf38",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "drag",
+      "path": "docs/production/evidence/joker-drag-audit-2026-10-15/shop/390x844-reduce-dpr2-save-failure.png",
+      "sharedWithExisting": false,
+      "source": "b276b07e7b84880e0aa313251da8a0db874faf38",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "drag",
+      "path": "docs/production/evidence/joker-drag-audit-2026-10-15/shop/390x844-reduce-dpr2-save-retry.png",
+      "sharedWithExisting": false,
+      "source": "b276b07e7b84880e0aa313251da8a0db874faf38",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "drag",
+      "path": "docs/production/evidence/joker-drag-audit-2026-10-15/shop/390x844-reduce-dpr2-saving-delay.png",
+      "sharedWithExisting": false,
+      "source": "b276b07e7b84880e0aa313251da8a0db874faf38",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "drag",
+      "path": "docs/production/evidence/joker-drag-audit-2026-10-15/shop/390x844-reduce-dpr2-slow-dropped.png",
+      "sharedWithExisting": false,
+      "source": "b276b07e7b84880e0aa313251da8a0db874faf38",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "drag",
+      "path": "docs/production/evidence/joker-drag-audit-2026-10-15/shop/390x844-reduce-dpr2-slow-held.png",
+      "sharedWithExisting": false,
+      "source": "b276b07e7b84880e0aa313251da8a0db874faf38",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "drag",
+      "path": "docs/production/evidence/joker-drag-audit-2026-10-15/shop/390x844-reduce-dpr2-slow-mid.png",
+      "sharedWithExisting": false,
+      "source": "b276b07e7b84880e0aa313251da8a0db874faf38",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "drag",
+      "path": "docs/production/evidence/joker-drag-audit-2026-10-15/shop/390x844-reduce-dpr2-table-idle-end.png",
+      "sharedWithExisting": false,
+      "source": "b276b07e7b84880e0aa313251da8a0db874faf38",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "drag",
+      "path": "docs/production/evidence/joker-drag-audit-2026-10-15/shop/390x844-reduce-dpr2-table-idle-start.png",
+      "sharedWithExisting": false,
+      "source": "b276b07e7b84880e0aa313251da8a0db874faf38",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "drag",
+      "path": "docs/production/evidence/joker-drag-audit-2026-10-15/shop/390x844-reduce-dpr2-vertical.png",
+      "sharedWithExisting": false,
+      "source": "b276b07e7b84880e0aa313251da8a0db874faf38",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "drag",
+      "path": "docs/production/evidence/joker-drag-audit-2026-10-15/shop/390x844-save-failure.png",
+      "sharedWithExisting": false,
+      "source": "b276b07e7b84880e0aa313251da8a0db874faf38",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "drag",
+      "path": "docs/production/evidence/joker-drag-audit-2026-10-15/shop/390x844-save-retry.png",
+      "sharedWithExisting": false,
+      "source": "b276b07e7b84880e0aa313251da8a0db874faf38",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "drag",
+      "path": "docs/production/evidence/joker-drag-audit-2026-10-15/shop/390x844-saving-delay.png",
+      "sharedWithExisting": false,
+      "source": "b276b07e7b84880e0aa313251da8a0db874faf38",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "drag",
+      "path": "docs/production/evidence/joker-drag-audit-2026-10-15/shop/390x844-slow-dropped.png",
+      "sharedWithExisting": false,
+      "source": "b276b07e7b84880e0aa313251da8a0db874faf38",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "drag",
+      "path": "docs/production/evidence/joker-drag-audit-2026-10-15/shop/390x844-slow-held.png",
+      "sharedWithExisting": false,
+      "source": "b276b07e7b84880e0aa313251da8a0db874faf38",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "drag",
+      "path": "docs/production/evidence/joker-drag-audit-2026-10-15/shop/390x844-slow-mid.png",
+      "sharedWithExisting": false,
+      "source": "b276b07e7b84880e0aa313251da8a0db874faf38",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "drag",
+      "path": "docs/production/evidence/joker-drag-audit-2026-10-15/shop/390x844-table-idle-end.png",
+      "sharedWithExisting": false,
+      "source": "b276b07e7b84880e0aa313251da8a0db874faf38",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "drag",
+      "path": "docs/production/evidence/joker-drag-audit-2026-10-15/shop/390x844-table-idle-start.png",
+      "sharedWithExisting": false,
+      "source": "b276b07e7b84880e0aa313251da8a0db874faf38",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "drag",
+      "path": "docs/production/evidence/joker-drag-audit-2026-10-15/shop/390x844-vertical.png",
+      "sharedWithExisting": false,
+      "source": "b276b07e7b84880e0aa313251da8a0db874faf38",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "drag",
+      "path": "docs/production/evidence/joker-drag-audit-2026-10-15/shop/412x915-fast-delay-saving.png",
+      "sharedWithExisting": false,
+      "source": "b276b07e7b84880e0aa313251da8a0db874faf38",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "drag",
+      "path": "docs/production/evidence/joker-drag-audit-2026-10-15/shop/412x915-fast-dropped.png",
+      "sharedWithExisting": false,
+      "source": "b276b07e7b84880e0aa313251da8a0db874faf38",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "drag",
+      "path": "docs/production/evidence/joker-drag-audit-2026-10-15/shop/412x915-fast-held.png",
+      "sharedWithExisting": false,
+      "source": "b276b07e7b84880e0aa313251da8a0db874faf38",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "drag",
+      "path": "docs/production/evidence/joker-drag-audit-2026-10-15/shop/412x915-fast-mid.png",
+      "sharedWithExisting": false,
+      "source": "b276b07e7b84880e0aa313251da8a0db874faf38",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "drag",
+      "path": "docs/production/evidence/joker-drag-audit-2026-10-15/shop/412x915-idle.png",
+      "sharedWithExisting": false,
+      "source": "b276b07e7b84880e0aa313251da8a0db874faf38",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "drag",
+      "path": "docs/production/evidence/joker-drag-audit-2026-10-15/shop/412x915-middle-dropped.png",
+      "sharedWithExisting": false,
+      "source": "b276b07e7b84880e0aa313251da8a0db874faf38",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "drag",
+      "path": "docs/production/evidence/joker-drag-audit-2026-10-15/shop/412x915-middle-held.png",
+      "sharedWithExisting": false,
+      "source": "b276b07e7b84880e0aa313251da8a0db874faf38",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "drag",
+      "path": "docs/production/evidence/joker-drag-audit-2026-10-15/shop/412x915-middle-mid.png",
+      "sharedWithExisting": false,
+      "source": "b276b07e7b84880e0aa313251da8a0db874faf38",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "drag",
+      "path": "docs/production/evidence/joker-drag-audit-2026-10-15/shop/412x915-save-failure.png",
+      "sharedWithExisting": false,
+      "source": "b276b07e7b84880e0aa313251da8a0db874faf38",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "drag",
+      "path": "docs/production/evidence/joker-drag-audit-2026-10-15/shop/412x915-save-retry.png",
+      "sharedWithExisting": false,
+      "source": "b276b07e7b84880e0aa313251da8a0db874faf38",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "drag",
+      "path": "docs/production/evidence/joker-drag-audit-2026-10-15/shop/412x915-saving-delay.png",
+      "sharedWithExisting": false,
+      "source": "b276b07e7b84880e0aa313251da8a0db874faf38",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "drag",
+      "path": "docs/production/evidence/joker-drag-audit-2026-10-15/shop/412x915-slow-dropped.png",
+      "sharedWithExisting": false,
+      "source": "b276b07e7b84880e0aa313251da8a0db874faf38",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "drag",
+      "path": "docs/production/evidence/joker-drag-audit-2026-10-15/shop/412x915-slow-held.png",
+      "sharedWithExisting": false,
+      "source": "b276b07e7b84880e0aa313251da8a0db874faf38",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "drag",
+      "path": "docs/production/evidence/joker-drag-audit-2026-10-15/shop/412x915-slow-mid.png",
+      "sharedWithExisting": false,
+      "source": "b276b07e7b84880e0aa313251da8a0db874faf38",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "drag",
+      "path": "docs/production/evidence/joker-drag-audit-2026-10-15/shop/412x915-table-idle-end.png",
+      "sharedWithExisting": false,
+      "source": "b276b07e7b84880e0aa313251da8a0db874faf38",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "drag",
+      "path": "docs/production/evidence/joker-drag-audit-2026-10-15/shop/412x915-table-idle-start.png",
+      "sharedWithExisting": false,
+      "source": "b276b07e7b84880e0aa313251da8a0db874faf38",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "drag",
+      "path": "docs/production/evidence/joker-drag-audit-2026-10-15/shop/412x915-vertical.png",
+      "sharedWithExisting": false,
+      "source": "b276b07e7b84880e0aa313251da8a0db874faf38",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "drag",
+      "path": "docs/production/evidence/joker-drag-audit-2026-10-15/shop/full-state-journal-storage.json.gz",
+      "sharedWithExisting": false,
+      "source": "b276b07e7b84880e0aa313251da8a0db874faf38",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "drag",
+      "path": "docs/production/evidence/joker-drag-audit-2026-10-15/shop/report.json",
+      "sharedWithExisting": false,
+      "source": "b276b07e7b84880e0aa313251da8a0db874faf38",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "drag",
+      "path": "docs/production/evidence/joker-drag-audit-2026-10-15/summary.json",
+      "sharedWithExisting": false,
+      "source": "b276b07e7b84880e0aa313251da8a0db874faf38",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "drag",
+      "path": "docs/production/evidence/joker-drag-audit-2026-10-15/table-observer-fail/full-state-journal-storage.json.gz",
+      "sharedWithExisting": false,
+      "source": "b276b07e7b84880e0aa313251da8a0db874faf38",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "drag",
+      "path": "docs/production/evidence/joker-drag-audit-2026-10-15/table-observer-fail/report.json",
+      "sharedWithExisting": false,
+      "source": "b276b07e7b84880e0aa313251da8a0db874faf38",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "drag",
+      "path": "docs/production/evidence/joker-drag-audit-2026-10-15/table/1366x900-fast-delay-saving.png",
+      "sharedWithExisting": false,
+      "source": "b276b07e7b84880e0aa313251da8a0db874faf38",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "drag",
+      "path": "docs/production/evidence/joker-drag-audit-2026-10-15/table/1366x900-fast-dropped.png",
+      "sharedWithExisting": false,
+      "source": "b276b07e7b84880e0aa313251da8a0db874faf38",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "drag",
+      "path": "docs/production/evidence/joker-drag-audit-2026-10-15/table/1366x900-fast-held.png",
+      "sharedWithExisting": false,
+      "source": "b276b07e7b84880e0aa313251da8a0db874faf38",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "drag",
+      "path": "docs/production/evidence/joker-drag-audit-2026-10-15/table/1366x900-fast-mid.png",
+      "sharedWithExisting": false,
+      "source": "b276b07e7b84880e0aa313251da8a0db874faf38",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "drag",
+      "path": "docs/production/evidence/joker-drag-audit-2026-10-15/table/1366x900-idle.png",
+      "sharedWithExisting": false,
+      "source": "b276b07e7b84880e0aa313251da8a0db874faf38",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "drag",
+      "path": "docs/production/evidence/joker-drag-audit-2026-10-15/table/1366x900-middle-dropped.png",
+      "sharedWithExisting": false,
+      "source": "b276b07e7b84880e0aa313251da8a0db874faf38",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "drag",
+      "path": "docs/production/evidence/joker-drag-audit-2026-10-15/table/1366x900-middle-held.png",
+      "sharedWithExisting": false,
+      "source": "b276b07e7b84880e0aa313251da8a0db874faf38",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "drag",
+      "path": "docs/production/evidence/joker-drag-audit-2026-10-15/table/1366x900-middle-mid.png",
+      "sharedWithExisting": false,
+      "source": "b276b07e7b84880e0aa313251da8a0db874faf38",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "drag",
+      "path": "docs/production/evidence/joker-drag-audit-2026-10-15/table/1366x900-mouse-hover.png",
+      "sharedWithExisting": false,
+      "source": "b276b07e7b84880e0aa313251da8a0db874faf38",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "drag",
+      "path": "docs/production/evidence/joker-drag-audit-2026-10-15/table/1366x900-pending-touye-hover.png",
+      "sharedWithExisting": false,
+      "source": "b276b07e7b84880e0aa313251da8a0db874faf38",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "drag",
+      "path": "docs/production/evidence/joker-drag-audit-2026-10-15/table/1366x900-save-failure.png",
+      "sharedWithExisting": false,
+      "source": "b276b07e7b84880e0aa313251da8a0db874faf38",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "drag",
+      "path": "docs/production/evidence/joker-drag-audit-2026-10-15/table/1366x900-save-retry.png",
+      "sharedWithExisting": false,
+      "source": "b276b07e7b84880e0aa313251da8a0db874faf38",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "drag",
+      "path": "docs/production/evidence/joker-drag-audit-2026-10-15/table/1366x900-saving-delay.png",
+      "sharedWithExisting": false,
+      "source": "b276b07e7b84880e0aa313251da8a0db874faf38",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "drag",
+      "path": "docs/production/evidence/joker-drag-audit-2026-10-15/table/1366x900-slow-dropped.png",
+      "sharedWithExisting": false,
+      "source": "b276b07e7b84880e0aa313251da8a0db874faf38",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "drag",
+      "path": "docs/production/evidence/joker-drag-audit-2026-10-15/table/1366x900-slow-held.png",
+      "sharedWithExisting": false,
+      "source": "b276b07e7b84880e0aa313251da8a0db874faf38",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "drag",
+      "path": "docs/production/evidence/joker-drag-audit-2026-10-15/table/1366x900-slow-mid.png",
+      "sharedWithExisting": false,
+      "source": "b276b07e7b84880e0aa313251da8a0db874faf38",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "drag",
+      "path": "docs/production/evidence/joker-drag-audit-2026-10-15/table/1366x900-vertical.png",
+      "sharedWithExisting": false,
+      "source": "b276b07e7b84880e0aa313251da8a0db874faf38",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "drag",
+      "path": "docs/production/evidence/joker-drag-audit-2026-10-15/table/390x844-fast-delay-saving.png",
+      "sharedWithExisting": false,
+      "source": "b276b07e7b84880e0aa313251da8a0db874faf38",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "drag",
+      "path": "docs/production/evidence/joker-drag-audit-2026-10-15/table/390x844-fast-dropped.png",
+      "sharedWithExisting": false,
+      "source": "b276b07e7b84880e0aa313251da8a0db874faf38",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "drag",
+      "path": "docs/production/evidence/joker-drag-audit-2026-10-15/table/390x844-fast-held.png",
+      "sharedWithExisting": false,
+      "source": "b276b07e7b84880e0aa313251da8a0db874faf38",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "drag",
+      "path": "docs/production/evidence/joker-drag-audit-2026-10-15/table/390x844-fast-mid.png",
+      "sharedWithExisting": false,
+      "source": "b276b07e7b84880e0aa313251da8a0db874faf38",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "drag",
+      "path": "docs/production/evidence/joker-drag-audit-2026-10-15/table/390x844-idle.png",
+      "sharedWithExisting": false,
+      "source": "b276b07e7b84880e0aa313251da8a0db874faf38",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "drag",
+      "path": "docs/production/evidence/joker-drag-audit-2026-10-15/table/390x844-middle-dropped.png",
+      "sharedWithExisting": false,
+      "source": "b276b07e7b84880e0aa313251da8a0db874faf38",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "drag",
+      "path": "docs/production/evidence/joker-drag-audit-2026-10-15/table/390x844-middle-held.png",
+      "sharedWithExisting": false,
+      "source": "b276b07e7b84880e0aa313251da8a0db874faf38",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "drag",
+      "path": "docs/production/evidence/joker-drag-audit-2026-10-15/table/390x844-middle-mid.png",
+      "sharedWithExisting": false,
+      "source": "b276b07e7b84880e0aa313251da8a0db874faf38",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "drag",
+      "path": "docs/production/evidence/joker-drag-audit-2026-10-15/table/390x844-reduce-dpr2-fast-delay-saving.png",
+      "sharedWithExisting": false,
+      "source": "b276b07e7b84880e0aa313251da8a0db874faf38",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "drag",
+      "path": "docs/production/evidence/joker-drag-audit-2026-10-15/table/390x844-reduce-dpr2-fast-dropped.png",
+      "sharedWithExisting": false,
+      "source": "b276b07e7b84880e0aa313251da8a0db874faf38",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "drag",
+      "path": "docs/production/evidence/joker-drag-audit-2026-10-15/table/390x844-reduce-dpr2-fast-held.png",
+      "sharedWithExisting": false,
+      "source": "b276b07e7b84880e0aa313251da8a0db874faf38",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "drag",
+      "path": "docs/production/evidence/joker-drag-audit-2026-10-15/table/390x844-reduce-dpr2-fast-mid.png",
+      "sharedWithExisting": false,
+      "source": "b276b07e7b84880e0aa313251da8a0db874faf38",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "drag",
+      "path": "docs/production/evidence/joker-drag-audit-2026-10-15/table/390x844-reduce-dpr2-idle.png",
+      "sharedWithExisting": false,
+      "source": "b276b07e7b84880e0aa313251da8a0db874faf38",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "drag",
+      "path": "docs/production/evidence/joker-drag-audit-2026-10-15/table/390x844-reduce-dpr2-middle-dropped.png",
+      "sharedWithExisting": false,
+      "source": "b276b07e7b84880e0aa313251da8a0db874faf38",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "drag",
+      "path": "docs/production/evidence/joker-drag-audit-2026-10-15/table/390x844-reduce-dpr2-middle-held.png",
+      "sharedWithExisting": false,
+      "source": "b276b07e7b84880e0aa313251da8a0db874faf38",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "drag",
+      "path": "docs/production/evidence/joker-drag-audit-2026-10-15/table/390x844-reduce-dpr2-middle-mid.png",
+      "sharedWithExisting": false,
+      "source": "b276b07e7b84880e0aa313251da8a0db874faf38",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "drag",
+      "path": "docs/production/evidence/joker-drag-audit-2026-10-15/table/390x844-reduce-dpr2-save-failure.png",
+      "sharedWithExisting": false,
+      "source": "b276b07e7b84880e0aa313251da8a0db874faf38",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "drag",
+      "path": "docs/production/evidence/joker-drag-audit-2026-10-15/table/390x844-reduce-dpr2-save-retry.png",
+      "sharedWithExisting": false,
+      "source": "b276b07e7b84880e0aa313251da8a0db874faf38",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "drag",
+      "path": "docs/production/evidence/joker-drag-audit-2026-10-15/table/390x844-reduce-dpr2-saving-delay.png",
+      "sharedWithExisting": false,
+      "source": "b276b07e7b84880e0aa313251da8a0db874faf38",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "drag",
+      "path": "docs/production/evidence/joker-drag-audit-2026-10-15/table/390x844-reduce-dpr2-slow-dropped.png",
+      "sharedWithExisting": false,
+      "source": "b276b07e7b84880e0aa313251da8a0db874faf38",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "drag",
+      "path": "docs/production/evidence/joker-drag-audit-2026-10-15/table/390x844-reduce-dpr2-slow-held.png",
+      "sharedWithExisting": false,
+      "source": "b276b07e7b84880e0aa313251da8a0db874faf38",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "drag",
+      "path": "docs/production/evidence/joker-drag-audit-2026-10-15/table/390x844-reduce-dpr2-slow-mid.png",
+      "sharedWithExisting": false,
+      "source": "b276b07e7b84880e0aa313251da8a0db874faf38",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "drag",
+      "path": "docs/production/evidence/joker-drag-audit-2026-10-15/table/390x844-reduce-dpr2-vertical.png",
+      "sharedWithExisting": false,
+      "source": "b276b07e7b84880e0aa313251da8a0db874faf38",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "drag",
+      "path": "docs/production/evidence/joker-drag-audit-2026-10-15/table/390x844-save-failure.png",
+      "sharedWithExisting": false,
+      "source": "b276b07e7b84880e0aa313251da8a0db874faf38",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "drag",
+      "path": "docs/production/evidence/joker-drag-audit-2026-10-15/table/390x844-save-retry.png",
+      "sharedWithExisting": false,
+      "source": "b276b07e7b84880e0aa313251da8a0db874faf38",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "drag",
+      "path": "docs/production/evidence/joker-drag-audit-2026-10-15/table/390x844-saving-delay.png",
+      "sharedWithExisting": false,
+      "source": "b276b07e7b84880e0aa313251da8a0db874faf38",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "drag",
+      "path": "docs/production/evidence/joker-drag-audit-2026-10-15/table/390x844-slow-dropped.png",
+      "sharedWithExisting": false,
+      "source": "b276b07e7b84880e0aa313251da8a0db874faf38",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "drag",
+      "path": "docs/production/evidence/joker-drag-audit-2026-10-15/table/390x844-slow-held.png",
+      "sharedWithExisting": false,
+      "source": "b276b07e7b84880e0aa313251da8a0db874faf38",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "drag",
+      "path": "docs/production/evidence/joker-drag-audit-2026-10-15/table/390x844-slow-mid.png",
+      "sharedWithExisting": false,
+      "source": "b276b07e7b84880e0aa313251da8a0db874faf38",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "drag",
+      "path": "docs/production/evidence/joker-drag-audit-2026-10-15/table/390x844-vertical.png",
+      "sharedWithExisting": false,
+      "source": "b276b07e7b84880e0aa313251da8a0db874faf38",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "drag",
+      "path": "docs/production/evidence/joker-drag-audit-2026-10-15/table/full-state-journal-storage.json.gz",
+      "sharedWithExisting": false,
+      "source": "b276b07e7b84880e0aa313251da8a0db874faf38",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "drag",
+      "path": "docs/production/evidence/joker-drag-audit-2026-10-15/table/report.json",
+      "sharedWithExisting": false,
+      "source": "b276b07e7b84880e0aa313251da8a0db874faf38",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "drag",
+      "path": "harness/owned-joker-drag-feedback.mjs",
+      "sharedWithExisting": false,
+      "source": "b276b07e7b84880e0aa313251da8a0db874faf38",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "drag",
+      "path": "harness/table-owned-joker-drag.mjs",
+      "sharedWithExisting": false,
+      "source": "b276b07e7b84880e0aa313251da8a0db874faf38",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "drag",
+      "path": "src/game/OwnedJokerHaptics.ts",
+      "sharedWithExisting": false,
+      "source": "b276b07e7b84880e0aa313251da8a0db874faf38",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "drag",
+      "path": "src/game/OwnedJokerInput.ts",
+      "sharedWithExisting": false,
+      "source": "b276b07e7b84880e0aa313251da8a0db874faf38",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "drag",
+      "path": "tests/joker-order-score.test.ts",
+      "sharedWithExisting": false,
+      "source": "b276b07e7b84880e0aa313251da8a0db874faf38",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "drag",
+      "path": "tests/owned-joker-haptics.test.ts",
+      "sharedWithExisting": false,
+      "source": "b276b07e7b84880e0aa313251da8a0db874faf38",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "captions",
+      "path": "docs/production/evidence/hero-captions-2026-10-15/README.md",
+      "sharedWithExisting": false,
+      "source": "a8e420ca5ecdcc1556800470cba1299e2e332daf",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "captions",
+      "path": "docs/production/evidence/hero-captions-2026-10-15/after/amo-390-normal-0.png",
+      "sharedWithExisting": false,
+      "source": "a8e420ca5ecdcc1556800470cba1299e2e332daf",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "captions",
+      "path": "docs/production/evidence/hero-captions-2026-10-15/after/amo-390-normal-shot-0-eyes.png",
+      "sharedWithExisting": false,
+      "source": "a8e420ca5ecdcc1556800470cba1299e2e332daf",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "captions",
+      "path": "docs/production/evidence/hero-captions-2026-10-15/after/amo-390-normal-shot-1-skill.png",
+      "sharedWithExisting": false,
+      "source": "a8e420ca5ecdcc1556800470cba1299e2e332daf",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "captions",
+      "path": "docs/production/evidence/hero-captions-2026-10-15/after/amo-390-normal-shot-2-landing.png",
+      "sharedWithExisting": false,
+      "source": "a8e420ca5ecdcc1556800470cba1299e2e332daf",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "captions",
+      "path": "docs/production/evidence/hero-captions-2026-10-15/after/amo-390-normal-shot-3-landing-late.png",
+      "sharedWithExisting": false,
+      "source": "a8e420ca5ecdcc1556800470cba1299e2e332daf",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "captions",
+      "path": "docs/production/evidence/hero-captions-2026-10-15/after/azao-390-normal-0.png",
+      "sharedWithExisting": false,
+      "source": "a8e420ca5ecdcc1556800470cba1299e2e332daf",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "captions",
+      "path": "docs/production/evidence/hero-captions-2026-10-15/after/azao-390-normal-shot-0-eyes.png",
+      "sharedWithExisting": false,
+      "source": "a8e420ca5ecdcc1556800470cba1299e2e332daf",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "captions",
+      "path": "docs/production/evidence/hero-captions-2026-10-15/after/azao-390-normal-shot-1-skill.png",
+      "sharedWithExisting": false,
+      "source": "a8e420ca5ecdcc1556800470cba1299e2e332daf",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "captions",
+      "path": "docs/production/evidence/hero-captions-2026-10-15/after/azao-390-normal-shot-2-landing.png",
+      "sharedWithExisting": false,
+      "source": "a8e420ca5ecdcc1556800470cba1299e2e332daf",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "captions",
+      "path": "docs/production/evidence/hero-captions-2026-10-15/after/azao-390-normal-shot-3-landing-late.png",
+      "sharedWithExisting": false,
+      "source": "a8e420ca5ecdcc1556800470cba1299e2e332daf",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "captions",
+      "path": "docs/production/evidence/hero-captions-2026-10-15/after/e11-390-normal-0.png",
+      "sharedWithExisting": false,
+      "source": "a8e420ca5ecdcc1556800470cba1299e2e332daf",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "captions",
+      "path": "docs/production/evidence/hero-captions-2026-10-15/after/e11-390-normal-shot-0-eyes.png",
+      "sharedWithExisting": false,
+      "source": "a8e420ca5ecdcc1556800470cba1299e2e332daf",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "captions",
+      "path": "docs/production/evidence/hero-captions-2026-10-15/after/e11-390-normal-shot-1-skill.png",
+      "sharedWithExisting": false,
+      "source": "a8e420ca5ecdcc1556800470cba1299e2e332daf",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "captions",
+      "path": "docs/production/evidence/hero-captions-2026-10-15/after/e11-390-normal-shot-2-landing.png",
+      "sharedWithExisting": false,
+      "source": "a8e420ca5ecdcc1556800470cba1299e2e332daf",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "captions",
+      "path": "docs/production/evidence/hero-captions-2026-10-15/after/e11-390-normal-shot-3-landing-late.png",
+      "sharedWithExisting": false,
+      "source": "a8e420ca5ecdcc1556800470cba1299e2e332daf",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "captions",
+      "path": "docs/production/evidence/hero-captions-2026-10-15/after/erxiang-390-exit-0.png",
+      "sharedWithExisting": false,
+      "source": "a8e420ca5ecdcc1556800470cba1299e2e332daf",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "captions",
+      "path": "docs/production/evidence/hero-captions-2026-10-15/after/erxiang-390-exit-shot-0-eyes.png",
+      "sharedWithExisting": false,
+      "source": "a8e420ca5ecdcc1556800470cba1299e2e332daf",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "captions",
+      "path": "docs/production/evidence/hero-captions-2026-10-15/after/erxiang-390-exit-shot-1-skill.png",
+      "sharedWithExisting": false,
+      "source": "a8e420ca5ecdcc1556800470cba1299e2e332daf",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "captions",
+      "path": "docs/production/evidence/hero-captions-2026-10-15/after/erxiang-390-exit-shot-2-landing.png",
+      "sharedWithExisting": false,
+      "source": "a8e420ca5ecdcc1556800470cba1299e2e332daf",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "captions",
+      "path": "docs/production/evidence/hero-captions-2026-10-15/after/erxiang-390-exit-shot-3-landing-late.png",
+      "sharedWithExisting": false,
+      "source": "a8e420ca5ecdcc1556800470cba1299e2e332daf",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "captions",
+      "path": "docs/production/evidence/hero-captions-2026-10-15/after/erxiang-390-normal-0.png",
+      "sharedWithExisting": false,
+      "source": "a8e420ca5ecdcc1556800470cba1299e2e332daf",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "captions",
+      "path": "docs/production/evidence/hero-captions-2026-10-15/after/erxiang-390-normal-shot-0-eyes.png",
+      "sharedWithExisting": false,
+      "source": "a8e420ca5ecdcc1556800470cba1299e2e332daf",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "captions",
+      "path": "docs/production/evidence/hero-captions-2026-10-15/after/erxiang-390-normal-shot-1-skill.png",
+      "sharedWithExisting": false,
+      "source": "a8e420ca5ecdcc1556800470cba1299e2e332daf",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "captions",
+      "path": "docs/production/evidence/hero-captions-2026-10-15/after/erxiang-390-normal-shot-2-landing.png",
+      "sharedWithExisting": false,
+      "source": "a8e420ca5ecdcc1556800470cba1299e2e332daf",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "captions",
+      "path": "docs/production/evidence/hero-captions-2026-10-15/after/erxiang-390-normal-shot-3-landing-late.png",
+      "sharedWithExisting": false,
+      "source": "a8e420ca5ecdcc1556800470cba1299e2e332daf",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "captions",
+      "path": "docs/production/evidence/hero-captions-2026-10-15/after/erxiang-390-reduce-0.png",
+      "sharedWithExisting": false,
+      "source": "a8e420ca5ecdcc1556800470cba1299e2e332daf",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "captions",
+      "path": "docs/production/evidence/hero-captions-2026-10-15/after/erxiang-390-reduce-shot-0-landing.png",
+      "sharedWithExisting": false,
+      "source": "a8e420ca5ecdcc1556800470cba1299e2e332daf",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "captions",
+      "path": "docs/production/evidence/hero-captions-2026-10-15/after/erxiang-390-reduce-shot-1-landing-late.png",
+      "sharedWithExisting": false,
+      "source": "a8e420ca5ecdcc1556800470cba1299e2e332daf",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "captions",
+      "path": "docs/production/evidence/hero-captions-2026-10-15/after/erxiang-390-skip-0.png",
+      "sharedWithExisting": false,
+      "source": "a8e420ca5ecdcc1556800470cba1299e2e332daf",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "captions",
+      "path": "docs/production/evidence/hero-captions-2026-10-15/after/erxiang-390-skip-shot-0-eyes.png",
+      "sharedWithExisting": false,
+      "source": "a8e420ca5ecdcc1556800470cba1299e2e332daf",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "captions",
+      "path": "docs/production/evidence/hero-captions-2026-10-15/after/erxiang-390-skip-shot-1-skill.png",
+      "sharedWithExisting": false,
+      "source": "a8e420ca5ecdcc1556800470cba1299e2e332daf",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "captions",
+      "path": "docs/production/evidence/hero-captions-2026-10-15/after/erxiang-390-skip-shot-2-landing.png",
+      "sharedWithExisting": false,
+      "source": "a8e420ca5ecdcc1556800470cba1299e2e332daf",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "captions",
+      "path": "docs/production/evidence/hero-captions-2026-10-15/after/erxiang-390-skip-shot-3-landing-late.png",
+      "sharedWithExisting": false,
+      "source": "a8e420ca5ecdcc1556800470cba1299e2e332daf",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "captions",
+      "path": "docs/production/evidence/hero-captions-2026-10-15/after/f06-320-normal-0.png",
+      "sharedWithExisting": false,
+      "source": "a8e420ca5ecdcc1556800470cba1299e2e332daf",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "captions",
+      "path": "docs/production/evidence/hero-captions-2026-10-15/after/f06-320-normal-shot-0-eyes.png",
+      "sharedWithExisting": false,
+      "source": "a8e420ca5ecdcc1556800470cba1299e2e332daf",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "captions",
+      "path": "docs/production/evidence/hero-captions-2026-10-15/after/f06-320-normal-shot-1-skill.png",
+      "sharedWithExisting": false,
+      "source": "a8e420ca5ecdcc1556800470cba1299e2e332daf",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "captions",
+      "path": "docs/production/evidence/hero-captions-2026-10-15/after/f06-320-normal-shot-2-landing.png",
+      "sharedWithExisting": false,
+      "source": "a8e420ca5ecdcc1556800470cba1299e2e332daf",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "captions",
+      "path": "docs/production/evidence/hero-captions-2026-10-15/after/f06-320-normal-shot-3-landing-late.png",
+      "sharedWithExisting": false,
+      "source": "a8e420ca5ecdcc1556800470cba1299e2e332daf",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "captions",
+      "path": "docs/production/evidence/hero-captions-2026-10-15/after/report.json.gz",
+      "sharedWithExisting": false,
+      "source": "a8e420ca5ecdcc1556800470cba1299e2e332daf",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "captions",
+      "path": "docs/production/evidence/hero-captions-2026-10-15/after/summary.json",
+      "sharedWithExisting": false,
+      "source": "a8e420ca5ecdcc1556800470cba1299e2e332daf",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "captions",
+      "path": "docs/production/evidence/hero-captions-2026-10-15/after/touye-390-normal-0.png",
+      "sharedWithExisting": false,
+      "source": "a8e420ca5ecdcc1556800470cba1299e2e332daf",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "captions",
+      "path": "docs/production/evidence/hero-captions-2026-10-15/after/touye-390-normal-shot-0-eyes.png",
+      "sharedWithExisting": false,
+      "source": "a8e420ca5ecdcc1556800470cba1299e2e332daf",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "captions",
+      "path": "docs/production/evidence/hero-captions-2026-10-15/after/touye-390-normal-shot-1-skill.png",
+      "sharedWithExisting": false,
+      "source": "a8e420ca5ecdcc1556800470cba1299e2e332daf",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "captions",
+      "path": "docs/production/evidence/hero-captions-2026-10-15/after/touye-390-normal-shot-2-landing.png",
+      "sharedWithExisting": false,
+      "source": "a8e420ca5ecdcc1556800470cba1299e2e332daf",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "captions",
+      "path": "docs/production/evidence/hero-captions-2026-10-15/after/touye-390-normal-shot-3-landing-late.png",
+      "sharedWithExisting": false,
+      "source": "a8e420ca5ecdcc1556800470cba1299e2e332daf",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "captions",
+      "path": "docs/production/evidence/hero-captions-2026-10-15/after/xiemu-1366-normal-0.png",
+      "sharedWithExisting": false,
+      "source": "a8e420ca5ecdcc1556800470cba1299e2e332daf",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "captions",
+      "path": "docs/production/evidence/hero-captions-2026-10-15/after/xiemu-1366-normal-shot-0-eyes.png",
+      "sharedWithExisting": false,
+      "source": "a8e420ca5ecdcc1556800470cba1299e2e332daf",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "captions",
+      "path": "docs/production/evidence/hero-captions-2026-10-15/after/xiemu-1366-normal-shot-1-skill.png",
+      "sharedWithExisting": false,
+      "source": "a8e420ca5ecdcc1556800470cba1299e2e332daf",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "captions",
+      "path": "docs/production/evidence/hero-captions-2026-10-15/after/xiemu-1366-normal-shot-2-landing.png",
+      "sharedWithExisting": false,
+      "source": "a8e420ca5ecdcc1556800470cba1299e2e332daf",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "captions",
+      "path": "docs/production/evidence/hero-captions-2026-10-15/after/xiemu-1366-normal-shot-3-landing-late.png",
+      "sharedWithExisting": false,
+      "source": "a8e420ca5ecdcc1556800470cba1299e2e332daf",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "captions",
+      "path": "docs/production/evidence/hero-captions-2026-10-15/after/xiemu-320-normal-0.png",
+      "sharedWithExisting": false,
+      "source": "a8e420ca5ecdcc1556800470cba1299e2e332daf",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "captions",
+      "path": "docs/production/evidence/hero-captions-2026-10-15/after/xiemu-320-normal-shot-0-eyes.png",
+      "sharedWithExisting": false,
+      "source": "a8e420ca5ecdcc1556800470cba1299e2e332daf",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "captions",
+      "path": "docs/production/evidence/hero-captions-2026-10-15/after/xiemu-320-normal-shot-1-skill.png",
+      "sharedWithExisting": false,
+      "source": "a8e420ca5ecdcc1556800470cba1299e2e332daf",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "captions",
+      "path": "docs/production/evidence/hero-captions-2026-10-15/after/xiemu-320-normal-shot-2-landing.png",
+      "sharedWithExisting": false,
+      "source": "a8e420ca5ecdcc1556800470cba1299e2e332daf",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "captions",
+      "path": "docs/production/evidence/hero-captions-2026-10-15/after/xiemu-320-normal-shot-3-landing-late.png",
+      "sharedWithExisting": false,
+      "source": "a8e420ca5ecdcc1556800470cba1299e2e332daf",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "captions",
+      "path": "docs/production/evidence/hero-captions-2026-10-15/after/xiemu-390-fast-0.png",
+      "sharedWithExisting": false,
+      "source": "a8e420ca5ecdcc1556800470cba1299e2e332daf",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "captions",
+      "path": "docs/production/evidence/hero-captions-2026-10-15/after/xiemu-390-fast-shot-0-eyes.png",
+      "sharedWithExisting": false,
+      "source": "a8e420ca5ecdcc1556800470cba1299e2e332daf",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "captions",
+      "path": "docs/production/evidence/hero-captions-2026-10-15/after/xiemu-390-fast-shot-1-skill.png",
+      "sharedWithExisting": false,
+      "source": "a8e420ca5ecdcc1556800470cba1299e2e332daf",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "captions",
+      "path": "docs/production/evidence/hero-captions-2026-10-15/after/xiemu-390-fast-shot-2-landing.png",
+      "sharedWithExisting": false,
+      "source": "a8e420ca5ecdcc1556800470cba1299e2e332daf",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "captions",
+      "path": "docs/production/evidence/hero-captions-2026-10-15/after/xiemu-390-fast-shot-3-landing-late.png",
+      "sharedWithExisting": false,
+      "source": "a8e420ca5ecdcc1556800470cba1299e2e332daf",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "captions",
+      "path": "docs/production/evidence/hero-captions-2026-10-15/after/xiemu-390-normal-0.png",
+      "sharedWithExisting": false,
+      "source": "a8e420ca5ecdcc1556800470cba1299e2e332daf",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "captions",
+      "path": "docs/production/evidence/hero-captions-2026-10-15/after/xiemu-390-normal-shot-0-eyes.png",
+      "sharedWithExisting": false,
+      "source": "a8e420ca5ecdcc1556800470cba1299e2e332daf",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "captions",
+      "path": "docs/production/evidence/hero-captions-2026-10-15/after/xiemu-390-normal-shot-1-skill.png",
+      "sharedWithExisting": false,
+      "source": "a8e420ca5ecdcc1556800470cba1299e2e332daf",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "captions",
+      "path": "docs/production/evidence/hero-captions-2026-10-15/after/xiemu-390-normal-shot-2-landing.png",
+      "sharedWithExisting": false,
+      "source": "a8e420ca5ecdcc1556800470cba1299e2e332daf",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "captions",
+      "path": "docs/production/evidence/hero-captions-2026-10-15/after/xiemu-390-normal-shot-3-landing-late.png",
+      "sharedWithExisting": false,
+      "source": "a8e420ca5ecdcc1556800470cba1299e2e332daf",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "captions",
+      "path": "docs/production/evidence/hero-captions-2026-10-15/before/report.json.gz",
+      "sharedWithExisting": false,
+      "source": "a8e420ca5ecdcc1556800470cba1299e2e332daf",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "captions",
+      "path": "docs/production/evidence/hero-captions-2026-10-15/before/summary.json",
+      "sharedWithExisting": false,
+      "source": "a8e420ca5ecdcc1556800470cba1299e2e332daf",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "captions",
+      "path": "docs/production/evidence/hero-captions-2026-10-15/before/xiemu-1366-normal-0.png",
+      "sharedWithExisting": false,
+      "source": "a8e420ca5ecdcc1556800470cba1299e2e332daf",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "captions",
+      "path": "docs/production/evidence/hero-captions-2026-10-15/before/xiemu-1366-normal-shot-0-eyes.png",
+      "sharedWithExisting": false,
+      "source": "a8e420ca5ecdcc1556800470cba1299e2e332daf",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "captions",
+      "path": "docs/production/evidence/hero-captions-2026-10-15/before/xiemu-1366-normal-shot-1-skill.png",
+      "sharedWithExisting": false,
+      "source": "a8e420ca5ecdcc1556800470cba1299e2e332daf",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "captions",
+      "path": "docs/production/evidence/hero-captions-2026-10-15/before/xiemu-1366-normal-shot-2-landing.png",
+      "sharedWithExisting": false,
+      "source": "a8e420ca5ecdcc1556800470cba1299e2e332daf",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "captions",
+      "path": "docs/production/evidence/hero-captions-2026-10-15/before/xiemu-1366-normal-shot-3-landing-late.png",
+      "sharedWithExisting": false,
+      "source": "a8e420ca5ecdcc1556800470cba1299e2e332daf",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "captions",
+      "path": "docs/production/evidence/hero-captions-2026-10-15/before/xiemu-390-normal-0.png",
+      "sharedWithExisting": false,
+      "source": "a8e420ca5ecdcc1556800470cba1299e2e332daf",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "captions",
+      "path": "docs/production/evidence/hero-captions-2026-10-15/before/xiemu-390-normal-shot-0-eyes.png",
+      "sharedWithExisting": false,
+      "source": "a8e420ca5ecdcc1556800470cba1299e2e332daf",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "captions",
+      "path": "docs/production/evidence/hero-captions-2026-10-15/before/xiemu-390-normal-shot-1-skill.png",
+      "sharedWithExisting": false,
+      "source": "a8e420ca5ecdcc1556800470cba1299e2e332daf",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "captions",
+      "path": "docs/production/evidence/hero-captions-2026-10-15/before/xiemu-390-normal-shot-2-landing.png",
+      "sharedWithExisting": false,
+      "source": "a8e420ca5ecdcc1556800470cba1299e2e332daf",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "captions",
+      "path": "docs/production/evidence/hero-captions-2026-10-15/before/xiemu-390-normal-shot-3-landing-late.png",
+      "sharedWithExisting": false,
+      "source": "a8e420ca5ecdcc1556800470cba1299e2e332daf",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "captions",
+      "path": "docs/production/evidence/hero-captions-2026-10-15/caption-boundaries/erxiang-390-exit-0.png",
+      "sharedWithExisting": false,
+      "source": "a8e420ca5ecdcc1556800470cba1299e2e332daf",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "captions",
+      "path": "docs/production/evidence/hero-captions-2026-10-15/caption-boundaries/erxiang-390-exit-shot-0-eyes.png",
+      "sharedWithExisting": false,
+      "source": "a8e420ca5ecdcc1556800470cba1299e2e332daf",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "captions",
+      "path": "docs/production/evidence/hero-captions-2026-10-15/caption-boundaries/erxiang-390-exit-shot-1-skill.png",
+      "sharedWithExisting": false,
+      "source": "a8e420ca5ecdcc1556800470cba1299e2e332daf",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "captions",
+      "path": "docs/production/evidence/hero-captions-2026-10-15/caption-boundaries/erxiang-390-reduce-0.png",
+      "sharedWithExisting": false,
+      "source": "a8e420ca5ecdcc1556800470cba1299e2e332daf",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "captions",
+      "path": "docs/production/evidence/hero-captions-2026-10-15/caption-boundaries/erxiang-390-reduce-shot-0-landing.png",
+      "sharedWithExisting": false,
+      "source": "a8e420ca5ecdcc1556800470cba1299e2e332daf",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "captions",
+      "path": "docs/production/evidence/hero-captions-2026-10-15/caption-boundaries/erxiang-390-reduce-shot-1-landing-late.png",
+      "sharedWithExisting": false,
+      "source": "a8e420ca5ecdcc1556800470cba1299e2e332daf",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "captions",
+      "path": "docs/production/evidence/hero-captions-2026-10-15/caption-boundaries/erxiang-390-skip-0.png",
+      "sharedWithExisting": false,
+      "source": "a8e420ca5ecdcc1556800470cba1299e2e332daf",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "captions",
+      "path": "docs/production/evidence/hero-captions-2026-10-15/caption-boundaries/erxiang-390-skip-shot-0-eyes.png",
+      "sharedWithExisting": false,
+      "source": "a8e420ca5ecdcc1556800470cba1299e2e332daf",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "captions",
+      "path": "docs/production/evidence/hero-captions-2026-10-15/caption-boundaries/erxiang-390-skip-shot-1-skill.png",
+      "sharedWithExisting": false,
+      "source": "a8e420ca5ecdcc1556800470cba1299e2e332daf",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "captions",
+      "path": "docs/production/evidence/hero-captions-2026-10-15/caption-boundaries/report.json.gz",
+      "sharedWithExisting": false,
+      "source": "a8e420ca5ecdcc1556800470cba1299e2e332daf",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "captions",
+      "path": "docs/production/evidence/hero-captions-2026-10-15/caption-boundaries/summary.json",
+      "sharedWithExisting": false,
+      "source": "a8e420ca5ecdcc1556800470cba1299e2e332daf",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "captions",
+      "path": "docs/production/evidence/hero-captions-2026-10-15/caption-boundaries/xiemu-390-fast-0.png",
+      "sharedWithExisting": false,
+      "source": "a8e420ca5ecdcc1556800470cba1299e2e332daf",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "captions",
+      "path": "docs/production/evidence/hero-captions-2026-10-15/caption-boundaries/xiemu-390-fast-shot-0-eyes.png",
+      "sharedWithExisting": false,
+      "source": "a8e420ca5ecdcc1556800470cba1299e2e332daf",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "captions",
+      "path": "docs/production/evidence/hero-captions-2026-10-15/caption-boundaries/xiemu-390-fast-shot-1-skill.png",
+      "sharedWithExisting": false,
+      "source": "a8e420ca5ecdcc1556800470cba1299e2e332daf",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "captions",
+      "path": "docs/production/evidence/hero-captions-2026-10-15/caption-boundaries/xiemu-390-fast-shot-2-landing.png",
+      "sharedWithExisting": false,
+      "source": "a8e420ca5ecdcc1556800470cba1299e2e332daf",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "captions",
+      "path": "docs/production/evidence/hero-captions-2026-10-15/caption-boundaries/xiemu-390-fast-shot-3-landing-late.png",
+      "sharedWithExisting": false,
+      "source": "a8e420ca5ecdcc1556800470cba1299e2e332daf",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "captions",
+      "path": "docs/production/evidence/hero-captions-2026-10-15/caption-source-review.json",
+      "sharedWithExisting": false,
+      "source": "a8e420ca5ecdcc1556800470cba1299e2e332daf",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "captions",
+      "path": "docs/production/evidence/hero-captions-2026-10-15/checks/after.txt",
+      "sharedWithExisting": false,
+      "source": "a8e420ca5ecdcc1556800470cba1299e2e332daf",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "captions",
+      "path": "docs/production/evidence/hero-captions-2026-10-15/checks/before.txt",
+      "sharedWithExisting": false,
+      "source": "a8e420ca5ecdcc1556800470cba1299e2e332daf",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "captions",
+      "path": "docs/production/evidence/hero-captions-2026-10-15/checks/build.txt",
+      "sharedWithExisting": false,
+      "source": "a8e420ca5ecdcc1556800470cba1299e2e332daf",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "captions",
+      "path": "docs/production/evidence/hero-captions-2026-10-15/checks/caption-boundaries.txt",
+      "sharedWithExisting": false,
+      "source": "a8e420ca5ecdcc1556800470cba1299e2e332daf",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "captions",
+      "path": "docs/production/evidence/hero-captions-2026-10-15/checks/dpr3.txt",
+      "sharedWithExisting": false,
+      "source": "a8e420ca5ecdcc1556800470cba1299e2e332daf",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "captions",
+      "path": "docs/production/evidence/hero-captions-2026-10-15/checks/explanations-mobile.txt",
+      "sharedWithExisting": false,
+      "source": "a8e420ca5ecdcc1556800470cba1299e2e332daf",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "captions",
+      "path": "docs/production/evidence/hero-captions-2026-10-15/checks/explanations-pc.txt",
+      "sharedWithExisting": false,
+      "source": "a8e420ca5ecdcc1556800470cba1299e2e332daf",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "captions",
+      "path": "docs/production/evidence/hero-captions-2026-10-15/checks/explanations.txt",
+      "sharedWithExisting": false,
+      "source": "a8e420ca5ecdcc1556800470cba1299e2e332daf",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "captions",
+      "path": "docs/production/evidence/hero-captions-2026-10-15/checks/plan.txt",
+      "sharedWithExisting": false,
+      "source": "a8e420ca5ecdcc1556800470cba1299e2e332daf",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "captions",
+      "path": "docs/production/evidence/hero-captions-2026-10-15/checks/tests.txt",
+      "sharedWithExisting": false,
+      "source": "a8e420ca5ecdcc1556800470cba1299e2e332daf",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "captions",
+      "path": "docs/production/evidence/hero-captions-2026-10-15/checks/typecheck.txt",
+      "sharedWithExisting": false,
+      "source": "a8e420ca5ecdcc1556800470cba1299e2e332daf",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "captions",
+      "path": "docs/production/evidence/hero-captions-2026-10-15/dpr3-caption/report.json.gz",
+      "sharedWithExisting": false,
+      "source": "a8e420ca5ecdcc1556800470cba1299e2e332daf",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "captions",
+      "path": "docs/production/evidence/hero-captions-2026-10-15/dpr3-caption/summary.json",
+      "sharedWithExisting": false,
+      "source": "a8e420ca5ecdcc1556800470cba1299e2e332daf",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "captions",
+      "path": "docs/production/evidence/hero-captions-2026-10-15/dpr3-caption/xiemu-390-fast-0.png",
+      "sharedWithExisting": false,
+      "source": "a8e420ca5ecdcc1556800470cba1299e2e332daf",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "captions",
+      "path": "docs/production/evidence/hero-captions-2026-10-15/dpr3-caption/xiemu-390-fast-shot-0-eyes.png",
+      "sharedWithExisting": false,
+      "source": "a8e420ca5ecdcc1556800470cba1299e2e332daf",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "captions",
+      "path": "docs/production/evidence/hero-captions-2026-10-15/dpr3-caption/xiemu-390-fast-shot-1-skill.png",
+      "sharedWithExisting": false,
+      "source": "a8e420ca5ecdcc1556800470cba1299e2e332daf",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "captions",
+      "path": "docs/production/evidence/hero-captions-2026-10-15/dpr3-caption/xiemu-390-fast-shot-2-landing.png",
+      "sharedWithExisting": false,
+      "source": "a8e420ca5ecdcc1556800470cba1299e2e332daf",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "captions",
+      "path": "docs/production/evidence/hero-captions-2026-10-15/dpr3-caption/xiemu-390-fast-shot-3-landing-late.png",
+      "sharedWithExisting": false,
+      "source": "a8e420ca5ecdcc1556800470cba1299e2e332daf",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "captions",
+      "path": "docs/production/evidence/hero-captions-2026-10-15/explanations-mobile/390-amo-selection-first.png",
+      "sharedWithExisting": false,
+      "source": "a8e420ca5ecdcc1556800470cba1299e2e332daf",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "captions",
+      "path": "docs/production/evidence/hero-captions-2026-10-15/explanations-mobile/390-amo-table-HUD-first.png",
+      "sharedWithExisting": false,
+      "source": "a8e420ca5ecdcc1556800470cba1299e2e332daf",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "captions",
+      "path": "docs/production/evidence/hero-captions-2026-10-15/explanations-mobile/390-azao-table-HUD-first.png",
+      "sharedWithExisting": false,
+      "source": "a8e420ca5ecdcc1556800470cba1299e2e332daf",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "captions",
+      "path": "docs/production/evidence/hero-captions-2026-10-15/explanations-mobile/390-erxiang-table-HUD-first.png",
+      "sharedWithExisting": false,
+      "source": "a8e420ca5ecdcc1556800470cba1299e2e332daf",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "captions",
+      "path": "docs/production/evidence/hero-captions-2026-10-15/explanations-mobile/390-laohuan-table-HUD-first.png",
+      "sharedWithExisting": false,
+      "source": "a8e420ca5ecdcc1556800470cba1299e2e332daf",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "captions",
+      "path": "docs/production/evidence/hero-captions-2026-10-15/explanations-mobile/390-touye-shop-first.png",
+      "sharedWithExisting": false,
+      "source": "a8e420ca5ecdcc1556800470cba1299e2e332daf",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "captions",
+      "path": "docs/production/evidence/hero-captions-2026-10-15/explanations-mobile/390-touye-table-HUD-first.png",
+      "sharedWithExisting": false,
+      "source": "a8e420ca5ecdcc1556800470cba1299e2e332daf",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "captions",
+      "path": "docs/production/evidence/hero-captions-2026-10-15/explanations-mobile/390-xiemu-lost-result-first.png",
+      "sharedWithExisting": false,
+      "source": "a8e420ca5ecdcc1556800470cba1299e2e332daf",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "captions",
+      "path": "docs/production/evidence/hero-captions-2026-10-15/explanations-mobile/390-xiemu-table-HUD-first.png",
+      "sharedWithExisting": false,
+      "source": "a8e420ca5ecdcc1556800470cba1299e2e332daf",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "captions",
+      "path": "docs/production/evidence/hero-captions-2026-10-15/explanations-mobile/full-state-journal-storage-localStorage.json.gz",
+      "sharedWithExisting": false,
+      "source": "a8e420ca5ecdcc1556800470cba1299e2e332daf",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "captions",
+      "path": "docs/production/evidence/hero-captions-2026-10-15/explanations-mobile/report.json",
+      "sharedWithExisting": false,
+      "source": "a8e420ca5ecdcc1556800470cba1299e2e332daf",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "captions",
+      "path": "docs/production/evidence/hero-captions-2026-10-15/explanations-pc/1366-amo-selection-first.png",
+      "sharedWithExisting": false,
+      "source": "a8e420ca5ecdcc1556800470cba1299e2e332daf",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "captions",
+      "path": "docs/production/evidence/hero-captions-2026-10-15/explanations-pc/1366-amo-table-HUD-first.png",
+      "sharedWithExisting": false,
+      "source": "a8e420ca5ecdcc1556800470cba1299e2e332daf",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "captions",
+      "path": "docs/production/evidence/hero-captions-2026-10-15/explanations-pc/1366-azao-table-HUD-first.png",
+      "sharedWithExisting": false,
+      "source": "a8e420ca5ecdcc1556800470cba1299e2e332daf",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "captions",
+      "path": "docs/production/evidence/hero-captions-2026-10-15/explanations-pc/1366-erxiang-table-HUD-first.png",
+      "sharedWithExisting": false,
+      "source": "a8e420ca5ecdcc1556800470cba1299e2e332daf",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "captions",
+      "path": "docs/production/evidence/hero-captions-2026-10-15/explanations-pc/1366-laohuan-table-HUD-first.png",
+      "sharedWithExisting": false,
+      "source": "a8e420ca5ecdcc1556800470cba1299e2e332daf",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "captions",
+      "path": "docs/production/evidence/hero-captions-2026-10-15/explanations-pc/1366-touye-shop-first.png",
+      "sharedWithExisting": false,
+      "source": "a8e420ca5ecdcc1556800470cba1299e2e332daf",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "captions",
+      "path": "docs/production/evidence/hero-captions-2026-10-15/explanations-pc/1366-touye-table-HUD-first.png",
+      "sharedWithExisting": false,
+      "source": "a8e420ca5ecdcc1556800470cba1299e2e332daf",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "captions",
+      "path": "docs/production/evidence/hero-captions-2026-10-15/explanations-pc/1366-xiemu-lost-result-first.png",
+      "sharedWithExisting": false,
+      "source": "a8e420ca5ecdcc1556800470cba1299e2e332daf",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "captions",
+      "path": "docs/production/evidence/hero-captions-2026-10-15/explanations-pc/1366-xiemu-table-HUD-first.png",
+      "sharedWithExisting": false,
+      "source": "a8e420ca5ecdcc1556800470cba1299e2e332daf",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "captions",
+      "path": "docs/production/evidence/hero-captions-2026-10-15/explanations-pc/full-state-journal-storage-localStorage.json.gz",
+      "sharedWithExisting": false,
+      "source": "a8e420ca5ecdcc1556800470cba1299e2e332daf",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "captions",
+      "path": "docs/production/evidence/hero-captions-2026-10-15/explanations-pc/report.json",
+      "sharedWithExisting": false,
+      "source": "a8e420ca5ecdcc1556800470cba1299e2e332daf",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "captions",
+      "path": "docs/production/evidence/hero-captions-2026-10-15/identity.json",
+      "sharedWithExisting": false,
+      "source": "a8e420ca5ecdcc1556800470cba1299e2e332daf",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "captions",
+      "path": "docs/production/evidence/hero-captions-2026-10-15/laohuan-r3/1366-normal-0-eyes.png",
+      "sharedWithExisting": false,
+      "source": "a8e420ca5ecdcc1556800470cba1299e2e332daf",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "captions",
+      "path": "docs/production/evidence/hero-captions-2026-10-15/laohuan-r3/1366-normal-1-skill.png",
+      "sharedWithExisting": false,
+      "source": "a8e420ca5ecdcc1556800470cba1299e2e332daf",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "captions",
+      "path": "docs/production/evidence/hero-captions-2026-10-15/laohuan-r3/1366-normal-2-landing.png",
+      "sharedWithExisting": false,
+      "source": "a8e420ca5ecdcc1556800470cba1299e2e332daf",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "captions",
+      "path": "docs/production/evidence/hero-captions-2026-10-15/laohuan-r3/1366-normal-3-landing.png",
+      "sharedWithExisting": false,
+      "source": "a8e420ca5ecdcc1556800470cba1299e2e332daf",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "captions",
+      "path": "docs/production/evidence/hero-captions-2026-10-15/laohuan-r3/390-fast-0-eyes.png",
+      "sharedWithExisting": false,
+      "source": "a8e420ca5ecdcc1556800470cba1299e2e332daf",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "captions",
+      "path": "docs/production/evidence/hero-captions-2026-10-15/laohuan-r3/390-fast-1-skill.png",
+      "sharedWithExisting": false,
+      "source": "a8e420ca5ecdcc1556800470cba1299e2e332daf",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "captions",
+      "path": "docs/production/evidence/hero-captions-2026-10-15/laohuan-r3/390-fast-2-landing.png",
+      "sharedWithExisting": false,
+      "source": "a8e420ca5ecdcc1556800470cba1299e2e332daf",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "captions",
+      "path": "docs/production/evidence/hero-captions-2026-10-15/laohuan-r3/390-fast-3-landing.png",
+      "sharedWithExisting": false,
+      "source": "a8e420ca5ecdcc1556800470cba1299e2e332daf",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "captions",
+      "path": "docs/production/evidence/hero-captions-2026-10-15/laohuan-r3/390-normal-0-eyes.png",
+      "sharedWithExisting": false,
+      "source": "a8e420ca5ecdcc1556800470cba1299e2e332daf",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "captions",
+      "path": "docs/production/evidence/hero-captions-2026-10-15/laohuan-r3/390-normal-1-skill.png",
+      "sharedWithExisting": false,
+      "source": "a8e420ca5ecdcc1556800470cba1299e2e332daf",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "captions",
+      "path": "docs/production/evidence/hero-captions-2026-10-15/laohuan-r3/390-normal-2-landing.png",
+      "sharedWithExisting": false,
+      "source": "a8e420ca5ecdcc1556800470cba1299e2e332daf",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "captions",
+      "path": "docs/production/evidence/hero-captions-2026-10-15/laohuan-r3/390-normal-3-landing.png",
+      "sharedWithExisting": false,
+      "source": "a8e420ca5ecdcc1556800470cba1299e2e332daf",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "captions",
+      "path": "docs/production/evidence/hero-captions-2026-10-15/laohuan-r3/390-reduce-0-landing.png",
+      "sharedWithExisting": false,
+      "source": "a8e420ca5ecdcc1556800470cba1299e2e332daf",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "captions",
+      "path": "docs/production/evidence/hero-captions-2026-10-15/laohuan-r3/390-reduce-1-landing.png",
+      "sharedWithExisting": false,
+      "source": "a8e420ca5ecdcc1556800470cba1299e2e332daf",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "captions",
+      "path": "docs/production/evidence/hero-captions-2026-10-15/laohuan-r3/report.json.gz",
+      "sharedWithExisting": false,
+      "source": "a8e420ca5ecdcc1556800470cba1299e2e332daf",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "captions",
+      "path": "docs/production/evidence/hero-captions-2026-10-15/laohuan-r3/summary.json",
+      "sharedWithExisting": false,
+      "source": "a8e420ca5ecdcc1556800470cba1299e2e332daf",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "captions",
+      "path": "docs/production/evidence/hero-captions-2026-10-15/manifest.json",
+      "sharedWithExisting": false,
+      "source": "a8e420ca5ecdcc1556800470cba1299e2e332daf",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "captions",
+      "path": "docs/production/evidence/hero-captions-2026-10-15/original-failures/explanations/full-state-journal-storage-localStorage.json.gz",
+      "sharedWithExisting": false,
+      "source": "a8e420ca5ecdcc1556800470cba1299e2e332daf",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "captions",
+      "path": "docs/production/evidence/hero-captions-2026-10-15/original-failures/explanations/report.json",
+      "sharedWithExisting": false,
+      "source": "a8e420ca5ecdcc1556800470cba1299e2e332daf",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "captions",
+      "path": "docs/production/evidence/hero-captions-2026-10-15/original-failures/laohuan-r2/1366-normal-FAIL.png",
+      "sharedWithExisting": false,
+      "source": "a8e420ca5ecdcc1556800470cba1299e2e332daf",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "captions",
+      "path": "docs/production/evidence/hero-captions-2026-10-15/original-failures/laohuan-r2/report.json.gz",
+      "sharedWithExisting": false,
+      "source": "a8e420ca5ecdcc1556800470cba1299e2e332daf",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "captions",
+      "path": "docs/production/evidence/hero-captions-2026-10-15/original-failures/laohuan-r2/summary.json",
+      "sharedWithExisting": false,
+      "source": "a8e420ca5ecdcc1556800470cba1299e2e332daf",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "captions",
+      "path": "docs/production/evidence/hero-captions-2026-10-15/original-failures/laohuan/1366-normal-FAIL.png",
+      "sharedWithExisting": false,
+      "source": "a8e420ca5ecdcc1556800470cba1299e2e332daf",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "captions",
+      "path": "docs/production/evidence/hero-captions-2026-10-15/original-failures/laohuan/report.json.gz",
+      "sharedWithExisting": false,
+      "source": "a8e420ca5ecdcc1556800470cba1299e2e332daf",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "captions",
+      "path": "docs/production/evidence/hero-captions-2026-10-15/original-failures/laohuan/summary.json",
+      "sharedWithExisting": false,
+      "source": "a8e420ca5ecdcc1556800470cba1299e2e332daf",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "captions",
+      "path": "harness/hero-caption-laohuan.mjs",
+      "sharedWithExisting": false,
+      "source": "a8e420ca5ecdcc1556800470cba1299e2e332daf",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "captions",
+      "path": "harness/hero-explanation.mjs",
+      "sharedWithExisting": false,
+      "source": "a8e420ca5ecdcc1556800470cba1299e2e332daf",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "captions",
+      "path": "harness/hero-source-title.mjs",
+      "sharedWithExisting": false,
+      "source": "a8e420ca5ecdcc1556800470cba1299e2e332daf",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "captions",
+      "path": "src/game/GameScene.ts",
+      "sharedWithExisting": true,
+      "source": "a8e420ca5ecdcc1556800470cba1299e2e332daf",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "captions",
+      "path": "src/game/HeroClimax.ts",
+      "sharedWithExisting": false,
+      "source": "a8e420ca5ecdcc1556800470cba1299e2e332daf",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "captions",
+      "path": "src/game/HeroClimaxCaption.ts",
+      "sharedWithExisting": false,
+      "source": "a8e420ca5ecdcc1556800470cba1299e2e332daf",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "captions",
+      "path": "tests/hero-climax.test.ts",
+      "sharedWithExisting": false,
+      "source": "a8e420ca5ecdcc1556800470cba1299e2e332daf",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "performance",
+      "path": ".github/workflows/smoke-diagnostics.yml",
+      "sharedWithExisting": false,
+      "source": "e84ed553d303e38ee01892cef436581ec7e4410c",
+      "deltaBase": "3db8b777a2b7e213f912fa9f980890c363c5b042"
+    },
+    {
+      "task": "performance",
+      "path": "docs/production/evidence/shop-smoke-performance-2026-10-15/README.md",
+      "sharedWithExisting": false,
+      "source": "e84ed553d303e38ee01892cef436581ec7e4410c",
+      "deltaBase": "3db8b777a2b7e213f912fa9f980890c363c5b042"
+    },
+    {
+      "task": "performance",
+      "path": "docs/production/evidence/shop-smoke-performance-2026-10-15/checks/browser-install.log.gz",
+      "sharedWithExisting": false,
+      "source": "e84ed553d303e38ee01892cef436581ec7e4410c",
+      "deltaBase": "3db8b777a2b7e213f912fa9f980890c363c5b042"
+    },
+    {
+      "task": "performance",
+      "path": "docs/production/evidence/shop-smoke-performance-2026-10-15/checks/container-pull.log.gz",
+      "sharedWithExisting": false,
+      "source": "e84ed553d303e38ee01892cef436581ec7e4410c",
+      "deltaBase": "3db8b777a2b7e213f912fa9f980890c363c5b042"
+    },
+    {
+      "task": "performance",
+      "path": "docs/production/evidence/shop-smoke-performance-2026-10-15/checks/fixed-startup-failure.log.gz",
+      "sharedWithExisting": false,
+      "source": "e84ed553d303e38ee01892cef436581ec7e4410c",
+      "deltaBase": "3db8b777a2b7e213f912fa9f980890c363c5b042"
+    },
+    {
+      "task": "performance",
+      "path": "docs/production/evidence/shop-smoke-performance-2026-10-15/checks/renderer-final.log.gz",
+      "sharedWithExisting": false,
+      "source": "e84ed553d303e38ee01892cef436581ec7e4410c",
+      "deltaBase": "3db8b777a2b7e213f912fa9f980890c363c5b042"
+    },
+    {
+      "task": "performance",
+      "path": "docs/production/evidence/shop-smoke-performance-2026-10-15/checks/targeted.log.gz",
+      "sharedWithExisting": false,
+      "source": "e84ed553d303e38ee01892cef436581ec7e4410c",
+      "deltaBase": "3db8b777a2b7e213f912fa9f980890c363c5b042"
+    },
+    {
+      "task": "performance",
+      "path": "docs/production/evidence/shop-smoke-performance-2026-10-15/ci-fixed-chromium-summary.json",
+      "sharedWithExisting": false,
+      "source": "e84ed553d303e38ee01892cef436581ec7e4410c",
+      "deltaBase": "3db8b777a2b7e213f912fa9f980890c363c5b042"
+    },
+    {
+      "task": "performance",
+      "path": "docs/production/evidence/shop-smoke-performance-2026-10-15/ci-fixed-firefox-summary.json",
+      "sharedWithExisting": false,
+      "source": "e84ed553d303e38ee01892cef436581ec7e4410c",
+      "deltaBase": "3db8b777a2b7e213f912fa9f980890c363c5b042"
+    },
+    {
+      "task": "performance",
+      "path": "docs/production/evidence/shop-smoke-performance-2026-10-15/ci-original-summaries.json",
+      "sharedWithExisting": false,
+      "source": "e84ed553d303e38ee01892cef436581ec7e4410c",
+      "deltaBase": "3db8b777a2b7e213f912fa9f980890c363c5b042"
+    },
+    {
+      "task": "performance",
+      "path": "docs/production/evidence/shop-smoke-performance-2026-10-15/ci-status.json",
+      "sharedWithExisting": false,
+      "source": "e84ed553d303e38ee01892cef436581ec7e4410c",
+      "deltaBase": "3db8b777a2b7e213f912fa9f980890c363c5b042"
+    },
+    {
+      "task": "performance",
+      "path": "docs/production/evidence/shop-smoke-performance-2026-10-15/comparison-head-chromium.log.gz",
+      "sharedWithExisting": false,
+      "source": "e84ed553d303e38ee01892cef436581ec7e4410c",
+      "deltaBase": "3db8b777a2b7e213f912fa9f980890c363c5b042"
+    },
+    {
+      "task": "performance",
+      "path": "docs/production/evidence/shop-smoke-performance-2026-10-15/final-local.jsonl.gz",
+      "sharedWithExisting": false,
+      "source": "e84ed553d303e38ee01892cef436581ec7e4410c",
+      "deltaBase": "3db8b777a2b7e213f912fa9f980890c363c5b042"
+    },
+    {
+      "task": "performance",
+      "path": "docs/production/evidence/shop-smoke-performance-2026-10-15/final-local.log.gz",
+      "sharedWithExisting": false,
+      "source": "e84ed553d303e38ee01892cef436581ec7e4410c",
+      "deltaBase": "3db8b777a2b7e213f912fa9f980890c363c5b042"
+    },
+    {
+      "task": "performance",
+      "path": "docs/production/evidence/shop-smoke-performance-2026-10-15/fixed-chromium-job.log.gz",
+      "sharedWithExisting": false,
+      "source": "e84ed553d303e38ee01892cef436581ec7e4410c",
+      "deltaBase": "3db8b777a2b7e213f912fa9f980890c363c5b042"
+    },
+    {
+      "task": "performance",
+      "path": "docs/production/evidence/shop-smoke-performance-2026-10-15/fixed-chromium.jsonl.gz",
+      "sharedWithExisting": false,
+      "source": "e84ed553d303e38ee01892cef436581ec7e4410c",
+      "deltaBase": "3db8b777a2b7e213f912fa9f980890c363c5b042"
+    },
+    {
+      "task": "performance",
+      "path": "docs/production/evidence/shop-smoke-performance-2026-10-15/fixed-chromium.log.gz",
+      "sharedWithExisting": false,
+      "source": "e84ed553d303e38ee01892cef436581ec7e4410c",
+      "deltaBase": "3db8b777a2b7e213f912fa9f980890c363c5b042"
+    },
+    {
+      "task": "performance",
+      "path": "docs/production/evidence/shop-smoke-performance-2026-10-15/fixed-firefox-job.log.gz",
+      "sharedWithExisting": false,
+      "source": "e84ed553d303e38ee01892cef436581ec7e4410c",
+      "deltaBase": "3db8b777a2b7e213f912fa9f980890c363c5b042"
+    },
+    {
+      "task": "performance",
+      "path": "docs/production/evidence/shop-smoke-performance-2026-10-15/local-chromium.jsonl.gz",
+      "sharedWithExisting": false,
+      "source": "e84ed553d303e38ee01892cef436581ec7e4410c",
+      "deltaBase": "3db8b777a2b7e213f912fa9f980890c363c5b042"
+    },
+    {
+      "task": "performance",
+      "path": "docs/production/evidence/shop-smoke-performance-2026-10-15/local-chromium.log.gz",
+      "sharedWithExisting": false,
+      "source": "e84ed553d303e38ee01892cef436581ec7e4410c",
+      "deltaBase": "3db8b777a2b7e213f912fa9f980890c363c5b042"
+    },
+    {
+      "task": "performance",
+      "path": "docs/production/evidence/shop-smoke-performance-2026-10-15/local-final-smoke-result.json",
+      "sharedWithExisting": false,
+      "source": "e84ed553d303e38ee01892cef436581ec7e4410c",
+      "deltaBase": "3db8b777a2b7e213f912fa9f980890c363c5b042"
+    },
+    {
+      "task": "performance",
+      "path": "docs/production/evidence/shop-smoke-performance-2026-10-15/local-final-summary.json",
+      "sharedWithExisting": false,
+      "source": "e84ed553d303e38ee01892cef436581ec7e4410c",
+      "deltaBase": "3db8b777a2b7e213f912fa9f980890c363c5b042"
+    },
+    {
+      "task": "performance",
+      "path": "docs/production/evidence/shop-smoke-performance-2026-10-15/local-fixed-summary.json",
+      "sharedWithExisting": false,
+      "source": "e84ed553d303e38ee01892cef436581ec7e4410c",
+      "deltaBase": "3db8b777a2b7e213f912fa9f980890c363c5b042"
+    },
+    {
+      "task": "performance",
+      "path": "docs/production/evidence/shop-smoke-performance-2026-10-15/local-original-summary.json",
+      "sharedWithExisting": false,
+      "source": "e84ed553d303e38ee01892cef436581ec7e4410c",
+      "deltaBase": "3db8b777a2b7e213f912fa9f980890c363c5b042"
+    },
+    {
+      "task": "performance",
+      "path": "docs/production/evidence/shop-smoke-performance-2026-10-15/original-artifact-summary.log.gz",
+      "sharedWithExisting": false,
+      "source": "e84ed553d303e38ee01892cef436581ec7e4410c",
+      "deltaBase": "3db8b777a2b7e213f912fa9f980890c363c5b042"
+    },
+    {
+      "task": "performance",
+      "path": "docs/production/evidence/shop-smoke-performance-2026-10-15/original-ci-38684066600.log.gz",
+      "sharedWithExisting": false,
+      "source": "e84ed553d303e38ee01892cef436581ec7e4410c",
+      "deltaBase": "3db8b777a2b7e213f912fa9f980890c363c5b042"
+    },
+    {
+      "task": "performance",
+      "path": "docs/production/evidence/shop-smoke-performance-2026-10-15/product-ci-browser.log.gz",
+      "sharedWithExisting": false,
+      "source": "e84ed553d303e38ee01892cef436581ec7e4410c",
+      "deltaBase": "3db8b777a2b7e213f912fa9f980890c363c5b042"
+    },
+    {
+      "task": "performance",
+      "path": "docs/production/evidence/shop-smoke-performance-2026-10-15/protected-trees.json",
+      "sharedWithExisting": false,
+      "source": "e84ed553d303e38ee01892cef436581ec7e4410c",
+      "deltaBase": "3db8b777a2b7e213f912fa9f980890c363c5b042"
+    },
+    {
+      "task": "performance",
+      "path": "docs/production/evidence/shop-smoke-performance-2026-10-15/screenshots.json",
+      "sharedWithExisting": false,
+      "source": "e84ed553d303e38ee01892cef436581ec7e4410c",
+      "deltaBase": "3db8b777a2b7e213f912fa9f980890c363c5b042"
+    },
+    {
+      "task": "performance",
+      "path": "docs/production/evidence/shop-smoke-performance-2026-10-15/screenshots/desktop-game.png",
+      "sharedWithExisting": false,
+      "source": "e84ed553d303e38ee01892cef436581ec7e4410c",
+      "deltaBase": "3db8b777a2b7e213f912fa9f980890c363c5b042"
+    },
+    {
+      "task": "performance",
+      "path": "docs/production/evidence/shop-smoke-performance-2026-10-15/screenshots/mobile-game.png",
+      "sharedWithExisting": false,
+      "source": "e84ed553d303e38ee01892cef436581ec7e4410c",
+      "deltaBase": "3db8b777a2b7e213f912fa9f980890c363c5b042"
+    },
+    {
+      "task": "performance",
+      "path": "docs/production/evidence/shop-smoke-performance-2026-10-15/screenshots/mobile-rotated.png",
+      "sharedWithExisting": false,
+      "source": "e84ed553d303e38ee01892cef436581ec7e4410c",
+      "deltaBase": "3db8b777a2b7e213f912fa9f980890c363c5b042"
+    },
+    {
+      "task": "performance",
+      "path": "docs/production/evidence/shop-smoke-performance-2026-10-15/screenshots/mobile-short.png",
+      "sharedWithExisting": false,
+      "source": "e84ed553d303e38ee01892cef436581ec7e4410c",
+      "deltaBase": "3db8b777a2b7e213f912fa9f980890c363c5b042"
+    },
+    {
+      "task": "performance",
+      "path": "harness/smoke-diagnostics.mjs",
+      "sharedWithExisting": false,
+      "source": "e84ed553d303e38ee01892cef436581ec7e4410c",
+      "deltaBase": "3db8b777a2b7e213f912fa9f980890c363c5b042"
+    },
+    {
+      "task": "performance",
+      "path": "harness/summarize-smoke-diagnostics.mjs",
+      "sharedWithExisting": false,
+      "source": "e84ed553d303e38ee01892cef436581ec7e4410c",
+      "deltaBase": "3db8b777a2b7e213f912fa9f980890c363c5b042"
+    },
+    {
+      "task": "performance",
+      "path": "src/main.ts",
+      "sharedWithExisting": false,
+      "source": "e84ed553d303e38ee01892cef436581ec7e4410c",
+      "deltaBase": "3db8b777a2b7e213f912fa9f980890c363c5b042"
+    },
+    {
+      "task": "performance",
+      "path": "src/platform/Renderer.ts",
+      "sharedWithExisting": false,
+      "source": "e84ed553d303e38ee01892cef436581ec7e4410c",
+      "deltaBase": "3db8b777a2b7e213f912fa9f980890c363c5b042"
+    },
+    {
+      "task": "performance",
+      "path": "tests/renderer.test.ts",
+      "sharedWithExisting": false,
+      "source": "e84ed553d303e38ee01892cef436581ec7e4410c",
+      "deltaBase": "3db8b777a2b7e213f912fa9f980890c363c5b042"
+    },
+    {
+      "task": "reminder",
+      "path": "docs/production/evidence/l25-hero-play-reminder-2026-10-15/README.md",
+      "sharedWithExisting": false,
+      "source": "ef009924377e7ac337c7b38cec5a694a0f4856a7",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "reminder",
+      "path": "docs/production/evidence/l25-hero-play-reminder-2026-10-15/baseline-resize/after-play.png",
+      "sharedWithExisting": false,
+      "source": "ef009924377e7ac337c7b38cec5a694a0f4856a7",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "reminder",
+      "path": "docs/production/evidence/l25-hero-play-reminder-2026-10-15/baseline-resize/before-play.png",
+      "sharedWithExisting": false,
+      "source": "ef009924377e7ac337c7b38cec5a694a0f4856a7",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "reminder",
+      "path": "docs/production/evidence/l25-hero-play-reminder-2026-10-15/baseline-resize/report.json",
+      "sharedWithExisting": false,
+      "source": "ef009924377e7ac337c7b38cec5a694a0f4856a7",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "reminder",
+      "path": "docs/production/evidence/l25-hero-play-reminder-2026-10-15/baseline-resize/reproduce.mjs",
+      "sharedWithExisting": false,
+      "source": "ef009924377e7ac337c7b38cec5a694a0f4856a7",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "reminder",
+      "path": "docs/production/evidence/l25-hero-play-reminder-2026-10-15/build-info.json",
+      "sharedWithExisting": false,
+      "source": "ef009924377e7ac337c7b38cec5a694a0f4856a7",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "reminder",
+      "path": "docs/production/evidence/l25-hero-play-reminder-2026-10-15/previous-failures/first-FAIL.json.gz",
+      "sharedWithExisting": false,
+      "source": "ef009924377e7ac337c7b38cec5a694a0f4856a7",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "reminder",
+      "path": "docs/production/evidence/l25-hero-play-reminder-2026-10-15/previous-failures/narrow-debug.json.gz",
+      "sharedWithExisting": false,
+      "source": "ef009924377e7ac337c7b38cec5a694a0f4856a7",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "reminder",
+      "path": "docs/production/evidence/l25-hero-play-reminder-2026-10-15/previous-failures/narrow-debug.png",
+      "sharedWithExisting": false,
+      "source": "ef009924377e7ac337c7b38cec5a694a0f4856a7",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "reminder",
+      "path": "docs/production/evidence/l25-hero-play-reminder-2026-10-15/previous-failures/narrow-debug2.json.gz",
+      "sharedWithExisting": false,
+      "source": "ef009924377e7ac337c7b38cec5a694a0f4856a7",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "reminder",
+      "path": "docs/production/evidence/l25-hero-play-reminder-2026-10-15/previous-failures/narrow-debug2.png",
+      "sharedWithExisting": false,
+      "source": "ef009924377e7ac337c7b38cec5a694a0f4856a7",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "reminder",
+      "path": "docs/production/evidence/l25-hero-play-reminder-2026-10-15/previous-failures/second-FAIL.json.gz",
+      "sharedWithExisting": false,
+      "source": "ef009924377e7ac337c7b38cec5a694a0f4856a7",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "reminder",
+      "path": "docs/production/evidence/l25-hero-play-reminder-2026-10-15/previous-failures/third-FAIL.json.gz",
+      "sharedWithExisting": false,
+      "source": "ef009924377e7ac337c7b38cec5a694a0f4856a7",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "reminder",
+      "path": "docs/production/evidence/l25-hero-play-reminder-2026-10-15/report.json.gz",
+      "sharedWithExisting": false,
+      "source": "ef009924377e7ac337c7b38cec5a694a0f4856a7",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "reminder",
+      "path": "docs/production/evidence/l25-hero-play-reminder-2026-10-15/screenshots/1366-amo-reminder.png",
+      "sharedWithExisting": false,
+      "source": "ef009924377e7ac337c7b38cec5a694a0f4856a7",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "reminder",
+      "path": "docs/production/evidence/l25-hero-play-reminder-2026-10-15/screenshots/1366-amo-returned.png",
+      "sharedWithExisting": false,
+      "source": "ef009924377e7ac337c7b38cec5a694a0f4856a7",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "reminder",
+      "path": "docs/production/evidence/l25-hero-play-reminder-2026-10-15/screenshots/1366-azao-reminder.png",
+      "sharedWithExisting": false,
+      "source": "ef009924377e7ac337c7b38cec5a694a0f4856a7",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "reminder",
+      "path": "docs/production/evidence/l25-hero-play-reminder-2026-10-15/screenshots/1366-azao-returned.png",
+      "sharedWithExisting": false,
+      "source": "ef009924377e7ac337c7b38cec5a694a0f4856a7",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "reminder",
+      "path": "docs/production/evidence/l25-hero-play-reminder-2026-10-15/screenshots/1366-erxiang-reminder.png",
+      "sharedWithExisting": false,
+      "source": "ef009924377e7ac337c7b38cec5a694a0f4856a7",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "reminder",
+      "path": "docs/production/evidence/l25-hero-play-reminder-2026-10-15/screenshots/1366-erxiang-returned.png",
+      "sharedWithExisting": false,
+      "source": "ef009924377e7ac337c7b38cec5a694a0f4856a7",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "reminder",
+      "path": "docs/production/evidence/l25-hero-play-reminder-2026-10-15/screenshots/1366-laohuan-reminder.png",
+      "sharedWithExisting": false,
+      "source": "ef009924377e7ac337c7b38cec5a694a0f4856a7",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "reminder",
+      "path": "docs/production/evidence/l25-hero-play-reminder-2026-10-15/screenshots/1366-laohuan-returned.png",
+      "sharedWithExisting": false,
+      "source": "ef009924377e7ac337c7b38cec5a694a0f4856a7",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "reminder",
+      "path": "docs/production/evidence/l25-hero-play-reminder-2026-10-15/screenshots/1366-save-failed.png",
+      "sharedWithExisting": false,
+      "source": "ef009924377e7ac337c7b38cec5a694a0f4856a7",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "reminder",
+      "path": "docs/production/evidence/l25-hero-play-reminder-2026-10-15/screenshots/1366-touye-reminder.png",
+      "sharedWithExisting": false,
+      "source": "ef009924377e7ac337c7b38cec5a694a0f4856a7",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "reminder",
+      "path": "docs/production/evidence/l25-hero-play-reminder-2026-10-15/screenshots/1366-touye-returned.png",
+      "sharedWithExisting": false,
+      "source": "ef009924377e7ac337c7b38cec5a694a0f4856a7",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "reminder",
+      "path": "docs/production/evidence/l25-hero-play-reminder-2026-10-15/screenshots/1366-xiemu-reminder.png",
+      "sharedWithExisting": false,
+      "source": "ef009924377e7ac337c7b38cec5a694a0f4856a7",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "reminder",
+      "path": "docs/production/evidence/l25-hero-play-reminder-2026-10-15/screenshots/1366-xiemu-returned.png",
+      "sharedWithExisting": false,
+      "source": "ef009924377e7ac337c7b38cec5a694a0f4856a7",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "reminder",
+      "path": "docs/production/evidence/l25-hero-play-reminder-2026-10-15/screenshots/320-reminder-bottom.png",
+      "sharedWithExisting": false,
+      "source": "ef009924377e7ac337c7b38cec5a694a0f4856a7",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "reminder",
+      "path": "docs/production/evidence/l25-hero-play-reminder-2026-10-15/screenshots/320-reminder.png",
+      "sharedWithExisting": false,
+      "source": "ef009924377e7ac337c7b38cec5a694a0f4856a7",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "reminder",
+      "path": "docs/production/evidence/l25-hero-play-reminder-2026-10-15/screenshots/390-amo-reminder.png",
+      "sharedWithExisting": false,
+      "source": "ef009924377e7ac337c7b38cec5a694a0f4856a7",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "reminder",
+      "path": "docs/production/evidence/l25-hero-play-reminder-2026-10-15/screenshots/390-amo-returned.png",
+      "sharedWithExisting": false,
+      "source": "ef009924377e7ac337c7b38cec5a694a0f4856a7",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "reminder",
+      "path": "docs/production/evidence/l25-hero-play-reminder-2026-10-15/screenshots/390-azao-reminder.png",
+      "sharedWithExisting": false,
+      "source": "ef009924377e7ac337c7b38cec5a694a0f4856a7",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "reminder",
+      "path": "docs/production/evidence/l25-hero-play-reminder-2026-10-15/screenshots/390-azao-returned.png",
+      "sharedWithExisting": false,
+      "source": "ef009924377e7ac337c7b38cec5a694a0f4856a7",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "reminder",
+      "path": "docs/production/evidence/l25-hero-play-reminder-2026-10-15/screenshots/390-erxiang-reminder.png",
+      "sharedWithExisting": false,
+      "source": "ef009924377e7ac337c7b38cec5a694a0f4856a7",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "reminder",
+      "path": "docs/production/evidence/l25-hero-play-reminder-2026-10-15/screenshots/390-erxiang-returned.png",
+      "sharedWithExisting": false,
+      "source": "ef009924377e7ac337c7b38cec5a694a0f4856a7",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "reminder",
+      "path": "docs/production/evidence/l25-hero-play-reminder-2026-10-15/screenshots/390-laohuan-reminder.png",
+      "sharedWithExisting": false,
+      "source": "ef009924377e7ac337c7b38cec5a694a0f4856a7",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "reminder",
+      "path": "docs/production/evidence/l25-hero-play-reminder-2026-10-15/screenshots/390-laohuan-returned.png",
+      "sharedWithExisting": false,
+      "source": "ef009924377e7ac337c7b38cec5a694a0f4856a7",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "reminder",
+      "path": "docs/production/evidence/l25-hero-play-reminder-2026-10-15/screenshots/390-save-failed.png",
+      "sharedWithExisting": false,
+      "source": "ef009924377e7ac337c7b38cec5a694a0f4856a7",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "reminder",
+      "path": "docs/production/evidence/l25-hero-play-reminder-2026-10-15/screenshots/390-touye-reminder.png",
+      "sharedWithExisting": false,
+      "source": "ef009924377e7ac337c7b38cec5a694a0f4856a7",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "reminder",
+      "path": "docs/production/evidence/l25-hero-play-reminder-2026-10-15/screenshots/390-touye-returned.png",
+      "sharedWithExisting": false,
+      "source": "ef009924377e7ac337c7b38cec5a694a0f4856a7",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "reminder",
+      "path": "docs/production/evidence/l25-hero-play-reminder-2026-10-15/screenshots/390-xiemu-reminder.png",
+      "sharedWithExisting": false,
+      "source": "ef009924377e7ac337c7b38cec5a694a0f4856a7",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "reminder",
+      "path": "docs/production/evidence/l25-hero-play-reminder-2026-10-15/screenshots/390-xiemu-returned.png",
+      "sharedWithExisting": false,
+      "source": "ef009924377e7ac337c7b38cec5a694a0f4856a7",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "reminder",
+      "path": "docs/production/evidence/l25-hero-play-reminder-2026-10-15/screenshots/740-reminder-bottom.png",
+      "sharedWithExisting": false,
+      "source": "ef009924377e7ac337c7b38cec5a694a0f4856a7",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "reminder",
+      "path": "docs/production/evidence/l25-hero-play-reminder-2026-10-15/screenshots/740-reminder.png",
+      "sharedWithExisting": false,
+      "source": "ef009924377e7ac337c7b38cec5a694a0f4856a7",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "reminder",
+      "path": "docs/production/evidence/l25-hero-play-reminder-2026-10-15/summary.json",
+      "sharedWithExisting": false,
+      "source": "ef009924377e7ac337c7b38cec5a694a0f4856a7",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "reminder",
+      "path": "harness/hero-play-reminder.mjs",
+      "sharedWithExisting": false,
+      "source": "ef009924377e7ac337c7b38cec5a694a0f4856a7",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "reminder",
+      "path": "src/game/GameScene.ts",
+      "sharedWithExisting": true,
+      "source": "ef009924377e7ac337c7b38cec5a694a0f4856a7",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "reminder",
+      "path": "src/game/HeroPlayReminder.css",
+      "sharedWithExisting": false,
+      "source": "ef009924377e7ac337c7b38cec5a694a0f4856a7",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "reminder",
+      "path": "src/game/HeroPlayReminder.ts",
+      "sharedWithExisting": false,
+      "source": "ef009924377e7ac337c7b38cec5a694a0f4856a7",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    },
+    {
+      "task": "reminder",
+      "path": "tests/hero-play-reminder.test.ts",
+      "sharedWithExisting": false,
+      "source": "ef009924377e7ac337c7b38cec5a694a0f4856a7",
+      "deltaBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f"
+    }
+  ],
+  "protected": [
+    {
+      "path": "src/domain",
+      "before": "bd1f9b2c5a2b7eb4d143b59a094694b12adc8485",
+      "after": "bd1f9b2c5a2b7eb4d143b59a094694b12adc8485",
+      "identical": true
+    },
+    {
+      "path": "src/application",
+      "before": "1a325d51795f54526ec9f3f313cceb69763a1971",
+      "after": "1a325d51795f54526ec9f3f313cceb69763a1971",
+      "identical": true
+    },
+    {
+      "path": "src/content",
+      "before": "e8c3794be5b0fcb74da4aeb9e6adc63c22388345",
+      "after": "e8c3794be5b0fcb74da4aeb9e6adc63c22388345",
+      "identical": true
+    },
+    {
+      "path": "src/audio",
+      "before": "7f6d2d0dd34313a4099d34cfd36b2baa748f83c2",
+      "after": "7f6d2d0dd34313a4099d34cfd36b2baa748f83c2",
+      "identical": true
+    },
+    {
+      "path": "public",
+      "before": "c4a6ec74e7fd754b0f300b973020f8afed7542e1",
+      "after": "c4a6ec74e7fd754b0f300b973020f8afed7542e1",
+      "identical": true
+    },
+    {
+      "path": "art",
+      "before": "b0caa33679b84bee932b2854734c04ad39ba0464",
+      "after": "b0caa33679b84bee932b2854734c04ad39ba0464",
+      "identical": true
+    },
+    {
+      "path": ".github/workflows/ci.yml",
+      "before": "fdcdcad8943b1e43cf2ee40697172627b87c5469",
+      "after": "fdcdcad8943b1e43cf2ee40697172627b87c5469",
+      "identical": true
+    },
+    {
+      "path": "src/platform/Viewport.ts",
+      "before": "18097b07cda80154327b660d06b34a62961c13dd",
+      "after": "18097b07cda80154327b660d06b34a62961c13dd",
+      "identical": true
+    },
+    {
+      "path": "harness/screenshot.mjs",
+      "before": "ccabfbb24fbb5f139f21bb835ed8111946743c05",
+      "after": "ccabfbb24fbb5f139f21bb835ed8111946743c05",
+      "identical": true
+    },
+    {
+      "path": "src/style.css",
+      "before": "f36e4acfdb9795ad1b60d15db6aa6efc13610ace",
+      "after": "f36e4acfdb9795ad1b60d15db6aa6efc13610ace",
+      "identical": true
+    },
+    {
+      "path": "package-lock.json",
+      "before": "acc93dcd9410bc911db279534e28522a8691dbab",
+      "after": "acc93dcd9410bc911db279534e28522a8691dbab",
+      "identical": true
+    }
+  ],
+  "verifiedHead": "f75f86e4303e967755d82fbabc714d5c9264b17d",
+  "postMergeFixtureCommit": "f75f86e4303e967755d82fbabc714d5c9264b17d",
+  "postMergeFiles": [
+    "tests/ai-hand-action-cancellation.test.ts"
+  ],
+  "productTreeUnchangedAfterMerge": true,
+  "exactComposedUnionForFiveSourceMerge": true
+}

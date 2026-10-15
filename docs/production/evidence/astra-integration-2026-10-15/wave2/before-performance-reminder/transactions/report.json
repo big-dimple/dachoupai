@@ -1,0 +1,1233 @@
+{
+  "head": "e82d2b1a259638d0edda21ef4beaf4f995feae43",
+  "originalCandidate": "4d2ff4ca",
+  "modified": "",
+  "sourceBefore": {
+    "src/game/MakeCardsDialog.ts": "bbb537ea978d32e9246797b6a5e8adb4faf2c2600d9e1aa1649bf48bfb3ebfca",
+    "src/game/ShopScene.ts": "9131a8c8908e2ce4067d1d4c92c3aeb3a5acbad57371d373078128ec216183e7",
+    "src/game/ConsumableDialog.ts": "bfac31f3677aad5ac6a6c0eefecf0b52230adf044254691729467e244cff5e8c",
+    "src/style.css": "1904c9071e4804bd6412c0299a08917f49ec46ea9137dfd0502e3ac7869d47d1",
+    "harness/shop-transaction-continuity.mjs": "27c3aedf736c9b4a1701103a53f9c0c2d21de8bd7bdb12475a64aef6c808aa5d"
+  },
+  "scope": "Validator-approved controlled current-identity fixtures. Native Chromium mouse/touch, CSS viewports DPR1, IndexedDB quota injection. No natural acquisition, physical device, balance, deployment or production acceptance claim.",
+  "cases": [
+    {
+      "spec": {
+        "width": 1366,
+        "height": 768
+      },
+      "purchaseFailure": false,
+      "shots": [
+        "1366x768-direct-first-stock.png",
+        "1366x768-direct-cancel-restored.png",
+        "1366x768-direct-stored-context.png",
+        "1366x768-direct-quota-failure-1.png",
+        "1366x768-direct-used-result.png",
+        "1366x768-direct-owned-restored.png",
+        "1366x768-direct-cold-continued.png",
+        "1366x768-direct-rerolled-first-screen.png",
+        "1366x768-direct-fresh-purchased-tool.png",
+        "1366x768-direct-fresh-cancel-keeps-tool.png"
+      ],
+      "checks": [
+        "multi-service stock visible; deep cancel preserves tuple/context",
+        "buy-store direct/retry once and unused with original purchase context",
+        "independent S01 donor/recipient; quota rollback, one canonical use, owned pane and nonzero scroll restored",
+        "cold Continue full tuple; real reroll canonical transaction and fresh stock at scroll zero"
+      ],
+      "transactions": [
+        {
+          "command": {
+            "runId": "controlled/transaction-continuity",
+            "commandId": "controlled/transaction-continuity/command/3",
+            "expectedSeq": 2,
+            "action": {
+              "type": "BuyBasicTool",
+              "definitionId": "T11",
+              "shopSeq": 1
+            }
+          },
+          "beforeSeq": 2,
+          "afterSeq": 3
+        },
+        {
+          "command": {
+            "runId": "controlled/transaction-continuity",
+            "commandId": "controlled/transaction-continuity/command/4",
+            "expectedSeq": 3,
+            "action": {
+              "type": "UseConsumable",
+              "instanceId": "held/S01",
+              "targetIds": [
+                "clubs-9"
+              ],
+              "sacrificeId": "spades-13"
+            }
+          },
+          "beforeSeq": 3,
+          "afterSeq": 4
+        },
+        {
+          "command": {
+            "runId": "controlled/transaction-continuity",
+            "commandId": "controlled/transaction-continuity/command/5",
+            "expectedSeq": 4,
+            "action": {
+              "type": "RerollShop"
+            }
+          },
+          "beforeSeq": 4,
+          "afterSeq": 5
+        },
+        {
+          "command": {
+            "runId": "controlled/transaction-continuity",
+            "commandId": "controlled/transaction-continuity/command/6",
+            "expectedSeq": 5,
+            "action": {
+              "type": "BuyOffer",
+              "offerId": "controlled/transaction-continuity/shop/0/2/tool/0"
+            }
+          },
+          "beforeSeq": 5,
+          "afterSeq": 6
+        }
+      ],
+      "errors": [],
+      "initial": {
+        "seq": 2,
+        "gold": 40
+      },
+      "stock": {
+        "tile": {
+          "x": 390,
+          "y": 155.5,
+          "width": 268.65625,
+          "height": 111.171875,
+          "top": 155.5,
+          "right": 658.65625,
+          "bottom": 266.671875,
+          "left": 390
+        },
+        "viewport": {
+          "x": 150,
+          "y": 117.5,
+          "width": 1066,
+          "height": 546.5,
+          "top": 117.5,
+          "right": 1216,
+          "bottom": 664,
+          "left": 150
+        }
+      },
+      "cancelBefore": {
+        "pane": "purchase",
+        "scroll": 419,
+        "max": 419,
+        "focus": "T11"
+      },
+      "cancelAfter": {
+        "pane": "purchase",
+        "scroll": 419,
+        "max": 419,
+        "focus": "T11"
+      },
+      "purchaseBefore": {
+        "pane": "purchase",
+        "scroll": 419,
+        "max": 419,
+        "focus": "T11"
+      },
+      "bought": {
+        "seq": 3,
+        "gold": 38
+      },
+      "purchaseAfter": {
+        "pane": "purchase",
+        "scroll": 165,
+        "max": 165,
+        "focus": null
+      },
+      "ownedBefore": {
+        "pane": "purchase",
+        "scroll": 40,
+        "max": 165,
+        "focus": "held/S01"
+      },
+      "used": {
+        "seq": 4,
+        "gold": 38
+      },
+      "ownedAfter": {
+        "pane": "purchase",
+        "scroll": 40,
+        "max": 99,
+        "focus": null
+      },
+      "preReroll": {
+        "pane": "purchase",
+        "scroll": 99,
+        "max": 99,
+        "focus": null
+      },
+      "rerolled": {
+        "seq": 5,
+        "gold": 35
+      },
+      "rerollView": {
+        "pane": "purchase",
+        "scroll": 0,
+        "max": 99,
+        "focus": null
+      },
+      "newStock": [
+        {
+          "id": "controlled/transaction-continuity/shop/0/2/tool/0",
+          "text": "大字号\n给会参与计分的牌加增强；对子／两对也可用，无须同花。\n塔罗 · 2 金",
+          "rect": {
+            "x": 390,
+            "y": 155.5,
+            "width": 268.65625,
+            "height": 111.171875,
+            "top": 155.5,
+            "right": 658.65625,
+            "bottom": 266.671875,
+            "left": 390
+          },
+          "viewport": {
+            "x": 150,
+            "y": 117.5,
+            "width": 1066,
+            "height": 546.5,
+            "top": 117.5,
+            "right": 1216,
+            "bottom": 664,
+            "left": 150
+          }
+        }
+      ],
+      "freshBought": {
+        "seq": 6,
+        "gold": 33
+      },
+      "result": "PASS"
+    },
+    {
+      "spec": {
+        "width": 1366,
+        "height": 768
+      },
+      "purchaseFailure": true,
+      "shots": [
+        "1366x768-retry-first-stock.png",
+        "1366x768-retry-cancel-restored.png",
+        "1366x768-retry-quota-failure-1.png",
+        "1366x768-retry-stored-context.png",
+        "1366x768-retry-quota-failure-2.png",
+        "1366x768-retry-used-result.png",
+        "1366x768-retry-owned-restored.png",
+        "1366x768-retry-cold-continued.png",
+        "1366x768-retry-rerolled-first-screen.png",
+        "1366x768-retry-fresh-purchased-tool.png",
+        "1366x768-retry-fresh-cancel-keeps-tool.png"
+      ],
+      "checks": [
+        "multi-service stock visible; deep cancel preserves tuple/context",
+        "buy-store direct/retry once and unused with original purchase context",
+        "independent S01 donor/recipient; quota rollback, one canonical use, owned pane and nonzero scroll restored",
+        "cold Continue full tuple; real reroll canonical transaction and fresh stock at scroll zero"
+      ],
+      "transactions": [
+        {
+          "command": {
+            "runId": "controlled/transaction-continuity",
+            "commandId": "controlled/transaction-continuity/command/3",
+            "expectedSeq": 2,
+            "action": {
+              "type": "BuyBasicTool",
+              "definitionId": "T11",
+              "shopSeq": 1
+            }
+          },
+          "beforeSeq": 2,
+          "afterSeq": 3
+        },
+        {
+          "command": {
+            "runId": "controlled/transaction-continuity",
+            "commandId": "controlled/transaction-continuity/command/4",
+            "expectedSeq": 3,
+            "action": {
+              "type": "UseConsumable",
+              "instanceId": "held/S01",
+              "targetIds": [
+                "clubs-9"
+              ],
+              "sacrificeId": "spades-13"
+            }
+          },
+          "beforeSeq": 3,
+          "afterSeq": 4
+        },
+        {
+          "command": {
+            "runId": "controlled/transaction-continuity",
+            "commandId": "controlled/transaction-continuity/command/5",
+            "expectedSeq": 4,
+            "action": {
+              "type": "RerollShop"
+            }
+          },
+          "beforeSeq": 4,
+          "afterSeq": 5
+        },
+        {
+          "command": {
+            "runId": "controlled/transaction-continuity",
+            "commandId": "controlled/transaction-continuity/command/6",
+            "expectedSeq": 5,
+            "action": {
+              "type": "BuyOffer",
+              "offerId": "controlled/transaction-continuity/shop/0/2/tool/0"
+            }
+          },
+          "beforeSeq": 5,
+          "afterSeq": 6
+        }
+      ],
+      "errors": [],
+      "initial": {
+        "seq": 2,
+        "gold": 40
+      },
+      "stock": {
+        "tile": {
+          "x": 390,
+          "y": 155.5,
+          "width": 268.65625,
+          "height": 111.171875,
+          "top": 155.5,
+          "right": 658.65625,
+          "bottom": 266.671875,
+          "left": 390
+        },
+        "viewport": {
+          "x": 150,
+          "y": 117.5,
+          "width": 1066,
+          "height": 546.5,
+          "top": 117.5,
+          "right": 1216,
+          "bottom": 664,
+          "left": 150
+        }
+      },
+      "cancelBefore": {
+        "pane": "purchase",
+        "scroll": 419,
+        "max": 419,
+        "focus": "T11"
+      },
+      "cancelAfter": {
+        "pane": "purchase",
+        "scroll": 419,
+        "max": 419,
+        "focus": "T11"
+      },
+      "purchaseBefore": {
+        "pane": "purchase",
+        "scroll": 419,
+        "max": 419,
+        "focus": "T11"
+      },
+      "bought": {
+        "seq": 3,
+        "gold": 38
+      },
+      "purchaseAfter": {
+        "pane": "purchase",
+        "scroll": 165,
+        "max": 165,
+        "focus": null
+      },
+      "ownedBefore": {
+        "pane": "purchase",
+        "scroll": 40,
+        "max": 165,
+        "focus": "held/S01"
+      },
+      "used": {
+        "seq": 4,
+        "gold": 38
+      },
+      "ownedAfter": {
+        "pane": "purchase",
+        "scroll": 40,
+        "max": 99,
+        "focus": null
+      },
+      "preReroll": {
+        "pane": "purchase",
+        "scroll": 99,
+        "max": 99,
+        "focus": null
+      },
+      "rerolled": {
+        "seq": 5,
+        "gold": 35
+      },
+      "rerollView": {
+        "pane": "purchase",
+        "scroll": 0,
+        "max": 99,
+        "focus": null
+      },
+      "newStock": [
+        {
+          "id": "controlled/transaction-continuity/shop/0/2/tool/0",
+          "text": "大字号\n给会参与计分的牌加增强；对子／两对也可用，无须同花。\n塔罗 · 2 金",
+          "rect": {
+            "x": 390,
+            "y": 155.5,
+            "width": 268.65625,
+            "height": 111.171875,
+            "top": 155.5,
+            "right": 658.65625,
+            "bottom": 266.671875,
+            "left": 390
+          },
+          "viewport": {
+            "x": 150,
+            "y": 117.5,
+            "width": 1066,
+            "height": 546.5,
+            "top": 117.5,
+            "right": 1216,
+            "bottom": 664,
+            "left": 150
+          }
+        }
+      ],
+      "freshBought": {
+        "seq": 6,
+        "gold": 33
+      },
+      "result": "PASS"
+    },
+    {
+      "spec": {
+        "width": 390,
+        "height": 640
+      },
+      "purchaseFailure": false,
+      "shots": [
+        "390x640-direct-first-stock.png",
+        "390x640-direct-cancel-restored.png",
+        "390x640-direct-stored-context.png",
+        "390x640-direct-quota-failure-1.png",
+        "390x640-direct-used-result.png",
+        "390x640-direct-owned-restored.png",
+        "390x640-direct-cold-continued.png",
+        "390x640-direct-rerolled-first-screen.png",
+        "390x640-direct-fresh-purchased-tool.png",
+        "390x640-direct-fresh-cancel-keeps-tool.png"
+      ],
+      "checks": [
+        "multi-service stock visible; deep cancel preserves tuple/context",
+        "buy-store direct/retry once and unused with original purchase context",
+        "independent S01 donor/recipient; quota rollback, one canonical use, owned pane and nonzero scroll restored",
+        "cold Continue full tuple; real reroll canonical transaction and fresh stock at scroll zero"
+      ],
+      "transactions": [
+        {
+          "command": {
+            "runId": "controlled/transaction-continuity",
+            "commandId": "controlled/transaction-continuity/command/3",
+            "expectedSeq": 2,
+            "action": {
+              "type": "BuyBasicTool",
+              "definitionId": "T11",
+              "shopSeq": 1
+            }
+          },
+          "beforeSeq": 2,
+          "afterSeq": 3
+        },
+        {
+          "command": {
+            "runId": "controlled/transaction-continuity",
+            "commandId": "controlled/transaction-continuity/command/4",
+            "expectedSeq": 3,
+            "action": {
+              "type": "UseConsumable",
+              "instanceId": "held/S01",
+              "targetIds": [
+                "clubs-9"
+              ],
+              "sacrificeId": "spades-13"
+            }
+          },
+          "beforeSeq": 3,
+          "afterSeq": 4
+        },
+        {
+          "command": {
+            "runId": "controlled/transaction-continuity",
+            "commandId": "controlled/transaction-continuity/command/5",
+            "expectedSeq": 4,
+            "action": {
+              "type": "RerollShop"
+            }
+          },
+          "beforeSeq": 4,
+          "afterSeq": 5
+        },
+        {
+          "command": {
+            "runId": "controlled/transaction-continuity",
+            "commandId": "controlled/transaction-continuity/command/6",
+            "expectedSeq": 5,
+            "action": {
+              "type": "BuyOffer",
+              "offerId": "controlled/transaction-continuity/shop/0/2/tool/0"
+            }
+          },
+          "beforeSeq": 5,
+          "afterSeq": 6
+        }
+      ],
+      "errors": [],
+      "initial": {
+        "seq": 2,
+        "gold": 40
+      },
+      "stock": {
+        "tile": {
+          "x": 36,
+          "y": 222.890625,
+          "width": 318,
+          "height": 115.171875,
+          "top": 222.890625,
+          "right": 354,
+          "bottom": 338.0625,
+          "left": 36
+        },
+        "viewport": {
+          "x": 36,
+          "y": 111.5,
+          "width": 318,
+          "height": 430.5,
+          "top": 111.5,
+          "right": 354,
+          "bottom": 542,
+          "left": 36
+        }
+      },
+      "cancelBefore": {
+        "pane": "purchase",
+        "scroll": 1395,
+        "max": 1700,
+        "focus": "T11"
+      },
+      "cancelAfter": {
+        "pane": "purchase",
+        "scroll": 1395,
+        "max": 1700,
+        "focus": "T11"
+      },
+      "purchaseBefore": {
+        "pane": "purchase",
+        "scroll": 1395,
+        "max": 1700,
+        "focus": "T11"
+      },
+      "bought": {
+        "seq": 3,
+        "gold": 38
+      },
+      "purchaseAfter": {
+        "pane": "purchase",
+        "scroll": 1100,
+        "max": 1100,
+        "focus": null
+      },
+      "ownedBefore": {
+        "pane": "owned",
+        "scroll": 169,
+        "max": 169,
+        "focus": "held/S01"
+      },
+      "used": {
+        "seq": 4,
+        "gold": 38
+      },
+      "ownedAfter": {
+        "pane": "owned",
+        "scroll": 122,
+        "max": 122,
+        "focus": null
+      },
+      "preReroll": {
+        "pane": "purchase",
+        "scroll": 1034,
+        "max": 1034,
+        "focus": null
+      },
+      "rerolled": {
+        "seq": 5,
+        "gold": 35
+      },
+      "rerollView": {
+        "pane": "purchase",
+        "scroll": 0,
+        "max": 808,
+        "focus": null
+      },
+      "newStock": [
+        {
+          "id": "controlled/transaction-continuity/shop/0/2/tool/0",
+          "text": "大字号\n给会参与计分的牌加增强；对子／两对也可用，无须同花。\n塔罗 · 2 金",
+          "rect": {
+            "x": 36,
+            "y": 222.890625,
+            "width": 318,
+            "height": 115.171875,
+            "top": 222.890625,
+            "right": 354,
+            "bottom": 338.0625,
+            "left": 36
+          },
+          "viewport": {
+            "x": 36,
+            "y": 111.5,
+            "width": 318,
+            "height": 430.5,
+            "top": 111.5,
+            "right": 354,
+            "bottom": 542,
+            "left": 36
+          }
+        }
+      ],
+      "freshBought": {
+        "seq": 6,
+        "gold": 33
+      },
+      "result": "PASS"
+    },
+    {
+      "spec": {
+        "width": 390,
+        "height": 640
+      },
+      "purchaseFailure": true,
+      "shots": [
+        "390x640-retry-first-stock.png",
+        "390x640-retry-cancel-restored.png",
+        "390x640-retry-quota-failure-1.png",
+        "390x640-retry-stored-context.png",
+        "390x640-retry-quota-failure-2.png",
+        "390x640-retry-used-result.png",
+        "390x640-retry-owned-restored.png",
+        "390x640-retry-cold-continued.png",
+        "390x640-retry-rerolled-first-screen.png",
+        "390x640-retry-fresh-purchased-tool.png",
+        "390x640-retry-fresh-cancel-keeps-tool.png"
+      ],
+      "checks": [
+        "multi-service stock visible; deep cancel preserves tuple/context",
+        "buy-store direct/retry once and unused with original purchase context",
+        "independent S01 donor/recipient; quota rollback, one canonical use, owned pane and nonzero scroll restored",
+        "cold Continue full tuple; real reroll canonical transaction and fresh stock at scroll zero"
+      ],
+      "transactions": [
+        {
+          "command": {
+            "runId": "controlled/transaction-continuity",
+            "commandId": "controlled/transaction-continuity/command/3",
+            "expectedSeq": 2,
+            "action": {
+              "type": "BuyBasicTool",
+              "definitionId": "T11",
+              "shopSeq": 1
+            }
+          },
+          "beforeSeq": 2,
+          "afterSeq": 3
+        },
+        {
+          "command": {
+            "runId": "controlled/transaction-continuity",
+            "commandId": "controlled/transaction-continuity/command/4",
+            "expectedSeq": 3,
+            "action": {
+              "type": "UseConsumable",
+              "instanceId": "held/S01",
+              "targetIds": [
+                "clubs-9"
+              ],
+              "sacrificeId": "spades-13"
+            }
+          },
+          "beforeSeq": 3,
+          "afterSeq": 4
+        },
+        {
+          "command": {
+            "runId": "controlled/transaction-continuity",
+            "commandId": "controlled/transaction-continuity/command/5",
+            "expectedSeq": 4,
+            "action": {
+              "type": "RerollShop"
+            }
+          },
+          "beforeSeq": 4,
+          "afterSeq": 5
+        },
+        {
+          "command": {
+            "runId": "controlled/transaction-continuity",
+            "commandId": "controlled/transaction-continuity/command/6",
+            "expectedSeq": 5,
+            "action": {
+              "type": "BuyOffer",
+              "offerId": "controlled/transaction-continuity/shop/0/2/tool/0"
+            }
+          },
+          "beforeSeq": 5,
+          "afterSeq": 6
+        }
+      ],
+      "errors": [],
+      "initial": {
+        "seq": 2,
+        "gold": 40
+      },
+      "stock": {
+        "tile": {
+          "x": 36,
+          "y": 222.890625,
+          "width": 318,
+          "height": 115.171875,
+          "top": 222.890625,
+          "right": 354,
+          "bottom": 338.0625,
+          "left": 36
+        },
+        "viewport": {
+          "x": 36,
+          "y": 111.5,
+          "width": 318,
+          "height": 430.5,
+          "top": 111.5,
+          "right": 354,
+          "bottom": 542,
+          "left": 36
+        }
+      },
+      "cancelBefore": {
+        "pane": "purchase",
+        "scroll": 1395,
+        "max": 1700,
+        "focus": "T11"
+      },
+      "cancelAfter": {
+        "pane": "purchase",
+        "scroll": 1395,
+        "max": 1700,
+        "focus": "T11"
+      },
+      "purchaseBefore": {
+        "pane": "purchase",
+        "scroll": 1395,
+        "max": 1700,
+        "focus": "T11"
+      },
+      "bought": {
+        "seq": 3,
+        "gold": 38
+      },
+      "purchaseAfter": {
+        "pane": "purchase",
+        "scroll": 1100,
+        "max": 1100,
+        "focus": null
+      },
+      "ownedBefore": {
+        "pane": "owned",
+        "scroll": 169,
+        "max": 169,
+        "focus": "held/S01"
+      },
+      "used": {
+        "seq": 4,
+        "gold": 38
+      },
+      "ownedAfter": {
+        "pane": "owned",
+        "scroll": 122,
+        "max": 122,
+        "focus": null
+      },
+      "preReroll": {
+        "pane": "purchase",
+        "scroll": 1034,
+        "max": 1034,
+        "focus": null
+      },
+      "rerolled": {
+        "seq": 5,
+        "gold": 35
+      },
+      "rerollView": {
+        "pane": "purchase",
+        "scroll": 0,
+        "max": 808,
+        "focus": null
+      },
+      "newStock": [
+        {
+          "id": "controlled/transaction-continuity/shop/0/2/tool/0",
+          "text": "大字号\n给会参与计分的牌加增强；对子／两对也可用，无须同花。\n塔罗 · 2 金",
+          "rect": {
+            "x": 36,
+            "y": 222.890625,
+            "width": 318,
+            "height": 115.171875,
+            "top": 222.890625,
+            "right": 354,
+            "bottom": 338.0625,
+            "left": 36
+          },
+          "viewport": {
+            "x": 36,
+            "y": 111.5,
+            "width": 318,
+            "height": 430.5,
+            "top": 111.5,
+            "right": 354,
+            "bottom": 542,
+            "left": 36
+          }
+        }
+      ],
+      "freshBought": {
+        "seq": 6,
+        "gold": 33
+      },
+      "result": "PASS"
+    },
+    {
+      "spec": {
+        "width": 320,
+        "height": 528
+      },
+      "purchaseFailure": false,
+      "shots": [
+        "320x528-direct-first-stock.png",
+        "320x528-direct-cancel-restored.png",
+        "320x528-direct-stored-context.png",
+        "320x528-direct-quota-failure-1.png",
+        "320x528-direct-used-result.png",
+        "320x528-direct-owned-restored.png",
+        "320x528-direct-cold-continued.png",
+        "320x528-direct-rerolled-first-screen.png",
+        "320x528-direct-fresh-purchased-tool.png",
+        "320x528-direct-fresh-cancel-keeps-tool.png"
+      ],
+      "checks": [
+        "multi-service stock visible; deep cancel preserves tuple/context",
+        "buy-store direct/retry once and unused with original purchase context",
+        "independent S01 donor/recipient; quota rollback, one canonical use, owned pane and nonzero scroll restored",
+        "cold Continue full tuple; real reroll canonical transaction and fresh stock at scroll zero"
+      ],
+      "transactions": [
+        {
+          "command": {
+            "runId": "controlled/transaction-continuity",
+            "commandId": "controlled/transaction-continuity/command/3",
+            "expectedSeq": 2,
+            "action": {
+              "type": "BuyBasicTool",
+              "definitionId": "T11",
+              "shopSeq": 1
+            }
+          },
+          "beforeSeq": 2,
+          "afterSeq": 3
+        },
+        {
+          "command": {
+            "runId": "controlled/transaction-continuity",
+            "commandId": "controlled/transaction-continuity/command/4",
+            "expectedSeq": 3,
+            "action": {
+              "type": "UseConsumable",
+              "instanceId": "held/S01",
+              "targetIds": [
+                "clubs-9"
+              ],
+              "sacrificeId": "spades-13"
+            }
+          },
+          "beforeSeq": 3,
+          "afterSeq": 4
+        },
+        {
+          "command": {
+            "runId": "controlled/transaction-continuity",
+            "commandId": "controlled/transaction-continuity/command/5",
+            "expectedSeq": 4,
+            "action": {
+              "type": "RerollShop"
+            }
+          },
+          "beforeSeq": 4,
+          "afterSeq": 5
+        },
+        {
+          "command": {
+            "runId": "controlled/transaction-continuity",
+            "commandId": "controlled/transaction-continuity/command/6",
+            "expectedSeq": 5,
+            "action": {
+              "type": "BuyOffer",
+              "offerId": "controlled/transaction-continuity/shop/0/2/tool/0"
+            }
+          },
+          "beforeSeq": 5,
+          "afterSeq": 6
+        }
+      ],
+      "errors": [],
+      "initial": {
+        "seq": 2,
+        "gold": 40
+      },
+      "stock": {
+        "tile": {
+          "x": 36,
+          "y": 222.890625,
+          "width": 248,
+          "height": 134.765625,
+          "top": 222.890625,
+          "right": 284,
+          "bottom": 357.65625,
+          "left": 36
+        },
+        "viewport": {
+          "x": 36,
+          "y": 111.5,
+          "width": 248,
+          "height": 318.5,
+          "top": 111.5,
+          "right": 284,
+          "bottom": 430,
+          "left": 36
+        }
+      },
+      "cancelBefore": {
+        "pane": "purchase",
+        "scroll": 1520,
+        "max": 1890,
+        "focus": "T11"
+      },
+      "cancelAfter": {
+        "pane": "purchase",
+        "scroll": 1520,
+        "max": 1890,
+        "focus": "T11"
+      },
+      "purchaseBefore": {
+        "pane": "purchase",
+        "scroll": 1520,
+        "max": 1890,
+        "focus": "T11"
+      },
+      "bought": {
+        "seq": 3,
+        "gold": 38
+      },
+      "purchaseAfter": {
+        "pane": "purchase",
+        "scroll": 1312,
+        "max": 1312,
+        "focus": null
+      },
+      "ownedBefore": {
+        "pane": "owned",
+        "scroll": 341,
+        "max": 341,
+        "focus": "held/S01"
+      },
+      "used": {
+        "seq": 4,
+        "gold": 38
+      },
+      "ownedAfter": {
+        "pane": "owned",
+        "scroll": 273,
+        "max": 273,
+        "focus": null
+      },
+      "preReroll": {
+        "pane": "purchase",
+        "scroll": 1224,
+        "max": 1224,
+        "focus": null
+      },
+      "rerolled": {
+        "seq": 5,
+        "gold": 35
+      },
+      "rerollView": {
+        "pane": "purchase",
+        "scroll": 0,
+        "max": 979,
+        "focus": null
+      },
+      "newStock": [
+        {
+          "id": "controlled/transaction-continuity/shop/0/2/tool/0",
+          "text": "大字号\n给会参与计分的牌加增强；对子／两对也可用，无须同花。\n塔罗 · 2 金",
+          "rect": {
+            "x": 36,
+            "y": 222.890625,
+            "width": 248,
+            "height": 134.765625,
+            "top": 222.890625,
+            "right": 284,
+            "bottom": 357.65625,
+            "left": 36
+          },
+          "viewport": {
+            "x": 36,
+            "y": 111.5,
+            "width": 248,
+            "height": 318.5,
+            "top": 111.5,
+            "right": 284,
+            "bottom": 430,
+            "left": 36
+          }
+        }
+      ],
+      "freshBought": {
+        "seq": 6,
+        "gold": 33
+      },
+      "result": "PASS"
+    },
+    {
+      "spec": {
+        "width": 320,
+        "height": 528
+      },
+      "purchaseFailure": true,
+      "shots": [
+        "320x528-retry-first-stock.png",
+        "320x528-retry-cancel-restored.png",
+        "320x528-retry-quota-failure-1.png",
+        "320x528-retry-stored-context.png",
+        "320x528-retry-quota-failure-2.png",
+        "320x528-retry-used-result.png",
+        "320x528-retry-owned-restored.png",
+        "320x528-retry-cold-continued.png",
+        "320x528-retry-rerolled-first-screen.png",
+        "320x528-retry-fresh-purchased-tool.png",
+        "320x528-retry-fresh-cancel-keeps-tool.png"
+      ],
+      "checks": [
+        "multi-service stock visible; deep cancel preserves tuple/context",
+        "buy-store direct/retry once and unused with original purchase context",
+        "independent S01 donor/recipient; quota rollback, one canonical use, owned pane and nonzero scroll restored",
+        "cold Continue full tuple; real reroll canonical transaction and fresh stock at scroll zero"
+      ],
+      "transactions": [
+        {
+          "command": {
+            "runId": "controlled/transaction-continuity",
+            "commandId": "controlled/transaction-continuity/command/3",
+            "expectedSeq": 2,
+            "action": {
+              "type": "BuyBasicTool",
+              "definitionId": "T11",
+              "shopSeq": 1
+            }
+          },
+          "beforeSeq": 2,
+          "afterSeq": 3
+        },
+        {
+          "command": {
+            "runId": "controlled/transaction-continuity",
+            "commandId": "controlled/transaction-continuity/command/4",
+            "expectedSeq": 3,
+            "action": {
+              "type": "UseConsumable",
+              "instanceId": "held/S01",
+              "targetIds": [
+                "clubs-9"
+              ],
+              "sacrificeId": "spades-13"
+            }
+          },
+          "beforeSeq": 3,
+          "afterSeq": 4
+        },
+        {
+          "command": {
+            "runId": "controlled/transaction-continuity",
+            "commandId": "controlled/transaction-continuity/command/5",
+            "expectedSeq": 4,
+            "action": {
+              "type": "RerollShop"
+            }
+          },
+          "beforeSeq": 4,
+          "afterSeq": 5
+        },
+        {
+          "command": {
+            "runId": "controlled/transaction-continuity",
+            "commandId": "controlled/transaction-continuity/command/6",
+            "expectedSeq": 5,
+            "action": {
+              "type": "BuyOffer",
+              "offerId": "controlled/transaction-continuity/shop/0/2/tool/0"
+            }
+          },
+          "beforeSeq": 5,
+          "afterSeq": 6
+        }
+      ],
+      "errors": [],
+      "initial": {
+        "seq": 2,
+        "gold": 40
+      },
+      "stock": {
+        "tile": {
+          "x": 36,
+          "y": 222.890625,
+          "width": 248,
+          "height": 134.765625,
+          "top": 222.890625,
+          "right": 284,
+          "bottom": 357.65625,
+          "left": 36
+        },
+        "viewport": {
+          "x": 36,
+          "y": 111.5,
+          "width": 248,
+          "height": 318.5,
+          "top": 111.5,
+          "right": 284,
+          "bottom": 430,
+          "left": 36
+        }
+      },
+      "cancelBefore": {
+        "pane": "purchase",
+        "scroll": 1520,
+        "max": 1890,
+        "focus": "T11"
+      },
+      "cancelAfter": {
+        "pane": "purchase",
+        "scroll": 1520,
+        "max": 1890,
+        "focus": "T11"
+      },
+      "purchaseBefore": {
+        "pane": "purchase",
+        "scroll": 1520,
+        "max": 1890,
+        "focus": "T11"
+      },
+      "bought": {
+        "seq": 3,
+        "gold": 38
+      },
+      "purchaseAfter": {
+        "pane": "purchase",
+        "scroll": 1312,
+        "max": 1312,
+        "focus": null
+      },
+      "ownedBefore": {
+        "pane": "owned",
+        "scroll": 341,
+        "max": 341,
+        "focus": "held/S01"
+      },
+      "used": {
+        "seq": 4,
+        "gold": 38
+      },
+      "ownedAfter": {
+        "pane": "owned",
+        "scroll": 273,
+        "max": 273,
+        "focus": null
+      },
+      "preReroll": {
+        "pane": "purchase",
+        "scroll": 1224,
+        "max": 1224,
+        "focus": null
+      },
+      "rerolled": {
+        "seq": 5,
+        "gold": 35
+      },
+      "rerollView": {
+        "pane": "purchase",
+        "scroll": 0,
+        "max": 979,
+        "focus": null
+      },
+      "newStock": [
+        {
+          "id": "controlled/transaction-continuity/shop/0/2/tool/0",
+          "text": "大字号\n给会参与计分的牌加增强；对子／两对也可用，无须同花。\n塔罗 · 2 金",
+          "rect": {
+            "x": 36,
+            "y": 222.890625,
+            "width": 248,
+            "height": 134.765625,
+            "top": 222.890625,
+            "right": 284,
+            "bottom": 357.65625,
+            "left": 36
+          },
+          "viewport": {
+            "x": 36,
+            "y": 111.5,
+            "width": 248,
+            "height": 318.5,
+            "top": 111.5,
+            "right": 284,
+            "bottom": 430,
+            "left": 36
+          }
+        }
+      ],
+      "freshBought": {
+        "seq": 6,
+        "gold": 33
+      },
+      "result": "PASS"
+    }
+  ],
+  "result": "PASS",
+  "sourceAfter": {
+    "src/game/MakeCardsDialog.ts": "bbb537ea978d32e9246797b6a5e8adb4faf2c2600d9e1aa1649bf48bfb3ebfca",
+    "src/game/ShopScene.ts": "9131a8c8908e2ce4067d1d4c92c3aeb3a5acbad57371d373078128ec216183e7",
+    "src/game/ConsumableDialog.ts": "bfac31f3677aad5ac6a6c0eefecf0b52230adf044254691729467e244cff5e8c",
+    "src/style.css": "1904c9071e4804bd6412c0299a08917f49ec46ea9137dfd0502e3ac7869d47d1",
+    "harness/shop-transaction-continuity.mjs": "27c3aedf736c9b4a1701103a53f9c0c2d21de8bd7bdb12475a64aef6c808aa5d"
+  },
+  "sourceStable": true
+}

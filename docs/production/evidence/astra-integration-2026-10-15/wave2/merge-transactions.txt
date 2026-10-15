@@ -1,0 +1,56 @@
+Auto-merging src/game/ShopScene.ts
+Merge made by the 'ort' strategy.
+ .../README.md                                      |   43 +
+ .../before/FAIL.png                                |  Bin 0 -> 42367 bytes
+ .../before/full-state-journal-storage.json.gz      |  Bin 0 -> 6795 bytes
+ .../before/report.json                             |  656 +++++++++
+ .../checks.json                                    |   78 ++
+ .../continuity/1366x768-retry-first-stock.png      |  Bin 0 -> 176492 bytes
+ .../continuity/1366x768-retry-owned-restored.png   |  Bin 0 -> 211508 bytes
+ .../320x528-retry-fresh-cancel-keeps-tool.png      |  Bin 0 -> 39546 bytes
+ .../320x528-retry-fresh-purchased-tool.png         |  Bin 0 -> 44642 bytes
+ .../320x528-retry-rerolled-first-screen.png        |  Bin 0 -> 41317 bytes
+ .../continuity/390x640-retry-owned-restored.png    |  Bin 0 -> 44372 bytes
+ .../continuity/full-state-journal-storage.json.gz  |  Bin 0 -> 29263 bytes
+ .../continuity/report.json                         | 1233 +++++++++++++++++
+ .../mobile/1366x768-sacrifice-selected.png         |  Bin 0 -> 198118 bytes
+ .../mobile/320x528-purchase-first-view.png         |  Bin 0 -> 42256 bytes
+ .../mobile/320x528-sacrifice-selected.png          |  Bin 0 -> 50179 bytes
+ .../mobile/390x528-save-failed.png                 |  Bin 0 -> 33604 bytes
+ .../mobile/390x640-sacrifice-selected.png          |  Bin 0 -> 60245 bytes
+ .../mobile/full-state-journal-storage.json.gz      |  Bin 0 -> 11503 bytes
+ .../mobile/report.json                             | 1419 ++++++++++++++++++++
+ .../observer-failure/FAIL.png                      |  Bin 0 -> 328054 bytes
+ .../full-state-journal-storage.json.gz             |  Bin 0 -> 3986 bytes
+ .../observer-failure/report.json                   |  109 ++
+ .../raw-screenshot-index.json                      |  427 ++++++
+ harness/shop-transaction-continuity.mjs            |   43 +
+ src/game/MakeCardsDialog.ts                        |    2 +-
+ src/game/ShopScene.ts                              |    8 +-
+ tests/make-cards-flow.test.ts                      |    2 +-
+ 28 files changed, 4015 insertions(+), 5 deletions(-)
+ create mode 100644 docs/production/evidence/shop-transaction-continuity-2026-10-15/README.md
+ create mode 100644 docs/production/evidence/shop-transaction-continuity-2026-10-15/before/FAIL.png
+ create mode 100644 docs/production/evidence/shop-transaction-continuity-2026-10-15/before/full-state-journal-storage.json.gz
+ create mode 100644 docs/production/evidence/shop-transaction-continuity-2026-10-15/before/report.json
+ create mode 100644 docs/production/evidence/shop-transaction-continuity-2026-10-15/checks.json
+ create mode 100644 docs/production/evidence/shop-transaction-continuity-2026-10-15/continuity/1366x768-retry-first-stock.png
+ create mode 100644 docs/production/evidence/shop-transaction-continuity-2026-10-15/continuity/1366x768-retry-owned-restored.png
+ create mode 100644 docs/production/evidence/shop-transaction-continuity-2026-10-15/continuity/320x528-retry-fresh-cancel-keeps-tool.png
+ create mode 100644 docs/production/evidence/shop-transaction-continuity-2026-10-15/continuity/320x528-retry-fresh-purchased-tool.png
+ create mode 100644 docs/production/evidence/shop-transaction-continuity-2026-10-15/continuity/320x528-retry-rerolled-first-screen.png
+ create mode 100644 docs/production/evidence/shop-transaction-continuity-2026-10-15/continuity/390x640-retry-owned-restored.png
+ create mode 100644 docs/production/evidence/shop-transaction-continuity-2026-10-15/continuity/full-state-journal-storage.json.gz
+ create mode 100644 docs/production/evidence/shop-transaction-continuity-2026-10-15/continuity/report.json
+ create mode 100644 docs/production/evidence/shop-transaction-continuity-2026-10-15/mobile/1366x768-sacrifice-selected.png
+ create mode 100644 docs/production/evidence/shop-transaction-continuity-2026-10-15/mobile/320x528-purchase-first-view.png
+ create mode 100644 docs/production/evidence/shop-transaction-continuity-2026-10-15/mobile/320x528-sacrifice-selected.png
+ create mode 100644 docs/production/evidence/shop-transaction-continuity-2026-10-15/mobile/390x528-save-failed.png
+ create mode 100644 docs/production/evidence/shop-transaction-continuity-2026-10-15/mobile/390x640-sacrifice-selected.png
+ create mode 100644 docs/production/evidence/shop-transaction-continuity-2026-10-15/mobile/full-state-journal-storage.json.gz
+ create mode 100644 docs/production/evidence/shop-transaction-continuity-2026-10-15/mobile/report.json
+ create mode 100644 docs/production/evidence/shop-transaction-continuity-2026-10-15/observer-failure/FAIL.png
+ create mode 100644 docs/production/evidence/shop-transaction-continuity-2026-10-15/observer-failure/full-state-journal-storage.json.gz
+ create mode 100644 docs/production/evidence/shop-transaction-continuity-2026-10-15/observer-failure/report.json
+ create mode 100644 docs/production/evidence/shop-transaction-continuity-2026-10-15/raw-screenshot-index.json
+ create mode 100644 harness/shop-transaction-continuity.mjs

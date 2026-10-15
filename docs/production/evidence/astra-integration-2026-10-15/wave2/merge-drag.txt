@@ -1,0 +1,311 @@
+Merge made by the 'ort' strategy.
+ .../evidence/joker-drag-audit-2026-10-15/README.md |    51 +
+ .../joker-drag-audit-2026-10-15/checks/build.txt   |    24 +
+ .../checks/shop-browser.txt                        |     1 +
+ .../checks/shop-observer-fail.txt                  |     7 +
+ .../checks/table-browser.txt                       |     1 +
+ .../checks/table-observer-fail.txt                 |     7 +
+ .../checks/targeted.txt                            |    14 +
+ .../checks/typecheck.txt                           |     9 +
+ .../joker-drag-audit-2026-10-15/manifest.json      |   747 +
+ .../full-state-journal-storage.json.gz             |   Bin 0 -> 479 bytes
+ .../shop-observer-fail/report.json                 |    23 +
+ .../shop/1366x900-fast-delay-saving.png            |   Bin 0 -> 452603 bytes
+ .../shop/1366x900-fast-dropped.png                 |   Bin 0 -> 450078 bytes
+ .../shop/1366x900-fast-held.png                    |   Bin 0 -> 455094 bytes
+ .../shop/1366x900-fast-mid.png                     |   Bin 0 -> 453008 bytes
+ .../shop/1366x900-idle.png                         |   Bin 0 -> 455110 bytes
+ .../shop/1366x900-middle-dropped.png               |   Bin 0 -> 450188 bytes
+ .../shop/1366x900-middle-held.png                  |   Bin 0 -> 453495 bytes
+ .../shop/1366x900-middle-mid.png                   |   Bin 0 -> 454159 bytes
+ .../shop/1366x900-save-failure.png                 |   Bin 0 -> 366164 bytes
+ .../shop/1366x900-save-retry.png                   |   Bin 0 -> 396048 bytes
+ .../shop/1366x900-saving-delay.png                 |   Bin 0 -> 457484 bytes
+ .../shop/1366x900-slow-dropped.png                 |   Bin 0 -> 450830 bytes
+ .../shop/1366x900-slow-held.png                    |   Bin 0 -> 457918 bytes
+ .../shop/1366x900-slow-mid.png                     |   Bin 0 -> 458622 bytes
+ .../shop/1366x900-table-idle-end.png               |   Bin 0 -> 220647 bytes
+ .../shop/1366x900-table-idle-start.png             |   Bin 0 -> 220647 bytes
+ .../shop/1366x900-vertical.png                     |   Bin 0 -> 444058 bytes
+ .../shop/320x740-fast-delay-saving.png             |   Bin 0 -> 140504 bytes
+ .../shop/320x740-fast-dropped.png                  |   Bin 0 -> 141370 bytes
+ .../shop/320x740-fast-held.png                     |   Bin 0 -> 142797 bytes
+ .../shop/320x740-fast-mid.png                      |   Bin 0 -> 141536 bytes
+ .../shop/320x740-idle.png                          |   Bin 0 -> 141538 bytes
+ .../shop/320x740-middle-dropped.png                |   Bin 0 -> 141352 bytes
+ .../shop/320x740-middle-held.png                   |   Bin 0 -> 141443 bytes
+ .../shop/320x740-middle-mid.png                    |   Bin 0 -> 142291 bytes
+ .../shop/320x740-save-failure.png                  |   Bin 0 -> 39655 bytes
+ .../shop/320x740-save-retry.png                    |   Bin 0 -> 127905 bytes
+ .../shop/320x740-saving-delay.png                  |   Bin 0 -> 140536 bytes
+ .../shop/320x740-slow-dropped.png                  |   Bin 0 -> 141571 bytes
+ .../shop/320x740-slow-held.png                     |   Bin 0 -> 141303 bytes
+ .../shop/320x740-slow-mid.png                      |   Bin 0 -> 141833 bytes
+ .../shop/320x740-table-idle-end.png                |   Bin 0 -> 99435 bytes
+ .../shop/320x740-table-idle-start.png              |   Bin 0 -> 99435 bytes
+ .../shop/320x740-vertical.png                      |   Bin 0 -> 131714 bytes
+ .../shop/390x844-fast-delay-saving.png             |   Bin 0 -> 174109 bytes
+ .../shop/390x844-fast-dropped.png                  |   Bin 0 -> 172997 bytes
+ .../shop/390x844-fast-held.png                     |   Bin 0 -> 176602 bytes
+ .../shop/390x844-fast-mid.png                      |   Bin 0 -> 175303 bytes
+ .../shop/390x844-idle.png                          |   Bin 0 -> 173164 bytes
+ .../shop/390x844-middle-dropped.png                |   Bin 0 -> 173066 bytes
+ .../shop/390x844-middle-held.png                   |   Bin 0 -> 175114 bytes
+ .../shop/390x844-middle-mid.png                    |   Bin 0 -> 176129 bytes
+ .../shop/390x844-reduce-dpr2-fast-delay-saving.png |   Bin 0 -> 171783 bytes
+ .../shop/390x844-reduce-dpr2-fast-dropped.png      |   Bin 0 -> 170426 bytes
+ .../shop/390x844-reduce-dpr2-fast-held.png         |   Bin 0 -> 173710 bytes
+ .../shop/390x844-reduce-dpr2-fast-mid.png          |   Bin 0 -> 172507 bytes
+ .../shop/390x844-reduce-dpr2-idle.png              |   Bin 0 -> 170638 bytes
+ .../shop/390x844-reduce-dpr2-middle-dropped.png    |   Bin 0 -> 170437 bytes
+ .../shop/390x844-reduce-dpr2-middle-held.png       |   Bin 0 -> 172733 bytes
+ .../shop/390x844-reduce-dpr2-middle-mid.png        |   Bin 0 -> 173400 bytes
+ .../shop/390x844-reduce-dpr2-save-failure.png      |   Bin 0 -> 47731 bytes
+ .../shop/390x844-reduce-dpr2-save-retry.png        |   Bin 0 -> 170039 bytes
+ .../shop/390x844-reduce-dpr2-saving-delay.png      |   Bin 0 -> 171909 bytes
+ .../shop/390x844-reduce-dpr2-slow-dropped.png      |   Bin 0 -> 170907 bytes
+ .../shop/390x844-reduce-dpr2-slow-held.png         |   Bin 0 -> 172364 bytes
+ .../shop/390x844-reduce-dpr2-slow-mid.png          |   Bin 0 -> 172865 bytes
+ .../shop/390x844-reduce-dpr2-table-idle-end.png    |   Bin 0 -> 112470 bytes
+ .../shop/390x844-reduce-dpr2-table-idle-start.png  |   Bin 0 -> 112535 bytes
+ .../shop/390x844-reduce-dpr2-vertical.png          |   Bin 0 -> 164505 bytes
+ .../shop/390x844-save-failure.png                  |   Bin 0 -> 46795 bytes
+ .../shop/390x844-save-retry.png                    |   Bin 0 -> 173846 bytes
+ .../shop/390x844-saving-delay.png                  |   Bin 0 -> 174204 bytes
+ .../shop/390x844-slow-dropped.png                  |   Bin 0 -> 173667 bytes
+ .../shop/390x844-slow-held.png                     |   Bin 0 -> 174823 bytes
+ .../shop/390x844-slow-mid.png                      |   Bin 0 -> 175719 bytes
+ .../shop/390x844-table-idle-end.png                |   Bin 0 -> 115429 bytes
+ .../shop/390x844-table-idle-start.png              |   Bin 0 -> 115429 bytes
+ .../shop/390x844-vertical.png                      |   Bin 0 -> 166499 bytes
+ .../shop/412x915-fast-delay-saving.png             |   Bin 0 -> 172183 bytes
+ .../shop/412x915-fast-dropped.png                  |   Bin 0 -> 171169 bytes
+ .../shop/412x915-fast-held.png                     |   Bin 0 -> 174559 bytes
+ .../shop/412x915-fast-mid.png                      |   Bin 0 -> 173098 bytes
+ .../shop/412x915-idle.png                          |   Bin 0 -> 171327 bytes
+ .../shop/412x915-middle-dropped.png                |   Bin 0 -> 171237 bytes
+ .../shop/412x915-middle-held.png                   |   Bin 0 -> 172921 bytes
+ .../shop/412x915-middle-mid.png                    |   Bin 0 -> 175010 bytes
+ .../shop/412x915-save-failure.png                  |   Bin 0 -> 58367 bytes
+ .../shop/412x915-save-retry.png                    |   Bin 0 -> 152159 bytes
+ .../shop/412x915-saving-delay.png                  |   Bin 0 -> 172278 bytes
+ .../shop/412x915-slow-dropped.png                  |   Bin 0 -> 171841 bytes
+ .../shop/412x915-slow-held.png                     |   Bin 0 -> 172751 bytes
+ .../shop/412x915-slow-mid.png                      |   Bin 0 -> 173579 bytes
+ .../shop/412x915-table-idle-end.png                |   Bin 0 -> 117317 bytes
+ .../shop/412x915-table-idle-start.png              |   Bin 0 -> 117317 bytes
+ .../shop/412x915-vertical.png                      |   Bin 0 -> 164647 bytes
+ .../shop/full-state-journal-storage.json.gz        |   Bin 0 -> 84244 bytes
+ .../joker-drag-audit-2026-10-15/shop/report.json   | 20701 +++++++
+ .../joker-drag-audit-2026-10-15/summary.json       |   280 +
+ .../full-state-journal-storage.json.gz             |   Bin 0 -> 479 bytes
+ .../table-observer-fail/report.json                |    23 +
+ .../table/1366x900-fast-delay-saving.png           |   Bin 0 -> 218980 bytes
+ .../table/1366x900-fast-dropped.png                |   Bin 0 -> 214050 bytes
+ .../table/1366x900-fast-held.png                   |   Bin 0 -> 221927 bytes
+ .../table/1366x900-fast-mid.png                    |   Bin 0 -> 221842 bytes
+ .../table/1366x900-idle.png                        |   Bin 0 -> 218107 bytes
+ .../table/1366x900-middle-dropped.png              |   Bin 0 -> 214049 bytes
+ .../table/1366x900-middle-held.png                 |   Bin 0 -> 222056 bytes
+ .../table/1366x900-middle-mid.png                  |   Bin 0 -> 222770 bytes
+ .../table/1366x900-mouse-hover.png                 |   Bin 0 -> 270172 bytes
+ .../table/1366x900-pending-touye-hover.png         |   Bin 0 -> 261543 bytes
+ .../table/1366x900-save-failure.png                |   Bin 0 -> 214531 bytes
+ .../table/1366x900-save-retry.png                  |   Bin 0 -> 218746 bytes
+ .../table/1366x900-saving-delay.png                |   Bin 0 -> 218941 bytes
+ .../table/1366x900-slow-dropped.png                |   Bin 0 -> 214090 bytes
+ .../table/1366x900-slow-held.png                   |   Bin 0 -> 222092 bytes
+ .../table/1366x900-slow-mid.png                    |   Bin 0 -> 221682 bytes
+ .../table/1366x900-vertical.png                    |   Bin 0 -> 219510 bytes
+ .../table/390x844-fast-delay-saving.png            |   Bin 0 -> 113364 bytes
+ .../table/390x844-fast-dropped.png                 |   Bin 0 -> 109397 bytes
+ .../table/390x844-fast-held.png                    |   Bin 0 -> 115471 bytes
+ .../table/390x844-fast-mid.png                     |   Bin 0 -> 115661 bytes
+ .../table/390x844-idle.png                         |   Bin 0 -> 112942 bytes
+ .../table/390x844-middle-dropped.png               |   Bin 0 -> 109455 bytes
+ .../table/390x844-middle-held.png                  |   Bin 0 -> 114518 bytes
+ .../table/390x844-middle-mid.png                   |   Bin 0 -> 116530 bytes
+ .../390x844-reduce-dpr2-fast-delay-saving.png      |   Bin 0 -> 109835 bytes
+ .../table/390x844-reduce-dpr2-fast-dropped.png     |   Bin 0 -> 105980 bytes
+ .../table/390x844-reduce-dpr2-fast-held.png        |   Bin 0 -> 111724 bytes
+ .../table/390x844-reduce-dpr2-fast-mid.png         |   Bin 0 -> 111715 bytes
+ .../table/390x844-reduce-dpr2-idle.png             |   Bin 0 -> 109451 bytes
+ .../table/390x844-reduce-dpr2-middle-dropped.png   |   Bin 0 -> 105993 bytes
+ .../table/390x844-reduce-dpr2-middle-held.png      |   Bin 0 -> 111024 bytes
+ .../table/390x844-reduce-dpr2-middle-mid.png       |   Bin 0 -> 112435 bytes
+ .../table/390x844-reduce-dpr2-save-failure.png     |   Bin 0 -> 51779 bytes
+ .../table/390x844-reduce-dpr2-save-retry.png       |   Bin 0 -> 110113 bytes
+ .../table/390x844-reduce-dpr2-saving-delay.png     |   Bin 0 -> 109771 bytes
+ .../table/390x844-reduce-dpr2-slow-dropped.png     |   Bin 0 -> 106086 bytes
+ .../table/390x844-reduce-dpr2-slow-held.png        |   Bin 0 -> 111834 bytes
+ .../table/390x844-reduce-dpr2-slow-mid.png         |   Bin 0 -> 111708 bytes
+ .../table/390x844-reduce-dpr2-vertical.png         |   Bin 0 -> 110699 bytes
+ .../table/390x844-save-failure.png                 |   Bin 0 -> 50598 bytes
+ .../table/390x844-save-retry.png                   |   Bin 0 -> 113586 bytes
+ .../table/390x844-saving-delay.png                 |   Bin 0 -> 113325 bytes
+ .../table/390x844-slow-dropped.png                 |   Bin 0 -> 109515 bytes
+ .../table/390x844-slow-held.png                    |   Bin 0 -> 115579 bytes
+ .../table/390x844-slow-mid.png                     |   Bin 0 -> 115457 bytes
+ .../table/390x844-vertical.png                     |   Bin 0 -> 114047 bytes
+ .../table/full-state-journal-storage.json.gz       |   Bin 0 -> 50617 bytes
+ .../joker-drag-audit-2026-10-15/table/report.json  | 55099 +++++++++++++++++++
+ harness/owned-joker-drag-feedback.mjs              |    15 +-
+ harness/table-owned-joker-drag.mjs                 |    20 +-
+ src/game/OwnedJokerHaptics.ts                      |     5 +
+ src/game/OwnedJokerInput.ts                        |     3 +-
+ tests/joker-order-score.test.ts                    |    53 +
+ tests/owned-joker-haptics.test.ts                  |    15 +
+ 156 files changed, 77088 insertions(+), 10 deletions(-)
+ create mode 100644 docs/production/evidence/joker-drag-audit-2026-10-15/README.md
+ create mode 100644 docs/production/evidence/joker-drag-audit-2026-10-15/checks/build.txt
+ create mode 100644 docs/production/evidence/joker-drag-audit-2026-10-15/checks/shop-browser.txt
+ create mode 100644 docs/production/evidence/joker-drag-audit-2026-10-15/checks/shop-observer-fail.txt
+ create mode 100644 docs/production/evidence/joker-drag-audit-2026-10-15/checks/table-browser.txt
+ create mode 100644 docs/production/evidence/joker-drag-audit-2026-10-15/checks/table-observer-fail.txt
+ create mode 100644 docs/production/evidence/joker-drag-audit-2026-10-15/checks/targeted.txt
+ create mode 100644 docs/production/evidence/joker-drag-audit-2026-10-15/checks/typecheck.txt
+ create mode 100644 docs/production/evidence/joker-drag-audit-2026-10-15/manifest.json
+ create mode 100644 docs/production/evidence/joker-drag-audit-2026-10-15/shop-observer-fail/full-state-journal-storage.json.gz
+ create mode 100644 docs/production/evidence/joker-drag-audit-2026-10-15/shop-observer-fail/report.json
+ create mode 100644 docs/production/evidence/joker-drag-audit-2026-10-15/shop/1366x900-fast-delay-saving.png
+ create mode 100644 docs/production/evidence/joker-drag-audit-2026-10-15/shop/1366x900-fast-dropped.png
+ create mode 100644 docs/production/evidence/joker-drag-audit-2026-10-15/shop/1366x900-fast-held.png
+ create mode 100644 docs/production/evidence/joker-drag-audit-2026-10-15/shop/1366x900-fast-mid.png
+ create mode 100644 docs/production/evidence/joker-drag-audit-2026-10-15/shop/1366x900-idle.png
+ create mode 100644 docs/production/evidence/joker-drag-audit-2026-10-15/shop/1366x900-middle-dropped.png
+ create mode 100644 docs/production/evidence/joker-drag-audit-2026-10-15/shop/1366x900-middle-held.png
+ create mode 100644 docs/production/evidence/joker-drag-audit-2026-10-15/shop/1366x900-middle-mid.png
+ create mode 100644 docs/production/evidence/joker-drag-audit-2026-10-15/shop/1366x900-save-failure.png
+ create mode 100644 docs/production/evidence/joker-drag-audit-2026-10-15/shop/1366x900-save-retry.png
+ create mode 100644 docs/production/evidence/joker-drag-audit-2026-10-15/shop/1366x900-saving-delay.png
+ create mode 100644 docs/production/evidence/joker-drag-audit-2026-10-15/shop/1366x900-slow-dropped.png
+ create mode 100644 docs/production/evidence/joker-drag-audit-2026-10-15/shop/1366x900-slow-held.png
+ create mode 100644 docs/production/evidence/joker-drag-audit-2026-10-15/shop/1366x900-slow-mid.png
+ create mode 100644 docs/production/evidence/joker-drag-audit-2026-10-15/shop/1366x900-table-idle-end.png
+ create mode 100644 docs/production/evidence/joker-drag-audit-2026-10-15/shop/1366x900-table-idle-start.png
+ create mode 100644 docs/production/evidence/joker-drag-audit-2026-10-15/shop/1366x900-vertical.png
+ create mode 100644 docs/production/evidence/joker-drag-audit-2026-10-15/shop/320x740-fast-delay-saving.png
+ create mode 100644 docs/production/evidence/joker-drag-audit-2026-10-15/shop/320x740-fast-dropped.png
+ create mode 100644 docs/production/evidence/joker-drag-audit-2026-10-15/shop/320x740-fast-held.png
+ create mode 100644 docs/production/evidence/joker-drag-audit-2026-10-15/shop/320x740-fast-mid.png
+ create mode 100644 docs/production/evidence/joker-drag-audit-2026-10-15/shop/320x740-idle.png
+ create mode 100644 docs/production/evidence/joker-drag-audit-2026-10-15/shop/320x740-middle-dropped.png
+ create mode 100644 docs/production/evidence/joker-drag-audit-2026-10-15/shop/320x740-middle-held.png
+ create mode 100644 docs/production/evidence/joker-drag-audit-2026-10-15/shop/320x740-middle-mid.png
+ create mode 100644 docs/production/evidence/joker-drag-audit-2026-10-15/shop/320x740-save-failure.png
+ create mode 100644 docs/production/evidence/joker-drag-audit-2026-10-15/shop/320x740-save-retry.png
+ create mode 100644 docs/production/evidence/joker-drag-audit-2026-10-15/shop/320x740-saving-delay.png
+ create mode 100644 docs/production/evidence/joker-drag-audit-2026-10-15/shop/320x740-slow-dropped.png
+ create mode 100644 docs/production/evidence/joker-drag-audit-2026-10-15/shop/320x740-slow-held.png
+ create mode 100644 docs/production/evidence/joker-drag-audit-2026-10-15/shop/320x740-slow-mid.png
+ create mode 100644 docs/production/evidence/joker-drag-audit-2026-10-15/shop/320x740-table-idle-end.png
+ create mode 100644 docs/production/evidence/joker-drag-audit-2026-10-15/shop/320x740-table-idle-start.png
+ create mode 100644 docs/production/evidence/joker-drag-audit-2026-10-15/shop/320x740-vertical.png
+ create mode 100644 docs/production/evidence/joker-drag-audit-2026-10-15/shop/390x844-fast-delay-saving.png
+ create mode 100644 docs/production/evidence/joker-drag-audit-2026-10-15/shop/390x844-fast-dropped.png
+ create mode 100644 docs/production/evidence/joker-drag-audit-2026-10-15/shop/390x844-fast-held.png
+ create mode 100644 docs/production/evidence/joker-drag-audit-2026-10-15/shop/390x844-fast-mid.png
+ create mode 100644 docs/production/evidence/joker-drag-audit-2026-10-15/shop/390x844-idle.png
+ create mode 100644 docs/production/evidence/joker-drag-audit-2026-10-15/shop/390x844-middle-dropped.png
+ create mode 100644 docs/production/evidence/joker-drag-audit-2026-10-15/shop/390x844-middle-held.png
+ create mode 100644 docs/production/evidence/joker-drag-audit-2026-10-15/shop/390x844-middle-mid.png
+ create mode 100644 docs/production/evidence/joker-drag-audit-2026-10-15/shop/390x844-reduce-dpr2-fast-delay-saving.png
+ create mode 100644 docs/production/evidence/joker-drag-audit-2026-10-15/shop/390x844-reduce-dpr2-fast-dropped.png
+ create mode 100644 docs/production/evidence/joker-drag-audit-2026-10-15/shop/390x844-reduce-dpr2-fast-held.png
+ create mode 100644 docs/production/evidence/joker-drag-audit-2026-10-15/shop/390x844-reduce-dpr2-fast-mid.png
+ create mode 100644 docs/production/evidence/joker-drag-audit-2026-10-15/shop/390x844-reduce-dpr2-idle.png
+ create mode 100644 docs/production/evidence/joker-drag-audit-2026-10-15/shop/390x844-reduce-dpr2-middle-dropped.png
+ create mode 100644 docs/production/evidence/joker-drag-audit-2026-10-15/shop/390x844-reduce-dpr2-middle-held.png
+ create mode 100644 docs/production/evidence/joker-drag-audit-2026-10-15/shop/390x844-reduce-dpr2-middle-mid.png
+ create mode 100644 docs/production/evidence/joker-drag-audit-2026-10-15/shop/390x844-reduce-dpr2-save-failure.png
+ create mode 100644 docs/production/evidence/joker-drag-audit-2026-10-15/shop/390x844-reduce-dpr2-save-retry.png
+ create mode 100644 docs/production/evidence/joker-drag-audit-2026-10-15/shop/390x844-reduce-dpr2-saving-delay.png
+ create mode 100644 docs/production/evidence/joker-drag-audit-2026-10-15/shop/390x844-reduce-dpr2-slow-dropped.png
+ create mode 100644 docs/production/evidence/joker-drag-audit-2026-10-15/shop/390x844-reduce-dpr2-slow-held.png
+ create mode 100644 docs/production/evidence/joker-drag-audit-2026-10-15/shop/390x844-reduce-dpr2-slow-mid.png
+ create mode 100644 docs/production/evidence/joker-drag-audit-2026-10-15/shop/390x844-reduce-dpr2-table-idle-end.png
+ create mode 100644 docs/production/evidence/joker-drag-audit-2026-10-15/shop/390x844-reduce-dpr2-table-idle-start.png
+ create mode 100644 docs/production/evidence/joker-drag-audit-2026-10-15/shop/390x844-reduce-dpr2-vertical.png
+ create mode 100644 docs/production/evidence/joker-drag-audit-2026-10-15/shop/390x844-save-failure.png
+ create mode 100644 docs/production/evidence/joker-drag-audit-2026-10-15/shop/390x844-save-retry.png
+ create mode 100644 docs/production/evidence/joker-drag-audit-2026-10-15/shop/390x844-saving-delay.png
+ create mode 100644 docs/production/evidence/joker-drag-audit-2026-10-15/shop/390x844-slow-dropped.png
+ create mode 100644 docs/production/evidence/joker-drag-audit-2026-10-15/shop/390x844-slow-held.png
+ create mode 100644 docs/production/evidence/joker-drag-audit-2026-10-15/shop/390x844-slow-mid.png
+ create mode 100644 docs/production/evidence/joker-drag-audit-2026-10-15/shop/390x844-table-idle-end.png
+ create mode 100644 docs/production/evidence/joker-drag-audit-2026-10-15/shop/390x844-table-idle-start.png
+ create mode 100644 docs/production/evidence/joker-drag-audit-2026-10-15/shop/390x844-vertical.png
+ create mode 100644 docs/production/evidence/joker-drag-audit-2026-10-15/shop/412x915-fast-delay-saving.png
+ create mode 100644 docs/production/evidence/joker-drag-audit-2026-10-15/shop/412x915-fast-dropped.png
+ create mode 100644 docs/production/evidence/joker-drag-audit-2026-10-15/shop/412x915-fast-held.png
+ create mode 100644 docs/production/evidence/joker-drag-audit-2026-10-15/shop/412x915-fast-mid.png
+ create mode 100644 docs/production/evidence/joker-drag-audit-2026-10-15/shop/412x915-idle.png
+ create mode 100644 docs/production/evidence/joker-drag-audit-2026-10-15/shop/412x915-middle-dropped.png
+ create mode 100644 docs/production/evidence/joker-drag-audit-2026-10-15/shop/412x915-middle-held.png
+ create mode 100644 docs/production/evidence/joker-drag-audit-2026-10-15/shop/412x915-middle-mid.png
+ create mode 100644 docs/production/evidence/joker-drag-audit-2026-10-15/shop/412x915-save-failure.png
+ create mode 100644 docs/production/evidence/joker-drag-audit-2026-10-15/shop/412x915-save-retry.png
+ create mode 100644 docs/production/evidence/joker-drag-audit-2026-10-15/shop/412x915-saving-delay.png
+ create mode 100644 docs/production/evidence/joker-drag-audit-2026-10-15/shop/412x915-slow-dropped.png
+ create mode 100644 docs/production/evidence/joker-drag-audit-2026-10-15/shop/412x915-slow-held.png
+ create mode 100644 docs/production/evidence/joker-drag-audit-2026-10-15/shop/412x915-slow-mid.png
+ create mode 100644 docs/production/evidence/joker-drag-audit-2026-10-15/shop/412x915-table-idle-end.png
+ create mode 100644 docs/production/evidence/joker-drag-audit-2026-10-15/shop/412x915-table-idle-start.png
+ create mode 100644 docs/production/evidence/joker-drag-audit-2026-10-15/shop/412x915-vertical.png
+ create mode 100644 docs/production/evidence/joker-drag-audit-2026-10-15/shop/full-state-journal-storage.json.gz
+ create mode 100644 docs/production/evidence/joker-drag-audit-2026-10-15/shop/report.json
+ create mode 100644 docs/production/evidence/joker-drag-audit-2026-10-15/summary.json
+ create mode 100644 docs/production/evidence/joker-drag-audit-2026-10-15/table-observer-fail/full-state-journal-storage.json.gz
+ create mode 100644 docs/production/evidence/joker-drag-audit-2026-10-15/table-observer-fail/report.json
+ create mode 100644 docs/production/evidence/joker-drag-audit-2026-10-15/table/1366x900-fast-delay-saving.png
+ create mode 100644 docs/production/evidence/joker-drag-audit-2026-10-15/table/1366x900-fast-dropped.png
+ create mode 100644 docs/production/evidence/joker-drag-audit-2026-10-15/table/1366x900-fast-held.png
+ create mode 100644 docs/production/evidence/joker-drag-audit-2026-10-15/table/1366x900-fast-mid.png
+ create mode 100644 docs/production/evidence/joker-drag-audit-2026-10-15/table/1366x900-idle.png
+ create mode 100644 docs/production/evidence/joker-drag-audit-2026-10-15/table/1366x900-middle-dropped.png
+ create mode 100644 docs/production/evidence/joker-drag-audit-2026-10-15/table/1366x900-middle-held.png
+ create mode 100644 docs/production/evidence/joker-drag-audit-2026-10-15/table/1366x900-middle-mid.png
+ create mode 100644 docs/production/evidence/joker-drag-audit-2026-10-15/table/1366x900-mouse-hover.png
+ create mode 100644 docs/production/evidence/joker-drag-audit-2026-10-15/table/1366x900-pending-touye-hover.png
+ create mode 100644 docs/production/evidence/joker-drag-audit-2026-10-15/table/1366x900-save-failure.png
+ create mode 100644 docs/production/evidence/joker-drag-audit-2026-10-15/table/1366x900-save-retry.png
+ create mode 100644 docs/production/evidence/joker-drag-audit-2026-10-15/table/1366x900-saving-delay.png
+ create mode 100644 docs/production/evidence/joker-drag-audit-2026-10-15/table/1366x900-slow-dropped.png
+ create mode 100644 docs/production/evidence/joker-drag-audit-2026-10-15/table/1366x900-slow-held.png
+ create mode 100644 docs/production/evidence/joker-drag-audit-2026-10-15/table/1366x900-slow-mid.png
+ create mode 100644 docs/production/evidence/joker-drag-audit-2026-10-15/table/1366x900-vertical.png
+ create mode 100644 docs/production/evidence/joker-drag-audit-2026-10-15/table/390x844-fast-delay-saving.png
+ create mode 100644 docs/production/evidence/joker-drag-audit-2026-10-15/table/390x844-fast-dropped.png
+ create mode 100644 docs/production/evidence/joker-drag-audit-2026-10-15/table/390x844-fast-held.png
+ create mode 100644 docs/production/evidence/joker-drag-audit-2026-10-15/table/390x844-fast-mid.png
+ create mode 100644 docs/production/evidence/joker-drag-audit-2026-10-15/table/390x844-idle.png
+ create mode 100644 docs/production/evidence/joker-drag-audit-2026-10-15/table/390x844-middle-dropped.png
+ create mode 100644 docs/production/evidence/joker-drag-audit-2026-10-15/table/390x844-middle-held.png
+ create mode 100644 docs/production/evidence/joker-drag-audit-2026-10-15/table/390x844-middle-mid.png
+ create mode 100644 docs/production/evidence/joker-drag-audit-2026-10-15/table/390x844-reduce-dpr2-fast-delay-saving.png
+ create mode 100644 docs/production/evidence/joker-drag-audit-2026-10-15/table/390x844-reduce-dpr2-fast-dropped.png
+ create mode 100644 docs/production/evidence/joker-drag-audit-2026-10-15/table/390x844-reduce-dpr2-fast-held.png
+ create mode 100644 docs/production/evidence/joker-drag-audit-2026-10-15/table/390x844-reduce-dpr2-fast-mid.png
+ create mode 100644 docs/production/evidence/joker-drag-audit-2026-10-15/table/390x844-reduce-dpr2-idle.png
+ create mode 100644 docs/production/evidence/joker-drag-audit-2026-10-15/table/390x844-reduce-dpr2-middle-dropped.png
+ create mode 100644 docs/production/evidence/joker-drag-audit-2026-10-15/table/390x844-reduce-dpr2-middle-held.png
+ create mode 100644 docs/production/evidence/joker-drag-audit-2026-10-15/table/390x844-reduce-dpr2-middle-mid.png
+ create mode 100644 docs/production/evidence/joker-drag-audit-2026-10-15/table/390x844-reduce-dpr2-save-failure.png
+ create mode 100644 docs/production/evidence/joker-drag-audit-2026-10-15/table/390x844-reduce-dpr2-save-retry.png
+ create mode 100644 docs/production/evidence/joker-drag-audit-2026-10-15/table/390x844-reduce-dpr2-saving-delay.png
+ create mode 100644 docs/production/evidence/joker-drag-audit-2026-10-15/table/390x844-reduce-dpr2-slow-dropped.png
+ create mode 100644 docs/production/evidence/joker-drag-audit-2026-10-15/table/390x844-reduce-dpr2-slow-held.png
+ create mode 100644 docs/production/evidence/joker-drag-audit-2026-10-15/table/390x844-reduce-dpr2-slow-mid.png
+ create mode 100644 docs/production/evidence/joker-drag-audit-2026-10-15/table/390x844-reduce-dpr2-vertical.png
+ create mode 100644 docs/production/evidence/joker-drag-audit-2026-10-15/table/390x844-save-failure.png
+ create mode 100644 docs/production/evidence/joker-drag-audit-2026-10-15/table/390x844-save-retry.png
+ create mode 100644 docs/production/evidence/joker-drag-audit-2026-10-15/table/390x844-saving-delay.png
+ create mode 100644 docs/production/evidence/joker-drag-audit-2026-10-15/table/390x844-slow-dropped.png
+ create mode 100644 docs/production/evidence/joker-drag-audit-2026-10-15/table/390x844-slow-held.png
+ create mode 100644 docs/production/evidence/joker-drag-audit-2026-10-15/table/390x844-slow-mid.png
+ create mode 100644 docs/production/evidence/joker-drag-audit-2026-10-15/table/390x844-vertical.png
+ create mode 100644 docs/production/evidence/joker-drag-audit-2026-10-15/table/full-state-journal-storage.json.gz
+ create mode 100644 docs/production/evidence/joker-drag-audit-2026-10-15/table/report.json
+ create mode 100644 src/game/OwnedJokerHaptics.ts
+ create mode 100644 tests/joker-order-score.test.ts
+ create mode 100644 tests/owned-joker-haptics.test.ts

@@ -1,0 +1,334 @@
+Auto-merging src/game/GameScene.ts
+Merge made by the 'ort' strategy.
+ .../evidence/hero-captions-2026-10-15/README.md    |   61 +
+ .../after/amo-390-normal-0.png                     |  Bin 0 -> 136029 bytes
+ .../after/amo-390-normal-shot-0-eyes.png           |  Bin 0 -> 161522 bytes
+ .../after/amo-390-normal-shot-1-skill.png          |  Bin 0 -> 136029 bytes
+ .../after/amo-390-normal-shot-2-landing.png        |  Bin 0 -> 89806 bytes
+ .../after/amo-390-normal-shot-3-landing-late.png   |  Bin 0 -> 88336 bytes
+ .../after/azao-390-normal-0.png                    |  Bin 0 -> 153723 bytes
+ .../after/azao-390-normal-shot-0-eyes.png          |  Bin 0 -> 214589 bytes
+ .../after/azao-390-normal-shot-1-skill.png         |  Bin 0 -> 153723 bytes
+ .../after/azao-390-normal-shot-2-landing.png       |  Bin 0 -> 97313 bytes
+ .../after/azao-390-normal-shot-3-landing-late.png  |  Bin 0 -> 95783 bytes
+ .../after/e11-390-normal-0.png                     |  Bin 0 -> 150250 bytes
+ .../after/e11-390-normal-shot-0-eyes.png           |  Bin 0 -> 168253 bytes
+ .../after/e11-390-normal-shot-1-skill.png          |  Bin 0 -> 150250 bytes
+ .../after/e11-390-normal-shot-2-landing.png        |  Bin 0 -> 99436 bytes
+ .../after/e11-390-normal-shot-3-landing-late.png   |  Bin 0 -> 99436 bytes
+ .../after/erxiang-390-exit-0.png                   |  Bin 0 -> 163243 bytes
+ .../after/erxiang-390-exit-shot-0-eyes.png         |  Bin 0 -> 256186 bytes
+ .../after/erxiang-390-exit-shot-1-skill.png        |  Bin 0 -> 163243 bytes
+ .../after/erxiang-390-exit-shot-2-landing.png      |  Bin 0 -> 95033 bytes
+ .../after/erxiang-390-exit-shot-3-landing-late.png |  Bin 0 -> 93333 bytes
+ .../after/erxiang-390-normal-0.png                 |  Bin 0 -> 163243 bytes
+ .../after/erxiang-390-normal-shot-0-eyes.png       |  Bin 0 -> 256186 bytes
+ .../after/erxiang-390-normal-shot-1-skill.png      |  Bin 0 -> 163243 bytes
+ .../after/erxiang-390-normal-shot-2-landing.png    |  Bin 0 -> 95047 bytes
+ .../erxiang-390-normal-shot-3-landing-late.png     |  Bin 0 -> 93704 bytes
+ .../after/erxiang-390-reduce-0.png                 |  Bin 0 -> 92503 bytes
+ .../after/erxiang-390-reduce-shot-0-landing.png    |  Bin 0 -> 92503 bytes
+ .../erxiang-390-reduce-shot-1-landing-late.png     |  Bin 0 -> 92503 bytes
+ .../after/erxiang-390-skip-0.png                   |  Bin 0 -> 163243 bytes
+ .../after/erxiang-390-skip-shot-0-eyes.png         |  Bin 0 -> 256186 bytes
+ .../after/erxiang-390-skip-shot-1-skill.png        |  Bin 0 -> 163243 bytes
+ .../after/erxiang-390-skip-shot-2-landing.png      |  Bin 0 -> 94944 bytes
+ .../after/erxiang-390-skip-shot-3-landing-late.png |  Bin 0 -> 93704 bytes
+ .../after/f06-320-normal-0.png                     |  Bin 0 -> 110128 bytes
+ .../after/f06-320-normal-shot-0-eyes.png           |  Bin 0 -> 128313 bytes
+ .../after/f06-320-normal-shot-1-skill.png          |  Bin 0 -> 110128 bytes
+ .../after/f06-320-normal-shot-2-landing.png        |  Bin 0 -> 79520 bytes
+ .../after/f06-320-normal-shot-3-landing-late.png   |  Bin 0 -> 79520 bytes
+ .../hero-captions-2026-10-15/after/report.json.gz  |  Bin 0 -> 100119 bytes
+ .../hero-captions-2026-10-15/after/summary.json    |  280 ++++
+ .../after/touye-390-normal-0.png                   |  Bin 0 -> 155292 bytes
+ .../after/touye-390-normal-shot-0-eyes.png         |  Bin 0 -> 196439 bytes
+ .../after/touye-390-normal-shot-1-skill.png        |  Bin 0 -> 155292 bytes
+ .../after/touye-390-normal-shot-2-landing.png      |  Bin 0 -> 101110 bytes
+ .../after/touye-390-normal-shot-3-landing-late.png |  Bin 0 -> 99585 bytes
+ .../after/xiemu-1366-normal-0.png                  |  Bin 0 -> 419547 bytes
+ .../after/xiemu-1366-normal-shot-0-eyes.png        |  Bin 0 -> 480250 bytes
+ .../after/xiemu-1366-normal-shot-1-skill.png       |  Bin 0 -> 419547 bytes
+ .../after/xiemu-1366-normal-shot-2-landing.png     |  Bin 0 -> 218005 bytes
+ .../xiemu-1366-normal-shot-3-landing-late.png      |  Bin 0 -> 214856 bytes
+ .../after/xiemu-320-normal-0.png                   |  Bin 0 -> 133860 bytes
+ .../after/xiemu-320-normal-shot-0-eyes.png         |  Bin 0 -> 175649 bytes
+ .../after/xiemu-320-normal-shot-1-skill.png        |  Bin 0 -> 133860 bytes
+ .../after/xiemu-320-normal-shot-2-landing.png      |  Bin 0 -> 91109 bytes
+ .../after/xiemu-320-normal-shot-3-landing-late.png |  Bin 0 -> 90041 bytes
+ .../after/xiemu-390-fast-0.png                     |  Bin 0 -> 161377 bytes
+ .../after/xiemu-390-fast-shot-0-eyes.png           |  Bin 0 -> 231229 bytes
+ .../after/xiemu-390-fast-shot-1-skill.png          |  Bin 0 -> 161377 bytes
+ .../after/xiemu-390-fast-shot-2-landing.png        |  Bin 0 -> 91025 bytes
+ .../after/xiemu-390-fast-shot-3-landing-late.png   |  Bin 0 -> 91025 bytes
+ .../after/xiemu-390-normal-0.png                   |  Bin 0 -> 159791 bytes
+ .../after/xiemu-390-normal-shot-0-eyes.png         |  Bin 0 -> 231229 bytes
+ .../after/xiemu-390-normal-shot-1-skill.png        |  Bin 0 -> 159791 bytes
+ .../after/xiemu-390-normal-shot-2-landing.png      |  Bin 0 -> 93359 bytes
+ .../after/xiemu-390-normal-shot-3-landing-late.png |  Bin 0 -> 91925 bytes
+ .../hero-captions-2026-10-15/before/report.json.gz |  Bin 0 -> 17814 bytes
+ .../hero-captions-2026-10-15/before/summary.json   |   49 +
+ .../before/xiemu-1366-normal-0.png                 |  Bin 0 -> 418992 bytes
+ .../before/xiemu-1366-normal-shot-0-eyes.png       |  Bin 0 -> 471391 bytes
+ .../before/xiemu-1366-normal-shot-1-skill.png      |  Bin 0 -> 418992 bytes
+ .../before/xiemu-1366-normal-shot-2-landing.png    |  Bin 0 -> 217775 bytes
+ .../xiemu-1366-normal-shot-3-landing-late.png      |  Bin 0 -> 214722 bytes
+ .../before/xiemu-390-normal-0.png                  |  Bin 0 -> 159791 bytes
+ .../before/xiemu-390-normal-shot-0-eyes.png        |  Bin 0 -> 223133 bytes
+ .../before/xiemu-390-normal-shot-1-skill.png       |  Bin 0 -> 159791 bytes
+ .../before/xiemu-390-normal-shot-2-landing.png     |  Bin 0 -> 93359 bytes
+ .../xiemu-390-normal-shot-3-landing-late.png       |  Bin 0 -> 91925 bytes
+ .../caption-boundaries/erxiang-390-exit-0.png      |  Bin 0 -> 163243 bytes
+ .../erxiang-390-exit-shot-0-eyes.png               |  Bin 0 -> 256186 bytes
+ .../erxiang-390-exit-shot-1-skill.png              |  Bin 0 -> 163243 bytes
+ .../caption-boundaries/erxiang-390-reduce-0.png    |  Bin 0 -> 92503 bytes
+ .../erxiang-390-reduce-shot-0-landing.png          |  Bin 0 -> 92503 bytes
+ .../erxiang-390-reduce-shot-1-landing-late.png     |  Bin 0 -> 92503 bytes
+ .../caption-boundaries/erxiang-390-skip-0.png      |  Bin 0 -> 163243 bytes
+ .../erxiang-390-skip-shot-0-eyes.png               |  Bin 0 -> 256186 bytes
+ .../erxiang-390-skip-shot-1-skill.png              |  Bin 0 -> 163243 bytes
+ .../caption-boundaries/report.json.gz              |  Bin 0 -> 26179 bytes
+ .../caption-boundaries/summary.json                |  103 ++
+ .../caption-boundaries/xiemu-390-fast-0.png        |  Bin 0 -> 161452 bytes
+ .../xiemu-390-fast-shot-0-eyes.png                 |  Bin 0 -> 231229 bytes
+ .../xiemu-390-fast-shot-1-skill.png                |  Bin 0 -> 161452 bytes
+ .../xiemu-390-fast-shot-2-landing.png              |  Bin 0 -> 91025 bytes
+ .../xiemu-390-fast-shot-3-landing-late.png         |  Bin 0 -> 91025 bytes
+ .../caption-source-review.json                     |  169 +++
+ .../hero-captions-2026-10-15/checks/after.txt      |   14 +
+ .../hero-captions-2026-10-15/checks/before.txt     |    3 +
+ .../hero-captions-2026-10-15/checks/build.txt      |   24 +
+ .../checks/caption-boundaries.txt                  |    5 +
+ .../hero-captions-2026-10-15/checks/dpr3.txt       |    2 +
+ .../checks/explanations-mobile.txt                 |    1 +
+ .../checks/explanations-pc.txt                     |    1 +
+ .../checks/explanations.txt                        |    4 +
+ .../hero-captions-2026-10-15/checks/plan.txt       |    1 +
+ .../hero-captions-2026-10-15/checks/tests.txt      |   14 +
+ .../hero-captions-2026-10-15/checks/typecheck.txt  |    9 +
+ .../dpr3-caption/report.json.gz                    |  Bin 0 -> 8283 bytes
+ .../dpr3-caption/summary.json                      |   31 +
+ .../dpr3-caption/xiemu-390-fast-0.png              |  Bin 0 -> 855113 bytes
+ .../dpr3-caption/xiemu-390-fast-shot-0-eyes.png    |  Bin 0 -> 662672 bytes
+ .../dpr3-caption/xiemu-390-fast-shot-1-skill.png   |  Bin 0 -> 855113 bytes
+ .../dpr3-caption/xiemu-390-fast-shot-2-landing.png |  Bin 0 -> 333241 bytes
+ .../xiemu-390-fast-shot-3-landing-late.png         |  Bin 0 -> 333241 bytes
+ .../390-amo-selection-first.png                    |  Bin 0 -> 80762 bytes
+ .../390-amo-table-HUD-first.png                    |  Bin 0 -> 79837 bytes
+ .../390-azao-table-HUD-first.png                   |  Bin 0 -> 87765 bytes
+ .../390-erxiang-table-HUD-first.png                |  Bin 0 -> 85343 bytes
+ .../390-laohuan-table-HUD-first.png                |  Bin 0 -> 82137 bytes
+ .../explanations-mobile/390-touye-shop-first.png   |  Bin 0 -> 84616 bytes
+ .../390-touye-table-HUD-first.png                  |  Bin 0 -> 84824 bytes
+ .../390-xiemu-lost-result-first.png                |  Bin 0 -> 87404 bytes
+ .../390-xiemu-table-HUD-first.png                  |  Bin 0 -> 87122 bytes
+ ...full-state-journal-storage-localStorage.json.gz |  Bin 0 -> 105228 bytes
+ .../explanations-mobile/report.json                | 1276 ++++++++++++++++
+ .../explanations-pc/1366-amo-selection-first.png   |  Bin 0 -> 240356 bytes
+ .../explanations-pc/1366-amo-table-HUD-first.png   |  Bin 0 -> 223484 bytes
+ .../explanations-pc/1366-azao-table-HUD-first.png  |  Bin 0 -> 261170 bytes
+ .../1366-erxiang-table-HUD-first.png               |  Bin 0 -> 292959 bytes
+ .../1366-laohuan-table-HUD-first.png               |  Bin 0 -> 239051 bytes
+ .../explanations-pc/1366-touye-shop-first.png      |  Bin 0 -> 288314 bytes
+ .../explanations-pc/1366-touye-table-HUD-first.png |  Bin 0 -> 246137 bytes
+ .../1366-xiemu-lost-result-first.png               |  Bin 0 -> 230337 bytes
+ .../explanations-pc/1366-xiemu-table-HUD-first.png |  Bin 0 -> 279390 bytes
+ ...full-state-journal-storage-localStorage.json.gz |  Bin 0 -> 110230 bytes
+ .../explanations-pc/report.json                    | 1372 +++++++++++++++++
+ .../hero-captions-2026-10-15/identity.json         |   98 ++
+ .../laohuan-r3/1366-normal-0-eyes.png              |  Bin 0 -> 393459 bytes
+ .../laohuan-r3/1366-normal-1-skill.png             |  Bin 0 -> 364633 bytes
+ .../laohuan-r3/1366-normal-2-landing.png           |  Bin 0 -> 216819 bytes
+ .../laohuan-r3/1366-normal-3-landing.png           |  Bin 0 -> 216819 bytes
+ .../laohuan-r3/390-fast-0-eyes.png                 |  Bin 0 -> 188986 bytes
+ .../laohuan-r3/390-fast-1-skill.png                |  Bin 0 -> 148883 bytes
+ .../laohuan-r3/390-fast-2-landing.png              |  Bin 0 -> 101554 bytes
+ .../laohuan-r3/390-fast-3-landing.png              |  Bin 0 -> 101554 bytes
+ .../laohuan-r3/390-normal-0-eyes.png               |  Bin 0 -> 188986 bytes
+ .../laohuan-r3/390-normal-1-skill.png              |  Bin 0 -> 148883 bytes
+ .../laohuan-r3/390-normal-2-landing.png            |  Bin 0 -> 101554 bytes
+ .../laohuan-r3/390-normal-3-landing.png            |  Bin 0 -> 101554 bytes
+ .../laohuan-r3/390-reduce-0-landing.png            |  Bin 0 -> 101554 bytes
+ .../laohuan-r3/390-reduce-1-landing.png            |  Bin 0 -> 101554 bytes
+ .../laohuan-r3/report.json.gz                      |  Bin 0 -> 23726 bytes
+ .../laohuan-r3/summary.json                        | 1401 +++++++++++++++++
+ .../hero-captions-2026-10-15/manifest.json         |  642 ++++++++
+ ...full-state-journal-storage-localStorage.json.gz |  Bin 0 -> 111444 bytes
+ .../original-failures/explanations/report.json     | 1589 ++++++++++++++++++++
+ .../laohuan-r2/1366-normal-FAIL.png                |  Bin 0 -> 158958 bytes
+ .../original-failures/laohuan-r2/report.json.gz    |  Bin 0 -> 9143 bytes
+ .../original-failures/laohuan-r2/summary.json      |  408 +++++
+ .../original-failures/laohuan/1366-normal-FAIL.png |  Bin 0 -> 158815 bytes
+ .../original-failures/laohuan/report.json.gz       |  Bin 0 -> 6990 bytes
+ .../original-failures/laohuan/summary.json         |  407 +++++
+ harness/hero-caption-laohuan.mjs                   |   42 +
+ harness/hero-explanation.mjs                       |    2 +-
+ harness/hero-source-title.mjs                      |   24 +-
+ src/game/GameScene.ts                              |    2 +-
+ src/game/HeroClimax.ts                             |    9 +-
+ src/game/HeroClimaxCaption.ts                      |   24 +
+ tests/hero-climax.test.ts                          |    4 +-
+ 168 files changed, 8057 insertions(+), 14 deletions(-)
+ create mode 100644 docs/production/evidence/hero-captions-2026-10-15/README.md
+ create mode 100644 docs/production/evidence/hero-captions-2026-10-15/after/amo-390-normal-0.png
+ create mode 100644 docs/production/evidence/hero-captions-2026-10-15/after/amo-390-normal-shot-0-eyes.png
+ create mode 100644 docs/production/evidence/hero-captions-2026-10-15/after/amo-390-normal-shot-1-skill.png
+ create mode 100644 docs/production/evidence/hero-captions-2026-10-15/after/amo-390-normal-shot-2-landing.png
+ create mode 100644 docs/production/evidence/hero-captions-2026-10-15/after/amo-390-normal-shot-3-landing-late.png
+ create mode 100644 docs/production/evidence/hero-captions-2026-10-15/after/azao-390-normal-0.png
+ create mode 100644 docs/production/evidence/hero-captions-2026-10-15/after/azao-390-normal-shot-0-eyes.png
+ create mode 100644 docs/production/evidence/hero-captions-2026-10-15/after/azao-390-normal-shot-1-skill.png
+ create mode 100644 docs/production/evidence/hero-captions-2026-10-15/after/azao-390-normal-shot-2-landing.png
+ create mode 100644 docs/production/evidence/hero-captions-2026-10-15/after/azao-390-normal-shot-3-landing-late.png
+ create mode 100644 docs/production/evidence/hero-captions-2026-10-15/after/e11-390-normal-0.png
+ create mode 100644 docs/production/evidence/hero-captions-2026-10-15/after/e11-390-normal-shot-0-eyes.png
+ create mode 100644 docs/production/evidence/hero-captions-2026-10-15/after/e11-390-normal-shot-1-skill.png
+ create mode 100644 docs/production/evidence/hero-captions-2026-10-15/after/e11-390-normal-shot-2-landing.png
+ create mode 100644 docs/production/evidence/hero-captions-2026-10-15/after/e11-390-normal-shot-3-landing-late.png
+ create mode 100644 docs/production/evidence/hero-captions-2026-10-15/after/erxiang-390-exit-0.png
+ create mode 100644 docs/production/evidence/hero-captions-2026-10-15/after/erxiang-390-exit-shot-0-eyes.png
+ create mode 100644 docs/production/evidence/hero-captions-2026-10-15/after/erxiang-390-exit-shot-1-skill.png
+ create mode 100644 docs/production/evidence/hero-captions-2026-10-15/after/erxiang-390-exit-shot-2-landing.png
+ create mode 100644 docs/production/evidence/hero-captions-2026-10-15/after/erxiang-390-exit-shot-3-landing-late.png
+ create mode 100644 docs/production/evidence/hero-captions-2026-10-15/after/erxiang-390-normal-0.png
+ create mode 100644 docs/production/evidence/hero-captions-2026-10-15/after/erxiang-390-normal-shot-0-eyes.png
+ create mode 100644 docs/production/evidence/hero-captions-2026-10-15/after/erxiang-390-normal-shot-1-skill.png
+ create mode 100644 docs/production/evidence/hero-captions-2026-10-15/after/erxiang-390-normal-shot-2-landing.png
+ create mode 100644 docs/production/evidence/hero-captions-2026-10-15/after/erxiang-390-normal-shot-3-landing-late.png
+ create mode 100644 docs/production/evidence/hero-captions-2026-10-15/after/erxiang-390-reduce-0.png
+ create mode 100644 docs/production/evidence/hero-captions-2026-10-15/after/erxiang-390-reduce-shot-0-landing.png
+ create mode 100644 docs/production/evidence/hero-captions-2026-10-15/after/erxiang-390-reduce-shot-1-landing-late.png
+ create mode 100644 docs/production/evidence/hero-captions-2026-10-15/after/erxiang-390-skip-0.png
+ create mode 100644 docs/production/evidence/hero-captions-2026-10-15/after/erxiang-390-skip-shot-0-eyes.png
+ create mode 100644 docs/production/evidence/hero-captions-2026-10-15/after/erxiang-390-skip-shot-1-skill.png
+ create mode 100644 docs/production/evidence/hero-captions-2026-10-15/after/erxiang-390-skip-shot-2-landing.png
+ create mode 100644 docs/production/evidence/hero-captions-2026-10-15/after/erxiang-390-skip-shot-3-landing-late.png
+ create mode 100644 docs/production/evidence/hero-captions-2026-10-15/after/f06-320-normal-0.png
+ create mode 100644 docs/production/evidence/hero-captions-2026-10-15/after/f06-320-normal-shot-0-eyes.png
+ create mode 100644 docs/production/evidence/hero-captions-2026-10-15/after/f06-320-normal-shot-1-skill.png
+ create mode 100644 docs/production/evidence/hero-captions-2026-10-15/after/f06-320-normal-shot-2-landing.png
+ create mode 100644 docs/production/evidence/hero-captions-2026-10-15/after/f06-320-normal-shot-3-landing-late.png
+ create mode 100644 docs/production/evidence/hero-captions-2026-10-15/after/report.json.gz
+ create mode 100644 docs/production/evidence/hero-captions-2026-10-15/after/summary.json
+ create mode 100644 docs/production/evidence/hero-captions-2026-10-15/after/touye-390-normal-0.png
+ create mode 100644 docs/production/evidence/hero-captions-2026-10-15/after/touye-390-normal-shot-0-eyes.png
+ create mode 100644 docs/production/evidence/hero-captions-2026-10-15/after/touye-390-normal-shot-1-skill.png
+ create mode 100644 docs/production/evidence/hero-captions-2026-10-15/after/touye-390-normal-shot-2-landing.png
+ create mode 100644 docs/production/evidence/hero-captions-2026-10-15/after/touye-390-normal-shot-3-landing-late.png
+ create mode 100644 docs/production/evidence/hero-captions-2026-10-15/after/xiemu-1366-normal-0.png
+ create mode 100644 docs/production/evidence/hero-captions-2026-10-15/after/xiemu-1366-normal-shot-0-eyes.png
+ create mode 100644 docs/production/evidence/hero-captions-2026-10-15/after/xiemu-1366-normal-shot-1-skill.png
+ create mode 100644 docs/production/evidence/hero-captions-2026-10-15/after/xiemu-1366-normal-shot-2-landing.png
+ create mode 100644 docs/production/evidence/hero-captions-2026-10-15/after/xiemu-1366-normal-shot-3-landing-late.png
+ create mode 100644 docs/production/evidence/hero-captions-2026-10-15/after/xiemu-320-normal-0.png
+ create mode 100644 docs/production/evidence/hero-captions-2026-10-15/after/xiemu-320-normal-shot-0-eyes.png
+ create mode 100644 docs/production/evidence/hero-captions-2026-10-15/after/xiemu-320-normal-shot-1-skill.png
+ create mode 100644 docs/production/evidence/hero-captions-2026-10-15/after/xiemu-320-normal-shot-2-landing.png
+ create mode 100644 docs/production/evidence/hero-captions-2026-10-15/after/xiemu-320-normal-shot-3-landing-late.png
+ create mode 100644 docs/production/evidence/hero-captions-2026-10-15/after/xiemu-390-fast-0.png
+ create mode 100644 docs/production/evidence/hero-captions-2026-10-15/after/xiemu-390-fast-shot-0-eyes.png
+ create mode 100644 docs/production/evidence/hero-captions-2026-10-15/after/xiemu-390-fast-shot-1-skill.png
+ create mode 100644 docs/production/evidence/hero-captions-2026-10-15/after/xiemu-390-fast-shot-2-landing.png
+ create mode 100644 docs/production/evidence/hero-captions-2026-10-15/after/xiemu-390-fast-shot-3-landing-late.png
+ create mode 100644 docs/production/evidence/hero-captions-2026-10-15/after/xiemu-390-normal-0.png
+ create mode 100644 docs/production/evidence/hero-captions-2026-10-15/after/xiemu-390-normal-shot-0-eyes.png
+ create mode 100644 docs/production/evidence/hero-captions-2026-10-15/after/xiemu-390-normal-shot-1-skill.png
+ create mode 100644 docs/production/evidence/hero-captions-2026-10-15/after/xiemu-390-normal-shot-2-landing.png
+ create mode 100644 docs/production/evidence/hero-captions-2026-10-15/after/xiemu-390-normal-shot-3-landing-late.png
+ create mode 100644 docs/production/evidence/hero-captions-2026-10-15/before/report.json.gz
+ create mode 100644 docs/production/evidence/hero-captions-2026-10-15/before/summary.json
+ create mode 100644 docs/production/evidence/hero-captions-2026-10-15/before/xiemu-1366-normal-0.png
+ create mode 100644 docs/production/evidence/hero-captions-2026-10-15/before/xiemu-1366-normal-shot-0-eyes.png
+ create mode 100644 docs/production/evidence/hero-captions-2026-10-15/before/xiemu-1366-normal-shot-1-skill.png
+ create mode 100644 docs/production/evidence/hero-captions-2026-10-15/before/xiemu-1366-normal-shot-2-landing.png
+ create mode 100644 docs/production/evidence/hero-captions-2026-10-15/before/xiemu-1366-normal-shot-3-landing-late.png
+ create mode 100644 docs/production/evidence/hero-captions-2026-10-15/before/xiemu-390-normal-0.png
+ create mode 100644 docs/production/evidence/hero-captions-2026-10-15/before/xiemu-390-normal-shot-0-eyes.png
+ create mode 100644 docs/production/evidence/hero-captions-2026-10-15/before/xiemu-390-normal-shot-1-skill.png
+ create mode 100644 docs/production/evidence/hero-captions-2026-10-15/before/xiemu-390-normal-shot-2-landing.png
+ create mode 100644 docs/production/evidence/hero-captions-2026-10-15/before/xiemu-390-normal-shot-3-landing-late.png
+ create mode 100644 docs/production/evidence/hero-captions-2026-10-15/caption-boundaries/erxiang-390-exit-0.png
+ create mode 100644 docs/production/evidence/hero-captions-2026-10-15/caption-boundaries/erxiang-390-exit-shot-0-eyes.png
+ create mode 100644 docs/production/evidence/hero-captions-2026-10-15/caption-boundaries/erxiang-390-exit-shot-1-skill.png
+ create mode 100644 docs/production/evidence/hero-captions-2026-10-15/caption-boundaries/erxiang-390-reduce-0.png
+ create mode 100644 docs/production/evidence/hero-captions-2026-10-15/caption-boundaries/erxiang-390-reduce-shot-0-landing.png
+ create mode 100644 docs/production/evidence/hero-captions-2026-10-15/caption-boundaries/erxiang-390-reduce-shot-1-landing-late.png
+ create mode 100644 docs/production/evidence/hero-captions-2026-10-15/caption-boundaries/erxiang-390-skip-0.png
+ create mode 100644 docs/production/evidence/hero-captions-2026-10-15/caption-boundaries/erxiang-390-skip-shot-0-eyes.png
+ create mode 100644 docs/production/evidence/hero-captions-2026-10-15/caption-boundaries/erxiang-390-skip-shot-1-skill.png
+ create mode 100644 docs/production/evidence/hero-captions-2026-10-15/caption-boundaries/report.json.gz
+ create mode 100644 docs/production/evidence/hero-captions-2026-10-15/caption-boundaries/summary.json
+ create mode 100644 docs/production/evidence/hero-captions-2026-10-15/caption-boundaries/xiemu-390-fast-0.png
+ create mode 100644 docs/production/evidence/hero-captions-2026-10-15/caption-boundaries/xiemu-390-fast-shot-0-eyes.png
+ create mode 100644 docs/production/evidence/hero-captions-2026-10-15/caption-boundaries/xiemu-390-fast-shot-1-skill.png
+ create mode 100644 docs/production/evidence/hero-captions-2026-10-15/caption-boundaries/xiemu-390-fast-shot-2-landing.png
+ create mode 100644 docs/production/evidence/hero-captions-2026-10-15/caption-boundaries/xiemu-390-fast-shot-3-landing-late.png
+ create mode 100644 docs/production/evidence/hero-captions-2026-10-15/caption-source-review.json
+ create mode 100644 docs/production/evidence/hero-captions-2026-10-15/checks/after.txt
+ create mode 100644 docs/production/evidence/hero-captions-2026-10-15/checks/before.txt
+ create mode 100644 docs/production/evidence/hero-captions-2026-10-15/checks/build.txt
+ create mode 100644 docs/production/evidence/hero-captions-2026-10-15/checks/caption-boundaries.txt
+ create mode 100644 docs/production/evidence/hero-captions-2026-10-15/checks/dpr3.txt
+ create mode 100644 docs/production/evidence/hero-captions-2026-10-15/checks/explanations-mobile.txt
+ create mode 100644 docs/production/evidence/hero-captions-2026-10-15/checks/explanations-pc.txt
+ create mode 100644 docs/production/evidence/hero-captions-2026-10-15/checks/explanations.txt
+ create mode 100644 docs/production/evidence/hero-captions-2026-10-15/checks/plan.txt
+ create mode 100644 docs/production/evidence/hero-captions-2026-10-15/checks/tests.txt
+ create mode 100644 docs/production/evidence/hero-captions-2026-10-15/checks/typecheck.txt
+ create mode 100644 docs/production/evidence/hero-captions-2026-10-15/dpr3-caption/report.json.gz
+ create mode 100644 docs/production/evidence/hero-captions-2026-10-15/dpr3-caption/summary.json
+ create mode 100644 docs/production/evidence/hero-captions-2026-10-15/dpr3-caption/xiemu-390-fast-0.png
+ create mode 100644 docs/production/evidence/hero-captions-2026-10-15/dpr3-caption/xiemu-390-fast-shot-0-eyes.png
+ create mode 100644 docs/production/evidence/hero-captions-2026-10-15/dpr3-caption/xiemu-390-fast-shot-1-skill.png
+ create mode 100644 docs/production/evidence/hero-captions-2026-10-15/dpr3-caption/xiemu-390-fast-shot-2-landing.png
+ create mode 100644 docs/production/evidence/hero-captions-2026-10-15/dpr3-caption/xiemu-390-fast-shot-3-landing-late.png
+ create mode 100644 docs/production/evidence/hero-captions-2026-10-15/explanations-mobile/390-amo-selection-first.png
+ create mode 100644 docs/production/evidence/hero-captions-2026-10-15/explanations-mobile/390-amo-table-HUD-first.png
+ create mode 100644 docs/production/evidence/hero-captions-2026-10-15/explanations-mobile/390-azao-table-HUD-first.png
+ create mode 100644 docs/production/evidence/hero-captions-2026-10-15/explanations-mobile/390-erxiang-table-HUD-first.png
+ create mode 100644 docs/production/evidence/hero-captions-2026-10-15/explanations-mobile/390-laohuan-table-HUD-first.png
+ create mode 100644 docs/production/evidence/hero-captions-2026-10-15/explanations-mobile/390-touye-shop-first.png
+ create mode 100644 docs/production/evidence/hero-captions-2026-10-15/explanations-mobile/390-touye-table-HUD-first.png
+ create mode 100644 docs/production/evidence/hero-captions-2026-10-15/explanations-mobile/390-xiemu-lost-result-first.png
+ create mode 100644 docs/production/evidence/hero-captions-2026-10-15/explanations-mobile/390-xiemu-table-HUD-first.png
+ create mode 100644 docs/production/evidence/hero-captions-2026-10-15/explanations-mobile/full-state-journal-storage-localStorage.json.gz
+ create mode 100644 docs/production/evidence/hero-captions-2026-10-15/explanations-mobile/report.json
+ create mode 100644 docs/production/evidence/hero-captions-2026-10-15/explanations-pc/1366-amo-selection-first.png
+ create mode 100644 docs/production/evidence/hero-captions-2026-10-15/explanations-pc/1366-amo-table-HUD-first.png
+ create mode 100644 docs/production/evidence/hero-captions-2026-10-15/explanations-pc/1366-azao-table-HUD-first.png
+ create mode 100644 docs/production/evidence/hero-captions-2026-10-15/explanations-pc/1366-erxiang-table-HUD-first.png
+ create mode 100644 docs/production/evidence/hero-captions-2026-10-15/explanations-pc/1366-laohuan-table-HUD-first.png
+ create mode 100644 docs/production/evidence/hero-captions-2026-10-15/explanations-pc/1366-touye-shop-first.png
+ create mode 100644 docs/production/evidence/hero-captions-2026-10-15/explanations-pc/1366-touye-table-HUD-first.png
+ create mode 100644 docs/production/evidence/hero-captions-2026-10-15/explanations-pc/1366-xiemu-lost-result-first.png
+ create mode 100644 docs/production/evidence/hero-captions-2026-10-15/explanations-pc/1366-xiemu-table-HUD-first.png
+ create mode 100644 docs/production/evidence/hero-captions-2026-10-15/explanations-pc/full-state-journal-storage-localStorage.json.gz
+ create mode 100644 docs/production/evidence/hero-captions-2026-10-15/explanations-pc/report.json
+ create mode 100644 docs/production/evidence/hero-captions-2026-10-15/identity.json
+ create mode 100644 docs/production/evidence/hero-captions-2026-10-15/laohuan-r3/1366-normal-0-eyes.png
+ create mode 100644 docs/production/evidence/hero-captions-2026-10-15/laohuan-r3/1366-normal-1-skill.png
+ create mode 100644 docs/production/evidence/hero-captions-2026-10-15/laohuan-r3/1366-normal-2-landing.png
+ create mode 100644 docs/production/evidence/hero-captions-2026-10-15/laohuan-r3/1366-normal-3-landing.png
+ create mode 100644 docs/production/evidence/hero-captions-2026-10-15/laohuan-r3/390-fast-0-eyes.png
+ create mode 100644 docs/production/evidence/hero-captions-2026-10-15/laohuan-r3/390-fast-1-skill.png
+ create mode 100644 docs/production/evidence/hero-captions-2026-10-15/laohuan-r3/390-fast-2-landing.png
+ create mode 100644 docs/production/evidence/hero-captions-2026-10-15/laohuan-r3/390-fast-3-landing.png
+ create mode 100644 docs/production/evidence/hero-captions-2026-10-15/laohuan-r3/390-normal-0-eyes.png
+ create mode 100644 docs/production/evidence/hero-captions-2026-10-15/laohuan-r3/390-normal-1-skill.png
+ create mode 100644 docs/production/evidence/hero-captions-2026-10-15/laohuan-r3/390-normal-2-landing.png
+ create mode 100644 docs/production/evidence/hero-captions-2026-10-15/laohuan-r3/390-normal-3-landing.png
+ create mode 100644 docs/production/evidence/hero-captions-2026-10-15/laohuan-r3/390-reduce-0-landing.png
+ create mode 100644 docs/production/evidence/hero-captions-2026-10-15/laohuan-r3/390-reduce-1-landing.png
+ create mode 100644 docs/production/evidence/hero-captions-2026-10-15/laohuan-r3/report.json.gz
+ create mode 100644 docs/production/evidence/hero-captions-2026-10-15/laohuan-r3/summary.json
+ create mode 100644 docs/production/evidence/hero-captions-2026-10-15/manifest.json
+ create mode 100644 docs/production/evidence/hero-captions-2026-10-15/original-failures/explanations/full-state-journal-storage-localStorage.json.gz
+ create mode 100644 docs/production/evidence/hero-captions-2026-10-15/original-failures/explanations/report.json
+ create mode 100644 docs/production/evidence/hero-captions-2026-10-15/original-failures/laohuan-r2/1366-normal-FAIL.png
+ create mode 100644 docs/production/evidence/hero-captions-2026-10-15/original-failures/laohuan-r2/report.json.gz
+ create mode 100644 docs/production/evidence/hero-captions-2026-10-15/original-failures/laohuan-r2/summary.json
+ create mode 100644 docs/production/evidence/hero-captions-2026-10-15/original-failures/laohuan/1366-normal-FAIL.png
+ create mode 100644 docs/production/evidence/hero-captions-2026-10-15/original-failures/laohuan/report.json.gz
+ create mode 100644 docs/production/evidence/hero-captions-2026-10-15/original-failures/laohuan/summary.json
+ create mode 100644 harness/hero-caption-laohuan.mjs
+ create mode 100644 src/game/HeroClimaxCaption.ts

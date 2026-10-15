@@ -1,0 +1,102 @@
+Auto-merging src/game/GameScene.ts
+Merge made by the 'ort' strategy.
+ .../l25-hero-play-reminder-2026-10-15/README.md    |   55 +
+ .../baseline-resize/after-play.png                 |  Bin 0 -> 59807 bytes
+ .../baseline-resize/before-play.png                |  Bin 0 -> 57870 bytes
+ .../baseline-resize/report.json                    | 2136 ++++++++++++++++++++
+ .../baseline-resize/reproduce.mjs                  |   36 +
+ .../build-info.json                                |    7 +
+ .../previous-failures/first-FAIL.json.gz           |  Bin 0 -> 565 bytes
+ .../previous-failures/narrow-debug.json.gz         |  Bin 0 -> 2676 bytes
+ .../previous-failures/narrow-debug.png             |  Bin 0 -> 59577 bytes
+ .../previous-failures/narrow-debug2.json.gz        |  Bin 0 -> 2677 bytes
+ .../previous-failures/narrow-debug2.png            |  Bin 0 -> 59583 bytes
+ .../previous-failures/second-FAIL.json.gz          |  Bin 0 -> 69444 bytes
+ .../previous-failures/third-FAIL.json.gz           |  Bin 0 -> 162696 bytes
+ .../report.json.gz                                 |  Bin 0 -> 162565 bytes
+ .../screenshots/1366-amo-reminder.png              |  Bin 0 -> 155553 bytes
+ .../screenshots/1366-amo-returned.png              |  Bin 0 -> 134993 bytes
+ .../screenshots/1366-azao-reminder.png             |  Bin 0 -> 161569 bytes
+ .../screenshots/1366-azao-returned.png             |  Bin 0 -> 179228 bytes
+ .../screenshots/1366-erxiang-reminder.png          |  Bin 0 -> 156793 bytes
+ .../screenshots/1366-erxiang-returned.png          |  Bin 0 -> 152402 bytes
+ .../screenshots/1366-laohuan-reminder.png          |  Bin 0 -> 152050 bytes
+ .../screenshots/1366-laohuan-returned.png          |  Bin 0 -> 170252 bytes
+ .../screenshots/1366-save-failed.png               |  Bin 0 -> 159844 bytes
+ .../screenshots/1366-touye-reminder.png            |  Bin 0 -> 156797 bytes
+ .../screenshots/1366-touye-returned.png            |  Bin 0 -> 132429 bytes
+ .../screenshots/1366-xiemu-reminder.png            |  Bin 0 -> 158164 bytes
+ .../screenshots/1366-xiemu-returned.png            |  Bin 0 -> 179667 bytes
+ .../screenshots/320-reminder-bottom.png            |  Bin 0 -> 55761 bytes
+ .../screenshots/320-reminder.png                   |  Bin 0 -> 55744 bytes
+ .../screenshots/390-amo-reminder.png               |  Bin 0 -> 66026 bytes
+ .../screenshots/390-amo-returned.png               |  Bin 0 -> 47977 bytes
+ .../screenshots/390-azao-reminder.png              |  Bin 0 -> 72425 bytes
+ .../screenshots/390-azao-returned.png              |  Bin 0 -> 41430 bytes
+ .../screenshots/390-erxiang-reminder.png           |  Bin 0 -> 66783 bytes
+ .../screenshots/390-erxiang-returned.png           |  Bin 0 -> 56881 bytes
+ .../screenshots/390-laohuan-reminder.png           |  Bin 0 -> 65983 bytes
+ .../screenshots/390-laohuan-returned.png           |  Bin 0 -> 43561 bytes
+ .../screenshots/390-save-failed.png                |  Bin 0 -> 49836 bytes
+ .../screenshots/390-touye-reminder.png             |  Bin 0 -> 69358 bytes
+ .../screenshots/390-touye-returned.png             |  Bin 0 -> 49512 bytes
+ .../screenshots/390-xiemu-reminder.png             |  Bin 0 -> 68035 bytes
+ .../screenshots/390-xiemu-returned.png             |  Bin 0 -> 56485 bytes
+ .../screenshots/740-reminder-bottom.png            |  Bin 0 -> 57315 bytes
+ .../screenshots/740-reminder.png                   |  Bin 0 -> 57117 bytes
+ .../l25-hero-play-reminder-2026-10-15/summary.json |  247 +++
+ harness/hero-play-reminder.mjs                     |   45 +
+ src/game/GameScene.ts                              |   12 +-
+ src/game/HeroPlayReminder.css                      |   14 +
+ src/game/HeroPlayReminder.ts                       |   51 +
+ tests/hero-play-reminder.test.ts                   |   88 +
+ 50 files changed, 2690 insertions(+), 1 deletion(-)
+ create mode 100644 docs/production/evidence/l25-hero-play-reminder-2026-10-15/README.md
+ create mode 100644 docs/production/evidence/l25-hero-play-reminder-2026-10-15/baseline-resize/after-play.png
+ create mode 100644 docs/production/evidence/l25-hero-play-reminder-2026-10-15/baseline-resize/before-play.png
+ create mode 100644 docs/production/evidence/l25-hero-play-reminder-2026-10-15/baseline-resize/report.json
+ create mode 100644 docs/production/evidence/l25-hero-play-reminder-2026-10-15/baseline-resize/reproduce.mjs
+ create mode 100644 docs/production/evidence/l25-hero-play-reminder-2026-10-15/build-info.json
+ create mode 100644 docs/production/evidence/l25-hero-play-reminder-2026-10-15/previous-failures/first-FAIL.json.gz
+ create mode 100644 docs/production/evidence/l25-hero-play-reminder-2026-10-15/previous-failures/narrow-debug.json.gz
+ create mode 100644 docs/production/evidence/l25-hero-play-reminder-2026-10-15/previous-failures/narrow-debug.png
+ create mode 100644 docs/production/evidence/l25-hero-play-reminder-2026-10-15/previous-failures/narrow-debug2.json.gz
+ create mode 100644 docs/production/evidence/l25-hero-play-reminder-2026-10-15/previous-failures/narrow-debug2.png
+ create mode 100644 docs/production/evidence/l25-hero-play-reminder-2026-10-15/previous-failures/second-FAIL.json.gz
+ create mode 100644 docs/production/evidence/l25-hero-play-reminder-2026-10-15/previous-failures/third-FAIL.json.gz
+ create mode 100644 docs/production/evidence/l25-hero-play-reminder-2026-10-15/report.json.gz
+ create mode 100644 docs/production/evidence/l25-hero-play-reminder-2026-10-15/screenshots/1366-amo-reminder.png
+ create mode 100644 docs/production/evidence/l25-hero-play-reminder-2026-10-15/screenshots/1366-amo-returned.png
+ create mode 100644 docs/production/evidence/l25-hero-play-reminder-2026-10-15/screenshots/1366-azao-reminder.png
+ create mode 100644 docs/production/evidence/l25-hero-play-reminder-2026-10-15/screenshots/1366-azao-returned.png
+ create mode 100644 docs/production/evidence/l25-hero-play-reminder-2026-10-15/screenshots/1366-erxiang-reminder.png
+ create mode 100644 docs/production/evidence/l25-hero-play-reminder-2026-10-15/screenshots/1366-erxiang-returned.png
+ create mode 100644 docs/production/evidence/l25-hero-play-reminder-2026-10-15/screenshots/1366-laohuan-reminder.png
+ create mode 100644 docs/production/evidence/l25-hero-play-reminder-2026-10-15/screenshots/1366-laohuan-returned.png
+ create mode 100644 docs/production/evidence/l25-hero-play-reminder-2026-10-15/screenshots/1366-save-failed.png
+ create mode 100644 docs/production/evidence/l25-hero-play-reminder-2026-10-15/screenshots/1366-touye-reminder.png
+ create mode 100644 docs/production/evidence/l25-hero-play-reminder-2026-10-15/screenshots/1366-touye-returned.png
+ create mode 100644 docs/production/evidence/l25-hero-play-reminder-2026-10-15/screenshots/1366-xiemu-reminder.png
+ create mode 100644 docs/production/evidence/l25-hero-play-reminder-2026-10-15/screenshots/1366-xiemu-returned.png
+ create mode 100644 docs/production/evidence/l25-hero-play-reminder-2026-10-15/screenshots/320-reminder-bottom.png
+ create mode 100644 docs/production/evidence/l25-hero-play-reminder-2026-10-15/screenshots/320-reminder.png
+ create mode 100644 docs/production/evidence/l25-hero-play-reminder-2026-10-15/screenshots/390-amo-reminder.png
+ create mode 100644 docs/production/evidence/l25-hero-play-reminder-2026-10-15/screenshots/390-amo-returned.png
+ create mode 100644 docs/production/evidence/l25-hero-play-reminder-2026-10-15/screenshots/390-azao-reminder.png
+ create mode 100644 docs/production/evidence/l25-hero-play-reminder-2026-10-15/screenshots/390-azao-returned.png
+ create mode 100644 docs/production/evidence/l25-hero-play-reminder-2026-10-15/screenshots/390-erxiang-reminder.png
+ create mode 100644 docs/production/evidence/l25-hero-play-reminder-2026-10-15/screenshots/390-erxiang-returned.png
+ create mode 100644 docs/production/evidence/l25-hero-play-reminder-2026-10-15/screenshots/390-laohuan-reminder.png
+ create mode 100644 docs/production/evidence/l25-hero-play-reminder-2026-10-15/screenshots/390-laohuan-returned.png
+ create mode 100644 docs/production/evidence/l25-hero-play-reminder-2026-10-15/screenshots/390-save-failed.png
+ create mode 100644 docs/production/evidence/l25-hero-play-reminder-2026-10-15/screenshots/390-touye-reminder.png
+ create mode 100644 docs/production/evidence/l25-hero-play-reminder-2026-10-15/screenshots/390-touye-returned.png
+ create mode 100644 docs/production/evidence/l25-hero-play-reminder-2026-10-15/screenshots/390-xiemu-reminder.png
+ create mode 100644 docs/production/evidence/l25-hero-play-reminder-2026-10-15/screenshots/390-xiemu-returned.png
+ create mode 100644 docs/production/evidence/l25-hero-play-reminder-2026-10-15/screenshots/740-reminder-bottom.png
+ create mode 100644 docs/production/evidence/l25-hero-play-reminder-2026-10-15/screenshots/740-reminder.png
+ create mode 100644 docs/production/evidence/l25-hero-play-reminder-2026-10-15/summary.json
+ create mode 100644 harness/hero-play-reminder.mjs
+ create mode 100644 src/game/HeroPlayReminder.css
+ create mode 100644 src/game/HeroPlayReminder.ts
+ create mode 100644 tests/hero-play-reminder.test.ts
