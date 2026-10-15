@@ -1,0 +1,89 @@
+{
+  "method": "Read-only full-image RGB comparison to previously viewed native screenshots; changed PNG also actually viewed. No image rewritten.",
+  "rows": [
+    {
+      "file": "320-short-reading-hands-read-03.png",
+      "priorRGB": "74cccd704c3d79cf688834703d6802de1e1dd8d06688bca046e35ca7f298af26",
+      "boundRGB": "74cccd704c3d79cf688834703d6802de1e1dd8d06688bca046e35ca7f298af26",
+      "pixelEqual": true,
+      "visualReview": "Exact RGB pixels equal previously actually viewed frozen sequence"
+    },
+    {
+      "file": "390-short-reading-hands-read-03.png",
+      "priorRGB": "4abcf43565683bd70b999564168a043278edea0a98fca502cb7f579e507002e5",
+      "boundRGB": "4abcf43565683bd70b999564168a043278edea0a98fca502cb7f579e507002e5",
+      "pixelEqual": true,
+      "visualReview": "Exact RGB pixels equal previously actually viewed frozen sequence"
+    },
+    {
+      "file": "320-short-reading-boss-read-02.png",
+      "priorRGB": "634a955ce85e51d56b7084e3ce1aaf17e57943301c82083d920f7a1243a474a9",
+      "boundRGB": "634a955ce85e51d56b7084e3ce1aaf17e57943301c82083d920f7a1243a474a9",
+      "pixelEqual": true,
+      "visualReview": "Exact RGB pixels equal previously actually viewed frozen sequence"
+    },
+    {
+      "file": "320-short-reading-boss-read-03.png",
+      "priorRGB": "fafefafdaa30948957ecb0d22187f1268a9c16fe41c41f66b8474abb0cbdcd14",
+      "boundRGB": "fafefafdaa30948957ecb0d22187f1268a9c16fe41c41f66b8474abb0cbdcd14",
+      "pixelEqual": true,
+      "visualReview": "Exact RGB pixels equal previously actually viewed frozen sequence"
+    },
+    {
+      "file": "320-short-reading-boss-read-04.png",
+      "priorRGB": "032cec2a77140aa80b683916418ff573423d865d06e07b857e718879384c8be0",
+      "boundRGB": "032cec2a77140aa80b683916418ff573423d865d06e07b857e718879384c8be0",
+      "pixelEqual": true,
+      "visualReview": "Exact RGB pixels equal previously actually viewed frozen sequence"
+    },
+    {
+      "file": "390-short-reading-boss-read-01.png",
+      "priorRGB": "afb893fb8df027086060d525015d2e8fff07b8010eace21bf61f4a4c568eb3de",
+      "boundRGB": "afb893fb8df027086060d525015d2e8fff07b8010eace21bf61f4a4c568eb3de",
+      "pixelEqual": true,
+      "visualReview": "Exact RGB pixels equal previously actually viewed frozen sequence"
+    },
+    {
+      "file": "390-short-reading-boss-read-02.png",
+      "priorRGB": "a35560e5aec1f083fdcd67b072cc31f7a2538f6a020977649061c210553647ec",
+      "boundRGB": "a35560e5aec1f083fdcd67b072cc31f7a2538f6a020977649061c210553647ec",
+      "pixelEqual": true,
+      "visualReview": "Exact RGB pixels equal previously actually viewed frozen sequence"
+    },
+    {
+      "file": "390-short-reading-boss-read-03.png",
+      "priorRGB": "12096cc3279a4487e3f1a434064e159cbe3df05091b8d7b76dbe130d58c9bd25",
+      "boundRGB": "12096cc3279a4487e3f1a434064e159cbe3df05091b8d7b76dbe130d58c9bd25",
+      "pixelEqual": true,
+      "visualReview": "Exact RGB pixels equal previously actually viewed frozen sequence"
+    },
+    {
+      "file": "390-short-reading-boss-read-04.png",
+      "priorRGB": "eb7d9fbcc3990bf9e589d8096f6fd4ee62cd2c0c5c73a7094f938678ff319f0a",
+      "boundRGB": "eb7d9fbcc3990bf9e589d8096f6fd4ee62cd2c0c5c73a7094f938678ff319f0a",
+      "pixelEqual": true,
+      "visualReview": "Exact RGB pixels equal previously actually viewed frozen sequence"
+    },
+    {
+      "file": "320-short-reading-post-skip-heading-initial.png",
+      "priorRGB": "c80dc4f1638c2287dd5e7cc269fe36b55fba210dbcc7afee4365a7b5986e3cd1",
+      "boundRGB": "c80dc4f1638c2287dd5e7cc269fe36b55fba210dbcc7afee4365a7b5986e3cd1",
+      "pixelEqual": true,
+      "visualReview": "Exact RGB pixels equal previously actually viewed frozen sequence"
+    },
+    {
+      "file": "390-short-reading-post-skip-heading-initial.png",
+      "priorRGB": "6c307fb75012219383bcbbe3845a56692e74203fe40eca230e41d2d03fd722c7",
+      "boundRGB": "a31e903aa44a327a839cd78b7ca704acdbc24069bff348ec09c83303580d61aa",
+      "pixelEqual": false,
+      "visualReview": "Bound PNG separately actually viewed. Full-image RGB differs; no exclusive cause attributed. The complete title-region RGB audit remains equal.",
+      "pixelDifference": {
+        "count": 4653,
+        "minX": 164,
+        "minY": 434,
+        "maxX": 254,
+        "maxY": 488
+      }
+    }
+  ]
+}

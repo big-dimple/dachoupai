@@ -1,0 +1,50 @@
+{
+  "source": "final-full-state.json.gz / 390-short-boss/initial",
+  "scope": "Committed last trace only; no counterfactual score or single-cause loss attribution",
+  "score": "90",
+  "heat": "479",
+  "target": "800",
+  "suppressionEvents": [
+    {
+      "eventId": "controlled/settlement/boss-loss/hand/controlled/settlement/boss-loss/command/7/event/2",
+      "rootId": "controlled/settlement/boss-loss/hand/controlled/settlement/boss-loss/command/7",
+      "rootEventId": "controlled/settlement/boss-loss/hand/controlled/settlement/boss-loss/command/7/event/2",
+      "phase": "onCardScore",
+      "sourceType": "rule",
+      "sourceDefinitionId": "B02",
+      "sourceInstanceId": "controlled/settlement/boss-loss",
+      "targetCardId": "hearts-3",
+      "operation": "ordinary-points-suppressed",
+      "value": {
+        "n": "0",
+        "d": "1"
+      },
+      "before": {
+        "H": {
+          "n": "45",
+          "d": "1"
+        },
+        "M": {
+          "n": "2",
+          "d": "1"
+        }
+      },
+      "after": {
+        "H": {
+          "n": "45",
+          "d": "1"
+        },
+        "M": {
+          "n": "2",
+          "d": "1"
+        }
+      },
+      "reasonKey": "B02.ordinary-points-suppressed",
+      "visibleCondition": {
+        "kind": "always"
+      },
+      "retriggerDepth": 0
+    }
+  ],
+  "erratum": "Earlier prose said two suppressed scoring-card events; final saved pair trace has one. The fourth played card is accompanying, not a scoring card. Product savedBossImpact already read the correct actual event."
+}

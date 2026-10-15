@@ -1,0 +1,15 @@
+import {createServer} from '/workspace/dachoupai/node_modules/vite/dist/node/index.js';
+import {chromium} from '/workspace/dachoupai/node_modules/playwright/index.mjs';
+import {mkdir,writeFile} from 'node:fs/promises';
+import {waitScene,tapUI} from '/workspace/dachoupai/harness/ui.mjs';
+import sharp from '/workspace/dachoupai/node_modules/sharp/dist/index.mjs';
+const root='/workspace/dachoupai',out='/tmp/failure-heading-debug';await mkdir(out,{recursive:true});const server=await createServer({root,mode:'e2e',server:{host:'127.0.0.1',port:4183,strictPort:true},logLevel:'error'});const {failureRetryFixture}=await server.ssrLoadModule('/harness/fixtures/failure-retry.ts');const {makeCheckpoint}=await server.ssrLoadModule('/src/application/checkpoint.ts');const fixture=makeCheckpoint(failureRetryFixture('post-skip').after,[]);await server.listen();const browser=await chromium.launch({executablePath:'/usr/bin/chromium',args:['--no-sandbox','--disable-gpu','--disable-software-rasterizer']});const page=await browser.newPage({viewport:{width:390,height:568},hasTouch:true});const rows=[];
+async function measure(){return page.evaluate(()=>{const d=document.querySelector('.detail-dialog[open]'),h=d.querySelector('h2'),header=h.parentElement;const box=e=>{const r=e.getBoundingClientRect();return {x:r.x,y:r.y,w:r.width,h:r.height,scrollTop:e.scrollTop,scrollHeight:e.scrollHeight,clientHeight:e.clientHeight,transform:getComputedStyle(e).transform,overflow:getComputedStyle(e).overflow,font:getComputedStyle(e).font}};const range=document.createRange();range.selectNodeContents(h);return {heading:box(h),header:box(header),dialog:box(d),scroll:box(d.querySelector('.dialog-scroll')),range:[...range.getClientRects()].map(r=>({x:r.x,y:r.y,w:r.width,h:r.height})),active:document.activeElement?.outerHTML,animations:d.getAnimations().map(a=>({currentTime:a.currentTime,playState:a.playState})),viewport:{x:window.scrollX,y:window.scrollY,visual:window.visualViewport?.offsetTop}};});}
+try{
+ await page.goto('http://127.0.0.1:4183/?harness=1');await waitScene(page,'title');await page.locator('.run-menu-toggle').click();const sec=page.getByText('进度与存档',{exact:true}).locator('..');if(!await sec.evaluate(e=>e.open))await sec.locator('summary').click();const chooser=page.waitForEvent('filechooser');await page.getByRole('button',{name:'导入本局',exact:true}).click();await(await chooser).setFiles({name:'heading.json',mimeType:'application/json',buffer:Buffer.from(JSON.stringify(fixture))});await waitScene(page,'intermission');await page.waitForTimeout(1250);
+ for(let i=0;i<6;i++){
+  await tapUI(page,'intermission','action/failure-guidance',true);const before=await measure();
+  for(const wait of [0,250]){if(wait)await page.waitForTimeout(wait);const f=out+'/'+i+'-'+wait+'.png';await page.screenshot({path:f,fullPage:true});rows.push({i,wait,before,after:await measure(),file:f});}
+  await page.getByRole('button',{name:'返回失败页',exact:true}).tap();
+ }
+}finally{await writeFile(out+'/report.json',JSON.stringify(rows,null,2));await browser.close();await server.close();console.log('saved',rows.length,'captures',out);}

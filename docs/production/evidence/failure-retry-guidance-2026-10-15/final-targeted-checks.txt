@@ -1,0 +1,17 @@
+
+> dachoupai@0.1.0 test
+> vitest run tests/failure-guidance.test.ts tests/failure-summary.test.ts tests/recovery-save.test.ts tests/c03-result-transition.test.ts tests/amo-launch.test.ts tests/result-stage.test.ts tests/settlement-presentation.test.ts tests/saved-boss-impact.test.ts
+
+
+ RUN  v4.1.11 /workspace/dachoupai
+
+
+ Test Files  8 passed (8)
+      Tests  98 passed (98)
+   Start at  00:18:09
+   Duration  2.34s (transform 2.02s, setup 0ms, import 3.51s, tests 1.65s, environment 1ms)
+
+
+> dachoupai@0.1.0 typecheck
+> tsc --noEmit
+

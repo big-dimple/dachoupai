@@ -1,0 +1,195 @@
+/** Local controlled terminal QA; domain state is only read, inputs use real UI.
+ * Fault probes wrap SaveStore.commit; they never apply commands or edit saved state. */
+import {createServer} from 'vite';
+import {chromium} from 'playwright';
+import assert from 'node:assert/strict';
+import {mkdir,writeFile} from 'node:fs/promises';
+import {gzipSync} from 'node:zlib';
+import {execFileSync} from 'node:child_process';
+import {waitScene,tapUI,point,confirmHeroRoute} from './ui.mjs';
+const scrollOnly=process.env.FAILURE_QA_SCROLL_ONLY==='1';
+const selectionOnly=process.env.FAILURE_QA_SELECTION_ONLY==='1';
+const out=process.env.FAILURE_QA_OUT??'/tmp/failure-retry-guidance',port=Number(process.env.FAILURE_QA_PORT??4181);
+await mkdir(out,{recursive:true});
+const server=await createServer({mode:'e2e',server:{host:'127.0.0.1',port,strictPort:true},logLevel:'error'});
+const {failureRetryFixture}=await server.ssrLoadModule('/harness/fixtures/failure-retry.ts');
+const {makeCheckpoint,readCheckpoint}=await server.ssrLoadModule('/src/application/checkpoint.ts');
+const {r2ModeStorageKey}=await server.ssrLoadModule('/src/content/r2Modes.ts');
+const {createRun}=await server.ssrLoadModule('/src/domain/run.ts');
+const fixtures=Object.fromEntries(['hands','cards','abandoned','boss','post-skip'].map(kind=>[kind,failureRetryFixture(kind).after]));
+for(const state of Object.values(fixtures)){assert.equal(state.phase,'run-lost');assert.ok(readCheckpoint(makeCheckpoint(state,[])).ok);}
+await server.listen();
+const browser=await chromium.launch({executablePath:process.env.SMOKE_CHROMIUM_EXECUTABLE_PATH??'/usr/bin/chromium',args:['--no-sandbox','--disable-gpu','--disable-software-rasterizer']});
+const report={scrollOnly,selectionOnly,startedAt:new Date().toISOString(),sourceHead:execFileSync('git',['rev-parse','HEAD'],{encoding:'utf8'}).trim(),sourceStatusBefore:execFileSync('git',['status','--porcelain'],{encoding:'utf8'}).trim(),scope:'Local E2E build; controlled terminal fixtures end through original commands, strict production import, native clicks/taps, full state/journal/checkpoint/revision comparison. Not formal-site QA, natural runs, physical devices, hearing or balance acceptance.',cases:[],failures:[]},full=[];
+const observe=page=>page.evaluate(async()=>{
+ const {gameSession}=await import('/src/game/session.ts'),s=gameSession(),c=window.__harness.game.registry.get('runController');
+ return {state:c.state,journal:c.journal,storage:await c.store.read(),status:c.status,pending:s.pendingRun?{state:s.pendingRun.state,journal:s.pendingRun.journal,json:s.pendingRun.exportJSON(),status:s.pendingRun.status}:null};
+});
+async function importState(page,state){
+ await page.goto('http://127.0.0.1:'+port+'/?harness=1');await waitScene(page,'title');
+ await page.locator('.run-menu-toggle').click();const section=page.getByText('进度与存档',{exact:true}).locator('..');if(!await section.evaluate(e=>e.open))await section.locator('summary').click();
+ const chooser=page.waitForEvent('filechooser');await page.getByRole('button',{name:'导入本局',exact:true}).click();await(await chooser).setFiles({name:'failure-controlled.json',mimeType:'application/json',buffer:Buffer.from(JSON.stringify(makeCheckpoint(state,[])))});
+ await waitScene(page,'intermission');await page.waitForFunction(()=>window.__harness.game.scene.getScene('intermission').ready);await page.waitForTimeout(1250);
+}
+async function shot(page,key){await page.screenshot({path:out+'/'+key+'.png',scale:'css',fullPage:true});}
+async function same(page,initial){assert.deepEqual(await observe(page),initial);}
+async function resultGeometry(page,viewport){
+ const facts=await page.evaluate(()=>{
+  const scene=window.__harness.game.scene.getScene('intermission'),all=[],walk=list=>{for(const o of list){all.push(o);if(o.list)walk(o.list);}};walk(scene.view.root.list);
+  return {texts:all.filter(o=>['result/formula','result/gap','result/score','result/title','result/hero-name'].includes(o.name)).map(o=>({name:o.name,text:o.text,box:o.getBounds()})),hero:all.find(o=>o.name==='result-art/hero')?.getBounds(),controls:all.filter(o=>o.input?.enabled&&o.name.startsWith('action/')).map(o=>({name:o.name,box:o.getBounds()}))};
+ });
+ const intersects=(a,b)=>a.x<b.x+b.width&&a.x+a.width>b.x&&a.y<b.y+b.height&&a.y+a.height>b.y;
+ for(const t of facts.texts){assert.ok(t.box.x>=-1&&t.box.x+t.box.width<=viewport.width+1,'result text horizontal '+t.name);assert.ok(t.box.y>=0&&t.box.y+t.box.height<=viewport.height+1,'result text vertical '+t.name);if(facts.hero&&['result/formula','result/gap','result/score'].includes(t.name))assert.ok(!intersects(t.box,facts.hero),'saved facts clear hero '+t.name);}
+ for(const c of facts.controls){assert.ok(c.box.height>=44&&c.box.y>=0&&c.box.y+c.box.height<=viewport.height+1,'result action reachable '+c.name);for(const t of facts.texts)assert.ok(!intersects(c.box,t.box),'result action leaves facts clear '+c.name);}
+ return facts;
+}
+async function buttonBounds(page){
+ return page.locator('.detail-dialog[open] .dialog-actions button').evaluateAll(nodes=>nodes.map(n=>({text:n.textContent,disabled:n.disabled,rect:{x:n.getBoundingClientRect().x,y:n.getBoundingClientRect().y,width:n.getBoundingClientRect().width,height:n.getBoundingClientRect().height}})));
+}
+async function checkDialog(page,viewport){
+ const d=page.locator('.detail-dialog[open]');assert.ok(await d.count());const bounds=await d.boundingBox();assert.ok(bounds.x>=0&&bounds.x+bounds.width<=viewport.width+1);assert.ok(bounds.y>=0&&bounds.y+bounds.height<=viewport.height+1);
+ const buttons=await buttonBounds(page);for(const b of buttons){assert.ok(b.rect.height>=44);assert.ok(b.rect.x>=0&&b.rect.x+b.rect.width<=viewport.width+1);assert.ok(b.rect.y>=0&&b.rect.y+b.rect.height<=viewport.height+1);}
+ const heading=await d.locator('h2').evaluate(h=>{
+  const rect=e=>{const r=e.getBoundingClientRect();return {x:r.x,y:r.y,width:r.width,height:r.height,top:r.top,bottom:r.bottom,left:r.left,right:r.right};},range=document.createRange();range.selectNodeContents(h);
+  const ancestors=[];for(let e=h.parentElement;e;e=e.parentElement){const s=getComputedStyle(e);ancestors.push({tag:e.tagName,className:e.className,box:rect(e),overflowX:s.overflowX,overflowY:s.overflowY});}
+  return {text:h.textContent,box:rect(h),lines:[...range.getClientRects()].map(r=>({top:r.top,bottom:r.bottom,left:r.left,right:r.right})),fontSize:getComputedStyle(h).fontSize,lineHeight:getComputedStyle(h).lineHeight,ancestors};
+ });
+ assert.ok(heading.lines.length>0,'actual DOM heading has text lines');
+ for(const line of heading.lines){assert.ok(line.top>=0&&line.bottom<=viewport.height&&line.left>=0&&line.right<=viewport.width,'heading visible in screenshot viewport');
+  const header=heading.ancestors[0].box;assert.ok(line.top>=header.top-1&&line.bottom<=header.bottom+1&&line.left>=header.left-1&&line.right<=header.right+1,'heading contained in header');
+  for(const a of heading.ancestors){if(/hidden|clip|auto|scroll/.test(a.overflowY))assert.ok(line.top>=a.box.top-1&&line.bottom<=a.box.bottom+1,'heading not vertically clipped by '+a.className);if(/hidden|clip|auto|scroll/.test(a.overflowX))assert.ok(line.left>=a.box.left-1&&line.right<=a.box.right+1,'heading not horizontally clipped by '+a.className);}
+ }
+ return {bounds,buttons,heading,text:await d.innerText(),scroll:await d.locator('.dialog-scroll').evaluate(el=>({top:el.scrollTop,clientHeight:el.clientHeight,scrollHeight:el.scrollHeight,overflowY:getComputedStyle(el).overflowY})),outer:await d.evaluate(el=>({top:el.scrollTop,clientHeight:el.clientHeight,scrollHeight:el.scrollHeight}))};
+}
+/** Read actual clipped text lines; no DOM markers or scroll-position assignments. */
+async function bodyObservation(page){
+ return page.locator('.detail-dialog[open]').evaluate(dialog=>{
+  const scroll=dialog.querySelector('.dialog-scroll'),clip=scroll.getBoundingClientRect(),outer=dialog.getBoundingClientRect();
+  const box=r=>({x:r.x,y:r.y,width:r.width,height:r.height,top:r.top,bottom:r.bottom,left:r.left,right:r.right});
+  const targets=[...dialog.querySelectorAll('.experience-card')].flatMap((card,i)=>[['title',card.querySelector('h3')],['body',card.querySelector('p')]].map(([part,node])=>({id:'advice/'+(i+1)+'/'+part,node})));
+  const rules=dialog.querySelector('.dialog-copy > details.card-rules');if(rules?.open)targets.push({id:'rules/body',node:rules.querySelector('p')});
+  return {outer:{...box(outer),scrollTop:dialog.scrollTop,clientHeight:dialog.clientHeight,scrollHeight:dialog.scrollHeight},scroll:{...box(clip),top:scroll.scrollTop,clientHeight:scroll.clientHeight,scrollHeight:scroll.scrollHeight,overflowY:getComputedStyle(scroll).overflowY},targets:targets.map(({id,node})=>{
+   const range=document.createRange();range.selectNodeContents(node);const lines=[...range.getClientRects()].filter(r=>r.width>0&&r.height>0).map(box);
+   return {id,text:node.textContent,lines,visible:lines.map((r,i)=>r.top>=clip.top-1&&r.bottom<=clip.bottom+1&&r.left>=clip.left-1&&r.right<=clip.right+1?i:-1).filter(i=>i>=0)};
+  })};
+ });
+}
+async function wheelBody(page,delta){
+ const scroll=page.locator('.detail-dialog[open] .dialog-scroll'),b=await scroll.boundingBox(),before=await scroll.evaluate(el=>el.scrollTop);
+ await page.mouse.move(b.x+b.width/2,b.y+Math.min(b.height-8,b.height/2));await page.mouse.wheel(0,delta);
+ await page.waitForFunction(({before,delta})=>{const s=document.querySelector('.detail-dialog[open] .dialog-scroll');return Math.abs(s.scrollTop-before)>.5||delta<0&&s.scrollTop<=1||delta>0&&s.scrollTop+s.clientHeight>=s.scrollHeight-1;},{before,delta});
+ await page.waitForTimeout(90);return bodyObservation(page);
+}
+/** Native wheel reading path overlaps successive viewports and certifies every advice/rules line. */
+async function readGuidanceBody(page,row,initial,viewport,key){
+ const d=page.locator('.detail-dialog[open]'),rules=d.locator('.dialog-copy > details.card-rules');
+ const collapsed=await bodyObservation(page);if(collapsed.scroll.top+collapsed.scroll.clientHeight<collapsed.scroll.scrollHeight-1)await wheelBody(page,collapsed.scroll.scrollHeight*2);
+ const summaryBox=await rules.locator('summary').boundingBox(),summaryView=await bodyObservation(page);assert.ok(summaryBox.y>=summaryView.scroll.y-1&&summaryBox.y+summaryBox.height<=summaryView.scroll.y+summaryView.scroll.height+1,'native wheel reveals rules control before tapping');
+ if(viewport.width<700)await rules.locator('summary').tap();else await rules.locator('summary').click();assert.ok(await rules.evaluate(el=>el.open));
+ const before=await bodyObservation(page);assert.ok(['auto','scroll'].includes(before.scroll.overflowY));assert.ok(before.scroll.clientHeight>0);
+ if(before.scroll.top>0)await wheelBody(page,-before.scroll.scrollHeight*2);
+ const coverage=new Map(),frames=[];let priorTop=-1;
+ for(let i=0;i<50;i++){
+  const observed=await bodyObservation(page);assert.ok(observed.scroll.clientHeight>0);assert.equal(observed.outer.scrollTop,0,'outer dialog is fixed, not the scroll owner');
+  assert.ok(observed.scroll.top>priorTop||i===0,'native body scrolling advances');priorTop=observed.scroll.top;
+  for(const t of observed.targets){assert.ok(t.lines.length>0,'actual text lines exist: '+t.id);let c=coverage.get(t.id);if(!c){c={id:t.id,text:t.text,lineCount:t.lines.length,seen:new Set()};coverage.set(t.id,c);}assert.equal(c.lineCount,t.lines.length);assert.equal(c.text,t.text);for(const index of t.visible)c.seen.add(index);}
+  const dialog=await checkDialog(page,viewport);await same(page,initial);const file=key+'-read-'+String(i).padStart(2,'0');await shot(page,file);
+  frames.push({file:file+'.png',observation:observed,buttons:dialog.buttons,heading:dialog.heading});
+  if(observed.scroll.top+observed.scroll.clientHeight>=observed.scroll.scrollHeight-1)break;
+  await wheelBody(page,Math.max(40,Math.floor(observed.scroll.clientHeight*.62)));
+ }
+ const end=frames.at(-1).observation;
+ assert.ok(end.scroll.top+end.scroll.clientHeight>=end.scroll.scrollHeight-1,'real body reaches bottom');
+ if(viewport.height<=568){assert.ok(end.scroll.scrollHeight>end.scroll.clientHeight,'short screen really overflows');assert.ok(end.scroll.top>0,'native wheel moved real scrollTop');}
+ const covered=[...coverage.values()].map(c=>({...c,seen:[...c.seen].sort((a,b)=>a-b)}));
+ for(const c of covered)assert.equal(c.seen.length,c.lineCount,'every actual line was fully visible: '+c.id);
+ assert.ok(covered.some(c=>c.id==='advice/2/body'));assert.ok(covered.some(c=>c.id==='rules/body'));
+ const rulesEnd=end.targets.find(t=>t.id==='rules/body');assert.ok(rulesEnd.visible.includes(rulesEnd.lines.length-1),'last rules line is visible above fixed actions');
+ row.reading={input:'native page.mouse.wheel over .dialog-scroll',before,frames,covered,atBottom:true,fullTextVisible:true};await same(page,initial);
+}
+
+async function armCommit(page,mode){
+ await page.evaluate(mode=>{
+  const c=window.__harness.game.registry.get('runController'),store=c.store,original=store.commit.bind(store);
+  window.__failureProbe={calls:0,mode};store.commit=async(...args)=>{const p=window.__failureProbe;p.calls++;if(p.mode==='fault')throw new DOMException('controlled quota failure','QuotaExceededError');if(p.mode==='delay')await new Promise(resolve=>setTimeout(resolve,500));return original(...args);};
+ },mode);
+}
+function expectedRestart(old){return createRun({r2Identity:{contentVersion:old.contentVersion,contentHash:old.contentHash},seed:old.seed,characterId:old.characterId,runId:`run/${old.seed}/${old.characterId}`,rulesVersion:'r2',openingRoute:old.openingRoute,modeConfig:{mode:old.mode,difficulty:old.difficulty,challengeId:old.challengeId,programsEnabled:old.programsEnabled}});}
+async function retryFlow(page,row,initial,viewport,fault){
+ await tapUI(page,'intermission','action/failure-guidance',viewport.width<700);await armCommit(page,fault?'fault':'delay');
+ if(!fault){
+  const button=page.getByRole('button',{name:'同局重试',exact:true}),p=await button.boundingBox();await page.mouse.click(p.x+p.width/2,p.y+p.height/2,{clickCount:3,delay:20});
+ }else await page.getByRole('button',{name:'同局重试',exact:true}).tap();
+ if(fault){
+  await page.waitForFunction(async()=>{const {gameSession}=await import('/src/game/session.ts');return gameSession().pendingRun?.status==='paused'&&!gameSession().working;});
+  const failed=await observe(page);assert.deepEqual(failed.state,initial.state);assert.deepEqual(failed.storage,initial.storage);assert.deepEqual(failed.pending.state,expectedRestart(initial.state));assert.equal(failed.pending.status,'paused');row.failed=failed;full.push({key:row.key+'/failed',saved:failed});
+  await shot(page,row.key+'-save-failed');assert.equal(await page.evaluate(()=>window.__harness.game.scene.getScene('intermission').ready),false);
+  if(!await page.locator('.run-menu-modal').evaluate(el=>el.open))await page.locator('.run-menu-toggle').click();await page.getByRole('button',{name:'重试保存',exact:true}).click();const again=await observe(page);assert.equal(again.pending.json,failed.pending.json);assert.deepEqual(again.storage,initial.storage);row.fixedCandidateAfterRepeatedFault=true;
+  await page.evaluate(()=>{window.__failureProbe.mode='delay';});await page.getByRole('button',{name:'重试保存',exact:true}).click();
+ }
+ await waitScene(page,'shop');await page.waitForFunction(()=>window.__harness.game.scene.getScene('shop').ready);const after=await observe(page);
+ assert.deepEqual(after.state,expectedRestart(initial.state));assert.equal(after.state.commandSeq,1);assert.deepEqual(after.journal,[]);assert.equal(after.pending,null);assert.equal(after.storage.revision,initial.storage.revision+1);assert.deepEqual(after.storage.previous,initial.storage.current);assert.equal(await page.evaluate(()=>window.__failureProbe.calls),fault?3:1);
+ row.retry={status:'PASS',commitAttempts:await page.evaluate(()=>window.__failureProbe.calls),successfulRevisionDelta:1,singleNewState:true};full.push({key:row.key+'/retry',saved:after});await shot(page,row.key+'-retry-shop');
+ await page.reload({waitUntil:'networkidle'});await waitScene(page,'title');await tapUI(page,'title','action/title-continue',viewport.width<700);await waitScene(page,'shop');await page.waitForFunction(()=>window.__harness.game.scene.getScene('shop').ready);assert.deepEqual(await observe(page),after);row.coldRecovery='PASS';
+}
+try{
+ const sizes=[{name:'pc',width:1366,height:768},{name:'390',width:390,height:844},{name:'320-short',width:320,height:568}];
+ for(const viewport of (selectionOnly||scrollOnly?[]:sizes))for(const kind of ['hands','cards','abandoned']){
+  const context=await browser.newContext({viewport:{width:viewport.width,height:viewport.height},hasTouch:viewport.width<700,deviceScaleFactor:1}),page=await context.newPage(),row={key:viewport.name+'-'+kind,kind,viewport,errors:[]};report.cases.push(row);page.on('pageerror',e=>row.errors.push(e.message));page.on('dialog',d=>d.accept());page.setDefaultTimeout(15000);
+  try{
+   await importState(page,fixtures[kind]);const initial=await observe(page);full.push({key:row.key+'/initial',saved:initial});row.resultGeometry=await resultGeometry(page,viewport);await shot(page,row.key+'-failure');
+   const hit=await point(page,'intermission','action/failure-guidance');assert.ok(hit.enabled&&hit.x>=0&&hit.x<=viewport.width&&hit.y>=0&&hit.y<=viewport.height);
+   await tapUI(page,'intermission','action/failure-guidance',viewport.width<700);row.dialog=await checkDialog(page,viewport);await shot(page,row.key+'-advice');await same(page,initial);
+   const review=page.getByRole('button',{name:'回看最后一手',exact:true});
+   if(kind==='abandoned')assert.ok(await review.isDisabled());else{
+    await review.click();await page.getByRole('button',{name:'返回再战建议',exact:true}).waitFor();await same(page,initial);await page.getByRole('button',{name:'返回再战建议',exact:true}).click();await same(page,initial);
+   }
+   await readGuidanceBody(page,row,initial,viewport,row.key);row.expanded=await checkDialog(page,viewport);await same(page,initial);
+   if(viewport.name==='320-short'&&kind==='hands')await shot(page,row.key+'-rules-bottom');
+   await page.getByRole('button',{name:'返回失败页',exact:true}).click();await same(page,initial);
+   await tapUI(page,'intermission','action/last-hand',viewport.width<700);await page.getByRole('button',{name:'再战建议',exact:true}).click();await same(page,initial);
+   await page.getByRole('button',{name:'返回选角',exact:true}).click();await waitScene(page,'character-select');await same(page,initial);
+   await tapUI(page,'character-select','action/cancel-character',viewport.width<700);await waitScene(page,'intermission');await same(page,initial);row.readOnlyFlow='PASS';
+   if(kind==='hands')await retryFlow(page,row,initial,viewport,false);
+   assert.deepEqual(row.errors,[]);row.status='PASS';console.log('PASS',row.key);
+  }catch(e){row.status='FAIL';row.error=e.stack;await shot(page,row.key+'-FAIL').catch(()=>{});throw e;}finally{await context.close();}
+ }
+ for(const kind of (selectionOnly||scrollOnly?[]:['boss','fault','post-skip'])){
+  const viewport={width:390,height:568},context=await browser.newContext({viewport,hasTouch:true,deviceScaleFactor:1}),page=await context.newPage(),row={key:'390-short-'+kind,kind,viewport,errors:[]};report.cases.push(row);page.on('pageerror',e=>row.errors.push(e.message));page.on('dialog',d=>d.accept());
+  try{
+   await importState(page,fixtures[kind==='fault'?'hands':kind]);const initial=await observe(page);full.push({key:row.key+'/initial',saved:initial});
+   if(kind==='boss'){await tapUI(page,'intermission','action/failure-guidance',true);row.dialog=await checkDialog(page,viewport);assert.ok(row.dialog.text.includes('普通点数归零'));assert.ok(row.dialog.text.includes('前三张'));await shot(page,row.key+'-advice');await same(page,initial);await page.getByRole('button',{name:'返回失败页',exact:true}).click();await same(page,initial);}
+   else if(kind==='fault')await retryFlow(page,row,initial,viewport,true);
+   else {row.resultGeometry=await resultGeometry(page,viewport);await shot(page,row.key+'-failure');await tapUI(page,'intermission','action/failure-guidance',true);row.dialog=await checkDialog(page,viewport);assert.ok(row.dialog.text.includes('最近一场已跳过，没有计分结果'));assert.ok(row.dialog.text.includes('主动结束'));assert.ok(await page.getByRole('button',{name:'回看最后一手',exact:true}).isDisabled());await shot(page,row.key+'-advice');await same(page,initial);await page.getByRole('button',{name:'返回失败页',exact:true}).click();await same(page,initial);}
+   assert.deepEqual(row.errors,[]);row.status='PASS';console.log('PASS',row.key);
+  }catch(e){row.status='FAIL';row.error=e.stack;await shot(page,row.key+'-FAIL').catch(()=>{});throw e;}finally{await context.close();}
+ }
+ if(!scrollOnly){
+  const viewport={width:390,height:568},context=await browser.newContext({viewport,hasTouch:true,deviceScaleFactor:1}),page=await context.newPage(),row={key:'390-short-new-selection',kind:'new-selection',viewport,errors:[]};report.cases.push(row);page.on('pageerror',e=>row.errors.push(e.message));page.on('dialog',d=>d.accept());
+  try{
+   await importState(page,fixtures.hands);const initial=await observe(page);full.push({key:row.key+'/initial',saved:initial});await tapUI(page,'intermission','action/failure-guidance',true);
+   await page.getByRole('button',{name:'返回选角',exact:true}).click();await waitScene(page,'character-select');await same(page,initial);
+   await tapUI(page,'character-select','character/erxiang',true);await same(page,initial);await confirmHeroRoute(page,true,'flush');await waitScene(page,'shop');await page.waitForFunction(()=>window.__harness.game.scene.getScene('shop').ready);
+   const after=await observe(page);assert.equal(after.state.characterId,'erxiang');assert.equal(after.state.openingRoute,'flush');assert.notEqual(after.state.seed,initial.state.seed);assert.deepEqual(after.state,expectedRestart(after.state));assert.equal(after.state.commandSeq,1);assert.deepEqual(after.journal,[]);assert.equal(after.storage.revision,initial.storage.revision+1);if(r2ModeStorageKey(after.state,after.state.contentHash)===r2ModeStorageKey(initial.state,initial.state.contentHash))assert.deepEqual(after.storage.previous,initial.storage.current);
+   else {const original=await page.evaluate(async state=>{const {gameSession}=await import('/src/game/session.ts');return gameSession().storage.readPartition(state);},initial.state);assert.deepEqual(original.current,initial.storage.current);assert.deepEqual(original.previous,initial.storage.previous);full.push({key:row.key+'/original-partition-preserved',saved:original});row.originalPartitionPreserved=true;}
+   assert.deepEqual(row.errors,[]);full.push({key:row.key+'/new',saved:after});await shot(page,row.key+'-shop');
+   await page.reload({waitUntil:'networkidle'});await waitScene(page,'title');await tapUI(page,'title','action/title-continue',true);await waitScene(page,'shop');await page.waitForFunction(()=>window.__harness.game.scene.getScene('shop').ready);assert.deepEqual(await observe(page),after);row.coldRecovery='PASS';row.singleReplacement='PASS';row.status='PASS';console.log('PASS',row.key);
+  }catch(e){row.status='FAIL';row.error=e.stack;await shot(page,row.key+'-FAIL').catch(()=>{});throw e;}finally{await context.close();}
+ }
+ if(scrollOnly)for(const width of [320,390])for(const kind of ['hands','boss','post-skip']){
+  const viewport={width,height:568},context=await browser.newContext({viewport,hasTouch:true,deviceScaleFactor:1}),page=await context.newPage(),row={key:width+'-short-reading-'+kind,kind,viewport,errors:[]};report.cases.push(row);page.on('pageerror',e=>row.errors.push(e.message));page.on('dialog',d=>d.accept());page.setDefaultTimeout(15000);
+  try{
+   await importState(page,fixtures[kind]);const initial=await observe(page);full.push({key:row.key+'/initial',saved:initial});await tapUI(page,'intermission','action/failure-guidance',true);
+   row.initialDialog=await checkDialog(page,viewport);await shot(page,row.key+'-heading-initial');
+   if(kind==='post-skip')assert.equal(row.initialDialog.heading.text,'已结束本局，重新选择');
+   await readGuidanceBody(page,row,initial,viewport,row.key);
+   if(kind==='boss')assert.ok(row.reading.covered.some(c=>c.id==='advice/3/body'));
+   await page.getByRole('button',{name:'返回失败页',exact:true}).tap();await same(page,initial);
+   await tapUI(page,'intermission','action/failure-guidance',true);assert.equal((await bodyObservation(page)).scroll.top,0);await page.keyboard.press('Escape');await same(page,initial);assert.equal(await page.locator('.detail-dialog[open]').count(),0);
+   await tapUI(page,'intermission','action/failure-guidance',true);const review=page.getByRole('button',{name:'回看最后一手',exact:true});if(kind==='post-skip')assert.ok(await review.isDisabled());else{await review.tap();await same(page,initial);await page.getByRole('button',{name:'返回再战建议',exact:true}).tap();await same(page,initial);}assert.equal((await bodyObservation(page)).scroll.top,0);await page.getByRole('button',{name:'返回失败页',exact:true}).tap();await same(page,initial);
+   assert.deepEqual(row.errors,[]);row.readOnlyReturns='PASS';row.status='PASS';console.log('PASS',row.key);
+  }catch(e){row.status='FAIL';row.error=e.stack;await shot(page,row.key+'-FAIL').catch(()=>{});throw e;}finally{await context.close();}
+ }
+ report.status='PASS';
+}catch(e){report.status='FAIL';report.failures.push(e.stack);process.exitCode=1;console.error(e.stack);}
+finally{report.completedAt=new Date().toISOString();report.sourceHeadAfter=execFileSync('git',['rev-parse','HEAD'],{encoding:'utf8'}).trim();report.sourceStatusAfter=execFileSync('git',['status','--porcelain'],{encoding:'utf8'}).trim();if(report.sourceHead!==report.sourceHeadAfter||report.sourceStatusBefore!==report.sourceStatusAfter){report.status='FAIL';report.failures.push('source changed during QA');process.exitCode=1;}await browser.close();await server.close();await writeFile(out+'/report.json',JSON.stringify(report,null,2)+'\n');await writeFile(out+'/full-state.json.gz',gzipSync(JSON.stringify({fixtures,observations:full})));console.log('Result:',report.status,'in',out);}

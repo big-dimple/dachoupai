@@ -1,0 +1,59 @@
+{
+  "candidate": "64f17df5d041942f5a4fcd9575d0512ad0bcf29e",
+  "readingRun": "0155ebfd0509979a01f57d27da4af26c7162ed02",
+  "readingObserverBlob": "7aa83a9007f7c06741421f1932288a0bbf5724c4",
+  "productsAndFixturesUnchanged": {
+    "src": {
+      "prior3fb": "cb5ddf2e5ea9ba284c52a129f1eccb9140f15385",
+      "current": "cb5ddf2e5ea9ba284c52a129f1eccb9140f15385",
+      "equal": true
+    },
+    "tests": {
+      "prior3fb": "203e1d9177dffbb6cf8f6100ebdda3e8426c1a01",
+      "current": "203e1d9177dffbb6cf8f6100ebdda3e8426c1a01",
+      "equal": true
+    },
+    "src/style.css": {
+      "prior3fb": "561a420fc415768ae33300d34350b84ee9ba16c2",
+      "current": "561a420fc415768ae33300d34350b84ee9ba16c2",
+      "equal": true
+    },
+    "public": {
+      "prior3fb": "c4a6ec74e7fd754b0f300b973020f8afed7542e1",
+      "current": "c4a6ec74e7fd754b0f300b973020f8afed7542e1",
+      "equal": true
+    },
+    "art": {
+      "prior3fb": "b0caa33679b84bee932b2854734c04ad39ba0464",
+      "current": "b0caa33679b84bee932b2854734c04ad39ba0464",
+      "equal": true
+    },
+    "src/domain": {
+      "prior3fb": "bd1f9b2c5a2b7eb4d143b59a094694b12adc8485",
+      "current": "bd1f9b2c5a2b7eb4d143b59a094694b12adc8485",
+      "equal": true
+    },
+    "src/application": {
+      "prior3fb": "1a325d51795f54526ec9f3f313cceb69763a1971",
+      "current": "1a325d51795f54526ec9f3f313cceb69763a1971",
+      "equal": true
+    },
+    "src/platform": {
+      "prior3fb": "860a9f8883cc158ac0c56ad6399518cc897a67b7",
+      "current": "860a9f8883cc158ac0c56ad6399518cc897a67b7",
+      "equal": true
+    },
+    "src/audio": {
+      "prior3fb": "7f6d2d0dd34313a4099d34cfd36b2baa748f83c2",
+      "current": "7f6d2d0dd34313a4099d34cfd36b2baa748f83c2",
+      "equal": true
+    },
+    "harness/fixtures/failure-retry.ts": {
+      "prior3fb": "73d546fd7e33f6df6012ccda5ef85aee24384191",
+      "current": "73d546fd7e33f6df6012ccda5ef85aee24384191",
+      "equal": true
+    }
+  },
+  "roundProductChanges": [],
+  "changes": "Only native-scroll/heading/pixel observation and evidence; no product patch without an observed product defect."
+}

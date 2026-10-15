@@ -1,0 +1,135 @@
+{
+  "startedAt": "2026-10-14T23:58:16.502Z",
+  "sourceHead": "443e4b8ffee29b784489febfef7ed0ca80061bb7",
+  "scope": "Local E2E build; controlled terminal fixtures end through original commands, strict production import, native clicks/taps, full state/journal/checkpoint/revision comparison. Not formal-site QA, natural runs, physical devices, hearing or balance acceptance.",
+  "cases": [
+    {
+      "key": "pc-hands",
+      "kind": "hands",
+      "viewport": {
+        "name": "pc",
+        "width": 1366,
+        "height": 768
+      },
+      "errors": [],
+      "dialog": {
+        "bounds": {
+          "x": 243,
+          "y": 12,
+          "width": 880,
+          "height": 744
+        },
+        "buttons": [
+          {
+            "text": "回看最后一手",
+            "disabled": false,
+            "rect": {
+              "x": 264,
+              "y": 687,
+              "width": 221,
+              "height": 56
+            }
+          },
+          {
+            "text": "返回选角",
+            "disabled": false,
+            "rect": {
+              "x": 493,
+              "y": 687,
+              "width": 193,
+              "height": 56
+            }
+          },
+          {
+            "text": "同局重试",
+            "disabled": false,
+            "rect": {
+              "x": 694,
+              "y": 687,
+              "width": 193,
+              "height": 56
+            }
+          },
+          {
+            "text": "返回失败页",
+            "disabled": false,
+            "rect": {
+              "x": 895,
+              "y": 687,
+              "width": 207,
+              "height": 56
+            }
+          }
+        ],
+        "text": "出牌用尽，准备再战\n\n1. 先把一手凑完整\n末手是高牌，保存热度31；这是记录，不代表它一定是失败原因。\n若摸到同点对子，先留对子、换散牌；例如留两张7，再找第三张7。出牌前核对实际牌型。\n\n2. 升级、做牌或留钱\n筹备店升级只选已发现且未30级的牌型；Lv.1原价4金，之后按等级报价，确认后当场升一级。\n基础改牌原价2金、染色原价4金；升级与改牌/染色共用每店一次。\n实付、现货同名入口、可用目标与库存容量以当店确认页为准；买不起或没有合适目标时可以留钱。\n\n同局重试从开局开始，沿用种子、英雄、模式和本局规则；金币、构筑、工具与成长不继承。建议不保证下一局过关。\n\n出牌次数已用完 · 本场还差 291 热度\n最后一手：高牌 · 31 热度\n剩余出牌 0 次 · 弃牌 3 次\n\n其它查看\n升级与做牌的实际规则\n回看最后一手\n返回选角\n同局重试\n返回失败页",
+        "scroll": {
+          "height": 742,
+          "scrollHeight": 742
+        }
+      },
+      "expanded": {
+        "bounds": {
+          "x": 243,
+          "y": 12,
+          "width": 880,
+          "height": 744
+        },
+        "buttons": [
+          {
+            "text": "回看最后一手",
+            "disabled": false,
+            "rect": {
+              "x": 264,
+              "y": 687,
+              "width": 221,
+              "height": 56
+            }
+          },
+          {
+            "text": "返回选角",
+            "disabled": false,
+            "rect": {
+              "x": 493,
+              "y": 687,
+              "width": 193,
+              "height": 56
+            }
+          },
+          {
+            "text": "同局重试",
+            "disabled": false,
+            "rect": {
+              "x": 694,
+              "y": 687,
+              "width": 193,
+              "height": 56
+            }
+          },
+          {
+            "text": "返回失败页",
+            "disabled": false,
+            "rect": {
+              "x": 895,
+              "y": 687,
+              "width": 207,
+              "height": 56
+            }
+          }
+        ],
+        "text": "出牌用尽，准备再战\n\n1. 先把一手凑完整\n末手是高牌，保存热度31；这是记录，不代表它一定是失败原因。\n若摸到同点对子，先留对子、换散牌；例如留两张7，再找第三张7。出牌前核对实际牌型。\n\n2. 升级、做牌或留钱\n筹备店升级只选已发现且未30级的牌型；Lv.1原价4金，之后按等级报价，确认后当场升一级。\n基础改牌原价2金、染色原价4金；升级与改牌/染色共用每店一次。\n实付、现货同名入口、可用目标与库存容量以当店确认页为准；买不起或没有合适目标时可以留钱。\n\n同局重试从开局开始，沿用种子、英雄、模式和本局规则；金币、构筑、工具与成长不继承。建议不保证下一局过关。\n\n出牌次数已用完 · 本场还差 291 热度\n最后一手：高牌 · 31 热度\n剩余出牌 0 次 · 弃牌 3 次\n\n其它查看\n升级与做牌的实际规则\n\n筹备店升级只选已发现且未30级的牌型；Lv.1原价4金，之后按等级报价，确认后当场升一级。\n基础改牌原价2金、染色原价4金；升级与改牌/染色共用每店一次。\n实付、现货同名入口、可用目标与库存容量以当店确认页为准；买不起或没有合适目标时可以留钱。\n\n回看最后一手\n返回选角\n同局重试\n返回失败页",
+        "scroll": {
+          "height": 742,
+          "scrollHeight": 742
+        }
+      },
+      "readOnlyFlow": "PASS",
+      "status": "FAIL",
+      "error": "AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:\n+ actual - expected\n... Skipped lines\n\n  {\n    boss: {\n      definitionId: 'B01',\n      disabledSuit: null\n    },\n...\n    playedPile: [],\n+   program: null,\n-   program: {\n-     abandoned: false,\n-     chapter: 1,\n-     choiceMade: false,\n-     claimed: false,\n-     lastOpportunityClear: false,\n-     offerIds: [\n-       'PG02',\n-       'PG01'\n-     ],\n-     selectedId: null\n-   },\n    programRerollCoupon: false,\n+   programsEnabled: false,\n-   programsEnabled: true,\n    purchaseCoupons: 0,\n    receipts: [\n      {\n        commandId: 'run/controlled/failure-retry/hands/laohuan/start',\n+       fingerprint: 'json-fnv-v1:9bdb91b082b61964',\n-       fingerprint: 'json-fnv-v1:76b256499f9b7a7d',\n        seq: 1\n      }\n    ],\n    rng: {\n      challenge: {\n...\n        algorithm: 'fnv1a-mulberry32-v1',\n+       state: 1619836885\n-       state: 988001215\n      },\n      reward: {\n        algorithm: 'fnv1a-mulberry32-v1',\n        state: 262562183\n      },\n\n    at retryFlow (file:///workspace/dachoupai/harness/failure-retry-guidance.mjs:61:9)\n    at runNextTicks (node:internal/process/task_queues:65:5)\n    at process.processImmediate (node:internal/timers:502:9)\n    at async file:///workspace/dachoupai/harness/failure-retry-guidance.mjs:83:22"
+    }
+  ],
+  "failures": [
+    "AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:\n+ actual - expected\n... Skipped lines\n\n  {\n    boss: {\n      definitionId: 'B01',\n      disabledSuit: null\n    },\n...\n    playedPile: [],\n+   program: null,\n-   program: {\n-     abandoned: false,\n-     chapter: 1,\n-     choiceMade: false,\n-     claimed: false,\n-     lastOpportunityClear: false,\n-     offerIds: [\n-       'PG02',\n-       'PG01'\n-     ],\n-     selectedId: null\n-   },\n    programRerollCoupon: false,\n+   programsEnabled: false,\n-   programsEnabled: true,\n    purchaseCoupons: 0,\n    receipts: [\n      {\n        commandId: 'run/controlled/failure-retry/hands/laohuan/start',\n+       fingerprint: 'json-fnv-v1:9bdb91b082b61964',\n-       fingerprint: 'json-fnv-v1:76b256499f9b7a7d',\n        seq: 1\n      }\n    ],\n    rng: {\n      challenge: {\n...\n        algorithm: 'fnv1a-mulberry32-v1',\n+       state: 1619836885\n-       state: 988001215\n      },\n      reward: {\n        algorithm: 'fnv1a-mulberry32-v1',\n        state: 262562183\n      },\n\n    at retryFlow (file:///workspace/dachoupai/harness/failure-retry-guidance.mjs:61:9)\n    at runNextTicks (node:internal/process/task_queues:65:5)\n    at process.processImmediate (node:internal/timers:502:9)\n    at async file:///workspace/dachoupai/harness/failure-retry-guidance.mjs:83:22"
+  ],
+  "status": "FAIL",
+  "completedAt": "2026-10-14T23:58:21.782Z"
+}
