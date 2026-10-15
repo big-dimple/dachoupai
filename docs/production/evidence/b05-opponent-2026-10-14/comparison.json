@@ -1,0 +1,61 @@
+{
+  "baseline": "4a52fd0b0fb9ac0a49b8cb5e79abc8db4326e2d7",
+  "candidate": "7dfebc1e9358b0032ff1d7640e6949f0a8a4e4f6",
+  "status": "PASS",
+  "cases": [
+    {
+      "key": "1366-repeat",
+      "score": "43",
+      "initial": "complete state/journal/IndexedDB identical",
+      "committed": "complete state/journal/IndexedDB identical",
+      "after": "complete state/journal/IndexedDB identical",
+      "baseEventVisibleInBaseline": false,
+      "baseEventVisibleInCandidate": true
+    },
+    {
+      "key": "1366-changed",
+      "score": "31",
+      "initial": "complete state/journal/IndexedDB identical",
+      "committed": "complete state/journal/IndexedDB identical",
+      "after": "complete state/journal/IndexedDB identical",
+      "baseEventVisibleInBaseline": false,
+      "baseEventVisibleInCandidate": false
+    },
+    {
+      "key": "390-repeat",
+      "score": "43",
+      "initial": "complete state/journal/IndexedDB identical",
+      "committed": "complete state/journal/IndexedDB identical",
+      "after": "complete state/journal/IndexedDB identical",
+      "baseEventVisibleInBaseline": false,
+      "baseEventVisibleInCandidate": true
+    },
+    {
+      "key": "390-changed",
+      "score": "31",
+      "initial": "complete state/journal/IndexedDB identical",
+      "committed": "complete state/journal/IndexedDB identical",
+      "after": "complete state/journal/IndexedDB identical",
+      "baseEventVisibleInBaseline": false,
+      "baseEventVisibleInCandidate": false
+    },
+    {
+      "key": "320-repeat",
+      "score": "43",
+      "initial": "complete state/journal/IndexedDB identical",
+      "committed": "complete state/journal/IndexedDB identical",
+      "after": "complete state/journal/IndexedDB identical",
+      "baseEventVisibleInBaseline": false,
+      "baseEventVisibleInCandidate": true
+    },
+    {
+      "key": "320-changed",
+      "score": "31",
+      "initial": "complete state/journal/IndexedDB identical",
+      "committed": "complete state/journal/IndexedDB identical",
+      "after": "complete state/journal/IndexedDB identical",
+      "baseEventVisibleInBaseline": false,
+      "baseEventVisibleInCandidate": false
+    }
+  ]
+}
