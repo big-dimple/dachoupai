@@ -10,6 +10,7 @@ export function failureRetryFixture(kind:'hands'|'cards'|'abandoned'|'boss'):{be
   const f=settlementReady('boss-loss','current');
   f.state.boss={definitionId:'B02',disabledSuit:null};f.state.stage!.boss=structuredClone(f.state.boss);f.state.stage!.disabledIds=[];f.state.seenBossIds=['B02'];
   f.state.jokers=[];f.action.selectedIds=f.state.handOrder.slice(0,5);
+  f.action.selectedIds.forEach((id,index)=>{f.state.deckInstances.find(c=>c.id===id)!.suit=(['spades','hearts','clubs','diamonds','hearts'] as const)[index];});
   f.state.chapterTargetPlan=lockR2ChapterTargets(f.state.chapter,f.state.tourMode,f.state.difficulty,f.state.boss);
   assertRunInvariants(f.state);
   return {before:f.state,after:energySend(f.state,f.action)};

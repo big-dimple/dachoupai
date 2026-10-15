@@ -226,8 +226,9 @@ export class IntermissionScene extends Phaser.Scene {
       {label:'回看最后一手',disabled:!facts.canReview,run:()=>this.inspectLastHand()},
       {label:'返回选角',run:()=>this.returnToSelect()},
       {label:'同局重试',primary:true,disabled:!this.ready,run:()=>{this.dialog.close();return this.retrySeed();}},
-    ],{closeLabel:'返回失败页',summaryBody:facts.reason+' · '+facts.gap+'\n'+facts.lastHand+'\n'+facts.resources,
-      effectBody:facts.advice.map((row,index)=>(index+1)+'. '+row.title+'\n'+row.body).join('\n\n')+'\n\n'+facts.restart,
+    ],{closeLabel:'返回失败页',effectBody:facts.reason+' · '+facts.gap+'\n'+facts.lastHand+'\n'+facts.resources,
+      summaryBody:'重试从开局开始；金币、构筑、工具与成长不继承，建议不保证过关。',
+      cards:facts.advice.map((row,index)=>({title:(index+1)+'. '+row.title,body:row.body})),
       collapseRules:true,rulesLabel:'升级与做牌的实际规则',secondaryActions:[{label:'巡演留影',run:()=>this.inspectFinale()}]});
   }
   private inspectFinale():void {
@@ -297,7 +298,7 @@ export class IntermissionScene extends Phaser.Scene {
     try {
       const controller=await startRun(this,run.seed,run.characterId,{mode:run.mode,difficulty:run.difficulty,challengeId:run.challengeId,programsEnabled:run.programsEnabled},{kind:'retry',run});if(lifecycle!==this.lifecycle||!this.scene.isActive())return;
       if(controller?.status==='idle'){this.exitResult('shop');return;}
-      this.notice=gameSession().notice||'新局未保存，请在菜单重试保存。';this.audio.invalid();
+      this.notice=run.phase==='run-lost'?(gameSession().pendingRun?'新局未保存；菜单重试，原局保留。':'未开新局；请看菜单，原局保留。'):gameSession().notice||'新局未保存，请在菜单重试保存。';this.audio.invalid();
     }finally {if(lifecycle===this.lifecycle&&this.scene.isActive()){this.busy=false;this.render();}}
   }
   private async next():Promise<void> {
