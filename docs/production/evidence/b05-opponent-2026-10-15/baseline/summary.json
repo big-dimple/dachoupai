@@ -1,0 +1,394 @@
+{
+  "head": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+  "status": "PASS",
+  "baseline": false,
+  "scope": "Controlled chapter3 current identity, planted U01 and public card arrangement; actual prior and current PlayHand. Software Chromium PC/touch inputs; no natural acquisition, physical-device, human-understanding or final-art acceptance.",
+  "cases": [
+    {
+      "key": "390-repeat",
+      "viewport": {
+        "width": 390,
+        "height": 740
+      },
+      "reduced": false,
+      "errors": [],
+      "shots": [
+        {
+          "key": "390-repeat-choices",
+          "bounds": [
+            {
+              "tag": "BUTTON",
+              "host": false,
+              "text": "同型硬闯 · 对子",
+              "bounds": {
+                "x": 47,
+                "y": 298.8125,
+                "width": 296,
+                "height": 44,
+                "top": 298.8125,
+                "right": 343,
+                "bottom": 342.8125,
+                "left": 47
+              },
+              "scrollWidth": 294,
+              "clientWidth": 294,
+              "textBounds": []
+            },
+            {
+              "tag": "BUTTON",
+              "host": false,
+              "text": "换型避开 · 高牌",
+              "bounds": {
+                "x": 47,
+                "y": 427.59375,
+                "width": 296,
+                "height": 44,
+                "top": 427.59375,
+                "right": 343,
+                "bottom": 471.59375,
+                "left": 47
+              },
+              "scrollWidth": 294,
+              "clientWidth": 294,
+              "textBounds": []
+            },
+            {
+              "tag": "BUTTON",
+              "host": false,
+              "text": "规则 / 物品",
+              "bounds": {
+                "x": 36,
+                "y": 619.375,
+                "width": 161.53125,
+                "height": 48,
+                "top": 619.375,
+                "right": 197.53125,
+                "bottom": 667.375,
+                "left": 36
+              },
+              "scrollWidth": 160,
+              "clientWidth": 160,
+              "textBounds": []
+            },
+            {
+              "tag": "BUTTON",
+              "host": false,
+              "text": "自己选牌",
+              "bounds": {
+                "x": 205.53125,
+                "y": 619.375,
+                "width": 148.46875,
+                "height": 48,
+                "top": 619.375,
+                "right": 354,
+                "bottom": 667.375,
+                "left": 205.53125
+              },
+              "scrollWidth": 146,
+              "clientWidth": 146,
+              "textBounds": []
+            }
+          ]
+        },
+        {
+          "key": "390-repeat-key",
+          "bounds": [
+            {
+              "tag": "SECTION",
+              "host": true,
+              "text": "\n  .detail-dialog.opponent-dialog[open] {border-color:#3f606b;width:min(650px,calc(100vw - var(--safe-left) - var(--safe-right) - 24px));height:auto;top:calc(50% + (var(--safe-top) - var(--safe-bottom)) / 2);bottom:auto;transform:translateY(-50%)}\n  .opponent-dialog .dialog-content {overflow:auto}\n  .opponent-dialog .dialog-scroll {height:auto;overflow:visible}\n  .opponent-dialog .dialog-eyebrow {display:block;color:#3f606b}\n  .opponent-dialog .dialog-effect {font-size:17px;color:#26313a;white-space:pre-line}\n  .opponent-dialog .dialog-purchase-summary {color:#3f606b;font-size:15px}\n  .opponent-dialog .opponent-quote {font-size:21px;font-weight:700;color:#3f606b;margin:0 0 12px}\n  .opponent-dialog .opponent-options {display:grid;gap:10px;margin:12px 0}\n  .opponent-dialog .opponent-option {border:1px solid #c7b89d;padding:10px;border-radius:6px;background:#fff9ee}\n  .opponent-dialog .opponent-option p {font-size:14px;line-height:1.6;white-space:pre-line;margin:8px 0 0}\n  .opponent-dialog .opponent-option button {min-height:44px;width:100%;font-weight:700}\n  .opponent-beat {box-sizing:border-box;position:fixed;z-index:12;pointer-events:none;background:#fff9ee;color:#26313a;border:1px solid #3f606b;border-left:5px solid #3f606b;padding:10px 14px;font-family:\"Microsoft YaHei\", \"PingFang SC\", \"Noto Sans SC\", sans-serif;display:flex;flex-direction:column;justify-content:center;gap:7px;overflow:hidden}\n  .opponent-beat[data-kind=\"repeat\"] {border-color:#b8473a}\n  .opponent-beat small {font-size:14px;color:#59646a}\n  .opponent-beat strong {font-size:21px;line-height:1.25}\n  .opponent-beat p {font-size:15px;line-height:1.35;margin:0}\n  .opponent-beat[data-compact=\"true\"] {padding:2px 10px;gap:2px;justify-content:flex-end}\n  .opponent-beat[data-compact=\"true\"] small {line-height:1.25}\n  .opponent-beat[data-compact=\"true\"] strong {font-size:18px}\n  .opponent-beat > small,.opponent-beat > strong,.opponent-beat > p {flex-shrink:0}\n  @media(min-width:700px) {.opponent-dialog .opponent-options {grid-template-columns:1fr 1fr}}\n  @media(max-height:620px) {.opponent-dialog .opponent-quote {font-size:18px;margin-bottom:6px}.opponent-dialog .opponent-options {gap:6px;margin:6px 0}.opponent-dialog .opponent-option {padding:7px}}\n  回音墙 · 同招回响“同一招，我听过了。”牌型基础 35 → 17.5",
+              "bounds": {
+                "x": 14.575092315673828,
+                "y": 305.59375,
+                "width": 366,
+                "height": 226.796875,
+                "top": 305.59375,
+                "right": 380.5750923156738,
+                "bottom": 532.390625,
+                "left": 14.575092315673828
+              },
+              "scrollWidth": 360,
+              "clientWidth": 360,
+              "textBounds": []
+            },
+            {
+              "tag": "SMALL",
+              "host": false,
+              "text": "回音墙 · 同招回响",
+              "bounds": {
+                "x": 33.57509231567383,
+                "y": 378.734375,
+                "width": 332,
+                "height": 20,
+                "top": 378.734375,
+                "right": 365.5750923156738,
+                "bottom": 398.734375,
+                "left": 33.57509231567383
+              },
+              "scrollWidth": 332,
+              "clientWidth": 332,
+              "parent": {
+                "left": 33.57509231567383,
+                "right": 365.5750923156738,
+                "top": 316.59375,
+                "bottom": 521.390625
+              },
+              "textBounds": [
+                {
+                  "x": 33.57509231567383,
+                  "y": 378.734375,
+                  "width": 118.28125,
+                  "height": 20,
+                  "top": 378.734375,
+                  "right": 151.85634231567383,
+                  "bottom": 398.734375,
+                  "left": 33.57509231567383
+                }
+              ]
+            },
+            {
+              "tag": "STRONG",
+              "host": false,
+              "text": "“同一招，我听过了。”",
+              "bounds": {
+                "x": 33.57509231567383,
+                "y": 405.734375,
+                "width": 332,
+                "height": 26.25,
+                "top": 405.734375,
+                "right": 365.5750923156738,
+                "bottom": 431.984375,
+                "left": 33.57509231567383
+              },
+              "scrollWidth": 332,
+              "clientWidth": 332,
+              "parent": {
+                "left": 33.57509231567383,
+                "right": 365.5750923156738,
+                "top": 316.59375,
+                "bottom": 521.390625
+              },
+              "textBounds": [
+                {
+                  "x": 33.57509231567383,
+                  "y": 403.734375,
+                  "width": 220.5,
+                  "height": 30,
+                  "top": 403.734375,
+                  "right": 254.07509231567383,
+                  "bottom": 433.734375,
+                  "left": 33.57509231567383
+                }
+              ]
+            },
+            {
+              "tag": "P",
+              "host": false,
+              "text": "牌型基础 35 → 17.5",
+              "bounds": {
+                "x": 33.57509231567383,
+                "y": 438.984375,
+                "width": 332,
+                "height": 20.25,
+                "top": 438.984375,
+                "right": 365.5750923156738,
+                "bottom": 459.234375,
+                "left": 33.57509231567383
+              },
+              "scrollWidth": 332,
+              "clientWidth": 332,
+              "parent": {
+                "left": 33.57509231567383,
+                "right": 365.5750923156738,
+                "top": 316.59375,
+                "bottom": 521.390625
+              },
+              "textBounds": [
+                {
+                  "x": 33.57509231567383,
+                  "y": 437.984375,
+                  "width": 130.890625,
+                  "height": 21,
+                  "top": 437.984375,
+                  "right": 164.46571731567383,
+                  "bottom": 458.984375,
+                  "left": 33.57509231567383
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "key": "390-real-base-half",
+          "bounds": []
+        },
+        {
+          "key": "390-repeat-saved",
+          "bounds": []
+        }
+      ],
+      "status": "PASS",
+      "score": "43",
+      "selected": [
+        "spades-2",
+        "hearts-2"
+      ],
+      "timeline": [
+        {
+          "heat": "",
+          "mult": ""
+        },
+        {
+          "heat": "35",
+          "mult": "× 2"
+        },
+        {
+          "heat": "35",
+          "mult": "× 2",
+          "cue": "\n  .detail-dialog.opponent-dialog[open] {border-color:#3f606b;width:min(650px,calc(100vw - var(--safe-left) - var(--safe-right) - 24px));height:auto;top:calc(50% + (var(--safe-top) - var(--safe-bottom)) / 2);bottom:auto;transform:translateY(-50%)}\n  .opponent-dialog .dialog-content {overflow:auto}\n  .opponent-dialog .dialog-scroll {height:auto;overflow:visible}\n  .opponent-dialog .dialog-eyebrow {display:block;color:#3f606b}\n  .opponent-dialog .dialog-effect {font-size:17px;color:#26313a;white-space:pre-line}\n  .opponent-dialog .dialog-purchase-summary {color:#3f606b;font-size:15px}\n  .opponent-dialog .opponent-quote {font-size:21px;font-weight:700;color:#3f606b;margin:0 0 12px}\n  .opponent-dialog .opponent-options {display:grid;gap:10px;margin:12px 0}\n  .opponent-dialog .opponent-option {border:1px solid #c7b89d;padding:10px;border-radius:6px;background:#fff9ee}\n  .opponent-dialog .opponent-option p {font-size:14px;line-height:1.6;white-space:pre-line;margin:8px 0 0}\n  .opponent-dialog .opponent-option button {min-height:44px;width:100%;font-weight:700}\n  .opponent-beat {box-sizing:border-box;position:fixed;z-index:12;pointer-events:none;background:#fff9ee;color:#26313a;border:1px solid #3f606b;border-left:5px solid #3f606b;padding:10px 14px;font-family:\"Microsoft YaHei\", \"PingFang SC\", \"Noto Sans SC\", sans-serif;display:flex;flex-direction:column;justify-content:center;gap:7px;overflow:hidden}\n  .opponent-beat[data-kind=\"repeat\"] {border-color:#b8473a}\n  .opponent-beat small {font-size:14px;color:#59646a}\n  .opponent-beat strong {font-size:21px;line-height:1.25}\n  .opponent-beat p {font-size:15px;line-height:1.35;margin:0}\n  .opponent-beat[data-compact=\"true\"] {padding:2px 10px;gap:2px;justify-content:flex-end}\n  .opponent-beat[data-compact=\"true\"] small {line-height:1.25}\n  .opponent-beat[data-compact=\"true\"] strong {font-size:18px}\n  .opponent-beat > small,.opponent-beat > strong,.opponent-beat > p {flex-shrink:0}\n  @media(min-width:700px) {.opponent-dialog .opponent-options {grid-template-columns:1fr 1fr}}\n  @media(max-height:620px) {.opponent-dialog .opponent-quote {font-size:18px;margin-bottom:6px}.opponent-dialog .opponent-options {gap:6px;margin:6px 0}.opponent-dialog .opponent-option {padding:7px}}\n  回音墙 · 同招回响“同一招，我听过了。”牌型基础 35 → 17.5",
+          "kind": "repeat"
+        },
+        {
+          "id": "controlled/b05/hand/controlled/b05/command/5/event/1",
+          "phase": "windup",
+          "heat": "35",
+          "mult": "× 2"
+        },
+        {
+          "id": "controlled/b05/hand/controlled/b05/command/5/event/1",
+          "phase": "impact",
+          "heat": "35",
+          "mult": "× 2"
+        },
+        {
+          "id": "controlled/b05/hand/controlled/b05/command/5/event/1",
+          "phase": "impact",
+          "heat": "≈33.95",
+          "mult": "× 2"
+        },
+        {
+          "id": "controlled/b05/hand/controlled/b05/command/5/event/1",
+          "phase": "impact",
+          "heat": "≈31.36",
+          "mult": "× 2"
+        },
+        {
+          "id": "controlled/b05/hand/controlled/b05/command/5/event/1",
+          "phase": "impact",
+          "heat": "≈28.97",
+          "mult": "× 2"
+        },
+        {
+          "id": "controlled/b05/hand/controlled/b05/command/5/event/1",
+          "phase": "impact",
+          "heat": "≈25.47",
+          "mult": "× 2"
+        },
+        {
+          "id": "controlled/b05/hand/controlled/b05/command/5/event/1",
+          "phase": "impact",
+          "heat": "≈22.44",
+          "mult": "× 2"
+        },
+        {
+          "id": "controlled/b05/hand/controlled/b05/command/5/event/1",
+          "phase": "impact",
+          "heat": "≈20.77",
+          "mult": "× 2"
+        },
+        {
+          "id": "controlled/b05/hand/controlled/b05/command/5/event/1",
+          "phase": "impact",
+          "heat": "≈19.07",
+          "mult": "× 2"
+        },
+        {
+          "id": "controlled/b05/hand/controlled/b05/command/5/event/1",
+          "phase": "impact",
+          "heat": "≈17.78",
+          "mult": "× 2"
+        },
+        {
+          "id": "controlled/b05/hand/controlled/b05/command/5/event/1",
+          "phase": "impact",
+          "heat": "17.5",
+          "mult": "× 2"
+        },
+        {
+          "id": "controlled/b05/hand/controlled/b05/command/5/event/1",
+          "phase": "rest",
+          "heat": "17.5",
+          "mult": "× 2"
+        },
+        {
+          "id": "controlled/b05/hand/controlled/b05/command/5/event/2",
+          "phase": "windup",
+          "heat": "17.5",
+          "mult": "× 2"
+        },
+        {
+          "id": "controlled/b05/hand/controlled/b05/command/5/event/2",
+          "phase": "impact",
+          "heat": "19.5",
+          "mult": "× 2"
+        },
+        {
+          "id": "controlled/b05/hand/controlled/b05/command/5/event/2",
+          "phase": "rest",
+          "heat": "19.5",
+          "mult": "× 2"
+        },
+        {
+          "id": "controlled/b05/hand/controlled/b05/command/5/event/3",
+          "phase": "windup",
+          "heat": "19.5",
+          "mult": "× 2"
+        },
+        {
+          "id": "controlled/b05/hand/controlled/b05/command/5/event/3",
+          "phase": "impact",
+          "heat": "21.5",
+          "mult": "× 2"
+        },
+        {
+          "id": "controlled/b05/hand/controlled/b05/command/5/event/3",
+          "phase": "rest",
+          "heat": "21.5",
+          "mult": "× 2"
+        },
+        {
+          "id": "controlled/b05/hand/controlled/b05/command/5/event/4",
+          "phase": "windup",
+          "heat": "21.5",
+          "mult": "× 2"
+        },
+        {
+          "id": "controlled/b05/hand/controlled/b05/command/5/event/4",
+          "phase": "impact",
+          "heat": "21.5",
+          "mult": "× 2"
+        },
+        {
+          "id": "controlled/b05/hand/controlled/b05/command/5/event/4",
+          "phase": "rest",
+          "heat": "21.5",
+          "mult": "× 2"
+        },
+        {
+          "id": "controlled/b05/hand/controlled/b05/command/5/event/5",
+          "phase": "award",
+          "heat": "21.5",
+          "mult": "× 2"
+        },
+        {
+          "heat": "",
+          "mult": ""
+        }
+      ],
+      "ordinary": {
+        "score": "79",
+        "phase": "await-input"
+      }
+    }
+  ]
+}
