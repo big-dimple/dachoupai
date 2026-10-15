@@ -1,0 +1,477 @@
+{
+  "file": "/tmp/shop-smoke-perf/fixed-chromium.jsonl",
+  "launch": [
+    {
+      "kind": "launch",
+      "process": 4872,
+      "elapsedMs": 16106.157849000001,
+      "engine": "chromium",
+      "version": "151.0.7922.173",
+      "ms": 1664.498184,
+      "options": {
+        "executablePath": "/usr/bin/chromium"
+      }
+    }
+  ],
+  "contexts": [
+    {
+      "kind": "context",
+      "process": 4872,
+      "elapsedMs": 16128.585831,
+      "engine": "chromium",
+      "options": {
+        "viewport": {
+          "width": 390,
+          "height": 740
+        },
+        "hasTouch": true,
+        "deviceScaleFactor": 3
+      }
+    }
+  ],
+  "renderers": [
+    {
+      "kind": "renderer",
+      "process": 4872,
+      "elapsedMs": 19704.201957999998,
+      "engine": "chromium",
+      "at": 2648,
+      "type": 1,
+      "unmasked": null,
+      "vendor": null,
+      "dpr": 3,
+      "canvas": [
+        1170,
+        2220
+      ],
+      "css": [
+        390,
+        740
+      ],
+      "reducedMotion": false
+    },
+    {
+      "kind": "renderer",
+      "process": 4872,
+      "elapsedMs": 90680.545019,
+      "engine": "chromium",
+      "at": 1243.4000000003725,
+      "type": 1,
+      "unmasked": null,
+      "vendor": null,
+      "dpr": 3,
+      "canvas": [
+        1170,
+        2220
+      ],
+      "css": [
+        390,
+        740
+      ],
+      "reducedMotion": false
+    }
+  ],
+  "phaseStarts": [
+    {
+      "kind": "phase-start",
+      "process": 4872,
+      "elapsedMs": 19816.074194999997,
+      "engine": "chromium",
+      "at": 2758.800000000745,
+      "scene": ""
+    },
+    {
+      "kind": "phase-start",
+      "process": 4872,
+      "elapsedMs": 19905.19555,
+      "engine": "chromium",
+      "at": 2835.4000000003725,
+      "scene": "boot"
+    },
+    {
+      "kind": "phase-start",
+      "process": 4872,
+      "elapsedMs": 20369.648681,
+      "engine": "chromium",
+      "at": 3290.9000000003725,
+      "scene": "title"
+    },
+    {
+      "kind": "phase-start",
+      "process": 4872,
+      "elapsedMs": 24515.583688,
+      "engine": "chromium",
+      "at": 7424.5,
+      "scene": "character-select"
+    },
+    {
+      "kind": "phase-start",
+      "process": 4872,
+      "elapsedMs": 29282.951448,
+      "engine": "chromium",
+      "at": 12231.200000000186,
+      "scene": "shop"
+    },
+    {
+      "kind": "phase-start",
+      "process": 4872,
+      "elapsedMs": 33420.397885000006,
+      "engine": "chromium",
+      "at": 16360.200000000186,
+      "scene": "game"
+    },
+    {
+      "kind": "phase-start",
+      "process": 4872,
+      "elapsedMs": 90706.965694,
+      "engine": "chromium",
+      "at": 1274.800000000745,
+      "scene": ""
+    },
+    {
+      "kind": "phase-start",
+      "process": 4872,
+      "elapsedMs": 90826.646239,
+      "engine": "chromium",
+      "at": 1391.6000000005588,
+      "scene": "boot"
+    },
+    {
+      "kind": "phase-start",
+      "process": 4872,
+      "elapsedMs": 91082.936406,
+      "engine": "chromium",
+      "at": 1616.2000000001863,
+      "scene": "title"
+    },
+    {
+      "kind": "phase-start",
+      "process": 4872,
+      "elapsedMs": 92591.27605799999,
+      "engine": "chromium",
+      "at": 3156.7000000001863,
+      "scene": "game"
+    }
+  ],
+  "api": {
+    "goto": {
+      "count": 1,
+      "totalMs": 3316.54,
+      "meanMs": 3316.54,
+      "p95Ms": 3316.54,
+      "maxMs": 3316.54
+    },
+    "waitForFunction": {
+      "count": 76,
+      "totalMs": 23628.03,
+      "meanMs": 310.9,
+      "p95Ms": 749.33,
+      "maxMs": 4676.81
+    },
+    "evaluate": {
+      "count": 96,
+      "totalMs": 8969.44,
+      "meanMs": 93.43,
+      "p95Ms": 284.45,
+      "maxMs": 530.65
+    },
+    "poststep": {
+      "count": 90,
+      "totalMs": 7699.86,
+      "meanMs": 85.55,
+      "p95Ms": 228.01,
+      "maxMs": 438.23
+    },
+    "tap": {
+      "count": 44,
+      "totalMs": 14121.74,
+      "meanMs": 320.95,
+      "p95Ms": 665.87,
+      "maxMs": 898.16
+    },
+    "reload": {
+      "count": 1,
+      "totalMs": 1509.05,
+      "meanMs": 1509.05,
+      "p95Ms": 1509.05,
+      "maxMs": 1509.05
+    },
+    "setViewportSize": {
+      "count": 2,
+      "totalMs": 228.02,
+      "meanMs": 114.01,
+      "p95Ms": 94.95,
+      "maxMs": 133.07
+    }
+  },
+  "snapshots": [
+    {
+      "label": "before-reload",
+      "elapsedMs": 89316.9,
+      "renderer": {
+        "type": 1,
+        "unmasked": null,
+        "vendor": null,
+        "dpr": 3,
+        "canvas": [
+          1170,
+          2220
+        ],
+        "css": [
+          390,
+          740
+        ],
+        "reducedMotion": false
+      },
+      "phases": [
+        {
+          "scene": "",
+          "frames": 0,
+          "meanFrameMs": null,
+          "meanFps": null,
+          "maxFrameMs": 0,
+          "over100ms": 0,
+          "meanStepMs": 0.6,
+          "maxStepMs": 0.6,
+          "meanRenderMs": 0.1,
+          "maxRenderMs": 0.1
+        },
+        {
+          "scene": "boot",
+          "frames": 3,
+          "meanFrameMs": 22.47,
+          "meanFps": 44.51,
+          "maxFrameMs": 55,
+          "over100ms": 0,
+          "meanStepMs": 76.35,
+          "maxStepMs": 304.8,
+          "meanRenderMs": 9.93,
+          "maxRenderMs": 39.5
+        },
+        {
+          "scene": "title",
+          "frames": 138,
+          "meanFrameMs": 27.12,
+          "meanFps": 36.87,
+          "maxFrameMs": 237.1,
+          "over100ms": 4,
+          "meanStepMs": 2.37,
+          "maxStepMs": 273.5,
+          "meanRenderMs": 1.12,
+          "maxRenderMs": 57.3
+        },
+        {
+          "scene": "character-select",
+          "frames": 97,
+          "meanFrameMs": 45.43,
+          "meanFps": 22.01,
+          "maxFrameMs": 449.9,
+          "over100ms": 5,
+          "meanStepMs": 3.52,
+          "maxStepMs": 337,
+          "meanRenderMs": 1.78,
+          "maxRenderMs": 32.2
+        },
+        {
+          "scene": "shop",
+          "frames": 69,
+          "meanFrameMs": 58.83,
+          "meanFps": 17,
+          "maxFrameMs": 497.1,
+          "over100ms": 11,
+          "meanStepMs": 0.56,
+          "maxStepMs": 11.3,
+          "meanRenderMs": 2.12,
+          "maxRenderMs": 8.3
+        },
+        {
+          "scene": "game",
+          "frames": 541,
+          "meanFrameMs": 103.2,
+          "meanFps": 9.69,
+          "maxFrameMs": 793.3,
+          "over100ms": 168,
+          "meanStepMs": 0.61,
+          "maxStepMs": 60.9,
+          "meanRenderMs": 5.3,
+          "maxRenderMs": 111.8
+        }
+      ],
+      "decode": {
+        "count": 26,
+        "totalMs": 926.6,
+        "meanMs": 35.64,
+        "p95Ms": 110.1,
+        "maxMs": 131.9
+      },
+      "slowestDecodes": [
+        {
+          "ms": 131.8999999994412,
+          "width": 615,
+          "height": 768,
+          "src": "blob:http://127.0.0.1:5201/23925b7f-1589-45d1-8fe6-960c4352a00b"
+        },
+        {
+          "ms": 111.59999999962747,
+          "width": 615,
+          "height": 768,
+          "src": "blob:http://127.0.0.1:5201/8db79afd-c678-4c58-92c3-4faec7212136"
+        },
+        {
+          "kind": "bitmap",
+          "ms": 110.09999999962747,
+          "width": 615,
+          "height": 768
+        },
+        {
+          "kind": "bitmap",
+          "ms": 58.59999999962747,
+          "width": 615,
+          "height": 768
+        },
+        {
+          "ms": 46.69999999925494,
+          "width": 615,
+          "height": 768,
+          "src": "blob:http://127.0.0.1:5201/825ee6e0-d549-4157-af55-730986f36e90"
+        }
+      ],
+      "resources": {
+        "count": 58,
+        "totalMs": 2223.3,
+        "meanMs": 38.33,
+        "p95Ms": 127.4,
+        "maxMs": 525.2
+      },
+      "longTasks": {
+        "count": 321,
+        "totalMs": 47309,
+        "meanMs": 147.38,
+        "p95Ms": 383,
+        "maxMs": 1040
+      }
+    },
+    {
+      "label": "context-close",
+      "elapsedMs": 99462.54,
+      "renderer": {
+        "type": 1,
+        "unmasked": null,
+        "vendor": null,
+        "dpr": 3,
+        "canvas": [
+          1170,
+          2220
+        ],
+        "css": [
+          390,
+          740
+        ],
+        "reducedMotion": false
+      },
+      "phases": [
+        {
+          "scene": "",
+          "frames": 1,
+          "meanFrameMs": 75.4,
+          "meanFps": 13.26,
+          "maxFrameMs": 75.4,
+          "over100ms": 0,
+          "meanStepMs": 0.25,
+          "maxStepMs": 0.4,
+          "meanRenderMs": 0.1,
+          "maxRenderMs": 0.2
+        },
+        {
+          "scene": "boot",
+          "frames": 1,
+          "meanFrameMs": 69.6,
+          "meanFps": 14.37,
+          "maxFrameMs": 69.6,
+          "over100ms": 0,
+          "meanStepMs": 10.35,
+          "maxStepMs": 20.4,
+          "meanRenderMs": 3.05,
+          "maxRenderMs": 6.1
+        },
+        {
+          "scene": "title",
+          "frames": 19,
+          "meanFrameMs": 48.98,
+          "meanFps": 20.42,
+          "maxFrameMs": 263.8,
+          "over100ms": 1,
+          "meanStepMs": 23.48,
+          "maxStepMs": 447.7,
+          "meanRenderMs": 2.41,
+          "maxRenderMs": 7.5
+        },
+        {
+          "scene": "game",
+          "frames": 55,
+          "meanFrameMs": 121.23,
+          "meanFps": 8.25,
+          "maxFrameMs": 570.9,
+          "over100ms": 22,
+          "meanStepMs": 0.2,
+          "maxStepMs": 1.6,
+          "meanRenderMs": 5.41,
+          "maxRenderMs": 51.7
+        }
+      ],
+      "decode": {
+        "count": 17,
+        "totalMs": 2282.5,
+        "meanMs": 134.26,
+        "p95Ms": 308.7,
+        "maxMs": 322.4
+      },
+      "slowestDecodes": [
+        {
+          "ms": 322.40000000037253,
+          "width": 256,
+          "height": 320,
+          "src": "blob:http://127.0.0.1:5201/c8f84024-2c52-4aa5-8c7f-45301057dcb9"
+        },
+        {
+          "ms": 308.70000000018626,
+          "width": 128,
+          "height": 160,
+          "src": "blob:http://127.0.0.1:5201/74999d0a-bd6b-4eb5-bcc6-e54ffb849113"
+        },
+        {
+          "ms": 303.79999999981374,
+          "width": 256,
+          "height": 384,
+          "src": "blob:http://127.0.0.1:5201/4b512c9b-d686-4e97-8032-b68fc082a2cd"
+        },
+        {
+          "ms": 294.30000000074506,
+          "width": 256,
+          "height": 256,
+          "src": "blob:http://127.0.0.1:5201/c68c4ef8-3a55-4fe0-bd90-ee3044b76726"
+        },
+        {
+          "ms": 276.6000000005588,
+          "width": 256,
+          "height": 384,
+          "src": "blob:http://127.0.0.1:5201/51e2b6f3-6600-4286-9d92-1e1a4a245848"
+        }
+      ],
+      "resources": {
+        "count": 48,
+        "totalMs": 2535.2,
+        "meanMs": 52.82,
+        "p95Ms": 154.9,
+        "maxMs": 204.4
+      },
+      "longTasks": {
+        "count": 35,
+        "totalMs": 6294,
+        "meanMs": 179.83,
+        "p95Ms": 503,
+        "maxMs": 986
+      }
+    }
+  ]
+}
