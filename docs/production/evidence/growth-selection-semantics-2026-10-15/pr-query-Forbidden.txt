@@ -1,0 +1,3 @@
+GH_PAGER=cat gh pr list --repo big-dimple/dachoupai --state open --limit 30 --json number,title,headRefName,baseRefName
+Post "https://api.github.com/graphql": Forbidden
+No alternate API or PR creation/update attempted after this denial.

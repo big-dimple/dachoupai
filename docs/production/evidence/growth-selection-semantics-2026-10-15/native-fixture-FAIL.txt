@@ -1,0 +1,12 @@
+/workspace/growth-display/src/domain/r2Run.ts:202
+    if (!condition) throw new Error(`Run invariant: ${label}`);
+                          ^
+
+Error: Run invariant: r2 resources
+    at check (/workspace/growth-display/src/domain/r2Run.ts:202:27)
+    at assertR2Invariants (/workspace/growth-display/src/domain/r2Run.ts:268:3)
+    at validateState (/workspace/growth-display/src/application/checkpoint.ts:1335:48)
+    at makeCheckpoint (/workspace/growth-display/src/application/checkpoint.ts:1339:3)
+    at file:///workspace/growth-display/harness/growth-selection-semantics.mjs:18:210
+
+Node.js v24.19.0

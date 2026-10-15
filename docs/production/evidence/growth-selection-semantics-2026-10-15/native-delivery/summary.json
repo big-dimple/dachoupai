@@ -1,0 +1,657 @@
+{
+  "status": "PASS",
+  "head": "48b4e3fd67191f4553e2179f87cdbe1d5efc2e58",
+  "sourceTree": "18733c7eb10b6afee22049454ccb975c735722a7",
+  "browser": "151.0.7922.173",
+  "scope": "Controlled valid checkpoint stock, public hand and source; native select/detail and one PlayHand vs original domain command. Software Chromium only, no natural play or physical device acceptance.",
+  "cases": [
+    {
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      },
+      "spec": {
+        "id": "c06",
+        "value": 1,
+        "hand": "house",
+        "label": "读倍+1"
+      },
+      "status": "PASS",
+      "label": {
+        "text": "读倍+1",
+        "full": "读倍+1 · 不成长",
+        "bounds": {
+          "type": 5,
+          "x": 520,
+          "y": 160,
+          "width": 44,
+          "height": 16
+        },
+        "room": 74,
+        "selection": "读倍+1 · 不成长",
+        "readiness": "ready"
+      }
+    },
+    {
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      },
+      "spec": {
+        "id": "c06",
+        "value": 0,
+        "hand": "house",
+        "label": "无加成"
+      },
+      "status": "PASS",
+      "label": {
+        "text": "本手无加成",
+        "full": "本手无加成 · 不成长",
+        "bounds": {
+          "type": 5,
+          "x": 520,
+          "y": 160,
+          "width": 70,
+          "height": 16
+        },
+        "room": 74,
+        "selection": "本手无加成 · 不成长",
+        "readiness": "unmet"
+      }
+    },
+    {
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      },
+      "spec": {
+        "id": "c06",
+        "value": 6,
+        "hand": "house",
+        "label": "读倍+6"
+      },
+      "status": "PASS",
+      "label": {
+        "text": "读倍+6",
+        "full": "读倍+6 · 成长满",
+        "bounds": {
+          "type": 5,
+          "x": 520,
+          "y": 160,
+          "width": 44,
+          "height": 16
+        },
+        "room": 74,
+        "selection": "读倍+6 · 成长满",
+        "readiness": "ready"
+      }
+    },
+    {
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      },
+      "spec": {
+        "id": "c04",
+        "value": 0,
+        "hand": "straight",
+        "label": "热+50"
+      },
+      "status": "PASS",
+      "label": {
+        "text": "即时热+50",
+        "full": "即时热+50 · 可成长",
+        "bounds": {
+          "type": 5,
+          "x": 520,
+          "y": 160,
+          "width": 66,
+          "height": 16
+        },
+        "room": 74,
+        "selection": "即时热+50 · 可成长",
+        "readiness": "ready"
+      }
+    },
+    {
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      },
+      "spec": {
+        "id": "c04",
+        "value": 10,
+        "hand": "house",
+        "label": "读热+10"
+      },
+      "status": "PASS",
+      "label": {
+        "text": "读热+10",
+        "full": "读热+10 · 不成长",
+        "bounds": {
+          "type": 5,
+          "x": 520,
+          "y": 160,
+          "width": 52,
+          "height": 16
+        },
+        "room": 74,
+        "selection": "读热+10 · 不成长",
+        "readiness": "ready"
+      }
+    },
+    {
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      },
+      "spec": {
+        "id": "a06",
+        "value": 1.5,
+        "hand": "pair",
+        "label": "无加成"
+      },
+      "status": "PASS",
+      "label": {
+        "text": "本手无加成",
+        "full": "本手无加成 · 不成长",
+        "bounds": {
+          "type": 5,
+          "x": 520,
+          "y": 160,
+          "width": 70,
+          "height": 16
+        },
+        "room": 74,
+        "selection": "本手无加成 · 不成长",
+        "readiness": "unmet"
+      }
+    },
+    {
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      },
+      "spec": {
+        "id": "a06",
+        "value": 1.5,
+        "hand": "house",
+        "label": "读×1.5"
+      },
+      "status": "PASS",
+      "label": {
+        "text": "读×1.5",
+        "full": "读×1.5 · 先接续",
+        "bounds": {
+          "type": 5,
+          "x": 520,
+          "y": 160,
+          "width": 42,
+          "height": 16
+        },
+        "room": 74,
+        "selection": "读×1.5 · 先接续",
+        "readiness": "ready"
+      }
+    },
+    {
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      },
+      "spec": {
+        "id": "c05",
+        "value": 40,
+        "hand": "single",
+        "label": "读热+40"
+      },
+      "status": "PASS",
+      "label": {
+        "text": "读热+40",
+        "full": "读热+40 · 不成长",
+        "bounds": {
+          "type": 5,
+          "x": 520,
+          "y": 160,
+          "width": 52,
+          "height": 16
+        },
+        "room": 74,
+        "selection": "读热+40 · 不成长",
+        "readiness": "ready"
+      }
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 740
+      },
+      "spec": {
+        "id": "c06",
+        "value": 1,
+        "hand": "house",
+        "label": "读倍+1"
+      },
+      "status": "PASS",
+      "label": {
+        "text": "读倍+1",
+        "full": "读倍+1 · 不成长",
+        "bounds": {
+          "type": 5,
+          "x": 26,
+          "y": 135.60000305175782,
+          "width": 44,
+          "height": 16
+        },
+        "room": 58,
+        "selection": "读倍+1 · 不成长",
+        "readiness": "ready"
+      }
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 740
+      },
+      "spec": {
+        "id": "c06",
+        "value": 0,
+        "hand": "house",
+        "label": "无加成"
+      },
+      "status": "PASS",
+      "label": {
+        "text": "无加成",
+        "full": "本手无加成 · 不成长",
+        "bounds": {
+          "type": 5,
+          "x": 26,
+          "y": 135.60000305175782,
+          "width": 42,
+          "height": 16
+        },
+        "room": 58,
+        "selection": "本手无加成 · 不成长",
+        "readiness": "unmet"
+      }
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 740
+      },
+      "spec": {
+        "id": "c06",
+        "value": 6,
+        "hand": "house",
+        "label": "读倍+6"
+      },
+      "status": "PASS",
+      "label": {
+        "text": "读倍+6",
+        "full": "读倍+6 · 成长满",
+        "bounds": {
+          "type": 5,
+          "x": 26,
+          "y": 135.60000305175782,
+          "width": 44,
+          "height": 16
+        },
+        "room": 58,
+        "selection": "读倍+6 · 成长满",
+        "readiness": "ready"
+      }
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 740
+      },
+      "spec": {
+        "id": "c04",
+        "value": 0,
+        "hand": "straight",
+        "label": "热+50"
+      },
+      "status": "PASS",
+      "label": {
+        "text": "热+50",
+        "full": "即时热+50 · 可成长",
+        "bounds": {
+          "type": 5,
+          "x": 26,
+          "y": 135.60000305175782,
+          "width": 38,
+          "height": 16
+        },
+        "room": 58,
+        "selection": "即时热+50 · 可成长",
+        "readiness": "ready"
+      }
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 740
+      },
+      "spec": {
+        "id": "c04",
+        "value": 10,
+        "hand": "house",
+        "label": "读热+10"
+      },
+      "status": "PASS",
+      "label": {
+        "text": "读热+10",
+        "full": "读热+10 · 不成长",
+        "bounds": {
+          "type": 5,
+          "x": 26,
+          "y": 135.60000305175782,
+          "width": 52,
+          "height": 16
+        },
+        "room": 58,
+        "selection": "读热+10 · 不成长",
+        "readiness": "ready"
+      }
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 740
+      },
+      "spec": {
+        "id": "a06",
+        "value": 1.5,
+        "hand": "pair",
+        "label": "无加成"
+      },
+      "status": "PASS",
+      "label": {
+        "text": "无加成",
+        "full": "本手无加成 · 不成长",
+        "bounds": {
+          "type": 5,
+          "x": 26,
+          "y": 135.60000305175782,
+          "width": 42,
+          "height": 16
+        },
+        "room": 58,
+        "selection": "本手无加成 · 不成长",
+        "readiness": "unmet"
+      }
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 740
+      },
+      "spec": {
+        "id": "a06",
+        "value": 1.5,
+        "hand": "house",
+        "label": "读×1.5"
+      },
+      "status": "PASS",
+      "label": {
+        "text": "读×1.5",
+        "full": "读×1.5 · 先接续",
+        "bounds": {
+          "type": 5,
+          "x": 26,
+          "y": 135.60000305175782,
+          "width": 42,
+          "height": 16
+        },
+        "room": 58,
+        "selection": "读×1.5 · 先接续",
+        "readiness": "ready"
+      }
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 740
+      },
+      "spec": {
+        "id": "c05",
+        "value": 40,
+        "hand": "single",
+        "label": "读热+40"
+      },
+      "status": "PASS",
+      "label": {
+        "text": "读热+40",
+        "full": "读热+40 · 不成长",
+        "bounds": {
+          "type": 5,
+          "x": 26,
+          "y": 135.60000305175782,
+          "width": 52,
+          "height": 16
+        },
+        "room": 58,
+        "selection": "读热+40 · 不成长",
+        "readiness": "ready"
+      }
+    },
+    {
+      "viewport": {
+        "width": 320,
+        "height": 740
+      },
+      "spec": {
+        "id": "c06",
+        "value": 1,
+        "hand": "house",
+        "label": "读倍+1"
+      },
+      "status": "PASS",
+      "label": {
+        "text": "读倍+1",
+        "full": "读倍+1 · 不成长",
+        "bounds": {
+          "type": 5,
+          "x": 11.000000762939454,
+          "y": 144,
+          "width": 44,
+          "height": 16
+        },
+        "room": 48.4,
+        "selection": "读倍+1 · 不成长",
+        "readiness": "ready"
+      }
+    },
+    {
+      "viewport": {
+        "width": 320,
+        "height": 740
+      },
+      "spec": {
+        "id": "c06",
+        "value": 0,
+        "hand": "house",
+        "label": "无加成"
+      },
+      "status": "PASS",
+      "label": {
+        "text": "无加成",
+        "full": "本手无加成 · 不成长",
+        "bounds": {
+          "type": 5,
+          "x": 11.000000762939454,
+          "y": 144,
+          "width": 42,
+          "height": 16
+        },
+        "room": 48.4,
+        "selection": "本手无加成 · 不成长",
+        "readiness": "unmet"
+      }
+    },
+    {
+      "viewport": {
+        "width": 320,
+        "height": 740
+      },
+      "spec": {
+        "id": "c06",
+        "value": 6,
+        "hand": "house",
+        "label": "读倍+6"
+      },
+      "status": "PASS",
+      "label": {
+        "text": "读倍+6",
+        "full": "读倍+6 · 成长满",
+        "bounds": {
+          "type": 5,
+          "x": 11.000000762939454,
+          "y": 144,
+          "width": 44,
+          "height": 16
+        },
+        "room": 48.4,
+        "selection": "读倍+6 · 成长满",
+        "readiness": "ready"
+      }
+    },
+    {
+      "viewport": {
+        "width": 320,
+        "height": 740
+      },
+      "spec": {
+        "id": "c04",
+        "value": 0,
+        "hand": "straight",
+        "label": "热+50"
+      },
+      "status": "PASS",
+      "label": {
+        "text": "热+50",
+        "full": "即时热+50 · 可成长",
+        "bounds": {
+          "type": 5,
+          "x": 11.000000762939454,
+          "y": 144,
+          "width": 38,
+          "height": 16
+        },
+        "room": 48.4,
+        "selection": "即时热+50 · 可成长",
+        "readiness": "ready"
+      }
+    },
+    {
+      "viewport": {
+        "width": 320,
+        "height": 740
+      },
+      "spec": {
+        "id": "c04",
+        "value": 10,
+        "hand": "house",
+        "label": "读热+10"
+      },
+      "status": "PASS",
+      "label": {
+        "text": "读10热",
+        "full": "读热+10 · 不成长",
+        "bounds": {
+          "type": 5,
+          "x": 11.000000762939454,
+          "y": 144,
+          "width": 44,
+          "height": 16
+        },
+        "room": 48.4,
+        "selection": "读热+10 · 不成长",
+        "readiness": "ready"
+      }
+    },
+    {
+      "viewport": {
+        "width": 320,
+        "height": 740
+      },
+      "spec": {
+        "id": "a06",
+        "value": 1.5,
+        "hand": "pair",
+        "label": "无加成"
+      },
+      "status": "PASS",
+      "label": {
+        "text": "无加成",
+        "full": "本手无加成 · 不成长",
+        "bounds": {
+          "type": 5,
+          "x": 11.000000762939454,
+          "y": 144,
+          "width": 42,
+          "height": 16
+        },
+        "room": 48.4,
+        "selection": "本手无加成 · 不成长",
+        "readiness": "unmet"
+      }
+    },
+    {
+      "viewport": {
+        "width": 320,
+        "height": 740
+      },
+      "spec": {
+        "id": "a06",
+        "value": 1.5,
+        "hand": "house",
+        "label": "读×1.5"
+      },
+      "status": "PASS",
+      "label": {
+        "text": "读×1.5",
+        "full": "读×1.5 · 先接续",
+        "bounds": {
+          "type": 5,
+          "x": 11.000000762939454,
+          "y": 144,
+          "width": 42,
+          "height": 16
+        },
+        "room": 48.4,
+        "selection": "读×1.5 · 先接续",
+        "readiness": "ready"
+      }
+    },
+    {
+      "viewport": {
+        "width": 320,
+        "height": 740
+      },
+      "spec": {
+        "id": "c05",
+        "value": 40,
+        "hand": "single",
+        "label": "读热+40"
+      },
+      "status": "PASS",
+      "label": {
+        "text": "读40热",
+        "full": "读热+40 · 不成长",
+        "bounds": {
+          "type": 5,
+          "x": 11.000000762939454,
+          "y": 144,
+          "width": 44,
+          "height": 16
+        },
+        "room": 48.4,
+        "selection": "读热+40 · 不成长",
+        "readiness": "ready"
+      }
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: not-enough-gold
+    at send (file:///workspace/growth-display/harness/growth-selection-semantics.mjs:13:152)
+    at file:///workspace/growth-display/harness/growth-selection-semantics.mjs:16:442 {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: false,
+  expected: true,
+  operator: '==',
+  diff: 'simple'
+}
+
+Node.js v24.19.0
