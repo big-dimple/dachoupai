@@ -1,0 +1,27 @@
+
+ RUN  v4.1.11 /workspace/dachoupai
+
+ ❯ tests/hand-rule-order.test.ts (9 tests | 1 failed) 893ms
+     × touye frozen early active 29ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/hand-rule-order.test.ts > hand rule order follows saved identity and actual character events > touye frozen early active
+Error: touye-target-already-reachableundefined
+ ❯ touyeSend tests/fixtures/touye-new-core.ts:15:129
+
+ ❯ tests/hand-rule-order.test.ts:15:101
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 3 passed (4)
+      Tests  1 failed | 36 passed (37)
+   Start at  00:18:12
+   Duration  6.40s (transform 2.95s, setup 0ms, import 4.39s, tests 6.75s, environment 1ms)
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice

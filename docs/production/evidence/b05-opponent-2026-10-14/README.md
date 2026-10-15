@@ -1,6 +1,6 @@
 # B05 回音墙：本地受控遭遇样板
 
-基线 `4a52fd0b0fb9ac0a49b8cb5e79abc8db4326e2d7`。PR177–182 保持；只新增对手表现/纯映射、测试与证据，GameScene 仅入场/基础事件/结束前接线。FailureSummary、Intermission 失败分支、domain/application/content/目标/RNG/保存/声音/六英雄/商店与图音素材均未改。
+基线 `4a52fd0b0fb9ac0a49b8cb5e79abc8db4326e2d7`。PR177–182 保持；只新增对手表现/纯映射、测试与证据，GameScene 仅入场/基础事件/结束前接线，及父后续明确授权的 inspectHandRules 身份参数。HandRuleReference 的计分顺序文案已按保存身份补正。FailureSummary、Intermission 失败分支、domain/application/content/目标/RNG/保存/声音/六英雄/商店与图音素材均未改。
 
 ## 直接操作
 
@@ -25,8 +25,16 @@
 
 ## 有限证据与边界
 
-最终源码、精确结果和比较见 `final/summary.json`、`comparison.json`、`protected-trees.json`。PC1366×768、390×740、320×568 原生 mouse/touch 操作、完整页 PNG 与真实事件时间线；对比三视口两种输入的完整 initial/committed/after state-journal-storage。原基线权威减半事件没有进入 showScoreEvent，候选实际进入 windup/impact/rest。
+B05 完整矩阵产品源码为 7dfebc1e；随后仅新增牌型规则只读文案与唯一身份接线，增量产品/原生详情源码为 9e7bbdc4。各报告保自身 SHA，不把旧图冒称新增文案的截图。精确结果和比较见 `final/summary.json`、`comparison.json`、`protected-trees.json`。PC1366×768、390×740、320×568 原生 mouse/touch 操作、完整页 PNG 与真实事件时间线；对比三视口两种输入的完整 initial/committed/after state-journal-storage。原基线权威减半事件没有进入 showScoreEvent，候选实际进入 windup/impact/rest。
 
-`first-pass/` 保留早期 FAIL：低动态回看时调整样式引发 Vite 导航，不能冒称通过；`pre-compact/` 为后续13项通过但弹框过高的版本；最终按 final 的源码身份阅读。初夹具保留旧店货架被 shelf references/capacity 严格拒绝，修夹具而不削保存守卫；初选择更新缺三个类型字段被 tsc 拒绝，已补齐。53 个相关测试/7文件、typecheck 与 production-plan 检查通过；最终精确 CI 看 draft PR 的当前 HEAD，不借基线绿勾。
+`first-pass/` 保留早期 FAIL：低动态回看时调整样式引发 Vite 导航，不能冒称通过；`pre-compact/` 为后续13项通过但弹框过高的版本；最终按 final 的源码身份阅读。初夹具保留旧店货架被 shelf references/capacity 严格拒绝，修夹具而不削保存守卫；初选择更新缺三个类型字段被 tsc 拒绝，已补齐。原 B05 53 个相关测试/7文件；身份文案补正后的合并定向 84 个测试/10文件、typecheck 与 production-plan 检查通过；最终精确 CI 看 draft PR 的当前 HEAD，不借基线绿勾。
 
 没有访问正式站，没有重跑18局，没有修改规则或数值。仅软件 Chromium/原生输入，未签物理手机、真人理解或总体平衡。父侧备用立绘/眼神的 Library 请求被 403 scope_violation 拒绝，未看图、未接图、未绕过；未借用六玩家脸、火影角色或造几何人像。当前是无人物素材的真实交互/事件样板，**人物/眼神/最终美术与镜头合成验收仍 OPEN**。待父提供可用合法素材后沿独立表现层接图，再作实际手机图审。
+
+## 父追加：按保存身份显示计分顺序
+
+当前骰爷押约／谢幕燃金／阿燥释放，在整手丑牌及各自版次、相关族加成后；骰爷未押约普通加成仍在前，二者互斥。旧 route-growth 身份保持角色在整手丑牌前，不用当前身份倒灌旧局。阿默 before-joker／after-joker 单张×3 与 assist-v1 助攻分开；当前助攻局没有单张×3。二响交棒仍在对应牌普通点数步骤，老幻戏法弃仍是补牌操作。只改完整规则文案，不改入口、数值或计分。
+
+`hand-rule-order/` 共8项原生：当前与旧谢幕 PC/390/320，当前骰爷/阿燥390，均走选牌→怎么凑牌→完整牌型规则→展开→关闭，完整 state/journal/IndexedDB 与本地选牌不变。9项新专项以三角色新旧实际 PlayHand 保存事件验证角色早/晚顺序，合法 checkpoint 均通过。首次旧骰爷夹具“mature-win”在旧规则已能凑目标，被原规则拒绝；改为旧规则合法未成型夹具，不削规则。原生首轮是观察器嵌套 locator 无匹配，修定位而不改产品；两项原 FAIL 保留在 hand-rule-order-first-fail。
+
+新立绘 `libfile_e987d3b4f244819182e0adb15d0f932e` 与眼神 `libfile_68f2c8b2c0b881918a90cc386ed232c6` 均正规 prepare_materialize 成功，但实际授权 GET 返回 HTTP403／curl22，没有文件、没有核 SHA 或看像素；未重试或换路径绕过。见 asset-blockers.json。新素材输入仍未可用，人物/眼神接入与最终美术继续 OPEN。

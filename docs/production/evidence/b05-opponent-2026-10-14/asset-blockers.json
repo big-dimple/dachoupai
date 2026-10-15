@@ -1,0 +1,27 @@
+{
+  "scope": "New original Library assets requested by parent; authorized prepare succeeded but actual byte transfers refused. No claim of scope_violation body for these two GETs; observed HTTP status only. Product has zero opponent image bytes.",
+  "items": [
+    {
+      "library_file_id": "libfile_e987d3b4f244819182e0adb15d0f932e",
+      "file_name": "echo-veteran-portrait.png",
+      "prepare_materialize": "success",
+      "authorized_GET": "HTTP 403",
+      "curl_exit_code": 22,
+      "file_materialized": false,
+      "pixels_viewed": false,
+      "sha256_verified": false,
+      "retry_or_bypass": false
+    },
+    {
+      "library_file_id": "libfile_68f2c8b2c0b881918a90cc386ed232c6",
+      "file_name": "echo-veteran-eyes.png",
+      "prepare_materialize": "success",
+      "authorized_GET": "HTTP 403",
+      "curl_exit_code": 22,
+      "file_materialized": false,
+      "pixels_viewed": false,
+      "sha256_verified": false,
+      "retry_or_bypass": false
+    }
+  ]
+}
