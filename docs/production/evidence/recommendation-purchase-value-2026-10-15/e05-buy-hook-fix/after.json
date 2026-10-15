@@ -1,0 +1,90 @@
+{
+  "head": "d3e4c288108ac6059019373498b72d6c60f7e769",
+  "sourceSha256": "4218058e5e52bfcb1cd409a4df74396160d19fd0962ebf2839a495fb1df366dc",
+  "scope": "Executed controlled pure evaluation and cloned domain commands, not a browser or natural acquisition.",
+  "sold": {
+    "definitionId": "e05",
+    "growth": {},
+    "edition": "none",
+    "paidPrice": 6,
+    "phases": [
+      "jokerScore",
+      "onBuyOffer"
+    ]
+  },
+  "cash": {
+    "before": 40,
+    "afterSale": 43,
+    "afterBuy": 35
+  },
+  "value": {
+    "policy": "public-one-play-v1",
+    "calibrated": true,
+    "status": "assessed",
+    "paid": 8,
+    "refund": 3,
+    "net": 5,
+    "goldAfter": 35,
+    "rows": [
+      {
+        "label": "普通单张",
+        "ids": [
+          "clubs-2"
+        ],
+        "cards": "2♣",
+        "keep": {
+          "minimum": "22",
+          "maximum": "22"
+        },
+        "change": {
+          "minimum": "39",
+          "maximum": "39"
+        },
+        "delta": {
+          "minimum": "17",
+          "maximum": "17"
+        }
+      },
+      {
+        "label": "路线条件手",
+        "ids": [
+          "clubs-7",
+          "diamonds-7"
+        ],
+        "cards": "7♣ 7♦",
+        "keep": {
+          "minimum": "122",
+          "maximum": "122"
+        },
+        "change": {
+          "minimum": "220",
+          "maximum": "220"
+        },
+        "delta": {
+          "minimum": "98",
+          "maximum": "98"
+        }
+      }
+    ],
+    "ceiling": 2,
+    "negative": false,
+    "positive": true,
+    "allPositive": true,
+    "lostInvestment": true,
+    "unmeasuredLoss": false,
+    "cashLoss": false,
+    "interestLoss": false,
+    "detail": "以保留不买为基线；实付8金，已发生返金3金，净支出5金；余额40→35金。\n当前利息档5→5，仅按过关时余额结算，不计未来收入。\n新实例：无成长或使用计数\n失去来源：置办行头；无成长或使用计数；版次 普通\n本局过关加成保留，出售不丢。\n一次条件对照（公开牌组样例，非下一手预测；假定下场首手、未弃牌、只打所列牌且不留牌；主动技能未用）：\n普通单张 2♣：保留 22 → 变更 39；分差 17\n路线条件手 7♣ 7♦：保留 122 → 变更 220；分差 98\n只计本手已有值；手后成长、未来抽牌、收入和存活次数未知。\n推荐还需兼顾实付、已有来源和永久代价；条件增分不保证回本或通关。"
+  },
+  "rating": {
+    "stars": 2,
+    "reason": "替换会丢已有收益"
+  },
+  "retainedPurchaseGrowth": {
+    "heat": {
+      "n": "8",
+      "d": "1"
+    }
+  },
+  "stateUnchanged": true
+}

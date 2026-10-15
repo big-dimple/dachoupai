@@ -81,7 +81,7 @@ export function shopPurchaseValue(state:R2RunState,offer:R2Offer,focus?:BuildFoc
  const rows=base.calibrated?purchaseValueWindow(state,after,focus):[];
  const negative=rows.some(r=>BigInt(r.delta.maximum)<0n),positive=rows.some(r=>BigInt(r.delta.minimum)>0n),allPositive=rows.length>=2&&rows.every(r=>BigInt(r.delta.minimum)>0n);
  const initial=sold?r2CreateJoker(sold.definitionId,'value/initial',sold.paidPrice,sold.edition,state):undefined;
- const lostInvestment=!!sold&&(sold.edition!==undefined&&sold.edition!=='none'||Object.entries(sold.growth).some(([key,v])=>Rational.fromJSON(v).compare(Rational.fromJSON(initial!.growth[key]??{n:'0',d:'1'}))>0)||r2JokerDefinitionFor(state,sold.definitionId).hooks.some(h=>['onStageClear','onSellJoker','onBuyJoker'].includes(h.phase)))||!!sold&&shopSaleConsequences(state,sold).some(t=>t.includes('不满足'));
+ const lostInvestment=!!sold&&(sold.edition!==undefined&&sold.edition!=='none'||Object.entries(sold.growth).some(([key,v])=>Rational.fromJSON(v).compare(Rational.fromJSON(initial!.growth[key]??{n:'0',d:'1'}))>0)||r2JokerDefinitionFor(state,sold.definitionId).hooks.some(h=>h.phase==='onStageClear'||h.phase==='onSellJoker'||h.phase==='onBuyOffer'))||!!sold&&shopSaleConsequences(state,sold).some(t=>t.includes('不满足'));
  const unmeasuredLoss=!!sold&&(r2JokerDefinitionFor(state,sold.definitionId).hooks.some(h=>h.phase==='onHeldCard')||!!r2JokerDefinitionFor(state,sold.definitionId).modifiers?.length);
  const cashLoss=shopPurchaseConditionLosses(state,offer,sold).length>0;
  const ceiling=negative?(positive?2:1):!positive||lostInvestment||unmeasuredLoss||cashLoss?2:interestLoss?3:allPositive&&offer.definitionId!=='f06'?4:3;

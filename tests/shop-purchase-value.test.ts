@@ -39,6 +39,16 @@ it('b10 cannot buy away a retained e08 cash gate even with a free slot',()=>{
  const s=held(fixture(),['b02','e08']);s.gold=23;const o=stock(s,'b10'),v=shopPurchaseValue(s,o,'group')!;
  expect(v).toMatchObject({cashLoss:true,negative:true,ceiling:1});expect(shopRecommendation(s,o,'group').stars).toBe(1);
 });
+it('selling fresh ordinary e05 loses its onBuyOffer business source despite positive e08 samples',()=>{
+ const s=held(fixture(),['b02','e05']);s.gold=40;const o=stock(s,'e08'),before=structuredClone(s),sold=s.jokers[1];
+ expect(sold).toMatchObject({edition:'none',growth:{}});
+ const value=shopPurchaseValue(s,o,'group',sold);if(value?.status!=='assessed')throw Error('transaction');
+ expect(value).toMatchObject({refund:3,paid:8,net:5,goldAfter:35,allPositive:true,interestLoss:false,unmeasuredLoss:false});
+ expect(value.lostInvestment).toBe(true);expect(value.ceiling).toBe(2);
+ expect(shopRecommendation(s,o,'group',sold).stars).toBe(2);
+ expect(send(s,{type:'BuyOffer',offerId:o.offerId}).jokers.find(j=>j.definitionId==='e05')!.growth).toEqual({heat:{n:'8',d:'1'}});
+ expect(s).toEqual(before);
+});
 it('public random intervals are conservative and ignore hidden draw order and rule cursor',()=>{
  const s=held(fixture(),['f08']),o=stock(s,'f06'),before=structuredClone(s),a=shopPurchaseValue(s,o,'group');
  s.drawPile.reverse();s.rng.rule={...s.rng.rule,state:123};const b=shopPurchaseValue(s,o,'group');expect(b).toEqual(a);
