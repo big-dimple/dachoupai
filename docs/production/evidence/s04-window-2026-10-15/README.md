@@ -4,6 +4,38 @@
 
 已读仓库`AGENTS.md`与现行DELIVERY_PLAN/CONTENT及相关规则；`/workspace/.agents`、`/workspace/.codex`为空，仓库没有`.agents/skills`或本地`SKILL.md`。按本次明确授权串行完成离线方案，不把AGENTS历史任务专属文件窗口当作本任务指令。没有使用需要外部技能的文件/站点创建流程。
 
+## 94f8f74后续：50%/60%同预算与货架时序
+
+原`results.json.gz`、执行模型与旧日志完整保留。本轮由`94f8f74d17d1d4acdbd990980187b2404104fc01`继续；[比较模型](../../../../analysis/s04-gate-compare.ts)、[runner](../../../../analysis/s04-gate-compare-run.mjs)、[证据合同测试](../../../../tests/s04-gate-compare.test.ts)、[新结果](gate-comparison.json.gz)。最终推荐/取舍只更新原计划S04条目；旧正文中的60%均是上一轮待审提案，不是运行规则。
+
+| 字段/分组 | 数量 | 口径 |
+| --- | ---: | --- |
+| `cases[].rows`准备 | 108 | index6/12×G/S/F×原A/B×高点/低点/均匀；50%留钱36、50%培养36、60%留钱36 |
+| `actual` | 216窗口/608实际场 | 各准备分等下一店/当店一次付费刷新；调用真实生成/买用/出牌/清场/奖励，败即止 |
+| `conditional` | 108单场 | 明确注入S04现货；若入店未过门槛先实付2金刷新，再注入；只比较有货时收益，不签供给 |
+| 实际取得S04 | 44窗口 | 50%留钱14/72、培养14/72、60%16/72；均晚期A的index13；相关窗口不是独立随机样本 |
+| 初始货架/一次刷新出S04 | 0/0 | 216初始窗口、108次刷新；均保留未出现，不挑种子补成功 |
+
+相同40金与七次准备店。准备访问、先前过关资历、等级和Joker都是夹具，期间无虚构收入；五/七次染色均真实买用，主矩阵每件用满3张，目标花色分别28/34张。另`minimumBoundary`分别只用末件1张得到26/32，说明相同件数的阈值边界，未混入主矩阵。50%空余两次店可留钱或实际培养4＋6金；同名随机T03按真实商店重定向购买、不占自选额度，来源逐件记录（60%有9件随机现货/243件固定，50%360件固定），没有假称该路径每次必占额度。政策固定每准备店只染一次，未继续用随机购买腾出的额度，因此不是全物品最低成本证明。
+
+“早/晚”是相同评估日期index6/12，准备分别放在index0–6/6–12；不是两种政策各自首次可买日期。晚期50%可能在评估日前入池；若出现会记未买，本次提前S04为0。染色顺序仅依公开点数/花色预定：高/低点集中，均匀为每个点数加一张后再加第二张，不读未来牌序或按结果挑目标。实际后续采用原公开贪心策略，预览上下文按当前选择读取；不声称人类最优。
+
+货架时序调用生产`makeR2Shop`的Joker/版次→工具抽取顺序及现行随机权重。为了让候选门槛真正参与生成，runner只在esbuild临时目录对`r2Shop`入池条件和`r2SpectralTools`使用条件加章3及50/60资格；每个原文/替换/hash记录在`patches`，必须唯一匹配、两个补丁都生效，否则拒绝；未写任何`src`。生产BuyOffer仍核当前池；RerollShop真实扣款、延续RNG、保留共享额度。与原模型的“注入现货后观察能力”不同，这些`actual`不会插入S04。该临时构建没有新内容身份或产品保存合同，禁止导入游戏当作已实现候选。
+
+`conditional.log`明确写`S04-bought-from-injected-control`与`CONDITIONAL` offerId，`actual.log`写实际生成offerId；双方永不合并统计。60%本轮最后入店31/52，店内末染才34/52，因此条件当店取得付28＋2＋6＝36；50%培养付20＋10＋6＝36，两者余4金，原路线等级5/3。50%留钱付26、余14。等下一店不付刷新，但必须实际过关、再按真实奖励/利息/新货架结算；详细失败和现金例已写原计划。取得后整副保留相同点数/顺序，故同等级结果一致；此前部分铺花对等待生存的影响不能被整副收益覆盖。
+
+复算与检查（无浏览器、无自然试玩、无18路线）：
+
+```sh
+node analysis/s04-gate-compare-run.mjs --write
+node analysis/s04-gate-compare-run.mjs --check
+npx vitest run tests/s04-gate-compare.test.ts tests/s04-window.test.ts tests/r2-shop.test.ts tests/build-practice.test.ts tests/bounded-clear.test.ts tests/c01-spectral.test.ts tests/core-build.test.ts
+npm run typecheck
+node scripts/check-production-plan.mjs
+```
+
+见[执行](gate-comparison-run.txt)、[完整复算](gate-reproduction.txt)、[定向测试](gate-rule-checks.txt)、[类型](gate-typecheck.txt)、[计划](gate-plan-check.txt)。86项定向测试、类型与32包计划结构检查通过；这些只验分析证据及既有规则，不签候选门槛的产品实现。runner检查src树仍等于94f8f74、无src工作区变更；`--check`对完整解压JSON逐字节相等，分析脚本hash和基线SHA均写入。原报告无需重跑或重写，新旧证据分别绑定各自源码。货架调用位置见[r2Run](../../../../src/domain/r2Run.ts#L409)：染色使用不调用建店，OpenShop与RerollShop分别以重置/延续RNG建店，刷新不重置自选额度。
+
 ## 证据索引与身份
 
 - [执行模型](../../../../analysis/s04-window.ts)、[runner](../../../../analysis/s04-window-run.mjs)、[边界测试](../../../../tests/s04-window.test.ts)。沿已有纯规则工具的esbuild临时打包方式，直接调用`createRun/applyCommand`、真实计分/预览/资源/供给与培养函数，无新依赖。
