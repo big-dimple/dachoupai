@@ -47,6 +47,6 @@ it('first-layer growth feedback retains cap clipping and zero-headroom facts',()
   const p=experiencePlan(),j=p.state.jokers.find(j=>j.definitionId==='b10')!;j.growth.heat={n:String(amount),d:'1'};
   const hand=p.state.handOrder.map(id=>p.state.deckInstances.find(c=>c.id===id)!),facts=r2SelectionFacts({hand,selectedIds:p.first,jokers:p.state.jokers,definitions:r2JokerDefinitionsFor(p.state),disabledIds:[]});
   const ctx=publicJokerMemoryContext(p.state,{hand,facts,scoringLimited:false,deckSize:52,jokerSlots:5,jokerCount:4}),copy=selectionExperience(p.state,j,ctx);
-  expect(copy.body).toContain('上限100');if(amount===95)expect(copy.body).toContain('最多新增+5');else{expect(copy.body).toContain('已封顶，不再新增');expect(copy.label).toBe('成长满');}
+  expect(copy.body).toContain('上限100');if(amount===95)expect(copy.body).toContain('最多新增+5');else{expect(copy.body).toContain('已封顶，不再新增');expect(copy.label).toBe('读热+100 · 成长满');}
  }
 });

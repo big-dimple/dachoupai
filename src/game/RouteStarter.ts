@@ -24,5 +24,6 @@ export function starterSelection(s:R2RunState,instanceId:string,type:string|unde
  if(!type)return {ready:false,label:STARTER_ROUTE_LABEL[s.openingRoute]+'起手 · 待选'};
  const definition=r2JokerDefinitionFor(s,R2_ROUTE_STARTERS[s.openingRoute]);
  const ready=definition.hooks.some(h=>h.condition.kind==='hand-type-in'&&h.condition.values.includes(type as never));
+ if(definition.id==='c06'){const saved=s.jokers.find(j=>j.instanceId===instanceId)?.growth.multiplier;const reads=!!saved&&BigInt(saved.n)>0n;return {ready:reads||ready,label:(reads?'本手读已存倍率':'本手暂无存量')+' · '+(ready?'同花后成长':'不新增成长')};}
  return {ready,label:ready?s.openingRoute==='flush'?'同花后存成长':STARTER_ROUTE_LABEL[s.openingRoute]+'待发动':'需要'+STARTER_ROUTE_LABEL[s.openingRoute]};
 }

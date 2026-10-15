@@ -4,7 +4,7 @@ import {r2JokerDefinitionFor} from '../domain/r2ContentProfiles';
 import {r2ScoreConditionMatches,r2TransactionConditionMatches,type R2ScoreConditionContext} from '../domain/r2Conditions';
 import {Rational} from '../domain/rational';
 import {HAND_LABELS} from '../content/handLabels';
-import {r2ConditionDescription,type JokerMemoryContext} from './JokerMemory';
+import {jokerMemory,r2ConditionDescription,type JokerMemoryContext} from './JokerMemory';
 import {fractionText} from './scoreText';
 /** Shared saved growth and cap headroom; no conditions, scores or random actions. */
 export function growthBounds(definition:R2JokerDefinition,joker:R2JokerInstance|undefined,op:Extract<Operation,{kind:'add-growth'}>){
@@ -60,3 +60,34 @@ export function growthOpportunityForDefinition(d:R2JokerDefinition,joker:R2Joker
 }
 type GrowthWrite=Extract<Operation,{kind:'add-growth'|'add-coefficient'|'multiply-coefficient-once'|'update-score-growth'}>;
 export function isGrowthWrite(o:Operation):o is GrowthWrite{return ['add-growth','add-coefficient','multiply-coefficient-once','update-score-growth'].includes(o.kind);}
+
+/** Read eligibility and new growth have separate clocks. No score or future events are simulated. */
+export function growthSelection(d:R2JokerDefinition,joker:R2JokerInstance,ctx:JokerMemoryContext){
+ const growth=growthOpportunityForDefinition(d,joker,ctx);if(!growth)return;
+ const memory=jokerMemory(d,joker,ctx),lines:string[]=[],active:string[]=[];
+ d.hooks.forEach((hook,index)=>{
+  if(!['jokerScore','onCardScore','onHeldCard'].includes(hook.phase))return;
+  for(const op of hook.operations){
+   if(!['read-growth','consume-growth','read-coefficient','add-heat','add-multiplier','multiply-multiplier'].includes(op.kind))continue;
+   const status=memory.hooks[index].status,matched=status==='条件满足';
+   let value='',compact='',positive=true;
+   if(op.kind==='read-growth'||op.kind==='consume-growth'||op.kind==='read-coefficient'){
+    const saved=joker.growth[op.key]??r2GrowthMinimums(d)[op.key]??{n:'0',d:'1'},coefficient=op.kind==='read-coefficient';
+    positive=Rational.fromJSON(saved).compare(new Rational(coefficient?1n:0n))>0;
+    const amount=(coefficient?'×':'+')+fractionText(saved),unit=coefficient?'系数':op.target==='heat'?'热度':'倍率';
+    value='本手读取：已存'+amount+' '+unit+(op.kind==='consume-growth'?'；下一次实际读取后消耗，计分停用时不读也不消耗':'');
+    compact='读'+(coefficient?'×':op.target==='heat'?'热+':'倍+')+fractionText(saved);
+   }else if(op.kind==='add-heat'||op.kind==='add-multiplier'||op.kind==='multiply-multiplier'){
+    value='本手即时：'+(op.kind==='add-heat'?'热度 +':op.kind==='add-multiplier'?'倍率 +':'倍率 ×')+fractionText(op.value);
+    compact='即时'+(op.kind==='add-heat'?'热+':op.kind==='add-multiplier'?'倍+':'×')+fractionText(op.value);
+   }
+   lines.push(value+' · '+(ctx.scoringLimited?'计分停用':matched?'所选满足读取条件':ctx.facts?'所选不满足读取条件':'待选牌检查')+'。条件：'+r2ConditionDescription(hook.condition));
+   if(matched&&positive&&!ctx.scoringLimited)active.push(compact);
+  }
+ });
+ const scoringReady=active.length>0,growing=growth.status==='ready'&&growth.action==='play';
+ const readiness=ctx.scoringLimited?'limited':scoringReady||growing?'ready':['unmet','capped','used'].includes(growth.status)?'unmet':'pending';
+ const primary=ctx.scoringLimited?'计分停用':active.join('／')||(ctx.facts?'本手无加成':'待选牌');
+ const label=primary+' · '+growth.compactLabel;
+ return {readiness:readiness as 'ready'|'pending'|'unmet'|'limited',label,labelCandidates:[label,primary],body:lines.join('\n')+'\n新增成长（独立检查）：'+growth.body,growth};
+}
