@@ -1,0 +1,34 @@
+
+> dachoupai@0.1.0 test
+> vitest run tests/growth-selection.test.ts tests/joker-experience.test.ts tests/all-growth-opportunities.test.ts tests/growth-opportunity.test.ts tests/route-starter.test.ts
+
+
+ RUN  v4.1.11 /workspace/dachoupai
+
+ ❯ tests/all-growth-opportunities.test.ts (17 tests | 1 failed) 191ms
+   × f05 remains result-only even at cap, names baseline and reset instead of forecasting score 11ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/all-growth-opportunities.test.ts > f05 remains result-only even at cap, names baseline and reset instead of forecasting score
+AssertionError: expected 'ready' to be 'unmet' // Object.is equality
+
+Expected: "unmet"
+Received: "ready"
+
+ ❯ tests/all-growth-opportunities.test.ts:28:499
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 4 passed (5)
+      Tests  1 failed | 61 passed (62)
+   Start at  04:51:41
+   Duration  2.03s (transform 1.86s, setup 0ms, import 2.59s, tests 1.39s, environment 1ms)
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice

@@ -35,9 +35,9 @@ GameScene使用上述本手状态与可容纳的完整短语，手机五槽保�
 
 ## 实际验证与范围
 
-- [9文件151项针对测试](targeted-tests.log)通过：含16张真实scorer读值、阿默葫芦+1/同花新增、零存量/封顶、接续/已用/售出资格、独家戏对子负例、换布景实际消耗、搭台阶即时+50；既有route-growth-run/score、route-starter、plain-copy与detail-steps保留。
-- [构建](build.log)通过（含tsc）；构建时HEAD还是基线、工作树为本次源码，产品字节与5d4c406b一致，不把日志冒称洁净HEAD构建。Vite原有大bundle提示保留。
-- [content](content.log)通过；[plan检查与自测](plan.log)通过（32工作包，1有效/13无效夹具）。
+- [9文件151项针对测试](targeted-tests.txt)通过：含16张真实scorer读值、阿默葫芦+1/同花新增、零存量/封顶、接续/已用/售出资格、独家戏对子负例、换布景实际消耗、搭台阶即时+50；既有route-growth-run/score、route-starter、plain-copy与detail-steps保留。
+- [构建](build.txt)通过（含tsc）；构建时HEAD还是基线、工作树为本次源码，产品字节与5d4c406b一致，不把日志冒称洁净HEAD构建。Vite原有大bundle提示保留。
+- [content](content.txt)通过；[plan检查与自测](plan.txt)通过（32工作包，1有效/13无效夹具）。
 - [保护树](protected-trees.json)逐Git对象相同：domain/application/content/platform/public/art/audio/package-lock；数值、规则身份、存档与RNG实现没有修改。
 - [最终浏览器报告](browser/report.json)记录精确HEAD `c351a7f4ce3f38ec44a55371c7fe3117833f2cb4`（仅在5d4c406b后增加观察器缓存隔离/启动诊断，产品src逐字节相同）的Chromium151软件Canvas：PC1366×768/DPR1、手机390×740/DPR3。都是明确人工存量/公开手牌、严格checkpoint校验后经正常菜单导入，不是自然获取或自然试玩。
 - 双端原生选葫芦/对子/同花、所选条件打开关闭全state/journal/export/IndexedDB完全不变；标签真实bounds不超分配宽/屏幕，5张成长牌不退泛化“状态”入口。PC/手机代表实图已实际view：葫芦c06为“本手倍+1”、手机换布景“读热+40”、独家戏对子“不读取”、停用“计分停用”。
@@ -47,8 +47,8 @@ GameScene使用上述本手状态与可容纳的完整短语，手机五槽保�
 
 ## 真实失败及限制
 
-[first-test-FAIL.log](first-test-FAIL.log)：新夹具错误地向禁用节目模式提交ChooseProgram，另有5个旧期待仍把新增成长当成计分状态；修夹具并把旧期待分别改为读取状态与growth状态，未放宽领域断言。[second-test-FAIL.log](second-test-FAIL.log)保留其中f05存量已为4却期待unmet的遗漏，最后补正为读取ready、成长waiting。
+[first-test-FAIL.txt](first-test-FAIL.txt)：新夹具错误地向禁用节目模式提交ChooseProgram，另有5个旧期待仍把新增成长当成计分状态；修夹具并把旧期待分别改为读取状态与growth状态，未放宽领域断言。[second-test-FAIL.txt](second-test-FAIL.txt)保留其中f05存量已为4却期待unmet的遗漏，最后补正为读取ready、成长waiting。
 
 [browser-loader-FAIL.json](browser-loader-FAIL.json)：首轮观察器禁自动依赖扫描却漏显式Phaser预构建，页面未启动；补include:['phaser']，不改产品、超时或断言。[初轮报告](initial-browser/report.json)的native流程通过，但[手机原图](initial-browser/390-fallback.png)暴露三张热度长标签退成“状态”入口；随后加完整短语候选，最终报告严格拒绝该回退。旧记录均保原身份，不覆盖为新PASS。
 
-仅软件与受控保存事实。自然三路线经营、实体手机、玩家理解、美术整体、GPU/帧率和听感均未签；本任务明确未自然试玩。[额外启动超时](browser-cache-startup-FAIL.json)保留：151测试与content/plan检查并发时浏览器尚未进入title，没有页面异常或产品动作；content检查也使用默认Vite缓存，现场只留deps_temp目录，缓存冲突为推断而非产品定案。观察器随后隔离自己的cacheDir并加console/network/启动失败截图诊断，超时和产品断言不变，再顺序执行。main保持不动。GitHub PR查询已实得 `Post "https://api.github.com/graphql": Forbidden`；已准备[PR正文](PR_BODY.md)，提交/push/PR操作和精确远端CI以最终交付回复为准，不以本地通过代签远端CI或PR已创建。
+仅软件与受控保存事实。自然三路线经营、实体手机、玩家理解、美术整体、GPU/帧率和听感均未签；本任务明确未自然试玩。[额外启动超时](browser-cache-startup-FAIL.json)保留：151测试与content/plan检查并发时浏览器尚未进入title，没有页面异常或产品动作；content检查也使用默认Vite缓存，现场只留deps_temp目录，缓存冲突为推断而非产品定案。观察器随后隔离自己的cacheDir并加console/network/启动失败截图诊断，超时和产品断言不变，再顺序执行。main保持不动。GitHub PR查询及同一gh入口的一次draft创建均实得 `Post "https://api.github.com/graphql": Forbidden`；[实际创建错误](pr-create-Forbidden.txt)保留；已停止，没有换入口绕过，没有PR创建成功。已准备[PR正文](PR_BODY.md)，开发分支push成功，精确最终远端SHA/CI以最终交付回复为准，不以本地通过代签远端CI或PR已创建。
