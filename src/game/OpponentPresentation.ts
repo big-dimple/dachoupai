@@ -27,7 +27,7 @@ function style(host:HTMLElement):void {
   .opponent-beat small {font-size:14px;color:${C.mutedInk}}
   .opponent-beat strong {font-size:21px;line-height:1.25}
   .opponent-beat p {font-size:15px;line-height:1.35;margin:0}
-  .opponent-beat[data-compact="true"] {padding:2px 10px;gap:2px}
+  .opponent-beat[data-compact="true"] {padding:2px 10px;gap:2px;justify-content:flex-end}
   .opponent-beat[data-compact="true"] small {line-height:1.25}
   .opponent-beat[data-compact="true"] strong {font-size:18px}
   .opponent-beat > small,.opponent-beat > strong,.opponent-beat > p {flex-shrink:0}
