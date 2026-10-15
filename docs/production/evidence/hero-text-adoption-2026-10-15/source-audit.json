@@ -1,0 +1,104 @@
+{
+  "productCommit": "116d85245fa035c531ddecf65d74f47aa54f55da",
+  "sourceTree": "c84c69b5b146ce8b106e646ba7dc17dfb1c6b291",
+  "phase1": {
+    "publishedMain": "c9737cf31a06ad277be663411dde8b6dcaceb7c2",
+    "verifiedDev": "605bfc3c99ffb5de7ccdcd6cb4ac713b965f322d",
+    "fullTreeEqual": true
+  },
+  "textSpecificationSource": "856c30ed4145da9c75310982ed1cd368276c5d80",
+  "currentSpecSHA256": "a174505d53386341e815aceaeac100f5d698c82ed0d442fb1c463ea648c18251",
+  "protectedPaths": [
+    {
+      "path": "src/domain",
+      "baseBlobOrTree": "be0f17abfa3e771373da5f7ba5b38a5126bbec3b",
+      "currentBlobOrTree": "be0f17abfa3e771373da5f7ba5b38a5126bbec3b"
+    },
+    {
+      "path": "src/content",
+      "baseBlobOrTree": "e8c3794be5b0fcb74da4aeb9e6adc63c22388345",
+      "currentBlobOrTree": "e8c3794be5b0fcb74da4aeb9e6adc63c22388345"
+    },
+    {
+      "path": "src/application",
+      "baseBlobOrTree": "1a325d51795f54526ec9f3f313cceb69763a1971",
+      "currentBlobOrTree": "1a325d51795f54526ec9f3f313cceb69763a1971"
+    },
+    {
+      "path": "src/platform",
+      "baseBlobOrTree": "51f99e5222a5a91f4f3ceac9049f477a442c13a2",
+      "currentBlobOrTree": "51f99e5222a5a91f4f3ceac9049f477a442c13a2"
+    },
+    {
+      "path": "src/audio",
+      "baseBlobOrTree": "7f6d2d0dd34313a4099d34cfd36b2baa748f83c2",
+      "currentBlobOrTree": "7f6d2d0dd34313a4099d34cfd36b2baa748f83c2"
+    },
+    {
+      "path": "public",
+      "baseBlobOrTree": "adc1b930482cf720b53f59b76f74df90f12e190d",
+      "currentBlobOrTree": "adc1b930482cf720b53f59b76f74df90f12e190d"
+    },
+    {
+      "path": "src/game/CharacterArt.ts",
+      "baseBlobOrTree": "5d8445f2b31aff600f6ba22a79da4d837e817533",
+      "currentBlobOrTree": "5d8445f2b31aff600f6ba22a79da4d837e817533"
+    },
+    {
+      "path": "src/game/SceneResources.ts",
+      "baseBlobOrTree": "cb64e2110dab60563fb1c2969127110ec12e77f6",
+      "currentBlobOrTree": "cb64e2110dab60563fb1c2969127110ec12e77f6"
+    },
+    {
+      "path": "src/game/LoadingScreen.ts",
+      "baseBlobOrTree": "f917295f3aa9e114903a016481c2d49328fdc274",
+      "currentBlobOrTree": "f917295f3aa9e114903a016481c2d49328fdc274"
+    },
+    {
+      "path": "src/game/PaperFlow.ts",
+      "baseBlobOrTree": "82e70a0797e0f74e6b2ea7b417413b825551cc49",
+      "currentBlobOrTree": "82e70a0797e0f74e6b2ea7b417413b825551cc49"
+    },
+    {
+      "path": "src/game/ToolCarryIntent.ts",
+      "baseBlobOrTree": "50fe615eee865d62ed8443c6e6b6bd86f07378b4",
+      "currentBlobOrTree": "50fe615eee865d62ed8443c6e6b6bd86f07378b4"
+    },
+    {
+      "path": "src/game/ShopScene.ts",
+      "baseBlobOrTree": "cee06262bc105f379daafe3a60f5281aaa68083b",
+      "currentBlobOrTree": "cee06262bc105f379daafe3a60f5281aaa68083b"
+    },
+    {
+      "path": "src/game/RunLaunch.ts",
+      "baseBlobOrTree": "9d6689620499540748006bdc5f11cd749bcf8596",
+      "currentBlobOrTree": "9d6689620499540748006bdc5f11cd749bcf8596"
+    },
+    {
+      "path": "art/sources/tangsong-portraits-20261015",
+      "baseBlobOrTree": "80cc793bfe9f099f45acfdf00fae7323f742273c",
+      "currentBlobOrTree": "80cc793bfe9f099f45acfdf00fae7323f742273c"
+    },
+    {
+      "path": "index.html",
+      "baseBlobOrTree": "341c766f524f98df74e0eecbe5b025015688909b",
+      "currentBlobOrTree": "341c766f524f98df74e0eecbe5b025015688909b"
+    },
+    {
+      "path": "package.json",
+      "baseBlobOrTree": "f7e7f89f05edd46636bac3acc1dfcd1b6cd94ccd",
+      "currentBlobOrTree": "f7e7f89f05edd46636bac3acc1dfcd1b6cd94ccd"
+    },
+    {
+      "path": "package-lock.json",
+      "baseBlobOrTree": "acc93dcd9410bc911db279534e28522a8691dbab",
+      "currentBlobOrTree": "acc93dcd9410bc911db279534e28522a8691dbab"
+    },
+    {
+      "path": "vite.config.ts",
+      "baseBlobOrTree": "42cc69aca1ea1b26c39b8b9206281ea22c422a1f",
+      "currentBlobOrTree": "42cc69aca1ea1b26c39b8b9206281ea22c422a1f"
+    }
+  ],
+  "scope": "Byte equality to phase1 main proves protected source/assets untouched. Software browser paths and state equality remain separate checks; this is not human/physical-device/CI/deployment acceptance."
+}

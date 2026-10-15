@@ -123,10 +123,10 @@
 
 资料核对日期2026-10-15；没有照抄长段史料。六句故事与宣言均由本次写作形成，不是假引语。
 
-## 后续运行时采用清单（由展示接线负责人承接）
+## 运行时采用记录（同一整合负责人顺序完成）
 
-1. 按JSON的id映射HERO_CAST的name/title/intro/quote；title保持用户主题，intro为故事，quote为宣言；本轮不直接改这些字段。
-2. 在CharacterRunCopy的新局分派中采用skillName/skillSummary，保留完整detailRules与原身份分派；具体实时状态继续由HeroAbilityCue/HeroSkillGuide读取，不能把固定句当可用性判定。
-3. 核对HeroOpeningCopy、HeroSignature、HeroPayoff、HeroExplanation、HeroClimax及局部场景显示。只替换英雄专属文案调用；不要全局替换“谢幕/交棒/戏法”而误伤卡牌名、命令、事件reasonKey、存档或历史trace。
-4. 后续验收六人选角→说明→实际技能→来源回看→失败/再战的姓名/技能名/条件一致；PC/390/320长主题完整可读，固定按钮≥44px、保留卡面和数字。诗性主题可换行，规则不能为腾地方被删。
-5. 不在本规范内重命名全套大丑牌、Boss、牌型或资源单位；不改CharacterArt、图源、manifest、加载预算、音路或存档。技术接线完成仍不代替用户理解、自然玩法、美术/听感或真机验收。
+1. 产品116d85245fa035c531ddecf65d74f47aa54f55da已按JSON的id映射HERO_CAST故事/宣言，姓名与六主题逐字保持；固定规则身份严格匹配R2_S04_FINISH_VERSION/HASH，旧身份继续原技能名和能力说明。
+2. CharacterRunCopy提供短效果与条件/次数标签作为首层，长skillSummary与detailRules点击展开。实时资格、已用、资源不足与禁用继续由HeroAbilityCue/HeroSkillGuide等原入口读取；固定文案不启用命令。
+3. HeroOpeningCopy、HeroSignature、HeroExplanation、真实HeroPayoff来源及HeroClimax/局部场景显示采用新名；只动英雄专属调用，操作动词保留。未全局替换“谢幕/交棒/戏法”，未改卡牌名、命令、reasonKey、存档或历史trace。
+4. [同版软件证据](evidence/hero-text-adoption-2026-10-15/README.md)记录PC/390/320、六人文案与旧身份对照、真实技能和来源、高光可读性、保存/恢复与原生前段路径；条件/数字保持，按钮≥44px，长故事/规则正文可滚动。按每个报告的实际范围读取，不代签完整自然经营、用户理解、真机或音画验收。
+5. CharacterArt、图源、manifest、146项目录、加载预算、音路与存档维持第一阶段字节不变；不重命名整套大丑牌、Boss、牌型或资源单位。P08与正式门状态保持。

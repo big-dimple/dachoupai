@@ -8,7 +8,7 @@
 
 游戏名《唐宋牌》，唐宋文人、文武与文化意象的架空牌局；六人固定为苏轼/秦琼/辛弃疾/刘娥/文成公主/花蕊夫人，**三男三女、均为青年形象**。旧戏班人名/四男两女与文成男性草案退为历史。花蕊夫人取五代后蜀至宋初文化背景，不能伪称六人历史上同代；新故事、台词、技能名均是游戏创作，不伪造古人原话。
 
-| 技术ID（不改） | 人物 | 用户主题（逐字保留） | 本次技能新名（文本规范完成，尚未运行时采用） |
+| 技术ID（不改） | 人物 | 用户主题（逐字保留） | 本次技能新名（正常新局已运行时采用） |
 | --- | --- | --- | --- |
 | amo | 苏轼 | 风起赤壁 | 余韵相和 |
 | touye | 秦琼 | 踏破山河 | 新锋入阵 |
@@ -21,20 +21,21 @@
 
 ### 提交账：开发完成、待整合、待验收分别记录
 
-当前远端main已正常发布并核到 `c9737cf31a06ad277be663411dde8b6dcaceb7c2`（开发605bfc3c，六图+加载+R03与字幕留白修正）；本地同版检查见[整合证据](evidence/tangsong-art-delivery-integration-2026-10-15/README.md)。这不等于读取域名/CI或重新签收线上。所有软件测试只属于各自报告的源码，不能拼成另一提交的总体验通过。
+第一阶段main已正常发布并核到 `c9737cf31a06ad277be663411dde8b6dcaceb7c2`（开发605bfc3c，六图+加载+R03与字幕留白修正）；本地同版检查见[整合证据](evidence/tangsong-art-delivery-integration-2026-10-15/README.md)。这不等于读取域名/CI或重新签收线上。第二阶段文案产品116d85245fa035c531ddecf65d74f47aa54f55da采用856c30ed规范，独立同版证据见[文案接线](evidence/hero-text-adoption-2026-10-15/README.md)。用户已明确授权检查后正常merge并push main，最终发布SHA以交付回执/远端为准；不强推、不查CI/域名。所有软件测试只属于各自报告的源码，不能拼成另一提交的总体验通过。
 
 | 对象 | 精确开发提交 / 证据 | 当前状态与负责范围 |
 | --- | --- | --- |
-| main | [`8e2174141920ef001b95a30485e70525920d3d9f`](https://github.com/big-dimple/dachoupai/blob/8e2174141920ef001b95a30485e70525920d3d9f/docs/production/evidence/astra-brand-growth-recommendation-2026-10-15/README.md) | 统筹/发布负责人：main代码基线；部署状态本轮未核，不是重新验收或线上性能回执；状态 `main`。 |
-| preload | [`9c41dfff2a66ffa66b5cf812c2742caae9cdf125`](https://github.com/big-dimple/dachoupai/blob/9c41dfff2a66ffa66b5cf812c2742caae9cdf125/docs/production/evidence/loading-preload-2026-10-15/README.md) | 加载负责人：共享加载/解码/缓存/场景预载、真实134项、截止重试和文字继续；不含六正式图后的146项目录；状态 `development_complete_not_main`。 |
-| carry | [`7dfab9a678d2701219234bc63dea0e987de5cbf5`](https://github.com/big-dimple/dachoupai/blob/7dfab9a678d2701219234bc63dea0e987de5cbf5/docs/production/evidence/r03-carry-tool-2026-10-15/README.md) | R03负责人（已结束开发）：体验审查R03：确切工具实例、显式携带、当前手牌选目标确认；12组受控证据，不是原R03工作包重开；状态 `development_complete_in_integration`。 |
-| opening | [`eba6c158954039dddbe9adeac40fd99df693d565`](https://github.com/big-dimple/dachoupai/blob/eba6c158954039dddbe9adeac40fd99df693d565/docs/production/evidence/loading-opening-2026-10-15/README.md) | 加载动画负责人（已结束开发）：山河/日印/三牌与真实进度、低动态；原生图/录屏/134项回归；指定参考站实看仍未完成；状态 `development_complete_in_integration`。 |
+| 机制历史基线 | [`8e2174141920ef001b95a30485e70525920d3d9f`](https://github.com/big-dimple/dachoupai/blob/8e2174141920ef001b95a30485e70525920d3d9f/docs/production/evidence/astra-brand-growth-recommendation-2026-10-15/README.md) | 统筹/发布负责人：原机制代码基线；部署状态本轮未核，不是重新验收或线上性能回执；状态 `historical_rules_baseline`。 |
+| preload | [`9c41dfff2a66ffa66b5cf812c2742caae9cdf125`](https://github.com/big-dimple/dachoupai/blob/9c41dfff2a66ffa66b5cf812c2742caae9cdf125/docs/production/evidence/loading-preload-2026-10-15/README.md) | 加载负责人：共享加载/解码/缓存/场景预载、真实134项、截止重试和文字继续；原报告不含六正式图后的146项目录；现已整合并发布第一阶段main c9737cf3，新目录证据单列。 |
+| carry | [`7dfab9a678d2701219234bc63dea0e987de5cbf5`](https://github.com/big-dimple/dachoupai/blob/7dfab9a678d2701219234bc63dea0e987de5cbf5/docs/production/evidence/r03-carry-tool-2026-10-15/README.md) | R03负责人（已结束开发）：体验审查R03：确切工具实例、显式携带、当前手牌选目标确认；12组受控证据，不是原R03工作包重开；已整合并发布第一阶段main c9737cf3。 |
+| opening | [`eba6c158954039dddbe9adeac40fd99df693d565`](https://github.com/big-dimple/dachoupai/blob/eba6c158954039dddbe9adeac40fd99df693d565/docs/production/evidence/loading-opening-2026-10-15/README.md) | 加载动画负责人（已结束开发）：山河/日印/三牌与真实进度、低动态；原生图/录屏/134项回归；指定参考站实看仍未完成；已整合并发布第一阶段main c9737cf3。 |
 | portrait-sources | [`e6922f8d56cf42b9dedd4eab00d772591a7b79ad`](https://github.com/big-dimple/dachoupai/blob/e6922f8d56cf42b9dedd4eab00d772591a7b79ad/art/sources/tangsong-portraits-20261015/manifest.json) | 原图转存负责人：六张原始1122×1402 PNG与manifest；用户验收六原图；不等于运行时或独立眼原画验收；状态 `source_delivered_user_accepted_originals_only`。 |
 | themes | [`53b5283a1ae8a02255a124fc8f450743583f0e23`](https://github.com/big-dimple/dachoupai/blob/53b5283a1ae8a02255a124fc8f450743583f0e23/docs/production/evidence/approved-character-art-2026-10-15/README.md) | 角色展示负责人：六主题接入/旧转存阻塞回执为当时历史；原图不可读阻塞已由后续转存与运行时解除；状态 `development_complete_superseded_by_portrait_runtime`。 |
-| portrait-runtime | [`bd626e84c429b0e45aa61a52bba10af2eb953714`](https://github.com/big-dimple/dachoupai/blob/bd626e84c429b0e45aa61a52bba10af2eb953714/docs/production/evidence/approved-character-art-2026-10-15/README.md) | 正式图接线负责人（本轮另路）：选角/说明/头像/筹备/结果/高光，146项17.01MiB/20MiB；安全头脸特写不是独立眼原画；待同版整合与体验验收；状态 `development_complete_pending_integration`。 |
-| integration | [`a85be2a8817d5985746c9caeb5f978b2e66ac74e`](https://github.com/big-dimple/dachoupai/blob/a85be2a8817d5985746c9caeb5f978b2e66ac74e/docs/production/evidence/tangsong-delivery-integration-2026-10-15/README.md) | dev/tangsong-delivery-20261015整合负责人：已含加载动画+R03，三尺寸正常新局前段及保存同态已记录；此快照尚不含bd626e84，另路正在合入六图；不得预记最终同版通过；状态 `loading_and_carry_integrated_portraits_in_progress`。 |
+| portrait-runtime | [`bd626e84c429b0e45aa61a52bba10af2eb953714`](https://github.com/big-dimple/dachoupai/blob/bd626e84c429b0e45aa61a52bba10af2eb953714/docs/production/evidence/approved-character-art-2026-10-15/README.md) | 正式图接线负责人（本轮另路）：选角/说明/头像/筹备/结果/高光，146项17.01MiB/20MiB；安全头脸特写不是独立眼原画；已整合并发布第一阶段main c9737cf3，体验/真机验收仍分项待办。 |
+| integration | [`605bfc3c99ffb5de7ccdcd6cb4ac713b965f322d`](evidence/tangsong-art-delivery-integration-2026-10-15/README.md) | 同一整合负责人：六图/加载/R03与320高光字幕留白已验证，正常发布main c9737cf31a06ad277be663411dde8b6dcaceb7c2；146项17.01MiB/20MiB；软件与人工验收分开。 |
+| hero-text | [`116d85245fa035c531ddecf65d74f47aa54f55da`](evidence/hero-text-adoption-2026-10-15/README.md) | 顺序合入856c30ed规范后采用六新技能名/宣言/故事；按实际身份分派，短效果/标签首层、长规则展开。仅展示/必要测试，不改领域/数值/存档/资源；按用户授权正常发布。 |
 
-`a85be2a`是已核对的整合快照，祖先包含加载演出与R03，已有PC/390/320正常新局前段闭环、状态保存相等与资源等待带入数据证据；**正式图运行时正在由另路合入，不预记新整合HEAD或最终同版通过**。后续整合负责人必须以实际合并后的SHA补回执，不重跑或重写已经结束的加载/R03开发任务。主分支合并仍待用户明确确认；本轮不合main、不部署、不查CI/域名。
+原a85be2a快照及其未含正式图状态只属于原证据；第一阶段605bfc3c/main c9737cf3已经完成并集与同版检查，不重复派加载或R03开发。当前文案阶段独立验证与交付，P08仍in_progress；未签真人理解、真机、听感或独立眼原画。
 
 ### 已实现清单：不得按历史“待实现”重复派工
 
@@ -49,14 +50,14 @@
 
 | 顺序 | 本轮范围与负责人 | 依赖 | 完成出口；不能代签的事项 |
 | --- | --- | --- | --- |
-| P0·整合 | dev/tangsong-delivery负责人合入既有加载/携带与bd626六图；仅处理可复现冲突/缺陷 | 已开发提交与原保护树、原图哈希 | 固定新HEAD并记录并集；146项17.01MiB/20MiB真实预载、PC/390/320入场与选牌/保存相等；不能拿134项旧报告签新目录 |
-| P0·文案 | 本文档负责人交付此规范；后续角色展示负责人按JSON映射采用六人文本 | 本次文本规范与已实现能力；不等待新数值 | 本轮规范完成/代码采用待办分开；只改英雄专属调用、主题/技能/故事/声明一致；不全局替换牌名/命令/事件 |
+| P0·整合（已交付） | dev/tangsong-delivery负责人已合入加载/携带与bd626六图并发布第一阶段main；仅处理可复现缺陷 | 已开发提交与原保护树、原图哈希 | 固定新HEAD并记录并集；146项17.01MiB/20MiB真实预载、PC/390/320入场与选牌/保存相等；不能拿134项旧报告签新目录 |
+| P0·文案（已采用） | 同一整合负责人顺序合入规范并采用六人文本 | 本次文本规范与已实现能力；不等待新数值 | 规范来源与实际代码采用SHA分开；只改英雄专属调用、主题/技能/故事/声明一致；不全局替换牌名/命令/事件 |
 | P1·同版复核 | 整合/交互负责人在固定整合SHA做有界回归，避免并行改GameScene | P0整合；新文本采用若一起交付需同版 | 正常新局→筹备→工具携带→当前手牌→技能→实际来源→下一店/失败再战；取消/连点/补牌/保存失败/冷恢复/禁用及B05顺序保持 |
 | P1·玩法与成长 | 玩法验证负责人按实际六人/三路线缺口做有限正常经营 | 同版稳定、实际状态日志 | 记看见/买得起/买入/养成/触发、花费/层数/持币条件/余量及失败；依事实决定最小修改；不预设六人同分或重开18格为前置 |
 | P2·体验验收 | 用户/真实玩家/设备与听感负责人分项签收 | 能复现的同版与实际素材/声音 | 人物与技能理解、移动手势/44px/长主题、成长买养换、美术高光/加载、音量和听感、目标手机/GPU；软件通过不代签 |
 | 后续正式门 | V01/A03/B00/B01/L00/L01按既有依赖恢复 | 当前局部结论与另行授权 | 正式真人/平衡留出/整体音画/性能/发布门保持；完整C04剩余教程/图鉴/高光历史仍暂停，已有基础不重做 |
 
-**文件所有权**：本分支只改计划/角色文本/状态凭据；不改src、资源manifest或音路。R03与加载开发已结束，缺陷经复现再由各负责人最小修复；正式图负责人持CharacterArt/派生图/裁切与资源预算窗口；整合负责人统一GameScene局部接线和最终同版检查。文案接线若触及这些窗口，先以明确映射交给该负责人，不能复制整份旧GameScene覆盖。源图转存分支基于旧main，不整树取代新的加载源码。
+**文件所有权**：文案接线由同一整合负责人顺序完成，只动英雄专属展示、必要测试与证据；不改领域、资源manifest或音路。R03与加载开发已结束，缺陷经复现再由各负责人最小修复；正式图负责人持CharacterArt/派生图/裁切与资源预算窗口；整合负责人统一GameScene局部接线和最终同版检查。文案接线若触及这些窗口，先以明确映射交给该负责人，不能复制整份旧GameScene覆盖。源图转存分支基于旧main，不整树取代新的加载源码。
 
 ### 分项验收与尚待决定的取舍
 

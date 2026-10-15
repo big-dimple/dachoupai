@@ -1,0 +1,184 @@
+{
+  "taskId": "P08",
+  "kind": "scoped_hero_runtime_text_adoption_software_evidence",
+  "testedCommit": "116d85245fa035c531ddecf65d74f47aa54f55da",
+  "sourceTree": "c84c69b5b146ce8b106e646ba7dc17dfb1c6b291",
+  "specificationSource": "856c30ed4145da9c75310982ed1cd368276c5d80",
+  "phase1PublishedMain": "c9737cf31a06ad277be663411dde8b6dcaceb7c2",
+  "scope": "显示技能名、宣言、故事、短效果/标签与长规则展开；旧局规则/数值/身份/存档/人物资源/146项加载保持。",
+  "currentDeliveryStatus": "software_verified_normal_main_merge_authorized",
+  "runtimeChanged": true,
+  "domainAndProtectedAssetsChanged": false,
+  "checks": [
+    {
+      "name": "完整单测",
+      "command": "npm test -- --maxWorkers=1",
+      "status": "PASS",
+      "exitCode": 0,
+      "evidence": "docs/production/evidence/hero-text-adoption-2026-10-15/raw/unit-final.log",
+      "files": 270,
+      "tests": 3652
+    },
+    {
+      "name": "TypeScript与生产构建",
+      "command": "npm run build",
+      "status": "PASS",
+      "exitCode": 0,
+      "evidence": "docs/production/evidence/hero-text-adoption-2026-10-15/raw/build-final.log"
+    },
+    {
+      "name": "内容合同",
+      "command": "npm run verify:content",
+      "status": "PASS",
+      "exitCode": 0,
+      "evidence": "docs/production/evidence/hero-text-adoption-2026-10-15/raw/content.log"
+    },
+    {
+      "name": "三档现代/旧身份只读展示",
+      "command": "node harness/hero-text-adoption.mjs",
+      "status": "PASS",
+      "exitCode": 0,
+      "evidence": "docs/production/evidence/hero-text-adoption-2026-10-15/browser/report.json",
+      "modernExplanations": 18,
+      "skillOperationViews": 18,
+      "legacyViews": 6
+    },
+    {
+      "name": "三档长正文/故事滚动",
+      "command": "HERO_COPY_OUT=docs/production/evidence/hero-text-adoption-2026-10-15/expanded HERO_COPY_IDS=laohuan,azao HERO_COPY_DETAILS_ONLY=1 node harness/hero-text-adoption.mjs",
+      "status": "PASS",
+      "exitCode": 0,
+      "evidence": "docs/production/evidence/hero-text-adoption-2026-10-15/expanded/report.json",
+      "views": 6,
+      "scriptCommit": "9ed0285763c1b0210967151d96c56efa3812dea8"
+    },
+    {
+      "name": "三档正常新局原生流程",
+      "command": "DELIVERY_OUTPUT=docs/production/evidence/hero-text-adoption-2026-10-15/native node harness/tangsong-delivery-integration.mjs",
+      "status": "PASS",
+      "exitCode": 0,
+      "evidence": "docs/production/evidence/hero-text-adoption-2026-10-15/native/summary.json",
+      "cases": 3
+    },
+    {
+      "name": "计分技能真实高光/减少动态/跳过/退出",
+      "command": "HERO_TITLE_DPR=2 HERO_TITLE_CAPTIONS=1 HERO_TITLE_CASES=amo-390-normal,erxiang-390-normal,xiemu-390-normal,azao-390-normal,touye-390-normal,amo-1366-normal,xiemu-1366-normal,xiemu-390-fast,erxiang-390-reduce,erxiang-390-skip,erxiang-390-exit HERO_TITLE_OUT=docs/production/evidence/hero-text-adoption-2026-10-15/climax node harness/approved-art-climax.mjs",
+      "status": "PASS",
+      "exitCode": 0,
+      "evidence": "docs/production/evidence/hero-text-adoption-2026-10-15/climax/summary.json",
+      "cases": 11
+    },
+    {
+      "name": "320×568紧凑高光",
+      "command": "HERO_TITLE_DPR=2 HERO_TITLE_CAPTIONS=1 HERO_TITLE_HEIGHT=568 HERO_TITLE_CASES=xiemu-320-normal HERO_TITLE_OUT=docs/production/evidence/hero-text-adoption-2026-10-15/climax-compact node harness/approved-art-climax.mjs",
+      "status": "PASS",
+      "exitCode": 0,
+      "evidence": "docs/production/evidence/hero-text-adoption-2026-10-15/climax-compact/summary.json",
+      "cases": 1
+    },
+    {
+      "name": "R03确切实例/保存失败/B05",
+      "command": "R03_OUTPUT=docs/production/evidence/hero-text-adoption-2026-10-15/r03 node harness/r03-carry-tool.mjs",
+      "status": "PASS",
+      "exitCode": 0,
+      "evidence": "docs/production/evidence/hero-text-adoption-2026-10-15/r03/summary.json",
+      "cases": 12
+    },
+    {
+      "name": "构建产物PC/手机smoke",
+      "command": "SMOKE_CHROMIUM_EXECUTABLE_PATH=/usr/bin/chromium SMOKE_SHOTS=1 npm run verify:smoke",
+      "status": "PASS",
+      "exitCode": 0,
+      "evidence": "docs/production/evidence/hero-text-adoption-2026-10-15/smoke/report.json",
+      "cases": 2
+    },
+    {
+      "name": "计划结构",
+      "command": "node scripts/check-production-plan.mjs",
+      "status": "PASS",
+      "exitCode": 0,
+      "evidence": "docs/production/evidence/hero-text-adoption-2026-10-15/raw/plan-final.log"
+    }
+  ],
+  "planStructure": {
+    "status": "PASS",
+    "exitCode": 0,
+    "evidence": "docs/production/evidence/hero-text-adoption-2026-10-15/raw/plan-final.log"
+  },
+  "environment": {
+    "browser": "151.0.7922.173",
+    "profiles": [
+      {
+        "viewport": {
+          "width": 1366,
+          "height": 900
+        },
+        "renderer": {
+          "type": 1,
+          "canvasWidth": 1366,
+          "canvasHeight": 900,
+          "cssWidth": 1366,
+          "cssHeight": 900,
+          "dpr": 1
+        }
+      },
+      {
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "renderer": {
+          "type": 1,
+          "canvasWidth": 780,
+          "canvasHeight": 1688,
+          "cssWidth": 390,
+          "cssHeight": 844,
+          "dpr": 2
+        }
+      },
+      {
+        "viewport": {
+          "width": 320,
+          "height": 568
+        },
+        "renderer": {
+          "type": 1,
+          "canvasWidth": 640,
+          "canvasHeight": 1136,
+          "cssWidth": 320,
+          "cssHeight": 568,
+          "dpr": 2
+        }
+      }
+    ]
+  },
+  "startup": {
+    "items": 146,
+    "decodedPixels": 4458496,
+    "decodedRGBABytes": 17833984,
+    "budgetRGBABytes": 20971520
+  },
+  "humanReview": {
+    "status": "NOT_RUN"
+  },
+  "physicalDevices": "NOT_RUN",
+  "audioAcceptance": "NOT_RUN",
+  "independentEyeArtAcceptance": "NOT_RUN",
+  "remainingReferenceBlocker": {
+    "status": "BLOCKED",
+    "reason": "原指定demo代理403，仓库/原始源码404；没有声称实看；只复用本地已核MIT弹簧，归属保留，SVG/CSS原创。",
+    "evidence": "docs/production/evidence/loading-opening-2026-10-15/reference-access-and-license.json"
+  },
+  "releasePolicy": {
+    "normalMergeAndPushMainAuthorizedByUser": true,
+    "forcePush": false,
+    "queriedCI": false,
+    "queriedDeploymentDomain": false
+  },
+  "limitations": [
+    "仅软件Chromium与有界受控/原生前段路径，不是完整自然经营、平衡、真人理解、真机/听感或运行时美术签收。",
+    "P08保持in_progress；C04剩余教程/图鉴/高光历史与正式门状态不变。"
+  ],
+  "nextTask": "用户/真人/目标设备/听感按各自实际证据分项验收，不重开既有加载/R03/六种能力开发。",
+  "date": "2026-10-15"
+}

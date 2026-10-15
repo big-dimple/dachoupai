@@ -1,0 +1,21 @@
+{
+  "head": "9a28e2dd9046d70b39080db1def5653896b80018",
+  "sourceTree": "6a18370eba3ef76f09520bdb048056663239c6e6",
+  "scope": "Software Chromium, normal motion, six modern hero copies in three sizes and read-only legacy ability views; not human comprehension or physical-device acceptance.",
+  "cases": [
+    {
+      "viewport": {
+        "width": 1366,
+        "height": 900
+      },
+      "heroes": [],
+      "live": [],
+      "legacy": [],
+      "errors": [],
+      "status": "FAIL",
+      "error": "locator.click: Timeout 20000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('.hero-explanation[open]').getByRole('button', { name: '返回', exact: true })\u001b[22m\n\n    at /workspace/dachoupai/harness/hero-text-adoption.mjs:37:169"
+    }
+  ],
+  "status": "FAIL",
+  "error": "locator.click: Timeout 20000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('.hero-explanation[open]').getByRole('button', { name: '返回', exact: true })\u001b[22m\n\n    at /workspace/dachoupai/harness/hero-text-adoption.mjs:37:169"
+}

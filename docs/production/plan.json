@@ -104,9 +104,10 @@
         "docs/production/evidence/p08-deck-inspector-2026-10-04/summary.json",
         "docs/production/evidence/p08-deck-stat-copy-2026-10-04/summary.json",
         "docs/production/evidence/p08-ai-cut-final-2026-10-05/summary.json",
-        "docs/production/evidence/tangsong-plan-reconcile-2026-10-15/status.json"
+        "docs/production/evidence/tangsong-plan-reconcile-2026-10-15/status.json",
+        "docs/production/evidence/hero-text-adoption-2026-10-15/status.json"
       ],
-      "notes": "只沿DELIVERY_PLAN唯一入口；不得把旧戏班名、四男两女、原图转存阻塞、134项旧目录或历史待实现条目当当前任务。保留task evidence全部原SHA和历史FAIL/NOT_RUN；旧累计notes与旧selectionPolicy原文移入history/plan-status-before-20261015.json，角色规则以新局身份与HERO_TEXT_SPEC为准。体验审查R03是P08子项，不是已done的R03工作包重开。"
+      "notes": "只沿DELIVERY_PLAN唯一入口；不得把旧戏班名、四男两女、原图转存阻塞、134项旧目录或历史待实现条目当当前任务。保留task evidence全部原SHA和历史FAIL/NOT_RUN；旧累计notes与旧selectionPolicy原文移入history/plan-status-before-20261015.json，角色规则以新局身份与HERO_TEXT_SPEC为准。体验审查R03是P08子项，不是已done的R03工作包重开。 第一阶段605bfc3c已正常发布main c9737cf3；第二阶段文案产品116d8524按完整身份采用，新证据单列；P08/人工与正式门状态不变。"
     },
     {
       "id": "P07",
@@ -1205,19 +1206,19 @@
   ],
   "currentDelivery": {
     "date": "2026-10-15",
-    "statusRecord": "docs/production/evidence/tangsong-plan-reconcile-2026-10-15/status.json",
+    "statusRecord": "docs/production/evidence/hero-text-adoption-2026-10-15/status.json",
     "heroTextSpecification": "docs/production/HERO_TEXT_SPEC_20261015.json",
     "history": "docs/production/history/plan-status-before-20261015.json",
     "priorities": [
-      "P0:整合负责人合入已开发的加载/R03/六图；角色展示负责人采用本次文案映射，不重做机制",
+      "P0已交付：第一阶段六图/加载/R03正常发布；第二阶段六人新文案已顺序采用并独立同版复核，用户授权正常发布main",
       "P1:冻结同版后验证真实资源/移动输入/保存恢复与六人有限正常经营及成长选择",
       "P2:用户理解、运行时美术、听感及目标设备验收；以结果决定最小后续修改",
       "P3:正式平衡/留出/发布门按既有工作包依赖恢复，未经授权不扩完整C04"
     ],
     "owners": {
-      "documents": "本分支：DELIVERY_PLAN/CHARACTER_PLAY_PLAN/plan.json/文本规范",
+      "documents": "同一整合负责人：规范来源856c30ed、运行时采用与当前计划/证据对账",
       "runtimeIntegration": "dev/tangsong-delivery-20261015负责人",
-      "portraits": "正式图接线负责人，bd626e84已完成交付",
+      "portraits": "正式图接线已完成整合；只处理可复现缺陷，不并发覆盖资源窗口",
       "carry": "R03已结束开发，只处理经复现的整合缺陷",
       "opening": "加载动画已结束开发，只处理经复现的整合缺陷",
       "acceptance": "用户/真实玩家/目标设备与听感各按实际证据签收"
