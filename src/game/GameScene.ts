@@ -585,7 +585,8 @@ export class GameScene extends Phaser.Scene {
       frame?.setStrokeStyle(preview?2:1,readiness.readiness==='limited'?T.red:preview&&readiness.readiness==='ready'?T.brass:preview&&readiness.readiness==='pending'?T.jade:Number(view?.getData('frameColor')),.9);
       if(label&&preview&&!view?.getData('bossDisabled')){label.setData('savedLabel',label.text);const room=jokerLabelRoom(this.view.layout,Number(view?.getData('slotIndex')));label.setData('fullText',readiness.label);label.setText(readiness.labelCandidates?fitJokerLabel(readiness.labelCandidates,text=>{label.setText(text);return label.width<=room;},true):fitConditionEntry(readiness.label,text=>{label.setText(text);return label.width<=room;},true));}
       const starter=starterSelection(this.run,joker.instanceId,preview?.type,!!this.jokerRestriction(joker));
-      if(starter&&!readiness.labelCandidates){view?.setData('starterReady',starter.ready).setData('starterLabel',starter.label);frame?.setStrokeStyle(starter.ready?3:2,starter.ready?T.red:T.jade,.95);if(label){const room=jokerLabelRoom(this.view.layout,Number(view?.getData('slotIndex')));label.setText(fitConditionEntry(starter.label,text=>{label.setText(text);return label.width<=room;},true));}}
+      if(starter)view?.setData('starterReady',starter.ready).setData('starterLabel',starter.label);
+      if(starter&&!readiness.labelCandidates){frame?.setStrokeStyle(starter.ready?3:2,starter.ready?T.red:T.jade,.95);if(label){const room=jokerLabelRoom(this.view.layout,Number(view?.getData('slotIndex')));label.setText(fitConditionEntry(starter.label,text=>{label.setText(text);return label.width<=room;},true));}}
       const art=view?.getData('f09-art') as Phaser.GameObjects.Container|undefined;art?.setData('f09-active',!view?.getData('bossDisabled')&&(this.run.stage?.discardsUsed??0)===0);
     }
   }

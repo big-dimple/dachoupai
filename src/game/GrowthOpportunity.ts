@@ -89,5 +89,5 @@ export function growthSelection(d:R2JokerDefinition,joker:R2JokerInstance,ctx:Jo
  const readiness=ctx.scoringLimited?'limited':scoringReady||growing?'ready':['unmet','capped','used'].includes(growth.status)?'unmet':'pending';
  const primary=ctx.scoringLimited?'计分停用':active.join('／')||(ctx.facts?'本手无加成':'待选牌');
  const label=primary+' · '+growth.compactLabel;
- return {readiness:readiness as 'ready'|'pending'|'unmet'|'limited',label,labelCandidates:[label,primary],body:lines.join('\n')+'\n新增成长（独立检查）：'+growth.body,growth};
+ return {readiness:readiness as 'ready'|'pending'|'unmet'|'limited',label,labelCandidates:[label,primary,...(scoringReady?active.map(s=>s.replace('即时','')):[ctx.facts?'无加成':'待选牌'])],body:lines.join('\n')+'\n新增成长（独立检查）：'+growth.body,growth};
 }
