@@ -16,8 +16,8 @@
 
 | 检查 | 结果与精确范围 |
 |---|---|
-| 类型/构建 | `npm run typecheck` PASS；`npm run build` PASS（内含 tsc，保留既有 chunk >500 kB 提示） |
-| 定向单测 | 7 文件、69 项 PASS，见 [tests.log](tests.log) |
+| 类型/构建 | `npm run typecheck` PASS；`npm run build` PASS（内含 tsc，保留既有 chunk >500 kB 提示），见 [build.txt](build.txt) |
+| 定向单测 | 7 文件、69 项 PASS，见 [tests.txt](tests.txt) |
 | 四轴矩阵 | 精确产品提交，4 视口 × 3 类场景 = 12 PASS；每次查看/取消/缩窗 state/journal/IDB/localStorage 相同、send=[]。详见 [visual/report.json](visual/report.json) |
 | 完整链 | 精确产品提交、clean HEAD，1366×768、390×844、320×568、390×568 全 PASS；每视口6笔权威交易，共24笔，state/journal/IDB/revision 逐字段相同。详见 [journey/report.json](journey/report.json) |
 | 只读返回 | 货架→购买详情→比较→第五槽→管理→返回/关闭/Escape→出售取消：dispatch=0，完整保存不变；原生触屏滚动和 document.activeElement 为第五槽管理按钮均断言 |
@@ -39,3 +39,5 @@ JOURNEY_OUTPUT=/tmp/shop-four-axis-journey node harness/shop-four-axis-journey.m
 `prior-failures/` 保留初次观察器/产品失败：有搭档夹具误用了非重触来源 a06（改为 b06）；随后390×568确实丢组合（已修）；新链观察器 reload 后读取已清除计数（已改为 reload 前快照）；源码变更时 HMR 使元素 detached（最终 clean HEAD 复跑）；短屏等待离屏 lazy 图片超时（改为只等待与屏幕相交图片，仍核 naturalWidth，并保留失败诊断/截图路径）。没有削弱交易、保存或只读一致性断言。最终 PASS 均在精确 f350047d 取得，不借旧 PASS。
 
 PR145 远端读取 `gh pr view` 被 GraphQL `Forbidden` 拒绝后停止该读取，未绕过；本地无其提交对象，仅依据 DELIVERY_PLAN 已落库的“人物主导、独立版次、短窗固定关闭”记录借鉴，未复制原型或把原型写成已验收。发布与CI另由开发分支实际回执判断，本证据不代签。
+
+短屏实际图审另见既有边界：390×568 保存故障菜单沿原滚动位置，警告可能位于上方屏外，但“重试保存”本屏可见并已原生点击成功；本窗口未改共享菜单。
