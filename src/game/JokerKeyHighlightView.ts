@@ -4,7 +4,7 @@ import type {Box,LayoutMode} from './layout';
 import {jokerArtKey} from './jokerArt';
 import {SCORE_FONT,PAPER_THEME as T,PAPER_CSS as C,UI_FONT} from './theme';
 import type {JokerKeyHighlight} from './JokerKeyHighlight';
-import {avatarKey,selectionPortraitKey} from './portraits';
+import {avatarKey,selectionPortraitKey,portraitKey} from './portraits';
 import {getCharacter} from './characters';
 import {STARTER_ROUTE_LABEL} from './RouteStarter';
 /** Three exclusive regions: side, stacked played area, or the actual source slot. */
@@ -39,7 +39,7 @@ function mountStarterHighlight(scene:Phaser.Scene,root:Phaser.GameObjects.Contai
  const horizontal=box.width>box.height*1.6,small=compact||box.height<92;
  const text=(x:number,y:number,value:string,size:number,width:number,name:string)=>{const t=scene.add.text(x,y,value,{fontFamily:UI_FONT,fontSize:size+'px',color:C.ink,resolution:Math.max(1,1/scene.scale.zoom),wordWrap:{width,useAdvancedWrap:true}}).setName(name);group.add(t);return t;};
  const image=(key:string|undefined,b:Box,name:string)=>{if(!key||!scene.textures.exists(key))return;const source=scene.textures.get(key).getSourceImage() as HTMLImageElement;group.add(scene.add.image(b.x+b.width/2,b.y+b.height/2,key).setScale(Math.min(b.width/source.width,b.height/source.height)).setName(name));};
- const heroKey=['opening-portrait-'+hero,selectionPortraitKey(hero),avatarKey(hero)].find(k=>scene.textures.exists(k));
+ const heroKey=[portraitKey(hero),selectionPortraitKey(hero),avatarKey(hero)].find(k=>scene.textures.exists(k));
  const h=small?Math.max(22,box.height-42):horizontal?box.height-16:Math.min(96,box.height*.4),w=small?Math.min(26,(box.width-12)/2):h*.65;
  const start=horizontal?6:Math.max(6,(box.width-w*2-8)/2),top=small?22:horizontal?8:10;
  image(heroKey,{x:start,y:top,width:w,height:h},'joker/starter-hero');image(jokerArtKey(key.fact.definitionId),{x:start+w+8,y:top,width:w,height:h},'joker/key-art');

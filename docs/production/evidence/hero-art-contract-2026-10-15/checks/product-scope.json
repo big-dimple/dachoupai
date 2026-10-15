@@ -1,0 +1,64 @@
+{
+  "candidateBase": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+  "productSHA": "7ae1d5d75d0fc39de69bfdacdb14947598286c06",
+  "srcTree": "7fc85b9bca2019f2ad776b697f9a3f866c5dae8b",
+  "checks": {
+    "targetedUnitTests": 75,
+    "targetedUnitFiles": 8,
+    "incomingValidatorTests": 25,
+    "typecheck": "PASS",
+    "build": "PASS at 7ae1d5d75d0fc39de69bfdacdb14947598286c06; standard bundle size warning retained in build.txt",
+    "controlledBrowserCases": 9,
+    "originalPNGsDecoded": 53,
+    "completeNativeCommandReceipts": 5,
+    "browserEvidence": "PASS; checks/browser-evidence-check.json"
+  },
+  "protectedTrees": {
+    "src/game/GameScene.ts": {
+      "base": "2fac030c42e419753d40d0ffcd0c8f1d8c1aed75",
+      "product": "2fac030c42e419753d40d0ffcd0c8f1d8c1aed75",
+      "unchanged": true
+    },
+    "src/game/ShopScene.ts": {
+      "base": "82831f96368f67fae6824d111d77f4577744a494",
+      "product": "82831f96368f67fae6824d111d77f4577744a494",
+      "unchanged": true
+    },
+    "src/domain": {
+      "base": "bd1f9b2c5a2b7eb4d143b59a094694b12adc8485",
+      "product": "bd1f9b2c5a2b7eb4d143b59a094694b12adc8485",
+      "unchanged": true
+    },
+    "src/application": {
+      "base": "1a325d51795f54526ec9f3f313cceb69763a1971",
+      "product": "1a325d51795f54526ec9f3f313cceb69763a1971",
+      "unchanged": true
+    },
+    "src/audio": {
+      "base": "7f6d2d0dd34313a4099d34cfd36b2baa748f83c2",
+      "product": "7f6d2d0dd34313a4099d34cfd36b2baa748f83c2",
+      "unchanged": true
+    },
+    "public/assets": {
+      "base": "809823e118712c2e2e27b2921e0a3c648368ba26",
+      "product": "809823e118712c2e2e27b2921e0a3c648368ba26",
+      "unchanged": true
+    },
+    "art/sources": {
+      "base": "47067728e0f15588b56199ff8ecc3b4e40c2dc53",
+      "product": "47067728e0f15588b56199ff8ecc3b4e40c2dc53",
+      "unchanged": true
+    }
+  },
+  "publicSceneChanges": {
+    "GameScene.ts": [],
+    "ShopScene.ts": []
+  },
+  "limitations": [
+    "No new paintings or independent eye assets generated or integrated.",
+    "Existing 18 runtime assets remain transitional.",
+    "No natural gameplay, physical device or subjective art/audio acceptance.",
+    "Current P08 original source PNGs absent from handoff package.",
+    "Browser PNG/state evidence is complete for the 9 scoped cases; 320 table is a transition frame and not stable-layout acceptance."
+  ]
+}

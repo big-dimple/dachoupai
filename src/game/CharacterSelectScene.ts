@@ -9,7 +9,7 @@ import {deferOpeningIntent} from './HeroOpeningIntent';
 import Phaser from 'phaser';
 import {AudioEngine} from '../audio/AudioEngine';
 import {CHARACTERS,getCharacter,type CharacterId} from './characters';
-import {addAvatar,selectionPortraitKey} from './portraits';
+import {addAvatar,selectionPortraitKey,portraitKey,avatarKey} from './portraits';
 import {startRun} from './runAdapter';
 import {gameSession} from './session';
 import {routeSavedRun} from './RunMenu';
@@ -63,7 +63,7 @@ export class CharacterSelectScene extends Phaser.Scene {
     this.view=new SceneView(this,()=>this.render());
     const refreshImage=(key:string)=>{
       if(!this.scene.isActive())return;
-      for(const [holder,target] of this.portraitTargets)if(holder.active&&[selectionPortraitKey(target.id),'avatar-'+target.id,...(target.hero?['opening-portrait-'+target.id]:[])].includes(key))this.paintPortrait(holder,target.id,target.box,target.hero);
+      for(const [holder,target] of this.portraitTargets)if(holder.active&&[selectionPortraitKey(target.id),avatarKey(target.id),...(target.hero?[portraitKey(target.id)]:[])].includes(key))this.paintPortrait(holder,target.id,target.box,target.hero);
     };
     this.textures.on('addtexture',refreshImage);this.events.once('shutdown',()=>this.textures.off('addtexture',refreshImage));warmOpeningImages(this);
     const session=gameSession();let pending=session.pendingRun;
@@ -194,7 +194,7 @@ export class CharacterSelectScene extends Phaser.Scene {
   /** Replace only the picture; late previews must never destroy a pressed action target. */
   private paintPortrait(holder:Phaser.GameObjects.Container,id:CharacterId,b:Box,hero:boolean):void {
     holder.removeAll(true);
-    const key=hero&&this.textures.exists('opening-portrait-'+id)?'opening-portrait-'+id:selectionPortraitKey(id);
+    const key=hero&&this.textures.exists(portraitKey(id))?portraitKey(id):selectionPortraitKey(id);
     if(!this.textures.exists(key)){addAvatar(this,holder,getCharacter(id),b.x+b.width/2,b.y+b.height/2,Math.min(b.width,b.height));return;}
     const image=this.add.image(0,0,key),scale=Math.min(b.width/image.width,b.height/image.height);
     if(hero)image.setName('opening/portrait').setData('openingBounds',b);

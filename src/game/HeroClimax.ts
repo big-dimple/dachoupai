@@ -12,7 +12,7 @@ import type {ScoreTrace} from '../domain/scoreR2';
 import {readableFractionText,heatText} from './scoreText';
 import {readableMultiplierEffect} from './ScoreEventCaption';
 import {scoreSourceProcess,scoreSourceClimaxValue} from './ScoreSourceProcess';
-import {selectionPortraitKey,avatarKey} from './portraits';
+import {selectionPortraitKey,avatarKey,portraitKey} from './portraits';
 import {jokerArtKey} from './jokerArt';
 import {getCharacter} from './characters';
 import {savedSkillName} from './SettlementHighlights';
@@ -42,7 +42,7 @@ export interface HeroClimaxView {group:Phaser.GameObjects.Container;strike:()=>v
 /** Three shots inside the existing queue slot. Owns no input, command or extra hold. */
 export function mountHeroClimax(scene:Phaser.Scene,root:Phaser.GameObjects.Container,viewport:Box,key:JokerKeyHighlight,value:HeroClimaxValue,reduced:boolean):HeroClimaxView|undefined {
  const id=key.heroId;if(!id)return;
- const heroKey=['opening-portrait-'+id,selectionPortraitKey(id),avatarKey(id)].find(k=>scene.textures.exists(k));if(!heroKey)return;
+ const heroKey=[portraitKey(id),selectionPortraitKey(id),avatarKey(id)].find(k=>scene.textures.exists(k));if(!heroKey)return;
  const {width:w,height:h}=viewport,l=heroClimaxLayout(w,h,!!key.fact.definitionId),p=l.panel;
  const group=scene.add.container(0,0).setName('joker/key-focus').setData('eventId',key.eventId).setData('benefit',key.fact).setData('heroClimax',true).setData('starter',key.kind==='starter').setData('phase',reduced?'still':'charge').setData('bounds',viewport).setData('panel',p).setData('headlineWidth',l.nameW);root.add(group);
  const board=scene.add.container(0,0).setName('hero/climax-board');group.add(board);
