@@ -13,7 +13,7 @@ import type {ScoreTrace} from '../domain/scoreR2';
 import {readableFractionText,heatText} from './scoreText';
 import {readableMultiplierEffect} from './ScoreEventCaption';
 import {scoreSourceProcess,scoreSourceClimaxValue} from './ScoreSourceProcess';
-import {selectionPortraitKey,avatarKey,portraitKey} from './portraits';
+import {selectionPortraitKey,avatarKey,portraitKey,portraitFocusKey} from './portraits';
 import {jokerArtKey} from './jokerArt';
 import {getCharacter} from './characters';
 import {savedSkillName} from './SettlementHighlights';
@@ -55,19 +55,17 @@ export function mountHeroClimax(scene:Phaser.Scene,root:Phaser.GameObjects.Conta
  if(scene.textures.exists('p00-paper'))board.add(scene.add.tileSprite(p.x+3,p.y+7,p.width-6,p.height-12,'p00-paper').setOrigin(0).setAlpha(.07));
  const text=(parent:Phaser.GameObjects.Container,x:number,y:number,s:string,size:number,color=C.ink,width?:number)=>{const t=scene.add.text(x,y,s,{fontFamily:UI_FONT,fontSize:size+'px',fontStyle:'bold',color,resolution:textDensity(scene),...(width?{wordWrap:{width,useAdvancedWrap:true}}:{})});parent.add(t);crispText(t);return t;};
  const actualSource=!!key.fact.definitionId,title=actualSource?key.fact.title:value.skillName??getCharacter(id).name;
- mountHeroClimaxCaption(scene,board,l,{title,owner:(actualSource?getCharacter(id).name+' · 来源兑现':value.skillName?getCharacter(id).name+' · 技能兑现':'这一手 · 实际兑现')+' · '+HERO_ART_NOTICE,effect:value.note});
+ mountHeroClimaxCaption(scene,board,l,{title,owner:(actualSource?getCharacter(id).name+' · '+getCharacter(id).title+' · 来源兑现':value.skillName?getCharacter(id).name+' · '+getCharacter(id).title+' · 技能兑现':'这一手 · 实际兑现')+' · '+HERO_ART_NOTICE,effect:value.note});
  const eyesLayer=scene.add.container(0,0).setName('hero/shot-eyes'),skillLayer=scene.add.container(0,0).setName('hero/shot-skill'),landingLayer=scene.add.container(0,0).setName('hero/shot-landing');board.add([eyesLayer,skillLayer,landingLayer]);
- // Existing 615×768 artwork supports an honest portrait focus, not a panoramic eye strip.
- // A dedicated eye painting is absent. Never enlarge any sampled pixel on the framebuffer.
+ // Reviewed head crops exclude baked text. They come from the portrait, not independent eye artwork.
+ // Never enlarge sampled pixels on the framebuffer; missing focus uses the full-subject shot.
  const density=textDensity(scene),portraitSource=scene.textures.get(heroKey).getSourceImage() as HTMLImageElement;
  const addCrop=(parent:Phaser.GameObjects.Container,key:string,b:Box,crop:{x:number;y:number;width:number;height:number},name:string)=>{
   const source=scene.textures.get(key).getSourceImage() as HTMLImageElement,scale=Math.min(b.width/crop.width,b.height/crop.height,1/density);
   const image=scene.add.image(b.x+b.width/2+(source.width/2-crop.x-crop.width/2)*scale,b.y+b.height/2+(source.height/2-crop.y-crop.height/2)*scale,key).setOrigin(.5).setCrop(crop.x,crop.y,crop.width,crop.height).setScale(scale).setName(name).setData('visibleBounds',b);parent.add(image);return image;
  };
- const character=getCharacter(id),cropW=Math.round(portraitSource.width*.90),cropH=Math.round(portraitSource.height*.50);
- const cropX=Math.round(Math.max(0,Math.min(portraitSource.width-cropW,portraitSource.width*character.portraitFocusX-cropW/2))),cropY=Math.round(Math.max(0,Math.min(portraitSource.height-cropH,portraitSource.height*character.portraitFocusY-cropH/2)));
- const hasFocus=portraitSource.width>=600&&portraitSource.height>=700;
- if(hasFocus)addCrop(eyesLayer,heroKey,l.portrait?l.eyes:l.source,{x:cropX,y:cropY,width:cropW,height:cropH},'hero/climax-eyes').setData('assetId',id+'.portrait').setData('camera','portrait-focus');
+ const character=getCharacter(id),focusKey=portraitFocusKey(id),hasFocus=scene.textures.exists(focusKey);
+ if(hasFocus){const focusSource=scene.textures.get(focusKey).getSourceImage() as HTMLImageElement;addCrop(eyesLayer,focusKey,l.portrait?l.eyes:l.source,{x:0,y:0,width:focusSource.width,height:focusSource.height},'hero/climax-eyes').setData('assetId',id+'.focus').setData('camera','portrait-focus');}
  text(eyesLayer,l.portrait?l.nameX:l.readout.x,l.portrait?l.eyes.y+l.eyes.height+20:l.readout.y,character.quote,l.short?16:20,C.jade,l.portrait?l.nameW:l.readout.width).setName('hero/climax-eye-quote');
  if(!l.portrait)text(eyesLayer,l.readout.x,l.readout.y+(l.short?40:74),value.label+' '+value.after,l.short?18:28,C.red,l.readout.width).setName('hero/climax-focus-effect');
  // Contain the full subject and source painting rather than cutting off most of the picture.

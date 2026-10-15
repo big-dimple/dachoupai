@@ -2,11 +2,11 @@ import {afterEach,expect,it,vi} from 'vitest';
 import {CHARACTER_ART,characterArt,characterArtKey,assertCharacterArtDimensions,assertCharacterArtReference,type CharacterArtAsset} from '../src/game/CharacterArt';
 import {CHARACTERS} from '../src/game/characters';
 import {avatarURL,portraitURL,selectionPortraitURL} from '../src/game/portraits';
-const catalog=CHARACTER_ART as CharacterArtAsset[];
-afterEach(()=>{catalog.splice(0);vi.unstubAllGlobals();vi.restoreAllMocks();});
-const register=()=>{const a:CharacterArtAsset={id:'amo',purpose:'portrait',key:characterArtKey('amo','portrait'),path:'test-approved-art.webp',url:'https://game.example/test-approved-art.webp',width:615,height:768,bytes:64,sha256:'test-fixture',format:'webp'};catalog.push(a);return a;};
-it('all six unavailable identities have stable keys and no image URL, including deployment subpaths',()=>{
- expect(catalog).toEqual([]);for(const c of CHARACTERS)for(const p of ['avatar','selection','portrait'] as const){expect(characterArt(c.id,p)).toBeUndefined();expect({avatar:avatarURL,selection:selectionPortraitURL,portrait:portraitURL}[p](c.id)).toBe('');expect(characterArtKey(c.id,p)).toContain(c.id);}
+const catalog=CHARACTER_ART as CharacterArtAsset[],approved=[...catalog];
+afterEach(()=>{catalog.splice(0,catalog.length,...approved);vi.unstubAllGlobals();vi.restoreAllMocks();});
+const register=()=>{catalog.splice(0);const a:CharacterArtAsset={id:'amo',purpose:'portrait',key:characterArtKey('amo','portrait'),path:'test-approved-art.webp',url:'https://game.example/test-approved-art.webp',width:615,height:768,bytes:64,sha256:'test-fixture',format:'webp'};catalog.push(a);return a;};
+it('all six identities resolve approved assets, with optional focus outside the startup faces',()=>{
+ expect(catalog).toHaveLength(24);for(const c of CHARACTERS)for(const p of ['avatar','selection','portrait','focus'] as const){const a=characterArt(c.id,p)!;expect(a).toBeDefined();expect(a.url).toContain('/assets/tangsong-portraits/');expect(a.bytes).toBeLessThanOrEqual(128*1024);expect(a.width*a.height).toBeLessThanOrEqual(600000);expect(characterArtKey(c.id,p)).toContain(c.id);}
 });
 it('unregistered hero keys cannot fetch an empty image, deleted placeholder or archived old face',async()=>{
  const fetch=vi.fn();vi.stubGlobal('fetch',fetch);const {loadArtTexture}=await import('../src/game/ArtTextureLoading');

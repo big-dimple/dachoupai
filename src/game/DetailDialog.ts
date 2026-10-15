@@ -134,11 +134,13 @@ export class DetailDialog {
         cleanups.push(()=>{closed=true;retryDecode?.abort();image.onerror=null;image.onload=null;retry.onclick=null;});layout.append(frame);
       }else {
         const frame=document.createElement('figure'),message=document.createElement('div'),retry=document.createElement('button');frame.className='dialog-portrait-art';image.width=615;image.height=768;
-        message.className='detail-art-status';message.hidden=true;retry.className='detail-art-retry';retry.textContent='重试立绘';retry.hidden=true;let closed=false,controller:AbortController|undefined;
+        message.className='detail-art-status';message.hidden=true;retry.className='detail-art-retry';retry.textContent='重试立绘';retry.hidden=true;let closed=false,controller:AbortController|undefined,stopUpgrade:(()=>void)|undefined;let portraitControls:HTMLElement[]=[];
         image.src=portrait.thumbnailUrl??portrait.url;image.onerror=()=>{message.textContent='立绘暂未加载，文字和操作仍可用';message.hidden=false;retry.hidden=false;};image.onload=()=>{image.hidden=!validCharacterImage(image);message.hidden=!image.hidden;retry.hidden=!image.hidden;if(image.hidden)message.textContent='立绘尺寸不符，文字和操作仍可用';};
-        retry.onclick=async()=>{controller?.abort();controller=new AbortController();retry.disabled=true;try{await decodeArtImage(portrait.url,controller.signal);if(!closed)image.src=portrait.url;}catch{if(!closed)message.textContent='立绘仍未加载，可取消或重试';}finally{if(!closed)retry.disabled=false;}};
+        retry.onclick=async()=>{controller?.abort();controller=new AbortController();retry.disabled=true;try{await decodeArtImage(portrait.url,controller.signal);if(!closed){stopUpgrade?.();image.src=portrait.url;for(const control of portraitControls)control.hidden=true;}}catch{if(!closed)message.textContent='立绘仍未加载，可取消或重试';}finally{if(!closed)retry.disabled=false;}};
         frame.append(image,message,retry);layout.append(frame);
-        if(portrait.thumbnailUrl)cleanups.push(progressiveArt(frame,image,portrait.url,()=>{}));
+        if(portrait.thumbnailUrl){stopUpgrade=progressiveArt(frame,image,portrait.url,()=>{});cleanups.push(stopUpgrade);}
+        // These controls move into the scroll column below; retain their identity for recovery.
+        portraitControls=[...frame.querySelectorAll<HTMLElement>('.detail-art-status,.detail-art-retry')];
         cleanups.push(()=>{closed=true;controller?.abort();image.onerror=null;image.onload=null;retry.onclick=null;});
       }
     }

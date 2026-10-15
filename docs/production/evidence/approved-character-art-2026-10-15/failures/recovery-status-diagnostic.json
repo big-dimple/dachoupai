@@ -1,0 +1,930 @@
+{
+  "head": "b4dbda6367c5e37c61c03511114d97ad9229f971",
+  "scope": "Native startup avatar failure/retry and text fallback, optional head/portrait retry, DOM portrait recovery, cold persisted-run restoration. Controlled software browser.",
+  "startup": [
+    {
+      "key": "p00-paper",
+      "url": "/assets/p00/paper.svg",
+      "pixels": 409600
+    },
+    {
+      "key": "p00-card-back",
+      "url": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNDAiIGhlaWdodD0iMzM2IiB2aWV3Qm94PSIwIDAgMjQwIDMzNiI+PHJlY3QgeD0iMyIgeT0iMyIgd2lkdGg9IjIzNCIgaGVpZ2h0PSIzMzAiIHJ4PSI5IiBmaWxsPSIjRjNFQURCIiBzdHJva2U9IiMyNjMxM0EiIHN0cm9rZS13aWR0aD0iMS41Ii8+PHBhdGggZD0iTTEyIDI0VjEyaDIwTTIwOCAzMjRoMjB2LTEyTTEyMCA4NGw2NSA4NC02NSA4NC02NS04NFoiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzNGNjA2QiIgc3Ryb2tlLXdpZHRoPSIyIi8+PHBhdGggZD0iTTg3IDE3OGM0LTQ1IDIzLTY2IDMzLTY5IDEwIDMgMjkgMjQgMzMgNjlaIiBmaWxsPSIjQjg0NzNBIi8+PHBhdGggZD0iTTc5IDE4N2g4Mk0xMDMgMjAyaDM0IiBmaWxsPSJub25lIiBzdHJva2U9IiMyNjMxM0EiIHN0cm9rZS13aWR0aD0iMyIvPjwvc3ZnPg==",
+      "pixels": 80640
+    },
+    {
+      "key": "p00-frame-common",
+      "url": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNDAiIGhlaWdodD0iMzM2IiB2aWV3Qm94PSIwIDAgMjQwIDMzNiI+PHJlY3QgeD0iMyIgeT0iMyIgd2lkdGg9IjIzNCIgaGVpZ2h0PSIzMzAiIHJ4PSI5IiBmaWxsPSJub25lIiBzdHJva2U9IiMyNjMxM0EiIHN0cm9rZS13aWR0aD0iMS41Ii8+PHBhdGggZD0iTTkgMjlWMTBsMTktMU0yMTIgMzI3bDE5LTF2LTE5IiBmaWxsPSJub25lIiBzdHJva2U9IiMyNjMxM0EiIHN0cm9rZS13aWR0aD0iLjciIG9wYWNpdHk9Ii40NSIvPjwvc3ZnPg==",
+      "pixels": 80640
+    },
+    {
+      "key": "p00-frame-uncommon",
+      "url": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNDAiIGhlaWdodD0iMzM2IiB2aWV3Qm94PSIwIDAgMjQwIDMzNiI+PHJlY3QgeD0iMyIgeT0iMyIgd2lkdGg9IjIzNCIgaGVpZ2h0PSIzMzAiIHJ4PSI5IiBmaWxsPSJub25lIiBzdHJva2U9IiMzRjYwNkIiIHN0cm9rZS13aWR0aD0iMS41Ii8+PHBhdGggZD0iTTkgMjlWMTBsMTktMU0yMTIgMzI3bDE5LTF2LTE5IiBmaWxsPSJub25lIiBzdHJva2U9IiMzRjYwNkIiIHN0cm9rZS13aWR0aD0iLjciIG9wYWNpdHk9Ii40NSIvPjxwYXRoIGQ9Im0xMjAgNSA1IDUtNSA1LTUtNVoiIGZpbGw9IiMzRjYwNkIiLz48L3N2Zz4=",
+      "pixels": 80640
+    },
+    {
+      "key": "p00-frame-rare",
+      "url": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNDAiIGhlaWdodD0iMzM2IiB2aWV3Qm94PSIwIDAgMjQwIDMzNiI+PHJlY3QgeD0iMyIgeT0iMyIgd2lkdGg9IjIzNCIgaGVpZ2h0PSIzMzAiIHJ4PSI5IiBmaWxsPSJub25lIiBzdHJva2U9IiNCODQ3M0EiIHN0cm9rZS13aWR0aD0iMS41Ii8+PHBhdGggZD0iTTkgMjlWMTBsMTktMU0yMTIgMzI3bDE5LTF2LTE5IiBmaWxsPSJub25lIiBzdHJva2U9IiNCODQ3M0EiIHN0cm9rZS13aWR0aD0iLjciIG9wYWNpdHk9Ii40NSIvPjxwYXRoIGQ9Im0xMjAgNSAzIDcgNyAzLTcgMy0zIDctMy03LTctMyA3LTNaIiBmaWxsPSIjQjg0NzNBIi8+PC9zdmc+",
+      "pixels": 80640
+    },
+    {
+      "key": "p00-mark-joker",
+      "url": "/assets/p00/mark-joker.svg",
+      "pixels": 9216
+    },
+    {
+      "key": "p00-mark-plus",
+      "url": "/assets/p00/mark-plus.svg",
+      "pixels": 9216
+    },
+    {
+      "key": "p00-mark-times",
+      "url": "/assets/p00/mark-times.svg",
+      "pixels": 9216
+    },
+    {
+      "key": "avatar-amo",
+      "url": "/assets/tangsong-portraits/amo.avatar.webp",
+      "pixels": 65536
+    },
+    {
+      "key": "selection-portrait-amo",
+      "url": "/assets/tangsong-portraits/amo.selection.webp",
+      "pixels": 81920
+    },
+    {
+      "key": "avatar-touye",
+      "url": "/assets/tangsong-portraits/touye.avatar.webp",
+      "pixels": 65536
+    },
+    {
+      "key": "selection-portrait-touye",
+      "url": "/assets/tangsong-portraits/touye.selection.webp",
+      "pixels": 81920
+    },
+    {
+      "key": "avatar-laohuan",
+      "url": "/assets/tangsong-portraits/laohuan.avatar.webp",
+      "pixels": 65536
+    },
+    {
+      "key": "selection-portrait-laohuan",
+      "url": "/assets/tangsong-portraits/laohuan.selection.webp",
+      "pixels": 81920
+    },
+    {
+      "key": "avatar-erxiang",
+      "url": "/assets/tangsong-portraits/erxiang.avatar.webp",
+      "pixels": 65536
+    },
+    {
+      "key": "selection-portrait-erxiang",
+      "url": "/assets/tangsong-portraits/erxiang.selection.webp",
+      "pixels": 81920
+    },
+    {
+      "key": "avatar-azao",
+      "url": "/assets/tangsong-portraits/azao.avatar.webp",
+      "pixels": 65536
+    },
+    {
+      "key": "selection-portrait-azao",
+      "url": "/assets/tangsong-portraits/azao.selection.webp",
+      "pixels": 81920
+    },
+    {
+      "key": "avatar-xiemu",
+      "url": "/assets/tangsong-portraits/xiemu.avatar.webp",
+      "pixels": 65536
+    },
+    {
+      "key": "selection-portrait-xiemu",
+      "url": "/assets/tangsong-portraits/xiemu.selection.webp",
+      "pixels": 81920
+    },
+    {
+      "key": "p08-court-j",
+      "url": "/assets/handdrawn-p08/court/j.court.webp",
+      "pixels": 98304
+    },
+    {
+      "key": "p08-court-q",
+      "url": "/assets/handdrawn-p08/court/q.court.webp",
+      "pixels": 98304
+    },
+    {
+      "key": "p08-court-k",
+      "url": "/assets/handdrawn-p08/court/k.court.webp",
+      "pixels": 98304
+    },
+    {
+      "key": "p08-joker-mantangcai",
+      "url": "/assets/handdrawn-p08/cards/mantangcai.thumbnail.webp",
+      "pixels": 20480
+    },
+    {
+      "key": "p08-joker-jiedongfeng",
+      "url": "/assets/handdrawn-p08/cards/jiedongfeng.thumbnail.webp",
+      "pixels": 20480
+    },
+    {
+      "key": "p08-joker-c04",
+      "url": "/assets/handdrawn-p08/cards/c04.thumbnail.webp",
+      "pixels": 20480
+    },
+    {
+      "key": "p08-joker-b10",
+      "url": "/assets/handdrawn-p08/cards/b10.thumbnail.webp",
+      "pixels": 20480
+    },
+    {
+      "key": "p08-joker-b03",
+      "url": "/assets/handdrawn-p08/cards/b03.thumbnail.webp",
+      "pixels": 20480
+    },
+    {
+      "key": "p08-joker-c06",
+      "url": "/assets/handdrawn-p08/cards/c06.thumbnail.webp",
+      "pixels": 20480
+    },
+    {
+      "key": "p08-joker-f04",
+      "url": "/assets/handdrawn-p08/cards/f04.thumbnail.webp",
+      "pixels": 20480
+    },
+    {
+      "key": "p08-joker-e07",
+      "url": "/assets/handdrawn-p08/cards/e07.thumbnail.webp",
+      "pixels": 20480
+    },
+    {
+      "key": "p08-joker-f09",
+      "url": "/assets/handdrawn-p08/cards/f09.thumbnail.webp",
+      "pixels": 20480
+    },
+    {
+      "key": "p08-joker-f07",
+      "url": "/assets/handdrawn-p08/cards/f07.thumbnail.webp",
+      "pixels": 20480
+    },
+    {
+      "key": "p08-joker-d07",
+      "url": "/assets/handdrawn-p08/cards/d07.thumbnail.webp",
+      "pixels": 20480
+    },
+    {
+      "key": "p08-joker-a07",
+      "url": "/assets/handdrawn-p08/cards/a07.thumbnail.webp",
+      "pixels": 20480
+    },
+    {
+      "key": "p08-joker-a08",
+      "url": "/assets/handdrawn-p08/cards/a08.thumbnail.webp",
+      "pixels": 20480
+    },
+    {
+      "key": "p08-joker-c03",
+      "url": "/assets/handdrawn-p08/cards/c03.thumbnail.webp",
+      "pixels": 20480
+    },
+    {
+      "key": "p08-joker-d02",
+      "url": "/assets/handdrawn-p08/cards/d02.thumbnail.webp",
+      "pixels": 20480
+    },
+    {
+      "key": "p08-joker-e02",
+      "url": "/assets/handdrawn-p08/cards/e02.thumbnail.webp",
+      "pixels": 20480
+    },
+    {
+      "key": "p08-joker-e09",
+      "url": "/assets/handdrawn-p08/cards/e09.thumbnail.webp",
+      "pixels": 20480
+    },
+    {
+      "key": "p08-joker-tiesuanpan",
+      "url": "/assets/handdrawn-p08/cards/tiesuanpan.thumbnail.webp",
+      "pixels": 20480
+    },
+    {
+      "key": "p08-joker-f10",
+      "url": "/assets/handdrawn-p08/cards/f10.thumbnail.webp",
+      "pixels": 20480
+    },
+    {
+      "key": "p08-joker-c08",
+      "url": "/assets/handdrawn-p08/cards/c08.thumbnail.webp",
+      "pixels": 20480
+    },
+    {
+      "key": "p08-joker-c09",
+      "url": "/assets/handdrawn-p08/cards/c09.thumbnail.webp",
+      "pixels": 20480
+    },
+    {
+      "key": "p08-joker-pengci",
+      "url": "/assets/handdrawn-p08/cards/pengci.thumbnail.webp",
+      "pixels": 20480
+    },
+    {
+      "key": "p08-joker-huimaqiang",
+      "url": "/assets/handdrawn-p08/cards/huimaqiang.thumbnail.webp",
+      "pixels": 20480
+    },
+    {
+      "key": "p08-joker-b07",
+      "url": "/assets/handdrawn-p08/cards/b07.thumbnail.webp",
+      "pixels": 20480
+    },
+    {
+      "key": "p08-joker-a09",
+      "url": "/assets/handdrawn-p08/cards/a09.thumbnail.webp",
+      "pixels": 20480
+    },
+    {
+      "key": "p08-joker-d06",
+      "url": "/assets/handdrawn-p08/cards/d06.thumbnail.webp",
+      "pixels": 20480
+    },
+    {
+      "key": "p08-joker-a04",
+      "url": "/assets/handdrawn-p08/cards/a04.thumbnail.webp",
+      "pixels": 20480
+    },
+    {
+      "key": "p08-joker-e04",
+      "url": "/assets/handdrawn-p08/cards/e04.thumbnail.webp",
+      "pixels": 20480
+    },
+    {
+      "key": "p08-joker-c05",
+      "url": "/assets/handdrawn-p08/cards/c05.thumbnail.webp",
+      "pixels": 20480
+    },
+    {
+      "key": "p08-joker-c02",
+      "url": "/assets/handdrawn-p08/cards/c02.thumbnail.webp",
+      "pixels": 20480
+    },
+    {
+      "key": "p08-joker-f03",
+      "url": "/assets/handdrawn-p08/cards/f03.thumbnail.webp",
+      "pixels": 20480
+    },
+    {
+      "key": "p08-joker-a03",
+      "url": "/assets/handdrawn-p08/cards/a03.thumbnail.webp",
+      "pixels": 20480
+    },
+    {
+      "key": "p08-joker-b02",
+      "url": "/assets/handdrawn-p08/cards/b02.thumbnail.webp",
+      "pixels": 20480
+    },
+    {
+      "key": "p08-joker-b04",
+      "url": "/assets/handdrawn-p08/cards/b04.thumbnail.webp",
+      "pixels": 20480
+    },
+    {
+      "key": "p08-joker-d01",
+      "url": "/assets/handdrawn-p08/cards/d01.thumbnail.webp",
+      "pixels": 20480
+    },
+    {
+      "key": "p08-joker-f02",
+      "url": "/assets/handdrawn-p08/cards/f02.thumbnail.webp",
+      "pixels": 20480
+    },
+    {
+      "key": "p08-joker-d10",
+      "url": "/assets/handdrawn-p08/cards/d10.thumbnail.webp",
+      "pixels": 20480
+    },
+    {
+      "key": "p08-joker-e01",
+      "url": "/assets/handdrawn-p08/cards/e01.thumbnail.webp",
+      "pixels": 20480
+    },
+    {
+      "key": "p08-joker-b05",
+      "url": "/assets/handdrawn-p08/cards/b05.thumbnail.webp",
+      "pixels": 20480
+    },
+    {
+      "key": "p08-joker-b08",
+      "url": "/assets/handdrawn-p08/cards/b08.thumbnail.webp",
+      "pixels": 20480
+    },
+    {
+      "key": "p08-joker-d05",
+      "url": "/assets/handdrawn-p08/cards/d05.thumbnail.webp",
+      "pixels": 20480
+    },
+    {
+      "key": "p08-joker-e03",
+      "url": "/assets/handdrawn-p08/cards/e03.thumbnail.webp",
+      "pixels": 20480
+    },
+    {
+      "key": "p08-joker-e06",
+      "url": "/assets/handdrawn-p08/cards/e06.thumbnail.webp",
+      "pixels": 20480
+    },
+    {
+      "key": "p08-joker-f05",
+      "url": "/assets/handdrawn-p08/cards/f05.thumbnail.webp",
+      "pixels": 20480
+    },
+    {
+      "key": "p08-joker-f11",
+      "url": "/assets/handdrawn-p08/cards/f11.thumbnail.webp",
+      "pixels": 20480
+    },
+    {
+      "key": "p08-joker-b06",
+      "url": "/assets/handdrawn-p08/cards/b06.thumbnail.webp",
+      "pixels": 20480
+    },
+    {
+      "key": "p08-joker-a11",
+      "url": "/assets/handdrawn-p08/cards/a11-v2-ea9e76e4a31f.thumbnail.webp",
+      "pixels": 20480
+    },
+    {
+      "key": "p08-joker-d04",
+      "url": "/assets/handdrawn-p08/cards/d04.thumbnail.webp",
+      "pixels": 20480
+    },
+    {
+      "key": "p08-joker-c07",
+      "url": "/assets/handdrawn-p08/cards/c07.thumbnail.webp",
+      "pixels": 20480
+    },
+    {
+      "key": "p08-joker-d11",
+      "url": "/assets/handdrawn-p08/cards/d11.thumbnail.webp",
+      "pixels": 20480
+    },
+    {
+      "key": "p08-joker-d08",
+      "url": "/assets/handdrawn-p08/cards/d08.thumbnail.webp",
+      "pixels": 20480
+    },
+    {
+      "key": "p08-joker-d09",
+      "url": "/assets/handdrawn-p08/cards/d09.thumbnail.webp",
+      "pixels": 20480
+    },
+    {
+      "key": "p08-joker-b12",
+      "url": "/assets/handdrawn-p08/cards/b12.thumbnail.webp",
+      "pixels": 20480
+    },
+    {
+      "key": "p08-joker-a05",
+      "url": "/assets/handdrawn-p08/cards/a05.thumbnail.webp",
+      "pixels": 20480
+    },
+    {
+      "key": "p08-joker-d03",
+      "url": "/assets/handdrawn-p08/cards/d03.thumbnail.webp",
+      "pixels": 20480
+    },
+    {
+      "key": "p08-joker-a10",
+      "url": "/assets/handdrawn-p08/cards/a10.thumbnail.webp",
+      "pixels": 20480
+    },
+    {
+      "key": "p08-joker-b11",
+      "url": "/assets/handdrawn-p08/cards/b11.thumbnail.webp",
+      "pixels": 20480
+    },
+    {
+      "key": "p08-joker-c10",
+      "url": "/assets/handdrawn-p08/cards/c10.thumbnail.webp",
+      "pixels": 20480
+    },
+    {
+      "key": "p08-joker-d12",
+      "url": "/assets/handdrawn-p08/cards/d12.thumbnail.webp",
+      "pixels": 20480
+    },
+    {
+      "key": "p08-joker-a06",
+      "url": "/assets/handdrawn-p08/cards/a06.thumbnail.webp",
+      "pixels": 20480
+    },
+    {
+      "key": "p08-joker-a12",
+      "url": "/assets/handdrawn-p08/cards/a12.thumbnail.webp",
+      "pixels": 20480
+    },
+    {
+      "key": "p08-joker-b09",
+      "url": "/assets/handdrawn-p08/cards/b09.thumbnail.webp",
+      "pixels": 20480
+    },
+    {
+      "key": "p08-joker-c11",
+      "url": "/assets/handdrawn-p08/cards/c11.thumbnail.webp",
+      "pixels": 20480
+    },
+    {
+      "key": "p08-joker-c12",
+      "url": "/assets/handdrawn-p08/cards/c12.thumbnail.webp",
+      "pixels": 20480
+    },
+    {
+      "key": "p08-joker-e10",
+      "url": "/assets/handdrawn-p08/cards/e10.thumbnail.webp",
+      "pixels": 20480
+    },
+    {
+      "key": "p08-joker-e12",
+      "url": "/assets/handdrawn-p08/cards/e12.thumbnail.webp",
+      "pixels": 20480
+    },
+    {
+      "key": "p08-joker-e05",
+      "url": "/assets/handdrawn-p08/cards/e05.thumbnail.webp",
+      "pixels": 20480
+    },
+    {
+      "key": "p08-joker-e08",
+      "url": "/assets/handdrawn-p08/cards/e08.thumbnail.webp",
+      "pixels": 20480
+    },
+    {
+      "key": "p08-joker-e11",
+      "url": "/assets/handdrawn-p08/cards/e11.thumbnail.webp",
+      "pixels": 20480
+    },
+    {
+      "key": "p08-joker-f06",
+      "url": "/assets/handdrawn-p08/cards/f06.thumbnail.webp",
+      "pixels": 20480
+    },
+    {
+      "key": "p08-joker-f08",
+      "url": "/assets/handdrawn-p08/cards/f08.thumbnail.webp",
+      "pixels": 20480
+    },
+    {
+      "key": "p08-joker-f12",
+      "url": "/assets/handdrawn-p08/cards/f12.thumbnail.webp",
+      "pixels": 20480
+    },
+    {
+      "key": "goods-art/T12",
+      "url": "/assets/handdrawn-tools/tool-t12.thumbnail.webp",
+      "pixels": 20480
+    },
+    {
+      "key": "goods-art/U07",
+      "url": "/assets/handdrawn-tools/item-u07.thumbnail.webp",
+      "pixels": 20480
+    },
+    {
+      "key": "goods-art/P11",
+      "url": "/assets/handdrawn-tools/tool-p11.thumbnail.webp",
+      "pixels": 20480
+    },
+    {
+      "key": "goods-art/S02",
+      "url": "/assets/handdrawn-tools/tool-s02.thumbnail.webp",
+      "pixels": 20480
+    },
+    {
+      "key": "goods-art/U01",
+      "url": "/assets/handdrawn-tools/item-u01.thumbnail.webp",
+      "pixels": 20480
+    },
+    {
+      "key": "goods-art/U02",
+      "url": "/assets/handdrawn-tools/item-u02.thumbnail.webp",
+      "pixels": 20480
+    },
+    {
+      "key": "goods-art/U03",
+      "url": "/assets/handdrawn-tools/item-u03.thumbnail.webp",
+      "pixels": 20480
+    },
+    {
+      "key": "goods-art/U04",
+      "url": "/assets/handdrawn-tools/item-u04.thumbnail.webp",
+      "pixels": 20480
+    },
+    {
+      "key": "goods-art/U05",
+      "url": "/assets/handdrawn-tools/item-u05.thumbnail.webp",
+      "pixels": 20480
+    },
+    {
+      "key": "goods-art/U06",
+      "url": "/assets/handdrawn-tools/item-u06.thumbnail.webp",
+      "pixels": 20480
+    },
+    {
+      "key": "goods-art/U08",
+      "url": "/assets/handdrawn-tools/item-u08.thumbnail.webp",
+      "pixels": 20480
+    },
+    {
+      "key": "goods-art/U09",
+      "url": "/assets/handdrawn-tools/item-u09.thumbnail.webp",
+      "pixels": 20480
+    },
+    {
+      "key": "goods-art/U10",
+      "url": "/assets/handdrawn-tools/item-u10.thumbnail.webp",
+      "pixels": 20480
+    },
+    {
+      "key": "goods-art/U11",
+      "url": "/assets/handdrawn-tools/item-u11.thumbnail.webp",
+      "pixels": 20480
+    },
+    {
+      "key": "goods-art/U12",
+      "url": "/assets/handdrawn-tools/item-u12.thumbnail.webp",
+      "pixels": 20480
+    },
+    {
+      "key": "goods-art/T06",
+      "url": "/assets/handdrawn-tools/tool-t06.thumbnail.webp",
+      "pixels": 20480
+    },
+    {
+      "key": "goods-art/T07",
+      "url": "/assets/handdrawn-tools/tool-t07.thumbnail.webp",
+      "pixels": 20480
+    },
+    {
+      "key": "goods-art/T08",
+      "url": "/assets/handdrawn-tools/tool-t08.thumbnail.webp",
+      "pixels": 20480
+    },
+    {
+      "key": "goods-art/T09",
+      "url": "/assets/handdrawn-tools/tool-t09.thumbnail.webp",
+      "pixels": 20480
+    },
+    {
+      "key": "goods-art/T10",
+      "url": "/assets/handdrawn-tools/tool-t10.thumbnail.webp",
+      "pixels": 20480
+    },
+    {
+      "key": "goods-art/T11",
+      "url": "/assets/handdrawn-tools/tool-t11.thumbnail.webp",
+      "pixels": 20480
+    },
+    {
+      "key": "goods-art/T13",
+      "url": "/assets/handdrawn-tools/tool-t13.thumbnail.webp",
+      "pixels": 20480
+    },
+    {
+      "key": "goods-art/T14",
+      "url": "/assets/handdrawn-tools/tool-t14.thumbnail.webp",
+      "pixels": 20480
+    },
+    {
+      "key": "goods-art/T15",
+      "url": "/assets/handdrawn-tools/tool-t15.thumbnail.webp",
+      "pixels": 20480
+    },
+    {
+      "key": "goods-art/T16",
+      "url": "/assets/handdrawn-tools/tool-t16.thumbnail.webp",
+      "pixels": 20480
+    },
+    {
+      "key": "goods-art/T17",
+      "url": "/assets/handdrawn-tools/tool-t17.thumbnail.webp",
+      "pixels": 20480
+    },
+    {
+      "key": "goods-art/T18",
+      "url": "/assets/handdrawn-tools/tool-t18.thumbnail.webp",
+      "pixels": 20480
+    },
+    {
+      "key": "goods-art/T01",
+      "url": "/assets/handdrawn-tools/tool-t01.thumbnail.webp",
+      "pixels": 20480
+    },
+    {
+      "key": "goods-art/T02",
+      "url": "/assets/handdrawn-tools/tool-t02.thumbnail.webp",
+      "pixels": 20480
+    },
+    {
+      "key": "goods-art/T03",
+      "url": "/assets/handdrawn-tools/tool-t03.thumbnail.webp",
+      "pixels": 20480
+    },
+    {
+      "key": "goods-art/T04",
+      "url": "/assets/handdrawn-tools/tool-t04.thumbnail.webp",
+      "pixels": 20480
+    },
+    {
+      "key": "goods-art/T05",
+      "url": "/assets/handdrawn-tools/tool-t05.thumbnail.webp",
+      "pixels": 20480
+    },
+    {
+      "key": "goods-art/P01",
+      "url": "/assets/handdrawn-tools/tool-p01.thumbnail.webp",
+      "pixels": 20480
+    },
+    {
+      "key": "goods-art/P02",
+      "url": "/assets/handdrawn-tools/tool-p02.thumbnail.webp",
+      "pixels": 20480
+    },
+    {
+      "key": "goods-art/P03",
+      "url": "/assets/handdrawn-tools/tool-p03.thumbnail.webp",
+      "pixels": 20480
+    },
+    {
+      "key": "goods-art/P04",
+      "url": "/assets/handdrawn-tools/tool-p04.thumbnail.webp",
+      "pixels": 20480
+    },
+    {
+      "key": "goods-art/P05",
+      "url": "/assets/handdrawn-tools/tool-p05.thumbnail.webp",
+      "pixels": 20480
+    },
+    {
+      "key": "goods-art/P06",
+      "url": "/assets/handdrawn-tools/tool-p06.thumbnail.webp",
+      "pixels": 20480
+    },
+    {
+      "key": "goods-art/P07",
+      "url": "/assets/handdrawn-tools/tool-p07.thumbnail.webp",
+      "pixels": 20480
+    },
+    {
+      "key": "goods-art/P08",
+      "url": "/assets/handdrawn-tools/tool-p08.thumbnail.webp",
+      "pixels": 20480
+    },
+    {
+      "key": "goods-art/P09",
+      "url": "/assets/handdrawn-tools/tool-p09.thumbnail.webp",
+      "pixels": 20480
+    },
+    {
+      "key": "goods-art/P10",
+      "url": "/assets/handdrawn-tools/tool-p10.thumbnail.webp",
+      "pixels": 20480
+    },
+    {
+      "key": "goods-art/P12",
+      "url": "/assets/handdrawn-tools/tool-p12.thumbnail.webp",
+      "pixels": 20480
+    },
+    {
+      "key": "goods-art/S01",
+      "url": "/assets/handdrawn-tools/tool-s01.thumbnail.webp",
+      "pixels": 20480
+    },
+    {
+      "key": "goods-art/T19",
+      "url": "/assets/handdrawn-tools/tool-t19.thumbnail.webp",
+      "pixels": 20480
+    },
+    {
+      "key": "goods-art/S03",
+      "url": "/assets/handdrawn-tools/tool-s03.thumbnail.webp",
+      "pixels": 20480
+    },
+    {
+      "key": "goods-art/S04",
+      "url": "/assets/handdrawn-tools/tool-s04.thumbnail.webp",
+      "pixels": 20480
+    },
+    {
+      "key": "goods-art/S05",
+      "url": "/assets/handdrawn-tools/tool-s05.thumbnail.webp",
+      "pixels": 20480
+    },
+    {
+      "key": "goods-art/S06",
+      "url": "/assets/handdrawn-tools/tool-s06.thumbnail.webp",
+      "pixels": 20480
+    },
+    {
+      "key": "goods-art/S07",
+      "url": "/assets/handdrawn-tools/tool-s07.thumbnail.webp",
+      "pixels": 20480
+    },
+    {
+      "key": "goods-art/S08",
+      "url": "/assets/handdrawn-tools/tool-s08.thumbnail.webp",
+      "pixels": 20480
+    }
+  ],
+  "cases": [
+    {
+      "width": 1366,
+      "mode": "retry",
+      "errors": [],
+      "failed": {
+        "key": "title",
+        "total": 146,
+        "loaded": 145,
+        "failed": 1,
+        "pending": 0,
+        "keys": [
+          "p00-paper",
+          "p00-card-back",
+          "p00-frame-common",
+          "p00-frame-uncommon",
+          "p00-frame-rare",
+          "p00-mark-joker",
+          "p00-mark-plus",
+          "p00-mark-times",
+          "avatar-amo",
+          "selection-portrait-amo",
+          "avatar-touye",
+          "selection-portrait-touye",
+          "avatar-laohuan",
+          "selection-portrait-laohuan",
+          "avatar-erxiang",
+          "selection-portrait-erxiang",
+          "avatar-azao",
+          "selection-portrait-azao",
+          "avatar-xiemu",
+          "selection-portrait-xiemu",
+          "p08-court-j",
+          "p08-court-q",
+          "p08-court-k",
+          "p08-joker-mantangcai",
+          "p08-joker-jiedongfeng",
+          "p08-joker-c04",
+          "p08-joker-b10",
+          "p08-joker-b03",
+          "p08-joker-c06",
+          "p08-joker-f04",
+          "p08-joker-e07",
+          "p08-joker-f09",
+          "p08-joker-f07",
+          "p08-joker-d07",
+          "p08-joker-a07",
+          "p08-joker-a08",
+          "p08-joker-c03",
+          "p08-joker-d02",
+          "p08-joker-e02",
+          "p08-joker-e09",
+          "p08-joker-tiesuanpan",
+          "p08-joker-f10",
+          "p08-joker-c08",
+          "p08-joker-c09",
+          "p08-joker-pengci",
+          "p08-joker-huimaqiang",
+          "p08-joker-b07",
+          "p08-joker-a09",
+          "p08-joker-d06",
+          "p08-joker-a04",
+          "p08-joker-e04",
+          "p08-joker-c05",
+          "p08-joker-c02",
+          "p08-joker-f03",
+          "p08-joker-a03",
+          "p08-joker-b02",
+          "p08-joker-b04",
+          "p08-joker-d01",
+          "p08-joker-f02",
+          "p08-joker-d10",
+          "p08-joker-e01",
+          "p08-joker-b05",
+          "p08-joker-b08",
+          "p08-joker-d05",
+          "p08-joker-e03",
+          "p08-joker-e06",
+          "p08-joker-f05",
+          "p08-joker-f11",
+          "p08-joker-b06",
+          "p08-joker-a11",
+          "p08-joker-d04",
+          "p08-joker-c07",
+          "p08-joker-d11",
+          "p08-joker-d08",
+          "p08-joker-d09",
+          "p08-joker-b12",
+          "p08-joker-a05",
+          "p08-joker-d03",
+          "p08-joker-a10",
+          "p08-joker-b11",
+          "p08-joker-c10",
+          "p08-joker-d12",
+          "p08-joker-a06",
+          "p08-joker-a12",
+          "p08-joker-b09",
+          "p08-joker-c11",
+          "p08-joker-c12",
+          "p08-joker-e10",
+          "p08-joker-e12",
+          "p08-joker-e05",
+          "p08-joker-e08",
+          "p08-joker-e11",
+          "p08-joker-f06",
+          "p08-joker-f08",
+          "p08-joker-f12",
+          "goods-art/T12",
+          "goods-art/U07",
+          "goods-art/P11",
+          "goods-art/S02",
+          "goods-art/U01",
+          "goods-art/U02",
+          "goods-art/U03",
+          "goods-art/U04",
+          "goods-art/U05",
+          "goods-art/U06",
+          "goods-art/U08",
+          "goods-art/U09",
+          "goods-art/U10",
+          "goods-art/U11",
+          "goods-art/U12",
+          "goods-art/T06",
+          "goods-art/T07",
+          "goods-art/T08",
+          "goods-art/T09",
+          "goods-art/T10",
+          "goods-art/T11",
+          "goods-art/T13",
+          "goods-art/T14",
+          "goods-art/T15",
+          "goods-art/T16",
+          "goods-art/T17",
+          "goods-art/T18",
+          "goods-art/T01",
+          "goods-art/T02",
+          "goods-art/T03",
+          "goods-art/T04",
+          "goods-art/T05",
+          "goods-art/P01",
+          "goods-art/P02",
+          "goods-art/P03",
+          "goods-art/P04",
+          "goods-art/P05",
+          "goods-art/P06",
+          "goods-art/P07",
+          "goods-art/P08",
+          "goods-art/P09",
+          "goods-art/P10",
+          "goods-art/P12",
+          "goods-art/S01",
+          "goods-art/T19",
+          "goods-art/S03",
+          "goods-art/S04",
+          "goods-art/S05",
+          "goods-art/S06",
+          "goods-art/S07",
+          "goods-art/S08"
+        ],
+        "status": "needs-choice"
+      },
+      "avatarRecovered": true,
+      "failure": "page.waitForFunction: Timeout 25000ms exceeded.\n    at /workspace/dachoupai/harness/approved-art-recovery.mjs:22:604",
+      "live": {
+        "controls": [
+          {
+            "html": "<div class=\"detail-art-status\" hidden=\"\">立绘暂未加载，文字和操作仍可用</div>",
+            "parent": "dialog-scroll"
+          },
+          {
+            "html": "<div class=\"detail-art-status\" role=\"status\">高清暂未加载，可重试</div>",
+            "parent": "dialog-scroll"
+          },
+          {
+            "html": "<button class=\"detail-art-retry\" hidden=\"\">重试立绘</button>",
+            "parent": "dialog-scroll"
+          },
+          {
+            "html": "<button type=\"button\" class=\"detail-art-retry\">重试高清</button>",
+            "parent": "dialog-scroll"
+          }
+        ],
+        "image": [
+          {
+            "src": "http://127.0.0.1:5579/assets/tangsong-portraits/azao.portrait.webp",
+            "w": 615,
+            "hidden": false
+          }
+        ]
+      }
+    }
+  ],
+  "status": "FAIL",
+  "error": "page.waitForFunction: Timeout 25000ms exceeded.\n    at /workspace/dachoupai/harness/approved-art-recovery.mjs:22:604"
+}

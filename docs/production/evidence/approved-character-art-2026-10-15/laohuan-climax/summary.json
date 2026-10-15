@@ -1,0 +1,1534 @@
+{
+  "head": "b4dbda6367c5e37c61c03511114d97ad9229f971",
+  "dirty": "M src/game/CharacterArt.ts\n M src/game/CharacterSelectScene.ts\n M src/game/GameScene.ts\n M src/game/HeroClimax.ts\n M src/game/HeroIdentity.ts\n M src/game/SceneResources.ts\n M src/game/SelectionComparison.ts\n M src/game/StageImageWarmup.ts\n M src/game/portraits.ts\n M tests/character-art.test.ts\n M tests/handdrawn-art.test.ts\n M tests/scene-resources.test.ts\n M tests/tangsong-identity.test.ts\n?? docs/production/evidence/approved-character-art-2026-10-15/art-audit.json\n?? docs/production/evidence/approved-character-art-2026-10-15/art-browser/\n?? docs/production/evidence/approved-character-art-2026-10-15/failures/\n?? harness/approved-art-climax.mjs\n?? harness/approved-art-laohuan.mjs\n?? harness/approved-character-art.mjs\n?? public/assets/tangsong-portraits/\n?? scripts/audit-approved-character-art.mjs\n?? scripts/build-approved-character-art.mjs",
+  "status": "PASS",
+  "cases": [
+    {
+      "key": "1366-normal",
+      "status": "PASS",
+      "subjectDuration": 1011.1000000000931,
+      "shots": [
+        {
+          "timeMs": 18531.700000000186,
+          "shot": "eyes",
+          "phase": "charge",
+          "eventId": "controlled/caption/laohuan/command/5/laohuan-refill",
+          "texts": [
+            {
+              "name": "hero/climax-name",
+              "text": "戏法换牌",
+              "bounds": {
+                "type": 5,
+                "x": 167,
+                "y": 114,
+                "width": 209,
+                "height": 59
+              },
+              "lines": [
+                "戏法换牌"
+              ]
+            },
+            {
+              "name": "hero/climax-owner",
+              "text": "辛弃疾 · 墨影醉里挑灯看剑 · 技能兑现 · 正式立绘",
+              "bounds": {
+                "type": 5,
+                "x": 167,
+                "y": 177,
+                "width": 347,
+                "height": 19
+              },
+              "lines": [
+                "辛弃疾 · 墨影醉里挑灯看剑 · 技能兑现 · 正式立绘"
+              ]
+            },
+            {
+              "name": "hero/climax-note",
+              "text": "多看2张 · A♦；不增加计分",
+              "bounds": {
+                "type": 5,
+                "x": 167,
+                "y": 548,
+                "width": 199,
+                "height": 19
+              },
+              "lines": [
+                "多看2张 · A♦；不增加计分"
+              ]
+            },
+            {
+              "name": "hero/climax-eye-quote",
+              "text": "留住好牌，且看下一着。",
+              "bounds": {
+                "type": 5,
+                "x": 670,
+                "y": 263,
+                "width": 220,
+                "height": 22
+              },
+              "lines": [
+                "留住好牌，且看下一着。"
+              ]
+            },
+            {
+              "name": "hero/climax-focus-effect",
+              "text": "实际留牌 1张",
+              "bounds": {
+                "type": 5,
+                "x": 670,
+                "y": 337,
+                "width": 164,
+                "height": 31
+              },
+              "lines": [
+                "实际留牌 1张"
+              ]
+            }
+          ],
+          "images": [
+            {
+              "name": "hero/climax-eyes",
+              "key": "portrait-focus-laohuan",
+              "scale": 0.65,
+              "density": 1
+            }
+          ],
+          "screenshot": "1366-normal-0-eyes.png"
+        },
+        {
+          "timeMs": 18853,
+          "shot": "skill",
+          "phase": "strike",
+          "subjectVisibleAt": 18846.800000000047,
+          "strikeAt": 18805.5,
+          "eventId": "controlled/caption/laohuan/command/5/laohuan-refill",
+          "texts": [
+            {
+              "name": "hero/climax-name",
+              "text": "戏法换牌",
+              "bounds": {
+                "type": 5,
+                "x": 167,
+                "y": 114,
+                "width": 209,
+                "height": 59
+              },
+              "lines": [
+                "戏法换牌"
+              ]
+            },
+            {
+              "name": "hero/climax-owner",
+              "text": "辛弃疾 · 墨影醉里挑灯看剑 · 技能兑现 · 正式立绘",
+              "bounds": {
+                "type": 5,
+                "x": 167,
+                "y": 177,
+                "width": 347,
+                "height": 19
+              },
+              "lines": [
+                "辛弃疾 · 墨影醉里挑灯看剑 · 技能兑现 · 正式立绘"
+              ]
+            },
+            {
+              "name": "hero/climax-note",
+              "text": "多看2张 · A♦；不增加计分",
+              "bounds": {
+                "type": 5,
+                "x": 167,
+                "y": 548,
+                "width": 199,
+                "height": 19
+              },
+              "lines": [
+                "多看2张 · A♦；不增加计分"
+              ]
+            },
+            {
+              "name": "hero/climax-value-label",
+              "text": "实际留牌",
+              "bounds": {
+                "type": 5,
+                "x": 670,
+                "y": 263,
+                "width": 72,
+                "height": 21
+              },
+              "lines": [
+                "实际留牌"
+              ]
+            },
+            {
+              "name": "hero/climax-value",
+              "text": "1张",
+              "bounds": {
+                "type": 5,
+                "x": 854,
+                "y": 291,
+                "width": 160,
+                "height": 119
+              },
+              "lines": [
+                "1张"
+              ]
+            },
+            {
+              "name": "hero/climax-source-title",
+              "text": "辛弃疾 · 戏法留牌",
+              "bounds": {
+                "type": 5,
+                "x": 167,
+                "y": 604,
+                "width": 127,
+                "height": 19
+              },
+              "lines": [
+                "辛弃疾 · 戏法留牌"
+              ]
+            }
+          ],
+          "images": [
+            {
+              "name": "hero/climax-portrait",
+              "key": "opening-portrait-laohuan",
+              "scale": 0.4401041666666667,
+              "density": 1
+            }
+          ],
+          "screenshot": "1366-normal-1-skill.png"
+        },
+        {
+          "timeMs": 19488.100000000093,
+          "shot": "landing",
+          "phase": "strike",
+          "subjectVisibleAt": 18846.800000000047,
+          "strikeAt": 18805.5,
+          "eventId": "controlled/caption/laohuan/command/5/laohuan-refill",
+          "texts": [
+            {
+              "name": "hero/climax-name",
+              "text": "戏法换牌",
+              "bounds": {
+                "type": 5,
+                "x": 167,
+                "y": 114,
+                "width": 209,
+                "height": 59
+              },
+              "lines": [
+                "戏法换牌"
+              ]
+            },
+            {
+              "name": "hero/climax-owner",
+              "text": "辛弃疾 · 墨影醉里挑灯看剑 · 技能兑现 · 正式立绘",
+              "bounds": {
+                "type": 5,
+                "x": 167,
+                "y": 177,
+                "width": 347,
+                "height": 19
+              },
+              "lines": [
+                "辛弃疾 · 墨影醉里挑灯看剑 · 技能兑现 · 正式立绘"
+              ]
+            },
+            {
+              "name": "hero/climax-note",
+              "text": "多看2张 · A♦；不增加计分",
+              "bounds": {
+                "type": 5,
+                "x": 167,
+                "y": 548,
+                "width": 199,
+                "height": 19
+              },
+              "lines": [
+                "多看2张 · A♦；不增加计分"
+              ]
+            },
+            {
+              "name": "hero/climax-value-label",
+              "text": "实际留牌",
+              "bounds": {
+                "type": 5,
+                "x": 167,
+                "y": 212,
+                "width": 80,
+                "height": 22
+              },
+              "lines": [
+                "实际留牌"
+              ]
+            },
+            {
+              "name": "hero/climax-value",
+              "text": "1张",
+              "bounds": {
+                "type": 5,
+                "x": 540,
+                "y": 264,
+                "width": 287,
+                "height": 212
+              },
+              "lines": [
+                "1张"
+              ]
+            },
+            {
+              "name": "hero/climax-local-effect",
+              "text": "多看2张 · A♦；不增加计分",
+              "bounds": {
+                "type": 5,
+                "x": 167,
+                "y": 492,
+                "width": 234,
+                "height": 22
+              },
+              "lines": [
+                "多看2张 · A♦；不增加计分"
+              ]
+            },
+            {
+              "name": "hero/climax-landing",
+              "text": "留1张 · 已保存",
+              "bounds": {
+                "type": 5,
+                "x": 167,
+                "y": 604,
+                "width": 117,
+                "height": 21
+              },
+              "lines": [
+                "留1张 · 已保存"
+              ]
+            }
+          ],
+          "images": [],
+          "screenshot": "1366-normal-2-landing.png"
+        },
+        {
+          "timeMs": 19663.300000000047,
+          "shot": "landing",
+          "phase": "strike",
+          "subjectVisibleAt": 18846.800000000047,
+          "strikeAt": 18805.5,
+          "eventId": "controlled/caption/laohuan/command/5/laohuan-refill",
+          "texts": [
+            {
+              "name": "hero/climax-name",
+              "text": "戏法换牌",
+              "bounds": {
+                "type": 5,
+                "x": 167,
+                "y": 114,
+                "width": 209,
+                "height": 59
+              },
+              "lines": [
+                "戏法换牌"
+              ]
+            },
+            {
+              "name": "hero/climax-owner",
+              "text": "辛弃疾 · 墨影醉里挑灯看剑 · 技能兑现 · 正式立绘",
+              "bounds": {
+                "type": 5,
+                "x": 167,
+                "y": 177,
+                "width": 347,
+                "height": 19
+              },
+              "lines": [
+                "辛弃疾 · 墨影醉里挑灯看剑 · 技能兑现 · 正式立绘"
+              ]
+            },
+            {
+              "name": "hero/climax-note",
+              "text": "多看2张 · A♦；不增加计分",
+              "bounds": {
+                "type": 5,
+                "x": 167,
+                "y": 548,
+                "width": 199,
+                "height": 19
+              },
+              "lines": [
+                "多看2张 · A♦；不增加计分"
+              ]
+            },
+            {
+              "name": "hero/climax-value-label",
+              "text": "实际留牌",
+              "bounds": {
+                "type": 5,
+                "x": 167,
+                "y": 212,
+                "width": 80,
+                "height": 22
+              },
+              "lines": [
+                "实际留牌"
+              ]
+            },
+            {
+              "name": "hero/climax-value",
+              "text": "1张",
+              "bounds": {
+                "type": 5,
+                "x": 540,
+                "y": 264,
+                "width": 287,
+                "height": 212
+              },
+              "lines": [
+                "1张"
+              ]
+            },
+            {
+              "name": "hero/climax-local-effect",
+              "text": "多看2张 · A♦；不增加计分",
+              "bounds": {
+                "type": 5,
+                "x": 167,
+                "y": 492,
+                "width": 234,
+                "height": 22
+              },
+              "lines": [
+                "多看2张 · A♦；不增加计分"
+              ]
+            },
+            {
+              "name": "hero/climax-landing",
+              "text": "留1张 · 已保存",
+              "bounds": {
+                "type": 5,
+                "x": 167,
+                "y": 604,
+                "width": 117,
+                "height": 21
+              },
+              "lines": [
+                "留1张 · 已保存"
+              ]
+            }
+          ],
+          "images": [],
+          "screenshot": "1366-normal-3-landing.png"
+        }
+      ]
+    },
+    {
+      "key": "390-normal",
+      "status": "PASS",
+      "subjectDuration": 1055.3000000000466,
+      "shots": [
+        {
+          "timeMs": 12989.399999999907,
+          "shot": "eyes",
+          "phase": "charge",
+          "eventId": "controlled/caption/laohuan/command/5/laohuan-refill",
+          "texts": [
+            {
+              "name": "hero/climax-name",
+              "text": "戏法换牌",
+              "bounds": {
+                "type": 5,
+                "x": 30,
+                "y": 90,
+                "width": 145,
+                "height": 41
+              },
+              "lines": [
+                "戏法换牌"
+              ]
+            },
+            {
+              "name": "hero/climax-owner",
+              "text": "辛弃疾 · 墨影醉里挑灯看剑 · 技能兑现 · 正式立绘",
+              "bounds": {
+                "type": 5,
+                "x": 30,
+                "y": 135,
+                "width": 279,
+                "height": 38
+              },
+              "lines": [
+                "辛弃疾 · 墨影醉里挑灯看剑 · 技能兑现 ·",
+                "正式立绘"
+              ]
+            },
+            {
+              "name": "hero/climax-note",
+              "text": "多看2张 · A♦；不增加计分",
+              "bounds": {
+                "type": 5,
+                "x": 30,
+                "y": 534,
+                "width": 199,
+                "height": 20
+              },
+              "lines": [
+                "多看2张 · A♦；不增加计分"
+              ]
+            },
+            {
+              "name": "hero/climax-eye-quote",
+              "text": "留住好牌，且看下一着。",
+              "bounds": {
+                "type": 5,
+                "x": 30,
+                "y": 434.3333333333333,
+                "width": 220,
+                "height": 22
+              },
+              "lines": [
+                "留住好牌，且看下一着。"
+              ]
+            }
+          ],
+          "images": [
+            {
+              "name": "hero/climax-eyes",
+              "key": "portrait-focus-laohuan",
+              "scale": 0.3333333333333333,
+              "density": 3
+            }
+          ],
+          "screenshot": "390-normal-0-eyes.png"
+        },
+        {
+          "timeMs": 13365.699999999953,
+          "shot": "skill",
+          "phase": "strike",
+          "subjectVisibleAt": 13360.699999999953,
+          "strikeAt": 13294.09999999986,
+          "eventId": "controlled/caption/laohuan/command/5/laohuan-refill",
+          "texts": [
+            {
+              "name": "hero/climax-name",
+              "text": "戏法换牌",
+              "bounds": {
+                "type": 5,
+                "x": 30,
+                "y": 90,
+                "width": 145,
+                "height": 41
+              },
+              "lines": [
+                "戏法换牌"
+              ]
+            },
+            {
+              "name": "hero/climax-owner",
+              "text": "辛弃疾 · 墨影醉里挑灯看剑 · 技能兑现 · 正式立绘",
+              "bounds": {
+                "type": 5,
+                "x": 30,
+                "y": 135,
+                "width": 279,
+                "height": 38
+              },
+              "lines": [
+                "辛弃疾 · 墨影醉里挑灯看剑 · 技能兑现 ·",
+                "正式立绘"
+              ]
+            },
+            {
+              "name": "hero/climax-note",
+              "text": "多看2张 · A♦；不增加计分",
+              "bounds": {
+                "type": 5,
+                "x": 30,
+                "y": 534,
+                "width": 199,
+                "height": 20
+              },
+              "lines": [
+                "多看2张 · A♦；不增加计分"
+              ]
+            },
+            {
+              "name": "hero/climax-value-label",
+              "text": "实际留牌",
+              "bounds": {
+                "type": 5,
+                "x": 199.66666666666666,
+                "y": 221,
+                "width": 71.99999999999997,
+                "height": 21
+              },
+              "lines": [
+                "实际留牌"
+              ]
+            },
+            {
+              "name": "hero/climax-value",
+              "text": "1张",
+              "bounds": {
+                "type": 5,
+                "x": 218,
+                "y": 249,
+                "width": 124,
+                "height": 92
+              },
+              "lines": [
+                "1张"
+              ]
+            },
+            {
+              "name": "hero/climax-source-title",
+              "text": "辛弃疾 · 戏法留牌",
+              "bounds": {
+                "type": 5,
+                "x": 30,
+                "y": 600,
+                "width": 127,
+                "height": 19
+              },
+              "lines": [
+                "辛弃疾 · 戏法留牌"
+              ]
+            }
+          ],
+          "images": [
+            {
+              "name": "hero/climax-portrait",
+              "key": "opening-portrait-laohuan",
+              "scale": 0.24682926829268295,
+              "density": 3
+            }
+          ],
+          "screenshot": "390-normal-1-skill.png"
+        },
+        {
+          "timeMs": 13957.09999999986,
+          "shot": "landing",
+          "phase": "strike",
+          "subjectVisibleAt": 13360.699999999953,
+          "strikeAt": 13294.09999999986,
+          "eventId": "controlled/caption/laohuan/command/5/laohuan-refill",
+          "texts": [
+            {
+              "name": "hero/climax-name",
+              "text": "戏法换牌",
+              "bounds": {
+                "type": 5,
+                "x": 30,
+                "y": 90,
+                "width": 145,
+                "height": 41
+              },
+              "lines": [
+                "戏法换牌"
+              ]
+            },
+            {
+              "name": "hero/climax-owner",
+              "text": "辛弃疾 · 墨影醉里挑灯看剑 · 技能兑现 · 正式立绘",
+              "bounds": {
+                "type": 5,
+                "x": 30,
+                "y": 135,
+                "width": 279,
+                "height": 38
+              },
+              "lines": [
+                "辛弃疾 · 墨影醉里挑灯看剑 · 技能兑现 ·",
+                "正式立绘"
+              ]
+            },
+            {
+              "name": "hero/climax-note",
+              "text": "多看2张 · A♦；不增加计分",
+              "bounds": {
+                "type": 5,
+                "x": 30,
+                "y": 534,
+                "width": 199,
+                "height": 20
+              },
+              "lines": [
+                "多看2张 · A♦；不增加计分"
+              ]
+            },
+            {
+              "name": "hero/climax-value-label",
+              "text": "实际留牌",
+              "bounds": {
+                "type": 5,
+                "x": 30,
+                "y": 164,
+                "width": 80,
+                "height": 22
+              },
+              "lines": [
+                "实际留牌"
+              ]
+            },
+            {
+              "name": "hero/climax-value",
+              "text": "1张",
+              "bounds": {
+                "type": 5,
+                "x": 90.66666666666669,
+                "y": 216,
+                "width": 209,
+                "height": 154
+              },
+              "lines": [
+                "1张"
+              ]
+            },
+            {
+              "name": "hero/climax-local-effect",
+              "text": "多看2张 · A♦；不增加计分",
+              "bounds": {
+                "type": 5,
+                "x": 30,
+                "y": 386,
+                "width": 234,
+                "height": 22
+              },
+              "lines": [
+                "多看2张 · A♦；不增加计分"
+              ]
+            },
+            {
+              "name": "hero/climax-landing",
+              "text": "留1张 · 已保存",
+              "bounds": {
+                "type": 5,
+                "x": 30,
+                "y": 600,
+                "width": 117,
+                "height": 21
+              },
+              "lines": [
+                "留1张 · 已保存"
+              ]
+            }
+          ],
+          "images": [],
+          "screenshot": "390-normal-2-landing.png"
+        },
+        {
+          "timeMs": 14169.59999999986,
+          "shot": "landing",
+          "phase": "strike",
+          "subjectVisibleAt": 13360.699999999953,
+          "strikeAt": 13294.09999999986,
+          "eventId": "controlled/caption/laohuan/command/5/laohuan-refill",
+          "texts": [
+            {
+              "name": "hero/climax-name",
+              "text": "戏法换牌",
+              "bounds": {
+                "type": 5,
+                "x": 30,
+                "y": 90,
+                "width": 145,
+                "height": 41
+              },
+              "lines": [
+                "戏法换牌"
+              ]
+            },
+            {
+              "name": "hero/climax-owner",
+              "text": "辛弃疾 · 墨影醉里挑灯看剑 · 技能兑现 · 正式立绘",
+              "bounds": {
+                "type": 5,
+                "x": 30,
+                "y": 135,
+                "width": 279,
+                "height": 38
+              },
+              "lines": [
+                "辛弃疾 · 墨影醉里挑灯看剑 · 技能兑现 ·",
+                "正式立绘"
+              ]
+            },
+            {
+              "name": "hero/climax-note",
+              "text": "多看2张 · A♦；不增加计分",
+              "bounds": {
+                "type": 5,
+                "x": 30,
+                "y": 534,
+                "width": 199,
+                "height": 20
+              },
+              "lines": [
+                "多看2张 · A♦；不增加计分"
+              ]
+            },
+            {
+              "name": "hero/climax-value-label",
+              "text": "实际留牌",
+              "bounds": {
+                "type": 5,
+                "x": 30,
+                "y": 164,
+                "width": 80,
+                "height": 22
+              },
+              "lines": [
+                "实际留牌"
+              ]
+            },
+            {
+              "name": "hero/climax-value",
+              "text": "1张",
+              "bounds": {
+                "type": 5,
+                "x": 90.66666666666669,
+                "y": 216,
+                "width": 209,
+                "height": 154
+              },
+              "lines": [
+                "1张"
+              ]
+            },
+            {
+              "name": "hero/climax-local-effect",
+              "text": "多看2张 · A♦；不增加计分",
+              "bounds": {
+                "type": 5,
+                "x": 30,
+                "y": 386,
+                "width": 234,
+                "height": 22
+              },
+              "lines": [
+                "多看2张 · A♦；不增加计分"
+              ]
+            },
+            {
+              "name": "hero/climax-landing",
+              "text": "留1张 · 已保存",
+              "bounds": {
+                "type": 5,
+                "x": 30,
+                "y": 600,
+                "width": 117,
+                "height": 21
+              },
+              "lines": [
+                "留1张 · 已保存"
+              ]
+            }
+          ],
+          "images": [],
+          "screenshot": "390-normal-3-landing.png"
+        }
+      ]
+    },
+    {
+      "key": "390-fast",
+      "status": "PASS",
+      "subjectDuration": 1025.8000000000466,
+      "shots": [
+        {
+          "timeMs": 30234.800000000047,
+          "shot": "eyes",
+          "phase": "charge",
+          "eventId": "controlled/caption/laohuan/command/5/laohuan-refill",
+          "texts": [
+            {
+              "name": "hero/climax-name",
+              "text": "戏法换牌",
+              "bounds": {
+                "type": 5,
+                "x": 30,
+                "y": 90,
+                "width": 145,
+                "height": 41
+              },
+              "lines": [
+                "戏法换牌"
+              ]
+            },
+            {
+              "name": "hero/climax-owner",
+              "text": "辛弃疾 · 墨影醉里挑灯看剑 · 技能兑现 · 正式立绘",
+              "bounds": {
+                "type": 5,
+                "x": 30,
+                "y": 135,
+                "width": 279,
+                "height": 38
+              },
+              "lines": [
+                "辛弃疾 · 墨影醉里挑灯看剑 · 技能兑现 ·",
+                "正式立绘"
+              ]
+            },
+            {
+              "name": "hero/climax-note",
+              "text": "多看2张 · A♦；不增加计分",
+              "bounds": {
+                "type": 5,
+                "x": 30,
+                "y": 534,
+                "width": 199,
+                "height": 20
+              },
+              "lines": [
+                "多看2张 · A♦；不增加计分"
+              ]
+            },
+            {
+              "name": "hero/climax-eye-quote",
+              "text": "留住好牌，且看下一着。",
+              "bounds": {
+                "type": 5,
+                "x": 30,
+                "y": 434.3333333333333,
+                "width": 220,
+                "height": 22
+              },
+              "lines": [
+                "留住好牌，且看下一着。"
+              ]
+            }
+          ],
+          "images": [
+            {
+              "name": "hero/climax-eyes",
+              "key": "portrait-focus-laohuan",
+              "scale": 0.3333333333333333,
+              "density": 3
+            }
+          ],
+          "screenshot": "390-fast-0-eyes.png"
+        },
+        {
+          "timeMs": 30721.59999999986,
+          "shot": "skill",
+          "phase": "strike",
+          "subjectVisibleAt": 30714.699999999953,
+          "strikeAt": 30623.800000000047,
+          "eventId": "controlled/caption/laohuan/command/5/laohuan-refill",
+          "texts": [
+            {
+              "name": "hero/climax-name",
+              "text": "戏法换牌",
+              "bounds": {
+                "type": 5,
+                "x": 30,
+                "y": 90,
+                "width": 145,
+                "height": 41
+              },
+              "lines": [
+                "戏法换牌"
+              ]
+            },
+            {
+              "name": "hero/climax-owner",
+              "text": "辛弃疾 · 墨影醉里挑灯看剑 · 技能兑现 · 正式立绘",
+              "bounds": {
+                "type": 5,
+                "x": 30,
+                "y": 135,
+                "width": 279,
+                "height": 38
+              },
+              "lines": [
+                "辛弃疾 · 墨影醉里挑灯看剑 · 技能兑现 ·",
+                "正式立绘"
+              ]
+            },
+            {
+              "name": "hero/climax-note",
+              "text": "多看2张 · A♦；不增加计分",
+              "bounds": {
+                "type": 5,
+                "x": 30,
+                "y": 534,
+                "width": 199,
+                "height": 20
+              },
+              "lines": [
+                "多看2张 · A♦；不增加计分"
+              ]
+            },
+            {
+              "name": "hero/climax-value-label",
+              "text": "实际留牌",
+              "bounds": {
+                "type": 5,
+                "x": 199.66666666666666,
+                "y": 221,
+                "width": 71.99999999999997,
+                "height": 21
+              },
+              "lines": [
+                "实际留牌"
+              ]
+            },
+            {
+              "name": "hero/climax-value",
+              "text": "1张",
+              "bounds": {
+                "type": 5,
+                "x": 218,
+                "y": 249,
+                "width": 124,
+                "height": 92
+              },
+              "lines": [
+                "1张"
+              ]
+            },
+            {
+              "name": "hero/climax-source-title",
+              "text": "辛弃疾 · 戏法留牌",
+              "bounds": {
+                "type": 5,
+                "x": 30,
+                "y": 600,
+                "width": 127,
+                "height": 19
+              },
+              "lines": [
+                "辛弃疾 · 戏法留牌"
+              ]
+            }
+          ],
+          "images": [
+            {
+              "name": "hero/climax-portrait",
+              "key": "opening-portrait-laohuan",
+              "scale": 0.24682926829268295,
+              "density": 3
+            }
+          ],
+          "screenshot": "390-fast-1-skill.png"
+        },
+        {
+          "timeMs": 31597.899999999907,
+          "shot": "landing",
+          "phase": "strike",
+          "subjectVisibleAt": 30714.699999999953,
+          "strikeAt": 30623.800000000047,
+          "eventId": "controlled/caption/laohuan/command/5/laohuan-refill",
+          "texts": [
+            {
+              "name": "hero/climax-name",
+              "text": "戏法换牌",
+              "bounds": {
+                "type": 5,
+                "x": 30,
+                "y": 90,
+                "width": 145,
+                "height": 41
+              },
+              "lines": [
+                "戏法换牌"
+              ]
+            },
+            {
+              "name": "hero/climax-owner",
+              "text": "辛弃疾 · 墨影醉里挑灯看剑 · 技能兑现 · 正式立绘",
+              "bounds": {
+                "type": 5,
+                "x": 30,
+                "y": 135,
+                "width": 279,
+                "height": 38
+              },
+              "lines": [
+                "辛弃疾 · 墨影醉里挑灯看剑 · 技能兑现 ·",
+                "正式立绘"
+              ]
+            },
+            {
+              "name": "hero/climax-note",
+              "text": "多看2张 · A♦；不增加计分",
+              "bounds": {
+                "type": 5,
+                "x": 30,
+                "y": 534,
+                "width": 199,
+                "height": 20
+              },
+              "lines": [
+                "多看2张 · A♦；不增加计分"
+              ]
+            },
+            {
+              "name": "hero/climax-value-label",
+              "text": "实际留牌",
+              "bounds": {
+                "type": 5,
+                "x": 30,
+                "y": 164,
+                "width": 80,
+                "height": 22
+              },
+              "lines": [
+                "实际留牌"
+              ]
+            },
+            {
+              "name": "hero/climax-value",
+              "text": "1张",
+              "bounds": {
+                "type": 5,
+                "x": 90.66666666666669,
+                "y": 216,
+                "width": 209,
+                "height": 154
+              },
+              "lines": [
+                "1张"
+              ]
+            },
+            {
+              "name": "hero/climax-local-effect",
+              "text": "多看2张 · A♦；不增加计分",
+              "bounds": {
+                "type": 5,
+                "x": 30,
+                "y": 386,
+                "width": 234,
+                "height": 22
+              },
+              "lines": [
+                "多看2张 · A♦；不增加计分"
+              ]
+            },
+            {
+              "name": "hero/climax-landing",
+              "text": "留1张 · 已保存",
+              "bounds": {
+                "type": 5,
+                "x": 30,
+                "y": 600,
+                "width": 117,
+                "height": 21
+              },
+              "lines": [
+                "留1张 · 已保存"
+              ]
+            }
+          ],
+          "images": [],
+          "screenshot": "390-fast-2-landing.png"
+        }
+      ]
+    },
+    {
+      "key": "320-normal",
+      "status": "PASS",
+      "subjectDuration": 1009.3000000000466,
+      "shots": [
+        {
+          "timeMs": 19895.200000000186,
+          "shot": "eyes",
+          "phase": "charge",
+          "eventId": "controlled/caption/laohuan/command/5/laohuan-refill",
+          "texts": [
+            {
+              "name": "hero/climax-name",
+              "text": "戏法换牌",
+              "bounds": {
+                "type": 5,
+                "x": 30,
+                "y": 85,
+                "width": 145,
+                "height": 41
+              },
+              "lines": [
+                "戏法换牌"
+              ]
+            },
+            {
+              "name": "hero/climax-owner",
+              "text": "辛弃疾 · 墨影醉里挑灯看剑 · 技能兑现 · 正式立绘",
+              "bounds": {
+                "type": 5,
+                "x": 30,
+                "y": 130,
+                "width": 200,
+                "height": 38
+              },
+              "lines": [
+                "辛弃疾 · 墨影醉里挑灯看剑 ·",
+                "技能兑现 · 正式立绘"
+              ]
+            },
+            {
+              "name": "hero/climax-note",
+              "text": "多看2张 · A♦；不增加计分",
+              "bounds": {
+                "type": 5,
+                "x": 30,
+                "y": 439,
+                "width": 199,
+                "height": 20
+              },
+              "lines": [
+                "多看2张 · A♦；不增加计分"
+              ]
+            },
+            {
+              "name": "hero/climax-eye-quote",
+              "text": "留住好牌，且看下一着。",
+              "bounds": {
+                "type": 5,
+                "x": 30,
+                "y": 366.3333333333333,
+                "width": 220,
+                "height": 22
+              },
+              "lines": [
+                "留住好牌，且看下一着。"
+              ]
+            }
+          ],
+          "images": [
+            {
+              "name": "hero/climax-eyes",
+              "key": "portrait-focus-laohuan",
+              "scale": 0.3333333333333333,
+              "density": 3
+            }
+          ],
+          "screenshot": "320-normal-0-eyes.png"
+        },
+        {
+          "timeMs": 20258.700000000186,
+          "shot": "skill",
+          "phase": "strike",
+          "subjectVisibleAt": 20254.90000000014,
+          "strikeAt": 20168.700000000186,
+          "eventId": "controlled/caption/laohuan/command/5/laohuan-refill",
+          "texts": [
+            {
+              "name": "hero/climax-name",
+              "text": "戏法换牌",
+              "bounds": {
+                "type": 5,
+                "x": 30,
+                "y": 85,
+                "width": 145,
+                "height": 41
+              },
+              "lines": [
+                "戏法换牌"
+              ]
+            },
+            {
+              "name": "hero/climax-owner",
+              "text": "辛弃疾 · 墨影醉里挑灯看剑 · 技能兑现 · 正式立绘",
+              "bounds": {
+                "type": 5,
+                "x": 30,
+                "y": 130,
+                "width": 200,
+                "height": 38
+              },
+              "lines": [
+                "辛弃疾 · 墨影醉里挑灯看剑 ·",
+                "技能兑现 · 正式立绘"
+              ]
+            },
+            {
+              "name": "hero/climax-note",
+              "text": "多看2张 · A♦；不增加计分",
+              "bounds": {
+                "type": 5,
+                "x": 30,
+                "y": 439,
+                "width": 199,
+                "height": 20
+              },
+              "lines": [
+                "多看2张 · A♦；不增加计分"
+              ]
+            },
+            {
+              "name": "hero/climax-value-label",
+              "text": "实际留牌",
+              "bounds": {
+                "type": 5,
+                "x": 167.66666666666666,
+                "y": 199.66666666666666,
+                "width": 72,
+                "height": 21
+              },
+              "lines": [
+                "实际留牌"
+              ]
+            },
+            {
+              "name": "hero/climax-value",
+              "text": "1张",
+              "bounds": {
+                "type": 5,
+                "x": 168.33333333333334,
+                "y": 227.66666666666666,
+                "width": 121.00000000000003,
+                "height": 89.99999999999997
+              },
+              "lines": [
+                "1张"
+              ]
+            },
+            {
+              "name": "hero/climax-source-title",
+              "text": "辛弃疾 · 戏法留牌",
+              "bounds": {
+                "type": 5,
+                "x": 30,
+                "y": 505,
+                "width": 127,
+                "height": 19
+              },
+              "lines": [
+                "辛弃疾 · 戏法留牌"
+              ]
+            }
+          ],
+          "images": [
+            {
+              "name": "hero/climax-portrait",
+              "key": "opening-portrait-laohuan",
+              "scale": 0.19447154471544717,
+              "density": 3
+            }
+          ],
+          "screenshot": "320-normal-1-skill.png"
+        },
+        {
+          "timeMs": 20802.100000000093,
+          "shot": "landing",
+          "phase": "strike",
+          "subjectVisibleAt": 20254.90000000014,
+          "strikeAt": 20168.700000000186,
+          "eventId": "controlled/caption/laohuan/command/5/laohuan-refill",
+          "texts": [
+            {
+              "name": "hero/climax-name",
+              "text": "戏法换牌",
+              "bounds": {
+                "type": 5,
+                "x": 30,
+                "y": 85,
+                "width": 145,
+                "height": 41
+              },
+              "lines": [
+                "戏法换牌"
+              ]
+            },
+            {
+              "name": "hero/climax-owner",
+              "text": "辛弃疾 · 墨影醉里挑灯看剑 · 技能兑现 · 正式立绘",
+              "bounds": {
+                "type": 5,
+                "x": 30,
+                "y": 130,
+                "width": 200,
+                "height": 38
+              },
+              "lines": [
+                "辛弃疾 · 墨影醉里挑灯看剑 ·",
+                "技能兑现 · 正式立绘"
+              ]
+            },
+            {
+              "name": "hero/climax-note",
+              "text": "多看2张 · A♦；不增加计分",
+              "bounds": {
+                "type": 5,
+                "x": 30,
+                "y": 439,
+                "width": 199,
+                "height": 20
+              },
+              "lines": [
+                "多看2张 · A♦；不增加计分"
+              ]
+            },
+            {
+              "name": "hero/climax-value-label",
+              "text": "实际留牌",
+              "bounds": {
+                "type": 5,
+                "x": 30,
+                "y": 159,
+                "width": 80,
+                "height": 22
+              },
+              "lines": [
+                "实际留牌"
+              ]
+            },
+            {
+              "name": "hero/climax-value",
+              "text": "1张",
+              "bounds": {
+                "type": 5,
+                "x": 55.66666666666666,
+                "y": 211,
+                "width": 208.99999999999997,
+                "height": 154
+              },
+              "lines": [
+                "1张"
+              ]
+            },
+            {
+              "name": "hero/climax-local-effect",
+              "text": "多看2张 · A♦；不增加计分",
+              "bounds": {
+                "type": 5,
+                "x": 30,
+                "y": 381,
+                "width": 234,
+                "height": 22
+              },
+              "lines": [
+                "多看2张 · A♦；不增加计分"
+              ]
+            },
+            {
+              "name": "hero/climax-landing",
+              "text": "留1张 · 已保存",
+              "bounds": {
+                "type": 5,
+                "x": 30,
+                "y": 505,
+                "width": 117,
+                "height": 21
+              },
+              "lines": [
+                "留1张 · 已保存"
+              ]
+            }
+          ],
+          "images": [],
+          "screenshot": "320-normal-2-landing.png"
+        },
+        {
+          "timeMs": 21094.600000000093,
+          "shot": "landing",
+          "phase": "strike",
+          "subjectVisibleAt": 20254.90000000014,
+          "strikeAt": 20168.700000000186,
+          "eventId": "controlled/caption/laohuan/command/5/laohuan-refill",
+          "texts": [
+            {
+              "name": "hero/climax-name",
+              "text": "戏法换牌",
+              "bounds": {
+                "type": 5,
+                "x": 30,
+                "y": 85,
+                "width": 145,
+                "height": 41
+              },
+              "lines": [
+                "戏法换牌"
+              ]
+            },
+            {
+              "name": "hero/climax-owner",
+              "text": "辛弃疾 · 墨影醉里挑灯看剑 · 技能兑现 · 正式立绘",
+              "bounds": {
+                "type": 5,
+                "x": 30,
+                "y": 130,
+                "width": 200,
+                "height": 38
+              },
+              "lines": [
+                "辛弃疾 · 墨影醉里挑灯看剑 ·",
+                "技能兑现 · 正式立绘"
+              ]
+            },
+            {
+              "name": "hero/climax-note",
+              "text": "多看2张 · A♦；不增加计分",
+              "bounds": {
+                "type": 5,
+                "x": 30,
+                "y": 439,
+                "width": 199,
+                "height": 20
+              },
+              "lines": [
+                "多看2张 · A♦；不增加计分"
+              ]
+            },
+            {
+              "name": "hero/climax-value-label",
+              "text": "实际留牌",
+              "bounds": {
+                "type": 5,
+                "x": 30,
+                "y": 159,
+                "width": 80,
+                "height": 22
+              },
+              "lines": [
+                "实际留牌"
+              ]
+            },
+            {
+              "name": "hero/climax-value",
+              "text": "1张",
+              "bounds": {
+                "type": 5,
+                "x": 55.66666666666666,
+                "y": 211,
+                "width": 208.99999999999997,
+                "height": 154
+              },
+              "lines": [
+                "1张"
+              ]
+            },
+            {
+              "name": "hero/climax-local-effect",
+              "text": "多看2张 · A♦；不增加计分",
+              "bounds": {
+                "type": 5,
+                "x": 30,
+                "y": 381,
+                "width": 234,
+                "height": 22
+              },
+              "lines": [
+                "多看2张 · A♦；不增加计分"
+              ]
+            },
+            {
+              "name": "hero/climax-landing",
+              "text": "留1张 · 已保存",
+              "bounds": {
+                "type": 5,
+                "x": 30,
+                "y": 505,
+                "width": 117,
+                "height": 21
+              },
+              "lines": [
+                "留1张 · 已保存"
+              ]
+            }
+          ],
+          "images": [],
+          "screenshot": "320-normal-3-landing.png"
+        }
+      ]
+    }
+  ]
+}

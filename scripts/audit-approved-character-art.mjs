@@ -1,0 +1,15 @@
+import sharp from 'sharp';
+import assert from 'node:assert/strict';
+import {readFile,writeFile} from 'node:fs/promises';
+import {createHash} from 'node:crypto';
+import {createServer} from 'vite';
+const sourceDir='art/sources/tangsong-portraits-20261015',sources=JSON.parse(await readFile(sourceDir+'/manifest.json','utf8')),runtime=JSON.parse(await readFile('public/assets/tangsong-portraits/manifest.json','utf8'));
+const hash=b=>createHash('sha256').update(b).digest('hex'),files=[];
+for(const s of sources.entries){const b=await readFile(sourceDir+'/'+s.file),m=await sharp(b).metadata();assert.equal(b.length,s.bytes);assert.equal(hash(b),s.sha256);assert.equal(m.width,1122);assert.equal(m.height,1402);await sharp(b).raw().toBuffer();
+ const outputs=runtime.assets.filter(a=>a.id===s.heroId);assert.deepEqual(outputs.map(a=>a.purpose),['avatar','selection','portrait','focus']);
+ for(const a of outputs){const d=await readFile('public/'+a.path),m=await sharp(d).metadata();await sharp(d).raw().toBuffer();assert.equal(hash(d),a.sha256);assert.equal(d.length,a.bytes);assert.equal(m.width,a.width);assert.equal(m.height,a.height);assert.equal(a.sourceSHA256,s.sha256);assert.ok(d.length<=128*1024);assert.ok(m.width*m.height<=600000);assert.ok(m.width<=a.cropPixels.width&&m.height<=a.cropPixels.height);assert.ok(a.cropPixels.x>=0&&a.cropPixels.y>=0&&a.cropPixels.x+a.cropPixels.width<=s.width&&a.cropPixels.y+a.cropPixels.height<=s.height);}
+ files.push({id:s.heroId,sourceSHA256:s.sha256,sourceBytes:s.bytes,sourceDimensions:[s.width,s.height],outputs});}
+const server=await createServer({mode:'e2e',server:{middlewareMode:true},logLevel:'silent'});
+try {const {sceneResources,PRELOAD_PIXEL_BUDGET}=await server.ssrLoadModule('/src/game/SceneResources.ts');const startup=sceneResources('title',undefined,true),pixels=startup.reduce((n,a)=>n+a.pixels,0);assert.equal(startup.length,146);assert.equal(startup.filter(a=>a.key.startsWith('goods-art/')).length,51);assert.equal(startup.filter(a=>a.key.startsWith('p08-joker-')).length,72);assert.ok(pixels<=PRELOAD_PIXEL_BUDGET);assert.equal(startup.filter(a=>/opening-portrait-|portrait-focus-/.test(a.key)).length,0);
+ const report={status:'PASS',sourceCommit:runtime.sourceCommit,sourceBytesUnchanged:true,files,startup:{items:startup.length,pixels,decodedRGBABytes:pixels*4,budgetPixels:PRELOAD_PIXEL_BUDGET,budgetRGBABytes:PRELOAD_PIXEL_BUDGET*4,heroPixels:runtime.decodedPixels.startup,optionalPortraitAndFocusPixels:runtime.decodedPixels.all-runtime.decodedPixels.startup},allHeroDecodedPixels:runtime.decodedPixels.all,allHeroRGBABytes:runtime.decodedPixels.all*4,optionalPerSelectedHero:files.map(f=>({id:f.id,pixels:f.outputs.filter(a=>['portrait','focus'].includes(a.purpose)).reduce((n,a)=>n+a.width*a.height,0)}))};await writeFile('docs/production/evidence/approved-character-art-2026-10-15/art-audit.json',JSON.stringify(report,null,2)+'\n');console.log(JSON.stringify({status:report.status,startup:report.startup}));
+}finally{await server.close();}
