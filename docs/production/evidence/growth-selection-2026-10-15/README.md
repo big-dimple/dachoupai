@@ -8,7 +8,7 @@
 
 现在按身份绑定的definition读取真实计分hook条件：本手读取/即时效果/新增成长分别呈现；新增、封顶、成长次数已用、关末或交易资格失效均不关闭已存读取。只有真实读取条件和计分停用能挡本手读取。所选条件仍不预报总分，不读未来牌堆或RNG。
 
-GameScene使用上述本手状态与可容纳的完整短语，手机五槽保“读热+40”等数值；路线起手不覆盖成长牌或计分停用。starterReady/starterLabel仍保留为路线成长事实，避免旧专项观察器接口回退。RouteStarter同花提示明确“可新增成长/不新增成长”，不再称“需要同花”。
+GameScene使用上述本手状态与可容纳的完整短语，手机五槽保“读热+40”等数值；路线起手不覆盖成长牌或计分停用。starterReady/starterLabel仅为旧专项观察器保留的兼容字段，表示路线新增成长事实，不是本手计分资格；本手计分读取以selectionReadiness/selectionLabel及scoring分层为准。RouteStarter同花提示明确“可新增成长/不新增成长”，不再称“需要同花”。
 
 ## 16张逐一核对
 
@@ -52,3 +52,7 @@ GameScene使用上述本手状态与可容纳的完整短语，手机五槽保�
 [browser-loader-FAIL.json](browser-loader-FAIL.json)：首轮观察器禁自动依赖扫描却漏显式Phaser预构建，页面未启动；补include:['phaser']，不改产品、超时或断言。[初轮报告](initial-browser/report.json)的native流程通过，但[手机原图](initial-browser/390-fallback.png)暴露三张热度长标签退成“状态”入口；随后加完整短语候选，最终报告严格拒绝该回退。旧记录均保原身份，不覆盖为新PASS。
 
 仅软件与受控保存事实。自然三路线经营、实体手机、玩家理解、美术整体、GPU/帧率和听感均未签；本任务明确未自然试玩。[额外启动超时](browser-cache-startup-FAIL.json)保留：151测试与content/plan检查并发时浏览器尚未进入title，没有页面异常或产品动作；content检查也使用默认Vite缓存，现场只留deps_temp目录，缓存冲突为推断而非产品定案。观察器随后隔离自己的cacheDir并加console/network/启动失败截图诊断，超时和产品断言不变，再顺序执行。main保持不动。GitHub PR查询及同一gh入口的一次draft创建均实得 `Post "https://api.github.com/graphql": Forbidden`；[实际创建错误](pr-create-Forbidden.txt)保留；已停止，没有换入口绕过，没有PR创建成功。已准备[PR正文](PR_BODY.md)，开发分支push成功，精确最终远端SHA/CI以最终交付回复为准，不以本地通过代签远端CI或PR已创建。
+
+## 独家戏系数宽度补正
+
+后续在e5279f4基础上补正两次/三次成长及封顶系数的首层宽度，精确详情不变。见[六个双端原生窗口及前后证据](coefficient-width/README.md)，原有报告仍按原SHA保留。
