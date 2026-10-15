@@ -1,10 +1,12 @@
 import {shopRouteRelation,shopOfferRelation,shopRouteAdvice,shopPurchaseConditionLosses} from './ShopRouteRelations';
 import {buildGrowthProgress} from './BuildGrowthProgress';
 import {shopInvestment} from './ShopInvestment';
-import {R2_HAND_TYPES} from '../domain/evaluateR2';
+import {R2_HAND_TYPES,type R2HandType} from '../domain/evaluateR2';
 import type {R2RunState} from '../domain/r2Run';
 import {r2JokerDefinitionFor} from '../domain/r2ContentProfiles';
 import {R2_GROUP_HAND_TYPES} from '../domain/r2GroupHands';
+import {isR2CoreBuild} from '../domain/r2GroupUpgrade';
+import {r2PracticeQuotes,type R2PracticeQuote} from '../domain/r2Practice';
 import {r2PurchasePrice,type R2Offer} from '../domain/r2Shop';
 import {r2InterestCap,r2ConsumableCapacity} from '../domain/r2Run';
 import {r2ToolAllowed,r2ToolSupported} from '../domain/r2ToolRuntime';
@@ -27,6 +29,7 @@ export function buildDirectionCaption(state:R2RunState):string {
  return (current?'当前培养 '+short[current]:'尚未选择方向')+(state.openingRoute&&state.openingRoute!==current?' · 开局 '+short[state.openingRoute]:'')+(buildFocusRetention(state)==='session'?' · 仅本页保留':' · 本机续局保留');
 }
 export const buildHandTypes=(focus:BuildFocus)=>focus==='group'?R2_GROUP_HAND_TYPES:focus==='straight'?['straight','straight-flush']:['flush','straight-flush'];
+const practiceHandTypes=(focus:BuildFocus):readonly R2HandType[]=>focus==='group'?R2_GROUP_HAND_TYPES:focus==='straight'?['straight','straight-flush']:['flush','straight-flush','flush-house','flush-five'];
 export function jokerSupportsFocus(state:R2RunState,id:string,focus:BuildFocus):boolean {
  const d=r2JokerDefinitionFor(state,id),wanted=buildHandTypes(focus);
  return d.hooks.some(h=>h.phase==='jokerScore'&&h.condition.kind==='resource'&&h.operations.some(o=>o.kind==='add-multiplier'||o.kind==='multiply-multiplier')?true:h.condition.kind==='held-count'&&h.operations.some(o=>o.kind==='add-growth')?true:h.condition.kind==='suit-in'?true:h.condition.kind==='scoring-position'?!h.condition.handTypes||h.condition.handTypes.some(t=>wanted.includes(t)):h.condition.kind==='all-played-active'?h.condition.minimum<=5:h.condition.kind==='discard-same-suit'?focus==='straight':h.condition.kind==='hand-type-in'?h.condition.values.some(t=>wanted.includes(t)):h.condition.kind==='hand-type-transition'?wanted.includes(h.condition.current)||wanted.includes(h.condition.previous):h.condition.kind==='hand-type-relation'?h.condition.values.some(t=>wanted.includes(t)):h.condition.kind==='largest-scoring-rank-group'?focus==='group':h.condition.kind==='always'&&h.operations.some(o=>o.kind==='read-growth'||o.kind==='consume-growth'?state.jokers.some(j=>j.definitionId===id&&BigInt(j.growth[o.key]?.n??'0')>0n):['read-coefficient','add-heat','add-multiplier','multiply-multiplier'].includes(o.kind)))||!!d.modifiers?.some(m=>focus==='straight'?m.kind==='four-straight':focus==='flush'?m.kind==='four-flush':false);
@@ -47,6 +50,27 @@ export function cashDecision(state:R2RunState,spend=0){
  const cap=r2InterestCap(state),before=state.gold,after=before-spend;
  return {before,after,cap,beforeTier:Math.min(cap,Math.floor(before/5)),afterTier:after<0?undefined:Math.min(cap,Math.floor(after/5)),body:after<0?'当前'+before+'金，尚差'+(-after)+'金。':`余额 ${before}→${after} 金；按当前持有上限对应利息档 ${Math.min(cap,Math.floor(before/5))}→${Math.min(cap,Math.floor(after/5))} 金。利息在成功过关时按届时余额计算，不是现在到账或下场保证收入。`};
 }
+/** Paid services follow the existing route families without changing recommendation matching. */
+export function buildPracticeOptions(state:R2RunState,focus:BuildFocus){
+ const types=practiceHandTypes(focus);
+ return r2PracticeQuotes(state).filter(q=>types.includes(q.handType)).map((quote:R2PracticeQuote)=>{
+  const cash=cashDecision(state,quote.price);
+  return {quote,affordable:quote.available,title:`${HAND_LABELS[quote.handType]} Lv.${quote.levelBefore} → Lv.${quote.levelAfter}`,
+   decision:quote.available?`实付 ${quote.price} 金 · 升级后余 ${quote.goldAfter} 金`:`实付 ${quote.price} 金 · 还差 ${-quote.goldAfter} 金`,
+   body:`当场升1级，不占道具箱；原价 ${quote.basePrice} 金，当前实付 ${quote.price} 金。\n${cash.body}\n升级 / 改牌 / 染色共用本店1次，刷新不恢复；确认后才扣款和升级。`};
+ });
+}
+export function buildPracticeStatus(state:R2RunState,focus:BuildFocus):string {
+ if(!isR2CoreBuild(state))return '当前身份没有当场升级服务；现货与库存升型工具仍按原规则使用。';
+ if(state.phase!=='shop')return '当场升级仅在商店办理。';
+ const shared='升级 / 改牌 / 染色共用本店1次，刷新不恢复；下一店恢复。';
+ if(state.shop?.basicChoice?.purchase)return '本店自选已用 · '+shared;
+ if(!state.shop?.basicChoice)return '本店暂无当场升级服务。';
+ if(buildPracticeOptions(state,focus).length)return shared+'只列当前路线已发现且未30级的牌型。';
+ const types=practiceHandTypes(focus);
+ const discovered=types.filter(t=>Object.hasOwn(state.handLevels,t));
+ return (discovered.length?'当前路线已发现的牌型均已30级，不能继续当场升级。':'当前路线的牌型尚未发现；发现后才能当场升级。')+'\n'+shared;
+}
 /** Known deck composition only; no draw-pile order, RNG or projected score. */
 export function buildJourneyFacts(state:R2RunState,focus:BuildFocus){
  const live=state.deckInstances.filter(c=>!state.destroyedIds.includes(c.id)),counts=new Map<number,number>(),suits=new Map<Suit,number>();
@@ -59,7 +83,8 @@ export function buildJourneyFacts(state:R2RunState,focus:BuildFocus){
  const shop=state.shop,offers: {price:number;decision:string;brief:string;id:string;kind:'jokers'|'tools'|'items';title:string;body:string;url?:string;affordable:boolean;relation?:ReturnType<typeof shopOfferRelation>}[]=[];
  const add=(o:R2Offer,kind:'jokers'|'tools'|'items')=>{if(o.consumed)return;const price=r2PurchasePrice(state,o),d=kind==='jokers'?r2JokerDefinitionFor(state,o.definitionId):undefined,info=kind==='tools'?toolInfo(o.definitionId,state):kind==='items'?itemInfo(o.definitionId):undefined;const investment=shopInvestment(state,o,kind);const cash=cashDecision(state,price);const brief=(d?shopOfferRelation(state,o,focus).label+' · ':'')+(investment?investment.effect:d?.description??info!.description);offers.push({relation:d?shopOfferRelation(state,o,focus):undefined,price,decision:cash.after<0?'还差'+(-cash.after)+'金':'买后余'+cash.after+'金 · 当前利息档'+cash.beforeTier+'→'+cash.afterTier,brief,id:o.offerId,kind,title:(d?.name??info!.name)+' · 实付'+price+'金',url:d?jokerArtPreviewUrl(d.id):info?.artUrl,affordable:price<=state.gold,body:(investment?investment.role+' · '+investment.effect+'\n'+investment.next:d?.description??info!.description)+'\n'+cashDecision(state,price).body+'\n查看购买详情，容量/时点和最终购买条件以确认页为准。'});};
  if(state.phase==='shop'&&shop){for(const o of shop.offers)add(o,'jokers');for(const o of shop.toolOffers)if(toolSupportsFocus(o.definitionId,focus))add(o,'tools');for(const o of shop.itemOffers)add(o,'items');}
- const discovered=Object.entries(state.handLevels).filter(([t])=>buildHandTypes(focus).includes(t as keyof typeof HAND_LABELS)).map(([t,l])=>HAND_LABELS[t as keyof typeof HAND_LABELS]+' Lv.'+l).join(' · ')||'该方向牌型尚未发现；工具升型资格以使用页为准。';
+ const practices=buildPracticeOptions(state,focus),practiceStatus=buildPracticeStatus(state,focus);
+ const discovered=Object.entries(state.handLevels).filter(([t])=>practiceHandTypes(focus).includes(t as R2HandType)).map(([t,l])=>HAND_LABELS[t as keyof typeof HAND_LABELS]+' Lv.'+l).join(' · ')||'该方向牌型尚未发现；工具升型资格以使用页为准。';
  const trace=state.lastTrace,saved=trace?savedExperienceCards(state,trace):[];
  const spendWarnings:string[]=[],advice=shopRouteAdvice(state,focus),choices:{id:string;kind:'jokers'|'tools';reason:string;replaceId?:string;loss?:string}[]=advice.candidates.map(i=>({id:i.offer.offerId,kind:'jokers',reason:i.reason,replaceId:i.replaceId,loss:i.loss}));
  if(state.phase==='shop'&&state.consumables.length<r2ConsumableCapacity(state))for(const o of offers.filter(o=>o.kind==='tools'&&o.affordable)){
@@ -77,5 +102,5 @@ export function buildJourneyFacts(state:R2RunState,focus:BuildFocus){
   }
  }
  const decision={...advice,choices,headline:choices.length?(choices[0].replaceId?'先看替换：':'优先考虑：')+offers.find(o=>o.id===choices[0].id)!.title.split(' · ')[0]:advice.headline,reason:choices[0]?.reason??(spendWarnings[0]??(advice.items.length?r2JokerDefinitionFor(state,advice.items[0].offer.definitionId).name+'：'+advice.items[0].reason:advice.reason))};
- return {decision,progress:buildGrowthProgress(state),focus,title:BUILD_LABEL[focus],guide,composition,deckSize:live.length,discovered,owned,tools,offers,cash:cashDecision(state),saved,gaps:[!state.jokers.some(j=>shopRouteRelation(state,j,focus).kind!=='other')?'尚无该方向对应的持有来源；先看公开可成牌型，也可换培养方向。':'',!tools.length?'当前没有对应改牌/升型工具；可用现有牌出场，或查看本店货架。':'',state.phase==='shop'&&!offers.some(o=>o.kind!=='jokers'||shopOfferRelation(state,state.shop!.offers.find(x=>x.offerId===o.id)!,focus).kind!=='other')?'本店没有该方向对应商品；保留金币直接入场或换方向，不保证刷新补齐。':''].filter(Boolean)};
+ return {decision,progress:buildGrowthProgress(state),focus,title:BUILD_LABEL[focus],guide,composition,deckSize:live.length,discovered,owned,tools,offers,practices,practiceStatus,cash:cashDecision(state),saved,gaps:[!state.jokers.some(j=>shopRouteRelation(state,j,focus).kind!=='other')?'尚无该方向对应的持有来源；先看公开可成牌型，也可换培养方向。':'',!tools.length?(practices.length?'当前没有对应的库存改牌/升型工具；本店当场升级可另作取舍。':'当前没有对应改牌/升型工具；可用现有牌出场，或查看本店货架。'):'',state.phase==='shop'&&!practices.length&&!offers.some(o=>o.kind!=='jokers'||shopOfferRelation(state,state.shop!.offers.find(x=>x.offerId===o.id)!,focus).kind!=='other')?'本店没有该方向对应商品；保留金币直接入场或换方向，不保证刷新补齐。':''].filter(Boolean)};
 }
