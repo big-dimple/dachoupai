@@ -1,0 +1,5 @@
+PASS pc-cold 4484ms
+PASS phone-cold 3749ms
+FAIL page.waitForFunction: Timeout 30000ms exceeded.
+    at waitScene (/workspace/loading-preload/harness/ui.mjs:3:41)
+    at /workspace/loading-preload/harness/loading-preload.mjs:30:518

@@ -1,0 +1,3853 @@
+{
+  "base": "8e2174141920ef001b95a30485e70525920d3d9f",
+  "product": "805d389374e1c047ff64acd86ebd7a479ffd517c",
+  "harness": "75ac549e64595193a0a9dd790abec42807ccece6",
+  "srcTree": "d45653c7e9f4faf1608591bf2a69f5cdc70e27d3",
+  "testsTree": "fc94e2b6f0704c0b5bdfc6a9f7eac565477ad34c",
+  "index": "f761ff153a6075737c993f1cb2f4afa177404086",
+  "protected": [
+    {
+      "path": "src/domain",
+      "base": "be0f17abfa3e771373da5f7ba5b38a5126bbec3b",
+      "current": "be0f17abfa3e771373da5f7ba5b38a5126bbec3b",
+      "equal": true
+    },
+    {
+      "path": "src/application",
+      "base": "1a325d51795f54526ec9f3f313cceb69763a1971",
+      "current": "1a325d51795f54526ec9f3f313cceb69763a1971",
+      "equal": true
+    },
+    {
+      "path": "src/content",
+      "base": "e8c3794be5b0fcb74da4aeb9e6adc63c22388345",
+      "current": "e8c3794be5b0fcb74da4aeb9e6adc63c22388345",
+      "equal": true
+    },
+    {
+      "path": "src/platform",
+      "base": "51f99e5222a5a91f4f3ceac9049f477a442c13a2",
+      "current": "51f99e5222a5a91f4f3ceac9049f477a442c13a2",
+      "equal": true
+    },
+    {
+      "path": "src/audio",
+      "base": "7f6d2d0dd34313a4099d34cfd36b2baa748f83c2",
+      "current": "7f6d2d0dd34313a4099d34cfd36b2baa748f83c2",
+      "equal": true
+    },
+    {
+      "path": "art/sources",
+      "base": "47067728e0f15588b56199ff8ecc3b4e40c2dc53",
+      "current": "47067728e0f15588b56199ff8ecc3b4e40c2dc53",
+      "equal": true
+    },
+    {
+      "path": "public/assets/audio",
+      "base": "5341a7396ffb734adbc23c5767f9d26ca112a73b",
+      "current": "5341a7396ffb734adbc23c5767f9d26ca112a73b",
+      "equal": true
+    },
+    {
+      "path": "public/assets/handdrawn-p08",
+      "base": "522c5cd5b17336e40557687489fdb7d1d18330a7",
+      "current": "522c5cd5b17336e40557687489fdb7d1d18330a7",
+      "equal": true
+    },
+    {
+      "path": "public/assets/handdrawn-tools",
+      "base": "eabde3871a9b3ab71298cf1833d579ef18e63256",
+      "current": "eabde3871a9b3ab71298cf1833d579ef18e63256",
+      "equal": true
+    }
+  ],
+  "assetChanges": [
+    "D\tpublic/assets/cast-placeholders/amo.avatar.svg",
+    "D\tpublic/assets/cast-placeholders/amo.portrait.svg",
+    "D\tpublic/assets/cast-placeholders/amo.selection.svg",
+    "D\tpublic/assets/cast-placeholders/azao.avatar.svg",
+    "D\tpublic/assets/cast-placeholders/azao.portrait.svg",
+    "D\tpublic/assets/cast-placeholders/azao.selection.svg",
+    "D\tpublic/assets/cast-placeholders/erxiang.avatar.svg",
+    "D\tpublic/assets/cast-placeholders/erxiang.portrait.svg",
+    "D\tpublic/assets/cast-placeholders/erxiang.selection.svg",
+    "D\tpublic/assets/cast-placeholders/laohuan.avatar.svg",
+    "D\tpublic/assets/cast-placeholders/laohuan.portrait.svg",
+    "D\tpublic/assets/cast-placeholders/laohuan.selection.svg",
+    "D\tpublic/assets/cast-placeholders/manifest.json",
+    "D\tpublic/assets/cast-placeholders/touye.avatar.svg",
+    "D\tpublic/assets/cast-placeholders/touye.portrait.svg",
+    "D\tpublic/assets/cast-placeholders/touye.selection.svg",
+    "D\tpublic/assets/cast-placeholders/xiemu.avatar.svg",
+    "D\tpublic/assets/cast-placeholders/xiemu.portrait.svg",
+    "D\tpublic/assets/cast-placeholders/xiemu.selection.svg"
+  ],
+  "plannedPixels": 3573760,
+  "budgetPixels": 4194304,
+  "cases": [
+    {
+      "name": "pc-cold",
+      "status": "PASS",
+      "titleMs": 4839,
+      "decoded": 134,
+      "total": 134,
+      "mode": "ready",
+      "coldRestore": "entire persisted run equal",
+      "domainEquality": "entire state equals original LeaveShop + EnterStage",
+      "brokenImages": [],
+      "errors": []
+    },
+    {
+      "name": "phone-cold",
+      "status": "PASS",
+      "titleMs": 4085,
+      "decoded": 134,
+      "total": 134,
+      "mode": "ready",
+      "coldRestore": "entire persisted run equal",
+      "domainEquality": "entire state equals original LeaveShop + EnterStage",
+      "brokenImages": [],
+      "errors": []
+    },
+    {
+      "name": "phone-weak",
+      "status": "PASS",
+      "titleMs": 10180,
+      "decoded": 134,
+      "total": 134,
+      "mode": "ready",
+      "coldRestore": "entire persisted run equal",
+      "domainEquality": "entire state equals original LeaveShop + EnterStage",
+      "brokenImages": [],
+      "errors": []
+    },
+    {
+      "name": "pc-missing-retry",
+      "status": "PASS",
+      "titleMs": 3706,
+      "decoded": 134,
+      "total": 134,
+      "mode": "ready",
+      "coldRestore": "entire persisted run equal",
+      "domainEquality": "entire state equals original LeaveShop + EnterStage",
+      "brokenImages": [],
+      "errors": []
+    },
+    {
+      "name": "phone-text-fallback",
+      "status": "PASS",
+      "titleMs": 3524,
+      "decoded": 133,
+      "total": 134,
+      "mode": "text-mode",
+      "coldRestore": null,
+      "domainEquality": "entire state equals original LeaveShop + EnterStage",
+      "brokenImages": [],
+      "errors": []
+    }
+  ],
+  "supplementaryHead": "75ac549e64595193a0a9dd790abec42807ccece6",
+  "latestHarness": "b3e6e7792b1782ae0905923db0fa7434fe127922",
+  "harnessTree": "33e8e19ed22a9bb82d071cc5503c0fb7cddd0986",
+  "additionalReports": {
+    "pcWeak": {
+      "head": "ad0ecf734fdcffd65997ee50f16ffd6a823af1bc",
+      "sourceTree": "d45653c7e9f4faf1608591bf2a69f5cdc70e27d3",
+      "dirty": "M AGENTS.md\n M docs/production/DELIVERY_PLAN.md\n?? docs/production/evidence/loading-preload-2026-10-15/",
+      "cases": [
+        {
+          "name": "pc-weak",
+          "width": 1366,
+          "height": 900,
+          "weak": true,
+          "requests": [
+            "/public/assets/audio/p06/recording.json",
+            "/public/assets/handdrawn-p08/manifest.json",
+            "/public/assets/audio/foley-v1/sources.json",
+            "/public/assets/handdrawn-tools/manifest.json",
+            "/assets/p00/paper.svg",
+            "/assets/p00/mark-joker.svg",
+            "/assets/p00/mark-plus.svg",
+            "/assets/p00/mark-times.svg",
+            "/assets/fonts/score/dachoupai-score-numbers.woff",
+            "/assets/handdrawn-p08/court/j.court.webp",
+            "/assets/handdrawn-p08/court/q.court.webp",
+            "/assets/handdrawn-p08/court/k.court.webp",
+            "/assets/handdrawn-p08/cards/mantangcai.thumbnail.webp",
+            "/assets/handdrawn-p08/cards/jiedongfeng.thumbnail.webp",
+            "/assets/handdrawn-p08/cards/c04.thumbnail.webp",
+            "/assets/handdrawn-p08/cards/b10.thumbnail.webp",
+            "/assets/handdrawn-p08/cards/b03.thumbnail.webp",
+            "/assets/handdrawn-p08/cards/c06.thumbnail.webp",
+            "/assets/handdrawn-p08/cards/f04.thumbnail.webp",
+            "/assets/handdrawn-p08/cards/e07.thumbnail.webp",
+            "/assets/handdrawn-p08/cards/f09.thumbnail.webp",
+            "/assets/handdrawn-p08/cards/f07.thumbnail.webp",
+            "/assets/handdrawn-p08/cards/d07.thumbnail.webp",
+            "/assets/handdrawn-p08/cards/a07.thumbnail.webp",
+            "/assets/handdrawn-p08/cards/a08.thumbnail.webp",
+            "/assets/handdrawn-p08/cards/c03.thumbnail.webp",
+            "/assets/handdrawn-p08/cards/d02.thumbnail.webp",
+            "/assets/handdrawn-p08/cards/e02.thumbnail.webp",
+            "/assets/handdrawn-p08/cards/e09.thumbnail.webp",
+            "/assets/handdrawn-p08/cards/tiesuanpan.thumbnail.webp",
+            "/assets/handdrawn-p08/cards/f10.thumbnail.webp",
+            "/assets/handdrawn-p08/cards/c08.thumbnail.webp",
+            "/assets/handdrawn-p08/cards/c09.thumbnail.webp",
+            "/assets/handdrawn-p08/cards/pengci.thumbnail.webp",
+            "/assets/handdrawn-p08/cards/huimaqiang.thumbnail.webp",
+            "/assets/handdrawn-p08/cards/b07.thumbnail.webp",
+            "/assets/handdrawn-p08/cards/a09.thumbnail.webp",
+            "/assets/handdrawn-p08/cards/d06.thumbnail.webp",
+            "/assets/handdrawn-p08/cards/a04.thumbnail.webp",
+            "/assets/handdrawn-p08/cards/e04.thumbnail.webp",
+            "/assets/handdrawn-p08/cards/c05.thumbnail.webp",
+            "/assets/handdrawn-p08/cards/c02.thumbnail.webp",
+            "/assets/handdrawn-p08/cards/f03.thumbnail.webp",
+            "/assets/handdrawn-p08/cards/a03.thumbnail.webp",
+            "/assets/handdrawn-p08/cards/b02.thumbnail.webp",
+            "/assets/handdrawn-p08/cards/b04.thumbnail.webp",
+            "/assets/handdrawn-p08/cards/d01.thumbnail.webp",
+            "/assets/handdrawn-p08/cards/f02.thumbnail.webp",
+            "/assets/handdrawn-p08/cards/d10.thumbnail.webp",
+            "/assets/handdrawn-p08/cards/e01.thumbnail.webp",
+            "/assets/handdrawn-p08/cards/b05.thumbnail.webp",
+            "/assets/handdrawn-p08/cards/b08.thumbnail.webp",
+            "/assets/handdrawn-p08/cards/d05.thumbnail.webp",
+            "/assets/handdrawn-p08/cards/e03.thumbnail.webp",
+            "/assets/handdrawn-p08/cards/e06.thumbnail.webp",
+            "/assets/handdrawn-p08/cards/f05.thumbnail.webp",
+            "/assets/handdrawn-p08/cards/f11.thumbnail.webp",
+            "/assets/handdrawn-p08/cards/b06.thumbnail.webp",
+            "/assets/handdrawn-p08/cards/a11-v2-ea9e76e4a31f.thumbnail.webp",
+            "/assets/handdrawn-p08/cards/d04.thumbnail.webp",
+            "/assets/handdrawn-p08/cards/c07.thumbnail.webp",
+            "/assets/handdrawn-p08/cards/d11.thumbnail.webp",
+            "/assets/handdrawn-p08/cards/d08.thumbnail.webp",
+            "/assets/handdrawn-p08/cards/d09.thumbnail.webp",
+            "/assets/handdrawn-p08/cards/b12.thumbnail.webp",
+            "/assets/handdrawn-p08/cards/a05.thumbnail.webp",
+            "/assets/handdrawn-p08/cards/d03.thumbnail.webp",
+            "/assets/handdrawn-p08/cards/a10.thumbnail.webp",
+            "/assets/handdrawn-p08/cards/b11.thumbnail.webp",
+            "/assets/handdrawn-p08/cards/c10.thumbnail.webp",
+            "/assets/handdrawn-p08/cards/d12.thumbnail.webp",
+            "/assets/handdrawn-p08/cards/a06.thumbnail.webp",
+            "/assets/handdrawn-p08/cards/a12.thumbnail.webp",
+            "/assets/handdrawn-p08/cards/b09.thumbnail.webp",
+            "/assets/handdrawn-p08/cards/c11.thumbnail.webp",
+            "/assets/handdrawn-p08/cards/c12.thumbnail.webp",
+            "/assets/handdrawn-p08/cards/e10.thumbnail.webp",
+            "/assets/handdrawn-p08/cards/e12.thumbnail.webp",
+            "/assets/handdrawn-p08/cards/e05.thumbnail.webp",
+            "/assets/handdrawn-p08/cards/e08.thumbnail.webp",
+            "/assets/handdrawn-p08/cards/e11.thumbnail.webp",
+            "/assets/handdrawn-p08/cards/f06.thumbnail.webp",
+            "/assets/handdrawn-p08/cards/f08.thumbnail.webp",
+            "/assets/handdrawn-p08/cards/f12.thumbnail.webp",
+            "/assets/handdrawn-tools/tool-t12.thumbnail.webp",
+            "/assets/handdrawn-tools/item-u07.thumbnail.webp",
+            "/assets/handdrawn-tools/tool-p11.thumbnail.webp",
+            "/assets/handdrawn-tools/tool-s02.thumbnail.webp",
+            "/assets/handdrawn-tools/item-u01.thumbnail.webp",
+            "/assets/handdrawn-tools/item-u02.thumbnail.webp",
+            "/assets/handdrawn-tools/item-u03.thumbnail.webp",
+            "/assets/handdrawn-tools/item-u04.thumbnail.webp",
+            "/assets/handdrawn-tools/item-u05.thumbnail.webp",
+            "/assets/handdrawn-tools/item-u06.thumbnail.webp",
+            "/assets/handdrawn-tools/item-u08.thumbnail.webp",
+            "/assets/handdrawn-tools/item-u09.thumbnail.webp",
+            "/assets/handdrawn-tools/item-u10.thumbnail.webp",
+            "/assets/handdrawn-tools/item-u11.thumbnail.webp",
+            "/assets/handdrawn-tools/item-u12.thumbnail.webp",
+            "/assets/handdrawn-tools/tool-t06.thumbnail.webp",
+            "/assets/handdrawn-tools/tool-t07.thumbnail.webp",
+            "/assets/handdrawn-tools/tool-t08.thumbnail.webp",
+            "/assets/handdrawn-tools/tool-t09.thumbnail.webp",
+            "/assets/handdrawn-tools/tool-t10.thumbnail.webp",
+            "/assets/handdrawn-tools/tool-t11.thumbnail.webp",
+            "/assets/handdrawn-tools/tool-t13.thumbnail.webp",
+            "/assets/handdrawn-tools/tool-t14.thumbnail.webp",
+            "/assets/handdrawn-tools/tool-t15.thumbnail.webp",
+            "/assets/handdrawn-tools/tool-t16.thumbnail.webp",
+            "/assets/handdrawn-tools/tool-t17.thumbnail.webp",
+            "/assets/handdrawn-tools/tool-t18.thumbnail.webp",
+            "/assets/handdrawn-tools/tool-t01.thumbnail.webp",
+            "/assets/handdrawn-tools/tool-t02.thumbnail.webp",
+            "/assets/handdrawn-tools/tool-t03.thumbnail.webp",
+            "/assets/handdrawn-tools/tool-t04.thumbnail.webp",
+            "/assets/handdrawn-tools/tool-t05.thumbnail.webp",
+            "/assets/handdrawn-tools/tool-p01.thumbnail.webp",
+            "/assets/handdrawn-tools/tool-p02.thumbnail.webp",
+            "/assets/handdrawn-tools/tool-p03.thumbnail.webp",
+            "/assets/handdrawn-tools/tool-p04.thumbnail.webp",
+            "/assets/handdrawn-tools/tool-p05.thumbnail.webp",
+            "/assets/handdrawn-tools/tool-p06.thumbnail.webp",
+            "/assets/handdrawn-tools/tool-p07.thumbnail.webp",
+            "/assets/handdrawn-tools/tool-p08.thumbnail.webp",
+            "/assets/handdrawn-tools/tool-p09.thumbnail.webp",
+            "/assets/handdrawn-tools/tool-p10.thumbnail.webp",
+            "/assets/handdrawn-tools/tool-p12.thumbnail.webp",
+            "/assets/handdrawn-tools/tool-s01.thumbnail.webp",
+            "/assets/handdrawn-tools/tool-t19.thumbnail.webp",
+            "/assets/handdrawn-tools/tool-s03.thumbnail.webp",
+            "/assets/handdrawn-tools/tool-s04.thumbnail.webp",
+            "/assets/handdrawn-tools/tool-s05.thumbnail.webp",
+            "/assets/handdrawn-tools/tool-s06.thumbnail.webp",
+            "/assets/handdrawn-tools/tool-s07.thumbnail.webp",
+            "/assets/handdrawn-tools/tool-s08.thumbnail.webp",
+            "/assets/audio/foley-v1/card-slide-1.ogg",
+            "/assets/audio/foley-v1/card-slide-2.ogg",
+            "/assets/audio/foley-v1/card-slide-3.ogg",
+            "/assets/audio/p06/serenade-schubert-216755.mp3",
+            "/assets/audio/foley-v1/card-place-1.ogg",
+            "/assets/audio/foley-v1/card-place-2.ogg",
+            "/assets/audio/foley-v1/card-place-3.ogg",
+            "/assets/audio/foley-v1/card-shove-1.ogg",
+            "/assets/audio/foley-v1/card-fan-1.ogg",
+            "/assets/audio/foley-v1/card-shuffle.ogg",
+            "/assets/audio/foley-v1/cards-pack-open-1.ogg",
+            "/assets/audio/foley-v1/chip-lay-1.ogg",
+            "/assets/audio/foley-v1/chip-lay-2.ogg",
+            "/assets/audio/foley-v1/chips-stack-1.ogg",
+            "/assets/audio/foley-v1/chips-collide-1.ogg",
+            "/assets/audio/foley-v1/impactWood_light_000.ogg",
+            "/assets/audio/foley-v1/impactWood_light_001.ogg",
+            "/assets/audio/foley-v1/impactWood_heavy_000.ogg",
+            "/assets/audio/foley-v1/impactSoft_medium_000.ogg",
+            "/assets/audio/foley-v1/impactSoft_heavy_000.ogg",
+            "/assets/audio/foley-v1/impactBell_heavy_000.ogg",
+            "/assets/audio/foley-v1/impactBell_heavy_003.ogg",
+            "/assets/audio/foley-v1/impactGlass_heavy_002.ogg",
+            "/assets/audio/score-impact/cloth2.ogg",
+            "/public/assets/audio/p06/recording.json",
+            "/public/assets/handdrawn-p08/manifest.json",
+            "/public/assets/audio/foley-v1/sources.json",
+            "/public/assets/handdrawn-tools/manifest.json",
+            "/assets/p00/paper.svg",
+            "/assets/p00/mark-joker.svg",
+            "/assets/p00/mark-plus.svg",
+            "/assets/p00/mark-times.svg",
+            "/assets/fonts/score/dachoupai-score-numbers.woff",
+            "/assets/handdrawn-p08/court/j.court.webp",
+            "/assets/handdrawn-p08/court/q.court.webp",
+            "/assets/handdrawn-p08/court/k.court.webp",
+            "/assets/handdrawn-p08/cards/mantangcai.thumbnail.webp",
+            "/assets/handdrawn-p08/cards/jiedongfeng.thumbnail.webp",
+            "/assets/handdrawn-p08/cards/c04.thumbnail.webp",
+            "/assets/handdrawn-p08/cards/b10.thumbnail.webp",
+            "/assets/handdrawn-p08/cards/b03.thumbnail.webp",
+            "/assets/handdrawn-p08/cards/c06.thumbnail.webp",
+            "/assets/handdrawn-p08/cards/f04.thumbnail.webp",
+            "/assets/handdrawn-p08/cards/e07.thumbnail.webp",
+            "/assets/handdrawn-p08/cards/f09.thumbnail.webp",
+            "/assets/handdrawn-p08/cards/f07.thumbnail.webp",
+            "/assets/handdrawn-p08/cards/d07.thumbnail.webp",
+            "/assets/handdrawn-p08/cards/a07.thumbnail.webp",
+            "/assets/handdrawn-p08/cards/a08.thumbnail.webp",
+            "/assets/handdrawn-p08/cards/c03.thumbnail.webp",
+            "/assets/handdrawn-p08/cards/d02.thumbnail.webp",
+            "/assets/handdrawn-p08/cards/e02.thumbnail.webp",
+            "/assets/handdrawn-p08/cards/e09.thumbnail.webp",
+            "/assets/handdrawn-p08/cards/tiesuanpan.thumbnail.webp",
+            "/assets/handdrawn-p08/cards/f10.thumbnail.webp",
+            "/assets/handdrawn-p08/cards/c08.thumbnail.webp",
+            "/assets/handdrawn-p08/cards/c09.thumbnail.webp",
+            "/assets/handdrawn-p08/cards/pengci.thumbnail.webp",
+            "/assets/handdrawn-p08/cards/huimaqiang.thumbnail.webp",
+            "/assets/handdrawn-p08/cards/b07.thumbnail.webp",
+            "/assets/handdrawn-p08/cards/a09.thumbnail.webp",
+            "/assets/handdrawn-p08/cards/d06.thumbnail.webp",
+            "/assets/handdrawn-p08/cards/a04.thumbnail.webp",
+            "/assets/handdrawn-p08/cards/e04.thumbnail.webp",
+            "/assets/handdrawn-p08/cards/c05.thumbnail.webp",
+            "/assets/handdrawn-p08/cards/c02.thumbnail.webp",
+            "/assets/handdrawn-p08/cards/f03.thumbnail.webp",
+            "/assets/handdrawn-p08/cards/a03.thumbnail.webp",
+            "/assets/handdrawn-p08/cards/b02.thumbnail.webp",
+            "/assets/handdrawn-p08/cards/b04.thumbnail.webp",
+            "/assets/handdrawn-p08/cards/d01.thumbnail.webp",
+            "/assets/handdrawn-p08/cards/f02.thumbnail.webp",
+            "/assets/handdrawn-p08/cards/d10.thumbnail.webp",
+            "/assets/handdrawn-p08/cards/e01.thumbnail.webp",
+            "/assets/handdrawn-p08/cards/b05.thumbnail.webp",
+            "/assets/handdrawn-p08/cards/b08.thumbnail.webp",
+            "/assets/handdrawn-p08/cards/d05.thumbnail.webp",
+            "/assets/handdrawn-p08/cards/e03.thumbnail.webp",
+            "/assets/handdrawn-p08/cards/e06.thumbnail.webp",
+            "/assets/handdrawn-p08/cards/f05.thumbnail.webp",
+            "/assets/handdrawn-p08/cards/f11.thumbnail.webp",
+            "/assets/handdrawn-p08/cards/b06.thumbnail.webp",
+            "/assets/handdrawn-p08/cards/a11-v2-ea9e76e4a31f.thumbnail.webp",
+            "/assets/handdrawn-p08/cards/d04.thumbnail.webp",
+            "/assets/handdrawn-p08/cards/c07.thumbnail.webp",
+            "/assets/handdrawn-p08/cards/d11.thumbnail.webp",
+            "/assets/handdrawn-p08/cards/d08.thumbnail.webp",
+            "/assets/handdrawn-p08/cards/d09.thumbnail.webp",
+            "/assets/handdrawn-p08/cards/b12.thumbnail.webp",
+            "/assets/handdrawn-p08/cards/a05.thumbnail.webp",
+            "/assets/handdrawn-p08/cards/d03.thumbnail.webp",
+            "/assets/handdrawn-p08/cards/a10.thumbnail.webp",
+            "/assets/handdrawn-p08/cards/b11.thumbnail.webp",
+            "/assets/handdrawn-p08/cards/c10.thumbnail.webp",
+            "/assets/handdrawn-p08/cards/d12.thumbnail.webp",
+            "/assets/handdrawn-p08/cards/a06.thumbnail.webp",
+            "/assets/handdrawn-p08/cards/a12.thumbnail.webp",
+            "/assets/handdrawn-p08/cards/b09.thumbnail.webp",
+            "/assets/handdrawn-p08/cards/c11.thumbnail.webp",
+            "/assets/handdrawn-p08/cards/c12.thumbnail.webp",
+            "/assets/handdrawn-p08/cards/e10.thumbnail.webp",
+            "/assets/handdrawn-p08/cards/e12.thumbnail.webp",
+            "/assets/handdrawn-p08/cards/e05.thumbnail.webp",
+            "/assets/handdrawn-p08/cards/e08.thumbnail.webp",
+            "/assets/handdrawn-p08/cards/e11.thumbnail.webp",
+            "/assets/handdrawn-p08/cards/f06.thumbnail.webp",
+            "/assets/handdrawn-p08/cards/f08.thumbnail.webp",
+            "/assets/handdrawn-p08/cards/f12.thumbnail.webp",
+            "/assets/handdrawn-tools/tool-t12.thumbnail.webp",
+            "/assets/handdrawn-tools/item-u07.thumbnail.webp",
+            "/assets/handdrawn-tools/tool-p11.thumbnail.webp",
+            "/assets/handdrawn-tools/tool-s02.thumbnail.webp",
+            "/assets/handdrawn-tools/item-u01.thumbnail.webp",
+            "/assets/handdrawn-tools/item-u02.thumbnail.webp",
+            "/assets/handdrawn-tools/item-u03.thumbnail.webp",
+            "/assets/handdrawn-tools/item-u04.thumbnail.webp",
+            "/assets/handdrawn-tools/item-u05.thumbnail.webp",
+            "/assets/handdrawn-tools/item-u06.thumbnail.webp",
+            "/assets/handdrawn-tools/item-u08.thumbnail.webp",
+            "/assets/handdrawn-tools/item-u09.thumbnail.webp",
+            "/assets/handdrawn-tools/item-u10.thumbnail.webp",
+            "/assets/handdrawn-tools/item-u11.thumbnail.webp",
+            "/assets/handdrawn-tools/item-u12.thumbnail.webp",
+            "/assets/handdrawn-tools/tool-t06.thumbnail.webp",
+            "/assets/handdrawn-tools/tool-t07.thumbnail.webp",
+            "/assets/handdrawn-tools/tool-t08.thumbnail.webp",
+            "/assets/handdrawn-tools/tool-t09.thumbnail.webp",
+            "/assets/handdrawn-tools/tool-t10.thumbnail.webp",
+            "/assets/handdrawn-tools/tool-t11.thumbnail.webp",
+            "/assets/handdrawn-tools/tool-t13.thumbnail.webp",
+            "/assets/handdrawn-tools/tool-t14.thumbnail.webp",
+            "/assets/handdrawn-tools/tool-t15.thumbnail.webp",
+            "/assets/handdrawn-tools/tool-t16.thumbnail.webp",
+            "/assets/handdrawn-tools/tool-t17.thumbnail.webp",
+            "/assets/handdrawn-tools/tool-t18.thumbnail.webp",
+            "/assets/handdrawn-tools/tool-t01.thumbnail.webp",
+            "/assets/handdrawn-tools/tool-t02.thumbnail.webp",
+            "/assets/handdrawn-tools/tool-t03.thumbnail.webp",
+            "/assets/handdrawn-tools/tool-t04.thumbnail.webp",
+            "/assets/handdrawn-tools/tool-t05.thumbnail.webp",
+            "/assets/handdrawn-tools/tool-p01.thumbnail.webp",
+            "/assets/handdrawn-tools/tool-p02.thumbnail.webp",
+            "/assets/handdrawn-tools/tool-p03.thumbnail.webp",
+            "/assets/handdrawn-tools/tool-p04.thumbnail.webp",
+            "/assets/handdrawn-tools/tool-p05.thumbnail.webp",
+            "/assets/handdrawn-tools/tool-p06.thumbnail.webp",
+            "/assets/handdrawn-tools/tool-p07.thumbnail.webp",
+            "/assets/handdrawn-tools/tool-p08.thumbnail.webp",
+            "/assets/handdrawn-tools/tool-p09.thumbnail.webp",
+            "/assets/handdrawn-tools/tool-p10.thumbnail.webp",
+            "/assets/handdrawn-tools/tool-p12.thumbnail.webp",
+            "/assets/handdrawn-tools/tool-s01.thumbnail.webp",
+            "/assets/handdrawn-tools/tool-t19.thumbnail.webp",
+            "/assets/handdrawn-tools/tool-s03.thumbnail.webp",
+            "/assets/handdrawn-tools/tool-s04.thumbnail.webp",
+            "/assets/handdrawn-tools/tool-s05.thumbnail.webp",
+            "/assets/handdrawn-tools/tool-s06.thumbnail.webp",
+            "/assets/handdrawn-tools/tool-s07.thumbnail.webp",
+            "/assets/handdrawn-tools/tool-s08.thumbnail.webp",
+            "/assets/audio/foley-v1/card-slide-1.ogg",
+            "/assets/audio/foley-v1/card-slide-2.ogg",
+            "/assets/audio/foley-v1/card-slide-3.ogg",
+            "/assets/audio/p06/serenade-schubert-216755.mp3",
+            "/assets/audio/foley-v1/card-place-1.ogg",
+            "/assets/audio/foley-v1/card-place-2.ogg",
+            "/assets/audio/foley-v1/card-place-3.ogg",
+            "/assets/audio/foley-v1/card-shove-1.ogg",
+            "/assets/audio/foley-v1/card-fan-1.ogg",
+            "/assets/audio/foley-v1/card-shuffle.ogg"
+          ],
+          "errors": [],
+          "intermediate": {
+            "loaded": 10,
+            "total": 134,
+            "value": 10,
+            "overflow": false,
+            "buttons": [
+              {
+                "text": "先用文字牌面进入",
+                "height": 44
+              }
+            ]
+          },
+          "titleMs": 10605,
+          "ready": {
+            "key": "title",
+            "total": 134,
+            "loaded": 134,
+            "failed": 0,
+            "pending": 0,
+            "keys": [
+              "p00-paper",
+              "p00-card-back",
+              "p00-frame-common",
+              "p00-frame-uncommon",
+              "p00-frame-rare",
+              "p00-mark-joker",
+              "p00-mark-plus",
+              "p00-mark-times",
+              "p08-court-j",
+              "p08-court-q",
+              "p08-court-k",
+              "p08-joker-mantangcai",
+              "p08-joker-jiedongfeng",
+              "p08-joker-c04",
+              "p08-joker-b10",
+              "p08-joker-b03",
+              "p08-joker-c06",
+              "p08-joker-f04",
+              "p08-joker-e07",
+              "p08-joker-f09",
+              "p08-joker-f07",
+              "p08-joker-d07",
+              "p08-joker-a07",
+              "p08-joker-a08",
+              "p08-joker-c03",
+              "p08-joker-d02",
+              "p08-joker-e02",
+              "p08-joker-e09",
+              "p08-joker-tiesuanpan",
+              "p08-joker-f10",
+              "p08-joker-c08",
+              "p08-joker-c09",
+              "p08-joker-pengci",
+              "p08-joker-huimaqiang",
+              "p08-joker-b07",
+              "p08-joker-a09",
+              "p08-joker-d06",
+              "p08-joker-a04",
+              "p08-joker-e04",
+              "p08-joker-c05",
+              "p08-joker-c02",
+              "p08-joker-f03",
+              "p08-joker-a03",
+              "p08-joker-b02",
+              "p08-joker-b04",
+              "p08-joker-d01",
+              "p08-joker-f02",
+              "p08-joker-d10",
+              "p08-joker-e01",
+              "p08-joker-b05",
+              "p08-joker-b08",
+              "p08-joker-d05",
+              "p08-joker-e03",
+              "p08-joker-e06",
+              "p08-joker-f05",
+              "p08-joker-f11",
+              "p08-joker-b06",
+              "p08-joker-a11",
+              "p08-joker-d04",
+              "p08-joker-c07",
+              "p08-joker-d11",
+              "p08-joker-d08",
+              "p08-joker-d09",
+              "p08-joker-b12",
+              "p08-joker-a05",
+              "p08-joker-d03",
+              "p08-joker-a10",
+              "p08-joker-b11",
+              "p08-joker-c10",
+              "p08-joker-d12",
+              "p08-joker-a06",
+              "p08-joker-a12",
+              "p08-joker-b09",
+              "p08-joker-c11",
+              "p08-joker-c12",
+              "p08-joker-e10",
+              "p08-joker-e12",
+              "p08-joker-e05",
+              "p08-joker-e08",
+              "p08-joker-e11",
+              "p08-joker-f06",
+              "p08-joker-f08",
+              "p08-joker-f12",
+              "goods-art/T12",
+              "goods-art/U07",
+              "goods-art/P11",
+              "goods-art/S02",
+              "goods-art/U01",
+              "goods-art/U02",
+              "goods-art/U03",
+              "goods-art/U04",
+              "goods-art/U05",
+              "goods-art/U06",
+              "goods-art/U08",
+              "goods-art/U09",
+              "goods-art/U10",
+              "goods-art/U11",
+              "goods-art/U12",
+              "goods-art/T06",
+              "goods-art/T07",
+              "goods-art/T08",
+              "goods-art/T09",
+              "goods-art/T10",
+              "goods-art/T11",
+              "goods-art/T13",
+              "goods-art/T14",
+              "goods-art/T15",
+              "goods-art/T16",
+              "goods-art/T17",
+              "goods-art/T18",
+              "goods-art/T01",
+              "goods-art/T02",
+              "goods-art/T03",
+              "goods-art/T04",
+              "goods-art/T05",
+              "goods-art/P01",
+              "goods-art/P02",
+              "goods-art/P03",
+              "goods-art/P04",
+              "goods-art/P05",
+              "goods-art/P06",
+              "goods-art/P07",
+              "goods-art/P08",
+              "goods-art/P09",
+              "goods-art/P10",
+              "goods-art/P12",
+              "goods-art/S01",
+              "goods-art/T19",
+              "goods-art/S03",
+              "goods-art/S04",
+              "goods-art/S05",
+              "goods-art/S06",
+              "goods-art/S07",
+              "goods-art/S08"
+            ],
+            "status": "ready"
+          },
+          "shopPreparation": {
+            "key": "title",
+            "total": 134,
+            "loaded": 134,
+            "failed": 0,
+            "pending": 0,
+            "keys": [
+              "p00-paper",
+              "p00-card-back",
+              "p00-frame-common",
+              "p00-frame-uncommon",
+              "p00-frame-rare",
+              "p00-mark-joker",
+              "p00-mark-plus",
+              "p00-mark-times",
+              "p08-court-j",
+              "p08-court-q",
+              "p08-court-k",
+              "p08-joker-mantangcai",
+              "p08-joker-jiedongfeng",
+              "p08-joker-c04",
+              "p08-joker-b10",
+              "p08-joker-b03",
+              "p08-joker-c06",
+              "p08-joker-f04",
+              "p08-joker-e07",
+              "p08-joker-f09",
+              "p08-joker-f07",
+              "p08-joker-d07",
+              "p08-joker-a07",
+              "p08-joker-a08",
+              "p08-joker-c03",
+              "p08-joker-d02",
+              "p08-joker-e02",
+              "p08-joker-e09",
+              "p08-joker-tiesuanpan",
+              "p08-joker-f10",
+              "p08-joker-c08",
+              "p08-joker-c09",
+              "p08-joker-pengci",
+              "p08-joker-huimaqiang",
+              "p08-joker-b07",
+              "p08-joker-a09",
+              "p08-joker-d06",
+              "p08-joker-a04",
+              "p08-joker-e04",
+              "p08-joker-c05",
+              "p08-joker-c02",
+              "p08-joker-f03",
+              "p08-joker-a03",
+              "p08-joker-b02",
+              "p08-joker-b04",
+              "p08-joker-d01",
+              "p08-joker-f02",
+              "p08-joker-d10",
+              "p08-joker-e01",
+              "p08-joker-b05",
+              "p08-joker-b08",
+              "p08-joker-d05",
+              "p08-joker-e03",
+              "p08-joker-e06",
+              "p08-joker-f05",
+              "p08-joker-f11",
+              "p08-joker-b06",
+              "p08-joker-a11",
+              "p08-joker-d04",
+              "p08-joker-c07",
+              "p08-joker-d11",
+              "p08-joker-d08",
+              "p08-joker-d09",
+              "p08-joker-b12",
+              "p08-joker-a05",
+              "p08-joker-d03",
+              "p08-joker-a10",
+              "p08-joker-b11",
+              "p08-joker-c10",
+              "p08-joker-d12",
+              "p08-joker-a06",
+              "p08-joker-a12",
+              "p08-joker-b09",
+              "p08-joker-c11",
+              "p08-joker-c12",
+              "p08-joker-e10",
+              "p08-joker-e12",
+              "p08-joker-e05",
+              "p08-joker-e08",
+              "p08-joker-e11",
+              "p08-joker-f06",
+              "p08-joker-f08",
+              "p08-joker-f12",
+              "goods-art/T12",
+              "goods-art/U07",
+              "goods-art/P11",
+              "goods-art/S02",
+              "goods-art/U01",
+              "goods-art/U02",
+              "goods-art/U03",
+              "goods-art/U04",
+              "goods-art/U05",
+              "goods-art/U06",
+              "goods-art/U08",
+              "goods-art/U09",
+              "goods-art/U10",
+              "goods-art/U11",
+              "goods-art/U12",
+              "goods-art/T06",
+              "goods-art/T07",
+              "goods-art/T08",
+              "goods-art/T09",
+              "goods-art/T10",
+              "goods-art/T11",
+              "goods-art/T13",
+              "goods-art/T14",
+              "goods-art/T15",
+              "goods-art/T16",
+              "goods-art/T17",
+              "goods-art/T18",
+              "goods-art/T01",
+              "goods-art/T02",
+              "goods-art/T03",
+              "goods-art/T04",
+              "goods-art/T05",
+              "goods-art/P01",
+              "goods-art/P02",
+              "goods-art/P03",
+              "goods-art/P04",
+              "goods-art/P05",
+              "goods-art/P06",
+              "goods-art/P07",
+              "goods-art/P08",
+              "goods-art/P09",
+              "goods-art/P10",
+              "goods-art/P12",
+              "goods-art/S01",
+              "goods-art/T19",
+              "goods-art/S03",
+              "goods-art/S04",
+              "goods-art/S05",
+              "goods-art/S06",
+              "goods-art/S07",
+              "goods-art/S08"
+            ],
+            "status": "ready"
+          },
+          "shopState": {
+            "routeGrowth": {
+              "clears": 0,
+              "G": 0,
+              "S": 0,
+              "F": 0,
+              "settlements": []
+            },
+            "schemaVersion": 2,
+            "rulesVersion": "r2",
+            "contentVersion": "quality-r2-s04-finish-v1",
+            "contentHash": "json-fnv-v1:65b545bd97c0fdf1",
+            "runId": "run/loading-local/azao",
+            "seed": "loading-local",
+            "commandSeq": 1,
+            "difficulty": 0,
+            "characterId": "azao",
+            "openingRoute": "flush",
+            "openingShow": {
+              "handsScored": 0,
+              "rootId": null,
+              "eventId": null,
+              "reason": null
+            },
+            "routeStarter": {
+              "instanceId": null,
+              "rootId": null,
+              "eventId": null
+            },
+            "mode": "standard",
+            "challengeId": null,
+            "programsEnabled": true,
+            "programRerollCoupon": false,
+            "chapterDisabledJokerId": null,
+            "chapter": 1,
+            "stageIndex": 0,
+            "phase": "shop",
+            "deckInstances": [
+              {
+                "id": "spades-2",
+                "suit": "spades",
+                "rank": 2
+              },
+              {
+                "id": "spades-3",
+                "suit": "spades",
+                "rank": 3
+              },
+              {
+                "id": "spades-4",
+                "suit": "spades",
+                "rank": 4
+              },
+              {
+                "id": "spades-5",
+                "suit": "spades",
+                "rank": 5
+              },
+              {
+                "id": "spades-6",
+                "suit": "spades",
+                "rank": 6
+              },
+              {
+                "id": "spades-7",
+                "suit": "spades",
+                "rank": 7
+              },
+              {
+                "id": "spades-8",
+                "suit": "spades",
+                "rank": 8
+              },
+              {
+                "id": "spades-9",
+                "suit": "spades",
+                "rank": 9
+              },
+              {
+                "id": "spades-10",
+                "suit": "spades",
+                "rank": 10
+              },
+              {
+                "id": "spades-11",
+                "suit": "spades",
+                "rank": 11
+              },
+              {
+                "id": "spades-12",
+                "suit": "spades",
+                "rank": 12
+              },
+              {
+                "id": "spades-13",
+                "suit": "spades",
+                "rank": 13
+              },
+              {
+                "id": "spades-14",
+                "suit": "spades",
+                "rank": 14
+              },
+              {
+                "id": "hearts-2",
+                "suit": "hearts",
+                "rank": 2
+              },
+              {
+                "id": "hearts-3",
+                "suit": "hearts",
+                "rank": 3
+              },
+              {
+                "id": "hearts-4",
+                "suit": "hearts",
+                "rank": 4
+              },
+              {
+                "id": "hearts-5",
+                "suit": "hearts",
+                "rank": 5
+              },
+              {
+                "id": "hearts-6",
+                "suit": "hearts",
+                "rank": 6
+              },
+              {
+                "id": "hearts-7",
+                "suit": "hearts",
+                "rank": 7
+              },
+              {
+                "id": "hearts-8",
+                "suit": "hearts",
+                "rank": 8
+              },
+              {
+                "id": "hearts-9",
+                "suit": "hearts",
+                "rank": 9
+              },
+              {
+                "id": "hearts-10",
+                "suit": "hearts",
+                "rank": 10
+              },
+              {
+                "id": "hearts-11",
+                "suit": "hearts",
+                "rank": 11
+              },
+              {
+                "id": "hearts-12",
+                "suit": "hearts",
+                "rank": 12
+              },
+              {
+                "id": "hearts-13",
+                "suit": "hearts",
+                "rank": 13
+              },
+              {
+                "id": "hearts-14",
+                "suit": "hearts",
+                "rank": 14
+              },
+              {
+                "id": "clubs-2",
+                "suit": "clubs",
+                "rank": 2
+              },
+              {
+                "id": "clubs-3",
+                "suit": "clubs",
+                "rank": 3
+              },
+              {
+                "id": "clubs-4",
+                "suit": "clubs",
+                "rank": 4
+              },
+              {
+                "id": "clubs-5",
+                "suit": "clubs",
+                "rank": 5
+              },
+              {
+                "id": "clubs-6",
+                "suit": "clubs",
+                "rank": 6
+              },
+              {
+                "id": "clubs-7",
+                "suit": "clubs",
+                "rank": 7
+              },
+              {
+                "id": "clubs-8",
+                "suit": "clubs",
+                "rank": 8
+              },
+              {
+                "id": "clubs-9",
+                "suit": "clubs",
+                "rank": 9
+              },
+              {
+                "id": "clubs-10",
+                "suit": "clubs",
+                "rank": 10
+              },
+              {
+                "id": "clubs-11",
+                "suit": "clubs",
+                "rank": 11
+              },
+              {
+                "id": "clubs-12",
+                "suit": "clubs",
+                "rank": 12
+              },
+              {
+                "id": "clubs-13",
+                "suit": "clubs",
+                "rank": 13
+              },
+              {
+                "id": "clubs-14",
+                "suit": "clubs",
+                "rank": 14
+              },
+              {
+                "id": "diamonds-2",
+                "suit": "diamonds",
+                "rank": 2
+              },
+              {
+                "id": "diamonds-3",
+                "suit": "diamonds",
+                "rank": 3
+              },
+              {
+                "id": "diamonds-4",
+                "suit": "diamonds",
+                "rank": 4
+              },
+              {
+                "id": "diamonds-5",
+                "suit": "diamonds",
+                "rank": 5
+              },
+              {
+                "id": "diamonds-6",
+                "suit": "diamonds",
+                "rank": 6
+              },
+              {
+                "id": "diamonds-7",
+                "suit": "diamonds",
+                "rank": 7
+              },
+              {
+                "id": "diamonds-8",
+                "suit": "diamonds",
+                "rank": 8
+              },
+              {
+                "id": "diamonds-9",
+                "suit": "diamonds",
+                "rank": 9
+              },
+              {
+                "id": "diamonds-10",
+                "suit": "diamonds",
+                "rank": 10
+              },
+              {
+                "id": "diamonds-11",
+                "suit": "diamonds",
+                "rank": 11
+              },
+              {
+                "id": "diamonds-12",
+                "suit": "diamonds",
+                "rank": 12
+              },
+              {
+                "id": "diamonds-13",
+                "suit": "diamonds",
+                "rank": 13
+              },
+              {
+                "id": "diamonds-14",
+                "suit": "diamonds",
+                "rank": 14
+              }
+            ],
+            "drawPile": [
+              "spades-2",
+              "spades-3",
+              "spades-4",
+              "spades-5",
+              "spades-6",
+              "spades-7",
+              "spades-8",
+              "spades-9",
+              "spades-10",
+              "spades-11",
+              "spades-12",
+              "spades-13",
+              "spades-14",
+              "hearts-2",
+              "hearts-3",
+              "hearts-4",
+              "hearts-5",
+              "hearts-6",
+              "hearts-7",
+              "hearts-8",
+              "hearts-9",
+              "hearts-10",
+              "hearts-11",
+              "hearts-12",
+              "hearts-13",
+              "hearts-14",
+              "clubs-2",
+              "clubs-3",
+              "clubs-4",
+              "clubs-5",
+              "clubs-6",
+              "clubs-7",
+              "clubs-8",
+              "clubs-9",
+              "clubs-10",
+              "clubs-11",
+              "clubs-12",
+              "clubs-13",
+              "clubs-14",
+              "diamonds-2",
+              "diamonds-3",
+              "diamonds-4",
+              "diamonds-5",
+              "diamonds-6",
+              "diamonds-7",
+              "diamonds-8",
+              "diamonds-9",
+              "diamonds-10",
+              "diamonds-11",
+              "diamonds-12",
+              "diamonds-13",
+              "diamonds-14"
+            ],
+            "handOrder": [],
+            "playedPile": [],
+            "discardPile": [],
+            "destroyedIds": [],
+            "stage": null,
+            "totalHeat": "0",
+            "gold": 6,
+            "jokers": [],
+            "consumables": [],
+            "longTermItems": [],
+            "program": {
+              "chapter": 1,
+              "offerIds": [
+                "PG01",
+                "PG02"
+              ],
+              "selectedId": null,
+              "choiceMade": false,
+              "abandoned": false,
+              "lastOpportunityClear": false,
+              "claimed": false
+            },
+            "boss": {
+              "definitionId": "B02",
+              "disabledSuit": null
+            },
+            "seenBossIds": [
+              "B02"
+            ],
+            "chapterSkipConsumable": "T01",
+            "purchaseCoupons": 0,
+            "safetyNetUsed": false,
+            "shop": {
+              "visitIndex": 0,
+              "rerollCount": 0,
+              "purchases": 0,
+              "soldJoker": false,
+              "freeRerolls": 0,
+              "offers": [
+                {
+                  "offerId": "run/loading-local/azao/shop/0/0/joker/0",
+                  "definitionId": "b05",
+                  "price": 6,
+                  "edition": "none",
+                  "consumed": false
+                },
+                {
+                  "offerId": "run/loading-local/azao/shop/0/0/joker/1",
+                  "definitionId": "pengci",
+                  "price": 4,
+                  "edition": "none",
+                  "consumed": false
+                },
+                {
+                  "offerId": "run/loading-local/azao/shop/0/0/joker/2",
+                  "definitionId": "c06",
+                  "price": 6,
+                  "edition": "none",
+                  "consumed": false
+                }
+              ],
+              "toolOffers": [
+                {
+                  "offerId": "run/loading-local/azao/shop/0/0/tool/0",
+                  "definitionId": "T19",
+                  "price": 4,
+                  "consumed": false
+                }
+              ],
+              "itemOffers": [
+                {
+                  "offerId": "run/loading-local/azao/shop/0/0/item/0",
+                  "definitionId": "U08",
+                  "price": 12,
+                  "consumed": false
+                }
+              ],
+              "basicChoice": {
+                "shopSeq": 1,
+                "purchase": null
+              }
+            },
+            "spectralModifiers": {
+              "handsPenalty": 0,
+              "handPenalty": 0,
+              "cleanSlateBonus": 0
+            },
+            "supplyRewardClaimed": false,
+            "chapterHandUsage": {},
+            "normalClearClaimed": false,
+            "tourMode": "normal",
+            "normalCompletion": null,
+            "rng": {
+              "deck": {
+                "algorithm": "fnv1a-mulberry32-v1",
+                "state": 2501548589
+              },
+              "rule": {
+                "algorithm": "fnv1a-mulberry32-v1",
+                "state": 3152839435
+              },
+              "shop": {
+                "algorithm": "fnv1a-mulberry32-v1",
+                "state": 914510646
+              },
+              "reward": {
+                "algorithm": "fnv1a-mulberry32-v1",
+                "state": 1102504940
+              },
+              "program": {
+                "algorithm": "fnv1a-mulberry32-v1",
+                "state": 2125810416
+              },
+              "challenge": {
+                "algorithm": "fnv1a-mulberry32-v1",
+                "state": 3227066927
+              }
+            },
+            "receipts": [
+              {
+                "commandId": "run/loading-local/azao/start",
+                "fingerprint": "json-fnv-v1:efd966c5b839f8a9",
+                "seq": 1
+              }
+            ],
+            "lastTrace": null,
+            "handLevels": {},
+            "outcome": null,
+            "chapterTargetPlan": {
+              "policyVersion": "core-build-target-v1",
+              "chapter": 1,
+              "targets": [
+                "400",
+                "600",
+                "800"
+              ],
+              "boss": {
+                "definitionId": "B02",
+                "disabledSuit": null
+              }
+            }
+          },
+          "warmImageRequests": [],
+          "saved": "{\"routeGrowth\":{\"clears\":0,\"G\":0,\"S\":0,\"F\":0,\"settlements\":[]},\"schemaVersion\":2,\"rulesVersion\":\"r2\",\"contentVersion\":\"quality-r2-s04-finish-v1\",\"contentHash\":\"json-fnv-v1:65b545bd97c0fdf1\",\"runId\":\"run/loading-local/azao\",\"seed\":\"loading-local\",\"commandSeq\":3,\"difficulty\":0,\"characterId\":\"azao\",\"openingRoute\":\"flush\",\"openingShow\":{\"handsScored\":0,\"rootId\":null,\"eventId\":null,\"reason\":null},\"routeStarter\":{\"instanceId\":null,\"rootId\":null,\"eventId\":null},\"mode\":\"standard\",\"challengeId\":null,\"programsEnabled\":true,\"programRerollCoupon\":false,\"chapterDisabledJokerId\":null,\"chapter\":1,\"stageIndex\":0,\"phase\":\"await-input\",\"deckInstances\":[{\"id\":\"spades-2\",\"suit\":\"spades\",\"rank\":2},{\"id\":\"spades-3\",\"suit\":\"spades\",\"rank\":3},{\"id\":\"spades-4\",\"suit\":\"spades\",\"rank\":4},{\"id\":\"spades-5\",\"suit\":\"spades\",\"rank\":5},{\"id\":\"spades-6\",\"suit\":\"spades\",\"rank\":6},{\"id\":\"spades-7\",\"suit\":\"spades\",\"rank\":7},{\"id\":\"spades-8\",\"suit\":\"spades\",\"rank\":8},{\"id\":\"spades-9\",\"suit\":\"spades\",\"rank\":9},{\"id\":\"spades-10\",\"suit\":\"spades\",\"rank\":10},{\"id\":\"spades-11\",\"suit\":\"spades\",\"rank\":11},{\"id\":\"spades-12\",\"suit\":\"spades\",\"rank\":12},{\"id\":\"spades-13\",\"suit\":\"spades\",\"rank\":13},{\"id\":\"spades-14\",\"suit\":\"spades\",\"rank\":14},{\"id\":\"hearts-2\",\"suit\":\"hearts\",\"rank\":2},{\"id\":\"hearts-3\",\"suit\":\"hearts\",\"rank\":3},{\"id\":\"hearts-4\",\"suit\":\"hearts\",\"rank\":4},{\"id\":\"hearts-5\",\"suit\":\"hearts\",\"rank\":5},{\"id\":\"hearts-6\",\"suit\":\"hearts\",\"rank\":6},{\"id\":\"hearts-7\",\"suit\":\"hearts\",\"rank\":7},{\"id\":\"hearts-8\",\"suit\":\"hearts\",\"rank\":8},{\"id\":\"hearts-9\",\"suit\":\"hearts\",\"rank\":9},{\"id\":\"hearts-10\",\"suit\":\"hearts\",\"rank\":10},{\"id\":\"hearts-11\",\"suit\":\"hearts\",\"rank\":11},{\"id\":\"hearts-12\",\"suit\":\"hearts\",\"rank\":12},{\"id\":\"hearts-13\",\"suit\":\"hearts\",\"rank\":13},{\"id\":\"hearts-14\",\"suit\":\"hearts\",\"rank\":14},{\"id\":\"clubs-2\",\"suit\":\"clubs\",\"rank\":2},{\"id\":\"clubs-3\",\"suit\":\"clubs\",\"rank\":3},{\"id\":\"clubs-4\",\"suit\":\"clubs\",\"rank\":4},{\"id\":\"clubs-5\",\"suit\":\"clubs\",\"rank\":5},{\"id\":\"clubs-6\",\"suit\":\"clubs\",\"rank\":6},{\"id\":\"clubs-7\",\"suit\":\"clubs\",\"rank\":7},{\"id\":\"clubs-8\",\"suit\":\"clubs\",\"rank\":8},{\"id\":\"clubs-9\",\"suit\":\"clubs\",\"rank\":9},{\"id\":\"clubs-10\",\"suit\":\"clubs\",\"rank\":10},{\"id\":\"clubs-11\",\"suit\":\"clubs\",\"rank\":11},{\"id\":\"clubs-12\",\"suit\":\"clubs\",\"rank\":12},{\"id\":\"clubs-13\",\"suit\":\"clubs\",\"rank\":13},{\"id\":\"clubs-14\",\"suit\":\"clubs\",\"rank\":14},{\"id\":\"diamonds-2\",\"suit\":\"diamonds\",\"rank\":2},{\"id\":\"diamonds-3\",\"suit\":\"diamonds\",\"rank\":3},{\"id\":\"diamonds-4\",\"suit\":\"diamonds\",\"rank\":4},{\"id\":\"diamonds-5\",\"suit\":\"diamonds\",\"rank\":5},{\"id\":\"diamonds-6\",\"suit\":\"diamonds\",\"rank\":6},{\"id\":\"diamonds-7\",\"suit\":\"diamonds\",\"rank\":7},{\"id\":\"diamonds-8\",\"suit\":\"diamonds\",\"rank\":8},{\"id\":\"diamonds-9\",\"suit\":\"diamonds\",\"rank\":9},{\"id\":\"diamonds-10\",\"suit\":\"diamonds\",\"rank\":10},{\"id\":\"diamonds-11\",\"suit\":\"diamonds\",\"rank\":11},{\"id\":\"diamonds-12\",\"suit\":\"diamonds\",\"rank\":12},{\"id\":\"diamonds-13\",\"suit\":\"diamonds\",\"rank\":13},{\"id\":\"diamonds-14\",\"suit\":\"diamonds\",\"rank\":14}],\"drawPile\":[\"hearts-7\",\"spades-4\",\"diamonds-9\",\"clubs-14\",\"diamonds-4\",\"spades-13\",\"diamonds-11\",\"diamonds-14\",\"diamonds-3\",\"clubs-3\",\"spades-14\",\"hearts-5\",\"hearts-4\",\"diamonds-5\",\"clubs-7\",\"hearts-8\",\"diamonds-2\",\"clubs-9\",\"clubs-5\",\"hearts-11\",\"spades-2\",\"clubs-8\",\"diamonds-7\",\"hearts-10\",\"spades-12\",\"diamonds-10\",\"diamonds-6\",\"clubs-11\",\"spades-5\",\"hearts-3\",\"clubs-13\",\"hearts-13\",\"clubs-10\",\"clubs-6\",\"spades-6\",\"spades-9\",\"hearts-12\",\"diamonds-12\",\"hearts-2\",\"spades-10\",\"spades-3\",\"spades-7\",\"clubs-2\",\"spades-11\"],\"handOrder\":[\"hearts-14\",\"clubs-4\",\"diamonds-8\",\"spades-8\",\"hearts-6\",\"clubs-12\",\"hearts-9\",\"diamonds-13\"],\"playedPile\":[],\"discardPile\":[],\"destroyedIds\":[],\"stage\":{\"routeGrowth\":{\"entry\":{\"commandId\":\"run/loading-local/azao/command/3\",\"seq\":3,\"type\":\"EnterStage\"},\"handTypes\":[],\"eligible\":[],\"sources\":[]},\"azaoCharge\":{\"charge\":0,\"previousQualifiedType\":null},\"openingDiscard\":null,\"index\":0,\"targetHeat\":\"400\",\"initialTargetHeat\":\"400\",\"heat\":\"0\",\"handsLeft\":4,\"initialHands\":4,\"discardsLeft\":3,\"initialDiscards\":3,\"discardSpent\":0,\"discardGained\":0,\"doubleDiscardBeforeFirstPlay\":false,\"discardsUsed\":0,\"skipResult\":null,\"playIndex\":0,\"previousHandType\":null,\"previousHandScore\":null,\"handLimit\":8,\"initialHandLimit\":8,\"boss\":null,\"initialJokerIds\":[],\"sealedJokerIds\":[],\"challengeDisabledJokerId\":null,\"rescueUsed\":false,\"clearId\":null,\"goldEarned\":0,\"disabledIds\":[],\"wagerSelected\":false,\"wagerUsed\":false,\"maxPlayedCount\":0,\"ordinaryStraightSeen\":false,\"ordinaryFlushSeen\":false,\"quadRefundUsed\":false,\"jokerSold\":false},\"totalHeat\":\"0\",\"gold\":6,\"jokers\":[],\"consumables\":[],\"longTermItems\":[],\"program\":{\"chapter\":1,\"offerIds\":[\"PG01\",\"PG02\"],\"selectedId\":null,\"choiceMade\":true,\"abandoned\":false,\"lastOpportunityClear\":false,\"claimed\":false},\"boss\":{\"definitionId\":\"B02\",\"disabledSuit\":null},\"seenBossIds\":[\"B02\"],\"chapterSkipConsumable\":\"T01\",\"purchaseCoupons\":0,\"safetyNetUsed\":false,\"shop\":null,\"spectralModifiers\":{\"handsPenalty\":0,\"handPenalty\":0,\"cleanSlateBonus\":0},\"supplyRewardClaimed\":false,\"chapterHandUsage\":{},\"normalClearClaimed\":false,\"tourMode\":\"normal\",\"normalCompletion\":null,\"rng\":{\"deck\":{\"algorithm\":\"fnv1a-mulberry32-v1\",\"state\":1422124540},\"rule\":{\"algorithm\":\"fnv1a-mulberry32-v1\",\"state\":3152839435},\"shop\":{\"algorithm\":\"fnv1a-mulberry32-v1\",\"state\":914510646},\"reward\":{\"algorithm\":\"fnv1a-mulberry32-v1\",\"state\":1102504940},\"program\":{\"algorithm\":\"fnv1a-mulberry32-v1\",\"state\":2125810416},\"challenge\":{\"algorithm\":\"fnv1a-mulberry32-v1\",\"state\":3227066927}},\"receipts\":[{\"commandId\":\"run/loading-local/azao/start\",\"fingerprint\":\"json-fnv-v1:efd966c5b839f8a9\",\"seq\":1},{\"commandId\":\"run/loading-local/azao/command/2\",\"fingerprint\":\"json-fnv-v1:578035930be36acf\",\"seq\":2},{\"commandId\":\"run/loading-local/azao/command/3\",\"fingerprint\":\"json-fnv-v1:1adeaf6073fe8d9c\",\"seq\":3}],\"lastTrace\":null,\"handLevels\":{},\"outcome\":null,\"chapterTargetPlan\":{\"policyVersion\":\"core-build-target-v1\",\"chapter\":1,\"targets\":[\"400\",\"600\",\"800\"],\"boss\":{\"definitionId\":\"B02\",\"disabledSuit\":null}}}",
+          "domainEquality": "entire state equals original LeaveShop + EnterStage",
+          "coldRestore": "entire persisted run equal",
+          "brokenImages": [],
+          "status": "PASS"
+        }
+      ]
+    },
+    "httpCache": {
+      "head": "b3e6e7792b1782ae0905923db0fa7434fe127922",
+      "sourceTree": "d45653c7e9f4faf1608591bf2a69f5cdc70e27d3",
+      "dirty": "M AGENTS.md\n M docs/production/DELIVERY_PLAN.md\n?? docs/production/evidence/loading-preload-2026-10-15/",
+      "cases": [
+        {
+          "name": "http-cache-1366",
+          "passes": [
+            {
+              "pass": "cold",
+              "ms": 1940,
+              "revalidated": 0,
+              "artRevalidated": 0,
+              "disk": 0,
+              "transfer": [
+                {
+                  "url": "/assets/handdrawn-p08/court/j.court.webp",
+                  "transfer": 24158,
+                  "encoded": 23858
+                },
+                {
+                  "url": "/assets/handdrawn-p08/court/q.court.webp",
+                  "transfer": 23592,
+                  "encoded": 23292
+                },
+                {
+                  "url": "/assets/handdrawn-p08/court/k.court.webp",
+                  "transfer": 24932,
+                  "encoded": 24632
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/mantangcai.thumbnail.webp",
+                  "transfer": 4578,
+                  "encoded": 4278
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/jiedongfeng.thumbnail.webp",
+                  "transfer": 4894,
+                  "encoded": 4594
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/c04.thumbnail.webp",
+                  "transfer": 3962,
+                  "encoded": 3662
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/b10.thumbnail.webp",
+                  "transfer": 4710,
+                  "encoded": 4410
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/b03.thumbnail.webp",
+                  "transfer": 4200,
+                  "encoded": 3900
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/c06.thumbnail.webp",
+                  "transfer": 3382,
+                  "encoded": 3082
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/f04.thumbnail.webp",
+                  "transfer": 5902,
+                  "encoded": 5602
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/e07.thumbnail.webp",
+                  "transfer": 6354,
+                  "encoded": 6054
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/f09.thumbnail.webp",
+                  "transfer": 4660,
+                  "encoded": 4360
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/f07.thumbnail.webp",
+                  "transfer": 5418,
+                  "encoded": 5118
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/d07.thumbnail.webp",
+                  "transfer": 5056,
+                  "encoded": 4756
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/a07.thumbnail.webp",
+                  "transfer": 4590,
+                  "encoded": 4290
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/a08.thumbnail.webp",
+                  "transfer": 4366,
+                  "encoded": 4066
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/c03.thumbnail.webp",
+                  "transfer": 4126,
+                  "encoded": 3826
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/d02.thumbnail.webp",
+                  "transfer": 4038,
+                  "encoded": 3738
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/e02.thumbnail.webp",
+                  "transfer": 3814,
+                  "encoded": 3514
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/e09.thumbnail.webp",
+                  "transfer": 3874,
+                  "encoded": 3574
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/tiesuanpan.thumbnail.webp",
+                  "transfer": 4360,
+                  "encoded": 4060
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/f10.thumbnail.webp",
+                  "transfer": 4090,
+                  "encoded": 3790
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/c08.thumbnail.webp",
+                  "transfer": 4298,
+                  "encoded": 3998
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/c09.thumbnail.webp",
+                  "transfer": 3682,
+                  "encoded": 3382
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/pengci.thumbnail.webp",
+                  "transfer": 4640,
+                  "encoded": 4340
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/huimaqiang.thumbnail.webp",
+                  "transfer": 4690,
+                  "encoded": 4390
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/b07.thumbnail.webp",
+                  "transfer": 4610,
+                  "encoded": 4310
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/a09.thumbnail.webp",
+                  "transfer": 4856,
+                  "encoded": 4556
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/d06.thumbnail.webp",
+                  "transfer": 4872,
+                  "encoded": 4572
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/a04.thumbnail.webp",
+                  "transfer": 4890,
+                  "encoded": 4590
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/e04.thumbnail.webp",
+                  "transfer": 3796,
+                  "encoded": 3496
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/c05.thumbnail.webp",
+                  "transfer": 4638,
+                  "encoded": 4338
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/c02.thumbnail.webp",
+                  "transfer": 5022,
+                  "encoded": 4722
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/f03.thumbnail.webp",
+                  "transfer": 4472,
+                  "encoded": 4172
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/a03.thumbnail.webp",
+                  "transfer": 4922,
+                  "encoded": 4622
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/b02.thumbnail.webp",
+                  "transfer": 3888,
+                  "encoded": 3588
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/b04.thumbnail.webp",
+                  "transfer": 4284,
+                  "encoded": 3984
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/d01.thumbnail.webp",
+                  "transfer": 3644,
+                  "encoded": 3344
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/f02.thumbnail.webp",
+                  "transfer": 3940,
+                  "encoded": 3640
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/d10.thumbnail.webp",
+                  "transfer": 2648,
+                  "encoded": 2348
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/e01.thumbnail.webp",
+                  "transfer": 1826,
+                  "encoded": 1526
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/b05.thumbnail.webp",
+                  "transfer": 4264,
+                  "encoded": 3964
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/b08.thumbnail.webp",
+                  "transfer": 4312,
+                  "encoded": 4012
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/d05.thumbnail.webp",
+                  "transfer": 4264,
+                  "encoded": 3964
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/e03.thumbnail.webp",
+                  "transfer": 4276,
+                  "encoded": 3976
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/e06.thumbnail.webp",
+                  "transfer": 4354,
+                  "encoded": 4054
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/f05.thumbnail.webp",
+                  "transfer": 4740,
+                  "encoded": 4440
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/f11.thumbnail.webp",
+                  "transfer": 4374,
+                  "encoded": 4074
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/b06.thumbnail.webp",
+                  "transfer": 3680,
+                  "encoded": 3380
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/a11-v2-ea9e76e4a31f.thumbnail.webp",
+                  "transfer": 4056,
+                  "encoded": 3756
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/d04.thumbnail.webp",
+                  "transfer": 3488,
+                  "encoded": 3188
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/c07.thumbnail.webp",
+                  "transfer": 3904,
+                  "encoded": 3604
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/d11.thumbnail.webp",
+                  "transfer": 4354,
+                  "encoded": 4054
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/d08.thumbnail.webp",
+                  "transfer": 3580,
+                  "encoded": 3280
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/d09.thumbnail.webp",
+                  "transfer": 4344,
+                  "encoded": 4044
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/b12.thumbnail.webp",
+                  "transfer": 4036,
+                  "encoded": 3736
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/a05.thumbnail.webp",
+                  "transfer": 4348,
+                  "encoded": 4048
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/d03.thumbnail.webp",
+                  "transfer": 3780,
+                  "encoded": 3480
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/a10.thumbnail.webp",
+                  "transfer": 3772,
+                  "encoded": 3472
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/b11.thumbnail.webp",
+                  "transfer": 4126,
+                  "encoded": 3826
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/c10.thumbnail.webp",
+                  "transfer": 3512,
+                  "encoded": 3212
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/d12.thumbnail.webp",
+                  "transfer": 3796,
+                  "encoded": 3496
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/a06.thumbnail.webp",
+                  "transfer": 4354,
+                  "encoded": 4054
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/a12.thumbnail.webp",
+                  "transfer": 3158,
+                  "encoded": 2858
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/b09.thumbnail.webp",
+                  "transfer": 4276,
+                  "encoded": 3976
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/c11.thumbnail.webp",
+                  "transfer": 4814,
+                  "encoded": 4514
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/c12.thumbnail.webp",
+                  "transfer": 3942,
+                  "encoded": 3642
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/e10.thumbnail.webp",
+                  "transfer": 3618,
+                  "encoded": 3318
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/e12.thumbnail.webp",
+                  "transfer": 4274,
+                  "encoded": 3974
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/e05.thumbnail.webp",
+                  "transfer": 4238,
+                  "encoded": 3938
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/e08.thumbnail.webp",
+                  "transfer": 3998,
+                  "encoded": 3698
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/e11.thumbnail.webp",
+                  "transfer": 3690,
+                  "encoded": 3390
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/f06.thumbnail.webp",
+                  "transfer": 2174,
+                  "encoded": 1874
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/f08.thumbnail.webp",
+                  "transfer": 4116,
+                  "encoded": 3816
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/f12.thumbnail.webp",
+                  "transfer": 4260,
+                  "encoded": 3960
+                },
+                {
+                  "url": "/assets/handdrawn-tools/tool-t12.thumbnail.webp",
+                  "transfer": 1916,
+                  "encoded": 1616
+                },
+                {
+                  "url": "/assets/handdrawn-tools/item-u07.thumbnail.webp",
+                  "transfer": 3376,
+                  "encoded": 3076
+                },
+                {
+                  "url": "/assets/handdrawn-tools/tool-p11.thumbnail.webp",
+                  "transfer": 2864,
+                  "encoded": 2564
+                },
+                {
+                  "url": "/assets/handdrawn-tools/tool-s02.thumbnail.webp",
+                  "transfer": 3310,
+                  "encoded": 3010
+                },
+                {
+                  "url": "/assets/handdrawn-tools/item-u01.thumbnail.webp",
+                  "transfer": 1878,
+                  "encoded": 1578
+                },
+                {
+                  "url": "/assets/handdrawn-tools/item-u02.thumbnail.webp",
+                  "transfer": 2028,
+                  "encoded": 1728
+                },
+                {
+                  "url": "/assets/handdrawn-tools/item-u03.thumbnail.webp",
+                  "transfer": 3726,
+                  "encoded": 3426
+                },
+                {
+                  "url": "/assets/handdrawn-tools/item-u04.thumbnail.webp",
+                  "transfer": 2736,
+                  "encoded": 2436
+                },
+                {
+                  "url": "/assets/handdrawn-tools/item-u05.thumbnail.webp",
+                  "transfer": 3346,
+                  "encoded": 3046
+                },
+                {
+                  "url": "/assets/handdrawn-tools/item-u06.thumbnail.webp",
+                  "transfer": 2774,
+                  "encoded": 2474
+                },
+                {
+                  "url": "/assets/handdrawn-tools/item-u08.thumbnail.webp",
+                  "transfer": 2306,
+                  "encoded": 2006
+                },
+                {
+                  "url": "/assets/handdrawn-tools/item-u09.thumbnail.webp",
+                  "transfer": 2134,
+                  "encoded": 1834
+                },
+                {
+                  "url": "/assets/handdrawn-tools/item-u10.thumbnail.webp",
+                  "transfer": 2642,
+                  "encoded": 2342
+                },
+                {
+                  "url": "/assets/handdrawn-tools/item-u11.thumbnail.webp",
+                  "transfer": 2810,
+                  "encoded": 2510
+                },
+                {
+                  "url": "/assets/handdrawn-tools/item-u12.thumbnail.webp",
+                  "transfer": 2578,
+                  "encoded": 2278
+                },
+                {
+                  "url": "/assets/handdrawn-tools/tool-t06.thumbnail.webp",
+                  "transfer": 2862,
+                  "encoded": 2562
+                },
+                {
+                  "url": "/assets/handdrawn-tools/tool-t07.thumbnail.webp",
+                  "transfer": 2368,
+                  "encoded": 2068
+                },
+                {
+                  "url": "/assets/handdrawn-tools/tool-t08.thumbnail.webp",
+                  "transfer": 2780,
+                  "encoded": 2480
+                },
+                {
+                  "url": "/assets/handdrawn-tools/tool-t09.thumbnail.webp",
+                  "transfer": 2272,
+                  "encoded": 1972
+                },
+                {
+                  "url": "/assets/handdrawn-tools/tool-t10.thumbnail.webp",
+                  "transfer": 1948,
+                  "encoded": 1648
+                },
+                {
+                  "url": "/assets/handdrawn-tools/tool-t11.thumbnail.webp",
+                  "transfer": 2384,
+                  "encoded": 2084
+                },
+                {
+                  "url": "/assets/handdrawn-tools/tool-t13.thumbnail.webp",
+                  "transfer": 2928,
+                  "encoded": 2628
+                },
+                {
+                  "url": "/assets/handdrawn-tools/tool-t14.thumbnail.webp",
+                  "transfer": 2360,
+                  "encoded": 2060
+                },
+                {
+                  "url": "/assets/handdrawn-tools/tool-t15.thumbnail.webp",
+                  "transfer": 2154,
+                  "encoded": 1854
+                },
+                {
+                  "url": "/assets/handdrawn-tools/tool-t16.thumbnail.webp",
+                  "transfer": 2736,
+                  "encoded": 2436
+                },
+                {
+                  "url": "/assets/handdrawn-tools/tool-t17.thumbnail.webp",
+                  "transfer": 2648,
+                  "encoded": 2348
+                },
+                {
+                  "url": "/assets/handdrawn-tools/tool-t18.thumbnail.webp",
+                  "transfer": 2954,
+                  "encoded": 2654
+                },
+                {
+                  "url": "/assets/handdrawn-tools/tool-t01.thumbnail.webp",
+                  "transfer": 3712,
+                  "encoded": 3412
+                },
+                {
+                  "url": "/assets/handdrawn-tools/tool-t02.thumbnail.webp",
+                  "transfer": 3004,
+                  "encoded": 2704
+                },
+                {
+                  "url": "/assets/handdrawn-tools/tool-t03.thumbnail.webp",
+                  "transfer": 3076,
+                  "encoded": 2776
+                },
+                {
+                  "url": "/assets/handdrawn-tools/tool-t04.thumbnail.webp",
+                  "transfer": 2576,
+                  "encoded": 2276
+                },
+                {
+                  "url": "/assets/handdrawn-tools/tool-t05.thumbnail.webp",
+                  "transfer": 2720,
+                  "encoded": 2420
+                },
+                {
+                  "url": "/assets/handdrawn-tools/tool-p01.thumbnail.webp",
+                  "transfer": 2396,
+                  "encoded": 2096
+                },
+                {
+                  "url": "/assets/handdrawn-tools/tool-p02.thumbnail.webp",
+                  "transfer": 2530,
+                  "encoded": 2230
+                },
+                {
+                  "url": "/assets/handdrawn-tools/tool-p03.thumbnail.webp",
+                  "transfer": 2514,
+                  "encoded": 2214
+                },
+                {
+                  "url": "/assets/handdrawn-tools/tool-p04.thumbnail.webp",
+                  "transfer": 2472,
+                  "encoded": 2172
+                },
+                {
+                  "url": "/assets/handdrawn-tools/tool-p05.thumbnail.webp",
+                  "transfer": 2426,
+                  "encoded": 2126
+                },
+                {
+                  "url": "/assets/handdrawn-tools/tool-p06.thumbnail.webp",
+                  "transfer": 2764,
+                  "encoded": 2464
+                },
+                {
+                  "url": "/assets/handdrawn-tools/tool-p07.thumbnail.webp",
+                  "transfer": 2492,
+                  "encoded": 2192
+                },
+                {
+                  "url": "/assets/handdrawn-tools/tool-p08.thumbnail.webp",
+                  "transfer": 2492,
+                  "encoded": 2192
+                },
+                {
+                  "url": "/assets/handdrawn-tools/tool-p09.thumbnail.webp",
+                  "transfer": 2436,
+                  "encoded": 2136
+                },
+                {
+                  "url": "/assets/handdrawn-tools/tool-p10.thumbnail.webp",
+                  "transfer": 1904,
+                  "encoded": 1604
+                },
+                {
+                  "url": "/assets/handdrawn-tools/tool-p12.thumbnail.webp",
+                  "transfer": 3048,
+                  "encoded": 2748
+                },
+                {
+                  "url": "/assets/handdrawn-tools/tool-s01.thumbnail.webp",
+                  "transfer": 2410,
+                  "encoded": 2110
+                },
+                {
+                  "url": "/assets/handdrawn-tools/tool-t19.thumbnail.webp",
+                  "transfer": 2152,
+                  "encoded": 1852
+                },
+                {
+                  "url": "/assets/handdrawn-tools/tool-s03.thumbnail.webp",
+                  "transfer": 2832,
+                  "encoded": 2532
+                },
+                {
+                  "url": "/assets/handdrawn-tools/tool-s04.thumbnail.webp",
+                  "transfer": 4714,
+                  "encoded": 4414
+                },
+                {
+                  "url": "/assets/handdrawn-tools/tool-s05.thumbnail.webp",
+                  "transfer": 2982,
+                  "encoded": 2682
+                },
+                {
+                  "url": "/assets/handdrawn-tools/tool-s06.thumbnail.webp",
+                  "transfer": 3458,
+                  "encoded": 3158
+                },
+                {
+                  "url": "/assets/handdrawn-tools/tool-s07.thumbnail.webp",
+                  "transfer": 3074,
+                  "encoded": 2774
+                },
+                {
+                  "url": "/assets/handdrawn-tools/tool-s08.thumbnail.webp",
+                  "transfer": 3722,
+                  "encoded": 3422
+                }
+              ]
+            },
+            {
+              "pass": "http-warm",
+              "ms": 1156,
+              "revalidated": 413,
+              "artRevalidated": 125,
+              "disk": 0,
+              "transfer": [
+                {
+                  "url": "/assets/handdrawn-p08/court/j.court.webp",
+                  "transfer": 300,
+                  "encoded": 23858
+                },
+                {
+                  "url": "/assets/handdrawn-p08/court/q.court.webp",
+                  "transfer": 300,
+                  "encoded": 23292
+                },
+                {
+                  "url": "/assets/handdrawn-p08/court/k.court.webp",
+                  "transfer": 300,
+                  "encoded": 24632
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/mantangcai.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 4278
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/jiedongfeng.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 4594
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/c04.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 3662
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/b10.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 4410
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/b03.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 3900
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/c06.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 3082
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/f04.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 5602
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/e07.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 6054
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/f09.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 4360
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/f07.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 5118
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/d07.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 4756
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/a07.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 4290
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/a08.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 4066
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/c03.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 3826
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/d02.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 3738
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/e02.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 3514
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/e09.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 3574
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/tiesuanpan.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 4060
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/f10.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 3790
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/c08.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 3998
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/c09.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 3382
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/pengci.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 4340
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/huimaqiang.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 4390
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/b07.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 4310
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/a09.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 4556
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/d06.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 4572
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/a04.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 4590
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/e04.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 3496
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/c05.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 4338
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/c02.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 4722
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/f03.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 4172
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/a03.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 4622
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/b02.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 3588
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/b04.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 3984
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/d01.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 3344
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/f02.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 3640
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/d10.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 2348
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/e01.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 1526
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/b05.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 3964
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/b08.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 4012
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/d05.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 3964
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/e03.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 3976
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/e06.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 4054
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/f05.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 4440
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/f11.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 4074
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/b06.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 3380
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/a11-v2-ea9e76e4a31f.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 3756
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/d04.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 3188
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/c07.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 3604
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/d11.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 4054
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/d08.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 3280
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/d09.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 4044
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/b12.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 3736
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/a05.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 4048
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/d03.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 3480
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/a10.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 3472
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/b11.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 3826
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/c10.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 3212
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/d12.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 3496
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/a06.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 4054
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/a12.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 2858
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/b09.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 3976
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/c11.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 4514
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/c12.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 3642
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/e10.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 3318
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/e12.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 3974
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/e05.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 3938
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/e08.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 3698
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/e11.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 3390
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/f06.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 1874
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/f08.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 3816
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/f12.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 3960
+                },
+                {
+                  "url": "/assets/handdrawn-tools/tool-t12.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 1616
+                },
+                {
+                  "url": "/assets/handdrawn-tools/item-u07.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 3076
+                },
+                {
+                  "url": "/assets/handdrawn-tools/tool-p11.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 2564
+                },
+                {
+                  "url": "/assets/handdrawn-tools/tool-s02.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 3010
+                },
+                {
+                  "url": "/assets/handdrawn-tools/item-u01.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 1578
+                },
+                {
+                  "url": "/assets/handdrawn-tools/item-u02.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 1728
+                },
+                {
+                  "url": "/assets/handdrawn-tools/item-u03.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 3426
+                },
+                {
+                  "url": "/assets/handdrawn-tools/item-u04.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 2436
+                },
+                {
+                  "url": "/assets/handdrawn-tools/item-u05.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 3046
+                },
+                {
+                  "url": "/assets/handdrawn-tools/item-u06.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 2474
+                },
+                {
+                  "url": "/assets/handdrawn-tools/item-u08.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 2006
+                },
+                {
+                  "url": "/assets/handdrawn-tools/item-u09.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 1834
+                },
+                {
+                  "url": "/assets/handdrawn-tools/item-u10.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 2342
+                },
+                {
+                  "url": "/assets/handdrawn-tools/item-u11.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 2510
+                },
+                {
+                  "url": "/assets/handdrawn-tools/item-u12.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 2278
+                },
+                {
+                  "url": "/assets/handdrawn-tools/tool-t06.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 2562
+                },
+                {
+                  "url": "/assets/handdrawn-tools/tool-t07.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 2068
+                },
+                {
+                  "url": "/assets/handdrawn-tools/tool-t08.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 2480
+                },
+                {
+                  "url": "/assets/handdrawn-tools/tool-t09.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 1972
+                },
+                {
+                  "url": "/assets/handdrawn-tools/tool-t10.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 1648
+                },
+                {
+                  "url": "/assets/handdrawn-tools/tool-t11.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 2084
+                },
+                {
+                  "url": "/assets/handdrawn-tools/tool-t13.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 2628
+                },
+                {
+                  "url": "/assets/handdrawn-tools/tool-t14.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 2060
+                },
+                {
+                  "url": "/assets/handdrawn-tools/tool-t15.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 1854
+                },
+                {
+                  "url": "/assets/handdrawn-tools/tool-t16.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 2436
+                },
+                {
+                  "url": "/assets/handdrawn-tools/tool-t17.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 2348
+                },
+                {
+                  "url": "/assets/handdrawn-tools/tool-t18.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 2654
+                },
+                {
+                  "url": "/assets/handdrawn-tools/tool-t01.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 3412
+                },
+                {
+                  "url": "/assets/handdrawn-tools/tool-t02.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 2704
+                },
+                {
+                  "url": "/assets/handdrawn-tools/tool-t03.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 2776
+                },
+                {
+                  "url": "/assets/handdrawn-tools/tool-t04.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 2276
+                },
+                {
+                  "url": "/assets/handdrawn-tools/tool-t05.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 2420
+                },
+                {
+                  "url": "/assets/handdrawn-tools/tool-p01.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 2096
+                },
+                {
+                  "url": "/assets/handdrawn-tools/tool-p02.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 2230
+                },
+                {
+                  "url": "/assets/handdrawn-tools/tool-p03.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 2214
+                },
+                {
+                  "url": "/assets/handdrawn-tools/tool-p04.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 2172
+                },
+                {
+                  "url": "/assets/handdrawn-tools/tool-p05.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 2126
+                },
+                {
+                  "url": "/assets/handdrawn-tools/tool-p06.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 2464
+                },
+                {
+                  "url": "/assets/handdrawn-tools/tool-p07.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 2192
+                },
+                {
+                  "url": "/assets/handdrawn-tools/tool-p08.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 2192
+                },
+                {
+                  "url": "/assets/handdrawn-tools/tool-p09.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 2136
+                },
+                {
+                  "url": "/assets/handdrawn-tools/tool-p10.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 1604
+                },
+                {
+                  "url": "/assets/handdrawn-tools/tool-p12.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 2748
+                },
+                {
+                  "url": "/assets/handdrawn-tools/tool-s01.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 2110
+                },
+                {
+                  "url": "/assets/handdrawn-tools/tool-t19.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 1852
+                },
+                {
+                  "url": "/assets/handdrawn-tools/tool-s03.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 2532
+                },
+                {
+                  "url": "/assets/handdrawn-tools/tool-s04.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 4414
+                },
+                {
+                  "url": "/assets/handdrawn-tools/tool-s05.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 2682
+                },
+                {
+                  "url": "/assets/handdrawn-tools/tool-s06.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 3158
+                },
+                {
+                  "url": "/assets/handdrawn-tools/tool-s07.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 2774
+                },
+                {
+                  "url": "/assets/handdrawn-tools/tool-s08.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 3422
+                }
+              ]
+            }
+          ],
+          "errors": [],
+          "status": "PASS"
+        },
+        {
+          "name": "http-cache-390",
+          "passes": [
+            {
+              "pass": "cold",
+              "ms": 1343,
+              "revalidated": 0,
+              "artRevalidated": 0,
+              "disk": 0,
+              "transfer": [
+                {
+                  "url": "/assets/handdrawn-p08/court/j.court.webp",
+                  "transfer": 24158,
+                  "encoded": 23858
+                },
+                {
+                  "url": "/assets/handdrawn-p08/court/q.court.webp",
+                  "transfer": 23592,
+                  "encoded": 23292
+                },
+                {
+                  "url": "/assets/handdrawn-p08/court/k.court.webp",
+                  "transfer": 24932,
+                  "encoded": 24632
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/mantangcai.thumbnail.webp",
+                  "transfer": 4578,
+                  "encoded": 4278
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/jiedongfeng.thumbnail.webp",
+                  "transfer": 4894,
+                  "encoded": 4594
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/c04.thumbnail.webp",
+                  "transfer": 3962,
+                  "encoded": 3662
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/b10.thumbnail.webp",
+                  "transfer": 4710,
+                  "encoded": 4410
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/b03.thumbnail.webp",
+                  "transfer": 4200,
+                  "encoded": 3900
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/c06.thumbnail.webp",
+                  "transfer": 3382,
+                  "encoded": 3082
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/f04.thumbnail.webp",
+                  "transfer": 5902,
+                  "encoded": 5602
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/e07.thumbnail.webp",
+                  "transfer": 6354,
+                  "encoded": 6054
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/f09.thumbnail.webp",
+                  "transfer": 4660,
+                  "encoded": 4360
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/f07.thumbnail.webp",
+                  "transfer": 5418,
+                  "encoded": 5118
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/d07.thumbnail.webp",
+                  "transfer": 5056,
+                  "encoded": 4756
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/a07.thumbnail.webp",
+                  "transfer": 4590,
+                  "encoded": 4290
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/a08.thumbnail.webp",
+                  "transfer": 4366,
+                  "encoded": 4066
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/c03.thumbnail.webp",
+                  "transfer": 4126,
+                  "encoded": 3826
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/d02.thumbnail.webp",
+                  "transfer": 4038,
+                  "encoded": 3738
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/e02.thumbnail.webp",
+                  "transfer": 3814,
+                  "encoded": 3514
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/e09.thumbnail.webp",
+                  "transfer": 3874,
+                  "encoded": 3574
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/tiesuanpan.thumbnail.webp",
+                  "transfer": 4360,
+                  "encoded": 4060
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/f10.thumbnail.webp",
+                  "transfer": 4090,
+                  "encoded": 3790
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/c08.thumbnail.webp",
+                  "transfer": 4298,
+                  "encoded": 3998
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/c09.thumbnail.webp",
+                  "transfer": 3682,
+                  "encoded": 3382
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/pengci.thumbnail.webp",
+                  "transfer": 4640,
+                  "encoded": 4340
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/huimaqiang.thumbnail.webp",
+                  "transfer": 4690,
+                  "encoded": 4390
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/b07.thumbnail.webp",
+                  "transfer": 4610,
+                  "encoded": 4310
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/a09.thumbnail.webp",
+                  "transfer": 4856,
+                  "encoded": 4556
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/d06.thumbnail.webp",
+                  "transfer": 4872,
+                  "encoded": 4572
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/a04.thumbnail.webp",
+                  "transfer": 4890,
+                  "encoded": 4590
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/e04.thumbnail.webp",
+                  "transfer": 3796,
+                  "encoded": 3496
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/c05.thumbnail.webp",
+                  "transfer": 4638,
+                  "encoded": 4338
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/c02.thumbnail.webp",
+                  "transfer": 5022,
+                  "encoded": 4722
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/f03.thumbnail.webp",
+                  "transfer": 4472,
+                  "encoded": 4172
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/a03.thumbnail.webp",
+                  "transfer": 4922,
+                  "encoded": 4622
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/b02.thumbnail.webp",
+                  "transfer": 3888,
+                  "encoded": 3588
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/b04.thumbnail.webp",
+                  "transfer": 4284,
+                  "encoded": 3984
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/d01.thumbnail.webp",
+                  "transfer": 3644,
+                  "encoded": 3344
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/f02.thumbnail.webp",
+                  "transfer": 3940,
+                  "encoded": 3640
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/d10.thumbnail.webp",
+                  "transfer": 2648,
+                  "encoded": 2348
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/e01.thumbnail.webp",
+                  "transfer": 1826,
+                  "encoded": 1526
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/b05.thumbnail.webp",
+                  "transfer": 4264,
+                  "encoded": 3964
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/b08.thumbnail.webp",
+                  "transfer": 4312,
+                  "encoded": 4012
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/d05.thumbnail.webp",
+                  "transfer": 4264,
+                  "encoded": 3964
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/e03.thumbnail.webp",
+                  "transfer": 4276,
+                  "encoded": 3976
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/e06.thumbnail.webp",
+                  "transfer": 4354,
+                  "encoded": 4054
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/f05.thumbnail.webp",
+                  "transfer": 4740,
+                  "encoded": 4440
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/f11.thumbnail.webp",
+                  "transfer": 4374,
+                  "encoded": 4074
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/b06.thumbnail.webp",
+                  "transfer": 3680,
+                  "encoded": 3380
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/a11-v2-ea9e76e4a31f.thumbnail.webp",
+                  "transfer": 4056,
+                  "encoded": 3756
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/d04.thumbnail.webp",
+                  "transfer": 3488,
+                  "encoded": 3188
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/c07.thumbnail.webp",
+                  "transfer": 3904,
+                  "encoded": 3604
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/d11.thumbnail.webp",
+                  "transfer": 4354,
+                  "encoded": 4054
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/d08.thumbnail.webp",
+                  "transfer": 3580,
+                  "encoded": 3280
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/d09.thumbnail.webp",
+                  "transfer": 4344,
+                  "encoded": 4044
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/b12.thumbnail.webp",
+                  "transfer": 4036,
+                  "encoded": 3736
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/a05.thumbnail.webp",
+                  "transfer": 4348,
+                  "encoded": 4048
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/d03.thumbnail.webp",
+                  "transfer": 3780,
+                  "encoded": 3480
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/a10.thumbnail.webp",
+                  "transfer": 3772,
+                  "encoded": 3472
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/b11.thumbnail.webp",
+                  "transfer": 4126,
+                  "encoded": 3826
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/c10.thumbnail.webp",
+                  "transfer": 3512,
+                  "encoded": 3212
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/d12.thumbnail.webp",
+                  "transfer": 3796,
+                  "encoded": 3496
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/a06.thumbnail.webp",
+                  "transfer": 4354,
+                  "encoded": 4054
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/a12.thumbnail.webp",
+                  "transfer": 3158,
+                  "encoded": 2858
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/b09.thumbnail.webp",
+                  "transfer": 4276,
+                  "encoded": 3976
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/c11.thumbnail.webp",
+                  "transfer": 4814,
+                  "encoded": 4514
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/c12.thumbnail.webp",
+                  "transfer": 3942,
+                  "encoded": 3642
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/e10.thumbnail.webp",
+                  "transfer": 3618,
+                  "encoded": 3318
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/e12.thumbnail.webp",
+                  "transfer": 4274,
+                  "encoded": 3974
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/e05.thumbnail.webp",
+                  "transfer": 4238,
+                  "encoded": 3938
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/e08.thumbnail.webp",
+                  "transfer": 3998,
+                  "encoded": 3698
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/e11.thumbnail.webp",
+                  "transfer": 3690,
+                  "encoded": 3390
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/f06.thumbnail.webp",
+                  "transfer": 2174,
+                  "encoded": 1874
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/f08.thumbnail.webp",
+                  "transfer": 4116,
+                  "encoded": 3816
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/f12.thumbnail.webp",
+                  "transfer": 4260,
+                  "encoded": 3960
+                },
+                {
+                  "url": "/assets/handdrawn-tools/tool-t12.thumbnail.webp",
+                  "transfer": 1916,
+                  "encoded": 1616
+                },
+                {
+                  "url": "/assets/handdrawn-tools/item-u07.thumbnail.webp",
+                  "transfer": 3376,
+                  "encoded": 3076
+                },
+                {
+                  "url": "/assets/handdrawn-tools/tool-p11.thumbnail.webp",
+                  "transfer": 2864,
+                  "encoded": 2564
+                },
+                {
+                  "url": "/assets/handdrawn-tools/tool-s02.thumbnail.webp",
+                  "transfer": 3310,
+                  "encoded": 3010
+                },
+                {
+                  "url": "/assets/handdrawn-tools/item-u01.thumbnail.webp",
+                  "transfer": 1878,
+                  "encoded": 1578
+                },
+                {
+                  "url": "/assets/handdrawn-tools/item-u02.thumbnail.webp",
+                  "transfer": 2028,
+                  "encoded": 1728
+                },
+                {
+                  "url": "/assets/handdrawn-tools/item-u03.thumbnail.webp",
+                  "transfer": 3726,
+                  "encoded": 3426
+                },
+                {
+                  "url": "/assets/handdrawn-tools/item-u04.thumbnail.webp",
+                  "transfer": 2736,
+                  "encoded": 2436
+                },
+                {
+                  "url": "/assets/handdrawn-tools/item-u05.thumbnail.webp",
+                  "transfer": 3346,
+                  "encoded": 3046
+                },
+                {
+                  "url": "/assets/handdrawn-tools/item-u06.thumbnail.webp",
+                  "transfer": 2774,
+                  "encoded": 2474
+                },
+                {
+                  "url": "/assets/handdrawn-tools/item-u08.thumbnail.webp",
+                  "transfer": 2306,
+                  "encoded": 2006
+                },
+                {
+                  "url": "/assets/handdrawn-tools/item-u09.thumbnail.webp",
+                  "transfer": 2134,
+                  "encoded": 1834
+                },
+                {
+                  "url": "/assets/handdrawn-tools/item-u10.thumbnail.webp",
+                  "transfer": 2642,
+                  "encoded": 2342
+                },
+                {
+                  "url": "/assets/handdrawn-tools/item-u11.thumbnail.webp",
+                  "transfer": 2810,
+                  "encoded": 2510
+                },
+                {
+                  "url": "/assets/handdrawn-tools/item-u12.thumbnail.webp",
+                  "transfer": 2578,
+                  "encoded": 2278
+                },
+                {
+                  "url": "/assets/handdrawn-tools/tool-t06.thumbnail.webp",
+                  "transfer": 2862,
+                  "encoded": 2562
+                },
+                {
+                  "url": "/assets/handdrawn-tools/tool-t07.thumbnail.webp",
+                  "transfer": 2368,
+                  "encoded": 2068
+                },
+                {
+                  "url": "/assets/handdrawn-tools/tool-t08.thumbnail.webp",
+                  "transfer": 2780,
+                  "encoded": 2480
+                },
+                {
+                  "url": "/assets/handdrawn-tools/tool-t09.thumbnail.webp",
+                  "transfer": 2272,
+                  "encoded": 1972
+                },
+                {
+                  "url": "/assets/handdrawn-tools/tool-t10.thumbnail.webp",
+                  "transfer": 1948,
+                  "encoded": 1648
+                },
+                {
+                  "url": "/assets/handdrawn-tools/tool-t11.thumbnail.webp",
+                  "transfer": 2384,
+                  "encoded": 2084
+                },
+                {
+                  "url": "/assets/handdrawn-tools/tool-t13.thumbnail.webp",
+                  "transfer": 2928,
+                  "encoded": 2628
+                },
+                {
+                  "url": "/assets/handdrawn-tools/tool-t14.thumbnail.webp",
+                  "transfer": 2360,
+                  "encoded": 2060
+                },
+                {
+                  "url": "/assets/handdrawn-tools/tool-t15.thumbnail.webp",
+                  "transfer": 2154,
+                  "encoded": 1854
+                },
+                {
+                  "url": "/assets/handdrawn-tools/tool-t16.thumbnail.webp",
+                  "transfer": 2736,
+                  "encoded": 2436
+                },
+                {
+                  "url": "/assets/handdrawn-tools/tool-t17.thumbnail.webp",
+                  "transfer": 2648,
+                  "encoded": 2348
+                },
+                {
+                  "url": "/assets/handdrawn-tools/tool-t18.thumbnail.webp",
+                  "transfer": 2954,
+                  "encoded": 2654
+                },
+                {
+                  "url": "/assets/handdrawn-tools/tool-t01.thumbnail.webp",
+                  "transfer": 3712,
+                  "encoded": 3412
+                },
+                {
+                  "url": "/assets/handdrawn-tools/tool-t02.thumbnail.webp",
+                  "transfer": 3004,
+                  "encoded": 2704
+                },
+                {
+                  "url": "/assets/handdrawn-tools/tool-t03.thumbnail.webp",
+                  "transfer": 3076,
+                  "encoded": 2776
+                },
+                {
+                  "url": "/assets/handdrawn-tools/tool-t04.thumbnail.webp",
+                  "transfer": 2576,
+                  "encoded": 2276
+                },
+                {
+                  "url": "/assets/handdrawn-tools/tool-t05.thumbnail.webp",
+                  "transfer": 2720,
+                  "encoded": 2420
+                },
+                {
+                  "url": "/assets/handdrawn-tools/tool-p01.thumbnail.webp",
+                  "transfer": 2396,
+                  "encoded": 2096
+                },
+                {
+                  "url": "/assets/handdrawn-tools/tool-p02.thumbnail.webp",
+                  "transfer": 2530,
+                  "encoded": 2230
+                },
+                {
+                  "url": "/assets/handdrawn-tools/tool-p03.thumbnail.webp",
+                  "transfer": 2514,
+                  "encoded": 2214
+                },
+                {
+                  "url": "/assets/handdrawn-tools/tool-p04.thumbnail.webp",
+                  "transfer": 2472,
+                  "encoded": 2172
+                },
+                {
+                  "url": "/assets/handdrawn-tools/tool-p05.thumbnail.webp",
+                  "transfer": 2426,
+                  "encoded": 2126
+                },
+                {
+                  "url": "/assets/handdrawn-tools/tool-p06.thumbnail.webp",
+                  "transfer": 2764,
+                  "encoded": 2464
+                },
+                {
+                  "url": "/assets/handdrawn-tools/tool-p07.thumbnail.webp",
+                  "transfer": 2492,
+                  "encoded": 2192
+                },
+                {
+                  "url": "/assets/handdrawn-tools/tool-p08.thumbnail.webp",
+                  "transfer": 2492,
+                  "encoded": 2192
+                },
+                {
+                  "url": "/assets/handdrawn-tools/tool-p09.thumbnail.webp",
+                  "transfer": 2436,
+                  "encoded": 2136
+                },
+                {
+                  "url": "/assets/handdrawn-tools/tool-p10.thumbnail.webp",
+                  "transfer": 1904,
+                  "encoded": 1604
+                },
+                {
+                  "url": "/assets/handdrawn-tools/tool-p12.thumbnail.webp",
+                  "transfer": 3048,
+                  "encoded": 2748
+                },
+                {
+                  "url": "/assets/handdrawn-tools/tool-s01.thumbnail.webp",
+                  "transfer": 2410,
+                  "encoded": 2110
+                },
+                {
+                  "url": "/assets/handdrawn-tools/tool-t19.thumbnail.webp",
+                  "transfer": 2152,
+                  "encoded": 1852
+                },
+                {
+                  "url": "/assets/handdrawn-tools/tool-s03.thumbnail.webp",
+                  "transfer": 2832,
+                  "encoded": 2532
+                },
+                {
+                  "url": "/assets/handdrawn-tools/tool-s04.thumbnail.webp",
+                  "transfer": 4714,
+                  "encoded": 4414
+                },
+                {
+                  "url": "/assets/handdrawn-tools/tool-s05.thumbnail.webp",
+                  "transfer": 2982,
+                  "encoded": 2682
+                },
+                {
+                  "url": "/assets/handdrawn-tools/tool-s06.thumbnail.webp",
+                  "transfer": 3458,
+                  "encoded": 3158
+                },
+                {
+                  "url": "/assets/handdrawn-tools/tool-s07.thumbnail.webp",
+                  "transfer": 3074,
+                  "encoded": 2774
+                },
+                {
+                  "url": "/assets/handdrawn-tools/tool-s08.thumbnail.webp",
+                  "transfer": 3722,
+                  "encoded": 3422
+                }
+              ]
+            },
+            {
+              "pass": "http-warm",
+              "ms": 1202,
+              "revalidated": 413,
+              "artRevalidated": 125,
+              "disk": 0,
+              "transfer": [
+                {
+                  "url": "/assets/handdrawn-p08/court/j.court.webp",
+                  "transfer": 300,
+                  "encoded": 23858
+                },
+                {
+                  "url": "/assets/handdrawn-p08/court/q.court.webp",
+                  "transfer": 300,
+                  "encoded": 23292
+                },
+                {
+                  "url": "/assets/handdrawn-p08/court/k.court.webp",
+                  "transfer": 300,
+                  "encoded": 24632
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/mantangcai.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 4278
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/jiedongfeng.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 4594
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/c04.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 3662
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/b10.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 4410
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/b03.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 3900
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/c06.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 3082
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/f04.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 5602
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/e07.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 6054
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/f09.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 4360
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/f07.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 5118
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/d07.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 4756
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/a07.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 4290
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/a08.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 4066
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/c03.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 3826
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/d02.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 3738
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/e02.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 3514
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/e09.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 3574
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/tiesuanpan.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 4060
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/f10.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 3790
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/c08.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 3998
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/c09.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 3382
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/pengci.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 4340
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/huimaqiang.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 4390
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/b07.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 4310
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/a09.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 4556
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/d06.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 4572
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/a04.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 4590
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/e04.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 3496
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/c05.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 4338
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/c02.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 4722
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/f03.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 4172
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/a03.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 4622
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/b02.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 3588
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/b04.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 3984
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/d01.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 3344
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/f02.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 3640
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/d10.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 2348
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/e01.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 1526
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/b05.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 3964
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/b08.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 4012
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/d05.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 3964
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/e03.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 3976
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/e06.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 4054
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/f05.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 4440
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/f11.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 4074
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/b06.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 3380
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/a11-v2-ea9e76e4a31f.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 3756
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/d04.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 3188
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/c07.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 3604
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/d11.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 4054
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/d08.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 3280
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/d09.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 4044
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/b12.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 3736
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/a05.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 4048
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/d03.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 3480
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/a10.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 3472
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/b11.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 3826
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/c10.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 3212
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/d12.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 3496
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/a06.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 4054
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/a12.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 2858
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/b09.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 3976
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/c11.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 4514
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/c12.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 3642
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/e10.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 3318
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/e12.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 3974
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/e05.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 3938
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/e08.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 3698
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/e11.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 3390
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/f06.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 1874
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/f08.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 3816
+                },
+                {
+                  "url": "/assets/handdrawn-p08/cards/f12.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 3960
+                },
+                {
+                  "url": "/assets/handdrawn-tools/tool-t12.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 1616
+                },
+                {
+                  "url": "/assets/handdrawn-tools/item-u07.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 3076
+                },
+                {
+                  "url": "/assets/handdrawn-tools/tool-p11.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 2564
+                },
+                {
+                  "url": "/assets/handdrawn-tools/tool-s02.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 3010
+                },
+                {
+                  "url": "/assets/handdrawn-tools/item-u01.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 1578
+                },
+                {
+                  "url": "/assets/handdrawn-tools/item-u02.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 1728
+                },
+                {
+                  "url": "/assets/handdrawn-tools/item-u03.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 3426
+                },
+                {
+                  "url": "/assets/handdrawn-tools/item-u04.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 2436
+                },
+                {
+                  "url": "/assets/handdrawn-tools/item-u05.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 3046
+                },
+                {
+                  "url": "/assets/handdrawn-tools/item-u06.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 2474
+                },
+                {
+                  "url": "/assets/handdrawn-tools/item-u08.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 2006
+                },
+                {
+                  "url": "/assets/handdrawn-tools/item-u09.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 1834
+                },
+                {
+                  "url": "/assets/handdrawn-tools/item-u10.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 2342
+                },
+                {
+                  "url": "/assets/handdrawn-tools/item-u11.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 2510
+                },
+                {
+                  "url": "/assets/handdrawn-tools/item-u12.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 2278
+                },
+                {
+                  "url": "/assets/handdrawn-tools/tool-t06.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 2562
+                },
+                {
+                  "url": "/assets/handdrawn-tools/tool-t07.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 2068
+                },
+                {
+                  "url": "/assets/handdrawn-tools/tool-t08.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 2480
+                },
+                {
+                  "url": "/assets/handdrawn-tools/tool-t09.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 1972
+                },
+                {
+                  "url": "/assets/handdrawn-tools/tool-t10.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 1648
+                },
+                {
+                  "url": "/assets/handdrawn-tools/tool-t11.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 2084
+                },
+                {
+                  "url": "/assets/handdrawn-tools/tool-t13.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 2628
+                },
+                {
+                  "url": "/assets/handdrawn-tools/tool-t14.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 2060
+                },
+                {
+                  "url": "/assets/handdrawn-tools/tool-t15.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 1854
+                },
+                {
+                  "url": "/assets/handdrawn-tools/tool-t16.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 2436
+                },
+                {
+                  "url": "/assets/handdrawn-tools/tool-t17.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 2348
+                },
+                {
+                  "url": "/assets/handdrawn-tools/tool-t18.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 2654
+                },
+                {
+                  "url": "/assets/handdrawn-tools/tool-t01.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 3412
+                },
+                {
+                  "url": "/assets/handdrawn-tools/tool-t02.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 2704
+                },
+                {
+                  "url": "/assets/handdrawn-tools/tool-t03.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 2776
+                },
+                {
+                  "url": "/assets/handdrawn-tools/tool-t04.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 2276
+                },
+                {
+                  "url": "/assets/handdrawn-tools/tool-t05.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 2420
+                },
+                {
+                  "url": "/assets/handdrawn-tools/tool-p01.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 2096
+                },
+                {
+                  "url": "/assets/handdrawn-tools/tool-p02.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 2230
+                },
+                {
+                  "url": "/assets/handdrawn-tools/tool-p03.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 2214
+                },
+                {
+                  "url": "/assets/handdrawn-tools/tool-p04.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 2172
+                },
+                {
+                  "url": "/assets/handdrawn-tools/tool-p05.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 2126
+                },
+                {
+                  "url": "/assets/handdrawn-tools/tool-p06.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 2464
+                },
+                {
+                  "url": "/assets/handdrawn-tools/tool-p07.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 2192
+                },
+                {
+                  "url": "/assets/handdrawn-tools/tool-p08.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 2192
+                },
+                {
+                  "url": "/assets/handdrawn-tools/tool-p09.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 2136
+                },
+                {
+                  "url": "/assets/handdrawn-tools/tool-p10.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 1604
+                },
+                {
+                  "url": "/assets/handdrawn-tools/tool-p12.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 2748
+                },
+                {
+                  "url": "/assets/handdrawn-tools/tool-s01.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 2110
+                },
+                {
+                  "url": "/assets/handdrawn-tools/tool-t19.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 1852
+                },
+                {
+                  "url": "/assets/handdrawn-tools/tool-s03.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 2532
+                },
+                {
+                  "url": "/assets/handdrawn-tools/tool-s04.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 4414
+                },
+                {
+                  "url": "/assets/handdrawn-tools/tool-s05.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 2682
+                },
+                {
+                  "url": "/assets/handdrawn-tools/tool-s06.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 3158
+                },
+                {
+                  "url": "/assets/handdrawn-tools/tool-s07.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 2774
+                },
+                {
+                  "url": "/assets/handdrawn-tools/tool-s08.thumbnail.webp",
+                  "transfer": 300,
+                  "encoded": 3422
+                }
+              ]
+            }
+          ],
+          "errors": [],
+          "status": "PASS"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,326 @@
+
+> dachoupai@0.1.0 test
+> vitest run
+
+
+ RUN  v4.1.11 /workspace/loading-preload
+
+ ❯ tests/hero-stage-continuity.test.ts (15 tests | 6 failed) 181ms
+   × amo distinguishes the upcoming stage from absent history without mutation 19ms
+   × touye distinguishes the upcoming stage from absent history without mutation 4ms
+   × laohuan distinguishes the upcoming stage from absent history without mutation 2ms
+   × erxiang distinguishes the upcoming stage from absent history without mutation 5ms
+   × azao distinguishes the upcoming stage from absent history without mutation 3ms
+   × xiemu distinguishes the upcoming stage from absent history without mutation 2ms
+ ❯ tests/build-keepsake.test.ts (10 tests | 6 failed) 61ms
+   × amo uses its actual new identity and existing portrait without changing a state 17ms
+   × touye uses its actual new identity and existing portrait without changing a state 4ms
+   × laohuan uses its actual new identity and existing portrait without changing a state 4ms
+   × erxiang uses its actual new identity and existing portrait without changing a state 3ms
+   × azao uses its actual new identity and existing portrait without changing a state 3ms
+   × xiemu uses its actual new identity and existing portrait without changing a state 2ms
+ ❯ tests/fallback-theme.test.ts (9 tests | 6 failed) 27ms
+     × 'amo' missing avatar keeps its own initial in dark ink on an opaque30px paper tile 6ms
+     × 'touye' missing avatar keeps its own initial in dark ink on an opaque30px paper tile 1ms
+     × 'laohuan' missing avatar keeps its own initial in dark ink on an opaque30px paper tile 1ms
+     × 'erxiang' missing avatar keeps its own initial in dark ink on an opaque30px paper tile 0ms
+     × 'azao' missing avatar keeps its own initial in dark ink on an opaque30px paper tile 0ms
+     × 'xiemu' missing avatar keeps its own initial in dark ink on an opaque30px paper tile 0ms
+ ❯ tests/c03-result-transition.test.ts (4 tests | 3 failed) 39ms
+     × same-seed retry never repaints the old result against a fresh run without a stage 22ms
+     × opening a shop does not repaint the completed result after the committed state switches 3ms
+     × confirmed endless continuation does not redraw the normal victory after switching modes 3ms
+ ❯ tests/failure-audio.test.ts (4 tests | 4 failed) 22ms
+     × plays both failed attempts when deterministic run ID and command sequence are identical 17ms
+     × keeps scene recreation on the same cue and restored results without a cue silent 1ms
+     × consumes a silent ending once and allows a new attempt with the same deterministic fields 1ms
+     × does not play a cue for a different run, stale ending or deliberate abandonment 1ms
+
+⎯⎯⎯⎯⎯⎯ Failed Tests 25 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/build-keepsake.test.ts > amo uses its actual new identity and existing portrait without changing a state
+AssertionError: expected '' to contain '/amo.selection.svg'
+
+- Expected
++ Received
+
+- /amo.selection.svg
+
+ ❯ tests/build-keepsake.test.ts:11:21
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/25]⎯
+
+ FAIL  tests/build-keepsake.test.ts > touye uses its actual new identity and existing portrait without changing a state
+AssertionError: expected '' to contain '/touye.selection.svg'
+
+- Expected
++ Received
+
+- /touye.selection.svg
+
+ ❯ tests/build-keepsake.test.ts:11:21
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/25]⎯
+
+ FAIL  tests/build-keepsake.test.ts > laohuan uses its actual new identity and existing portrait without changing a state
+AssertionError: expected '' to contain '/laohuan.selection.svg'
+
+- Expected
++ Received
+
+- /laohuan.selection.svg
+
+ ❯ tests/build-keepsake.test.ts:11:21
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/25]⎯
+
+ FAIL  tests/build-keepsake.test.ts > erxiang uses its actual new identity and existing portrait without changing a state
+AssertionError: expected '' to contain '/erxiang.selection.svg'
+
+- Expected
++ Received
+
+- /erxiang.selection.svg
+
+ ❯ tests/build-keepsake.test.ts:11:21
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/25]⎯
+
+ FAIL  tests/build-keepsake.test.ts > azao uses its actual new identity and existing portrait without changing a state
+AssertionError: expected '' to contain '/azao.selection.svg'
+
+- Expected
++ Received
+
+- /azao.selection.svg
+
+ ❯ tests/build-keepsake.test.ts:11:21
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/25]⎯
+
+ FAIL  tests/build-keepsake.test.ts > xiemu uses its actual new identity and existing portrait without changing a state
+AssertionError: expected '' to contain '/xiemu.selection.svg'
+
+- Expected
++ Received
+
+- /xiemu.selection.svg
+
+ ❯ tests/build-keepsake.test.ts:11:21
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/25]⎯
+
+ FAIL  tests/c03-result-transition.test.ts > result page exits while Phaser queues the next scene > same-seed retry never repaints the old result against a fresh run without a stage
+AssertionError: promise rejected "TypeError: Cannot read properties of unde…" instead of resolving
+ ❯ tests/c03-result-transition.test.ts:54:37
+
+
+Caused by: TypeError: Cannot read properties of undefined (reading 'registry')
+ ❯ prepareDestination src/game/LoadingScreen.ts:39:17
+ ❯ paperSceneStart src/game/PaperFlow.ts:13:8
+ ❯ IntermissionScene.exitResult src/game/IntermissionScene.ts:275:5
+ ❯ IntermissionScene.retrySeed src/game/IntermissionScene.ts:307:44
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/25]⎯
+
+ FAIL  tests/c03-result-transition.test.ts > result page exits while Phaser queues the next scene > opening a shop does not repaint the completed result after the committed state switches
+TypeError: Cannot read properties of undefined (reading 'registry')
+ ❯ prepareDestination src/game/LoadingScreen.ts:39:17
+     37| export function prepareDestination(game:Phaser.Game,key:string,startup…
+     38|  const old=pending.get(game);if(old?.key===key)return old.promise;old?…
+     39|  const run=game.registry.get('runController')?.state as R2RunState|und…
+       |                 ^
+     40|  const omitted=textOnly.get(game)??new Set<string>();textOnly.set(game…
+     41|  const assets=sceneResources(key,run,startup).filter(a=>!omitted.has(a…
+ ❯ paperSceneStart src/game/PaperFlow.ts:13:8
+ ❯ IntermissionScene.exitResult src/game/IntermissionScene.ts:275:5
+ ❯ IntermissionScene.next src/game/IntermissionScene.ts:316:28
+ ❯ tests/c03-result-transition.test.ts:67:5
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[8/25]⎯
+
+ FAIL  tests/c03-result-transition.test.ts > result page exits while Phaser queues the next scene > confirmed endless continuation does not redraw the normal victory after switching modes
+AssertionError: expected "vi.fn()" to be called with arguments: [ 'shop' ]
+
+Number of calls: 0
+
+ ❯ tests/c03-result-transition.test.ts:73:82
+     71|     const {actions,state,rendered}=resultScene('run-won');
+     72|     fixture.dispatch.mockImplementation(async()=>{fixture.controller.s…
+     73|     actions.confirmEndless();await fixture.confirm!();expect(fixture.s…
+       |                                                                                  ^
+     74|   });
+     75| });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[9/25]⎯
+
+ FAIL  tests/failure-audio.test.ts > committed failure cue identity > plays both failed attempts when deterministic run ID and command sequence are identical
+TypeError: Cannot read properties of undefined (reading 'registry')
+ ❯ warmNextSceneImages src/game/StageImageWarmup.ts:61:48
+     59|
+     60| export function warmNextSceneImages(scene:Phaser.Scene,target:string):…
+     61|  if(!speculative())return;const run=scene.game.registry.get('runContro…
+       |                                                ^
+     62|  queue(scene).request(sceneResources(target,run).map(a=>({key:a.key,ur…
+     63| }
+ ❯ IntermissionScene.create src/game/IntermissionScene.ts:92:5
+ ❯ enter tests/failure-audio.test.ts:18:9
+ ❯ tests/failure-audio.test.ts:34:36
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[10/25]⎯
+
+ FAIL  tests/failure-audio.test.ts > committed failure cue identity > keeps scene recreation on the same cue and restored results without a cue silent
+TypeError: Cannot read properties of undefined (reading 'registry')
+ ❯ warmNextSceneImages src/game/StageImageWarmup.ts:61:48
+     59|
+     60| export function warmNextSceneImages(scene:Phaser.Scene,target:string):…
+     61|  if(!speculative())return;const run=scene.game.registry.get('runContro…
+       |                                                ^
+     62|  queue(scene).request(sceneResources(target,run).map(a=>({key:a.key,ur…
+     63| }
+ ❯ IntermissionScene.create src/game/IntermissionScene.ts:92:5
+ ❯ enter tests/failure-audio.test.ts:18:9
+ ❯ tests/failure-audio.test.ts:40:60
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[11/25]⎯
+
+ FAIL  tests/failure-audio.test.ts > committed failure cue identity > consumes a silent ending once and allows a new attempt with the same deterministic fields
+TypeError: Cannot read properties of undefined (reading 'registry')
+ ❯ warmNextSceneImages src/game/StageImageWarmup.ts:61:48
+     59|
+     60| export function warmNextSceneImages(scene:Phaser.Scene,target:string):…
+     61|  if(!speculative())return;const run=scene.game.registry.get('runContro…
+       |                                                ^
+     62|  queue(scene).request(sceneResources(target,run).map(a=>({key:a.key,ur…
+     63| }
+ ❯ IntermissionScene.create src/game/IntermissionScene.ts:92:5
+ ❯ enter tests/failure-audio.test.ts:18:9
+ ❯ tests/failure-audio.test.ts:48:53
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[12/25]⎯
+
+ FAIL  tests/failure-audio.test.ts > committed failure cue identity > does not play a cue for a different run, stale ending or deliberate abandonment
+TypeError: Cannot read properties of undefined (reading 'registry')
+ ❯ warmNextSceneImages src/game/StageImageWarmup.ts:61:48
+     59|
+     60| export function warmNextSceneImages(scene:Phaser.Scene,target:string):…
+     61|  if(!speculative())return;const run=scene.game.registry.get('runContro…
+       |                                                ^
+     62|  queue(scene).request(sceneResources(target,run).map(a=>({key:a.key,ur…
+     63| }
+ ❯ IntermissionScene.create src/game/IntermissionScene.ts:92:5
+ ❯ enter tests/failure-audio.test.ts:18:9
+ ❯ tests/failure-audio.test.ts:56:5
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[13/25]⎯
+
+ FAIL  tests/fallback-theme.test.ts > readable fault artwork uses the existing paper palette > 'amo' missing avatar keeps its own initial in dark ink on an opaque30px paper tile
+ FAIL  tests/fallback-theme.test.ts > readable fault artwork uses the existing paper palette > 'touye' missing avatar keeps its own initial in dark ink on an opaque30px paper tile
+ FAIL  tests/fallback-theme.test.ts > readable fault artwork uses the existing paper palette > 'laohuan' missing avatar keeps its own initial in dark ink on an opaque30px paper tile
+ FAIL  tests/fallback-theme.test.ts > readable fault artwork uses the existing paper palette > 'erxiang' missing avatar keeps its own initial in dark ink on an opaque30px paper tile
+ FAIL  tests/fallback-theme.test.ts > readable fault artwork uses the existing paper palette > 'azao' missing avatar keeps its own initial in dark ink on an opaque30px paper tile
+ FAIL  tests/fallback-theme.test.ts > readable fault artwork uses the existing paper palette > 'xiemu' missing avatar keeps its own initial in dark ink on an opaque30px paper tile
+AssertionError: expected "vi.fn()" to be called with arguments: [ 17, 23, 30, 30, 15985371, 1 ]
+
+Number of calls: 0
+
+ ❯ tests/fallback-theme.test.ts:36:32
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[14/25]⎯
+
+ FAIL  tests/hero-stage-continuity.test.ts > amo distinguishes the upcoming stage from absent history without mutation
+AssertionError: expected '' to contain '/amo.selection.svg'
+
+- Expected
++ Received
+
+- /amo.selection.svg
+
+ ❯ tests/hero-stage-continuity.test.ts:11:195
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[15/25]⎯
+
+ FAIL  tests/hero-stage-continuity.test.ts > touye distinguishes the upcoming stage from absent history without mutation
+AssertionError: expected '' to contain '/touye.selection.svg'
+
+- Expected
++ Received
+
+- /touye.selection.svg
+
+ ❯ tests/hero-stage-continuity.test.ts:11:195
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[16/25]⎯
+
+ FAIL  tests/hero-stage-continuity.test.ts > laohuan distinguishes the upcoming stage from absent history without mutation
+AssertionError: expected '' to contain '/laohuan.selection.svg'
+
+- Expected
++ Received
+
+- /laohuan.selection.svg
+
+ ❯ tests/hero-stage-continuity.test.ts:11:195
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[17/25]⎯
+
+ FAIL  tests/hero-stage-continuity.test.ts > erxiang distinguishes the upcoming stage from absent history without mutation
+AssertionError: expected '' to contain '/erxiang.selection.svg'
+
+- Expected
++ Received
+
+- /erxiang.selection.svg
+
+ ❯ tests/hero-stage-continuity.test.ts:11:195
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[18/25]⎯
+
+ FAIL  tests/hero-stage-continuity.test.ts > azao distinguishes the upcoming stage from absent history without mutation
+AssertionError: expected '' to contain '/azao.selection.svg'
+
+- Expected
++ Received
+
+- /azao.selection.svg
+
+ ❯ tests/hero-stage-continuity.test.ts:11:195
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[19/25]⎯
+
+ FAIL  tests/hero-stage-continuity.test.ts > xiemu distinguishes the upcoming stage from absent history without mutation
+AssertionError: expected '' to contain '/xiemu.selection.svg'
+
+- Expected
++ Received
+
+- /xiemu.selection.svg
+
+ ❯ tests/hero-stage-continuity.test.ts:11:195
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[20/25]⎯
+
+
+ Test Files  5 failed | 262 passed (267)
+      Tests  25 failed | 3615 passed (3640)
+   Start at  15:09:08
+   Duration  55.87s (transform 9.15s, setup 0ms, import 42.99s, tests 83.56s, environment 36ms)
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice

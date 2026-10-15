@@ -1,0 +1,32 @@
+
+> dachoupai@0.1.0 typecheck
+> tsc --noEmit
+
+tests/character-art.test.ts(10,10): error TS18048: 'a' is possibly 'undefined'.
+tests/character-art.test.ts(10,34): error TS18048: 'a' is possibly 'undefined'.
+tests/character-art.test.ts(11,47): error TS18048: 'a' is possibly 'undefined'.
+tests/character-art.test.ts(11,55): error TS18048: 'a' is possibly 'undefined'.
+tests/character-art.test.ts(12,47): error TS18048: 'a' is possibly 'undefined'.
+tests/character-art.test.ts(12,57): error TS18048: 'a' is possibly 'undefined'.
+tests/character-art.test.ts(51,9): error TS18048: 'a' is possibly 'undefined'.
+tests/character-art.test.ts(52,45): error TS18048: 'a' is possibly 'undefined'.
+tests/character-art.test.ts(52,51): error TS18048: 'a' is possibly 'undefined'.
+tests/character-art.test.ts(53,45): error TS18048: 'a' is possibly 'undefined'.
+tests/character-art.test.ts(59,41): error TS18048: 'a' is possibly 'undefined'.
+tests/character-art.test.ts(59,70): error TS18048: 'a' is possibly 'undefined'.
+tests/character-art.test.ts(60,41): error TS18048: 'a' is possibly 'undefined'.
+tests/character-art.test.ts(60,71): error TS18048: 'a' is possibly 'undefined'.
+tests/character-art.test.ts(61,41): error TS18048: 'a' is possibly 'undefined'.
+tests/character-art.test.ts(61,47): error TS18048: 'a' is possibly 'undefined'.
+tests/tangsong-identity.test.ts(31,45): error TS18048: 'a' is possibly 'undefined'.
+tests/tangsong-identity.test.ts(32,36): error TS18048: 'a' is possibly 'undefined'.
+tests/tangsong-identity.test.ts(32,58): error TS18048: 'a' is possibly 'undefined'.
+tests/tangsong-identity.test.ts(32,140): error TS18048: 'a' is possibly 'undefined'.
+tests/tangsong-identity.test.ts(32,244): error TS18048: 'a' is possibly 'undefined'.
+tests/tangsong-identity.test.ts(32,264): error TS18048: 'a' is possibly 'undefined'.
+tests/tangsong-identity.test.ts(33,42): error TS18048: 'a' is possibly 'undefined'.
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice
