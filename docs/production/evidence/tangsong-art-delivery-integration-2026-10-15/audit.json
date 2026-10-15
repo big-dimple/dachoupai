@@ -1,0 +1,170 @@
+{
+  "status": "PASS",
+  "testedSource": "c2a51b7ebe4a26fd0fdcea8f7ed9e9588a13debf",
+  "srcTree": "5d8e26e170ce6ab95510165816cc435f67199d7a",
+  "integrationMerge": "eb2b7cae40bc1a91ef91a075e6e6edfb3743975c",
+  "parents": [
+    "a85be2a8817d5985746c9caeb5f978b2e66ac74e",
+    "bd626e84c429b0e45aa61a52bba10af2eb953714"
+  ],
+  "artProduct": "111039b12ca3269e1bc1f574fa19ddb8f62b2c2d",
+  "protectedTrees": [
+    "src/domain",
+    "src/application",
+    "src/content",
+    "src/platform",
+    "src/core",
+    "src/audio"
+  ],
+  "unchangedLoadingAndR03": [
+    "src/game/LoadingScreen.ts",
+    "src/game/PaperFlow.ts",
+    "src/game/ShopScene.ts",
+    "src/game/ToolCarryIntent.ts"
+  ],
+  "gameSceneOnlyArtAltChanged": true,
+  "indexOnlyFooterChanged": true,
+  "sourceAndRuntimeArtEqualToArtParent": true,
+  "files": {
+    "index.html": {
+      "blob": "341c766f524f98df74e0eecbe5b025015688909b",
+      "sha256": "361f14a63e4e89ca313663dcc4750ba87350ffb95b225245569e55893fb307ca"
+    },
+    "src/game/LoadingScreen.ts": {
+      "blob": "f917295f3aa9e114903a016481c2d49328fdc274",
+      "sha256": "86697131a9c9370231ad780964fe7794b444d50026e3ab38314e7e9b9e2819ae"
+    },
+    "src/game/PaperFlow.ts": {
+      "blob": "82e70a0797e0f74e6b2ea7b417413b825551cc49",
+      "sha256": "5507d3244d36a7bcb53b331ff2a9593bda7bfb8136d2a18728dc6c06e783c4db"
+    },
+    "src/game/ShopScene.ts": {
+      "blob": "cee06262bc105f379daafe3a60f5281aaa68083b",
+      "sha256": "017f1547bdab1eb0d255f9e543f4401ac78eaf8cec8d5bd4aa83352d5d19ba99"
+    },
+    "src/game/ToolCarryIntent.ts": {
+      "blob": "50fe615eee865d62ed8443c6e6b6bd86f07378b4",
+      "sha256": "fbd50f13871dbb35f62223a1a9ff30e053d70e95bf3cca0c58afeb231eef1a43"
+    },
+    "src/game/GameScene.ts": {
+      "blob": "870da56aaaba9a94e445a6fde467a36fdc69e658",
+      "sha256": "99ec02542bbbbefa93208696c9727590207aae510375380d48378b6a2308c365"
+    },
+    "src/game/CharacterArt.ts": {
+      "blob": "5d8445f2b31aff600f6ba22a79da4d837e817533",
+      "sha256": "a9a80cb36a6f878ca130a073124494beab5df8474697fc3af62c5b492ecc6f79"
+    },
+    "src/game/SceneResources.ts": {
+      "blob": "cb64e2110dab60563fb1c2969127110ec12e77f6",
+      "sha256": "3bb7fb1d562e1d77985c294e56336c49b49c1468df7fabf7462d5e730feb2d61"
+    },
+    "src/game/HeroClimax.ts": {
+      "blob": "fe83dfb4c07a3ae04ba1e0b6c2a5df10ae7ef44f",
+      "sha256": "85b95eb9e51ad9e67277e8defb7395f0b5d527f9375da3f750eaadef1ebc2051"
+    },
+    "src/game/HeroClimaxCaption.ts": {
+      "blob": "99d23314b6fd70aa8171497dcd083f7cddbed776",
+      "sha256": "573231749b791d0072af6cd61f5097fd65aa7f5a59afe09c0eae7e7af4bcf193"
+    },
+    "src/game/HeroClimaxLayout.ts": {
+      "blob": "504633c7e9c0e15cc131a4531401db3366873870",
+      "sha256": "403b5a58707a091be566528aec9b3b465c67bd74f7c368aee20f3a52b1cd3608"
+    }
+  },
+  "startup": {
+    "items": 146,
+    "pixels": 4458496,
+    "budgetPixels": 5242880,
+    "decodedRGBABytes": 17833984,
+    "budgetRGBABytes": 20971520
+  },
+  "nativeMetrics": [
+    {
+      "width": 1366,
+      "paintedFrames": 85,
+      "maxFocusFramebufferScale": 0.6384615384615384,
+      "maxSubjectHoldMs": 1016.7000000001863,
+      "minTextResolution": 1
+    },
+    {
+      "width": 390,
+      "paintedFrames": 66,
+      "maxFocusFramebufferScale": 0.8131538461538461,
+      "maxSubjectHoldMs": 1004.7000000001863,
+      "minTextResolution": 2
+    },
+    {
+      "width": 320,
+      "paintedFrames": 71,
+      "maxFocusFramebufferScale": 0.4268461538461539,
+      "maxSubjectHoldMs": 1008.6999999992549,
+      "minTextResolution": 2
+    }
+  ],
+  "checks": {
+    "unit": {
+      "files": 269,
+      "tests": 3648,
+      "status": "PASS"
+    },
+    "affected": {
+      "files": 8,
+      "tests": 39,
+      "status": "PASS"
+    },
+    "build": "PASS",
+    "content": "PASS",
+    "planStructureOnly": "PASS",
+    "nativeJourney": 3,
+    "artSixPersonViews": 5,
+    "recovery": 6,
+    "loading": 8,
+    "r03": 12,
+    "loadingMotion": 6,
+    "additionalOtherHeroClimax": 6,
+    "compiledSmoke": 2
+  },
+  "scopedEarlierReports": {
+    "art": {
+      "source": "c73dae03ce16b4e60b0ae35b1e16f85d11fbfe59",
+      "status": "PASS"
+    },
+    "recovery": {
+      "source": "c73dae03ce16b4e60b0ae35b1e16f85d11fbfe59",
+      "status": "PASS"
+    },
+    "loading": {
+      "source": "bdaf50857891ce98e5295d504d80f1abb2564d03",
+      "status": "PASS"
+    },
+    "r03": {
+      "source": "bdaf50857891ce98e5295d504d80f1abb2564d03",
+      "status": "PASS"
+    },
+    "motion": {
+      "source": "bdaf50857891ce98e5295d504d80f1abb2564d03",
+      "status": "PASS"
+    }
+  },
+  "freshAfterCaptionRepair": {
+    "native": "c2a51b7ebe4a26fd0fdcea8f7ed9e9588a13debf",
+    "otherHeroClimax": "c2a51b7ebe4a26fd0fdcea8f7ed9e9588a13debf",
+    "smoke": "c2a51b7ebe4a26fd0fdcea8f7ed9e9588a13debf"
+  },
+  "beforeCaptionRepair": {
+    "stateAssertions": "PASS",
+    "manualVisual": "FAIL: 320 owner/readout and duplicated note overlap",
+    "preserved": "before-caption-repair/"
+  },
+  "approval": {
+    "sourceThread": "01a0ff29-5792-7524-8980-f2037b2c30ce",
+    "userSentinel": "Sentinel_27efc3176e0881918c26e230b3517531",
+    "newUserRequest": "没有图就按开发计划持续推进，每小时报一次进展，记住不要被 CI 卡住，我的要求就是要合并分支，提交发布 main",
+    "scope": "normal merge and push tested current art/loading/R03 to main; later copy separately; no force, CI query or domain management"
+  },
+  "scopeLimits": [
+    "software Chromium; no physical-device/GPU acceptance",
+    "first-run and valid controlled branches; no natural full-tour claim",
+    "no domain or CI checks"
+  ]
+}

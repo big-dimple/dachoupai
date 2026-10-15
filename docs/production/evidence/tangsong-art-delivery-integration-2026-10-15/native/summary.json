@@ -1,0 +1,1894 @@
+{
+  "head": "c2a51b7ebe4a26fd0fdcea8f7ed9e9588a13debf",
+  "sourceHashes": {
+    "index.html": "361f14a63e4e89ca313663dcc4750ba87350ffb95b225245569e55893fb307ca",
+    "src/game/LoadingScreen.ts": "86697131a9c9370231ad780964fe7794b444d50026e3ab38314e7e9b9e2819ae",
+    "src/game/PaperFlow.ts": "5507d3244d36a7bcb53b331ff2a9593bda7bfb8136d2a18728dc6c06e783c4db",
+    "src/game/GameScene.ts": "99ec02542bbbbefa93208696c9727590207aae510375380d48378b6a2308c365",
+    "src/game/ShopScene.ts": "017f1547bdab1eb0d255f9e543f4401ac78eaf8cec8d5bd4aa83352d5d19ba99",
+    "src/game/ToolCarryIntent.ts": "fbd50f13871dbb35f62223a1a9ff30e053d70e95bf3cca0c58afeb231eef1a43",
+    "src/game/CharacterArt.ts": "a9a80cb36a6f878ca130a073124494beab5df8474697fc3af62c5b492ecc6f79",
+    "src/game/SceneResources.ts": "3bb7fb1d562e1d77985c294e56336c49b49c1468df7fabf7462d5e730feb2d61",
+    "src/game/HeroClimax.ts": "85b95eb9e51ad9e67277e8defb7395f0b5d527f9375da3f750eaadef1ebc2051",
+    "src/game/HeroClimaxCaption.ts": "573231749b791d0072af6cd61f5097fd65aa7f5a59afe09c0eae7e7af4bcf193",
+    "src/game/HeroClimaxLayout.ts": "403b5a58707a091be566528aec9b3b465c67bd74f7c368aee20f3a52b1cd3608"
+  },
+  "scope": "Native fresh standard run with ordinary starting gold, real hero/route selection and public tool choice. No imported state, stock overrides, domain replacements or natural full-tour acceptance. PC alone evicts one already-loaded display texture to exercise delayed scene-data handoff.",
+  "cases": [
+    {
+      "viewport": {
+        "width": 1366,
+        "height": 900
+      },
+      "errors": [],
+      "startup": {
+        "loaded": 12,
+        "total": 146,
+        "progress": 12,
+        "scrollX": false,
+        "scrollY": false
+      },
+      "loadingReady": {
+        "key": "title",
+        "total": 146,
+        "loaded": 146,
+        "failed": 0,
+        "pending": 0,
+        "keys": [
+          "p00-paper",
+          "p00-card-back",
+          "p00-frame-common",
+          "p00-frame-uncommon",
+          "p00-frame-rare",
+          "p00-mark-joker",
+          "p00-mark-plus",
+          "p00-mark-times",
+          "avatar-amo",
+          "selection-portrait-amo",
+          "avatar-touye",
+          "selection-portrait-touye",
+          "avatar-laohuan",
+          "selection-portrait-laohuan",
+          "avatar-erxiang",
+          "selection-portrait-erxiang",
+          "avatar-azao",
+          "selection-portrait-azao",
+          "avatar-xiemu",
+          "selection-portrait-xiemu",
+          "p08-court-j",
+          "p08-court-q",
+          "p08-court-k",
+          "p08-joker-mantangcai",
+          "p08-joker-jiedongfeng",
+          "p08-joker-c04",
+          "p08-joker-b10",
+          "p08-joker-b03",
+          "p08-joker-c06",
+          "p08-joker-f04",
+          "p08-joker-e07",
+          "p08-joker-f09",
+          "p08-joker-f07",
+          "p08-joker-d07",
+          "p08-joker-a07",
+          "p08-joker-a08",
+          "p08-joker-c03",
+          "p08-joker-d02",
+          "p08-joker-e02",
+          "p08-joker-e09",
+          "p08-joker-tiesuanpan",
+          "p08-joker-f10",
+          "p08-joker-c08",
+          "p08-joker-c09",
+          "p08-joker-pengci",
+          "p08-joker-huimaqiang",
+          "p08-joker-b07",
+          "p08-joker-a09",
+          "p08-joker-d06",
+          "p08-joker-a04",
+          "p08-joker-e04",
+          "p08-joker-c05",
+          "p08-joker-c02",
+          "p08-joker-f03",
+          "p08-joker-a03",
+          "p08-joker-b02",
+          "p08-joker-b04",
+          "p08-joker-d01",
+          "p08-joker-f02",
+          "p08-joker-d10",
+          "p08-joker-e01",
+          "p08-joker-b05",
+          "p08-joker-b08",
+          "p08-joker-d05",
+          "p08-joker-e03",
+          "p08-joker-e06",
+          "p08-joker-f05",
+          "p08-joker-f11",
+          "p08-joker-b06",
+          "p08-joker-a11",
+          "p08-joker-d04",
+          "p08-joker-c07",
+          "p08-joker-d11",
+          "p08-joker-d08",
+          "p08-joker-d09",
+          "p08-joker-b12",
+          "p08-joker-a05",
+          "p08-joker-d03",
+          "p08-joker-a10",
+          "p08-joker-b11",
+          "p08-joker-c10",
+          "p08-joker-d12",
+          "p08-joker-a06",
+          "p08-joker-a12",
+          "p08-joker-b09",
+          "p08-joker-c11",
+          "p08-joker-c12",
+          "p08-joker-e10",
+          "p08-joker-e12",
+          "p08-joker-e05",
+          "p08-joker-e08",
+          "p08-joker-e11",
+          "p08-joker-f06",
+          "p08-joker-f08",
+          "p08-joker-f12",
+          "goods-art/T12",
+          "goods-art/U07",
+          "goods-art/P11",
+          "goods-art/S02",
+          "goods-art/U01",
+          "goods-art/U02",
+          "goods-art/U03",
+          "goods-art/U04",
+          "goods-art/U05",
+          "goods-art/U06",
+          "goods-art/U08",
+          "goods-art/U09",
+          "goods-art/U10",
+          "goods-art/U11",
+          "goods-art/U12",
+          "goods-art/T06",
+          "goods-art/T07",
+          "goods-art/T08",
+          "goods-art/T09",
+          "goods-art/T10",
+          "goods-art/T11",
+          "goods-art/T13",
+          "goods-art/T14",
+          "goods-art/T15",
+          "goods-art/T16",
+          "goods-art/T17",
+          "goods-art/T18",
+          "goods-art/T01",
+          "goods-art/T02",
+          "goods-art/T03",
+          "goods-art/T04",
+          "goods-art/T05",
+          "goods-art/P01",
+          "goods-art/P02",
+          "goods-art/P03",
+          "goods-art/P04",
+          "goods-art/P05",
+          "goods-art/P06",
+          "goods-art/P07",
+          "goods-art/P08",
+          "goods-art/P09",
+          "goods-art/P10",
+          "goods-art/P12",
+          "goods-art/S01",
+          "goods-art/T19",
+          "goods-art/S03",
+          "goods-art/S04",
+          "goods-art/S05",
+          "goods-art/S06",
+          "goods-art/S07",
+          "goods-art/S08"
+        ],
+        "status": "ready"
+      },
+      "selection": {
+        "id": "laohuan",
+        "images": [
+          "d44-paper-14870757-1.6-1.9",
+          "selection-portrait-laohuan",
+          "d44-paper-16775662-7.3-6.1",
+          "selection-portrait-amo",
+          "d44-paper-16775662-7.3-6.1",
+          "selection-portrait-touye",
+          "d44-paper-14870757-7.3-6.1",
+          "selection-portrait-laohuan",
+          "d44-paper-16775662-7.3-6.1",
+          "selection-portrait-erxiang",
+          "d44-paper-16775662-7.3-6.1",
+          "selection-portrait-azao",
+          "d44-paper-16775662-7.3-6.1",
+          "selection-portrait-xiemu"
+        ]
+      },
+      "purchaseChoice": {
+        "id": "T08",
+        "kind": "basic",
+        "price": 2,
+        "startingGold": 6
+      },
+      "purchase": {
+        "commands": [
+          {
+            "runId": "run/tangsong-native-carry/laohuan",
+            "commandId": "run/tangsong-native-carry/laohuan/command/2",
+            "expectedSeq": 1,
+            "action": {
+              "type": "BuyBasicTool",
+              "definitionId": "T08",
+              "shopSeq": 1
+            }
+          }
+        ],
+        "fullStateJournalStorageRngEqual": true
+      },
+      "instanceId": "run/tangsong-native-carry/laohuan/tool/run/tangsong-native-carry/laohuan/command/2",
+      "destinationGate": {
+        "active": [
+          "shop"
+        ],
+        "preparation": {
+          "key": "game",
+          "total": 16,
+          "loaded": 15,
+          "failed": 0,
+          "pending": 1,
+          "keys": [
+            "avatar-amo",
+            "selection-portrait-amo",
+            "avatar-touye",
+            "selection-portrait-touye",
+            "avatar-laohuan",
+            "selection-portrait-laohuan",
+            "avatar-erxiang",
+            "selection-portrait-erxiang",
+            "avatar-azao",
+            "selection-portrait-azao",
+            "avatar-xiemu",
+            "selection-portrait-xiemu",
+            "p08-court-j",
+            "p08-court-q",
+            "p08-court-k",
+            "goods-art/T08"
+          ],
+          "status": "loading"
+        }
+      },
+      "entry": {
+        "commands": [
+          {
+            "runId": "run/tangsong-native-carry/laohuan",
+            "commandId": "run/tangsong-native-carry/laohuan/command/3",
+            "expectedSeq": 2,
+            "action": {
+              "type": "LeaveShop"
+            }
+          },
+          {
+            "runId": "run/tangsong-native-carry/laohuan",
+            "commandId": "run/tangsong-native-carry/laohuan/command/4",
+            "expectedSeq": 3,
+            "action": {
+              "type": "EnterStage"
+            }
+          }
+        ],
+        "fullStateJournalStorageRngEqual": true
+      },
+      "guard": {
+        "allDealt": true,
+        "intentCleared": true,
+        "ready": true
+      },
+      "avatar": [
+        "selection-portrait-laohuan",
+        "avatar-laohuan",
+        "d44-paper-16775662-16.0-5.7",
+        "p00-card-back",
+        "d44-paper-16775662-16.0-5.7",
+        "p00-card-back",
+        "d44-paper-16775662-16.0-5.7",
+        "p00-card-back",
+        "d44-paper-16775662-16.0-5.7",
+        "p00-card-back",
+        "d44-paper-16775662-16.0-5.7",
+        "p00-card-back",
+        "d44-paper-16775662-4.6-3.1",
+        "d44-paper-16775662-17.6-6.2",
+        "p08-court-q",
+        "d44-paper-16775662-17.6-6.2",
+        "d44-paper-16775662-17.6-6.2",
+        "d44-paper-16775662-17.6-6.2",
+        "d44-paper-16775662-17.6-6.2",
+        "d44-paper-16775662-17.6-6.2",
+        "p08-court-k",
+        "d44-paper-16775662-17.6-6.2",
+        "d44-paper-16775662-17.6-6.2"
+      ],
+      "target": "spades-13",
+      "use": {
+        "commands": [
+          {
+            "runId": "run/tangsong-native-carry/laohuan",
+            "commandId": "run/tangsong-native-carry/laohuan/command/5",
+            "expectedSeq": 4,
+            "action": {
+              "type": "UseConsumable",
+              "instanceId": "run/tangsong-native-carry/laohuan/tool/run/tangsong-native-carry/laohuan/command/2",
+              "targetIds": [
+                "spades-13"
+              ]
+            }
+          }
+        ],
+        "fullStateJournalStorageRngEqual": true
+      },
+      "rankChange": {
+        "before": 13,
+        "after": 14
+      },
+      "skillDiscard": {
+        "commands": [
+          {
+            "runId": "run/tangsong-native-carry/laohuan",
+            "commandId": "run/tangsong-native-carry/laohuan/command/6",
+            "expectedSeq": 5,
+            "action": {
+              "type": "DiscardHand",
+              "selectedIds": [
+                "clubs-12"
+              ],
+              "laohuanTrick": true
+            }
+          }
+        ],
+        "fullStateJournalStorageRngEqual": true
+      },
+      "skillKeep": {
+        "commands": [
+          {
+            "runId": "run/tangsong-native-carry/laohuan",
+            "commandId": "run/tangsong-native-carry/laohuan/command/7",
+            "expectedSeq": 6,
+            "action": {
+              "type": "ChooseRefill",
+              "selectedIds": [
+                "spades-8"
+              ]
+            }
+          }
+        ],
+        "fullStateJournalStorageRngEqual": true
+      },
+      "skillShots": [
+        {
+          "shot": "eyes",
+          "now": 21650.5,
+          "density": 1,
+          "images": [
+            {
+              "name": "hero/climax-eyes",
+              "key": "portrait-focus-laohuan",
+              "scale": 0.6384615384615384,
+              "width": 520,
+              "height": 520,
+              "bounds": {
+                "type": 5,
+                "x": 238.36,
+                "y": 274,
+                "width": 332,
+                "height": 332
+              }
+            }
+          ],
+          "texts": [
+            {
+              "name": "hero/climax-name",
+              "text": "戏法换牌",
+              "resolution": 1,
+              "bounds": {
+                "type": 5,
+                "x": 167,
+                "y": 180,
+                "width": 209,
+                "height": 59
+              },
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "hero/climax-owner",
+              "text": "辛弃疾 · 墨影醉里挑灯看剑 · 技能兑现 · 正式立绘",
+              "resolution": 1,
+              "bounds": {
+                "type": 5,
+                "x": 167,
+                "y": 243,
+                "width": 347,
+                "height": 19
+              },
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "hero/climax-note",
+              "text": "多看2张 · 8♠；不增加计分",
+              "resolution": 1,
+              "bounds": {
+                "type": 5,
+                "x": 167,
+                "y": 614,
+                "width": 197,
+                "height": 19
+              },
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "hero/climax-eye-quote",
+              "text": "留住好牌，且看下一着。",
+              "resolution": 1,
+              "bounds": {
+                "type": 5,
+                "x": 670,
+                "y": 334,
+                "width": 220,
+                "height": 22
+              },
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "hero/climax-focus-effect",
+              "text": "实际留牌 1张",
+              "resolution": 1,
+              "bounds": {
+                "type": 5,
+                "x": 670,
+                "y": 408,
+                "width": 164,
+                "height": 31
+              },
+              "scaleX": 1,
+              "scaleY": 1
+            }
+          ],
+          "screenshot": "1366-skill-0-eyes.png"
+        },
+        {
+          "shot": "skill",
+          "now": 21925.799999999814,
+          "density": 1,
+          "images": [
+            {
+              "name": "hero/climax-portrait",
+              "key": "opening-portrait-laohuan",
+              "scale": 0.4322916666666667,
+              "width": 615,
+              "height": 768,
+              "bounds": {
+                "type": 5,
+                "x": 271.4303125,
+                "y": 274,
+                "width": 265.859375,
+                "height": 332
+              }
+            }
+          ],
+          "texts": [
+            {
+              "name": "hero/climax-name",
+              "text": "戏法换牌",
+              "resolution": 1,
+              "bounds": {
+                "type": 5,
+                "x": 167,
+                "y": 180,
+                "width": 209,
+                "height": 59
+              },
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "hero/climax-owner",
+              "text": "辛弃疾 · 墨影醉里挑灯看剑 · 技能兑现 · 正式立绘",
+              "resolution": 1,
+              "bounds": {
+                "type": 5,
+                "x": 167,
+                "y": 243,
+                "width": 347,
+                "height": 19
+              },
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "hero/climax-note",
+              "text": "多看2张 · 8♠；不增加计分",
+              "resolution": 1,
+              "bounds": {
+                "type": 5,
+                "x": 167,
+                "y": 614,
+                "width": 197,
+                "height": 19
+              },
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "hero/climax-value-label",
+              "text": "实际留牌",
+              "resolution": 1,
+              "bounds": {
+                "type": 5,
+                "x": 670,
+                "y": 334,
+                "width": 72,
+                "height": 21
+              },
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "hero/climax-value",
+              "text": "1张",
+              "resolution": 1,
+              "bounds": {
+                "type": 5,
+                "x": 854,
+                "y": 362,
+                "width": 160,
+                "height": 119
+              },
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "hero/climax-source-title",
+              "text": "辛弃疾 · 戏法留牌",
+              "resolution": 1,
+              "bounds": {
+                "type": 5,
+                "x": 167,
+                "y": 670,
+                "width": 127,
+                "height": 19
+              },
+              "scaleX": 1,
+              "scaleY": 1
+            }
+          ],
+          "screenshot": "1366-skill-1-skill.png"
+        },
+        {
+          "shot": "landing",
+          "now": 22516.400000000373,
+          "density": 1,
+          "images": [],
+          "texts": [
+            {
+              "name": "hero/climax-name",
+              "text": "戏法换牌",
+              "resolution": 1,
+              "bounds": {
+                "type": 5,
+                "x": 167,
+                "y": 180,
+                "width": 209,
+                "height": 59
+              },
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "hero/climax-owner",
+              "text": "辛弃疾 · 墨影醉里挑灯看剑 · 技能兑现 · 正式立绘",
+              "resolution": 1,
+              "bounds": {
+                "type": 5,
+                "x": 167,
+                "y": 243,
+                "width": 347,
+                "height": 19
+              },
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "hero/climax-note",
+              "text": "多看2张 · 8♠；不增加计分",
+              "resolution": 1,
+              "bounds": {
+                "type": 5,
+                "x": 167,
+                "y": 614,
+                "width": 197,
+                "height": 19
+              },
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "hero/climax-value-label",
+              "text": "实际留牌",
+              "resolution": 1,
+              "bounds": {
+                "type": 5,
+                "x": 167,
+                "y": 284,
+                "width": 80,
+                "height": 22
+              },
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "hero/climax-value",
+              "text": "1张",
+              "resolution": 1,
+              "bounds": {
+                "type": 5,
+                "x": 541,
+                "y": 336,
+                "width": 284,
+                "height": 209
+              },
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "hero/climax-landing",
+              "text": "留1张 · 已保存",
+              "resolution": 1,
+              "bounds": {
+                "type": 5,
+                "x": 167,
+                "y": 670,
+                "width": 117,
+                "height": 21
+              },
+              "scaleX": 1,
+              "scaleY": 1
+            }
+          ],
+          "screenshot": "1366-skill-2-landing.png"
+        }
+      ],
+      "coldRestore": "entire state/journal/storage unchanged; no carried selector revival",
+      "status": "PASS",
+      "skillMetrics": {
+        "width": 1366,
+        "paintedFrames": 85,
+        "maxFocusFramebufferScale": 0.6384615384615384,
+        "maxSubjectHoldMs": 1016.7000000001863,
+        "minTextResolution": 1
+      }
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "errors": [],
+      "startup": {
+        "loaded": 12,
+        "total": 146,
+        "progress": 12,
+        "scrollX": false,
+        "scrollY": false
+      },
+      "loadingReady": {
+        "key": "title",
+        "total": 146,
+        "loaded": 146,
+        "failed": 0,
+        "pending": 0,
+        "keys": [
+          "p00-paper",
+          "p00-card-back",
+          "p00-frame-common",
+          "p00-frame-uncommon",
+          "p00-frame-rare",
+          "p00-mark-joker",
+          "p00-mark-plus",
+          "p00-mark-times",
+          "avatar-amo",
+          "selection-portrait-amo",
+          "avatar-touye",
+          "selection-portrait-touye",
+          "avatar-laohuan",
+          "selection-portrait-laohuan",
+          "avatar-erxiang",
+          "selection-portrait-erxiang",
+          "avatar-azao",
+          "selection-portrait-azao",
+          "avatar-xiemu",
+          "selection-portrait-xiemu",
+          "p08-court-j",
+          "p08-court-q",
+          "p08-court-k",
+          "p08-joker-mantangcai",
+          "p08-joker-jiedongfeng",
+          "p08-joker-c04",
+          "p08-joker-b10",
+          "p08-joker-b03",
+          "p08-joker-c06",
+          "p08-joker-f04",
+          "p08-joker-e07",
+          "p08-joker-f09",
+          "p08-joker-f07",
+          "p08-joker-d07",
+          "p08-joker-a07",
+          "p08-joker-a08",
+          "p08-joker-c03",
+          "p08-joker-d02",
+          "p08-joker-e02",
+          "p08-joker-e09",
+          "p08-joker-tiesuanpan",
+          "p08-joker-f10",
+          "p08-joker-c08",
+          "p08-joker-c09",
+          "p08-joker-pengci",
+          "p08-joker-huimaqiang",
+          "p08-joker-b07",
+          "p08-joker-a09",
+          "p08-joker-d06",
+          "p08-joker-a04",
+          "p08-joker-e04",
+          "p08-joker-c05",
+          "p08-joker-c02",
+          "p08-joker-f03",
+          "p08-joker-a03",
+          "p08-joker-b02",
+          "p08-joker-b04",
+          "p08-joker-d01",
+          "p08-joker-f02",
+          "p08-joker-d10",
+          "p08-joker-e01",
+          "p08-joker-b05",
+          "p08-joker-b08",
+          "p08-joker-d05",
+          "p08-joker-e03",
+          "p08-joker-e06",
+          "p08-joker-f05",
+          "p08-joker-f11",
+          "p08-joker-b06",
+          "p08-joker-a11",
+          "p08-joker-d04",
+          "p08-joker-c07",
+          "p08-joker-d11",
+          "p08-joker-d08",
+          "p08-joker-d09",
+          "p08-joker-b12",
+          "p08-joker-a05",
+          "p08-joker-d03",
+          "p08-joker-a10",
+          "p08-joker-b11",
+          "p08-joker-c10",
+          "p08-joker-d12",
+          "p08-joker-a06",
+          "p08-joker-a12",
+          "p08-joker-b09",
+          "p08-joker-c11",
+          "p08-joker-c12",
+          "p08-joker-e10",
+          "p08-joker-e12",
+          "p08-joker-e05",
+          "p08-joker-e08",
+          "p08-joker-e11",
+          "p08-joker-f06",
+          "p08-joker-f08",
+          "p08-joker-f12",
+          "goods-art/T12",
+          "goods-art/U07",
+          "goods-art/P11",
+          "goods-art/S02",
+          "goods-art/U01",
+          "goods-art/U02",
+          "goods-art/U03",
+          "goods-art/U04",
+          "goods-art/U05",
+          "goods-art/U06",
+          "goods-art/U08",
+          "goods-art/U09",
+          "goods-art/U10",
+          "goods-art/U11",
+          "goods-art/U12",
+          "goods-art/T06",
+          "goods-art/T07",
+          "goods-art/T08",
+          "goods-art/T09",
+          "goods-art/T10",
+          "goods-art/T11",
+          "goods-art/T13",
+          "goods-art/T14",
+          "goods-art/T15",
+          "goods-art/T16",
+          "goods-art/T17",
+          "goods-art/T18",
+          "goods-art/T01",
+          "goods-art/T02",
+          "goods-art/T03",
+          "goods-art/T04",
+          "goods-art/T05",
+          "goods-art/P01",
+          "goods-art/P02",
+          "goods-art/P03",
+          "goods-art/P04",
+          "goods-art/P05",
+          "goods-art/P06",
+          "goods-art/P07",
+          "goods-art/P08",
+          "goods-art/P09",
+          "goods-art/P10",
+          "goods-art/P12",
+          "goods-art/S01",
+          "goods-art/T19",
+          "goods-art/S03",
+          "goods-art/S04",
+          "goods-art/S05",
+          "goods-art/S06",
+          "goods-art/S07",
+          "goods-art/S08"
+        ],
+        "status": "ready"
+      },
+      "selection": {
+        "id": "laohuan",
+        "images": [
+          "d44-paper-14870757-5.6-2.2",
+          "selection-portrait-laohuan",
+          "d44-paper-16775662-13.2-10.7",
+          "selection-portrait-amo",
+          "d44-paper-16775662-13.2-10.7",
+          "selection-portrait-touye",
+          "d44-paper-14870757-13.2-10.7",
+          "selection-portrait-laohuan",
+          "d44-paper-16775662-13.2-10.7",
+          "selection-portrait-erxiang",
+          "d44-paper-16775662-13.2-10.7",
+          "selection-portrait-azao",
+          "d44-paper-16775662-13.2-10.7",
+          "selection-portrait-xiemu"
+        ]
+      },
+      "purchaseChoice": {
+        "id": "T08",
+        "kind": "basic",
+        "price": 2,
+        "startingGold": 6
+      },
+      "purchase": {
+        "commands": [
+          {
+            "runId": "run/tangsong-native-carry/laohuan",
+            "commandId": "run/tangsong-native-carry/laohuan/command/2",
+            "expectedSeq": 1,
+            "action": {
+              "type": "BuyBasicTool",
+              "definitionId": "T08",
+              "shopSeq": 1
+            }
+          }
+        ],
+        "fullStateJournalStorageRngEqual": true
+      },
+      "instanceId": "run/tangsong-native-carry/laohuan/tool/run/tangsong-native-carry/laohuan/command/2",
+      "entry": {
+        "commands": [
+          {
+            "runId": "run/tangsong-native-carry/laohuan",
+            "commandId": "run/tangsong-native-carry/laohuan/command/3",
+            "expectedSeq": 2,
+            "action": {
+              "type": "LeaveShop"
+            }
+          },
+          {
+            "runId": "run/tangsong-native-carry/laohuan",
+            "commandId": "run/tangsong-native-carry/laohuan/command/4",
+            "expectedSeq": 3,
+            "action": {
+              "type": "EnterStage"
+            }
+          }
+        ],
+        "fullStateJournalStorageRngEqual": true
+      },
+      "guard": {
+        "allDealt": true,
+        "intentCleared": true,
+        "ready": true
+      },
+      "avatar": [
+        "avatar-laohuan",
+        "d44-paper-16775662-20.0-7.1",
+        "p00-card-back",
+        "d44-paper-16775662-20.0-7.1",
+        "p00-card-back",
+        "d44-paper-16775662-20.0-7.1",
+        "p00-card-back",
+        "d44-paper-16775662-20.0-7.1",
+        "p00-card-back",
+        "d44-paper-16775662-20.0-7.1",
+        "p00-card-back",
+        "d44-paper-16775662-2.8-3.9",
+        "d44-paper-16775662-23.8-8.4",
+        "p08-court-q",
+        "d44-paper-16775662-23.8-8.4",
+        "d44-paper-16775662-23.8-8.4",
+        "d44-paper-16775662-23.8-8.4",
+        "d44-paper-16775662-23.8-8.4",
+        "d44-paper-16775662-23.8-8.4",
+        "p08-court-k",
+        "d44-paper-16775662-23.8-8.4",
+        "d44-paper-16775662-23.8-8.4"
+      ],
+      "target": "spades-13",
+      "use": {
+        "commands": [
+          {
+            "runId": "run/tangsong-native-carry/laohuan",
+            "commandId": "run/tangsong-native-carry/laohuan/command/5",
+            "expectedSeq": 4,
+            "action": {
+              "type": "UseConsumable",
+              "instanceId": "run/tangsong-native-carry/laohuan/tool/run/tangsong-native-carry/laohuan/command/2",
+              "targetIds": [
+                "spades-13"
+              ]
+            }
+          }
+        ],
+        "fullStateJournalStorageRngEqual": true
+      },
+      "rankChange": {
+        "before": 13,
+        "after": 14
+      },
+      "skillDiscard": {
+        "commands": [
+          {
+            "runId": "run/tangsong-native-carry/laohuan",
+            "commandId": "run/tangsong-native-carry/laohuan/command/6",
+            "expectedSeq": 5,
+            "action": {
+              "type": "DiscardHand",
+              "selectedIds": [
+                "clubs-12"
+              ],
+              "laohuanTrick": true
+            }
+          }
+        ],
+        "fullStateJournalStorageRngEqual": true
+      },
+      "skillKeep": {
+        "commands": [
+          {
+            "runId": "run/tangsong-native-carry/laohuan",
+            "commandId": "run/tangsong-native-carry/laohuan/command/7",
+            "expectedSeq": 6,
+            "action": {
+              "type": "ChooseRefill",
+              "selectedIds": [
+                "spades-8"
+              ]
+            }
+          }
+        ],
+        "fullStateJournalStorageRngEqual": true
+      },
+      "skillShots": [
+        {
+          "shot": "eyes",
+          "now": 16384.700000000186,
+          "density": 2,
+          "images": [
+            {
+              "name": "hero/climax-eyes",
+              "key": "portrait-focus-laohuan",
+              "scale": 0.40657692307692306,
+              "width": 520,
+              "height": 520,
+              "bounds": {
+                "type": 5,
+                "x": 89.29,
+                "y": 264.28,
+                "width": 211.41999999999996,
+                "height": 211.41999999999996
+              }
+            }
+          ],
+          "texts": [
+            {
+              "name": "hero/climax-name",
+              "text": "戏法换牌",
+              "resolution": 2,
+              "bounds": {
+                "type": 5,
+                "x": 30,
+                "y": 142,
+                "width": 145,
+                "height": 41
+              },
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "hero/climax-owner",
+              "text": "辛弃疾 · 墨影醉里挑灯看剑 · 技能兑现 · 正式立绘",
+              "resolution": 2,
+              "bounds": {
+                "type": 5,
+                "x": 30,
+                "y": 187,
+                "width": 279,
+                "height": 38
+              },
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "hero/climax-note",
+              "text": "多看2张 · 8♠；不增加计分",
+              "resolution": 2,
+              "bounds": {
+                "type": 5,
+                "x": 30,
+                "y": 586,
+                "width": 197,
+                "height": 20
+              },
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "hero/climax-eye-quote",
+              "text": "留住好牌，且看下一着。",
+              "resolution": 2,
+              "bounds": {
+                "type": 5,
+                "x": 30,
+                "y": 495.5,
+                "width": 220,
+                "height": 22
+              },
+              "scaleX": 1,
+              "scaleY": 1
+            }
+          ],
+          "screenshot": "390-skill-0-eyes.png"
+        },
+        {
+          "shot": "skill",
+          "now": 16663.700000000186,
+          "density": 2,
+          "images": [
+            {
+              "name": "hero/climax-portrait",
+              "key": "opening-portrait-laohuan",
+              "scale": 0.24682926829268295,
+              "width": 615,
+              "height": 768,
+              "bounds": {
+                "type": 5,
+                "x": 30,
+                "y": 312.71756097560973,
+                "width": 151.8,
+                "height": 189.56487804878049
+              }
+            }
+          ],
+          "texts": [
+            {
+              "name": "hero/climax-name",
+              "text": "戏法换牌",
+              "resolution": 2,
+              "bounds": {
+                "type": 5,
+                "x": 30,
+                "y": 142,
+                "width": 145,
+                "height": 41
+              },
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "hero/climax-owner",
+              "text": "辛弃疾 · 墨影醉里挑灯看剑 · 技能兑现 · 正式立绘",
+              "resolution": 2,
+              "bounds": {
+                "type": 5,
+                "x": 30,
+                "y": 187,
+                "width": 279,
+                "height": 38
+              },
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "hero/climax-note",
+              "text": "多看2张 · 8♠；不增加计分",
+              "resolution": 2,
+              "bounds": {
+                "type": 5,
+                "x": 30,
+                "y": 586,
+                "width": 197,
+                "height": 20
+              },
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "hero/climax-value-label",
+              "text": "实际留牌",
+              "resolution": 2,
+              "bounds": {
+                "type": 5,
+                "x": 200,
+                "y": 298.5,
+                "width": 72,
+                "height": 21
+              },
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "hero/climax-value",
+              "text": "1张",
+              "resolution": 2,
+              "bounds": {
+                "type": 5,
+                "x": 218,
+                "y": 326.5,
+                "width": 124,
+                "height": 92
+              },
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "hero/climax-source-title",
+              "text": "辛弃疾 · 戏法留牌",
+              "resolution": 2,
+              "bounds": {
+                "type": 5,
+                "x": 30,
+                "y": 652,
+                "width": 127,
+                "height": 19
+              },
+              "scaleX": 1,
+              "scaleY": 1
+            }
+          ],
+          "screenshot": "390-skill-1-skill.png"
+        },
+        {
+          "shot": "landing",
+          "now": 17262,
+          "density": 2,
+          "images": [],
+          "texts": [
+            {
+              "name": "hero/climax-name",
+              "text": "戏法换牌",
+              "resolution": 2,
+              "bounds": {
+                "type": 5,
+                "x": 30,
+                "y": 142,
+                "width": 145,
+                "height": 41
+              },
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "hero/climax-owner",
+              "text": "辛弃疾 · 墨影醉里挑灯看剑 · 技能兑现 · 正式立绘",
+              "resolution": 2,
+              "bounds": {
+                "type": 5,
+                "x": 30,
+                "y": 187,
+                "width": 279,
+                "height": 38
+              },
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "hero/climax-note",
+              "text": "多看2张 · 8♠；不增加计分",
+              "resolution": 2,
+              "bounds": {
+                "type": 5,
+                "x": 30,
+                "y": 586,
+                "width": 197,
+                "height": 20
+              },
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "hero/climax-value-label",
+              "text": "实际留牌",
+              "resolution": 2,
+              "bounds": {
+                "type": 5,
+                "x": 30,
+                "y": 247,
+                "width": 80,
+                "height": 22
+              },
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "hero/climax-value",
+              "text": "1张",
+              "resolution": 2,
+              "bounds": {
+                "type": 5,
+                "x": 90.5,
+                "y": 299,
+                "width": 209,
+                "height": 154
+              },
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "hero/climax-landing",
+              "text": "留1张 · 已保存",
+              "resolution": 2,
+              "bounds": {
+                "type": 5,
+                "x": 30,
+                "y": 652,
+                "width": 117,
+                "height": 21
+              },
+              "scaleX": 1,
+              "scaleY": 1
+            }
+          ],
+          "screenshot": "390-skill-2-landing.png"
+        }
+      ],
+      "coldRestore": "entire state/journal/storage unchanged; no carried selector revival",
+      "status": "PASS",
+      "skillMetrics": {
+        "width": 390,
+        "paintedFrames": 66,
+        "maxFocusFramebufferScale": 0.8131538461538461,
+        "maxSubjectHoldMs": 1004.7000000001863,
+        "minTextResolution": 2
+      }
+    },
+    {
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "errors": [],
+      "startup": {
+        "loaded": 10,
+        "total": 146,
+        "progress": 10,
+        "scrollX": false,
+        "scrollY": false
+      },
+      "loadingReady": {
+        "key": "title",
+        "total": 146,
+        "loaded": 146,
+        "failed": 0,
+        "pending": 0,
+        "keys": [
+          "p00-paper",
+          "p00-card-back",
+          "p00-frame-common",
+          "p00-frame-uncommon",
+          "p00-frame-rare",
+          "p00-mark-joker",
+          "p00-mark-plus",
+          "p00-mark-times",
+          "avatar-amo",
+          "selection-portrait-amo",
+          "avatar-touye",
+          "selection-portrait-touye",
+          "avatar-laohuan",
+          "selection-portrait-laohuan",
+          "avatar-erxiang",
+          "selection-portrait-erxiang",
+          "avatar-azao",
+          "selection-portrait-azao",
+          "avatar-xiemu",
+          "selection-portrait-xiemu",
+          "p08-court-j",
+          "p08-court-q",
+          "p08-court-k",
+          "p08-joker-mantangcai",
+          "p08-joker-jiedongfeng",
+          "p08-joker-c04",
+          "p08-joker-b10",
+          "p08-joker-b03",
+          "p08-joker-c06",
+          "p08-joker-f04",
+          "p08-joker-e07",
+          "p08-joker-f09",
+          "p08-joker-f07",
+          "p08-joker-d07",
+          "p08-joker-a07",
+          "p08-joker-a08",
+          "p08-joker-c03",
+          "p08-joker-d02",
+          "p08-joker-e02",
+          "p08-joker-e09",
+          "p08-joker-tiesuanpan",
+          "p08-joker-f10",
+          "p08-joker-c08",
+          "p08-joker-c09",
+          "p08-joker-pengci",
+          "p08-joker-huimaqiang",
+          "p08-joker-b07",
+          "p08-joker-a09",
+          "p08-joker-d06",
+          "p08-joker-a04",
+          "p08-joker-e04",
+          "p08-joker-c05",
+          "p08-joker-c02",
+          "p08-joker-f03",
+          "p08-joker-a03",
+          "p08-joker-b02",
+          "p08-joker-b04",
+          "p08-joker-d01",
+          "p08-joker-f02",
+          "p08-joker-d10",
+          "p08-joker-e01",
+          "p08-joker-b05",
+          "p08-joker-b08",
+          "p08-joker-d05",
+          "p08-joker-e03",
+          "p08-joker-e06",
+          "p08-joker-f05",
+          "p08-joker-f11",
+          "p08-joker-b06",
+          "p08-joker-a11",
+          "p08-joker-d04",
+          "p08-joker-c07",
+          "p08-joker-d11",
+          "p08-joker-d08",
+          "p08-joker-d09",
+          "p08-joker-b12",
+          "p08-joker-a05",
+          "p08-joker-d03",
+          "p08-joker-a10",
+          "p08-joker-b11",
+          "p08-joker-c10",
+          "p08-joker-d12",
+          "p08-joker-a06",
+          "p08-joker-a12",
+          "p08-joker-b09",
+          "p08-joker-c11",
+          "p08-joker-c12",
+          "p08-joker-e10",
+          "p08-joker-e12",
+          "p08-joker-e05",
+          "p08-joker-e08",
+          "p08-joker-e11",
+          "p08-joker-f06",
+          "p08-joker-f08",
+          "p08-joker-f12",
+          "goods-art/T12",
+          "goods-art/U07",
+          "goods-art/P11",
+          "goods-art/S02",
+          "goods-art/U01",
+          "goods-art/U02",
+          "goods-art/U03",
+          "goods-art/U04",
+          "goods-art/U05",
+          "goods-art/U06",
+          "goods-art/U08",
+          "goods-art/U09",
+          "goods-art/U10",
+          "goods-art/U11",
+          "goods-art/U12",
+          "goods-art/T06",
+          "goods-art/T07",
+          "goods-art/T08",
+          "goods-art/T09",
+          "goods-art/T10",
+          "goods-art/T11",
+          "goods-art/T13",
+          "goods-art/T14",
+          "goods-art/T15",
+          "goods-art/T16",
+          "goods-art/T17",
+          "goods-art/T18",
+          "goods-art/T01",
+          "goods-art/T02",
+          "goods-art/T03",
+          "goods-art/T04",
+          "goods-art/T05",
+          "goods-art/P01",
+          "goods-art/P02",
+          "goods-art/P03",
+          "goods-art/P04",
+          "goods-art/P05",
+          "goods-art/P06",
+          "goods-art/P07",
+          "goods-art/P08",
+          "goods-art/P09",
+          "goods-art/P10",
+          "goods-art/P12",
+          "goods-art/S01",
+          "goods-art/T19",
+          "goods-art/S03",
+          "goods-art/S04",
+          "goods-art/S05",
+          "goods-art/S06",
+          "goods-art/S07",
+          "goods-art/S08"
+        ],
+        "status": "ready"
+      },
+      "selection": {
+        "id": "laohuan",
+        "images": [
+          "d44-paper-14870757-6.9-4.5",
+          "selection-portrait-laohuan",
+          "d44-paper-16775662-16.5-14.8",
+          "selection-portrait-amo",
+          "d44-paper-16775662-16.5-14.8",
+          "selection-portrait-touye",
+          "d44-paper-14870757-16.5-14.8",
+          "selection-portrait-laohuan",
+          "d44-paper-16775662-16.5-14.8",
+          "selection-portrait-erxiang",
+          "d44-paper-16775662-16.5-14.8",
+          "selection-portrait-azao",
+          "d44-paper-16775662-16.5-14.8",
+          "selection-portrait-xiemu"
+        ]
+      },
+      "purchaseChoice": {
+        "id": "T08",
+        "kind": "basic",
+        "price": 2,
+        "startingGold": 6
+      },
+      "purchase": {
+        "commands": [
+          {
+            "runId": "run/tangsong-native-carry/laohuan",
+            "commandId": "run/tangsong-native-carry/laohuan/command/2",
+            "expectedSeq": 1,
+            "action": {
+              "type": "BuyBasicTool",
+              "definitionId": "T08",
+              "shopSeq": 1
+            }
+          }
+        ],
+        "fullStateJournalStorageRngEqual": true
+      },
+      "instanceId": "run/tangsong-native-carry/laohuan/tool/run/tangsong-native-carry/laohuan/command/2",
+      "entry": {
+        "commands": [
+          {
+            "runId": "run/tangsong-native-carry/laohuan",
+            "commandId": "run/tangsong-native-carry/laohuan/command/3",
+            "expectedSeq": 2,
+            "action": {
+              "type": "LeaveShop"
+            }
+          },
+          {
+            "runId": "run/tangsong-native-carry/laohuan",
+            "commandId": "run/tangsong-native-carry/laohuan/command/4",
+            "expectedSeq": 3,
+            "action": {
+              "type": "EnterStage"
+            }
+          }
+        ],
+        "fullStateJournalStorageRngEqual": true
+      },
+      "guard": {
+        "allDealt": true,
+        "intentCleared": true,
+        "ready": true
+      },
+      "avatar": [
+        "avatar-laohuan",
+        "d44-paper-16775662-23.5-8.0",
+        "p00-card-back",
+        "d44-paper-16775662-23.5-8.0",
+        "p00-card-back",
+        "d44-paper-16775662-23.5-8.0",
+        "p00-card-back",
+        "d44-paper-16775662-23.5-8.0",
+        "p00-card-back",
+        "d44-paper-16775662-23.5-8.0",
+        "p00-card-back",
+        "d44-paper-16775662-3.4-6.7",
+        "d44-paper-16775662-24.0-8.5",
+        "d44-paper-16775662-24.0-8.5",
+        "d44-paper-16775662-24.0-8.5",
+        "d44-paper-16775662-24.0-8.5",
+        "d44-paper-16775662-24.0-8.5",
+        "d44-paper-16775662-24.0-8.5",
+        "d44-paper-16775662-24.0-8.5",
+        "d44-paper-16775662-24.0-8.5"
+      ],
+      "target": "spades-13",
+      "use": {
+        "commands": [
+          {
+            "runId": "run/tangsong-native-carry/laohuan",
+            "commandId": "run/tangsong-native-carry/laohuan/command/5",
+            "expectedSeq": 4,
+            "action": {
+              "type": "UseConsumable",
+              "instanceId": "run/tangsong-native-carry/laohuan/tool/run/tangsong-native-carry/laohuan/command/2",
+              "targetIds": [
+                "spades-13"
+              ]
+            }
+          }
+        ],
+        "fullStateJournalStorageRngEqual": true
+      },
+      "rankChange": {
+        "before": 13,
+        "after": 14
+      },
+      "skillDiscard": {
+        "commands": [
+          {
+            "runId": "run/tangsong-native-carry/laohuan",
+            "commandId": "run/tangsong-native-carry/laohuan/command/6",
+            "expectedSeq": 5,
+            "action": {
+              "type": "DiscardHand",
+              "selectedIds": [
+                "clubs-12"
+              ],
+              "laohuanTrick": true
+            }
+          }
+        ],
+        "fullStateJournalStorageRngEqual": true
+      },
+      "skillKeep": {
+        "commands": [
+          {
+            "runId": "run/tangsong-native-carry/laohuan",
+            "commandId": "run/tangsong-native-carry/laohuan/command/7",
+            "expectedSeq": 6,
+            "action": {
+              "type": "ChooseRefill",
+              "selectedIds": [
+                "spades-8"
+              ]
+            }
+          }
+        ],
+        "fullStateJournalStorageRngEqual": true
+      },
+      "skillShots": [
+        {
+          "shot": "eyes",
+          "now": 12776.200000000186,
+          "density": 2,
+          "images": [
+            {
+              "name": "hero/climax-eyes",
+              "key": "portrait-focus-laohuan",
+              "scale": 0.21342307692307694,
+              "width": 520,
+              "height": 520,
+              "bounds": {
+                "type": 5,
+                "x": 104.50999999999999,
+                "y": 194.32,
+                "width": 110.98000000000002,
+                "height": 110.98000000000002
+              }
+            }
+          ],
+          "texts": [
+            {
+              "name": "hero/climax-name",
+              "text": "戏法换牌",
+              "resolution": 2,
+              "bounds": {
+                "type": 5,
+                "x": 30,
+                "y": 85,
+                "width": 145,
+                "height": 41
+              },
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "hero/climax-owner",
+              "text": "辛弃疾 · 墨影醉里挑灯看剑 · 技能兑现 · 正式立绘",
+              "resolution": 2,
+              "bounds": {
+                "type": 5,
+                "x": 30,
+                "y": 130,
+                "width": 200,
+                "height": 38
+              },
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "hero/climax-note",
+              "text": "多看2张 · 8♠；不增加计分",
+              "resolution": 2,
+              "bounds": {
+                "type": 5,
+                "x": 30,
+                "y": 367,
+                "width": 197,
+                "height": 20
+              },
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "hero/climax-eye-quote",
+              "text": "留住好牌，且看下一着。",
+              "resolution": 2,
+              "bounds": {
+                "type": 5,
+                "x": 30,
+                "y": 325.5,
+                "width": 220,
+                "height": 22
+              },
+              "scaleX": 1,
+              "scaleY": 1
+            }
+          ],
+          "screenshot": "320-skill-0-eyes.png"
+        },
+        {
+          "shot": "skill",
+          "now": 13049.5,
+          "density": 2,
+          "images": [
+            {
+              "name": "hero/climax-portrait",
+              "key": "opening-portrait-laohuan",
+              "scale": 0.19447154471544717,
+              "width": 615,
+              "height": 768,
+              "bounds": {
+                "type": 5,
+                "x": 30.000000000000007,
+                "y": 194.82292682926828,
+                "width": 119.60000000000002,
+                "height": 149.35414634146343
+              }
+            }
+          ],
+          "texts": [
+            {
+              "name": "hero/climax-name",
+              "text": "戏法换牌",
+              "resolution": 2,
+              "bounds": {
+                "type": 5,
+                "x": 30,
+                "y": 85,
+                "width": 145,
+                "height": 41
+              },
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "hero/climax-owner",
+              "text": "辛弃疾 · 墨影醉里挑灯看剑 · 技能兑现 · 正式立绘",
+              "resolution": 2,
+              "bounds": {
+                "type": 5,
+                "x": 30,
+                "y": 130,
+                "width": 200,
+                "height": 38
+              },
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "hero/climax-note",
+              "text": "多看2张 · 8♠；不增加计分",
+              "resolution": 2,
+              "bounds": {
+                "type": 5,
+                "x": 30,
+                "y": 367,
+                "width": 197,
+                "height": 20
+              },
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "hero/climax-value-label",
+              "text": "实际留牌",
+              "resolution": 2,
+              "bounds": {
+                "type": 5,
+                "x": 167.5,
+                "y": 212,
+                "width": 72,
+                "height": 21
+              },
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "hero/climax-value",
+              "text": "1张",
+              "resolution": 2,
+              "bounds": {
+                "type": 5,
+                "x": 168.5,
+                "y": 240,
+                "width": 121,
+                "height": 90
+              },
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "hero/climax-source-title",
+              "text": "辛弃疾 · 戏法留牌",
+              "resolution": 2,
+              "bounds": {
+                "type": 5,
+                "x": 30,
+                "y": 433,
+                "width": 127,
+                "height": 19
+              },
+              "scaleX": 1,
+              "scaleY": 1
+            }
+          ],
+          "screenshot": "320-skill-1-skill.png"
+        },
+        {
+          "shot": "landing",
+          "now": 13634.400000000373,
+          "density": 2,
+          "images": [],
+          "texts": [
+            {
+              "name": "hero/climax-name",
+              "text": "戏法换牌",
+              "resolution": 2,
+              "bounds": {
+                "type": 5,
+                "x": 30,
+                "y": 85,
+                "width": 145,
+                "height": 41
+              },
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "hero/climax-owner",
+              "text": "辛弃疾 · 墨影醉里挑灯看剑 · 技能兑现 · 正式立绘",
+              "resolution": 2,
+              "bounds": {
+                "type": 5,
+                "x": 30,
+                "y": 130,
+                "width": 200,
+                "height": 38
+              },
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "hero/climax-note",
+              "text": "多看2张 · 8♠；不增加计分",
+              "resolution": 2,
+              "bounds": {
+                "type": 5,
+                "x": 30,
+                "y": 367,
+                "width": 197,
+                "height": 20
+              },
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "hero/climax-value-label",
+              "text": "实际留牌",
+              "resolution": 2,
+              "bounds": {
+                "type": 5,
+                "x": 30,
+                "y": 190,
+                "width": 80,
+                "height": 22
+              },
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "hero/climax-value",
+              "text": "1张",
+              "resolution": 2,
+              "bounds": {
+                "type": 5,
+                "x": 86.5,
+                "y": 242,
+                "width": 147,
+                "height": 109
+              },
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            {
+              "name": "hero/climax-landing",
+              "text": "留1张 · 已保存",
+              "resolution": 2,
+              "bounds": {
+                "type": 5,
+                "x": 30,
+                "y": 433,
+                "width": 117,
+                "height": 21
+              },
+              "scaleX": 1,
+              "scaleY": 1
+            }
+          ],
+          "screenshot": "320-skill-2-landing.png"
+        }
+      ],
+      "coldRestore": "entire state/journal/storage unchanged; no carried selector revival",
+      "status": "PASS",
+      "skillMetrics": {
+        "width": 320,
+        "paintedFrames": 71,
+        "maxFocusFramebufferScale": 0.4268461538461539,
+        "maxSubjectHoldMs": 1008.6999999992549,
+        "minTextResolution": 2
+      }
+    }
+  ],
+  "startupCatalog": {
+    "items": 146,
+    "pixels": 4458496,
+    "budgetPixels": 5242880
+  },
+  "sourceUnchanged": true,
+  "status": "PASS"
+}
