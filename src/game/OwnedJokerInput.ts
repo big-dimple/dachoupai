@@ -2,6 +2,7 @@ import type Phaser from 'phaser';
 import type {Box} from './layout';
 import {PointerIntent} from './PointerIntent';
 import {modalBlocksCanvas} from './DetailDialog';
+import {requestOwnedJokerPickupHaptic} from './OwnedJokerHaptics';
 
 type OwnedCard=Box&{id:string};
 interface Options {
@@ -58,7 +59,7 @@ export class OwnedJokerInput {
     if(e.pointerType!=='touch')e.preventDefault();
     this.timer=setTimeout(()=>{const o=this.owner;if(o&&!o.canceled&&this.options.inspectable()&&!document.querySelector('dialog[open]')&&this.intent.hold(performance.now())&&o.canDrag&&this.options.ready())this.lift(o);},355);
   };
-  private lift(o:NonNullable<OwnedJokerInput['owner']>){if(o.lifted)return;o.lifted=true;this.surface.style.cursor='grabbing';this.options.lift(o.id,o.x,o.y);}
+  private lift(o:NonNullable<OwnedJokerInput['owner']>){if(o.lifted)return;o.lifted=true;this.surface.style.cursor='grabbing';this.options.lift(o.id,o.x,o.y);requestOwnedJokerPickupHaptic(o.touch);}
   private readonly move=(e:PointerEvent)=>{
     const o=this.owner;if(!o||e.pointerId!==o.pointerId)return;
     if(e.pointerType!=='touch'&&e.buttons===0){this.cancel();this.finish();return;}
