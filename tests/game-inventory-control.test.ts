@@ -62,10 +62,10 @@ it('stable readonly/paused permits inspection, while saving and replacement bloc
 it('inventory inspection passes write readiness separately and rechecks lease, sequence and phase on old confirmations',async()=>{
  const run=pending(),state=send(run,{type:'ChooseRefill',selectedIds:run.pendingRefill!.candidateIds.slice(0,1)}),{s}=scene(run);s.run=state;s.command=vi.fn(async()=>true);
  s.inspectInventory();const sendTool=vi.mocked(showConsumables).mock.calls.at(-1)![3],action:Action={type:'UseConsumable',instanceId:'owned/T17',targetIds:[]};
- expect(showConsumables).toHaveBeenLastCalledWith(s.dialog,state,true,expect.any(Function));
+ expect(showConsumables).toHaveBeenLastCalledWith(s.dialog,state,true,expect.any(Function),undefined);
  expect(await sendTool(action,state.commandSeq-1)).toBe(false);expect(s.command).not.toHaveBeenCalled();
  gate.session.lease.writable=false;expect(await sendTool(action,state.commandSeq)).toBe(false);expect(s.command).not.toHaveBeenCalled();
- for(const status of ['readonly','paused']){gate.controller.status=status;s.inspectInventory();expect(showConsumables).toHaveBeenLastCalledWith(s.dialog,state,false,expect.any(Function));expect(await sendTool(action,state.commandSeq)).toBe(false);}
+ for(const status of ['readonly','paused']){gate.controller.status=status;s.inspectInventory();expect(showConsumables).toHaveBeenLastCalledWith(s.dialog,state,false,expect.any(Function),undefined);expect(await sendTool(action,state.commandSeq)).toBe(false);}
  gate.controller.status='idle';gate.session.lease.writable=true;s.run=run;expect(await sendTool(action,state.commandSeq)).toBe(false);expect(s.command).not.toHaveBeenCalled();
  s.run=state;expect(await sendTool(action,state.commandSeq)).toBe(true);expect(s.command).toHaveBeenCalledExactlyOnceWith(action,state.commandSeq);
 });
@@ -74,4 +74,19 @@ it('a pending Touye wager retains the inventory lock even though its phase is aw
  let run=createRun({rulesVersion:'r2',characterId:'touye',seed:'touye-entry-unit',runId:'unit/touye-entry',r2Identity:newRunIdentity('touye','group'),openingRoute:'group'});
  run=send(send(run,{type:'LeaveShop'}),{type:'EnterStage'});
  const {s,button}=scene(pending());s.run={...run,stage:{...run.stage,touyeWager:{resolution:'pending'}}};s.updateInventoryControl();expect(button.input.enabled).toBe(false);
+});
+
+it('the carried selector waits for explanations, dealing and write readiness, then opens only once with the exact instance',()=>{
+ const pendingRun=pending(),state=send(pendingRun,{type:'ChooseRefill',selectedIds:pendingRun.pendingRefill!.candidateIds.slice(0,1)}),{s}=scene(pendingRun);
+ s.run={...state,consumables:[{instanceId:'old/same',definitionId:'T08'},{instanceId:'bought/exact',definitionId:'T08'}]};
+ s.carriedTool={runId:state.runId,stageIndex:state.stageIndex,shopSeq:state.commandSeq-2,instanceId:'bought/exact'};s.cardViews=[{dealing:true}];
+ let modal=true;vi.stubGlobal('document',{hidden:false,querySelector:()=>modal?{}:null});
+ try {
+  s.update(0);expect(showConsumables).not.toHaveBeenCalled();modal=false;s.update(1);expect(showConsumables).not.toHaveBeenCalled();
+  s.cardViews[0].dealing=false;gate.session.lease.writable=false;s.update(2);expect(showConsumables).not.toHaveBeenCalled();
+  gate.session.lease.writable=true;s.run={...s.run,pendingRefill:{}};s.update(3);expect(showConsumables).not.toHaveBeenCalled();s.run={...s.run,pendingRefill:null};
+  s.update(4);expect(showConsumables).toHaveBeenCalledExactlyOnceWith(s.dialog,s.run,true,expect.any(Function),'bought/exact');expect(s.carriedTool).toBeUndefined();
+  s.update(5);expect(showConsumables).toHaveBeenCalledOnce();
+  s.carriedTool={runId:state.runId,stageIndex:state.stageIndex,shopSeq:state.commandSeq-2,instanceId:'bought/exact'};s.run={...s.run,phase:'pending-refill'};s.update(6);expect(s.carriedTool).toBeUndefined();expect(showConsumables).toHaveBeenCalledOnce();
+ }finally{vi.unstubAllGlobals();}
 });
