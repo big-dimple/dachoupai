@@ -4,6 +4,7 @@ import {renderToolCard} from './CandidateCardPreview';
 import {enhancementText} from './CardSpecialLabels';
 import {toolCardChange,renderCardChange,renderHandChange,handLevelChangeText as handChange} from './ToolChangePreview';
 import {toolCardTargetStatus,toolCardMatches} from './ToolTargetDirectory';
+import {toolPermanentValue} from './ToolPermanentValue';
 import {currentBuildFocus,focusedUpgradeTypes} from './BuildJourney';
 import type {Action,R2RunState} from '../domain/run';
 import {HAND_LABELS} from '../content/handLabels';
@@ -315,6 +316,8 @@ export function showConsumables(dialog:DetailDialog,state:R2RunState,ready:boole
       confirm.textContent=busy?'正在保存…':clearing.length?'清除增强／版次':replacementNotes.length?'替换增强':'确认使用';costs.classList.toggle('is-replacement',!!(replacementNotes.length||clearing.length));
       costs.textContent=[...clearing,...new Set(replacementNotes),...exchangeCost,...lines.filter(line=>/^(额外使用代价|清空全部金币|下一场起|破碎风险)/.test(line)||operation.kind==='delete-cards'&&line.startsWith('有效牌组'))].join('\n');costs.hidden=!costs.textContent;
       const compactPreview=tool.id==='S05'||tool.id==='T12';
+      const permanent=toolPermanentValue(state,tool.id,issue?undefined:{type:'UseConsumable',instanceId,targetIds:[...selection.ids],...(selection.suit?{suit:selection.suit}:{}),...(selection.sacrificeId?{sacrificeId:selection.sacrificeId}:{})});
+      if(permanent)lines.push(permanent);
       preview.hidden=compactPreview;preview.textContent=compactPreview?'':operation.kind==='clear-deck-specials'&&issue?issue:lines.join('\n\n')||'选择目标后，这里会显示变化与代价。';
     }
     refresh();

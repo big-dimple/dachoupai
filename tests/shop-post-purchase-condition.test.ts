@@ -26,7 +26,7 @@ function baoEvents(s:R2RunState){
  const t=scoreR2Hand({rulesVersion:'r2',runId:s.runId,rootId:'public/threshold',hand,selectedIds,disabledIds:[],jokers:s.jokers,definitions:r2JokerDefinitionsFor(s),handLevels:s.handLevels,playIndex:1,handsBeforePlay:4,previousHandType:null,wager:false,rng:s.rng.rule,...r2ScoreContext(s,hand,selectedIds)});
  return t.events.filter(e=>e.sourceDefinitionId==='e08'&&e.operation==='multiply-multiplier');
 }
-it.each([[26,18,2,false],[28,20,4,true]] as const)('new Baochang uses actual %i→%i cash, shared guidance and real scorer', (gold,after,stars,active)=>{
+it.each([[26,18,2,false],[28,20,3,true]] as const)('new Baochang uses actual %i→%i cash, shared guidance and real scorer', (gold,after,stars,active)=>{
  const {s,o}=setup(gold),before=structuredClone(s);
  expect(shopRecommendation(s,o,'group').stars).toBe(stars);
  const g=shopOfferGuidance(s,o);expect(g).toMatchObject({stars,operation:'可购买'});expect(g.condition).toContain(`买后${after}金`);
@@ -34,9 +34,9 @@ it.each([[26,18,2,false],[28,20,4,true]] as const)('new Baochang uses actual %i�
  const bought=send(s,{type:'BuyOffer',offerId:o.offerId});expect(bought.gold).toBe(after);expect(baoEvents(bought).length>0).toBe(active);
  expect(s).toEqual(before);
 });
-it('buying another card still exposes the retained Baochang loss without blanket star suppression',()=>{
+it('buying zero-growth b10 accounts for the retained Baochang loss',()=>{
  const {s,o}=setup(26,'b10');s.jokers.push(r2CreateJoker('e08','held/bao',8,'none',s));s.gold=23;
- const before=structuredClone(s),g=shopOfferGuidance(s,o);expect(g.stars).toBe(4);expect(g.operation).toBe('可购买');expect(g.operationShort).toBe('现金风险');expect(g.detail).toContain('23→19');expect(g.detail).toContain('包场买后19金，暂不触发');
+ const before=structuredClone(s),g=shopOfferGuidance(s,o);expect(g.stars).toBe(1);expect(g.operation).toBe('可购买');expect(g.operationShort).toBe('现金风险');expect(g.detail).toContain('23→19');expect(g.detail).toContain('包场买后19金，暂不触发');
  expect(baoEvents(send(s,{type:'BuyOffer',offerId:o.offerId}))).toHaveLength(0);expect(s).toEqual(before);
 });
 it('full slots require the specified actual sale, preserve growth/discount consequences and clear on changing selection',()=>{
@@ -44,7 +44,7 @@ it('full slots require the specified actual sale, preserve growth/discount conse
  s.jokers[4].growth.coefficient={n:'3',d:'2'};s.purchaseCoupons=1;s.shop!.purchases=0;
  const before=structuredClone(s),discount=s.jokers[1],other=s.jokers[4];
  expect(shopPurchaseCashFacts(s,o)).toEqual({status:'needs-selection'});expect(shopOfferGuidance(s,o)).toMatchObject({operation:'需替换',replaceId:undefined,purchaseConditionLosses:[]});expect(shopOfferGuidance(s,o).condition).toContain('先指定替换对象');
- for(const [sold,gold,price,stars] of [[discount,19,6,2],[other,23,5,4]] as const){
+ for(const [sold,gold,price,stars] of [[discount,19,6,2],[other,23,5,2]] as const){
   const g=shopOfferGuidance(s,o,sold),tx=shopReplacementTransactionFacts(s,o,sold);
   expect(g.stars).toBe(stars);expect(tx).toMatchObject({status:'ready',price,goldAfterPurchase:gold});expect(g.purchaseConditionLosses).toEqual(tx.cashLosses);
   expect(shopReplacementCompactFacts(s,sold,tx).join('\n')).toContain(`买后${gold}金`);
@@ -63,7 +63,7 @@ it('full Joker slots do not suppress a legal tool purchase warning for retained 
  expect(shopPurchaseCashFacts(s,o)).toMatchObject({status:'assessed',goldAfterPurchase:19});expect(shopPurchaseConditionLosses(s,o).join('\n')).toContain('包场买后19金，暂不触发');
 });
 it('discounted purchase uses the real threshold, while ordinary high / rare low / five-star core remain possible',()=>{
- const {s,o}=setup(26);s.purchaseCoupons=1;expect(shopOfferGuidance(s,o)).toMatchObject({stars:4,condition:expect.stringContaining('买后20金')});s.purchaseCoupons=0;expect(shopOfferGuidance(s,o).stars).toBe(2);
+ const {s,o}=setup(26);s.purchaseCoupons=1;expect(shopOfferGuidance(s,o)).toMatchObject({stars:3,condition:expect.stringContaining('买后20金')});s.purchaseCoupons=0;expect(shopOfferGuidance(s,o).stars).toBe(2);
  const high={...o,definitionId:'b06',price:r2Price('b06','none',s)};s.gold=0;expect(shopOfferGuidance(s,high)).toMatchObject({stars:4,operation:expect.stringContaining('差')});
  s.deckInstances=s.deckInstances.filter(c=>c.rank===7||c.rank===8&&c.suit!=='spades'||c.rank===9&&['hearts','clubs'].includes(c.suit)||c.rank===10&&c.suit==='hearts');
  expect(shopRecommendation(s,high,'group').stars).toBe(5);

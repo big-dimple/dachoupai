@@ -1,0 +1,347 @@
+
+ RUN  v4.1.11 /workspace/dachoupai
+
+ ❯ tests/shop-replacement-cash-risk.test.ts (20 tests | 15 failed) 845ms
+   × rates the real selected trade lower when a zero-growth buy disables retained Baochang 191ms
+   × uses actual original cash 22 and sold paid price 0 at the 20-gold boundary 45ms
+   × uses actual original cash 23 and sold paid price 0 at the 20-gold boundary 27ms
+   × uses actual original cash 22 and sold paid price 8 at the 20-gold boundary 25ms
+   × uses the same authoritative purchase baseline after a sale, after checkpoint read and without sale history 51ms
+   × initial-cash-19: preview and actual continuation share the post-sale buy baseline 40ms
+   × sold-hand-rule: preview and actual continuation share the post-sale buy baseline 30ms
+   × sale-growth: preview and actual continuation share the post-sale buy baseline 20ms
+   × B06 sale-enabled retained growth is already in the purchase baseline, not a buy reward 38ms
+   × B06 sale-enabled retained edition is already in the purchase baseline, not a buy reward 36ms
+   × coupons and removed discounts are evaluated by the real sale and buy commands 18ms
+   × does not project an unspecified full shop, and only checks the authoritative buy baseline cash 12ms
+   × removed Baochang and positive purchase-growth hooks remain outside the downgrade 30ms
+   × a purchase hook on a still-disabled B06 receiver is not a current scoring compensation 18ms
+   × a currently banned retained cash source and a changed hand-rule donor are not assumed to supply lost strength 25ms
+ ❯ tests/shop-post-purchase-condition.test.ts (7 tests | 4 failed) 213ms
+   × new Baochang uses actual 28→20 cash, shared guidance and real scorer 22ms
+   × buying another card still exposes the retained Baochang loss without blanket star suppression 15ms
+   × full slots require the specified actual sale, preserve growth/discount consequences and clear on changing selection 61ms
+   × discounted purchase uses the real threshold, while ordinary high / rare low / five-star core remain possible 18ms
+ ❯ tests/shop-recommendation-evidence.test.ts (12 tests | 3 failed) 599ms
+   × group: all audited recommendations retain five complete display slots 69ms
+   × straight: all audited recommendations retain five complete display slots 59ms
+   × flush: all audited recommendations retain five complete display slots 61ms
+
+⎯⎯⎯⎯⎯⎯ Failed Tests 22 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/shop-post-purchase-condition.test.ts > new Baochang uses actual 28→20 cash, shared guidance and real scorer
+AssertionError: expected 3 to be 4 // Object.is equality
+
+- Expected
++ Received
+
+- 4
++ 3
+
+ ❯ tests/shop-post-purchase-condition.test.ts:31:48
+     29| it.each([[26,18,2,false],[28,20,4,true]] as const)('new Baochang uses …
+     30|  const {s,o}=setup(gold),before=structuredClone(s);
+     31|  expect(shopRecommendation(s,o,'group').stars).toBe(stars);
+       |                                                ^
+     32|  const g=shopOfferGuidance(s,o);expect(g).toMatchObject({stars,operati…
+     33|  expect(g.purchaseConditionLosses.length).toBe(active?0:1);if(!active)…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/22]⎯
+
+ FAIL  tests/shop-post-purchase-condition.test.ts > buying another card still exposes the retained Baochang loss without blanket star suppression
+AssertionError: expected 1 to be 4 // Object.is equality
+
+- Expected
++ Received
+
+- 4
++ 1
+
+ ❯ tests/shop-post-purchase-condition.test.ts:39:75
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/22]⎯
+
+ FAIL  tests/shop-post-purchase-condition.test.ts > full slots require the specified actual sale, preserve growth/discount consequences and clear on changing selection
+AssertionError: expected 2 to be 4 // Object.is equality
+
+- Expected
++ Received
+
+- 4
++ 2
+
+ ❯ tests/shop-post-purchase-condition.test.ts:49:19
+     47|  for(const [sold,gold,price,stars] of [[discount,19,6,2],[other,23,5,4…
+     48|   const g=shopOfferGuidance(s,o,sold),tx=shopReplacementTransactionFac…
+     49|   expect(g.stars).toBe(stars);expect(tx).toMatchObject({status:'ready'…
+       |                   ^
+     50|   expect(shopReplacementCompactFacts(s,sold,tx).join('\n')).toContain(…
+     51|   if(gold<20)expect(g.detail).toContain('暂不触发');else expect(g.purchase…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/22]⎯
+
+ FAIL  tests/shop-post-purchase-condition.test.ts > discounted purchase uses the real threshold, while ordinary high / rare low / five-star core remain possible
+AssertionError: expected { Object (stars, label, ...) } to match object { stars: 4, …(1) }
+(19 matching properties omitted from actual)
+
+- Expected
++ Received
+
+  {
+    "condition": "买后20金，满足20金门槛",
+-   "stars": 4,
++   "stars": 3,
+  }
+
+ ❯ tests/shop-post-purchase-condition.test.ts:66:75
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/22]⎯
+
+ FAIL  tests/shop-recommendation-evidence.test.ts > group: all audited recommendations retain five complete display slots
+ FAIL  tests/shop-recommendation-evidence.test.ts > straight: all audited recommendations retain five complete display slots
+ FAIL  tests/shop-recommendation-evidence.test.ts > flush: all audited recommendations retain five complete display slots
+AssertionError: expected '先指定替换对象，再核净补强' to contain '第4次'
+
+Expected: "第4次"
+Received: "先指定替换对象，再核净补强"
+
+ ❯ tests/shop-recommendation-evidence.test.ts:39:66
+     37|   const r=shopOfferGuidance(s,o);expect(r.stars).toBeLessThanOrEqual(5…
+     38|  }
+     39|  expect(shopRecommendation(s,s.shop!.offers[2],route).condition).toCon…
+       |                                                                  ^
+     40| });
+     41|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/22]⎯
+
+ FAIL  tests/shop-replacement-cash-risk.test.ts > rates the real selected trade lower when a zero-growth buy disables retained Baochang
+AssertionError: expected { stars: 1, reason: '保留对照更高', …(6) } to match object { stars: 2, reason: '购款将停用包场', …(2) }
+(35 matching properties omitted from actual)
+
+- Expected
++ Received
+
+  {
+    "combinationHint": "",
+    "condition": "购买前23→19金 · 新牌成长为0",
+-   "reason": "购款将停用包场",
+-   "stars": 2,
++   "reason": "保留对照更高",
++   "stars": 1,
+  }
+
+ ❯ tests/shop-replacement-cash-risk.test.ts:21:47
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/22]⎯
+
+ FAIL  tests/shop-replacement-cash-risk.test.ts > uses actual original cash 22 and sold paid price 0 at the 20-gold boundary
+AssertionError: expected 1 to be 2 // Object.is equality
+
+- Expected
++ Received
+
+- 2
++ 1
+
+ ❯ tests/shop-replacement-cash-risk.test.ts:29:60
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/22]⎯
+
+ FAIL  tests/shop-replacement-cash-risk.test.ts > uses actual original cash 23 and sold paid price 0 at the 20-gold boundary
+AssertionError: expected 1 to be 4 // Object.is equality
+
+- Expected
++ Received
+
+- 4
++ 1
+
+ ❯ tests/shop-replacement-cash-risk.test.ts:29:60
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[8/22]⎯
+
+ FAIL  tests/shop-replacement-cash-risk.test.ts > uses actual original cash 22 and sold paid price 8 at the 20-gold boundary
+AssertionError: expected 2 to be 4 // Object.is equality
+
+- Expected
++ Received
+
+- 4
++ 2
+
+ ❯ tests/shop-replacement-cash-risk.test.ts:29:60
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[9/22]⎯
+
+ FAIL  tests/shop-replacement-cash-risk.test.ts > uses the same authoritative purchase baseline after a sale, after checkpoint read and without sale history
+AssertionError: expected { Object (stars, label, ...) } to match object { stars: 2, label: '推荐指数 ★★☆☆☆', …(1) }
+(18 matching properties omitted from actual)
+
+- Expected
++ Received
+
+  {
+    "condition": "购买前23→19金 · 新牌成长为0",
+-   "label": "推荐指数 ★★☆☆☆",
+-   "stars": 2,
++   "label": "推荐指数 ★☆☆☆☆",
++   "stars": 1,
+  }
+
+ ❯ tests/shop-replacement-cash-risk.test.ts:34:36
+     32|  const s=replacementCashRiskFixture(),o=s.shop!.offers[0],sold=send(s,…
+     33|  expect(sold).toMatchObject({gold:23,shop:{soldJoker:true}});expect(so…
+     34|  expect(shopOfferGuidance(sold,o)).toMatchObject({stars:2,label:'推荐指数 …
+       |                                    ^
+     35|  const ordinary=structuredClone(sold);ordinary.shop!.soldJoker=false;e…
+     36| });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[10/22]⎯
+
+ FAIL  tests/shop-replacement-cash-risk.test.ts > initial-cash-19: preview and actual continuation share the post-sale buy baseline
+AssertionError: expected { Object (stars, label, ...) } to match object { stars: 2, label: '推荐指数 ★★☆☆☆' }
+(19 matching properties omitted from actual)
+
+- Expected
++ Received
+
+  {
+-   "label": "推荐指数 ★★☆☆☆",
+-   "stars": 2,
++   "label": "推荐指数 ★☆☆☆☆",
++   "stars": 1,
+  }
+
+ ❯ tests/shop-replacement-cash-risk.test.ts:46:68
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[11/22]⎯
+
+ FAIL  tests/shop-replacement-cash-risk.test.ts > sold-hand-rule: preview and actual continuation share the post-sale buy baseline
+ FAIL  tests/shop-replacement-cash-risk.test.ts > sale-growth: preview and actual continuation share the post-sale buy baseline
+AssertionError: expected 1 to be 2 // Object.is equality
+
+- Expected
++ Received
+
+- 2
++ 1
+
+ ❯ tests/shop-replacement-cash-risk.test.ts:43:73
+     41|  if(key==='sale-growth')s.jokers[3]=r2CreateJoker('e06','held/sale-gro…
+     42|  assertRunInvariants(s);const before=structuredClone(s);
+     43|  const preview=shopOfferGuidance(s,o,s.jokers[2]);expect(preview.stars…
+       |                                                                         ^
+     44|  const sale=send(s,{type:'SellJoker',instanceId:s.jokers[2].instanceId…
+     45|  if(key==='sale-growth')expect(sale.jokers.find(j=>j.definitionId==='e…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[12/22]⎯
+
+ FAIL  tests/shop-replacement-cash-risk.test.ts > B06 sale-enabled retained growth is already in the purchase baseline, not a buy reward
+ FAIL  tests/shop-replacement-cash-risk.test.ts > B06 sale-enabled retained edition is already in the purchase baseline, not a buy reward
+AssertionError: expected 1 to be 2 // Object.is equality
+
+- Expected
++ Received
+
+- 2
++ 1
+
+ ❯ tests/shop-replacement-cash-risk.test.ts:56:177
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[13/22]⎯
+
+ FAIL  tests/shop-replacement-cash-risk.test.ts > coupons and removed discounts are evaluated by the real sale and buy commands
+AssertionError: expected 1 to be 4 // Object.is equality
+
+- Expected
++ Received
+
+- 4
++ 1
+
+ ❯ tests/shop-replacement-cash-risk.test.ts:59:165
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[14/22]⎯
+
+ FAIL  tests/shop-replacement-cash-risk.test.ts > does not project an unspecified full shop, and only checks the authoritative buy baseline cash
+AssertionError: expected 2 to be 4 // Object.is equality
+
+- Expected
++ Received
+
+- 4
++ 2
+
+ ❯ tests/shop-replacement-cash-risk.test.ts:64:105
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[15/22]⎯
+
+ FAIL  tests/shop-replacement-cash-risk.test.ts > removed Baochang and positive purchase-growth hooks remain outside the downgrade
+AssertionError: expected 1 to be 4 // Object.is equality
+
+- Expected
++ Received
+
+- 4
++ 1
+
+ ❯ tests/shop-replacement-cash-risk.test.ts:68:201
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[16/22]⎯
+
+ FAIL  tests/shop-replacement-cash-risk.test.ts > a purchase hook on a still-disabled B06 receiver is not a current scoring compensation
+AssertionError: expected 1 to be 2 // Object.is equality
+
+- Expected
++ Received
+
+- 2
++ 1
+
+ ❯ tests/shop-replacement-cash-risk.test.ts:75:67
+     73|  const sale=send(s,{type:'SellJoker',instanceId:s.jokers[2].instanceId…
+     74|  expect(j.growth.heat).toEqual({n:'8',d:'1'});expect(r2ScoringDisabled…
+     75|  expect(shopOfferGuidance(s,s.shop!.offers[0],s.jokers[2]).stars).toBe…
+       |                                                                   ^
+     76| });
+     77| it('ordinary zero-growth readers are eligible, while immediate heat, r…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[17/22]⎯
+
+ FAIL  tests/shop-replacement-cash-risk.test.ts > a currently banned retained cash source and a changed hand-rule donor are not assumed to supply lost strength
+AssertionError: expected 1 to be 4 // Object.is equality
+
+- Expected
++ Received
+
+- 4
++ 1
+
+ ❯ tests/shop-replacement-cash-risk.test.ts:97:108
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[18/22]⎯
+
+
+ Test Files  3 failed | 2 passed (5)
+      Tests  22 failed | 36 passed (58)
+   Start at  06:06:42
+   Duration  3.00s (transform 2.93s, setup 0ms, import 4.40s, tests 2.65s, environment 1ms)
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice
