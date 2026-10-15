@@ -7,6 +7,7 @@ import {gzipSync} from 'node:zlib';
 import {execFileSync} from 'node:child_process';
 import {tapUI,waitScene,tapMenuAction,openMenuSection} from './ui.mjs';
 const root=process.env.B05_ROOT??process.cwd(),out=process.env.B05_OUTPUT??'/tmp/b05-opponent',baseline=!!process.env.B05_BASELINE;
+const onlyCases=new Set((process.env.B05_CASES??'').split(',').filter(Boolean));
 await mkdir(out,{recursive:true});
 const loader=await createServer({root:process.cwd(),logLevel:'error'});
 const {b05Entrance,b05ChoicesReady,b05Send,b05TerminalReady,B05_PAIR,B05_CHANGE}=await loader.ssrLoadModule('/tests/fixtures/b05-encounter.ts');
@@ -27,13 +28,20 @@ async function importState(p,state){
 }
 async function idle(p){await p.waitForFunction(()=>{const g=window.__harness.game,s=g.scene.getScene('game');return g.scene.isActive('intermission')||g.scene.isActive('game')&&s.controlsLive&&!s.playing;});}
 const tap=async(p,name,touch=false)=>p.getByRole('button',{name,exact:true})[touch?'tap':'click']();
-async function shot(p,key,row){await p.screenshot({path:out+'/'+key+'.png',scale:'css',fullPage:true});
-  const bounds=await p.evaluate(()=>[...document.querySelectorAll('dialog.opponent-dialog[open] button,.opponent-beat,.opponent-beat strong,.opponent-beat p')].map(e=>({text:e.textContent,bounds:e.getBoundingClientRect().toJSON(),scrollWidth:e.scrollWidth,clientWidth:e.clientWidth})));row.shots??=[];row.shots.push({key,bounds});
+async function shot(p,key,row){
+  const bounds=await p.evaluate(()=>[...document.querySelectorAll('dialog.opponent-dialog[open] button,.opponent-beat,.opponent-beat small,.opponent-beat strong,.opponent-beat p')].map(e=>{
+    const host=e.closest('.opponent-beat'),r=host?.getBoundingClientRect(),css=host&&getComputedStyle(host),range=document.createRange();range.selectNodeContents(e);
+    const parent=host&&host!==e?{left:r.left+parseFloat(css.borderLeftWidth)+parseFloat(css.paddingLeft),right:r.right-parseFloat(css.borderRightWidth)-parseFloat(css.paddingRight),top:r.top+parseFloat(css.borderTopWidth)+parseFloat(css.paddingTop),bottom:r.bottom-parseFloat(css.borderBottomWidth)-parseFloat(css.paddingBottom)}:undefined;
+    return {tag:e.tagName,host:e.classList.contains('opponent-beat'),text:e.textContent,bounds:e.getBoundingClientRect().toJSON(),scrollWidth:e.scrollWidth,clientWidth:e.clientWidth,parent,textBounds:parent?[...range.getClientRects()].map(r=>r.toJSON()):[]};
+  }));row.shots??=[];row.shots.push({key,bounds});
+  if(key.endsWith('-key')||key.endsWith('-opponent')||key==='390-reduced-repeat'){assert.equal(bounds.filter(i=>i.host).length,1,key+' opponent panel exists');assert.equal(bounds.filter(i=>i.parent).length,3,key+' all three opponent text blocks exist');}
+  await p.screenshot({path:out+'/'+key+'.png',scale:'css',fullPage:true});
   const vp=p.viewportSize();for(const item of bounds){const b=item.bounds;assert.ok(b.x>=-1&&b.x+b.width<=vp.width+1,key+' horizontal '+item.text);assert.ok(b.y>=-1&&b.y+b.height<=vp.height+1,key+' vertical '+item.text);assert.ok(item.scrollWidth<=item.clientWidth+1,key+' no clipped text '+item.text);}
+  for(const item of bounds.filter(i=>i.parent))for(const b of [item.bounds,...item.textBounds]){const parent=item.parent;assert.ok(b.left>=parent.left-.25&&b.right<=parent.right+.25&&b.top>=parent.top-.25&&b.bottom<=parent.bottom+.25,key+' content stays within opponent panel '+JSON.stringify({text:item.text,bounds:b,parent}));}
 }
 async function observe(p){await p.evaluate(()=>{const s=window.__harness.game.scene.getScene('game');window.__b05Timeline=[];const tick=()=>{const id=s.scoreTotal?.getData('eventId'),phase=s.scoreTotal?.getData('eventPhase'),cue=document.querySelector('.opponent-beat'),row={id,phase,heat:s.scoreHeat?.text,mult:s.scoreMult?.text,cue:cue?.textContent,kind:cue?.getAttribute('data-kind')};if(JSON.stringify(row)!==JSON.stringify(window.__b05Timeline.at(-1)))window.__b05Timeline.push(row);};s.events.on('update',tick);window.__b05Stop=()=>s.events.off('update',tick);});}
 async function actual(p,action,touch){const before=await read(p);for(const id of action.selectedIds)await tapUI(p,'game','card/'+id,touch);await tapUI(p,'game','action/play',touch);await p.waitForFunction(seq=>window.__harness.game.registry.get('runController').state.commandSeq===seq+1,before.state.commandSeq);const committed=await read(p),expected=b05Send(before.state,action);assert.deepEqual(committed.state,expected,'complete committed state equals unchanged domain PlayHand');return {before,committed};}
-async function scenario(key,viewport,callback,reduced=false){const touch=viewport.width<700,p=await browser.newPage({viewport,hasTouch:touch,deviceScaleFactor:1,reducedMotion:reduced?'reduce':'no-preference'}),row={key,viewport,reduced,errors:[]};report.cases.push(row);p.setDefaultTimeout(20000);p.on('dialog',d=>d.accept());p.on('pageerror',e=>row.errors.push(e.stack));
+async function scenario(key,viewport,callback,reduced=false){if(onlyCases.size&&!onlyCases.has(key))return;const touch=viewport.width<700,p=await browser.newPage({viewport,hasTouch:touch,deviceScaleFactor:1,reducedMotion:reduced?'reduce':'no-preference'}),row={key,viewport,reduced,errors:[]};report.cases.push(row);p.setDefaultTimeout(20000);p.on('dialog',d=>d.accept());p.on('pageerror',e=>row.errors.push(e.stack));
   try{await callback(p,row,touch);assert.deepEqual(row.errors,[]);row.status='PASS';}catch(e){row.status='FAIL';row.error=e.stack;await p.screenshot({path:out+'/'+key+'-FAIL.png'}).catch(()=>{});throw e;}finally{await p.close();}
 }
 try{

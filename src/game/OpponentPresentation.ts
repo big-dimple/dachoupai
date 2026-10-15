@@ -27,6 +27,10 @@ function style(host:HTMLElement):void {
   .opponent-beat small {font-size:14px;color:${C.mutedInk}}
   .opponent-beat strong {font-size:21px;line-height:1.25}
   .opponent-beat p {font-size:15px;line-height:1.35;margin:0}
+  .opponent-beat[data-compact="true"] {padding:2px 10px;gap:2px}
+  .opponent-beat[data-compact="true"] small {line-height:1.25}
+  .opponent-beat[data-compact="true"] strong {font-size:18px}
+  .opponent-beat > small,.opponent-beat > strong,.opponent-beat > p {flex-shrink:0}
   @media(min-width:700px) {.opponent-dialog .opponent-options {grid-template-columns:1fr 1fr}}
   @media(max-height:620px) {.opponent-dialog .opponent-quote {font-size:18px;margin-bottom:6px}.opponent-dialog .opponent-options {gap:6px;margin:6px 0}.opponent-dialog .opponent-option {padding:7px}}
   `;host.append(sheet);
@@ -65,7 +69,7 @@ export async function presentOpponentBeat(scene:Phaser.Scene,area:Box,beat:Oppon
   if(signal.aborted)return;
   const host=document.createElement('section');host.className='opponent-beat';host.dataset.kind=beat.kind;host.dataset.eventId=beat.eventId??'';host.setAttribute('role','status');style(host);
   const title=document.createElement('small'),quote=document.createElement('strong'),effect=document.createElement('p');title.textContent=beat.title;quote.textContent='“'+beat.quote+'”';effect.textContent=beat.effect;host.append(title,quote,effect);document.body.append(host);
-  const position=()=>{const r=scene.game.canvas.getBoundingClientRect(),x=r.width/scene.scale.width,y=r.height/scene.scale.height;Object.assign(host.style,{left:r.left+area.x*x+'px',top:r.top+area.y*y+'px',width:area.width*x+'px',height:area.height*y+'px'});};position();
+  const position=()=>{const r=scene.game.canvas.getBoundingClientRect(),x=r.width/scene.scale.width,y=r.height/scene.scale.height;host.dataset.compact=String(area.height*y<96);Object.assign(host.style,{left:r.left+area.x*x+'px',top:r.top+area.y*y+'px',width:area.width*x+'px',height:area.height*y+'px'});};position();
   const animation=reduced?undefined:host.animate([{opacity:0,transform:'translateX(9px)'},{opacity:1,transform:'translateX(0)'}],{duration:140,fill:'both'});
   try {await new Promise<void>(resolve=>{const finish=()=>{clearTimeout(timer);signal.removeEventListener('abort',finish);resolve();},timer=setTimeout(finish,beat.kind==='won'||beat.kind==='lost'?900:850);signal.addEventListener('abort',finish,{once:true});});}
   finally {animation?.cancel();host.remove();}
