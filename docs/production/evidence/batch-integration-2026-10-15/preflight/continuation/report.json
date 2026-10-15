@@ -1,0 +1,77 @@
+{
+  "head": "97c92ab550498d9d2e5c17397045e1ad15cf5346",
+  "sourceTree": "5b5b9a8a283d8e3f5315483dfed542fa1abdf04d",
+  "build": {
+    "version": "C03",
+    "builtAt": "2026-10-15T01:07:26.005Z",
+    "revision": "97c92ab550498d9d2e5c17397045e1ad15cf5346",
+    "sourceStatus": "clean",
+    "modified": false
+  },
+  "scope": "Frozen compiled source; six normal selected heroes, each reads three routes and starts one distributed route, actual starter purchase with save fault/retry, build views, one public first hand and cold continue. Not 18 complete runs, six-hero skill-payoff/balance, physical device or human/art/audio acceptance.",
+  "cases": [
+    {
+      "id": "amo",
+      "route": "group",
+      "width": 1366,
+      "height": 768,
+      "shots": [],
+      "errors": [],
+      "transactions": [],
+      "textAudits": [
+        {
+          "label": "selector-hero",
+          "title": "阿默 · 主手＋助攻",
+          "clipped": [
+            {
+              "text": "每场1次：两对及以上主手＋剩余对子×2／三条×4。副组真消耗，不算主手或留手；高牌、对子不能助攻。\n\n先凑两对、三条、顺子、同花或更高主手，再决定是否用剩余同点对子／三条助攻。每场一次，可留到关键手；高牌和对子仅兜底，不能助攻。副组会真消耗，不算主手或留手。",
+              "tag": "P",
+              "parent": "dialog-content",
+              "rect": {
+                "x": 565.625,
+                "y": 597.296875,
+                "width": 28,
+                "height": 19,
+                "top": 597.296875,
+                "right": 593.625,
+                "bottom": 616.296875,
+                "left": 565.625
+              },
+              "clip": {
+                "x": 244,
+                "y": 154.5,
+                "width": 878,
+                "height": 445.5,
+                "top": 154.5,
+                "right": 1122,
+                "bottom": 600,
+                "left": 244
+              },
+              "badX": false,
+              "badY": true
+            }
+          ],
+          "buttons": [
+            {
+              "label": "回到选角",
+              "box": {
+                "x": 264,
+                "y": 613,
+                "width": 838,
+                "height": 48,
+                "top": 613,
+                "right": 1102,
+                "bottom": 661,
+                "left": 264
+              }
+            }
+          ]
+        }
+      ],
+      "status": "FAIL",
+      "error": "AssertionError [ERR_ASSERTION]: selector-hero text stays inside clipping parents\n+ actual - expected\n\n+ [\n+   {\n+     badX: false,\n+     badY: true,\n+     clip: {\n+       bottom: 600,\n+       height: 445.5,\n+       left: 244,\n+       right: 1122,\n+       top: 154.5,\n+       width: 878,\n+       x: 244,\n+       y: 154.5\n+     },\n+     parent: 'dialog-content',\n+     rect: {\n+       bottom: 616.296875,\n+       height: 19,\n+       left: 565.625,\n+       right: 593.625,\n+       top: 597.296875,\n+       width: 28,\n+       x: 565.625,\n+       y: 597.296875\n+     },\n+     tag: 'P',\n+     text: '每场1次：两对及以上主手＋剩余对子×2／三条×4。副组真消耗，不算主手或留手；高牌、对子不能助攻。\\n' +\n+       '\\n' +\n+       '先凑两对、三条、顺子、同花或更高主手，再决定是否用剩余同点对子／三条助攻。每场一次，可留到关键手；高牌和对子仅兜底，不能助攻。副组会真消耗，不算主手或留手。'\n+   }\n+ ]\n- []\n\n    at audit (file:///workspace/dachoupai/harness/shop-integration-continuation.mjs:37:69)\n    at async file:///workspace/dachoupai/harness/shop-integration-continuation.mjs:54:130"
+    }
+  ],
+  "status": "FAIL",
+  "error": "AssertionError [ERR_ASSERTION]: selector-hero text stays inside clipping parents\n+ actual - expected\n\n+ [\n+   {\n+     badX: false,\n+     badY: true,\n+     clip: {\n+       bottom: 600,\n+       height: 445.5,\n+       left: 244,\n+       right: 1122,\n+       top: 154.5,\n+       width: 878,\n+       x: 244,\n+       y: 154.5\n+     },\n+     parent: 'dialog-content',\n+     rect: {\n+       bottom: 616.296875,\n+       height: 19,\n+       left: 565.625,\n+       right: 593.625,\n+       top: 597.296875,\n+       width: 28,\n+       x: 565.625,\n+       y: 597.296875\n+     },\n+     tag: 'P',\n+     text: '每场1次：两对及以上主手＋剩余对子×2／三条×4。副组真消耗，不算主手或留手；高牌、对子不能助攻。\\n' +\n+       '\\n' +\n+       '先凑两对、三条、顺子、同花或更高主手，再决定是否用剩余同点对子／三条助攻。每场一次，可留到关键手；高牌和对子仅兜底，不能助攻。副组会真消耗，不算主手或留手。'\n+   }\n+ ]\n- []\n\n    at audit (file:///workspace/dachoupai/harness/shop-integration-continuation.mjs:37:69)\n    at async file:///workspace/dachoupai/harness/shop-integration-continuation.mjs:54:130"
+}

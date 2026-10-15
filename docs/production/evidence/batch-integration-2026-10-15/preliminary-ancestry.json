@@ -1,0 +1,85 @@
+{
+  "baseline": "4a52fd0b0fb9ac0a49b8cb5e79abc8db4326e2d7",
+  "preliminaryHead": "97c92ab550498d9d2e5c17397045e1ad15cf5346",
+  "PR186": "PENDING_PARENT_HEAD",
+  "inputs": [
+    {
+      "name": "PR187",
+      "sha": "03d701f3f3aa3f6e05e948b4b8c5713a717ee1bc",
+      "isAncestorOfIntegration": true
+    },
+    {
+      "name": "PR185",
+      "sha": "2a3f1bcaa4e480164ef2cb125222dfbf5e7a52c8",
+      "isAncestorOfIntegration": true
+    },
+    {
+      "name": "four-axis",
+      "sha": "aa001b3d6795ade79effd1c7b88055ff32b9fee3",
+      "isAncestorOfIntegration": true
+    },
+    {
+      "name": "practice",
+      "sha": "f30948d12b8910b1f0992e1eac0d527f6e968ad5",
+      "isAncestorOfIntegration": true
+    }
+  ],
+  "protected": [
+    {
+      "path": "src/domain",
+      "object": "bd1f9b2c5a2b7eb4d143b59a094694b12adc8485",
+      "sameAsMain": true
+    },
+    {
+      "path": "src/content",
+      "object": "e8c3794be5b0fcb74da4aeb9e6adc63c22388345",
+      "sameAsMain": true
+    },
+    {
+      "path": "src/application",
+      "object": "1a325d51795f54526ec9f3f313cceb69763a1971",
+      "sameAsMain": true
+    },
+    {
+      "path": "src/audio",
+      "object": "7f6d2d0dd34313a4099d34cfd36b2baa748f83c2",
+      "sameAsMain": true
+    },
+    {
+      "path": "public",
+      "object": "c4a6ec74e7fd754b0f300b973020f8afed7542e1",
+      "sameAsMain": true
+    },
+    {
+      "path": "art",
+      "object": "b0caa33679b84bee932b2854734c04ad39ba0464",
+      "sameAsMain": true
+    }
+  ],
+  "mergedProductSources": [
+    {
+      "path": "src/game/GameScene.ts",
+      "source": "2a3f1bcaa4e480164ef2cb125222dfbf5e7a52c8",
+      "object": "03d490e76fa8a430599e20209f97f1fa78467030",
+      "identical": true
+    },
+    {
+      "path": "src/game/ShopScene.ts",
+      "source": "f30948d12b8910b1f0992e1eac0d527f6e968ad5",
+      "object": "82831f96368f67fae6824d111d77f4577744a494",
+      "identical": true
+    },
+    {
+      "path": "src/game/ArtTextureLoading.ts",
+      "source": "03d701f3f3aa3f6e05e948b4b8c5713a717ee1bc",
+      "object": "68c52bc6d102cedb6a258ff3c039f1faaa559703",
+      "identical": true
+    },
+    {
+      "path": "src/style.css",
+      "source": "f30948d12b8910b1f0992e1eac0d527f6e968ad5",
+      "object": "997c27018c8a175cee2e55a85ac23e739904e30c",
+      "identical": true
+    }
+  ]
+}
