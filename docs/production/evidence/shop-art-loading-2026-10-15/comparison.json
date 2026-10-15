@@ -1,0 +1,127 @@
+{
+  "baseline": {
+    "version": "C03",
+    "builtAt": "2026-10-15T00:19:43.863Z",
+    "revision": "4a52fd0b0fb9ac0a49b8cb5e79abc8db4326e2d7",
+    "sourceStatus": "clean",
+    "modified": false
+  },
+  "candidate": {
+    "version": "C03",
+    "builtAt": "2026-10-15T00:29:32.989Z",
+    "revision": "0caddfa40ce863d5fb922591ca015756bcf0606b",
+    "sourceStatus": "clean",
+    "modified": false
+  },
+  "scope": "One paired local run per width. Candidate timing source is 0caddfa4; subsequent d43a901e reconciles the failed-warmup status after explicit recovery and is covered by final faults.json. Request and response-body totals include title/selector and preceding actions through each capture; exclude HTTP headers and still-pending work.",
+  "cases": [
+    {
+      "width": 1366,
+      "kind": "first-shop",
+      "firstBeforeMs": 522,
+      "firstAfterMs": 496,
+      "allBeforeMs": 4328,
+      "allAfterMs": 2357,
+      "requestsBefore": 28,
+      "requestsAfter": 24,
+      "imageBodyBytesBefore": 275170,
+      "imageBodyBytesAfter": 241576
+    },
+    {
+      "width": 1366,
+      "kind": "owned",
+      "firstBeforeMs": 0,
+      "firstAfterMs": 0,
+      "allBeforeMs": 0,
+      "allAfterMs": 0,
+      "requestsBefore": 30,
+      "requestsAfter": 28,
+      "imageBodyBytesBefore": 279448,
+      "imageBodyBytesAfter": 346236
+    },
+    {
+      "width": 1366,
+      "kind": "reroll",
+      "firstBeforeMs": 1,
+      "firstAfterMs": 1,
+      "allBeforeMs": 2644,
+      "allAfterMs": 2069,
+      "requestsBefore": 34,
+      "requestsAfter": 32,
+      "imageBodyBytesBefore": 293600,
+      "imageBodyBytesAfter": 364802
+    },
+    {
+      "width": 1366,
+      "kind": "cold-continue",
+      "firstBeforeMs": 921,
+      "firstAfterMs": 390,
+      "allBeforeMs": 3489,
+      "allAfterMs": 2269,
+      "requestsBefore": 57,
+      "requestsAfter": 51,
+      "imageBodyBytesBefore": 479122,
+      "imageBodyBytesAfter": 536582
+    },
+    {
+      "width": 390,
+      "kind": "first-shop",
+      "firstBeforeMs": 993,
+      "firstAfterMs": 924,
+      "allBeforeMs": 1933,
+      "allAfterMs": 1969,
+      "requestsBefore": 13,
+      "requestsAfter": 13,
+      "imageBodyBytesBefore": 145324,
+      "imageBodyBytesAfter": 145324
+    },
+    {
+      "width": 390,
+      "kind": "owned",
+      "firstBeforeMs": 0,
+      "firstAfterMs": 0,
+      "allBeforeMs": 0,
+      "allAfterMs": 0,
+      "requestsBefore": 21,
+      "requestsAfter": 20,
+      "imageBodyBytesBefore": 243228,
+      "imageBodyBytesAfter": 189690
+    },
+    {
+      "width": 390,
+      "kind": "reroll",
+      "firstBeforeMs": 1,
+      "firstAfterMs": 0,
+      "allBeforeMs": 2251,
+      "allAfterMs": 1928,
+      "requestsBefore": 26,
+      "requestsAfter": 27,
+      "imageBodyBytesBefore": 293600,
+      "imageBodyBytesAfter": 292250
+    },
+    {
+      "width": 390,
+      "kind": "items",
+      "firstBeforeMs": 0,
+      "firstAfterMs": 0,
+      "allBeforeMs": 980,
+      "allAfterMs": 0,
+      "requestsBefore": 27,
+      "requestsAfter": 27,
+      "imageBodyBytesBefore": 293600,
+      "imageBodyBytesAfter": 292250
+    },
+    {
+      "width": 390,
+      "kind": "cold-continue",
+      "firstBeforeMs": 1100,
+      "firstAfterMs": 942,
+      "allBeforeMs": 2243,
+      "allAfterMs": 2052,
+      "requestsBefore": 39,
+      "requestsAfter": 39,
+      "imageBodyBytesBefore": 447032,
+      "imageBodyBytesAfter": 435550
+    }
+  ]
+}

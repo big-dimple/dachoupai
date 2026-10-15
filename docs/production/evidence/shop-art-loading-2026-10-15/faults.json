@@ -1,0 +1,55 @@
+{
+  "label": "faults",
+  "sourceHead": "d43a901ed116256c68eadb68e2f44f290e150c3b",
+  "build": {
+    "version": "C03",
+    "builtAt": "2026-10-15T00:31:19.705Z",
+    "revision": "d43a901ed116256c68eadb68e2f44f290e150c3b",
+    "sourceStatus": "clean",
+    "modified": false
+  },
+  "delayMs": 0,
+  "cases": [
+    {
+      "fault": "404",
+      "status": "PASS",
+      "requests": [
+        "http://127.0.0.1:5183/assets/handdrawn-tools/tool-t17.thumbnail.webp",
+        "http://127.0.0.1:5183/assets/handdrawn-tools/tool-t17.thumbnail.webp",
+        "http://127.0.0.1:5183/assets/handdrawn-tools/tool-t17.thumbnail.webp"
+      ],
+      "failures": [],
+      "fullSavedStateUnchanged": true,
+      "errors": []
+    },
+    {
+      "fault": "decode",
+      "status": "PASS",
+      "requests": [
+        "http://127.0.0.1:5183/assets/handdrawn-tools/tool-t17.thumbnail.webp",
+        "http://127.0.0.1:5183/assets/handdrawn-tools/tool-t17.thumbnail.webp",
+        "http://127.0.0.1:5183/assets/handdrawn-tools/tool-t17.thumbnail.webp"
+      ],
+      "failures": [],
+      "fullSavedStateUnchanged": true,
+      "errors": []
+    },
+    {
+      "fault": "cancel",
+      "status": "PASS",
+      "requests": [
+        "http://127.0.0.1:5183/assets/handdrawn-tools/tool-t17.thumbnail.webp"
+      ],
+      "failures": [
+        {
+          "errorText": "net::ERR_ABORTED"
+        }
+      ],
+      "fullSavedStateUnchanged": true,
+      "errors": []
+    }
+  ],
+  "physicalDevice": "NOT_RUN",
+  "humanAcceptance": "NOT_RUN",
+  "status": "PASS"
+}

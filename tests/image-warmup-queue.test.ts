@@ -23,4 +23,16 @@ describe('staged image queue',()=>{
     let finish!:()=>void,signal!:AbortSignal;const changed=vi.fn();const queue=new ImageWarmupQueue((_a,s)=>{signal=s;return new Promise<void>(resolve=>finish=resolve);},changed);
     queue.request(['hero','court','next'].map(asset));queue.dispose();expect(signal.aborted).toBe(true);const calls=changed.mock.calls.length;finish();await tick();expect(changed).toHaveBeenCalledTimes(calls);expect(queue.snapshot()).toEqual([]);
   });
+  it('retires obsolete shop warmup without recording a failed image or re-arming a retry',async()=>{
+    const owner=new AbortController();let fail!:(error:Error)=>void;
+    const load=vi.fn(()=>new Promise<void>((_resolve,reject)=>fail=reject));
+    const queue=new ImageWarmupQueue(load,()=>{});queue.request([{...asset('old-shop'),scope:owner.signal}]);owner.abort();fail(Object.assign(Error('retired'),{canceled:true,retryable:false}));await tick();
+    expect(queue.snapshot()).toEqual([]);queue.retry();expect(load).toHaveBeenCalledOnce();queue.dispose();
+  });
+
+  it('reconciles a failed speculative image recovered by a visible owner without another request',async()=>{
+    const load=vi.fn(async()=>{throw Object.assign(Error('404'),{retryable:false});});const changed=vi.fn(),queue=new ImageWarmupQueue(load,changed);queue.request([asset('tool')]);await tick();
+    expect(queue.snapshot()[0].status).toBe('failed');queue.markLoaded('tool');expect(queue.snapshot()[0].status).toBe('loaded');queue.retry();expect(load).toHaveBeenCalledOnce();queue.dispose();
+  });
+
 });
