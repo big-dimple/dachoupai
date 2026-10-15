@@ -1,0 +1,148 @@
+{
+  "timestamp": "2026-10-15T06:11:13.441355+00:00",
+  "sourceFilesUnchangedSinceStart": true,
+  "productDirty": "",
+  "status": "PASS",
+  "caseCount": 13,
+  "cases": [
+    {
+      "key": "1366-entrance",
+      "status": "PASS"
+    },
+    {
+      "key": "1366-repeat",
+      "status": "PASS",
+      "handsBefore": 3,
+      "handsAfter": 2,
+      "score": "43",
+      "goldBefore": 6,
+      "goldAfter": 6,
+      "phase": "await-input",
+      "completeSavedTripleUnchangedByPresentation": true
+    },
+    {
+      "key": "1366-changed",
+      "status": "PASS",
+      "handsBefore": 3,
+      "handsAfter": 2,
+      "score": "31",
+      "goldBefore": 6,
+      "goldAfter": 6,
+      "phase": "await-input",
+      "completeSavedTripleUnchangedByPresentation": true
+    },
+    {
+      "key": "390-entrance",
+      "status": "PASS"
+    },
+    {
+      "key": "390-repeat",
+      "status": "PASS",
+      "handsBefore": 3,
+      "handsAfter": 2,
+      "score": "43",
+      "goldBefore": 6,
+      "goldAfter": 6,
+      "phase": "await-input",
+      "completeSavedTripleUnchangedByPresentation": true
+    },
+    {
+      "key": "390-changed",
+      "status": "PASS",
+      "handsBefore": 3,
+      "handsAfter": 2,
+      "score": "31",
+      "goldBefore": 6,
+      "goldAfter": 6,
+      "phase": "await-input",
+      "completeSavedTripleUnchangedByPresentation": true
+    },
+    {
+      "key": "320-entrance",
+      "status": "PASS"
+    },
+    {
+      "key": "320-repeat",
+      "status": "PASS",
+      "handsBefore": 3,
+      "handsAfter": 2,
+      "score": "43",
+      "goldBefore": 6,
+      "goldAfter": 6,
+      "phase": "await-input",
+      "completeSavedTripleUnchangedByPresentation": true
+    },
+    {
+      "key": "320-changed",
+      "status": "PASS",
+      "handsBefore": 3,
+      "handsAfter": 2,
+      "score": "31",
+      "goldBefore": 6,
+      "goldAfter": 6,
+      "phase": "await-input",
+      "completeSavedTripleUnchangedByPresentation": true
+    },
+    {
+      "key": "390-reduced-skip-resize",
+      "status": "PASS",
+      "handsBefore": 3,
+      "handsAfter": 2,
+      "score": "43",
+      "goldBefore": 6,
+      "goldAfter": 6,
+      "phase": "await-input",
+      "completeSavedTripleUnchangedByPresentation": true
+    },
+    {
+      "key": "390-cancel-restore",
+      "status": "PASS",
+      "handsBefore": 3,
+      "handsAfter": 2,
+      "score": "31",
+      "goldBefore": 6,
+      "goldAfter": 6,
+      "phase": "await-input",
+      "completeSavedTripleUnchangedByPresentation": true
+    },
+    {
+      "key": "390-won",
+      "status": "PASS",
+      "handsBefore": 4,
+      "handsAfter": 3,
+      "score": "19388",
+      "goldBefore": 6,
+      "goldAfter": 18,
+      "phase": "stage-cleared",
+      "completeSavedTripleUnchangedByPresentation": true
+    },
+    {
+      "key": "390-lost",
+      "status": "PASS",
+      "handsBefore": 1,
+      "handsAfter": 0,
+      "score": "12",
+      "goldBefore": 6,
+      "goldAfter": 6,
+      "phase": "run-lost",
+      "completeSavedTripleUnchangedByPresentation": true
+    }
+  ],
+  "actuallyViewed": [
+    "baseline/390-repeat-choices.png",
+    "baseline/390-repeat-key.png",
+    "final/1366-entrance.png",
+    "final/1366-repeat-key.png",
+    "final/1366-changed-key.png",
+    "final/390-real-base-half.png",
+    "final/320-repeat-choices.png",
+    "final/320-repeat-key.png",
+    "final/390-won-opponent.png",
+    "final/390-lost-opponent.png"
+  ],
+  "postprocessCorrection": "Initial report extraction incorrectly asserted all plays preserve gold, including won terminal stage reward. Removed that overbroad assertion; unchanged-gold assertion applies only repeat/changed decision cases. Browser 13-case report was PASS before extraction.",
+  "unverified": [
+    "New opponent eye and figure assets are absent; no complete cinematic or final art acceptance.",
+    "No physical mobile, human understanding, audio, natural acquisition/encounter or whole-game validation."
+  ]
+}

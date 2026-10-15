@@ -1,0 +1,248 @@
+{
+  "status": "PASS",
+  "productSource": "be2cbd1a3010c4b5405166bf497cbdae5a6dfa17",
+  "exactCSSFrames": [
+    {
+      "report": "live",
+      "key": "390-dpr3",
+      "dpr": 3,
+      "backing": {
+        "width": 1170,
+        "height": 2220,
+        "zoom": 0.3333333333333333
+      },
+      "actualCSS": {
+        "left": 12,
+        "top": 305.59375,
+        "width": 366,
+        "height": 226.796875
+      },
+      "expectedCSS": {
+        "left": 12,
+        "top": 305.6,
+        "width": 366,
+        "height": 226.79999999999995
+      }
+    },
+    {
+      "report": "live",
+      "key": "390-dpr3-resized",
+      "dpr": 3,
+      "backing": {
+        "width": 960,
+        "height": 1704,
+        "zoom": 0.3333333333333333
+      },
+      "actualCSS": {
+        "left": 8,
+        "top": 240,
+        "width": 304,
+        "height": 72.390625
+      },
+      "expectedCSS": {
+        "left": 8,
+        "top": 240,
+        "width": 304,
+        "height": 72.39999999999998
+      }
+    },
+    {
+      "report": "live",
+      "key": "320-dpr3",
+      "dpr": 3,
+      "backing": {
+        "width": 960,
+        "height": 1704,
+        "zoom": 0.3333333333333333
+      },
+      "actualCSS": {
+        "left": 8,
+        "top": 240,
+        "width": 304,
+        "height": 72.390625
+      },
+      "expectedCSS": {
+        "left": 8,
+        "top": 240,
+        "width": 304,
+        "height": 72.39999999999998
+      }
+    },
+    {
+      "report": "live",
+      "key": "1366-dpr2",
+      "dpr": 2,
+      "backing": {
+        "width": 2732,
+        "height": 1536,
+        "zoom": 0.5
+      },
+      "actualCSS": {
+        "left": 252,
+        "top": 198.390625,
+        "width": 954,
+        "height": 311.8125
+      },
+      "expectedCSS": {
+        "left": 252,
+        "top": 198.4,
+        "width": 954,
+        "height": 311.82400000000007
+      }
+    },
+    {
+      "report": "live",
+      "key": "1366-dpr2-resized",
+      "dpr": 2,
+      "backing": {
+        "width": 2048,
+        "height": 1400,
+        "zoom": 0.5
+      },
+      "actualCSS": {
+        "left": 252,
+        "top": 198.390625,
+        "width": 760,
+        "height": 256.1875
+      },
+      "expectedCSS": {
+        "left": 252,
+        "top": 198.4,
+        "width": 760,
+        "height": 256.20000000000005
+      }
+    },
+    {
+      "report": "snapshots",
+      "key": "390-dpr3",
+      "dpr": 3,
+      "backing": {
+        "width": 1170,
+        "height": 2220,
+        "zoom": 0.3333333333333333
+      },
+      "actualCSS": {
+        "left": 12,
+        "top": 305.59375,
+        "width": 366,
+        "height": 226.796875
+      },
+      "expectedCSS": {
+        "left": 12,
+        "top": 305.6,
+        "width": 366,
+        "height": 226.79999999999995
+      },
+      "pngPixels": [
+        390,
+        740
+      ]
+    },
+    {
+      "report": "snapshots",
+      "key": "320-dpr3",
+      "dpr": 3,
+      "backing": {
+        "width": 960,
+        "height": 1704,
+        "zoom": 0.3333333333333333
+      },
+      "actualCSS": {
+        "left": 8,
+        "top": 240,
+        "width": 304,
+        "height": 72.390625
+      },
+      "expectedCSS": {
+        "left": 8,
+        "top": 240,
+        "width": 304,
+        "height": 72.39999999999998
+      },
+      "pngPixels": [
+        320,
+        568
+      ]
+    },
+    {
+      "report": "snapshots",
+      "key": "1366-dpr2",
+      "dpr": 2,
+      "backing": {
+        "width": 2732,
+        "height": 1536,
+        "zoom": 0.5
+      },
+      "actualCSS": {
+        "left": 252,
+        "top": 198.390625,
+        "width": 954,
+        "height": 311.8125
+      },
+      "expectedCSS": {
+        "left": 252,
+        "top": 198.4,
+        "width": 954,
+        "height": 311.82400000000007
+      },
+      "pngPixels": [
+        1366,
+        768
+      ]
+    },
+    {
+      "report": "resize-snapshots",
+      "key": "390-dpr3-resized",
+      "dpr": 3,
+      "backing": {
+        "width": 960,
+        "height": 1704,
+        "zoom": 0.3333333333333333
+      },
+      "actualCSS": {
+        "left": 8,
+        "top": 240,
+        "width": 304,
+        "height": 72.390625
+      },
+      "expectedCSS": {
+        "left": 8,
+        "top": 240,
+        "width": 304,
+        "height": 72.39999999999998
+      },
+      "pngPixels": [
+        320,
+        568
+      ]
+    },
+    {
+      "report": "resize-snapshots",
+      "key": "1366-dpr2-resized",
+      "dpr": 2,
+      "backing": {
+        "width": 2048,
+        "height": 1400,
+        "zoom": 0.5
+      },
+      "actualCSS": {
+        "left": 252,
+        "top": 198.390625,
+        "width": 760,
+        "height": 256.1875
+      },
+      "expectedCSS": {
+        "left": 252,
+        "top": 198.4,
+        "width": 760,
+        "height": 256.20000000000005
+      },
+      "pngPixels": [
+        1024,
+        700
+      ]
+    }
+  ],
+  "liveCompleteStateJournalStorageEqual": true,
+  "snapshotBoundary": "Reduced-motion actual DOM with virtual time paused for capture. DPR is preserved; PNG dimensions are CSS viewport dimensions, not native framebuffer pixels. No real-time duration/readability or high-DPR skip acceptance."
+}

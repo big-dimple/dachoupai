@@ -1,0 +1,50 @@
+{
+  "eventLayerSource": "6d49fb73ffa13e3b3ccd9a26de9bc5747193d01e",
+  "surfaceSource": "653d23c2ec87133907c0cfd4ba4679260137a344",
+  "finalProductSource": "af08a36ab45fc3a60edd0dd8c902ddfd85496db5",
+  "checks": [
+    {
+      "command": "npm test -- tests/opponent-cues.test.ts",
+      "status": "PASS",
+      "tests": 5,
+      "note": "Completed before pause on 6d49fb73; not repeated on resume."
+    },
+    {
+      "command": "npm test -- tests/hand-selection-input.test.ts -t 'resynchronizes the native hit surface'",
+      "status": "EXPECTED_FAIL_BEFORE_FIX",
+      "testsFailed": 1,
+      "observed": "ResizeObserver callback undefined on 6d49fb73."
+    },
+    {
+      "command": "npm test -- tests/hand-selection-input.test.ts",
+      "status": "PASS",
+      "tests": 21,
+      "sourceContent": "653d23c2"
+    },
+    {
+      "command": "npm test -- tests/viewport-density.test.ts -t 'keeps native canvas pointer'",
+      "status": "EXPECTED_FAIL_BEFORE_FIX",
+      "testsFailed": 2,
+      "observed": "CSS center maps to 237.65625 rather than 195 at DPR1, and 297.375 rather than 244 at DPR1.25."
+    },
+    {
+      "command": "npm test -- tests/viewport-density.test.ts",
+      "status": "PASS",
+      "tests": 14,
+      "sourceContent": "af08a36a"
+    },
+    {
+      "command": "npm run typecheck",
+      "status": "PASS",
+      "sourceContent": "af08a36a"
+    }
+  ],
+  "independentReview": {
+    "status": "PASS",
+    "modelRequested": "gpt-6.1-sol",
+    "scope": "HandSelectionInput CSS-size observer and Viewport pointer-scale correction; no blocking findings."
+  },
+  "failureInterpretation": "The earlier native selection failures were a real resize input defect, not merely an observation script error. The unchanged 390→320 replay/skip→390 route is retained in the final harness.",
+  "oldMatricesRepeated": false,
+  "limits": "Targeted software regression checks; no natural play, physical phone, listening or complete cinematic/art acceptance."
+}

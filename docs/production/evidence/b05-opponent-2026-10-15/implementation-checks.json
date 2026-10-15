@@ -1,0 +1,27 @@
+{
+  "sourceHead": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+  "branch": "dev/b05-opponent-sample",
+  "worktree": "/workspace/dachoupai-b05",
+  "dateUTC": "2026-10-15",
+  "productChanges": false,
+  "reason": "The candidate already implements B05 entrance, legal formed-hand choices, authoritative score and outcome reactions, repeat-beat suppression and abortable presentation. Inspection found no product defect requiring implementation.",
+  "checks": [
+    {
+      "command": "npm test -- tests/opponent-encounter.test.ts tests/c03-boss-notice.test.ts tests/c03-boss-save.test.ts tests/c03-boss-run.test.ts tests/saved-boss-impact.test.ts",
+      "status": "PASS",
+      "exitCode": 0,
+      "testFiles": 5,
+      "tests": 95,
+      "durationSeconds": 6.51,
+      "startUTC": "06:07:07"
+    },
+    {
+      "command": "npm run typecheck",
+      "status": "PASS",
+      "exitCode": 0
+    }
+  ],
+  "environment": "Reused existing /workspace/dachoupai/node_modules through a local symlink; no package installation or dependency change.",
+  "remainingBlocker": "Original opponent portrait and eye-closeup bytes are not available. Historical materialization HTTP403 evidence remains unchanged; no transfer was retried. Final character/eye art and composed-camera acceptance remain OPEN.",
+  "limits": "These are targeted software checks, not natural play, physical-device, human-comprehension or final visual acceptance. Independent controlled browser evidence is recorded separately."
+}

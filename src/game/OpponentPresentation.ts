@@ -4,9 +4,10 @@ import type {R2RunState} from '../domain/r2Run';
 import {getR2Stage} from '../domain/r2Run';
 import {HAND_LABELS} from '../content/handLabels';
 import {DetailDialog} from './DetailDialog';
-import type {OpponentBeat,OpponentChoice} from './OpponentFacts';
+import {B05_OPPONENT,type OpponentCue,type OpponentChoice} from './OpponentFacts';
 import {heatText} from './scoreText';
 import {PAPER_CSS as C,UI_FONT} from './theme';
+import {cssViewport} from '../platform/Viewport';
 
 /** Scoped paper/ink UI. Portrait and eye art can be supplied independently; no borrowed player face. */
 function style(host:HTMLElement):void {
@@ -36,8 +37,8 @@ function style(host:HTMLElement):void {
   `;host.append(sheet);
 }
 function decorate(dialog:HTMLDialogElement,quote:string):void {
-  dialog.classList.add('opponent-dialog');dialog.dataset.opponent='B05';style(dialog);
-  const eyebrow=dialog.querySelector('.dialog-eyebrow');if(eyebrow)eyebrow.textContent='同行对手';
+  dialog.classList.add('opponent-dialog');dialog.dataset.opponent=B05_OPPONENT.id;dialog.dataset.artMode='text-only';style(dialog);
+  const eyebrow=dialog.querySelector('.dialog-eyebrow');if(eyebrow)eyebrow.textContent=B05_OPPONENT.role+' · 文字演出';
   const text=document.createElement('p');text.className='opponent-quote';text.textContent='“'+quote+'”';dialog.querySelector('.dialog-intro')?.prepend(text);
 }
 /** Resolves false on cancel/scene shutdown, with no EnterStage or draw committed. */
@@ -50,7 +51,7 @@ export function presentOpponentEntrance(dialog:DetailDialog,run:R2RunState):Prom
       '连续两手同牌型，只将等级后的牌型基础热度减半。普通点数、增强和大丑牌热度正常。首手不减半。',
       [{label:'入场 · 看手牌',primary:true,run:()=>{entered=true;dialog.close();}}],
       {closeLabel:'稍后入场',onClose:()=>resolve(entered),summaryBody:spec.name+' · 目标 '+heatText(spec.targetHeat),effectBody:'连出同型 → 牌型基础½\n同型硬闯，或换已成型牌型',collapseRules:true,rulesLabel:'具体减什么'});
-    decorate(d,'再来同一招，我就接住它。');d.dataset.opponentPhase='entrance';
+    decorate(d,'再来同一招，我就接住它。');d.dataset.opponentPhase='entrance';d.dataset.phase='entrance';d.dataset.attitude='composed';d.dataset.stageIndex=String(run.stageIndex);d.dataset.commandSeq=String(run.commandSeq);
   });
 }
 export function showOpponentChoices(dialog:DetailDialog,run:R2RunState,choices:readonly OpponentChoice[],choose:(choice:OpponentChoice)=>void,extra:()=>void,canChoose:()=>boolean):void {
@@ -65,11 +66,12 @@ export function showOpponentChoices(dialog:DetailDialog,run:R2RunState,choices:r
   d.querySelector('.dialog-intro')?.append(options);
 }
 /** Abortable, read-only key beat. The real accumulator remains visible above it. */
-export async function presentOpponentBeat(scene:Phaser.Scene,area:Box,beat:OpponentBeat,signal:AbortSignal,reduced:boolean):Promise<void> {
+export async function presentOpponentBeat(scene:Phaser.Scene,area:Box,beat:OpponentCue,signal:AbortSignal,reduced:boolean):Promise<void> {
   if(signal.aborted)return;
-  const host=document.createElement('section');host.className='opponent-beat';host.dataset.kind=beat.kind;host.dataset.eventId=beat.eventId??'';host.setAttribute('role','status');style(host);
+  const host=document.createElement('section');host.className='opponent-beat';host.dataset.kind=beat.kind;host.dataset.opponent=beat.opponentId;host.dataset.eventId=beat.eventId;host.dataset.phase=beat.phase;host.dataset.attitude=beat.attitude;host.dataset.placement=beat.placement;host.dataset.artMode='text-only';host.setAttribute('role','status');style(host);
   const title=document.createElement('small'),quote=document.createElement('strong'),effect=document.createElement('p');title.textContent=beat.title;quote.textContent='“'+beat.quote+'”';effect.textContent=beat.effect;host.append(title,quote,effect);document.body.append(host);
-  const position=()=>{const r=scene.game.canvas.getBoundingClientRect(),x=r.width/scene.scale.width,y=r.height/scene.scale.height;host.dataset.compact=String(area.height*y<96);Object.assign(host.style,{left:r.left+area.x*x+'px',top:r.top+area.y*y+'px',width:area.width*x+'px',height:area.height*y+'px'});};position();
+  // The played area uses CSS layout coordinates, independent of framebuffer density.
+  const position=()=>{const r=scene.game.canvas.getBoundingClientRect(),viewport=cssViewport(scene),x=r.width/viewport.width,y=r.height/viewport.height;host.dataset.compact=String(area.height*y<96);Object.assign(host.style,{left:r.left+area.x*x+'px',top:r.top+area.y*y+'px',width:area.width*x+'px',height:area.height*y+'px'});};position();
   const animation=reduced?undefined:host.animate([{opacity:0,transform:'translateX(9px)'},{opacity:1,transform:'translateX(0)'}],{duration:140,fill:'both'});
   try {await new Promise<void>(resolve=>{const finish=()=>{clearTimeout(timer);signal.removeEventListener('abort',finish);resolve();},timer=setTimeout(finish,beat.kind==='won'||beat.kind==='lost'?900:850);signal.addEventListener('abort',finish,{once:true});});}
   finally {animation?.cancel();host.remove();}

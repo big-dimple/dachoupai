@@ -7,12 +7,22 @@ import type {ScoreEvent,ScoreTrace} from '../domain/scoreR2';
 import {fractionText,heatText} from './scoreText';
 
 export interface OpponentBeat {kind:'repeat'|'changed'|'opening'|'unknown'|'won'|'lost';quote:string;title:string;effect:string;eventId?:string}
+export const B05_OPPONENT={id:'B05',name:'回音墙',role:'同行高手'} as const;
+/** View-only protocol: anchors refer to saved events, never synthesize rule or save events. */
+export interface OpponentCue extends OpponentBeat {
+  opponentId:typeof B05_OPPONENT.id;
+  eventId:string;
+  placement:'before-event'|'after-result';
+  phase:'telegraph'|'reaction'|'outcome';
+  attitude:'focused'|'respectful'|'conceding'|'confident';
+}
+const finalResultEvent=(trace:ScoreTrace)=>trace.events.find(event=>event.phase==='finalScore'&&event.operation==='final-score');
 /** Only the saved scoring context and its actual events establish a reaction. */
 export function opponentHandBeat(trace:ScoreTrace|null|undefined):OpponentBeat|undefined {
   const context=trace?.bossContext;if(!trace||context?.boss?.definitionId!=='B05')return;
   const event=trace.events.find(isEchoReduction),previous=context.previousHandType,current=HAND_LABELS[trace.handType];
   if(event)return {kind:'repeat',quote:'同一招，我听过了。',title:'回音墙 · 同招回响',effect:'牌型基础 '+fractionText(event.before.H)+' → '+fractionText(event.after.H),eventId:event.eventId};
-  if(previous&&previous!==trace.handType)return {kind:'changed',quote:'哦？你换招了。',title:'回音墙 · 换招避开',effect:HAND_LABELS[previous]+' → '+current+' · 本手基础未减半'};
+  if(previous&&previous!==trace.handType){const final=finalResultEvent(trace);if(!final)return;return {kind:'changed',quote:'哦？你换招了。',title:'回音墙 · 换招避开',effect:HAND_LABELS[previous]+' → '+current+' · 本手基础未减半',eventId:final.eventId};}
   if(previous===null)return {kind:'opening',quote:'先让我听听你的招。',title:'回音墙 · 首手',effect:current+' · 首手基础不减半'};
   return {kind:'unknown',quote:'这一手，按记录认账。',title:'回音墙 · 已存结果',effect:current+' · '+heatText(trace.finalScore)+' 分'};
 }
@@ -25,8 +35,20 @@ export function opponentSavedStatus(trace:ScoreTrace|null|undefined):string {
 }
 export function opponentOutcome(run:Pick<R2RunState,'phase'|'stage'>,trace:ScoreTrace):OpponentBeat|undefined {
   if(run.stage?.boss?.definitionId!=='B05'||trace.bossContext?.boss?.definitionId!=='B05')return;
-  if(run.phase==='stage-cleared'||run.phase==='run-won')return {kind:'won',quote:'你的招，我认了。',title:'回音墙 · 你赢了这场',effect:heatText(run.stage.heat)+' / '+heatText(run.stage.targetHeat)+' 热度'};
-  if(run.phase==='run-lost')return {kind:'lost',quote:'这一场，我接住了。',title:'回音墙 · 本场未过',effect:heatText(run.stage.heat)+' / '+heatText(run.stage.targetHeat)+' 热度'};
+  const final=finalResultEvent(trace);if(!final)return;
+  if(run.phase==='stage-cleared'||run.phase==='run-won')return {kind:'won',quote:'你的招，我认了。',title:'回音墙 · 你赢了这场',effect:heatText(run.stage.heat)+' / '+heatText(run.stage.targetHeat)+' 热度',eventId:final.eventId};
+  if(run.phase==='run-lost')return {kind:'lost',quote:'这一场，我接住了。',title:'回音墙 · 本场未过',effect:heatText(run.stage.heat)+' / '+heatText(run.stage.targetHeat)+' 热度',eventId:final.eventId};
+}
+/** Ordered key cues only. Ordinary repeats, opening and unconfirmed facts add no waiting slot. */
+export function opponentCuePlan(run:Pick<R2RunState,'phase'|'stage'>,trace:ScoreTrace,shown:ReadonlySet<string>,replay=false):OpponentCue[] {
+  const cues:OpponentCue[]=[],hand=opponentHandBeat(trace);
+  if(hand?.eventId&&(replay||!shown.has(hand.kind))){
+    if(hand.kind==='repeat')cues.push({...hand,eventId:hand.eventId,opponentId:'B05',placement:'before-event',phase:'telegraph',attitude:'focused'});
+    if(hand.kind==='changed')cues.push({...hand,eventId:hand.eventId,opponentId:'B05',placement:'after-result',phase:'reaction',attitude:'respectful'});
+  }
+  const outcome=opponentOutcome(run,trace);
+  if(outcome?.eventId)cues.push({...outcome,eventId:outcome.eventId,opponentId:'B05',placement:'after-result',phase:'outcome',attitude:outcome.kind==='won'?'conceding':'confident'});
+  return cues;
 }
 export interface OpponentChoice {kind:'repeat'|'change'|'opening';type:R2HandType;ids:string[];label:string;detail:string}
 /** Public formed cards only, no scoring simulation, hidden draw, ability choice or RNG. */
