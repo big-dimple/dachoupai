@@ -1,0 +1,29 @@
+{
+  "base": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+  "testedProductCommit": "1e4b2e30b9bac889d96defebc5fa6cc269c1707a",
+  "testedSourceTree": "5cf7ff0bb8da737b49b47d54f87d91109f223a4a",
+  "targetedTests": {
+    "files": 6,
+    "tests": 59,
+    "exitCode": 0
+  },
+  "typecheck": {
+    "exitCode": 0
+  },
+  "productionBuild": {
+    "command": "node node_modules/vite/bin/vite.js build",
+    "exitCode": 0
+  },
+  "journeyBrowser": {
+    "cases": 15,
+    "exitCode": 0
+  },
+  "makeCardsBrowser": {
+    "cases": 4,
+    "exitCode": 0
+  },
+  "naturalPlay": "NOT_RUN",
+  "physicalDevice": "NOT_RUN",
+  "mainMerge": "NOT_DONE",
+  "prCreation": "NOT_ATTEMPTED: preserve prior POST Forbidden restriction; no existing PR for new branch"
+}

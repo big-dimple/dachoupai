@@ -5,7 +5,7 @@ import {warmTableImages} from './StageImageWarmup';
 import {showHeroExplanation} from './HeroExplanation';
 import {isR2CoreBuild,isR2SuitChoice,R2_SUIT_DYE_IDS,r2BasicChoiceBasePrice} from '../domain/r2GroupUpgrade';
 import type {R2PracticeQuote} from '../domain/r2Practice';
-import {shopPracticeServices,shopPracticeQuota,shopPracticeConfirmation,shopPracticeAction,shopPracticeSavedReceipt,type ShopPracticeReceipt} from './ShopPracticeService';
+import {shopPracticeServices,shopPracticeQuota,shopPracticeConfirmation,shopPracticeAction,shopPracticeSavedReceipt,shopPracticeEffect,type ShopPracticeReceipt} from './ShopPracticeService';
 import {showShopServiceConfirmation} from './ShopServiceDialog';
 import {HAND_LABELS} from '../content/handLabels';
 import {routeFrame} from './RouteFrame';
@@ -491,7 +491,7 @@ export class ShopScene extends Phaser.Scene {
   private showPracticeResult(receipt:ShopPracticeReceipt,origin?:JourneyPracticeOrigin):void {
     const name=HAND_LABELS[receipt.handType],summary=`${name} Lv.${receipt.levelBefore} → Lv.${receipt.levelAfter}`;
     this.makeCardsView.receipt={seq:this.run.commandSeq,text:summary+' · 实付 '+receipt.paidPrice+' 金 · 已保存'};
-    const d=this.dialog.open(name+' · 升级已保存',`金币 ${receipt.goldBefore} → ${receipt.goldAfter} 金\n本店升级 / 改牌 / 染色机会已用，刷新不恢复；下一店恢复。\n牌型已当场升级，不收入道具箱。`,[],{effectBody:summary,summaryBody:'实付 '+receipt.paidPrice+' 金 · 已保存',collapseRules:true});
+    const d=this.dialog.open(name+' · 升级已保存',`金币 ${receipt.goldBefore} → ${receipt.goldAfter} 金\n本店升级 / 改牌 / 染色机会已用，刷新不恢复；下一店恢复。\n牌型已当场升级，不收入道具箱。`,[],{effectBody:shopPracticeEffect(receipt),summaryBody:'实付 '+receipt.paidPrice+' 金 · 已保存',collapseRules:true});
     d.classList.add('shop-practice-result');
     if(origin){
       d.dataset.practiceSource='journey';const close=d.querySelector<HTMLButtonElement>('.dialog-close')!;close.textContent='返回培养路线';
