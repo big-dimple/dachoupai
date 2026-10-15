@@ -1,0 +1,949 @@
+{
+  "head": "40b9f31e1d37ec6f7b06fce46f8eb72b65307bd5",
+  "before": false,
+  "cases": [
+    {
+      "kind": "regular",
+      "checks": [
+        "568-shrunk: candidate/fifth/native scroll/manage return/close/focus/footer and full save unchanged",
+        "844-restored: candidate/fifth/native scroll/manage return/close/focus/footer and full save unchanged",
+        "resize at focused fifth slot preserves visible control and focus in both directions"
+      ],
+      "steps": [
+        {
+          "label": "568-shrunk",
+          "height": 568,
+          "compact": true,
+          "candidateInScroll": true,
+          "scrollTop": 0,
+          "scrollHeight": 2304,
+          "clientHeight": 324,
+          "contentHeight": 348,
+          "actions": [
+            {
+              "label": "返回购买详情",
+              "rect": {
+                "x": 32,
+                "y": 449,
+                "width": 159,
+                "height": 44,
+                "top": 449,
+                "right": 191,
+                "bottom": 493,
+                "left": 32
+              }
+            },
+            {
+              "label": "更换培养方向",
+              "rect": {
+                "x": 199,
+                "y": 449,
+                "width": 159,
+                "height": 44,
+                "top": 449,
+                "right": 358,
+                "bottom": 493,
+                "left": 199
+              }
+            },
+            {
+              "label": "返回现货",
+              "rect": {
+                "x": 32,
+                "y": 501,
+                "width": 326,
+                "height": 44,
+                "top": 501,
+                "right": 358,
+                "bottom": 545,
+                "left": 32
+              }
+            }
+          ]
+        },
+        {
+          "label": "568-shrunk-fifth-visible",
+          "focus": {
+            "active": false,
+            "rect": {
+              "x": 129,
+              "y": 322.703125,
+              "width": 218,
+              "height": 48,
+              "top": 322.703125,
+              "right": 347,
+              "bottom": 370.703125,
+              "left": 129
+            },
+            "scroll": {
+              "x": 32,
+              "y": 102.5,
+              "width": 326,
+              "height": 323.5,
+              "top": 102.5,
+              "right": 358,
+              "bottom": 426,
+              "left": 32
+            }
+          }
+        },
+        {
+          "label": "844-restored",
+          "height": 844,
+          "compact": false,
+          "candidateInScroll": false,
+          "scrollTop": 1689,
+          "scrollHeight": 2043,
+          "clientHeight": 298,
+          "contentHeight": 584,
+          "actions": [
+            {
+              "label": "返回购买详情",
+              "rect": {
+                "x": 32,
+                "y": 705,
+                "width": 159,
+                "height": 44,
+                "top": 705,
+                "right": 191,
+                "bottom": 749,
+                "left": 32
+              }
+            },
+            {
+              "label": "更换培养方向",
+              "rect": {
+                "x": 199,
+                "y": 705,
+                "width": 159,
+                "height": 44,
+                "top": 705,
+                "right": 358,
+                "bottom": 749,
+                "left": 199
+              }
+            },
+            {
+              "label": "返回现货",
+              "rect": {
+                "x": 32,
+                "y": 757,
+                "width": 326,
+                "height": 44,
+                "top": 757,
+                "right": 358,
+                "bottom": 801,
+                "left": 32
+              }
+            }
+          ]
+        },
+        {
+          "label": "844-restored-fifth-visible",
+          "focus": {
+            "active": true,
+            "rect": {
+              "x": 129,
+              "y": 633.703125,
+              "width": 218,
+              "height": 48,
+              "top": 633.703125,
+              "right": 347,
+              "bottom": 681.703125,
+              "left": 129
+            },
+            "scroll": {
+              "x": 32,
+              "y": 383.796875,
+              "width": 326,
+              "height": 298.203125,
+              "top": 383.796875,
+              "right": 358,
+              "bottom": 682,
+              "left": 32
+            }
+          }
+        },
+        {
+          "label": "568-focused-fifth",
+          "height": 568,
+          "compact": true,
+          "candidateInScroll": true,
+          "scrollTop": 1925,
+          "scrollHeight": 2304,
+          "clientHeight": 324,
+          "contentHeight": 348,
+          "actions": [
+            {
+              "label": "返回购买详情",
+              "rect": {
+                "x": 32,
+                "y": 449,
+                "width": 159,
+                "height": 44,
+                "top": 449,
+                "right": 191,
+                "bottom": 493,
+                "left": 32
+              }
+            },
+            {
+              "label": "更换培养方向",
+              "rect": {
+                "x": 199,
+                "y": 449,
+                "width": 159,
+                "height": 44,
+                "top": 449,
+                "right": 358,
+                "bottom": 493,
+                "left": 199
+              }
+            },
+            {
+              "label": "返回现货",
+              "rect": {
+                "x": 32,
+                "y": 501,
+                "width": 326,
+                "height": 44,
+                "top": 501,
+                "right": 358,
+                "bottom": 545,
+                "left": 32
+              }
+            }
+          ],
+          "focus": {
+            "active": true,
+            "rect": {
+              "x": 129,
+              "y": 377.703125,
+              "width": 218,
+              "height": 48,
+              "top": 377.703125,
+              "right": 347,
+              "bottom": 425.703125,
+              "left": 129
+            },
+            "scroll": {
+              "x": 32,
+              "y": 102.5,
+              "width": 326,
+              "height": 323.5,
+              "top": 102.5,
+              "right": 358,
+              "bottom": 426,
+              "left": 32
+            }
+          }
+        },
+        {
+          "label": "844-focused-fifth",
+          "height": 844,
+          "compact": false,
+          "candidateInScroll": false,
+          "scrollTop": 1744,
+          "scrollHeight": 2043,
+          "clientHeight": 298,
+          "contentHeight": 584,
+          "actions": [
+            {
+              "label": "返回购买详情",
+              "rect": {
+                "x": 32,
+                "y": 705,
+                "width": 159,
+                "height": 44,
+                "top": 705,
+                "right": 191,
+                "bottom": 749,
+                "left": 32
+              }
+            },
+            {
+              "label": "更换培养方向",
+              "rect": {
+                "x": 199,
+                "y": 705,
+                "width": 159,
+                "height": 44,
+                "top": 705,
+                "right": 358,
+                "bottom": 749,
+                "left": 199
+              }
+            },
+            {
+              "label": "返回现货",
+              "rect": {
+                "x": 32,
+                "y": 757,
+                "width": 326,
+                "height": 44,
+                "top": 757,
+                "right": 358,
+                "bottom": 801,
+                "left": 32
+              }
+            }
+          ],
+          "focus": {
+            "active": true,
+            "rect": {
+              "x": 129,
+              "y": 578.703125,
+              "width": 218,
+              "height": 48,
+              "top": 578.703125,
+              "right": 347,
+              "bottom": 626.703125,
+              "left": 129
+            },
+            "scroll": {
+              "x": 32,
+              "y": 383.796875,
+              "width": 326,
+              "height": 298.203125,
+              "top": 383.796875,
+              "right": 358,
+              "bottom": 682,
+              "left": 32
+            }
+          }
+        }
+      ],
+      "errors": [],
+      "status": "PASS"
+    },
+    {
+      "kind": "long-combination",
+      "checks": [
+        "568-shrunk: candidate/fifth/native scroll/manage return/close/focus/footer and full save unchanged",
+        "844-restored: candidate/fifth/native scroll/manage return/close/focus/footer and full save unchanged",
+        "resize at focused fifth slot preserves visible control and focus in both directions"
+      ],
+      "steps": [
+        {
+          "label": "568-shrunk",
+          "height": 568,
+          "compact": true,
+          "candidateInScroll": true,
+          "scrollTop": 0,
+          "scrollHeight": 2412,
+          "clientHeight": 324,
+          "contentHeight": 348,
+          "actions": [
+            {
+              "label": "返回购买详情",
+              "rect": {
+                "x": 32,
+                "y": 449,
+                "width": 159,
+                "height": 44,
+                "top": 449,
+                "right": 191,
+                "bottom": 493,
+                "left": 32
+              }
+            },
+            {
+              "label": "更换培养方向",
+              "rect": {
+                "x": 199,
+                "y": 449,
+                "width": 159,
+                "height": 44,
+                "top": 449,
+                "right": 358,
+                "bottom": 493,
+                "left": 199
+              }
+            },
+            {
+              "label": "返回现货",
+              "rect": {
+                "x": 32,
+                "y": 501,
+                "width": 326,
+                "height": 44,
+                "top": 501,
+                "right": 358,
+                "bottom": 545,
+                "left": 32
+              }
+            }
+          ]
+        },
+        {
+          "label": "568-shrunk-fifth-visible",
+          "focus": {
+            "active": false,
+            "rect": {
+              "x": 129,
+              "y": 322.453125,
+              "width": 218,
+              "height": 48,
+              "top": 322.453125,
+              "right": 347,
+              "bottom": 370.453125,
+              "left": 129
+            },
+            "scroll": {
+              "x": 32,
+              "y": 102.5,
+              "width": 326,
+              "height": 323.5,
+              "top": 102.5,
+              "right": 358,
+              "bottom": 426,
+              "left": 32
+            }
+          }
+        },
+        {
+          "label": "844-restored",
+          "height": 844,
+          "compact": false,
+          "candidateInScroll": false,
+          "scrollTop": 1796,
+          "scrollHeight": 2130,
+          "clientHeight": 277,
+          "contentHeight": 584,
+          "actions": [
+            {
+              "label": "返回购买详情",
+              "rect": {
+                "x": 32,
+                "y": 705,
+                "width": 159,
+                "height": 44,
+                "top": 705,
+                "right": 191,
+                "bottom": 749,
+                "left": 32
+              }
+            },
+            {
+              "label": "更换培养方向",
+              "rect": {
+                "x": 199,
+                "y": 705,
+                "width": 159,
+                "height": 44,
+                "top": 705,
+                "right": 358,
+                "bottom": 749,
+                "left": 199
+              }
+            },
+            {
+              "label": "返回现货",
+              "rect": {
+                "x": 32,
+                "y": 757,
+                "width": 326,
+                "height": 44,
+                "top": 757,
+                "right": 358,
+                "bottom": 801,
+                "left": 32
+              }
+            }
+          ]
+        },
+        {
+          "label": "844-restored-fifth-visible",
+          "focus": {
+            "active": true,
+            "rect": {
+              "x": 129,
+              "y": 634.453125,
+              "width": 218,
+              "height": 48,
+              "top": 634.453125,
+              "right": 347,
+              "bottom": 682.453125,
+              "left": 129
+            },
+            "scroll": {
+              "x": 32,
+              "y": 404.796875,
+              "width": 326,
+              "height": 277.203125,
+              "top": 404.796875,
+              "right": 358,
+              "bottom": 682,
+              "left": 32
+            }
+          }
+        },
+        {
+          "label": "568-focused-fifth",
+          "height": 568,
+          "compact": true,
+          "candidateInScroll": true,
+          "scrollTop": 2032,
+          "scrollHeight": 2412,
+          "clientHeight": 324,
+          "contentHeight": 348,
+          "actions": [
+            {
+              "label": "返回购买详情",
+              "rect": {
+                "x": 32,
+                "y": 449,
+                "width": 159,
+                "height": 44,
+                "top": 449,
+                "right": 191,
+                "bottom": 493,
+                "left": 32
+              }
+            },
+            {
+              "label": "更换培养方向",
+              "rect": {
+                "x": 199,
+                "y": 449,
+                "width": 159,
+                "height": 44,
+                "top": 449,
+                "right": 358,
+                "bottom": 493,
+                "left": 199
+              }
+            },
+            {
+              "label": "返回现货",
+              "rect": {
+                "x": 32,
+                "y": 501,
+                "width": 326,
+                "height": 44,
+                "top": 501,
+                "right": 358,
+                "bottom": 545,
+                "left": 32
+              }
+            }
+          ],
+          "focus": {
+            "active": true,
+            "rect": {
+              "x": 129,
+              "y": 378.453125,
+              "width": 218,
+              "height": 48,
+              "top": 378.453125,
+              "right": 347,
+              "bottom": 426.453125,
+              "left": 129
+            },
+            "scroll": {
+              "x": 32,
+              "y": 102.5,
+              "width": 326,
+              "height": 323.5,
+              "top": 102.5,
+              "right": 358,
+              "bottom": 426,
+              "left": 32
+            }
+          }
+        },
+        {
+          "label": "844-focused-fifth",
+          "height": 844,
+          "compact": false,
+          "candidateInScroll": false,
+          "scrollTop": 1852,
+          "scrollHeight": 2130,
+          "clientHeight": 277,
+          "contentHeight": 584,
+          "actions": [
+            {
+              "label": "返回购买详情",
+              "rect": {
+                "x": 32,
+                "y": 705,
+                "width": 159,
+                "height": 44,
+                "top": 705,
+                "right": 191,
+                "bottom": 749,
+                "left": 32
+              }
+            },
+            {
+              "label": "更换培养方向",
+              "rect": {
+                "x": 199,
+                "y": 705,
+                "width": 159,
+                "height": 44,
+                "top": 705,
+                "right": 358,
+                "bottom": 749,
+                "left": 199
+              }
+            },
+            {
+              "label": "返回现货",
+              "rect": {
+                "x": 32,
+                "y": 757,
+                "width": 326,
+                "height": 44,
+                "top": 757,
+                "right": 358,
+                "bottom": 801,
+                "left": 32
+              }
+            }
+          ],
+          "focus": {
+            "active": true,
+            "rect": {
+              "x": 129,
+              "y": 578.453125,
+              "width": 218,
+              "height": 48,
+              "top": 578.453125,
+              "right": 347,
+              "bottom": 626.453125,
+              "left": 129
+            },
+            "scroll": {
+              "x": 32,
+              "y": 404.796875,
+              "width": 326,
+              "height": 277.203125,
+              "top": 404.796875,
+              "right": 358,
+              "bottom": 682,
+              "left": 32
+            }
+          }
+        }
+      ],
+      "errors": [],
+      "status": "PASS"
+    },
+    {
+      "kind": "five-star",
+      "checks": [
+        "568-shrunk: candidate/fifth/native scroll/manage return/close/focus/footer and full save unchanged",
+        "844-restored: candidate/fifth/native scroll/manage return/close/focus/footer and full save unchanged",
+        "resize at focused fifth slot preserves visible control and focus in both directions"
+      ],
+      "steps": [
+        {
+          "label": "568-shrunk",
+          "height": 568,
+          "compact": true,
+          "candidateInScroll": true,
+          "scrollTop": 0,
+          "scrollHeight": 2563,
+          "clientHeight": 324,
+          "contentHeight": 348,
+          "actions": [
+            {
+              "label": "返回购买详情",
+              "rect": {
+                "x": 32,
+                "y": 449,
+                "width": 159,
+                "height": 44,
+                "top": 449,
+                "right": 191,
+                "bottom": 493,
+                "left": 32
+              }
+            },
+            {
+              "label": "更换培养方向",
+              "rect": {
+                "x": 199,
+                "y": 449,
+                "width": 159,
+                "height": 44,
+                "top": 449,
+                "right": 358,
+                "bottom": 493,
+                "left": 199
+              }
+            },
+            {
+              "label": "返回现货",
+              "rect": {
+                "x": 32,
+                "y": 501,
+                "width": 326,
+                "height": 44,
+                "top": 501,
+                "right": 358,
+                "bottom": 545,
+                "left": 32
+              }
+            }
+          ]
+        },
+        {
+          "label": "568-shrunk-fifth-visible",
+          "focus": {
+            "active": false,
+            "rect": {
+              "x": 129,
+              "y": 322.578125,
+              "width": 218,
+              "height": 48,
+              "top": 322.578125,
+              "right": 347,
+              "bottom": 370.578125,
+              "left": 129
+            },
+            "scroll": {
+              "x": 32,
+              "y": 102.5,
+              "width": 326,
+              "height": 323.5,
+              "top": 102.5,
+              "right": 358,
+              "bottom": 426,
+              "left": 32
+            }
+          }
+        },
+        {
+          "label": "844-restored",
+          "height": 844,
+          "compact": false,
+          "candidateInScroll": false,
+          "scrollTop": 1948,
+          "scrollHeight": 2260,
+          "clientHeight": 256,
+          "contentHeight": 584,
+          "actions": [
+            {
+              "label": "返回购买详情",
+              "rect": {
+                "x": 32,
+                "y": 705,
+                "width": 159,
+                "height": 44,
+                "top": 705,
+                "right": 191,
+                "bottom": 749,
+                "left": 32
+              }
+            },
+            {
+              "label": "更换培养方向",
+              "rect": {
+                "x": 199,
+                "y": 705,
+                "width": 159,
+                "height": 44,
+                "top": 705,
+                "right": 358,
+                "bottom": 749,
+                "left": 199
+              }
+            },
+            {
+              "label": "返回现货",
+              "rect": {
+                "x": 32,
+                "y": 757,
+                "width": 326,
+                "height": 44,
+                "top": 757,
+                "right": 358,
+                "bottom": 801,
+                "left": 32
+              }
+            }
+          ]
+        },
+        {
+          "label": "844-restored-fifth-visible",
+          "focus": {
+            "active": true,
+            "rect": {
+              "x": 129,
+              "y": 633.578125,
+              "width": 218,
+              "height": 48,
+              "top": 633.578125,
+              "right": 347,
+              "bottom": 681.578125,
+              "left": 129
+            },
+            "scroll": {
+              "x": 32,
+              "y": 425.796875,
+              "width": 326,
+              "height": 256.203125,
+              "top": 425.796875,
+              "right": 358,
+              "bottom": 682,
+              "left": 32
+            }
+          }
+        },
+        {
+          "label": "568-focused-fifth",
+          "height": 568,
+          "compact": true,
+          "candidateInScroll": true,
+          "scrollTop": 2184,
+          "scrollHeight": 2563,
+          "clientHeight": 324,
+          "contentHeight": 348,
+          "actions": [
+            {
+              "label": "返回购买详情",
+              "rect": {
+                "x": 32,
+                "y": 449,
+                "width": 159,
+                "height": 44,
+                "top": 449,
+                "right": 191,
+                "bottom": 493,
+                "left": 32
+              }
+            },
+            {
+              "label": "更换培养方向",
+              "rect": {
+                "x": 199,
+                "y": 449,
+                "width": 159,
+                "height": 44,
+                "top": 449,
+                "right": 358,
+                "bottom": 493,
+                "left": 199
+              }
+            },
+            {
+              "label": "返回现货",
+              "rect": {
+                "x": 32,
+                "y": 501,
+                "width": 326,
+                "height": 44,
+                "top": 501,
+                "right": 358,
+                "bottom": 545,
+                "left": 32
+              }
+            }
+          ],
+          "focus": {
+            "active": true,
+            "rect": {
+              "x": 129,
+              "y": 377.578125,
+              "width": 218,
+              "height": 48,
+              "top": 377.578125,
+              "right": 347,
+              "bottom": 425.578125,
+              "left": 129
+            },
+            "scroll": {
+              "x": 32,
+              "y": 102.5,
+              "width": 326,
+              "height": 323.5,
+              "top": 102.5,
+              "right": 358,
+              "bottom": 426,
+              "left": 32
+            }
+          }
+        },
+        {
+          "label": "844-focused-fifth",
+          "height": 844,
+          "compact": false,
+          "candidateInScroll": false,
+          "scrollTop": 2003,
+          "scrollHeight": 2260,
+          "clientHeight": 256,
+          "contentHeight": 584,
+          "actions": [
+            {
+              "label": "返回购买详情",
+              "rect": {
+                "x": 32,
+                "y": 705,
+                "width": 159,
+                "height": 44,
+                "top": 705,
+                "right": 191,
+                "bottom": 749,
+                "left": 32
+              }
+            },
+            {
+              "label": "更换培养方向",
+              "rect": {
+                "x": 199,
+                "y": 705,
+                "width": 159,
+                "height": 44,
+                "top": 705,
+                "right": 358,
+                "bottom": 749,
+                "left": 199
+              }
+            },
+            {
+              "label": "返回现货",
+              "rect": {
+                "x": 32,
+                "y": 757,
+                "width": 326,
+                "height": 44,
+                "top": 757,
+                "right": 358,
+                "bottom": 801,
+                "left": 32
+              }
+            }
+          ],
+          "focus": {
+            "active": true,
+            "rect": {
+              "x": 129,
+              "y": 578.578125,
+              "width": 218,
+              "height": 48,
+              "top": 578.578125,
+              "right": 347,
+              "bottom": 626.578125,
+              "left": 129
+            },
+            "scroll": {
+              "x": 32,
+              "y": 425.796875,
+              "width": 326,
+              "height": 256.203125,
+              "top": 425.796875,
+              "right": 358,
+              "bottom": 682,
+              "left": 32
+            }
+          }
+        }
+      ],
+      "errors": [],
+      "status": "PASS"
+    }
+  ],
+  "status": "PASS"
+}

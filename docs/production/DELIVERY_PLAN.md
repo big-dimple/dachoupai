@@ -4,7 +4,9 @@
 
 ### 当前批次：商店/培养/失败/B05开发集成候选（2026-10-15）
 
-从main `4a52fd0b0fb9ac0a49b8cb5e79abc8db4326e2d7` 在 `fix/shop-integration-20261015` 正常merge：PR187 `03d701f3f3aa3f6e05e948b4b8c5713a717ee1bc`、PR185 `2a3f1bcaa4e480164ef2cb125222dfbf5e7a52c8`、培养 `f30948d12b8910b1f0992e1eac0d527f6e968ad5`（包含四轴祖先 `aa001b3d6795ade79effd1c7b88055ff32b9fee3`），及父明确给定PR186修订 `bba295243a25555316ce72abc6d2b443afee6a6b`。保留原提交祖先，无cherry-pick或强推；当前仅开发候选，PR186独审/精确CI由父另核，不能借各包旧PASS签集成。
+从main `4a52fd0b0fb9ac0a49b8cb5e79abc8db4326e2d7` 在 `fix/shop-integration-20261015` 正常merge：PR187 `03d701f3f3aa3f6e05e948b4b8c5713a717ee1bc`、PR185 `2a3f1bcaa4e480164ef2cb125222dfbf5e7a52c8`、培养 `f30948d12b8910b1f0992e1eac0d527f6e968ad5`（包含四轴祖先 `aa001b3d6795ade79effd1c7b88055ff32b9fee3`），及父明确给定PR186修订 `bba295243a25555316ce72abc6d2b443afee6a6b`。保留原提交祖先，无cherry-pick或强推；当前仅开发候选，PR186 bba已由父独审并核精确CI成功，本集成仍需自己的同版验证，不能借各包旧PASS签集成。
+
+**有限集成回执：** 全部head已齐；冻结40b9f31e的249文件/3478单测、content、typecheck/build、Chromium双端smoke及8族60个有界原生窗口/链全部通过，src/index/HEAD一致；[实际同版报告与图审边界](evidence/batch-integration-2026-10-15/FINAL_RESULTS.md)。PR186 bba独审及精确CI全绿；首轮旧fixture/观察器FAIL保留。新反馈头像眼神/脏痕过渡/数字文字清晰度由独立任务01a13d2b-ddf0-70a5-8aac-7c8b6973302f另做增量，不混入本冻结版，未签美术解决或全游戏完成。
 
 在全部head齐的冻结同版上执行全量软件检查及PC/390/320核心连续操作：view/cancel、真实购买/工具/培养、保存故障固定候选重试、冷恢复及页面互转；实际看整屏，正文真实滚动和标题/父容器裁切分别核验。接续既定六英雄/三路线有界操作，不重开18长局、不改玩法数值或旧档。原FAIL和每个SHA证据保留，见[集成证据](evidence/batch-integration-2026-10-15/README.md)。本批不合main、不部署、不改权限；PR创建POST Forbidden仍停止，仅push开发分支并备说明，不通过其它入口创建PR。素材高光美术、实体设备、听感、人类理解、自然三路线经营/整体平衡及全游戏交付仍OPEN。
 

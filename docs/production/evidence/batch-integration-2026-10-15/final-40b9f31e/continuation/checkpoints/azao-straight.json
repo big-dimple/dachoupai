@@ -1,0 +1,1025 @@
+{
+  "format": "dachoupai-checkpoint",
+  "formatVersion": 1,
+  "state": {
+    "routeGrowth": {
+      "clears": 0,
+      "G": 0,
+      "S": 0,
+      "F": 0,
+      "settlements": []
+    },
+    "schemaVersion": 2,
+    "rulesVersion": "r2",
+    "contentVersion": "quality-r2-core-build-v1",
+    "contentHash": "json-fnv-v1:6dfe1a721e4949e6",
+    "runId": "run/integration-continuation-azao/azao",
+    "seed": "integration-continuation-azao",
+    "commandSeq": 5,
+    "difficulty": 0,
+    "characterId": "azao",
+    "openingRoute": "straight",
+    "openingShow": {
+      "handsScored": 1,
+      "rootId": null,
+      "eventId": null,
+      "reason": null
+    },
+    "routeStarter": {
+      "instanceId": "run/integration-continuation-azao/azao/joker/run/integration-continuation-azao/azao/command/2",
+      "rootId": null,
+      "eventId": null
+    },
+    "mode": "standard",
+    "challengeId": null,
+    "programsEnabled": true,
+    "programRerollCoupon": false,
+    "chapterDisabledJokerId": null,
+    "chapter": 1,
+    "stageIndex": 0,
+    "phase": "await-input",
+    "deckInstances": [
+      {
+        "id": "spades-2",
+        "suit": "spades",
+        "rank": 2
+      },
+      {
+        "id": "spades-3",
+        "suit": "spades",
+        "rank": 3
+      },
+      {
+        "id": "spades-4",
+        "suit": "spades",
+        "rank": 4
+      },
+      {
+        "id": "spades-5",
+        "suit": "spades",
+        "rank": 5
+      },
+      {
+        "id": "spades-6",
+        "suit": "spades",
+        "rank": 6
+      },
+      {
+        "id": "spades-7",
+        "suit": "spades",
+        "rank": 7
+      },
+      {
+        "id": "spades-8",
+        "suit": "spades",
+        "rank": 8
+      },
+      {
+        "id": "spades-9",
+        "suit": "spades",
+        "rank": 9
+      },
+      {
+        "id": "spades-10",
+        "suit": "spades",
+        "rank": 10
+      },
+      {
+        "id": "spades-11",
+        "suit": "spades",
+        "rank": 11
+      },
+      {
+        "id": "spades-12",
+        "suit": "spades",
+        "rank": 12
+      },
+      {
+        "id": "spades-13",
+        "suit": "spades",
+        "rank": 13
+      },
+      {
+        "id": "spades-14",
+        "suit": "spades",
+        "rank": 14
+      },
+      {
+        "id": "hearts-2",
+        "suit": "hearts",
+        "rank": 2
+      },
+      {
+        "id": "hearts-3",
+        "suit": "hearts",
+        "rank": 3
+      },
+      {
+        "id": "hearts-4",
+        "suit": "hearts",
+        "rank": 4
+      },
+      {
+        "id": "hearts-5",
+        "suit": "hearts",
+        "rank": 5
+      },
+      {
+        "id": "hearts-6",
+        "suit": "hearts",
+        "rank": 6
+      },
+      {
+        "id": "hearts-7",
+        "suit": "hearts",
+        "rank": 7
+      },
+      {
+        "id": "hearts-8",
+        "suit": "hearts",
+        "rank": 8
+      },
+      {
+        "id": "hearts-9",
+        "suit": "hearts",
+        "rank": 9
+      },
+      {
+        "id": "hearts-10",
+        "suit": "hearts",
+        "rank": 10
+      },
+      {
+        "id": "hearts-11",
+        "suit": "hearts",
+        "rank": 11
+      },
+      {
+        "id": "hearts-12",
+        "suit": "hearts",
+        "rank": 12
+      },
+      {
+        "id": "hearts-13",
+        "suit": "hearts",
+        "rank": 13
+      },
+      {
+        "id": "hearts-14",
+        "suit": "hearts",
+        "rank": 14
+      },
+      {
+        "id": "clubs-2",
+        "suit": "clubs",
+        "rank": 2
+      },
+      {
+        "id": "clubs-3",
+        "suit": "clubs",
+        "rank": 3
+      },
+      {
+        "id": "clubs-4",
+        "suit": "clubs",
+        "rank": 4
+      },
+      {
+        "id": "clubs-5",
+        "suit": "clubs",
+        "rank": 5
+      },
+      {
+        "id": "clubs-6",
+        "suit": "clubs",
+        "rank": 6
+      },
+      {
+        "id": "clubs-7",
+        "suit": "clubs",
+        "rank": 7
+      },
+      {
+        "id": "clubs-8",
+        "suit": "clubs",
+        "rank": 8
+      },
+      {
+        "id": "clubs-9",
+        "suit": "clubs",
+        "rank": 9
+      },
+      {
+        "id": "clubs-10",
+        "suit": "clubs",
+        "rank": 10
+      },
+      {
+        "id": "clubs-11",
+        "suit": "clubs",
+        "rank": 11
+      },
+      {
+        "id": "clubs-12",
+        "suit": "clubs",
+        "rank": 12
+      },
+      {
+        "id": "clubs-13",
+        "suit": "clubs",
+        "rank": 13
+      },
+      {
+        "id": "clubs-14",
+        "suit": "clubs",
+        "rank": 14
+      },
+      {
+        "id": "diamonds-2",
+        "suit": "diamonds",
+        "rank": 2
+      },
+      {
+        "id": "diamonds-3",
+        "suit": "diamonds",
+        "rank": 3
+      },
+      {
+        "id": "diamonds-4",
+        "suit": "diamonds",
+        "rank": 4
+      },
+      {
+        "id": "diamonds-5",
+        "suit": "diamonds",
+        "rank": 5
+      },
+      {
+        "id": "diamonds-6",
+        "suit": "diamonds",
+        "rank": 6
+      },
+      {
+        "id": "diamonds-7",
+        "suit": "diamonds",
+        "rank": 7
+      },
+      {
+        "id": "diamonds-8",
+        "suit": "diamonds",
+        "rank": 8
+      },
+      {
+        "id": "diamonds-9",
+        "suit": "diamonds",
+        "rank": 9
+      },
+      {
+        "id": "diamonds-10",
+        "suit": "diamonds",
+        "rank": 10
+      },
+      {
+        "id": "diamonds-11",
+        "suit": "diamonds",
+        "rank": 11
+      },
+      {
+        "id": "diamonds-12",
+        "suit": "diamonds",
+        "rank": 12
+      },
+      {
+        "id": "diamonds-13",
+        "suit": "diamonds",
+        "rank": 13
+      },
+      {
+        "id": "diamonds-14",
+        "suit": "diamonds",
+        "rank": 14
+      }
+    ],
+    "drawPile": [
+      "spades-5",
+      "clubs-13",
+      "spades-3",
+      "diamonds-11",
+      "spades-14",
+      "hearts-3",
+      "hearts-7",
+      "clubs-4",
+      "spades-8",
+      "spades-11",
+      "diamonds-5",
+      "spades-6",
+      "diamonds-12",
+      "clubs-6",
+      "diamonds-7",
+      "clubs-8",
+      "hearts-8",
+      "diamonds-13",
+      "hearts-5",
+      "spades-9",
+      "spades-2",
+      "diamonds-10",
+      "clubs-12",
+      "spades-7",
+      "hearts-10",
+      "hearts-9",
+      "clubs-9",
+      "diamonds-4",
+      "hearts-14",
+      "hearts-11",
+      "spades-10",
+      "hearts-6",
+      "diamonds-9",
+      "diamonds-3",
+      "clubs-14",
+      "clubs-2",
+      "hearts-12",
+      "diamonds-6",
+      "diamonds-2"
+    ],
+    "handOrder": [
+      "spades-12",
+      "spades-13",
+      "clubs-11",
+      "hearts-2",
+      "diamonds-8",
+      "clubs-5",
+      "clubs-10",
+      "diamonds-14"
+    ],
+    "playedPile": [
+      "spades-4",
+      "hearts-13",
+      "clubs-3",
+      "hearts-4",
+      "clubs-7"
+    ],
+    "discardPile": [],
+    "destroyedIds": [],
+    "stage": {
+      "routeGrowth": {
+        "entry": {
+          "commandId": "run/integration-continuation-azao/azao/command/4",
+          "seq": 4,
+          "type": "EnterStage"
+        },
+        "handTypes": [
+          "pair"
+        ],
+        "eligible": [
+          "G"
+        ],
+        "sources": [
+          {
+            "command": {
+              "runId": "run/integration-continuation-azao/azao",
+              "commandId": "run/integration-continuation-azao/azao/command/5",
+              "expectedSeq": 4,
+              "action": {
+                "type": "PlayHand",
+                "selectedIds": [
+                  "spades-4",
+                  "hearts-13",
+                  "clubs-3",
+                  "hearts-4",
+                  "clubs-7"
+                ],
+                "azaoRelease": false
+              }
+            },
+            "cards": [
+              {
+                "id": "spades-4",
+                "suit": "spades",
+                "rank": 4
+              },
+              {
+                "id": "hearts-13",
+                "suit": "hearts",
+                "rank": 13
+              },
+              {
+                "id": "clubs-3",
+                "suit": "clubs",
+                "rank": 3
+              },
+              {
+                "id": "hearts-4",
+                "suit": "hearts",
+                "rank": 4
+              },
+              {
+                "id": "clubs-7",
+                "suit": "clubs",
+                "rank": 7
+              }
+            ],
+            "rules": {
+              "fourStraight": false,
+              "fourFlush": false
+            }
+          }
+        ]
+      },
+      "azaoCharge": {
+        "charge": 0,
+        "previousQualifiedType": null
+      },
+      "openingDiscard": null,
+      "index": 0,
+      "targetHeat": "400",
+      "initialTargetHeat": "400",
+      "heat": "86",
+      "handsLeft": 3,
+      "initialHands": 4,
+      "discardsLeft": 3,
+      "initialDiscards": 3,
+      "discardSpent": 0,
+      "discardGained": 0,
+      "doubleDiscardBeforeFirstPlay": false,
+      "discardsUsed": 0,
+      "skipResult": null,
+      "playIndex": 1,
+      "previousHandType": "pair",
+      "previousHandScore": "86",
+      "handLimit": 8,
+      "initialHandLimit": 8,
+      "boss": null,
+      "initialJokerIds": [
+        "run/integration-continuation-azao/azao/joker/run/integration-continuation-azao/azao/command/2"
+      ],
+      "sealedJokerIds": [],
+      "challengeDisabledJokerId": null,
+      "rescueUsed": false,
+      "clearId": null,
+      "goldEarned": 0,
+      "disabledIds": [],
+      "wagerSelected": false,
+      "wagerUsed": false,
+      "maxPlayedCount": 5,
+      "ordinaryStraightSeen": false,
+      "ordinaryFlushSeen": false,
+      "quadRefundUsed": false,
+      "jokerSold": false
+    },
+    "totalHeat": "0",
+    "gold": 2,
+    "jokers": [
+      {
+        "instanceId": "run/integration-continuation-azao/azao/joker/run/integration-continuation-azao/azao/command/2",
+        "definitionId": "c04",
+        "paidPrice": 4,
+        "growth": {},
+        "edition": "none"
+      }
+    ],
+    "consumables": [],
+    "longTermItems": [],
+    "program": {
+      "chapter": 1,
+      "offerIds": [
+        "PG03",
+        "PG02"
+      ],
+      "selectedId": null,
+      "choiceMade": true,
+      "abandoned": false,
+      "lastOpportunityClear": false,
+      "claimed": false
+    },
+    "boss": {
+      "definitionId": "B04",
+      "disabledSuit": null
+    },
+    "seenBossIds": [
+      "B04"
+    ],
+    "chapterSkipConsumable": "T03",
+    "purchaseCoupons": 0,
+    "safetyNetUsed": false,
+    "shop": null,
+    "spectralModifiers": {
+      "handsPenalty": 0,
+      "handPenalty": 0,
+      "cleanSlateBonus": 0
+    },
+    "supplyRewardClaimed": false,
+    "chapterHandUsage": {
+      "pair": 1
+    },
+    "normalClearClaimed": false,
+    "tourMode": "normal",
+    "normalCompletion": null,
+    "rng": {
+      "deck": {
+        "algorithm": "fnv1a-mulberry32-v1",
+        "state": 2375653616
+      },
+      "rule": {
+        "algorithm": "fnv1a-mulberry32-v1",
+        "state": 2020989751
+      },
+      "shop": {
+        "algorithm": "fnv1a-mulberry32-v1",
+        "state": 2357313490
+      },
+      "reward": {
+        "algorithm": "fnv1a-mulberry32-v1",
+        "state": 2606202632
+      },
+      "program": {
+        "algorithm": "fnv1a-mulberry32-v1",
+        "state": 342548948
+      },
+      "challenge": {
+        "algorithm": "fnv1a-mulberry32-v1",
+        "state": 3740932763
+      }
+    },
+    "receipts": [
+      {
+        "commandId": "run/integration-continuation-azao/azao/start",
+        "fingerprint": "json-fnv-v1:1f2e81848eb61a10",
+        "seq": 1
+      },
+      {
+        "commandId": "run/integration-continuation-azao/azao/command/2",
+        "fingerprint": "json-fnv-v1:9b4f729bf267b497",
+        "seq": 2
+      },
+      {
+        "commandId": "run/integration-continuation-azao/azao/command/3",
+        "fingerprint": "json-fnv-v1:0057ccaf4d5a1363",
+        "seq": 3
+      },
+      {
+        "commandId": "run/integration-continuation-azao/azao/command/4",
+        "fingerprint": "json-fnv-v1:aa909ca0f114277c",
+        "seq": 4
+      },
+      {
+        "commandId": "run/integration-continuation-azao/azao/command/5",
+        "fingerprint": "json-fnv-v1:0ac18fecdd99afa8",
+        "seq": 5
+      }
+    ],
+    "lastTrace": {
+      "routeGrowth": {
+        "before": {
+          "clears": 0,
+          "G": 0,
+          "S": 0,
+          "F": 0
+        },
+        "factors": {
+          "G": {
+            "n": "1",
+            "d": "1"
+          }
+        }
+      },
+      "azaoCharge": {
+        "before": {
+          "charge": 0,
+          "previousQualifiedType": null
+        },
+        "release": false,
+        "after": {
+          "charge": 0,
+          "previousQualifiedType": null
+        },
+        "multiplier": null
+      },
+      "rulesVersion": "r2",
+      "rootId": "run/integration-continuation-azao/azao/hand/run/integration-continuation-azao/azao/command/5",
+      "handType": "pair",
+      "level": 1,
+      "sets": {
+        "playedIds": [
+          "spades-4",
+          "hearts-13",
+          "clubs-3",
+          "hearts-4",
+          "clubs-7"
+        ],
+        "scoringIds": [
+          "spades-4",
+          "hearts-4"
+        ],
+        "activeScoringIds": [
+          "spades-4",
+          "hearts-4"
+        ],
+        "heldIds": [
+          "spades-12",
+          "spades-13",
+          "clubs-11"
+        ]
+      },
+      "finalScore": "86",
+      "accumulator": {
+        "H": {
+          "n": "43",
+          "d": "1"
+        },
+        "M": {
+          "n": "2",
+          "d": "1"
+        }
+      },
+      "events": [
+        {
+          "eventId": "run/integration-continuation-azao/azao/hand/run/integration-continuation-azao/azao/command/5/event/0",
+          "rootId": "run/integration-continuation-azao/azao/hand/run/integration-continuation-azao/azao/command/5",
+          "rootEventId": "run/integration-continuation-azao/azao/hand/run/integration-continuation-azao/azao/command/5/event/0",
+          "phase": "base",
+          "sourceType": "rule",
+          "sourceDefinitionId": "pair",
+          "sourceInstanceId": "run/integration-continuation-azao/azao",
+          "operation": "base",
+          "value": {
+            "n": "35",
+            "d": "1"
+          },
+          "before": {
+            "H": {
+              "n": "0",
+              "d": "1"
+            },
+            "M": {
+              "n": "0",
+              "d": "1"
+            }
+          },
+          "after": {
+            "H": {
+              "n": "35",
+              "d": "1"
+            },
+            "M": {
+              "n": "2",
+              "d": "1"
+            }
+          },
+          "reasonKey": "pair.base",
+          "visibleCondition": {
+            "kind": "always"
+          },
+          "retriggerDepth": 0
+        },
+        {
+          "eventId": "run/integration-continuation-azao/azao/hand/run/integration-continuation-azao/azao/command/5/event/1",
+          "rootId": "run/integration-continuation-azao/azao/hand/run/integration-continuation-azao/azao/command/5",
+          "rootEventId": "run/integration-continuation-azao/azao/hand/run/integration-continuation-azao/azao/command/5/event/1",
+          "phase": "onCardScore",
+          "sourceType": "card",
+          "sourceDefinitionId": "rank-4",
+          "sourceInstanceId": "spades-4",
+          "targetCardId": "spades-4",
+          "operation": "add-heat",
+          "value": {
+            "n": "4",
+            "d": "1"
+          },
+          "before": {
+            "H": {
+              "n": "35",
+              "d": "1"
+            },
+            "M": {
+              "n": "2",
+              "d": "1"
+            }
+          },
+          "after": {
+            "H": {
+              "n": "39",
+              "d": "1"
+            },
+            "M": {
+              "n": "2",
+              "d": "1"
+            }
+          },
+          "reasonKey": "rank-4.add-heat",
+          "visibleCondition": {
+            "kind": "always"
+          },
+          "retriggerDepth": 0
+        },
+        {
+          "eventId": "run/integration-continuation-azao/azao/hand/run/integration-continuation-azao/azao/command/5/event/2",
+          "rootId": "run/integration-continuation-azao/azao/hand/run/integration-continuation-azao/azao/command/5",
+          "rootEventId": "run/integration-continuation-azao/azao/hand/run/integration-continuation-azao/azao/command/5/event/2",
+          "phase": "onCardScore",
+          "sourceType": "card",
+          "sourceDefinitionId": "rank-4",
+          "sourceInstanceId": "hearts-4",
+          "targetCardId": "hearts-4",
+          "operation": "add-heat",
+          "value": {
+            "n": "4",
+            "d": "1"
+          },
+          "before": {
+            "H": {
+              "n": "39",
+              "d": "1"
+            },
+            "M": {
+              "n": "2",
+              "d": "1"
+            }
+          },
+          "after": {
+            "H": {
+              "n": "43",
+              "d": "1"
+            },
+            "M": {
+              "n": "2",
+              "d": "1"
+            }
+          },
+          "reasonKey": "rank-4.add-heat",
+          "visibleCondition": {
+            "kind": "always"
+          },
+          "retriggerDepth": 0
+        },
+        {
+          "eventId": "run/integration-continuation-azao/azao/hand/run/integration-continuation-azao/azao/command/5/event/3",
+          "rootId": "run/integration-continuation-azao/azao/hand/run/integration-continuation-azao/azao/command/5",
+          "rootEventId": "run/integration-continuation-azao/azao/hand/run/integration-continuation-azao/azao/command/5/event/3",
+          "phase": "jokerScore",
+          "sourceType": "joker",
+          "sourceDefinitionId": "c04",
+          "sourceInstanceId": "run/integration-continuation-azao/azao/joker/run/integration-continuation-azao/azao/command/2",
+          "operation": "read-growth",
+          "value": {
+            "n": "0",
+            "d": "1"
+          },
+          "before": {
+            "H": {
+              "n": "43",
+              "d": "1"
+            },
+            "M": {
+              "n": "2",
+              "d": "1"
+            }
+          },
+          "after": {
+            "H": {
+              "n": "43",
+              "d": "1"
+            },
+            "M": {
+              "n": "2",
+              "d": "1"
+            }
+          },
+          "reasonKey": "c04.read-growth",
+          "visibleCondition": {
+            "kind": "always"
+          },
+          "retriggerDepth": 0
+        },
+        {
+          "eventId": "run/integration-continuation-azao/azao/hand/run/integration-continuation-azao/azao/command/5/event/4",
+          "rootId": "run/integration-continuation-azao/azao/hand/run/integration-continuation-azao/azao/command/5",
+          "rootEventId": "run/integration-continuation-azao/azao/hand/run/integration-continuation-azao/azao/command/5/event/4",
+          "phase": "routeGrowth",
+          "sourceType": "rule",
+          "sourceDefinitionId": "route-growth",
+          "sourceInstanceId": "run/integration-continuation-azao/azao",
+          "operation": "route-factor",
+          "value": {
+            "n": "1",
+            "d": "1"
+          },
+          "before": {
+            "H": {
+              "n": "43",
+              "d": "1"
+            },
+            "M": {
+              "n": "2",
+              "d": "1"
+            }
+          },
+          "after": {
+            "H": {
+              "n": "43",
+              "d": "1"
+            },
+            "M": {
+              "n": "2",
+              "d": "1"
+            }
+          },
+          "reasonKey": "route-growth.G.factor",
+          "visibleCondition": {
+            "kind": "hand-type-in",
+            "values": [
+              "pair",
+              "two-pair",
+              "three-kind",
+              "full-house",
+              "four-kind",
+              "five-kind",
+              "flush-house",
+              "flush-five"
+            ]
+          },
+          "retriggerDepth": 0,
+          "routeFamily": "G",
+          "resourceBefore": 0,
+          "resourceAfter": 0
+        },
+        {
+          "eventId": "run/integration-continuation-azao/azao/hand/run/integration-continuation-azao/azao/command/5/event/5",
+          "rootId": "run/integration-continuation-azao/azao/hand/run/integration-continuation-azao/azao/command/5",
+          "rootEventId": "run/integration-continuation-azao/azao/hand/run/integration-continuation-azao/azao/command/5/event/5",
+          "phase": "finalScore",
+          "sourceType": "rule",
+          "sourceDefinitionId": "pair",
+          "sourceInstanceId": "run/integration-continuation-azao/azao",
+          "operation": "final-score",
+          "value": {
+            "n": "86",
+            "d": "1"
+          },
+          "before": {
+            "H": {
+              "n": "43",
+              "d": "1"
+            },
+            "M": {
+              "n": "2",
+              "d": "1"
+            }
+          },
+          "after": {
+            "H": {
+              "n": "43",
+              "d": "1"
+            },
+            "M": {
+              "n": "2",
+              "d": "1"
+            }
+          },
+          "reasonKey": "pair.final-score",
+          "visibleCondition": {
+            "kind": "always"
+          },
+          "retriggerDepth": 0
+        }
+      ],
+      "jokers": [
+        {
+          "instanceId": "run/integration-continuation-azao/azao/joker/run/integration-continuation-azao/azao/command/2",
+          "definitionId": "c04",
+          "paidPrice": 4,
+          "growth": {},
+          "edition": "none"
+        }
+      ],
+      "rng": {
+        "algorithm": "fnv1a-mulberry32-v1",
+        "state": 2020989751
+      },
+      "goldDelta": 0,
+      "destroyedCardIds": [],
+      "destroyedJokerIds": [],
+      "cards": [
+        {
+          "id": "spades-4",
+          "suit": "spades",
+          "rank": 4
+        },
+        {
+          "id": "hearts-13",
+          "suit": "hearts",
+          "rank": 13
+        },
+        {
+          "id": "clubs-3",
+          "suit": "clubs",
+          "rank": 3
+        },
+        {
+          "id": "hearts-4",
+          "suit": "hearts",
+          "rank": 4
+        },
+        {
+          "id": "clubs-7",
+          "suit": "clubs",
+          "rank": 7
+        },
+        {
+          "id": "spades-12",
+          "suit": "spades",
+          "rank": 12
+        },
+        {
+          "id": "spades-13",
+          "suit": "spades",
+          "rank": 13
+        },
+        {
+          "id": "clubs-11",
+          "suit": "clubs",
+          "rank": 11
+        }
+      ],
+      "sourceJokers": [
+        {
+          "instanceId": "run/integration-continuation-azao/azao/joker/run/integration-continuation-azao/azao/command/2",
+          "definitionId": "c04",
+          "paidPrice": 4,
+          "growth": {},
+          "edition": "none"
+        }
+      ],
+      "bossContext": {
+        "boss": null,
+        "previousHandType": null,
+        "sealedJokerIds": [],
+        "challengeDisabledJokerId": null
+      },
+      "combo": {
+        "goldBeforeRewards": null
+      }
+    },
+    "handLevels": {
+      "pair": 1
+    },
+    "outcome": null,
+    "chapterTargetPlan": {
+      "policyVersion": "core-build-target-v1",
+      "chapter": 1,
+      "targets": [
+        "400",
+        "600",
+        "800"
+      ],
+      "boss": {
+        "definitionId": "B04",
+        "disabledSuit": null
+      }
+    }
+  },
+  "journalBaseSeq": 1,
+  "journal": [
+    {
+      "runId": "run/integration-continuation-azao/azao",
+      "commandId": "run/integration-continuation-azao/azao/command/2",
+      "expectedSeq": 1,
+      "action": {
+        "type": "BuyOffer",
+        "offerId": "run/integration-continuation-azao/azao/shop/0/0/joker/2"
+      }
+    },
+    {
+      "runId": "run/integration-continuation-azao/azao",
+      "commandId": "run/integration-continuation-azao/azao/command/3",
+      "expectedSeq": 2,
+      "action": {
+        "type": "LeaveShop"
+      }
+    },
+    {
+      "runId": "run/integration-continuation-azao/azao",
+      "commandId": "run/integration-continuation-azao/azao/command/4",
+      "expectedSeq": 3,
+      "action": {
+        "type": "EnterStage"
+      }
+    },
+    {
+      "runId": "run/integration-continuation-azao/azao",
+      "commandId": "run/integration-continuation-azao/azao/command/5",
+      "expectedSeq": 4,
+      "action": {
+        "type": "PlayHand",
+        "selectedIds": [
+          "spades-4",
+          "hearts-13",
+          "clubs-3",
+          "hearts-4",
+          "clubs-7"
+        ],
+        "azaoRelease": false
+      }
+    }
+  ],
+  "checksum": "json-fnv-v1:d3d5532ee517c12a"
+}

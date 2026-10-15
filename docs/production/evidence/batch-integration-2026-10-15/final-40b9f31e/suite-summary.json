@@ -1,0 +1,125 @@
+{
+  "frozenHead": "40b9f31e1d37ec6f7b06fce46f8eb72b65307bd5",
+  "sourceTree": "5789ae02a57e28860297b3134bcbbbe8ef6f43bb",
+  "fullSoftwareGate": {
+    "scope": "all",
+    "testedCommit": "40b9f31e1d37ec6f7b06fce46f8eb72b65307bd5",
+    "status": "PASS",
+    "exitCode": 0,
+    "before": {
+      "source": "8284917c44d7cc4ec66145479289d926d2bee827327efa71363632fb4d6c0493",
+      "index": "8551f73d60239669a7b2ec4857fa6edfa2e1da3ac764d1455c6f1579bae44553",
+      "head": "40b9f31e1d37ec6f7b06fce46f8eb72b65307bd5",
+      "branch": "refs/heads/fix/shop-integration-20261015"
+    },
+    "after": {
+      "source": "8284917c44d7cc4ec66145479289d926d2bee827327efa71363632fb4d6c0493",
+      "index": "8551f73d60239669a7b2ec4857fa6edfa2e1da3ac764d1455c6f1579bae44553",
+      "head": "40b9f31e1d37ec6f7b06fce46f8eb72b65307bd5",
+      "branch": "refs/heads/fix/shop-integration-20261015"
+    },
+    "steps": [
+      {
+        "name": "test",
+        "status": "PASS",
+        "childExitCode": 0,
+        "elapsedMs": 55058
+      },
+      {
+        "name": "verify:content",
+        "status": "PASS",
+        "childExitCode": 0,
+        "elapsedMs": 3726
+      },
+      {
+        "name": "build",
+        "status": "PASS",
+        "childExitCode": 0,
+        "elapsedMs": 28416
+      },
+      {
+        "name": "verify:smoke",
+        "status": "PASS",
+        "childExitCode": 0,
+        "elapsedMs": 370235
+      },
+      {
+        "name": "production-plan",
+        "status": "PASS",
+        "childExitCode": 0,
+        "elapsedMs": 1291
+      }
+    ],
+    "notIncluded": [
+      {
+        "name": "extended browser/recovery/fault/asset/simulation diagnostics",
+        "status": "NOT_INCLUDED",
+        "reason": "run the existing specific command only when its domain changes; P00 removes repeated default execution"
+      },
+      {
+        "name": "balance/benchmark acceptance",
+        "status": "NOT_INCLUDED",
+        "reason": "later work packages; no gameplay approval inferred from checks"
+      },
+      {
+        "name": "physical devices / human / art approval",
+        "status": "NOT_RUN"
+      }
+    ]
+  },
+  "suites": [
+    {
+      "suite": "continuation",
+      "cases": 6,
+      "head": "40b9f31e1d37ec6f7b06fce46f8eb72b65307bd5",
+      "status": "PASS"
+    },
+    {
+      "suite": "four-axis",
+      "cases": 4,
+      "head": "40b9f31e1d37ec6f7b06fce46f8eb72b65307bd5",
+      "status": "PASS"
+    },
+    {
+      "suite": "practice",
+      "cases": 12,
+      "head": "40b9f31e1d37ec6f7b06fce46f8eb72b65307bd5",
+      "status": "PASS"
+    },
+    {
+      "suite": "failure",
+      "cases": 13,
+      "head": "40b9f31e1d37ec6f7b06fce46f8eb72b65307bd5",
+      "status": "PASS"
+    },
+    {
+      "suite": "failure-reading",
+      "cases": 6,
+      "head": "40b9f31e1d37ec6f7b06fce46f8eb72b65307bd5",
+      "status": "PASS"
+    },
+    {
+      "suite": "b05",
+      "cases": 13,
+      "head": "40b9f31e1d37ec6f7b06fce46f8eb72b65307bd5",
+      "status": "PASS"
+    },
+    {
+      "suite": "resize",
+      "cases": 3,
+      "head": "40b9f31e1d37ec6f7b06fce46f8eb72b65307bd5",
+      "status": "PASS"
+    },
+    {
+      "suite": "art",
+      "cases": 3,
+      "head": "40b9f31e1d37ec6f7b06fce46f8eb72b65307bd5",
+      "status": "PASS"
+    }
+  ],
+  "totalBoundedCases": 60,
+  "not18LongRuns": true,
+  "noSourceIndexOrHeadDrift": true,
+  "newVisualFeedback": "Separate task 01a13d2b-ddf0-70a5-8aac-7c8b6973302f; no increment silently included; still OPEN",
+  "S04": "Plan only; no runtime change"
+}
