@@ -27,6 +27,7 @@ export class HandSelectionInput {
   private bounds?:Box;
   private allowVertical=false;
   private destroyed=false;
+  private readonly canvasResize?:ResizeObserver;
   constructor(private readonly scene:Phaser.Scene,private readonly options:HandInputOptions){
     this.surface.className='hand-input-surface';this.surface.setAttribute('aria-hidden','true');
     this.surface.addEventListener('pointerdown',this.down);
@@ -46,6 +47,11 @@ export class HandSelectionInput {
     document.addEventListener('visibilitychange',this.visibility);
     document.addEventListener('focusin',this.focus);
     document.body.append(this.surface);
+    // Phaser's resize event may precede the canvas's final CSS size.
+    if(typeof ResizeObserver!=='undefined'){
+      this.canvasResize=new ResizeObserver(()=>this.syncBounds());
+      this.canvasResize.observe(this.scene.game.canvas);
+    }
   }
   get active():boolean{return this.pointers.size>0;}
   private coordinates(event:PointerEvent|MouseEvent):{x:number;y:number}{
@@ -135,12 +141,15 @@ export class HandSelectionInput {
   setBounds(bounds:Box|undefined,allowVertical=false):void {
     this.cancel('resize');this.bounds=bounds;this.surface.hidden=!bounds;
     this.allowVertical=allowVertical;this.surface.style.touchAction=allowVertical?'none':'pan-y';
-    if(!bounds)return;
+    this.syncBounds();
+  }
+  private syncBounds():void {
+    const bounds=this.bounds;if(this.destroyed||!bounds)return;
     const canvas=this.scene.game.canvas.getBoundingClientRect(),sx=canvas.width/(this.scene.scale.width*this.scene.scale.zoom),sy=canvas.height/(this.scene.scale.height*this.scene.scale.zoom);
     Object.assign(this.surface.style,{left:canvas.left+bounds.x*sx+'px',top:canvas.top+bounds.y*sy+'px',width:bounds.width*sx+'px',height:bounds.height*sy+'px'});
   }
   destroy():void {
-    if(this.destroyed)return;this.destroyed=true;this.cancel();for(const id of [...this.pointers])this.release(id);this.contacts.clear();this.surface.remove();
+    if(this.destroyed)return;this.destroyed=true;this.canvasResize?.disconnect();this.cancel();for(const id of [...this.pointers])this.release(id);this.contacts.clear();this.surface.remove();
     window.removeEventListener('pointerdown',this.otherDown,true);window.removeEventListener('pointermove',this.move,true);window.removeEventListener('pointerout',this.viewportLeave,true);window.removeEventListener('pointerup',this.up,true);window.removeEventListener('pointercancel',this.cancelPointer,true);window.removeEventListener('blur',this.blur);document.removeEventListener('visibilitychange',this.visibility);document.removeEventListener('focusin',this.focus);
   }
 }

@@ -47,6 +47,25 @@ function setup(initial=['h'],twoRows=false){
 }
 
 describe('hand native contact lifecycle',()=>{
+  it('resynchronizes the native hit surface after the canvas finishes a CSS resize without changing selection',()=>{
+    let resized!:ResizeObserverCallback;
+    const disconnect=vi.fn(),observe=vi.fn();
+    vi.stubGlobal('ResizeObserver',class {constructor(callback:ResizeObserverCallback){resized=callback;}observe=observe;disconnect=disconnect;});
+    const f=setup(),before=f.selection();
+    let rect={left:0,top:0,width:320,height:240};
+    f.scene.game.canvas.getBoundingClientRect=()=>rect;
+    f.input.setBounds({x:0,y:100,width:320,height:120});
+    expect(f.surface.style).toMatchObject({top:'80px',width:'256px',height:'96px'});
+    // Scene layout can run before the browser applies the canvas's new CSS size.
+    rect={left:8,top:12,width:400,height:300};
+    expect(resized).toBeTypeOf('function');
+    resized([],{} as ResizeObserver);
+    expect(f.surface.style).toMatchObject({left:'8px',top:'112px',width:'320px',height:'120px'});
+    expect(f.selection()).toEqual(before);
+    expect(observe).toHaveBeenCalledWith(f.scene.game.canvas);
+    f.input.destroy();expect(disconnect).toHaveBeenCalledOnce();
+  });
+
   it.each(['mouse','touch'])('anchors future keyboard navigation to the actual accepted %s card without selecting on down',pointerType=>{
     const f=setup();f.send('pointerdown',{pointerType,clientX:140});expect(f.pointerCard).toHaveBeenCalledExactlyOnceWith('d');expect(f.selection()).toEqual(['h']);
     f.send('pointerup',{pointerType,clientX:140});expect(f.selection()).toEqual(['d','h']);
