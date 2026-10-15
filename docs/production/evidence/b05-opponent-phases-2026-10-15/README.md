@@ -41,3 +41,7 @@ root 实际查看最终 [PC](final/1366-changed.png)、[390](final/390-changed.p
 `GameScene.ts` 仅改 import 及 `presentTrace` 中 2025–2039 的 cue 排队接线。`ShopScene.ts` 零改动。另有独立 OpponentFacts、OpponentPresentation，以及本次真实输入失败所需的 HandSelectionInput 与 Viewport 修改。领域、内容、保存格式、规则、目标、RNG、图音素材相对候选均零改动。
 
 人物立绘与眼神特写仍无可读字节，本轮没有生成、下载重试或购买素材。当前明确使用文字演出回退；阶段/态度协议和软件图审不等于人物表演或完整电影镜头。最终人物/眼神美术与镜头合成、真人理解、物理手机、自然试玩、听感和整体游戏验收仍 OPEN。仅推送开发分支，不合 main、不部署、不创建或重试 Forbidden PR。
+
+## 高 DPR 后续补充
+
+上述矩阵使用 DPR1，不外推为 DPR2/3。高 DPR DOM 二次缩放问题与低动态几何/缩窗证据另见 [2026-10-15 density 补充](../b05-opponent-density-2026-10-15/README.md)，保留各自源码和采样边界。

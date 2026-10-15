@@ -1,0 +1,49 @@
+{
+  "productSource": "be2cbd1a3010c4b5405166bf497cbdae5a6dfa17",
+  "typecheck": "PASS",
+  "independentCodeReview": "PASS",
+  "scope": "Only OpponentPresentation CSS coordinate conversion. Rules, GameScene, ShopScene, timings and save format unchanged.",
+  "rejectedCaptureAttempts": {
+    "first-capture-timeout": "Geometry correct; some screenshots/late skip missed the short cue. No complete pass claimed.",
+    "second-capture-timeout": "Added live-cue check rejected captures after cue had expired.",
+    "debugger-capture-aborted": "Debugger-paused capture did not complete; task browser processes terminated. No pass.",
+    "capture-probe": "Late virtual-time pause found no cue and failed.",
+    "capture-probe-early": "DOM geometry report passed but root rejected image because cue was absent.",
+    "capture-settled-probe": "Root rejected clipped screenshot without cue despite geometry data.",
+    "live-extra-skip-timeout": "High-DPR menu skip did not finish in the short cue; not accepted.",
+    "normal-live-sampling-failure": "Normal-motion sampling timed out on one cue; not accepted.",
+    "resize-capture-sampling-failure": "Duplicate pre-resize sampling missed a cue; failed record retained."
+  },
+  "oldMatricesRepeated": false,
+  "acceptedReports": {
+    "live": {
+      "status": "PASS",
+      "cases": 3,
+      "clockPaused": false,
+      "reducedMotion": true,
+      "completeStateJournalStorageEqual": true
+    },
+    "snapshots": {
+      "status": "PASS",
+      "cases": 3,
+      "virtualTimePausedForScreenshot": true,
+      "reducedMotion": true
+    },
+    "resize-snapshots": {
+      "status": "PASS",
+      "cases": 2,
+      "virtualTimePausedForScreenshot": true,
+      "reducedMotion": true
+    }
+  },
+  "postValidation": "PASS, 10 exact CSS frames",
+  "screenshotPixels": "CSS viewport dimensions, with page DPR/backing recorded separately. No clip; page DPR and cue identity preserved.",
+  "actuallyViewed": [
+    "snapshots/390-dpr3.png",
+    "snapshots/320-dpr3.png",
+    "snapshots/1366-dpr2.png",
+    "resize-snapshots/390-dpr3-resized.png",
+    "resize-snapshots/1366-dpr2-resized.png"
+  ],
+  "limits": "Low-dynamic software geometry only; screenshot virtual time is paused. No ordinary-motion duration/readability, high-DPR menu skip, physical device or whole-game acceptance."
+}
