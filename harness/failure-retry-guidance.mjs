@@ -85,7 +85,7 @@ async function readGuidanceBody(page,row,initial,viewport,key){
  const d=page.locator('.detail-dialog[open]'),rules=d.locator('.dialog-copy > details.card-rules');
  const collapsed=await bodyObservation(page);if(collapsed.scroll.top+collapsed.scroll.clientHeight<collapsed.scroll.scrollHeight-1)await wheelBody(page,collapsed.scroll.scrollHeight*2);
  const summaryBox=await rules.locator('summary').boundingBox(),summaryView=await bodyObservation(page);assert.ok(summaryBox.y>=summaryView.scroll.y-1&&summaryBox.y+summaryBox.height<=summaryView.scroll.y+summaryView.scroll.height+1,'native wheel reveals rules control before tapping');
- await rules.locator('summary').tap();assert.ok(await rules.evaluate(el=>el.open));
+ if(viewport.width<700)await rules.locator('summary').tap();else await rules.locator('summary').click();assert.ok(await rules.evaluate(el=>el.open));
  const before=await bodyObservation(page);assert.ok(['auto','scroll'].includes(before.scroll.overflowY));assert.ok(before.scroll.clientHeight>0);
  if(before.scroll.top>0)await wheelBody(page,-before.scroll.scrollHeight*2);
  const coverage=new Map(),frames=[];let priorTop=-1;
