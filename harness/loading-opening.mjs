@@ -38,7 +38,7 @@ try{
    if(row.preparation.status==='needs-choice'){
     assert.ok(row.preparation.loaded<startupTotal);const current=await snap();assert.equal(current.value,current.loaded);assert.ok(current.cards<3);row.deadline=current;
     await p.screenshot({path:`${out}/${name}-deadline.png`,scale:'css'});await p.getByRole('button',{name:'使用文字牌面继续',exact:true}).click();row.completion='12s deadline -> native text continuation';
-   }else row.completion='all startupTotal decoded';
+   }else row.completion=`all ${startupTotal} decoded`;
    await p.waitForFunction(()=>window.__harness?.game.scene.isActive('title'),undefined,{timeout:30000});
    row.titleMs=Date.now()-start;row.beats=await p.evaluate(()=>window.__loadingBeats);assert.ok(row.beats.length>0);assert.ok(row.beats.every(b=>b.value===b.loaded&&b.chapters===b.cards&&b.cards===(b.loaded===startupTotal?3:b.loaded>=startupTotal/2?2:b.loaded>0?1:0)));if(row.preparation.status==='ready')assert.ok(row.beats.some(b=>b.loaded===startupTotal&&b.cards===3));assert.equal(await p.locator('#resource-loading').count(),0);assert.deepEqual(errors,[]);row.status='PASS';console.log('PASS',name,row.titleMs,row.completion);await ctx.close();continue;
   }
