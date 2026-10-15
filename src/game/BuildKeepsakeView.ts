@@ -13,7 +13,7 @@ export function buildKeepsakeView(facts:BuildKeepsake,cleanups:(()=>void)[],insp
   copy.append(p(facts.continuity.next,'build-keepsake-next'),p(facts.continuity.decision));
  }
  if(facts.hero.details){const details=document.createElement('details'),summary=document.createElement('summary');details.className='card-rules';summary.textContent='完整角色打法';details.append(summary,p(facts.hero.details));copy.append(details);}
- const portrait=image(facts.hero.url,facts.hero.name+'既有立绘');
+ const portrait=image(facts.hero.url,facts.hero.name+' · 人物图待交付');
  if(inspectHero){const button=document.createElement('button');button.type='button';button.className='build-keepsake-hero-entry';button.style.cssText='padding:0;border:0;background:transparent;align-self:start';button.setAttribute('aria-label','查看'+facts.hero.name+'技能说明');const style=document.createElement('style');style.textContent='.build-keepsake-hero-entry{flex:none;width:88px;height:124px}.build-keepsake-hero-entry img{width:100%;height:100%;object-fit:contain}@media(max-width:480px){.build-keepsake-hero-entry{width:60px;height:86px}}';button.append(portrait);button.onclick=inspectHero;hero.append(style,button);}else hero.append(portrait);
  hero.append(copy);section.append(hero);
  if(!facts.growth.length){section.append(p(facts.terminal?'本局最终未持有成长来源；这份留影不补发成长或奖励。':'尚无持有的成长来源；先用现有持牌尝试，按真实货架自主购买。','build-keepsake-empty'));return section;}

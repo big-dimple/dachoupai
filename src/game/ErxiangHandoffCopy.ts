@@ -1,3 +1,4 @@
+import {heroText} from './HeroIdentity';
 import {usesErxiangHandoff,ordinaryCardPoints} from '../domain/r2ErxiangHandoff';
 import type {R2RunState} from '../domain/r2Run';
 import type {R2SelectionFacts} from '../domain/r2SelectionFacts';
@@ -12,10 +13,10 @@ export function erxiangChoice(run:R2RunState,facts?:R2SelectionFacts,targetId:st
   return {card,points,label:'第'+(run.handOrder.indexOf(card.id)+1)+'张 · '+rankLabel(card.rank)+SUIT_SYMBOL[card.suit],detail:'增强：'+enhancementText(card)+'；版次：'+editionLabel(card.edition)+'。交棒：首次普通'+points+'点热度 → 倍率。'};
  }):[];
  const selected=candidates.find(c=>c.card.id===targetId);
- return {enabled,used,candidates,selected,compact:used?'二响·交棒已用':!enabled?'二响·交棒停用':selected?'已选'+selected.points+'点交棒':'二响·选交棒↗',sentence:selected?'这张的'+selected.points+'点改加倍率，本场一次':used?'本场交棒已用':!enabled?'本场角色停用，仍可正常出牌':candidates.length?'选一张核心：普通点数改加倍率，本场一次':'先选对子及以上的有效核心'};
+ return {enabled,used,candidates,selected,compact:used?heroText('二响·交棒已用'):!enabled?heroText('二响·交棒停用'):selected?'已选'+selected.points+'点交棒':heroText('二响·选交棒↗'),sentence:selected?'这张的'+selected.points+'点改加倍率，本场一次':used?'本场交棒已用':!enabled?'本场角色停用，仍可正常出牌':candidates.length?'选一张核心：普通点数改加倍率，本场一次':'先选对子及以上的有效核心'};
 }
 export function savedErxiangHandoff(run:R2RunState):string {
  const t=run.lastTrace?.erxiangHandoff;if(!t?.targetId)return '';
  const e=run.lastTrace!.events.find(e=>e.sourceType==='character'&&e.reasonKey==='erxiang.handoff'&&e.targetCardId===t.targetId);
- return e?'上手二响交棒 · '+e.value.n+'点热度 → 倍率（首次普通计分）':'';
+ return e?heroText('上手二响交棒 · ')+e.value.n+'点热度 → 倍率（首次普通计分）':'';
 }

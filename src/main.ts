@@ -1,3 +1,4 @@
+import {GAME_NAME,GAME_DESCRIPTION} from './game/Brand';
 import Phaser from 'phaser';
 import './style.css';
 import { BootScene } from './game/BootScene';
@@ -32,7 +33,8 @@ const config: Phaser.Types.Core.GameConfig = {
 
 const game = new Phaser.Game(config);
 game.canvas.tabIndex=0;
-game.canvas.setAttribute('aria-label','大丑牌牌桌，方向键聚焦手牌，空格选牌，Enter 查看详情');
+document.title=GAME_NAME;document.querySelector('meta[name=description]')?.setAttribute('content',GAME_NAME+' · '+GAME_DESCRIPTION);
+game.canvas.setAttribute('aria-label',GAME_NAME+'牌桌，方向键聚焦手牌，空格选牌，Enter 查看详情');
 installRunMenu(game);
 const audio=AudioEngine.shared;
 const unlockAudio=()=>{void audio.unlock();};

@@ -1,3 +1,4 @@
+import {heroText} from './HeroIdentity';
 import {usesAzaoCharge} from '../domain/r2AzaoCharge';
 import {AMO_ASSIST_TYPES} from '../domain/r2QualifiedHands';
 import {r2RunModeConfig} from '../content/r2Modes';
@@ -12,5 +13,5 @@ export function azaoChoice(run:R2RunState,type?:R2HandType){
 }
 export function savedAzaoCharge(run:R2RunState):string {
  const trace=run.lastTrace?.azaoCharge;if(!trace)return '';
- return (trace.release?`阿燥 · 已释放${trace.before.charge}层，实际 ×${trace.multiplier}`:`阿燥 · 本手蓄势 ${trace.before.charge} → ${trace.after.charge}层`)+(run.phase==='await-input'?`\n当前蓄势${run.stage?.azaoCharge?.charge??0}层；弃牌保留，场间清空。`:'\n本场已结束，蓄势已清；再次入场从0层开始。');
+ return (trace.release?heroText(`阿燥 · 已释放${trace.before.charge}层，实际 ×${trace.multiplier}`):heroText(`阿燥 · 本手蓄势 ${trace.before.charge} → ${trace.after.charge}层`))+(run.phase==='await-input'?`\n当前蓄势${run.stage?.azaoCharge?.charge??0}层；弃牌保留，场间清空。`:'\n本场已结束，蓄势已清；再次入场从0层开始。');
 }

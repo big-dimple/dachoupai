@@ -1,3 +1,5 @@
+import {GAME_NAME} from './Brand';
+import {heroText} from './HeroIdentity';
 import {warmOpeningImages,warmHeroImage} from './StageImageWarmup';
 import {showHeroExplanation} from './HeroExplanation';
 import {paperSceneStart} from './PaperFlow';
@@ -77,7 +79,7 @@ export class CharacterSelectScene extends Phaser.Scene {
   private render():void {
     this.portraitTargets.clear();
     const v=this.view,l=v.layout,style=getComputedStyle(document.documentElement),bottom=parseFloat(style.getPropertyValue('--safe-bottom'))||0;
-    const p=selectionLayout(l.width,l.height,l.hud.y,bottom,this.step),config=r2RunModeConfig(this.modeConfig);v.clear();v.paperBackground();
+    const p=selectionLayout(l.width,l.height,l.hud.y,bottom,this.step),config=r2RunModeConfig(this.modeConfig);v.clear();this.game.canvas.setAttribute('aria-label',GAME_NAME+' · 选择人物'+(this.selectedId?' · 当前'+getCharacter(this.selectedId).name:''));v.paperBackground();
     v.text(p.x,p.top,this.step==='hero'?'英雄登场':'选一条路',p.short||p.portrait?24:30,'#26313A').setFontFamily('Georgia, "Noto Serif SC", SimSun, serif').setFontStyle('bold');
     const modeLabel=selectionModeName(this.modeConfig);
     const modeWidth=p.portrait?104:132,controlsRight=Math.max(12,parseFloat(style.getPropertyValue('--safe-right'))||0);
@@ -141,9 +143,10 @@ export class CharacterSelectScene extends Phaser.Scene {
     }
     this.queueHeroPortrait(c.id);this.drawPortrait(c.id,q.art,true);
     const portraitHit=v.rect({...q.art,height:q.art.height+(p.short?0:24)}).setFillStyle(0,0).setStrokeStyle(0);v.target(portraitHit,'opening/hero-details',{tap:()=>this.inspect(c.id),detail:()=>this.inspect(c.id)});
-    if(!p.short)v.text(q.art.x+q.art.width/2,q.art.y+q.art.height+4,'点立绘 · 技能说明',14,'#3F606B').setOrigin(.5,0).setName('opening/portrait-hint');
+    if(!p.short)v.text(q.art.x+q.art.width/2,q.art.y+q.art.height+4,'人物图待交付 · 技能说明',14,'#3F606B').setOrigin(.5,0).setName('opening/portrait-hint');
     const x=q.copy.x,w=q.copy.width,tightPortrait=p.portrait&&q.copy.height<150;
     const name=v.text(x,q.copy.y,c.name,p.short?30:tightPortrait?28:p.portrait?34:p.w>=1280?66:52,copy.accent).setFontFamily('Georgia, "Noto Serif SC", SimSun, serif').setFontStyle('bold').setName('opening/name');
+    for(let size=parseInt(name.style.fontSize.toString());name.width>w&&size>18;)name.setFontSize(--size);
     const title=v.text(x,name.y+name.height+2,c.title,14,'#3F606B').setName('opening/title');
     const quote=v.text(x,tightPortrait?name.y+name.height+4:title.y+title.height+7,copy.taunt,tightPortrait?14:p.short?16:p.portrait?16:24,copy.accent,w).setFontStyle('bold').setName('opening/taunt');
     if(p.portrait){quote.setWordWrapWidth(0);if(quote.width>w)quote.setText(copy.taunt.replace(/([，？])/,'$1\n'));if(quote.width>w)quote.setFontSize(14);quote.setWordWrapWidth(w,true);}
@@ -222,7 +225,7 @@ export class CharacterSelectScene extends Phaser.Scene {
   }
   private select(id:CharacterId):void {
     if(this.choosing)return;
-    if(this.modeConfig.mode==='tutorial'&&id!=='erxiang'){this.notice='教程固定二响；跳过教程后可自由选角。';this.audio.invalid();this.render();return;}
+    if(this.modeConfig.mode==='tutorial'&&id!=='erxiang'){this.notice=heroText('教程固定二响；跳过教程后可自由选角。');this.audio.invalid();this.render();return;}
     this.selectedId=id;this.sampleAfter=false;this.sampleExpanded=false;this.notice='';this.animateChoice=true;this.audio.select();this.render();
   }
   private compareHeroes():void {
@@ -233,7 +236,7 @@ export class CharacterSelectScene extends Phaser.Scene {
   private inspect(id:CharacterId):void {
     if(this.choosing)return;
     const tutorialOther=this.modeConfig.mode==='tutorial'&&id!=='erxiang';
-    showHeroExplanation(this.dialog,id,{abilityEnabled:r2RunModeConfig(this.modeConfig).characterAbilityEnabled,closeLabel:'回到选角',status:tutorialOther?'教程固定二响；退出教程后可选择这位英雄。':undefined,actions:this.selectedId===id||tutorialOther?[]:[{label:'选中角色',run:()=>{this.select(id);this.dialog.close();}}]});
+    showHeroExplanation(this.dialog,id,{abilityEnabled:r2RunModeConfig(this.modeConfig).characterAbilityEnabled,closeLabel:'回到选角',status:tutorialOther?heroText('教程固定二响；退出教程后可选择这位英雄。'):undefined,actions:this.selectedId===id||tutorialOther?[]:[{label:'选中角色',run:()=>{this.select(id);this.dialog.close();}}]});
   }
   private selectMode():void {
     if(this.choosing)return;this.dialog.close();this.modeDialog.open({initial:{modeConfig:this.modeConfig,seed:this.seed},chooseLabel:'使用此模式',choose:choice=>this.applyModeChoice(choice),

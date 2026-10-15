@@ -48,9 +48,9 @@ it('detail upgrades reject wrong-size bitmaps and release them before caching a 
 it('deployment subpaths remain inside Vite BASE_URL and participate in exact reference checks',async()=>{
  vi.stubEnv('BASE_URL','/dachoupai/');vi.resetModules();
  const art=await import('../src/game/CharacterArt'),a=art.characterArt('amo','portrait');
- expect(a.url).toBe('/dachoupai/assets/handdrawn-p08/characters/amo.portrait.webp');
+ expect(a.url).toBe('/dachoupai/assets/cast-placeholders/amo.portrait.svg');
  expect(()=>art.assertCharacterArtReference(a.key,a.url)).not.toThrow();
- expect(()=>art.assertCharacterArtReference(a.key,'/assets/handdrawn-p08/characters/amo.portrait.webp')).toThrow('character-art-reference');
+ expect(()=>art.assertCharacterArtReference(a.key,'/assets/cast-placeholders/amo.portrait.svg')).toThrow('character-art-reference');
 });
 
 it('same-path foreign origins and query variants cannot impersonate a manifest texture URL',()=>{

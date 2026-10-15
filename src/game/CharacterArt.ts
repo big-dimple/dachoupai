@@ -1,16 +1,16 @@
-import manifest from '../../public/assets/handdrawn-p08/manifest.json';
+import manifest from '../../public/assets/cast-placeholders/manifest.json';
 import type {CharacterId} from '../domain/characters';
 
 export type CharacterArtPurpose='avatar'|'selection'|'portrait';
 const prefixes:Record<CharacterArtPurpose,string>={avatar:'avatar-',selection:'selection-portrait-',portrait:'opening-portrait-'};
-/** One same-ID manifest owns every runtime face. Existing paintings are transitional, not the new cast approval. */
+/** Until approved named-person art arrives, every runtime role uses an explicit typographic placeholder. Legacy paintings stay archived. */
 export function characterArt(id:CharacterId,purpose:CharacterArtPurpose){
-  const output=manifest.assets.find(a=>a.category==='character'&&a.id===id)?.outputs.find(o=>o.purpose===purpose);
+  const output=manifest.assets.find(a=>a.id===id&&a.purpose===purpose);
   if(!output)throw Error(`character-art-missing:${id}/${purpose}`);
-  const path='assets/handdrawn-p08/'+output.path;
+  const path='assets/cast-placeholders/'+output.path;
   return {...output,id,purpose,key:prefixes[purpose]+id,path,url:import.meta.env.BASE_URL+path};
 }
-const assets=manifest.assets.filter(a=>a.category==='character').flatMap(a=>(['avatar','selection','portrait'] as const).map(p=>characterArt(a.id as CharacterId,p)));
+const assets=manifest.assets.map(a=>characterArt(a.id as CharacterId,a.purpose as CharacterArtPurpose));
 const absoluteURL=(url:string)=>new URL(url,typeof document==='undefined'?'https://local.invalid/':document.baseURI||'https://local.invalid/').href;
 export function characterArtByURL(url:string){return assets.find(a=>absoluteURL(a.url)===absoluteURL(url));}
 export function characterArtByKey(key:string){return assets.find(a=>a.key===key);}

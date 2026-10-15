@@ -60,7 +60,7 @@ describe('assist consumption remains bound to available same-stage journal evide
 it('result assist identity reads a real committed event, never a draft or an unrelated growth event',()=>{
  const run=fixture();run.send({type:'PlayAssistedHand',selectedIds:main,assistIds:assist});
  const trace=run.state.lastTrace!,before=JSON.stringify(run.state);if(!trace.assist)throw Error('fixture must have a committed assist');
- expect(savedAssistSummary(trace)).toBe('阿默助攻 ×2 · 用掉2张');
+ expect(savedAssistSummary(trace)).toBe('苏轼助攻 ×2 · 用掉2张');
  expect(savedAssistSummary({...trace,events:trace.events.filter(e=>e.sourceType!=='character')})).toBeUndefined();
  expect(savedAssistSummary({...trace,events:trace.events.map(e=>e.sourceType==='character'?{...e,after:e.before}:e)})).toBeUndefined();
  expect(savedAssistSummary({...trace,assist:null})).toBeUndefined();expect(JSON.stringify(run.state)).toBe(before);

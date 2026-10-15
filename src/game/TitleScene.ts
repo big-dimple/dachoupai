@@ -1,3 +1,4 @@
+import {GAME_NAME} from './Brand';
 import {warmOpeningImages} from './StageImageWarmup';
 import {paperSceneStart} from './PaperFlow';
 import Phaser from 'phaser';
@@ -44,14 +45,15 @@ export class TitleScene extends Phaser.Scene {
     const v=this.view,l=v.layout,{width:w,height:h}=l,short=h<500,style=getComputedStyle(document.documentElement),bottom=parseFloat(style.getPropertyValue('--safe-bottom'))||0,right=parseFloat(style.getPropertyValue('--safe-right'))||0,left=parseFloat(style.getPropertyValue('--safe-left'))||0;
     const session=gameSession(),saved=session.run,canContinue=!!saved&&['idle','readonly'].includes(saved.status);
     const buttonWidth=short?Math.min(340,(w-left-right-64)*.44):Math.min(360,w-48),x=short?w-right-24-buttonWidth:(w-buttonWidth)/2,visualX=short?(left+x)/2:w/2;
-    v.clear();v.paperBackground();
+    v.clear();v.paperBackground();this.game.canvas.setAttribute('aria-label',GAME_NAME+' · 开始或继续游戏');
     const titleSize=short?Math.max(32,Math.min(50,(h-l.hud.y-bottom)*.2)):Math.max(38,Math.min(w<700?56:94,w*.18,h*.15)),titleY=short?l.hud.y+titleSize*.6+4:h*.23;
     const entrance=this.firstRender&&session.loaded&&!this.reducedMotion();if(session.loaded)this.firstRender=false;
     if(entrance)mountInkBurst(this,v.root,visualX,titleY,Math.min(w,h)*.28,0x3f606b,900,18);
-    const title=v.text(visualX,titleY,'大丑牌',titleSize,'#203944').setOrigin(.5).setFontFamily('Georgia, "Noto Serif SC", SimSun, serif').setFontStyle('bold').setShadow(0,2,'#fff3d9',4,true,true);
+    const title=v.text(visualX,titleY,GAME_NAME,titleSize,'#203944').setOrigin(.5).setFontFamily('Georgia, "Noto Serif SC", SimSun, serif').setFontStyle('bold').setShadow(0,2,'#fff3d9',4,true,true).setName('brand/title');
+    for(let size=titleSize;title.width>w-left-right-48&&size>28;)title.setFontSize(--size);
     const textColor='#3F606B';
     title.setColor('#26313A').setShadow(0,0,'#000',0,false,false);
-    v.text(visualX,titleY+titleSize*.75,'一出戏 · 一副牌',16,textColor).setOrigin(.5);
+    v.text(visualX,titleY+titleSize*.75,'唐宋群英 · 牌局争锋',16,textColor).setOrigin(.5);
     const fanTop=titleY+titleSize*.75+28,fanRoom=Math.max(24,h-bottom-18-fanTop),fanY=short?fanTop+fanRoom/2:h*.56,cardWidth=short?Math.min(82,(x-left-48)/3.5,fanRoom/1.9):Math.min(112,w*.2),cardHeight=cardWidth*1.42;
     const fan=v.add(this.add.container(visualX,fanY));
     [-1,0,1].forEach((side,i)=>{

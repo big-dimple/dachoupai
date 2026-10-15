@@ -1,0 +1,48 @@
+import assert from 'node:assert/strict';
+import {createServer} from 'vite';
+import {chromium} from 'playwright';
+import {mkdir,writeFile} from 'node:fs/promises';
+import {gzipSync} from 'node:zlib';
+import {execFileSync} from 'node:child_process';
+import {tapUI,waitScene,openSelector,confirmHeroRoute} from './ui.mjs';
+const out=process.env.BRAND_OUTPUT??'/tmp/tangsong-brand-browser';await mkdir(out,{recursive:true});
+const server=await createServer({mode:'e2e',cacheDir:out+'/vite-cache',optimizeDeps:{noDiscovery:true,include:['phaser']},server:{host:'127.0.0.1',port:5569,strictPort:true},logLevel:'error'});await server.listen();
+const {createRun,applyCommand}=await server.ssrLoadModule('/src/domain/run.ts'),{newRunIdentity}=await server.ssrLoadModule('/src/game/RunLaunch.ts'),{makeCheckpoint,readCheckpoint}=await server.ssrLoadModule('/src/application/checkpoint.ts'),{HERO_CAST}=await server.ssrLoadModule('/src/game/HeroIdentity.ts');
+const browser=await chromium.launch({executablePath:'/usr/bin/chromium',args:['--disable-gpu','--disable-software-rasterizer']});
+const git=(...a)=>execFileSync('git',a,{encoding:'utf8'}).trim(),report={head:git('rev-parse','HEAD'),dirty:git('status','--short'),sourceTree:git('rev-parse','HEAD:src'),scope:'Controlled new-run and validator-approved imports, native selection/details/HUD/result, synthetic named typographic placeholders only. No historic likeness, new artwork, natural play or physical device approval.',cases:[]};
+const send=(s,action)=>{const r=applyCommand(s,{runId:s.runId,commandId:s.runId+'/command/'+(s.commandSeq+1),expectedSeq:s.commandSeq,action});assert.ok(r.ok,r.code);return r.state;};
+function fixture(id){let s=createRun({seed:'brand/'+id,runId:'controlled/brand/'+id,characterId:id,rulesVersion:'r2',r2Identity:newRunIdentity(id,'group'),openingRoute:'group',modeConfig:{mode:'standard',difficulty:0,challengeId:null,programsEnabled:false}});return send(send(s,{type:'LeaveShop'}),{type:'EnterStage'});}
+const snap=p=>p.evaluate(async()=>{const c=window.__harness.game.registry.get('runController');return c?{state:c.state,journal:c.journal,storage:await c.store.read()}:null;});
+const visible=p=>p.evaluate(()=>{const rows=[];const walk=(list,show=true)=>{for(const o of list){const on=show&&o.visible!==false&&o.alpha!==0;if(on&&o.text)rows.push({text:o.text,name:o.name,bounds:o.getBounds(),font:o.style?.fontSize});if(o.list)walk(o.list,on);}};for(const s of window.__harness.game.scene.getScenes(true))walk(s.children.list);return rows;});
+const oldNames=/阿默|骰爷|老幻|二响|阿燥|谢幕人|郭子仪/;
+async function photo(p,name){await p.screenshot({path:out+'/'+name+'.png',scale:'css'});}
+async function imp(p,s,key){assert.ok(readCheckpoint(makeCheckpoint(s,[])).ok);await p.locator('.run-menu-toggle').click();const section=p.getByText('进度与存档',{exact:true}).locator('..');if(!await section.evaluate(e=>e.open))await section.locator('summary').click();const fc=p.waitForEvent('filechooser');await p.getByRole('button',{name:'导入本局',exact:true}).click();await(await fc).setFiles({name:'brand-controlled.json',mimeType:'application/json',buffer:Buffer.from(JSON.stringify(makeCheckpoint(s,[])))});await waitScene(p,key);await p.waitForFunction(({id,key})=>{const s=window.__harness.game.scene.getScene(key);return s.ready&&window.__harness.game.registry.get('runController').state.runId===id;},{id:s.runId,key});if(key==='game')await p.waitForFunction(()=>{const s=window.__harness.game.scene.getScene('game');return !s.presentation&&!s.playing&&s.cardViews.every(v=>!v.dealing&&!s.tweens.isTweening(v.container));});assert.deepEqual((await snap(p)).state,s);}
+async function detail(p,key,target,id,touch){const before=await snap(p);await tapUI(p,key,target,touch);const d=p.locator('.hero-explanation[open]');await d.waitFor();const text=await d.innerText();assert.ok(text.includes(HERO_CAST[id].name));assert.ok(text.includes(HERO_CAST[id].intro));assert.ok(text.includes('人物图待交付'));assert.doesNotMatch(text,oldNames);await d.getByRole('button',{name:/返回|回到/}).last().click();await p.waitForTimeout(420);assert.deepEqual(await snap(p),before);return text;}
+try{
+ for(const spec of [{width:1366,height:768,dpr:1,mode:'normal'},{width:390,height:740,dpr:3,mode:'normal'},{width:320,height:640,dpr:2,mode:'normal'},{width:390,height:740,dpr:3,mode:'missing'},{width:390,height:740,dpr:3,mode:'late'}]){
+  const {width,height,dpr,mode}=spec,key=width+'-'+mode,touch=width<700,context=await browser.newContext({viewport:{width,height},hasTouch:touch,deviceScaleFactor:dpr,reducedMotion:'reduce'}),p=await context.newPage(),row={key,...spec,heroes:[],errors:[],oldFaceRequests:[]};report.cases.push(row);p.setDefaultTimeout(20000);p.on('dialog',d=>d.accept());p.on('pageerror',e=>row.errors.push(String(e)));p.on('request',r=>{if(r.url().includes('/handdrawn-p08/characters/'))row.oldFaceRequests.push(r.url());});
+  try{
+   if(mode!=='normal')await p.route('**/cast-placeholders/*.svg',async r=>{if(mode==='missing')return r.fulfill({status:404,body:''});if(r.request().url().includes('.portrait.'))await new Promise(resolve=>setTimeout(resolve,1000));return r.continue().catch(()=>{});});
+   await p.goto('http://127.0.0.1:5569/?harness=1');await waitScene(p,'title');assert.equal(await p.title(),'唐宋牌');assert.ok((await p.locator('canvas').getAttribute('aria-label')).includes('唐宋牌'));assert.ok((await visible(p)).some(r=>r.text==='唐宋牌'));await photo(p,key+'-title');await openSelector(p,touch);
+   for(const [id,person]of Object.entries(HERO_CAST)){
+    await tapUI(p,'character-select','character/'+id,touch);const texts=await visible(p),name=texts.find(t=>t.name==='opening/name');assert.equal(name.text,person.name);assert.ok(name.bounds.x>=0&&name.bounds.x+name.bounds.width<=width+.1);assert.doesNotMatch(texts.map(t=>t.text).join('\n'),oldNames);
+    const explanation=await detail(p,'character-select','opening/hero-details',id,touch);row.heroes.push({id,name:person.name,selection:name,explanation});
+   }
+   if(mode==='late'){await tapUI(p,'character-select','character/amo',touch);await tapUI(p,'character-select','character/azao',touch);await p.waitForTimeout(1400);assert.equal((await visible(p)).find(t=>t.name==='opening/name').text,HERO_CAST.azao.name);row.lateSwitch=true;}
+   await photo(p,key+'-selection');await tapUI(p,'character-select','character/azao',touch);await confirmHeroRoute(p,touch);await waitScene(p,'shop');await p.waitForFunction(()=>window.__harness.game.scene.getScene('shop').ready);assert.ok((await p.locator('canvas').getAttribute('aria-label')).includes(HERO_CAST.azao.name));await photo(p,key+'-shop');
+   for(const id of mode==='normal'?Object.keys(HERO_CAST):['azao','xiemu']){
+    let s=fixture(id);await imp(p,s,'game');const before=await snap(p),texts=await visible(p);assert.ok((await p.locator('canvas').getAttribute('aria-label')).includes(HERO_CAST[id].name));assert.doesNotMatch(texts.map(t=>t.text).join('\n'),oldNames);assert.ok(texts.some(t=>t.text===HERO_CAST[id].name));
+    const hud=await p.evaluate(()=>{const s=window.__harness.game.scene.getScene('game');return {name:s.mobileHeroName?{text:s.mobileHeroName.text,bounds:s.mobileHeroName.getBounds()}:null,cue:{text:s.roleText.text,bounds:s.roleText.getBounds()},gold:s.goldText.getBounds(),heat:s.heatText.getBounds()};});
+    if(touch){assert.equal(hud.name.text,HERO_CAST[id].name);assert.ok(hud.name.bounds.x+hud.name.bounds.width<=hud.gold.x);assert.ok(hud.cue.bounds.x+hud.cue.bounds.width<=hud.heat.x);assert.ok(hud.name.bounds.y+hud.name.bounds.height<=hud.cue.bounds.y);}
+    await detail(p,'game','hero/skill-entry',id,touch);assert.deepEqual(await snap(p),before);if(['azao','xiemu'].includes(id))await photo(p,key+'-'+id+'-hud');
+    if(mode==='normal'){
+     while(s.phase==='await-input')s=send(s,{type:'PlayHand',selectedIds:[s.handOrder[0]]});assert.equal(s.phase,'run-lost');await imp(p,s,'intermission');await p.waitForTimeout(600);const result=await visible(p);assert.ok(result.some(t=>t.text.includes(HERO_CAST[id].name)));assert.doesNotMatch(result.map(t=>t.text).join('\n'),oldNames);await detail(p,'intermission','result/hero-details',id,touch);if(id==='xiemu')await photo(p,key+'-result');
+    }
+    row.heroes.find(h=>h.id===id).hud=hud;
+   }
+   assert.deepEqual(row.oldFaceRequests,[]);assert.deepEqual(row.errors,[]);row.status='PASS';console.log('PASS',key);
+  }catch(e){row.status='FAIL';row.error=String(e.stack);row.visible=await visible(p).catch(()=>[]);await photo(p,key+'-FAIL');throw e;}finally{await context.close();}
+ }
+ report.status='PASS';
+}catch(e){report.status='FAIL';report.error=String(e.stack);process.exitCode=1;}
+finally{await writeFile(out+'/report.json',JSON.stringify(report,null,2)+'\n');await writeFile(out+'/report.json.gz',gzipSync(JSON.stringify(report)));console.log(report.status,report.error??'');await browser.close();await server.close();}

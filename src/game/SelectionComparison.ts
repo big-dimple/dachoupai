@@ -1,3 +1,4 @@
+import {heroText} from './HeroIdentity';
 import {validCharacterImage} from './CharacterArt';
 import type {CharacterId} from './characters';
 import {CHARACTERS} from './characters';
@@ -33,11 +34,11 @@ export function showSelectionComparison(dialog:DetailDialog,options:{selectedId?
  const grid=document.createElement('section');grid.className='selection-roster';grid.setAttribute('aria-label','六英雄操作与代价');
  for(const c of CHARACTERS){
   const copy=SELECTION_PRESENTATION[c.id],card=document.createElement('article'),heading=document.createElement('div'),image=document.createElement('img'),title=document.createElement('div'),name=document.createElement('h3'),tag=document.createElement('span');
-  card.className='selection-hero';card.dataset.hero=c.id;card.dataset.selected=String(c.id===options.selectedId);heading.className='selection-heading';image.src=selectionPortraitURL(c.id);image.alt=c.name+'立绘';image.width=54;image.height=68;image.decoding='async';image.onerror=()=>{image.hidden=true;};image.onload=()=>{image.hidden=!validCharacterImage(image);};
+  card.className='selection-hero';card.dataset.hero=c.id;card.dataset.selected=String(c.id===options.selectedId);heading.className='selection-heading';image.src=selectionPortraitURL(c.id);image.alt=c.name+' · 人物图待交付';image.width=54;image.height=68;image.decoding='async';image.onerror=()=>{image.hidden=true;};image.onload=()=>{image.hidden=!validCharacterImage(image);};
   name.textContent=c.name;tag.textContent=copy.tag;title.append(name,tag);heading.append(image,title);card.append(heading);
   const hook=document.createElement('p');hook.className='selection-hook';hook.textContent=copy.hook;card.append(hook);
   for(const [label,value] of [['操作',copy.entry],['可用',copy.when],['代价',copy.cost]]){const p=document.createElement('p'),labelNode=document.createElement('strong');labelNode.textContent=label+' · ';p.append(labelNode,document.createTextNode(value));card.append(p);}
-  const footer=document.createElement('footer'),choose=document.createElement('button'),detail=document.createElement('button');choose.type=detail.type='button';choose.textContent=options.tutorial&&c.id!=='erxiang'?'教程固定二响':c.id===options.selectedId?'已选 · '+c.name:'选'+c.name;choose.disabled=options.tutorial&&c.id!=='erxiang';choose.setAttribute('aria-pressed',String(c.id===options.selectedId));choose.onclick=()=>{options.select(c.id);dialog.close(d);};detail.textContent='技能说明';detail.setAttribute('aria-label','查看'+c.name+'技能说明');detail.onclick=()=>options.inspect(c.id);footer.append(choose,detail);card.append(footer);grid.append(card);
+  const footer=document.createElement('footer'),choose=document.createElement('button'),detail=document.createElement('button');choose.type=detail.type='button';choose.textContent=options.tutorial&&c.id!=='erxiang'?heroText('教程固定二响'):c.id===options.selectedId?'已选 · '+c.name:'选'+c.name;choose.disabled=options.tutorial&&c.id!=='erxiang';choose.setAttribute('aria-pressed',String(c.id===options.selectedId));choose.onclick=()=>{options.select(c.id);dialog.close(d);};detail.textContent='技能说明';detail.setAttribute('aria-label','查看'+c.name+'技能说明');detail.onclick=()=>options.inspect(c.id);footer.append(choose,detail);card.append(footer);grid.append(card);
  }
  d.querySelector('.dialog-copy')!.append(grid);
  return d;

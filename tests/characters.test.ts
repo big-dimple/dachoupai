@@ -6,10 +6,10 @@ describe('character portrait config', () => {
   it('六位角色的立绘路径均指向自己的资源文件', () => {
     expect(new Set(CHARACTERS.map(character=>character.portrait)).size).toBe(6);
     for (const character of CHARACTERS) {
-      expect(character.portrait).toContain(`assets/handdrawn-p08/characters/${character.id}.portrait.webp`);
+      expect(character.portrait).toContain(`assets/cast-placeholders/${character.id}.portrait.svg`);
       const relative=character.portrait.slice(character.portrait.indexOf('assets/'));
       const bytes=readFileSync(new URL('../public/'+relative,import.meta.url));
-      expect(bytes.subarray(8,12).toString()).toBe('WEBP');
+      expect(bytes.toString()).toContain('人物图待交付');expect(bytes.toString()).toContain(character.name);
     }
   });
   it('focal 对焦点都在 0~1 有效区间内', () => {

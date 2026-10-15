@@ -1,3 +1,4 @@
+import {HERO_CAST_NOTICE,HERO_ART_NOTICE} from './HeroIdentity';
 import type {R2RunState} from '../domain/r2Run';
 import type {CharacterId} from './characters';
 import type {DetailDialog} from './DetailDialog';
@@ -55,11 +56,11 @@ export function showHeroExplanation(dialog:DetailDialog,id:CharacterId,options:{
  if(options.guide){copy.now=options.guide.step;copy.effect=options.guide.effect;}if(options.status)copy.now=options.status;
  // Canvas entries are focusable; closing returns keyboard control to the same surface.
  if(!document.querySelector('dialog[open]'))document.querySelector<HTMLCanvasElement>('canvas')?.focus({preventScroll:true});
- const d=dialog.open(hero.name+' · '+hero.passiveName,hero.passiveDescription+'\n\n'+hero.buildTip,options.actions??[],{closeLabel:options.closeLabel??'返回',onClose:options.onClose,collapseRules:true,rulesLabel:'完整能力与限制',portrait:{url:portraitURL(id),thumbnailUrl:selectionPortraitURL(id),alt:hero.name+'完整立绘'}});
+ const d=dialog.open(hero.name+' · '+hero.passiveName,hero.passiveDescription+'\n\n'+hero.buildTip,options.actions??[],{closeLabel:options.closeLabel??'返回',onClose:options.onClose,collapseRules:true,rulesLabel:'完整能力与限制',portrait:{url:portraitURL(id),thumbnailUrl:selectionPortraitURL(id),alt:hero.name+' · '+HERO_ART_NOTICE}});
  d.classList.add('hero-explanation');d.dataset.hero=id;
  const style=document.createElement('style');style.textContent=css;d.append(style);
  d.querySelector('.dialog-eyebrow')!.textContent='英雄说明 · 只查看不消耗';
- const intro=document.createElement('div'),motto=document.createElement('p');intro.className='dialog-intro';motto.className='hero-motto';motto.textContent='“'+HERO_OPENING[id].taunt+'”';intro.append(motto);
+ const intro=document.createElement('div'),motto=document.createElement('p');intro.className='dialog-intro';motto.className='hero-motto';motto.textContent='“'+HERO_OPENING[id].taunt+'”';intro.append(motto);const bio=document.createElement('p');bio.className='hero-fact';bio.textContent=hero.intro+' '+HERO_CAST_NOTICE;intro.append(bio);
  for(const [label,value] of [['做什么',copy.effect],['何时能用',copy.when],['现在',copy.now]]){const p=document.createElement('p'),title=document.createElement('strong');p.className='hero-fact';title.textContent=label;p.append(title,document.createTextNode(value));intro.append(p);}
  if(copy.current){
   const example=document.createElement('details'),summary=document.createElement('summary');example.className='card-rules hero-example';summary.textContent='点开看一个技能例子';example.append(summary);
