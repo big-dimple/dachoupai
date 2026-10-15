@@ -4,6 +4,10 @@ import type {DetailDialog} from '../src/game/DetailDialog';
 import {buildJourneyPlan} from '../harness/fixtures/build-journey';
 import {r2CreateJoker} from '../src/domain/r2Run';
 import type {ExperienceCard} from '../src/game/JokerExperience';
+import {createRun,type R2RunState} from '../src/domain/run';
+import {newRunIdentity} from '../src/game/RunLaunch';
+import {chooseBuildFocus} from '../src/game/BuildJourney';
+import {r2PracticeQuotes} from '../src/domain/r2Practice';
 beforeEach(()=>vi.stubGlobal('document',{querySelector:()=>null}));afterEach(()=>vi.unstubAllGlobals());
 function previews(s:ReturnType<typeof buildJourneyPlan>){const open=vi.fn();showBuildJourney({open} as unknown as DetailDialog,s,{tools:()=>{},tool:()=>{},source:()=>{},deck:()=>{},continue:()=>{},continueLabel:'继续',ready:true},true);return (open.mock.calls[0][3] as {cards:ExperienceCard[]}).cards;}
 it('three unselected previews never pass the first unrelated stock off as a matching route example',()=>{
@@ -30,4 +34,27 @@ it('a no-buy decision keeps entry primary and an explicitly opened ledger retain
  const {chooseBuildFocus}=await import('../src/game/BuildJourney'),s=buildJourneyPlan(true);chooseBuildFocus(s,'group');s.shop!.offers=[];s.shop!.toolOffers=[];const open=vi.fn(),actions={tools:()=>{},tool:()=>{},source:()=>{},deck:()=>{},continue:()=>{},continueLabel:'继续',ready:true};
  showBuildJourney({open} as unknown as DetailDialog,s,actions);const row=open.mock.calls[0][2];expect(row.find((a:{primary?:boolean})=>a.primary)?.label).toBe('先留0金，进入牌桌');expect(open.mock.calls[0][3].keepsakeCompact).toBe(true);
  showBuildJourney({open} as unknown as DetailDialog,s,actions,false,true);expect(open.mock.calls[1][3].keepsakeCompact).toBeUndefined();expect(open.mock.calls[1][3].keepsake).toBeTruthy();
+});
+
+interface PracticeNode {tag:string;className:string;dataset:Record<string,string>;textContent:string;disabled:boolean;onclick?:()=>void;children:PracticeNode[];classList:{add:ReturnType<typeof vi.fn>};append:(...nodes:PracticeNode[])=>void;prepend:(...nodes:PracticeNode[])=>void;querySelector:()=>null;setAttribute:ReturnType<typeof vi.fn>}
+function practiceRender(s:R2RunState,all=false,ready=true){
+ const nodes:PracticeNode[]=[];
+ const createElement=(tag:string):PracticeNode=>{const n:PracticeNode={tag,className:'',dataset:{},textContent:'',disabled:false,children:[],classList:{add:vi.fn()},append:(...children)=>n.children.push(...children),prepend:(...children)=>n.children.unshift(...children),querySelector:()=>null,setAttribute:vi.fn()};nodes.push(n);return n;};
+ const intro=createElement('intro'),element={classList:{add:vi.fn()},dataset:{} as Record<string,string>,querySelector:()=>intro},open=vi.fn(()=>element),practice=vi.fn();
+ vi.stubGlobal('document',{querySelector:()=>null,createElement});
+ chooseBuildFocus(s,'group');showBuildJourney({open} as unknown as DetailDialog,s,{tools:()=>{},tool:()=>{},source:()=>{},deck:()=>{},continue:()=>{},continueLabel:'继续',ready,practice},false,all);
+ return {nodes,element,open,practice};
+}
+it('paid upgrade cards remain independent in simple and complete pages and pass the exact quote and return mode',()=>{
+ for(const all of [false,true]){
+  const s=createRun({rulesVersion:'r2',seed:'dialog-practice',runId:'dialog-practice',characterId:'laohuan',r2Identity:newRunIdentity('laohuan','group'),openingRoute:'group'});s.gold=0;s.handLevels={pair:1};s.shop!.offers=[];s.shop!.toolOffers=[];
+  const before=structuredClone(s),{nodes,element,practice}=practiceRender(s,all);
+  const rows=nodes.filter(n=>n.className==='experience-card build-practice-option');expect(rows).toHaveLength(1);expect(rows[0].dataset).toMatchObject({handType:'pair',practiceHand:'pair',affordable:'false'});expect(element.dataset).toEqual({buildFocus:'group',buildAll:String(all)});
+  const button=nodes.find(n=>n.tag==='button')!;expect(button.disabled).toBe(false);expect(button.textContent).toBe('查看差额与条件');button.onclick!();expect(practice).toHaveBeenCalledWith(r2PracticeQuotes(s)[0],all);expect(s).toEqual(before);
+ }
+});
+it('old identities and consumed service quotas add no payable upgrade buttons',()=>{
+ const old=buildJourneyPlan(true);expect(practiceRender(old).nodes.filter(n=>n.tag==='button')).toHaveLength(0);
+ const s=createRun({rulesVersion:'r2',seed:'spent-practice',runId:'spent-practice',characterId:'laohuan',r2Identity:newRunIdentity('laohuan','group'),openingRoute:'group'});s.handLevels={pair:1};s.shop!.basicChoice!.purchase={definitionId:'T08',paidPrice:2,commandId:'spent',seq:s.commandSeq};
+ const view=practiceRender(s);expect(view.nodes.filter(n=>n.tag==='button')).toHaveLength(0);expect(view.nodes.find(n=>n.className==='build-practice-status')!.textContent).toContain('本店自选已用');
 });

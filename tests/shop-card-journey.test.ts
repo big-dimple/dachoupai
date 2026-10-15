@@ -22,7 +22,7 @@ describe('shop whole-chain presentation uses the current authoritative facts',()
   for(const [i,row]of view.rows.entries()){
    expect(row.guidance).toEqual(shopOfferGuidance(s,o,s.jokers[i]));expect(row.costs).toEqual(shopReplacementCompactFacts(s,s.jokers[i],shopReplacementTransactionFacts(s,o,s.jokers[i])));
   }
-  expect(view.rows[3].edition).not.toBe(view.rows[2].edition);expect(view.rows[3].costs.some(c=>c.startsWith('失去：'))).toBe(true);expect(s).toEqual(before);
+  expect(view.rows[3].editionId).toBe('foil');expect(view.candidate.editionId).toBeUndefined();expect(view.rows[3].edition).not.toBe(view.rows[2].edition);expect(view.rows[3].costs.some(c=>c.startsWith('失去：'))).toBe(true);expect(s).toEqual(before);
  });
  it('keeps actual remaining lifetime separate from rarity, edition and recommendation',()=>{
   const s=fixture(),o={offerId:'new/f06',definitionId:'f06',price:4,consumed:false},view=shopComparisonPresentation(s,o);

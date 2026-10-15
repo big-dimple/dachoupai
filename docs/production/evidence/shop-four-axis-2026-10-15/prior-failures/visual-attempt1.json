@@ -1,0 +1,1128 @@
+{
+  "head": "4a52fd0b0fb9ac0a49b8cb5e79abc8db4326e2d7",
+  "phase": "after",
+  "scope": "Controlled current-profile local shelf UI only; no full run or physical device",
+  "sourceHashes": {
+    "src/game/ShopScene.ts": "48f1c2a85d52735a601bc4215e353288ec6a885fde3391ac2112a1e5ed72583b",
+    "src/game/ShopCardValueVisual.ts": "865e400ee64e6767fb9378bbce4a2419cbae0e81bc0613f557970ad6956bf776",
+    "src/game/ShopRecommendation.ts": "b30aafa6a99f86b2d6585153f2d1a840196a0789862d2004dcd3816b5125d6f7",
+    "src/game/ShopOfferGuidance.ts": "2139f3c4edfa747f7c3e2ba37bf469328cb57c5b80d881a73699317ed223d702"
+  },
+  "cases": [
+    {
+      "width": 320,
+      "height": 568,
+      "five": false,
+      "kind": "counterexamples",
+      "errors": [],
+      "offers": [
+        {
+          "id": "b10",
+          "stars": 4,
+          "condition": "成组后增长 · 下手生效",
+          "combination": "组合记录：上手对上眼、长期捧场共同计分（新牌未参与）。"
+        },
+        {
+          "id": "e08",
+          "stars": 2,
+          "condition": "买后14金，暂不触发",
+          "combination": "组合记录：上手对上眼、长期捧场共同计分（新牌未参与）。"
+        },
+        {
+          "id": "d09",
+          "stars": 2,
+          "condition": "新购成长为0",
+          "combination": "组合潜力：尚缺可用重触来源。\n组合记录：上手对上眼、长期捧场共同计分（新牌未参与）。"
+        }
+      ],
+      "screenshots": [
+        "320-counterexamples-shelf.png",
+        "320-counterexamples-d09-detail.png"
+      ],
+      "geometry": [
+        {
+          "name": "shop/offer-rarity-frame",
+          "offerId": "public/b10",
+          "rarity": "common",
+          "bounds": {
+            "x": 14.666666666666664,
+            "y": 116,
+            "width": 88,
+            "height": 123.19999999999999
+          }
+        },
+        {
+          "name": "rarity-badge",
+          "rarity": "common",
+          "definitionId": "b10",
+          "bounds": {
+            "x": 12.999999999999993,
+            "y": -30.400000000000006,
+            "width": 28,
+            "height": 18
+          }
+        },
+        {
+          "name": "shop/offer-edition",
+          "offerId": "public/b10",
+          "label": "普通版",
+          "edition": "none",
+          "fullText": "普通（无额外计分）。版次独立于增强和稀有度。扑克在该次增强后、大丑牌能力前触发；大丑牌在自身全部计分能力后逐槽触发，本体未命中仍有效。持牌或计分失效时不触发版次。",
+          "bounds": {
+            "x": 53.66666666666666,
+            "y": 121,
+            "width": 44,
+            "height": 18
+          }
+        },
+        {
+          "name": "shop/offer-route-tag",
+          "offerId": "public/b10",
+          "fullText": "适用：同点",
+          "bounds": {
+            "type": 5,
+            "x": 23.666667938232422,
+            "y": 122.00000762939453,
+            "width": 25,
+            "height": 14
+          }
+        },
+        {
+          "name": "shop/offer-advice",
+          "offerId": "public/b10",
+          "stars": 4,
+          "fullText": "推荐指数 ★★★★☆",
+          "bounds": {
+            "x": 18.666666666666664,
+            "y": 219.2,
+            "width": 80,
+            "height": 18
+          },
+          "children": [
+            {
+              "filled": true,
+              "bounds": {
+                "x": 19.166666666666664,
+                "y": 219.2,
+                "width": 15,
+                "height": 15
+              }
+            },
+            {
+              "filled": true,
+              "bounds": {
+                "x": 35.166666666666664,
+                "y": 219.2,
+                "width": 15,
+                "height": 15
+              }
+            },
+            {
+              "filled": true,
+              "bounds": {
+                "x": 51.166666666666664,
+                "y": 219.2,
+                "width": 15,
+                "height": 15
+              }
+            },
+            {
+              "filled": true,
+              "bounds": {
+                "x": 67.16666666666666,
+                "y": 219.2,
+                "width": 15,
+                "height": 15
+              }
+            },
+            {
+              "filled": false,
+              "bounds": {
+                "x": 83.16666666666666,
+                "y": 219.2,
+                "width": 15,
+                "height": 15
+              }
+            }
+          ]
+        },
+        {
+          "name": "shop/offer-rarity-frame",
+          "offerId": "public/e08",
+          "rarity": "rare",
+          "bounds": {
+            "x": 116,
+            "y": 116,
+            "width": 88,
+            "height": 123.19999999999999
+          }
+        },
+        {
+          "name": "rarity-badge",
+          "rarity": "rare",
+          "definitionId": "e08",
+          "bounds": {
+            "x": 13,
+            "y": -30.400000000000006,
+            "width": 28,
+            "height": 18
+          }
+        },
+        {
+          "name": "shop/offer-edition",
+          "offerId": "public/e08",
+          "label": "闪箔版",
+          "edition": "foil",
+          "fullText": "闪箔（热度+25）。版次独立于增强和稀有度。扑克在该次增强后、大丑牌能力前触发；大丑牌在自身全部计分能力后逐槽触发，本体未命中仍有效。持牌或计分失效时不触发版次。",
+          "bounds": {
+            "x": 155,
+            "y": 121,
+            "width": 44,
+            "height": 18
+          }
+        },
+        {
+          "name": "shop/offer-route-tag",
+          "offerId": "public/e08",
+          "fullText": "适用：同点/顺子/同花",
+          "bounds": {
+            "type": 5,
+            "x": 125,
+            "y": 122.00000762939453,
+            "width": 25,
+            "height": 14
+          }
+        },
+        {
+          "name": "shop/offer-advice",
+          "offerId": "public/e08",
+          "stars": 2,
+          "fullText": "推荐指数 ★★☆☆☆",
+          "bounds": {
+            "x": 120,
+            "y": 219.2,
+            "width": 80,
+            "height": 18
+          },
+          "children": [
+            {
+              "filled": true,
+              "bounds": {
+                "x": 120.5,
+                "y": 219.2,
+                "width": 15,
+                "height": 15
+              }
+            },
+            {
+              "filled": true,
+              "bounds": {
+                "x": 136.5,
+                "y": 219.2,
+                "width": 15,
+                "height": 15
+              }
+            },
+            {
+              "filled": false,
+              "bounds": {
+                "x": 152.5,
+                "y": 219.2,
+                "width": 15,
+                "height": 15
+              }
+            },
+            {
+              "filled": false,
+              "bounds": {
+                "x": 168.5,
+                "y": 219.2,
+                "width": 15,
+                "height": 15
+              }
+            },
+            {
+              "filled": false,
+              "bounds": {
+                "x": 184.5,
+                "y": 219.2,
+                "width": 15,
+                "height": 15
+              }
+            }
+          ]
+        },
+        {
+          "name": "shop/offer-rarity-frame",
+          "offerId": "public/d09",
+          "rarity": "uncommon",
+          "bounds": {
+            "x": 217.33333333333331,
+            "y": 116,
+            "width": 88,
+            "height": 123.19999999999999
+          }
+        },
+        {
+          "name": "rarity-badge",
+          "rarity": "uncommon",
+          "definitionId": "d09",
+          "bounds": {
+            "x": 13,
+            "y": -30.400000000000006,
+            "width": 28,
+            "height": 18
+          }
+        },
+        {
+          "name": "shop/offer-edition",
+          "offerId": "public/d09",
+          "label": "全息版",
+          "edition": "holographic",
+          "fullText": "全息（倍率+2）。版次独立于增强和稀有度。扑克在该次增强后、大丑牌能力前触发；大丑牌在自身全部计分能力后逐槽触发，本体未命中仍有效。持牌或计分失效时不触发版次。",
+          "bounds": {
+            "x": 256.3333333333333,
+            "y": 121,
+            "width": 44,
+            "height": 18
+          }
+        },
+        {
+          "name": "shop/offer-route-tag",
+          "offerId": "public/d09",
+          "fullText": "适用：同点/顺子/同花",
+          "bounds": {
+            "type": 5,
+            "x": 226.33334350585938,
+            "y": 122.00000762939453,
+            "width": 25,
+            "height": 14
+          }
+        },
+        {
+          "name": "shop/offer-combination",
+          "offerId": "public/d09",
+          "label": "缺搭档",
+          "cue": "missing",
+          "fullText": "组合潜力：尚缺可用重触来源。",
+          "bounds": {
+            "x": 222.33333333333331,
+            "y": 193.2,
+            "width": 44,
+            "height": 18
+          }
+        },
+        {
+          "name": "shop/offer-advice",
+          "offerId": "public/d09",
+          "stars": 2,
+          "fullText": "推荐指数 ★★☆☆☆",
+          "bounds": {
+            "x": 221.33333333333331,
+            "y": 219.2,
+            "width": 80,
+            "height": 18
+          },
+          "children": [
+            {
+              "filled": true,
+              "bounds": {
+                "x": 221.83333333333331,
+                "y": 219.2,
+                "width": 15,
+                "height": 15
+              }
+            },
+            {
+              "filled": true,
+              "bounds": {
+                "x": 237.83333333333331,
+                "y": 219.2,
+                "width": 15,
+                "height": 15
+              }
+            },
+            {
+              "filled": false,
+              "bounds": {
+                "x": 253.83333333333331,
+                "y": 219.2,
+                "width": 15,
+                "height": 15
+              }
+            },
+            {
+              "filled": false,
+              "bounds": {
+                "x": 269.8333333333333,
+                "y": 219.2,
+                "width": 15,
+                "height": 15
+              }
+            },
+            {
+              "filled": false,
+              "bounds": {
+                "x": 285.8333333333333,
+                "y": 219.2,
+                "width": 15,
+                "height": 15
+              }
+            }
+          ]
+        }
+      ],
+      "send": [],
+      "status": "PASS"
+    },
+    {
+      "width": 320,
+      "height": 568,
+      "five": true,
+      "kind": "five",
+      "errors": [],
+      "offers": [
+        {
+          "id": "b06",
+          "stars": 5,
+          "condition": "最大原始同点组有效牌",
+          "combination": "组合潜力：同点重触可接加成，待触发。\n组合记录：上手三拍子、对上眼、长期捧场共同计分（新牌未参与）。"
+        },
+        {
+          "id": "a11",
+          "stars": 5,
+          "condition": "只读葫芦或同花葫芦",
+          "combination": "组合潜力：葫芦重触可接加成，待触发。\n组合记录：上手三拍子、对上眼、长期捧场共同计分（新牌未参与）。"
+        },
+        {
+          "id": "a06",
+          "stars": 5,
+          "condition": "新购×1.5 · 连续不同合格主手",
+          "combination": "组合潜力：已有加倍率来源，换型待触发。\n组合记录：上手三拍子、对上眼、长期捧场共同计分（新牌未参与）。"
+        }
+      ],
+      "screenshots": [
+        "320-five-shelf.png",
+        "320-five-b06-detail.png"
+      ],
+      "geometry": [
+        {
+          "name": "shop/offer-rarity-frame",
+          "offerId": "public/b06",
+          "rarity": "rare",
+          "bounds": {
+            "x": 14.666666666666664,
+            "y": 116,
+            "width": 88,
+            "height": 123.19999999999999
+          }
+        },
+        {
+          "name": "rarity-badge",
+          "rarity": "rare",
+          "definitionId": "b06",
+          "bounds": {
+            "x": 12.999999999999993,
+            "y": -30.400000000000006,
+            "width": 28,
+            "height": 18
+          }
+        },
+        {
+          "name": "shop/offer-edition",
+          "offerId": "public/b06",
+          "label": "普通版",
+          "edition": "none",
+          "fullText": "普通（无额外计分）。版次独立于增强和稀有度。扑克在该次增强后、大丑牌能力前触发；大丑牌在自身全部计分能力后逐槽触发，本体未命中仍有效。持牌或计分失效时不触发版次。",
+          "bounds": {
+            "x": 53.66666666666666,
+            "y": 121,
+            "width": 44,
+            "height": 18
+          }
+        },
+        {
+          "name": "shop/offer-route-tag",
+          "offerId": "public/b06",
+          "fullText": "适用：同点",
+          "bounds": {
+            "type": 5,
+            "x": 23.666667938232422,
+            "y": 122.00000762939453,
+            "width": 25,
+            "height": 14
+          }
+        },
+        {
+          "name": "shop/offer-combination",
+          "offerId": "public/b06",
+          "label": "可搭配",
+          "cue": "potential",
+          "fullText": "组合潜力：同点重触可接加成，待触发。",
+          "bounds": {
+            "x": 19.666666666666664,
+            "y": 193.2,
+            "width": 44,
+            "height": 18
+          }
+        },
+        {
+          "name": "shop/offer-advice",
+          "offerId": "public/b06",
+          "stars": 5,
+          "fullText": "推荐指数 ★★★★★",
+          "bounds": {
+            "x": 18.666666666666664,
+            "y": 219.2,
+            "width": 80,
+            "height": 18
+          },
+          "children": [
+            {
+              "filled": true,
+              "bounds": {
+                "x": 19.166666666666664,
+                "y": 219.2,
+                "width": 15,
+                "height": 15
+              }
+            },
+            {
+              "filled": true,
+              "bounds": {
+                "x": 35.166666666666664,
+                "y": 219.2,
+                "width": 15,
+                "height": 15
+              }
+            },
+            {
+              "filled": true,
+              "bounds": {
+                "x": 51.166666666666664,
+                "y": 219.2,
+                "width": 15,
+                "height": 15
+              }
+            },
+            {
+              "filled": true,
+              "bounds": {
+                "x": 67.16666666666666,
+                "y": 219.2,
+                "width": 15,
+                "height": 15
+              }
+            },
+            {
+              "filled": true,
+              "bounds": {
+                "x": 83.16666666666666,
+                "y": 219.2,
+                "width": 15,
+                "height": 15
+              }
+            }
+          ]
+        },
+        {
+          "name": "shop/offer-rarity-frame",
+          "offerId": "public/a11",
+          "rarity": "rare",
+          "bounds": {
+            "x": 116,
+            "y": 116,
+            "width": 88,
+            "height": 123.19999999999999
+          }
+        },
+        {
+          "name": "rarity-badge",
+          "rarity": "rare",
+          "definitionId": "a11",
+          "bounds": {
+            "x": 13,
+            "y": -30.400000000000006,
+            "width": 28,
+            "height": 18
+          }
+        },
+        {
+          "name": "shop/offer-edition",
+          "offerId": "public/a11",
+          "label": "普通版",
+          "edition": "none",
+          "fullText": "普通（无额外计分）。版次独立于增强和稀有度。扑克在该次增强后、大丑牌能力前触发；大丑牌在自身全部计分能力后逐槽触发，本体未命中仍有效。持牌或计分失效时不触发版次。",
+          "bounds": {
+            "x": 155,
+            "y": 121,
+            "width": 44,
+            "height": 18
+          }
+        },
+        {
+          "name": "shop/offer-route-tag",
+          "offerId": "public/a11",
+          "fullText": "适用：同点",
+          "bounds": {
+            "type": 5,
+            "x": 125,
+            "y": 122.00000762939453,
+            "width": 25,
+            "height": 14
+          }
+        },
+        {
+          "name": "shop/offer-combination",
+          "offerId": "public/a11",
+          "label": "可搭配",
+          "cue": "potential",
+          "fullText": "组合潜力：葫芦重触可接加成，待触发。",
+          "bounds": {
+            "x": 121,
+            "y": 193.2,
+            "width": 44,
+            "height": 18
+          }
+        },
+        {
+          "name": "shop/offer-advice",
+          "offerId": "public/a11",
+          "stars": 5,
+          "fullText": "推荐指数 ★★★★★",
+          "bounds": {
+            "x": 120,
+            "y": 219.2,
+            "width": 80,
+            "height": 18
+          },
+          "children": [
+            {
+              "filled": true,
+              "bounds": {
+                "x": 120.5,
+                "y": 219.2,
+                "width": 15,
+                "height": 15
+              }
+            },
+            {
+              "filled": true,
+              "bounds": {
+                "x": 136.5,
+                "y": 219.2,
+                "width": 15,
+                "height": 15
+              }
+            },
+            {
+              "filled": true,
+              "bounds": {
+                "x": 152.5,
+                "y": 219.2,
+                "width": 15,
+                "height": 15
+              }
+            },
+            {
+              "filled": true,
+              "bounds": {
+                "x": 168.5,
+                "y": 219.2,
+                "width": 15,
+                "height": 15
+              }
+            },
+            {
+              "filled": true,
+              "bounds": {
+                "x": 184.5,
+                "y": 219.2,
+                "width": 15,
+                "height": 15
+              }
+            }
+          ]
+        },
+        {
+          "name": "shop/offer-rarity-frame",
+          "offerId": "public/a06",
+          "rarity": "rare",
+          "bounds": {
+            "x": 217.33333333333331,
+            "y": 116,
+            "width": 88,
+            "height": 123.19999999999999
+          }
+        },
+        {
+          "name": "rarity-badge",
+          "rarity": "rare",
+          "definitionId": "a06",
+          "bounds": {
+            "x": 13,
+            "y": -30.400000000000006,
+            "width": 28,
+            "height": 18
+          }
+        },
+        {
+          "name": "shop/offer-edition",
+          "offerId": "public/a06",
+          "label": "普通版",
+          "edition": "none",
+          "fullText": "普通（无额外计分）。版次独立于增强和稀有度。扑克在该次增强后、大丑牌能力前触发；大丑牌在自身全部计分能力后逐槽触发，本体未命中仍有效。持牌或计分失效时不触发版次。",
+          "bounds": {
+            "x": 256.3333333333333,
+            "y": 121,
+            "width": 44,
+            "height": 18
+          }
+        },
+        {
+          "name": "shop/offer-route-tag",
+          "offerId": "public/a06",
+          "fullText": "适用：同点/顺子/同花",
+          "bounds": {
+            "type": 5,
+            "x": 226.33334350585938,
+            "y": 122.00000762939453,
+            "width": 25,
+            "height": 14
+          }
+        },
+        {
+          "name": "shop/offer-combination",
+          "offerId": "public/a06",
+          "label": "可搭配",
+          "cue": "potential",
+          "fullText": "组合潜力：已有加倍率来源，换型待触发。",
+          "bounds": {
+            "x": 222.33333333333331,
+            "y": 193.2,
+            "width": 44,
+            "height": 18
+          }
+        },
+        {
+          "name": "shop/offer-advice",
+          "offerId": "public/a06",
+          "stars": 5,
+          "fullText": "推荐指数 ★★★★★",
+          "bounds": {
+            "x": 221.33333333333331,
+            "y": 219.2,
+            "width": 80,
+            "height": 18
+          },
+          "children": [
+            {
+              "filled": true,
+              "bounds": {
+                "x": 221.83333333333331,
+                "y": 219.2,
+                "width": 15,
+                "height": 15
+              }
+            },
+            {
+              "filled": true,
+              "bounds": {
+                "x": 237.83333333333331,
+                "y": 219.2,
+                "width": 15,
+                "height": 15
+              }
+            },
+            {
+              "filled": true,
+              "bounds": {
+                "x": 253.83333333333331,
+                "y": 219.2,
+                "width": 15,
+                "height": 15
+              }
+            },
+            {
+              "filled": true,
+              "bounds": {
+                "x": 269.8333333333333,
+                "y": 219.2,
+                "width": 15,
+                "height": 15
+              }
+            },
+            {
+              "filled": true,
+              "bounds": {
+                "x": 285.8333333333333,
+                "y": 219.2,
+                "width": 15,
+                "height": 15
+              }
+            }
+          ]
+        }
+      ],
+      "send": [],
+      "status": "PASS"
+    },
+    {
+      "width": 320,
+      "height": 568,
+      "five": false,
+      "kind": "partner",
+      "errors": [],
+      "offers": [
+        {
+          "id": "b10",
+          "stars": 4,
+          "condition": "成组后增长 · 下手生效",
+          "combination": "组合记录：上手对上眼、长期捧场共同计分（新牌未参与）。"
+        },
+        {
+          "id": "e08",
+          "stars": 2,
+          "condition": "买后16金，暂不触发",
+          "combination": "组合记录：上手对上眼、长期捧场共同计分（新牌未参与）。"
+        }
+      ],
+      "screenshots": [],
+      "geometry": [
+        {
+          "name": "shop/offer-rarity-frame",
+          "offerId": "public/b10",
+          "rarity": "common",
+          "bounds": {
+            "x": 14.666666666666664,
+            "y": 116,
+            "width": 88,
+            "height": 123.19999999999999
+          }
+        },
+        {
+          "name": "rarity-badge",
+          "rarity": "common",
+          "definitionId": "b10",
+          "bounds": {
+            "x": 12.999999999999993,
+            "y": -30.400000000000006,
+            "width": 28,
+            "height": 18
+          }
+        },
+        {
+          "name": "shop/offer-edition",
+          "offerId": "public/b10",
+          "label": "全息版",
+          "edition": "holographic",
+          "fullText": "全息（倍率+2）。版次独立于增强和稀有度。扑克在该次增强后、大丑牌能力前触发；大丑牌在自身全部计分能力后逐槽触发，本体未命中仍有效。持牌或计分失效时不触发版次。",
+          "bounds": {
+            "x": 53.66666666666666,
+            "y": 121,
+            "width": 44,
+            "height": 18
+          }
+        },
+        {
+          "name": "shop/offer-route-tag",
+          "offerId": "public/b10",
+          "fullText": "适用：同点",
+          "bounds": {
+            "type": 5,
+            "x": 23.666667938232422,
+            "y": 122.00000762939453,
+            "width": 25,
+            "height": 14
+          }
+        },
+        {
+          "name": "shop/offer-advice",
+          "offerId": "public/b10",
+          "stars": 4,
+          "fullText": "推荐指数 ★★★★☆",
+          "bounds": {
+            "x": 18.666666666666664,
+            "y": 219.2,
+            "width": 80,
+            "height": 18
+          },
+          "children": [
+            {
+              "filled": true,
+              "bounds": {
+                "x": 19.166666666666664,
+                "y": 219.2,
+                "width": 15,
+                "height": 15
+              }
+            },
+            {
+              "filled": true,
+              "bounds": {
+                "x": 35.166666666666664,
+                "y": 219.2,
+                "width": 15,
+                "height": 15
+              }
+            },
+            {
+              "filled": true,
+              "bounds": {
+                "x": 51.166666666666664,
+                "y": 219.2,
+                "width": 15,
+                "height": 15
+              }
+            },
+            {
+              "filled": true,
+              "bounds": {
+                "x": 67.16666666666666,
+                "y": 219.2,
+                "width": 15,
+                "height": 15
+              }
+            },
+            {
+              "filled": false,
+              "bounds": {
+                "x": 83.16666666666666,
+                "y": 219.2,
+                "width": 15,
+                "height": 15
+              }
+            }
+          ]
+        },
+        {
+          "name": "shop/offer-rarity-frame",
+          "offerId": "public/e08",
+          "rarity": "rare",
+          "bounds": {
+            "x": 116,
+            "y": 116,
+            "width": 88,
+            "height": 123.19999999999999
+          }
+        },
+        {
+          "name": "rarity-badge",
+          "rarity": "rare",
+          "definitionId": "e08",
+          "bounds": {
+            "x": 13,
+            "y": -30.400000000000006,
+            "width": 28,
+            "height": 18
+          }
+        },
+        {
+          "name": "shop/offer-edition",
+          "offerId": "public/e08",
+          "label": "普通版",
+          "edition": "none",
+          "fullText": "普通（无额外计分）。版次独立于增强和稀有度。扑克在该次增强后、大丑牌能力前触发；大丑牌在自身全部计分能力后逐槽触发，本体未命中仍有效。持牌或计分失效时不触发版次。",
+          "bounds": {
+            "x": 155,
+            "y": 121,
+            "width": 44,
+            "height": 18
+          }
+        },
+        {
+          "name": "shop/offer-route-tag",
+          "offerId": "public/e08",
+          "fullText": "适用：同点/顺子/同花",
+          "bounds": {
+            "type": 5,
+            "x": 125,
+            "y": 122.00000762939453,
+            "width": 25,
+            "height": 14
+          }
+        },
+        {
+          "name": "shop/offer-advice",
+          "offerId": "public/e08",
+          "stars": 2,
+          "fullText": "推荐指数 ★★☆☆☆",
+          "bounds": {
+            "x": 120,
+            "y": 219.2,
+            "width": 80,
+            "height": 18
+          },
+          "children": [
+            {
+              "filled": true,
+              "bounds": {
+                "x": 120.5,
+                "y": 219.2,
+                "width": 15,
+                "height": 15
+              }
+            },
+            {
+              "filled": true,
+              "bounds": {
+                "x": 136.5,
+                "y": 219.2,
+                "width": 15,
+                "height": 15
+              }
+            },
+            {
+              "filled": false,
+              "bounds": {
+                "x": 152.5,
+                "y": 219.2,
+                "width": 15,
+                "height": 15
+              }
+            },
+            {
+              "filled": false,
+              "bounds": {
+                "x": 168.5,
+                "y": 219.2,
+                "width": 15,
+                "height": 15
+              }
+            },
+            {
+              "filled": false,
+              "bounds": {
+                "x": 184.5,
+                "y": 219.2,
+                "width": 15,
+                "height": 15
+              }
+            }
+          ]
+        },
+        {
+          "name": "shop/offer-rarity-frame",
+          "offerId": "public/d09",
+          "rarity": "uncommon",
+          "bounds": {
+            "x": 217.33333333333331,
+            "y": 116,
+            "width": 88,
+            "height": 123.19999999999999
+          }
+        },
+        {
+          "name": "rarity-badge",
+          "rarity": "uncommon",
+          "definitionId": "d09",
+          "bounds": {
+            "x": 13,
+            "y": -30.400000000000006,
+            "width": 28,
+            "height": 18
+          }
+        },
+        {
+          "name": "shop/offer-edition",
+          "offerId": "public/d09",
+          "label": "多彩版",
+          "edition": "polychrome",
+          "fullText": "多彩（倍率×1.5）。版次独立于增强和稀有度。扑克在该次增强后、大丑牌能力前触发；大丑牌在自身全部计分能力后逐槽触发，本体未命中仍有效。持牌或计分失效时不触发版次。",
+          "bounds": {
+            "x": 256.3333333333333,
+            "y": 121,
+            "width": 44,
+            "height": 18
+          }
+        },
+        {
+          "name": "shop/offer-route-tag",
+          "offerId": "public/d09",
+          "fullText": "适用：同点/顺子/同花",
+          "bounds": {
+            "type": 5,
+            "x": 226.33334350585938,
+            "y": 122.00000762939453,
+            "width": 25,
+            "height": 14
+          }
+        },
+        {
+          "name": "shop/offer-combination",
+          "offerId": "public/d09",
+          "label": "缺搭档",
+          "cue": "missing",
+          "fullText": "组合潜力：尚缺可用重触来源。",
+          "bounds": {
+            "x": 222.33333333333331,
+            "y": 193.2,
+            "width": 44,
+            "height": 18
+          }
+        },
+        {
+          "name": "shop/offer-advice",
+          "offerId": "public/d09",
+          "stars": 2,
+          "fullText": "推荐指数 ★★☆☆☆",
+          "bounds": {
+            "x": 221.33333333333331,
+            "y": 219.2,
+            "width": 80,
+            "height": 18
+          },
+          "children": [
+            {
+              "filled": true,
+              "bounds": {
+                "x": 221.83333333333331,
+                "y": 219.2,
+                "width": 15,
+                "height": 15
+              }
+            },
+            {
+              "filled": true,
+              "bounds": {
+                "x": 237.83333333333331,
+                "y": 219.2,
+                "width": 15,
+                "height": 15
+              }
+            },
+            {
+              "filled": false,
+              "bounds": {
+                "x": 253.83333333333331,
+                "y": 219.2,
+                "width": 15,
+                "height": 15
+              }
+            },
+            {
+              "filled": false,
+              "bounds": {
+                "x": 269.8333333333333,
+                "y": 219.2,
+                "width": 15,
+                "height": 15
+              }
+            },
+            {
+              "filled": false,
+              "bounds": {
+                "x": 285.8333333333333,
+                "y": 219.2,
+                "width": 15,
+                "height": 15
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "status": "FAIL",
+  "failure": "AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:\n\n  assert.ok(row.geometry.find(r=>r.name==='shop/offer-combination'&&r.offerId===o.offerId&&r.cue===(kind==='partner'?'potential':'missing')))\n"
+}

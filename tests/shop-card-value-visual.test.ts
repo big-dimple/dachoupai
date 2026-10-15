@@ -1,10 +1,22 @@
 import {describe,it,expect} from 'vitest';
-import {shopRecommendationVisual,shopCombinationVisual,shopCombinationMarkLayout} from '../src/game/ShopCardValueVisual';
+import {shopRecommendationVisual,shopCombinationVisual,shopCombinationMarkLayout,shopEditionVisual} from '../src/game/ShopCardValueVisual';
+import {R2_EDITIONS} from '../src/content/r2Tools';
+import {editionEffectText} from '../src/game/r2ToolInfo';
 import {JOKER_RARITY} from '../src/game/JokerRarity';
 import {shopOfferGuidance} from '../src/game/ShopOfferGuidance';
 import {cardValueVisualFixture} from '../harness/fixtures/card-value-visual';
 
 describe('shop card value presentation',()=>{
+ it('uses all four authoritative edition names independently of rarity and existing advice',()=>{
+  const s=cardValueVisualFixture(),before=structuredClone(s),o=s.shop!.offers[1];
+  for(const edition of R2_EDITIONS){
+   expect(shopEditionVisual(edition.id)).toMatchObject({id:edition.id,label:edition.name+'版',fullText:editionEffectText(edition.id)});
+   // Changing an instance edition cannot relabel its definition rarity or invent stars.
+   const g=shopOfferGuidance(s,{...o,edition:edition.id});
+   expect(g.stars).toBe(shopOfferGuidance(s,o).stars);
+  }
+  expect(shopEditionVisual()).toEqual(shopEditionVisual('none'));expect(s).toEqual(before);
+ });
  it('reserves three readable characters without overlapping the adjacent rarity badge',()=>{
   expect(shopCombinationMarkLayout(50)).toEqual({width:44,textX:4,rings:false});
   expect(shopCombinationMarkLayout(70)).toEqual({width:62,textX:18,rings:true});

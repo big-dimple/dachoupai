@@ -1,0 +1,187 @@
+{
+  "head": "c06a4f963a44748a0ff1a281adc555e37986d9fb",
+  "before": true,
+  "cases": [
+    {
+      "kind": "regular",
+      "checks": [],
+      "steps": [
+        {
+          "label": "568-shrunk",
+          "height": 568,
+          "compact": false,
+          "candidateInScroll": false,
+          "scrollTop": 0,
+          "scrollHeight": 2043,
+          "clientHeight": 62,
+          "contentHeight": 348,
+          "actions": [
+            {
+              "label": "返回购买详情",
+              "rect": {
+                "x": 32,
+                "y": 449,
+                "width": 159,
+                "height": 44,
+                "top": 449,
+                "right": 191,
+                "bottom": 493,
+                "left": 32
+              }
+            },
+            {
+              "label": "更换培养方向",
+              "rect": {
+                "x": 199,
+                "y": 449,
+                "width": 159,
+                "height": 44,
+                "top": 449,
+                "right": 358,
+                "bottom": 493,
+                "left": 199
+              }
+            },
+            {
+              "label": "返回现货",
+              "rect": {
+                "x": 32,
+                "y": 501,
+                "width": 326,
+                "height": 44,
+                "top": 501,
+                "right": 358,
+                "bottom": 545,
+                "left": 32
+              }
+            }
+          ]
+        }
+      ],
+      "errors": [],
+      "confirmedFailure": "slots scroll area collapsed after resize: 62px",
+      "status": "REPRODUCED"
+    },
+    {
+      "kind": "long-combination",
+      "checks": [],
+      "steps": [
+        {
+          "label": "568-shrunk",
+          "height": 568,
+          "compact": false,
+          "candidateInScroll": false,
+          "scrollTop": 0,
+          "scrollHeight": 2130,
+          "clientHeight": 41,
+          "contentHeight": 348,
+          "actions": [
+            {
+              "label": "返回购买详情",
+              "rect": {
+                "x": 32,
+                "y": 449,
+                "width": 159,
+                "height": 44,
+                "top": 449,
+                "right": 191,
+                "bottom": 493,
+                "left": 32
+              }
+            },
+            {
+              "label": "更换培养方向",
+              "rect": {
+                "x": 199,
+                "y": 449,
+                "width": 159,
+                "height": 44,
+                "top": 449,
+                "right": 358,
+                "bottom": 493,
+                "left": 199
+              }
+            },
+            {
+              "label": "返回现货",
+              "rect": {
+                "x": 32,
+                "y": 501,
+                "width": 326,
+                "height": 44,
+                "top": 501,
+                "right": 358,
+                "bottom": 545,
+                "left": 32
+              }
+            }
+          ]
+        }
+      ],
+      "errors": [],
+      "confirmedFailure": "slots scroll area collapsed after resize: 41px",
+      "status": "REPRODUCED"
+    },
+    {
+      "kind": "five-star",
+      "checks": [],
+      "steps": [
+        {
+          "label": "568-shrunk",
+          "height": 568,
+          "compact": false,
+          "candidateInScroll": false,
+          "scrollTop": 0,
+          "scrollHeight": 2260,
+          "clientHeight": 20,
+          "contentHeight": 348,
+          "actions": [
+            {
+              "label": "返回购买详情",
+              "rect": {
+                "x": 32,
+                "y": 449,
+                "width": 159,
+                "height": 44,
+                "top": 449,
+                "right": 191,
+                "bottom": 493,
+                "left": 32
+              }
+            },
+            {
+              "label": "更换培养方向",
+              "rect": {
+                "x": 199,
+                "y": 449,
+                "width": 159,
+                "height": 44,
+                "top": 449,
+                "right": 358,
+                "bottom": 493,
+                "left": 199
+              }
+            },
+            {
+              "label": "返回现货",
+              "rect": {
+                "x": 32,
+                "y": 501,
+                "width": 326,
+                "height": 44,
+                "top": 501,
+                "right": 358,
+                "bottom": 545,
+                "left": 32
+              }
+            }
+          ]
+        }
+      ],
+      "errors": [],
+      "confirmedFailure": "slots scroll area collapsed after resize: 20px",
+      "status": "REPRODUCED"
+    }
+  ],
+  "status": "OBSERVED"
+}

@@ -3,6 +3,10 @@ import type {Box} from './layout';
 import type {ShopRecommendation} from './ShopRecommendation';
 import {JOKER_RARITY,type JokerRarity} from './JokerRarity';
 import {UI_FONT} from './theme';
+import type {Edition} from '../cards/types';
+import {editionLabel,editionEffectText} from './r2ToolInfo';
+
+export const SHOP_STAR_POINTS=[[12,2.5],[14.9,8.5],[21.5,9.4],[16.7,14.1],[17.8,20.7],[12,17.6],[6.2,20.7],[7.3,14.1],[2.5,9.4],[9.1,8.5]] as const;
 
 /** Presentation axes: rarity comes only from the definition; stars only from existing guidance. */
 export const SHOP_VALUE_INK={recommendation:'#3F606B',five:'#765422',paper:0xfff9ee} as const;
@@ -54,9 +58,30 @@ export function createShopCombinationMark(scene:Phaser.Scene,x:number,y:number,c
  const text=scene.add.text(layout.textX,1,cue.label,{fontFamily:UI_FONT,fontSize:'12px',color:'#26313A',resolution:1.5});
  return mark.add([g,text]);
 }
+/** Edition identity always has its own plate, including ordinary editions and full slots. */
+export function shopEditionVisual(edition?:Edition){
+ return {id:edition??'none',label:editionLabel(edition)+'版',fullText:editionEffectText(edition),width:44,height:18};
+}
+export function createShopEditionMark(scene:Phaser.Scene,x:number,y:number,edition?:Edition){
+ const style=shopEditionVisual(edition),mark=scene.add.container(x,y).setName('shop/offer-edition')
+ .setSize(style.width,style.height).setData('axis','edition').setData('edition',style.id).setData('label',style.label).setData('fullText',style.fullText).setData('bounds',{x,y,width:style.width,height:style.height});
+ const plate=scene.add.graphics().fillStyle(SHOP_VALUE_INK.paper,1).fillRoundedRect(0,0,style.width,style.height,3)
+ .lineStyle(1,0x3f606b,.8).strokeRoundedRect(.5,.5,style.width-1,style.height-1,3);
+ // A second paper edge distinguishes the edition plate from the filled rarity badge.
+ plate.lineStyle(1,0x3f606b,.45).lineBetween(3,15,style.width-3,15);
+ const text=scene.add.text(4,0,style.label,{fontFamily:UI_FONT,fontSize:'12px',color:'#3F606B',resolution:1.5});
+ return mark.add([plate,text]);
+}
 export function createShopRecommendationStars(scene:Phaser.Scene,b:Box,stars:number,offerId:string,fullText:string,detail:string){
  const style=shopRecommendationVisual(stars,b.width),index=scene.add.container(b.x,b.y).setSize(style.width,style.height).setName('shop/offer-advice')
  .setData('offerId',offerId).setData('axis','recommendation').setData('stars',stars).setData('reason',detail).setData('fullText',fullText).setData('bounds',{...b,width:style.width});
- for(let i=0;i<5;i++)index.add(scene.add.text(style.width*(i+.5)/5,0,i<stars?'★':'☆',{fontFamily:UI_FONT,fontSize:'14px',color:style.ink,resolution:Math.min(window.devicePixelRatio||1,3)}).setOrigin(.5,0).setName('shop/offer-star').setData('offerId',offerId).setData('slot',i));
+ const ink=Number.parseInt(style.ink.slice(1),16),size=Math.min(17,style.width/5-1);
+ for(let i=0;i<5;i++){
+  const star=scene.add.graphics().setName('shop/offer-star').setData('offerId',offerId).setData('slot',i).setData('filled',i<stars)
+  .setData('bounds',{x:b.x+style.width*(i+.5)/5-size/2,y:b.y,width:size,height:size});
+  star.setPosition(style.width*(i+.5)/5-size/2,0).lineStyle(1.15,ink,1).fillStyle(i<stars?ink:SHOP_VALUE_INK.paper,1).beginPath();
+  SHOP_STAR_POINTS.forEach(([x,y],n)=>{if(n===0)star.moveTo(x*size/24,y*size/24);else star.lineTo(x*size/24,y*size/24);});
+  star.closePath().fillPath().strokePath();index.add(star);
+ }
  return index;
 }

@@ -1,6 +1,6 @@
-import {createShopRarityFrame,createShopRecommendationStars,createShopRecommendationAccent,createShopCombinationMark,createShopRouteTag,shopCombinationVisual,shopCombinationMarkLayout,shopRecommendationVisual} from './ShopCardValueVisual';
+import {createShopRarityFrame,createShopEditionMark,createShopRecommendationStars,createShopRecommendationAccent,createShopCombinationMark,createShopRouteTag,shopCombinationVisual,shopCombinationMarkLayout,shopRecommendationVisual} from './ShopCardValueVisual';
 import {showShopComparison,type ShopComparisonView} from './ShopComparisonDialog';
-import {createShopOfferValue} from './ShopJokerPresentation';
+import {createShopOfferValue,createShopIdentityTags} from './ShopJokerPresentation';
 import {warmTableImages} from './StageImageWarmup';
 import {showHeroExplanation} from './HeroExplanation';
 import {isR2CoreBuild,isR2SuitChoice,R2_SUIT_DYE_IDS,r2BasicChoiceBasePrice} from '../domain/r2GroupUpgrade';
@@ -22,7 +22,7 @@ import {firstChapterGuide,firstChapterShopPrompt,dismissFirstChapterGuide,attach
 import {shopRouteRelation,shopOfferRelation,shopSaleConsequences,shopPurchaseConditionLosses} from './ShopRouteRelations';
 import {buildGrowthProgress} from './BuildGrowthProgress';
 import {shopInvestment} from './ShopInvestment';
-import {currentBuildFocus,BUILD_LABEL,toolSupportsFocus} from './BuildJourney';
+import {currentBuildFocus,BUILD_LABEL,toolSupportsFocus,cashDecision} from './BuildJourney';
 import {showBuildJourney} from './BuildJourneyDialog';
 import {groupGrowthCausality,savedGrowthDiscovery} from './JokerGrowthCausality';
 import {purchaseDiscountStatus} from './PurchasePaymentFacts';
@@ -50,7 +50,7 @@ import {reorderJokerIds,ownedJokerDropIndex} from './JokerReorder';
 import {OwnedJokerInput} from './OwnedJokerInput';
 import {OwnedJokerDragVisual,ownedOrderHint,ownedOrderReversed} from './OwnedJokerDragVisual';
 import {heatText,fractionText} from './scoreText';
-import {toolInfo,itemInfo,goodsArtPortrait,editionLabel,editionEffectText,toolFamilyLabel} from './r2ToolInfo';
+import {toolInfo,itemInfo,goodsArtPortrait,editionEffectText,toolFamilyLabel} from './r2ToolInfo';
 import {SceneView} from './SceneView';
 import {getCharacter} from './characters';
 import {selectionPortraitKey,avatarKey} from './portraits';
@@ -70,6 +70,7 @@ import {drawJokerMotif} from './JokerMotif';
 import {r2MechanismBadge as mechanismBadge,r2JokerStateText,r2JokerExtraHelp,r2TransactionText} from './r2Help';
 
 type ShelfKind='jokers'|'tools'|'items';
+type JourneyPracticeOrigin={all:boolean;scrollTop:number;handType:R2PracticeQuote['handType']};
 const SHELF_FIELDS={jokers:'offers',tools:'toolOffers',items:'itemOffers'} as const;
 
 export class ShopScene extends Phaser.Scene {
@@ -88,6 +89,7 @@ export class ShopScene extends Phaser.Scene {
   private makeCardsView:MakeCardsView={pane:'purchase',positions:{owned:0,purchase:0}};
   private comparisonView:ShopComparisonView={scrollTop:0};
   private savedPractice?:ShopPracticeReceipt;
+  private practiceOrigin?:JourneyPracticeOrigin;
   private pcPages={jokers:0,tools:0,items:0};
   private pcOfferBoxes=new Map<string,Box>();
   private artRefreshListeners=new Map<string,()=>void>();
@@ -128,7 +130,7 @@ export class ShopScene extends Phaser.Scene {
   create():void {
     this.makeCardsView={pane:'purchase',positions:{owned:0,purchase:0}};
     this.comparisonView={scrollTop:0};
-    this.savedPractice=undefined;
+    this.savedPractice=undefined;this.practiceOrigin=undefined;
     this.busy=false;this.selectedOfferId=undefined;this.shelfKind='jokers';this.shelfPage=0;this.pcPages={jokers:0,tools:0,items:0};this.notice='';this.lifecycle++;
     this.pendingGoldRoll=undefined;this.pendingRerollFlip=false;this.pendingPurchaseFlight=undefined;this.pendingToolCue=undefined;this.pendingTransactions=[];this.lastTransactionNotes=[];this.lastPurchaseReceipt=undefined;this.pendingPayment=undefined;
     this.resultFeedback=new ShopResultFeedback();this.resultKey=undefined;this.resultNote=undefined;this.resultPlate=undefined;
@@ -367,7 +369,7 @@ export class ShopScene extends Phaser.Scene {
     // A long full rule owns the right column; the price stays below the art on the left.
     const priceX=column?tile.x+8:initialX;
     const priceInk=this.offerPricePlate(o,{x:priceX-2,y:priceY-2,width:column?66:tile.x+tile.width-priceX-8,height:24});
-    v.text(priceX,priceY,o.consumed?'已购':`${r2PurchasePrice(this.run,o)} 金${column?'':` · ${d?(this.run.jokers.length>=r2JokerCapacity(this.run)?'比较替换':editionLabel(o.edition)):'查看'}`}`,16,priceInk).setFontStyle('bold').setName('shop/offer-price').setData('offerId',o.offerId);
+    v.text(priceX,priceY,o.consumed?'已购':`${r2PurchasePrice(this.run,o)} 金${column?'':` · ${d&&this.run.jokers.length>=r2JokerCapacity(this.run)?'比较替换':'查看'}`}`,16,priceInk).setFontStyle('bold').setName('shop/offer-price').setData('offerId',o.offerId);
     this.markBuildOffer(o,kind,tile,{x:initialX+width-44,y:initialY,width:44,height:22});
     if(d)this.drawOfferGuidance(o,{x:initialX,y:priceY-guidanceHeight,width,height:guidanceHeight});
     const reason=o.consumed?'':this.purchaseReason(o,true);if(reason){const note=v.text(priceX,priceY+20,reason,14,'#B8473A').setName('shop/offer-reason').setData('offerId',o.offerId);this.ellipsis(note,column?64:width);}
@@ -475,18 +477,33 @@ export class ShopScene extends Phaser.Scene {
       id=>this.openMakeTool(id),id=>{if(shopSeq!==undefined)this.confirmBasicChoice(id,seq,shopSeq,true);},
       id=>this.inspectOffer(id,true),()=>showConsumables(this.dialog,this.run,this.ready,(a,s)=>this.send(a,s)),this.makeCardsView,shopPracticeServices(this.run,q=>this.confirmPractice(q)),shopPracticeQuota(this.run));
   }
-  private confirmPractice(q:R2PracticeQuote):void {
+  private confirmPractice(q:R2PracticeQuote,origin?:JourneyPracticeOrigin):void {
+    this.practiceOrigin=origin;
     const action=shopPracticeAction(q);
     const dialog=showShopServiceConfirmation(this.dialog,shopPracticeConfirmation(this.run,q),()=>this.ready&&this.run.commandSeq===q.expectedSeq,async()=>{
-      if(await this.send(action,q.expectedSeq)&&this.dialog.active(dialog)&&this.savedPractice)this.showPracticeResult(this.savedPractice);
-    },()=>this.inspectMakeCards());
+      if(await this.send(action,q.expectedSeq)&&this.dialog.active(dialog)&&this.savedPractice)this.showPracticeResult(this.savedPractice,origin);
+    },()=>this.returnPractice(origin));
     dialog.classList.add('make-cards-practice');
+    const cash=cashDecision(this.run,q.price),summary=dialog.querySelector('.dialog-purchase-summary');
+    summary?.append(document.createTextNode(cash.afterTier===undefined?'\n金币不足，不能确认升级。':`\n当前利息档 ${cash.beforeTier}→${cash.afterTier} 金；仅过关按届时余额结算。`));
+    if(origin){dialog.classList.add('build-journey-practice');dialog.dataset.practiceSource='journey';dialog.querySelector<HTMLButtonElement>('.dialog-close')!.textContent='返回培养路线';}
   }
-  private showPracticeResult(receipt:ShopPracticeReceipt):void {
+  private showPracticeResult(receipt:ShopPracticeReceipt,origin?:JourneyPracticeOrigin):void {
     const name=HAND_LABELS[receipt.handType],summary=`${name} Lv.${receipt.levelBefore} → Lv.${receipt.levelAfter}`;
     this.makeCardsView.receipt={seq:this.run.commandSeq,text:summary+' · 实付 '+receipt.paidPrice+' 金 · 已保存'};
     const d=this.dialog.open(name+' · 升级已保存',`金币 ${receipt.goldBefore} → ${receipt.goldAfter} 金\n本店升级 / 改牌 / 染色机会已用，刷新不恢复；下一店恢复。\n牌型已当场升级，不收入道具箱。`,[],{effectBody:summary,summaryBody:'实付 '+receipt.paidPrice+' 金 · 已保存',collapseRules:true});
-    d.classList.add('shop-practice-result');this.makeCardsReturn(d,'继续做牌');
+    d.classList.add('shop-practice-result');
+    if(origin){
+      d.dataset.practiceSource='journey';const close=d.querySelector<HTMLButtonElement>('.dialog-close')!;close.textContent='返回培养路线';
+      const back=()=>{if(!this.busy)this.returnPractice(origin);};close.onclick=back;d.addEventListener('cancel',back);
+    }else this.makeCardsReturn(d,'继续做牌');
+  }
+  private returnPractice(origin?:JourneyPracticeOrigin):void {
+    if(!origin){this.inspectMakeCards();return;}
+    this.inspectJourney(false,origin.all);
+    const d=this.dialog.current,scroll=d?.querySelector<HTMLElement>('.dialog-scroll');
+    if(scroll)scroll.scrollTop=origin.scrollTop;
+    d?.querySelector<HTMLButtonElement>(`[data-practice-hand="${origin.handType}"] button`)?.focus({preventScroll:true});
   }
   private makeCardsReturn(d:HTMLDialogElement,label:string):void {
     const close=d.querySelector<HTMLButtonElement>('.dialog-close')!;close.textContent=label;
@@ -514,12 +531,12 @@ export class ShopScene extends Phaser.Scene {
     this.inspectMakeCards();
   }
   private resumeMakeCards():void {
-    const pending=this.registry.get('makeCardsPending') as {before:R2RunState;action:Action;purchaseIntent?:string}|undefined;
+    const pending=this.registry.get('makeCardsPending') as {before:R2RunState;action:Action;purchaseIntent?:string;practiceOrigin?:JourneyPracticeOrigin}|undefined;
     if(!pending)return;
     const command=runController(this)?.journal.at(-1);
     if(this.run.runId!==pending.before.runId||this.run.commandSeq!==pending.before.commandSeq+1||command?.expectedSeq!==pending.before.commandSeq||JSON.stringify(command.action)!==JSON.stringify(pending.action)){this.registry.remove('makeCardsPending');return;}
     this.registry.remove('makeCardsPending');
-    if(pending.action.type==='PracticeHand'){const receipt=shopPracticeSavedReceipt(pending.before,this.run);if(receipt)this.showPracticeResult(receipt);}
+    if(pending.action.type==='PracticeHand'){const receipt=shopPracticeSavedReceipt(pending.before,this.run);if(receipt)this.showPracticeResult(receipt,pending.practiceOrigin);}
     else if(pending.action.type==='UseConsumable'){showSavedToolResult(this.dialog,pending.before,this.run,pending.action,this.resultReduced);this.continueMakeCards();}
     else if(pending.action.type==='BuyBasicTool'||pending.action.type==='BuyOffer'){
       const gained=this.run.consumables.find(c=>!pending.before.consumables.some(b=>b.instanceId===c.instanceId));
@@ -740,11 +757,12 @@ export class ShopScene extends Phaser.Scene {
     return this.view.add(createShopRecommendationStars(this,b,g.stars,o.offerId,g.label,g.detail));
   }
   private drawOfferFaceMarks(o:R2Offer,face:Box):void {
+    this.view.add(createShopEditionMark(this,face.x+face.width-45,face.y+1,o.edition).setData('offerId',o.offerId));
     if(o.consumed)return;
     const cue=routeFitCue(this.run,'jokers',o.definitionId),combination=shopCombinationVisual(shopOfferGuidance(this.run,o).recommendation);
-    if(cue)this.view.add(createShopRouteTag(this,face.x+1,face.y+1,cue.focus,cue.label).setData('offerId',o.offerId));
-    const combinationLayout=shopCombinationMarkLayout(face.width-30);
-    if(combination&&combinationLayout)this.view.add(createShopCombinationMark(this,face.x+1,face.y+face.height-18,combination,combinationLayout).setData('offerId',o.offerId));
+    if(cue)this.view.add(createShopRouteTag(this,face.x+1,face.y+(face.width<80?21:1),cue.focus,cue.label).setData('offerId',o.offerId));
+    const besideRarity=shopCombinationMarkLayout(face.width-30),combinationLayout=besideRarity??shopCombinationMarkLayout(face.width-2);
+    if(combination&&combinationLayout)this.view.add(createShopCombinationMark(this,face.x+1,face.y+face.height-(besideRarity?18:38),combination,combinationLayout).setData('offerId',o.offerId));
   }
   private drawOfferGuidance(o:R2Offer,b:Box):void {
     const g=shopOfferGuidance(this.run,o),v=this.view;
@@ -758,8 +776,8 @@ export class ShopScene extends Phaser.Scene {
     if(kind==='jokers'&&starterOffer(this.run,o)&&label){this.view.material(label,0xfff9ee,0xfff9ee,3).setName('shop/route-starter-plate').setData('offerId',o.offerId).setData('bounds',label);this.view.text(label.x+8,label.y+2,'起手',14,'#26313A').setFontStyle('bold').setName('shop/route-starter-label').setData('offerId',o.offerId).setData('fullText','起手 · 可选');}
     if(this.selectedOfferId===o.offerId)this.view.text(b.x+b.width-20,b.y+b.height-25,'✓',18,'#26313A').setName('shop/offer-selected');
   }
-  private inspectJourney(heroFocus=false):void {
-    showBuildJourney(this.dialog,this.run,{ready:this.ready,basicTool:id=>{const row=id?basicChoiceRows(this.run).find(r=>r.id===id):undefined;if(!row||row.reason){this.inspectBasicChoice();return;}this.confirmBasicChoice(row.id,this.run.commandSeq,this.run.shop!.basicChoice!.shopSeq);},onFocus:()=>this.render(),chapter:()=>this.inspectChapter(),manage:()=>this.inspectBuild(),source:id=>this.inspectJoker(id),compare:(o,j)=>this.inspectJoker(j,o),tools:()=>showConsumables(this.dialog,this.run,this.ready,(a,seq)=>this.send(a,seq)),tool:id=>showConsumables(this.dialog,this.run,this.ready,(a,seq)=>this.send(a,seq),id),deck:()=>this.inspectDeck(),offers:(id,kind)=>{this.shelfKind=kind;this.inspectOffer(id);},continueLabel:'保留金币进入牌桌',continue:()=>{this.dialog.close();void this.send({type:'LeaveShop'});}});
+  private inspectJourney(heroFocus=false,all=false):void {
+    showBuildJourney(this.dialog,this.run,{ready:this.ready,practice:(q,all=false)=>this.confirmPractice(q,{all,handType:q.handType,scrollTop:this.dialog.current?.querySelector('.dialog-scroll')?.scrollTop??0}),basicTool:id=>{const row=id?basicChoiceRows(this.run).find(r=>r.id===id):undefined;if(!row||row.reason){this.inspectBasicChoice();return;}this.confirmBasicChoice(row.id,this.run.commandSeq,this.run.shop!.basicChoice!.shopSeq);},onFocus:()=>this.render(),chapter:()=>this.inspectChapter(),manage:()=>this.inspectBuild(),source:id=>this.inspectJoker(id),compare:(o,j)=>this.inspectJoker(j,o),tools:()=>showConsumables(this.dialog,this.run,this.ready,(a,seq)=>this.send(a,seq)),tool:id=>showConsumables(this.dialog,this.run,this.ready,(a,seq)=>this.send(a,seq),id),deck:()=>this.inspectDeck(),offers:(id,kind)=>{this.shelfKind=kind;this.inspectOffer(id);},continueLabel:'保留金币进入牌桌',continue:()=>{this.dialog.close();void this.send({type:'LeaveShop'});}},false,all);
     if(heroFocus){const panel=this.dialog.current,fold=panel?.querySelector<HTMLDetailsElement>('.build-keepsake-compact');if(panel&&fold){fold.addEventListener('toggle',()=>{if(this.dialog.active(panel))fold.querySelector('.build-keepsake-hero')?.scrollIntoView({block:'nearest'});},{once:true});fold.open=true;}}
   }
   private inspectBuild():void {
@@ -808,7 +826,7 @@ export class ShopScene extends Phaser.Scene {
     const buy=async(now:boolean)=>{if(!this.dialog.active(dialog)||!this.ready)return;dialog.dataset.purchaseIntent=now?'use':'store';if(await this.send({type:'BuyOffer',offerId:id},seq)){if(kind==='tools'&&this.dialog.active(dialog)){const gained=this.run.consumables.find(c=>!purchaseBefore.has(c.instanceId)&&c.definitionId===o.definitionId);if(gained){if(makeCards){if(now)this.openMakeTool(gained.instanceId,'已购 '+info!.name+' · 实付 '+price+' 金 · 未使用');else this.storedMakeTool(info!.name,price);return;}const purchased=this.dialog.open(info!.name+' · 已购入',`购买已保存 · 余额 ${this.run.gold} 金\n道具箱 ${this.run.consumables.length}/${r2ConsumableCapacity(this.run)} · 尚未使用\n${toolPurpose(this.run,o.definitionId)}`, [{label:'立即使用',primary:true,run:()=>this.openMakeTool(gained.instanceId)},{label:'查看道具箱',run:()=>{this.makeCardsView.pane='owned';this.inspectMakeCards();}}],{closeLabel:'回到经营'});purchased.classList.add('tool-purchased-result');}else this.dialog.close(dialog);}else this.dialog.close(dialog);}};
     const dialog=this.dialog.open(name+' · 购买详情',body,[...(d&&this.run.jokers.length?[{label:'比较替换',run:()=>this.inspectReplacement(id)}]:[]),...(makeCards&&kind==='tools'?[{label:`买来存着 · ${price}金`,disabled:!!reason,run:()=>buy(false)}]:[]),{label:d?`邀请 · ${price} 金`:makeCards?`买来使用 · ${price}金`:`购买 · ${price} 金`,primary:true,disabled:!!reason,run:()=>buy(true)}],{shopContext:'purchase',closeLabel:'取消',portrait,rarity:d?.rarity,...(d?{artLoad:this.jokerArtStatus(d.id)}:info?.detailArtUrl?{artLoad:{status:goodsArtLoadState(this,o.definitionId).status,readStatus:()=>goodsArtLoadState(this,o.definitionId).status,retry:()=>retryGoodsArt(this,o.definitionId,info.artUrl,()=>{this.paintGoodsArt(goodsArtKey(o.definitionId));this.dialog.refreshArtLoad();})}}:{}),summaryBody:plainSummary??(d?shopOfferRelation(this.run,o,currentBuildFocus(this.run,this.run.openingRoute)).label+' · ':'')+`实付 ${price} 金 · `+(after<0?`现有 ${this.run.gold} 金，差 ${-after} 金`:`余额 ${this.run.gold} → ${after} 金`)+'\n'+trade+(investment?'\n'+investment.next:'')+(d?.id==='f04'&&after>=0?'\n购后余额仅供参考；+3 条件在每手开始时检查。':'')+(reason?'\n'+reason:''),effectBody:d?shopOfferRelation(this.run,o,currentBuildFocus(this.run,this.run.openingRoute)).body:info!.summary,editionBody:ability?this.jokerEditionSummary(o.edition,d!.id):undefined,ability,collapseRules:true});
     if(kind==='tools')dialog.classList.add('shop-tool-purchase');
-    if(guidance){dialog.classList.add('shop-joker-purchase');const value=createShopOfferValue(guidance);dialog.querySelector('.dialog-intro')?.prepend(value);const money=dialog.querySelector('.dialog-purchase-summary');if(money)value.after(money);}
+    if(guidance){dialog.classList.add('shop-joker-purchase');const value=createShopOfferValue(guidance);dialog.querySelector('.dialog-intro')?.prepend(createShopIdentityTags(d!.rarity,o.edition),value);const money=dialog.querySelector('.dialog-purchase-summary');if(money)value.after(money);}
     if(makeCards&&kind==='tools'){dialog.classList.add('make-cards-purchase');this.makeCardsReturn(dialog,'取消购买');}
     markRouteDetail(dialog,routeFitCue(this.run,kind,o.definitionId));
     attachFirstChapterGuide(this.run,()=>this.render());
@@ -839,6 +857,10 @@ export class ShopScene extends Phaser.Scene {
       {label:'右移',disabled:!this.ready||index===this.run.jokers.length-1,run:async()=>{if(await this.reorder(index,index+1,seq)&&this.dialog.active(dialog))this.inspectJoker(id,offerId);}},
       {label:'出售',disabled:!this.ready,run:()=>{const confirmation=this.dialog.open('出售确认',`出售第 ${index+1} 槽的「${d.name}」基础卖价 ${salePrice(j.paidPrice)} 金币。\n当前余额 ${this.run.gold} 金；交易来源与售后余额以实际保存结果为准。\n\n该牌成长将丢失，当前成长：${growth}。`+(saleEffects.length?'\n\n成功出售后保留牌的确定影响：\n'+saleEffects.join('\n'):''),[{label:'确认出售',primary:true,run:async()=>{if(await this.send({type:'SellJoker',instanceId:id},seq)&&this.dialog.active(confirmation)){this.dialog.close(confirmation);if(offerId)this.inspectOffer(offerId);}}}],{shopContext:'sale',closeLabel:'取消',portrait:this.jokerPortrait(d.id),rarity:d.rarity,summaryBody:`出售「${d.name}」 · 基础返还 ${salePrice(j.paidPrice)} 金\n失去当前成长：${growth}`});if(offerId){confirmation.querySelector<HTMLButtonElement>('.dialog-close')!.onclick=()=>this.inspectJoker(id,offerId);confirmation.addEventListener('cancel',()=>this.inspectJoker(id,offerId));}}},
     ],{shopContext:'held',summaryBody:relation.body+'\n现存：'+growth,portrait:this.jokerPortrait(d.id),rarity:d.rarity,artLoad:this.jokerArtStatus(d.id),editionBody:ability?this.jokerEditionSummary(j.edition,d.id):undefined,ability,collapseRules:!!ability});
+    dialog.classList.add('shop-joker-held');dialog.querySelector('.dialog-intro')?.prepend(createShopIdentityTags(d.rarity,j.edition));
+    const candidate=offerId?this.findOffer(offerId)?.offer:undefined;
+    if(candidate)dialog.querySelector('.dialog-intro')?.append(createShopOfferValue(shopOfferGuidance(this.run,candidate,j),'换入「'+this.jokerDefinition(candidate.definitionId).name+'」的推荐'));
+    if(offerId){const back=()=>this.inspectReplacement(offerId);dialog.querySelector<HTMLButtonElement>('.dialog-close')!.onclick=back;dialog.addEventListener('cancel',back);}
     markRouteDetail(dialog,routeFitCue(this.run,'jokers',d.id,j.instanceId));this.attachJokerFallback(dialog,d.id);
   }
   private async reorder(from:number,to:number,expectedSeq?:number):Promise<boolean> {
@@ -928,7 +950,7 @@ export class ShopScene extends Phaser.Scene {
       if(!result.ok){
         this.audio.invalid();
         if(pendingDrag)this.notice=result.code==='save-failed'?'排序未保存 · 已恢复保存顺序 · 菜单重试': '排序未提交 · 已恢复保存顺序';
-        if(result.code==='save-failed'){if(owner?.classList.contains('make-cards-tool')||owner?.classList.contains('make-cards-purchase')||owner?.classList.contains('make-cards-practice'))this.registry.set('makeCardsPending',{before:previous,action,purchaseIntent:owner.dataset.purchaseIntent});this.dialog.close();}
+        if(result.code==='save-failed'){if(owner?.classList.contains('make-cards-tool')||owner?.classList.contains('make-cards-purchase')||owner?.classList.contains('make-cards-practice'))this.registry.set('makeCardsPending',{before:previous,action,purchaseIntent:owner.dataset.purchaseIntent,...(action.type==='PracticeHand'?{practiceOrigin:this.practiceOrigin}:{})});this.dialog.close();}
         else this.dialog.open('操作未提交',({'slots-full':'五个槽位已满，请先出售一张。','stale-shop':'商店已变化，请重新打开基础选择；本次没有扣款。','basic-choice-consumed':'本店自选已用；升级、改牌、染色共用1次，刷新不恢复，下一店恢复。','stale-practice-level':'牌型等级已变化，请重新查看服务报价；本次没有扣款。','undiscovered-hand-type':'该牌型尚未发现，不能升级；本次没有扣款。','hand-level-cap':'该牌型已达30级；本次没有扣款。','basic-choice-not-legal':'合法目标或随机位现货已变化，请重新打开选择；本次没有扣款。','consumable-slots-full':'道具箱已满，本次没有扣款。','not-enough-gold':'金币不足；本次操作没有扣款。','already-owned':'已装备同名牌。','no-reroll-candidates':'没有可换入的卡牌。','stale-sequence':'本局在预览后已变化，请重新打开详情确认；没有消耗物品或金币。','replacement-pending':'新局或导入尚未保存，请在菜单重试、导出或取消候选。'} as Record<string,string>)[result.code]??'本次操作未提交，原选择和资源仍然保留。');
         return false;
       }

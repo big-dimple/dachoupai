@@ -1,0 +1,1753 @@
+{
+  "head": "376f856e6f26a258a7dd6d8fd6e24bb6ccea4fce",
+  "sourceTree": "d660cccbe09db818326d3ad2fae978854c9a5a54",
+  "modified": "",
+  "scope": "Validator-approved current-identity public fixtures; native mouse/touch/DOM and actual SavedRun/IDB. Three routes at four viewports. Not natural discovery/acquisition, physical device, gameplay balance or legacy migration.",
+  "cases": [
+    {
+      "width": 1366,
+      "height": 768,
+      "cases": [
+        {
+          "focus": "group",
+          "handType": "pair",
+          "all": false,
+          "mode": "delayed",
+          "shots": [
+            "1366x768-group-journey.png",
+            "1366x768-group-practice-entry.png",
+            "1366x768-group-quote.png",
+            "1366x768-group-saving.png",
+            "1366x768-group-saved.png",
+            "1366x768-group-returned-quota-used.png",
+            "1366x768-group-reroll-keeps-quota.png"
+          ],
+          "checks": [
+            "matching route discovered quote opens without commands; cancel and Escape restore original simplified/all journey and scroll with full save unchanged",
+            "one original PracticeHand/expectedSeq; exact authority state/journal/IDB; one debit/level/quota change, no inventory/RNG/target drift",
+            "saved receipt returns to fresh original journey variant and consumed upgrade quota",
+            "native RerollShop fully matches authority and keeps consumed shared quota; reopened journey cannot upgrade again",
+            "full state/journal/IDB/local preferences survive cold restore"
+          ],
+          "errors": [],
+          "transactions": [
+            {
+              "action": {
+                "type": "PracticeHand",
+                "handType": "pair",
+                "expectedLevel": 4,
+                "shopSeq": 4
+              },
+              "beforeSeq": 4,
+              "afterSeq": 5,
+              "events": [
+                {
+                  "type": "hand-practiced",
+                  "handType": "pair",
+                  "levelBefore": 4,
+                  "levelAfter": 5,
+                  "paidPrice": 3,
+                  "goldBefore": 30,
+                  "goldAfter": 27
+                }
+              ]
+            },
+            {
+              "action": {
+                "type": "RerollShop"
+              },
+              "beforeSeq": 5,
+              "afterSeq": 6,
+              "events": []
+            }
+          ],
+          "initial": {
+            "seq": 4,
+            "gold": 30,
+            "levels": {
+              "high-card": 1,
+              "pair": 4,
+              "straight": 7,
+              "flush": 29,
+              "three-kind": 30
+            },
+            "quota": {
+              "shopSeq": 4,
+              "purchase": null
+            }
+          },
+          "last": {
+            "seq": 6,
+            "gold": 25,
+            "levels": {
+              "high-card": 1,
+              "pair": 5,
+              "straight": 7,
+              "flush": 29,
+              "three-kind": 30
+            },
+            "quota": {
+              "shopSeq": 4,
+              "purchase": {
+                "definitionId": "T01",
+                "handType": "pair",
+                "levelBefore": 4,
+                "commandId": "build-journey-practice/group/command/5",
+                "paidPrice": 3,
+                "seq": 5
+              }
+            }
+          },
+          "quote": {
+            "handType": "pair",
+            "levelBefore": 4,
+            "levelAfter": 5,
+            "basePrice": 6,
+            "price": 3,
+            "goldAfter": 27,
+            "shopSeq": 4,
+            "expectedSeq": 4,
+            "available": true,
+            "reason": null
+          },
+          "pageIdentity": {
+            "focus": "group",
+            "all": "false",
+            "title": "这轮怎么选 · 同点成组"
+          },
+          "returnScroll": 0,
+          "entryShot": true,
+          "returnAfterSave": {
+            "top": 0,
+            "max": 0
+          },
+          "restored": {
+            "seq": 6,
+            "gold": 25,
+            "levels": {
+              "high-card": 1,
+              "pair": 5,
+              "straight": 7,
+              "flush": 29,
+              "three-kind": 30
+            },
+            "quota": {
+              "shopSeq": 4,
+              "purchase": {
+                "definitionId": "T01",
+                "handType": "pair",
+                "levelBefore": 4,
+                "commandId": "build-journey-practice/group/command/5",
+                "paidPrice": 3,
+                "seq": 5
+              }
+            }
+          },
+          "dispatches": [
+            [
+              {
+                "type": "PracticeHand",
+                "handType": "pair",
+                "expectedLevel": 4,
+                "shopSeq": 4
+              },
+              4
+            ],
+            [
+              {
+                "type": "RerollShop"
+              },
+              null
+            ]
+          ],
+          "status": "PASS"
+        },
+        {
+          "focus": "straight",
+          "handType": "straight",
+          "all": true,
+          "mode": "quota",
+          "shots": [
+            "1366x768-straight-journey.png",
+            "1366x768-straight-practice-entry.png",
+            "1366x768-straight-quote.png",
+            "1366x768-straight-saving.png",
+            "1366x768-straight-save-failure.png",
+            "1366x768-straight-saved.png",
+            "1366x768-straight-returned-quota-used.png"
+          ],
+          "checks": [
+            "matching route discovered quote opens without commands; cancel and Escape restore original simplified/all journey and scroll with full save unchanged",
+            "one original PracticeHand/expectedSeq; exact authority state/journal/IDB; one debit/level/quota change, no inventory/RNG/target drift",
+            "saved receipt returns to fresh original journey variant and consumed upgrade quota",
+            "full state/journal/IDB/local preferences survive cold restore"
+          ],
+          "errors": [],
+          "transactions": [
+            {
+              "action": {
+                "type": "PracticeHand",
+                "handType": "straight",
+                "expectedLevel": 7,
+                "shopSeq": 4
+              },
+              "beforeSeq": 4,
+              "afterSeq": 5,
+              "events": [
+                {
+                  "type": "hand-practiced",
+                  "handType": "straight",
+                  "levelBefore": 7,
+                  "levelAfter": 8,
+                  "paidPrice": 5,
+                  "goldBefore": 30,
+                  "goldAfter": 25
+                }
+              ]
+            }
+          ],
+          "initial": {
+            "seq": 4,
+            "gold": 30,
+            "levels": {
+              "high-card": 1,
+              "pair": 4,
+              "straight": 7,
+              "flush": 29,
+              "three-kind": 30
+            },
+            "quota": {
+              "shopSeq": 4,
+              "purchase": null
+            }
+          },
+          "last": {
+            "seq": 5,
+            "gold": 25,
+            "levels": {
+              "high-card": 1,
+              "pair": 4,
+              "straight": 8,
+              "flush": 29,
+              "three-kind": 30
+            },
+            "quota": {
+              "shopSeq": 4,
+              "purchase": {
+                "definitionId": "T01",
+                "handType": "straight",
+                "levelBefore": 7,
+                "commandId": "build-journey-practice/straight/command/5",
+                "paidPrice": 5,
+                "seq": 5
+              }
+            }
+          },
+          "quote": {
+            "handType": "straight",
+            "levelBefore": 7,
+            "levelAfter": 8,
+            "basePrice": 8,
+            "price": 5,
+            "goldAfter": 25,
+            "shopSeq": 4,
+            "expectedSeq": 4,
+            "available": true,
+            "reason": null
+          },
+          "pageIdentity": {
+            "focus": "straight",
+            "all": "true",
+            "title": "培养路线 · 顺子接续"
+          },
+          "returnScroll": 321,
+          "entryShot": true,
+          "returnAfterSave": {
+            "top": 321,
+            "max": 1318
+          },
+          "restored": {
+            "seq": 5,
+            "gold": 25,
+            "levels": {
+              "high-card": 1,
+              "pair": 4,
+              "straight": 8,
+              "flush": 29,
+              "three-kind": 30
+            },
+            "quota": {
+              "shopSeq": 4,
+              "purchase": {
+                "definitionId": "T01",
+                "handType": "straight",
+                "levelBefore": 7,
+                "commandId": "build-journey-practice/straight/command/5",
+                "paidPrice": 5,
+                "seq": 5
+              }
+            }
+          },
+          "dispatches": [
+            [
+              {
+                "type": "PracticeHand",
+                "handType": "straight",
+                "expectedLevel": 7,
+                "shopSeq": 4
+              },
+              4
+            ]
+          ],
+          "status": "PASS"
+        },
+        {
+          "focus": "flush",
+          "handType": "flush",
+          "all": true,
+          "mode": "direct",
+          "shots": [
+            "1366x768-flush-journey.png",
+            "1366x768-flush-practice-entry.png",
+            "1366x768-flush-quote.png",
+            "1366x768-flush-saved.png",
+            "1366x768-flush-returned-quota-used.png"
+          ],
+          "checks": [
+            "matching route discovered quote opens without commands; cancel and Escape restore original simplified/all journey and scroll with full save unchanged",
+            "one original PracticeHand/expectedSeq; exact authority state/journal/IDB; one debit/level/quota change, no inventory/RNG/target drift",
+            "saved receipt returns to fresh original journey variant and consumed upgrade quota",
+            "full state/journal/IDB/local preferences survive cold restore"
+          ],
+          "errors": [],
+          "transactions": [
+            {
+              "action": {
+                "type": "PracticeHand",
+                "handType": "flush",
+                "expectedLevel": 29,
+                "shopSeq": 4
+              },
+              "beforeSeq": 4,
+              "afterSeq": 5,
+              "events": [
+                {
+                  "type": "hand-practiced",
+                  "handType": "flush",
+                  "levelBefore": 29,
+                  "levelAfter": 30,
+                  "paidPrice": 19,
+                  "goldBefore": 30,
+                  "goldAfter": 11
+                }
+              ]
+            }
+          ],
+          "initial": {
+            "seq": 4,
+            "gold": 30,
+            "levels": {
+              "high-card": 1,
+              "pair": 4,
+              "straight": 7,
+              "flush": 29,
+              "three-kind": 30
+            },
+            "quota": {
+              "shopSeq": 4,
+              "purchase": null
+            }
+          },
+          "last": {
+            "seq": 5,
+            "gold": 11,
+            "levels": {
+              "high-card": 1,
+              "pair": 4,
+              "straight": 7,
+              "flush": 30,
+              "three-kind": 30
+            },
+            "quota": {
+              "shopSeq": 4,
+              "purchase": {
+                "definitionId": "T01",
+                "handType": "flush",
+                "levelBefore": 29,
+                "commandId": "build-journey-practice/flush/command/5",
+                "paidPrice": 19,
+                "seq": 5
+              }
+            }
+          },
+          "quote": {
+            "handType": "flush",
+            "levelBefore": 29,
+            "levelAfter": 30,
+            "basePrice": 22,
+            "price": 19,
+            "goldAfter": 11,
+            "shopSeq": 4,
+            "expectedSeq": 4,
+            "available": true,
+            "reason": null
+          },
+          "pageIdentity": {
+            "focus": "flush",
+            "all": "true",
+            "title": "培养路线 · 同花集中"
+          },
+          "returnScroll": 321,
+          "entryShot": true,
+          "returnAfterSave": {
+            "top": 321,
+            "max": 1261
+          },
+          "restored": {
+            "seq": 5,
+            "gold": 11,
+            "levels": {
+              "high-card": 1,
+              "pair": 4,
+              "straight": 7,
+              "flush": 30,
+              "three-kind": 30
+            },
+            "quota": {
+              "shopSeq": 4,
+              "purchase": {
+                "definitionId": "T01",
+                "handType": "flush",
+                "levelBefore": 29,
+                "commandId": "build-journey-practice/flush/command/5",
+                "paidPrice": 19,
+                "seq": 5
+              }
+            }
+          },
+          "dispatches": [
+            [
+              {
+                "type": "PracticeHand",
+                "handType": "flush",
+                "expectedLevel": 29,
+                "shopSeq": 4
+              },
+              4
+            ]
+          ],
+          "status": "PASS"
+        }
+      ]
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "cases": [
+        {
+          "focus": "group",
+          "handType": "pair",
+          "all": false,
+          "mode": "delayed",
+          "shots": [
+            "390x844-group-journey.png",
+            "390x844-group-practice-entry.png",
+            "390x844-group-quote.png",
+            "390x844-group-saving.png",
+            "390x844-group-saved.png",
+            "390x844-group-returned-quota-used.png",
+            "390x844-group-reroll-keeps-quota.png"
+          ],
+          "checks": [
+            "matching route discovered quote opens without commands; cancel and Escape restore original simplified/all journey and scroll with full save unchanged",
+            "one original PracticeHand/expectedSeq; exact authority state/journal/IDB; one debit/level/quota change, no inventory/RNG/target drift",
+            "saved receipt returns to fresh original journey variant and consumed upgrade quota",
+            "native RerollShop fully matches authority and keeps consumed shared quota; reopened journey cannot upgrade again",
+            "full state/journal/IDB/local preferences survive cold restore"
+          ],
+          "errors": [],
+          "transactions": [
+            {
+              "action": {
+                "type": "PracticeHand",
+                "handType": "pair",
+                "expectedLevel": 4,
+                "shopSeq": 4
+              },
+              "beforeSeq": 4,
+              "afterSeq": 5,
+              "events": [
+                {
+                  "type": "hand-practiced",
+                  "handType": "pair",
+                  "levelBefore": 4,
+                  "levelAfter": 5,
+                  "paidPrice": 3,
+                  "goldBefore": 30,
+                  "goldAfter": 27
+                }
+              ]
+            },
+            {
+              "action": {
+                "type": "RerollShop"
+              },
+              "beforeSeq": 5,
+              "afterSeq": 6,
+              "events": []
+            }
+          ],
+          "initial": {
+            "seq": 4,
+            "gold": 30,
+            "levels": {
+              "high-card": 1,
+              "pair": 4,
+              "straight": 7,
+              "flush": 29,
+              "three-kind": 30
+            },
+            "quota": {
+              "shopSeq": 4,
+              "purchase": null
+            }
+          },
+          "last": {
+            "seq": 6,
+            "gold": 25,
+            "levels": {
+              "high-card": 1,
+              "pair": 5,
+              "straight": 7,
+              "flush": 29,
+              "three-kind": 30
+            },
+            "quota": {
+              "shopSeq": 4,
+              "purchase": {
+                "definitionId": "T01",
+                "handType": "pair",
+                "levelBefore": 4,
+                "commandId": "build-journey-practice/group/command/5",
+                "paidPrice": 3,
+                "seq": 5
+              }
+            }
+          },
+          "quote": {
+            "handType": "pair",
+            "levelBefore": 4,
+            "levelAfter": 5,
+            "basePrice": 6,
+            "price": 3,
+            "goldAfter": 27,
+            "shopSeq": 4,
+            "expectedSeq": 4,
+            "available": true,
+            "reason": null
+          },
+          "pageIdentity": {
+            "focus": "group",
+            "all": "false",
+            "title": "这轮怎么选 · 同点成组"
+          },
+          "returnScroll": 0,
+          "entryShot": true,
+          "returnAfterSave": {
+            "top": 0,
+            "max": 0
+          },
+          "restored": {
+            "seq": 6,
+            "gold": 25,
+            "levels": {
+              "high-card": 1,
+              "pair": 5,
+              "straight": 7,
+              "flush": 29,
+              "three-kind": 30
+            },
+            "quota": {
+              "shopSeq": 4,
+              "purchase": {
+                "definitionId": "T01",
+                "handType": "pair",
+                "levelBefore": 4,
+                "commandId": "build-journey-practice/group/command/5",
+                "paidPrice": 3,
+                "seq": 5
+              }
+            }
+          },
+          "dispatches": [
+            [
+              {
+                "type": "PracticeHand",
+                "handType": "pair",
+                "expectedLevel": 4,
+                "shopSeq": 4
+              },
+              4
+            ],
+            [
+              {
+                "type": "RerollShop"
+              },
+              null
+            ]
+          ],
+          "status": "PASS"
+        },
+        {
+          "focus": "straight",
+          "handType": "straight",
+          "all": true,
+          "mode": "quota",
+          "shots": [
+            "390x844-straight-journey.png",
+            "390x844-straight-practice-entry.png",
+            "390x844-straight-quote.png",
+            "390x844-straight-saving.png",
+            "390x844-straight-save-failure.png",
+            "390x844-straight-saved.png",
+            "390x844-straight-returned-quota-used.png"
+          ],
+          "checks": [
+            "matching route discovered quote opens without commands; cancel and Escape restore original simplified/all journey and scroll with full save unchanged",
+            "one original PracticeHand/expectedSeq; exact authority state/journal/IDB; one debit/level/quota change, no inventory/RNG/target drift",
+            "saved receipt returns to fresh original journey variant and consumed upgrade quota",
+            "full state/journal/IDB/local preferences survive cold restore"
+          ],
+          "errors": [],
+          "transactions": [
+            {
+              "action": {
+                "type": "PracticeHand",
+                "handType": "straight",
+                "expectedLevel": 7,
+                "shopSeq": 4
+              },
+              "beforeSeq": 4,
+              "afterSeq": 5,
+              "events": [
+                {
+                  "type": "hand-practiced",
+                  "handType": "straight",
+                  "levelBefore": 7,
+                  "levelAfter": 8,
+                  "paidPrice": 5,
+                  "goldBefore": 30,
+                  "goldAfter": 25
+                }
+              ]
+            }
+          ],
+          "initial": {
+            "seq": 4,
+            "gold": 30,
+            "levels": {
+              "high-card": 1,
+              "pair": 4,
+              "straight": 7,
+              "flush": 29,
+              "three-kind": 30
+            },
+            "quota": {
+              "shopSeq": 4,
+              "purchase": null
+            }
+          },
+          "last": {
+            "seq": 5,
+            "gold": 25,
+            "levels": {
+              "high-card": 1,
+              "pair": 4,
+              "straight": 8,
+              "flush": 29,
+              "three-kind": 30
+            },
+            "quota": {
+              "shopSeq": 4,
+              "purchase": {
+                "definitionId": "T01",
+                "handType": "straight",
+                "levelBefore": 7,
+                "commandId": "build-journey-practice/straight/command/5",
+                "paidPrice": 5,
+                "seq": 5
+              }
+            }
+          },
+          "quote": {
+            "handType": "straight",
+            "levelBefore": 7,
+            "levelAfter": 8,
+            "basePrice": 8,
+            "price": 5,
+            "goldAfter": 25,
+            "shopSeq": 4,
+            "expectedSeq": 4,
+            "available": true,
+            "reason": null
+          },
+          "pageIdentity": {
+            "focus": "straight",
+            "all": "true",
+            "title": "培养路线 · 顺子接续"
+          },
+          "returnScroll": 557,
+          "entryShot": true,
+          "returnAfterSave": {
+            "top": 557,
+            "max": 2026
+          },
+          "restored": {
+            "seq": 5,
+            "gold": 25,
+            "levels": {
+              "high-card": 1,
+              "pair": 4,
+              "straight": 8,
+              "flush": 29,
+              "three-kind": 30
+            },
+            "quota": {
+              "shopSeq": 4,
+              "purchase": {
+                "definitionId": "T01",
+                "handType": "straight",
+                "levelBefore": 7,
+                "commandId": "build-journey-practice/straight/command/5",
+                "paidPrice": 5,
+                "seq": 5
+              }
+            }
+          },
+          "dispatches": [
+            [
+              {
+                "type": "PracticeHand",
+                "handType": "straight",
+                "expectedLevel": 7,
+                "shopSeq": 4
+              },
+              4
+            ]
+          ],
+          "status": "PASS"
+        },
+        {
+          "focus": "flush",
+          "handType": "flush",
+          "all": true,
+          "mode": "direct",
+          "shots": [
+            "390x844-flush-journey.png",
+            "390x844-flush-practice-entry.png",
+            "390x844-flush-quote.png",
+            "390x844-flush-saved.png",
+            "390x844-flush-returned-quota-used.png"
+          ],
+          "checks": [
+            "matching route discovered quote opens without commands; cancel and Escape restore original simplified/all journey and scroll with full save unchanged",
+            "one original PracticeHand/expectedSeq; exact authority state/journal/IDB; one debit/level/quota change, no inventory/RNG/target drift",
+            "saved receipt returns to fresh original journey variant and consumed upgrade quota",
+            "full state/journal/IDB/local preferences survive cold restore"
+          ],
+          "errors": [],
+          "transactions": [
+            {
+              "action": {
+                "type": "PracticeHand",
+                "handType": "flush",
+                "expectedLevel": 29,
+                "shopSeq": 4
+              },
+              "beforeSeq": 4,
+              "afterSeq": 5,
+              "events": [
+                {
+                  "type": "hand-practiced",
+                  "handType": "flush",
+                  "levelBefore": 29,
+                  "levelAfter": 30,
+                  "paidPrice": 19,
+                  "goldBefore": 30,
+                  "goldAfter": 11
+                }
+              ]
+            }
+          ],
+          "initial": {
+            "seq": 4,
+            "gold": 30,
+            "levels": {
+              "high-card": 1,
+              "pair": 4,
+              "straight": 7,
+              "flush": 29,
+              "three-kind": 30
+            },
+            "quota": {
+              "shopSeq": 4,
+              "purchase": null
+            }
+          },
+          "last": {
+            "seq": 5,
+            "gold": 11,
+            "levels": {
+              "high-card": 1,
+              "pair": 4,
+              "straight": 7,
+              "flush": 30,
+              "three-kind": 30
+            },
+            "quota": {
+              "shopSeq": 4,
+              "purchase": {
+                "definitionId": "T01",
+                "handType": "flush",
+                "levelBefore": 29,
+                "commandId": "build-journey-practice/flush/command/5",
+                "paidPrice": 19,
+                "seq": 5
+              }
+            }
+          },
+          "quote": {
+            "handType": "flush",
+            "levelBefore": 29,
+            "levelAfter": 30,
+            "basePrice": 22,
+            "price": 19,
+            "goldAfter": 11,
+            "shopSeq": 4,
+            "expectedSeq": 4,
+            "available": true,
+            "reason": null
+          },
+          "pageIdentity": {
+            "focus": "flush",
+            "all": "true",
+            "title": "培养路线 · 同花集中"
+          },
+          "returnScroll": 557,
+          "entryShot": true,
+          "returnAfterSave": {
+            "top": 557,
+            "max": 1971
+          },
+          "restored": {
+            "seq": 5,
+            "gold": 11,
+            "levels": {
+              "high-card": 1,
+              "pair": 4,
+              "straight": 7,
+              "flush": 30,
+              "three-kind": 30
+            },
+            "quota": {
+              "shopSeq": 4,
+              "purchase": {
+                "definitionId": "T01",
+                "handType": "flush",
+                "levelBefore": 29,
+                "commandId": "build-journey-practice/flush/command/5",
+                "paidPrice": 19,
+                "seq": 5
+              }
+            }
+          },
+          "dispatches": [
+            [
+              {
+                "type": "PracticeHand",
+                "handType": "flush",
+                "expectedLevel": 29,
+                "shopSeq": 4
+              },
+              4
+            ]
+          ],
+          "status": "PASS"
+        }
+      ]
+    },
+    {
+      "width": 320,
+      "height": 568,
+      "cases": [
+        {
+          "focus": "group",
+          "handType": "pair",
+          "all": false,
+          "mode": "delayed",
+          "shots": [
+            "320x568-group-journey.png",
+            "320x568-group-practice-entry.png",
+            "320x568-group-quote.png",
+            "320x568-group-saving.png",
+            "320x568-group-saved.png",
+            "320x568-group-returned-quota-used.png",
+            "320x568-group-reroll-keeps-quota.png"
+          ],
+          "checks": [
+            "matching route discovered quote opens without commands; cancel and Escape restore original simplified/all journey and scroll with full save unchanged",
+            "one original PracticeHand/expectedSeq; exact authority state/journal/IDB; one debit/level/quota change, no inventory/RNG/target drift",
+            "saved receipt returns to fresh original journey variant and consumed upgrade quota",
+            "native RerollShop fully matches authority and keeps consumed shared quota; reopened journey cannot upgrade again",
+            "full state/journal/IDB/local preferences survive cold restore"
+          ],
+          "errors": [],
+          "transactions": [
+            {
+              "action": {
+                "type": "PracticeHand",
+                "handType": "pair",
+                "expectedLevel": 4,
+                "shopSeq": 4
+              },
+              "beforeSeq": 4,
+              "afterSeq": 5,
+              "events": [
+                {
+                  "type": "hand-practiced",
+                  "handType": "pair",
+                  "levelBefore": 4,
+                  "levelAfter": 5,
+                  "paidPrice": 3,
+                  "goldBefore": 30,
+                  "goldAfter": 27
+                }
+              ]
+            },
+            {
+              "action": {
+                "type": "RerollShop"
+              },
+              "beforeSeq": 5,
+              "afterSeq": 6,
+              "events": []
+            }
+          ],
+          "initial": {
+            "seq": 4,
+            "gold": 30,
+            "levels": {
+              "high-card": 1,
+              "pair": 4,
+              "straight": 7,
+              "flush": 29,
+              "three-kind": 30
+            },
+            "quota": {
+              "shopSeq": 4,
+              "purchase": null
+            }
+          },
+          "last": {
+            "seq": 6,
+            "gold": 25,
+            "levels": {
+              "high-card": 1,
+              "pair": 5,
+              "straight": 7,
+              "flush": 29,
+              "three-kind": 30
+            },
+            "quota": {
+              "shopSeq": 4,
+              "purchase": {
+                "definitionId": "T01",
+                "handType": "pair",
+                "levelBefore": 4,
+                "commandId": "build-journey-practice/group/command/5",
+                "paidPrice": 3,
+                "seq": 5
+              }
+            }
+          },
+          "quote": {
+            "handType": "pair",
+            "levelBefore": 4,
+            "levelAfter": 5,
+            "basePrice": 6,
+            "price": 3,
+            "goldAfter": 27,
+            "shopSeq": 4,
+            "expectedSeq": 4,
+            "available": true,
+            "reason": null
+          },
+          "pageIdentity": {
+            "focus": "group",
+            "all": "false",
+            "title": "这轮怎么选 · 同点成组"
+          },
+          "returnScroll": 278,
+          "entryShot": true,
+          "returnAfterSave": {
+            "top": 96,
+            "max": 96
+          },
+          "restored": {
+            "seq": 6,
+            "gold": 25,
+            "levels": {
+              "high-card": 1,
+              "pair": 5,
+              "straight": 7,
+              "flush": 29,
+              "three-kind": 30
+            },
+            "quota": {
+              "shopSeq": 4,
+              "purchase": {
+                "definitionId": "T01",
+                "handType": "pair",
+                "levelBefore": 4,
+                "commandId": "build-journey-practice/group/command/5",
+                "paidPrice": 3,
+                "seq": 5
+              }
+            }
+          },
+          "dispatches": [
+            [
+              {
+                "type": "PracticeHand",
+                "handType": "pair",
+                "expectedLevel": 4,
+                "shopSeq": 4
+              },
+              4
+            ],
+            [
+              {
+                "type": "RerollShop"
+              },
+              null
+            ]
+          ],
+          "status": "PASS"
+        },
+        {
+          "focus": "straight",
+          "handType": "straight",
+          "all": true,
+          "mode": "quota",
+          "shots": [
+            "320x568-straight-journey.png",
+            "320x568-straight-practice-entry.png",
+            "320x568-straight-quote.png",
+            "320x568-straight-saving.png",
+            "320x568-straight-save-failure.png",
+            "320x568-straight-saved.png",
+            "320x568-straight-returned-quota-used.png"
+          ],
+          "checks": [
+            "matching route discovered quote opens without commands; cancel and Escape restore original simplified/all journey and scroll with full save unchanged",
+            "one original PracticeHand/expectedSeq; exact authority state/journal/IDB; one debit/level/quota change, no inventory/RNG/target drift",
+            "saved receipt returns to fresh original journey variant and consumed upgrade quota",
+            "full state/journal/IDB/local preferences survive cold restore"
+          ],
+          "errors": [],
+          "transactions": [
+            {
+              "action": {
+                "type": "PracticeHand",
+                "handType": "straight",
+                "expectedLevel": 7,
+                "shopSeq": 4
+              },
+              "beforeSeq": 4,
+              "afterSeq": 5,
+              "events": [
+                {
+                  "type": "hand-practiced",
+                  "handType": "straight",
+                  "levelBefore": 7,
+                  "levelAfter": 8,
+                  "paidPrice": 5,
+                  "goldBefore": 30,
+                  "goldAfter": 25
+                }
+              ]
+            }
+          ],
+          "initial": {
+            "seq": 4,
+            "gold": 30,
+            "levels": {
+              "high-card": 1,
+              "pair": 4,
+              "straight": 7,
+              "flush": 29,
+              "three-kind": 30
+            },
+            "quota": {
+              "shopSeq": 4,
+              "purchase": null
+            }
+          },
+          "last": {
+            "seq": 5,
+            "gold": 25,
+            "levels": {
+              "high-card": 1,
+              "pair": 4,
+              "straight": 8,
+              "flush": 29,
+              "three-kind": 30
+            },
+            "quota": {
+              "shopSeq": 4,
+              "purchase": {
+                "definitionId": "T01",
+                "handType": "straight",
+                "levelBefore": 7,
+                "commandId": "build-journey-practice/straight/command/5",
+                "paidPrice": 5,
+                "seq": 5
+              }
+            }
+          },
+          "quote": {
+            "handType": "straight",
+            "levelBefore": 7,
+            "levelAfter": 8,
+            "basePrice": 8,
+            "price": 5,
+            "goldAfter": 25,
+            "shopSeq": 4,
+            "expectedSeq": 4,
+            "available": true,
+            "reason": null
+          },
+          "pageIdentity": {
+            "focus": "straight",
+            "all": "true",
+            "title": "培养路线 · 顺子接续"
+          },
+          "returnScroll": 802,
+          "entryShot": true,
+          "returnAfterSave": {
+            "top": 802,
+            "max": 2556
+          },
+          "restored": {
+            "seq": 5,
+            "gold": 25,
+            "levels": {
+              "high-card": 1,
+              "pair": 4,
+              "straight": 8,
+              "flush": 29,
+              "three-kind": 30
+            },
+            "quota": {
+              "shopSeq": 4,
+              "purchase": {
+                "definitionId": "T01",
+                "handType": "straight",
+                "levelBefore": 7,
+                "commandId": "build-journey-practice/straight/command/5",
+                "paidPrice": 5,
+                "seq": 5
+              }
+            }
+          },
+          "dispatches": [
+            [
+              {
+                "type": "PracticeHand",
+                "handType": "straight",
+                "expectedLevel": 7,
+                "shopSeq": 4
+              },
+              4
+            ]
+          ],
+          "status": "PASS"
+        },
+        {
+          "focus": "flush",
+          "handType": "flush",
+          "all": true,
+          "mode": "direct",
+          "shots": [
+            "320x568-flush-journey.png",
+            "320x568-flush-practice-entry.png",
+            "320x568-flush-quote.png",
+            "320x568-flush-saved.png",
+            "320x568-flush-returned-quota-used.png"
+          ],
+          "checks": [
+            "matching route discovered quote opens without commands; cancel and Escape restore original simplified/all journey and scroll with full save unchanged",
+            "one original PracticeHand/expectedSeq; exact authority state/journal/IDB; one debit/level/quota change, no inventory/RNG/target drift",
+            "saved receipt returns to fresh original journey variant and consumed upgrade quota",
+            "full state/journal/IDB/local preferences survive cold restore"
+          ],
+          "errors": [],
+          "transactions": [
+            {
+              "action": {
+                "type": "PracticeHand",
+                "handType": "flush",
+                "expectedLevel": 29,
+                "shopSeq": 4
+              },
+              "beforeSeq": 4,
+              "afterSeq": 5,
+              "events": [
+                {
+                  "type": "hand-practiced",
+                  "handType": "flush",
+                  "levelBefore": 29,
+                  "levelAfter": 30,
+                  "paidPrice": 19,
+                  "goldBefore": 30,
+                  "goldAfter": 11
+                }
+              ]
+            }
+          ],
+          "initial": {
+            "seq": 4,
+            "gold": 30,
+            "levels": {
+              "high-card": 1,
+              "pair": 4,
+              "straight": 7,
+              "flush": 29,
+              "three-kind": 30
+            },
+            "quota": {
+              "shopSeq": 4,
+              "purchase": null
+            }
+          },
+          "last": {
+            "seq": 5,
+            "gold": 11,
+            "levels": {
+              "high-card": 1,
+              "pair": 4,
+              "straight": 7,
+              "flush": 30,
+              "three-kind": 30
+            },
+            "quota": {
+              "shopSeq": 4,
+              "purchase": {
+                "definitionId": "T01",
+                "handType": "flush",
+                "levelBefore": 29,
+                "commandId": "build-journey-practice/flush/command/5",
+                "paidPrice": 19,
+                "seq": 5
+              }
+            }
+          },
+          "quote": {
+            "handType": "flush",
+            "levelBefore": 29,
+            "levelAfter": 30,
+            "basePrice": 22,
+            "price": 19,
+            "goldAfter": 11,
+            "shopSeq": 4,
+            "expectedSeq": 4,
+            "available": true,
+            "reason": null
+          },
+          "pageIdentity": {
+            "focus": "flush",
+            "all": "true",
+            "title": "培养路线 · 同花集中"
+          },
+          "returnScroll": 802,
+          "entryShot": true,
+          "returnAfterSave": {
+            "top": 802,
+            "max": 2480
+          },
+          "restored": {
+            "seq": 5,
+            "gold": 11,
+            "levels": {
+              "high-card": 1,
+              "pair": 4,
+              "straight": 7,
+              "flush": 30,
+              "three-kind": 30
+            },
+            "quota": {
+              "shopSeq": 4,
+              "purchase": {
+                "definitionId": "T01",
+                "handType": "flush",
+                "levelBefore": 29,
+                "commandId": "build-journey-practice/flush/command/5",
+                "paidPrice": 19,
+                "seq": 5
+              }
+            }
+          },
+          "dispatches": [
+            [
+              {
+                "type": "PracticeHand",
+                "handType": "flush",
+                "expectedLevel": 29,
+                "shopSeq": 4
+              },
+              4
+            ]
+          ],
+          "status": "PASS"
+        }
+      ]
+    },
+    {
+      "width": 390,
+      "height": 568,
+      "cases": [
+        {
+          "focus": "group",
+          "handType": "pair",
+          "all": false,
+          "mode": "delayed",
+          "shots": [
+            "390x568-group-journey.png",
+            "390x568-group-practice-entry.png",
+            "390x568-group-quote.png",
+            "390x568-group-saving.png",
+            "390x568-group-saved.png",
+            "390x568-group-returned-quota-used.png",
+            "390x568-group-reroll-keeps-quota.png"
+          ],
+          "checks": [
+            "matching route discovered quote opens without commands; cancel and Escape restore original simplified/all journey and scroll with full save unchanged",
+            "one original PracticeHand/expectedSeq; exact authority state/journal/IDB; one debit/level/quota change, no inventory/RNG/target drift",
+            "saved receipt returns to fresh original journey variant and consumed upgrade quota",
+            "native RerollShop fully matches authority and keeps consumed shared quota; reopened journey cannot upgrade again",
+            "full state/journal/IDB/local preferences survive cold restore"
+          ],
+          "errors": [],
+          "transactions": [
+            {
+              "action": {
+                "type": "PracticeHand",
+                "handType": "pair",
+                "expectedLevel": 4,
+                "shopSeq": 4
+              },
+              "beforeSeq": 4,
+              "afterSeq": 5,
+              "events": [
+                {
+                  "type": "hand-practiced",
+                  "handType": "pair",
+                  "levelBefore": 4,
+                  "levelAfter": 5,
+                  "paidPrice": 3,
+                  "goldBefore": 30,
+                  "goldAfter": 27
+                }
+              ]
+            },
+            {
+              "action": {
+                "type": "RerollShop"
+              },
+              "beforeSeq": 5,
+              "afterSeq": 6,
+              "events": []
+            }
+          ],
+          "initial": {
+            "seq": 4,
+            "gold": 30,
+            "levels": {
+              "high-card": 1,
+              "pair": 4,
+              "straight": 7,
+              "flush": 29,
+              "three-kind": 30
+            },
+            "quota": {
+              "shopSeq": 4,
+              "purchase": null
+            }
+          },
+          "last": {
+            "seq": 6,
+            "gold": 25,
+            "levels": {
+              "high-card": 1,
+              "pair": 5,
+              "straight": 7,
+              "flush": 29,
+              "three-kind": 30
+            },
+            "quota": {
+              "shopSeq": 4,
+              "purchase": {
+                "definitionId": "T01",
+                "handType": "pair",
+                "levelBefore": 4,
+                "commandId": "build-journey-practice/group/command/5",
+                "paidPrice": 3,
+                "seq": 5
+              }
+            }
+          },
+          "quote": {
+            "handType": "pair",
+            "levelBefore": 4,
+            "levelAfter": 5,
+            "basePrice": 6,
+            "price": 3,
+            "goldAfter": 27,
+            "shopSeq": 4,
+            "expectedSeq": 4,
+            "available": true,
+            "reason": null
+          },
+          "pageIdentity": {
+            "focus": "group",
+            "all": "false",
+            "title": "这轮怎么选 · 同点成组"
+          },
+          "returnScroll": 236,
+          "entryShot": true,
+          "returnAfterSave": {
+            "top": 51,
+            "max": 51
+          },
+          "restored": {
+            "seq": 6,
+            "gold": 25,
+            "levels": {
+              "high-card": 1,
+              "pair": 5,
+              "straight": 7,
+              "flush": 29,
+              "three-kind": 30
+            },
+            "quota": {
+              "shopSeq": 4,
+              "purchase": {
+                "definitionId": "T01",
+                "handType": "pair",
+                "levelBefore": 4,
+                "commandId": "build-journey-practice/group/command/5",
+                "paidPrice": 3,
+                "seq": 5
+              }
+            }
+          },
+          "dispatches": [
+            [
+              {
+                "type": "PracticeHand",
+                "handType": "pair",
+                "expectedLevel": 4,
+                "shopSeq": 4
+              },
+              4
+            ],
+            [
+              {
+                "type": "RerollShop"
+              },
+              null
+            ]
+          ],
+          "status": "PASS"
+        },
+        {
+          "focus": "straight",
+          "handType": "straight",
+          "all": true,
+          "mode": "quota",
+          "shots": [
+            "390x568-straight-journey.png",
+            "390x568-straight-practice-entry.png",
+            "390x568-straight-quote.png",
+            "390x568-straight-saving.png",
+            "390x568-straight-save-failure.png",
+            "390x568-straight-saved.png",
+            "390x568-straight-returned-quota-used.png"
+          ],
+          "checks": [
+            "matching route discovered quote opens without commands; cancel and Escape restore original simplified/all journey and scroll with full save unchanged",
+            "one original PracticeHand/expectedSeq; exact authority state/journal/IDB; one debit/level/quota change, no inventory/RNG/target drift",
+            "saved receipt returns to fresh original journey variant and consumed upgrade quota",
+            "full state/journal/IDB/local preferences survive cold restore"
+          ],
+          "errors": [],
+          "transactions": [
+            {
+              "action": {
+                "type": "PracticeHand",
+                "handType": "straight",
+                "expectedLevel": 7,
+                "shopSeq": 4
+              },
+              "beforeSeq": 4,
+              "afterSeq": 5,
+              "events": [
+                {
+                  "type": "hand-practiced",
+                  "handType": "straight",
+                  "levelBefore": 7,
+                  "levelAfter": 8,
+                  "paidPrice": 5,
+                  "goldBefore": 30,
+                  "goldAfter": 25
+                }
+              ]
+            }
+          ],
+          "initial": {
+            "seq": 4,
+            "gold": 30,
+            "levels": {
+              "high-card": 1,
+              "pair": 4,
+              "straight": 7,
+              "flush": 29,
+              "three-kind": 30
+            },
+            "quota": {
+              "shopSeq": 4,
+              "purchase": null
+            }
+          },
+          "last": {
+            "seq": 5,
+            "gold": 25,
+            "levels": {
+              "high-card": 1,
+              "pair": 4,
+              "straight": 8,
+              "flush": 29,
+              "three-kind": 30
+            },
+            "quota": {
+              "shopSeq": 4,
+              "purchase": {
+                "definitionId": "T01",
+                "handType": "straight",
+                "levelBefore": 7,
+                "commandId": "build-journey-practice/straight/command/5",
+                "paidPrice": 5,
+                "seq": 5
+              }
+            }
+          },
+          "quote": {
+            "handType": "straight",
+            "levelBefore": 7,
+            "levelAfter": 8,
+            "basePrice": 8,
+            "price": 5,
+            "goldAfter": 25,
+            "shopSeq": 4,
+            "expectedSeq": 4,
+            "available": true,
+            "reason": null
+          },
+          "pageIdentity": {
+            "focus": "straight",
+            "all": "true",
+            "title": "培养路线 · 顺子接续"
+          },
+          "returnScroll": 675,
+          "entryShot": true,
+          "returnAfterSave": {
+            "top": 675,
+            "max": 2262
+          },
+          "restored": {
+            "seq": 5,
+            "gold": 25,
+            "levels": {
+              "high-card": 1,
+              "pair": 4,
+              "straight": 8,
+              "flush": 29,
+              "three-kind": 30
+            },
+            "quota": {
+              "shopSeq": 4,
+              "purchase": {
+                "definitionId": "T01",
+                "handType": "straight",
+                "levelBefore": 7,
+                "commandId": "build-journey-practice/straight/command/5",
+                "paidPrice": 5,
+                "seq": 5
+              }
+            }
+          },
+          "dispatches": [
+            [
+              {
+                "type": "PracticeHand",
+                "handType": "straight",
+                "expectedLevel": 7,
+                "shopSeq": 4
+              },
+              4
+            ]
+          ],
+          "status": "PASS"
+        },
+        {
+          "focus": "flush",
+          "handType": "flush",
+          "all": true,
+          "mode": "direct",
+          "shots": [
+            "390x568-flush-journey.png",
+            "390x568-flush-practice-entry.png",
+            "390x568-flush-quote.png",
+            "390x568-flush-saved.png",
+            "390x568-flush-returned-quota-used.png"
+          ],
+          "checks": [
+            "matching route discovered quote opens without commands; cancel and Escape restore original simplified/all journey and scroll with full save unchanged",
+            "one original PracticeHand/expectedSeq; exact authority state/journal/IDB; one debit/level/quota change, no inventory/RNG/target drift",
+            "saved receipt returns to fresh original journey variant and consumed upgrade quota",
+            "full state/journal/IDB/local preferences survive cold restore"
+          ],
+          "errors": [],
+          "transactions": [
+            {
+              "action": {
+                "type": "PracticeHand",
+                "handType": "flush",
+                "expectedLevel": 29,
+                "shopSeq": 4
+              },
+              "beforeSeq": 4,
+              "afterSeq": 5,
+              "events": [
+                {
+                  "type": "hand-practiced",
+                  "handType": "flush",
+                  "levelBefore": 29,
+                  "levelAfter": 30,
+                  "paidPrice": 19,
+                  "goldBefore": 30,
+                  "goldAfter": 11
+                }
+              ]
+            }
+          ],
+          "initial": {
+            "seq": 4,
+            "gold": 30,
+            "levels": {
+              "high-card": 1,
+              "pair": 4,
+              "straight": 7,
+              "flush": 29,
+              "three-kind": 30
+            },
+            "quota": {
+              "shopSeq": 4,
+              "purchase": null
+            }
+          },
+          "last": {
+            "seq": 5,
+            "gold": 11,
+            "levels": {
+              "high-card": 1,
+              "pair": 4,
+              "straight": 7,
+              "flush": 30,
+              "three-kind": 30
+            },
+            "quota": {
+              "shopSeq": 4,
+              "purchase": {
+                "definitionId": "T01",
+                "handType": "flush",
+                "levelBefore": 29,
+                "commandId": "build-journey-practice/flush/command/5",
+                "paidPrice": 19,
+                "seq": 5
+              }
+            }
+          },
+          "quote": {
+            "handType": "flush",
+            "levelBefore": 29,
+            "levelAfter": 30,
+            "basePrice": 22,
+            "price": 19,
+            "goldAfter": 11,
+            "shopSeq": 4,
+            "expectedSeq": 4,
+            "available": true,
+            "reason": null
+          },
+          "pageIdentity": {
+            "focus": "flush",
+            "all": "true",
+            "title": "培养路线 · 同花集中"
+          },
+          "returnScroll": 675,
+          "entryShot": true,
+          "returnAfterSave": {
+            "top": 675,
+            "max": 2207
+          },
+          "restored": {
+            "seq": 5,
+            "gold": 11,
+            "levels": {
+              "high-card": 1,
+              "pair": 4,
+              "straight": 7,
+              "flush": 30,
+              "three-kind": 30
+            },
+            "quota": {
+              "shopSeq": 4,
+              "purchase": {
+                "definitionId": "T01",
+                "handType": "flush",
+                "levelBefore": 29,
+                "commandId": "build-journey-practice/flush/command/5",
+                "paidPrice": 19,
+                "seq": 5
+              }
+            }
+          },
+          "dispatches": [
+            [
+              {
+                "type": "PracticeHand",
+                "handType": "flush",
+                "expectedLevel": 29,
+                "shopSeq": 4
+              },
+              4
+            ]
+          ],
+          "status": "PASS"
+        }
+      ]
+    }
+  ],
+  "status": "PASS"
+}
