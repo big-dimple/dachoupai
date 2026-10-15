@@ -1,5 +1,7 @@
+import {coefficientLabelCandidates} from './JokerLabel';
 import {handGrowthChanges} from './SavedGrowthChange';
 import {growthOpportunity} from './GrowthOpportunity';
+import {r2GrowthMinimums,type R2JokerDefinition,type R2JokerInstance} from '../content/r2Schema';
 import type {R2RunState} from '../domain/r2Run';
 import type {ScoreEvent,ScoreTrace} from '../domain/scoreR2';
 import {r2JokerDefinitionFor} from '../domain/r2ContentProfiles';
@@ -16,6 +18,27 @@ import type {ScoreBeat} from './scorePresentation';
 import {toolInfo} from './r2ToolInfo';
 export interface ExperienceCard {title:string;body:string;details?:string;stat?:string;url?:string;action?:{label:string;disabled?:boolean;run:()=>void}}
 export type SelectionReadiness='ready'|'pending'|'unmet'|'limited';
+/** Scoring reads and immediate effects have their own conditions, independent of growth writes. */
+function growthScoring(definition:R2JokerDefinition,joker:R2JokerInstance,ctx:JokerMemoryContext,memory:ReturnType<typeof jokerMemory>){
+ const stored={...r2GrowthMinimums(definition),...joker.growth};
+ const reads=definition.hooks.flatMap((hook,index)=>hook.operations.flatMap(op=>{
+  if(op.kind!=='read-growth'&&op.kind!=='consume-growth'&&op.kind!=='read-coefficient')return [];
+  const value=stored[op.key],coefficient=op.kind==='read-coefficient',amount=fractionText(value),unit=coefficient?'倍率×':op.target==='heat'?'热度+':'倍率+';
+  const compact=coefficient?'×'+amount:(op.target==='heat'?'热+':'倍+')+amount,status=memory.hooks[index].status;
+  return [{status,compact,displayCandidates:coefficient?coefficientLabelCandidates(value):[compact],effect:unit+amount,condition:hook.condition.kind==='always'?'任意牌型':r2ConditionDescription(hook.condition),consumed:op.kind==='consume-growth',positive:Rational.fromJSON(value).compare(new Rational(coefficient?1n:0n))>0}];
+ }));
+ const immediate=definition.hooks.flatMap((hook,index)=>hook.operations.flatMap(op=>{
+  if(op.kind!=='add-heat'&&op.kind!=='add-multiplier')return [];
+  return [{status:memory.hooks[index].status,effect:(op.kind==='add-heat'?'热度+':'倍率+')+fractionText(op.value),condition:r2ConditionDescription(hook.condition)}];
+ }));
+ const active=reads.filter(r=>r.status==='条件满足'),instant=immediate.some(r=>r.status==='条件满足');
+ const readiness:SelectionReadiness=ctx.scoringLimited?'limited':!ctx.facts?'pending':active.some(r=>r.positive)||instant?'ready':reads.some(r=>r.status==='事件时检查')?'pending':'unmet';
+ const label=ctx.scoringLimited?'计分停用':!ctx.facts?'待选·'+reads.map(r=>r.compact).join('／'):active.length?'本手'+active.map(r=>r.compact).join('／'):'本手不读取';
+ const body=reads.map(r=>'本手读取：'+(ctx.scoringLimited?'计分停用，已存'+r.effect+'不计入':r.status==='条件满足'?r.effect:r.status==='当前未满足'?'所选不满足读取条件；已存'+r.effect:'待选牌确认；已存'+r.effect)+'；读取条件：'+r.condition+(r.consumed?'；下一次实际读取后消耗，场末清空。':'。')).join('\n')+
+  immediate.map(r=>'\n即时效果：'+r.effect+'；'+(ctx.scoringLimited?'本手计分停用':r.status==='条件满足'?'所选满足':r.status==='当前未满足'?'所选不满足':'待选牌确认')+'；'+r.condition+'。').join('');
+ const labelCandidates=ctx.scoringLimited?[label,'停用 ›']:!ctx.facts?[label,'待选 ›']:active.length?['本手'+active.map(r=>r.displayCandidates[0]).join('／'),...active.flatMap(r=>r.displayCandidates.flatMap(text=>['读'+text,text]))]:[label,'不读取'];
+ return {readiness,label,labelCandidates,body};
+}
 /** Public condition facts only: no score projection, future hand, RNG or command. */
 export function selectionExperience(state:R2RunState,joker:R2RunState['jokers'][number],ctx:JokerMemoryContext){
  const definition=r2JokerDefinitionFor(state,joker.definitionId),memory=jokerMemory(definition,joker,ctx),copy=jokerMemoryAbility(definition,joker,ctx);
@@ -23,9 +46,10 @@ export function selectionExperience(state:R2RunState,joker:R2RunState['jokers'][
  const ready=memory.hooks.filter(h=>h.status==='条件满足'),pending=memory.hooks.filter(h=>h.status==='事件时检查');
  const preparations=r2JokerDefinitionFor(state,joker.definitionId).hooks.flatMap(h=>h.condition.kind==='hand-type-transition'&&ctx.facts?.type===h.condition.previous?[HAND_LABELS[h.condition.current]]:h.condition.kind==='hand-type-relation'&&ctx.facts&&h.condition.values.includes(ctx.facts.type)&&!ready.length?['接续牌型']:[]);
  const ordinaryReadiness:SelectionReadiness=ctx.scoringLimited?'limited':ready.length?'ready':preparations.length?'pending':memory.hooks.some(h=>h.status==='当前未满足')?'unmet':pending.length||memory.staticRules.length?'pending':'unmet';
- const readiness:SelectionReadiness=ctx.scoringLimited?'limited':growth?(growth.status==='ready'&&growth.action==='play'?'ready':growth.status==='unmet'||growth.status==='capped'||growth.status==='used'?'unmet':'pending'):ordinaryReadiness;
- const label=growth?(ctx.scoringLimited?'计分停·'+growth.compactLabel:growth.compactLabel):ctx.scoringLimited?'计分停用':readiness==='limited'?'计分停用':readiness==='ready'?'所选满足':readiness==='pending'?(preparations.length?'准备下手':memory.staticRules.length?memory.status:'事件时检查'):ctx.facts?'所选未满足':'待选牌';
- return {readiness,label,title:memory.name+' · '+label,url:jokerArtPreviewUrl(joker.definitionId),body:growth?growth.body+(savedGrowth?'\n'+savedGrowth.line:''):copy.plain?(preparations.length&&!ready.length?'成功出牌后可为下一手'+preparations.join('／')+'准备，不保证组成。\n':'')+copy.plain.line+'\n'+copy.plain.status+'\n'+copy.plain.essential+(definition.hooks.some(h=>['onCardScore','onHeldCard','jokerScore'].includes(h.phase))?'\n计分收益须成功出牌与保存。':''):(preparations.length&&!ready.length?'成功出牌后可为下一手'+preparations.join('／')+'准备，不保证下一手能组成。\n\n':'')+copy.condition+'\n'+copy.value+'\n\n当前：'+label+'\n已保存：'+memory.saved+'\n\n下一步：选择1–5张；满足公开条件仍须成功出牌与保存，随机和结算结果在事件时确认。',details:copy.plain?copy.plain.details+'\n实际计分须成功出牌与保存，随机和结果在对应事件确认。':undefined};
+ const scoring=growth?growthScoring(definition,joker,ctx,memory):undefined;
+ const readiness:SelectionReadiness=scoring?.readiness??ordinaryReadiness;
+ const label=scoring?.label??(ctx.scoringLimited?'计分停用':readiness==='ready'?'所选满足':readiness==='pending'?(preparations.length?'准备下手':memory.staticRules.length?memory.status:'事件时检查'):ctx.facts?'所选未满足':'待选牌');
+ return {readiness,label,growth,scoring,title:memory.name+' · '+label,url:jokerArtPreviewUrl(joker.definitionId),body:growth?scoring!.body+'\n新增成长：'+growth.body+'\n计分收益须成功出牌与保存。'+(savedGrowth?'\n'+savedGrowth.line:''):copy.plain?(preparations.length&&!ready.length?'成功出牌后可为下一手'+preparations.join('／')+'准备，不保证组成。\n':'')+copy.plain.line+'\n'+copy.plain.status+'\n'+copy.plain.essential+(definition.hooks.some(h=>['onCardScore','onHeldCard','jokerScore'].includes(h.phase))?'\n计分收益须成功出牌与保存。':''):(preparations.length&&!ready.length?'成功出牌后可为下一手'+preparations.join('／')+'准备，不保证下一手能组成。\n\n':'')+copy.condition+'\n'+copy.value+'\n\n当前：'+label+'\n已保存：'+memory.saved+'\n\n下一步：选择1–5张；满足公开条件仍须成功出牌与保存，随机和结算结果在事件时确认。',details:copy.plain?copy.plain.details+'\n实际计分须成功出牌与保存，随机和结果在对应事件确认。':undefined};
 }
 const greater=(a:ScoreEvent['value'],b:ScoreEvent['value'])=>Rational.fromJSON(a).compare(Rational.fromJSON(b))>0;
 /** Used for accents only. Failed random checks, zero growth/caps and maintenance aren't benefit cues. */

@@ -1,0 +1,19 @@
+{
+  "head": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+  "dirty": "M src/game/GameScene.ts\n M src/game/JokerExperience.ts\n M src/game/RouteStarter.ts\n M tests/all-growth-opportunities.test.ts\n M tests/joker-experience.test.ts\n?? harness/fixtures/growth-selection.ts\n?? harness/growth-selection.mjs\n?? tests/growth-selection.test.ts",
+  "browser": "151.0.7922.173",
+  "scope": "Controlled validated current-identity save imports, native selection/details/play/reload; software Canvas only, no natural play or physical device approval.",
+  "cases": [
+    {
+      "width": 1366,
+      "height": 768,
+      "errors": [
+        "SyntaxError: The requested module '/node_modules/phaser/dist/phaser.js' does not provide an export named 'default'"
+      ],
+      "steps": [],
+      "status": "FAIL"
+    }
+  ],
+  "status": "FAIL",
+  "error": "page.waitForFunction: Timeout 30000ms exceeded.\n    at waitScene (/workspace/dachoupai/harness/ui.mjs:3:41)\n    at /workspace/dachoupai/harness/growth-selection.mjs:26:58"
+}

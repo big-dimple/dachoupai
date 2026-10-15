@@ -1,0 +1,149 @@
+
+> dachoupai@0.1.0 test
+> vitest run tests/growth-selection.test.ts tests/joker-experience.test.ts tests/all-growth-opportunities.test.ts tests/growth-opportunity.test.ts tests/route-starter.test.ts
+
+
+ RUN  v4.1.11 /workspace/dachoupai
+
+ ❯ tests/growth-selection.test.ts (6 tests | 6 failed) 59ms
+   × audits all 16 growth definitions against real scorer reads, independent of new growth eligibility 29ms
+   × Amo full house reads saved +1 multiplier but adds no flush growth; flush adds only after scoring 10ms
+   × caps, repeat memory, used growth quota and broken sale eligibility never turn off existing reads 6ms
+   × Dujiaxi keeps its actual two-pair-or-higher read restriction, independent of alternation 4ms
+   × Huabujing separates discard growth from next actual consuming read, including suppression 5ms
+   × Dataijie keeps immediate +50 separate from always-read heat, and neutral new storage stays honest 4ms
+ ❯ tests/all-growth-opportunities.test.ts (17 tests | 4 failed) 198ms
+   × a06 distinguishes first-hand preparation, same type, true alternation, used quota and clipped cap 17ms
+   × c05 uses discarded cards including disabled cards, discard budget and actual saved delta 8ms
+   × f05 remains result-only even at cap, names baseline and reset instead of forecasting score 5ms
+   × d09 and f11 actual score/retrigger conditions stay unlit until real results exist 5ms
+ ❯ tests/joker-experience.test.ts (7 tests | 1 failed) 102ms
+   × first-layer growth feedback retains cap clipping and zero-headroom facts 16ms
+
+⎯⎯⎯⎯⎯⎯ Failed Tests 11 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/all-growth-opportunities.test.ts > a06 distinguishes first-hand preparation, same type, true alternation, used quota and clipped cap
+AssertionError: expected 'ready' to be 'unmet' // Object.is equality
+
+Expected: "unmet"
+Received: "ready"
+
+ ❯ tests/all-growth-opportunities.test.ts:21:622
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/11]⎯
+
+ FAIL  tests/all-growth-opportunities.test.ts > c05 uses discarded cards including disabled cards, discard budget and actual saved delta
+AssertionError: expected 'unmet' to be 'pending' // Object.is equality
+
+Expected: "pending"
+Received: "unmet"
+
+ ❯ tests/all-growth-opportunities.test.ts:25:346
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/11]⎯
+
+ FAIL  tests/all-growth-opportunities.test.ts > f05 remains result-only even at cap, names baseline and reset instead of forecasting score
+AssertionError: expected 'ready' to be 'pending' // Object.is equality
+
+Expected: "pending"
+Received: "ready"
+
+ ❯ tests/all-growth-opportunities.test.ts:28:499
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/11]⎯
+
+ FAIL  tests/all-growth-opportunities.test.ts > d09 and f11 actual score/retrigger conditions stay unlit until real results exist
+AssertionError: expected 'unmet' to be 'pending' // Object.is equality
+
+Expected: "pending"
+Received: "unmet"
+
+ ❯ tests/all-growth-opportunities.test.ts:30:277
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/11]⎯
+
+ FAIL  tests/growth-selection.test.ts > audits all 16 growth definitions against real scorer reads, independent of new growth eligibility
+Error: programs-disabled
+ ❯ send harness/fixtures/growth-selection.ts:6:185
+
+ ❯ growthSelectionPlan harness/fixtures/growth-selection.ts:7:94
+ ❯ tests/growth-selection.test.ts:21:13
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/11]⎯
+
+ FAIL  tests/growth-selection.test.ts > Amo full house reads saved +1 multiplier but adds no flush growth; flush adds only after scoring
+Error: programs-disabled
+ ❯ send harness/fixtures/growth-selection.ts:6:185
+
+ ❯ growthSelectionPlan harness/fixtures/growth-selection.ts:7:94
+ ❯ fixture tests/growth-selection.test.ts:15:10
+ ❯ tests/growth-selection.test.ts:32:34
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/11]⎯
+
+ FAIL  tests/growth-selection.test.ts > caps, repeat memory, used growth quota and broken sale eligibility never turn off existing reads
+Error: programs-disabled
+ ❯ send harness/fixtures/growth-selection.ts:6:185
+
+ ❯ growthSelectionPlan harness/fixtures/growth-selection.ts:7:94
+ ❯ fixture tests/growth-selection.test.ts:15:10
+ ❯ tests/growth-selection.test.ts:39:73
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/11]⎯
+
+ FAIL  tests/growth-selection.test.ts > Dujiaxi keeps its actual two-pair-or-higher read restriction, independent of alternation
+Error: programs-disabled
+ ❯ send harness/fixtures/growth-selection.ts:6:185
+
+ ❯ growthSelectionPlan harness/fixtures/growth-selection.ts:7:94
+ ❯ fixture tests/growth-selection.test.ts:15:10
+ ❯ tests/growth-selection.test.ts:42:28
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[8/11]⎯
+
+ FAIL  tests/growth-selection.test.ts > Huabujing separates discard growth from next actual consuming read, including suppression
+Error: programs-disabled
+ ❯ send harness/fixtures/growth-selection.ts:6:185
+
+ ❯ growthSelectionPlan harness/fixtures/growth-selection.ts:7:94
+ ❯ fixture tests/growth-selection.test.ts:15:10
+ ❯ tests/growth-selection.test.ts:46:34
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[9/11]⎯
+
+ FAIL  tests/growth-selection.test.ts > Dataijie keeps immediate +50 separate from always-read heat, and neutral new storage stays honest
+Error: programs-disabled
+ ❯ send harness/fixtures/growth-selection.ts:6:185
+
+ ❯ growthSelectionPlan harness/fixtures/growth-selection.ts:7:94
+ ❯ fixture tests/growth-selection.test.ts:15:10
+ ❯ tests/growth-selection.test.ts:50:24
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[10/11]⎯
+
+ FAIL  tests/joker-experience.test.ts > first-layer growth feedback retains cap clipping and zero-headroom facts
+AssertionError: expected '本手热+100' to be '成长满' // Object.is equality
+
+Expected: "成长满"
+Received: "本手热+100"
+
+ ❯ tests/joker-experience.test.ts:50:157
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[11/11]⎯
+
+
+ Test Files  3 failed | 2 passed (5)
+      Tests  11 failed | 51 passed (62)
+   Start at  04:51:26
+   Duration  2.06s (transform 1.96s, setup 0ms, import 2.93s, tests 1.56s, environment 0ms)
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice

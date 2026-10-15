@@ -1,3 +1,4 @@
+import {coefficientLabelCandidates} from './JokerLabel';
 import {R2_ROUTE_GROWTH_JOKERS} from '../content/r2RouteGrowthJokers';
 import {r2DiscardCost} from '../domain/r2Run';
 import {R2_GROUP_UPGRADE_IDS,R2_GROUP_UPGRADE_JOKERS} from '../content/r2GroupUpgradeJokers';
@@ -146,7 +147,7 @@ export function jokerMemory(definition:R2JokerDefinition,instance:R2JokerInstanc
  const stateCandidates=combo&&definition.id==='f10'&&instance?[instance.counters?.rescueArmed?'救火待出牌':ctx.inStage&&(ctx.playIndex>0||ctx.discardsUsed>0)?'本场机会已用':'首弃前检查']:remaining!==undefined?['余'+remaining+'手']:remainingUses!==undefined?['余'+remainingUses+'次']:
   definition.id==='f09'&&ctx.inStage&&ctx.discardsUsed>0?['已弃牌']:
   instance&&definition.hooks.some(h=>h.operations.some(op=>op.kind==='reward-consumable-every-clears'))?[instance.counters?.stageClears===1?'下关赠票':'再2关赠票']:
-  valueLabel?[valueLabel,...(stored.length===1&&stored[0][0]==='coefficient'?['×'+readableFractionText(stored[0][1])]:[])]:[];
+  valueLabel?[valueLabel,...(stored.length===1&&stored[0][0]==='coefficient'?coefficientLabelCandidates(stored[0][1]):[])]:[];
  const incomeOp=definition.hooks.flatMap(h=>h.operations).find(o=>o.kind==='add-gold-per-held'||o.kind==='add-gold-per-capital');
  const comboLabels:Record<string,string[]>={a06:['两对以上×系数'],f10:[definition.hooks.some(h=>h.condition.kind==='opening-discard')?'首次弃牌救火':'冷开局救火'],d12:[incomeOp?.kind==='add-gold-per-held'?'成型留≥'+incomeOp.minimum+'给金':'条件 ›'],e04:[incomeOp?.kind==='add-gold-per-capital'?'奖励前每'+incomeOp.divisor+'金+1':'条件 ›']};
  const groupIncome=definition.hooks.flatMap(h=>h.operations).find(o=>o.kind==='add-gold');

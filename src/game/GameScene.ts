@@ -580,12 +580,13 @@ export class GameScene extends Phaser.Scene {
       label?.setText(view?.getData('bossDisabled')?(this.view.layout.mode==='landscape'?'计分封禁':'封禁'):this.jokerValue(joker,preview));
       if(label)this.fitOwnedJokerLabel(label,joker,Number(view?.getData('slotIndex')),preview);
       const readiness=selectionExperience(this.run,joker,this.memoryContext(joker,preview));
-      view?.setData('selectionReadiness',readiness.readiness).setData('selectionLabel',readiness.label);
+      view?.setData('selectionReadiness',readiness.readiness).setData('selectionLabel',readiness.label).setData('selectionGrowthLabel',readiness.growth?.compactLabel);
       const frame=view?.getData('frame') as Phaser.GameObjects.Rectangle|undefined;
       frame?.setStrokeStyle(preview?2:1,readiness.readiness==='limited'?T.red:preview&&readiness.readiness==='ready'?T.brass:preview&&readiness.readiness==='pending'?T.jade:Number(view?.getData('frameColor')),.9);
-      if(label&&preview&&!view?.getData('bossDisabled')){label.setData('savedLabel',label.text);const room=jokerLabelRoom(this.view.layout,Number(view?.getData('slotIndex')));label.setText(fitConditionEntry(readiness.label,text=>{label.setText(text);return label.width<=room;},true));}
+      if(label&&preview&&!view?.getData('bossDisabled')){label.setData('savedLabel',label.text);const room=jokerLabelRoom(this.view.layout,Number(view?.getData('slotIndex')));const fits=(text:string)=>{label.setText(text);return label.width<=room;};label.setData('fullText',readiness.label).setText(readiness.scoring?fitJokerLabel(readiness.scoring.labelCandidates,fits,true):fitConditionEntry(readiness.label,fits,true));}
       const starter=starterSelection(this.run,joker.instanceId,preview?.type,!!this.jokerRestriction(joker));
-      if(starter){view?.setData('starterReady',starter.ready).setData('starterLabel',starter.label);frame?.setStrokeStyle(starter.ready?3:2,starter.ready?T.red:T.jade,.95);if(label){const room=jokerLabelRoom(this.view.layout,Number(view?.getData('slotIndex')));label.setText(fitConditionEntry(starter.label,text=>{label.setText(text);return label.width<=room;},true));}}
+      if(starter)view?.setData('starterReady',starter.ready).setData('starterLabel',starter.label);
+      if(starter&&!readiness.growth&&readiness.readiness!=='limited'){frame?.setStrokeStyle(starter.ready?3:2,starter.ready?T.red:T.jade,.95);if(label){const room=jokerLabelRoom(this.view.layout,Number(view?.getData('slotIndex')));label.setText(fitConditionEntry(starter.label,text=>{label.setText(text);return label.width<=room;},true));}}
       const art=view?.getData('f09-art') as Phaser.GameObjects.Container|undefined;art?.setData('f09-active',!view?.getData('bossDisabled')&&(this.run.stage?.discardsUsed??0)===0);
     }
   }

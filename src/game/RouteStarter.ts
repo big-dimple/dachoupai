@@ -17,12 +17,14 @@ export function starterShopCue(s:R2RunState){
  const config=r2RunModeConfig(s),price=s.openingRoute==='flush'?6:4;
  if(config.initialGold<price)return '此模式起始'+config.initialGold+'金，不保障'+STARTER_ROUTE_LABEL[s.openingRoute]+'起手牌；保留原模式经济。';
 }
-/** Preview uses public hand type and actual source restrictions, never forecast totals. */
+/** Route cue only: flush readiness describes NEW growth; shared selection owns stored reads. */
 export function starterSelection(s:R2RunState,instanceId:string,type:string|undefined,limited=false){
  if(!s.openingRoute||s.routeStarter?.instanceId!==instanceId)return;
- if(limited)return {ready:false,label:'路线牌停用'};
+ if(limited)return {ready:false,label:'计分停用'};
  if(!type)return {ready:false,label:STARTER_ROUTE_LABEL[s.openingRoute]+'起手 · 待选'};
  const definition=r2JokerDefinitionFor(s,R2_ROUTE_STARTERS[s.openingRoute]);
+ // Flush starter conditions govern new growth, never whether saved growth scores.
+ if(s.openingRoute==='flush'){const grows=definition.hooks.some(h=>h.phase==='afterHand'&&h.condition.kind==='hand-type-in'&&h.condition.values.includes(type as never));return {ready:grows,label:grows?'可新增成长':'不新增成长'};}
  const ready=definition.hooks.some(h=>h.condition.kind==='hand-type-in'&&h.condition.values.includes(type as never));
- return {ready,label:ready?s.openingRoute==='flush'?'同花后存成长':STARTER_ROUTE_LABEL[s.openingRoute]+'待发动':'需要'+STARTER_ROUTE_LABEL[s.openingRoute]};
+ return {ready,label:ready?STARTER_ROUTE_LABEL[s.openingRoute]+'待发动':'需要'+STARTER_ROUTE_LABEL[s.openingRoute]};
 }
