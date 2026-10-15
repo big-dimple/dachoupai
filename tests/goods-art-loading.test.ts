@@ -19,8 +19,14 @@ describe('scene-owned tool/item thumbnail loading',()=>{
     requestGoodsArt(f.scene,'T12','/thumb.webp',refresh);expect(art.detail).toHaveBeenCalledTimes(1);expect(await retryGoodsArt(f.scene,'T12','/thumb.webp',refresh)).toBe(true);expect(goodsArtLoadState(f.scene,'T12').attempts).toBe(2);
   });
   it('aborts shutdown work, removes owned listeners and ignores late decode results',async()=>{
-    const f=fixture(),refresh=vi.fn();let finish!:(value:string)=>void;art.detail.mockImplementationOnce(()=>new Promise<string>(yes=>{finish=yes;}));requestGoodsArt(f.scene,'S02','/thumb.webp',refresh);const signal=art.detail.mock.calls[0][3] as AbortSignal;
+    const f=fixture(),refresh=vi.fn();let finish!:(value:string)=>void;art.detail.mockImplementationOnce(()=>new Promise<string>(yes=>{finish=yes;}));requestGoodsArt(f.scene,'S02','/thumb.webp',refresh);await tick();const signal=art.detail.mock.calls[0][3] as AbortSignal;
     f.shutdown();expect(signal.aborted).toBe(true);expect([...f.callbacks.values()].every(set=>set.size===0)).toBe(true);finish('blob:late');await tick();expect(f.add).not.toHaveBeenCalled();expect(refresh).not.toHaveBeenCalled();
     requestGoodsArt(f.scene,'S02','/thumb.webp',refresh);await tick();expect(f.add).toHaveBeenCalledTimes(1);
   });
+  it('prioritizes the real top fan face while leaving covered decorative choices speculative',async()=>{
+    const f=fixture();Object.assign(f.scene,{children:{list:[{name:'shop/goods-art/T09',getData:(key:string)=>key==='basicChoiceArt'}, {name:'shop/goods-art/T08',getData:(key:string)=>key==='basicChoiceArt'||key==='primary'}]}});
+    requestGoodsArt(f.scene,'T09','/covered',()=>{});requestGoodsArt(f.scene,'T08','/visible',()=>{});await tick();
+    expect(art.detail.mock.calls.map(call=>[call[2],call[4]])).toEqual([['/covered',false],['/visible',true]]);
+  });
+
 });

@@ -5,6 +5,16 @@ type Status='idle'|'loading'|'loaded'|'failed';
 interface Entry {status:Status;attempts:number;controller?:AbortController;promise?:Promise<boolean>}
 const loaders=new WeakMap<Phaser.Scene,GoodsLoads>();
 export const goodsArtKey=(id:string)=>'goods-art/'+id;
+/** Read the completed render tree: only the top card of a basic-choice fan is visible.
+ * Metadata is assigned after drawGoodsArt returns, so classification runs in a microtask.
+ */
+function foreground(scene:Phaser.Scene,id:string):boolean {
+  type Node={name:string;getData?:(key:string)=>unknown;list?:Node[]};
+  let matched=false,visible=false;
+  const walk=(nodes:Node[])=>{for(const node of nodes){if(node.name==='shop/goods-art/'+id){matched=true;if(!node.getData?.('basicChoiceArt')||node.getData?.('primary'))visible=true;}if(node.list)walk(node.list);}};
+  walk((scene.children?.list??[]) as Node[]);return !matched||visible;
+}
+
 /** Visible thumbnails share the texture queue with Jokers and stage warmup. */
 class GoodsLoads {
   readonly entries=new Map<string,Entry>();
@@ -19,7 +29,7 @@ class GoodsLoads {
     if(entry.status==='failed'&&!retry)return Promise.resolve(false);
     const controller=new AbortController();entry.controller=controller;entry.status='loading';entry.attempts++;
     const current=entry;
-    return entry.promise=loadArtTexture(this.scene.game,key,url,controller.signal).then(()=>{
+    return entry.promise=Promise.resolve().then(()=>loadArtTexture(this.scene.game,key,url,controller.signal,retry||foreground(this.scene,id))).then(()=>{
       if(this.disposed||controller.signal.aborted)return false;
       current.status=this.scene.textures.exists(key)?'loaded':'failed';refresh();return current.status==='loaded';
     }).catch(()=>{if(!this.disposed&&!controller.signal.aborted){current.status='failed';refresh();}return false;});
