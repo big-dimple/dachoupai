@@ -1,0 +1,29 @@
+{
+  "date": "2026-10-15 UTC",
+  "liveReference": {
+    "url": "https://inkwave-aah.pages.dev/",
+    "curl": "CONNECT tunnel failed, response 403 (including approved escalation)",
+    "chromium": "page.goto net::ERR_TUNNEL_CONNECTION_FAILED",
+    "webReader": "title INKWAVE — Turf Riot; zero content lines; no screenshot or code obtained",
+    "visualInspection": "BLOCKED; not claimed"
+  },
+  "sourceReference": {
+    "url": "https://github.com/jaydendavisnc/inkwave",
+    "gitClone": "remote: Repository not found; fatal repository not found",
+    "githubApi": "404 Not Found (authorized connector get_repo)",
+    "rawHistoricIndex": "679d2dba48457c239f2c60ba1ffc17d1fe789f07/index.html -> 404: Not Found",
+    "rawMainReadmeAndLicense": "404: Not Found",
+    "freshSourceAndLicenseInspection": "BLOCKED; not claimed"
+  },
+  "locallyInspected": [
+    "third-party/inkwave/LICENSE",
+    "public/assets/licenses/Inkwave-MIT.txt",
+    "third-party/inkwave/README.md",
+    "src/game/inkwaveSpring.ts",
+    "tests/inkwave-spring.test.ts"
+  ],
+  "adaptation": "Already-vendored Inkwave MIT spring lookup reused for bounded card-outline ornament echoes. Original new SVG and CSS; no third-party media copied.",
+  "copyright": "MIT, Copyright (c) 2026 Jayden Davis, preserved full notice in source and web distribution.",
+  "licenseSha256": "aa94b137dc8ec64c7f78f66c71070a78c528a100e26fcfbd30eec06737413f41",
+  "skills": "No .agents/skills or SKILL.md found under /workspace; read repository AGENTS.md. No subagents used."
+}

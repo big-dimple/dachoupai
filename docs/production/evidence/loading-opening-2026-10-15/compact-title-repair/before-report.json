@@ -1,0 +1,6026 @@
+{
+  "base": "9c41dfff2a66ffa66b5cf812c2742caae9cdf125",
+  "head": "9c41dfff2a66ffa66b5cf812c2742caae9cdf125",
+  "dirty": "M index.html\n M src/game/LoadingScreen.ts\n M third-party/inkwave/README.md\n?? docs/production/evidence/loading-opening-2026-10-15/\n?? harness/loading-opening.mjs",
+  "browser": "151.0.7922.173",
+  "scope": "Native real preload, software Chromium; bounded controlled transport delays expose animation. No physical device / subjective user acceptance.",
+  "cases": [
+    {
+      "width": 1366,
+      "height": 900,
+      "name": "1366-motion",
+      "errors": [],
+      "zero": {
+        "loaded": 8,
+        "total": 134,
+        "value": 8,
+        "cards": 1,
+        "chapters": 1,
+        "overflow": false,
+        "scroll": false,
+        "scrollX": false,
+        "animations": 23,
+        "brand": {
+          "x": 526.515625,
+          "y": 249.671875,
+          "width": 312.953125,
+          "height": 150.375,
+          "top": 249.671875,
+          "right": 839.46875,
+          "bottom": 400.046875,
+          "left": 526.515625
+        },
+        "letters": [
+          {
+            "text": "唐",
+            "transform": "matrix(1, 0, 0, 1, 0, 0)"
+          },
+          {
+            "text": "宋",
+            "transform": "matrix(1, 0, 0, 1, 0, 0)"
+          },
+          {
+            "text": "牌",
+            "transform": "matrix(1, 0, 0, 1, 0, 0)"
+          }
+        ],
+        "actions": [
+          {
+            "height": 44,
+            "bottom": 788.53125
+          }
+        ]
+      },
+      "settled": {
+        "loaded": 8,
+        "total": 134,
+        "value": 8,
+        "cards": 1,
+        "chapters": 1,
+        "overflow": false,
+        "scroll": false,
+        "scrollX": false,
+        "animations": 10,
+        "brand": {
+          "x": 526.515625,
+          "y": 249.671875,
+          "width": 312.953125,
+          "height": 150.375,
+          "top": 249.671875,
+          "right": 839.46875,
+          "bottom": 400.046875,
+          "left": 526.515625
+        },
+        "letters": [
+          {
+            "text": "唐",
+            "transform": "matrix(1, 0, 0, 1, 0, 0)"
+          },
+          {
+            "text": "宋",
+            "transform": "matrix(1, 0, 0, 1, 0, 0)"
+          },
+          {
+            "text": "牌",
+            "transform": "matrix(1, 0, 0, 1, 0, 0)"
+          }
+        ],
+        "actions": [
+          {
+            "height": 44,
+            "bottom": 788.53125
+          }
+        ]
+      },
+      "liveMotion": [
+        {
+          "target": {},
+          "time": 4883.1659999999565
+        },
+        {
+          "target": {},
+          "time": 4883.1659999999565
+        },
+        {
+          "target": {},
+          "time": 4883.1659999999565
+        },
+        {
+          "target": {},
+          "time": 4883.1659999999565
+        },
+        {
+          "target": {},
+          "time": 4883.1659999999565
+        },
+        {
+          "target": {},
+          "time": 4883.1659999999565
+        },
+        {
+          "target": {},
+          "time": 4883.1659999999565
+        },
+        {
+          "target": "load-card",
+          "time": 4883.1659999999565
+        },
+        {
+          "target": "load-card",
+          "time": 4883.1659999999565
+        },
+        {
+          "target": "load-card",
+          "time": 4883.1659999999565
+        }
+      ],
+      "livePreferenceChange": "PASS",
+      "titleMs": 12762,
+      "beats": [
+        {
+          "loaded": 9,
+          "total": 134,
+          "value": 9,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 10,
+          "total": 134,
+          "value": 10,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 11,
+          "total": 134,
+          "value": 11,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 12,
+          "total": 134,
+          "value": 12,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 13,
+          "total": 134,
+          "value": 13,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 14,
+          "total": 134,
+          "value": 14,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 15,
+          "total": 134,
+          "value": 15,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 16,
+          "total": 134,
+          "value": 16,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 17,
+          "total": 134,
+          "value": 17,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 18,
+          "total": 134,
+          "value": 18,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 19,
+          "total": 134,
+          "value": 19,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 20,
+          "total": 134,
+          "value": 20,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 21,
+          "total": 134,
+          "value": 21,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 22,
+          "total": 134,
+          "value": 22,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 23,
+          "total": 134,
+          "value": 23,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 24,
+          "total": 134,
+          "value": 24,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 25,
+          "total": 134,
+          "value": 25,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 26,
+          "total": 134,
+          "value": 26,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 27,
+          "total": 134,
+          "value": 27,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 28,
+          "total": 134,
+          "value": 28,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 29,
+          "total": 134,
+          "value": 29,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 30,
+          "total": 134,
+          "value": 30,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 31,
+          "total": 134,
+          "value": 31,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 32,
+          "total": 134,
+          "value": 32,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 33,
+          "total": 134,
+          "value": 33,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 34,
+          "total": 134,
+          "value": 34,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 35,
+          "total": 134,
+          "value": 35,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 36,
+          "total": 134,
+          "value": 36,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 37,
+          "total": 134,
+          "value": 37,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 38,
+          "total": 134,
+          "value": 38,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 39,
+          "total": 134,
+          "value": 39,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 40,
+          "total": 134,
+          "value": 40,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 41,
+          "total": 134,
+          "value": 41,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 42,
+          "total": 134,
+          "value": 42,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 43,
+          "total": 134,
+          "value": 43,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 44,
+          "total": 134,
+          "value": 44,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 45,
+          "total": 134,
+          "value": 45,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 46,
+          "total": 134,
+          "value": 46,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 47,
+          "total": 134,
+          "value": 47,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 48,
+          "total": 134,
+          "value": 48,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 49,
+          "total": 134,
+          "value": 49,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 50,
+          "total": 134,
+          "value": 50,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 51,
+          "total": 134,
+          "value": 51,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 52,
+          "total": 134,
+          "value": 52,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 53,
+          "total": 134,
+          "value": 53,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 54,
+          "total": 134,
+          "value": 54,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 55,
+          "total": 134,
+          "value": 55,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 56,
+          "total": 134,
+          "value": 56,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 57,
+          "total": 134,
+          "value": 57,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 58,
+          "total": 134,
+          "value": 58,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 59,
+          "total": 134,
+          "value": 59,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 60,
+          "total": 134,
+          "value": 60,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 61,
+          "total": 134,
+          "value": 61,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 62,
+          "total": 134,
+          "value": 62,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 63,
+          "total": 134,
+          "value": 63,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 64,
+          "total": 134,
+          "value": 64,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 65,
+          "total": 134,
+          "value": 65,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 66,
+          "total": 134,
+          "value": 66,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 67,
+          "total": 134,
+          "value": 67,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 68,
+          "total": 134,
+          "value": 68,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 69,
+          "total": 134,
+          "value": 69,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 70,
+          "total": 134,
+          "value": 70,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 71,
+          "total": 134,
+          "value": 71,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 72,
+          "total": 134,
+          "value": 72,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 73,
+          "total": 134,
+          "value": 73,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 74,
+          "total": 134,
+          "value": 74,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 75,
+          "total": 134,
+          "value": 75,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 76,
+          "total": 134,
+          "value": 76,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 77,
+          "total": 134,
+          "value": 77,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 78,
+          "total": 134,
+          "value": 78,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 79,
+          "total": 134,
+          "value": 79,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 80,
+          "total": 134,
+          "value": 80,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 81,
+          "total": 134,
+          "value": 81,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 82,
+          "total": 134,
+          "value": 82,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 83,
+          "total": 134,
+          "value": 83,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 84,
+          "total": 134,
+          "value": 84,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 85,
+          "total": 134,
+          "value": 85,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 86,
+          "total": 134,
+          "value": 86,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 87,
+          "total": 134,
+          "value": 87,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 88,
+          "total": 134,
+          "value": 88,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 89,
+          "total": 134,
+          "value": 89,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 90,
+          "total": 134,
+          "value": 90,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 91,
+          "total": 134,
+          "value": 91,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 92,
+          "total": 134,
+          "value": 92,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 93,
+          "total": 134,
+          "value": 93,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 94,
+          "total": 134,
+          "value": 94,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 95,
+          "total": 134,
+          "value": 95,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 96,
+          "total": 134,
+          "value": 96,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 97,
+          "total": 134,
+          "value": 97,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 98,
+          "total": 134,
+          "value": 98,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 99,
+          "total": 134,
+          "value": 99,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 100,
+          "total": 134,
+          "value": 100,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 101,
+          "total": 134,
+          "value": 101,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 102,
+          "total": 134,
+          "value": 102,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 103,
+          "total": 134,
+          "value": 103,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 104,
+          "total": 134,
+          "value": 104,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 105,
+          "total": 134,
+          "value": 105,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 106,
+          "total": 134,
+          "value": 106,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 107,
+          "total": 134,
+          "value": 107,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 108,
+          "total": 134,
+          "value": 108,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 109,
+          "total": 134,
+          "value": 109,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 110,
+          "total": 134,
+          "value": 110,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 111,
+          "total": 134,
+          "value": 111,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 112,
+          "total": 134,
+          "value": 112,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 113,
+          "total": 134,
+          "value": 113,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 114,
+          "total": 134,
+          "value": 114,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 115,
+          "total": 134,
+          "value": 115,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 116,
+          "total": 134,
+          "value": 116,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 117,
+          "total": 134,
+          "value": 117,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 118,
+          "total": 134,
+          "value": 118,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 119,
+          "total": 134,
+          "value": 119,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 120,
+          "total": 134,
+          "value": 120,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 121,
+          "total": 134,
+          "value": 121,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 122,
+          "total": 134,
+          "value": 122,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 123,
+          "total": 134,
+          "value": 123,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 124,
+          "total": 134,
+          "value": 124,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 125,
+          "total": 134,
+          "value": 125,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 126,
+          "total": 134,
+          "value": 126,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 127,
+          "total": 134,
+          "value": 127,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 128,
+          "total": 134,
+          "value": 128,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 129,
+          "total": 134,
+          "value": 129,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 130,
+          "total": 134,
+          "value": 130,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 131,
+          "total": 134,
+          "value": 131,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 132,
+          "total": 134,
+          "value": 132,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 133,
+          "total": 134,
+          "value": 133,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 134,
+          "total": 134,
+          "value": 134,
+          "cards": 3,
+          "chapters": 3
+        }
+      ],
+      "status": "PASS"
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "name": "390-motion",
+      "errors": [],
+      "zero": {
+        "loaded": 8,
+        "total": 134,
+        "value": 8,
+        "cards": 1,
+        "chapters": 1,
+        "overflow": false,
+        "scroll": false,
+        "scrollX": false,
+        "animations": 24,
+        "brand": {
+          "x": 93.9375,
+          "y": 256.265625,
+          "width": 202.125,
+          "height": 106.390625,
+          "top": 256.265625,
+          "right": 296.0625,
+          "bottom": 362.65625,
+          "left": 93.9375
+        },
+        "letters": [
+          {
+            "text": "唐",
+            "transform": "matrix(1, 0, 0, 1, 0, 0)"
+          },
+          {
+            "text": "宋",
+            "transform": "matrix(1, 0, 0, 1, 0, 0)"
+          },
+          {
+            "text": "牌",
+            "transform": "matrix(1, 0, 0, 1, 0, 0)"
+          }
+        ],
+        "actions": [
+          {
+            "height": 44,
+            "bottom": 715.734375
+          }
+        ]
+      },
+      "settled": {
+        "loaded": 8,
+        "total": 134,
+        "value": 8,
+        "cards": 1,
+        "chapters": 1,
+        "overflow": false,
+        "scroll": false,
+        "scrollX": false,
+        "animations": 10,
+        "brand": {
+          "x": 93.9375,
+          "y": 256.265625,
+          "width": 202.125,
+          "height": 106.390625,
+          "top": 256.265625,
+          "right": 296.0625,
+          "bottom": 362.65625,
+          "left": 93.9375
+        },
+        "letters": [
+          {
+            "text": "唐",
+            "transform": "matrix(1, 0, 0, 1, 0, 0)"
+          },
+          {
+            "text": "宋",
+            "transform": "matrix(1, 0, 0, 1, 0, 0)"
+          },
+          {
+            "text": "牌",
+            "transform": "matrix(1, 0, 0, 1, 0, 0)"
+          }
+        ],
+        "actions": [
+          {
+            "height": 44,
+            "bottom": 715.734375
+          }
+        ]
+      },
+      "liveMotion": [
+        {
+          "target": {},
+          "time": 3399.900999999904
+        },
+        {
+          "target": {},
+          "time": 3399.900999999904
+        },
+        {
+          "target": {},
+          "time": 3399.900999999904
+        },
+        {
+          "target": {},
+          "time": 3399.900999999904
+        },
+        {
+          "target": {},
+          "time": 3399.900999999904
+        },
+        {
+          "target": {},
+          "time": 3399.900999999904
+        },
+        {
+          "target": {},
+          "time": 3399.900999999904
+        },
+        {
+          "target": "load-card",
+          "time": 3399.900999999904
+        },
+        {
+          "target": "load-card",
+          "time": 3399.900999999904
+        },
+        {
+          "target": "load-card",
+          "time": 3399.900999999904
+        }
+      ],
+      "titleMs": 7698,
+      "beats": [
+        {
+          "loaded": 9,
+          "total": 134,
+          "value": 9,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 10,
+          "total": 134,
+          "value": 10,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 11,
+          "total": 134,
+          "value": 11,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 12,
+          "total": 134,
+          "value": 12,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 13,
+          "total": 134,
+          "value": 13,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 14,
+          "total": 134,
+          "value": 14,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 15,
+          "total": 134,
+          "value": 15,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 16,
+          "total": 134,
+          "value": 16,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 17,
+          "total": 134,
+          "value": 17,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 18,
+          "total": 134,
+          "value": 18,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 19,
+          "total": 134,
+          "value": 19,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 20,
+          "total": 134,
+          "value": 20,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 21,
+          "total": 134,
+          "value": 21,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 22,
+          "total": 134,
+          "value": 22,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 23,
+          "total": 134,
+          "value": 23,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 24,
+          "total": 134,
+          "value": 24,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 25,
+          "total": 134,
+          "value": 25,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 26,
+          "total": 134,
+          "value": 26,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 27,
+          "total": 134,
+          "value": 27,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 28,
+          "total": 134,
+          "value": 28,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 29,
+          "total": 134,
+          "value": 29,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 30,
+          "total": 134,
+          "value": 30,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 31,
+          "total": 134,
+          "value": 31,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 32,
+          "total": 134,
+          "value": 32,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 33,
+          "total": 134,
+          "value": 33,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 34,
+          "total": 134,
+          "value": 34,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 35,
+          "total": 134,
+          "value": 35,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 36,
+          "total": 134,
+          "value": 36,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 37,
+          "total": 134,
+          "value": 37,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 38,
+          "total": 134,
+          "value": 38,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 39,
+          "total": 134,
+          "value": 39,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 40,
+          "total": 134,
+          "value": 40,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 41,
+          "total": 134,
+          "value": 41,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 42,
+          "total": 134,
+          "value": 42,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 43,
+          "total": 134,
+          "value": 43,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 44,
+          "total": 134,
+          "value": 44,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 45,
+          "total": 134,
+          "value": 45,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 46,
+          "total": 134,
+          "value": 46,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 47,
+          "total": 134,
+          "value": 47,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 48,
+          "total": 134,
+          "value": 48,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 49,
+          "total": 134,
+          "value": 49,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 50,
+          "total": 134,
+          "value": 50,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 51,
+          "total": 134,
+          "value": 51,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 52,
+          "total": 134,
+          "value": 52,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 53,
+          "total": 134,
+          "value": 53,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 54,
+          "total": 134,
+          "value": 54,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 55,
+          "total": 134,
+          "value": 55,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 56,
+          "total": 134,
+          "value": 56,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 57,
+          "total": 134,
+          "value": 57,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 58,
+          "total": 134,
+          "value": 58,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 59,
+          "total": 134,
+          "value": 59,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 60,
+          "total": 134,
+          "value": 60,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 61,
+          "total": 134,
+          "value": 61,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 62,
+          "total": 134,
+          "value": 62,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 63,
+          "total": 134,
+          "value": 63,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 64,
+          "total": 134,
+          "value": 64,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 65,
+          "total": 134,
+          "value": 65,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 66,
+          "total": 134,
+          "value": 66,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 67,
+          "total": 134,
+          "value": 67,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 68,
+          "total": 134,
+          "value": 68,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 69,
+          "total": 134,
+          "value": 69,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 70,
+          "total": 134,
+          "value": 70,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 71,
+          "total": 134,
+          "value": 71,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 72,
+          "total": 134,
+          "value": 72,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 73,
+          "total": 134,
+          "value": 73,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 74,
+          "total": 134,
+          "value": 74,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 75,
+          "total": 134,
+          "value": 75,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 76,
+          "total": 134,
+          "value": 76,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 77,
+          "total": 134,
+          "value": 77,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 78,
+          "total": 134,
+          "value": 78,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 79,
+          "total": 134,
+          "value": 79,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 80,
+          "total": 134,
+          "value": 80,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 81,
+          "total": 134,
+          "value": 81,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 82,
+          "total": 134,
+          "value": 82,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 83,
+          "total": 134,
+          "value": 83,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 84,
+          "total": 134,
+          "value": 84,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 85,
+          "total": 134,
+          "value": 85,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 86,
+          "total": 134,
+          "value": 86,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 87,
+          "total": 134,
+          "value": 87,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 88,
+          "total": 134,
+          "value": 88,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 89,
+          "total": 134,
+          "value": 89,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 90,
+          "total": 134,
+          "value": 90,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 91,
+          "total": 134,
+          "value": 91,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 92,
+          "total": 134,
+          "value": 92,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 93,
+          "total": 134,
+          "value": 93,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 94,
+          "total": 134,
+          "value": 94,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 95,
+          "total": 134,
+          "value": 95,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 96,
+          "total": 134,
+          "value": 96,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 97,
+          "total": 134,
+          "value": 97,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 98,
+          "total": 134,
+          "value": 98,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 99,
+          "total": 134,
+          "value": 99,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 100,
+          "total": 134,
+          "value": 100,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 101,
+          "total": 134,
+          "value": 101,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 102,
+          "total": 134,
+          "value": 102,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 103,
+          "total": 134,
+          "value": 103,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 104,
+          "total": 134,
+          "value": 104,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 105,
+          "total": 134,
+          "value": 105,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 106,
+          "total": 134,
+          "value": 106,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 107,
+          "total": 134,
+          "value": 107,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 108,
+          "total": 134,
+          "value": 108,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 109,
+          "total": 134,
+          "value": 109,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 110,
+          "total": 134,
+          "value": 110,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 111,
+          "total": 134,
+          "value": 111,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 112,
+          "total": 134,
+          "value": 112,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 113,
+          "total": 134,
+          "value": 113,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 114,
+          "total": 134,
+          "value": 114,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 115,
+          "total": 134,
+          "value": 115,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 116,
+          "total": 134,
+          "value": 116,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 117,
+          "total": 134,
+          "value": 117,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 118,
+          "total": 134,
+          "value": 118,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 119,
+          "total": 134,
+          "value": 119,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 120,
+          "total": 134,
+          "value": 120,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 121,
+          "total": 134,
+          "value": 121,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 122,
+          "total": 134,
+          "value": 122,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 123,
+          "total": 134,
+          "value": 123,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 124,
+          "total": 134,
+          "value": 124,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 125,
+          "total": 134,
+          "value": 125,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 126,
+          "total": 134,
+          "value": 126,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 127,
+          "total": 134,
+          "value": 127,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 128,
+          "total": 134,
+          "value": 128,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 129,
+          "total": 134,
+          "value": 129,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 130,
+          "total": 134,
+          "value": 130,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 131,
+          "total": 134,
+          "value": 131,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 132,
+          "total": 134,
+          "value": 132,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 133,
+          "total": 134,
+          "value": 133,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 134,
+          "total": 134,
+          "value": 134,
+          "cards": 3,
+          "chapters": 3
+        }
+      ],
+      "status": "PASS"
+    },
+    {
+      "width": 320,
+      "height": 568,
+      "name": "320-motion",
+      "errors": [],
+      "zero": {
+        "loaded": 8,
+        "total": 134,
+        "value": 8,
+        "cards": 1,
+        "chapters": 1,
+        "overflow": false,
+        "scroll": false,
+        "scrollX": false,
+        "animations": 30,
+        "brand": {
+          "x": 62.1875,
+          "y": 125.96875,
+          "width": 195.609375,
+          "height": 104,
+          "top": 125.96875,
+          "right": 257.796875,
+          "bottom": 229.96875,
+          "left": 62.1875
+        },
+        "letters": [
+          {
+            "text": "唐",
+            "transform": "matrix(1, 0, 0, 1, 0, 0)"
+          },
+          {
+            "text": "宋",
+            "transform": "matrix(1, 0, 0, 1, 0, 0)"
+          },
+          {
+            "text": "牌",
+            "transform": "matrix(1, 0, 0, 1, 0, 0)"
+          }
+        ],
+        "actions": [
+          {
+            "height": 44,
+            "bottom": 507.4375
+          }
+        ]
+      },
+      "settled": {
+        "loaded": 8,
+        "total": 134,
+        "value": 8,
+        "cards": 1,
+        "chapters": 1,
+        "overflow": false,
+        "scroll": false,
+        "scrollX": false,
+        "animations": 10,
+        "brand": {
+          "x": 62.1875,
+          "y": 125.96875,
+          "width": 195.609375,
+          "height": 104,
+          "top": 125.96875,
+          "right": 257.796875,
+          "bottom": 229.96875,
+          "left": 62.1875
+        },
+        "letters": [
+          {
+            "text": "唐",
+            "transform": "matrix(1, 0, 0, 1, 0, 0)"
+          },
+          {
+            "text": "宋",
+            "transform": "matrix(1, 0, 0, 1, 0, 0)"
+          },
+          {
+            "text": "牌",
+            "transform": "matrix(1, 0, 0, 1, 0, 0)"
+          }
+        ],
+        "actions": [
+          {
+            "height": 44,
+            "bottom": 507.4375
+          }
+        ]
+      },
+      "liveMotion": [
+        {
+          "target": {},
+          "time": 3033.2289999999484
+        },
+        {
+          "target": {},
+          "time": 3033.2289999999484
+        },
+        {
+          "target": {},
+          "time": 3033.2289999999484
+        },
+        {
+          "target": {},
+          "time": 3033.2289999999484
+        },
+        {
+          "target": {},
+          "time": 3033.2289999999484
+        },
+        {
+          "target": {},
+          "time": 3033.2289999999484
+        },
+        {
+          "target": {},
+          "time": 3033.2289999999484
+        },
+        {
+          "target": "load-card",
+          "time": 3033.2289999999484
+        },
+        {
+          "target": "load-card",
+          "time": 3033.2289999999484
+        },
+        {
+          "target": "load-card",
+          "time": 3033.2289999999484
+        }
+      ],
+      "titleMs": 6623,
+      "beats": [
+        {
+          "loaded": 9,
+          "total": 134,
+          "value": 9,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 10,
+          "total": 134,
+          "value": 10,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 11,
+          "total": 134,
+          "value": 11,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 12,
+          "total": 134,
+          "value": 12,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 13,
+          "total": 134,
+          "value": 13,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 14,
+          "total": 134,
+          "value": 14,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 15,
+          "total": 134,
+          "value": 15,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 16,
+          "total": 134,
+          "value": 16,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 17,
+          "total": 134,
+          "value": 17,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 18,
+          "total": 134,
+          "value": 18,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 19,
+          "total": 134,
+          "value": 19,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 20,
+          "total": 134,
+          "value": 20,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 21,
+          "total": 134,
+          "value": 21,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 22,
+          "total": 134,
+          "value": 22,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 23,
+          "total": 134,
+          "value": 23,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 24,
+          "total": 134,
+          "value": 24,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 25,
+          "total": 134,
+          "value": 25,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 26,
+          "total": 134,
+          "value": 26,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 27,
+          "total": 134,
+          "value": 27,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 28,
+          "total": 134,
+          "value": 28,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 29,
+          "total": 134,
+          "value": 29,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 30,
+          "total": 134,
+          "value": 30,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 31,
+          "total": 134,
+          "value": 31,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 32,
+          "total": 134,
+          "value": 32,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 33,
+          "total": 134,
+          "value": 33,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 34,
+          "total": 134,
+          "value": 34,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 35,
+          "total": 134,
+          "value": 35,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 36,
+          "total": 134,
+          "value": 36,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 37,
+          "total": 134,
+          "value": 37,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 38,
+          "total": 134,
+          "value": 38,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 39,
+          "total": 134,
+          "value": 39,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 40,
+          "total": 134,
+          "value": 40,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 41,
+          "total": 134,
+          "value": 41,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 42,
+          "total": 134,
+          "value": 42,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 43,
+          "total": 134,
+          "value": 43,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 44,
+          "total": 134,
+          "value": 44,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 45,
+          "total": 134,
+          "value": 45,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 46,
+          "total": 134,
+          "value": 46,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 47,
+          "total": 134,
+          "value": 47,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 48,
+          "total": 134,
+          "value": 48,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 49,
+          "total": 134,
+          "value": 49,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 50,
+          "total": 134,
+          "value": 50,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 51,
+          "total": 134,
+          "value": 51,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 52,
+          "total": 134,
+          "value": 52,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 53,
+          "total": 134,
+          "value": 53,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 54,
+          "total": 134,
+          "value": 54,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 55,
+          "total": 134,
+          "value": 55,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 56,
+          "total": 134,
+          "value": 56,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 57,
+          "total": 134,
+          "value": 57,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 58,
+          "total": 134,
+          "value": 58,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 59,
+          "total": 134,
+          "value": 59,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 60,
+          "total": 134,
+          "value": 60,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 61,
+          "total": 134,
+          "value": 61,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 62,
+          "total": 134,
+          "value": 62,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 63,
+          "total": 134,
+          "value": 63,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 64,
+          "total": 134,
+          "value": 64,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 65,
+          "total": 134,
+          "value": 65,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 66,
+          "total": 134,
+          "value": 66,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 67,
+          "total": 134,
+          "value": 67,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 68,
+          "total": 134,
+          "value": 68,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 69,
+          "total": 134,
+          "value": 69,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 70,
+          "total": 134,
+          "value": 70,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 71,
+          "total": 134,
+          "value": 71,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 72,
+          "total": 134,
+          "value": 72,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 73,
+          "total": 134,
+          "value": 73,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 74,
+          "total": 134,
+          "value": 74,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 75,
+          "total": 134,
+          "value": 75,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 76,
+          "total": 134,
+          "value": 76,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 77,
+          "total": 134,
+          "value": 77,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 78,
+          "total": 134,
+          "value": 78,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 79,
+          "total": 134,
+          "value": 79,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 80,
+          "total": 134,
+          "value": 80,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 81,
+          "total": 134,
+          "value": 81,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 82,
+          "total": 134,
+          "value": 82,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 83,
+          "total": 134,
+          "value": 83,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 84,
+          "total": 134,
+          "value": 84,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 85,
+          "total": 134,
+          "value": 85,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 86,
+          "total": 134,
+          "value": 86,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 87,
+          "total": 134,
+          "value": 87,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 88,
+          "total": 134,
+          "value": 88,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 89,
+          "total": 134,
+          "value": 89,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 90,
+          "total": 134,
+          "value": 90,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 91,
+          "total": 134,
+          "value": 91,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 92,
+          "total": 134,
+          "value": 92,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 93,
+          "total": 134,
+          "value": 93,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 94,
+          "total": 134,
+          "value": 94,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 95,
+          "total": 134,
+          "value": 95,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 96,
+          "total": 134,
+          "value": 96,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 97,
+          "total": 134,
+          "value": 97,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 98,
+          "total": 134,
+          "value": 98,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 99,
+          "total": 134,
+          "value": 99,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 100,
+          "total": 134,
+          "value": 100,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 101,
+          "total": 134,
+          "value": 101,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 102,
+          "total": 134,
+          "value": 102,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 103,
+          "total": 134,
+          "value": 103,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 104,
+          "total": 134,
+          "value": 104,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 105,
+          "total": 134,
+          "value": 105,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 106,
+          "total": 134,
+          "value": 106,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 107,
+          "total": 134,
+          "value": 107,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 108,
+          "total": 134,
+          "value": 108,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 109,
+          "total": 134,
+          "value": 109,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 110,
+          "total": 134,
+          "value": 110,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 111,
+          "total": 134,
+          "value": 111,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 112,
+          "total": 134,
+          "value": 112,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 113,
+          "total": 134,
+          "value": 113,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 114,
+          "total": 134,
+          "value": 114,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 115,
+          "total": 134,
+          "value": 115,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 116,
+          "total": 134,
+          "value": 116,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 117,
+          "total": 134,
+          "value": 117,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 118,
+          "total": 134,
+          "value": 118,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 119,
+          "total": 134,
+          "value": 119,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 120,
+          "total": 134,
+          "value": 120,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 121,
+          "total": 134,
+          "value": 121,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 122,
+          "total": 134,
+          "value": 122,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 123,
+          "total": 134,
+          "value": 123,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 124,
+          "total": 134,
+          "value": 124,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 125,
+          "total": 134,
+          "value": 125,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 126,
+          "total": 134,
+          "value": 126,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 127,
+          "total": 134,
+          "value": 127,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 128,
+          "total": 134,
+          "value": 128,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 129,
+          "total": 134,
+          "value": 129,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 130,
+          "total": 134,
+          "value": 130,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 131,
+          "total": 134,
+          "value": 131,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 132,
+          "total": 134,
+          "value": 132,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 133,
+          "total": 134,
+          "value": 133,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 134,
+          "total": 134,
+          "value": 134,
+          "cards": 3,
+          "chapters": 3
+        }
+      ],
+      "status": "PASS"
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "osReduce": true,
+      "name": "390-os-reduce",
+      "errors": [],
+      "zero": {
+        "loaded": 8,
+        "total": 134,
+        "value": 8,
+        "cards": 1,
+        "chapters": 1,
+        "overflow": false,
+        "scroll": false,
+        "scrollX": false,
+        "animations": 0,
+        "brand": {
+          "x": 93.9375,
+          "y": 256.265625,
+          "width": 202.125,
+          "height": 106.390625,
+          "top": 256.265625,
+          "right": 296.0625,
+          "bottom": 362.65625,
+          "left": 93.9375
+        },
+        "letters": [
+          {
+            "text": "唐",
+            "transform": "none"
+          },
+          {
+            "text": "宋",
+            "transform": "none"
+          },
+          {
+            "text": "牌",
+            "transform": "none"
+          }
+        ],
+        "actions": [
+          {
+            "height": 44,
+            "bottom": 715.734375
+          }
+        ]
+      },
+      "settled": {
+        "loaded": 8,
+        "total": 134,
+        "value": 8,
+        "cards": 1,
+        "chapters": 1,
+        "overflow": false,
+        "scroll": false,
+        "scrollX": false,
+        "animations": 0,
+        "brand": {
+          "x": 93.9375,
+          "y": 256.265625,
+          "width": 202.125,
+          "height": 106.390625,
+          "top": 256.265625,
+          "right": 296.0625,
+          "bottom": 362.65625,
+          "left": 93.9375
+        },
+        "letters": [
+          {
+            "text": "唐",
+            "transform": "none"
+          },
+          {
+            "text": "宋",
+            "transform": "none"
+          },
+          {
+            "text": "牌",
+            "transform": "none"
+          }
+        ],
+        "actions": [
+          {
+            "height": 44,
+            "bottom": 715.734375
+          }
+        ]
+      },
+      "titleMs": 6427,
+      "beats": [
+        {
+          "loaded": 9,
+          "total": 134,
+          "value": 9,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 10,
+          "total": 134,
+          "value": 10,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 11,
+          "total": 134,
+          "value": 11,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 12,
+          "total": 134,
+          "value": 12,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 13,
+          "total": 134,
+          "value": 13,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 14,
+          "total": 134,
+          "value": 14,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 15,
+          "total": 134,
+          "value": 15,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 16,
+          "total": 134,
+          "value": 16,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 17,
+          "total": 134,
+          "value": 17,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 18,
+          "total": 134,
+          "value": 18,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 19,
+          "total": 134,
+          "value": 19,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 20,
+          "total": 134,
+          "value": 20,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 21,
+          "total": 134,
+          "value": 21,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 22,
+          "total": 134,
+          "value": 22,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 23,
+          "total": 134,
+          "value": 23,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 24,
+          "total": 134,
+          "value": 24,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 25,
+          "total": 134,
+          "value": 25,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 26,
+          "total": 134,
+          "value": 26,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 27,
+          "total": 134,
+          "value": 27,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 28,
+          "total": 134,
+          "value": 28,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 29,
+          "total": 134,
+          "value": 29,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 30,
+          "total": 134,
+          "value": 30,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 31,
+          "total": 134,
+          "value": 31,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 32,
+          "total": 134,
+          "value": 32,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 33,
+          "total": 134,
+          "value": 33,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 34,
+          "total": 134,
+          "value": 34,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 35,
+          "total": 134,
+          "value": 35,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 36,
+          "total": 134,
+          "value": 36,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 37,
+          "total": 134,
+          "value": 37,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 38,
+          "total": 134,
+          "value": 38,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 39,
+          "total": 134,
+          "value": 39,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 40,
+          "total": 134,
+          "value": 40,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 41,
+          "total": 134,
+          "value": 41,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 42,
+          "total": 134,
+          "value": 42,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 43,
+          "total": 134,
+          "value": 43,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 44,
+          "total": 134,
+          "value": 44,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 45,
+          "total": 134,
+          "value": 45,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 46,
+          "total": 134,
+          "value": 46,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 47,
+          "total": 134,
+          "value": 47,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 48,
+          "total": 134,
+          "value": 48,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 49,
+          "total": 134,
+          "value": 49,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 50,
+          "total": 134,
+          "value": 50,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 51,
+          "total": 134,
+          "value": 51,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 52,
+          "total": 134,
+          "value": 52,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 53,
+          "total": 134,
+          "value": 53,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 54,
+          "total": 134,
+          "value": 54,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 55,
+          "total": 134,
+          "value": 55,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 56,
+          "total": 134,
+          "value": 56,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 57,
+          "total": 134,
+          "value": 57,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 58,
+          "total": 134,
+          "value": 58,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 59,
+          "total": 134,
+          "value": 59,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 60,
+          "total": 134,
+          "value": 60,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 61,
+          "total": 134,
+          "value": 61,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 62,
+          "total": 134,
+          "value": 62,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 63,
+          "total": 134,
+          "value": 63,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 64,
+          "total": 134,
+          "value": 64,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 65,
+          "total": 134,
+          "value": 65,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 66,
+          "total": 134,
+          "value": 66,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 67,
+          "total": 134,
+          "value": 67,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 68,
+          "total": 134,
+          "value": 68,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 69,
+          "total": 134,
+          "value": 69,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 70,
+          "total": 134,
+          "value": 70,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 71,
+          "total": 134,
+          "value": 71,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 72,
+          "total": 134,
+          "value": 72,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 73,
+          "total": 134,
+          "value": 73,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 74,
+          "total": 134,
+          "value": 74,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 75,
+          "total": 134,
+          "value": 75,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 76,
+          "total": 134,
+          "value": 76,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 77,
+          "total": 134,
+          "value": 77,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 78,
+          "total": 134,
+          "value": 78,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 79,
+          "total": 134,
+          "value": 79,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 80,
+          "total": 134,
+          "value": 80,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 81,
+          "total": 134,
+          "value": 81,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 82,
+          "total": 134,
+          "value": 82,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 83,
+          "total": 134,
+          "value": 83,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 84,
+          "total": 134,
+          "value": 84,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 85,
+          "total": 134,
+          "value": 85,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 86,
+          "total": 134,
+          "value": 86,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 87,
+          "total": 134,
+          "value": 87,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 88,
+          "total": 134,
+          "value": 88,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 89,
+          "total": 134,
+          "value": 89,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 90,
+          "total": 134,
+          "value": 90,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 91,
+          "total": 134,
+          "value": 91,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 92,
+          "total": 134,
+          "value": 92,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 93,
+          "total": 134,
+          "value": 93,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 94,
+          "total": 134,
+          "value": 94,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 95,
+          "total": 134,
+          "value": 95,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 96,
+          "total": 134,
+          "value": 96,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 97,
+          "total": 134,
+          "value": 97,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 98,
+          "total": 134,
+          "value": 98,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 99,
+          "total": 134,
+          "value": 99,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 100,
+          "total": 134,
+          "value": 100,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 101,
+          "total": 134,
+          "value": 101,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 102,
+          "total": 134,
+          "value": 102,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 103,
+          "total": 134,
+          "value": 103,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 104,
+          "total": 134,
+          "value": 104,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 105,
+          "total": 134,
+          "value": 105,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 106,
+          "total": 134,
+          "value": 106,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 107,
+          "total": 134,
+          "value": 107,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 108,
+          "total": 134,
+          "value": 108,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 109,
+          "total": 134,
+          "value": 109,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 110,
+          "total": 134,
+          "value": 110,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 111,
+          "total": 134,
+          "value": 111,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 112,
+          "total": 134,
+          "value": 112,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 113,
+          "total": 134,
+          "value": 113,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 114,
+          "total": 134,
+          "value": 114,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 115,
+          "total": 134,
+          "value": 115,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 116,
+          "total": 134,
+          "value": 116,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 117,
+          "total": 134,
+          "value": 117,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 118,
+          "total": 134,
+          "value": 118,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 119,
+          "total": 134,
+          "value": 119,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 120,
+          "total": 134,
+          "value": 120,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 121,
+          "total": 134,
+          "value": 121,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 122,
+          "total": 134,
+          "value": 122,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 123,
+          "total": 134,
+          "value": 123,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 124,
+          "total": 134,
+          "value": 124,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 125,
+          "total": 134,
+          "value": 125,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 126,
+          "total": 134,
+          "value": 126,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 127,
+          "total": 134,
+          "value": 127,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 128,
+          "total": 134,
+          "value": 128,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 129,
+          "total": 134,
+          "value": 129,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 130,
+          "total": 134,
+          "value": 130,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 131,
+          "total": 134,
+          "value": 131,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 132,
+          "total": 134,
+          "value": 132,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 133,
+          "total": 134,
+          "value": 133,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 134,
+          "total": 134,
+          "value": 134,
+          "cards": 3,
+          "chapters": 3
+        }
+      ],
+      "status": "PASS"
+    },
+    {
+      "width": 320,
+      "height": 740,
+      "appReduce": true,
+      "name": "320-app-reduce",
+      "errors": [],
+      "zero": {
+        "loaded": 8,
+        "total": 134,
+        "value": 8,
+        "cards": 1,
+        "chapters": 1,
+        "overflow": false,
+        "scroll": false,
+        "scrollX": false,
+        "animations": 0,
+        "brand": {
+          "x": 58.9375,
+          "y": 204.265625,
+          "width": 202.125,
+          "height": 106.390625,
+          "top": 204.265625,
+          "right": 261.0625,
+          "bottom": 310.65625,
+          "left": 58.9375
+        },
+        "letters": [
+          {
+            "text": "唐",
+            "transform": "none"
+          },
+          {
+            "text": "宋",
+            "transform": "none"
+          },
+          {
+            "text": "牌",
+            "transform": "none"
+          }
+        ],
+        "actions": [
+          {
+            "height": 44,
+            "bottom": 642.9375
+          }
+        ]
+      },
+      "settled": {
+        "loaded": 8,
+        "total": 134,
+        "value": 8,
+        "cards": 1,
+        "chapters": 1,
+        "overflow": false,
+        "scroll": false,
+        "scrollX": false,
+        "animations": 0,
+        "brand": {
+          "x": 58.9375,
+          "y": 204.265625,
+          "width": 202.125,
+          "height": 106.390625,
+          "top": 204.265625,
+          "right": 261.0625,
+          "bottom": 310.65625,
+          "left": 58.9375
+        },
+        "letters": [
+          {
+            "text": "唐",
+            "transform": "none"
+          },
+          {
+            "text": "宋",
+            "transform": "none"
+          },
+          {
+            "text": "牌",
+            "transform": "none"
+          }
+        ],
+        "actions": [
+          {
+            "height": 44,
+            "bottom": 642.9375
+          }
+        ]
+      },
+      "titleMs": 6394,
+      "beats": [
+        {
+          "loaded": 9,
+          "total": 134,
+          "value": 9,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 10,
+          "total": 134,
+          "value": 10,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 11,
+          "total": 134,
+          "value": 11,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 12,
+          "total": 134,
+          "value": 12,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 13,
+          "total": 134,
+          "value": 13,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 14,
+          "total": 134,
+          "value": 14,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 15,
+          "total": 134,
+          "value": 15,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 16,
+          "total": 134,
+          "value": 16,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 17,
+          "total": 134,
+          "value": 17,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 18,
+          "total": 134,
+          "value": 18,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 19,
+          "total": 134,
+          "value": 19,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 20,
+          "total": 134,
+          "value": 20,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 21,
+          "total": 134,
+          "value": 21,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 22,
+          "total": 134,
+          "value": 22,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 23,
+          "total": 134,
+          "value": 23,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 24,
+          "total": 134,
+          "value": 24,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 25,
+          "total": 134,
+          "value": 25,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 26,
+          "total": 134,
+          "value": 26,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 27,
+          "total": 134,
+          "value": 27,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 28,
+          "total": 134,
+          "value": 28,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 29,
+          "total": 134,
+          "value": 29,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 30,
+          "total": 134,
+          "value": 30,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 31,
+          "total": 134,
+          "value": 31,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 32,
+          "total": 134,
+          "value": 32,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 33,
+          "total": 134,
+          "value": 33,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 34,
+          "total": 134,
+          "value": 34,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 35,
+          "total": 134,
+          "value": 35,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 36,
+          "total": 134,
+          "value": 36,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 37,
+          "total": 134,
+          "value": 37,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 38,
+          "total": 134,
+          "value": 38,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 39,
+          "total": 134,
+          "value": 39,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 40,
+          "total": 134,
+          "value": 40,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 41,
+          "total": 134,
+          "value": 41,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 42,
+          "total": 134,
+          "value": 42,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 43,
+          "total": 134,
+          "value": 43,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 44,
+          "total": 134,
+          "value": 44,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 45,
+          "total": 134,
+          "value": 45,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 46,
+          "total": 134,
+          "value": 46,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 47,
+          "total": 134,
+          "value": 47,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 48,
+          "total": 134,
+          "value": 48,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 49,
+          "total": 134,
+          "value": 49,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 50,
+          "total": 134,
+          "value": 50,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 51,
+          "total": 134,
+          "value": 51,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 52,
+          "total": 134,
+          "value": 52,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 53,
+          "total": 134,
+          "value": 53,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 54,
+          "total": 134,
+          "value": 54,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 55,
+          "total": 134,
+          "value": 55,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 56,
+          "total": 134,
+          "value": 56,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 57,
+          "total": 134,
+          "value": 57,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 58,
+          "total": 134,
+          "value": 58,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 59,
+          "total": 134,
+          "value": 59,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 60,
+          "total": 134,
+          "value": 60,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 61,
+          "total": 134,
+          "value": 61,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 62,
+          "total": 134,
+          "value": 62,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 63,
+          "total": 134,
+          "value": 63,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 64,
+          "total": 134,
+          "value": 64,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 65,
+          "total": 134,
+          "value": 65,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 66,
+          "total": 134,
+          "value": 66,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 67,
+          "total": 134,
+          "value": 67,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 68,
+          "total": 134,
+          "value": 68,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 69,
+          "total": 134,
+          "value": 69,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 70,
+          "total": 134,
+          "value": 70,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 71,
+          "total": 134,
+          "value": 71,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 72,
+          "total": 134,
+          "value": 72,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 73,
+          "total": 134,
+          "value": 73,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 74,
+          "total": 134,
+          "value": 74,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 75,
+          "total": 134,
+          "value": 75,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 76,
+          "total": 134,
+          "value": 76,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 77,
+          "total": 134,
+          "value": 77,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 78,
+          "total": 134,
+          "value": 78,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 79,
+          "total": 134,
+          "value": 79,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 80,
+          "total": 134,
+          "value": 80,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 81,
+          "total": 134,
+          "value": 81,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 82,
+          "total": 134,
+          "value": 82,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 83,
+          "total": 134,
+          "value": 83,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 84,
+          "total": 134,
+          "value": 84,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 85,
+          "total": 134,
+          "value": 85,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 86,
+          "total": 134,
+          "value": 86,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 87,
+          "total": 134,
+          "value": 87,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 88,
+          "total": 134,
+          "value": 88,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 89,
+          "total": 134,
+          "value": 89,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 90,
+          "total": 134,
+          "value": 90,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 91,
+          "total": 134,
+          "value": 91,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 92,
+          "total": 134,
+          "value": 92,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 93,
+          "total": 134,
+          "value": 93,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 94,
+          "total": 134,
+          "value": 94,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 95,
+          "total": 134,
+          "value": 95,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 96,
+          "total": 134,
+          "value": 96,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 97,
+          "total": 134,
+          "value": 97,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 98,
+          "total": 134,
+          "value": 98,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 99,
+          "total": 134,
+          "value": 99,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 100,
+          "total": 134,
+          "value": 100,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 101,
+          "total": 134,
+          "value": 101,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 102,
+          "total": 134,
+          "value": 102,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 103,
+          "total": 134,
+          "value": 103,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 104,
+          "total": 134,
+          "value": 104,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 105,
+          "total": 134,
+          "value": 105,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 106,
+          "total": 134,
+          "value": 106,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 107,
+          "total": 134,
+          "value": 107,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 108,
+          "total": 134,
+          "value": 108,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 109,
+          "total": 134,
+          "value": 109,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 110,
+          "total": 134,
+          "value": 110,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 111,
+          "total": 134,
+          "value": 111,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 112,
+          "total": 134,
+          "value": 112,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 113,
+          "total": 134,
+          "value": 113,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 114,
+          "total": 134,
+          "value": 114,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 115,
+          "total": 134,
+          "value": 115,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 116,
+          "total": 134,
+          "value": 116,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 117,
+          "total": 134,
+          "value": 117,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 118,
+          "total": 134,
+          "value": 118,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 119,
+          "total": 134,
+          "value": 119,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 120,
+          "total": 134,
+          "value": 120,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 121,
+          "total": 134,
+          "value": 121,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 122,
+          "total": 134,
+          "value": 122,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 123,
+          "total": 134,
+          "value": 123,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 124,
+          "total": 134,
+          "value": 124,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 125,
+          "total": 134,
+          "value": 125,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 126,
+          "total": 134,
+          "value": 126,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 127,
+          "total": 134,
+          "value": 127,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 128,
+          "total": 134,
+          "value": 128,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 129,
+          "total": 134,
+          "value": 129,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 130,
+          "total": 134,
+          "value": 130,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 131,
+          "total": 134,
+          "value": 131,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 132,
+          "total": 134,
+          "value": 132,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 133,
+          "total": 134,
+          "value": 133,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 134,
+          "total": 134,
+          "value": 134,
+          "cards": 3,
+          "chapters": 3
+        }
+      ],
+      "status": "PASS"
+    },
+    {
+      "width": 1366,
+      "height": 900,
+      "weak": true,
+      "name": "1366-cpu4",
+      "errors": [],
+      "zero": {
+        "loaded": 8,
+        "total": 134,
+        "value": 8,
+        "cards": 1,
+        "chapters": 1,
+        "overflow": false,
+        "scroll": false,
+        "scrollX": false,
+        "animations": 28,
+        "brand": {
+          "x": 526.515625,
+          "y": 249.671875,
+          "width": 312.953125,
+          "height": 150.375,
+          "top": 249.671875,
+          "right": 839.46875,
+          "bottom": 400.046875,
+          "left": 526.515625
+        },
+        "letters": [
+          {
+            "text": "唐",
+            "transform": "matrix(1, 0, 0, 1, 0, 0)"
+          },
+          {
+            "text": "宋",
+            "transform": "matrix(1, 0, 0, 1, 0, 0)"
+          },
+          {
+            "text": "牌",
+            "transform": "matrix(1, 0, 0, 1, 0, 0)"
+          }
+        ],
+        "actions": [
+          {
+            "height": 44,
+            "bottom": 788.53125
+          }
+        ]
+      },
+      "settled": {
+        "loaded": 8,
+        "total": 134,
+        "value": 8,
+        "cards": 1,
+        "chapters": 1,
+        "overflow": false,
+        "scroll": false,
+        "scrollX": false,
+        "animations": 10,
+        "brand": {
+          "x": 526.515625,
+          "y": 249.671875,
+          "width": 312.953125,
+          "height": 150.375,
+          "top": 249.671875,
+          "right": 839.46875,
+          "bottom": 400.046875,
+          "left": 526.515625
+        },
+        "letters": [
+          {
+            "text": "唐",
+            "transform": "matrix(1, 0, 0, 1, 0, 0)"
+          },
+          {
+            "text": "宋",
+            "transform": "matrix(1, 0, 0, 1, 0, 0)"
+          },
+          {
+            "text": "牌",
+            "transform": "matrix(1, 0, 0, 1, 0, 0)"
+          }
+        ],
+        "actions": [
+          {
+            "height": 44,
+            "bottom": 788.53125
+          }
+        ]
+      },
+      "liveMotion": [
+        {
+          "target": {},
+          "time": 4183.134000000003
+        },
+        {
+          "target": {},
+          "time": 4183.134000000003
+        },
+        {
+          "target": {},
+          "time": 4183.134000000003
+        },
+        {
+          "target": {},
+          "time": 4183.134000000003
+        },
+        {
+          "target": {},
+          "time": 4183.134000000003
+        },
+        {
+          "target": {},
+          "time": 4183.134000000003
+        },
+        {
+          "target": {},
+          "time": 4183.134000000003
+        },
+        {
+          "target": "load-card",
+          "time": 4183.134000000003
+        },
+        {
+          "target": "load-card",
+          "time": 4183.134000000003
+        },
+        {
+          "target": "load-card",
+          "time": 4183.134000000003
+        }
+      ],
+      "titleMs": 11810,
+      "beats": [
+        {
+          "loaded": 9,
+          "total": 134,
+          "value": 9,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 10,
+          "total": 134,
+          "value": 10,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 11,
+          "total": 134,
+          "value": 11,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 12,
+          "total": 134,
+          "value": 12,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 13,
+          "total": 134,
+          "value": 13,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 14,
+          "total": 134,
+          "value": 14,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 15,
+          "total": 134,
+          "value": 15,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 16,
+          "total": 134,
+          "value": 16,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 17,
+          "total": 134,
+          "value": 17,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 18,
+          "total": 134,
+          "value": 18,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 19,
+          "total": 134,
+          "value": 19,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 20,
+          "total": 134,
+          "value": 20,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 21,
+          "total": 134,
+          "value": 21,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 22,
+          "total": 134,
+          "value": 22,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 23,
+          "total": 134,
+          "value": 23,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 24,
+          "total": 134,
+          "value": 24,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 25,
+          "total": 134,
+          "value": 25,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 26,
+          "total": 134,
+          "value": 26,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 27,
+          "total": 134,
+          "value": 27,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 28,
+          "total": 134,
+          "value": 28,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 29,
+          "total": 134,
+          "value": 29,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 30,
+          "total": 134,
+          "value": 30,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 31,
+          "total": 134,
+          "value": 31,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 32,
+          "total": 134,
+          "value": 32,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 33,
+          "total": 134,
+          "value": 33,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 34,
+          "total": 134,
+          "value": 34,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 35,
+          "total": 134,
+          "value": 35,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 36,
+          "total": 134,
+          "value": 36,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 37,
+          "total": 134,
+          "value": 37,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 38,
+          "total": 134,
+          "value": 38,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 39,
+          "total": 134,
+          "value": 39,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 40,
+          "total": 134,
+          "value": 40,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 41,
+          "total": 134,
+          "value": 41,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 42,
+          "total": 134,
+          "value": 42,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 43,
+          "total": 134,
+          "value": 43,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 44,
+          "total": 134,
+          "value": 44,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 45,
+          "total": 134,
+          "value": 45,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 46,
+          "total": 134,
+          "value": 46,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 47,
+          "total": 134,
+          "value": 47,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 48,
+          "total": 134,
+          "value": 48,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 49,
+          "total": 134,
+          "value": 49,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 50,
+          "total": 134,
+          "value": 50,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 51,
+          "total": 134,
+          "value": 51,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 52,
+          "total": 134,
+          "value": 52,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 53,
+          "total": 134,
+          "value": 53,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 54,
+          "total": 134,
+          "value": 54,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 55,
+          "total": 134,
+          "value": 55,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 56,
+          "total": 134,
+          "value": 56,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 57,
+          "total": 134,
+          "value": 57,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 58,
+          "total": 134,
+          "value": 58,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 59,
+          "total": 134,
+          "value": 59,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 60,
+          "total": 134,
+          "value": 60,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 61,
+          "total": 134,
+          "value": 61,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 62,
+          "total": 134,
+          "value": 62,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 63,
+          "total": 134,
+          "value": 63,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 64,
+          "total": 134,
+          "value": 64,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 65,
+          "total": 134,
+          "value": 65,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 66,
+          "total": 134,
+          "value": 66,
+          "cards": 1,
+          "chapters": 1
+        },
+        {
+          "loaded": 67,
+          "total": 134,
+          "value": 67,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 68,
+          "total": 134,
+          "value": 68,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 69,
+          "total": 134,
+          "value": 69,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 70,
+          "total": 134,
+          "value": 70,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 71,
+          "total": 134,
+          "value": 71,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 72,
+          "total": 134,
+          "value": 72,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 73,
+          "total": 134,
+          "value": 73,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 74,
+          "total": 134,
+          "value": 74,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 75,
+          "total": 134,
+          "value": 75,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 76,
+          "total": 134,
+          "value": 76,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 77,
+          "total": 134,
+          "value": 77,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 78,
+          "total": 134,
+          "value": 78,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 79,
+          "total": 134,
+          "value": 79,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 80,
+          "total": 134,
+          "value": 80,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 81,
+          "total": 134,
+          "value": 81,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 82,
+          "total": 134,
+          "value": 82,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 83,
+          "total": 134,
+          "value": 83,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 84,
+          "total": 134,
+          "value": 84,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 85,
+          "total": 134,
+          "value": 85,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 86,
+          "total": 134,
+          "value": 86,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 87,
+          "total": 134,
+          "value": 87,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 88,
+          "total": 134,
+          "value": 88,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 89,
+          "total": 134,
+          "value": 89,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 90,
+          "total": 134,
+          "value": 90,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 91,
+          "total": 134,
+          "value": 91,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 92,
+          "total": 134,
+          "value": 92,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 93,
+          "total": 134,
+          "value": 93,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 94,
+          "total": 134,
+          "value": 94,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 95,
+          "total": 134,
+          "value": 95,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 96,
+          "total": 134,
+          "value": 96,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 97,
+          "total": 134,
+          "value": 97,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 98,
+          "total": 134,
+          "value": 98,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 99,
+          "total": 134,
+          "value": 99,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 100,
+          "total": 134,
+          "value": 100,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 101,
+          "total": 134,
+          "value": 101,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 102,
+          "total": 134,
+          "value": 102,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 103,
+          "total": 134,
+          "value": 103,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 104,
+          "total": 134,
+          "value": 104,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 105,
+          "total": 134,
+          "value": 105,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 106,
+          "total": 134,
+          "value": 106,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 107,
+          "total": 134,
+          "value": 107,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 108,
+          "total": 134,
+          "value": 108,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 109,
+          "total": 134,
+          "value": 109,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 110,
+          "total": 134,
+          "value": 110,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 111,
+          "total": 134,
+          "value": 111,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 112,
+          "total": 134,
+          "value": 112,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 113,
+          "total": 134,
+          "value": 113,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 114,
+          "total": 134,
+          "value": 114,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 115,
+          "total": 134,
+          "value": 115,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 116,
+          "total": 134,
+          "value": 116,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 117,
+          "total": 134,
+          "value": 117,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 118,
+          "total": 134,
+          "value": 118,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 119,
+          "total": 134,
+          "value": 119,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 120,
+          "total": 134,
+          "value": 120,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 121,
+          "total": 134,
+          "value": 121,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 122,
+          "total": 134,
+          "value": 122,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 123,
+          "total": 134,
+          "value": 123,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 124,
+          "total": 134,
+          "value": 124,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 125,
+          "total": 134,
+          "value": 125,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 126,
+          "total": 134,
+          "value": 126,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 127,
+          "total": 134,
+          "value": 127,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 128,
+          "total": 134,
+          "value": 128,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 129,
+          "total": 134,
+          "value": 129,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 130,
+          "total": 134,
+          "value": 130,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 131,
+          "total": 134,
+          "value": 131,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 132,
+          "total": 134,
+          "value": 132,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 133,
+          "total": 134,
+          "value": 133,
+          "cards": 2,
+          "chapters": 2
+        },
+        {
+          "loaded": 134,
+          "total": 134,
+          "value": 134,
+          "cards": 3,
+          "chapters": 3
+        }
+      ],
+      "status": "PASS"
+    }
+  ],
+  "status": "PASS"
+}

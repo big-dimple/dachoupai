@@ -1,0 +1,61 @@
+{
+  "base": "9c41dfff2a66ffa66b5cf812c2742caae9cdf125",
+  "head": "821517fe0d1b1c7ba55a2fdb0a3189213d690845",
+  "dirty": "?? docs/production/evidence/loading-opening-2026-10-15/",
+  "browser": "151.0.7922.173",
+  "scope": "Native real preload, software Chromium; bounded controlled transport delays expose animation. No physical device / subjective user acceptance.",
+  "cases": [
+    {
+      "width": 1366,
+      "height": 900,
+      "weak": true,
+      "name": "1366-cpu4",
+      "errors": [],
+      "zero": {
+        "loaded": 8,
+        "total": 134,
+        "value": 8,
+        "cards": 1,
+        "chapters": 1,
+        "overflow": false,
+        "scroll": false,
+        "scrollX": false,
+        "animations": 22,
+        "brand": {
+          "x": 526.515625,
+          "y": 249.671875,
+          "width": 312.953125,
+          "height": 150.375,
+          "top": 249.671875,
+          "right": 839.46875,
+          "bottom": 400.046875,
+          "left": 526.515625
+        },
+        "taglineBottom": 400.046875,
+        "cardTop": 456.859375,
+        "letters": [
+          {
+            "text": "唐",
+            "transform": "matrix(1, 0, 0, 1, 0, 0)"
+          },
+          {
+            "text": "宋",
+            "transform": "matrix(1, 0, 0, 1, 0, 0)"
+          },
+          {
+            "text": "牌",
+            "transform": "matrix(1, 0, 0, 1, 0, 0)"
+          }
+        ],
+        "actions": [
+          {
+            "height": 44,
+            "bottom": 788.53125
+          }
+        ]
+      }
+    }
+  ],
+  "status": "FAIL",
+  "error": "page.waitForFunction: Timeout 30000ms exceeded.\n    at /workspace/dachoupai/harness/loading-opening.mjs:35:22"
+}

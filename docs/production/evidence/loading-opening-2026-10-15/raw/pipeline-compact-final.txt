@@ -1,0 +1,4 @@
+PASS pc-cold 5537ms
+FAIL page.waitForFunction: Timeout 30000ms exceeded.
+    at waitScene (/workspace/dachoupai/harness/ui.mjs:3:41)
+    at /workspace/dachoupai/harness/loading-preload.mjs:29:10
