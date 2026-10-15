@@ -16,15 +16,21 @@ export function viewportMetrics() {
 
 export function installViewport(game:Phaser.Game):void {
   const host=document.getElementById('app')!;
+  const syncInputBounds=()=>{
+    game.scale.updateBounds();
+    // updateBounds alone leaves Phaser's pointer conversion at the previous CSS size.
+    const {baseSize,canvasBounds,displayScale}=game.scale;
+    displayScale.set(baseSize.width/canvasBounds.width,baseSize.height/canvasBounds.height);
+  };
   const resize=()=>{
     const {width,height,density}=viewportMetrics();
     logicalSizes.set(game,{width,height});
     const backingWidth=Math.ceil(width*density),backingHeight=Math.ceil(height*density);
-    if(game.scale.width===backingWidth&&game.scale.height===backingHeight&&game.scale.zoom===1/density){game.canvas.style.width=width+'px';game.canvas.style.height=height+'px';game.scale.updateBounds();return;}
+    if(game.scale.width===backingWidth&&game.scale.height===backingHeight&&game.scale.zoom===1/density){game.canvas.style.width=width+'px';game.canvas.style.height=height+'px';syncInputBounds();return;}
     game.scale.zoom=1/density;
     game.scale.resize(backingWidth,backingHeight);
     // Phaser autoRound floors backing/zoom CSS dimensions at fractional DPR.
-    game.canvas.style.width=width+'px';game.canvas.style.height=height+'px';game.scale.updateBounds();
+    game.canvas.style.width=width+'px';game.canvas.style.height=height+'px';syncInputBounds();
   };
   const observer=new ResizeObserver(resize);observer.observe(host);
   window.visualViewport?.addEventListener('resize',resize);
