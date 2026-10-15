@@ -1,0 +1,766 @@
+{
+  "head": "48b4e3fd67191f4553e2179f87cdbe1d5efc2e58",
+  "sourceTree": "18733c7eb10b6afee22049454ccb975c735722a7",
+  "rows": [
+    {
+      "id": "a05",
+      "name": "熟面孔",
+      "scoring": [
+        {
+          "phase": "jokerScore",
+          "condition": {
+            "kind": "always"
+          },
+          "operations": [
+            {
+              "kind": "read-growth",
+              "key": "heat",
+              "target": "heat"
+            }
+          ]
+        }
+      ],
+      "growth": [
+        {
+          "phase": "afterHand",
+          "condition": {
+            "kind": "hand-type-relation",
+            "values": [
+              "two-pair",
+              "three-kind",
+              "straight",
+              "flush",
+              "full-house",
+              "four-kind",
+              "straight-flush",
+              "five-kind",
+              "flush-house",
+              "flush-five"
+            ],
+            "relation": "same"
+          },
+          "operations": [
+            {
+              "kind": "add-growth",
+              "key": "heat",
+              "value": {
+                "n": "6",
+                "d": "1"
+              },
+              "cap": {
+                "n": "90",
+                "d": "1"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "b03",
+      "name": "老搭档",
+      "scoring": [
+        {
+          "phase": "jokerScore",
+          "condition": {
+            "kind": "always"
+          },
+          "operations": [
+            {
+              "kind": "read-growth",
+              "key": "multiplier",
+              "target": "multiplier"
+            }
+          ]
+        }
+      ],
+      "growth": [
+        {
+          "phase": "afterHand",
+          "condition": {
+            "kind": "hand-type-in",
+            "values": [
+              "pair",
+              "two-pair",
+              "three-kind",
+              "full-house",
+              "four-kind",
+              "five-kind",
+              "flush-house",
+              "flush-five"
+            ]
+          },
+          "operations": [
+            {
+              "kind": "add-growth",
+              "key": "multiplier",
+              "value": {
+                "n": "1",
+                "d": "4"
+              },
+              "cap": {
+                "n": "3",
+                "d": "1"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "c04",
+      "name": "搭台阶",
+      "scoring": [
+        {
+          "phase": "jokerScore",
+          "condition": {
+            "kind": "hand-type-in",
+            "values": [
+              "straight",
+              "straight-flush"
+            ]
+          },
+          "operations": [
+            {
+              "kind": "add-heat",
+              "value": {
+                "n": "50",
+                "d": "1"
+              }
+            }
+          ]
+        },
+        {
+          "phase": "jokerScore",
+          "condition": {
+            "kind": "always"
+          },
+          "operations": [
+            {
+              "kind": "read-growth",
+              "key": "heat",
+              "target": "heat"
+            }
+          ]
+        }
+      ],
+      "growth": [
+        {
+          "phase": "afterHand",
+          "condition": {
+            "kind": "hand-type-in",
+            "values": [
+              "straight",
+              "straight-flush"
+            ]
+          },
+          "operations": [
+            {
+              "kind": "add-growth",
+              "key": "heat",
+              "value": {
+                "n": "10",
+                "d": "1"
+              },
+              "cap": {
+                "n": "100",
+                "d": "1"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "c06",
+      "name": "越染越深",
+      "scoring": [
+        {
+          "phase": "jokerScore",
+          "condition": {
+            "kind": "always"
+          },
+          "operations": [
+            {
+              "kind": "read-growth",
+              "key": "multiplier",
+              "target": "multiplier"
+            }
+          ]
+        }
+      ],
+      "growth": [
+        {
+          "phase": "afterHand",
+          "condition": {
+            "kind": "hand-type-in",
+            "values": [
+              "flush",
+              "straight-flush",
+              "flush-house",
+              "flush-five"
+            ]
+          },
+          "operations": [
+            {
+              "kind": "add-growth",
+              "key": "multiplier",
+              "value": {
+                "n": "1",
+                "d": "2"
+              },
+              "cap": {
+                "n": "6",
+                "d": "1"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "d03",
+      "name": "等得住",
+      "scoring": [
+        {
+          "phase": "jokerScore",
+          "condition": {
+            "kind": "always"
+          },
+          "operations": [
+            {
+              "kind": "read-growth",
+              "key": "heat",
+              "target": "heat"
+            }
+          ]
+        }
+      ],
+      "growth": [
+        {
+          "phase": "afterHand",
+          "condition": {
+            "kind": "held-count",
+            "minimum": 3
+          },
+          "operations": [
+            {
+              "kind": "add-growth",
+              "key": "heat",
+              "value": {
+                "n": "4",
+                "d": "1"
+              },
+              "cap": {
+                "n": "60",
+                "d": "1"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "e05",
+      "name": "置办行头",
+      "scoring": [
+        {
+          "phase": "jokerScore",
+          "condition": {
+            "kind": "always"
+          },
+          "operations": [
+            {
+              "kind": "read-growth",
+              "key": "heat",
+              "target": "heat"
+            }
+          ]
+        }
+      ],
+      "growth": [
+        {
+          "phase": "onBuyOffer",
+          "condition": {
+            "kind": "always"
+          },
+          "operations": [
+            {
+              "kind": "add-growth",
+              "key": "heat",
+              "value": {
+                "n": "8",
+                "d": "1"
+              },
+              "cap": {
+                "n": "80",
+                "d": "1"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "a06",
+      "name": "独家戏",
+      "scoring": [
+        {
+          "phase": "jokerScore",
+          "condition": {
+            "kind": "hand-type-in",
+            "values": [
+              "two-pair",
+              "three-kind",
+              "straight",
+              "flush",
+              "full-house",
+              "four-kind",
+              "straight-flush",
+              "five-kind",
+              "flush-house",
+              "flush-five"
+            ]
+          },
+          "operations": [
+            {
+              "kind": "read-coefficient",
+              "key": "coefficient"
+            }
+          ]
+        }
+      ],
+      "growth": [
+        {
+          "phase": "afterHand",
+          "condition": {
+            "kind": "hand-type-relation",
+            "values": [
+              "two-pair",
+              "three-kind",
+              "straight",
+              "flush",
+              "full-house",
+              "four-kind",
+              "straight-flush",
+              "five-kind",
+              "flush-house",
+              "flush-five"
+            ],
+            "relation": "different"
+          },
+          "operations": [
+            {
+              "kind": "multiply-coefficient-once",
+              "key": "coefficient",
+              "value": {
+                "n": "23",
+                "d": "20"
+              },
+              "initial": {
+                "n": "3",
+                "d": "2"
+              },
+              "cap": {
+                "n": "1000000",
+                "d": "1"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "c05",
+      "name": "换布景",
+      "scoring": [
+        {
+          "phase": "jokerScore",
+          "condition": {
+            "kind": "always"
+          },
+          "operations": [
+            {
+              "kind": "consume-growth",
+              "key": "pendingHeat",
+              "target": "heat"
+            }
+          ]
+        }
+      ],
+      "growth": [
+        {
+          "phase": "onDiscard",
+          "condition": {
+            "kind": "discard-same-suit",
+            "minimum": 2
+          },
+          "operations": [
+            {
+              "kind": "add-growth",
+              "key": "pendingHeat",
+              "value": {
+                "n": "40",
+                "d": "1"
+              },
+              "cap": {
+                "n": "80",
+                "d": "1"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "e06",
+      "name": "旧物新用",
+      "scoring": [
+        {
+          "phase": "jokerScore",
+          "condition": {
+            "kind": "always"
+          },
+          "operations": [
+            {
+              "kind": "read-growth",
+              "key": "multiplier",
+              "target": "multiplier"
+            }
+          ]
+        }
+      ],
+      "growth": [
+        {
+          "phase": "onSellJoker",
+          "condition": {
+            "kind": "always"
+          },
+          "operations": [
+            {
+              "kind": "add-growth",
+              "key": "multiplier",
+              "value": {
+                "n": "1",
+                "d": "2"
+              },
+              "cap": {
+                "n": "3",
+                "d": "1"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "f05",
+      "name": "越说越顺",
+      "scoring": [
+        {
+          "phase": "jokerScore",
+          "condition": {
+            "kind": "always"
+          },
+          "operations": [
+            {
+              "kind": "read-growth",
+              "key": "multiplier",
+              "target": "multiplier"
+            }
+          ]
+        }
+      ],
+      "growth": [
+        {
+          "phase": "afterHand",
+          "condition": {
+            "kind": "always"
+          },
+          "operations": [
+            {
+              "kind": "update-score-growth",
+              "key": "multiplier",
+              "value": {
+                "n": "1",
+                "d": "4"
+              },
+              "cap": {
+                "n": "4",
+                "d": "1"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "b10",
+      "name": "练对子",
+      "scoring": [
+        {
+          "phase": "jokerScore",
+          "condition": {
+            "kind": "always"
+          },
+          "operations": [
+            {
+              "kind": "read-growth",
+              "key": "heat",
+              "target": "heat"
+            }
+          ]
+        }
+      ],
+      "growth": [
+        {
+          "phase": "afterHand",
+          "condition": {
+            "kind": "hand-type-in",
+            "values": [
+              "pair",
+              "two-pair",
+              "three-kind",
+              "full-house",
+              "four-kind",
+              "five-kind",
+              "flush-house",
+              "flush-five"
+            ]
+          },
+          "operations": [
+            {
+              "kind": "add-growth",
+              "key": "heat",
+              "value": {
+                "n": "10",
+                "d": "1"
+              },
+              "cap": {
+                "n": "100",
+                "d": "1"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "d09",
+      "name": "回声越来越近",
+      "scoring": [
+        {
+          "phase": "jokerScore",
+          "condition": {
+            "kind": "always"
+          },
+          "operations": [
+            {
+              "kind": "read-growth",
+              "key": "multiplier",
+              "target": "multiplier"
+            }
+          ]
+        }
+      ],
+      "growth": [
+        {
+          "phase": "afterHand",
+          "condition": {
+            "kind": "extra-retrigger"
+          },
+          "operations": [
+            {
+              "kind": "add-growth",
+              "key": "multiplier",
+              "value": {
+                "n": "1",
+                "d": "5"
+              },
+              "cap": {
+                "n": "3",
+                "d": "1"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "e11",
+      "name": "长期捧场",
+      "scoring": [
+        {
+          "phase": "jokerScore",
+          "condition": {
+            "kind": "always"
+          },
+          "operations": [
+            {
+              "kind": "read-coefficient",
+              "key": "coefficient"
+            }
+          ]
+        }
+      ],
+      "growth": [
+        {
+          "phase": "onStageClear",
+          "condition": {
+            "kind": "no-joker-sale-this-stage"
+          },
+          "operations": [
+            {
+              "kind": "add-coefficient",
+              "key": "coefficient",
+              "initial": {
+                "n": "1",
+                "d": "1"
+              },
+              "value": {
+                "n": "1",
+                "d": "10"
+              },
+              "cap": {
+                "n": "2",
+                "d": "1"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "e12",
+      "name": "淘旧摊",
+      "scoring": [
+        {
+          "phase": "jokerScore",
+          "condition": {
+            "kind": "always"
+          },
+          "operations": [
+            {
+              "kind": "read-growth",
+              "key": "heat",
+              "target": "heat"
+            }
+          ]
+        }
+      ],
+      "growth": [
+        {
+          "phase": "onReroll",
+          "condition": {
+            "kind": "always"
+          },
+          "operations": [
+            {
+              "kind": "add-growth",
+              "key": "heat",
+              "value": {
+                "n": "3",
+                "d": "1"
+              },
+              "cap": {
+                "n": "60",
+                "d": "1"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "f11",
+      "name": "越挫越会",
+      "scoring": [
+        {
+          "phase": "jokerScore",
+          "condition": {
+            "kind": "always"
+          },
+          "operations": [
+            {
+              "kind": "read-growth",
+              "key": "heat",
+              "target": "heat"
+            }
+          ]
+        }
+      ],
+      "growth": [
+        {
+          "phase": "afterHand",
+          "condition": {
+            "kind": "hand-score-below-target",
+            "ratio": {
+              "n": "1",
+              "d": "10"
+            }
+          },
+          "operations": [
+            {
+              "kind": "add-growth",
+              "key": "heat",
+              "value": {
+                "n": "10",
+                "d": "1"
+              },
+              "cap": {
+                "n": "100",
+                "d": "1"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "f12",
+      "name": "真正的压轴",
+      "scoring": [
+        {
+          "phase": "jokerScore",
+          "condition": {
+            "kind": "always"
+          },
+          "operations": [
+            {
+              "kind": "read-coefficient",
+              "key": "coefficient"
+            }
+          ]
+        }
+      ],
+      "growth": [
+        {
+          "phase": "onStageClear",
+          "condition": {
+            "kind": "resource",
+            "resource": "hands-after",
+            "equals": 0
+          },
+          "operations": [
+            {
+              "kind": "add-coefficient",
+              "key": "coefficient",
+              "initial": {
+                "n": "1",
+                "d": "1"
+              },
+              "value": {
+                "n": "1",
+                "d": "10"
+              },
+              "cap": {
+                "n": "5",
+                "d": "2"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,10 +1,12 @@
+import {coefficientLabelCandidates} from './JokerLabel';
+import type {SelectionReadiness} from './JokerExperience';
 import type {R2RunState} from '../domain/r2Run';
 import {r2GrowthMinimums,type R2JokerInstance,type R2JokerDefinition,type Operation} from '../content/r2Schema';
 import {r2JokerDefinitionFor} from '../domain/r2ContentProfiles';
 import {r2ScoreConditionMatches,r2TransactionConditionMatches,type R2ScoreConditionContext} from '../domain/r2Conditions';
 import {Rational} from '../domain/rational';
 import {HAND_LABELS} from '../content/handLabels';
-import {r2ConditionDescription,type JokerMemoryContext} from './JokerMemory';
+import {jokerMemory,r2ConditionDescription,type JokerMemoryContext} from './JokerMemory';
 import {fractionText} from './scoreText';
 /** Shared saved growth and cap headroom; no conditions, scores or random actions. */
 export function growthBounds(definition:R2JokerDefinition,joker:R2JokerInstance|undefined,op:Extract<Operation,{kind:'add-growth'}>){
@@ -60,3 +62,33 @@ export function growthOpportunityForDefinition(d:R2JokerDefinition,joker:R2Joker
 }
 type GrowthWrite=Extract<Operation,{kind:'add-growth'|'add-coefficient'|'multiply-coefficient-once'|'update-score-growth'}>;
 export function isGrowthWrite(o:Operation):o is GrowthWrite{return ['add-growth','add-coefficient','multiply-coefficient-once','update-score-growth'].includes(o.kind);}
+
+/** Scoring reads and immediate effects have their own conditions, independent of growth writes. */
+function growthScoring(definition:R2JokerDefinition,joker:R2JokerInstance,ctx:JokerMemoryContext,memory:ReturnType<typeof jokerMemory>){
+ const stored={...r2GrowthMinimums(definition),...joker.growth};
+ const reads=definition.hooks.flatMap((hook,index)=>hook.operations.flatMap(op=>{
+  if(op.kind!=='read-growth'&&op.kind!=='consume-growth'&&op.kind!=='read-coefficient')return [];
+  const value=stored[op.key],coefficient=op.kind==='read-coefficient',amount=fractionText(value),unit=coefficient?'倍率×':op.target==='heat'?'热度+':'倍率+';
+  const compact=coefficient?'×'+amount:(op.target==='heat'?'热+':'倍+')+amount,status=memory.hooks[index].status;
+  return [{status,compact,displayCandidates:coefficient?coefficientLabelCandidates(value):[compact],effect:unit+amount,condition:hook.condition.kind==='always'?'任意牌型':r2ConditionDescription(hook.condition),consumed:op.kind==='consume-growth',positive:Rational.fromJSON(value).compare(new Rational(coefficient?1n:0n))>0}];
+ }));
+ const immediate=definition.hooks.flatMap((hook,index)=>hook.operations.flatMap(op=>{
+  if(op.kind!=='add-heat'&&op.kind!=='add-multiplier')return [];
+  return [{status:memory.hooks[index].status,effect:(op.kind==='add-heat'?'热度+':'倍率+')+fractionText(op.value),condition:r2ConditionDescription(hook.condition)}];
+ }));
+ const active=reads.filter(r=>r.status==='条件满足'),instant=immediate.some(r=>r.status==='条件满足');
+ const readiness:SelectionReadiness=ctx.scoringLimited?'limited':!ctx.facts?'pending':active.some(r=>r.positive)||instant?'ready':reads.some(r=>r.status==='事件时检查')?'pending':'unmet';
+ const instantEffects=immediate.filter(r=>r.status==='条件满足').map(r=>r.effect.replace('热度','热').replace('倍率','倍'));
+ const instantOnly=instant&&!active.some(r=>r.positive);
+ const label=ctx.scoringLimited?'计分停用':!ctx.facts?'待选·'+reads.map(r=>r.compact).join('／'):instantOnly?'本手即时'+instantEffects.join('／'):active.length?'本手'+active.map(r=>r.compact).join('／'):'本手不读取';
+ const body=reads.map(r=>'本手读取：'+(ctx.scoringLimited?'计分停用，已存'+r.effect+'不计入':r.status==='条件满足'?r.effect:r.status==='当前未满足'?'所选不满足读取条件；已存'+r.effect:'待选牌确认；已存'+r.effect)+'；读取条件：'+r.condition+(r.consumed?'；下一次实际读取后消耗，计分停用时不读也不消耗，场末清空。':'。')).join('\n')+
+  immediate.map(r=>'\n即时效果：'+r.effect+'；'+(ctx.scoringLimited?'本手计分停用':r.status==='条件满足'?'所选满足':r.status==='当前未满足'?'所选不满足':'待选牌确认')+'；'+r.condition+'。').join('');
+ const labelCandidates=ctx.scoringLimited?[label,'停用 ›']:!ctx.facts?[label,'待选 ›']:instantOnly?[label,...instantEffects.flatMap(t=>['即时'+t,t])]:active.length?['本手'+active.map(r=>r.displayCandidates[0]).join('／'),...active.flatMap(r=>r.displayCandidates.flatMap(text=>['读'+text,...(/^(热|倍)\+(.+)$/.test(text)?[text.replace(/^(热|倍)\+(.+)$/,(_,unit,amount)=>'读'+amount+unit)]:[]),text]))]:[label,'不读取'];
+ return {readiness,label,labelCandidates,body};
+}
+/** One shared adapter: score readiness is separate from the independently clocked growth opportunity. */
+export function growthSelection(definition:R2JokerDefinition,joker:R2JokerInstance,ctx:JokerMemoryContext){
+ const growth=growthOpportunityForDefinition(definition,joker,ctx);if(!growth)return;
+ const scoring=growthScoring(definition,joker,ctx,jokerMemory(definition,joker,ctx));
+ return {...scoring,scoring,growth,body:scoring.body+'\n新增成长：'+growth.body};
+}

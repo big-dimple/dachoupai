@@ -1,0 +1,41 @@
+{
+  "base": "4d2ff4ca8487f2f00b55516822d1a28ac3c1751f",
+  "head": "48b4e3fd67191f4553e2179f87cdbe1d5efc2e58",
+  "checks": [
+    {
+      "path": "src/domain",
+      "base": "bd1f9b2c5a2b7eb4d143b59a094694b12adc8485",
+      "head": "bd1f9b2c5a2b7eb4d143b59a094694b12adc8485"
+    },
+    {
+      "path": "src/content",
+      "base": "e8c3794be5b0fcb74da4aeb9e6adc63c22388345",
+      "head": "e8c3794be5b0fcb74da4aeb9e6adc63c22388345"
+    },
+    {
+      "path": "src/application",
+      "base": "1a325d51795f54526ec9f3f313cceb69763a1971",
+      "head": "1a325d51795f54526ec9f3f313cceb69763a1971"
+    },
+    {
+      "path": "src/platform",
+      "base": "1db66e1b48ed188e9b50897e207ca0555d92062b",
+      "head": "1db66e1b48ed188e9b50897e207ca0555d92062b"
+    },
+    {
+      "path": "src/core",
+      "base": "0ff7bdff28720a91b072c5c376b34416902bbbe0",
+      "head": "0ff7bdff28720a91b072c5c376b34416902bbbe0"
+    },
+    {
+      "path": "src/audio",
+      "base": "7f6d2d0dd34313a4099d34cfd36b2baa748f83c2",
+      "head": "7f6d2d0dd34313a4099d34cfd36b2baa748f83c2"
+    },
+    {
+      "path": "public",
+      "base": "c4a6ec74e7fd754b0f300b973020f8afed7542e1",
+      "head": "c4a6ec74e7fd754b0f300b973020f8afed7542e1"
+    }
+  ]
+}

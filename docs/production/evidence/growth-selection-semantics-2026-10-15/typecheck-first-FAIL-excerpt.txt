@@ -1,0 +1,6 @@
+Excerpt preserved from the tool output of the first check containing the new tests; the original full typecheck.txt was overwritten by a later successful check.
+
+tests/growth-selection-semantics.test.ts(11,257): error TS2345: Argument of type ... is not assignable ...
+  Property 'scoringLimited' is missing in type ... but required in type ...
+
+Resolution: pass scoringLimited:false to publicJokerMemoryContext in the test fixture. Product type guards unchanged.

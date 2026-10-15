@@ -1,0 +1,43 @@
+
+ RUN  v4.1.11 /workspace/growth-display
+
+ ❯ tests/all-growth-opportunities.test.ts (17 tests | 1 failed) 165ms
+   × f05 remains result-only even at cap, names baseline and reset instead of forecasting score 10ms
+ ❯ tests/joker-experience.test.ts (7 tests | 1 failed) 114ms
+   × first-layer growth feedback retains cap clipping and zero-headroom facts 12ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/all-growth-opportunities.test.ts > f05 remains result-only even at cap, names baseline and reset instead of forecasting score
+AssertionError: expected 'ready' to be 'pending' // Object.is equality
+
+Expected: "pending"
+Received: "ready"
+
+ ❯ tests/all-growth-opportunities.test.ts:28:499
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  tests/joker-experience.test.ts > first-layer growth feedback retains cap clipping and zero-headroom facts
+AssertionError: expected '读热+100 · 成长满' to be '成长满' // Object.is equality
+
+Expected: "成长满"
+Received: "读热+100 · 成长满"
+
+ ❯ tests/joker-experience.test.ts:50:157
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  2 failed | 4 passed (6)
+      Tests  2 failed | 66 passed (68)
+   Start at  11:42:06
+   Duration  2.16s (transform 2.14s, setup 0ms, import 3.23s, tests 1.88s, environment 1ms)
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice

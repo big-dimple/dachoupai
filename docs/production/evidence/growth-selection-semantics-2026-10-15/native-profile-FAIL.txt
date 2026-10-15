@@ -1,0 +1,13 @@
+/workspace/growth-display/src/application/checkpoint.ts:109
+  throw Error(message);
+        ^
+
+Error: invalid-save-fields
+    at fail (/workspace/growth-display/src/application/checkpoint.ts:109:9)
+    at record (/workspace/growth-display/src/application/checkpoint.ts:114:139)
+    at jokers (/workspace/growth-display/src/application/checkpoint.ts:192:20)
+    at validateState (/workspace/growth-display/src/application/checkpoint.ts:1061:3)
+    at makeCheckpoint (/workspace/growth-display/src/application/checkpoint.ts:1339:3)
+    at file:///workspace/growth-display/harness/growth-selection-semantics.mjs:18:226
+
+Node.js v24.19.0
