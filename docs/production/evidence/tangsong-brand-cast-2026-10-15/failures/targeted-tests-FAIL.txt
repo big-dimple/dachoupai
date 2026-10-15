@@ -1,0 +1,46 @@
+
+> dachoupai@0.1.0 test
+> vitest run tests/tangsong-identity.test.ts tests/character-art.test.ts tests/assist-entry-guards.test.ts tests/amo-assist-consumption-save.test.ts tests/hand-rule-order.test.ts tests/hero-ability-cue.test.ts tests/characters.test.ts tests/handdrawn-art.test.ts tests/build-keepsake.test.ts tests/hero-stage-continuity.test.ts tests/touye-wager.test.ts
+
+
+ RUN  v4.1.11 /workspace/dachoupai
+
+ ❯ tests/hero-ability-cue.test.ts (6 tests | 1 failed) 863ms
+   × money, qualification, no discard budget, used handoff and old identities never get a ready accent 38ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/hero-ability-cue.test.ts > money, qualification, no discard budget, used handoff and old identities never get a ready accent
+AssertionError: expected { label: '花蕊夫人·不足10金', …(2) } to match object { available: false, label: '谢幕·不足10金' }
+(1 matching property omitted from actual)
+
+- Expected
++ Received
+
+  {
+    "available": false,
+-   "label": "谢幕·不足10金",
++   "label": "花蕊夫人·不足10金",
+  }
+
+ ❯ tests/hero-ability-cue.test.ts:31:67
+     29| });
+     30| it('money, qualification, no discard budget, used handoff and old iden…
+     31|  const x=entered('xiemu');expect(heroAbilityCue(x,facts(x),main)).toMa…
+       |                                                                   ^
+     32|  const e=entered('erxiang');expect(heroAbilityCue(e,facts(e,[cards[0]]…
+     33|  const a=send(e,{type:'PlayHand',selectedIds:cards.slice(0,2),erxiangT…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 10 passed (11)
+      Tests  1 failed | 100 passed (101)
+   Start at  11:23:36
+   Duration  4.15s (transform 2.69s, setup 0ms, import 4.77s, tests 5.82s, environment 4ms)
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice

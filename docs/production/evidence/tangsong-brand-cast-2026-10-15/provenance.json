@@ -1,0 +1,19 @@
+{
+  "base": "d31df43d615e358542661a4a01f41feac071928b",
+  "validatedHead": "0097a5a1a30b56a520775358e0e301ab514dc4de",
+  "srcTree": "7a71856a6801fee71f69bcc37f6559d4b8eb8836",
+  "branch": "dev/tangsong-brand-cast-20261015",
+  "worktree": "/workspace/dachoupai",
+  "productHead": "c469d25485f293a4c7b488fdc929be8bef0e0b7f",
+  "commits": [
+    "d0d490ccf8a1e352e0377ac28ab9b278702ccec3 feat: wire Tang Song brand and named youth cast with explicit art placeholders",
+    "389be653ff9e828274bbec8dadd2ab30d21f1021 fix: keep pending artwork explicit in captions and accessible descriptions",
+    "c469d25485f293a4c7b488fdc929be8bef0e0b7f fix: adapt legacy boss references only at player display boundaries",
+    "0097a5a1a30b56a520775358e0e301ab514dc4de test: verify late cast texture ownership before warming every hero"
+  ],
+  "separateGrowth": {
+    "worktree": "/workspace/growth-display",
+    "branch": "fix/growth-display-semantics-20261015",
+    "head": "6be7ecbc737fea108cbbd1ab762d382850ada0c3"
+  }
+}

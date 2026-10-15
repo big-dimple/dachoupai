@@ -1,0 +1,348 @@
+
+> dachoupai@0.1.0 test
+> vitest run
+
+
+ RUN  v4.1.11 /workspace/dachoupai
+
+ ❯ tests/handdrawn-art.test.ts (16 tests | 1 failed) 2600ms
+   × six role IDs own their portrait/avatar/selection; JQK are rank-specific independent faces 6ms
+ ❯ tests/touye-wager.test.ts (14 tests | 2 failed) 1031ms
+     × actual next hand settles one deterministic role multiplier (winning=false) 55ms
+     × actual next hand settles one deterministic role multiplier (winning=true) 62ms
+ ❯ tests/hand-rule-order.test.ts (9 tests | 5 failed) 209ms
+     × xiemu current late active 21ms
+     × azao current late active 22ms
+     × recognizes both version and hash for every saved timing identity 4ms
+     × keeps all three Amo timing contracts distinct and never adds solo ×3 to assist saves 1ms
+     × does not invent final role multipliers for current handoff/refill or missing identity 2ms
+ ❯ tests/hero-ability-cue.test.ts (6 tests | 2 failed) 603ms
+   × money, qualification, no discard budget, used handoff and old identities never get a ready accent 23ms
+   × committed handoff and wager results explain actual sources; promises and altered events cannot become receipts 29ms
+ ❯ tests/amo-assist-consumption-save.test.ts (12 tests | 1 failed) 216ms
+   × result assist identity reads a real committed event, never a draft or an unrelated growth event 8ms
+ ❯ tests/assist-entry-guards.test.ts (4 tests | 1 failed) 124ms
+   × each hero disables the executable entry when read-only, saving, paused, replacing or without lease 30ms
+ ❯ tests/hero-stage-continuity.test.ts (15 tests | 6 failed) 186ms
+   × amo distinguishes the upcoming stage from absent history without mutation 21ms
+   × touye distinguishes the upcoming stage from absent history without mutation 6ms
+   × laohuan distinguishes the upcoming stage from absent history without mutation 6ms
+   × erxiang distinguishes the upcoming stage from absent history without mutation 3ms
+   × azao distinguishes the upcoming stage from absent history without mutation 4ms
+   × xiemu distinguishes the upcoming stage from absent history without mutation 3ms
+ ❯ tests/build-keepsake.test.ts (10 tests | 6 failed) 60ms
+   × amo uses its actual new identity and existing portrait without changing a state 17ms
+   × touye uses its actual new identity and existing portrait without changing a state 3ms
+   × laohuan uses its actual new identity and existing portrait without changing a state 6ms
+   × erxiang uses its actual new identity and existing portrait without changing a state 2ms
+   × azao uses its actual new identity and existing portrait without changing a state 2ms
+   × xiemu uses its actual new identity and existing portrait without changing a state 2ms
+ ❯ tests/characters.test.ts (6 tests | 1 failed) 13ms
+     × 六位角色的立绘路径均指向自己的资源文件 9ms
+
+⎯⎯⎯⎯⎯⎯ Failed Tests 25 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/amo-assist-consumption-save.test.ts > result assist identity reads a real committed event, never a draft or an unrelated growth event
+AssertionError: expected '苏轼助攻 ×2 · 用掉2张' to be '阿默助攻 ×2 · 用掉2张' // Object.is equality
+
+Expected: "阿默助攻 ×2 · 用掉2张"
+Received: "苏轼助攻 ×2 · 用掉2张"
+
+ ❯ tests/amo-assist-consumption-save.test.ts:63:36
+     61|  const run=fixture();run.send({type:'PlayAssistedHand',selectedIds:mai…
+     62|  const trace=run.state.lastTrace!,before=JSON.stringify(run.state);if(…
+     63|  expect(savedAssistSummary(trace)).toBe('阿默助攻 ×2 · 用掉2张');
+       |                                    ^
+     64|  expect(savedAssistSummary({...trace,events:trace.events.filter(e=>e.s…
+     65|  expect(savedAssistSummary({...trace,events:trace.events.map(e=>e.sour…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/25]⎯
+
+ FAIL  tests/assist-entry-guards.test.ts > each hero disables the executable entry when read-only, saving, paused, replacing or without lease
+Error: Unknown character: undefined
+ ❯ getCharacter src/game/characters.ts:46:25
+     44| export function getCharacter(id: CharacterId): CharacterDefinition {
+     45|   const character = CHARACTERS.find((item) => item.id === id);
+     46|   if (!character) throw new Error(`Unknown character: ${id}`);
+       |                         ^
+     47|   return character;
+     48| }
+ ❯ GameScene.fitMobileHeroCaption src/game/GameScene.ts:1049:16
+ ❯ GameScene.updateHeroControl src/game/GameScene.ts:1044:10
+ ❯ tests/assist-entry-guards.test.ts:21:293
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/25]⎯
+
+ FAIL  tests/build-keepsake.test.ts > amo uses its actual new identity and existing portrait without changing a state
+AssertionError: expected '/assets/cast-placeholders/amo.selecti…' to contain '/amo.selection.webp'
+
+Expected: "/amo.selection.webp"
+Received: "/assets/cast-placeholders/amo.selection.svg"
+
+ ❯ tests/build-keepsake.test.ts:11:21
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/25]⎯
+
+ FAIL  tests/build-keepsake.test.ts > touye uses its actual new identity and existing portrait without changing a state
+AssertionError: expected '/assets/cast-placeholders/touye.selec…' to contain '/touye.selection.webp'
+
+Expected: "/touye.selection.webp"
+Received: "/assets/cast-placeholders/touye.selection.svg"
+
+ ❯ tests/build-keepsake.test.ts:11:21
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/25]⎯
+
+ FAIL  tests/build-keepsake.test.ts > laohuan uses its actual new identity and existing portrait without changing a state
+AssertionError: expected '/assets/cast-placeholders/laohuan.sel…' to contain '/laohuan.selection.webp'
+
+Expected: "/laohuan.selection.webp"
+Received: "/assets/cast-placeholders/laohuan.selection.svg"
+
+ ❯ tests/build-keepsake.test.ts:11:21
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/25]⎯
+
+ FAIL  tests/build-keepsake.test.ts > erxiang uses its actual new identity and existing portrait without changing a state
+AssertionError: expected '/assets/cast-placeholders/erxiang.sel…' to contain '/erxiang.selection.webp'
+
+Expected: "/erxiang.selection.webp"
+Received: "/assets/cast-placeholders/erxiang.selection.svg"
+
+ ❯ tests/build-keepsake.test.ts:11:21
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/25]⎯
+
+ FAIL  tests/build-keepsake.test.ts > azao uses its actual new identity and existing portrait without changing a state
+AssertionError: expected '/assets/cast-placeholders/azao.select…' to contain '/azao.selection.webp'
+
+Expected: "/azao.selection.webp"
+Received: "/assets/cast-placeholders/azao.selection.svg"
+
+ ❯ tests/build-keepsake.test.ts:11:21
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/25]⎯
+
+ FAIL  tests/build-keepsake.test.ts > xiemu uses its actual new identity and existing portrait without changing a state
+AssertionError: expected '/assets/cast-placeholders/xiemu.selec…' to contain '/xiemu.selection.webp'
+
+Expected: "/xiemu.selection.webp"
+Received: "/assets/cast-placeholders/xiemu.selection.svg"
+
+ ❯ tests/build-keepsake.test.ts:11:21
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[8/25]⎯
+
+ FAIL  tests/characters.test.ts > character portrait config > 六位角色的立绘路径均指向自己的资源文件
+AssertionError: expected '/assets/cast-placeholders/amo.portrai…' to contain 'assets/handdrawn-p08/characters/amo.p…'
+
+Expected: "assets/handdrawn-p08/characters/amo.portrait.webp"
+Received: "/assets/cast-placeholders/amo.portrait.svg"
+
+ ❯ tests/characters.test.ts:9:34
+      7|     expect(new Set(CHARACTERS.map(character=>character.portrait)).size…
+      8|     for (const character of CHARACTERS) {
+      9|       expect(character.portrait).toContain(`assets/handdrawn-p08/chara…
+       |                                  ^
+     10|       const relative=character.portrait.slice(character.portrait.index…
+     11|       const bytes=readFileSync(new URL('../public/'+relative,import.me…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[9/25]⎯
+
+ FAIL  tests/hand-rule-order.test.ts > hand rule order follows saved identity and actual character events > xiemu current late active
+ FAIL  tests/hand-rule-order.test.ts > hand rule order follows saved identity and actual character events > azao current late active
+AssertionError: expected -1 to be greater than 58
+ ❯ tests/hand-rule-order.test.ts:21:187
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[10/25]⎯
+
+ FAIL  tests/hand-rule-order.test.ts > hand rule order follows saved identity and actual character events > recognizes both version and hash for every saved timing identity
+AssertionError: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ tests/hand-rule-order.test.ts:26:162
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[11/25]⎯
+
+ FAIL  tests/hand-rule-order.test.ts > hand rule order follows saved identity and actual character events > keeps all three Amo timing contracts distinct and never adds solo ×3 to assist saves
+AssertionError: expected -1 to be greater than 58
+ ❯ tests/hand-rule-order.test.ts:32:108
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[12/25]⎯
+
+ FAIL  tests/hand-rule-order.test.ts > hand rule order follows saved identity and actual character events > does not invent final role multipliers for current handoff/refill or missing identity
+AssertionError: expected '当前等级牌型基础 → 逐有效计分牌的普通点数、强化、版次、该牌大丑牌与重触…' to contain '二响交棒在对应牌的首次普通点数步骤'
+
+Expected: "二响交棒在对应牌的首次普通点数步骤"
+Received: "当前等级牌型基础 → 逐有效计分牌的普通点数、强化、版次、该牌大丑牌与重触发 → 留手强化／大丑牌 → 按持有顺序的整手大丑牌及各自版次（逆场按相反顺序） → 本手相关族加成。刘娥交棒在对应牌的首次普通点数步骤处理，不是整手后的倍率。"
+
+ ❯ tests/hand-rule-order.test.ts:36:21
+     34|   it('does not invent final role multipliers for current handoff/refil…
+     35|     const erxiang=handScoringOrder({...newRunIdentity('erxiang'),chara…
+     36|     expect(erxiang).toContain('二响交棒在对应牌的首次普通点数步骤');expect(laohuan).toC…
+       |                     ^
+     37|   });
+     38| });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[13/25]⎯
+
+ FAIL  tests/handdrawn-art.test.ts > six role IDs own their portrait/avatar/selection; JQK are rank-specific independent faces
+AssertionError: expected '/assets/cast-placeholders/amo.portrai…' to contain 'assets/handdrawn-p08/characters/amo.p…'
+
+Expected: "assets/handdrawn-p08/characters/amo.portrait.webp"
+Received: "/assets/cast-placeholders/amo.portrait.svg"
+
+ ❯ tests/handdrawn-art.test.ts:3:147
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[14/25]⎯
+
+ FAIL  tests/hero-ability-cue.test.ts > money, qualification, no discard budget, used handoff and old identities never get a ready accent
+AssertionError: expected { label: '花蕊夫人·不足10金', …(2) } to match object { available: false, label: '谢幕·不足10金' }
+(1 matching property omitted from actual)
+
+- Expected
++ Received
+
+  {
+    "available": false,
+-   "label": "谢幕·不足10金",
++   "label": "花蕊夫人·不足10金",
+  }
+
+ ❯ tests/hero-ability-cue.test.ts:31:67
+     29| });
+     30| it('money, qualification, no discard budget, used handoff and old iden…
+     31|  const x=entered('xiemu');expect(heroAbilityCue(x,facts(x),main)).toMa…
+       |                                                                   ^
+     32|  const e=entered('erxiang');expect(heroAbilityCue(e,facts(e,[cards[0]]…
+     33|  const a=send(e,{type:'PlayHand',selectedIds:cards.slice(0,2),erxiangT…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[15/25]⎯
+
+ FAIL  tests/hero-ability-cue.test.ts > committed handoff and wager results explain actual sources; promises and altered events cannot become receipts
+AssertionError: expected { …(8) } to match object { title: '二响 · 交棒已兑现', …(1) }
+(6 matching properties omitted from actual)
+
+- Expected
++ Received
+
+  {
+    "effect": "8点热度改加倍率（首次普通计分）",
+-   "title": "二响 · 交棒已兑现",
++   "title": "刘娥 · 交棒已兑现",
+  }
+
+ ❯ tests/hero-ability-cue.test.ts:39:80
+     37| it('committed handoff and wager results explain actual sources; promis…
+     38|  const s=entered('erxiang'),a=send(s,{type:'PlayHand',selectedIds:card…
+     39|  expect(savedHeroResult(a)).toContain('8点热度 → 倍率');expect(savedBenefit…
+       |                                                                                ^
+     40|  expect(savedBenefit(a,t,{...e,eventId:'not-saved'})).toBeUndefined();
+     41|  const amo=entered('amo'),b=send(amo,{type:'PlayAssistedHand',selected…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[16/25]⎯
+
+ FAIL  tests/hero-stage-continuity.test.ts > amo distinguishes the upcoming stage from absent history without mutation
+AssertionError: expected '/assets/cast-placeholders/amo.selecti…' to contain '/amo.selection.webp'
+
+Expected: "/amo.selection.webp"
+Received: "/assets/cast-placeholders/amo.selection.svg"
+
+ ❯ tests/hero-stage-continuity.test.ts:11:195
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[17/25]⎯
+
+ FAIL  tests/hero-stage-continuity.test.ts > touye distinguishes the upcoming stage from absent history without mutation
+AssertionError: expected '/assets/cast-placeholders/touye.selec…' to contain '/touye.selection.webp'
+
+Expected: "/touye.selection.webp"
+Received: "/assets/cast-placeholders/touye.selection.svg"
+
+ ❯ tests/hero-stage-continuity.test.ts:11:195
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[18/25]⎯
+
+ FAIL  tests/hero-stage-continuity.test.ts > laohuan distinguishes the upcoming stage from absent history without mutation
+AssertionError: expected '/assets/cast-placeholders/laohuan.sel…' to contain '/laohuan.selection.webp'
+
+Expected: "/laohuan.selection.webp"
+Received: "/assets/cast-placeholders/laohuan.selection.svg"
+
+ ❯ tests/hero-stage-continuity.test.ts:11:195
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[19/25]⎯
+
+ FAIL  tests/hero-stage-continuity.test.ts > erxiang distinguishes the upcoming stage from absent history without mutation
+AssertionError: expected '/assets/cast-placeholders/erxiang.sel…' to contain '/erxiang.selection.webp'
+
+Expected: "/erxiang.selection.webp"
+Received: "/assets/cast-placeholders/erxiang.selection.svg"
+
+ ❯ tests/hero-stage-continuity.test.ts:11:195
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[20/25]⎯
+
+ FAIL  tests/hero-stage-continuity.test.ts > azao distinguishes the upcoming stage from absent history without mutation
+AssertionError: expected '/assets/cast-placeholders/azao.select…' to contain '/azao.selection.webp'
+
+Expected: "/azao.selection.webp"
+Received: "/assets/cast-placeholders/azao.selection.svg"
+
+ ❯ tests/hero-stage-continuity.test.ts:11:195
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[21/25]⎯
+
+ FAIL  tests/hero-stage-continuity.test.ts > xiemu distinguishes the upcoming stage from absent history without mutation
+AssertionError: expected '/assets/cast-placeholders/xiemu.selec…' to contain '/xiemu.selection.webp'
+
+Expected: "/xiemu.selection.webp"
+Received: "/assets/cast-placeholders/xiemu.selection.svg"
+
+ ❯ tests/hero-stage-continuity.test.ts:11:195
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[22/25]⎯
+
+ FAIL  tests/touye-wager.test.ts > Touye public pre-discard commitment > actual next hand settles one deterministic role multiplier (winning=false)
+ FAIL  tests/touye-wager.test.ts > Touye public pre-discard commitment > actual next hand settles one deterministic role multiplier (winning=true)
+AssertionError: expected '秦琼 · 赌约已结算' to be '骰爷 · 赌约已结算' // Object.is equality
+
+Expected: "骰爷 · 赌约已结算"
+Received: "秦琼 · 赌约已结算"
+
+ ❯ tests/touye-wager.test.ts:30:994
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[23/25]⎯
+
+
+ Test Files  9 failed | 254 passed (263)
+      Tests  25 failed | 3559 passed (3584)
+   Start at  11:21:28
+   Duration  48.51s (transform 7.68s, setup 0ms, import 36.38s, tests 74.58s, environment 26ms)
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice
