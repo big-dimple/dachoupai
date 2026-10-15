@@ -1,5 +1,6 @@
 import {assertTouyeCoreFacts} from './r2TouyeCoreFacts';
 import {isR2CoreBuild,R2_CORE_BUILD_VERSION,R2_CORE_BUILD_HASH} from './r2GroupUpgrade';
+import {R2_S04_FINISH_VERSION,R2_S04_FINISH_HASH} from './r2GroupUpgrade';
 import {lockR2ChapterTargets,type R2ChapterTargetPlan} from './r2Chapter';
 import {r2PracticeQuotes} from './r2Practice';
 import {R2_BOUNDED_CLEAR_VERSION,R2_BOUNDED_CLEAR_HASH,isR2BoundedClear,R2_ACTIVE_MULT_VERSION,R2_ACTIVE_MULT_HASH,R2_ACTIVE_MULT_CHARACTERS,isR2ActiveMultTiming,R2_TOUYE_CORE_VERSION,R2_TOUYE_CORE_HASH,isR2TouyeNewCore} from './r2GroupUpgrade';
@@ -63,6 +64,7 @@ const sharedRuntimeHash=stableHash({jokers:SHARED_R2_JOKERS,features:R2_IMPLEMEN
 if(sharedRuntimeHash!==R2_LEGACY_CONTENT_HASH)throw Error('published-r2-contract-drift');
 
 export const R2_RULESETS=Object.freeze([
+  Object.freeze({contentVersion:R2_S04_FINISH_VERSION,contentHash:R2_S04_FINISH_HASH,amoScoreTiming:'assist-v1' as const}),
   Object.freeze({contentVersion:R2_CORE_BUILD_VERSION,contentHash:R2_CORE_BUILD_HASH,amoScoreTiming:'assist-v1' as const}),
   Object.freeze({contentVersion:R2_BOUNDED_CLEAR_VERSION,contentHash:R2_BOUNDED_CLEAR_HASH,amoScoreTiming:'assist-v1' as const}),
   Object.freeze({contentVersion:R2_ACTIVE_MULT_VERSION,contentHash:R2_ACTIVE_MULT_HASH,amoScoreTiming:'assist-v1' as const}),

@@ -7,6 +7,7 @@ import {r2CreateJoker,type R2RunState} from './r2Run';
 import {r2StageSpec} from './r2Chapter';
 import {r2ConsumableCapacity,r2HandLimit,r2HandsBudget,r2JokerCapacity} from './r2Resources';
 import {r2Pool} from './r2Shop';
+import {r2S04Issue} from './r2S04';
 import {r2CardSpecialsAllowed,r2ToolAllowed,r2ToolSupported} from './r2ToolRuntime';
 import type {Command,DomainEvent} from './run';
 
@@ -96,6 +97,7 @@ export function applyR2SpectralTool(state:R2RunState,command:Command,events:Doma
     case 'set-deck-suit': {
       if(tool.target.kind!=='suit'||cost?.kind!=='permanent-hand-penalty')return 'invalid-spectral-contract';
       if(ids.length||!action.suit||!SUITS.includes(action.suit))return 'invalid-targets';
+      const issue=r2S04Issue(state,action.suit);if(issue)return issue;
       if(living.every(card=>card.suit===action.suit))return 'no-effect';
       if(!r2StageSpec(state.stageIndex,state.tourMode,state.difficulty,isR2BoundedClear(state),isR2CoreBuild(state)))return 'no-next-stage';
       const modifiers={...state.spectralModifiers,handPenalty:state.spectralModifiers.handPenalty+cost.amount};

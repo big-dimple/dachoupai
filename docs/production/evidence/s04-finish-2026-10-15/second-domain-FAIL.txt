@@ -1,0 +1,295 @@
+
+ RUN  v4.1.11 /workspace/dachoupai
+
+ ❯ tests/s04-finish.test.ts (16 tests | 3 failed) 255ms
+     × uses the live denominator after actual deletion and copying, including copied target suit 23ms
+     × rechecks a held purchase after actual copying removes its target qualification, without consuming it 19ms
+     × retains the real discount quote, minimum1, no use-gold, persistent attributes and exact next-stage capacity 5ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 3 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/s04-finish.test.ts > approved S04 50% experimental profile > uses the live denominator after actual deletion and copying, including copied target suit
+AssertionError: expected { restricted: true, living: 52, …(4) } to match object { living: 53, required: 27 }
+(4 matching properties omitted from actual)
+
+- Expected
++ Received
+
+  {
+-   "living": 53,
+-   "required": 27,
++   "living": 52,
++   "required": 26,
+  }
+
+ ❯ tests/s04-finish.test.ts:40:153
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/3]⎯
+
+ FAIL  tests/s04-finish.test.ts > approved S04 50% experimental profile > rechecks a held purchase after actual copying removes its target qualification, without consuming it
+AssertionError: expected { ok: true, state: { …(53) }, …(3) } to match object { ok: false, …(2) }
+(6 matching properties omitted from actual)
+
+- Expected
++ Received
+
+@@ -1,8 +1,7 @@
+  {
+-   "code": "s04-suit-density",
+-   "ok": false,
++   "ok": true,
+    "state": {
+      "boss": {
+        "definitionId": "B03",
+        "disabledSuit": "hearts",
+      },
+@@ -23,17 +22,12 @@
+          "2700",
+          "3600",
+        ],
+      },
+      "characterId": "laohuan",
+-     "commandSeq": 4,
+-     "consumables": [
+-       {
+-         "definitionId": "S04",
+-         "instanceId": "s04-finish/6/26/false/tool/s04-finish/6/26/false/command/3",
+-       },
+-     ],
++     "commandSeq": 5,
++     "consumables": [],
+      "contentHash": "json-fnv-v1:65b545bd97c0fdf1",
+      "contentVersion": "quality-r2-s04-finish-v1",
+      "deckInstances": [
+        {
+          "id": "spades-2",
+@@ -167,136 +161,136 @@
+        },
+        {
+          "enhancement": "heat-paper",
+          "id": "clubs-2",
+          "rank": 2,
+-         "suit": "clubs",
++         "suit": "hearts",
+        },
+        {
+          "id": "clubs-3",
+          "rank": 3,
+-         "suit": "clubs",
++         "suit": "hearts",
+        },
+        {
+          "id": "clubs-4",
+          "rank": 4,
+-         "suit": "clubs",
++         "suit": "hearts",
+        },
+        {
+          "id": "clubs-5",
+          "rank": 5,
+-         "suit": "clubs",
++         "suit": "hearts",
+        },
+        {
+          "id": "clubs-6",
+          "rank": 6,
+-         "suit": "clubs",
++         "suit": "hearts",
+        },
+        {
+          "id": "clubs-7",
+          "rank": 7,
+-         "suit": "clubs",
++         "suit": "hearts",
+        },
+        {
+          "id": "clubs-8",
+          "rank": 8,
+-         "suit": "clubs",
++         "suit": "hearts",
+        },
+        {
+          "id": "clubs-9",
+          "rank": 9,
+-         "suit": "clubs",
++         "suit": "hearts",
+        },
+        {
+          "id": "clubs-10",
+          "rank": 10,
+-         "suit": "clubs",
++         "suit": "hearts",
+        },
+        {
+          "id": "clubs-11",
+          "rank": 11,
+-         "suit": "clubs",
++         "suit": "hearts",
+        },
+        {
+          "id": "clubs-12",
+          "rank": 12,
+-         "suit": "clubs",
++         "suit": "hearts",
+        },
+        {
+          "id": "clubs-13",
+          "rank": 13,
+-         "suit": "clubs",
++         "suit": "hearts",
+        },
+        {
+          "id": "clubs-14",
+          "rank": 14,
+-         "suit": "clubs",
++         "suit": "hearts",
+        },
+        {
+          "id": "diamonds-2",
+          "rank": 2,
+-         "suit": "diamonds",
++         "suit": "hearts",
+        },
+        {
+          "id": "diamonds-3",
+          "rank": 3,
+-         "suit": "diamonds",
++         "suit": "hearts",
+        },
+        {
+          "id": "diamonds-4",
+          "rank": 4,
+-         "suit": "diamonds",
++         "suit": "hearts",
+        },
+        {
+          "id": "diamonds-5",
+          "rank": 5,
+-         "suit": "diamonds",
++         "suit": "hearts",
+        },
+        {
+          "id": "diamonds-6",
+          "rank": 6,
+-         "suit": "diamonds",
++         "suit": "hearts",
+        },
+        {
+          "id": "diamonds-7",
+          "rank": 7,
+-         "suit": "diamonds",
++         "suit": "hearts",
+        },
+        {
+          "id": "diamonds-8",
+          "rank": 8,
+-         "suit": "diamonds",
++         "suit": "hearts",
+        },
+        {
+          "id": "diamonds-9",
+          "rank": 9,
+-         "suit": "diamonds",
++         "suit": "hearts",
+        },
+        {
+          "id": "diamonds-10",
+          "rank": 10,
+-         "suit": "diamonds",
++         "suit": "hearts",
+        },
+        {
+          "id": "diamonds-11",
+          "rank": 11,
+-         "suit": "diamonds",
++         "suit": "hearts",
+        },
+        {
+          "id": "diamonds-12",
+          "rank": 12,
+-         "suit": "diamonds",
++         "suit": "hearts",
+        },
+        {
+          "id": "diamonds-13",
+          "rank": 13,
+-         "suit": "diamonds",
++         "suit": "hearts",
+        },
+        {
+          "id": "diamonds-14",
+          "rank": 14,
+-         "suit": "diamonds",
++         "suit": "hearts",
+        },
+      ],
+      "destroyedIds": [],
+      "difficulty": 0,
+      "discardPile": [],
+@@ -396,10 +390,15 @@
+        },
+        {
+          "commandId": "s04-finish/6/26/false/command/4",
+          "fingerprint": "json-fnv-v1:69f63f2e3eede27a",
+          "seq": 4,
++       },
++       {
++         "commandId": "s04-finish/6/26/false/command/5",
++         "fingerprint": "json-fnv-v1:f1803f6d442bdce9",
++         "seq": 5,
+        },
+      ],
+      "rng": {
+        "challenge": {
+          "algorithm": "fnv1a-mulberry32-v1",
+@@ -535,11 +534,11 @@
+        ],
+        "visitIndex": 6,
+      },
+      "spectralModifiers": {
+        "cleanSlateBonus": 0,
+-       "handPenalty": 0,
++       "handPenalty": 1,
+        "handsPenalty": 0,
+      },
+      "stage": null,
+      "stageIndex": 6,
+      "supplyRewardClaimed": false,
+
+ ❯ reject tests/s04-finish.test.ts:19:125
+     17| const use=(id:string,suit:'hearts'|'spades'='hearts'):Action=>({type:'…
+     18| const held=(s:R2RunState)=>{s.consumables=[{instanceId:'s04/held',defi…
+     19| function reject(s:R2RunState,a:Action,code:string){const before=struct…
+       |                                                                                                                             ^
+     20| function round(s:R2RunState){const cp=makeCheckpoint(s,[]);expect(read…
+     21| describe('approved S04 50% experimental profile',()=>{
+ ❯ tests/s04-finish.test.ts:52:3
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/3]⎯
+
+ FAIL  tests/s04-finish.test.ts > approved S04 50% experimental profile > retains the real discount quote, minimum1, no use-gold, persistent attributes and exact next-stage capacity
+AssertionError: expected 2 to be 1 // Object.is equality
+
+- Expected
++ Received
+
+- 1
++ 2
+
+ ❯ tests/s04-finish.test.ts:57:70
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/3]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  3 failed | 13 passed (16)
+   Start at  07:24:00
+   Duration  1.16s (transform 651ms, setup 0ms, import 784ms, tests 255ms, environment 0ms)
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice

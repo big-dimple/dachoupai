@@ -11,6 +11,7 @@ import {fractionText} from './scoreText';
 import {PAPER_CSS} from './theme';
 import {goodsArtUrl} from './GoodsArt';
 import {enhancementReference,enhancementCardHelp} from './EnhancementReference';
+import {isR2S04Finish,R2_S04_FINISH_CONTRACT} from '../domain/r2GroupUpgrade';
 
 export interface ToolInfo {
   name:string;family:R2ToolFamily;label:string;summary:string;description:string;cost:string;risk:string;artUrl:string;detailArtUrl?:string;fallbackArtUrl:string;
@@ -216,11 +217,11 @@ function toolRisk(tool:R2ToolDefinition):string {
 
 const toolCache=new Map<string,ToolInfo>();
 export function toolInfo(id:string,identity:R2ContentIdentity={}):ToolInfo {
-  const tool=getR2Tool(id),price=r2ToolPrice(id,identity),cacheKey=id+'/'+price;
+  const tool=getR2Tool(id),price=r2ToolPrice(id,identity),finish=id==='S04'&&isR2S04Finish(identity),cacheKey=id+'/'+price+'/'+finish;
   const cached=toolCache.get(cacheKey);if(cached)return cached;
   const family=toolFamilyLabel(tool.family);
   const info=Object.freeze({name:tool.name,family:tool.family,label:`${family} · ${tool.name}`,
-    summary:toolSummary(tool),description:`${tool.phases.map(phase=>phase==='shop'?'商店':'待出牌').join(' / ')}可用。${targetText(tool)}${operationText(tool)}`,
+    summary:(finish?`第${R2_S04_FINISH_CONTRACT.minimumChapter}章起，已有至少50%目标花色才可收尾；`:'')+toolSummary(tool),description:`${tool.phases.map(phase=>phase==='shop'?'商店':'待出牌').join(' / ')}可用。${targetText(tool)}${operationText(tool)}`+(finish?`第${R2_S04_FINISH_CONTRACT.minimumChapter}章起，目标花色须占存活牌组至少50%，销毁牌不计。获取和使用时分别重核；买后若未达标，可保留或放弃。店内染色跨过门槛不会自动换货，须按原价刷新或过关后等下一店；均不保证出现独幕。`:''),
     cost:toolCost(tool,price),risk:toolRisk(tool),artUrl:goodsArtUrl(id,'tool-card','thumbnail')??toolArt(tool),detailArtUrl:goodsArtUrl(id,'tool-card','detail'),fallbackArtUrl:toolArt(tool)});
   toolCache.set(cacheKey,info);return info;
 }

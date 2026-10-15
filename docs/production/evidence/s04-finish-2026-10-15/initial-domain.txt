@@ -1,0 +1,131 @@
+
+ RUN  v4.1.11 /workspace/dachoupai
+
+ ❯ tests/s04-finish.test.ts (16 tests | 16 failed) 144ms
+     × amo new launch inherits core scoring/targets and preserves old retry identity 44ms
+     × touye new launch inherits core scoring/targets and preserves old retry identity 21ms
+     × laohuan new launch inherits core scoring/targets and preserves old retry identity 13ms
+     × erxiang new launch inherits core scoring/targets and preserves old retry identity 14ms
+     × azao new launch inherits core scoring/targets and preserves old retry identity 10ms
+     × xiemu new launch inherits core scoring/targets and preserves old retry identity 16ms
+     × index3 hearts26 has matching supply, buy, use and public status 2ms
+     × index6 hearts25 has matching supply, buy, use and public status 2ms
+     × index6 hearts26 has matching supply, buy, use and public status 2ms
+     × uses the live denominator after actual deletion and copying, including copied target suit 2ms
+     × permits either target in a 50/50 deck and rejects a complete monochrome deck 2ms
+     × rechecks a held purchase after actual copying removes its target qualification, without consuming it 2ms
+     × retains the real discount quote, minimum1, no use-gold, persistent attributes and exact next-stage capacity 2ms
+     × preserves B10 actual reduction and rejects the minimum swallowing a second permanent cost 2ms
+     × does not replace existing stock/RNG on a crossing dye, and a paid refresh preserves spent service quota 2ms
+     × keeps the prior core S04 acquisition/use and description, even after new-profile cache reads 5ms
+
+⎯⎯⎯⎯⎯⎯ Failed Tests 16 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/s04-finish.test.ts > approved S04 50% experimental profile > amo new launch inherits core scoring/targets and preserves old retry identity
+ FAIL  tests/s04-finish.test.ts > approved S04 50% experimental profile > touye new launch inherits core scoring/targets and preserves old retry identity
+ FAIL  tests/s04-finish.test.ts > approved S04 50% experimental profile > laohuan new launch inherits core scoring/targets and preserves old retry identity
+ FAIL  tests/s04-finish.test.ts > approved S04 50% experimental profile > erxiang new launch inherits core scoring/targets and preserves old retry identity
+ FAIL  tests/s04-finish.test.ts > approved S04 50% experimental profile > azao new launch inherits core scoring/targets and preserves old retry identity
+ FAIL  tests/s04-finish.test.ts > approved S04 50% experimental profile > xiemu new launch inherits core scoring/targets and preserves old retry identity
+Error: Run invariant: program snapshot
+ ❯ check src/domain/r2Run.ts:153:70
+
+ ❯ assertR2Invariants src/domain/r2Run.ts:192:3
+ ❯ s04Fixture harness/fixtures/s04-finish.ts:26:2
+ ❯ tests/s04-finish.test.ts:26:13
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/16]⎯
+
+ FAIL  tests/s04-finish.test.ts > approved S04 50% experimental profile > index3 hearts26 has matching supply, buy, use and public status
+ FAIL  tests/s04-finish.test.ts > approved S04 50% experimental profile > index6 hearts25 has matching supply, buy, use and public status
+ FAIL  tests/s04-finish.test.ts > approved S04 50% experimental profile > index6 hearts26 has matching supply, buy, use and public status
+Error: Run invariant: program snapshot
+ ❯ check src/domain/r2Run.ts:153:70
+
+ ❯ assertR2Invariants src/domain/r2Run.ts:192:3
+ ❯ s04Fixture harness/fixtures/s04-finish.ts:26:2
+ ❯ tests/s04-finish.test.ts:30:11
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/16]⎯
+
+ FAIL  tests/s04-finish.test.ts > approved S04 50% experimental profile > uses the live denominator after actual deletion and copying, including copied target suit
+Error: Run invariant: program snapshot
+ ❯ check src/domain/r2Run.ts:153:70
+
+ ❯ assertR2Invariants src/domain/r2Run.ts:192:3
+ ❯ s04Fixture harness/fixtures/s04-finish.ts:26:2
+ ❯ tests/s04-finish.test.ts:36:9
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/16]⎯
+
+ FAIL  tests/s04-finish.test.ts > approved S04 50% experimental profile > permits either target in a 50/50 deck and rejects a complete monochrome deck
+Error: Run invariant: program snapshot
+ ❯ check src/domain/r2Run.ts:153:70
+
+ ❯ assertR2Invariants src/domain/r2Run.ts:192:3
+ ❯ s04Fixture harness/fixtures/s04-finish.ts:26:2
+ ❯ tests/s04-finish.test.ts:44:11
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/16]⎯
+
+ FAIL  tests/s04-finish.test.ts > approved S04 50% experimental profile > rechecks a held purchase after actual copying removes its target qualification, without consuming it
+Error: Run invariant: program snapshot
+ ❯ check src/domain/r2Run.ts:153:70
+
+ ❯ assertR2Invariants src/domain/r2Run.ts:192:3
+ ❯ s04Fixture harness/fixtures/s04-finish.ts:26:2
+ ❯ tests/s04-finish.test.ts:50:14
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/16]⎯
+
+ FAIL  tests/s04-finish.test.ts > approved S04 50% experimental profile > retains the real discount quote, minimum1, no use-gold, persistent attributes and exact next-stage capacity
+Error: Run invariant: program snapshot
+ ❯ check src/domain/r2Run.ts:153:70
+
+ ❯ assertR2Invariants src/domain/r2Run.ts:192:3
+ ❯ s04Fixture harness/fixtures/s04-finish.ts:26:2
+ ❯ tests/s04-finish.test.ts:55:11
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/16]⎯
+
+ FAIL  tests/s04-finish.test.ts > approved S04 50% experimental profile > preserves B10 actual reduction and rejects the minimum swallowing a second permanent cost
+Error: Run invariant: program snapshot
+ ❯ check src/domain/r2Run.ts:153:70
+
+ ❯ assertR2Invariants src/domain/r2Run.ts:192:3
+ ❯ s04Fixture harness/fixtures/s04-finish.ts:26:2
+ ❯ tests/s04-finish.test.ts:64:16
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/16]⎯
+
+ FAIL  tests/s04-finish.test.ts > approved S04 50% experimental profile > does not replace existing stock/RNG on a crossing dye, and a paid refresh preserves spent service quota
+Error: Run invariant: program snapshot
+ ❯ check src/domain/r2Run.ts:153:70
+
+ ❯ assertR2Invariants src/domain/r2Run.ts:192:3
+ ❯ s04Fixture harness/fixtures/s04-finish.ts:26:2
+ ❯ tests/s04-finish.test.ts:69:9
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[8/16]⎯
+
+ FAIL  tests/s04-finish.test.ts > approved S04 50% experimental profile > keeps the prior core S04 acquisition/use and description, even after new-profile cache reads
+Error: Run invariant: program snapshot
+ ❯ check src/domain/r2Run.ts:153:70
+
+ ❯ assertR2Invariants src/domain/r2Run.ts:192:3
+ ❯ s04Fixture harness/fixtures/s04-finish.ts:26:2
+ ❯ tests/s04-finish.test.ts:74:144
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[9/16]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  16 failed (16)
+   Start at  07:23:35
+   Duration  932ms (transform 553ms, setup 0ms, import 672ms, tests 144ms, environment 0ms)
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice

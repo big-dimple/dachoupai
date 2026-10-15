@@ -3,7 +3,7 @@ import {readFileSync} from 'node:fs';
 import {createRun,applyCommand,type R2RunState,type Action,type Command} from '../src/domain/run';
 import {CHARACTER_IDS} from '../src/domain/characters';
 import {newRunIdentity} from '../src/game/RunLaunch';
-import {isR2CoreBuild,R2_CORE_BUILD_HASH,R2_CORE_BUILD_VERSION} from '../src/domain/r2GroupUpgrade';
+import {isR2CoreBuild,R2_S04_FINISH_HASH,R2_S04_FINISH_VERSION} from '../src/domain/r2GroupUpgrade';
 import {getR2Stage,r2ChapterTargetPreview,r2ScoreContext,assertR2Invariants,r2CreateJoker} from '../src/domain/r2Run';
 import {lockR2ChapterTargets} from '../src/domain/r2Chapter';
 import {r2TargetPolicyFor} from '../src/domain/r2TargetPolicy';
@@ -35,7 +35,7 @@ const practice=(s:R2RunState,type=Object.keys(s.handLevels)[0] as typeof R2_HAND
 
 describe('core build paid growth and public chapter lock',()=>{
  it.each(CHARACTER_IDS)('%s launches the shared identity with all existing skill capabilities',hero=>{
-  const s=start(hero);expect(s).toMatchObject({contentVersion:R2_CORE_BUILD_VERSION,contentHash:R2_CORE_BUILD_HASH});expect(isR2CoreBuild(s)).toBe(true);round(s);
+  const s=start(hero);expect(s).toMatchObject({contentVersion:R2_S04_FINISH_VERSION,contentHash:R2_S04_FINISH_HASH});expect(isR2CoreBuild(s)).toBe(true);round(s);
   expect(r2ChapterTargetPreview(s)).toEqual({policyVersion:'core-build-target-v1',chapter:1,targets:['400','600','800'],boss:s.boss});
   const ctx=r2ScoreContext(s,[],[]);expect(ctx.boundedClear).toBe(true);expect(ctx.activeMultTiming).toBe(['touye','xiemu','azao'].includes(hero)?'after-route-growth':undefined);
  });

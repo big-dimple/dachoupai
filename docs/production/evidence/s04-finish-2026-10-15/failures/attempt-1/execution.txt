@@ -1,0 +1,13 @@
+AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+
+  assert.ok(await select.locator('option[value="clubs"]').isDisabled())
+
+    at file:///workspace/dachoupai/harness/s04-finish.mjs:60:148 {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: false,
+  expected: true,
+  operator: '==',
+  diff: 'simple'
+}
+FAIL /tmp/s04-finish-attempt1

@@ -1,0 +1,579 @@
+{
+  "head": "8aa03c71cf0cadb670a4f8fd2e795a2a3ef3f71d",
+  "sourceHash": "635f19ac89080f5200d193705cb3d8472e94a57b69b8749a9b6d8d08985dc6d8",
+  "sourceFiles": [
+    "src/application/RunController.ts",
+    "src/application/SavedRun.ts",
+    "src/application/checkpoint.ts",
+    "src/application/groupTraceExecutions.ts",
+    "src/application/routeGrowthTrace.ts",
+    "src/audio/AudioEngine.ts",
+    "src/audio/foley.ts",
+    "src/audio/mixPolicy.ts",
+    "src/audio/preferences.ts",
+    "src/audio/sampleBody.ts",
+    "src/cards/deck.ts",
+    "src/cards/handEvaluator.ts",
+    "src/cards/types.ts",
+    "src/content/handLabels.ts",
+    "src/content/jokers.json",
+    "src/content/r2-jokers.json",
+    "src/content/r2-tools.json",
+    "src/content/r2AssistJokers.ts",
+    "src/content/r2ComboGrowthJokers.ts",
+    "src/content/r2GroupUpgradeJokers.ts",
+    "src/content/r2Modes.ts",
+    "src/content/r2RouteGrowthJokers.ts",
+    "src/content/r2Schema.ts",
+    "src/content/r2Tools.ts",
+    "src/content/stages.json",
+    "src/core/EffectQueue.ts",
+    "src/core/SeededRng.ts",
+    "src/domain/characters.ts",
+    "src/domain/evaluateR2.ts",
+    "src/domain/hash.ts",
+    "src/domain/openingShow.ts",
+    "src/domain/r2Assist.ts",
+    "src/domain/r2AssistIdentity.ts",
+    "src/domain/r2AzaoCharge.ts",
+    "src/domain/r2BasicChoice.ts",
+    "src/domain/r2Chapter.ts",
+    "src/domain/r2ComboGrowth.ts",
+    "src/domain/r2Conditions.ts",
+    "src/domain/r2ContentProfiles.ts",
+    "src/domain/r2ErxiangHandoff.ts",
+    "src/domain/r2GroupHands.ts",
+    "src/domain/r2GroupUpgrade.ts",
+    "src/domain/r2HandCandidates.ts",
+    "src/domain/r2LaohuanRefill.ts",
+    "src/domain/r2Practice.ts",
+    "src/domain/r2Programs.ts",
+    "src/domain/r2Progress.ts",
+    "src/domain/r2PublishedContent.json",
+    "src/domain/r2PublishedContent.ts",
+    "src/domain/r2QualifiedHands.ts",
+    "src/domain/r2Resources.ts",
+    "src/domain/r2RouteGrowth.ts",
+    "src/domain/r2RouteStarter.ts",
+    "src/domain/r2Run.ts",
+    "src/domain/r2S04.ts",
+    "src/domain/r2SelectionFacts.ts",
+    "src/domain/r2Shop.ts",
+    "src/domain/r2SpectralTools.ts",
+    "src/domain/r2TargetPolicy.ts",
+    "src/domain/r2ToolCommands.ts",
+    "src/domain/r2ToolRuntime.ts",
+    "src/domain/r2TouyeCoreFacts.ts",
+    "src/domain/r2TouyeTargets.ts",
+    "src/domain/r2TouyeWager.ts",
+    "src/domain/r2XiemuBurn.ts",
+    "src/domain/rational.ts",
+    "src/domain/run.ts",
+    "src/domain/scoreR2.ts",
+    "src/game/AiHandCandidates.ts",
+    "src/game/ArtTextureLoading.ts",
+    "src/game/AssistChoiceDialog.ts",
+    "src/game/AssistRecommendation.ts",
+    "src/game/AssistSelection.ts",
+    "src/game/AzaoChargeCopy.ts",
+    "src/game/BasicToolChoice.ts",
+    "src/game/BootScene.ts",
+    "src/game/BuildDirectionPreferences.ts",
+    "src/game/BuildFallback.ts",
+    "src/game/BuildGrowthProgress.ts",
+    "src/game/BuildGrowthView.ts",
+    "src/game/BuildJourney.ts",
+    "src/game/BuildJourneyDialog.ts",
+    "src/game/BuildKeepsake.ts",
+    "src/game/BuildKeepsakeView.ts",
+    "src/game/CandidateCardPreview.ts",
+    "src/game/CardCopy.ts",
+    "src/game/CardFeedback.ts",
+    "src/game/CardPipLayout.ts",
+    "src/game/CardSpecialLabels.ts",
+    "src/game/Catalog.ts",
+    "src/game/CatalogDialog.ts",
+    "src/game/CharacterRunCopy.ts",
+    "src/game/CharacterSelectScene.ts",
+    "src/game/ClimaxSourceArt.ts",
+    "src/game/ConsumableDialog.ts",
+    "src/game/DeckInspector.ts",
+    "src/game/DetailArt.ts",
+    "src/game/DetailDialog.ts",
+    "src/game/EndlessContinuationCopy.ts",
+    "src/game/EnhancementReference.ts",
+    "src/game/ErxiangHandoffCopy.ts",
+    "src/game/F09Art.ts",
+    "src/game/FailureSummary.ts",
+    "src/game/FinaleKeepsake.ts",
+    "src/game/FirstChapterGuide.ts",
+    "src/game/GameScene.ts",
+    "src/game/GoodsArt.ts",
+    "src/game/GoodsArtLoading.ts",
+    "src/game/GrowthOpportunity.ts",
+    "src/game/GrowthPayoff.ts",
+    "src/game/GrowthPayoffView.ts",
+    "src/game/HandActionArt.ts",
+    "src/game/HandRouteGuidance.ts",
+    "src/game/HandRouteGuidanceView.ts",
+    "src/game/HandRouteTransition.ts",
+    "src/game/HandRuleReference.ts",
+    "src/game/HandSelectionGesture.ts",
+    "src/game/HandSelectionInput.ts",
+    "src/game/HandSweepHint.ts",
+    "src/game/HanddrawnArt.ts",
+    "src/game/HeroAbilityCue.ts",
+    "src/game/HeroActionShortcut.ts",
+    "src/game/HeroClimax.ts",
+    "src/game/HeroClimaxLayout.ts",
+    "src/game/HeroExplanation.ts",
+    "src/game/HeroOpeningCopy.ts",
+    "src/game/HeroOpeningIntent.ts",
+    "src/game/HeroPayoff.ts",
+    "src/game/HeroSignature.ts",
+    "src/game/HeroSkillGuide.ts",
+    "src/game/HeroStageContinuity.ts",
+    "src/game/ImageWarmupQueue.ts",
+    "src/game/ImageWarmupStatus.ts",
+    "src/game/InkBurst.ts",
+    "src/game/IntermissionScene.ts",
+    "src/game/InventoryFeedback.ts",
+    "src/game/JokerArtLoading.ts",
+    "src/game/JokerAssistTemplates.ts",
+    "src/game/JokerComboGrowthTemplates.ts",
+    "src/game/JokerCompact.ts",
+    "src/game/JokerDetailSteps.ts",
+    "src/game/JokerExperience.ts",
+    "src/game/JokerGroupUpgradeTemplates.ts",
+    "src/game/JokerGrowthCausality.ts",
+    "src/game/JokerKeyHighlight.ts",
+    "src/game/JokerKeyHighlightView.ts",
+    "src/game/JokerLabel.ts",
+    "src/game/JokerMemory.ts",
+    "src/game/JokerMotif.ts",
+    "src/game/JokerPlainCopy.ts",
+    "src/game/JokerPlayerCopy.ts",
+    "src/game/JokerPlayerTemplates.json",
+    "src/game/JokerRarity.ts",
+    "src/game/JokerReorder.ts",
+    "src/game/JokerRouteGrowthTemplates.ts",
+    "src/game/LateTextureArt.ts",
+    "src/game/MakeCardsDialog.ts",
+    "src/game/ModeSelectDialog.ts",
+    "src/game/OpeningPlaySample.ts",
+    "src/game/OpeningPlayTable.ts",
+    "src/game/OpeningRouteDemo.ts",
+    "src/game/OpeningShopStep.ts",
+    "src/game/OpeningShowcaseLayout.ts",
+    "src/game/OpponentFacts.ts",
+    "src/game/OpponentPresentation.ts",
+    "src/game/OwnedJokerDragVisual.ts",
+    "src/game/OwnedJokerInput.ts",
+    "src/game/PaperFlow.ts",
+    "src/game/PointerIntent.ts",
+    "src/game/PointerReleaseTime.ts",
+    "src/game/ProgramDialog.ts",
+    "src/game/PurchasePaymentFacts.ts",
+    "src/game/ResultEntrance.ts",
+    "src/game/ResultStage.ts",
+    "src/game/ResultStageArt.ts",
+    "src/game/RewardCoin.ts",
+    "src/game/RouteFitCue.ts",
+    "src/game/RouteFrame.ts",
+    "src/game/RouteStarter.ts",
+    "src/game/RunLaunch.ts",
+    "src/game/RunMenu.ts",
+    "src/game/S04Qualification.ts",
+    "src/game/SavedBossImpact.ts",
+    "src/game/SavedCardMotion.ts",
+    "src/game/SavedGrowthChange.ts",
+    "src/game/SavedToolResult.ts",
+    "src/game/SceneView.ts",
+    "src/game/ScoreEnergy.ts",
+    "src/game/ScoreEventCaption.ts",
+    "src/game/ScoreFlame.ts",
+    "src/game/ScoreGeometry.ts",
+    "src/game/ScoreLanding.ts",
+    "src/game/ScoreReview.ts",
+    "src/game/ScoreSourceProcess.ts",
+    "src/game/ScoreTextLayout.ts",
+    "src/game/SelectionComparison.ts",
+    "src/game/SelectionCopy.ts",
+    "src/game/SelectionLayout.ts",
+    "src/game/SelectionPresentation.ts",
+    "src/game/SelectionSampleDialog.ts",
+    "src/game/SettlementHighlights.ts",
+    "src/game/SettlementPresentation.ts",
+    "src/game/ShopArt.ts",
+    "src/game/ShopCardValueVisual.ts",
+    "src/game/ShopComparisonDialog.ts",
+    "src/game/ShopInvestment.ts",
+    "src/game/ShopJokerPresentation.ts",
+    "src/game/ShopLayout.ts",
+    "src/game/ShopOfferGuidance.ts",
+    "src/game/ShopPracticeService.ts",
+    "src/game/ShopPurchaseReceipt.ts",
+    "src/game/ShopRecommendation.ts",
+    "src/game/ShopReplacementCashRisk.ts",
+    "src/game/ShopResultFeedback.ts",
+    "src/game/ShopRouteGrowthFacts.ts",
+    "src/game/ShopRouteRelations.ts",
+    "src/game/ShopScene.ts",
+    "src/game/ShopServiceDialog.ts",
+    "src/game/SkillPanelInk.ts",
+    "src/game/SourceImpact.ts",
+    "src/game/SourceImpactView.ts",
+    "src/game/StageGiftReceipt.ts",
+    "src/game/StageIdentity.ts",
+    "src/game/StageImageWarmup.ts",
+    "src/game/StageTableArt.ts",
+    "src/game/StatusSummary.ts",
+    "src/game/SuitSymbols.ts",
+    "src/game/TextRaster.ts",
+    "src/game/TitleScene.ts",
+    "src/game/ToolChangePreview.ts",
+    "src/game/ToolInventoryEntry.ts",
+    "src/game/ToolTargetDirectory.ts",
+    "src/game/TouyeComboCue.ts",
+    "src/game/TouyeWagerCopy.ts",
+    "src/game/XiemuBurnCopy.ts",
+    "src/game/characters.ts",
+    "src/game/inkwaveSpring.ts",
+    "src/game/jokerArt.ts",
+    "src/game/layout.ts",
+    "src/game/portraitCrop.ts",
+    "src/game/portraits.ts",
+    "src/game/r2Help.ts",
+    "src/game/r2ToolInfo.ts",
+    "src/game/runAdapter.ts",
+    "src/game/scoreCelebration.ts",
+    "src/game/scorePresentation.ts",
+    "src/game/scoreText.ts",
+    "src/game/session.ts",
+    "src/game/stageNotice.ts",
+    "src/game/stageOutcome.ts",
+    "src/game/theme.ts",
+    "src/jokers/JokerEngine.ts",
+    "src/jokers/types.ts",
+    "src/main.ts",
+    "src/platform/Fullscreen.ts",
+    "src/platform/IndexedDbSave.ts",
+    "src/platform/RunProgress.ts",
+    "src/platform/Viewport.ts",
+    "src/platform/WriteLease.ts",
+    "src/platform/buildInfo.ts",
+    "src/platform/buildMetadata.ts",
+    "src/run/runState.ts",
+    "src/run/shop.ts",
+    "src/run/stages.ts",
+    "src/scoring/scoreHand.ts",
+    "src/style.css",
+    "src/testing/bot.ts",
+    "src/testing/r2Bot.ts",
+    "src/testing/v00Bot.ts",
+    "src/vendor/browslatro/reordering.ts",
+    "src/vite-env.d.ts"
+  ],
+  "scope": "Validator-approved planted chapter/deck/gold/Joker/stock checkpoints. Native DOM mouse/touch and canvas input; exact complete state/journal/IDB oracle. No natural supply, physical device, balance, 18 routes or save migration.",
+  "cases": [
+    {
+      "width": 1366,
+      "height": 900,
+      "errors": [],
+      "checks": [
+        "purchase cancellation zero commands; exact discounted2, delayed double confirm and failed-save retry buy once, random offer does not consume service quota",
+        "suit counts and blocked options; cancel/reopen reset selection, preserve tool; failed-use fixed retry and repeated confirm consume one tool/one permanent slot, no use gold or RNG",
+        "cold restore exact state/journal/IDB; native continue and next entry have seven cards, four plays and original target",
+        "chapter2 and25/52 held stock remain inspectable, disabled, cancel has zero commands and full state equality",
+        "native fixed dye25→26 keeps stock and RNG; real paid refresh2 advances shelf and preserves spent service quota"
+      ],
+      "transactions": [
+        {
+          "actions": [
+            {
+              "type": "BuyOffer",
+              "offerId": "s04/controlled/tool/0"
+            }
+          ],
+          "beforeSeq": 2,
+          "afterSeq": 3,
+          "events": []
+        },
+        {
+          "actions": [
+            {
+              "type": "UseConsumable",
+              "instanceId": "s04-finish/6/26/false/tool/s04-finish/6/26/false/command/3",
+              "targetIds": [],
+              "suit": "hearts"
+            }
+          ],
+          "beforeSeq": 3,
+          "afterSeq": 4,
+          "events": [
+            {
+              "type": "consumable-used",
+              "definitionId": "S04",
+              "instanceId": "s04-finish/6/26/false/tool/s04-finish/6/26/false/command/3",
+              "targetIds": [],
+              "createdCardIds": [],
+              "destroyedCardIds": []
+            }
+          ]
+        },
+        {
+          "actions": [
+            {
+              "type": "LeaveShop"
+            },
+            {
+              "type": "EnterStage"
+            }
+          ],
+          "beforeSeq": 4,
+          "afterSeq": 6,
+          "events": []
+        },
+        {
+          "actions": [
+            {
+              "type": "BuyBasicTool",
+              "definitionId": "T03",
+              "shopSeq": 2
+            }
+          ],
+          "beforeSeq": 2,
+          "afterSeq": 3,
+          "events": []
+        },
+        {
+          "actions": [
+            {
+              "type": "UseConsumable",
+              "instanceId": "s04-finish/6/25/false/tool/s04-finish/6/25/false/command/3",
+              "targetIds": [
+                "spades-14"
+              ]
+            }
+          ],
+          "beforeSeq": 3,
+          "afterSeq": 4,
+          "events": [
+            {
+              "type": "consumable-used",
+              "definitionId": "T03",
+              "instanceId": "s04-finish/6/25/false/tool/s04-finish/6/25/false/command/3",
+              "targetIds": [
+                "spades-14"
+              ],
+              "createdCardIds": [],
+              "destroyedCardIds": []
+            }
+          ]
+        },
+        {
+          "actions": [
+            {
+              "type": "RerollShop"
+            }
+          ],
+          "beforeSeq": 4,
+          "afterSeq": 5,
+          "events": []
+        }
+      ],
+      "shots": [
+        "1366-purchase.png",
+        "1366-selected.png",
+        "1366-saved.png",
+        "1366-next-stage.png",
+        "1366-density25.png",
+        "1366-chapter2.png",
+        "1366-crossing-refresh.png"
+      ],
+      "last": {
+        "seq": 5,
+        "gold": 14,
+        "identity": [
+          "quality-r2-s04-finish-v1",
+          "json-fnv-v1:65b545bd97c0fdf1"
+        ]
+      },
+      "initial": {
+        "seq": 2,
+        "gold": 20,
+        "identity": [
+          "quality-r2-s04-finish-v1",
+          "json-fnv-v1:65b545bd97c0fdf1"
+        ]
+      },
+      "optionSnapshot": "<select aria-label=\"全副花色\" class=\"suit-select\" data-suit=\"\"><option value=\"\">请选择</option><option value=\"spades\" disabled=\"\" style=\"color: rgb(38, 49, 58);\">♠ 黑桃 · 0/52 · 还差26张</option><option value=\"hearts\" style=\"color: rgb(159, 50, 40);\">♥ 红桃 · 26/52 · 达标</option><option value=\"clubs\" disabled=\"\" style=\"color: rgb(38, 49, 58);\">♣ 梅花 · 13/52 · 还差13张</option><option value=\"diamonds\" disabled=\"\" style=\"color: rgb(159, 50, 40);\">♦ 方片 · 13/52 · 还差13张</option></select>",
+      "browserFacts": {
+        "restricted": true,
+        "living": 52,
+        "required": 26,
+        "minimumChapter": 3,
+        "chapter": 3,
+        "suits": [
+          {
+            "suit": "spades",
+            "count": 0,
+            "missing": 26,
+            "eligible": false
+          },
+          {
+            "suit": "hearts",
+            "count": 26,
+            "missing": 0,
+            "eligible": true
+          },
+          {
+            "suit": "clubs",
+            "count": 13,
+            "missing": 13,
+            "eligible": false
+          },
+          {
+            "suit": "diamonds",
+            "count": 13,
+            "missing": 13,
+            "eligible": false
+          }
+        ]
+      },
+      "restored": {
+        "seq": 4,
+        "gold": 18,
+        "identity": [
+          "quality-r2-s04-finish-v1",
+          "json-fnv-v1:65b545bd97c0fdf1"
+        ]
+      },
+      "status": "PASS"
+    },
+    {
+      "width": 390,
+      "height": 740,
+      "errors": [],
+      "checks": [
+        "purchase cancellation zero commands; exact discounted2, delayed double confirm and failed-save retry buy once, random offer does not consume service quota",
+        "suit counts and blocked options; cancel/reopen reset selection, preserve tool; failed-use fixed retry and repeated confirm consume one tool/one permanent slot, no use gold or RNG",
+        "cold restore exact state/journal/IDB; native continue and next entry have seven cards, four plays and original target"
+      ],
+      "transactions": [
+        {
+          "actions": [
+            {
+              "type": "BuyOffer",
+              "offerId": "s04/controlled/tool/0"
+            }
+          ],
+          "beforeSeq": 2,
+          "afterSeq": 3,
+          "events": []
+        },
+        {
+          "actions": [
+            {
+              "type": "UseConsumable",
+              "instanceId": "s04-finish/6/26/false/tool/s04-finish/6/26/false/command/3",
+              "targetIds": [],
+              "suit": "hearts"
+            }
+          ],
+          "beforeSeq": 3,
+          "afterSeq": 4,
+          "events": [
+            {
+              "type": "consumable-used",
+              "definitionId": "S04",
+              "instanceId": "s04-finish/6/26/false/tool/s04-finish/6/26/false/command/3",
+              "targetIds": [],
+              "createdCardIds": [],
+              "destroyedCardIds": []
+            }
+          ]
+        },
+        {
+          "actions": [
+            {
+              "type": "LeaveShop"
+            },
+            {
+              "type": "EnterStage"
+            }
+          ],
+          "beforeSeq": 4,
+          "afterSeq": 6,
+          "events": []
+        }
+      ],
+      "shots": [
+        "390-purchase.png",
+        "390-selected.png",
+        "390-saved.png",
+        "390-next-stage.png"
+      ],
+      "last": {
+        "seq": 2,
+        "gold": 20,
+        "identity": [
+          "quality-r2-s04-finish-v1",
+          "json-fnv-v1:65b545bd97c0fdf1"
+        ]
+      },
+      "initial": {
+        "seq": 2,
+        "gold": 20,
+        "identity": [
+          "quality-r2-s04-finish-v1",
+          "json-fnv-v1:65b545bd97c0fdf1"
+        ]
+      },
+      "optionSnapshot": "<select aria-label=\"全副花色\" class=\"suit-select\" data-suit=\"\"><option value=\"\">请选择</option><option value=\"spades\" disabled=\"\" style=\"color: rgb(38, 49, 58);\">♠ 黑桃 · 0/52 · 还差26张</option><option value=\"hearts\" style=\"color: rgb(159, 50, 40);\">♥ 红桃 · 26/52 · 达标</option><option value=\"clubs\" disabled=\"\" style=\"color: rgb(38, 49, 58);\">♣ 梅花 · 13/52 · 还差13张</option><option value=\"diamonds\" disabled=\"\" style=\"color: rgb(159, 50, 40);\">♦ 方片 · 13/52 · 还差13张</option></select>",
+      "browserFacts": {
+        "restricted": true,
+        "living": 52,
+        "required": 26,
+        "minimumChapter": 3,
+        "chapter": 3,
+        "suits": [
+          {
+            "suit": "spades",
+            "count": 0,
+            "missing": 26,
+            "eligible": false
+          },
+          {
+            "suit": "hearts",
+            "count": 26,
+            "missing": 0,
+            "eligible": true
+          },
+          {
+            "suit": "clubs",
+            "count": 13,
+            "missing": 13,
+            "eligible": false
+          },
+          {
+            "suit": "diamonds",
+            "count": 13,
+            "missing": 13,
+            "eligible": false
+          }
+        ]
+      },
+      "restored": {
+        "seq": 4,
+        "gold": 18,
+        "identity": [
+          "quality-r2-s04-finish-v1",
+          "json-fnv-v1:65b545bd97c0fdf1"
+        ]
+      }
+    }
+  ],
+  "status": "FAIL",
+  "error": "AssertionError [ERR_ASSERTION]: The input did not match the regular expression /至少 26\\/52/. Input:\n\n'独幕 · 使用\\n' +\n  '\\n' +\n  '选 1 种花色 → 确认使用\\n' +\n  '\\n' +\n  '第3章起 · 目标花色至少26/52张（50%）\\n' +\n  '黑桃 1/52 · 还差25张；红桃 25/52 · 还差1张；梅花 13/52 · 还差13张；方片 13/52 · 还差13张\\n' +\n  '\\n' +\n  '查看预览\\n' +\n  '全副花色\\n' +\n  '请选择\\n' +\n  '♠ 黑桃 · 1/52 · 还差25张\\n' +\n  '♥ 红桃 · 25/52 · 还差1张\\n' +\n  '♣ 梅花 · 13/52 · 还差13张\\n' +\n  '♦ 方片 · 13/52 · 还差13张\\n' +\n  '风险与完整说明\\n' +\n  '高清细节加载中…\\n' +\n  '规则与操作\\n' +\n  '工具卡与用途\\n' +\n  '\\n' +\n  '下一场起永久减少手牌上限：8 → 7；整副 52 张改为所选花色。\\n' +\n  '\\n' +\n  '确认使用\\n' +\n  '取消 · 保留工具'\n\n    at file:///workspace/dachoupai/harness/s04-finish.mjs:70:65"
+}

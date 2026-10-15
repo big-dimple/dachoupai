@@ -1,0 +1,280 @@
+
+ RUN  v4.1.11 /workspace/dachoupai
+
+ ❯ tests/recovery-save.test.ts (24 tests | 2 failed) 639ms
+     × keeps the published run after a failed start, then retries the exact unpublished candidate once 33ms
+     × launches all six characters on bounded clear with Amo assist capability 18ms
+ ❯ tests/c04-mode-save.test.ts (40 tests | 1 failed) 1019ms
+     × session load, takeover, import and mode resume retain old identity without replaying a reward 28ms
+ ❯ tests/p1a-active-mult.test.ts (19 tests | 1 failed) 1284ms
+     × keeps historical active profiles exact while normal launches use bounded clear 17ms
+ ❯ tests/touye-new-core.test.ts (25 tests | 1 failed) 1244ms
+     × keeps new-core capability in bounded launches and exact old retries 8ms
+ ❯ tests/route-starter.test.ts (25 tests | 18 failed) 748ms
+     × amo/group keeps three original-price offers and a truly corresponding affordable ordinary card 80ms
+     × amo/straight keeps three original-price offers and a truly corresponding affordable ordinary card 18ms
+     × amo/flush keeps three original-price offers and a truly corresponding affordable ordinary card 10ms
+     × touye/group keeps three original-price offers and a truly corresponding affordable ordinary card 39ms
+     × touye/straight keeps three original-price offers and a truly corresponding affordable ordinary card 2ms
+     × touye/flush keeps three original-price offers and a truly corresponding affordable ordinary card 12ms
+     × laohuan/group keeps three original-price offers and a truly corresponding affordable ordinary card 2ms
+     × laohuan/straight keeps three original-price offers and a truly corresponding affordable ordinary card 15ms
+     × laohuan/flush keeps three original-price offers and a truly corresponding affordable ordinary card 6ms
+     × erxiang/group keeps three original-price offers and a truly corresponding affordable ordinary card 2ms
+     × erxiang/straight keeps three original-price offers and a truly corresponding affordable ordinary card 2ms
+     × erxiang/flush keeps three original-price offers and a truly corresponding affordable ordinary card 2ms
+     × azao/group keeps three original-price offers and a truly corresponding affordable ordinary card 3ms
+     × azao/straight keeps three original-price offers and a truly corresponding affordable ordinary card 17ms
+     × azao/flush keeps three original-price offers and a truly corresponding affordable ordinary card 2ms
+     × xiemu/group keeps three original-price offers and a truly corresponding affordable ordinary card 2ms
+     × xiemu/straight keeps three original-price offers and a truly corresponding affordable ordinary card 27ms
+     × xiemu/flush keeps three original-price offers and a truly corresponding affordable ordinary card 1ms
+ ❯ tests/fixed-suit-dyes.test.ts (12 tests | 1 failed) 308ms
+   × new nine-choice identity preserves original five-choice RNG, random stock, price and retry identity 34ms
+ ❯ tests/core-build.test.ts (21 tests | 6 failed) 2975ms
+     × amo launches the shared identity with all existing skill capabilities 28ms
+     × touye launches the shared identity with all existing skill capabilities 5ms
+     × laohuan launches the shared identity with all existing skill capabilities 4ms
+     × erxiang launches the shared identity with all existing skill capabilities 9ms
+     × azao launches the shared identity with all existing skill capabilities 3ms
+     × xiemu launches the shared identity with all existing skill capabilities 2ms
+ ❯ tests/amo-launch.test.ts (9 tests | 2 failed) 66ms
+     × all six normal new games use core build; raw createRun stays v11 18ms
+     × Q01 keeps core build identity while disabling its ability; tutorial requires Erxiang 4ms
+ ❯ tests/s04-window.test.ts (3 tests | 1 failed) 61ms
+     × reproduces the current early transaction and its permanent hand-size loss 8ms
+
+⎯⎯⎯⎯⎯⎯ Failed Tests 33 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/amo-launch.test.ts > normal new-game policy and exact retry creation > all six normal new games use core build; raw createRun stays v11
+AssertionError: expected 'json-fnv-v1:65b545bd97c0fdf1' to be 'json-fnv-v1:6dfe1a721e4949e6' // Object.is equality
+
+Expected: "json-fnv-v1:6dfe1a721e4949e6"
+Received: "json-fnv-v1:65b545bd97c0fdf1"
+
+ ❯ tests/amo-launch.test.ts:19:28
+     17|   for(const characterId of CHARACTER_IDS){
+     18|    const run=createRun({...base,characterId,r2Identity:newRunIdentity(…
+     19|    expect(run.contentHash).toBe(R2_CORE_BUILD_HASH);
+       |                            ^
+     20|    expect(run.contentVersion).toBe(R2_CORE_BUILD_VERSION);
+     21|    expect(run.handLevels).toEqual({});expect(readCheckpoint(makeCheckp…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/33]⎯
+
+ FAIL  tests/amo-launch.test.ts > normal new-game policy and exact retry creation > Q01 keeps core build identity while disabling its ability; tutorial requires Erxiang
+AssertionError: expected 'json-fnv-v1:65b545bd97c0fdf1' to be 'json-fnv-v1:6dfe1a721e4949e6' // Object.is equality
+
+Expected: "json-fnv-v1:6dfe1a721e4949e6"
+Received: "json-fnv-v1:65b545bd97c0fdf1"
+
+ ❯ tests/amo-launch.test.ts:47:25
+     45|  it('Q01 keeps core build identity while disabling its ability; tutori…
+     46|   const q=createRun({...base,seed:'challenge/q01/0',r2Identity:newRunI…
+     47|   expect(q.contentHash).toBe(R2_CORE_BUILD_HASH);expect(q.handLevels).…
+       |                         ^
+     48|   expect(()=>createRun({...base,r2Identity:newRunIdentity('amo'),modeC…
+     49|  });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/33]⎯
+
+ FAIL  tests/c04-mode-save.test.ts > Amo v10/v11 production storage partition compatibility > session load, takeover, import and mode resume retain old identity without replaying a reward
+AssertionError: expected 'json-fnv-v1:65b545bd97c0fdf1' to be 'json-fnv-v1:6dfe1a721e4949e6' // Object.is equality
+
+Expected: "json-fnv-v1:6dfe1a721e4949e6"
+Received: "json-fnv-v1:65b545bd97c0fdf1"
+
+ ❯ tests/c04-mode-save.test.ts:472:94
+    470|     expect(session.state()?.contentHash).toBe(R2_LEGACY_CONTENT_HASH);
+    471|     // Starting creates the new profile while retaining the original o…
+    472|     await session.start('new-after-old','amo',STANDARD);expect(session…
+       |                                                                                              ^
+    473|     expect((await storage.readPartition(old.state)).current).toEqual(o…
+    474|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/33]⎯
+
+ FAIL  tests/core-build.test.ts > core build paid growth and public chapter lock > amo launches the shared identity with all existing skill capabilities
+ FAIL  tests/core-build.test.ts > core build paid growth and public chapter lock > touye launches the shared identity with all existing skill capabilities
+ FAIL  tests/core-build.test.ts > core build paid growth and public chapter lock > erxiang launches the shared identity with all existing skill capabilities
+ FAIL  tests/core-build.test.ts > core build paid growth and public chapter lock > azao launches the shared identity with all existing skill capabilities
+ FAIL  tests/core-build.test.ts > core build paid growth and public chapter lock > xiemu launches the shared identity with all existing skill capabilities
+AssertionError: expected { …(52) } to match object { …(2) }
+(86 matching properties omitted from actual)
+
+- Expected
++ Received
+
+  {
+-   "contentHash": "json-fnv-v1:6dfe1a721e4949e6",
+-   "contentVersion": "quality-r2-core-build-v1",
++   "contentHash": "json-fnv-v1:65b545bd97c0fdf1",
++   "contentVersion": "quality-r2-s04-finish-v1",
+  }
+
+ ❯ tests/core-build.test.ts:38:33
+     36| describe('core build paid growth and public chapter lock',()=>{
+     37|  it.each(CHARACTER_IDS)('%s launches the shared identity with all exis…
+     38|   const s=start(hero);expect(s).toMatchObject({contentVersion:R2_CORE_…
+       |                                 ^
+     39|   expect(r2ChapterTargetPreview(s)).toEqual({policyVersion:'core-build…
+     40|   const ctx=r2ScoreContext(s,[],[]);expect(ctx.boundedClear).toBe(true…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/33]⎯
+
+ FAIL  tests/core-build.test.ts > core build paid growth and public chapter lock > laohuan launches the shared identity with all existing skill capabilities
+AssertionError: expected { …(53) } to match object { …(2) }
+(87 matching properties omitted from actual)
+
+- Expected
++ Received
+
+  {
+-   "contentHash": "json-fnv-v1:6dfe1a721e4949e6",
+-   "contentVersion": "quality-r2-core-build-v1",
++   "contentHash": "json-fnv-v1:65b545bd97c0fdf1",
++   "contentVersion": "quality-r2-s04-finish-v1",
+  }
+
+ ❯ tests/core-build.test.ts:38:33
+     36| describe('core build paid growth and public chapter lock',()=>{
+     37|  it.each(CHARACTER_IDS)('%s launches the shared identity with all exis…
+     38|   const s=start(hero);expect(s).toMatchObject({contentVersion:R2_CORE_…
+       |                                 ^
+     39|   expect(r2ChapterTargetPreview(s)).toEqual({policyVersion:'core-build…
+     40|   const ctx=r2ScoreContext(s,[],[]);expect(ctx.boundedClear).toBe(true…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/33]⎯
+
+ FAIL  tests/fixed-suit-dyes.test.ts > new nine-choice identity preserves original five-choice RNG, random stock, price and retry identity
+AssertionError: expected 'json-fnv-v1:65b545bd97c0fdf1' to be 'json-fnv-v1:6dfe1a721e4949e6' // Object.is equality
+
+Expected: "json-fnv-v1:6dfe1a721e4949e6"
+Received: "json-fnv-v1:65b545bd97c0fdf1"
+
+ ❯ tests/fixed-suit-dyes.test.ts:20:54
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/33]⎯
+
+ FAIL  tests/p1a-active-mult.test.ts > P1A exact active multiplier timing > keeps historical active profiles exact while normal launches use bounded clear
+AssertionError: expected { …(2) } to deeply equal { …(2) }
+
+- Expected
++ Received
+
+  {
+-   "contentHash": "json-fnv-v1:6dfe1a721e4949e6",
+-   "contentVersion": "quality-r2-core-build-v1",
++   "contentHash": "json-fnv-v1:65b545bd97c0fdf1",
++   "contentVersion": "quality-r2-s04-finish-v1",
+  }
+
+ ❯ tests/p1a-active-mult.test.ts:28:133
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/33]⎯
+
+ FAIL  tests/recovery-save.test.ts > complete checkpoint validation and save-before-publish > keeps the published run after a failed start, then retries the exact unpublished candidate once
+AssertionError: expected 'json-fnv-v1:65b545bd97c0fdf1' to be 'json-fnv-v1:6dfe1a721e4949e6' // Object.is equality
+
+Expected: "json-fnv-v1:6dfe1a721e4949e6"
+Received: "json-fnv-v1:65b545bd97c0fdf1"
+
+ ❯ tests/recovery-save.test.ts:161:59
+    159|     expect(result).toBe(kind==='start'?undefined:false);expect(await s…
+    160|     const candidate=session.pendingRun;expect(candidate).toBeDefined()…
+    161|     if(kind==='start')expect(candidate.state.contentHash).toBe(R2_CORE…
+       |                                                           ^
+    162|     const candidateJSON=candidate.exportJSON();expect(readCheckpoint(J…
+    163|     if(kind==='import')expect(candidateJSON).toBe(importedJSON);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[8/33]⎯
+
+ FAIL  tests/recovery-save.test.ts > normal session launch intent > launches all six characters on bounded clear with Amo assist capability
+AssertionError: expected 'json-fnv-v1:65b545bd97c0fdf1' to be 'json-fnv-v1:6dfe1a721e4949e6' // Object.is equality
+
+Expected: "json-fnv-v1:6dfe1a721e4949e6"
+Received: "json-fnv-v1:65b545bd97c0fdf1"
+
+ ❯ tests/recovery-save.test.ts:195:111
+    193|   it('launches all six characters on bounded clear with Amo assist cap…
+    194|     const {session}=await existingSession();
+    195|     for(const id of CHARACTER_IDS){const run=await session.start('all-…
+       |                                                                                                               ^
+    196|   });
+    197|   it.each(R2_RULESETS.filter(p=>!isR2RouteStarter(p)))('retries $conte…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[9/33]⎯
+
+ FAIL  tests/route-starter.test.ts > atomic first-shelf route contract > amo/group keeps three original-price offers and a truly corresponding affordable ordinary card
+ FAIL  tests/route-starter.test.ts > atomic first-shelf route contract > amo/straight keeps three original-price offers and a truly corresponding affordable ordinary card
+ FAIL  tests/route-starter.test.ts > atomic first-shelf route contract > amo/flush keeps three original-price offers and a truly corresponding affordable ordinary card
+ FAIL  tests/route-starter.test.ts > atomic first-shelf route contract > touye/group keeps three original-price offers and a truly corresponding affordable ordinary card
+ FAIL  tests/route-starter.test.ts > atomic first-shelf route contract > touye/straight keeps three original-price offers and a truly corresponding affordable ordinary card
+ FAIL  tests/route-starter.test.ts > atomic first-shelf route contract > touye/flush keeps three original-price offers and a truly corresponding affordable ordinary card
+ FAIL  tests/route-starter.test.ts > atomic first-shelf route contract > laohuan/group keeps three original-price offers and a truly corresponding affordable ordinary card
+ FAIL  tests/route-starter.test.ts > atomic first-shelf route contract > laohuan/straight keeps three original-price offers and a truly corresponding affordable ordinary card
+ FAIL  tests/route-starter.test.ts > atomic first-shelf route contract > laohuan/flush keeps three original-price offers and a truly corresponding affordable ordinary card
+ FAIL  tests/route-starter.test.ts > atomic first-shelf route contract > erxiang/group keeps three original-price offers and a truly corresponding affordable ordinary card
+ FAIL  tests/route-starter.test.ts > atomic first-shelf route contract > erxiang/straight keeps three original-price offers and a truly corresponding affordable ordinary card
+ FAIL  tests/route-starter.test.ts > atomic first-shelf route contract > erxiang/flush keeps three original-price offers and a truly corresponding affordable ordinary card
+ FAIL  tests/route-starter.test.ts > atomic first-shelf route contract > azao/group keeps three original-price offers and a truly corresponding affordable ordinary card
+ FAIL  tests/route-starter.test.ts > atomic first-shelf route contract > azao/straight keeps three original-price offers and a truly corresponding affordable ordinary card
+ FAIL  tests/route-starter.test.ts > atomic first-shelf route contract > azao/flush keeps three original-price offers and a truly corresponding affordable ordinary card
+ FAIL  tests/route-starter.test.ts > atomic first-shelf route contract > xiemu/group keeps three original-price offers and a truly corresponding affordable ordinary card
+ FAIL  tests/route-starter.test.ts > atomic first-shelf route contract > xiemu/straight keeps three original-price offers and a truly corresponding affordable ordinary card
+ FAIL  tests/route-starter.test.ts > atomic first-shelf route contract > xiemu/flush keeps three original-price offers and a truly corresponding affordable ordinary card
+AssertionError: expected 'json-fnv-v1:65b545bd97c0fdf1' to be 'json-fnv-v1:6dfe1a721e4949e6' // Object.is equality
+
+Expected: "json-fnv-v1:6dfe1a721e4949e6"
+Received: "json-fnv-v1:65b545bd97c0fdf1"
+
+ ❯ tests/route-starter.test.ts:31:25
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[10/33]⎯
+
+ FAIL  tests/s04-window.test.ts > S04 offline comparison boundaries, not approved gameplay > reproduces the current early transaction and its permanent hand-size loss
+Error: BuyOffer:invalid-offer
+ ❯ send analysis/s04-window.ts:25:49
+     23| export function send(s:R2RunState,action:Action){
+     24|  const command:Command={runId:s.runId,commandId:s.runId+'/s04/'+(s.com…
+     25|  const r=applyCommand(s,command);if(!r.ok)throw Error(action.type+':'+…
+       |                                                 ^
+     26| }
+     27| /** Paid objects/history/levels below are planted, never claimed natur…
+ ❯ acquire analysis/s04-window.ts:56:4
+ ❯ tests/s04-window.test.ts:12:16
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[11/33]⎯
+
+ FAIL  tests/touye-new-core.test.ts > Touye actual refill ID responsibility, separate new identity > keeps new-core capability in bounded launches and exact old retries
+AssertionError: expected { …(2) } to deeply equal { …(2) }
+
+- Expected
++ Received
+
+  {
+-   "contentHash": "json-fnv-v1:6dfe1a721e4949e6",
+-   "contentVersion": "quality-r2-core-build-v1",
++   "contentHash": "json-fnv-v1:65b545bd97c0fdf1",
++   "contentVersion": "quality-r2-s04-finish-v1",
+  }
+
+ ❯ tests/touye-new-core.test.ts:21:95
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[12/33]⎯
+
+
+ Test Files  9 failed | 3 passed (12)
+      Tests  33 failed | 196 passed (229)
+   Start at  07:23:50
+   Duration  5.88s (transform 2.95s, setup 0ms, import 6.07s, tests 9.28s, environment 1ms)
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice

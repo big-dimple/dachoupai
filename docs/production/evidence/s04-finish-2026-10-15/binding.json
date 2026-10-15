@@ -1,0 +1,31 @@
+{
+  "productCommit": "04111e28a9d1247f0e0153e6708c27a57db048f0",
+  "productSrcTree": "418c4e88e3394fcd3f615c998327aeb3447a9364",
+  "nativeSourceHash": "463cd516c9a31e1aff94e1808280e2583a0bbec5aa2731ba5f69de13e008ec54",
+  "method": "SHA256 of sorted sourceFiles, each UTF8 path + NUL + bytes; committed git blobs equal executed workspace bytes",
+  "nativeRunReportedHead": "8aa03c71cf0cadb670a4f8fd2e795a2a3ef3f71d",
+  "nativeRunReportedHeadMeaning": "pre-commit analysis ancestor; runtime bound to product commit by complete src digest, not by that earlier HEAD",
+  "checks": {
+    "native": "PASS",
+    "widths": [
+      1366,
+      390,
+      320
+    ],
+    "fullTests": 3508,
+    "testFiles": 253,
+    "newS04DomainTests": 17,
+    "build": "PASS",
+    "content": "PASS"
+  },
+  "protectedUnchanged": [
+    "src/content",
+    "src/domain/r2Chapter.ts",
+    "src/domain/r2RouteGrowth.ts",
+    "src/domain/r2Resources.ts",
+    "src/domain/scoreR2.ts",
+    "src/application/checkpoint.ts",
+    "src/application/SavedRun.ts"
+  ],
+  "analysisAncestor": "8aa03c71cf0cadb670a4f8fd2e795a2a3ef3f71d"
+}

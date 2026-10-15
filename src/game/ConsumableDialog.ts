@@ -20,6 +20,8 @@ import {handdrawnPath} from './HanddrawnArt';
 import {jokerArtPreviewUrl} from './jokerArt';
 import {assetUrl} from './theme';
 import {cardSpecialText,editionEffectText,editionLabel,itemInfo,toolInfo,goodsArtPortrait} from './r2ToolInfo';
+import {r2S04Facts} from '../domain/r2S04';
+import {s04IssueText,s04QualificationText} from './S04Qualification';
 
 export const SKIP_ITEM_LABELS:Record<string,string>=Object.fromEntries(R2_TOOLS.map(tool=>[tool.id,tool.name]));
 const SUIT_NAMES:Record<Suit,string>={spades:'黑桃',hearts:'红桃',clubs:'梅花',diamonds:'方片'};
@@ -57,7 +59,10 @@ function selectionIssue(tool:R2ToolDefinition,state:R2RunState,selection:Selecti
       if(!type||state.handLevels[type]===undefined)return type?`${HAND_LABELS[type]}尚未发现。`:'请选择一个已发现牌型。';
       if(state.handLevels[type]!>=limits.handLevelMaximum)return `已达 Lv.${limits.handLevelMaximum}，不能继续升级。`;break;
     }
-    case 'suit':if(!selection.suit)return '请选择全副改造后的花色。';break;
+    case 'suit': {
+      const issue=s04IssueText(state,selection.suit);if(issue)return issue;
+      if(!selection.suit)return '请选择全副改造后的花色。';break;
+    }
     case 'hand-exchange': {
       const {handType:gain,secondaryHandType:loss}=selection;
       if(!gain||!loss)return '请选择收益牌型和遗忘牌型。';
@@ -210,7 +215,8 @@ export function showConsumables(dialog:DetailDialog,state:R2RunState,ready:boole
       case 'discovered-hand':if(tool.target.selection==='chosen'){const types=focusedUpgradeTypes(state,focus);handSelect('升级牌型',types,type=>{selection.handType=type;},types[0]);}break;
       case 'suit': {
         const label=document.createElement('label'),name=document.createElement('span'),select=document.createElement('select'),empty=document.createElement('option');label.className='tool-field';name.textContent='全副花色';select.setAttribute('aria-label','全副花色');empty.value='';empty.textContent='请选择';select.append(empty);
-        for(const suit of SUITS){const option=document.createElement('option');option.value=suit;option.textContent=SUIT_SYMBOL[suit]+' '+SUIT_NAMES[suit];select.append(option);}
+        const facts=r2S04Facts(state);
+        for(const suit of SUITS){const option=document.createElement('option'),row=facts.suits.find(row=>row.suit===suit)!;option.value=suit;option.textContent=SUIT_SYMBOL[suit]+' '+SUIT_NAMES[suit]+(facts.restricted?` · ${row.count}/${facts.living}`+(row.eligible?' · 达标':row.count===facts.living?' · 无变化':row.missing?` · 还差${row.missing}张`:` · 第${facts.minimumChapter}章解锁`):'');option.disabled=facts.restricted&&!row.eligible;select.append(option);}
         select.onchange=()=>{selection.suit=select.value?select.value as Suit:undefined;refresh();};selects.push(select);label.append(name,select);panel.append(label);break;
       }
       case 'hand-exchange':if(tool.operation.kind==='exchange-hand-levels'){handSelect('收益牌型',R2_HAND_TYPES,type=>{selection.handType=type;});handSelect('遗忘牌型',R2_HAND_TYPES,type=>{selection.secondaryHandType=type;});}break;
@@ -276,7 +282,7 @@ export function showConsumables(dialog:DetailDialog,state:R2RunState,ready:boole
       selectionHint.textContent=['cards','card-sacrifice','card-or-joker','joker-sacrifice'].includes(tool.target.kind)
         ?`受益：${selected.map(choice=>choice.name).join('、')||'未选'}${tool.target.kind==='cards'||tool.target.kind==='card-sacrifice'?` (${selection.ids.size}/${tool.target.maximum})`:''}`+
           (tool.target.kind==='card-sacrifice'||tool.target.kind==='joker-sacrifice'?`\n牺牲：${donor?.name??'未选'} · 永久移除，不退款`:'')
-        :'';selectionHint.hidden=!selectionHint.textContent;
+        :operation.kind==='set-deck-suit'?s04QualificationText(state,selection.suit)??'':'';selectionHint.hidden=!selectionHint.textContent;
       const lines:string[]=[];
       if(selection.sacrificeId){const donor=(tool.target.kind==='joker-sacrifice'?jokerChoices:cardChoices).find(choice=>choice.id===selection.sacrificeId);if(donor)lines.push(`永久牺牲：${donor.name} · ${donor.detail.replace('\n',' · ')}。不作为出售，不退款。`);}
       changes.replaceChildren();if(tool.target.kind==='card-sacrifice'&&selection.sacrificeId){const donor=known.find(c=>c.id===selection.sacrificeId);if(donor)renderCardChange(changes,{before:donor,label:'永久献出',note:'牌组 −1 · 不退款'},0);}selected.forEach((choice,index)=>{if(choice.card){const change=toolCardChange(tool,choice.card);if(change)renderCardChange(changes,tool.id==='T12'?{...change,note:''}:change,index);else if(tool.operation.kind==='random-enhancement'){const row=document.createElement('figure'),title=document.createElement('figcaption'),face=document.createElement('span'),unknown=document.createElement('strong');row.className='tool-change-card';row.dataset.sourceId=choice.card.id;title.textContent=`受益 ${index+1} · 点数／花色／版次保留`;renderToolCard(face,choice.card);unknown.textContent='→ 随机增强（保存后揭晓）';unknown.className='tool-change-unknown';row.append(title,face,unknown);changes.append(row);}}});

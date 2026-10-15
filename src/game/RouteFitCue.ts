@@ -5,6 +5,7 @@ import {currentBuildFocus} from './BuildDirectionPreferences';
 import {toolSupportsFocus} from './BuildJourney';
 import {shopRouteRelation} from './ShopRouteRelations';
 import {jokerApplicableRoutes} from './ShopOfferGuidance';
+import {r2S04Facts} from '../domain/r2S04';
 export const ROUTE_TONE={group:{ink:0x3f606b,css:'#3F606B',label:'契合同点成组路线'},straight:{ink:0x8f6a3b,css:'#8F6A3B',label:'契合顺子路线'},flush:{ink:0xb8473a,css:'#B8473A',label:'契合同花路线'}};
 /** Same current-profile effect relation on shelf, held faces and detail; never a purchase ranking. */
 export function routeFitCue(state:R2RunState,kind:'jokers'|'tools'|'items',id:string,instanceId?:string){
@@ -30,7 +31,8 @@ export function toolPurpose(state:R2RunState,id:string):string {
  case 'copy-card':return '复制已有好牌，可增加同点或同花色数量；原牌保留。';
  case 'random-enhancement':return '用一张牌换另外一至两张的随机增强；每张独立抽取，保存后揭晓。';
  case 'random-edition':return '为选中对象增加随机版次；保存后揭晓，不能预选结果。';
- case 'set-suit':case 'set-deck-suit':return '集中花色，点数保留；不会保证下一手成型。';
+ case 'set-deck-suit':{const facts=r2S04Facts(state);if(facts.restricted)return `第${facts.minimumChapter}章起，先铺到至少${facts.required}/${facts.living}张目标色，再整副收尾；永久手牌容量−1。`;return '集中花色，点数保留；不会保证下一手成型。';}
+ case 'set-suit':return '集中花色，点数保留；不会保证下一手成型。';
  case 'upgrade-hand':return '升级已发现的对应牌型，增加基础值；改牌与升型可以分步培养。';
  default:return '按下方实际对象与代价确认；用后查看保存结果。';
  }
