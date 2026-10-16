@@ -1,0 +1,143 @@
+{
+  "taskId": "P08",
+  "state": "validated_development_candidate",
+  "date": "2026-10-16",
+  "baseCommit": "c009bc401d337fda7af052baa1c7f34798e97154",
+  "inputFixCommit": "1137d48aa71fea8458a91da62d134b3b325288a4",
+  "copyCommit": "cea473afc0a400ee4ac0b5cdb2eb354de0d240b0",
+  "layoutCommit": "aab4d9fd5ee4d79809a73243a7606b0ae9e28efe",
+  "branch": "verify/local-flow-20261016",
+  "checks": {
+    "normalFlow": {
+      "status": "PASS",
+      "cases": [
+        {
+          "viewport": {
+            "width": 1366,
+            "height": 900
+          },
+          "status": "PASS",
+          "scores": [
+            "198",
+            "495"
+          ],
+          "retry": "PASS"
+        },
+        {
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "status": "PASS",
+          "scores": [
+            "198",
+            "495"
+          ],
+          "retry": "PASS"
+        },
+        {
+          "viewport": {
+            "width": 320,
+            "height": 568
+          },
+          "status": "PASS",
+          "scores": [
+            "198",
+            "495"
+          ],
+          "retry": "PASS"
+        }
+      ],
+      "file": "combined/normal-flow.json.gz"
+    },
+    "saveFaults": {
+      "status": "PASS",
+      "cases": 12,
+      "file": "combined/save-faults.json.gz"
+    },
+    "layout": {
+      "status": "PASS",
+      "cases": 54,
+      "normalStarts": 2,
+      "file": "combined/layout-report.json.gz"
+    },
+    "copy": {
+      "status": "PASS",
+      "viewports": [
+        {
+          "viewport": {
+            "width": 1366,
+            "height": 900
+          },
+          "heroes": 6,
+          "live": 6,
+          "legacy": 2,
+          "status": "PASS"
+        },
+        {
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "heroes": 6,
+          "live": 6,
+          "legacy": 2,
+          "status": "PASS"
+        },
+        {
+          "viewport": {
+            "width": 320,
+            "height": 568
+          },
+          "heroes": 6,
+          "live": 6,
+          "legacy": 2,
+          "status": "PASS"
+        }
+      ],
+      "file": "combined/copy-report.json.gz"
+    },
+    "focused": {
+      "passed": 241,
+      "failed": 0,
+      "file": "combined/focused-results.json"
+    },
+    "build": {
+      "status": "PASS",
+      "file": "combined/build.txt"
+    },
+    "priorCopyFull": {
+      "commit": "ba2ef92f1064c1bdd9abc162ec8de880bf7c45a9",
+      "tests": 3654,
+      "passed": 3642,
+      "failed": 12,
+      "newFailuresAgainstBaseline": [],
+      "file": "comparison/comparison.json"
+    }
+  },
+  "protection": {
+    "domainApplicationContentAudioPublicArtUnchanged": true,
+    "originalLihuiUntouched": true,
+    "mainPublication": "not_attempted_pending_confirmation",
+    "remoteCI": "not_requested",
+    "physicalHumanAudioGPU": "NOT_RUN",
+    "overallP08": "in_progress"
+  },
+  "sourceHashes": {
+    "src/game/SceneView.ts": "1f0edf3e80a92368cd17d5150d9cfdcd066ae372a68b797aeffd341853942d62",
+    "harness/tangsong-delivery-integration.mjs": "6151f7c2b19d76374e7d7658293b0704d2e9e4718f0b2313921a912e74326fd5",
+    "index.html": "5c58f2eabccd8c402e6b631fcd605b0b38d2099ff5df78f6f81b57746d855f2b",
+    "src/game/LoadingScreen.ts": "6329139070828855b337e59ffa2fe75735cacae8be754cf3b3611539c1da24e0",
+    "src/game/PaperFlow.ts": "11767f1d0146e2532118b1bbe14943fc592526e5503caf9efd6f72a35de14594",
+    "src/game/GameScene.ts": "a8e540b534ce7e842b55884c9663e8f6fc9383cb16a768b5d13dd8233bb89402",
+    "src/game/ShopScene.ts": "01bc555129d137c1d2b4ed6b073a3fd2f50bd932ba800c0cdb2c2c47c89fcab6",
+    "src/game/ToolCarryIntent.ts": "15c05c62d967b0106f8ed96ed3b53a74caad76d6dbcd50477ddc5f933a1a6268",
+    "src/game/CharacterArt.ts": "f64f3642df4fe80578317a960792b0c1a74ecbc532339fb247581f3dfd2d294b",
+    "src/game/SceneResources.ts": "72ef176d0d37eec34edf538b6564d1bf963f67e890a0465b16253a668cc3d0cf",
+    "src/game/HeroClimax.ts": "75ed6a746d7a23108c6442d60ac7aaa19c822f8a3096ffc46b56bae4c60e4f68",
+    "src/game/HeroClimaxCaption.ts": "035eaddafee6ab3a95523164d7839cf827b564fcf611ac00d699bdd9f562494f",
+    "src/game/HeroClimaxLayout.ts": "dc22bc6f99689fa885f8be365d06c8f3a35b6e4995a3de0560aecc9f1f4e5b22"
+  },
+  "testedCommit": "6069d0332fa10f52345509a36f0c4369844f5257",
+  "sourceTree": "2065155f43d8eae498a29e5906f1576002494cb0"
+}

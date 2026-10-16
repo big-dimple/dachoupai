@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "auditCommit": "8e2174141920ef001b95a30485e70525920d3d9f",
   "currentTask": "P08",
-  "selectionPolicy": "唯一执行入口docs/production/DELIVERY_PLAN.md#当前统一执行计划；P08保持in_progress。六图/加载/R03及上一版文案已交付，基于main c009bc401d337fda7af052baa1c7f34798e97154按用户最新要求更新文化包装：文案/命名与选角布局分工，在独立worktree开发，检查后提交push开发分支，由统一整合负责人合入，不改共享main。技能机制、数值、存档与旧身份保持，花蕊夫人正式名赏赐。当前文本以HERO_TEXT_SPEC_20261015.md/json为准，本轮证据hero-cultural-copy-2026-10-15，不重签旧报告。原图/运行时美术/理解/听感/目标设备各自验收；不写整体百分比，不启动18局或旧档迁移，不查等CI/域名、不force push。",
+  "selectionPolicy": "唯一执行入口docs/production/DELIVERY_PLAN.md#当前统一执行计划；本机Windows开发整合以currentDelivery.statusRecord为准。P08保持in_progress，六英雄文化文案、大立绘/顶部模式与本机短闭环已整合；软件证据不代签真人/物理设备/听感/独立眼原画/整体美术。仅推开发整合分支，main待用户确认；不查CI/域名，不重开18路线前置或完整C04。",
   "resumeContract": {
     "candidateCommit": "4bf6a7d63d7738d3c415d09439a1bdca878dc685",
     "gateTask": "A01",
@@ -36,8 +36,9 @@
       ],
       "package": "docs/production/WORK_PACKAGES.md#p08",
       "humanGate": false,
-      "completionScope": "2026-10-15现行：六英雄实际能力、成长、技能提醒、失败再战与B05文字事件已在main8e217；各分支已开发/待整合详见currentDelivery.statusRecord。加载+携带已有a85be2a同版有限正常首局闭环；六图运行时bd626e84待另路合入；新技能名/故事/说明本次文档已定、未接运行时。仅六原图获用户验收，整体P08仍in_progress；同版六英雄中后期、移动设备、成长取舍、运行时美术、听感与完整旅程未签。",
+      "completionScope": "2026-10-16：c009基线上的文化文案cea473、选择布局aab4d9和本机跨场景连点修复已整合；同版正常新局/携带/技能/实际结算/下一商店/失败重试及六人软件检查见currentDelivery.statusRecord。历史全量失败按独立基线对照记录，不能写成全量绿。P08仍in_progress；真实玩家理解、自然平衡、物理设备/GPU、听感、独立眼原画及整体体验未签。",
       "evidence": [
+        "docs/production/evidence/local-windows-integration-2026-10-16/status.json",
         "docs/production/evidence/p08-amo-final-multiplier-2026-10-04/summary.json",
         "docs/production/evidence/p08-shop-rack-320-2026-10-04/summary.json",
         "docs/production/evidence/p08-failure-summary-2026-10-04/main-alignment.json",
@@ -1205,8 +1206,8 @@
     }
   ],
   "currentDelivery": {
-    "date": "2026-10-15",
-    "statusRecord": "docs/production/evidence/hero-text-adoption-2026-10-15/status.json",
+    "date": "2026-10-16",
+    "statusRecord": "docs/production/evidence/local-windows-integration-2026-10-16/status.json",
     "heroTextSpecification": "docs/production/HERO_TEXT_SPEC_20261015.json",
     "history": "docs/production/history/plan-status-before-20261015.json",
     "priorities": [
@@ -1217,12 +1218,13 @@
     ],
     "owners": {
       "documents": "同一整合负责人：规范来源856c30ed、运行时采用与当前计划/证据对账",
-      "runtimeIntegration": "dev/tangsong-delivery-20261015负责人",
+      "runtimeIntegration": "Windows本机 verify/local-flow-20261016 整合负责人",
       "portraits": "正式图接线已完成整合；只处理可复现缺陷，不并发覆盖资源窗口",
       "carry": "R03已结束开发，只处理经复现的整合缺陷",
       "opening": "加载动画已结束开发，只处理经复现的整合缺陷",
       "acceptance": "用户/真实玩家/目标设备与听感各按实际证据签收"
     },
-    "legacyDoneScope": "原done工作包仅保持原证据/原SHA的局部交付事实；不代表当前唐宋六图、全新文案、运行时美术、自然平衡或整体体验完成。"
+    "legacyDoneScope": "原done工作包仅保持原证据/原SHA的局部交付事实；不代表当前唐宋六图、全新文案、运行时美术、自然平衡或整体体验完成。",
+    "priorStatusRecord": "docs/production/evidence/hero-text-adoption-2026-10-15/status.json"
   }
 }

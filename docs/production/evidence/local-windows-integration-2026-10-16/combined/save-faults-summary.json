@@ -1,0 +1,748 @@
+{
+  "base": "9c41dfff2a66ffa66b5cf812c2742caae9cdf125",
+  "head": "6069d0332fa10f52345509a36f0c4369844f5257",
+  "sourceHashes": {
+    "src/game/SceneView.ts": "1f0edf3e80a92368cd17d5150d9cfdcd066ae372a68b797aeffd341853942d62",
+    "harness/r03-carry-tool.mjs": "9447ef4014b07ad29346dc66a379da15cf9664f0af57c47e244366951dc22efe",
+    "src/game/ShopScene.ts": "01bc555129d137c1d2b4ed6b073a3fd2f50bd932ba800c0cdb2c2c47c89fcab6",
+    "src/game/GameScene.ts": "a8e540b534ce7e842b55884c9663e8f6fc9383cb16a768b5d13dd8233bb89402",
+    "src/game/ToolCarryIntent.ts": "15c05c62d967b0106f8ed96ed3b53a74caad76d6dbcd50477ddc5f933a1a6268"
+  },
+  "scope": "Installed Playwright Chromium software Canvas DPR1, PC mouse and 320/390 touch. Controlled strict-checkpoint shop stock/gold/duplicate inventory; real purchase, leave, enter and use UI. No physical device or natural acquisition-rate claim.",
+  "cases": [
+    {
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      },
+      "errors": [],
+      "checks": [
+        "Escape and continue keep complete state/journal/storage unchanged",
+        "no automatic target/use; only current hand, same-named old instance untouched",
+        "double confirm consumes exactly bought instance once; cold restore does not reopen"
+      ],
+      "purchase": {
+        "commands": [
+          {
+            "runId": "controlled/r03-carry",
+            "commandId": "controlled/r03-carry/command/3",
+            "expectedSeq": 2,
+            "action": {
+              "type": "BuyOffer",
+              "offerId": "controlled/r03-carry/shop/0/0/tool/0"
+            }
+          }
+        ],
+        "fullStateJournalStorageRngEqual": true
+      },
+      "instanceId": "controlled/r03-carry/tool/controlled/r03-carry/command/3",
+      "destinationButtons": [
+        {
+          "text": "现在改牌组",
+          "rect": {
+            "x": 264,
+            "y": 687,
+            "width": 241,
+            "height": 56,
+            "top": 687,
+            "right": 505,
+            "bottom": 743,
+            "left": 264
+          }
+        },
+        {
+          "text": "带入牌桌 · 选手牌",
+          "rect": {
+            "x": 513,
+            "y": 687,
+            "width": 283.5,
+            "height": 56,
+            "top": 687,
+            "right": 796.5,
+            "bottom": 743,
+            "left": 513
+          }
+        },
+        {
+          "text": "继续经营 · 保留工具",
+          "rect": {
+            "x": 804.5,
+            "y": 687,
+            "width": 297.5,
+            "height": 56,
+            "top": 687,
+            "right": 1102,
+            "bottom": 743,
+            "left": 804.5
+          }
+        }
+      ],
+      "entry": {
+        "commands": [
+          {
+            "runId": "controlled/r03-carry",
+            "commandId": "controlled/r03-carry/command/4",
+            "expectedSeq": 3,
+            "action": {
+              "type": "LeaveShop"
+            }
+          },
+          {
+            "runId": "controlled/r03-carry",
+            "commandId": "controlled/r03-carry/command/5",
+            "expectedSeq": 4,
+            "action": {
+              "type": "EnterStage"
+            }
+          }
+        ],
+        "fullStateJournalStorageRngEqual": true
+      },
+      "target": {
+        "id": "diamonds-8",
+        "formsPair": true
+      },
+      "use": {
+        "commands": [
+          {
+            "runId": "controlled/r03-carry",
+            "commandId": "controlled/r03-carry/command/6",
+            "expectedSeq": 5,
+            "action": {
+              "type": "UseConsumable",
+              "instanceId": "controlled/r03-carry/tool/controlled/r03-carry/command/3",
+              "targetIds": [
+                "diamonds-8"
+              ]
+            }
+          }
+        ],
+        "fullStateJournalStorageRngEqual": true
+      },
+      "status": "PASS"
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 740
+      },
+      "errors": [],
+      "checks": [
+        "Escape and continue keep complete state/journal/storage unchanged",
+        "no automatic target/use; only current hand, same-named old instance untouched",
+        "double confirm consumes exactly bought instance once; cold restore does not reopen"
+      ],
+      "purchase": {
+        "commands": [
+          {
+            "runId": "controlled/r03-carry",
+            "commandId": "controlled/r03-carry/command/3",
+            "expectedSeq": 2,
+            "action": {
+              "type": "BuyOffer",
+              "offerId": "controlled/r03-carry/shop/0/0/tool/0"
+            }
+          }
+        ],
+        "fullStateJournalStorageRngEqual": true
+      },
+      "instanceId": "controlled/r03-carry/tool/controlled/r03-carry/command/3",
+      "destinationButtons": [
+        {
+          "text": "现在改牌组",
+          "rect": {
+            "x": 36,
+            "y": 605,
+            "width": 133.75,
+            "height": 56,
+            "top": 605,
+            "right": 169.75,
+            "bottom": 661,
+            "left": 36
+          }
+        },
+        {
+          "text": "带入牌桌 · 选手牌",
+          "rect": {
+            "x": 177.75,
+            "y": 605,
+            "width": 176.25,
+            "height": 56,
+            "top": 605,
+            "right": 354,
+            "bottom": 661,
+            "left": 177.75
+          }
+        },
+        {
+          "text": "继续经营 · 保留工具",
+          "rect": {
+            "x": 36,
+            "y": 669,
+            "width": 318,
+            "height": 48,
+            "top": 669,
+            "right": 354,
+            "bottom": 717,
+            "left": 36
+          }
+        }
+      ],
+      "entry": {
+        "commands": [
+          {
+            "runId": "controlled/r03-carry",
+            "commandId": "controlled/r03-carry/command/4",
+            "expectedSeq": 3,
+            "action": {
+              "type": "LeaveShop"
+            }
+          },
+          {
+            "runId": "controlled/r03-carry",
+            "commandId": "controlled/r03-carry/command/5",
+            "expectedSeq": 4,
+            "action": {
+              "type": "EnterStage"
+            }
+          }
+        ],
+        "fullStateJournalStorageRngEqual": true
+      },
+      "target": {
+        "id": "diamonds-8",
+        "formsPair": true
+      },
+      "use": {
+        "commands": [
+          {
+            "runId": "controlled/r03-carry",
+            "commandId": "controlled/r03-carry/command/6",
+            "expectedSeq": 5,
+            "action": {
+              "type": "UseConsumable",
+              "instanceId": "controlled/r03-carry/tool/controlled/r03-carry/command/3",
+              "targetIds": [
+                "diamonds-8"
+              ]
+            }
+          }
+        ],
+        "fullStateJournalStorageRngEqual": true
+      },
+      "status": "PASS"
+    },
+    {
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "errors": [],
+      "checks": [
+        "Escape and continue keep complete state/journal/storage unchanged",
+        "no automatic target/use; only current hand, same-named old instance untouched",
+        "double confirm consumes exactly bought instance once; cold restore does not reopen"
+      ],
+      "purchase": {
+        "commands": [
+          {
+            "runId": "controlled/r03-carry",
+            "commandId": "controlled/r03-carry/command/3",
+            "expectedSeq": 2,
+            "action": {
+              "type": "BuyOffer",
+              "offerId": "controlled/r03-carry/shop/0/0/tool/0"
+            }
+          }
+        ],
+        "fullStateJournalStorageRngEqual": true
+      },
+      "instanceId": "controlled/r03-carry/tool/controlled/r03-carry/command/3",
+      "destinationButtons": [
+        {
+          "text": "现在改牌组",
+          "rect": {
+            "x": 36,
+            "y": 433,
+            "width": 98.75,
+            "height": 56,
+            "top": 433,
+            "right": 134.75,
+            "bottom": 489,
+            "left": 36
+          }
+        },
+        {
+          "text": "带入牌桌 · 选手牌",
+          "rect": {
+            "x": 142.75,
+            "y": 433,
+            "width": 141.25,
+            "height": 56,
+            "top": 433,
+            "right": 284,
+            "bottom": 489,
+            "left": 142.75
+          }
+        },
+        {
+          "text": "继续经营 · 保留工具",
+          "rect": {
+            "x": 36,
+            "y": 497,
+            "width": 248,
+            "height": 48,
+            "top": 497,
+            "right": 284,
+            "bottom": 545,
+            "left": 36
+          }
+        }
+      ],
+      "entry": {
+        "commands": [
+          {
+            "runId": "controlled/r03-carry",
+            "commandId": "controlled/r03-carry/command/4",
+            "expectedSeq": 3,
+            "action": {
+              "type": "LeaveShop"
+            }
+          },
+          {
+            "runId": "controlled/r03-carry",
+            "commandId": "controlled/r03-carry/command/5",
+            "expectedSeq": 4,
+            "action": {
+              "type": "EnterStage"
+            }
+          }
+        ],
+        "fullStateJournalStorageRngEqual": true
+      },
+      "target": {
+        "id": "diamonds-8",
+        "formsPair": true
+      },
+      "use": {
+        "commands": [
+          {
+            "runId": "controlled/r03-carry",
+            "commandId": "controlled/r03-carry/command/6",
+            "expectedSeq": 5,
+            "action": {
+              "type": "UseConsumable",
+              "instanceId": "controlled/r03-carry/tool/controlled/r03-carry/command/3",
+              "targetIds": [
+                "diamonds-8"
+              ]
+            }
+          }
+        ],
+        "fullStateJournalStorageRngEqual": true
+      },
+      "status": "PASS"
+    },
+    {
+      "kind": "normal-now",
+      "checks": [],
+      "errors": [],
+      "purchase": {
+        "commands": [
+          {
+            "runId": "controlled/r03-carry",
+            "commandId": "controlled/r03-carry/command/3",
+            "expectedSeq": 2,
+            "action": {
+              "type": "BuyOffer",
+              "offerId": "controlled/r03-carry/shop/0/0/tool/0"
+            }
+          }
+        ],
+        "fullStateJournalStorageRngEqual": true
+      },
+      "use": {
+        "commands": [
+          {
+            "runId": "controlled/r03-carry",
+            "commandId": "controlled/r03-carry/command/4",
+            "expectedSeq": 3,
+            "action": {
+              "type": "UseConsumable",
+              "instanceId": "controlled/r03-carry/tool/controlled/r03-carry/command/3",
+              "targetIds": [
+                "spades-13"
+              ]
+            }
+          }
+        ],
+        "fullStateJournalStorageRngEqual": true
+      },
+      "status": "PASS"
+    },
+    {
+      "kind": "normal-carry",
+      "checks": [],
+      "errors": [],
+      "purchase": {
+        "commands": [
+          {
+            "runId": "controlled/r03-carry",
+            "commandId": "controlled/r03-carry/command/3",
+            "expectedSeq": 2,
+            "action": {
+              "type": "BuyOffer",
+              "offerId": "controlled/r03-carry/shop/0/0/tool/0"
+            }
+          }
+        ],
+        "fullStateJournalStorageRngEqual": true
+      },
+      "entry": {
+        "commands": [
+          {
+            "runId": "controlled/r03-carry",
+            "commandId": "controlled/r03-carry/command/4",
+            "expectedSeq": 3,
+            "action": {
+              "type": "LeaveShop"
+            }
+          },
+          {
+            "runId": "controlled/r03-carry",
+            "commandId": "controlled/r03-carry/command/5",
+            "expectedSeq": 4,
+            "action": {
+              "type": "EnterStage"
+            }
+          }
+        ],
+        "fullStateJournalStorageRngEqual": true
+      },
+      "use": {
+        "commands": [
+          {
+            "runId": "controlled/r03-carry",
+            "commandId": "controlled/r03-carry/command/6",
+            "expectedSeq": 5,
+            "action": {
+              "type": "UseConsumable",
+              "instanceId": "controlled/r03-carry/tool/controlled/r03-carry/command/3",
+              "targetIds": [
+                "diamonds-8"
+              ]
+            }
+          }
+        ],
+        "fullStateJournalStorageRngEqual": true
+      },
+      "status": "PASS"
+    },
+    {
+      "kind": "shop-use",
+      "checks": [],
+      "errors": [],
+      "purchase": {
+        "commands": [
+          {
+            "runId": "controlled/r03-carry",
+            "commandId": "controlled/r03-carry/command/3",
+            "expectedSeq": 2,
+            "action": {
+              "type": "BuyOffer",
+              "offerId": "controlled/r03-carry/shop/0/0/tool/0"
+            }
+          }
+        ],
+        "fullStateJournalStorageRngEqual": true
+      },
+      "use": {
+        "commands": [
+          {
+            "runId": "controlled/r03-carry",
+            "commandId": "controlled/r03-carry/command/4",
+            "expectedSeq": 3,
+            "action": {
+              "type": "UseConsumable",
+              "instanceId": "controlled/r03-carry/tool/controlled/r03-carry/command/3",
+              "targetIds": [
+                "spades-13"
+              ]
+            }
+          }
+        ],
+        "fullStateJournalStorageRngEqual": true
+      },
+      "status": "PASS"
+    },
+    {
+      "kind": "store",
+      "checks": [
+        "buy-to-store keeps existing owned-tools page and cold restore keeps inventory"
+      ],
+      "errors": [],
+      "purchase": {
+        "commands": [
+          {
+            "runId": "controlled/r03-carry",
+            "commandId": "controlled/r03-carry/command/3",
+            "expectedSeq": 2,
+            "action": {
+              "type": "BuyOffer",
+              "offerId": "controlled/r03-carry/shop/0/0/tool/0"
+            }
+          }
+        ],
+        "fullStateJournalStorageRngEqual": true
+      },
+      "status": "PASS"
+    },
+    {
+      "kind": "basic",
+      "checks": [],
+      "errors": [],
+      "purchase": {
+        "commands": [
+          {
+            "runId": "controlled/r03-carry",
+            "commandId": "controlled/r03-carry/command/3",
+            "expectedSeq": 2,
+            "action": {
+              "type": "BuyBasicTool",
+              "definitionId": "T11",
+              "shopSeq": 1
+            }
+          }
+        ],
+        "fullStateJournalStorageRngEqual": true
+      },
+      "entry": {
+        "commands": [
+          {
+            "runId": "controlled/r03-carry",
+            "commandId": "controlled/r03-carry/command/4",
+            "expectedSeq": 3,
+            "action": {
+              "type": "LeaveShop"
+            }
+          },
+          {
+            "runId": "controlled/r03-carry",
+            "commandId": "controlled/r03-carry/command/5",
+            "expectedSeq": 4,
+            "action": {
+              "type": "EnterStage"
+            }
+          }
+        ],
+        "fullStateJournalStorageRngEqual": true
+      },
+      "use": {
+        "commands": [
+          {
+            "runId": "controlled/r03-carry",
+            "commandId": "controlled/r03-carry/command/6",
+            "expectedSeq": 5,
+            "action": {
+              "type": "UseConsumable",
+              "instanceId": "controlled/r03-carry/tool/controlled/r03-carry/command/3",
+              "targetIds": [
+                "diamonds-8"
+              ]
+            }
+          }
+        ],
+        "fullStateJournalStorageRngEqual": true
+      },
+      "status": "PASS"
+    },
+    {
+      "kind": "boss",
+      "checks": [
+        "B05 entrance and current-hand explanation both remain ahead of carried selector"
+      ],
+      "errors": [],
+      "purchase": {
+        "commands": [
+          {
+            "runId": "controlled/b05",
+            "commandId": "controlled/b05/command/4",
+            "expectedSeq": 3,
+            "action": {
+              "type": "BuyOffer",
+              "offerId": "controlled/b05/shop/8/0/tool/0"
+            }
+          }
+        ],
+        "fullStateJournalStorageRngEqual": true
+      },
+      "entry": {
+        "commands": [
+          {
+            "runId": "controlled/b05",
+            "commandId": "controlled/b05/command/5",
+            "expectedSeq": 4,
+            "action": {
+              "type": "LeaveShop"
+            }
+          },
+          {
+            "runId": "controlled/b05",
+            "commandId": "controlled/b05/command/6",
+            "expectedSeq": 5,
+            "action": {
+              "type": "EnterStage"
+            }
+          }
+        ],
+        "fullStateJournalStorageRngEqual": true
+      },
+      "use": {
+        "commands": [
+          {
+            "runId": "controlled/b05",
+            "commandId": "controlled/b05/command/7",
+            "expectedSeq": 6,
+            "action": {
+              "type": "UseConsumable",
+              "instanceId": "controlled/b05/tool/controlled/b05/command/4",
+              "targetIds": [
+                "spades-3"
+              ]
+            }
+          }
+        ],
+        "fullStateJournalStorageRngEqual": true
+      },
+      "status": "PASS"
+    },
+    {
+      "kind": "purchase-failure",
+      "checks": [
+        "failed purchase publishes no payment; original retry buys once and cold restore has no carry intent"
+      ],
+      "errors": [],
+      "retry": {
+        "commands": [
+          {
+            "runId": "controlled/r03-carry",
+            "commandId": "controlled/r03-carry/command/3",
+            "expectedSeq": 2,
+            "action": {
+              "type": "BuyOffer",
+              "offerId": "controlled/r03-carry/shop/0/0/tool/0"
+            }
+          }
+        ],
+        "fullStateJournalStorageRngEqual": true
+      },
+      "status": "PASS"
+    },
+    {
+      "kind": "leave-failure",
+      "checks": [
+        "failed leave publishes no entry; original retry enters once without reviving ephemeral selector"
+      ],
+      "errors": [],
+      "purchase": {
+        "commands": [
+          {
+            "runId": "controlled/r03-carry",
+            "commandId": "controlled/r03-carry/command/3",
+            "expectedSeq": 2,
+            "action": {
+              "type": "BuyOffer",
+              "offerId": "controlled/r03-carry/shop/0/0/tool/0"
+            }
+          }
+        ],
+        "fullStateJournalStorageRngEqual": true
+      },
+      "retry": {
+        "commands": [
+          {
+            "runId": "controlled/r03-carry",
+            "commandId": "controlled/r03-carry/command/4",
+            "expectedSeq": 3,
+            "action": {
+              "type": "LeaveShop"
+            }
+          },
+          {
+            "runId": "controlled/r03-carry",
+            "commandId": "controlled/r03-carry/command/5",
+            "expectedSeq": 4,
+            "action": {
+              "type": "EnterStage"
+            }
+          }
+        ],
+        "fullStateJournalStorageRngEqual": true
+      },
+      "status": "PASS"
+    },
+    {
+      "kind": "use-failure",
+      "checks": [
+        "failed use preserves item; original save retry commits candidate once"
+      ],
+      "errors": [],
+      "purchase": {
+        "commands": [
+          {
+            "runId": "controlled/r03-carry",
+            "commandId": "controlled/r03-carry/command/3",
+            "expectedSeq": 2,
+            "action": {
+              "type": "BuyOffer",
+              "offerId": "controlled/r03-carry/shop/0/0/tool/0"
+            }
+          }
+        ],
+        "fullStateJournalStorageRngEqual": true
+      },
+      "entry": {
+        "commands": [
+          {
+            "runId": "controlled/r03-carry",
+            "commandId": "controlled/r03-carry/command/4",
+            "expectedSeq": 3,
+            "action": {
+              "type": "LeaveShop"
+            }
+          },
+          {
+            "runId": "controlled/r03-carry",
+            "commandId": "controlled/r03-carry/command/5",
+            "expectedSeq": 4,
+            "action": {
+              "type": "EnterStage"
+            }
+          }
+        ],
+        "fullStateJournalStorageRngEqual": true
+      },
+      "use": {
+        "commands": [
+          {
+            "runId": "controlled/r03-carry",
+            "commandId": "controlled/r03-carry/command/6",
+            "expectedSeq": 5,
+            "action": {
+              "type": "UseConsumable",
+              "instanceId": "controlled/r03-carry/tool/controlled/r03-carry/command/3",
+              "targetIds": [
+                "diamonds-8"
+              ]
+            }
+          }
+        ],
+        "fullStateJournalStorageRngEqual": true
+      },
+      "status": "PASS"
+    }
+  ],
+  "productCommit": "ba2ef92f1064c1bdd9abc162ec8de880bf7c45a9",
+  "sourceUnchanged": true,
+  "status": "PASS"
+}

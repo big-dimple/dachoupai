@@ -1,0 +1,48 @@
+{
+  "baselineCommit": "c009bc401d337fda7af052baa1c7f34798e97154",
+  "copyIntegrationCommit": "ba2ef92f1064c1bdd9abc162ec8de880bf7c45a9",
+  "baseline": {
+    "tests": 98,
+    "passed": 85,
+    "failed": 13
+  },
+  "copyFull": {
+    "tests": 3654,
+    "passed": 3642,
+    "failed": 12
+  },
+  "newFailures": [],
+  "sharedFailures": [
+    "c02-chain.test.ts :: C02 current-content joint event proof adds one bounded program reward to the C03 envelope while retaining the independent conservative512 guard",
+    "c02-chain.test.ts :: C02 current-content joint event proof refuses a tight proof for unknown-id rather than silently carrying the old classification",
+    "c02-chain.test.ts :: C02 current-content joint event proof refuses a tight proof for changed-card-condition rather than silently carrying the old classification",
+    "ci-gates.test.mjs :: executable CI and read-only gates CI uses locked packages and verified preinstalled engines, runs gates and retains failed browser artifacts",
+    "core-build-window.test.ts :: real bounded-clear C9 and the existing paid construction window replays all 196 actual commands into the exact saved state and authoritative Boss score",
+    "goods-art.test.ts :: binds all twelve approved items and thirty-nine tools to exact full-contain derivatives",
+    "handdrawn-art.test.ts :: 'b9' consumes the exact approved receipt and same-ID on-demand derivatives",
+    "handdrawn-art.test.ts :: 'b10' consumes the exact approved receipt and same-ID on-demand derivatives",
+    "handdrawn-art.test.ts :: 'b11' consumes the exact approved receipt and same-ID on-demand derivatives",
+    "handdrawn-art.test.ts :: uses only the approved a11-v2 exact full-contain receipt and new content URLs",
+    "public-art-privacy.test.mjs :: does not follow a metadata symlink into an external private folder",
+    "public-art-privacy.test.mjs :: the actual content entry fails before domain validation/SSR server creation and prints only a safe diagnostic"
+  ],
+  "baselineFailuresNowPassing": [
+    "ci-gates.test.mjs :: executable CI and read-only gates hashes the complete repository index without truncating large Git output"
+  ],
+  "initial17": {
+    "statement": "Pre-correction attempt on copy branch, not current failure count",
+    "youthAssertion": "final copy branch and integrated full suite pass",
+    "temporaryFixture": "ordinary OS TEMP places non-repository fixture outside worktree; integrated full pass",
+    "transient5s": [
+      "tool-inventory-entry: baseline and integrated full pass",
+      "c02-acquisition: baseline and integrated full pass"
+    ]
+  },
+  "classification": {
+    "lineEndings": 7,
+    "windowsSymlinkEPERM": 2,
+    "baselineContentCliTimeout": 3,
+    "indexSnapshot": "pure baseline timed out, integrated full passed"
+  },
+  "scope": "Full suite is bound to copy integration ba2ef92, before layout merge; final combined validation is recorded separately. No remote CI request."
+}
