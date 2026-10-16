@@ -1,0 +1,11 @@
+# Highlight and shop-image candidate union
+
+Normal no-conflict merge b076fc1f combines highlight b1a838e8 with shop021ae4ff. Tested E2E/production build0ff07146; final observerb546d78e only corrects an incorrect selector from hero-skill-guide to actual hero-skill-dialog. Runtime source is identical across these observer revisions. Exact final candidate SHA is recorded by delivery receipt.
+
+Fresh47 tests/6files and production/type build PASS. Native shop browse cold/hot93.0/79.9ms, no state mutations; actual2500ms-controlled in-flight thumbnail preparation -> native EnterStage -> both sources retired/no later tool requests -> role explanation615px HD decoded -> real skill-operation dialog -> cancel preserves full state/journal/storage. Role alt matches name and no removed asset/disclaimer copy returned; pageerror0. Fresh740x320 e11 native highlight confirms separate local x1.3/cumulative10.4 with original controls/state comparisons. Final skill page screenshot visually reviewed.
+
+Each shop production file equals021ae4ff; each highlight/GameScene file equalsb1a838e8. Domain, public/original assets and shared DetailArt/ImageWarmupQueue/ArtTextureLoading equal existing main2a8efe2a. Thus original38 shop tests/39 rotation cases and60 hero tests/full-player-copy matrix remain original bounded evidence and are not falsely summed as fresh combined checks. No need to rerun the unchanged full matrix.
+
+Observer initial wrong-class timeout is retained in observer-failures, not hidden or treated as a product bug. Combined reports retain exact tested build head and separate observer head. No new artwork or device/hearing/perceived-stall acceptance. P08 remains in_progress. Main publication remains paused after two auto-review denials; no main retry or alternate path in this step. Only development-branch candidate push will be attempted under latest authorization.
+
+Reproduce related47 tests via original unit.txt file list; npm run build; SHOP_IMAGE_EARLY_EXIT=1 SHOP_IMAGE_HERO_AFTER_LEAVE=1 SHOP_IMAGE_DELAY=2500 SHOP_IMAGE_DELAY_IMAGES_ONLY=1 SHOP_IMAGE_DWELLS=400 node harness/shop-tool-image-warmup.mjs; regular browse uses SHOP_IMAGE_DWELLS=1500 with no delay or early-exit flags. HERO_TITLE_CASES=e11-740-normal HERO_TITLE_CAPTIONS=1 node harness/hero-source-title.mjs.
