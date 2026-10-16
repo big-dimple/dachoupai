@@ -1,0 +1,16 @@
+EXPECTED_GAP_REPRODUCED pointer
+EXPECTED_GAP_REPRODUCED touch
+EXPECTED_GAP_REPRODUCED keyboard
+locator.tap: Timeout 30000ms exceeded.
+Call log:
+  - waiting for getByRole('button', { name: '閲嶇湅涓婁竴鎵?, exact: true })
+
+    at tap (C:\Users\wanghongping\AppData\Local\Temp\dachoupai-audio-experience-20261016\harness\ui.mjs:40:42)
+    at tapMenuAction (C:\Users\wanghongping\AppData\Local\Temp\dachoupai-audio-experience-20261016\harness\ui.mjs:43:9)
+    at async file:///C:/Users/wanghongping/AppData/Local/Temp/dachoupai-audio-experience-20261016/harness/audio-experience.mjs:37:232 {
+  log: [
+    "  - waiting for getByRole('button', { name: '閲嶇湅涓婁竴鎵?, exact: true })"
+  ],
+  name: 'TimeoutError'
+}
+FAIL

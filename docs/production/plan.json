@@ -1228,7 +1228,8 @@
       "portraits": "正式图接线已完成整合；只处理可复现缺陷，不并发覆盖资源窗口",
       "carry": "R03已结束开发，只处理经复现的整合缺陷",
       "opening": "首页/加载/成长main8af3e506已发布；本批保留其源码；结算单独同版复核",
-      "acceptance": "用户/真实玩家/目标设备与听感各按实际证据签收"
+      "acceptance": "用户/真实玩家/目标设备与听感各按实际证据签收",
+      "audioExperience": "独立fix/audio-gesture-recovery-20261016：只持AudioEngine、main音频监听三行及自有harness/证据；76项及真实音频前后对照完成，音色审美/真机未签，不改GameScene或素材"
     },
     "legacyDoneScope": "原done工作包仅保持原证据/原SHA的局部交付事实；不代表当前唐宋六图、全新文案、运行时美术、自然平衡或整体体验完成。",
     "priorStatusRecord": "docs/production/evidence/local-windows-integration-2026-10-16/status.json",
@@ -1251,6 +1252,13 @@
         "scope": "OwnedJokerInput uses existing pointerReleaseTime native press duration instead of release-handler wall time. Only one production file changed; no pointer main, settlement, rules, persistence or asset changes.",
         "status": "integrated_software_verified_authorized_release",
         "integrationStatusRecord": "docs/production/evidence/owned-card-current-main-integration-2026-10-16/status.json"
+      },
+      {
+        "branch": "fix/audio-gesture-recovery-20261016",
+        "productCommit": "c13ed9c1e1b908aa0784e9f29017450c7e4068d5",
+        "statusRecord": "docs/production/evidence/audio-experience-2026-10-16/status.json",
+        "status": "software_verified_development_candidate",
+        "scope": "AudioEngine needsGestureUnlock state predicate and main.ts40-42 persistent guarded real-gesture audio listeners. First resume rejection previously consumed the one-shot listener and later same-type gestures remained silent. No shared GameScene, settings semantics, volume defaults, media or game rules changed."
       }
     ],
     "priorSettlementStatusRecord": "docs/production/evidence/settlement-current-main-integration-2026-10-16/status.json",
