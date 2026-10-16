@@ -1,0 +1,72 @@
+{
+  "date": "2026-10-16",
+  "status": "software_verified_authorized_normal_main_release",
+  "baseMain": "0621156b5bd17557d867f618dbb86c1ef0260384",
+  "candidate": "47ab5e5e83df27fc1ad94ddc1536e1c86126802e",
+  "product": "e42c500be07eeb503e47921d5fcd5630971842bf",
+  "srcTree": "75b34fa3e323016d1febad96d96fd5280e1de4a3",
+  "integration": "Normal fast-forward: latest main is candidate ancestor; runtime/tests/observers exact candidate content.",
+  "verification": {
+    "reusedExactSource": {
+      "relatedTests": 30,
+      "nativeCases": 14,
+      "sourceRecord": "docs/production/evidence/b05-first-encounter-2026-10-16/source-proof.json"
+    },
+    "fresh": {
+      "typecheck": true,
+      "productionBuild": true,
+      "ordinaryNativeCases": 1,
+      "rotations": [
+        740,
+        320,
+        390
+      ],
+      "nativeHead": "47ab5e5e83df27fc1ad94ddc1536e1c86126802e"
+    }
+  },
+  "gameSceneWindows": [
+    {
+      "name": "OpponentChallenge import",
+      "line": 7
+    },
+    {
+      "function": "renderSelectedCards",
+      "definitionLine": 857,
+      "callLine": 863
+    },
+    {
+      "function": "previewSelection",
+      "definitionLine": 1478,
+      "callLine": 1484
+    }
+  ],
+  "playerCopyCheck": {
+    "newVisibleCopyHasInternalTags": false,
+    "technicalIdsRemainInGuardsAndHiddenMetadata": true,
+    "sharedLabelReportedWithoutEditing": [
+      {
+        "file": "src/game/HeroIdentity.ts",
+        "line": 13,
+        "text": "HERO_ART_NOTICE='正式立绘'"
+      },
+      {
+        "file": "src/game/HeroClimax.ts",
+        "line": 58,
+        "usage": "visible high-point owner string"
+      },
+      {
+        "file": "src/game/HeroExplanation.ts",
+        "line": 59,
+        "usage": "portrait alt"
+      }
+    ]
+  },
+  "assetDependency": "Dedicated B05 portrait and independent matching eye art pending; playable states do not sign image cinematics.",
+  "protected": "Audio, skill reminder, domain/content, original art, mobile shop layout, failure components and complete presentTrace real-event/highlight queue unchanged from base except reported B05 GameScene windows.",
+  "next": "User shop selective-tool image loading latency now prioritized; independent branch after main release; no highlight component ownership.",
+  "limits": [
+    "P08 in_progress",
+    "No full native eight-stage prelude, human comprehension, dedicated art, physical device/GPU or natural balance acceptance",
+    "No CI/domain lookup, force push or git clean"
+  ]
+}
