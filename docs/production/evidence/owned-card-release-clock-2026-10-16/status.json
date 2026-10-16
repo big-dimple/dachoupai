@@ -1,0 +1,120 @@
+{
+  "taskId": "P08",
+  "priority": "P1 mobile interaction / delayed native release",
+  "status": "software_verified_development_candidate",
+  "basePublishedMain": "0c4dab186eb90430d57e213545179b9921fffe10",
+  "testedCommit": "842cad2d5bd8e5063b3e7320d283ec85078a84cb",
+  "sourceTree": "f2a2653973cd7bf3e5897f0757a944df7551f9ab",
+  "branch": "fix/owned-card-release-clock-20261016",
+  "scope": "OwnedJokerInput uses existing pointerReleaseTime native press duration instead of release-handler wall time. Only one production file changed; no pointer main, settlement, rules, persistence or asset changes.",
+  "selectedFrom": "Current DELIVERY_PLAN P1 same-version mobile interaction and gesture interruption. Explicit parent instruction after pointer main integration: continue next plan item, avoid separately owned settlement tail worktree.",
+  "unit": {
+    "files": 8,
+    "passed": 95,
+    "failed": 0,
+    "redBefore": {
+      "passed": 2,
+      "failed": 2
+    }
+  },
+  "typecheck": "PASS via npm run build",
+  "build": "PASS; existing bundle notice retained",
+  "native": {
+    "browser": "153.0.8010.12",
+    "beforeReport": "before-native.json.gz",
+    "afterReport": "after-native.json.gz",
+    "status": "PASS",
+    "cases": [
+      {
+        "viewport": {
+          "width": 1366,
+          "height": 900
+        },
+        "beforeNativeMs": 90.5,
+        "beforeCallbackDelayMs": 600,
+        "beforeDialogs": 0,
+        "afterNativeMs": 79.40000000596046,
+        "afterCallbackDelayMs": 600.1000000089407,
+        "afterDialogs": 1,
+        "nativeInputTrusted": true,
+        "freshDetail": true,
+        "realHoldCanceled": true,
+        "coldRestore": true
+      },
+      {
+        "viewport": {
+          "width": 390,
+          "height": 740
+        },
+        "beforeNativeMs": 86.20000000298023,
+        "beforeCallbackDelayMs": 600,
+        "beforeDialogs": 0,
+        "afterNativeMs": 85.5,
+        "afterCallbackDelayMs": 600,
+        "afterDialogs": 1,
+        "nativeInputTrusted": true,
+        "freshDetail": true,
+        "realHoldCanceled": true,
+        "coldRestore": true
+      },
+      {
+        "viewport": {
+          "width": 320,
+          "height": 568
+        },
+        "beforeNativeMs": 82.1000000089407,
+        "beforeCallbackDelayMs": 600,
+        "beforeDialogs": 0,
+        "afterNativeMs": 90.90000000596046,
+        "afterCallbackDelayMs": 600,
+        "afterDialogs": 1,
+        "nativeInputTrusted": true,
+        "freshDetail": true,
+        "realHoldCanceled": true,
+        "coldRestore": true
+      }
+    ],
+    "scope": "Actual fresh six-gold run, affordable public joker purchase, real native mouse/touch. A 600ms capture listener delays only the release callback; no input-handler, controller, save or stock replacement. Not physical-device performance acceptance."
+  },
+  "sourceUnchanged": true,
+  "sourceHashes": {
+    "src/game/OwnedJokerInput.ts": "d92e8a717afb75980c0aeb0c333e020a888621c1048cc6c1a3f1e62d28ab232e",
+    "src/game/PointerReleaseTime.ts": "6d142d5c951713b01c1d7beaabd26b3390e97ab457eb6013b83e464b81c8c9bd",
+    "src/game/SceneView.ts": "08a953a863a91a1d7db6f2c34e88229abac99de2fe42e71db6eff1a6738aaaf4",
+    "src/game/GameScene.ts": "09094f32b3c5479bf1fd92f8e4c0ba5a8377142b28391931db9795da6ac00f79",
+    "src/game/ScoreTextLayout.ts": "35641b01c5debeca99604a074031c14c4bea79f3a7d4e833a259907140b4aa9b",
+    "src/game/ScoreSourceProcess.ts": "567ee61f64aecdee15778863629ea1c8fd43b9b03a62cf665ccd529d5521b748",
+    "harness/owned-card-release-clock.mjs": "c82bcfef952f099f9844f7db792bf1b141eddd91bd7806716fbfee5f69369b29",
+    "tests/owned-joker-input.test.ts": "b6dd1d09dabffbc0351acf3de7dda3aa5561fc58241b668191cb1a95b2518e52"
+  },
+  "baselineOwnedMatchesPublishedGitBlob": true,
+  "protectedUnchangedVsBase": [
+    "src/domain",
+    "src/application",
+    "src/content",
+    "src/audio",
+    "src/platform",
+    "public",
+    "art",
+    "src/game/SceneView.ts",
+    "src/game/GameScene.ts",
+    "src/game/ScoreTextLayout.ts",
+    "src/game/ScoreSourceProcess.ts",
+    "src/game/PointerReleaseTime.ts",
+    "src/game/HomePage.ts",
+    "src/game/LoadingScreen.ts"
+  ],
+  "ownership": [
+    "src/game/OwnedJokerInput.ts",
+    "tests/owned-joker-input.test.ts",
+    "harness/owned-card-release-clock.mjs",
+    "this evidence directory and current development-candidate metadata"
+  ],
+  "publication": "Independent development branch only. Main remains published pointer batch 0c4dab186eb90430d57e213545179b9921fffe10. No diagnostic branch push, CI or domain query.",
+  "limits": [
+    "The 600ms capture listener is a controlled delay before the production callback, not a natural stall prevalence or performance benchmark. Native mouse/touch events are isTrusted true; no handler/controller/save/stock replacement.",
+    "Only the actual short-press delay has browser before/after proof. Queued long-hold classification has unit proof, and ordinary actual long holds remain cancellation in all three native cases.",
+    "One genuinely purchased owned card per run; no new natural multi-card reorder or physical phone/GPU acceptance claimed. Existing related drag/haptic and interruption tests passed.",
+    "No full-suite green, human/art/audio/balance or P08 completion claim. Separate settlement tail investigation remains separately owned."
+  ]
+}

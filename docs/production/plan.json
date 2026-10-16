@@ -38,6 +38,7 @@
       "humanGate": false,
       "completionScope": "2026-10-16：c009基线上的文化文案cea473、选择布局aab4d9和本机跨场景连点修复已整合；同版正常新局/携带/技能/实际结算/下一商店/失败重试及六人软件检查见currentDelivery.statusRecord。历史全量失败按独立基线对照记录，不能写成全量绿。P08仍in_progress；真实玩家理解、自然平衡、物理设备/GPU、听感、独立眼原画及整体体验未签。",
       "evidence": [
+        "docs/production/evidence/owned-card-release-clock-2026-10-16/status.json",
         "docs/production/evidence/pointer-current-main-integration-2026-10-16/status.json",
         "docs/production/evidence/settlement-current-main-integration-2026-10-16/status.json",
         "docs/production/evidence/current-growth-causality-2026-10-16/status.json",
@@ -1240,8 +1241,16 @@
         "scope": "P1 mobile interruption: retire stale press/hold on hidden without blur",
         "status": "integrated_software_verified_authorized_release",
         "integrationStatusRecord": "docs/production/evidence/pointer-current-main-integration-2026-10-16/status.json"
+      },
+      {
+        "branch": "fix/owned-card-release-clock-20261016",
+        "productCommit": "842cad2d5bd8e5063b3e7320d283ec85078a84cb",
+        "statusRecord": "docs/production/evidence/owned-card-release-clock-2026-10-16/status.json",
+        "scope": "OwnedJokerInput uses existing pointerReleaseTime native press duration instead of release-handler wall time. Only one production file changed; no pointer main, settlement, rules, persistence or asset changes.",
+        "status": "software_verified_development_candidate"
       }
     ],
-    "priorSettlementStatusRecord": "docs/production/evidence/settlement-current-main-integration-2026-10-16/status.json"
+    "priorSettlementStatusRecord": "docs/production/evidence/settlement-current-main-integration-2026-10-16/status.json",
+    "lastVerifiedPublishedMain": "0c4dab186eb90430d57e213545179b9921fffe10"
   }
 }
