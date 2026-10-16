@@ -1,0 +1,183 @@
+{
+  "testedCommit": "034557dc004175b5049d2f894c10e2f671996365",
+  "platform": "win32",
+  "node": "v22.20.0",
+  "runtimeDiff": "",
+  "sourceHashes": {
+    "src/game/FailureSummary.ts": "6b272c217d7d17a9a7f68fd97bd9134fdcd9b601d43f94f5e5d093e0d37be23b",
+    "src/game/FinaleKeepsake.ts": "f87fdffc9d1240f5f23e7b27d7f728e39c6bdba6d51197796f247fbc91f568a7",
+    "src/game/IntermissionScene.ts": "bc057d3d9196bd3745e54b0e64c7f55ff38f60d328b2133919b1b4d1e24c3547",
+    "src/game/SettlementPresentation.ts": "b8dc99cc981b3529e05d9d8bd896cbd89e436e6a2808dca08c7b4061860b84ff",
+    "src/game/RunLaunch.ts": "bc0b058111bba66540d8a43c3b58f7fe06c7c11b80a21be2882455e4c2aa5630",
+    "src/game/session.ts": "5f8f9b687859e5688642889fc5d0806221e56381d95c4eb5aa2909e0a4bc9505",
+    "src/style.css": "bb00f2a2b6329cb38bb2dd09bbc4a679e76c4dfd2f12e9fed32267bf7cb3daaf",
+    "src/game/ShopScene.ts": "5a784f08887b98b1f9c8e58e3415bfe8d4272fff25583cae4df40f9889344171",
+    "src/game/GameScene.ts": "09094f32b3c5479bf1fd92f8e4c0ba5a8377142b28391931db9795da6ac00f79"
+  },
+  "checks": [
+    {
+      "command": "npx.cmd vitest run tests/failure-summary.test.ts tests/failure-guidance.test.ts tests/finale-keepsake.test.ts tests/result-stage.test.ts tests/settlement-presentation.test.ts",
+      "status": "PASS",
+      "tests": 56,
+      "exitCode": 0
+    },
+    {
+      "command": "npm.cmd run build",
+      "status": "PASS",
+      "exitCode": 0
+    },
+    {
+      "command": "FAILURE_QA_OUT=shots/failure-current-native node harness/failure-retry-guidance.mjs (13-case observer before reflection extension)",
+      "status": "PASS",
+      "cases": [
+        {
+          "key": "pc-hands",
+          "status": "PASS",
+          "pageerrors": [],
+          "retry": {
+            "status": "PASS",
+            "commitAttempts": 1,
+            "successfulRevisionDelta": 1,
+            "singleNewState": true
+          },
+          "coldRecovery": "PASS"
+        },
+        {
+          "key": "pc-cards",
+          "status": "PASS",
+          "pageerrors": []
+        },
+        {
+          "key": "pc-abandoned",
+          "status": "PASS",
+          "pageerrors": []
+        },
+        {
+          "key": "390-hands",
+          "status": "PASS",
+          "pageerrors": [],
+          "retry": {
+            "status": "PASS",
+            "commitAttempts": 1,
+            "successfulRevisionDelta": 1,
+            "singleNewState": true
+          },
+          "coldRecovery": "PASS"
+        },
+        {
+          "key": "390-cards",
+          "status": "PASS",
+          "pageerrors": []
+        },
+        {
+          "key": "390-abandoned",
+          "status": "PASS",
+          "pageerrors": []
+        },
+        {
+          "key": "320-short-hands",
+          "status": "PASS",
+          "pageerrors": [],
+          "retry": {
+            "status": "PASS",
+            "commitAttempts": 1,
+            "successfulRevisionDelta": 1,
+            "singleNewState": true
+          },
+          "coldRecovery": "PASS"
+        },
+        {
+          "key": "320-short-cards",
+          "status": "PASS",
+          "pageerrors": []
+        },
+        {
+          "key": "320-short-abandoned",
+          "status": "PASS",
+          "pageerrors": []
+        },
+        {
+          "key": "390-short-boss",
+          "status": "PASS",
+          "pageerrors": []
+        },
+        {
+          "key": "390-short-fault",
+          "status": "PASS",
+          "pageerrors": [],
+          "retry": {
+            "status": "PASS",
+            "commitAttempts": 3,
+            "successfulRevisionDelta": 1,
+            "singleNewState": true
+          },
+          "coldRecovery": "PASS"
+        },
+        {
+          "key": "390-short-post-skip",
+          "status": "PASS",
+          "pageerrors": []
+        },
+        {
+          "key": "390-short-new-selection",
+          "status": "PASS",
+          "pageerrors": [],
+          "coldRecovery": "PASS"
+        }
+      ]
+    },
+    {
+      "command": "FAILURE_QA_REFLECTION_ONLY=1 FAILURE_QA_OUT=shots/failure-current-reflection node harness/failure-retry-guidance.mjs",
+      "status": "PASS",
+      "cases": [
+        {
+          "key": "1366-saved-growth-reflection",
+          "status": "PASS",
+          "pageerrors": [],
+          "savedGrowth": [
+            {
+              "instanceId": "hero-climax/natural-flush/joker/hero-climax/natural-flush/command/2",
+              "definitionId": "c06",
+              "name": "越染越深",
+              "key": "multiplier",
+              "current": "0.5",
+              "metric": "已积攒 +0.5 倍率",
+              "cause": "上手未新增，现存 0.5",
+              "next": "本局最终保存值；重试从开局重新培养",
+              "url": "/assets/handdrawn-p08/cards/c06.thumbnail.webp",
+              "read": "上手实际读取 +0.5 倍率 · 1次"
+            }
+          ]
+        },
+        {
+          "key": "320-saved-growth-reflection",
+          "status": "PASS",
+          "pageerrors": [],
+          "savedGrowth": [
+            {
+              "instanceId": "hero-climax/natural-flush/joker/hero-climax/natural-flush/command/2",
+              "definitionId": "c06",
+              "name": "越染越深",
+              "key": "multiplier",
+              "current": "0.5",
+              "metric": "已积攒 +0.5 倍率",
+              "cause": "上手未新增，现存 0.5",
+              "next": "本局最终保存值；重试从开局重新培养",
+              "url": "/assets/handdrawn-p08/cards/c06.thumbnail.webp",
+              "read": "上手实际读取 +0.5 倍率 · 1次"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "command": "compare failed SaveStore.commit candidate to exact successfully saved checkpoint",
+      "status": "PASS",
+      "exactCandidatePreserved": true
+    }
+  ],
+  "humanReview": {
+    "status": "NOT_RUN"
+  },
+  "physicalDevice": "NOT_RUN"
+}

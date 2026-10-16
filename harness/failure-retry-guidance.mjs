@@ -1,6 +1,9 @@
 /** Local controlled terminal QA; domain state is only read, inputs use real UI.
  * Fault probes wrap SaveStore.commit; they never apply commands or edit saved state. */
-import {createServer} from 'vite';
+import {build,preview} from 'vite';
+import {build as bundle} from 'esbuild';
+import {pathToFileURL} from 'node:url';
+import path from 'node:path';
 import {chromium} from 'playwright';
 import assert from 'node:assert/strict';
 import {mkdir,writeFile} from 'node:fs/promises';
@@ -9,27 +12,29 @@ import {execFileSync} from 'node:child_process';
 import {waitScene,tapUI,point,confirmHeroRoute} from './ui.mjs';
 const scrollOnly=process.env.FAILURE_QA_SCROLL_ONLY==='1';
 const selectionOnly=process.env.FAILURE_QA_SELECTION_ONLY==='1';
-const out=process.env.FAILURE_QA_OUT??'/tmp/failure-retry-guidance',port=Number(process.env.FAILURE_QA_PORT??4181);
+const reflectionOnly=process.env.FAILURE_QA_REFLECTION_ONLY==='1';
+const out=process.env.FAILURE_QA_OUT??'shots/failure-retry-guidance',port=Number(process.env.FAILURE_QA_PORT??4181);
 await mkdir(out,{recursive:true});
-const server=await createServer({mode:'e2e',server:{host:'127.0.0.1',port,strictPort:true},logLevel:'error'});
-const {failureRetryFixture}=await server.ssrLoadModule('/harness/fixtures/failure-retry.ts');
-const {makeCheckpoint,readCheckpoint}=await server.ssrLoadModule('/src/application/checkpoint.ts');
-const {r2ModeStorageKey}=await server.ssrLoadModule('/src/content/r2Modes.ts');
-const {createRun}=await server.ssrLoadModule('/src/domain/run.ts');
+// Bundle domain fixtures once: Windows SSR transport timeouts are not product failures.
+const fixtureModule=path.resolve(out,'fixtures.mjs');
+await bundle({stdin:{contents:"export {failureRetryFixture} from './harness/fixtures/failure-retry';export {heroClimaxFixture,energySend} from './harness/fixtures/hero-climax';export {finaleKeepsake} from './src/game/FinaleKeepsake';export {makeCheckpoint,readCheckpoint} from './src/application/checkpoint';export {r2ModeStorageKey} from './src/content/r2Modes';export {createRun,applyCommand} from './src/domain/run';",resolveDir:process.cwd()},bundle:true,platform:'node',format:'esm',define:{'import.meta.env.BASE_URL':JSON.stringify('/')},outfile:fixtureModule,logLevel:'error'});
+const {failureRetryFixture,makeCheckpoint,readCheckpoint,r2ModeStorageKey,createRun,applyCommand,heroClimaxFixture,energySend,finaleKeepsake}=await import(pathToFileURL(fixtureModule).href);
 const fixtures=Object.fromEntries(['hands','cards','abandoned','boss','post-skip'].map(kind=>[kind,failureRetryFixture(kind).after]));
 for(const state of Object.values(fixtures)){assert.equal(state.phase,'run-lost');assert.ok(readCheckpoint(makeCheckpoint(state,[])).ok);}
-await server.listen();
-const browser=await chromium.launch({executablePath:process.env.SMOKE_CHROMIUM_EXECUTABLE_PATH??'/usr/bin/chromium',args:['--no-sandbox','--disable-gpu','--disable-software-rasterizer']});
-const report={scrollOnly,selectionOnly,startedAt:new Date().toISOString(),sourceHead:execFileSync('git',['rev-parse','HEAD'],{encoding:'utf8'}).trim(),sourceStatusBefore:execFileSync('git',['status','--porcelain'],{encoding:'utf8'}).trim(),scope:'Local E2E build; controlled terminal fixtures end through original commands, strict production import, native clicks/taps, full state/journal/checkpoint/revision comparison. Not formal-site QA, natural runs, physical devices, hearing or balance acceptance.',cases:[],failures:[]},full=[];
+const buildDir=path.resolve(out,'build');
+await build({mode:'e2e',build:{outDir:buildDir,emptyOutDir:true},logLevel:'error'});
+const server=await preview({build:{outDir:buildDir},preview:{host:'127.0.0.1',port,strictPort:true},logLevel:'error'});
+const browser=await chromium.launch({...process.env.SMOKE_CHROMIUM_EXECUTABLE_PATH?{executablePath:process.env.SMOKE_CHROMIUM_EXECUTABLE_PATH}:{}});
+const report={scrollOnly,selectionOnly,reflectionOnly,browser:browser.version(),node:process.version,platform:process.platform,startedAt:new Date().toISOString(),sourceHead:execFileSync('git',['rev-parse','HEAD'],{encoding:'utf8'}).trim(),sourceStatusBefore:execFileSync('git',['status','--porcelain'],{encoding:'utf8'}).trim(),scope:'Local E2E build; controlled terminal fixtures end through original commands, strict production import, native clicks/taps, full state/journal/checkpoint/revision comparison. Not formal-site QA, natural runs, physical devices, hearing or balance acceptance.',cases:[],failures:[]},full=[];
 const observe=page=>page.evaluate(async()=>{
- const {gameSession}=await import('/src/game/session.ts'),s=gameSession(),c=window.__harness.game.registry.get('runController');
- return {state:c.state,journal:c.journal,storage:await c.store.read(),status:c.status,pending:s.pendingRun?{state:s.pendingRun.state,journal:s.pendingRun.journal,json:s.pendingRun.exportJSON(),status:s.pendingRun.status}:null};
+ const c=window.__harness.game.registry.get('runController');
+ return {state:c.state,journal:c.journal,storage:await c.store.read(),status:c.status};
 });
-async function importState(page,state){
- await page.goto('http://127.0.0.1:'+port+'/?harness=1');await waitScene(page,'title');
+async function importState(page,state,scene='intermission'){
+ await page.goto('http://127.0.0.1:'+port+'/?harness=1',{waitUntil:'domcontentloaded'});await waitScene(page,'title');
  await page.locator('.run-menu-toggle').click();const section=page.getByText('进度与存档',{exact:true}).locator('..');if(!await section.evaluate(e=>e.open))await section.locator('summary').click();
  const chooser=page.waitForEvent('filechooser');await page.getByRole('button',{name:'导入本局',exact:true}).click();await(await chooser).setFiles({name:'failure-controlled.json',mimeType:'application/json',buffer:Buffer.from(JSON.stringify(makeCheckpoint(state,[])))});
- await waitScene(page,'intermission');await page.waitForFunction(()=>window.__harness.game.scene.getScene('intermission').ready);await page.waitForTimeout(1250);
+ await waitScene(page,scene);await page.waitForFunction(key=>window.__harness.game.scene.getScene(key).ready,scene);await page.waitForTimeout(1250);
 }
 async function shot(page,key){await page.screenshot({path:out+'/'+key+'.png',scale:'css',fullPage:true});}
 async function same(page,initial){assert.deepEqual(await observe(page),initial);}
@@ -111,7 +116,7 @@ async function readGuidanceBody(page,row,initial,viewport,key){
 async function armCommit(page,mode){
  await page.evaluate(mode=>{
   const c=window.__harness.game.registry.get('runController'),store=c.store,original=store.commit.bind(store);
-  window.__failureProbe={calls:0,mode};store.commit=async(...args)=>{const p=window.__failureProbe;p.calls++;if(p.mode==='fault')throw new DOMException('controlled quota failure','QuotaExceededError');if(p.mode==='delay')await new Promise(resolve=>setTimeout(resolve,500));return original(...args);};
+  window.__failureProbe={calls:0,mode,candidates:[]};store.commit=async(...args)=>{const p=window.__failureProbe;p.calls++;p.candidates.push(JSON.stringify(args));if(p.mode==='fault')throw new DOMException('controlled quota failure','QuotaExceededError');if(p.mode==='delay')await new Promise(resolve=>setTimeout(resolve,500));return original(...args);};
  },mode);
 }
 function expectedRestart(old){return createRun({r2Identity:{contentVersion:old.contentVersion,contentHash:old.contentHash},seed:old.seed,characterId:old.characterId,runId:`run/${old.seed}/${old.characterId}`,rulesVersion:'r2',openingRoute:old.openingRoute,modeConfig:{mode:old.mode,difficulty:old.difficulty,challengeId:old.challengeId,programsEnabled:old.programsEnabled}});}
@@ -121,20 +126,20 @@ async function retryFlow(page,row,initial,viewport,fault){
   const button=page.getByRole('button',{name:'同局重试',exact:true}),p=await button.boundingBox();await page.mouse.click(p.x+p.width/2,p.y+p.height/2,{clickCount:3,delay:20});
  }else await page.getByRole('button',{name:'同局重试',exact:true}).tap();
  if(fault){
-  await page.waitForFunction(async()=>{const {gameSession}=await import('/src/game/session.ts');return gameSession().pendingRun?.status==='paused'&&!gameSession().working;});
-  const failed=await observe(page);assert.deepEqual(failed.state,initial.state);assert.deepEqual(failed.storage,initial.storage);assert.deepEqual(failed.pending.state,expectedRestart(initial.state));assert.equal(failed.pending.status,'paused');row.failed=failed;full.push({key:row.key+'/failed',saved:failed});
+  await page.waitForFunction(()=>window.__failureProbe.calls===1&&!window.__harness.game.scene.getScene('intermission').busy);
+  const failed=await observe(page),candidate=await page.evaluate(()=>window.__failureProbe.candidates[0]);assert.deepEqual(failed.state,initial.state);assert.deepEqual(failed.storage,initial.storage);assert.deepEqual(JSON.parse(candidate)[1].state,expectedRestart(initial.state));row.failedCandidate=JSON.parse(candidate);full.push({key:row.key+'/failed',saved:failed,candidate:JSON.parse(candidate)});
   await shot(page,row.key+'-save-failed');assert.equal(await page.evaluate(()=>window.__harness.game.scene.getScene('intermission').ready),false);
-  if(!await page.locator('.run-menu-modal').evaluate(el=>el.open))await page.locator('.run-menu-toggle').click();await page.getByRole('button',{name:'重试保存',exact:true}).click();const again=await observe(page);assert.equal(again.pending.json,failed.pending.json);assert.deepEqual(again.storage,initial.storage);row.fixedCandidateAfterRepeatedFault=true;
+  if(!await page.locator('.run-menu-modal').evaluate(el=>el.open))await page.locator('.run-menu-toggle').click();await page.getByRole('button',{name:'重试保存',exact:true}).click();const again=await observe(page);assert.equal(await page.evaluate(()=>window.__failureProbe.candidates[1]),candidate);assert.deepEqual(again.storage,initial.storage);row.fixedCandidateAfterRepeatedFault=true;
   await page.evaluate(()=>{window.__failureProbe.mode='delay';});await page.getByRole('button',{name:'重试保存',exact:true}).click();
  }
  await waitScene(page,'shop');await page.waitForFunction(()=>window.__harness.game.scene.getScene('shop').ready);const after=await observe(page);
- assert.deepEqual(after.state,expectedRestart(initial.state));assert.equal(after.state.commandSeq,1);assert.deepEqual(after.journal,[]);assert.equal(after.pending,null);assert.equal(after.storage.revision,initial.storage.revision+1);assert.deepEqual(after.storage.previous,initial.storage.current);assert.equal(await page.evaluate(()=>window.__failureProbe.calls),fault?3:1);
+ assert.deepEqual(after.state,expectedRestart(initial.state));assert.equal(after.state.commandSeq,1);assert.deepEqual(after.journal,[]);assert.equal(after.storage.revision,initial.storage.revision+1);assert.deepEqual(after.storage.previous,initial.storage.current);assert.equal(await page.evaluate(()=>window.__failureProbe.calls),fault?3:1);
  row.retry={status:'PASS',commitAttempts:await page.evaluate(()=>window.__failureProbe.calls),successfulRevisionDelta:1,singleNewState:true};full.push({key:row.key+'/retry',saved:after});await shot(page,row.key+'-retry-shop');
  await page.reload({waitUntil:'networkidle'});await waitScene(page,'title');await tapUI(page,'title','action/title-continue',viewport.width<700);await waitScene(page,'shop');await page.waitForFunction(()=>window.__harness.game.scene.getScene('shop').ready);assert.deepEqual(await observe(page),after);row.coldRecovery='PASS';
 }
 try{
  const sizes=[{name:'pc',width:1366,height:768},{name:'390',width:390,height:844},{name:'320-short',width:320,height:568}];
- for(const viewport of (selectionOnly||scrollOnly?[]:sizes))for(const kind of ['hands','cards','abandoned']){
+ for(const viewport of (selectionOnly||scrollOnly||reflectionOnly?[]:sizes))for(const kind of ['hands','cards','abandoned']){
   const context=await browser.newContext({viewport:{width:viewport.width,height:viewport.height},hasTouch:viewport.width<700,deviceScaleFactor:1}),page=await context.newPage(),row={key:viewport.name+'-'+kind,kind,viewport,errors:[]};report.cases.push(row);page.on('pageerror',e=>row.errors.push(e.message));page.on('dialog',d=>d.accept());page.setDefaultTimeout(15000);
   try{
    await importState(page,fixtures[kind]);const initial=await observe(page);full.push({key:row.key+'/initial',saved:initial});row.resultGeometry=await resultGeometry(page,viewport);await shot(page,row.key+'-failure');
@@ -154,7 +159,7 @@ try{
    assert.deepEqual(row.errors,[]);row.status='PASS';console.log('PASS',row.key);
   }catch(e){row.status='FAIL';row.error=e.stack;await shot(page,row.key+'-FAIL').catch(()=>{});throw e;}finally{await context.close();}
  }
- for(const kind of (selectionOnly||scrollOnly?[]:['boss','fault','post-skip'])){
+ for(const kind of (selectionOnly||scrollOnly||reflectionOnly?[]:['boss','fault','post-skip'])){
   const viewport={width:390,height:568},context=await browser.newContext({viewport,hasTouch:true,deviceScaleFactor:1}),page=await context.newPage(),row={key:'390-short-'+kind,kind,viewport,errors:[]};report.cases.push(row);page.on('pageerror',e=>row.errors.push(e.message));page.on('dialog',d=>d.accept());
   try{
    await importState(page,fixtures[kind==='fault'?'hands':kind]);const initial=await observe(page);full.push({key:row.key+'/initial',saved:initial});
@@ -164,14 +169,14 @@ try{
    assert.deepEqual(row.errors,[]);row.status='PASS';console.log('PASS',row.key);
   }catch(e){row.status='FAIL';row.error=e.stack;await shot(page,row.key+'-FAIL').catch(()=>{});throw e;}finally{await context.close();}
  }
- if(!scrollOnly){
+ if(!scrollOnly&&!reflectionOnly){
   const viewport={width:390,height:568},context=await browser.newContext({viewport,hasTouch:true,deviceScaleFactor:1}),page=await context.newPage(),row={key:'390-short-new-selection',kind:'new-selection',viewport,errors:[]};report.cases.push(row);page.on('pageerror',e=>row.errors.push(e.message));page.on('dialog',d=>d.accept());
   try{
    await importState(page,fixtures.hands);const initial=await observe(page);full.push({key:row.key+'/initial',saved:initial});await tapUI(page,'intermission','action/failure-guidance',true);
    await page.getByRole('button',{name:'返回选角',exact:true}).click();await waitScene(page,'character-select');await same(page,initial);
    await tapUI(page,'character-select','character/erxiang',true);await same(page,initial);await confirmHeroRoute(page,true,'flush');await waitScene(page,'shop');await page.waitForFunction(()=>window.__harness.game.scene.getScene('shop').ready);
    const after=await observe(page);assert.equal(after.state.characterId,'erxiang');assert.equal(after.state.openingRoute,'flush');assert.notEqual(after.state.seed,initial.state.seed);assert.deepEqual(after.state,expectedRestart(after.state));assert.equal(after.state.commandSeq,1);assert.deepEqual(after.journal,[]);assert.equal(after.storage.revision,initial.storage.revision+1);if(r2ModeStorageKey(after.state,after.state.contentHash)===r2ModeStorageKey(initial.state,initial.state.contentHash))assert.deepEqual(after.storage.previous,initial.storage.current);
-   else {const original=await page.evaluate(async state=>{const {gameSession}=await import('/src/game/session.ts');return gameSession().storage.readPartition(state);},initial.state);assert.deepEqual(original.current,initial.storage.current);assert.deepEqual(original.previous,initial.storage.previous);full.push({key:row.key+'/original-partition-preserved',saved:original});row.originalPartitionPreserved=true;}
+   else {const original=await page.evaluate(state=>window.__harness.game.registry.get('runController').store.readPartition(state),initial.state);assert.deepEqual(original.current,initial.storage.current);assert.deepEqual(original.previous,initial.storage.previous);full.push({key:row.key+'/original-partition-preserved',saved:original});row.originalPartitionPreserved=true;}
    assert.deepEqual(row.errors,[]);full.push({key:row.key+'/new',saved:after});await shot(page,row.key+'-shop');
    await page.reload({waitUntil:'networkidle'});await waitScene(page,'title');await tapUI(page,'title','action/title-continue',true);await waitScene(page,'shop');await page.waitForFunction(()=>window.__harness.game.scene.getScene('shop').ready);assert.deepEqual(await observe(page),after);row.coldRecovery='PASS';row.singleReplacement='PASS';row.status='PASS';console.log('PASS',row.key);
   }catch(e){row.status='FAIL';row.error=e.stack;await shot(page,row.key+'-FAIL').catch(()=>{});throw e;}finally{await context.close();}
@@ -190,6 +195,30 @@ try{
    assert.deepEqual(row.errors,[]);row.readOnlyReturns='PASS';row.status='PASS';console.log('PASS',row.key);
   }catch(e){row.status='FAIL';row.error=e.stack;await shot(page,row.key+'-FAIL').catch(()=>{});throw e;}finally{await context.close();}
  }
+ if(!scrollOnly&&!selectionOnly)for(const viewport of [{width:1366,height:768},{width:320,height:568}]){
+  // Reuse the existing ordinary-stock c06 fixture; no resource/card injection.
+  const f=heroClimaxFixture('growth');let state=energySend(f.state,{type:'PlayHand',selectedIds:f.selectedIds}),before,selectedIds;
+  for(let step=0;state.phase!=='run-lost'&&step<16;step++){
+   if(state.phase==='stage-cleared')state=energySend(state,{type:'OpenShop'});
+   else if(state.phase==='shop')state=energySend(state,{type:'LeaveShop'});
+   else if(state.phase==='stage-ready')state=energySend(state,{type:'EnterStage'});
+   else if(state.phase==='await-input'){before=state;selectedIds=[state.handOrder[0]];state=energySend(state,{type:'PlayHand',selectedIds});}
+   else throw Error('unexpected reflection fixture phase '+state.phase);
+  }
+  assert.equal(state.phase,'run-lost');assert.ok(before&&selectedIds);assert.ok(finaleKeepsake(state).keepsake.growth.length);
+  const context=await browser.newContext({viewport,hasTouch:viewport.width<700,deviceScaleFactor:1,reducedMotion:'reduce'}),page=await context.newPage(),row={key:viewport.width+'-saved-growth-reflection',viewport,errors:[]};report.cases.push(row);page.on('pageerror',e=>row.errors.push(e.message));
+  try{
+   await importState(page,before,'game');const initial=await observe(page);
+   for(const id of selectedIds)await tapUI(page,'game','card/'+id,viewport.width<700);
+   await tapUI(page,'game','action/play',viewport.width<700);await waitScene(page,'intermission');await page.waitForFunction(()=>window.__harness.game.scene.getScene('intermission').ready);await page.waitForTimeout(500);
+   const ended=await observe(page),commands=ended.journal.slice(initial.journal.length);assert.equal(commands.length,1);assert.equal(commands[0].action.type,'PlayHand');const expected=applyCommand(initial.state,commands[0]);assert.ok(expected.ok);assert.deepEqual(ended.state,expected.state);assert.equal(ended.state.phase,'run-lost');assert.equal(ended.storage.revision,initial.storage.revision+1);assert.deepEqual(ended.storage.previous,initial.storage.current);
+   const facts=finaleKeepsake(ended.state);await tapUI(page,'intermission','action/last-hand',viewport.width<700);const dialog=page.locator('dialog[open]');await dialog.locator('.build-keepsake').waitFor();
+   assert.ok((await dialog.innerText()).includes(facts.summary));assert.ok((await dialog.innerText()).includes('不继承'));
+   for(const growth of facts.keepsake.growth){const item=dialog.locator('.build-keepsake-growth[data-instance-id="'+growth.instanceId+'"]');await item.scrollIntoViewIfNeeded();assert.ok((await item.innerText()).includes(growth.metric));assert.ok((await item.innerText()).includes(growth.cause));}
+   await shot(page,row.key);await same(page,ended);await page.keyboard.press('Escape');await same(page,ended);await tapUI(page,'intermission','action/last-hand',viewport.width<700);await page.getByRole('button',{name:'再战建议',exact:true}).click();await same(page,ended);await page.getByRole('button',{name:'返回失败页',exact:true}).click();await same(page,ended);
+   row.savedGrowth=facts.keepsake.growth;row.nativeTerminalCommand=commands[0];row.readOnly=true;assert.deepEqual(row.errors,[]);row.status='PASS';full.push({key:row.key,initial,ended});console.log('PASS',row.key);
+  }catch(e){row.status='FAIL';row.error=e.stack;await shot(page,row.key+'-FAIL').catch(()=>{});throw e;}finally{await context.close();}
+ }
  report.status='PASS';
 }catch(e){report.status='FAIL';report.failures.push(e.stack);process.exitCode=1;console.error(e.stack);}
-finally{report.completedAt=new Date().toISOString();report.sourceHeadAfter=execFileSync('git',['rev-parse','HEAD'],{encoding:'utf8'}).trim();report.sourceStatusAfter=execFileSync('git',['status','--porcelain'],{encoding:'utf8'}).trim();if(report.sourceHead!==report.sourceHeadAfter||report.sourceStatusBefore!==report.sourceStatusAfter){report.status='FAIL';report.failures.push('source changed during QA');process.exitCode=1;}await browser.close();await server.close();await writeFile(out+'/report.json',JSON.stringify(report,null,2)+'\n');await writeFile(out+'/full-state.json.gz',gzipSync(JSON.stringify({fixtures,observations:full})));console.log('Result:',report.status,'in',out);}
+finally{report.completedAt=new Date().toISOString();report.sourceHeadAfter=execFileSync('git',['rev-parse','HEAD'],{encoding:'utf8'}).trim();report.sourceStatusAfter=execFileSync('git',['status','--porcelain'],{encoding:'utf8'}).trim();if(report.sourceHead!==report.sourceHeadAfter||report.sourceStatusBefore!==report.sourceStatusAfter){report.status='FAIL';report.failures.push('source changed during QA');process.exitCode=1;}await browser.close();await new Promise(resolve=>server.httpServer.close(resolve));await writeFile(out+'/report.json',JSON.stringify(report,null,2)+'\n');await writeFile(out+'/full-state.json.gz',gzipSync(JSON.stringify({fixtures,observations:full})));console.log('Result:',report.status,'in',out);}

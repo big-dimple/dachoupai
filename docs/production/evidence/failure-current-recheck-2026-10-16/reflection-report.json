@@ -1,0 +1,85 @@
+{
+  "scrollOnly": false,
+  "selectionOnly": false,
+  "startedAt": "2026-10-16T04:15:42.373Z",
+  "sourceHead": "034557dc004175b5049d2f894c10e2f671996365",
+  "sourceStatusBefore": "M harness/failure-retry-guidance.mjs",
+  "scope": "Local E2E build; controlled terminal fixtures end through original commands, strict production import, native clicks/taps, full state/journal/checkpoint/revision comparison. Not formal-site QA, natural runs, physical devices, hearing or balance acceptance.",
+  "cases": [
+    {
+      "key": "1366-saved-growth-reflection",
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      },
+      "errors": [],
+      "savedGrowth": [
+        {
+          "instanceId": "hero-climax/natural-flush/joker/hero-climax/natural-flush/command/2",
+          "definitionId": "c06",
+          "name": "越染越深",
+          "key": "multiplier",
+          "current": "0.5",
+          "metric": "已积攒 +0.5 倍率",
+          "cause": "上手未新增，现存 0.5",
+          "next": "本局最终保存值；重试从开局重新培养",
+          "url": "/assets/handdrawn-p08/cards/c06.thumbnail.webp",
+          "read": "上手实际读取 +0.5 倍率 · 1次"
+        }
+      ],
+      "nativeTerminalCommand": {
+        "runId": "hero-climax/natural-flush",
+        "commandId": "hero-climax/natural-flush/command/12",
+        "expectedSeq": 11,
+        "action": {
+          "type": "PlayHand",
+          "selectedIds": [
+            "diamonds-6"
+          ]
+        }
+      },
+      "readOnly": true,
+      "status": "PASS"
+    },
+    {
+      "key": "320-saved-growth-reflection",
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "errors": [],
+      "savedGrowth": [
+        {
+          "instanceId": "hero-climax/natural-flush/joker/hero-climax/natural-flush/command/2",
+          "definitionId": "c06",
+          "name": "越染越深",
+          "key": "multiplier",
+          "current": "0.5",
+          "metric": "已积攒 +0.5 倍率",
+          "cause": "上手未新增，现存 0.5",
+          "next": "本局最终保存值；重试从开局重新培养",
+          "url": "/assets/handdrawn-p08/cards/c06.thumbnail.webp",
+          "read": "上手实际读取 +0.5 倍率 · 1次"
+        }
+      ],
+      "nativeTerminalCommand": {
+        "runId": "hero-climax/natural-flush",
+        "commandId": "hero-climax/natural-flush/command/12",
+        "expectedSeq": 11,
+        "action": {
+          "type": "PlayHand",
+          "selectedIds": [
+            "diamonds-6"
+          ]
+        }
+      },
+      "readOnly": true,
+      "status": "PASS"
+    }
+  ],
+  "failures": [],
+  "status": "PASS",
+  "completedAt": "2026-10-16T04:15:55.885Z",
+  "sourceHeadAfter": "034557dc004175b5049d2f894c10e2f671996365",
+  "sourceStatusAfter": "M harness/failure-retry-guidance.mjs"
+}
