@@ -1,7 +1,6 @@
-import {HERO_ART_NOTICE} from './HeroIdentity';
 import type Phaser from 'phaser';
 import {heroPayoffs} from './HeroPayoff';
-import {heroClimaxLayout,reserveHeroClimaxHeader} from './HeroClimaxLayout';
+import {heroClimaxLayout,reserveHeroClimaxHeader,heroClimaxLandingColumns} from './HeroClimaxLayout';
 import {mountHeroClimaxCaption} from './HeroClimaxCaption';
 import {climaxSourceKey} from './ClimaxSourceArt';
 import {crispText,textDensity} from './TextRaster';
@@ -55,7 +54,7 @@ export function mountHeroClimax(scene:Phaser.Scene,root:Phaser.GameObjects.Conta
  if(scene.textures.exists('p00-paper'))board.add(scene.add.tileSprite(p.x+3,p.y+7,p.width-6,p.height-12,'p00-paper').setOrigin(0).setAlpha(.07));
  const text=(parent:Phaser.GameObjects.Container,x:number,y:number,s:string,size:number,color=C.ink,width?:number)=>{const t=scene.add.text(x,y,s,{fontFamily:UI_FONT,fontSize:size+'px',fontStyle:'bold',color,resolution:textDensity(scene),...(width?{wordWrap:{width,useAdvancedWrap:true}}:{})});parent.add(t);crispText(t);return t;};
  const actualSource=!!key.fact.definitionId,title=actualSource?key.fact.title:value.skillName??getCharacter(id).name;
- const headerBottom=mountHeroClimaxCaption(scene,board,l,{title,owner:(actualSource?getCharacter(id).name+' · '+getCharacter(id).title+' · 来源兑现':value.skillName?getCharacter(id).name+' · '+getCharacter(id).title+' · 技能兑现':'这一手 · 实际兑现')+' · '+HERO_ART_NOTICE,effect:value.note});
+ const headerBottom=mountHeroClimaxCaption(scene,board,l,{title,owner:getCharacter(id).name+' · '+getCharacter(id).title,effect:value.note});
  l=reserveHeroClimaxHeader(l,headerBottom);
  const eyesLayer=scene.add.container(0,0).setName('hero/shot-eyes'),skillLayer=scene.add.container(0,0).setName('hero/shot-skill'),landingLayer=scene.add.container(0,0).setName('hero/shot-landing');board.add([eyesLayer,skillLayer,landingLayer]);
  // Reviewed head crops exclude baked text. They come from the portrait, not independent eye artwork.
@@ -82,16 +81,24 @@ export function mountHeroClimax(scene:Phaser.Scene,root:Phaser.GameObjects.Conta
  const format=(s:string)=>/^\d{16,}$/.test(s)?'≈'+heatText(s):s;
  const number=(parent:Phaser.GameObjects.Container,x:number,y:number,s:string,size:number,width:number,height:number,name:string)=>{const t=scene.add.text(x,y,format(s),{fontFamily:SCORE_FONT,fontSize:size+'px',fontStyle:'800',color:C.red,resolution:density}).setName(name).setData('exactValue',s);parent.add(t);fitScoreLine(t,{x:x-width/2,y,width,height},size,true);return t;};
  const accumulated=value.accumulated?text(skillLayer,l.readout.x,0,value.accumulated,l.short?14:18,C.jade,l.readout.width).setName('hero/climax-landing'):undefined;
- const readout=number(skillLayer,l.readout.x+l.readout.width/2,l.valueY,value.after,l.short?48:l.portrait?82:112,l.readout.width,Math.max(1,Math.min(l.short?70:120,l.noteY-l.valueY-(accumulated?accumulated.height+26:12))),'hero/climax-value');
- if(accumulated){accumulated.setY(l.valueY+readout.displayHeight+18);crispText(accumulated);}
+ const readout=number(skillLayer,l.readout.x+l.readout.width/2,l.valueY,value.after,l.short?48:l.portrait?82:112,l.readout.width,Math.max(1,Math.min(l.short?70:120,l.noteY-l.valueY-(accumulated?accumulated.height+(l.short?16:26):12))),'hero/climax-value');
+ if(accumulated){accumulated.setY(l.valueY+readout.displayHeight+(l.short?8:18));crispText(accumulated);}
  text(skillLayer,l.sourceCaption.x,l.sourceCaption.y,(actualSource?'实际来源 · ':'')+key.fact.title,l.short?14:16,C.jade,l.sourceCaption.width).setName('hero/climax-source-title');
  // Last shot places the actual after-accumulator, never a future hand forecast.
  const landingY=l.landing.y+(l.short?20:52),landingValue=value.landingValue??value.after;
+ if(l.short&&value.landingValue){
+  const columns=heroClimaxLandingColumns(l);
+  text(landingLayer,columns.local.x,columns.labelY,value.label,14,C.jade,columns.local.width).setName('hero/climax-local-label');
+  number(landingLayer,columns.local.x+columns.local.width/2,columns.local.y,value.after,48,columns.local.width,columns.local.height,'hero/climax-local-effect');
+  text(landingLayer,columns.total.x,columns.labelY,value.landingLabel??value.label,14,C.jade,columns.total.width).setName('hero/climax-value-label');
+  number(landingLayer,columns.total.x+columns.total.width/2,columns.total.y,landingValue,64,columns.total.width,columns.total.height,'hero/climax-value');
+ }else{
  text(landingLayer,l.nameX,l.landing.y,value.landingLabel??value.label,l.short?16:20,C.jade,l.nameW).setName('hero/climax-value-label');
  const localEffect=value.landingValue?text(landingLayer,l.nameX,0,value.label+' '+format(value.after),l.short?14:20,C.red,l.nameW).setName('hero/climax-local-effect'):undefined;
  const landed=number(landingLayer,p.x+p.width/2,landingY,landingValue,l.short?74:l.portrait?138:190,l.nameW,Math.max(1,Math.min(l.landing.height*.63,l.noteY-landingY-(localEffect?localEffect.height+24:16))),'hero/climax-value');
  // The persistent caption already owns note; reserve space only for a distinct local factor.
  if(localEffect){localEffect.setY(landingY+landed.displayHeight+16);crispText(localEffect);}
+ }
  text(landingLayer,l.sourceCaption.x,l.sourceCaption.y,value.accumulated??key.landing,l.short?14:18,C.jade,l.sourceCaption.width).setName('hero/climax-landing');
  const owned=new Set<Phaser.Tweens.Tween>();let disposed=false,still=reduced,struck=false,strikeAt=0,shotAt=performance.now(),shot='',releaseDone:(()=>void)|undefined;
  const started=performance.now();

@@ -6,7 +6,7 @@ import {portraitURL,selectionPortraitURL} from './portraits';
 /** Full composition stays separate from the phone's enlarged, top-aligned preview. */
 export function showHeroPortrait(dialog:DetailDialog,id:CharacterId):void {
  const hero=characterForNewRun(id);
- const d=dialog.open(hero.name+' · 立绘','',[],{closeLabel:'回到选角',portrait:{url:portraitURL(id),thumbnailUrl:selectionPortraitURL(id),alt:hero.name+' · 完整立绘'}});
+ const d=dialog.open(hero.name,'',[],{closeLabel:'回到选角',portrait:{url:portraitURL(id),thumbnailUrl:selectionPortraitURL(id),alt:hero.name}});
  d.classList.add('hero-portrait-view');d.dataset.hero=id;
  const style=document.createElement('style');
  style.textContent=`.hero-portrait-view[open]{width:min(860px,calc(100vw - var(--safe-left) - var(--safe-right) - 24px));height:calc(100dvh - var(--safe-top) - var(--safe-bottom) - 24px);max-height:1000px}

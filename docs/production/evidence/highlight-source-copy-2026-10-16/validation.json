@@ -1,0 +1,340 @@
+{
+  "testedProductCommit": "ab2d492a096a29eca05a1fc4ffaf02a2819e20c0",
+  "environment": {
+    "os": "Windows",
+    "node": "v22.20.0",
+    "browser": "153.0.8010.12",
+    "dpr": 1
+  },
+  "checks": [
+    {
+      "command": "npx.cmd vitest run tests/hero-climax-layout.test.ts tests/hero-climax.test.ts tests/score-source-process.test.ts tests/growth-payoff.test.ts tests/score-event-caption.test.ts tests/readable-multiplier-source.test.ts tests/score-text-layout.test.ts tests/hero-explanation.test.ts tests/tangsong-identity.test.ts tests/characters.test.ts tests/hero-text-contract.test.ts",
+      "status": "PASS",
+      "tests": 60,
+      "exitCode": 0
+    },
+    {
+      "command": "npm.cmd run build",
+      "status": "PASS",
+      "exitCode": 0
+    },
+    {
+      "command": "HERO_TITLE_CAPTIONS=1 HERO_TITLE_PLAYER_COPY=1 ... node harness/hero-source-title.mjs",
+      "status": "PASS",
+      "gameplayCases": 15,
+      "copyCases": 2,
+      "cases": [
+        {
+          "key": "natural-erxiang-390-normal",
+          "status": "PASS",
+          "errors": [],
+          "captionTiming": [
+            {
+              "eventId": "ordinary/source-erxiang/hand/ordinary/source-erxiang/command/4/event/3",
+              "firstPaint": 4720.4000000059605,
+              "lastPaint": 6329.4000000059605,
+              "subjectMs": 1050.3999999910593
+            }
+          ]
+        },
+        {
+          "key": "natural-erxiang-1366-normal",
+          "status": "PASS",
+          "errors": [],
+          "captionTiming": [
+            {
+              "eventId": "ordinary/source-erxiang/hand/ordinary/source-erxiang/command/4/event/3",
+              "firstPaint": 4587.0999999940395,
+              "lastPaint": 6201.0999999940395,
+              "subjectMs": 1049.4000000059605
+            }
+          ]
+        },
+        {
+          "key": "natural-growth-390-normal",
+          "status": "PASS",
+          "errors": [],
+          "growth": {
+            "first": {
+              "instanceId": "hero-climax/natural-flush/joker/hero-climax/natural-flush/command/2",
+              "definitionId": "c06",
+              "name": "越染越深",
+              "unit": "倍率",
+              "key": "multiplier",
+              "rootId": "hero-climax/natural-flush/hand/hero-climax/natural-flush/command/5",
+              "readLabel": "上手读取",
+              "readValue": "+0",
+              "readCount": 1,
+              "before": "0",
+              "after": "0.5",
+              "caption": "新增+0.5 · 下手生效",
+              "change": "gain",
+              "delta": "0.5"
+            },
+            "next": {
+              "instanceId": "hero-climax/natural-flush/joker/hero-climax/natural-flush/command/2",
+              "definitionId": "c06",
+              "name": "越染越深",
+              "unit": "倍率",
+              "key": "multiplier",
+              "rootId": "hero-climax/natural-flush/hand/hero-climax/natural-flush/command/9",
+              "readLabel": "上手读取",
+              "readValue": "+0.5",
+              "readCount": 1,
+              "before": "0.5",
+              "after": "0.5",
+              "caption": "未新增 · 已存0.5",
+              "change": "same",
+              "delta": "0"
+            }
+          }
+        },
+        {
+          "key": "natural-growth-1366-normal",
+          "status": "PASS",
+          "errors": [],
+          "growth": {
+            "first": {
+              "instanceId": "hero-climax/natural-flush/joker/hero-climax/natural-flush/command/2",
+              "definitionId": "c06",
+              "name": "越染越深",
+              "unit": "倍率",
+              "key": "multiplier",
+              "rootId": "hero-climax/natural-flush/hand/hero-climax/natural-flush/command/5",
+              "readLabel": "上手读取",
+              "readValue": "+0",
+              "readCount": 1,
+              "before": "0",
+              "after": "0.5",
+              "caption": "新增+0.5 · 下手生效",
+              "change": "gain",
+              "delta": "0.5"
+            },
+            "next": {
+              "instanceId": "hero-climax/natural-flush/joker/hero-climax/natural-flush/command/2",
+              "definitionId": "c06",
+              "name": "越染越深",
+              "unit": "倍率",
+              "key": "multiplier",
+              "rootId": "hero-climax/natural-flush/hand/hero-climax/natural-flush/command/9",
+              "readLabel": "上手读取",
+              "readValue": "+0.5",
+              "readCount": 1,
+              "before": "0.5",
+              "after": "0.5",
+              "caption": "未新增 · 已存0.5",
+              "change": "same",
+              "delta": "0"
+            }
+          }
+        },
+        {
+          "key": "natural-erxiang-740-normal",
+          "status": "PASS",
+          "errors": [],
+          "captionTiming": [
+            {
+              "eventId": "ordinary/source-erxiang/hand/ordinary/source-erxiang/command/4/event/3",
+              "firstPaint": 4426.0999999940395,
+              "lastPaint": 6035.79999999702,
+              "subjectMs": 1065.9000000059605
+            }
+          ]
+        },
+        {
+          "key": "natural-erxiang-390-replay",
+          "status": "PASS",
+          "errors": [],
+          "captionTiming": [
+            {
+              "eventId": "ordinary/source-erxiang/hand/ordinary/source-erxiang/command/4/event/3",
+              "firstPaint": 4490.600000008941,
+              "lastPaint": 6066.20000000298,
+              "subjectMs": 1034.7000000029802
+            }
+          ],
+          "replay": "PASS"
+        },
+        {
+          "key": "e11-740-normal",
+          "status": "PASS",
+          "errors": [],
+          "captionTiming": [
+            {
+              "eventId": "controlled/settlement/e11-current/hand/controlled/settlement/e11-current/command/4/event/6",
+              "firstPaint": 6050.5,
+              "lastPaint": 7637.5999999940395,
+              "subjectMs": 1033.7999999970198
+            }
+          ]
+        },
+        {
+          "key": "f06-740-normal",
+          "status": "PASS",
+          "errors": [],
+          "captionTiming": [
+            {
+              "eventId": "controlled/source-title/f06/hand/controlled/source-title/f06/command/4/event/5",
+              "firstPaint": 5510.0999999940395,
+              "lastPaint": 7121.0999999940395,
+              "subjectMs": 1066.7999999970198
+            }
+          ]
+        },
+        {
+          "key": "xiemu-390-fast",
+          "status": "PASS",
+          "errors": [],
+          "captionTiming": [
+            {
+              "eventId": "controlled/source-title/xiemu/hand/controlled/source-title/xiemu/command/4/event/6",
+              "firstPaint": 4259.20000000298,
+              "lastPaint": 5484.79999999702,
+              "subjectMs": 1033.6000000089407
+            }
+          ]
+        },
+        {
+          "key": "e11-320-normal",
+          "status": "PASS",
+          "errors": [],
+          "captionTiming": [
+            {
+              "eventId": "controlled/settlement/e11-current/hand/controlled/settlement/e11-current/command/4/event/6",
+              "firstPaint": 5874.29999999702,
+              "lastPaint": 7464.79999999702,
+              "subjectMs": 1034.8999999910593
+            }
+          ]
+        },
+        {
+          "key": "e11-390-normal",
+          "status": "PASS",
+          "errors": [],
+          "captionTiming": [
+            {
+              "eventId": "controlled/settlement/e11-current/hand/controlled/settlement/e11-current/command/4/event/6",
+              "firstPaint": 5976.300000011921,
+              "lastPaint": 7566,
+              "subjectMs": 1034.9000000059605
+            }
+          ]
+        },
+        {
+          "key": "e11-1366-normal",
+          "status": "PASS",
+          "errors": [],
+          "captionTiming": [
+            {
+              "eventId": "controlled/settlement/e11-current/hand/controlled/settlement/e11-current/command/4/event/6",
+              "firstPaint": 5902.79999999702,
+              "lastPaint": 7498,
+              "subjectMs": 1050.2999999970198
+            }
+          ]
+        },
+        {
+          "key": "e11-390-reduce",
+          "status": "PASS",
+          "errors": [],
+          "captionTiming": [
+            {
+              "eventId": "controlled/settlement/e11-current/hand/controlled/settlement/e11-current/command/4/event/6",
+              "firstPaint": 3999.1000000089407,
+              "lastPaint": 5002.70000000298,
+              "subjectMs": 1005
+            }
+          ]
+        },
+        {
+          "key": "e11-390-skip",
+          "status": "PASS",
+          "errors": [],
+          "captionTiming": [
+            {
+              "eventId": "controlled/settlement/e11-current/hand/controlled/settlement/e11-current/command/4/event/6",
+              "firstPaint": 6261,
+              "lastPaint": 6933.100000008941,
+              "subjectMs": 283.40000000596046
+            }
+          ]
+        },
+        {
+          "key": "e11-390-exit",
+          "status": "PASS",
+          "errors": [],
+          "captionTiming": [
+            {
+              "eventId": "controlled/settlement/e11-current/hand/controlled/settlement/e11-current/command/4/event/6",
+              "firstPaint": 6090.5,
+              "lastPaint": 6664.100000008941,
+              "subjectMs": 185.40000000596046
+            }
+          ]
+        },
+        {
+          "key": "player-copy-390",
+          "status": "PASS",
+          "errors": []
+        },
+        {
+          "key": "player-copy-1366",
+          "status": "PASS",
+          "errors": []
+        }
+      ]
+    },
+    {
+      "command": "HERO_TITLE_CASES=player-copy HERO_TITLE_PLAYER_COPY=1 node harness/hero-source-title.mjs",
+      "status": "PASS",
+      "afterFinalStoryCleanup": true,
+      "viewports": [
+        {
+          "key": "player-copy-390",
+          "status": "PASS",
+          "heroes": [
+            "amo",
+            "touye",
+            "laohuan",
+            "erxiang",
+            "azao",
+            "xiemu"
+          ],
+          "errors": []
+        },
+        {
+          "key": "player-copy-1366",
+          "status": "PASS",
+          "heroes": [
+            "amo",
+            "touye",
+            "laohuan",
+            "erxiang",
+            "azao",
+            "xiemu"
+          ],
+          "errors": []
+        }
+      ]
+    },
+    {
+      "command": "postprocess all painted text boxes",
+      "status": "PASS",
+      "textCollisions": []
+    },
+    {
+      "command": "before/after exact state, journal, storage and localStorage comparison for native e11-740 play",
+      "status": "PASS",
+      "effect": "×1.3",
+      "accumulator": "8 → 10.4",
+      "beforeFont": "14px",
+      "afterFont": "47px"
+    }
+  ],
+  "humanReview": "NOT_RUN",
+  "physicalDevice": "NOT_RUN",
+  "notes": [
+    "17-case run preceded the final story-attribution removal; only HeroExplanation changed afterward, and two copy viewports rechecked all six heroes on final code.",
+    "No scoring, queue duration, B05 challenge state, asset bytes or saved identifiers changed."
+  ]
+}

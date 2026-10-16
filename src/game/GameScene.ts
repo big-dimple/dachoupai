@@ -1255,7 +1255,7 @@ export class GameScene extends Phaser.Scene {
     const auxiliary=new Set(['培养手记','查看物品','上一手详情','本章节目单']);
     const choices=actions.filter(a=>!auxiliary.has(a.label));
     if(this.assistProfile)choices.push({label:'查看主手与助攻组合',primary:true,disabled:!this.ready||!r2AssistAvailability(this.run).available,run:()=>this.inspectCandidates()});
-    const dialog=this.dialog.open(c.name+' · '+c.passiveName,body,[],{guideSteps:heroOperationSteps(this.run,guide,!!(this.xiemuBurn||this.azaoRelease||this.assistIds.length)),summaryBody:guide.step,effectBody:guide.effect,collapseRules:true,rulesLabel:'技能与本场细则',closeLabel:'返回牌桌',choices,secondaryActions:actions.filter(a=>auxiliary.has(a.label)),portrait:{url:portraitURL(c.id),alt:c.name+' · 正式立绘'}});mountHeroSkillGuide(dialog,this.run);
+    const dialog=this.dialog.open(c.name+' · '+c.passiveName,body,[],{guideSteps:heroOperationSteps(this.run,guide,!!(this.xiemuBurn||this.azaoRelease||this.assistIds.length)),summaryBody:guide.step,effectBody:guide.effect,collapseRules:true,rulesLabel:'技能与本场细则',closeLabel:'返回牌桌',choices,secondaryActions:actions.filter(a=>auxiliary.has(a.label)),portrait:{url:portraitURL(c.id),alt:c.name}});mountHeroSkillGuide(dialog,this.run);
   }
   private inspectJoker(id:string):void {
     const j=this.run.jokers.find(j=>j.instanceId===id);if(!j)return;const d=this.jokerDefinition(j.definitionId),index=this.run.jokers.indexOf(j),art=jokerArtUrl(d.id),artKey=jokerArtKey(d.id),rarity=JOKER_RARITY[d.rarity];

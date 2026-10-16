@@ -2,7 +2,7 @@ import {R2_BOSSES,r2BossText} from '../src/domain/r2Chapter';
 import {expect,it} from 'vitest';
 import {readFileSync,existsSync} from 'node:fs';
 import {createHash} from 'node:crypto';
-import {HERO_CAST,HERO_CAST_NOTICE,heroName,heroText} from '../src/game/HeroIdentity';
+import {HERO_CAST,heroName,heroText} from '../src/game/HeroIdentity';
 import {GAME_NAME} from '../src/game/Brand';
 import {CHARACTERS,getCharacter} from '../src/game/characters';
 import {characterArt,assertCharacterArtReference} from '../src/game/CharacterArt';
@@ -11,7 +11,6 @@ import {characterForNewRun} from '../src/game/CharacterRunCopy';
 it('binds six displayed identities to the existing technical IDs with three young men and three young women',()=>{
  expect(CHARACTERS.map(c=>[c.id,c.name])).toEqual([['amo','苏轼'],['touye','秦琼'],['laohuan','辛弃疾'],['erxiang','刘娥'],['azao','文成公主'],['xiemu','花蕊夫人']]);
  expect(Object.values(HERO_CAST).filter(c=>c.gender==='male')).toHaveLength(3);expect(Object.values(HERO_CAST).filter(c=>c.gender==='female')).toHaveLength(3);
- expect(HERO_CAST_NOTICE).toContain('架空青年');
  for(const c of CHARACTERS){expect(c.intro.length).toBeGreaterThan(0);expect(c.name).toBe(heroName(c.id));expect(c.intro).not.toContain('郭子仪');}
  expect(GAME_NAME).toBe('唐宋牌');expect(readFileSync('index.html','utf8')).toContain('<title>'+GAME_NAME+'</title>');
 });
