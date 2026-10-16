@@ -13,10 +13,10 @@ export function heroFocusCrop(id:CharacterId,width:number,height:number):Box {
 }
 export function heroFocusComposition(l:ReturnType<typeof heroClimaxLayout>,hasSource:boolean){
  const b=l.body,short=l.short,gap=short?24:18;
- const eyes:Box=short?{x:b.x+12,y:b.y+6,width:b.width*.38-20,height:b.height-12}:{x:b.x+12,y:b.y+4,width:b.width-(hasSource?86:24),height:Math.min(110,b.height*.43)};
+ const eyes:Box=short?{x:b.x+12,y:b.y+6,width:b.width*.38-20,height:b.height-12}:{x:b.x+12,y:b.y+4,width:b.width-(hasSource?86:24),height:Math.min(110,b.height*.6)};
  const source=hasSource&&!short?{x:b.x+b.width-58,y:eyes.y,width:58,height:eyes.height}:undefined;
  const row:Box=short?{x:b.x+b.width*.38+gap,y:b.y+4,width:b.width*.62-gap,height:b.height-4}:{x:b.x,y:eyes.y+eyes.height+18,width:b.width,height:l.noteY-eyes.y-eyes.height-28};
- const labelY=row.y,numberY=labelY+(short?22:26),numberH=Math.max(1,Math.min(short?64:104,l.noteY-numberY-10));
+ const labelY=row.y,numberY=labelY+(short?22:26),numberH=short?Math.max(1,Math.min(64,l.noteY-numberY-10)):l.portrait?72:86;
  const local={x:row.x,y:numberY,width:(row.width-16)*.46,height:numberH},total={x:row.x+local.width+16,y:numberY,width:row.width-local.width-16,height:numberH};
  return {eyes,source,row,labelY,local,total};
 }
