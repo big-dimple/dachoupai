@@ -2,6 +2,8 @@
 
 固定运行时基线 `034557dc004175b5049d2f894c10e2f671996365`，独立分支 `investigate/failure-experience-current-20261016`。遵循 DELIVERY_PLAN 已有“失败回顾与同局再战已在 main”的入口，不重复开发或重开历史工作包。本轮没有复现新的产品缺口；只适配既有观察器到 Windows，并保留当前版本证据。P08 仍为 in_progress。
 
+父通知新main `0621156b5bd17557d867f618dbb86c1ef0260384`后，正常合入本开发分支至`793c886ba3e333baba8b6f7a82c69dd953cd4d84`。失败/回顾/保存/重试/GameScene/全局CSS等11个相关文件逐字节同上述基线；本分支相对062的src/public差异仍为空。变更涉及选角/商店，因此只增验390×568的返回选角→换英雄/同花路线→新商店→冷恢复，通过且原模式分区保留；[当前报告](latest-selection-report.json.gz)、[完整状态](latest-selection-full-state.json.gz)、[新店截图](screens/latest-062-new-selection-shop.png)。不把旧13+2项改签为062的新一轮全套；后续B05开发未纳入本次范围。
+
 ## 当前玩家能力与核对结果
 
 - 失败首页显示已保存的本场热度、目标/差额、末手及终态原因。[PC](screens/pc-hands-failure.png)、[320短屏](screens/320-short-hands-failure.png)均可读；历史名人立绘保持。320短屏先保事实与操作区，不用立绘遮挡差额。

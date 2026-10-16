@@ -179,5 +179,42 @@
   "humanReview": {
     "status": "NOT_RUN"
   },
-  "physicalDevice": "NOT_RUN"
+  "physicalDevice": "NOT_RUN",
+  "latest": {
+    "main": "0621156b5bd17557d867f618dbb86c1ef0260384",
+    "checkedCommit": "793c886ba3e333baba8b6f7a82c69dd953cd4d84",
+    "protectedFailureFilesIdentical": [
+      "src/game/FailureSummary.ts",
+      "src/game/FinaleKeepsake.ts",
+      "src/game/IntermissionScene.ts",
+      "src/game/SettlementPresentation.ts",
+      "src/game/BuildKeepsake.ts",
+      "src/game/BuildKeepsakeView.ts",
+      "src/game/RunLaunch.ts",
+      "src/game/session.ts",
+      "src/game/DetailDialog.ts",
+      "src/style.css",
+      "src/game/GameScene.ts"
+    ],
+    "runtimeDiffAgainstLatestMain": "",
+    "environment": {
+      "node": "v22.20.0",
+      "platform": "win32",
+      "browser": "153.0.8010.12"
+    },
+    "checks": [
+      {
+        "key": "390-short-new-selection",
+        "status": "PASS",
+        "originalPartitionPreserved": true,
+        "coldRecovery": "PASS",
+        "singleReplacement": "PASS"
+      }
+    ],
+    "typecheck": {
+      "command": "npm.cmd run typecheck",
+      "status": "PASS",
+      "exitCode": 0
+    }
+  }
 }
