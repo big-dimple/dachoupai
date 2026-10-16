@@ -1,0 +1,255 @@
+{
+  "base": "8728e18e823ef9cbe28a4350a566de21f1e3127c",
+  "productCommit": "e1bb46db413936dc4a81e20f616233bc0e640a68",
+  "sourceTree": "9613bb90e5c8e336467523906cea0b5a419a6309",
+  "branch": "fix/highlight-manga-focus-20261016",
+  "environment": {
+    "os": "Windows",
+    "node": "v22.20.0",
+    "browser": "153.0.8010.12",
+    "dpr": [
+      1,
+      2
+    ]
+  },
+  "unit": {
+    "status": "PASS",
+    "tests": 58,
+    "files": 6,
+    "command": "npx.cmd vitest run tests/hero-climax-focus.test.ts tests/hero-climax-layout.test.ts tests/hero-climax.test.ts tests/score-flame.test.ts tests/score-source-process.test.ts tests/hero-payoff.test.ts"
+  },
+  "productionBuild": "PASS",
+  "nativeAfterCases": 18,
+  "normalCases": [
+    {
+      "key": "natural-erxiang-390-normal",
+      "status": "PASS",
+      "eyeFrames": 98,
+      "timing": [
+        {
+          "eventId": "ordinary/source-erxiang/hand/ordinary/source-erxiang/command/4/event/3",
+          "firstPaint": 4847.399999991059,
+          "lastPaint": 6476.399999991059,
+          "subjectMs": 1068.3999999910593
+        }
+      ]
+    },
+    {
+      "key": "natural-erxiang-740-normal",
+      "status": "PASS",
+      "eyeFrames": 94,
+      "timing": [
+        {
+          "eventId": "ordinary/source-erxiang/hand/ordinary/source-erxiang/command/4/event/3",
+          "firstPaint": 4693.600000008941,
+          "lastPaint": 6260.100000008941,
+          "subjectMs": 1034.4000000059605
+        }
+      ]
+    },
+    {
+      "key": "natural-erxiang-390-replay",
+      "status": "PASS",
+      "eyeFrames": 96,
+      "timing": [
+        {
+          "eventId": "ordinary/source-erxiang/hand/ordinary/source-erxiang/command/4/event/3",
+          "firstPaint": 4801.0999999940395,
+          "lastPaint": 6398.0999999940395,
+          "subjectMs": 1050.3999999910593
+        }
+      ]
+    },
+    {
+      "key": "e11-740-normal",
+      "status": "PASS",
+      "eyeFrames": 95,
+      "timing": [
+        {
+          "eventId": "controlled/settlement/e11-current/hand/controlled/settlement/e11-current/command/4/event/6",
+          "firstPaint": 6063.0999999940395,
+          "lastPaint": 7639.4000000059605,
+          "subjectMs": 1034.5999999940395
+        }
+      ]
+    },
+    {
+      "key": "f06-740-normal",
+      "status": "PASS",
+      "eyeFrames": 95,
+      "timing": [
+        {
+          "eventId": "controlled/source-title/f06/hand/controlled/source-title/f06/command/4/event/5",
+          "firstPaint": 5674.79999999702,
+          "lastPaint": 7251.100000008941,
+          "subjectMs": 1035
+        }
+      ]
+    },
+    {
+      "key": "xiemu-390-fast",
+      "status": "PASS",
+      "eyeFrames": 73,
+      "timing": [
+        {
+          "eventId": "controlled/source-title/xiemu/hand/controlled/source-title/xiemu/command/4/event/6",
+          "firstPaint": 5670.70000000298,
+          "lastPaint": 6893.20000000298,
+          "subjectMs": 1035.1000000089407
+        }
+      ]
+    },
+    {
+      "key": "e11-320-normal",
+      "status": "PASS",
+      "eyeFrames": 96,
+      "timing": [
+        {
+          "eventId": "controlled/settlement/e11-current/hand/controlled/settlement/e11-current/command/4/event/6",
+          "firstPaint": 7093.0999999940395,
+          "lastPaint": 8689.59999999404,
+          "subjectMs": 1035.0999999940395
+        }
+      ]
+    },
+    {
+      "key": "e11-390-normal",
+      "status": "PASS",
+      "eyeFrames": 96,
+      "timing": [
+        {
+          "eventId": "controlled/settlement/e11-current/hand/controlled/settlement/e11-current/command/4/event/6",
+          "firstPaint": 6147.0999999940395,
+          "lastPaint": 7744.20000000298,
+          "subjectMs": 1051.699999988079
+        }
+      ]
+    },
+    {
+      "key": "e11-1366-normal",
+      "status": "PASS",
+      "eyeFrames": 95,
+      "timing": [
+        {
+          "eventId": "controlled/settlement/e11-current/hand/controlled/settlement/e11-current/command/4/event/6",
+          "firstPaint": 6307.0999999940395,
+          "lastPaint": 7909.20000000298,
+          "subjectMs": 1051
+        }
+      ]
+    },
+    {
+      "key": "e11-390-reduce",
+      "status": "PASS",
+      "eyeFrames": 62,
+      "timing": [
+        {
+          "eventId": "controlled/settlement/e11-current/hand/controlled/settlement/e11-current/command/4/event/6",
+          "firstPaint": 3912,
+          "lastPaint": 4923.399999991059,
+          "subjectMs": 1012.8999999910593
+        }
+      ]
+    },
+    {
+      "key": "e11-390-skip",
+      "status": "PASS",
+      "eyeFrames": 42,
+      "timing": [
+        {
+          "eventId": "controlled/settlement/e11-current/hand/controlled/settlement/e11-current/command/4/event/6",
+          "firstPaint": 6014.4000000059605,
+          "lastPaint": 6692.70000000298,
+          "subjectMs": 268.40000000596046
+        }
+      ]
+    },
+    {
+      "key": "e11-390-exit",
+      "status": "PASS",
+      "eyeFrames": 36,
+      "timing": [
+        {
+          "eventId": "controlled/settlement/e11-current/hand/controlled/settlement/e11-current/command/4/event/6",
+          "firstPaint": 6733.399999991059,
+          "lastPaint": 7318.5999999940395,
+          "subjectMs": 202
+        }
+      ]
+    }
+  ],
+  "heldCases": [
+    {
+      "key": "natural-erxiang-390-normal",
+      "status": "PASS",
+      "restoredInventory": true,
+      "orphanPaints": 0
+    },
+    {
+      "key": "e11-740-normal",
+      "status": "PASS",
+      "restoredInventory": false,
+      "orphanPaints": 0
+    },
+    {
+      "key": "e11-320-normal",
+      "status": "PASS",
+      "restoredInventory": false,
+      "orphanPaints": 0
+    },
+    {
+      "key": "e11-390-normal",
+      "status": "PASS",
+      "restoredInventory": false,
+      "orphanPaints": 0
+    },
+    {
+      "key": "e11-1366-normal",
+      "status": "PASS",
+      "restoredInventory": false,
+      "orphanPaints": 0
+    }
+  ],
+  "beforeAfterPairs": [
+    {
+      "key": "e11-740-normal",
+      "fullInitialSavedAfterColdEqual": true,
+      "orphanPaintsBefore": 968,
+      "orphanPaintsAfter": 0
+    },
+    {
+      "key": "e11-320-normal",
+      "fullInitialSavedAfterColdEqual": true,
+      "orphanPaintsBefore": 962,
+      "orphanPaintsAfter": 0
+    },
+    {
+      "key": "e11-390-normal",
+      "fullInitialSavedAfterColdEqual": true,
+      "orphanPaintsBefore": 978,
+      "orphanPaintsAfter": 0
+    },
+    {
+      "key": "e11-1366-normal",
+      "fullInitialSavedAfterColdEqual": true,
+      "orphanPaintsBefore": 968,
+      "orphanPaintsAfter": 0
+    }
+  ],
+  "ordinaryFullInitialSavedAfterColdEqual": true,
+  "allPaintedTextCollisions": [],
+  "sourceHashes": {
+    "src/game/HeroClimax.ts": "2cc3688de960639c154b1fda9876ec5056474e732060dc9bf6d50caa2a13ba5e",
+    "src/game/HeroClimaxFocus.ts": "9e94e2da24d7c60108408cc24318cf21056603f53a912ea3990905c4025f757f",
+    "src/game/HeroClimaxLayout.ts": "350c1ed174ae1447c3b999d75bd756bc99a4c9ac06921b3b2ee8758795cdbb05",
+    "src/game/HeroClimaxStage.ts": "f42b3c2f7ddbab9d27124d0a7f9047a6834a1c0b372feebaa7effc07da04451c",
+    "src/game/InventoryFeedback.ts": "e7129433465f108fa307f8e72e44b18d29469764aa4ecabf974d7bed80ea024b",
+    "src/game/ScoreFlame.ts": "291b72e51ee9aeb4ad2c0c32e9900fd80c3e6e4cdcbf4fc314229d995f511cf6"
+  },
+  "protectedTreesUnchanged": true,
+  "assetManifestSHA256": "339c79947e5f7faeaf07e603b18575294e1ad60aacb6606e9c33f6a835b5634e",
+  "newImageGeneration": false,
+  "newTextureOrNetworkRequest": false,
+  "scope": "Actual production import + public selection/skill/PlayHand/cancel/replay/skip/exit; controlled held T01 and e11/f06 plus ordinary fixed-seed erxiang; no injected presentation or clock changes. Browser software evidence, not physical device/hearing/perceived fluidity acceptance.",
+  "integrationRequired": "New Su Shi asset replacement is owned by the other worker. HeroClimaxFocus.ts amo strip [.25,.177,.667,.271] is calibrated against base8728 amo.focus.webp, so recheck/update this strip against the new focus image before integrated art acceptance."
+}
