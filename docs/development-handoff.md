@@ -20,6 +20,8 @@
 
 2026-10-16 最新实际main为指针批次0c4dab18。下一项已持牌短按时钟缺陷在独立分支fix/owned-card-release-clock-20261016形成产品842cad2d，95项/构建及三尺寸原生前后对照通过，见[独立开发证据](production/evidence/owned-card-release-clock-2026-10-16/README.md)。仅持OwnedJokerInput及对应测试/专用harness/证据，不改SceneView、GameScene或结算，不占用低分采样工作树；未合main。
 
+2026-10-16 已持牌d36b63f1按本批授权接续发布，精确源码与本地验证见[发布记录](production/evidence/owned-card-current-main-integration-2026-10-16/README.md)。此后仅盘点DELIVERY_PLAN当前“下一批玩家体验事项与依赖”，待父对齐另一会话范围后分工；不认领新的运行时文件，不再自行扩指针边缘项。
+
 ## 共同Joker正常入口/UI交接（PR25，2026-10-05 UTC，仅review）
 
 source92ade25，正常合入PR22 e2fc与PR24 36eff；UI自然证据a8fcd2e与source的src/harness tree相同。六角色普通新局同combo-growth-v1/e7d21，仅阿默助攻；旧身份继续/导入/精确retry与默认createRun v11保留。2377tests/132files、content/type/build/桌面手机smoke/plan冻结全PASS，有限自然d12与阿默路线、四选角视口和7受控正反例通过；15通过PNG与2FAIL图actual view，原FAIL/双方来源保留。证据[summary](production/evidence/p08-combo-growth-ui-2026-10-05/summary.json)。精确最终draft CI以PR25交接为准；main仍193c93b，父独审决定发布。P08 in_progress、C04 D32及真机/听感/平衡门槛保持。

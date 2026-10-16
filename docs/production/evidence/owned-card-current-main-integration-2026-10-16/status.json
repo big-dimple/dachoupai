@@ -1,0 +1,75 @@
+{
+  "taskId": "P08",
+  "status": "software_verified_authorized_release",
+  "basePublishedMain": "0c4dab186eb90430d57e213545179b9921fffe10",
+  "integratedCandidate": "d36b63f17ee322343855fc32bf2c1718476179b7",
+  "testedProductCommit": "842cad2d5bd8e5063b3e7320d283ec85078a84cb",
+  "sourceEquivalentIntegrationCommit": "d36b63f17ee322343855fc32bf2c1718476179b7",
+  "sourceTree": "f2a2653973cd7bf3e5897f0757a944df7551f9ab",
+  "branch": "verify/owned-card-current-main-20261016",
+  "productionDeltaVsPublishedMain": [
+    "src/game/OwnedJokerInput.ts"
+  ],
+  "verification": {
+    "method": "Full Git src/tests/harness/public/art equality with tested product. All eight original frozen worktree byte hashes matched, their CRLF-normalized content matched tested Git blobs, and integration Git blobs were identical. Original mixed Windows line endings are preserved; raw hashes are not misrepresented as Git blob hashes.",
+    "relatedTests": {
+      "files": 8,
+      "passed": 95,
+      "failed": 0,
+      "report": "../owned-card-release-clock-2026-10-16/unit-results.json"
+    },
+    "productionBuild": "Existing PASS on identical source; not rerun",
+    "native": {
+      "status": "PASS",
+      "beforeCases": 3,
+      "afterCases": 3,
+      "report": "../owned-card-release-clock-2026-10-16/after-native.json.gz"
+    },
+    "freshTypecheck": "PASS: npm.cmd run typecheck",
+    "freshPlan": "PASS: 32 work packages, current=P08"
+  },
+  "sourceHashes": {
+    "src/game/OwnedJokerInput.ts": "d92e8a717afb75980c0aeb0c333e020a888621c1048cc6c1a3f1e62d28ab232e",
+    "src/game/PointerReleaseTime.ts": "6d142d5c951713b01c1d7beaabd26b3390e97ab457eb6013b83e464b81c8c9bd",
+    "src/game/SceneView.ts": "08a953a863a91a1d7db6f2c34e88229abac99de2fe42e71db6eff1a6738aaaf4",
+    "src/game/GameScene.ts": "09094f32b3c5479bf1fd92f8e4c0ba5a8377142b28391931db9795da6ac00f79",
+    "src/game/ScoreTextLayout.ts": "35641b01c5debeca99604a074031c14c4bea79f3a7d4e833a259907140b4aa9b",
+    "src/game/ScoreSourceProcess.ts": "567ee61f64aecdee15778863629ea1c8fd43b9b03a62cf665ccd529d5521b748",
+    "harness/owned-card-release-clock.mjs": "c82bcfef952f099f9844f7db792bf1b141eddd91bd7806716fbfee5f69369b29",
+    "tests/owned-joker-input.test.ts": "b6dd1d09dabffbc0351acf3de7dda3aa5561fc58241b668191cb1a95b2518e52"
+  },
+  "sourceUnchanged": true,
+  "protectedUnchangedVsBase": [
+    "src/domain",
+    "src/application",
+    "src/content",
+    "src/audio",
+    "src/platform",
+    "public",
+    "art",
+    "src/game/SceneView.ts",
+    "src/game/GameScene.ts",
+    "src/game/ScoreTextLayout.ts",
+    "src/game/ScoreSourceProcess.ts",
+    "src/game/PointerReleaseTime.ts",
+    "src/game/HomePage.ts",
+    "src/game/LoadingScreen.ts"
+  ],
+  "publication": {
+    "authorization": "Parent explicitly instructed normal merge/push of d36b63f1 with current main. Main is an ancestor, so normal fast-forward is the integration.",
+    "actualCommands": [
+      "git merge --ff-only --no-stat <final metadata SHA>",
+      "git push origin HEAD:refs/heads/main",
+      "git ls-remote --heads origin main"
+    ],
+    "exactRemote": "Reported after successful normal push and saved in local release receipt; no CI/domain wait."
+  },
+  "remainingInventory": "../../DELIVERY_PLAN.md#下一批玩家体验事项与依赖2026-10-16盘点待协调",
+  "limits": [
+    "The 600ms capture listener is a controlled delay before the production callback, not a natural stall prevalence or performance benchmark. Native mouse/touch events are isTrusted true; no handler/controller/save/stock replacement.",
+    "Only the actual short-press delay has browser before/after proof. Queued long-hold classification has unit proof, and ordinary actual long holds remain cancellation in all three native cases.",
+    "One genuinely purchased owned card per run; no new natural multi-card reorder or physical phone/GPU acceptance claimed. Existing related drag/haptic and interruption tests passed.",
+    "No full-suite green, human/art/audio/balance or P08 completion claim. Separate settlement tail investigation remains separately owned."
+  ],
+  "testedCommit": "842cad2d5bd8e5063b3e7320d283ec85078a84cb"
+}

@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "auditCommit": "8e2174141920ef001b95a30485e70525920d3d9f",
   "currentTask": "P08",
-  "selectionPolicy": "唯一入口仍为DELIVERY_PLAN当前统一执行计划。结算main4b8ddbcf已发布，独立指针0fd1c113与其正常合并后194项相关测试、构建和六个原生流程通过，按用户本批授权正常push main。不混其他未验证工作，不强推、不查CI/域名，不占用另一线程低分返回采样工作树。后续P1按实际可复现缺口推进；P08保持in_progress，真机/理解/听感/自然平衡等未代签。",
+  "selectionPolicy": "唯一入口仍为DELIVERY_PLAN当前统一执行计划。已持牌d36b63f1为已发布main0c4dab18后继，与已验证产品842cad2d完整源码/测试/harness一致，95项及原生对照精确复用，补本地类型/计划检查后按用户授权正常快进push main。此后先按玩家影响盘点技能取舍、成长供给、响应布局与现有音画验收，待父协调另一会话后认领，不无限扩展指针边缘项。不等CI或新图，不混结算诊断，不改机制/数值/旧档；P08仍in_progress。",
   "resumeContract": {
     "candidateCommit": "4bf6a7d63d7738d3c415d09439a1bdca878dc685",
     "gateTask": "A01",
@@ -38,6 +38,7 @@
       "humanGate": false,
       "completionScope": "2026-10-16：c009基线上的文化文案cea473、选择布局aab4d9和本机跨场景连点修复已整合；同版正常新局/携带/技能/实际结算/下一商店/失败重试及六人软件检查见currentDelivery.statusRecord。历史全量失败按独立基线对照记录，不能写成全量绿。P08仍in_progress；真实玩家理解、自然平衡、物理设备/GPU、听感、独立眼原画及整体体验未签。",
       "evidence": [
+        "docs/production/evidence/owned-card-current-main-integration-2026-10-16/status.json",
         "docs/production/evidence/owned-card-release-clock-2026-10-16/status.json",
         "docs/production/evidence/pointer-current-main-integration-2026-10-16/status.json",
         "docs/production/evidence/settlement-current-main-integration-2026-10-16/status.json",
@@ -1211,7 +1212,7 @@
   ],
   "currentDelivery": {
     "date": "2026-10-16",
-    "statusRecord": "docs/production/evidence/pointer-current-main-integration-2026-10-16/status.json",
+    "statusRecord": "docs/production/evidence/owned-card-current-main-integration-2026-10-16/status.json",
     "heroTextSpecification": "docs/production/HERO_TEXT_SPEC_20261015.json",
     "history": "docs/production/history/plan-status-before-20261015.json",
     "priorities": [
@@ -1222,7 +1223,7 @@
     ],
     "owners": {
       "documents": "同一整合负责人：规范来源856c30ed、运行时采用与当前计划/证据对账",
-      "runtimeIntegration": "Windows verify/pointer-current-main-20261016：结算main4b8ddbcf已发布；指针0fd1c113同版验证后按用户授权正常发布，不混其他工作",
+      "runtimeIntegration": "Windows verify/owned-card-current-main-20261016：指针main0c4dab18已发布；已持牌d36b63f1精确源码核对与本地检查后正常快进发布；随后只盘点，待父协调非指针体验任务",
       "portraits": "正式图接线已完成整合；只处理可复现缺陷，不并发覆盖资源窗口",
       "carry": "R03已结束开发，只处理经复现的整合缺陷",
       "opening": "首页/加载/成长main8af3e506已发布；本批保留其源码；结算单独同版复核",
@@ -1247,10 +1248,13 @@
         "productCommit": "842cad2d5bd8e5063b3e7320d283ec85078a84cb",
         "statusRecord": "docs/production/evidence/owned-card-release-clock-2026-10-16/status.json",
         "scope": "OwnedJokerInput uses existing pointerReleaseTime native press duration instead of release-handler wall time. Only one production file changed; no pointer main, settlement, rules, persistence or asset changes.",
-        "status": "software_verified_development_candidate"
+        "status": "integrated_software_verified_authorized_release",
+        "integrationStatusRecord": "docs/production/evidence/owned-card-current-main-integration-2026-10-16/status.json"
       }
     ],
     "priorSettlementStatusRecord": "docs/production/evidence/settlement-current-main-integration-2026-10-16/status.json",
-    "lastVerifiedPublishedMain": "0c4dab186eb90430d57e213545179b9921fffe10"
+    "lastVerifiedPublishedMain": "0c4dab186eb90430d57e213545179b9921fffe10",
+    "priorPointerStatusRecord": "docs/production/evidence/pointer-current-main-integration-2026-10-16/status.json",
+    "nextBatchInventory": "docs/production/DELIVERY_PLAN.md#下一批玩家体验事项与依赖2026-10-16盘点待协调"
   }
 }
