@@ -1,0 +1,994 @@
+{
+  "status": "shared_return_cost_reproduced_new_regression_not_confirmed",
+  "base": "8bf977e13bbb7dccad2cb54fd54a1d911fd6b1ac",
+  "branch": "investigate/settlement-return-tail-20261016",
+  "environment": {
+    "node": "v22.20.0",
+    "platform": "win32",
+    "browser": "153.0.8010.12",
+    "renderer": 1,
+    "canvas": "native Phaser Canvas",
+    "deviceScaleFactor": 1,
+    "cpuThrottle": "none",
+    "wholeMachineIsolation": "not guaranteed; no other harness processes launched concurrently by this task"
+  },
+  "method": {
+    "seed": "d43-fire-267",
+    "heroTechnicalId": "laohuan",
+    "route": "group",
+    "action": "actual production PlayHand of diamonds-11 in first stage",
+    "score": "30",
+    "target": "400",
+    "phase": "await-input",
+    "checkpointImport": false,
+    "freshContextAndBrowserEachRun": true,
+    "order": "odd pair baseline then optimized; even pair optimized then baseline",
+    "primarySamples": 30,
+    "pairedRuns": 15,
+    "pairsByWidth": {
+      "320": 3,
+      "390": 6,
+      "1366": 6
+    },
+    "diagnosticWindow": "completePresentation entry through first done postrender +400ms; observe Long Tasks delivery after end",
+    "legacyWindow": "stops on first postrender without presentation, can drop the final task and frame",
+    "instrumentation": "test harness wrappers only; no product instrumentation or state shortcuts"
+  },
+  "checks": {
+    "syntax": "PASS (node --check harness/settlement-performance.mjs)",
+    "browserCases": 30,
+    "browserStatus": "PASS",
+    "pairedExactFinalTraceRngPhaseTargetCommandSeq": "PASS (15 pairs)",
+    "presentationStateJournalStorageLocalStorage": "PASS (30)",
+    "productSourceAndArtUnchanged": "PASS"
+  },
+  "builds": {
+    "baseline": {
+      "metadata": {
+        "version": "C03",
+        "builtAt": "2026-10-16T01:22:54.114Z",
+        "revision": "fa5b30ee1ebf28d4ee71d676b231eab260172033",
+        "sourceStatus": "dirty",
+        "modified": true,
+        "modifiedFileCount": 4,
+        "modifiedFiles": [
+          "src/game/GameScene.ts",
+          "src/game/ScoreSourceProcess.ts",
+          "src/game/ScoreTextLayout.ts",
+          "tests/score-text-layout.test.ts"
+        ]
+      },
+      "sourceHashes": {
+        "src/game/GameScene.ts": "b1d23ce5db3277eb083d21f195014ddeff0fa15df0ce9ea2398fbb69f121b450",
+        "src/game/ScoreTextLayout.ts": "5062d2cf97e893eb38b815152b23026cfaf743f04f8123ac49fc19f98e7bbcd6",
+        "src/game/ScoreSourceProcess.ts": "1c461e8fee3837347aa53fdd09fc2c286a3ad7427e69baafc1a560d81a81ed84"
+      },
+      "provenance": "Source hashes exactly equal git show fa5b30ee:<file> bytes"
+    },
+    "optimized": {
+      "metadata": {
+        "version": "C03",
+        "builtAt": "2026-10-16T01:51:33.896Z",
+        "revision": "5a54a90822f90ed17d7996ea969ee018838463ce",
+        "sourceStatus": "dirty",
+        "modified": true,
+        "modifiedFileCount": 4,
+        "modifiedFiles": [
+          "docs/production/evidence/settlement-layout-performance-2026-10-16/status.json",
+          "harness/settlement-performance.mjs",
+          "src/game/ScoreTextLayout.ts",
+          "tests/score-text-layout.test.ts"
+        ]
+      },
+      "sourceHashes": {
+        "src/game/GameScene.ts": "59ba82977eb949816262996b8bb29de7100cf1f0e4a06d7179a5224304cccb09",
+        "src/game/ScoreTextLayout.ts": "cdfed1442fb7da15e8edd80b45df26e2a2c7fe4bdfb0cd33e4e0d78c36eebcd0",
+        "src/game/ScoreSourceProcess.ts": "0be9cfd294f4e05ba764704ee0cad99ccbd8e10852c357257a3c103828d24c52"
+      },
+      "provenance": "Source hashes exactly equal unchanged product files at 8bf977e1"
+    }
+  },
+  "stats": [
+    {
+      "width": 1366,
+      "version": "baseline",
+      "samples": 6,
+      "completeMs": {
+        "min": 42.29999999701977,
+        "median": 44.04999999701977,
+        "max": 47.69999998807907
+      },
+      "renderMs": {
+        "min": 41.599999994039536,
+        "median": 43.30000001192093,
+        "max": 47.1000000089407
+      },
+      "tailFrameMs": {
+        "min": 62.900000005960464,
+        "median": 66.94999999552965,
+        "max": 71.29999999701977
+      },
+      "textRasterMs": {
+        "min": 10.999999955296516,
+        "median": 11.349999956786633,
+        "max": 11.900000095367432
+      },
+      "longTaskRuns": 6,
+      "longTaskDurations": [
+        55,
+        63,
+        56,
+        57,
+        62,
+        60
+      ],
+      "legacyMissedReturnRuns": 5,
+      "textCalls": [
+        257,
+        257,
+        257,
+        257,
+        257,
+        257
+      ]
+    },
+    {
+      "width": 1366,
+      "version": "optimized",
+      "samples": 6,
+      "completeMs": {
+        "min": 41.900000005960464,
+        "median": 44.04999999701977,
+        "max": 44.70000000298023
+      },
+      "renderMs": {
+        "min": 41.20000000298023,
+        "median": 43.25,
+        "max": 44
+      },
+      "tailFrameMs": {
+        "min": 61.8999999910593,
+        "median": 64.99999999254942,
+        "max": 67.69999998807907
+      },
+      "textRasterMs": {
+        "min": 9.399999931454659,
+        "median": 10.899999998509884,
+        "max": 11.900000020861626
+      },
+      "longTaskRuns": 6,
+      "longTaskDurations": [
+        55,
+        58,
+        59,
+        56,
+        58,
+        54
+      ],
+      "legacyMissedReturnRuns": 2,
+      "textCalls": [
+        255,
+        255,
+        255,
+        255,
+        255,
+        255
+      ]
+    },
+    {
+      "width": 390,
+      "version": "baseline",
+      "samples": 6,
+      "completeMs": {
+        "min": 40,
+        "median": 42.100000001490116,
+        "max": 61.5
+      },
+      "renderMs": {
+        "min": 39.3999999910593,
+        "median": 41.45000000298023,
+        "max": 60.70000000298023
+      },
+      "tailFrameMs": {
+        "min": 55.29999999701977,
+        "median": 57.399999998509884,
+        "max": 81.70000000298023
+      },
+      "textRasterMs": {
+        "min": 10.300000056624413,
+        "median": 10.950000047683716,
+        "max": 14.00000013411045
+      },
+      "longTaskRuns": 4,
+      "longTaskDurations": [
+        50,
+        51,
+        56,
+        73
+      ],
+      "legacyMissedReturnRuns": 2,
+      "textCalls": [
+        277,
+        277,
+        277,
+        277,
+        277,
+        263
+      ]
+    },
+    {
+      "width": 390,
+      "version": "optimized",
+      "samples": 6,
+      "completeMs": {
+        "min": 41.599999994039536,
+        "median": 42.900000005960464,
+        "max": 77.59999999403954
+      },
+      "renderMs": {
+        "min": 40.8999999910593,
+        "median": 42.25,
+        "max": 76.59999999403954
+      },
+      "tailFrameMs": {
+        "min": 57.099999994039536,
+        "median": 59.899999998509884,
+        "max": 100
+      },
+      "textRasterMs": {
+        "min": 10.399999886751175,
+        "median": 12.000000022351742,
+        "max": 19.59999990463257
+      },
+      "longTaskRuns": 6,
+      "longTaskDurations": [
+        50,
+        54,
+        65,
+        50,
+        50,
+        91
+      ],
+      "legacyMissedReturnRuns": 2,
+      "textCalls": [
+        288,
+        288,
+        288,
+        288,
+        288,
+        272
+      ]
+    },
+    {
+      "width": 320,
+      "version": "baseline",
+      "samples": 3,
+      "completeMs": {
+        "min": 36.70000000298023,
+        "median": 37.30000001192093,
+        "max": 38.5
+      },
+      "renderMs": {
+        "min": 36.1000000089407,
+        "median": 36.6000000089407,
+        "max": 37.900000005960464
+      },
+      "tailFrameMs": {
+        "min": 49.3999999910593,
+        "median": 50.5,
+        "max": 51.099999994039536
+      },
+      "textRasterMs": {
+        "min": 8.499999955296516,
+        "median": 8.999999970197678,
+        "max": 9.19999997317791
+      },
+      "longTaskRuns": 0,
+      "longTaskDurations": [],
+      "legacyMissedReturnRuns": 0,
+      "textCalls": [
+        259,
+        259,
+        259
+      ]
+    },
+    {
+      "width": 320,
+      "version": "optimized",
+      "samples": 3,
+      "completeMs": {
+        "min": 37.400000005960464,
+        "median": 37.599999994039536,
+        "max": 37.599999994039536
+      },
+      "renderMs": {
+        "min": 36.70000000298023,
+        "median": 36.8999999910593,
+        "max": 36.900000005960464
+      },
+      "tailFrameMs": {
+        "min": 49.6000000089407,
+        "median": 50.20000000298023,
+        "max": 50.20000000298023
+      },
+      "textRasterMs": {
+        "min": 8.500000074505806,
+        "median": 8.600000038743019,
+        "max": 9.099999964237213
+      },
+      "longTaskRuns": 0,
+      "longTaskDurations": [],
+      "legacyMissedReturnRuns": 0,
+      "textCalls": [
+        264,
+        264,
+        264
+      ]
+    }
+  ],
+  "rows": [
+    {
+      "width": 1366,
+      "pair": 1,
+      "version": "baseline",
+      "status": "PASS",
+      "score": "30",
+      "completeMs": 42.29999999701977,
+      "renderMs": 41.599999994039536,
+      "tailFrameMs": 62.900000005960464,
+      "longtasks": [
+        {
+          "start": 6240.0999999940395,
+          "duration": 55
+        }
+      ],
+      "originalReportedLongtasks": [],
+      "textCalls": 257,
+      "textRasterMs": 11.199999958276749,
+      "fitMs": 0.7000000029802322,
+      "sourceUnchanged": true
+    },
+    {
+      "width": 1366,
+      "pair": 1,
+      "version": "optimized",
+      "status": "PASS",
+      "score": "30",
+      "completeMs": 42.5,
+      "renderMs": 41.79999999701977,
+      "tailFrameMs": 62.70000000298023,
+      "longtasks": [
+        {
+          "start": 6263.29999999702,
+          "duration": 55
+        }
+      ],
+      "originalReportedLongtasks": [
+        {
+          "start": 6263.29999999702,
+          "duration": 55
+        }
+      ],
+      "textCalls": 255,
+      "textRasterMs": 11.900000020861626,
+      "fitMs": 0.699999988079071,
+      "sourceUnchanged": true
+    },
+    {
+      "width": 1366,
+      "pair": 2,
+      "version": "optimized",
+      "status": "PASS",
+      "score": "30",
+      "completeMs": 44.70000000298023,
+      "renderMs": 44,
+      "tailFrameMs": 66.1000000089407,
+      "longtasks": [
+        {
+          "start": 6174.5999999940395,
+          "duration": 58
+        }
+      ],
+      "originalReportedLongtasks": [
+        {
+          "start": 6174.5999999940395,
+          "duration": 58
+        }
+      ],
+      "textCalls": 255,
+      "textRasterMs": 10.900000035762787,
+      "fitMs": 0.7000000029802322,
+      "sourceUnchanged": true
+    },
+    {
+      "width": 1366,
+      "pair": 2,
+      "version": "baseline",
+      "status": "PASS",
+      "score": "30",
+      "completeMs": 47.69999998807907,
+      "renderMs": 47.1000000089407,
+      "tailFrameMs": 71.29999999701977,
+      "longtasks": [
+        {
+          "start": 6292.4000000059605,
+          "duration": 63
+        }
+      ],
+      "originalReportedLongtasks": [],
+      "textCalls": 257,
+      "textRasterMs": 11.199999943375587,
+      "fitMs": 0.7999999970197678,
+      "sourceUnchanged": true
+    },
+    {
+      "width": 1366,
+      "pair": 3,
+      "version": "baseline",
+      "status": "PASS",
+      "score": "30",
+      "completeMs": 42.6000000089407,
+      "renderMs": 42,
+      "tailFrameMs": 64.8999999910593,
+      "longtasks": [
+        {
+          "start": 6585.9000000059605,
+          "duration": 56
+        }
+      ],
+      "originalReportedLongtasks": [
+        {
+          "start": 6585.9000000059605,
+          "duration": 56
+        }
+      ],
+      "textCalls": 257,
+      "textRasterMs": 11.900000095367432,
+      "fitMs": 0.7000000029802322,
+      "sourceUnchanged": true
+    },
+    {
+      "width": 1366,
+      "pair": 3,
+      "version": "optimized",
+      "status": "PASS",
+      "score": "30",
+      "completeMs": 44.5,
+      "renderMs": 43.599999994039536,
+      "tailFrameMs": 67.69999998807907,
+      "longtasks": [
+        {
+          "start": 6455.79999999702,
+          "duration": 59
+        }
+      ],
+      "originalReportedLongtasks": [],
+      "textCalls": 255,
+      "textRasterMs": 10.899999961256981,
+      "fitMs": 0.7999999970197678,
+      "sourceUnchanged": true
+    },
+    {
+      "width": 1366,
+      "pair": 4,
+      "version": "optimized",
+      "status": "PASS",
+      "score": "30",
+      "completeMs": 43.599999994039536,
+      "renderMs": 42.900000005960464,
+      "tailFrameMs": 64.3999999910593,
+      "longtasks": [
+        {
+          "start": 6627.100000008941,
+          "duration": 56
+        }
+      ],
+      "originalReportedLongtasks": [
+        {
+          "start": 6627.100000008941,
+          "duration": 56
+        }
+      ],
+      "textCalls": 255,
+      "textRasterMs": 9.399999931454659,
+      "fitMs": 0.7999999970197678,
+      "sourceUnchanged": true
+    },
+    {
+      "width": 1366,
+      "pair": 4,
+      "version": "baseline",
+      "status": "PASS",
+      "score": "30",
+      "completeMs": 43,
+      "renderMs": 42.30000001192093,
+      "tailFrameMs": 66.09999999403954,
+      "longtasks": [
+        {
+          "start": 6261.300000011921,
+          "duration": 57
+        }
+      ],
+      "originalReportedLongtasks": [],
+      "textCalls": 257,
+      "textRasterMs": 11.499999955296516,
+      "fitMs": 0.7000000029802322,
+      "sourceUnchanged": true
+    },
+    {
+      "width": 1366,
+      "pair": 5,
+      "version": "baseline",
+      "status": "PASS",
+      "score": "30",
+      "completeMs": 47.400000005960464,
+      "renderMs": 46.5,
+      "tailFrameMs": 71.1000000089407,
+      "longtasks": [
+        {
+          "start": 6529.5,
+          "duration": 62
+        }
+      ],
+      "originalReportedLongtasks": [],
+      "textCalls": 257,
+      "textRasterMs": 11.80000002682209,
+      "fitMs": 0.7999999970197678,
+      "sourceUnchanged": true
+    },
+    {
+      "width": 1366,
+      "pair": 5,
+      "version": "optimized",
+      "status": "PASS",
+      "score": "30",
+      "completeMs": 44.599999994039536,
+      "renderMs": 43.8999999910593,
+      "tailFrameMs": 65.59999999403954,
+      "longtasks": [
+        {
+          "start": 6256.70000000298,
+          "duration": 58
+        }
+      ],
+      "originalReportedLongtasks": [
+        {
+          "start": 6256.70000000298,
+          "duration": 58
+        }
+      ],
+      "textCalls": 255,
+      "textRasterMs": 11,
+      "fitMs": 0.800000011920929,
+      "sourceUnchanged": true
+    },
+    {
+      "width": 1366,
+      "pair": 6,
+      "version": "optimized",
+      "status": "PASS",
+      "score": "30",
+      "completeMs": 41.900000005960464,
+      "renderMs": 41.20000000298023,
+      "tailFrameMs": 61.8999999910593,
+      "longtasks": [
+        {
+          "start": 6305.899999991059,
+          "duration": 54
+        }
+      ],
+      "originalReportedLongtasks": [],
+      "textCalls": 255,
+      "textRasterMs": 10.499999895691872,
+      "fitMs": 0.699999988079071,
+      "sourceUnchanged": true
+    },
+    {
+      "width": 1366,
+      "pair": 6,
+      "version": "baseline",
+      "status": "PASS",
+      "score": "30",
+      "completeMs": 45.099999994039536,
+      "renderMs": 44.30000001192093,
+      "tailFrameMs": 67.79999999701977,
+      "longtasks": [
+        {
+          "start": 6778.29999999702,
+          "duration": 60
+        }
+      ],
+      "originalReportedLongtasks": [],
+      "textCalls": 257,
+      "textRasterMs": 10.999999955296516,
+      "fitMs": 0.7000000029802322,
+      "sourceUnchanged": true
+    },
+    {
+      "width": 390,
+      "pair": 1,
+      "version": "baseline",
+      "status": "PASS",
+      "score": "30",
+      "completeMs": 41.5,
+      "renderMs": 40.79999999701977,
+      "tailFrameMs": 57.099999994039536,
+      "longtasks": [
+        {
+          "start": 5987.20000000298,
+          "duration": 50
+        }
+      ],
+      "originalReportedLongtasks": [
+        {
+          "start": 5987.20000000298,
+          "duration": 50
+        }
+      ],
+      "textCalls": 277,
+      "textRasterMs": 11.200000062584877,
+      "fitMs": 0.7000000029802322,
+      "sourceUnchanged": true
+    },
+    {
+      "width": 390,
+      "pair": 1,
+      "version": "optimized",
+      "status": "PASS",
+      "score": "30",
+      "completeMs": 41.599999994039536,
+      "renderMs": 40.8999999910593,
+      "tailFrameMs": 57.099999994039536,
+      "longtasks": [
+        {
+          "start": 6197.79999999702,
+          "duration": 50
+        }
+      ],
+      "originalReportedLongtasks": [
+        {
+          "start": 6197.79999999702,
+          "duration": 50
+        }
+      ],
+      "textCalls": 288,
+      "textRasterMs": 10.399999886751175,
+      "fitMs": 0.7000000029802322,
+      "sourceUnchanged": true
+    },
+    {
+      "width": 390,
+      "pair": 2,
+      "version": "optimized",
+      "status": "PASS",
+      "score": "30",
+      "completeMs": 43.400000005960464,
+      "renderMs": 42.70000000298023,
+      "tailFrameMs": 62.5,
+      "longtasks": [
+        {
+          "start": 5877.29999999702,
+          "duration": 54
+        }
+      ],
+      "originalReportedLongtasks": [],
+      "textCalls": 288,
+      "textRasterMs": 12.099999874830246,
+      "fitMs": 0.7000000029802322,
+      "sourceUnchanged": true
+    },
+    {
+      "width": 390,
+      "pair": 2,
+      "version": "baseline",
+      "status": "PASS",
+      "score": "30",
+      "completeMs": 42.70000000298023,
+      "renderMs": 42.1000000089407,
+      "tailFrameMs": 57.70000000298023,
+      "longtasks": [
+        {
+          "start": 6266.5,
+          "duration": 51
+        }
+      ],
+      "originalReportedLongtasks": [
+        {
+          "start": 6266.5,
+          "duration": 51
+        }
+      ],
+      "textCalls": 277,
+      "textRasterMs": 10.399999961256981,
+      "fitMs": 0.7000000029802322,
+      "sourceUnchanged": true
+    },
+    {
+      "width": 390,
+      "pair": 3,
+      "version": "baseline",
+      "status": "PASS",
+      "score": "30",
+      "completeMs": 47.099999994039536,
+      "renderMs": 46.29999999701977,
+      "tailFrameMs": 62.599999994039536,
+      "longtasks": [
+        {
+          "start": 6210.300000011921,
+          "duration": 56
+        }
+      ],
+      "originalReportedLongtasks": [],
+      "textCalls": 277,
+      "textRasterMs": 11.5,
+      "fitMs": 0.7999999970197678,
+      "sourceUnchanged": true
+    },
+    {
+      "width": 390,
+      "pair": 3,
+      "version": "optimized",
+      "status": "PASS",
+      "score": "30",
+      "completeMs": 55.5,
+      "renderMs": 54.70000000298023,
+      "tailFrameMs": 72.6000000089407,
+      "longtasks": [
+        {
+          "start": 5854.70000000298,
+          "duration": 65
+        }
+      ],
+      "originalReportedLongtasks": [
+        {
+          "start": 5854.70000000298,
+          "duration": 65
+        }
+      ],
+      "textCalls": 288,
+      "textRasterMs": 15.10000005364418,
+      "fitMs": 1,
+      "sourceUnchanged": true
+    },
+    {
+      "width": 320,
+      "pair": 1,
+      "version": "baseline",
+      "status": "PASS",
+      "score": "30",
+      "completeMs": 38.5,
+      "renderMs": 37.900000005960464,
+      "tailFrameMs": 51.099999994039536,
+      "longtasks": [],
+      "originalReportedLongtasks": [],
+      "textCalls": 259,
+      "textRasterMs": 9.19999997317791,
+      "fitMs": 0.7999999970197678,
+      "sourceUnchanged": true
+    },
+    {
+      "width": 320,
+      "pair": 1,
+      "version": "optimized",
+      "status": "PASS",
+      "score": "30",
+      "completeMs": 37.400000005960464,
+      "renderMs": 36.70000000298023,
+      "tailFrameMs": 50.20000000298023,
+      "longtasks": [],
+      "originalReportedLongtasks": [],
+      "textCalls": 264,
+      "textRasterMs": 8.600000038743019,
+      "fitMs": 0.699999988079071,
+      "sourceUnchanged": true
+    },
+    {
+      "width": 320,
+      "pair": 2,
+      "version": "optimized",
+      "status": "PASS",
+      "score": "30",
+      "completeMs": 37.599999994039536,
+      "renderMs": 36.900000005960464,
+      "tailFrameMs": 49.6000000089407,
+      "longtasks": [],
+      "originalReportedLongtasks": [],
+      "textCalls": 264,
+      "textRasterMs": 9.099999964237213,
+      "fitMs": 0.7999999970197678,
+      "sourceUnchanged": true
+    },
+    {
+      "width": 320,
+      "pair": 2,
+      "version": "baseline",
+      "status": "PASS",
+      "score": "30",
+      "completeMs": 36.70000000298023,
+      "renderMs": 36.1000000089407,
+      "tailFrameMs": 49.3999999910593,
+      "longtasks": [],
+      "originalReportedLongtasks": [],
+      "textCalls": 259,
+      "textRasterMs": 8.499999955296516,
+      "fitMs": 0.7999999970197678,
+      "sourceUnchanged": true
+    },
+    {
+      "width": 320,
+      "pair": 3,
+      "version": "baseline",
+      "status": "PASS",
+      "score": "30",
+      "completeMs": 37.30000001192093,
+      "renderMs": 36.6000000089407,
+      "tailFrameMs": 50.5,
+      "longtasks": [],
+      "originalReportedLongtasks": [],
+      "textCalls": 259,
+      "textRasterMs": 8.999999970197678,
+      "fitMs": 0.9000000059604645,
+      "sourceUnchanged": true
+    },
+    {
+      "width": 320,
+      "pair": 3,
+      "version": "optimized",
+      "status": "PASS",
+      "score": "30",
+      "completeMs": 37.599999994039536,
+      "renderMs": 36.8999999910593,
+      "tailFrameMs": 50.20000000298023,
+      "longtasks": [],
+      "originalReportedLongtasks": [],
+      "textCalls": 264,
+      "textRasterMs": 8.500000074505806,
+      "fitMs": 0.7999999970197678,
+      "sourceUnchanged": true
+    },
+    {
+      "width": 390,
+      "pair": 4,
+      "version": "optimized",
+      "status": "PASS",
+      "score": "30",
+      "completeMs": 42.400000005960464,
+      "renderMs": 41.79999999701977,
+      "tailFrameMs": 57.29999999701977,
+      "longtasks": [
+        {
+          "start": 5937.600000008941,
+          "duration": 50
+        }
+      ],
+      "originalReportedLongtasks": [
+        {
+          "start": 5937.600000008941,
+          "duration": 50
+        }
+      ],
+      "textCalls": 288,
+      "textRasterMs": 10.800000056624413,
+      "fitMs": 0.699999988079071,
+      "sourceUnchanged": true
+    },
+    {
+      "width": 390,
+      "pair": 4,
+      "version": "baseline",
+      "status": "PASS",
+      "score": "30",
+      "completeMs": 40,
+      "renderMs": 39.3999999910593,
+      "tailFrameMs": 55.29999999701977,
+      "longtasks": [],
+      "originalReportedLongtasks": [],
+      "textCalls": 277,
+      "textRasterMs": 10.700000032782555,
+      "fitMs": 0.7000000029802322,
+      "sourceUnchanged": true
+    },
+    {
+      "width": 390,
+      "pair": 5,
+      "version": "baseline",
+      "status": "PASS",
+      "score": "30",
+      "completeMs": 41.20000000298023,
+      "renderMs": 40.6000000089407,
+      "tailFrameMs": 56.5,
+      "longtasks": [],
+      "originalReportedLongtasks": [],
+      "textCalls": 277,
+      "textRasterMs": 10.300000056624413,
+      "fitMs": 0.7999999970197678,
+      "sourceUnchanged": true
+    },
+    {
+      "width": 390,
+      "pair": 5,
+      "version": "optimized",
+      "status": "PASS",
+      "score": "30",
+      "completeMs": 42.1000000089407,
+      "renderMs": 41.3999999910593,
+      "tailFrameMs": 57.29999999701977,
+      "longtasks": [
+        {
+          "start": 5848.399999991059,
+          "duration": 50
+        }
+      ],
+      "originalReportedLongtasks": [
+        {
+          "start": 5848.399999991059,
+          "duration": 50
+        }
+      ],
+      "textCalls": 288,
+      "textRasterMs": 11.900000169873238,
+      "fitMs": 0.7000000029802322,
+      "sourceUnchanged": true
+    },
+    {
+      "width": 390,
+      "pair": 6,
+      "version": "optimized",
+      "status": "PASS",
+      "score": "30",
+      "completeMs": 77.59999999403954,
+      "renderMs": 76.59999999403954,
+      "tailFrameMs": 100,
+      "longtasks": [
+        {
+          "start": 5825.5999999940395,
+          "duration": 91
+        }
+      ],
+      "originalReportedLongtasks": [],
+      "textCalls": 272,
+      "textRasterMs": 19.59999990463257,
+      "fitMs": 1.5,
+      "sourceUnchanged": true
+    },
+    {
+      "width": 390,
+      "pair": 6,
+      "version": "baseline",
+      "status": "PASS",
+      "score": "30",
+      "completeMs": 61.5,
+      "renderMs": 60.70000000298023,
+      "tailFrameMs": 81.70000000298023,
+      "longtasks": [
+        {
+          "start": 6724.199999988079,
+          "duration": 73
+        }
+      ],
+      "originalReportedLongtasks": [],
+      "textCalls": 263,
+      "textRasterMs": 14.00000013411045,
+      "fitMs": 1.0999999940395355,
+      "sourceUnchanged": true
+    }
+  ],
+  "unpairedFirstDiagnostic": {
+    "completeMs": 89,
+    "longtasks": [
+      {
+        "start": 6849.79999999702,
+        "duration": 117
+      }
+    ],
+    "note": "First instrument validation, unpaired; retained rather than discarded or pooled with preplanned paired samples."
+  },
+  "conclusion": {
+    "pc": "Six paired samples per build: identical44.05ms median completePresentation; common render reconstruction dominates; no new PC return regression demonstrated.",
+    "mobile390": "Both distributions contain slower samples. Optimized median slightly higher and slowest sample higher; these machine-local runs cannot separate small layout cost from host variation, so no categorical no-regression claim.",
+    "mobile320": "Three pairs similar; neither build emitted a >=50ms Long Task, but frame interval around50ms does not imply60fps.",
+    "sharedMechanism": "completePresentation calls render; SceneView.clear destroys root children and render rebuilds the table. Both baseline and current product have this path.",
+    "decision": "No speculative product change. Retain opt-in sampling fix and all observations. A dedicated future reuse-of-table-render optimization would need separate scope and functional validation.",
+    "acceptance": "No universal no-stutter or physical-device acceptance; P08 remains in_progress."
+  }
+}
