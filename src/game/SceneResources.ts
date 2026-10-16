@@ -33,11 +33,12 @@ export interface PreparationProgress {total:number;loaded:number;failed:number;p
 export function prepareSceneResources(game:Phaser.Game,assets:readonly SceneResource[],changed:(p:PreparationProgress)=>void,signal:AbortSignal,deadline=12000):Promise<PreparationProgress>{
  return new Promise(resolve=>{
   let queue:ImageWarmupQueue|undefined,done=false,timer:ReturnType<typeof setTimeout>|undefined;
-  const snapshot=()=>{const states=queue?.snapshot()??[];const loaded=states.filter(s=>s.status==='loaded').length,failed=states.filter(s=>s.status==='failed').length;return {total:assets.length,loaded,failed,pending:assets.length-loaded-failed,states};};
+  const cached=assets.filter(a=>game.textures?.exists(a.key)),remaining=assets.filter(a=>!game.textures?.exists(a.key));
+  const snapshot=()=>{const states:WarmImageState[]=[...cached.map(a=>({...a,status:'loaded' as const,attempts:0})),...(queue?.snapshot()??[])];const loaded=states.filter(s=>s.status==='loaded').length,failed=states.filter(s=>s.status==='failed').length;return {total:assets.length,loaded,failed,pending:assets.length-loaded-failed,states};};
   const finish=()=>{if(done)return;done=true;const p=snapshot();clearTimeout(timer);signal.removeEventListener('abort',finish);queue?.dispose();resolve(p);};
   const refresh=()=>{if(done||!queue)return;const p=snapshot();changed(p);if(!p.pending)finish();};
-  queue=new ImageWarmupQueue((a,s)=>loadArtTexture(game,a.key,a.url,s,false),refresh,Math.max(1,assets.length));
+  queue=new ImageWarmupQueue((a,s)=>loadArtTexture(game,a.key,a.url,s,false),refresh,Math.max(1,assets.length),false);
   signal.addEventListener('abort',finish,{once:true});if(signal.aborted){finish();return;}
-  timer=setTimeout(finish,deadline);queue.request(assets);refresh();
+  timer=setTimeout(finish,deadline);queue.request(remaining);refresh();
  });
 }

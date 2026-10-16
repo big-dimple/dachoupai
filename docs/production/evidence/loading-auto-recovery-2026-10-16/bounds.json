@@ -1,0 +1,1989 @@
+{
+  "base": "fa5b30ee1ebf28d4ee71d676b231eab260172033",
+  "sourceHashes": {
+    "index.html": "bbf7a231637d39a7502201bd3a9faacdaaec3374edfd187ad56d640bdc56f3ae",
+    "src/game/BootScene.ts": "5cc420b3f74015be62f82b4a45fd145fe403f00ba08b43c44591abeb3408bce1",
+    "src/game/LoadingScreen.ts": "3d2bc7511077458ea9284f98ddbeeee8b9348ff38cd6f1f88f6dea590c666eb7",
+    "src/game/LoadingProgress.ts": "9c93cc123ad69e59566c7da37f670a03ed334deb4dcf3d4738a385216e5079cf",
+    "src/game/ResourceRecovery.ts": "9f170ff0d4550e988422305cbb08e11e12b435b98219d9135b5a0507f21a33f3",
+    "src/game/SceneResources.ts": "671a6d479bb908c52c4d502bc9377d4b178ba04616b1c4d3b474383720c26e03",
+    "src/game/ImageWarmupQueue.ts": "899a5a77f21c0e390e5ae4d4c052aa6a70cfcfdf381d866454ee7ad1009b18c9"
+  },
+  "browser": "143.0.3650.80",
+  "platform": "win32",
+  "cases": [
+    {
+      "name": "slow-320",
+      "width": 320,
+      "height": 740,
+      "slow": true,
+      "requests": [
+        {
+          "path": "/assets/index-Bjbxwfy-.js",
+          "type": "script",
+          "at": 1792112028794
+        },
+        {
+          "path": "/assets/index-DChWRVZq.css",
+          "type": "stylesheet",
+          "at": 1792112028797
+        },
+        {
+          "path": "/assets/p00/paper.svg",
+          "type": "xhr",
+          "at": 1792112029078
+        },
+        {
+          "path": "/assets/p00/mark-joker.svg",
+          "type": "xhr",
+          "at": 1792112029078
+        },
+        {
+          "path": "/assets/p00/mark-plus.svg",
+          "type": "xhr",
+          "at": 1792112029078
+        },
+        {
+          "path": "/assets/p00/mark-times.svg",
+          "type": "xhr",
+          "at": 1792112029079
+        },
+        {
+          "path": "/assets/fonts/score/dachoupai-score-numbers.woff",
+          "type": "font",
+          "at": 1792112029174
+        },
+        {
+          "path": "/assets/tangsong-portraits/amo.avatar.webp",
+          "type": "fetch",
+          "at": 1792112029184
+        },
+        {
+          "path": "/assets/tangsong-portraits/amo.selection.webp",
+          "type": "fetch",
+          "at": 1792112029185
+        },
+        {
+          "path": "/assets/tangsong-portraits/touye.avatar.webp",
+          "type": "fetch",
+          "at": 1792112029272
+        },
+        {
+          "path": "/assets/tangsong-portraits/touye.selection.webp",
+          "type": "fetch",
+          "at": 1792112029274
+        },
+        {
+          "path": "/assets/tangsong-portraits/laohuan.avatar.webp",
+          "type": "fetch",
+          "at": 1792112029363
+        },
+        {
+          "path": "/assets/tangsong-portraits/laohuan.selection.webp",
+          "type": "fetch",
+          "at": 1792112029366
+        },
+        {
+          "path": "/assets/tangsong-portraits/erxiang.avatar.webp",
+          "type": "fetch",
+          "at": 1792112029467
+        },
+        {
+          "path": "/assets/tangsong-portraits/erxiang.selection.webp",
+          "type": "fetch",
+          "at": 1792112029469
+        },
+        {
+          "path": "/assets/tangsong-portraits/azao.avatar.webp",
+          "type": "fetch",
+          "at": 1792112029559
+        },
+        {
+          "path": "/assets/tangsong-portraits/azao.selection.webp",
+          "type": "fetch",
+          "at": 1792112029563
+        },
+        {
+          "path": "/assets/tangsong-portraits/xiemu.avatar.webp",
+          "type": "fetch",
+          "at": 1792112029651
+        },
+        {
+          "path": "/assets/tangsong-portraits/xiemu.selection.webp",
+          "type": "fetch",
+          "at": 1792112029653
+        },
+        {
+          "path": "/assets/handdrawn-p08/court/j.court.webp",
+          "type": "fetch",
+          "at": 1792112029740
+        },
+        {
+          "path": "/assets/handdrawn-p08/court/q.court.webp",
+          "type": "fetch",
+          "at": 1792112029744
+        },
+        {
+          "path": "/assets/handdrawn-p08/court/k.court.webp",
+          "type": "fetch",
+          "at": 1792112029833
+        },
+        {
+          "path": "/assets/handdrawn-p08/cards/mantangcai.thumbnail.webp",
+          "type": "fetch",
+          "at": 1792112029834
+        },
+        {
+          "path": "/assets/handdrawn-p08/cards/jiedongfeng.thumbnail.webp",
+          "type": "fetch",
+          "at": 1792112029919
+        },
+        {
+          "path": "/assets/handdrawn-p08/cards/c04.thumbnail.webp",
+          "type": "fetch",
+          "at": 1792112029921
+        },
+        {
+          "path": "/assets/handdrawn-p08/cards/b10.thumbnail.webp",
+          "type": "fetch",
+          "at": 1792112030010
+        },
+        {
+          "path": "/assets/handdrawn-p08/cards/b03.thumbnail.webp",
+          "type": "fetch",
+          "at": 1792112030010
+        },
+        {
+          "path": "/assets/handdrawn-p08/cards/c06.thumbnail.webp",
+          "type": "fetch",
+          "at": 1792112030100
+        },
+        {
+          "path": "/assets/handdrawn-p08/cards/f04.thumbnail.webp",
+          "type": "fetch",
+          "at": 1792112030101
+        },
+        {
+          "path": "/assets/handdrawn-p08/cards/e07.thumbnail.webp",
+          "type": "fetch",
+          "at": 1792112030191
+        },
+        {
+          "path": "/assets/handdrawn-p08/cards/f09.thumbnail.webp",
+          "type": "fetch",
+          "at": 1792112030191
+        },
+        {
+          "path": "/assets/handdrawn-p08/cards/f07.thumbnail.webp",
+          "type": "fetch",
+          "at": 1792112030283
+        },
+        {
+          "path": "/assets/handdrawn-p08/cards/d07.thumbnail.webp",
+          "type": "fetch",
+          "at": 1792112030283
+        },
+        {
+          "path": "/assets/handdrawn-p08/cards/a07.thumbnail.webp",
+          "type": "fetch",
+          "at": 1792112030374
+        },
+        {
+          "path": "/assets/handdrawn-p08/cards/a08.thumbnail.webp",
+          "type": "fetch",
+          "at": 1792112030375
+        },
+        {
+          "path": "/assets/handdrawn-p08/cards/c03.thumbnail.webp",
+          "type": "fetch",
+          "at": 1792112030465
+        },
+        {
+          "path": "/assets/handdrawn-p08/cards/d02.thumbnail.webp",
+          "type": "fetch",
+          "at": 1792112030465
+        },
+        {
+          "path": "/assets/handdrawn-p08/cards/e02.thumbnail.webp",
+          "type": "fetch",
+          "at": 1792112030556
+        },
+        {
+          "path": "/assets/handdrawn-p08/cards/e09.thumbnail.webp",
+          "type": "fetch",
+          "at": 1792112030556
+        },
+        {
+          "path": "/assets/handdrawn-p08/cards/tiesuanpan.thumbnail.webp",
+          "type": "fetch",
+          "at": 1792112030648
+        },
+        {
+          "path": "/assets/handdrawn-p08/cards/f10.thumbnail.webp",
+          "type": "fetch",
+          "at": 1792112030648
+        },
+        {
+          "path": "/assets/handdrawn-p08/cards/c08.thumbnail.webp",
+          "type": "fetch",
+          "at": 1792112030737
+        },
+        {
+          "path": "/assets/handdrawn-p08/cards/c09.thumbnail.webp",
+          "type": "fetch",
+          "at": 1792112030737
+        },
+        {
+          "path": "/assets/handdrawn-p08/cards/pengci.thumbnail.webp",
+          "type": "fetch",
+          "at": 1792112030831
+        },
+        {
+          "path": "/assets/handdrawn-p08/cards/huimaqiang.thumbnail.webp",
+          "type": "fetch",
+          "at": 1792112030831
+        },
+        {
+          "path": "/assets/handdrawn-p08/cards/b07.thumbnail.webp",
+          "type": "fetch",
+          "at": 1792112030919
+        },
+        {
+          "path": "/assets/handdrawn-p08/cards/a09.thumbnail.webp",
+          "type": "fetch",
+          "at": 1792112030920
+        },
+        {
+          "path": "/assets/handdrawn-p08/cards/d06.thumbnail.webp",
+          "type": "fetch",
+          "at": 1792112031014
+        },
+        {
+          "path": "/assets/handdrawn-p08/cards/a04.thumbnail.webp",
+          "type": "fetch",
+          "at": 1792112031014
+        },
+        {
+          "path": "/assets/handdrawn-p08/cards/e04.thumbnail.webp",
+          "type": "fetch",
+          "at": 1792112031103
+        },
+        {
+          "path": "/assets/handdrawn-p08/cards/c05.thumbnail.webp",
+          "type": "fetch",
+          "at": 1792112031103
+        },
+        {
+          "path": "/assets/handdrawn-p08/cards/c02.thumbnail.webp",
+          "type": "fetch",
+          "at": 1792112031194
+        },
+        {
+          "path": "/assets/handdrawn-p08/cards/f03.thumbnail.webp",
+          "type": "fetch",
+          "at": 1792112031194
+        },
+        {
+          "path": "/assets/handdrawn-p08/cards/a03.thumbnail.webp",
+          "type": "fetch",
+          "at": 1792112031289
+        },
+        {
+          "path": "/assets/handdrawn-p08/cards/b02.thumbnail.webp",
+          "type": "fetch",
+          "at": 1792112031290
+        },
+        {
+          "path": "/assets/handdrawn-p08/cards/b04.thumbnail.webp",
+          "type": "fetch",
+          "at": 1792112031376
+        },
+        {
+          "path": "/assets/handdrawn-p08/cards/d01.thumbnail.webp",
+          "type": "fetch",
+          "at": 1792112031376
+        },
+        {
+          "path": "/assets/handdrawn-p08/cards/f02.thumbnail.webp",
+          "type": "fetch",
+          "at": 1792112031467
+        },
+        {
+          "path": "/assets/handdrawn-p08/cards/d10.thumbnail.webp",
+          "type": "fetch",
+          "at": 1792112031467
+        },
+        {
+          "path": "/assets/handdrawn-p08/cards/e01.thumbnail.webp",
+          "type": "fetch",
+          "at": 1792112031558
+        },
+        {
+          "path": "/assets/handdrawn-p08/cards/b05.thumbnail.webp",
+          "type": "fetch",
+          "at": 1792112031558
+        },
+        {
+          "path": "/assets/handdrawn-p08/cards/b08.thumbnail.webp",
+          "type": "fetch",
+          "at": 1792112031649
+        },
+        {
+          "path": "/assets/handdrawn-p08/cards/d05.thumbnail.webp",
+          "type": "fetch",
+          "at": 1792112031649
+        },
+        {
+          "path": "/assets/handdrawn-p08/cards/e03.thumbnail.webp",
+          "type": "fetch",
+          "at": 1792112031738
+        },
+        {
+          "path": "/assets/handdrawn-p08/cards/e06.thumbnail.webp",
+          "type": "fetch",
+          "at": 1792112031738
+        },
+        {
+          "path": "/assets/handdrawn-p08/cards/f05.thumbnail.webp",
+          "type": "fetch",
+          "at": 1792112031831
+        },
+        {
+          "path": "/assets/handdrawn-p08/cards/f11.thumbnail.webp",
+          "type": "fetch",
+          "at": 1792112031831
+        },
+        {
+          "path": "/assets/handdrawn-p08/cards/b06.thumbnail.webp",
+          "type": "fetch",
+          "at": 1792112031918
+        },
+        {
+          "path": "/assets/handdrawn-p08/cards/a11-v2-ea9e76e4a31f.thumbnail.webp",
+          "type": "fetch",
+          "at": 1792112031919
+        },
+        {
+          "path": "/assets/handdrawn-p08/cards/d04.thumbnail.webp",
+          "type": "fetch",
+          "at": 1792112032009
+        },
+        {
+          "path": "/assets/handdrawn-p08/cards/c07.thumbnail.webp",
+          "type": "fetch",
+          "at": 1792112032009
+        },
+        {
+          "path": "/assets/handdrawn-p08/cards/d11.thumbnail.webp",
+          "type": "fetch",
+          "at": 1792112032100
+        },
+        {
+          "path": "/assets/handdrawn-p08/cards/d08.thumbnail.webp",
+          "type": "fetch",
+          "at": 1792112032100
+        },
+        {
+          "path": "/assets/handdrawn-p08/cards/d09.thumbnail.webp",
+          "type": "fetch",
+          "at": 1792112032189
+        },
+        {
+          "path": "/assets/handdrawn-p08/cards/b12.thumbnail.webp",
+          "type": "fetch",
+          "at": 1792112032189
+        },
+        {
+          "path": "/assets/handdrawn-p08/cards/a05.thumbnail.webp",
+          "type": "fetch",
+          "at": 1792112032281
+        },
+        {
+          "path": "/assets/handdrawn-p08/cards/d03.thumbnail.webp",
+          "type": "fetch",
+          "at": 1792112032281
+        },
+        {
+          "path": "/assets/handdrawn-p08/cards/a10.thumbnail.webp",
+          "type": "fetch",
+          "at": 1792112032370
+        },
+        {
+          "path": "/assets/handdrawn-p08/cards/b11.thumbnail.webp",
+          "type": "fetch",
+          "at": 1792112032370
+        },
+        {
+          "path": "/assets/handdrawn-p08/cards/c10.thumbnail.webp",
+          "type": "fetch",
+          "at": 1792112032465
+        },
+        {
+          "path": "/assets/handdrawn-p08/cards/d12.thumbnail.webp",
+          "type": "fetch",
+          "at": 1792112032465
+        },
+        {
+          "path": "/assets/handdrawn-p08/cards/a06.thumbnail.webp",
+          "type": "fetch",
+          "at": 1792112032555
+        },
+        {
+          "path": "/assets/handdrawn-p08/cards/a12.thumbnail.webp",
+          "type": "fetch",
+          "at": 1792112032555
+        },
+        {
+          "path": "/assets/handdrawn-p08/cards/b09.thumbnail.webp",
+          "type": "fetch",
+          "at": 1792112032649
+        },
+        {
+          "path": "/assets/handdrawn-p08/cards/c11.thumbnail.webp",
+          "type": "fetch",
+          "at": 1792112032649
+        },
+        {
+          "path": "/assets/handdrawn-p08/cards/c12.thumbnail.webp",
+          "type": "fetch",
+          "at": 1792112032739
+        },
+        {
+          "path": "/assets/handdrawn-p08/cards/e10.thumbnail.webp",
+          "type": "fetch",
+          "at": 1792112032739
+        },
+        {
+          "path": "/assets/handdrawn-p08/cards/e12.thumbnail.webp",
+          "type": "fetch",
+          "at": 1792112032832
+        },
+        {
+          "path": "/assets/handdrawn-p08/cards/e05.thumbnail.webp",
+          "type": "fetch",
+          "at": 1792112032832
+        },
+        {
+          "path": "/assets/handdrawn-p08/cards/e08.thumbnail.webp",
+          "type": "fetch",
+          "at": 1792112032921
+        },
+        {
+          "path": "/assets/handdrawn-p08/cards/e11.thumbnail.webp",
+          "type": "fetch",
+          "at": 1792112032921
+        },
+        {
+          "path": "/assets/handdrawn-p08/cards/f06.thumbnail.webp",
+          "type": "fetch",
+          "at": 1792112033011
+        },
+        {
+          "path": "/assets/handdrawn-p08/cards/f08.thumbnail.webp",
+          "type": "fetch",
+          "at": 1792112033011
+        },
+        {
+          "path": "/assets/handdrawn-p08/cards/f12.thumbnail.webp",
+          "type": "fetch",
+          "at": 1792112033102
+        },
+        {
+          "path": "/assets/handdrawn-tools/tool-t12.thumbnail.webp",
+          "type": "fetch",
+          "at": 1792112033102
+        },
+        {
+          "path": "/assets/handdrawn-tools/item-u07.thumbnail.webp",
+          "type": "fetch",
+          "at": 1792112033194
+        },
+        {
+          "path": "/assets/handdrawn-tools/tool-p11.thumbnail.webp",
+          "type": "fetch",
+          "at": 1792112033194
+        },
+        {
+          "path": "/assets/handdrawn-tools/tool-s02.thumbnail.webp",
+          "type": "fetch",
+          "at": 1792112033286
+        },
+        {
+          "path": "/assets/handdrawn-tools/item-u01.thumbnail.webp",
+          "type": "fetch",
+          "at": 1792112033286
+        },
+        {
+          "path": "/assets/handdrawn-tools/item-u02.thumbnail.webp",
+          "type": "fetch",
+          "at": 1792112033377
+        },
+        {
+          "path": "/assets/handdrawn-tools/item-u03.thumbnail.webp",
+          "type": "fetch",
+          "at": 1792112033380
+        },
+        {
+          "path": "/assets/handdrawn-tools/item-u04.thumbnail.webp",
+          "type": "fetch",
+          "at": 1792112033470
+        },
+        {
+          "path": "/assets/handdrawn-tools/item-u05.thumbnail.webp",
+          "type": "fetch",
+          "at": 1792112033470
+        },
+        {
+          "path": "/assets/handdrawn-tools/item-u06.thumbnail.webp",
+          "type": "fetch",
+          "at": 1792112033565
+        },
+        {
+          "path": "/assets/handdrawn-tools/item-u08.thumbnail.webp",
+          "type": "fetch",
+          "at": 1792112033565
+        },
+        {
+          "path": "/assets/handdrawn-tools/item-u09.thumbnail.webp",
+          "type": "fetch",
+          "at": 1792112033653
+        },
+        {
+          "path": "/assets/handdrawn-tools/item-u10.thumbnail.webp",
+          "type": "fetch",
+          "at": 1792112033653
+        },
+        {
+          "path": "/assets/handdrawn-tools/item-u11.thumbnail.webp",
+          "type": "fetch",
+          "at": 1792112033734
+        },
+        {
+          "path": "/assets/handdrawn-tools/item-u12.thumbnail.webp",
+          "type": "fetch",
+          "at": 1792112033734
+        },
+        {
+          "path": "/assets/handdrawn-tools/tool-t06.thumbnail.webp",
+          "type": "fetch",
+          "at": 1792112033824
+        },
+        {
+          "path": "/assets/handdrawn-tools/tool-t07.thumbnail.webp",
+          "type": "fetch",
+          "at": 1792112033825
+        },
+        {
+          "path": "/assets/handdrawn-tools/tool-t08.thumbnail.webp",
+          "type": "fetch",
+          "at": 1792112033920
+        },
+        {
+          "path": "/assets/handdrawn-tools/tool-t09.thumbnail.webp",
+          "type": "fetch",
+          "at": 1792112033920
+        },
+        {
+          "path": "/assets/handdrawn-tools/tool-t10.thumbnail.webp",
+          "type": "fetch",
+          "at": 1792112034007
+        },
+        {
+          "path": "/assets/handdrawn-tools/tool-t11.thumbnail.webp",
+          "type": "fetch",
+          "at": 1792112034007
+        },
+        {
+          "path": "/assets/handdrawn-tools/tool-t13.thumbnail.webp",
+          "type": "fetch",
+          "at": 1792112034100
+        },
+        {
+          "path": "/assets/handdrawn-tools/tool-t14.thumbnail.webp",
+          "type": "fetch",
+          "at": 1792112034100
+        },
+        {
+          "path": "/assets/handdrawn-tools/tool-t15.thumbnail.webp",
+          "type": "fetch",
+          "at": 1792112034191
+        },
+        {
+          "path": "/assets/handdrawn-tools/tool-t16.thumbnail.webp",
+          "type": "fetch",
+          "at": 1792112034191
+        },
+        {
+          "path": "/assets/handdrawn-tools/tool-t17.thumbnail.webp",
+          "type": "fetch",
+          "at": 1792112034283
+        },
+        {
+          "path": "/assets/handdrawn-tools/tool-t18.thumbnail.webp",
+          "type": "fetch",
+          "at": 1792112034284
+        },
+        {
+          "path": "/assets/handdrawn-tools/tool-t01.thumbnail.webp",
+          "type": "fetch",
+          "at": 1792112034373
+        },
+        {
+          "path": "/assets/handdrawn-tools/tool-t02.thumbnail.webp",
+          "type": "fetch",
+          "at": 1792112034373
+        },
+        {
+          "path": "/assets/handdrawn-tools/tool-t03.thumbnail.webp",
+          "type": "fetch",
+          "at": 1792112034465
+        },
+        {
+          "path": "/assets/handdrawn-tools/tool-t04.thumbnail.webp",
+          "type": "fetch",
+          "at": 1792112034465
+        },
+        {
+          "path": "/assets/handdrawn-tools/tool-t05.thumbnail.webp",
+          "type": "fetch",
+          "at": 1792112034557
+        },
+        {
+          "path": "/assets/handdrawn-tools/tool-p01.thumbnail.webp",
+          "type": "fetch",
+          "at": 1792112034558
+        },
+        {
+          "path": "/assets/handdrawn-tools/tool-p02.thumbnail.webp",
+          "type": "fetch",
+          "at": 1792112034648
+        },
+        {
+          "path": "/assets/handdrawn-tools/tool-p03.thumbnail.webp",
+          "type": "fetch",
+          "at": 1792112034648
+        },
+        {
+          "path": "/assets/handdrawn-tools/tool-p04.thumbnail.webp",
+          "type": "fetch",
+          "at": 1792112034737
+        },
+        {
+          "path": "/assets/handdrawn-tools/tool-p05.thumbnail.webp",
+          "type": "fetch",
+          "at": 1792112034738
+        },
+        {
+          "path": "/assets/handdrawn-tools/tool-p06.thumbnail.webp",
+          "type": "fetch",
+          "at": 1792112034829
+        },
+        {
+          "path": "/assets/handdrawn-tools/tool-p07.thumbnail.webp",
+          "type": "fetch",
+          "at": 1792112034830
+        },
+        {
+          "path": "/assets/handdrawn-tools/tool-p08.thumbnail.webp",
+          "type": "fetch",
+          "at": 1792112034920
+        },
+        {
+          "path": "/assets/handdrawn-tools/tool-p09.thumbnail.webp",
+          "type": "fetch",
+          "at": 1792112034920
+        },
+        {
+          "path": "/assets/handdrawn-tools/tool-p10.thumbnail.webp",
+          "type": "fetch",
+          "at": 1792112035010
+        },
+        {
+          "path": "/assets/handdrawn-tools/tool-p12.thumbnail.webp",
+          "type": "fetch",
+          "at": 1792112035010
+        },
+        {
+          "path": "/assets/handdrawn-tools/tool-s01.thumbnail.webp",
+          "type": "fetch",
+          "at": 1792112035102
+        },
+        {
+          "path": "/assets/handdrawn-tools/tool-t19.thumbnail.webp",
+          "type": "fetch",
+          "at": 1792112035102
+        },
+        {
+          "path": "/assets/handdrawn-tools/tool-s03.thumbnail.webp",
+          "type": "fetch",
+          "at": 1792112035192
+        },
+        {
+          "path": "/assets/handdrawn-tools/tool-s04.thumbnail.webp",
+          "type": "fetch",
+          "at": 1792112035192
+        },
+        {
+          "path": "/assets/handdrawn-tools/tool-s05.thumbnail.webp",
+          "type": "fetch",
+          "at": 1792112035283
+        },
+        {
+          "path": "/assets/handdrawn-tools/tool-s06.thumbnail.webp",
+          "type": "fetch",
+          "at": 1792112035283
+        },
+        {
+          "path": "/assets/handdrawn-tools/tool-s07.thumbnail.webp",
+          "type": "fetch",
+          "at": 1792112035374
+        },
+        {
+          "path": "/assets/handdrawn-tools/tool-s08.thumbnail.webp",
+          "type": "fetch",
+          "at": 1792112035374
+        }
+      ],
+      "errors": [],
+      "maxActiveFetches": 2,
+      "maxSamePath": 1,
+      "intermediate": {
+        "key": "title",
+        "total": 146,
+        "loaded": 12,
+        "failed": 0,
+        "pending": 134,
+        "keys": [
+          "p00-paper",
+          "p00-card-back",
+          "p00-frame-common",
+          "p00-frame-uncommon",
+          "p00-frame-rare",
+          "p00-mark-joker",
+          "p00-mark-plus",
+          "p00-mark-times",
+          "avatar-amo",
+          "selection-portrait-amo",
+          "avatar-touye",
+          "selection-portrait-touye",
+          "avatar-laohuan",
+          "selection-portrait-laohuan",
+          "avatar-erxiang",
+          "selection-portrait-erxiang",
+          "avatar-azao",
+          "selection-portrait-azao",
+          "avatar-xiemu",
+          "selection-portrait-xiemu",
+          "p08-court-j",
+          "p08-court-q",
+          "p08-court-k",
+          "p08-joker-mantangcai",
+          "p08-joker-jiedongfeng",
+          "p08-joker-c04",
+          "p08-joker-b10",
+          "p08-joker-b03",
+          "p08-joker-c06",
+          "p08-joker-f04",
+          "p08-joker-e07",
+          "p08-joker-f09",
+          "p08-joker-f07",
+          "p08-joker-d07",
+          "p08-joker-a07",
+          "p08-joker-a08",
+          "p08-joker-c03",
+          "p08-joker-d02",
+          "p08-joker-e02",
+          "p08-joker-e09",
+          "p08-joker-tiesuanpan",
+          "p08-joker-f10",
+          "p08-joker-c08",
+          "p08-joker-c09",
+          "p08-joker-pengci",
+          "p08-joker-huimaqiang",
+          "p08-joker-b07",
+          "p08-joker-a09",
+          "p08-joker-d06",
+          "p08-joker-a04",
+          "p08-joker-e04",
+          "p08-joker-c05",
+          "p08-joker-c02",
+          "p08-joker-f03",
+          "p08-joker-a03",
+          "p08-joker-b02",
+          "p08-joker-b04",
+          "p08-joker-d01",
+          "p08-joker-f02",
+          "p08-joker-d10",
+          "p08-joker-e01",
+          "p08-joker-b05",
+          "p08-joker-b08",
+          "p08-joker-d05",
+          "p08-joker-e03",
+          "p08-joker-e06",
+          "p08-joker-f05",
+          "p08-joker-f11",
+          "p08-joker-b06",
+          "p08-joker-a11",
+          "p08-joker-d04",
+          "p08-joker-c07",
+          "p08-joker-d11",
+          "p08-joker-d08",
+          "p08-joker-d09",
+          "p08-joker-b12",
+          "p08-joker-a05",
+          "p08-joker-d03",
+          "p08-joker-a10",
+          "p08-joker-b11",
+          "p08-joker-c10",
+          "p08-joker-d12",
+          "p08-joker-a06",
+          "p08-joker-a12",
+          "p08-joker-b09",
+          "p08-joker-c11",
+          "p08-joker-c12",
+          "p08-joker-e10",
+          "p08-joker-e12",
+          "p08-joker-e05",
+          "p08-joker-e08",
+          "p08-joker-e11",
+          "p08-joker-f06",
+          "p08-joker-f08",
+          "p08-joker-f12",
+          "goods-art/T12",
+          "goods-art/U07",
+          "goods-art/P11",
+          "goods-art/S02",
+          "goods-art/U01",
+          "goods-art/U02",
+          "goods-art/U03",
+          "goods-art/U04",
+          "goods-art/U05",
+          "goods-art/U06",
+          "goods-art/U08",
+          "goods-art/U09",
+          "goods-art/U10",
+          "goods-art/U11",
+          "goods-art/U12",
+          "goods-art/T06",
+          "goods-art/T07",
+          "goods-art/T08",
+          "goods-art/T09",
+          "goods-art/T10",
+          "goods-art/T11",
+          "goods-art/T13",
+          "goods-art/T14",
+          "goods-art/T15",
+          "goods-art/T16",
+          "goods-art/T17",
+          "goods-art/T18",
+          "goods-art/T01",
+          "goods-art/T02",
+          "goods-art/T03",
+          "goods-art/T04",
+          "goods-art/T05",
+          "goods-art/P01",
+          "goods-art/P02",
+          "goods-art/P03",
+          "goods-art/P04",
+          "goods-art/P05",
+          "goods-art/P06",
+          "goods-art/P07",
+          "goods-art/P08",
+          "goods-art/P09",
+          "goods-art/P10",
+          "goods-art/P12",
+          "goods-art/S01",
+          "goods-art/T19",
+          "goods-art/S03",
+          "goods-art/S04",
+          "goods-art/S05",
+          "goods-art/S06",
+          "goods-art/S07",
+          "goods-art/S08"
+        ],
+        "status": "loading",
+        "round": 0,
+        "retryInMs": 0
+      },
+      "loadingLayout": {
+        "scroll": 320,
+        "client": 320,
+        "boxes": [
+          {
+            "text": "准备常用牌面",
+            "x": 20,
+            "y": 484.65625,
+            "width": 66,
+            "height": 17.59375
+          },
+          {
+            "text": "已解码 12 / 146",
+            "x": 220.28125,
+            "y": 484.65625,
+            "width": 79.71875,
+            "height": 17.59375
+          },
+          {
+            "text": "",
+            "x": 20,
+            "y": 515.25,
+            "width": 280,
+            "height": 3
+          },
+          {
+            "text": "暂停加载",
+            "x": 49,
+            "y": 598.9375,
+            "width": 98,
+            "height": 44
+          },
+          {
+            "text": "返回上一页",
+            "x": 159,
+            "y": 598.9375,
+            "width": 112,
+            "height": 44
+          }
+        ]
+      },
+      "ready": {
+        "key": "title",
+        "total": 146,
+        "loaded": 146,
+        "failed": 0,
+        "pending": 0,
+        "keys": [
+          "p00-paper",
+          "p00-card-back",
+          "p00-frame-common",
+          "p00-frame-uncommon",
+          "p00-frame-rare",
+          "p00-mark-joker",
+          "p00-mark-plus",
+          "p00-mark-times",
+          "avatar-amo",
+          "selection-portrait-amo",
+          "avatar-touye",
+          "selection-portrait-touye",
+          "avatar-laohuan",
+          "selection-portrait-laohuan",
+          "avatar-erxiang",
+          "selection-portrait-erxiang",
+          "avatar-azao",
+          "selection-portrait-azao",
+          "avatar-xiemu",
+          "selection-portrait-xiemu",
+          "p08-court-j",
+          "p08-court-q",
+          "p08-court-k",
+          "p08-joker-mantangcai",
+          "p08-joker-jiedongfeng",
+          "p08-joker-c04",
+          "p08-joker-b10",
+          "p08-joker-b03",
+          "p08-joker-c06",
+          "p08-joker-f04",
+          "p08-joker-e07",
+          "p08-joker-f09",
+          "p08-joker-f07",
+          "p08-joker-d07",
+          "p08-joker-a07",
+          "p08-joker-a08",
+          "p08-joker-c03",
+          "p08-joker-d02",
+          "p08-joker-e02",
+          "p08-joker-e09",
+          "p08-joker-tiesuanpan",
+          "p08-joker-f10",
+          "p08-joker-c08",
+          "p08-joker-c09",
+          "p08-joker-pengci",
+          "p08-joker-huimaqiang",
+          "p08-joker-b07",
+          "p08-joker-a09",
+          "p08-joker-d06",
+          "p08-joker-a04",
+          "p08-joker-e04",
+          "p08-joker-c05",
+          "p08-joker-c02",
+          "p08-joker-f03",
+          "p08-joker-a03",
+          "p08-joker-b02",
+          "p08-joker-b04",
+          "p08-joker-d01",
+          "p08-joker-f02",
+          "p08-joker-d10",
+          "p08-joker-e01",
+          "p08-joker-b05",
+          "p08-joker-b08",
+          "p08-joker-d05",
+          "p08-joker-e03",
+          "p08-joker-e06",
+          "p08-joker-f05",
+          "p08-joker-f11",
+          "p08-joker-b06",
+          "p08-joker-a11",
+          "p08-joker-d04",
+          "p08-joker-c07",
+          "p08-joker-d11",
+          "p08-joker-d08",
+          "p08-joker-d09",
+          "p08-joker-b12",
+          "p08-joker-a05",
+          "p08-joker-d03",
+          "p08-joker-a10",
+          "p08-joker-b11",
+          "p08-joker-c10",
+          "p08-joker-d12",
+          "p08-joker-a06",
+          "p08-joker-a12",
+          "p08-joker-b09",
+          "p08-joker-c11",
+          "p08-joker-c12",
+          "p08-joker-e10",
+          "p08-joker-e12",
+          "p08-joker-e05",
+          "p08-joker-e08",
+          "p08-joker-e11",
+          "p08-joker-f06",
+          "p08-joker-f08",
+          "p08-joker-f12",
+          "goods-art/T12",
+          "goods-art/U07",
+          "goods-art/P11",
+          "goods-art/S02",
+          "goods-art/U01",
+          "goods-art/U02",
+          "goods-art/U03",
+          "goods-art/U04",
+          "goods-art/U05",
+          "goods-art/U06",
+          "goods-art/U08",
+          "goods-art/U09",
+          "goods-art/U10",
+          "goods-art/U11",
+          "goods-art/U12",
+          "goods-art/T06",
+          "goods-art/T07",
+          "goods-art/T08",
+          "goods-art/T09",
+          "goods-art/T10",
+          "goods-art/T11",
+          "goods-art/T13",
+          "goods-art/T14",
+          "goods-art/T15",
+          "goods-art/T16",
+          "goods-art/T17",
+          "goods-art/T18",
+          "goods-art/T01",
+          "goods-art/T02",
+          "goods-art/T03",
+          "goods-art/T04",
+          "goods-art/T05",
+          "goods-art/P01",
+          "goods-art/P02",
+          "goods-art/P03",
+          "goods-art/P04",
+          "goods-art/P05",
+          "goods-art/P06",
+          "goods-art/P07",
+          "goods-art/P08",
+          "goods-art/P09",
+          "goods-art/P10",
+          "goods-art/P12",
+          "goods-art/S01",
+          "goods-art/T19",
+          "goods-art/S03",
+          "goods-art/S04",
+          "goods-art/S05",
+          "goods-art/S06",
+          "goods-art/S07",
+          "goods-art/S08"
+        ],
+        "status": "ready",
+        "round": 0,
+        "retryInMs": 0
+      },
+      "readyMs": 7167,
+      "samples": [
+        {
+          "at": 107.20000000298023,
+          "cycle": 1,
+          "value": 0,
+          "max": 1,
+          "loaded": 0,
+          "total": 0,
+          "status": "initial",
+          "ready": false
+        },
+        {
+          "at": 320.29999999701977,
+          "cycle": 1,
+          "value": 0,
+          "max": 1,
+          "loaded": 0,
+          "total": 8,
+          "status": "initial",
+          "ready": false
+        },
+        {
+          "at": 346.3999999910593,
+          "cycle": 1,
+          "value": 0.00662822101301992,
+          "max": 1,
+          "loaded": 4,
+          "total": 8,
+          "status": "initial",
+          "ready": false
+        },
+        {
+          "at": 428.3999999910593,
+          "cycle": 1,
+          "value": 0.02396200029285105,
+          "max": 1,
+          "loaded": 8,
+          "total": 146,
+          "status": "loading",
+          "ready": false
+        },
+        {
+          "at": 506.8999999910593,
+          "cycle": 1,
+          "value": 0.0370353819511139,
+          "max": 1,
+          "loaded": 8,
+          "total": 146,
+          "status": "loading",
+          "ready": false
+        },
+        {
+          "at": 589.0999999940395,
+          "cycle": 1,
+          "value": 0.04745824073872218,
+          "max": 1,
+          "loaded": 10,
+          "total": 146,
+          "status": "loading",
+          "ready": false
+        },
+        {
+          "at": 673.3999999910593,
+          "cycle": 1,
+          "value": 0.056597903043461066,
+          "max": 1,
+          "loaded": 12,
+          "total": 146,
+          "status": "loading",
+          "ready": false
+        },
+        {
+          "at": 747.7999999970198,
+          "cycle": 1,
+          "value": 0.06370394867613478,
+          "max": 1,
+          "loaded": 14,
+          "total": 146,
+          "status": "loading",
+          "ready": false
+        },
+        {
+          "at": 838.7999999970198,
+          "cycle": 1,
+          "value": 0.07540962445203722,
+          "max": 1,
+          "loaded": 16,
+          "total": 146,
+          "status": "loading",
+          "ready": false
+        },
+        {
+          "at": 914.2999999970198,
+          "cycle": 1,
+          "value": 0.08347373205425049,
+          "max": 1,
+          "loaded": 18,
+          "total": 146,
+          "status": "loading",
+          "ready": false
+        },
+        {
+          "at": 988.7999999970198,
+          "cycle": 1,
+          "value": 0.09456147012375603,
+          "max": 1,
+          "loaded": 20,
+          "total": 146,
+          "status": "loading",
+          "ready": false
+        },
+        {
+          "at": 1069.7999999970198,
+          "cycle": 1,
+          "value": 0.10363063150117512,
+          "max": 1,
+          "loaded": 20,
+          "total": 146,
+          "status": "loading",
+          "ready": false
+        },
+        {
+          "at": 1156,
+          "cycle": 1,
+          "value": 0.11699408503251603,
+          "max": 1,
+          "loaded": 22,
+          "total": 146,
+          "status": "loading",
+          "ready": false
+        },
+        {
+          "at": 1229.8999999910593,
+          "cycle": 1,
+          "value": 0.12684566803566405,
+          "max": 1,
+          "loaded": 24,
+          "total": 146,
+          "status": "loading",
+          "ready": false
+        },
+        {
+          "at": 1306.2999999970198,
+          "cycle": 1,
+          "value": 0.13918351009925425,
+          "max": 1,
+          "loaded": 26,
+          "total": 146,
+          "status": "loading",
+          "ready": false
+        },
+        {
+          "at": 1389,
+          "cycle": 1,
+          "value": 0.15098334563132207,
+          "max": 1,
+          "loaded": 28,
+          "total": 146,
+          "status": "loading",
+          "ready": false
+        },
+        {
+          "at": 1473.2999999970198,
+          "cycle": 1,
+          "value": 0.1632870373588711,
+          "max": 1,
+          "loaded": 30,
+          "total": 146,
+          "status": "loading",
+          "ready": false
+        },
+        {
+          "at": 1548.7999999970198,
+          "cycle": 1,
+          "value": 0.17233451490683444,
+          "max": 1,
+          "loaded": 32,
+          "total": 146,
+          "status": "loading",
+          "ready": false
+        },
+        {
+          "at": 1639.5,
+          "cycle": 1,
+          "value": 0.1870188351335543,
+          "max": 1,
+          "loaded": 34,
+          "total": 146,
+          "status": "loading",
+          "ready": false
+        },
+        {
+          "at": 1707.2000000029802,
+          "cycle": 1,
+          "value": 0.19581630800760008,
+          "max": 1,
+          "loaded": 34,
+          "total": 146,
+          "status": "loading",
+          "ready": false
+        },
+        {
+          "at": 1789.2000000029802,
+          "cycle": 1,
+          "value": 0.2078453184071543,
+          "max": 1,
+          "loaded": 36,
+          "total": 146,
+          "status": "loading",
+          "ready": false
+        },
+        {
+          "at": 1866.2999999970198,
+          "cycle": 1,
+          "value": 0.21798741308662514,
+          "max": 1,
+          "loaded": 38,
+          "total": 146,
+          "status": "loading",
+          "ready": false
+        },
+        {
+          "at": 1955.8999999910593,
+          "cycle": 1,
+          "value": 0.23205068396477285,
+          "max": 1,
+          "loaded": 40,
+          "total": 146,
+          "status": "loading",
+          "ready": false
+        },
+        {
+          "at": 2033.5,
+          "cycle": 1,
+          "value": 0.2422042730116504,
+          "max": 1,
+          "loaded": 42,
+          "total": 146,
+          "status": "loading",
+          "ready": false
+        },
+        {
+          "at": 2109.0999999940395,
+          "cycle": 1,
+          "value": 0.2536882893301757,
+          "max": 1,
+          "loaded": 44,
+          "total": 146,
+          "status": "loading",
+          "ready": false
+        },
+        {
+          "at": 2188.8999999910593,
+          "cycle": 1,
+          "value": 0.26586448728986056,
+          "max": 1,
+          "loaded": 46,
+          "total": 146,
+          "status": "loading",
+          "ready": false
+        },
+        {
+          "at": 2272.2999999970198,
+          "cycle": 1,
+          "value": 0.27743528605936796,
+          "max": 1,
+          "loaded": 48,
+          "total": 146,
+          "status": "loading",
+          "ready": false
+        },
+        {
+          "at": 2352.7999999970198,
+          "cycle": 1,
+          "value": 0.28675974421876743,
+          "max": 1,
+          "loaded": 50,
+          "total": 146,
+          "status": "loading",
+          "ready": false
+        },
+        {
+          "at": 2429.2000000029802,
+          "cycle": 1,
+          "value": 0.2991403448811994,
+          "max": 1,
+          "loaded": 50,
+          "total": 146,
+          "status": "loading",
+          "ready": false
+        },
+        {
+          "at": 2506.5,
+          "cycle": 1,
+          "value": 0.3116597841917148,
+          "max": 1,
+          "loaded": 52,
+          "total": 146,
+          "status": "loading",
+          "ready": false
+        },
+        {
+          "at": 2589.2999999970198,
+          "cycle": 1,
+          "value": 0.3237357566531978,
+          "max": 1,
+          "loaded": 54,
+          "total": 146,
+          "status": "loading",
+          "ready": false
+        },
+        {
+          "at": 2672.0999999940395,
+          "cycle": 1,
+          "value": 0.3360637956097431,
+          "max": 1,
+          "loaded": 56,
+          "total": 146,
+          "status": "loading",
+          "ready": false
+        },
+        {
+          "at": 2747.7000000029802,
+          "cycle": 1,
+          "value": 0.3455947631703997,
+          "max": 1,
+          "loaded": 58,
+          "total": 146,
+          "status": "loading",
+          "ready": false
+        },
+        {
+          "at": 2838.7000000029802,
+          "cycle": 1,
+          "value": 0.3601925622081605,
+          "max": 1,
+          "loaded": 60,
+          "total": 146,
+          "status": "loading",
+          "ready": false
+        },
+        {
+          "at": 2906.3999999910593,
+          "cycle": 1,
+          "value": 0.3695241848106136,
+          "max": 1,
+          "loaded": 62,
+          "total": 146,
+          "status": "loading",
+          "ready": false
+        },
+        {
+          "at": 2988.7999999970198,
+          "cycle": 1,
+          "value": 0.38144034354296474,
+          "max": 1,
+          "loaded": 64,
+          "total": 146,
+          "status": "loading",
+          "ready": false
+        },
+        {
+          "at": 3069.8999999910593,
+          "cycle": 1,
+          "value": 0.39115701227236166,
+          "max": 1,
+          "loaded": 64,
+          "total": 146,
+          "status": "loading",
+          "ready": false
+        },
+        {
+          "at": 3153.7000000029802,
+          "cycle": 1,
+          "value": 0.4029444102184932,
+          "max": 1,
+          "loaded": 66,
+          "total": 146,
+          "status": "loading",
+          "ready": false
+        },
+        {
+          "at": 3229.2000000029802,
+          "cycle": 1,
+          "value": 0.41520276441450377,
+          "max": 1,
+          "loaded": 68,
+          "total": 146,
+          "status": "loading",
+          "ready": false
+        },
+        {
+          "at": 3306.7000000029802,
+          "cycle": 1,
+          "value": 0.42784611459432453,
+          "max": 1,
+          "loaded": 70,
+          "total": 146,
+          "status": "loading",
+          "ready": false
+        },
+        {
+          "at": 3389.5999999940395,
+          "cycle": 1,
+          "value": 0.4398001998194265,
+          "max": 1,
+          "loaded": 72,
+          "total": 146,
+          "status": "loading",
+          "ready": false
+        },
+        {
+          "at": 3469.3999999910593,
+          "cycle": 1,
+          "value": 0.44959405469846875,
+          "max": 1,
+          "loaded": 74,
+          "total": 146,
+          "status": "loading",
+          "ready": false
+        },
+        {
+          "at": 3555.3999999910593,
+          "cycle": 1,
+          "value": 0.46383557473633646,
+          "max": 1,
+          "loaded": 76,
+          "total": 146,
+          "status": "loading",
+          "ready": false
+        },
+        {
+          "at": 3636.3999999910593,
+          "cycle": 1,
+          "value": 0.4733932309885801,
+          "max": 1,
+          "loaded": 78,
+          "total": 146,
+          "status": "loading",
+          "ready": false
+        },
+        {
+          "at": 3706.8999999910593,
+          "cycle": 1,
+          "value": 0.48494863913831154,
+          "max": 1,
+          "loaded": 78,
+          "total": 146,
+          "status": "loading",
+          "ready": false
+        },
+        {
+          "at": 3789.2999999970198,
+          "cycle": 1,
+          "value": 0.4970676216105457,
+          "max": 1,
+          "loaded": 80,
+          "total": 146,
+          "status": "loading",
+          "ready": false
+        },
+        {
+          "at": 3866.7000000029802,
+          "cycle": 1,
+          "value": 0.5071788199903159,
+          "max": 1,
+          "loaded": 82,
+          "total": 146,
+          "status": "loading",
+          "ready": false
+        },
+        {
+          "at": 3956.2999999970198,
+          "cycle": 1,
+          "value": 0.5213868025005997,
+          "max": 1,
+          "loaded": 84,
+          "total": 146,
+          "status": "loading",
+          "ready": false
+        },
+        {
+          "at": 4034.5,
+          "cycle": 1,
+          "value": 0.5312520718273895,
+          "max": 1,
+          "loaded": 86,
+          "total": 146,
+          "status": "loading",
+          "ready": false
+        },
+        {
+          "at": 4110.5,
+          "cycle": 1,
+          "value": 0.5430826161660658,
+          "max": 1,
+          "loaded": 88,
+          "total": 146,
+          "status": "loading",
+          "ready": false
+        },
+        {
+          "at": 4189.5,
+          "cycle": 1,
+          "value": 0.5552564664633274,
+          "max": 1,
+          "loaded": 90,
+          "total": 146,
+          "status": "loading",
+          "ready": false
+        },
+        {
+          "at": 4272.0999999940395,
+          "cycle": 1,
+          "value": 0.5675921609900346,
+          "max": 1,
+          "loaded": 92,
+          "total": 146,
+          "status": "loading",
+          "ready": false
+        },
+        {
+          "at": 4352.399999991059,
+          "cycle": 1,
+          "value": 0.5767580312775247,
+          "max": 1,
+          "loaded": 94,
+          "total": 146,
+          "status": "loading",
+          "ready": false
+        },
+        {
+          "at": 4428.70000000298,
+          "cycle": 1,
+          "value": 0.5887911812138826,
+          "max": 1,
+          "loaded": 94,
+          "total": 146,
+          "status": "loading",
+          "ready": false
+        },
+        {
+          "at": 4521.79999999702,
+          "cycle": 1,
+          "value": 0.6031835508924467,
+          "max": 1,
+          "loaded": 96,
+          "total": 146,
+          "status": "loading",
+          "ready": false
+        },
+        {
+          "at": 4589.70000000298,
+          "cycle": 1,
+          "value": 0.613335951088396,
+          "max": 1,
+          "loaded": 98,
+          "total": 146,
+          "status": "loading",
+          "ready": false
+        },
+        {
+          "at": 4672.899999991059,
+          "cycle": 1,
+          "value": 0.6252937056988139,
+          "max": 1,
+          "loaded": 100,
+          "total": 146,
+          "status": "loading",
+          "ready": false
+        },
+        {
+          "at": 4752.20000000298,
+          "cycle": 1,
+          "value": 0.6347951545343895,
+          "max": 1,
+          "loaded": 102,
+          "total": 146,
+          "status": "loading",
+          "ready": false
+        },
+        {
+          "at": 4828,
+          "cycle": 1,
+          "value": 0.6462151420663531,
+          "max": 1,
+          "loaded": 104,
+          "total": 146,
+          "status": "loading",
+          "ready": false
+        },
+        {
+          "at": 4921.899999991059,
+          "cycle": 1,
+          "value": 0.6606157531100764,
+          "max": 1,
+          "loaded": 106,
+          "total": 146,
+          "status": "loading",
+          "ready": false
+        },
+        {
+          "at": 4989,
+          "cycle": 1,
+          "value": 0.6703743972212076,
+          "max": 1,
+          "loaded": 108,
+          "total": 146,
+          "status": "loading",
+          "ready": false
+        },
+        {
+          "at": 5066.5999999940395,
+          "cycle": 1,
+          "value": 0.6800975869803578,
+          "max": 1,
+          "loaded": 108,
+          "total": 146,
+          "status": "loading",
+          "ready": false
+        },
+        {
+          "at": 5152.5,
+          "cycle": 1,
+          "value": 0.6927505121989834,
+          "max": 1,
+          "loaded": 110,
+          "total": 146,
+          "status": "loading",
+          "ready": false
+        },
+        {
+          "at": 5227.79999999702,
+          "cycle": 1,
+          "value": 0.70483835282452,
+          "max": 1,
+          "loaded": 112,
+          "total": 146,
+          "status": "loading",
+          "ready": false
+        },
+        {
+          "at": 5319.899999991059,
+          "cycle": 1,
+          "value": 0.7172306963741636,
+          "max": 1,
+          "loaded": 114,
+          "total": 146,
+          "status": "loading",
+          "ready": false
+        },
+        {
+          "at": 5388.5999999940395,
+          "cycle": 1,
+          "value": 0.7292076621216476,
+          "max": 1,
+          "loaded": 116,
+          "total": 146,
+          "status": "loading",
+          "ready": false
+        },
+        {
+          "at": 5472,
+          "cycle": 1,
+          "value": 0.7414919574033129,
+          "max": 1,
+          "loaded": 118,
+          "total": 146,
+          "status": "loading",
+          "ready": false
+        },
+        {
+          "at": 5548.5999999940395,
+          "cycle": 1,
+          "value": 0.7506596816354577,
+          "max": 1,
+          "loaded": 120,
+          "total": 146,
+          "status": "loading",
+          "ready": false
+        },
+        {
+          "at": 5638.899999991059,
+          "cycle": 1,
+          "value": 0.7654939081104597,
+          "max": 1,
+          "loaded": 122,
+          "total": 146,
+          "status": "loading",
+          "ready": false
+        },
+        {
+          "at": 5706.70000000298,
+          "cycle": 1,
+          "value": 0.7744330026011899,
+          "max": 1,
+          "loaded": 122,
+          "total": 146,
+          "status": "loading",
+          "ready": false
+        },
+        {
+          "at": 5789.0999999940395,
+          "cycle": 1,
+          "value": 0.786417799272874,
+          "max": 1,
+          "loaded": 124,
+          "total": 146,
+          "status": "loading",
+          "ready": false
+        },
+        {
+          "at": 5866.899999991059,
+          "cycle": 1,
+          "value": 0.7965871077550262,
+          "max": 1,
+          "loaded": 126,
+          "total": 146,
+          "status": "loading",
+          "ready": false
+        },
+        {
+          "at": 5956.70000000298,
+          "cycle": 1,
+          "value": 0.8108218284921808,
+          "max": 1,
+          "loaded": 128,
+          "total": 146,
+          "status": "loading",
+          "ready": false
+        },
+        {
+          "at": 6033.20000000298,
+          "cycle": 1,
+          "value": 0.8206646430585057,
+          "max": 1,
+          "loaded": 130,
+          "total": 146,
+          "status": "loading",
+          "ready": false
+        },
+        {
+          "at": 6109.5,
+          "cycle": 1,
+          "value": 0.8324405513346123,
+          "max": 1,
+          "loaded": 132,
+          "total": 146,
+          "status": "loading",
+          "ready": false
+        },
+        {
+          "at": 6188.5999999940395,
+          "cycle": 1,
+          "value": 0.8444608090284681,
+          "max": 1,
+          "loaded": 134,
+          "total": 146,
+          "status": "loading",
+          "ready": false
+        },
+        {
+          "at": 6271.79999999702,
+          "cycle": 1,
+          "value": 0.8569043746761762,
+          "max": 1,
+          "loaded": 136,
+          "total": 146,
+          "status": "loading",
+          "ready": false
+        },
+        {
+          "at": 6352.29999999702,
+          "cycle": 1,
+          "value": 0.866082683144741,
+          "max": 1,
+          "loaded": 138,
+          "total": 146,
+          "status": "loading",
+          "ready": false
+        },
+        {
+          "at": 6427.899999991059,
+          "cycle": 1,
+          "value": 0.8781374358575889,
+          "max": 1,
+          "loaded": 138,
+          "total": 146,
+          "status": "loading",
+          "ready": false
+        },
+        {
+          "at": 6518.20000000298,
+          "cycle": 1,
+          "value": 0.8905994366101896,
+          "max": 1,
+          "loaded": 140,
+          "total": 146,
+          "status": "loading",
+          "ready": false
+        },
+        {
+          "at": 6590,
+          "cycle": 1,
+          "value": 0.9026712203003661,
+          "max": 1,
+          "loaded": 142,
+          "total": 146,
+          "status": "loading",
+          "ready": false
+        },
+        {
+          "at": 6670.899999991059,
+          "cycle": 1,
+          "value": 0.912644206141632,
+          "max": 1,
+          "loaded": 144,
+          "total": 146,
+          "status": "loading",
+          "ready": false
+        },
+        {
+          "at": 6746.0999999940395,
+          "cycle": 1,
+          "value": 0.946452454454162,
+          "max": 1,
+          "loaded": 146,
+          "total": 146,
+          "status": "ready",
+          "ready": true
+        },
+        {
+          "at": 6839.79999999702,
+          "cycle": 1,
+          "value": 0.98475395750224,
+          "max": 1,
+          "loaded": 146,
+          "total": 146,
+          "status": "ready",
+          "ready": true
+        },
+        {
+          "at": 6916.20000000298,
+          "cycle": 1,
+          "value": 0.9932767614802352,
+          "max": 1,
+          "loaded": 146,
+          "total": 146,
+          "status": "ready",
+          "ready": true
+        },
+        {
+          "at": 6989.399999991059,
+          "cycle": 1,
+          "value": 0.9976502241023187,
+          "max": 1,
+          "loaded": 146,
+          "total": 146,
+          "status": "ready",
+          "ready": true
+        },
+        {
+          "at": 7069.20000000298,
+          "cycle": 1,
+          "value": 0.9989689579797109,
+          "max": 1,
+          "loaded": 146,
+          "total": 146,
+          "status": "ready",
+          "ready": true
+        }
+      ],
+      "layout": {
+        "overflow": false,
+        "buttons": []
+      },
+      "targetHits": 1,
+      "status": "PASS"
+    }
+  ],
+  "status": "PASS"
+}
