@@ -53,15 +53,22 @@ export function settlementFacts(run:R2RunState,cleared:boolean,skipped=false){
  return {...saved,tier,tag,hero,heroSkill,heroCopy,card,cardCopy,operation,routeCopy,routeSummary,chain,jokerFactorSourceCount,factorCount:factors.length};
 }
 
+const settlementHeaderHeight=(desktop:boolean,highScore:boolean)=>desktop?(highScore?166:148):(highScore?140:120);
+/** Preferred content height, bounded by the available viewport in the scene. */
+export function settlementContentHeight(width:number,heroCaption=false,highScore=false){
+ const desktop=width>=600,padding=desktop?48:24,portraitHeight=Math.min(desktop?128:152,(width-padding)*(desktop ? .34 : .36)*1.25);
+ return padding+settlementHeaderHeight(desktop,highScore)+12+portraitHeight+(heroCaption?72:desktop?28:22)+44;
+}
+
 /** Victory: score and receipts above a separate hero/source row, with a reserved reward footer. */
-export function settlementPlan(b:Box,short=false,lost=false){
+export function settlementPlan(b:Box,short=false,lost=false,highScore=false){
  const desktop=b.width>=600,pad=lost?(desktop?28:16):short?12:desktop?24:12,inner={x:b.x+pad,y:b.y+pad,width:b.width-pad*2,height:b.height-pad*2};
  if(lost){
   if(desktop||short){const width=short?Math.min(120,inner.width*.26):Math.min(310,inner.width*.34);return {desktop,short,hero:{...inner,width},score:{...inner,x:inner.x+width+24,width:inner.width-width-24},source:{x:inner.x,y:inner.y+inner.height-100,width,height:100}};}
   const top=Math.min(166,inner.height*.44);return {desktop,short,score:{...inner,height:top},hero:{x:inner.x,y:inner.y+top+8,width:inner.width,height:inner.height-top-8},source:{x:inner.x,y:inner.y+top+8,width:inner.width,height:inner.height-top-8}};
  }
  if(short){const width=Math.min(104,inner.width*.25);return {desktop,short,hero:{...inner,width,height:Math.max(40,inner.height-32)},score:{...inner,x:inner.x+width+16,width:inner.width-width-16},source:{x:inner.x,y:inner.y,width,height:Math.max(40,inner.height-32)}};}
- const top=desktop?Math.min(206,inner.height*.48):inner.height<240?90:Math.min(174,Math.max(112,inner.height*.44)),lowerY=inner.y+top+(inner.height<240?0:inner.height<280?6:12),lowerHeight=Math.max(48,inner.height-top-(inner.height<240?44:50)),heroWidth=inner.width*(desktop ? .34 : .36);
+ const top=desktop?Math.min(settlementHeaderHeight(true,highScore),inner.height*.48):inner.height<240?90:Math.min(settlementHeaderHeight(false,highScore),Math.max(112,inner.height*.44)),lowerY=inner.y+top+(inner.height<240?0:inner.height<280?6:12),lowerHeight=Math.max(48,inner.height-top-(inner.height<240?44:50)),heroWidth=inner.width*(desktop ? .34 : .36);
  return {desktop,short,score:{...inner,height:top},hero:{x:inner.x,y:lowerY,width:heroWidth,height:lowerHeight},source:{x:inner.x+heroWidth+16,y:lowerY,width:inner.width-heroWidth-16,height:lowerHeight}};
 }
 
@@ -74,7 +81,7 @@ function fit(view:SceneView,x:number,y:number,text:string,size:number,width:numb
 }
 /** All imagery stays contained. Fixed boxes survive missing or late optional resources. */
 export function drawSettlement(scene:Phaser.Scene,view:SceneView,b:Box,run:R2RunState,cleared:boolean,skipped:boolean,stageHeat:string,compactSafe=false){
- const facts=settlementFacts(run,cleared,skipped),lost=!cleared&&!skipped,p=settlementPlan(b,view.layout.height<500,lost);
+ const facts=settlementFacts(run,cleared,skipped),lost=!cleared&&!skipped,p=settlementPlan(b,view.layout.height<500,lost,facts.tier>=2);
  const paper=scene.add.graphics().setName('result-art/stage').setData('bounds',b);
  paper.fillStyle(T.ink,.04).fillRoundedRect(b.x,b.y+3,b.width,b.height,4).fillStyle(T.paperLight).fillRoundedRect(b.x,b.y,b.width,b.height,4);
  paper.lineStyle(1,T.divider,.7).strokeRoundedRect(b.x+.5,b.y+.5,b.width-1,b.height-1,4);view.add(paper);
@@ -86,7 +93,7 @@ export function drawSettlement(scene:Phaser.Scene,view:SceneView,b:Box,run:R2Run
  const hand=facts.trace?HAND_LABELS[facts.trace.handType]+' · '+facts.trace.level+'级':lost?failureSummary(run).reason:'本场热度';
  const handText=p.short?tag.setText(facts.tag+(facts.trace?' · '+HAND_LABELS[facts.trace.handType]:'')):lost?fit(view,center,tag.y+tag.height+(compact?6:12),hand,16,main.width,C.ink,'result/hand',true):fit(view,main.x+main.width-(run.stage?.boss?84:0),main.y,hand,14,main.width*(run.stage?.boss ? .35 : .56),C.jade,'result/hand').setOrigin(1,0);
  if(!lost&&!p.short)tag.setFontSize(14);
- const scoreY=handText.y+handText.height+(compact?5:12),size=lost?(p.short?36:compact?38:p.desktop?72:48):p.short?30:p.desktop?[56,60,64,68][facts.tier]:main.height<100?32:main.height<140?36:[44,48,50,54][facts.tier];
+ const scoreY=handText.y+handText.height+(compact?5:12),size=lost?(p.short?36:compact?38:p.desktop?72:48):p.short?30:p.desktop?[56,60,64,68][facts.tier]:main.height<100?32:main.height<115?36:[44,48,50,54][facts.tier];
  const exactScore=facts.trace?.finalScore??stageHeat,scoreLabel=(facts.trace?'+':'')+(exactScore.length>15&&/[1-9]/.test(exactScore.slice(3))?'≈':'')+heatText(exactScore);
  const score=view.text(center,scoreY,scoreLabel,size,facts.tier?C.red:C.ink).setName('result/score').setOrigin(.5,0).setWordWrapWidth(0).setFontFamily(SCORE_FONT).setFontStyle('bold').setData('exactScore',exactScore);
  // Set the actual score family before fitting: its measured width differs from the UI family.
@@ -100,7 +107,7 @@ export function drawSettlement(scene:Phaser.Scene,view:SceneView,b:Box,run:R2Run
  const formulaY=score.y+score.displayHeight+(p.short?4:8);
  const formula=facts.trace?'目标 '+heatText(run.stage!.targetHeat)+' · 已过关':lost?'目标 '+heatText(run.stage!.targetHeat)+' · 差 '+heatText((BigInt(run.stage!.targetHeat)-BigInt(stageHeat)).toString()):'已保存的本场结果';
  const formulaText=fit(view,center,formulaY,formula,14,main.width,C.jade,'result/formula',true);
- const receipt=facts.routeSummary??(run.stage!.playIndex===1?'首手过关 · 结果已保存':'第'+run.stage!.playIndex+'手过关'+(facts.trace?.finalScore!==stageHeat?' · 本场累计 '+heatText(stageHeat):' · 结果已保存'));
+ const receipt=facts.routeSummary??(run.stage!.playIndex===1?'首手过关':'第'+run.stage!.playIndex+'手过关'+(facts.trace?.finalScore!==stageHeat?' · 本场累计 '+heatText(stageHeat):''));
  const gap=fit(view,center,formulaText.y+formulaText.height+(p.short?2:5),skipped?'本场跳过':lost?failureSummary(run).lastHand:receipt,14,main.width,C.jade,'result/gap',true);
  if(!lost&&(p.short||main.height<100)){formulaText.setText(formula+(p.short?'\n':' · ')+receipt);gap.setVisible(false).setText('');}
  const chainY=gap.y+gap.height+10;

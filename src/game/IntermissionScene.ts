@@ -2,7 +2,7 @@ import {warmNextSceneImages} from './StageImageWarmup';
 import {heroText} from './HeroIdentity';
 import {formatScoreReview} from './ScoreReview';
 import {heroStageContinuity} from './HeroStageContinuity';
-import {drawSettlement,mountSettlementMotion,settlementFacts} from './SettlementPresentation';
+import {drawSettlement,mountSettlementMotion,settlementFacts,settlementContentHeight} from './SettlementPresentation';
 import {loadResultSourceArt} from './ResultStageArt';
 import {jokerArtPreviewUrl} from './jokerArt';
 import {paperSceneStart} from './PaperFlow';
@@ -45,12 +45,16 @@ import type {Box} from './layout';
 import {PAPER_CSS,PAPER_THEME as T} from './theme';
 
 export interface IntermissionResult {cleared:boolean;stageIndex:number;stageHeat:string;handsLeft:number;goldEarned:number;failureCue?:FailureCue;rewardClearId?:string}
-function resultLayout(width:number,height:number,top:number,bottom:number,nextBoss=false,failure=false){
+function resultLayout(width:number,height:number,top:number,bottom:number,nextBoss=false,failure=false,heroCaption=false,highScore=false){
   const short=height<500,portrait=width<700&&height>width,tight=portrait&&height<=700,compactNext=tight&&(bottom>0||!failure),w=Math.min(980,width-24),x=(width-w)/2;
-  const footerY=height-bottom-(portrait?(tight?132:148):104),bodyY=top+(short?64:portrait?(tight?(compactNext?88:100):108):94),available=footerY-16-bodyY;
+  const footerLimit=height-bottom-(portrait?(tight?132:148):104),bodyY=top+(short?64:portrait?(tight?(compactNext?88:100):108):94),available=footerLimit-16-bodyY;
   const nextHeight=short?available:Math.min(failure?(tight?60:100):tight?(compactNext?32:60):nextBoss?132:portrait?100:112,failure?Math.max(52,available*.26):available*(nextBoss ? .30 : .26));
-  const score:Box=short?{x,y:bodyY,width:w*.64-12,height:available}:{x,y:bodyY,width:w,height:available-nextHeight-(compactNext?8:12)};
+  // Reserve actual score, portrait/caption and reward content; spare viewport height stays outside the flow.
+  const contentHeight=settlementContentHeight(w,heroCaption,highScore);
+  const maxScoreHeight=available-nextHeight-(compactNext?8:12);
+  const score:Box=short?{x,y:bodyY,width:w*.64-12,height:available}:{x,y:bodyY,width:w,height:failure?maxScoreHeight:Math.min(maxScoreHeight,contentHeight)};
   const next:Box=short?{x:x+w*.64,y:bodyY,width:w*.36,height:available}:{x,y:score.y+score.height+(compactNext?8:12),width:w,height:nextHeight};
+  const footerY=short||failure?footerLimit:next.y+next.height+16;
   const sideWidth=Math.floor(w*.28),primaryWidth=Math.floor(w*.43),rightWidth=w-sideWidth-primaryWidth-16;
   return {x,w,top,short,portrait,tight,compactNext,score,next,left:{x,y:footerY,width:portrait?w/2-4:sideWidth,height:44},primary:portrait?{x,y:footerY+52,width:w,height:tight?48:56}:{x:x+sideWidth+8,y:footerY,width:primaryWidth,height:56},right:portrait?{x:x+w/2+4,y:footerY,width:w/2-4,height:44}:{x:x+sideWidth+primaryWidth+16,y:footerY,width:rightWidth,height:44},noticeY:footerY+(portrait?(tight?108:116):64)};
 }
@@ -116,15 +120,14 @@ export class IntermissionScene extends Phaser.Scene {
   private render():void {
     if(this.busy)this.stopSourceArt();
     const v=this.view,l=v.layout,bottom=parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--safe-bottom'))||0;
-    const run=runController(this)!.state,p=resultLayout(l.width,l.height,l.hud.y,bottom,this.result.cleared&&run.phase==='stage-cleared'&&run.stageIndex%3===2,!this.result.cleared&&run.phase==='run-lost'),stage={...getR2Stage(this.result.stageIndex,run.tourMode,run.difficulty,run)!,targetHeat:run.stage!.targetHeat},character=getCharacter(run.characterId);
+    const run=runController(this)!.state,resultFacts=settlementFacts(run,this.result.cleared,!!run.stage?.skipResult),p=resultLayout(l.width,l.height,l.hud.y,bottom,this.result.cleared&&run.phase==='stage-cleared'&&run.stageIndex%3===2,!this.result.cleared&&run.phase==='run-lost',!!resultFacts.hero,resultFacts.tier>=2),stage={...getR2Stage(this.result.stageIndex,run.tourMode,run.difficulty,run)!,targetHeat:run.stage!.targetHeat},character=getCharacter(run.characterId);
     const nextStage=this.result.cleared&&run.phase==='stage-cleared'?getR2Stage(run.stageIndex,run.tourMode,run.difficulty,run):undefined,skipped=run.phase==='run-lost'?null:run.stage?.skipResult,won=run.phase==='run-won',capped=this.result.cleared&&run.phase==='stage-cleared'&&!nextStage,lost=!this.result.cleared&&!skipped&&!won;
-    const outcome=stageOutcome(run.stage!,run.lastTrace),animateIn=this.firstRender&&!gameSession().reducedMotion&&!window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const animateIn=this.firstRender&&!gameSession().reducedMotion&&!window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     this.stopCelebration();v.clear();this.paintSourceArt=undefined;this.sourceArtLayer=undefined;v.paperBackground();
     const identity=stageIdentity(stage.index,run.stage!.boss,run.tourMode,run.difficulty,run)!;
     v.text(p.x,p.top,(run.tourMode==='endless'?'无尽 · ':'')+stage.name+' · '+character.name,14,identity.isBoss?PAPER_CSS.red:PAPER_CSS.jade,p.w-116).setName('stage-identity/result');
-    const resultFacts=settlementFacts(run,this.result.cleared,!!skipped),resultTier=resultFacts.tier;
     const guidance=lost?failureGuidance(run):undefined;
-    const title=capped?'本局暂止于此':skipped?'换一场，再对局':won?(run.mode==='tutorial'?'教学对局完成！':run.mode==='challenge'?'挑战完成！':resultTier===3?'亿分落定，满堂喝彩！':resultTier===2?resultFacts.tag+'，八章通关！':'八章通关，满堂喝彩！'):this.result.cleared?(identity.isBoss?'压轴过关 · '+identity.title:outcome.title):guidance?.title??'此局结束，再来一局';
+    const title=capped?'本局暂止于此':skipped?'换一场，再对局':won?(run.mode==='tutorial'?'教学对局完成！':run.mode==='challenge'?'挑战完成！':'八章通关'):this.result.cleared?(identity.isBoss?'压轴过关 · '+identity.title:'本场获胜'):guidance?.title??'此局结束，再来一局';
     v.text(p.x,p.top+(p.short?23:p.portrait?52:34),title,p.short||p.portrait&&identity.isBoss?22:p.portrait?26:34,identity.isBoss&&this.result.cleared?PAPER_CSS.red:PAPER_CSS.ink,p.w).setName('result/title').setFontFamily('Georgia, "Noto Serif SC", SimSun, serif').setFontStyle('bold');
     this.drawResultHero(p.score,!!skipped,lost,animateIn,p.compactNext||lost&&p.tight);
     const trace=run.lastTrace;
