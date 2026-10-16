@@ -1,0 +1,1402 @@
+{
+  "phase": "before",
+  "head": "8728e18e823ef9cbe28a4350a566de21f1e3127c",
+  "browser": "153.0.8010.12",
+  "scope": "Local Windows Chromium software viewports; actual selector and DOM inputs. No gameplay, physical-device or human visual acceptance.",
+  "cases": [
+    {
+      "label": "320x640-amo",
+      "id": "amo",
+      "viewport": {
+        "width": 320,
+        "height": 640
+      },
+      "dialog": {
+        "x": 19,
+        "y": 12,
+        "width": 282,
+        "height": 616,
+        "right": 301,
+        "bottom": 628
+      },
+      "image": {
+        "x": 29,
+        "y": 73.5,
+        "width": 250,
+        "height": 477.5,
+        "right": 279,
+        "bottom": 551
+      },
+      "frame": {
+        "x": 28,
+        "y": 72.5,
+        "width": 252,
+        "height": 479.5,
+        "right": 280,
+        "bottom": 552
+      },
+      "close": "Escape",
+      "content": {
+        "x": 20,
+        "y": 64.5,
+        "width": 280,
+        "height": 493.5,
+        "right": 300,
+        "bottom": 558
+      },
+      "scroll": {
+        "height": 496,
+        "client": 494,
+        "top": 0
+      },
+      "natural": {
+        "width": 615,
+        "height": 768
+      },
+      "style": {
+        "fit": "contain",
+        "frameBorder": "1px",
+        "frameBackground": "rgb(255, 249, 238)"
+      },
+      "text": "苏轼\n回到选角",
+      "saveUnchanged": true,
+      "status": "PASS"
+    },
+    {
+      "label": "320x640-touye",
+      "id": "touye",
+      "viewport": {
+        "width": 320,
+        "height": 640
+      },
+      "dialog": {
+        "x": 19,
+        "y": 12,
+        "width": 282,
+        "height": 616,
+        "right": 301,
+        "bottom": 628
+      },
+      "image": {
+        "x": 29,
+        "y": 73.5,
+        "width": 250,
+        "height": 477.5,
+        "right": 279,
+        "bottom": 551
+      },
+      "frame": {
+        "x": 28,
+        "y": 72.5,
+        "width": 252,
+        "height": 479.5,
+        "right": 280,
+        "bottom": 552
+      },
+      "close": "Enter",
+      "content": {
+        "x": 20,
+        "y": 64.5,
+        "width": 280,
+        "height": 493.5,
+        "right": 300,
+        "bottom": 558
+      },
+      "scroll": {
+        "height": 496,
+        "client": 494,
+        "top": 0
+      },
+      "natural": {
+        "width": 615,
+        "height": 768
+      },
+      "style": {
+        "fit": "contain",
+        "frameBorder": "1px",
+        "frameBackground": "rgb(255, 249, 238)"
+      },
+      "text": "秦琼\n回到选角",
+      "saveUnchanged": true,
+      "status": "PASS"
+    },
+    {
+      "label": "320x640-laohuan",
+      "id": "laohuan",
+      "viewport": {
+        "width": 320,
+        "height": 640
+      },
+      "dialog": {
+        "x": 19,
+        "y": 12,
+        "width": 282,
+        "height": 616,
+        "right": 301,
+        "bottom": 628
+      },
+      "image": {
+        "x": 29,
+        "y": 73.5,
+        "width": 250,
+        "height": 477.5,
+        "right": 279,
+        "bottom": 551
+      },
+      "frame": {
+        "x": 28,
+        "y": 72.5,
+        "width": 252,
+        "height": 479.5,
+        "right": 280,
+        "bottom": 552
+      },
+      "close": "click/touch",
+      "content": {
+        "x": 20,
+        "y": 64.5,
+        "width": 280,
+        "height": 493.5,
+        "right": 300,
+        "bottom": 558
+      },
+      "scroll": {
+        "height": 496,
+        "client": 494,
+        "top": 0
+      },
+      "natural": {
+        "width": 615,
+        "height": 768
+      },
+      "style": {
+        "fit": "contain",
+        "frameBorder": "1px",
+        "frameBackground": "rgb(255, 249, 238)"
+      },
+      "text": "辛弃疾\n回到选角",
+      "saveUnchanged": true,
+      "status": "PASS"
+    },
+    {
+      "label": "320x640-erxiang",
+      "id": "erxiang",
+      "viewport": {
+        "width": 320,
+        "height": 640
+      },
+      "dialog": {
+        "x": 19,
+        "y": 12,
+        "width": 282,
+        "height": 616,
+        "right": 301,
+        "bottom": 628
+      },
+      "image": {
+        "x": 29,
+        "y": 73.5,
+        "width": 250,
+        "height": 477.5,
+        "right": 279,
+        "bottom": 551
+      },
+      "frame": {
+        "x": 28,
+        "y": 72.5,
+        "width": 252,
+        "height": 479.5,
+        "right": 280,
+        "bottom": 552
+      },
+      "close": "Escape",
+      "content": {
+        "x": 20,
+        "y": 64.5,
+        "width": 280,
+        "height": 493.5,
+        "right": 300,
+        "bottom": 558
+      },
+      "scroll": {
+        "height": 496,
+        "client": 494,
+        "top": 0
+      },
+      "natural": {
+        "width": 615,
+        "height": 768
+      },
+      "style": {
+        "fit": "contain",
+        "frameBorder": "1px",
+        "frameBackground": "rgb(255, 249, 238)"
+      },
+      "text": "刘娥\n回到选角",
+      "saveUnchanged": true,
+      "status": "PASS"
+    },
+    {
+      "label": "320x640-azao",
+      "id": "azao",
+      "viewport": {
+        "width": 320,
+        "height": 640
+      },
+      "dialog": {
+        "x": 19,
+        "y": 12,
+        "width": 282,
+        "height": 616,
+        "right": 301,
+        "bottom": 628
+      },
+      "image": {
+        "x": 29,
+        "y": 73.5,
+        "width": 250,
+        "height": 477.5,
+        "right": 279,
+        "bottom": 551
+      },
+      "frame": {
+        "x": 28,
+        "y": 72.5,
+        "width": 252,
+        "height": 479.5,
+        "right": 280,
+        "bottom": 552
+      },
+      "close": "Enter",
+      "content": {
+        "x": 20,
+        "y": 64.5,
+        "width": 280,
+        "height": 493.5,
+        "right": 300,
+        "bottom": 558
+      },
+      "scroll": {
+        "height": 496,
+        "client": 494,
+        "top": 0
+      },
+      "natural": {
+        "width": 615,
+        "height": 768
+      },
+      "style": {
+        "fit": "contain",
+        "frameBorder": "1px",
+        "frameBackground": "rgb(255, 249, 238)"
+      },
+      "text": "文成公主\n回到选角",
+      "saveUnchanged": true,
+      "status": "PASS"
+    },
+    {
+      "label": "320x640-xiemu",
+      "id": "xiemu",
+      "viewport": {
+        "width": 320,
+        "height": 640
+      },
+      "dialog": {
+        "x": 19,
+        "y": 12,
+        "width": 282,
+        "height": 616,
+        "right": 301,
+        "bottom": 628
+      },
+      "image": {
+        "x": 29,
+        "y": 73.5,
+        "width": 250,
+        "height": 477.5,
+        "right": 279,
+        "bottom": 551
+      },
+      "frame": {
+        "x": 28,
+        "y": 72.5,
+        "width": 252,
+        "height": 479.5,
+        "right": 280,
+        "bottom": 552
+      },
+      "close": "click/touch",
+      "content": {
+        "x": 20,
+        "y": 64.5,
+        "width": 280,
+        "height": 493.5,
+        "right": 300,
+        "bottom": 558
+      },
+      "scroll": {
+        "height": 496,
+        "client": 494,
+        "top": 0
+      },
+      "natural": {
+        "width": 615,
+        "height": 768
+      },
+      "style": {
+        "fit": "contain",
+        "frameBorder": "1px",
+        "frameBackground": "rgb(255, 249, 238)"
+      },
+      "text": "花蕊夫人\n回到选角",
+      "saveUnchanged": true,
+      "status": "PASS"
+    },
+    {
+      "label": "390x740-amo",
+      "id": "amo",
+      "viewport": {
+        "width": 390,
+        "height": 740
+      },
+      "dialog": {
+        "x": 19,
+        "y": 12,
+        "width": 352,
+        "height": 716,
+        "right": 371,
+        "bottom": 728
+      },
+      "image": {
+        "x": 29,
+        "y": 73.5,
+        "width": 320,
+        "height": 577.5,
+        "right": 349,
+        "bottom": 651
+      },
+      "frame": {
+        "x": 28,
+        "y": 72.5,
+        "width": 322,
+        "height": 579.5,
+        "right": 350,
+        "bottom": 652
+      },
+      "close": "Escape",
+      "content": {
+        "x": 20,
+        "y": 64.5,
+        "width": 350,
+        "height": 593.5,
+        "right": 370,
+        "bottom": 658
+      },
+      "scroll": {
+        "height": 596,
+        "client": 594,
+        "top": 0
+      },
+      "natural": {
+        "width": 615,
+        "height": 768
+      },
+      "style": {
+        "fit": "contain",
+        "frameBorder": "1px",
+        "frameBackground": "rgb(255, 249, 238)"
+      },
+      "text": "苏轼\n回到选角",
+      "saveUnchanged": true,
+      "status": "PASS"
+    },
+    {
+      "label": "390x740-touye",
+      "id": "touye",
+      "viewport": {
+        "width": 390,
+        "height": 740
+      },
+      "dialog": {
+        "x": 19,
+        "y": 12,
+        "width": 352,
+        "height": 716,
+        "right": 371,
+        "bottom": 728
+      },
+      "image": {
+        "x": 29,
+        "y": 73.5,
+        "width": 320,
+        "height": 577.5,
+        "right": 349,
+        "bottom": 651
+      },
+      "frame": {
+        "x": 28,
+        "y": 72.5,
+        "width": 322,
+        "height": 579.5,
+        "right": 350,
+        "bottom": 652
+      },
+      "close": "Enter",
+      "content": {
+        "x": 20,
+        "y": 64.5,
+        "width": 350,
+        "height": 593.5,
+        "right": 370,
+        "bottom": 658
+      },
+      "scroll": {
+        "height": 596,
+        "client": 594,
+        "top": 0
+      },
+      "natural": {
+        "width": 615,
+        "height": 768
+      },
+      "style": {
+        "fit": "contain",
+        "frameBorder": "1px",
+        "frameBackground": "rgb(255, 249, 238)"
+      },
+      "text": "秦琼\n回到选角",
+      "saveUnchanged": true,
+      "status": "PASS"
+    },
+    {
+      "label": "390x740-laohuan",
+      "id": "laohuan",
+      "viewport": {
+        "width": 390,
+        "height": 740
+      },
+      "dialog": {
+        "x": 19,
+        "y": 12,
+        "width": 352,
+        "height": 716,
+        "right": 371,
+        "bottom": 728
+      },
+      "image": {
+        "x": 29,
+        "y": 73.5,
+        "width": 320,
+        "height": 577.5,
+        "right": 349,
+        "bottom": 651
+      },
+      "frame": {
+        "x": 28,
+        "y": 72.5,
+        "width": 322,
+        "height": 579.5,
+        "right": 350,
+        "bottom": 652
+      },
+      "close": "click/touch",
+      "content": {
+        "x": 20,
+        "y": 64.5,
+        "width": 350,
+        "height": 593.5,
+        "right": 370,
+        "bottom": 658
+      },
+      "scroll": {
+        "height": 596,
+        "client": 594,
+        "top": 0
+      },
+      "natural": {
+        "width": 615,
+        "height": 768
+      },
+      "style": {
+        "fit": "contain",
+        "frameBorder": "1px",
+        "frameBackground": "rgb(255, 249, 238)"
+      },
+      "text": "辛弃疾\n回到选角",
+      "saveUnchanged": true,
+      "status": "PASS"
+    },
+    {
+      "label": "390x740-erxiang",
+      "id": "erxiang",
+      "viewport": {
+        "width": 390,
+        "height": 740
+      },
+      "dialog": {
+        "x": 19,
+        "y": 12,
+        "width": 352,
+        "height": 716,
+        "right": 371,
+        "bottom": 728
+      },
+      "image": {
+        "x": 29,
+        "y": 73.5,
+        "width": 320,
+        "height": 577.5,
+        "right": 349,
+        "bottom": 651
+      },
+      "frame": {
+        "x": 28,
+        "y": 72.5,
+        "width": 322,
+        "height": 579.5,
+        "right": 350,
+        "bottom": 652
+      },
+      "close": "Escape",
+      "content": {
+        "x": 20,
+        "y": 64.5,
+        "width": 350,
+        "height": 593.5,
+        "right": 370,
+        "bottom": 658
+      },
+      "scroll": {
+        "height": 596,
+        "client": 594,
+        "top": 0
+      },
+      "natural": {
+        "width": 615,
+        "height": 768
+      },
+      "style": {
+        "fit": "contain",
+        "frameBorder": "1px",
+        "frameBackground": "rgb(255, 249, 238)"
+      },
+      "text": "刘娥\n回到选角",
+      "saveUnchanged": true,
+      "status": "PASS"
+    },
+    {
+      "label": "390x740-azao",
+      "id": "azao",
+      "viewport": {
+        "width": 390,
+        "height": 740
+      },
+      "dialog": {
+        "x": 19,
+        "y": 12,
+        "width": 352,
+        "height": 716,
+        "right": 371,
+        "bottom": 728
+      },
+      "image": {
+        "x": 29,
+        "y": 73.5,
+        "width": 320,
+        "height": 577.5,
+        "right": 349,
+        "bottom": 651
+      },
+      "frame": {
+        "x": 28,
+        "y": 72.5,
+        "width": 322,
+        "height": 579.5,
+        "right": 350,
+        "bottom": 652
+      },
+      "close": "Enter",
+      "content": {
+        "x": 20,
+        "y": 64.5,
+        "width": 350,
+        "height": 593.5,
+        "right": 370,
+        "bottom": 658
+      },
+      "scroll": {
+        "height": 596,
+        "client": 594,
+        "top": 0
+      },
+      "natural": {
+        "width": 615,
+        "height": 768
+      },
+      "style": {
+        "fit": "contain",
+        "frameBorder": "1px",
+        "frameBackground": "rgb(255, 249, 238)"
+      },
+      "text": "文成公主\n回到选角",
+      "saveUnchanged": true,
+      "status": "PASS"
+    },
+    {
+      "label": "390x740-xiemu",
+      "id": "xiemu",
+      "viewport": {
+        "width": 390,
+        "height": 740
+      },
+      "dialog": {
+        "x": 19,
+        "y": 12,
+        "width": 352,
+        "height": 716,
+        "right": 371,
+        "bottom": 728
+      },
+      "image": {
+        "x": 29,
+        "y": 73.5,
+        "width": 320,
+        "height": 577.5,
+        "right": 349,
+        "bottom": 651
+      },
+      "frame": {
+        "x": 28,
+        "y": 72.5,
+        "width": 322,
+        "height": 579.5,
+        "right": 350,
+        "bottom": 652
+      },
+      "close": "click/touch",
+      "content": {
+        "x": 20,
+        "y": 64.5,
+        "width": 350,
+        "height": 593.5,
+        "right": 370,
+        "bottom": 658
+      },
+      "scroll": {
+        "height": 596,
+        "client": 594,
+        "top": 0
+      },
+      "natural": {
+        "width": 615,
+        "height": 768
+      },
+      "style": {
+        "fit": "contain",
+        "frameBorder": "1px",
+        "frameBackground": "rgb(255, 249, 238)"
+      },
+      "text": "花蕊夫人\n回到选角",
+      "saveUnchanged": true,
+      "status": "PASS"
+    },
+    {
+      "label": "740x390-amo",
+      "id": "amo",
+      "viewport": {
+        "width": 740,
+        "height": 390
+      },
+      "dialog": {
+        "x": 19,
+        "y": 12,
+        "width": 702,
+        "height": 366,
+        "right": 721,
+        "bottom": 378
+      },
+      "image": {
+        "x": 267.703125,
+        "y": 73.5,
+        "width": 188.578125,
+        "height": 235.5,
+        "right": 456.28125,
+        "bottom": 309
+      },
+      "frame": {
+        "x": 53.5,
+        "y": 72.5,
+        "width": 617,
+        "height": 237.5,
+        "right": 670.5,
+        "bottom": 310
+      },
+      "close": "Escape",
+      "content": {
+        "x": 20,
+        "y": 64.5,
+        "width": 700,
+        "height": 251.5,
+        "right": 720,
+        "bottom": 316
+      },
+      "scroll": {
+        "height": 254,
+        "client": 252,
+        "top": 0
+      },
+      "natural": {
+        "width": 615,
+        "height": 768
+      },
+      "style": {
+        "fit": "contain",
+        "frameBorder": "1px",
+        "frameBackground": "rgb(255, 249, 238)"
+      },
+      "text": "苏轼\n回到选角",
+      "saveUnchanged": true,
+      "status": "PASS"
+    },
+    {
+      "label": "740x390-touye",
+      "id": "touye",
+      "viewport": {
+        "width": 740,
+        "height": 390
+      },
+      "dialog": {
+        "x": 19,
+        "y": 12,
+        "width": 702,
+        "height": 366,
+        "right": 721,
+        "bottom": 378
+      },
+      "image": {
+        "x": 267.703125,
+        "y": 73.5,
+        "width": 188.578125,
+        "height": 235.5,
+        "right": 456.28125,
+        "bottom": 309
+      },
+      "frame": {
+        "x": 53.5,
+        "y": 72.5,
+        "width": 617,
+        "height": 237.5,
+        "right": 670.5,
+        "bottom": 310
+      },
+      "close": "Enter",
+      "content": {
+        "x": 20,
+        "y": 64.5,
+        "width": 700,
+        "height": 251.5,
+        "right": 720,
+        "bottom": 316
+      },
+      "scroll": {
+        "height": 254,
+        "client": 252,
+        "top": 0
+      },
+      "natural": {
+        "width": 615,
+        "height": 768
+      },
+      "style": {
+        "fit": "contain",
+        "frameBorder": "1px",
+        "frameBackground": "rgb(255, 249, 238)"
+      },
+      "text": "秦琼\n回到选角",
+      "saveUnchanged": true,
+      "status": "PASS"
+    },
+    {
+      "label": "740x390-laohuan",
+      "id": "laohuan",
+      "viewport": {
+        "width": 740,
+        "height": 390
+      },
+      "dialog": {
+        "x": 19,
+        "y": 12,
+        "width": 702,
+        "height": 366,
+        "right": 721,
+        "bottom": 378
+      },
+      "image": {
+        "x": 267.703125,
+        "y": 73.5,
+        "width": 188.578125,
+        "height": 235.5,
+        "right": 456.28125,
+        "bottom": 309
+      },
+      "frame": {
+        "x": 53.5,
+        "y": 72.5,
+        "width": 617,
+        "height": 237.5,
+        "right": 670.5,
+        "bottom": 310
+      },
+      "close": "click/touch",
+      "content": {
+        "x": 20,
+        "y": 64.5,
+        "width": 700,
+        "height": 251.5,
+        "right": 720,
+        "bottom": 316
+      },
+      "scroll": {
+        "height": 254,
+        "client": 252,
+        "top": 0
+      },
+      "natural": {
+        "width": 615,
+        "height": 768
+      },
+      "style": {
+        "fit": "contain",
+        "frameBorder": "1px",
+        "frameBackground": "rgb(255, 249, 238)"
+      },
+      "text": "辛弃疾\n回到选角",
+      "saveUnchanged": true,
+      "status": "PASS"
+    },
+    {
+      "label": "740x390-erxiang",
+      "id": "erxiang",
+      "viewport": {
+        "width": 740,
+        "height": 390
+      },
+      "dialog": {
+        "x": 19,
+        "y": 12,
+        "width": 702,
+        "height": 366,
+        "right": 721,
+        "bottom": 378
+      },
+      "image": {
+        "x": 267.703125,
+        "y": 73.5,
+        "width": 188.578125,
+        "height": 235.5,
+        "right": 456.28125,
+        "bottom": 309
+      },
+      "frame": {
+        "x": 53.5,
+        "y": 72.5,
+        "width": 617,
+        "height": 237.5,
+        "right": 670.5,
+        "bottom": 310
+      },
+      "close": "Escape",
+      "content": {
+        "x": 20,
+        "y": 64.5,
+        "width": 700,
+        "height": 251.5,
+        "right": 720,
+        "bottom": 316
+      },
+      "scroll": {
+        "height": 254,
+        "client": 252,
+        "top": 0
+      },
+      "natural": {
+        "width": 615,
+        "height": 768
+      },
+      "style": {
+        "fit": "contain",
+        "frameBorder": "1px",
+        "frameBackground": "rgb(255, 249, 238)"
+      },
+      "text": "刘娥\n回到选角",
+      "saveUnchanged": true,
+      "status": "PASS"
+    },
+    {
+      "label": "740x390-azao",
+      "id": "azao",
+      "viewport": {
+        "width": 740,
+        "height": 390
+      },
+      "dialog": {
+        "x": 19,
+        "y": 12,
+        "width": 702,
+        "height": 366,
+        "right": 721,
+        "bottom": 378
+      },
+      "image": {
+        "x": 267.703125,
+        "y": 73.5,
+        "width": 188.578125,
+        "height": 235.5,
+        "right": 456.28125,
+        "bottom": 309
+      },
+      "frame": {
+        "x": 53.5,
+        "y": 72.5,
+        "width": 617,
+        "height": 237.5,
+        "right": 670.5,
+        "bottom": 310
+      },
+      "close": "Enter",
+      "content": {
+        "x": 20,
+        "y": 64.5,
+        "width": 700,
+        "height": 251.5,
+        "right": 720,
+        "bottom": 316
+      },
+      "scroll": {
+        "height": 254,
+        "client": 252,
+        "top": 0
+      },
+      "natural": {
+        "width": 615,
+        "height": 768
+      },
+      "style": {
+        "fit": "contain",
+        "frameBorder": "1px",
+        "frameBackground": "rgb(255, 249, 238)"
+      },
+      "text": "文成公主\n回到选角",
+      "saveUnchanged": true,
+      "status": "PASS"
+    },
+    {
+      "label": "740x390-xiemu",
+      "id": "xiemu",
+      "viewport": {
+        "width": 740,
+        "height": 390
+      },
+      "dialog": {
+        "x": 19,
+        "y": 12,
+        "width": 702,
+        "height": 366,
+        "right": 721,
+        "bottom": 378
+      },
+      "image": {
+        "x": 267.703125,
+        "y": 73.5,
+        "width": 188.578125,
+        "height": 235.5,
+        "right": 456.28125,
+        "bottom": 309
+      },
+      "frame": {
+        "x": 53.5,
+        "y": 72.5,
+        "width": 617,
+        "height": 237.5,
+        "right": 670.5,
+        "bottom": 310
+      },
+      "close": "click/touch",
+      "content": {
+        "x": 20,
+        "y": 64.5,
+        "width": 700,
+        "height": 251.5,
+        "right": 720,
+        "bottom": 316
+      },
+      "scroll": {
+        "height": 254,
+        "client": 252,
+        "top": 0
+      },
+      "natural": {
+        "width": 615,
+        "height": 768
+      },
+      "style": {
+        "fit": "contain",
+        "frameBorder": "1px",
+        "frameBackground": "rgb(255, 249, 238)"
+      },
+      "text": "花蕊夫人\n回到选角",
+      "saveUnchanged": true,
+      "status": "PASS"
+    },
+    {
+      "label": "1366x768-amo",
+      "id": "amo",
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      },
+      "dialog": {
+        "x": 253,
+        "y": 12,
+        "width": 860,
+        "height": 744,
+        "right": 1113,
+        "bottom": 756
+      },
+      "image": {
+        "x": 434.171875,
+        "y": 73.5,
+        "width": 481.65625,
+        "height": 601.5,
+        "right": 915.828125,
+        "bottom": 675
+      },
+      "frame": {
+        "x": 366.5,
+        "y": 72.5,
+        "width": 617,
+        "height": 603.5,
+        "right": 983.5,
+        "bottom": 676
+      },
+      "close": "Escape",
+      "content": {
+        "x": 254,
+        "y": 64.5,
+        "width": 858,
+        "height": 617.5,
+        "right": 1112,
+        "bottom": 682
+      },
+      "scroll": {
+        "height": 620,
+        "client": 618,
+        "top": 0
+      },
+      "natural": {
+        "width": 615,
+        "height": 768
+      },
+      "style": {
+        "fit": "contain",
+        "frameBorder": "1px",
+        "frameBackground": "rgb(255, 249, 238)"
+      },
+      "text": "苏轼\n回到选角",
+      "saveUnchanged": true,
+      "status": "PASS"
+    },
+    {
+      "label": "1366x768-touye",
+      "id": "touye",
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      },
+      "dialog": {
+        "x": 253,
+        "y": 12,
+        "width": 860,
+        "height": 744,
+        "right": 1113,
+        "bottom": 756
+      },
+      "image": {
+        "x": 434.171875,
+        "y": 73.5,
+        "width": 481.65625,
+        "height": 601.5,
+        "right": 915.828125,
+        "bottom": 675
+      },
+      "frame": {
+        "x": 366.5,
+        "y": 72.5,
+        "width": 617,
+        "height": 603.5,
+        "right": 983.5,
+        "bottom": 676
+      },
+      "close": "Enter",
+      "content": {
+        "x": 254,
+        "y": 64.5,
+        "width": 858,
+        "height": 617.5,
+        "right": 1112,
+        "bottom": 682
+      },
+      "scroll": {
+        "height": 620,
+        "client": 618,
+        "top": 0
+      },
+      "natural": {
+        "width": 615,
+        "height": 768
+      },
+      "style": {
+        "fit": "contain",
+        "frameBorder": "1px",
+        "frameBackground": "rgb(255, 249, 238)"
+      },
+      "text": "秦琼\n回到选角",
+      "saveUnchanged": true,
+      "status": "PASS"
+    },
+    {
+      "label": "1366x768-laohuan",
+      "id": "laohuan",
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      },
+      "dialog": {
+        "x": 253,
+        "y": 12,
+        "width": 860,
+        "height": 744,
+        "right": 1113,
+        "bottom": 756
+      },
+      "image": {
+        "x": 434.171875,
+        "y": 73.5,
+        "width": 481.65625,
+        "height": 601.5,
+        "right": 915.828125,
+        "bottom": 675
+      },
+      "frame": {
+        "x": 366.5,
+        "y": 72.5,
+        "width": 617,
+        "height": 603.5,
+        "right": 983.5,
+        "bottom": 676
+      },
+      "close": "click/touch",
+      "content": {
+        "x": 254,
+        "y": 64.5,
+        "width": 858,
+        "height": 617.5,
+        "right": 1112,
+        "bottom": 682
+      },
+      "scroll": {
+        "height": 620,
+        "client": 618,
+        "top": 0
+      },
+      "natural": {
+        "width": 615,
+        "height": 768
+      },
+      "style": {
+        "fit": "contain",
+        "frameBorder": "1px",
+        "frameBackground": "rgb(255, 249, 238)"
+      },
+      "text": "辛弃疾\n回到选角",
+      "saveUnchanged": true,
+      "status": "PASS"
+    },
+    {
+      "label": "1366x768-erxiang",
+      "id": "erxiang",
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      },
+      "dialog": {
+        "x": 253,
+        "y": 12,
+        "width": 860,
+        "height": 744,
+        "right": 1113,
+        "bottom": 756
+      },
+      "image": {
+        "x": 434.171875,
+        "y": 73.5,
+        "width": 481.65625,
+        "height": 601.5,
+        "right": 915.828125,
+        "bottom": 675
+      },
+      "frame": {
+        "x": 366.5,
+        "y": 72.5,
+        "width": 617,
+        "height": 603.5,
+        "right": 983.5,
+        "bottom": 676
+      },
+      "close": "Escape",
+      "content": {
+        "x": 254,
+        "y": 64.5,
+        "width": 858,
+        "height": 617.5,
+        "right": 1112,
+        "bottom": 682
+      },
+      "scroll": {
+        "height": 620,
+        "client": 618,
+        "top": 0
+      },
+      "natural": {
+        "width": 615,
+        "height": 768
+      },
+      "style": {
+        "fit": "contain",
+        "frameBorder": "1px",
+        "frameBackground": "rgb(255, 249, 238)"
+      },
+      "text": "刘娥\n回到选角",
+      "saveUnchanged": true,
+      "status": "PASS"
+    },
+    {
+      "label": "1366x768-azao",
+      "id": "azao",
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      },
+      "dialog": {
+        "x": 253,
+        "y": 12,
+        "width": 860,
+        "height": 744,
+        "right": 1113,
+        "bottom": 756
+      },
+      "image": {
+        "x": 434.171875,
+        "y": 73.5,
+        "width": 481.65625,
+        "height": 601.5,
+        "right": 915.828125,
+        "bottom": 675
+      },
+      "frame": {
+        "x": 366.5,
+        "y": 72.5,
+        "width": 617,
+        "height": 603.5,
+        "right": 983.5,
+        "bottom": 676
+      },
+      "close": "Enter",
+      "content": {
+        "x": 254,
+        "y": 64.5,
+        "width": 858,
+        "height": 617.5,
+        "right": 1112,
+        "bottom": 682
+      },
+      "scroll": {
+        "height": 620,
+        "client": 618,
+        "top": 0
+      },
+      "natural": {
+        "width": 615,
+        "height": 768
+      },
+      "style": {
+        "fit": "contain",
+        "frameBorder": "1px",
+        "frameBackground": "rgb(255, 249, 238)"
+      },
+      "text": "文成公主\n回到选角",
+      "saveUnchanged": true,
+      "status": "PASS"
+    },
+    {
+      "label": "1366x768-xiemu",
+      "id": "xiemu",
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      },
+      "dialog": {
+        "x": 253,
+        "y": 12,
+        "width": 860,
+        "height": 744,
+        "right": 1113,
+        "bottom": 756
+      },
+      "image": {
+        "x": 434.171875,
+        "y": 73.5,
+        "width": 481.65625,
+        "height": 601.5,
+        "right": 915.828125,
+        "bottom": 675
+      },
+      "frame": {
+        "x": 366.5,
+        "y": 72.5,
+        "width": 617,
+        "height": 603.5,
+        "right": 983.5,
+        "bottom": 676
+      },
+      "close": "click/touch",
+      "content": {
+        "x": 254,
+        "y": 64.5,
+        "width": 858,
+        "height": 617.5,
+        "right": 1112,
+        "bottom": 682
+      },
+      "scroll": {
+        "height": 620,
+        "client": 618,
+        "top": 0
+      },
+      "natural": {
+        "width": 615,
+        "height": 768
+      },
+      "style": {
+        "fit": "contain",
+        "frameBorder": "1px",
+        "frameBackground": "rgb(255, 249, 238)"
+      },
+      "text": "花蕊夫人\n回到选角",
+      "saveUnchanged": true,
+      "status": "PASS"
+    }
+  ],
+  "errors": [],
+  "status": "PASS"
+}

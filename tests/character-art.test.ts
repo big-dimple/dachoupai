@@ -8,6 +8,9 @@ const register=()=>{catalog.splice(0);const a:CharacterArtAsset={id:'amo',purpos
 it('all six identities resolve approved assets, with optional focus outside the startup faces',()=>{
  expect(catalog).toHaveLength(24);for(const c of CHARACTERS)for(const p of ['avatar','selection','portrait','focus'] as const){const a=characterArt(c.id,p)!;expect(a).toBeDefined();expect(a.url).toContain('/assets/tangsong-portraits/');expect(a.bytes).toBeLessThanOrEqual(128*1024);expect(a.width*a.height).toBeLessThanOrEqual(600000);expect(characterArtKey(c.id,p)).toContain(c.id);}
 });
+it('every derived hero image uses its own content hash to invalidate replaced artwork',()=>{
+ for(const asset of approved)expect(new URL(asset.url,'https://game.example').searchParams.get('v')).toBe(asset.sha256.slice(0,12));
+});
 it('unregistered hero keys cannot fetch an empty image, deleted placeholder or archived old face',async()=>{
  const fetch=vi.fn();vi.stubGlobal('fetch',fetch);const {loadArtTexture}=await import('../src/game/ArtTextureLoading');
  for(const url of ['', '/assets/cast-placeholders/amo.portrait.svg','/assets/handdrawn-p08/characters/amo.portrait.webp'])await expect(loadArtTexture({textures:{exists:()=>false}} as never,characterArtKey('amo','portrait'),url,new AbortController().signal)).rejects.toThrow('character-art-reference');expect(fetch).not.toHaveBeenCalled();

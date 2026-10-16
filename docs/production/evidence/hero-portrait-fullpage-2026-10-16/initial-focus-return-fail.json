@@ -1,0 +1,80 @@
+{
+  "phase": "after",
+  "head": "8728e18e823ef9cbe28a4350a566de21f1e3127c",
+  "browser": "153.0.8010.12",
+  "scope": "Local Windows Chromium software viewports; actual selector and DOM inputs. No gameplay, physical-device or human visual acceptance.",
+  "cases": [
+    {
+      "label": "320x640-amo",
+      "id": "amo",
+      "viewport": {
+        "width": 320,
+        "height": 640
+      },
+      "dialog": {
+        "x": 0,
+        "y": 0,
+        "width": 320,
+        "height": 640,
+        "right": 320,
+        "bottom": 640
+      },
+      "image": {
+        "x": 0,
+        "y": 148.1875,
+        "width": 319.984375,
+        "height": 399.609375,
+        "right": 319.984375,
+        "bottom": 547.796875
+      },
+      "frame": {
+        "x": 0,
+        "y": 56,
+        "width": 320,
+        "height": 584,
+        "right": 320,
+        "bottom": 640
+      },
+      "close": {
+        "x": 264,
+        "y": 4,
+        "width": 48,
+        "height": 48,
+        "right": 312,
+        "bottom": 52
+      },
+      "content": {
+        "x": 0,
+        "y": 56,
+        "width": 320,
+        "height": 584,
+        "right": 320,
+        "bottom": 640
+      },
+      "scroll": {
+        "height": 584,
+        "client": 584,
+        "top": 0
+      },
+      "natural": {
+        "width": 615,
+        "height": 768
+      },
+      "style": {
+        "fit": "contain",
+        "frameBorder": "0px",
+        "frameBackground": "rgb(0, 0, 0)",
+        "dialogBackground": "rgb(0, 0, 0)"
+      },
+      "text": "×",
+      "scrollBottom": {
+        "height": 584,
+        "client": 584,
+        "top": 0
+      }
+    }
+  ],
+  "errors": [],
+  "status": "FAIL",
+  "error": "AssertionError [ERR_ASSERTION]: 320x640-amo focus returns to selector\n\n'BODY' !== 'CANVAS'\n\n    at file:///<worktree>/harness/hero-portrait-fullpage.mjs:61:30"
+}
