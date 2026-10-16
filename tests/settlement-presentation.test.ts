@@ -70,7 +70,8 @@ it('an actual e11 1.3 reading belongs to the source while Amo has no triggered a
 it.each([{x:193,y:102,width:980,height:422},{x:12,y:116,width:366,height:452},{x:12,y:116,width:296,height:348},{x:12,y:76,width:446,height:194}])('contained hero and full-width number regions remain separate at %j',b=>{
  const p=settlementPlan(b,b.height<200);
  for(const box of [p.hero,p.score,p.source]){expect(box.x).toBeGreaterThanOrEqual(b.x);expect(box.y).toBeGreaterThanOrEqual(b.y);expect(box.x+box.width).toBeLessThanOrEqual(b.x+b.width);expect(box.y+box.height).toBeLessThanOrEqual(b.y+b.height);expect(box.height).toBeGreaterThan(0);}
- expect(p.desktop||p.short?p.hero.x+p.hero.width<p.score.x:p.score.y+p.score.height<p.hero.y).toBe(true);
+ expect(p.short?p.hero.x+p.hero.width<p.score.x:p.score.y+p.score.height<p.hero.y).toBe(true);
+ if(!p.short)expect(p.hero.x+p.hero.width<p.source.x).toBe(true);
 });
 it('current million and billion focus the actual strongest local source, while the automatic cap stays separate',()=>{
  for(const [kind,tier] of [['million',2],['billion',3]] as const){

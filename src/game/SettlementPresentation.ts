@@ -53,12 +53,16 @@ export function settlementFacts(run:R2RunState,cleared:boolean,skipped=false){
  return {...saved,tier,tag,hero,heroSkill,heroCopy,card,cardCopy,operation,routeCopy,routeSummary,chain,jokerFactorSourceCount,factorCount:factors.length};
 }
 
+/** Victory: score and receipts above a separate hero/source row, with a reserved reward footer. */
 export function settlementPlan(b:Box,short=false,lost=false){
- const desktop=b.width>=600,pad=desktop?28:16,inner={x:b.x+pad,y:b.y+pad,width:b.width-pad*2,height:b.height-pad*2};
- if(desktop||short){const width=short?Math.min(120,inner.width*.26):Math.min(310,inner.width*.34);return {desktop,short,hero:{...inner,width},score:{...inner,x:inner.x+width+24,width:inner.width-width-24},source:{x:inner.x,y:inner.y+inner.height-100,width,height:100}};}
- const top=lost?Math.min(166,inner.height*.44):Math.min(216,Math.max(148,inner.height*.51));
- if(lost)return {desktop,short,score:{...inner,height:top},hero:{x:inner.x,y:inner.y+top+8,width:inner.width,height:inner.height-top-8},source:{x:inner.x,y:inner.y+top+8,width:inner.width,height:inner.height-top-8}};
- return {desktop,short,score:{...inner,height:top},hero:{x:inner.x,y:inner.y+top+8,width:inner.width*.42,height:inner.height-top-8},source:{x:inner.x+inner.width*.46,y:inner.y+top+8,width:inner.width*.54,height:inner.height-top-8}};
+ const desktop=b.width>=600,pad=lost?(desktop?28:16):short?12:desktop?24:12,inner={x:b.x+pad,y:b.y+pad,width:b.width-pad*2,height:b.height-pad*2};
+ if(lost){
+  if(desktop||short){const width=short?Math.min(120,inner.width*.26):Math.min(310,inner.width*.34);return {desktop,short,hero:{...inner,width},score:{...inner,x:inner.x+width+24,width:inner.width-width-24},source:{x:inner.x,y:inner.y+inner.height-100,width,height:100}};}
+  const top=Math.min(166,inner.height*.44);return {desktop,short,score:{...inner,height:top},hero:{x:inner.x,y:inner.y+top+8,width:inner.width,height:inner.height-top-8},source:{x:inner.x,y:inner.y+top+8,width:inner.width,height:inner.height-top-8}};
+ }
+ if(short){const width=Math.min(104,inner.width*.25);return {desktop,short,hero:{...inner,width,height:Math.max(40,inner.height-32)},score:{...inner,x:inner.x+width+16,width:inner.width-width-16},source:{x:inner.x,y:inner.y,width,height:Math.max(40,inner.height-32)}};}
+ const top=desktop?Math.min(206,inner.height*.48):inner.height<240?90:Math.min(174,Math.max(112,inner.height*.44)),lowerY=inner.y+top+(inner.height<240?0:inner.height<280?6:12),lowerHeight=Math.max(48,inner.height-top-(inner.height<240?44:50)),heroWidth=inner.width*(desktop ? .34 : .36);
+ return {desktop,short,score:{...inner,height:top},hero:{x:inner.x,y:lowerY,width:heroWidth,height:lowerHeight},source:{x:inner.x+heroWidth+16,y:lowerY,width:inner.width-heroWidth-16,height:lowerHeight}};
 }
 
 function fit(view:SceneView,x:number,y:number,text:string,size:number,width:number,color=C.ink,name='',center=false){
@@ -70,21 +74,19 @@ function fit(view:SceneView,x:number,y:number,text:string,size:number,width:numb
 }
 /** All imagery stays contained. Fixed boxes survive missing or late optional resources. */
 export function drawSettlement(scene:Phaser.Scene,view:SceneView,b:Box,run:R2RunState,cleared:boolean,skipped:boolean,stageHeat:string,compactSafe=false){
- const facts=settlementFacts(run,cleared,skipped),lost=!cleared&&!skipped,p=settlementPlan(b,view.layout.height<500,lost),accent=lost?T.ink:facts.tier?T.red:T.jade;
+ const facts=settlementFacts(run,cleared,skipped),lost=!cleared&&!skipped,p=settlementPlan(b,view.layout.height<500,lost);
  const paper=scene.add.graphics().setName('result-art/stage').setData('bounds',b);
  paper.fillStyle(T.ink,.04).fillRoundedRect(b.x,b.y+3,b.width,b.height,4).fillStyle(T.paperLight).fillRoundedRect(b.x,b.y,b.width,b.height,4);
  paper.lineStyle(1,T.divider,.7).strokeRoundedRect(b.x+.5,b.y+.5,b.width-1,b.height-1,4);view.add(paper);
  if(scene.textures.exists('p00-paper'))view.add(scene.add.tileSprite(b.x+3,b.y+3,b.width-6,b.height-6,'p00-paper').setOrigin(0).setAlpha(.10));
- const ink=scene.add.graphics().setName('result-art/ink');view.add(ink);
- ink.lineStyle(2,accent,.8).beginPath().moveTo(b.x+12,b.y+32).lineTo(b.x+12,b.y+12).lineTo(b.x+42,b.y+12).strokePath();
- ink.lineStyle(1,accent,.25).beginPath().moveTo(b.x+b.width-12,b.y+b.height-38).lineTo(b.x+b.width-12,b.y+b.height-12).lineTo(b.x+b.width-44,b.y+b.height-12).strokePath();
- if(p.desktop)ink.lineStyle(1,T.divider,.6).beginPath().moveTo(p.score.x-13,b.y+30).lineTo(p.score.x-13,b.y+b.height-30).strokePath();
+
  const main=p.score,center=main.x+main.width/2,compact=p.short||main.height<200;
  const tag=fit(view,main.x,main.y,facts.tag,p.short?16:facts.tier===3?26:facts.tier===2?22:18,main.width-(run.stage?.boss?84:0),facts.tier>=2?C.red:C.jade,'result/tier').setFontFamily('Georgia, "Noto Serif SC", SimSun, serif').setFontStyle(facts.tier>=2?'bold':'normal');
  if(run.stage?.boss&&!skipped){const seal=fit(view,main.x+main.width,main.y,lost?'压轴未过':'压轴击败',14,main.width/2,lost?C.jade:C.red,'result/boss-seal').setOrigin(1,0);seal.setData('savedBoss',run.stage.boss.definitionId);}
  const hand=facts.trace?HAND_LABELS[facts.trace.handType]+' · '+facts.trace.level+'级':lost?failureSummary(run).reason:'本场热度';
- const handText=p.short?tag.setText(facts.tag+(facts.trace?' · '+HAND_LABELS[facts.trace.handType]:'')):fit(view,center,tag.y+tag.height+(compact?6:12),hand,16,main.width,C.ink,'result/hand',true);
- const scoreY=handText.y+handText.height+(compact?5:12),size=p.short?36:compact?38:p.desktop?[72,80,88,96][facts.tier]:[48,50,54,60][facts.tier];
+ const handText=p.short?tag.setText(facts.tag+(facts.trace?' · '+HAND_LABELS[facts.trace.handType]:'')):lost?fit(view,center,tag.y+tag.height+(compact?6:12),hand,16,main.width,C.ink,'result/hand',true):fit(view,main.x+main.width-(run.stage?.boss?84:0),main.y,hand,14,main.width*(run.stage?.boss ? .35 : .56),C.jade,'result/hand').setOrigin(1,0);
+ if(!lost&&!p.short)tag.setFontSize(14);
+ const scoreY=handText.y+handText.height+(compact?5:12),size=lost?(p.short?36:compact?38:p.desktop?72:48):p.short?30:p.desktop?[56,60,64,68][facts.tier]:main.height<100?32:main.height<140?36:[44,48,50,54][facts.tier];
  const exactScore=facts.trace?.finalScore??stageHeat,scoreLabel=(facts.trace?'+':'')+(exactScore.length>15&&/[1-9]/.test(exactScore.slice(3))?'≈':'')+heatText(exactScore);
  const score=view.text(center,scoreY,scoreLabel,size,facts.tier?C.red:C.ink).setName('result/score').setOrigin(.5,0).setWordWrapWidth(0).setFontFamily(SCORE_FONT).setFontStyle('bold').setData('exactScore',exactScore);
  // Set the actual score family before fitting: its measured width differs from the UI family.
@@ -95,26 +97,25 @@ export function drawSettlement(scene:Phaser.Scene,view:SceneView,b:Box,run:R2Run
  const numberInk=scene.add.graphics().setName('result-art/number-lane').setData('bounds',numberBox);view.root.addAt(numberInk,view.root.list.indexOf(score));
  if(facts.tier>=2){numberInk.fillStyle(T.red,facts.tier===3?.09:.045).fillPoints([{x:numberBox.x,y:numberBox.y+3},{x:numberBox.x+numberBox.width,y:numberBox.y},{x:numberBox.x+numberBox.width-2,y:numberBox.y+numberBox.height},{x:numberBox.x+2,y:numberBox.y+numberBox.height-3}],true);}
  numberInk.lineStyle(facts.tier===3?3:1,facts.tier?T.red:T.jade,facts.tier===3?.75:.3).beginPath().moveTo(main.x+6,numberBox.y+numberBox.height).lineTo(main.x+main.width-6,numberBox.y+numberBox.height-2).strokePath();
- const formulaY=score.y+score.displayHeight+9;
+ const formulaY=score.y+score.displayHeight+(p.short?4:8);
  const formula=facts.trace?'目标 '+heatText(run.stage!.targetHeat)+' · 已过关':lost?'目标 '+heatText(run.stage!.targetHeat)+' · 差 '+heatText((BigInt(run.stage!.targetHeat)-BigInt(stageHeat)).toString()):'已保存的本场结果';
  const formulaText=fit(view,center,formulaY,formula,14,main.width,C.jade,'result/formula',true);
  const receipt=facts.routeSummary??(run.stage!.playIndex===1?'首手过关 · 结果已保存':'第'+run.stage!.playIndex+'手过关'+(facts.trace?.finalScore!==stageHeat?' · 本场累计 '+heatText(stageHeat):' · 结果已保存'));
- const gap=fit(view,center,formulaText.y+formulaText.height+6,skipped?'本场跳过':lost?failureSummary(run).lastHand:receipt,14,main.width,C.jade,'result/gap',true);
+ const gap=fit(view,center,formulaText.y+formulaText.height+(p.short?2:5),skipped?'本场跳过':lost?failureSummary(run).lastHand:receipt,14,main.width,C.jade,'result/gap',true);
+ if(!lost&&(p.short||main.height<100)){formulaText.setText(formula+(p.short?'\n':' · ')+receipt);gap.setVisible(false).setText('');}
  const chainY=gap.y+gap.height+10;
- if(p.desktop&&facts.chain.length>1&&facts.tier<3)fit(view,main.x,chainY,(facts.jokerFactorSourceCount>3?'部分来源 · ':'')+facts.chain.join(' · '),14,main.width,C.jade,'result/chain-sources').setData('sourceEvents',facts.trace?.events.filter(e=>multiplicative(e)&&e.sourceType==='joker').map(e=>e.eventId));
- const reward:Box={x:p.desktop?main.x+main.width*.6:main.x,y:p.desktop?main.y+main.height-54:b.y+b.height-50,width:p.desktop?main.width*.4:main.width,height:42};
- // Mobile keeps the reward beside the lower portrait; score receives the whole upper width.
- if(!p.desktop&&!p.short){reward.x=p.source.x;reward.width=p.source.width;}
+ if(p.desktop&&main.height>180&&facts.chain.length>1&&facts.tier<3)fit(view,main.x,chainY,(facts.jokerFactorSourceCount>3?'部分来源 · ':'')+facts.chain.join(' · '),14,main.width,C.jade,'result/chain-sources').setData('sourceEvents',facts.trace?.events.filter(e=>multiplicative(e)&&e.sourceType==='joker').map(e=>e.eventId));
+ const reward:Box=p.short?{x:p.hero.x,y:b.y+b.height-34,width:p.hero.width,height:26}:{x:b.x+16,y:b.y+b.height-40,width:b.width-32,height:32};
  const artLayer=scene.add.container(0,0).setName('result-art/source-layer');view.add(artLayer);
  const paint=()=>{
   artLayer.removeAll(true);const start=view.root.length;
   const hero={...p.hero};
   if(compactSafe&&lost&&!p.desktop&&!p.short&&hero.y<gap.y+gap.height+10){const shift=gap.y+gap.height+10-hero.y;hero.y+=shift;hero.height-=shift;}
-  const heroFoot=p.desktop?(facts.hero?82:64):facts.hero?72:28,heroHeight=Math.max(0,hero.height-heroFoot),key=selectionPortraitKey(run.characterId);
+  const heroFoot=lost?(p.desktop?64:28):p.short?20:p.desktop?(facts.hero?76:28):facts.hero?72:22,heroHeight=Math.max(0,hero.height-heroFoot),key=selectionPortraitKey(run.characterId);
   const addArt=(key:string,box:Box,name:string,id:string)=>{const image=scene.add.image(box.x+box.width/2,box.y+box.height/2,key).setName(name).setData('assetId',id).setData('bounds',box);image.setScale(Math.min(box.width/image.width,box.height/image.height));view.add(image);return image;};
   let heroImage:Phaser.GameObjects.Image|undefined;
   if(heroHeight>=40&&scene.textures.exists(key))heroImage=addArt(key,{...hero,height:heroHeight},'result-art/hero',run.characterId+'.selection');
-  else if(heroHeight>=40&&scene.textures.exists(avatarKey(run.characterId)))heroImage=addArt(avatarKey(run.characterId),{...hero,y:hero.y+heroHeight*.2,height:Math.min(100,heroHeight*.6)},'result-art/hero',run.characterId+'.avatar');
+  else if(heroHeight>=24&&scene.textures.exists(avatarKey(run.characterId)))heroImage=addArt(avatarKey(run.characterId),{...hero,y:hero.y+heroHeight*.2,height:Math.min(100,heroHeight*.6)},'result-art/hero',run.characterId+'.avatar');
   else if(heroHeight>=40){
    const trace=facts.trace??(lost?stageOutcome(run.stage!,run.lastTrace).last:null),played=trace?.sets.playedIds.map(id=>trace.cards.find(c=>c.id===id)).filter(c=>!!c)??[];
    const frame={x:hero.x+Math.max(0,(hero.width-240)/2),y:hero.y,width:Math.min(240,hero.width),height:heroHeight};
@@ -139,27 +140,23 @@ export function drawSettlement(scene:Phaser.Scene,view:SceneView,b:Box,run:R2Run
    }
   }
   const heroName=fit(view,hero.x+hero.width/2,hero.y+heroHeight+2,getCharacter(run.characterId).name,p.desktop?20:16,hero.width,C.ink,'result/hero-name',true).setFontFamily('Georgia, "Noto Serif SC", SimSun, serif').setFontStyle('bold');
-  if(!p.short&&(p.desktop||facts.hero)){
-   const skill=facts.heroSkill?fit(view,hero.x+hero.width/2,heroName.y+heroName.height+4,facts.heroSkill,14,hero.width,C.red,'result/hero-skill',true).setFontStyle('bold'):undefined;
-   fit(view,hero.x+hero.width/2,(skill?skill.y+skill.height:heroName.y+heroName.height)+4,facts.heroCopy,14,hero.width,facts.hero?C.red:C.jade,'result/hero-effect',true).setData('ownerCharacter',run.characterId);
+  if(!p.short&&facts.hero){
+   const skill=facts.heroSkill?fit(view,hero.x+hero.width/2,heroName.y+heroName.height+(hero.height<90?2:4),facts.heroSkill,14,hero.width,C.red,'result/hero-skill',true).setFontStyle('bold'):undefined;
+   fit(view,hero.x+hero.width/2,(skill?skill.y+skill.height:heroName.y+heroName.height)+(hero.height<90?2:4),facts.heroCopy,14,hero.width,facts.hero?C.red:C.jade,'result/hero-effect',true).setData('ownerCharacter',run.characterId);
   }
-  const source=p.desktop?{x:main.x,y:main.y+main.height-(facts.tier===3?128:104),width:main.width*.56,height:facts.tier===3?126:102}:p.source;
-  const card=facts.card,cardWidth=p.desktop?(facts.tier===3?72:52):facts.tier===3?Math.min(64,source.width*.4):source.width<160?38:52,cardHeight=cardWidth*1.4,textX=source.x+(card?cardWidth+12:0),textWidth=source.width-(card?cardWidth+12:0);
-  const focus=card?fit(view,source.x,source.y,multiplicative(card.event)?'倍率主力'+(facts.jokerFactorSourceCount>1?' · '+facts.jokerFactorSourceCount+'路':''):'本手来源',14,source.width,facts.tier?C.red:C.jade,'result/source-focus').setFontStyle('bold'):undefined;
+  const source=p.source;
+  const card=facts.card,smallSource=source.height<112,cardWidth=p.desktop?56:smallSource?32:44,cardHeight=cardWidth*1.4,textX=source.x+(card?cardWidth+12:0),textWidth=source.width-(card?cardWidth+12:0);
+  const focus=card&&!p.short&&!smallSource?fit(view,source.x,source.y,multiplicative(card.event)?'倍率主力'+(facts.jokerFactorSourceCount>1?' · '+facts.jokerFactorSourceCount+'路':''):'本手来源',14,source.width,facts.tier?C.red:C.jade,'result/source-focus').setFontStyle('bold'):undefined;
   const sourceY=focus?focus.y+focus.height+6:source.y;
-  // A local source feeds the number lane along its margin, leaving the receipt text clear.
-  if(card&&!p.short){const link=scene.add.graphics().setName('result-art/source-link');view.add(link);
-   link.lineStyle(facts.tier===3?2:1,facts.tier?T.red:T.jade,.32).beginPath().moveTo(source.x-5,source.y-7).lineTo(source.x-5,numberBox.y+numberBox.height+13).lineTo(source.x+12,numberBox.y+numberBox.height+13).strokePath();
-  }
-  if(card&&facts.tier>=1)view.add(scene.add.graphics().lineStyle(facts.tier===3?2:1,T.red,.55).beginPath().moveTo(source.x-4,sourceY+2).lineTo(source.x-4,sourceY+cardHeight-2).strokePath()).setName('result-art/source-accent');
+  if(card&&!p.short&&facts.tier>=1)view.add(scene.add.graphics().lineStyle(facts.tier===3?2:1,T.red,.55).beginPath().moveTo(source.x-4,sourceY+2).lineTo(source.x-4,sourceY+cardHeight-2).strokePath()).setName('result-art/source-accent');
   if(card&&!p.short){const cardBox={x:source.x,y:sourceY,width:cardWidth,height:cardHeight},cardKey=jokerArtKey(card.id);
    if(cardKey&&scene.textures.exists(cardKey))addArt(cardKey,cardBox,'result-art/source',card.id+'.thumbnail');
    else {view.material(cardBox,T.paper,T.paper,3);view.add(scene.add.graphics().lineStyle(1,T.divider).strokeRoundedRect(cardBox.x,cardBox.y,cardBox.width,cardBox.height,3));fit(view,cardBox.x+cardWidth/2,cardBox.y+8,card.name.split('').join('\n'),14,cardWidth-8,C.jade,'result-art/source-fallback',true);}
   }
-  if(!p.short&&source.height>=80){
+  if(!p.short&&source.height>=48){
    let sy=sourceY;
-   if(card){const name=fit(view,textX,sy,card.name,facts.tier===3?18:14,textWidth,C.ink,'result/source-continuity').setFontStyle('bold');sy+=name.height+4;
-    const effect=fit(view,textX,sy,facts.cardCopy!,facts.tier===3?18:14,textWidth,facts.tier?C.red:C.jade,'result/source-effect');sy+=effect.height+4;
+   if(card){const name=fit(view,textX,sy,card.name,p.desktop?18:14,textWidth,C.ink,'result/source-continuity').setFontStyle('bold');sy+=name.height+(smallSource?2:4);
+    const effect=fit(view,textX,sy,facts.cardCopy!,14,textWidth,facts.tier?C.red:C.jade,'result/source-effect');sy+=effect.height+(smallSource?2:4);
     const growth=facts.growth?.definitionId===card.id&&facts.growth.instanceId===card.event.sourceInstanceId?facts.growth:undefined;
     if(growth)fit(view,textX,sy,'手后'+growth.before+'→'+growth.after,14,textWidth,C.jade,'result/growth-saved').setData('ownerSourceInstance',card.event.sourceInstanceId);
    }else if(facts.trace){

@@ -46,7 +46,7 @@ import {PAPER_CSS,PAPER_THEME as T} from './theme';
 
 export interface IntermissionResult {cleared:boolean;stageIndex:number;stageHeat:string;handsLeft:number;goldEarned:number;failureCue?:FailureCue;rewardClearId?:string}
 function resultLayout(width:number,height:number,top:number,bottom:number,nextBoss=false,failure=false){
-  const short=height<500,portrait=width<700&&height>width,tight=portrait&&height<=700,compactNext=tight&&bottom>0,w=Math.min(980,width-24),x=(width-w)/2;
+  const short=height<500,portrait=width<700&&height>width,tight=portrait&&height<=700,compactNext=tight&&(bottom>0||!failure),w=Math.min(980,width-24),x=(width-w)/2;
   const footerY=height-bottom-(portrait?(tight?132:148):104),bodyY=top+(short?64:portrait?(tight?(compactNext?88:100):108):94),available=footerY-16-bodyY;
   const nextHeight=short?available:Math.min(failure?(tight?60:100):tight?(compactNext?32:60):nextBoss?132:portrait?100:112,failure?Math.max(52,available*.26):available*(nextBoss ? .30 : .26));
   const score:Box=short?{x,y:bodyY,width:w*.64-12,height:available}:{x,y:bodyY,width:w,height:available-nextHeight-(compactNext?8:12)};
@@ -204,7 +204,7 @@ export class IntermissionScene extends Phaser.Scene {
     const presentation=drawSettlement(this,v,b,run,this.result.cleared,skipped,this.result.stageHeat,compactSafe);
     const explainHero=(image:Phaser.GameObjects.Image|undefined)=>{
       if(!image)return;
-      const hit=v.rect(image.getData('bounds')).setFillStyle(0,0).setStrokeStyle(0);image.parentContainer.add(hit);
+      const hit=v.rect(image.getData('bounds')).setFillStyle(0,0).setStrokeStyle();image.parentContainer.add(hit);
       v.target(hit,'result/hero-details',{tap:()=>showHeroExplanation(this.dialog,run.characterId,{run,closeLabel:'返回结算'}),detail:()=>showHeroExplanation(this.dialog,run.characterId,{run,closeLabel:'返回结算'})});
     };
     if(lost&&run.outcome?.reason==='abandoned'){
@@ -216,8 +216,8 @@ export class IntermissionScene extends Phaser.Scene {
     if(this.result.cleared&&!skipped){
       const band=presentation.reward,center=band.x+band.width/2;
       v.add(this.add.graphics().lineStyle(1,T.divider,.7).beginPath().moveTo(band.x,band.y-5).lineTo(band.x+band.width,band.y-5).strokePath());
-      const reward=v.text(center,band.y+7,'奖励  +'+this.result.goldEarned+' 金',band.width<220?16:20,PAPER_CSS.ink).setOrigin(.5,0).setFontStyle('bold').setName('result/reward');
-      const cue=this.firstRender&&this.rewardCue.claim(run,this.result),size=32,diameter=size*.7,gap=6;
+      const reward=v.text(center,band.y+7,'奖励  +'+this.result.goldEarned+' 金',band.height<30?14:band.width<220?16:20,PAPER_CSS.ink).setOrigin(.5,0).setFontStyle('bold').setName('result/reward');
+      const cue=this.firstRender&&this.rewardCue.claim(run,this.result),size=band.height<30?24:32,diameter=size*.7,gap=6;
       const x=center-(reward.width+diameter+gap)/2+diameter/2,coinY=reward.y+reward.height/2-size*.04;
       const show=()=>{reward.x=center+(diameter+gap)/2;return addRewardCoin(this,v.root,x,coinY,size,run.stage!.clearId!);};
       if(this.result.goldEarned>0&&run.stage?.clearId){
