@@ -2,6 +2,8 @@
 import assert from 'node:assert/strict';
 export const waitScene=(page,key)=>page.waitForFunction(key=>window.__harness?.game.scene.isActive(key),key);
 export async function point(page,key,name){
+  const native=page.locator('[data-ui="'+key+'/'+name+'"]');
+  if(await native.count()){await native.waitFor({state:'visible'});const b=await native.boundingBox();assert.ok(b,'visible native UI');return {x:b.x+b.width/2,y:b.y+b.height/2,enabled:!await native.isDisabled()};}
   await page.waitForFunction(({key,name})=>{const scene=window.__harness?.game.scene.getScene(key);if(!scene?.scene.isActive())return false;const walk=list=>list.some(o=>o.name===name||o.list&&walk(o.list));return walk(scene.children.list);},{key,name});
   await page.evaluate(()=>new Promise((resolve,reject)=>{
     const game=window.__harness.game,done=()=>{clearTimeout(timer);resolve();};

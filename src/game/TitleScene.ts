@@ -5,23 +5,23 @@ import Phaser from 'phaser';
 import {AudioEngine} from '../audio/AudioEngine';
 import {gameSession} from './session';
 import {routeSavedRun} from './RunMenu';
-import {SceneView} from './SceneView';
-import {inkSettlingEase} from './inkwaveSpring';
-import {mountInkBurst} from './InkBurst';
+import {selectionModeName} from './ModeSelectDialog';
+import {characterForRun} from './CharacterRunCopy';
+import {HomePage} from './HomePage';
 
-/** A short, immediately usable stage entrance; its animation never starts a run. */
+/** The paper home shares loading artwork; native actions keep the original new/continue routes. */
 export class TitleScene extends Phaser.Scene {
   private leaving=false;
   private seed?:string;
-  private view!:SceneView;
-  private firstRender=true;
+  private home?:HomePage;
   private confirmation?:Phaser.Time.TimerEvent;
   private readonly audio=AudioEngine.shared;
   constructor(){super('title');}
   init(data?:{seed?:string}):void {this.seed=data?.seed??new URLSearchParams(location.search).get('seed')??undefined;}
   create():void {
-    this.leaving=false;this.firstRender=true;this.audio.setScene('menu');
-    this.cameras.main.setBackgroundColor('#F3EADB');this.view=new SceneView(this,()=>this.render());this.render();warmOpeningImages(this);
+    this.leaving=false;this.audio.setScene('menu');this.cameras.main.setBackgroundColor('#F3EADB');
+    this.home?.destroy();this.home=new HomePage({start:()=>this.enterNew(),resume:()=>this.continueRun()});this.render();warmOpeningImages(this);
+    this.game.canvas.setAttribute('aria-label',GAME_NAME+' · 首页');this.game.canvas.setAttribute('aria-hidden','true');
     const keyboardOpen=(event:KeyboardEvent)=>{
       const element=document.activeElement;
       if(element!==document.body&&element!==this.game.canvas||document.querySelector('dialog[open]'))return;
@@ -35,59 +35,15 @@ export class TitleScene extends Phaser.Scene {
     const unsubscribe=gameSession().subscribe(()=>{if(this.scene.isActive()&&!this.leaving)this.render();});
     this.events.once(Phaser.Scenes.Events.SHUTDOWN,()=>{
       this.leaving=true;unsubscribe();this.input.keyboard?.off('keydown-ENTER',keyboardOpen);this.input.keyboard?.off('keydown-SPACE',keyboardOpen);
-      this.confirmation?.remove();this.confirmation=undefined;
+      this.confirmation?.remove();this.confirmation=undefined;this.home?.destroy();this.home=undefined;this.game.canvas.removeAttribute('aria-hidden');
       siblings.forEach(scene=>scene.events.off(Phaser.Scenes.Events.START,stopTitle));
     });
   }
   private reducedMotion():boolean {return gameSession().reducedMotion||window.matchMedia('(prefers-reduced-motion: reduce)').matches;}
   private render():void {
     if(this.leaving)return;
-    const v=this.view,l=v.layout,{width:w,height:h}=l,short=h<500,style=getComputedStyle(document.documentElement),bottom=parseFloat(style.getPropertyValue('--safe-bottom'))||0,right=parseFloat(style.getPropertyValue('--safe-right'))||0,left=parseFloat(style.getPropertyValue('--safe-left'))||0;
-    const session=gameSession(),saved=session.run,canContinue=!!saved&&['idle','readonly'].includes(saved.status);
-    const buttonWidth=short?Math.min(340,(w-left-right-64)*.44):Math.min(360,w-48),x=short?w-right-24-buttonWidth:(w-buttonWidth)/2,visualX=short?(left+x)/2:w/2;
-    v.clear();v.paperBackground();this.game.canvas.setAttribute('aria-label',GAME_NAME+' · 开始或继续游戏');
-    const titleSize=short?Math.max(32,Math.min(50,(h-l.hud.y-bottom)*.2)):Math.max(38,Math.min(w<700?56:94,w*.18,h*.15)),titleY=short?l.hud.y+titleSize*.6+4:h*.23;
-    const entrance=this.firstRender&&session.loaded&&!this.reducedMotion();if(session.loaded)this.firstRender=false;
-    if(entrance)mountInkBurst(this,v.root,visualX,titleY,Math.min(w,h)*.28,0x3f606b,900,18);
-    const title=v.text(visualX,titleY,GAME_NAME,titleSize,'#203944').setOrigin(.5).setFontFamily('Georgia, "Noto Serif SC", SimSun, serif').setFontStyle('bold').setShadow(0,2,'#fff3d9',4,true,true).setName('brand/title');
-    for(let size=titleSize;title.width>w-left-right-48&&size>28;)title.setFontSize(--size);
-    const textColor='#3F606B';
-    title.setColor('#26313A').setShadow(0,0,'#000',0,false,false);
-    v.text(visualX,titleY+titleSize*.75,'唐宋群英 · 牌局争锋',16,textColor).setOrigin(.5);
-    const fanTop=titleY+titleSize*.75+28,fanRoom=Math.max(24,h-bottom-18-fanTop),fanY=short?fanTop+fanRoom/2:h*.56,cardWidth=short?Math.min(82,(x-left-48)/3.5,fanRoom/1.9):Math.min(112,w*.2),cardHeight=cardWidth*1.42;
-    const fan=v.add(this.add.container(visualX,fanY));
-    [-1,0,1].forEach((side,i)=>{
-      const card=this.add.container(side*cardWidth*.69,Math.abs(side)*9).setAngle(side*13),g=this.add.graphics();
-      g.fillStyle(0x071b24,.4).fillRoundedRect(-cardWidth/2+3,-cardHeight/2+6,cardWidth,cardHeight,7);
-      g.fillStyle(i===1?0xf2e4c9:0xe2e8e5).fillRoundedRect(-cardWidth/2,-cardHeight/2,cardWidth,cardHeight,7);
-      g.lineStyle(1.5,0x26313a).strokeRoundedRect(-cardWidth/2,-cardHeight/2,cardWidth,cardHeight,7);card.add(g);
-      if(i!==1&&this.textures.exists('p00-card-back'))card.add(this.add.image(0,0,'p00-card-back').setDisplaySize(cardWidth-6,cardHeight-6).setAlpha(.9));
-      else {
-        const mark=this.add.graphics().fillStyle(0xa24843);
-        mark.fillCircle(-cardWidth*.13,-cardHeight*.07,cardWidth*.15).fillCircle(cardWidth*.13,-cardHeight*.07,cardWidth*.15);
-        mark.fillTriangle(-cardWidth*.28,-cardHeight*.04,cardWidth*.28,-cardHeight*.04,0,cardHeight*.22);card.add(mark);
-      }
-      fan.add(card);
-    });
-    if(entrance){
-      title.setScale(.3,.4).setAngle(-12).setAlpha(.2);this.tweens.add({targets:title,scaleX:1,scaleY:1,angle:0,alpha:1,duration:780,ease:inkSettlingEase(.35)});
-      fan.y+=Math.min(82,h*.12);fan.setAlpha(.1);this.tweens.add({targets:fan,y:fanY,alpha:1,duration:620,delay:110,ease:'Cubic.easeOut'});
-      for(const [i,child] of fan.list.entries()){const card=child as Phaser.GameObjects.Container,finalX=card.x,finalAngle=card.angle;card.x+=(i-1)*cardWidth*1.8;card.setAngle(finalAngle+(i-1)*34);this.tweens.add({targets:card,x:finalX,angle:finalAngle,duration:560,delay:110+i*55,ease:inkSettlingEase(.3)});card.once('destroy',()=>this.tweens.killTweensOf(card));}
-    }
-    title.once('destroy',()=>this.tweens.killTweensOf(title));
-    fan.once('destroy',()=>this.tweens.killTweensOf(fan));
-    const primaryY=short?l.hud.y+(h-l.hud.y-bottom-(saved?112:52))/2:h-bottom-168,primary={x,y:primaryY,width:buttonWidth,height:52};
-    if(saved){
-      v.button(primary,'继续本局','action/title-continue',()=>this.continueRun(),canContinue,true);
-      v.button({x,y:primaryY+62,width:buttonWidth,height:48},'选角，开始新局','action/title-start',()=>this.enterNew(),!session.working);
-      const modeLabel=saved.state.mode==='standard'?`普通 D${saved.state.difficulty}`:saved.state.mode==='tutorial'?'教程':`挑战 ${saved.state.challengeId}`;
-      v.text(short?x+buttonWidth/2:w/2,short?primaryY+128:primaryY-28,modeLabel+' · '+(saved.state.tourMode==='endless'?'无尽 · ':'')+'第 '+saved.state.chapter+' 章 · 金币 '+saved.state.gold,14,textColor,buttonWidth).setOrigin(.5).setAlign('center');
-    }else {
-      v.button(primary,'点触开场','action/title-start',()=>this.enterNew(),!session.working,true);
-      if(!short)v.text(w/2,primaryY+66,'选英雄、定路线，开始对局。',14,'#fff0d2').setOrigin(.5).setShadow(0,1,'#172d36',3,true,true);
-    }
-    if(session.notice)v.text(24,h-bottom-38,'存档提示请查看右上菜单。',14,'#ffd3b4',w-48).setShadow(0,1,'#172d36',3,true,true);
-    title.setName('title/name');
+    const session=gameSession(),saved=session.run;
+    this.home?.update({summary:saved?[characterForRun(saved.state).name,selectionModeName(saved.state)+'模式',...(saved.state.tourMode==='endless'?['无尽']:[]),'第 '+saved.state.chapter.toLocaleString('zh-CN')+' 章','金币 '+saved.state.gold.toLocaleString('zh-CN')]:undefined,canContinue:!!saved&&['idle','readonly'].includes(saved.status),canStart:!session.working,notice:!!session.notice,reduced:this.reducedMotion()});
   }
   private enterNew():void {
     if(this.leaving||gameSession().working)return;
@@ -98,9 +54,8 @@ export class TitleScene extends Phaser.Scene {
     this.confirmTitle(()=>{this.audio.titleBell();this.scene.stop();routeSavedRun(this.game);});
   }
   private confirmTitle(leave:()=>void):void {
-    this.leaving=true;this.audio.titleConfirm();const title=this.view.root.getByName('title/name') as Phaser.GameObjects.Text;
+    this.leaving=true;this.home?.confirm();this.audio.titleConfirm();
     if(this.reducedMotion()){leave();return;}
-    if(title){this.tweens.killTweensOf(title);title.setScale(1).setAngle(0).setAlpha(1);this.tweens.add({targets:title,scaleX:1.09,scaleY:.9,duration:70,yoyo:true,ease:'Sine.easeInOut'});mountInkBurst(this,this.view.root,title.x,title.y,Math.min(this.scale.width,this.scale.height)*.36,0xb8473a,650,20);}
     this.confirmation=this.time.delayedCall(200,()=>{this.confirmation=undefined;if(this.scene.isActive())leave();});
   }
 }

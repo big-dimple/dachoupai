@@ -1,0 +1,1612 @@
+{
+  "base": "fa5b30ee1ebf28d4ee71d676b231eab260172033",
+  "head": "fa5b30ee1ebf28d4ee71d676b231eab260172033",
+  "baselineTitleBlob": "b8d5734a317c03a04f1395dd425081c606e6ae75",
+  "sourceHashes": {
+    "src/game/TitleScene.ts": "b57856ef5b8736da66239154a12f064498e01ef9b02ad0b968abb73fb13e14e0",
+    "src/game/HomePage.ts": "ba27df63c0979e955a88446233cc6ae5a8c6b1ce4c9d40ceb89091b362fd4f68",
+    "src/game/HomePage.css": "d37f6a2909972e0d92ba655d191656e5d74acdaaab6b8d9895f9d281f716c546"
+  },
+  "cases": [
+    {
+      "label": "320-no-save",
+      "root": {
+        "scrollWidth": 320,
+        "clientWidth": 320,
+        "scrollHeight": 740,
+        "clientHeight": 740
+      },
+      "width": 320,
+      "height": 740,
+      "heading": {
+        "text": "唐宋牌",
+        "x": 56.8125,
+        "y": 257.25,
+        "width": 206.375,
+        "height": 73.90625
+      },
+      "copy": [
+        {
+          "text": "选英雄、定路线，开始对局。",
+          "x": 20,
+          "y": 581.296875,
+          "width": 280,
+          "height": 22.390625
+        }
+      ],
+      "buttons": [
+        {
+          "text": "开始新局",
+          "x": 20,
+          "y": 517.296875,
+          "width": 280,
+          "height": 50,
+          "disabled": false
+        }
+      ],
+      "stamp": {
+        "text": "开卷",
+        "x": 209,
+        "y": 95.109375,
+        "width": 27,
+        "height": 48
+      },
+      "menu": {
+        "text": "菜单",
+        "x": 264,
+        "y": 12,
+        "width": 44,
+        "height": 44
+      },
+      "landscape": 10,
+      "suits": 3,
+      "text": "纸上山河 · 一局相逢\n开卷\n一纸纳山河\n落子会群英\n唐\n宋\n牌\n\n唐宋群英 · 牌局争锋\n\n开始新局\n\n选英雄、定路线，开始对局。\n\n一纸纳山河 · 六位群英同席"
+    },
+    {
+      "label": "320-saved",
+      "root": {
+        "scrollWidth": 320,
+        "clientWidth": 320,
+        "scrollHeight": 740,
+        "clientHeight": 740
+      },
+      "width": 320,
+      "height": 740,
+      "heading": {
+        "text": "唐宋牌",
+        "x": 56.8125,
+        "y": 208.703125,
+        "width": 206.375,
+        "height": 73.90625
+      },
+      "copy": [
+        {
+          "text": "苏轼",
+          "x": 57.5625,
+          "y": 468.75,
+          "width": 28,
+          "height": 23.09375
+        },
+        {
+          "text": "普通模式",
+          "x": 97.5625,
+          "y": 468.75,
+          "width": 56,
+          "height": 23.09375
+        },
+        {
+          "text": "第 1 章",
+          "x": 165.5625,
+          "y": 468.75,
+          "width": 44.5,
+          "height": 23.09375
+        },
+        {
+          "text": "金币 6",
+          "x": 222.0625,
+          "y": 468.75,
+          "width": 40.359375,
+          "height": 23.09375
+        },
+        {
+          "text": "选英雄、定路线，开始对局。",
+          "x": 20,
+          "y": 629.84375,
+          "width": 280,
+          "height": 22.390625
+        }
+      ],
+      "buttons": [
+        {
+          "text": "继续本局",
+          "x": 20,
+          "y": 505.84375,
+          "width": 280,
+          "height": 50,
+          "disabled": false
+        },
+        {
+          "text": "开始新局",
+          "x": 20,
+          "y": 565.84375,
+          "width": 280,
+          "height": 50,
+          "disabled": false
+        }
+      ],
+      "stamp": {
+        "text": "开卷",
+        "x": 209,
+        "y": 46.5625,
+        "width": 27,
+        "height": 48
+      },
+      "menu": {
+        "text": "菜单",
+        "x": 264,
+        "y": 12,
+        "width": 44,
+        "height": 44
+      },
+      "landscape": 10,
+      "suits": 3,
+      "text": "纸上山河 · 一局相逢\n开卷\n一纸纳山河\n落子会群英\n唐\n宋\n牌\n\n唐宋群英 · 牌局争锋\n\n苏轼\n普通模式\n第 1 章\n金币 6\n\n继续本局\n开始新局\n\n选英雄、定路线，开始对局。\n\n一纸纳山河 · 六位群英同席"
+    },
+    {
+      "label": "320-long-values",
+      "root": {
+        "scrollWidth": 320,
+        "clientWidth": 320,
+        "scrollHeight": 777,
+        "clientHeight": 740
+      },
+      "width": 320,
+      "height": 740,
+      "heading": {
+        "text": "唐宋牌",
+        "x": 56.8125,
+        "y": 182.140625,
+        "width": 206.375,
+        "height": 73.90625
+      },
+      "copy": [
+        {
+          "text": "文成公主",
+          "x": 98,
+          "y": 442.1875,
+          "width": 56,
+          "height": 23.09375
+        },
+        {
+          "text": "普通模式",
+          "x": 166,
+          "y": 442.1875,
+          "width": 56,
+          "height": 23.09375
+        },
+        {
+          "text": "第 9,007,199,254,740,991 章",
+          "x": 67.75,
+          "y": 469.28125,
+          "width": 184.5,
+          "height": 23.09375
+        },
+        {
+          "text": "金币 9,007,199,254,740,991",
+          "x": 69.8125,
+          "y": 496.375,
+          "width": 180.359375,
+          "height": 23.09375
+        },
+        {
+          "text": "选英雄、定路线，开始对局。",
+          "x": 20,
+          "y": 657.46875,
+          "width": 280,
+          "height": 22.390625
+        },
+        {
+          "text": "存档提示请查看右上菜单。",
+          "x": 20,
+          "y": 693.859375,
+          "width": 280,
+          "height": 22.390625
+        }
+      ],
+      "buttons": [
+        {
+          "text": "继续本局",
+          "x": 20,
+          "y": 533.46875,
+          "width": 280,
+          "height": 50,
+          "disabled": false
+        },
+        {
+          "text": "开始新局",
+          "x": 20,
+          "y": 593.46875,
+          "width": 280,
+          "height": 50,
+          "disabled": false
+        }
+      ],
+      "stamp": {
+        "text": "开卷",
+        "x": 209,
+        "y": 20,
+        "width": 27,
+        "height": 48
+      },
+      "menu": {
+        "text": "菜单",
+        "x": 264,
+        "y": 12,
+        "width": 44,
+        "height": 44
+      },
+      "landscape": 10,
+      "suits": 3,
+      "text": "纸上山河 · 一局相逢\n开卷\n一纸纳山河\n落子会群英\n唐\n宋\n牌\n\n唐宋群英 · 牌局争锋\n\n文成公主\n普通模式\n第 9,007,199,254,740,991 章\n金币 9,007,199,254,740,991\n\n继续本局\n开始新局\n\n选英雄、定路线，开始对局。\n\n存档提示请查看右上菜单。\n\n一纸纳山河 · 六位群英同席"
+    },
+    {
+      "label": "320-zoom-1.25",
+      "root": {
+        "scrollWidth": 256,
+        "clientWidth": 256,
+        "scrollHeight": 777,
+        "clientHeight": 592
+      },
+      "width": 320,
+      "height": 740,
+      "heading": {
+        "text": "唐宋牌",
+        "x": 60.5,
+        "y": 237.484375,
+        "width": 199,
+        "height": 71.28125
+      },
+      "copy": [
+        {
+          "text": "文成公主",
+          "x": 82.5,
+          "y": 552,
+          "width": 70,
+          "height": 28.875
+        },
+        {
+          "text": "普通模式",
+          "x": 167.5,
+          "y": 552,
+          "width": 70,
+          "height": 28.875
+        },
+        {
+          "text": "第 9,007,199,254,740,991 章",
+          "x": 44.6875,
+          "y": 585.875,
+          "width": 230.625,
+          "height": 28.875
+        },
+        {
+          "text": "金币 9,007,199,254,740,991",
+          "x": 47.265625,
+          "y": 619.75,
+          "width": 225.453125,
+          "height": 28.875
+        },
+        {
+          "text": "选英雄、定路线，开始对局。",
+          "x": 25,
+          "y": 821.125,
+          "width": 270,
+          "height": 28
+        },
+        {
+          "text": "存档提示请查看右上菜单。",
+          "x": 25,
+          "y": 866.625,
+          "width": 270,
+          "height": 28
+        }
+      ],
+      "buttons": [
+        {
+          "text": "继续本局",
+          "x": 25,
+          "y": 666.125,
+          "width": 270,
+          "height": 62.5,
+          "disabled": false
+        },
+        {
+          "text": "开始新局",
+          "x": 25,
+          "y": 741.125,
+          "width": 270,
+          "height": 62.5,
+          "disabled": false
+        }
+      ],
+      "stamp": {
+        "text": "开卷",
+        "x": 182.5,
+        "y": 25,
+        "width": 32.5,
+        "height": 59.5
+      },
+      "menu": {
+        "text": "菜单",
+        "x": 250,
+        "y": 15,
+        "width": 55,
+        "height": 55
+      },
+      "landscape": 10,
+      "suits": 3,
+      "text": "纸上山河 · 一局相逢\n开卷\n唐\n宋\n牌\n\n唐宋群英 · 牌局争锋\n\n文成公主\n普通模式\n第 9,007,199,254,740,991 章\n金币 9,007,199,254,740,991\n\n继续本局\n开始新局\n\n选英雄、定路线，开始对局。\n\n存档提示请查看右上菜单。\n\n一纸纳山河 · 六位群英同席"
+    },
+    {
+      "label": "320-zoom-2",
+      "root": {
+        "scrollWidth": 160,
+        "clientWidth": 160,
+        "scrollHeight": 978,
+        "clientHeight": 370
+      },
+      "width": 320,
+      "height": 740,
+      "heading": {
+        "text": "唐宋牌",
+        "x": 39.40625,
+        "y": 414,
+        "width": 241.203125,
+        "height": 86.390625
+      },
+      "copy": [
+        {
+          "text": "文成公主",
+          "x": 104,
+          "y": 918.390625,
+          "width": 112,
+          "height": 46.1875
+        },
+        {
+          "text": "普通模式",
+          "x": 104,
+          "y": 972.578125,
+          "width": 112,
+          "height": 46.1875
+        },
+        {
+          "text": "第 9,007,199,254,740,991 章",
+          "x": 40,
+          "y": 1026.765625,
+          "width": 240,
+          "height": 138.5625
+        },
+        {
+          "text": "金币 9,007,199,254,740,991",
+          "x": 40,
+          "y": 1173.328125,
+          "width": 240,
+          "height": 138.5625
+        },
+        {
+          "text": "选英雄、定路线，开始对局。",
+          "x": 40,
+          "y": 1587.890625,
+          "width": 240,
+          "height": 89.59375
+        },
+        {
+          "text": "存档提示请查看右上菜单。",
+          "x": 40,
+          "y": 1705.484375,
+          "width": 240,
+          "height": 89.59375
+        }
+      ],
+      "buttons": [
+        {
+          "text": "继续本局",
+          "x": 40,
+          "y": 1339.890625,
+          "width": 240,
+          "height": 100,
+          "disabled": false
+        },
+        {
+          "text": "开始新局",
+          "x": 40,
+          "y": 1459.890625,
+          "width": 240,
+          "height": 100,
+          "disabled": false
+        }
+      ],
+      "stamp": {
+        "text": "开卷",
+        "x": 98,
+        "y": 57,
+        "width": 54,
+        "height": 96
+      },
+      "menu": {
+        "text": "菜单",
+        "x": 208,
+        "y": 24,
+        "width": 88,
+        "height": 88
+      },
+      "landscape": 10,
+      "suits": 3,
+      "text": "纸上山河 · 一局相逢\n开卷\n唐\n宋\n牌\n\n唐宋群英 · 牌局争锋\n\n文成公主\n普通模式\n第 9,007,199,254,740,991 章\n金币 9,007,199,254,740,991\n\n继续本局\n开始新局\n\n选英雄、定路线，开始对局。\n\n存档提示请查看右上菜单。\n\n一纸纳山河 · 六位群英同席"
+    },
+    {
+      "label": "320-replacement-restored",
+      "root": {
+        "scrollWidth": 320,
+        "clientWidth": 320,
+        "scrollHeight": 740,
+        "clientHeight": 740
+      },
+      "width": 320,
+      "height": 740,
+      "heading": {
+        "text": "唐宋牌",
+        "x": 56.8125,
+        "y": 208.703125,
+        "width": 206.375,
+        "height": 73.90625
+      },
+      "copy": [
+        {
+          "text": "文成公主",
+          "x": 43.5625,
+          "y": 468.75,
+          "width": 56,
+          "height": 23.09375
+        },
+        {
+          "text": "普通模式",
+          "x": 111.5625,
+          "y": 468.75,
+          "width": 56,
+          "height": 23.09375
+        },
+        {
+          "text": "第 1 章",
+          "x": 179.5625,
+          "y": 468.75,
+          "width": 44.5,
+          "height": 23.09375
+        },
+        {
+          "text": "金币 6",
+          "x": 236.0625,
+          "y": 468.75,
+          "width": 40.359375,
+          "height": 23.09375
+        },
+        {
+          "text": "选英雄、定路线，开始对局。",
+          "x": 20,
+          "y": 629.84375,
+          "width": 280,
+          "height": 22.390625
+        }
+      ],
+      "buttons": [
+        {
+          "text": "继续本局",
+          "x": 20,
+          "y": 505.84375,
+          "width": 280,
+          "height": 50,
+          "disabled": false
+        },
+        {
+          "text": "开始新局",
+          "x": 20,
+          "y": 565.84375,
+          "width": 280,
+          "height": 50,
+          "disabled": false
+        }
+      ],
+      "stamp": {
+        "text": "开卷",
+        "x": 209,
+        "y": 46.5625,
+        "width": 27,
+        "height": 48
+      },
+      "menu": {
+        "text": "菜单",
+        "x": 264,
+        "y": 12,
+        "width": 44,
+        "height": 44
+      },
+      "landscape": 10,
+      "suits": 3,
+      "text": "纸上山河 · 一局相逢\n开卷\n一纸纳山河\n落子会群英\n唐\n宋\n牌\n\n唐宋群英 · 牌局争锋\n\n文成公主\n普通模式\n第 1 章\n金币 6\n\n继续本局\n开始新局\n\n选英雄、定路线，开始对局。\n\n一纸纳山河 · 六位群英同席"
+    },
+    {
+      "label": "320-native-flow",
+      "entireSavedTupleColdRestored": true,
+      "continuePreservedEntireTuple": true,
+      "cancelReplacementUnchanged": true,
+      "confirmedReplacementBackupEqual": true
+    },
+    {
+      "label": "390-no-save",
+      "root": {
+        "scrollWidth": 390,
+        "clientWidth": 390,
+        "scrollHeight": 844,
+        "clientHeight": 844
+      },
+      "width": 390,
+      "height": 844,
+      "heading": {
+        "text": "唐宋牌",
+        "x": 87.796875,
+        "y": 307.796875,
+        "width": 214.390625,
+        "height": 76.796875
+      },
+      "copy": [
+        {
+          "text": "选英雄、定路线，开始对局。",
+          "x": 20,
+          "y": 655.65625,
+          "width": 350,
+          "height": 22.390625
+        }
+      ],
+      "buttons": [
+        {
+          "text": "开始新局",
+          "x": 20,
+          "y": 591.65625,
+          "width": 350,
+          "height": 50,
+          "disabled": false
+        }
+      ],
+      "stamp": {
+        "text": "开卷",
+        "x": 279,
+        "y": 124.75,
+        "width": 27,
+        "height": 48
+      },
+      "menu": {
+        "text": "菜单",
+        "x": 334,
+        "y": 12,
+        "width": 44,
+        "height": 44
+      },
+      "landscape": 10,
+      "suits": 3,
+      "text": "纸上山河 · 一局相逢\n开卷\n一纸纳山河\n落子会群英\n唐\n宋\n牌\n\n唐宋群英 · 牌局争锋\n\n开始新局\n\n选英雄、定路线，开始对局。\n\n一纸纳山河 · 六位群英同席"
+    },
+    {
+      "label": "390-saved",
+      "root": {
+        "scrollWidth": 390,
+        "clientWidth": 390,
+        "scrollHeight": 844,
+        "clientHeight": 844
+      },
+      "width": 390,
+      "height": 844,
+      "heading": {
+        "text": "唐宋牌",
+        "x": 87.796875,
+        "y": 259.25,
+        "width": 214.390625,
+        "height": 76.796875
+      },
+      "copy": [
+        {
+          "text": "苏轼",
+          "x": 92.5625,
+          "y": 543.109375,
+          "width": 28,
+          "height": 23.09375
+        },
+        {
+          "text": "普通模式",
+          "x": 132.5625,
+          "y": 543.109375,
+          "width": 56,
+          "height": 23.09375
+        },
+        {
+          "text": "第 1 章",
+          "x": 200.5625,
+          "y": 543.109375,
+          "width": 44.5,
+          "height": 23.09375
+        },
+        {
+          "text": "金币 6",
+          "x": 257.0625,
+          "y": 543.109375,
+          "width": 40.359375,
+          "height": 23.09375
+        },
+        {
+          "text": "选英雄、定路线，开始对局。",
+          "x": 20,
+          "y": 704.203125,
+          "width": 350,
+          "height": 22.390625
+        }
+      ],
+      "buttons": [
+        {
+          "text": "继续本局",
+          "x": 20,
+          "y": 580.203125,
+          "width": 350,
+          "height": 50,
+          "disabled": false
+        },
+        {
+          "text": "开始新局",
+          "x": 20,
+          "y": 640.203125,
+          "width": 350,
+          "height": 50,
+          "disabled": false
+        }
+      ],
+      "stamp": {
+        "text": "开卷",
+        "x": 279,
+        "y": 76.203125,
+        "width": 27,
+        "height": 48
+      },
+      "menu": {
+        "text": "菜单",
+        "x": 334,
+        "y": 12,
+        "width": 44,
+        "height": 44
+      },
+      "landscape": 10,
+      "suits": 3,
+      "text": "纸上山河 · 一局相逢\n开卷\n一纸纳山河\n落子会群英\n唐\n宋\n牌\n\n唐宋群英 · 牌局争锋\n\n苏轼\n普通模式\n第 1 章\n金币 6\n\n继续本局\n开始新局\n\n选英雄、定路线，开始对局。\n\n一纸纳山河 · 六位群英同席"
+    },
+    {
+      "label": "390-long-values",
+      "root": {
+        "scrollWidth": 390,
+        "clientWidth": 390,
+        "scrollHeight": 844,
+        "clientHeight": 844
+      },
+      "width": 390,
+      "height": 844,
+      "heading": {
+        "text": "唐宋牌",
+        "x": 87.796875,
+        "y": 227.515625,
+        "width": 214.390625,
+        "height": 76.796875
+      },
+      "copy": [
+        {
+          "text": "文成公主",
+          "x": 34.75,
+          "y": 511.375,
+          "width": 56,
+          "height": 23.09375
+        },
+        {
+          "text": "普通模式",
+          "x": 102.75,
+          "y": 511.375,
+          "width": 56,
+          "height": 23.09375
+        },
+        {
+          "text": "第 9,007,199,254,740,991 章",
+          "x": 170.75,
+          "y": 511.375,
+          "width": 184.5,
+          "height": 23.09375
+        },
+        {
+          "text": "金币 9,007,199,254,740,991",
+          "x": 104.8125,
+          "y": 538.46875,
+          "width": 180.359375,
+          "height": 23.09375
+        },
+        {
+          "text": "选英雄、定路线，开始对局。",
+          "x": 20,
+          "y": 699.5625,
+          "width": 350,
+          "height": 22.390625
+        },
+        {
+          "text": "存档提示请查看右上菜单。",
+          "x": 20,
+          "y": 735.953125,
+          "width": 350,
+          "height": 22.390625
+        }
+      ],
+      "buttons": [
+        {
+          "text": "继续本局",
+          "x": 20,
+          "y": 575.5625,
+          "width": 350,
+          "height": 50,
+          "disabled": false
+        },
+        {
+          "text": "开始新局",
+          "x": 20,
+          "y": 635.5625,
+          "width": 350,
+          "height": 50,
+          "disabled": false
+        }
+      ],
+      "stamp": {
+        "text": "开卷",
+        "x": 279,
+        "y": 44.46875,
+        "width": 27,
+        "height": 48
+      },
+      "menu": {
+        "text": "菜单",
+        "x": 334,
+        "y": 12,
+        "width": 44,
+        "height": 44
+      },
+      "landscape": 10,
+      "suits": 3,
+      "text": "纸上山河 · 一局相逢\n开卷\n一纸纳山河\n落子会群英\n唐\n宋\n牌\n\n唐宋群英 · 牌局争锋\n\n文成公主\n普通模式\n第 9,007,199,254,740,991 章\n金币 9,007,199,254,740,991\n\n继续本局\n开始新局\n\n选英雄、定路线，开始对局。\n\n存档提示请查看右上菜单。\n\n一纸纳山河 · 六位群英同席"
+    },
+    {
+      "label": "390-zoom-1.25",
+      "root": {
+        "scrollWidth": 312,
+        "clientWidth": 312,
+        "scrollHeight": 822,
+        "clientHeight": 675
+      },
+      "width": 390,
+      "height": 844,
+      "heading": {
+        "text": "唐宋牌",
+        "x": 69.703125,
+        "y": 256.1875,
+        "width": 250.578125,
+        "height": 89.75
+      },
+      "copy": [
+        {
+          "text": "文成公主",
+          "x": 117.5,
+          "y": 607.890625,
+          "width": 70,
+          "height": 28.875
+        },
+        {
+          "text": "普通模式",
+          "x": 202.5,
+          "y": 607.890625,
+          "width": 70,
+          "height": 28.875
+        },
+        {
+          "text": "第 9,007,199,254,740,991 章",
+          "x": 79.6875,
+          "y": 641.765625,
+          "width": 230.625,
+          "height": 28.875
+        },
+        {
+          "text": "金币 9,007,199,254,740,991",
+          "x": 82.265625,
+          "y": 675.640625,
+          "width": 225.453125,
+          "height": 28.875
+        },
+        {
+          "text": "选英雄、定路线，开始对局。",
+          "x": 25,
+          "y": 877.015625,
+          "width": 340,
+          "height": 28
+        },
+        {
+          "text": "存档提示请查看右上菜单。",
+          "x": 25,
+          "y": 922.515625,
+          "width": 340,
+          "height": 28
+        }
+      ],
+      "buttons": [
+        {
+          "text": "继续本局",
+          "x": 25,
+          "y": 722.015625,
+          "width": 340,
+          "height": 62.5,
+          "disabled": false
+        },
+        {
+          "text": "开始新局",
+          "x": 25,
+          "y": 797.015625,
+          "width": 340,
+          "height": 62.5,
+          "disabled": false
+        }
+      ],
+      "stamp": {
+        "text": "开卷",
+        "x": 252.5,
+        "y": 25,
+        "width": 32.5,
+        "height": 59.5
+      },
+      "menu": {
+        "text": "菜单",
+        "x": 320,
+        "y": 15,
+        "width": 55,
+        "height": 55
+      },
+      "landscape": 10,
+      "suits": 3,
+      "text": "纸上山河 · 一局相逢\n开卷\n一纸纳山河\n落子会群英\n唐\n宋\n牌\n\n唐宋群英 · 牌局争锋\n\n文成公主\n普通模式\n第 9,007,199,254,740,991 章\n金币 9,007,199,254,740,991\n\n继续本局\n开始新局\n\n选英雄、定路线，开始对局。\n\n存档提示请查看右上菜单。\n\n一纸纳山河 · 六位群英同席"
+    },
+    {
+      "label": "390-zoom-2",
+      "root": {
+        "scrollWidth": 195,
+        "clientWidth": 195,
+        "scrollHeight": 955,
+        "clientHeight": 422
+      },
+      "width": 390,
+      "height": 844,
+      "heading": {
+        "text": "唐宋牌",
+        "x": 71.84375,
+        "y": 440.21875,
+        "width": 246.3125,
+        "height": 86.390625
+      },
+      "copy": [
+        {
+          "text": "文成公主",
+          "x": 71,
+          "y": 973.828125,
+          "width": 112,
+          "height": 46.1875
+        },
+        {
+          "text": "普通模式",
+          "x": 207,
+          "y": 973.828125,
+          "width": 112,
+          "height": 46.1875
+        },
+        {
+          "text": "第 9,007,199,254,740,991 章",
+          "x": 40,
+          "y": 1028.015625,
+          "width": 310,
+          "height": 138.5625
+        },
+        {
+          "text": "金币 9,007,199,254,740,991",
+          "x": 40,
+          "y": 1174.578125,
+          "width": 310,
+          "height": 92.375
+        },
+        {
+          "text": "选英雄、定路线，开始对局。",
+          "x": 40,
+          "y": 1542.953125,
+          "width": 310,
+          "height": 89.59375
+        },
+        {
+          "text": "存档提示请查看右上菜单。",
+          "x": 40,
+          "y": 1660.546875,
+          "width": 310,
+          "height": 89.59375
+        }
+      ],
+      "buttons": [
+        {
+          "text": "继续本局",
+          "x": 40,
+          "y": 1294.953125,
+          "width": 310,
+          "height": 100,
+          "disabled": false
+        },
+        {
+          "text": "开始新局",
+          "x": 40,
+          "y": 1414.953125,
+          "width": 310,
+          "height": 100,
+          "disabled": false
+        }
+      ],
+      "stamp": {
+        "text": "开卷",
+        "x": 168,
+        "y": 40,
+        "width": 54,
+        "height": 96
+      },
+      "menu": {
+        "text": "菜单",
+        "x": 278,
+        "y": 24,
+        "width": 88,
+        "height": 88
+      },
+      "landscape": 10,
+      "suits": 3,
+      "text": "纸上山河 · 一局相逢\n开卷\n唐\n宋\n牌\n\n唐宋群英 · 牌局争锋\n\n文成公主\n普通模式\n第 9,007,199,254,740,991 章\n金币 9,007,199,254,740,991\n\n继续本局\n开始新局\n\n选英雄、定路线，开始对局。\n\n存档提示请查看右上菜单。\n\n一纸纳山河 · 六位群英同席"
+    },
+    {
+      "label": "390-replacement-restored",
+      "root": {
+        "scrollWidth": 390,
+        "clientWidth": 390,
+        "scrollHeight": 844,
+        "clientHeight": 844
+      },
+      "width": 390,
+      "height": 844,
+      "heading": {
+        "text": "唐宋牌",
+        "x": 87.796875,
+        "y": 259.25,
+        "width": 214.390625,
+        "height": 76.796875
+      },
+      "copy": [
+        {
+          "text": "文成公主",
+          "x": 78.5625,
+          "y": 543.109375,
+          "width": 56,
+          "height": 23.09375
+        },
+        {
+          "text": "普通模式",
+          "x": 146.5625,
+          "y": 543.109375,
+          "width": 56,
+          "height": 23.09375
+        },
+        {
+          "text": "第 1 章",
+          "x": 214.5625,
+          "y": 543.109375,
+          "width": 44.5,
+          "height": 23.09375
+        },
+        {
+          "text": "金币 6",
+          "x": 271.0625,
+          "y": 543.109375,
+          "width": 40.359375,
+          "height": 23.09375
+        },
+        {
+          "text": "选英雄、定路线，开始对局。",
+          "x": 20,
+          "y": 704.203125,
+          "width": 350,
+          "height": 22.390625
+        }
+      ],
+      "buttons": [
+        {
+          "text": "继续本局",
+          "x": 20,
+          "y": 580.203125,
+          "width": 350,
+          "height": 50,
+          "disabled": false
+        },
+        {
+          "text": "开始新局",
+          "x": 20,
+          "y": 640.203125,
+          "width": 350,
+          "height": 50,
+          "disabled": false
+        }
+      ],
+      "stamp": {
+        "text": "开卷",
+        "x": 279,
+        "y": 76.203125,
+        "width": 27,
+        "height": 48
+      },
+      "menu": {
+        "text": "菜单",
+        "x": 334,
+        "y": 12,
+        "width": 44,
+        "height": 44
+      },
+      "landscape": 10,
+      "suits": 3,
+      "text": "纸上山河 · 一局相逢\n开卷\n一纸纳山河\n落子会群英\n唐\n宋\n牌\n\n唐宋群英 · 牌局争锋\n\n文成公主\n普通模式\n第 1 章\n金币 6\n\n继续本局\n开始新局\n\n选英雄、定路线，开始对局。\n\n一纸纳山河 · 六位群英同席"
+    },
+    {
+      "label": "390-native-flow",
+      "entireSavedTupleColdRestored": true,
+      "continuePreservedEntireTuple": true,
+      "cancelReplacementUnchanged": true,
+      "confirmedReplacementBackupEqual": true
+    },
+    {
+      "label": "1366-no-save",
+      "root": {
+        "scrollWidth": 1366,
+        "clientWidth": 1366,
+        "scrollHeight": 768,
+        "clientHeight": 768
+      },
+      "width": 1366,
+      "height": 768,
+      "heading": {
+        "text": "唐宋牌",
+        "x": 508.796875,
+        "y": 242.3125,
+        "width": 348.390625,
+        "height": 124.796875
+      },
+      "copy": [
+        {
+          "text": "选英雄、定路线，开始对局。",
+          "x": 403,
+          "y": 619.6875,
+          "width": 560,
+          "height": 22.390625
+        }
+      ],
+      "buttons": [
+        {
+          "text": "开始新局",
+          "x": 503,
+          "y": 553.6875,
+          "width": 360,
+          "height": 52,
+          "disabled": false
+        }
+      ],
+      "stamp": {
+        "text": "开卷",
+        "x": 1144,
+        "y": 78.734375,
+        "width": 27,
+        "height": 48
+      },
+      "menu": {
+        "text": "菜单",
+        "x": 1290,
+        "y": 12,
+        "width": 64,
+        "height": 44
+      },
+      "landscape": 10,
+      "suits": 3,
+      "text": "纸上山河 · 一局相逢\n开卷\n一纸纳山河\n落子会群英\n唐\n宋\n牌\n\n唐宋群英 · 牌局争锋\n\n开始新局\n\n选英雄、定路线，开始对局。\n\n一纸纳山河 · 六位群英同席"
+    },
+    {
+      "label": "1366-saved",
+      "root": {
+        "scrollWidth": 1366,
+        "clientWidth": 1366,
+        "scrollHeight": 768,
+        "clientHeight": 768
+      },
+      "width": 1366,
+      "height": 768,
+      "heading": {
+        "text": "唐宋牌",
+        "x": 508.796875,
+        "y": 221.765625,
+        "width": 348.390625,
+        "height": 124.796875
+      },
+      "copy": [
+        {
+          "text": "苏轼",
+          "x": 574.5625,
+          "y": 533.140625,
+          "width": 28,
+          "height": 23.09375
+        },
+        {
+          "text": "普通模式",
+          "x": 618.5625,
+          "y": 533.140625,
+          "width": 56,
+          "height": 23.09375
+        },
+        {
+          "text": "第 1 章",
+          "x": 690.5625,
+          "y": 533.140625,
+          "width": 44.5,
+          "height": 23.09375
+        },
+        {
+          "text": "金币 6",
+          "x": 751.0625,
+          "y": 533.140625,
+          "width": 40.359375,
+          "height": 23.09375
+        },
+        {
+          "text": "选英雄、定路线，开始对局。",
+          "x": 403,
+          "y": 640.234375,
+          "width": 560,
+          "height": 22.390625
+        }
+      ],
+      "buttons": [
+        {
+          "text": "继续本局",
+          "x": 403,
+          "y": 574.234375,
+          "width": 274,
+          "height": 52,
+          "disabled": false
+        },
+        {
+          "text": "开始新局",
+          "x": 689,
+          "y": 574.234375,
+          "width": 274,
+          "height": 52,
+          "disabled": false
+        }
+      ],
+      "stamp": {
+        "text": "开卷",
+        "x": 1144,
+        "y": 58.1875,
+        "width": 27,
+        "height": 48
+      },
+      "menu": {
+        "text": "菜单",
+        "x": 1290,
+        "y": 12,
+        "width": 64,
+        "height": 44
+      },
+      "landscape": 10,
+      "suits": 3,
+      "text": "纸上山河 · 一局相逢\n开卷\n一纸纳山河\n落子会群英\n唐\n宋\n牌\n\n唐宋群英 · 牌局争锋\n\n苏轼\n普通模式\n第 1 章\n金币 6\n\n继续本局\n开始新局\n\n选英雄、定路线，开始对局。\n\n一纸纳山河 · 六位群英同席"
+    },
+    {
+      "label": "1366-long-values",
+      "root": {
+        "scrollWidth": 1366,
+        "clientWidth": 1366,
+        "scrollHeight": 768,
+        "clientHeight": 768
+      },
+      "width": 1366,
+      "height": 768,
+      "heading": {
+        "text": "唐宋牌",
+        "x": 508.796875,
+        "y": 203.5625,
+        "width": 348.390625,
+        "height": 124.796875
+      },
+      "copy": [
+        {
+          "text": "文成公主",
+          "x": 420.5625,
+          "y": 514.9375,
+          "width": 56,
+          "height": 23.09375
+        },
+        {
+          "text": "普通模式",
+          "x": 492.5625,
+          "y": 514.9375,
+          "width": 56,
+          "height": 23.09375
+        },
+        {
+          "text": "第 9,007,199,254,740,991 章",
+          "x": 564.5625,
+          "y": 514.9375,
+          "width": 184.5,
+          "height": 23.09375
+        },
+        {
+          "text": "金币 9,007,199,254,740,991",
+          "x": 765.0625,
+          "y": 514.9375,
+          "width": 180.359375,
+          "height": 23.09375
+        },
+        {
+          "text": "选英雄、定路线，开始对局。",
+          "x": 403,
+          "y": 622.03125,
+          "width": 560,
+          "height": 22.390625
+        },
+        {
+          "text": "存档提示请查看右上菜单。",
+          "x": 403,
+          "y": 658.421875,
+          "width": 560,
+          "height": 22.390625
+        }
+      ],
+      "buttons": [
+        {
+          "text": "继续本局",
+          "x": 403,
+          "y": 556.03125,
+          "width": 274,
+          "height": 52,
+          "disabled": false
+        },
+        {
+          "text": "开始新局",
+          "x": 689,
+          "y": 556.03125,
+          "width": 274,
+          "height": 52,
+          "disabled": false
+        }
+      ],
+      "stamp": {
+        "text": "开卷",
+        "x": 1144,
+        "y": 39.984375,
+        "width": 27,
+        "height": 48
+      },
+      "menu": {
+        "text": "菜单",
+        "x": 1290,
+        "y": 12,
+        "width": 64,
+        "height": 44
+      },
+      "landscape": 10,
+      "suits": 3,
+      "text": "纸上山河 · 一局相逢\n开卷\n一纸纳山河\n落子会群英\n唐\n宋\n牌\n\n唐宋群英 · 牌局争锋\n\n文成公主\n普通模式\n第 9,007,199,254,740,991 章\n金币 9,007,199,254,740,991\n\n继续本局\n开始新局\n\n选英雄、定路线，开始对局。\n\n存档提示请查看右上菜单。\n\n一纸纳山河 · 六位群英同席"
+    },
+    {
+      "label": "1366-zoom-1.25",
+      "root": {
+        "scrollWidth": 1093,
+        "clientWidth": 1093,
+        "scrollHeight": 731,
+        "clientHeight": 614
+      },
+      "width": 1366,
+      "height": 768,
+      "heading": {
+        "text": "唐宋牌",
+        "x": 465.25,
+        "y": 231.09375,
+        "width": 435.5,
+        "height": 156
+      },
+      "copy": [
+        {
+          "text": "文成公主",
+          "x": 354.953125,
+          "y": 620.4375,
+          "width": 70,
+          "height": 28.875
+        },
+        {
+          "text": "普通模式",
+          "x": 444.953125,
+          "y": 620.4375,
+          "width": 70,
+          "height": 28.875
+        },
+        {
+          "text": "第 9,007,199,254,740,991 章",
+          "x": 534.953125,
+          "y": 620.4375,
+          "width": 230.625,
+          "height": 28.875
+        },
+        {
+          "text": "金币 9,007,199,254,740,991",
+          "x": 785.578125,
+          "y": 620.4375,
+          "width": 225.453125,
+          "height": 28.875
+        },
+        {
+          "text": "选英雄、定路线，开始对局。",
+          "x": 333,
+          "y": 754.3125,
+          "width": 700,
+          "height": 28
+        },
+        {
+          "text": "存档提示请查看右上菜单。",
+          "x": 333,
+          "y": 799.8125,
+          "width": 700,
+          "height": 28
+        }
+      ],
+      "buttons": [
+        {
+          "text": "继续本局",
+          "x": 333,
+          "y": 671.8125,
+          "width": 342.5,
+          "height": 65,
+          "disabled": false
+        },
+        {
+          "text": "开始新局",
+          "x": 690.5,
+          "y": 671.8125,
+          "width": 342.5,
+          "height": 65,
+          "disabled": false
+        }
+      ],
+      "stamp": {
+        "text": "开卷",
+        "x": 1213.5,
+        "y": 27.5,
+        "width": 32.5,
+        "height": 59.5
+      },
+      "menu": {
+        "text": "菜单",
+        "x": 1271,
+        "y": 15,
+        "width": 80,
+        "height": 55
+      },
+      "landscape": 10,
+      "suits": 3,
+      "text": "纸上山河 · 一局相逢\n开卷\n一纸纳山河\n落子会群英\n唐\n宋\n牌\n\n唐宋群英 · 牌局争锋\n\n文成公主\n普通模式\n第 9,007,199,254,740,991 章\n金币 9,007,199,254,740,991\n\n继续本局\n开始新局\n\n选英雄、定路线，开始对局。\n\n存档提示请查看右上菜单。\n\n一纸纳山河 · 六位群英同席"
+    },
+    {
+      "label": "1366-zoom-2",
+      "root": {
+        "scrollWidth": 683,
+        "clientWidth": 683,
+        "scrollHeight": 732,
+        "clientHeight": 384
+      },
+      "width": 1366,
+      "height": 768,
+      "heading": {
+        "text": "唐宋牌",
+        "x": 334.59375,
+        "y": 371.65625,
+        "width": 696.8125,
+        "height": 249.59375
+      },
+      "copy": [
+        {
+          "text": "文成公主",
+          "x": 158.140625,
+          "y": 993.90625,
+          "width": 112,
+          "height": 46.1875
+        },
+        {
+          "text": "普通模式",
+          "x": 302.140625,
+          "y": 993.90625,
+          "width": 112,
+          "height": 46.1875
+        },
+        {
+          "text": "第 9,007,199,254,740,991 章",
+          "x": 446.140625,
+          "y": 993.90625,
+          "width": 369,
+          "height": 46.1875
+        },
+        {
+          "text": "金币 9,007,199,254,740,991",
+          "x": 847.140625,
+          "y": 993.90625,
+          "width": 360.71875,
+          "height": 46.1875
+        },
+        {
+          "text": "选英雄、定路线，开始对局。",
+          "x": 123,
+          "y": 1208.09375,
+          "width": 1120,
+          "height": 44.796875
+        },
+        {
+          "text": "存档提示请查看右上菜单。",
+          "x": 123,
+          "y": 1280.890625,
+          "width": 1120,
+          "height": 44.796875
+        }
+      ],
+      "buttons": [
+        {
+          "text": "继续本局",
+          "x": 123,
+          "y": 1076.09375,
+          "width": 548,
+          "height": 104,
+          "disabled": false
+        },
+        {
+          "text": "开始新局",
+          "x": 695,
+          "y": 1076.09375,
+          "width": 548,
+          "height": 104,
+          "disabled": false
+        }
+      ],
+      "stamp": {
+        "text": "开卷",
+        "x": 1120,
+        "y": 44,
+        "width": 54,
+        "height": 96
+      },
+      "menu": {
+        "text": "菜单",
+        "x": 1214,
+        "y": 24,
+        "width": 128,
+        "height": 88
+      },
+      "landscape": 10,
+      "suits": 3,
+      "text": "纸上山河 · 一局相逢\n开卷\n一纸纳山河\n落子会群英\n唐\n宋\n牌\n\n唐宋群英 · 牌局争锋\n\n文成公主\n普通模式\n第 9,007,199,254,740,991 章\n金币 9,007,199,254,740,991\n\n继续本局\n开始新局\n\n选英雄、定路线，开始对局。\n\n存档提示请查看右上菜单。\n\n一纸纳山河 · 六位群英同席"
+    },
+    {
+      "label": "1366-replacement-restored",
+      "root": {
+        "scrollWidth": 1366,
+        "clientWidth": 1366,
+        "scrollHeight": 768,
+        "clientHeight": 768
+      },
+      "width": 1366,
+      "height": 768,
+      "heading": {
+        "text": "唐宋牌",
+        "x": 508.796875,
+        "y": 221.765625,
+        "width": 348.390625,
+        "height": 124.796875
+      },
+      "copy": [
+        {
+          "text": "文成公主",
+          "x": 560.5625,
+          "y": 533.140625,
+          "width": 56,
+          "height": 23.09375
+        },
+        {
+          "text": "普通模式",
+          "x": 632.5625,
+          "y": 533.140625,
+          "width": 56,
+          "height": 23.09375
+        },
+        {
+          "text": "第 1 章",
+          "x": 704.5625,
+          "y": 533.140625,
+          "width": 44.5,
+          "height": 23.09375
+        },
+        {
+          "text": "金币 6",
+          "x": 765.0625,
+          "y": 533.140625,
+          "width": 40.359375,
+          "height": 23.09375
+        },
+        {
+          "text": "选英雄、定路线，开始对局。",
+          "x": 403,
+          "y": 640.234375,
+          "width": 560,
+          "height": 22.390625
+        }
+      ],
+      "buttons": [
+        {
+          "text": "继续本局",
+          "x": 403,
+          "y": 574.234375,
+          "width": 274,
+          "height": 52,
+          "disabled": false
+        },
+        {
+          "text": "开始新局",
+          "x": 689,
+          "y": 574.234375,
+          "width": 274,
+          "height": 52,
+          "disabled": false
+        }
+      ],
+      "stamp": {
+        "text": "开卷",
+        "x": 1144,
+        "y": 58.1875,
+        "width": 27,
+        "height": 48
+      },
+      "menu": {
+        "text": "菜单",
+        "x": 1290,
+        "y": 12,
+        "width": 64,
+        "height": 44
+      },
+      "landscape": 10,
+      "suits": 3,
+      "text": "纸上山河 · 一局相逢\n开卷\n一纸纳山河\n落子会群英\n唐\n宋\n牌\n\n唐宋群英 · 牌局争锋\n\n文成公主\n普通模式\n第 1 章\n金币 6\n\n继续本局\n开始新局\n\n选英雄、定路线，开始对局。\n\n一纸纳山河 · 六位群英同席"
+    },
+    {
+      "label": "1366-native-flow",
+      "entireSavedTupleColdRestored": true,
+      "continuePreservedEntireTuple": true,
+      "cancelReplacementUnchanged": true,
+      "confirmedReplacementBackupEqual": true
+    }
+  ],
+  "errors": [],
+  "browser": "143.0.3650.80",
+  "platform": "win32",
+  "status": "PASS"
+}
