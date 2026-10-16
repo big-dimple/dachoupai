@@ -1,0 +1,44 @@
+{
+  "productCommit": "d6a52afcfefdc97033392037eefdd6be5c430052",
+  "baseline": "8728e18e823ef9cbe28a4350a566de21f1e3127c",
+  "checks": [
+    {
+      "name": "TypeScript and Vite e2e production build",
+      "status": "PASS",
+      "evidence": "build.txt"
+    },
+    {
+      "name": "10 focused suites, 68 tests",
+      "status": "PASS",
+      "evidence": "tests.txt"
+    },
+    {
+      "name": "All 24 derived files and six source images",
+      "status": "PASS",
+      "evidence": "art-audit.json"
+    },
+    {
+      "name": "24 hero/viewport cases plus resize, safe area, keyboard, retry",
+      "status": "PASS",
+      "evidence": "after-report.json"
+    }
+  ],
+  "limitations": [
+    "Software Chromium viewports on Windows; physical-device and human visual approval not claimed.",
+    "No long gameplay, CI/domain query, main merge or high/settlement component changes.",
+    "Coordination message to source thread could not be delivered: thread not found. Asset URL contract is documented in README."
+  ],
+  "humanReview": {
+    "status": "NOT_RUN"
+  },
+  "physicalDevice": {
+    "status": "NOT_RUN"
+  },
+  "agentPixelReview": {
+    "status": "PASS",
+    "evidence": [
+      "comparison-390x740.png",
+      "after-1366x768-amo.png"
+    ]
+  }
+}

@@ -5,7 +5,7 @@ export type CharacterArtPurpose='avatar'|'selection'|'portrait'|'focus';
 export interface CharacterArtAsset {id:CharacterId;purpose:CharacterArtPurpose;key:string;path:string;url:string;width:number;height:number;bytes:number;sha256:string;format:string}
 const prefixes={avatar:'avatar-',selection:'selection-portrait-',portrait:'opening-portrait-',focus:'portrait-focus-'};
 /** Derived only from the six approved originals. Focus is a portrait head crop, not separate eye artwork. */
-export const CHARACTER_ART:readonly CharacterArtAsset[]=manifest.assets.map(a=>({...a,id:a.id as CharacterId,purpose:a.purpose as CharacterArtPurpose,url:assetUrl(a.path)}));
+export const CHARACTER_ART:readonly CharacterArtAsset[]=manifest.assets.map(a=>({...a,id:a.id as CharacterId,purpose:a.purpose as CharacterArtPurpose,url:assetUrl(a.path)+'?v='+a.sha256.slice(0,12)}));
 export const characterArtKey=(id:CharacterId,purpose:CharacterArtPurpose)=>prefixes[purpose]+id;
 export const characterArt=(id:CharacterId,purpose:CharacterArtPurpose)=>CHARACTER_ART.find(a=>a.id===id&&a.purpose===purpose);
 const absoluteURL=(url:string)=>new URL(url,typeof document==='undefined'?'https://local.invalid/':document.baseURI||'https://local.invalid/').href;
