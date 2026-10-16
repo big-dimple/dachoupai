@@ -75,7 +75,7 @@ it.each([{x:193,y:102,width:980,height:422},{x:12,y:116,width:366,height:452},{x
 it('current million and billion focus the actual strongest local source, while the automatic cap stays separate',()=>{
  for(const [kind,tier] of [['million',2],['billion',3]] as const){
   const f=climaxSettlementReady(kind),run=energySend(f.state,f.action),before=structuredClone(run),facts=settlementFacts(run,true);
-  expect(readCheckpoint(makeCheckpoint(run,[])).ok).toBe(true);expect(facts.tier).toBe(tier);expect(facts.heroSkill).toBe('藏锋散金');expect(facts.routeSummary).toBe('过关加成 · ×4');
+  expect(readCheckpoint(makeCheckpoint(run,[])).ok).toBe(true);expect(facts.tier).toBe(tier);expect(facts.heroSkill).toBe('赏赐');expect(facts.routeSummary).toBe('过关加成 · ×4');
   if(kind==='billion'){expect(facts.card?.id).toBe('a06');expect(facts.cardCopy).toBe('×100');expect(facts.trace?.finalScore).toBe('458449875');}
   expect(run).toEqual(before);
  }

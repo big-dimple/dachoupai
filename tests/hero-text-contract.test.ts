@@ -18,7 +18,9 @@ function enter(id:typeof CHARACTER_IDS[number],legacy=false){return send(send(cr
 function arrange(s:R2RunState,ids:string[]){s=structuredClone(s);s.handOrder=ids;s.drawPile=s.deckInstances.map(c=>c.id).filter(id=>!ids.includes(id)&&!s.playedPile.includes(id)&&!s.discardPile.includes(id));return s;}
 
 it('adopts the exact six approved identities while keeping first-layer copy compact',()=>{
+ const names={amo:'余音袅袅',touye:'跃马冲阵',laohuan:'众里寻他',erxiang:'垂帘听政',azao:'和亲',xiemu:'赏赐'};
  for(const id of CHARACTER_IDS){const approved=spec.heroes.find(h=>h.id===id)!,copy=characterForNewRun(id);
+  expect(copy.passiveName).toBe(names[id]);expect(approved.mottoAttribution).toMatch(/摘句|游戏演绎/);
   expect(copy.passiveName).toBe(approved.skillName);expect(HERO_CAST[id]).toMatchObject({name:approved.name,title:approved.theme,intro:approved.story,quote:approved.motto});
   expect(copy.quickEffect).not.toBe(approved.skillSummary);expect(copy.quickEffect.length).toBeLessThanOrEqual(32);expect(copy.skillTags.length).toBeGreaterThanOrEqual(2);
   expect(copy.detailRules).toContain(approved.skillSummary);expect(copy.detailRules).not.toMatch(/AMO_ASSIST_TYPES|pending-refill|禁止套用|不能误写|不能许诺/);expect(HERO_QUICK_COPY[id].tags.every(t=>t.length<=10)).toBe(true);
@@ -46,7 +48,7 @@ it('same qualified type can release existing charge; copy changes never change t
 });
 it('live used/disabled reasons and ordinary wager factor retain their authoritative meanings',()=>{
  let s=enter('laohuan');s=send(s,{type:'DiscardHand',selectedIds:[s.handOrder[0]],laohuanTrick:true});s=send(s,{type:'ChooseRefill',selectedIds:s.pendingRefill!.candidateIds.slice(0,s.pendingRefill!.required)});
- expect(heroSkillGuide(s).step).toContain('已用');expect(characterForRun(s).passiveName).toBe('挑灯择锋');
+ expect(heroSkillGuide(s).step).toContain('已用');expect(characterForRun(s).passiveName).toBe('众里寻他');
  const disabled=createRun({rulesVersion:'r2',seed:'challenge/q01/0',runId:'disabled',characterId:'xiemu',r2Identity:newRunIdentity('xiemu'),modeConfig:{mode:'challenge',difficulty:0,challengeId:'Q01',programsEnabled:false}});
  expect(heroExplanationCopy('xiemu',disabled).now).toContain('关闭角色能力');
  const ordinary=send(enter('touye'),{type:'PlayHand',selectedIds:[enter('touye').handOrder[0]]}),trace=ordinary.lastTrace!;

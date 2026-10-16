@@ -17,7 +17,7 @@ it('six explanations retain real skill names, usage conditions and phase-specifi
  }
 });
 it('opening and disabled modes explain availability; saved old passive abilities do not show modern examples',()=>{
- for(const id of CHARACTER_IDS){expect(heroExplanationCopy(id).now).toContain('登台');expect(heroExplanationCopy(id,undefined,false).now).toContain('关闭');
+ for(const id of CHARACTER_IDS){expect(heroExplanationCopy(id).now).toContain('开始对局');expect(heroExplanationCopy(id,undefined,false).now).toContain('关闭');
   const old=createRun({rulesVersion:'r2',characterId:id,seed:'old-explanation',runId:'old/'+id});
   const copy=heroExplanationCopy(id,old);expect(copy.current).toBe(false);expect(copy.hero.passiveDescription).toBeTruthy();
  }

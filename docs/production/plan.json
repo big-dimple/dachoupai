@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "auditCommit": "8e2174141920ef001b95a30485e70525920d3d9f",
   "currentTask": "P08",
-  "selectionPolicy": "唯一执行入口docs/production/DELIVERY_PLAN.md#当前统一执行计划；当前P08保持in_progress。main8e217为代码基线；加载9c41、R03携带7dfab、动画eba6、六图运行时bd626均已开发；a85be2a整合快照含加载+R03，六图另路整合中。先合并既有实现与本次六英雄文本映射，再做同版交互/146项资源回归与有限正常经营，最后分别走用户理解/美术/听感和目标设备验收。HeroPlayReminder、失败再战、B05文字事件已在main，不重复派工。仅六原图获用户验收；代码/测试/截图不代签运行时美术。禁止臆造完成百分比、不重开18局或旧档迁移、不合main/部署、不查CI/域名。",
+  "selectionPolicy": "唯一执行入口docs/production/DELIVERY_PLAN.md#当前统一执行计划；P08保持in_progress。六图/加载/R03及上一版文案已交付，基于main c009bc401d337fda7af052baa1c7f34798e97154按用户最新要求更新文化包装：文案/命名与选角布局分工，在独立worktree开发，检查后提交push开发分支，由统一整合负责人合入，不改共享main。技能机制、数值、存档与旧身份保持，花蕊夫人正式名赏赐。当前文本以HERO_TEXT_SPEC_20261015.md/json为准，本轮证据hero-cultural-copy-2026-10-15，不重签旧报告。原图/运行时美术/理解/听感/目标设备各自验收；不写整体百分比，不启动18局或旧档迁移，不查等CI/域名、不force push。",
   "resumeContract": {
     "candidateCommit": "4bf6a7d63d7738d3c415d09439a1bdca878dc685",
     "gateTask": "A01",
