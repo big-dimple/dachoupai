@@ -1,0 +1,137 @@
+{
+  "status": "PASS",
+  "tests": 119,
+  "passed": 119,
+  "failed": 0,
+  "suites": [
+    {
+      "path": "tests/amo-launch.test.ts",
+      "status": "passed",
+      "tests": 9
+    },
+    {
+      "path": "tests/azao-charge.test.ts",
+      "status": "passed",
+      "tests": 10
+    },
+    {
+      "path": "tests/hero-ability-cue.test.ts",
+      "status": "passed",
+      "tests": 6
+    },
+    {
+      "path": "tests/hero-climax.test.ts",
+      "status": "passed",
+      "tests": 9
+    },
+    {
+      "path": "tests/hero-explanation.test.ts",
+      "status": "passed",
+      "tests": 2
+    },
+    {
+      "path": "tests/hero-opening-copy.test.ts",
+      "status": "passed",
+      "tests": 2
+    },
+    {
+      "path": "tests/hero-payoff.test.ts",
+      "status": "passed",
+      "tests": 9
+    },
+    {
+      "path": "tests/hero-play-reminder.test.ts",
+      "status": "passed",
+      "tests": 16
+    },
+    {
+      "path": "tests/hero-skill-guide.test.ts",
+      "status": "passed",
+      "tests": 4
+    },
+    {
+      "path": "tests/hero-stage-continuity.test.ts",
+      "status": "passed",
+      "tests": 15
+    },
+    {
+      "path": "tests/hero-text-contract.test.ts",
+      "status": "passed",
+      "tests": 4
+    },
+    {
+      "path": "tests/settlement-presentation.test.ts",
+      "status": "passed",
+      "tests": 23
+    },
+    {
+      "path": "tests/stage-outcome.test.ts",
+      "status": "passed",
+      "tests": 6
+    },
+    {
+      "path": "tests/tangsong-identity.test.ts",
+      "status": "passed",
+      "tests": 4
+    }
+  ],
+  "fullSuiteAttempt": {
+    "status": "FAIL",
+    "tests": 3652,
+    "passed": 3635,
+    "failed": 17,
+    "note": "Initial full-suite run before adjusting the story test to the global youth notice. Only the affected identity/story assertion was then changed; the final targeted run above includes it. Full suite was not rerun after that test-only correction.",
+    "failures": [
+      {
+        "suite": "handdrawn-art",
+        "count": 4,
+        "kind": "exact receipt byte hashes on Windows checkout"
+      },
+      {
+        "suite": "goods-art",
+        "count": 1,
+        "kind": "exact receipt byte hash on Windows checkout"
+      },
+      {
+        "suite": "public-art-privacy",
+        "count": 2,
+        "kind": "Windows symlink/subprocess restrictions"
+      },
+      {
+        "suite": "build-info",
+        "count": 1,
+        "kind": "non-repository fixture inside worktree TEMP discovers parent repository"
+      },
+      {
+        "suite": "tool-inventory-entry",
+        "count": 1,
+        "kind": "5-second timeout"
+      },
+      {
+        "suite": "core-build-window",
+        "count": 1,
+        "kind": "historical saved report byte hash"
+      },
+      {
+        "suite": "tangsong-identity",
+        "count": 1,
+        "kind": "old per-story youth word assertion; fixed, final targeted PASS"
+      },
+      {
+        "suite": "c02-acquisition",
+        "count": 1,
+        "kind": "5-second timeout"
+      },
+      {
+        "suite": "ci-gates",
+        "count": 2,
+        "kind": "static LF workflow string expectation and index snapshot timeout; no CI queried"
+      },
+      {
+        "suite": "c02-chain",
+        "count": 3,
+        "kind": "20-second subprocess timeouts"
+      }
+    ]
+  }
+}

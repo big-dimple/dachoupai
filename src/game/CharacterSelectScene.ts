@@ -122,8 +122,8 @@ export class CharacterSelectScene extends Phaser.Scene {
     const existing=gameSession().run,canReturn=!!existing&&!['run-won','run-lost'].includes(existing.state.phase);
     v.button(p.cancel,this.step==='route'?'返回':this.modeConfig.mode==='tutorial'?'跳过':this.selectedId?'取消':canReturn?'回本局':'返回','action/cancel-character',()=>void this.cancelChoice(),!this.choosing);
     v.button(p.details,'比一比','action/character-details',()=>this.compareHeroes(),!this.choosing);
-    v.button(p.confirm,this.choosing?'正在登台…':this.step==='hero'?'选路线 →':'一起登台','action/confirm-character',()=>void this.confirmChoice(),!this.choosing&&!!this.selectedId&&(this.step==='hero'||!!this.selectedRoute),true);
-    const status=this.selectedId?getCharacter(this.selectedId).name+(this.step==='route'?(this.selectedRoute?' · '+OPENING_ROUTES[this.selectedRoute].title+' · 确认才开局':' · 三条路线都能玩'):this.modeConfig.mode==='tutorial'?' · 教程固定角色':' · 下一步选路线'):'点一位英雄，决定谁来撑场。';
+    v.button(p.confirm,this.choosing?'正在开始…':this.step==='hero'?'选路线 →':'开始对局','action/confirm-character',()=>void this.confirmChoice(),!this.choosing&&!!this.selectedId&&(this.step==='hero'||!!this.selectedRoute),true);
+    const status=this.selectedId?getCharacter(this.selectedId).name+(this.step==='route'?(this.selectedRoute?' · '+OPENING_ROUTES[this.selectedRoute].title+' · 确认才开局':' · 三条路线都能玩'):this.modeConfig.mode==='tutorial'?' · 教程固定角色':' · 下一步选路线'):'点一位英雄，决定谁来对局。';
     v.text(p.x,p.noticeY,this.notice||status,14,this.notice?'#B8473A':'#3F606B',p.w).setName('opening/status');
   }
   private showHero(p:ReturnType<typeof selectionLayout>,abilityEnabled:boolean):void {

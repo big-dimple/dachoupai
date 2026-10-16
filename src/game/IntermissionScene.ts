@@ -124,7 +124,7 @@ export class IntermissionScene extends Phaser.Scene {
     v.text(p.x,p.top,(run.tourMode==='endless'?'无尽 · ':'')+stage.name+' · '+character.name,14,identity.isBoss?PAPER_CSS.red:PAPER_CSS.jade,p.w-116).setName('stage-identity/result');
     const resultFacts=settlementFacts(run,this.result.cleared,!!skipped),resultTier=resultFacts.tier;
     const guidance=lost?failureGuidance(run):undefined;
-    const title=capped?'巡演，暂歇于此':skipped?'换一场，再登台':won?(run.mode==='tutorial'?'教学巡演，谢幕！':run.mode==='challenge'?'挑战完成，谢幕！':resultTier===3?'亿分落定，满堂喝彩！':resultTier===2?resultFacts.tag+'，八章谢幕！':'八章好戏，满堂喝彩！'):this.result.cleared?(identity.isBoss?'压轴过关 · '+identity.title:outcome.title):guidance?.title??'此番落幕，再登台';
+    const title=capped?'本局暂止于此':skipped?'换一场，再对局':won?(run.mode==='tutorial'?'教学对局完成！':run.mode==='challenge'?'挑战完成！':resultTier===3?'亿分落定，满堂喝彩！':resultTier===2?resultFacts.tag+'，八章通关！':'八章通关，满堂喝彩！'):this.result.cleared?(identity.isBoss?'压轴过关 · '+identity.title:outcome.title):guidance?.title??'此局结束，再来一局';
     v.text(p.x,p.top+(p.short?23:p.portrait?52:34),title,p.short||p.portrait&&identity.isBoss?22:p.portrait?26:34,identity.isBoss&&this.result.cleared?PAPER_CSS.red:PAPER_CSS.ink,p.w).setName('result/title').setFontFamily('Georgia, "Noto Serif SC", SimSun, serif').setFontStyle('bold');
     this.drawResultHero(p.score,!!skipped,lost,animateIn,p.compactNext||lost&&p.tight);
     const trace=run.lastTrace;
@@ -139,13 +139,13 @@ export class IntermissionScene extends Phaser.Scene {
       body=nextIdentity.isBoss?`第 ${Math.floor(nextStage.index/3)+1} 章 · 目标 ${heatText(nextStage.targetHeat)}\n`+nextIdentity.scope:`${nextStage.name} · 目标 ${heatText(nextStage.targetHeat)}\n筹备后，出牌与弃牌次数补满。`+(!p.short&&hero?'\n'+hero.next:'');
     }else if(won){
       const progress=readRunProgress(),qualified=run.mode==='standard'&&!!run.normalCompletion;
-      heading=run.mode==='challenge'?R2_MODE_CATALOG.challenges.find(row=>row.id===run.challengeId)!.name+' · 通关':run.mode==='tutorial'?'教学巡演通关':'八章通关';
-      body=`${character.name} · 已过关场次累计热度 ${heatText(run.totalHeat)}\n`+(qualified?'构筑与金币已保留，可自愿继续无尽巡演。':'本模式结果已保存，可同种子再试或选择下一次巡演。');
+      heading=run.mode==='challenge'?R2_MODE_CATALOG.challenges.find(row=>row.id===run.challengeId)!.name+' · 通关':run.mode==='tutorial'?'教学对局通关':'八章通关';
+      body=`${character.name} · 已过关场次累计热度 ${heatText(run.totalHeat)}\n`+(qualified?'构筑与金币已保留，可自愿继续无尽对局。':'本模式结果已保存，可同种子再试或选择下一次对局。');
       if(qualified&&progress.ok&&progress.progress.standardWins[run.difficulty])body+='\n'+(run.difficulty<3?`D${run.difficulty+1} 与挑战已解锁。`:'四档难度已达最高档；挑战已解锁。');
     }else if(capped){
       heading='已达数值上限';body='进度已保存。可查看本场、在菜单导出，或返回选角。';
     }else if(lost){
-      heading='再登台';
+      heading='再来一局';
       body=p.tight?'同局重试从开局，构筑不继承。':`${failureSummary(run).resources}\n已过关场次累计热度 ${heatText(run.totalHeat)} · 余额 ${run.gold} 金\n同局重试从开局重新开始，构筑不继承。`;
     }
     const touye=savedTouyeWager(trace);if(touye)body=touye+'\n'+body;
@@ -183,7 +183,7 @@ export class IntermissionScene extends Phaser.Scene {
       v.button(p.left,'返回选角','action/continue-stage',()=>void this.next(),!this.busy);
       v.button(p.primary,this.busy?'正在开局…':'同局重试','action/retry-seed',()=>void this.retrySeed(),this.ready,true);
     }
-    v.button(p.right,won||lost?'巡演留影':'回看上手','action/last-hand',()=>{if(won||lost)this.inspectFinale();else this.inspectLastHand();},!this.busy&&(won||lost||!!trace));
+    v.button(p.right,won||lost?'对局回顾':'回看上手','action/last-hand',()=>{if(won||lost)this.inspectFinale();else this.inspectLastHand();},!this.busy&&(won||lost||!!trace));
     const discovery=this.ready&&!this.notice&&!lost&&!skipped?savedGrowthDiscovery(run):undefined,gift=this.ready&&!this.notice&&!lost&&!skipped?stageGiftReceipt(run):undefined;
     v.text(p.x,p.noticeY,this.busy?'正在保存…':this.notice||(!this.ready?'当前进度未保存或只读，请查看菜单。':capped?'已达数值上限，进度已保存':won?run.mode==='standard'?'八章通关已保存，继续无尽由你决定。':'本模式结果已保存，可重试或返回选角。':nextStage?gift?.banner||discovery?.full||'':lost?'重试从开局开始，金币与构筑不继承。':''),14,this.notice?'#ffd0b1':'#3F606B',p.w).setName(gift&&nextStage?'gift/discovery':discovery&&nextStage?'growth/discovery':'');
     this.firstRender=false;
@@ -236,11 +236,11 @@ export class IntermissionScene extends Phaser.Scene {
     ],{closeLabel:'返回失败页',effectBody:facts.reason+' · '+facts.gap+'\n'+facts.lastHand+'\n'+facts.resources,
       summaryBody:'重试从开局开始；金币、构筑、工具与成长不继承，建议不保证过关。',
       cards:facts.advice.map((row,index)=>({title:(index+1)+'. '+row.title,body:row.body})),
-      collapseRules:true,rulesLabel:'升级与做牌的实际规则',secondaryActions:[{label:'巡演留影',run:()=>this.inspectFinale()}]});
+      collapseRules:true,rulesLabel:'升级与做牌的实际规则',secondaryActions:[{label:'对局回顾',run:()=>this.inspectFinale()}]});
   }
   private inspectFinale():void {
     const run=runController(this)!.state,facts=finaleKeepsake(run);if(!facts||this.busy)return;
-    this.dialog.open(run.phase==='run-won'?'谢幕留影 · 最终构筑':'落幕留影 · 最终构筑',facts.summary+'\n\n'+facts.continuation,[
+    this.dialog.open(run.phase==='run-won'?'通关回顾 · 最终构筑':'本局回顾 · 最终构筑',facts.summary+'\n\n'+facts.continuation,[
       {label:'回看最后一手',disabled:!stageOutcome(run.stage!,run.lastTrace).last,run:()=>this.inspectLastHand()},
       {label:'查看最终牌组',run:()=>showDeckInspection(this.dialog,run)},
       {label:'本场详情',run:()=>this.inspectResult()},
@@ -278,7 +278,7 @@ export class IntermissionScene extends Phaser.Scene {
     const controller=runController(this);if(!this.ready||!controller)return;
     const run=controller.state;if(run.phase!=='run-won'||run.tourMode!=='normal'||!run.normalCompletion)return;
     const seq=run.commandSeq,runId=run.runId,lifecycle=this.lifecycle;
-    const dialog=this.dialog.open('继续无尽 · 自愿巡演',endlessContinuationCopy(run),[
+    const dialog=this.dialog.open('继续无尽 · 自愿对局',endlessContinuationCopy(run),[
       {label:'确认继续',primary:true,run:async()=>{
         if(!this.dialog.active(dialog)||!this.ready||lifecycle!==this.lifecycle)return;
         const current=runController(this);

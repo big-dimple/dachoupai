@@ -3,7 +3,7 @@ import {CHARACTER_IDS} from '../src/domain/characters';
 import {HERO_OPENING,OPENING_ROUTES} from '../src/game/HeroOpeningCopy';
 import {BUILD_FOCUS} from '../src/game/BuildJourney';
 import {characterForNewRun} from '../src/game/CharacterRunCopy';
-it('six short original voices accompany existing identities without strength or profession locks',()=>{
+it('six short literary or dramatized voices accompany existing identities without strength or profession locks',()=>{
  expect(Object.keys(HERO_OPENING).sort()).toEqual([...CHARACTER_IDS].sort());
  expect(new Set(Object.values(HERO_OPENING).map(c=>c.taunt)).size).toBe(6);
  for(const id of CHARACTER_IDS){const c=HERO_OPENING[id];expect(c.story.length).toBeLessThanOrEqual(80);expect(c.taunt.length).toBeLessThanOrEqual(22);expect(characterForNewRun(id).openingPlay).not.toMatch(/保证|必胜|最强|只能选/);expect(c.accent).toMatch(/^#(26313A|B8473A|386D65)$/);expect(characterForNewRun(id).id).toBe(id);}

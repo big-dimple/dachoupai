@@ -2,16 +2,16 @@ import type {CharacterId} from '../domain/characters';
 
 /** Player identities only. Technical IDs, saved rules and historical events stay unchanged. */
 export const HERO_CAST={
- amo:{name:'苏轼',title:'风起赤壁',gender:'male',intro:'以赤壁风月与旷达文心为意象，青年苏轼将未尽之意化作同伴相和的一着。',quote:'一局风起，余意相和。'},
- touye:{name:'秦琼',title:'踏破山河',gender:'male',intro:'取隋唐武将临阵决断的气概，青年秦琼在换牌前定下目标，以新锋争取下一手。',quote:'先定一策，再试新锋。'},
- laohuan:{name:'辛弃疾',title:'墨影醉里挑灯看剑',gender:'male',intro:'借稼轩词中的灯火与剑意，青年辛弃疾在候选牌间审势择锋，为下一手亲留所需。',quote:'灯下留锋，下一手见。'},
- erxiang:{name:'刘娥',title:'大宋之母',gender:'female',intro:'取北宋刘娥善理政局的意象，青年刘娥将一枚关键筹码移向倍率，以有限一着统筹全局。',quote:'一筹易位，满局生势。'},
- azao:{name:'文成公主',title:'藏地迎宾',gender:'female',intro:'以唐蕃交往与远行相逢为意象，青年文成公主在不同牌型间从容积势，于合适一手释放。',quote:'行有远路，势可渐成。'},
- xiemu:{name:'花蕊夫人',title:'执剑凌风',gender:'female',intro:'取蜀中女诗人的才情与不屈之意，青年花蕊夫人以执剑形象权衡藏锋留资或散金一搏。',quote:'锋可藏，金亦可舍。'},
+ amo:{name:'苏轼',title:'风起赤壁',gender:'male',intro:'赤壁舟中，苏轼扣舷而歌，客人吹箫相和；余音未绝，牌局里也让剩余同点牌来相助。',quote:'余音袅袅，不绝如缕。'},
+ touye:{name:'秦琼',title:'踏破山河',gender:'male',intro:'《旧唐书》记秦琼跃马持枪、冲入敌阵；牌局借他迎难而上的胆气，先定目标，再用换来的新牌争胜。',quote:'跃马冲阵，我先上！'},
+ laohuan:{name:'辛弃疾',title:'墨影醉里挑灯看剑',gender:'male',intro:'《青玉案·元夕》写灯火中千百遍的寻觅与蓦然回首；牌局借这份寻觅，多看候选，亲手留下所需。',quote:'众里寻他千百度。'},
+ erxiang:{name:'刘娥',title:'大宋之母',gender:'female',intro:'宋仁宗年幼即位，刘娥垂帘处理军国政事；牌局借她统筹政务的经历，把一张关键牌的普通点数调作倍率。',quote:'帘后听政，这一局由我定。'},
+ azao:{name:'文成公主',title:'藏地迎宾',gender:'female',intro:'文成公主远赴吐蕃，与松赞干布成婚，成为唐蕃交往中的熟悉身影；牌局借这段远行，让不同牌型接续蓄层，再择机释放。',quote:'远赴吐蕃，结两地之好。'},
+ xiemu:{name:'花蕊夫人',title:'执剑凌风',gender:'female',intro:'传世《花蕊夫人宫词》写到宫中散钱与买花钱；牌局借这份赏赐意象，将金币换作关键一手的倍率，也可留钱收息。',quote:'赏赐已备，这一手尽兴。'},
 } as const satisfies Record<CharacterId,{name:string;title:string;gender:'male'|'female';intro:string;quote:string}>;
 export const heroName=(id:CharacterId):string=>HERO_CAST[id].name;
 export const HERO_ART_NOTICE='正式立绘';
-export const HERO_CAST_NOTICE='唐宋人物的架空青年形象；台词为游戏创作。';
+export const HERO_CAST_NOTICE='唐宋人物的架空青年形象；诗文摘句与游戏演绎见各人物说明。';
 
 /** Translate only explicit hero-copy call sites, never saved data or generic card/stage names. */
 const legacyNames:Record<string,CharacterId>={'阿默':'amo','骰爷':'touye','老幻':'laohuan','二响':'erxiang','阿燥':'azao','谢幕人':'xiemu','谢幕':'xiemu'};

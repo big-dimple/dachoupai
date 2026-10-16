@@ -31,7 +31,7 @@ export function settlementFacts(run:R2RunState,cleared:boolean,skipped=false){
  const score=BigInt(trace?.finalScore??'0');
  const retriggers=trace?.events.filter(e=>scoring(e)&&e.operation==='retrigger-card'&&BigInt(e.value.n)>0n).length??0;
  const tier=score>=100000000n?3:score>=1000000n?2:factors.length>=2||retriggers>=2?1:0;
- const tag=skipped?'换场留影':!cleared?'此番落幕':tier===3?'亿分落定':tier===2?(score>=10000000n?'千万喝彩':'百万喝彩'):tier===1?'连锁成势':'好戏收束';
+ const tag=skipped?'换场留影':!cleared?'本局结束':tier===3?'亿分落定':tier===2?(score>=10000000n?'千万喝彩':'百万喝彩'):tier===1?'连锁成势':'本场结算';
  const hero=trace?.events.find(e=>scoring(e)&&e.sourceType==='character'&&e.sourceDefinitionId===run.characterId&&(increased(e,'H')||increased(e,'M')));
  const cardEvent=(trace&&strongestJokerFactor(trace,factors))??trace?.events.find(e=>e.sourceType==='joker'&&benefited(e));
  const card=cardEvent?{id:cardEvent.sourceDefinitionId,name:r2JokerDefinitionFor(run,cardEvent.sourceDefinitionId).name,event:cardEvent}:undefined;

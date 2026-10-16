@@ -16,6 +16,6 @@ export function stageOutcome(stage:StageFacts,trace:ScoreTrace|null){
     else if(stage.handsLeft<=1||total*10n<=target*11n)kind='narrow';
   }
   const highMultiplier=!!last&&BigInt(last.accumulator.M.n)>=10n*BigInt(last.accumulator.M.d);
-  const title={steady:'好戏落幕，再赴一场',narrow:'险险过关，好戏没散',comeback:'最后一手，掀翻全场！',overwhelming:'一场好戏，满堂喝彩！'}[kind];
+  const title={steady:'本场过关，再赴一场',narrow:'险险过关，继续对局',comeback:'最后一手，掀翻全场！',overwhelming:'本场大胜，满堂喝彩！'}[kind];
   return {kind,title,last,beforeHeat:before?.toString()??null,crossed,highMultiplier,intensity:kind==='comeback'||kind==='overwhelming'?3:highMultiplier?2:1} as const;
 }

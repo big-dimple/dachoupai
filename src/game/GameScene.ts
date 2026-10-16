@@ -442,7 +442,7 @@ export class GameScene extends Phaser.Scene {
     {const hit=v.add(this.add.rectangle(h.x+12+avatarSize/2,avatarY+avatarSize/2,Math.max(44,avatarSize+8),Math.max(44,avatarSize+8),0,0));v.target(hit,usesErxiangHandoff(this.run)?'hero/erxiang-handoff':usesTouyeWager(this.run)?'hero/touye-wager':usesLaohuanRefill(this.run)?'hero/laohuan-trick':usesXiemuBurn(this.run)?'hero/xiemu-burn':usesAzaoCharge(this.run)?'hero/azao-charge':'hero/details',{tap:()=>this.inspectHeroExplanation(),detail:()=>this.inspectHeroExplanation()});}
     this.roleFrame=this.add.rectangle(0,0,avatarSize+4,avatarSize+4,T.brass).setFillStyle(T.brass,0).setStrokeStyle(1,T.brass,.6);this.roleAvatar.add(this.roleFrame);
     const identity=stageIdentity(this.stage.index,this.run.stage!.boss,this.run.tourMode,this.run.difficulty)!;
-    if(!portrait)v.text(h.x+12,h.y+8,this.run.tourMode==='endless'?'无尽巡演':GAME_NAME.split('').join(' '),short?20:28,C.paper);
+    if(!portrait)v.text(h.x+12,h.y+8,this.run.tourMode==='endless'?'无尽对局':GAME_NAME.split('').join(' '),short?20:28,C.paper);
     if(!portrait)v.text(h.x+(portrait?64:76),avatarY,(portrait&&this.run.tourMode==='endless'?'无尽 · ':'')+c.name,portrait?18:short?20:22,C.paper,portrait?h.width-160:h.width-88);
     this.roleText=v.text(h.x+(portrait?64:76),avatarY+(portrait?23:28),this.roleCaption(),14,C.mutedInk,portrait?h.width-160:h.width-88);
     const skillEntry=v.rect({x:this.roleText.x,y:this.roleText.y,width:portrait?heroRoom:h.width-88,height:20}).setFillStyle(0,0).setStrokeStyle();v.target(skillEntry,'hero/skill-entry',{tap:()=>this.inspectHeroExplanation(),detail:()=>this.inspectHeroExplanation()});

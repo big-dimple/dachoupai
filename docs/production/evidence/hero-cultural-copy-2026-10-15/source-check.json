@@ -1,0 +1,23 @@
+{
+  "baseCommit": "c009bc401d337fda7af052baa1c7f34798e97154",
+  "date": "2026-10-16T00:02:02.263Z",
+  "sourceFingerprint": "3772fed1b8ba5279f5cab7c3b6f0089a7f01efa32368521c09459bccf948ce24",
+  "fingerprintMethod": "SHA256 of sorted git ls-files src plus HERO_TEXT_SPEC JSON, each path followed by NUL and exact file bytes",
+  "sourceFiles": 286,
+  "protectedPaths": [
+    "src/domain",
+    "src/content",
+    "src/application",
+    "src/platform",
+    "src/audio",
+    "src/game/CharacterArt.ts",
+    "public",
+    "art",
+    "package.json",
+    "package-lock.json"
+  ],
+  "protectedPathsChanged": [],
+  "mechanicMappingsUnchanged": true,
+  "changes": "docs/production/CHARACTER_PLAY_PLAN.md       |  12 +--\n docs/production/DELIVERY_PLAN.md             |  16 ++--\n docs/production/HERO_TEXT_SPEC_20261015.json | 118 +++++++++++++++------------\n docs/production/HERO_TEXT_SPEC_20261015.md   |  97 +++++++++++-----------\n docs/production/plan.json                    |   2 +-\n harness/hero-text-adoption.mjs               |   6 +-\n src/game/CharacterSelectScene.ts             |   4 +-\n src/game/DetailDialog.ts                     |   2 +-\n src/game/GameScene.ts                        |   2 +-\n src/game/HeroExplanation.ts                  |   6 +-\n src/game/HeroIdentity.ts                     |  14 ++--\n src/game/HeroSignature.ts                    |   2 +-\n src/game/IntermissionScene.ts                |  16 ++--\n src/game/ModeSelectDialog.ts                 |   6 +-\n src/game/SettlementPresentation.ts           |   2 +-\n src/game/TitleScene.ts                       |   2 +-\n src/game/stageOutcome.ts                     |   2 +-\n tests/amo-launch.test.ts                     |   6 +-\n tests/azao-charge.test.ts                    |   2 +-\n tests/hero-ability-cue.test.ts               |   4 +-\n tests/hero-explanation.test.ts               |   2 +-\n tests/hero-opening-copy.test.ts              |   2 +-\n tests/hero-text-contract.test.ts             |   4 +-\n tests/settlement-presentation.test.ts        |   2 +-\n 24 files changed, 173 insertions(+), 158 deletions(-)",
+  "status": "PASS"
+}
