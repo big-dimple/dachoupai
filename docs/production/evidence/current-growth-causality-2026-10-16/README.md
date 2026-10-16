@@ -19,3 +19,11 @@
 - typecheck、生产build与计划结构通过；[构建](build.txt)保留既有大bundle提示。源码哈希在运行前后相同，保护树逐树比较一致。
 
 已实际查看[390倍率旧值/新增/累计](390-b03-second.png)、[320热度冷恢复后滚动](320-b10-restored.png)、[PC热度明细](1366-b10-second.png)与原缺失截图。软件可达与正确保存不代签真人理解、物理手机/GPU、听感、自然获取率/长期经营平衡或整体P08完成。两种固定普通现货只证明可用路径，不代表获取频率。P08保持in_progress，不机械跑18路线；先前整合的12项基线全量失败仍保留于原对照，本批没有重签全量绿。
+
+## 玩家用语复核（后续小批）
+
+现有入口和标题改为“加成从哪来”。内容只解释当前与最近一手，选择这个名称，不把它称为完整“成长记录”。明细用“出牌前已攒 / 这手实际用到 / 打完后新攒 / 打完后累计”区分旧值与新增加成，保留生效时点、条件与计分禁用限制；内部技术名不变。产品提交 `20a0fa2945b83332c4a5d6ccc6793217e526ced4`，来源及边界见[后续状态](plain-language/status.json)。
+
+[54项相关单测](plain-language/unit-results.json)与[六条原生浏览器正常流程](plain-language/native-report.json.gz)通过，增加入口文字完整、44px触控区和视口边界检查，继续完整SavedRun重放与冷恢复相等检查。实际查看[390倍率明细](plain-language/390-b03-second.png)、[320滚动到底](plain-language/320-b10-restored.png)、[PC明细](plain-language/1366-b10-second.png)。改词后4条旧拼接文案断言曾失败，已修正断言文字，原[失败报告](plain-language/initial-stale-copy-assertions.json)保留；数值断言没有放宽。加载在报告结束后合并，组合构建/运行结果另列，不将本次六条报告冒充组合结果。
+
+加载交付 `97279e91fb8803bac46406578c1bda98336a112d` 已无冲突合到开发组合 `a4a8481a584235e8b3df9a64f62994059601abe8`；两批产品树分别与其原交付一致，领域/应用/内容/音频/public/art相对main fa5b30ee无差异。组合的[14文件87项单测](plain-language/loading-growth-unit.json)、[类型与生产构建](plain-language/loading-growth-build.txt)和32工作包计划校验通过。此处尚未把分支各自浏览器证据当作组合运行回执；结算与首页另批仍待接入，main未追加发布。

@@ -1,0 +1,149 @@
+{
+  "testedCommit": "20a0fa2945b83332c4a5d6ccc6793217e526ced4",
+  "reportStartedAt": "1a8acc58e3843a755dd69eb5ad95a0d12409d031",
+  "sourceHashes": {
+    "src/game/JokerGrowthCausality.ts": "e3c02fc2aa8f692f4aca89130221cb9e4de2b8362c2e728f8a8133b1d3c25f6b",
+    "src/game/ShopScene.ts": "5a784f08887b98b1f9c8e58e3415bfe8d4272fff25583cae4df40f9889344171",
+    "src/game/GameScene.ts": "a388c480f237362804655e6dfae743b3cf7986b1b9902f97f93afa30fa841e78",
+    "harness/current-growth-causality.mjs": "80e3007a4cadfafb8c3aa7ea84762b372dab0dc613451a95f60b8d6f964ceb26"
+  },
+  "provenance": "Report ran in the unchanged product worktree subsequently committed as testedCommit. Only player strings and their consumers/checks changed; loading was merged after this report completed.",
+  "entry": "加成从哪来",
+  "scope": "Existing optional read-only breakdown; no new history store, automatic banner, calculation, identity or asset change.",
+  "unit": {
+    "files": 8,
+    "passed": 54,
+    "failed": 0
+  },
+  "native": {
+    "status": "PASS",
+    "browser": "153.0.8010.12",
+    "cases": [
+      {
+        "width": 1366,
+        "height": 900,
+        "id": "b10",
+        "status": "PASS",
+        "entryBounds": {
+          "x": 264,
+          "y": 779,
+          "width": 235,
+          "height": 48,
+          "right": 499,
+          "bottom": 827,
+          "textFits": true
+        },
+        "restoredUnchanged": true,
+        "completeReplay": true
+      },
+      {
+        "width": 1366,
+        "height": 900,
+        "id": "b03",
+        "status": "PASS",
+        "entryBounds": {
+          "x": 264,
+          "y": 779,
+          "width": 235,
+          "height": 48,
+          "right": 499,
+          "bottom": 827,
+          "textFits": true
+        },
+        "restoredUnchanged": true,
+        "completeReplay": true
+      },
+      {
+        "width": 390,
+        "height": 740,
+        "id": "b10",
+        "status": "PASS",
+        "entryBounds": {
+          "x": 36,
+          "y": 669,
+          "width": 105,
+          "height": 48,
+          "right": 141,
+          "bottom": 717,
+          "textFits": true
+        },
+        "restoredUnchanged": true,
+        "completeReplay": true
+      },
+      {
+        "width": 390,
+        "height": 740,
+        "id": "b03",
+        "status": "PASS",
+        "entryBounds": {
+          "x": 36,
+          "y": 669,
+          "width": 105,
+          "height": 48,
+          "right": 141,
+          "bottom": 717,
+          "textFits": true
+        },
+        "restoredUnchanged": true,
+        "completeReplay": true
+      },
+      {
+        "width": 320,
+        "height": 568,
+        "id": "b10",
+        "status": "PASS",
+        "entryBounds": {
+          "x": 36,
+          "y": 445,
+          "width": 105.328125,
+          "height": 44,
+          "right": 141.328125,
+          "bottom": 489,
+          "textFits": true
+        },
+        "restoredUnchanged": true,
+        "completeReplay": true
+      },
+      {
+        "width": 320,
+        "height": 568,
+        "id": "b03",
+        "status": "PASS",
+        "entryBounds": {
+          "x": 36,
+          "y": 445,
+          "width": 105.328125,
+          "height": 44,
+          "right": 141.328125,
+          "bottom": 489,
+          "textFits": true
+        },
+        "restoredUnchanged": true,
+        "completeReplay": true
+      }
+    ]
+  },
+  "initialFailure": "Four stale concatenated old-copy assertions after wording changed; corrected strings, same numeric and immutability assertions retained. Original report retained.",
+  "build": "PASS on combined a4a8481a584235e8b3df9a64f62994059601abe8 (typecheck + production build)",
+  "main": "fa5b30ee1ebf28d4ee71d676b231eab260172033 remains published; this batch is development only.",
+  "notClaimed": [
+    "human understanding",
+    "physical mobile device",
+    "full-suite green",
+    "overall P08 complete"
+  ],
+  "combined": {
+    "commit": "a4a8481a584235e8b3df9a64f62994059601abe8",
+    "loading": "97279e91fb8803bac46406578c1bda98336a112d",
+    "growth": "20a0fa2945b83332c4a5d6ccc6793217e526ced4",
+    "unit": {
+      "files": 14,
+      "passed": 87,
+      "failed": 0
+    },
+    "build": "PASS; existing chunk-size notice retained",
+    "plan": "PLAN_VALID: 32; current=P08; not gameplay acceptance",
+    "native": "Pending combined run; six-case wording native report above predates loading merge",
+    "protectedTrees": "src/domain, src/application, src/content, src/audio, public, art unchanged vs published fa5b30ee"
+  }
+}
