@@ -1,5 +1,7 @@
 # 高光固定眼神与结算残留空框修复
 
+后续接入更新：新苏轼资源已在自有开发分支合入并校准眼神裁切，见[新图7案与390实际关键帧](../highlight-new-su-shi-focus-2026-10-16/README.md)。下文18案保持原资源/原SHA的历史边界。
+
 基线main：`8728e18e823ef9cbe28a4350a566de21f1e3127c`。产品：`e1bb46db413936dc4a81e20f616233bc0e640a68`。独立分支：`fix/highlight-manga-focus-20261016`，独立worktree，未合main。P08仍为in_progress。
 
 ## 实际问题与修改

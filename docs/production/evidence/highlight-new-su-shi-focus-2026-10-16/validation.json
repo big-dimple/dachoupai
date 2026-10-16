@@ -1,0 +1,151 @@
+{
+  "product": "d5355651ccb8d36dc4746c9d453bafdc4ef2a3e3",
+  "resourceDependency": "76e64c14ab03032b45bba4778ebf4c9b7fe389a1",
+  "dependencyMerge": "3278475e1392d4cd22ce1f4691695d3605e734da",
+  "beforeBuild": {
+    "version": "C03",
+    "builtAt": "2026-10-16T11:50:21.278Z",
+    "revision": "3278475e1392d4cd22ce1f4691695d3605e734da",
+    "sourceStatus": "clean",
+    "modified": false
+  },
+  "afterBuild": {
+    "version": "C03",
+    "builtAt": "2026-10-16T11:52:06.377Z",
+    "revision": "d5355651ccb8d36dc4746c9d453bafdc4ef2a3e3",
+    "sourceStatus": "clean",
+    "modified": false
+  },
+  "unit": {
+    "status": "PASS",
+    "files": 2,
+    "tests": 19,
+    "command": "npx.cmd vitest run tests/hero-climax-focus.test.ts tests/character-art.test.ts"
+  },
+  "typecheck": "PASS",
+  "e2eBuild": "PASS",
+  "normalCases": [
+    {
+      "key": "e11-740-normal",
+      "status": "PASS",
+      "eyeFrames": 96,
+      "captionTiming": [
+        {
+          "eventId": "controlled/settlement/e11-current/hand/controlled/settlement/e11-current/command/4/event/6",
+          "firstPaint": 6280.5,
+          "lastPaint": 7879.29999999702,
+          "subjectMs": 1033.2999999970198
+        }
+      ]
+    },
+    {
+      "key": "e11-320-normal",
+      "status": "PASS",
+      "eyeFrames": 97,
+      "captionTiming": [
+        {
+          "eventId": "controlled/settlement/e11-current/hand/controlled/settlement/e11-current/command/4/event/6",
+          "firstPaint": 6343.29999999702,
+          "lastPaint": 7956.9000000059605,
+          "subjectMs": 1049.5999999940395
+        }
+      ]
+    },
+    {
+      "key": "e11-390-normal",
+      "status": "PASS",
+      "eyeFrames": 95,
+      "captionTiming": [
+        {
+          "eventId": "controlled/settlement/e11-current/hand/controlled/settlement/e11-current/command/4/event/6",
+          "firstPaint": 5896.899999991059,
+          "lastPaint": 7476.29999999702,
+          "subjectMs": 1034.5
+        }
+      ]
+    },
+    {
+      "key": "e11-1366-normal",
+      "status": "PASS",
+      "eyeFrames": 94,
+      "captionTiming": [
+        {
+          "eventId": "controlled/settlement/e11-current/hand/controlled/settlement/e11-current/command/4/event/6",
+          "firstPaint": 6629.0999999940395,
+          "lastPaint": 8202.5,
+          "subjectMs": 1034.7000000029802
+        }
+      ]
+    },
+    {
+      "key": "e11-390-reduce",
+      "status": "PASS",
+      "eyeFrames": 62,
+      "captionTiming": [
+        {
+          "eventId": "controlled/settlement/e11-current/hand/controlled/settlement/e11-current/command/4/event/6",
+          "firstPaint": 3997.5999999940395,
+          "lastPaint": 5008.5,
+          "subjectMs": 1012.4000000059605
+        }
+      ]
+    }
+  ],
+  "dpr2": "PASS",
+  "assetProof": [
+    {
+      "url": "http://127.0.0.1:5592/assets/tangsong-portraits/amo.avatar.webp?v=c1818763446d",
+      "bytes": 21724,
+      "sha256": "c1818763446d466ccf20477f92fb12b2c0271275a5390d439a5daf6c6c7a0965"
+    },
+    {
+      "url": "http://127.0.0.1:5592/assets/tangsong-portraits/amo.selection.webp?v=e9764fb0dd3f",
+      "bytes": 34044,
+      "sha256": "e9764fb0dd3f4edbfda3ac286a24e7184608f3370b4859d82c7e3a5323a49b4b"
+    },
+    {
+      "url": "http://127.0.0.1:5592/assets/tangsong-portraits/amo.focus.webp?v=f158579f7e05",
+      "bytes": 56012,
+      "sha256": "f158579f7e055d16a4f2d9c2f36609fcbb5d8980469e31e063517f1e6fea02ad"
+    },
+    {
+      "url": "http://127.0.0.1:5592/assets/tangsong-portraits/amo.portrait.webp?v=d5089a32b739",
+      "bytes": 128344,
+      "sha256": "d5089a32b739cef2cca1ff680fb2ac1776f7a7b44426133e01b814085edeec39"
+    },
+    {
+      "url": "http://127.0.0.1:5592/assets/tangsong-portraits/amo.avatar.webp?v=c1818763446d",
+      "bytes": 21724,
+      "sha256": "c1818763446d466ccf20477f92fb12b2c0271275a5390d439a5daf6c6c7a0965"
+    },
+    {
+      "url": "http://127.0.0.1:5592/assets/tangsong-portraits/amo.selection.webp?v=e9764fb0dd3f",
+      "bytes": 34044,
+      "sha256": "e9764fb0dd3f4edbfda3ac286a24e7184608f3370b4859d82c7e3a5323a49b4b"
+    }
+  ],
+  "fullBeforeAfterInitialSavedAfterColdEqual": true,
+  "allPaintedTextCollisions": [],
+  "normalizedCrop": [
+    0.313,
+    0.19,
+    0.51,
+    0.221
+  ],
+  "sampledCrop": {
+    "x": 150,
+    "y": 91,
+    "width": 245,
+    "height": 106
+  },
+  "sourceFocus": {
+    "width": 480,
+    "height": 480,
+    "sha256": "f158579f7e055d16a4f2d9c2f36609fcbb5d8980469e31e063517f1e6fea02ad"
+  },
+  "approvedPNG": "abe4446d6c57b1c2d8d83434c766e0a452aeb8ee198615cf58bd918b1021dfcb",
+  "resourcesByteIdenticalToDependency": true,
+  "scoringSavesAndSharedScenesUnchanged": true,
+  "scope": "New user-provided Su Shi asset; actual production import and PlayHand, native charge/strike/landing keyframes, 320/390/short/PC/reduced plus DPR2 and one actual response SHA/version assertion. No new image generation, source/derived art changes, or physical-device/perceived-fluidity acceptance.",
+  "productionBuild": "PASS"
+}
