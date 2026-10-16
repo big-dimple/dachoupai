@@ -20,6 +20,8 @@ export function enrollFirstChapterGuide(state:R2RunState):void {
  write({...p,enrolled:guideRunKey(state),skipped:[]});
 }
 export function stopFirstChapterGuide():void {const p=read();if(p.enrolled)write({...p,enrolled:undefined,skipped:[]});}
+/** Other opening decisions follow enrollment, not whether one inline hint is visible. */
+export function firstChapterGuideEnrolled(state:R2RunState):boolean {const p=read();return !p.disabled&&p.enrolled===guideRunKey(state);}
 export function firstChapterGuide(state:R2RunState){
  const p=read();if(p.disabled||p.enrolled!==guideRunKey(state)||state.stageIndex>1)return;
  if(state.phase!=='shop'&&state.phase!=='await-input'&&!(state.phase==='stage-cleared'&&state.lastTrace))return;

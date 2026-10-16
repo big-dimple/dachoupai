@@ -2,10 +2,11 @@ import './HeroPlayReminder.css';
 import type {R2RunState} from '../domain/r2Run';
 import type {R2SelectionFacts} from '../domain/r2SelectionFacts';
 import {heroAbilityCue} from './HeroAbilityCue';
-import {firstChapterGuide} from './FirstChapterGuide';
+import {firstChapterGuideEnrolled} from './FirstChapterGuide';
 import {buildDirectionRunKey} from './BuildDirectionPreferences';
 import {heroSkillGuide} from './HeroSkillGuide';
 import type {DetailDialog} from './DetailDialog';
+import {characterForRun} from './CharacterRunCopy';
 
 export interface HeroPlayDraft {erxiangTargetId?:string|null;xiemuBurn?:number;azaoRelease?:boolean;assistCount?:number}
 /** Available, not merely an opportunity: no speculation about another selection or future draw. */
@@ -29,7 +30,7 @@ export function createHeroPlayReminders(storage:()=>Storage){
  const read=()=>{if(!unpersisted)try{fallback=decodeHeroPlayReminder(storage().getItem(HERO_PLAY_REMINDER_KEY));}catch{/* Retain session state. */}return fallback;};
  const write=(p:Preferences)=>{fallback=p;try{storage().setItem(HERO_PLAY_REMINDER_KEY,JSON.stringify(p));unpersisted=false;}catch{unpersisted=true;}};
  return {
-  claim(run:R2RunState,enrolled=!!firstChapterGuide(run)):boolean {
+  claim(run:R2RunState,enrolled=firstChapterGuideEnrolled(run)):boolean {
    const p=read(),key=buildDirectionRunKey(run),entry=p.entries.find(e=>e.run===key);
    if(!enrolled||p.disabled||run.stageIndex<0||run.stageIndex>1||entry?.stages.includes(run.stageIndex)||(entry?.stages.length??0)>=2)return false;
    write({...p,entries:[...p.entries.filter(e=>e.run!==key),{run:key,stages:[...(entry?.stages??[]),run.stageIndex]}].slice(-8)});return true;
@@ -40,12 +41,13 @@ export function createHeroPlayReminders(storage:()=>Storage){
 export const heroPlayReminders=createHeroPlayReminders(()=>globalThis.localStorage);
 /** Only UI callbacks: returning never chooses a target or sends a game command. */
 export function showHeroPlayReminder(dialog:DetailDialog,run:R2RunState,facts:R2SelectionFacts,ids:readonly string[],assistAvailable:boolean,callbacks:{valid:()=>boolean;back:()=>void;play:()=>void;disable:()=>void}):void {
- const guide=heroSkillGuide(run,facts,ids,assistAvailable);let consumed=false;
+ const guide=heroSkillGuide(run,facts,ids,assistAvailable),hero=characterForRun(run);let consumed=false;
  const act=(next:()=>void)=>{if(consumed||!dialog.active(modal))return;consumed=true;const valid=callbacks.valid();dialog.close(modal);if(valid)next();};
- const modal=dialog.open('确定不使用技能吗？',guide.effect+'\n'+guide.risk,[
+ const modal=dialog.open('这手要用主动技能吗？','主动操作：'+guide.effect+'\n'+guide.risk,[
   {label:'返回用技能',primary:true,run:()=>act(callbacks.back)},
   {label:'继续出牌',run:()=>act(callbacks.play)},
- ],{summaryBody:'这次可以不用技能；返回只查看操作，由你决定是否使用。',closeLabel:'取消 · 返回选牌'});
+ ],{summaryBody:hero.name+' · '+hero.passiveName+'\n当前可用，尚未选择本手主动操作。',closeLabel:'取消 · 返回选牌'});
  modal.classList.add('hero-play-reminder');
+ const automatic=document.createElement('p');automatic.className='hero-reminder-automatic';automatic.textContent='继续出牌：本手不使用这项主动操作。被动／自动效果仍按各自条件结算，不会一起关闭。返回后仍由你决定是否使用，不会自动发动。';modal.querySelector('.dialog-scroll')!.append(automatic);
  const off=document.createElement('button');off.type='button';off.className='hero-reminder-disable';off.textContent='不再提醒';off.onclick=()=>act(callbacks.disable);modal.querySelector('.dialog-scroll')!.append(off);
 }

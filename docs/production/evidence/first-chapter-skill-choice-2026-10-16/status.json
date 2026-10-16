@@ -1,0 +1,86 @@
+{
+  "status": "development_verified_pending_integration",
+  "base": "3084f06fb71f5492a550c5072c66c2533d4f909f",
+  "branch": "fix/first-chapter-active-skill-choice-20261016",
+  "sourceHashes": {
+    "src/game/FirstChapterGuide.ts": "40d2fef15f8281fcc2ef508e950caa26708c1027837ba1f2bf05ea35fef137f3",
+    "src/game/HeroPlayReminder.ts": "65c401d757e0f083181d1cd448eac0a5895363bbfd215cf07ffa2fbf5e976643",
+    "src/game/HeroPlayReminder.css": "c7dde82df938368127b24e7aeaf891b4acb8bfc6f6450bf51ee39d0fcb7bf4f5"
+  },
+  "harnessHash": "d1a5076178784bda6ac701e2428fd84c4aca557a1be728a7aa2531c471cffbfa",
+  "build": {
+    "version": "C03",
+    "builtAt": "2026-10-16T03:07:39.007Z",
+    "revision": "3084f06fb71f5492a550c5072c66c2533d4f909f",
+    "sourceStatus": "dirty",
+    "modified": true,
+    "modifiedFileCount": 4,
+    "modifiedFiles": [
+      "src/game/FirstChapterGuide.ts",
+      "src/game/HeroPlayReminder.css",
+      "src/game/HeroPlayReminder.ts",
+      "tests/hero-play-reminder.test.ts"
+    ]
+  },
+  "defect": {
+    "cause": "HeroPlayReminder default enrollment depended on firstChapterGuide visibility; skipping one inline hand hint hid that guide and suppressed an otherwise available active-skill reminder.",
+    "ordinaryRun": {
+      "seed": "skill-choice-natural-0",
+      "hero": "erxiang",
+      "mode": "standard",
+      "difficulty": 0,
+      "route": "group",
+      "fixtureImport": false,
+      "manualPreferenceEnrollment": false,
+      "beforeReminder": false,
+      "afterReminder": true
+    }
+  },
+  "change": {
+    "trigger": "Use existing first-guide run enrollment; do not treat a skipped single inline hint as a run opt-out.",
+    "copy": "Existing saved-identity hero/skill name, explicit optional active operation and conditional passive/automatic effects.",
+    "mobile": "One scrolling body with existing fixed native actions.",
+    "frequency": "unchanged: first two enrolled stages, once per stage/twice per run; cancellation consumes claim.",
+    "explicitOptOut": "run/forever guide opt-outs and reminder disable remain respected",
+    "state": "No new save keys, rule identity, numbers, or game commands."
+  },
+  "checks": {
+    "baselineRegressionUnit": "16 passed,1 expected failure demonstrates bug",
+    "targetedUnit": "38 passed,0 failed",
+    "availableNative": "6 heroes×PC1366/phone390=12",
+    "unavailableNative": "6 heroes×PC/phone=12; actual exhausted discards for Touye/Laohuan; unqualified main hands for others; Xiemu below10 gold",
+    "actualUsedNative": "Erxiang real148-point handoff then qualified pair; no reminder in both PC/phone",
+    "usedAndPassiveDomain": "actual committed uses/no charge/pending choices/passive profile/B08 exception/Q01 in unit suite",
+    "ordinaryNewRun": "before/after skip-one-inline-hint; after cancel selection unchanged, cold restore and no repeat",
+    "saveFailureAndFixedRetry": "PC and390 native double continue/retry, exact pending candidate and canonical command equality",
+    "staleSelectionAndBusy": "no obsolete submit",
+    "mobile": "320×568 and740×320 actions visible≥44px; no-reminder preference readable/clickable",
+    "typecheckAndProductionBuild": "PASS",
+    "syntax": "PASS",
+    "protectedTrees": "unchanged"
+  },
+  "history": [
+    {
+      "stage": "new regression before product patch",
+      "outcome": "expected unit failure retained"
+    },
+    {
+      "stage": "Windows Vite SSR fixture setup",
+      "outcome": "transport invoke timed out after60000ms for r2PublishedContent; no product verdict"
+    },
+    {
+      "stage": "parallel SSR probe",
+      "outcome": "HMR24678 collision; own probe stopped"
+    },
+    {
+      "stage": "portable fixture loader validation",
+      "outcome": "initial attempt saw5568 still owned by running full suite; waited for valid full suite PASS; then portable baseline/narrow and states modes PASS"
+    }
+  ],
+  "limits": [
+    "Native Windows Chromium software validation, not physical phone/GPU, hearing, human understanding or overall game acceptance.",
+    "Six-hero conditioned states/imports are controlled; only the explicitly identified ordinary new-run case is natural.",
+    "No domain/content/audio/platform/art/GameScene change, no CI/domain query, no main merge.",
+    "P08 remains in_progress; first-chapter full gameplay/balance acceptance is not signed."
+  ]
+}
