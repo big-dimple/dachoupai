@@ -1,11 +1,11 @@
 import type {Box} from './layout';
-/** One paper stage, three camera compositions. No rule or queue timing. */
+/** Compact paper stage with fixed eye and numeric regions. No rule or queue timing. */
 export function heroClimaxLayout(w:number,h:number,hasSource=true){
  const portrait=w<h,short=h<450,pad=portrait?18:24;
- const panelW=Math.min(1080,w-24),panelH=Math.min(short?h-88:h-150,portrait?580:560);
+ const panelW=Math.min(720,w-24),panelH=Math.min(short?h-88:h-144,portrait?430:386);
  const panel:Box={x:(w-panelW)/2,y:Math.max(short?44:64,(h-panelH)/2-6),width:panelW,height:panelH};
  const inner:Box={x:panel.x+pad,y:panel.y+pad,width:panel.width-pad*2,height:panel.height-pad*2};
- const header=short?74:portrait?80:104,footer=short?64:portrait?128:118;
+ const header=short?74:82,footer=short?64:86;
  const body:Box={x:inner.x,y:panel.y+header,width:inner.width,height:panel.height-header-footer};
  const subjectW=body.width*(hasSource?.44:.46),gap=portrait?18:28;
  const subject:Box={...body,width:subjectW};
@@ -25,10 +25,4 @@ export function reserveHeroClimaxHeader(l:ReturnType<typeof heroClimaxLayout>,he
  const y=Math.ceil(headerBottom)+12,height=Math.max(1,l.body.y+l.body.height-y),body={...l.body,y,height};
  const source={...l.source,y,height},readout={...l.readout,y:y+height*(l.short?0:.18),height:height*.7};
  return {...l,body,source,readout,eyes:{...l.eyes,y:y+height*.08,height:height*(l.short?.54:.62)},landing:{...l.landing,y:y+10,height},heroY:y+height/2,heroH:height,valueY:readout.y+(l.short?20:28)};
-}
-
-/** Short landing keeps the source effect and accumulated value side by side. */
-export function heroClimaxLandingColumns(l:ReturnType<typeof heroClimaxLayout>){
- const width=(l.landing.width-24)/2,y=l.landing.y+22,height=Math.max(1,Math.min(64,l.noteY-y-8));
- return {labelY:l.landing.y,local:{x:l.nameX,y,width,height},total:{x:l.nameX+width+24,y,width,height}};
 }

@@ -31,7 +31,8 @@ describe('bounded cinnabar score strokes',()=>{
   });
   it('gives a positive below-target hit two visible strokes through gather / unfold / fade',()=>{
     const f=fixture();f.flame.impact('actual-1');expect(f.state()).toMatchObject({level:0,localPhase:'gather',localAlpha:1});
-    expect(f.flame.graphic.visible).toBe(true);expect(f.objects.find(o=>o.name==='score/fire').commands.filter((c:any)=>c[0]==='strokePath')).toHaveLength(6);
+    expect(f.flame.graphic.visible).toBe(true);expect(f.objects.find(o=>o.name==='score/fire').commands.filter((c:any)=>c[0]==='strokePath')).toHaveLength(2);
+    expect(f.flame.graphic.getData('impactRays')).toEqual([]);
     f.events.emit('update',70);expect(f.state().localPhase).toBe('unfold');f.events.emit('update',110);expect(f.state().localPhase).toBe('fade');
     f.events.emit('update',140);expect(f.state().localPhase).toBe('idle');expect(f.flame.graphic.visible).toBe(false);expect(f.updates()).toBe(0);f.flame.destroy();
   });
@@ -115,8 +116,10 @@ it('physically clips impact lines outside numeric guards even when the renderer 
   const f=fixture(),guard={x:196,y:246,width:134,height:54};f.flame.setGuards([guard]);f.flame.set(3);f.flame.impact('base');
   for(const delta of [16,20,30,34,50]){
     f.events.emit('update',delta);
-    const width=4.5+3*.8;
-    for(const segment of f.flame.graphic.getData('visibleImpactSegments') as {x:number;y:number}[][]){
+    const width=f.state().localLineWidth;
+    const segments=f.flame.graphic.getData('visibleLocalSegments') as {x:number;y:number}[][];
+    expect(segments.length).toBeGreaterThan(0);
+    for(const segment of segments){
       const left=Math.min(...segment.map(p=>p.x))-width/2,top=Math.min(...segment.map(p=>p.y))-width/2;
       const box={x:left,y:top,width:Math.max(...segment.map(p=>p.x))+width/2-left,height:Math.max(...segment.map(p=>p.y))+width/2-top};
       expect(intersects(box,guard)).toBe(false);
