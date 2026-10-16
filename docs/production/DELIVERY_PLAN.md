@@ -4,9 +4,11 @@
 
 **本节是唯一排程与状态入口（2026-10-15对账快照）。** `plan.json`保存工作包状态，[角色玩法](CHARACTER_PLAY_PLAN.md)只解释玩法与验收，[角色文本规范](HERO_TEXT_SPEC_20261015.md)/[JSON映射](HERO_TEXT_SPEC_20261015.json)负责六人文案，[状态凭据](evidence/tangsong-plan-reconcile-2026-10-15/status.json)固定本轮核对的提交。它们不各排另一条队列。下方所有旧“当前/下一项/待实现/暂停/待图”按各自日期与SHA读取，不能覆盖本节；旧证据、FAIL和NOT_RUN均保留。旧plan累计状态原文归档于[历史状态](history/plan-status-before-20261015.json)。不计算或臆造整体完成百分比。
 
-2026-10-16 本机并集：文化文案、选择布局与跨场景连点修复已在独立开发分支同版复核；唯一当前结果见[本机整合状态](evidence/local-windows-integration-2026-10-16/status.json)，失败对照与验收边界见同目录README。只推开发分支，main仍待确认；P08保持in_progress。
+2026-10-16 本机并集：文化文案、选择布局与跨场景连点修复已在独立开发分支同版复核；唯一当前结果见[本机整合状态](evidence/local-windows-integration-2026-10-16/status.json)，失败对照与验收边界见同目录README。该并集已正常发布main fa5b30ee；P08保持in_progress。
 
 2026-10-16 成长解释小批：已发布main fa5b30ee上，当前新局的练对子/老搭档恢复按需“成长因果”入口；固定正常购买与两手实际结算、三档查看/取消/冷恢复证据见[本批记录](evidence/current-growth-causality-2026-10-16/README.md)。本批只推新的开发分支，加载自动重试另路负责，P08仍in_progress。
+
+2026-10-16 先行体验批次：原“成长因果”按需入口改为玩家可理解的“加成从哪来”，明细区分旧加成、本手实际使用、打完后新攒与累计；与加载自动恢复97279e91组合后按最新用户授权先检查并正常合并push main，不等待首页/结算独立修复。精确候选、实际检查及发布边界见[加载与成长组合](evidence/loading-growth-integration-2026-10-16/README.md)。后两项验证后再逐批整合发布，不混未验证代码；不查CI/域名，P08保持in_progress。
 
 ### 已定身份、题材与验收边界
 

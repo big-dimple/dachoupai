@@ -1,0 +1,190 @@
+{
+  "taskId": "P08",
+  "status": "software_verified_authorized_release",
+  "testedCommit": "f6b8fb3fd04c0a368ea2bf567a16c098db1e87d0",
+  "sourceTree": "66470a8714a29327b8da406762a05ba85f217e13",
+  "branch": "fix/current-growth-causality-20261016",
+  "basePublishedMain": "fa5b30ee1ebf28d4ee71d676b231eab260172033",
+  "deliveries": {
+    "loading": "97279e91fb8803bac46406578c1bda98336a112d",
+    "currentIdentityGrowth": "088e6c3c52e957c996239551ecf42e7e2f7ec3eb",
+    "playerLanguage": "20a0fa2945b83332c4a5d6ccc6793217e526ced4",
+    "merge": "a4a8481a584235e8b3df9a64f62994059601abe8"
+  },
+  "unit": {
+    "files": 14,
+    "passed": 87,
+    "failed": 0,
+    "report": "unit-results.json",
+    "testedAt": "a4a8481a584235e8b3df9a64f62994059601abe8",
+    "productUnchangedToCandidate": true
+  },
+  "typecheck": "PASS",
+  "build": "PASS; existing large bundle notice",
+  "plan": "PLAN_VALID: 32; current=P08; not gameplay acceptance",
+  "loading": {
+    "browser": "143.0.3650.80",
+    "status": "PASS",
+    "cases": [
+      {
+        "name": "slow-320",
+        "status": "PASS",
+        "targetHits": 1,
+        "readyMs": 7525
+      },
+      {
+        "name": "slow-390-reduced",
+        "status": "PASS",
+        "targetHits": 1,
+        "readyMs": 6940
+      },
+      {
+        "name": "transient-503",
+        "status": "PASS",
+        "targetHits": 2,
+        "readyMs": 2804
+      },
+      {
+        "name": "timeout-auto",
+        "status": "PASS",
+        "targetHits": 2,
+        "readyMs": 5988
+      },
+      {
+        "name": "offline-online",
+        "status": "PASS",
+        "targetHits": 2,
+        "readyMs": 2563
+      },
+      {
+        "name": "permanent-404",
+        "status": "PASS",
+        "targetHits": 2
+      },
+      {
+        "name": "pause-resume",
+        "status": "PASS",
+        "targetHits": 2,
+        "readyMs": 2758
+      },
+      {
+        "name": "back-exit",
+        "status": "PASS",
+        "targetHits": 1
+      },
+      {
+        "name": "cancel-reentry-cache",
+        "status": "PASS",
+        "targetHits": 2,
+        "readyMs": 2695
+      },
+      {
+        "name": "warm-cache",
+        "status": "PASS",
+        "targetHits": 1,
+        "readyMs": 1911
+      },
+      {
+        "name": "deadline-tail",
+        "status": "PASS",
+        "targetHits": 1,
+        "readyMs": 17174
+      }
+    ],
+    "report": "loading-native.json.gz"
+  },
+  "growth": {
+    "browser": "153.0.8010.12",
+    "status": "PASS",
+    "sourceUnchanged": true,
+    "cases": [
+      {
+        "width": 1366,
+        "height": 900,
+        "id": "b10",
+        "status": "PASS",
+        "savedReadOnly": true,
+        "replayComplete": true
+      },
+      {
+        "width": 1366,
+        "height": 900,
+        "id": "b03",
+        "status": "PASS",
+        "savedReadOnly": true,
+        "replayComplete": true
+      },
+      {
+        "width": 390,
+        "height": 740,
+        "id": "b10",
+        "status": "PASS",
+        "savedReadOnly": true,
+        "replayComplete": true
+      },
+      {
+        "width": 390,
+        "height": 740,
+        "id": "b03",
+        "status": "PASS",
+        "savedReadOnly": true,
+        "replayComplete": true
+      },
+      {
+        "width": 320,
+        "height": 568,
+        "id": "b10",
+        "status": "PASS",
+        "savedReadOnly": true,
+        "replayComplete": true
+      },
+      {
+        "width": 320,
+        "height": 568,
+        "id": "b03",
+        "status": "PASS",
+        "savedReadOnly": true,
+        "replayComplete": true
+      }
+    ],
+    "report": "growth-native.json.gz"
+  },
+  "sourceUnchanged": true,
+  "sourceHashes": {
+    "index.html": "bbf7a231637d39a7502201bd3a9faacdaaec3374edfd187ad56d640bdc56f3ae",
+    "src/game/BootScene.ts": "5cc420b3f74015be62f82b4a45fd145fe403f00ba08b43c44591abeb3408bce1",
+    "src/game/LoadingScreen.ts": "3d2bc7511077458ea9284f98ddbeeee8b9348ff38cd6f1f88f6dea590c666eb7",
+    "src/game/LoadingProgress.ts": "37713ae1900b692f8586de5cccf7c57365388c69c4d635b9a4dcba7079a6c408",
+    "src/game/ResourceRecovery.ts": "5b58566b4deb07a8dbbd108f141ec359798ad04884e250a7cb3dbc733628e42f",
+    "src/game/SceneResources.ts": "671a6d479bb908c52c4d502bc9377d4b178ba04616b1c4d3b474383720c26e03",
+    "src/game/ImageWarmupQueue.ts": "899a5a77f21c0e390e5ae4d4c052aa6a70cfcfdf381d866454ee7ad1009b18c9",
+    "src/game/JokerGrowthCausality.ts": "e3c02fc2aa8f692f4aca89130221cb9e4de2b8362c2e728f8a8133b1d3c25f6b",
+    "src/game/ShopScene.ts": "5a784f08887b98b1f9c8e58e3415bfe8d4272fff25583cae4df40f9889344171",
+    "src/game/GameScene.ts": "a388c480f237362804655e6dfae743b3cf7986b1b9902f97f93afa30fa841e78"
+  },
+  "protectedTreesUnchangedVsBase": [
+    "src/domain",
+    "src/application",
+    "src/content",
+    "src/audio",
+    "public",
+    "art"
+  ],
+  "publication": {
+    "authorization": "Latest user instruction permits normal merge/push of this independently verified batch first, without waiting for homepage or settlement work.",
+    "method": "Normal fast-forward merge and normal push only; exact remote head is verified and reported in delivery receipt.",
+    "notQueried": [
+      "remote CI",
+      "domains"
+    ]
+  },
+  "notIncluded": [
+    "unverified homepage redesign",
+    "unverified settlement layout/performance edits"
+  ],
+  "notClaimed": [
+    "new full-suite green; prior Windows baseline failures retained",
+    "HTML/main-script navigation failures before app runs",
+    "human understanding / physical device / audio / natural balance / overall P08 completion"
+  ]
+}

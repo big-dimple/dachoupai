@@ -6,9 +6,11 @@
 
 当前完整策划和开发合同统一见[DELIVERY_PLAN](production/DELIVERY_PLAN.md)。本页不复制当前摘要。以下旧“当前”、review、未main、待办和发布覆盖段落按各自原SHA保留为历史，不能作为当前调度；原证据、失败与未通过门槛不删除。
 
-2026-10-16 本机开发整合的当前源码、验证、原失败及下一步统一见[本机整合记录](production/evidence/local-windows-integration-2026-10-16/README.md)；P08未整体签收，main发布仍待确认。
+2026-10-16 本机开发整合的当前源码、验证、原失败及下一步统一见[本机整合记录](production/evidence/local-windows-integration-2026-10-16/README.md)；P08未整体签收，该并集已正常发布main fa5b30ee。
 
 2026-10-16 后续成长解释小批见[当前新局成长因果](production/evidence/current-growth-causality-2026-10-16/README.md)；基线main fa5b30ee已正常发布，本批仍为独立开发分支，加载另路。
+
+2026-10-16 最新先行批次见[加载与加成说明组合](production/evidence/loading-growth-integration-2026-10-16/README.md)：当前入口叫“加成从哪来”；加载97279e91与成长组合先独立验证并按最新用户授权正常发布，首页与结算仍各自验证后逐批整合，不混未验证修改。main精确回执以本批交付为准，不查询CI/域名。
 
 ## 共同Joker正常入口/UI交接（PR25，2026-10-05 UTC，仅review）
 
