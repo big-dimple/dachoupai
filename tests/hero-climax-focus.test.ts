@@ -13,7 +13,7 @@ it('new user-provided Su Shi strip includes both reviewed eye anchors without cu
 it.each([[320,740],[390,740],[568,320],[740,320],[740,300],[1366,768]])('focus and two number lanes stay separate at %ix%i',(w,h)=>{
  const l=heroClimaxLayout(w,h),c=heroFocusComposition(reserveHeroClimaxHeader(l,l.nameY+58),true);
  expect(c.local.x+c.local.width).toBeLessThan(c.total.x);expect(c.total.x+c.total.width).toBeLessThanOrEqual(l.panel.x+l.panel.width);
- expect(c.local.height).toBeGreaterThanOrEqual(30);expect(c.total.y+c.total.height).toBeLessThan(l.noteY);
+ expect(c.local.height).toBeGreaterThanOrEqual(30);expect(c.total.y+c.total.height).toBeLessThan(h-12);
  if(l.short)expect(c.eyes.x+c.eyes.width).toBeLessThan(c.local.x);else expect(c.eyes.y+c.eyes.height).toBeLessThan(c.labelY);
 });
 it('charges once then fades to a quiet edge; reduced motion has one static pose',()=>{

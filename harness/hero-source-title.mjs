@@ -77,7 +77,7 @@ try{for(const spec of specs){const mode=spec.mode??'normal',key=spec.kind+'-'+sp
     const now=performance.now(),id=group.getData('eventId'),shot=group.getData('shot')??'old-single-panel',subjectVisibleAt=group.getData('subjectVisibleAt');
     window.__panelTimeline.push({eventId:id,phase:group.getData('phase'),shot,timeMs:now,subjectVisibleAt,strikeAt:group.getData('strikeAt')});
     const texts=visible(group.list).filter(o=>o.type==='Text').map(o=>({name:o.name,text:o.text,font:o.style.fontSize,lines:o.getWrappedText(),bounds:o.getBounds(),scaleX:o.scaleX,scaleY:o.scaleY,resolution:o.style.resolution}));
-    const sample=()=>({eventId:id,fact:group.getData('benefit'),phase:group.getData('phase'),shot,timeMs:now,subjectVisibleAt,reduced:scene.reducedMotion,playing:scene.playing,ready:scene.ready,headlineWidth:group.getData('headlineWidth'),texts,pixelEvidence:{headline:pixels('hero/climax-name',texts),value:pixels('hero/climax-value',texts)}});
+    const sample=()=>({eventId:id,fact:group.getData('benefit'),phase:group.getData('phase'),shot,timeMs:now,subjectVisibleAt,reduced:scene.reducedMotion,playing:scene.playing,ready:scene.ready,headlineWidth:group.getData('headlineWidth'),panel:group.getData('panel'),backdrop:group.getData('opaqueBackdrop'),focusBounds:visible(group.list).find(o=>o.name==='hero/climax-eyes')?.getData('visibleBounds'),texts,pixelEvidence:{headline:pixels('hero/climax-name',texts),value:pixels('hero/climax-value',texts)}});
     if(subjectVisibleAt!==undefined&&shot!=='eyes'&&!seen.has(id)){
      seen.add(id);window.__titleFrames.push(sample());window.__titleImages.push({eventId:id,png:g.canvas.toDataURL('image/png')});
     }

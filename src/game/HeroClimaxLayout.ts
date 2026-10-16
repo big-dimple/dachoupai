@@ -2,7 +2,7 @@ import type {Box} from './layout';
 /** Compact paper stage with fixed eye and numeric regions. No rule or queue timing. */
 export function heroClimaxLayout(w:number,h:number,hasSource=true){
  const portrait=w<h,short=h<450,pad=portrait?18:24;
- const panelW=Math.min(720,w-24),panelH=Math.min(short?h-88:h-144,portrait?430:386);
+ const panelW=Math.min(660,w-24),panelH=Math.min(short?h-88:h-120,portrait?356:340);
  const panel:Box={x:(w-panelW)/2,y:Math.max(short?44:64,(h-panelH)/2-6),width:panelW,height:panelH};
  const inner:Box={x:panel.x+pad,y:panel.y+pad,width:panel.width-pad*2,height:panel.height-pad*2};
  const header=short?74:82,footer=short?64:86;
@@ -16,7 +16,7 @@ export function heroClimaxLayout(w:number,h:number,hasSource=true){
  const landing:Box={x:inner.x,y:body.y+10,width:inner.width,height:body.height};
  return {portrait,short,panel,body,eyes,landing,panelY:panel.y,panelH:panel.height,source:subject,readout,sourceCaption,
   heroX:subject.x+subject.width/2,heroY:subject.y+subject.height/2,heroH:subject.height,heroW:subject.width,
-  nameX:inner.x,nameY:panel.y+16,nameW:inner.width,valueY,noteY};
+  nameX:inner.x,nameY:panel.y+12,nameW:inner.width,valueY,noteY};
 }
 
 /** Reserve measured wrapped title/owner height without moving the committed footer facts. */

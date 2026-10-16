@@ -44,6 +44,12 @@ it('switching to reduced motion during release settles its wait and leaves dispo
 it('a strike and repeated strike create no scanning seam or foreground marks',()=>{
  const {stage,tweens}=stageFixture();stage.strike();const count=tweens.length;expect(count).toBe(0);stage.strike();expect(tweens).toHaveLength(count);stage.reduce();expect(tweens.every(t=>t.remove.mock.calls.length===1)).toBe(true);stage.dispose();
 });
+it('charge already contains one saved numeric readout and a full-viewport backdrop, with stable placement when reducing',()=>{
+ const {stage}=stageFixture(),group=stage.group as any,board=group.list.find((o:any)=>o.name==='hero/climax-board');
+ expect(group.getData('shot')).toBe('eyes');expect(group.getData('opaqueBackdrop')).toEqual({x:0,y:0,width:390,height:740});
+ const readouts=board.list.find((o:any)=>o.name==='hero/climax-readouts');expect(readouts.visible).toBe(true);expect(readouts.list.filter((o:any)=>o.name==='hero/climax-value')).toHaveLength(1);
+ const y=board.y;stage.strike();expect(board.y).toBe(y);stage.reduce();expect(board.y).toBe(y);stage.dispose();
+});
 
 it('missing optional detail keeps the same-source thumbnail still during the existing impact',()=>{const {stage,tweens}=stageFixture(false),board=(stage.group as any).list.find((o:any)=>o.type==='Container'),card=board.list.flatMap((o:any)=>o.list??[]).find((o:any)=>o.name==='hero/climax-source-card');expect(card.getData('detail')).toBe(false);stage.strike();expect(card.scaleX).toBe(1);expect(tweens.some(t=>t.config.targets===card)).toBe(false);stage.dispose();});
 
