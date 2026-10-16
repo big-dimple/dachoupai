@@ -26,7 +26,7 @@ export function makeCardsRows(run:R2RunState){
   offers:run.shop!.toolOffers.map(o=>({offer:o,info:toolInfo(o.definitionId,run),price:r2PurchasePrice(run,o)}))};
 }
 /** A local view over actual stock and inventory. Every payment/consumption uses the existing confirmation. */
-export function showMakeCards(dialog:DetailDialog,run:R2RunState,ready:()=>boolean,purchaseReason:(offer:R2Offer)=>string|undefined,owned:(id:string)=>void,basic:(id:string)=>void,offer:(id:string)=>void,inventory:()=>void,view:MakeCardsView={pane:'purchase',positions:{owned:0,purchase:0}},services:readonly ShopServiceEntry[]=[],serviceNotice?:string):void {
+export function showMakeCards(dialog:DetailDialog,run:R2RunState,ready:()=>boolean,purchaseReason:(offer:R2Offer)=>string|undefined,owned:(id:string)=>void,basic:(id:string)=>void,offer:(id:string)=>void,inventory:()=>void,view:MakeCardsView={pane:'purchase',positions:{owned:0,purchase:0}},services:readonly ShopServiceEntry[]=[],serviceNotice?:string,prepareImages?:(panel:HTMLDialogElement)=>void):void {
  const rows=makeCardsRows(run),seq=run.commandSeq;
  const d=dialog.open(serviceNotice?'做牌与道具':'道具','',[],{closeLabel:'回到商店'});d.classList.add('make-cards-dialog');
  const summary=document.createElement('p');summary.className='make-cards-summary';summary.textContent=`金币 ${run.gold} · 库存 ${run.consumables.length}/${r2ConsumableCapacity(run)}`;d.querySelector('.dialog-header')!.append(summary);
@@ -41,7 +41,7 @@ export function showMakeCards(dialog:DetailDialog,run:R2RunState,ready:()=>boole
  const grid=(section:HTMLElement)=>{const e=document.createElement('div');e.className='make-cards-grid';section.append(e);return e;};
  const tile=(host:HTMLElement,id:string,info:ReturnType<typeof toolInfo>,purpose:string,action:string,reason:string|undefined,choose:()=>void,inspect=false)=>{
   const b=document.createElement('button'),image=document.createElement('img'),copy=document.createElement('span'),name=document.createElement('strong'),text=document.createElement('span'),state=document.createElement('span');
-  b.type='button';b.className='make-cards-tile';b.dataset.makeId=id;b.setAttribute('aria-label',info.name+' · '+action);image.src=info.artUrl;image.alt='';image.loading='lazy';name.textContent=info.name;text.textContent=purpose;state.textContent=reason==='本店选择已购，刷新不补货'?'本店自选已用':reason||action;state.className='make-cards-action';copy.append(name,text,state);b.append(image,copy);b.disabled=!!reason||!inspect&&!ready();b.onclick=()=>{if(!dialog.active(d)||!inspect&&!ready()||run.commandSeq!==seq)return;remember();view.focusId=id;b.disabled=true;choose();};host.append(b);
+  b.type='button';b.className='make-cards-tile';b.dataset.makeId=id;b.setAttribute('aria-label',info.name+' · '+action);image.src=info.artUrl;image.alt='';image.loading='lazy';image.decoding='async';if(info.detailArtUrl)b.dataset.toolDetail=info.detailArtUrl;name.textContent=info.name;text.textContent=purpose;state.textContent=reason==='本店选择已购，刷新不补货'?'本店自选已用':reason||action;state.className='make-cards-action';copy.append(name,text,state);b.append(image,copy);b.disabled=!!reason||!inspect&&!ready();b.onclick=()=>{if(!dialog.active(d)||!inspect&&!ready()||run.commandSeq!==seq)return;remember();view.focusId=id;b.disabled=true;choose();};host.append(b);
  };
  const held=grid(sections.get('owned')!);for(const r of rows.owned)tile(held,r.id,r.info,r.purpose,r.later?'查看 · 留到牌桌':'选目标',undefined,()=>owned(r.id),true);
  if(!rows.owned.length){const p=document.createElement('p');p.className='make-cards-empty';p.textContent='暂无库存，先选购一件工具。';held.append(p);}
@@ -54,4 +54,5 @@ export function showMakeCards(dialog:DetailDialog,run:R2RunState,ready:()=>boole
  scroll.scrollTop=view.positions[view.pane];
  const previous=[...d.querySelectorAll<HTMLButtonElement>('.make-cards-tile,.shop-service-card')].find(b=>(b.dataset.makeId??b.dataset.serviceId)===view.focusId&&!b.disabled&&b.getClientRects().length);
  previous?.focus({preventScroll:true});
+ prepareImages?.(d);
 }
