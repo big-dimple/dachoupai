@@ -1,0 +1,33 @@
+{
+  "base": "0621156b5bd17557d867f618dbb86c1ef0260384",
+  "product": "e42c500be07eeb503e47921d5fcd5630971842bf",
+  "nativeHead": "46185151b8bd5e7cb373b91ae6e7cf4fa0251067",
+  "srcTree": "75b34fa3e323016d1febad96d96fd5280e1de4a3",
+  "allProtectedTreesEqual": {
+    "src/domain": true,
+    "src/content": true,
+    "src/audio": true,
+    "src/main.ts": true,
+    "public": true,
+    "art": true,
+    "src/game/IntermissionScene.ts": true,
+    "src/game/FailureSummary.ts": true,
+    "src/game/HeroClimax.ts": true,
+    "src/game/ScoreLanding.ts": true,
+    "src/game/ShopScene.ts": true,
+    "src/game/FirstChapterGuide.ts": true,
+    "src/game/HeroPlayReminder.ts": true,
+    "src/style.css": true
+  },
+  "actualHashes": {
+    "src/game/GameScene.ts": "00009a4a0ffca1f4840cf3f89d4a612d261b86e5fdb96ca79eff8c4aab1a18ca",
+    "src/game/OpponentChallenge.ts": "bdd89688258db697e51d529b5754f0c53d47274913badb390fb3e8e7ed5d7d15",
+    "src/game/OpponentPresentation.ts": "4b8dd9900e8a769d3e06700bd1c46b5ff4cf5ee3febdeb9cbbbfe13b36f8680d",
+    "src/game/OpponentFacts.ts": "77351e7834b8f8ccb5aa7df752f0d0c4b87c4db88ecf0be40d728d6258c3af36",
+    "harness/b05-opponent.mjs": "db5cbb36a59bc718c6f360ad34255b150621f83b7f3ec46e03b9eab4ae20bc18",
+    "harness/b05-ordinary-route.mjs": "9da4e3db89a3e8d770b73d9ad2d66589bbc62e4047b84dc6bbd67fb3c3181472"
+  },
+  "realEventQueueUnchanged": true,
+  "presentTraceSha256": "c78ecd82940b0038c3a03fd4233d75ff3416bf660c336700290d332ac78c66eb",
+  "observerChangesAfterInitialFreeze": "Native continue selector scoped to the actual title action; idle waits for dealt cards; added ordinary rotation observations. No product changed."
+}

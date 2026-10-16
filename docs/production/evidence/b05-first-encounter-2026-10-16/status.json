@@ -1,0 +1,278 @@
+{
+  "date": "2026-10-16",
+  "status": "software_verified_development_candidate",
+  "branch": "feat/b05-first-encounter-20261016",
+  "base": "0621156b5bd17557d867f618dbb86c1ef0260384",
+  "product": "e42c500be07eeb503e47921d5fcd5630971842bf",
+  "nativeHead": "46185151b8bd5e7cb373b91ae6e7cf4fa0251067",
+  "srcTree": "75b34fa3e323016d1febad96d96fd5280e1de4a3",
+  "scope": "Persistent B05 current-stage challenge workplane, actionable existing formed-hand choices, selected-type tell; concise identity/entrance and real-event receipts. No new gameplay mechanic.",
+  "productionFiles": [
+    "src/game/GameScene.ts",
+    "src/game/OpponentChallenge.ts",
+    "src/game/OpponentPresentation.ts"
+  ],
+  "sharedGameScene": {
+    "changed": [
+      "import",
+      "renderSelectedCards B05 idle workplane",
+      "previewSelection B05 selected-type title"
+    ],
+    "unchanged": [
+      "presentTrace actual event/highlight queue",
+      "HeroClimax",
+      "ScoreLanding",
+      "failure components"
+    ]
+  },
+  "verification": {
+    "relatedTests": {
+      "files": 5,
+      "passed": 30,
+      "failed": 0
+    },
+    "typeAndProductionBuild": true,
+    "native": {
+      "fresh": true,
+      "cases": [
+        {
+          "key": "ordinary-first-encounter",
+          "status": "PASS",
+          "viewport": {
+            "width": 390,
+            "height": 740
+          },
+          "reduced": false,
+          "errors": []
+        },
+        {
+          "key": "1366-entrance",
+          "status": "PASS",
+          "viewport": {
+            "width": 1366,
+            "height": 768
+          },
+          "reduced": false,
+          "errors": []
+        },
+        {
+          "key": "1366-repeat",
+          "status": "PASS",
+          "viewport": {
+            "width": 1366,
+            "height": 768
+          },
+          "reduced": false,
+          "errors": []
+        },
+        {
+          "key": "1366-changed",
+          "status": "PASS",
+          "viewport": {
+            "width": 1366,
+            "height": 768
+          },
+          "reduced": false,
+          "errors": []
+        },
+        {
+          "key": "390-entrance",
+          "status": "PASS",
+          "viewport": {
+            "width": 390,
+            "height": 740
+          },
+          "reduced": false,
+          "errors": []
+        },
+        {
+          "key": "390-repeat",
+          "status": "PASS",
+          "viewport": {
+            "width": 390,
+            "height": 740
+          },
+          "reduced": false,
+          "errors": []
+        },
+        {
+          "key": "390-changed",
+          "status": "PASS",
+          "viewport": {
+            "width": 390,
+            "height": 740
+          },
+          "reduced": false,
+          "errors": []
+        },
+        {
+          "key": "320-entrance",
+          "status": "PASS",
+          "viewport": {
+            "width": 320,
+            "height": 568
+          },
+          "reduced": false,
+          "errors": []
+        },
+        {
+          "key": "320-repeat",
+          "status": "PASS",
+          "viewport": {
+            "width": 320,
+            "height": 568
+          },
+          "reduced": false,
+          "errors": []
+        },
+        {
+          "key": "320-changed",
+          "status": "PASS",
+          "viewport": {
+            "width": 320,
+            "height": 568
+          },
+          "reduced": false,
+          "errors": []
+        },
+        {
+          "key": "390-reduced-skip-resize",
+          "status": "PASS",
+          "viewport": {
+            "width": 390,
+            "height": 740
+          },
+          "reduced": true,
+          "errors": []
+        },
+        {
+          "key": "390-cancel-restore",
+          "status": "PASS",
+          "viewport": {
+            "width": 390,
+            "height": 740
+          },
+          "reduced": false,
+          "errors": []
+        },
+        {
+          "key": "390-won",
+          "status": "PASS",
+          "viewport": {
+            "width": 390,
+            "height": 740
+          },
+          "reduced": false,
+          "errors": []
+        },
+        {
+          "key": "390-lost",
+          "status": "PASS",
+          "viewport": {
+            "width": 390,
+            "height": 740
+          },
+          "reduced": false,
+          "errors": []
+        }
+      ],
+      "count": 14,
+      "ordinaryPrelude": {
+        "status": "PASS",
+        "seed": "growth-current-59",
+        "initialGold": 6,
+        "successfulCommands": 56,
+        "clearedStages": 8,
+        "stageIndex": 8,
+        "boss": "B05",
+        "phase": "stage-ready",
+        "checkpointValid": true,
+        "fullReplayStateEqual": true,
+        "fastAttempts": [
+          {
+            "seed": "growth-current-50",
+            "stop": "run-lost",
+            "stage": 7
+          },
+          {
+            "seed": "growth-current-51",
+            "stop": "run-lost",
+            "stage": 1
+          },
+          {
+            "seed": "growth-current-52",
+            "stop": "run-lost",
+            "stage": 0
+          },
+          {
+            "seed": "growth-current-53",
+            "stop": "run-lost",
+            "stage": 4
+          },
+          {
+            "seed": "growth-current-54",
+            "stop": "NO_B05_FIRST_ELIGIBLE_CHAPTER",
+            "stage": 9
+          },
+          {
+            "seed": "growth-current-55",
+            "stop": "NO_B05_FIRST_ELIGIBLE_CHAPTER",
+            "stage": 9
+          },
+          {
+            "seed": "growth-current-56",
+            "stop": "run-lost",
+            "stage": 1
+          },
+          {
+            "seed": "growth-current-57",
+            "stop": "run-lost",
+            "stage": 5
+          },
+          {
+            "seed": "growth-current-58",
+            "stop": "run-lost",
+            "stage": 0
+          },
+          {
+            "seed": "growth-current-59",
+            "stop": "B05_READY",
+            "stage": 8
+          }
+        ],
+        "scope": "Generated only through createRun/applyCommand; no state patches. Choices use visible current hand, public hand classification/levels and affordable current stock/quotes; no score preview or future draw/RNG. Seed attempts and losses retained. Native UI entry imported from the successful legitimate checkpoint, not a full native prelude.",
+        "priorProbeRecord": "ordinary-route-ledger.json retained separately; not hidden or merged into success."
+      },
+      "fullSnapshots": "native.json.gz"
+    },
+    "source": "Product tree unchanged from e42c500b through all validation and metadata closeout."
+  },
+  "assets": {
+    "used": "Existing paper/ink and current cards. No new images, borrowed player face, enlarged eye crop or dirty curve effect.",
+    "dependency": {
+      "target": "B05 dedicated challenger portrait and matching independent eye artwork",
+      "action": "Integrate only after appropriate approved readable assets are delivered",
+      "reason": "No existing dedicated B05 portrait/eye bytes available in the authorized assets",
+      "status": "pending_asset_dependency",
+      "blocks": "Image/eye cinematics only; playable state/interaction delivered"
+    }
+  },
+  "preservedFailures": [
+    "Original SSR setup failure summarized separately",
+    "First native selector failure retained with full snapshots and screenshot",
+    "All 4 initial route attempts and all 10 fast route attempts retained, including losses and no-B05 outcomes"
+  ],
+  "communication": {
+    "action": "Send shared GameScene boundary to parent thread",
+    "target": "01a0ff29-5792-7524-8980-f2037b2c30ce",
+    "outcome": "not_executed_thread_not_found",
+    "reason": "App messaging tool returned Some requested entity was not found: thread not found; boundary reported in commentary and this final handoff"
+  },
+  "limits": [
+    "Not full native eight-stage prelude or acquisition/balance evidence",
+    "No human comprehension/acting/eye-art/physical device or GPU acceptance",
+    "DPR1 browser matrix; prior high-DPR evidence does not sign new typography",
+    "P08 remains in_progress",
+    "Development branch push only, no main merge, CI or domain lookup"
+  ]
+}

@@ -1235,7 +1235,8 @@
       "acceptance": "用户/真实玩家/目标设备与听感各按实际证据签收",
       "audioExperience": "独立fix/audio-gesture-recovery-20261016：只持AudioEngine、main音频监听三行及自有harness/证据；76项及真实音频前后对照完成，音色审美/真机未签，不改GameScene或素材",
       "growthExperience": "经营成长两处shop上下文与PC原位提示已同版合入；真实购买/成长/下一店/出售/冷恢复，未改经济或牌桌原反馈",
-      "mobileExperience": "原负责人产品b532922c、候选54851f65；本批正常整合保留安全区/短横/短竖/分页，39场景和经营并集旋转通过，物理设备另签"
+      "mobileExperience": "原负责人产品b532922c、候选54851f65；本批正常整合保留安全区/短横/短竖/分页，39场景和经营并集旋转通过，物理设备另签",
+      "challengerExperience": "独立feat/b05-first-encounter-20261016：B05持续认招/目标余手/选牌预告与真实回执；只持Opponent*和GameScene三处局部调用，不占高光队列或失败组件。30项/构建/14原生通过，待父整合；专属人物/眼神素材仍依赖。"
     },
     "legacyDoneScope": "原done工作包仅保持原证据/原SHA的局部交付事实；不代表当前唐宋六图、全新文案、运行时美术、自然平衡或整体体验完成。",
     "priorStatusRecord": "docs/production/evidence/local-windows-integration-2026-10-16/status.json",
@@ -1283,6 +1284,13 @@
         "statusRecord": "docs/production/evidence/mobile-rotation-safe-layout-2026-10-16/README.md",
         "integrationStatusRecord": "docs/production/evidence/shop-growth-mobile-current-main-2026-10-16/status.json",
         "scope": "Six layout product files; ShopScene combined by normal three-way merge with growth feedback. No GameScene, domain, audio or asset change."
+      },
+      {
+        "branch": "feat/b05-first-encounter-20261016",
+        "productCommit": "e42c500be07eeb503e47921d5fcd5630971842bf",
+        "statusRecord": "docs/production/evidence/b05-first-encounter-2026-10-16/status.json",
+        "status": "software_verified_development_candidate",
+        "scope": "B05 read-only current-stage challenge board and selected-type tell; concise identity and real-event receipts. Dedicated portrait/eye artwork pending; no event queue, failure, rules, assets or audio change."
       }
     ],
     "priorSettlementStatusRecord": "docs/production/evidence/settlement-current-main-integration-2026-10-16/status.json",

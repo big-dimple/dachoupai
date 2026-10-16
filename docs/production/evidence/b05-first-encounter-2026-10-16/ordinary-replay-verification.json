@@ -1,0 +1,66 @@
+{
+  "status": "PASS",
+  "seed": "growth-current-59",
+  "initialGold": 6,
+  "successfulCommands": 56,
+  "clearedStages": 8,
+  "stageIndex": 8,
+  "boss": "B05",
+  "phase": "stage-ready",
+  "checkpointValid": true,
+  "fullReplayStateEqual": true,
+  "fastAttempts": [
+    {
+      "seed": "growth-current-50",
+      "stop": "run-lost",
+      "stage": 7
+    },
+    {
+      "seed": "growth-current-51",
+      "stop": "run-lost",
+      "stage": 1
+    },
+    {
+      "seed": "growth-current-52",
+      "stop": "run-lost",
+      "stage": 0
+    },
+    {
+      "seed": "growth-current-53",
+      "stop": "run-lost",
+      "stage": 4
+    },
+    {
+      "seed": "growth-current-54",
+      "stop": "NO_B05_FIRST_ELIGIBLE_CHAPTER",
+      "stage": 9
+    },
+    {
+      "seed": "growth-current-55",
+      "stop": "NO_B05_FIRST_ELIGIBLE_CHAPTER",
+      "stage": 9
+    },
+    {
+      "seed": "growth-current-56",
+      "stop": "run-lost",
+      "stage": 1
+    },
+    {
+      "seed": "growth-current-57",
+      "stop": "run-lost",
+      "stage": 5
+    },
+    {
+      "seed": "growth-current-58",
+      "stop": "run-lost",
+      "stage": 0
+    },
+    {
+      "seed": "growth-current-59",
+      "stop": "B05_READY",
+      "stage": 8
+    }
+  ],
+  "scope": "Generated only through createRun/applyCommand; no state patches. Choices use visible current hand, public hand classification/levels and affordable current stock/quotes; no score preview or future draw/RNG. Seed attempts and losses retained. Native UI entry imported from the successful legitimate checkpoint, not a full native prelude.",
+  "priorProbeRecord": "ordinary-route-ledger.json retained separately; not hidden or merged into success."
+}
