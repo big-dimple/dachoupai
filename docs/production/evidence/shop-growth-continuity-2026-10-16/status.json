@@ -1,0 +1,131 @@
+{
+  "taskId": "P08",
+  "status": "software_verified_development_candidate",
+  "base": "06512d5fde500d072c4b7ea89b983faea641494d",
+  "testedCommit": "16fbe51481dda4db15428077414239a959426869",
+  "sourceTree": "1f0718c52b4428556dabaab61d0b230472d8fcb1",
+  "branch": "fix/current-growth-discovery-20261016",
+  "scope": "Existing actual saved growth feedback already works at the table. Repair only shop continuity for current contracted identities; keep table default/legacy output and GameScene unchanged. Shop shows held bank plus its own prior positive increment, and actual notices remain highest priority.",
+  "productFiles": [
+    "src/game/JokerGrowthCausality.ts (explicit shop surface only)",
+    "src/game/ShopScene.ts (two existing calls; PC fallback message priority)"
+  ],
+  "unit": {
+    "files": 8,
+    "passed": 51,
+    "failed": 0,
+    "redBefore": {
+      "passed": 1,
+      "failed": 3
+    }
+  },
+  "build": "PASS: fresh typecheck + production build on exact product after PC message priority change",
+  "native": {
+    "browser": "153.0.8010.12",
+    "beforeReport": "before-native.json.gz",
+    "afterReport": "after-native.json.gz",
+    "scope": "Known ordinary seeds from existing current-growth tests; real six-gold public shelf and native purchase/cards/play/shop/sale. Read-only public hand-type classifier, never score preview, future deck or RNG selection. No fixture/import/stock override/private dispatch, no economic changes or acquisition-rate/balance claim.",
+    "cases": [
+      {
+        "id": "b10",
+        "viewport": {
+          "width": 390,
+          "height": 740
+        },
+        "price": 4,
+        "plays": 3,
+        "tableTextUnchanged": true,
+        "completeStatesAndJournalsMatchBefore": true,
+        "shopText": "练对子已攒+30 · 上手+10",
+        "afterBank": {
+          "heat": {
+            "n": "30",
+            "d": "1"
+          }
+        },
+        "soldColdRestore": true
+      },
+      {
+        "id": "b03",
+        "viewport": {
+          "width": 320,
+          "height": 568
+        },
+        "price": 6,
+        "plays": 3,
+        "tableTextUnchanged": true,
+        "completeStatesAndJournalsMatchBefore": true,
+        "shopText": "老搭档已攒+0.5",
+        "afterBank": {
+          "multiplier": {
+            "n": "1",
+            "d": "2"
+          }
+        },
+        "soldColdRestore": true
+      },
+      {
+        "id": "b10",
+        "viewport": {
+          "width": 1366,
+          "height": 900
+        },
+        "price": 4,
+        "plays": 3,
+        "tableTextUnchanged": true,
+        "completeStatesAndJournalsMatchBefore": true,
+        "shopText": "练对子已攒+30 · 上手+10",
+        "afterBank": {
+          "heat": {
+            "n": "30",
+            "d": "1"
+          }
+        },
+        "soldColdRestore": true
+      }
+    ],
+    "actualReadsAndIncrements": "First pair reads old0 and stores10/.25; second reads10/.25 and stores20/.5; actual third hand clears first stage, b03 no extra group growth stays.5 and shop does not claim another increment.",
+    "coldRestore": "Exact saved snapshots stable at table, next shop and after sale",
+    "sale": "Read-only growth details and cancel preserve complete saved snapshots; native confirm SellJoker occurs once, refunds actual existing salePrice and removes bank/prompt for sold instance."
+  },
+  "sourceUnchanged": true,
+  "sourceHashes": {
+    "src/game/JokerGrowthCausality.ts": "470bd987cfb4c35bd73799baaf5646b268584eb2f18c28646149063e65531477",
+    "src/game/GameScene.ts": "09094f32b3c5479bf1fd92f8e4c0ba5a8377142b28391931db9795da6ac00f79",
+    "src/game/ShopScene.ts": "d9cc1afa8e4cd68d4ee95a010a284362cf6c99d534dc9fae36c6c7349d9ac044",
+    "src/domain/r2GroupUpgrade.ts": "4d421d405b27deb8d3d70b6bacdb599304928cb4a8ff871579e96920f2699dc4",
+    "src/game/RunLaunch.ts": "bc0b058111bba66540d8a43c3b58f7fe06c7c11b80a21be2882455e4c2aa5630",
+    "harness/current-growth-discovery.mjs": "191e75a8d97bde650cf613a13e1be79b20ca9d84b7b70f5f11b518d3336db0b2",
+    "tests/shop-growth-discovery.test.ts": "691a73e6ffcdf409cd64cacc575e9a79764c4ff6c18783e230318d3a5f0c3e8d"
+  },
+  "protectedUnchangedVsBase": [
+    "src/game/GameScene.ts",
+    "src/game/FirstChapterGuide.ts",
+    "src/game/HeroPlayReminder.ts",
+    "src/game/HeroPlayReminder.css",
+    "src/domain",
+    "src/application",
+    "src/content",
+    "src/audio",
+    "src/main.ts",
+    "src/style.css",
+    "src/platform",
+    "public",
+    "art"
+  ],
+  "sharedGameSceneEdited": false,
+  "newPlayerTerms": false,
+  "economicRulesChanged": false,
+  "diagnostics": [
+    "Initial hypothesis that table lacked feedback was disproved by actual native lines; provisional patch/unit report preserved and reverted before final implementation. Table strings are exactly equal before/after.",
+    "Initial native script used an out-of-scope spec variable; original failure retained, then parameter passing corrected. After harness additionally observes explicit shop context and waits400ms for rendering; gameplay actions unchanged.",
+    "Execution connection dropped during an earlier provisional check; no successful result was invented. Real readonly Git/process/report checks established recovery, no new task/worktree created."
+  ],
+  "publication": "Development branch only. Skill reminder d6036f8e is being independently released to main; this old-base growth branch does not replace newer reminder/audio/CSS source. Later normal merge must retain latest main.",
+  "limits": [
+    "Known ordinary generated seeds from existing tests; no acquisition rate, balance or universal route claim.",
+    "Before shop screenshot is an early entering frame; no claim of missing-card art defect or art fix.",
+    "No natural18-matrix, later growth caps/other families, physical device/GPU/human understanding/hearing or overall P08 completion signoff.",
+    "P08 remains in_progress; no CI/domain query."
+  ]
+}

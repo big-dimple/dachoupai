@@ -38,6 +38,7 @@
       "humanGate": false,
       "completionScope": "2026-10-16：c009基线上的文化文案cea473、选择布局aab4d9和本机跨场景连点修复已整合；同版正常新局/携带/技能/实际结算/下一商店/失败重试及六人软件检查见currentDelivery.statusRecord。历史全量失败按独立基线对照记录，不能写成全量绿。P08仍in_progress；真实玩家理解、自然平衡、物理设备/GPU、听感、独立眼原画及整体体验未签。",
       "evidence": [
+        "docs/production/evidence/shop-growth-continuity-2026-10-16/status.json",
         "docs/production/evidence/skill-choice-current-main-2026-10-16/status.json",
         "docs/production/evidence/audio-current-main-integration-2026-10-16/status.json",
         "docs/production/evidence/skill-secondary-current-main-2026-10-16/status.json",
@@ -1232,7 +1233,7 @@
       "opening": "首页/加载/成长main8af3e506已发布；本批保留其源码；结算单独同版复核",
       "acceptance": "用户/真实玩家/目标设备与听感各按实际证据签收",
       "audioExperience": "独立fix/audio-gesture-recovery-20261016：只持AudioEngine、main音频监听三行及自有harness/证据；76项及真实音频前后对照完成，音色审美/真机未签，不改GameScene或素材",
-      "growthExperience": "父已分派真实货架与存档经营反馈；先复现缺口，不改经济数值或术语，不占另一线程GameScene技能提醒接线"
+      "growthExperience": "独立fix/current-growth-discovery-20261016：真实货架购牌/三手过关/冷恢复/取消和确认出售闭环，仅ShopScene与JokerGrowthCausality的shop上下文；牌桌原反馈未改，不占GameScene技能提醒"
     },
     "legacyDoneScope": "原done工作包仅保持原证据/原SHA的局部交付事实；不代表当前唐宋六图、全新文案、运行时美术、自然平衡或整体体验完成。",
     "priorStatusRecord": "docs/production/evidence/local-windows-integration-2026-10-16/status.json",
@@ -1263,6 +1264,13 @@
         "status": "integrated_software_verified_authorized_release",
         "scope": "AudioEngine needsGestureUnlock state predicate and main.ts40-42 persistent guarded real-gesture audio listeners. First resume rejection previously consumed the one-shot listener and later same-type gestures remained silent. No shared GameScene, settings semantics, volume defaults, media or game rules changed.",
         "integrationStatusRecord": "docs/production/evidence/audio-current-main-integration-2026-10-16/status.json"
+      },
+      {
+        "branch": "fix/current-growth-discovery-20261016",
+        "productCommit": "16fbe51481dda4db15428077414239a959426869",
+        "statusRecord": "docs/production/evidence/shop-growth-continuity-2026-10-16/status.json",
+        "scope": "Existing actual saved growth feedback already works at the table. Repair only shop continuity for current contracted identities; keep table default/legacy output and GameScene unchanged. Shop shows held bank plus its own prior positive increment, and actual notices remain highest priority.",
+        "status": "software_verified_development_candidate"
       }
     ],
     "priorSettlementStatusRecord": "docs/production/evidence/settlement-current-main-integration-2026-10-16/status.json",
