@@ -1,0 +1,618 @@
+{
+  "status": "PASS",
+  "baseline": "8728e18e823ef9cbe28a4350a566de21f1e3127c",
+  "sourceReplacement": {
+    "id": "amo",
+    "incomingSHA256": "abe4446d6c57b1c2d8d83434c766e0a452aeb8ee198615cf58bd918b1021dfcb"
+  },
+  "files": [
+    {
+      "id": "amo",
+      "sourceSHA256": "abe4446d6c57b1c2d8d83434c766e0a452aeb8ee198615cf58bd918b1021dfcb",
+      "sourceBytes": 2971253,
+      "sourceUnchanged": false,
+      "outputs": [
+        {
+          "id": "amo",
+          "person": "苏轼",
+          "theme": "风起赤壁",
+          "purpose": "avatar",
+          "key": "avatar-amo",
+          "path": "assets/tangsong-portraits/amo.avatar.webp",
+          "width": 256,
+          "height": 256,
+          "bytes": 21724,
+          "sha256": "c1818763446d466ccf20477f92fb12b2c0271275a5390d439a5daf6c6c7a0965",
+          "format": "webp",
+          "sourceFile": "amo-su-shi.png",
+          "sourceSHA256": "abe4446d6c57b1c2d8d83434c766e0a452aeb8ee198615cf58bd918b1021dfcb",
+          "cropPixels": {
+            "x": 350,
+            "y": 0,
+            "width": 480,
+            "height": 480
+          },
+          "quality": 88,
+          "independentEyeArtwork": false
+        },
+        {
+          "id": "amo",
+          "person": "苏轼",
+          "theme": "风起赤壁",
+          "purpose": "selection",
+          "key": "selection-portrait-amo",
+          "path": "assets/tangsong-portraits/amo.selection.webp",
+          "width": 256,
+          "height": 320,
+          "bytes": 34044,
+          "sha256": "e9764fb0dd3f4edbfda3ac286a24e7184608f3370b4859d82c7e3a5323a49b4b",
+          "format": "webp",
+          "sourceFile": "amo-su-shi.png",
+          "sourceSHA256": "abe4446d6c57b1c2d8d83434c766e0a452aeb8ee198615cf58bd918b1021dfcb",
+          "cropPixels": {
+            "x": 0,
+            "y": 0,
+            "width": 1122,
+            "height": 1402
+          },
+          "quality": 88,
+          "independentEyeArtwork": false
+        },
+        {
+          "id": "amo",
+          "person": "苏轼",
+          "theme": "风起赤壁",
+          "purpose": "portrait",
+          "key": "opening-portrait-amo",
+          "path": "assets/tangsong-portraits/amo.portrait.webp",
+          "width": 615,
+          "height": 768,
+          "bytes": 128344,
+          "sha256": "d5089a32b739cef2cca1ff680fb2ac1776f7a7b44426133e01b814085edeec39",
+          "format": "webp",
+          "sourceFile": "amo-su-shi.png",
+          "sourceSHA256": "abe4446d6c57b1c2d8d83434c766e0a452aeb8ee198615cf58bd918b1021dfcb",
+          "cropPixels": {
+            "x": 0,
+            "y": 0,
+            "width": 1122,
+            "height": 1402
+          },
+          "quality": 85,
+          "independentEyeArtwork": false
+        },
+        {
+          "id": "amo",
+          "person": "苏轼",
+          "theme": "风起赤壁",
+          "purpose": "focus",
+          "key": "portrait-focus-amo",
+          "path": "assets/tangsong-portraits/amo.focus.webp",
+          "width": 480,
+          "height": 480,
+          "bytes": 56012,
+          "sha256": "f158579f7e055d16a4f2d9c2f36609fcbb5d8980469e31e063517f1e6fea02ad",
+          "format": "webp",
+          "sourceFile": "amo-su-shi.png",
+          "sourceSHA256": "abe4446d6c57b1c2d8d83434c766e0a452aeb8ee198615cf58bd918b1021dfcb",
+          "cropPixels": {
+            "x": 350,
+            "y": 0,
+            "width": 480,
+            "height": 480
+          },
+          "quality": 88,
+          "independentEyeArtwork": false
+        }
+      ]
+    },
+    {
+      "id": "touye",
+      "sourceSHA256": "dd291f88cc6954cfa1110cce5cb3edb472fdf811e04854f5c31884fa604d904d",
+      "sourceBytes": 3770821,
+      "sourceUnchanged": true,
+      "outputs": [
+        {
+          "id": "touye",
+          "person": "秦琼",
+          "theme": "踏破山河",
+          "purpose": "avatar",
+          "key": "avatar-touye",
+          "path": "assets/tangsong-portraits/touye.avatar.webp",
+          "width": 256,
+          "height": 256,
+          "bytes": 31924,
+          "sha256": "f31446b1f8fea9d154a1a0a4f8eac59bc7e74f0b7324d9d533b48231da68c98d",
+          "format": "webp",
+          "sourceFile": "touye-qin-qiong.png",
+          "sourceSHA256": "dd291f88cc6954cfa1110cce5cb3edb472fdf811e04854f5c31884fa604d904d",
+          "cropPixels": {
+            "x": 215,
+            "y": 0,
+            "width": 600,
+            "height": 600
+          },
+          "quality": 88,
+          "independentEyeArtwork": false
+        },
+        {
+          "id": "touye",
+          "person": "秦琼",
+          "theme": "踏破山河",
+          "purpose": "selection",
+          "key": "selection-portrait-touye",
+          "path": "assets/tangsong-portraits/touye.selection.webp",
+          "width": 256,
+          "height": 320,
+          "bytes": 44178,
+          "sha256": "12cee26cb362ff145a45030554cb2eb93bbcc2302cd012adffbbfe4f7e618698",
+          "format": "webp",
+          "sourceFile": "touye-qin-qiong.png",
+          "sourceSHA256": "dd291f88cc6954cfa1110cce5cb3edb472fdf811e04854f5c31884fa604d904d",
+          "cropPixels": {
+            "x": 0,
+            "y": 0,
+            "width": 1122,
+            "height": 1402
+          },
+          "quality": 88,
+          "independentEyeArtwork": false
+        },
+        {
+          "id": "touye",
+          "person": "秦琼",
+          "theme": "踏破山河",
+          "purpose": "portrait",
+          "key": "opening-portrait-touye",
+          "path": "assets/tangsong-portraits/touye.portrait.webp",
+          "width": 615,
+          "height": 768,
+          "bytes": 126522,
+          "sha256": "649efee6848af55d2b45797cbe18ce5423980abd802535e6d3c550f343650a58",
+          "format": "webp",
+          "sourceFile": "touye-qin-qiong.png",
+          "sourceSHA256": "dd291f88cc6954cfa1110cce5cb3edb472fdf811e04854f5c31884fa604d904d",
+          "cropPixels": {
+            "x": 0,
+            "y": 0,
+            "width": 1122,
+            "height": 1402
+          },
+          "quality": 61,
+          "independentEyeArtwork": false
+        },
+        {
+          "id": "touye",
+          "person": "秦琼",
+          "theme": "踏破山河",
+          "purpose": "focus",
+          "key": "portrait-focus-touye",
+          "path": "assets/tangsong-portraits/touye.focus.webp",
+          "width": 600,
+          "height": 600,
+          "bytes": 130274,
+          "sha256": "6c43ef038457b0eae50bb643bb922da5061e6398854a61d056202f2c01a4fc88",
+          "format": "webp",
+          "sourceFile": "touye-qin-qiong.png",
+          "sourceSHA256": "dd291f88cc6954cfa1110cce5cb3edb472fdf811e04854f5c31884fa604d904d",
+          "cropPixels": {
+            "x": 215,
+            "y": 0,
+            "width": 600,
+            "height": 600
+          },
+          "quality": 88,
+          "independentEyeArtwork": false
+        }
+      ]
+    },
+    {
+      "id": "laohuan",
+      "sourceSHA256": "464b9d821e41e6a1b3df683ffe795195be2ee2b529a7fb729e469fa5dacefad8",
+      "sourceBytes": 3369628,
+      "sourceUnchanged": true,
+      "outputs": [
+        {
+          "id": "laohuan",
+          "person": "辛弃疾",
+          "theme": "墨影醉里挑灯看剑",
+          "purpose": "avatar",
+          "key": "avatar-laohuan",
+          "path": "assets/tangsong-portraits/laohuan.avatar.webp",
+          "width": 256,
+          "height": 256,
+          "bytes": 24494,
+          "sha256": "c91cd5c3b02acea21579e78a45303223b5d426bb93cec8f35ccc570821443194",
+          "format": "webp",
+          "sourceFile": "laohuan-xin-qi-ji.png",
+          "sourceSHA256": "464b9d821e41e6a1b3df683ffe795195be2ee2b529a7fb729e469fa5dacefad8",
+          "cropPixels": {
+            "x": 340,
+            "y": 0,
+            "width": 520,
+            "height": 520
+          },
+          "quality": 88,
+          "independentEyeArtwork": false
+        },
+        {
+          "id": "laohuan",
+          "person": "辛弃疾",
+          "theme": "墨影醉里挑灯看剑",
+          "purpose": "selection",
+          "key": "selection-portrait-laohuan",
+          "path": "assets/tangsong-portraits/laohuan.selection.webp",
+          "width": 256,
+          "height": 320,
+          "bytes": 36786,
+          "sha256": "0d55f8c1c3d8637490acfbee1d166892774e9c55a8084312889b9cf2c453baa4",
+          "format": "webp",
+          "sourceFile": "laohuan-xin-qi-ji.png",
+          "sourceSHA256": "464b9d821e41e6a1b3df683ffe795195be2ee2b529a7fb729e469fa5dacefad8",
+          "cropPixels": {
+            "x": 0,
+            "y": 0,
+            "width": 1122,
+            "height": 1402
+          },
+          "quality": 88,
+          "independentEyeArtwork": false
+        },
+        {
+          "id": "laohuan",
+          "person": "辛弃疾",
+          "theme": "墨影醉里挑灯看剑",
+          "purpose": "portrait",
+          "key": "opening-portrait-laohuan",
+          "path": "assets/tangsong-portraits/laohuan.portrait.webp",
+          "width": 615,
+          "height": 768,
+          "bytes": 126284,
+          "sha256": "bccc8ac8ca79a478696ae0d05fa159b31d1ab5f0f29be5d7b18f244858d14023",
+          "format": "webp",
+          "sourceFile": "laohuan-xin-qi-ji.png",
+          "sourceSHA256": "464b9d821e41e6a1b3df683ffe795195be2ee2b529a7fb729e469fa5dacefad8",
+          "cropPixels": {
+            "x": 0,
+            "y": 0,
+            "width": 1122,
+            "height": 1402
+          },
+          "quality": 79,
+          "independentEyeArtwork": false
+        },
+        {
+          "id": "laohuan",
+          "person": "辛弃疾",
+          "theme": "墨影醉里挑灯看剑",
+          "purpose": "focus",
+          "key": "portrait-focus-laohuan",
+          "path": "assets/tangsong-portraits/laohuan.focus.webp",
+          "width": 520,
+          "height": 520,
+          "bytes": 77444,
+          "sha256": "1b9de385582bc7fb06dc6ac03faa57894a0e62fd89e67ac851aff1a385b75916",
+          "format": "webp",
+          "sourceFile": "laohuan-xin-qi-ji.png",
+          "sourceSHA256": "464b9d821e41e6a1b3df683ffe795195be2ee2b529a7fb729e469fa5dacefad8",
+          "cropPixels": {
+            "x": 340,
+            "y": 0,
+            "width": 520,
+            "height": 520
+          },
+          "quality": 88,
+          "independentEyeArtwork": false
+        }
+      ]
+    },
+    {
+      "id": "erxiang",
+      "sourceSHA256": "ea19ce9d27d0ccde2a5fc6cbb5cf692babf5e77fb6d6c9ec1057fb0aafa114b7",
+      "sourceBytes": 2980351,
+      "sourceUnchanged": true,
+      "outputs": [
+        {
+          "id": "erxiang",
+          "person": "刘娥",
+          "theme": "大宋之母",
+          "purpose": "avatar",
+          "key": "avatar-erxiang",
+          "path": "assets/tangsong-portraits/erxiang.avatar.webp",
+          "width": 256,
+          "height": 256,
+          "bytes": 22696,
+          "sha256": "d5e5321b9682409b6c995e70219b7ff56c97b4d40ae016adf9d03e8d137cef09",
+          "format": "webp",
+          "sourceFile": "erxiang-liu-e.png",
+          "sourceSHA256": "ea19ce9d27d0ccde2a5fc6cbb5cf692babf5e77fb6d6c9ec1057fb0aafa114b7",
+          "cropPixels": {
+            "x": 285,
+            "y": 0,
+            "width": 550,
+            "height": 550
+          },
+          "quality": 88,
+          "independentEyeArtwork": false
+        },
+        {
+          "id": "erxiang",
+          "person": "刘娥",
+          "theme": "大宋之母",
+          "purpose": "selection",
+          "key": "selection-portrait-erxiang",
+          "path": "assets/tangsong-portraits/erxiang.selection.webp",
+          "width": 256,
+          "height": 320,
+          "bytes": 34930,
+          "sha256": "e5a17a4f6dc2679d672f2ffe59dfe0b140baaab5dca9f75612f3b27500dec530",
+          "format": "webp",
+          "sourceFile": "erxiang-liu-e.png",
+          "sourceSHA256": "ea19ce9d27d0ccde2a5fc6cbb5cf692babf5e77fb6d6c9ec1057fb0aafa114b7",
+          "cropPixels": {
+            "x": 0,
+            "y": 0,
+            "width": 1122,
+            "height": 1402
+          },
+          "quality": 88,
+          "independentEyeArtwork": false
+        },
+        {
+          "id": "erxiang",
+          "person": "刘娥",
+          "theme": "大宋之母",
+          "purpose": "portrait",
+          "key": "opening-portrait-erxiang",
+          "path": "assets/tangsong-portraits/erxiang.portrait.webp",
+          "width": 615,
+          "height": 768,
+          "bytes": 127390,
+          "sha256": "24c882050341a90fb17e04beaf01b25d12e168d08a30c26aed372f5c3a4e0baf",
+          "format": "webp",
+          "sourceFile": "erxiang-liu-e.png",
+          "sourceSHA256": "ea19ce9d27d0ccde2a5fc6cbb5cf692babf5e77fb6d6c9ec1057fb0aafa114b7",
+          "cropPixels": {
+            "x": 0,
+            "y": 0,
+            "width": 1122,
+            "height": 1402
+          },
+          "quality": 82,
+          "independentEyeArtwork": false
+        },
+        {
+          "id": "erxiang",
+          "person": "刘娥",
+          "theme": "大宋之母",
+          "purpose": "focus",
+          "key": "portrait-focus-erxiang",
+          "path": "assets/tangsong-portraits/erxiang.focus.webp",
+          "width": 550,
+          "height": 550,
+          "bytes": 74766,
+          "sha256": "365cd3f401ae9e32e48aada2fc334594c89823248640eba380723994bf0d90fe",
+          "format": "webp",
+          "sourceFile": "erxiang-liu-e.png",
+          "sourceSHA256": "ea19ce9d27d0ccde2a5fc6cbb5cf692babf5e77fb6d6c9ec1057fb0aafa114b7",
+          "cropPixels": {
+            "x": 285,
+            "y": 0,
+            "width": 550,
+            "height": 550
+          },
+          "quality": 88,
+          "independentEyeArtwork": false
+        }
+      ]
+    },
+    {
+      "id": "azao",
+      "sourceSHA256": "7c3128ac3581610337464a2d0273ceb9276f045c40f2e149e00d2b01cdd14821",
+      "sourceBytes": 3227894,
+      "sourceUnchanged": true,
+      "outputs": [
+        {
+          "id": "azao",
+          "person": "文成公主",
+          "theme": "藏地迎宾",
+          "purpose": "avatar",
+          "key": "avatar-azao",
+          "path": "assets/tangsong-portraits/azao.avatar.webp",
+          "width": 256,
+          "height": 256,
+          "bytes": 30096,
+          "sha256": "eb4b03a67dfa761c966c96afafdb1257b7eadfcfb959b404f71ca5110097df8a",
+          "format": "webp",
+          "sourceFile": "azao-wen-cheng-gong-zhu.png",
+          "sourceSHA256": "7c3128ac3581610337464a2d0273ceb9276f045c40f2e149e00d2b01cdd14821",
+          "cropPixels": {
+            "x": 160,
+            "y": 0,
+            "width": 650,
+            "height": 650
+          },
+          "quality": 88,
+          "independentEyeArtwork": false
+        },
+        {
+          "id": "azao",
+          "person": "文成公主",
+          "theme": "藏地迎宾",
+          "purpose": "selection",
+          "key": "selection-portrait-azao",
+          "path": "assets/tangsong-portraits/azao.selection.webp",
+          "width": 256,
+          "height": 320,
+          "bytes": 41128,
+          "sha256": "4300d2f4d40aa0ec836b7e7f633166834bf39b172f912a96cfc7e9138942546c",
+          "format": "webp",
+          "sourceFile": "azao-wen-cheng-gong-zhu.png",
+          "sourceSHA256": "7c3128ac3581610337464a2d0273ceb9276f045c40f2e149e00d2b01cdd14821",
+          "cropPixels": {
+            "x": 0,
+            "y": 0,
+            "width": 1122,
+            "height": 1402
+          },
+          "quality": 88,
+          "independentEyeArtwork": false
+        },
+        {
+          "id": "azao",
+          "person": "文成公主",
+          "theme": "藏地迎宾",
+          "purpose": "portrait",
+          "key": "opening-portrait-azao",
+          "path": "assets/tangsong-portraits/azao.portrait.webp",
+          "width": 615,
+          "height": 768,
+          "bytes": 122298,
+          "sha256": "de536392b240c6a8930a7dee1e2054d402e5c411d4a9eddfda6a6d4ea7d689aa",
+          "format": "webp",
+          "sourceFile": "azao-wen-cheng-gong-zhu.png",
+          "sourceSHA256": "7c3128ac3581610337464a2d0273ceb9276f045c40f2e149e00d2b01cdd14821",
+          "cropPixels": {
+            "x": 0,
+            "y": 0,
+            "width": 1122,
+            "height": 1402
+          },
+          "quality": 76,
+          "independentEyeArtwork": false
+        },
+        {
+          "id": "azao",
+          "person": "文成公主",
+          "theme": "藏地迎宾",
+          "purpose": "focus",
+          "key": "portrait-focus-azao",
+          "path": "assets/tangsong-portraits/azao.focus.webp",
+          "width": 600,
+          "height": 600,
+          "bytes": 124226,
+          "sha256": "b0e725856d220cda46f26444d1e139a5d09335561bb8305c1f38a12539793179",
+          "format": "webp",
+          "sourceFile": "azao-wen-cheng-gong-zhu.png",
+          "sourceSHA256": "7c3128ac3581610337464a2d0273ceb9276f045c40f2e149e00d2b01cdd14821",
+          "cropPixels": {
+            "x": 160,
+            "y": 0,
+            "width": 650,
+            "height": 650
+          },
+          "quality": 88,
+          "independentEyeArtwork": false
+        }
+      ]
+    },
+    {
+      "id": "xiemu",
+      "sourceSHA256": "7ecbd42d132cd1512ec84d2e8b623ffe970ead931f37ee45d70ea80648ec52bd",
+      "sourceBytes": 3630535,
+      "sourceUnchanged": true,
+      "outputs": [
+        {
+          "id": "xiemu",
+          "person": "花蕊夫人",
+          "theme": "执剑凌风",
+          "purpose": "avatar",
+          "key": "avatar-xiemu",
+          "path": "assets/tangsong-portraits/xiemu.avatar.webp",
+          "width": 256,
+          "height": 256,
+          "bytes": 30228,
+          "sha256": "9ebf565a4bc2a21e6aec01089e1648d14da1391028b9a964b0cbda920da266e4",
+          "format": "webp",
+          "sourceFile": "xiemu-hua-rui-fu-ren.png",
+          "sourceSHA256": "7ecbd42d132cd1512ec84d2e8b623ffe970ead931f37ee45d70ea80648ec52bd",
+          "cropPixels": {
+            "x": 260,
+            "y": 0,
+            "width": 640,
+            "height": 640
+          },
+          "quality": 88,
+          "independentEyeArtwork": false
+        },
+        {
+          "id": "xiemu",
+          "person": "花蕊夫人",
+          "theme": "执剑凌风",
+          "purpose": "selection",
+          "key": "selection-portrait-xiemu",
+          "path": "assets/tangsong-portraits/xiemu.selection.webp",
+          "width": 256,
+          "height": 320,
+          "bytes": 39634,
+          "sha256": "64215448933c586e459551f62f621f1119543ed7a4ce5093954c53d3e848ff08",
+          "format": "webp",
+          "sourceFile": "xiemu-hua-rui-fu-ren.png",
+          "sourceSHA256": "7ecbd42d132cd1512ec84d2e8b623ffe970ead931f37ee45d70ea80648ec52bd",
+          "cropPixels": {
+            "x": 0,
+            "y": 0,
+            "width": 1122,
+            "height": 1402
+          },
+          "quality": 88,
+          "independentEyeArtwork": false
+        },
+        {
+          "id": "xiemu",
+          "person": "花蕊夫人",
+          "theme": "执剑凌风",
+          "purpose": "portrait",
+          "key": "opening-portrait-xiemu",
+          "path": "assets/tangsong-portraits/xiemu.portrait.webp",
+          "width": 615,
+          "height": 768,
+          "bytes": 126484,
+          "sha256": "e8361e106d837c574e83d1e920ba9c0716d02b51ab4f73a05e3bb2ed01f2e54f",
+          "format": "webp",
+          "sourceFile": "xiemu-hua-rui-fu-ren.png",
+          "sourceSHA256": "7ecbd42d132cd1512ec84d2e8b623ffe970ead931f37ee45d70ea80648ec52bd",
+          "cropPixels": {
+            "x": 0,
+            "y": 0,
+            "width": 1122,
+            "height": 1402
+          },
+          "quality": 76,
+          "independentEyeArtwork": false
+        },
+        {
+          "id": "xiemu",
+          "person": "花蕊夫人",
+          "theme": "执剑凌风",
+          "purpose": "focus",
+          "key": "portrait-focus-xiemu",
+          "path": "assets/tangsong-portraits/xiemu.focus.webp",
+          "width": 600,
+          "height": 600,
+          "bytes": 129384,
+          "sha256": "aba733953e205df362728bfce9d30920d41fd689a406e5e22a171133268f4e2d",
+          "format": "webp",
+          "sourceFile": "xiemu-hua-rui-fu-ren.png",
+          "sourceSHA256": "7ecbd42d132cd1512ec84d2e8b623ffe970ead931f37ee45d70ea80648ec52bd",
+          "cropPixels": {
+            "x": 260,
+            "y": 0,
+            "width": 640,
+            "height": 640
+          },
+          "quality": 88,
+          "independentEyeArtwork": false
+        }
+      ]
+    }
+  ],
+  "limitations": [
+    "Startup function and budgets checked separately by scene-resources tests. Original Vite SSR audit stalled on Windows and was stopped; no PASS claimed for that invocation."
+  ],
+  "decodedPixels": {
+    "startup": 884736,
+    "all": 5601956
+  },
+  "runtimeBytes": 1741290
+}
