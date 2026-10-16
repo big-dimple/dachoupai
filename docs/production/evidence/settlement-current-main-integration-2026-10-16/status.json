@@ -1,0 +1,181 @@
+{
+  "taskId": "P08",
+  "status": "software_verified_authorized_release",
+  "testedCommit": "7df6f3d1eca71307a91e0822a3d36b87349ca396",
+  "sourceTree": "dc1498abc88f2f5fd6056811ee9b953e445f4f18",
+  "basePublishedMain": "8af3e5066984979059b7ff72111b6c3cbc13aa4a",
+  "branch": "verify/settlement-current-main-20261016",
+  "integratedFollowup": "8bf977e13bbb7dccad2cb54fd54a1d911fd6b1ac",
+  "prerequisitesIncluded": [
+    "331db92d07338edf921a97d277f7f34693f9a190",
+    "5a54a90822f90ed17d7996ea969ee018838463ce"
+  ],
+  "unit": {
+    "files": 9,
+    "passed": 114,
+    "failed": 0
+  },
+  "typecheck": "PASS via npm run build",
+  "build": "PASS; existing large-bundle notice retained",
+  "e2eBuild": "PASS",
+  "sourceUnchanged": true,
+  "sourceHashes": {
+    "src/game/GameScene.ts": "09094f32b3c5479bf1fd92f8e4c0ba5a8377142b28391931db9795da6ac00f79",
+    "src/game/ScoreTextLayout.ts": "35641b01c5debeca99604a074031c14c4bea79f3a7d4e833a259907140b4aa9b",
+    "src/game/ScoreSourceProcess.ts": "567ee61f64aecdee15778863629ea1c8fd43b9b03a62cf665ccd529d5521b748",
+    "src/game/SceneView.ts": "1f0edf3e80a92368cd17d5150d9cfdcd066ae372a68b797aeffd341853942d62",
+    "src/game/JokerGrowthCausality.ts": "e3c02fc2aa8f692f4aca89130221cb9e4de2b8362c2e728f8a8133b1d3c25f6b",
+    "src/game/TitleScene.ts": "79a91819cef01bcc0771384b6d5a7dbb76e7ffa70d2ee23b10eff4dc680af95f",
+    "src/game/HomePage.ts": "7a26a9a7ca6cf8853dbada39d5b3e42a8b0ce1e5c41e715e29791639a2a6294c",
+    "src/game/HomePage.css": "13bab0ed2d8fab2c96a3dbe7d2535b66d8c91b709e96fa08699dedbd338cb4dd",
+    "src/game/LoadingScreen.ts": "3d2bc7511077458ea9284f98ddbeeee8b9348ff38cd6f1f88f6dea590c666eb7",
+    "src/game/SceneResources.ts": "671a6d479bb908c52c4d502bc9377d4b178ba04616b1c4d3b474383720c26e03",
+    "harness/ui.mjs": "c4131077518ed9d707013f65c4ca7b8d41967a26f613fc6cb1b485f39b3f74a2",
+    "harness/settlement-performance.mjs": "6b1b2564ee0baf9cce59a8466ecff4333b8572c8ac553ff7438e2f02bb88c7ae",
+    "harness/tangsong-delivery-integration.mjs": "8deed985907fc211a912398b8142de159d09fb74829e245da96c070e084c5da3"
+  },
+  "highNative": {
+    "report": "high-native.json.gz",
+    "fixture": "Controlled existing checkpoint, actual native PlayHand; 6,876,748 score; not natural acquisition or user original save.",
+    "browser": "153.0.8010.12",
+    "cases": [
+      {
+        "viewport": {
+          "width": 390,
+          "height": 740
+        },
+        "status": "PASS",
+        "firstClimaxMs": 20.299999997019768,
+        "rasterCalls": 18,
+        "detailReady": true,
+        "renderer": 1,
+        "longtasks": [],
+        "savedStable": true,
+        "storageStable": true,
+        "journalStable": true,
+        "localStorageStable": true,
+        "chromeHidden": true,
+        "hudContained": true,
+        "restored": true
+      },
+      {
+        "viewport": {
+          "width": 320,
+          "height": 568
+        },
+        "status": "PASS",
+        "firstClimaxMs": 20.5,
+        "rasterCalls": 18,
+        "detailReady": true,
+        "renderer": 1,
+        "longtasks": [],
+        "savedStable": true,
+        "storageStable": true,
+        "journalStable": true,
+        "localStorageStable": true,
+        "chromeHidden": true,
+        "hudContained": true,
+        "restored": true
+      },
+      {
+        "viewport": {
+          "width": 1366,
+          "height": 900
+        },
+        "status": "PASS",
+        "firstClimaxMs": 28.400000005960464,
+        "rasterCalls": 19,
+        "detailReady": true,
+        "renderer": 1,
+        "longtasks": [],
+        "savedStable": true,
+        "storageStable": true,
+        "journalStable": true,
+        "localStorageStable": true,
+        "chromeHidden": true,
+        "hudContained": true,
+        "restored": true
+      }
+    ]
+  },
+  "coldDuring": {
+    "report": "cold-during-native.json.gz",
+    "cases": [
+      {
+        "viewport": {
+          "width": 390,
+          "height": 740
+        },
+        "status": "PASS"
+      }
+    ],
+    "scope": "390 reload during committed presentation, exact full state/journal/storage restored via native continue, no resurrected presentation"
+  },
+  "normalNative": {
+    "report": "normal-native.json.gz",
+    "status": "PASS",
+    "cases": [
+      {
+        "viewport": {
+          "width": 1366,
+          "height": 900
+        },
+        "status": "PASS",
+        "actualPlays": 2,
+        "deliberateWeakHands": 4,
+        "coldRetryRestore": "PASS"
+      },
+      {
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "status": "PASS",
+        "actualPlays": 2,
+        "deliberateWeakHands": 4,
+        "coldRetryRestore": "PASS"
+      },
+      {
+        "viewport": {
+          "width": 320,
+          "height": 568
+        },
+        "status": "PASS",
+        "actualPlays": 2,
+        "deliberateWeakHands": 4,
+        "coldRetryRestore": "PASS"
+      }
+    ],
+    "scope": "Native fresh standard run with ordinary starting gold, real hero/route selection and public tool choice. Actual PlayHand settlement, next shop, deliberate weak-hand loss and same-seed retry included; duplicate native inputs and exact command replay. No imported state, stock overrides, domain replacements or natural full-tour acceptance. PC alone evicts one already-loaded display texture to exercise delayed scene-data handoff."
+  },
+  "protectedUnchangedVsBase": [
+    "src/domain",
+    "src/application",
+    "src/content",
+    "src/audio",
+    "src/platform",
+    "public",
+    "art",
+    "src/game/SceneView.ts",
+    "src/game/HomePage.ts",
+    "src/game/HomePage.css",
+    "src/game/LoadingScreen.ts",
+    "src/game/SceneResources.ts",
+    "src/game/JokerGrowthCausality.ts"
+  ],
+  "independentPointer": {
+    "included": false,
+    "branch": "fix/interrupted-pointer-release-20261016",
+    "pushedHead": "0fd1c113d0631d156826e252affdab9448d93253"
+  },
+  "publication": {
+    "authorization": "User explicitly allowed normal merge and push; parent directed settlement 8bf977e1 integration on latest main. No force push, CI or domain checks.",
+    "remoteReceipt": "Exact published main is verified and reported after normal push; this record freezes tested source before metadata."
+  },
+  "notClaimed": [
+    "Physical devices/GPU/human/art/audio/natural balance acceptance",
+    "All settlements universally stutter-free: prior partial-return tails 53/65 ms remain unassigned",
+    "New full-suite green: historical Windows baseline failures retained",
+    "Overall P08 complete"
+  ]
+}

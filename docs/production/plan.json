@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "auditCommit": "8e2174141920ef001b95a30485e70525920d3d9f",
   "currentTask": "P08",
-  "selectionPolicy": "唯一执行入口docs/production/DELIVERY_PLAN.md#当前统一执行计划；文化文案/选角fa5b30ee已发布，加载自动恢复与当前新局加成说明已正常发布main8090b58c。按用户本批授权，首页f2662216与现有加载成长做必要同版检查后正常合并push main；结算候选331db92d仍有可复现PC回归，独立冻结并交给空闲首页会话诊断，不混入先行三项发布。不forcepush、不查CI/域名。P08保持in_progress，软件证据不代签真人/真机/听感/自然平衡/整体美术；不改数值、玩法、旧身份或扩18路线。",
+  "selectionPolicy": "唯一执行入口仍为DELIVERY_PLAN当前统一执行计划。首页/加载/成长main8af3e506已发布；结算8bf977e1及331db92d/5a54a908前置正常合并，验证后按用户既有授权正常push main。不含独立指针修复0fd1c113，不强推、不查CI/域名。P08保持in_progress，低分返回偶发53/65ms尾部未归因，软件证据不代签真机/GPU/理解/听感/自然平衡。",
   "resumeContract": {
     "candidateCommit": "4bf6a7d63d7738d3c415d09439a1bdca878dc685",
     "gateTask": "A01",
@@ -38,6 +38,7 @@
       "humanGate": false,
       "completionScope": "2026-10-16：c009基线上的文化文案cea473、选择布局aab4d9和本机跨场景连点修复已整合；同版正常新局/携带/技能/实际结算/下一商店/失败重试及六人软件检查见currentDelivery.statusRecord。历史全量失败按独立基线对照记录，不能写成全量绿。P08仍in_progress；真实玩家理解、自然平衡、物理设备/GPU、听感、独立眼原画及整体体验未签。",
       "evidence": [
+        "docs/production/evidence/settlement-current-main-integration-2026-10-16/status.json",
         "docs/production/evidence/current-growth-causality-2026-10-16/status.json",
         "docs/production/evidence/local-windows-integration-2026-10-16/status.json",
         "docs/production/evidence/p08-amo-final-multiplier-2026-10-04/summary.json",
@@ -1208,7 +1209,7 @@
   ],
   "currentDelivery": {
     "date": "2026-10-16",
-    "statusRecord": "docs/production/evidence/home-experience-integration-2026-10-16/status.json",
+    "statusRecord": "docs/production/evidence/settlement-current-main-integration-2026-10-16/status.json",
     "heroTextSpecification": "docs/production/HERO_TEXT_SPEC_20261015.json",
     "history": "docs/production/history/plan-status-before-20261015.json",
     "priorities": [
@@ -1219,15 +1220,16 @@
     ],
     "owners": {
       "documents": "同一整合负责人：规范来源856c30ed、运行时采用与当前计划/证据对账",
-      "runtimeIntegration": "Windows本机 fix/current-growth-causality-20261016：加载成长main8090b58c已发布；首页同版检查后正常发布；结算PC候选独立冻结并交接",
+      "runtimeIntegration": "Windows verify/settlement-current-main-20261016：首页/加载/成长main8af3e506已发布；结算8bf977e1及前置正常合并，同版验证后按已授权批次发布main",
       "portraits": "正式图接线已完成整合；只处理可复现缺陷，不并发覆盖资源窗口",
       "carry": "R03已结束开发，只处理经复现的整合缺陷",
-      "opening": "自动恢复97279e91已发布于main8090b58c；首页f2662216接续同版验证与发布；不混结算PC回归",
+      "opening": "首页/加载/成长main8af3e506已发布；本批保留其源码；结算单独同版复核",
       "acceptance": "用户/真实玩家/目标设备与听感各按实际证据签收"
     },
     "legacyDoneScope": "原done工作包仅保持原证据/原SHA的局部交付事实；不代表当前唐宋六图、全新文案、运行时美术、自然平衡或整体体验完成。",
     "priorStatusRecord": "docs/production/evidence/local-windows-integration-2026-10-16/status.json",
     "priorGrowthStatusRecord": "docs/production/evidence/current-growth-causality-2026-10-16/status.json",
-    "priorLoadingGrowthStatusRecord": "docs/production/evidence/loading-growth-integration-2026-10-16/status.json"
+    "priorLoadingGrowthStatusRecord": "docs/production/evidence/loading-growth-integration-2026-10-16/status.json",
+    "priorHomeStatusRecord": "docs/production/evidence/home-experience-integration-2026-10-16/status.json"
   }
 }

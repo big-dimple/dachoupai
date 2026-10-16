@@ -1,0 +1,15 @@
+vite v7.3.6 building client environment for e2e...
+transforming...
+鉁?293 modules transformed.
+rendering chunks...
+computing gzip size...
+shots/settlement-integration/e2e-build/build-info.json                0.17 kB 鈹?gzip:   0.15 kB
+shots/settlement-integration/e2e-build/index.html                    14.61 kB 鈹?gzip:   4.81 kB
+shots/settlement-integration/e2e-build/assets/index-ZY10m4vs.css     78.46 kB 鈹?gzip:  14.96 kB
+shots/settlement-integration/e2e-build/assets/index-DGKSSDNw.js   2,748.45 kB 鈹?gzip: 804.60 kB
+
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+鉁?built in 11.64s
