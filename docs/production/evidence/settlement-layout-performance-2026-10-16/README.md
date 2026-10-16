@@ -1,4 +1,28 @@
-# 结算布局与文字重绘：手机修复已验证，PC 性能回归未解决
+# 结算布局与性能修复：本地复核通过
+
+本次接续独立分支 `fix/settlement-layout-performance-20261016`，基于 `5a54a908`；精确构建源码见 `status.json.followup.sourceHashes`，最终提交号见交付回执。仅追加字号适配、必要回归测试和本证据；保留既有 HUD 分行、结算收起次要控件、结束恢复控制与逐帧字体缓存。没有改动机制、数值、原图、存档或首页/加载实现；未合 main、未查询 CI 或域名。P08 保持 in_progress。
+
+根因是初版有界二分字号搜索：PC 190px 数字只差几像素即可容纳，却生成了 101、145、167…多个中间字号，每次触发同步字体测量及位图重绘。现根据当前真实文字边界估算比例，最多两次舍入校正，并保留最小字号兜底。追踪样本首次高光创建 80.8 → 33.8ms，文字更新 33 → 19 次；追踪与截屏不混入下面纯计时。
+
+Windows Node22 / Chromium153 / Phaser 原生 Canvas，同一受控 checkpoint 经正式菜单导入，再以实际 PlayHand 得到 6,876,748 分。每组均使用新 browser context，1366×900、首个来源 f10 且 detailReady=true，关闭截图和字体明细追踪。
+
+| 成对运行 | 对照首次创建 ms | 优化首次创建 ms | 整段文字重绘 | 优化长任务数 |
+| --- | --- | --- | --- | --- |
+| 1 | 31.2 | 27.8 | 16392 → 746 | 0 |
+| 2 | 47.0 | 27.5 | 16651 → 746 | 0 |
+| 3 | 31.1 | 29.1 | 17015 → 746 | 0 |
+
+对照第二组本身出现 72/50ms 长任务，主机活动未完全隔离；保留所有原始帧/长任务，不据此宣称物理设备或全平台无卡顿。三组优化均未记录到 ≥50ms 长任务，原可复现的 PC 首次创建回归在本地检查中已消除。
+
+104 项定向单测、typecheck、标准生产构建通过。更新构建在 320/390/1366 的自然 4509 分、自然 30 分回到选牌、受控 6,876,748 分共九例通过：数值 trace 与 domain 回放逐项一致；结算全过程 state、journal、存储与 localStorage 稳定；次要控件收起、HUD 容纳、结束恢复通过；每例在原出牌位置再点两次，未重复提交。另三例在结算期间刷新，通过正式继续入口恢复完全相同的已提交状态、journal 与存储，不复活演出。
+
+`320/390/1366-optimized-hud.png` 是可还原的 UI Text 长字段探针（116,366 / 12,000，非改状态）；`*-optimized-landing.png` 是实际高光累计倍率落位；`*-cold-restored.png` 是结算中刷新后的正式继续结果。`followup-browser-reports.json.gz` 保存全部新报告及字体明细，旧报告与原始失败保留。未拿到用户原始高分档，受控 fixture 不冒充自然获得或真实用户存档。
+
+复现沿用 `harness/settlement-performance.mjs`：e2e 构建后设置 `SETTLEMENT_BUILD_DIR`、`SETTLEMENT_EXPECT_FIXED=1`；`SETTLEMENT_SCENARIO=checkpoint|natural|partial`，`SETTLEMENT_WIDTH=1366` 可限单尺寸；纯计时 `SETTLEMENT_CAPTURE=0`，字体诊断 `SETTLEMENT_TRACE_MOUNTS=1`，重复点击 `SETTLEMENT_INTERACTIONS=1`，结算中冷恢复 `SETTLEMENT_COLD_DURING=1`。
+
+低分返回牌桌的诊断边界仍保留：初版 `partial-after` 已有 PC54ms 长任务，本次功能批次出现 PC65ms、390宽53ms，均靠近结束恢复边界；随后纯 PC 复查无长任务、最大演出帧19ms，三档实际点击新手牌后出牌按钮正常启用。零星恢复边界长任务尚未归因，不把本次高分创建修复写成所有结算无卡顿。原始记录见新旧压缩报告及 `status.json.followup.returnTailDiagnostics`。
+
+## 初版回执与原始回归证据（保留历史）
 
 产品提交：`331db92d07338edf921a97d277f7f34693f9a190`；src tree：`95215c5f6518d8bd881d775ddb160d69804198a7`；基线：`fa5b30ee1ebf28d4ee71d676b231eab260172033`。本批仅开发分支，main 由父线程统一处理。P08 仍为 in_progress。
 

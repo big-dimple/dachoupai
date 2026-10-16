@@ -79,3 +79,10 @@ it('fits initial large cut-in text with a bounded number of font rasterizations'
  fitScoreLine(text,{x:0,y:0,width:120,height:40},190,true);
  expect(text.width).toBeLessThanOrEqual(120);expect(text.height).toBeLessThanOrEqual(40);expect(text.getData('fullText')).toBe('123,456,789');expect(measure.mock.calls.length).toBeLessThanOrEqual(10);
 });
+
+it('does not rasterize intermediate fonts for a near-fitting desktop high-score number',()=>{
+ const text=fakeText('≈284.77'),measure=vi.spyOn(text,'setFontSize');
+ fitScoreLine(text,{x:0,y:0,width:1032,height:188*1.22},190,true);
+ expect(text.height).toBeLessThanOrEqual(188*1.22);expect(text.width).toBeLessThanOrEqual(1032);
+ expect(text.getData('fullText')).toBe('≈284.77');expect(measure.mock.calls.length).toBeLessThanOrEqual(3);
+});

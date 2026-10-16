@@ -32,9 +32,14 @@ export function fitScoreLine(text:Phaser.GameObjects.Text,area:Box,baseSize:numb
   if(unchanged){text.setScale(1).setPosition(area.x+area.width/2,area.y).setOrigin(.5,0);crispText(text);return;}
   text.setText(value).setWordWrapWidth(0).setFontSize(baseSize).setScale(1);
   if(baseSize>14&&(text.width>area.width||text.height>area.height)){
-    let low=14,high=baseSize-1,best=14;
-    while(low<=high){const size=Math.floor((low+high)/2);text.setFontSize(size);if(text.width<=area.width&&text.height<=area.height){best=size;low=size+1;}else high=size-1;}
-    text.setFontSize(best);
+    // The current bitmap already measures this font. Binary probing needlessly
+    // rasterized 101/145/...px even when a desktop 190px number only needed 188px.
+    // Estimate from real bounds, then allow two corrections for rounded font metrics.
+    const fits=()=>text.width<=area.width&&text.height<=area.height;
+    const smaller=(size:number)=>Math.max(14,Math.min(size-1,Math.floor(size*Math.min(area.width/Math.max(1,text.width),area.height/Math.max(1,text.height)))));
+    let size=smaller(baseSize);text.setFontSize(size);
+    for(let correction=0;correction<2&&!fits()&&size>14;correction++){size=smaller(size);text.setFontSize(size);}
+    if(!fits()&&size>14)text.setFontSize(14);
   }
   if(numeric&&text.width>area.width){
     text.setText(compactScoreText(value));

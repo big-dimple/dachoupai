@@ -1,5 +1,5 @@
 {
-  "status": "mobile_fix_validated_desktop_performance_regression_open",
+  "status": "desktop_regression_fixed_local_canvas_checks_passed",
   "base": "fa5b30ee1ebf28d4ee71d676b231eab260172033",
   "testedProduct": "331db92d07338edf921a97d277f7f34693f9a190",
   "testedSourceTree": "95215c5f6518d8bd881d775ddb160d69804198a7",
@@ -195,12 +195,423 @@
     "lihui": "untouched"
   },
   "pending": [
-    "Desktop first-climax synchronous construction30.9ms→58.9ms; repeat70ms long task remains. Parent owns further integration/release decision.",
-    "Real user checkpoint and physical target phone/GPU were not available; do not substitute emulated measurements for device acceptance."
+    "Physical target phone/GPU and the actual missing user checkpoint were unavailable; P08 remains in_progress.",
+    "Occasional low-score return-to-table tail long tasks remain unassigned (initial report54ms; new functional batches53/65ms). Pure PC recheck had none; this is not a global no-stutter signoff."
   ],
   "publication": {
     "main": "not changed by this branch",
-    "developmentPush": "pending final evidence commit"
+    "developmentPush": "Current normal development-branch push receipt and final SHA are reported in the handoff; no main merge.",
+    "previousAttempt": {
+      "developmentPush": "denied_by_auto_review_no_push_executed; parent_handles_final_publication",
+      "deniedReason": "Automatic reviewer retained initial local-pull-only restriction; no retry in this child"
+    }
   },
-  "backup": "shots/settlement/source-snapshot/manifest.json (byte-verified original modified files restored after exact baseline rebuild; retained locally)"
+  "backup": "shots/settlement/source-snapshot/manifest.json (byte-verified original modified files restored after exact baseline rebuild; retained locally)",
+  "initialStatus": "mobile_fix_validated_desktop_performance_regression_open",
+  "followup": {
+    "base": "5a54a90822f90ed17d7996ea969ee018838463ce",
+    "sourceHashes": {
+      "src/game/GameScene.ts": "59ba82977eb949816262996b8bb29de7100cf1f0e4a06d7179a5224304cccb09",
+      "src/game/ScoreTextLayout.ts": "cdfed1442fb7da15e8edd80b45df26e2a2c7fe4bdfb0cd33e4e0d78c36eebcd0",
+      "src/game/ScoreSourceProcess.ts": "0be9cfd294f4e05ba764704ee0cad99ccbd8e10852c357257a3c103828d24c52"
+    },
+    "unitTests": 104,
+    "typecheck": "PASS",
+    "productionBuild": "PASS (npm run build; existing bundle-size warning)",
+    "nativeFunctionalCases": [
+      {
+        "scenario": "natural",
+        "width": 390,
+        "textRasters": 355,
+        "maxFrameMs": 20.900000005960464,
+        "longTasks": [],
+        "score": "4509",
+        "repeat": {
+          "status": "PASS",
+          "commandSeq": 4
+        },
+        "restored": true,
+        "hidden": true,
+        "hudContained": true,
+        "stable": true
+      },
+      {
+        "scenario": "natural",
+        "width": 320,
+        "textRasters": 413,
+        "maxFrameMs": 26.400000005960464,
+        "longTasks": [],
+        "score": "4509",
+        "repeat": {
+          "status": "PASS",
+          "commandSeq": 4
+        },
+        "restored": true,
+        "hidden": true,
+        "hudContained": true,
+        "stable": true
+      },
+      {
+        "scenario": "natural",
+        "width": 1366,
+        "textRasters": 302,
+        "maxFrameMs": 25.799999997019768,
+        "longTasks": [],
+        "score": "4509",
+        "repeat": {
+          "status": "PASS",
+          "commandSeq": 4
+        },
+        "restored": true,
+        "hidden": true,
+        "hudContained": true,
+        "stable": true
+      },
+      {
+        "scenario": "partial",
+        "width": 390,
+        "textRasters": 174,
+        "maxFrameMs": 18.5,
+        "longTasks": [
+          {
+            "start": 5922.0999999940395,
+            "duration": 53
+          }
+        ],
+        "score": "30",
+        "repeat": {
+          "status": "PASS",
+          "commandSeq": 4
+        },
+        "restored": true,
+        "restoredInput": {
+          "selected": true,
+          "playEnabled": true,
+          "commandSeq": 4
+        },
+        "hidden": true,
+        "hudContained": true,
+        "stable": true
+      },
+      {
+        "scenario": "partial",
+        "width": 320,
+        "textRasters": 164,
+        "maxFrameMs": 19.600000008940697,
+        "longTasks": [],
+        "score": "30",
+        "repeat": {
+          "status": "PASS",
+          "commandSeq": 4
+        },
+        "restored": true,
+        "restoredInput": {
+          "selected": true,
+          "playEnabled": true,
+          "commandSeq": 4
+        },
+        "hidden": true,
+        "hudContained": true,
+        "stable": true
+      },
+      {
+        "scenario": "partial",
+        "width": 1366,
+        "textRasters": 135,
+        "maxFrameMs": 20.299999997019768,
+        "longTasks": [],
+        "score": "30",
+        "repeat": {
+          "status": "PASS",
+          "commandSeq": 4
+        },
+        "restored": true,
+        "restoredInput": {
+          "selected": true,
+          "playEnabled": true,
+          "commandSeq": 4
+        },
+        "hidden": true,
+        "hudContained": true,
+        "stable": true
+      },
+      {
+        "scenario": "checkpoint",
+        "width": 390,
+        "firstClimaxCreateMs": 23.299999997019768,
+        "textRasters": 750,
+        "maxFrameMs": 33.8999999910593,
+        "longTasks": [],
+        "score": "6876748",
+        "source": "f10",
+        "detailReady": true,
+        "repeat": {
+          "status": "PASS",
+          "commandSeq": 5
+        },
+        "restored": true,
+        "hidden": true,
+        "hudContained": true,
+        "stable": true
+      },
+      {
+        "scenario": "checkpoint",
+        "width": 320,
+        "firstClimaxCreateMs": 24.100000008940697,
+        "textRasters": 869,
+        "maxFrameMs": 32.70000000298023,
+        "longTasks": [],
+        "score": "6876748",
+        "source": "f10",
+        "detailReady": true,
+        "repeat": {
+          "status": "PASS",
+          "commandSeq": 5
+        },
+        "restored": true,
+        "hidden": true,
+        "hudContained": true,
+        "stable": true
+      },
+      {
+        "scenario": "checkpoint",
+        "width": 1366,
+        "firstClimaxCreateMs": 27.299999997019768,
+        "textRasters": 746,
+        "maxFrameMs": 41.8999999910593,
+        "longTasks": [],
+        "score": "6876748",
+        "source": "f10",
+        "detailReady": true,
+        "repeat": {
+          "status": "PASS",
+          "commandSeq": 5
+        },
+        "restored": true,
+        "hidden": true,
+        "hudContained": true,
+        "stable": true
+      }
+    ],
+    "coldDuringPresentation": [
+      {
+        "width": 390,
+        "status": "PASS",
+        "phase": "run-won",
+        "commandSeq": 5,
+        "score": "6876748",
+        "repeat": {
+          "status": "PASS",
+          "commandSeq": 5
+        }
+      },
+      {
+        "width": 320,
+        "status": "PASS",
+        "phase": "run-won",
+        "commandSeq": 5,
+        "score": "6876748",
+        "repeat": {
+          "status": "PASS",
+          "commandSeq": 5
+        }
+      },
+      {
+        "width": 1366,
+        "status": "PASS",
+        "phase": "run-won",
+        "commandSeq": 5,
+        "score": "6876748",
+        "repeat": {
+          "status": "PASS",
+          "commandSeq": 5
+        }
+      }
+    ],
+    "pairedDesktop": [
+      {
+        "pair": 1,
+        "baseline": {
+          "width": 1366,
+          "firstClimaxCreateMs": 31.200000002980232,
+          "textRasters": 16392,
+          "maxFrameMs": 47.20000000298023,
+          "longTasks": [],
+          "score": "6876748",
+          "source": "f10",
+          "detailReady": true
+        },
+        "optimized": {
+          "width": 1366,
+          "firstClimaxCreateMs": 27.799999997019768,
+          "textRasters": 746,
+          "maxFrameMs": 42.599999994039536,
+          "longTasks": [],
+          "score": "6876748",
+          "source": "f10",
+          "detailReady": true
+        }
+      },
+      {
+        "pair": 2,
+        "baseline": {
+          "width": 1366,
+          "firstClimaxCreateMs": 47,
+          "textRasters": 16651,
+          "maxFrameMs": 74.6000000089407,
+          "longTasks": [
+            {
+              "start": 12779.20000000298,
+              "duration": 72
+            },
+            {
+              "start": 13247.59999999404,
+              "duration": 50
+            }
+          ],
+          "score": "6876748",
+          "source": "f10",
+          "detailReady": true
+        },
+        "optimized": {
+          "width": 1366,
+          "firstClimaxCreateMs": 27.5,
+          "textRasters": 746,
+          "maxFrameMs": 42.29999999701977,
+          "longTasks": [],
+          "score": "6876748",
+          "source": "f10",
+          "detailReady": true
+        }
+      },
+      {
+        "pair": 3,
+        "baseline": {
+          "width": 1366,
+          "firstClimaxCreateMs": 31.099999994039536,
+          "textRasters": 17015,
+          "maxFrameMs": 46.79999999701977,
+          "longTasks": [],
+          "score": "6876748",
+          "source": "f10",
+          "detailReady": true
+        },
+        "optimized": {
+          "width": 1366,
+          "firstClimaxCreateMs": 29.099999994039536,
+          "textRasters": 746,
+          "maxFrameMs": 44.29999999701977,
+          "longTasks": [],
+          "score": "6876748",
+          "source": "f10",
+          "detailReady": true
+        }
+      }
+    ],
+    "trace": {
+      "before": {
+        "width": 1366,
+        "firstClimaxCreateMs": 80.79999999701977,
+        "textRasters": 871,
+        "maxFrameMs": 99.79999999701977,
+        "longTasks": [
+          {
+            "start": 11746.5,
+            "duration": 97
+          }
+        ],
+        "score": "6876748",
+        "source": "f10",
+        "detailReady": true
+      },
+      "after": {
+        "width": 1366,
+        "firstClimaxCreateMs": 33.79999999701977,
+        "textRasters": 745,
+        "maxFrameMs": 51.1000000089407,
+        "longTasks": [],
+        "score": "6876748",
+        "source": "f10",
+        "detailReady": true
+      },
+      "firstMountRastersBefore": 33,
+      "firstMountRastersAfter": 19
+    },
+    "protectedTrees": "unchanged",
+    "limits": [
+      "Windows headless Chromium with native Canvas rendering; no physical phone/GPU acceptance.",
+      "Natural seed d43-fire-267 and actual PlayHand; only long HUD text probe temporarily changes/restores UI Text, never game/save/target state.",
+      "Timing wrappers count actual Phaser Text rasterization and scene fit work during presentation. Long tasks/frames are machine-local diagnostics, not a universal FPS claim.",
+      "Controlled existing settlementReady(million,current) public checkpoint, not natural acquisition or the missing user save. Imported through production menu; subsequent score comes only from real domain PlayHand."
+    ],
+    "returnTailDiagnostics": {
+      "initialReport": "browser-reports.json.gz / partial-after: PC54ms",
+      "functionalReport": [
+        {
+          "width": 390,
+          "textRasters": 172,
+          "maxFrameMs": 18.299999997019768,
+          "longTasks": [],
+          "score": "30"
+        },
+        {
+          "width": 320,
+          "textRasters": 164,
+          "maxFrameMs": 18.299999997019768,
+          "longTasks": [],
+          "score": "30"
+        },
+        {
+          "width": 1366,
+          "textRasters": 135,
+          "maxFrameMs": 19.700000002980232,
+          "longTasks": [
+            {
+              "start": 6496.100000008941,
+              "duration": 65
+            }
+          ],
+          "score": "30"
+        }
+      ],
+      "controlsReport": [
+        {
+          "width": 390,
+          "textRasters": 174,
+          "maxFrameMs": 18.5,
+          "longTasks": [
+            {
+              "start": 5922.0999999940395,
+              "duration": 53
+            }
+          ],
+          "score": "30"
+        },
+        {
+          "width": 320,
+          "textRasters": 164,
+          "maxFrameMs": 19.600000008940697,
+          "longTasks": [],
+          "score": "30"
+        },
+        {
+          "width": 1366,
+          "textRasters": 135,
+          "maxFrameMs": 20.299999997019768,
+          "longTasks": [],
+          "score": "30"
+        }
+      ],
+      "purePcRecheck": [
+        {
+          "width": 1366,
+          "textRasters": 135,
+          "maxFrameMs": 19,
+          "longTasks": [],
+          "score": "30"
+        }
+      ],
+      "conclusion": "Return boundary observations retained and unassigned; high-score first-mount regression fixed, no universal performance claim."
+    }
+  }
 }
