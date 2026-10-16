@@ -118,8 +118,17 @@ it('wide PC low heights reserve lower goods and feedback before sizing either ca
  }
 });
 
-it('320 short portrait safe12/34 keeps every visible owned hit clear of paid reroll and other actions',()=>{
- for(const bottom of [0,12,34]){const p=shopLayout(320,568,12,bottom,3,true);expect(p.inventoryCollapsed).toBe(false);for(const b of p.slots){const hit=shopOwnedHitBox(b,p.reroll.y,true);for(const action of [p.reroll,p.build,p.play])expect(intersects(hit,action)).toBe(false);expect(b.y+b.height).toBeLessThanOrEqual(p.reroll.y-4);expect(hit.width).toBeGreaterThanOrEqual(44);expect(hit.height).toBeGreaterThanOrEqual(44);}expect(p.play.height).toBeGreaterThanOrEqual(48);expect(p.reroll.height).toBeGreaterThanOrEqual(44);for(const b of p.shelf)expect(b.height/b.width).toBeCloseTo(1.4);}
+it('320 short portrait retains its gallery and collapses owned cards into the existing management entry',()=>{
+ for(const bottom of [0,12,34]){const p=shopLayout(320,568,12,bottom,3,true);expect(p.portrait).toBe(true);expect(p.inventoryCollapsed).toBe(true);for(const b of p.shelf){expect(b.height/b.width).toBeCloseTo(1.4);for(const action of [p.reroll,p.build,p.play])expect(intersects(shopOfferCopy(p,b,true).tile,action)).toBe(false);}expect(p.play.height).toBeGreaterThanOrEqual(48);expect(p.reroll.height).toBeGreaterThanOrEqual(44);}
+});
+
+it('short landscape stock, tabs and the shared action row fit inside top/bottom/side insets',()=>{
+ for(const [width,height,cols] of [[740,320,3],[740,300,3],[568,320,2]]){
+  const p=shopLayout(width,height,36,20,cols,false,false,44,12);
+  for(const b of [...p.shelf.map(b=>shopOfferCopy(p,b,true).tile),p.tabs,p.reroll,p.build,p.play]){expect(b.x).toBeGreaterThanOrEqual(44);expect(b.x+b.width).toBeLessThanOrEqual(width-12);expect(b.y).toBeGreaterThanOrEqual(36);expect(b.y+b.height).toBeLessThanOrEqual(height-20);}
+  for(const face of p.shelf)for(const action of [p.reroll,p.build,p.play])expect(intersects(shopOfferCopy(p,face,true).tile,action)).toBe(false);
+  expect(p.tabs.height).toBe(44);expect(p.play.height).toBe(44);
+ }
 });
 
 it('PC portrait art spends actual remaining height without clipping three goods and independent lower groups',()=>{

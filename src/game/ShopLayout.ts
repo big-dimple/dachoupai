@@ -11,6 +11,16 @@ export function shopOwnedNameArea(card:Box,nextX:number|undefined,viewportWidth:
 }
 function shortShopLayout(width:number,height:number,top:number,bottom:number,cols:number){
   const x=12,w=width-24,collapsed=width<760,inventoryWidth=collapsed?0:252,goodsX=x+(collapsed?0:268),goodsWidth=w-(collapsed?0:268),seat=(goodsWidth-8*(cols-1))/cols;
+  if(collapsed){
+    // One header for purse/categories/menu and one footer for actions. A
+    // full-width entry button below a second toolbar covered the price row.
+    const shelf:Box[]=Array.from({length:cols},(_,i)=>({x:x+i*(seat+8),y:top+50,width:88,height:123.2}));
+    const actionY=height-bottom-68,auxWidth=Math.min(120,(w-160)/2);
+    return {x,w,top,pc:null,desktop:false,short:true,compact:true,wideHeader:false,portrait:false,copyBeside:true,inventoryCollapsed:true,slots:[],shelf,
+      tabs:{x:x+124,y:top,width:w-200,height:44},chapter:{x,y:actionY,width:0,height:44},items:{x,y:actionY,width:0,height:44},
+      reroll:{x,y:actionY,width:auxWidth,height:44},build:{x:x+auxWidth+8,y:actionY,width:auxWidth,height:44},
+      play:{x:x+2*(auxWidth+8),y:actionY,width:w-2*(auxWidth+8),height:44},noticeY:actionY+48};
+  }
   // `top` is the shared HUD/DOM toolbar top. Keep the 44px tools clear
   // before tabs, then leave 2px between the 44px tabs and the goods.
   const tabsY=top+44+4;
@@ -52,15 +62,26 @@ function desktopShopLayout(width:number,height:number,top:number,bottom:number,_
     tabs:{x:goodsX,y:shopPanel.y+4,width:goodsWidth,height:20},chapter,items:inventoryEntry,build,reroll,play,noticeY:feedback.y};
 }
 
-export function shopLayout(width:number,height:number,top:number,bottom:number,cols:number,ownedCopy=false,guideActions=false){
+export function shopLayout(width:number,height:number,top:number,bottom:number,cols:number,ownedCopy=false,guideActions=false,left=0,right=0){
+  return shiftLayout(shopContentLayout(width-left-right,height,top,bottom,cols,ownedCopy,guideActions),left);
+}
+/** Translate every nested box together; safe insets must not change relative hit geometry. */
+function shiftLayout<T>(value:T,left:number):T {
+  if(!left)return value;
+  if(Array.isArray(value))return value.map(v=>shiftLayout(v,left)) as T;
+  if(value&&typeof value==='object')return Object.fromEntries(Object.entries(value).map(([k,v])=>[k,k==='x'&&typeof v==='number'?v+left:shiftLayout(v,left)])) as T;
+  return value;
+}
+function shopContentLayout(width:number,height:number,top:number,bottom:number,cols:number,ownedCopy=false,guideActions=false){
   if(width>=1000){if(height-top-bottom<712)return shortShopLayout(width,height,top,bottom,cols);return desktopShopLayout(width,height,top,bottom,cols);}
-  if(height-top-bottom<500)return shortShopLayout(width,height,top,bottom,cols);
+  if(height<=width&&height-top-bottom<500)return shortShopLayout(width,height,top,bottom,cols);
   const portrait=width<700&&height>width,x=12,w=width-24,seat=(Math.min(w,420)-8*(cols-1))/cols;
   // Browser toolbar height changes keep the same three-card gallery.
   const slotGap=6,slotWidth=Math.min(64,(w-4*slotGap)/5),slotHeight=slotWidth*1.4;
   // Fit the visible owned rail before the fixed action row; only art shrinks.
   const portraitFaceBudget=(height-top-bottom-352-slotHeight)/1.4;
-  const cardWidth=Math.min(Math.max(88,Math.min(108,seat-8)),portrait?portraitFaceBudget:Infinity),cardHeight=cardWidth*1.4;
+  const inventoryCollapsed=portrait&&height-top-bottom<560;
+  const cardWidth=Math.min(Math.max(88,Math.min(108,seat-8)),portrait&&!inventoryCollapsed?portraitFaceBudget:Infinity),cardHeight=cardWidth*1.4;
   const shelfWidth=cols*seat+8*(cols-1),shelfX=x+(w-shelfWidth)/2,shelfTop=top+104;
   const shelf:Box[]=Array.from({length:cols},(_,i)=>({x:shelfX+i*(seat+8)+(seat-cardWidth)/2,y:shelfTop,width:cardWidth,height:cardHeight}));
   const ownedGap=portrait?Math.min(24,Math.max(0,height-top-bottom-352-slotHeight-cardHeight)):24;
@@ -69,7 +90,7 @@ export function shopLayout(width:number,height:number,top:number,bottom:number,c
   const slotY=originalSlotY+(guidanceBelow?54:0);
   const slots:Box[]=Array.from({length:5},(_,i)=>({x:slotX+i*(slotWidth+slotGap),y:slotY,width:slotWidth,height:slotHeight}));
   const secondaryY=portrait?height-bottom-144:Math.min(height-bottom-144,slotY+slotHeight+20),toolWidth=(Math.min(w,420)-8)/2,actionX=x+(w-Math.min(w,420))/2,inventoryY=slotY+slotHeight+8;
-  return {x,w,top,pc:null,desktop:false,short:false,copyBeside:false,inventoryCollapsed:false,compact:portrait,wideHeader:false,portrait,guidanceBelow,slots,shelf,tabs:{x:actionX,y:top+52,width:Math.min(w,420),height:44},
+  return {x,w,top,pc:null,desktop:false,short:false,copyBeside:false,inventoryCollapsed,compact:portrait,wideHeader:false,portrait,guidanceBelow,slots,shelf,tabs:{x:actionX,y:top+52,width:Math.min(w,420),height:44},
     chapter:{x:portrait?actionX:x,y:portrait?inventoryY:top+104,width:portrait?toolWidth:200,height:44},items:{x:portrait?actionX+toolWidth+8:x,y:portrait?inventoryY:top+156,width:portrait?toolWidth:200,height:44},
     reroll:{x:actionX,y:secondaryY,width:toolWidth,height:44},build:{x:actionX+toolWidth+8,y:secondaryY,width:toolWidth,height:44},play:{x:actionX,y:secondaryY+52,width:Math.min(w,420),height:56},noticeY:secondaryY+116};
 }
@@ -101,8 +122,9 @@ export function shopFirstGuideLayout(p:ReturnType<typeof shopLayout>,height:numb
 export function shopOfferCopy(p:ReturnType<typeof shopLayout>,b:Box,plainJoker=false){
   if(p.portrait&&p.copyBeside)return {x:b.x+b.width+14,y:b.y,width:p.x+p.w-(b.x+b.width+14)-4,priceY:b.y+b.height-20,lines:3,tile:{x:p.x,y:b.y,width:p.w,height:b.height}};
   if(p.pc){const seat=p.pc.jokerOffers.find(t=>b.x>=t.x&&b.x<t.x+t.width)!;return {x:seat.x+10,y:b.y+b.height+2,width:seat.width-20,priceY:seat.y+b.height+98+p.pc.guidanceHeight,lines:4,tile:seat};}
-  const seat=(p.tabs.width-8*(p.shelf.length-1))/p.shelf.length;
+  const seat=((p.short&&p.inventoryCollapsed?p.w:p.tabs.width)-8*(p.shelf.length-1))/p.shelf.length;
   const x=p.copyBeside?b.x+b.width+6:b.x,y=p.copyBeside?b.y:b.y+b.height,width=p.copyBeside?seat-b.width-8:b.width+6;
+  if(p.short&&p.inventoryCollapsed)return {x,y,width,priceY:y+(plainJoker?92:58),lines:plainJoker?3:2,tile:{...b,width:b.width+6+width}};
   const extra=plainJoker?(p.copyBeside?36:'guidanceBelow' in p&&p.guidanceBelow?54:0):0;
   return {x,y,width,priceY:y+(plainJoker?76:58)+extra,lines:plainJoker?3:2,tile:{...b,width:p.copyBeside?b.width+6+width:b.width,height:p.copyBeside?Math.max(b.height,plainJoker?136:0):b.height+(plainJoker?94:76)+extra}};
 }

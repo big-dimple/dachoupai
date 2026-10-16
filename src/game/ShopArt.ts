@@ -23,7 +23,9 @@ export function drawShopArt(scene:Phaser.Scene,view:SceneView,p:ReturnType<typeo
     shopSheet(scene,view,'actions',{x:pc.actionRail.x-6,y:pc.shopPanel.y+6,width:pc.actionRail.width+12,height:pc.shopPanel.height-12},T.jadeSoft);
   }else if(p.portrait){
     // Merchandise and the single primary action lead; quiet rails keep breathing space.
-    view.add(scene.add.graphics().lineStyle(1,T.divider,.55).lineBetween(p.x,p.slots[0].y-20,p.x+p.w,p.slots[0].y-20).lineBetween(p.x,p.reroll.y-6,p.x+p.w,p.reroll.y-6).setName('shop-art/rails'));
+    const rails=scene.add.graphics().lineStyle(1,T.divider,.55);
+    if(!p.inventoryCollapsed)rails.lineBetween(p.x,p.slots[0].y-20,p.x+p.w,p.slots[0].y-20);
+    view.add(rails.lineBetween(p.x,p.reroll.y-6,p.x+p.w,p.reroll.y-6).setName('shop-art/rails'));
   }else if(p.short){
     shopSheet(scene,view,'stock',{x:p.tabs.x-4,y:p.tabs.y-4,width:p.tabs.width+8,height:Math.max(...p.shelf.map(b=>b.y+b.height))+6-p.tabs.y},T.paperLight);
     shopSheet(scene,view,'entry',{x:p.play.x-4,y:p.play.y-4,width:p.play.width+8,height:p.play.height+8},T.jadeSoft);
