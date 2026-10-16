@@ -1,0 +1,99 @@
+{
+  "taskId": "victory-settlement-compact",
+  "base": "b8c1e8fee402f21e121adeba0704435dedfdaa12",
+  "testedProductCommit": "a7d61af0f03133aa9a3bc6114a1aa538e04ad37c",
+  "sourceBlobs": {
+    "src/game/SettlementPresentation.ts": "55e26274c42cb0643922a7c388fc782a85bac05c",
+    "src/game/IntermissionScene.ts": "3e1459e6fe859adda99e54417db536c0bae56e06"
+  },
+  "reportHeadIsPrecommitBase": true,
+  "sourceScope": "same product files hashed during the verified native run and committed without further product edits",
+  "status": "PASS",
+  "checks": [
+    {
+      "name": "targeted unit tests",
+      "command": "npx vitest run tests/settlement-presentation.test.ts",
+      "status": "PASS",
+      "tests": 23,
+      "exitCode": 0
+    },
+    {
+      "name": "production build",
+      "command": "npm run build",
+      "status": "PASS",
+      "exitCode": 0,
+      "warning": "existing chunk size warning"
+    },
+    {
+      "name": "bounded native and restored view",
+      "command": "node harness/victory-settlement-layout.mjs",
+      "selectedCases": [
+        "support-320x568-safe",
+        "support-320x568",
+        "support-390x844",
+        "support-740x320",
+        "support-1366x768",
+        "growth-390x844",
+        "long-390x844"
+      ],
+      "status": "PASS",
+      "cases": 7,
+      "nativePlayAndContinueCases": 5,
+      "exitCode": 0
+    },
+    {
+      "name": "source whitespace",
+      "command": "git diff --cached --check",
+      "status": "PASS",
+      "exitCode": 0
+    }
+  ],
+  "environment": {
+    "os": "win32",
+    "node": "v22.20.0",
+    "browser": "153.0.8010.12",
+    "physicalDevice": "NOT_RUN"
+  },
+  "comparison390": {
+    "before": {
+      "scoreCard": {
+        "x": 12,
+        "y": 116,
+        "width": 366,
+        "height": 452
+      },
+      "sourceY": 314,
+      "gapBetweenReceiptAndSource": 69,
+      "rewardY": 535,
+      "continueButtonY": 748
+    },
+    "after": {
+      "scoreCard": {
+        "x": 12,
+        "y": 116,
+        "width": 366,
+        "height": 374
+      },
+      "sourceY": 260,
+      "gapBetweenReceiptAndSource": 15,
+      "rewardY": 457,
+      "continueButtonY": 670
+    }
+  },
+  "humanReview": {
+    "status": "PENDING",
+    "note": "Assistant inspected the seven final screenshots; user aesthetic approval remains pending."
+  },
+  "protected": {
+    "assets": "unchanged",
+    "domain": "unchanged",
+    "savesAndRewards": "unchanged",
+    "highlighterProcess": "unchanged",
+    "mainMerge": "NOT_RUN"
+  },
+  "delivery": {
+    "method": "normal development branch push after commit",
+    "branch": "fix/victory-settlement-layout-20261016",
+    "library": "previous helper unavailable; not retried"
+  }
+}
