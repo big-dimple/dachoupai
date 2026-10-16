@@ -4,10 +4,11 @@ import {r2JokerDefinitionFor} from '../domain/r2ContentProfiles';
 import {Rational} from '../domain/rational';
 import {fractionText} from './scoreText';
 import {HAND_LABELS} from '../content/handLabels';
+import {hasR2GroupUpgradeContract} from '../domain/r2GroupUpgrade';
 
 /** Saved ledger and current holdings only; this is never a selection preview or a persisted history extension. */
 export function groupGrowthCausality(state:R2RunState,joker:R2JokerInstance):{title:string;body:string}|undefined {
- if(state.contentVersion!=='quality-r2-group-upgrade-prototype-v1'||!['b10','b03'].includes(joker.definitionId))return;
+ if(!hasR2GroupUpgradeContract(state)||!['b10','b03'].includes(joker.definitionId))return;
  const d=r2JokerDefinitionFor(state,joker.definitionId),unit=joker.definitionId==='b10'?'热度':'倍率',key=joker.definitionId==='b10'?'heat':'multiplier',zero={n:'0',d:'1'},current=state.jokers.find(j=>j.instanceId===joker.instanceId&&j.definitionId===joker.definitionId);if(!current)return;
  const lines=[`当前持有已保存${unit}成长：+${fractionText(current.growth[key]??zero)}。`],trace=state.lastTrace;
  const source=trace?.sourceJokers.find(j=>j.instanceId===current.instanceId&&j.definitionId===current.definitionId),saved=trace?.jokers.find(j=>j.instanceId===current.instanceId&&j.definitionId===current.definitionId);
