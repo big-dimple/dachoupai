@@ -1,0 +1,43 @@
+{
+  "date": "2026-10-16",
+  "kind": "approved_cash_warning_and_plan_release_integration",
+  "beforeMain": "646505e7dc8cbf3620d6db795d7d8afdf838f9d0",
+  "productIntegrationCommit": "815a5d2527396395099c92c81ab276cb628217c5",
+  "sourceCandidates": {
+    "cash": "61c78a233a40e90dcff8356f4de083e3d691e9af",
+    "documents": "92efdcacfba623a871f87b6cdefda5893ccaca45"
+  },
+  "runtimeSourceExactAs": "61c78a233a40e90dcff8356f4de083e3d691e9af",
+  "sourceTree": "10aa84f2b71ca52b4195d94818336473fda8c480",
+  "productionFiles": [
+    "src/game/XiemuBurnCopy.ts"
+  ],
+  "conflicts": {
+    "file": "docs/production/plan.json",
+    "resolution": "Retain92 reconciled current plan, which already includes61 evidence and state; remove auto-merged obsolete61 paragraph describing2a8efe/refused publication. Apply current explicitly authorized release state separately. No runtime conflict."
+  },
+  "validation": {
+    "reusedOriginalTests": 14,
+    "reusedTestSource": "tests/xiemu-cash-choice.test.ts and tests/xiemu-burn.test.ts exactly identical to61",
+    "originalReview": "20->10 gold gate lost;30->20 remains met; cancel/payment semantics unchanged",
+    "freshTypeProductionBuild": "PASS; existing chunk warning",
+    "freshNative": "PASS; actual selection/cancel preserves full saves;20->10 payment occurs once, e08 does not multiply, expected actual command state exact",
+    "nativeRunnerHead": "815a5d2527396395099c92c81ab276cb628217c5",
+    "testedNativeBuild": "c96fe6e05b8a0f4363adbf82d2778b0d783c12c7",
+    "buildSourceIdentityExact": true,
+    "pageErrors": []
+  },
+  "protected": {
+    "numericalAndDomainCode": "unchanged from646505",
+    "runtimeAssetsAndOriginalArt": "unchanged",
+    "formalGateStatuses": "unchanged; P08 in_progress",
+    "balance900to1000": "proposal only, not implemented",
+    "rawHistoricalEvidence": "unchanged"
+  },
+  "publication": {
+    "authorization": "Current user explicitly approved both61 and92 batch",
+    "method": "normal primary-main fast-forward then ordinary push, no force",
+    "exactFinalRemote": "Record after actual push in delivery receipt; this committed status records approved source/validation, not a self-referencing final SHA",
+    "CIOrDomainChecks": "none"
+  }
+}

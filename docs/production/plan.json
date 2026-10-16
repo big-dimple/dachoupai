@@ -2,13 +2,13 @@
   "schemaVersion": 1,
   "auditCommit": "8e2174141920ef001b95a30485e70525920d3d9f",
   "currentTask": "P08",
-  "selectionPolicy": "唯一排程见DELIVERY_PLAN当前统一执行计划。main646505已核实发布；燃金警告61c78仅本地产品实现、未合main；第二章900→1000为86d030只读建议、未实施；失败再战/三章经营/技能页是本地有界证据，不是新产品修复或整体签收。本次只做本地文档对账和原证据集中，无新增测试/试玩/数值/源码/发布。P08仍in_progress；依次处理六英雄实际取舍、经营自然供给、移动设备、画面和听感的真实输入；没有可复现缺口不造新工作，不重开18路线/完整C04。",
+  "selectionPolicy": "当前发布整合815a5d25由用户明确批准61c78提示+92efdc计划普通合并/push；运行时与61完全相同，仅XiemuBurnCopy.ts。保留此前646505发布基线与原92文档归档；900→1000仍仅建议，未改数值。原14项精确复用，新增构建及一次原生取消/支付交叉通过，不扩自然试玩/全矩阵。P08仍in_progress；最终远端完整SHA由发布回执确认，部署/人验/设备/后段等不代签。",
   "resumeContract": {
     "candidateCommit": "4bf6a7d63d7738d3c415d09439a1bdca878dc685",
     "gateTask": "A01",
     "decisionId": "D22",
     "decision": "docs/production/DECISIONS.md",
-    "afterOwnerAcceptance": "D22/A01是历史局部工程放行，不是本轮完整体验签收。main646505已经实际发布；旧“仍待合并确认”文字不能覆盖该事实。本次只整理本地文档，61c78与本文件候选均未因整理而合main/推送；后续发布按用户当批明确指派。V01/L01、C04剩余与A03整体依赖保持；六原图验收不代签运行时、独立眼图、听感、真机或全量美术。",
+    "afterOwnerAcceptance": "D22/A01是历史局部放行，不是完整体验签收。当前用户已对61提示+92计划本批正常合并push明确确认；此授权不扩展900→1000等数值或其它未实现包。main646505是此前已核实基线，本批产品整合815a5d25；最终发布SHA以实际Git回执为准。V01/L01、C04剩余/A03整体、运行时美术/独立素材/听感/真机边界保持。",
     "milestones": "docs/production/WORK_PACKAGES.md#玩家可检验的里程碑",
     "approvalEvidence": "docs/production/evidence/A01-2026-10-02.json"
   },
@@ -36,8 +36,9 @@
       ],
       "package": "docs/production/WORK_PACKAGES.md#p08",
       "humanGate": false,
-      "completionScope": "已发布main646505包含六英雄能力/文案、六图软件接线与已列交互/高光/预取等增量。新增本地失败再战、三章经营和四尺寸技能返回只是各自有界证据；61c78是未发布实现，86d030仅建议。本地文档对账不完成P08、A03、V01或正式发布链；运行时美术、人类理解、设备/听感、自然晚期与全局平衡仍未签。",
+      "completionScope": "已发布main646505包含六英雄能力/文案、六图软件接线与已列交互/高光/预取等增量。新增本地失败再战、三章经营和四尺寸技能返回只是各自有界证据；61c78现进入本批获批发布整合，86d030仅建议。本地文档对账不完成P08、A03、V01或正式发布链；运行时美术、人类理解、设备/听感、自然晚期与全局平衡仍未签。",
       "evidence": [
+        "docs/production/evidence/cash-warning-plan-main-integration-2026-10-16/status.json",
         "docs/production/evidence/local-plan-reconcile-2026-10-16/status.json",
         "docs/production/evidence/ordinary-failure-retry-2026-10-16/status.json",
         "docs/production/evidence/natural-straight-economy-2026-10-16/status.json",
@@ -1225,7 +1226,7 @@
   ],
   "currentDelivery": {
     "date": "2026-10-16",
-    "statusRecord": "docs/production/evidence/local-plan-reconcile-2026-10-16/status.json",
+    "statusRecord": "docs/production/evidence/cash-warning-plan-main-integration-2026-10-16/status.json",
     "heroTextSpecification": "docs/production/HERO_TEXT_SPEC_20261015.json",
     "history": "docs/production/history/plan-status-before-20261015.json",
     "priorities": [
@@ -1238,7 +1239,7 @@
     ],
     "owners": {
       "documents": "本地文档候选：DELIVERY_PLAN/plan.json为唯一排程；ART与角色玩法仅修状态冲突。原证据/历史原文保持，本次无产品源码或发布。",
-      "runtimeIntegration": "main646505高光文案+商店预取已普通push并核实远端；此后没有新产品发布。燃金61c78独立本地，文档合并不带其代码。",
+      "runtimeIntegration": "61燃金提示+92计划经用户明确批准正常整合815a5d25；生产仅XiemuBurnCopy且原src/tests完全一致，14项复用，新构建及原生选择取消/支付通过。最终远端SHA回执核实，不查CI/域名。",
       "portraits": "正式图接线已完成整合；只处理可复现缺陷，不并发覆盖资源窗口",
       "carry": "R03已结束开发，只处理经复现的整合缺陷",
       "opening": "首页/加载/成长main8af3e506已发布；本批保留其源码；结算单独同版复核",
@@ -1248,7 +1249,7 @@
       "mobileExperience": "原负责人产品b532922c、候选54851f65；本批正常整合保留安全区/短横/短竖/分页，39场景和经营并集旋转通过，物理设备另签",
       "challengerExperience": "B05首遇e42c500b/47ab5e5e已在main2a8efe2a并包含于646505；30项/14原生为原软件证据。专属人物/独立眼神素材与人验仍依赖，不再列待父整合。",
       "shopImageWarmup": "商店预取产品3ae914f6经并集646505发布；开发分支自身此前未推，但源码已通过main交付。自然立即冷点未加速/真机多秒卡顿未复现，不能签全平台性能。",
-      "localCashWarning": "仅本地61c78：XiemuBurnCopy金币门槛说明和自有证据，未并main；30金自然取舍另验。"
+      "localCashWarning": "来源61c78提示已独立审查并进入本批获批发布整合，不再列仅本地待评审；30金自然净收益/玩家取舍仍另验。"
     },
     "legacyDoneScope": "原done工作包仅保持原证据/原SHA的局部交付事实；不代表当前唐宋六图、全新文案、运行时美术、自然平衡或整体体验完成。",
     "priorStatusRecord": "docs/production/evidence/local-windows-integration-2026-10-16/status.json",
@@ -1326,9 +1327,11 @@
         "branch": "fix/xiemu-cash-gate-warning-20261016",
         "candidateCommit": "61c78a233a40e90dcff8356f4de083e3d691e9af",
         "productCommit": "c96fe6e05b8a0f4363adbf82d2778b0d783c12c7",
-        "status": "local_implemented_not_integrated",
+        "status": "authorized_release_integrated_software_verified",
         "statusRecord": "docs/production/evidence/xiemu-cash-gate-warning-2026-10-16/status.json",
-        "scope": "Only local implementation. Current document candidate copies evidence only, not src/tests/harness."
+        "scope": "Only local implementation. Current document candidate copies evidence only, not src/tests/harness.",
+        "integrationProductCommit": "815a5d2527396395099c92c81ab276cb628217c5",
+        "integrationStatusRecord": "docs/production/evidence/cash-warning-plan-main-integration-2026-10-16/status.json"
       }
     ],
     "priorSettlementStatusRecord": "docs/production/evidence/settlement-current-main-integration-2026-10-16/status.json",
@@ -1460,7 +1463,7 @@
       "independentEyeAndBossArt": "not delivered as independent assets"
     },
     "nextImplementableWork": {
-      "readyForReview": "61c78 cash-warning implementation exists; do not redevelop. Separate decision and only necessary latest-main integration verification if later selected.",
+      "readyForReview": "61c78已进入本批获批发布整合，不再待评审或重开发；后续按六英雄短体验/真实缺陷输入排序。",
       "newReproducedSoftwareDefect": "none currently established within no-new-art/no-long-play/no-shared-owner-change restrictions",
       "minimumNewInputs": [
         "eligible hero save and human use/retain observation",
@@ -1468,6 +1471,18 @@
         "named device/browser/action or original performance owner root cause",
         "existing image/audio review or separately authorized missing asset delivery"
       ]
+    },
+    "lastVerifiedPublishedMainContext": "646505 is the last verified base before this approved release; exact new remote SHA is recorded in the delivery receipt after push.",
+    "currentRelease": {
+      "sourceCandidates": {
+        "cash": "61c78a233a40e90dcff8356f4de083e3d691e9af",
+        "documents": "92efdcacfba623a871f87b6cdefda5893ccaca45"
+      },
+      "productIntegrationCommit": "815a5d2527396395099c92c81ab276cb628217c5",
+      "status": "authorized_integrated_source_verified",
+      "evidence": "docs/production/evidence/cash-warning-plan-main-integration-2026-10-16/status.json",
+      "finalRemoteSHA": "see actual post-push delivery receipt",
+      "numericalProposalImplemented": false
     }
   }
 }
