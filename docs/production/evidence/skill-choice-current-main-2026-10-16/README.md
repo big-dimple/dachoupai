@@ -1,0 +1,9 @@
+# Opening skill reminder on current audio/CSS main — 2026-10-16
+
+Tested normal merge 147fe8da313fa79f674696981cc2a565ab1864fb, src 9b3e3a46fdb468b0639976896d2df0125927593a, combines published main 06512d5fde500d072c4b7ea89b983faea641494d and candidate d6036f8e26852017bc914ca25486870a743f2493. Product changes are only FirstChapterGuide.ts and HeroPlayReminder.ts/css. These files and the native harness exactly match the candidate. Current audio,44px CSS, GameScene, shop/growth helpers, rules, storage and assets remain unchanged. Unfinished growth work is excluded.
+
+38 fresh tests in four files pass (28 then the remaining10), as do typecheck/production build and exact-clean-commit e2e build. The native run passes ordinary new-game skip-one-inline-hint→still offer appropriate active-skill reminder, cancellation/selection preservation and cold restore/no repeat; six available heroes in PC1366×768 and phone390×740; real save-failure double-continue/fixed retry; stale selection/busy prevention;320×568 and740×320 native action reachability and explicit no-reminder settings. Original candidate's controlled unavailable/actual-used proof is retained, not counted as a new integration run. Full report preserves actual assertions/snapshots.
+
+Execution connection dropped during original e2e build. That incomplete log is retained. Real read-only Git commands then proved recovery, old reports/processes were inspected, and only missing extra10 tests/e2e/native steps resumed in new directories. Product source stayed frozen throughout. [Original defect and candidate evidence](../first-chapter-skill-choice-2026-10-16/README.md) remains.
+
+Normal merge/push main is explicitly authorized; exact final remote SHA is reported after push. No CI/new-art wait, no economy change, no full mobile/player-understanding/hearing acceptance claim. P08 remains in_progress.

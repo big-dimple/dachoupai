@@ -1,0 +1,15 @@
+vite v7.3.6 building client environment for e2e...
+transforming...
+鉁?293 modules transformed.
+rendering chunks...
+computing gzip size...
+shots/skill-choice-integration/e2e-build-resumed/build-info.json                0.17 kB 鈹?gzip:   0.15 kB
+shots/skill-choice-integration/e2e-build-resumed/index.html                    14.61 kB 鈹?gzip:   4.81 kB
+shots/skill-choice-integration/e2e-build-resumed/assets/index-mpeQ0giX.css     78.82 kB 鈹?gzip:  15.01 kB
+shots/skill-choice-integration/e2e-build-resumed/assets/index-QG6bT9ML.js   2,749.20 kB 鈹?gzip: 804.85 kB
+
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+鉁?built in 10.17s

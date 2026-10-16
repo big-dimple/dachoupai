@@ -26,6 +26,8 @@
 
 2026-10-16 音频b0fb0773已在最新CSS main0aae0b3b上正常合并并完成[同版复核](production/evidence/audio-current-main-integration-2026-10-16/README.md)，按用户授权正常发布，未代签听感/真机。下一项转真实货架与存档成长反馈；不占另一线程GameScene技能提醒接线，不改经济数值或加术语。
 
+2026-10-16 d6036f8e技能提醒已在已发布音频/CSS main06512d5f上正常合并147fe8da并完成38项及[原生同版核验](production/evidence/skill-choice-current-main-2026-10-16/README.md)，按用户授权正常发布；未混经营分支，GameScene零修改，P08仍in_progress。
+
 ## 共同Joker正常入口/UI交接（PR25，2026-10-05 UTC，仅review）
 
 source92ade25，正常合入PR22 e2fc与PR24 36eff；UI自然证据a8fcd2e与source的src/harness tree相同。六角色普通新局同combo-growth-v1/e7d21，仅阿默助攻；旧身份继续/导入/精确retry与默认createRun v11保留。2377tests/132files、content/type/build/桌面手机smoke/plan冻结全PASS，有限自然d12与阿默路线、四选角视口和7受控正反例通过；15通过PNG与2FAIL图actual view，原FAIL/双方来源保留。证据[summary](production/evidence/p08-combo-growth-ui-2026-10-05/summary.json)。精确最终draft CI以PR25交接为准；main仍193c93b，父独审决定发布。P08 in_progress、C04 D32及真机/听感/平衡门槛保持。

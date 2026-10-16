@@ -1,0 +1,75 @@
+{
+  "taskId": "P08",
+  "status": "software_verified_authorized_release",
+  "testedCommit": "147fe8da313fa79f674696981cc2a565ab1864fb",
+  "sourceTree": "9b3e3a46fdb468b0639976896d2df0125927593a",
+  "basePublishedMain": "06512d5fde500d072c4b7ea89b983faea641494d",
+  "integratedCandidate": "d6036f8e26852017bc914ca25486870a743f2493",
+  "branch": "verify/skill-choice-current-main-20261016",
+  "productFiles": [
+    "src/game/FirstChapterGuide.ts",
+    "src/game/HeroPlayReminder.ts",
+    "src/game/HeroPlayReminder.css"
+  ],
+  "unit": {
+    "files": 4,
+    "passed": 38,
+    "failed": 0,
+    "reports": [
+      "unit-results.json",
+      "unit-extra-results.json"
+    ]
+  },
+  "productionBuild": "Fresh PASS: typecheck + Vite production build; existing bundle notice",
+  "e2eBuild": "PASS after execution connection recovered; exact clean testedCommit",
+  "native": {
+    "report": "native-report.json.gz",
+    "status": "PASS",
+    "ordinaryNewRunSkipOneHint": "PASS; no imported state or forced reminder enrollment",
+    "availableHeroes": 12,
+    "viewports": [
+      {
+        "width": 1366,
+        "height": 768
+      },
+      {
+        "width": 390,
+        "height": 740
+      }
+    ],
+    "saveFailureFixedRetry": "PASS",
+    "coldRestoreAndNoRepeat": "PASS",
+    "staleSelectionBusyNoSubmit": "PASS",
+    "narrowAndDisable": "PASS:320x568 and740x320; real native controls",
+    "unavailableAndActualUsed": "Original d6036f8e exact-source controlled-state proof retained and reused, not counted as fresh run"
+  },
+  "sourceHashes": {
+    "src/game/FirstChapterGuide.ts": "40d2fef15f8281fcc2ef508e950caa26708c1027837ba1f2bf05ea35fef137f3",
+    "src/game/HeroPlayReminder.ts": "65c401d757e0f083181d1cd448eac0a5895363bbfd215cf07ffa2fbf5e976643",
+    "src/game/HeroPlayReminder.css": "c7dde82df938368127b24e7aeaf891b4acb8bfc6f6450bf51ee39d0fcb7bf4f5",
+    "harness/hero-play-reminder.mjs": "98cc9cd3f59d78a28024d80173ba71d53a4fce704357d2287a03c9ca2ae59401"
+  },
+  "sourceUnchanged": true,
+  "protectedUnchangedVsBase": [
+    "src/main.ts",
+    "src/audio",
+    "src/style.css",
+    "src/game/GameScene.ts",
+    "src/game/JokerGrowthCausality.ts",
+    "src/game/ShopScene.ts",
+    "src/domain",
+    "src/application",
+    "src/content",
+    "src/platform",
+    "public",
+    "art"
+  ],
+  "growthInvestigationIncluded": false,
+  "executionRecovery": "Original production build and28 tests completed. E2E process was interrupted by exec-server transport disconnect. Old log retained; new real readonly Git commands succeeded, old processes/reports checked, then only missing extra10 tests, E2E build and native run were resumed in new directories.",
+  "publication": "User explicitly requested necessary same-version check and normal merge/push main without waiting for unfinished growth. Exact remote SHA verified and reported after push; no CI/domain query.",
+  "limits": [
+    "Only identified ordinary new-run case is natural; six-hero conditioned cases are controlled.",
+    "Real devices, human comprehension/hearing, balance and overall P08 acceptance NOT_RUN.",
+    "P08 remains in_progress; audio/CSS retained; no economy or GameScene change."
+  ]
+}
