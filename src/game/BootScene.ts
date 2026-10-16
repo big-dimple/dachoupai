@@ -28,7 +28,7 @@ export class BootScene extends Phaser.Scene {
     await Promise.all([gameSession().initialize(),Promise.race([document.fonts.load('800 36px "Dachoupai Score"').catch(()=>[]),new Promise(resolve=>setTimeout(resolve,800))])]);
     if(!this.scene.isActive()||generation!==this.generation)return;
     const query=new URLSearchParams(location.search),seed=query.get('seed')??undefined;
-    const prepared=await prepareDestination(this.game,'title',true,loading);if(generation!==this.generation)return;this.loading=undefined;if(!prepared)return;
+    const prepared=await prepareDestination(this.game,'title',false,loading);if(generation!==this.generation)return;this.loading=undefined;if(!prepared)return;
     if(this.scene.isActive())this.scene.start('title',{seed});
   }
 }

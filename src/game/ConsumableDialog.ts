@@ -72,11 +72,11 @@ function selectionIssue(tool:R2ToolDefinition,state:R2RunState,selection:Selecti
       if(operation.kind==='exchange-hand-levels'&&(state.handLevels[gain]!>operation.targetMaximumBefore||state.handLevels[loss]!<operation.donorMinimumBefore))return '收益型等级过高或遗忘型等级不足。';break;
     }
     case 'joker-sacrifice': {
-      if(!state.jokers.some(joker=>joker.instanceId===selection.sacrificeId))return '请选择牺牲大丑牌。';
-      if(ids.length!==1)return '请选择受益大丑牌。';
+      if(!state.jokers.some(joker=>joker.instanceId===selection.sacrificeId))return '请选择牺牲唐宋牌。';
+      if(ids.length!==1)return '请选择受益唐宋牌。';
       if(ids[0]===selection.sacrificeId)return '牺牲牌与受益牌须是不同实例。';
       const recipient=state.jokers.find(joker=>joker.instanceId===ids[0]);
-      if(!recipient||recipient.edition===target.excludedEdition)return '受益大丑牌已经是多彩，或不在当前持有牌中。';
+      if(!recipient||recipient.edition===target.excludedEdition)return '受益唐宋牌已经是多彩，或不在当前持有牌中。';
       if(state.consumables.length-1>r2ConsumableCapacity({...state,jokers:state.jokers.filter(joker=>joker.instanceId!==selection.sacrificeId)}))return '牺牲后余下库存会超过容量，请先处理库存。';break;
     }
     case 'none':case 'whole-deck':break;
@@ -110,8 +110,8 @@ function selectionIssue(tool:R2ToolDefinition,state:R2RunState,selection:Selecti
       if(!state.stage||state.stage.discardsLeft>=state.stage.initialDiscards)return '本场弃牌次数已达初始预算，无法恢复。';
       if(state.stage.discardGained+operation.amount>R2_RESOURCE_CONTRACT.discardGainMaximum)return '本场恢复弃牌已达上限，无法再次恢复。';break;
     case 'rare-joker-reward':
-      if(state.jokers.length>=r2JokerCapacity(state))return '大丑牌槽已满，请先腾出一个槽位。';
-      if(!rarePool(state).length)return '当前没有可获得的未持有稀有大丑牌。';break;
+      if(state.jokers.length>=r2JokerCapacity(state))return '唐宋牌槽已满，请先腾出一个槽位。';
+      if(!rarePool(state).length)return '当前没有可获得的未持有稀有唐宋牌。';break;
     case 'clear-deck-specials': {
       if(state.spectralModifiers.cleanSlateBonus)return '本局已使用过净台。';
       const modified=state.deckInstances.filter(card=>!state.destroyedIds.includes(card.id)&&(card.enhancement!==undefined||(card.edition??'none')!=='none'));
@@ -209,7 +209,7 @@ export function showConsumables(dialog:DetailDialog,state:R2RunState,ready:boole
       case 'card-sacrifice':gallery('牺牲扑克牌',cardChoices,'donor',1);gallery('受益扑克牌',cardChoices,'target',tool.target.maximum);break;
       case 'card-or-joker': {
         const label=document.createElement('label'),name=document.createElement('span'),select=document.createElement('select'),host=document.createElement('div');label.className='tool-field';name.textContent='改造对象';select.setAttribute('aria-label','改造对象');
-        for(const [value,text] of [['card','扑克牌'],['joker','大丑牌']] as const){const option=document.createElement('option');option.value=value;option.textContent=text;select.append(option);}
+        for(const [value,text] of [['card','扑克牌'],['joker','唐宋牌']] as const){const option=document.createElement('option');option.value=value;option.textContent=text;select.append(option);}
         label.append(name,select);panel.append(label,host);selects.push(select);gallery('普通版次目标',cardChoices,'target',1,host);
         select.onchange=()=>{selection.targetKind=select.value as 'card'|'joker';selection.ids.clear();for(let index=controls.length-1;index>=0;index--)if(controls[index].role==='target')controls.splice(index,1);host.replaceChildren();gallery('普通版次目标',targetChoices(),'target',1,host);refresh();};break;
       }
@@ -221,7 +221,7 @@ export function showConsumables(dialog:DetailDialog,state:R2RunState,ready:boole
         select.onchange=()=>{selection.suit=select.value?select.value as Suit:undefined;refresh();};selects.push(select);label.append(name,select);panel.append(label);break;
       }
       case 'hand-exchange':if(tool.operation.kind==='exchange-hand-levels'){handSelect('收益牌型',R2_HAND_TYPES,type=>{selection.handType=type;});handSelect('遗忘牌型',R2_HAND_TYPES,type=>{selection.secondaryHandType=type;});}break;
-      case 'joker-sacrifice':gallery('牺牲大丑牌',jokerChoices,'donor',1);gallery('受益大丑牌',jokerChoices,'target',1);break;
+      case 'joker-sacrifice':gallery('牺牲唐宋牌',jokerChoices,'donor',1);gallery('受益唐宋牌',jokerChoices,'target',1);break;
       case 'whole-deck': {const count=state.deckInstances.filter(card=>!state.destroyedIds.includes(card.id)&&(card.enhancement!==undefined||(card.edition??'none')!=='none')).length;const note=document.createElement('p');note.textContent=`整副有效牌组中 ${count} 张有特殊属性；同一张牌的增强与版次只计一张。`;panel.append(note);break;}
       case 'none':break;
     }

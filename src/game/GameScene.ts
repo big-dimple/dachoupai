@@ -322,7 +322,7 @@ export class GameScene extends Phaser.Scene {
     const carried=carriedToolAtEntry(controller.state,data?.carriedTool)?data?.carriedTool:undefined;
     let enteredStage=false;
     if(controller.state.phase==='stage-ready'){
-      const enter=await presentOpponentEntrance(this.dialog,controller.state);
+      const enter=await presentOpponentEntrance(this.dialog,controller.state,this);
       if(lifecycle!==this.lifecycle||!this.scene.isActive())return;
       if(!enter){this.scene.start('character-select');return;}
       const entered=await dispatchRun(this,{type:'EnterStage'});
@@ -1148,7 +1148,7 @@ export class GameScene extends Phaser.Scene {
   }
   private inspectHeldConditions():void {
     const preview=this.selectionPreview();
-    this.dialog.open('持有构筑 · '+(preview?'所选条件':'选牌与培养'),this.run.jokers.length?'先看每张来源的条件，选牌后描边和状态随所选更新；实际收益在保存成功后显示。':'尚未持有大丑牌。先选1–5张成型牌，过关后在商店按牌组购买来源。',[{label:'查看成长机会',primary:true,run:()=>this.inspectCandidates(true)},{label:'选择培养方向',run:()=>this.inspectJourney()}],{cards:this.run.jokers.map(j=>({...selectionExperience(this.run,j,this.memoryContext(j,preview)),action:{label:'查看来源与成长',run:()=>this.inspectJoker(j.instanceId)}}))});
+    this.dialog.open('持有构筑 · '+(preview?'所选条件':'选牌与培养'),this.run.jokers.length?'先看每张来源的条件，选牌后描边和状态随所选更新；实际收益在保存成功后显示。':'尚未持有唐宋牌。先选1–5张成型牌，过关后在商店按牌组购买来源。',[{label:'查看成长机会',primary:true,run:()=>this.inspectCandidates(true)},{label:'选择培养方向',run:()=>this.inspectJourney()}],{cards:this.run.jokers.map(j=>({...selectionExperience(this.run,j,this.memoryContext(j,preview)),action:{label:'查看来源与成长',run:()=>this.inspectJoker(j.instanceId)}}))});
   }
   private selectionPreview():HandPreview|undefined {
     if(this.playing||this.presentation||this.run.phase!=='await-input'||this.handsLeft<=0||!this.selectedIds.size||[...this.selectedIds].some(id=>!this.hand.some(card=>card.id===id)))return undefined;
@@ -1158,7 +1158,7 @@ export class GameScene extends Phaser.Scene {
   }
   private inspectSelection(facts:HandPreview):void {
     const copy=selectionCopy(facts),label=(ids:string[])=>this.hand.filter(c=>ids.includes(c.id)).map(c=>rankLabel(c.rank)+SUIT_SYMBOL[c.suit]).join('、')||'无';
-    this.dialog.open(copy.title,copy.pattern+'\n'+copy.membership+'\n★代表当前计分牌；附带也随本手打出。\n成型：'+label(facts.scoringIds)+'\n附带：'+label(facts.accompanyingIds)+'（随本手打出，仍可参与其他规则）\n'+copy.restrictions.join('\n')+'\n'+copy.fullRules+'\n\n选1–5张；按全部所选牌判型。三条可选3／4／5张，但补成另一对子会转葫芦，第四张同点会转四条。失效牌仍参与判型，其效果停用；点数0只停普通点数。',[{label:'本轮可成牌型',run:()=>this.inspectCandidates()},...(this.run.lastTrace?[{label:'回看上手',run:()=>this.inspectLastTrace()}]:[])],{effectBody:this.run.jokers.length?'所选条件 · 满足不代表已发动':'尚未持有大丑牌；购买后条件列在这里。',cards:this.run.jokers.map(j=>({...selectionExperience(this.run,j,this.memoryContext(j,facts)),action:{label:'查看来源与成长',run:()=>this.inspectJoker(j.instanceId)}})),collapseRules:false});
+    this.dialog.open(copy.title,copy.pattern+'\n'+copy.membership+'\n★代表当前计分牌；附带也随本手打出。\n成型：'+label(facts.scoringIds)+'\n附带：'+label(facts.accompanyingIds)+'（随本手打出，仍可参与其他规则）\n'+copy.restrictions.join('\n')+'\n'+copy.fullRules+'\n\n选1–5张；按全部所选牌判型。三条可选3／4／5张，但补成另一对子会转葫芦，第四张同点会转四条。失效牌仍参与判型，其效果停用；点数0只停普通点数。',[{label:'本轮可成牌型',run:()=>this.inspectCandidates()},...(this.run.lastTrace?[{label:'回看上手',run:()=>this.inspectLastTrace()}]:[])],{effectBody:this.run.jokers.length?'所选条件 · 满足不代表已发动':'尚未持有唐宋牌；购买后条件列在这里。',cards:this.run.jokers.map(j=>({...selectionExperience(this.run,j,this.memoryContext(j,facts)),action:{label:'查看来源与成长',run:()=>this.inspectJoker(j.instanceId)}})),collapseRules:false});
   }
   private inspectCard(id:string):void {
     const c=this.hand.find(c=>c.id===id);if(!c)return;
@@ -1791,7 +1791,7 @@ export class GameScene extends Phaser.Scene {
     const timing=key?.kind==='payoff'||key?.kind==='burst'?heroPayoffBeat(beat,this.reducedMotion):key?.kind==='starter'||key?.kind==='opening'?keyHighlightBeat(beat,this.reducedMotion,key.kind):this.reducedMotion?{...beat,windup:0,flight:0,impact:Math.min(180,beat.impact),rest:80}:beat,duration=timing.windup+timing.flight+timing.impact;
     if(number&&this.presentation&&!this.presentation.replay&&number.kind!=='add'&&!this.reducedMotion)this.audio.scoreImpact(this.presentation,event.eventId,'flight',number.tier,number.chain);
     const note=event.sourceType==='character'&&benefit?readableMultiplierEffect(benefit.effect,event.value):readableMultiplierEffect(this.operationText(event),event.value),source=this.eventSource(event),card=this.settledCards.get(event.targetCardId??'')??this.cardViews.find(view=>view.card.id===event.targetCardId);
-    this.resultText.setVisible(true).setText(source+' · '+note);this.breakdownText.setText((event.phase==='onStageClear'?'过关收益':event.phase==='beforeFailure'?'失败前救场':event.phase==='afterHand'?'结算后状态':event.sourceType==='joker'?'大丑牌连锁':'逐项计分')+' · '+source+' '+note);
+    this.resultText.setVisible(true).setText(source+' · '+note);this.breakdownText.setText((event.phase==='onStageClear'?'过关收益':event.phase==='beforeFailure'?'失败前救场':event.phase==='afterHand'?'结算后状态':event.sourceType==='joker'?'唐宋牌连锁':'逐项计分')+' · '+source+' '+note);
     const processCue=this.presentation?scoreSourceProcess(this.presentation.score,event,source):undefined,s=this.view.layout.scoreBoard;
     const process=processCue?presentScoreSourceProcess(this.resultText,this.scoreLabels[1],processCue,{x:s.x+8,y:s.y+(s.height>=108?4:1),width:s.height>=108?s.width-16:s.width*.52-16,height:s.height>=108?20:17},context.signal):undefined;
     this.setAccumulator(event.before);

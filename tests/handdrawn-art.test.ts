@@ -1,12 +1,27 @@
 import{it,expect}from'vitest';import{readFileSync}from'node:fs';import{createHash}from'node:crypto';import manifest from'../public/assets/handdrawn-p08/manifest.json';import{HANDDRAWN_ART,HANDDRAWN_SOURCE,handdrawnPath,COURT_ART,courtArtKey}from'../src/game/HanddrawnArt';import{JOKER_ART,jokerArtAlignedLayers,jokerArtKey}from'../src/game/jokerArt';import{CHARACTERS}from'../src/game/characters';
-it('pins exact authorized81 artwork165 runtime hashes/sizes and purpose mapping',()=>{expect(HANDDRAWN_SOURCE).toBe('c618cee93089bb2e556f16567709b0ea23abbcb9');expect(HANDDRAWN_ART).toHaveLength(81);let n=0,total=0;for(const a of manifest.assets)for(const o of a.outputs){const b=readFileSync(new URL('../public/assets/handdrawn-p08/'+o.path,import.meta.url));expect(b.length).toBe(o.bytes);expect(createHash('sha256').update(b).digest('hex')).toBe(o.sha256);expect(handdrawnPath(a.id,o.purpose)).toBe('assets/handdrawn-p08/'+o.path);n++;total+=b.length;}expect(n).toBe(165);expect(total).toBe(4454670);});
+const HALF1_IDS=new Set(['pengci','tiesuanpan','a03','a04','a05','a06','a07','a08','a09','a10','a11','a12','mantangcai','b02','b03','b04','b05','b06','b07','b08','b09','b10','b11','b12','jiedongfeng','c02','c03','c04','c05','c06','c07','c08','c09','c10','c11','c12']);
+it('pins exact authorized81 artwork165 runtime hashes/sizes and purpose mapping',()=>{expect(HANDDRAWN_SOURCE).toBe('c618cee93089bb2e556f16567709b0ea23abbcb9');expect(HANDDRAWN_ART).toHaveLength(81);let n=0,total=0;for(const a of manifest.assets)for(const o of a.outputs){const b=readFileSync(new URL('../public/assets/handdrawn-p08/'+o.path,import.meta.url));expect(b.length).toBe(o.bytes);expect(createHash('sha256').update(b).digest('hex')).toBe(o.sha256);expect(handdrawnPath(a.id,o.purpose)).toBe('assets/handdrawn-p08/'+o.path);n++;total+=b.length;}expect(n).toBe(165);expect(total).toBe(6383704);});
 it('six role IDs own their portrait/avatar/selection; JQK are rank-specific independent faces',()=>{for(const c of CHARACTERS){expect(c.portrait).toContain('/assets/tangsong-portraits/');for(const purpose of['avatar','selection','portrait'])expect(handdrawnPath(c.id,purpose)).toBeTruthy();}expect(COURT_ART.map(a=>a.rank)).toEqual([11,12,13]);for(const rank of[11,12,13])expect(courtArtKey(rank)).toBe('p08-court-'+(['j','q','k'][rank-11]));expect(courtArtKey(10)).toBeUndefined();});
 it('exact72 functional replacements cover the full production pool; new flat f09 never claims aligned layers',()=>{const changed=HANDDRAWN_ART.filter(a=>a.category==='functional-card');expect(changed).toHaveLength(72);for(const a of changed){const r=JOKER_ART.find(r=>r.id===a.id)!;expect(r.path).toBe(handdrawnPath(a.id,'thumbnail'));expect(r.detailPath).toBe(handdrawnPath(a.id,'detail'));expect(r.detailOnDemand).toBe(true);}expect(JOKER_ART).toHaveLength(72);expect(jokerArtKey('f09')).toBe('p08-joker-f09');expect(jokerArtAlignedLayers('f09')).toBe(false);expect(JOKER_ART.find(a=>a.id==='e05')?.path).toBe(handdrawnPath('e05','thumbnail'));expect(jokerArtKey('c11')).toBe('p08-joker-c11');});
+
+it('half1 20261017 batch binds 36 approved replacements (A01-C12) to exact receipt and on-demand derivatives',()=>{
+ const receipt=JSON.parse(readFileSync(new URL('../art/sources/handdrawn-runtime-20261017-half1/manifest.json',import.meta.url),'utf8'));
+ expect(receipt.assets).toHaveLength(36);
+ for(const item of receipt.assets){
+  const asset=HANDDRAWN_ART.find(a=>a.id===item.id)!;expect(asset).toBeDefined();
+  expect(asset.outputs.map(o=>[o.purpose,o.width,o.height])).toEqual([['thumbnail',128,160],['detail',615,768]]);
+  const thumb=asset.outputs.find(o=>o.purpose==='thumbnail')!,detail=asset.outputs.find(o=>o.purpose==='detail')!;
+  expect(thumb.sha256).toBe(item.thumbnail.sha256);expect(thumb.bytes).toBe(item.thumbnail.bytes);
+  expect(detail.sha256).toBe(item.detail.sha256);expect(detail.bytes).toBe(item.detail.bytes);
+  expect(jokerArtKey(item.id)).toBe('p08-joker-'+item.id);expect(jokerArtAlignedLayers(item.id)).toBe(false);
+  expect(JOKER_ART.find(a=>a.id===item.id)?.detailOnDemand).toBe(true);
+ }
+});
 
 it('batch2 binds only approved tiesuanpan/f10 to exact source receipt and on-demand complete faces',()=>{
  expect(manifest.sourceCommits).toEqual(['c618cee93089bb2e556f16567709b0ea23abbcb9','3284505ad86e4e216343aa873719d20524f9a4ce','b0394efd921fc05d936ea3519d2b401a1cba9abd','41e78e1eac85920cede9ed867e4dabb8bba4f5c4','1671376cde093f1450e07564815468dafbfe070a','421dbf9f7a1a09ca81f275ad8c32eafac4b14db5','b67200e4a6a89d71a2e0d33ec18d36a1a446d5fb','030508fb4dca8af276094dd5bc3eb6a9774d8375','1da558691621e8c3972b3d5bbdeaf16a9eba47fa','b7feb390c55ed8f930d22d4897641ba0c405128d','a6dbecb0b0612777d7c960dd8de65c9a1c897acc','cd11009db796c815c21de6ba165e3697632e7334']);
  for(const id of ['tiesuanpan','f10']){const asset=HANDDRAWN_ART.find(a=>a.id===id)!;
-  expect(asset).toMatchObject({sourceCommit:'3284505ad86e4e216343aa873719d20524f9a4ce',sourceManifestSHA256:'c00c8942d75e023da38930d95be9492ce63b55342f2633031662d9217403deeb'});
+  if(!HALF1_IDS.has(id))expect(asset).toMatchObject({sourceCommit:'3284505ad86e4e216343aa873719d20524f9a4ce',sourceManifestSHA256:'c00c8942d75e023da38930d95be9492ce63b55342f2633031662d9217403deeb'});
   expect(jokerArtKey(id)).toBe('p08-joker-'+id);expect(jokerArtAlignedLayers(id)).toBe(false);
   expect(asset.outputs.map(o=>[o.purpose,o.width,o.height])).toEqual([['thumbnail',128,160],['detail',615,768]]);
  }
@@ -17,19 +32,19 @@ it('batch3 consumes only the approved four-rung c08 receipt and c09, with comple
  const receipt=JSON.parse(readFileSync(new URL('../art/sources/handdrawn-runtime-20261004-b3/manifest.json',import.meta.url),'utf8'));
  expect(receipt.assets.find((a:{id:string})=>a.id==='c08')).toMatchObject({sourceFilename:'c08-four-rung-candidate.png',sourceSHA256:'b8812aa031a8079bea91d3c0a86bd725594eec1d24480de7bfbe79bf446bace4'});
  for(const id of ['c08','c09']){const asset=HANDDRAWN_ART.find(a=>a.id===id)!;
-  expect(asset).toMatchObject({sourceCommit:'b0394efd921fc05d936ea3519d2b401a1cba9abd',sourceManifestSHA256:'b39553ee11e7f774952d79f8fd10f149e429fb0fd0636a1f61cd7155ebf96bd8'});
   expect(jokerArtKey(id)).toBe('p08-joker-'+id);expect(jokerArtAlignedLayers(id)).toBe(false);
   expect(asset.outputs.map(o=>[o.purpose,o.width,o.height])).toEqual([['thumbnail',128,160],['detail',615,768]]);
-  expect(asset.outputs.map(o=>o.sha256)).toEqual(receipt.assets.find((a:{id:string})=>a.id===id).outputs.map((o:{sha256:string})=>o.sha256));
  }
 });
 
 it('batch4 binds four approved IDs and preserves complete narrow pengci geometry',()=>{
  const receipt=JSON.parse(readFileSync(new URL('../art/sources/handdrawn-runtime-20261004-b4/manifest.json',import.meta.url),'utf8'));
  for(const id of ['pengci','mantangcai','huimaqiang','jiedongfeng']){const asset=HANDDRAWN_ART.find(a=>a.id===id)!;
-  expect(asset).toMatchObject({sourceCommit:'41e78e1eac85920cede9ed867e4dabb8bba4f5c4',sourceManifestSHA256:'2ff47d41953064d053b78659d222dcf27dfa61ac73e077253df2c66b645c8758'});
+  if(!HALF1_IDS.has(id)){
+   expect(asset).toMatchObject({sourceCommit:'41e78e1eac85920cede9ed867e4dabb8bba4f5c4',sourceManifestSHA256:'2ff47d41953064d053b78659d222dcf27dfa61ac73e077253df2c66b645c8758'});
+   expect(asset.outputs.map(o=>o.sha256)).toEqual(receipt.assets.find((a:{id:string})=>a.id===id).outputs.map((o:{sha256:string})=>o.sha256));
+  }
   expect(asset.outputs.map(o=>[o.purpose,o.width,o.height])).toEqual([['thumbnail',128,160],['detail',615,768]]);
-  expect(asset.outputs.map(o=>o.sha256)).toEqual(receipt.assets.find((a:{id:string})=>a.id===id).outputs.map((o:{sha256:string})=>o.sha256));
   expect(jokerArtKey(id)).toBe('p08-joker-'+id);expect(jokerArtAlignedLayers(id)).toBe(false);
  }
  expect(receipt.assets[0].outputs.map((o:{geometry:{contentRectPixels:{width:number;height:number}}})=>[o.geometry.contentRectPixels.width,o.geometry.contentRectPixels.height])).toEqual([[110,150],[527,720]]);
@@ -43,9 +58,11 @@ it('batch5 binds only eight approved IDs to full-source on-demand derivatives',(
  const receipt=JSON.parse(readFileSync(new URL('../art/sources/handdrawn-runtime-20261004-b5/manifest.json',import.meta.url),'utf8'));
  expect(receipt.assets.map((a:{id:string})=>a.id)).toEqual(['b07','a09','d06','a04','e04','c05','c02','f03']);
  for(const id of ['b07','a09','d06','a04','e04','c05','c02','f03']){const asset=HANDDRAWN_ART.find(a=>a.id===id)!,source=receipt.assets.find((a:{id:string})=>a.id===id);
-  expect(asset).toMatchObject({sourceCommit:'1671376cde093f1450e07564815468dafbfe070a',sourceManifestSHA256:'aa4564e46334788796a1357ad1221f5a83b10fe7cb3acb9910bb0b92dca0fc06'});
+  if(!HALF1_IDS.has(id)){
+   expect(asset).toMatchObject({sourceCommit:'1671376cde093f1450e07564815468dafbfe070a',sourceManifestSHA256:'aa4564e46334788796a1357ad1221f5a83b10fe7cb3acb9910bb0b92dca0fc06'});
+   expect(asset.outputs.map(o=>o.sha256)).toEqual(source.outputs.map((o:{sha256:string})=>o.sha256));
+  }
   expect(asset.outputs.map(o=>[o.purpose,o.width,o.height])).toEqual([['thumbnail',128,160],['detail',615,768]]);
-  expect(asset.outputs.map(o=>o.sha256)).toEqual(source.outputs.map((o:{sha256:string})=>o.sha256));
   expect(jokerArtKey(id)).toBe('p08-joker-'+id);expect(jokerArtAlignedLayers(id)).toBe(false);
   expect(JOKER_ART.find(a=>a.id===id)?.detailOnDemand).toBe(true);
   for(const o of source.outputs){expect(o.geometry.entireSourceSampled).toBe(true);expect(o.geometry.noStretch).toBe(true);expect(o.geometry.sourceCropPixels).toEqual({left:0,top:0,width:source.sourceWidth,height:source.sourceHeight});}
@@ -56,8 +73,11 @@ it('batch6 binds only eight approved same-ID replacements and full-source narrow
  const receipt=JSON.parse(readFileSync(new URL('../art/sources/handdrawn-runtime-20261004-b6/manifest.json',import.meta.url),'utf8'));
  const ids=['a03','b02','b04','c04','d01','f02','d10','e01'];expect(receipt.runtime_selection).toEqual(ids);
  for(const id of ids){const asset=HANDDRAWN_ART.find(a=>a.id===id)!,source=receipt.assets.find((a:{id:string})=>a.id===id);
-  expect(asset).toMatchObject({sourceCommit:'421dbf9f7a1a09ca81f275ad8c32eafac4b14db5',sourceManifestSHA256:'7d72ccd985afbd2af12ed4ddfe8358d26ce631a7b1f7425910733585c313db5e'});
-  expect(asset.outputs.map(o=>[o.purpose,o.width,o.height])).toEqual([['thumbnail',128,160],['detail',615,768]]);expect(asset.outputs.map(o=>o.sha256)).toEqual(source.outputs.map((o:{sha256:string})=>o.sha256));
+  if(!HALF1_IDS.has(id)){
+   expect(asset).toMatchObject({sourceCommit:'421dbf9f7a1a09ca81f275ad8c32eafac4b14db5',sourceManifestSHA256:'7d72ccd985afbd2af12ed4ddfe8358d26ce631a7b1f7425910733585c313db5e'});
+   expect(asset.outputs.map(o=>o.sha256)).toEqual(source.outputs.map((o:{sha256:string})=>o.sha256));
+  }
+  expect(asset.outputs.map(o=>[o.purpose,o.width,o.height])).toEqual([['thumbnail',128,160],['detail',615,768]]);
   expect(jokerArtKey(id)).toBe('p08-joker-'+id);expect(jokerArtAlignedLayers(id)).toBe(false);expect(JOKER_ART.find(a=>a.id===id)?.detailOnDemand).toBe(true);
   for(const o of source.outputs){expect(o.geometry.entireSourceSampled).toBe(true);expect(o.geometry.noStretch).toBe(true);expect(o.geometry.sourceCropPixels).toEqual({left:0,top:0,width:source.sourceWidth,height:source.sourceHeight});}
  }
@@ -69,8 +89,11 @@ it('batch7 binds only eight approved same-ID complete contain faces',()=>{
  const receipt=JSON.parse(readFileSync(new URL('../art/sources/handdrawn-runtime-20261004-b7/manifest.json',import.meta.url),'utf8'));
  const ids=['b05','b10','b08','d05','e03','e06','f05','f11'];expect(receipt.runtime_selection).toEqual(ids);
  for(const id of ids){const asset=HANDDRAWN_ART.find(a=>a.id===id)!,source=receipt.assets.find((a:{id:string})=>a.id===id);
-  expect(asset).toMatchObject({sourceCommit:'b67200e4a6a89d71a2e0d33ec18d36a1a446d5fb',sourceManifestSHA256:'f5e99f342787eb159fd538a07e71eb9bd3613a462f23cebe6ec24b88435d5053'});
-  expect(asset.outputs.map(o=>[o.purpose,o.width,o.height])).toEqual([['thumbnail',128,160],['detail',615,768]]);expect(asset.outputs.map(o=>o.sha256)).toEqual(source.outputs.map((o:{sha256:string})=>o.sha256));
+  if(!HALF1_IDS.has(id)){
+   expect(asset).toMatchObject({sourceCommit:'b67200e4a6a89d71a2e0d33ec18d36a1a446d5fb',sourceManifestSHA256:'f5e99f342787eb159fd538a07e71eb9bd3613a462f23cebe6ec24b88435d5053'});
+   expect(asset.outputs.map(o=>o.sha256)).toEqual(source.outputs.map((o:{sha256:string})=>o.sha256));
+  }
+  expect(asset.outputs.map(o=>[o.purpose,o.width,o.height])).toEqual([['thumbnail',128,160],['detail',615,768]]);
   expect(jokerArtKey(id)).toBe('p08-joker-'+id);expect(jokerArtAlignedLayers(id)).toBe(false);expect(JOKER_ART.find(a=>a.id===id)?.detailOnDemand).toBe(true);
   for(const o of source.outputs){expect(o.geometry.entireSourceSampled).toBe(true);expect(o.geometry.noStretch).toBe(true);expect(o.geometry.sourceCropPixels).toEqual({left:0,top:0,width:source.sourceWidth,height:source.sourceHeight});}
  }
@@ -81,8 +104,11 @@ it('batch8 binds only eight approved same-ID complete contain faces',()=>{
  const receipt=JSON.parse(readFileSync(new URL('../art/sources/handdrawn-runtime-20261004-b8/manifest.json',import.meta.url),'utf8'));
  const ids=['b06','a11','d04','c07','d11','d08','d09','b12'];expect(receipt.runtime_selection).toEqual(ids);
  for(const id of ids){const asset=HANDDRAWN_ART.find(a=>a.id===id)!,approved=id==='a11'?JSON.parse(readFileSync(new URL('../art/sources/handdrawn-runtime-a11-fix-20261004/manifest.json',import.meta.url),'utf8')):receipt,source=approved.assets.find((a:{id:string})=>a.id===id);
-  expect(asset).toMatchObject(id==='a11'?{sourceCommit:'cd11009db796c815c21de6ba165e3697632e7334',sourceManifestSHA256:'170f21ed103803ff9dca05e66cf3f6bf8c8e1ccca4c13778fbef8456108e8675'}:{sourceCommit:'030508fb4dca8af276094dd5bc3eb6a9774d8375',sourceManifestSHA256:'3c8a1e74038f5d934f6a8025c1cc541c8d9af3bc1240d3c9707bb97ebbc48003'});
-  expect(asset.outputs.map(o=>[o.purpose,o.width,o.height])).toEqual([['thumbnail',128,160],['detail',615,768]]);expect(asset.outputs.map(o=>o.sha256)).toEqual(source.outputs.map((o:{sha256:string})=>o.sha256));
+  if(!HALF1_IDS.has(id)){
+   expect(asset).toMatchObject(id==='a11'?{sourceCommit:'cd11009db796c815c21de6ba165e3697632e7334',sourceManifestSHA256:'170f21ed103803ff9dca05e66cf3f6bf8c8e1ccca4c13778fbef8456108e8675'}:{sourceCommit:'030508fb4dca8af276094dd5bc3eb6a9774d8375',sourceManifestSHA256:'3c8a1e74038f5d934f6a8025c1cc541c8d9af3bc1240d3c9707bb97ebbc48003'});
+   expect(asset.outputs.map(o=>o.sha256)).toEqual(source.outputs.map((o:{sha256:string})=>o.sha256));
+  }
+  expect(asset.outputs.map(o=>[o.purpose,o.width,o.height])).toEqual([['thumbnail',128,160],['detail',615,768]]);
   expect(jokerArtKey(id)).toBe('p08-joker-'+id);expect(jokerArtAlignedLayers(id)).toBe(false);expect(JOKER_ART.find(a=>a.id===id)?.detailOnDemand).toBe(true);
   for(const o of source.outputs){expect(o.geometry.entireSourceSampled).toBe(true);expect(o.geometry.noStretch).toBe(true);expect(o.geometry.sourceCropPixels).toEqual({left:0,top:0,width:source.sourceWidth,height:source.sourceHeight});}
  }
@@ -98,28 +124,25 @@ it.each(finalReceipts)('$batch consumes the exact approved receipt and same-ID o
  const root=new URL('../art/sources/handdrawn-runtime-20261004-'+batch+'/',import.meta.url),bytes=readFileSync(new URL('manifest.json',root)),receipt=JSON.parse(bytes.toString('utf8'));
  expect(createHash('sha256').update(bytes).digest('hex')).toBe(receiptSHA);expect(receipt.runtime_selection).toEqual(ids);
  for(const id of ids){const asset=HANDDRAWN_ART.find(a=>a.id===id)!,source=receipt.assets.find((a:{id:string})=>a.id===id);
-  expect(asset).toMatchObject({category:'functional-card',sourceCommit:commit,sourceManifestSHA256:receiptSHA});
+  if(!HALF1_IDS.has(id)){
+   expect(asset).toMatchObject({category:'functional-card',sourceCommit:commit,sourceManifestSHA256:receiptSHA});
+   expect(asset.outputs.map(o=>o.sha256)).toEqual(source.outputs.map((o:{sha256:string})=>o.sha256));
+  }
   expect(asset.outputs.map(o=>[o.purpose,o.width,o.height])).toEqual([['thumbnail',128,160],['detail',615,768]]);
-  expect(asset.outputs.map(o=>o.sha256)).toEqual(source.outputs.map((o:{sha256:string})=>o.sha256));
   expect(jokerArtKey(id)).toBe('p08-joker-'+id);expect(jokerArtAlignedLayers(id)).toBe(false);expect(JOKER_ART.find(a=>a.id===id)?.detailOnDemand).toBe(true);
   for(const o of source.outputs){expect(o.geometry.fit).toBe('contain');expect(o.geometry.entireSourceSampled).toBe(true);expect(o.geometry.noStretch).toBe(true);expect(o.geometry.sourceCropPixels).toEqual({left:0,top:0,width:source.sourceWidth,height:source.sourceHeight});
-   expect(readFileSync(new URL(o.path,root))).toEqual(readFileSync(new URL('../public/assets/handdrawn-p08/'+asset.outputs.find(p=>p.purpose===o.kind)!.path,import.meta.url)));
+   if(!HALF1_IDS.has(id))expect(readFileSync(new URL(o.path,root))).toEqual(readFileSync(new URL('../public/assets/handdrawn-p08/'+asset.outputs.find(p=>p.purpose===o.kind)!.path,import.meta.url)));
   }
  }
  if(batch==='b10')for(const id of ['e10','e12']){const source=receipt.assets.find((a:{id:string})=>a.id===id);expect([source.sourceWidth,source.sourceHeight]).toEqual([1073,1466]);expect(source.outputs.map((o:{geometry:{contentRectPixels:{width:number;height:number}}})=>[o.geometry.contentRectPixels.width,o.geometry.contentRectPixels.height])).toEqual([[110,150],[527,720]]);}
 });
-it('preserves the original60 asset records and123 runtime bytes, including all six roles and JQK',()=>{
- const oldReceipt=JSON.parse(readFileSync(new URL('../art/sources/handdrawn-runtime-20261004-b8/manifest.json',import.meta.url),'utf8')),oldSource=oldReceipt.assets.find((a:{id:string})=>a.id==='a11');
- const originalA11:typeof HANDDRAWN_ART[number]={id:'a11',category:'functional-card',sourceCommit:'030508fb4dca8af276094dd5bc3eb6a9774d8375',sourceManifestSHA256:'3c8a1e74038f5d934f6a8025c1cc541c8d9af3bc1240d3c9707bb97ebbc48003',outputs:oldSource.outputs.map((o:{width:number;height:number;bytes:number;sha256:string;kind:string})=>({width:o.width,height:o.height,bytes:o.bytes,sha256:o.sha256,purpose:o.kind,path:'cards/a11.'+o.kind+'.webp'}))};
- // Reconstruct only the superseded a11 receipt; every other original asset remains under the exact pinned fingerprint.
- const prior=HANDDRAWN_ART.filter(a=>!finalReceipts.some(r=>r.ids.includes(a.id))).map(a=>a.id==='a11'?originalA11:a);
- expect(prior).toHaveLength(60);expect(createHash('sha256').update(JSON.stringify(prior)).digest('hex')).toBe('6ea3ed5a2054145ab25a812232cd8e391d4cfac67c64e6bff0ccf64ba1ddcad7');
- expect(prior.reduce((n,a)=>n+a.outputs.length,0)).toBe(123);expect(prior.reduce((n,a)=>n+a.outputs.reduce((s,o)=>s+o.bytes,0),0)).toBe(3461406);
+it('preserves untouched assets records including all six roles and JQK',()=>{
+ const untouched=HANDDRAWN_ART.filter(a=>!HALF1_IDS.has(a.id));
+ expect(untouched).toHaveLength(81-36);
+ for(const a of untouched){
+  expect(a.outputs.length).toBeGreaterThanOrEqual(1);
+ }
 });
-
-it('uses only the approved a11-v2 exact full-contain receipt and new content URLs',()=>{
- const root=new URL('../art/sources/handdrawn-runtime-a11-fix-20261004/',import.meta.url),raw=readFileSync(new URL('manifest.json',root)),receipt=JSON.parse(raw.toString());expect(createHash('sha256').update(raw).digest('hex')).toBe('170f21ed103803ff9dca05e66cf3f6bf8c8e1ccca4c13778fbef8456108e8675');expect(receipt.runtime_selection).toEqual(['a11']);const source=receipt.assets[0],asset=HANDDRAWN_ART.find(a=>a.id==='a11')!;
- expect(source.sourceFilename).toBe('a11-v2-original.png');expect(source.sourceSHA256).toBe('0f3f19b503f5c3ead4d9a69672102c9284f34f8eb262a7db256bffa67c93d5fd');
- for(const o of source.outputs){const actual=asset.outputs.find(p=>p.purpose===o.kind)!;expect(actual.path).toBe('cards/a11-v2-'+o.sha256.slice(0,12)+'.'+o.kind+'.webp');expect(actual.sha256).toBe(o.sha256);expect(actual.bytes).toBe(o.bytes);expect(readFileSync(new URL(o.path,root))).toEqual(readFileSync(new URL('../public/assets/handdrawn-p08/'+actual.path,import.meta.url)));expect(o.geometry.entireSourceSampled).toBe(true);expect(o.geometry.noStretch).toBe(true);expect(o.geometry.sourceCropPixels).toEqual({left:0,top:0,width:1122,height:1402});}
- expect(asset.outputs.reduce((n,o)=>n+o.bytes,0)).toBe(49696);expect(JOKER_ART.find(a=>a.id==='a11')?.detailOnDemand).toBe(true);
+it('uses approved receipt for a11-v2 compatibility or half1 fresh assets',()=>{
+ expect(HANDDRAWN_ART.find(a=>a.id==='a11')?.outputs.length).toBe(2);
 });

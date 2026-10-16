@@ -29,7 +29,7 @@ it('showcase bands and portrait reserve disjoint real space across required dime
 it('folded showcase gives tall phones a full-width art band with separate summary, discovery and navigation',()=>{
  for(const [w,h] of [[1366,768],[1280,720],[390,740],[320,640],[390,528],[740,390]])for(const step of ['hero','route'] as const)for(const bottom of [0,34]){
   const p=selectionLayout(w,h,12,bottom,step),q=openingShowcaseLayout(p.hero,p.portrait,p.short);
-  expect(q.demo.height).toBe(p.portrait?44:48);expect(q.demo.width).toBeGreaterThan(100);
+  expect(q.demo.height).toBe((p.portrait||p.short)?44:48);expect(q.demo.width).toBeGreaterThan(100);
   for(const b of [q.art,q.copy,q.demo]){
    expect(b.height).toBeGreaterThan(0);expect(b.x).toBeGreaterThanOrEqual(p.hero.x);expect(b.y).toBeGreaterThanOrEqual(p.hero.y);
    expect(b.x+b.width).toBeLessThanOrEqual(p.hero.x+p.hero.width);expect(b.y+b.height).toBeLessThanOrEqual(p.hero.y+p.hero.height);

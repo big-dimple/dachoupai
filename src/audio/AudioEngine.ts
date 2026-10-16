@@ -1,4 +1,5 @@
 import recording from '../../public/assets/audio/p06/recording.json';
+import bgmManifest from '../../public/assets/audio/bgm/manifest.json';
 import {DEFAULT_AUDIO} from './preferences';
 import {FOLEY,FOLEY_SAMPLES,type FoleyKind,type Layer} from './foley';
 import {sampleBody,type SampleBody} from './sampleBody';
@@ -11,6 +12,20 @@ type VoiceBus = Exclude<AudioBus, 'master'>;
 type Voice = { source: AudioScheduledSourceNode; gain: GainNode; filter?: BiquadFilterNode; bus: VoiceBus; scoreAccent?: boolean; roll?: ScoreRollKind; semantic?: FoleyKind; startsAt?:number; endsAt?:number; priority?:number; peak?:number };
 export type ScoreSourceCue = 'card' | 'held' | 'character' | 'joker' | 'boss' | 'retrigger';
 export type ScoreRollKind = 'heat' | 'mult' | 'total';
+
+export interface BGMTrackMeta {
+  id: string;
+  file: string;
+  title: string;
+  composer: string;
+  style: string;
+  scenes: string[];
+  license: string;
+  durationSeconds: number;
+  runtimePath: string;
+  bytes: number;
+  sha256: string;
+}
 
 // Only a verified recording may populate this manifest. No synthesized BGM fallback.
 const RECORDING_PATH = recording.runtimePath;
@@ -42,6 +57,8 @@ export class AudioEngine {
   private unlocked = false;
   private unlockTask?: Promise<void>;
   private scene: AudioScene = 'menu';
+  private currentTrack?: { title: string; runtimePath: string };
+  private sceneTrackIndices = new Map<AudioScene, number>();
   private musicElement?: HTMLAudioElement;
   private musicNode?: MediaElementAudioSourceNode;
   private musicTask?: Promise<void>;
@@ -62,7 +79,7 @@ export class AudioEngine {
     else if (this.unlocked) void this.unlock();
   }
   get musicAvailable(): boolean { return true; }
-  get musicTitle(): string { return TRANSITION_MUSIC; }
+  get musicTitle(): string { return this.currentTrack?.title ?? TRANSITION_MUSIC; }
   get musicMuted(): boolean { return this.musicIsMuted; }
   set musicMuted(value: boolean) {
     this.musicIsMuted = value;
@@ -311,9 +328,32 @@ export class AudioEngine {
     for(const voice of this.voices)if(voice.scoreAccent)this.release(voice);
   }
 
+  getTrackForScene(scene: AudioScene): { title: string; runtimePath: string } {
+    const list = (bgmManifest.tracks as BGMTrackMeta[]).filter(t => t.scenes.includes(scene));
+    if (!list.length) return { title: TRANSITION_MUSIC, runtimePath: RECORDING_PATH };
+    const index = this.sceneTrackIndices.get(scene) ?? 0;
+    const track = list[index % list.length];
+    return { title: `${track.title} · ${track.composer}`, runtimePath: track.runtimePath };
+  }
+
+  preloadSceneMusic(scene: AudioScene): void {
+    if (typeof window === 'undefined') return;
+    const list = (bgmManifest.tracks as BGMTrackMeta[]).filter(t => t.scenes.includes(scene));
+    for (const track of list) {
+      try {
+        const audio = new Audio();
+        audio.preload = 'metadata';
+        audio.src = `${import.meta.env.BASE_URL}${track.runtimePath}`;
+      } catch { /* Background preload failure is silent. */ }
+    }
+  }
+
   private startMusic(): void {
     if (!RECORDING_PATH || this.musicFailed || !this.canPlay('music') || this.context!.state !== 'running') return;
     try {
+      const track = this.getTrackForScene(this.scene);
+      this.currentTrack = track;
+      const targetSrc = `${import.meta.env.BASE_URL}${track.runtimePath}`;
       if (!this.musicElement) {
         // Streaming keeps the music decode buffer out of application memory on phones.
         // Neither an element nor a request exists before a real gesture and an open bus.
@@ -323,8 +363,18 @@ export class AudioEngine {
         const node = this.context!.createMediaElementSource(element);
         node.connect(this.gains!.music);
         element.onerror = () => { this.musicFailed = true; this.stopMusic(); };
-        element.src = `${import.meta.env.BASE_URL}${RECORDING_PATH}`;
+        element.onended = () => {
+          const list = (bgmManifest.tracks as BGMTrackMeta[]).filter(t => t.scenes.includes(this.scene));
+          if (list.length > 1) {
+            const next = ((this.sceneTrackIndices.get(this.scene) ?? 0) + 1) % list.length;
+            this.sceneTrackIndices.set(this.scene, next);
+            this.startMusic();
+          }
+        };
+        element.src = targetSrc;
         this.musicElement = element; this.musicNode = node;
+      } else if (this.musicElement.src !== targetSrc && !this.musicElement.src.endsWith(track.runtimePath)) {
+        this.musicElement.src = targetSrc;
       }
       const element = this.musicElement;
       if (this.musicTask || !element.paused) return;

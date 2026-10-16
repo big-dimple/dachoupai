@@ -11,7 +11,7 @@ import {r2JokerExtraHelp,r2JokerStateText} from './r2Help';
 import {toolInfo,itemInfo,goodsArtPortrait} from './r2ToolInfo';
 import {jokerArtUrl,jokerArtPreviewUrl} from './jokerArt';
 import {enhancementReference,enhancementAcquisition,enhancementToolReference,enhancementToolAcquisition} from './EnhancementReference';
-export const CATALOG_KINDS={joker:'大丑牌',tool:'道具',enhancement:'扑克增强',item:'长期道具',hand:'牌型'} as const;
+export const CATALOG_KINDS={joker:'唐宋牌',tool:'道具',enhancement:'扑克增强',item:'长期道具',hand:'牌型'} as const;
 export const CATALOG_USES=['计分','成长','重触','资源','改牌','扩容'] as const;
 export type CatalogKind=keyof typeof CATALOG_KINDS;
 export type CatalogSource='持有'|'现货'|'上手来源';

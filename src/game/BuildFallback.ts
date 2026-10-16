@@ -40,7 +40,7 @@ export function publicRepairExample(s:R2RunState,focus:BuildFocus,toolId:string)
 /** Used only when today's existing recommendation has no executable purchase candidate. */
 export function buildFallback(s:R2RunState,focus:BuildFocus):BuildFallback|undefined {
  if(s.phase!=='shop'||!s.shop)return;
- const reason='当前大丑牌现货没有明确补强；留'+s.gold+'金入场也是完整选择。';
+ const reason='当前唐宋牌现货没有明确补强；留'+s.gold+'金入场也是完整选择。';
  const practices=buildPracticeOptions(s,focus),availablePractice=practices.find(p=>p.affordable);
  const practice=(p:typeof practices[number]):BuildFallback=>({headline:'升级或留'+s.gold+'金，由你选',reason,choice:{source:'practice',id:'practice/'+p.quote.handType,quote:p.quote,title:'当场升级 · '+p.title,body:p.body,label:p.affordable?'查看升级 · '+p.quote.price+'金':'查看升级差额与条件'}});
  const make=(source:'held'|'offer'|'basic',id:string,definitionId:string,price:number,example:RepairExample)=>{const info=toolInfo(definitionId,s),cash=cashDecision(s,price);return {headline:'改牌或留'+s.gold+'金，由你选',reason,choice:{source,id,definitionId,title:source==='held'?'已有'+info.name+' · 可先对照':example.summary+' · '+info.name,url:info.artUrl,example,body:example.body+'\n'+(source==='held'?'已有工具，不新增金币支出；使用会消耗这件工具。':`实付${price}金；余额${s.gold}→${cash.after}金，按当前本金的常规利息档${cash.beforeTier}→${cash.afterTier}。利息未到账，按关末实际余额重算。`),label:source==='held'?'查看已持工具与目标':'对照'+info.name+' · '+price+'金'}} satisfies BuildFallback;};

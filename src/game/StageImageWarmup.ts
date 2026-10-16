@@ -10,7 +10,8 @@ import {JOKER_ART} from './jokerArt';
 import {assetUrl} from './theme';
 import {loadArtTexture} from './ArtTextureLoading';
 import {goodsArtKey} from './GoodsArtLoading';
-import {goodsArtUrl} from './GoodsArt';
+import {goodsArtUrl,GOODS_ART} from './GoodsArt';
+import {AudioEngine} from '../audio/AudioEngine';
 const queues=new WeakMap<Phaser.Game,ImageWarmupQueue>();
 const shops=new WeakMap<Phaser.Game,{identity:string;controller:AbortController}>();
 function shopIdentity(game:Phaser.Game):string|undefined {
@@ -28,7 +29,7 @@ async function loadImage(game:Phaser.Game,asset:WarmImage,signal:AbortSignal):Pr
 function queue(scene:Phaser.Scene):ImageWarmupQueue {
   const game=scene.game;let q=queues.get(game);if(q)return q;
   let status:ReturnType<typeof imageWarmupStatus>|undefined;
-  q=new ImageWarmupQueue((asset,signal)=>loadImage(game,asset,signal),()=>status?.refresh());queues.set(game,q);const lowLoad=()=>['title','character-select','shop'].some(key=>game.scene.isActive(key));status=imageWarmupStatus(q,lowLoad);
+  q=new ImageWarmupQueue((asset,signal)=>loadImage(game,asset,signal),()=>status?.refresh(),200);queues.set(game,q);const lowLoad=()=>['title','character-select','shop'].some(key=>game.scene.isActive(key));status=imageWarmupStatus(q,lowLoad);
   const recovered=(key:string)=>q!.markLoaded(key);game.textures.on('addtexture',recovered);
   let visible=lowLoad();const stageChanged=()=>{retireShop(game);const next=lowLoad();if(next!==visible){visible=next;status?.refresh();}};game.events.on('poststep',stageChanged);
   game.events.once('destroy',()=>{game.events.off('poststep',stageChanged);game.textures.off('addtexture',recovered);shops.get(game)?.controller.abort();shops.delete(game);q!.dispose();status?.destroy();queues.delete(game);});return q;
@@ -46,15 +47,29 @@ function warmRunImages(scene:Phaser.Scene):void {
   queue(scene).request([...jokers,...goods].map(asset=>({...asset,visible:true,scope})),true);
 }
 
+export function warmCatalogBackground(scene:Phaser.Scene):void {
+  if(!speculative())return;
+  const jokers=JOKER_ART.map(art=>({key:art.key,url:assetUrl(art.path)}));
+  const court=COURT_ART.map(a=>({key:a.key,url:assetUrl(a.path)}));
+  const goods=GOODS_ART.flatMap(a=>{const url=goodsArtUrl(a.domainId,a.category as 'tool-card'|'item-card','thumbnail');return url?[{key:goodsArtKey(a.domainId),url}]:[];});
+  queue(scene).request([...court,...jokers,...goods],false);
+}
+
 export function warmOpeningImages(scene:Phaser.Scene):void {
   queue(scene).request(CHARACTERS.flatMap(c=>[{key:selectionPortraitKey(c.id),url:selectionPortraitURL(c.id)},{key:avatarKey(c.id),url:avatarURL(c.id)}]).filter(a=>!!a.url));
-  if(speculative())warmRunImages(scene);warmNextSceneImages(scene,'character-select');
+  AudioEngine.shared.preloadSceneMusic('menu');
+  if(speculative()){warmRunImages(scene);warmCatalogBackground(scene);}
+  warmNextSceneImages(scene,'character-select');
 }
 export function warmHeroImage(scene:Phaser.Scene,id:CharacterId):void {if(!portraitURL(id))return;queue(scene).request([{key:portraitKey(id),url:portraitURL(id),visible:true},{key:portraitFocusKey(id),url:portraitFocusURL(id),visible:true}].filter(a=>!!a.url),true);}
 export function warmTableImages(scene:Phaser.Scene,id:CharacterId):void {
   warmRunImages(scene);
   queue(scene).request(COURT_ART.map(a=>({key:a.key,url:assetUrl(a.path)})),true);
-  warmHeroImage(scene,id);warmNextSceneImages(scene,'game');
+  warmHeroImage(scene,id);
+  AudioEngine.shared.preloadSceneMusic('table');
+  AudioEngine.shared.preloadSceneMusic('boss');
+  warmCatalogBackground(scene);
+  warmNextSceneImages(scene,'game');
 }
 
 export function warmNextSceneImages(scene:Phaser.Scene,target:string):void {

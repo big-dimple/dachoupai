@@ -10,7 +10,8 @@ P08保持**in_progress**，没有整体完成百分比。本批只补原画关�
 
 |类别|精确版本/范围|当前结论与边界|
 |---|---|---|
-|本批经批准并通过交叉|此前main8728e18；胜利dfa755、原画76e64c14、高光3924854b；运行时并集f4d814b1；[本批检查](evidence/visual-three-route-integration-2026-10-16/status.json)|新苏轼原图/版本及黑底关闭返回、高光固定眼位/完整暗场、胜利到商店、短横10位倍率与科学记数终局均同版核对。没有规则/数值变更；最终远端SHA见发布回执。|
+|本批独立分支（2026-10-17）|分支 `feat/cards-bgm-tangsong-refresh`；[更新证据与方案说明](evidence/cards-bgm-tangsong-refresh-2026-10-17/README.md)|前半批卡面(36张)高质量WebP压缩替换；边游戏边加载渐进式预热；灵动小金鱼SVG真实进度加载；多场景5首专属BGM+Boss前置商店紧张感无缝切换；大丑牌全面正名为唐宋牌；小丑牌式三联折页盲注(节目录)与16种Boss致命禁令警示。|
+|上一批经批准通过交叉|此前main8728e18；胜利dfa755、原画76e64c14、高光3924854b；运行时并集f4d814b1；[本批检查](evidence/visual-three-route-integration-2026-10-16/status.json)|新苏轼原图/版本及黑底关闭返回、高光固定眼位/完整暗场、胜利到商店、短横10位倍率与科学记数终局均同版核对。没有规则/数值变更；最终远端SHA见发布回执。|
 |较早已发布基线（历史）|main 646505e7dc8cbf3620d6db795d7d8afdf838f9d0；[Git发布回执](evidence/natural-straight-economy-2026-10-16/prior-batch-release-receipt.json)|高光玩家文案清理/短横倍率分栏与商店图片空闲准备已普通push，远端SHA已核；包含此前六英雄文案、六图接线、加载/R03、输入/音频/成长/移动修复与B05首遇。未查本批CI/域名，不声明部署或全设备体验完成。|
 |上一批已发布（61/92）|来源61c78a233a40e90dcff8356f4de083e3d691e9af/产品c96fe6e0；整合815a5d25；[本批检查](evidence/cash-warning-plan-main-integration-2026-10-16/README.md)|只改XiemuBurnCopy，提前说明已持金币门槛因燃金失效；原14项按源码完全相同复用，新构建/原生取消支付通过。用户已批准与92计划合批普通发布，不再列仅本地待评审；精确远端SHA见交付回执。不是花蕊30金自然净收益验收。|
 |仅建议/文档|静态复核86d0306e9a11c31092a7a68ab8f04ca219bb30a0；[建议与验收](evidence/natural-straight-economy-2026-10-16/BALANCE_REVIEW.md)|第二章基础900→1000只是待决策候选，**未实施**；固定首手差11/40不证明挑战改善或胜率。没有续玩/新模拟。|
