@@ -1,0 +1,124 @@
+{
+  "date": "2026-10-16",
+  "status": "local_software_verified_authorized_normal_main_release",
+  "baseMain": "034557dc004175b5049d2f894c10e2f671996365",
+  "growthCandidate": "ea54e7ed3a3b99667990a89d32fe084255b5b8bd",
+  "mobileCandidate": "54851f65bac35b30269a66d4630a3e39b5727ddb",
+  "testedProductMerge": "85710521da41607554d175571d53f47b2825e0a1",
+  "nativeVerificationHead": "746fab787b5fd163a34f9057cb12f96ca8fdd272",
+  "srcTree": "56137457dff333e49526f529b24ef946cc89b709",
+  "productionFiles": [
+    "src/game/CharacterSelectScene.ts",
+    "src/game/JokerGrowthCausality.ts",
+    "src/game/OpeningShowcaseLayout.ts",
+    "src/game/SelectionLayout.ts",
+    "src/game/ShopArt.ts",
+    "src/game/ShopLayout.ts",
+    "src/game/ShopScene.ts"
+  ],
+  "preservedFromLatestMain": {
+    "src/main.ts": true,
+    "src/audio": true,
+    "src/game/FirstChapterGuide.ts": true,
+    "src/game/HeroPlayReminder.ts": true,
+    "src/game/HeroPlayReminder.css": true,
+    "src/style.css": true,
+    "src/game/GameScene.ts": true,
+    "src/domain": true,
+    "src/content": true,
+    "public": true,
+    "art": true
+  },
+  "composition": {
+    "explicitShopContext": true,
+    "growthPriority": true,
+    "safeArea": true,
+    "collapsedInventory": true,
+    "narrowPagination": true
+  },
+  "verification": {
+    "unit": {
+      "fresh": true,
+      "head": "85710521da41607554d175571d53f47b2825e0a1",
+      "files": 18,
+      "passed": 185,
+      "failed": 0
+    },
+    "build": {
+      "fresh": true,
+      "head": "85710521da41607554d175571d53f47b2825e0a1",
+      "typecheck": true,
+      "production": true,
+      "existingLargeChunkWarning": true
+    },
+    "native": {
+      "fresh": true,
+      "head": "746fab787b5fd163a34f9057cb12f96ca8fdd272",
+      "growth": [
+        {
+          "id": "b10",
+          "width": 390,
+          "status": "PASS",
+          "shopLine": "练对子已攒+30 · 上手+10",
+          "coldRestore": true,
+          "rotationChecks": 4
+        },
+        {
+          "id": "b03",
+          "width": 320,
+          "status": "PASS",
+          "shopLine": "老搭档已攒+0.5",
+          "coldRestore": true,
+          "rotationChecks": 4
+        },
+        {
+          "id": "b10",
+          "width": 1366,
+          "status": "PASS",
+          "shopLine": "练对子已攒+30 · 上手+10",
+          "coldRestore": true,
+          "rotationChecks": 4
+        }
+      ],
+      "growthRotationChecks": 12,
+      "rotationCases": 39,
+      "rotationFlow": {
+        "naturalNewRun": true,
+        "boughtInstance": {
+          "instanceId": "run/1792124090739/azao/tool/run/1792124090739/azao/command/2",
+          "definitionId": "T11"
+        },
+        "commands": [
+          "BuyBasicTool",
+          "LeaveShop",
+          "EnterStage",
+          "UseConsumable"
+        ],
+        "cancelPreservedState": true,
+        "coldRestored": true
+      },
+      "pageErrors": []
+    },
+    "provenance": "Only observer route and delivery-plan inventory changed after unit/production build. Product src tree and tests identical; all frozen product hashes and both native observer hashes rechecked. Native e2e builds use the corrected clean head."
+  },
+  "preservedFailure": "First final native run passed 390, then 320 reached the real recommendation page. Observer incorrectly skipped View all stock/held cards before Held-card manager. Actual screenshot retained. Corrected only native harness navigation, repeated all three routes; production unchanged.",
+  "nextBatchInventory": "docs/production/DELIVERY_PLAN.md#挑战者高光与失败体验下一批有限核对2026-10-16",
+  "boundaries": [
+    "P08 in_progress",
+    "No new mechanism, prices, goals, RNG, save format, original art, audio or GameScene change",
+    "B05 currently text-only sample, not a complete challenger roster/cinematic delivery",
+    "Human understanding, runtime art, hearing, physical devices/GPU, natural acquisition/balance remain separate",
+    "Existing settlement tail investigation retains its owner; no new universal no-stall claim",
+    "No CI/domain lookup, force push or git clean"
+  ],
+  "visualReview": {
+    "opened": [
+      "grown-shop-short-landscape.png",
+      "grown-shop-safe-portrait.png",
+      "selection-short-landscape.png",
+      "tool-returned-table.png"
+    ],
+    "scope": "Growth full text and action area, selection identity/skill/actions, actual returned table. Software screenshot review only."
+  },
+  "candidateFinalEquivalence": "All 9 bought/next-shop/sold domain state and journal comparisons equal across three routes; full values retained in gzip reports."
+}

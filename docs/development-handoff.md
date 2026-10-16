@@ -30,6 +30,8 @@
 
 2026-10-16 经营成长候选16fbe514（base06512d5f）已完成[真实货架与存档闭环](production/evidence/shop-growth-continuity-2026-10-16/README.md)：51项/构建，3条同种子购入→成长→下一店→取消/确认出售→冷恢复前后领域状态/命令日志一致。只改商店连续提示；牌桌原反馈和GameScene不动，不改经济/术语，未合main。技能提醒新main需在后续合并中保留。
 
+2026-10-16 当前经营/移动并集：成长ea54e7ed与移动54851f65已在最新main034557dc上正常合并并通过185项/构建、三路线12旋转及39移动场景，按用户授权正常发布。唯一当前证据见[同版记录](production/evidence/shop-growth-mobile-current-main-2026-10-16/README.md)；挑战者、高光、失败体验的下一批出口见DELIVERY_PLAN当前盘点，未领取新运行时文件。音频/技能提醒/GameScene/规则/原图保持，P08仍in_progress。
+
 ## 共同Joker正常入口/UI交接（PR25，2026-10-05 UTC，仅review）
 
 source92ade25，正常合入PR22 e2fc与PR24 36eff；UI自然证据a8fcd2e与source的src/harness tree相同。六角色普通新局同combo-growth-v1/e7d21，仅阿默助攻；旧身份继续/导入/精确retry与默认createRun v11保留。2377tests/132files、content/type/build/桌面手机smoke/plan冻结全PASS，有限自然d12与阿默路线、四选角视口和7受控正反例通过；15通过PNG与2FAIL图actual view，原FAIL/双方来源保留。证据[summary](production/evidence/p08-combo-growth-ui-2026-10-05/summary.json)。精确最终draft CI以PR25交接为准；main仍193c93b，父独审决定发布。P08 in_progress、C04 D32及真机/听感/平衡门槛保持。

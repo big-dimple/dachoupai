@@ -38,6 +38,7 @@
       "humanGate": false,
       "completionScope": "2026-10-16：c009基线上的文化文案cea473、选择布局aab4d9和本机跨场景连点修复已整合；同版正常新局/携带/技能/实际结算/下一商店/失败重试及六人软件检查见currentDelivery.statusRecord。历史全量失败按独立基线对照记录，不能写成全量绿。P08仍in_progress；真实玩家理解、自然平衡、物理设备/GPU、听感、独立眼原画及整体体验未签。",
       "evidence": [
+        "docs/production/evidence/shop-growth-mobile-current-main-2026-10-16/status.json",
         "docs/production/evidence/shop-growth-continuity-2026-10-16/status.json",
         "docs/production/evidence/skill-choice-current-main-2026-10-16/status.json",
         "docs/production/evidence/audio-current-main-integration-2026-10-16/status.json",
@@ -1216,7 +1217,7 @@
   ],
   "currentDelivery": {
     "date": "2026-10-16",
-    "statusRecord": "docs/production/evidence/skill-choice-current-main-2026-10-16/status.json",
+    "statusRecord": "docs/production/evidence/shop-growth-mobile-current-main-2026-10-16/status.json",
     "heroTextSpecification": "docs/production/HERO_TEXT_SPEC_20261015.json",
     "history": "docs/production/history/plan-status-before-20261015.json",
     "priorities": [
@@ -1227,13 +1228,14 @@
     ],
     "owners": {
       "documents": "同一整合负责人：规范来源856c30ed、运行时采用与当前计划/证据对账",
-      "runtimeIntegration": "Windows verify/skill-choice-current-main-20261016：在已发布音频main06512d5f上正常合入d6036f8e并38项/原生同版复核后正常发布；未混经营改动",
+      "runtimeIntegration": "Windows verify/shop-growth-current-main-20261016：成长ea54e7ed和移动54851f65正常合入，src56137457；185项/构建及三路线12旋转、39移动场景通过，按最新授权正常发布；音频/技能提醒/GameScene/领域及原图保持",
       "portraits": "正式图接线已完成整合；只处理可复现缺陷，不并发覆盖资源窗口",
       "carry": "R03已结束开发，只处理经复现的整合缺陷",
       "opening": "首页/加载/成长main8af3e506已发布；本批保留其源码；结算单独同版复核",
       "acceptance": "用户/真实玩家/目标设备与听感各按实际证据签收",
       "audioExperience": "独立fix/audio-gesture-recovery-20261016：只持AudioEngine、main音频监听三行及自有harness/证据；76项及真实音频前后对照完成，音色审美/真机未签，不改GameScene或素材",
-      "growthExperience": "独立fix/current-growth-discovery-20261016：真实货架购牌/三手过关/冷恢复/取消和确认出售闭环，仅ShopScene与JokerGrowthCausality的shop上下文；牌桌原反馈未改，不占GameScene技能提醒"
+      "growthExperience": "经营成长两处shop上下文与PC原位提示已同版合入；真实购买/成长/下一店/出售/冷恢复，未改经济或牌桌原反馈",
+      "mobileExperience": "原负责人产品b532922c、候选54851f65；本批正常整合保留安全区/短横/短竖/分页，39场景和经营并集旋转通过，物理设备另签"
     },
     "legacyDoneScope": "原done工作包仅保持原证据/原SHA的局部交付事实；不代表当前唐宋六图、全新文案、运行时美术、自然平衡或整体体验完成。",
     "priorStatusRecord": "docs/production/evidence/local-windows-integration-2026-10-16/status.json",
@@ -1270,15 +1272,27 @@
         "productCommit": "16fbe51481dda4db15428077414239a959426869",
         "statusRecord": "docs/production/evidence/shop-growth-continuity-2026-10-16/status.json",
         "scope": "Existing actual saved growth feedback already works at the table. Repair only shop continuity for current contracted identities; keep table default/legacy output and GameScene unchanged. Shop shows held bank plus its own prior positive increment, and actual notices remain highest priority.",
-        "status": "software_verified_development_candidate"
+        "status": "integrated_software_verified_authorized_release",
+        "integrationStatusRecord": "docs/production/evidence/shop-growth-mobile-current-main-2026-10-16/status.json"
+      },
+      {
+        "branch": "fix/mobile-rotation-safe-layout-20261016",
+        "productCommit": "b532922cdcaea14291bfbf6e2701c79de0572d7b",
+        "candidateCommit": "54851f65bac35b30269a66d4630a3e39b5727ddb",
+        "status": "integrated_software_verified_authorized_release",
+        "statusRecord": "docs/production/evidence/mobile-rotation-safe-layout-2026-10-16/README.md",
+        "integrationStatusRecord": "docs/production/evidence/shop-growth-mobile-current-main-2026-10-16/status.json",
+        "scope": "Six layout product files; ShopScene combined by normal three-way merge with growth feedback. No GameScene, domain, audio or asset change."
       }
     ],
     "priorSettlementStatusRecord": "docs/production/evidence/settlement-current-main-integration-2026-10-16/status.json",
-    "lastVerifiedPublishedMain": "0c4dab186eb90430d57e213545179b9921fffe10",
+    "lastVerifiedPublishedMain": "034557dc004175b5049d2f894c10e2f671996365",
     "priorPointerStatusRecord": "docs/production/evidence/pointer-current-main-integration-2026-10-16/status.json",
     "nextBatchInventory": "docs/production/DELIVERY_PLAN.md#下一批玩家体验事项与依赖2026-10-16盘点待协调",
     "priorOwnedCardStatusRecord": "docs/production/evidence/owned-card-current-main-integration-2026-10-16/status.json",
     "priorSkillTargetStatusRecord": "docs/production/evidence/skill-secondary-current-main-2026-10-16/status.json",
-    "priorAudioStatusRecord": "docs/production/evidence/audio-current-main-integration-2026-10-16/status.json"
+    "priorAudioStatusRecord": "docs/production/evidence/audio-current-main-integration-2026-10-16/status.json",
+    "priorSkillChoiceStatusRecord": "docs/production/evidence/skill-choice-current-main-2026-10-16/status.json",
+    "nextExperienceInventory": "docs/production/DELIVERY_PLAN.md#挑战者高光与失败体验下一批有限核对2026-10-16"
   }
 }
