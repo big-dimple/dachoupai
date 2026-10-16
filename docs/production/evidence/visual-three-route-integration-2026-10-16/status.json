@@ -1,0 +1,89 @@
+{
+  "taskId": "visual-three-route-integration",
+  "date": "2026-10-16",
+  "priorPublishedMain": "8728e18e823ef9cbe28a4350a566de21f1e3127c",
+  "sourceHeads": {
+    "victory": "dfa755dff70c9296b847409e55fb604f758a4356",
+    "portraits": "76e64c14ab03032b45bba4778ebf4c9b7fe389a1",
+    "highlight": "3924854b482a528764398eaac290be40f8636a19"
+  },
+  "productUnionCommit": "f4d814b1f2c8c6e7388f8bb367b59352248dd8fc",
+  "testedCommit": "2e500ef4e52231bdf656b123695d384df143c905",
+  "testedSourceTree": "c36cd1b31b813acdf1c5a37b1be22c15e92121f7",
+  "status": "PASS",
+  "authorization": "User approved this three-route batch merge and normal main push; no force, CI or domain checks.",
+  "checks": [
+    {
+      "name": "390 portrait/highlight/victory/shop cross",
+      "status": "PASS",
+      "testedCommit": "245b7bd18007a54cb97d691db5392fad695d0a02",
+      "exitCode": 0,
+      "report": "portrait-highlight-victory-shop.json.gz"
+    },
+    {
+      "name": "740x320 long multiplier and terminal score cross",
+      "status": "PASS",
+      "testedCommit": "2e500ef4e52231bdf656b123695d384df143c905",
+      "exitCode": 0,
+      "report": "short-long-number.json.gz"
+    },
+    {
+      "name": "production typecheck and Vite build",
+      "status": "PASS",
+      "testedCommit": "62509503278c69785854e7a76dca7158ec89300e",
+      "sourceTree": "c36cd1b31b813acdf1c5a37b1be22c15e92121f7",
+      "exitCode": 0,
+      "warning": "existing large bundle chunk warning",
+      "report": "build-output.txt"
+    },
+    {
+      "name": "source-owner and protected equality",
+      "status": "PASS",
+      "report": "runtime-equality.json"
+    },
+    {
+      "name": "diff --check for own code",
+      "status": "PASS",
+      "exitCode": 0
+    }
+  ],
+  "environment": {
+    "os": "win32",
+    "node": "v22.20.0",
+    "browser": "153.0.8010.12",
+    "dpr": 1,
+    "physicalDevice": "NOT_RUN"
+  },
+  "nativeSummary": {
+    "portraitCloseNoSaveChange": true,
+    "focusAssetProof": "PASS",
+    "focusResponse": {
+      "url": "http://127.0.0.1:5591/assets/tangsong-portraits/amo.focus.webp?v=f158579f7e05",
+      "bytes": 56012,
+      "sha256": "f158579f7e055d16a4f2d9c2f36609fcbb5d8980469e31e063517f1e6fea02ad"
+    },
+    "victoryScore": "3931",
+    "oneShopCommand": true,
+    "goldBeforeShop": 14,
+    "goldAfterShop": 14,
+    "shortTerminalScore": "1952400131333767",
+    "shortMultiplier": "3034462500",
+    "shortMultiplierFontPx": 36,
+    "normalWinProgress": "{\"version\":1,\"standardWins\":[true,false,false,false]}",
+    "pageErrors": []
+  },
+  "reusedSourceEvidence": {
+    "victory": "docs/production/evidence/victory-settlement-compact-2026-10-16/status.json",
+    "portraits": "docs/production/evidence/hero-portrait-fullpage-2026-10-16/verification.json",
+    "highlight": "docs/production/evidence/highlight-compact-stage-2026-10-16/validation.json",
+    "note": "Original bounded suites retain their exact source scope; not rerun wholesale."
+  },
+  "publication": {
+    "status": "authorized_for_normal_main_push_after_checks",
+    "finalRemoteSHA": "see actual post-push delivery receipt"
+  },
+  "humanReview": {
+    "status": "bounded screenshots inspected; user approved batch merge",
+    "notAccepted": "physical device, hearing, whole P08, independent eye originals, balance or natural late-game acceptance"
+  }
+}

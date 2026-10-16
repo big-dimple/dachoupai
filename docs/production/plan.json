@@ -2,13 +2,13 @@
   "schemaVersion": 1,
   "auditCommit": "8e2174141920ef001b95a30485e70525920d3d9f",
   "currentTask": "P08",
-  "selectionPolicy": "当前发布整合815a5d25由用户明确批准61c78提示+92efdc计划普通合并/push；运行时与61完全相同，仅XiemuBurnCopy.ts。保留此前646505发布基线与原92文档归档；900→1000仍仅建议，未改数值。原14项精确复用，新增构建及一次原生取消/支付交叉通过，不扩自然试玩/全矩阵。P08仍in_progress；最终远端完整SHA由发布回执确认，部署/人验/设备/后段等不代签。",
+  "selectionPolicy": "当前三路视觉批次经用户明确允许合并提交：胜利dfa755、六英雄黑底全图及用户新苏轼原图76e64c14、含新眼位与紧凑暗场的高光3924854b。并集运行时f4d814b1；只补新苏轼原画关闭返回、高光→胜利→商店及短横长数字交叉，原各套按责任源码完全相同保留。此前main8728e18已核实；本批最终远端SHA以实际Git回执为准，不查CI/域名。未改数值/领域/存档/音频/平台；P08仍in_progress，正式门、听感/真机/自然晚期不代签。",
   "resumeContract": {
     "candidateCommit": "4bf6a7d63d7738d3c415d09439a1bdca878dc685",
     "gateTask": "A01",
     "decisionId": "D22",
     "decision": "docs/production/DECISIONS.md",
-    "afterOwnerAcceptance": "D22/A01是历史局部放行，不是完整体验签收。当前用户已对61提示+92计划本批正常合并push明确确认；此授权不扩展900→1000等数值或其它未实现包。main646505是此前已核实基线，本批产品整合815a5d25；最终发布SHA以实际Git回执为准。V01/L01、C04剩余/A03整体、运行时美术/独立素材/听感/真机边界保持。",
+    "afterOwnerAcceptance": "D22/A01保留其历史局部放行范围，不是完整体验签收。用户已对当前三路视觉批次明确允许正常合并提交；本批只包含胜利页、六英雄黑底全图/新苏轼授权原图及最终高光。前一批61提示+92计划已通过main8728e18交付；当前完整SHA以实际发布回执为准。900→1000等数值建议、C04剩余/A03整体/V01/L01、独立素材/听感/真机不由本批解锁。",
     "milestones": "docs/production/WORK_PACKAGES.md#玩家可检验的里程碑",
     "approvalEvidence": "docs/production/evidence/A01-2026-10-02.json"
   },
@@ -36,8 +36,9 @@
       ],
       "package": "docs/production/WORK_PACKAGES.md#p08",
       "humanGate": false,
-      "completionScope": "已发布main646505包含六英雄能力/文案、六图软件接线与已列交互/高光/预取等增量。新增本地失败再战、三章经营和四尺寸技能返回只是各自有界证据；61c78现进入本批获批发布整合，86d030仅建议。本地文档对账不完成P08、A03、V01或正式发布链；运行时美术、人类理解、设备/听感、自然晚期与全局平衡仍未签。",
+      "completionScope": "此前main8728e18包含61燃金提示+92计划及更早交互/六英雄/六图软件范围。当前三路视觉批次经用户允许合并提交：胜利页、六英雄黑底全图与新苏轼原图、紧凑固定眼神高光已同版交叉；精确mainSHA见发布回执。没有重跑各自完整矩阵，没有新自然经营或数值改动；P08仍in_progress，独立素材、人类理解、听感/物理设备、自然晚期与正式门不代签。",
       "evidence": [
+        "docs/production/evidence/visual-three-route-integration-2026-10-16/status.json",
         "docs/production/evidence/cash-warning-plan-main-integration-2026-10-16/status.json",
         "docs/production/evidence/local-plan-reconcile-2026-10-16/status.json",
         "docs/production/evidence/ordinary-failure-retry-2026-10-16/status.json",
@@ -1226,7 +1227,7 @@
   ],
   "currentDelivery": {
     "date": "2026-10-16",
-    "statusRecord": "docs/production/evidence/cash-warning-plan-main-integration-2026-10-16/status.json",
+    "statusRecord": "docs/production/evidence/visual-three-route-integration-2026-10-16/status.json",
     "heroTextSpecification": "docs/production/HERO_TEXT_SPEC_20261015.json",
     "history": "docs/production/history/plan-status-before-20261015.json",
     "priorities": [
@@ -1238,9 +1239,9 @@
       "正式C04/A03/V01/B00/B01/L00/L01/L02保原依赖，不以本次无缺陷或发布代签"
     ],
     "owners": {
-      "documents": "本地文档候选：DELIVERY_PLAN/plan.json为唯一排程；ART与角色玩法仅修状态冲突。原证据/历史原文保持，本次无产品源码或发布。",
-      "runtimeIntegration": "61燃金提示+92计划经用户明确批准正常整合815a5d25；生产仅XiemuBurnCopy且原src/tests完全一致，14项复用，新构建及原生选择取消/支付通过。最终远端SHA回执核实，不查CI/域名。",
-      "portraits": "正式图接线已完成整合；只处理可复现缺陷，不并发覆盖资源窗口",
+      "documents": "DELIVERY_PLAN/plan.json保持唯一当前排程；本批只更新三路发布状态和精确证据入口，历史证据保持。",
+      "runtimeIntegration": "三路并集f4d814b1保留dfa胜利、76原画、392最终高光各自责任源码；原画关闭返回与真实高光→胜利→商店、短横长数字及冷恢复交叉通过，生产构建通过。经用户允许后普通合并/push，不查CI/域名，不宣称部署。",
+      "portraits": "六英雄纯黑全屏查看器来自76e64c14；苏轼采用用户新1122×1402 PNG原字节及四类派生，其余五人保持。高光新眼位与资源版本已在本批并集复核。独立眼原画与运行时人验仍按各自范围。",
       "carry": "R03已结束开发，只处理经复现的整合缺陷",
       "opening": "首页/加载/成长main8af3e506已发布；本批保留其源码；结算单独同版复核",
       "acceptance": "用户/真实玩家/目标设备/听感按各自实际范围签；本轮文档、无缺陷审计和代码发布不能代替。",
@@ -1332,10 +1333,34 @@
         "scope": "Only local implementation. Current document candidate copies evidence only, not src/tests/harness.",
         "integrationProductCommit": "815a5d2527396395099c92c81ab276cb628217c5",
         "integrationStatusRecord": "docs/production/evidence/cash-warning-plan-main-integration-2026-10-16/status.json"
+      },
+      {
+        "branch": "fix/victory-settlement-layout-20261016",
+        "candidateCommit": "dfa755dff70c9296b847409e55fb604f758a4356",
+        "productCommit": "a7d61af0f03133aa9a3bc6114a1aa538e04ad37c",
+        "scope": "Victory score/source/reward hierarchy, content height and concise headings; rules and art unchanged.",
+        "status": "authorized_integrated_software_verified",
+        "integrationStatusRecord": "docs/production/evidence/visual-three-route-integration-2026-10-16/status.json"
+      },
+      {
+        "branch": "fix/hero-art-fullpage-20261016",
+        "candidateCommit": "76e64c14ab03032b45bba4778ebf4c9b7fe389a1",
+        "productCommit": "d6a52afcfefdc97033392037eefdd6be5c430052",
+        "scope": "Six hero black fullscreen original viewer and user-provided replacement Su Shi PNG plus derived images.",
+        "status": "authorized_integrated_software_verified",
+        "integrationStatusRecord": "docs/production/evidence/visual-three-route-integration-2026-10-16/status.json"
+      },
+      {
+        "branch": "fix/highlight-manga-focus-20261016",
+        "candidateCommit": "3924854b482a528764398eaac290be40f8636a19",
+        "productCommit": "2a243b6256c388603defaa8237a2b2b217c1f8e7",
+        "scope": "Stable replacement Su Shi eyes, compact real-value highlight and complete dark background; original score timing preserved.",
+        "status": "authorized_integrated_software_verified",
+        "integrationStatusRecord": "docs/production/evidence/visual-three-route-integration-2026-10-16/status.json"
       }
     ],
     "priorSettlementStatusRecord": "docs/production/evidence/settlement-current-main-integration-2026-10-16/status.json",
-    "lastVerifiedPublishedMain": "646505e7dc8cbf3620d6db795d7d8afdf838f9d0",
+    "lastVerifiedPublishedMain": "8728e18e823ef9cbe28a4350a566de21f1e3127c",
     "priorPointerStatusRecord": "docs/production/evidence/pointer-current-main-integration-2026-10-16/status.json",
     "nextBatchInventory": "docs/production/DELIVERY_PLAN.md#下一批玩家体验事项与依赖2026-10-16盘点待协调",
     "priorOwnedCardStatusRecord": "docs/production/evidence/owned-card-current-main-integration-2026-10-16/status.json",
@@ -1472,8 +1497,23 @@
         "existing image/audio review or separately authorized missing asset delivery"
       ]
     },
-    "lastVerifiedPublishedMainContext": "646505 is the last verified base before this approved release; exact new remote SHA is recorded in the delivery receipt after push.",
+    "lastVerifiedPublishedMainContext": "本批三路视觉发布前已核实的61提示+92计划基线；不是本批最终SHA，最终main以实际Git发布回执为准。",
     "currentRelease": {
+      "sourceCandidates": {
+        "victory": "dfa755dff70c9296b847409e55fb604f758a4356",
+        "portraits": "76e64c14ab03032b45bba4778ebf4c9b7fe389a1",
+        "highlight": "3924854b482a528764398eaac290be40f8636a19"
+      },
+      "productIntegrationCommit": "f4d814b1f2c8c6e7388f8bb367b59352248dd8fc",
+      "testedSourceCommit": "2e500ef4e52231bdf656b123695d384df143c905",
+      "testedSourceTree": "c36cd1b31b813acdf1c5a37b1be22c15e92121f7",
+      "status": "authorized_integrated_source_verified",
+      "evidence": "docs/production/evidence/visual-three-route-integration-2026-10-16/status.json",
+      "finalRemoteSHA": "see actual post-push delivery receipt",
+      "numericalProposalImplemented": false
+    },
+    "priorCashWarningStatusRecord": "docs/production/evidence/cash-warning-plan-main-integration-2026-10-16/status.json",
+    "previousRelease": {
       "sourceCandidates": {
         "cash": "61c78a233a40e90dcff8356f4de083e3d691e9af",
         "documents": "92efdcacfba623a871f87b6cdefda5893ccaca45"
