@@ -1,0 +1,119 @@
+{
+  "kind": "Round 2: art-led card prototype, display fixtures",
+  "previousReviewCommit": "ead4046e30fbb7ba3d32d13ca428f7dc9fdefdd4",
+  "browser": "151.0.7922.173",
+  "profiles": [
+    {
+      "width": 320,
+      "height": 740,
+      "dpr": 1,
+      "metrics": {
+        "card": {
+          "width": 238,
+          "height": 390.390625
+        },
+        "art": {
+          "width": 216,
+          "height": 212,
+          "containedWidth": 169.765625
+        },
+        "repeatedPerCardActionRows": 0,
+        "pageHeight": 753,
+        "unifiedActionVisible": true
+      },
+      "checks": [
+        "all three cards separately revealed; visible text and five stars uncut",
+        "intentional side peek is artwork only; no cut labels/stars",
+        "native CDP touch swipe reaches second card without accidental open; tap opens/closes detail",
+        "zero repeated per-card action rows",
+        "unified action within first viewport",
+        "all three details open/close and focus return",
+        "keyboard Enter/Escape",
+        "3↔5 sample and 1/2↔2/2",
+        "comparison mode + selection limit + remove + cancel",
+        "two comparisons; focus restore",
+        "selection preserved on fixture switch",
+        "reduced motion",
+        "no external requests or JS errors"
+      ],
+      "status": "PASS"
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "dpr": 1,
+      "metrics": {
+        "card": {
+          "width": 270,
+          "height": 420.796875
+        },
+        "art": {
+          "width": 246,
+          "height": 238,
+          "containedWidth": 190.5859375
+        },
+        "repeatedPerCardActionRows": 0,
+        "pageHeight": 844,
+        "unifiedActionVisible": true
+      },
+      "checks": [
+        "all three cards separately revealed; visible text and five stars uncut",
+        "intentional side peek is artwork only; no cut labels/stars",
+        "native CDP touch swipe reaches second card without accidental open; tap opens/closes detail",
+        "zero repeated per-card action rows",
+        "unified action within first viewport",
+        "all three details open/close and focus return",
+        "keyboard Enter/Escape",
+        "3↔5 sample and 1/2↔2/2",
+        "comparison mode + selection limit + remove + cancel",
+        "two comparisons; focus restore",
+        "selection preserved on fixture switch",
+        "reduced motion",
+        "no external requests or JS errors"
+      ],
+      "status": "PASS"
+    },
+    {
+      "width": 1366,
+      "height": 900,
+      "dpr": 1,
+      "metrics": {
+        "card": {
+          "width": 326,
+          "height": 472.1875
+        },
+        "art": {
+          "width": 300,
+          "height": 280,
+          "containedWidth": 224.21875
+        },
+        "repeatedPerCardActionRows": 0,
+        "pageHeight": 904,
+        "unifiedActionVisible": true
+      },
+      "checks": [
+        "all three cards separately revealed; visible text and five stars uncut",
+        "intentional side peek is artwork only; no cut labels/stars",
+        "zero repeated per-card action rows",
+        "unified action within first viewport",
+        "all three details open/close and focus return",
+        "keyboard Enter/Escape",
+        "3↔5 sample and 1/2↔2/2",
+        "comparison mode + selection limit + remove + cancel",
+        "two comparisons; focus restore",
+        "selection preserved on fixture switch",
+        "reduced motion",
+        "no external requests or JS errors"
+      ],
+      "status": "PASS"
+    }
+  ],
+  "humanAcceptance": "NOT_RUN",
+  "physicalDevice": "NOT_RUN",
+  "gameplayRecommendationCalibration": "NOT_RUN",
+  "sourceHashes": {
+    "index.html": "3d35baf4d7b1bab43824038f5f42af9be2a5291f800e1c62c98c84bed08b6249",
+    "style.css": "4dfa6c3b83cfd11475beb31b79db059c1fd60484632e201125e57aa76c4d01a4",
+    "app.js": "2b104d84f1011273caf69bece05f722abdafb5c9cf5148b0538e82d35c299dfc"
+  }
+}

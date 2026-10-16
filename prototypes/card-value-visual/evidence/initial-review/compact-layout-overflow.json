@@ -1,0 +1,37 @@
+{
+  "kind": "Static visual prototype, synthetic display fixtures only",
+  "browser": "151.0.7922.173",
+  "profiles": [
+    {
+      "width": 320,
+      "height": 740,
+      "dpr": 1,
+      "entry": "local HTTP (loopback only)",
+      "checks": [
+        "all images loaded",
+        "no horizontal/card overflow",
+        "five full vector stars per rating",
+        "44px controls",
+        "expand/collapse",
+        "fixture 3→5→3 and condition count",
+        "select/remove and max-two feedback",
+        "two comparisons",
+        "Escape/close/focus restore",
+        "selection preserved on fixture change",
+        "reduced motion",
+        "zero external requests",
+        "zero JS errors"
+      ],
+      "status": "PASS"
+    }
+  ],
+  "humanAcceptance": "NOT_RUN",
+  "physicalDevice": "NOT_RUN",
+  "gameplayRecommendationCalibration": "NOT_RUN",
+  "sourceHashes": {
+    "index.html": "0217ec3bf0d51f8dbb4344e5c94242e2576f9506d2200016f6acbb5257fa33a9",
+    "style.css": "b6878cd0a9d300e06e1b631ff14188d4f95831c9654424f704855b4dfbe4ae7a",
+    "app.js": "60de4cdcf8485716e2b6c4dff4fe6e01ed076a7e06b13b7ec6023f8262349074"
+  },
+  "failure": "AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:\n+ actual - expected\n\n+ [\n+   'page horizontal overflow'\n+ ]\n- []\n"
+}

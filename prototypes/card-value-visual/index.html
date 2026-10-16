@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="zh-CN">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>大丑牌 · 助演挑选样板</title><link rel="stylesheet" href="style.css"></head>
+<body>
+<header class="masthead"><a class="brand" href="./index.html" aria-label="大丑牌，重置样例">大丑牌</a><span class="sample">展示样例 · 非实局推荐</span></header>
+<main>
+<div class="intro"><div><p class="eyebrow">筹备下一场</p><h1>挑一位助演</h1></div><span class="route-context">同点成组</span></div>
+<div class="shelf-heading"><p id="mode-hint">点牌看条件</p><div class="fixture-controls" role="group" aria-label="组合展示样例"><button id="missing" aria-pressed="true">缺搭档</button><button id="ready" aria-pressed="false">已齐备</button></div></div>
+<section id="cards" class="cards" aria-label="助演卡牌展示样例，可横向滑动"></section>
+<div class="rail-note"><span>三位助演</span><span class="swipe-note">左右滑动查看 →</span></div>
+<div class="selection-bar"><p id="selection-status" role="status" aria-live="polite">选两张，一起看</p><div class="bottom-actions"><button id="cancel-selection" hidden>取消</button><button id="compare">选择对比</button></div></div>
+<p class="footnote">推荐看星 · 稀有看签 · 组合看条件 · 版次看加成。星数是固定展示样例，不代表加一个搭档就必升星。</p>
+</main>
+<dialog id="detail" aria-labelledby="detail-title"><div class="dialog-heading"><p class="eyebrow">展示样例 · 卡牌条件</p><button id="close-detail" aria-label="关闭详情">关闭</button></div><div id="detail-content" class="dialog-scroll"></div></dialog>
+<dialog id="comparison" aria-labelledby="compare-title"><div class="dialog-heading"><div><p class="eyebrow">展示样例</p><h2 id="compare-title">放在一起看</h2></div><button id="close-compare" aria-label="关闭对比">关闭</button></div><div class="dialog-scroll"><div id="comparison-content"></div><p class="dialog-note">推荐：固定展示评分。组合：当前条件，不等于已触发。稀有度：卡牌固有类别。版次：独立附加效果。</p></div></dialog>
+<script src="app.js"></script>
+</body></html>

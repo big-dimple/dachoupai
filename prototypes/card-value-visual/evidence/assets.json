@@ -1,0 +1,96 @@
+{
+  "base": "f23c1fc2389242bacbb8f5d35733f1c344610727",
+  "manifest": "public/assets/handdrawn-p08/manifest.json",
+  "assets": [
+    {
+      "id": "mantangcai",
+      "path": "public/assets/handdrawn-p08/cards/mantangcai.detail.webp",
+      "bytes": 57250,
+      "sha256": "85eca912881fb4b2f52c96eea821fb8dbb0090343fb0275330e019a4083f3ff1",
+      "manifestEntry": {
+        "id": "mantangcai",
+        "category": "functional-card",
+        "sourceCommit": "41e78e1eac85920cede9ed867e4dabb8bba4f5c4",
+        "sourceManifestSHA256": "2ff47d41953064d053b78659d222dcf27dfa61ac73e077253df2c66b645c8758",
+        "outputs": [
+          {
+            "width": 128,
+            "height": 160,
+            "bytes": 4278,
+            "sha256": "527fcd231970dfb7ff2eb9ee8e9d3f31f219a8c8249b69316698f86014faa15a",
+            "purpose": "thumbnail",
+            "path": "cards/mantangcai.thumbnail.webp"
+          },
+          {
+            "width": 615,
+            "height": 768,
+            "bytes": 57250,
+            "sha256": "85eca912881fb4b2f52c96eea821fb8dbb0090343fb0275330e019a4083f3ff1",
+            "purpose": "detail",
+            "path": "cards/mantangcai.detail.webp"
+          }
+        ]
+      }
+    },
+    {
+      "id": "e08",
+      "path": "public/assets/handdrawn-p08/cards/e08.detail.webp",
+      "bytes": 47148,
+      "sha256": "c1a36271b2a95d47e2787657b57c2e898f8aaf3872977de1d1c9808e94119cbf",
+      "manifestEntry": {
+        "id": "e08",
+        "category": "functional-card",
+        "sourceCommit": "a6dbecb0b0612777d7c960dd8de65c9a1c897acc",
+        "sourceManifestSHA256": "06ed702bdf40ee7e0814f6fc38e61262dda0f0c94b12103f6b59bc06c85a3a4f",
+        "outputs": [
+          {
+            "purpose": "thumbnail",
+            "path": "cards/e08.thumbnail.webp",
+            "width": 128,
+            "height": 160,
+            "bytes": 3698,
+            "sha256": "baa4bd501fc860e2187ae3598b6b3392269430372a584d1ae118d56718667874"
+          },
+          {
+            "purpose": "detail",
+            "path": "cards/e08.detail.webp",
+            "width": 615,
+            "height": 768,
+            "bytes": 47148,
+            "sha256": "c1a36271b2a95d47e2787657b57c2e898f8aaf3872977de1d1c9808e94119cbf"
+          }
+        ]
+      }
+    },
+    {
+      "id": "b06",
+      "path": "public/assets/handdrawn-p08/cards/b06.detail.webp",
+      "bytes": 38350,
+      "sha256": "b735318f9b5da27b73ab5bc8b55b07334fd2aa41f8de93fd7bad7f50c5c78f4e",
+      "manifestEntry": {
+        "id": "b06",
+        "category": "functional-card",
+        "sourceCommit": "030508fb4dca8af276094dd5bc3eb6a9774d8375",
+        "sourceManifestSHA256": "3c8a1e74038f5d934f6a8025c1cc541c8d9af3bc1240d3c9707bb97ebbc48003",
+        "outputs": [
+          {
+            "width": 128,
+            "height": 160,
+            "bytes": 3380,
+            "sha256": "06d6152bbd2e226cdd3fde30d97ad086854ad19d69587fa327685a3642fbf667",
+            "purpose": "thumbnail",
+            "path": "cards/b06.thumbnail.webp"
+          },
+          {
+            "width": 615,
+            "height": 768,
+            "bytes": 38350,
+            "sha256": "b735318f9b5da27b73ab5bc8b55b07334fd2aa41f8de93fd7bad7f50c5c78f4e",
+            "purpose": "detail",
+            "path": "cards/b06.detail.webp"
+          }
+        ]
+      }
+    }
+  ]
+}

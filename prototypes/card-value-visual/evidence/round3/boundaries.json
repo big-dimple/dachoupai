@@ -1,0 +1,93 @@
+{
+  "base": "f16e17253558d13bffd0c2316a12c44b2b1f171b",
+  "renderHead": "27048f759ffd222f72934da8fcf30eb2a9891c39",
+  "objects": [
+    {
+      "path": "src",
+      "base": "f5a5644a217eaf9270648481d416c60aa6ba652e",
+      "head": "f5a5644a217eaf9270648481d416c60aa6ba652e"
+    },
+    {
+      "path": "tests",
+      "base": "1341e4468294bf1a16b5b97f66f1e4c56a91311a",
+      "head": "1341e4468294bf1a16b5b97f66f1e4c56a91311a"
+    },
+    {
+      "path": "harness",
+      "base": "195040201e4c7260a40c56324e69d9d6f2140146",
+      "head": "195040201e4c7260a40c56324e69d9d6f2140146"
+    },
+    {
+      "path": "public",
+      "base": "c4a6ec74e7fd754b0f300b973020f8afed7542e1",
+      "head": "c4a6ec74e7fd754b0f300b973020f8afed7542e1"
+    },
+    {
+      "path": "art",
+      "base": "b0caa33679b84bee932b2854734c04ad39ba0464",
+      "head": "b0caa33679b84bee932b2854734c04ad39ba0464"
+    },
+    {
+      "path": "docs",
+      "base": "9e19b3d559d122be5b74b2e414fd966e59e0b8d5",
+      "head": "9e19b3d559d122be5b74b2e414fd966e59e0b8d5"
+    },
+    {
+      "path": ".github",
+      "base": "b923e03979ce93c9a142628f8b1099e2cd2b9150",
+      "head": "b923e03979ce93c9a142628f8b1099e2cd2b9150"
+    },
+    {
+      "path": "AGENTS.md",
+      "base": "5fe3bced3a6280cbe3eee7e8d5e75788718de2be",
+      "head": "5fe3bced3a6280cbe3eee7e8d5e75788718de2be"
+    },
+    {
+      "path": "package.json",
+      "base": "f7e7f89f05edd46636bac3acc1dfcd1b6cd94ccd",
+      "head": "f7e7f89f05edd46636bac3acc1dfcd1b6cd94ccd"
+    },
+    {
+      "path": "package-lock.json",
+      "base": "acc93dcd9410bc911db279534e28522a8691dbab",
+      "head": "acc93dcd9410bc911db279534e28522a8691dbab"
+    }
+  ],
+  "ratings": [
+    {
+      "prefix": "const star=",
+      "unchanged": true
+    },
+    {
+      "prefix": "const stars=",
+      "unchanged": true
+    },
+    {
+      "prefix": "function current()",
+      "unchanged": true
+    }
+  ],
+  "assets": [
+    {
+      "path": "public/assets/handdrawn-p08/cards/mantangcai.detail.webp",
+      "blob": "4728db6cf4b258d2c8b774bade4be4f21fae708f",
+      "sha256": "85eca912881fb4b2f52c96eea821fb8dbb0090343fb0275330e019a4083f3ff1"
+    },
+    {
+      "path": "public/assets/handdrawn-p08/cards/e08.detail.webp",
+      "blob": "be64f50d70b6bb367de6bbd70174a5725f4caaf1",
+      "sha256": "c1a36271b2a95d47e2787657b57c2e898f8aaf3872977de1d1c9808e94119cbf"
+    },
+    {
+      "path": "public/assets/handdrawn-p08/cards/b06.detail.webp",
+      "blob": "d8279cde6b1816cfb3976d275b9c1059567ab718",
+      "sha256": "b735318f9b5da27b73ab5bc8b55b07334fd2aa41f8de93fd7bad7f50c5c78f4e"
+    }
+  ],
+  "changedPaths": [
+    "prototypes/card-value-visual/app.js",
+    "prototypes/card-value-visual/index.html",
+    "prototypes/card-value-visual/style.css",
+    "prototypes/card-value-visual/verify.mjs"
+  ]
+}
