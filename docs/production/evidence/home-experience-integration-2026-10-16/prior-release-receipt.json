@@ -1,0 +1,13 @@
+{
+  "previousMain": "fa5b30ee1ebf28d4ee71d676b231eab260172033",
+  "publishedMain": "8090b58c290698089ee573c36b9743080577df7e",
+  "remoteVerified": "8090b58c290698089ee573c36b9743080577df7e",
+  "commands": [
+    "git merge --ff-only --no-stat 8090b58c290698089ee573c36b9743080577df7e",
+    "git push origin HEAD:refs/heads/main",
+    "git ls-remote --heads origin main"
+  ],
+  "result": "Normal fast-forward and push succeeded; ls-remote returned exact publishedMain; primary worktree main clean.",
+  "scope": "Loading auto-recovery and current growth explanation only. Homepage and settlement still separate.",
+  "warning": "Existing credential-manager store helper path warning, but Git push exit0 and exact remote acknowledgement; no credential/security settings changed."
+}

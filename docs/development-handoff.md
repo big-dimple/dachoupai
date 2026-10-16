@@ -12,6 +12,8 @@
 
 2026-10-16 最新先行批次见[加载与加成说明组合](production/evidence/loading-growth-integration-2026-10-16/README.md)：当前入口叫“加成从哪来”；加载97279e91与成长组合先独立验证并按最新用户授权正常发布，首页与结算仍各自验证后逐批整合，不混未验证修改。main精确回执以本批交付为准，不查询CI/域名。
 
+2026-10-16 首页/加载/成长当前并集见[新同版记录](production/evidence/home-experience-integration-2026-10-16/README.md)，先行加载与成长main8090b58c已核实发布；首页按本批授权接续验证并发布。结算PC回归候选331db92d未混入，冻结分支fix/settlement-layout-performance-20261016由父线程交接独立修复，不以手机改善代签PC性能。
+
 ## 共同Joker正常入口/UI交接（PR25，2026-10-05 UTC，仅review）
 
 source92ade25，正常合入PR22 e2fc与PR24 36eff；UI自然证据a8fcd2e与source的src/harness tree相同。六角色普通新局同combo-growth-v1/e7d21，仅阿默助攻；旧身份继续/导入/精确retry与默认createRun v11保留。2377tests/132files、content/type/build/桌面手机smoke/plan冻结全PASS，有限自然d12与阿默路线、四选角视口和7受控正反例通过；15通过PNG与2FAIL图actual view，原FAIL/双方来源保留。证据[summary](production/evidence/p08-combo-growth-ui-2026-10-05/summary.json)。精确最终draft CI以PR25交接为准；main仍193c93b，父独审决定发布。P08 in_progress、C04 D32及真机/听感/平衡门槛保持。
