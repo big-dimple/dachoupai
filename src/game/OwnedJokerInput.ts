@@ -1,6 +1,7 @@
 import type Phaser from 'phaser';
 import type {Box} from './layout';
 import {PointerIntent} from './PointerIntent';
+import {pointerReleaseTime} from './PointerReleaseTime';
 import {modalBlocksCanvas} from './DetailDialog';
 import {requestOwnedJokerPickupHaptic} from './OwnedJokerHaptics';
 
@@ -15,7 +16,7 @@ interface Options {
 export class OwnedJokerInput {
   readonly surface=document.createElement('div');
   private readonly intent=new PointerIntent();
-  private owner?:{pointerId:number;id:string;x:number;y:number;touch:boolean;lifted:boolean;canceled:boolean;width:number;height:number;canDrag:boolean};
+  private owner?:{pointerId:number;id:string;x:number;y:number;touch:boolean;lifted:boolean;canceled:boolean;width:number;height:number;canDrag:boolean;at:number;downTime:number};
   private contacts=new Map<number,string>();
   private timer?:ReturnType<typeof setTimeout>;
   private savedInput=true;
@@ -61,8 +62,8 @@ export class OwnedJokerInput {
     if(e.button!==0||!e.isPrimary||this.contacts.size!==1||this.owner||this.blocked(e))return;
     const {x,y}=this.coordinates(e),card=this.options.cards().find(b=>x>=b.x&&x<=b.x+b.width&&y>=b.y&&y<=b.y+b.height);if(!card)return;
     this.options.cancelCanvas();this.savedInput=this.scene.input.enabled;this.scene.input.enabled=false;
-    this.owner={pointerId:e.pointerId,id:card.id,x,y,touch:e.pointerType==='touch',lifted:false,canceled:false,width:innerWidth,height:innerHeight,canDrag:this.options.ready()};
-    this.intent.down(e.pointerId,x,y,performance.now());
+    const at=performance.now();this.owner={pointerId:e.pointerId,id:card.id,x,y,touch:e.pointerType==='touch',lifted:false,canceled:false,width:innerWidth,height:innerHeight,canDrag:this.options.ready(),at,downTime:e.timeStamp};
+    this.intent.down(e.pointerId,x,y,at);
     try{this.surface.setPointerCapture(e.pointerId);}catch{/* Window events still track the contact. */}
     if(e.pointerType!=='touch')e.preventDefault();
     this.timer=setTimeout(()=>{const o=this.owner;if(o&&!o.canceled&&this.options.inspectable()&&!document.querySelector('dialog[open]')&&this.intent.hold(performance.now())&&o.canDrag&&this.options.ready())this.lift(o);},355);
@@ -84,7 +85,7 @@ export class OwnedJokerInput {
   };
   private readonly up=(e:PointerEvent)=>{
     this.contacts.delete(e.pointerId);const o=this.owner;if(!o||e.pointerId!==o.pointerId)return;
-    const {x,y}=this.coordinates(e),kind=this.intent.up(e.pointerId,x,y,performance.now()),valid=!o.canceled&&!this.blocked(e);
+    const {x,y}=this.coordinates(e),kind=this.intent.up(e.pointerId,x,y,pointerReleaseTime(o.at,o.downTime,e.timeStamp,performance.now())),valid=!o.canceled&&!this.blocked(e);
     this.finish();e.preventDefault();e.stopPropagation();
     if(valid&&o.canDrag&&this.options.ready()&&o.lifted&&kind==='drag')this.options.drop(o.id,x,y);
     else {this.options.cancel();if(valid&&(kind==='tap'||!o.canDrag&&kind==='none'))this.options.tap(o.id);}
