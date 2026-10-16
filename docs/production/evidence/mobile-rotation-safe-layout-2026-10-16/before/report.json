@@ -1,0 +1,3397 @@
+{
+  "phase": "before",
+  "cases": [
+    {
+      "label": "390x740-hero",
+      "viewport": {
+        "width": 390,
+        "height": 740
+      },
+      "selected": "azao",
+      "mode": {
+        "mode": "standard",
+        "difficulty": 0,
+        "challengeId": null,
+        "programsEnabled": true
+      },
+      "geometry": null,
+      "texts": [
+        {
+          "name": "",
+          "text": "英雄登场",
+          "x": 12,
+          "y": 12,
+          "width": 96,
+          "height": 26
+        },
+        {
+          "name": "",
+          "text": "模式 · 普通",
+          "x": 240,
+          "y": 23.5,
+          "width": 76,
+          "height": 19
+        },
+        {
+          "name": "opening/portrait-hint",
+          "text": "点击查看全图",
+          "x": 278,
+          "y": 326,
+          "width": 84,
+          "height": 17
+        },
+        {
+          "name": "opening/name",
+          "text": "文成公主",
+          "x": 22,
+          "y": 356,
+          "width": 96,
+          "height": 26
+        },
+        {
+          "name": "opening/skill-tag",
+          "text": "和亲",
+          "x": 130,
+          "y": 363,
+          "width": 32,
+          "height": 19
+        },
+        {
+          "name": "opening/skill-hook",
+          "text": "换型蓄至3层，释放×1.5／2.5／4。",
+          "x": 22,
+          "y": 386,
+          "width": 221,
+          "height": 17
+        },
+        {
+          "name": "opening/skill-conditions",
+          "text": "两对及以上 · 有层可释放 · 可重新蓄势",
+          "x": 22,
+          "y": 407,
+          "width": 234,
+          "height": 17
+        },
+        {
+          "name": "",
+          "text": "故事 · 技能",
+          "x": 69,
+          "y": 475.5,
+          "width": 76,
+          "height": 19
+        },
+        {
+          "name": "",
+          "text": "技能例子",
+          "x": 254,
+          "y": 475.5,
+          "width": 60,
+          "height": 19
+        },
+        {
+          "name": "opening/seat-name",
+          "text": "苏轼",
+          "x": 43.0000025431315,
+          "y": 531,
+          "width": 32,
+          "height": 19
+        },
+        {
+          "name": "opening/seat-tag",
+          "text": "余音袅袅",
+          "x": 42.0000025431315,
+          "y": 552,
+          "width": 56,
+          "height": 17
+        },
+        {
+          "name": "opening/seat-name",
+          "text": "秦琼",
+          "x": 167.99999999999997,
+          "y": 531,
+          "width": 32,
+          "height": 19
+        },
+        {
+          "name": "opening/seat-tag",
+          "text": "跃马冲阵",
+          "x": 166.99999999999997,
+          "y": 552,
+          "width": 56,
+          "height": 17
+        },
+        {
+          "name": "opening/seat-name",
+          "text": "辛弃疾",
+          "x": 291.99998982747394,
+          "y": 531,
+          "width": 48,
+          "height": 19
+        },
+        {
+          "name": "opening/seat-tag",
+          "text": "众里寻他",
+          "x": 291.99998982747394,
+          "y": 552,
+          "width": 56,
+          "height": 17
+        },
+        {
+          "name": "opening/seat-name",
+          "text": "刘娥",
+          "x": 43.0000025431315,
+          "y": 583,
+          "width": 32,
+          "height": 19
+        },
+        {
+          "name": "opening/seat-tag",
+          "text": "垂帘听政",
+          "x": 42.0000025431315,
+          "y": 604,
+          "width": 56,
+          "height": 17
+        },
+        {
+          "name": "opening/seat-name",
+          "text": "文成公主",
+          "x": 167.99999999999997,
+          "y": 583,
+          "width": 64,
+          "height": 19
+        },
+        {
+          "name": "opening/seat-tag",
+          "text": "和亲",
+          "x": 180.99999999999997,
+          "y": 604,
+          "width": 28,
+          "height": 17
+        },
+        {
+          "name": "opening/selected-mark",
+          "text": "✓",
+          "x": 237.99999999999997,
+          "y": 602,
+          "width": 10,
+          "height": 17
+        },
+        {
+          "name": "opening/seat-name",
+          "text": "花蕊夫人",
+          "x": 291.99998982747394,
+          "y": 583,
+          "width": 64,
+          "height": 19
+        },
+        {
+          "name": "opening/seat-tag",
+          "text": "赏赐",
+          "x": 305.99998982747394,
+          "y": 604,
+          "width": 28,
+          "height": 17
+        },
+        {
+          "name": "",
+          "text": "取消",
+          "x": 37,
+          "y": 653.5,
+          "width": 30,
+          "height": 19
+        },
+        {
+          "name": "",
+          "text": "比一比",
+          "x": 123.5,
+          "y": 653.5,
+          "width": 45,
+          "height": 19
+        },
+        {
+          "name": "",
+          "text": "选路线 →",
+          "x": 241.5,
+          "y": 649,
+          "width": 95,
+          "height": 28
+        },
+        {
+          "name": "opening/status",
+          "text": "文成公主 · 下一步选路线",
+          "x": 12,
+          "y": 700,
+          "width": 152,
+          "height": 17
+        }
+      ],
+      "targets": [
+        {
+          "name": "action/select-mode",
+          "x": 230,
+          "y": 12,
+          "width": 96,
+          "height": 44
+        },
+        {
+          "name": "opening/portrait-full",
+          "x": 22,
+          "y": 74,
+          "width": 346,
+          "height": 274
+        },
+        {
+          "name": "opening/hero-details",
+          "x": 22,
+          "y": 464,
+          "width": 169,
+          "height": 44
+        },
+        {
+          "name": "action/opening-sample",
+          "x": 199,
+          "y": 464,
+          "width": 169,
+          "height": 44
+        },
+        {
+          "name": "character/amo",
+          "x": 12.000000000000007,
+          "y": 528,
+          "width": 116.66666666666669,
+          "height": 44
+        },
+        {
+          "name": "character/touye",
+          "x": 136.66666666666669,
+          "y": 528,
+          "width": 116.66666666666669,
+          "height": 44
+        },
+        {
+          "name": "character/laohuan",
+          "x": 261.33333333333337,
+          "y": 528,
+          "width": 116.66666666666669,
+          "height": 44
+        },
+        {
+          "name": "character/erxiang",
+          "x": 12.000000000000007,
+          "y": 580,
+          "width": 116.66666666666669,
+          "height": 44
+        },
+        {
+          "name": "character/azao",
+          "x": 136.66666666666669,
+          "y": 580,
+          "width": 116.66666666666669,
+          "height": 44
+        },
+        {
+          "name": "character/xiemu",
+          "x": 261.33333333333337,
+          "y": 580,
+          "width": 116.66666666666669,
+          "height": 44
+        },
+        {
+          "name": "action/cancel-character",
+          "x": 12,
+          "y": 636,
+          "width": 80,
+          "height": 56
+        },
+        {
+          "name": "action/character-details",
+          "x": 100,
+          "y": 636,
+          "width": 91,
+          "height": 56
+        },
+        {
+          "name": "action/confirm-character",
+          "x": 199,
+          "y": 636,
+          "width": 179,
+          "height": 56
+        }
+      ]
+    },
+    {
+      "label": "740x320-hero",
+      "viewport": {
+        "width": 740,
+        "height": 320
+      },
+      "selected": "azao",
+      "mode": {
+        "mode": "standard",
+        "difficulty": 0,
+        "challengeId": null,
+        "programsEnabled": true
+      },
+      "geometry": null,
+      "texts": [
+        {
+          "name": "",
+          "text": "英雄登场",
+          "x": 12,
+          "y": 36,
+          "width": 96,
+          "height": 26
+        },
+        {
+          "name": "",
+          "text": "模式 · 普通",
+          "x": 562,
+          "y": 47.5,
+          "width": 76,
+          "height": 19
+        },
+        {
+          "name": "opening/portrait-hint",
+          "text": "点击查看全图",
+          "x": 73,
+          "y": 128,
+          "width": 84,
+          "height": 17
+        },
+        {
+          "name": "opening/name",
+          "text": "文成公主",
+          "x": 171,
+          "y": 96,
+          "width": 96,
+          "height": 26
+        },
+        {
+          "name": "opening/skill-tag",
+          "text": "和亲",
+          "x": 171,
+          "y": 126,
+          "width": 32,
+          "height": 19
+        },
+        {
+          "name": "opening/skill-hook",
+          "text": "换型蓄至3层，释放×1.5／2.5／4。",
+          "x": 171,
+          "y": 149,
+          "width": 221,
+          "height": 17
+        },
+        {
+          "name": "opening/skill-conditions",
+          "text": "两对及以上 · 有层可释放 · 可重新蓄势",
+          "x": 171,
+          "y": 170,
+          "width": 234,
+          "height": 17
+        },
+        {
+          "name": "",
+          "text": "故事 · 技能",
+          "x": 268,
+          "y": 115.5,
+          "width": 76,
+          "height": 19
+        },
+        {
+          "name": "",
+          "text": "技能例子",
+          "x": 555,
+          "y": 115.5,
+          "width": 60,
+          "height": 19
+        },
+        {
+          "name": "opening/seat-name",
+          "text": "苏轼",
+          "x": 42.9999974568685,
+          "y": 175,
+          "width": 32,
+          "height": 19
+        },
+        {
+          "name": "opening/seat-tag",
+          "text": "余音袅袅",
+          "x": 38.9999974568685,
+          "y": 202,
+          "width": 56,
+          "height": 17
+        },
+        {
+          "name": "opening/seat-name",
+          "text": "秦琼",
+          "x": 164.00000000000003,
+          "y": 175,
+          "width": 32,
+          "height": 19
+        },
+        {
+          "name": "opening/seat-tag",
+          "text": "跃马冲阵",
+          "x": 160.00000000000003,
+          "y": 202,
+          "width": 56,
+          "height": 17
+        },
+        {
+          "name": "opening/seat-name",
+          "text": "辛弃疾",
+          "x": 286.00001017252606,
+          "y": 175,
+          "width": 48,
+          "height": 19
+        },
+        {
+          "name": "opening/seat-tag",
+          "text": "众里寻他",
+          "x": 281.00001017252606,
+          "y": 202,
+          "width": 56,
+          "height": 17
+        },
+        {
+          "name": "opening/seat-name",
+          "text": "刘娥",
+          "x": 406.99998982747394,
+          "y": 175,
+          "width": 32,
+          "height": 19
+        },
+        {
+          "name": "opening/seat-tag",
+          "text": "垂帘听政",
+          "x": 402.99998982747394,
+          "y": 202,
+          "width": 56,
+          "height": 17
+        },
+        {
+          "name": "opening/seat-name",
+          "text": "文成公主",
+          "x": 528,
+          "y": 175,
+          "width": 64,
+          "height": 19
+        },
+        {
+          "name": "opening/seat-tag",
+          "text": "和亲",
+          "x": 538,
+          "y": 202,
+          "width": 28,
+          "height": 17
+        },
+        {
+          "name": "opening/selected-mark",
+          "text": "✓",
+          "x": 592,
+          "y": 200,
+          "width": 10,
+          "height": 17
+        },
+        {
+          "name": "opening/seat-name",
+          "text": "花蕊夫人",
+          "x": 649.999979654948,
+          "y": 175,
+          "width": 64,
+          "height": 19
+        },
+        {
+          "name": "opening/seat-tag",
+          "text": "赏赐",
+          "x": 658.999979654948,
+          "y": 202,
+          "width": 28,
+          "height": 17
+        },
+        {
+          "name": "",
+          "text": "取消",
+          "x": 76,
+          "y": 245.5,
+          "width": 30,
+          "height": 19
+        },
+        {
+          "name": "",
+          "text": "比一比",
+          "x": 244.5,
+          "y": 245.5,
+          "width": 45,
+          "height": 19
+        },
+        {
+          "name": "",
+          "text": "选路线 →",
+          "x": 498.5,
+          "y": 241,
+          "width": 95,
+          "height": 28
+        },
+        {
+          "name": "opening/status",
+          "text": "文成公主 · 下一步选路线",
+          "x": 12,
+          "y": 282,
+          "width": 152,
+          "height": 17
+        }
+      ],
+      "targets": [
+        {
+          "name": "action/select-mode",
+          "x": 544,
+          "y": 36,
+          "width": 112,
+          "height": 44
+        },
+        {
+          "name": "opening/portrait-full",
+          "x": 20,
+          "y": 96,
+          "width": 143.20000000000002,
+          "height": 54
+        },
+        {
+          "name": "opening/hero-details",
+          "x": 171.2,
+          "y": 102,
+          "width": 270.4,
+          "height": 48
+        },
+        {
+          "name": "action/opening-sample",
+          "x": 449.59999999999997,
+          "y": 102,
+          "width": 270.40000000000003,
+          "height": 48
+        },
+        {
+          "name": "character/amo",
+          "x": 11.999999999999993,
+          "y": 172,
+          "width": 109.33333333333331,
+          "height": 50
+        },
+        {
+          "name": "character/touye",
+          "x": 133.33333333333331,
+          "y": 172,
+          "width": 109.33333333333331,
+          "height": 50
+        },
+        {
+          "name": "character/laohuan",
+          "x": 254.66666666666666,
+          "y": 172,
+          "width": 109.33333333333334,
+          "height": 50
+        },
+        {
+          "name": "character/erxiang",
+          "x": 376,
+          "y": 172,
+          "width": 109.33333333333331,
+          "height": 50
+        },
+        {
+          "name": "character/azao",
+          "x": 497.3333333333333,
+          "y": 172,
+          "width": 109.33333333333331,
+          "height": 50
+        },
+        {
+          "name": "character/xiemu",
+          "x": 618.6666666666666,
+          "y": 172,
+          "width": 109.33333333333337,
+          "height": 50
+        },
+        {
+          "name": "action/cancel-character",
+          "x": 12,
+          "y": 234,
+          "width": 157,
+          "height": 44
+        },
+        {
+          "name": "action/character-details",
+          "x": 177,
+          "y": 234,
+          "width": 179,
+          "height": 44
+        },
+        {
+          "name": "action/confirm-character",
+          "x": 364,
+          "y": 234,
+          "width": 364,
+          "height": 44
+        }
+      ]
+    },
+    {
+      "label": "320x568-hero",
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "selected": "azao",
+      "mode": {
+        "mode": "standard",
+        "difficulty": 0,
+        "challengeId": null,
+        "programsEnabled": true
+      },
+      "geometry": null,
+      "texts": [
+        {
+          "name": "",
+          "text": "英雄登场",
+          "x": 12,
+          "y": 36,
+          "width": 96,
+          "height": 26
+        },
+        {
+          "name": "",
+          "text": "模式 · 普通",
+          "x": 170,
+          "y": 47.5,
+          "width": 76,
+          "height": 19
+        },
+        {
+          "name": "opening/portrait-hint",
+          "text": "点击查看全图",
+          "x": 56,
+          "y": 228,
+          "width": 84,
+          "height": 17
+        },
+        {
+          "name": "opening/name",
+          "text": "文成公主",
+          "x": 156,
+          "y": 98,
+          "width": 96,
+          "height": 26
+        },
+        {
+          "name": "opening/skill-tag",
+          "text": "和亲",
+          "x": 156,
+          "y": 128,
+          "width": 32,
+          "height": 19
+        },
+        {
+          "name": "opening/skill-hook",
+          "text": "换型蓄至3层，释放×1.5／2.5／4。",
+          "x": 156,
+          "y": 151,
+          "width": 139,
+          "height": 34
+        },
+        {
+          "name": "opening/skill-conditions",
+          "text": "两对及以上 · 有层可释放 · 可重新蓄势",
+          "x": 156,
+          "y": 189,
+          "width": 78,
+          "height": 51
+        },
+        {
+          "name": "",
+          "text": "故事 · 技能",
+          "x": 51,
+          "y": 269.5,
+          "width": 76,
+          "height": 19
+        },
+        {
+          "name": "",
+          "text": "技能例子",
+          "x": 201,
+          "y": 269.5,
+          "width": 60,
+          "height": 19
+        },
+        {
+          "name": "opening/seat-name",
+          "text": "苏轼",
+          "x": 41.00000127156576,
+          "y": 325,
+          "width": 32.00000000000001,
+          "height": 19
+        },
+        {
+          "name": "opening/seat-tag",
+          "text": "余音袅袅",
+          "x": 31.000001271565758,
+          "y": 346,
+          "width": 56.00000000000001,
+          "height": 17
+        },
+        {
+          "name": "opening/seat-name",
+          "text": "秦琼",
+          "x": 143,
+          "y": 325,
+          "width": 32,
+          "height": 19
+        },
+        {
+          "name": "opening/seat-tag",
+          "text": "跃马冲阵",
+          "x": 132,
+          "y": 346,
+          "width": 56,
+          "height": 17
+        },
+        {
+          "name": "opening/seat-name",
+          "text": "辛弃疾",
+          "x": 244.00001017252606,
+          "y": 325,
+          "width": 48,
+          "height": 19
+        },
+        {
+          "name": "opening/seat-tag",
+          "text": "众里寻他",
+          "x": 233.00001017252606,
+          "y": 346,
+          "width": 56,
+          "height": 17
+        },
+        {
+          "name": "opening/seat-name",
+          "text": "刘娥",
+          "x": 41.00000127156576,
+          "y": 377,
+          "width": 32.00000000000001,
+          "height": 19
+        },
+        {
+          "name": "opening/seat-tag",
+          "text": "垂帘听政",
+          "x": 31.000001271565758,
+          "y": 398,
+          "width": 56.00000000000001,
+          "height": 17
+        },
+        {
+          "name": "opening/seat-name",
+          "text": "文成公主",
+          "x": 143,
+          "y": 377,
+          "width": 56,
+          "height": 18
+        },
+        {
+          "name": "opening/seat-tag",
+          "text": "和亲",
+          "x": 146,
+          "y": 398,
+          "width": 28,
+          "height": 17
+        },
+        {
+          "name": "opening/selected-mark",
+          "text": "✓",
+          "x": 192,
+          "y": 396,
+          "width": 10,
+          "height": 17
+        },
+        {
+          "name": "opening/seat-name",
+          "text": "花蕊夫人",
+          "x": 244.00001017252606,
+          "y": 377,
+          "width": 56,
+          "height": 18
+        },
+        {
+          "name": "opening/seat-tag",
+          "text": "赏赐",
+          "x": 247.00001017252606,
+          "y": 398,
+          "width": 28,
+          "height": 17
+        },
+        {
+          "name": "",
+          "text": "取消",
+          "x": 30,
+          "y": 447.5,
+          "width": 30,
+          "height": 19
+        },
+        {
+          "name": "",
+          "text": "比一比",
+          "x": 99.5,
+          "y": 447.5,
+          "width": 45,
+          "height": 19
+        },
+        {
+          "name": "",
+          "text": "选路线 →",
+          "x": 190.5,
+          "y": 443,
+          "width": 95,
+          "height": 28
+        },
+        {
+          "name": "opening/status",
+          "text": "文成公主 · 下一步选路线",
+          "x": 12,
+          "y": 494,
+          "width": 152,
+          "height": 17
+        }
+      ],
+      "targets": [
+        {
+          "name": "action/select-mode",
+          "x": 160,
+          "y": 36,
+          "width": 96,
+          "height": 44
+        },
+        {
+          "name": "opening/portrait-full",
+          "x": 22,
+          "y": 98,
+          "width": 124.32,
+          "height": 152
+        },
+        {
+          "name": "opening/hero-details",
+          "x": 22,
+          "y": 258,
+          "width": 134,
+          "height": 44
+        },
+        {
+          "name": "action/opening-sample",
+          "x": 164,
+          "y": 258,
+          "width": 134,
+          "height": 44
+        },
+        {
+          "name": "character/amo",
+          "x": 12,
+          "y": 322,
+          "width": 93.33333333333333,
+          "height": 44
+        },
+        {
+          "name": "character/touye",
+          "x": 113.33333333333334,
+          "y": 322,
+          "width": 93.33333333333334,
+          "height": 44
+        },
+        {
+          "name": "character/laohuan",
+          "x": 214.66666666666666,
+          "y": 322,
+          "width": 93.33333333333334,
+          "height": 44
+        },
+        {
+          "name": "character/erxiang",
+          "x": 12,
+          "y": 374,
+          "width": 93.33333333333333,
+          "height": 44
+        },
+        {
+          "name": "character/azao",
+          "x": 113.33333333333334,
+          "y": 374,
+          "width": 93.33333333333334,
+          "height": 44
+        },
+        {
+          "name": "character/xiemu",
+          "x": 214.66666666666666,
+          "y": 374,
+          "width": 93.33333333333334,
+          "height": 44
+        },
+        {
+          "name": "action/cancel-character",
+          "x": 12,
+          "y": 430,
+          "width": 65,
+          "height": 56
+        },
+        {
+          "name": "action/character-details",
+          "x": 85,
+          "y": 430,
+          "width": 74,
+          "height": 56
+        },
+        {
+          "name": "action/confirm-character",
+          "x": 167,
+          "y": 430,
+          "width": 141,
+          "height": 56
+        }
+      ]
+    },
+    {
+      "label": "1366x768-hero",
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      },
+      "selected": "azao",
+      "mode": {
+        "mode": "standard",
+        "difficulty": 0,
+        "challengeId": null,
+        "programsEnabled": true
+      },
+      "geometry": null,
+      "texts": [
+        {
+          "name": "",
+          "text": "英雄登场",
+          "x": 23,
+          "y": 12,
+          "width": 120,
+          "height": 35
+        },
+        {
+          "name": "",
+          "text": "模式 · 普通",
+          "x": 1188,
+          "y": 23.5,
+          "width": 76,
+          "height": 19
+        },
+        {
+          "name": "",
+          "text": "先选英雄，再选路线",
+          "x": 23,
+          "y": 52,
+          "width": 126,
+          "height": 17
+        },
+        {
+          "name": "opening/portrait-hint",
+          "text": "点击查看全图",
+          "x": 415,
+          "y": 454,
+          "width": 84,
+          "height": 17
+        },
+        {
+          "name": "opening/name",
+          "text": "文成公主",
+          "x": 517,
+          "y": 100,
+          "width": 176,
+          "height": 50
+        },
+        {
+          "name": "opening/skill-tag",
+          "text": "和亲",
+          "x": 517,
+          "y": 154,
+          "width": 44,
+          "height": 28
+        },
+        {
+          "name": "opening/skill-hook",
+          "text": "换型蓄至3层，释放×1.5／2.5／4。",
+          "x": 517,
+          "y": 186,
+          "width": 284,
+          "height": 20
+        },
+        {
+          "name": "opening/skill-conditions",
+          "text": "两对及以上 · 有层可释放 · 可重新蓄势",
+          "x": 517,
+          "y": 210,
+          "width": 234,
+          "height": 17
+        },
+        {
+          "name": "",
+          "text": "故事 · 技能",
+          "x": 681,
+          "y": 465.5,
+          "width": 76,
+          "height": 19
+        },
+        {
+          "name": "",
+          "text": "技能例子",
+          "x": 1100,
+          "y": 465.5,
+          "width": 60,
+          "height": 19
+        },
+        {
+          "name": "opening/seat-name",
+          "text": "苏轼",
+          "x": 124,
+          "y": 555,
+          "width": 40,
+          "height": 25
+        },
+        {
+          "name": "opening/seat-tag",
+          "text": "余音袅袅",
+          "x": 124,
+          "y": 588,
+          "width": 56,
+          "height": 17
+        },
+        {
+          "name": "opening/seat-name",
+          "text": "秦琼",
+          "x": 346,
+          "y": 555,
+          "width": 40,
+          "height": 25
+        },
+        {
+          "name": "opening/seat-tag",
+          "text": "跃马冲阵",
+          "x": 346,
+          "y": 588,
+          "width": 56,
+          "height": 17
+        },
+        {
+          "name": "opening/seat-name",
+          "text": "辛弃疾",
+          "x": 568,
+          "y": 555,
+          "width": 60,
+          "height": 25
+        },
+        {
+          "name": "opening/seat-tag",
+          "text": "众里寻他",
+          "x": 568,
+          "y": 588,
+          "width": 56,
+          "height": 17
+        },
+        {
+          "name": "opening/seat-name",
+          "text": "刘娥",
+          "x": 790,
+          "y": 555,
+          "width": 40,
+          "height": 25
+        },
+        {
+          "name": "opening/seat-tag",
+          "text": "垂帘听政",
+          "x": 790,
+          "y": 588,
+          "width": 56,
+          "height": 17
+        },
+        {
+          "name": "opening/seat-name",
+          "text": "文成公主",
+          "x": 1012,
+          "y": 555,
+          "width": 80,
+          "height": 25
+        },
+        {
+          "name": "opening/seat-tag",
+          "text": "和亲",
+          "x": 1012,
+          "y": 588,
+          "width": 28,
+          "height": 17
+        },
+        {
+          "name": "opening/selected-mark",
+          "text": "✓",
+          "x": 1106,
+          "y": 630,
+          "width": 10,
+          "height": 17
+        },
+        {
+          "name": "opening/seat-name",
+          "text": "花蕊夫人",
+          "x": 1234,
+          "y": 555,
+          "width": 80,
+          "height": 25
+        },
+        {
+          "name": "opening/seat-tag",
+          "text": "赏赐",
+          "x": 1234,
+          "y": 588,
+          "width": 28,
+          "height": 17
+        },
+        {
+          "name": "",
+          "text": "取消",
+          "x": 153,
+          "y": 681.5,
+          "width": 30,
+          "height": 19
+        },
+        {
+          "name": "",
+          "text": "比一比",
+          "x": 463.5,
+          "y": 681.5,
+          "width": 45,
+          "height": 19
+        },
+        {
+          "name": "",
+          "text": "选路线 →",
+          "x": 953.5,
+          "y": 677,
+          "width": 95,
+          "height": 28
+        },
+        {
+          "name": "opening/status",
+          "text": "文成公主 · 下一步选路线",
+          "x": 23,
+          "y": 728,
+          "width": 152,
+          "height": 17
+        }
+      ],
+      "targets": [
+        {
+          "name": "action/select-mode",
+          "x": 1170,
+          "y": 12,
+          "width": 112,
+          "height": 44
+        },
+        {
+          "name": "opening/portrait-full",
+          "x": 35,
+          "y": 100,
+          "width": 470,
+          "height": 376
+        },
+        {
+          "name": "opening/hero-details",
+          "x": 517,
+          "y": 452,
+          "width": 403,
+          "height": 48
+        },
+        {
+          "name": "action/opening-sample",
+          "x": 928,
+          "y": 452,
+          "width": 403,
+          "height": 48
+        },
+        {
+          "name": "character/amo",
+          "x": 23,
+          "y": 526,
+          "width": 210,
+          "height": 126
+        },
+        {
+          "name": "character/touye",
+          "x": 245,
+          "y": 526,
+          "width": 210,
+          "height": 126
+        },
+        {
+          "name": "character/laohuan",
+          "x": 467,
+          "y": 526,
+          "width": 210,
+          "height": 126
+        },
+        {
+          "name": "character/erxiang",
+          "x": 689,
+          "y": 526,
+          "width": 210,
+          "height": 126
+        },
+        {
+          "name": "character/azao",
+          "x": 911,
+          "y": 526,
+          "width": 210,
+          "height": 126
+        },
+        {
+          "name": "character/xiemu",
+          "x": 1133,
+          "y": 526,
+          "width": 210,
+          "height": 126
+        },
+        {
+          "name": "action/cancel-character",
+          "x": 23,
+          "y": 664,
+          "width": 290,
+          "height": 56
+        },
+        {
+          "name": "action/character-details",
+          "x": 321,
+          "y": 664,
+          "width": 330,
+          "height": 56
+        },
+        {
+          "name": "action/confirm-character",
+          "x": 659,
+          "y": 664,
+          "width": 684,
+          "height": 56
+        }
+      ]
+    },
+    {
+      "label": "740x320-route",
+      "viewport": {
+        "width": 740,
+        "height": 320
+      },
+      "selected": "azao",
+      "route": "group",
+      "mode": {
+        "mode": "standard",
+        "difficulty": 0,
+        "challengeId": null,
+        "programsEnabled": true
+      },
+      "geometry": null,
+      "texts": [
+        {
+          "name": "",
+          "text": "选一条路",
+          "x": 12,
+          "y": 36,
+          "width": 96,
+          "height": 26
+        },
+        {
+          "name": "",
+          "text": "模式 · 普通",
+          "x": 562,
+          "y": 47.5,
+          "width": 76,
+          "height": 19
+        },
+        {
+          "name": "opening/portrait-hint",
+          "text": "点击查看全图",
+          "x": 73,
+          "y": 118,
+          "width": 84,
+          "height": 17
+        },
+        {
+          "name": "opening/name",
+          "text": "文成公主",
+          "x": 171,
+          "y": 96,
+          "width": 96,
+          "height": 26
+        },
+        {
+          "name": "opening/skill-tag",
+          "text": "和亲",
+          "x": 171,
+          "y": 126,
+          "width": 32,
+          "height": 19
+        },
+        {
+          "name": "opening/skill-hook",
+          "text": "换型蓄至3层，释放×1.5／2.5／4。",
+          "x": 171,
+          "y": 149,
+          "width": 221,
+          "height": 17
+        },
+        {
+          "name": "opening/skill-conditions",
+          "text": "两对及以上 · 有层可释放 · 可重新蓄势",
+          "x": 171,
+          "y": 170,
+          "width": 234,
+          "height": 17
+        },
+        {
+          "name": "",
+          "text": "故事 · 技能",
+          "x": 268,
+          "y": 105.5,
+          "width": 76,
+          "height": 19
+        },
+        {
+          "name": "",
+          "text": "路线例子",
+          "x": 555,
+          "y": 105.5,
+          "width": 60,
+          "height": 19
+        },
+        {
+          "name": "",
+          "text": "同点成组",
+          "x": 26,
+          "y": 170,
+          "width": 72,
+          "height": 23
+        },
+        {
+          "name": "",
+          "text": "留同点，凑两对或三条。",
+          "x": 26,
+          "y": 194,
+          "width": 154,
+          "height": 17
+        },
+        {
+          "name": "",
+          "text": "顺子接续",
+          "x": 267,
+          "y": 170,
+          "width": 72,
+          "height": 23
+        },
+        {
+          "name": "",
+          "text": "留不同点数，接成连续牌。",
+          "x": 267,
+          "y": 194,
+          "width": 168,
+          "height": 17
+        },
+        {
+          "name": "",
+          "text": "同花集中",
+          "x": 509,
+          "y": 170,
+          "width": 72,
+          "height": 23
+        },
+        {
+          "name": "",
+          "text": "留同花色，慢慢集中牌组。",
+          "x": 509,
+          "y": 194,
+          "width": 168,
+          "height": 17
+        },
+        {
+          "name": "",
+          "text": "返回",
+          "x": 76,
+          "y": 245.5,
+          "width": 30,
+          "height": 19
+        },
+        {
+          "name": "",
+          "text": "比一比",
+          "x": 244.5,
+          "y": 245.5,
+          "width": 45,
+          "height": 19
+        },
+        {
+          "name": "",
+          "text": "开始对局",
+          "x": 502,
+          "y": 241,
+          "width": 88,
+          "height": 28
+        },
+        {
+          "name": "opening/status",
+          "text": "文成公主 · 同点成组 · 确认才开局",
+          "x": 12,
+          "y": 282,
+          "width": 206,
+          "height": 17
+        }
+      ],
+      "targets": [
+        {
+          "name": "action/select-mode",
+          "x": 544,
+          "y": 36,
+          "width": 112,
+          "height": 44
+        },
+        {
+          "name": "opening/portrait-full",
+          "x": 20,
+          "y": 96,
+          "width": 143.20000000000002,
+          "height": 44
+        },
+        {
+          "name": "opening/hero-details",
+          "x": 171.2,
+          "y": 92,
+          "width": 270.4,
+          "height": 48
+        },
+        {
+          "name": "action/opening-sample",
+          "x": 449.59999999999997,
+          "y": 92,
+          "width": 270.40000000000003,
+          "height": 48
+        },
+        {
+          "name": "route/group",
+          "x": 12.000000000000014,
+          "y": 162,
+          "width": 233.33333333333337,
+          "height": 60
+        },
+        {
+          "name": "route/straight",
+          "x": 253.33333333333331,
+          "y": 162,
+          "width": 233.33333333333331,
+          "height": 60
+        },
+        {
+          "name": "route/flush",
+          "x": 494.6666666666667,
+          "y": 162,
+          "width": 233.33333333333331,
+          "height": 60
+        },
+        {
+          "name": "action/cancel-character",
+          "x": 12,
+          "y": 234,
+          "width": 157,
+          "height": 44
+        },
+        {
+          "name": "action/character-details",
+          "x": 177,
+          "y": 234,
+          "width": 179,
+          "height": 44
+        },
+        {
+          "name": "action/confirm-character",
+          "x": 364,
+          "y": 234,
+          "width": 364,
+          "height": 44
+        }
+      ]
+    },
+    {
+      "label": "390x740-shop",
+      "viewport": {
+        "width": 390,
+        "height": 740
+      },
+      "geometry": {
+        "x": 12,
+        "w": 366,
+        "top": 8,
+        "pc": null,
+        "desktop": false,
+        "short": false,
+        "copyBeside": false,
+        "inventoryCollapsed": false,
+        "compact": true,
+        "wideHeader": false,
+        "portrait": true,
+        "guidanceBelow": false,
+        "slots": [
+          {
+            "x": 23,
+            "y": 387.2,
+            "width": 64,
+            "height": 89.6
+          },
+          {
+            "x": 93,
+            "y": 387.2,
+            "width": 64,
+            "height": 89.6
+          },
+          {
+            "x": 163,
+            "y": 387.2,
+            "width": 64,
+            "height": 89.6
+          },
+          {
+            "x": 233,
+            "y": 387.2,
+            "width": 64,
+            "height": 89.6
+          },
+          {
+            "x": 303,
+            "y": 387.2,
+            "width": 64,
+            "height": 89.6
+          }
+        ],
+        "shelf": [
+          {
+            "x": 16.333333333333336,
+            "y": 112,
+            "width": 108,
+            "height": 151.2
+          },
+          {
+            "x": 141.00000000000003,
+            "y": 112,
+            "width": 108,
+            "height": 151.2
+          },
+          {
+            "x": 265.6666666666667,
+            "y": 112,
+            "width": 108,
+            "height": 151.2
+          }
+        ],
+        "tabs": {
+          "x": 12,
+          "y": 60,
+          "width": 366,
+          "height": 44
+        },
+        "chapter": {
+          "x": 12,
+          "y": 484.79999999999995,
+          "width": 179,
+          "height": 44
+        },
+        "items": {
+          "x": 199,
+          "y": 484.79999999999995,
+          "width": 179,
+          "height": 44
+        },
+        "reroll": {
+          "x": 12,
+          "y": 596,
+          "width": 179,
+          "height": 44
+        },
+        "build": {
+          "x": 199,
+          "y": 596,
+          "width": 179,
+          "height": 44
+        },
+        "play": {
+          "x": 12,
+          "y": 648,
+          "width": 366,
+          "height": 56
+        },
+        "noticeY": 712
+      },
+      "texts": [
+        {
+          "name": "shop/title",
+          "text": "文成公主 · 筹备",
+          "x": 50,
+          "y": 11,
+          "width": 124,
+          "height": 21
+        },
+        {
+          "name": "shop/gold",
+          "text": "金币 6",
+          "x": 220,
+          "y": 12,
+          "width": 47,
+          "height": 19
+        },
+        {
+          "name": "shop/owned-heading",
+          "text": "当前持有 0/5",
+          "x": 23,
+          "y": 367,
+          "width": 83,
+          "height": 17
+        },
+        {
+          "name": "",
+          "text": "邀请助演\n3",
+          "x": 27,
+          "y": 63,
+          "width": 56,
+          "height": 36
+        },
+        {
+          "name": "",
+          "text": "道具\n2",
+          "x": 134,
+          "y": 64,
+          "width": 28,
+          "height": 34
+        },
+        {
+          "name": "",
+          "text": "长期道具\n1",
+          "x": 213,
+          "y": 64,
+          "width": 56,
+          "height": 34
+        },
+        {
+          "name": "",
+          "text": "道具箱\n0/2",
+          "x": 321,
+          "y": 64,
+          "width": 42,
+          "height": 34
+        },
+        {
+          "name": "shop/offer-name",
+          "text": "短节目",
+          "x": 16.0000025431315,
+          "y": 267.0000061035156,
+          "width": 45,
+          "height": 19
+        },
+        {
+          "name": "shop/offer-purpose",
+          "text": "出1–2张\n每手一次，倍率\n+1",
+          "x": 16.0000025431315,
+          "y": 286.0000061035156,
+          "width": 98,
+          "height": 51
+        },
+        {
+          "name": "shop/offer-price",
+          "text": "4金 · 查看",
+          "x": 16.0000025431315,
+          "y": 339.0000061035156,
+          "width": 75,
+          "height": 19
+        },
+        {
+          "name": "rarity-badge/label",
+          "text": "普",
+          "x": 105.33333587646484,
+          "y": 219.70001220703125,
+          "width": 12,
+          "height": 15
+        },
+        {
+          "name": "",
+          "text": "普通版",
+          "x": 79.33333587646484,
+          "y": 117.00000762939453,
+          "width": 36,
+          "height": 15
+        },
+        {
+          "name": "",
+          "text": "同点",
+          "x": 25.333335876464844,
+          "y": 118.00000762939453,
+          "width": 24,
+          "height": 15
+        },
+        {
+          "name": "shop/offer-name",
+          "text": "一唱一和",
+          "x": 140.99999999999997,
+          "y": 267.0000061035156,
+          "width": 60,
+          "height": 19
+        },
+        {
+          "name": "shop/offer-purpose",
+          "text": "≥2组各≥2张同点\n每手一次，倍率\n+2",
+          "x": 140.99999999999997,
+          "y": 286.0000061035156,
+          "width": 108,
+          "height": 51
+        },
+        {
+          "name": "shop/offer-price",
+          "text": "4金 · 查看",
+          "x": 140.99999999999997,
+          "y": 339.0000061035156,
+          "width": 75,
+          "height": 19
+        },
+        {
+          "name": "rarity-badge/label",
+          "text": "普",
+          "x": 230,
+          "y": 219.70001220703125,
+          "width": 12,
+          "height": 15
+        },
+        {
+          "name": "",
+          "text": "普通版",
+          "x": 204,
+          "y": 117.00000762939453,
+          "width": 36,
+          "height": 15
+        },
+        {
+          "name": "",
+          "text": "同点",
+          "x": 150,
+          "y": 118.00000762939453,
+          "width": 24,
+          "height": 15
+        },
+        {
+          "name": "shop/offer-name",
+          "text": "满堂彩",
+          "x": 265.99998982747394,
+          "y": 267.0000061035156,
+          "width": 45,
+          "height": 19
+        },
+        {
+          "name": "shop/offer-purpose",
+          "text": "对子等同点组合\n每手一次，热度\n+90",
+          "x": 265.99998982747394,
+          "y": 286.0000061035156,
+          "width": 98,
+          "height": 51
+        },
+        {
+          "name": "shop/offer-price",
+          "text": "4金 · 查看",
+          "x": 265.99998982747394,
+          "y": 339.0000061035156,
+          "width": 75,
+          "height": 19
+        },
+        {
+          "name": "rarity-badge/label",
+          "text": "普",
+          "x": 354.6666564941406,
+          "y": 219.70001220703125,
+          "width": 12,
+          "height": 15
+        },
+        {
+          "name": "",
+          "text": "普通版",
+          "x": 328.6666564941406,
+          "y": 117.00000762939453,
+          "width": 36,
+          "height": 15
+        },
+        {
+          "name": "",
+          "text": "同点",
+          "x": 274.6666564941406,
+          "y": 118.00000762939453,
+          "width": 24,
+          "height": 15
+        },
+        {
+          "name": "shop/route-starter-label",
+          "text": "起手",
+          "x": 343.99998982747394,
+          "y": 267.0000061035156,
+          "width": 28,
+          "height": 18
+        },
+        {
+          "name": "",
+          "text": "换牌 2 金",
+          "x": 70.5,
+          "y": 607.5,
+          "width": 63,
+          "height": 19
+        },
+        {
+          "name": "",
+          "text": "进入牌桌",
+          "x": 151,
+          "y": 661,
+          "width": 88,
+          "height": 28
+        },
+        {
+          "name": "",
+          "text": "培养 · 同点成组",
+          "x": 237.5,
+          "y": 607.5,
+          "width": 103,
+          "height": 19
+        },
+        {
+          "name": "",
+          "text": "点卡牌看详情，确认后扣款。",
+          "x": 12,
+          "y": 712,
+          "width": 182,
+          "height": 17
+        },
+        {
+          "name": "first-guide/shop-copy",
+          "text": "满堂彩 · 4金，查看后再决定",
+          "x": 18,
+          "y": 393,
+          "width": 178,
+          "height": 18
+        },
+        {
+          "name": "",
+          "text": "看起手",
+          "x": 82.5,
+          "y": 436.5,
+          "width": 45,
+          "height": 19
+        },
+        {
+          "name": "",
+          "text": "提示选项",
+          "x": 255,
+          "y": 436.5,
+          "width": 60,
+          "height": 19
+        }
+      ],
+      "targets": [
+        {
+          "name": "shop/hero-details",
+          "x": 6,
+          "y": 2,
+          "width": 44,
+          "height": 44
+        },
+        {
+          "name": "action/shelf-jokers",
+          "x": 12,
+          "y": 60,
+          "width": 86.66666666666667,
+          "height": 44
+        },
+        {
+          "name": "action/shelf-tools",
+          "x": 104.66666666666666,
+          "y": 60,
+          "width": 86.66666666666666,
+          "height": 44
+        },
+        {
+          "name": "action/shelf-items",
+          "x": 197.33333333333334,
+          "y": 60,
+          "width": 86.66666666666666,
+          "height": 44
+        },
+        {
+          "name": "action/tool-inventory",
+          "x": 290,
+          "y": 60,
+          "width": 88,
+          "height": 44
+        },
+        {
+          "name": "offer/run/1792122190723/azao/shop/0/0/joker/0",
+          "x": 16.333333333333343,
+          "y": 112,
+          "width": 108,
+          "height": 245.2
+        },
+        {
+          "name": "offer/run/1792122190723/azao/shop/0/0/joker/1",
+          "x": 141.00000000000003,
+          "y": 112,
+          "width": 108,
+          "height": 245.2
+        },
+        {
+          "name": "offer/run/1792122190723/azao/shop/0/0/joker/2",
+          "x": 265.6666666666667,
+          "y": 112,
+          "width": 108,
+          "height": 245.2
+        },
+        {
+          "name": "action/reroll",
+          "x": 12,
+          "y": 596,
+          "width": 179,
+          "height": 44
+        },
+        {
+          "name": "action/start-stage",
+          "x": 12,
+          "y": 648,
+          "width": 366,
+          "height": 56
+        },
+        {
+          "name": "action/build",
+          "x": 199,
+          "y": 596,
+          "width": 179,
+          "height": 44
+        },
+        {
+          "name": "first-guide/shop-open",
+          "x": 18,
+          "y": 425.2,
+          "width": 174,
+          "height": 44
+        },
+        {
+          "name": "first-guide/shop-options",
+          "x": 198,
+          "y": 425.2,
+          "width": 174,
+          "height": 44
+        }
+      ]
+    },
+    {
+      "label": "740x320-shop",
+      "viewport": {
+        "width": 740,
+        "height": 320
+      },
+      "geometry": {
+        "x": 12,
+        "w": 716,
+        "top": 36,
+        "pc": null,
+        "desktop": false,
+        "short": true,
+        "compact": true,
+        "wideHeader": false,
+        "portrait": false,
+        "copyBeside": true,
+        "inventoryCollapsed": true,
+        "slots": [
+          {
+            "x": 12,
+            "y": 88,
+            "width": 44,
+            "height": 61.6
+          },
+          {
+            "x": 64,
+            "y": 88,
+            "width": 44,
+            "height": 61.6
+          },
+          {
+            "x": 116,
+            "y": 88,
+            "width": 44,
+            "height": 61.6
+          },
+          {
+            "x": 168,
+            "y": 88,
+            "width": 44,
+            "height": 61.6
+          },
+          {
+            "x": 220,
+            "y": 88,
+            "width": 44,
+            "height": 61.6
+          }
+        ],
+        "shelf": [
+          {
+            "x": 12,
+            "y": 130,
+            "width": 88,
+            "height": 123.2
+          },
+          {
+            "x": 253.33333333333334,
+            "y": 130,
+            "width": 88,
+            "height": 123.2
+          },
+          {
+            "x": 494.6666666666667,
+            "y": 130,
+            "width": 88,
+            "height": 123.2
+          }
+        ],
+        "tabs": {
+          "x": 12,
+          "y": 84,
+          "width": 716,
+          "height": 44
+        },
+        "chapter": {
+          "x": 12,
+          "y": 168,
+          "width": 0,
+          "height": 44
+        },
+        "items": {
+          "x": 12,
+          "y": 168,
+          "width": 0,
+          "height": 44
+        },
+        "reroll": {
+          "x": 72,
+          "y": 36,
+          "width": 104,
+          "height": 44
+        },
+        "build": {
+          "x": 184,
+          "y": 36,
+          "width": 120,
+          "height": 44
+        },
+        "play": {
+          "x": 12,
+          "y": 220,
+          "width": 716,
+          "height": 56
+        },
+        "noticeY": 280
+      },
+      "texts": [
+        {
+          "name": "shop/title",
+          "text": "文成公主",
+          "x": 12,
+          "y": 39,
+          "width": 56,
+          "height": 16
+        },
+        {
+          "name": "shop/gold",
+          "text": "金币 6",
+          "x": 550,
+          "y": 40,
+          "width": 47,
+          "height": 19
+        },
+        {
+          "name": "",
+          "text": "邀请助演\n3",
+          "x": 86,
+          "y": 87,
+          "width": 56,
+          "height": 36
+        },
+        {
+          "name": "",
+          "text": "道具\n2",
+          "x": 309,
+          "y": 88,
+          "width": 28,
+          "height": 34
+        },
+        {
+          "name": "",
+          "text": "长期道具\n1",
+          "x": 504,
+          "y": 88,
+          "width": 56,
+          "height": 34
+        },
+        {
+          "name": "",
+          "text": "道具箱\n0/2",
+          "x": 671,
+          "y": 88,
+          "width": 42,
+          "height": 34
+        },
+        {
+          "name": "shop/offer-name",
+          "text": "短节目",
+          "x": 105.99999745686848,
+          "y": 134,
+          "width": 44.999999999999986,
+          "height": 19
+        },
+        {
+          "name": "shop/offer-purpose",
+          "text": "出1–2张\n每手一次，倍率+1",
+          "x": 105.99999745686848,
+          "y": 153,
+          "width": 116.99999999999999,
+          "height": 34
+        },
+        {
+          "name": "shop/offer-price",
+          "text": "4 金 · 查看",
+          "x": 105.99999745686848,
+          "y": 242,
+          "width": 79.99999999999999,
+          "height": 19
+        },
+        {
+          "name": "rarity-badge/label",
+          "text": "普",
+          "x": 81,
+          "y": 233.6999969482422,
+          "width": 12,
+          "height": 15
+        },
+        {
+          "name": "",
+          "text": "普通版",
+          "x": 55,
+          "y": 135,
+          "width": 36,
+          "height": 15
+        },
+        {
+          "name": "",
+          "text": "同点",
+          "x": 21,
+          "y": 136,
+          "width": 24,
+          "height": 15
+        },
+        {
+          "name": "shop/offer-name",
+          "text": "一唱一和",
+          "x": 347,
+          "y": 134,
+          "width": 60,
+          "height": 19
+        },
+        {
+          "name": "shop/offer-purpose",
+          "text": "≥2组各≥2张同点\n每手一次，倍率+2",
+          "x": 347,
+          "y": 153,
+          "width": 117,
+          "height": 34
+        },
+        {
+          "name": "shop/offer-price",
+          "text": "4 金 · 查看",
+          "x": 347,
+          "y": 242,
+          "width": 80,
+          "height": 19
+        },
+        {
+          "name": "rarity-badge/label",
+          "text": "普",
+          "x": 322.3333435058594,
+          "y": 233.6999969482422,
+          "width": 12,
+          "height": 15
+        },
+        {
+          "name": "",
+          "text": "普通版",
+          "x": 296.3333435058594,
+          "y": 135,
+          "width": 36,
+          "height": 15
+        },
+        {
+          "name": "",
+          "text": "同点",
+          "x": 262.3333435058594,
+          "y": 136,
+          "width": 24,
+          "height": 15
+        },
+        {
+          "name": "shop/offer-name",
+          "text": "满堂彩",
+          "x": 588.9999796549479,
+          "y": 134,
+          "width": 45,
+          "height": 19
+        },
+        {
+          "name": "shop/offer-purpose",
+          "text": "对子等同点组合\n每手一次，热度+90",
+          "x": 588.9999796549479,
+          "y": 153,
+          "width": 125,
+          "height": 34
+        },
+        {
+          "name": "shop/offer-price",
+          "text": "4 金 · 查看",
+          "x": 588.9999796549479,
+          "y": 242,
+          "width": 80,
+          "height": 19
+        },
+        {
+          "name": "rarity-badge/label",
+          "text": "普",
+          "x": 563.6666259765625,
+          "y": 233.6999969482422,
+          "width": 12,
+          "height": 15
+        },
+        {
+          "name": "",
+          "text": "普通版",
+          "x": 537.6666259765625,
+          "y": 135,
+          "width": 36,
+          "height": 15
+        },
+        {
+          "name": "",
+          "text": "同点",
+          "x": 503.6666564941406,
+          "y": 136,
+          "width": 24,
+          "height": 15
+        },
+        {
+          "name": "shop/route-starter-label",
+          "text": "起手",
+          "x": 689.9999796549479,
+          "y": 134,
+          "width": 28,
+          "height": 18
+        },
+        {
+          "name": "",
+          "text": "换牌 2 金",
+          "x": 92,
+          "y": 47.5,
+          "width": 64,
+          "height": 19
+        },
+        {
+          "name": "",
+          "text": "进入牌桌",
+          "x": 326,
+          "y": 233,
+          "width": 88,
+          "height": 28
+        },
+        {
+          "name": "",
+          "text": "培养 0/5",
+          "x": 213.5,
+          "y": 47.5,
+          "width": 61,
+          "height": 19
+        },
+        {
+          "name": "",
+          "text": "成组起手 · 满堂彩 4金可买；不买也可入场。",
+          "x": 12,
+          "y": 280,
+          "width": 277,
+          "height": 17
+        }
+      ],
+      "targets": [
+        {
+          "name": "action/shelf-jokers",
+          "x": 12,
+          "y": 84,
+          "width": 203.33333333333334,
+          "height": 44
+        },
+        {
+          "name": "action/shelf-tools",
+          "x": 221.33333333333331,
+          "y": 84,
+          "width": 203.33333333333331,
+          "height": 44
+        },
+        {
+          "name": "action/shelf-items",
+          "x": 430.6666666666667,
+          "y": 84,
+          "width": 203.33333333333331,
+          "height": 44
+        },
+        {
+          "name": "action/tool-inventory",
+          "x": 640,
+          "y": 84,
+          "width": 88,
+          "height": 44
+        },
+        {
+          "name": "offer/run/1792122190723/azao/shop/0/0/joker/0",
+          "x": 12,
+          "y": 130,
+          "width": 231.33333333333334,
+          "height": 136
+        },
+        {
+          "name": "offer/run/1792122190723/azao/shop/0/0/joker/1",
+          "x": 253.33333333333331,
+          "y": 130,
+          "width": 231.33333333333331,
+          "height": 136
+        },
+        {
+          "name": "offer/run/1792122190723/azao/shop/0/0/joker/2",
+          "x": 494.6666666666667,
+          "y": 130,
+          "width": 231.33333333333331,
+          "height": 136
+        },
+        {
+          "name": "action/reroll",
+          "x": 72,
+          "y": 36,
+          "width": 104,
+          "height": 44
+        },
+        {
+          "name": "action/start-stage",
+          "x": 12,
+          "y": 220,
+          "width": 716,
+          "height": 56
+        },
+        {
+          "name": "action/build",
+          "x": 184,
+          "y": 36,
+          "width": 120,
+          "height": 44
+        }
+      ]
+    },
+    {
+      "label": "320x568-shop",
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "geometry": {
+        "x": 12,
+        "w": 296,
+        "top": 36,
+        "pc": null,
+        "desktop": false,
+        "short": true,
+        "compact": true,
+        "wideHeader": false,
+        "portrait": false,
+        "copyBeside": true,
+        "inventoryCollapsed": true,
+        "slots": [
+          {
+            "x": 12,
+            "y": 88,
+            "width": 44,
+            "height": 61.6
+          },
+          {
+            "x": 64,
+            "y": 88,
+            "width": 44,
+            "height": 61.6
+          },
+          {
+            "x": 116,
+            "y": 88,
+            "width": 44,
+            "height": 61.6
+          },
+          {
+            "x": 168,
+            "y": 88,
+            "width": 44,
+            "height": 61.6
+          },
+          {
+            "x": 220,
+            "y": 88,
+            "width": 44,
+            "height": 61.6
+          }
+        ],
+        "shelf": [
+          {
+            "x": 12,
+            "y": 130,
+            "width": 88,
+            "height": 123.2
+          },
+          {
+            "x": 113.33333333333333,
+            "y": 130,
+            "width": 88,
+            "height": 123.2
+          },
+          {
+            "x": 214.66666666666666,
+            "y": 130,
+            "width": 88,
+            "height": 123.2
+          }
+        ],
+        "tabs": {
+          "x": 12,
+          "y": 84,
+          "width": 296,
+          "height": 44
+        },
+        "chapter": {
+          "x": 12,
+          "y": 402,
+          "width": 0,
+          "height": 44
+        },
+        "items": {
+          "x": 12,
+          "y": 402,
+          "width": 0,
+          "height": 44
+        },
+        "reroll": {
+          "x": 72,
+          "y": 36,
+          "width": 104,
+          "height": 44
+        },
+        "build": {
+          "x": 184,
+          "y": 36,
+          "width": 120,
+          "height": 44
+        },
+        "play": {
+          "x": 12,
+          "y": 454,
+          "width": 296,
+          "height": 56
+        },
+        "noticeY": 514
+      },
+      "texts": [
+        {
+          "name": "shop/title",
+          "text": "文成公主",
+          "x": 12,
+          "y": 39,
+          "width": 56,
+          "height": 16
+        },
+        {
+          "name": "shop/gold",
+          "text": "金币 6",
+          "x": 150,
+          "y": 40,
+          "width": 47,
+          "height": 19
+        },
+        {
+          "name": "",
+          "text": "邀请助演\n3",
+          "x": 16,
+          "y": 87,
+          "width": 56,
+          "height": 36
+        },
+        {
+          "name": "",
+          "text": "道具\n2",
+          "x": 99,
+          "y": 88,
+          "width": 28,
+          "height": 34
+        },
+        {
+          "name": "",
+          "text": "长期道具\n1",
+          "x": 154,
+          "y": 88,
+          "width": 56,
+          "height": 34
+        },
+        {
+          "name": "",
+          "text": "道具箱\n0/2",
+          "x": 251,
+          "y": 88,
+          "width": 42,
+          "height": 34
+        },
+        {
+          "name": "shop/offer-name",
+          "text": "…",
+          "x": 106,
+          "y": 134,
+          "width": 15,
+          "height": 19
+        }
+      ],
+      "targets": [
+        {
+          "name": "action/shelf-jokers",
+          "x": 12.000000000000004,
+          "y": 84,
+          "width": 63.33333333333334,
+          "height": 44
+        },
+        {
+          "name": "action/shelf-tools",
+          "x": 81.33333333333334,
+          "y": 84,
+          "width": 63.33333333333334,
+          "height": 44
+        },
+        {
+          "name": "action/shelf-items",
+          "x": 150.66666666666669,
+          "y": 84,
+          "width": 63.33333333333334,
+          "height": 44
+        },
+        {
+          "name": "action/tool-inventory",
+          "x": 220,
+          "y": 84,
+          "width": 88,
+          "height": 44
+        }
+      ]
+    },
+    {
+      "label": "1366x768-shop",
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      },
+      "geometry": {
+        "x": 24,
+        "w": 1318,
+        "top": 8,
+        "pc": {
+          "left": {
+            "x": 24,
+            "y": 8,
+            "width": 224,
+            "height": 752
+          },
+          "ownedRail": {
+            "x": 272,
+            "y": 8,
+            "width": 1070,
+            "height": 188
+          },
+          "inventoryEntry": {
+            "x": 1174,
+            "y": 72,
+            "width": 168,
+            "height": 44
+          },
+          "shopPanel": {
+            "x": 272,
+            "y": 216,
+            "width": 1070,
+            "height": 544
+          },
+          "actionRail": {
+            "x": 1202,
+            "y": 244,
+            "width": 128,
+            "height": 492
+          },
+          "jokerOffers": [
+            {
+              "x": 288,
+              "y": 244,
+              "width": 290,
+              "height": 308
+            },
+            {
+              "x": 590,
+              "y": 244,
+              "width": 290,
+              "height": 308
+            },
+            {
+              "x": 892,
+              "y": 244,
+              "width": 290,
+              "height": 308
+            }
+          ],
+          "toolOffers": {
+            "x": 288,
+            "y": 600,
+            "width": 439,
+            "height": 128
+          },
+          "itemOffers": {
+            "x": 743,
+            "y": 600,
+            "width": 439,
+            "height": 128
+          },
+          "feedback": {
+            "x": 284,
+            "y": 736,
+            "width": 1046,
+            "height": 20
+          },
+          "groupY": 576,
+          "guidanceHeight": 38
+        },
+        "desktop": true,
+        "short": false,
+        "copyBeside": false,
+        "inventoryCollapsed": false,
+        "compact": false,
+        "wideHeader": false,
+        "portrait": false,
+        "slots": [
+          {
+            "x": 272,
+            "y": 64,
+            "width": 80,
+            "height": 112
+          },
+          {
+            "x": 364,
+            "y": 64,
+            "width": 80,
+            "height": 112
+          },
+          {
+            "x": 456,
+            "y": 64,
+            "width": 80,
+            "height": 112
+          },
+          {
+            "x": 548,
+            "y": 64,
+            "width": 80,
+            "height": 112
+          },
+          {
+            "x": 640,
+            "y": 64,
+            "width": 80,
+            "height": 112
+          }
+        ],
+        "shelf": [
+          {
+            "x": 385.1428571428571,
+            "y": 250,
+            "width": 95.71428571428572,
+            "height": 134
+          },
+          {
+            "x": 687.1428571428571,
+            "y": 250,
+            "width": 95.71428571428572,
+            "height": 134
+          },
+          {
+            "x": 989.1428571428571,
+            "y": 250,
+            "width": 95.71428571428572,
+            "height": 134
+          }
+        ],
+        "tabs": {
+          "x": 288,
+          "y": 220,
+          "width": 894,
+          "height": 20
+        },
+        "chapter": {
+          "x": 24,
+          "y": 184,
+          "width": 224,
+          "height": 44
+        },
+        "items": {
+          "x": 1174,
+          "y": 72,
+          "width": 168,
+          "height": 44
+        },
+        "build": {
+          "x": 744,
+          "y": 14,
+          "width": 132,
+          "height": 44
+        },
+        "reroll": {
+          "x": 1202,
+          "y": 312,
+          "width": 128,
+          "height": 44
+        },
+        "play": {
+          "x": 1202,
+          "y": 244,
+          "width": 128,
+          "height": 56
+        },
+        "noticeY": 736
+      },
+      "texts": [
+        {
+          "name": "shop/title",
+          "text": "文成公主 · 筹备",
+          "x": 40,
+          "y": 24,
+          "width": 169,
+          "height": 30
+        },
+        {
+          "name": "",
+          "text": "第 1 章 · 暖场",
+          "x": 40,
+          "y": 66,
+          "width": 97,
+          "height": 19
+        },
+        {
+          "name": "",
+          "text": "目标 400",
+          "x": 40,
+          "y": 94,
+          "width": 73,
+          "height": 20
+        },
+        {
+          "name": "shop/gold",
+          "text": "金币 6",
+          "x": 40,
+          "y": 132,
+          "width": 82,
+          "height": 34
+        },
+        {
+          "name": "",
+          "text": "本章节目 · 待选",
+          "x": 83,
+          "y": 195.5,
+          "width": 106,
+          "height": 19
+        },
+        {
+          "name": "shop/owned-heading",
+          "text": "当前构筑 0/5 · 从左至右触发",
+          "x": 272,
+          "y": 20,
+          "width": 204,
+          "height": 19
+        },
+        {
+          "name": "",
+          "text": "培养 · 同点成组",
+          "x": 757,
+          "y": 25.5,
+          "width": 106,
+          "height": 19
+        },
+        {
+          "name": "",
+          "text": "空槽 1",
+          "x": 291.5,
+          "y": 155,
+          "width": 41,
+          "height": 17
+        },
+        {
+          "name": "",
+          "text": "空槽 2",
+          "x": 383.5,
+          "y": 155,
+          "width": 41,
+          "height": 17
+        },
+        {
+          "name": "",
+          "text": "空槽 3",
+          "x": 475.5,
+          "y": 155,
+          "width": 41,
+          "height": 17
+        },
+        {
+          "name": "",
+          "text": "空槽 4",
+          "x": 567.5,
+          "y": 155,
+          "width": 41,
+          "height": 17
+        },
+        {
+          "name": "",
+          "text": "空槽 5",
+          "x": 659.5,
+          "y": 155,
+          "width": 41,
+          "height": 17
+        },
+        {
+          "name": "",
+          "text": "道具 · 库存 0",
+          "x": 1205,
+          "y": 79.5,
+          "width": 126,
+          "height": 27
+        },
+        {
+          "name": "",
+          "text": "长期物品 0/4",
+          "x": 1174,
+          "y": 124,
+          "width": 83,
+          "height": 17
+        },
+        {
+          "name": "",
+          "text": "进入牌桌",
+          "x": 1222,
+          "y": 257,
+          "width": 88,
+          "height": 28
+        },
+        {
+          "name": "",
+          "text": "换牌 2 金",
+          "x": 1234,
+          "y": 323.5,
+          "width": 64,
+          "height": 19
+        },
+        {
+          "name": "",
+          "text": "刷新丑牌与工具",
+          "x": 1202,
+          "y": 368,
+          "width": 98,
+          "height": 17
+        },
+        {
+          "name": "",
+          "text": "升级 / 做牌\n本店共选1件",
+          "x": 1223.5,
+          "y": 404,
+          "width": 85,
+          "height": 38
+        },
+        {
+          "name": "",
+          "text": "邀请助演 · 待售 3",
+          "x": 288,
+          "y": 222,
+          "width": 109,
+          "height": 17
+        },
+        {
+          "name": "shop/hero-caption",
+          "text": "文成公主 · 技能说明↗",
+          "x": 57,
+          "y": 684,
+          "width": 158,
+          "height": 19
+        },
+        {
+          "name": "rarity-badge/label",
+          "text": "普",
+          "x": 461.8571472167969,
+          "y": 364.5,
+          "width": 12,
+          "height": 15
+        },
+        {
+          "name": "",
+          "text": "普通版",
+          "x": 439.8571472167969,
+          "y": 251,
+          "width": 36,
+          "height": 15
+        },
+        {
+          "name": "",
+          "text": "同点",
+          "x": 390.1428527832031,
+          "y": 252,
+          "width": 24,
+          "height": 15
+        },
+        {
+          "name": "shop/offer-name",
+          "text": "短节目",
+          "x": 298,
+          "y": 386,
+          "width": 45,
+          "height": 19
+        },
+        {
+          "name": "shop/offer-purpose",
+          "text": "出1–2张 → 每手一次，倍率+1",
+          "x": 298,
+          "y": 408,
+          "width": 191,
+          "height": 17
+        },
+        {
+          "name": "shop/offer-price",
+          "text": "4 金 · 查看",
+          "x": 298,
+          "y": 514,
+          "width": 80,
+          "height": 19
+        },
+        {
+          "name": "shop/offer-operation",
+          "text": "短手加倍",
+          "x": 406,
+          "y": 476,
+          "width": 56,
+          "height": 17
+        },
+        {
+          "name": "shop/offer-condition",
+          "text": "实际出牌≤2张",
+          "x": 298,
+          "y": 494,
+          "width": 89,
+          "height": 17
+        },
+        {
+          "name": "rarity-badge/label",
+          "text": "普",
+          "x": 763.8571166992188,
+          "y": 364.5,
+          "width": 12,
+          "height": 15
+        },
+        {
+          "name": "",
+          "text": "普通版",
+          "x": 741.8571166992188,
+          "y": 251,
+          "width": 36,
+          "height": 15
+        },
+        {
+          "name": "",
+          "text": "同点",
+          "x": 692.1428833007812,
+          "y": 252,
+          "width": 24,
+          "height": 15
+        },
+        {
+          "name": "shop/offer-name",
+          "text": "一唱一和",
+          "x": 600,
+          "y": 386,
+          "width": 60,
+          "height": 19
+        },
+        {
+          "name": "shop/offer-purpose",
+          "text": "≥2组各≥2张同点 → 每手一次，倍率+2",
+          "x": 600,
+          "y": 408,
+          "width": 247,
+          "height": 17
+        },
+        {
+          "name": "shop/offer-price",
+          "text": "4 金 · 查看",
+          "x": 600,
+          "y": 514,
+          "width": 80,
+          "height": 19
+        },
+        {
+          "name": "shop/offer-operation",
+          "text": "两组同点",
+          "x": 708,
+          "y": 476,
+          "width": 56,
+          "height": 17
+        },
+        {
+          "name": "shop/offer-condition",
+          "text": "需两对或葫芦",
+          "x": 600,
+          "y": 494,
+          "width": 84,
+          "height": 17
+        },
+        {
+          "name": "rarity-badge/label",
+          "text": "普",
+          "x": 1065.857177734375,
+          "y": 364.5,
+          "width": 12,
+          "height": 15
+        },
+        {
+          "name": "",
+          "text": "普通版",
+          "x": 1043.857177734375,
+          "y": 251,
+          "width": 36,
+          "height": 15
+        },
+        {
+          "name": "",
+          "text": "同点",
+          "x": 994.1428833007812,
+          "y": 252,
+          "width": 24,
+          "height": 15
+        },
+        {
+          "name": "shop/offer-name",
+          "text": "满堂彩",
+          "x": 902,
+          "y": 386,
+          "width": 45,
+          "height": 19
+        },
+        {
+          "name": "shop/offer-purpose",
+          "text": "对子等同点组合 → 每手一次，热度+90",
+          "x": 902,
+          "y": 408,
+          "width": 246,
+          "height": 17
+        },
+        {
+          "name": "shop/offer-price",
+          "text": "4 金 · 查看",
+          "x": 902,
+          "y": 514,
+          "width": 80,
+          "height": 19
+        },
+        {
+          "name": "shop/route-starter-label",
+          "text": "起手",
+          "x": 1136,
+          "y": 388,
+          "width": 28,
+          "height": 18
+        },
+        {
+          "name": "shop/offer-operation",
+          "text": "成组热度",
+          "x": 1010,
+          "y": 476,
+          "width": 56,
+          "height": 17
+        },
+        {
+          "name": "shop/offer-condition",
+          "text": "含五条与同花升级牌型",
+          "x": 902,
+          "y": 494,
+          "width": 140,
+          "height": 17
+        },
+        {
+          "name": "",
+          "text": "购买道具 · 待售 2",
+          "x": 288,
+          "y": 576,
+          "width": 109,
+          "height": 17
+        },
+        {
+          "name": "shop/offer-name",
+          "text": "玻璃面",
+          "x": 296,
+          "y": 602,
+          "width": 45,
+          "height": 19
+        },
+        {
+          "name": "shop/offer-purpose",
+          "text": "选中牌打出且每次\n有效计分时，倍率\n×1.5；结算后1/4\n概率永久破碎",
+          "x": 378,
+          "y": 602,
+          "width": 112,
+          "height": 68
+        },
+        {
+          "name": "shop/offer-price",
+          "text": "5 金",
+          "x": 296,
+          "y": 692,
+          "width": 31,
+          "height": 19
+        },
+        {
+          "name": "shop/basic-choice-title",
+          "text": "升级 / 做牌",
+          "x": 621,
+          "y": 612,
+          "width": 71,
+          "height": 18
+        },
+        {
+          "name": "shop/basic-choice-purpose",
+          "text": "升级 / 改牌 / 染色共选1件",
+          "x": 621,
+          "y": 636,
+          "width": 81,
+          "height": 34
+        },
+        {
+          "name": "shop/basic-choice-price",
+          "text": "查看报价",
+          "x": 621,
+          "y": 698,
+          "width": 64,
+          "height": 19
+        },
+        {
+          "name": "",
+          "text": "长期道具 · 待售 1",
+          "x": 743,
+          "y": 576,
+          "width": 109,
+          "height": 17
+        },
+        {
+          "name": "shop/offer-name",
+          "text": "采购证",
+          "x": 833,
+          "y": 602,
+          "width": 45,
+          "height": 19
+        },
+        {
+          "name": "shop/offer-purpose",
+          "text": "每间商店第一次成功购买价格−1金，至少1金，可与大\n丑牌优惠叠加",
+          "x": 833,
+          "y": 624,
+          "width": 335,
+          "height": 34
+        },
+        {
+          "name": "shop/offer-price",
+          "text": "10 金 · 查看",
+          "x": 833,
+          "y": 692,
+          "width": 90,
+          "height": 19
+        },
+        {
+          "name": "shop/offer-reason",
+          "text": "差 4 金",
+          "x": 833,
+          "y": 712,
+          "width": 45,
+          "height": 17
+        },
+        {
+          "name": "",
+          "text": "升级 / 改牌 / 染色共用本店1次 · 只显示已发现且未30级的牌型。",
+          "x": 290,
+          "y": 736,
+          "width": 401,
+          "height": 17
+        },
+        {
+          "name": "first-guide/shop-heading",
+          "text": "同点成组 · 可选筹备",
+          "x": 42,
+          "y": 246,
+          "width": 124,
+          "height": 17
+        },
+        {
+          "name": "first-guide/shop-copy",
+          "text": "满堂彩 · 4金，查看后再决定",
+          "x": 42,
+          "y": 266,
+          "width": 178,
+          "height": 18
+        },
+        {
+          "name": "",
+          "text": "看起手",
+          "x": 65.5,
+          "y": 337.5,
+          "width": 45,
+          "height": 19
+        },
+        {
+          "name": "",
+          "text": "提示选项",
+          "x": 155,
+          "y": 337.5,
+          "width": 60,
+          "height": 19
+        }
+      ],
+      "targets": [
+        {
+          "name": "action/chapter",
+          "x": 36,
+          "y": 184,
+          "width": 200,
+          "height": 44
+        },
+        {
+          "name": "action/build",
+          "x": 744,
+          "y": 14,
+          "width": 132,
+          "height": 44
+        },
+        {
+          "name": "action/make-cards",
+          "x": 1174,
+          "y": 72,
+          "width": 168,
+          "height": 44
+        },
+        {
+          "name": "action/start-stage",
+          "x": 1202,
+          "y": 244,
+          "width": 128,
+          "height": 56
+        },
+        {
+          "name": "action/reroll",
+          "x": 1202,
+          "y": 312,
+          "width": 128,
+          "height": 44
+        },
+        {
+          "name": "action/basic-choice",
+          "x": 1202,
+          "y": 398,
+          "width": 128,
+          "height": 52
+        },
+        {
+          "name": "shop/hero-preparation",
+          "x": 40,
+          "y": 396,
+          "width": 192,
+          "height": 280
+        },
+        {
+          "name": "offer/run/1792122190723/azao/shop/0/0/joker/0",
+          "x": 288,
+          "y": 244,
+          "width": 290,
+          "height": 308
+        },
+        {
+          "name": "offer/run/1792122190723/azao/shop/0/0/joker/1",
+          "x": 590,
+          "y": 244,
+          "width": 290,
+          "height": 308
+        },
+        {
+          "name": "offer/run/1792122190723/azao/shop/0/0/joker/2",
+          "x": 892,
+          "y": 244,
+          "width": 290,
+          "height": 308
+        },
+        {
+          "name": "offer/run/1792122190723/azao/shop/0/0/tool/0",
+          "x": 288,
+          "y": 600,
+          "width": 215.5,
+          "height": 128
+        },
+        {
+          "name": "offer/basic-choice/1",
+          "x": 511.5,
+          "y": 600,
+          "width": 215.5,
+          "height": 128
+        },
+        {
+          "name": "offer/run/1792122190723/azao/shop/0/0/item/0",
+          "x": 743,
+          "y": 600,
+          "width": 439,
+          "height": 128
+        },
+        {
+          "name": "first-guide/shop-open",
+          "x": 42,
+          "y": 326,
+          "width": 91,
+          "height": 44
+        },
+        {
+          "name": "first-guide/shop-options",
+          "x": 139,
+          "y": 326,
+          "width": 91,
+          "height": 44
+        }
+      ]
+    }
+  ],
+  "errors": [
+    "Error: wordWrapWidth < a single character"
+  ],
+  "status": "CAPTURED"
+}
