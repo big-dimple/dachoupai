@@ -37,9 +37,9 @@ document.title=GAME_NAME;document.querySelector('meta[name=description]')?.setAt
 game.canvas.setAttribute('aria-label',GAME_NAME+'牌桌，方向键聚焦手牌，空格选牌，Enter 查看详情');
 installRunMenu(game);
 const audio=AudioEngine.shared;
-const unlockAudio=()=>{void audio.unlock();};
-window.addEventListener('pointerdown',unlockAudio,{once:true,capture:true});
-window.addEventListener('keydown',unlockAudio,{once:true,capture:true});
+const unlockAudio=()=>{if(audio.needsGestureUnlock)void audio.unlock();};
+window.addEventListener('pointerdown',unlockAudio,{capture:true});
+window.addEventListener('keydown',unlockAudio,{capture:true});
 document.addEventListener('visibilitychange',()=>audio.setSuspended(document.hidden));
 
 // Read-only browser observers are available only in the explicit E2E build mode.

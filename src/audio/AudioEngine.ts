@@ -51,6 +51,9 @@ export class AudioEngine {
   private duckFloor=.35;
   private readonly failureCues = new WeakSet<FailureCue>();
 
+  /** Retry a failed/interrupted unlock on a later gesture without resuming every ordinary click. */
+  get needsGestureUnlock(): boolean { return !this.context || this.context.state !== 'running'; }
+
   get muted(): boolean { return this.masterMuted; }
   set muted(value: boolean) {
     this.masterMuted = value;
@@ -85,10 +88,10 @@ export class AudioEngine {
   }
   getVolume(bus: AudioBus): number { return this.volumes[bus]; }
 
-  /** Call only from the application's first pointer/key gesture; repeated calls are safe. */
+  /** Gesture/foreground resume attempts share one task; repeated calls are safe. */
   unlock(): Promise<void> {
     // Remember a real gesture even when initially muted; unmuting can then create
-    // or resume the context after the app's one-shot gesture listeners are gone.
+    // or resume the context when the player later unmutes.
     this.unlocked = true;
     // A muted first click can itself unmute in the same event. Do not retain an
     // already-resolved no-op task that would swallow that synchronous second call.
