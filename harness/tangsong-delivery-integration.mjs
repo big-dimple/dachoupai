@@ -6,13 +6,16 @@ import {mkdir,writeFile,readFile} from 'node:fs/promises';
 import {gzipSync} from 'node:zlib';
 import {execFileSync} from 'node:child_process';
 import {createHash} from 'node:crypto';
-import {openSelector,tapUI,confirmHeroRoute,waitScene} from './ui.mjs';
+import path from 'node:path';
+import {openSelector,tapUI,confirmHeroRoute,waitScene,point,tapMenuAction} from './ui.mjs';
 const out=process.env.DELIVERY_OUTPUT??'docs/production/evidence/tangsong-delivery-integration-2026-10-15/native';await mkdir(out,{recursive:true});
-const paths=['index.html','src/game/LoadingScreen.ts','src/game/PaperFlow.ts','src/game/GameScene.ts','src/game/ShopScene.ts','src/game/ToolCarryIntent.ts','src/game/CharacterArt.ts','src/game/SceneResources.ts','src/game/HeroClimax.ts','src/game/HeroClimaxCaption.ts','src/game/HeroClimaxLayout.ts'];
+const paths=['src/game/SceneView.ts','harness/tangsong-delivery-integration.mjs','index.html','src/game/LoadingScreen.ts','src/game/PaperFlow.ts','src/game/GameScene.ts','src/game/ShopScene.ts','src/game/ToolCarryIntent.ts','src/game/CharacterArt.ts','src/game/SceneResources.ts','src/game/HeroClimax.ts','src/game/HeroClimaxCaption.ts','src/game/HeroClimaxLayout.ts'];
 const hash=async()=>Object.fromEntries(await Promise.all(paths.map(async p=>[p,createHash('sha256').update(await readFile(p)).digest('hex')])));
-const report={head:execFileSync('git',['rev-parse','HEAD'],{encoding:'utf8'}).trim(),sourceHashes:await hash(),scope:'Native fresh standard run with ordinary starting gold, real hero/route selection and public tool choice. No imported state, stock overrides, domain replacements or natural full-tour acceptance. PC alone evicts one already-loaded display texture to exercise delayed scene-data handoff.',cases:[]};
-const server=await createServer({mode:'e2e',cacheDir:'/tmp/tangsong-integration-vite',server:{host:'127.0.0.1',port:5594,strictPort:true},logLevel:'error'});await server.listen();
+const report={head:execFileSync('git',['rev-parse','HEAD'],{encoding:'utf8'}).trim(),sourceHashes:await hash(),scope:'Native fresh standard run with ordinary starting gold, real hero/route selection and public tool choice. Actual PlayHand settlement, next shop, deliberate weak-hand loss and same-seed retry included; duplicate native inputs and exact command replay. No imported state, stock overrides, domain replacements or natural full-tour acceptance. PC alone evicts one already-loaded display texture to exercise delayed scene-data handoff.',cases:[]};
+const server=await createServer({mode:'e2e',cacheDir:path.resolve(out,'vite-cache'),server:{host:'127.0.0.1',port:5594,strictPort:true},logLevel:'error'});await server.listen();
 const {SavedRun}=await server.ssrLoadModule('/src/application/SavedRun.ts');
+const {createRun}=await server.ssrLoadModule('/src/domain/run.ts');
+const bot=await server.ssrLoadModule('/src/testing/r2Bot.ts');
 const {makeCardsRows}=await server.ssrLoadModule('/src/game/MakeCardsDialog.ts');
 const {COURT_ART}=await server.ssrLoadModule('/src/game/HanddrawnArt.ts');
 const {sceneResources,PRELOAD_PIXEL_BUDGET}=await server.ssrLoadModule('/src/game/SceneResources.ts');const startupAssets=sceneResources('title',undefined,true),startupTotal=startupAssets.length;assert.equal(startupTotal,146);assert.ok(startupAssets.reduce((n,a)=>n+a.pixels,0)<=PRELOAD_PIXEL_BUDGET);report.startupCatalog={items:startupTotal,pixels:startupAssets.reduce((n,a)=>n+a.pixels,0),budgetPixels:PRELOAD_PIXEL_BUDGET};
@@ -23,9 +26,63 @@ async function replay(before,after,types){
  for(const c of commands){const result=await run.submit(c);assert.ok(result.ok,result.code);}
  assert.deepEqual(after,{state:run.state,journal:run.journal,storage:await store.read()});return {commands,fullStateJournalStorageRngEqual:true};
 }
-const browser=await chromium.launch({executablePath:'/usr/bin/chromium',args:['--no-sandbox','--disable-gpu','--disable-software-rasterizer']});let activePage;
+/** Observe/replay real UI inputs; never inject or dispatch domain actions into the browser. */
+async function tableReady(p){
+ await p.waitForFunction(()=>{const g=window.__harness.game;if(g.scene.isActive('intermission'))return g.scene.getScene('intermission').ready;const s=g.scene.getScene('game');return g.scene.isActive('game')&&s.ready&&!s.playing&&!s.presentation&&s.cardViews.every(v=>!v.dealing);});
+}
+async function playSelection(p,ids,touch){
+ await tableReady(p);const before=await snap(p);
+ const selected=await p.evaluate(()=>[...window.__harness.game.scene.getScene('game').selectedIds]);
+ for(const id of selected)await tapUI(p,'game','card/'+id,touch);
+ for(const id of ids)await tapUI(p,'game','card/'+id,touch);
+ const hit=await point(p,'game','action/play');
+ if(touch){await p.touchscreen.tap(hit.x,hit.y);await p.touchscreen.tap(hit.x,hit.y);}else await p.mouse.dblclick(hit.x,hit.y);
+ await p.waitForFunction(seq=>document.querySelector('.hero-play-reminder[open]')||window.__harness.game.registry.get('runController').state.commandSeq>seq,before.state.commandSeq);
+ if(await p.locator('.hero-play-reminder[open]').count())await p.getByRole('button',{name:'继续出牌',exact:true}).dblclick();
+ await p.waitForFunction(seq=>window.__harness.game.registry.get('runController').state.commandSeq===seq,before.state.commandSeq+1);
+ const saved=await snap(p);const replayed=await replay(before,saved,['PlayHand']);
+ assert.equal(saved.state.stage.handsLeft,before.state.stage.handsLeft-1,'duplicate input spends one hand');
+ if(await p.evaluate(()=>window.__harness.game.scene.isActive('game')&&window.__harness.game.scene.getScene('game').playing))await tapMenuAction(p,'快进当前手',touch);
+ await tableReady(p);assert.deepEqual(await snap(p),saved,'presentation cannot rescore or save twice');
+ return {replay:replayed,phase:saved.state.phase,score:saved.state.stage.heat,handsLeft:saved.state.stage.handsLeft};
+}
+async function completeFlow(p,row,touch){
+ row.scoring=[];
+ for(let n=0;n<8;n++){
+  const before=await snap(p);if(before.state.phase!=='await-input')break;
+  const action=bot.chooseR2Action({...bot.publicR2View(before.state),routeGrowth:before.state.routeGrowth});assert.equal(action?.type,'PlayHand');
+  row.scoring.push(await playSelection(p,action.selectedIds,touch));
+ }
+ const settled=await snap(p);assert.equal(settled.state.phase,'stage-cleared','ordinary first stage clears through actual played hands');
+ row.settlement=settled;await p.screenshot({path:out+'/'+row.viewport.width+'-settlement.png',scale:'css'});
+ await tapUI(p,'intermission','action/result-details',touch);assert.ok((await p.locator('.detail-dialog[open]').innerText()).includes('本场收益')||(await p.locator('.detail-dialog[open]').innerText()).includes('过关收益'));assert.deepEqual(await snap(p),settled);
+ await p.keyboard.press('Escape');assert.deepEqual(await snap(p),settled,'cancel result inspection keeps exact saved settlement');
+ const next=await point(p,'intermission','action/continue-stage');if(touch){await p.touchscreen.tap(next.x,next.y);await p.touchscreen.tap(next.x,next.y);}else await p.mouse.dblclick(next.x,next.y);
+ await waitScene(p,'shop');await p.waitForFunction(()=>window.__harness.game.scene.getScene('shop').ready);
+ const shop=await snap(p);row.nextShop=await replay(settled,shop,['OpenShop']);assert.equal(shop.state.stageIndex,settled.state.stageIndex);assert.equal(shop.state.stageIndex,settled.state.stage.index+1,'clear advances once; OpenShop does not skip a stage');row.nextShopSaved=shop;
+ await p.screenshot({path:out+'/'+row.viewport.width+'-next-shop.png',scale:'css'});
+ // The loss/retry probe deliberately plays weak single cards, not a natural-strategy claim.
+ await p.waitForTimeout(360); // A later intentional tap at the same location is available again.
+ await tapUI(p,'shop','action/start-stage',touch);await waitScene(p,'game');await tableReady(p);
+ const entered=await snap(p);row.nextEntry=await replay(shop,entered,['LeaveShop','EnterStage']);row.deliberateLoss=[];
+ for(let n=0;n<8;n++){
+  const before=await snap(p);if(before.state.phase!=='await-input')break;
+  const id=[...before.state.handOrder].sort((a,b)=>before.state.deckInstances.find(c=>c.id===a).rank-before.state.deckInstances.find(c=>c.id===b).rank)[0];
+  row.deliberateLoss.push(await playSelection(p,[id],touch));
+ }
+ const lost=await snap(p);assert.equal(lost.state.phase,'run-lost');row.lost=lost;await p.screenshot({path:out+'/'+row.viewport.width+'-failure.png',scale:'css'});
+ await tapUI(p,'intermission','action/failure-guidance',touch);assert.deepEqual(await snap(p),lost);
+ await p.keyboard.press('Escape');assert.deepEqual(await snap(p),lost,'cancel advice cannot replace the failed run');
+ const retry=await point(p,'intermission','action/retry-seed');if(touch){await p.touchscreen.tap(retry.x,retry.y);await p.touchscreen.tap(retry.x,retry.y);}else await p.mouse.dblclick(retry.x,retry.y);
+ await waitScene(p,'shop');await p.waitForFunction(()=>window.__harness.game.scene.getScene('shop').ready);
+ const restarted=await snap(p),old=lost.state;
+ const expected=createRun({r2Identity:{contentVersion:old.contentVersion,contentHash:old.contentHash},seed:old.seed,characterId:old.characterId,runId:`run/${old.seed}/${old.characterId}`,rulesVersion:'r2',openingRoute:old.openingRoute,modeConfig:{mode:old.mode,difficulty:old.difficulty,challengeId:old.challengeId,programsEnabled:old.programsEnabled}});
+ assert.deepEqual(restarted.state,expected);assert.deepEqual(restarted.journal,[]);assert.equal(restarted.storage.revision,lost.storage.revision+1,'duplicate retry replaces saved run once');assert.deepEqual(restarted.storage.previous,lost.storage.current);row.restarted=restarted;
+ await p.reload({waitUntil:'domcontentloaded'});await waitScene(p,'title');await tapUI(p,'title','action/title-continue',touch);await waitScene(p,'shop');await p.waitForFunction(()=>window.__harness.game.scene.getScene('shop').ready);assert.deepEqual(await snap(p),restarted);row.retryColdRestore='PASS';await p.screenshot({path:out+'/'+row.viewport.width+'-retry-shop.png',scale:'css'});
+}
+const browser=await chromium.launch({...(process.env.SMOKE_CHROMIUM_EXECUTABLE_PATH?{executablePath:process.env.SMOKE_CHROMIUM_EXECUTABLE_PATH}:{}),args:['--no-sandbox','--disable-gpu','--disable-software-rasterizer']});let activePage;
 try{
- for(const viewport of [{width:1366,height:900},{width:390,height:844},{width:320,height:568}]){
+ for(const viewport of [{width:1366,height:900},{width:390,height:844},{width:320,height:568}].filter(v=>!process.env.DELIVERY_WIDTHS||process.env.DELIVERY_WIDTHS.split(',').includes(String(v.width)))){
   const touch=viewport.width<700,ctx=await browser.newContext({viewport,hasTouch:touch,deviceScaleFactor:touch?2:1,reducedMotion:'no-preference'}),p=await ctx.newPage();activePage=p;p.setDefaultTimeout(30000);
   const row={viewport,errors:[]};report.cases.push(row);p.on('pageerror',e=>row.errors.push(String(e)));let gatedPath='',gatePending=false;
   await p.route('**/assets/**',async r=>{if(/\.webp(?:\?|$)/.test(r.request().url()))await new Promise(resolve=>setTimeout(resolve,40));if(gatePending&&new URL(r.request().url()).pathname===gatedPath)await new Promise(resolve=>setTimeout(resolve,1800));await r.continue().catch(()=>{});});
@@ -54,8 +111,8 @@ try{
   row.skillFrames=await p.evaluate(()=>window.__integratedSkillFrames);assert.ok(row.skillFrames.length>1);assert.ok(row.skillFrames.some(f=>f.images.some(i=>i.key==='portrait-focus-laohuan'&&i.name==='hero/climax-eyes')));assert.ok(row.skillFrames.some(f=>f.images.some(i=>i.key==='opening-portrait-laohuan')));assert.ok(row.skillFrames.some(f=>f.subjectHoldMs>=1000));
   for(const f of row.skillFrames){const headerBottom=Math.max(...f.texts.filter(t=>['hero/climax-name','hero/climax-owner'].includes(t.name)).map(t=>t.bounds.y+t.bounds.height));for(const i of f.images)if(['hero/climax-eyes','hero/climax-portrait'].includes(i.name))assert.ok(i.bounds.y-headerBottom>=8,'portrait stays below measured header');for(const t of f.texts)if(t.name==='hero/climax-value-label')assert.ok(t.bounds.y-headerBottom>=8,'readout stays below measured header');assert.equal(f.texts.filter(t=>t.text===f.texts.find(t=>t.name==='hero/climax-note')?.text).length,1,'effect note displayed only once');for(const i of f.images)if(i.name==='hero/climax-eyes')assert.ok(i.scale*f.density<=1.001,'native head crop never oversampled');for(const t of f.texts)if(['hero/climax-name','hero/climax-owner','hero/climax-note','hero/climax-value'].includes(t.name)){assert.ok(t.resolution>=f.density);assert.ok(t.bounds.x>=-1&&t.bounds.y>=0&&t.bounds.x+t.bounds.width<=viewport.width+1&&t.bounds.y+t.bounds.height<=viewport.height+1,'live text inside viewport');}}
   row.skillShots=[];for(const [i,shot] of (await p.evaluate(()=>window.__integratedSkillShots)).entries()){const filename=`${viewport.width}-skill-${i}-${shot.shot}.png`;await writeFile(out+'/'+filename,Buffer.from(shot.png.split(',')[1],'base64'));delete shot.png;row.skillShots.push({...shot,screenshot:filename});}assert.deepEqual(await snap(p),skillSaved);row.final=skillSaved;await p.screenshot({path:`${out}/${viewport.width}-after-skill-avatar.png`,scale:'css'});
-  await p.reload({waitUntil:'domcontentloaded'});await waitScene(p,'title');await tapUI(p,'title','action/title-continue',touch);await waitScene(p,'game');await p.waitForFunction(()=>window.__harness.game.scene.getScene('game').ready);assert.deepEqual(await snap(p),row.final);assert.equal(await p.locator('.tool-detail[open]').count(),0);row.coldRestore='entire state/journal/storage unchanged; no carried selector revival';assert.deepEqual(row.errors,[]);row.status='PASS';console.log('PASS',viewport.width,row.purchaseChoice.kind,row.rankChange);await ctx.close();activePage=undefined;
+  await p.reload({waitUntil:'domcontentloaded'});await waitScene(p,'title');await tapUI(p,'title','action/title-continue',touch);await waitScene(p,'game');await p.waitForFunction(()=>window.__harness.game.scene.getScene('game').ready);assert.deepEqual(await snap(p),row.final);assert.equal(await p.locator('.tool-detail[open]').count(),0);row.coldRestore='entire state/journal/storage unchanged; no carried selector revival';await completeFlow(p,row,touch);assert.deepEqual(row.errors,[]);row.status='PASS';console.log('PASS',viewport.width,row.purchaseChoice.kind,row.rankChange);await ctx.close();activePage=undefined;
  }
  report.sourceUnchanged=JSON.stringify(report.sourceHashes)===JSON.stringify(await hash());assert.ok(report.sourceUnchanged);report.status='PASS';
-}catch(e){report.status='FAIL';report.error=String(e.stack);process.exitCode=1;if(activePage){await activePage.screenshot({path:out+'/FAIL.png',scale:'css'}).catch(()=>{});report.observed=await activePage.evaluate(()=>({body:document.body.innerText,active:window.__harness?.game.scene.getScenes(true).map(s=>s.scene.key)})).catch(()=>null);}console.error(e);}
+}catch(e){report.status='FAIL';report.error=String(e.stack);process.exitCode=1;if(activePage){report.failedSnapshot=await snap(activePage).catch(()=>null);await activePage.screenshot({path:out+'/FAIL.png',scale:'css'}).catch(()=>{});report.observed=await activePage.evaluate(()=>({body:document.body.innerText,active:window.__harness?.game.scene.getScenes(true).map(s=>s.scene.key)})).catch(()=>null);}console.error(e);}
 finally{await writeFile(out+'/report.json.gz',gzipSync(JSON.stringify(report)));await writeFile(out+'/summary.json',JSON.stringify({...report,cases:report.cases.map(({initial,bought,final,...r})=>r)},null,2)+'\n');await browser.close();await server.close();}

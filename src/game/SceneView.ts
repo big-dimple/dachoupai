@@ -11,6 +11,8 @@ import {crispText} from './TextRaster';
 import {drawHandActionGlyph,type HandButtonSkin} from './HandActionArt';
 
 type TouchActions={tap:()=>void;detail?:()=>void;drag?:(x:number,y:number)=>void;dragMove?:(x:number,y:number)=>void;swipe?:(dx:number,dy:number)=>void;cancel?:()=>void;press?:()=>void;release?:()=>void;enter?:()=>void;leave?:()=>void;holdToDrag?:boolean};
+// A repeated release can outlive its scene and hit a different action in the next view.
+const sceneTaps=new WeakMap<Phaser.Game,{scene:Phaser.Scene;x:number;y:number;nativeUp:number;handledAt:number}>();
 export class SceneView {
   readonly root:Phaser.GameObjects.Container;
   private gestures=new Map<Phaser.GameObjects.GameObject,TouchActions>();
@@ -36,6 +38,8 @@ export class SceneView {
     if(this.multiContact){this.cancel();return;}
     const canvas=this.scene.game.canvas.getBoundingClientRect();
     if(modalBlocksCanvas(canvas.left+p.x*canvas.width/this.scene.scale.width,canvas.top+p.y*canvas.height/this.scene.scale.height)){this.cancel();return;}
+    const prior=sceneTaps.get(this.scene.game),elapsed=prior&&Number.isFinite(p.downTime)&&Number.isFinite(prior.nativeUp)&&p.downTime>=prior.nativeUp?p.downTime-prior.nativeUp:prior?performance.now()-prior.handledAt:Infinity;
+    if(prior&&prior.scene!==this.scene&&elapsed>=0&&elapsed<350&&Math.hypot(p.x-prior.x,p.y-prior.y)<=24){this.cancel();return;}
     const object=over.find(o=>this.gestures.has(o));if(!object)return;this.cancel();
     const {x,y}=p.positionToCamera(this.scene.cameras.main) as Phaser.Math.Vector2;
     const actions=this.gestures.get(object)!,inspectable=!!actions.detail||!!actions.holdToDrag,at=performance.now();this.pressed={object,actions,id:p.id,held:false,touch:p.wasTouch,x,y,dragging:false,at,downTime:p.downTime};this.intent.down(p.id,x,y,at,inspectable);actions.press?.();
@@ -55,7 +59,9 @@ export class SceneView {
     const {kind,newlyHeld}=releasePointerIntent(this.intent,p.id,x,y,at);pressed.held||=newlyHeld;this.reset(false);
     if(kind==='drag'&&pressed.actions.holdToDrag&&pressed.touch&&!pressed.held&&pressed.actions.swipe)pressed.actions.swipe(x-pressed.x,y-pressed.y);
     else if(kind==='drag'&&(!pressed.actions.holdToDrag||!pressed.touch||pressed.held))pressed.actions.drag?.(x,y);
-    else if(kind==='tap'&&(pressed.object as Phaser.GameObjects.Rectangle).getBounds().contains(x,y))pressed.actions.tap();
+    else if(kind==='tap'&&(pressed.object as Phaser.GameObjects.Rectangle).getBounds().contains(x,y)){
+      sceneTaps.set(this.scene.game,{scene:this.scene,x:p.x,y:p.y,nativeUp:p.upTime,handledAt:performance.now()});pressed.actions.tap();
+    }
     else if(kind==='none'&&pressed.held&&(pressed.actions.holdToDrag||newlyHeld))pressed.actions.detail?.();
     else pressed.actions.cancel?.();
   };

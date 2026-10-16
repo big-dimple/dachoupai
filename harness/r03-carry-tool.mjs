@@ -4,15 +4,16 @@ import {createServer} from 'vite';
 import {chromium} from 'playwright';
 import {mkdir,readFile,writeFile} from 'node:fs/promises';
 import {createHash} from 'node:crypto';
+import path from 'node:path';
 import {gzipSync} from 'node:zlib';
 import {execFileSync} from 'node:child_process';
 import {tapUI,waitScene} from './ui.mjs';
 const out=process.env.R03_OUTPUT??'docs/production/evidence/r03-carry-tool-2026-10-15';
 await mkdir(out,{recursive:true});
-const paths=['src/game/ShopScene.ts','src/game/GameScene.ts','src/game/ToolCarryIntent.ts'];
+const paths=['src/game/SceneView.ts','harness/r03-carry-tool.mjs','src/game/ShopScene.ts','src/game/GameScene.ts','src/game/ToolCarryIntent.ts'];
 const hashes=async()=>Object.fromEntries(await Promise.all(paths.map(async p=>[p,createHash('sha256').update(await readFile(p)).digest('hex')])));
-const report={base:'9c41dfff2a66ffa66b5cf812c2742caae9cdf125',head:execFileSync('git',['rev-parse','HEAD'],{encoding:'utf8'}).trim(),sourceHashes:await hashes(),scope:'System Chromium software Canvas DPR1, PC mouse and 320/390 touch. Controlled strict-checkpoint shop stock/gold/duplicate inventory; real purchase, leave, enter and use UI. No physical device or natural acquisition-rate claim.',cases:[]};
-const server=await createServer({mode:'e2e',server:{host:'127.0.0.1',port:5589,strictPort:true},logLevel:'error'});await server.listen();
+const report={base:'9c41dfff2a66ffa66b5cf812c2742caae9cdf125',head:execFileSync('git',['rev-parse','HEAD'],{encoding:'utf8'}).trim(),sourceHashes:await hashes(),scope:'Installed Playwright Chromium software Canvas DPR1, PC mouse and 320/390 touch. Controlled strict-checkpoint shop stock/gold/duplicate inventory; real purchase, leave, enter and use UI. No physical device or natural acquisition-rate claim.',cases:[]};
+const server=await createServer({mode:'e2e',cacheDir:path.resolve(out,'vite-cache'),server:{host:'127.0.0.1',port:5589,strictPort:true},logLevel:'error'});await server.listen();
 const {createRun,applyCommand}=await server.ssrLoadModule('/src/domain/run.ts');
 const {newRunIdentity}=await server.ssrLoadModule('/src/game/RunLaunch.ts');
 const {r2ToolPrice}=await server.ssrLoadModule('/src/domain/r2Shop.ts');
@@ -23,7 +24,7 @@ function fixture(){let r=createRun({seed:'r03-carry-controlled',runId:'controlle
 function bossFixture(){let r=b05Entrance();r.phase='stage-cleared';r.gold=30;r.longTermItems=['U02'];r.consumables=[{instanceId:'held/same-name',definitionId:'T08'}];const opened=applyCommand(r,{runId:r.runId,commandId:r.runId+'/setup-shop',expectedSeq:r.commandSeq,action:{type:'OpenShop'}});assert.ok(opened.ok,opened.code);r=opened.state;r.shop.toolOffers[0].definitionId='T08';r.shop.toolOffers[0].price=r2ToolPrice('T08',r);if(r.shop.toolOffers[1]?.definitionId==='T08'){r.shop.toolOffers[1].definitionId='T17';r.shop.toolOffers[1].price=r2ToolPrice('T17',r);}return r;}
 const snap=p=>p.evaluate(async()=>{const c=window.__harness.game.registry.get('runController');return {state:c.state,journal:c.journal,storage:await c.store.read()};});
 for(const candidate of [fixture(),bossFixture()])assert.ok(readCheckpoint(makeCheckpoint(candidate,[])).ok);
-const browser=await chromium.launch({executablePath:'/usr/bin/chromium',args:['--disable-gpu','--disable-software-rasterizer']});
+const browser=await chromium.launch({...(process.env.SMOKE_CHROMIUM_EXECUTABLE_PATH?{executablePath:process.env.SMOKE_CHROMIUM_EXECUTABLE_PATH}:{}),args:['--disable-gpu','--disable-software-rasterizer']});
 async function baseline(before,after,types){
  const slots={value:structuredClone(before.storage),async read(){return structuredClone(this.value);},async commit(revision,current,previous){assert.equal(revision,this.value.revision);this.value={revision:revision+1,current:structuredClone(current),previous:structuredClone(previous)};return this.value.revision;}};
  const run=SavedRun.restore(slots,await slots.read()),commands=after.journal.slice(before.journal.length);assert.deepEqual(commands.map(c=>c.action.type),types);
