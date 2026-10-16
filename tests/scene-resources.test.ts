@@ -20,3 +20,8 @@ it('deadline and cancellation return unfinished counts, never a fabricated 100 p
  vi.useFakeTimers();vi.mocked(loadArtTexture).mockImplementation(()=>new Promise(()=>{}));const c=new AbortController(),assets=[{key:'a',url:'a',pixels:1}],done=prepareSceneResources({} as never,assets,()=>{},c.signal,300);
  await vi.advanceTimersByTimeAsync(300);expect(await done).toMatchObject({loaded:0,pending:1});const next=prepareSceneResources({} as never,assets,()=>{},c.signal);c.abort();expect(await next).toMatchObject({loaded:0,pending:1});
 });
+it('cached decoded textures start as loaded and are never passed to the transfer queue again',async()=>{
+ vi.mocked(loadArtTexture).mockResolvedValue();const game={textures:{exists:(key:string)=>key==='cached'}} as never,updates:any[]=[];
+ const result=await prepareSceneResources(game,[{key:'cached',url:'cached',pixels:1},{key:'new',url:'new',pixels:1}],p=>updates.push(p),new AbortController().signal);
+ expect(updates[0].loaded).toBe(1);expect(result.loaded).toBe(2);expect(loadArtTexture).toHaveBeenCalledOnce();expect(vi.mocked(loadArtTexture).mock.calls[0][1]).toBe('new');
+});
