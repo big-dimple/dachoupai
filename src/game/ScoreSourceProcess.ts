@@ -61,6 +61,9 @@ export function scoreSourceClimaxValue(cue:ScoreSourceProcess,note:string){
  */
 export function fitScoreSourceProcess(text:Phaser.GameObjects.Text,cue:ScoreSourceProcess,area:Box):void {
  const full=cue.source+' · '+cue.effect,compact=compactScoreText(cue.effect);
+ if(text.getData('scoreSourceProcess')===cue&&text.getData('sourceProcessWidth')===area.width&&text.getData('sourceProcessHeight')===area.height&&text.text===text.getData('fittedText')){
+  text.setScale(1).setPosition(area.x+area.width/2,area.y).setOrigin(.5,0);crispText(text);return;
+ }
  text.setFontSize(14).setWordWrapWidth(0).setScale(1);
  const effects=[cue.effect,compact,compact.replace('读已有','读').replace('倍率','倍').replace('热度','热')];
  let display=full;
@@ -70,7 +73,7 @@ export function fitScoreSourceProcess(text:Phaser.GameObjects.Text,cue:ScoreSour
   do{name=name.slice(0,-1);display=(name?name+'… · ':'')+effect;text.setText(display);}while(text.width>area.width&&name.length);
  }
  text.setText(display).setPosition(area.x+area.width/2,area.y).setOrigin(.5,0)
-  .setData('fullText',full).setData('fittedText',display).setData('scoreSourceProcess',cue);
+  .setData('fullText',full).setData('fittedText',display).setData('scoreSourceProcess',cue).setData('sourceProcessWidth',area.width).setData('sourceProcessHeight',area.height);
  crispText(text);
 }
 

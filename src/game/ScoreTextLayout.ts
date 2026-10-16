@@ -20,11 +20,27 @@ export function compactScoreText(value:string):string {
   });
 }
 
+type FittedLine={value:string;display:string;width:number;height:number;base:number;numeric:boolean;font:string;style:string;size:string|number;resolution:number;measuredWidth:number;measuredHeight:number};
+const fittedLines=new WeakMap<Phaser.GameObjects.Text,FittedLine>();
 /** Measure the real platform font; never rely on fontSize as the rendered height. */
 export function fitScoreLine(text:Phaser.GameObjects.Text,area:Box,baseSize:number,numeric=false):void {
   const value=text.text===text.getData('fittedText')?String(text.getData('fullText')):text.text;
+  const previous=fittedLines.get(text),style=text.style;
+  // Pulses move an already fitted bitmap. Re-running the font-size search would
+  // rasterize unchanged labels at every intermediate size on every frame.
+  const unchanged=previous&&previous.value===value&&previous.display===text.text&&previous.width===area.width&&previous.height===area.height&&previous.base===baseSize&&previous.numeric===numeric&&previous.font===style?.fontFamily&&previous.style===style?.fontStyle&&previous.size===style?.fontSize&&previous.resolution===style?.resolution&&previous.measuredWidth===text.width&&previous.measuredHeight===text.height;
+  if(unchanged){text.setScale(1).setPosition(area.x+area.width/2,area.y).setOrigin(.5,0);crispText(text);return;}
   text.setText(value).setWordWrapWidth(0).setFontSize(baseSize).setScale(1);
-  for(let size=baseSize;(text.width>area.width||text.height>area.height)&&size>14;)text.setFontSize(--size);
+  if(baseSize>14&&(text.width>area.width||text.height>area.height)){
+    // The current bitmap already measures this font. Binary probing needlessly
+    // rasterized 101/145/...px even when a desktop 190px number only needed 188px.
+    // Estimate from real bounds, then allow two corrections for rounded font metrics.
+    const fits=()=>text.width<=area.width&&text.height<=area.height;
+    const smaller=(size:number)=>Math.max(14,Math.min(size-1,Math.floor(size*Math.min(area.width/Math.max(1,text.width),area.height/Math.max(1,text.height)))));
+    let size=smaller(baseSize);text.setFontSize(size);
+    for(let correction=0;correction<2&&!fits()&&size>14;correction++){size=smaller(size);text.setFontSize(size);}
+    if(!fits()&&size>14)text.setFontSize(14);
+  }
   if(numeric&&text.width>area.width){
     text.setText(compactScoreText(value));
     if(text.width>area.width)text.setText(text.text.replace(/(≈)?(-?)(\d)\.(\d{2})e/g,(_,approx,sign,whole,tail)=>(approx||/[1-9]/.test(tail)?'≈':'')+sign+whole+'e'));
@@ -38,6 +54,7 @@ export function fitScoreLine(text:Phaser.GameObjects.Text,area:Box,baseSize:numb
   text.setPosition(area.x+area.width/2,area.y).setOrigin(.5,0)
     .setData('fullText',value).setData('fittedText',text.text);
   crispText(text);
+  fittedLines.set(text,{value,display:text.text,width:area.width,height:area.height,base:baseSize,numeric,font:style?.fontFamily,style:style?.fontStyle,size:style?.fontSize,resolution:style?.resolution,measuredWidth:text.width,measuredHeight:text.height});
 }
 
 /** Primary score gets the existing pedestal's vertical room; cards/actions never move. */

@@ -245,6 +245,7 @@ export class GameScene extends Phaser.Scene {
   private scoreMult!:Phaser.GameObjects.Text;
   private scoreTotal!:Phaser.GameObjects.Text;
   private scoreLabels:Phaser.GameObjects.Text[]=[];
+  private settlementChrome=new Map<Phaser.GameObjects.Components.Visible & Phaser.GameObjects.GameObject,boolean>();
   private previousHandText!:Phaser.GameObjects.Text;
   private handCountText!:Phaser.GameObjects.Text;
   private pileText!:Phaser.GameObjects.Text;
@@ -428,7 +429,7 @@ export class GameScene extends Phaser.Scene {
     requestJokerArt(this,this.run.jokers.map(j=>j.definitionId),()=>{this.dialog.refreshArtLoad();if(!this.presentation&&!this.playing)this.render();});
     this.stage={...this.stage,targetHeat:this.run.stage!.targetHeat};
     this.controlsLive=false;this.stopScoreFire();
-    const v=this.view,l=v.layout;this.hoveredCardId=undefined;this.hoveredJokerId=undefined;this.jokerHoverPreview=undefined;v.clear();this.handNavigationButtons=[];v.paperBackground();drawStageTableArt(this,v,this.characterId,()=>this.inspectHeroExplanation());this.settledCards.clear();this.previewCards=undefined;
+    const v=this.view,l=v.layout;this.hoveredCardId=undefined;this.hoveredJokerId=undefined;this.jokerHoverPreview=undefined;v.clear();this.settlementChrome.clear();this.handNavigationButtons=[];v.paperBackground();drawStageTableArt(this,v,this.characterId,()=>this.inspectHeroExplanation());this.settledCards.clear();this.previewCards=undefined;
     this.playAuraPulse?.remove();this.playAuraPulse=undefined;this.playAura=undefined;
     if(this.progressBar)this.tweens.killTweensOf(this.progressBar);this.progressTarget=Number.NaN;
     const h=l.hud,c=getCharacter(this.characterId),portrait=l.mode==='portrait',short=l.mode==='landscape',heroRoom=portrait?Math.min(108,Math.max(74,h.width-252)):108;
@@ -456,9 +457,9 @@ export class GameScene extends Phaser.Scene {
       const progressY=toolInventoryProgressY(l,h.y+(l.shortLandscape?152:short?168:238));v.rect({x:h.x+12,y:progressY,width:h.width-24,height:5},0x45595b).setStrokeStyle();
       this.progressBar=v.rect({x:h.x+12,y:progressY,width:1,height:5},T.jade).setOrigin(0,.5).setPosition(h.x+12,progressY+2.5).setStrokeStyle();
     }
-    if(portrait){const second=h.x+64+heroRoom+8;this.mobileHeroName=v.text(h.x+64,h.y+6,c.name,14,C.ink).setName('hero/display-name');this.roleText.setVisible(true).setPosition(h.x+64,h.y+28).setFontSize(13).setWordWrapWidth(0);this.goldText.setFontSize(12).setOrigin(0,0).setPosition(second,h.y+6);this.heatText.setPosition(second,h.y+28).setFontSize(14).setWordWrapWidth(h.x+h.width-56-second);}
+    if(portrait){this.mobileHeroName=v.text(h.x+64,h.y+6,c.name,14,C.ink).setName('hero/display-name');this.roleText.setVisible(true).setPosition(h.x+64+this.mobileHeroName.width+8,h.y+6).setFontSize(13).setWordWrapWidth(0);this.goldText.setFontSize(12).setOrigin(0,0).setPosition(h.x+64,h.y+28);this.heatText.setPosition(h.x+128,h.y+28).setFontSize(14).setWordWrapWidth(0);skillEntry.setPosition(this.roleText.x,this.roleText.y).setSize(h.x+h.width-56-this.roleText.x,20);}
     if(this.assistProfile||usesErxiangHandoff(this.run)||usesAzaoCharge(this.run)||usesXiemuBurn(this.run)||usesLaohuanRefill(this.run)||usesTouyeWager(this.run)){
-      const hit=v.add(this.add.rectangle(this.roleText.x+(portrait?heroRoom:108)/2,portrait?h.y+28:this.roleText.y+9,portrait?heroRoom:108,portrait?44:30,0,0));v.target(hit,usesErxiangHandoff(this.run)?'hero/erxiang-handoff-label':usesTouyeWager(this.run)?'hero/touye-wager-label':usesLaohuanRefill(this.run)?'hero/laohuan-trick-label':usesXiemuBurn(this.run)?'hero/xiemu-burn-label':this.assistProfile?'hero/amo-assist-label':'hero/azao-charge-label',{tap:()=>this.inspectHeroExplanation(),detail:()=>this.inspectHeroExplanation()});
+      const hit=v.add(this.add.rectangle(this.roleText.x+(portrait?h.x+h.width-56-this.roleText.x:108)/2,this.roleText.y+9,portrait?h.x+h.width-56-this.roleText.x:108,portrait?44:30,0,0));v.target(hit,usesErxiangHandoff(this.run)?'hero/erxiang-handoff-label':usesTouyeWager(this.run)?'hero/touye-wager-label':usesLaohuanRefill(this.run)?'hero/laohuan-trick-label':usesXiemuBurn(this.run)?'hero/xiemu-burn-label':this.assistProfile?'hero/amo-assist-label':'hero/azao-charge-label',{tap:()=>this.inspectHeroExplanation(),detail:()=>this.inspectHeroExplanation()});
     }
     this.renderJokerRack();
     const s=l.scoreBoard;
@@ -1022,8 +1023,8 @@ export class GameScene extends Phaser.Scene {
     const safeBottom=parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--safe-bottom'))||0;
     fitStatusSummary(this.statusText,{...handWindow.status,height:Math.max(0,Math.min(handWindow.status.height+(handWindow.mode==='landscape'?12:0),handWindow.height-safeBottom-handWindow.status.y))},!criticalStatus&&selectedReminder?'点所选条件':undefined);
     if(usesLaohuanRefill(this.run))this.roleText.setText(this.roleCaption());
-    this.updateHeroControl();
-    this.resourceCounts.play.setVisible(!this.pendingRefill);this.resourceCounts.discard.setVisible(!this.pendingRefill);
+    this.updateHeroControl();this.fitHudReadouts();
+    this.resourceCounts.play.setVisible(!this.pendingRefill&&!this.presentation);this.resourceCounts.discard.setVisible(!this.pendingRefill&&!this.presentation);
     if(this.pendingRefill){this.view.setEnabled(this.aiButton,false);this.view.setEnabled(this.playButton,this.ready&&!this.refillHidden&&this.selectedIds.size===this.pendingRefill.required);(this.playButton.getData('label') as Phaser.GameObjects.Text).setText('确认留'+this.pendingRefill.required);this.view.setEnabled(this.discardButton,this.ready);(this.discardButton.getData('label') as Phaser.GameObjects.Text).setText(this.refillHidden?'继续选牌':'收起候选');}
     if(dragHint)this.statusText.setText(dragHint);
     // Balatro-style call-to-action: the playable state breathes a warm aura.
@@ -1054,7 +1055,7 @@ export class GameScene extends Phaser.Scene {
     if(this.view.layout.mode!=='portrait'||!this.mobileHeroName?.active)return;
     const name=getCharacter(this.run.characterId).name,full=this.roleText.text,copy=full.startsWith(name+'·')?full.slice(name.length+1):full;
     const short:Record<CharacterId,string>={amo:'主手＋助攻↗',touye:'押注换牌↗',laohuan:'戏法换牌↗',erxiang:'选交棒↗',azao:'蓄势／释放↗',xiemu:'留钱／燃金↗'};
-    const room=Math.min(108,Math.max(74,this.view.layout.hud.width-252));
+    const room=Math.max(1,this.view.layout.hud.x+this.view.layout.hud.width-56-this.roleText.x);
     const fallback=copy.includes('停用')||copy.includes('不能')?'技能停用':copy.includes('已用')?'本场已用':copy.includes('已选')?'已选 · 点查看':short[this.characterId];
     this.roleText.setData('fullText',name+' · '+copy).setWordWrapWidth(0);
     for(const candidate of [copy,fallback]){this.roleText.setText(candidate);if(this.roleText.width<=room)break;}
@@ -1429,7 +1430,7 @@ export class GameScene extends Phaser.Scene {
   }
 
   private animateRole(note:string,duration:number,context:EffectContext,beat?:ScoreBeat,impact?:Promise<void>):Promise<void> {
-    const frame=this.roleFrame;if(this.view.layout.mode!=='portrait'||!usesErxiangHandoff(this.run)&&!usesAzaoCharge(this.run)&&!usesXiemuBurn(this.run)&&!usesLaohuanRefill(this.run))this.roleText.setText(note);frame.setFillStyle(T.brass,.16).setStrokeStyle(4,T.brass);
+    const frame=this.roleFrame;if(this.view.layout.mode!=='portrait'||!usesErxiangHandoff(this.run)&&!usesAzaoCharge(this.run)&&!usesXiemuBurn(this.run)&&!usesLaohuanRefill(this.run))this.roleText.setText(note);this.fitHudReadouts();frame.setFillStyle(T.brass,.16).setStrokeStyle(4,T.brass);
     return this.focusSource(this.roleAvatar,frame,T.brass,true,duration,context,beat,impact).then(()=>{if(frame.active)frame.setFillStyle(T.brass,0).setStrokeStyle(1,T.brass,.6);});
   }
 
@@ -2012,7 +2013,7 @@ export class GameScene extends Phaser.Scene {
       this.cardViews=score.cards.map((card,i)=>{const box=this.view.layout.cards[i],view=this.cardPiece(card,box.visual);this.view.add(view.container);view.container.setVisible(box.visible);return view;});
       this.jokerViews.forEach(view=>{(view.getData('hit') as Phaser.GameObjects.GameObject|undefined)?.destroy();view.destroy();});this.renderJokerRack(score.sourceJokers);
     }
-    this.refreshSelection();this.updateHud();this.previewCards?.destroy();this.previewCards=undefined;(this.view.root.list.find(o=>o.name==='table/played-label') as Phaser.GameObjects.Text|undefined)?.setText('已出牌');
+    this.refreshSelection();this.updateHud();this.setSettlementFocus(true);this.previewCards?.destroy();this.previewCards=undefined;(this.view.root.list.find(o=>o.name==='table/played-label') as Phaser.GameObjects.Text|undefined)?.setText('已出牌');
     [this.scoreHeat,this.scoreMult,this.scoreTotal,...this.scoreLabels].forEach(text=>text.setVisible(true));
     (this.view.root.list.find(o=>o.name==='score/total-pedestal') as Phaser.GameObjects.Graphics|undefined)?.setVisible(true);
     this.scoreLabels.forEach((label,i)=>label.setText(['累计热度','当前倍率','本手得分'][i]));this.resultText.setText((replay?'回看 · ':'打出 · ')+HAND_LABELS[score.handType]);
@@ -2082,7 +2083,7 @@ export class GameScene extends Phaser.Scene {
 
   private completePresentation(presentation:NonNullable<GameScene['presentation']>):void {
     if(!this.alive(presentation.lifecycle,presentation.intent))return;
-    this.climaxArtAbort?.abort();this.stopScoreFire();
+    this.climaxArtAbort?.abort();this.stopScoreFire();this.setSettlementFocus(false);
     this.erxiangTargetId=null;this.azaoRelease=false;this.xiemuBurn=0;this.presentation=undefined;this.run=presentation.state;this.selectedIds.clear();this.assistIds=[];this.assistGestureStart=undefined;this.statusMessage=opponentSavedStatus(presentation.score)||savedHeroResult(this.run)||handGrowthChanges(this.run)[0]?.line||'';this.updateHud();
     if(this.run.phase==='stage-cleared'||this.run.phase==='run-won'){this.finishStage(true,true,!presentation.replay);return;}
     if(this.run.phase==='run-lost'){this.finishStage(false,!presentation.replay);return;}
@@ -2133,6 +2134,22 @@ export class GameScene extends Phaser.Scene {
     }});
   }
 
+  private fitHudReadouts():void {
+    const l=this.view.layout;if(l.mode!=='portrait'||!this.roleText?.active)return;const h=l.hud,roleX=h.x+64+(this.mobileHeroName?.width??40)+8;
+    this.roleText.setWordWrapWidth(0).setFontSize(13).setScale(1).setOrigin(0,0).setPosition(roleX,h.y+6);
+    this.roleText.setScale(Math.min(1,Math.max(1,h.x+h.width-56-roleX)/Math.max(1,this.roleText.width),18/Math.max(1,this.roleText.height)));crispText(this.roleText);
+    const x=h.x+(this.presentation?64:128),width=h.x+h.width-56-x;
+    // Exact current/target values stay on one row; no automatic wrapping into the rack.
+    this.heatText.setWordWrapWidth(0).setFontSize(14).setScale(1).setOrigin(0,0).setPosition(x,h.y+28);
+    this.heatText.setScale(Math.min(1,width/Math.max(1,this.heatText.width),20/Math.max(1,this.heatText.height)));crispText(this.heatText);
+  }
+  private setSettlementFocus(active:boolean):void {
+    if(!active){for(const [object,visible] of this.settlementChrome)if(object.active)object.setVisible(visible);this.settlementChrome.clear();return;}
+    const hide=(object?:Phaser.GameObjects.Components.Visible & Phaser.GameObjects.GameObject)=>{if(object?.active&&!this.settlementChrome.has(object)){this.settlementChrome.set(object,object.visible);object.setVisible(false);}};
+    for(const button of [this.playButton,this.discardButton,this.rankButton,this.suitButton,this.aiButton,this.heroActionButton,this.inventoryButton,...this.handNavigationButtons])if(button){hide(button);hide(button.getData('buttonArt'));hide(button.getData('label'));}
+    for(const object of [this.resourceCounts.play,this.resourceCounts.discard,this.pileText,this.handCountText,this.previousHandText,this.statusText,this.goldText,this.roleText,this.playAura])hide(object);
+    const sort=this.view.root.getByName('action/sort-group') as Phaser.GameObjects.Graphics|undefined;hide(sort);
+  }
   private refreshToolInventory():void {
     if(this.inventoryButton?.active)(this.inventoryButton.getData('label') as Phaser.GameObjects.Text).setText(toolInventoryLabel(this.run));
   }
@@ -2141,7 +2158,7 @@ export class GameScene extends Phaser.Scene {
     this.stage={...this.stage,targetHeat:this.run.stage!.targetHeat};
     (this.view.root.getByName('hud/target') as Phaser.GameObjects.Text|undefined)?.setText('目标 '+heatText(this.stage.targetHeat));
     const l=this.view.layout,displayHeat=this.presentation?.displayHeat??this.heat,remaining=(BigInt(this.stage.targetHeat)>BigInt(displayHeat)?BigInt(this.stage.targetHeat)-BigInt(displayHeat):0n).toString();
-    this.heatText.setText(l.mode==='portrait'?'目标 '+heatText(displayHeat)+' / '+heatText(this.stage.targetHeat):heatText(displayHeat));
+    this.heatText.setText(l.mode==='portrait'?heatText(displayHeat)+' / '+heatText(this.stage.targetHeat):heatText(displayHeat));
     const discardCost=r2DiscardCost(this.run),discards=this.run.stage!.discardsLeft,plays=this.presentation?.resourcePlayLeft??this.handsLeft;
     this.resourceCounts.play.setText(plays+' 次');this.resourceCounts.discard.setText(discards+' 次');
     if(this.menuActions)this.menuActions.viewLastHand=!this.presentation&&this.run.lastTrace?()=>this.inspectLastTrace():undefined;
@@ -2167,6 +2184,7 @@ export class GameScene extends Phaser.Scene {
       if(this.reducedMotion||this.rollingHeat){this.tweens.killTweensOf(this.progressBar);this.progressBar.setDisplaySize(widthPx,5);this.progressTarget=widthPx;}
       else if(this.progressTarget!==widthPx){this.progressTarget=widthPx;this.tweens.killTweensOf(this.progressBar);this.tweens.add({targets:this.progressBar,displayWidth:widthPx,duration:340,ease:'Cubic.easeOut'});}
     }
+    this.fitHudReadouts();
     if(!this.presentation)this.refreshJokerLabels(this.selectionPreview());
   }
 }
