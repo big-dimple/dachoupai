@@ -16,6 +16,8 @@
 
 2026-10-16 最新结算批次见[同版整合记录](production/evidence/settlement-current-main-integration-2026-10-16/README.md)：main8af3e506上正常合入8bf977e1及前置，114项相关测试、构建和七个原生流程通过，按既有授权正常发布。原PC初版回归及低分返回未归因尾部原证据保留；P08未整体签收。独立指针修复0fd1c113仅开发分支，不混入此批。
 
+2026-10-16 当前指针接续见[同版证据](production/evidence/pointer-current-main-integration-2026-10-16/README.md)：main4b8ddbcf上正常合并0fd1c113，194项相关测试、构建、三尺寸中断及普通流程通过，按本批授权正常发布。仅SceneView生产差异；低分返回采样工作树未占用，P08仍in_progress。
+
 ## 共同Joker正常入口/UI交接（PR25，2026-10-05 UTC，仅review）
 
 source92ade25，正常合入PR22 e2fc与PR24 36eff；UI自然证据a8fcd2e与source的src/harness tree相同。六角色普通新局同combo-growth-v1/e7d21，仅阿默助攻；旧身份继续/导入/精确retry与默认createRun v11保留。2377tests/132files、content/type/build/桌面手机smoke/plan冻结全PASS，有限自然d12与阿默路线、四选角视口和7受控正反例通过；15通过PNG与2FAIL图actual view，原FAIL/双方来源保留。证据[summary](production/evidence/p08-combo-growth-ui-2026-10-05/summary.json)。精确最终draft CI以PR25交接为准；main仍193c93b，父独审决定发布。P08 in_progress、C04 D32及真机/听感/平衡门槛保持。

@@ -1,0 +1,185 @@
+{
+  "taskId": "P08",
+  "status": "software_verified_authorized_release",
+  "testedCommit": "b6c3f8e138f006302d4fb9b4d31dfae185152e72",
+  "sourceTree": "3a9a022d6f5e52ac9e0c89bc1fc5e089031be9ef",
+  "basePublishedMain": "4b8ddbcfb693f767677151441e18de51245b3835",
+  "integratedCandidate": "0fd1c113d0631d156826e252affdab9448d93253",
+  "productCommit": "b8707def8a4d1a51b1f5b52d9b785a647588d907",
+  "branch": "verify/pointer-current-main-20261016",
+  "scope": "Cancel stale SceneView tap/hold/contact when page hidden without blur; only SceneView production delta vs published settlement main.",
+  "unit": {
+    "files": 14,
+    "passed": 194,
+    "failed": 0
+  },
+  "typecheck": "PASS via npm run build",
+  "build": "PASS; existing bundle notice retained",
+  "native": {
+    "report": "pointer-native.json.gz",
+    "browser": "153.0.8010.12",
+    "status": "PASS",
+    "cases": [
+      {
+        "viewport": {
+          "width": 1366,
+          "height": 900
+        },
+        "status": "PASS",
+        "initialGold": 6,
+        "interruptedGold": 6,
+        "freshClickGold": 4,
+        "freshCommandDelta": 1,
+        "lateDialogs": 0,
+        "coldRestore": true,
+        "blurEvents": 0,
+        "visibilityEvents": [
+          {
+            "hidden": true,
+            "trusted": false
+          },
+          {
+            "hidden": false,
+            "trusted": false
+          }
+        ]
+      },
+      {
+        "viewport": {
+          "width": 390,
+          "height": 740
+        },
+        "status": "PASS",
+        "initialGold": 6,
+        "interruptedGold": 6,
+        "freshClickGold": 4,
+        "freshCommandDelta": 1,
+        "lateDialogs": 0,
+        "coldRestore": true,
+        "blurEvents": 0,
+        "visibilityEvents": [
+          {
+            "hidden": true,
+            "trusted": false
+          },
+          {
+            "hidden": false,
+            "trusted": false
+          }
+        ]
+      },
+      {
+        "viewport": {
+          "width": 320,
+          "height": 568
+        },
+        "status": "PASS",
+        "initialGold": 6,
+        "interruptedGold": 6,
+        "freshClickGold": 4,
+        "freshCommandDelta": 1,
+        "lateDialogs": 0,
+        "coldRestore": true,
+        "blurEvents": 0,
+        "visibilityEvents": [
+          {
+            "hidden": true,
+            "trusted": false
+          },
+          {
+            "hidden": false,
+            "trusted": false
+          }
+        ]
+      }
+    ],
+    "limits": [
+      "Windows headless Chromium, software viewports; not physical phone/background acceptance.",
+      "Headless lifecycle freeze, tab switch and virtual minimization did not produce document.hidden without blur. Only hidden/visibilityState + visibilitychange are fault-injected; event.isTrusted is recorded as false. Native mouse/touch input, application callbacks and saves are real.",
+      "No imported run, stock/gold/deal override, domain dispatch or handler replacement. Baseline build uses the exact Git SceneView blob via read-only Vite transform."
+    ]
+  },
+  "normalNative": {
+    "report": "normal-native.json.gz",
+    "status": "PASS",
+    "scope": "Native fresh standard run with ordinary starting gold, real hero/route selection and public tool choice. Actual PlayHand settlement, next shop, deliberate weak-hand loss and same-seed retry included; duplicate native inputs and exact command replay. No imported state, stock overrides, domain replacements or natural full-tour acceptance. PC alone evicts one already-loaded display texture to exercise delayed scene-data handoff.",
+    "cases": [
+      {
+        "viewport": {
+          "width": 1366,
+          "height": 900
+        },
+        "status": "PASS",
+        "actualPlays": 2,
+        "deliberateWeakHands": 4,
+        "coldRetryRestore": "PASS"
+      },
+      {
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "status": "PASS",
+        "actualPlays": 2,
+        "deliberateWeakHands": 4,
+        "coldRetryRestore": "PASS"
+      },
+      {
+        "viewport": {
+          "width": 320,
+          "height": 568
+        },
+        "status": "PASS",
+        "actualPlays": 2,
+        "deliberateWeakHands": 4,
+        "coldRetryRestore": "PASS"
+      }
+    ]
+  },
+  "sourceUnchanged": true,
+  "sourceHashes": {
+    "src/game/SceneView.ts": "08a953a863a91a1d7db6f2c34e88229abac99de2fe42e71db6eff1a6738aaaf4",
+    "src/game/PointerIntent.ts": "033fc961344d0902633efe44a717892c55935d663fc1df1a3591f3121daf2da4",
+    "src/game/PointerReleaseTime.ts": "6d142d5c951713b01c1d7beaabd26b3390e97ab457eb6013b83e464b81c8c9bd",
+    "src/game/GameScene.ts": "09094f32b3c5479bf1fd92f8e4c0ba5a8377142b28391931db9795da6ac00f79",
+    "src/game/ScoreTextLayout.ts": "35641b01c5debeca99604a074031c14c4bea79f3a7d4e833a259907140b4aa9b",
+    "src/game/ScoreSourceProcess.ts": "567ee61f64aecdee15778863629ea1c8fd43b9b03a62cf665ccd529d5521b748",
+    "src/game/LoadingScreen.ts": "3d2bc7511077458ea9284f98ddbeeee8b9348ff38cd6f1f88f6dea590c666eb7",
+    "src/game/SceneResources.ts": "671a6d479bb908c52c4d502bc9377d4b178ba04616b1c4d3b474383720c26e03",
+    "src/game/HomePage.ts": "7a26a9a7ca6cf8853dbada39d5b3e42a8b0ce1e5c41e715e29791639a2a6294c",
+    "src/game/HomePage.css": "13bab0ed2d8fab2c96a3dbe7d2535b66d8c91b709e96fa08699dedbd338cb4dd",
+    "src/game/TitleScene.ts": "79a91819cef01bcc0771384b6d5a7dbb76e7ffa70d2ee23b10eff4dc680af95f",
+    "src/game/JokerGrowthCausality.ts": "e3c02fc2aa8f692f4aca89130221cb9e4de2b8362c2e728f8a8133b1d3c25f6b",
+    "harness/interrupted-pointer.mjs": "aa6563d0a192c64a0d59f5a34dad66ce782201aadca760ec893160e3c6951391",
+    "harness/tangsong-delivery-integration.mjs": "8deed985907fc211a912398b8142de159d09fb74829e245da96c070e084c5da3",
+    "harness/ui.mjs": "c4131077518ed9d707013f65c4ca7b8d41967a26f613fc6cb1b485f39b3f74a2"
+  },
+  "protectedUnchangedVsBase": [
+    "src/domain",
+    "src/application",
+    "src/content",
+    "src/audio",
+    "src/platform",
+    "public",
+    "art",
+    "src/game/GameScene.ts",
+    "src/game/ScoreTextLayout.ts",
+    "src/game/ScoreSourceProcess.ts",
+    "src/game/HomePage.ts",
+    "src/game/HomePage.css",
+    "src/game/LoadingScreen.ts",
+    "src/game/SceneResources.ts",
+    "src/game/JokerGrowthCausality.ts"
+  ],
+  "priorSettlementEvidence": "../settlement-current-main-integration-2026-10-16/status.json",
+  "priorPointerEvidence": "../interrupted-pointer-2026-10-16/status.json",
+  "publication": {
+    "authorization": "Parent explicitly directed current main integration, normal merge/push after bounded verification; no CI wait.",
+    "exactRemote": "Verified by git ls-remote after normal push and reported in final receipt."
+  },
+  "notClaimed": [
+    "Physical phone/OS background switching/lock ordering: visibility fault is controlled and isTrusted false; mouse/touch and application paths are real",
+    "New settlement performance sample or resolution of separately owned partial-return tail",
+    "Full suite green, human understanding/art/audio/natural balance or P08 complete"
+  ]
+}
