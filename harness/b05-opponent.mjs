@@ -1,6 +1,9 @@
 /** Controlled B05 sample: native import, selection, PlayHand and persistent result. No natural encounter claim. */
 import assert from 'node:assert/strict';
-import {createServer} from 'vite';
+import {build,preview} from 'vite';
+import {build as bundle} from 'esbuild';
+import path from 'node:path';
+import {pathToFileURL} from 'node:url';
 import {chromium} from 'playwright';
 import {mkdir,writeFile,readFile} from 'node:fs/promises';
 import {gzipSync} from 'node:zlib';
@@ -9,15 +12,12 @@ import {tapUI,waitScene,tapMenuAction,openMenuSection} from './ui.mjs';
 const root=process.env.B05_ROOT??process.cwd(),out=process.env.B05_OUTPUT??'/tmp/b05-opponent',baseline=!!process.env.B05_BASELINE;
 const onlyCases=new Set((process.env.B05_CASES??'').split(',').filter(Boolean));
 await mkdir(out,{recursive:true});
-const loader=await createServer({root:process.cwd(),logLevel:'error'});
-const {b05Entrance,b05ChoicesReady,b05Send,b05TerminalReady,B05_PAIR,B05_CHANGE}=await loader.ssrLoadModule('/tests/fixtures/b05-encounter.ts');
-const {makeCheckpoint,readCheckpoint}=await loader.ssrLoadModule('/src/application/checkpoint.ts');
+const fixtureFile=path.resolve(out,'fixtures.mjs');await bundle({stdin:{contents:'export * from \"./tests/fixtures/b05-encounter\";export * from \"./src/application/checkpoint\";',resolveDir:process.cwd(),loader:'ts'},bundle:true,format:'esm',platform:'node',outfile:fixtureFile});const {b05Entrance,b05ChoicesReady,b05Send,b05TerminalReady,B05_PAIR,B05_CHANGE,makeCheckpoint,readCheckpoint}=await import(pathToFileURL(fixtureFile).href);
 const entrance=b05Entrance(),initial=b05ChoicesReady(),terminal={won:b05TerminalReady(true),lost:b05TerminalReady(false)};
 const fixtures={entrance,choices:initial,...Object.fromEntries(Object.entries(terminal).map(([k,v])=>[k,v.state]))};
 for(const state of Object.values(fixtures))assert.ok(readCheckpoint(makeCheckpoint(state,[])).ok);
 for(const [key,state] of Object.entries(fixtures))await writeFile(out+'/'+key+'-controlled.json',JSON.stringify(makeCheckpoint(state,[])));
-await loader.close();
-const server=await createServer({root,cacheDir:root===process.cwd()?undefined:root+'/.vite-cache',mode:'e2e',server:{host:'127.0.0.1',port:Number(process.env.B05_PORT??5579),strictPort:true},logLevel:'error'});await server.listen();
+const buildDir=path.resolve(out,'build');await build({root,mode:'e2e',build:{outDir:buildDir,emptyOutDir:true},logLevel:'error'});const server=await preview({root,build:{outDir:buildDir},preview:{host:'127.0.0.1',port:Number(process.env.B05_PORT??5579),strictPort:true},logLevel:'error'});
 const url=server.resolvedUrls.local[0]+'?harness=1';
 const browser=await chromium.launch({...(process.platform==='win32'?{}:{executablePath:'/usr/bin/chromium'}),args:['--disable-gpu','--disable-software-rasterizer']}),report={head:execFileSync('git',['rev-parse','HEAD'],{cwd:root,encoding:'utf8'}).trim(),baseline,scope:'Controlled chapter3 current identity, planted U01 and public card arrangement; actual prior and current PlayHand. Software Chromium PC/touch inputs; no natural acquisition, physical-device, human-understanding or final-art acceptance.',cases:[]};
 const read=p=>p.evaluate(async()=>{const c=window.__harness.game.registry.get('runController');return {state:c.state,journal:c.journal,storage:await c.store.read()};});
@@ -88,5 +88,5 @@ try{
   report.status='PASS';
 }catch(e){report.status='FAIL';report.error=e.stack;process.exitCode=1;}finally{
   await writeFile(out+'/report.json.gz',gzipSync(JSON.stringify(report)));await writeFile(out+'/summary.json',JSON.stringify({head:report.head,status:report.status,baseline,scope:report.scope,error:report.error,cases:report.cases.map(({before,initial,selected,committed,after,entered,timeline,ordinary,...r})=>({...r,score:committed?.state.lastTrace?.finalScore,selected,timeline,ordinary:ordinary?{score:ordinary.committed.state.lastTrace.finalScore,phase:ordinary.committed.state.phase}:undefined}))},null,2));
-  await browser.close();await server.close();console.log(JSON.stringify({status:report.status,error:report.error,cases:report.cases.length}));
+  await browser.close();await new Promise(r=>server.httpServer.close(r));console.log(JSON.stringify({status:report.status,error:report.error,cases:report.cases.length}));
 }
