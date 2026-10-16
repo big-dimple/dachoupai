@@ -1,0 +1,206 @@
+{
+  "status": "mobile_fix_validated_desktop_performance_regression_open",
+  "base": "fa5b30ee1ebf28d4ee71d676b231eab260172033",
+  "testedProduct": "331db92d07338edf921a97d277f7f34693f9a190",
+  "testedSourceTree": "95215c5f6518d8bd881d775ddb160d69804198a7",
+  "branch": "fix/settlement-layout-performance-20261016",
+  "worktree": "C:\\Users\\wanghongping\\AppData\\Local\\Temp\\dachoupai-settlement-20261016",
+  "environment": {
+    "platform": "win32",
+    "arch": "x64",
+    "node": "v22.20.0",
+    "browser": "153.0.8010.12",
+    "renderer": "Phaser Canvas (type=1)",
+    "physicalDevice": "NOT_RUN",
+    "wholeMachineIsolation": "Not guaranteed; parent paused heavy validation, other Windows activity not controlled"
+  },
+  "checks": {
+    "unitTests": 103,
+    "unitFailures": 0,
+    "typecheck": "PASS",
+    "productionBuild": "PASS",
+    "nativeFunctionalCases": 9,
+    "nativeFunctionalStatus": "PASS",
+    "wholeNumericTraceReplay": "PASS (existing controlled checkpoint, actual production import and PlayHand)",
+    "presentationStateJournalStorageLocalStorage": "PASS",
+    "hudProbe": "Temporary UI Text only: current116366/target12000; actual user save not available",
+    "naturalScores": [
+      "4509",
+      "30"
+    ],
+    "controlledScore": "6876748",
+    "controlledFixture": "existing settlementReady(million,current), target40950, not natural acquisition"
+  },
+  "sourceHashes": {
+    "src/game/GameScene.ts": "59ba82977eb949816262996b8bb29de7100cf1f0e4a06d7179a5224304cccb09",
+    "src/game/ScoreTextLayout.ts": "741228cf3e85343519a319931c92d5e981f2cc1e4b983c6b972c99f8fb5b3773",
+    "src/game/ScoreSourceProcess.ts": "0be9cfd294f4e05ba764704ee0cad99ccbd8e10852c357257a3c103828d24c52"
+  },
+  "sourceBlobIds": {
+    "src/game/GameScene.ts": "7c73ab47fdcaa5fd3258e5d1f3515f9a432d891e",
+    "src/game/ScoreTextLayout.ts": "4f8455378c62f5bd3bbb54e75d15d52c3d410dfe",
+    "src/game/ScoreSourceProcess.ts": "59354d641b4b4ed994822ce38c47d24936898973"
+  },
+  "pureTiming": {
+    "before": [
+      {
+        "width": 390,
+        "score": "6876748",
+        "renderer": 1,
+        "firstClimaxCreateMs": 153.3999999910593,
+        "textRasters": 6987,
+        "textRasterMs": 205.89999970793724,
+        "scoreFitMs": 444.30000004172325,
+        "maxFrameMs": 168.8999999910593,
+        "longTasks": [
+          {
+            "start": 10717.09999999404,
+            "duration": 161
+          },
+          {
+            "start": 16117.29999999702,
+            "duration": 51
+          }
+        ],
+        "storageStable": true,
+        "journalStable": true,
+        "localStorageStable": true
+      },
+      {
+        "width": 320,
+        "score": "6876748",
+        "renderer": 1,
+        "firstClimaxCreateMs": 202.29999999701977,
+        "textRasters": 14664,
+        "textRasterMs": 522.2000000923872,
+        "scoreFitMs": 709.0999999344349,
+        "maxFrameMs": 218.20000000298023,
+        "longTasks": [
+          {
+            "start": 10528.60000000894,
+            "duration": 209
+          }
+        ],
+        "storageStable": true,
+        "journalStable": true,
+        "localStorageStable": true
+      },
+      {
+        "width": 1366,
+        "score": "6876748",
+        "renderer": 1,
+        "firstClimaxCreateMs": 30.19999998807907,
+        "textRasters": 17077,
+        "textRasterMs": 490.3999997228384,
+        "scoreFitMs": 942.9999997466803,
+        "maxFrameMs": 45.900000005960464,
+        "longTasks": [],
+        "storageStable": true,
+        "journalStable": true,
+        "localStorageStable": true
+      }
+    ],
+    "after": [
+      {
+        "width": 390,
+        "score": "6876748",
+        "renderer": 1,
+        "firstClimaxCreateMs": 37,
+        "textRasters": 781,
+        "textRasterMs": 72.99999985098839,
+        "scoreFitMs": 344.8000000268221,
+        "maxFrameMs": 45.900000005960464,
+        "longTasks": [],
+        "storageStable": true,
+        "journalStable": true,
+        "localStorageStable": true
+      },
+      {
+        "width": 320,
+        "score": "6876748",
+        "renderer": 1,
+        "firstClimaxCreateMs": 33.29999999701977,
+        "textRasters": 993,
+        "textRasterMs": 85.09999996423721,
+        "scoreFitMs": 307.99999991059303,
+        "maxFrameMs": 40.599999994039536,
+        "longTasks": [],
+        "storageStable": true,
+        "journalStable": true,
+        "localStorageStable": true
+      },
+      {
+        "width": 1366,
+        "score": "6876748",
+        "renderer": 1,
+        "firstClimaxCreateMs": 66,
+        "textRasters": 871,
+        "textRasterMs": 108.79999992251396,
+        "scoreFitMs": 392.10000002384186,
+        "maxFrameMs": 84,
+        "longTasks": [
+          {
+            "start": 11037.79999999702,
+            "duration": 81
+          }
+        ],
+        "storageStable": true,
+        "journalStable": true,
+        "localStorageStable": true
+      }
+    ]
+  },
+  "desktopRepeat": {
+    "before": {
+      "width": 1366,
+      "score": "6876748",
+      "renderer": 1,
+      "firstClimaxCreateMs": 30.899999991059303,
+      "textRasters": 17015,
+      "textRasterMs": 491.19999915361404,
+      "scoreFitMs": 966.5000000298023,
+      "maxFrameMs": 46.599999994039536,
+      "longTasks": [],
+      "storageStable": true,
+      "journalStable": true,
+      "localStorageStable": true
+    },
+    "after": {
+      "width": 1366,
+      "score": "6876748",
+      "renderer": 1,
+      "firstClimaxCreateMs": 58.900000005960464,
+      "textRasters": 871,
+      "textRasterMs": 105.29999981820583,
+      "scoreFitMs": 385.20000000298023,
+      "maxFrameMs": 73.3999999910593,
+      "longTasks": [
+        {
+          "start": 11244.09999999404,
+          "duration": 70
+        }
+      ],
+      "storageStable": true,
+      "journalStable": true,
+      "localStorageStable": true
+    },
+    "sourceArtEquality": true,
+    "actualSource": "f10",
+    "detailReadyBefore": true,
+    "detailReadyAfter": true,
+    "conclusion": "Reproducible local desktop first-climax regression remains; not explained by differing ready source art. No global performance acceptance."
+  },
+  "protectedTrees": {
+    "domainApplicationContentAudioPlatformPublicArt": "unchanged against fa5b30ee",
+    "lihui": "untouched"
+  },
+  "pending": [
+    "Desktop first-climax synchronous construction30.9ms→58.9ms; repeat70ms long task remains. Parent owns further integration/release decision.",
+    "Real user checkpoint and physical target phone/GPU were not available; do not substitute emulated measurements for device acceptance."
+  ],
+  "publication": {
+    "main": "not changed by this branch",
+    "developmentPush": "pending final evidence commit"
+  },
+  "backup": "shots/settlement/source-snapshot/manifest.json (byte-verified original modified files restored after exact baseline rebuild; retained locally)"
+}
