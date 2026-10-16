@@ -1,0 +1,382 @@
+{
+  "schema": "endless-shadow-input-v1",
+  "baseSha": "3fc863fd3b96806886de04107d2d16818ad6487b",
+  "identity": {
+    "contentVersion": "quality-r2-active-mult-timing-v1",
+    "contentHash": "json-fnv-v1:ca1e8f77913649d3"
+  },
+  "evidence": "Controlled ScoreInput recipes and declared finite card supply; not imported full saves, not natural replay.",
+  "chapters": [
+    8,
+    9,
+    13,
+    20,
+    30,
+    40
+  ],
+  "stages": [
+    0,
+    1,
+    2
+  ],
+  "caps": [
+    2,
+    4,
+    8
+  ],
+  "kernelBlobs": {
+    "src/domain/r2RouteGrowth.ts": "6e35545ef1948202eedd1b6366b3be9688c84046",
+    "src/domain/r2Chapter.ts": "dc79d188838b9fbdb1cde02705627c5e3305f798",
+    "src/domain/scoreR2.ts": "b1c756aad56e04d895012aeff7ec1af79dc29c72",
+    "src/domain/r2GroupHands.ts": "9c5e184afb1a31891fc0250e592dd6935f673425",
+    "src/domain/r2GroupUpgrade.ts": "1b0aceea70da083d25429769f42d701d1d09f696",
+    "src/domain/r2PublishedContent.json": "e85f45bd84b636d7fa927bd47c4c5e01a0bd5d14",
+    "src/content/r2RouteGrowthJokers.ts": "21c7bd5a7a04b9474215248455095366030bc587",
+    "src/content/r2ComboGrowthJokers.ts": "0d37d614da86aa2411593d9114279d69d3c1ed1b",
+    "src/content/r2Modes.ts": "d006d306c5d0453a355b4dff968220342cf1fed1",
+    "src/domain/r2Resources.ts": "00369351d1f7476fdceb9efde3b75f89a041ffbc",
+    "src/domain/r2Run.ts": "0be649113190a2e41200cc3b76bcf12ba72e3077",
+    "src/domain/r2Shop.ts": "4243b252d124b99fc29259236a7f8a4116df9a23"
+  },
+  "states": [
+    {
+      "id": "thin-G",
+      "families": [
+        "G"
+      ],
+      "type": "pair",
+      "ranks": [
+        9,
+        9
+      ],
+      "sameSuit": false,
+      "papers": 0,
+      "level": 5,
+      "H": "113",
+      "M": {
+        "n": "4",
+        "d": "1"
+      },
+      "class": "thin",
+      "jokers": []
+    },
+    {
+      "id": "ordinary-G",
+      "families": [
+        "G"
+      ],
+      "type": "four-kind",
+      "ranks": [
+        9,
+        9,
+        9,
+        9
+      ],
+      "sameSuit": false,
+      "papers": 2,
+      "level": 5,
+      "H": "766",
+      "M": {
+        "n": "15",
+        "d": "1"
+      },
+      "class": "ordinary",
+      "jokers": [
+        {
+          "id": "mantangcai"
+        },
+        {
+          "id": "b10",
+          "growth": {
+            "heat": {
+              "n": "100",
+              "d": "1"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "ordinary-S",
+      "families": [
+        "S"
+      ],
+      "type": "straight",
+      "ranks": [
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "sameSuit": false,
+      "papers": 2,
+      "level": 5,
+      "H": "455",
+      "M": {
+        "n": "10",
+        "d": "1"
+      },
+      "class": "ordinary",
+      "jokers": [
+        {
+          "id": "c04",
+          "growth": {
+            "heat": {
+              "n": "100",
+              "d": "1"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "ordinary-F",
+      "families": [
+        "F"
+      ],
+      "type": "flush",
+      "ranks": [
+        2,
+        5,
+        8,
+        10,
+        13
+      ],
+      "sameSuit": true,
+      "papers": 2,
+      "level": 5,
+      "H": "295",
+      "M": {
+        "n": "16",
+        "d": "1"
+      },
+      "class": "ordinary",
+      "jokers": [
+        {
+          "id": "c06",
+          "growth": {
+            "multiplier": {
+              "n": "6",
+              "d": "1"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "mature-GF",
+      "families": [
+        "G",
+        "F"
+      ],
+      "type": "flush-house",
+      "ranks": [
+        9,
+        9,
+        9,
+        10,
+        10
+      ],
+      "sameSuit": true,
+      "papers": 2,
+      "level": 5,
+      "H": "1307",
+      "M": {
+        "n": "26",
+        "d": "1"
+      },
+      "class": "mature",
+      "jokers": [
+        {
+          "id": "mantangcai"
+        },
+        {
+          "id": "c06",
+          "growth": {
+            "multiplier": {
+              "n": "6",
+              "d": "1"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "mature-SF",
+      "families": [
+        "S",
+        "F"
+      ],
+      "type": "straight-flush",
+      "ranks": [
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "sameSuit": true,
+      "papers": 2,
+      "level": 5,
+      "H": "900",
+      "M": {
+        "n": "23",
+        "d": "1"
+      },
+      "class": "mature",
+      "jokers": [
+        {
+          "id": "c04",
+          "growth": {
+            "heat": {
+              "n": "100",
+              "d": "1"
+            }
+          }
+        },
+        {
+          "id": "c06",
+          "growth": {
+            "multiplier": {
+              "n": "6",
+              "d": "1"
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "supply": {
+    "hands": 4,
+    "fastBossHands": 3,
+    "cards": "Each turn has disjoint main IDs; identical ranks/editions are declared copies. No reshuffle, no new levels/growth, no rewards within budget. This is constructed known supply, not a random-deal forecast."
+  },
+  "rootTrace": {
+    "provenance": "delegated parent trace transcription; full save not obtained here",
+    "profile": "quality-r2-route-growth-v1 (reported; original contentHash not obtained)",
+    "G": 8,
+    "H": "184",
+    "preRouteM": {
+      "n": "378",
+      "d": "25"
+    },
+    "finalM": {
+      "n": "2711943423",
+      "d": "40000000"
+    },
+    "score": "12474",
+    "target": "4800",
+    "gold": 32,
+    "nextG": 9,
+    "noAssist": true,
+    "jokers": [
+      "mantangcai",
+      "b07:holographic",
+      "f09:foil",
+      "e11:1.4",
+      "e08"
+    ]
+  },
+  "userReports": [
+    {
+      "name": "Erxiang chapter13 warm",
+      "score": "3193089021",
+      "target": "12740199",
+      "fullSave": false
+    },
+    {
+      "name": "Amo chapter13 B09 pair",
+      "heat": "59",
+      "score": "26221278",
+      "target": "25480397",
+      "gold": 206,
+      "fullSave": false,
+      "exactTrace": {
+        "source": "User 14:55 public log screenshot 16227.jpg, parent read full chain; Library read resolves reference, OCR not used for long integer copying.",
+        "counts": {
+          "G": 35,
+          "S": 0,
+          "F": 0
+        },
+        "factor": {
+          "n": "6362685441135942358474828762538534230890216321",
+          "d": "429496729600000000000000000000000000000000"
+        },
+        "baseHeat": 35,
+        "rank": 6,
+        "originalCards": 2,
+        "retriggerPerCard": 1,
+        "totalCardExecutions": 4,
+        "paperMultPerExecution": 2,
+        "baseMult": 2,
+        "coefficient": {
+          "n": "2",
+          "d": "1"
+        },
+        "noDiscard": {
+          "n": "3",
+          "d": "2"
+        },
+        "preRouteM": {
+          "n": "30",
+          "d": "1"
+        },
+        "heroMultiplierEvent": false,
+        "packageEvent": false,
+        "noRouteScore": "1770",
+        "formula": "floor((35+4*6)*(2+4*2)*2*(3/2)*(27/20)^32)=26221278"
+      }
+    },
+    {
+      "name": "New flush-house Lv2 screenshot",
+      "type": "flush-house",
+      "level": 2,
+      "heat": "974",
+      "score": "168208975825",
+      "chainComplete": false,
+      "source": "delegated latest user screenshot; full contributions not displayed",
+      "scope": "record shown totals only; no inferred family counts, jokers or hero multipliers"
+    }
+  ],
+  "standards": {
+    "strictWindow": "T > all mature stable first hands AND T <= every ordinary finite model capacity. Analytical separation criterion, not a requirement for every game or player.",
+    "basicWindow": "Existing D0 floor and ordinary capacity; mature overshoot allowed.",
+    "strongWindow": "Only explicitly chosen challenge: T > stable first hand AND T <= finite capacity for mature benchmark states; no forced multi-hand rule in product."
+  },
+  "recommendedTrial": {
+    "status": "first concrete trial point for review, not implemented or user-selected parameters",
+    "passive": {
+      "policy": "cap-max",
+      "cap": 4,
+      "graceClears": 3,
+      "rates": "keep current G/S/F rates only until cap; one maximum family factor per hand"
+    },
+    "mainTargets": [
+      400,
+      900,
+      1800,
+      3600,
+      6000,
+      9000,
+      14000,
+      20475
+    ],
+    "endlessGrowth": {
+      "n": "11",
+      "d": "10"
+    },
+    "challengeGrades": [
+      1,
+      2,
+      3,
+      4,
+      8,
+      16,
+      32,
+      64
+    ],
+    "legacy": "new rules require a new run; no legacy compatibility/migration matrix; current-profile save and refresh consistency still required; do not erase history",
+    "playerWording": "过关加成 ×当前值（最多×4）；主手组成与纸/重算/丑牌/英雄的实际来源分别说明"
+  }
+}
