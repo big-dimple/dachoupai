@@ -1,0 +1,9 @@
+# Highlight cleanup on B05 main
+
+Normal merge product f0062a19a3af60efba24ee91b47eba05ebf91ba5 combines main2a8efe2a with approved highlight candidate1bfbf4e. No source conflicts. GameScene diff against main changes only inspectRole portrait.alt to the character name; B05 board, preview and presentTrace remain intact. Shop prefetch is parked on its independent branch and is absent from this release.
+
+Fresh same-version checks:60 tests/11 files PASS; TypeScript and production build PASS; native390 normal encounter plus740x320 e11 highlight PASS, both390/1366 all-six-hero story/rules/comparison/full-image player-copy checks PASS; B05 ordinary first encounter, cancellation/re-entry,740/320/390 rotations,actual PlayHand and cold restore PASS. Every native case has zero page errors and exact state/journal/storage comparisons. Browser evidence is not physical-device, hearing or complete balance acceptance. Short landing screenshot visually reviewed:local x1.3 and cumulative10.4 have separate columns.
+
+Original candidate evidence and asset hashes remain in ../highlight-source-copy-2026-10-16/. No image changes or generation, credentials/security changes, CI/domain checks, forced push or cleanup. P08 remains in_progress. Build retains existing chunk warning.
+
+Commands:git merge --no-ff --no-commit 1bfbf4e; git commit; the60-test command recorded in original validation; npm run build; HERO_TITLE_CASES=e11-740-normal,natural-erxiang-390-normal HERO_TITLE_CAPTIONS=1 HERO_TITLE_PLAYER_COPY=1 node harness/hero-source-title.mjs; B05_CASES=ordinary-first-encounter B05_ORDINARY_ENTRY=shots/b05-first-encounter/ordinary-fast/ordinary-entry.json node harness/b05-opponent.mjs. Primary main will fast-forward to this verified product plus this evidence-only commit and use normal git push origin main. Exact resulting remote SHA is reported in the conversation.

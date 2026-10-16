@@ -1,0 +1,424 @@
+{
+  "head": "f0062a19a3af60efba24ee91b47eba05ebf91ba5",
+  "status": "PASS",
+  "baseline": false,
+  "scope": "Controlled chapter3 current identity, planted U01 and public card arrangement; actual prior and current PlayHand. Software Chromium PC/touch inputs; no natural acquisition, physical-device, human-understanding or final-art acceptance.",
+  "cases": [
+    {
+      "key": "ordinary-first-encounter",
+      "viewport": {
+        "width": 390,
+        "height": 740
+      },
+      "reduced": false,
+      "errors": [],
+      "scope": "Ordinary resources, valid-command prelude checkpoint imported through production file picker; not a full native prelude or acquisition rate.",
+      "shots": [
+        {
+          "key": "ordinary-entry",
+          "bounds": [
+            {
+              "tag": "BUTTON",
+              "host": false,
+              "text": "入场 · 看手牌",
+              "bounds": {
+                "x": 36,
+                "y": 520.1875,
+                "width": 169.25,
+                "height": 56,
+                "top": 520.1875,
+                "right": 205.25,
+                "bottom": 576.1875,
+                "left": 36
+              },
+              "scrollWidth": 167,
+              "clientWidth": 167,
+              "textBounds": []
+            },
+            {
+              "tag": "BUTTON",
+              "host": false,
+              "text": "稍后入场",
+              "bounds": {
+                "x": 213.25,
+                "y": 520.1875,
+                "width": 140.75,
+                "height": 56,
+                "top": 520.1875,
+                "right": 354,
+                "bottom": 576.1875,
+                "left": 213.25
+              },
+              "scrollWidth": 139,
+              "clientWidth": 139,
+              "textBounds": []
+            }
+          ]
+        }
+      ],
+      "challengeChecks": [
+        {
+          "key": "ordinary-idle",
+          "items": [
+            {
+              "name": "opponent/challenge",
+              "box": {
+                "x": 0,
+                "y": 0,
+                "width": 371,
+                "height": 525.6
+              },
+              "facts": {
+                "kind": "opening",
+                "previous": null,
+                "badge": "首手不减半",
+                "quote": "来，让我记住你的第一招。",
+                "target": "3600",
+                "heat": "0",
+                "handsLeft": 4,
+                "pressure": "0 / 3,600 热度 · 余4手",
+                "remembered": "尚未出招 · 首手基础正常",
+                "rule": "连出同型，仅牌型基础½",
+                "other": "牌点数、增强、助演热度照常"
+              }
+            },
+            {
+              "name": "opponent/name",
+              "text": "回音墙 · 同行高手",
+              "box": {
+                "x": 107,
+                "y": 319,
+                "width": 177,
+                "height": 28
+              }
+            },
+            {
+              "name": "opponent/challenge-rule",
+              "text": "首手不减半",
+              "box": {
+                "x": 145,
+                "y": 355,
+                "width": 100,
+                "height": 25
+              }
+            },
+            {
+              "name": "opponent/challenge-quote",
+              "text": "“来，让我记住你的第一招。”",
+              "box": {
+                "x": 55,
+                "y": 389,
+                "width": 280,
+                "height": 25
+              }
+            },
+            {
+              "name": "opponent/challenge-scope",
+              "text": "连出同型，仅牌型基础½ · 其余热度照常",
+              "box": {
+                "x": 68,
+                "y": 425,
+                "width": 254,
+                "height": 18
+              }
+            },
+            {
+              "name": "opponent/challenge-pressure",
+              "text": "0 / 3,600 热度 · 余4手",
+              "box": {
+                "x": 78,
+                "y": 494,
+                "width": 146,
+                "height": 18
+              }
+            },
+            {
+              "name": "opponent/choices",
+              "box": {
+                "x": 280,
+                "y": 481.4,
+                "width": 88,
+                "height": 44
+              }
+            }
+          ],
+          "selection": {
+            "kind": "opening",
+            "previous": null,
+            "badge": "首手不减半",
+            "quote": "来，让我记住你的第一招。",
+            "target": "3600",
+            "heat": "0",
+            "handsLeft": 4,
+            "pressure": "0 / 3,600 热度 · 余4手",
+            "remembered": "尚未出招 · 首手基础正常",
+            "rule": "连出同型，仅牌型基础½",
+            "other": "牌点数、增强、助演热度照常"
+          },
+          "title": "回音墙 · 目标 3,600"
+        },
+        {
+          "key": "ordinary-rotated-740",
+          "items": [
+            {
+              "name": "opponent/challenge",
+              "box": {
+                "x": 0,
+                "y": 0,
+                "width": 721,
+                "height": 134
+              },
+              "facts": {
+                "kind": "opening",
+                "previous": null,
+                "badge": "首手不减半",
+                "quote": "来，让我记住你的第一招。",
+                "target": "3600",
+                "heat": "0",
+                "handsLeft": 4,
+                "pressure": "0 / 3,600 热度 · 余4手",
+                "remembered": "尚未出招 · 首手基础正常",
+                "rule": "连出同型，仅牌型基础½",
+                "other": "牌点数、增强、助演热度照常"
+              }
+            },
+            {
+              "name": "opponent/name",
+              "text": "回音墙 · 目标 3,600",
+              "box": {
+                "x": 485,
+                "y": 66,
+                "width": 137,
+                "height": 19
+              }
+            },
+            {
+              "name": "opponent/challenge-rule",
+              "text": "首手不减半 · 余4手",
+              "box": {
+                "x": 492,
+                "y": 88,
+                "width": 122,
+                "height": 18
+              }
+            },
+            {
+              "name": "opponent/choices",
+              "box": {
+                "x": 630,
+                "y": 89,
+                "width": 88,
+                "height": 44
+              }
+            }
+          ],
+          "selection": {
+            "kind": "opening",
+            "previous": null,
+            "badge": "首手不减半",
+            "quote": "来，让我记住你的第一招。",
+            "target": "3600",
+            "heat": "0",
+            "handsLeft": 4,
+            "pressure": "0 / 3,600 热度 · 余4手",
+            "remembered": "尚未出招 · 首手基础正常",
+            "rule": "连出同型，仅牌型基础½",
+            "other": "牌点数、增强、助演热度照常"
+          },
+          "title": "回音墙 · 目标 3,600"
+        },
+        {
+          "key": "ordinary-rotated-320",
+          "items": [
+            {
+              "name": "opponent/challenge",
+              "box": {
+                "x": 0,
+                "y": 0,
+                "width": 305,
+                "height": 306
+              },
+              "facts": {
+                "kind": "opening",
+                "previous": null,
+                "badge": "首手不减半",
+                "quote": "来，让我记住你的第一招。",
+                "target": "3600",
+                "heat": "0",
+                "handsLeft": 4,
+                "pressure": "0 / 3,600 热度 · 余4手",
+                "remembered": "尚未出招 · 首手基础正常",
+                "rule": "连出同型，仅牌型基础½",
+                "other": "牌点数、增强、助演热度照常"
+              }
+            },
+            {
+              "name": "opponent/name",
+              "text": "回音墙 · 目标 3,600",
+              "box": {
+                "x": 50,
+                "y": 246,
+                "width": 137,
+                "height": 19
+              }
+            },
+            {
+              "name": "opponent/challenge-rule",
+              "text": "首手不减半 · 余4手",
+              "box": {
+                "x": 57,
+                "y": 268,
+                "width": 122,
+                "height": 18
+              }
+            },
+            {
+              "name": "opponent/choices",
+              "box": {
+                "x": 214,
+                "y": 261.4,
+                "width": 88,
+                "height": 44
+              }
+            }
+          ],
+          "selection": {
+            "kind": "opening",
+            "previous": null,
+            "badge": "首手不减半",
+            "quote": "来，让我记住你的第一招。",
+            "target": "3600",
+            "heat": "0",
+            "handsLeft": 4,
+            "pressure": "0 / 3,600 热度 · 余4手",
+            "remembered": "尚未出招 · 首手基础正常",
+            "rule": "连出同型，仅牌型基础½",
+            "other": "牌点数、增强、助演热度照常"
+          },
+          "title": "回音墙 · 目标 3,600"
+        },
+        {
+          "key": "ordinary-rotated-390",
+          "items": [
+            {
+              "name": "opponent/challenge",
+              "box": {
+                "x": 0,
+                "y": 0,
+                "width": 371,
+                "height": 525.6
+              },
+              "facts": {
+                "kind": "opening",
+                "previous": null,
+                "badge": "首手不减半",
+                "quote": "来，让我记住你的第一招。",
+                "target": "3600",
+                "heat": "0",
+                "handsLeft": 4,
+                "pressure": "0 / 3,600 热度 · 余4手",
+                "remembered": "尚未出招 · 首手基础正常",
+                "rule": "连出同型，仅牌型基础½",
+                "other": "牌点数、增强、助演热度照常"
+              }
+            },
+            {
+              "name": "opponent/name",
+              "text": "回音墙 · 同行高手",
+              "box": {
+                "x": 107,
+                "y": 319,
+                "width": 177,
+                "height": 28
+              }
+            },
+            {
+              "name": "opponent/challenge-rule",
+              "text": "首手不减半",
+              "box": {
+                "x": 145,
+                "y": 355,
+                "width": 100,
+                "height": 25
+              }
+            },
+            {
+              "name": "opponent/challenge-quote",
+              "text": "“来，让我记住你的第一招。”",
+              "box": {
+                "x": 55,
+                "y": 389,
+                "width": 280,
+                "height": 25
+              }
+            },
+            {
+              "name": "opponent/challenge-scope",
+              "text": "连出同型，仅牌型基础½ · 其余热度照常",
+              "box": {
+                "x": 68,
+                "y": 425,
+                "width": 254,
+                "height": 18
+              }
+            },
+            {
+              "name": "opponent/challenge-pressure",
+              "text": "0 / 3,600 热度 · 余4手",
+              "box": {
+                "x": 78,
+                "y": 494,
+                "width": 146,
+                "height": 18
+              }
+            },
+            {
+              "name": "opponent/choices",
+              "box": {
+                "x": 280,
+                "y": 481.4,
+                "width": 88,
+                "height": 44
+              }
+            }
+          ],
+          "selection": {
+            "kind": "opening",
+            "previous": null,
+            "badge": "首手不减半",
+            "quote": "来，让我记住你的第一招。",
+            "target": "3600",
+            "heat": "0",
+            "handsLeft": 4,
+            "pressure": "0 / 3,600 热度 · 余4手",
+            "remembered": "尚未出招 · 首手基础正常",
+            "rule": "连出同型，仅牌型基础½",
+            "other": "牌点数、增强、助演热度照常"
+          },
+          "title": "回音墙 · 目标 3,600"
+        }
+      ],
+      "status": "PASS",
+      "score": "4920",
+      "selected": {
+        "items": [],
+        "selection": {
+          "kind": "opening",
+          "previous": null,
+          "selected": "pair",
+          "badge": "首手不减半",
+          "quote": "来，让我记住你的第一招。",
+          "target": "3600",
+          "heat": "0",
+          "handsLeft": 4,
+          "pressure": "0 / 3,600 热度 · 余4手",
+          "remembered": "尚未出招 · 首手基础正常",
+          "rule": "连出同型，仅牌型基础½",
+          "other": "牌点数、增强、助演热度照常",
+          "selection": "对子 · 首手正常"
+        },
+        "title": "对子 · 首手正常"
+      }
+    }
+  ]
+}
