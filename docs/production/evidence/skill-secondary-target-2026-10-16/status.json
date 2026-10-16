@@ -1,0 +1,40 @@
+{
+  "status": "development_verified_pending_integration",
+  "base": "0c4dab186eb90430d57e213545179b9921fffe10",
+  "branch": "fix/skill-secondary-touch-target-20261016",
+  "scope": "P08 existing skill-panel secondary inspection disclosure target21px→44px",
+  "productFiles": [
+    "src/style.css"
+  ],
+  "styleHash": "bb00f2a2b6329cb38bb2dd09bbc4a679e76c4dfd2f12e9fed32267bf7cb3daaf",
+  "harnessHash": "dd32473bef764230011e221428e1bc1fb0033e00fabc2a0e3410f62b96445bff",
+  "checks": {
+    "beforeCases": 4,
+    "beforeTargetHeight": 21,
+    "beforeTap35pxBelowTopOpens": false,
+    "afterCases": 9,
+    "afterTargetHeight": 44,
+    "afterTap35pxBelowTopOpens": true,
+    "keyboardSpaceToggle": "PASS",
+    "inspectionAndEscape": "PASS",
+    "rotationAndSimulatedSafeArea": "PASS (390×740→740×390; top20/bottom16)",
+    "exactStateJournalStorageSelectionDraftPreservation": "PASS",
+    "syntax": "PASS",
+    "typecheckAndProductionBuild": "PASS (npm run build)",
+    "sourceUnchangedDuringBrowserChecks": true,
+    "otherProductAndArtFilesUnchanged": true
+  },
+  "environment": {
+    "node": "v22.20.0",
+    "platform": "win32",
+    "browser": "153.0.8010.12",
+    "renderer": "native Phaser Canvas",
+    "deviceScaleFactor": 1
+  },
+  "limits": [
+    "Touch/rotation/safe-area emulation; physical device acceptance NOT_RUN.",
+    "No CI/domain checks or main merge.",
+    "Started from0c4dab18; later main3084f06f pointer changes were not included in this fixed candidate.",
+    "P08 remains in_progress; this local target fix does not sign off full mobile experience."
+  ]
+}

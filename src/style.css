@@ -646,6 +646,7 @@ button[aria-busy=true] { border-style:dashed; }
 .dialog-choice-actions button { width:100%;min-height:44px;padding:8px;font-size:16px; }
 .dialog-choice-actions p { margin:6px 0 0;font-size:14px;line-height:1.4; }
 .dialog-secondary-actions { margin-block:10px;font-size:14px; }
+.hero-skill-dialog .dialog-secondary-actions > summary { min-height:44px;box-sizing:border-box;padding:10px 0;cursor:pointer; }
 .dialog-secondary-actions > div { display:flex;flex-wrap:wrap;gap:8px;margin-top:8px; }
 .dialog-secondary-actions button { min-height:44px;padding:8px;font-size:14px; }
 .hero-skill-dialog .dialog-effect { white-space:pre-line;font-size:16px;line-height:1.5; }
