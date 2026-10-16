@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "auditCommit": "8e2174141920ef001b95a30485e70525920d3d9f",
   "currentTask": "P08",
-  "selectionPolicy": "当前P08：高光文案与商店图片预取已在独立整合分支形成并集，47项相关测试/构建和必要交叉原生流程通过。仅候选开发分支可普通推送；main在用户回复本批明确确认前暂停，不重试或绕过。接续核对不依赖新图的经营条件反馈，先复现再认领最小自有文件，不改其他会话共享文件、经济/规则/旧档，不重复无变化大矩阵。",
+  "selectionPolicy": "当前P08：高光+预取并集646505e7已同版核验并冻结，但普通开发分支推送也被自动审批执行前拒绝；所有push停止，main仍2a8efe2a。独立接续发现花蕊燃金档未点明已持包场金币门槛失效，产品c96fe6e0仅XiemuBurnCopy提示；14项/构建与前后原生选择取消/真实支付状态全相等通过，本地未推。普通自然供给/长期持币循环仍为证据缺口，不自行改经济规则或他人共享文件；P08仍in_progress。",
   "resumeContract": {
     "candidateCommit": "4bf6a7d63d7738d3c415d09439a1bdca878dc685",
     "gateTask": "A01",
@@ -38,6 +38,7 @@
       "humanGate": false,
       "completionScope": "2026-10-16：c009基线上的文化文案cea473、选择布局aab4d9和本机跨场景连点修复已整合；同版正常新局/携带/技能/实际结算/下一商店/失败重试及六人软件检查见currentDelivery.statusRecord。历史全量失败按独立基线对照记录，不能写成全量绿。P08仍in_progress；真实玩家理解、自然平衡、物理设备/GPU、听感、独立眼原画及整体体验未签。",
       "evidence": [
+        "docs/production/evidence/xiemu-cash-gate-warning-2026-10-16/status.json",
         "docs/production/evidence/highlight-shop-union-2026-10-16/status.json",
         "docs/production/evidence/shop-tool-image-warmup-2026-10-16/status.json",
         "docs/production/evidence/shop-growth-mobile-current-main-2026-10-16/status.json",
@@ -1239,7 +1240,8 @@
       "growthExperience": "经营成长两处shop上下文与PC原位提示已同版合入；真实购买/成长/下一店/出售/冷恢复，未改经济或牌桌原反馈",
       "mobileExperience": "原负责人产品b532922c、候选54851f65；本批正常整合保留安全区/短横/短竖/分页，39场景和经营并集旋转通过，物理设备另签",
       "challengerExperience": "独立feat/b05-first-encounter-20261016：B05持续认招/目标余手/选牌预告与真实回执；只持Opponent*和GameScene三处局部调用，不占高光队列或失败组件。30项/构建/14原生通过，待父整合；专属人物/眼神素材仍依赖。",
-      "shopImageWarmup": "独立fix/shop-tool-background-images-20261016：产品3ae914f6本地软件验证完成；仅ShopScene/MakeCardsDialog/ShopToolImageWarmup，38项和构建/前后冷热点开/受控延迟/失败重试/在途清理/39旋转通过；尚未推送或整合，不混高光候选。"
+      "shopImageWarmup": "独立fix/shop-tool-background-images-20261016：产品3ae914f6本地软件验证完成；仅ShopScene/MakeCardsDialog/ShopToolImageWarmup，38项和构建/前后冷热点开/受控延迟/失败重试/在途清理/39旋转通过；尚未推送或整合，不混高光候选。",
+      "coinConditionExperience": "独立fix/xiemu-cash-gate-warning-20261016：只持XiemuBurnCopy及自有测试/harness/证据；已持金币门槛随燃金跨越的选档说明；不动GameScene/失败/高光共享文件。"
     },
     "legacyDoneScope": "原done工作包仅保持原证据/原SHA的局部交付事实；不代表当前唐宋六图、全新文案、运行时美术、自然平衡或整体体验完成。",
     "priorStatusRecord": "docs/production/evidence/local-windows-integration-2026-10-16/status.json",
@@ -1309,6 +1311,12 @@
         "testedBuild": "0ff0714625b34db87e80d24c607c3b652b2a3783",
         "statusRecord": "docs/production/evidence/highlight-shop-union-2026-10-16/status.json",
         "status": "local_software_verified_main_publication_paused"
+      },
+      {
+        "branch": "fix/xiemu-cash-gate-warning-20261016",
+        "productCommit": "c96fe6e05b8a0f4363adbf82d2778b0d783c12c7",
+        "statusRecord": "docs/production/evidence/xiemu-cash-gate-warning-2026-10-16/status.json",
+        "status": "local_software_verified_not_pushed"
       }
     ],
     "priorSettlementStatusRecord": "docs/production/evidence/settlement-current-main-integration-2026-10-16/status.json",
