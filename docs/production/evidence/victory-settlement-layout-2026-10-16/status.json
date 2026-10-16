@@ -1,0 +1,58 @@
+{
+  "taskId": "victory-settlement-layout",
+  "base": "8728e18e823ef9cbe28a4350a566de21f1e3127c",
+  "testedProductCommit": "3c4018dd870b664f7a582ffbbaad1bf3b4441445",
+  "sourceBlobs": {
+    "src/game/SettlementPresentation.ts": "beaa7e429aab3e6d16b18af0cfd23ab81f4c0470",
+    "src/game/IntermissionScene.ts": "3e6b20a586d36258c174217075be69ad47475813"
+  },
+  "reportHeadIsPrecommitBase": true,
+  "reportSource": "same final working-tree files hashed during native run and committed without further product edits",
+  "status": "PASS",
+  "checks": [
+    {
+      "command": "npx vitest run tests/settlement-presentation.test.ts",
+      "status": "PASS",
+      "tests": 23,
+      "exitCode": 0
+    },
+    {
+      "command": "npm run build",
+      "status": "PASS",
+      "exitCode": 0,
+      "warning": "existing bundle chunk size warning"
+    },
+    {
+      "command": "node harness/victory-settlement-layout.mjs (VICTORY_OUT=shots/victory-layout/accepted)",
+      "status": "PASS",
+      "exitCode": 0,
+      "cases": 15,
+      "nativePlayAndContinueCases": 5
+    },
+    {
+      "command": "git diff --check",
+      "status": "PASS",
+      "exitCode": 0
+    }
+  ],
+  "environment": {
+    "os": "win32",
+    "node": "v22.20.0",
+    "browser": "153.0.8010.12",
+    "physicalDevice": "NOT_RUN"
+  },
+  "publication": {
+    "mainUnchanged": "8728e18e823ef9cbe28a4350a566de21f1e3127c",
+    "merge": "NOT_RUN",
+    "push": "NOT_RUN"
+  },
+  "humanReview": {
+    "status": "NOT_RUN"
+  },
+  "referencePixels": {
+    "status": "BLOCKED",
+    "libraryFileId": "libfile_9949ae8efa688191a3c3d801a9647e07",
+    "fileName": "16285.jpg",
+    "reason": "Bundled Library materializer reached metadata application, then failed: AttributeError: module os has no attribute setxattr on Windows. No local reference image installed. No approval denial."
+  }
+}
