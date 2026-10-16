@@ -10,6 +10,13 @@ it('six discoverable seats in3x2, a distinct hero and reachable actions',()=>{
   expect(p.confirm.height).toBe(56);
  }
 });
+it('short rotation splits hero and choices while retaining safe, separate 44px controls',()=>{
+ for(const [width,height] of [[740,320],[568,320]])for(const step of ['hero','route'] as const){
+  const p=selectionLayout(width,height,36,20,step,44,12),choices=step==='hero'?p.cards:p.routes;
+  expect(p.hero.height).toBeGreaterThanOrEqual(190);
+  for(const b of [...choices,p.cancel,p.details,p.confirm]){expect(b.width).toBeGreaterThanOrEqual(44);expect(b.height).toBeGreaterThanOrEqual(44);expect(b.x).toBeGreaterThanOrEqual(44);expect(b.x+b.width).toBeLessThanOrEqual(width-12);expect(b.y+b.height).toBeLessThanOrEqual(height-20);expect(intersects(b,p.hero)).toBe(false);}
+ }
+});
 it('each hero/route stage reserves controls and keeps choices distinct across PC, narrow and short screens',()=>{
  for(const [width,height] of [[1280,720],[1366,768],[1613,954],[1920,1080],[390,740],[320,740],[740,390],[360,640]])for(const step of ['hero','route'] as const)for(const bottom of [0,34]){
   const p=selectionLayout(width,height,12,bottom,step),choices=step==='hero'?p.cards:p.routes;

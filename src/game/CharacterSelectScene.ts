@@ -77,7 +77,7 @@ export class CharacterSelectScene extends Phaser.Scene {
   private render():void {
     this.portraitTargets.clear();
     const v=this.view,l=v.layout,style=getComputedStyle(document.documentElement),bottom=parseFloat(style.getPropertyValue('--safe-bottom'))||0;
-    const p=selectionLayout(l.width,l.height,l.hud.y,bottom,this.step),config=r2RunModeConfig(this.modeConfig);v.clear();this.game.canvas.setAttribute('aria-label',GAME_NAME+' · 选择人物'+(this.selectedId?' · 当前'+getCharacter(this.selectedId).name:''));v.paperBackground();
+    const p=selectionLayout(l.width,l.height,l.hud.y,bottom,this.step,parseFloat(style.getPropertyValue('--safe-left'))||0,parseFloat(style.getPropertyValue('--safe-right'))||0),config=r2RunModeConfig(this.modeConfig);v.clear();this.game.canvas.setAttribute('aria-label',GAME_NAME+' · 选择人物'+(this.selectedId?' · 当前'+getCharacter(this.selectedId).name:''));v.paperBackground();
     v.text(p.x,p.top,this.step==='hero'?'英雄登场':'选一条路',p.short||p.portrait?24:30,'#26313A').setFontFamily('Georgia, "Noto Serif SC", SimSun, serif').setFontStyle('bold');
     const modeLabel=selectionModeName(this.modeConfig);
     const modeWidth=p.portrait?96:112,controlsRight=Math.max(12,parseFloat(style.getPropertyValue('--safe-right'))||0),menuWidth=l.width<=700?44:64;
@@ -91,8 +91,8 @@ export class CharacterSelectScene extends Phaser.Scene {
       const identity=SELECTION_PRESENTATION[character.id];
       const compact=p.portrait||p.short;
       const picture=compact?{x:b.x+4,y:b.y+3,width:Math.min(24,b.width*.24),height:b.height-25}:{x:b.x+6,y:b.y+5,width:b.width*.44,height:b.height-10};
-      if(character.portrait)this.drawPortrait(character.id,picture);
-      const tx=!character.portrait?b.x+8:compact?b.x+picture.width+7:b.x+b.width*.48,tw=b.x+b.width-tx-5;
+      if(character.portrait&&!p.short)this.drawPortrait(character.id,picture);
+      const tx=p.short?b.x+6:!character.portrait?b.x+8:compact?b.x+picture.width+7:b.x+b.width*.48,tw=b.x+b.width-tx-5;
       this.singleLine(tx,b.y+(compact?3:29),character.name,compact?16:20,selected?accent:'#26313A',tw,14,true).setName('opening/seat-name');
       this.singleLine(compact?b.x+b.width/2:tx,b.y+(compact?b.height-20:62),identity.tag,14,'#3F606B',compact?b.width-8:tw).setOrigin(compact?.5:0,0).setName('opening/seat-tag');
       if(selected)v.text(b.x+b.width-5,b.y+b.height-22,'✓',14,accent).setOrigin(1,0).setName('opening/selected-mark');
@@ -111,9 +111,9 @@ export class CharacterSelectScene extends Phaser.Scene {
         v.text(b.x+9,b.y+6,copy.title,18,selected?'#B8473A':'#26313A').setFontStyle('bold');
         v.text(b.x+100,b.y+6,copy.play,14,'#3F606B',b.width-108);
       }else{
-        v.text(b.x+14,b.y+8,copy.title,p.short?18:22,selected?'#B8473A':'#26313A').setFontStyle('bold');
+        v.text(b.x+(p.short?8:14),b.y+(p.short?3:8),copy.title,p.short?16:22,selected?'#B8473A':'#26313A').setFontStyle('bold');
         if(!p.short)v.text(b.x+14,b.y+38,copy.example,16,'#386D65',b.width-28);
-        v.text(b.x+14,b.y+(p.short?32:62),copy.play,14,'#26313A',b.width-28);
+        if(!p.short||b.width>=220)v.text(b.x+(p.short?8:14),b.y+(p.short?24:62),copy.play,14,'#26313A',b.width-(p.short?16:28));
       }
       const hit=v.rect(b).setFillStyle(0,0).setStrokeStyle(0).setData('selected',selected);
       v.target(hit,'route/'+focus,{tap:()=>{if(!this.choosing){this.selectedRoute=focus;this.notice='';this.animateChoice=true;this.audio.select();this.render();}}});
@@ -121,8 +121,8 @@ export class CharacterSelectScene extends Phaser.Scene {
     this.animateChoice=false;
     const existing=gameSession().run,canReturn=!!existing&&!['run-won','run-lost'].includes(existing.state.phase);
     v.button(p.cancel,this.step==='route'?'返回':this.modeConfig.mode==='tutorial'?'跳过':this.selectedId?'取消':canReturn?'回本局':'返回','action/cancel-character',()=>void this.cancelChoice(),!this.choosing);
-    v.button(p.details,'比一比','action/character-details',()=>this.compareHeroes(),!this.choosing);
-    v.button(p.confirm,this.choosing?'正在开始…':this.step==='hero'?'选路线 →':'开始对局','action/confirm-character',()=>void this.confirmChoice(),!this.choosing&&!!this.selectedId&&(this.step==='hero'||!!this.selectedRoute),true);
+    v.button(p.details,p.short?'对比':'比一比','action/character-details',()=>this.compareHeroes(),!this.choosing);
+    v.button(p.confirm,this.choosing?'正在开始…':this.step==='hero'?(p.short?'选路线':'选路线 →'):(p.short?'开始':'开始对局'),'action/confirm-character',()=>void this.confirmChoice(),!this.choosing&&!!this.selectedId&&(this.step==='hero'||!!this.selectedRoute),true);
     const status=this.selectedId?getCharacter(this.selectedId).name+(this.step==='route'?(this.selectedRoute?' · '+OPENING_ROUTES[this.selectedRoute].title+' · 确认才开局':' · 三条路线都能玩'):this.modeConfig.mode==='tutorial'?' · 教程固定角色':' · 下一步选路线'):'点一位英雄，决定谁来对局。';
     v.text(p.x,p.noticeY,this.notice||status,14,this.notice?'#B8473A':'#3F606B',p.w).setName('opening/status');
   }
@@ -140,7 +140,7 @@ export class CharacterSelectScene extends Phaser.Scene {
       v.text(q.art.x+q.art.width-6,q.art.y+q.art.height-22,'点击查看全图',14,'#3F606B').setOrigin(1,0).setName('opening/portrait-hint');
     }
     const x=q.copy.x,w=q.copy.width,compact=p.portrait||p.short;
-    const name=this.singleLine(x,q.copy.y,c.name,compact?24:44,copy.accent,w,20,true).setFontFamily('Georgia, "Noto Serif SC", SimSun, serif').setName('opening/name');
+    const name=this.singleLine(x,q.copy.y,c.name,p.short?20:compact?24:44,copy.accent,w,20,true).setFontFamily('Georgia, "Noto Serif SC", SimSun, serif').setName('opening/name');
     const skill=this.singleLine(stacked?x+name.width+12:x,stacked?name.y+7:name.y+name.height+4,c.passiveName,compact?16:22,'#3F606B',stacked?w-name.width-12:w,14,true).setName('opening/skill-tag');
     const effectY=Math.max(name.y+name.height,skill.y+skill.height)+4;
     const effect=v.text(x,effectY,abilityEnabled?c.quickEffect:'此挑战关闭角色能力',compact?14:18,'#26313A',w).setName('opening/skill-hook');

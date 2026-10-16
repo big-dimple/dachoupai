@@ -1,0 +1,10 @@
+page.waitForFunction: ReferenceError: spec is not defined
+    at eval (eval at predicate (eval at evaluate (:311:30)), <anonymous>:1:147)
+    at Array.some (<anonymous>)
+    at eval (eval at predicate (eval at evaluate (:311:30)), <anonymous>:1:122)
+    at predicate (eval at evaluate (:311:30), <anonymous>:7:27)
+    at next (eval at evaluate (:311:30), <anonymous>:29:33)
+    at C:\Users\wanghongping\AppData\Local\Temp\dachoupai-owned-card-clock-20261016\harness\current-growth-discovery.mjs:12:1156 {
+  log: []
+}
+FAIL

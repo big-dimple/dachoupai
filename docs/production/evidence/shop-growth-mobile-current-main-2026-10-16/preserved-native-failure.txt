@@ -1,0 +1,13 @@
+PASS b10 390
+locator.click: Timeout 30000ms exceeded.
+Call log:
+  - waiting for getByRole('button', { name: '鎸佹湁鐗岀鐞?, exact: true })
+
+    at inspect (C:\Users\wanghongping\AppData\Local\Temp\dachoupai-current-growth-20261016\harness\current-growth-discovery.mjs:11:230)
+    at async file:///C:/Users/wanghongping/AppData/Local/Temp/dachoupai-current-growth-20261016/harness/current-growth-discovery.mjs:17:1 {
+  log: [
+    "  - waiting for getByRole('button', { name: '鎸佹湁鐗岀鐞?, exact: true })"
+  ],
+  name: 'TimeoutError'
+}
+FAIL

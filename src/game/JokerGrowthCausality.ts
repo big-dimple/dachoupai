@@ -22,7 +22,8 @@ export function groupGrowthCausality(state:R2RunState,joker:R2JokerInstance):{ti
 }
 
 /** One saved increment or current saved balance, visible without details; never anticipates a trigger. */
-export function savedGrowthDiscovery(state:R2RunState):{full:string;compact:string}|undefined {
+export function savedGrowthDiscovery(state:R2RunState,surface:'table'|'shop'='table'):{full:string;compact:string}|undefined {
+ if(surface==='shop'&&state.contentVersion!=='quality-r2-group-upgrade-prototype-v1'&&hasR2GroupUpgradeContract(state))return currentShopGrowth(state);
  if(state.contentVersion!=='quality-r2-group-upgrade-prototype-v1')return;
  for(const j of state.jokers){
   if(!['b10','b03'].includes(j.definitionId))continue;
@@ -32,4 +33,14 @@ export function savedGrowthDiscovery(state:R2RunState):{full:string;compact:stri
   return {full:`${name}成长+${value}→${total} · 下手按条件读`,compact:`${name}+${value}→${total}\n下手按条件读`};
  }
  for(const j of state.jokers){if(!['b10','b03'].includes(j.definitionId))continue;const key=j.definitionId==='b10'?'heat':'multiplier',stored=j.growth[key];if(!stored||Rational.fromJSON(stored).compare(new Rational(0n))<=0)continue;const name=r2JokerDefinitionFor(state,j.definitionId).name,total=fractionText(stored),timing=state.phase==='await-input'?'本手':'出牌';return {full:`${name}已存成长${total} · ${timing}按条件读`,compact:`${name}已存${total}\n${timing}按条件读`};}
+}
+
+/** Current shop continuity uses held saved values and its own prior-hand increment only. */
+function currentShopGrowth(state:R2RunState):{full:string;compact:string}|undefined {
+ for(const j of state.jokers){
+  if(!['b10','b03'].includes(j.definitionId))continue;const key=j.definitionId==='b10'?'heat':'multiplier',zero={n:'0',d:'1'},value=Rational.fromJSON(j.growth[key]??zero);if(value.n<=0n)continue;
+  const trace=state.lastTrace,source=trace?.sourceJokers.find(x=>x.instanceId===j.instanceId&&x.definitionId===j.definitionId),saved=trace?.jokers.find(x=>x.instanceId===j.instanceId&&x.definitionId===j.definitionId);
+  const gain=source&&saved&&Rational.fromJSON(saved.growth[key]??zero).compare(value)===0?trace!.events.filter(e=>e.sourceType==='joker'&&e.sourceInstanceId===j.instanceId&&e.sourceDefinitionId===j.definitionId&&e.phase==='afterHand'&&e.operation==='add-growth').reduce((sum,e)=>sum.add(Rational.fromJSON(e.value)),new Rational(0n)):new Rational(0n);
+  const text=r2JokerDefinitionFor(state,j.definitionId).name+'已攒+'+fractionText(value.toJSON())+(gain.n>0n?' · 上手+'+fractionText(gain.toJSON()):'');return {full:text,compact:text};
+ }
 }
