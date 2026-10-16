@@ -73,7 +73,7 @@ try {
       await tapUI(page,'shop','action/start-stage',true);
     }else{
       lastStep='wait-native-continue-enabled';
-      await page.waitForFunction(()=>{const g=window.__harness.game,s=g.scene.getScene('title'),walk=list=>list.some(o=>o.name==='action/title-continue'&&o.input?.enabled||o.list&&walk(o.list));return g.registry.get('runController')?.status==='idle'&&s.scene.isActive()&&walk(s.children.list);},null,{timeout:30000});
+      await page.waitForFunction(()=>{const g=window.__harness.game,s=g.scene.getScene('title'),walk=list=>list.some(o=>o.name==='action/title-continue'&&o.input?.enabled||o.list&&walk(o.list));return g.registry.get('runController')?.status==='idle'&&s.scene.isActive()&&(document.querySelector('[data-ui="title/action/title-continue"]:not(:disabled)')||walk(s.children.list));},null,{timeout:30000});
       await tapUI(page,'title','action/title-continue',true);
     }
     lastStep='wait-game-ready';

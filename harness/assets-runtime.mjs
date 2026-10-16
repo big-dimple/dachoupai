@@ -62,7 +62,7 @@ async function observedPage({har,throttle=false,touch=true}={}){
     const find=list=>{for(const item of list??[]){if(item.name==='action/title-start')return item;const nested=find(item.list);if(nested)return nested;}};
     const observe=()=>{
       const game=window.__harness?.game,scene=game?.scene.getScene('title');
-      if(scene?.scene?.isActive()&&find(scene.children.list)?.input?.enabled){requestAnimationFrame(()=>{window.__assetFirstUsable=performance.now();});}
+      if(scene?.scene?.isActive()&&(document.querySelector('[data-ui="title/action/title-start"]:not(:disabled)')||find(scene.children.list)?.input?.enabled)){requestAnimationFrame(()=>{window.__assetFirstUsable=performance.now();});}
       else requestAnimationFrame(observe);
     };requestAnimationFrame(observe);
   });
