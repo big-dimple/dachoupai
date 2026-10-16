@@ -1,0 +1,137 @@
+{
+  "taskId": "P08",
+  "priority": "P2 existing audio experience / reproducible recovery defect",
+  "status": "software_verified_development_candidate",
+  "base": "3084f06fb71f5492a550c5072c66c2533d4f909f",
+  "testedCommit": "c13ed9c1e1b908aa0784e9f29017450c7e4068d5",
+  "sourceTree": "e727d0bfe4bf4cf7bbd48e0f1857f45d9e634ab5",
+  "branch": "fix/audio-gesture-recovery-20261016",
+  "scope": "AudioEngine needsGestureUnlock state predicate and main.ts40-42 persistent guarded real-gesture audio listeners. First resume rejection previously consumed the one-shot listener and later same-type gestures remained silent. No shared GameScene, settings semantics, volume defaults, media or game rules changed.",
+  "productionFiles": [
+    "src/audio/AudioEngine.ts",
+    "src/main.ts (audio bootstrap only)"
+  ],
+  "unit": {
+    "files": 6,
+    "passed": 76,
+    "failed": 0
+  },
+  "build": "PASS: typecheck + production build before commit; subsequent source edit was stale comment only. Exact product built successfully by after-native e2e audit.",
+  "finalTypecheck": "PASS on exact testedCommit",
+  "native": {
+    "beforeReport": "before-native.json.gz",
+    "afterReport": "after-native.json.gz",
+    "browser": "153.0.8010.12",
+    "recoveryCases": [
+      {
+        "input": "pointer",
+        "baselineAfterSecondGesture": "suspended/resumeCalls1",
+        "fixedAfterSecondGesture": "running",
+        "fixedResumeCalls": 2,
+        "musicPlaying": true
+      },
+      {
+        "input": "touch",
+        "baselineAfterSecondGesture": "suspended/resumeCalls1",
+        "fixedAfterSecondGesture": "running",
+        "fixedResumeCalls": 2,
+        "musicPlaying": true
+      },
+      {
+        "input": "keyboard",
+        "baselineAfterSecondGesture": "suspended/resumeCalls1",
+        "fixedAfterSecondGesture": "running",
+        "fixedResumeCalls": 2,
+        "musicPlaying": true
+      }
+    ],
+    "healthyAuditBefore": "PASS",
+    "healthyAuditAfter": "PASS",
+    "defaultMusic": 0.3,
+    "defaultSfx": 0.8,
+    "mutedColdReload": {
+      "music": 0,
+      "sfx": 0
+    },
+    "background": {
+      "fault": "Controlled document.hidden + visibilitychange; real native AudioContext suspend/resume and media pause/play",
+      "hidden": "suspended",
+      "foreground": "running",
+      "noQueuedSfx": true
+    },
+    "ordinaryScore": {
+      "finalScore": "30",
+      "sourceEventCount": 2,
+      "readOnlyReplayNoScoreCues": true,
+      "musicSignalRms": 0.0035377659913761825,
+      "recording": "ordinary-existing-material.webm"
+    }
+  },
+  "controlledHigh": {
+    "report": "high-native.json.gz",
+    "score": "6876748",
+    "byKind": {
+      "add": {
+        "events": 9,
+        "voiced": 9
+      },
+      "flight": {
+        "events": 10,
+        "voiced": 10
+      },
+      "multiply": {
+        "events": 9,
+        "voiced": 9
+      },
+      "key": {
+        "events": 1,
+        "voiced": 1
+      },
+      "award": {
+        "events": 1,
+        "voiced": 1
+      }
+    },
+    "actualVoiceEvents": 30,
+    "oneAward": true,
+    "recording": "controlled-million-existing-material.webm",
+    "scope": "One existing controlled valid checkpoint imported through the official file input; actual card selection,30-gold choice and PlayHand. Not natural acquisition, user save, physical performance or timbre acceptance."
+  },
+  "sourceUnchanged": true,
+  "sourceHashes": {
+    "src/main.ts": "29e0d680a173314d5bd631363f0f862c4aea6ebbcb51282514c592e25603c4ad",
+    "src/audio/AudioEngine.ts": "0f3fe3183c242a787b779820d8d7632894c1c36d17c380ef3fefbfc24b17cc72",
+    "src/audio/preferences.ts": "6f5bfb5af314c4f1368f37e22811a70114c50eb8cefdac4d4737c3a57bdcd79d",
+    "src/game/RunMenu.ts": "9072c94d3f0baa4a07e01cb76b5628960b160481c88a7224acfd33f835681ba1",
+    "src/game/GameScene.ts": "09094f32b3c5479bf1fd92f8e4c0ba5a8377142b28391931db9795da6ac00f79",
+    "harness/audio-experience.mjs": "b5447af2ba820286f980c176cd107cb5dbf53175eb056b5502a4cda8cbce17a9",
+    "harness/audio-highlight-audit.mjs": "5514426bb26ae74bf5725aee8fe14eaf03beafd9abae948addd58657575192a8"
+  },
+  "protectedUnchangedVsBase": [
+    "src/game",
+    "src/domain",
+    "src/application",
+    "src/content",
+    "src/platform",
+    "public",
+    "art",
+    "src/style.css",
+    "src/audio/preferences.ts",
+    "src/audio/foley.ts",
+    "src/audio/mixPolicy.ts",
+    "src/audio/sampleBody.ts",
+    "package.json",
+    "package-lock.json"
+  ],
+  "preservedFailure": "Initial audit replay step did not expand the menu section; original FAIL report/log retained. Harness selector was repaired, then the complete unchanged baseline product and exact fixed product audits passed.",
+  "latestObservedPublishedMain": "0aae0b3bdfd7befbfc1b963c56bd1542bb8c20bc",
+  "publication": "Independent audio development branch only. The44px target candidate was separately integrated and pushed to main 0aae0b3bdfd7befbfc1b963c56bd1542bb8c20bc; that later CSS change is not in this audio branch base. Preserve it when integrating; do not replace the current tree with this old-base branch. No CI/domain query.",
+  "listeningAcceptance": "NOT_RUN: recordings provided for human review, no timbre/aesthetic/physical loudness signoff",
+  "limits": [
+    "First resume failure is explicitly controlled; normal first gesture works on both versions. Fault prevalence on real devices is not measured.",
+    "Background uses controlled hidden properties/events, not actual OS app switch/lock. Real AudioContext, media stream, sample playback and native mouse/touch/keyboard paths remain in use.",
+    "High score is an existing controlled valid checkpoint imported through official UI, not natural acquisition or the unavailable user save.",
+    "Ordinary30 and controlled6876748 score audio timings were observed; no universal speed/device/high-score performance claim.",
+    "No new full-suite green, new material acceptance, human musical taste, real GPU/device or overall P08 completion claim."
+  ]
+}
