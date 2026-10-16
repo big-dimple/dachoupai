@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "auditCommit": "8e2174141920ef001b95a30485e70525920d3d9f",
   "currentTask": "P08",
-  "selectionPolicy": "唯一执行入口docs/production/DELIVERY_PLAN.md#当前统一执行计划；文化文案/选角fa5b30ee已发布，加载自动恢复与当前新局加成说明已正常发布main8090b58c。按用户本批授权，首页f2662216与现有加载成长做必要同版检查后正常合并push main；结算候选331db92d仍有可复现PC回归，独立冻结并交给空闲首页会话诊断，不混入先行三项发布。不forcepush、不查CI/域名。P08保持in_progress，软件证据不代签真人/真机/听感/自然平衡/整体美术；不改数值、玩法、旧身份或扩18路线。",
+  "selectionPolicy": "唯一执行入口docs/production/DELIVERY_PLAN.md#当前统一执行计划；首页/加载/当前新局加成说明已正常发布main8af3e506。按当前委派完成一项不依赖新图的P1移动中断软件缺口：独立候选fix/interrupted-pointer-release-20261016，验证后只推开发分支。结算PC回归工作树已交接其它会话，不并行修改；不重做已实现系统、不机械重复18路线、不查CI/域名、不forcepush。P08保持in_progress，软件证据不代签真人/真机/听感/自然平衡/整体美术；本批不改数值、玩法或旧身份。",
   "resumeContract": {
     "candidateCommit": "4bf6a7d63d7738d3c415d09439a1bdca878dc685",
     "gateTask": "A01",
@@ -36,8 +36,9 @@
       ],
       "package": "docs/production/WORK_PACKAGES.md#p08",
       "humanGate": false,
-      "completionScope": "2026-10-16：c009基线上的文化文案cea473、选择布局aab4d9和本机跨场景连点修复已整合；同版正常新局/携带/技能/实际结算/下一商店/失败重试及六人软件检查见currentDelivery.statusRecord。历史全量失败按独立基线对照记录，不能写成全量绿。P08仍in_progress；真实玩家理解、自然平衡、物理设备/GPU、听感、独立眼原画及整体体验未签。",
+      "completionScope": "2026-10-16：c009基线上的文化文案cea473、选择布局aab4d9和本机跨场景连点修复已整合；同版正常新局/携带/技能/实际结算/下一商店/失败重试及六人软件检查见currentDelivery.statusRecord。历史全量失败按独立基线对照记录，不能写成全量绿。P08仍in_progress；真实玩家理解、自然平衡、物理设备/GPU、听感、独立眼原画及整体体验未签。 2026-10-16独立P1候选b8707def：SceneView页面隐藏但无blur时取消旧按压/长按；85项输入检查和三档受控生命周期前后证据通过，仅开发分支，真机后台事件顺序未验。",
       "evidence": [
+        "docs/production/evidence/interrupted-pointer-2026-10-16/status.json",
         "docs/production/evidence/current-growth-causality-2026-10-16/status.json",
         "docs/production/evidence/local-windows-integration-2026-10-16/status.json",
         "docs/production/evidence/p08-amo-final-multiplier-2026-10-04/summary.json",
@@ -1228,6 +1229,15 @@
     "legacyDoneScope": "原done工作包仅保持原证据/原SHA的局部交付事实；不代表当前唐宋六图、全新文案、运行时美术、自然平衡或整体体验完成。",
     "priorStatusRecord": "docs/production/evidence/local-windows-integration-2026-10-16/status.json",
     "priorGrowthStatusRecord": "docs/production/evidence/current-growth-causality-2026-10-16/status.json",
-    "priorLoadingGrowthStatusRecord": "docs/production/evidence/loading-growth-integration-2026-10-16/status.json"
+    "priorLoadingGrowthStatusRecord": "docs/production/evidence/loading-growth-integration-2026-10-16/status.json",
+    "developmentCandidates": [
+      {
+        "branch": "fix/interrupted-pointer-release-20261016",
+        "productCommit": "b8707def8a4d1a51b1f5b52d9b785a647588d907",
+        "statusRecord": "docs/production/evidence/interrupted-pointer-2026-10-16/status.json",
+        "scope": "P1 mobile interruption: retire stale press/hold on hidden without blur",
+        "status": "software_verified_development_candidate"
+      }
+    ]
   }
 }

@@ -1,0 +1,146 @@
+{
+  "taskId": "P08",
+  "priority": "P1 mobile interaction / gesture interruption",
+  "status": "software_verified_development_candidate",
+  "base": "8af3e5066984979059b7ff72111b6c3cbc13aa4a",
+  "testedCommit": "b8707def8a4d1a51b1f5b52d9b785a647588d907",
+  "sourceTree": "db4163c75f4b6543e4b8e8f7977e225949f1f8fb",
+  "branch": "fix/interrupted-pointer-release-20261016",
+  "scope": "Retire SceneView pending tap/hold/contact state when document becomes hidden without window blur. Existing cancellation and deferred refresh preserved; no GameScene, settlement, rule, asset or persistence edits.",
+  "selectedFrom": "DELIVERY_PLAN current P1 same-version mobile gestures/interruption; software gap confirmed in current base, distinct from completed loading/home/growth work.",
+  "unit": {
+    "files": 6,
+    "passed": 85,
+    "failed": 0,
+    "redBefore": {
+      "passed": 6,
+      "failed": 2
+    }
+  },
+  "build": "PASS: typecheck + production build; existing bundle-size notice",
+  "native": {
+    "browser": "153.0.8010.12",
+    "status": "PASS",
+    "scope": "Native mouse/touch with controlled visibility-without-blur fault. Visibility events have isTrusted:false, recorded explicitly; no physical background claim.",
+    "cases": [
+      {
+        "width": 1366,
+        "height": 900,
+        "baselineInterruptedGold": [
+          6,
+          4
+        ],
+        "baselineLateDialogs": 1,
+        "afterInterruptedGold": [
+          6,
+          6
+        ],
+        "intentionalFreshClickGold": 4,
+        "intentionalFreshCommands": 1,
+        "lateDialogs": 0,
+        "coldRestore": true,
+        "windowBlurEvents": 0,
+        "visibilityEvents": [
+          {
+            "hidden": true,
+            "trusted": false
+          },
+          {
+            "hidden": false,
+            "trusted": false
+          }
+        ]
+      },
+      {
+        "width": 390,
+        "height": 740,
+        "baselineInterruptedGold": [
+          6,
+          4
+        ],
+        "baselineLateDialogs": 1,
+        "afterInterruptedGold": [
+          6,
+          6
+        ],
+        "intentionalFreshClickGold": 4,
+        "intentionalFreshCommands": 1,
+        "lateDialogs": 0,
+        "coldRestore": true,
+        "windowBlurEvents": 0,
+        "visibilityEvents": [
+          {
+            "hidden": true,
+            "trusted": false
+          },
+          {
+            "hidden": false,
+            "trusted": false
+          }
+        ]
+      },
+      {
+        "width": 320,
+        "height": 568,
+        "baselineInterruptedGold": [
+          6,
+          4
+        ],
+        "baselineLateDialogs": 1,
+        "afterInterruptedGold": [
+          6,
+          6
+        ],
+        "intentionalFreshClickGold": 4,
+        "intentionalFreshCommands": 1,
+        "lateDialogs": 0,
+        "coldRestore": true,
+        "windowBlurEvents": 0,
+        "visibilityEvents": [
+          {
+            "hidden": true,
+            "trusted": false
+          },
+          {
+            "hidden": false,
+            "trusted": false
+          }
+        ]
+      }
+    ],
+    "beforeReport": "before-native.json.gz",
+    "afterReport": "after-native.json.gz"
+  },
+  "sourceHashes": {
+    "src/game/SceneView.ts": "4ba740d70ec274aa7e7675d2eed4e533aee6ecdb6e2c63bca515a3b3ff15d424",
+    "src/game/PointerIntent.ts": "033fc961344d0902633efe44a717892c55935d663fc1df1a3591f3121daf2da4",
+    "src/game/PointerReleaseTime.ts": "6d142d5c951713b01c1d7beaabd26b3390e97ab457eb6013b83e464b81c8c9bd",
+    "harness/interrupted-pointer.mjs": "afd170955289b35045ea2f0e5fc951d2389f354a4af9315fe1fc892e569dc903"
+  },
+  "sourceUnchanged": true,
+  "provenance": "Both reports began at base HEAD, with product code then committed unchanged as testedCommit. Baseline built from exact base SceneView Git blob through read-only Vite transform; effective normalized hashes distinguish it from fixed source. Other product files were base source.",
+  "effectiveSceneView": {
+    "before": "8108721f31b73923cafd297487c2311948a595eeb2e38c01c331319d303128a8",
+    "after": "6eb3e6cfb6c8dd087db6c6183b8188370a863f1737cd94df92abc9ebe98714dd",
+    "beforeMatchesBaselineGitBlob": true,
+    "afterMatchesProductGitBlob": true
+  },
+  "protectedUnchanged": [
+    "src/domain",
+    "src/application",
+    "src/content",
+    "src/audio",
+    "src/platform",
+    "public",
+    "art",
+    "src/game/GameScene.ts",
+    "src/game/ScoreTextLayout.ts",
+    "src/game/ScoreSourceProcess.ts"
+  ],
+  "limits": [
+    "Headless Chromium native freeze, background tab, virtual minimize did not produce hidden-without-blur. Only visibilityState/hidden/visibilitychange fault is controlled; real pointer events and production callbacks/save are used.",
+    "Physical phone / OS app switch or screen lock without window blur not tested; lifecycle ordering/browser-specific behavior still needs target-device acceptance.",
+    "No new full-suite green, physical GPU/performance, human understanding, natural balance, or overall P08 completion claim.",
+    "Independent development branch only; settlement worktree not touched."
+  ]
+}
