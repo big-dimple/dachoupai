@@ -1,0 +1,7 @@
+# Skill disclosure target on current main — 2026-10-16
+
+Actual normal merge 7d6d7f6db17a065951346a72d328cb5129036eb0 combines published main 3084f06fb71f5492a550c5072c66c2533d4f909f and candidate eb580137ad8655b668533b193436c237d14c6030. Only production delta is one scoped CSS rule: hero-skill other-inspections disclosure is at least44px with vertical padding. Current owned-card fix, SceneView and all game/audio/domain/art source are preserved. The independent audio investigation is excluded.
+
+Fresh typecheck/production build and clean exact-commit e2e build pass. Existing native harness passes nine cases on the merged source: xiemu1366/390/320/740 and the other five heroes at320. Targets are44px and an actual touch35px from top expands the native disclosure. Space expands/collapses, actual inspection and Escape work;390 to740×390 with simulated20/16px safe area stays reachable. Full saved state, journal, storage, selected card and skill draft stay exact. Report style hash matches source and sourceUnchanged=true. The320 target screenshot was opened.
+
+[Original before/after evidence](../skill-secondary-target-2026-10-16/README.md) keeps the21px baseline. This integration verifies only the bounded target defect, not physical devices or all mobile experience. P08 remains in_progress. User explicitly authorized normal merge/push without waiting for audio; final remote SHA is verified and reported after normal push. No CI/domain checks or asset changes.

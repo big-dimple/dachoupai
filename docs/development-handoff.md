@@ -22,6 +22,8 @@
 
 2026-10-16 已持牌d36b63f1按本批授权接续发布，精确源码与本地验证见[发布记录](production/evidence/owned-card-current-main-integration-2026-10-16/README.md)。此后仅盘点DELIVERY_PLAN当前“下一批玩家体验事项与依赖”，待父对齐另一会话范围后分工；不认领新的运行时文件，不再自行扩指针边缘项。
 
+2026-10-16 eb580137热区修复已在main3084上独立正常合并，类型构建和九例原生同版复核见[本批记录](production/evidence/skill-secondary-current-main-2026-10-16/README.md)，按用户授权正常发布；音频未验证改动未混入，真机未验，P08仍in_progress。
+
 ## 共同Joker正常入口/UI交接（PR25，2026-10-05 UTC，仅review）
 
 source92ade25，正常合入PR22 e2fc与PR24 36eff；UI自然证据a8fcd2e与source的src/harness tree相同。六角色普通新局同combo-growth-v1/e7d21，仅阿默助攻；旧身份继续/导入/精确retry与默认createRun v11保留。2377tests/132files、content/type/build/桌面手机smoke/plan冻结全PASS，有限自然d12与阿默路线、四选角视口和7受控正反例通过；15通过PNG与2FAIL图actual view，原FAIL/双方来源保留。证据[summary](production/evidence/p08-combo-growth-ui-2026-10-05/summary.json)。精确最终draft CI以PR25交接为准；main仍193c93b，父独审决定发布。P08 in_progress、C04 D32及真机/听感/平衡门槛保持。

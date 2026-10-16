@@ -1,0 +1,41 @@
+{
+  "taskId": "P08",
+  "status": "software_verified_authorized_release",
+  "testedCommit": "7d6d7f6db17a065951346a72d328cb5129036eb0",
+  "sourceTree": "81c19f80f3f76567c37160252ff3859dea5baf69",
+  "basePublishedMain": "3084f06fb71f5492a550c5072c66c2533d4f909f",
+  "integratedCandidate": "eb580137ad8655b668533b193436c237d14c6030",
+  "branch": "verify/skill-secondary-current-main-20261016",
+  "productionDelta": [
+    "src/style.css: scoped hero-skill other-inspections summary minimum44px"
+  ],
+  "build": "PASS: typecheck + production build; existing bundle notice",
+  "e2eBuild": "PASS; build-info clean and exact testedCommit",
+  "native": {
+    "report": "native-report.json",
+    "cases": 9,
+    "passed": 9,
+    "scope": "Four viewport widths and remaining five heroes at320; lower-edge actual touch, native keyboard Space, inspection/Escape, one rotation plus simulated safe-area; exact state/journal/storage/selection/draft retained",
+    "allTargetsHeight": 44
+  },
+  "sourceUnchanged": true,
+  "styleHash": "bb00f2a2b6329cb38bb2dd09bbc4a679e76c4dfd2f12e9fed32267bf7cb3daaf",
+  "protectedUnchangedVsBase": [
+    "src/main.ts",
+    "src/audio",
+    "src/game",
+    "src/domain",
+    "src/application",
+    "src/content",
+    "src/platform",
+    "public",
+    "art"
+  ],
+  "audioInvestigationIncluded": false,
+  "notClaimed": [
+    "Physical-device acceptance",
+    "All mobile experience complete",
+    "New audio recovery code or unverified product changes",
+    "CI/domain checks or P08 completion"
+  ]
+}

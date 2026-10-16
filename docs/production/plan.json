@@ -38,6 +38,7 @@
       "humanGate": false,
       "completionScope": "2026-10-16：c009基线上的文化文案cea473、选择布局aab4d9和本机跨场景连点修复已整合；同版正常新局/携带/技能/实际结算/下一商店/失败重试及六人软件检查见currentDelivery.statusRecord。历史全量失败按独立基线对照记录，不能写成全量绿。P08仍in_progress；真实玩家理解、自然平衡、物理设备/GPU、听感、独立眼原画及整体体验未签。",
       "evidence": [
+        "docs/production/evidence/skill-secondary-current-main-2026-10-16/status.json",
         "docs/production/evidence/owned-card-current-main-integration-2026-10-16/status.json",
         "docs/production/evidence/owned-card-release-clock-2026-10-16/status.json",
         "docs/production/evidence/pointer-current-main-integration-2026-10-16/status.json",
@@ -1212,7 +1213,7 @@
   ],
   "currentDelivery": {
     "date": "2026-10-16",
-    "statusRecord": "docs/production/evidence/owned-card-current-main-integration-2026-10-16/status.json",
+    "statusRecord": "docs/production/evidence/skill-secondary-current-main-2026-10-16/status.json",
     "heroTextSpecification": "docs/production/HERO_TEXT_SPEC_20261015.json",
     "history": "docs/production/history/plan-status-before-20261015.json",
     "priorities": [
@@ -1223,7 +1224,7 @@
     ],
     "owners": {
       "documents": "同一整合负责人：规范来源856c30ed、运行时采用与当前计划/证据对账",
-      "runtimeIntegration": "Windows verify/owned-card-current-main-20261016：指针main0c4dab18已发布；已持牌d36b63f1精确源码核对与本地检查后正常快进发布；随后只盘点，待父协调非指针体验任务",
+      "runtimeIntegration": "Windows verify/skill-secondary-current-main-20261016：已持牌main3084已发布，热区eb580137在其上独立合并并九例原生复核后按用户授权正常发布；音频调查独立不混入",
       "portraits": "正式图接线已完成整合；只处理可复现缺陷，不并发覆盖资源窗口",
       "carry": "R03已结束开发，只处理经复现的整合缺陷",
       "opening": "首页/加载/成长main8af3e506已发布；本批保留其源码；结算单独同版复核",
@@ -1255,6 +1256,7 @@
     "priorSettlementStatusRecord": "docs/production/evidence/settlement-current-main-integration-2026-10-16/status.json",
     "lastVerifiedPublishedMain": "0c4dab186eb90430d57e213545179b9921fffe10",
     "priorPointerStatusRecord": "docs/production/evidence/pointer-current-main-integration-2026-10-16/status.json",
-    "nextBatchInventory": "docs/production/DELIVERY_PLAN.md#下一批玩家体验事项与依赖2026-10-16盘点待协调"
+    "nextBatchInventory": "docs/production/DELIVERY_PLAN.md#下一批玩家体验事项与依赖2026-10-16盘点待协调",
+    "priorOwnedCardStatusRecord": "docs/production/evidence/owned-card-current-main-integration-2026-10-16/status.json"
   }
 }

@@ -1,0 +1,178 @@
+{
+  "commit": "7d6d7f6db17a065951346a72d328cb5129036eb0",
+  "styleHash": "bb00f2a2b6329cb38bb2dd09bbc4a679e76c4dfd2f12e9fed32267bf7cb3daaf",
+  "build": {
+    "version": "C03",
+    "builtAt": "2026-10-16T03:06:10.531Z",
+    "revision": "7d6d7f6db17a065951346a72d328cb5129036eb0",
+    "sourceStatus": "clean",
+    "modified": false
+  },
+  "cases": [
+    {
+      "hero": "xiemu",
+      "viewport": {
+        "width": 1366,
+        "height": 900
+      },
+      "errors": [],
+      "target": {
+        "x": 394,
+        "y": 572.890625,
+        "width": 712,
+        "height": 44
+      },
+      "lowerEdgeOpened": true,
+      "inspectionButtons": 3,
+      "status": "PASS"
+    },
+    {
+      "hero": "xiemu",
+      "viewport": {
+        "width": 390,
+        "height": 740
+      },
+      "errors": [],
+      "target": {
+        "x": 36,
+        "y": 521.5625,
+        "width": 318,
+        "height": 44
+      },
+      "lowerEdgeOpened": true,
+      "inspectionButtons": 3,
+      "rotatedTarget": {
+        "x": 170,
+        "y": 185.78125,
+        "width": 534,
+        "height": 44
+      },
+      "status": "PASS"
+    },
+    {
+      "hero": "xiemu",
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "errors": [],
+      "target": {
+        "x": 36,
+        "y": 371.25,
+        "width": 248,
+        "height": 44
+      },
+      "lowerEdgeOpened": true,
+      "inspectionButtons": 3,
+      "status": "PASS"
+    },
+    {
+      "hero": "xiemu",
+      "viewport": {
+        "width": 740,
+        "height": 320
+      },
+      "errors": [],
+      "target": {
+        "x": 170,
+        "y": 131.78125,
+        "width": 534,
+        "height": 44
+      },
+      "lowerEdgeOpened": true,
+      "inspectionButtons": 3,
+      "status": "PASS"
+    },
+    {
+      "hero": "amo",
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "errors": [],
+      "target": {
+        "x": 36,
+        "y": 425.78125,
+        "width": 248,
+        "height": 44
+      },
+      "lowerEdgeOpened": true,
+      "inspectionButtons": 3,
+      "status": "PASS"
+    },
+    {
+      "hero": "touye",
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "errors": [],
+      "target": {
+        "x": 36,
+        "y": 371.1875,
+        "width": 248,
+        "height": 44
+      },
+      "lowerEdgeOpened": true,
+      "inspectionButtons": 2,
+      "status": "PASS"
+    },
+    {
+      "hero": "laohuan",
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "errors": [],
+      "target": {
+        "x": 36,
+        "y": 383.1875,
+        "width": 248,
+        "height": 44
+      },
+      "lowerEdgeOpened": true,
+      "inspectionButtons": 3,
+      "status": "PASS"
+    },
+    {
+      "hero": "erxiang",
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "errors": [],
+      "target": {
+        "x": 36,
+        "y": 287.1875,
+        "width": 248,
+        "height": 44
+      },
+      "lowerEdgeOpened": true,
+      "inspectionButtons": 0,
+      "status": "PASS"
+    },
+    {
+      "hero": "azao",
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "errors": [],
+      "target": {
+        "x": 36,
+        "y": 407.1875,
+        "width": 248,
+        "height": 44
+      },
+      "lowerEdgeOpened": true,
+      "inspectionButtons": 3,
+      "status": "PASS"
+    }
+  ],
+  "limits": [
+    "Windows Chromium native Canvas; touch and safe-area emulation, not physical-device acceptance.",
+    "Actual new run and native pointer/keyboard inputs. Read-only dialogs; no fixture or private action invocation."
+  ],
+  "browser": "153.0.8010.12",
+  "sourceUnchanged": true
+}
