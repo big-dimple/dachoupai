@@ -1230,6 +1230,15 @@
     "priorStatusRecord": "docs/production/evidence/local-windows-integration-2026-10-16/status.json",
     "priorGrowthStatusRecord": "docs/production/evidence/current-growth-causality-2026-10-16/status.json",
     "priorLoadingGrowthStatusRecord": "docs/production/evidence/loading-growth-integration-2026-10-16/status.json",
-    "priorHomeStatusRecord": "docs/production/evidence/home-experience-integration-2026-10-16/status.json"
+    "priorHomeStatusRecord": "docs/production/evidence/home-experience-integration-2026-10-16/status.json",
+    "developmentCandidates": [
+      {
+        "branch": "fix/interrupted-pointer-release-20261016",
+        "productCommit": "b8707def8a4d1a51b1f5b52d9b785a647588d907",
+        "statusRecord": "docs/production/evidence/interrupted-pointer-2026-10-16/status.json",
+        "scope": "P1 mobile interruption: retire stale press/hold on hidden without blur",
+        "status": "software_verified_development_candidate"
+      }
+    ]
   }
 }

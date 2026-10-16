@@ -31,6 +31,7 @@ export class SceneView {
   };
   private readonly contactEnd=(event:PointerEvent)=>{this.contacts.delete(event.pointerId);if(!this.contacts.size)this.multiContact=false;};
   private readonly contactBlur=()=>{this.contacts.clear();this.multiContact=false;this.cancel();};
+  private readonly visibility=()=>{if(document.hidden)this.contactBlur();};
   private reset(canceled:boolean):void {const pressed=this.pressed;this.intent.cancel();this.pressed=undefined;clearTimeout(this.timer);pressed?.actions.release?.();if(canceled)pressed?.actions.cancel?.();const refresh=this.deferredRefresh;this.deferredRefresh=undefined;if(refresh)queueMicrotask(()=>this.afterInteraction(refresh));}
   private readonly cancel=()=>this.reset(true);
   cancelInteraction():void {this.reset(true);}
@@ -71,8 +72,8 @@ export class SceneView {
     this.root=scene.add.container(0,0).setName('view');
     scene.input.on('pointerdown',this.down);scene.input.on('pointermove',this.move);scene.input.on('pointerup',this.up);scene.input.on('pointerupoutside',this.cancel);
     scene.game.canvas.addEventListener('pointercancel',this.cancel);scene.scale.on('resize',this.resize);
-    window.addEventListener('pointerdown',this.contactDown,true);window.addEventListener('pointerup',this.contactEnd,true);window.addEventListener('pointercancel',this.contactEnd,true);window.addEventListener('blur',this.contactBlur);
-    scene.events.once('shutdown',()=>{this.cancel();scene.input.off('pointerdown',this.down);scene.input.off('pointermove',this.move);scene.input.off('pointerup',this.up);scene.input.off('pointerupoutside',this.cancel);scene.game.canvas.removeEventListener('pointercancel',this.cancel);scene.scale.off('resize',this.resize);this.gestures.clear();window.removeEventListener('pointerdown',this.contactDown,true);window.removeEventListener('pointerup',this.contactEnd,true);window.removeEventListener('pointercancel',this.contactEnd,true);window.removeEventListener('blur',this.contactBlur);this.contacts.clear();});
+    window.addEventListener('pointerdown',this.contactDown,true);window.addEventListener('pointerup',this.contactEnd,true);window.addEventListener('pointercancel',this.contactEnd,true);window.addEventListener('blur',this.contactBlur);document.addEventListener('visibilitychange',this.visibility);
+    scene.events.once('shutdown',()=>{this.cancel();scene.input.off('pointerdown',this.down);scene.input.off('pointermove',this.move);scene.input.off('pointerup',this.up);scene.input.off('pointerupoutside',this.cancel);scene.game.canvas.removeEventListener('pointercancel',this.cancel);scene.scale.off('resize',this.resize);this.gestures.clear();window.removeEventListener('pointerdown',this.contactDown,true);window.removeEventListener('pointerup',this.contactEnd,true);window.removeEventListener('pointercancel',this.contactEnd,true);window.removeEventListener('blur',this.contactBlur);document.removeEventListener('visibilitychange',this.visibility);this.contacts.clear();});
   }
   get layout():TableLayout {
     const style=getComputedStyle(document.documentElement),n=(key:string)=>parseFloat(style.getPropertyValue(key))||0;
