@@ -2,6 +2,10 @@ import type {Box} from './layout';
 /** Portrait, compact facts and opt-in actions always own separate bands. */
 export function openingShowcaseLayout(b:Box,portrait:boolean,short:boolean){
  const pad=short?8:portrait?10:12;
+  if(short&&!portrait){
+   const demoY=b.y+b.height-pad-44,artWidth=b.width*.3,copyX=b.x+artWidth+pad*2;
+   return {art:{x:b.x+pad,y:b.y+pad,width:artWidth,height:demoY-b.y-pad-8},copy:{x:copyX,y:b.y+pad,width:b.x+b.width-pad-copyX,height:demoY-b.y-pad-8},demo:{x:b.x+pad,y:demoY,width:b.width-pad*2,height:44}};
+  }
   if(portrait&&b.height>=300){
    const demoY=b.y+b.height-pad-44,copyY=demoY-108;
    return {art:{x:b.x+pad,y:b.y+pad,width:b.width-pad*2,height:copyY-b.y-pad-8},copy:{x:b.x+pad,y:copyY,width:b.width-pad*2,height:100},demo:{x:b.x+pad,y:demoY,width:b.width-pad*2,height:44}};
