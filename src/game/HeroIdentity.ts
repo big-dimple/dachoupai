@@ -10,8 +10,6 @@ export const HERO_CAST={
  xiemu:{name:'花蕊夫人',title:'执剑凌风',gender:'female',intro:'传世《花蕊夫人宫词》写到宫中散钱与买花钱；牌局借这份赏赐意象，将金币换作关键一手的倍率，也可留钱收息。',quote:'赏赐已备，这一手尽兴。'},
 } as const satisfies Record<CharacterId,{name:string;title:string;gender:'male'|'female';intro:string;quote:string}>;
 export const heroName=(id:CharacterId):string=>HERO_CAST[id].name;
-export const HERO_ART_NOTICE='正式立绘';
-export const HERO_CAST_NOTICE='唐宋人物的架空青年形象；诗文摘句与游戏演绎见各人物说明。';
 
 /** Translate only explicit hero-copy call sites, never saved data or generic card/stage names. */
 const legacyNames:Record<string,CharacterId>={'阿默':'amo','骰爷':'touye','老幻':'laohuan','二响':'erxiang','阿燥':'azao','谢幕人':'xiemu','谢幕':'xiemu'};

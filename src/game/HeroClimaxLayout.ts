@@ -5,12 +5,12 @@ export function heroClimaxLayout(w:number,h:number,hasSource=true){
  const panelW=Math.min(1080,w-24),panelH=Math.min(short?h-88:h-150,portrait?580:560);
  const panel:Box={x:(w-panelW)/2,y:Math.max(short?44:64,(h-panelH)/2-6),width:panelW,height:panelH};
  const inner:Box={x:panel.x+pad,y:panel.y+pad,width:panel.width-pad*2,height:panel.height-pad*2};
- const header=short?74:portrait?80:104,footer=short?82:portrait?128:118;
+ const header=short?74:portrait?80:104,footer=short?64:portrait?128:118;
  const body:Box={x:inner.x,y:panel.y+header,width:inner.width,height:panel.height-header-footer};
  const subjectW=body.width*(hasSource?.44:.46),gap=portrait?18:28;
  const subject:Box={...body,width:subjectW};
- const readout:Box={x:subject.x+subject.width+gap,y:body.y+body.height*(short?.08:.18),width:body.width-subject.width-gap,height:body.height*.7};
- const sourceCaption:Box={x:inner.x,y:panel.y+panel.height-(short?38:54),width:inner.width,height:short?30:44};
+ const readout:Box={x:subject.x+subject.width+gap,y:body.y+body.height*(short?0:.18),width:body.width-subject.width-gap,height:body.height*.7};
+ const sourceCaption:Box={x:inner.x,y:panel.y+panel.height-(short?30:54),width:inner.width,height:short?22:44};
  const valueY=readout.y+(short?20:28),noteY=panel.y+panel.height-footer+8;
  const eyes:Box={x:inner.x,y:body.y+body.height*.08,width:inner.width,height:body.height*(short?.54:.62)};
  const landing:Box={x:inner.x,y:body.y+10,width:inner.width,height:body.height};
@@ -23,6 +23,12 @@ export function heroClimaxLayout(w:number,h:number,hasSource=true){
 export function reserveHeroClimaxHeader(l:ReturnType<typeof heroClimaxLayout>,headerBottom:number){
  if(!Number.isFinite(headerBottom)||headerBottom+12<=l.body.y)return l;
  const y=Math.ceil(headerBottom)+12,height=Math.max(1,l.body.y+l.body.height-y),body={...l.body,y,height};
- const source={...l.source,y,height},readout={...l.readout,y:y+height*(l.short?.08:.18),height:height*.7};
+ const source={...l.source,y,height},readout={...l.readout,y:y+height*(l.short?0:.18),height:height*.7};
  return {...l,body,source,readout,eyes:{...l.eyes,y:y+height*.08,height:height*(l.short?.54:.62)},landing:{...l.landing,y:y+10,height},heroY:y+height/2,heroH:height,valueY:readout.y+(l.short?20:28)};
+}
+
+/** Short landing keeps the source effect and accumulated value side by side. */
+export function heroClimaxLandingColumns(l:ReturnType<typeof heroClimaxLayout>){
+ const width=(l.landing.width-24)/2,y=l.landing.y+22,height=Math.max(1,Math.min(64,l.noteY-y-8));
+ return {labelY:l.landing.y,local:{x:l.nameX,y,width,height},total:{x:l.nameX+width+24,y,width,height}};
 }

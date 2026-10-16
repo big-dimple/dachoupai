@@ -1,8 +1,7 @@
-import {HERO_CAST_NOTICE,HERO_ART_NOTICE} from './HeroIdentity';
 import type {R2RunState} from '../domain/r2Run';
 import type {CharacterId} from './characters';
 import type {DetailDialog} from './DetailDialog';
-import {heroTextSpec,mountHeroTags} from './HeroText';
+import {mountHeroTags} from './HeroText';
 import {characterForNewRun,characterForRun,usesCurrentHeroText} from './CharacterRunCopy';
 import {HERO_OPENING} from './HeroOpeningCopy';
 import {heroSignature} from './HeroSignature';
@@ -56,13 +55,13 @@ export function showHeroExplanation(dialog:DetailDialog,id:CharacterId,options:{
  if(options.guide){copy.now=options.guide.step;copy.effect=options.guide.effect;}if(options.status)copy.now=options.status;
  // Canvas entries are focusable; closing returns keyboard control to the same surface.
  if(!document.querySelector('dialog[open]'))document.querySelector<HTMLCanvasElement>('canvas')?.focus({preventScroll:true});
- const d=dialog.open(hero.name+' · '+hero.passiveName,hero.detailRules,options.actions??[],{closeLabel:options.closeLabel??'返回',onClose:options.onClose,collapseRules:true,rulesLabel:'完整能力与限制',portrait:{url:portraitURL(id),thumbnailUrl:selectionPortraitURL(id),alt:hero.name+' · '+HERO_ART_NOTICE}});
+ const d=dialog.open(hero.name+' · '+hero.passiveName,hero.detailRules,options.actions??[],{closeLabel:options.closeLabel??'返回',onClose:options.onClose,collapseRules:true,rulesLabel:'完整能力与限制',portrait:{url:portraitURL(id),thumbnailUrl:selectionPortraitURL(id),alt:hero.name}});
  d.classList.add('hero-explanation');if(!portraitURL(id))d.classList.add('hero-explanation--text');d.dataset.hero=id;
  const style=document.createElement('style');style.textContent=css+' .hero-explanation--text .dialog-content{display:block}.hero-explanation--text .dialog-intro{max-width:680px}';d.append(style);
  d.querySelector('.dialog-eyebrow')!.textContent='英雄说明 · 只查看不消耗';
  const intro=document.createElement('div');intro.className='dialog-intro';
  const story=document.createElement('details'),storyLabel=document.createElement('summary'),motto=document.createElement('p'),bio=document.createElement('p');
- story.className='card-rules hero-story';storyLabel.textContent='人物故事与宣言';motto.className='hero-motto';motto.textContent='“'+HERO_OPENING[id].taunt+'”';bio.className='hero-fact';bio.textContent=hero.intro+' '+heroTextSpec(id).mottoAttribution+' '+HERO_CAST_NOTICE;story.append(storyLabel,motto,bio);
+ story.className='card-rules hero-story';storyLabel.textContent='人物故事与宣言';motto.className='hero-motto';motto.textContent='“'+HERO_OPENING[id].taunt+'”';bio.className='hero-fact';bio.textContent=hero.intro;story.append(storyLabel,motto,bio);
  for(const [label,value] of [['做什么',copy.effect],...(!copy.current?[['何时能用',copy.when]]:[]),['现在',copy.now]]){const p=document.createElement('p'),title=document.createElement('strong');p.className='hero-fact';title.textContent=label;p.append(title,document.createTextNode(value));intro.append(p);}
  const theme=document.createElement('p');theme.className='hero-fact hero-theme';theme.textContent=hero.title;intro.append(theme,story);
  if(copy.current){
