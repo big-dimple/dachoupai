@@ -11,6 +11,7 @@ import {r2AssistAvailability} from '../src/domain/r2Assist';
 import {assistCandidates} from '../src/game/AssistSelection';
 import {touyeChoice} from '../src/game/TouyeWagerCopy';
 import {createHeroPlayReminders,decodeHeroPlayReminder,HERO_PLAY_REMINDER_KEY,unusedHeroAbility,type HeroPlayDraft} from '../src/game/HeroPlayReminder';
+import {enrollFirstChapterGuide,dismissFirstChapterGuide,firstChapterGuide} from '../src/game/FirstChapterGuide';
 
 const cards=['spades-8','hearts-8','clubs-7','diamonds-7','spades-13','hearts-13','clubs-2','diamonds-4'];
 const main=cards.slice(0,4);
@@ -61,6 +62,14 @@ it('B08 preserves the Laohuan non-scoring exception; Q01 disables all six',()=>{
 });
 
 function memory(){const data=new Map<string,string>();return {data,getItem:(key:string)=>data.get(key)??null,setItem:(key:string,value:string)=>{data.set(key,value);}};}
+it('skipping only an inline hand hint does not silently opt out of the available-skill decision',()=>{
+ const storage=memory(),s=prepared('erxiang'),before=structuredClone(s);vi.stubGlobal('localStorage',storage);
+ try{enrollFirstChapterGuide(s);expect(firstChapterGuide(s)?.step).toBe('hand');dismissFirstChapterGuide(s,'step');expect(firstChapterGuide(s)).toBeUndefined();expect(eligible(s,cards.slice(0,2))).toBe(true);expect(createHeroPlayReminders(()=>storage).claim(s)).toBe(true);expect(s).toEqual(before);}finally{vi.unstubAllGlobals();}
+});
+it.each(['run','forever'] as const)('still respects the explicit %s guide opt-out',scope=>{
+ const storage=memory(),s=prepared('erxiang');vi.stubGlobal('localStorage',storage);
+ try{enrollFirstChapterGuide(s);dismissFirstChapterGuide(s,scope);expect(createHeroPlayReminders(()=>storage).claim(s)).toBe(false);}finally{vi.unstubAllGlobals();}
+});
 it('claims at most once per each of the first two stages, at most twice per run, without writing game state',()=>{
  const storage=memory(),r=createHeroPlayReminders(()=>storage),s=entered('erxiang'),before=structuredClone(s);
  expect(r.claim(s,false)).toBe(false);expect(r.claim(s,true)).toBe(true);expect(r.claim(s,true)).toBe(false);expect(s).toEqual(before);
