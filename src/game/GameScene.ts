@@ -4,6 +4,7 @@ import {GAME_NAME} from './Brand';
 import {formatScoreReview} from './ScoreReview';
 import {opponentChoices,opponentCuePlan,opponentSavedStatus,remainingScoreEvents} from './OpponentFacts';
 import {presentOpponentEntrance,showOpponentChoices,presentOpponentBeat} from './OpponentPresentation';
+import {opponentChallenge,mountOpponentChallenge} from './OpponentChallenge';
 import {whenTextureReady} from './LateTextureArt';
 import {warmTableImages} from './StageImageWarmup';
 import {isR2ActiveMultTiming} from '../domain/r2GroupUpgrade';
@@ -859,11 +860,12 @@ export class GameScene extends Phaser.Scene {
       (this.view.root.list.find(o=>o.name==='table/played-label') as Phaser.GameObjects.Text|undefined)?.setText('戏法补牌');this.resultText.setVisible(false);
       const text=this.add.text(p.x+p.width/2,p.y+p.height/2,this.refillHidden?'候选已收起 · 点英雄继续选择':`留 ${pending.required} 张 · 已选 ${this.selectedIds.size} / ${pending.required}\n确认后其余 ${pending.candidateIds.length-pending.required} 张进已用区`,{fontFamily:UI_FONT,fontSize:'16px',color:C.jade,align:'center',wordWrap:{width:p.width-16,useAdvancedWrap:true}}).setOrigin(.5).setName('refill/instruction');this.previewCards.add(text);
       const note=this.add.text(score.x+10,score.y+28,'原保留：'+held,{fontFamily:UI_FONT,fontSize:'14px',color:C.mutedInk,wordWrap:{width:score.width-20,useAdvancedWrap:true}}).setName('refill/held');this.previewCards.add(note);return;}
-    if(this.assistProfile){const growth=!preview&&p.height>=94&&p.width>=250?buildGrowthProgress(this.run)[0]:undefined,payoffs=growth?growthPayoffs(this.run):[],payoff=payoffs.find(p=>p.change!=='same')??payoffs[0];const shown=payoff&&showGrowthPayoff(this.view,this,this.previewCards,p,payoff)||growth&&showBuildGrowth(this.view,this,this.previewCards,p,growth);this.renderAssistSelection(preview,p,!!shown);return;}
+    const challenger=!preview&&mountOpponentChallenge(this,this.view,this.previewCards,p,this.run,()=>this.menuActions?.viewRules?.());
+    if(this.assistProfile&&!challenger){const growth=!preview&&p.height>=94&&p.width>=250?buildGrowthProgress(this.run)[0]:undefined,payoffs=growth?growthPayoffs(this.run):[],payoff=payoffs.find(p=>p.change!=='same')??payoffs[0];const shown=payoff&&showGrowthPayoff(this.view,this,this.previewCards,p,payoff)||growth&&showBuildGrowth(this.view,this,this.previewCards,p,growth);this.renderAssistSelection(preview,p,!!shown);return;}
     if(!preview){
       const notice=stageNotice(this.run),identity=stageIdentity(this.stage.index,this.run.stage!.boss,this.run.tourMode,this.run.difficulty)!,hint=notice?.warning?identity.stageName+' · '+notice.title+(p.height>=90?'\n'+notice.description:''):this.run.stage!.playIndex===0?identity.stageName+'\n选1–5张出牌，不合适可弃牌换新':'选牌，准备下一手';
       const payoffs=notice?.warning?[]:growthPayoffs(this.run),payoff=payoffs.find(p=>p.change!=='same')??payoffs[0],shown=payoff&&showGrowthPayoff(this.view,this,this.previewCards,p,payoff);
-      const text=!shown?this.add.text(p.x+p.width/2,p.y+p.height/2,hint,{fontFamily:UI_FONT,fontSize:p.height<90||notice?.warning?'14px':'18px',color:notice?.warning?C.red:C.mutedInk,align:'center',lineSpacing:4,wordWrap:{width:p.width-24,useAdvancedWrap:true},resolution:Math.max(1,1/this.scale.zoom)}).setOrigin(.5):undefined;
+      const text=!challenger&&!shown?this.add.text(p.x+p.width/2,p.y+p.height/2,hint,{fontFamily:UI_FONT,fontSize:p.height<90||notice?.warning?'14px':'18px',color:notice?.warning?C.red:C.mutedInk,align:'center',lineSpacing:4,wordWrap:{width:p.width-24,useAdvancedWrap:true},resolution:Math.max(1,1/this.scale.zoom)}).setOrigin(.5):undefined;
       if(text)this.previewCards.add(text);
       const score=this.view.layout.scoreBoard,mods=readR2Modifiers(this.run.jokers,this.jokerDefinitions),handRules=r2ScoreContext(this.run,this.hand,[]).handRules;
       const rule=fourCardRuleCopy({fourStraight:mods.fourStraight||handRules?.fourStraight,fourFlush:mods.fourFlush||handRules?.fourFlush});
@@ -1479,7 +1481,8 @@ export class GameScene extends Phaser.Scene {
     [this.scoreHeat,this.scoreMult,this.scoreTotal].forEach(text=>text.setText('').setData('fullText','').setData('eventId',undefined).setData('eventPhase',undefined).setVisible(false));
     (this.view.root.list.find(o=>o.name==='score/total-pedestal') as Phaser.GameObjects.Graphics|undefined)?.setVisible(false);
     const score=this.view.layout.scoreBoard;
-    this.resultText.setVisible(true).setText(preview?selectionCopy(preview).title:this.stage.name);
+    const challenge=opponentChallenge(this.run,preview?.type);
+    this.resultText.setVisible(true).setText(preview?(challenge?.selection??selectionCopy(preview).title):challenge?'回音墙 · 目标 '+heatText(challenge.target):this.stage.name).setData('opponentSelection',challenge);
     fitScoreLine(this.resultText,{x:score.x+10,y:score.y+(score.height<90?4:7),width:score.width-20-(this.selectionQuickInScore(score)?104:0),height:score.height<90?18:30},score.height<90?18:24);
   }
   /** Reflow real text bounds inside the reserved score/body/fire lanes. */

@@ -32,13 +32,27 @@ function style(host:HTMLElement):void {
   .opponent-beat[data-compact="true"] small {line-height:1.25}
   .opponent-beat[data-compact="true"] strong {font-size:18px}
   .opponent-beat > small,.opponent-beat > strong,.opponent-beat > p {flex-shrink:0}
+  .opponent-dialog .opponent-identity {display:flex;align-items:center;gap:10px;margin:0 0 10px;color:${C.jade}}
+  .opponent-dialog .opponent-seal {display:grid;place-items:center;border:2px solid currentColor;width:44px;height:44px;font:700 19px Georgia,serif;letter-spacing:2px}
+  .opponent-dialog .opponent-identity span {font-size:13px;letter-spacing:2px}
+  .opponent-dialog .opponent-quote {font-family:Georgia,'Noto Serif SC',SimSun,serif;font-size:clamp(20px,3vw,28px);line-height:1.3}
+  .opponent-dialog .dialog-effect {border-left:3px solid ${C.red};padding-left:12px;font-weight:700}
+  .opponent-dialog .dialog-purchase-summary {font-size:16px;font-weight:700}
+  .opponent-beat {background:${C.paperLight};border-left-width:5px;gap:5px}
+  .opponent-beat strong {font-family:Georgia,'Noto Serif SC',SimSun,serif;font-size:clamp(19px,3vw,30px)}
+  .opponent-beat p {font-weight:700;color:${C.jade}}
+  .opponent-beat[data-kind='repeat'] p {color:${C.red}}
+  .opponent-beat[data-kind='won'] {border-color:${C.brass}}
+  .opponent-beat .opponent-receipt {align-self:flex-start;border:1px solid currentColor;padding:2px 6px;font-size:12px;letter-spacing:1px;color:${C.jade}}
+  .opponent-beat[data-compact='true'] .opponent-receipt {display:none}
   @media(min-width:700px) {.opponent-dialog .opponent-options {grid-template-columns:1fr 1fr}}
   @media(max-height:620px) {.opponent-dialog .opponent-quote {font-size:18px;margin-bottom:6px}.opponent-dialog .opponent-options {gap:6px;margin:6px 0}.opponent-dialog .opponent-option {padding:7px}}
   `;host.append(sheet);
 }
 function decorate(dialog:HTMLDialogElement,quote:string):void {
   dialog.classList.add('opponent-dialog');dialog.dataset.opponent=B05_OPPONENT.id;dialog.dataset.artMode='text-only';style(dialog);
-  const eyebrow=dialog.querySelector('.dialog-eyebrow');if(eyebrow)eyebrow.textContent=B05_OPPONENT.role+' · 文字演出';
+  const eyebrow=dialog.querySelector('.dialog-eyebrow');if(eyebrow)eyebrow.textContent=B05_OPPONENT.role+' · 压轴对手';
+  const identity=document.createElement('div'),seal=document.createElement('b'),role=document.createElement('span');identity.className='opponent-identity';seal.className='opponent-seal';seal.textContent='回音';role.textContent='认招 · 接招 · 见真章';identity.append(seal,role);dialog.querySelector('.dialog-intro')?.prepend(identity);
   const text=document.createElement('p');text.className='opponent-quote';text.textContent='“'+quote+'”';dialog.querySelector('.dialog-intro')?.prepend(text);
 }
 /** Resolves false on cancel/scene shutdown, with no EnterStage or draw committed. */
@@ -50,8 +64,8 @@ export function presentOpponentEntrance(dialog:DetailDialog,run:R2RunState):Prom
     const d=dialog.open('回音墙 · 入场前',
       '连续两手同牌型，只将等级后的牌型基础热度减半。普通点数、增强和大丑牌热度正常。首手不减半。',
       [{label:'入场 · 看手牌',primary:true,run:()=>{entered=true;dialog.close();}}],
-      {closeLabel:'稍后入场',onClose:()=>resolve(entered),summaryBody:spec.name+' · 目标 '+heatText(spec.targetHeat),effectBody:'连出同型 → 牌型基础½\n同型硬闯，或换已成型牌型',collapseRules:true,rulesLabel:'具体减什么'});
-    decorate(d,'再来同一招，我就接住它。');d.dataset.opponentPhase='entrance';d.dataset.phase='entrance';d.dataset.attitude='composed';d.dataset.stageIndex=String(run.stageIndex);d.dataset.commandSeq=String(run.commandSeq);
+      {closeLabel:'稍后入场',onClose:()=>resolve(entered),summaryBody:spec.name+' · 目标 '+heatText(spec.targetHeat),effectBody:'首手基础正常\n再出同型 → 仅牌型基础½',collapseRules:true,rulesLabel:'具体减什么'});
+    decorate(d,'来，别让我听到第二遍。');d.dataset.opponentPhase='entrance';d.dataset.phase='entrance';d.dataset.attitude='composed';d.dataset.stageIndex=String(run.stageIndex);d.dataset.commandSeq=String(run.commandSeq);
   });
 }
 export function showOpponentChoices(dialog:DetailDialog,run:R2RunState,choices:readonly OpponentChoice[],choose:(choice:OpponentChoice)=>void,extra:()=>void,canChoose:()=>boolean):void {
@@ -69,7 +83,7 @@ export function showOpponentChoices(dialog:DetailDialog,run:R2RunState,choices:r
 export async function presentOpponentBeat(scene:Phaser.Scene,area:Box,beat:OpponentCue,signal:AbortSignal,reduced:boolean):Promise<void> {
   if(signal.aborted)return;
   const host=document.createElement('section');host.className='opponent-beat';host.dataset.kind=beat.kind;host.dataset.opponent=beat.opponentId;host.dataset.eventId=beat.eventId;host.dataset.phase=beat.phase;host.dataset.attitude=beat.attitude;host.dataset.placement=beat.placement;host.dataset.artMode='text-only';host.setAttribute('role','status');style(host);
-  const title=document.createElement('small'),quote=document.createElement('strong'),effect=document.createElement('p');title.textContent=beat.title;quote.textContent='“'+beat.quote+'”';effect.textContent=beat.effect;host.append(title,quote,effect);document.body.append(host);
+  const title=document.createElement('small'),quote=document.createElement('strong'),effect=document.createElement('p');title.textContent=beat.title;quote.textContent='“'+beat.quote+'”';effect.textContent=beat.effect;const receipt=document.createElement('b');receipt.className='opponent-receipt';receipt.textContent=beat.kind==='repeat'?'同招 · 认出了':beat.kind==='changed'?'变招 · 接着打':beat.kind==='won'?'这场 · 你赢了':'这场 · 守住了';host.append(title,quote,effect,receipt);document.body.append(host);
   // The played area uses CSS layout coordinates, independent of framebuffer density.
   const position=()=>{const r=scene.game.canvas.getBoundingClientRect(),viewport=cssViewport(scene),x=r.width/viewport.width,y=r.height/viewport.height;host.dataset.compact=String(area.height*y<96);Object.assign(host.style,{left:r.left+area.x*x+'px',top:r.top+area.y*y+'px',width:area.width*x+'px',height:area.height*y+'px'});};position();
   const animation=reduced?undefined:host.animate([{opacity:0,transform:'translateX(9px)'},{opacity:1,transform:'translateX(0)'}],{duration:140,fill:'both'});
