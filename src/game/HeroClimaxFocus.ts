@@ -5,7 +5,7 @@ import type {heroClimaxLayout} from './HeroClimaxLayout';
 // Normalized strips reviewed against all six existing head crops. Both eyes and
 // eyebrows stay together; no scan, texture generation or independent eye artwork.
 const strips:Record<CharacterId,readonly[number,number,number,number]>={
- amo:[.25,.177,.667,.271],touye:[.308,.383,.6,.217],laohuan:[.288,.288,.635,.27],
+ amo:[.313,.19,.51,.221],touye:[.308,.383,.6,.217],laohuan:[.288,.288,.635,.27],
  erxiang:[.073,.245,.6,.236],azao:[.25,.317,.6,.267],xiemu:[.35,.192,.583,.25],
 };
 export function heroFocusCrop(id:CharacterId,width:number,height:number):Box {

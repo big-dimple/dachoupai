@@ -5,6 +5,11 @@ import type {CharacterId} from '../src/domain/characters';
 it.each(['amo','touye','laohuan','erxiang','azao','xiemu'] as CharacterId[])('%s eye strip keeps the reviewed pair of eyes in source bounds',id=>{
  const b=heroFocusCrop(id,600,600);expect(b.x).toBeGreaterThanOrEqual(0);expect(b.y).toBeGreaterThanOrEqual(0);expect(b.x+b.width).toBeLessThanOrEqual(600);expect(b.y+b.height).toBeLessThanOrEqual(600);expect(b.width/b.height).toBeGreaterThan(2);
 });
+it('new user-provided Su Shi strip includes both reviewed eye anchors without cutting through the smile',()=>{
+ const b=heroFocusCrop('amo',480,480);
+ for(const [x,y] of [[271,137],[339,165]]){expect(x).toBeGreaterThan(b.x);expect(x).toBeLessThan(b.x+b.width);expect(y).toBeGreaterThan(b.y);expect(y).toBeLessThan(b.y+b.height);}
+ expect(b.y+b.height).toBeLessThan(205);
+});
 it.each([[320,740],[390,740],[568,320],[740,320],[740,300],[1366,768]])('focus and two number lanes stay separate at %ix%i',(w,h)=>{
  const l=heroClimaxLayout(w,h),c=heroFocusComposition(reserveHeroClimaxHeader(l,l.nameY+58),true);
  expect(c.local.x+c.local.width).toBeLessThan(c.total.x);expect(c.total.x+c.total.width).toBeLessThanOrEqual(l.panel.x+l.panel.width);
