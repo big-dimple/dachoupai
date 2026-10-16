@@ -1,18 +1,16 @@
 import type {Box} from './layout';
-/** Fixed demonstration band; portrait never shares its text or action space. */
-export function openingShowcaseLayout(b:Box,portrait:boolean,short:boolean,folded=false){
+/** Portrait, compact facts and opt-in actions always own separate bands. */
+export function openingShowcaseLayout(b:Box,portrait:boolean,short:boolean){
  const pad=short?8:portrait?10:12;
- if(folded){
-  const artWidth=portrait?b.width*.50:short?Math.min(150,b.width*.2):Math.min(470,b.width*.42),copyX=b.x+artWidth+pad*2;
+  if(portrait&&b.height>=300){
+   const demoY=b.y+b.height-pad-44,copyY=demoY-108;
+   return {art:{x:b.x+pad,y:b.y+pad,width:b.width-pad*2,height:copyY-b.y-pad-8},copy:{x:b.x+pad,y:copyY,width:b.width-pad*2,height:100},demo:{x:b.x+pad,y:demoY,width:b.width-pad*2,height:44}};
+  }
+  if(portrait){
+   const artWidth=b.width*.42,copyX=b.x+artWidth+pad*2,demoY=b.y+b.height-pad-44;
+   return {art:{x:b.x+pad,y:b.y+pad,width:artWidth,height:demoY-b.y-pad-8},copy:{x:copyX,y:b.y+pad,width:b.width-(copyX-b.x)-pad,height:demoY-b.y-pad-8},demo:{x:b.x+pad,y:demoY,width:b.width-pad*2,height:44}};
+  }
+  const artWidth=short?Math.min(150,b.width*.2):Math.min(470,b.width*.42),copyX=b.x+artWidth+pad*2;
   const copyWidth=b.width-(copyX-b.x)-pad,demoY=b.y+b.height-pad-48;
   return {art:{x:b.x+pad,y:b.y+pad,width:artWidth,height:b.height-pad*2-(short?0:24)},copy:{x:copyX,y:b.y+pad,width:copyWidth,height:demoY-b.y-pad-8},demo:{x:copyX,y:demoY,width:copyWidth,height:48}};
- }
- if(portrait){
-  const demoHeight=Math.min(224,Math.max(184,b.height-90)),topHeight=b.height-demoHeight-pad*2;
-  const artWidth=Math.min(136,b.width*.30);
-  return {art:{x:b.x+pad,y:b.y+pad,width:artWidth,height:Math.max(40,topHeight-6)},copy:{x:b.x+artWidth+pad+10,y:b.y+pad,width:b.width-artWidth-pad*2-10,height:topHeight},demo:{x:b.x+pad,y:b.y+b.height-demoHeight-pad,width:b.width-pad*2,height:demoHeight}};
- }
- const artWidth=short?Math.min(150,b.width*.2):Math.min(470,b.width*.42),copyX=b.x+artWidth+pad*2;
- const demoY=b.y+(short?62:Math.min(174,b.height*.42));
- return {art:{x:b.x+pad,y:b.y+pad,width:artWidth,height:b.height-pad*2},copy:{x:copyX,y:b.y+pad,width:b.width-(copyX-b.x)-pad,height:demoY-b.y-pad},demo:{x:copyX,y:demoY,width:b.width-(copyX-b.x)-pad,height:b.y+b.height-demoY-pad}};
 }
