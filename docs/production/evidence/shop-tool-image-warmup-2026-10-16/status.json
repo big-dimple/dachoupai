@@ -1,0 +1,349 @@
+{
+  "date": "2026-10-16",
+  "baseMain": "2a8efe2a8ae4f2eb80af68f5d21986d3d63a0bd7",
+  "productCommit": "3ae914f6259d7c513284929a6b31bd8743909962",
+  "observerCommit": "94b45dccdf898510f010cfe6c6a293a3a9839862",
+  "branch": "fix/shop-tool-background-images-20261016",
+  "status": "local_software_verified_publication_blocked",
+  "productionFiles": [
+    "src/game/MakeCardsDialog.ts",
+    "src/game/ShopScene.ts",
+    "src/game/ShopToolImageWarmup.ts"
+  ],
+  "tests": {
+    "passed": 38,
+    "files": 4,
+    "build": "PASS",
+    "rotationCases": 39
+  },
+  "summaries": [
+    {
+      "name": "before",
+      "head": "2a8efe2a8ae4f2eb80af68f5d21986d3d63a0bd7",
+      "status": "PASS",
+      "delay": 0,
+      "scope": "Fresh browser contexts for cold HTTP/decoded caches; native title/shop/tool actions. Timestamps observe actual fetch, image decode, createImageBitmap, texture add, component calls and resource transfer/cache. Controlled request delay explicitly separate when nonzero. No inventory/state or product command injection.",
+      "cases": [
+        {
+          "dwell": 0,
+          "status": "PASS",
+          "errors": [],
+          "opens": [
+            {
+              "key": "cold-0",
+              "started": 2304.2000000029802,
+              "attachedMs": 91.69999998807907,
+              "detailReadyMs": 102.79999999701977
+            },
+            {
+              "key": "hot-0",
+              "started": 3053.8999999910593,
+              "attachedMs": 77.5,
+              "detailReadyMs": 79.6000000089407
+            }
+          ]
+        },
+        {
+          "dwell": 1500,
+          "status": "PASS",
+          "errors": [],
+          "opens": [
+            {
+              "key": "cold-1500",
+              "started": 3947.7999999970198,
+              "attachedMs": 92.8999999910593,
+              "detailReadyMs": 104.8999999910593
+            },
+            {
+              "key": "hot-1500",
+              "started": 4713.29999999702,
+              "attachedMs": 79.29999999701977,
+              "detailReadyMs": 81.29999999701977
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "after",
+      "head": "3ae914f6259d7c513284929a6b31bd8743909962",
+      "status": "PASS",
+      "delay": 0,
+      "scope": "Fresh browser contexts for cold HTTP/decoded caches; native title/shop/tool actions. Timestamps observe actual fetch, image decode, createImageBitmap, texture add, component calls and resource transfer/cache. Controlled request delay explicitly separate when nonzero. No inventory/state or product command injection.",
+      "cases": [
+        {
+          "dwell": 0,
+          "status": "PASS",
+          "errors": [],
+          "opens": [
+            {
+              "key": "cold-0",
+              "started": 2164.5999999940395,
+              "attachedMs": 93.09999999403954,
+              "detailReadyMs": 105.20000000298023
+            },
+            {
+              "key": "hot-0",
+              "started": 2932.699999988079,
+              "attachedMs": 77,
+              "detailReadyMs": 79.1000000089407
+            }
+          ]
+        },
+        {
+          "dwell": 1500,
+          "status": "PASS",
+          "errors": [],
+          "opens": [
+            {
+              "key": "cold-1500",
+              "started": 4023.0999999940395,
+              "attachedMs": 87.6000000089407,
+              "detailReadyMs": 89.70000000298023
+            },
+            {
+              "key": "hot-1500",
+              "started": 4768.70000000298,
+              "attachedMs": 78.3999999910593,
+              "detailReadyMs": 80.3999999910593
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "before-slow",
+      "head": "2a8efe2a8ae4f2eb80af68f5d21986d3d63a0bd7",
+      "status": "PASS",
+      "delay": 180,
+      "scope": "Fresh browser contexts for cold HTTP/decoded caches; native title/shop/tool actions. Timestamps observe actual fetch, image decode, createImageBitmap, texture add, component calls and resource transfer/cache. Controlled request delay explicitly separate when nonzero. No inventory/state or product command injection.",
+      "cases": [
+        {
+          "dwell": 0,
+          "status": "PASS",
+          "peakDetails": 1,
+          "errors": [],
+          "opens": [
+            {
+              "key": "cold-0",
+              "started": 7246.600000008941,
+              "attachedMs": 93.09999999403954,
+              "detailReadyMs": 302.8999999910593
+            },
+            {
+              "key": "hot-0",
+              "started": 8197.40000000596,
+              "attachedMs": 77.09999999403954,
+              "detailReadyMs": 79.29999999701977
+            }
+          ]
+        },
+        {
+          "dwell": 1500,
+          "status": "PASS",
+          "peakDetails": 1,
+          "errors": [],
+          "opens": [
+            {
+              "key": "cold-1500",
+              "started": 8918.29999999702,
+              "attachedMs": 92.70000000298023,
+              "detailReadyMs": 287.5
+            },
+            {
+              "key": "hot-1500",
+              "started": 9868.20000000298,
+              "attachedMs": 78.09999999403954,
+              "detailReadyMs": 79.8999999910593
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "after-slow",
+      "head": "3ae914f6259d7c513284929a6b31bd8743909962",
+      "status": "PASS",
+      "delay": 180,
+      "scope": "Fresh browser contexts for cold HTTP/decoded caches; native title/shop/tool actions. Timestamps observe actual fetch, image decode, createImageBitmap, texture add, component calls and resource transfer/cache. Controlled request delay explicitly separate when nonzero. No inventory/state or product command injection.",
+      "cases": [
+        {
+          "dwell": 0,
+          "status": "PASS",
+          "peakDetails": 2,
+          "errors": [],
+          "opens": [
+            {
+              "key": "cold-0",
+              "started": 7122.100000008941,
+              "attachedMs": 91.59999999403954,
+              "detailReadyMs": 186.19999998807907
+            },
+            {
+              "key": "hot-0",
+              "started": 7958.70000000298,
+              "attachedMs": 73.90000000596046,
+              "detailReadyMs": 76.70000000298023
+            }
+          ]
+        },
+        {
+          "dwell": 1500,
+          "status": "PASS",
+          "peakDetails": 2,
+          "errors": [],
+          "opens": [
+            {
+              "key": "cold-1500",
+              "started": 8685.59999999404,
+              "attachedMs": 88.20000000298023,
+              "detailReadyMs": 90.20000000298023
+            },
+            {
+              "key": "hot-1500",
+              "started": 9414.20000000298,
+              "attachedMs": 62.5,
+              "detailReadyMs": 64.29999999701977
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "failure-once",
+      "head": "3ae914f6259d7c513284929a6b31bd8743909962",
+      "status": "PASS",
+      "delay": 0,
+      "scope": "Fresh browser contexts for cold HTTP/decoded caches; native title/shop/tool actions. Timestamps observe actual fetch, image decode, createImageBitmap, texture add, component calls and resource transfer/cache. Controlled request delay explicitly separate when nonzero. No inventory/state or product command injection.",
+      "cases": [
+        {
+          "dwell": 1500,
+          "status": "PASS",
+          "peakDetails": 2,
+          "errors": [],
+          "opens": [
+            {
+              "key": "cold-1500",
+              "started": 3954.0999999940395,
+              "attachedMs": 91.40000000596046,
+              "detailReadyMs": 93.40000000596046
+            },
+            {
+              "key": "hot-1500",
+              "started": 4687.0999999940395,
+              "attachedMs": 77.80000001192093,
+              "detailReadyMs": 79.70000000298023
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "failure-permanent",
+      "head": "3ae914f6259d7c513284929a6b31bd8743909962",
+      "status": "PASS",
+      "delay": 0,
+      "scope": "Fresh browser contexts for cold HTTP/decoded caches; native title/shop/tool actions. Timestamps observe actual fetch, image decode, createImageBitmap, texture add, component calls and resource transfer/cache. Controlled request delay explicitly separate when nonzero. No inventory/state or product command injection.",
+      "cases": [
+        {
+          "dwell": 1500,
+          "status": "PASS",
+          "peakDetails": 2,
+          "errors": [],
+          "opens": [
+            {
+              "key": "cold-1500",
+              "started": 3993.5999999940395,
+              "attachedMs": 92.70000000298023,
+              "detailReadyMs": 187.20000000298023
+            },
+            {
+              "key": "hot-1500",
+              "started": 4844.5999999940395,
+              "attachedMs": 77.6000000089407,
+              "detailReadyMs": 79.40000000596046
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "leave-inflight",
+      "head": "3ae914f6259d7c513284929a6b31bd8743909962",
+      "status": "PASS",
+      "delay": 400,
+      "scope": "Fresh browser contexts for cold HTTP/decoded caches; native title/shop/tool actions. Timestamps observe actual fetch, image decode, createImageBitmap, texture add, component calls and resource transfer/cache. Controlled request delay explicitly separate when nonzero. No inventory/state or product command injection.",
+      "cases": [
+        {
+          "dwell": 400,
+          "status": "PASS",
+          "peakDetails": 0,
+          "errors": [],
+          "opens": [],
+          "exit": {
+            "lateToolRequests": []
+          }
+        }
+      ]
+    },
+    {
+      "name": "leave-retired-inflight",
+      "head": "3ae914f6259d7c513284929a6b31bd8743909962",
+      "status": "PASS",
+      "delay": 2500,
+      "scope": "Fresh browser contexts for cold HTTP/decoded caches; native title/shop/tool actions. Timestamps observe actual fetch, image decode, createImageBitmap, texture add, component calls and resource transfer/cache. Controlled request delay explicitly separate when nonzero. No inventory/state or product command injection.",
+      "cases": [
+        {
+          "dwell": 400,
+          "status": "PASS",
+          "peakDetails": 0,
+          "errors": [],
+          "opens": [],
+          "exit": {
+            "at": 1792128238523,
+            "inFlightBeforeLeave": [
+              {
+                "kind": "decode-start",
+                "start": 2072.0999999940395,
+                "end": 2072.0999999940395,
+                "src": "http://127.0.0.1:5609/assets/handdrawn-tools/tool-t04.thumbnail.webp"
+              },
+              {
+                "kind": "decode-start",
+                "start": 2072.2000000029802,
+                "end": 2072.2000000029802,
+                "src": "http://127.0.0.1:5609/assets/handdrawn-tools/tool-t02.thumbnail.webp"
+              }
+            ],
+            "retiredThumbnails": [
+              {
+                "kind": "image-src-retired",
+                "start": 2504.2999999970198,
+                "end": 2504.4000000059605,
+                "src": "http://127.0.0.1:5609/assets/handdrawn-tools/tool-t04.thumbnail.webp"
+              },
+              {
+                "kind": "image-src-retired",
+                "start": 2504.4000000059605,
+                "end": 2504.4000000059605,
+                "src": "http://127.0.0.1:5609/assets/handdrawn-tools/tool-t02.thumbnail.webp"
+              }
+            ],
+            "lateToolRequests": []
+          }
+        }
+      ]
+    }
+  ],
+  "publicationBlock": {
+    "action": "normal fast-forward of primary main and git push origin main for separately verified highlight candidate b1a838e8",
+    "outcome": "denied_before_execution_twice",
+    "reason": "Auto-review treats later explicit push approval in delegated transcript as untrusted and retains original local-Pull-only restriction. No workaround or additional retry."
+  },
+  "boundaries": [
+    "No physical-device, GPU, player-perception, natural multi-second stall or complete experience acceptance.",
+    "Only actual current catalog URLs; no new70-image pack path supplied, generation or asset changes.",
+    "No gameplay/rules/economy/RNG/save/credentials/security changes.",
+    "Cancel observation proves source retirement and no later optional jobs, not network-byte savings."
+  ]
+}

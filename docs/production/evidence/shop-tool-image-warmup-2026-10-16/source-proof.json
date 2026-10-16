@@ -1,0 +1,21 @@
+{
+  "base": "2a8efe2a8ae4f2eb80af68f5d21986d3d63a0bd7",
+  "product": "3ae914f6259d7c513284929a6b31bd8743909962",
+  "runtimeDiffFromProduct": [],
+  "unchangedAgainstBase": [
+    "public",
+    "src/domain",
+    "GameScene",
+    "DetailArt",
+    "ImageWarmupQueue",
+    "ArtTextureLoading"
+  ],
+  "productionFiles": [
+    "src/game/MakeCardsDialog.ts",
+    "src/game/ShopScene.ts",
+    "src/game/ShopToolImageWarmup.ts"
+  ],
+  "unitPassed": 38,
+  "rotationCases": 39,
+  "readableEvidenceFiles": 14
+}

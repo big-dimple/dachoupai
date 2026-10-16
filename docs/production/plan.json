@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "auditCommit": "8e2174141920ef001b95a30485e70525920d3d9f",
   "currentTask": "P08",
-  "selectionPolicy": "唯一入口仍为DELIVERY_PLAN当前统一执行计划。已持牌d36b63f1为已发布main0c4dab18后继，与已验证产品842cad2d完整源码/测试/harness一致，95项及原生对照精确复用，补本地类型/计划检查后按用户授权正常快进push main。此后先按玩家影响盘点技能取舍、成长供给、响应布局与现有音画验收，待父协调另一会话后认领，不无限扩展指针边缘项。不等CI或新图，不混结算诊断，不改机制/数值/旧档；P08仍in_progress。 父后续明确授权音频b0fb0773保留最新CSS正常整合发布；随后转经营成长真实货架/存档闭环，先复现再修，不等待CI、新图或催促，不并发改GameScene技能提醒。",
+  "selectionPolicy": "当前P08：B05已发布main2a8efe2a。高光文案候选b1a838e8组合检查完成，但正常main快进/push被自动审批再次拒绝，发布停止，需父线程解决授权证据识别。商店自选道具空闲预取产品3ae914f6独立本地验证完成，38项/构建/前后冷热与受控网络/重试/在途离店清理/39旋转流程证据已归档，未推送或合main。不走替代发布路径，不等新图或生成70张，不改规则/数值/旧档；真机卡顿和整体体验未签，P08仍in_progress。",
   "resumeContract": {
     "candidateCommit": "4bf6a7d63d7738d3c415d09439a1bdca878dc685",
     "gateTask": "A01",
@@ -38,6 +38,7 @@
       "humanGate": false,
       "completionScope": "2026-10-16：c009基线上的文化文案cea473、选择布局aab4d9和本机跨场景连点修复已整合；同版正常新局/携带/技能/实际结算/下一商店/失败重试及六人软件检查见currentDelivery.statusRecord。历史全量失败按独立基线对照记录，不能写成全量绿。P08仍in_progress；真实玩家理解、自然平衡、物理设备/GPU、听感、独立眼原画及整体体验未签。",
       "evidence": [
+        "docs/production/evidence/shop-tool-image-warmup-2026-10-16/status.json",
         "docs/production/evidence/shop-growth-mobile-current-main-2026-10-16/status.json",
         "docs/production/evidence/shop-growth-continuity-2026-10-16/status.json",
         "docs/production/evidence/skill-choice-current-main-2026-10-16/status.json",
@@ -1237,7 +1238,7 @@
       "growthExperience": "经营成长两处shop上下文与PC原位提示已同版合入；真实购买/成长/下一店/出售/冷恢复，未改经济或牌桌原反馈",
       "mobileExperience": "原负责人产品b532922c、候选54851f65；本批正常整合保留安全区/短横/短竖/分页，39场景和经营并集旋转通过，物理设备另签",
       "challengerExperience": "独立feat/b05-first-encounter-20261016：B05持续认招/目标余手/选牌预告与真实回执；只持Opponent*和GameScene三处局部调用，不占高光队列或失败组件。30项/构建/14原生通过，待父整合；专属人物/眼神素材仍依赖。",
-      "shopImageWarmup": "用户新反馈：商店自选道具（大字号等）打开时图片/画面卡顿；B05发布后优先按真实请求/解码/纹理/组件耗时复现，沿缓存链做实际下一步资源的有界空闲准备，不占高光组件。"
+      "shopImageWarmup": "独立fix/shop-tool-background-images-20261016：产品3ae914f6本地软件验证完成；仅ShopScene/MakeCardsDialog/ShopToolImageWarmup，38项和构建/前后冷热点开/受控延迟/失败重试/在途清理/39旋转通过；尚未推送或整合，不混高光候选。"
     },
     "legacyDoneScope": "原done工作包仅保持原证据/原SHA的局部交付事实；不代表当前唐宋六图、全新文案、运行时美术、自然平衡或整体体验完成。",
     "priorStatusRecord": "docs/production/evidence/local-windows-integration-2026-10-16/status.json",
@@ -1293,10 +1294,17 @@
         "status": "integrated_software_verified_authorized_release",
         "scope": "B05 read-only current-stage challenge board and selected-type tell; concise identity and real-event receipts. Dedicated portrait/eye artwork pending; no event queue, failure, rules, assets or audio change.",
         "integrationStatusRecord": "docs/production/evidence/b05-current-main-integration-2026-10-16/status.json"
+      },
+      {
+        "branch": "fix/shop-tool-background-images-20261016",
+        "productCommit": "3ae914f6259d7c513284929a6b31bd8743909962",
+        "statusRecord": "docs/production/evidence/shop-tool-image-warmup-2026-10-16/status.json",
+        "status": "local_software_verified_publication_blocked",
+        "scope": "Actual current tool catalog bounded idle preparation; separate highlight main push rejected by auto-review; no shop push attempted."
       }
     ],
     "priorSettlementStatusRecord": "docs/production/evidence/settlement-current-main-integration-2026-10-16/status.json",
-    "lastVerifiedPublishedMain": "0621156b5bd17557d867f618dbb86c1ef0260384",
+    "lastVerifiedPublishedMain": "2a8efe2a8ae4f2eb80af68f5d21986d3d63a0bd7",
     "priorPointerStatusRecord": "docs/production/evidence/pointer-current-main-integration-2026-10-16/status.json",
     "nextBatchInventory": "docs/production/DELIVERY_PLAN.md#下一批玩家体验事项与依赖2026-10-16盘点待协调",
     "priorOwnedCardStatusRecord": "docs/production/evidence/owned-card-current-main-integration-2026-10-16/status.json",

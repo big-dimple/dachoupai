@@ -4,6 +4,7 @@ import {createShopRarityFrame,createShopEditionMark,createShopRecommendationStar
 import {showShopComparison,type ShopComparisonView} from './ShopComparisonDialog';
 import {createShopOfferValue,createShopIdentityTags} from './ShopJokerPresentation';
 import {warmTableImages} from './StageImageWarmup';
+import {warmShopToolImages,warmShopToolPanel} from './ShopToolImageWarmup';
 import {showHeroExplanation} from './HeroExplanation';
 import {isR2CoreBuild,isR2SuitChoice,R2_SUIT_DYE_IDS,r2BasicChoiceBasePrice} from '../domain/r2GroupUpgrade';
 import type {R2PracticeQuote} from '../domain/r2Practice';
@@ -162,6 +163,7 @@ export class ShopScene extends Phaser.Scene {
   private render():void {
     this.dialog.refreshArtLoad();
     requestJokerArt(this,[...this.run.jokers.map(j=>j.definitionId),...this.run.shop!.offers.map(o=>o.definitionId)],()=>this.refreshJokerPictures());
+    warmShopToolImages(this,this.run);
     const selectedIndex=this.shelfOffers().findIndex(offer=>offer.offerId===this.selectedOfferId);if(selectedIndex>=0)this.shelfPage=Math.floor(selectedIndex/this.pageSize);
     this.shelfPage=Math.min(this.shelfPage,Math.max(0,Math.ceil(this.shelfOffers().length/this.pageSize)-1));
     const v=this.view,p=this.geometry(),stage=getR2Stage(this.run.stageIndex,this.run.tourMode,this.run.difficulty,this.run)!;this.hideHoverPicture();this.ownedInput?.setBounds(undefined);this.ownedArts.clear();this.ownedHint=undefined;v.clear();this.starterMarkers=[];v.paperBackground();this.offerArts=[];this.artTargets.clear();this.jokerArtTargets.clear();
@@ -488,7 +490,7 @@ export class ShopScene extends Phaser.Scene {
     const seq=this.run.commandSeq,shopSeq=this.run.shop!.basicChoice?.shopSeq;
     showMakeCards(this.dialog,this.run,()=>this.ready&&this.run.commandSeq===seq,o=>this.purchaseReason(o),
       id=>this.openMakeTool(id),id=>{if(shopSeq!==undefined)this.confirmBasicChoice(id,seq,shopSeq,true);},
-      id=>this.inspectOffer(id,true),()=>showConsumables(this.dialog,this.run,this.ready,(a,s)=>this.send(a,s)),this.makeCardsView,shopPracticeServices(this.run,q=>this.confirmPractice(q)),shopPracticeQuota(this.run));
+      id=>this.inspectOffer(id,true),()=>showConsumables(this.dialog,this.run,this.ready,(a,s)=>this.send(a,s)),this.makeCardsView,shopPracticeServices(this.run,q=>this.confirmPractice(q)),shopPracticeQuota(this.run),panel=>warmShopToolPanel(this,panel));
   }
   private confirmPractice(q:R2PracticeQuote,origin?:JourneyPracticeOrigin):void {
     this.practiceOrigin=origin;
