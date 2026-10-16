@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "auditCommit": "8e2174141920ef001b95a30485e70525920d3d9f",
   "currentTask": "P08",
-  "selectionPolicy": "唯一入口仍为DELIVERY_PLAN当前统一执行计划。已持牌d36b63f1为已发布main0c4dab18后继，与已验证产品842cad2d完整源码/测试/harness一致，95项及原生对照精确复用，补本地类型/计划检查后按用户授权正常快进push main。此后先按玩家影响盘点技能取舍、成长供给、响应布局与现有音画验收，待父协调另一会话后认领，不无限扩展指针边缘项。不等CI或新图，不混结算诊断，不改机制/数值/旧档；P08仍in_progress。",
+  "selectionPolicy": "唯一入口仍为DELIVERY_PLAN当前统一执行计划。已持牌d36b63f1为已发布main0c4dab18后继，与已验证产品842cad2d完整源码/测试/harness一致，95项及原生对照精确复用，补本地类型/计划检查后按用户授权正常快进push main。此后先按玩家影响盘点技能取舍、成长供给、响应布局与现有音画验收，待父协调另一会话后认领，不无限扩展指针边缘项。不等CI或新图，不混结算诊断，不改机制/数值/旧档；P08仍in_progress。 父后续明确授权音频b0fb0773保留最新CSS正常整合发布；随后转经营成长真实货架/存档闭环，先复现再修，不等待CI、新图或催促，不并发改GameScene技能提醒。",
   "resumeContract": {
     "candidateCommit": "4bf6a7d63d7738d3c415d09439a1bdca878dc685",
     "gateTask": "A01",
@@ -38,6 +38,7 @@
       "humanGate": false,
       "completionScope": "2026-10-16：c009基线上的文化文案cea473、选择布局aab4d9和本机跨场景连点修复已整合；同版正常新局/携带/技能/实际结算/下一商店/失败重试及六人软件检查见currentDelivery.statusRecord。历史全量失败按独立基线对照记录，不能写成全量绿。P08仍in_progress；真实玩家理解、自然平衡、物理设备/GPU、听感、独立眼原画及整体体验未签。",
       "evidence": [
+        "docs/production/evidence/audio-current-main-integration-2026-10-16/status.json",
         "docs/production/evidence/skill-secondary-current-main-2026-10-16/status.json",
         "docs/production/evidence/owned-card-current-main-integration-2026-10-16/status.json",
         "docs/production/evidence/owned-card-release-clock-2026-10-16/status.json",
@@ -1213,7 +1214,7 @@
   ],
   "currentDelivery": {
     "date": "2026-10-16",
-    "statusRecord": "docs/production/evidence/skill-secondary-current-main-2026-10-16/status.json",
+    "statusRecord": "docs/production/evidence/audio-current-main-integration-2026-10-16/status.json",
     "heroTextSpecification": "docs/production/HERO_TEXT_SPEC_20261015.json",
     "history": "docs/production/history/plan-status-before-20261015.json",
     "priorities": [
@@ -1224,12 +1225,13 @@
     ],
     "owners": {
       "documents": "同一整合负责人：规范来源856c30ed、运行时采用与当前计划/证据对账",
-      "runtimeIntegration": "Windows verify/skill-secondary-current-main-20261016：已持牌main3084已发布，热区eb580137在其上独立合并并九例原生复核后按用户授权正常发布；音频调查独立不混入",
+      "runtimeIntegration": "Windows verify/audio-current-main-20261016：音频b0fb0773在最新44px CSS main0aae0b3b上正常整合，同版构建与实际音频复核后按用户授权正常发布",
       "portraits": "正式图接线已完成整合；只处理可复现缺陷，不并发覆盖资源窗口",
       "carry": "R03已结束开发，只处理经复现的整合缺陷",
       "opening": "首页/加载/成长main8af3e506已发布；本批保留其源码；结算单独同版复核",
       "acceptance": "用户/真实玩家/目标设备与听感各按实际证据签收",
-      "audioExperience": "独立fix/audio-gesture-recovery-20261016：只持AudioEngine、main音频监听三行及自有harness/证据；76项及真实音频前后对照完成，音色审美/真机未签，不改GameScene或素材"
+      "audioExperience": "独立fix/audio-gesture-recovery-20261016：只持AudioEngine、main音频监听三行及自有harness/证据；76项及真实音频前后对照完成，音色审美/真机未签，不改GameScene或素材",
+      "growthExperience": "父已分派真实货架与存档经营反馈；先复现缺口，不改经济数值或术语，不占另一线程GameScene技能提醒接线"
     },
     "legacyDoneScope": "原done工作包仅保持原证据/原SHA的局部交付事实；不代表当前唐宋六图、全新文案、运行时美术、自然平衡或整体体验完成。",
     "priorStatusRecord": "docs/production/evidence/local-windows-integration-2026-10-16/status.json",
@@ -1257,14 +1259,16 @@
         "branch": "fix/audio-gesture-recovery-20261016",
         "productCommit": "c13ed9c1e1b908aa0784e9f29017450c7e4068d5",
         "statusRecord": "docs/production/evidence/audio-experience-2026-10-16/status.json",
-        "status": "software_verified_development_candidate",
-        "scope": "AudioEngine needsGestureUnlock state predicate and main.ts40-42 persistent guarded real-gesture audio listeners. First resume rejection previously consumed the one-shot listener and later same-type gestures remained silent. No shared GameScene, settings semantics, volume defaults, media or game rules changed."
+        "status": "integrated_software_verified_authorized_release",
+        "scope": "AudioEngine needsGestureUnlock state predicate and main.ts40-42 persistent guarded real-gesture audio listeners. First resume rejection previously consumed the one-shot listener and later same-type gestures remained silent. No shared GameScene, settings semantics, volume defaults, media or game rules changed.",
+        "integrationStatusRecord": "docs/production/evidence/audio-current-main-integration-2026-10-16/status.json"
       }
     ],
     "priorSettlementStatusRecord": "docs/production/evidence/settlement-current-main-integration-2026-10-16/status.json",
     "lastVerifiedPublishedMain": "0c4dab186eb90430d57e213545179b9921fffe10",
     "priorPointerStatusRecord": "docs/production/evidence/pointer-current-main-integration-2026-10-16/status.json",
     "nextBatchInventory": "docs/production/DELIVERY_PLAN.md#下一批玩家体验事项与依赖2026-10-16盘点待协调",
-    "priorOwnedCardStatusRecord": "docs/production/evidence/owned-card-current-main-integration-2026-10-16/status.json"
+    "priorOwnedCardStatusRecord": "docs/production/evidence/owned-card-current-main-integration-2026-10-16/status.json",
+    "priorSkillTargetStatusRecord": "docs/production/evidence/skill-secondary-current-main-2026-10-16/status.json"
   }
 }

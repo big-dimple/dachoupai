@@ -1,0 +1,72 @@
+{
+  "taskId": "P08",
+  "status": "software_verified_authorized_release",
+  "testedCommit": "e0cc78dda3cd88cea6f00468f52f1eac7fef72d0",
+  "sourceTree": "b8c4664a9b1ca78296a7c7a162ada42eee8fc002",
+  "basePublishedMain": "0aae0b3bdfd7befbfc1b963c56bd1542bb8c20bc",
+  "integratedCandidate": "b0fb07737ccca99b75bbe6c8cabab4d66423849b",
+  "branch": "verify/audio-current-main-20261016",
+  "scope": "Normal merge of audio first-gesture recovery on latest44px CSS main. Only AudioEngine and main.ts audio bootstrap differ from published main.",
+  "productionBuild": "Fresh PASS: typecheck + production build; existing bundle notice",
+  "reusedRelatedUnits": {
+    "files": 6,
+    "passed": 76,
+    "failed": 0,
+    "reason": "AudioEngine/main audio code exact c13ed9c1; no new audio implementation delta.",
+    "report": "../audio-experience-2026-10-16/unit-results.json"
+  },
+  "native": {
+    "report": "native-report.json.gz",
+    "recoveryCases": 3,
+    "passed": 3,
+    "healthyAudit": "PASS",
+    "defaultMusic": 0.3,
+    "defaultSfx": 0.8,
+    "zeroMutePersisted": true,
+    "controlledBackgroundRestore": true,
+    "ordinarySavedScore": "30",
+    "replayAddsNoScoreCues": true
+  },
+  "high": {
+    "report": "high-report.json.gz",
+    "buildSourceClean": true,
+    "score": "6876748",
+    "observedAudioEvents": 30,
+    "completeSavedSnapshotStable": true
+  },
+  "sourceUnchanged": true,
+  "sourceHashes": {
+    "src/main.ts": "29e0d680a173314d5bd631363f0f862c4aea6ebbcb51282514c592e25603c4ad",
+    "src/audio/AudioEngine.ts": "713678acbc7424aaf72de837992b823ffddd9947d8c9c485be02fcb32143bb36",
+    "src/audio/preferences.ts": "6f5bfb5af314c4f1368f37e22811a70114c50eb8cefdac4d4737c3a57bdcd79d",
+    "src/game/RunMenu.ts": "9072c94d3f0baa4a07e01cb76b5628960b160481c88a7224acfd33f835681ba1",
+    "src/game/GameScene.ts": "09094f32b3c5479bf1fd92f8e4c0ba5a8377142b28391931db9795da6ac00f79",
+    "harness/audio-experience.mjs": "746114d8359ea735151bc1a34c6221a0246f45d53309cfcee68cc55dfd8f7a87",
+    "harness/audio-highlight-audit.mjs": "aa2152d84dbcc388e3ebb1088d49797765c1aa8f23bd2d01d3d925fec55ef744",
+    "src/style.css": "bb00f2a2b6329cb38bb2dd09bbc4a679e76c4dfd2f12e9fed32267bf7cb3daaf"
+  },
+  "protectedUnchangedVsBase": [
+    "src/style.css",
+    "src/game",
+    "src/domain",
+    "src/application",
+    "src/content",
+    "src/platform",
+    "public",
+    "art",
+    "src/audio/preferences.ts",
+    "src/audio/foley.ts",
+    "src/audio/mixPolicy.ts"
+  ],
+  "existingRecordings": "../audio-experience-2026-10-16/README.md; exact same audio code/materials, no duplicate recording archive needed",
+  "publication": {
+    "authorization": "Parent explicitly instructed necessary same-version validation then normal merge/push main, preserving already published CSS.",
+    "exactRemote": "Verified and reported after normal push; no CI/domain wait."
+  },
+  "limits": [
+    "First resume denial and hidden event are named controlled faults, native audio/browser inputs remain actual.",
+    "Controlled6876748 high-score checkpoint is not natural acquisition or user original save.",
+    "Timbre aesthetics, physical device/OS background, loudness/speaker/long-session fatigue NOT_RUN.",
+    "P08 remains in_progress; gameplay/economy values unchanged."
+  ]
+}

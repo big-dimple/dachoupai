@@ -1,0 +1,9 @@
+# Audio recovery on current main — 2026-10-16
+
+Tested normal merge e0cc78dda3cd88cea6f00468f52f1eac7fef72d0, src b8c4664a9b1ca78296a7c7a162ada42eee8fc002, combines published44px CSS main 0aae0b3bdfd7befbfc1b963c56bd1542bb8c20bc and audio candidate b0fb07737ccca99b75bbe6c8cabab4d66423849b. AudioEngine/main audio code matches tested product c13ed9c1 exactly. CSS, all GameScene/other game files, rules, persistence and media/assets remain exactly the published main files. Only delivery document conflicts were reconciled.
+
+Fresh production build including typecheck passes. Three native pointer/touch/keyboard recovery cases and the complete default30%/80%, exact-zero persistence, controlled background/foreground and actual ordinary30-score/replay audit pass on this exact merge. The same-version high audit imports the existing legal fixture through official UI and natively spends30 gold/plays the selected cards:6,876,748,30 voiced events, one awardMillion, complete saved state/journal/storage stable throughout presentation. Build-info is clean and exact merge SHA; all report source hashes remain unchanged.
+
+The existing76 unit tests are precisely reused because audio implementation is identical; not counted as new runs. [Original before/after faults, full reports and actual recordings](../audio-experience-2026-10-16/README.md) remain. Recordings use identical audio code/media; no musical/timbre/loudness acceptance is inferred. Native browser audio is real; first-resume rejection and document.hidden events are explicit controlled faults. Physical OS/device and human taste remain NOT_RUN.
+
+User authorized normal merge/push main without CI/new-art waiting. Final exact remote SHA is reported after push. P08 remains in_progress. Next assigned work is actual shop/saved growth feedback, starting with evidence only; no economy/rule changes or simultaneous GameScene skill-reminder wiring.
