@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "auditCommit": "8e2174141920ef001b95a30485e70525920d3d9f",
   "currentTask": "P08",
-  "selectionPolicy": "唯一执行入口docs/production/DELIVERY_PLAN.md#当前统一执行计划；本机Windows开发整合以currentDelivery.statusRecord为准。P08保持in_progress，六英雄文化文案、大立绘/顶部模式与本机短闭环已整合；软件证据不代签真人/物理设备/听感/独立眼原画/整体美术。仅推开发整合分支，main待用户确认；不查CI/域名，不重开18路线前置或完整C04。",
+  "selectionPolicy": "唯一执行入口docs/production/DELIVERY_PLAN.md#当前统一执行计划；已验证整合fa5b30ee已正常发布main。本批在其上独立修复当前新局成长因果入口，仅推fix/current-growth-causality-20261016开发分支；加载自动重试另路负责，不混入本批。P08保持in_progress，软件证据不代签真人/真机/听感/自然平衡/整体美术；不改公式、玩法、旧身份或扩18路线，不查CI/域名。",
   "resumeContract": {
     "candidateCommit": "4bf6a7d63d7738d3c415d09439a1bdca878dc685",
     "gateTask": "A01",
@@ -38,6 +38,7 @@
       "humanGate": false,
       "completionScope": "2026-10-16：c009基线上的文化文案cea473、选择布局aab4d9和本机跨场景连点修复已整合；同版正常新局/携带/技能/实际结算/下一商店/失败重试及六人软件检查见currentDelivery.statusRecord。历史全量失败按独立基线对照记录，不能写成全量绿。P08仍in_progress；真实玩家理解、自然平衡、物理设备/GPU、听感、独立眼原画及整体体验未签。",
       "evidence": [
+        "docs/production/evidence/current-growth-causality-2026-10-16/status.json",
         "docs/production/evidence/local-windows-integration-2026-10-16/status.json",
         "docs/production/evidence/p08-amo-final-multiplier-2026-10-04/summary.json",
         "docs/production/evidence/p08-shop-rack-320-2026-10-04/summary.json",
@@ -1207,7 +1208,7 @@
   ],
   "currentDelivery": {
     "date": "2026-10-16",
-    "statusRecord": "docs/production/evidence/local-windows-integration-2026-10-16/status.json",
+    "statusRecord": "docs/production/evidence/current-growth-causality-2026-10-16/status.json",
     "heroTextSpecification": "docs/production/HERO_TEXT_SPEC_20261015.json",
     "history": "docs/production/history/plan-status-before-20261015.json",
     "priorities": [
@@ -1225,6 +1226,6 @@
       "acceptance": "用户/真实玩家/目标设备与听感各按实际证据签收"
     },
     "legacyDoneScope": "原done工作包仅保持原证据/原SHA的局部交付事实；不代表当前唐宋六图、全新文案、运行时美术、自然平衡或整体体验完成。",
-    "priorStatusRecord": "docs/production/evidence/hero-text-adoption-2026-10-15/status.json"
+    "priorStatusRecord": "docs/production/evidence/local-windows-integration-2026-10-16/status.json"
   }
 }

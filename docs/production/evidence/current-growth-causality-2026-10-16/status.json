@@ -1,0 +1,172 @@
+{
+  "taskId": "P08",
+  "testedCommit": "088e6c3c52e957c996239551ecf42e7e2f7ec3eb",
+  "sourceTree": "3c13f338125bc65f474713bd5a1722198598b300",
+  "basePublishedMain": "fa5b30ee1ebf28d4ee71d676b231eab260172033",
+  "branch": "fix/current-growth-causality-20261016",
+  "scope": "Restore existing optional b10/b03 saved causal detail to current identities with the established group-growth contract. No formula, identity, persistence, automatic banner or loading change.",
+  "status": "software_verified_development_candidate",
+  "unit": {
+    "files": 8,
+    "passed": 54,
+    "failed": 0
+  },
+  "native": {
+    "status": "PASS",
+    "cases": [
+      {
+        "width": 1366,
+        "height": 900,
+        "id": "b10",
+        "seed": "growth-current-49",
+        "paid": 4,
+        "status": "PASS",
+        "first": {
+          "heat": {
+            "n": "10",
+            "d": "1"
+          }
+        },
+        "second": {
+          "heat": {
+            "n": "20",
+            "d": "1"
+          }
+        },
+        "restoredReadonly": true
+      },
+      {
+        "width": 1366,
+        "height": 900,
+        "id": "b03",
+        "seed": "growth-current-45",
+        "paid": 6,
+        "status": "PASS",
+        "first": {
+          "multiplier": {
+            "n": "1",
+            "d": "4"
+          }
+        },
+        "second": {
+          "multiplier": {
+            "n": "1",
+            "d": "2"
+          }
+        },
+        "restoredReadonly": true
+      },
+      {
+        "width": 390,
+        "height": 740,
+        "id": "b10",
+        "seed": "growth-current-49",
+        "paid": 4,
+        "status": "PASS",
+        "first": {
+          "heat": {
+            "n": "10",
+            "d": "1"
+          }
+        },
+        "second": {
+          "heat": {
+            "n": "20",
+            "d": "1"
+          }
+        },
+        "restoredReadonly": true
+      },
+      {
+        "width": 390,
+        "height": 740,
+        "id": "b03",
+        "seed": "growth-current-45",
+        "paid": 6,
+        "status": "PASS",
+        "first": {
+          "multiplier": {
+            "n": "1",
+            "d": "4"
+          }
+        },
+        "second": {
+          "multiplier": {
+            "n": "1",
+            "d": "2"
+          }
+        },
+        "restoredReadonly": true
+      },
+      {
+        "width": 320,
+        "height": 568,
+        "id": "b10",
+        "seed": "growth-current-49",
+        "paid": 4,
+        "status": "PASS",
+        "first": {
+          "heat": {
+            "n": "10",
+            "d": "1"
+          }
+        },
+        "second": {
+          "heat": {
+            "n": "20",
+            "d": "1"
+          }
+        },
+        "restoredReadonly": true
+      },
+      {
+        "width": 320,
+        "height": 568,
+        "id": "b03",
+        "seed": "growth-current-45",
+        "paid": 6,
+        "status": "PASS",
+        "first": {
+          "multiplier": {
+            "n": "1",
+            "d": "4"
+          }
+        },
+        "second": {
+          "multiplier": {
+            "n": "1",
+            "d": "2"
+          }
+        },
+        "restoredReadonly": true
+      }
+    ],
+    "fullReport": "native-report.json.gz"
+  },
+  "build": "PASS",
+  "planStatus": "in_progress",
+  "mainPublication": {
+    "alreadyPublished": "fa5b30ee1ebf28d4ee71d676b231eab260172033",
+    "verification": "Successful normal push and git ls-remote main returned this exact SHA before new development; current batch is development-branch only."
+  },
+  "sourceHashes": {
+    "src/game/JokerGrowthCausality.ts": "50b7d5f094d7d3493f5a1ff0bfdfa7df8facaf6ed4c976160c3bb3f8cbe41d0e",
+    "src/game/ShopScene.ts": "01bc555129d137c1d2b4ed6b073a3fd2f50bd932ba800c0cdb2c2c47c89fcab6",
+    "src/game/GameScene.ts": "a8e540b534ce7e842b55884c9663e8f6fc9383cb16a768b5d13dd8233bb89402",
+    "harness/current-growth-causality.mjs": "98b03b94415e68375f2c17dc2922e14685664d21901cb407604245efbb5d6c3b"
+  },
+  "notRun": [
+    "physical device / human understanding / audio / natural balance or acquisition rate",
+    "new full suite: prior integration full-suite baseline failures retained in local-windows-integration-2026-10-16/comparison"
+  ],
+  "protections": [
+    "src/domain",
+    "src/application",
+    "src/content",
+    "src/audio",
+    "src/game/LoadingScreen.ts",
+    "src/game/SceneResources.ts",
+    "public",
+    "art"
+  ]
+}
