@@ -1,4 +1,4 @@
-import {describe,it,expect} from 'vitest';
+import {describe,it,expect,vi} from 'vitest';
 import type Phaser from 'phaser';
 import {compactScoreText,fitScoreLine,scoreFlightLanding,scoreImpactCell} from '../src/game/ScoreTextLayout';
 
@@ -64,4 +64,18 @@ it('width fallback marks precision loss once and keeps exact powers unmarked',()
  expect(compactScoreText('× 123000000')).toBe('× 1.23e8');
  const text=fakeText('× 123000000');fitScoreLine(text,{x:0,y:0,width:60,height:40},26,true);
  expect(text.text).toBe('× ≈1e8');expect(text.getData('fullText')).toBe('× 123000000');
+});
+
+it('reuses an unchanged fitted bitmap during animation, but remeasures new content or room',()=>{
+ const text=fakeText('123,456,789'),area={x:0,y:0,width:88,height:32};
+ fitScoreLine(text,area,26,true);const display=text.text,measure=vi.spyOn(text,'setFontSize');
+ fitScoreLine(text,{...area,x:20,y:30},26,true);expect(measure).not.toHaveBeenCalled();expect(text.text).toBe(display);expect(text.x).toBe(64);expect(text.y).toBe(30);
+ fitScoreLine(text,{...area,width:360},26,true);expect(measure).toHaveBeenCalled();expect(text.text).toBe('123,456,789');
+ text.setText('42');fitScoreLine(text,area,26,true);expect(text.getData('fullText')).toBe('42');
+});
+
+it('fits initial large cut-in text with a bounded number of font rasterizations',()=>{
+ const text=fakeText('123,456,789'),measure=vi.spyOn(text,'setFontSize');
+ fitScoreLine(text,{x:0,y:0,width:120,height:40},190,true);
+ expect(text.width).toBeLessThanOrEqual(120);expect(text.height).toBeLessThanOrEqual(40);expect(text.getData('fullText')).toBe('123,456,789');expect(measure.mock.calls.length).toBeLessThanOrEqual(10);
 });
