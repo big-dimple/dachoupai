@@ -8,7 +8,7 @@ const source=JSON.parse(await readFile(sourceDir+'/manifest.json','utf8'));
 const crops={amo:{left:350,top:0,width:480,height:480},touye:{left:215,top:0,width:600,height:600},laohuan:{left:340,top:0,width:520,height:520},erxiang:{left:285,top:0,width:550,height:550},azao:{left:160,top:0,width:650,height:650},xiemu:{left:260,top:0,width:640,height:640}};
 const prefixes={avatar:'avatar-',selection:'selection-portrait-',portrait:'opening-portrait-',focus:'portrait-focus-'};
 const hash=b=>createHash('sha256').update(b).digest('hex');
-const manifest={schemaVersion:1,sourceCommit:'e6922f8d56cf42b9dedd4eab00d772591a7b79ad',sourceDirectory:sourceDir,scope:'Six user-approved originals. Focus is a reviewed head crop from the portrait, not separate eye artwork. No source upscaling.',assets:[]};
+const manifest={schemaVersion:1,sourceCommit:'e6922f8d56cf42b9dedd4eab00d772591a7b79ad',sourceDirectory:sourceDir,scope:'Six user-approved originals. Focus is a reviewed head crop from the portrait, not separate eye artwork. No source upscaling.',sourceRevisions:source.revisions??[],assets:[]};
 await mkdir(outDir,{recursive:true});
 for(const hero of source.entries){
  const bytes=await readFile(sourceDir+'/'+hero.file);assert.equal(hash(bytes),hero.sha256);const m=await sharp(bytes).metadata();assert.equal(m.width,1122);assert.equal(m.height,1402);await sharp(bytes).raw().toBuffer();

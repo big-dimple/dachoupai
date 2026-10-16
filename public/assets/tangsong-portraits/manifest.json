@@ -3,6 +3,15 @@
   "sourceCommit": "e6922f8d56cf42b9dedd4eab00d772591a7b79ad",
   "sourceDirectory": "art/sources/tangsong-portraits-20261015",
   "scope": "Six user-approved originals. Focus is a reviewed head crop from the portrait, not separate eye artwork. No source upscaling.",
+  "sourceRevisions": [
+    {
+      "date": "2026-10-16",
+      "heroId": "amo",
+      "reason": "User-provided replacement removing the inconsistent age annotation; original PNG bytes preserved.",
+      "previousSHA256": "6a15b2231aa91103e50c04b61dacc6e4fd85497d0b950928ba543a17a6da4e3e",
+      "sha256": "abe4446d6c57b1c2d8d83434c766e0a452aeb8ee198615cf58bd918b1021dfcb"
+    }
+  ],
   "assets": [
     {
       "id": "amo",
@@ -13,11 +22,11 @@
       "path": "assets/tangsong-portraits/amo.avatar.webp",
       "width": 256,
       "height": 256,
-      "bytes": 22064,
-      "sha256": "4d43beb3f3a6aaa1df33d6a1f53370f1add0c6a19ec0131bd17b39696695ba0c",
+      "bytes": 21724,
+      "sha256": "c1818763446d466ccf20477f92fb12b2c0271275a5390d439a5daf6c6c7a0965",
       "format": "webp",
       "sourceFile": "amo-su-shi.png",
-      "sourceSHA256": "6a15b2231aa91103e50c04b61dacc6e4fd85497d0b950928ba543a17a6da4e3e",
+      "sourceSHA256": "abe4446d6c57b1c2d8d83434c766e0a452aeb8ee198615cf58bd918b1021dfcb",
       "cropPixels": {
         "x": 350,
         "y": 0,
@@ -36,11 +45,11 @@
       "path": "assets/tangsong-portraits/amo.selection.webp",
       "width": 256,
       "height": 320,
-      "bytes": 34284,
-      "sha256": "b0c9db14fd78a84db6f36a478a83393000be9d3b5880ae9eb0192003863e2c3d",
+      "bytes": 34044,
+      "sha256": "e9764fb0dd3f4edbfda3ac286a24e7184608f3370b4859d82c7e3a5323a49b4b",
       "format": "webp",
       "sourceFile": "amo-su-shi.png",
-      "sourceSHA256": "6a15b2231aa91103e50c04b61dacc6e4fd85497d0b950928ba543a17a6da4e3e",
+      "sourceSHA256": "abe4446d6c57b1c2d8d83434c766e0a452aeb8ee198615cf58bd918b1021dfcb",
       "cropPixels": {
         "x": 0,
         "y": 0,
@@ -59,18 +68,18 @@
       "path": "assets/tangsong-portraits/amo.portrait.webp",
       "width": 615,
       "height": 768,
-      "bytes": 117546,
-      "sha256": "18a42fbc61d7118dc2fb6aadd946c02b348887320493ef01281684ee9953770f",
+      "bytes": 128344,
+      "sha256": "d5089a32b739cef2cca1ff680fb2ac1776f7a7b44426133e01b814085edeec39",
       "format": "webp",
       "sourceFile": "amo-su-shi.png",
-      "sourceSHA256": "6a15b2231aa91103e50c04b61dacc6e4fd85497d0b950928ba543a17a6da4e3e",
+      "sourceSHA256": "abe4446d6c57b1c2d8d83434c766e0a452aeb8ee198615cf58bd918b1021dfcb",
       "cropPixels": {
         "x": 0,
         "y": 0,
         "width": 1122,
         "height": 1402
       },
-      "quality": 82,
+      "quality": 85,
       "independentEyeArtwork": false
     },
     {
@@ -82,11 +91,11 @@
       "path": "assets/tangsong-portraits/amo.focus.webp",
       "width": 480,
       "height": 480,
-      "bytes": 58282,
-      "sha256": "58c1fd054b6bf665ae4e85dcff3678485cdc9027a482246c8ea15e81860a1467",
+      "bytes": 56012,
+      "sha256": "f158579f7e055d16a4f2d9c2f36609fcbb5d8980469e31e063517f1e6fea02ad",
       "format": "webp",
       "sourceFile": "amo-su-shi.png",
-      "sourceSHA256": "6a15b2231aa91103e50c04b61dacc6e4fd85497d0b950928ba543a17a6da4e3e",
+      "sourceSHA256": "abe4446d6c57b1c2d8d83434c766e0a452aeb8ee198615cf58bd918b1021dfcb",
       "cropPixels": {
         "x": 350,
         "y": 0,
