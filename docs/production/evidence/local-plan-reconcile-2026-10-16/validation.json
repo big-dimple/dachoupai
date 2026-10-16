@@ -1,0 +1,24 @@
+{
+  "type": "documentation_integrity_only_no_application_tests",
+  "originalEvidenceFiles": 48,
+  "currentMarkdownLinks": 29,
+  "readableImportedJSON": 7,
+  "readableImportedGzipJSON": 13,
+  "historyArchivesAndHistoricalTailsExact": true,
+  "formalStatusesAndDependenciesUnchanged": true,
+  "P08": "in_progress",
+  "productTestsHarnessAssetsUnchanged": true,
+  "localCashImplementationNotImported": true,
+  "newApplicationsTestsOrGameplays": 0,
+  "whitespace": {
+    "strictDiffCheck": "Only original blank lines at EOF in4 preserved snapshot/archive files",
+    "preservedPaths": [
+      "docs/production/evidence/xiemu-cash-gate-warning-2026-10-16/unit.txt",
+      "docs/production/history/art-current-before-local-reconcile-20261016.md",
+      "docs/production/history/character-current-before-local-reconcile-20261016.md",
+      "docs/production/history/delivery-current-before-local-reconcile-20261016.md"
+    ],
+    "reason": "Keep imported evidence Git blobs and archived original current sections exact; no cleanup of source evidence bytes.",
+    "otherWhitespaceCheck": "PASS with command-local blank-at-eof exception; no repository config changed"
+  }
+}

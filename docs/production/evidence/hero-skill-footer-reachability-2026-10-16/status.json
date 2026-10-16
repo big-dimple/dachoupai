@@ -1,0 +1,139 @@
+{
+  "date": "2026-10-16",
+  "branch": "audit/hero-skill-footer-reachability-20261016",
+  "base": "646505e7dc8cbf3620d6db795d7d8afdf838f9d0",
+  "testedBuild": "0ff0714625b34db87e80d24c607c3b652b2a3783",
+  "planEntry": "DELIVERY_PLAN current queue3:移动场景可达性; queue1 only permits concrete reproduced skill interaction defects, not new mechanics",
+  "visibleAcceptance": "Return action remains visible/hittable in short portrait/landscape safe areas; content scrolls and actual touch return preserves saved state/journal/storage/localStorage.",
+  "result": "suspected_footer_gap_not_reproduced_no_product_change",
+  "cases": [
+    {
+      "width": 390,
+      "height": 740,
+      "safe": {},
+      "close": {
+        "x": 36,
+        "y": 669,
+        "width": 318,
+        "height": 48,
+        "bottom": 717,
+        "right": 354,
+        "clientHeight": 46,
+        "scrollHeight": 46,
+        "overflow": "visible",
+        "heightStyle": "48px",
+        "gridRows": "none"
+      },
+      "closeInSafeArea": true,
+      "hit": true
+    },
+    {
+      "width": 320,
+      "height": 568,
+      "safe": {
+        "top": 24,
+        "bottom": 34
+      },
+      "close": {
+        "x": 36,
+        "y": 463,
+        "width": 248,
+        "height": 48,
+        "bottom": 511,
+        "right": 284,
+        "clientHeight": 46,
+        "scrollHeight": 46,
+        "overflow": "visible",
+        "heightStyle": "48px",
+        "gridRows": "none"
+      },
+      "closeInSafeArea": true,
+      "hit": true
+    },
+    {
+      "width": 740,
+      "height": 320,
+      "safe": {
+        "top": 24,
+        "bottom": 20,
+        "left": 44,
+        "right": 12
+      },
+      "close": {
+        "x": 73,
+        "y": 233,
+        "width": 626,
+        "height": 48,
+        "bottom": 281,
+        "right": 699,
+        "clientHeight": 46,
+        "scrollHeight": 46,
+        "overflow": "visible",
+        "heightStyle": "48px",
+        "gridRows": "none"
+      },
+      "closeInSafeArea": true,
+      "hit": true
+    },
+    {
+      "width": 1366,
+      "height": 768,
+      "safe": {},
+      "close": {
+        "x": 264,
+        "y": 634.890625,
+        "width": 838,
+        "height": 48,
+        "bottom": 682.890625,
+        "right": 1102,
+        "clientHeight": 46,
+        "scrollHeight": 46,
+        "overflow": "visible",
+        "heightStyle": "48px",
+        "gridRows": "none"
+      },
+      "closeInSafeArea": true,
+      "hit": true
+    }
+  ],
+  "nativeReturn": "PASS:3 touch viewports and1 PC mouse; scroll-bottom then actual return and re-open; full saved snapshots unchanged",
+  "errors": [],
+  "scope": "Controlled existing20gold/e08/two-pair checkpoint via production picker; native hero dialog, rotation, DOM geometry and return hit testing. No skill payment/play; viewport interaction audit, not natural acquisition, physical device or art acceptance.",
+  "runtimeChanges": [],
+  "existingArtChanges": [],
+  "otherCandidates": "Cash-warning61c78a23 and balance-doc86d0306e kept on independent branches; neither merged into this audit.",
+  "remainingInPlan": [
+    {
+      "order": 1,
+      "item": "首章技能取舍",
+      "remaining": "ordinary eligibility/opportunity-cost and player understanding evidence",
+      "smallestNext": "Use an existing eligible saved hand for one human use/retain explanation; no code change without a concrete displayed/action defect."
+    },
+    {
+      "order": 2,
+      "item": "成长与经营反馈",
+      "remaining": "actual natural S04/late supply, later/endless and other families",
+      "smallestNext": "A pre-existing naturally acquired S04 save allows a short buy/cancel/use check; otherwise leave unobserved under no-long-play restriction."
+    },
+    {
+      "order": 3,
+      "item": "移动可达性/真实性能",
+      "remaining": "physical phone/browser/GPU or concrete current stall not reproduced locally",
+      "smallestNext": "One target-device/browser observation naming the blocked action or stalled stage; use its existing short save for root-cause verification."
+    },
+    {
+      "order": 4,
+      "item": "当前画面与节奏",
+      "remaining": "human crop/recognition/timing acceptance, independent boss/eye artwork; settlement-tail diagnosis held by another conversation",
+      "smallestNext": "Human review of existing frames or the original performance owner supplies a reproducible cause; do not regenerate art or take shared runtime files."
+    },
+    {
+      "order": 5,
+      "item": "当前声音体验",
+      "remaining": "physical-device hearing, mix/timbre/fatigue judgment",
+      "smallestNext": "Listen to an existing short settlement on the target output device and identify one concrete audio issue."
+    }
+  ],
+  "conclusion": "No additional already-reproduced software implementation gap within current constraints was found to claim. This does not assert all software/device acceptance is complete.",
+  "publication": "Local audit only; no main merge, primary change or push."
+}

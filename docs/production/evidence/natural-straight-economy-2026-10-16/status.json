@@ -1,0 +1,123 @@
+{
+  "date": "2026-10-16",
+  "branch": "audit/natural-straight-economy-20261016",
+  "basePublishedMain": "646505e7dc8cbf3620d6db795d7d8afdf838f9d0",
+  "testedNativeBuild": "0ff0714625b34db87e80d24c607c3b652b2a3783",
+  "srcTree": "b4befffd15850b9a07a90e0e1dd9eaf5c752c5eb",
+  "status": "bounded_ordinary_native_flow_pass_no_product_arithmetic_bug_found",
+  "productionChanges": [],
+  "protectedSharedPlanFilesChanged": false,
+  "seed": "ordinary-straight-economy-20261016-1",
+  "bounds": {
+    "seeds": 1,
+    "stages": 9,
+    "commands": 150
+  },
+  "policy": "One ordinary new S04 identity, LiuE/straight, real affordable c04 support,3-card fixed red dyes with2-gold reserve; no rerolls or S04 fabrication; classify visible hands, keep straight windows and discard unrelated cards; no score/future/RNG policy input.",
+  "results": {
+    "nativeCommands": 66,
+    "nativeStages": 9,
+    "nativePlays": 9,
+    "actualDiscards": 14,
+    "firstHandClears": 9,
+    "openingGold": 6,
+    "totalSpend": 36,
+    "dyeSpend": 32,
+    "dyes": 8,
+    "cardsChanged": 24,
+    "heartsBefore": 13,
+    "heartsAfter": 37,
+    "livingDeck": 52,
+    "earnedGold": 105,
+    "endingGold": 75,
+    "actualS04Seen": 0,
+    "actualS04Used": 0,
+    "growthHeld": "c04 / 搭台阶",
+    "storedHeatAfter": {
+      "n": "90",
+      "d": "1"
+    },
+    "maximumScore": 15089,
+    "routeFinal": {
+      "clears": 9,
+      "G": 0,
+      "S": 9,
+      "F": 2,
+      "settlements": [
+        {
+          "stageIndex": 0,
+          "families": [
+            "S"
+          ]
+        },
+        {
+          "stageIndex": 1,
+          "families": [
+            "S"
+          ]
+        },
+        {
+          "stageIndex": 2,
+          "families": [
+            "S"
+          ]
+        },
+        {
+          "stageIndex": 3,
+          "families": [
+            "S"
+          ]
+        },
+        {
+          "stageIndex": 4,
+          "families": [
+            "S"
+          ]
+        },
+        {
+          "stageIndex": 5,
+          "families": [
+            "S"
+          ]
+        },
+        {
+          "stageIndex": 6,
+          "families": [
+            "S",
+            "F"
+          ]
+        },
+        {
+          "stageIndex": 7,
+          "families": [
+            "S"
+          ]
+        },
+        {
+          "stageIndex": 8,
+          "families": [
+            "S",
+            "F"
+          ]
+        }
+      ]
+    },
+    "nativePageErrors": 0,
+    "perHandAllSourceNumericEventsMatched": true,
+    "actualNativeJournalReproducesFullFinalStateExact": true,
+    "coldRestoreStateJournalStoreLocalStorageExact": true
+  },
+  "quota": "Seven basic dyes spend shared practice quota; visit7 actual random dye preserves it. Eight actual public alternative straight upgrade quotes were4gold; policy chose dye and retained cash.",
+  "arithmeticConclusion": "All9 scores equal floor(H*M); exact source-event register chains; one relevant bounded route factor per hand, growth added after hand is not included until next hand. High source-explained scores are not classified as a bug.",
+  "balanceSignal": "Nine first-hand clears with one4gold support card and32gold gradual dyes is a strong opening sample; one seed/three chapters cannot establish global or late/endless balance. No numerical changes.",
+  "remaining": [
+    "Actual S04 acquisition/use not observed; eligible only from chapter3 with prepared28/52 hearts, none in3 eligible shops. No supply-probability inference.",
+    "Other opening families/late acquisition/six-wan/endless not sampled; no18-route rerun.",
+    "Human judgment/perception and physical-device acceptance remain separate."
+  ],
+  "harnessHashes": {
+    "harness/natural-straight-economy.mjs": "291f6ca3c73efd00f7fa181a4884eeb17d2795f7da024a55145a79d5c4746ff2",
+    "harness/natural-straight-economy-native.mjs": "0067fdd83c4e2b2350230b01d1c69e50952a58e8b073059a5be70327eef4fca4"
+  },
+  "priorBatchReleaseReceipt": "prior-batch-release-receipt.json"
+}

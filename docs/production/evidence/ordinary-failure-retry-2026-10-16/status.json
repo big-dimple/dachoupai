@@ -1,0 +1,91 @@
+{
+  "date": "2026-10-16",
+  "branch": "audit/ordinary-failure-retry-20261016",
+  "baseCandidate": "646505e7dc8cbf3620d6db795d7d8afdf838f9d0",
+  "testedBuild": "0ff0714625b34db87e80d24c607c3b652b2a3783",
+  "srcTree": "b4befffd15850b9a07a90e0e1dd9eaf5c752c5eb",
+  "status": "ordinary_native_flow_pass_no_product_defect_found",
+  "runtimeChanges": [],
+  "harness": "harness/ordinary-failure-retry.mjs",
+  "scope": "One native ordinary6-gold opening -> affordable real b10 purchase -> four legal weak single hands exhaust opportunities -> read advice/full rules and review -> same-seed restart -> actual next-shop eligibility and retained2gold -> real pair -> cold restore. No state import/edit, direct command injection, forced inventory/draw, future knowledge or score preview. Intentional weak choices prove reachability, not an unbiased loss rate, player comprehension, natural win rate or guaranteed recovery.",
+  "result": {
+    "openingGold": 6,
+    "firstPurchase": {
+      "definitionId": "b10",
+      "paid": 4,
+      "goldAfter": 2
+    },
+    "loss": {
+      "reason": "hands-exhausted",
+      "hands": 4,
+      "types": [
+        "high-card",
+        "high-card",
+        "high-card",
+        "high-card"
+      ],
+      "scores": [
+        "22",
+        "22",
+        "26",
+        "27"
+      ],
+      "heat": "97",
+      "target": "400",
+      "gap": "303"
+    },
+    "retry": {
+      "sameSeedHeroRouteRulesMode": true,
+      "freshGold": 6,
+      "jokers": 0,
+      "consumables": 0,
+      "journalEntries": 0,
+      "commandSeq": 1,
+      "stableRunIdPermitted": true
+    },
+    "nextShop": {
+      "paid": 4,
+      "remainingGold": 2,
+      "discoveredHandLevels": {},
+      "practiceServices": []
+    },
+    "guided": {
+      "type": "pair",
+      "score": "110",
+      "growthHeat": {
+        "n": "10",
+        "d": "1"
+      },
+      "commands": [
+        "BuyOffer",
+        "LeaveShop",
+        "EnterStage",
+        "PlayHand"
+      ],
+      "phase": "await-input",
+      "coldRestoreExact": true
+    },
+    "pageErrors": []
+  },
+  "reuse": {
+    "historicalEvidence": "../failure-retry-guidance-2026-10-15/README.md",
+    "historicalCases": 13,
+    "currentFailureSummaryExact": true,
+    "failureSummaryGitBlob": "38c65780e11bb905de6d924b8cb25fb020336b25",
+    "failureSummaryGitSourceSHA256": "285bf309d6278242b9c4e8ac4ddaf5e470bef1dba3a3967d5d42144d9ba312e4",
+    "IntermissionAndRunLaunchChangedSinceHistorical": true,
+    "scope": "Historical controlled save-fault/read-only/scroll evidence retained at its original identity; not rerun or claimed as13 fresh current-version cases. Current S04 retry identity and next actual action freshly checked in one native flow."
+  },
+  "observerIssues": [
+    {
+      "reason": "First harness incorrectly required a new runId. Same-seed launch intentionally reuses deterministic identifier; reset is verified with resources,seq,journal.",
+      "preserved": "observer-failures/stable-run-id-assumption.json.gz"
+    },
+    {
+      "reason": "Archive source check compared normalized Git bytes with CRLF working-tree bytes and stopped. Corrected to compare Git blobs; no source change.",
+      "preserved": "observer-failures/source-check-crlf.txt"
+    }
+  ],
+  "subjectiveAcceptance": "NOT_DONE: no real player observed understanding or independently choosing advice; no physical-device, balance, win-rate or overall-experience acceptance.",
+  "publication": "No push attempted; no main or primary-worktree change; earlier candidates remain separate."
+}

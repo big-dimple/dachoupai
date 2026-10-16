@@ -1,0 +1,844 @@
+{
+  "actualHands": [
+    {
+      "stage": 0,
+      "type": "straight",
+      "score": "904",
+      "route": {
+        "before": {
+          "clears": 0,
+          "G": 0,
+          "S": 0,
+          "F": 0
+        },
+        "factors": {
+          "S": {
+            "n": "1",
+            "d": "1"
+          }
+        }
+      },
+      "multiplierEvents": [
+        {
+          "source": "straight",
+          "operation": "base",
+          "value": {
+            "n": "125",
+            "d": "1"
+          },
+          "before": {
+            "n": "0",
+            "d": "1"
+          },
+          "after": {
+            "n": "4",
+            "d": "1"
+          },
+          "phase": "base",
+          "reason": "straight.base"
+        }
+      ],
+      "accumulator": {
+        "H": {
+          "n": "226",
+          "d": "1"
+        },
+        "M": {
+          "n": "4",
+          "d": "1"
+        }
+      }
+    },
+    {
+      "stage": 1,
+      "type": "straight",
+      "score": "944",
+      "route": {
+        "before": {
+          "clears": 1,
+          "G": 0,
+          "S": 1,
+          "F": 0
+        },
+        "factors": {
+          "S": {
+            "n": "1",
+            "d": "1"
+          }
+        }
+      },
+      "multiplierEvents": [
+        {
+          "source": "straight",
+          "operation": "base",
+          "value": {
+            "n": "125",
+            "d": "1"
+          },
+          "before": {
+            "n": "0",
+            "d": "1"
+          },
+          "after": {
+            "n": "4",
+            "d": "1"
+          },
+          "phase": "base",
+          "reason": "straight.base"
+        }
+      ],
+      "accumulator": {
+        "H": {
+          "n": "236",
+          "d": "1"
+        },
+        "M": {
+          "n": "4",
+          "d": "1"
+        }
+      }
+    },
+    {
+      "stage": 2,
+      "type": "straight",
+      "score": "836",
+      "route": {
+        "before": {
+          "clears": 2,
+          "G": 0,
+          "S": 2,
+          "F": 0
+        },
+        "factors": {
+          "S": {
+            "n": "1",
+            "d": "1"
+          }
+        }
+      },
+      "multiplierEvents": [
+        {
+          "source": "straight",
+          "operation": "base",
+          "value": {
+            "n": "125",
+            "d": "1"
+          },
+          "before": {
+            "n": "0",
+            "d": "1"
+          },
+          "after": {
+            "n": "4",
+            "d": "1"
+          },
+          "phase": "base",
+          "reason": "straight.base"
+        }
+      ],
+      "accumulator": {
+        "H": {
+          "n": "209",
+          "d": "1"
+        },
+        "M": {
+          "n": "4",
+          "d": "1"
+        }
+      }
+    },
+    {
+      "stage": 3,
+      "type": "straight",
+      "score": "1016",
+      "route": {
+        "before": {
+          "clears": 3,
+          "G": 0,
+          "S": 3,
+          "F": 0
+        },
+        "factors": {
+          "S": {
+            "n": "1",
+            "d": "1"
+          }
+        }
+      },
+      "multiplierEvents": [
+        {
+          "source": "straight",
+          "operation": "base",
+          "value": {
+            "n": "125",
+            "d": "1"
+          },
+          "before": {
+            "n": "0",
+            "d": "1"
+          },
+          "after": {
+            "n": "4",
+            "d": "1"
+          },
+          "phase": "base",
+          "reason": "straight.base"
+        }
+      ],
+      "accumulator": {
+        "H": {
+          "n": "254",
+          "d": "1"
+        },
+        "M": {
+          "n": "4",
+          "d": "1"
+        }
+      }
+    },
+    {
+      "stage": 4,
+      "type": "straight",
+      "score": "1489",
+      "route": {
+        "before": {
+          "clears": 4,
+          "G": 0,
+          "S": 4,
+          "F": 0
+        },
+        "factors": {
+          "S": {
+            "n": "7",
+            "d": "5"
+          }
+        }
+      },
+      "multiplierEvents": [
+        {
+          "source": "straight",
+          "operation": "base",
+          "value": {
+            "n": "125",
+            "d": "1"
+          },
+          "before": {
+            "n": "0",
+            "d": "1"
+          },
+          "after": {
+            "n": "4",
+            "d": "1"
+          },
+          "phase": "base",
+          "reason": "straight.base"
+        },
+        {
+          "source": "route-growth",
+          "operation": "route-factor",
+          "value": {
+            "n": "7",
+            "d": "5"
+          },
+          "before": {
+            "n": "4",
+            "d": "1"
+          },
+          "after": {
+            "n": "28",
+            "d": "5"
+          },
+          "phase": "routeGrowth",
+          "reason": "route-growth.S.factor"
+        }
+      ],
+      "accumulator": {
+        "H": {
+          "n": "266",
+          "d": "1"
+        },
+        "M": {
+          "n": "28",
+          "d": "5"
+        }
+      }
+    },
+    {
+      "stage": 5,
+      "type": "straight",
+      "score": "1960",
+      "route": {
+        "before": {
+          "clears": 5,
+          "G": 0,
+          "S": 5,
+          "F": 0
+        },
+        "factors": {
+          "S": {
+            "n": "49",
+            "d": "25"
+          }
+        }
+      },
+      "multiplierEvents": [
+        {
+          "source": "straight",
+          "operation": "base",
+          "value": {
+            "n": "125",
+            "d": "1"
+          },
+          "before": {
+            "n": "0",
+            "d": "1"
+          },
+          "after": {
+            "n": "4",
+            "d": "1"
+          },
+          "phase": "base",
+          "reason": "straight.base"
+        },
+        {
+          "source": "route-growth",
+          "operation": "route-factor",
+          "value": {
+            "n": "49",
+            "d": "25"
+          },
+          "before": {
+            "n": "4",
+            "d": "1"
+          },
+          "after": {
+            "n": "196",
+            "d": "25"
+          },
+          "phase": "routeGrowth",
+          "reason": "route-growth.S.factor"
+        }
+      ],
+      "accumulator": {
+        "H": {
+          "n": "250",
+          "d": "1"
+        },
+        "M": {
+          "n": "196",
+          "d": "25"
+        }
+      }
+    },
+    {
+      "stage": 6,
+      "type": "straight-flush",
+      "score": "15089",
+      "route": {
+        "before": {
+          "clears": 6,
+          "G": 0,
+          "S": 6,
+          "F": 0
+        },
+        "factors": {
+          "S": {
+            "n": "343",
+            "d": "125"
+          }
+        }
+      },
+      "multiplierEvents": [
+        {
+          "source": "straight-flush",
+          "operation": "base",
+          "value": {
+            "n": "450",
+            "d": "1"
+          },
+          "before": {
+            "n": "0",
+            "d": "1"
+          },
+          "after": {
+            "n": "9",
+            "d": "1"
+          },
+          "phase": "base",
+          "reason": "straight-flush.base"
+        },
+        {
+          "source": "route-growth",
+          "operation": "route-factor",
+          "value": {
+            "n": "343",
+            "d": "125"
+          },
+          "before": {
+            "n": "9",
+            "d": "1"
+          },
+          "after": {
+            "n": "3087",
+            "d": "125"
+          },
+          "phase": "routeGrowth",
+          "reason": "route-growth.S.factor"
+        }
+      ],
+      "accumulator": {
+        "H": {
+          "n": "611",
+          "d": "1"
+        },
+        "M": {
+          "n": "3087",
+          "d": "125"
+        }
+      }
+    },
+    {
+      "stage": 7,
+      "type": "straight",
+      "score": "4225",
+      "route": {
+        "before": {
+          "clears": 7,
+          "G": 0,
+          "S": 7,
+          "F": 1
+        },
+        "factors": {
+          "S": {
+            "n": "2401",
+            "d": "625"
+          }
+        }
+      },
+      "multiplierEvents": [
+        {
+          "source": "straight",
+          "operation": "base",
+          "value": {
+            "n": "125",
+            "d": "1"
+          },
+          "before": {
+            "n": "0",
+            "d": "1"
+          },
+          "after": {
+            "n": "4",
+            "d": "1"
+          },
+          "phase": "base",
+          "reason": "straight.base"
+        },
+        {
+          "source": "route-growth",
+          "operation": "route-factor",
+          "value": {
+            "n": "2401",
+            "d": "625"
+          },
+          "before": {
+            "n": "4",
+            "d": "1"
+          },
+          "after": {
+            "n": "9604",
+            "d": "625"
+          },
+          "phase": "routeGrowth",
+          "reason": "route-growth.S.factor"
+        }
+      ],
+      "accumulator": {
+        "H": {
+          "n": "275",
+          "d": "1"
+        },
+        "M": {
+          "n": "9604",
+          "d": "625"
+        }
+      }
+    },
+    {
+      "stage": 8,
+      "type": "straight-flush",
+      "score": "14472",
+      "route": {
+        "before": {
+          "clears": 8,
+          "G": 0,
+          "S": 8,
+          "F": 1
+        },
+        "factors": {
+          "S": {
+            "n": "4",
+            "d": "1"
+          }
+        }
+      },
+      "multiplierEvents": [
+        {
+          "source": "straight-flush",
+          "operation": "base",
+          "value": {
+            "n": "450",
+            "d": "1"
+          },
+          "before": {
+            "n": "0",
+            "d": "1"
+          },
+          "after": {
+            "n": "9",
+            "d": "1"
+          },
+          "phase": "base",
+          "reason": "straight-flush.base"
+        },
+        {
+          "source": "route-growth",
+          "operation": "route-factor",
+          "value": {
+            "n": "4",
+            "d": "1"
+          },
+          "before": {
+            "n": "9",
+            "d": "1"
+          },
+          "after": {
+            "n": "36",
+            "d": "1"
+          },
+          "phase": "routeGrowth",
+          "reason": "route-growth.S.factor"
+        }
+      ],
+      "accumulator": {
+        "H": {
+          "n": "402",
+          "d": "1"
+        },
+        "M": {
+          "n": "36",
+          "d": "1"
+        }
+      }
+    }
+  ],
+  "sourceFormulaExamples": [
+    {
+      "stage": 0,
+      "formula": "(125 base +51 card points +50 c04 +0 stored) *4 base multiplier *1 relevant route =904"
+    },
+    {
+      "stage": 6,
+      "formula": "floor((450 +51 +50 +60) *9 *343/125) =15089"
+    },
+    {
+      "stage": 8,
+      "formula": "(450/2 B12 +47 card points +50 c04 +80 stored) *9 *4 =14472"
+    }
+  ],
+  "publicUnplayedQualificationCheck": {
+    "scope": "Post-run public family qualification only; no hypothetical score or policy/future input. This ordinary flush was not actually played.",
+    "before": {
+      "clears": 8,
+      "G": 0,
+      "S": 8,
+      "F": 1
+    },
+    "type": "flush",
+    "result": {
+      "before": {
+        "clears": 8,
+        "G": 0,
+        "S": 8,
+        "F": 1
+      },
+      "factors": {
+        "F": {
+          "n": "1",
+          "d": "1"
+        }
+      }
+    }
+  },
+  "cash": {
+    "opening": 6,
+    "spent": 36,
+    "earned": 105,
+    "ending": 75,
+    "dyeCost": 32,
+    "dyeCount": 8,
+    "dyeCards": 24,
+    "rerollCost": 0,
+    "availableAlternatives": [
+      {
+        "visit": 1,
+        "source": "basic-choice",
+        "gold": 9,
+        "dyePrice": 4,
+        "actualPublicPracticeQuotes": [
+          {
+            "handType": "straight",
+            "levelBefore": 1,
+            "levelAfter": 2,
+            "basePrice": 4,
+            "price": 4,
+            "goldAfter": 5,
+            "shopSeq": 7,
+            "expectedSeq": 7,
+            "available": true,
+            "reason": null
+          }
+        ],
+        "sharedQuotaSpent": true,
+        "practiceAvailableAfterPurchase": []
+      },
+      {
+        "visit": 2,
+        "source": "basic-choice",
+        "gold": 14,
+        "dyePrice": 4,
+        "actualPublicPracticeQuotes": [
+          {
+            "handType": "straight",
+            "levelBefore": 1,
+            "levelAfter": 2,
+            "basePrice": 4,
+            "price": 4,
+            "goldAfter": 10,
+            "shopSeq": 15,
+            "expectedSeq": 15,
+            "available": true,
+            "reason": null
+          }
+        ],
+        "sharedQuotaSpent": true,
+        "practiceAvailableAfterPurchase": []
+      },
+      {
+        "visit": 3,
+        "source": "basic-choice",
+        "gold": 22,
+        "dyePrice": 4,
+        "actualPublicPracticeQuotes": [
+          {
+            "handType": "straight",
+            "levelBefore": 1,
+            "levelAfter": 2,
+            "basePrice": 4,
+            "price": 4,
+            "goldAfter": 18,
+            "shopSeq": 23,
+            "expectedSeq": 23,
+            "available": true,
+            "reason": null
+          }
+        ],
+        "sharedQuotaSpent": true,
+        "practiceAvailableAfterPurchase": []
+      },
+      {
+        "visit": 4,
+        "source": "basic-choice",
+        "gold": 28,
+        "dyePrice": 4,
+        "actualPublicPracticeQuotes": [
+          {
+            "handType": "straight",
+            "levelBefore": 1,
+            "levelAfter": 2,
+            "basePrice": 4,
+            "price": 4,
+            "goldAfter": 24,
+            "shopSeq": 31,
+            "expectedSeq": 31,
+            "available": true,
+            "reason": null
+          }
+        ],
+        "sharedQuotaSpent": true,
+        "practiceAvailableAfterPurchase": []
+      },
+      {
+        "visit": 5,
+        "source": "basic-choice",
+        "gold": 36,
+        "dyePrice": 4,
+        "actualPublicPracticeQuotes": [
+          {
+            "handType": "straight",
+            "levelBefore": 1,
+            "levelAfter": 2,
+            "basePrice": 4,
+            "price": 4,
+            "goldAfter": 32,
+            "shopSeq": 39,
+            "expectedSeq": 39,
+            "available": true,
+            "reason": null
+          }
+        ],
+        "sharedQuotaSpent": true,
+        "practiceAvailableAfterPurchase": []
+      },
+      {
+        "visit": 6,
+        "source": "basic-choice",
+        "gold": 47,
+        "dyePrice": 4,
+        "actualPublicPracticeQuotes": [
+          {
+            "handType": "straight",
+            "levelBefore": 1,
+            "levelAfter": 2,
+            "basePrice": 4,
+            "price": 4,
+            "goldAfter": 43,
+            "shopSeq": 46,
+            "expectedSeq": 46,
+            "available": true,
+            "reason": null
+          }
+        ],
+        "sharedQuotaSpent": true,
+        "practiceAvailableAfterPurchase": []
+      },
+      {
+        "visit": 7,
+        "source": "actual-random-stock",
+        "gold": 55,
+        "dyePrice": 4,
+        "actualPublicPracticeQuotes": [
+          {
+            "handType": "straight",
+            "levelBefore": 1,
+            "levelAfter": 2,
+            "basePrice": 4,
+            "price": 4,
+            "goldAfter": 51,
+            "shopSeq": 53,
+            "expectedSeq": 53,
+            "available": true,
+            "reason": null
+          }
+        ],
+        "sharedQuotaSpent": false,
+        "practiceAvailableAfterPurchase": [
+          {
+            "handType": "straight",
+            "levelBefore": 1,
+            "levelAfter": 2,
+            "basePrice": 4,
+            "price": 4,
+            "goldAfter": 47,
+            "shopSeq": 53,
+            "expectedSeq": 54,
+            "available": true,
+            "reason": null
+          }
+        ]
+      },
+      {
+        "visit": 8,
+        "source": "basic-choice",
+        "gold": 64,
+        "dyePrice": 4,
+        "actualPublicPracticeQuotes": [
+          {
+            "handType": "straight",
+            "levelBefore": 1,
+            "levelAfter": 2,
+            "basePrice": 4,
+            "price": 4,
+            "goldAfter": 60,
+            "shopSeq": 60,
+            "expectedSeq": 60,
+            "available": true,
+            "reason": null
+          }
+        ],
+        "sharedQuotaSpent": true,
+        "practiceAvailableAfterPurchase": []
+      }
+    ],
+    "dyeAndPracticeQuota": "Seven basic-choice dyes consume shared quota; one actual random T03 purchase at visit7 leaves the practice quota available. Money is spent in both cases; policy elected to retain the rest."
+  },
+  "actualS04": {
+    "seen": 0,
+    "purchased": 0,
+    "used": 0,
+    "qualifiedAtChapter3Entry": {
+      "restricted": true,
+      "living": 52,
+      "required": 26,
+      "minimumChapter": 3,
+      "chapter": 3,
+      "suits": [
+        {
+          "suit": "spades",
+          "count": 8,
+          "missing": 18,
+          "eligible": false
+        },
+        {
+          "suit": "hearts",
+          "count": 28,
+          "missing": 0,
+          "eligible": true
+        },
+        {
+          "suit": "clubs",
+          "count": 8,
+          "missing": 18,
+          "eligible": false
+        },
+        {
+          "suit": "diamonds",
+          "count": 8,
+          "missing": 18,
+          "eligible": false
+        }
+      ]
+    },
+    "interpretation": "Eight real dye purchases progressively prepared the deck; actual S04 finale remained NOT_OBSERVED. One fixed dye changes3 cards, no all-deck conversion."
+  },
+  "growth": {
+    "held": "c04 / 搭台阶",
+    "firstRead": 0,
+    "latestRead": 80,
+    "finalStored": {
+      "n": "90",
+      "d": "1"
+    },
+    "afterHandChangesAccumulator": false,
+    "relatedFamilyFactorApplicationsPerHand": [
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1
+    ]
+  },
+  "balance": {
+    "observation": "Nine first-hand clears with14 actual discards and one ordinary4-gold support card; total preparation32gold. A strong representative opening, not proof of general balance or hidden arithmetic.",
+    "recommendation": "Keep current values in this batch. Before broader tuning, use a small preregistered holdout of ordinary seeds and acquisition timings, recording deaths/no-offers and spend/save decisions. Do not repeat18 routes or infer all-family S04/late/endless balance from this single path."
+  },
+  "nativeFullReplay": {
+    "commands": 66,
+    "initialAndActualNativeJournalReproduceFullFinalStateExact": true,
+    "scope": "Post-run deterministic audit, not another sampled game or policy input."
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "repository": "https://github.com/big-dimple/dachoupai",
+  "action": "normal primary-main fast-forward then ordinary push",
+  "before": "2a8efe2a8ae4f2eb80af68f5d21986d3d63a0bd7",
+  "after": "646505e7dc8cbf3620d6db795d7d8afdf838f9d0",
+  "commands": [
+    "git merge --ff-only --no-stat 646505e7dc8cbf3620d6db795d7d8afdf838f9d0",
+    "git push origin main",
+    "git rev-parse HEAD",
+    "git rev-parse refs/remotes/origin/main",
+    "git ls-remote --heads origin main",
+    "git status --short"
+  ],
+  "pushExitCode": 0,
+  "verified": {
+    "localHEAD": "646505e7dc8cbf3620d6db795d7d8afdf838f9d0",
+    "originMain": "646505e7dc8cbf3620d6db795d7d8afdf838f9d0",
+    "remoteMain": "646505e7dc8cbf3620d6db795d7d8afdf838f9d0",
+    "primaryWorktreeClean": true
+  },
+  "commit": "https://github.com/big-dimple/dachoupai/commit/646505e7dc8cbf3620d6db795d7d8afdf838f9d0",
+  "limits": "Verified Git publication only. No CI/domain/deployment query; no claim about deployment completion. Independent cash-warning and failure-audit branches not included."
+}

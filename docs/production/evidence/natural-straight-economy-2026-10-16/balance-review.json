@@ -1,0 +1,299 @@
+{
+  "date": "2026-10-16",
+  "type": "recorded_data_and_source_only_no_new_simulation",
+  "sourceMain": "646505e7dc8cbf3620d6db795d7d8afdf838f9d0",
+  "lastPlayed": {
+    "stageIndex": 9,
+    "lastStage": 8,
+    "phase": "stage-cleared",
+    "seq": 67,
+    "journalCommands": 66,
+    "gold": 75
+  },
+  "inputHashes": {
+    "docs/production/evidence/natural-straight-economy-2026-10-16/domain-report.json.gz": "422b3dc7960cfd0e74f9540ed8ad5f1a9c7a886f6e8591c3c250b821bfed845d",
+    "docs/production/evidence/natural-straight-economy-2026-10-16/native-report.json.gz": "1f6c21e426a6804ecc56eb5e5c7855b7238cdc9c8ee9bed0fd057d71480d05a6"
+  },
+  "noContinuationStarted": true,
+  "noNewSeedsGamesCommandsOrParameterChanges": true,
+  "observed": {
+    "streakFirstHandClears": 9,
+    "streakEnd": "NOT_OBSERVED: user stopped continuation before any new play",
+    "rewards": [
+      {
+        "stage": 1,
+        "principal": 2,
+        "base": 4,
+        "unused": 3,
+        "interest": 0,
+        "actual": 7
+      },
+      {
+        "stage": 2,
+        "principal": 5,
+        "base": 5,
+        "unused": 3,
+        "interest": 1,
+        "actual": 9
+      },
+      {
+        "stage": 3,
+        "principal": 10,
+        "base": 7,
+        "unused": 3,
+        "interest": 2,
+        "actual": 12
+      },
+      {
+        "stage": 4,
+        "principal": 18,
+        "base": 4,
+        "unused": 3,
+        "interest": 3,
+        "actual": 10
+      },
+      {
+        "stage": 5,
+        "principal": 24,
+        "base": 5,
+        "unused": 3,
+        "interest": 4,
+        "actual": 12
+      },
+      {
+        "stage": 6,
+        "principal": 32,
+        "base": 7,
+        "unused": 3,
+        "interest": 5,
+        "actual": 15
+      },
+      {
+        "stage": 7,
+        "principal": 43,
+        "base": 4,
+        "unused": 3,
+        "interest": 5,
+        "actual": 12
+      },
+      {
+        "stage": 8,
+        "principal": 51,
+        "base": 5,
+        "unused": 3,
+        "interest": 5,
+        "actual": 13
+      },
+      {
+        "stage": 9,
+        "principal": 60,
+        "base": 7,
+        "unused": 3,
+        "interest": 5,
+        "actual": 15
+      }
+    ],
+    "total": {
+      "base": 48,
+      "unused": 27,
+      "interest": 30,
+      "total": 105
+    },
+    "spend": {
+      "support": 4,
+      "dyes": 32,
+      "total": 36
+    },
+    "endingGold": 75,
+    "ordinaryTargets": [
+      [
+        400,
+        600,
+        800
+      ],
+      [
+        900,
+        1350,
+        1800
+      ],
+      [
+        1800,
+        2700,
+        3600
+      ]
+    ],
+    "dye": {
+      "perPurchase": 4,
+      "maximumCards": 3,
+      "preparation13toAtLeast26": {
+        "minimumPurchases": 5,
+        "cost": 20
+      },
+      "observedPurchases": 8,
+      "cost": 32,
+      "heartCount": 37,
+      "oneRandomPurchasePreservesSharedQuota": true
+    },
+    "actualS04": "NOT_OBSERVED"
+  },
+  "parameters": [
+    {
+      "name": "chapter2 base target",
+      "source": "src/domain/r2Chapter.ts:16",
+      "current": 900,
+      "proposal": "candidate1000 only after approval, new identity; keep chapters1/3 and all other parameters unchanged",
+      "priority": 1
+    },
+    {
+      "name": "straight and straight-flush bases",
+      "source": "src/domain/scoreR2.ts:35 / src/domain/r2PublishedContent.json snapshot.hands",
+      "current": {
+        "straight": [
+          125,
+          4
+        ],
+        "straightFlush": [
+          450,
+          9
+        ]
+      },
+      "proposal": "hold; source snapshot is frozen for old identities; do not directly modify it",
+      "priority": "diagnostic"
+    },
+    {
+      "name": "c04 base/growth",
+      "source": "src/content/r2RouteGrowthJokers.ts:15",
+      "current": {
+        "heat": 50,
+        "growthPerQualifiedHand": 10,
+        "cap": 100,
+        "read": "any actual hand; qualified source required only to gain"
+      },
+      "proposal": "hold; public additive stored heat, not hidden multiplication"
+    },
+    {
+      "name": "route factors",
+      "source": "src/domain/r2RouteGrowth.ts:14",
+      "current": {
+        "grace": 3,
+        "S": 1.4,
+        "F": 1.3,
+        "G": 1.35,
+        "cap": 4,
+        "application": "highest relevant family once"
+      },
+      "proposal": "hold; no demonstrated duplicate factor"
+    },
+    {
+      "name": "dye and S04",
+      "source": "src/domain/r2GroupUpgrade.ts:44 and63",
+      "current": {
+        "dyePrice": 4,
+        "dyeTargets": 3,
+        "s04Chapter": 3,
+        "s04Density": 0.5,
+        "s04Price": 6,
+        "s04HandPenalty": 1
+      },
+      "proposal": "hold pending actual S04 and other-family evidence"
+    },
+    {
+      "name": "cash feedback",
+      "source": "src/domain/r2Run.ts:867 / src/content/r2Modes.ts:70",
+      "current": {
+        "baseRewards": [
+          4,
+          5,
+          7
+        ],
+        "goldPerUnusedHand": 1,
+        "interestDivisor": 5,
+        "interestCap": 5
+      },
+      "proposal": "hold during a target-only experiment to preserve attribution"
+    }
+  ],
+  "staticArithmeticOnly": {
+    "warning": "Fixed recorded hand/reward arithmetic only. No new game/state transition, changed draw, future card or win-rate forecast.",
+    "chapter2": [
+      {
+        "stage": 4,
+        "observedScore": 1016,
+        "oldTarget": 900,
+        "candidateTarget": 1000,
+        "fixedHandMargin": 16
+      },
+      {
+        "stage": 5,
+        "observedScore": 1489,
+        "oldTarget": 1350,
+        "candidateTarget": 1500,
+        "fixedHandMargin": -11
+      },
+      {
+        "stage": 6,
+        "observedScore": 1960,
+        "oldTarget": 1800,
+        "candidateTarget": 2000,
+        "fixedHandMargin": -40
+      }
+    ],
+    "lowerC04Heat50to35": {
+      "firstHand": "844",
+      "seventhHand": "14718",
+      "interpretation": "Only source sensitivity; does not replay changed acquisition/growth or establish new balance."
+    },
+    "dyePrice4to5": {
+      "extraEightPurchasesCost": 8,
+      "endingIfAllOriginalRewardsFixed": 67,
+      "notAnActualBalanceForecast": true
+    },
+    "endlessSourceFormula": {
+      "growthPerChapterAfter8": "27/20",
+      "rounding": "ceiling after stage multiplier, not after warm-up rounding",
+      "examples": [
+        {
+          "chapter": 9,
+          "targets": [
+            "27642",
+            "41462",
+            "55283"
+          ]
+        },
+        {
+          "chapter": 10,
+          "targets": [
+            "37316",
+            "55974",
+            "74632"
+          ]
+        }
+      ],
+      "actualEndlessPlayed": false
+    }
+  },
+  "recommendation": "First decide whether chapter2 should require an additional real hand in some ordinary routes. If approved, isolate chapter2 base900->1000 in a new content identity; do not change dye, starter, route and income together. This is a candidate, not an approved numerical edit.",
+  "acceptance": {
+    "staticGate": [
+      "Chapter2 targets1000/1500/2000; fixed observed margins16/-11/-40.",
+      "Chapter1/3 targets, score-event arithmetic, prices and RNG untouched.",
+      "A second-hand decision and its unused-hand reward effect require actual later acceptance; not inferred from this arithmetic."
+    ],
+    "futureOnlyAfterApproval": [
+      "No more samples in this batch. A future target-only candidate needs a small preregistered holdout, retaining losses/no-offers; do not tune until the sample matches a forced7/9 pattern.",
+      "Existing checkpoint identity/hash/locked chapter targets/retry semantics remain exact; new numerical identity only.",
+      "Publish only after separate review; no current runtime or main changes."
+    ]
+  },
+  "completed": [
+    "three-chapter ordinary preparation/source audit and native replay",
+    "cash income decomposition",
+    "parameter/source references and one limited target candidate"
+  ],
+  "open": [
+    "first-hand streak end",
+    "actual S04 acquisition/use",
+    "chapter4 onward and endless reachability",
+    "other families/acquisition timing and human preference"
+  ]
+}

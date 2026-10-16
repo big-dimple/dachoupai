@@ -2,13 +2,13 @@
   "schemaVersion": 1,
   "auditCommit": "8e2174141920ef001b95a30485e70525920d3d9f",
   "currentTask": "P08",
-  "selectionPolicy": "当前P08：高光文案与商店图片预取已在独立整合分支形成并集，47项相关测试/构建和必要交叉原生流程通过。仅候选开发分支可普通推送；main在用户回复本批明确确认前暂停，不重试或绕过。接续核对不依赖新图的经营条件反馈，先复现再认领最小自有文件，不改其他会话共享文件、经济/规则/旧档，不重复无变化大矩阵。",
+  "selectionPolicy": "唯一排程见DELIVERY_PLAN当前统一执行计划。main646505已核实发布；燃金警告61c78仅本地产品实现、未合main；第二章900→1000为86d030只读建议、未实施；失败再战/三章经营/技能页是本地有界证据，不是新产品修复或整体签收。本次只做本地文档对账和原证据集中，无新增测试/试玩/数值/源码/发布。P08仍in_progress；依次处理六英雄实际取舍、经营自然供给、移动设备、画面和听感的真实输入；没有可复现缺口不造新工作，不重开18路线/完整C04。",
   "resumeContract": {
     "candidateCommit": "4bf6a7d63d7738d3c415d09439a1bdca878dc685",
     "gateTask": "A01",
     "decisionId": "D22",
     "decision": "docs/production/DECISIONS.md",
-    "afterOwnerAcceptance": "D22/A01历史局部批准不扩展为本轮整体签收；当前授权仅本次文档重构和已指定的开发分支工作，主分支合并仍待用户明确确认。独立正式验收门V01/L01与C04剩余范围保持，六原图验收不等于运行时/裁切/独立眼图/音效/真机验收。旧恢复合同见history/plan-status-before-20261015.json。",
+    "afterOwnerAcceptance": "D22/A01是历史局部工程放行，不是本轮完整体验签收。main646505已经实际发布；旧“仍待合并确认”文字不能覆盖该事实。本次只整理本地文档，61c78与本文件候选均未因整理而合main/推送；后续发布按用户当批明确指派。V01/L01、C04剩余与A03整体依赖保持；六原图验收不代签运行时、独立眼图、听感、真机或全量美术。",
     "milestones": "docs/production/WORK_PACKAGES.md#玩家可检验的里程碑",
     "approvalEvidence": "docs/production/evidence/A01-2026-10-02.json"
   },
@@ -36,8 +36,14 @@
       ],
       "package": "docs/production/WORK_PACKAGES.md#p08",
       "humanGate": false,
-      "completionScope": "2026-10-16：c009基线上的文化文案cea473、选择布局aab4d9和本机跨场景连点修复已整合；同版正常新局/携带/技能/实际结算/下一商店/失败重试及六人软件检查见currentDelivery.statusRecord。历史全量失败按独立基线对照记录，不能写成全量绿。P08仍in_progress；真实玩家理解、自然平衡、物理设备/GPU、听感、独立眼原画及整体体验未签。",
+      "completionScope": "已发布main646505包含六英雄能力/文案、六图软件接线与已列交互/高光/预取等增量。新增本地失败再战、三章经营和四尺寸技能返回只是各自有界证据；61c78是未发布实现，86d030仅建议。本地文档对账不完成P08、A03、V01或正式发布链；运行时美术、人类理解、设备/听感、自然晚期与全局平衡仍未签。",
       "evidence": [
+        "docs/production/evidence/local-plan-reconcile-2026-10-16/status.json",
+        "docs/production/evidence/ordinary-failure-retry-2026-10-16/status.json",
+        "docs/production/evidence/natural-straight-economy-2026-10-16/status.json",
+        "docs/production/evidence/hero-skill-footer-reachability-2026-10-16/status.json",
+        "docs/production/evidence/natural-straight-economy-2026-10-16/balance-review.json",
+        "docs/production/evidence/xiemu-cash-gate-warning-2026-10-16/status.json",
         "docs/production/evidence/highlight-shop-union-2026-10-16/status.json",
         "docs/production/evidence/shop-tool-image-warmup-2026-10-16/status.json",
         "docs/production/evidence/shop-growth-mobile-current-main-2026-10-16/status.json",
@@ -120,7 +126,7 @@
         "docs/production/evidence/tangsong-plan-reconcile-2026-10-15/status.json",
         "docs/production/evidence/hero-text-adoption-2026-10-15/status.json"
       ],
-      "notes": "只沿DELIVERY_PLAN唯一入口；不得把旧戏班名、四男两女、原图转存阻塞、134项旧目录或历史待实现条目当当前任务。保留task evidence全部原SHA和历史FAIL/NOT_RUN；旧累计notes与旧selectionPolicy原文移入history/plan-status-before-20261015.json，角色规则以新局身份与HERO_TEXT_SPEC为准。体验审查R03是P08子项，不是已done的R03工作包重开。 第一阶段605bfc3c已正常发布main c9737cf3；第二阶段文案产品116d8524按完整身份采用，新证据单列；P08/人工与正式门状态不变。"
+      "notes": "当前状态以DELIVERY_PLAN及local-plan-reconcile凭据为准；原当前说明、候选待发布与历史批准全文在history/plan-current-delivery-before-local-reconcile-20261016.json。无新测试/长局/数值改变，不把局部无缺陷或原图批准当整体done。"
     },
     {
       "id": "P07",
@@ -1219,27 +1225,30 @@
   ],
   "currentDelivery": {
     "date": "2026-10-16",
-    "statusRecord": "docs/production/evidence/highlight-shop-union-2026-10-16/status.json",
+    "statusRecord": "docs/production/evidence/local-plan-reconcile-2026-10-16/status.json",
     "heroTextSpecification": "docs/production/HERO_TEXT_SPEC_20261015.json",
     "history": "docs/production/history/plan-status-before-20261015.json",
     "priorities": [
-      "P0已交付：第一阶段六图/加载/R03正常发布；第二阶段六人新文案已顺序采用并独立同版复核，用户授权正常发布main",
-      "P1:冻结同版后验证真实资源/移动输入/保存恢复与六人有限正常经营及成长选择",
-      "P2:用户理解、运行时美术、听感及目标设备验收；以结果决定最小后续修改",
-      "P3:正式平衡/留出/发布门按既有工作包依赖恢复，未经授权不扩完整C04"
+      "1 首章技能实际取舍/玩家理解：既有能力不重做，具体输入后修复",
+      "2 成长经营：已有三章有界事实，S04/晚期/无尽仍未覆盖；数值建议未实施",
+      "3 移动可达性与性能：四尺寸技能返回无缺陷；设备/具体卡点与原性能负责人输入",
+      "4 当前画面/节奏：已验原图不重画，运行时主观与独立素材分开",
+      "5 声音：软件恢复已发，目标设备听感/混音需人验",
+      "正式C04/A03/V01/B00/B01/L00/L01/L02保原依赖，不以本次无缺陷或发布代签"
     ],
     "owners": {
-      "documents": "同一整合负责人：规范来源856c30ed、运行时采用与当前计划/证据对账",
-      "runtimeIntegration": "独立verify/highlight-shop-images-20261016：高光b1a838e8与商店021ae4ff无冲突正常合并；47项/构建、短横高光、冷热点开及在途离店后高清角色/技能页面复用通过。仅尝试开发候选普通推送，main发布等待本批直接确认和审批解除。",
+      "documents": "本地文档候选：DELIVERY_PLAN/plan.json为唯一排程；ART与角色玩法仅修状态冲突。原证据/历史原文保持，本次无产品源码或发布。",
+      "runtimeIntegration": "main646505高光文案+商店预取已普通push并核实远端；此后没有新产品发布。燃金61c78独立本地，文档合并不带其代码。",
       "portraits": "正式图接线已完成整合；只处理可复现缺陷，不并发覆盖资源窗口",
       "carry": "R03已结束开发，只处理经复现的整合缺陷",
       "opening": "首页/加载/成长main8af3e506已发布；本批保留其源码；结算单独同版复核",
-      "acceptance": "用户/真实玩家/目标设备与听感各按实际证据签收",
+      "acceptance": "用户/真实玩家/目标设备/听感按各自实际范围签；本轮文档、无缺陷审计和代码发布不能代替。",
       "audioExperience": "独立fix/audio-gesture-recovery-20261016：只持AudioEngine、main音频监听三行及自有harness/证据；76项及真实音频前后对照完成，音色审美/真机未签，不改GameScene或素材",
       "growthExperience": "经营成长两处shop上下文与PC原位提示已同版合入；真实购买/成长/下一店/出售/冷恢复，未改经济或牌桌原反馈",
       "mobileExperience": "原负责人产品b532922c、候选54851f65；本批正常整合保留安全区/短横/短竖/分页，39场景和经营并集旋转通过，物理设备另签",
-      "challengerExperience": "独立feat/b05-first-encounter-20261016：B05持续认招/目标余手/选牌预告与真实回执；只持Opponent*和GameScene三处局部调用，不占高光队列或失败组件。30项/构建/14原生通过，待父整合；专属人物/眼神素材仍依赖。",
-      "shopImageWarmup": "独立fix/shop-tool-background-images-20261016：产品3ae914f6本地软件验证完成；仅ShopScene/MakeCardsDialog/ShopToolImageWarmup，38项和构建/前后冷热点开/受控延迟/失败重试/在途清理/39旋转通过；尚未推送或整合，不混高光候选。"
+      "challengerExperience": "B05首遇e42c500b/47ab5e5e已在main2a8efe2a并包含于646505；30项/14原生为原软件证据。专属人物/独立眼神素材与人验仍依赖，不再列待父整合。",
+      "shopImageWarmup": "商店预取产品3ae914f6经并集646505发布；开发分支自身此前未推，但源码已通过main交付。自然立即冷点未加速/真机多秒卡顿未复现，不能签全平台性能。",
+      "localCashWarning": "仅本地61c78：XiemuBurnCopy金币门槛说明和自有证据，未并main；30金自然取舍另验。"
     },
     "legacyDoneScope": "原done工作包仅保持原证据/原SHA的局部交付事实；不代表当前唐宋六图、全新文案、运行时美术、自然平衡或整体体验完成。",
     "priorStatusRecord": "docs/production/evidence/local-windows-integration-2026-10-16/status.json",
@@ -1300,19 +1309,30 @@
         "branch": "fix/shop-tool-background-images-20261016",
         "productCommit": "3ae914f6259d7c513284929a6b31bd8743909962",
         "statusRecord": "docs/production/evidence/shop-tool-image-warmup-2026-10-16/status.json",
-        "status": "local_software_verified_publication_blocked",
-        "scope": "Actual current tool catalog bounded idle preparation; separate highlight main push rejected by auto-review; no shop push attempted."
+        "status": "integrated_in_published_main",
+        "scope": "Actual current tool catalog bounded idle preparation; separate highlight main push rejected by auto-review; no shop push attempted.",
+        "publishedMain": "646505e7dc8cbf3620d6db795d7d8afdf838f9d0",
+        "developmentBranchPushed": false
       },
       {
         "branch": "verify/highlight-shop-images-20261016",
         "productCommit": "b076fc1f523a5d4ffc5162f36b2e6117de4cdd95",
         "testedBuild": "0ff0714625b34db87e80d24c607c3b652b2a3783",
         "statusRecord": "docs/production/evidence/highlight-shop-union-2026-10-16/status.json",
-        "status": "local_software_verified_main_publication_paused"
+        "status": "published_main_software_verified",
+        "publishedMain": "646505e7dc8cbf3620d6db795d7d8afdf838f9d0"
+      },
+      {
+        "branch": "fix/xiemu-cash-gate-warning-20261016",
+        "candidateCommit": "61c78a233a40e90dcff8356f4de083e3d691e9af",
+        "productCommit": "c96fe6e05b8a0f4363adbf82d2778b0d783c12c7",
+        "status": "local_implemented_not_integrated",
+        "statusRecord": "docs/production/evidence/xiemu-cash-gate-warning-2026-10-16/status.json",
+        "scope": "Only local implementation. Current document candidate copies evidence only, not src/tests/harness."
       }
     ],
     "priorSettlementStatusRecord": "docs/production/evidence/settlement-current-main-integration-2026-10-16/status.json",
-    "lastVerifiedPublishedMain": "2a8efe2a8ae4f2eb80af68f5d21986d3d63a0bd7",
+    "lastVerifiedPublishedMain": "646505e7dc8cbf3620d6db795d7d8afdf838f9d0",
     "priorPointerStatusRecord": "docs/production/evidence/pointer-current-main-integration-2026-10-16/status.json",
     "nextBatchInventory": "docs/production/DELIVERY_PLAN.md#下一批玩家体验事项与依赖2026-10-16盘点待协调",
     "priorOwnedCardStatusRecord": "docs/production/evidence/owned-card-current-main-integration-2026-10-16/status.json",
@@ -1320,6 +1340,134 @@
     "priorAudioStatusRecord": "docs/production/evidence/audio-current-main-integration-2026-10-16/status.json",
     "priorSkillChoiceStatusRecord": "docs/production/evidence/skill-choice-current-main-2026-10-16/status.json",
     "nextExperienceInventory": "docs/production/DELIVERY_PLAN.md#挑战者高光与失败体验下一批有限核对2026-10-16",
-    "priorShopGrowthMobileStatusRecord": "docs/production/evidence/shop-growth-mobile-current-main-2026-10-16/status.json"
+    "priorShopGrowthMobileStatusRecord": "docs/production/evidence/shop-growth-mobile-current-main-2026-10-16/status.json",
+    "reconcileArchive": "docs/production/history/plan-current-delivery-before-local-reconcile-20261016.json",
+    "localEvidenceRecords": [
+      {
+        "commit": "ad03aa443c9d1df5e3d2e33db0d81f922bec0ef4",
+        "type": "ordinary_failure_retry",
+        "status": "bounded_native_pass_no_product_change",
+        "statusRecord": "docs/production/evidence/ordinary-failure-retry-2026-10-16/status.json",
+        "notAccepted": "human comprehension, natural loss rate and balance"
+      },
+      {
+        "commit": "c93283ae645da8d166cf6ff6a3f8d85e3d3d50e0",
+        "type": "ordinary_economy_three_chapters",
+        "status": "bounded_native_pass_no_product_change",
+        "statusRecord": "docs/production/evidence/natural-straight-economy-2026-10-16/status.json",
+        "notAccepted": "actual S04, late/endless, other families and global balance"
+      },
+      {
+        "commit": "574829a81e9899d77bf1e90cf23e3119620a5754",
+        "type": "skill_footer_reachability",
+        "status": "suspected_gap_not_reproduced_no_product_change",
+        "statusRecord": "docs/production/evidence/hero-skill-footer-reachability-2026-10-16/status.json",
+        "notAccepted": "physical phone/GPU or entire interaction plan"
+      }
+    ],
+    "numericalProposals": [
+      {
+        "commit": "86d0306e9a11c31092a7a68ab8f04ca219bb30a0",
+        "status": "proposal_only_not_implemented",
+        "proposal": "Chapter2 base900->1000, targets1000/1500/2000; static recorded margins16/-11/-40.",
+        "evidence": "docs/production/evidence/natural-straight-economy-2026-10-16/balance-review.json",
+        "decision": "暂不实施；单样本差额不足以证明挑战改善。未新增模拟或试玩。",
+        "requires": [
+          "separate numerical decision",
+          "new content identity and exact old-save behavior",
+          "finite preregistered later acceptance; not this document batch"
+        ]
+      }
+    ],
+    "formalGates": [
+      {
+        "id": "V01",
+        "status": "blocked",
+        "dependsOn": [
+          "V00",
+          "A02"
+        ],
+        "humanGate": true
+      },
+      {
+        "id": "C04",
+        "status": "blocked",
+        "dependsOn": [
+          "C03"
+        ],
+        "humanGate": false
+      },
+      {
+        "id": "A03",
+        "status": "planned",
+        "dependsOn": [
+          "A02",
+          "C03"
+        ],
+        "humanGate": true
+      },
+      {
+        "id": "B00",
+        "status": "planned",
+        "dependsOn": [
+          "C04"
+        ],
+        "humanGate": false
+      },
+      {
+        "id": "B01",
+        "status": "planned",
+        "dependsOn": [
+          "B00",
+          "A03"
+        ],
+        "humanGate": false
+      },
+      {
+        "id": "L00",
+        "status": "planned",
+        "dependsOn": [
+          "B01",
+          "V01"
+        ],
+        "humanGate": false
+      },
+      {
+        "id": "L01",
+        "status": "planned",
+        "dependsOn": [
+          "L00"
+        ],
+        "humanGate": true
+      },
+      {
+        "id": "L02",
+        "status": "planned",
+        "dependsOn": [
+          "L01"
+        ],
+        "humanGate": false
+      }
+    ],
+    "acceptanceBoundary": {
+      "overallComplete": false,
+      "softwareEvidence": "each original commit only",
+      "humanUnderstanding": "pending",
+      "runtimeArtAndHearing": "pending",
+      "physicalDevices": "pending",
+      "globalBalanceAndEndless": "pending",
+      "originalPortraits": "six specified originals accepted only",
+      "independentEyeAndBossArt": "not delivered as independent assets"
+    },
+    "nextImplementableWork": {
+      "readyForReview": "61c78 cash-warning implementation exists; do not redevelop. Separate decision and only necessary latest-main integration verification if later selected.",
+      "newReproducedSoftwareDefect": "none currently established within no-new-art/no-long-play/no-shared-owner-change restrictions",
+      "minimumNewInputs": [
+        "eligible hero save and human use/retain observation",
+        "naturally acquired S04 save for short transaction validation",
+        "named device/browser/action or original performance owner root cause",
+        "existing image/audio review or separately authorized missing asset delivery"
+      ]
+    }
   }
 }
