@@ -1,10 +1,18 @@
 import {expect,it,vi,afterEach} from 'vitest';
-import {sceneResources,boundedResources,PRELOAD_PIXEL_BUDGET,prepareSceneResources} from '../src/game/SceneResources';
+import {openingResources,sceneResources,boundedResources,PRELOAD_PIXEL_BUDGET,prepareSceneResources} from '../src/game/SceneResources';
 import {loadArtTexture} from '../src/game/ArtTextureLoading';
 import {growthSelectionPlan} from '../harness/fixtures/growth-selection';
 import {CHARACTER_IDS} from '../src/domain/characters';
+import {P00_ASSETS} from '../src/game/theme';
 vi.mock('../src/game/ArtTextureLoading',()=>({loadArtTexture:vi.fn(),promoteArtTexture:vi.fn()}));
 afterEach(()=>{vi.useRealTimers();vi.clearAllMocks();});
+it('gates first entry on every paper texture and six small hero pairs, leaving the catalog optional',()=>{
+ const assets=openingResources();expect(assets).toHaveLength(20);
+ for(const asset of P00_ASSETS)expect(assets.some(a=>a.key===asset.key)).toBe(true);
+ expect(assets.filter(a=>!a.key.startsWith('p00-'))).toEqual(sceneResources('title'));
+ expect(assets.some(a=>/joker|goods-art|court|eyes|portrait-focus/.test(a.key)&&!a.key.startsWith('p00-'))).toBe(false);
+ expect(assets.reduce((n,a)=>n+a.pixels,0)).toBeLessThanOrEqual(PRELOAD_PIXEL_BUDGET);
+});
 it('prepares the full small-card catalog within 20MiB decoded; no HD, music or missing hero URLs',()=>{
  const assets=sceneResources('title',undefined,true);expect(assets).toHaveLength(146);expect(new Set(assets.map(a=>a.key)).size).toBe(146);expect(assets.reduce((n,a)=>n+a.pixels,0)).toBeLessThanOrEqual(PRELOAD_PIXEL_BUDGET);
  expect(assets.filter(a=>a.key.startsWith('p08-joker'))).toHaveLength(72);expect(assets.filter(a=>a.key.startsWith('goods-art'))).toHaveLength(51);

@@ -1,0 +1,1180 @@
+{
+  "base": "e82c7df8d3e004cb9ad5a86b27389496d397b2ad",
+  "sourceHashes": {
+    "src/game/LoadingScreen.ts": "b2154b4eb9d0a5800f29dabf35cf4099fd41541cad2940aca49df1179a16798f",
+    "src/game/LoadingScreen.css": "4ce5374e317683f848a6a7b68e4029b417e6fd4792b2d44353127cf3c2414381",
+    "src/game/LoadingProgress.ts": "42329140deb1934a811de52efc25c3836f29f12c7eee1eb42cda226c7188de47",
+    "src/game/SceneResources.ts": "77a3bff06331a42371c0a16cc419885349e3ef9bafea8a0d7e1f3217fb78b1b3",
+    "src/game/BootScene.ts": "aa8e09b2fa34026efc5975e529eb589c352c39d8e3d465a04bd548b4198875c2"
+  },
+  "browser": "153.0.8010.12",
+  "scope": "Built application; native inputs and real decoded texture gate. Controlled transport holds and 503 failures only. Software viewports; no physical-device or player acceptance claim.",
+  "cases": [
+    {
+      "name": "pc",
+      "width": 1366,
+      "height": 900,
+      "errors": [],
+      "heroHits": 2,
+      "paperHits": 3,
+      "courtHits": 3,
+      "coldPending": {
+        "probe": {
+          "openings": 1,
+          "preparations": 0,
+          "samples": [
+            {
+              "id": "resource-loading",
+              "loaded": 0,
+              "total": 8,
+              "status": "boot",
+              "value": 0
+            },
+            {
+              "id": "resource-loading",
+              "loaded": 9,
+              "total": 20,
+              "status": "loading",
+              "value": 0.02121961802251003
+            }
+          ]
+        },
+        "preparation": {
+          "key": "title",
+          "total": 20,
+          "loaded": 19,
+          "failed": 0,
+          "pending": 1,
+          "keys": [
+            "p00-paper",
+            "p00-card-back",
+            "p00-frame-common",
+            "p00-frame-uncommon",
+            "p00-frame-rare",
+            "p00-mark-joker",
+            "p00-mark-plus",
+            "p00-mark-times",
+            "avatar-amo",
+            "selection-portrait-amo",
+            "avatar-touye",
+            "selection-portrait-touye",
+            "avatar-laohuan",
+            "selection-portrait-laohuan",
+            "avatar-erxiang",
+            "selection-portrait-erxiang",
+            "avatar-azao",
+            "selection-portrait-azao",
+            "avatar-xiemu",
+            "selection-portrait-xiemu"
+          ],
+          "status": "loading",
+          "round": 0,
+          "retryInMs": 0
+        },
+        "active": [
+          "boot"
+        ],
+        "canvases": 1
+      },
+      "firstEntry": {
+        "probe": {
+          "openings": 1,
+          "preparations": 0,
+          "samples": [
+            {
+              "id": "resource-loading",
+              "loaded": 0,
+              "total": 8,
+              "status": "boot",
+              "value": 0
+            },
+            {
+              "id": "resource-loading",
+              "loaded": 9,
+              "total": 20,
+              "status": "loading",
+              "value": 0.02121961802251003
+            },
+            {
+              "id": "resource-loading",
+              "loaded": 19,
+              "total": 20,
+              "status": "loading",
+              "value": 0.28381462880165453
+            }
+          ]
+        },
+        "preparation": {
+          "key": "title",
+          "total": 20,
+          "loaded": 20,
+          "failed": 0,
+          "pending": 0,
+          "keys": [
+            "p00-paper",
+            "p00-card-back",
+            "p00-frame-common",
+            "p00-frame-uncommon",
+            "p00-frame-rare",
+            "p00-mark-joker",
+            "p00-mark-plus",
+            "p00-mark-times",
+            "avatar-amo",
+            "selection-portrait-amo",
+            "avatar-touye",
+            "selection-portrait-touye",
+            "avatar-laohuan",
+            "selection-portrait-laohuan",
+            "avatar-erxiang",
+            "selection-portrait-erxiang",
+            "avatar-azao",
+            "selection-portrait-azao",
+            "avatar-xiemu",
+            "selection-portrait-xiemu"
+          ],
+          "status": "ready",
+          "round": 0,
+          "retryInMs": 0
+        },
+        "active": [
+          "title"
+        ],
+        "canvases": 1
+      },
+      "local": {
+        "rect": {
+          "x": 970,
+          "y": 706,
+          "width": 380,
+          "height": 178,
+          "top": 706,
+          "right": 1350,
+          "bottom": 884,
+          "left": 970
+        },
+        "width": 1366,
+        "height": 900,
+        "brand": 0,
+        "buttons": [
+          {
+            "x": 991,
+            "y": 819,
+            "width": 90,
+            "height": 44,
+            "top": 819,
+            "right": 1081,
+            "bottom": 863,
+            "left": 991
+          },
+          {
+            "x": 1089,
+            "y": 819,
+            "width": 104,
+            "height": 44,
+            "top": 819,
+            "right": 1193,
+            "bottom": 863,
+            "left": 1089
+          }
+        ],
+        "counter": "19 / 20",
+        "progress": 0.07235736301869272
+      },
+      "paused": {
+        "probe": {
+          "openings": 1,
+          "preparations": 1,
+          "samples": [
+            {
+              "id": "resource-loading",
+              "loaded": 0,
+              "total": 8,
+              "status": "boot",
+              "value": 0
+            },
+            {
+              "id": "resource-loading",
+              "loaded": 9,
+              "total": 20,
+              "status": "loading",
+              "value": 0.02121961802251003
+            },
+            {
+              "id": "resource-loading",
+              "loaded": 19,
+              "total": 20,
+              "status": "loading",
+              "value": 0.28381462880165453
+            },
+            {
+              "id": "resource-preparation",
+              "loaded": 19,
+              "total": 20,
+              "status": "loading",
+              "value": 0.12912239433937403
+            },
+            {
+              "id": "resource-preparation",
+              "loaded": 19,
+              "total": 20,
+              "status": "loading",
+              "value": 0.3976127588898721
+            }
+          ]
+        },
+        "preparation": {
+          "key": "shop",
+          "total": 20,
+          "loaded": 19,
+          "failed": 0,
+          "pending": 1,
+          "keys": [
+            "avatar-amo",
+            "selection-portrait-amo",
+            "avatar-touye",
+            "selection-portrait-touye",
+            "avatar-laohuan",
+            "selection-portrait-laohuan",
+            "avatar-erxiang",
+            "selection-portrait-erxiang",
+            "avatar-azao",
+            "selection-portrait-azao",
+            "avatar-xiemu",
+            "selection-portrait-xiemu",
+            "p08-court-j",
+            "p08-court-q",
+            "p08-court-k",
+            "p08-joker-a08",
+            "p08-joker-c03",
+            "p08-joker-mantangcai",
+            "goods-art/U12",
+            "goods-art/T10"
+          ],
+          "status": "paused",
+          "round": 0,
+          "retryInMs": 0
+        },
+        "active": [
+          "character-select"
+        ],
+        "canvases": 1
+      },
+      "shop": {
+        "probe": {
+          "openings": 1,
+          "preparations": 1,
+          "samples": [
+            {
+              "id": "resource-loading",
+              "loaded": 0,
+              "total": 8,
+              "status": "boot",
+              "value": 0
+            },
+            {
+              "id": "resource-loading",
+              "loaded": 9,
+              "total": 20,
+              "status": "loading",
+              "value": 0.02121961802251003
+            },
+            {
+              "id": "resource-loading",
+              "loaded": 19,
+              "total": 20,
+              "status": "loading",
+              "value": 0.28381462880165453
+            },
+            {
+              "id": "resource-preparation",
+              "loaded": 19,
+              "total": 20,
+              "status": "loading",
+              "value": 0.12912239433937403
+            },
+            {
+              "id": "resource-preparation",
+              "loaded": 19,
+              "total": 20,
+              "status": "loading",
+              "value": 0.3976127588898721
+            },
+            {
+              "id": "resource-preparation",
+              "loaded": 19,
+              "total": 20,
+              "status": "retrying",
+              "value": 0.5713372326765805
+            },
+            {
+              "id": "resource-preparation",
+              "loaded": 19,
+              "total": 20,
+              "status": "retrying",
+              "value": 0.6879820081977793
+            },
+            {
+              "id": "resource-preparation",
+              "loaded": 19,
+              "total": 20,
+              "status": "retrying",
+              "value": 0.7645027247805314
+            },
+            {
+              "id": "resource-preparation",
+              "loaded": 19,
+              "total": 20,
+              "status": "retrying",
+              "value": 0.814561016759076
+            },
+            {
+              "id": "resource-preparation",
+              "loaded": 19,
+              "total": 20,
+              "status": "retrying",
+              "value": 0.8520070911644909
+            }
+          ]
+        },
+        "preparation": {
+          "key": "shop",
+          "total": 20,
+          "loaded": 20,
+          "failed": 0,
+          "pending": 0,
+          "keys": [
+            "avatar-amo",
+            "selection-portrait-amo",
+            "avatar-touye",
+            "selection-portrait-touye",
+            "avatar-laohuan",
+            "selection-portrait-laohuan",
+            "avatar-erxiang",
+            "selection-portrait-erxiang",
+            "avatar-azao",
+            "selection-portrait-azao",
+            "avatar-xiemu",
+            "selection-portrait-xiemu",
+            "p08-court-j",
+            "p08-court-q",
+            "p08-court-k",
+            "p08-joker-a08",
+            "p08-joker-c03",
+            "p08-joker-mantangcai",
+            "goods-art/U12",
+            "goods-art/T10"
+          ],
+          "status": "ready",
+          "round": 1,
+          "retryInMs": 0
+        },
+        "active": [
+          "shop"
+        ],
+        "canvases": 1
+      },
+      "table": {
+        "probe": {
+          "openings": 1,
+          "preparations": 1,
+          "samples": [
+            {
+              "id": "resource-loading",
+              "loaded": 0,
+              "total": 8,
+              "status": "boot",
+              "value": 0
+            },
+            {
+              "id": "resource-loading",
+              "loaded": 9,
+              "total": 20,
+              "status": "loading",
+              "value": 0.02121961802251003
+            },
+            {
+              "id": "resource-loading",
+              "loaded": 19,
+              "total": 20,
+              "status": "loading",
+              "value": 0.28381462880165453
+            },
+            {
+              "id": "resource-preparation",
+              "loaded": 19,
+              "total": 20,
+              "status": "loading",
+              "value": 0.12912239433937403
+            },
+            {
+              "id": "resource-preparation",
+              "loaded": 19,
+              "total": 20,
+              "status": "loading",
+              "value": 0.3976127588898721
+            },
+            {
+              "id": "resource-preparation",
+              "loaded": 19,
+              "total": 20,
+              "status": "retrying",
+              "value": 0.5713372326765805
+            },
+            {
+              "id": "resource-preparation",
+              "loaded": 19,
+              "total": 20,
+              "status": "retrying",
+              "value": 0.6879820081977793
+            },
+            {
+              "id": "resource-preparation",
+              "loaded": 19,
+              "total": 20,
+              "status": "retrying",
+              "value": 0.7645027247805314
+            },
+            {
+              "id": "resource-preparation",
+              "loaded": 19,
+              "total": 20,
+              "status": "retrying",
+              "value": 0.814561016759076
+            },
+            {
+              "id": "resource-preparation",
+              "loaded": 19,
+              "total": 20,
+              "status": "retrying",
+              "value": 0.8520070911644909
+            }
+          ]
+        },
+        "preparation": {
+          "key": "shop",
+          "total": 20,
+          "loaded": 20,
+          "failed": 0,
+          "pending": 0,
+          "keys": [
+            "avatar-amo",
+            "selection-portrait-amo",
+            "avatar-touye",
+            "selection-portrait-touye",
+            "avatar-laohuan",
+            "selection-portrait-laohuan",
+            "avatar-erxiang",
+            "selection-portrait-erxiang",
+            "avatar-azao",
+            "selection-portrait-azao",
+            "avatar-xiemu",
+            "selection-portrait-xiemu",
+            "p08-court-j",
+            "p08-court-q",
+            "p08-court-k",
+            "p08-joker-a08",
+            "p08-joker-c03",
+            "p08-joker-mantangcai",
+            "goods-art/U12",
+            "goods-art/T10"
+          ],
+          "status": "ready",
+          "round": 1,
+          "retryInMs": 0
+        },
+        "active": [
+          "game"
+        ],
+        "canvases": 1
+      },
+      "restoreLocal": {
+        "rect": {
+          "x": 970,
+          "y": 706,
+          "width": 380,
+          "height": 178,
+          "top": 706,
+          "right": 1350,
+          "bottom": 884,
+          "left": 970
+        },
+        "width": 1366,
+        "height": 900,
+        "brand": 0,
+        "buttons": [
+          {
+            "x": 991,
+            "y": 819,
+            "width": 90,
+            "height": 44,
+            "top": 819,
+            "right": 1081,
+            "bottom": 863,
+            "left": 991
+          },
+          {
+            "x": 1089,
+            "y": 819,
+            "width": 104,
+            "height": 44,
+            "top": 819,
+            "right": 1193,
+            "bottom": 863,
+            "left": 1089
+          }
+        ],
+        "counter": "15 / 16",
+        "progress": 0.05593618946882446
+      },
+      "restored": {
+        "probe": {
+          "openings": 1,
+          "preparations": 1,
+          "samples": [
+            {
+              "id": "resource-loading",
+              "loaded": 0,
+              "total": 8,
+              "status": "boot",
+              "value": 0
+            },
+            {
+              "id": "resource-loading",
+              "loaded": 17,
+              "total": 20,
+              "status": "loading",
+              "value": 0.11340196841827158
+            },
+            {
+              "id": "resource-preparation",
+              "loaded": 15,
+              "total": 16,
+              "status": "loading",
+              "value": 0.11561908500255785
+            }
+          ]
+        },
+        "preparation": {
+          "key": "game",
+          "total": 16,
+          "loaded": 16,
+          "failed": 0,
+          "pending": 0,
+          "keys": [
+            "avatar-amo",
+            "selection-portrait-amo",
+            "avatar-touye",
+            "selection-portrait-touye",
+            "avatar-laohuan",
+            "selection-portrait-laohuan",
+            "avatar-erxiang",
+            "selection-portrait-erxiang",
+            "avatar-azao",
+            "selection-portrait-azao",
+            "avatar-xiemu",
+            "selection-portrait-xiemu",
+            "hero-eyes-amo",
+            "p08-court-j",
+            "p08-court-q",
+            "p08-court-k"
+          ],
+          "status": "ready",
+          "round": 0,
+          "retryInMs": 0
+        },
+        "active": [
+          "game"
+        ],
+        "canvases": 1
+      },
+      "restoredRunSHA256": "2c6c05ca5510ae9cd80be28ad5d56ebc06c64c4a8803fe637a8b81fbbe8195b7"
+    },
+    {
+      "name": "390",
+      "width": 390,
+      "height": 844,
+      "errors": [],
+      "heroHits": 1,
+      "paperHits": 2,
+      "courtHits": 2,
+      "coldPending": {
+        "probe": {
+          "openings": 1,
+          "preparations": 0,
+          "samples": [
+            {
+              "id": "resource-loading",
+              "loaded": 0,
+              "total": 8,
+              "status": "boot",
+              "value": 0
+            },
+            {
+              "id": "resource-loading",
+              "loaded": 11,
+              "total": 20,
+              "status": "loading",
+              "value": 0.384
+            }
+          ]
+        },
+        "preparation": {
+          "key": "title",
+          "total": 20,
+          "loaded": 18,
+          "failed": 0,
+          "pending": 2,
+          "keys": [
+            "p00-paper",
+            "p00-card-back",
+            "p00-frame-common",
+            "p00-frame-uncommon",
+            "p00-frame-rare",
+            "p00-mark-joker",
+            "p00-mark-plus",
+            "p00-mark-times",
+            "avatar-amo",
+            "selection-portrait-amo",
+            "avatar-touye",
+            "selection-portrait-touye",
+            "avatar-laohuan",
+            "selection-portrait-laohuan",
+            "avatar-erxiang",
+            "selection-portrait-erxiang",
+            "avatar-azao",
+            "selection-portrait-azao",
+            "avatar-xiemu",
+            "selection-portrait-xiemu"
+          ],
+          "status": "loading",
+          "round": 0,
+          "retryInMs": 0
+        },
+        "active": [
+          "boot"
+        ],
+        "canvases": 1
+      },
+      "firstEntry": {
+        "probe": {
+          "openings": 1,
+          "preparations": 0,
+          "samples": [
+            {
+              "id": "resource-loading",
+              "loaded": 0,
+              "total": 8,
+              "status": "boot",
+              "value": 0
+            },
+            {
+              "id": "resource-loading",
+              "loaded": 11,
+              "total": 20,
+              "status": "loading",
+              "value": 0.384
+            }
+          ]
+        },
+        "preparation": {
+          "key": "title",
+          "total": 20,
+          "loaded": 20,
+          "failed": 0,
+          "pending": 0,
+          "keys": [
+            "p00-paper",
+            "p00-card-back",
+            "p00-frame-common",
+            "p00-frame-uncommon",
+            "p00-frame-rare",
+            "p00-mark-joker",
+            "p00-mark-plus",
+            "p00-mark-times",
+            "avatar-amo",
+            "selection-portrait-amo",
+            "avatar-touye",
+            "selection-portrait-touye",
+            "avatar-laohuan",
+            "selection-portrait-laohuan",
+            "avatar-erxiang",
+            "selection-portrait-erxiang",
+            "avatar-azao",
+            "selection-portrait-azao",
+            "avatar-xiemu",
+            "selection-portrait-xiemu"
+          ],
+          "status": "ready",
+          "round": 0,
+          "retryInMs": 0
+        },
+        "active": [
+          "title"
+        ],
+        "canvases": 1
+      },
+      "local": {
+        "rect": {
+          "x": 18,
+          "y": 650,
+          "width": 356,
+          "height": 178,
+          "top": 650,
+          "right": 374,
+          "bottom": 828,
+          "left": 18
+        },
+        "width": 390,
+        "height": 844,
+        "brand": 0,
+        "buttons": [
+          {
+            "x": 39,
+            "y": 763,
+            "width": 90,
+            "height": 44,
+            "top": 763,
+            "right": 129,
+            "bottom": 807,
+            "left": 39
+          },
+          {
+            "x": 137,
+            "y": 763,
+            "width": 104,
+            "height": 44,
+            "top": 763,
+            "right": 241,
+            "bottom": 807,
+            "left": 137
+          }
+        ],
+        "counter": "18 / 20",
+        "progress": 0.864
+      },
+      "paused": {
+        "probe": {
+          "openings": 1,
+          "preparations": 1,
+          "samples": [
+            {
+              "id": "resource-loading",
+              "loaded": 0,
+              "total": 8,
+              "status": "boot",
+              "value": 0
+            },
+            {
+              "id": "resource-loading",
+              "loaded": 11,
+              "total": 20,
+              "status": "loading",
+              "value": 0.384
+            }
+          ]
+        },
+        "preparation": {
+          "key": "shop",
+          "total": 20,
+          "loaded": 19,
+          "failed": 0,
+          "pending": 1,
+          "keys": [
+            "avatar-amo",
+            "selection-portrait-amo",
+            "avatar-touye",
+            "selection-portrait-touye",
+            "avatar-laohuan",
+            "selection-portrait-laohuan",
+            "avatar-erxiang",
+            "selection-portrait-erxiang",
+            "avatar-azao",
+            "selection-portrait-azao",
+            "avatar-xiemu",
+            "selection-portrait-xiemu",
+            "p08-court-j",
+            "p08-court-q",
+            "p08-court-k",
+            "p08-joker-a08",
+            "p08-joker-c03",
+            "p08-joker-mantangcai",
+            "goods-art/U12",
+            "goods-art/T10"
+          ],
+          "status": "paused",
+          "round": 0,
+          "retryInMs": 0
+        },
+        "active": [
+          "character-select"
+        ],
+        "canvases": 1
+      },
+      "shop": {
+        "probe": {
+          "openings": 1,
+          "preparations": 1,
+          "samples": [
+            {
+              "id": "resource-loading",
+              "loaded": 0,
+              "total": 8,
+              "status": "boot",
+              "value": 0
+            },
+            {
+              "id": "resource-loading",
+              "loaded": 11,
+              "total": 20,
+              "status": "loading",
+              "value": 0.384
+            },
+            {
+              "id": "resource-preparation",
+              "loaded": 19,
+              "total": 20,
+              "status": "paused",
+              "value": 0.9119999999999999
+            },
+            {
+              "id": "resource-preparation",
+              "loaded": 19,
+              "total": 20,
+              "status": "retrying",
+              "value": 0.9119999999999999
+            },
+            {
+              "id": "resource-preparation",
+              "loaded": 19,
+              "total": 20,
+              "status": "retrying",
+              "value": 0.9119999999999999
+            },
+            {
+              "id": "resource-preparation",
+              "loaded": 19,
+              "total": 20,
+              "status": "retrying",
+              "value": 0.9119999999999999
+            },
+            {
+              "id": "resource-preparation",
+              "loaded": 19,
+              "total": 20,
+              "status": "retrying",
+              "value": 0.9119999999999999
+            },
+            {
+              "id": "resource-preparation",
+              "loaded": 19,
+              "total": 20,
+              "status": "retrying",
+              "value": 0.9119999999999999
+            }
+          ]
+        },
+        "preparation": {
+          "key": "shop",
+          "total": 20,
+          "loaded": 20,
+          "failed": 0,
+          "pending": 0,
+          "keys": [
+            "avatar-amo",
+            "selection-portrait-amo",
+            "avatar-touye",
+            "selection-portrait-touye",
+            "avatar-laohuan",
+            "selection-portrait-laohuan",
+            "avatar-erxiang",
+            "selection-portrait-erxiang",
+            "avatar-azao",
+            "selection-portrait-azao",
+            "avatar-xiemu",
+            "selection-portrait-xiemu",
+            "p08-court-j",
+            "p08-court-q",
+            "p08-court-k",
+            "p08-joker-a08",
+            "p08-joker-c03",
+            "p08-joker-mantangcai",
+            "goods-art/U12",
+            "goods-art/T10"
+          ],
+          "status": "ready",
+          "round": 1,
+          "retryInMs": 0
+        },
+        "active": [
+          "shop"
+        ],
+        "canvases": 1
+      },
+      "table": {
+        "probe": {
+          "openings": 1,
+          "preparations": 1,
+          "samples": [
+            {
+              "id": "resource-loading",
+              "loaded": 0,
+              "total": 8,
+              "status": "boot",
+              "value": 0
+            },
+            {
+              "id": "resource-loading",
+              "loaded": 11,
+              "total": 20,
+              "status": "loading",
+              "value": 0.384
+            },
+            {
+              "id": "resource-preparation",
+              "loaded": 19,
+              "total": 20,
+              "status": "paused",
+              "value": 0.9119999999999999
+            },
+            {
+              "id": "resource-preparation",
+              "loaded": 19,
+              "total": 20,
+              "status": "retrying",
+              "value": 0.9119999999999999
+            },
+            {
+              "id": "resource-preparation",
+              "loaded": 19,
+              "total": 20,
+              "status": "retrying",
+              "value": 0.9119999999999999
+            },
+            {
+              "id": "resource-preparation",
+              "loaded": 19,
+              "total": 20,
+              "status": "retrying",
+              "value": 0.9119999999999999
+            },
+            {
+              "id": "resource-preparation",
+              "loaded": 19,
+              "total": 20,
+              "status": "retrying",
+              "value": 0.9119999999999999
+            },
+            {
+              "id": "resource-preparation",
+              "loaded": 19,
+              "total": 20,
+              "status": "retrying",
+              "value": 0.9119999999999999
+            }
+          ]
+        },
+        "preparation": {
+          "key": "shop",
+          "total": 20,
+          "loaded": 20,
+          "failed": 0,
+          "pending": 0,
+          "keys": [
+            "avatar-amo",
+            "selection-portrait-amo",
+            "avatar-touye",
+            "selection-portrait-touye",
+            "avatar-laohuan",
+            "selection-portrait-laohuan",
+            "avatar-erxiang",
+            "selection-portrait-erxiang",
+            "avatar-azao",
+            "selection-portrait-azao",
+            "avatar-xiemu",
+            "selection-portrait-xiemu",
+            "p08-court-j",
+            "p08-court-q",
+            "p08-court-k",
+            "p08-joker-a08",
+            "p08-joker-c03",
+            "p08-joker-mantangcai",
+            "goods-art/U12",
+            "goods-art/T10"
+          ],
+          "status": "ready",
+          "round": 1,
+          "retryInMs": 0
+        },
+        "active": [
+          "game"
+        ],
+        "canvases": 1
+      }
+    },
+    {
+      "name": "second-visit",
+      "errors": [],
+      "first": {
+        "probe": {
+          "openings": 1,
+          "preparations": 0,
+          "samples": [
+            {
+              "id": "resource-loading",
+              "loaded": 0,
+              "total": 8,
+              "status": "boot",
+              "value": 0
+            },
+            {
+              "id": "resource-loading",
+              "loaded": 15,
+              "total": 20,
+              "status": "loading",
+              "value": 0.06725886484652584
+            }
+          ]
+        },
+        "preparation": {
+          "key": "title",
+          "total": 20,
+          "loaded": 20,
+          "failed": 0,
+          "pending": 0,
+          "keys": [
+            "p00-paper",
+            "p00-card-back",
+            "p00-frame-common",
+            "p00-frame-uncommon",
+            "p00-frame-rare",
+            "p00-mark-joker",
+            "p00-mark-plus",
+            "p00-mark-times",
+            "avatar-amo",
+            "selection-portrait-amo",
+            "avatar-touye",
+            "selection-portrait-touye",
+            "avatar-laohuan",
+            "selection-portrait-laohuan",
+            "avatar-erxiang",
+            "selection-portrait-erxiang",
+            "avatar-azao",
+            "selection-portrait-azao",
+            "avatar-xiemu",
+            "selection-portrait-xiemu"
+          ],
+          "status": "ready",
+          "round": 0,
+          "retryInMs": 0
+        },
+        "active": [
+          "title"
+        ],
+        "canvases": 1
+      },
+      "second": {
+        "probe": {
+          "openings": 1,
+          "preparations": 0,
+          "samples": [
+            {
+              "id": "resource-loading",
+              "loaded": 0,
+              "total": 8,
+              "status": "boot",
+              "value": 0
+            }
+          ]
+        },
+        "preparation": {
+          "key": "title",
+          "total": 20,
+          "loaded": 20,
+          "failed": 0,
+          "pending": 0,
+          "keys": [
+            "p00-paper",
+            "p00-card-back",
+            "p00-frame-common",
+            "p00-frame-uncommon",
+            "p00-frame-rare",
+            "p00-mark-joker",
+            "p00-mark-plus",
+            "p00-mark-times",
+            "avatar-amo",
+            "selection-portrait-amo",
+            "avatar-touye",
+            "selection-portrait-touye",
+            "avatar-laohuan",
+            "selection-portrait-laohuan",
+            "avatar-erxiang",
+            "selection-portrait-erxiang",
+            "avatar-azao",
+            "selection-portrait-azao",
+            "avatar-xiemu",
+            "selection-portrait-xiemu"
+          ],
+          "status": "ready",
+          "round": 0,
+          "retryInMs": 0
+        },
+        "active": [
+          "title"
+        ],
+        "canvases": 1
+      },
+      "selection": {
+        "probe": {
+          "openings": 1,
+          "preparations": 0,
+          "samples": [
+            {
+              "id": "resource-loading",
+              "loaded": 0,
+              "total": 8,
+              "status": "boot",
+              "value": 0
+            }
+          ]
+        },
+        "preparation": {
+          "key": "title",
+          "total": 20,
+          "loaded": 20,
+          "failed": 0,
+          "pending": 0,
+          "keys": [
+            "p00-paper",
+            "p00-card-back",
+            "p00-frame-common",
+            "p00-frame-uncommon",
+            "p00-frame-rare",
+            "p00-mark-joker",
+            "p00-mark-plus",
+            "p00-mark-times",
+            "avatar-amo",
+            "selection-portrait-amo",
+            "avatar-touye",
+            "selection-portrait-touye",
+            "avatar-laohuan",
+            "selection-portrait-laohuan",
+            "avatar-erxiang",
+            "selection-portrait-erxiang",
+            "avatar-azao",
+            "selection-portrait-azao",
+            "avatar-xiemu",
+            "selection-portrait-xiemu"
+          ],
+          "status": "ready",
+          "round": 0,
+          "retryInMs": 0
+        },
+        "active": [
+          "character-select"
+        ],
+        "canvases": 1
+      }
+    }
+  ],
+  "pass": true
+}

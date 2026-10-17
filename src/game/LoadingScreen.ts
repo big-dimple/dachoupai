@@ -1,10 +1,10 @@
 import type Phaser from 'phaser';
-import {prepareSceneResources,sceneResources,type PreparationProgress} from './SceneResources';
+import {openingResources,prepareSceneResources,sceneResources,type PreparationProgress} from './SceneResources';
 import type {R2RunState} from '../domain/r2Run';
 import {inkSettlingEase} from './inkwaveSpring';
 import {ResourceRecovery,type RecoveryProgress} from './ResourceRecovery';
 import {LoadingProgress} from './LoadingProgress';
-let template:HTMLElement|undefined;
+import './LoadingScreen.css';
 /** Initial HTML is already visible before the application bundle. Native dialog owns keyboard/focus during preparation. */
 export class LoadingScreen {
  readonly host:HTMLDialogElement;
@@ -22,7 +22,6 @@ export class LoadingScreen {
  private actualRatio=0;
  private frame=0;
  private visual=new LoadingProgress(performance.now());
- private finishResolve?:()=>void;
  private pauseAction?:()=>void;
  private resumeAction?:()=>void;
  private cancelEvent=(e:Event)=>{e.preventDefault();this.pauseAction?.();};
@@ -39,10 +38,10 @@ export class LoadingScreen {
   this.host.toggleAttribute('data-load-paused',document.hidden||this.host.dataset.loadStatus==='paused');
  };
  private cancelFlourishes(){for(const a of this.flourishes)a.cancel();this.flourishes=[];}
- constructor(title='为你铺开这一局'){
-  let host=document.querySelector<HTMLDialogElement>('#resource-loading');
-  if(!template&&host)template=host.cloneNode(true) as HTMLElement;
-  if(!host){host=template?.cloneNode(true) as HTMLDialogElement;if(!host){host=document.createElement('dialog');host.id='resource-loading';host.innerHTML='<h1>唐宋牌</h1><h2 data-load-title></h2><div class="load-track"><progress></progress></div><p data-load-caption></p><p data-load-counter></p><button data-load-next>暂停加载</button>'; }document.body.append(host);}
+ constructor(title='准备下一页',opening=false){
+  // Only Boot may claim the initial HTML. Never clone/replay the opening after entry.
+  let host=opening?document.querySelector<HTMLDialogElement>('#resource-loading'):null;
+  if(!host){host=document.createElement('dialog');host.id='resource-preparation';host.setAttribute('aria-label','场景资源准备');host.innerHTML='<h2 data-load-title></h2><div class="preparation-progress-line"><span data-load-caption aria-live="polite"></span><span data-load-counter></span></div><progress aria-label="资源准备进度"></progress><div class="preparation-actions"><button data-load-next type="button">暂停加载</button></div>';document.body.append(host);}
   this.host=host;this.progress=host.querySelector('progress')!;this.caption=host.querySelector('[data-load-caption]')!;this.counter=host.querySelector('[data-load-counter]')!;this.next=host.querySelector('[data-load-next]')!;
   host.querySelector('[data-load-title]')!.textContent=title;this.next.hidden=true;
   this.exit=host.querySelector<HTMLButtonElement>('[data-load-exit]')??document.createElement('button');this.exit.type='button';this.exit.dataset.loadExit='';this.exit.textContent='返回上一页';this.exit.hidden=history.length<=1;this.exit.onclick=()=>{this.pauseAction?.();history.back();};this.next.parentElement!.append(this.exit);
@@ -50,8 +49,8 @@ export class LoadingScreen {
   if(host.open)host.close();host.showModal();host.addEventListener('cancel',this.cancelEvent);this.progress.max=1;this.progress.value=0;this.frame=requestAnimationFrame(this.animate);
  }
  update(p:PreparationProgress,label='准备常用牌面',base=false){
-  this.caption.textContent=label;this.counter.textContent='';this.host.dataset.loaded=String(p.loaded);this.host.dataset.total=String(p.total);
-  // Decorative beats use decoded counts; the smoothed progress is cosmetic and never opens the gate.
+  this.caption.textContent=label;this.counter.textContent=`${p.loaded} / ${p.total}`;this.host.dataset.loaded=String(p.loaded);this.host.dataset.total=String(p.total);
+  // Both decorative beats and progress follow decoded counts; only recovery opens the gate.
   const ratio=(p.total?Math.min(1,p.loaded/p.total):0)*(base ? .08 : 1),beat=this.ready?3:ratio>=.5?2:ratio>0?1:0;this.actualRatio=ratio;
   if(p.total!==this.lastTotal){this.lastBeat=0;this.lastTotal=p.total;this.cancelFlourishes();}
   const cards=this.host.querySelectorAll<HTMLElement>('.load-card-seat');
@@ -76,9 +75,10 @@ export class LoadingScreen {
   this.next.textContent=p.status==='paused'?'继续准备':'暂停加载';this.next.onclick=p.status==='paused'?this.resumeAction??null:this.pauseAction??null;
  }
  finish(signal:AbortSignal):Promise<void>{
-  return new Promise(resolve=>{let timer:ReturnType<typeof setTimeout>|undefined;const done=()=>{clearTimeout(timer);signal.removeEventListener('abort',done);this.finishResolve=undefined;if(!signal.aborted){this.progress.value=this.visual.complete();}resolve();};this.finishResolve=done;signal.addEventListener('abort',done,{once:true});if(signal.aborted||this.reduced)done();else timer=setTimeout(done,420);});
+  if(this.ready&&!signal.aborted)this.progress.value=this.visual.complete();
+  return Promise.resolve();
  }
- close(){this.finishResolve?.();cancelAnimationFrame(this.frame);this.cancelFlourishes();this.motion.removeEventListener('change',this.syncMotion);document.removeEventListener('visibilitychange',this.syncMotion);this.host.removeEventListener('cancel',this.cancelEvent);this.next.onclick=null;this.exit.onclick=null;if(this.host.isConnected)this.host.close();this.host.remove();}
+ close(){cancelAnimationFrame(this.frame);this.cancelFlourishes();this.motion.removeEventListener('change',this.syncMotion);document.removeEventListener('visibilitychange',this.syncMotion);this.host.removeEventListener('cancel',this.cancelEvent);this.next.onclick=null;this.exit.onclick=null;if(this.host.isConnected)this.host.close();this.host.remove();}
 }
 type Preparation={key:string;cancel:()=>void;promise:Promise<boolean>};
 const pending=new WeakMap<Phaser.Game,Preparation>();
@@ -86,9 +86,9 @@ const pending=new WeakMap<Phaser.Game,Preparation>();
 export function prepareDestination(game:Phaser.Game,key:string,startup=false,existing?:LoadingScreen):Promise<boolean>{
  const old=pending.get(game);if(old?.key===key)return old.promise;old?.cancel();
  const run=game.registry.get('runController')?.state as R2RunState|undefined;
- const assets=sceneResources(key,run,startup);
+ const assets=existing?openingResources():sceneResources(key,run,startup);
  if(!existing&&assets.every(a=>game.textures.exists(a.key)))return Promise.resolve(true);
- const view=existing??new LoadingScreen(key==='game'?'牌桌已铺好，准备入场':key==='shop'?'备好这一场的现货':'为你铺开这一局');
+ const view=existing??new LoadingScreen(key==='game'?'准备牌桌':key==='shop'?'准备本店现货':'准备下一页');
  const owner=new AbortController(),cancel=()=>{if(pending.get(game)?.cancel===cancel)pending.delete(game);owner.abort();view.close();};
  const record={key,total:assets.length,loaded:0,failed:0,pending:assets.length,keys:assets.map(a=>a.key),status:'loading',round:0,retryInMs:0};
  game.registry.set('resourcePreparation',record);game.events.once('destroy',cancel);
