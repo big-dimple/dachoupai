@@ -97,6 +97,45 @@ beforeEach(()=>{
 afterEach(()=>{vi.unstubAllGlobals();});
 
 describe('detail art recovery and stable rarity',()=>{
+  it('opts registered art into a full-panel background and a separate original-art action',()=>{
+    const owner=new DetailDialog(),info=toolInfo('T11'),zoom={close:vi.fn()};art.zoom.mockReturnValue(zoom);
+    const dialog=owner.open(info.name,'Purchase details',[],{artBackground:{position:'45% 30%'},portrait:goodsArtPortrait(info)});
+    const frame=find(dialog,'.dialog-backdrop-art'),image=find(frame,'.dialog-card-image'),trigger=find(dialog,'.dialog-art-original');
+    expect(node(dialog).classList.contains('detail-dialog--art-background')).toBe(true);
+    expect(frame.parentElement).toBe(node(dialog));expect(frame.getAttribute('aria-hidden')).toBe('true');
+    expect(find(dialog,'.dialog-content').contains(frame)).toBe(false);expect(image.style.setProperty).toHaveBeenCalledWith('object-position','45% 30%');
+    expect(trigger.parentElement).toBe(find(dialog,'.dialog-header'));expect(trigger.getAttribute('aria-label')).toBe('查看'+info.name+'完整原图');
+    expect(trigger.getAttribute('aria-haspopup')).toBe('dialog');expect(node(dialog).querySelector('.dialog-card-zoom-trigger')).toBeNull();
+    trigger.click();expect(art.zoom).toHaveBeenLastCalledWith('T11',info.name);owner.close();expect(zoom.close).toHaveBeenCalledOnce();
+  });
+
+  it('clears the background, original-art action and old async ownership when purchase reuses its panel for targets',()=>{
+    const owner=new DetailDialog(),info=toolInfo('T11'),first=owner.open(info.name,'Purchase',[],{artBackground:{},portrait:goodsArtPortrait(info)});
+    const image=find(first,'.dialog-card-image'),trigger=find(first,'.dialog-art-original'),oldUpgrade=upgrades[0],modal=vi.spyOn(node(first),'showModal');
+    const second=owner.open('Choose target','Saved, not used',[{label:'Confirm use',primary:true,disabled:true,run:vi.fn()}],{closeLabel:'Later'},first);
+    expect(second).toBe(first);expect(modal).not.toHaveBeenCalled();expect(oldUpgrade.stop).toHaveBeenCalledOnce();
+    expect(node(second).classList.contains('detail-dialog--art-background')).toBe(false);
+    for(const selector of ['.dialog-backdrop-art','.dialog-art-original','.dialog-card-image'])expect(node(second).querySelector(selector)).toBeNull();
+    expect(trigger.onclick).toBeNull();expect(image.onload).toBeNull();expect(image.onerror).toBeNull();
+    oldUpgrade.ready();expect(node(second).querySelector('.dialog-backdrop-art')).toBeNull();
+    expect(find(second,'.dialog-primary').disabled).toBe(true);owner.close();
+  });
+
+  it('replaces one product background with the next without retaining the old painting or action',()=>{
+    const owner=new DetailDialog(),first=owner.open('First','Details',[],{artBackground:{},portrait:goodsArtPortrait(toolInfo('T11'))});
+    const oldFrame=find(first,'.dialog-backdrop-art'),oldTrigger=find(first,'.dialog-art-original'),next=itemInfo(GOODS_ART.find(art=>art.category==='item-card')!.domainId);
+    const second=owner.open(next.name,'Details',[],{artBackground:{},portrait:goodsArtPortrait(next)},first);
+    expect(node(second).querySelectorAll('.dialog-backdrop-art')).toHaveLength(1);expect(node(second).contains(oldFrame)).toBe(false);expect(oldTrigger.onclick).toBeNull();
+    expect(find(second,'.dialog-card-image').src).toBe(goodsArtPortrait(next)?.thumbnailUrl);
+    expect(find(second,'.dialog-art-original').getAttribute('aria-label')).toBe('查看'+next.name+'完整原图');owner.close();
+  });
+
+  it('does not enable an art background or original-art action for unregistered imagery',()=>{
+    const owner=new DetailDialog(),dialog=owner.open('Unknown','Details',[],{artBackground:{},portrait});
+    expect(node(dialog).classList.contains('detail-dialog--art-background')).toBe(false);expect(node(dialog).querySelector('.dialog-art-original')).toBeNull();
+    expect(find(dialog,'.dialog-card-art').parentElement).toBe(find(dialog,'.dialog-content'));owner.close();
+  });
+
   it('keeps the quiet hint outside the picture and retains one native accessible image button',()=>{
     const owner=new DetailDialog(),info=toolInfo('T16'),zoom={close:vi.fn()};art.zoom.mockReturnValue(zoom);
     const dialog=owner.open(info.name,'规则',[],{portrait:goodsArtPortrait(info)}),frame=find(dialog,'.dialog-card-art'),visual=find(frame,'.dialog-art-visual'),trigger=find(visual,'.dialog-card-zoom-trigger'),hint=find(frame,'.dialog-card-zoom-badge');

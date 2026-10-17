@@ -1,0 +1,1144 @@
+{
+  "scope": "Controlled validated checkpoint; real native import, mouse PC1180 and touch390/360 purchase details, whole original, held card, tool purchase/reused targets and item details. No natural supply, physical device or human visual approval.",
+  "sourceHashes": {
+    "src/game/DetailDialog.ts": "93fb3a7da127758f95e23ed79a94218a9a57cecb7f150c96f93638e47f6786ef",
+    "src/game/DetailArtBackground.css": "57627fa091c0daeaf254a84d514e95f3a0b0f8081c25b4ffd21f6109393b023c",
+    "src/game/ShopScene.ts": "008e92eaf18a5740ae68afafad5a6b089e76a6082b48aa4f4487503d4ed1f1e1",
+    "src/game/ConsumableDialog.ts": "3f94ab889de47bfdbac457788e31f4f3f71cc5e6f870e8ba65cc82dab2ab04a6"
+  },
+  "cases": [
+    {
+      "viewport": {
+        "width": 1180,
+        "height": 757
+      },
+      "errors": [],
+      "shots": [
+        "1180-purchase-background.png",
+        "1180-whole-original.png",
+        "1180-held-background.png",
+        "1180-tool-background.png",
+        "1180-targets-cleared-background.png",
+        "1180-item-background.png"
+      ],
+      "checks": [
+        "cover fills panel without global dim/filter; local prose scrim; top original button44px; contain original and focus return; rules/cancel unchanged state; held and goods opt-in; same purchased modal removes background/action before empty target selection; selecting/later never consumes"
+      ],
+      "purchase": {
+        "dialog": {
+          "x": 90,
+          "y": 12,
+          "width": 1000,
+          "height": 733,
+          "top": 12,
+          "right": 1090,
+          "bottom": 745,
+          "left": 90
+        },
+        "frame": {
+          "x": 91,
+          "y": 13,
+          "width": 998,
+          "height": 731,
+          "top": 13,
+          "right": 1089,
+          "bottom": 744,
+          "left": 91
+        },
+        "image": {
+          "x": 91,
+          "y": 13,
+          "width": 998,
+          "height": 731,
+          "top": 13,
+          "right": 1089,
+          "bottom": 744,
+          "left": 91,
+          "naturalWidth": 615,
+          "naturalHeight": 768,
+          "fit": "cover",
+          "position": "50% 85%",
+          "opacity": "1",
+          "filter": "none",
+          "src": "blob:http://127.0.0.1:5630/cf45fd15-5cf2-49c4-a2f8-b6918432d2f0"
+        },
+        "original": {
+          "x": 961,
+          "y": 29,
+          "width": 108,
+          "height": 44,
+          "top": 29,
+          "right": 1069,
+          "bottom": 73,
+          "left": 961,
+          "label": "查看步步高升完整原图"
+        },
+        "scrim": "linear-gradient(135deg, rgba(255, 249, 238, 0.808), rgba(255, 249, 238, 0.96) 45%)",
+        "scrollWidth": 998,
+        "clientWidth": 998,
+        "buttons": [
+          {
+            "text": "比较替换",
+            "x": 111,
+            "y": 676,
+            "width": 314,
+            "height": 56,
+            "top": 676,
+            "right": 425,
+            "bottom": 732,
+            "left": 111
+          },
+          {
+            "text": "购买 · 4 金",
+            "x": 433,
+            "y": 676,
+            "width": 314,
+            "height": 56,
+            "top": 676,
+            "right": 747,
+            "bottom": 732,
+            "left": 433
+          },
+          {
+            "text": "取消",
+            "x": 755,
+            "y": 676,
+            "width": 314,
+            "height": 56,
+            "top": 676,
+            "right": 1069,
+            "bottom": 732,
+            "left": 755
+          }
+        ]
+      },
+      "zoom": {
+        "background": "rgb(0, 0, 0)",
+        "image": [
+          {
+            "fit": "contain",
+            "naturalWidth": 128,
+            "naturalHeight": 160,
+            "src": "http://127.0.0.1:5630/assets/handdrawn-p08/cards/c04.thumbnail.webp?v=46520616a3c822e3ac5466e5c91d3e46b342b55668f7250403c1a08ace12e9b0"
+          },
+          {
+            "fit": "contain",
+            "naturalWidth": 615,
+            "naturalHeight": 768,
+            "src": "blob:http://127.0.0.1:5630/cf45fd15-5cf2-49c4-a2f8-b6918432d2f0"
+          }
+        ]
+      },
+      "held": {
+        "dialog": {
+          "x": 90,
+          "y": 12,
+          "width": 1000,
+          "height": 733,
+          "top": 12,
+          "right": 1090,
+          "bottom": 745,
+          "left": 90
+        },
+        "frame": {
+          "x": 91,
+          "y": 13,
+          "width": 998,
+          "height": 731,
+          "top": 13,
+          "right": 1089,
+          "bottom": 744,
+          "left": 91
+        },
+        "image": {
+          "x": 91,
+          "y": 13,
+          "width": 998,
+          "height": 731,
+          "top": 13,
+          "right": 1089,
+          "bottom": 744,
+          "left": 91,
+          "naturalWidth": 615,
+          "naturalHeight": 768,
+          "fit": "cover",
+          "position": "50% 0%",
+          "opacity": "1",
+          "filter": "none",
+          "src": "blob:http://127.0.0.1:5630/31a1f1cb-bb57-4ca2-9f94-7cc512d90911"
+        },
+        "original": {
+          "x": 961,
+          "y": 29,
+          "width": 108,
+          "height": 44,
+          "top": 29,
+          "right": 1069,
+          "bottom": 73,
+          "left": 961,
+          "label": "查看始终如一完整原图"
+        },
+        "scrim": "linear-gradient(135deg, rgba(255, 249, 238, 0.808), rgba(255, 249, 238, 0.96) 45%)",
+        "scrollWidth": 998,
+        "clientWidth": 998,
+        "buttons": [
+          {
+            "text": "左移",
+            "x": 111,
+            "y": 688,
+            "width": 233.5,
+            "height": 44,
+            "top": 688,
+            "right": 344.5,
+            "bottom": 732,
+            "left": 111
+          },
+          {
+            "text": "右移",
+            "x": 352.5,
+            "y": 688,
+            "width": 233.5,
+            "height": 44,
+            "top": 688,
+            "right": 586,
+            "bottom": 732,
+            "left": 352.5
+          },
+          {
+            "text": "出售",
+            "x": 594,
+            "y": 688,
+            "width": 233.5,
+            "height": 44,
+            "top": 688,
+            "right": 827.5,
+            "bottom": 732,
+            "left": 594
+          },
+          {
+            "text": "关闭",
+            "x": 835.5,
+            "y": 688,
+            "width": 233.5,
+            "height": 44,
+            "top": 688,
+            "right": 1069,
+            "bottom": 732,
+            "left": 835.5
+          }
+        ]
+      },
+      "tool": {
+        "dialog": {
+          "x": 90,
+          "y": 12,
+          "width": 1000,
+          "height": 733,
+          "top": 12,
+          "right": 1090,
+          "bottom": 745,
+          "left": 90
+        },
+        "frame": {
+          "x": 91,
+          "y": 13,
+          "width": 998,
+          "height": 731,
+          "top": 13,
+          "right": 1089,
+          "bottom": 744,
+          "left": 91
+        },
+        "image": {
+          "x": 91,
+          "y": 13,
+          "width": 998,
+          "height": 731,
+          "top": 13,
+          "right": 1089,
+          "bottom": 744,
+          "left": 91,
+          "naturalWidth": 615,
+          "naturalHeight": 768,
+          "fit": "cover",
+          "position": "50% 35%",
+          "opacity": "1",
+          "filter": "none",
+          "src": "blob:http://127.0.0.1:5630/f75114f7-f54e-489e-b711-8b44459eed6a"
+        },
+        "original": {
+          "x": 961,
+          "y": 29,
+          "width": 108,
+          "height": 44,
+          "top": 29,
+          "right": 1069,
+          "bottom": 73,
+          "left": 961,
+          "label": "查看大字号完整原图"
+        },
+        "scrim": "linear-gradient(135deg, rgba(255, 249, 238, 0.808), rgba(255, 249, 238, 0.96) 45%)",
+        "scrollWidth": 998,
+        "clientWidth": 998,
+        "buttons": [
+          {
+            "text": "购买 · 2 金",
+            "x": 111,
+            "y": 684,
+            "width": 475,
+            "height": 48,
+            "top": 684,
+            "right": 586,
+            "bottom": 732,
+            "left": 111
+          },
+          {
+            "text": "取消",
+            "x": 594,
+            "y": 684,
+            "width": 475,
+            "height": 48,
+            "top": 684,
+            "right": 1069,
+            "bottom": 732,
+            "left": 594
+          }
+        ]
+      },
+      "item": {
+        "dialog": {
+          "x": 90,
+          "y": 12,
+          "width": 1000,
+          "height": 733,
+          "top": 12,
+          "right": 1090,
+          "bottom": 745,
+          "left": 90
+        },
+        "frame": {
+          "x": 91,
+          "y": 13,
+          "width": 998,
+          "height": 731,
+          "top": 13,
+          "right": 1089,
+          "bottom": 744,
+          "left": 91
+        },
+        "image": {
+          "x": 91,
+          "y": 13,
+          "width": 998,
+          "height": 731,
+          "top": 13,
+          "right": 1089,
+          "bottom": 744,
+          "left": 91,
+          "naturalWidth": 615,
+          "naturalHeight": 768,
+          "fit": "cover",
+          "position": "50% 35%",
+          "opacity": "1",
+          "filter": "none",
+          "src": "blob:http://127.0.0.1:5630/93f70778-008d-4ad0-9bab-80d8c9851db9"
+        },
+        "original": {
+          "x": 961,
+          "y": 29,
+          "width": 108,
+          "height": 44,
+          "top": 29,
+          "right": 1069,
+          "bottom": 73,
+          "left": 961,
+          "label": "查看扩个摊完整原图"
+        },
+        "scrim": "linear-gradient(135deg, rgba(255, 249, 238, 0.808), rgba(255, 249, 238, 0.96) 45%)",
+        "scrollWidth": 998,
+        "clientWidth": 998,
+        "buttons": [
+          {
+            "text": "购买 · 12 金",
+            "x": 111,
+            "y": 676,
+            "width": 475,
+            "height": 56,
+            "top": 676,
+            "right": 586,
+            "bottom": 732,
+            "left": 111
+          },
+          {
+            "text": "取消",
+            "x": 594,
+            "y": 676,
+            "width": 475,
+            "height": 56,
+            "top": 676,
+            "right": 1069,
+            "bottom": 732,
+            "left": 594
+          }
+        ]
+      },
+      "status": "PASS"
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "errors": [],
+      "shots": [
+        "390-purchase-background.png",
+        "390-whole-original.png",
+        "390-held-background.png",
+        "390-tool-background.png",
+        "390-targets-cleared-background.png",
+        "390-item-background.png"
+      ],
+      "checks": [
+        "cover fills panel without global dim/filter; local prose scrim; top original button44px; contain original and focus return; rules/cancel unchanged state; held and goods opt-in; same purchased modal removes background/action before empty target selection; selecting/later never consumes"
+      ],
+      "purchase": {
+        "dialog": {
+          "x": 19,
+          "y": 22,
+          "width": 352,
+          "height": 800,
+          "top": 22,
+          "right": 371,
+          "bottom": 822,
+          "left": 19
+        },
+        "frame": {
+          "x": 20,
+          "y": 23,
+          "width": 350,
+          "height": 798,
+          "top": 23,
+          "right": 370,
+          "bottom": 821,
+          "left": 20
+        },
+        "image": {
+          "x": 20,
+          "y": 23,
+          "width": 350,
+          "height": 798,
+          "top": 23,
+          "right": 370,
+          "bottom": 821,
+          "left": 20,
+          "naturalWidth": 615,
+          "naturalHeight": 768,
+          "fit": "cover",
+          "position": "50% 85%",
+          "opacity": "1",
+          "filter": "none",
+          "src": "blob:http://127.0.0.1:5630/841b5aa7-4fd8-45d3-b762-176cbded15bc"
+        },
+        "original": {
+          "x": 246,
+          "y": 35,
+          "width": 108,
+          "height": 44,
+          "top": 35,
+          "right": 354,
+          "bottom": 79,
+          "left": 246,
+          "label": "查看步步高升完整原图"
+        },
+        "scrim": "linear-gradient(rgba(255, 249, 238, 0.6), rgba(255, 249, 238, 0.78) 56px)",
+        "scrollWidth": 350,
+        "clientWidth": 350,
+        "buttons": [
+          {
+            "text": "比较替换",
+            "x": 36,
+            "y": 767,
+            "width": 155,
+            "height": 44,
+            "top": 767,
+            "right": 191,
+            "bottom": 811,
+            "left": 36
+          },
+          {
+            "text": "购买 · 4 金",
+            "x": 36,
+            "y": 703,
+            "width": 318,
+            "height": 56,
+            "top": 703,
+            "right": 354,
+            "bottom": 759,
+            "left": 36
+          },
+          {
+            "text": "取消",
+            "x": 199,
+            "y": 767,
+            "width": 155,
+            "height": 44,
+            "top": 767,
+            "right": 354,
+            "bottom": 811,
+            "left": 199
+          }
+        ]
+      },
+      "zoom": {
+        "background": "rgb(0, 0, 0)",
+        "image": [
+          {
+            "fit": "contain",
+            "naturalWidth": 128,
+            "naturalHeight": 160,
+            "src": "http://127.0.0.1:5630/assets/handdrawn-p08/cards/c04.thumbnail.webp?v=46520616a3c822e3ac5466e5c91d3e46b342b55668f7250403c1a08ace12e9b0"
+          },
+          {
+            "fit": "contain",
+            "naturalWidth": 615,
+            "naturalHeight": 768,
+            "src": "blob:http://127.0.0.1:5630/841b5aa7-4fd8-45d3-b762-176cbded15bc"
+          }
+        ]
+      },
+      "held": {
+        "dialog": {
+          "x": 19,
+          "y": 22,
+          "width": 352,
+          "height": 800,
+          "top": 22,
+          "right": 371,
+          "bottom": 822,
+          "left": 19
+        },
+        "frame": {
+          "x": 20,
+          "y": 23,
+          "width": 350,
+          "height": 798,
+          "top": 23,
+          "right": 370,
+          "bottom": 821,
+          "left": 20
+        },
+        "image": {
+          "x": 20,
+          "y": 23,
+          "width": 350,
+          "height": 798,
+          "top": 23,
+          "right": 370,
+          "bottom": 821,
+          "left": 20,
+          "naturalWidth": 615,
+          "naturalHeight": 768,
+          "fit": "cover",
+          "position": "50% 0%",
+          "opacity": "1",
+          "filter": "none",
+          "src": "blob:http://127.0.0.1:5630/eadba2e6-56bb-445f-af71-b83d0f88be04"
+        },
+        "original": {
+          "x": 246,
+          "y": 35,
+          "width": 108,
+          "height": 44,
+          "top": 35,
+          "right": 354,
+          "bottom": 79,
+          "left": 246,
+          "label": "查看始终如一完整原图"
+        },
+        "scrim": "linear-gradient(rgba(255, 249, 238, 0.6), rgba(255, 249, 238, 0.78) 56px)",
+        "scrollWidth": 350,
+        "clientWidth": 350,
+        "buttons": [
+          {
+            "text": "左移",
+            "x": 36,
+            "y": 715,
+            "width": 155,
+            "height": 44,
+            "top": 715,
+            "right": 191,
+            "bottom": 759,
+            "left": 36
+          },
+          {
+            "text": "右移",
+            "x": 199,
+            "y": 715,
+            "width": 155,
+            "height": 44,
+            "top": 715,
+            "right": 354,
+            "bottom": 759,
+            "left": 199
+          },
+          {
+            "text": "出售",
+            "x": 36,
+            "y": 767,
+            "width": 155,
+            "height": 44,
+            "top": 767,
+            "right": 191,
+            "bottom": 811,
+            "left": 36
+          },
+          {
+            "text": "关闭",
+            "x": 199,
+            "y": 767,
+            "width": 155,
+            "height": 44,
+            "top": 767,
+            "right": 354,
+            "bottom": 811,
+            "left": 199
+          }
+        ]
+      },
+      "tool": {
+        "dialog": {
+          "x": 19,
+          "y": 22,
+          "width": 352,
+          "height": 800,
+          "top": 22,
+          "right": 371,
+          "bottom": 822,
+          "left": 19
+        },
+        "frame": {
+          "x": 20,
+          "y": 23,
+          "width": 350,
+          "height": 798,
+          "top": 23,
+          "right": 370,
+          "bottom": 821,
+          "left": 20
+        },
+        "image": {
+          "x": 20,
+          "y": 23,
+          "width": 350,
+          "height": 798,
+          "top": 23,
+          "right": 370,
+          "bottom": 821,
+          "left": 20,
+          "naturalWidth": 615,
+          "naturalHeight": 768,
+          "fit": "cover",
+          "position": "50% 35%",
+          "opacity": "1",
+          "filter": "none",
+          "src": "blob:http://127.0.0.1:5630/9339644b-7aac-4f10-8726-2ea0455d3866"
+        },
+        "original": {
+          "x": 246,
+          "y": 35,
+          "width": 108,
+          "height": 44,
+          "top": 35,
+          "right": 354,
+          "bottom": 79,
+          "left": 246,
+          "label": "查看大字号完整原图"
+        },
+        "scrim": "linear-gradient(rgba(255, 249, 238, 0.6), rgba(255, 249, 238, 0.78) 56px)",
+        "scrollWidth": 350,
+        "clientWidth": 350,
+        "buttons": [
+          {
+            "text": "购买 · 2 金",
+            "x": 36,
+            "y": 707,
+            "width": 318,
+            "height": 48,
+            "top": 707,
+            "right": 354,
+            "bottom": 755,
+            "left": 36
+          },
+          {
+            "text": "取消",
+            "x": 36,
+            "y": 763,
+            "width": 318,
+            "height": 48,
+            "top": 763,
+            "right": 354,
+            "bottom": 811,
+            "left": 36
+          }
+        ]
+      },
+      "item": {
+        "dialog": {
+          "x": 19,
+          "y": 22,
+          "width": 352,
+          "height": 800,
+          "top": 22,
+          "right": 371,
+          "bottom": 822,
+          "left": 19
+        },
+        "frame": {
+          "x": 20,
+          "y": 23,
+          "width": 350,
+          "height": 798,
+          "top": 23,
+          "right": 370,
+          "bottom": 821,
+          "left": 20
+        },
+        "image": {
+          "x": 20,
+          "y": 23,
+          "width": 350,
+          "height": 798,
+          "top": 23,
+          "right": 370,
+          "bottom": 821,
+          "left": 20,
+          "naturalWidth": 615,
+          "naturalHeight": 768,
+          "fit": "cover",
+          "position": "50% 35%",
+          "opacity": "1",
+          "filter": "none",
+          "src": "blob:http://127.0.0.1:5630/5e8b4a58-f677-4918-8465-cf207d5e2029"
+        },
+        "original": {
+          "x": 246,
+          "y": 35,
+          "width": 108,
+          "height": 44,
+          "top": 35,
+          "right": 354,
+          "bottom": 79,
+          "left": 246,
+          "label": "查看扩个摊完整原图"
+        },
+        "scrim": "linear-gradient(rgba(255, 249, 238, 0.6), rgba(255, 249, 238, 0.78) 56px)",
+        "scrollWidth": 350,
+        "clientWidth": 350,
+        "buttons": [
+          {
+            "text": "购买 · 12 金",
+            "x": 36,
+            "y": 703,
+            "width": 318,
+            "height": 56,
+            "top": 703,
+            "right": 354,
+            "bottom": 759,
+            "left": 36
+          },
+          {
+            "text": "取消",
+            "x": 36,
+            "y": 767,
+            "width": 318,
+            "height": 44,
+            "top": 767,
+            "right": 354,
+            "bottom": 811,
+            "left": 36
+          }
+        ]
+      },
+      "status": "PASS"
+    },
+    {
+      "viewport": {
+        "width": 360,
+        "height": 844
+      },
+      "errors": [],
+      "shots": [
+        "360-purchase-background.png",
+        "360-whole-original.png",
+        "360-held-background.png",
+        "360-tool-background.png",
+        "360-targets-cleared-background.png",
+        "360-item-background.png"
+      ],
+      "checks": [
+        "cover fills panel without global dim/filter; local prose scrim; top original button44px; contain original and focus return; rules/cancel unchanged state; held and goods opt-in; same purchased modal removes background/action before empty target selection; selecting/later never consumes"
+      ],
+      "purchase": {
+        "dialog": {
+          "x": 19,
+          "y": 22,
+          "width": 322,
+          "height": 800,
+          "top": 22,
+          "right": 341,
+          "bottom": 822,
+          "left": 19
+        },
+        "frame": {
+          "x": 20,
+          "y": 23,
+          "width": 320,
+          "height": 798,
+          "top": 23,
+          "right": 340,
+          "bottom": 821,
+          "left": 20
+        },
+        "image": {
+          "x": 20,
+          "y": 23,
+          "width": 320,
+          "height": 798,
+          "top": 23,
+          "right": 340,
+          "bottom": 821,
+          "left": 20,
+          "naturalWidth": 615,
+          "naturalHeight": 768,
+          "fit": "cover",
+          "position": "50% 85%",
+          "opacity": "1",
+          "filter": "none",
+          "src": "blob:http://127.0.0.1:5630/30056517-f6d6-43eb-99aa-3e6eae923432"
+        },
+        "original": {
+          "x": 216,
+          "y": 35,
+          "width": 108,
+          "height": 44,
+          "top": 35,
+          "right": 324,
+          "bottom": 79,
+          "left": 216,
+          "label": "查看步步高升完整原图"
+        },
+        "scrim": "linear-gradient(rgba(255, 249, 238, 0.6), rgba(255, 249, 238, 0.78) 56px)",
+        "scrollWidth": 320,
+        "clientWidth": 320,
+        "buttons": [
+          {
+            "text": "比较替换",
+            "x": 36,
+            "y": 767,
+            "width": 140,
+            "height": 44,
+            "top": 767,
+            "right": 176,
+            "bottom": 811,
+            "left": 36
+          },
+          {
+            "text": "购买 · 4 金",
+            "x": 36,
+            "y": 703,
+            "width": 288,
+            "height": 56,
+            "top": 703,
+            "right": 324,
+            "bottom": 759,
+            "left": 36
+          },
+          {
+            "text": "取消",
+            "x": 184,
+            "y": 767,
+            "width": 140,
+            "height": 44,
+            "top": 767,
+            "right": 324,
+            "bottom": 811,
+            "left": 184
+          }
+        ]
+      },
+      "zoom": {
+        "background": "rgb(0, 0, 0)",
+        "image": [
+          {
+            "fit": "contain",
+            "naturalWidth": 128,
+            "naturalHeight": 160,
+            "src": "http://127.0.0.1:5630/assets/handdrawn-p08/cards/c04.thumbnail.webp?v=46520616a3c822e3ac5466e5c91d3e46b342b55668f7250403c1a08ace12e9b0"
+          },
+          {
+            "fit": "contain",
+            "naturalWidth": 615,
+            "naturalHeight": 768,
+            "src": "blob:http://127.0.0.1:5630/30056517-f6d6-43eb-99aa-3e6eae923432"
+          }
+        ]
+      },
+      "held": {
+        "dialog": {
+          "x": 19,
+          "y": 22,
+          "width": 322,
+          "height": 800,
+          "top": 22,
+          "right": 341,
+          "bottom": 822,
+          "left": 19
+        },
+        "frame": {
+          "x": 20,
+          "y": 23,
+          "width": 320,
+          "height": 798,
+          "top": 23,
+          "right": 340,
+          "bottom": 821,
+          "left": 20
+        },
+        "image": {
+          "x": 20,
+          "y": 23,
+          "width": 320,
+          "height": 798,
+          "top": 23,
+          "right": 340,
+          "bottom": 821,
+          "left": 20,
+          "naturalWidth": 615,
+          "naturalHeight": 768,
+          "fit": "cover",
+          "position": "50% 0%",
+          "opacity": "1",
+          "filter": "none",
+          "src": "blob:http://127.0.0.1:5630/ad6f65ee-b3ec-44d3-8624-1aad42d8be99"
+        },
+        "original": {
+          "x": 216,
+          "y": 35,
+          "width": 108,
+          "height": 44,
+          "top": 35,
+          "right": 324,
+          "bottom": 79,
+          "left": 216,
+          "label": "查看始终如一完整原图"
+        },
+        "scrim": "linear-gradient(rgba(255, 249, 238, 0.6), rgba(255, 249, 238, 0.78) 56px)",
+        "scrollWidth": 320,
+        "clientWidth": 320,
+        "buttons": [
+          {
+            "text": "左移",
+            "x": 36,
+            "y": 715,
+            "width": 140,
+            "height": 44,
+            "top": 715,
+            "right": 176,
+            "bottom": 759,
+            "left": 36
+          },
+          {
+            "text": "右移",
+            "x": 184,
+            "y": 715,
+            "width": 140,
+            "height": 44,
+            "top": 715,
+            "right": 324,
+            "bottom": 759,
+            "left": 184
+          },
+          {
+            "text": "出售",
+            "x": 36,
+            "y": 767,
+            "width": 140,
+            "height": 44,
+            "top": 767,
+            "right": 176,
+            "bottom": 811,
+            "left": 36
+          },
+          {
+            "text": "关闭",
+            "x": 184,
+            "y": 767,
+            "width": 140,
+            "height": 44,
+            "top": 767,
+            "right": 324,
+            "bottom": 811,
+            "left": 184
+          }
+        ]
+      },
+      "tool": {
+        "dialog": {
+          "x": 19,
+          "y": 22,
+          "width": 322,
+          "height": 800,
+          "top": 22,
+          "right": 341,
+          "bottom": 822,
+          "left": 19
+        },
+        "frame": {
+          "x": 20,
+          "y": 23,
+          "width": 320,
+          "height": 798,
+          "top": 23,
+          "right": 340,
+          "bottom": 821,
+          "left": 20
+        },
+        "image": {
+          "x": 20,
+          "y": 23,
+          "width": 320,
+          "height": 798,
+          "top": 23,
+          "right": 340,
+          "bottom": 821,
+          "left": 20,
+          "naturalWidth": 615,
+          "naturalHeight": 768,
+          "fit": "cover",
+          "position": "50% 35%",
+          "opacity": "1",
+          "filter": "none",
+          "src": "blob:http://127.0.0.1:5630/3cd2b937-d540-4a40-86de-cf6f386660ea"
+        },
+        "original": {
+          "x": 216,
+          "y": 35,
+          "width": 108,
+          "height": 44,
+          "top": 35,
+          "right": 324,
+          "bottom": 79,
+          "left": 216,
+          "label": "查看大字号完整原图"
+        },
+        "scrim": "linear-gradient(rgba(255, 249, 238, 0.6), rgba(255, 249, 238, 0.78) 56px)",
+        "scrollWidth": 320,
+        "clientWidth": 320,
+        "buttons": [
+          {
+            "text": "购买 · 2 金",
+            "x": 36,
+            "y": 707,
+            "width": 288,
+            "height": 48,
+            "top": 707,
+            "right": 324,
+            "bottom": 755,
+            "left": 36
+          },
+          {
+            "text": "取消",
+            "x": 36,
+            "y": 763,
+            "width": 288,
+            "height": 48,
+            "top": 763,
+            "right": 324,
+            "bottom": 811,
+            "left": 36
+          }
+        ]
+      },
+      "item": {
+        "dialog": {
+          "x": 19,
+          "y": 22,
+          "width": 322,
+          "height": 800,
+          "top": 22,
+          "right": 341,
+          "bottom": 822,
+          "left": 19
+        },
+        "frame": {
+          "x": 20,
+          "y": 23,
+          "width": 320,
+          "height": 798,
+          "top": 23,
+          "right": 340,
+          "bottom": 821,
+          "left": 20
+        },
+        "image": {
+          "x": 20,
+          "y": 23,
+          "width": 320,
+          "height": 798,
+          "top": 23,
+          "right": 340,
+          "bottom": 821,
+          "left": 20,
+          "naturalWidth": 615,
+          "naturalHeight": 768,
+          "fit": "cover",
+          "position": "50% 35%",
+          "opacity": "1",
+          "filter": "none",
+          "src": "blob:http://127.0.0.1:5630/d56ecbb3-8192-4392-8de1-5abe1c629fd0"
+        },
+        "original": {
+          "x": 216,
+          "y": 35,
+          "width": 108,
+          "height": 44,
+          "top": 35,
+          "right": 324,
+          "bottom": 79,
+          "left": 216,
+          "label": "查看扩个摊完整原图"
+        },
+        "scrim": "linear-gradient(rgba(255, 249, 238, 0.6), rgba(255, 249, 238, 0.78) 56px)",
+        "scrollWidth": 320,
+        "clientWidth": 320,
+        "buttons": [
+          {
+            "text": "购买 · 12 金",
+            "x": 36,
+            "y": 703,
+            "width": 288,
+            "height": 56,
+            "top": 703,
+            "right": 324,
+            "bottom": 759,
+            "left": 36
+          },
+          {
+            "text": "取消",
+            "x": 36,
+            "y": 767,
+            "width": 288,
+            "height": 44,
+            "top": 767,
+            "right": 324,
+            "bottom": 811,
+            "left": 36
+          }
+        ]
+      },
+      "status": "PASS"
+    }
+  ],
+  "browser": "153.0.8010.12",
+  "status": "PASS"
+}
