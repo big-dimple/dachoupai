@@ -64,7 +64,7 @@ class Element {
 
 let dom:{body:Element;activeElement:Element|null;createElement:(tag:string)=>Element;querySelector:(selector:string)=>Element|null};
 const upgrades:{image:HTMLImageElement;ready:()=>void;stop:ReturnType<typeof vi.fn>}[]=[];
-const portrait={url:'/hd.webp',thumbnailUrl:'/thumbnail.webp',alt:'不换词原画',layout:'card' as const,caption:'不换词'};
+const portrait={url:'/hd.webp',thumbnailUrl:'/thumbnail.webp',alt:'不换词原画',layout:'card' as const,caption:'完整卡面'};
 const node=(element:unknown)=>element as Element;
 const find=(root:unknown,selector:string)=>{const found=node(root).querySelector(selector);expect(found,selector).not.toBeNull();return found!;};
 const flush=async()=>{for(let i=0;i<4;i++)await Promise.resolve();};
@@ -120,6 +120,12 @@ describe('detail art recovery and stable rarity',()=>{
     expect(node(dialog).querySelectorAll('.card-flavor')).toHaveLength(1);expect(node(dialog).textContent.split(ability.flavor)).toHaveLength(2);
     expect(rules.getAttribute('open')).toBeNull();expect(find(rules,'p').textContent).toBe(ability.rules+'\n\n'+operations);
     expect(find(frame,'.joker-rarity-badge').dataset.rarity).toBe('common');expect(node(dialog).querySelectorAll('.dialog-card-art')).toHaveLength(1);
+  });
+  it('omits only an art caption that repeats the heading, keeping accessible art and informative captions',()=>{
+    const owner=new DetailDialog(),name=cardDisplayName('c06'),source={url:jokerArtUrl('c06')!,thumbnailUrl:jokerArtPreviewUrl('c06'),alt:name+'完整卡面',layout:'card' as const};
+    const d=owner.open(name+' · 第 1 槽','规则',[],{portrait:{...source,caption:name}});
+    expect(node(d).querySelector('figcaption')).toBeNull();expect(find(d,'.dialog-card-image').alt).toBe(name+'完整卡面');expect(find(d,'.dialog-card-zoom-trigger').getAttribute('aria-label')).toBe('放大鉴赏'+name);
+    const warning=owner.open(name+' · 第 1 槽','规则',[],{portrait:{...source,caption:'本场计分封禁'}});expect(find(warning,'figcaption').textContent).toBe('本场计分封禁');owner.close();
   });
 
   it('keeps inactive ability separate from edition and supports a specifically named folded ledger',()=>{

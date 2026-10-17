@@ -140,7 +140,7 @@ export class DetailDialog {
           const layer=document.createElement('div');layer.className='dialog-art-layer';image.replaceWith(layer);layer.append(image);
           mountF09Detail(layer,image,options.f09.inactive,options.f09.reduced,options.f09.bodyInactive,options.f09.alignedLayers);dialog.classList.add('f09-detail');
         }
-        if(portrait.caption){const caption=document.createElement('figcaption');caption.textContent=portrait.caption;frame.append(caption);}
+        if(portrait.caption&&portrait.caption.trim()!==title.split(' · ')[0].trim()){const caption=document.createElement('figcaption');caption.textContent=portrait.caption;frame.append(caption);}
         frame.append(loadStatus,retry);updateStatus();
         if(portrait.thumbnailUrl)cleanups.push(progressiveArt(frame,image,portrait.url,()=>{if(closed)return;detailReady=true;showReal();}));
         cleanups.push(()=>{closed=true;retryDecode?.abort();image.onerror=null;image.onload=null;retry.onclick=null;});layout.append(frame);
