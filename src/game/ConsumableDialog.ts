@@ -131,7 +131,7 @@ export function showConsumables(dialog:DetailDialog,state:R2RunState,ready:boole
   const known=(state.phase==='shop'?state.deckInstances.filter(card=>!state.destroyedIds.includes(card.id)):state.phase==='await-input'?state.handOrder.map(id=>state.deckInstances.find(card=>card.id===id)!):[]);
   const cardChoices:Choice[]=known.map((card,index)=>({id:card.id,name:cardName(card),detail:`${card.enhancement?enhancementName(card):'普通'}${(card.edition??'none')==='none'?'':' · '+editionLabel(card.edition)}\n第 ${index+1} 张`,card}));
   const jokerChoices:Choice[]=state.jokers.map(joker=>({id:joker.instanceId,name:cardDefinitionName(R2_JOKERS.find(definition=>definition.id===joker.definitionId)!),detail:`${editionLabel(joker.edition)} · 原支付 ${joker.paidPrice} 金`,joker}));
-  const showItem=(id:string)=>{const info=itemInfo(id),d=dialog.open(info.name+' · 长期道具',info.description+'\n\n已持有；本局持续生效，不能出售。',[],{portrait:goodsArtPortrait(info),effectBody:info.summary,collapseRules:true});d.classList.add('tool-item-detail');};
+  const showItem=(id:string)=>{const info=itemInfo(id),d=dialog.open(info.name+' · 长期道具',info.description+'\n\n已持有；本局持续生效，不能出售。',[],{artBackground:{},portrait:goodsArtPortrait(info),effectBody:info.summary,collapseRules:true});d.classList.add('tool-item-detail');};
   const openTool=(instanceId:string)=>{
     const item=state.consumables.find(consumable=>consumable.instanceId===instanceId),definition=item&&R2_TOOLS.find(candidate=>candidate.id===item.definitionId);if(!item||!definition)return;
     const tool=definition;

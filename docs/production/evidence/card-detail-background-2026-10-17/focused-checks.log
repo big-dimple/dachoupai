@@ -1,0 +1,25 @@
+
+ RUN  v4.1.11 D:/ai/dachoupai/dachoupai/.codex-remote-attachments/card-detail-background-20261017
+
+
+ Test Files  6 passed (6)
+      Tests  208 passed (208)
+   Start at  18:13:02
+   Duration  3.10s (transform 7.24s, setup 0ms, import 9.60s, tests 1.49s, environment 1ms)
+
+Typecheck exit 0
+vite v7.3.6 building client environment for production...
+transforming...
+✓ 327 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/build-info.json                0.35 kB │ gzip:   0.23 kB
+dist/index.html                    14.39 kB │ gzip:   4.75 kB
+dist/assets/index-Kq_p7tYm.css    117.05 kB │ gzip:  20.87 kB
+dist/assets/index-CahOndkz.js   2,832.68 kB │ gzip: 822.38 kB
+
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+✓ built in 9.52s

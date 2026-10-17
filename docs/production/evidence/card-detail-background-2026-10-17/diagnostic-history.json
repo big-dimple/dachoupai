@@ -1,0 +1,37 @@
+{
+  "baseCommit": "2317459656c04c07742c182c6fcb2caff442d264",
+  "attempts": [
+    {
+      "kind": "test-fixture",
+      "reason": "One new unit test guessed nonexistent S01. Corrected to the registered item domain ID; no product behavior change.",
+      "status": "FAIL"
+    },
+    {
+      "resolution": "Corrected menu locator from 数据与存档 to the existing 进度与存档.",
+      "kind": "test-observer",
+      "reason": "locator.evaluate: Timeout 20000ms exceeded.",
+      "status": "FAIL"
+    },
+    {
+      "resolution": "Observed the explicit zoom thumbnail; existing modal legitimately owns both thumbnail and HD image.",
+      "kind": "test-observer",
+      "reason": "locator.waitFor: Error: strict mode violation: locator('.card-art-zoom-dialog[open]').locator('img') resolved to 2 elements:",
+      "status": "FAIL"
+    },
+    {
+      "resolution": "After pixel review, refined c04/f09 vertical focal crops and reduced local phone scrim opacity. Final screenshots additionally wait for HD decode.",
+      "preservedScreenshots": [
+        "initial-crop-1180-purchase.png",
+        "initial-crop-1180-held.png"
+      ],
+      "kind": "initial-operation-check",
+      "sourceHashes": {
+        "src/game/DetailDialog.ts": "0624f5ab148fb346d7e4d4727e2db486cfa71a3c24d193d9e060866cd807f1de",
+        "src/game/DetailArtBackground.css": "50c6b1d2fe1a0ee97120b494eb903c10b09f3e81c8b31db7fc299d860a119c1e",
+        "src/game/ShopScene.ts": "008e92eaf18a5740ae68afafad5a6b089e76a6082b48aa4f4487503d4ed1f1e1",
+        "src/game/ConsumableDialog.ts": "3f94ab889de47bfdbac457788e31f4f3f71cc5e6f870e8ba65cc82dab2ab04a6"
+      },
+      "status": "PASS"
+    }
+  ]
+}

@@ -13,6 +13,7 @@ import {createJokerRarityElement,type JokerRarity} from './JokerRarity';
 import {openCardArtZoom} from './CardArtZoomModal';
 import {portraitCardArt} from './CardArtSource';
 import './DetailDialog.css';
+import './DetailArtBackground.css';
 /** Native modal owns focus and readable, scrollable details independently of canvas resize. */
 let dismissedPointer:{x:number;y:number;until:number}|undefined;
 /** A rapid second tap at a just-dismissed modal button must not reach the canvas behind it. */
@@ -21,7 +22,9 @@ export function modalBlocksCanvas(x:number,y:number):boolean {
 }
 interface DialogAction {label:string;run:()=>void|Promise<void>;disabled?:boolean;primary?:boolean}
 type ArtLoadStatus='unregistered'|'idle'|'loading'|'loaded'|'failed';
-interface DialogOptions {heroRun?:R2RunState;guideSteps?:{labels:readonly string[];current:number};choices?:readonly (DialogAction&{detail?:string})[];secondaryActions?:readonly DialogAction[];keepsake?:BuildKeepsake;keepsakeCompact?:boolean;shopContext?:'purchase'|'held'|'compare'|'sale';cards?:readonly ExperienceCard[];onClose?:()=>void;summaryBody?:string;effectBody?:string;editionBody?:string;ability?:CardAbilityCopy;collapseRules?:boolean;rulesLabel?:string;f09?:{inactive:boolean;bodyInactive?:boolean;alignedLayers?:boolean;reduced:boolean;reason?:string};closeLabel?:string;rarity?:JokerRarity;artLoad?:{status:ArtLoadStatus;readStatus?:()=>ArtLoadStatus;retry?:()=>Promise<boolean>};portrait?:{url:string;thumbnailUrl?:string;fallbackUrl?:string;alt:string;layout?:'card';caption?:string}}
+/** These vertical paintings place their principal figure away from the default crop centre. */
+const backgroundArtPosition:Readonly<Record<string,string>>={c04:'50% 85%',f09:'50% 0%'};
+interface DialogOptions {artBackground?:{position?:string};heroRun?:R2RunState;guideSteps?:{labels:readonly string[];current:number};choices?:readonly (DialogAction&{detail?:string})[];secondaryActions?:readonly DialogAction[];keepsake?:BuildKeepsake;keepsakeCompact?:boolean;shopContext?:'purchase'|'held'|'compare'|'sale';cards?:readonly ExperienceCard[];onClose?:()=>void;summaryBody?:string;effectBody?:string;editionBody?:string;ability?:CardAbilityCopy;collapseRules?:boolean;rulesLabel?:string;f09?:{inactive:boolean;bodyInactive?:boolean;alignedLayers?:boolean;reduced:boolean;reason?:string};closeLabel?:string;rarity?:JokerRarity;artLoad?:{status:ArtLoadStatus;readStatus?:()=>ArtLoadStatus;retry?:()=>Promise<boolean>};portrait?:{url:string;thumbnailUrl?:string;fallbackUrl?:string;alt:string;layout?:'card';caption?:string}}
 export class DetailDialog {
   private dialog?:HTMLDialogElement;
   private lastPointer?:{x:number;y:number};
@@ -78,6 +81,7 @@ export class DetailDialog {
     for(const action of actions)row.append(actionButton(action));
     const close=document.createElement('button');close.type='button';close.textContent=options.closeLabel??'关闭';close.className='dialog-close';close.onclick=()=>{AudioEngine.shared.cancel();this.close(dialog);};row.append(close);
     dialog.append(header);
+    let backgroundFrame:HTMLElement|undefined;
     if(options.portrait?.url){
       const portrait=options.portrait,image=document.createElement('img'),card=portrait.layout==='card';image.hidden=true;image.className=card?'dialog-card-image':'dialog-portrait';image.alt=portrait.alt;image.decoding='async';
       dialog.classList.add('detail-dialog--illustrated');
@@ -86,7 +90,11 @@ export class DetailDialog {
         const artSource=portraitCardArt(portrait);let zoom:HTMLButtonElement|undefined;
         if(artSource){
           zoom=document.createElement('button');const badge=document.createElement('span');zoom.type='button';zoom.className='dialog-card-zoom-trigger';zoom.setAttribute('aria-label','放大鉴赏'+artSource.name);zoom.setAttribute('aria-haspopup','dialog');
-          badge.className='dialog-card-zoom-badge';badge.textContent='点图放大';badge.setAttribute('aria-hidden','true');visual.append(zoom);frame.append(badge);
+          if(options.artBackground){
+            dialog.classList.add('detail-dialog--art-background');frame.classList.add('dialog-backdrop-art');frame.setAttribute('aria-hidden','true');backgroundFrame=frame;
+            image.style.setProperty('object-position',options.artBackground.position??backgroundArtPosition[artSource.id]??'50% 35%');
+            zoom.className='dialog-art-original';zoom.textContent='查看完整原图';zoom.setAttribute('aria-label','查看'+artSource.name+'完整原图');header.append(zoom);
+          }else{badge.className='dialog-card-zoom-badge';badge.textContent='点图放大';badge.setAttribute('aria-hidden','true');visual.append(zoom);frame.append(badge);}
           let opened:HTMLDialogElement|undefined;zoom.onclick=event=>{event.preventDefault();event.stopPropagation();zoom!.focus({preventScroll:true});opened=openCardArtZoom(artSource.id,portrait.alt);};cleanups.push(()=>{zoom!.onclick=null;opened?.close();});
         }
         image.width=615;image.height=768;
@@ -198,7 +206,7 @@ export class DetailDialog {
     if(options.keepsake&&options.keepsakeCompact)intro.append(compactBuildKeepsakeView(options.keepsake,cleanups,inspectHero));
     if(options.collapseRules||options.ability){const rules=document.createElement('details'),summary=document.createElement('summary'),text=document.createElement('p');rules.className='card-rules';summary.textContent=options.rulesLabel??'规则与操作';text.textContent=[options.ability?.plain?.details??options.ability?.rules,body].filter(Boolean).join('\n\n');rules.append(summary,text);copy.append(rules,status);}
     else copy.append(content,status);
-    const scroll=document.createElement('div');scroll.className='dialog-scroll';if(intro.childElementCount)scroll.append(intro);for(const selector of ['figcaption','.detail-art-status','.detail-art-retry'])for(const node of layout.querySelectorAll(selector))scroll.append(node);scroll.append(copy);layout.append(scroll);dialog.append(layout,row);if(!retained)document.body.append(dialog);
+    const scroll=document.createElement('div');scroll.className='dialog-scroll';if(intro.childElementCount)scroll.append(intro);for(const selector of ['figcaption','.detail-art-status','.detail-art-retry'])for(const node of layout.querySelectorAll(selector))scroll.append(node);scroll.append(copy);layout.append(scroll);if(backgroundFrame)dialog.prepend(backgroundFrame);dialog.append(layout,row);if(!retained)document.body.append(dialog);
     const cancel=(event:Event)=>{event.preventDefault();this.close(dialog);};
     const keydown=(event:KeyboardEvent)=>{
       if(event.key!=='Tab')return;
