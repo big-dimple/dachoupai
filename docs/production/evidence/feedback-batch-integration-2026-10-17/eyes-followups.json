@@ -1,0 +1,1374 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-17",
+  "taskId": "P08",
+  "taskStatus": "in_progress",
+  "phase": "FOUR_SOURCES_READY_FOR_NORMAL_RELEASE_THREE_EXPERIENCE_GOALS_UNACCEPTED",
+  "baseCommit": "43725f697b58ebb64bfa47197512d2d39fe46a48",
+  "integratedProductCommit": "4d496e205ed4683bba5db901e16f1c17fe9b590c",
+  "branch": "dev/eyes-followups-integration-20261017",
+  "compatibility": {
+    "protectedDiff": [],
+    "scope": "All prior b439 assets/renderers,b8 projection,b05 and43725 sorting preserved; GameScene changes solely exact1607445b temporary-phase hookup supplied in c9. Shop/c9 continuation intentionally changes fd2 paths and b8 README.",
+    "gameSceneExactSource": "c9f5f5342ec556e59026ab1958ab1887f33463ed"
+  },
+  "checksReused": {
+    "initialEyes": "Original6 files50 only unchanged asset/preload/identity scope; not final clarity acceptance.",
+    "eyesClarity": "b4394 files40 followed by only hero-climax12 after final connector lifetime changes; no50+40+12 total.2 cases3 phases source pixels bound exactly.",
+    "touye": "Finalc9 contains unchanged b8 core plus1607445b transient GameScene hookup:10 files108 include prior93 and15 scene/assist/discard cases; two native mouse/touch flows0 errors, drawing→locked→settling→used and lifecycle/failure cleanup. No93+108 total, no rerun in integration.",
+    "zoomHint": "fd7 historical150/type-build/10 short flows. DetailDialog.ts and its test intentionally superseded by505a lifecycle reuse continuation; final505a223/167 evidence covers its delivered component state.",
+    "shop": "505a runtime10 files223/type-build plus final-art167 and native desktop/mobile processes, followed by final modal/graphics narrow check; source raw failures retained, not added as new counts. Parent independently viewed1912 shop/targetless and390 purchased-select-target finals.",
+    "boundary": "No new full suite, six-person run, browser matrix, natural game or human acceptance."
+  },
+  "knownVisualIssues": [
+    {
+      "issue": "Main numeric peak is blurry",
+      "status": "NARROW_SOURCE_FIX_IN_b439_WITH_BOUND_SOFTWARE_EVIDENCE",
+      "priorParentEvidence": "Parent reviewed two committed impact frames; specific character IDs not supplied. No invented new screenshot.",
+      "repairedBy": "b43974175ed0907701b4af1eabc9351243c79248",
+      "remaining": "Not overall scoring-feel or human acceptance."
+    },
+    {
+      "issue": "Red contribution line touches/crosses accumulated multiplier label",
+      "status": "NARROW_SOURCE_FIX_IN_b439_WITH_BOUND_SOFTWARE_EVIDENCE",
+      "priorParentEvidence": "Same parent frame review; original source evidence retained.",
+      "repairedBy": "b43974175ed0907701b4af1eabc9351243c79248",
+      "remaining": "Not overall scoring-feel or human acceptance."
+    }
+  ],
+  "waitingSources": [],
+  "publication": {
+    "mode": "Normal dev then main fast-forward/push",
+    "expectedMain": "43725f697b58ebb64bfa47197512d2d39fe46a48",
+    "authorization": "Latest user explicitly says replace505a with finalc9 before main push, preserving b439/b8/fd. Final transient hookup delivered; do not wait for continuous scoring/haptics next batches.",
+    "releaseCommit": "Delivery commit containing this receipt; actual full main SHA confirmed by final push receipt.",
+    "restrictions": "No force/CI/domain/deploy or natural long game."
+  },
+  "remaining": [
+    "N01计分爽感/N02商店联动/N03Boss压制 explicitly EXPERIENCE_NOT_MET and require redesign; parent comparative/natural review continues; whole scoring re-sequencing is a later independent task",
+    "New integrated dynamic/Shop/locked-state/zoom acceptance, human identity/comprehension/hearing=false/physical device and formal gates remain",
+    "Unified haptics API/device/felt verification and cross-scene art coverage remain open; natural full climax has occurred and exposed continuity failure, not a missing trigger.",
+    "Full dist45215495B exceeds20000000B; aggregate budget failure unchanged.",
+    "Qin transient hookup now integrated; real current merged natural/device flow not yet accepted."
+  ],
+  "sources": [
+    {
+      "name": "final-eyes",
+      "sha": "b43974175ed0907701b4af1eabc9351243c79248",
+      "incrementBase": "a73d9ec2faae6e537e77a975f02e0a2cef220074",
+      "paths": 47,
+      "bindings": [
+        {
+          "path": "art/sources/tangsong-eyes-20261017/amo.png",
+          "sourceBlob": "6bf903ef9705b0fde7e71dfc9153ad1adaa52032",
+          "integratedBlob": "6bf903ef9705b0fde7e71dfc9153ad1adaa52032",
+          "exact": true
+        },
+        {
+          "path": "art/sources/tangsong-eyes-20261017/azao.png",
+          "sourceBlob": "aadc9de1648c327780a9bd8e72a43717b0637206",
+          "integratedBlob": "aadc9de1648c327780a9bd8e72a43717b0637206",
+          "exact": true
+        },
+        {
+          "path": "art/sources/tangsong-eyes-20261017/erxiang.png",
+          "sourceBlob": "0e471e54feb8dc01b8983b4de10b41dc40ad15d1",
+          "integratedBlob": "0e471e54feb8dc01b8983b4de10b41dc40ad15d1",
+          "exact": true
+        },
+        {
+          "path": "art/sources/tangsong-eyes-20261017/laohuan.png",
+          "sourceBlob": "c37e10414bdaca00ee631419eb72b02c728914f7",
+          "integratedBlob": "c37e10414bdaca00ee631419eb72b02c728914f7",
+          "exact": true
+        },
+        {
+          "path": "art/sources/tangsong-eyes-20261017/manifest.json",
+          "sourceBlob": "12e42b89c76fa4517a6c69349ec4508087aee2cf",
+          "integratedBlob": "12e42b89c76fa4517a6c69349ec4508087aee2cf",
+          "exact": true
+        },
+        {
+          "path": "art/sources/tangsong-eyes-20261017/touye.png",
+          "sourceBlob": "f794e5865564e9822abe3ede945dcb23bca9a37b",
+          "integratedBlob": "f794e5865564e9822abe3ede945dcb23bca9a37b",
+          "exact": true
+        },
+        {
+          "path": "art/sources/tangsong-eyes-20261017/xiemu.png",
+          "sourceBlob": "f83220ad3fae83c55c2140c927f2c2a476e74b23",
+          "integratedBlob": "f83220ad3fae83c55c2140c927f2c2a476e74b23",
+          "exact": true
+        },
+        {
+          "path": "docs/production/evidence/dedicated-hero-eyes-2026-10-17/README.md",
+          "sourceBlob": "24cfa54fce755f29264c27e87e659f44a31ecffb",
+          "integratedBlob": "24cfa54fce755f29264c27e87e659f44a31ecffb",
+          "exact": true
+        },
+        {
+          "path": "docs/production/evidence/dedicated-hero-eyes-2026-10-17/clarity-fix/runtime.json",
+          "sourceBlob": "50a1dac8c3499fa9236c78429a8928fbcf501c63",
+          "integratedBlob": "50a1dac8c3499fa9236c78429a8928fbcf501c63",
+          "exact": true
+        },
+        {
+          "path": "docs/production/evidence/dedicated-hero-eyes-2026-10-17/clarity-fix/screens/erxiang-charge.png",
+          "sourceBlob": "e2fe637d22e54d84d2eaf5603ee0f6d476087e53",
+          "integratedBlob": "e2fe637d22e54d84d2eaf5603ee0f6d476087e53",
+          "exact": true
+        },
+        {
+          "path": "docs/production/evidence/dedicated-hero-eyes-2026-10-17/clarity-fix/screens/erxiang-flight.png",
+          "sourceBlob": "15de08c49d139be536e8cc38bcc3343769580081",
+          "integratedBlob": "15de08c49d139be536e8cc38bcc3343769580081",
+          "exact": true
+        },
+        {
+          "path": "docs/production/evidence/dedicated-hero-eyes-2026-10-17/clarity-fix/screens/erxiang-impact.png",
+          "sourceBlob": "8fb4cd05a6842463e9c787752ade94fac153e776",
+          "integratedBlob": "8fb4cd05a6842463e9c787752ade94fac153e776",
+          "exact": true
+        },
+        {
+          "path": "docs/production/evidence/dedicated-hero-eyes-2026-10-17/clarity-fix/screens/touye-charge.png",
+          "sourceBlob": "0d292bbe1cf629244374447ca61e62adf855777e",
+          "integratedBlob": "0d292bbe1cf629244374447ca61e62adf855777e",
+          "exact": true
+        },
+        {
+          "path": "docs/production/evidence/dedicated-hero-eyes-2026-10-17/clarity-fix/screens/touye-flight.png",
+          "sourceBlob": "f5c0e42ef6048cf0bb623d8284425cedd4c4870a",
+          "integratedBlob": "f5c0e42ef6048cf0bb623d8284425cedd4c4870a",
+          "exact": true
+        },
+        {
+          "path": "docs/production/evidence/dedicated-hero-eyes-2026-10-17/clarity-fix/screens/touye-impact.png",
+          "sourceBlob": "8b29622f50c67bdc66f758432ed757e986de43de",
+          "integratedBlob": "8b29622f50c67bdc66f758432ed757e986de43de",
+          "exact": true
+        },
+        {
+          "path": "docs/production/evidence/dedicated-hero-eyes-2026-10-17/runtime.json",
+          "sourceBlob": "668439626c4712be2a6922f2bea793a81e7f4c8d",
+          "integratedBlob": "668439626c4712be2a6922f2bea793a81e7f4c8d",
+          "exact": true
+        },
+        {
+          "path": "docs/production/evidence/dedicated-hero-eyes-2026-10-17/screens/amo-charge.png",
+          "sourceBlob": "fcd2cda34abc91d4a89b5f0d0ce8d8a28a395b2a",
+          "integratedBlob": "fcd2cda34abc91d4a89b5f0d0ce8d8a28a395b2a",
+          "exact": true
+        },
+        {
+          "path": "docs/production/evidence/dedicated-hero-eyes-2026-10-17/screens/amo-impact.png",
+          "sourceBlob": "4593a98381f4be6cdd478a8501098d2c1ac91063",
+          "integratedBlob": "4593a98381f4be6cdd478a8501098d2c1ac91063",
+          "exact": true
+        },
+        {
+          "path": "docs/production/evidence/dedicated-hero-eyes-2026-10-17/screens/azao-charge.png",
+          "sourceBlob": "168830ce3acf2101620e82b6474478ebcddfb7a5",
+          "integratedBlob": "168830ce3acf2101620e82b6474478ebcddfb7a5",
+          "exact": true
+        },
+        {
+          "path": "docs/production/evidence/dedicated-hero-eyes-2026-10-17/screens/azao-impact.png",
+          "sourceBlob": "dd81dc3a8efe92e38d166d9bf3eec30c0695d02e",
+          "integratedBlob": "dd81dc3a8efe92e38d166d9bf3eec30c0695d02e",
+          "exact": true
+        },
+        {
+          "path": "docs/production/evidence/dedicated-hero-eyes-2026-10-17/screens/erxiang-charge.png",
+          "sourceBlob": "50692a7da2c52350cb2c5cf3a8505b39424ead06",
+          "integratedBlob": "50692a7da2c52350cb2c5cf3a8505b39424ead06",
+          "exact": true
+        },
+        {
+          "path": "docs/production/evidence/dedicated-hero-eyes-2026-10-17/screens/erxiang-impact.png",
+          "sourceBlob": "1c3d505cbe2643bea3185497e868bcf4b31db7b0",
+          "integratedBlob": "1c3d505cbe2643bea3185497e868bcf4b31db7b0",
+          "exact": true
+        },
+        {
+          "path": "docs/production/evidence/dedicated-hero-eyes-2026-10-17/screens/laohuan-charge.png",
+          "sourceBlob": "e52630533a0a218f71986031013ce9310a0ec9c5",
+          "integratedBlob": "e52630533a0a218f71986031013ce9310a0ec9c5",
+          "exact": true
+        },
+        {
+          "path": "docs/production/evidence/dedicated-hero-eyes-2026-10-17/screens/laohuan-impact.png",
+          "sourceBlob": "bab8890696c5e673356b53a86c2f1136da76904a",
+          "integratedBlob": "bab8890696c5e673356b53a86c2f1136da76904a",
+          "exact": true
+        },
+        {
+          "path": "docs/production/evidence/dedicated-hero-eyes-2026-10-17/screens/touye-charge.png",
+          "sourceBlob": "037224e2b97a3adca4c4662025f37770fecc3fd2",
+          "integratedBlob": "037224e2b97a3adca4c4662025f37770fecc3fd2",
+          "exact": true
+        },
+        {
+          "path": "docs/production/evidence/dedicated-hero-eyes-2026-10-17/screens/touye-impact.png",
+          "sourceBlob": "a6b89771d809e3f48e0deffcc063984542b0c80e",
+          "integratedBlob": "a6b89771d809e3f48e0deffcc063984542b0c80e",
+          "exact": true
+        },
+        {
+          "path": "docs/production/evidence/dedicated-hero-eyes-2026-10-17/screens/xiemu-charge.png",
+          "sourceBlob": "cc8fdecd1698de98a18a1c8dedc2933a51c60d2a",
+          "integratedBlob": "cc8fdecd1698de98a18a1c8dedc2933a51c60d2a",
+          "exact": true
+        },
+        {
+          "path": "docs/production/evidence/dedicated-hero-eyes-2026-10-17/screens/xiemu-impact.png",
+          "sourceBlob": "1d10068a1096b6d57bb94578f8277355baf93a35",
+          "integratedBlob": "1d10068a1096b6d57bb94578f8277355baf93a35",
+          "exact": true
+        },
+        {
+          "path": "public/assets/tangsong-eyes/amo.eyes-14056db36a63.webp",
+          "sourceBlob": "0f4bfb56c55ad7fb61e007a25474b334deed4f95",
+          "integratedBlob": "0f4bfb56c55ad7fb61e007a25474b334deed4f95",
+          "exact": true
+        },
+        {
+          "path": "public/assets/tangsong-eyes/azao.eyes-f6d4675e5bc3.webp",
+          "sourceBlob": "97adbb4d8e88e19d8221f880c945371604d993e6",
+          "integratedBlob": "97adbb4d8e88e19d8221f880c945371604d993e6",
+          "exact": true
+        },
+        {
+          "path": "public/assets/tangsong-eyes/erxiang.eyes-3a23269ca3b5.webp",
+          "sourceBlob": "d12936926f0ca35d43c96b8a3f40623fa095ff69",
+          "integratedBlob": "d12936926f0ca35d43c96b8a3f40623fa095ff69",
+          "exact": true
+        },
+        {
+          "path": "public/assets/tangsong-eyes/laohuan.eyes-375b308030e5.webp",
+          "sourceBlob": "611036a116e505302db7b035f33ce13c7b4f958e",
+          "integratedBlob": "611036a116e505302db7b035f33ce13c7b4f958e",
+          "exact": true
+        },
+        {
+          "path": "public/assets/tangsong-eyes/manifest.json",
+          "sourceBlob": "bf7be41295022eaafb71f4784b059d5113a05785",
+          "integratedBlob": "bf7be41295022eaafb71f4784b059d5113a05785",
+          "exact": true
+        },
+        {
+          "path": "public/assets/tangsong-eyes/touye.eyes-12194e100f85.webp",
+          "sourceBlob": "425f96c1fe5c53127d45895fc2ac8c0ad7e0a2a9",
+          "integratedBlob": "425f96c1fe5c53127d45895fc2ac8c0ad7e0a2a9",
+          "exact": true
+        },
+        {
+          "path": "public/assets/tangsong-eyes/xiemu.eyes-8b93601ca4cc.webp",
+          "sourceBlob": "5fbacf008e47c0230c5317a6ffeb1bea96c30d2d",
+          "integratedBlob": "5fbacf008e47c0230c5317a6ffeb1bea96c30d2d",
+          "exact": true
+        },
+        {
+          "path": "scripts/build-dedicated-hero-eyes.mjs",
+          "sourceBlob": "e651b48d0413765e6b11cf103a717a1cf6b31e41",
+          "integratedBlob": "e651b48d0413765e6b11cf103a717a1cf6b31e41",
+          "exact": true
+        },
+        {
+          "path": "src/game/CharacterArt.ts",
+          "sourceBlob": "a7570fd262eaec934a575121c3b7539d62cc81c4",
+          "integratedBlob": "a7570fd262eaec934a575121c3b7539d62cc81c4",
+          "exact": true
+        },
+        {
+          "path": "src/game/HeroClimaxContribution.ts",
+          "sourceBlob": "ba713e100b7f0b737f1f963a5939aa4e63387ac3",
+          "integratedBlob": "ba713e100b7f0b737f1f963a5939aa4e63387ac3",
+          "exact": true
+        },
+        {
+          "path": "src/game/HeroClimaxStage.ts",
+          "sourceBlob": "86b58ef394d0c50909bcfd666a3ed087bfe709c6",
+          "integratedBlob": "86b58ef394d0c50909bcfd666a3ed087bfe709c6",
+          "exact": true
+        },
+        {
+          "path": "src/game/SceneResources.ts",
+          "sourceBlob": "9b7cff44237f0d9eee6baaa8bb46abeabbeccbec",
+          "integratedBlob": "9b7cff44237f0d9eee6baaa8bb46abeabbeccbec",
+          "exact": true
+        },
+        {
+          "path": "src/game/StageImageWarmup.ts",
+          "sourceBlob": "97181d2537cb0701c2749e32146c3441fa52576c",
+          "integratedBlob": "97181d2537cb0701c2749e32146c3441fa52576c",
+          "exact": true
+        },
+        {
+          "path": "src/game/TextRaster.ts",
+          "sourceBlob": "73b66c365080ee9817a87fd0adcabd0a1c1e04c4",
+          "integratedBlob": "73b66c365080ee9817a87fd0adcabd0a1c1e04c4",
+          "exact": true
+        },
+        {
+          "path": "src/game/portraits.ts",
+          "sourceBlob": "80841aa551a0744bea3b7d135932839cdcd6d009",
+          "integratedBlob": "80841aa551a0744bea3b7d135932839cdcd6d009",
+          "exact": true
+        },
+        {
+          "path": "tests/character-art.test.ts",
+          "sourceBlob": "9997f9194b824947c4184e430147198bc8d8e61a",
+          "integratedBlob": "9997f9194b824947c4184e430147198bc8d8e61a",
+          "exact": true
+        },
+        {
+          "path": "tests/hero-climax.test.ts",
+          "sourceBlob": "374afeac77a99b986934eb63afc5e09f773508db",
+          "integratedBlob": "374afeac77a99b986934eb63afc5e09f773508db",
+          "exact": true
+        },
+        {
+          "path": "tests/scene-resources.test.ts",
+          "sourceBlob": "415a6bba6bc955cac71107416c913123fba987cd",
+          "integratedBlob": "415a6bba6bc955cac71107416c913123fba987cd",
+          "exact": true
+        },
+        {
+          "path": "tests/viewport-density.test.ts",
+          "sourceBlob": "00a4296d46e91a0892cf8c74199fde734cff1600",
+          "integratedBlob": "00a4296d46e91a0892cf8c74199fde734cff1600",
+          "exact": true
+        }
+      ]
+    },
+    {
+      "name": "touye-locked",
+      "sha": "b8c89e8cf7b9d4bfa53ee3b9c96bedaa735fb94e",
+      "incrementBase": "43725f697b58ebb64bfa47197512d2d39fe46a48",
+      "paths": 6,
+      "bindings": [
+        {
+          "path": "docs/production/evidence/touye-locked-skill-state-2026-10-17/README.md",
+          "sourceBlob": "68cb67ac2728ddba0b6a7d3f0e6a16b1029e3219",
+          "integratedBlob": "94872001ac8765b89aac99eea3f9a7f5932953e6",
+          "exact": false,
+          "reason": "Superseded by finalc9 delivery: Shop lifecycle continuation or documented completed Qin scene hookup; original feature/command modules preserved."
+        },
+        {
+          "path": "src/game/HeroAbilityCue.ts",
+          "sourceBlob": "97b545e692932fc94d3b67fdaca1ec212745ba2c",
+          "integratedBlob": "97b545e692932fc94d3b67fdaca1ec212745ba2c",
+          "exact": true
+        },
+        {
+          "path": "src/game/HeroSkillPresentation.ts",
+          "sourceBlob": "7aad2672f964bb691de04f38f145249ccde361a3",
+          "integratedBlob": "7aad2672f964bb691de04f38f145249ccde361a3",
+          "exact": true
+        },
+        {
+          "path": "src/game/TouyeWagerCopy.ts",
+          "sourceBlob": "5eba4e74e9fa833dbcca58ac4d7c61c01179b090",
+          "integratedBlob": "5eba4e74e9fa833dbcca58ac4d7c61c01179b090",
+          "exact": true
+        },
+        {
+          "path": "tests/hero-ability-cue.test.ts",
+          "sourceBlob": "237109b4c2fedde1748054f86b64a4679b4d38e2",
+          "integratedBlob": "237109b4c2fedde1748054f86b64a4679b4d38e2",
+          "exact": true
+        },
+        {
+          "path": "tests/touye-locked-state.test.ts",
+          "sourceBlob": "ccb45b3877856bd8bcdb7bdcd31b649e104eb8a1",
+          "integratedBlob": "ccb45b3877856bd8bcdb7bdcd31b649e104eb8a1",
+          "exact": true
+        }
+      ]
+    },
+    {
+      "name": "zoom-hint",
+      "sha": "fd7c888d3a2737d0ab14a3c069d7e804c982ec2e",
+      "incrementBase": "9ec861adce4e8e088d638dc36800ff9cac304ad7",
+      "paths": 13,
+      "bindings": [
+        {
+          "path": "docs/production/evidence/art-zoom-small-image-2026-10-17/390-catalog-detail.png",
+          "sourceBlob": "a23a5cd058c4a34d2d800c69d34fb5137efea1a9",
+          "integratedBlob": "a23a5cd058c4a34d2d800c69d34fb5137efea1a9",
+          "exact": true
+        },
+        {
+          "path": "docs/production/evidence/art-zoom-small-image-2026-10-17/390-t16-use-before.png",
+          "sourceBlob": "9d57ae43d7b3afbea590fb0a45cb14f61999cb67",
+          "integratedBlob": "9d57ae43d7b3afbea590fb0a45cb14f61999cb67",
+          "exact": true
+        },
+        {
+          "path": "docs/production/evidence/art-zoom-small-image-2026-10-17/390-t16-use.png",
+          "sourceBlob": "0ad1b199f33980a07854ced17e176762cb752b10",
+          "integratedBlob": "0ad1b199f33980a07854ced17e176762cb752b10",
+          "exact": true
+        },
+        {
+          "path": "docs/production/evidence/art-zoom-small-image-2026-10-17/60px-trigger-before.png",
+          "sourceBlob": "1389057b1c1cf7f3a9821c8bb8b39c54a0c15984",
+          "integratedBlob": "1389057b1c1cf7f3a9821c8bb8b39c54a0c15984",
+          "exact": true
+        },
+        {
+          "path": "docs/production/evidence/art-zoom-small-image-2026-10-17/60px-trigger.png",
+          "sourceBlob": "5ea03692a828143bdb0134b39835a086c76b2b34",
+          "integratedBlob": "5ea03692a828143bdb0134b39835a086c76b2b34",
+          "exact": true
+        },
+        {
+          "path": "docs/production/evidence/art-zoom-small-image-2026-10-17/README.md",
+          "sourceBlob": "5e4e9476d33cf64312838f90f9ea9830b26aebc5",
+          "integratedBlob": "5e4e9476d33cf64312838f90f9ea9830b26aebc5",
+          "exact": true
+        },
+        {
+          "path": "docs/production/evidence/art-zoom-small-image-2026-10-17/browser.json",
+          "sourceBlob": "6534c984c3ad635f403558fc71517f3c3d0b84e7",
+          "integratedBlob": "6534c984c3ad635f403558fc71517f3c3d0b84e7",
+          "exact": true
+        },
+        {
+          "path": "docs/production/evidence/art-zoom-small-image-2026-10-17/hidden-pane-observer-FAIL.json",
+          "sourceBlob": "f51e7bcb37abc445bf7e16d0f5a855c678ca3fd5",
+          "integratedBlob": "f51e7bcb37abc445bf7e16d0f5a855c678ca3fd5",
+          "exact": true
+        },
+        {
+          "path": "docs/production/evidence/art-zoom-small-image-2026-10-17/overlap-baseline-FAIL.json",
+          "sourceBlob": "3c5da735e62b6d2c682218355f8d8a71b7b5532b",
+          "integratedBlob": "3c5da735e62b6d2c682218355f8d8a71b7b5532b",
+          "exact": true
+        },
+        {
+          "path": "harness/goods-art-zoom.mjs",
+          "sourceBlob": "3d4e8baa6dcd8197cef68c6a3e43cba32de74e0a",
+          "integratedBlob": "3d4e8baa6dcd8197cef68c6a3e43cba32de74e0a",
+          "exact": true
+        },
+        {
+          "path": "src/game/DetailDialog.css",
+          "sourceBlob": "db2384a53c817f753e5335cd16729999425a7d1c",
+          "integratedBlob": "db2384a53c817f753e5335cd16729999425a7d1c",
+          "exact": true
+        },
+        {
+          "path": "src/game/DetailDialog.ts",
+          "sourceBlob": "8e1e131ff6ba8f689bf1671fab63630a82ff73a3",
+          "integratedBlob": "3f61abac6495d11d7cef72214aeb2514ed21be68",
+          "exact": false,
+          "reason": "Superseded by finalc9 delivery: Shop lifecycle continuation or documented completed Qin scene hookup; original feature/command modules preserved."
+        },
+        {
+          "path": "tests/detail-dialog.test.ts",
+          "sourceBlob": "af689e2da7a46dd1aaf0ac061f09366769c0267b",
+          "integratedBlob": "8a77b7ed0979d2622cdfed22eb6647ea7b573dba",
+          "exact": false,
+          "reason": "Superseded by finalc9 delivery: Shop lifecycle continuation or documented completed Qin scene hookup; original feature/command modules preserved."
+        }
+      ]
+    },
+    {
+      "name": "shop-flow-redesign",
+      "sha": "c9f5f5342ec556e59026ab1958ab1887f33463ed",
+      "bindingScope": "Cumulative actual deltas of normal505a then c9 merges; intermediate integration ledger commits excluded; no whole old tree copied.",
+      "integrationBefore": "1bdbe06b28bf52005534890619c1d05810bb4d89",
+      "paths": 64,
+      "bindings": [
+        {
+          "path": "docs/production/evidence/shop-flow-redesign-2026-10-17/1912-first-observer-fail.png",
+          "sourceBlob": "4abadbda9e84da7a51ba84b9835c8b61a7b35500",
+          "integratedBlob": "4abadbda9e84da7a51ba84b9835c8b61a7b35500",
+          "exact": true
+        },
+        {
+          "path": "docs/production/evidence/shop-flow-redesign-2026-10-17/1912-full-art-final.png",
+          "sourceBlob": "436fad70ea8d5db26098a4e0b1fb463a78ddc3e2",
+          "integratedBlob": "436fad70ea8d5db26098a4e0b1fb463a78ddc3e2",
+          "exact": true
+        },
+        {
+          "path": "docs/production/evidence/shop-flow-redesign-2026-10-17/1912-nearby-tip-final.png",
+          "sourceBlob": "550d9463a6f266ef86f04e6c68287c1a451d5ffa",
+          "integratedBlob": "550d9463a6f266ef86f04e6c68287c1a451d5ffa",
+          "exact": true
+        },
+        {
+          "path": "docs/production/evidence/shop-flow-redesign-2026-10-17/1912-nearby-tip.png",
+          "sourceBlob": "550d9463a6f266ef86f04e6c68287c1a451d5ffa",
+          "integratedBlob": "550d9463a6f266ef86f04e6c68287c1a451d5ffa",
+          "exact": true
+        },
+        {
+          "path": "docs/production/evidence/shop-flow-redesign-2026-10-17/1912-no-discovery.png",
+          "sourceBlob": "5bac9f65f142a80d87399fcb4fb2ea55a8673a02",
+          "integratedBlob": "5bac9f65f142a80d87399fcb4fb2ea55a8673a02",
+          "exact": true
+        },
+        {
+          "path": "docs/production/evidence/shop-flow-redesign-2026-10-17/1912-purchased-select-target-final.png",
+          "sourceBlob": "4d0829a32238522f7f2858b5824adeeb7f2e352a",
+          "integratedBlob": "4d0829a32238522f7f2858b5824adeeb7f2e352a",
+          "exact": true
+        },
+        {
+          "path": "docs/production/evidence/shop-flow-redesign-2026-10-17/1912-purchased-select-target.png",
+          "sourceBlob": "8982980ab667a2792a7bea010e4adbe21f55bdd6",
+          "integratedBlob": "8982980ab667a2792a7bea010e4adbe21f55bdd6",
+          "exact": true
+        },
+        {
+          "path": "docs/production/evidence/shop-flow-redesign-2026-10-17/1912-resized.png",
+          "sourceBlob": "7e26102f4bb41d65a24a0c2950e064fe78461827",
+          "integratedBlob": "7e26102f4bb41d65a24a0c2950e064fe78461827",
+          "exact": true
+        },
+        {
+          "path": "docs/production/evidence/shop-flow-redesign-2026-10-17/1912-reuse-backdrop-before.png",
+          "sourceBlob": "8982980ab667a2792a7bea010e4adbe21f55bdd6",
+          "integratedBlob": "8982980ab667a2792a7bea010e4adbe21f55bdd6",
+          "exact": true
+        },
+        {
+          "path": "docs/production/evidence/shop-flow-redesign-2026-10-17/1912-shop-final.png",
+          "sourceBlob": "e7ff9e8db5cbb74be6feca641e9c0f2f8dd64a13",
+          "integratedBlob": "e7ff9e8db5cbb74be6feca641e9c0f2f8dd64a13",
+          "exact": true
+        },
+        {
+          "path": "docs/production/evidence/shop-flow-redesign-2026-10-17/1912-shop.png",
+          "sourceBlob": "e7ff9e8db5cbb74be6feca641e9c0f2f8dd64a13",
+          "integratedBlob": "e7ff9e8db5cbb74be6feca641e9c0f2f8dd64a13",
+          "exact": true
+        },
+        {
+          "path": "docs/production/evidence/shop-flow-redesign-2026-10-17/1912-targetless-tool-final.png",
+          "sourceBlob": "df1ee7667c44a02ba0bb7f2796979bece8f42dd2",
+          "integratedBlob": "df1ee7667c44a02ba0bb7f2796979bece8f42dd2",
+          "exact": true
+        },
+        {
+          "path": "docs/production/evidence/shop-flow-redesign-2026-10-17/1912-targetless-tool.png",
+          "sourceBlob": "3ea4a41737cecfa81726ccc8dbf56bf1af7a6b6e",
+          "integratedBlob": "3ea4a41737cecfa81726ccc8dbf56bf1af7a6b6e",
+          "exact": true
+        },
+        {
+          "path": "docs/production/evidence/shop-flow-redesign-2026-10-17/1912-workshop-dyes-final.png",
+          "sourceBlob": "87c5ba569594bdd91781c6e3edf732b765184753",
+          "integratedBlob": "87c5ba569594bdd91781c6e3edf732b765184753",
+          "exact": true
+        },
+        {
+          "path": "docs/production/evidence/shop-flow-redesign-2026-10-17/1912-workshop-tools-final.png",
+          "sourceBlob": "7d7becbeeb00e0a70fb1811c7f5423221e469f8a",
+          "integratedBlob": "7d7becbeeb00e0a70fb1811c7f5423221e469f8a",
+          "exact": true
+        },
+        {
+          "path": "docs/production/evidence/shop-flow-redesign-2026-10-17/1912-workshop.png",
+          "sourceBlob": "2964894b8921f78e9cea5f68479e6b6472e95c6d",
+          "integratedBlob": "2964894b8921f78e9cea5f68479e6b6472e95c6d",
+          "exact": true
+        },
+        {
+          "path": "docs/production/evidence/shop-flow-redesign-2026-10-17/390-full-art-final.png",
+          "sourceBlob": "f43abff5ef46850c037611e815de81615b9571b7",
+          "integratedBlob": "f43abff5ef46850c037611e815de81615b9571b7",
+          "exact": true
+        },
+        {
+          "path": "docs/production/evidence/shop-flow-redesign-2026-10-17/390-purchased-select-target-final.png",
+          "sourceBlob": "7f694ff4a6ad0464338c13828f9d24c6aebbdb02",
+          "integratedBlob": "7f694ff4a6ad0464338c13828f9d24c6aebbdb02",
+          "exact": true
+        },
+        {
+          "path": "docs/production/evidence/shop-flow-redesign-2026-10-17/390-purchased-select-target.png",
+          "sourceBlob": "3ec537672db160796fe806fed5dbabba5632d35f",
+          "integratedBlob": "3ec537672db160796fe806fed5dbabba5632d35f",
+          "exact": true
+        },
+        {
+          "path": "docs/production/evidence/shop-flow-redesign-2026-10-17/390-resized.png",
+          "sourceBlob": "89aba8cce3d88b30f00c294170df8ecbdc7ebee9",
+          "integratedBlob": "89aba8cce3d88b30f00c294170df8ecbdc7ebee9",
+          "exact": true
+        },
+        {
+          "path": "docs/production/evidence/shop-flow-redesign-2026-10-17/390-shop-final.png",
+          "sourceBlob": "1d1ef15865a960c6d8d324cb44c02c2331f6a5e1",
+          "integratedBlob": "1d1ef15865a960c6d8d324cb44c02c2331f6a5e1",
+          "exact": true
+        },
+        {
+          "path": "docs/production/evidence/shop-flow-redesign-2026-10-17/390-shop.png",
+          "sourceBlob": "1d1ef15865a960c6d8d324cb44c02c2331f6a5e1",
+          "integratedBlob": "1d1ef15865a960c6d8d324cb44c02c2331f6a5e1",
+          "exact": true
+        },
+        {
+          "path": "docs/production/evidence/shop-flow-redesign-2026-10-17/390-targetless-tool-final.png",
+          "sourceBlob": "d85fd6ac71caa8a60beafe0127c4bb0541188e21",
+          "integratedBlob": "d85fd6ac71caa8a60beafe0127c4bb0541188e21",
+          "exact": true
+        },
+        {
+          "path": "docs/production/evidence/shop-flow-redesign-2026-10-17/390-targetless-tool.png",
+          "sourceBlob": "8e85d52216469555e239b5b8719e1bb8e60a06ef",
+          "integratedBlob": "8e85d52216469555e239b5b8719e1bb8e60a06ef",
+          "exact": true
+        },
+        {
+          "path": "docs/production/evidence/shop-flow-redesign-2026-10-17/390-workshop-dyes-final.png",
+          "sourceBlob": "b0347e252df4d5096a6e77b8f2f5ec8f3d893798",
+          "integratedBlob": "b0347e252df4d5096a6e77b8f2f5ec8f3d893798",
+          "exact": true
+        },
+        {
+          "path": "docs/production/evidence/shop-flow-redesign-2026-10-17/390-workshop-tools-final.png",
+          "sourceBlob": "7ddadbc30ac97289db659a005203ac27093a5c2c",
+          "integratedBlob": "7ddadbc30ac97289db659a005203ac27093a5c2c",
+          "exact": true
+        },
+        {
+          "path": "docs/production/evidence/shop-flow-redesign-2026-10-17/390-workshop.png",
+          "sourceBlob": "eb6d656189f17fda642cc29b2c9164a431d8fcb1",
+          "integratedBlob": "eb6d656189f17fda642cc29b2c9164a431d8fcb1",
+          "exact": true
+        },
+        {
+          "path": "docs/production/evidence/shop-flow-redesign-2026-10-17/README.md",
+          "sourceBlob": "5a4bcf7b42fd39f533059efa8c2d4df1b66eba14",
+          "integratedBlob": "5a4bcf7b42fd39f533059efa8c2d4df1b66eba14",
+          "exact": true
+        },
+        {
+          "path": "docs/production/evidence/shop-flow-redesign-2026-10-17/browser-check.json",
+          "sourceBlob": "6eecb6834fadd6411b5e1abb3a13ff480f28036d",
+          "integratedBlob": "6eecb6834fadd6411b5e1abb3a13ff480f28036d",
+          "exact": true
+        },
+        {
+          "path": "docs/production/evidence/shop-flow-redesign-2026-10-17/browser-check.mjs",
+          "sourceBlob": "30147449428c1f3acad0a2074082b7f74062bc7c",
+          "integratedBlob": "30147449428c1f3acad0a2074082b7f74062bc7c",
+          "exact": true
+        },
+        {
+          "path": "docs/production/evidence/shop-flow-redesign-2026-10-17/browser-final-check.json",
+          "sourceBlob": "1209b86e2ea65dad5d7e046a33b8e76236f77176",
+          "integratedBlob": "1209b86e2ea65dad5d7e046a33b8e76236f77176",
+          "exact": true
+        },
+        {
+          "path": "docs/production/evidence/shop-flow-redesign-2026-10-17/browser-first-fail.json",
+          "sourceBlob": "9c30c60bbefd2b4eb5bd406de2b341548fa35bb8",
+          "integratedBlob": "9c30c60bbefd2b4eb5bd406de2b341548fa35bb8",
+          "exact": true
+        },
+        {
+          "path": "docs/production/evidence/shop-flow-redesign-2026-10-17/browser-no-discovery-fail.json",
+          "sourceBlob": "62d9b67acdd0936ab02d1c6c2ba9751d92667c1b",
+          "integratedBlob": "62d9b67acdd0936ab02d1c6c2ba9751d92667c1b",
+          "exact": true
+        },
+        {
+          "path": "docs/production/evidence/shop-flow-redesign-2026-10-17/browser-setup-fail.txt",
+          "sourceBlob": "cf29226b27a9e2e96dd12e95023f113ad94899d6",
+          "integratedBlob": "cf29226b27a9e2e96dd12e95023f113ad94899d6",
+          "exact": true
+        },
+        {
+          "path": "docs/production/evidence/shop-flow-redesign-2026-10-17/build-check.txt",
+          "sourceBlob": "f458b4b14601ccd6fe5909b84a2b574a46fe22a2",
+          "integratedBlob": "f458b4b14601ccd6fe5909b84a2b574a46fe22a2",
+          "exact": true
+        },
+        {
+          "path": "docs/production/evidence/shop-flow-redesign-2026-10-17/final-art-check.txt",
+          "sourceBlob": "847fb09a00fed2ed6dd070c64ca76b8326cfc6f2",
+          "integratedBlob": "847fb09a00fed2ed6dd070c64ca76b8326cfc6f2",
+          "exact": true
+        },
+        {
+          "path": "docs/production/evidence/shop-flow-redesign-2026-10-17/focused-check.txt",
+          "sourceBlob": "00c58ccb666a02d83e0c8deb39214b81fe5149d8",
+          "integratedBlob": "00c58ccb666a02d83e0c8deb39214b81fe5149d8",
+          "exact": true
+        },
+        {
+          "path": "docs/production/evidence/shop-flow-redesign-2026-10-17/reference-images.json",
+          "sourceBlob": "20597bf86392bc77ece37fd95ad2727e858dd789",
+          "integratedBlob": "20597bf86392bc77ece37fd95ad2727e858dd789",
+          "exact": true
+        },
+        {
+          "path": "docs/production/evidence/shop-flow-redesign-2026-10-17/runtime-build.txt",
+          "sourceBlob": "51ee23c954bf033ab6fcb634bf0249da352c2f8e",
+          "integratedBlob": "51ee23c954bf033ab6fcb634bf0249da352c2f8e",
+          "exact": true
+        },
+        {
+          "path": "docs/production/evidence/shop-flow-redesign-2026-10-17/runtime-focused-check.txt",
+          "sourceBlob": "45b07df253b14cfc30f4916264c94c4db0acea91",
+          "integratedBlob": "45b07df253b14cfc30f4916264c94c4db0acea91",
+          "exact": true
+        },
+        {
+          "path": "docs/production/evidence/shop-flow-redesign-2026-10-17/zoom-integration-check.txt",
+          "sourceBlob": "ca5f21790eb814bcd24e451de3867a2564c1d814",
+          "integratedBlob": "ca5f21790eb814bcd24e451de3867a2564c1d814",
+          "exact": true
+        },
+        {
+          "path": "docs/production/evidence/touye-locked-skill-state-2026-10-17/1912-selected-locked.png",
+          "sourceBlob": "66eb2a981b7c7104b834cc4fdfd6484f36d4007b",
+          "integratedBlob": "66eb2a981b7c7104b834cc4fdfd6484f36d4007b",
+          "exact": true
+        },
+        {
+          "path": "docs/production/evidence/touye-locked-skill-state-2026-10-17/390-selected-locked.png",
+          "sourceBlob": "bc840bfcea6ee209ce34e6560309d0e348f32958",
+          "integratedBlob": "bc840bfcea6ee209ce34e6560309d0e348f32958",
+          "exact": true
+        },
+        {
+          "path": "docs/production/evidence/touye-locked-skill-state-2026-10-17/README.md",
+          "sourceBlob": "94872001ac8765b89aac99eea3f9a7f5932953e6",
+          "integratedBlob": "94872001ac8765b89aac99eea3f9a7f5932953e6",
+          "exact": true
+        },
+        {
+          "path": "docs/production/evidence/touye-locked-skill-state-2026-10-17/scene-check-first-fail.json",
+          "sourceBlob": "093d6760de0bce4105182a702c8af954605bdd39",
+          "integratedBlob": "093d6760de0bce4105182a702c8af954605bdd39",
+          "exact": true
+        },
+        {
+          "path": "docs/production/evidence/touye-locked-skill-state-2026-10-17/scene-check-selector-fail.json",
+          "sourceBlob": "a72b39726e30db5e81e08b5923aca5225e107843",
+          "integratedBlob": "a72b39726e30db5e81e08b5923aca5225e107843",
+          "exact": true
+        },
+        {
+          "path": "docs/production/evidence/touye-locked-skill-state-2026-10-17/scene-check.json",
+          "sourceBlob": "304e21f2fbfe72b642c745691dfc746b535fec0a",
+          "integratedBlob": "304e21f2fbfe72b642c745691dfc746b535fec0a",
+          "exact": true
+        },
+        {
+          "path": "docs/production/evidence/touye-locked-skill-state-2026-10-17/scene-check.mjs",
+          "sourceBlob": "7b8222c1d6f2cc429532d8940f991ad325d24a60",
+          "integratedBlob": "7b8222c1d6f2cc429532d8940f991ad325d24a60",
+          "exact": true
+        },
+        {
+          "path": "src/game/ConsumableDialog.ts",
+          "sourceBlob": "b5841df66c3f6676d1e5c5720acc12aee125cc95",
+          "integratedBlob": "b5841df66c3f6676d1e5c5720acc12aee125cc95",
+          "exact": true
+        },
+        {
+          "path": "src/game/DetailDialog.ts",
+          "sourceBlob": "3f61abac6495d11d7cef72214aeb2514ed21be68",
+          "integratedBlob": "3f61abac6495d11d7cef72214aeb2514ed21be68",
+          "exact": true
+        },
+        {
+          "path": "src/game/GameScene.ts",
+          "sourceBlob": "47bc34e7ec5e4996bf5914056ab853602bbcff01",
+          "integratedBlob": "47bc34e7ec5e4996bf5914056ab853602bbcff01",
+          "exact": true
+        },
+        {
+          "path": "src/game/MakeCardsDialog.ts",
+          "sourceBlob": "da0ee3bd1c9e59753e56647ec4877641aff75a33",
+          "integratedBlob": "da0ee3bd1c9e59753e56647ec4877641aff75a33",
+          "exact": true
+        },
+        {
+          "path": "src/game/ShopAnchoredTip.ts",
+          "sourceBlob": "826c3731941900e6ee45f40305e8d077c19727bc",
+          "integratedBlob": "826c3731941900e6ee45f40305e8d077c19727bc",
+          "exact": true
+        },
+        {
+          "path": "src/game/ShopLayout.ts",
+          "sourceBlob": "f2d2a42e9c3b860edb7cdd21d266a183aa70a5b4",
+          "integratedBlob": "f2d2a42e9c3b860edb7cdd21d266a183aa70a5b4",
+          "exact": true
+        },
+        {
+          "path": "src/game/ShopOfferLayout.ts",
+          "sourceBlob": "a2396ec10f6f8d3907dd8bb19dd32c154e96aa0d",
+          "integratedBlob": "a2396ec10f6f8d3907dd8bb19dd32c154e96aa0d",
+          "exact": true
+        },
+        {
+          "path": "src/game/ShopPresentation.css",
+          "sourceBlob": "f1707025885ba6416d3779fc49eaec499c793fb1",
+          "integratedBlob": "f1707025885ba6416d3779fc49eaec499c793fb1",
+          "exact": true
+        },
+        {
+          "path": "src/game/ShopPurchaseFlow.ts",
+          "sourceBlob": "b74e0d5f2dee72d8b31cde2cef388e4f5465928a",
+          "integratedBlob": "b74e0d5f2dee72d8b31cde2cef388e4f5465928a",
+          "exact": true
+        },
+        {
+          "path": "src/game/ShopScene.ts",
+          "sourceBlob": "700c1852ca389d2d3ecf545671965f850e855058",
+          "integratedBlob": "700c1852ca389d2d3ecf545671965f850e855058",
+          "exact": true
+        },
+        {
+          "path": "src/game/ShopSynergyPreview.ts",
+          "sourceBlob": "07e31ad356af50e3921b1ce41796c40540824969",
+          "integratedBlob": "07e31ad356af50e3921b1ce41796c40540824969",
+          "exact": true
+        },
+        {
+          "path": "tests/detail-dialog.test.ts",
+          "sourceBlob": "8a77b7ed0979d2622cdfed22eb6647ea7b573dba",
+          "integratedBlob": "8a77b7ed0979d2622cdfed22eb6647ea7b573dba",
+          "exact": true
+        },
+        {
+          "path": "tests/shop-card-journey.test.ts",
+          "sourceBlob": "fcc004536958279a38f2272eb815b2db859ec95d",
+          "integratedBlob": "fcc004536958279a38f2272eb815b2db859ec95d",
+          "exact": true
+        },
+        {
+          "path": "tests/shop-flow-components.test.ts",
+          "sourceBlob": "0ce50f398b5dd367835164fac6ad078d78f5cd39",
+          "integratedBlob": "0ce50f398b5dd367835164fac6ad078d78f5cd39",
+          "exact": true
+        },
+        {
+          "path": "tests/shop-layout.test.ts",
+          "sourceBlob": "bee31273d660ac6fff0cbe14252e0484510ce477",
+          "integratedBlob": "bee31273d660ac6fff0cbe14252e0484510ce477",
+          "exact": true
+        },
+        {
+          "path": "tests/touye-scene-phase.test.ts",
+          "sourceBlob": "fc017d858058dc5f3017438d99e2980e6f82d347",
+          "integratedBlob": "fc017d858058dc5f3017438d99e2980e6f82d347",
+          "exact": true
+        }
+      ],
+      "includedReleasedSources": [
+        "67b4b2cdd10ce8b6ffcd1a10f6bdb55a9f6ab865",
+        "fd7c888d3a2737d0ab14a3c069d7e804c982ec2e"
+      ],
+      "includesShopCandidate": "505a1bb97fbc20b9a90f62dc901829ff1d1038e0",
+      "sceneWiring": "1607445bfdbcc3b492424beb3f0a5cc7e0d17714"
+    }
+  ],
+  "experienceAcceptance": [
+    {
+      "id": "N01",
+      "goal": "计分爽感",
+      "status": "EXPERIENCE_NOT_MET_REMEDIATION_REQUIRED",
+      "source": "Latest explicit user rejection relayed by parent",
+      "existingEvidence": "Preserved only within original SHA and software scope; not goal acceptance",
+      "next": "Active parent competitor/natural review informs continuous scoring and experiential redesign; dynamic process required, no parameters/static-frame acceptance."
+    },
+    {
+      "id": "N02",
+      "goal": "商店联动",
+      "status": "EXPERIENCE_NOT_MET_REMEDIATION_REQUIRED",
+      "source": "Latest explicit user rejection relayed by parent",
+      "existingEvidence": "Preserved only within original SHA and software scope; not goal acceptance",
+      "next": "Active parent competitor/natural review informs continuous scoring and experiential redesign; dynamic process required, no parameters/static-frame acceptance."
+    },
+    {
+      "id": "N03",
+      "goal": "Boss压制",
+      "status": "EXPERIENCE_NOT_MET_REMEDIATION_REQUIRED",
+      "source": "Latest explicit user rejection relayed by parent",
+      "existingEvidence": "Preserved only within original SHA and software scope; not goal acceptance",
+      "next": "Active parent competitor/natural review informs continuous scoring and experiential redesign; dynamic process required, no parameters/static-frame acceptance."
+    }
+  ],
+  "experiencePolicy": "N01/N02/N03 explicitly EXPERIENCE_NOT_MET_REMEDIATION_REQUIRED, per latest user rejection. Software delivery, code/parameters and static frames do not sign goals; continuous audiovisual+haptic process validation required. Ready local batch still has explicit normal-publish authorization.",
+  "testedCommit": "4d496e205ed4683bba5db901e16f1c17fe9b590c",
+  "initialEyesRuntime": {
+    "report": "../dedicated-hero-eyes-2026-10-17/runtime.json",
+    "scope": "Historical efbed six-eye preload/stability/real score evidence. Original impact frames superseded for clarity, not falsely signed against final highlighter."
+  },
+  "clarityBrowserBindings": [
+    {
+      "path": "src/game/TextRaster.ts",
+      "ownerSHA256": "4bb6c27f1706ec247bfca00e5793082d18872d9789e2672a8fb1ac4c3b980912",
+      "matches": [
+        "CRLF",
+        "workingFile"
+      ],
+      "hashes": {
+        "gitLF": "0eb24796c19e831f6b5b18e49998f2466295e18452f4a08fc4f0de448d4a97f8",
+        "CRLF": "4bb6c27f1706ec247bfca00e5793082d18872d9789e2672a8fb1ac4c3b980912",
+        "workingFile": "4bb6c27f1706ec247bfca00e5793082d18872d9789e2672a8fb1ac4c3b980912"
+      }
+    },
+    {
+      "path": "src/game/HeroClimaxContribution.ts",
+      "ownerSHA256": "31e90af78004d9b7becf54275f019c409bd7bc514020da333fa6ac9d37a9271b",
+      "matches": [
+        "gitLF"
+      ],
+      "hashes": {
+        "gitLF": "31e90af78004d9b7becf54275f019c409bd7bc514020da333fa6ac9d37a9271b",
+        "CRLF": "de8023a239d10cf996141e97fef4b683b6322431acabd8d9b3c9d3e0f6318747",
+        "workingFile": "de8023a239d10cf996141e97fef4b683b6322431acabd8d9b3c9d3e0f6318747"
+      }
+    },
+    {
+      "path": "src/game/HeroClimaxStage.ts",
+      "ownerSHA256": "161d69d371ea16f7bf8c53ec61e9ecbd02fcb4f25f9e3ec1ddd3781d05c9bb1a",
+      "matches": [
+        "CRLF",
+        "workingFile"
+      ],
+      "hashes": {
+        "gitLF": "60721448ed5683339c5df30fa851709fe32bc5cef9b88168460a4926702f6a57",
+        "CRLF": "161d69d371ea16f7bf8c53ec61e9ecbd02fcb4f25f9e3ec1ddd3781d05c9bb1a",
+        "workingFile": "161d69d371ea16f7bf8c53ec61e9ecbd02fcb4f25f9e3ec1ddd3781d05c9bb1a"
+      }
+    }
+  ],
+  "knownBudget": {
+    "files": 526,
+    "bytes": 45215495,
+    "budgetBytes": 20000000,
+    "status": "FAIL",
+    "testedCommit": "4d496e205ed4683bba5db901e16f1c17fe9b590c",
+    "scope": "Complete actual dist including retained old copies; not network transfer."
+  },
+  "shopBrowserBindings": [
+    {
+      "path": "src/game/ShopScene.ts",
+      "ownerSHA256": "99b82b9280d99ff0a4548470f773a101b9c750e33d04d3e50179d53d1647d9e0",
+      "matches": [
+        "CRLF",
+        "workingFile"
+      ],
+      "hashes": {
+        "gitLF": "3d0025c45df140ea5b731f0f108849c9eab22a7aa448167ff6ec87b3b6d85dac",
+        "CRLF": "99b82b9280d99ff0a4548470f773a101b9c750e33d04d3e50179d53d1647d9e0",
+        "workingFile": "99b82b9280d99ff0a4548470f773a101b9c750e33d04d3e50179d53d1647d9e0"
+      }
+    },
+    {
+      "path": "src/game/ShopLayout.ts",
+      "ownerSHA256": "c73235438e22797cd264aa737805051945318e60e4cd25bb4556769b07e8c1e5",
+      "matches": [
+        "CRLF",
+        "workingFile"
+      ],
+      "hashes": {
+        "gitLF": "06b2e3798ad7844dab1283f34327170903ec6c1486a8db16cda4554857683291",
+        "CRLF": "c73235438e22797cd264aa737805051945318e60e4cd25bb4556769b07e8c1e5",
+        "workingFile": "c73235438e22797cd264aa737805051945318e60e4cd25bb4556769b07e8c1e5"
+      }
+    },
+    {
+      "path": "src/game/ShopOfferLayout.ts",
+      "ownerSHA256": "444ffdbb5090fbfa796570e599cc9c7051d8d2c1b238487c3d637898e2f6ab09",
+      "matches": [
+        "gitLF"
+      ],
+      "hashes": {
+        "gitLF": "444ffdbb5090fbfa796570e599cc9c7051d8d2c1b238487c3d637898e2f6ab09",
+        "CRLF": "8c298e0a823b2472d140a92bcd278ea62e60cd8cacd256ee4e6ec22f5407f474",
+        "workingFile": "8c298e0a823b2472d140a92bcd278ea62e60cd8cacd256ee4e6ec22f5407f474"
+      }
+    },
+    {
+      "path": "src/game/ShopAnchoredTip.ts",
+      "ownerSHA256": "a15ac1b76c0abed8335c318fd2e99723559f92f6465fa4dd262147bf31bf0e4c",
+      "matches": [
+        "gitLF"
+      ],
+      "hashes": {
+        "gitLF": "a15ac1b76c0abed8335c318fd2e99723559f92f6465fa4dd262147bf31bf0e4c",
+        "CRLF": "0c53e622af1c893726677d8d0eed0d5c110591b15c36cbedbfa2afab580a4584",
+        "workingFile": "0c53e622af1c893726677d8d0eed0d5c110591b15c36cbedbfa2afab580a4584"
+      }
+    },
+    {
+      "path": "src/game/ShopPurchaseFlow.ts",
+      "ownerSHA256": "3e653150138f72f9782f42a912e6eef6d7b929061aa00924968f7b1ed5d1a05a",
+      "matches": [
+        "gitLF"
+      ],
+      "hashes": {
+        "gitLF": "3e653150138f72f9782f42a912e6eef6d7b929061aa00924968f7b1ed5d1a05a",
+        "CRLF": "1a4eac1090b0fe861fbdc67ca6aa509dc33966e1122c3c9000c26a5e808b9c1b",
+        "workingFile": "1a4eac1090b0fe861fbdc67ca6aa509dc33966e1122c3c9000c26a5e808b9c1b"
+      }
+    },
+    {
+      "path": "src/game/ShopSynergyPreview.ts",
+      "ownerSHA256": "abd3c7fc462f2760575058829d883f23e074d2e01104ceff2946175ee3012567",
+      "matches": [
+        "CRLF",
+        "workingFile"
+      ],
+      "hashes": {
+        "gitLF": "40d8166ea6db1ee1da80e2e47f7f2260a829d9f73928a8d9b90be8d83f32f9af",
+        "CRLF": "abd3c7fc462f2760575058829d883f23e074d2e01104ceff2946175ee3012567",
+        "workingFile": "abd3c7fc462f2760575058829d883f23e074d2e01104ceff2946175ee3012567"
+      }
+    },
+    {
+      "path": "src/game/MakeCardsDialog.ts",
+      "ownerSHA256": "e88628c735fbdd0864b243a4447c418558430cd7cd90f0af7c97d7591c986a20",
+      "matches": [
+        "CRLF",
+        "workingFile"
+      ],
+      "hashes": {
+        "gitLF": "36775f4c03074186d89ac4063c07b61057d01918496747b27ee726332e7d03e8",
+        "CRLF": "e88628c735fbdd0864b243a4447c418558430cd7cd90f0af7c97d7591c986a20",
+        "workingFile": "e88628c735fbdd0864b243a4447c418558430cd7cd90f0af7c97d7591c986a20"
+      }
+    },
+    {
+      "path": "src/game/ConsumableDialog.ts",
+      "ownerSHA256": "b4a97b601a6dc5f449e6c384be561f1a2234e5c8168f3e02cb8788ce3b079e71",
+      "matches": [
+        "CRLF",
+        "workingFile"
+      ],
+      "hashes": {
+        "gitLF": "a21b9f4814715e83280ff8a157166a7dbc36614b149ffb7f6c3c6e06da316d02",
+        "CRLF": "b4a97b601a6dc5f449e6c384be561f1a2234e5c8168f3e02cb8788ce3b079e71",
+        "workingFile": "b4a97b601a6dc5f449e6c384be561f1a2234e5c8168f3e02cb8788ce3b079e71"
+      }
+    },
+    {
+      "path": "src/game/DetailDialog.ts",
+      "ownerSHA256": "c95e03410763b18a7073f88188bef2bca8886c017ec9d13b7c43d643689074b0",
+      "matches": [
+        "CRLF",
+        "workingFile"
+      ],
+      "hashes": {
+        "gitLF": "f7dc6b2c4efd222196714b27e8b012ba8bed77eb43c1e4246859b2885f1cfcd1",
+        "CRLF": "c95e03410763b18a7073f88188bef2bca8886c017ec9d13b7c43d643689074b0",
+        "workingFile": "c95e03410763b18a7073f88188bef2bca8886c017ec9d13b7c43d643689074b0"
+      }
+    },
+    {
+      "path": "src/game/ShopPresentation.css",
+      "ownerSHA256": "e4ea3cdd1ae0136303cfb6dc74b243d3a20be8a17b6b6d660be214b6359cee67",
+      "matches": [
+        "CRLF",
+        "workingFile"
+      ],
+      "hashes": {
+        "gitLF": "7e141e12a8297b396f164c8d164c7f5062f8167124835ac1a8c2d6a45580db14",
+        "CRLF": "e4ea3cdd1ae0136303cfb6dc74b243d3a20be8a17b6b6d660be214b6359cee67",
+        "workingFile": "e4ea3cdd1ae0136303cfb6dc74b243d3a20be8a17b6b6d660be214b6359cee67"
+      }
+    }
+  ],
+  "clarityEvidence": {
+    "cases": [
+      {
+        "id": "touye",
+        "status": "PASS",
+        "previousImpactRedPixels": 23,
+        "labelClearance": [
+          {
+            "shot": "charge",
+            "label": "hero/climax-local-label",
+            "padding": 6,
+            "redPixels": 0
+          },
+          {
+            "shot": "charge",
+            "label": "hero/climax-value-label",
+            "padding": 6,
+            "redPixels": 0
+          },
+          {
+            "shot": "flight",
+            "label": "hero/climax-local-label",
+            "padding": 6,
+            "redPixels": 0
+          },
+          {
+            "shot": "flight",
+            "label": "hero/climax-value-label",
+            "padding": 6,
+            "redPixels": 0
+          },
+          {
+            "shot": "impact",
+            "label": "hero/climax-local-label",
+            "padding": 6,
+            "redPixels": 0
+          },
+          {
+            "shot": "impact",
+            "label": "hero/climax-value-label",
+            "padding": 6,
+            "redPixels": 0
+          }
+        ],
+        "peak": 1.538717756073128
+      },
+      {
+        "id": "erxiang",
+        "status": "PASS",
+        "previousImpactRedPixels": 23,
+        "labelClearance": [
+          {
+            "shot": "charge",
+            "label": "hero/climax-local-label",
+            "padding": 6,
+            "redPixels": 0
+          },
+          {
+            "shot": "charge",
+            "label": "hero/climax-value-label",
+            "padding": 6,
+            "redPixels": 0
+          },
+          {
+            "shot": "flight",
+            "label": "hero/climax-local-label",
+            "padding": 6,
+            "redPixels": 0
+          },
+          {
+            "shot": "flight",
+            "label": "hero/climax-value-label",
+            "padding": 6,
+            "redPixels": 0
+          },
+          {
+            "shot": "impact",
+            "label": "hero/climax-local-label",
+            "padding": 6,
+            "redPixels": 0
+          },
+          {
+            "shot": "impact",
+            "label": "hero/climax-value-label",
+            "padding": 6,
+            "redPixels": 0
+          }
+        ],
+        "peak": 1.5366666666666666
+      }
+    ],
+    "integratorReview": "Viewed the2 committed final impact PNGs; source frames, not newly rendered integrated screenshots.",
+    "unit": {
+      "files": 4,
+      "passed": 40,
+      "afterConnectorLifetimeChange": {
+        "file": "tests/hero-climax.test.ts",
+        "passed": 12
+      }
+    },
+    "scope": "Only Qin Qiong and Liu E repeated at 390x844 1x for numeric raster and label clearance; actual GameScene imports and native card/play clicks. Controlled public hand and owned f09 fixture; actual domain PlayHand and saved ×1.5 source, no natural acquisition or active-skill claim. Original trigger, audio and score rules unchanged."
+  },
+  "checks": [
+    {
+      "name": "shared text renderer with released sorting",
+      "status": "PASS",
+      "exitCode": 0,
+      "files": 2,
+      "tests": 20,
+      "testedCommit": "1bdbe06b28bf52005534890619c1d05810bb4d89",
+      "reuseAtFinal": "4d496e205ed4683bba5db901e16f1c17fe9b590c",
+      "log": "checks/eyes-followups-cross.log",
+      "differencesInCrossCheckScope": []
+    },
+    {
+      "name": "final typecheck afterc9 hookup",
+      "status": "PASS",
+      "exitCode": 0,
+      "testedCommit": "4d496e205ed4683bba5db901e16f1c17fe9b590c",
+      "log": "checks/eyes-final-typecheck.log"
+    },
+    {
+      "name": "final build afterc9 hookup",
+      "status": "PASS",
+      "exitCode": 0,
+      "modules": 326,
+      "testedCommit": "4d496e205ed4683bba5db901e16f1c17fe9b590c",
+      "log": "checks/eyes-final-build.log",
+      "warning": "Existing large chunk warning retained."
+    }
+  ],
+  "priorProductChecks": {
+    "product": "1bdbe06b28bf52005534890619c1d05810bb4d89",
+    "typecheck": "checks/eyes-followups-typecheck.log",
+    "build": "checks/eyes-followups-build.log",
+    "modules": 324,
+    "scope": "Passed before late505a arrival; retained history, not signed as final build.",
+    "afterShopBeforeSceneHook": {
+      "product": "b418ccac513b504aac0aee4c77d71ce183b6b540",
+      "typecheck": "checks/eyes-shop-typecheck.log",
+      "build": "checks/eyes-shop-build.log",
+      "modules": 326,
+      "scope": "Passed before latec9 input; historical snapshot only."
+    }
+  },
+  "chatReviewRefs": {
+    "scope": "Parent audit of06:12–08:26 original project chat plus earlier supplied records; not exhaustive unseen history or physical-device acceptance.",
+    "goalsRejected": [
+      "Sentinel_6f0faceb572881918fd3af4f0cb7c0dd"
+    ],
+    "dynamicProcess": [
+      "Sentinel_af4dcdebe7148191965ec646a6644068"
+    ],
+    "sixEyes": [
+      "Sentinel_a6522946db488191a7ebccc7e1180f7f"
+    ],
+    "qinLocked": [
+      "Sentinel_5b05e966f9408191a9bdee145c552279"
+    ],
+    "shop": [
+      "Sentinel_70cd5a435de48191a7a2476da95ada7f"
+    ],
+    "art": [
+      "Sentinel_18bdee21095c819184e7ac2773b9a97f",
+      "Sentinel_09d60cafa8008191be74b11da361c992"
+    ],
+    "restDoesNotStop": [
+      "Sentinel_bacca689a9788191a3b793692d7ee11d"
+    ]
+  },
+  "latestNaturalClimax": {
+    "source": "Parent dot actual observation,08:15 as reported",
+    "chapter": 3,
+    "handScores": [
+      1199,
+      8906
+    ],
+    "hands": [
+      "两对",
+      "四条"
+    ],
+    "stageTotal": 10105,
+    "target": 1800,
+    "naturalFullClimaxTriggered": true,
+    "negativeExperience": [
+      "small HUD",
+      "long rays",
+      "full-screen opaque interrupts continuity"
+    ],
+    "deployedSHA": "Not supplied in this audit note; do not infer final b418 is played",
+    "boundary": "One natural sequence, not6 skills/device/listening acceptance; source final-eye local fix does not settle overall continuity."
+  },
+  "haptics": {
+    "requested": "Unified dynamic audiovisual+haptic feedback",
+    "current": "Only12ms owned-card pickup in current source; matches parent309-file audit scope",
+    "source": "src/game/OwnedJokerHaptics.ts",
+    "owner": "01a148f7",
+    "deliverySHA": null,
+    "acceptance": [
+      "API implementation",
+      "device compatibility",
+      "felt experience"
+    ],
+    "scope": "Worker in progress, not included in this batch; no standing no-haptics restriction."
+  },
+  "interactionAcceptance": "Use existing general interaction principles; add continuous dynamic-process validation. Rest/no recording is not a stop reason. Existing2–3 layer score sound belongs N01; hearing not accepted.",
+  "shopAcceptanceSubitems": [
+    "category/grid alignment",
+    "single workshop entry/shared count",
+    "purchase has clear confirmation/later, not4 equal primary actions",
+    "manual target selection before confirmation, no automatic consumption",
+    "compact targetless tool page",
+    "near-anchor tips",
+    "unified button code need not await new art"
+  ],
+  "artAcceptanceSubitems": {
+    "rules": [
+      "complete original aspect ratio",
+      "no extra multi-frame around original painted border",
+      "corner tags outside art",
+      "large background locally darkened, merchandise not globally gray",
+      "light lift/soft selection glow"
+    ],
+    "scope": "Shop505a first; cross-scene coverage OPEN"
+  },
+  "qinSceneBrowserBindings": [
+    {
+      "path": "src/game/GameScene.ts",
+      "ownerSHA256": "b6365a95b56237360fcf0b2bd9f194523b7c5852ba38c65f3ec2ccab57748c32",
+      "matches": [
+        "CRLF",
+        "workingFile"
+      ],
+      "hashes": {
+        "gitLF": "c5762b6106252f51e804703c3331b9588e3417551000a5f51eb4bf24302ec0aa",
+        "CRLF": "b6365a95b56237360fcf0b2bd9f194523b7c5852ba38c65f3ec2ccab57748c32",
+        "workingFile": "b6365a95b56237360fcf0b2bd9f194523b7c5852ba38c65f3ec2ccab57748c32"
+      }
+    },
+    {
+      "path": "src/game/HeroAbilityCue.ts",
+      "ownerSHA256": "e10af05418c9926c24f3db4db4d915c4146cf26d551331b5a5dee6e22e663b9f",
+      "matches": [
+        "CRLF",
+        "workingFile"
+      ],
+      "hashes": {
+        "gitLF": "77a44b85893e74cd6bc39ef361c3079e6f75560ed16cd0c1827ada111d402454",
+        "CRLF": "e10af05418c9926c24f3db4db4d915c4146cf26d551331b5a5dee6e22e663b9f",
+        "workingFile": "e10af05418c9926c24f3db4db4d915c4146cf26d551331b5a5dee6e22e663b9f"
+      }
+    },
+    {
+      "path": "src/game/HeroSkillPresentation.ts",
+      "ownerSHA256": "e900fc80f566781f903bbf67147f8f04c5e48b4959bd72a2c0d10d88eb532fbd",
+      "matches": [
+        "CRLF",
+        "workingFile"
+      ],
+      "hashes": {
+        "gitLF": "3cbacc07b632cb8e79f2cb0064f402accdcfece57bd257c170e9c7854487da4b",
+        "CRLF": "e900fc80f566781f903bbf67147f8f04c5e48b4959bd72a2c0d10d88eb532fbd",
+        "workingFile": "e900fc80f566781f903bbf67147f8f04c5e48b4959bd72a2c0d10d88eb532fbd"
+      }
+    },
+    {
+      "path": "src/game/TouyeWagerCopy.ts",
+      "ownerSHA256": "9b27a35bd9ae1a0132ed8a3a28d8e871fff7013aaf8bc5cd0f7f3a33c1f91a1b",
+      "matches": [
+        "CRLF",
+        "workingFile"
+      ],
+      "hashes": {
+        "gitLF": "8ffa6f35e3fb07118b9ef205effbddb2bd046c6431070f61309c0589da1d8f91",
+        "CRLF": "9b27a35bd9ae1a0132ed8a3a28d8e871fff7013aaf8bc5cd0f7f3a33c1f91a1b",
+        "workingFile": "9b27a35bd9ae1a0132ed8a3a28d8e871fff7013aaf8bc5cd0f7f3a33c1f91a1b"
+      }
+    }
+  ],
+  "qinSceneStatus": {
+    "source": "c9f5f5342ec556e59026ab1958ab1887f33463ed",
+    "wiringCommit": "1607445bfdbcc3b492424beb3f0a5cc7e0d17714",
+    "status": "DELIVERED_AND_INTEGRATED",
+    "notSaveState": true,
+    "softwareEvidence": "../touye-locked-skill-state-2026-10-17/scene-check.json",
+    "boundary": "Current merged natural/device experience still not signed; original approval/observer failures retained in source, authorization retry succeeded there."
+  }
+}
