@@ -14,7 +14,9 @@ export function awardForScore(presentation:object):FoleyKind {
   const digits=score.replace(/^0+/, '').length;
   return digits>=13?'awardTrillion':digits>=9?'awardHundredMillion':digits>=7?'awardMillion':'award';
 }
-/** Gentle bounded brightening, then a plateau; no stochastic/gameplay RNG. */
+/** Musical pitch escalation for multiplier chain and scoring strikes. */
 export function chainRate(chain:number):number {
-  return 1+Math.max(0,Math.min(4,Number.isFinite(chain)?chain:0))*.025;
+  const c = Math.max(0, Math.min(7, Number.isFinite(chain) ? Math.floor(chain) : 0));
+  const rates = [1.0, 1.12, 1.25, 1.35, 1.5, 1.68, 1.88, 2.0];
+  return rates[c];
 }

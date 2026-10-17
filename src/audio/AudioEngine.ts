@@ -508,7 +508,7 @@ export class AudioEngine {
     if(kind==='card')this.cardScore(index);else if(kind==='character')this.role();else if(kind==='joker')this.joker(index);else if(kind==='retrigger')this.retrigger(index);
     else{this.duckMusic(.2);this.cue(kind==='boss'?'boss':'held');}
   }
-  cardScore(index=0):void {this.duckMusic(.14);this.cue('add','sfx',1+bounded(index,4)*.025);}
+  cardScore(index=0):void {this.duckMusic(.14);this.cue('add','sfx',chainRate(index));}
   role():void {this.duckMusic(.4);this.cue('role');}
   joker(chainIndex:number):void {this.duckMusic(.28);this.cue('joker','sfx',1+bounded(chainIndex,6)*.025);}
   multiplier(kind:'add'|'multiply',chainIndex=0):void {this.duckMusic(kind==='multiply'?.4:.2);this.cue(kind==='multiply'?'multiply':'coin','sfx',chainRate(chainIndex));}
