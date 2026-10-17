@@ -1,0 +1,59 @@
+{
+  "scope": "Actual native canvas pixels: neighbouring idle frames. Rank/suit index stays identical; exterior edge pixels move. Render-gap observation includes PNG/video capture overhead, not low-end device or incremental CPU certification.",
+  "results": [
+    {
+      "name": "pc",
+      "ratio": 1,
+      "idleSamples": 18,
+      "idleSpan": 3344.10000000149,
+      "indexChangedPixels": 0,
+      "edgeChangedPixels": [
+        1039,
+        940,
+        956,
+        1071,
+        968,
+        972,
+        1049,
+        1005,
+        1017,
+        963,
+        968,
+        1060,
+        947,
+        946,
+        1066,
+        1005,
+        995
+      ],
+      "renderGapP95": 30.19999999552965
+    },
+    {
+      "name": "phone",
+      "ratio": 2,
+      "idleSamples": 18,
+      "idleSpan": 3358.60000000149,
+      "indexChangedPixels": 0,
+      "edgeChangedPixels": [
+        2035,
+        1783,
+        1740,
+        1979,
+        1782,
+        1909,
+        1770,
+        1752,
+        2079,
+        1759,
+        1694,
+        2016,
+        1768,
+        1862,
+        1835,
+        1781,
+        2117
+      ],
+      "renderGapP95": 40.399999998509884
+    }
+  ]
+}
