@@ -1,0 +1,128 @@
+{
+  "sourceHashes": {
+    "src/game/CardArtSource.ts": "430fd4c92a36f626e64d9fa392ec54bb62439f7e15476eec93de096b8564fdf9",
+    "src/game/CardArtZoomModal.ts": "edbdd7e9ef0a9fa8b25d03b506d79e847f412b703e2c68848dc1678f927171b4",
+    "src/game/DetailDialog.ts": "b696b46f87a23e22640c6b71db160cd39c7767934c13dc576a8885b0f604b9e6",
+    "src/game/DetailDialog.css": "461a6dae69fa804f6c76f8c1dd1a293cc618dc77df847302d40f220b7526dcb0"
+  },
+  "browser": "153.0.8010.12",
+  "scope": "One local bundled component page: production showCatalog, showConsumables, DetailDialog and styles. Controlled shop-state inventory, no actual ShopScene/GameScene journey or physical-device claim.",
+  "checks": [
+    {
+      "entry": "production catalog/T12",
+      "status": "PASS",
+      "geometry": {
+        "dialog": {
+          "width": 390,
+          "height": 844
+        },
+        "image": {
+          "width": 390,
+          "height": 844
+        },
+        "close": {
+          "width": 44,
+          "height": 44
+        },
+        "fit": "contain",
+        "background": "rgb(0, 0, 0)",
+        "natural": [
+          615,
+          768
+        ],
+        "transition": "0.18s"
+      }
+    },
+    {
+      "entry": "production catalog/P01",
+      "status": "PASS",
+      "geometry": {
+        "dialog": {
+          "width": 390,
+          "height": 844
+        },
+        "image": {
+          "width": 390,
+          "height": 844
+        },
+        "close": {
+          "width": 44,
+          "height": 44
+        },
+        "fit": "contain",
+        "background": "rgb(0, 0, 0)",
+        "natural": [
+          615,
+          768
+        ],
+        "transition": "0.18s"
+      }
+    },
+    {
+      "entry": "production catalog/U01",
+      "status": "PASS",
+      "geometry": {
+        "dialog": {
+          "width": 390,
+          "height": 844
+        },
+        "image": {
+          "width": 390,
+          "height": 844
+        },
+        "close": {
+          "width": 44,
+          "height": 44
+        },
+        "fit": "contain",
+        "background": "rgb(0, 0, 0)",
+        "natural": [
+          615,
+          768
+        ],
+        "transition": "0.18s"
+      }
+    },
+    {
+      "entry": "production catalog/c06",
+      "status": "PASS",
+      "geometry": {
+        "dialog": {
+          "width": 390,
+          "height": 844
+        },
+        "image": {
+          "width": 390,
+          "height": 844
+        },
+        "close": {
+          "width": 44,
+          "height": 44
+        },
+        "fit": "contain",
+        "background": "rgb(0, 0, 0)",
+        "natural": [
+          615,
+          768
+        ],
+        "transition": "0.18s"
+      }
+    },
+    {
+      "entry": "P11 503 → readable thumbnail → retry → HD",
+      "status": "PASS"
+    }
+  ],
+  "errors": [],
+  "smallTrigger": {
+    "imageWidth": 60,
+    "imageHeight": 84,
+    "hintBelowImage": false,
+    "hintInsideTrigger": true,
+    "hintBackground": "rgba(0, 0, 0, 0.733)",
+    "hintWhiteSpace": "normal",
+    "label": "放大鉴赏小红包"
+  },
+  "status": "FAIL",
+  "failure": "AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n\nfalse !== true\n"
+}

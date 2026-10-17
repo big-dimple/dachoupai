@@ -86,7 +86,7 @@ export class DetailDialog {
         const artSource=portraitCardArt(portrait);let zoom:HTMLButtonElement|undefined;
         if(artSource){
           zoom=document.createElement('button');const badge=document.createElement('span');zoom.type='button';zoom.className='dialog-card-zoom-trigger';zoom.setAttribute('aria-label','放大鉴赏'+artSource.name);zoom.setAttribute('aria-haspopup','dialog');
-          badge.className='dialog-card-zoom-badge';badge.textContent='放大鉴赏';zoom.append(badge);visual.append(zoom);
+          badge.className='dialog-card-zoom-badge';badge.textContent='点图放大';badge.setAttribute('aria-hidden','true');visual.append(zoom);frame.append(badge);
           let opened:HTMLDialogElement|undefined;zoom.onclick=event=>{event.preventDefault();event.stopPropagation();zoom!.focus({preventScroll:true});opened=openCardArtZoom(artSource.id,portrait.alt);};cleanups.push(()=>{zoom!.onclick=null;opened?.close();});
         }
         image.width=615;image.height=768;
