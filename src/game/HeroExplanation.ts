@@ -11,7 +11,7 @@ import {portraitURL,selectionPortraitURL} from './portraits';
 
 const conditions:Record<CharacterId,string>={
  amo:'先选两对及以上主手，剩余牌里留一组对子或三条；每场一次。',
- erxiang:'先选对子及以上，再选一张有效计分牌交棒；每场一次。',
+ erxiang:'先选对子及以上，再选一张有效计分牌，把普通点数改加倍率；每场一次。',
  laohuan:'先选1–5张弃牌，付得起本次弃牌成本；每场一次。',
  azao:'先用两对及以上实际出牌蓄势；有层时，选两对及以上就能释放。',
  xiemu:'选两对及以上，至少留有10金；每场一次。',
@@ -21,7 +21,7 @@ const conditions:Record<CharacterId,string>={
 /** A read-only explanation follows the saved identity, including old passive abilities. */
 export function heroExplanationCopy(id:CharacterId,run?:R2RunState,abilityEnabled=true){
  const hero=run?characterForRun(run):characterForNewRun(id),current=!run||usesCurrentHeroText(run);
- let now=abilityEnabled?'选路线并开始对局后，在牌桌点英雄使用技能。':'当前模式关闭角色能力，以下仅供普通局参考。';
+ let now=abilityEnabled?'选路线并开始对局后，在牌桌点击对应技能按钮。':'当前模式关闭角色能力，以下仅供普通局参考。';
  let effect=hero.quickEffect;
  if(run){
   if(!r2RunModeConfig(run).characterAbilityEnabled)now='本模式关闭角色能力，当前不能使用。';

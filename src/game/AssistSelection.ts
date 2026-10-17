@@ -1,4 +1,4 @@
-import {heroText} from './HeroIdentity';
+import {heroSkillTitle} from './HeroSkillPresentation';
 import {r2AssistFacts,type R2AssistFacts} from '../domain/r2Assist';
 import type {R2SelectionInput} from '../domain/r2SelectionFacts';
 import type {ScoreTrace} from '../domain/scoreR2';
@@ -32,5 +32,5 @@ export function savedAssistCopy(trace:ScoreTrace):string {
 /** Compact result identity comes only from a successfully saved assist event. */
 export function savedAssistSummary(trace:ScoreTrace):string|undefined {
  if(!trace.assist||!trace.events.some(e=>e.sourceType==='character'&&e.sourceDefinitionId==='amo'&&e.reasonKey.startsWith('amo.assist.')&&e.operation==='multiply-multiplier'&&BigInt(e.after.M.n)*BigInt(e.before.M.d)>BigInt(e.before.M.n)*BigInt(e.after.M.d)))return;
- return heroText('阿默助攻 ×')+trace.assist.multiplier+' · 用掉'+trace.assist.ids.length+'张';
+ return heroSkillTitle('amo')+' ×'+trace.assist.multiplier+' · 用掉'+trace.assist.ids.length+'张';
 }

@@ -26,14 +26,14 @@ it('adopts the exact six approved identities while keeping first-layer copy comp
   expect(copy.detailRules).toContain(approved.skillSummary);expect(copy.detailRules).not.toMatch(/AMO_ASSIST_TYPES|pending-refill|禁止套用|不能误写|不能许诺/);expect(HERO_QUICK_COPY[id].tags.every(t=>t.length<=10)).toBe(true);
  }
 });
-it('keeps old passive and old wager identities out of the new names, examples and claims',()=>{
+it('projects old identities to approved names while keeping their own rules and examples',()=>{
  for(const id of CHARACTER_IDS){const old=enter(id,true),before=structuredClone(old),copy=characterForRun(old);
-  expect(usesCurrentHeroText(old)).toBe(false);expect(copy.passiveName).not.toBe(characterForNewRun(id).passiveName);expect(copy.skillTags).toEqual([]);expect(heroExplanationCopy(id,old).current).toBe(false);expect(old).toEqual(before);
+  expect(usesCurrentHeroText(old)).toBe(false);expect(copy.passiveName).toBe(characterForNewRun(id).passiveName);expect(copy.skillTags).toEqual([]);expect(heroExplanationCopy(id,old).current).toBe(false);expect(old).toEqual(before);
  }
  const base=createRun({rulesVersion:'r2',seed:'old-wager',runId:'old-wager',characterId:'touye',r2Identity:{contentVersion:R2_TOUYE_WAGER_VERSION,contentHash:R2_TOUYE_WAGER_HASH},openingRoute:'group'});
  const old=arrange(send(send(base,{type:'LeaveShop'}),{type:'EnterStage'}),['spades-8','hearts-8','clubs-8','diamonds-2','spades-5','hearts-6','clubs-10','diamonds-13']);
  const current=arrange(enter('touye'),old.handOrder),ids=['diamonds-2'];
- expect(characterForRun(old).passiveName).toBe('弃前赌约');expect(characterForRun(old).passiveDescription).toContain('已能凑出就不能押');
+ expect(characterForRun(old).passiveName).toBe('跃马冲阵');expect(characterForRun(old).passiveDescription).toContain('已能凑出就不能押');
  expect(touyeChoice(old,ids).choices.find(c=>c.target==='three-kind')?.available).toBe(false);
  expect(touyeChoice(current,ids).choices.find(c=>c.target==='three-kind')?.available).toBe(true);
  expect(characterForRun(enter('laohuan',true)).passiveDescription).toContain('120');

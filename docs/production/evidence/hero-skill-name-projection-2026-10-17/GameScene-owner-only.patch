@@ -1,0 +1,134 @@
+diff --git a/src/game/GameScene.ts b/src/game/GameScene.ts
+index 5d6631ac..40b5e3d1 100644
+--- a/src/game/GameScene.ts
++++ b/src/game/GameScene.ts
+@@ -1,3 +1,4 @@
++import {heroSkillName,heroSkillTitle} from './HeroSkillPresentation';
+ import {showTouyeDiscardChoice} from './TouyeDiscardChoice';
+ import {carriedToolAtEntry,carriedToolAtHand,type ToolCarryIntent} from './ToolCarryIntent';
+ import {heroText} from './HeroIdentity';
+@@ -649,7 +650,7 @@ export class GameScene extends Phaser.Scene {
+       const art=view?.getData('f09-art') as Phaser.GameObjects.Container|undefined;art?.setData('f09-active',!view?.getData('bossDisabled')&&(this.run.stage?.discardsUsed??0)===0);
+     }
+   }
+-  private roleCaption():string {const notice=stageNotice(this.run);return usesErxiangHandoff(this.run)?erxiangChoice(this.run).compact:usesTouyeWager(this.run)?touyeChoice(this.run).compact:usesLaohuanRefill(this.run)?this.pendingRefill?heroText('老幻·选补牌↗'):!r2RunModeConfig(this.run).characterAbilityEnabled?heroText('老幻·戏法停用'):this.run.stage?.laohuanTrickUsed?heroText('老幻·戏法已用'):heroText('老幻·戏法弃↗'):usesXiemuBurn(this.run)?xiemuChoice(this.run).compact:usesAzaoCharge(this.run)?azaoChoice(this.run).compact:notice?.warning?notice.title:characterForRun(this.run).passiveName;}
++  private roleCaption():string {const notice=stageNotice(this.run);return usesErxiangHandoff(this.run)?erxiangChoice(this.run).compact:usesTouyeWager(this.run)?touyeChoice(this.run).compact:usesLaohuanRefill(this.run)?this.pendingRefill?heroText('老幻·选补牌↗'):!r2RunModeConfig(this.run).characterAbilityEnabled?heroSkillName('laohuan')+'停用':this.run.stage?.laohuanTrickUsed?heroSkillName('laohuan')+'已用':heroSkillName('laohuan'):usesXiemuBurn(this.run)?xiemuChoice(this.run).compact:usesAzaoCharge(this.run)?azaoChoice(this.run).compact:notice?.warning?notice.title:characterForRun(this.run).passiveName;}
+   private cardPiece(card:PlayingCard,b:Box):CardView {
+     const c=this.view.add(this.add.container(b.x+b.width/2,b.y+b.height/2)).setData('width',b.width).setData('height',b.height).setData('cardFace',true).setData('cardId',card.id);
+     const radius=Math.min(7,b.width*.09),shadow=this.add.graphics(),edgeGlow=this.add.graphics();
+@@ -917,7 +918,7 @@ export class GameScene extends Phaser.Scene {
+   private renderSelectedCards(preview?:HandPreview):void {
+     this.previewCards?.destroy();this.previewCards=this.view.add(this.add.container(0,0));this.resultText.setVisible(true);(this.view.root.list.find(o=>o.name==='table/played-label') as Phaser.GameObjects.Text|undefined)?.setText('待出牌');const p=toolInventoryPlayedArea(this.view.layout);
+     if(this.pendingRefill){const pending=this.pendingRefill,held=this.run.handOrder.map(id=>this.run.deckInstances.find(c=>c.id===id)!).map(c=>rankLabel(c.rank)+SUIT_SYMBOL[c.suit]).join(' '),score=this.view.layout.scoreBoard;
+-      (this.view.root.list.find(o=>o.name==='table/played-label') as Phaser.GameObjects.Text|undefined)?.setText('戏法补牌');this.resultText.setVisible(false);
++      (this.view.root.list.find(o=>o.name==='table/played-label') as Phaser.GameObjects.Text|undefined)?.setText('候选补牌');this.resultText.setVisible(false);
+       const text=this.add.text(p.x+p.width/2,p.y+p.height/2,this.refillHidden?'候选已收起 · 点英雄继续选择':`留 ${pending.required} 张 · 已选 ${this.selectedIds.size} / ${pending.required}\n确认后其余 ${pending.candidateIds.length-pending.required} 张进已用区`,{fontFamily:UI_FONT,fontSize:'16px',color:C.jade,align:'center',wordWrap:{width:p.width-16,useAdvancedWrap:true}}).setOrigin(.5).setName('refill/instruction');this.previewCards.add(text);
+       const note=this.add.text(score.x+10,score.y+28,'原保留：'+held,{fontFamily:UI_FONT,fontSize:'14px',color:C.mutedInk,wordWrap:{width:score.width-20,useAdvancedWrap:true}}).setName('refill/held');this.previewCards.add(note);return;}
+     const challenger=!preview&&mountOpponentChallenge(this,this.view,this.previewCards,p,this.run,()=>this.menuActions?.viewRules?.());
+@@ -1016,10 +1017,7 @@ export class GameScene extends Phaser.Scene {
+     if(score.height<78)return;
+     const footer=this.add.text(score.x+10,score.y+score.height-20,this.candidateEntry(),{fontFamily:UI_FONT,fontSize:'14px',color:C.jade,resolution:Math.max(1,1/this.scale.zoom)}).setName('selection/rules-entry');this.previewCards!.add(footer);
+   }
+-  private heroActionLabel(chosen=false):string {
+-    const action=this.pendingRefill?'留牌':chosen?'已选':usesTouyeWager(this.run)?'押注':usesLaohuanRefill(this.run)?'戏法':usesErxiangHandoff(this.run)?'交棒':usesAzaoCharge(this.run)?'释放':usesXiemuBurn(this.run)?'燃金':'助攻';
+-    return '技能'+(this.view.layout.mode==='landscape'?'\n':' · ')+action;
+-  }
++  private heroActionLabel(_chosen=false):string {return heroSkillName(this.characterId);}
+   private selectionQuickInScore(score:Box):boolean {return this.assistProfile||this.view.layout.mode!=='desktop'||score.width>=300;}
+   private renderSelectionQuickButtons(score:Box):void {
+     const area=this.selectionQuickInScore(score)?selectionCandidateEntryBox(score):{x:this.view.layout.playedArea.x+8,y:score.y+2,width:92,height:44},first=this.view.root.length;
+@@ -1056,11 +1054,11 @@ export class GameScene extends Phaser.Scene {
+     (this.discardButton.getData('label') as Phaser.GameObjects.Text).setText(discardGoldCost?'弃 -1金':r2DiscardCost(this.run)===2?'弃 ×2':'弃牌');
+     this.view.setEnabled(this.discardButton,this.ready&&!this.pendingTouye&&this.selectedIds.size>0&&this.run.stage!.discardsLeft>=r2DiscardCost(this.run)&&this.run.gold>=discardGoldCost);
+     this.view.setEnabled(this.playButton,this.ready&&this.selectedIds.size>0&&this.handsLeft>0);
+-    if(usesErxiangHandoff(this.run)){const choice=erxiangChoice(this.run,this.selectionPreview(),this.erxiangTargetId);if(this.ready&&!this.playing&&!this.presentation&&this.erxiangTargetId&&!choice.selected)this.erxiangTargetId=null;this.roleText.setText(choice.compact);(this.playButton.getData('label') as Phaser.GameObjects.Text).setText(choice.selected?'交棒·出牌':'出牌');}
++    if(usesErxiangHandoff(this.run)){const choice=erxiangChoice(this.run,this.selectionPreview(),this.erxiangTargetId);if(this.ready&&!this.playing&&!this.presentation&&this.erxiangTargetId&&!choice.selected)this.erxiangTargetId=null;this.roleText.setText(choice.compact);(this.playButton.getData('label') as Phaser.GameObjects.Text).setText(choice.selected?'确认出牌':'出牌');}
+     const xiemu=usesXiemuBurn(this.run)?xiemuChoice(this.run,this.selectionPreview()?.type,this.xiemuBurn):undefined;
+     const azao=usesAzaoCharge(this.run)?azaoChoice(this.run,this.selectionPreview()?.type):undefined;
+     if(azao&&!azao.available&&this.ready&&!this.playing&&!this.presentation)this.azaoRelease=false;
+-    if(azao){(this.playButton.getData('label') as Phaser.GameObjects.Text).setText(this.azaoRelease?'爆发×'+azao.multiplier:'出牌');this.roleText.setText(this.view.layout.mode==='portrait'?(azao.enabled?this.azaoRelease?heroText('阿燥·已选×')+azao.multiplier:heroText('阿燥·蓄')+azao.charge+'·'+(azao.charge?'放×'+azao.multiplier:'点英雄'):'蓄势停用'):azao.compact);}
++    if(azao){(this.playButton.getData('label') as Phaser.GameObjects.Text).setText(this.azaoRelease?'释放×'+azao.multiplier:'出牌');this.roleText.setText(this.view.layout.mode==='portrait'?(azao.enabled?this.azaoRelease?heroText('阿燥·已选×')+azao.multiplier:heroText('阿燥·蓄')+azao.charge+'·'+(azao.charge?'放×'+azao.multiplier:'点英雄'):'蓄势停用'):azao.compact);}
+     if(xiemu){if(this.ready&&!this.playing&&!this.presentation&&this.xiemuBurn&&!xiemu.choices.find(c=>c.cost===this.xiemuBurn)?.available)this.xiemuBurn=0;const copy=xiemuChoice(this.run,this.selectionPreview()?.type,this.xiemuBurn);this.roleText.setText(this.view.layout.mode==='portrait'?copy.mobile:copy.compact);(this.playButton.getData('label') as Phaser.GameObjects.Text).setText(this.xiemuBurn?'燃'+this.xiemuBurn+'·出牌':'出牌');}
+     this.resourceCounts.play.setColor(handActionCountColor('play',!!this.playButton.input?.enabled));
+     this.resourceCounts.discard.setColor(handActionCountColor('discard',!!this.discardButton.input?.enabled,this.run.stage!.discardsLeft<2*r2DiscardCost(this.run)));
+@@ -1105,7 +1103,7 @@ export class GameScene extends Phaser.Scene {
+   }
+   private updateHeroControl():void {
+     if(!this.roleFrame?.active)return;
+-    const heroCue=heroAbilityCue(this.run,this.selectionPreview(),[...this.selectedIds],this.assistProfile&&assistCandidates(this.assistInput(),r2AssistAvailability(this.run).available).length>0);
++    const heroCue=heroAbilityCue(this.run,this.selectionPreview(),[...this.selectedIds],this.assistProfile&&assistCandidates(this.assistInput(),r2AssistAvailability(this.run).available).length>0,{erxiangTargetId:this.erxiangTargetId,xiemuBurn:this.xiemuBurn,azaoRelease:this.azaoRelease,assistCount:this.assistIds.length});
+     const heroChosen=!!(this.erxiangTargetId||this.azaoRelease||this.xiemuBurn||this.assistIds.length);
+     if(this.assistProfile&&heroChosen&&!this.presentation&&!this.playing)this.roleText.setText(heroText('阿默·已选助攻×')+(this.assistIds.length===3?4:2));
+     if(heroCue&&!this.presentation&&!this.playing&&!heroChosen)this.roleText.setText(this.view.layout.mode==='portrait'?heroCue.label:'技能 · '+heroCue.label.split('·').slice(1).join('·'));
+@@ -1122,9 +1120,9 @@ export class GameScene extends Phaser.Scene {
+   private fitMobileHeroCaption():void {
+     if(this.view.layout.mode!=='portrait'||!this.mobileHeroName?.active)return;
+     const name=getCharacter(this.run.characterId).name,full=this.roleText.text,copy=full.startsWith(name+'·')?full.slice(name.length+1):full;
+-    const short:Record<CharacterId,string>={amo:'主手＋助攻↗',touye:'押注换牌↗',laohuan:'戏法换牌↗',erxiang:'选交棒↗',azao:'蓄势／释放↗',xiemu:'留钱／燃金↗'};
++    const short=heroSkillName(this.characterId);
+     const room=Math.max(1,this.view.layout.hud.x+this.view.layout.hud.width-56-this.roleText.x);
+-    const fallback=copy.includes('停用')||copy.includes('不能')?'技能停用':copy.includes('已用')?'本场已用':copy.includes('已选')?'已选 · 点查看':short[this.characterId];
++    const fallback=copy.includes('停用')||copy.includes('不能')?'技能停用':copy.includes('已用')?'本场已用':copy.includes('已选')?'已选 · 点查看':short;
+     this.roleText.setData('fullText',name+' · '+copy).setWordWrapWidth(0);
+     for(const candidate of [copy,fallback]){this.roleText.setText(candidate);if(this.roleText.width<=room)break;}
+   }
+@@ -1293,7 +1291,7 @@ export class GameScene extends Phaser.Scene {
+     const copy=touyeChoice(this.run,ids),seq=this.run.commandSeq;
+     const guide=heroSkillGuide(this.run,this.selectionPreview(),ids);
+     const dialog=this.dialog.open(characterForRun(this.run).name+' · '+characterForRun(this.run).passiveName,copy.details,[],{
+-      guideSteps:heroOperationSteps(this.run,guide),summaryBody:guide.step,effectBody:guide.effect+(copy.enabled&&touyeComboCue(this.run)?'\n'+touyeComboCue(this.run):''),collapseRules:true,rulesLabel:'赌约细则',closeLabel:copy.pending?'返回出牌':'返回 · 保留原出牌选择',
++      guideSteps:heroOperationSteps(this.run,guide),summaryBody:guide.step,effectBody:guide.effect+(copy.enabled&&touyeComboCue(this.run)?'\n'+touyeComboCue(this.run):''),collapseRules:true,rulesLabel:'押注与换牌细则',closeLabel:copy.pending?'返回出牌':'返回 · 保留原出牌选择',
+       choices:copy.pending?[]:copy.choices.map(c=>({label:'押'+c.label,detail:c.reason==='当前整手已可达，不能押'?'整手已可凑出'+c.label+'，不能押':c.reason||undefined,disabled:!this.ready||!c.available,run:()=>{if(this.dialog.active(dialog)&&this.ready&&this.run.commandSeq===seq)this.confirmTouye(c.target,copy.snapshotToken,seq,ids,c.accepted);}})),
+       secondaryActions:[...(!copy.pending?[{label:'重新选弃牌',run:()=>this.inspectTouye()}]:[]),{label:'培养手记',run:()=>this.inspectJourney()},{label:'查看物品',run:()=>showConsumables(this.dialog,this.run,this.ready&&!this.pendingTouye,(a,seq)=>this.command(a,seq))},{label:'上一手详情',disabled:!this.run.lastTrace,run:()=>this.inspectLastTrace()}],
+     });mountHeroSkillGuide(dialog,this.run);
+@@ -1307,10 +1305,10 @@ export class GameScene extends Phaser.Scene {
+     const guide=heroSkillGuide(this.run,this.selectionPreview(),[...this.selectedIds],false,{erxiangTargetId:this.erxiangTargetId});
+     const actions=[
+       ...choice.candidates.map(({card,label,detail})=>({label:(this.erxiangTargetId===card.id?'已选 ':'')+label,detail,primary:this.erxiangTargetId===card.id,disabled:!this.ready,run:()=>{if(!this.ready||this.run.commandSeq!==seq||!erxiangChoice(this.run,this.selectionPreview()).candidates.some(c=>c.card.id===card.id))return;this.erxiangTargetId=card.id;this.dialog.close();this.refreshSelection();}})),
+-      ...(this.erxiangTargetId?[{label:'取消本手交棒',run:()=>{this.erxiangTargetId=null;this.dialog.close();this.refreshSelection();}}]:[]),
++      ...(this.erxiangTargetId?[{label:'取消本手选牌',run:()=>{this.erxiangTargetId=null;this.dialog.close();this.refreshSelection();}}]:[]),
+       {label:'上一手详情',disabled:!this.run.lastTrace,run:()=>this.inspectLastTrace()},
+     ];
+-    const dialog=this.dialog.open(characterForRun(this.run).name+' · '+characterForRun(this.run).passiveName,characterForRun(this.run).passiveDescription,[],{guideSteps:heroOperationSteps(this.run,guide,!!this.erxiangTargetId),summaryBody:guide.step,effectBody:choice.sentence,collapseRules:true,rulesLabel:'交棒细则',closeLabel:'返回选牌',choices:actions.filter(a=>a.label!=='上一手详情'),secondaryActions:actions.filter(a=>a.label==='上一手详情')});mountHeroSkillGuide(dialog,this.run);
++    const dialog=this.dialog.open(characterForRun(this.run).name+' · '+characterForRun(this.run).passiveName,characterForRun(this.run).passiveDescription,[],{guideSteps:heroOperationSteps(this.run,guide,!!this.erxiangTargetId),summaryBody:guide.step,effectBody:choice.sentence,collapseRules:true,rulesLabel:'计分牌转换细则',closeLabel:'返回选牌',choices:actions.filter(a=>a.label!=='上一手详情'),secondaryActions:actions.filter(a=>a.label==='上一手详情')});mountHeroSkillGuide(dialog,this.run);
+   }
+   private inspectHeroExplanation():void {
+     const guide=heroSkillGuide(this.run,this.selectionPreview(),[...this.selectedIds],this.assistProfile&&assistCandidates(this.assistInput(),r2AssistAvailability(this.run).available).length>0,{erxiangTargetId:this.erxiangTargetId,xiemuBurn:this.xiemuBurn,azaoRelease:this.azaoRelease,assistCount:this.assistIds.length});
+@@ -1328,7 +1326,7 @@ export class GameScene extends Phaser.Scene {
+     const roleState=xiemu?xiemu.details:azao?azao.compact+'\n'+azao.hold+'\n默认不释放；在确认出牌前选择，取消不消耗。':!ability?'本次挑战关闭角色被动、初始赠送与押注。':notice?.wagerDisabled?'静场：本场角色计分与押注停用；非计分过关奖励保留。':this.characterId==='xiemu'?(stage.handsLeft===1?'当前为最后一手：倍率 ×2，过关额外 +2 金。':'距离最后一手还有 '+(stage.handsLeft-1)+' 次。'):this.characterId==='touye'?(stage.wagerUsed?'本场押注已用。':stage.wagerSelected?'本手已押注：50% ×2 / 50% ×0.75。':'本场押注未用；默认倍率 ×1.15。'):'';
+     const body=(savedXiemuBurn(this.run)?savedXiemuBurn(this.run)+'\n\n':'')+(savedAzaoCharge(this.run)?savedAzaoCharge(this.run)+'\n\n':'')+(challenge?challenge.name+'：'+challenge.description+'\n\n':'')+(xiemu?roleState+'\n'+(ability?c.passiveDescription:''):(ability?c.passiveDescription+'\n':'')+roleState)+'\n'+this.stage.name+'：'+this.stage.intro+'\n'+(notice?.warning?notice.details+'\n':'')+(stage.boss?'本场压轴':'本章压轴预告')+' '+heroText(r2BossText(stage.boss??this.run.boss))+'\n弃牌成本：'+r2DiscardCost(this.run)+(notice?.discardGoldCost?' 次 +1金币':' 次')+'；本场已弃 '+stage.discardsUsed+' 次。\n当前手牌上限 '+stage.handLimit+'，扩容修正后的硬上限14。\n'+(this.run.jokers.some(joker=>joker.definitionId==='c08')?'少一级：普通顺子可用4张，A234合法；同花顺仍须5张。\n':'')+(this.run.safetyNetUsed?'安全网本局已经使用，不会再次触发。':this.run.jokers.some(joker=>joker.definitionId==='f07')?'安全网：耗尽出牌且仍有可用手牌时救场一次，成功过关不触发。':'');
+     const guide=heroSkillGuide(this.run,this.selectionPreview(),[...this.selectedIds],this.assistProfile&&assistCandidates(this.assistInput(),r2AssistAvailability(this.run).available).length>0,{xiemuBurn:this.xiemuBurn,azaoRelease:this.azaoRelease,assistCount:this.assistIds.length});
+-    const actions=[{label:'培养手记',run:()=>this.inspectJourney()},...(usesLaohuanRefill(this.run)?[{label:this.run.stage?.laohuanTrickUsed?'本场戏法已用':!r2RunModeConfig(this.run).characterAbilityEnabled?'本场戏法停用':'戏法弃'+this.selectedIds.size+'张 · 留应补数',primary:true,disabled:!this.ready||this.run.phase!=='await-input'||!this.selectedIds.size||this.selectedIds.size>5||!!this.run.stage?.laohuanTrickUsed||!r2RunModeConfig(this.run).characterAbilityEnabled||this.run.stage!.discardsLeft<r2DiscardCost(this.run)||this.run.gold<(stageNotice(this.run)?.discardGoldCost??0),run:()=>{this.dialog.close();void this.discardSelected(true);}}]:[]),...(xiemu?[...xiemu.choices.map(choice=>({label:this.xiemuBurn===choice.cost?'已选'+choice.label:choice.label,detail:[choice.reason,choice.details].filter(Boolean).join(' · '),primary:this.xiemuBurn===choice.cost,disabled:!this.ready||!choice.available,run:()=>{if(!this.ready||!xiemuChoice(this.run,this.selectionPreview()?.type).choices.find(c=>c.cost===choice.cost)?.available)return;this.xiemuBurn=choice.cost;this.dialog.close();this.updateControls();}})),...(this.xiemuBurn?[{label:'取消本手燃金',run:()=>{this.xiemuBurn=0;this.dialog.close();this.updateControls();}}]:[])]:[]),...(azao?[{label:azaoReleaseLabel(azao,this.azaoRelease),primary:true,disabled:!this.ready||(!this.azaoRelease&&!azao.available),run:()=>{if(!this.ready||!azaoChoice(this.run,this.selectionPreview()?.type).available){this.erxiangTargetId=null;this.azaoRelease=false;this.xiemuBurn=0;this.dialog.close();this.updateControls();return;}this.azaoRelease=!this.azaoRelease;this.dialog.close();this.updateControls();}}]:[]),{label:'查看物品',run:()=>showConsumables(this.dialog,this.run,this.ready&&!this.pendingRefill&&!this.pendingTouye,(a,seq)=>this.command(a,seq))},{label:'上一手详情',disabled:!this.run.lastTrace,run:()=>this.inspectLastTrace()},...(this.run.program?[{label:'本章节目单',run:()=>showPrograms(this.dialog,this.run,this.ready&&!this.pendingTouye,(a,seq)=>this.command(a,seq))}]:[]),...(this.characterId==='touye'?[{label:notice?.wagerDisabled?'本场不能押注':stage.wagerSelected?'取消本手押注':'押注本手',disabled:!this.ready||stage.wagerUsed||notice?.wagerDisabled,run:async()=>{await this.command({type:'SetWager',enabled:!stage.wagerSelected});if(this.dialog.active(dialog))this.inspectRole();}}]:[])];
++    const actions=[{label:'培养手记',run:()=>this.inspectJourney()},...(usesLaohuanRefill(this.run)?[{label:this.run.stage?.laohuanTrickUsed?'本场'+heroSkillName('laohuan')+'已用':!r2RunModeConfig(this.run).characterAbilityEnabled?'本场'+heroSkillName('laohuan')+'停用':'确认换牌 '+this.selectedIds.size+'张 · 留应补数',primary:true,disabled:!this.ready||this.run.phase!=='await-input'||!this.selectedIds.size||this.selectedIds.size>5||!!this.run.stage?.laohuanTrickUsed||!r2RunModeConfig(this.run).characterAbilityEnabled||this.run.stage!.discardsLeft<r2DiscardCost(this.run)||this.run.gold<(stageNotice(this.run)?.discardGoldCost??0),run:()=>{this.dialog.close();void this.discardSelected(true);}}]:[]),...(xiemu?[...xiemu.choices.map(choice=>({label:this.xiemuBurn===choice.cost?'已选'+choice.label:choice.label,detail:[choice.reason,choice.details].filter(Boolean).join(' · '),primary:this.xiemuBurn===choice.cost,disabled:!this.ready||!choice.available,run:()=>{if(!this.ready||!xiemuChoice(this.run,this.selectionPreview()?.type).choices.find(c=>c.cost===choice.cost)?.available)return;this.xiemuBurn=choice.cost;this.dialog.close();this.updateControls();}})),...(this.xiemuBurn?[{label:'取消本手支付',run:()=>{this.xiemuBurn=0;this.dialog.close();this.updateControls();}}]:[])]:[]),...(azao?[{label:azaoReleaseLabel(azao,this.azaoRelease),primary:true,disabled:!this.ready||(!this.azaoRelease&&!azao.available),run:()=>{if(!this.ready||!azaoChoice(this.run,this.selectionPreview()?.type).available){this.erxiangTargetId=null;this.azaoRelease=false;this.xiemuBurn=0;this.dialog.close();this.updateControls();return;}this.azaoRelease=!this.azaoRelease;this.dialog.close();this.updateControls();}}]:[]),{label:'查看物品',run:()=>showConsumables(this.dialog,this.run,this.ready&&!this.pendingRefill&&!this.pendingTouye,(a,seq)=>this.command(a,seq))},{label:'上一手详情',disabled:!this.run.lastTrace,run:()=>this.inspectLastTrace()},...(this.run.program?[{label:'本章节目单',run:()=>showPrograms(this.dialog,this.run,this.ready&&!this.pendingTouye,(a,seq)=>this.command(a,seq))}]:[]),...(this.characterId==='touye'?[{label:notice?.wagerDisabled?'本场不能押注':stage.wagerSelected?'取消本手押注':'押注本手',disabled:!this.ready||stage.wagerUsed||notice?.wagerDisabled,run:async()=>{await this.command({type:'SetWager',enabled:!stage.wagerSelected});if(this.dialog.active(dialog))this.inspectRole();}}]:[])];
+     const auxiliary=new Set(['培养手记','查看物品','上一手详情','本章节目单']);
+     const choices=actions.filter(a=>!auxiliary.has(a.label));
+     if(this.assistProfile)choices.push({label:'查看主手与助攻组合',primary:true,disabled:!this.ready||!r2AssistAvailability(this.run).available,run:()=>this.inspectCandidates()});
+@@ -1623,7 +1621,7 @@ export class GameScene extends Phaser.Scene {
+         this.audio.sourceCue('boss');await Promise.all([this.floatNote(event.operation==='charge-discard'?'-1 金币':'目标 +'+heatText(event.amount),b.x+b.width/2,b.y+b.height,'#ffd0a2',this.reducedMotion?180:460,context),this.reducedMotion?this.wait(180,context):this.animate({targets:target,scale:{from:1.14,to:1},duration:360,ease:'Back.easeOut'},context)]);
+       });
+       await this.effects.drain();if(!this.alive(lifecycle,intent))return;
+-      this.erxiangTargetId=null;this.azaoRelease=false;this.xiemuBurn=0;this.selectedIds.clear();this.assistIds=[];this.assistGestureStart=undefined;this.statusMessage=bet||this.pendingRefill?'':result.events.flatMap(event=>event.type==='joker-transaction'?[transactionGrowthChange(previousRun,result.state,event,true)].filter(Boolean):[])[0]??(trick?heroText('老幻·戏法已保存 · 候选不足，全留'):'已弃 '+selectedIds.length+' 张 · '+(this.deck.length?'补抽完成':'牌堆已空'));this.updateHud();this.renderHand();this.revealDrawnCards(previousIds);
++      this.erxiangTargetId=null;this.azaoRelease=false;this.xiemuBurn=0;this.selectedIds.clear();this.assistIds=[];this.assistGestureStart=undefined;this.statusMessage=bet||this.pendingRefill?'':result.events.flatMap(event=>event.type==='joker-transaction'?[transactionGrowthChange(previousRun,result.state,event,true)].filter(Boolean):[])[0]??(trick?heroSkillTitle('laohuan')+'已保存 · 候选不足，全留':'已弃 '+selectedIds.length+' 张 · '+(this.deck.length?'补抽完成':'牌堆已空'));this.updateHud();this.renderHand();this.revealDrawnCards(previousIds);
+       if(trick&&!this.pendingRefill){const kept=this.run.handOrder.filter(id=>!previousRun.handOrder.includes(id));await this.showLaohuanPayoff(kept,0,lifecycle,intent);}
+       if(this.run.phase==='run-lost')this.finishStage(false);
+     } finally {if(this.alive(lifecycle,intent)&&['await-input','pending-refill'].includes(this.run.phase)){this.playing=false;this.refreshSelection();}}
+@@ -1634,7 +1632,7 @@ export class GameScene extends Phaser.Scene {
+     const receipt=this.run.receipts.find(r=>r.seq===this.run.commandSeq);if(!receipt)return;
+     const eventId=receipt.commandId+'/laohuan-refill';if(this.shownPayoffs.has(eventId))return;
+     const cards=ids.map(id=>this.run.deckInstances.find(c=>c.id===id)).filter((c):c is PlayingCard=>!!c),names=cards.map(c=>rankLabel(c.rank)+SUIT_SYMBOL[c.suit]).join(' ');
+-    const key:JokerKeyHighlight={eventId,kind:'payoff',heroId:'laohuan',cause:'戏法实际留牌',landing:'留'+cards.length+'张 · 已保存',fact:{eventId,sourceInstanceId:this.run.runId+'/character',definitionId:'',title:characterForRun(this.run).name+' · '+characterForRun(this.run).passiveName+' · 实际留牌',effect:'实际留下 '+names,condition:'原戏法弃/留牌命令成功保存',destination:'当前手牌 · 不增加计分',next:'继续自主选牌'}};
++    const key:JokerKeyHighlight={eventId,kind:'payoff',heroId:'laohuan',cause:heroSkillName('laohuan')+'实际留牌',landing:'留'+cards.length+'张 · 已保存',fact:{eventId,sourceInstanceId:this.run.runId+'/character',definitionId:'',title:characterForRun(this.run).name+' · '+characterForRun(this.run).passiveName+' · 实际留牌',effect:'实际留下 '+names,condition:'换牌与留牌操作成功保存',destination:'当前手牌 · 不增加计分',next:'继续自主选牌'}};
+     this.effects.clear();this.effects.enqueue(async context=>{this.refillPresentation=context;try {const stage=mountHeroClimax(this,this.view.root,{x:0,y:0,...cssViewport(this)},key,{skillName:characterForRun(this.run).passiveName,label:'实际留牌',before:cards.length+'张',after:cards.length+'张',note:'多看'+looked+'张 · '+names+'；不增加计分'},this.reducedMotion);if(!stage){
+       const viewport=cssViewport(this),width=Math.min(480,viewport.width-32),height=140;
+       const group=mountKeyHighlight(this,this.view.root,{x:(viewport.width-width)/2,y:(viewport.height-height)/2,width,height},{...key,heroId:undefined,cause:key.landing+' · 不增加计分'});
+@@ -1684,8 +1682,8 @@ export class GameScene extends Phaser.Scene {
+     if(event.sourceType==='rule'&&event.sourceDefinitionId==='route-growth')return '过关加成';
+     const edition=event.reasonKey.startsWith('edition.')?editionLabel(event.reasonKey.split('.')[1] as PlayingCard['edition'])+' · ':'';
+     if(event.sourceType==='joker')return edition+this.jokerDefinition(event.sourceDefinitionId).name;
+-    if(event.sourceType==='character'&&(event.reasonKey.startsWith('touye.won.')||event.reasonKey.startsWith('touye.lost.')))return heroText('骰爷 · 押')+HAND_LABELS[event.reasonKey.split('.')[2] as TouyeTarget]+(event.reasonKey.startsWith('touye.won.')?'达成':usesTouyeNewCore(this.run)?'输约':'未成');
+-    if(event.sourceType==='character')return getCharacter(this.characterId).name+(event.reasonKey.startsWith('amo.assist.')?' · 助攻':'');
++    if(event.sourceType==='character'&&(event.reasonKey.startsWith('touye.won.')||event.reasonKey.startsWith('touye.lost.')))return heroSkillTitle('touye')+' · 押'+HAND_LABELS[event.reasonKey.split('.')[2] as TouyeTarget]+(event.reasonKey.startsWith('touye.won.')?'达成':usesTouyeNewCore(this.run)?'输约':'未成');
++    if(event.sourceType==='character')return heroSkillTitle(this.characterId);
+     const card=(this.presentation?.score??this.run.lastTrace)?.cards.find(card=>card.id===event.targetCardId);
+     const item=R2_LONG_TERM_ITEMS.find(item=>item.id===event.sourceDefinitionId),tool=R2_TOOLS.find(tool=>tool.id===event.sourceDefinitionId),program=R2_MODE_CATALOG.programs.find(program=>program.id===event.sourceDefinitionId);
+     const boss=R2_BOSSES.find(boss=>boss.id===event.sourceDefinitionId),sealed=(this.presentation?.score??this.run.lastTrace)?.sourceJokers.find(joker=>joker.instanceId===event.targetJokerInstanceId);
