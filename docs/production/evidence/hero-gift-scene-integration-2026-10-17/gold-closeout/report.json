@@ -1,0 +1,163 @@
+{
+  "product": "020e596b4b506a10969433ff1afeec4f0c6f23c5",
+  "workingTree": "?? docs/production/evidence/hero-gift-scene-integration-2026-10-17/\n",
+  "buildInfo": {
+    "version": "C03",
+    "builtAt": "2026-10-17T14:11:27.111Z",
+    "revision": "020e596b4b506a10969433ff1afeec4f0c6f23c5",
+    "sourceStatus": "clean",
+    "modified": false
+  },
+  "browser": "143.0.3650.80",
+  "scope": "Actual compiled GameScene + SavedRun, public import. Six heroes use controlled Scene selections and existing saved gameplay methods; gift success/failure uses real canvas card/play clicks. Original unchanged targets/rules. Not natural acquisition, complete native hero-input coverage, hearing, physical devices or art acceptance.",
+  "cases": [
+    {
+      "key": "gift-full",
+      "viewport": {
+        "width": 390,
+        "height": 740
+      },
+      "errors": [],
+      "status": "PASS",
+      "rest": {
+        "hero": "erxiang",
+        "key": "opening-portrait-erxiang",
+        "bounds": {
+          "type": 5,
+          "x": 197.10859375,
+          "y": 296.03999999999996,
+          "width": 39.782812500000006,
+          "height": 49.68000000000001
+        },
+        "source": {
+          "width": 615,
+          "height": 768
+        },
+        "scale": [
+          0.06468750000000001,
+          0.06468750000000001
+        ],
+        "slots": [
+          {
+            "x": 12,
+            "y": 66,
+            "width": 63.6,
+            "height": 89.03999999999999
+          },
+          {
+            "x": 87.6,
+            "y": 66,
+            "width": 63.6,
+            "height": 89.03999999999999
+          },
+          {
+            "x": 163.2,
+            "y": 66,
+            "width": 63.6,
+            "height": 89.03999999999999
+          },
+          {
+            "x": 238.79999999999998,
+            "y": 66,
+            "width": 63.6,
+            "height": 89.03999999999999
+          },
+          {
+            "x": 314.4,
+            "y": 66,
+            "width": 63.6,
+            "height": 89.03999999999999
+          }
+        ],
+        "score": {
+          "x": 12,
+          "y": 163.04,
+          "width": 366,
+          "height": 126
+        },
+        "hand": {
+          "x": 12,
+          "y": 536.4,
+          "width": 366,
+          "height": 111.6
+        },
+        "inventory": {
+          "type": 5,
+          "x": 266,
+          "y": 488.4,
+          "width": 112,
+          "height": 44
+        },
+        "help": {
+          "x": 12,
+          "y": 309.03999999999996,
+          "width": 44,
+          "height": 44
+        }
+      },
+      "canonicalStateJournalStorage": true,
+      "action": {
+        "type": "PlayHand",
+        "selectedIds": [
+          "spades-10",
+          "spades-11",
+          "spades-12",
+          "spades-13",
+          "spades-14"
+        ]
+      },
+      "heroCalls": [],
+      "giftCalls": [
+        {
+          "fact": {
+            "key": "fixture/stage-gift/fixture/stage-gift/clear/3/fixture/stage-gift/hand/fixture/stage-gift/command/4/event/7",
+            "eventId": "fixture/stage-gift/hand/fixture/stage-gift/command/4/event/7",
+            "commandId": "fixture/stage-gift/command/4",
+            "clearId": "fixture/stage-gift/clear/3",
+            "sourceInstanceId": "owned/c12",
+            "sourceName": "锦上添花",
+            "rewardDefinitionId": "T04",
+            "rewardName": "方片染",
+            "destination": "gold",
+            "amount": 2,
+            "before": 30,
+            "after": 32,
+            "inventoryBefore": 2,
+            "inventoryAfter": 2,
+            "capacity": 2
+          },
+          "seq": 4,
+          "status": "idle",
+          "at": 5648.300000011921,
+          "result": "complete"
+        }
+      ],
+      "arrivals": [
+        {
+          "fact": {
+            "key": "fixture/stage-gift/fixture/stage-gift/clear/3/fixture/stage-gift/hand/fixture/stage-gift/command/4/event/7",
+            "eventId": "fixture/stage-gift/hand/fixture/stage-gift/command/4/event/7",
+            "commandId": "fixture/stage-gift/command/4",
+            "clearId": "fixture/stage-gift/clear/3",
+            "sourceInstanceId": "owned/c12",
+            "sourceName": "锦上添花",
+            "rewardDefinitionId": "T04",
+            "rewardName": "方片染",
+            "destination": "gold",
+            "amount": 2,
+            "before": 30,
+            "after": 32,
+            "inventoryBefore": 2,
+            "inventoryAfter": 2,
+            "capacity": 2
+          },
+          "at": 6431.5,
+          "inventory": "道具箱 2/2",
+          "gold": "金币 32"
+        }
+      ],
+      "frames": 142
+    }
+  ],
+  "status": "PASS"
+}

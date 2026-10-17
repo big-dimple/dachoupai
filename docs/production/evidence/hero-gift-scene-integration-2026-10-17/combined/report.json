@@ -1,0 +1,1545 @@
+{
+  "product": "d0aa27f3f81a1610b8753eb5be7381e1c967d7ae",
+  "workingTree": "?? docs/production/evidence/hero-gift-scene-integration-2026-10-17/\n",
+  "buildInfo": {
+    "version": "C03",
+    "builtAt": "2026-10-17T14:06:30.544Z",
+    "revision": "d0aa27f3f81a1610b8753eb5be7381e1c967d7ae",
+    "sourceStatus": "clean",
+    "modified": false
+  },
+  "browser": "143.0.3650.80",
+  "scope": "Actual compiled GameScene + SavedRun, public import. Six heroes use controlled Scene selections and existing saved gameplay methods; gift success/failure uses real canvas card/play clicks. Original unchanged targets/rules. Not natural acquisition, complete native hero-input coverage, hearing, physical devices or art acceptance.",
+  "cases": [
+    {
+      "key": "hero-amo",
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      },
+      "errors": [],
+      "status": "PASS",
+      "rest": {
+        "hero": "amo",
+        "key": "opening-portrait-amo",
+        "bounds": {
+          "type": 5,
+          "x": 24,
+          "y": 324.6219512195122,
+          "width": 200,
+          "height": 249.7560975609756
+        },
+        "source": {
+          "width": 615,
+          "height": 768
+        },
+        "scale": [
+          0.3252032520325203,
+          0.3252032520325203
+        ],
+        "slots": [
+          {
+            "x": 397,
+            "y": 64,
+            "width": 104,
+            "height": 145.6
+          },
+          {
+            "x": 537,
+            "y": 64,
+            "width": 104,
+            "height": 145.6
+          },
+          {
+            "x": 677,
+            "y": 64,
+            "width": 104,
+            "height": 145.6
+          },
+          {
+            "x": 817,
+            "y": 64,
+            "width": 104,
+            "height": 145.6
+          },
+          {
+            "x": 957,
+            "y": 64,
+            "width": 104,
+            "height": 145.6
+          }
+        ],
+        "score": {
+          "x": 349,
+          "y": 232,
+          "width": 760,
+          "height": 114.22400000000005
+        },
+        "hand": {
+          "x": 252,
+          "y": 514.224,
+          "width": 954,
+          "height": 161.77599999999998
+        },
+        "inventory": {
+          "type": 5,
+          "x": 24,
+          "y": 642,
+          "width": 200,
+          "height": 44
+        },
+        "help": {
+          "x": 24,
+          "y": 694,
+          "width": 200,
+          "height": 44
+        }
+      },
+      "canonicalStateJournalStorage": true,
+      "action": {
+        "type": "PlayAssistedHand",
+        "selectedIds": [
+          "spades-2",
+          "spades-3",
+          "spades-4",
+          "spades-5"
+        ],
+        "assistIds": [
+          "spades-6",
+          "spades-7"
+        ]
+      },
+      "heroCalls": [
+        {
+          "method": "play",
+          "eventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/9",
+          "seq": 4,
+          "status": "idle",
+          "phases": [
+            {
+              "phase": "waiting",
+              "at": 5592
+            },
+            {
+              "phase": "impact",
+              "at": 5754.29999999702
+            },
+            {
+              "phase": "rebound",
+              "at": 5846.29999999702
+            },
+            {
+              "phase": "rest",
+              "at": 5884.20000000298
+            }
+          ]
+        }
+      ],
+      "giftCalls": [],
+      "arrivals": [],
+      "frames": 124
+    },
+    {
+      "key": "hero-touye",
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      },
+      "errors": [],
+      "status": "PASS",
+      "rest": {
+        "hero": "touye",
+        "key": "opening-portrait-touye",
+        "bounds": {
+          "type": 5,
+          "x": 24,
+          "y": 324.6219512195122,
+          "width": 200,
+          "height": 249.7560975609756
+        },
+        "source": {
+          "width": 615,
+          "height": 768
+        },
+        "scale": [
+          0.3252032520325203,
+          0.3252032520325203
+        ],
+        "slots": [
+          {
+            "x": 397,
+            "y": 64,
+            "width": 104,
+            "height": 145.6
+          },
+          {
+            "x": 537,
+            "y": 64,
+            "width": 104,
+            "height": 145.6
+          },
+          {
+            "x": 677,
+            "y": 64,
+            "width": 104,
+            "height": 145.6
+          },
+          {
+            "x": 817,
+            "y": 64,
+            "width": 104,
+            "height": 145.6
+          },
+          {
+            "x": 957,
+            "y": 64,
+            "width": 104,
+            "height": 145.6
+          }
+        ],
+        "score": {
+          "x": 349,
+          "y": 232,
+          "width": 760,
+          "height": 114.22400000000005
+        },
+        "hand": {
+          "x": 252,
+          "y": 514.224,
+          "width": 954,
+          "height": 161.77599999999998
+        },
+        "inventory": {
+          "type": 5,
+          "x": 24,
+          "y": 642,
+          "width": 200,
+          "height": 44
+        },
+        "help": {
+          "x": 24,
+          "y": 694,
+          "width": 200,
+          "height": 44
+        }
+      },
+      "canonicalStateJournalStorage": true,
+      "action": {
+        "type": "PlayHand",
+        "selectedIds": [
+          "spades-9",
+          "clubs-9",
+          "clubs-13",
+          "diamonds-13"
+        ]
+      },
+      "heroCalls": [
+        {
+          "method": "play",
+          "eventId": "core/mature-win/hand/core/mature-win/command/5/event/5",
+          "seq": 5,
+          "status": "idle",
+          "phases": [
+            {
+              "phase": "waiting",
+              "at": 4248.5999999940395
+            },
+            {
+              "phase": "impact",
+              "at": 4411.0999999940395
+            },
+            {
+              "phase": "rebound",
+              "at": 4502.899999991059
+            },
+            {
+              "phase": "rest",
+              "at": 4540.399999991059
+            }
+          ]
+        }
+      ],
+      "giftCalls": [],
+      "arrivals": [],
+      "frames": 84
+    },
+    {
+      "key": "hero-azao",
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      },
+      "errors": [],
+      "status": "PASS",
+      "rest": {
+        "hero": "azao",
+        "key": "opening-portrait-azao",
+        "bounds": {
+          "type": 5,
+          "x": 24,
+          "y": 324.6219512195122,
+          "width": 200,
+          "height": 249.7560975609756
+        },
+        "source": {
+          "width": 615,
+          "height": 768
+        },
+        "scale": [
+          0.3252032520325203,
+          0.3252032520325203
+        ],
+        "slots": [
+          {
+            "x": 397,
+            "y": 64,
+            "width": 104,
+            "height": 145.6
+          },
+          {
+            "x": 537,
+            "y": 64,
+            "width": 104,
+            "height": 145.6
+          },
+          {
+            "x": 677,
+            "y": 64,
+            "width": 104,
+            "height": 145.6
+          },
+          {
+            "x": 817,
+            "y": 64,
+            "width": 104,
+            "height": 145.6
+          },
+          {
+            "x": 957,
+            "y": 64,
+            "width": 104,
+            "height": 145.6
+          }
+        ],
+        "score": {
+          "x": 349,
+          "y": 232,
+          "width": 760,
+          "height": 114.22400000000005
+        },
+        "hand": {
+          "x": 252,
+          "y": 514.224,
+          "width": 954,
+          "height": 161.77599999999998
+        },
+        "inventory": {
+          "type": 5,
+          "x": 24,
+          "y": 642,
+          "width": 200,
+          "height": 44
+        },
+        "help": {
+          "x": 24,
+          "y": 694,
+          "width": 200,
+          "height": 44
+        }
+      },
+      "canonicalStateJournalStorage": true,
+      "action": {
+        "type": "PlayHand",
+        "selectedIds": [
+          "spades-3",
+          "hearts-3",
+          "clubs-4",
+          "diamonds-4"
+        ],
+        "azaoRelease": true
+      },
+      "heroCalls": [
+        {
+          "method": "play",
+          "eventId": "dynamic-review/azao/hand/dynamic-review/azao/command/9/event/6",
+          "seq": 9,
+          "status": "idle",
+          "phases": [
+            {
+              "phase": "waiting",
+              "at": 4083
+            },
+            {
+              "phase": "impact",
+              "at": 4247.20000000298
+            },
+            {
+              "phase": "rebound",
+              "at": 4339.4000000059605
+            },
+            {
+              "phase": "rest",
+              "at": 4376.20000000298
+            }
+          ]
+        }
+      ],
+      "giftCalls": [],
+      "arrivals": [],
+      "frames": 75
+    },
+    {
+      "key": "hero-erxiang",
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      },
+      "errors": [],
+      "status": "PASS",
+      "rest": {
+        "hero": "erxiang",
+        "key": "opening-portrait-erxiang",
+        "bounds": {
+          "type": 5,
+          "x": 24,
+          "y": 324.6219512195122,
+          "width": 200,
+          "height": 249.7560975609756
+        },
+        "source": {
+          "width": 615,
+          "height": 768
+        },
+        "scale": [
+          0.3252032520325203,
+          0.3252032520325203
+        ],
+        "slots": [
+          {
+            "x": 397,
+            "y": 64,
+            "width": 104,
+            "height": 145.6
+          },
+          {
+            "x": 537,
+            "y": 64,
+            "width": 104,
+            "height": 145.6
+          },
+          {
+            "x": 677,
+            "y": 64,
+            "width": 104,
+            "height": 145.6
+          },
+          {
+            "x": 817,
+            "y": 64,
+            "width": 104,
+            "height": 145.6
+          },
+          {
+            "x": 957,
+            "y": 64,
+            "width": 104,
+            "height": 145.6
+          }
+        ],
+        "score": {
+          "x": 349,
+          "y": 232,
+          "width": 760,
+          "height": 114.22400000000005
+        },
+        "hand": {
+          "x": 252,
+          "y": 514.224,
+          "width": 954,
+          "height": 161.77599999999998
+        },
+        "inventory": {
+          "type": 5,
+          "x": 24,
+          "y": 642,
+          "width": 200,
+          "height": 44
+        },
+        "help": {
+          "x": 24,
+          "y": 694,
+          "width": 200,
+          "height": 44
+        }
+      },
+      "canonicalStateJournalStorage": true,
+      "action": {
+        "type": "PlayHand",
+        "selectedIds": [
+          "clubs-6",
+          "hearts-6"
+        ],
+        "erxiangTargetId": "hearts-6"
+      },
+      "heroCalls": [
+        {
+          "method": "play",
+          "eventId": "controlled/liue-target-attachment/hand/controlled/liue-target-attachment/command/4/event/3",
+          "seq": 4,
+          "status": "idle",
+          "phases": [
+            {
+              "phase": "waiting",
+              "at": 3074
+            },
+            {
+              "phase": "impact",
+              "at": 3206.2999999970198
+            },
+            {
+              "phase": "rebound",
+              "at": 3263.0999999940395
+            },
+            {
+              "phase": "rest",
+              "at": 3299.8999999910593
+            }
+          ]
+        }
+      ],
+      "giftCalls": [],
+      "arrivals": [],
+      "frames": 69
+    },
+    {
+      "key": "hero-xiemu",
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      },
+      "errors": [],
+      "status": "PASS",
+      "rest": {
+        "hero": "xiemu",
+        "key": "opening-portrait-xiemu",
+        "bounds": {
+          "type": 5,
+          "x": 24,
+          "y": 324.6219512195122,
+          "width": 200,
+          "height": 249.7560975609756
+        },
+        "source": {
+          "width": 615,
+          "height": 768
+        },
+        "scale": [
+          0.3252032520325203,
+          0.3252032520325203
+        ],
+        "slots": [
+          {
+            "x": 397,
+            "y": 64,
+            "width": 104,
+            "height": 145.6
+          },
+          {
+            "x": 537,
+            "y": 64,
+            "width": 104,
+            "height": 145.6
+          },
+          {
+            "x": 677,
+            "y": 64,
+            "width": 104,
+            "height": 145.6
+          },
+          {
+            "x": 817,
+            "y": 64,
+            "width": 104,
+            "height": 145.6
+          },
+          {
+            "x": 957,
+            "y": 64,
+            "width": 104,
+            "height": 145.6
+          }
+        ],
+        "score": {
+          "x": 349,
+          "y": 232,
+          "width": 760,
+          "height": 114.22400000000005
+        },
+        "hand": {
+          "x": 252,
+          "y": 514.224,
+          "width": 954,
+          "height": 161.77599999999998
+        },
+        "inventory": {
+          "type": 5,
+          "x": 24,
+          "y": 642,
+          "width": 200,
+          "height": 44
+        },
+        "help": {
+          "x": 24,
+          "y": 694,
+          "width": 200,
+          "height": 44
+        }
+      },
+      "canonicalStateJournalStorage": true,
+      "action": {
+        "type": "PlayHand",
+        "selectedIds": [
+          "spades-3",
+          "hearts-3",
+          "clubs-4",
+          "diamonds-4"
+        ],
+        "xiemuBurn": 10
+      },
+      "heroCalls": [
+        {
+          "method": "play",
+          "eventId": "dynamic-review/xiemu/hand/dynamic-review/xiemu/command/8/event/6",
+          "seq": 8,
+          "status": "idle",
+          "phases": [
+            {
+              "phase": "waiting",
+              "at": 4117.899999991059
+            },
+            {
+              "phase": "impact",
+              "at": 4281.0999999940395
+            },
+            {
+              "phase": "rebound",
+              "at": 4372.29999999702
+            },
+            {
+              "phase": "rest",
+              "at": 4410.899999991059
+            }
+          ]
+        }
+      ],
+      "giftCalls": [],
+      "arrivals": [],
+      "frames": 75
+    },
+    {
+      "key": "hero-laohuan",
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      },
+      "errors": [],
+      "status": "PASS",
+      "rest": {
+        "hero": "laohuan",
+        "key": "opening-portrait-laohuan",
+        "bounds": {
+          "type": 5,
+          "x": 24,
+          "y": 324.6219512195122,
+          "width": 200,
+          "height": 249.7560975609756
+        },
+        "source": {
+          "width": 615,
+          "height": 768
+        },
+        "scale": [
+          0.3252032520325203,
+          0.3252032520325203
+        ],
+        "slots": [
+          {
+            "x": 397,
+            "y": 64,
+            "width": 104,
+            "height": 145.6
+          },
+          {
+            "x": 537,
+            "y": 64,
+            "width": 104,
+            "height": 145.6
+          },
+          {
+            "x": 677,
+            "y": 64,
+            "width": 104,
+            "height": 145.6
+          },
+          {
+            "x": 817,
+            "y": 64,
+            "width": 104,
+            "height": 145.6
+          },
+          {
+            "x": 957,
+            "y": 64,
+            "width": 104,
+            "height": 145.6
+          }
+        ],
+        "score": {
+          "x": 349,
+          "y": 232,
+          "width": 760,
+          "height": 114.22400000000005
+        },
+        "hand": {
+          "x": 252,
+          "y": 514.224,
+          "width": 954,
+          "height": 161.77599999999998
+        },
+        "inventory": {
+          "type": 5,
+          "x": 24,
+          "y": 642,
+          "width": 200,
+          "height": 44
+        },
+        "help": {
+          "x": 24,
+          "y": 694,
+          "width": 200,
+          "height": 44
+        }
+      },
+      "canonicalStateJournalStorage": true,
+      "action": {
+        "type": "ChooseRefill",
+        "selectedIds": [
+          "clubs-11",
+          "spades-5"
+        ]
+      },
+      "heroCalls": [
+        {
+          "method": "playRefill",
+          "seq": 5,
+          "status": "idle",
+          "phases": [
+            {
+              "phase": "waiting",
+              "at": 2362.800000011921
+            },
+            {
+              "phase": "impact",
+              "at": 2363.4000000059605
+            },
+            {
+              "phase": "rebound",
+              "at": 2393.1000000089407
+            },
+            {
+              "phase": "rest",
+              "at": 2446.4000000059605
+            }
+          ]
+        }
+      ],
+      "giftCalls": [],
+      "arrivals": [],
+      "frames": 39
+    },
+    {
+      "key": "gift-pc",
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      },
+      "errors": [],
+      "status": "PASS",
+      "rest": {
+        "hero": "erxiang",
+        "key": "opening-portrait-erxiang",
+        "bounds": {
+          "type": 5,
+          "x": 24,
+          "y": 324.6219512195122,
+          "width": 200,
+          "height": 249.7560975609756
+        },
+        "source": {
+          "width": 615,
+          "height": 768
+        },
+        "scale": [
+          0.3252032520325203,
+          0.3252032520325203
+        ],
+        "slots": [
+          {
+            "x": 397,
+            "y": 64,
+            "width": 104,
+            "height": 145.6
+          },
+          {
+            "x": 537,
+            "y": 64,
+            "width": 104,
+            "height": 145.6
+          },
+          {
+            "x": 677,
+            "y": 64,
+            "width": 104,
+            "height": 145.6
+          },
+          {
+            "x": 817,
+            "y": 64,
+            "width": 104,
+            "height": 145.6
+          },
+          {
+            "x": 957,
+            "y": 64,
+            "width": 104,
+            "height": 145.6
+          }
+        ],
+        "score": {
+          "x": 349,
+          "y": 232,
+          "width": 760,
+          "height": 114.22400000000005
+        },
+        "hand": {
+          "x": 252,
+          "y": 514.224,
+          "width": 954,
+          "height": 161.77599999999998
+        },
+        "inventory": {
+          "type": 5,
+          "x": 24,
+          "y": 642,
+          "width": 200,
+          "height": 44
+        },
+        "help": {
+          "x": 24,
+          "y": 694,
+          "width": 200,
+          "height": 44
+        }
+      },
+      "canonicalStateJournalStorage": true,
+      "action": {
+        "type": "PlayHand",
+        "selectedIds": [
+          "spades-10",
+          "spades-11",
+          "spades-12",
+          "spades-13",
+          "spades-14"
+        ]
+      },
+      "heroCalls": [],
+      "giftCalls": [
+        {
+          "fact": {
+            "key": "fixture/stage-gift/fixture/stage-gift/clear/3/fixture/stage-gift/hand/fixture/stage-gift/command/4/event/7",
+            "eventId": "fixture/stage-gift/hand/fixture/stage-gift/command/4/event/7",
+            "commandId": "fixture/stage-gift/command/4",
+            "clearId": "fixture/stage-gift/clear/3",
+            "sourceInstanceId": "owned/c12",
+            "sourceName": "锦上添花",
+            "rewardDefinitionId": "T04",
+            "rewardName": "方片染",
+            "destination": "tools",
+            "amount": 1,
+            "before": 0,
+            "after": 1,
+            "inventoryBefore": 0,
+            "inventoryAfter": 1,
+            "capacity": 2,
+            "itemInstanceId": "fixture/stage-gift/clear/3/joker-reward/owned/c12/T04"
+          },
+          "seq": 4,
+          "status": "idle",
+          "at": 5298.9000000059605,
+          "result": "complete"
+        }
+      ],
+      "arrivals": [
+        {
+          "fact": {
+            "key": "fixture/stage-gift/fixture/stage-gift/clear/3/fixture/stage-gift/hand/fixture/stage-gift/command/4/event/7",
+            "eventId": "fixture/stage-gift/hand/fixture/stage-gift/command/4/event/7",
+            "commandId": "fixture/stage-gift/command/4",
+            "clearId": "fixture/stage-gift/clear/3",
+            "sourceInstanceId": "owned/c12",
+            "sourceName": "锦上添花",
+            "rewardDefinitionId": "T04",
+            "rewardName": "方片染",
+            "destination": "tools",
+            "amount": 1,
+            "before": 0,
+            "after": 1,
+            "inventoryBefore": 0,
+            "inventoryAfter": 1,
+            "capacity": 2,
+            "itemInstanceId": "fixture/stage-gift/clear/3/joker-reward/owned/c12/T04"
+          },
+          "at": 6081.29999999702,
+          "inventory": "道具箱 1/2",
+          "gold": "金币 30\n还需 0 热度"
+        }
+      ],
+      "frames": 141
+    },
+    {
+      "key": "gift-phone",
+      "viewport": {
+        "width": 390,
+        "height": 740
+      },
+      "errors": [],
+      "status": "PASS",
+      "rest": {
+        "hero": "erxiang",
+        "key": "opening-portrait-erxiang",
+        "bounds": {
+          "type": 5,
+          "x": 197.10859375,
+          "y": 296.03999999999996,
+          "width": 39.782812500000006,
+          "height": 49.68000000000001
+        },
+        "source": {
+          "width": 615,
+          "height": 768
+        },
+        "scale": [
+          0.06468750000000001,
+          0.06468750000000001
+        ],
+        "slots": [
+          {
+            "x": 12,
+            "y": 66,
+            "width": 63.6,
+            "height": 89.03999999999999
+          },
+          {
+            "x": 87.6,
+            "y": 66,
+            "width": 63.6,
+            "height": 89.03999999999999
+          },
+          {
+            "x": 163.2,
+            "y": 66,
+            "width": 63.6,
+            "height": 89.03999999999999
+          },
+          {
+            "x": 238.79999999999998,
+            "y": 66,
+            "width": 63.6,
+            "height": 89.03999999999999
+          },
+          {
+            "x": 314.4,
+            "y": 66,
+            "width": 63.6,
+            "height": 89.03999999999999
+          }
+        ],
+        "score": {
+          "x": 12,
+          "y": 163.04,
+          "width": 366,
+          "height": 126
+        },
+        "hand": {
+          "x": 12,
+          "y": 536.4,
+          "width": 366,
+          "height": 111.6
+        },
+        "inventory": {
+          "type": 5,
+          "x": 266,
+          "y": 488.4,
+          "width": 112,
+          "height": 44
+        },
+        "help": {
+          "x": 12,
+          "y": 309.03999999999996,
+          "width": 44,
+          "height": 44
+        }
+      },
+      "canonicalStateJournalStorage": true,
+      "action": {
+        "type": "PlayHand",
+        "selectedIds": [
+          "spades-10",
+          "spades-11",
+          "spades-12",
+          "spades-13",
+          "spades-14"
+        ]
+      },
+      "heroCalls": [],
+      "giftCalls": [
+        {
+          "fact": {
+            "key": "fixture/stage-gift/fixture/stage-gift/clear/3/fixture/stage-gift/hand/fixture/stage-gift/command/4/event/7",
+            "eventId": "fixture/stage-gift/hand/fixture/stage-gift/command/4/event/7",
+            "commandId": "fixture/stage-gift/command/4",
+            "clearId": "fixture/stage-gift/clear/3",
+            "sourceInstanceId": "owned/c12",
+            "sourceName": "锦上添花",
+            "rewardDefinitionId": "T04",
+            "rewardName": "方片染",
+            "destination": "tools",
+            "amount": 1,
+            "before": 0,
+            "after": 1,
+            "inventoryBefore": 0,
+            "inventoryAfter": 1,
+            "capacity": 2,
+            "itemInstanceId": "fixture/stage-gift/clear/3/joker-reward/owned/c12/T04"
+          },
+          "seq": 4,
+          "status": "idle",
+          "at": 5193,
+          "result": "complete"
+        }
+      ],
+      "arrivals": [
+        {
+          "fact": {
+            "key": "fixture/stage-gift/fixture/stage-gift/clear/3/fixture/stage-gift/hand/fixture/stage-gift/command/4/event/7",
+            "eventId": "fixture/stage-gift/hand/fixture/stage-gift/command/4/event/7",
+            "commandId": "fixture/stage-gift/command/4",
+            "clearId": "fixture/stage-gift/clear/3",
+            "sourceInstanceId": "owned/c12",
+            "sourceName": "锦上添花",
+            "rewardDefinitionId": "T04",
+            "rewardName": "方片染",
+            "destination": "tools",
+            "amount": 1,
+            "before": 0,
+            "after": 1,
+            "inventoryBefore": 0,
+            "inventoryAfter": 1,
+            "capacity": 2,
+            "itemInstanceId": "fixture/stage-gift/clear/3/joker-reward/owned/c12/T04"
+          },
+          "at": 5973.9000000059605,
+          "inventory": "道具箱 1/2",
+          "gold": "金币 30"
+        }
+      ],
+      "frames": 142
+    },
+    {
+      "key": "gift-full",
+      "viewport": {
+        "width": 390,
+        "height": 740
+      },
+      "errors": [],
+      "status": "PASS",
+      "rest": {
+        "hero": "erxiang",
+        "key": "opening-portrait-erxiang",
+        "bounds": {
+          "type": 5,
+          "x": 197.10859375,
+          "y": 296.03999999999996,
+          "width": 39.782812500000006,
+          "height": 49.68000000000001
+        },
+        "source": {
+          "width": 615,
+          "height": 768
+        },
+        "scale": [
+          0.06468750000000001,
+          0.06468750000000001
+        ],
+        "slots": [
+          {
+            "x": 12,
+            "y": 66,
+            "width": 63.6,
+            "height": 89.03999999999999
+          },
+          {
+            "x": 87.6,
+            "y": 66,
+            "width": 63.6,
+            "height": 89.03999999999999
+          },
+          {
+            "x": 163.2,
+            "y": 66,
+            "width": 63.6,
+            "height": 89.03999999999999
+          },
+          {
+            "x": 238.79999999999998,
+            "y": 66,
+            "width": 63.6,
+            "height": 89.03999999999999
+          },
+          {
+            "x": 314.4,
+            "y": 66,
+            "width": 63.6,
+            "height": 89.03999999999999
+          }
+        ],
+        "score": {
+          "x": 12,
+          "y": 163.04,
+          "width": 366,
+          "height": 126
+        },
+        "hand": {
+          "x": 12,
+          "y": 536.4,
+          "width": 366,
+          "height": 111.6
+        },
+        "inventory": {
+          "type": 5,
+          "x": 266,
+          "y": 488.4,
+          "width": 112,
+          "height": 44
+        },
+        "help": {
+          "x": 12,
+          "y": 309.03999999999996,
+          "width": 44,
+          "height": 44
+        }
+      },
+      "canonicalStateJournalStorage": true,
+      "action": {
+        "type": "PlayHand",
+        "selectedIds": [
+          "spades-10",
+          "spades-11",
+          "spades-12",
+          "spades-13",
+          "spades-14"
+        ]
+      },
+      "heroCalls": [],
+      "giftCalls": [
+        {
+          "fact": {
+            "key": "fixture/stage-gift/fixture/stage-gift/clear/3/fixture/stage-gift/hand/fixture/stage-gift/command/4/event/7",
+            "eventId": "fixture/stage-gift/hand/fixture/stage-gift/command/4/event/7",
+            "commandId": "fixture/stage-gift/command/4",
+            "clearId": "fixture/stage-gift/clear/3",
+            "sourceInstanceId": "owned/c12",
+            "sourceName": "锦上添花",
+            "rewardDefinitionId": "T04",
+            "rewardName": "方片染",
+            "destination": "gold",
+            "amount": 2,
+            "before": 30,
+            "after": 32,
+            "inventoryBefore": 2,
+            "inventoryAfter": 2,
+            "capacity": 2
+          },
+          "seq": 4,
+          "status": "idle",
+          "at": 5231.5,
+          "result": "complete"
+        }
+      ],
+      "arrivals": [
+        {
+          "fact": {
+            "key": "fixture/stage-gift/fixture/stage-gift/clear/3/fixture/stage-gift/hand/fixture/stage-gift/command/4/event/7",
+            "eventId": "fixture/stage-gift/hand/fixture/stage-gift/command/4/event/7",
+            "commandId": "fixture/stage-gift/command/4",
+            "clearId": "fixture/stage-gift/clear/3",
+            "sourceInstanceId": "owned/c12",
+            "sourceName": "锦上添花",
+            "rewardDefinitionId": "T04",
+            "rewardName": "方片染",
+            "destination": "gold",
+            "amount": 2,
+            "before": 30,
+            "after": 32,
+            "inventoryBefore": 2,
+            "inventoryAfter": 2,
+            "capacity": 2
+          },
+          "at": 6014.899999991059,
+          "inventory": "道具箱 2/2",
+          "gold": "金币 32"
+        }
+      ],
+      "frames": 142
+    },
+    {
+      "key": "gift-cancel",
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      },
+      "errors": [],
+      "status": "PASS",
+      "rest": {
+        "hero": "erxiang",
+        "key": "opening-portrait-erxiang",
+        "bounds": {
+          "type": 5,
+          "x": 24,
+          "y": 324.6219512195122,
+          "width": 200,
+          "height": 249.7560975609756
+        },
+        "source": {
+          "width": 615,
+          "height": 768
+        },
+        "scale": [
+          0.3252032520325203,
+          0.3252032520325203
+        ],
+        "slots": [
+          {
+            "x": 397,
+            "y": 64,
+            "width": 104,
+            "height": 145.6
+          },
+          {
+            "x": 537,
+            "y": 64,
+            "width": 104,
+            "height": 145.6
+          },
+          {
+            "x": 677,
+            "y": 64,
+            "width": 104,
+            "height": 145.6
+          },
+          {
+            "x": 817,
+            "y": 64,
+            "width": 104,
+            "height": 145.6
+          },
+          {
+            "x": 957,
+            "y": 64,
+            "width": 104,
+            "height": 145.6
+          }
+        ],
+        "score": {
+          "x": 349,
+          "y": 232,
+          "width": 760,
+          "height": 114.22400000000005
+        },
+        "hand": {
+          "x": 252,
+          "y": 514.224,
+          "width": 954,
+          "height": 161.77599999999998
+        },
+        "inventory": {
+          "type": 5,
+          "x": 24,
+          "y": 642,
+          "width": 200,
+          "height": 44
+        },
+        "help": {
+          "x": 24,
+          "y": 694,
+          "width": 200,
+          "height": 44
+        }
+      },
+      "canonicalStateJournalStorage": true,
+      "action": {
+        "type": "PlayHand",
+        "selectedIds": [
+          "spades-10",
+          "spades-11",
+          "spades-12",
+          "spades-13",
+          "spades-14"
+        ]
+      },
+      "heroCalls": [],
+      "giftCalls": [
+        {
+          "fact": {
+            "key": "fixture/stage-gift/fixture/stage-gift/clear/3/fixture/stage-gift/hand/fixture/stage-gift/command/4/event/7",
+            "eventId": "fixture/stage-gift/hand/fixture/stage-gift/command/4/event/7",
+            "commandId": "fixture/stage-gift/command/4",
+            "clearId": "fixture/stage-gift/clear/3",
+            "sourceInstanceId": "owned/c12",
+            "sourceName": "锦上添花",
+            "rewardDefinitionId": "T04",
+            "rewardName": "方片染",
+            "destination": "tools",
+            "amount": 1,
+            "before": 0,
+            "after": 1,
+            "inventoryBefore": 0,
+            "inventoryAfter": 1,
+            "capacity": 2,
+            "itemInstanceId": "fixture/stage-gift/clear/3/joker-reward/owned/c12/T04"
+          },
+          "seq": 4,
+          "status": "idle",
+          "at": 4867.5,
+          "result": "cancelled"
+        }
+      ],
+      "arrivals": [],
+      "frames": 96
+    },
+    {
+      "key": "gift-save-failed",
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      },
+      "errors": [],
+      "status": "PASS",
+      "rest": {
+        "hero": "erxiang",
+        "key": "opening-portrait-erxiang",
+        "bounds": {
+          "type": 5,
+          "x": 24,
+          "y": 324.6219512195122,
+          "width": 200,
+          "height": 249.7560975609756
+        },
+        "source": {
+          "width": 615,
+          "height": 768
+        },
+        "scale": [
+          0.3252032520325203,
+          0.3252032520325203
+        ],
+        "slots": [
+          {
+            "x": 397,
+            "y": 64,
+            "width": 104,
+            "height": 145.6
+          },
+          {
+            "x": 537,
+            "y": 64,
+            "width": 104,
+            "height": 145.6
+          },
+          {
+            "x": 677,
+            "y": 64,
+            "width": 104,
+            "height": 145.6
+          },
+          {
+            "x": 817,
+            "y": 64,
+            "width": 104,
+            "height": 145.6
+          },
+          {
+            "x": 957,
+            "y": 64,
+            "width": 104,
+            "height": 145.6
+          }
+        ],
+        "score": {
+          "x": 349,
+          "y": 232,
+          "width": 760,
+          "height": 114.22400000000005
+        },
+        "hand": {
+          "x": 252,
+          "y": 514.224,
+          "width": 954,
+          "height": 161.77599999999998
+        },
+        "inventory": {
+          "type": 5,
+          "x": 24,
+          "y": 642,
+          "width": 200,
+          "height": 44
+        },
+        "help": {
+          "x": 24,
+          "y": 694,
+          "width": 200,
+          "height": 44
+        }
+      },
+      "savedStateUnchanged": true,
+      "heroCalls": [],
+      "giftCalls": [],
+      "arrivals": [],
+      "frames": 14
+    },
+    {
+      "key": "hero-phone-reduced",
+      "viewport": {
+        "width": 390,
+        "height": 740
+      },
+      "errors": [],
+      "status": "PASS",
+      "rest": {
+        "hero": "erxiang",
+        "key": "opening-portrait-erxiang",
+        "bounds": {
+          "type": 5,
+          "x": 197.10859375,
+          "y": 296.03999999999996,
+          "width": 39.782812500000006,
+          "height": 49.68000000000001
+        },
+        "source": {
+          "width": 615,
+          "height": 768
+        },
+        "scale": [
+          0.06468750000000001,
+          0.06468750000000001
+        ],
+        "slots": [
+          {
+            "x": 12,
+            "y": 66,
+            "width": 63.6,
+            "height": 89.03999999999999
+          },
+          {
+            "x": 87.6,
+            "y": 66,
+            "width": 63.6,
+            "height": 89.03999999999999
+          },
+          {
+            "x": 163.2,
+            "y": 66,
+            "width": 63.6,
+            "height": 89.03999999999999
+          },
+          {
+            "x": 238.79999999999998,
+            "y": 66,
+            "width": 63.6,
+            "height": 89.03999999999999
+          },
+          {
+            "x": 314.4,
+            "y": 66,
+            "width": 63.6,
+            "height": 89.03999999999999
+          }
+        ],
+        "score": {
+          "x": 12,
+          "y": 163.04,
+          "width": 366,
+          "height": 126
+        },
+        "hand": {
+          "x": 12,
+          "y": 536.4,
+          "width": 366,
+          "height": 111.6
+        },
+        "inventory": {
+          "type": 5,
+          "x": 266,
+          "y": 488.4,
+          "width": 112,
+          "height": 44
+        },
+        "help": {
+          "x": 12,
+          "y": 309.03999999999996,
+          "width": 44,
+          "height": 44
+        }
+      },
+      "canonicalStateJournalStorage": true,
+      "action": {
+        "type": "PlayHand",
+        "selectedIds": [
+          "clubs-6",
+          "hearts-6"
+        ],
+        "erxiangTargetId": "hearts-6"
+      },
+      "heroCalls": [
+        {
+          "method": "play",
+          "eventId": "controlled/liue-target-attachment/hand/controlled/liue-target-attachment/command/4/event/3",
+          "seq": 4,
+          "status": "idle",
+          "phases": [
+            {
+              "phase": "waiting",
+              "at": 1997.2000000029802
+            },
+            {
+              "phase": "impact",
+              "at": 2001.9000000059605
+            },
+            {
+              "phase": "rebound",
+              "at": 2054.7000000029802
+            },
+            {
+              "phase": "rest",
+              "at": 2092.4000000059605
+            }
+          ]
+        }
+      ],
+      "giftCalls": [],
+      "arrivals": [],
+      "frames": 40
+    }
+  ],
+  "status": "PASS"
+}

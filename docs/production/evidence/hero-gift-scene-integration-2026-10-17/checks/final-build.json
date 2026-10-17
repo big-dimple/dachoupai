@@ -1,0 +1,41 @@
+{
+  "product": "fb7290fd04dc5d957517d51d0dc5dd07178b0fe4",
+  "mainAlreadyPublished": "a061a7c2a0d10dad1da8647fa747011dd1df493b",
+  "buildInfo": {
+    "version": "C03",
+    "builtAt": "2026-10-17T14:19:46.547Z",
+    "revision": "fb7290fd04dc5d957517d51d0dc5dd07178b0fe4",
+    "sourceStatus": "clean",
+    "modified": false
+  },
+  "modules": 345,
+  "files": 397,
+  "bytes": 37122217,
+  "budgetLimit": 20000000,
+  "budgetStatus": "FAIL",
+  "nativeVersions": {
+    "pre-phrase": {
+      "product": "a882085c9830c21782b175fc7e60b2be784eb71a",
+      "cases": 12,
+      "status": "PASS"
+    },
+    "combined": {
+      "product": "d0aa27f3f81a1610b8753eb5be7381e1c967d7ae",
+      "cases": 12,
+      "status": "PASS"
+    },
+    "gold-closeout": {
+      "product": "020e596b4b506a10969433ff1afeec4f0c6f23c5",
+      "cases": 1,
+      "status": "PASS"
+    }
+  },
+  "prePhraseVisualStatus": "FAIL retained despite programmaticPASS",
+  "finalNativeAfterRefillFix": "NOT_RUN:no expanded set;source19 and post-merge compile reused",
+  "heard": false,
+  "physicalDevice": false,
+  "artifacts": {
+    "dist/assets/index-BD2U2OMP.js": "0b12db1aad464c315c4785cf40edb0772a8f9265b69aa1b138bbf60c5da6d85b",
+    "dist/assets/index-Be2le79Y.css": "1d433a0b4d6aade2814bcbbdfe6ee9de6317b6adc85bf2d8764cd74330163241"
+  }
+}
