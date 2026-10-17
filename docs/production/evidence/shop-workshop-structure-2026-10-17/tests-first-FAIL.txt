@@ -1,0 +1,74 @@
+
+ RUN  v4.1.11 C:/Users/wanghongping/AppData/Local/Temp/dachoupai-common-art-zoom-20261017
+
+ 鉂?tests/shop-flow-components.test.ts (19 tests | 2 failed) 59ms
+   脳 medium desktop spends space on full merchandise while keeping two-line information and aligned prices 6ms
+     脳 reports insufficient space instead of shrinking art or moving price into the summary 3ms
+
+鈳幆鈳幆鈳幆鈳?Failed Tests 2 鈳幆鈳幆鈳幆鈳?
+ FAIL  tests/shop-flow-components.test.ts > medium desktop spends space on full merchandise while keeping two-line information and aligned prices
+AssertionError: expected 0.44555023923444975 to be greater than 0.72
+ 鉂?tests/shop-flow-components.test.ts:18:47
+     16|  const rows=pc.jokerOffers.map(tile=>shopOfferGeometry(tile,'jokers')!鈥?     17|  for(const [i,g] of rows.entries()){
+     18|   expect(g.art.width/pc.jokerOffers[i].width).toBeGreaterThan(.72);exp鈥?       |                                               ^
+     19|   expect(g.price.y).toBe(rows[0].price.y);expect(g.identity!.y).toBeGr鈥?     20|  }
+
+鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆[1/2]鈳?
+ FAIL  tests/shop-flow-components.test.ts > shop goods have a stable title, summary and price grid > reports insufficient space instead of shrinking art or moving price into the summary
+AssertionError: expected { art: { x: 8, y: 8, 鈥?2) }, 鈥?5) } to be undefined
+
+- Expected:
+undefined
+
++ Received:
+{
+  "art": {
+    "height": 47.99999999999999,
+    "width": 38.4,
+    "x": 8,
+    "y": 8,
+  },
+  "identity": {
+    "height": 16,
+    "width": 35.6,
+    "x": 56.4,
+    "y": 32,
+  },
+  "price": {
+    "height": 24,
+    "width": 35.6,
+    "x": 56.4,
+    "y": 150,
+  },
+  "reason": {
+    "height": 18,
+    "width": 35.6,
+    "x": 56.4,
+    "y": 174,
+  },
+  "summary": {
+    "height": 92,
+    "width": 35.6,
+    "x": 56.4,
+    "y": 54,
+  },
+  "title": {
+    "height": 22,
+    "width": 35.6,
+    "x": 56.4,
+    "y": 8,
+  },
+}
+
+ 鉂?tests/shop-flow-components.test.ts:91:72
+     89|   it('reports insufficient space instead of shrinking art or moving pr鈥?     90|     expect(shopOfferGeometry({x:0,y:0,width:160,height:100},'tools')).鈥?     91|     expect(shopOfferGeometry({x:0,y:0,width:100,height:200},'jokers'))鈥?       |                                                                        ^
+     92|   });
+     93| });
+
+鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆[2/2]鈳?
+
+ Test Files  1 failed | 4 passed (5)
+      Tests  2 failed | 49 passed (51)
+   Start at  19:26:46
+   Duration  5.14s (transform 10.08s, setup 0ms, import 12.05s, tests 281ms, environment 1ms)
+

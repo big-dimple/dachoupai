@@ -1,0 +1,541 @@
+{
+  "base": "4b0de064480a9c518f6443984ef6a465c4b3323d",
+  "browser": "153.0.8010.12",
+  "scope": "Software Chromium mouse/touch; validator-approved controlled imports, actual menu, native canvas/DOM clicks, exact command-state comparisons. No physical device, natural run, sound or user aesthetic acceptance claim.",
+  "profiles": [
+    {
+      "width": 1366,
+      "height": 900,
+      "owned": 0,
+      "errors": [],
+      "geometry": {
+        "size": [
+          1366,
+          900
+        ],
+        "pc": true,
+        "ownedCollapsed": false,
+        "realTools": 1,
+        "visibleTools": 1,
+        "nodes": [
+          {
+            "name": "shop/hero-portrait",
+            "bounds": {
+              "x": 28,
+              "y": 411,
+              "width": 216,
+              "height": 270
+            },
+            "hit": false
+          },
+          {
+            "name": "shop/title",
+            "text": "辛弃疾 · 筹备",
+            "bounds": {
+              "x": 40,
+              "y": 24,
+              "width": 145,
+              "height": 30
+            },
+            "hit": false
+          },
+          {
+            "name": "action/chapter",
+            "bounds": {
+              "x": 36,
+              "y": 184,
+              "width": 200,
+              "height": 44
+            },
+            "hit": true
+          },
+          {
+            "name": "action/build",
+            "bounds": {
+              "x": 914,
+              "y": 14,
+              "width": 132,
+              "height": 44
+            },
+            "hit": true
+          },
+          {
+            "name": "action/tool-inventory",
+            "bounds": {
+              "x": 1174,
+              "y": 12,
+              "width": 168,
+              "height": 44
+            },
+            "hit": true
+          },
+          {
+            "name": "action/reroll",
+            "bounds": {
+              "x": 1058,
+              "y": 12,
+              "width": 104,
+              "height": 44
+            },
+            "hit": true
+          },
+          {
+            "name": "action/start-stage",
+            "bounds": {
+              "x": 1090,
+              "y": 824,
+              "width": 240,
+              "height": 56
+            },
+            "hit": true
+          },
+          {
+            "name": "shop/category-jokers",
+            "text": "购买唐宋牌 · 现货 3",
+            "bounds": {
+              "x": 284,
+              "y": 78,
+              "width": 144,
+              "height": 19
+            },
+            "hit": false
+          },
+          {
+            "name": "shop/offer-name",
+            "id": "controlled/workshop-0/shop/0/0/joker/0",
+            "text": "浮生半日",
+            "bounds": {
+              "x": 292.000010172526,
+              "y": 394,
+              "width": 60,
+              "height": 19
+            },
+            "hit": false
+          },
+          {
+            "name": "shop/offer-identity",
+            "id": "controlled/workshop-0/shop/0/0/joker/0",
+            "text": "普通 · 普通版",
+            "bounds": {
+              "x": 292.000010172526,
+              "y": 416,
+              "width": 82,
+              "height": 17
+            },
+            "hit": false
+          },
+          {
+            "name": "shop/offer-purpose",
+            "id": "controlled/workshop-0/shop/0/0/joker/0",
+            "text": "获得1金\n成功弃1张",
+            "bounds": {
+              "x": 292.000010172526,
+              "y": 434,
+              "width": 65,
+              "height": 34
+            },
+            "hit": false
+          },
+          {
+            "name": "shop/offer-price",
+            "id": "controlled/workshop-0/shop/0/0/joker/0",
+            "text": "4 金 · 查看",
+            "bounds": {
+              "x": 292.000010172526,
+              "y": 558,
+              "width": 80,
+              "height": 19
+            },
+            "hit": false
+          },
+          {
+            "name": "offer/controlled/workshop-0/shop/0/0/joker/0",
+            "bounds": {
+              "x": 284,
+              "y": 102,
+              "width": 340.66666666666674,
+              "height": 506
+            },
+            "hit": true
+          },
+          {
+            "name": "shop/offer-name",
+            "id": "controlled/workshop-0/shop/0/0/joker/1",
+            "text": "宾主尽欢",
+            "bounds": {
+              "x": 644.9999999999999,
+              "y": 394,
+              "width": 60,
+              "height": 19
+            },
+            "hit": false
+          },
+          {
+            "name": "shop/offer-identity",
+            "id": "controlled/workshop-0/shop/0/0/joker/1",
+            "text": "普通 · 普通版",
+            "bounds": {
+              "x": 644.9999999999999,
+              "y": 416,
+              "width": 82,
+              "height": 17
+            },
+            "hit": false
+          },
+          {
+            "name": "shop/offer-purpose",
+            "id": "controlled/workshop-0/shop/0/0/joker/1",
+            "text": "每手1次 热度+30\n≥2张都计分",
+            "bounds": {
+              "x": 644.9999999999999,
+              "y": 434,
+              "width": 110,
+              "height": 34
+            },
+            "hit": false
+          },
+          {
+            "name": "shop/offer-price",
+            "id": "controlled/workshop-0/shop/0/0/joker/1",
+            "text": "4 金 · 查看",
+            "bounds": {
+              "x": 644.9999999999999,
+              "y": 558,
+              "width": 80,
+              "height": 19
+            },
+            "hit": false
+          },
+          {
+            "name": "offer/controlled/workshop-0/shop/0/0/joker/1",
+            "bounds": {
+              "x": 636.6666666666667,
+              "y": 102,
+              "width": 340.66666666666674,
+              "height": 506
+            },
+            "hit": true
+          },
+          {
+            "name": "shop/offer-name",
+            "id": "controlled/workshop-0/shop/0/0/joker/2",
+            "text": "满堂喝彩",
+            "bounds": {
+              "x": 996.9999593098958,
+              "y": 394,
+              "width": 60,
+              "height": 19
+            },
+            "hit": false
+          },
+          {
+            "name": "shop/offer-identity",
+            "id": "controlled/workshop-0/shop/0/0/joker/2",
+            "text": "普通 · 普通版",
+            "bounds": {
+              "x": 996.9999593098958,
+              "y": 416,
+              "width": 82,
+              "height": 17
+            },
+            "hit": false
+          },
+          {
+            "name": "shop/offer-purpose",
+            "id": "controlled/workshop-0/shop/0/0/joker/2",
+            "text": "每手1次 热度+90\n对子等同点组合",
+            "bounds": {
+              "x": 996.9999593098958,
+              "y": 434,
+              "width": 110,
+              "height": 34
+            },
+            "hit": false
+          },
+          {
+            "name": "shop/offer-price",
+            "id": "controlled/workshop-0/shop/0/0/joker/2",
+            "text": "4 金 · 查看",
+            "bounds": {
+              "x": 996.9999593098958,
+              "y": 558,
+              "width": 80,
+              "height": 19
+            },
+            "hit": false
+          },
+          {
+            "name": "offer/controlled/workshop-0/shop/0/0/joker/2",
+            "bounds": {
+              "x": 989.3333333333334,
+              "y": 102,
+              "width": 340.66666666666663,
+              "height": 506
+            },
+            "hit": true
+          },
+          {
+            "name": "shop/category-tools",
+            "text": "消耗工具 · 1",
+            "bounds": {
+              "x": 284,
+              "y": 616,
+              "width": 91,
+              "height": 19
+            },
+            "hit": false
+          },
+          {
+            "name": "shop/offer-name",
+            "id": "controlled/workshop-0/shop/0/0/tool/0",
+            "text": "再想想",
+            "bounds": {
+              "x": 426,
+              "y": 660,
+              "width": 45,
+              "height": 19
+            },
+            "hit": false
+          },
+          {
+            "name": "shop/offer-purpose",
+            "id": "controlled/workshop-0/shop/0/0/tool/0",
+            "text": "恢复本场1次弃牌，最多到入\n场次数",
+            "bounds": {
+              "x": 426,
+              "y": 688,
+              "width": 177,
+              "height": 34
+            },
+            "hit": false
+          },
+          {
+            "name": "shop/offer-price",
+            "id": "controlled/workshop-0/shop/0/0/tool/0",
+            "text": "4 金 · 查看",
+            "bounds": {
+              "x": 426,
+              "y": 770,
+              "width": 80,
+              "height": 19
+            },
+            "hit": false
+          },
+          {
+            "name": "offer/controlled/workshop-0/shop/0/0/tool/0",
+            "bounds": {
+              "x": 284,
+              "y": 652,
+              "width": 338,
+              "height": 168
+            },
+            "hit": true
+          },
+          {
+            "name": "shop/category-items",
+            "text": "长期物品 · 1",
+            "bounds": {
+              "x": 992,
+              "y": 616,
+              "width": 91,
+              "height": 19
+            },
+            "hit": false
+          },
+          {
+            "name": "shop/offer-name",
+            "id": "controlled/workshop-0/shop/0/0/item/0",
+            "text": "扩个摊",
+            "bounds": {
+              "x": 1134,
+              "y": 660,
+              "width": 45,
+              "height": 19
+            },
+            "hit": false
+          },
+          {
+            "name": "shop/offer-purpose",
+            "id": "controlled/workshop-0/shop/0/0/item/0",
+            "text": "后续开店与刷新时唐宋牌货位\n3→4，当前已生成货架不补货",
+            "bounds": {
+              "x": 1134,
+              "y": 688,
+              "width": 185,
+              "height": 34
+            },
+            "hit": false
+          },
+          {
+            "name": "shop/offer-price",
+            "id": "controlled/workshop-0/shop/0/0/item/0",
+            "text": "12 金 · 查看",
+            "bounds": {
+              "x": 1134,
+              "y": 770,
+              "width": 90,
+              "height": 19
+            },
+            "hit": false
+          },
+          {
+            "name": "offer/controlled/workshop-0/shop/0/0/item/0",
+            "bounds": {
+              "x": 992,
+              "y": 652,
+              "width": 338,
+              "height": 168
+            },
+            "hit": true
+          },
+          {
+            "name": "shop/category-workshop",
+            "text": "自选做牌",
+            "bounds": {
+              "x": 638,
+              "y": 616,
+              "width": 64,
+              "height": 19
+            },
+            "hit": false
+          },
+          {
+            "name": "action/workshop-upgrade",
+            "bounds": {
+              "x": 638,
+              "y": 652,
+              "width": 338,
+              "height": 44
+            },
+            "hit": true
+          },
+          {
+            "name": "action/workshop-modify",
+            "bounds": {
+              "x": 638,
+              "y": 700,
+              "width": 338,
+              "height": 44
+            },
+            "hit": true
+          },
+          {
+            "name": "action/workshop-dyes",
+            "bounds": {
+              "x": 638,
+              "y": 748,
+              "width": 338,
+              "height": 44
+            },
+            "hit": true
+          }
+        ]
+      },
+      "overlaps": [],
+      "status": "FAIL",
+      "error": "locator.click: Timeout 20000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('.run-menu-toggle')\u001b[22m\n\u001b[2m    - locator resolved to <button type=\"button\" aria-label=\"菜单\" aria-expanded=\"false\" class=\"run-menu-toggle\" aria-controls=\"run-menu-modal\">菜单</button>\u001b[22m\n\u001b[2m  - attempting click action\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - <dialog open=\"\" aria-label=\"对子 · 升级已保存\" class=\"detail-dialog shop-practice-result\">…</dialog> intercepts pointer events\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m    - waiting 20ms\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - <dialog open=\"\" aria-label=\"对子 · 升级已保存\" class=\"detail-dialog shop-practice-result\">…</dialog> intercepts pointer events\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m      - waiting 100ms\u001b[22m\n\u001b[2m    36 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m       - element is visible, enabled and stable\u001b[22m\n\u001b[2m       - scrolling into view if needed\u001b[22m\n\u001b[2m       - done scrolling\u001b[22m\n\u001b[2m       - <dialog open=\"\" aria-label=\"对子 · 升级已保存\" class=\"detail-dialog shop-practice-result\">…</dialog> intercepts pointer events\u001b[22m\n\u001b[2m     - retrying click action\u001b[22m\n\u001b[2m       - waiting 500ms\u001b[22m\n\n    at imp (C:\\Users\\wanghongping\\AppData\\Local\\Temp\\dachoupai-common-art-zoom-20261017\\harness\\shop-workshop-structure.mjs:22:199)\n    at async bossFlow (C:\\Users\\wanghongping\\AppData\\Local\\Temp\\dachoupai-common-art-zoom-20261017\\harness\\shop-workshop-structure.mjs:34:69)\n    at async file:///C:/Users/wanghongping/AppData/Local/Temp/dachoupai-common-art-zoom-20261017/harness/shop-workshop-structure.mjs:50:72"
+    }
+  ],
+  "flows": [
+    {
+      "name": "PC direct practice actual quote, cancel and confirmed upgrade",
+      "status": "PASS",
+      "gold": [
+        40,
+        36
+      ]
+    },
+    {
+      "name": "PC explicit original suit filter, paid dye and selected-card preview/use",
+      "status": "PASS"
+    },
+    {
+      "name": "failed actual storage commit preserves gold/level/shared quota, native retry commits exactly once",
+      "status": "PASS"
+    }
+  ],
+  "commandChecks": [
+    {
+      "action": {
+        "type": "PracticeHand",
+        "handType": "pair",
+        "expectedLevel": 1,
+        "shopSeq": 1
+      },
+      "commandId": "controlled/workshop-0/command/3",
+      "sequence": 3,
+      "gold": 36,
+      "shared": {
+        "definitionId": "T01",
+        "handType": "pair",
+        "levelBefore": 1,
+        "commandId": "controlled/workshop-0/command/3",
+        "paidPrice": 4,
+        "seq": 3
+      },
+      "stateSha256": "da92e52a2b27a335bb032952a4fd872198105633f5b5dd865f9ebea2f5203aa6",
+      "exactDomainAndStoredState": true
+    },
+    {
+      "action": {
+        "type": "BuyBasicTool",
+        "definitionId": "T03",
+        "shopSeq": 1
+      },
+      "commandId": "controlled/workshop-0/command/3",
+      "sequence": 3,
+      "gold": 36,
+      "shared": {
+        "definitionId": "T03",
+        "commandId": "controlled/workshop-0/command/3",
+        "paidPrice": 4,
+        "seq": 3
+      },
+      "stateSha256": "6050e3435aa348fe4e555508e2de9ae139847c007550f95c41037ccbc180e043",
+      "exactDomainAndStoredState": true
+    },
+    {
+      "action": {
+        "type": "UseConsumable",
+        "instanceId": "controlled/workshop-0/tool/controlled/workshop-0/command/3",
+        "targetIds": [
+          "spades-8"
+        ]
+      },
+      "commandId": "controlled/workshop-0/command/4",
+      "sequence": 4,
+      "gold": 36,
+      "shared": {
+        "definitionId": "T03",
+        "commandId": "controlled/workshop-0/command/3",
+        "paidPrice": 4,
+        "seq": 3
+      },
+      "stateSha256": "efa680daa10783efef4f3fd356bbeed6a2b9902e88ac17a3d819fa3a3d178b68",
+      "exactDomainAndStoredState": true
+    },
+    {
+      "action": {
+        "type": "PracticeHand",
+        "handType": "pair",
+        "expectedLevel": 1,
+        "shopSeq": 1
+      },
+      "commandId": "controlled/workshop-0/command/3",
+      "sequence": 3,
+      "gold": 36,
+      "shared": {
+        "definitionId": "T01",
+        "handType": "pair",
+        "levelBefore": 1,
+        "commandId": "controlled/workshop-0/command/3",
+        "paidPrice": 4,
+        "seq": 3
+      },
+      "stateSha256": "da92e52a2b27a335bb032952a4fd872198105633f5b5dd865f9ebea2f5203aa6",
+      "exactDomainAndStoredState": true
+    }
+  ],
+  "status": "FAIL",
+  "error": "locator.click: Timeout 20000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('.run-menu-toggle')\u001b[22m\n\u001b[2m    - locator resolved to <button type=\"button\" aria-label=\"菜单\" aria-expanded=\"false\" class=\"run-menu-toggle\" aria-controls=\"run-menu-modal\">菜单</button>\u001b[22m\n\u001b[2m  - attempting click action\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - <dialog open=\"\" aria-label=\"对子 · 升级已保存\" class=\"detail-dialog shop-practice-result\">…</dialog> intercepts pointer events\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m    - waiting 20ms\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - <dialog open=\"\" aria-label=\"对子 · 升级已保存\" class=\"detail-dialog shop-practice-result\">…</dialog> intercepts pointer events\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m      - waiting 100ms\u001b[22m\n\u001b[2m    36 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m       - element is visible, enabled and stable\u001b[22m\n\u001b[2m       - scrolling into view if needed\u001b[22m\n\u001b[2m       - done scrolling\u001b[22m\n\u001b[2m       - <dialog open=\"\" aria-label=\"对子 · 升级已保存\" class=\"detail-dialog shop-practice-result\">…</dialog> intercepts pointer events\u001b[22m\n\u001b[2m     - retrying click action\u001b[22m\n\u001b[2m       - waiting 500ms\u001b[22m\n\n    at imp (C:\\Users\\wanghongping\\AppData\\Local\\Temp\\dachoupai-common-art-zoom-20261017\\harness\\shop-workshop-structure.mjs:22:199)\n    at async bossFlow (C:\\Users\\wanghongping\\AppData\\Local\\Temp\\dachoupai-common-art-zoom-20261017\\harness\\shop-workshop-structure.mjs:34:69)\n    at async file:///C:/Users/wanghongping/AppData/Local/Temp/dachoupai-common-art-zoom-20261017/harness/shop-workshop-structure.mjs:50:72"
+}

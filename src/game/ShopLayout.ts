@@ -36,33 +36,35 @@ function shortShopLayout(width:number,height:number,top:number,bottom:number,col
 }
 
 /** Left state, upper owned resources, lower sale panel. Short PC reuses the short branch. */
-function desktopShopLayout(width:number,height:number,top:number,bottom:number,_cols:number){
+function desktopShopLayout(width:number,height:number,top:number,bottom:number,_cols:number,ownedCount:number){
   const w=Math.min(1480,width-48),x=(width-w)/2,leftWidth=width>=1600?248:224,gap=width>=1600?32:24,rightX=x+leftWidth+gap,rightWidth=w-leftWidth-gap;
   const usableHeight=height-top-bottom;
-  const compactRail=width<1450&&usableHeight<800,railGap=compactRail?24:40;
+  const compactRail=usableHeight<800,railGap=compactRail?24:40;
   const ownedWidth=compactRail?64:width>=1600&&usableHeight>=800?96:80,ownedHeight=ownedWidth*1.4,slotY=top+56;
   const slots:Box[]=Array.from({length:5},(_,i)=>({x:rightX+i*(ownedWidth+12),y:slotY,width:ownedWidth,height:ownedHeight}));
-  const ownedRail={x:rightX,y:top,width:rightWidth,height:56+ownedHeight+railGap-20};
-  const inventoryEntry={x:rightX+rightWidth-168,y:top+64,width:168,height:44};
-  const shopPanel={x:rightX,y:slotY+ownedHeight+railGap,width:rightWidth,height:height-bottom-8-(slotY+ownedHeight+railGap)};
-  const actionWidth=width>=1600?144:128,goodsX=shopPanel.x+16,goodsWidth=shopPanel.width-actionWidth-48;
-  const guidanceHeight=0,groupGap=8,lowerHeight=compactRail?128:usableHeight>=850?192:144;
-  const seat=(goodsWidth-24)/3,upperY=shopPanel.y+28,upperHeight=shopPanel.height-28-groupGap-24-lowerHeight-32;
-  const jokerOffers:Box[]=Array.from({length:3},(_,i)=>({x:goodsX+i*(seat+12),y:upperY,width:seat,height:upperHeight}));
+  const empty=ownedCount===0;
+  const ownedRail={x:rightX,y:top,width:rightWidth,height:empty?52:56+ownedHeight+railGap-20};
+  const inventoryEntry={x:rightX+rightWidth-168,y:top+(empty?4:64),width:168,height:44};
+  const panelY=empty?top+64:slotY+ownedHeight+railGap;
+  const shopPanel={x:rightX,y:panelY,width:rightWidth,height:height-bottom-8-panelY};
+  const goodsX=shopPanel.x+12,goodsWidth=shopPanel.width-24,groupGap=16,lowerHeight=168;
+  const upperY=shopPanel.y+30,upperHeight=shopPanel.height-30-36-lowerHeight-80;
+  const seat=(goodsWidth-24)/3,jokerOffers:Box[]=Array.from({length:3},(_,i)=>({x:goodsX+i*(seat+12),y:upperY,width:seat,height:upperHeight}));
   const shelf=jokerOffers.map(b=>shopOfferGeometry(b,'jokers')!.art);
-  const groupY=upperY+upperHeight+groupGap,groupWidth=(goodsWidth-16)/2,lowerY=groupY+24;
-  const toolOffers={x:goodsX,y:lowerY,width:groupWidth,height:lowerHeight},itemOffers={x:goodsX+groupWidth+16,y:lowerY,width:groupWidth,height:lowerHeight};
-  const feedback={x:shopPanel.x+12,y:shopPanel.y+shopPanel.height-24,width:shopPanel.width-24,height:20};
-  const play={x:shopPanel.x+shopPanel.width-actionWidth-12,y:shopPanel.y+28,width:actionWidth,height:56},reroll={x:play.x,y:play.y+68,width:actionWidth,height:44};
-  const build={x:Math.min(rightX+5*(ownedWidth+12)+12,width-292),y:top+6,width:132,height:44};
+  const groupY=upperY+upperHeight+8,groupWidth=(goodsWidth-2*groupGap)/3,lowerY=groupY+36;
+  const toolOffers={x:goodsX,y:lowerY,width:groupWidth,height:lowerHeight},workshop={x:goodsX+groupWidth+groupGap,y:lowerY,width:groupWidth,height:lowerHeight},itemOffers={x:goodsX+2*(groupWidth+groupGap),y:lowerY,width:groupWidth,height:lowerHeight};
+  const play={x:shopPanel.x+shopPanel.width-252,y:shopPanel.y+shopPanel.height-68,width:240,height:56};
+  const feedback={x:goodsX,y:play.y+12,width:Math.max(160,play.x-goodsX-16),height:40};
+  const reroll={x:empty?inventoryEntry.x-116:inventoryEntry.x,y:empty?top+4:top+116,width:104,height:44};
+  const build={x:empty?reroll.x-144:Math.min(rightX+5*(ownedWidth+12)+12,inventoryEntry.x-144),y:top+6,width:132,height:44};
   const chapter={x,y:top+176,width:leftWidth,height:44};
-  const pc={left:{x,y:top,width:leftWidth,height:shopPanel.y+shopPanel.height-top},ownedRail,inventoryEntry,shopPanel,actionRail:{x:play.x,y:play.y,width:actionWidth,height:shopPanel.height-52},jokerOffers,toolOffers,itemOffers,feedback,groupY,guidanceHeight};
+  const pc={left:{x,y:top,width:leftWidth,height:shopPanel.y+shopPanel.height-top},ownedRail,inventoryEntry,shopPanel,actionRail:play,jokerOffers,toolOffers,itemOffers,workshop,feedback,groupY,guidanceHeight:0};
   return {x,w,top,pc,desktop:true,short:false,copyBeside:false,inventoryCollapsed:false,compact:false,wideHeader:false,portrait:false,slots,shelf,
     tabs:{x:goodsX,y:shopPanel.y+4,width:goodsWidth,height:20},chapter,items:inventoryEntry,build,reroll,play,noticeY:feedback.y};
 }
 
-export function shopLayout(width:number,height:number,top:number,bottom:number,cols:number,ownedCopy=false,guideActions=false,left=0,right=0){
-  return shiftLayout(shopContentLayout(width-left-right,height,top,bottom,cols,ownedCopy,guideActions),left);
+export function shopLayout(width:number,height:number,top:number,bottom:number,cols:number,ownedCopy=false,guideActions=false,left=0,right=0,ownedCount=5){
+  return shiftLayout(shopContentLayout(width-left-right,height,top,bottom,cols,ownedCopy,guideActions,ownedCount),left);
 }
 /** Translate every nested box together; safe insets must not change relative hit geometry. */
 function shiftLayout<T>(value:T,left:number):T {
@@ -71,8 +73,8 @@ function shiftLayout<T>(value:T,left:number):T {
   if(value&&typeof value==='object')return Object.fromEntries(Object.entries(value).map(([k,v])=>[k,k==='x'&&typeof v==='number'?v+left:shiftLayout(v,left)])) as T;
   return value;
 }
-function shopContentLayout(width:number,height:number,top:number,bottom:number,cols:number,ownedCopy=false,guideActions=false){
-  if(width>=1000){if(height-top-bottom<712)return shortShopLayout(width,height,top,bottom,cols);return desktopShopLayout(width,height,top,bottom,cols);}
+function shopContentLayout(width:number,height:number,top:number,bottom:number,cols:number,ownedCopy=false,guideActions=false,ownedCount=5){
+  if(width>=1000){if(height-top-bottom<712)return shortShopLayout(width,height,top,bottom,cols);return desktopShopLayout(width,height,top,bottom,cols,ownedCount);}
   if(height<=width&&height-top-bottom<500)return shortShopLayout(width,height,top,bottom,cols);
   const portrait=width<700&&height>width,x=12,w=width-24,seat=(Math.min(w,420)-8*(cols-1))/cols;
   // Browser toolbar height changes keep the same three-card gallery.
@@ -172,4 +174,18 @@ export function shopSummaryWrap(text:string,width:number,measure:(text:string)=>
 export function shopOfferSummary(text:string,width:number,measure:(text:string)=>number):string {
   const rows=text.split('\n').filter(Boolean);
   return rows.length===2?rows.map(row=>shopSummaryWrap(row,width,measure,1)).join('\n'):shopSummaryWrap(text,width,measure,2);
+}
+
+/** Four equal category targets; inventory and paid refresh belong to the header. */
+export function shopPortraitHeader(p:ReturnType<typeof shopLayout>){
+ const purse={x:p.x+p.w-44-64,y:p.top-1,width:64,height:34};
+ const reroll={x:purse.x-56,y:p.top-5,width:52,height:44};
+ const inventory={x:reroll.x-56,y:p.top-5,width:52,height:44};
+ return {purse,reroll,inventory};
+}
+/** A clear full-color hero composition replaces an empty held-card rail. */
+export function shopEmptyPortrait(p:ReturnType<typeof shopLayout>,hasExtra=false,extraRows=1){
+ if(!p.portrait)return;
+ const y=p.shelf[0].y+p.shelf[0].height+130+(hasExtra?24*extraRows:0),height=p.reroll.y-y-10;
+ return height>=60?{x:p.x,y,width:p.w,height}:undefined;
 }

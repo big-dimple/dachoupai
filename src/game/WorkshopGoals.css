@@ -1,0 +1,37 @@
+.shop-workshop .workshop-route-root { text-align:center;color:#36594f;font-weight:700;margin:0 auto 26px;position:relative;width:max-content; }
+.shop-workshop .workshop-route-root:after { content:'';position:absolute;width:1px;height:18px;background:#9aaa9d;top:100%;left:50%; }
+.shop-workshop .workshop-goal-nav { display:flex;gap:8px;margin:0 0 18px;position:relative; }
+.shop-workshop .workshop-goal-nav:before { content:'';position:absolute;top:-10px;left:16.66%;right:16.66%;height:1px;background:#9aaa9d; }
+.shop-workshop .workshop-goal-nav button:before { content:'';position:absolute;top:-10px;left:50%;height:10px;width:1px;background:#9aaa9d; }
+.shop-workshop .workshop-goal-nav button { flex:1;position:relative;min-width:0;min-height:68px;padding:8px 4px;border:0;border-radius:6px;background:#e2e8e5;color:#203f3b;box-shadow:none;font-size:15px;transition:opacity .18s,background .18s; }
+.shop-workshop .workshop-route-state { display:block;font-size:14px;margin-top:5px;font-weight:400; }
+.shop-workshop .workshop-route-purpose { display:block;font-size:14px;margin-top:4px;font-weight:400; }
+.shop-workshop .workshop-goal-nav button[data-crossed=true] { opacity:.42; }
+.shop-workshop .workshop-route-back { min-height:44px;padding:6px 0;margin-bottom:10px;border:0;background:transparent;color:#36594f;box-shadow:none; }
+.shop-workshop .workshop-route-hint { text-align:center;color:#59646a;padding:18px 0; }
+@media(prefers-reduced-motion:reduce) { .shop-workshop .workshop-goal-nav button { transition:none; } }
+.shop-workshop .workshop-goal-nav button[aria-pressed=true] { background:#203f3b;color:#fff9ee; }
+.shop-workshop .workshop-goal-workspace h3 { margin:0 0 8px;font-size:20px; }
+.shop-workshop .workshop-goal-description { margin:0 0 16px;color:#3f606b;line-height:1.6; }
+.shop-workshop .workshop-goal-filter { display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin:0 0 16px; }
+.shop-workshop .workshop-goal-filter select { min-height:44px;padding:8px;border:1px solid #a9b7ae;background:#fff9ee;font-size:15px; }
+.shop-workshop .workshop-operation,.shop-workshop .workshop-service { display:grid;grid-template-columns:72px minmax(0,1fr) auto;align-items:center;gap:16px;padding:14px 0;border-bottom:1px solid #d8ddcf; }
+.shop-workshop .workshop-service { grid-template-columns:minmax(0,1fr) auto; }
+.shop-workshop .workshop-operation strong,.shop-workshop .workshop-service strong { font-size:20px; }
+.shop-workshop .workshop-operation p,.shop-workshop .workshop-service p { margin:6px 0;line-height:1.5; }
+.shop-workshop .workshop-operation small { display:block;color:#59646a;line-height:1.5; }
+.shop-workshop .workshop-operation>button:last-child,.shop-workshop .workshop-service button,.shop-workshop .workshop-other button { min-height:44px;max-width:180px;padding:10px 12px;border:0;background:#e2e8e5;color:#203f3b;box-shadow:none; }
+.shop-workshop .workshop-operation>img,.shop-workshop .workshop-art img { width:72px;height:90px;object-fit:contain;display:block; }
+.shop-workshop .workshop-art { width:72px;min-width:44px;min-height:90px;border:0;padding:0;background:transparent;box-shadow:none;cursor:zoom-in; }
+.shop-workshop .workshop-art:hover { background:transparent;transform:none;box-shadow:none; }
+.shop-workshop .workshop-other { margin-top:20px; }
+.shop-workshop .workshop-other summary { min-height:44px;display:flex;align-items:center;color:#3f606b;cursor:pointer; }
+.shop-workshop .workshop-other-row { display:flex;justify-content:space-between;align-items:center;gap:12px;padding:8px 0; }
+@media(max-width:560px) {
+ .shop-workshop .workshop-operation { grid-template-columns:72px minmax(0,1fr);gap:12px; }
+ .shop-workshop .workshop-operation>button:last-child { grid-column:2;justify-self:start;max-width:none; }
+ .shop-workshop .workshop-operation>.workshop-art,.shop-workshop .workshop-operation>img { grid-row:1/3;align-self:start; }
+ .shop-workshop .workshop-service { grid-template-columns:minmax(0,1fr);gap:8px; }
+ .shop-workshop .workshop-service button { justify-self:start; }
+ .shop-workshop .workshop-other-row { align-items:start;flex-direction:column;gap:0; }
+}

@@ -1,0 +1,460 @@
+{
+  "base": "4b0de064480a9c518f6443984ef6a465c4b3323d",
+  "browser": "153.0.8010.12",
+  "scope": "Software Chromium mouse/touch; validator-approved controlled imports, actual menu, native canvas/DOM clicks, exact command-state comparisons. No physical device, natural run, sound or user aesthetic acceptance claim.",
+  "profiles": [
+    {
+      "width": 1366,
+      "height": 900,
+      "owned": 0,
+      "errors": [],
+      "geometry": {
+        "size": [
+          1366,
+          900
+        ],
+        "pc": true,
+        "ownedCollapsed": false,
+        "realTools": 1,
+        "visibleTools": 1,
+        "nodes": [
+          {
+            "name": "shop/hero-portrait",
+            "bounds": {
+              "x": 28,
+              "y": 411,
+              "width": 216,
+              "height": 270
+            },
+            "hit": false
+          },
+          {
+            "name": "shop/title",
+            "text": "辛弃疾 · 筹备",
+            "bounds": {
+              "x": 40,
+              "y": 24,
+              "width": 145,
+              "height": 30
+            },
+            "hit": false
+          },
+          {
+            "name": "action/chapter",
+            "bounds": {
+              "x": 36,
+              "y": 184,
+              "width": 200,
+              "height": 44
+            },
+            "hit": true
+          },
+          {
+            "name": "action/build",
+            "bounds": {
+              "x": 914,
+              "y": 14,
+              "width": 132,
+              "height": 44
+            },
+            "hit": true
+          },
+          {
+            "name": "action/tool-inventory",
+            "bounds": {
+              "x": 1174,
+              "y": 12,
+              "width": 168,
+              "height": 44
+            },
+            "hit": true
+          },
+          {
+            "name": "action/reroll",
+            "bounds": {
+              "x": 1058,
+              "y": 12,
+              "width": 104,
+              "height": 44
+            },
+            "hit": true
+          },
+          {
+            "name": "action/start-stage",
+            "bounds": {
+              "x": 1090,
+              "y": 824,
+              "width": 240,
+              "height": 56
+            },
+            "hit": true
+          },
+          {
+            "name": "shop/category-jokers",
+            "text": "购买唐宋牌 · 现货 3",
+            "bounds": {
+              "x": 284,
+              "y": 78,
+              "width": 144,
+              "height": 19
+            },
+            "hit": false
+          },
+          {
+            "name": "shop/offer-name",
+            "id": "controlled/workshop-0/shop/0/0/joker/0",
+            "text": "浮生半日",
+            "bounds": {
+              "x": 292.000010172526,
+              "y": 394,
+              "width": 60,
+              "height": 19
+            },
+            "hit": false
+          },
+          {
+            "name": "shop/offer-identity",
+            "id": "controlled/workshop-0/shop/0/0/joker/0",
+            "text": "普通 · 普通版",
+            "bounds": {
+              "x": 292.000010172526,
+              "y": 416,
+              "width": 82,
+              "height": 17
+            },
+            "hit": false
+          },
+          {
+            "name": "shop/offer-purpose",
+            "id": "controlled/workshop-0/shop/0/0/joker/0",
+            "text": "获得1金\n成功弃1张",
+            "bounds": {
+              "x": 292.000010172526,
+              "y": 434,
+              "width": 65,
+              "height": 34
+            },
+            "hit": false
+          },
+          {
+            "name": "shop/offer-price",
+            "id": "controlled/workshop-0/shop/0/0/joker/0",
+            "text": "4 金 · 查看",
+            "bounds": {
+              "x": 292.000010172526,
+              "y": 558,
+              "width": 80,
+              "height": 19
+            },
+            "hit": false
+          },
+          {
+            "name": "offer/controlled/workshop-0/shop/0/0/joker/0",
+            "bounds": {
+              "x": 284,
+              "y": 102,
+              "width": 340.66666666666674,
+              "height": 506
+            },
+            "hit": true
+          },
+          {
+            "name": "shop/offer-name",
+            "id": "controlled/workshop-0/shop/0/0/joker/1",
+            "text": "宾主尽欢",
+            "bounds": {
+              "x": 644.9999999999999,
+              "y": 394,
+              "width": 60,
+              "height": 19
+            },
+            "hit": false
+          },
+          {
+            "name": "shop/offer-identity",
+            "id": "controlled/workshop-0/shop/0/0/joker/1",
+            "text": "普通 · 普通版",
+            "bounds": {
+              "x": 644.9999999999999,
+              "y": 416,
+              "width": 82,
+              "height": 17
+            },
+            "hit": false
+          },
+          {
+            "name": "shop/offer-purpose",
+            "id": "controlled/workshop-0/shop/0/0/joker/1",
+            "text": "每手1次 热度+30\n≥2张都计分",
+            "bounds": {
+              "x": 644.9999999999999,
+              "y": 434,
+              "width": 110,
+              "height": 34
+            },
+            "hit": false
+          },
+          {
+            "name": "shop/offer-price",
+            "id": "controlled/workshop-0/shop/0/0/joker/1",
+            "text": "4 金 · 查看",
+            "bounds": {
+              "x": 644.9999999999999,
+              "y": 558,
+              "width": 80,
+              "height": 19
+            },
+            "hit": false
+          },
+          {
+            "name": "offer/controlled/workshop-0/shop/0/0/joker/1",
+            "bounds": {
+              "x": 636.6666666666667,
+              "y": 102,
+              "width": 340.66666666666674,
+              "height": 506
+            },
+            "hit": true
+          },
+          {
+            "name": "shop/offer-name",
+            "id": "controlled/workshop-0/shop/0/0/joker/2",
+            "text": "满堂喝彩",
+            "bounds": {
+              "x": 996.9999593098958,
+              "y": 394,
+              "width": 60,
+              "height": 19
+            },
+            "hit": false
+          },
+          {
+            "name": "shop/offer-identity",
+            "id": "controlled/workshop-0/shop/0/0/joker/2",
+            "text": "普通 · 普通版",
+            "bounds": {
+              "x": 996.9999593098958,
+              "y": 416,
+              "width": 82,
+              "height": 17
+            },
+            "hit": false
+          },
+          {
+            "name": "shop/offer-purpose",
+            "id": "controlled/workshop-0/shop/0/0/joker/2",
+            "text": "每手1次 热度+90\n对子等同点组合",
+            "bounds": {
+              "x": 996.9999593098958,
+              "y": 434,
+              "width": 110,
+              "height": 34
+            },
+            "hit": false
+          },
+          {
+            "name": "shop/offer-price",
+            "id": "controlled/workshop-0/shop/0/0/joker/2",
+            "text": "4 金 · 查看",
+            "bounds": {
+              "x": 996.9999593098958,
+              "y": 558,
+              "width": 80,
+              "height": 19
+            },
+            "hit": false
+          },
+          {
+            "name": "offer/controlled/workshop-0/shop/0/0/joker/2",
+            "bounds": {
+              "x": 989.3333333333334,
+              "y": 102,
+              "width": 340.66666666666663,
+              "height": 506
+            },
+            "hit": true
+          },
+          {
+            "name": "shop/category-tools",
+            "text": "消耗工具 · 1",
+            "bounds": {
+              "x": 284,
+              "y": 616,
+              "width": 91,
+              "height": 19
+            },
+            "hit": false
+          },
+          {
+            "name": "shop/offer-name",
+            "id": "controlled/workshop-0/shop/0/0/tool/0",
+            "text": "再想想",
+            "bounds": {
+              "x": 426,
+              "y": 660,
+              "width": 45,
+              "height": 19
+            },
+            "hit": false
+          },
+          {
+            "name": "shop/offer-purpose",
+            "id": "controlled/workshop-0/shop/0/0/tool/0",
+            "text": "恢复本场1次弃牌，最多到入\n场次数",
+            "bounds": {
+              "x": 426,
+              "y": 688,
+              "width": 177,
+              "height": 34
+            },
+            "hit": false
+          },
+          {
+            "name": "shop/offer-price",
+            "id": "controlled/workshop-0/shop/0/0/tool/0",
+            "text": "4 金 · 查看",
+            "bounds": {
+              "x": 426,
+              "y": 770,
+              "width": 80,
+              "height": 19
+            },
+            "hit": false
+          },
+          {
+            "name": "offer/controlled/workshop-0/shop/0/0/tool/0",
+            "bounds": {
+              "x": 284,
+              "y": 652,
+              "width": 338,
+              "height": 168
+            },
+            "hit": true
+          },
+          {
+            "name": "shop/category-items",
+            "text": "长期物品 · 1",
+            "bounds": {
+              "x": 992,
+              "y": 616,
+              "width": 91,
+              "height": 19
+            },
+            "hit": false
+          },
+          {
+            "name": "shop/offer-name",
+            "id": "controlled/workshop-0/shop/0/0/item/0",
+            "text": "扩个摊",
+            "bounds": {
+              "x": 1134,
+              "y": 660,
+              "width": 45,
+              "height": 19
+            },
+            "hit": false
+          },
+          {
+            "name": "shop/offer-purpose",
+            "id": "controlled/workshop-0/shop/0/0/item/0",
+            "text": "后续开店与刷新时唐宋牌货位\n3→4，当前已生成货架不补货",
+            "bounds": {
+              "x": 1134,
+              "y": 688,
+              "width": 185,
+              "height": 34
+            },
+            "hit": false
+          },
+          {
+            "name": "shop/offer-price",
+            "id": "controlled/workshop-0/shop/0/0/item/0",
+            "text": "12 金 · 查看",
+            "bounds": {
+              "x": 1134,
+              "y": 770,
+              "width": 90,
+              "height": 19
+            },
+            "hit": false
+          },
+          {
+            "name": "offer/controlled/workshop-0/shop/0/0/item/0",
+            "bounds": {
+              "x": 992,
+              "y": 652,
+              "width": 338,
+              "height": 168
+            },
+            "hit": true
+          },
+          {
+            "name": "shop/category-workshop",
+            "text": "自选做牌",
+            "bounds": {
+              "x": 638,
+              "y": 616,
+              "width": 64,
+              "height": 19
+            },
+            "hit": false
+          },
+          {
+            "name": "action/workshop-upgrade",
+            "bounds": {
+              "x": 638,
+              "y": 652,
+              "width": 338,
+              "height": 44
+            },
+            "hit": true
+          },
+          {
+            "name": "action/workshop-modify",
+            "bounds": {
+              "x": 638,
+              "y": 700,
+              "width": 338,
+              "height": 44
+            },
+            "hit": true
+          },
+          {
+            "name": "action/workshop-dyes",
+            "bounds": {
+              "x": 638,
+              "y": 748,
+              "width": 338,
+              "height": 44
+            },
+            "hit": true
+          }
+        ]
+      },
+      "overlaps": [],
+      "status": "PASS"
+    }
+  ],
+  "flows": [
+    {
+      "name": "actual controlled Boss victory → next warm shop → public save restore: warning gone and music scene shop; genuine Boss preparation remains",
+      "status": "PASS",
+      "bossIndex": 2,
+      "nextIndex": 3
+    }
+  ],
+  "commandChecks": [
+    {
+      "action": {
+        "type": "OpenShop"
+      },
+      "commandId": "shop-boss-current-stage/command/9",
+      "sequence": 9,
+      "gold": 17,
+      "shared": null,
+      "stateSha256": "e691a3a1b38caa92925cce174f552e0adb7542f6f23c23edffa1b4c42d3b2ac8",
+      "exactDomainAndStoredState": true
+    }
+  ],
+  "status": "PASS"
+}
