@@ -1,0 +1,23 @@
+{
+  "status": "PASS",
+  "frames": [
+    {
+      "phase": "attached",
+      "musicScene": "menu",
+      "visible": true
+    },
+    {
+      "phase": "next-visible-frame",
+      "musicScene": "boss",
+      "open": true,
+      "visible": true
+    }
+  ],
+  "checks": [
+    "actual ShopScene call after first render",
+    "Boss music remains old at DOM attachment and switches on the visible frame",
+    "native dismiss preserves saved state/journal/slots",
+    "seen identity does not reopen",
+    "normal saved shop uses normal music without a Boss modal"
+  ]
+}

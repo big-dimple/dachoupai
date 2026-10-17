@@ -6,6 +6,7 @@ import {createShopOfferValue,createShopIdentityTags} from './ShopJokerPresentati
 import {warmTableImages} from './StageImageWarmup';
 import {warmShopToolImages,warmShopToolPanel} from './ShopToolImageWarmup';
 import {showHeroExplanation} from './HeroExplanation';
+import {presentBossPreparation} from './BossPreparationPresentation';
 import {isR2CoreBuild,isR2SuitChoice,R2_SUIT_DYE_IDS,r2BasicChoiceBasePrice} from '../domain/r2GroupUpgrade';
 import type {R2PracticeQuote} from '../domain/r2Practice';
 import {shopPracticeServices,shopPracticeQuota,shopPracticeConfirmation,shopPracticeAction,shopPracticeSavedReceipt,shopPracticeEffect,type ShopPracticeReceipt} from './ShopPracticeService';
@@ -179,10 +180,10 @@ export class ShopScene extends Phaser.Scene {
     this.events.once('shutdown',()=>{this.resultFeedback.dispose();this.resultLayer?.destroy(true);this.resultLayer=undefined;this.resultNote=undefined;this.resultPlate=undefined;this.resultKey=undefined;});
     this.events.once('shutdown',()=>{this.lifecycle++;this.clearSynergyHighlights();this.hideHoverPicture();this.dialog.close();for(const [key,listener] of this.artRefreshListeners)this.textures.off('addtexture-'+key,listener);this.artRefreshListeners.clear();this.artTargets.clear();this.jokerArtTargets.clear();});
     this.events.once('shutdown',()=>{if(this.registry.get('runMenuActions')===this.menuActions)this.registry.remove('runMenuActions');this.menuActions=undefined;});
-    const run=runController(this)?.state;if(!run||run.phase!=='shop'){this.scene.start('character-select');return;}this.run=run;
+    const owner=runController(this),run=owner?.state;if(!owner||!run||run.phase!=='shop'){this.scene.start('character-select');return;}this.run=run;
     if(this.run.stageIndex%3===2&&!this.notice)this.notice='前方压轴强敌将至，请备足牌组与工具！';
     this.menuActions={viewDeck:()=>this.inspectDeck()};this.registry.set('runMenuActions',this.menuActions);
-    this.cameras.main.setBackgroundColor('#F3EADB');this.audio.setScene(this.run.stageIndex%3===2?'boss':'shop');this.view=new SceneView(this,()=>this.render());
+    this.cameras.main.setBackgroundColor('#F3EADB');this.view=new SceneView(this,()=>this.render());
     const clearPreview=()=>this.clearSynergyHighlights(),outside=(event:PointerEvent)=>{if(event.target!==this.game.canvas)clearPreview();},visibility=()=>{if(document.hidden)clearPreview();};
     const otherTarget=(_pointer:Phaser.Input.Pointer,over:Phaser.GameObjects.GameObject[])=>{if(!over.some(o=>o.name==='offer/'+this.synergyOfferId||o.name==='shop/selected-details'))clearPreview();};
     const motion=window.matchMedia('(prefers-reduced-motion: reduce)');motion.addEventListener('change',clearPreview);
@@ -190,11 +191,28 @@ export class ShopScene extends Phaser.Scene {
     this.events.once('shutdown',()=>{motion.removeEventListener('change',clearPreview);document.removeEventListener('pointerdown',outside,true);document.removeEventListener('visibilitychange',visibility);window.removeEventListener('blur',clearPreview);this.input.off('pointerdown',otherTarget);this.input.keyboard?.off('keydown-ESC',clearPreview);this.game.canvas.removeEventListener('pointercancel',clearPreview);});
     const canvasLabel=this.game.canvas.getAttribute('aria-label');this.events.once('shutdown',()=>{if(canvasLabel===null)this.game.canvas.removeAttribute('aria-label');else this.game.canvas.setAttribute('aria-label',canvasLabel);});
     this.ownedInput=new OwnedJokerInput(this,{ready:()=>this.ready,inspectable:()=>!this.busy&&this.run?.phase==='shop',cards:()=>this.run.jokers.map((j,i)=>({...this.geometry().slots[i],id:j.instanceId})),cancelCanvas:()=>this.view.cancelInteraction(),tap:id=>this.inspectJoker(id),lift:(id,x,y)=>this.liftOwned(id,x,y),move:(x,y)=>this.previewOwned(x,y),drop:(id,x,y)=>this.moveJoker(id,x,y),cancel:()=>this.cancelOwned()});
-    this.events.once('shutdown',()=>{this.ownedInput?.destroy();this.ownedInput=undefined;if(this.ownedDrag?.saving)this.input.enabled=true;this.ownedDrag?.destroy();this.ownedDrag=undefined;});this.render();this.resumeMakeCards();warmTableImages(this,this.run.characterId);
+    this.events.once('shutdown',()=>{this.ownedInput?.destroy();this.ownedInput=undefined;if(this.ownedDrag?.saving)this.input.enabled=true;this.ownedDrag?.destroy();this.ownedDrag=undefined;});this.render();this.prepareBossEntrance(owner,run,this.lifecycle);warmTableImages(this,this.run.characterId);
     if(!gameSession().reducedMotion&&!window.matchMedia('(prefers-reduced-motion: reduce)').matches){
       this.view.root.setAlpha(.35);this.tweens.add({targets:this.view.root,alpha:1,duration:220,ease:'Cubic.easeOut'});
       this.offerArts.forEach((art,i)=>{const ty=art.y;art.setPosition(art.x,ty+26).setAlpha(0);this.tweens.add({targets:art,y:ty,alpha:1,duration:260,delay:110+i*70,ease:'Cubic.easeOut'});});
     }
+  }
+  /** Present only the saved owner snapshot; defer across existing modals without changing music. */
+  private prepareBossEntrance(owner:NonNullable<ReturnType<typeof runController>>,run:R2RunState,lifecycle:number):void {
+    let stopped=false,observer:MutationObserver|undefined;
+    const stop=():void=>{stopped=true;observer?.disconnect();observer=undefined;this.events.off('create',attempt);};
+    const valid=()=>!stopped&&this.scene.isActive()&&this.lifecycle===lifecycle&&runController(this)===owner&&owner.state===run&&this.run===run&&run.phase==='shop';
+    const resume=()=>{if(valid())this.resumeMakeCards();};
+    const attempt=()=>{
+      if(!valid()){stop();return;}
+      const status=presentBossPreparation(this.dialog,run,{valid,onReveal:()=>{if(valid()){this.audio.setScene('boss');this.audio.sourceCue('boss');}},onFinish:()=>queueMicrotask(resume)});
+      if(status!=='deferred'){observer?.disconnect();observer=undefined;}
+      if(status==='not-applicable'){this.audio.setScene('shop');resume();}
+      else if(status==='seen'){this.audio.setScene('boss');resume();}
+      else if(status==='deferred'&&!observer){observer=new MutationObserver(()=>{if(!valid())stop();else if(!document.querySelector('dialog[open]'))attempt();});observer.observe(document.body,{subtree:true,childList:true,attributes:true,attributeFilter:['open']});}
+    };
+    this.events.once('shutdown',stop);
+    if(this.scene.isActive())attempt();else this.events.once('create',attempt);
   }
   private render():void {
     this.clearSynergyHighlights();

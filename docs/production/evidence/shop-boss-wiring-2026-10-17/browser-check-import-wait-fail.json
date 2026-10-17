@@ -1,0 +1,36 @@
+{
+  "scope": "One finite Boss-shop entrance sequence at 390×844. Real valid public checkpoint derived by two legal skips; native menu import and dismiss only. Read-only DOM/audio-state observers. No scored hands, audio listening acceptance or full shop matrix.",
+  "errors": [],
+  "browser": "153.0.8010.12",
+  "facts": {
+    "key": "[\"boss-shop-wiring\",\"erxiang\",\"quality-r2-s04-finish-v1\",\"json-fnv-v1:65b545bd97c0fdf1\",\"standard\",null,0,true,\"normal\",2,\"B04\",null]",
+    "chapter": 1,
+    "stageIndex": 2,
+    "name": "素颜场",
+    "scope": "J/Q/K计分失效；仍成型，A正常",
+    "rule": "J/Q/K本场失效；A不受影响。",
+    "advice": "数字牌和A能计分，失效人头仍能组成牌型。",
+    "targetHeat": "800",
+    "suit": null
+  },
+  "frames": [
+    {
+      "phase": "attached",
+      "musicScene": "menu",
+      "visible": true
+    },
+    {
+      "phase": "next-visible-frame",
+      "musicScene": "boss",
+      "open": true,
+      "visible": true
+    }
+  ],
+  "status": "FAIL",
+  "failure": "AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n\n'boss' !== 'shop'\n\n    at file:///D:/ai/dachoupai/dachoupai/.codex-remote-attachments/shop-experience-20261017/docs/production/evidence/shop-boss-wiring-2026-10-17/browser-check.mjs:24:114",
+  "sourceSHA256": {
+    "src/game/ShopScene.ts": "fd74cad4943b7696acb60674cf02e066b1be37e4e5044c8c2c6af47c90b4bf0b",
+    "src/game/BossPreparationPresentation.ts": "3f1b0d0214a57a269924ebb70b1798ce49423a7dda9e6647038264670c11942a",
+    "src/game/BossPreparationPresentation.css": "46408f5690c65f4f161a92e5bcc867ea80a9f9d788a34d222a1a39162d98bde9"
+  }
+}
