@@ -2,239 +2,63 @@
   "schemaVersion": 2,
   "scope": "Current repository asset tree and static source evidence; not a runtime or visual approval",
   "historicalEvidence": "docs/production/evidence/a00-2026-10-01/inventory.json",
-  "byteAccounting": "JSON byte totals use LF normalization; all other files use physical bytes",
+  "byteAccounting": "UTF-8 JSON/SVG/Markdown/TXT identity and totals use LF normalization; binary assets use physical bytes",
   "sourceReferences": [
     {
       "source": "src/audio/AudioEngine.ts",
       "expression": "../../public/assets/audio/p06/recording.json"
     },
     {
-      "source": "src/game/BootScene.ts",
-      "expression": "assets/p03/stage-wide.webp"
+      "source": "src/audio/AudioEngine.ts",
+      "expression": "../../public/assets/audio/bgm/manifest.json"
     },
     {
-      "source": "src/game/characters.ts",
-      "expression": "${import.meta.env.BASE_URL}assets/characters-p07/${file}"
+      "source": "src/audio/AudioEngine.ts",
+      "expression": "assets/audio/score-impact/cloth2.ogg"
     },
     {
-      "source": "src/game/jokerArt.ts",
-      "expression": "assets/jokers-p07/pengci.webp"
+      "source": "src/audio/foley.ts",
+      "expression": "../../public/assets/audio/foley-v1/sources.json"
     },
     {
-      "source": "src/game/jokerArt.ts",
-      "expression": "assets/jokers-p07/pengci-detail.webp"
+      "source": "src/game/CharacterArt.ts",
+      "expression": "../../public/assets/tangsong-portraits/manifest.json"
     },
     {
-      "source": "src/game/jokerArt.ts",
-      "expression": "assets/jokers-p07/e05.webp"
+      "source": "src/game/CharacterArt.ts",
+      "expression": "../../public/assets/tangsong-eyes/manifest.json"
     },
     {
-      "source": "src/game/jokerArt.ts",
-      "expression": "assets/jokers-p07/e05-detail.webp"
+      "source": "src/game/ClimaxSourceArt.ts",
+      "expression": "../../public/assets/handdrawn-climax/manifest.json"
     },
     {
-      "source": "src/game/jokerArt.ts",
-      "expression": "assets/jokers-p07/huimaqiang.webp"
+      "source": "src/game/ClimaxSourceArt.ts",
+      "expression": "assets/handdrawn-p08/"
     },
     {
-      "source": "src/game/jokerArt.ts",
-      "expression": "assets/jokers-p07/huimaqiang-detail.webp"
+      "source": "src/game/GoodsArt.ts",
+      "expression": "../../public/assets/handdrawn-tools/manifest.json"
     },
     {
-      "source": "src/game/jokerArt.ts",
-      "expression": "assets/jokers-p07/a03.webp"
+      "source": "src/game/GoodsArt.ts",
+      "expression": "assets/handdrawn-tools/"
     },
     {
-      "source": "src/game/jokerArt.ts",
-      "expression": "assets/jokers-p07/a03-detail.webp"
+      "source": "src/game/HanddrawnArt.ts",
+      "expression": "../../public/assets/handdrawn-p08/manifest.json"
     },
     {
-      "source": "src/game/jokerArt.ts",
-      "expression": "assets/jokers-p07/f02.webp"
+      "source": "src/game/HanddrawnArt.ts",
+      "expression": "assets/handdrawn-p08/"
     },
     {
-      "source": "src/game/jokerArt.ts",
-      "expression": "assets/jokers-p07/f02-detail.webp"
-    },
-    {
-      "source": "src/game/jokerArt.ts",
-      "expression": "assets/jokers-p07/d03.webp"
-    },
-    {
-      "source": "src/game/jokerArt.ts",
-      "expression": "assets/jokers-p07/d03-detail.webp"
-    },
-    {
-      "source": "src/game/jokerArt.ts",
-      "expression": "assets/jokers-p07/tiesuanpan.webp"
-    },
-    {
-      "source": "src/game/jokerArt.ts",
-      "expression": "assets/jokers-p07/tiesuanpan-detail.webp"
-    },
-    {
-      "source": "src/game/jokerArt.ts",
-      "expression": "assets/jokers-p07/mantangcai.webp"
-    },
-    {
-      "source": "src/game/jokerArt.ts",
-      "expression": "assets/jokers-p07/mantangcai-detail.webp"
-    },
-    {
-      "source": "src/game/jokerArt.ts",
-      "expression": "assets/jokers-p07/jiedongfeng.webp"
-    },
-    {
-      "source": "src/game/jokerArt.ts",
-      "expression": "assets/jokers-p07/jiedongfeng-detail.webp"
-    },
-    {
-      "source": "src/game/jokerArt.ts",
-      "expression": "assets/jokers-p07/a05.webp"
-    },
-    {
-      "source": "src/game/jokerArt.ts",
-      "expression": "assets/jokers-p07/a05-detail.webp"
-    },
-    {
-      "source": "src/game/jokerArt.ts",
-      "expression": "assets/jokers-p07/b02.webp"
-    },
-    {
-      "source": "src/game/jokerArt.ts",
-      "expression": "assets/jokers-p07/b02-detail.webp"
-    },
-    {
-      "source": "src/game/jokerArt.ts",
-      "expression": "assets/jokers-p07/b03.webp"
-    },
-    {
-      "source": "src/game/jokerArt.ts",
-      "expression": "assets/jokers-p07/b03-detail.webp"
-    },
-    {
-      "source": "src/game/jokerArt.ts",
-      "expression": "assets/jokers-p07/b04.webp"
-    },
-    {
-      "source": "src/game/jokerArt.ts",
-      "expression": "assets/jokers-p07/b04-detail.webp"
-    },
-    {
-      "source": "src/game/jokerArt.ts",
-      "expression": "assets/jokers-p07/c02.webp"
-    },
-    {
-      "source": "src/game/jokerArt.ts",
-      "expression": "assets/jokers-p07/c02-detail.webp"
-    },
-    {
-      "source": "src/game/jokerArt.ts",
-      "expression": "assets/jokers-p07/c04.webp"
-    },
-    {
-      "source": "src/game/jokerArt.ts",
-      "expression": "assets/jokers-p07/c04-detail.webp"
-    },
-    {
-      "source": "src/game/jokerArt.ts",
-      "expression": "assets/jokers-p07/c06.webp"
-    },
-    {
-      "source": "src/game/jokerArt.ts",
-      "expression": "assets/jokers-p07/c06-detail.webp"
-    },
-    {
-      "source": "src/game/jokerArt.ts",
-      "expression": "assets/jokers-p07/d01.webp"
-    },
-    {
-      "source": "src/game/jokerArt.ts",
-      "expression": "assets/jokers-p07/d01-detail.webp"
-    },
-    {
-      "source": "src/game/jokerArt.ts",
-      "expression": "assets/jokers-p07/d05.webp"
-    },
-    {
-      "source": "src/game/jokerArt.ts",
-      "expression": "assets/jokers-p07/d05-detail.webp"
-    },
-    {
-      "source": "src/game/jokerArt.ts",
-      "expression": "assets/jokers-p07/d10.webp"
-    },
-    {
-      "source": "src/game/jokerArt.ts",
-      "expression": "assets/jokers-p07/d10-detail.webp"
-    },
-    {
-      "source": "src/game/jokerArt.ts",
-      "expression": "assets/jokers-p07/e01.webp"
-    },
-    {
-      "source": "src/game/jokerArt.ts",
-      "expression": "assets/jokers-p07/e01-detail.webp"
-    },
-    {
-      "source": "src/game/jokerArt.ts",
-      "expression": "assets/jokers-p07/e03.webp"
-    },
-    {
-      "source": "src/game/jokerArt.ts",
-      "expression": "assets/jokers-p07/e03-detail.webp"
-    },
-    {
-      "source": "src/game/jokerArt.ts",
-      "expression": "assets/jokers-p07/e08.webp"
-    },
-    {
-      "source": "src/game/jokerArt.ts",
-      "expression": "assets/jokers-p07/e08-detail.webp"
-    },
-    {
-      "source": "src/game/jokerArt.ts",
-      "expression": "assets/jokers-p07/f03.webp"
-    },
-    {
-      "source": "src/game/jokerArt.ts",
-      "expression": "assets/jokers-p07/f03-detail.webp"
-    },
-    {
-      "source": "src/game/jokerArt.ts",
-      "expression": "assets/jokers-p07/f09.webp"
-    },
-    {
-      "source": "src/game/jokerArt.ts",
-      "expression": "assets/jokers-p07/f09-detail.webp"
-    },
-    {
-      "source": "src/game/portraits.ts",
-      "expression": "${import.meta.env.BASE_URL}assets/characters-p07/${id}.avatar.webp"
-    },
-    {
-      "source": "src/game/portraits.ts",
-      "expression": "${import.meta.env.BASE_URL}assets/characters-p07/${id}.selection.webp"
+      "source": "src/game/RewardCoin.ts",
+      "expression": "assets/effects/coin-reward/coin-reward-handdrawn.webp"
     },
     {
       "source": "src/game/theme.ts",
       "expression": "assets/p00/paper.svg"
-    },
-    {
-      "source": "src/game/theme.ts",
-      "expression": "assets/p00/card-back.svg"
-    },
-    {
-      "source": "src/game/theme.ts",
-      "expression": "assets/p00/frame-common.svg"
-    },
-    {
-      "source": "src/game/theme.ts",
-      "expression": "assets/p00/frame-uncommon.svg"
-    },
-    {
-      "source": "src/game/theme.ts",
-      "expression": "assets/p00/frame-rare.svg"
     },
     {
       "source": "src/game/theme.ts",
@@ -247,119 +71,449 @@
     {
       "source": "src/game/theme.ts",
       "expression": "assets/p00/mark-times.svg"
+    },
+    {
+      "source": "src/style.css",
+      "expression": "/assets/fonts/score/dachoupai-score-numbers.woff"
     }
   ],
   "staticRuntimePaths": [
+    "public/assets/audio/bgm/manifest.json",
+    "public/assets/audio/foley-v1/sources.json",
     "public/assets/audio/p06/recording.json",
-    "public/assets/jokers-p07/a03-detail.webp",
-    "public/assets/jokers-p07/a03.webp",
-    "public/assets/jokers-p07/a05-detail.webp",
-    "public/assets/jokers-p07/a05.webp",
-    "public/assets/jokers-p07/b02-detail.webp",
-    "public/assets/jokers-p07/b02.webp",
-    "public/assets/jokers-p07/b03-detail.webp",
-    "public/assets/jokers-p07/b03.webp",
-    "public/assets/jokers-p07/b04-detail.webp",
-    "public/assets/jokers-p07/b04.webp",
-    "public/assets/jokers-p07/c02-detail.webp",
-    "public/assets/jokers-p07/c02.webp",
-    "public/assets/jokers-p07/c04-detail.webp",
-    "public/assets/jokers-p07/c04.webp",
-    "public/assets/jokers-p07/c06-detail.webp",
-    "public/assets/jokers-p07/c06.webp",
-    "public/assets/jokers-p07/d01-detail.webp",
-    "public/assets/jokers-p07/d01.webp",
-    "public/assets/jokers-p07/d03-detail.webp",
-    "public/assets/jokers-p07/d03.webp",
-    "public/assets/jokers-p07/d05-detail.webp",
-    "public/assets/jokers-p07/d05.webp",
-    "public/assets/jokers-p07/d10-detail.webp",
-    "public/assets/jokers-p07/d10.webp",
-    "public/assets/jokers-p07/e01-detail.webp",
-    "public/assets/jokers-p07/e01.webp",
-    "public/assets/jokers-p07/e03-detail.webp",
-    "public/assets/jokers-p07/e03.webp",
-    "public/assets/jokers-p07/e05-detail.webp",
-    "public/assets/jokers-p07/e05.webp",
-    "public/assets/jokers-p07/e08-detail.webp",
-    "public/assets/jokers-p07/e08.webp",
-    "public/assets/jokers-p07/f02-detail.webp",
-    "public/assets/jokers-p07/f02.webp",
-    "public/assets/jokers-p07/f03-detail.webp",
-    "public/assets/jokers-p07/f03.webp",
-    "public/assets/jokers-p07/f09-detail.webp",
-    "public/assets/jokers-p07/f09.webp",
-    "public/assets/jokers-p07/huimaqiang-detail.webp",
-    "public/assets/jokers-p07/huimaqiang.webp",
-    "public/assets/jokers-p07/jiedongfeng-detail.webp",
-    "public/assets/jokers-p07/jiedongfeng.webp",
-    "public/assets/jokers-p07/mantangcai-detail.webp",
-    "public/assets/jokers-p07/mantangcai.webp",
-    "public/assets/jokers-p07/pengci-detail.webp",
-    "public/assets/jokers-p07/pengci.webp",
-    "public/assets/jokers-p07/tiesuanpan-detail.webp",
-    "public/assets/jokers-p07/tiesuanpan.webp",
-    "public/assets/p00/card-back.svg",
-    "public/assets/p00/frame-common.svg",
-    "public/assets/p00/frame-rare.svg",
-    "public/assets/p00/frame-uncommon.svg",
+    "public/assets/audio/score-impact/cloth2.ogg",
+    "public/assets/effects/coin-reward/coin-reward-handdrawn.webp",
+    "public/assets/fonts/score/dachoupai-score-numbers.woff",
+    "public/assets/handdrawn-climax/manifest.json",
+    "public/assets/handdrawn-p08/manifest.json",
+    "public/assets/handdrawn-tools/manifest.json",
     "public/assets/p00/mark-joker.svg",
     "public/assets/p00/mark-plus.svg",
     "public/assets/p00/mark-times.svg",
     "public/assets/p00/paper.svg",
-    "public/assets/p03/stage-wide.webp"
+    "public/assets/tangsong-eyes/manifest.json",
+    "public/assets/tangsong-portraits/manifest.json"
   ],
   "parameterizedSourceReferences": [
     {
-      "source": "src/game/characters.ts",
-      "expression": "${import.meta.env.BASE_URL}assets/characters-p07/${file}",
+      "source": "src/game/ClimaxSourceArt.ts",
+      "expression": "assets/handdrawn-p08/",
       "matchingPaths": [
-        "public/assets/characters-p07/amo.avatar.webp",
-        "public/assets/characters-p07/amo.portrait.webp",
-        "public/assets/characters-p07/amo.selection.webp",
-        "public/assets/characters-p07/azao.avatar.webp",
-        "public/assets/characters-p07/azao.portrait.webp",
-        "public/assets/characters-p07/azao.selection.webp",
-        "public/assets/characters-p07/erxiang.avatar.webp",
-        "public/assets/characters-p07/erxiang.portrait.webp",
-        "public/assets/characters-p07/erxiang.selection.webp",
-        "public/assets/characters-p07/laohuan.avatar.webp",
-        "public/assets/characters-p07/laohuan.portrait.webp",
-        "public/assets/characters-p07/laohuan.selection.webp",
-        "public/assets/characters-p07/touye.avatar.webp",
-        "public/assets/characters-p07/touye.portrait.webp",
-        "public/assets/characters-p07/touye.selection.webp",
-        "public/assets/characters-p07/xiemu.avatar.webp",
-        "public/assets/characters-p07/xiemu.portrait.webp",
-        "public/assets/characters-p07/xiemu.selection.webp"
+        "public/assets/handdrawn-p08/cards/a03.detail.webp",
+        "public/assets/handdrawn-p08/cards/a03.thumbnail.webp",
+        "public/assets/handdrawn-p08/cards/a04.detail.webp",
+        "public/assets/handdrawn-p08/cards/a04.thumbnail.webp",
+        "public/assets/handdrawn-p08/cards/a05.detail.webp",
+        "public/assets/handdrawn-p08/cards/a05.thumbnail.webp",
+        "public/assets/handdrawn-p08/cards/a06.detail.webp",
+        "public/assets/handdrawn-p08/cards/a06.thumbnail.webp",
+        "public/assets/handdrawn-p08/cards/a07.detail.webp",
+        "public/assets/handdrawn-p08/cards/a07.thumbnail.webp",
+        "public/assets/handdrawn-p08/cards/a08.detail.webp",
+        "public/assets/handdrawn-p08/cards/a08.thumbnail.webp",
+        "public/assets/handdrawn-p08/cards/a09.detail.webp",
+        "public/assets/handdrawn-p08/cards/a09.thumbnail.webp",
+        "public/assets/handdrawn-p08/cards/a10.detail.webp",
+        "public/assets/handdrawn-p08/cards/a10.thumbnail.webp",
+        "public/assets/handdrawn-p08/cards/a11-v3-3717b4202b01.thumbnail.webp",
+        "public/assets/handdrawn-p08/cards/a11-v3-9a3c66b239fc.detail.webp",
+        "public/assets/handdrawn-p08/cards/a12.detail.webp",
+        "public/assets/handdrawn-p08/cards/a12.thumbnail.webp",
+        "public/assets/handdrawn-p08/cards/b02.detail.webp",
+        "public/assets/handdrawn-p08/cards/b02.thumbnail.webp",
+        "public/assets/handdrawn-p08/cards/b03.detail.webp",
+        "public/assets/handdrawn-p08/cards/b03.thumbnail.webp",
+        "public/assets/handdrawn-p08/cards/b04.detail.webp",
+        "public/assets/handdrawn-p08/cards/b04.thumbnail.webp",
+        "public/assets/handdrawn-p08/cards/b05-v3-808bf2fbfd26.detail.webp",
+        "public/assets/handdrawn-p08/cards/b05-v3-ee1848ebb107.thumbnail.webp",
+        "public/assets/handdrawn-p08/cards/b06.detail.webp",
+        "public/assets/handdrawn-p08/cards/b06.thumbnail.webp",
+        "public/assets/handdrawn-p08/cards/b07.detail.webp",
+        "public/assets/handdrawn-p08/cards/b07.thumbnail.webp",
+        "public/assets/handdrawn-p08/cards/b08.detail.webp",
+        "public/assets/handdrawn-p08/cards/b08.thumbnail.webp",
+        "public/assets/handdrawn-p08/cards/b09.detail.webp",
+        "public/assets/handdrawn-p08/cards/b09.thumbnail.webp",
+        "public/assets/handdrawn-p08/cards/b10.detail.webp",
+        "public/assets/handdrawn-p08/cards/b10.thumbnail.webp",
+        "public/assets/handdrawn-p08/cards/b11.detail.webp",
+        "public/assets/handdrawn-p08/cards/b11.thumbnail.webp",
+        "public/assets/handdrawn-p08/cards/b12.detail.webp",
+        "public/assets/handdrawn-p08/cards/b12.thumbnail.webp",
+        "public/assets/handdrawn-p08/cards/c02.detail.webp",
+        "public/assets/handdrawn-p08/cards/c02.thumbnail.webp",
+        "public/assets/handdrawn-p08/cards/c03.detail.webp",
+        "public/assets/handdrawn-p08/cards/c03.thumbnail.webp",
+        "public/assets/handdrawn-p08/cards/c04.detail.webp",
+        "public/assets/handdrawn-p08/cards/c04.thumbnail.webp",
+        "public/assets/handdrawn-p08/cards/c05.detail.webp",
+        "public/assets/handdrawn-p08/cards/c05.thumbnail.webp",
+        "public/assets/handdrawn-p08/cards/c06-v3-2cac9ea20520.detail.webp",
+        "public/assets/handdrawn-p08/cards/c06-v3-45e28c8be0e9.thumbnail.webp",
+        "public/assets/handdrawn-p08/cards/c07.detail.webp",
+        "public/assets/handdrawn-p08/cards/c07.thumbnail.webp",
+        "public/assets/handdrawn-p08/cards/c08.detail.webp",
+        "public/assets/handdrawn-p08/cards/c08.thumbnail.webp",
+        "public/assets/handdrawn-p08/cards/c09.detail.webp",
+        "public/assets/handdrawn-p08/cards/c09.thumbnail.webp",
+        "public/assets/handdrawn-p08/cards/c10.detail.webp",
+        "public/assets/handdrawn-p08/cards/c10.thumbnail.webp",
+        "public/assets/handdrawn-p08/cards/c11.detail.webp",
+        "public/assets/handdrawn-p08/cards/c11.thumbnail.webp",
+        "public/assets/handdrawn-p08/cards/c12.detail.webp",
+        "public/assets/handdrawn-p08/cards/c12.thumbnail.webp",
+        "public/assets/handdrawn-p08/cards/d01.detail.webp",
+        "public/assets/handdrawn-p08/cards/d01.thumbnail.webp",
+        "public/assets/handdrawn-p08/cards/d02.detail.webp",
+        "public/assets/handdrawn-p08/cards/d02.thumbnail.webp",
+        "public/assets/handdrawn-p08/cards/d03.detail.webp",
+        "public/assets/handdrawn-p08/cards/d03.thumbnail.webp",
+        "public/assets/handdrawn-p08/cards/d04.detail.webp",
+        "public/assets/handdrawn-p08/cards/d04.thumbnail.webp",
+        "public/assets/handdrawn-p08/cards/d05.detail.webp",
+        "public/assets/handdrawn-p08/cards/d05.thumbnail.webp",
+        "public/assets/handdrawn-p08/cards/d06.detail.webp",
+        "public/assets/handdrawn-p08/cards/d06.thumbnail.webp",
+        "public/assets/handdrawn-p08/cards/d07.detail.webp",
+        "public/assets/handdrawn-p08/cards/d07.thumbnail.webp",
+        "public/assets/handdrawn-p08/cards/d08.detail.webp",
+        "public/assets/handdrawn-p08/cards/d08.thumbnail.webp",
+        "public/assets/handdrawn-p08/cards/d09.detail.webp",
+        "public/assets/handdrawn-p08/cards/d09.thumbnail.webp",
+        "public/assets/handdrawn-p08/cards/d10.detail.webp",
+        "public/assets/handdrawn-p08/cards/d10.thumbnail.webp",
+        "public/assets/handdrawn-p08/cards/d11.detail.webp",
+        "public/assets/handdrawn-p08/cards/d11.thumbnail.webp",
+        "public/assets/handdrawn-p08/cards/d12.detail.webp",
+        "public/assets/handdrawn-p08/cards/d12.thumbnail.webp",
+        "public/assets/handdrawn-p08/cards/e01.detail.webp",
+        "public/assets/handdrawn-p08/cards/e01.thumbnail.webp",
+        "public/assets/handdrawn-p08/cards/e02.detail.webp",
+        "public/assets/handdrawn-p08/cards/e02.thumbnail.webp",
+        "public/assets/handdrawn-p08/cards/e03.detail.webp",
+        "public/assets/handdrawn-p08/cards/e03.thumbnail.webp",
+        "public/assets/handdrawn-p08/cards/e04.detail.webp",
+        "public/assets/handdrawn-p08/cards/e04.thumbnail.webp",
+        "public/assets/handdrawn-p08/cards/e05.detail.webp",
+        "public/assets/handdrawn-p08/cards/e05.thumbnail.webp",
+        "public/assets/handdrawn-p08/cards/e06.detail.webp",
+        "public/assets/handdrawn-p08/cards/e06.thumbnail.webp",
+        "public/assets/handdrawn-p08/cards/e07.detail.webp",
+        "public/assets/handdrawn-p08/cards/e07.thumbnail.webp",
+        "public/assets/handdrawn-p08/cards/e08.detail.webp",
+        "public/assets/handdrawn-p08/cards/e08.thumbnail.webp",
+        "public/assets/handdrawn-p08/cards/e09.detail.webp",
+        "public/assets/handdrawn-p08/cards/e09.thumbnail.webp",
+        "public/assets/handdrawn-p08/cards/e10.detail.webp",
+        "public/assets/handdrawn-p08/cards/e10.thumbnail.webp",
+        "public/assets/handdrawn-p08/cards/e11.detail.webp",
+        "public/assets/handdrawn-p08/cards/e11.thumbnail.webp",
+        "public/assets/handdrawn-p08/cards/e12.detail.webp",
+        "public/assets/handdrawn-p08/cards/e12.thumbnail.webp",
+        "public/assets/handdrawn-p08/cards/f02.detail.webp",
+        "public/assets/handdrawn-p08/cards/f02.thumbnail.webp",
+        "public/assets/handdrawn-p08/cards/f03.detail.webp",
+        "public/assets/handdrawn-p08/cards/f03.thumbnail.webp",
+        "public/assets/handdrawn-p08/cards/f04.detail.webp",
+        "public/assets/handdrawn-p08/cards/f04.thumbnail.webp",
+        "public/assets/handdrawn-p08/cards/f05.detail.webp",
+        "public/assets/handdrawn-p08/cards/f05.thumbnail.webp",
+        "public/assets/handdrawn-p08/cards/f06.detail.webp",
+        "public/assets/handdrawn-p08/cards/f06.thumbnail.webp",
+        "public/assets/handdrawn-p08/cards/f07.detail.webp",
+        "public/assets/handdrawn-p08/cards/f07.thumbnail.webp",
+        "public/assets/handdrawn-p08/cards/f08.detail.webp",
+        "public/assets/handdrawn-p08/cards/f08.thumbnail.webp",
+        "public/assets/handdrawn-p08/cards/f09.detail.webp",
+        "public/assets/handdrawn-p08/cards/f09.thumbnail.webp",
+        "public/assets/handdrawn-p08/cards/f10.detail.webp",
+        "public/assets/handdrawn-p08/cards/f10.thumbnail.webp",
+        "public/assets/handdrawn-p08/cards/f11.detail.webp",
+        "public/assets/handdrawn-p08/cards/f11.thumbnail.webp",
+        "public/assets/handdrawn-p08/cards/f12.detail.webp",
+        "public/assets/handdrawn-p08/cards/f12.thumbnail.webp",
+        "public/assets/handdrawn-p08/cards/huimaqiang.detail.webp",
+        "public/assets/handdrawn-p08/cards/huimaqiang.thumbnail.webp",
+        "public/assets/handdrawn-p08/cards/jiedongfeng.detail.webp",
+        "public/assets/handdrawn-p08/cards/jiedongfeng.thumbnail.webp",
+        "public/assets/handdrawn-p08/cards/mantangcai.detail.webp",
+        "public/assets/handdrawn-p08/cards/mantangcai.thumbnail.webp",
+        "public/assets/handdrawn-p08/cards/pengci.detail.webp",
+        "public/assets/handdrawn-p08/cards/pengci.thumbnail.webp",
+        "public/assets/handdrawn-p08/cards/tiesuanpan.detail.webp",
+        "public/assets/handdrawn-p08/cards/tiesuanpan.thumbnail.webp",
+        "public/assets/handdrawn-p08/court/j.court.webp",
+        "public/assets/handdrawn-p08/court/k.court.webp",
+        "public/assets/handdrawn-p08/court/q.court.webp",
+        "public/assets/handdrawn-p08/manifest.json"
       ],
-      "evidence": "filename-match-only"
+      "evidence": "directory-prefix-match-only"
     },
     {
-      "source": "src/game/portraits.ts",
-      "expression": "${import.meta.env.BASE_URL}assets/characters-p07/${id}.avatar.webp",
+      "source": "src/game/GoodsArt.ts",
+      "expression": "assets/handdrawn-tools/",
       "matchingPaths": [
-        "public/assets/characters-p07/amo.avatar.webp",
-        "public/assets/characters-p07/azao.avatar.webp",
-        "public/assets/characters-p07/erxiang.avatar.webp",
-        "public/assets/characters-p07/laohuan.avatar.webp",
-        "public/assets/characters-p07/touye.avatar.webp",
-        "public/assets/characters-p07/xiemu.avatar.webp"
+        "public/assets/handdrawn-tools/item-u01-v3-02e7d633fc47.thumbnail.webp",
+        "public/assets/handdrawn-tools/item-u01-v3-2bef742fa272.detail.webp",
+        "public/assets/handdrawn-tools/item-u02-v3-3dbb0aa82edb.thumbnail.webp",
+        "public/assets/handdrawn-tools/item-u02-v3-a54831498ac4.detail.webp",
+        "public/assets/handdrawn-tools/item-u03-v3-253165cc0498.detail.webp",
+        "public/assets/handdrawn-tools/item-u03-v3-ab777c68ca42.thumbnail.webp",
+        "public/assets/handdrawn-tools/item-u04-v3-80e9e8a430f8.thumbnail.webp",
+        "public/assets/handdrawn-tools/item-u04-v3-978eb5601ce1.detail.webp",
+        "public/assets/handdrawn-tools/item-u05-v3-3fb1e9d5122f.thumbnail.webp",
+        "public/assets/handdrawn-tools/item-u05-v3-e6da98d1a81b.detail.webp",
+        "public/assets/handdrawn-tools/item-u06-v3-30267af4ea14.thumbnail.webp",
+        "public/assets/handdrawn-tools/item-u06-v3-4563b76a75f3.detail.webp",
+        "public/assets/handdrawn-tools/item-u07-v3-17c75874938b.detail.webp",
+        "public/assets/handdrawn-tools/item-u07-v3-bd10be2c93d3.thumbnail.webp",
+        "public/assets/handdrawn-tools/item-u08-v3-47b25e81bf54.thumbnail.webp",
+        "public/assets/handdrawn-tools/item-u08-v3-878095f52857.detail.webp",
+        "public/assets/handdrawn-tools/item-u09-v3-9f6a51ae278b.thumbnail.webp",
+        "public/assets/handdrawn-tools/item-u09-v3-a7fd63649c09.detail.webp",
+        "public/assets/handdrawn-tools/item-u10-v3-a9273cc3af5b.thumbnail.webp",
+        "public/assets/handdrawn-tools/item-u10-v3-aac50832c369.detail.webp",
+        "public/assets/handdrawn-tools/item-u11-v3-ca53a6c517ca.thumbnail.webp",
+        "public/assets/handdrawn-tools/item-u11-v3-f5a424da2dd3.detail.webp",
+        "public/assets/handdrawn-tools/item-u12-v3-cbdeac1af311.thumbnail.webp",
+        "public/assets/handdrawn-tools/item-u12-v3-cf30939a3bb0.detail.webp",
+        "public/assets/handdrawn-tools/manifest.json",
+        "public/assets/handdrawn-tools/tool-p01-v3-2ddde8f3501b.detail.webp",
+        "public/assets/handdrawn-tools/tool-p01-v3-8a6ca716b565.thumbnail.webp",
+        "public/assets/handdrawn-tools/tool-p02-v3-0f339dec8059.detail.webp",
+        "public/assets/handdrawn-tools/tool-p02-v3-5c667d546ea6.thumbnail.webp",
+        "public/assets/handdrawn-tools/tool-p03-v3-bbb724ac39c2.detail.webp",
+        "public/assets/handdrawn-tools/tool-p03-v3-e24c2c019e46.thumbnail.webp",
+        "public/assets/handdrawn-tools/tool-p04-v3-058b1edaa5cc.detail.webp",
+        "public/assets/handdrawn-tools/tool-p04-v3-aa2b6446f342.thumbnail.webp",
+        "public/assets/handdrawn-tools/tool-p05-v3-22b0dae47218.thumbnail.webp",
+        "public/assets/handdrawn-tools/tool-p05-v3-7432e36d9566.detail.webp",
+        "public/assets/handdrawn-tools/tool-p06-v3-c2add4a6f13a.detail.webp",
+        "public/assets/handdrawn-tools/tool-p06-v3-d59b01128739.thumbnail.webp",
+        "public/assets/handdrawn-tools/tool-p07-v3-29bb43e555e9.thumbnail.webp",
+        "public/assets/handdrawn-tools/tool-p07-v3-8897d86a54e5.detail.webp",
+        "public/assets/handdrawn-tools/tool-p08-v3-58d5786ebc1c.detail.webp",
+        "public/assets/handdrawn-tools/tool-p08-v3-81945e76a5e1.thumbnail.webp",
+        "public/assets/handdrawn-tools/tool-p09-v3-49dea26ca4c6.thumbnail.webp",
+        "public/assets/handdrawn-tools/tool-p09-v3-6af0e2b582a9.detail.webp",
+        "public/assets/handdrawn-tools/tool-p10-v3-30c9a3f17375.detail.webp",
+        "public/assets/handdrawn-tools/tool-p10-v3-59c909b212b4.thumbnail.webp",
+        "public/assets/handdrawn-tools/tool-p11-v3-00f7a915ebac.thumbnail.webp",
+        "public/assets/handdrawn-tools/tool-p11-v3-921d895c8902.detail.webp",
+        "public/assets/handdrawn-tools/tool-p12-v3-27587bb86d11.thumbnail.webp",
+        "public/assets/handdrawn-tools/tool-p12-v3-c4d7715f6778.detail.webp",
+        "public/assets/handdrawn-tools/tool-s01-v3-94d15db7dbb6.thumbnail.webp",
+        "public/assets/handdrawn-tools/tool-s01-v3-dd5cf7ab2a5c.detail.webp",
+        "public/assets/handdrawn-tools/tool-s02-v3-0214636b87c0.detail.webp",
+        "public/assets/handdrawn-tools/tool-s02-v3-f7d9892bc02d.thumbnail.webp",
+        "public/assets/handdrawn-tools/tool-s03-v3-1ee52bb19a6d.thumbnail.webp",
+        "public/assets/handdrawn-tools/tool-s03-v3-d95525ed9450.detail.webp",
+        "public/assets/handdrawn-tools/tool-s04-v3-58438e349cd6.thumbnail.webp",
+        "public/assets/handdrawn-tools/tool-s04-v3-f930cda8fd79.detail.webp",
+        "public/assets/handdrawn-tools/tool-s05-v3-6f69f0fa29f8.thumbnail.webp",
+        "public/assets/handdrawn-tools/tool-s05-v3-e104d3901c70.detail.webp",
+        "public/assets/handdrawn-tools/tool-s06-v3-60dd3974d7b1.detail.webp",
+        "public/assets/handdrawn-tools/tool-s06-v3-6da72903afda.thumbnail.webp",
+        "public/assets/handdrawn-tools/tool-s07-v3-2ca5e8414be6.thumbnail.webp",
+        "public/assets/handdrawn-tools/tool-s07-v3-a2db70f56b77.detail.webp",
+        "public/assets/handdrawn-tools/tool-s08-v3-471e812e0f2f.thumbnail.webp",
+        "public/assets/handdrawn-tools/tool-s08-v3-a5e210bc9fc5.detail.webp",
+        "public/assets/handdrawn-tools/tool-t01-v3-4b4ec7da2fb5.thumbnail.webp",
+        "public/assets/handdrawn-tools/tool-t01-v3-df44ff73798e.detail.webp",
+        "public/assets/handdrawn-tools/tool-t02-v3-197e1cf7bf50.thumbnail.webp",
+        "public/assets/handdrawn-tools/tool-t02-v3-a74260cc55a8.detail.webp",
+        "public/assets/handdrawn-tools/tool-t03-v3-137952a9613f.thumbnail.webp",
+        "public/assets/handdrawn-tools/tool-t03-v3-4f4cc5b3f22e.detail.webp",
+        "public/assets/handdrawn-tools/tool-t04-v3-7b516212b3cb.thumbnail.webp",
+        "public/assets/handdrawn-tools/tool-t04-v3-c8af5f8bc772.detail.webp",
+        "public/assets/handdrawn-tools/tool-t05-v3-7335b44fdd25.thumbnail.webp",
+        "public/assets/handdrawn-tools/tool-t05-v3-f98b1800487b.detail.webp",
+        "public/assets/handdrawn-tools/tool-t06-v3-90f7b462bc1e.thumbnail.webp",
+        "public/assets/handdrawn-tools/tool-t06-v3-bd362ff0bf03.detail.webp",
+        "public/assets/handdrawn-tools/tool-t07-v3-2e57e646fb94.thumbnail.webp",
+        "public/assets/handdrawn-tools/tool-t07-v3-951b2e9fd4c5.detail.webp",
+        "public/assets/handdrawn-tools/tool-t08-v3-547bc946c900.thumbnail.webp",
+        "public/assets/handdrawn-tools/tool-t08-v3-5c7cb22f4e9c.detail.webp",
+        "public/assets/handdrawn-tools/tool-t09-v3-984ec965c7aa.detail.webp",
+        "public/assets/handdrawn-tools/tool-t09-v3-9eaf34398ad6.thumbnail.webp",
+        "public/assets/handdrawn-tools/tool-t10-v3-26013708d55f.thumbnail.webp",
+        "public/assets/handdrawn-tools/tool-t10-v3-704dd059200c.detail.webp",
+        "public/assets/handdrawn-tools/tool-t11-v3-a0815300d39f.thumbnail.webp",
+        "public/assets/handdrawn-tools/tool-t11-v3-b136e57c8172.detail.webp",
+        "public/assets/handdrawn-tools/tool-t12-v3-94b6c581cf11.thumbnail.webp",
+        "public/assets/handdrawn-tools/tool-t12-v3-cadb0a1bdf74.detail.webp",
+        "public/assets/handdrawn-tools/tool-t13-v3-335e75873b17.detail.webp",
+        "public/assets/handdrawn-tools/tool-t13-v3-34f352b3c46f.thumbnail.webp",
+        "public/assets/handdrawn-tools/tool-t14-v3-35e112496aae.detail.webp",
+        "public/assets/handdrawn-tools/tool-t14-v3-fffaa28aef43.thumbnail.webp",
+        "public/assets/handdrawn-tools/tool-t15-v3-39e6d5ec3a8a.thumbnail.webp",
+        "public/assets/handdrawn-tools/tool-t15-v3-b58caead693a.detail.webp",
+        "public/assets/handdrawn-tools/tool-t16-v3-4fcbf51a1425.thumbnail.webp",
+        "public/assets/handdrawn-tools/tool-t16-v3-643e891f16b8.detail.webp",
+        "public/assets/handdrawn-tools/tool-t17-v3-9c5025b5a3c2.detail.webp",
+        "public/assets/handdrawn-tools/tool-t17-v3-e4681d4e6a3c.thumbnail.webp",
+        "public/assets/handdrawn-tools/tool-t18-v3-8dff11f1be21.thumbnail.webp",
+        "public/assets/handdrawn-tools/tool-t18-v3-d37694d1aaa0.detail.webp",
+        "public/assets/handdrawn-tools/tool-t19-v3-1dc40115f632.thumbnail.webp",
+        "public/assets/handdrawn-tools/tool-t19-v3-cb431a1d3715.detail.webp"
       ],
-      "evidence": "filename-match-only"
+      "evidence": "directory-prefix-match-only"
     },
     {
-      "source": "src/game/portraits.ts",
-      "expression": "${import.meta.env.BASE_URL}assets/characters-p07/${id}.selection.webp",
+      "source": "src/game/HanddrawnArt.ts",
+      "expression": "assets/handdrawn-p08/",
       "matchingPaths": [
-        "public/assets/characters-p07/amo.selection.webp",
-        "public/assets/characters-p07/azao.selection.webp",
-        "public/assets/characters-p07/erxiang.selection.webp",
-        "public/assets/characters-p07/laohuan.selection.webp",
-        "public/assets/characters-p07/touye.selection.webp",
-        "public/assets/characters-p07/xiemu.selection.webp"
+        "public/assets/handdrawn-p08/cards/a03.detail.webp",
+        "public/assets/handdrawn-p08/cards/a03.thumbnail.webp",
+        "public/assets/handdrawn-p08/cards/a04.detail.webp",
+        "public/assets/handdrawn-p08/cards/a04.thumbnail.webp",
+        "public/assets/handdrawn-p08/cards/a05.detail.webp",
+        "public/assets/handdrawn-p08/cards/a05.thumbnail.webp",
+        "public/assets/handdrawn-p08/cards/a06.detail.webp",
+        "public/assets/handdrawn-p08/cards/a06.thumbnail.webp",
+        "public/assets/handdrawn-p08/cards/a07.detail.webp",
+        "public/assets/handdrawn-p08/cards/a07.thumbnail.webp",
+        "public/assets/handdrawn-p08/cards/a08.detail.webp",
+        "public/assets/handdrawn-p08/cards/a08.thumbnail.webp",
+        "public/assets/handdrawn-p08/cards/a09.detail.webp",
+        "public/assets/handdrawn-p08/cards/a09.thumbnail.webp",
+        "public/assets/handdrawn-p08/cards/a10.detail.webp",
+        "public/assets/handdrawn-p08/cards/a10.thumbnail.webp",
+        "public/assets/handdrawn-p08/cards/a11-v3-3717b4202b01.thumbnail.webp",
+        "public/assets/handdrawn-p08/cards/a11-v3-9a3c66b239fc.detail.webp",
+        "public/assets/handdrawn-p08/cards/a12.detail.webp",
+        "public/assets/handdrawn-p08/cards/a12.thumbnail.webp",
+        "public/assets/handdrawn-p08/cards/b02.detail.webp",
+        "public/assets/handdrawn-p08/cards/b02.thumbnail.webp",
+        "public/assets/handdrawn-p08/cards/b03.detail.webp",
+        "public/assets/handdrawn-p08/cards/b03.thumbnail.webp",
+        "public/assets/handdrawn-p08/cards/b04.detail.webp",
+        "public/assets/handdrawn-p08/cards/b04.thumbnail.webp",
+        "public/assets/handdrawn-p08/cards/b05-v3-808bf2fbfd26.detail.webp",
+        "public/assets/handdrawn-p08/cards/b05-v3-ee1848ebb107.thumbnail.webp",
+        "public/assets/handdrawn-p08/cards/b06.detail.webp",
+        "public/assets/handdrawn-p08/cards/b06.thumbnail.webp",
+        "public/assets/handdrawn-p08/cards/b07.detail.webp",
+        "public/assets/handdrawn-p08/cards/b07.thumbnail.webp",
+        "public/assets/handdrawn-p08/cards/b08.detail.webp",
+        "public/assets/handdrawn-p08/cards/b08.thumbnail.webp",
+        "public/assets/handdrawn-p08/cards/b09.detail.webp",
+        "public/assets/handdrawn-p08/cards/b09.thumbnail.webp",
+        "public/assets/handdrawn-p08/cards/b10.detail.webp",
+        "public/assets/handdrawn-p08/cards/b10.thumbnail.webp",
+        "public/assets/handdrawn-p08/cards/b11.detail.webp",
+        "public/assets/handdrawn-p08/cards/b11.thumbnail.webp",
+        "public/assets/handdrawn-p08/cards/b12.detail.webp",
+        "public/assets/handdrawn-p08/cards/b12.thumbnail.webp",
+        "public/assets/handdrawn-p08/cards/c02.detail.webp",
+        "public/assets/handdrawn-p08/cards/c02.thumbnail.webp",
+        "public/assets/handdrawn-p08/cards/c03.detail.webp",
+        "public/assets/handdrawn-p08/cards/c03.thumbnail.webp",
+        "public/assets/handdrawn-p08/cards/c04.detail.webp",
+        "public/assets/handdrawn-p08/cards/c04.thumbnail.webp",
+        "public/assets/handdrawn-p08/cards/c05.detail.webp",
+        "public/assets/handdrawn-p08/cards/c05.thumbnail.webp",
+        "public/assets/handdrawn-p08/cards/c06-v3-2cac9ea20520.detail.webp",
+        "public/assets/handdrawn-p08/cards/c06-v3-45e28c8be0e9.thumbnail.webp",
+        "public/assets/handdrawn-p08/cards/c07.detail.webp",
+        "public/assets/handdrawn-p08/cards/c07.thumbnail.webp",
+        "public/assets/handdrawn-p08/cards/c08.detail.webp",
+        "public/assets/handdrawn-p08/cards/c08.thumbnail.webp",
+        "public/assets/handdrawn-p08/cards/c09.detail.webp",
+        "public/assets/handdrawn-p08/cards/c09.thumbnail.webp",
+        "public/assets/handdrawn-p08/cards/c10.detail.webp",
+        "public/assets/handdrawn-p08/cards/c10.thumbnail.webp",
+        "public/assets/handdrawn-p08/cards/c11.detail.webp",
+        "public/assets/handdrawn-p08/cards/c11.thumbnail.webp",
+        "public/assets/handdrawn-p08/cards/c12.detail.webp",
+        "public/assets/handdrawn-p08/cards/c12.thumbnail.webp",
+        "public/assets/handdrawn-p08/cards/d01.detail.webp",
+        "public/assets/handdrawn-p08/cards/d01.thumbnail.webp",
+        "public/assets/handdrawn-p08/cards/d02.detail.webp",
+        "public/assets/handdrawn-p08/cards/d02.thumbnail.webp",
+        "public/assets/handdrawn-p08/cards/d03.detail.webp",
+        "public/assets/handdrawn-p08/cards/d03.thumbnail.webp",
+        "public/assets/handdrawn-p08/cards/d04.detail.webp",
+        "public/assets/handdrawn-p08/cards/d04.thumbnail.webp",
+        "public/assets/handdrawn-p08/cards/d05.detail.webp",
+        "public/assets/handdrawn-p08/cards/d05.thumbnail.webp",
+        "public/assets/handdrawn-p08/cards/d06.detail.webp",
+        "public/assets/handdrawn-p08/cards/d06.thumbnail.webp",
+        "public/assets/handdrawn-p08/cards/d07.detail.webp",
+        "public/assets/handdrawn-p08/cards/d07.thumbnail.webp",
+        "public/assets/handdrawn-p08/cards/d08.detail.webp",
+        "public/assets/handdrawn-p08/cards/d08.thumbnail.webp",
+        "public/assets/handdrawn-p08/cards/d09.detail.webp",
+        "public/assets/handdrawn-p08/cards/d09.thumbnail.webp",
+        "public/assets/handdrawn-p08/cards/d10.detail.webp",
+        "public/assets/handdrawn-p08/cards/d10.thumbnail.webp",
+        "public/assets/handdrawn-p08/cards/d11.detail.webp",
+        "public/assets/handdrawn-p08/cards/d11.thumbnail.webp",
+        "public/assets/handdrawn-p08/cards/d12.detail.webp",
+        "public/assets/handdrawn-p08/cards/d12.thumbnail.webp",
+        "public/assets/handdrawn-p08/cards/e01.detail.webp",
+        "public/assets/handdrawn-p08/cards/e01.thumbnail.webp",
+        "public/assets/handdrawn-p08/cards/e02.detail.webp",
+        "public/assets/handdrawn-p08/cards/e02.thumbnail.webp",
+        "public/assets/handdrawn-p08/cards/e03.detail.webp",
+        "public/assets/handdrawn-p08/cards/e03.thumbnail.webp",
+        "public/assets/handdrawn-p08/cards/e04.detail.webp",
+        "public/assets/handdrawn-p08/cards/e04.thumbnail.webp",
+        "public/assets/handdrawn-p08/cards/e05.detail.webp",
+        "public/assets/handdrawn-p08/cards/e05.thumbnail.webp",
+        "public/assets/handdrawn-p08/cards/e06.detail.webp",
+        "public/assets/handdrawn-p08/cards/e06.thumbnail.webp",
+        "public/assets/handdrawn-p08/cards/e07.detail.webp",
+        "public/assets/handdrawn-p08/cards/e07.thumbnail.webp",
+        "public/assets/handdrawn-p08/cards/e08.detail.webp",
+        "public/assets/handdrawn-p08/cards/e08.thumbnail.webp",
+        "public/assets/handdrawn-p08/cards/e09.detail.webp",
+        "public/assets/handdrawn-p08/cards/e09.thumbnail.webp",
+        "public/assets/handdrawn-p08/cards/e10.detail.webp",
+        "public/assets/handdrawn-p08/cards/e10.thumbnail.webp",
+        "public/assets/handdrawn-p08/cards/e11.detail.webp",
+        "public/assets/handdrawn-p08/cards/e11.thumbnail.webp",
+        "public/assets/handdrawn-p08/cards/e12.detail.webp",
+        "public/assets/handdrawn-p08/cards/e12.thumbnail.webp",
+        "public/assets/handdrawn-p08/cards/f02.detail.webp",
+        "public/assets/handdrawn-p08/cards/f02.thumbnail.webp",
+        "public/assets/handdrawn-p08/cards/f03.detail.webp",
+        "public/assets/handdrawn-p08/cards/f03.thumbnail.webp",
+        "public/assets/handdrawn-p08/cards/f04.detail.webp",
+        "public/assets/handdrawn-p08/cards/f04.thumbnail.webp",
+        "public/assets/handdrawn-p08/cards/f05.detail.webp",
+        "public/assets/handdrawn-p08/cards/f05.thumbnail.webp",
+        "public/assets/handdrawn-p08/cards/f06.detail.webp",
+        "public/assets/handdrawn-p08/cards/f06.thumbnail.webp",
+        "public/assets/handdrawn-p08/cards/f07.detail.webp",
+        "public/assets/handdrawn-p08/cards/f07.thumbnail.webp",
+        "public/assets/handdrawn-p08/cards/f08.detail.webp",
+        "public/assets/handdrawn-p08/cards/f08.thumbnail.webp",
+        "public/assets/handdrawn-p08/cards/f09.detail.webp",
+        "public/assets/handdrawn-p08/cards/f09.thumbnail.webp",
+        "public/assets/handdrawn-p08/cards/f10.detail.webp",
+        "public/assets/handdrawn-p08/cards/f10.thumbnail.webp",
+        "public/assets/handdrawn-p08/cards/f11.detail.webp",
+        "public/assets/handdrawn-p08/cards/f11.thumbnail.webp",
+        "public/assets/handdrawn-p08/cards/f12.detail.webp",
+        "public/assets/handdrawn-p08/cards/f12.thumbnail.webp",
+        "public/assets/handdrawn-p08/cards/huimaqiang.detail.webp",
+        "public/assets/handdrawn-p08/cards/huimaqiang.thumbnail.webp",
+        "public/assets/handdrawn-p08/cards/jiedongfeng.detail.webp",
+        "public/assets/handdrawn-p08/cards/jiedongfeng.thumbnail.webp",
+        "public/assets/handdrawn-p08/cards/mantangcai.detail.webp",
+        "public/assets/handdrawn-p08/cards/mantangcai.thumbnail.webp",
+        "public/assets/handdrawn-p08/cards/pengci.detail.webp",
+        "public/assets/handdrawn-p08/cards/pengci.thumbnail.webp",
+        "public/assets/handdrawn-p08/cards/tiesuanpan.detail.webp",
+        "public/assets/handdrawn-p08/cards/tiesuanpan.thumbnail.webp",
+        "public/assets/handdrawn-p08/court/j.court.webp",
+        "public/assets/handdrawn-p08/court/k.court.webp",
+        "public/assets/handdrawn-p08/court/q.court.webp",
+        "public/assets/handdrawn-p08/manifest.json"
       ],
-      "evidence": "filename-match-only"
+      "evidence": "directory-prefix-match-only"
     }
   ],
   "indirectRuntimePaths": [
@@ -378,67 +532,234 @@
     "No new visual or rights approval. Decoded RGBA sizes are estimates, not measured GPU memory."
   ],
   "totals": {
-    "files": 153,
-    "bytes": 23363091,
-    "decodedRgbaBytes": 145459200,
+    "files": 423,
+    "bytes": 47644126,
+    "decodedRgbaBytes": 298751632,
     "groups": {
       "audio": {
-        "count": 2,
-        "bytes": 3490151,
+        "count": 36,
+        "bytes": 13947666,
         "decodedRgbaBytes": 0
       },
-      "characters-p07": {
-        "count": 18,
-        "bytes": 810824,
-        "decodedRgbaBytes": 14874624
-      },
       "effects": {
-        "count": 2,
-        "bytes": 143518,
-        "decodedRgbaBytes": 4194304
+        "count": 1,
+        "bytes": 15958,
+        "decodedRgbaBytes": 262144
       },
-      "jokers-p07": {
-        "count": 48,
-        "bytes": 3399732,
-        "decodedRgbaBytes": 53207040
+      "fonts": {
+        "count": 3,
+        "bytes": 11076,
+        "decodedRgbaBytes": 0
+      },
+      "handdrawn-climax": {
+        "count": 54,
+        "bytes": 2826536,
+        "decodedRgbaBytes": 27136000
+      },
+      "handdrawn-p08": {
+        "count": 148,
+        "bytes": 9797542,
+        "decodedRgbaBytes": 143106048
+      },
+      "handdrawn-tools": {
+        "count": 103,
+        "bytes": 5412965,
+        "decodedRgbaBytes": 100531200
+      },
+      "licenses": {
+        "count": 1,
+        "bytes": 1069,
+        "decodedRgbaBytes": 0
       },
       "models": {
         "count": 40,
-        "bytes": 13185011,
+        "bytes": 13175032,
         "decodedRgbaBytes": 0
       },
       "p00": {
-        "count": 9,
-        "bytes": 23041,
+        "count": 5,
+        "bytes": 7479,
         "decodedRgbaBytes": 0
       },
-      "p03": {
-        "count": 2,
-        "bytes": 132138,
+      "tangsong-eyes": {
+        "count": 7,
+        "bytes": 690069,
         "decodedRgbaBytes": 5308416
       },
-      "renders": {
-        "count": 3,
-        "bytes": 1594106,
-        "decodedRgbaBytes": 24883200
-      },
-      "sprites": {
-        "count": 6,
-        "bytes": 432632,
-        "decodedRgbaBytes": 12582912
-      },
-      "textures": {
-        "count": 23,
-        "bytes": 151938,
-        "decodedRgbaBytes": 30408704
+      "tangsong-portraits": {
+        "count": 25,
+        "bytes": 1758734,
+        "decodedRgbaBytes": 22407824
       }
     }
   },
   "assets": [
     {
+      "path": "public/assets/audio/bgm/boss-dark-things.mp3",
+      "bytes": 384723,
+      "sha256": "bd99bc0d86649fe84cb416003d4309428a2a9b0fb5fdd4b8dfd98453abd7b9c4"
+    },
+    {
+      "path": "public/assets/audio/bgm/manifest.json",
+      "bytes": 2746,
+      "sha256": "8200201d3d5f3affb48c3ebdb90844d3b8e60a7b4d3d2cb606067d3729393b78",
+      "textNormalization": "LF",
+      "canonicalBytes": 2666,
+      "canonicalSha256": "f1430e3e3610b39254c5e22c5f2f3641f185275537689e49679faeac7a3d605e"
+    },
+    {
+      "path": "public/assets/audio/bgm/menu-chinese-yangguan.mp3",
+      "bytes": 4201788,
+      "sha256": "e2a565db0f514b0c41e350b3ccc4924e27439fafdd8a16e3310a426d9efbcc22"
+    },
+    {
+      "path": "public/assets/audio/bgm/table-chinese-zuiyu.mp3",
+      "bytes": 3444133,
+      "sha256": "edc667ee985f73e2e6f2cbcec39554856744dda2e816c53fe5f913ebb17dd125"
+    },
+    {
+      "path": "public/assets/audio/bgm/table-tango.mp3",
+      "bytes": 2190408,
+      "sha256": "0a274655d6da0747cbc28ee91439536605b129ce7ed2f6346fc39ed5ffa25dac"
+    },
+    {
+      "path": "public/assets/audio/foley-v1/License.txt",
+      "bytes": 673,
+      "sha256": "f91a9556f340209577cd02057e813f5cad52bc2677bc98dff43c58853f7c1f4a",
+      "textNormalization": "LF",
+      "canonicalBytes": 668,
+      "canonicalSha256": "ae16039ad97a4e39ca33cdf1a29c8089d58148cbf47578d88280c9e01c4dae58"
+    },
+    {
+      "path": "public/assets/audio/foley-v1/README.md",
+      "bytes": 1002,
+      "sha256": "63708a2c92fcc183d8d3886c29b96adeee887f736a87d0c94e6b84afa0ce5d74",
+      "textNormalization": "LF",
+      "canonicalBytes": 995,
+      "canonicalSha256": "1570f1f829db87d4ae66711b76f83f118581fe048b1e698b73305261bbe4ffea"
+    },
+    {
+      "path": "public/assets/audio/foley-v1/card-fan-1.ogg",
+      "bytes": 12489,
+      "sha256": "7a9758ccad8899baef1b9f60b4064e4baa724a548293832fdaea07e6e07e638d"
+    },
+    {
+      "path": "public/assets/audio/foley-v1/card-place-1.ogg",
+      "bytes": 9624,
+      "sha256": "d8f26c33a665dcbdcc6f632f6050bc9dd548feb0d4942d4547615926d3926810"
+    },
+    {
+      "path": "public/assets/audio/foley-v1/card-place-2.ogg",
+      "bytes": 8046,
+      "sha256": "903d5050718595e87864dd755643b476ab1a5533080dcc2dddc72570d33ba9f8"
+    },
+    {
+      "path": "public/assets/audio/foley-v1/card-place-3.ogg",
+      "bytes": 11503,
+      "sha256": "1d988631a6e5201ed1bb0d728f2e43a3ec79401258426858793598044ac95841"
+    },
+    {
+      "path": "public/assets/audio/foley-v1/card-shove-1.ogg",
+      "bytes": 10690,
+      "sha256": "1ea667aa6795d5f14239192116ebcbd8f3f47eb1c7faaf2ec56844b9067b8b06"
+    },
+    {
+      "path": "public/assets/audio/foley-v1/card-shuffle.ogg",
+      "bytes": 30002,
+      "sha256": "96c84883a30845ede723a4cf2e8369e9837e7dd4e0d4eb0212b0a7ed21b0f544"
+    },
+    {
+      "path": "public/assets/audio/foley-v1/card-slide-1.ogg",
+      "bytes": 8833,
+      "sha256": "006cf9822d15d7063f8899e56041f41646df30adb6fbd8b974ee5d5420012690"
+    },
+    {
+      "path": "public/assets/audio/foley-v1/card-slide-2.ogg",
+      "bytes": 9042,
+      "sha256": "e674a1679ec87b507047fe012d068ad2c412125f56186f0e732684705c2a6888"
+    },
+    {
+      "path": "public/assets/audio/foley-v1/card-slide-3.ogg",
+      "bytes": 9164,
+      "sha256": "af2ab62656cb3df73316ce5771b8ee1111a840962b21607e3202151e7413c52c"
+    },
+    {
+      "path": "public/assets/audio/foley-v1/cards-pack-open-1.ogg",
+      "bytes": 12715,
+      "sha256": "1214059fdfbf1c396c0702244fc833739cc346d326a71e450b731f456e54d6fb"
+    },
+    {
+      "path": "public/assets/audio/foley-v1/chip-lay-1.ogg",
+      "bytes": 5720,
+      "sha256": "4b2111252ccb64eed67f171e061053849cfbb29873536c03948646f244a3905c"
+    },
+    {
+      "path": "public/assets/audio/foley-v1/chip-lay-2.ogg",
+      "bytes": 6123,
+      "sha256": "8ca8b2d450741c04ed7b4ba51ed3f73c2400c8b3dbe83b974be4fe4774a76712"
+    },
+    {
+      "path": "public/assets/audio/foley-v1/chips-collide-1.ogg",
+      "bytes": 6356,
+      "sha256": "f41b3d106360fc68ebc061a211d4265b4cb5fa1fbe86e4d57d3673510e2c3784"
+    },
+    {
+      "path": "public/assets/audio/foley-v1/chips-stack-1.ogg",
+      "bytes": 6469,
+      "sha256": "12bf175b9afcea112175b241ad3336c6244ac5fdcdff8b5942ecc03f2225e0c4"
+    },
+    {
+      "path": "public/assets/audio/foley-v1/impactBell_heavy_000.ogg",
+      "bytes": 13915,
+      "sha256": "94b8bb5f2d43ab65e4bcc32b28562416e9bc2c51d9fd4be1e333660ee52f977f"
+    },
+    {
+      "path": "public/assets/audio/foley-v1/impactBell_heavy_003.ogg",
+      "bytes": 9429,
+      "sha256": "5572ccdeb3b62373b86fa955355b3a222c36e815f0636ba16165189a21cf2514"
+    },
+    {
+      "path": "public/assets/audio/foley-v1/impactGlass_heavy_002.ogg",
+      "bytes": 7661,
+      "sha256": "4978654ac840ad519692d5d5ba48a8101cabce13b9a577be73ad589185e5e9ed"
+    },
+    {
+      "path": "public/assets/audio/foley-v1/impactSoft_heavy_000.ogg",
+      "bytes": 6570,
+      "sha256": "49e7ca88743fca974bb8676ea138b751cfd8f9033b5e7af8736c2a215d6edbc1"
+    },
+    {
+      "path": "public/assets/audio/foley-v1/impactSoft_medium_000.ogg",
+      "bytes": 5351,
+      "sha256": "7d3ba0bb5e60a11b5d3e558c141303dcf494256675fbf753c0d252d2cf0481e3"
+    },
+    {
+      "path": "public/assets/audio/foley-v1/impactWood_heavy_000.ogg",
+      "bytes": 6233,
+      "sha256": "15ff82332f342c30e469215539e1cc57e11b221aa2cf7e11e811d313a9927f3d"
+    },
+    {
+      "path": "public/assets/audio/foley-v1/impactWood_light_000.ogg",
+      "bytes": 6343,
+      "sha256": "eb45e35b4bed784d3f120de4afec4b0d6ac09d9e143cce8cfcb7d739e1b1f3c3"
+    },
+    {
+      "path": "public/assets/audio/foley-v1/impactWood_light_001.ogg",
+      "bytes": 6373,
+      "sha256": "4b76bf3ccc8e60d19188f3165b778a7817786faa6887c55d9049bcbeef3b425f"
+    },
+    {
+      "path": "public/assets/audio/foley-v1/sources.json",
+      "bytes": 10769,
+      "sha256": "df907fd98a571798db932319da05ffd0268f7cb3de94090575f48f6cc4dc38a1",
+      "textNormalization": "LF",
+      "canonicalBytes": 10538,
+      "canonicalSha256": "015a2065f1b39587e02c4bf1e39bf8f59e5d09e57634e6c472aca01c6a5adbfc"
+    },
+    {
       "path": "public/assets/audio/p06/recording.json",
-      "bytes": 2239,
-      "sha256": "dfb139a918cbdd3a2c2947fefd391e21979908e60a2330575661f6358b16958b",
+      "bytes": 2274,
+      "sha256": "243caa9aec4538b95dc8bef043a064e67d7e77ead4c5268983d4e44fd75250f8",
       "textNormalization": "LF",
       "canonicalBytes": 2239,
       "canonicalSha256": "dfb139a918cbdd3a2c2947fefd391e21979908e60a2330575661f6358b16958b"
@@ -449,207 +770,607 @@
       "sha256": "e07b53322fd650fb5929215cef3b07b34977a2c486e140f8b71c5a23017daead"
     },
     {
-      "path": "public/assets/characters-p07/amo.avatar.webp",
-      "bytes": 12652,
-      "sha256": "c0d2fd29db1116951f0acbe0381fd7985e7aa2936bcd398b6236d501118e7be9",
-      "width": 256,
-      "height": 256,
-      "alpha": false,
-      "decodedRgbaBytes": 262144,
-      "format": "webp"
-    },
-    {
-      "path": "public/assets/characters-p07/amo.portrait.webp",
-      "bytes": 77082,
-      "sha256": "e40ab6bece1a537db49d92c2f2deb9f01c0e25f40fb5b4a13bae4d29ecfa23b4",
-      "width": 615,
-      "height": 768,
-      "alpha": false,
-      "decodedRgbaBytes": 1889280,
-      "format": "webp"
-    },
-    {
-      "path": "public/assets/characters-p07/amo.selection.webp",
-      "bytes": 20204,
-      "sha256": "069c6044df114e33bfcae3bd913d063f07705230217076d85f5673f7e3e1d9d4",
-      "width": 256,
-      "height": 320,
-      "alpha": false,
-      "decodedRgbaBytes": 327680,
-      "format": "webp"
-    },
-    {
-      "path": "public/assets/characters-p07/azao.avatar.webp",
-      "bytes": 18410,
-      "sha256": "518a90da28c06313401ea72e48384f36e09860e293ecad8c37e079794929f4cf",
-      "width": 256,
-      "height": 256,
-      "alpha": false,
-      "decodedRgbaBytes": 262144,
-      "format": "webp"
-    },
-    {
-      "path": "public/assets/characters-p07/azao.portrait.webp",
-      "bytes": 99730,
-      "sha256": "9ea3a00e2aed90d7718b81241174dc2a4839e34f4ca793c6c3de7f591097aae9",
-      "width": 615,
-      "height": 768,
-      "alpha": false,
-      "decodedRgbaBytes": 1889280,
-      "format": "webp"
-    },
-    {
-      "path": "public/assets/characters-p07/azao.selection.webp",
-      "bytes": 25954,
-      "sha256": "2cb82b4bd9ea72911b671fe5d8991e6981414d867dd27ea75eae8333c6adb662",
-      "width": 256,
-      "height": 320,
-      "alpha": false,
-      "decodedRgbaBytes": 327680,
-      "format": "webp"
-    },
-    {
-      "path": "public/assets/characters-p07/erxiang.avatar.webp",
-      "bytes": 15674,
-      "sha256": "053f5dd09e6786b679113a130a8a1a3fc5a77cd23786a821d796d9c19da698ca",
-      "width": 256,
-      "height": 256,
-      "alpha": false,
-      "decodedRgbaBytes": 262144,
-      "format": "webp"
-    },
-    {
-      "path": "public/assets/characters-p07/erxiang.portrait.webp",
-      "bytes": 100360,
-      "sha256": "e11162f6d7fe61252e75044d04bd503d8fc11083fa1c87d482c2581f139b9624",
-      "width": 615,
-      "height": 768,
-      "alpha": false,
-      "decodedRgbaBytes": 1889280,
-      "format": "webp"
-    },
-    {
-      "path": "public/assets/characters-p07/erxiang.selection.webp",
-      "bytes": 24704,
-      "sha256": "dc4b2c9c160183baf245b8fd31b21b83ef9fc08f929d56e15c4d85416ede16c4",
-      "width": 256,
-      "height": 320,
-      "alpha": false,
-      "decodedRgbaBytes": 327680,
-      "format": "webp"
-    },
-    {
-      "path": "public/assets/characters-p07/laohuan.avatar.webp",
-      "bytes": 18520,
-      "sha256": "5e64913b8bc22179986c61ae1865f9ee85fd31879402b0df2893cfdcff35695b",
-      "width": 256,
-      "height": 256,
-      "alpha": false,
-      "decodedRgbaBytes": 262144,
-      "format": "webp"
-    },
-    {
-      "path": "public/assets/characters-p07/laohuan.portrait.webp",
-      "bytes": 107386,
-      "sha256": "226596012c713eebd8f913b724f0cd2a0affef42764dd004b38ed6e57bd38b2b",
-      "width": 615,
-      "height": 768,
-      "alpha": false,
-      "decodedRgbaBytes": 1889280,
-      "format": "webp"
-    },
-    {
-      "path": "public/assets/characters-p07/laohuan.selection.webp",
-      "bytes": 24896,
-      "sha256": "f8f5ee3e73e68d7861411b2f743cbd5678cc5e8dd56aae373704afd2ded135fb",
-      "width": 256,
-      "height": 320,
-      "alpha": false,
-      "decodedRgbaBytes": 327680,
-      "format": "webp"
-    },
-    {
-      "path": "public/assets/characters-p07/touye.avatar.webp",
-      "bytes": 14978,
-      "sha256": "82162eb76626a6402fdee2ad9473814f501054e7cb49323562dff245b78d3507",
-      "width": 256,
-      "height": 256,
-      "alpha": false,
-      "decodedRgbaBytes": 262144,
-      "format": "webp"
-    },
-    {
-      "path": "public/assets/characters-p07/touye.portrait.webp",
-      "bytes": 92552,
-      "sha256": "1638e004e331497d1fc7fb8ed3f413c16f834598be56f5f8596491628f156d7a",
-      "width": 615,
-      "height": 768,
-      "alpha": false,
-      "decodedRgbaBytes": 1889280,
-      "format": "webp"
-    },
-    {
-      "path": "public/assets/characters-p07/touye.selection.webp",
-      "bytes": 22674,
-      "sha256": "8e3901b8ad35569b4ccff002e7a14bc08ccd0c135eeb8be5a042f77a893e0a15",
-      "width": 256,
-      "height": 320,
-      "alpha": false,
-      "decodedRgbaBytes": 327680,
-      "format": "webp"
-    },
-    {
-      "path": "public/assets/characters-p07/xiemu.avatar.webp",
-      "bytes": 16052,
-      "sha256": "7d98072c1c02a3790f1ac2c41e38a52a843987426a1573ce6560028727407b40",
-      "width": 256,
-      "height": 256,
-      "alpha": false,
-      "decodedRgbaBytes": 262144,
-      "format": "webp"
-    },
-    {
-      "path": "public/assets/characters-p07/xiemu.portrait.webp",
-      "bytes": 94928,
-      "sha256": "091b8990d0dc5e7fb69139e20a5be96dd65f9f3ffd809d49466c6b49b6076eb9",
-      "width": 615,
-      "height": 768,
-      "alpha": false,
-      "decodedRgbaBytes": 1889280,
-      "format": "webp"
-    },
-    {
-      "path": "public/assets/characters-p07/xiemu.selection.webp",
-      "bytes": 24068,
-      "sha256": "e642c7dec217fd74bb8f9fb6bed97d2f8c21dbc313bdf2eeddcb99e55a7b48b5",
-      "width": 256,
-      "height": 320,
-      "alpha": false,
-      "decodedRgbaBytes": 327680,
-      "format": "webp"
-    },
-    {
-      "path": "public/assets/effects/coin-reward/atlas.json",
-      "bytes": 5738,
-      "sha256": "56ee45c730dab22048e7f97e005e480419be7ca9c4f91995a4da8d98aec23fd3",
+      "path": "public/assets/audio/score-impact/License.txt",
+      "bytes": 623,
+      "sha256": "48ba483af7a321db5679fa9a84320f37b494600e0347a805ae8262e3b648c6d2",
       "textNormalization": "LF",
-      "canonicalBytes": 5738,
-      "canonicalSha256": "56ee45c730dab22048e7f97e005e480419be7ca9c4f91995a4da8d98aec23fd3"
+      "canonicalBytes": 618,
+      "canonicalSha256": "c63e33c67e83ea13210daf5bdbf1abba13d34e94beb775da7ef7be81b1902d77"
     },
     {
-      "path": "public/assets/effects/coin-reward/coin-reward.webp",
-      "bytes": 137780,
-      "sha256": "77ae15ae77371af135dc2239def5c485ae6d8a256bdf6a968965d3481fca7bd6",
-      "width": 1024,
-      "height": 1024,
+      "path": "public/assets/audio/score-impact/README.md",
+      "bytes": 269,
+      "sha256": "31868b09a2e4d1a56486295485e0c3c2d7f69bde85871f75b91f413e996a4a52",
+      "textNormalization": "LF",
+      "canonicalBytes": 269,
+      "canonicalSha256": "31868b09a2e4d1a56486295485e0c3c2d7f69bde85871f75b91f413e996a4a52"
+    },
+    {
+      "path": "public/assets/audio/score-impact/cloth2.ogg",
+      "bytes": 11787,
+      "sha256": "8a7451193c38bc05483aec25dd193e163a15d44cf7fff04ac7912573231b0201"
+    },
+    {
+      "path": "public/assets/audio/score-impact/sources.json",
+      "bytes": 271,
+      "sha256": "b54f1f7cc4642701f7b4c15b9ae1cd273ac189c7b061ab1f634110bf15c69f6b",
+      "textNormalization": "LF",
+      "canonicalBytes": 271,
+      "canonicalSha256": "b54f1f7cc4642701f7b4c15b9ae1cd273ac189c7b061ab1f634110bf15c69f6b"
+    },
+    {
+      "path": "public/assets/effects/coin-reward/coin-reward-handdrawn.webp",
+      "bytes": 15958,
+      "sha256": "45b2a3bf35c769d4527ac0ca63118ab6136c45a8e327734bcfd410ccd7644741",
+      "width": 256,
+      "height": 256,
       "alpha": true,
-      "decodedRgbaBytes": 4194304,
+      "decodedRgbaBytes": 262144,
       "format": "webp"
     },
     {
-      "path": "public/assets/jokers-p07/a03-detail.webp",
-      "bytes": 109258,
-      "sha256": "6e911e319d216825c5623eba60bb33e865d6f128cc29c0a63adb89ded9079b40",
+      "path": "public/assets/fonts/score/OFL.txt",
+      "bytes": 4470,
+      "sha256": "b4cc842153e834885f3f9385ce26de4e1213d3ffbe473a6c0519e5522a8e3608",
+      "textNormalization": "LF",
+      "canonicalBytes": 4377,
+      "canonicalSha256": "186d750eb496a4c17a76385f82be6aea2ac1cf2de074a811d63786cf374ea73f"
+    },
+    {
+      "path": "public/assets/fonts/score/README.md",
+      "bytes": 480,
+      "sha256": "d05f397cec1fc780e9abbb4fd63fb935fcb435ccdff64b9724014bcce03a705d",
+      "textNormalization": "LF",
+      "canonicalBytes": 479,
+      "canonicalSha256": "4b1a506e3d0ee5a988ad8c515778334b312bfff7435e90ad364845c16d8841ad"
+    },
+    {
+      "path": "public/assets/fonts/score/dachoupai-score-numbers.woff",
+      "bytes": 6220,
+      "sha256": "00d2d147bbf43952107ea1386f9970c653a5887637ed932ca2f36cac2429a53a"
+    },
+    {
+      "path": "public/assets/handdrawn-climax/a03-e2071d0ffa97.webp",
+      "bytes": 46638,
+      "sha256": "e2071d0ffa97e27c351661f1b658de652ad7ddfc687ef2847012b71bd47d76b5",
+      "width": 320,
+      "height": 400,
+      "alpha": false,
+      "decodedRgbaBytes": 512000,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-climax/a04-314f34427144.webp",
+      "bytes": 53282,
+      "sha256": "314f344271440e0ff09606b658195b9a11e5b77a0fc8911a3d43e6ba02512012",
+      "width": 320,
+      "height": 400,
+      "alpha": false,
+      "decodedRgbaBytes": 512000,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-climax/a05-2a582c3eeeb9.webp",
+      "bytes": 56270,
+      "sha256": "2a582c3eeeb920e2e5eb9eaac282369083ea0a4ed2792d67e0abf3853c3fbec9",
+      "width": 320,
+      "height": 400,
+      "alpha": false,
+      "decodedRgbaBytes": 512000,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-climax/a06-96d4f0413aec.webp",
+      "bytes": 55336,
+      "sha256": "96d4f0413aec9f55538947c259d956c42058154606013e378f47ea228e4417fe",
+      "width": 320,
+      "height": 400,
+      "alpha": false,
+      "decodedRgbaBytes": 512000,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-climax/a07-45a65fe78c6d.webp",
+      "bytes": 50020,
+      "sha256": "45a65fe78c6d548da426051d3c60144efbebf5a059f98df84352233dea11ecdc",
+      "width": 320,
+      "height": 400,
+      "alpha": false,
+      "decodedRgbaBytes": 512000,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-climax/a08-efdd1d8bdf28.webp",
+      "bytes": 47642,
+      "sha256": "efdd1d8bdf2898935a85153a7fdf0370f8360c6fa49685c7d23008555c1ff266",
+      "width": 320,
+      "height": 400,
+      "alpha": false,
+      "decodedRgbaBytes": 512000,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-climax/a09-fb0fc3f6d7c0.webp",
+      "bytes": 53158,
+      "sha256": "fb0fc3f6d7c01b44b18a0fa57099b5a28fb5d0f9dc8febd7632e9de079f2750c",
+      "width": 320,
+      "height": 400,
+      "alpha": false,
+      "decodedRgbaBytes": 512000,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-climax/a10-900a84265965.webp",
+      "bytes": 49528,
+      "sha256": "900a84265965f73e61e08ac1f07ff4bf83b47743f65ee1e3adf372122b9ba35f",
+      "width": 320,
+      "height": 400,
+      "alpha": false,
+      "decodedRgbaBytes": 512000,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-climax/a11-7aa939fb1483.webp",
+      "bytes": 43248,
+      "sha256": "7aa939fb148308c64269df8e9ac712d73e43a360ebae9367a2f023c10f990e2f",
+      "width": 320,
+      "height": 400,
+      "alpha": false,
+      "decodedRgbaBytes": 512000,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-climax/a12-a9668609522d.webp",
+      "bytes": 56494,
+      "sha256": "a9668609522d943c5d84c398acb43a798eb6275c9abaaf2f26f97ff9cda47cef",
+      "width": 320,
+      "height": 400,
+      "alpha": false,
+      "decodedRgbaBytes": 512000,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-climax/b05-e4df8afc27d7.webp",
+      "bytes": 48306,
+      "sha256": "e4df8afc27d757ab552004d29f9499532685c3b0d0c57430627e48993657e5c5",
+      "width": 320,
+      "height": 400,
+      "alpha": false,
+      "decodedRgbaBytes": 512000,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-climax/c04-da19c6184646.webp",
+      "bytes": 38142,
+      "sha256": "da19c61846464980dbca4f7648b0c29aad9c8a70b549dca051726a71af57d287",
+      "width": 320,
+      "height": 400,
+      "alpha": false,
+      "decodedRgbaBytes": 512000,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-climax/c06-8658c7e678da.webp",
+      "bytes": 54670,
+      "sha256": "8658c7e678da39352b225d3d95ceef67a5b072fe0b0eb012a85e36a447986568",
+      "width": 320,
+      "height": 400,
+      "alpha": false,
+      "decodedRgbaBytes": 512000,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-climax/c07-fc245427437e.webp",
+      "bytes": 52302,
+      "sha256": "fc245427437e52fc70e89103b6274ed427667e230689bf01404b07425a116670",
+      "width": 320,
+      "height": 400,
+      "alpha": false,
+      "decodedRgbaBytes": 512000,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-climax/c12-920559fa0637.webp",
+      "bytes": 44096,
+      "sha256": "920559fa0637a09bff2a9ca7359094f8168616a739762325e36fecaddc62c692",
+      "width": 320,
+      "height": 400,
+      "alpha": false,
+      "decodedRgbaBytes": 512000,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-climax/d01-457a2c716ee6.webp",
+      "bytes": 53800,
+      "sha256": "457a2c716ee6ab49ba8611251ca6c910cc73684cc6498d95c0e38abe84f11eda",
+      "width": 320,
+      "height": 400,
+      "alpha": false,
+      "decodedRgbaBytes": 512000,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-climax/d02-9f4d5cba972d.webp",
+      "bytes": 51190,
+      "sha256": "9f4d5cba972df36de58b83b4a770386b48366a9ff2a37b45408fc62a2a70c2d0",
+      "width": 320,
+      "height": 400,
+      "alpha": false,
+      "decodedRgbaBytes": 512000,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-climax/d03-3558c1ddb6fd.webp",
+      "bytes": 47534,
+      "sha256": "3558c1ddb6fd312d4aa4e399a72efa23e844662f219a0907e7eb16ba1898304c",
+      "width": 320,
+      "height": 400,
+      "alpha": false,
+      "decodedRgbaBytes": 512000,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-climax/d04-f489cf2f00d6.webp",
+      "bytes": 49874,
+      "sha256": "f489cf2f00d60daefbe368dceed568878294d4a626179c7475d797366553c051",
+      "width": 320,
+      "height": 400,
+      "alpha": false,
+      "decodedRgbaBytes": 512000,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-climax/d05-01e2ae9ec85f.webp",
+      "bytes": 52212,
+      "sha256": "01e2ae9ec85fe434956c18f73ddb0d4a9012f036b5aa76217f657cbdefaa3693",
+      "width": 320,
+      "height": 400,
+      "alpha": false,
+      "decodedRgbaBytes": 512000,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-climax/d06-dc778f324685.webp",
+      "bytes": 48914,
+      "sha256": "dc778f324685df8ba730cc06368e6cd25b6cff41fa6acc4b9e5674c01ad9ca16",
+      "width": 320,
+      "height": 400,
+      "alpha": false,
+      "decodedRgbaBytes": 512000,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-climax/d07-a3d18ad90732.webp",
+      "bytes": 48684,
+      "sha256": "a3d18ad90732954c94eab74f7f4a34c4909d963afc58b4132a256d0f3a95c852",
+      "width": 320,
+      "height": 400,
+      "alpha": false,
+      "decodedRgbaBytes": 512000,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-climax/d08-f94c20957804.webp",
+      "bytes": 50014,
+      "sha256": "f94c209578041fdeca4d09d58af8880559dddb2938f8d6b2e89156617307cb68",
+      "width": 320,
+      "height": 400,
+      "alpha": false,
+      "decodedRgbaBytes": 512000,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-climax/d09-3d0bb83ef81d.webp",
+      "bytes": 48306,
+      "sha256": "3d0bb83ef81d2108c09b57e4157d6a1f53180a626ce942841f60fd014eb7040b",
+      "width": 320,
+      "height": 400,
+      "alpha": false,
+      "decodedRgbaBytes": 512000,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-climax/d10-8e336f651912.webp",
+      "bytes": 48650,
+      "sha256": "8e336f65191286a686fcd21a499b57e4c71602d0524a84c31637b0086b63225f",
+      "width": 320,
+      "height": 400,
+      "alpha": false,
+      "decodedRgbaBytes": 512000,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-climax/d11-205584ddafd0.webp",
+      "bytes": 51838,
+      "sha256": "205584ddafd0797f96c428c7cfebf03cae63554653401ae0b2e3aeb00763f054",
+      "width": 320,
+      "height": 400,
+      "alpha": false,
+      "decodedRgbaBytes": 512000,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-climax/d12-969e25f61d46.webp",
+      "bytes": 40024,
+      "sha256": "969e25f61d465df6603a0775e48c3985460ec8bfe12ad290bea0b4d4d476783c",
+      "width": 320,
+      "height": 400,
+      "alpha": false,
+      "decodedRgbaBytes": 512000,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-climax/e01-340c8c2e7cd8.webp",
+      "bytes": 57326,
+      "sha256": "340c8c2e7cd8b57433a8a08e1811b0bf4a66a51de1b931ef23937855d96740f3",
+      "width": 320,
+      "height": 400,
+      "alpha": false,
+      "decodedRgbaBytes": 512000,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-climax/e02-50da3d9f4f1b.webp",
+      "bytes": 50394,
+      "sha256": "50da3d9f4f1b00490b20d7558dfd4abebe5fc854f2a068ad0909ac312980cb6b",
+      "width": 320,
+      "height": 400,
+      "alpha": false,
+      "decodedRgbaBytes": 512000,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-climax/e03-e56f850d8678.webp",
+      "bytes": 57128,
+      "sha256": "e56f850d867871a454316037de398a8d6b3b87175dd83a4398960793405b8957",
+      "width": 320,
+      "height": 400,
+      "alpha": false,
+      "decodedRgbaBytes": 512000,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-climax/e04-620cdb9525ac.webp",
+      "bytes": 61570,
+      "sha256": "620cdb9525ac06872f95209d8188a20c24da6cb1a763a76e2486d0395b14a6eb",
+      "width": 320,
+      "height": 400,
+      "alpha": false,
+      "decodedRgbaBytes": 512000,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-climax/e05-13a4ede9f015.webp",
+      "bytes": 50760,
+      "sha256": "13a4ede9f015090af70029020627c41e7b268374c0f3bb0dd2d8af200fdaec4d",
+      "width": 320,
+      "height": 400,
+      "alpha": false,
+      "decodedRgbaBytes": 512000,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-climax/e06-19830959abe7.webp",
+      "bytes": 60290,
+      "sha256": "19830959abe73242dd6128778493acf0fd3eef6507310d4ec95e2c7a10cd1807",
+      "width": 320,
+      "height": 400,
+      "alpha": false,
+      "decodedRgbaBytes": 512000,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-climax/e07-1ccc508fd326.webp",
+      "bytes": 59934,
+      "sha256": "1ccc508fd32628e45a91896ec6c2982e58f6dea687dec2619fe1b0f3aaafc6bb",
+      "width": 320,
+      "height": 400,
+      "alpha": false,
+      "decodedRgbaBytes": 512000,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-climax/e08-9328216cb60c.webp",
+      "bytes": 56940,
+      "sha256": "9328216cb60ceecc6633bbd9ee07f84138573d3bee406e751a9968bce7d8f8fa",
+      "width": 320,
+      "height": 400,
+      "alpha": false,
+      "decodedRgbaBytes": 512000,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-climax/e09-b3a6e88ef4de.webp",
+      "bytes": 57196,
+      "sha256": "b3a6e88ef4de4247cd2c576234954560eaad8adc68ca51dbb2b8f8af6aed7c35",
+      "width": 320,
+      "height": 400,
+      "alpha": false,
+      "decodedRgbaBytes": 512000,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-climax/e10-1524adfd3cd3.webp",
+      "bytes": 53662,
+      "sha256": "1524adfd3cd3e4b70644fd7c2ac8e8e458315e5ea89adef5e285caaddd9c612d",
+      "width": 320,
+      "height": 400,
+      "alpha": false,
+      "decodedRgbaBytes": 512000,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-climax/e11-ea055df3569c.webp",
+      "bytes": 52936,
+      "sha256": "ea055df3569c68afd39a9e20cef11410b914b8c4249cf0aba8c18c184f765ca0",
+      "width": 320,
+      "height": 400,
+      "alpha": false,
+      "decodedRgbaBytes": 512000,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-climax/e12-f4745d64bb32.webp",
+      "bytes": 56416,
+      "sha256": "f4745d64bb32c4cbab47eb0cd95cdad503d37334339df277d6b37539860f436e",
+      "width": 320,
+      "height": 400,
+      "alpha": false,
+      "decodedRgbaBytes": 512000,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-climax/f02-71f6089d0835.webp",
+      "bytes": 53848,
+      "sha256": "71f6089d0835e600eda18b0882854369f715749a6da264f19b995f8a21ab2b63",
+      "width": 320,
+      "height": 400,
+      "alpha": false,
+      "decodedRgbaBytes": 512000,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-climax/f03-b7abb6246ed0.webp",
+      "bytes": 57088,
+      "sha256": "b7abb6246ed0907be5450543883303f3c2726a642bfa4091eef443df76d251d0",
+      "width": 320,
+      "height": 400,
+      "alpha": false,
+      "decodedRgbaBytes": 512000,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-climax/f04-bd6e06ba36d9.webp",
+      "bytes": 54224,
+      "sha256": "bd6e06ba36d9e768527382d557c8f0bff61683a898014addfc3be379f1f41d45",
+      "width": 320,
+      "height": 400,
+      "alpha": false,
+      "decodedRgbaBytes": 512000,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-climax/f05-beb2ecdd0cc4.webp",
+      "bytes": 54214,
+      "sha256": "beb2ecdd0cc408f28616d820a305dc67672144d3e8da0a2d7a0d81bffdebd4ee",
+      "width": 320,
+      "height": 400,
+      "alpha": false,
+      "decodedRgbaBytes": 512000,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-climax/f06-8f5914107e70.webp",
+      "bytes": 57792,
+      "sha256": "8f5914107e700ce30bdd404bf5c6d70bbca6c7a985a2d033eb0ea80e469e6904",
+      "width": 320,
+      "height": 400,
+      "alpha": false,
+      "decodedRgbaBytes": 512000,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-climax/f07-4274ccb55ab2.webp",
+      "bytes": 57398,
+      "sha256": "4274ccb55ab27414e5402ce08b21e86344c88055ef0f55945d3cb8c35a8f0e9f",
+      "width": 320,
+      "height": 400,
+      "alpha": false,
+      "decodedRgbaBytes": 512000,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-climax/f08-bb7640febff6.webp",
+      "bytes": 52708,
+      "sha256": "bb7640febff6459366836e2d8018b4723228915f6ebd72958a5604db39dfbf74",
+      "width": 320,
+      "height": 400,
+      "alpha": false,
+      "decodedRgbaBytes": 512000,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-climax/f09-4536ea2eba0d.webp",
+      "bytes": 57192,
+      "sha256": "4536ea2eba0df4a317e9eb428c72a4ddb557a2a67e2779892fb303ab6a742735",
+      "width": 320,
+      "height": 400,
+      "alpha": false,
+      "decodedRgbaBytes": 512000,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-climax/f10-42b01ce548cb.webp",
+      "bytes": 52674,
+      "sha256": "42b01ce548cbd8b32b3fecc1e68a61238480ea683e70ea2df83f62e13b11c814",
+      "width": 320,
+      "height": 400,
+      "alpha": false,
+      "decodedRgbaBytes": 512000,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-climax/f11-2c3735342c4f.webp",
+      "bytes": 53586,
+      "sha256": "2c3735342c4f76b532feb63a7c88deb4162b153acd973f73937d7ce41c426a2b",
+      "width": 320,
+      "height": 400,
+      "alpha": false,
+      "decodedRgbaBytes": 512000,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-climax/f12-93183edcbf27.webp",
+      "bytes": 52420,
+      "sha256": "93183edcbf270c60527a6d9c4822b2c81dc16063a503c9edd3df65ddc82f7afc",
+      "width": 320,
+      "height": 400,
+      "alpha": false,
+      "decodedRgbaBytes": 512000,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-climax/huimaqiang-1bdcf58f86f4.webp",
+      "bytes": 55516,
+      "sha256": "1bdcf58f86f46252592ce2b09794a10df3a4683b915596cbaabdc48a80370133",
+      "width": 320,
+      "height": 400,
+      "alpha": false,
+      "decodedRgbaBytes": 512000,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-climax/manifest.json",
+      "bytes": 50609,
+      "sha256": "157d5cb3eec73a6cc8e3e2a374ad147edcb003f204342fd610a13756f2c3f11c",
+      "textNormalization": "LF",
+      "canonicalBytes": 49014,
+      "canonicalSha256": "9c13f15c2c03f54ae690942e6ca03cd6b9ed530b07060b7617d2016f2cea73b8"
+    },
+    {
+      "path": "public/assets/handdrawn-climax/pengci-4bb00dc7ef13.webp",
+      "bytes": 53950,
+      "sha256": "4bb00dc7ef13b1968f518288a7de4e14605a2d7fe778f257815099b190dd1d89",
+      "width": 320,
+      "height": 400,
+      "alpha": false,
+      "decodedRgbaBytes": 512000,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-climax/tiesuanpan-9d46f63b8114.webp",
+      "bytes": 50188,
+      "sha256": "9d46f63b81145b3b28cca9c57e542147c143d7639df9407cf0e56f363df23a82",
+      "width": 320,
+      "height": 400,
+      "alpha": false,
+      "decodedRgbaBytes": 512000,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-p08/cards/a03.detail.webp",
+      "bytes": 133074,
+      "sha256": "e3514e85e5d3141421cd43ed9f7948eaa00d1e533a5092ca2b2b90adf8792bc9",
       "width": 615,
       "height": 768,
       "alpha": false,
@@ -657,19 +1378,19 @@
       "format": "webp"
     },
     {
-      "path": "public/assets/jokers-p07/a03.webp",
-      "bytes": 21946,
-      "sha256": "2c60e2177f7b3feb60c8d3eb4713d28ddf0f6992374019c1ce23e527fbc29c2f",
-      "width": 256,
-      "height": 320,
+      "path": "public/assets/handdrawn-p08/cards/a03.thumbnail.webp",
+      "bytes": 6764,
+      "sha256": "0cac2fb555decd38a03e587e068c7b3e0180ef1a2be7560b3400dde588c8afc2",
+      "width": 128,
+      "height": 160,
       "alpha": false,
-      "decodedRgbaBytes": 327680,
+      "decodedRgbaBytes": 81920,
       "format": "webp"
     },
     {
-      "path": "public/assets/jokers-p07/a05-detail.webp",
-      "bytes": 101906,
-      "sha256": "3f623348f544d5f5e1b8123c0fc2c5545f0fc60e54acf24922bab42ff807e1cb",
+      "path": "public/assets/handdrawn-p08/cards/a04.detail.webp",
+      "bytes": 156056,
+      "sha256": "e842ae37f476918fc86a34e61eeb8b3bddcf7c28470adb0ef3f0d21c570e816f",
       "width": 615,
       "height": 768,
       "alpha": false,
@@ -677,19 +1398,19 @@
       "format": "webp"
     },
     {
-      "path": "public/assets/jokers-p07/a05.webp",
-      "bytes": 22396,
-      "sha256": "36596a9fa7b54e3e4ad705a5690fbe9929f20eae323db52a71b2d99270eb5158",
-      "width": 256,
-      "height": 320,
+      "path": "public/assets/handdrawn-p08/cards/a04.thumbnail.webp",
+      "bytes": 7674,
+      "sha256": "ad0b673f36de7b5c992e03bb908bcec57a47672b47e8e8730936af3680062dfa",
+      "width": 128,
+      "height": 160,
       "alpha": false,
-      "decodedRgbaBytes": 327680,
+      "decodedRgbaBytes": 81920,
       "format": "webp"
     },
     {
-      "path": "public/assets/jokers-p07/b02-detail.webp",
-      "bytes": 105946,
-      "sha256": "83a38cc8d847b54a0101b58ba8767ba50b423defb2cd641bbfbbc4d5e3175719",
+      "path": "public/assets/handdrawn-p08/cards/a05.detail.webp",
+      "bytes": 167196,
+      "sha256": "370c9fa5f3d86e651c1be8014adc2f103363fef6bb9e427ecf6bc80f5332745f",
       "width": 615,
       "height": 768,
       "alpha": false,
@@ -697,19 +1418,19 @@
       "format": "webp"
     },
     {
-      "path": "public/assets/jokers-p07/b02.webp",
-      "bytes": 20262,
-      "sha256": "01499193f64950f38f59ef26ec3692b598fe860a6115bde3204a6ae2fe951df5",
-      "width": 256,
-      "height": 320,
+      "path": "public/assets/handdrawn-p08/cards/a05.thumbnail.webp",
+      "bytes": 7974,
+      "sha256": "770b8f59b204dbd5e5f95060e49e328d9ae2241e4f7fc1777893890d5639edc4",
+      "width": 128,
+      "height": 160,
       "alpha": false,
-      "decodedRgbaBytes": 327680,
+      "decodedRgbaBytes": 81920,
       "format": "webp"
     },
     {
-      "path": "public/assets/jokers-p07/b03-detail.webp",
-      "bytes": 124100,
-      "sha256": "5f477b6ba8db98c8cbc20c08d7f0842119b45cabfa9234fa6764220632b7bad3",
+      "path": "public/assets/handdrawn-p08/cards/a06.detail.webp",
+      "bytes": 159112,
+      "sha256": "73ce3f67c8b76564c3f01a73e7550255007027c87dec63b52a146f8ad307e3e9",
       "width": 615,
       "height": 768,
       "alpha": false,
@@ -717,19 +1438,19 @@
       "format": "webp"
     },
     {
-      "path": "public/assets/jokers-p07/b03.webp",
-      "bytes": 23466,
-      "sha256": "a805e29e24ffce035e6aae1770476fb51ef96e0491fa5269da5e0bcca6e38179",
-      "width": 256,
-      "height": 320,
+      "path": "public/assets/handdrawn-p08/cards/a06.thumbnail.webp",
+      "bytes": 8462,
+      "sha256": "bd41cd92c2c265457b96d6a2e3ca292b69f7acc396e1ac77e5b4fcf7276cfc55",
+      "width": 128,
+      "height": 160,
       "alpha": false,
-      "decodedRgbaBytes": 327680,
+      "decodedRgbaBytes": 81920,
       "format": "webp"
     },
     {
-      "path": "public/assets/jokers-p07/b04-detail.webp",
-      "bytes": 115284,
-      "sha256": "392a903bb9da871038c49634c9b3849afeab936ae7e11cf4134d3bbbe44996d5",
+      "path": "public/assets/handdrawn-p08/cards/a07.detail.webp",
+      "bytes": 148344,
+      "sha256": "5dd313ea80a296bb9850feaa75ca0a67c3949eb1137c7e072f0ba0fe72f3a5ac",
       "width": 615,
       "height": 768,
       "alpha": false,
@@ -737,19 +1458,19 @@
       "format": "webp"
     },
     {
-      "path": "public/assets/jokers-p07/b04.webp",
-      "bytes": 24276,
-      "sha256": "2dffdc6ee43afdbed7799a19490ad36e997001f55652e3ba1d7dea060e563ec7",
-      "width": 256,
-      "height": 320,
+      "path": "public/assets/handdrawn-p08/cards/a07.thumbnail.webp",
+      "bytes": 7252,
+      "sha256": "d4f85f109d1fa2317ac9ce7ff33152f3cab6ee6cb63bbeada271b0d03ca0636d",
+      "width": 128,
+      "height": 160,
       "alpha": false,
-      "decodedRgbaBytes": 327680,
+      "decodedRgbaBytes": 81920,
       "format": "webp"
     },
     {
-      "path": "public/assets/jokers-p07/c02-detail.webp",
-      "bytes": 110126,
-      "sha256": "76b23ed15f4d465c453a7981709956c699c255a3b9149ac408b6745a10cc90cc",
+      "path": "public/assets/handdrawn-p08/cards/a08.detail.webp",
+      "bytes": 122154,
+      "sha256": "90edce2857a7496a770610b13635a50402149aa31ce676a263d2e5dc0aa04145",
       "width": 615,
       "height": 768,
       "alpha": false,
@@ -757,19 +1478,19 @@
       "format": "webp"
     },
     {
-      "path": "public/assets/jokers-p07/c02.webp",
-      "bytes": 24364,
-      "sha256": "4ba1d564839049a99704fc150cbeac0d31771106ee8c904b203ec10c8627d821",
-      "width": 256,
-      "height": 320,
+      "path": "public/assets/handdrawn-p08/cards/a08.thumbnail.webp",
+      "bytes": 6880,
+      "sha256": "e5c5cc6d8f1e3664751ab661c3e7109cb9783e89b6b2c9051aae0eb19056f915",
+      "width": 128,
+      "height": 160,
       "alpha": false,
-      "decodedRgbaBytes": 327680,
+      "decodedRgbaBytes": 81920,
       "format": "webp"
     },
     {
-      "path": "public/assets/jokers-p07/c04-detail.webp",
-      "bytes": 122334,
-      "sha256": "e9d12220d4d9c4c5b2b7257ddb2159f153bbf8c09146453e271d69d4fba32820",
+      "path": "public/assets/handdrawn-p08/cards/a09.detail.webp",
+      "bytes": 155824,
+      "sha256": "2dc4a53be683ebe59cbc5f0c78a64698105bd6a9aa298daca40f3c9436d89431",
       "width": 615,
       "height": 768,
       "alpha": false,
@@ -777,19 +1498,19 @@
       "format": "webp"
     },
     {
-      "path": "public/assets/jokers-p07/c04.webp",
-      "bytes": 25884,
-      "sha256": "0c6ebaf15dcbac27f22441fe8645f17628658197db9a103bb3f4e1da3d78dc29",
-      "width": 256,
-      "height": 320,
+      "path": "public/assets/handdrawn-p08/cards/a09.thumbnail.webp",
+      "bytes": 8188,
+      "sha256": "8ddd8a7f58a35c6bb3b3060de68d12a9c3cad940f1c26ae10804d366d3577728",
+      "width": 128,
+      "height": 160,
       "alpha": false,
-      "decodedRgbaBytes": 327680,
+      "decodedRgbaBytes": 81920,
       "format": "webp"
     },
     {
-      "path": "public/assets/jokers-p07/c06-detail.webp",
-      "bytes": 142670,
-      "sha256": "21ea21dd5bc7269f314d064ecb434c6b7f9a8bc8b7b2b31cbaf3425dbd4e6751",
+      "path": "public/assets/handdrawn-p08/cards/a10.detail.webp",
+      "bytes": 142834,
+      "sha256": "512077a2820060c937d5f2d43ed0b17d3d237ac62874cfeca41031216af16b02",
       "width": 615,
       "height": 768,
       "alpha": false,
@@ -797,19 +1518,29 @@
       "format": "webp"
     },
     {
-      "path": "public/assets/jokers-p07/c06.webp",
-      "bytes": 29256,
-      "sha256": "2557fe8ead81d84865fd9f950d8695d4d3d1d72e3cfb13ccbff86db36cc841f8",
-      "width": 256,
-      "height": 320,
+      "path": "public/assets/handdrawn-p08/cards/a10.thumbnail.webp",
+      "bytes": 7140,
+      "sha256": "299c52a86fb4b88e61156ccc9d2fe9a5e7f2b6e71744ed2c6a87a44011d49091",
+      "width": 128,
+      "height": 160,
       "alpha": false,
-      "decodedRgbaBytes": 327680,
+      "decodedRgbaBytes": 81920,
       "format": "webp"
     },
     {
-      "path": "public/assets/jokers-p07/d01-detail.webp",
-      "bytes": 111980,
-      "sha256": "d76b373c56bc27f1388f7d594fe962fdd0cf492bd1719516d3a259cc5306fd71",
+      "path": "public/assets/handdrawn-p08/cards/a11-v3-3717b4202b01.thumbnail.webp",
+      "bytes": 6878,
+      "sha256": "3717b4202b0163feb8bdb8f2a81cd5d1dd3c094413501480c4453bb48c4acbdf",
+      "width": 128,
+      "height": 160,
+      "alpha": false,
+      "decodedRgbaBytes": 81920,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-p08/cards/a11-v3-9a3c66b239fc.detail.webp",
+      "bytes": 107666,
+      "sha256": "9a3c66b239fcdbee26aebeedeb9a86eccf6d6c294c3c566d02448f4003b4dbc9",
       "width": 615,
       "height": 768,
       "alpha": false,
@@ -817,19 +1548,9 @@
       "format": "webp"
     },
     {
-      "path": "public/assets/jokers-p07/d01.webp",
-      "bytes": 23760,
-      "sha256": "a04dc5dc6668f86a5051cd0bce660e4dc47a563cd808374d725ddc22523864ed",
-      "width": 256,
-      "height": 320,
-      "alpha": false,
-      "decodedRgbaBytes": 327680,
-      "format": "webp"
-    },
-    {
-      "path": "public/assets/jokers-p07/d03-detail.webp",
-      "bytes": 114702,
-      "sha256": "9be33eac4bf7c1e879af472b9c0de4244bf5182f995306032df9721b7bce453a",
+      "path": "public/assets/handdrawn-p08/cards/a12.detail.webp",
+      "bytes": 156230,
+      "sha256": "cf75e80e8c93477ce797850182947861db7ad8bf5dedf8ba7e0287d5b5655728",
       "width": 615,
       "height": 768,
       "alpha": false,
@@ -837,19 +1558,19 @@
       "format": "webp"
     },
     {
-      "path": "public/assets/jokers-p07/d03.webp",
-      "bytes": 22968,
-      "sha256": "86cd92d1294ae76f4ff923be6274b6b027892814cbd665ef4bfabb7dc35c1dd4",
-      "width": 256,
-      "height": 320,
+      "path": "public/assets/handdrawn-p08/cards/a12.thumbnail.webp",
+      "bytes": 7866,
+      "sha256": "cd006bd689e81abf814dc6e193f96bfe8339bbedc4be2039d6c887e245a5b533",
+      "width": 128,
+      "height": 160,
       "alpha": false,
-      "decodedRgbaBytes": 327680,
+      "decodedRgbaBytes": 81920,
       "format": "webp"
     },
     {
-      "path": "public/assets/jokers-p07/d05-detail.webp",
-      "bytes": 101668,
-      "sha256": "0805f22c20d9abae186db0436ee178eaddd6b3320d3eda62c9984409d8d65741",
+      "path": "public/assets/handdrawn-p08/cards/b02.detail.webp",
+      "bytes": 69014,
+      "sha256": "edb103560a9f997e172b66c53ba5e2b41eab644b3d52b8c97c6171774092e173",
       "width": 615,
       "height": 768,
       "alpha": false,
@@ -857,19 +1578,19 @@
       "format": "webp"
     },
     {
-      "path": "public/assets/jokers-p07/d05.webp",
-      "bytes": 22814,
-      "sha256": "de352d6d2ec8c8833ba6f67e10f25b42e70f620970eab7b46333c924cf6dfbe6",
-      "width": 256,
-      "height": 320,
+      "path": "public/assets/handdrawn-p08/cards/b02.thumbnail.webp",
+      "bytes": 5126,
+      "sha256": "48f776f675669ce9799a3fea27968f4d6ed6dd97921816ee04b3d3b7d8b5d999",
+      "width": 128,
+      "height": 160,
       "alpha": false,
-      "decodedRgbaBytes": 327680,
+      "decodedRgbaBytes": 81920,
       "format": "webp"
     },
     {
-      "path": "public/assets/jokers-p07/d10-detail.webp",
-      "bytes": 118576,
-      "sha256": "0946727e20118dd4479ba7f13db81d8e90b7d9d8abcf81ddf1d226b34ad8f4a8",
+      "path": "public/assets/handdrawn-p08/cards/b03.detail.webp",
+      "bytes": 42320,
+      "sha256": "bf6fa329b0084aaaf1b3e8c4f83f8284ae07f3f6d537608f01e82cb50c32561c",
       "width": 615,
       "height": 768,
       "alpha": false,
@@ -877,19 +1598,19 @@
       "format": "webp"
     },
     {
-      "path": "public/assets/jokers-p07/d10.webp",
-      "bytes": 23932,
-      "sha256": "aa3ee0fe3d1ff2c29b5da4f18307fb53f3a72a5ae0bb939de19bc06112c62e63",
-      "width": 256,
-      "height": 320,
+      "path": "public/assets/handdrawn-p08/cards/b03.thumbnail.webp",
+      "bytes": 4028,
+      "sha256": "82d7c7fc5868960ecc1a49058b5aa618b3649d1e3f32d645311556ec14d8bc2d",
+      "width": 128,
+      "height": 160,
       "alpha": false,
-      "decodedRgbaBytes": 327680,
+      "decodedRgbaBytes": 81920,
       "format": "webp"
     },
     {
-      "path": "public/assets/jokers-p07/e01-detail.webp",
-      "bytes": 127516,
-      "sha256": "f003267422644261b05b4ee25a4b4228862784aaaff79d71998dbb87c93ad91c",
+      "path": "public/assets/handdrawn-p08/cards/b04.detail.webp",
+      "bytes": 94764,
+      "sha256": "cdcb1f0eb87346e6acb25fb2b5ff8204ca75b2f8ceb541a72d34bcf154802d48",
       "width": 615,
       "height": 768,
       "alpha": false,
@@ -897,19 +1618,19 @@
       "format": "webp"
     },
     {
-      "path": "public/assets/jokers-p07/e01.webp",
-      "bytes": 25522,
-      "sha256": "4655582c6543c46f7c868e0bc5af9583dd2b4c40cbfa5f4f382c32a8663b01c0",
-      "width": 256,
-      "height": 320,
+      "path": "public/assets/handdrawn-p08/cards/b04.thumbnail.webp",
+      "bytes": 7394,
+      "sha256": "ad084a418b3159991241b34d490b58476369f1f86b739470cb5afc273892d557",
+      "width": 128,
+      "height": 160,
       "alpha": false,
-      "decodedRgbaBytes": 327680,
+      "decodedRgbaBytes": 81920,
       "format": "webp"
     },
     {
-      "path": "public/assets/jokers-p07/e03-detail.webp",
-      "bytes": 118766,
-      "sha256": "9aeb93f0a682684980656cb23f0748849db5cae53aa566edf804d47e28731570",
+      "path": "public/assets/handdrawn-p08/cards/b05-v3-808bf2fbfd26.detail.webp",
+      "bytes": 136794,
+      "sha256": "808bf2fbfd262662b2c678e3dfec1ae5d3fb511325f5d62bcef0be50336a3ec7",
       "width": 615,
       "height": 768,
       "alpha": false,
@@ -917,19 +1638,19 @@
       "format": "webp"
     },
     {
-      "path": "public/assets/jokers-p07/e03.webp",
-      "bytes": 26072,
-      "sha256": "b18319574987921b7d3afb23ec9e89b73264bdc133463d18870b18a93abd4b0d",
-      "width": 256,
-      "height": 320,
+      "path": "public/assets/handdrawn-p08/cards/b05-v3-ee1848ebb107.thumbnail.webp",
+      "bytes": 7960,
+      "sha256": "ee1848ebb107e505ada50db8484a9ab6967d7716687b8cb8a3e11daefecf1604",
+      "width": 128,
+      "height": 160,
       "alpha": false,
-      "decodedRgbaBytes": 327680,
+      "decodedRgbaBytes": 81920,
       "format": "webp"
     },
     {
-      "path": "public/assets/jokers-p07/e05-detail.webp",
-      "bytes": 139420,
-      "sha256": "87094593b6bf2be005974ac823948283f418eea2600dde43e7a8ca5041a2df1b",
+      "path": "public/assets/handdrawn-p08/cards/b06.detail.webp",
+      "bytes": 62348,
+      "sha256": "5dc7b719e53df9cb8e4146445913ce270282cc4908976a24609e6904a7c28a25",
       "width": 615,
       "height": 768,
       "alpha": false,
@@ -937,19 +1658,19 @@
       "format": "webp"
     },
     {
-      "path": "public/assets/jokers-p07/e05.webp",
-      "bytes": 28306,
-      "sha256": "787e84f7f81e261266a70869d0fa60541473c61fd629592933cbf4abf9d73a19",
-      "width": 256,
-      "height": 320,
+      "path": "public/assets/handdrawn-p08/cards/b06.thumbnail.webp",
+      "bytes": 5224,
+      "sha256": "61796bfceffb0c787496b6d55525fbab292a5792a99317cb985e404605cf4c5b",
+      "width": 128,
+      "height": 160,
       "alpha": false,
-      "decodedRgbaBytes": 327680,
+      "decodedRgbaBytes": 81920,
       "format": "webp"
     },
     {
-      "path": "public/assets/jokers-p07/e08-detail.webp",
-      "bytes": 142510,
-      "sha256": "4bda40b900abe3268ab988c87daef3339c5a5a3e76d07b663e4f8381bf2f50b9",
+      "path": "public/assets/handdrawn-p08/cards/b07.detail.webp",
+      "bytes": 91142,
+      "sha256": "71aefec758d45345c4f2c998b3834ad4e6a087fbc0fadd692b0b71b8b54e7c2e",
       "width": 615,
       "height": 768,
       "alpha": false,
@@ -957,19 +1678,19 @@
       "format": "webp"
     },
     {
-      "path": "public/assets/jokers-p07/e08.webp",
-      "bytes": 29304,
-      "sha256": "f2bdd416d667a99fd18a77fda80ce9faecec92944732ef92cea6dc688d2f7be4",
-      "width": 256,
-      "height": 320,
+      "path": "public/assets/handdrawn-p08/cards/b07.thumbnail.webp",
+      "bytes": 7180,
+      "sha256": "94f5d2bf7554c38bded636e830e5985972913b83608a9b5a5240e59a9b8168a6",
+      "width": 128,
+      "height": 160,
       "alpha": false,
-      "decodedRgbaBytes": 327680,
+      "decodedRgbaBytes": 81920,
       "format": "webp"
     },
     {
-      "path": "public/assets/jokers-p07/f02-detail.webp",
-      "bytes": 112416,
-      "sha256": "cb1577d113dfd592f8bac0bb17ea525237a816689124bc9911d0886d1dcb7975",
+      "path": "public/assets/handdrawn-p08/cards/b08.detail.webp",
+      "bytes": 71440,
+      "sha256": "877382f9f623b44b14f8408f86906d80e174d282c9699bcc7cbfe08e87f7d9f9",
       "width": 615,
       "height": 768,
       "alpha": false,
@@ -977,19 +1698,19 @@
       "format": "webp"
     },
     {
-      "path": "public/assets/jokers-p07/f02.webp",
-      "bytes": 22558,
-      "sha256": "6bee648adf56514da088cb338869a2e9f267f0f1dfcf3267ce94a604da27e060",
-      "width": 256,
-      "height": 320,
+      "path": "public/assets/handdrawn-p08/cards/b08.thumbnail.webp",
+      "bytes": 6872,
+      "sha256": "df9bce25ca19e9f45478595a7d927afe2b7592d9a4ffe4ccd0e279a55cdb21d5",
+      "width": 128,
+      "height": 160,
       "alpha": false,
-      "decodedRgbaBytes": 327680,
+      "decodedRgbaBytes": 81920,
       "format": "webp"
     },
     {
-      "path": "public/assets/jokers-p07/f03-detail.webp",
-      "bytes": 129140,
-      "sha256": "980d33c9d7ed6fcc047d076e0203d0dd222d1b66874a4649967874d976496dad",
+      "path": "public/assets/handdrawn-p08/cards/b09.detail.webp",
+      "bytes": 68666,
+      "sha256": "2ac0d6ee4441b930ef58a67f77e5960f29d5408cd5251f346f66fd22512ffb31",
       "width": 615,
       "height": 768,
       "alpha": false,
@@ -997,19 +1718,19 @@
       "format": "webp"
     },
     {
-      "path": "public/assets/jokers-p07/f03.webp",
-      "bytes": 24462,
-      "sha256": "8875f5a853b18609d95e3fdfe8eb525c3d4591eb19b864d0372fcea393f5fbb3",
-      "width": 256,
-      "height": 320,
+      "path": "public/assets/handdrawn-p08/cards/b09.thumbnail.webp",
+      "bytes": 5998,
+      "sha256": "b495ee426c1b4fb7fa22626c1fdf49372be55a11cee4751213ac72bfc812fcbf",
+      "width": 128,
+      "height": 160,
       "alpha": false,
-      "decodedRgbaBytes": 327680,
+      "decodedRgbaBytes": 81920,
       "format": "webp"
     },
     {
-      "path": "public/assets/jokers-p07/f09-detail.webp",
-      "bytes": 114780,
-      "sha256": "44fb550763f9d6c81aa09a5a641dde6c78dcbcc6d9d1a84367552b9f739f9380",
+      "path": "public/assets/handdrawn-p08/cards/b10.detail.webp",
+      "bytes": 49552,
+      "sha256": "27806f0c4b3450d64b10c9a41d8c6fb30c94bcbf03eceacb0ea69dd68695270d",
       "width": 615,
       "height": 768,
       "alpha": false,
@@ -1017,19 +1738,19 @@
       "format": "webp"
     },
     {
-      "path": "public/assets/jokers-p07/f09.webp",
-      "bytes": 24076,
-      "sha256": "62fc10f52ee41df43814b5b99f97e63a1093d02b84af4956da50a5b5dadbd38e",
-      "width": 256,
-      "height": 320,
+      "path": "public/assets/handdrawn-p08/cards/b10.thumbnail.webp",
+      "bytes": 4272,
+      "sha256": "b9e309650a34c0ef18dcfd5e56ad8847826b3bd08249716bcdb47ed07473de38",
+      "width": 128,
+      "height": 160,
       "alpha": false,
-      "decodedRgbaBytes": 327680,
+      "decodedRgbaBytes": 81920,
       "format": "webp"
     },
     {
-      "path": "public/assets/jokers-p07/huimaqiang-detail.webp",
-      "bytes": 119756,
-      "sha256": "0a8a31d321921f4b63e9a5ab40c7a380ff371983fc767511dbeac8bd91c057f0",
+      "path": "public/assets/handdrawn-p08/cards/b11.detail.webp",
+      "bytes": 42492,
+      "sha256": "b74f5f15bacb8c1b613687500f89f762f1f4823c2a5035b482019309178a995d",
       "width": 615,
       "height": 768,
       "alpha": false,
@@ -1037,19 +1758,19 @@
       "format": "webp"
     },
     {
-      "path": "public/assets/jokers-p07/huimaqiang.webp",
-      "bytes": 23712,
-      "sha256": "41a75934fd77b26bd94e3d09d6683453bec7c836fa0162463cd06b48e9c875a8",
-      "width": 256,
-      "height": 320,
+      "path": "public/assets/handdrawn-p08/cards/b11.thumbnail.webp",
+      "bytes": 4364,
+      "sha256": "e63f487c41a8d8f8d1a39d749a4092d6a585cb1b3c593a2817710f212d18365e",
+      "width": 128,
+      "height": 160,
       "alpha": false,
-      "decodedRgbaBytes": 327680,
+      "decodedRgbaBytes": 81920,
       "format": "webp"
     },
     {
-      "path": "public/assets/jokers-p07/jiedongfeng-detail.webp",
-      "bytes": 121636,
-      "sha256": "247d556f1182c8c8b9be5d0989642fa54655ab47292014425c804bd05426e573",
+      "path": "public/assets/handdrawn-p08/cards/b12.detail.webp",
+      "bytes": 38158,
+      "sha256": "d7adef301b5b69759b21e6754be16020c0b4a34ec0d6fd858aacf764294e644b",
       "width": 615,
       "height": 768,
       "alpha": false,
@@ -1057,19 +1778,19 @@
       "format": "webp"
     },
     {
-      "path": "public/assets/jokers-p07/jiedongfeng.webp",
-      "bytes": 23362,
-      "sha256": "be042740a519cdbb9c7356044b207620ffafac8c22acd3dcc28b113799612310",
-      "width": 256,
-      "height": 320,
+      "path": "public/assets/handdrawn-p08/cards/b12.thumbnail.webp",
+      "bytes": 4012,
+      "sha256": "fb817daa74e84e12e675446ee3f732d3253e954f15b6769a4abb2d9c666b0496",
+      "width": 128,
+      "height": 160,
       "alpha": false,
-      "decodedRgbaBytes": 327680,
+      "decodedRgbaBytes": 81920,
       "format": "webp"
     },
     {
-      "path": "public/assets/jokers-p07/mantangcai-detail.webp",
-      "bytes": 90684,
-      "sha256": "c3d3b504bae404e96871a31652690f73c1b0f95c0c3a6dc2ba98875cdd2d35cd",
+      "path": "public/assets/handdrawn-p08/cards/c02.detail.webp",
+      "bytes": 83162,
+      "sha256": "634aa197d97b238679d907aaa0f98f63bc5e6071033b2c84adcbb8555834e472",
       "width": 615,
       "height": 768,
       "alpha": false,
@@ -1077,19 +1798,19 @@
       "format": "webp"
     },
     {
-      "path": "public/assets/jokers-p07/mantangcai.webp",
-      "bytes": 21006,
-      "sha256": "b345310a8a2b505302485e5ab34492c341a533abf3d7e098b1ebb5121569479c",
-      "width": 256,
-      "height": 320,
+      "path": "public/assets/handdrawn-p08/cards/c02.thumbnail.webp",
+      "bytes": 5684,
+      "sha256": "930fdfbb3e67e58037ef33a1f9e0d7d42b61d119dd91d51500a6da3cc0f0e8e0",
+      "width": 128,
+      "height": 160,
       "alpha": false,
-      "decodedRgbaBytes": 327680,
+      "decodedRgbaBytes": 81920,
       "format": "webp"
     },
     {
-      "path": "public/assets/jokers-p07/pengci-detail.webp",
-      "bytes": 111488,
-      "sha256": "a4e53a9c5eefb03b639da4fee1c3ef3e3180728982a66035181ec524bb2ae0ec",
+      "path": "public/assets/handdrawn-p08/cards/c03.detail.webp",
+      "bytes": 71334,
+      "sha256": "44d84c04646be2ff972d543286c6662e7e0233161559fd03d8683072805fbc39",
       "width": 615,
       "height": 768,
       "alpha": false,
@@ -1097,19 +1818,19 @@
       "format": "webp"
     },
     {
-      "path": "public/assets/jokers-p07/pengci.webp",
-      "bytes": 22448,
-      "sha256": "fb4d7953cc9303026be8b3e9b133ecb8ac1cbada7ec9a2b8ae59460b4d30629b",
-      "width": 256,
-      "height": 320,
+      "path": "public/assets/handdrawn-p08/cards/c03.thumbnail.webp",
+      "bytes": 6642,
+      "sha256": "45b03b2ede120cb437f89b8a3817e80837f7e7b05a546be0d5476e0b7f60d43c",
+      "width": 128,
+      "height": 160,
       "alpha": false,
-      "decodedRgbaBytes": 327680,
+      "decodedRgbaBytes": 81920,
       "format": "webp"
     },
     {
-      "path": "public/assets/jokers-p07/tiesuanpan-detail.webp",
-      "bytes": 112102,
-      "sha256": "8a10a449b9f974ea1bb5b4b7a513a085217e6d8c14ae929906f9a5ec85990a06",
+      "path": "public/assets/handdrawn-p08/cards/c04.detail.webp",
+      "bytes": 100390,
+      "sha256": "767aa10bbbaf1caed326a2346901bb337cb67f5bf29187e77d109b6c888243ac",
       "width": 615,
       "height": 768,
       "alpha": false,
@@ -1117,22 +1838,2056 @@
       "format": "webp"
     },
     {
-      "path": "public/assets/jokers-p07/tiesuanpan.webp",
-      "bytes": 24816,
-      "sha256": "b1d29908236028eead4d54379466cafb65b2677005e338ce8a5911d525d59d1f",
-      "width": 256,
-      "height": 320,
+      "path": "public/assets/handdrawn-p08/cards/c04.thumbnail.webp",
+      "bytes": 5972,
+      "sha256": "46520616a3c822e3ac5466e5c91d3e46b342b55668f7250403c1a08ace12e9b0",
+      "width": 128,
+      "height": 160,
       "alpha": false,
-      "decodedRgbaBytes": 327680,
+      "decodedRgbaBytes": 81920,
       "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-p08/cards/c05.detail.webp",
+      "bytes": 89498,
+      "sha256": "43d01720fcf8d9e872f113fc8a7f0a6bd8638048f658b0077d843865f9a3fde2",
+      "width": 615,
+      "height": 768,
+      "alpha": false,
+      "decodedRgbaBytes": 1889280,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-p08/cards/c05.thumbnail.webp",
+      "bytes": 7014,
+      "sha256": "62415f348f42c404aafd328dc91234457c2bd462a14ac77ff00dc0a9f91aad92",
+      "width": 128,
+      "height": 160,
+      "alpha": false,
+      "decodedRgbaBytes": 81920,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-p08/cards/c06-v3-2cac9ea20520.detail.webp",
+      "bytes": 155372,
+      "sha256": "2cac9ea20520b03c13de76a42dbb55fb5229990e209ecda1975d3c192c55c07e",
+      "width": 615,
+      "height": 768,
+      "alpha": false,
+      "decodedRgbaBytes": 1889280,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-p08/cards/c06-v3-45e28c8be0e9.thumbnail.webp",
+      "bytes": 8492,
+      "sha256": "45e28c8be0e9b99889849355026f8442c30a9e3662a761c7f1083165ed2a7493",
+      "width": 128,
+      "height": 160,
+      "alpha": false,
+      "decodedRgbaBytes": 81920,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-p08/cards/c07.detail.webp",
+      "bytes": 134960,
+      "sha256": "0b07396efca09f72927161acaa63f55bea0a326b3fe57f33871cd7e41786cbef",
+      "width": 615,
+      "height": 768,
+      "alpha": false,
+      "decodedRgbaBytes": 1889280,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-p08/cards/c07.thumbnail.webp",
+      "bytes": 7634,
+      "sha256": "d0b74544acbaf7e52cefc0cc9501b4afeaf766b6d46c61cfc2ad5273159bcde2",
+      "width": 128,
+      "height": 160,
+      "alpha": false,
+      "decodedRgbaBytes": 81920,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-p08/cards/c08.detail.webp",
+      "bytes": 57112,
+      "sha256": "7028100b6469855a96b953e1f7c40670cbef91145ee771f8279fe84b8d5792a7",
+      "width": 615,
+      "height": 768,
+      "alpha": false,
+      "decodedRgbaBytes": 1889280,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-p08/cards/c08.thumbnail.webp",
+      "bytes": 5034,
+      "sha256": "f0ab880f7712cfc1ec3a6f8cc77de2c439150c66dc258760e1d4b34c7769295c",
+      "width": 128,
+      "height": 160,
+      "alpha": false,
+      "decodedRgbaBytes": 81920,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-p08/cards/c09.detail.webp",
+      "bytes": 96814,
+      "sha256": "224e0bec6a09dce091191ceb4dc618631f6efdea68d2063accaa4629b270bd3f",
+      "width": 615,
+      "height": 768,
+      "alpha": false,
+      "decodedRgbaBytes": 1889280,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-p08/cards/c09.thumbnail.webp",
+      "bytes": 6488,
+      "sha256": "a3852ce26308218b7cbf802a23f6c98c28036b8c8052cd8ac53992b4999c46f0",
+      "width": 128,
+      "height": 160,
+      "alpha": false,
+      "decodedRgbaBytes": 81920,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-p08/cards/c10.detail.webp",
+      "bytes": 84294,
+      "sha256": "2b7c6b8d0421a37768c9c6c77d0837b49a48bb4adc582029624dd84e8c2447c7",
+      "width": 615,
+      "height": 768,
+      "alpha": false,
+      "decodedRgbaBytes": 1889280,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-p08/cards/c10.thumbnail.webp",
+      "bytes": 6258,
+      "sha256": "6c1e0b712ee37a14c3e24e8babc106acdb584d0f07632e9d75bcbebc3a4151a5",
+      "width": 128,
+      "height": 160,
+      "alpha": false,
+      "decodedRgbaBytes": 81920,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-p08/cards/c11.detail.webp",
+      "bytes": 86652,
+      "sha256": "c227fc409f50ce80999193e73297c39ce40e35e2027a46ed95f60c9328c41362",
+      "width": 615,
+      "height": 768,
+      "alpha": false,
+      "decodedRgbaBytes": 1889280,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-p08/cards/c11.thumbnail.webp",
+      "bytes": 6070,
+      "sha256": "00b17d92bc4cb0e3247d14222dedc8d7b7ed87f46a35c84272d9ace244378ff0",
+      "width": 128,
+      "height": 160,
+      "alpha": false,
+      "decodedRgbaBytes": 81920,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-p08/cards/c12.detail.webp",
+      "bytes": 116224,
+      "sha256": "1ce0d6eafa177bd9b96921a0196e3a3a3a713638ba433bc18f92880e1f6ae0d6",
+      "width": 615,
+      "height": 768,
+      "alpha": false,
+      "decodedRgbaBytes": 1889280,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-p08/cards/c12.thumbnail.webp",
+      "bytes": 7026,
+      "sha256": "be851572e93836a80dc7833b8a2dd9c75ad6866d24b1d6ad08967cc6f2b7a8bf",
+      "width": 128,
+      "height": 160,
+      "alpha": false,
+      "decodedRgbaBytes": 81920,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-p08/cards/d01.detail.webp",
+      "bytes": 150134,
+      "sha256": "76b666ae1c34485e31d79b336185ede698a40e0f8f62e1b27e35da386b9390f5",
+      "width": 615,
+      "height": 768,
+      "alpha": false,
+      "decodedRgbaBytes": 1889280,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-p08/cards/d01.thumbnail.webp",
+      "bytes": 8226,
+      "sha256": "04c0f7a5236f83fc5af1df070fd62ec2fafb0cb0b9a42c9183ea5fc541704f2c",
+      "width": 128,
+      "height": 160,
+      "alpha": false,
+      "decodedRgbaBytes": 81920,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-p08/cards/d02.detail.webp",
+      "bytes": 139760,
+      "sha256": "f3cce3788a17744c0a473c1422241812269f1f0f08b7402cd88007d0619fa068",
+      "width": 615,
+      "height": 768,
+      "alpha": false,
+      "decodedRgbaBytes": 1889280,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-p08/cards/d02.thumbnail.webp",
+      "bytes": 8346,
+      "sha256": "3d99d1c4b535bfea0ff24f3ad3c33293117f084c5a5ca9a069a4ac125355a628",
+      "width": 128,
+      "height": 160,
+      "alpha": false,
+      "decodedRgbaBytes": 81920,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-p08/cards/d03.detail.webp",
+      "bytes": 127368,
+      "sha256": "3dc0bafd3017f3942ea3749e733e80bbbe276f5d64718bef1a5ae9865cc9bd26",
+      "width": 615,
+      "height": 768,
+      "alpha": false,
+      "decodedRgbaBytes": 1889280,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-p08/cards/d03.thumbnail.webp",
+      "bytes": 7166,
+      "sha256": "fc00dce977cd31868cf3ce44079c4735fc11da66c92ea51afa2609529f4da9f3",
+      "width": 128,
+      "height": 160,
+      "alpha": false,
+      "decodedRgbaBytes": 81920,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-p08/cards/d04.detail.webp",
+      "bytes": 135810,
+      "sha256": "9492923b3c17e070fbe186b33071f6c4797ff645ef9e23f61ad93e2fc85987a2",
+      "width": 615,
+      "height": 768,
+      "alpha": false,
+      "decodedRgbaBytes": 1889280,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-p08/cards/d04.thumbnail.webp",
+      "bytes": 8084,
+      "sha256": "562ab75739ffa9792c58e9ebf0d10c2bf893535b8d5150912397a7d7b501224c",
+      "width": 128,
+      "height": 160,
+      "alpha": false,
+      "decodedRgbaBytes": 81920,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-p08/cards/d05.detail.webp",
+      "bytes": 146824,
+      "sha256": "f208bee87ec6bf291fe5d7bb09b22bcea7424d855162c1927e1b8ffd727deec6",
+      "width": 615,
+      "height": 768,
+      "alpha": false,
+      "decodedRgbaBytes": 1889280,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-p08/cards/d05.thumbnail.webp",
+      "bytes": 7844,
+      "sha256": "a4eea8cc2234407cb411f213a784170fc479e2deb37122e6d13f2be848f9ec30",
+      "width": 128,
+      "height": 160,
+      "alpha": false,
+      "decodedRgbaBytes": 81920,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-p08/cards/d06.detail.webp",
+      "bytes": 137904,
+      "sha256": "00ea45bd19cf636d694f9158cbea00cd4824f6574a88024af417db0be96f79f8",
+      "width": 615,
+      "height": 768,
+      "alpha": false,
+      "decodedRgbaBytes": 1889280,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-p08/cards/d06.thumbnail.webp",
+      "bytes": 7278,
+      "sha256": "60894c7ae4698af200faf626ce761a2daeb428e995c492377ea03a2b93d3c456",
+      "width": 128,
+      "height": 160,
+      "alpha": false,
+      "decodedRgbaBytes": 81920,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-p08/cards/d07.detail.webp",
+      "bytes": 129754,
+      "sha256": "76e47c9acff39e7ef3a0d0086e7cc5b42a15dc2e816039759bead46dfe6a92d2",
+      "width": 615,
+      "height": 768,
+      "alpha": false,
+      "decodedRgbaBytes": 1889280,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-p08/cards/d07.thumbnail.webp",
+      "bytes": 7414,
+      "sha256": "a4dcf9c680756e3aafb18ff8bf39b3eaae3a1e984bca28bf1064534d02889827",
+      "width": 128,
+      "height": 160,
+      "alpha": false,
+      "decodedRgbaBytes": 81920,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-p08/cards/d08.detail.webp",
+      "bytes": 138140,
+      "sha256": "a234ecf1613bde00dec95628684bdebd66c2dfec6ef0022f55bd13594eebeb7e",
+      "width": 615,
+      "height": 768,
+      "alpha": false,
+      "decodedRgbaBytes": 1889280,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-p08/cards/d08.thumbnail.webp",
+      "bytes": 7282,
+      "sha256": "2c2e531e6f5e9f314dd3a121de593d08665eaa8dab8916220e54ed2b45d53ac1",
+      "width": 128,
+      "height": 160,
+      "alpha": false,
+      "decodedRgbaBytes": 81920,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-p08/cards/d09.detail.webp",
+      "bytes": 127148,
+      "sha256": "46cc4c6283ca54c0d4570756fe8d03a55c17a1137913384dbcb044aeae3c632c",
+      "width": 615,
+      "height": 768,
+      "alpha": false,
+      "decodedRgbaBytes": 1889280,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-p08/cards/d09.thumbnail.webp",
+      "bytes": 7542,
+      "sha256": "9ceb4f4cfd847aecc48c31af0edf04aa26f8609b960c33a9a5a34f28b058f3b7",
+      "width": 128,
+      "height": 160,
+      "alpha": false,
+      "decodedRgbaBytes": 81920,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-p08/cards/d10.detail.webp",
+      "bytes": 132470,
+      "sha256": "5d418e8d7806dc02e7069fcc02684dec714438d3d534c8c38b7ea6636ec11c4a",
+      "width": 615,
+      "height": 768,
+      "alpha": false,
+      "decodedRgbaBytes": 1889280,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-p08/cards/d10.thumbnail.webp",
+      "bytes": 7626,
+      "sha256": "8537d79199ece3b826916a1d9dafb0666af4fa27ae26868896e91f3075b98278",
+      "width": 128,
+      "height": 160,
+      "alpha": false,
+      "decodedRgbaBytes": 81920,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-p08/cards/d11.detail.webp",
+      "bytes": 142154,
+      "sha256": "bda60ce46cc8645688a2af28f57a3eb7f564e48dbed386fc8de2da3660ac86d0",
+      "width": 615,
+      "height": 768,
+      "alpha": false,
+      "decodedRgbaBytes": 1889280,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-p08/cards/d11.thumbnail.webp",
+      "bytes": 8094,
+      "sha256": "d81348f79099c81070977b9144e301ae712d625dbc7aa0d3a71f1def39593ef2",
+      "width": 128,
+      "height": 160,
+      "alpha": false,
+      "decodedRgbaBytes": 81920,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-p08/cards/d12.detail.webp",
+      "bytes": 102824,
+      "sha256": "e91f51ccb3d5a2c80783f79dd06eeae37e66e6562cd6758af2f7be5fa0bfe5d0",
+      "width": 615,
+      "height": 768,
+      "alpha": false,
+      "decodedRgbaBytes": 1889280,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-p08/cards/d12.thumbnail.webp",
+      "bytes": 6210,
+      "sha256": "d4588c63359e2d7edc5d60baf05baa8856d59f4bea0c83b8320f52f3ab227dda",
+      "width": 128,
+      "height": 160,
+      "alpha": false,
+      "decodedRgbaBytes": 81920,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-p08/cards/e01.detail.webp",
+      "bytes": 164274,
+      "sha256": "1bfa980319708553064227499a9b43da2c44c7766af00ce68de097f21155c287",
+      "width": 615,
+      "height": 768,
+      "alpha": false,
+      "decodedRgbaBytes": 1889280,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-p08/cards/e01.thumbnail.webp",
+      "bytes": 9036,
+      "sha256": "1758a1fc2a8b0f60e0330399591e4a8e1ac7d074281c1e1ef376c9ac11664306",
+      "width": 128,
+      "height": 160,
+      "alpha": false,
+      "decodedRgbaBytes": 81920,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-p08/cards/e02.detail.webp",
+      "bytes": 132890,
+      "sha256": "47f454580580bf1f1d9b7322fc15a11e37532a177156482919a6b4760a1abd9a",
+      "width": 615,
+      "height": 768,
+      "alpha": false,
+      "decodedRgbaBytes": 1889280,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-p08/cards/e02.thumbnail.webp",
+      "bytes": 8226,
+      "sha256": "decef4e1e8ec590fc9d62810dfb3bbc58cdbd0cde1f81712ab01011e19c311ac",
+      "width": 128,
+      "height": 160,
+      "alpha": false,
+      "decodedRgbaBytes": 81920,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-p08/cards/e03.detail.webp",
+      "bytes": 171208,
+      "sha256": "5a125b4c7b26ed6091c1341bcc693b9d27c5be4e2dbe61af37ae0b18da4d896e",
+      "width": 615,
+      "height": 768,
+      "alpha": false,
+      "decodedRgbaBytes": 1889280,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-p08/cards/e03.thumbnail.webp",
+      "bytes": 8436,
+      "sha256": "a345b46e905cf1beeb4d3a42f0029a2c7084d5177a3f1aeed0747710b3470494",
+      "width": 128,
+      "height": 160,
+      "alpha": false,
+      "decodedRgbaBytes": 81920,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-p08/cards/e04.detail.webp",
+      "bytes": 176792,
+      "sha256": "16154fcb4aa4bca35509e7bac783ef74c6bcc38c2c830cde7ecae321b2ce176b",
+      "width": 615,
+      "height": 768,
+      "alpha": false,
+      "decodedRgbaBytes": 1889280,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-p08/cards/e04.thumbnail.webp",
+      "bytes": 8838,
+      "sha256": "5aeb4363d85502783a5d383cc74c1d32a5130eca69aa49637676b1ecb7fa6155",
+      "width": 128,
+      "height": 160,
+      "alpha": false,
+      "decodedRgbaBytes": 81920,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-p08/cards/e05.detail.webp",
+      "bytes": 136284,
+      "sha256": "fc9c4d7cd3f8b0167e46c00e26679f58a0e58bce88e8f5dd2ead319daafcfce9",
+      "width": 615,
+      "height": 768,
+      "alpha": false,
+      "decodedRgbaBytes": 1889280,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-p08/cards/e05.thumbnail.webp",
+      "bytes": 7646,
+      "sha256": "f745697986c6728db2616fc1b2035487cfa6aa77afd7724a8734fd06b0d2a612",
+      "width": 128,
+      "height": 160,
+      "alpha": false,
+      "decodedRgbaBytes": 81920,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-p08/cards/e06.detail.webp",
+      "bytes": 169636,
+      "sha256": "0f5656f1f42ae3a5a16b33d7a3ebd4051667622ad81687741eac5b7c2132f935",
+      "width": 615,
+      "height": 768,
+      "alpha": false,
+      "decodedRgbaBytes": 1889280,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-p08/cards/e06.thumbnail.webp",
+      "bytes": 9226,
+      "sha256": "bdecf3239847a5c8044e352f55b08a72740a5a887da07ab375ba632bf7cef50f",
+      "width": 128,
+      "height": 160,
+      "alpha": false,
+      "decodedRgbaBytes": 81920,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-p08/cards/e07.detail.webp",
+      "bytes": 173998,
+      "sha256": "4d40aeee6955048147869b0a48acdd7104546778b7234e622e4145ae6566bb2e",
+      "width": 615,
+      "height": 768,
+      "alpha": false,
+      "decodedRgbaBytes": 1889280,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-p08/cards/e07.thumbnail.webp",
+      "bytes": 8638,
+      "sha256": "e1b9fc96cafafbd1e2a6f2a35932126cb9c7885c29dd63445b89e4eb41226e78",
+      "width": 128,
+      "height": 160,
+      "alpha": false,
+      "decodedRgbaBytes": 81920,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-p08/cards/e08.detail.webp",
+      "bytes": 161444,
+      "sha256": "c26d372b34db3979c373a2f367386b55a171bd4b8c26bbdb09a9ed21d668ebee",
+      "width": 615,
+      "height": 768,
+      "alpha": false,
+      "decodedRgbaBytes": 1889280,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-p08/cards/e08.thumbnail.webp",
+      "bytes": 8430,
+      "sha256": "fa28ed699ad4745e53388e827718a3b87aa0cb81a54e129d0dc908b173e1f91b",
+      "width": 128,
+      "height": 160,
+      "alpha": false,
+      "decodedRgbaBytes": 81920,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-p08/cards/e09.detail.webp",
+      "bytes": 160322,
+      "sha256": "21b1a856dd1fcb5448de5e6883644377896e8d9277471d510dfa60fbddba0b62",
+      "width": 615,
+      "height": 768,
+      "alpha": false,
+      "decodedRgbaBytes": 1889280,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-p08/cards/e09.thumbnail.webp",
+      "bytes": 8542,
+      "sha256": "a352220a25203cad0088b6a40527116ef87746d1e09e1d26a6430d1c42aa9fca",
+      "width": 128,
+      "height": 160,
+      "alpha": false,
+      "decodedRgbaBytes": 81920,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-p08/cards/e10.detail.webp",
+      "bytes": 148306,
+      "sha256": "37e4062e508467c80e5654366bec6a3cd3b58f6c7e5f03bb11d969317f92300f",
+      "width": 615,
+      "height": 768,
+      "alpha": false,
+      "decodedRgbaBytes": 1889280,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-p08/cards/e10.thumbnail.webp",
+      "bytes": 8222,
+      "sha256": "0bb3e6a3c285233f17f87f21ee5f93fdd35e686aab0c5f95dc5424e370841f82",
+      "width": 128,
+      "height": 160,
+      "alpha": false,
+      "decodedRgbaBytes": 81920,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-p08/cards/e11.detail.webp",
+      "bytes": 139702,
+      "sha256": "ae382a1f083d71d87c8d98cd1084fe13fb7a7f2b8a32dcf714e9c7d33592196e",
+      "width": 615,
+      "height": 768,
+      "alpha": false,
+      "decodedRgbaBytes": 1889280,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-p08/cards/e11.thumbnail.webp",
+      "bytes": 8284,
+      "sha256": "49030096892c5440b820d67dce2d3767b1355f38a8253a027059f0fb7f8c86e2",
+      "width": 128,
+      "height": 160,
+      "alpha": false,
+      "decodedRgbaBytes": 81920,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-p08/cards/e12.detail.webp",
+      "bytes": 155458,
+      "sha256": "0a6a318e1424106a5ccc0750a0c4231c8e97967f1685f0d0c6f8f4ca3aaa9710",
+      "width": 615,
+      "height": 768,
+      "alpha": false,
+      "decodedRgbaBytes": 1889280,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-p08/cards/e12.thumbnail.webp",
+      "bytes": 8308,
+      "sha256": "5b84843efa75c669ffe9e5e8a7e24314c9f82a7ad9e4ef4e95268ca5eacb90f0",
+      "width": 128,
+      "height": 160,
+      "alpha": false,
+      "decodedRgbaBytes": 81920,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-p08/cards/f02.detail.webp",
+      "bytes": 154252,
+      "sha256": "cf4498b4891eec5b598324a4e04edc14706606373c86ed6c833376dbaca390b3",
+      "width": 615,
+      "height": 768,
+      "alpha": false,
+      "decodedRgbaBytes": 1889280,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-p08/cards/f02.thumbnail.webp",
+      "bytes": 8064,
+      "sha256": "0fb8fe262a587941016327c5efa91b0eba30903d2e6e4022dcee3aec9697fd59",
+      "width": 128,
+      "height": 160,
+      "alpha": false,
+      "decodedRgbaBytes": 81920,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-p08/cards/f03.detail.webp",
+      "bytes": 165328,
+      "sha256": "ed8c934fbf4e8335665e47ebf348f16e5144faf7b86272ddeb179534bdac00d7",
+      "width": 615,
+      "height": 768,
+      "alpha": false,
+      "decodedRgbaBytes": 1889280,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-p08/cards/f03.thumbnail.webp",
+      "bytes": 8906,
+      "sha256": "5e4dd1ca2b9a02a459656d4cdad9797ab097d9dae9433f3a54a5e119ecc044eb",
+      "width": 128,
+      "height": 160,
+      "alpha": false,
+      "decodedRgbaBytes": 81920,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-p08/cards/f04.detail.webp",
+      "bytes": 149642,
+      "sha256": "b264d2da422d0af4adcfe0a83877e1c00ec374bef484538c1d381ead09f28932",
+      "width": 615,
+      "height": 768,
+      "alpha": false,
+      "decodedRgbaBytes": 1889280,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-p08/cards/f04.thumbnail.webp",
+      "bytes": 8416,
+      "sha256": "a0731ba1602828e6fff44aa73e13e173ddd9fb370c696555f9c050cf979e58c8",
+      "width": 128,
+      "height": 160,
+      "alpha": false,
+      "decodedRgbaBytes": 81920,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-p08/cards/f05.detail.webp",
+      "bytes": 148948,
+      "sha256": "3881219f1870140f39df32d8e14ee1473fcffa9dd68acdadec7afa61639bfb7c",
+      "width": 615,
+      "height": 768,
+      "alpha": false,
+      "decodedRgbaBytes": 1889280,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-p08/cards/f05.thumbnail.webp",
+      "bytes": 8156,
+      "sha256": "c395b74c05cb896be5afa28967761ff746393420870bec2f15fb50da8ffe805e",
+      "width": 128,
+      "height": 160,
+      "alpha": false,
+      "decodedRgbaBytes": 81920,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-p08/cards/f06.detail.webp",
+      "bytes": 162364,
+      "sha256": "e7e50765c5c97ce7c897bbb0ec2178ffacaff6c7978fb64b6260d4bcaf48580e",
+      "width": 615,
+      "height": 768,
+      "alpha": false,
+      "decodedRgbaBytes": 1889280,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-p08/cards/f06.thumbnail.webp",
+      "bytes": 8616,
+      "sha256": "ff1e1b9e6e23f17a6646272b36d0b3f39e4c58d61b9f1aa020bc2e0a377e5848",
+      "width": 128,
+      "height": 160,
+      "alpha": false,
+      "decodedRgbaBytes": 81920,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-p08/cards/f07.detail.webp",
+      "bytes": 156240,
+      "sha256": "9cfc3b182cd55f7aad3bcb96c9bc36eafe06b4b140d272c18dd8b4110a19d4e6",
+      "width": 615,
+      "height": 768,
+      "alpha": false,
+      "decodedRgbaBytes": 1889280,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-p08/cards/f07.thumbnail.webp",
+      "bytes": 8916,
+      "sha256": "4d939ba8701426b45d6bf7f4f39aea8199b8428f1b84df27142bcf1dfa9951e7",
+      "width": 128,
+      "height": 160,
+      "alpha": false,
+      "decodedRgbaBytes": 81920,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-p08/cards/f08.detail.webp",
+      "bytes": 149124,
+      "sha256": "f2e8b321d3b51fe4bcff7483f11de522a05d229582247b5049fed726b9d0ae7f",
+      "width": 615,
+      "height": 768,
+      "alpha": false,
+      "decodedRgbaBytes": 1889280,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-p08/cards/f08.thumbnail.webp",
+      "bytes": 7904,
+      "sha256": "2ca6d66e1d26c55ed13ca302e1aa3933e31301f54230c4ed246936041898acff",
+      "width": 128,
+      "height": 160,
+      "alpha": false,
+      "decodedRgbaBytes": 81920,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-p08/cards/f09.detail.webp",
+      "bytes": 163216,
+      "sha256": "5a162c59c8b0689e509ba67cb62e05069a9d9206c41015ea776d5782aa38fca6",
+      "width": 615,
+      "height": 768,
+      "alpha": false,
+      "decodedRgbaBytes": 1889280,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-p08/cards/f09.thumbnail.webp",
+      "bytes": 8586,
+      "sha256": "8fe7c102ec66af76f9d0a092d1a92eb3be8d3978fdf3aa1bddee4da5379a886d",
+      "width": 128,
+      "height": 160,
+      "alpha": false,
+      "decodedRgbaBytes": 81920,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-p08/cards/f10.detail.webp",
+      "bytes": 145566,
+      "sha256": "acc2c94d036a14c44af6e69c9944557ac6596ab283b5665676618bee128416e2",
+      "width": 615,
+      "height": 768,
+      "alpha": false,
+      "decodedRgbaBytes": 1889280,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-p08/cards/f10.thumbnail.webp",
+      "bytes": 8076,
+      "sha256": "6b1bee0f86439e7b848e50d6996ccbdbf054ba294d5abf0a53b58e5c3fdcbc91",
+      "width": 128,
+      "height": 160,
+      "alpha": false,
+      "decodedRgbaBytes": 81920,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-p08/cards/f11.detail.webp",
+      "bytes": 152164,
+      "sha256": "9e1c9e49b5833d203009ed0291a895e02fa31f880dee64a72f7919280d101776",
+      "width": 615,
+      "height": 768,
+      "alpha": false,
+      "decodedRgbaBytes": 1889280,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-p08/cards/f11.thumbnail.webp",
+      "bytes": 8184,
+      "sha256": "6588ba0ce1d94300094ba4c583f6e70b2471a4a4d9702bd2d0c38b674817cdcc",
+      "width": 128,
+      "height": 160,
+      "alpha": false,
+      "decodedRgbaBytes": 81920,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-p08/cards/f12.detail.webp",
+      "bytes": 146056,
+      "sha256": "3e9eb4b6c36193a209457ff8136af3c8f2090333061d1826fc57117bbdba0e9d",
+      "width": 615,
+      "height": 768,
+      "alpha": false,
+      "decodedRgbaBytes": 1889280,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-p08/cards/f12.thumbnail.webp",
+      "bytes": 7836,
+      "sha256": "39c5bbb6d41aa434bf65d7f3ee077f44e2d5b821362fc08082d22a92d712539f",
+      "width": 128,
+      "height": 160,
+      "alpha": false,
+      "decodedRgbaBytes": 81920,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-p08/cards/huimaqiang.detail.webp",
+      "bytes": 161066,
+      "sha256": "ad16fa92ff4890718756eaa19a9707f29e7185c4ce18628cdce27f1acb97e341",
+      "width": 615,
+      "height": 768,
+      "alpha": false,
+      "decodedRgbaBytes": 1889280,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-p08/cards/huimaqiang.thumbnail.webp",
+      "bytes": 8476,
+      "sha256": "4628953d8a3ac4800a6975ea8ccf81b9ccf75c7cb8e7e8ae806ffeda7339c8e2",
+      "width": 128,
+      "height": 160,
+      "alpha": false,
+      "decodedRgbaBytes": 81920,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-p08/cards/jiedongfeng.detail.webp",
+      "bytes": 61656,
+      "sha256": "508c5941ae052ad454e90a1716a14cca87d315ddb68a83cd11de6561c787f0ee",
+      "width": 615,
+      "height": 768,
+      "alpha": false,
+      "decodedRgbaBytes": 1889280,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-p08/cards/jiedongfeng.thumbnail.webp",
+      "bytes": 5566,
+      "sha256": "4324a56d639e4f59cd190662940195a94c51cea359b1dddc4383c17aac1a3fbf",
+      "width": 128,
+      "height": 160,
+      "alpha": false,
+      "decodedRgbaBytes": 81920,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-p08/cards/mantangcai.detail.webp",
+      "bytes": 87298,
+      "sha256": "a9daab0b3e27031886cf46e36f22d6fc75b3b8b64ae3a1f8fba7c439f5fd24ed",
+      "width": 615,
+      "height": 768,
+      "alpha": false,
+      "decodedRgbaBytes": 1889280,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-p08/cards/mantangcai.thumbnail.webp",
+      "bytes": 7348,
+      "sha256": "21f74c3eb5c9bf5d7c0f2c73c2e2dffbd4426b541bff5bcac4e628afc272fced",
+      "width": 128,
+      "height": 160,
+      "alpha": false,
+      "decodedRgbaBytes": 81920,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-p08/cards/pengci.detail.webp",
+      "bytes": 157184,
+      "sha256": "44a2e648c917ce159b48501a17f99cd7e202783eceb21fd4a11e384595c44206",
+      "width": 615,
+      "height": 768,
+      "alpha": false,
+      "decodedRgbaBytes": 1889280,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-p08/cards/pengci.thumbnail.webp",
+      "bytes": 8082,
+      "sha256": "97d6cf9c9207601127e936d234ac92a24b47a4311c929059d37f58ec341ed290",
+      "width": 128,
+      "height": 160,
+      "alpha": false,
+      "decodedRgbaBytes": 81920,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-p08/cards/tiesuanpan.detail.webp",
+      "bytes": 147102,
+      "sha256": "fc7bc2fa1131cdbe938443611e0c3946b33d6d7fda43b886137706167d27127f",
+      "width": 615,
+      "height": 768,
+      "alpha": false,
+      "decodedRgbaBytes": 1889280,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-p08/cards/tiesuanpan.thumbnail.webp",
+      "bytes": 7284,
+      "sha256": "fd0df1d8d503e0d2b5faf48d7e4a0d3893b2e55026bfbae2bf2be800e9dcd934",
+      "width": 128,
+      "height": 160,
+      "alpha": false,
+      "decodedRgbaBytes": 81920,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-p08/court/j.court.webp",
+      "bytes": 23858,
+      "sha256": "1159aa69ae9141e59a9e7120af31d7dfccdf981008428c85938b41f54e9c9264",
+      "width": 256,
+      "height": 384,
+      "alpha": false,
+      "decodedRgbaBytes": 393216,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-p08/court/k.court.webp",
+      "bytes": 24632,
+      "sha256": "be013d9df76e76dc67cd502f48c0177cfe62595d044ceebfa180e707c1105116",
+      "width": 256,
+      "height": 384,
+      "alpha": false,
+      "decodedRgbaBytes": 393216,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-p08/court/q.court.webp",
+      "bytes": 23292,
+      "sha256": "54d581a71ea19f50db92c31a404482e494643d4700d6164db50075ee205b9efe",
+      "width": 256,
+      "height": 384,
+      "alpha": false,
+      "decodedRgbaBytes": 393216,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-p08/manifest.json",
+      "bytes": 95776,
+      "sha256": "8a255b7d868ea3048b1615424ef7aaab8d42dcc2234ed89b242ac04ed26d9290",
+      "textNormalization": "LF",
+      "canonicalBytes": 95776,
+      "canonicalSha256": "8a255b7d868ea3048b1615424ef7aaab8d42dcc2234ed89b242ac04ed26d9290"
+    },
+    {
+      "path": "public/assets/handdrawn-tools/item-u01-v3-02e7d633fc47.thumbnail.webp",
+      "bytes": 5024,
+      "sha256": "02e7d633fc47c68ca222c831efd4955d42c24bd4a97ebe3f73e34a0cf3ef9d4a",
+      "width": 128,
+      "height": 160,
+      "alpha": false,
+      "decodedRgbaBytes": 81920,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-tools/item-u01-v3-2bef742fa272.detail.webp",
+      "bytes": 93622,
+      "sha256": "2bef742fa2727c9e721ea452a8f5ac6eab75f54f2df4a69e8c06283f586c8e1b",
+      "width": 615,
+      "height": 768,
+      "alpha": false,
+      "decodedRgbaBytes": 1889280,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-tools/item-u02-v3-3dbb0aa82edb.thumbnail.webp",
+      "bytes": 7408,
+      "sha256": "3dbb0aa82edb926202b188c9d88e3e9594566ed77ef0a8c800901076a99c74ed",
+      "width": 128,
+      "height": 160,
+      "alpha": false,
+      "decodedRgbaBytes": 81920,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-tools/item-u02-v3-a54831498ac4.detail.webp",
+      "bytes": 98048,
+      "sha256": "a54831498ac40bcdb836f47a40d1621ec0e239746654f5bb1efda596be6a9ad2",
+      "width": 615,
+      "height": 768,
+      "alpha": false,
+      "decodedRgbaBytes": 1889280,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-tools/item-u03-v3-253165cc0498.detail.webp",
+      "bytes": 98816,
+      "sha256": "253165cc0498326548092a2fc8f11a881d68f27e7efc8cbfa3991dd21216ed4d",
+      "width": 615,
+      "height": 768,
+      "alpha": false,
+      "decodedRgbaBytes": 1889280,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-tools/item-u03-v3-ab777c68ca42.thumbnail.webp",
+      "bytes": 7384,
+      "sha256": "ab777c68ca42dfa72d6556786fdaed3a62bb85d65938c590e51dd50845df78d6",
+      "width": 128,
+      "height": 160,
+      "alpha": false,
+      "decodedRgbaBytes": 81920,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-tools/item-u04-v3-80e9e8a430f8.thumbnail.webp",
+      "bytes": 8002,
+      "sha256": "80e9e8a430f8396957d614a137e0f27cfa52fc387eec09716c71b12c28f13a29",
+      "width": 128,
+      "height": 160,
+      "alpha": false,
+      "decodedRgbaBytes": 81920,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-tools/item-u04-v3-978eb5601ce1.detail.webp",
+      "bytes": 99074,
+      "sha256": "978eb5601ce1f35df9e300d34fa48e0855fe5d9bf59a9b456cdf4183a3991451",
+      "width": 615,
+      "height": 768,
+      "alpha": false,
+      "decodedRgbaBytes": 1889280,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-tools/item-u05-v3-3fb1e9d5122f.thumbnail.webp",
+      "bytes": 7586,
+      "sha256": "3fb1e9d5122f10745de963b877a625ed03592a37f9d3663daa4565f1e04f7347",
+      "width": 128,
+      "height": 160,
+      "alpha": false,
+      "decodedRgbaBytes": 81920,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-tools/item-u05-v3-e6da98d1a81b.detail.webp",
+      "bytes": 99918,
+      "sha256": "e6da98d1a81b7d56314b26ea494cab81f65bb83f16c3caabac91e862b4d58416",
+      "width": 615,
+      "height": 768,
+      "alpha": false,
+      "decodedRgbaBytes": 1889280,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-tools/item-u06-v3-30267af4ea14.thumbnail.webp",
+      "bytes": 6520,
+      "sha256": "30267af4ea141c9d9675350bf512e75a5655716d40a5d7b34878d6205f5625cf",
+      "width": 128,
+      "height": 160,
+      "alpha": false,
+      "decodedRgbaBytes": 81920,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-tools/item-u06-v3-4563b76a75f3.detail.webp",
+      "bytes": 98748,
+      "sha256": "4563b76a75f3a383490f20f13e189be318d55c7f1ea9bb521dfca75eccbd12d5",
+      "width": 615,
+      "height": 768,
+      "alpha": false,
+      "decodedRgbaBytes": 1889280,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-tools/item-u07-v3-17c75874938b.detail.webp",
+      "bytes": 98892,
+      "sha256": "17c75874938bc3ac5f3808686f8d527186413c724c6ea0bcce5f3f874593b097",
+      "width": 615,
+      "height": 768,
+      "alpha": false,
+      "decodedRgbaBytes": 1889280,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-tools/item-u07-v3-bd10be2c93d3.thumbnail.webp",
+      "bytes": 7752,
+      "sha256": "bd10be2c93d3ba11c271a5cf66d63f9b1373a8549ad898a6e721124277524d11",
+      "width": 128,
+      "height": 160,
+      "alpha": false,
+      "decodedRgbaBytes": 81920,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-tools/item-u08-v3-47b25e81bf54.thumbnail.webp",
+      "bytes": 7078,
+      "sha256": "47b25e81bf54637d5b7dbcb8154c1a4a581de4881c2a5f648777ae9aa9412721",
+      "width": 128,
+      "height": 160,
+      "alpha": false,
+      "decodedRgbaBytes": 81920,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-tools/item-u08-v3-878095f52857.detail.webp",
+      "bytes": 98342,
+      "sha256": "878095f52857400c28a295d30798248de562bdddc072d4c6b762c5d328aa2e1b",
+      "width": 615,
+      "height": 768,
+      "alpha": false,
+      "decodedRgbaBytes": 1889280,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-tools/item-u09-v3-9f6a51ae278b.thumbnail.webp",
+      "bytes": 7992,
+      "sha256": "9f6a51ae278b02093f06eb3bb7653f172c2884062cb554346021a03d0fcba3f8",
+      "width": 128,
+      "height": 160,
+      "alpha": false,
+      "decodedRgbaBytes": 81920,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-tools/item-u09-v3-a7fd63649c09.detail.webp",
+      "bytes": 98942,
+      "sha256": "a7fd63649c091ac660bfaf545ea672d45d597ae46854e99b93010ce84223fd1d",
+      "width": 615,
+      "height": 768,
+      "alpha": false,
+      "decodedRgbaBytes": 1889280,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-tools/item-u10-v3-a9273cc3af5b.thumbnail.webp",
+      "bytes": 8038,
+      "sha256": "a9273cc3af5b250cb8a892f66264a0b2f478d6b2f73c4e2f0d9b46c45530fbb3",
+      "width": 128,
+      "height": 160,
+      "alpha": false,
+      "decodedRgbaBytes": 81920,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-tools/item-u10-v3-aac50832c369.detail.webp",
+      "bytes": 99510,
+      "sha256": "aac50832c3691cc54939480e798a0dc4f8ec1a60e1a7fe54accbed8d7e033633",
+      "width": 615,
+      "height": 768,
+      "alpha": false,
+      "decodedRgbaBytes": 1889280,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-tools/item-u11-v3-ca53a6c517ca.thumbnail.webp",
+      "bytes": 7556,
+      "sha256": "ca53a6c517ca0b1796fbef0a406760f10b37852c26ded61045b813487088dfef",
+      "width": 128,
+      "height": 160,
+      "alpha": false,
+      "decodedRgbaBytes": 81920,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-tools/item-u11-v3-f5a424da2dd3.detail.webp",
+      "bytes": 99650,
+      "sha256": "f5a424da2dd3d47babcfd4fb4978b3c851f8d6f78c96061b29271c5e314f3884",
+      "width": 615,
+      "height": 768,
+      "alpha": false,
+      "decodedRgbaBytes": 1889280,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-tools/item-u12-v3-cbdeac1af311.thumbnail.webp",
+      "bytes": 7492,
+      "sha256": "cbdeac1af3114b1a2d5cc46563642865b0e7bf32331b07100da998ed3689c27b",
+      "width": 128,
+      "height": 160,
+      "alpha": false,
+      "decodedRgbaBytes": 81920,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-tools/item-u12-v3-cf30939a3bb0.detail.webp",
+      "bytes": 97310,
+      "sha256": "cf30939a3bb0b3ead0bc86cc1ee4bf19fa39e1420c4160258ab9797f5a8d9ff3",
+      "width": 615,
+      "height": 768,
+      "alpha": false,
+      "decodedRgbaBytes": 1889280,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-tools/manifest.json",
+      "bytes": 44670,
+      "sha256": "d68bfe351fcdde2ab30828e47a3d9ffd64460896cac978dce782fae8e882bd82",
+      "textNormalization": "LF",
+      "canonicalBytes": 43231,
+      "canonicalSha256": "9f8fb62476689687f0f43950383e90e43fe59ff0cb9978f3213fd5ca79148cb7"
+    },
+    {
+      "path": "public/assets/handdrawn-tools/tool-p01-v3-2ddde8f3501b.detail.webp",
+      "bytes": 98324,
+      "sha256": "2ddde8f3501b9a217df767cfc3eaa108eac7de8690faa6954156e9cfcf0c5bd7",
+      "width": 615,
+      "height": 768,
+      "alpha": false,
+      "decodedRgbaBytes": 1889280,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-tools/tool-p01-v3-8a6ca716b565.thumbnail.webp",
+      "bytes": 6164,
+      "sha256": "8a6ca716b565a891eb421f3da07018123e4050996dd33fb325077c7467f20cd0",
+      "width": 128,
+      "height": 160,
+      "alpha": false,
+      "decodedRgbaBytes": 81920,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-tools/tool-p02-v3-0f339dec8059.detail.webp",
+      "bytes": 98756,
+      "sha256": "0f339dec805910ba13abc90d0b449b232dda139607a9f36bde93b3621380474d",
+      "width": 615,
+      "height": 768,
+      "alpha": false,
+      "decodedRgbaBytes": 1889280,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-tools/tool-p02-v3-5c667d546ea6.thumbnail.webp",
+      "bytes": 7860,
+      "sha256": "5c667d546ea6c81f9fcd7eed756b019bc8112485cb41097836fb27d41d49ac31",
+      "width": 128,
+      "height": 160,
+      "alpha": false,
+      "decodedRgbaBytes": 81920,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-tools/tool-p03-v3-bbb724ac39c2.detail.webp",
+      "bytes": 98688,
+      "sha256": "bbb724ac39c28e8eef0fcf4a92ba30f2ff9ec61da86e1efe80110f8d9624a7ba",
+      "width": 615,
+      "height": 768,
+      "alpha": false,
+      "decodedRgbaBytes": 1889280,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-tools/tool-p03-v3-e24c2c019e46.thumbnail.webp",
+      "bytes": 7474,
+      "sha256": "e24c2c019e4621ba57151503ac887e82a561708198921b51aaff4c6e270df59a",
+      "width": 128,
+      "height": 160,
+      "alpha": false,
+      "decodedRgbaBytes": 81920,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-tools/tool-p04-v3-058b1edaa5cc.detail.webp",
+      "bytes": 99146,
+      "sha256": "058b1edaa5cce4593287da148b928b7ce5f12ff818ce8234860ed94505c6277e",
+      "width": 615,
+      "height": 768,
+      "alpha": false,
+      "decodedRgbaBytes": 1889280,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-tools/tool-p04-v3-aa2b6446f342.thumbnail.webp",
+      "bytes": 7438,
+      "sha256": "aa2b6446f342c1cb7fa1af0392b62d015f9204fa2b47eb8d950998f1ea2413b8",
+      "width": 128,
+      "height": 160,
+      "alpha": false,
+      "decodedRgbaBytes": 81920,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-tools/tool-p05-v3-22b0dae47218.thumbnail.webp",
+      "bytes": 7390,
+      "sha256": "22b0dae4721800e03bf4604ca2e20add7535c25c10fb6972d1b31ad880c8b250",
+      "width": 128,
+      "height": 160,
+      "alpha": false,
+      "decodedRgbaBytes": 81920,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-tools/tool-p05-v3-7432e36d9566.detail.webp",
+      "bytes": 99030,
+      "sha256": "7432e36d95668cb8bafc3a8c068b8d38e7107eea5aff0df689d8759c297d3a43",
+      "width": 615,
+      "height": 768,
+      "alpha": false,
+      "decodedRgbaBytes": 1889280,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-tools/tool-p06-v3-c2add4a6f13a.detail.webp",
+      "bytes": 98954,
+      "sha256": "c2add4a6f13ad63eb0d31759646dd7f8b482d274840a1774ca129416e8096740",
+      "width": 615,
+      "height": 768,
+      "alpha": false,
+      "decodedRgbaBytes": 1889280,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-tools/tool-p06-v3-d59b01128739.thumbnail.webp",
+      "bytes": 7186,
+      "sha256": "d59b011287393dae6514345c061564ad65afbf22a04e09cf939e8921c60dfee8",
+      "width": 128,
+      "height": 160,
+      "alpha": false,
+      "decodedRgbaBytes": 81920,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-tools/tool-p07-v3-29bb43e555e9.thumbnail.webp",
+      "bytes": 7798,
+      "sha256": "29bb43e555e9695eeae03d67c34f5142521217044c7454cf79caa13aad0802ba",
+      "width": 128,
+      "height": 160,
+      "alpha": false,
+      "decodedRgbaBytes": 81920,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-tools/tool-p07-v3-8897d86a54e5.detail.webp",
+      "bytes": 99396,
+      "sha256": "8897d86a54e5ed61effb930a66ea7e6017a43cd5db6256c5a09a992ed8e0f4ed",
+      "width": 615,
+      "height": 768,
+      "alpha": false,
+      "decodedRgbaBytes": 1889280,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-tools/tool-p08-v3-58d5786ebc1c.detail.webp",
+      "bytes": 98180,
+      "sha256": "58d5786ebc1cd4ed1193be1ce67c4b6ba0f8ba9e245079c8c5be7ef95f8e8217",
+      "width": 615,
+      "height": 768,
+      "alpha": false,
+      "decodedRgbaBytes": 1889280,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-tools/tool-p08-v3-81945e76a5e1.thumbnail.webp",
+      "bytes": 8122,
+      "sha256": "81945e76a5e19f931184f62074bef87736a22fde5f707cd701f46f7d9dca0f71",
+      "width": 128,
+      "height": 160,
+      "alpha": false,
+      "decodedRgbaBytes": 81920,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-tools/tool-p09-v3-49dea26ca4c6.thumbnail.webp",
+      "bytes": 7780,
+      "sha256": "49dea26ca4c6f9a86b1417f3d3a0c354f2ccfeba6176a1f8d6b818489d65d96a",
+      "width": 128,
+      "height": 160,
+      "alpha": false,
+      "decodedRgbaBytes": 81920,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-tools/tool-p09-v3-6af0e2b582a9.detail.webp",
+      "bytes": 99954,
+      "sha256": "6af0e2b582a9f81161cf45d6619cefbfdd415bf7a784b6bf22c1cf6a75d9cda8",
+      "width": 615,
+      "height": 768,
+      "alpha": false,
+      "decodedRgbaBytes": 1889280,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-tools/tool-p10-v3-30c9a3f17375.detail.webp",
+      "bytes": 99714,
+      "sha256": "30c9a3f1737523081cef027397a0df2501c264122fe762a14b272a2cc65aa444",
+      "width": 615,
+      "height": 768,
+      "alpha": false,
+      "decodedRgbaBytes": 1889280,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-tools/tool-p10-v3-59c909b212b4.thumbnail.webp",
+      "bytes": 9618,
+      "sha256": "59c909b212b449856e07cde1d58d8c8dc7df5fa22d34b55c1615ad89e8ff67b2",
+      "width": 128,
+      "height": 160,
+      "alpha": false,
+      "decodedRgbaBytes": 81920,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-tools/tool-p11-v3-00f7a915ebac.thumbnail.webp",
+      "bytes": 9912,
+      "sha256": "00f7a915ebaca1cf7ae5b50b6057f634c45a991648a911e45ce6d6f9cb7ef4a1",
+      "width": 128,
+      "height": 160,
+      "alpha": false,
+      "decodedRgbaBytes": 81920,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-tools/tool-p11-v3-921d895c8902.detail.webp",
+      "bytes": 99266,
+      "sha256": "921d895c8902e6c8db024732e7192fc4c909f4663a7090891a3735968b67a7c2",
+      "width": 615,
+      "height": 768,
+      "alpha": false,
+      "decodedRgbaBytes": 1889280,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-tools/tool-p12-v3-27587bb86d11.thumbnail.webp",
+      "bytes": 9512,
+      "sha256": "27587bb86d118f25e93a0600a3ae7f2df7f3633c51530986fbf3a39c936c2370",
+      "width": 128,
+      "height": 160,
+      "alpha": false,
+      "decodedRgbaBytes": 81920,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-tools/tool-p12-v3-c4d7715f6778.detail.webp",
+      "bytes": 98502,
+      "sha256": "c4d7715f6778132934727d0c3f05d689c73e489d02eacf73bfca02c37754e1c5",
+      "width": 615,
+      "height": 768,
+      "alpha": false,
+      "decodedRgbaBytes": 1889280,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-tools/tool-s01-v3-94d15db7dbb6.thumbnail.webp",
+      "bytes": 6732,
+      "sha256": "94d15db7dbb62fe95c74324946d0e58c38eed6ee75c9de37091a7bb02c2f5d29",
+      "width": 128,
+      "height": 160,
+      "alpha": false,
+      "decodedRgbaBytes": 81920,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-tools/tool-s01-v3-dd5cf7ab2a5c.detail.webp",
+      "bytes": 99190,
+      "sha256": "dd5cf7ab2a5c517ce7b1d5e037f39a78d16c4ea7cc53c0ea71e87f3095b1d4e7",
+      "width": 615,
+      "height": 768,
+      "alpha": false,
+      "decodedRgbaBytes": 1889280,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-tools/tool-s02-v3-0214636b87c0.detail.webp",
+      "bytes": 98252,
+      "sha256": "0214636b87c06d5f2bbf172039f7dcefb48ba6dcc26f790e36a3c6f07cac06e9",
+      "width": 615,
+      "height": 768,
+      "alpha": false,
+      "decodedRgbaBytes": 1889280,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-tools/tool-s02-v3-f7d9892bc02d.thumbnail.webp",
+      "bytes": 5956,
+      "sha256": "f7d9892bc02dbae768ad3194ec550c64847b26e2b480e524c3715a65834a3bd0",
+      "width": 128,
+      "height": 160,
+      "alpha": false,
+      "decodedRgbaBytes": 81920,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-tools/tool-s03-v3-1ee52bb19a6d.thumbnail.webp",
+      "bytes": 8018,
+      "sha256": "1ee52bb19a6d8dc7e8b7bc171ace8f6d29db40f61d1c95e10706b11808cf335f",
+      "width": 128,
+      "height": 160,
+      "alpha": false,
+      "decodedRgbaBytes": 81920,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-tools/tool-s03-v3-d95525ed9450.detail.webp",
+      "bytes": 99028,
+      "sha256": "d95525ed9450060eca6f1df5039581ceca407b1eab4749225ba48048e0a7fb5f",
+      "width": 615,
+      "height": 768,
+      "alpha": false,
+      "decodedRgbaBytes": 1889280,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-tools/tool-s04-v3-58438e349cd6.thumbnail.webp",
+      "bytes": 5758,
+      "sha256": "58438e349cd62de2fe6c1d9c25d7342ef9eff644b1e752efea24bc8748924d60",
+      "width": 128,
+      "height": 160,
+      "alpha": false,
+      "decodedRgbaBytes": 81920,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-tools/tool-s04-v3-f930cda8fd79.detail.webp",
+      "bytes": 87654,
+      "sha256": "f930cda8fd79030a27614d147cd6c1710f09caebdb194849ea2f92a3d7cebb7e",
+      "width": 615,
+      "height": 768,
+      "alpha": false,
+      "decodedRgbaBytes": 1889280,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-tools/tool-s05-v3-6f69f0fa29f8.thumbnail.webp",
+      "bytes": 7756,
+      "sha256": "6f69f0fa29f8d4f2578b6cd2cfdb2cee9fed1894ef3421a6ab59455eb03f3644",
+      "width": 128,
+      "height": 160,
+      "alpha": false,
+      "decodedRgbaBytes": 81920,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-tools/tool-s05-v3-e104d3901c70.detail.webp",
+      "bytes": 97778,
+      "sha256": "e104d3901c70067dcf9b97a5035e5ad866db83bb41e7e0d154d20d0f3c906f51",
+      "width": 615,
+      "height": 768,
+      "alpha": false,
+      "decodedRgbaBytes": 1889280,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-tools/tool-s06-v3-60dd3974d7b1.detail.webp",
+      "bytes": 98902,
+      "sha256": "60dd3974d7b15bb3c93290c725cfa58b9f17d7c8f2edbdcf5031b1630a383fdb",
+      "width": 615,
+      "height": 768,
+      "alpha": false,
+      "decodedRgbaBytes": 1889280,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-tools/tool-s06-v3-6da72903afda.thumbnail.webp",
+      "bytes": 7202,
+      "sha256": "6da72903afdac8234bfad66761fd2b623612f9b1955a5b95ff1d37def5501b05",
+      "width": 128,
+      "height": 160,
+      "alpha": false,
+      "decodedRgbaBytes": 81920,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-tools/tool-s07-v3-2ca5e8414be6.thumbnail.webp",
+      "bytes": 7278,
+      "sha256": "2ca5e8414be6e4ba4c1005eee85b41c2e8b68089844488b4055f4178a6ffa169",
+      "width": 128,
+      "height": 160,
+      "alpha": false,
+      "decodedRgbaBytes": 81920,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-tools/tool-s07-v3-a2db70f56b77.detail.webp",
+      "bytes": 99790,
+      "sha256": "a2db70f56b7792eaa223b833ddffb1899450ee6052fd3956229a0971d755d46b",
+      "width": 615,
+      "height": 768,
+      "alpha": false,
+      "decodedRgbaBytes": 1889280,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-tools/tool-s08-v3-471e812e0f2f.thumbnail.webp",
+      "bytes": 7274,
+      "sha256": "471e812e0f2fb46ea183f45b87b159d9aa2026ac44bf826b9129f150e5b1fe57",
+      "width": 128,
+      "height": 160,
+      "alpha": false,
+      "decodedRgbaBytes": 81920,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-tools/tool-s08-v3-a5e210bc9fc5.detail.webp",
+      "bytes": 99386,
+      "sha256": "a5e210bc9fc591ddde7f407e8ce5cd5e6143fce838f289aa7f7d8f25ad4a1ba7",
+      "width": 615,
+      "height": 768,
+      "alpha": false,
+      "decodedRgbaBytes": 1889280,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-tools/tool-t01-v3-4b4ec7da2fb5.thumbnail.webp",
+      "bytes": 7866,
+      "sha256": "4b4ec7da2fb5651bd0148399b25c94986422ec01dde4f981a98378ee132535a0",
+      "width": 128,
+      "height": 160,
+      "alpha": false,
+      "decodedRgbaBytes": 81920,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-tools/tool-t01-v3-df44ff73798e.detail.webp",
+      "bytes": 98590,
+      "sha256": "df44ff73798e50433850a3cb73b4e74934364aa4f1624f3eacd0088488380a5f",
+      "width": 615,
+      "height": 768,
+      "alpha": false,
+      "decodedRgbaBytes": 1889280,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-tools/tool-t02-v3-197e1cf7bf50.thumbnail.webp",
+      "bytes": 7116,
+      "sha256": "197e1cf7bf503441de8f780297fa99ffe4b82097d797acc44997c90284f6f513",
+      "width": 128,
+      "height": 160,
+      "alpha": false,
+      "decodedRgbaBytes": 81920,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-tools/tool-t02-v3-a74260cc55a8.detail.webp",
+      "bytes": 98710,
+      "sha256": "a74260cc55a8501c9a2d38c40ec879efc5ee6288b32600815322eb79f6785a8b",
+      "width": 615,
+      "height": 768,
+      "alpha": false,
+      "decodedRgbaBytes": 1889280,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-tools/tool-t03-v3-137952a9613f.thumbnail.webp",
+      "bytes": 5968,
+      "sha256": "137952a9613fe1013eab3d0ddf8d651c6d2601d66bee7f6ec1bbfe8daa140659",
+      "width": 128,
+      "height": 160,
+      "alpha": false,
+      "decodedRgbaBytes": 81920,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-tools/tool-t03-v3-4f4cc5b3f22e.detail.webp",
+      "bytes": 88754,
+      "sha256": "4f4cc5b3f22ecc58fff216e2d6e165e782918e36a151cc2b5f07bee54e51982f",
+      "width": 615,
+      "height": 768,
+      "alpha": false,
+      "decodedRgbaBytes": 1889280,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-tools/tool-t04-v3-7b516212b3cb.thumbnail.webp",
+      "bytes": 6954,
+      "sha256": "7b516212b3cb7d396cbfd95bcefdb5b2ce3adeb3c4c424432efc8325aa8f8f21",
+      "width": 128,
+      "height": 160,
+      "alpha": false,
+      "decodedRgbaBytes": 81920,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-tools/tool-t04-v3-c8af5f8bc772.detail.webp",
+      "bytes": 97868,
+      "sha256": "c8af5f8bc772a9f9f7e1f441be70c20192113a2074df203b3151d3f1a141aec1",
+      "width": 615,
+      "height": 768,
+      "alpha": false,
+      "decodedRgbaBytes": 1889280,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-tools/tool-t05-v3-7335b44fdd25.thumbnail.webp",
+      "bytes": 7554,
+      "sha256": "7335b44fdd25253121942912ddc7c1f41f2f33fb83d197920d95b4846b04e103",
+      "width": 128,
+      "height": 160,
+      "alpha": false,
+      "decodedRgbaBytes": 81920,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-tools/tool-t05-v3-f98b1800487b.detail.webp",
+      "bytes": 97280,
+      "sha256": "f98b1800487b94fcff3f2473e7d2a45a204fcf690540204a5b7ca4f8d7936fef",
+      "width": 615,
+      "height": 768,
+      "alpha": false,
+      "decodedRgbaBytes": 1889280,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-tools/tool-t06-v3-90f7b462bc1e.thumbnail.webp",
+      "bytes": 7654,
+      "sha256": "90f7b462bc1e45d979fac0536b205a19ceda1df91da31eb91efac417e1e1fe62",
+      "width": 128,
+      "height": 160,
+      "alpha": false,
+      "decodedRgbaBytes": 81920,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-tools/tool-t06-v3-bd362ff0bf03.detail.webp",
+      "bytes": 99676,
+      "sha256": "bd362ff0bf03894a422d06005582d52bb07f171f4ff5a8cef9a4302fd4d28323",
+      "width": 615,
+      "height": 768,
+      "alpha": false,
+      "decodedRgbaBytes": 1889280,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-tools/tool-t07-v3-2e57e646fb94.thumbnail.webp",
+      "bytes": 6134,
+      "sha256": "2e57e646fb943e80d7856269d562b0037cd33e94386c4e175674caff442fbe38",
+      "width": 128,
+      "height": 160,
+      "alpha": false,
+      "decodedRgbaBytes": 81920,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-tools/tool-t07-v3-951b2e9fd4c5.detail.webp",
+      "bytes": 90294,
+      "sha256": "951b2e9fd4c52e393684ff3fd1208cc8fecf9d602a0f9e5999c04ef4a72bfcf5",
+      "width": 615,
+      "height": 768,
+      "alpha": false,
+      "decodedRgbaBytes": 1889280,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-tools/tool-t08-v3-547bc946c900.thumbnail.webp",
+      "bytes": 6710,
+      "sha256": "547bc946c9003af07bb1984025304da51d46090f7646ec67c6b9873f7513ef4d",
+      "width": 128,
+      "height": 160,
+      "alpha": false,
+      "decodedRgbaBytes": 81920,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-tools/tool-t08-v3-5c7cb22f4e9c.detail.webp",
+      "bytes": 98156,
+      "sha256": "5c7cb22f4e9c64d31287f9369e5d057ed99d922d59925ee335071282fb96a153",
+      "width": 615,
+      "height": 768,
+      "alpha": false,
+      "decodedRgbaBytes": 1889280,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-tools/tool-t09-v3-984ec965c7aa.detail.webp",
+      "bytes": 99106,
+      "sha256": "984ec965c7aa49225770460228a098e775589d1a842c8b090550cdeccf45b65e",
+      "width": 615,
+      "height": 768,
+      "alpha": false,
+      "decodedRgbaBytes": 1889280,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-tools/tool-t09-v3-9eaf34398ad6.thumbnail.webp",
+      "bytes": 6622,
+      "sha256": "9eaf34398ad6d4b749d20fbcb39674beefc28ef40301f24ce51d0e5781eed1b0",
+      "width": 128,
+      "height": 160,
+      "alpha": false,
+      "decodedRgbaBytes": 81920,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-tools/tool-t10-v3-26013708d55f.thumbnail.webp",
+      "bytes": 6462,
+      "sha256": "26013708d55f4e724ae07b68d8ccaf090db85ac35d6a9b8793d226eded850ab5",
+      "width": 128,
+      "height": 160,
+      "alpha": false,
+      "decodedRgbaBytes": 81920,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-tools/tool-t10-v3-704dd059200c.detail.webp",
+      "bytes": 99392,
+      "sha256": "704dd059200cf359033765e0bd748f89d498aab98cc82bb4696d097054b43058",
+      "width": 615,
+      "height": 768,
+      "alpha": false,
+      "decodedRgbaBytes": 1889280,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-tools/tool-t11-v3-a0815300d39f.thumbnail.webp",
+      "bytes": 6998,
+      "sha256": "a0815300d39fd986296cdb1e04875012390e29b8a5bc3a78d3d19ebd2d98169d",
+      "width": 128,
+      "height": 160,
+      "alpha": false,
+      "decodedRgbaBytes": 81920,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-tools/tool-t11-v3-b136e57c8172.detail.webp",
+      "bytes": 95948,
+      "sha256": "b136e57c8172b6e861b9faba3e49a339129727c859fb3618a6a70459a3d427ea",
+      "width": 615,
+      "height": 768,
+      "alpha": false,
+      "decodedRgbaBytes": 1889280,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-tools/tool-t12-v3-94b6c581cf11.thumbnail.webp",
+      "bytes": 6596,
+      "sha256": "94b6c581cf1132f2053379b79243e88e446c54907b32ef35b123e232b97daf03",
+      "width": 128,
+      "height": 160,
+      "alpha": false,
+      "decodedRgbaBytes": 81920,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-tools/tool-t12-v3-cadb0a1bdf74.detail.webp",
+      "bytes": 98524,
+      "sha256": "cadb0a1bdf74d971a0ae144b27792900491e545c039ba93386f1d450a268afbb",
+      "width": 615,
+      "height": 768,
+      "alpha": false,
+      "decodedRgbaBytes": 1889280,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-tools/tool-t13-v3-335e75873b17.detail.webp",
+      "bytes": 95104,
+      "sha256": "335e75873b177bf499608db7faad93a2119be162e13a11eb7ae50a3a2c81558f",
+      "width": 615,
+      "height": 768,
+      "alpha": false,
+      "decodedRgbaBytes": 1889280,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-tools/tool-t13-v3-34f352b3c46f.thumbnail.webp",
+      "bytes": 6750,
+      "sha256": "34f352b3c46fff691c754ae0d36f81f2a4a53f600c0bb3fcf4d0a582640ba7c2",
+      "width": 128,
+      "height": 160,
+      "alpha": false,
+      "decodedRgbaBytes": 81920,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-tools/tool-t14-v3-35e112496aae.detail.webp",
+      "bytes": 98632,
+      "sha256": "35e112496aae42cdeac3d7c3658f0610d424d510fe80d2a4ad28f9910fef1883",
+      "width": 615,
+      "height": 768,
+      "alpha": false,
+      "decodedRgbaBytes": 1889280,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-tools/tool-t14-v3-fffaa28aef43.thumbnail.webp",
+      "bytes": 6592,
+      "sha256": "fffaa28aef43493130f7b972f88af9c6ca560fd29a1966ead5d6dca20285d88a",
+      "width": 128,
+      "height": 160,
+      "alpha": false,
+      "decodedRgbaBytes": 81920,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-tools/tool-t15-v3-39e6d5ec3a8a.thumbnail.webp",
+      "bytes": 7212,
+      "sha256": "39e6d5ec3a8af8262fe69a237a9bc1e6916baae5aa9abedb2d4ac7b3dbed9512",
+      "width": 128,
+      "height": 160,
+      "alpha": false,
+      "decodedRgbaBytes": 81920,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-tools/tool-t15-v3-b58caead693a.detail.webp",
+      "bytes": 99374,
+      "sha256": "b58caead693a90289b13bdf24ba406317e3e330bc372b739b65fc7dc98dc64df",
+      "width": 615,
+      "height": 768,
+      "alpha": false,
+      "decodedRgbaBytes": 1889280,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-tools/tool-t16-v3-4fcbf51a1425.thumbnail.webp",
+      "bytes": 7474,
+      "sha256": "4fcbf51a1425a6a5b5402cbf4cc2217a0639c2432be7d52f4cec9b9eb9e673cd",
+      "width": 128,
+      "height": 160,
+      "alpha": false,
+      "decodedRgbaBytes": 81920,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-tools/tool-t16-v3-643e891f16b8.detail.webp",
+      "bytes": 98842,
+      "sha256": "643e891f16b88b61e7b93458fbd82fde8eaf3749a79ead73e54cfca8320574f4",
+      "width": 615,
+      "height": 768,
+      "alpha": false,
+      "decodedRgbaBytes": 1889280,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-tools/tool-t17-v3-9c5025b5a3c2.detail.webp",
+      "bytes": 97338,
+      "sha256": "9c5025b5a3c2e46a3d87198187beab7325c84ce0990ba368a195683096d2dfcb",
+      "width": 615,
+      "height": 768,
+      "alpha": false,
+      "decodedRgbaBytes": 1889280,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-tools/tool-t17-v3-e4681d4e6a3c.thumbnail.webp",
+      "bytes": 7670,
+      "sha256": "e4681d4e6a3cfde80bbe9cbf6e6ac7812b8028dd4097f0ad8c0d398c15610d21",
+      "width": 128,
+      "height": 160,
+      "alpha": false,
+      "decodedRgbaBytes": 81920,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-tools/tool-t18-v3-8dff11f1be21.thumbnail.webp",
+      "bytes": 7524,
+      "sha256": "8dff11f1be21cd72682cdcd386f65cf858720f758c95e3649445641c38a98d8c",
+      "width": 128,
+      "height": 160,
+      "alpha": false,
+      "decodedRgbaBytes": 81920,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-tools/tool-t18-v3-d37694d1aaa0.detail.webp",
+      "bytes": 99374,
+      "sha256": "d37694d1aaa0085a38b79c84de8d6bf155a64f90679fc8209e3b107f22f6f454",
+      "width": 615,
+      "height": 768,
+      "alpha": false,
+      "decodedRgbaBytes": 1889280,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-tools/tool-t19-v3-1dc40115f632.thumbnail.webp",
+      "bytes": 7078,
+      "sha256": "1dc40115f632d01767928a62634576e105da87e1352ea9b975b8a78b4ea16f53",
+      "width": 128,
+      "height": 160,
+      "alpha": false,
+      "decodedRgbaBytes": 81920,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/handdrawn-tools/tool-t19-v3-cb431a1d3715.detail.webp",
+      "bytes": 97016,
+      "sha256": "cb431a1d37159bd567942afc33f9288e2346c881415aaa3dda8b1c7db6c39760",
+      "width": 615,
+      "height": 768,
+      "alpha": false,
+      "decodedRgbaBytes": 1889280,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/licenses/Inkwave-MIT.txt",
+      "bytes": 1090,
+      "sha256": "1e124dded9825c557c134e32b2f1a86f6452c4e63843af8928dc256f9f6d1e74",
+      "textNormalization": "LF",
+      "canonicalBytes": 1069,
+      "canonicalSha256": "aa94b137dc8ec64c7f78f66c71070a78c528a100e26fcfbd30eec06737413f41"
     },
     {
       "path": "public/assets/models/asset-pack-v1.json",
-      "bytes": 34619,
-      "sha256": "59bf97eb6c1c722b8f1278f3aec78d2b808170c2b66e2760f8d759f442758c95",
+      "bytes": 24640,
+      "sha256": "9f18e08bf92cfd63d78ddeb0a2f527047347a9b0c0abdaa2642eb22ea2da5ffe",
       "textNormalization": "LF",
-      "canonicalBytes": 34619,
-      "canonicalSha256": "59bf97eb6c1c722b8f1278f3aec78d2b808170c2b66e2760f8d759f442758c95"
+      "canonicalBytes": 24640,
+      "canonicalSha256": "9f18e08bf92cfd63d78ddeb0a2f527047347a9b0c0abdaa2642eb22ea2da5ffe"
     },
     {
       "path": "public/assets/models/card-animation-templates.glb",
@@ -2073,393 +4828,360 @@
       "khronosWarnings": 0
     },
     {
-      "path": "public/assets/p00/card-back.svg",
-      "bytes": 4120,
-      "sha256": "b84113356c65b3e528c6b52b99efa50747d0296a997f7b687fe31dda5da9e5b7"
-    },
-    {
-      "path": "public/assets/p00/frame-common.svg",
-      "bytes": 1135,
-      "sha256": "a7108b5487a04115a34d23333554ee17cc29e9680c718ddefcfb7cf313a8d80b"
-    },
-    {
-      "path": "public/assets/p00/frame-rare.svg",
-      "bytes": 2008,
-      "sha256": "d17345c30a2a0622f9ae4463c3af5c4d2f6e48ceaf2d1b26d66d7efa73994548"
-    },
-    {
-      "path": "public/assets/p00/frame-uncommon.svg",
-      "bytes": 1596,
-      "sha256": "5b9160a14f8bb626f774188c2fd25a78f09459333e4b6940718a5552fc58b178"
-    },
-    {
       "path": "public/assets/p00/manifest.json",
-      "bytes": 9895,
-      "sha256": "ddded39f9081cc74fad842bb16b19d36e5cc8ed34686428171579c91beae427b",
+      "bytes": 3192,
+      "sha256": "0aeb131d4ada2d6ab65dfbe6e778f00e2b5f737013430188344bf598aa570a5a",
       "textNormalization": "LF",
-      "canonicalBytes": 9895,
-      "canonicalSha256": "ddded39f9081cc74fad842bb16b19d36e5cc8ed34686428171579c91beae427b"
+      "canonicalBytes": 3192,
+      "canonicalSha256": "0aeb131d4ada2d6ab65dfbe6e778f00e2b5f737013430188344bf598aa570a5a"
     },
     {
       "path": "public/assets/p00/mark-joker.svg",
-      "bytes": 1197,
-      "sha256": "db1f865952c770e9d14a5fc157b0fe945844bb57ada0096b36f56d9d0ce6d1b0"
+      "bytes": 1210,
+      "sha256": "f08de28e4b83c5a65cd05ea8c766affccffcbbe5fdfacee90dd38b7fa566d4ab",
+      "textNormalization": "LF",
+      "canonicalBytes": 1197,
+      "canonicalSha256": "db1f865952c770e9d14a5fc157b0fe945844bb57ada0096b36f56d9d0ce6d1b0"
     },
     {
       "path": "public/assets/p00/mark-plus.svg",
-      "bytes": 1034,
-      "sha256": "bffd262120c60902b380682866947a54978e82b7785d9b1328685adbc3c02977"
+      "bytes": 1046,
+      "sha256": "90f58342cea1366f83253beb80c7a1b87ee5b2e0c609c4cb839a66b2dd7a23cc",
+      "textNormalization": "LF",
+      "canonicalBytes": 1034,
+      "canonicalSha256": "bffd262120c60902b380682866947a54978e82b7785d9b1328685adbc3c02977"
     },
     {
       "path": "public/assets/p00/mark-times.svg",
-      "bytes": 1071,
-      "sha256": "9db59de4d96c8517969a220da5df77318f3b45efad07bc3d2c9767ace6684be1"
+      "bytes": 1083,
+      "sha256": "e27363206ea0a2197d81a378ff86df729ac2a7a5d0611131cab4036eed009f27",
+      "textNormalization": "LF",
+      "canonicalBytes": 1071,
+      "canonicalSha256": "9db59de4d96c8517969a220da5df77318f3b45efad07bc3d2c9767ace6684be1"
     },
     {
       "path": "public/assets/p00/paper.svg",
-      "bytes": 985,
-      "sha256": "3b0aea1ddf1b8fbc8c4f25b5a4b0a265eda1d7f9c766da0f0f0c9a4f0534d949"
-    },
-    {
-      "path": "public/assets/p03/manifest.json",
-      "bytes": 652,
-      "sha256": "a24c20e4c8c359fcac79dee847e1ca1649631bd11238f7917d27214318c73cbc",
+      "bytes": 1003,
+      "sha256": "35e19948b856285f2cae6fea3e9ea68095635fa4c7a4167608a296e95013d077",
       "textNormalization": "LF",
-      "canonicalBytes": 652,
-      "canonicalSha256": "a24c20e4c8c359fcac79dee847e1ca1649631bd11238f7917d27214318c73cbc"
+      "canonicalBytes": 985,
+      "canonicalSha256": "3b0aea1ddf1b8fbc8c4f25b5a4b0a265eda1d7f9c766da0f0f0c9a4f0534d949"
     },
     {
-      "path": "public/assets/p03/stage-wide.webp",
-      "bytes": 131486,
-      "sha256": "06689cb284552d2ee38bc8da7bfa208a4c0568f628267ece853d09dab2401d6c",
-      "width": 1536,
-      "height": 864,
-      "alpha": false,
-      "decodedRgbaBytes": 5308416,
+      "path": "public/assets/tangsong-eyes/amo.eyes-14056db36a63.webp",
+      "bytes": 112072,
+      "sha256": "14056db36a63d8ba0e7827ef8b68a0c4b1c95f6f83c3692cd13ed6438533bd6e",
+      "width": 768,
+      "height": 288,
+      "alpha": true,
+      "decodedRgbaBytes": 884736,
       "format": "webp"
     },
     {
-      "path": "public/assets/renders/p0/background-far.webp",
-      "bytes": 875866,
-      "sha256": "fdc2d1e25ade0546a2e083e3109c0454e0dcdb37199d3fe41a92785ae898a789",
-      "width": 1920,
-      "height": 1080,
-      "alpha": false,
-      "decodedRgbaBytes": 8294400,
+      "path": "public/assets/tangsong-eyes/azao.eyes-f6d4675e5bc3.webp",
+      "bytes": 111350,
+      "sha256": "f6d4675e5bc3787d3e9f2f0c54be6fe4c93c46d14bdf2dca27c7ae165d850a7a",
+      "width": 768,
+      "height": 288,
+      "alpha": true,
+      "decodedRgbaBytes": 884736,
       "format": "webp"
     },
     {
-      "path": "public/assets/renders/p0/background-mid.webp",
-      "bytes": 417880,
-      "sha256": "20ded73cf4b953b0050eaae184a18930b29be3b036e5b1ffbd15d59933962313",
-      "width": 1920,
-      "height": 1080,
+      "path": "public/assets/tangsong-eyes/erxiang.eyes-3a23269ca3b5.webp",
+      "bytes": 98714,
+      "sha256": "3a23269ca3b5581e5a1c55b7b9e02f46565435dfe4a6dd196434a7c6a325b96b",
+      "width": 768,
+      "height": 288,
       "alpha": true,
-      "decodedRgbaBytes": 8294400,
+      "decodedRgbaBytes": 884736,
       "format": "webp"
     },
     {
-      "path": "public/assets/renders/p0/background-near.webp",
-      "bytes": 300360,
-      "sha256": "e2acb940327ab045546a20ed6984199e2164ad11a59de2e3c64b6b949841f440",
-      "width": 1920,
-      "height": 1080,
+      "path": "public/assets/tangsong-eyes/laohuan.eyes-375b308030e5.webp",
+      "bytes": 130860,
+      "sha256": "375b308030e5e789f9c8d1d80807c739bb3fc820c73fefb09c330083349a26a1",
+      "width": 768,
+      "height": 288,
       "alpha": true,
-      "decodedRgbaBytes": 8294400,
+      "decodedRgbaBytes": 884736,
       "format": "webp"
     },
     {
-      "path": "public/assets/sprites/p0/hit-cinnabar.json",
-      "bytes": 5819,
-      "sha256": "0a1b09cd07b96ad0a7dd163ddf47750bfd0ca6d1a1f0719fa51be138a986417e",
+      "path": "public/assets/tangsong-eyes/manifest.json",
+      "bytes": 4462,
+      "sha256": "cfcd478d98477f05694a9bb4f58adee2e2e75cb86086fe9d4f858ff3113a2cf0",
       "textNormalization": "LF",
-      "canonicalBytes": 5819,
-      "canonicalSha256": "0a1b09cd07b96ad0a7dd163ddf47750bfd0ca6d1a1f0719fa51be138a986417e",
-      "frameCount": 16,
-      "frameRate": 30,
-      "alphaConvention": "straight"
+      "canonicalBytes": 4317,
+      "canonicalSha256": "13adf93fb29a49b3b02233770df7b6ef2e3008f8b3a84641b7077a29cee116f3"
     },
     {
-      "path": "public/assets/sprites/p0/hit-cinnabar.png",
-      "bytes": 179868,
-      "sha256": "ba82aa3215bcfd2bdb24cba1c2ed83ba875bad76851d177cf22420dfc08aad03",
-      "width": 1024,
-      "height": 1024,
+      "path": "public/assets/tangsong-eyes/touye.eyes-12194e100f85.webp",
+      "bytes": 128916,
+      "sha256": "12194e100f85c14071ec7edd4f816738e80c3c8e170a0866e216328848477ec5",
+      "width": 768,
+      "height": 288,
       "alpha": true,
-      "decodedRgbaBytes": 4194304,
-      "format": "png"
+      "decodedRgbaBytes": 884736,
+      "format": "webp"
     },
     {
-      "path": "public/assets/sprites/p0/play-ruyi.json",
-      "bytes": 5768,
-      "sha256": "1414da44a587719e2fa61d58ec81a8cbf5b9100038fbde47e530c2095ee2b488",
+      "path": "public/assets/tangsong-eyes/xiemu.eyes-8b93601ca4cc.webp",
+      "bytes": 103840,
+      "sha256": "8b93601ca4cc0d4523da0be7f650f3dad987a76d562584f03e12148ecbe4009b",
+      "width": 768,
+      "height": 288,
+      "alpha": true,
+      "decodedRgbaBytes": 884736,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/tangsong-portraits/amo.avatar.webp",
+      "bytes": 21724,
+      "sha256": "c1818763446d466ccf20477f92fb12b2c0271275a5390d439a5daf6c6c7a0965",
+      "width": 256,
+      "height": 256,
+      "alpha": false,
+      "decodedRgbaBytes": 262144,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/tangsong-portraits/amo.focus.webp",
+      "bytes": 56012,
+      "sha256": "f158579f7e055d16a4f2d9c2f36609fcbb5d8980469e31e063517f1e6fea02ad",
+      "width": 480,
+      "height": 480,
+      "alpha": false,
+      "decodedRgbaBytes": 921600,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/tangsong-portraits/amo.portrait.webp",
+      "bytes": 128344,
+      "sha256": "d5089a32b739cef2cca1ff680fb2ac1776f7a7b44426133e01b814085edeec39",
+      "width": 615,
+      "height": 768,
+      "alpha": false,
+      "decodedRgbaBytes": 1889280,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/tangsong-portraits/amo.selection.webp",
+      "bytes": 34044,
+      "sha256": "e9764fb0dd3f4edbfda3ac286a24e7184608f3370b4859d82c7e3a5323a49b4b",
+      "width": 256,
+      "height": 320,
+      "alpha": false,
+      "decodedRgbaBytes": 327680,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/tangsong-portraits/azao.avatar.webp",
+      "bytes": 30096,
+      "sha256": "eb4b03a67dfa761c966c96afafdb1257b7eadfcfb959b404f71ca5110097df8a",
+      "width": 256,
+      "height": 256,
+      "alpha": false,
+      "decodedRgbaBytes": 262144,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/tangsong-portraits/azao.focus.webp",
+      "bytes": 124226,
+      "sha256": "b0e725856d220cda46f26444d1e139a5d09335561bb8305c1f38a12539793179",
+      "width": 600,
+      "height": 600,
+      "alpha": false,
+      "decodedRgbaBytes": 1440000,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/tangsong-portraits/azao.portrait.webp",
+      "bytes": 122298,
+      "sha256": "de536392b240c6a8930a7dee1e2054d402e5c411d4a9eddfda6a6d4ea7d689aa",
+      "width": 615,
+      "height": 768,
+      "alpha": false,
+      "decodedRgbaBytes": 1889280,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/tangsong-portraits/azao.selection.webp",
+      "bytes": 41128,
+      "sha256": "4300d2f4d40aa0ec836b7e7f633166834bf39b172f912a96cfc7e9138942546c",
+      "width": 256,
+      "height": 320,
+      "alpha": false,
+      "decodedRgbaBytes": 327680,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/tangsong-portraits/erxiang.avatar.webp",
+      "bytes": 22696,
+      "sha256": "d5e5321b9682409b6c995e70219b7ff56c97b4d40ae016adf9d03e8d137cef09",
+      "width": 256,
+      "height": 256,
+      "alpha": false,
+      "decodedRgbaBytes": 262144,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/tangsong-portraits/erxiang.focus.webp",
+      "bytes": 74766,
+      "sha256": "365cd3f401ae9e32e48aada2fc334594c89823248640eba380723994bf0d90fe",
+      "width": 550,
+      "height": 550,
+      "alpha": false,
+      "decodedRgbaBytes": 1210000,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/tangsong-portraits/erxiang.portrait.webp",
+      "bytes": 127390,
+      "sha256": "24c882050341a90fb17e04beaf01b25d12e168d08a30c26aed372f5c3a4e0baf",
+      "width": 615,
+      "height": 768,
+      "alpha": false,
+      "decodedRgbaBytes": 1889280,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/tangsong-portraits/erxiang.selection.webp",
+      "bytes": 34930,
+      "sha256": "e5a17a4f6dc2679d672f2ffe59dfe0b140baaab5dca9f75612f3b27500dec530",
+      "width": 256,
+      "height": 320,
+      "alpha": false,
+      "decodedRgbaBytes": 327680,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/tangsong-portraits/laohuan.avatar.webp",
+      "bytes": 24494,
+      "sha256": "c91cd5c3b02acea21579e78a45303223b5d426bb93cec8f35ccc570821443194",
+      "width": 256,
+      "height": 256,
+      "alpha": false,
+      "decodedRgbaBytes": 262144,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/tangsong-portraits/laohuan.focus.webp",
+      "bytes": 77444,
+      "sha256": "1b9de385582bc7fb06dc6ac03faa57894a0e62fd89e67ac851aff1a385b75916",
+      "width": 520,
+      "height": 520,
+      "alpha": false,
+      "decodedRgbaBytes": 1081600,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/tangsong-portraits/laohuan.portrait.webp",
+      "bytes": 126284,
+      "sha256": "bccc8ac8ca79a478696ae0d05fa159b31d1ab5f0f29be5d7b18f244858d14023",
+      "width": 615,
+      "height": 768,
+      "alpha": false,
+      "decodedRgbaBytes": 1889280,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/tangsong-portraits/laohuan.selection.webp",
+      "bytes": 36786,
+      "sha256": "0d55f8c1c3d8637490acfbee1d166892774e9c55a8084312889b9cf2c453baa4",
+      "width": 256,
+      "height": 320,
+      "alpha": false,
+      "decodedRgbaBytes": 327680,
+      "format": "webp"
+    },
+    {
+      "path": "public/assets/tangsong-portraits/manifest.json",
+      "bytes": 18017,
+      "sha256": "57cb861de20b5c0eb3d05088843146ece90e4642984ea1dc5651f1bcc8f61c1f",
       "textNormalization": "LF",
-      "canonicalBytes": 5768,
-      "canonicalSha256": "1414da44a587719e2fa61d58ec81a8cbf5b9100038fbde47e530c2095ee2b488",
-      "frameCount": 16,
-      "frameRate": 30,
-      "alphaConvention": "straight"
+      "canonicalBytes": 17444,
+      "canonicalSha256": "94cf5c79f39c109273250589e7a83444c6adaf4443790fe1908db8ad5ab6dd86"
     },
     {
-      "path": "public/assets/sprites/p0/play-ruyi.png",
-      "bytes": 81080,
-      "sha256": "2f55fd1dc93a9d7065ce35be8d4c18f50ad0632bf09a8a911736e83b6c625e12",
-      "width": 1024,
-      "height": 1024,
-      "alpha": true,
-      "decodedRgbaBytes": 4194304,
-      "format": "png"
-    },
-    {
-      "path": "public/assets/sprites/p0/score-gold.json",
-      "bytes": 5785,
-      "sha256": "20f625bb23e5b90da1736370525c623be11055b6cec3878f26b052d23c8348bd",
-      "textNormalization": "LF",
-      "canonicalBytes": 5785,
-      "canonicalSha256": "20f625bb23e5b90da1736370525c623be11055b6cec3878f26b052d23c8348bd",
-      "frameCount": 16,
-      "frameRate": 30,
-      "alphaConvention": "straight"
-    },
-    {
-      "path": "public/assets/sprites/p0/score-gold.png",
-      "bytes": 154312,
-      "sha256": "e6a74d76c326303c01cee34bf003258e37502543421d1d5b26a153bbd03016fd",
-      "width": 1024,
-      "height": 1024,
-      "alpha": true,
-      "decodedRgbaBytes": 4194304,
-      "format": "png"
-    },
-    {
-      "path": "public/assets/textures/p0/card-back.png",
-      "bytes": 18370,
-      "sha256": "0e7f58f9f1f2722ad9153f3e861aae00e1e6991f46557b6f93da0599c3ed9f0c",
-      "width": 1024,
-      "height": 1024,
+      "path": "public/assets/tangsong-portraits/touye.avatar.webp",
+      "bytes": 31924,
+      "sha256": "f31446b1f8fea9d154a1a0a4f8eac59bc7e74f0b7324d9d533b48231da68c98d",
+      "width": 256,
+      "height": 256,
       "alpha": false,
-      "decodedRgbaBytes": 4194304,
-      "format": "png"
+      "decodedRgbaBytes": 262144,
+      "format": "webp"
     },
     {
-      "path": "public/assets/textures/p0/card-front.png",
-      "bytes": 21298,
-      "sha256": "29d77c665bd9d710d8e8e2366ae2c8d1b81724af484f018e0ac036aa345fdbaf",
-      "width": 1024,
-      "height": 1024,
+      "path": "public/assets/tangsong-portraits/touye.focus.webp",
+      "bytes": 130274,
+      "sha256": "6c43ef038457b0eae50bb643bb922da5061e6398854a61d056202f2c01a4fc88",
+      "width": 600,
+      "height": 600,
       "alpha": false,
-      "decodedRgbaBytes": 4194304,
-      "format": "png"
+      "decodedRgbaBytes": 1440000,
+      "format": "webp"
     },
     {
-      "path": "public/assets/textures/p0/gilded-basecolor.png",
-      "bytes": 6465,
-      "sha256": "33cf799f31010e45878816aa68b87ca9d311e160c1c3f66aa4e105d25a77f323",
-      "width": 512,
-      "height": 512,
+      "path": "public/assets/tangsong-portraits/touye.portrait.webp",
+      "bytes": 126522,
+      "sha256": "649efee6848af55d2b45797cbe18ce5423980abd802535e6d3c550f343650a58",
+      "width": 615,
+      "height": 768,
       "alpha": false,
-      "decodedRgbaBytes": 1048576,
-      "format": "png"
+      "decodedRgbaBytes": 1889280,
+      "format": "webp"
     },
     {
-      "path": "public/assets/textures/p0/gilded-emissive.png",
-      "bytes": 10131,
-      "sha256": "a8d3224fa1ae2a323b66c6718280dada45ba743838243c27744a2efbd504bffe",
-      "width": 512,
-      "height": 512,
+      "path": "public/assets/tangsong-portraits/touye.selection.webp",
+      "bytes": 44178,
+      "sha256": "12cee26cb362ff145a45030554cb2eb93bbcc2302cd012adffbbfe4f7e618698",
+      "width": 256,
+      "height": 320,
       "alpha": false,
-      "decodedRgbaBytes": 1048576,
-      "format": "png"
+      "decodedRgbaBytes": 327680,
+      "format": "webp"
     },
     {
-      "path": "public/assets/textures/p0/gilded-mask.png",
-      "bytes": 2115,
-      "sha256": "53de5f13488511c972ab7631898988a4047d534fc8dc3e7ab5902be2ce302879",
-      "width": 512,
-      "height": 512,
+      "path": "public/assets/tangsong-portraits/xiemu.avatar.webp",
+      "bytes": 30228,
+      "sha256": "9ebf565a4bc2a21e6aec01089e1648d14da1391028b9a964b0cbda920da266e4",
+      "width": 256,
+      "height": 256,
       "alpha": false,
-      "decodedRgbaBytes": 1048576,
-      "format": "png"
+      "decodedRgbaBytes": 262144,
+      "format": "webp"
     },
     {
-      "path": "public/assets/textures/p0/gilded-metallic.png",
-      "bytes": 919,
-      "sha256": "bcd735b2fd94028e2f7b9109c5d6a2180c7128ecaf1a8ccf2e0b08788fda9493",
-      "width": 512,
-      "height": 512,
+      "path": "public/assets/tangsong-portraits/xiemu.focus.webp",
+      "bytes": 129384,
+      "sha256": "aba733953e205df362728bfce9d30920d41fd689a406e5e22a171133268f4e2d",
+      "width": 600,
+      "height": 600,
       "alpha": false,
-      "decodedRgbaBytes": 1048576,
-      "format": "png"
+      "decodedRgbaBytes": 1440000,
+      "format": "webp"
     },
     {
-      "path": "public/assets/textures/p0/gilded-normal.png",
-      "bytes": 5526,
-      "sha256": "234132957eaa4b68b6592df17839b691dc56bc3655f5d665281d6ed86de358fe",
-      "width": 512,
-      "height": 512,
+      "path": "public/assets/tangsong-portraits/xiemu.portrait.webp",
+      "bytes": 126484,
+      "sha256": "e8361e106d837c574e83d1e920ba9c0716d02b51ab4f73a05e3bb2ed01f2e54f",
+      "width": 615,
+      "height": 768,
       "alpha": false,
-      "decodedRgbaBytes": 1048576,
-      "format": "png"
+      "decodedRgbaBytes": 1889280,
+      "format": "webp"
     },
     {
-      "path": "public/assets/textures/p0/gilded-roughness.png",
-      "bytes": 2776,
-      "sha256": "19ba0b6565d06946c18436b77e42ef15bd7bb334e6feafb5b79cf5755c412123",
-      "width": 512,
-      "height": 512,
+      "path": "public/assets/tangsong-portraits/xiemu.selection.webp",
+      "bytes": 39634,
+      "sha256": "64215448933c586e459551f62f621f1119543ed7a4ce5093954c53d3e848ff08",
+      "width": 256,
+      "height": 320,
       "alpha": false,
-      "decodedRgbaBytes": 1048576,
-      "format": "png"
-    },
-    {
-      "path": "public/assets/textures/p0/glass-basecolor.png",
-      "bytes": 6354,
-      "sha256": "fff1222ea60fb81d157b5918f221070b78afafe376e9a93adf19687c3f59d079",
-      "width": 512,
-      "height": 512,
-      "alpha": false,
-      "decodedRgbaBytes": 1048576,
-      "format": "png"
-    },
-    {
-      "path": "public/assets/textures/p0/glass-emissive.png",
-      "bytes": 9721,
-      "sha256": "7647320d84591b109644912f6e1d03760d6e97f1a24683d95b2f3e96e20ce0c7",
-      "width": 512,
-      "height": 512,
-      "alpha": false,
-      "decodedRgbaBytes": 1048576,
-      "format": "png"
-    },
-    {
-      "path": "public/assets/textures/p0/glass-mask.png",
-      "bytes": 2115,
-      "sha256": "53de5f13488511c972ab7631898988a4047d534fc8dc3e7ab5902be2ce302879",
-      "width": 512,
-      "height": 512,
-      "alpha": false,
-      "decodedRgbaBytes": 1048576,
-      "format": "png"
-    },
-    {
-      "path": "public/assets/textures/p0/glass-metallic.png",
-      "bytes": 334,
-      "sha256": "f5df0628643ba99754cee39c30291c6fca5a9fe242838fbbb57dc7926aec76de",
-      "width": 512,
-      "height": 512,
-      "alpha": false,
-      "decodedRgbaBytes": 1048576,
-      "format": "png"
-    },
-    {
-      "path": "public/assets/textures/p0/glass-normal.png",
-      "bytes": 5526,
-      "sha256": "234132957eaa4b68b6592df17839b691dc56bc3655f5d665281d6ed86de358fe",
-      "width": 512,
-      "height": 512,
-      "alpha": false,
-      "decodedRgbaBytes": 1048576,
-      "format": "png"
-    },
-    {
-      "path": "public/assets/textures/p0/glass-roughness.png",
-      "bytes": 1930,
-      "sha256": "98e521d56e5f01e08aac5441fa73cbe73c0ffd87067350109dc68a09a9a1f0c2",
-      "width": 512,
-      "height": 512,
-      "alpha": false,
-      "decodedRgbaBytes": 1048576,
-      "format": "png"
-    },
-    {
-      "path": "public/assets/textures/p0/holographic-basecolor.png",
-      "bytes": 6190,
-      "sha256": "ea5eca2d5e0d9bba059a58d1cb6215f4a8773f4f17a513622f2e9ae78ea6c155",
-      "width": 512,
-      "height": 512,
-      "alpha": false,
-      "decodedRgbaBytes": 1048576,
-      "format": "png"
-    },
-    {
-      "path": "public/assets/textures/p0/holographic-emissive.png",
-      "bytes": 11633,
-      "sha256": "c6038d452a892c460b2c446fb06a5857ba14cc9fd94911cd49630879181de380",
-      "width": 512,
-      "height": 512,
-      "alpha": false,
-      "decodedRgbaBytes": 1048576,
-      "format": "png"
-    },
-    {
-      "path": "public/assets/textures/p0/holographic-mask.png",
-      "bytes": 2115,
-      "sha256": "53de5f13488511c972ab7631898988a4047d534fc8dc3e7ab5902be2ce302879",
-      "width": 512,
-      "height": 512,
-      "alpha": false,
-      "decodedRgbaBytes": 1048576,
-      "format": "png"
-    },
-    {
-      "path": "public/assets/textures/p0/holographic-metallic.png",
-      "bytes": 920,
-      "sha256": "554d0c8561105f555fb13a5970a5c3b806187bdf6b7df4e67184aba2a67db29e",
-      "width": 512,
-      "height": 512,
-      "alpha": false,
-      "decodedRgbaBytes": 1048576,
-      "format": "png"
-    },
-    {
-      "path": "public/assets/textures/p0/holographic-normal.png",
-      "bytes": 5526,
-      "sha256": "234132957eaa4b68b6592df17839b691dc56bc3655f5d665281d6ed86de358fe",
-      "width": 512,
-      "height": 512,
-      "alpha": false,
-      "decodedRgbaBytes": 1048576,
-      "format": "png"
-    },
-    {
-      "path": "public/assets/textures/p0/holographic-roughness.png",
-      "bytes": 1986,
-      "sha256": "d01a105c543e1bec8321eb422f1177d6bf540a46f6e78e9c3a1694109181466e",
-      "width": 512,
-      "height": 512,
-      "alpha": false,
-      "decodedRgbaBytes": 1048576,
-      "format": "png"
-    },
-    {
-      "path": "public/assets/textures/p0/joker-artwork.png",
-      "bytes": 7088,
-      "sha256": "4117bc427c3baabb31e4a55a16af90491c2c97fcb56d016a2f52e098efe4eccf",
-      "width": 512,
-      "height": 512,
-      "alpha": true,
-      "decodedRgbaBytes": 1048576,
-      "format": "png"
-    },
-    {
-      "path": "public/assets/textures/p0/paper-normal.png",
-      "bytes": 16418,
-      "sha256": "326fe0c6fa2c44aea33015b5ebbbc715060146df99f89b03e468bd93a133c3fe",
-      "width": 512,
-      "height": 512,
-      "alpha": false,
-      "decodedRgbaBytes": 1048576,
-      "format": "png"
-    },
-    {
-      "path": "public/assets/textures/p0/paper-roughness.png",
-      "bytes": 6482,
-      "sha256": "e1b56ea7e352886e2478b9dd118de0ceeb57ca12a046154066d43fefefffecc5",
-      "width": 512,
-      "height": 512,
-      "alpha": false,
-      "decodedRgbaBytes": 1048576,
-      "format": "png"
+      "decodedRgbaBytes": 327680,
+      "format": "webp"
     }
   ]
 }

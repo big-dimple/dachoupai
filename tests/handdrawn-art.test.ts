@@ -5,10 +5,11 @@ import manifest from '../public/assets/handdrawn-p08/manifest.json';
 import {HANDDRAWN_ART, HANDDRAWN_SOURCE, handdrawnPath, COURT_ART, courtArtKey} from '../src/game/HanddrawnArt';
 import {JOKER_ART, jokerArtAlignedLayers, jokerArtKey, reviewedCardPath} from '../src/game/jokerArt';
 import {CHARACTERS} from '../src/game/characters';
+import {characterArt} from '../src/game/CharacterArt';
 
-it('pins all 165 runtime bytes and purpose paths independently of provenance status', () => {
+it('pins all 147 current runtime files and purpose paths independently of provenance status', () => {
   expect(HANDDRAWN_SOURCE).toBe('c618cee93089bb2e556f16567709b0ea23abbcb9');
-  expect(HANDDRAWN_ART).toHaveLength(81);
+  expect(HANDDRAWN_ART).toHaveLength(75);
   let count = 0, total = 0;
   for (const asset of manifest.assets) for (const output of asset.outputs) {
     const bytes = readFileSync(new URL('../public/assets/handdrawn-p08/' + output.path, import.meta.url));
@@ -17,13 +18,16 @@ it('pins all 165 runtime bytes and purpose paths independently of provenance sta
     expect(handdrawnPath(asset.id, output.purpose)).toBe('assets/handdrawn-p08/' + output.path);
     count++; total += bytes.length;
   }
-  expect(count).toBe(165); expect(total).toBe(10196942); expect(manifest.runtimeBytes).toBe(total);
+  expect(count).toBe(147); expect(total).toBe(9701766); expect(manifest.runtimeBytes).toBe(total);
 });
 
 it('preserves six role mappings and independent rank-specific JQK faces', () => {
   for (const character of CHARACTERS) {
     expect(character.portrait).toContain('/assets/tangsong-portraits/');
-    for (const purpose of ['avatar', 'selection', 'portrait']) expect(handdrawnPath(character.id, purpose)).toBeTruthy();
+    for (const purpose of ['avatar', 'selection', 'portrait'] as const) {
+      expect(characterArt(character.id,purpose)?.url).toContain('/assets/tangsong-portraits/');
+      expect(handdrawnPath(character.id,purpose)).toBeUndefined();
+    }
   }
   expect(COURT_ART.map(a => a.rank)).toEqual([11, 12, 13]);
   for (const rank of [11, 12, 13]) expect(courtArtKey(rank)).toBe('p08-court-' + ['j', 'q', 'k'][rank - 11]);
