@@ -2,7 +2,7 @@
 
 ## 当前后继合版：连续计分、统一触觉与手机商店
 
-当前后继产品 `f5fc3a38ab13fdd69816a51cc12b03804b9b69db` 已再正常合入[af9字段保持](../continuous-score-table-2026-10-17/status-retention/README.md)与[c197苏轼/辛弃疾审查](../amo-laohuan-dynamic-2026-10-17/README.md)。af9 9路径/2指纹精确，源30检查与33事件1202帧按原范围复用；c197 24路径精确，四格行为PASS但苏轼手机×2裁切/辛弃疾眼神遮字视觉FAIL，待计分owner窄修。文成/花蕊及小字仍待；下文1629检查仅历史快照，最新合版需齐窄修后必要复检，未推main。详情卡图艺术墙独立后续不阻塞。
+当前后继产品 `242f8cc8fada68e160f301fdc16b9344b062bb09` 已正常合入[2a两英雄窄修/实际小字接线](../amo-laohuan-public-fix-2026-10-17/README.md)，包含[efb模块](../hero-skill-status-density-2026-10-17/README.md)、保留[af9字段](../continuous-score-table-2026-10-17/status-retention/README.md)与a6商店/aac触觉。47应用路径/4最终指纹精确；源72与22按原范围不相加，四格在接线前、最终辛弃疾390×740 DPR3在真正磁盘场景接线后，不能冒称四格全按末次版本重录。[c197原失败](../amo-laohuan-dynamic-2026-10-17/README.md)保留。热度峰值略超计分框下缘待精确判定，文成/花蕊回执待；下文1629检查仍仅历史快照，最新合版收口后必要复检，未推main。不签全布局或六英雄全通过，详情艺术墙独立后续不阻塞。
 
 
 
