@@ -1,4 +1,4 @@
-import {heroSkillName,heroSkillTitle,type TouyeSkillPhase} from './HeroSkillPresentation';
+import {heroSkillButton,heroSkillName,heroSkillTitle,type TouyeSkillPhase} from './HeroSkillPresentation';
 import {showTouyeDiscardChoice} from './TouyeDiscardChoice';
 import {mountHeroDecisionEyes} from './HeroDecisionEyes';
 import {carriedToolAtEntry,carriedToolAtHand,type ToolCarryIntent} from './ToolCarryIntent';
@@ -1133,7 +1133,9 @@ export class GameScene extends Phaser.Scene {
   }
   private updateHeroControl():void {
     if(!this.roleFrame?.active)return;
-    const heroCue=heroAbilityCue(this.run,this.selectionPreview(),[...this.selectedIds],this.assistProfile&&assistCandidates(this.assistInput(),r2AssistAvailability(this.run).available).length>0,{erxiangTargetId:this.erxiangTargetId,xiemuBurn:this.xiemuBurn,azaoRelease:this.azaoRelease,assistCount:this.assistIds.length,touyePhase:this.touyeSkillPhase});
+    const savedAssistUsed=!!this.presentation&&this.assistProfile&&this.run.stage?.assistUsed===true;
+    const heroCue=savedAssistUsed?{...heroSkillButton(this.characterId,{available:false,used:true},'本场次数已用'),available:false,opportunity:false}:heroAbilityCue(this.run,this.selectionPreview(),[...this.selectedIds],this.assistProfile&&assistCandidates(this.assistInput(),r2AssistAvailability(this.run).available).length>0,{erxiangTargetId:this.erxiangTargetId,xiemuBurn:this.xiemuBurn,azaoRelease:this.azaoRelease,assistCount:this.assistIds.length,touyePhase:this.touyeSkillPhase});
+    if(savedAssistUsed)this.roleText.setText(heroCue!.label+' · '+heroCue!.status);
     const heroChosen=!!(this.erxiangTargetId||this.azaoRelease||this.xiemuBurn||this.assistIds.length);
     if(this.assistProfile&&heroChosen&&!this.presentation&&!this.playing)this.roleText.setText(heroText('阿默·已选助攻×')+(this.assistIds.length===3?4:2));
     if(heroCue&&!this.presentation&&!this.playing&&!heroChosen)this.roleText.setText(heroCue.label);
@@ -1545,7 +1547,9 @@ export class GameScene extends Phaser.Scene {
   }
 
   private animateRole(note:string,duration:number,context:EffectContext,beat?:ScoreBeat,impact?:Promise<void>):Promise<void> {
-    const frame=this.roleFrame;if(this.view.layout.mode!=='portrait'||!usesErxiangHandoff(this.run)&&!usesAzaoCharge(this.run)&&!usesXiemuBurn(this.run)&&!usesLaohuanRefill(this.run))this.roleText.setText(note);this.fitHudReadouts();frame.setFillStyle(T.brass,.16).setStrokeStyle(4,T.brass);
+    // The score caption already owns this event's source/effect. Keep the HUD's
+    // saved skill state intact while that same event animates the avatar.
+    const frame=this.roleFrame;if(!this.presentation&&(this.view.layout.mode!=='portrait'||!usesErxiangHandoff(this.run)&&!usesAzaoCharge(this.run)&&!usesXiemuBurn(this.run)&&!usesLaohuanRefill(this.run)))this.roleText.setText(note);this.fitHudReadouts();frame.setFillStyle(T.brass,.16).setStrokeStyle(4,T.brass);
     return this.focusSource(this.roleAvatar,frame,T.brass,true,duration,context,beat,impact).then(()=>{if(frame.active)frame.setFillStyle(T.brass,0).setStrokeStyle(1,T.brass,.6);});
   }
 
