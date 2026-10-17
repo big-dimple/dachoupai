@@ -1,0 +1,151 @@
+{
+  "version": "after",
+  "scope": "Same existing controlled saved events, actual AudioEngine/OfflineAudioContext and production mix. Prescribed impact/rebound callbacks at75/95/50ms, not GameScene/Tween integration or human audition.",
+  "heard": false,
+  "traceUnchanged": true,
+  "settings": {
+    "music": 0,
+    "sfx": 0.8
+  },
+  "duration": 1.9,
+  "peak": 0.317987859249115,
+  "clipped": 0,
+  "rows": [
+    {
+      "label": "ordinary",
+      "eventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/1",
+      "source": "rank-7",
+      "operation": "add-heat",
+      "kind": "add",
+      "phase": "impact",
+      "at": 0.20266666666666666,
+      "layers": [
+        {
+          "sample": "impactWood_light_000",
+          "start": 0.20266666666666666,
+          "end": 0.24766666666666665,
+          "rate": 0.8999999761581421,
+          "peak": 0.15625305098631817
+        },
+        {
+          "sample": "impactBell_heavy_003",
+          "start": 0.20982575757575758,
+          "end": 0.24482575757575759,
+          "rate": 0.7649999856948853,
+          "peak": 0.0433691188384837
+        }
+      ]
+    },
+    {
+      "label": "ordinary",
+      "eventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/1",
+      "source": "rank-7",
+      "operation": "add-heat",
+      "kind": "add",
+      "phase": "rebound",
+      "at": 0.2773333333333333,
+      "layers": [
+        {
+          "sample": "impactWood_light_000",
+          "start": 0.2773333333333333,
+          "end": 0.3273333333333333,
+          "rate": 0.7919999957084656,
+          "peak": 0.1237003320308352
+        }
+      ]
+    },
+    {
+      "label": "multiply",
+      "eventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/5",
+      "source": "f09",
+      "operation": "multiply-multiplier",
+      "kind": "multiply",
+      "phase": "impact",
+      "at": 0.752,
+      "layers": [
+        {
+          "sample": "impactGlass_heavy_002",
+          "start": 0.752,
+          "end": 0.791,
+          "rate": 0.9496029019355774,
+          "peak": 0.1789546203959855
+        },
+        {
+          "sample": "impactSoft_heavy_000",
+          "start": 0.752,
+          "end": 0.797,
+          "rate": 0.7879683375358582,
+          "peak": 0.14793857699582372
+        }
+      ]
+    },
+    {
+      "label": "multiply",
+      "eventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/5",
+      "source": "f09",
+      "operation": "multiply-multiplier",
+      "kind": "multiply",
+      "phase": "rebound",
+      "at": 0.848,
+      "layers": [
+        {
+          "sample": "impactWood_light_001",
+          "start": 0.848,
+          "end": 0.898,
+          "rate": 0.8889899253845215,
+          "peak": 0.1360573305223441
+        }
+      ]
+    },
+    {
+      "label": "fast-multiply",
+      "eventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/9",
+      "source": "amo",
+      "operation": "multiply-multiplier",
+      "kind": "multiply",
+      "phase": "impact",
+      "at": 1.3013333333333332,
+      "layers": [
+        {
+          "sample": "impactGlass_heavy_002",
+          "start": 1.3013333333333332,
+          "end": 1.3403333333333332,
+          "rate": 0.9496029019355774,
+          "peak": 0.1789546203959855
+        },
+        {
+          "sample": "impactSoft_heavy_000",
+          "start": 1.3013333333333332,
+          "end": 1.3463333333333332,
+          "rate": 0.7879683375358582,
+          "peak": 0.14793857699582372
+        }
+      ]
+    },
+    {
+      "label": "fast-multiply",
+      "eventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/9",
+      "source": "amo",
+      "operation": "multiply-multiplier",
+      "kind": "multiply",
+      "phase": "rebound",
+      "at": 1.3546666666666667,
+      "layers": [
+        {
+          "sample": "impactWood_light_000",
+          "start": 1.3546666666666667,
+          "end": 1.4046666666666667,
+          "rate": 0.8889899253845215,
+          "peak": 0.1237003320308352
+        }
+      ]
+    }
+  ],
+  "binding": {
+    "base": "8a9b3d995a980bc9147babc0f683b01f114e39bb",
+    "sha256NormalizedLF": {
+      "src/audio/AudioEngine.ts": "45187afcbc61abe8e38be60bebc0db5a5a085f1513792e94df168f72a2610535",
+      "src/audio/foley.ts": "5eed28a164df5e40042446fb25a009a6545754166d0dd5d6636cade7c0e9b6d3"
+    }
+  }
+}

@@ -15,7 +15,7 @@ type MusicSlot = { element: HTMLAudioElement; node: MediaElementAudioSourceNode;
 type Voice = { source: AudioScheduledSourceNode; gain: GainNode; filter?: BiquadFilterNode; bus: VoiceBus; scoreAccent?: boolean; roll?: ScoreRollKind; semantic?: FoleyKind; startsAt?:number; endsAt?:number; priority?:number; peak?:number; nominalGain?:number; cleanup?:()=>void };
 export type ScoreSourceCue = 'card' | 'held' | 'character' | 'joker' | 'boss' | 'retrigger';
 export type ScoreRollKind = 'heat' | 'mult' | 'total';
-export interface ScoreImpactTiming { durationMs?:number; signal?:AbortSignal }
+export interface ScoreImpactTiming { durationMs?:number; signal?:AbortSignal; paired?:boolean }
 
 export interface BGMTrackMeta {
   id: string;
@@ -53,6 +53,7 @@ export class AudioEngine {
   private scoreSampleTask?:Promise<void>;
   private readonly sampleAttempts = new Map<string, number>();
   private readonly scoreCues=new WeakMap<object,Set<string>>();
+  private scoreRebounds=new WeakMap<object,Map<string,{rate:number;signal?:AbortSignal}>>();
   private voices = new Set<Voice>();
   private readonly cueTimes = new Map<FoleyKind,number>();
   private readonly variants = new Map<FoleyKind,number>();
@@ -336,20 +337,42 @@ export class AudioEngine {
     if(kind!=='award'&&kind!=='flight')kind=scoreArrivalKind(presentation,eventId,kind);
     const rate=scoreStrikeRate(presentation,eventId,kind,chain);
     const pulse=scoreStrikeStep(presentation,eventId,chain);
-    const sound=kind==='award'?awardForScore(presentation):kind==='flight'?'flight':kind==='multiply'?'scoreMultiply':kind==='key'?(tier>=2?'scoreBurst':'scoreKey'):(['scoreAdd','scoreKey','scoreBurst'] as const)[pulse];
-    const scale=kind==='award'||!Number.isFinite(timing.durationMs)?1:Math.max(.25,Math.min(1,timing.durationMs!/(Math.max(...FOLEY[sound].layers.map(l=>(l.delay??0)+l.duration))*1000)));
+    const paired=!!timing.paired&&kind!=='award'&&kind!=='flight';
+    const sound=kind==='award'?awardForScore(presentation):kind==='flight'?'flight':kind==='multiply'?(paired?'scoreDoubleImpact':'scoreMultiply'):kind==='key'?(tier>=2?'scoreBurst':'scoreKey'):(['scoreAdd','scoreKey','scoreBurst'] as const)[pulse];
+    const durationMs=paired?(Number.isFinite(timing.durationMs)?Math.min(45,timing.durationMs!):45):timing.durationMs;
+    const scale=kind==='award'||!Number.isFinite(durationMs)?1:Math.max(.25,Math.min(1,durationMs!/(Math.max(...FOLEY[sound].layers.map(l=>(l.delay??0)+l.duration))*1000)));
     const voices=this.cue(sound,'sfx',rate,0,kind==='award'?1+bounded(tier,3)*.035:1,undefined,scale);
+    if(paired&&voices.length){
+      let pending=this.scoreRebounds.get(presentation);if(!pending){pending=new Map();this.scoreRebounds.set(presentation,pending);}
+      pending.set(eventId,{rate,signal:timing.signal});
+    }
+    this.ownScoreVoices(voices,timing.signal);
+    if(voices.length)this.duckMusic(kind==='award'?Math.max(.4,...FOLEY[sound].layers.map(l=>(l.delay??0)+l.duration)):.2,kind==='award'?.22:.35);
+  }
+
+  /** Second beat belongs to the motion's real rebound callback, never a timer.
+   * Only an admitted paired impact can arm it; the saved first beat owns pitch. */
+  scoreRebound(presentation:object,eventId:string,timing:ScoreImpactTiming={}):void {
+    const pending=this.scoreRebounds.get(presentation),beat=pending?.get(eventId);
+    if(!beat)return;pending!.delete(eventId);
+    if(beat.signal?.aborted||timing.signal?.aborted||Number.isFinite(timing.durationMs)&&timing.durationMs!<=0||!this.canPlay('sfx'))return;
+    const scale=Number.isFinite(timing.durationMs)?Math.max(.6,Math.min(1,timing.durationMs!/60)):1;
+    const voices=this.cue('scoreRebound','sfx',beat.rate,0,1,undefined,scale);
+    this.ownScoreVoices(voices,beat.signal??timing.signal);
+  }
+
+  private ownScoreVoices(voices:Voice[],signal?:AbortSignal):void {
     for(const voice of voices)voice.scoreAccent=true;
-    if(timing.signal&&voices.length){
-      const signal=timing.signal,stop=()=>{for(const voice of voices)this.release(voice);};let remaining=voices.length;
+    if(signal&&voices.length){
+      const stop=()=>{for(const voice of voices)this.release(voice);};let remaining=voices.length;
       for(const voice of voices)voice.cleanup=()=>{if(--remaining===0)signal.removeEventListener('abort',stop);};
       signal.addEventListener('abort',stop,{once:true});
     }
-    if(voices.length)this.duckMusic(kind==='award'?Math.max(.4,...FOLEY[sound].layers.map(l=>(l.delay??0)+l.duration)):.2,kind==='award'?.22:.35);
   }
 
   /** Compatibility cleanup name; no continuous burning sources remain. */
   stopScoreFire(): void {
+    this.scoreRebounds=new WeakMap();
     for(const voice of this.voices)if(voice.scoreAccent)this.release(voice);
   }
 

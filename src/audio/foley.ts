@@ -45,6 +45,9 @@ export const FOLEY = {
  scoreKey:recipe([scoreWood(.105,.025),body(.075,.012,.018,.8),scoreNote(.055,.006,.028)],0,6,3),
  scoreBurst:recipe([low(layer(['impactWood_heavy_000'],.095,.025),2400,1000),body(.095,.020,.02,.8),paper(.060,.006,.035)],0,6,3),
  scoreMultiply:recipe(multiplierLayers(),0,6,3),
+ // Explicit owned-source double beat: the motion emits rebound separately.
+ scoreDoubleImpact:recipe([crystal(.065,.025),body(.075,.030,0,.78)],0,4,3),
+ scoreRebound:recipe([low({...layer(wood,.060,.019,0,.88),attack:.0015,hold:.18},2400,1300)],0,3,2),
  // Inkwave679d2db audio.js726–734 body/air/tail structure already adapted here (MIT).
  key:recipe([body(.40,.047,0,.76),air(layer(['cloth2'],.26,.021,.02,1.1)),low(layer(['impactWood_heavy_000'],.14,.025,.05,.9),2100),bell(.43,.022,.12,.84)],.20,4,3),
  award:recipe([body(.26,.039),low(layer(['chips-collide-1'],.18,.025,.045),3000),bell(.35,.022,.09)],.25,3,4),

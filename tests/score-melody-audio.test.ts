@@ -63,3 +63,39 @@ it('the shared arrival duration compresses the whole recipe and the shared abort
  controller.abort();expect(inside.voices.size).toBe(0);expect(remove).toHaveBeenCalledOnce();engine.cancelPresentation();expect(sources.every(s=>s.disconnect.mock.calls.length===1)).toBe(true);
  const count=sources.length;engine.scoreImpact({},'aborted','multiply',3,2,{signal:controller.signal});engine.scoreImpact({},'no-duration','key',3,2,{durationMs:0});expect(sources).toHaveLength(count);
 });
+
+it('paired owned-source beats follow impact and rebound calls once, with a shorter lighter low second hit',()=>{
+ const score=savedTrace(),show={score},event=score.events.find(e=>numberImpact(e,'100000000',1)?.kind==='multiply')!,{engine,inside,sources}=fixture();
+ engine.scoreRebound(show,event.eventId);expect(sources).toHaveLength(0);
+ engine.scoreImpact(show,event.eventId,'multiply',3,7,{paired:true});
+ const first=sources.length;expect(first).toBe(2);expect(sources[0].start.mock.calls[0][0]).toBe(1);expect(sources[1].start.mock.calls[0][0]).toBe(1);
+ expect(Math.max(...[...inside.voices].map((v:any)=>v.endsAt))).toBeLessThanOrEqual(1.05);
+ inside.context.currentTime=1.075;engine.scoreRebound(show,event.eventId);
+ const second=sources.slice(first);expect(second).toHaveLength(1);expect(second[0].buffer.name).toMatch(/^impactWood_light/);expect(second[0].start.mock.calls[0][0]).toBe(1.075);
+ expect(second[0].playbackRate.value).toBeLessThan(sources[0].playbackRate.value);expect([...inside.voices].at(-1).nominalGain).toBeLessThan(.025);
+ engine.scoreRebound(show,event.eventId);engine.scoreImpact(show,event.eventId,'key',3,0,{paired:true});expect(sources).toHaveLength(first+1);
+});
+
+it('ordinary callers that did not opt into paired motion keep their single impact',()=>{
+ const {engine,inside,sources}=fixture(),show={};engine.scoreImpact(show,'legacy','add');const count=sources.length;
+ inside.context.currentTime+=.075;engine.scoreRebound(show,'legacy');expect(sources).toHaveLength(count);expect(count).toBeGreaterThan(0);
+});
+
+it.each(['cancel','mute','suspend','signal','silent'] as const)('a paired %s impact cannot leave a later orphan rebound',boundary=>{
+ const {engine,inside,sources}=fixture(),show={},signal=new AbortController();
+ if(boundary==='silent')engine.setVolume('sfx',0);
+ engine.scoreImpact(show,'owned','key',2,0,{paired:true,signal:signal.signal});
+ if(boundary==='cancel')engine.cancelPresentation();if(boundary==='mute')engine.muted=true;if(boundary==='suspend')engine.setSuspended(true);if(boundary==='signal')signal.abort();
+ const count=sources.length;inside.context.currentTime+=.075;engine.setVolume('sfx',.8);engine.muted=false;engine.setSuspended(false);engine.scoreRebound(show,'owned');expect(sources).toHaveLength(count);
+});
+
+it('60 dense paired events share the original gain/voice ceilings, and the rebound uses the cached event pitch',()=>{
+ const {engine,inside,sources}=fixture(),show={};
+ for(let i=0;i<60;i++){
+  inside.context.currentTime=1+i*.025;engine.scoreImpact(show,'pair/'+i,i%3===0?'multiply':'add',2,i,{paired:true});
+  if(i>2)engine.scoreRebound(show,'pair/'+(i-3));
+  const overlap=[...inside.voices].filter((v:any)=>v.startsAt<=inside.context.currentTime&&v.endsAt>inside.context.currentTime);
+  expect(overlap.length).toBeLessThanOrEqual(SCORE_VOICE_BUDGET);expect(overlap.reduce((sum:number,v:any)=>sum+v.nominalGain,0)).toBeLessThanOrEqual(SCORE_GAIN_BUDGET);
+ }
+ expect(sources.every(s=>s.playbackRate.value<=1.14)).toBe(true);engine.cancelPresentation();expect(inside.voices.size).toBe(0);
+});
