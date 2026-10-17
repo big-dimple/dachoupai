@@ -1,0 +1,184 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-17",
+  "task": "P08",
+  "taskStatus": "in_progress",
+  "branch": "dev/touye-discard-ai-20261017",
+  "baseCommit": "a14d3b55d456d9bafb75d031347985288404eff8",
+  "products": [
+    {
+      "commit": "1e647fa735a86bc2a4c579c2c4d48822efa914aa",
+      "scope": "秦琼明确重新选弃牌、原拟出牌保留；首层确认名单/风险/消耗；等宽两侧及理牌标题/统一框，窄按钮文字让位",
+      "binding": "checks/product-one-binding.json"
+    },
+    {
+      "commit": "195f3f9f830a7b2ae01404dfb7ddd706e6ea11af",
+      "scope": "AI同key已完成候选复用、取消旧工作保留、4ms预算检查下增大单批上限；真实计算/稍候/不可用状态",
+      "binding": "checks/product-two-binding.json"
+    }
+  ],
+  "runtimeFiles": [
+    "src/game/AiHandCandidates.ts",
+    "src/game/GameScene.ts",
+    "src/game/HandActionArt.ts",
+    "src/game/HeroPlayReminder.ts",
+    "src/game/TouyeDiscardChoice.css",
+    "src/game/TouyeDiscardChoice.ts",
+    "src/game/layout.ts"
+  ],
+  "protectedUnchanged": [
+    "src/domain",
+    "src/application",
+    "src/platform",
+    "src/content",
+    "src/audio",
+    "public",
+    "src/game/CharacterSelectScene.ts",
+    "src/game/DetailDialog.ts",
+    "src/game/DetailDialog.css",
+    "src/game/OpponentPresentation.ts"
+  ],
+  "checks": {
+    "firstProduct": {
+      "finalUniqueFiles": 8,
+      "finalUniqueCases": 141,
+      "note": "原6文件126项；更新旧布局期待后加1提醒、2交接、12按钮项。80项当前定向+49项首轮未失败其它文件+12项按钮最终通过。原布局和测试替身FAIL保留。"
+    },
+    "secondProduct": {
+      "finalFiles": 8,
+      "finalCases": 77,
+      "logs": [
+        "checks/phase-two-targeted-PASS.txt",
+        "checks/controls-two-PASS.txt"
+      ]
+    },
+    "parentDoubleJ": {
+      "cases": 3,
+      "log": "checks/parent-double-j-unit-PASS.txt",
+      "newCases": 1,
+      "checkpointValidator": "PASS by local pure domain script, no browser"
+    },
+    "deduplicatedFinal": {
+      "files": 13,
+      "cases": 186,
+      "note": "141+77-33重复已覆盖项+1新增父级双J回归；未全套/长局"
+    },
+    "typecheck": {
+      "result": "PASS",
+      "sourceCommit": "195f3f9f830a7b2ae01404dfb7ddd706e6ea11af",
+      "log": "checks/typecheck-two-PASS.txt"
+    },
+    "productionBuild": {
+      "result": "PASS",
+      "log": "checks/production-build-PASS.txt",
+      "warning": "existing large-chunk advisory"
+    },
+    "diffCheck": "PASS"
+  },
+  "screenshotReference": {
+    "libraryFileId": "libfile_b389e27fb7d48191b6f681bdbfa37aeb",
+    "localInspection": "Windows材料化并看过1163×712像素；用户新禁令前完成",
+    "bytes": 137715,
+    "width": 1163,
+    "height": 712,
+    "sha256": "f4f337311998d60b69ddbce6ec11fd90191f8d21ce81df084d0ec9b3806862f4"
+  },
+  "browserPolicy": {
+    "latestUserInstruction": "最新允许无法避免的最短必要本地测试，禁止大量重复截图矩阵或自然长局；全局试玩由父级dot远端完成。本任务复用已取得结果，不再追加浏览器验证。",
+    "localTaskBrowserProcesses": "none running at closeout",
+    "newLocalBrowserWorkAfterInstruction": "NOT_RUN",
+    "existingLocalEvidence": "仅保留禁令前的有限软件结果，不作为远端或人验签收",
+    "dotRemoteAcceptance": "PENDING",
+    "parentLiveObservation": "父级dot在当时线上真实秦琼同花局买c06青出于蓝，首场9♦3♥5♥Q♦A♦8♠J♠J♣；AI正常选双J，旧返回用技能直接把其称为已选2张弃牌。该反馈是语义错误，不是AI总不可用。",
+    "stopInstructionHistory": "此前用户要求停止本地浏览器时，本任务没有正在运行的浏览器脚本；后续调整不触发重跑。",
+    "newLocalBrowserWorkAfterLatestAdjustment": "NOT_RUN; existing results reused"
+  },
+  "nativeBeforeStop": {
+    "result": "PASS_IN_HISTORICAL_LOCAL_SCOPE",
+    "viewport": [
+      "390x844",
+      "320x568"
+    ],
+    "nineSeats": true,
+    "equalActions": true,
+    "clearSortTitleAndFrame": true,
+    "exchange": {
+      "onlyFreshDiscard": true,
+      "actualDiscard": [
+        "spades-3"
+      ],
+      "originalPlay": [
+        "clubs-13",
+        "diamonds-13",
+        "spades-9",
+        "hearts-9"
+      ],
+      "commands": 1,
+      "completeDomainJournalStorageEqual": true,
+      "discardsBefore": 3,
+      "discardsAfter": 2
+    },
+    "cancelPreservesOriginalPlayAndStorage": true,
+    "aiStateTimeline": [
+      {
+        "at": 4819.20000000298,
+        "status": "ready",
+        "ready": true,
+        "playing": false,
+        "enabled": true,
+        "label": "AI 切"
+      },
+      {
+        "at": 4906.5,
+        "status": "ready",
+        "ready": false,
+        "playing": true,
+        "enabled": false,
+        "label": "AI\n稍候"
+      },
+      {
+        "at": 4961.89999999851,
+        "status": "working",
+        "ready": true,
+        "playing": false,
+        "enabled": false,
+        "label": "AI\n计算"
+      }
+    ],
+    "sameKeyReadyReuse": true,
+    "noopAfter": {
+      "status": "ready",
+      "examined": 381,
+      "enabled": true,
+      "label": "AI 切",
+      "ready": true,
+      "playing": false,
+      "presenting": false
+    },
+    "savedReady": {
+      "status": "ready",
+      "examined": 381,
+      "enabled": true,
+      "label": "AI 切",
+      "ready": true,
+      "playing": false,
+      "presenting": false
+    },
+    "observedInputToSavedReadyMs": 152.32530000000042,
+    "note": "禁令前本地受控九牌；真实新弃牌3♠，取消保原四张。父级双J案例只新增单测/纯域快照，未开本地浏览器。"
+  },
+  "sourceBinding": "构建在两产品提交前以dirty工作树完成；绑定JSON保留各源原始SHA256与精确Git blob。后续只有测试/证据变化。",
+  "retainedFailures": [
+    "旧布局132px/不等宽及旧main冻结期待；先比较a14d原源码证实非控制区完全相等再更新期待",
+    "测试替身漏classList.add，补替身后通过",
+    "实际弃牌名单仅在折叠细则中，首层补名单后原生通过",
+    "AI观察器误要求保存未结束即启用按钮；仅修观察断言以保留必要串行，未放开产品保护"
+  ],
+  "scopeLimits": [
+    "两产品不改规则/数值/技术ID/存档键/hash，不动选角/确认框/章节目录专属文件",
+    "保留a14d商店实际匹配语义及原有动态呼应；本批未改ShopScene/ShopSynergy",
+    "已准备远端步骤；没有新增本地浏览器验收，dot远端当前dev结果未签",
+    "后续计分18px±2.5°/八档同步、倍率1.54x短震、真实商店金色呼吸、Boss锁链灰罩朱红及准确规则说明仍按独立模块worker接线和验收；本批不代签",
+    "P08仍in_progress；无main/CI/部署/域名操作和自然长局"
+  ]
+}

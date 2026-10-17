@@ -1,0 +1,56 @@
+{
+  "base": "a14d3b55d456d9bafb75d031347985288404eff8",
+  "product": "1e647fa735a86bc2a4c579c2c4d48822efa914aa",
+  "files": [
+    {
+      "file": "src/game/GameScene.ts",
+      "blob": "2fe924f2aa65cfb7a58af8dff037e95d9e323aea",
+      "sha256": "0fe2e26e15424d214fae94900ebf7a4f730ebbe60d72813c43b69ed3c2ae9072"
+    },
+    {
+      "file": "src/game/HandActionArt.ts",
+      "blob": "509a4047d2bd028bc8325e1cfc61d7d40df22e73",
+      "sha256": "45c0b2e957d3fb922c303de39ff1ae47c77900dbd5ef7540b890eb6550abf312"
+    },
+    {
+      "file": "src/game/HeroPlayReminder.ts",
+      "blob": "bcc1552da19558e43048d95c7423522e142ca458",
+      "sha256": "7b47d740b4a0f405a9232b35440442faa8b7674061cffd5f5ece43e9ab1f1bdd"
+    },
+    {
+      "file": "src/game/layout.ts",
+      "blob": "64ae9a02254ffdc23f490cf29daf8168b58cb737",
+      "sha256": "c5b089b2c615c8b4b86d20ffacc7145403f76ff497c75c2196f51a4003d085e0"
+    },
+    {
+      "file": "src/game/TouyeDiscardChoice.ts",
+      "blob": "52a1c937bfa46575fbcdb5b46b8e3842633fa526",
+      "sha256": "c97d4ff36150b5d93f3f60f9f66473e50f8298b3dcf5ad3dafedaf6985c97034"
+    },
+    {
+      "file": "src/game/TouyeDiscardChoice.css",
+      "blob": "fbb31741825f7e3850885b25f676c2f1f4df2f2a",
+      "sha256": "e8c6c9f40980c47d794395ca6df3b7bc0bf3132a233a40942820c39c5170b669"
+    },
+    {
+      "file": "tests/hand-action-controls.test.ts",
+      "blob": "822afbd059f7cf664c9c34794590d2123f8bfb10",
+      "sha256": "a978bb8e5e3068b2c955618211f14a8cf1e95df6850a7a9dd0cf3cab950362ce"
+    },
+    {
+      "file": "tests/hero-play-reminder.test.ts",
+      "blob": "e856db5e70096bec9c7e994d6faab26409dc6dff",
+      "sha256": "da9d54239be2601a11c0d4db8e477dabedf2d415dbe230a6c26bc953b97e538d"
+    },
+    {
+      "file": "tests/layout.test.ts",
+      "blob": "235c4c7c8552b7b99009f223b7de3755f24f8b71",
+      "sha256": "20c67b4a7bae298f9faa03b1927d24082680138182aa1622b8a2adc68cbb8306"
+    },
+    {
+      "file": "tests/touye-discard-handoff.test.ts",
+      "blob": "37d8e01e4839eb66528e66fe97fa8aae8eb85605",
+      "sha256": "9e743288199580c0838016e49930fc3e769514a7478586330af0a3c97ea4d928"
+    }
+  ]
+}

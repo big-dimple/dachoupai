@@ -1,0 +1,613 @@
+{
+  "base": "1e647fa735a86bc2a4c579c2c4d48822efa914aa",
+  "browser": "153.0.8010.12",
+  "errors": [],
+  "scope": "Current Touye, validator-approved nine-card controlled checkpoint; native DOM/touch only, read-only observers; short selection/exchange, no playthrough.",
+  "geometry": [
+    {
+      "width": 390,
+      "height": 844,
+      "hand": {
+        "x": 12,
+        "y": 606.4,
+        "width": 366,
+        "height": 111.6
+      },
+      "cards": [
+        {
+          "visible": true,
+          "visual": {
+            "x": 12,
+            "y": 628.4,
+            "width": 64,
+            "height": 89.6
+          },
+          "hit": {
+            "x": 12,
+            "y": 606.4,
+            "width": 37.75,
+            "height": 111.6
+          }
+        },
+        {
+          "visible": true,
+          "visual": {
+            "x": 49.75,
+            "y": 628.4,
+            "width": 64,
+            "height": 89.6
+          },
+          "hit": {
+            "x": 49.75,
+            "y": 606.4,
+            "width": 37.75,
+            "height": 111.6
+          }
+        },
+        {
+          "visible": true,
+          "visual": {
+            "x": 87.5,
+            "y": 628.4,
+            "width": 64,
+            "height": 89.6
+          },
+          "hit": {
+            "x": 87.5,
+            "y": 606.4,
+            "width": 37.75,
+            "height": 111.6
+          }
+        },
+        {
+          "visible": true,
+          "visual": {
+            "x": 125.25,
+            "y": 628.4,
+            "width": 64,
+            "height": 89.6
+          },
+          "hit": {
+            "x": 125.25,
+            "y": 606.4,
+            "width": 37.75,
+            "height": 111.6
+          }
+        },
+        {
+          "visible": true,
+          "visual": {
+            "x": 163,
+            "y": 628.4,
+            "width": 64,
+            "height": 89.6
+          },
+          "hit": {
+            "x": 163,
+            "y": 606.4,
+            "width": 37.75,
+            "height": 111.6
+          }
+        },
+        {
+          "visible": true,
+          "visual": {
+            "x": 200.75,
+            "y": 628.4,
+            "width": 64,
+            "height": 89.6
+          },
+          "hit": {
+            "x": 200.75,
+            "y": 606.4,
+            "width": 37.75,
+            "height": 111.6
+          }
+        },
+        {
+          "visible": true,
+          "visual": {
+            "x": 238.5,
+            "y": 628.4,
+            "width": 64,
+            "height": 89.6
+          },
+          "hit": {
+            "x": 238.5,
+            "y": 606.4,
+            "width": 37.75,
+            "height": 111.6
+          }
+        },
+        {
+          "visible": true,
+          "visual": {
+            "x": 276.25,
+            "y": 628.4,
+            "width": 64,
+            "height": 89.6
+          },
+          "hit": {
+            "x": 276.25,
+            "y": 606.4,
+            "width": 37.75,
+            "height": 111.6
+          }
+        },
+        {
+          "visible": true,
+          "visual": {
+            "x": 314,
+            "y": 628.4,
+            "width": 64,
+            "height": 89.6
+          },
+          "hit": {
+            "x": 314,
+            "y": 606.4,
+            "width": 64,
+            "height": 111.6
+          }
+        }
+      ],
+      "count": 9,
+      "overflow": false,
+      "sort": {
+        "x": 111,
+        "y": 722,
+        "width": 168,
+        "height": 56
+      },
+      "title": {
+        "text": "理牌",
+        "font": "14px",
+        "box": {
+          "x": 115,
+          "y": 741.5,
+          "width": 28,
+          "height": 17
+        }
+      },
+      "controls": [
+        {
+          "name": "action/discard",
+          "box": {
+            "x": 12,
+            "y": 722,
+            "width": 93,
+            "height": 56
+          },
+          "label": "弃牌",
+          "labelBox": {
+            "x": 44.5,
+            "y": 728,
+            "width": 28,
+            "height": 18
+          }
+        },
+        {
+          "name": "action/sort-rank",
+          "box": {
+            "x": 147,
+            "y": 722,
+            "width": 44,
+            "height": 56
+          },
+          "label": "点数",
+          "labelBox": {
+            "x": 155,
+            "y": 740,
+            "width": 28,
+            "height": 18
+          }
+        },
+        {
+          "name": "action/sort-suit",
+          "box": {
+            "x": 191,
+            "y": 722,
+            "width": 44,
+            "height": 56
+          },
+          "label": "花色",
+          "labelBox": {
+            "x": 199,
+            "y": 740,
+            "width": 28,
+            "height": 18
+          }
+        },
+        {
+          "name": "selection/switch-type",
+          "box": {
+            "x": 235,
+            "y": 722,
+            "width": 44,
+            "height": 56
+          },
+          "label": "AI\n计算",
+          "labelBox": {
+            "x": 243,
+            "y": 731,
+            "width": 28,
+            "height": 36
+          }
+        },
+        {
+          "name": "action/play",
+          "box": {
+            "x": 285,
+            "y": 722,
+            "width": 93,
+            "height": 56
+          },
+          "label": "出牌",
+          "labelBox": {
+            "x": 315.5,
+            "y": 727.5,
+            "width": 32,
+            "height": 19
+          }
+        },
+        {
+          "name": "hero/action-shortcut",
+          "box": {
+            "x": 12,
+            "y": 558.4,
+            "width": 132,
+            "height": 44
+          },
+          "label": "技能 · 押注",
+          "labelBox": {
+            "x": 42.5,
+            "y": 570,
+            "width": 71,
+            "height": 18
+          }
+        }
+      ]
+    },
+    {
+      "width": 320,
+      "height": 568,
+      "hand": {
+        "x": 8,
+        "y": 330.4,
+        "width": 304,
+        "height": 111.6
+      },
+      "cards": [
+        {
+          "visible": true,
+          "visual": {
+            "x": 8,
+            "y": 352.4,
+            "width": 52,
+            "height": 72.8
+          },
+          "hit": {
+            "x": 8,
+            "y": 330.4,
+            "width": 31.5,
+            "height": 111.6
+          }
+        },
+        {
+          "visible": true,
+          "visual": {
+            "x": 39.5,
+            "y": 352.4,
+            "width": 52,
+            "height": 72.8
+          },
+          "hit": {
+            "x": 39.5,
+            "y": 330.4,
+            "width": 31.5,
+            "height": 111.6
+          }
+        },
+        {
+          "visible": true,
+          "visual": {
+            "x": 71,
+            "y": 352.4,
+            "width": 52,
+            "height": 72.8
+          },
+          "hit": {
+            "x": 71,
+            "y": 330.4,
+            "width": 31.5,
+            "height": 111.6
+          }
+        },
+        {
+          "visible": true,
+          "visual": {
+            "x": 102.5,
+            "y": 352.4,
+            "width": 52,
+            "height": 72.8
+          },
+          "hit": {
+            "x": 102.5,
+            "y": 330.4,
+            "width": 31.5,
+            "height": 111.6
+          }
+        },
+        {
+          "visible": true,
+          "visual": {
+            "x": 134,
+            "y": 352.4,
+            "width": 52,
+            "height": 72.8
+          },
+          "hit": {
+            "x": 134,
+            "y": 330.4,
+            "width": 31.5,
+            "height": 111.6
+          }
+        },
+        {
+          "visible": true,
+          "visual": {
+            "x": 165.5,
+            "y": 352.4,
+            "width": 52,
+            "height": 72.8
+          },
+          "hit": {
+            "x": 165.5,
+            "y": 330.4,
+            "width": 31.5,
+            "height": 111.6
+          }
+        },
+        {
+          "visible": true,
+          "visual": {
+            "x": 197,
+            "y": 352.4,
+            "width": 52,
+            "height": 72.8
+          },
+          "hit": {
+            "x": 197,
+            "y": 330.4,
+            "width": 31.5,
+            "height": 111.6
+          }
+        },
+        {
+          "visible": true,
+          "visual": {
+            "x": 228.5,
+            "y": 352.4,
+            "width": 52,
+            "height": 72.8
+          },
+          "hit": {
+            "x": 228.5,
+            "y": 330.4,
+            "width": 31.5,
+            "height": 111.6
+          }
+        },
+        {
+          "visible": true,
+          "visual": {
+            "x": 260,
+            "y": 352.4,
+            "width": 52,
+            "height": 72.8
+          },
+          "hit": {
+            "x": 260,
+            "y": 330.4,
+            "width": 52,
+            "height": 111.6
+          }
+        }
+      ],
+      "count": 9,
+      "overflow": false,
+      "sort": {
+        "x": 76,
+        "y": 446,
+        "width": 168,
+        "height": 54
+      },
+      "title": {
+        "text": "理牌",
+        "font": "14px",
+        "box": {
+          "x": 80,
+          "y": 464.5,
+          "width": 28,
+          "height": 17
+        }
+      },
+      "controls": [
+        {
+          "name": "action/discard",
+          "box": {
+            "x": 8,
+            "y": 446,
+            "width": 62,
+            "height": 54
+          },
+          "label": "弃牌",
+          "labelBox": {
+            "x": 25,
+            "y": 452,
+            "width": 28,
+            "height": 18
+          }
+        },
+        {
+          "name": "action/sort-rank",
+          "box": {
+            "x": 112,
+            "y": 446,
+            "width": 44,
+            "height": 54
+          },
+          "label": "点数",
+          "labelBox": {
+            "x": 120,
+            "y": 463,
+            "width": 28,
+            "height": 18
+          }
+        },
+        {
+          "name": "action/sort-suit",
+          "box": {
+            "x": 156,
+            "y": 446,
+            "width": 44,
+            "height": 54
+          },
+          "label": "花色",
+          "labelBox": {
+            "x": 164,
+            "y": 463,
+            "width": 28,
+            "height": 18
+          }
+        },
+        {
+          "name": "selection/switch-type",
+          "box": {
+            "x": 200,
+            "y": 446,
+            "width": 44,
+            "height": 54
+          },
+          "label": "AI\n计算",
+          "labelBox": {
+            "x": 208,
+            "y": 454,
+            "width": 28,
+            "height": 36
+          }
+        },
+        {
+          "name": "action/play",
+          "box": {
+            "x": 250,
+            "y": 446,
+            "width": 62,
+            "height": 54
+          },
+          "label": "出牌",
+          "labelBox": {
+            "x": 265,
+            "y": 451.5,
+            "width": 32,
+            "height": 19
+          }
+        },
+        {
+          "name": "hero/action-shortcut",
+          "box": {
+            "x": 8,
+            "y": 282.4,
+            "width": 132,
+            "height": 44
+          },
+          "label": "技能 · 押注",
+          "labelBox": {
+            "x": 38.5,
+            "y": 294,
+            "width": 71,
+            "height": 18
+          }
+        }
+      ]
+    }
+  ],
+  "aiRapid": {
+    "durationMs": 440.32760000000053,
+    "picks": [
+      [
+        "spades-9",
+        "hearts-9",
+        "clubs-13",
+        "diamonds-13"
+      ],
+      [
+        "clubs-13",
+        "diamonds-13"
+      ],
+      [
+        "clubs-13"
+      ],
+      [
+        "spades-9",
+        "hearts-9",
+        "clubs-13",
+        "diamonds-13"
+      ]
+    ],
+    "stateUnchanged": true
+  },
+  "aiAfterActualSort": {
+    "status": "ready",
+    "examined": 381,
+    "key": "[\"{\\\"hand\\\":[{\\\"id\\\":\\\"spades-9\\\",\\\"suit\\\":\\\"spades\\\",\\\"rank\\\":9},{\\\"id\\\":\\\"hearts-9\\\",\\\"suit\\\":\\\"hearts\\\",\\\"rank\\\":9},{\\\"id\\\":\\\"clubs-13\\\",\\\"suit\\\":\\\"clubs\\\",\\\"rank\\\":13},{\\\"id\\\":\\\"diamonds-13\\\",\\\"suit\\\":\\\"diamonds\\\",\\\"rank\\\":13},{\\\"id\\\":\\\"spades-3\\\",\\\"suit\\\":\\\"spades\\\",\\\"rank\\\":3},{\\\"id\\\":\\\"hearts-5\\\",\\\"suit\\\":\\\"hearts\\\",\\\"rank\\\":5},{\\\"id\\\":\\\"clubs-7\\\",\\\"suit\\\":\\\"clubs\\\",\\\"rank\\\":7},{\\\"id\\\":\\\"diamonds-2\\\",\\\"suit\\\":\\\"diamonds\\\",\\\"rank\\\":2},{\\\"id\\\":\\\"diamonds-4\\\",\\\"suit\\\":\\\"diamonds\\\",\\\"rank\\\":4}],\\\"jokers\\\":[],\\\"rules\\\":{\\\"fourStraight\\\":false,\\\"fourFlush\\\":false},\\\"disabled\\\":[],\\\"suppressed\\\":[],\\\"boss\\\":null,\\\"index\\\":0,\\\"sealed\\\":[],\\\"challenge\\\":null,\\\"resources\\\":{\\\"gold\\\":6,\\\"handsLeft\\\":4,\\\"playIndex\\\":0,\\\"discardsUsed\\\":0,\\\"stageHeat\\\":\\\"0\\\",\\\"target\\\":\\\"400\\\"},\\\"version\\\":[\\\"quality-r2-s04-finish-v1/json-fnv-v1:65b545bd97c0fdf1\\\",\\\"14595931\\\"]}\",{\"boundedClear\":true,\"activeMultTiming\":\"after-route-growth\",\"routeGrowth\":{\"clears\":0,\"G\":0,\"S\":0,\"F\":0},\"touyeWager\":{\"commit\":null,\"newCore\":true},\"characterId\":\"touye\",\"amoScoreTiming\":\"after-joker\",\"handLevels\":{},\"previousHandType\":null,\"wager\":false,\"jokerSlots\":5,\"previousHandScore\":null}]",
+    "enabled": false,
+    "label": "AI\n稍候",
+    "ready": false,
+    "playing": true,
+    "presenting": false
+  },
+  "aiNoopSort": {
+    "before": {
+      "status": "ready",
+      "examined": 381,
+      "key": "[\"{\\\"hand\\\":[{\\\"id\\\":\\\"clubs-13\\\",\\\"suit\\\":\\\"clubs\\\",\\\"rank\\\":13},{\\\"id\\\":\\\"diamonds-13\\\",\\\"suit\\\":\\\"diamonds\\\",\\\"rank\\\":13},{\\\"id\\\":\\\"spades-9\\\",\\\"suit\\\":\\\"spades\\\",\\\"rank\\\":9},{\\\"id\\\":\\\"hearts-9\\\",\\\"suit\\\":\\\"hearts\\\",\\\"rank\\\":9},{\\\"id\\\":\\\"clubs-7\\\",\\\"suit\\\":\\\"clubs\\\",\\\"rank\\\":7},{\\\"id\\\":\\\"hearts-5\\\",\\\"suit\\\":\\\"hearts\\\",\\\"rank\\\":5},{\\\"id\\\":\\\"diamonds-4\\\",\\\"suit\\\":\\\"diamonds\\\",\\\"rank\\\":4},{\\\"id\\\":\\\"spades-3\\\",\\\"suit\\\":\\\"spades\\\",\\\"rank\\\":3},{\\\"id\\\":\\\"diamonds-2\\\",\\\"suit\\\":\\\"diamonds\\\",\\\"rank\\\":2}],\\\"jokers\\\":[],\\\"rules\\\":{\\\"fourStraight\\\":false,\\\"fourFlush\\\":false},\\\"disabled\\\":[],\\\"suppressed\\\":[],\\\"boss\\\":null,\\\"index\\\":0,\\\"sealed\\\":[],\\\"challenge\\\":null,\\\"resources\\\":{\\\"gold\\\":6,\\\"handsLeft\\\":4,\\\"playIndex\\\":0,\\\"discardsUsed\\\":0,\\\"stageHeat\\\":\\\"0\\\",\\\"target\\\":\\\"400\\\"},\\\"version\\\":[\\\"quality-r2-s04-finish-v1/json-fnv-v1:65b545bd97c0fdf1\\\",\\\"14595931\\\"]}\",{\"boundedClear\":true,\"activeMultTiming\":\"after-route-growth\",\"routeGrowth\":{\"clears\":0,\"G\":0,\"S\":0,\"F\":0},\"touyeWager\":{\"commit\":null,\"newCore\":true},\"characterId\":\"touye\",\"amoScoreTiming\":\"after-joker\",\"handLevels\":{},\"previousHandType\":null,\"wager\":false,\"jokerSlots\":5,\"previousHandScore\":null}]",
+      "enabled": true,
+      "label": "AI 切",
+      "ready": true,
+      "playing": false,
+      "presenting": false
+    },
+    "after": {
+      "status": "ready",
+      "examined": 381,
+      "key": "[\"{\\\"hand\\\":[{\\\"id\\\":\\\"clubs-13\\\",\\\"suit\\\":\\\"clubs\\\",\\\"rank\\\":13},{\\\"id\\\":\\\"diamonds-13\\\",\\\"suit\\\":\\\"diamonds\\\",\\\"rank\\\":13},{\\\"id\\\":\\\"spades-9\\\",\\\"suit\\\":\\\"spades\\\",\\\"rank\\\":9},{\\\"id\\\":\\\"hearts-9\\\",\\\"suit\\\":\\\"hearts\\\",\\\"rank\\\":9},{\\\"id\\\":\\\"clubs-7\\\",\\\"suit\\\":\\\"clubs\\\",\\\"rank\\\":7},{\\\"id\\\":\\\"hearts-5\\\",\\\"suit\\\":\\\"hearts\\\",\\\"rank\\\":5},{\\\"id\\\":\\\"diamonds-4\\\",\\\"suit\\\":\\\"diamonds\\\",\\\"rank\\\":4},{\\\"id\\\":\\\"spades-3\\\",\\\"suit\\\":\\\"spades\\\",\\\"rank\\\":3},{\\\"id\\\":\\\"diamonds-2\\\",\\\"suit\\\":\\\"diamonds\\\",\\\"rank\\\":2}],\\\"jokers\\\":[],\\\"rules\\\":{\\\"fourStraight\\\":false,\\\"fourFlush\\\":false},\\\"disabled\\\":[],\\\"suppressed\\\":[],\\\"boss\\\":null,\\\"index\\\":0,\\\"sealed\\\":[],\\\"challenge\\\":null,\\\"resources\\\":{\\\"gold\\\":6,\\\"handsLeft\\\":4,\\\"playIndex\\\":0,\\\"discardsUsed\\\":0,\\\"stageHeat\\\":\\\"0\\\",\\\"target\\\":\\\"400\\\"},\\\"version\\\":[\\\"quality-r2-s04-finish-v1/json-fnv-v1:65b545bd97c0fdf1\\\",\\\"14595931\\\"]}\",{\"boundedClear\":true,\"activeMultTiming\":\"after-route-growth\",\"routeGrowth\":{\"clears\":0,\"G\":0,\"S\":0,\"F\":0},\"touyeWager\":{\"commit\":null,\"newCore\":true},\"characterId\":\"touye\",\"amoScoreTiming\":\"after-joker\",\"handLevels\":{},\"previousHandType\":null,\"wager\":false,\"jokerSlots\":5,\"previousHandScore\":null}]",
+      "enabled": true,
+      "label": "AI 切",
+      "ready": true,
+      "playing": false,
+      "presenting": false
+    },
+    "waitMs": 154.1221000000005,
+    "sameKey": true
+  },
+  "reminder": "先换牌，再出牌？\n\n秦琼 · 跃马冲阵\n当前可用，尚未选择本手主动操作。\n\n先重新选1–5张要弃的牌，再押目标并确认换牌，最后出牌。原拟出牌选择会保留。\n确认换牌才消耗1次弃牌，不另收金币。\n主动操作：下一手用新摸牌凑成所押牌型×2；否则×0.85\n每场一次；已成型也可押。押后不能再弃牌或改牌；新牌只当配牌不算。不押×1.15。\n\n继续出牌：本手不使用这项主动操作。被动／自动效果仍按各自条件结算，不会一起关闭。返回后仍由你决定是否使用，不会自动发动。\n\n不再提醒\n重选弃牌 · 进入技能\n按原选择出牌\n取消 · 返回选牌",
+  "confirmCancel": "押两对 · 弃1张\n弃1–5张\n每场1次\n已成型也可押\n选要弃的牌\n选押注目标\n确认补牌\n\n③ 确认押两对并补牌\n\n要弃的牌：5♥\n弃1张，补1张 · 花1次弃牌\n只赌下一手；新摸牌只当配牌不算；失败×0.85，押后不能再弃牌；新摸牌参与成型×2。\n\n目标与弃牌明细\n确认押两对并弃1张\n取消 · 不弃牌",
+  "cancelPreservesOriginalPlayAndStorage": true,
+  "exchange": {
+    "onlyFreshDiscard": true,
+    "actualDiscard": [
+      "spades-3"
+    ],
+    "originalPlay": [
+      "clubs-13",
+      "diamonds-13",
+      "spades-9",
+      "hearts-9"
+    ],
+    "commands": 1,
+    "completeDomainJournalStorageEqual": true,
+    "discardsBefore": 3,
+    "discardsAfter": 2
+  },
+  "status": "PASS"
+}

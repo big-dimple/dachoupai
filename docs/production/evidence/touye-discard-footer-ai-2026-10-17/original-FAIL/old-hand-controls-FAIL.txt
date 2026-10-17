@@ -1,0 +1,63 @@
+
+ RUN  v4.1.11 C:/Users/wanghongping/AppData/Local/Temp/dachoupai-windows-integration-20261017
+
+ ❯ tests/hand-action-controls.test.ts (12 tests | 6 failed) 44ms
+     × preserves the complete non-control layout from main88b17e2, including every hand seat and vertical budget 21ms
+     × 390×740 safe 0/0 keeps three44px sort targets together and preserves primary dimensions 3ms
+     × 320×568 safe 0/0 keeps three44px sort targets together and preserves primary dimensions 1ms
+     × 844×300 safe 12/12 keeps three44px sort targets together and preserves primary dimensions 1ms
+     × 844×300 safe 12/34 keeps three44px sort targets together and preserves primary dimensions 1ms
+     × keeps the original primary56px height and a larger submit target on the390 main layout 2ms
+
+ Test Files  1 failed (1)
+      Tests  6 failed | 6 passed (12)
+   Start at  11:47:50
+   Duration  958ms (transform 217ms, setup 0ms, import 277ms, tests 44ms, environment 0ms)
+
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 6 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/hand-action-controls.test.ts > sorting shares one group beside the unchanged primary action sizes > preserves the complete non-control layout from main88b17e2, including every hand seat and vertical budget
+AssertionError: expected '533ee5770d20df6b4a681a868bda5e3a4edcc…' to be 'cff0c393264eb2e2508c92a6f155ca5de319e…' // Object.is equality
+
+Expected: "cff0c393264eb2e2508c92a6f155ca5de319e6b1868fe42430d6adfa331dcb8c"
+Received: "533ee5770d20df6b4a681a868bda5e3a4edccd42596579992551354ebe3c4c95"
+
+ ❯ tests/hand-action-controls.test.ts:13:76
+     11|   // Short-landscape status only gives its former spare right gutter t…
+     12|   const fixed=layouts().map(l=>{const {buttons,tableActions,tools,tool…
+     13|   expect(createHash('sha256').update(JSON.stringify(fixed)).digest('he…
+       |                                                                            ^
+     14|  });
+     15|  it.each(profiles)('%s×%s safe %s/%s keeps three44px sort targets toge…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/6]⎯
+
+ FAIL  tests/hand-action-controls.test.ts > sorting shares one group beside the unchanged primary action sizes > 390×740 safe 0/0 keeps three44px sort targets together and preserves primary dimensions
+ FAIL  tests/hand-action-controls.test.ts > sorting shares one group beside the unchanged primary action sizes > 320×568 safe 0/0 keeps three44px sort targets together and preserves primary dimensions
+ FAIL  tests/hand-action-controls.test.ts > sorting shares one group beside the unchanged primary action sizes > 844×300 safe 12/12 keeps three44px sort targets together and preserves primary dimensions
+ FAIL  tests/hand-action-controls.test.ts > sorting shares one group beside the unchanged primary action sizes > 844×300 safe 12/34 keeps three44px sort targets together and preserves primary dimensions
+AssertionError: expected 168 to be 132 // Object.is equality
+
+- Expected
++ Received
+
+- 132
++ 168
+
+ ❯ tests/hand-action-controls.test.ts:17:25
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/6]⎯
+
+ FAIL  tests/hand-action-controls.test.ts > sorting shares one group beside the unchanged primary action sizes > keeps the original primary56px height and a larger submit target on the390 main layout
+AssertionError: expected 93 to be greater than 93
+ ❯ tests/hand-action-controls.test.ts:24:102
+     22|  });
+     23|  it('keeps the original primary56px height and a larger submit target …
+     24|   const l=layouts()[0];expect(l.tableActions.play.height).toBe(56);exp…
+       |                                                                                                      ^
+     25|  });
+     26| });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/6]⎯

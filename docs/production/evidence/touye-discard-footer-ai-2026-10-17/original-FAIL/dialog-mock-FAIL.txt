@@ -1,0 +1,22 @@
+
+ RUN  v4.1.11 C:/Users/wanghongping/AppData/Local/Temp/dachoupai-windows-integration-20261017
+
+ ❯ tests/touye-discard-handoff.test.ts (2 tests | 1 failed) 130ms
+   × keeps the original play through a fresh discard draft and confirms only the newly chosen cards once 103ms
+
+ Test Files  1 failed | 2 passed (3)
+      Tests  1 failed | 79 passed (80)
+   Start at  11:45:15
+   Duration  9.95s (transform 14.93s, setup 0ms, import 17.37s, tests 2.14s, environment 1ms)
+
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/touye-discard-handoff.test.ts > keeps the original play through a fresh discard draft and confirms only the newly chosen cards once
+TypeError: Cannot read properties of undefined (reading 'add')
+ ❯ GameScene.confirmTouye src/game/GameScene.ts:1313:947
+
+ ❯ Object.run src/game/GameScene.ts:1307:265
+ ❯ tests/touye-discard-handoff.test.ts:11:593
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
