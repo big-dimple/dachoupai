@@ -38,7 +38,9 @@ it('aligns a centred text bitmap edge, retaining its origin and exact font scale
  crispText(text);expect(text.style.resolution).toBe(3);expect((text.x-23.5)*3).toBeCloseTo(Math.round((text.x-23.5)*3));expect(text.y*3).toBeCloseTo(Math.round(text.y*3));expect(text.scaleX).toBe(1);
 });
 it('prepares peak-scale text pixels once and keeps framebuffer alignment without demoting the bitmap',()=>{
- const data=new Map(),resolution=vi.fn(),text:any={scene:{scale:{zoom:1}},style:{resolution:1},x:100.1,y:200.2,displayOriginX:23.5,displayOriginY:17,scaleX:1,scaleY:1,setData(k:string,v:any){data.set(k,v);return this;},getData:(k:string)=>data.get(k),setResolution(n:number){this.style.resolution=n;resolution(n);},setPosition(x:number,y:number){this.x=x;this.y=y;}};
+ const data=new Map(),resolution=vi.fn(),text:any={scene:{scale:{zoom:1}},style:{resolution:1},frame:{source:{resolution:1}},x:100.1,y:200.2,displayOriginX:23.5,displayOriginY:17,scaleX:1,scaleY:1,setData(k:string,v:any){data.set(k,v);return this;},getData:(k:string)=>data.get(k),setResolution(n:number){this.style.resolution=n;resolution(n);},setPosition(x:number,y:number){this.x=x;this.y=y;}};
  prepareTextScale(text,1.54);expect(text.style.resolution).toBe(2);text.scaleX=text.scaleY=1.54;crispText(text);crispText(text);
  expect(resolution).toHaveBeenCalledOnce();expect(text.style.resolution).toBeGreaterThanOrEqual(1.54);expect(text.x-23.5*1.54).toBeCloseTo(Math.round(text.x-23.5*1.54));expect(text.y-17*1.54).toBeCloseTo(Math.round(text.y-17*1.54));
+ expect(text.frame.source.resolution).toBe(text.style.resolution);
+ text.frame.source.resolution=1;crispText(text);expect(text.frame.source.resolution).toBe(2);expect(resolution).toHaveBeenCalledOnce();
 });

@@ -1,0 +1,387 @@
+{
+  "baseline": "2a090feec92e0f646aeac484742560f9d955464c",
+  "originalReview": "3611741ca8be0e19989b626b9a37defef71b91cf",
+  "viewport": {
+    "width": 390,
+    "height": 844
+  },
+  "sameEventComparison": {
+    "eventId": "bounded-dynamic/amo/hand/bounded-dynamic/amo/command/4/event/4",
+    "board": {
+      "x": 12,
+      "y": 153.6,
+      "width": 366,
+      "height": 132
+    },
+    "before": {
+      "peak": 1.279767118781669,
+      "heat": {
+        "name": "score/heat",
+        "text": "75",
+        "draw": {
+          "x": 37.84512257575989,
+          "y": 203.28558826446533,
+          "width": 115.81892758607864,
+          "height": 123.49753051996231,
+          "right": 153.66405016183853,
+          "bottom": 326.78311878442764
+        },
+        "logical": {
+          "type": 5,
+          "x": 37.5,
+          "y": 204,
+          "width": 57.58952034517512,
+          "height": 61.42882170152012
+        },
+        "style": 4,
+        "source": 2,
+        "texture": [
+          180,
+          192
+        ],
+        "scale": 1.279767118781669,
+        "requested": 1.279767118781669
+      },
+      "total": {
+        "name": "score/total",
+        "text": "150",
+        "draw": {
+          "x": 254.48791670799255,
+          "y": 203.28558826446533,
+          "width": 177.24775105714798,
+          "height": 123.49753051996231,
+          "right": 431.73566776514053,
+          "bottom": 326.78311878442764
+        },
+        "logical": {
+          "type": 5,
+          "x": 254.00000000000003,
+          "y": 204,
+          "width": 88.30393119593518,
+          "height": 61.42882170152012
+        },
+        "style": 4,
+        "source": 2,
+        "texture": [
+          276,
+          192
+        ],
+        "scale": 1.279767118781669,
+        "requested": 1.279767118781669
+      }
+    },
+    "after": {
+      "peak": 1.2735726675120616,
+      "heat": {
+        "name": "score/heat",
+        "text": "75",
+        "draw": {
+          "x": 37.98140096664429,
+          "y": 203.4342555999756,
+          "width": 57.94755709171295,
+          "height": 61.768275141716,
+          "right": 95.92895805835724,
+          "bottom": 265.2025307416916
+        },
+        "logical": {
+          "type": 5,
+          "x": 38,
+          "y": 204,
+          "width": 57.31077003804276,
+          "height": 61.13148804057897
+        },
+        "style": 4,
+        "source": 4,
+        "texture": [
+          180,
+          192
+        ],
+        "scale": 1.2735726675120616,
+        "requested": 1.2735726675120616
+      },
+      "total": {
+        "name": "score/total",
+        "text": "150",
+        "draw": {
+          "x": 255.97210144996643,
+          "y": 204.70782828330994,
+          "width": 84.69258344173431,
+          "height": 59.2211297750473,
+          "right": 340.66468489170074,
+          "bottom": 263.92895805835724
+        },
+        "logical": {
+          "type": 5,
+          "x": 255.99999999999997,
+          "y": 205.5,
+          "width": 84.05579605579604,
+          "height": 58.58434270555483
+        },
+        "style": 4,
+        "source": 4,
+        "texture": [
+          264,
+          184
+        ],
+        "scale": 1.2735726675120616,
+        "requested": 1.2735726675120616
+      }
+    }
+  },
+  "runs": [
+    {
+      "phase": "before",
+      "sources": {
+        "src/game/TextRaster.ts": "4bb6c27f1706ec247bfca00e5793082d18872d9789e2672a8fb1ac4c3b980912",
+        "src/game/ScoreTableReadouts.ts": "043c0d16ade9cc641389691b5ba342dbe754ab5f92b3cea3bd422ba02b6b96e1",
+        "src/game/ScoreTableMotion.ts": "8ee6c45f881673ee0e38a898026cdbd5d1f4c49039cd9bafd4fcc691989689ae",
+        "src/game/HeroSkillStatusText.ts": "3ac2f7d1d2f48752be8494464775e79962553e7d824a7f62b9046272f5289fb5"
+      },
+      "browser": "153.0.8010.12",
+      "sourceUnchanged": true,
+      "cases": [
+        {
+          "id": "amo",
+          "dpr": 2,
+          "status": "PASS",
+          "frames": 289,
+          "stateExact": true,
+          "finalScore": "300",
+          "densityMismatches": 747,
+          "overflows": 747,
+          "numericOverlaps": 0,
+          "actualPeaks": {
+            "score/heat": 1.279767118781669,
+            "score/multiplier": 1.5393942049930118,
+            "score/total": 1.5393942049930118
+          },
+          "multiplierSource": {
+            "name": "score/source-value",
+            "text": "×2",
+            "draw": {
+              "x": 289,
+              "y": 316,
+              "width": 39.5,
+              "height": 34.5,
+              "right": 328.5,
+              "bottom": 350.5
+            },
+            "logical": {
+              "type": 5,
+              "x": 288.5,
+              "y": 316.5,
+              "width": 39,
+              "height": 34
+            },
+            "style": 3,
+            "source": 3,
+            "texture": [
+              117,
+              102
+            ],
+            "scale": 1,
+            "requested": 1
+          }
+        }
+      ]
+    },
+    {
+      "phase": "after",
+      "sources": {
+        "src/game/TextRaster.ts": "b7ad84e36d6b7da5120f99e4c0dc92ca52846603bd39ca7839d326309ca2bd8e",
+        "src/game/ScoreTableReadouts.ts": "f07c4684588cf113ef16f8ee9a99be057edc9944b7bb6a052b5196e612a8b11a",
+        "src/game/ScoreTableMotion.ts": "8ee6c45f881673ee0e38a898026cdbd5d1f4c49039cd9bafd4fcc691989689ae",
+        "src/game/HeroSkillStatusText.ts": "3ac2f7d1d2f48752be8494464775e79962553e7d824a7f62b9046272f5289fb5"
+      },
+      "browser": "153.0.8010.12",
+      "sourceUnchanged": true,
+      "cases": [
+        {
+          "id": "amo",
+          "dpr": 2,
+          "status": "PASS",
+          "frames": 288,
+          "stateExact": true,
+          "finalScore": "300",
+          "densityMismatches": 0,
+          "overflows": 0,
+          "numericOverlaps": 0,
+          "actualPeaks": {
+            "score/heat": 1.2798925483259147,
+            "score/multiplier": 1.5393942049930118,
+            "score/total": 1.5393942049930118
+          },
+          "multiplierSource": {
+            "name": "score/source-value",
+            "text": "×2",
+            "draw": {
+              "x": 289,
+              "y": 316,
+              "width": 39.5,
+              "height": 34.5,
+              "right": 328.5,
+              "bottom": 350.5
+            },
+            "logical": {
+              "type": 5,
+              "x": 288.5,
+              "y": 316,
+              "width": 39,
+              "height": 34
+            },
+            "style": 3,
+            "source": 3,
+            "texture": [
+              117,
+              102
+            ],
+            "scale": 1,
+            "requested": 1
+          }
+        },
+        {
+          "id": "azao",
+          "dpr": 1,
+          "status": "PASS",
+          "frames": 280,
+          "stateExact": true,
+          "finalScore": "237",
+          "densityMismatches": 0,
+          "overflows": 0,
+          "numericOverlaps": 0,
+          "actualPeaks": {
+            "score/heat": 1.279767118781669,
+            "score/multiplier": 1.5285123317193345,
+            "score/total": 1.5285123317193345
+          },
+          "multiplierSource": {
+            "name": "score/source-value",
+            "text": "×1.5",
+            "draw": {
+              "x": 288,
+              "y": 316,
+              "width": 64.5,
+              "height": 34.5,
+              "right": 352.5,
+              "bottom": 350.5
+            },
+            "logical": {
+              "type": 5,
+              "x": 288,
+              "y": 316,
+              "width": 64,
+              "height": 34
+            },
+            "style": 2,
+            "source": 2,
+            "texture": [
+              128,
+              68
+            ],
+            "scale": 1,
+            "requested": 1
+          }
+        },
+        {
+          "id": "xiemu",
+          "dpr": 1,
+          "status": "PASS",
+          "frames": 281,
+          "stateExact": true,
+          "finalScore": "474",
+          "densityMismatches": 0,
+          "overflows": 0,
+          "numericOverlaps": 0,
+          "actualPeaks": {
+            "score/heat": 1.279767118781669,
+            "score/multiplier": 1.528197077647627,
+            "score/total": 1.528197077647627
+          },
+          "multiplierSource": {
+            "name": "score/source-value",
+            "text": "×3",
+            "draw": {
+              "x": 288,
+              "y": 316,
+              "width": 39.5,
+              "height": 34.5,
+              "right": 327.5,
+              "bottom": 350.5
+            },
+            "logical": {
+              "type": 5,
+              "x": 288,
+              "y": 316,
+              "width": 39,
+              "height": 34
+            },
+            "style": 2,
+            "source": 2,
+            "texture": [
+              78,
+              68
+            ],
+            "scale": 1,
+            "requested": 1
+          }
+        }
+      ]
+    },
+    {
+      "phase": "after-match",
+      "sources": {
+        "src/game/TextRaster.ts": "b7ad84e36d6b7da5120f99e4c0dc92ca52846603bd39ca7839d326309ca2bd8e",
+        "src/game/ScoreTableReadouts.ts": "f07c4684588cf113ef16f8ee9a99be057edc9944b7bb6a052b5196e612a8b11a",
+        "src/game/ScoreTableMotion.ts": "8ee6c45f881673ee0e38a898026cdbd5d1f4c49039cd9bafd4fcc691989689ae",
+        "src/game/HeroSkillStatusText.ts": "3ac2f7d1d2f48752be8494464775e79962553e7d824a7f62b9046272f5289fb5"
+      },
+      "browser": "153.0.8010.12",
+      "sourceUnchanged": true,
+      "cases": [
+        {
+          "id": "amo",
+          "dpr": 2,
+          "status": "PASS",
+          "frames": 288,
+          "stateExact": true,
+          "finalScore": "300",
+          "densityMismatches": 0,
+          "overflows": 0,
+          "numericOverlaps": 0,
+          "actualPeaks": {
+            "score/heat": 1.279767118781669,
+            "score/multiplier": 1.5396722803823395,
+            "score/total": 1.5396722803823395
+          },
+          "multiplierSource": {
+            "name": "score/source-value",
+            "text": "×2",
+            "draw": {
+              "x": 289,
+              "y": 316,
+              "width": 39.5,
+              "height": 34.5,
+              "right": 328.5,
+              "bottom": 350.5
+            },
+            "logical": {
+              "type": 5,
+              "x": 288.5,
+              "y": 316.5,
+              "width": 39,
+              "height": 34
+            },
+            "style": 3,
+            "source": 3,
+            "texture": [
+              117,
+              102
+            ],
+            "scale": 1,
+            "requested": 1
+          }
+        }
+      ]
+    }
+  ]
+}
