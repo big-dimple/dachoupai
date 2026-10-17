@@ -1,0 +1,9 @@
+diff --git a/src/game/GameScene.ts b/src/game/GameScene.ts
+--- a/src/game/GameScene.ts
++++ b/src/game/GameScene.ts
+@@ -1 +1,2 @@
+ import {heroSkillName,heroSkillTitle,type TouyeSkillPhase} from './HeroSkillPresentation';
++import {updateHeroSkillStatusText} from './HeroSkillStatusText';
+@@ -1148 +1149 @@
+-      (this.heroActionButton.getData('skillStatus') as Phaser.GameObjects.Text|undefined)?.setText(heroCue?.status??'').setColor(heroCue?.state==='available'||heroCue?.state==='selected'?C.jade:heroCue?.state==='pending'?C.red:C.mutedInk);
++      updateHeroSkillStatusText(this.heroActionButton.getData('skillStatus') as Phaser.GameObjects.Text|undefined,heroCue?.status??'',heroCue?.state==='available'||heroCue?.state==='selected'?C.jade:heroCue?.state==='pending'?C.red:C.mutedInk);
