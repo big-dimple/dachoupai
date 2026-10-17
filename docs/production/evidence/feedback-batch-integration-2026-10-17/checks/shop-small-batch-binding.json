@@ -1,0 +1,53 @@
+{
+  "base": "5cafa41ace1abbfd5d9fe4ad97f9bb10a00867a4",
+  "testedProductCommit": "277d13cc381545e4b2965d2aa019c6bb7e11ad1c",
+  "sources": [
+    {
+      "source": "aceb2403856440ba280f2dc1453718ee46883620",
+      "paths": 35,
+      "exact": 35,
+      "different": []
+    },
+    {
+      "source": "63145adfdecd06af006ea62e21b24455a88367fc",
+      "paths": 23,
+      "exact": 22,
+      "different": [
+        "tests/c01-tool-info.test.ts"
+      ]
+    },
+    {
+      "source": "7b18d9d9098464fefcc1562e6a7730b18a1a9d41",
+      "paths": 4,
+      "exact": 4,
+      "different": []
+    }
+  ],
+  "initialAudit": "strict all-source-identical assertion failed on preserved preexisting long-term test; product untouched",
+  "initialValidationInvocation": "default sandbox could not write log files in Temp; no usable test/build result; rerun authorized working-tree commands",
+  "intentionalCombination": "63145 source test lacks already-published long-term first-layer test; current test is byte-exact base main, both new-name expectations retained",
+  "protectedDiff": [],
+  "headerBinding": {
+    "src/game/ShopLayout.ts": {
+      "sha256LF": "1cd33bab1ad5a9d545f3ecfa0abd7b1132845c31f5a79102221a7c50c4ed8088",
+      "sourceHashMatches": true
+    },
+    "src/game/ShopScene.ts": {
+      "sha256LF": "a2725f9ebccf0f153ad2ce65d44e34b48d6d64621ee418d5d6c467b1e16fcd3e",
+      "sourceHashMatches": true
+    },
+    "src/game/ShopArt.ts": {
+      "sha256LF": "a99f29fe24719a60b7f2e686afab282624eb0d4e1110fb543c2744cb906bc9a7",
+      "sourceHashMatches": true
+    },
+    "tests/shop-layout.test.ts": {
+      "sha256LF": "7825e60be1a3ece4146c89a00520409ffad781947714aeea9819116caacc0b94",
+      "sourceHashMatches": true
+    },
+    "harness/shop-header-safe-area.mjs": {
+      "sha256LF": "2aa69f53017471aa0742f8b178ecde34ba4002c1bbc68eb084f8fa21959785a9",
+      "sourceHashMatches": true
+    }
+  },
+  "headerAndIridescenceHooksPreserved": true
+}

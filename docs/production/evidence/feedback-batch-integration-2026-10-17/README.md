@@ -1,5 +1,15 @@
 # 本轮反馈整合回执 · 2026-10-17
 
+## 商店头栏／虹彩与小文案实际整合（277d13cc）
+
+**商店与说明小批实际整合：** 基线main `5cafa41ace1abbfd5d9fe4ad97f9bb10a00867a4`，上一条6609登记已普通push dev `590d5b0e79e99a17301aedc572425d3867177cc0`。头栏安全区 `aceb2403856440ba280f2dc1453718ee46883620` 已含Shop虹彩后继 `1075bd204e364d867528183d8e0c0c162ced93d9`，再顺序合入旧名出口 `63145adfdecd06af006ea62e21b24455a88367fc` 与极简手册最新回执 `7b18d9d9098464fefcc1562e6a7730b18a1a9d41`，产品 `277d13cc381545e4b2965d2aa019c6bb7e11ad1c`，三次正常merge无冲突。来源35路径全同、63145的23路径中22同（唯一测试差异为完整保留main已有长期文案用例，当前测试精确基线）、手册4路径全同；头栏5个LF源指纹及虹彩/暖金挂载hook保留。新增4文件38项交叉、类型/340模块构建通过，原18/28/30/74窄测和各自双端证据按原版本范围复用，未重跑手册产品测试或浏览器矩阵。GameScene、音频、规则/存档/资产不改；Shop虹彩不代签战斗接线，旧词现场根因仍未知。整包389文件/37,488,833B仍超20MB。按既有授权普通eyes/main发布，最终SHA以远端交付回执为准；不是仅登记。最高源牌音画仍等01a147ec与最新6609真实scoreRebound双拍的同版GameScene/序列证据，不单发旧8a9；不阻塞核心、三目标未达标/P08 in_progress与审美/真人/听感触感/真机/正式门保持。
+
+- 精确来源：[头栏](../shop-header-safe-area-2026-10-17/README.md)、[Shop虹彩与忘招暖金](../polychrome-iridescence-2026-10-17/README.md)、[旧名出口](../tool-copy-boundary-audit-2026-10-17/README.md)、[手册最新名称纠正](../minimal-handbook-copy-2026-10-17/README.md)。1180/390原生菜单边界8px及12边缘点击、虹彩无输入连续视频/减少动态/清理、189展示视图均只签来源同码范围；本版没有新自然长局或真机验收。
+- [来源/保护树绑定](checks/shop-small-batch-binding.json)：源码无新冲突修补。首次“全部源文件均应一致”的审计在已发布测试组合处FAIL，完整差异已记录并确认当前测试精确基线，不改产品、不放宽机制断言。
+- [合版交叉](checks/shop-small-batch-cross.log)：shop-flow-components、joker-extra-bonus-copy、player-facing-text、catalog，4文件38项；不冒称重跑来源74或合算各批数量。
+- [类型与生产构建](checks/shop-small-batch-build.log)、[构建身份及包体积](checks/shop-small-batch-build.json)：revision277d13cc，builtAt2026-10-17T12:52:53.976Z，sourceStatus clean/modifiedfalse。验证时仅有未跟踪绑定记录/忽略日志，不宣称所有文件均无暂存外输出。默认沙箱最初无法写Temp日志，没有有效结果；改用允许的同工作树权限后完成上述实际检查。
+- 不因既有20MB FAIL扩大删资源范围；不等CI、查域名或部署。旧失败原件、冻结内容和存档保持。
+
 **最高音画批音频更新（仅登记）：** 现用候选 `6609f4f609199ee1d5c9271c9389daaebb943bd7`，为同分支8a9b后继，含真实回弹阶段scoreRebound双拍契约。源牌owner01a147ec须给GameScene同版接线及实际序列回执后再联合整合；旧一声版不提前单发，不以接口/单测宣称用户双拍或三体验已满足。其余已完成小批不阻塞此最高优先级；本次不合产品、不跑测试、不push main。
 
 ## 刘娥样例与AI实际操作一致性后继整合

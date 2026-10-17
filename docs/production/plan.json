@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "auditCommit": "7d7921e76ca794a14e715e3eac3b4d66143862ff",
   "currentTask": "P08",
-  "selectionPolicy": "最高音画批音频候选更新为6609f4f6（8a9同分支后继），含真实scoreRebound双拍；等01a147ec的GameScene同版接线与实际序列证据后再联合合入，不单发旧一声版，不签用户双拍/体验。当前main仍5cafa；此轮仅dev计划登记、不合源码/跑测试/main。已完成小批不阻塞此优先级，P08及预算/人验/CI正式门保持。",
+  "selectionPolicy": "商店/说明已完成小批实际合277d13cc，38交叉及类型340构建PASS，按既有授权普通eyes/main发布，最终SHA以远端回执为准；不占GameScene。最高源牌音画优先级不变：最新6609真实回弹双拍必须等01a147ec同版GameScene/序列证据，不单发旧8a9。三目标/P08及预算/人验/CI正式门保持。",
   "resumeContract": {
     "candidateCommit": "4bf6a7d63d7738d3c415d09439a1bdca878dc685",
     "gateTask": "A01",
@@ -38,7 +38,7 @@
       ],
       "package": "docs/production/WORK_PACKAGES.md#p08",
       "humanGate": false,
-      "completionScope": "P08及三目标仍未达标。商店934已先发布，后继刘娥387+AI8cf/e321已合10c92404，五核心精确，27交叉/类型336构建与一次真实PC选择/取消/AI切换/撤销/实际1390全状态canonical验证通过；源31/51/152与四段各原版本复用，不签全部六人/自然/体验。N01顶部五唐宋牌分散悬浮/去红粗框/真实左右回弹与音效同步是最高下一项，01a147ec联合8a9b未交闭环；本样例不代签。虹彩176仅Shop（战斗未接）及图鉴后排，小文案63145/手册最新7b18不抢核心。389文件37479977B仍超20MB，CI/用户审美理解/听感触感/真机/性能与正式门保持。",
+      "completionScope": "P08及三体验目标仍未达标。商店头栏/Shop虹彩1075经aceb、旧名63145和手册最新7b18实际合277d13cc，38交叉/类型340构建PASS，正常dev/main交付；源18/28/30/74及双端按各自范围复用，不重测手册。GameScene/音频/规则存档资产不改。最高下一项仍为01a147ec的顶部五牌分散悬浮/去红粗框/真实左右回弹，与最新6609真实scoreRebound双拍同版GameScene/序列闭环；未交不孤立单发旧8a9。Shop虹彩不代签战斗，用户旧词原现场根因仍未知。389文件37488833B超20MB，原CI缺口/审美理解/听感触感/实体手机/性能与正式门保持。",
       "evidence": [
         "docs/production/evidence/feedback-batch-integration-2026-10-17/eyes-followups.json",
         "docs/production/evidence/feedback-batch-integration-2026-10-17/zoom-sort.json",
@@ -2181,17 +2181,6 @@
     "actualPublishedMain": "e389ea2c4a7f6d49284546f91992d13055072655"
   },
   "pendingIntegrations": {
-    "polychromeIridescenceShop": {
-      "candidate": "176dfb8eacdd39070c0d7b3d7fca23f46e5d1461",
-      "branch": "dev/polychrome-iridescence-20261017",
-      "baseSource": "7db6e8395b10f58b19986c181e0e29fd8d4b2192",
-      "status": "DELIVERED_SHOP_SCOPE_DEFERRED_BEHIND_SOURCE_CARD_AUDIO_CORE",
-      "scope": "Shop shelf/held/full-slots continuous polychrome;separate warm-gold Wangzhao shelf/inventory",
-      "parentReceipt": "18narrow/type/build and dual-end persistence evidence;not locally reviewed or integrated yet",
-      "GameSceneWired": false,
-      "notClaimed": "battle-table effect active;real source-card action remains separate",
-      "canShipIndependentlyForShop": true
-    },
     "sourceCardAudioCore": {
       "priority": "HIGHEST_NEXT",
       "owner": "01a147ec",
@@ -2209,23 +2198,6 @@
       "scoreReboundContract": "double beat at the actual rebound phase;requires GameScene same-version wiring and actual sequence evidence",
       "previousAudioSourceEvidence": "105narrow/type/build/no clipping;human listening NOT_RUN",
       "latestAudioSourceEvidence": "parent delivered scoreRebound double-beat contract;not locally merged/tested;actual scene sequence pending"
-    },
-    "toolCopyBoundaryAudit": {
-      "candidate": "63145adfdecd06af006ea62e21b24455a88367fc",
-      "branch": "dev/tool-copy-boundary-audit-20261017",
-      "status": "DELIVERED_SMALL_COPY_FOLLOWUP_BEHIND_SOURCE_CORE",
-      "parentReceipt": "30tests/build/189views no old term;original现场cause unknown",
-      "notMerged": true
-    },
-    "minimalHandbookCopy": {
-      "candidate": "7b18d9d9098464fefcc1562e6a7730b18a1a9d41",
-      "product": "4fef9dd41f2201daf2e8aee75ae319959212e2a8",
-      "branch": "dev/minimal-handbook-copy-20261017",
-      "status": "DELIVERED_SMALL_COPY_FOLLOWUP_BEHIND_SOURCE_CORE",
-      "parentReceipt": "74related/type PASS;latest evidence-only tool-name correction,no product test rerun requested",
-      "U08": "whole poker deck floor16 vs original20;T02精简节目 andS01献纸 affected;S05忘招 handlevel+3/-1 unaffected",
-      "sharedFile": "coordinated with63145;inspect local merge when accepting",
-      "notMerged": true
     }
   },
   "encoreCopyFollowup": {
@@ -2349,6 +2321,47 @@
       "sourceProduct": "b0a52c96d575fda876e87f7d676cd5f9009b1b6a",
       "product": "10c92404fb4e0cac7ca89a10fd47fdcecc6b7ec6",
       "otherFiveHeroAttachment": "NOT_IMPLEMENTED_BY_THIS_BATCH"
+    },
+    "polychromeIridescenceShop": {
+      "candidate": "1075bd204e364d867528183d8e0c0c162ced93d9",
+      "branch": "dev/polychrome-iridescence-20261017",
+      "baseSource": "7db6e8395b10f58b19986c181e0e29fd8d4b2192",
+      "status": "INTEGRATED_VERIFIED_277d13cc_NORMAL_MAIN_DEV_DELIVERY_AUTHORIZED",
+      "scope": "Shop shelf/held/full-slots continuous polychrome;separate warm-gold S05忘招 shelf/inventory",
+      "GameSceneWired": false,
+      "notClaimed": "battle-table effect active;real source-card action remains separate",
+      "canShipIndependentlyForShop": true,
+      "integratedProduct": "277d13cc381545e4b2965d2aa019c6bb7e11ad1c",
+      "mergedThrough": "aceb2403856440ba280f2dc1453718ee46883620",
+      "sourceEvidence": "18narrow/type/build and dual-end continuous evidence reused, exact product blobs except intentional header geometry successor"
+    },
+    "toolCopyBoundaryAudit": {
+      "candidate": "63145adfdecd06af006ea62e21b24455a88367fc",
+      "branch": "dev/tool-copy-boundary-audit-20261017",
+      "status": "INTEGRATED_VERIFIED_277d13cc_NORMAL_MAIN_DEV_DELIVERY_AUTHORIZED",
+      "parentReceipt": "30tests/build/189views no old term;original现场cause unknown",
+      "integratedProduct": "277d13cc381545e4b2965d2aa019c6bb7e11ad1c",
+      "sourceEvidence": "30tests/build/189views reused at exact renderer product;original现场cause unknown"
+    },
+    "minimalHandbookCopy": {
+      "candidate": "7b18d9d9098464fefcc1562e6a7730b18a1a9d41",
+      "product": "4fef9dd41f2201daf2e8aee75ae319959212e2a8",
+      "branch": "dev/minimal-handbook-copy-20261017",
+      "status": "INTEGRATED_VERIFIED_277d13cc_NORMAL_MAIN_DEV_DELIVERY_AUTHORIZED",
+      "parentReceipt": "74related/type PASS;latest evidence-only tool-name correction,no product test rerun requested",
+      "U08": "whole poker deck floor16 vs original20;T02精简节目 andS01献纸 affected;S05忘招 handlevel+3/-1 unaffected",
+      "sharedFile": "coordinated with63145;inspect local merge when accepting",
+      "integratedProduct": "277d13cc381545e4b2965d2aa019c6bb7e11ad1c",
+      "sourceEvidence": "74related/type reused;latest7b18 receipt-only names corrected;no product test rerun"
+    },
+    "shopHeaderSafeArea": {
+      "candidate": "aceb2403856440ba280f2dc1453718ee46883620",
+      "branch": "dev/shop-header-safe-area-20261017",
+      "includesIridescence": "1075bd204e364d867528183d8e0c0c162ced93d9",
+      "status": "INTEGRATED_VERIFIED_277d13cc_NORMAL_MAIN_DEV_DELIVERY_AUTHORIZED",
+      "integratedProduct": "277d13cc381545e4b2965d2aa019c6bb7e11ad1c",
+      "sourceEvidence": "28related/type/build;1180/390 native menu geometry8px,12edge clicks and canonical tuples reused at five exact LF source hashes",
+      "fourAreasAndIridescenceHooks": "preserved"
     }
   },
   "shopStructureFollowup": {
@@ -2482,5 +2495,35 @@
     ],
     "open": "N01/three unmet experience goals,P08,CI,human/performance/hearing/haptics/device/formal gates",
     "actualPublishedMain": "5cafa41ace1abbfd5d9fe4ad97f9bb10a00867a4"
+  },
+  "shopSmallBatchFollowup": {
+    "baseMain": "5cafa41ace1abbfd5d9fe4ad97f9bb10a00867a4",
+    "registrationDev": "590d5b0e79e99a17301aedc572425d3867177cc0",
+    "sources": [
+      "aceb2403856440ba280f2dc1453718ee46883620",
+      "1075bd204e364d867528183d8e0c0c162ced93d9",
+      "63145adfdecd06af006ea62e21b24455a88367fc",
+      "7b18d9d9098464fefcc1562e6a7730b18a1a9d41"
+    ],
+    "product": "277d13cc381545e4b2965d2aa019c6bb7e11ad1c",
+    "devBranch": "dev/eyes-followups-integration-20261017",
+    "status": "CHECKS_PASS_NORMAL_MAIN_AND_DEV_DELIVERY_AUTHORIZED",
+    "binding": "35of35,22of23(main-existing c01 duration test retained),4of4;header5LFhashes exact",
+    "cross": {
+      "files": 4,
+      "tests": 38,
+      "status": "PASS"
+    },
+    "typecheckAndBuild": "PASS340 modules",
+    "sourceTestsAndNative": "18/28/30/74 and own native evidence reused;not summed or re-run matrix",
+    "GameSceneAudioRulesSaveAssetsDiff": false,
+    "fullDist": {
+      "files": 389,
+      "bytes": 37488833,
+      "limit": 20000000,
+      "status": "FAIL"
+    },
+    "sourceCardAudioCore": "highest next, latest6609 double beat,await same-version GameScene and actual sequence from01a147ec",
+    "remaining": "battle iridescence unconnected;original old-word trigger unknown;three goals/P08,human/device/hearing/performance/formal gates open"
   }
 }
