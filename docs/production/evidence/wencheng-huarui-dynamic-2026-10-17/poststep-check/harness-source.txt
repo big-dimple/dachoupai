@@ -1,0 +1,92 @@
+import assert from 'node:assert/strict';
+import {mkdir,writeFile,readFile} from 'node:fs/promises';
+import {createHash} from 'node:crypto';
+import {gzipSync} from 'node:zlib';
+import {execFileSync} from 'node:child_process';
+import {build,preview,createServer} from 'vite';
+import {chromium} from 'playwright';
+import {tapUI,waitScene,point,tapMenuAction} from './ui.mjs';
+
+const out=process.env.TWO_HERO_OUT??'shots/wencheng-huarui-dynamic';await mkdir(out,{recursive:true});
+const ssr=await createServer({configFile:false,cacheDir:out+'/ssr-cache',server:{middlewareMode:true,hmr:false,watch:null},optimizeDeps:{noDiscovery:true,include:[]},appType:'custom',logLevel:'error'});
+const fixture=await ssr.ssrLoadModule('/harness/fixtures/wencheng-huarui-dynamic.ts'),domain=await ssr.ssrLoadModule('/src/domain/run.ts'),cp=await ssr.ssrLoadModule('/src/application/checkpoint.ts');
+const fixtures=Object.fromEntries(['azao','xiemu'].flatMap(id=>[false,true].map(neg=>[id+(neg?'-negative':''),fixture.dynamicHeroFixture(id,neg)])));await ssr.close();
+const outDir=out+'/build';if(!process.env.TWO_HERO_REUSE_BUILD)await build({mode:'e2e',build:{outDir,emptyOutDir:true},logLevel:'error'});
+const server=await preview({build:{outDir},preview:{host:'127.0.0.1',port:5596,strictPort:true}}),browser=await chromium.launch({args:['--disable-gpu']});
+const git=(...a)=>execFileSync('git',a,{encoding:'utf8'}).trim(),report={testedCommit:git('rev-parse','HEAD'),browser:browser.version(),scope:'Only 文成公主/azao and 花蕊夫人/xiemu. Controlled validated current-rule snapshots and real GameScene inputs, one PC and one emulated portrait profile. Audio call/admission timing is not subjective sound or physical haptic/device acceptance. Four other heroes are not covered.',rows:[]};
+const eyes=JSON.parse(await readFile('public/assets/tangsong-eyes/manifest.json','utf8')).assets;
+const snapshot=p=>p.evaluate(async()=>{const c=window.__harness.game.registry.get('runController');return {state:c.state,journal:c.journal,storage:await c.store.read()};});
+const settle=p=>p.waitForFunction(()=>{const g=window.__harness.game,s=g.scene.getScene('game');return g.scene.isActive('intermission')||s.scene.isActive()&&s.ready&&!s.playing&&!s.presentation&&s.controlsLive&&s.cardViews.every(v=>!v.dealing);});
+const mark=(p,tag)=>p.evaluate(tag=>{window.__m.tag=tag;window.__m.marks.push({tag,t:performance.now()});},tag);
+async function load(p,f,first=false){
+ if(first){await p.goto('http://127.0.0.1:5596/?harness=1');await waitScene(p,'title');}
+ await p.locator('.run-menu-toggle').click();const details=p.getByText('进度与存档',{exact:true}).locator('..');if(!await details.evaluate(e=>e.open))await details.locator('summary').click();
+ const choose=p.waitForEvent('filechooser');await p.getByRole('button',{name:'导入本局',exact:true}).click();await(await choose).setFiles({name:'controlled-two-hero.json',mimeType:'application/json',buffer:Buffer.from(JSON.stringify(f.checkpoint))});await waitScene(p,'game');await settle(p);assert.deepEqual((await snapshot(p)).state,f.state);
+}
+async function monitor(p,id){await p.waitForFunction(id=>window.__harness.game.textures.exists('hero-eyes-'+id),id);await p.evaluate(async asset=>{
+ const g=window.__harness.game,s=g.scene.getScene('game'),audio=s.audio;await audio.scoreSampleTask;
+ const hash=async bytes=>[...new Uint8Array(await crypto.subtle.digest('SHA-256',bytes))].map(x=>x.toString(16).padStart(2,'0')).join('');
+ const pixelHash=async image=>{const c=document.createElement('canvas');c.width=image.naturalWidth||image.width;c.height=image.naturalHeight||image.height;const ctx=c.getContext('2d');ctx.drawImage(image,0,0);return hash(ctx.getImageData(0,0,c.width,c.height).data);};
+ const bytes=await(await fetch('/'+asset.path)).arrayBuffer(),responseSHA=await hash(bytes);if(responseSHA!==asset.sha256)throw Error('reference eye response differs from manifest');
+ const url=URL.createObjectURL(new Blob([bytes],{type:'image/webp'})),reference=new Image();reference.src=url;await reference.decode();const expectedPixelSHA=await pixelHash(reference);URL.revokeObjectURL(url);
+ const key='hero-eyes-'+asset.id,runtime=g.textures.get(key).getSourceImage(),runtimePixelSHA=await pixelHash(runtime);
+ const m=window.__m={tag:'idle',frames:[],audio:[],images:{},marks:[],started:performance.now(),eyeBinding:{key,responseSHA,expectedPixelSHA,runtimePixelSHA,width:runtime.width,height:runtime.height},warm:{samples:audio.scoreSamples?.size,contextState:audio.context?.state}};
+ for(const method of ['scoreImpact','sourceCue','role','playHand','cue']){const original=audio[method];if(typeof original!=='function')continue;audio[method]=function(...args){const row={t:performance.now(),tag:m.tag,method,eventId:method==='scoreImpact'?args[1]:undefined,kind:method==='scoreImpact'?args[2]:args[0],contextTime:this.context?.currentTime};m.audio.push(row);const result=original.apply(this,args);if(method==='cue')row.admitted=Array.isArray(result)?result.length:undefined;return result;};}
+ g.events.on('poststep',()=>{
+  if(m.tag==='idle')return;const sc=g.scene.getScene('game');if(!sc.scene.isActive()||!sc.scoreTotal?.active)return;
+  const group=sc.heroClimax?.group,eye=group?.active?group.list.find(x=>x.name==='hero/climax-eyes'):undefined,process=sc.resultText?.getData('scoreSourceProcess'),t=performance.now();
+  const row={t,frame:g.loop.frame,tag:m.tag,seq:sc.run?.commandSeq,playing:sc.playing,phase:sc.scoreTotal.getData('eventPhase'),eventId:sc.scoreTotal.getData('eventId'),heat:sc.scoreHeat.text,mult:sc.scoreMult.text,total:sc.scoreTotal.text,source:sc.resultText.text,process:process?{eventId:process.eventId,source:process.source,before:process.before,after:process.after,exact:process.exact}:undefined,eyes:eye?{eventId:group.getData('eventId'),phase:group.getData('phase'),assetId:eye.getData('assetId'),camera:eye.getData('camera'),texture:eye.texture.key,url:eye.texture.getSourceImage().src,crop:eye.getData('sampledCrop'),bounds:eye.getData('visibleBounds'),alpha:eye.alpha}:undefined};
+  m.frames.push(row);if(row.eyes?.phase==='strike'){const key=m.tag+'|'+row.eyes.eventId;if(!m.images[key])m.images[key]={t,eventId:row.eyes.eventId,tag:m.tag,png:g.canvas.toDataURL('image/png')};}
+ });
+},eyes.find(x=>x.id===id));}
+async function select(p,ids,touch){for(const id of await p.evaluate(()=>[...window.__harness.game.scene.getScene('game').selectedIds]))await tapUI(p,'game','card/'+id,touch);for(const id of ids)await tapUI(p,'game','card/'+id,touch);}
+async function skill(p,touch,available=true){await tapUI(p,'game',available?'hero/action-shortcut':'hero/skill-entry',touch);if(!available)await p.getByRole('button',{name:'查看本场技能操作',exact:true}).click();await p.locator('.hero-skill-dialog[open]').waitFor();}
+async function action(p,name,touch){const b=p.getByRole('button',{name,exact:true});if(touch)await b.tap();else await b.click();await p.waitForTimeout(380);}
+async function play(p,tag,touch,double=false){await mark(p,tag);if(double){const b=await point(p,'game','action/play');await p.mouse.dblclick(b.x,b.y,{delay:80});}else await tapUI(p,'game','action/play',touch);await settle(p);return snapshot(p);}
+function commandCheck(before,after){assert.equal(after.journal.length,before.journal.length+1,'one real input commits once');const command=after.journal.at(-1),r=domain.applyCommand(before.state,command);assert.ok(r.ok,r.code);assert.deepEqual(after.state,r.state,'real state equals canonical command');assert.deepEqual(after.storage.current,cp.makeCheckpoint(after.state,after.journal));return command;}
+const float=x=>Number(x.n)/Number(x.d),text=x=>String(float(x));
+function payoffCheck(row,record,event,asset){
+ const frames=record.frames.filter(x=>x.tag===row.tag),active=frames.filter(x=>x.eyes?.eventId===event.eventId),strike=active.find(x=>x.eyes.phase==='strike');
+ assert.ok(strike,'real payoff has an inline strike frame');assert.equal(strike.eyes.assetId,row.id+'.eyes');assert.equal(strike.eyes.camera,'dedicated-eye-strip');assert.equal(strike.eyes.texture,'hero-eyes-'+row.id);assert.equal(record.eyeBinding.key,strike.eyes.texture);assert.equal(record.eyeBinding.responseSHA,asset.sha256);assert.equal(record.eyeBinding.runtimePixelSHA,record.eyeBinding.expectedPixelSHA,'decoded runtime eye pixels equal the actual dedicated asset');assert.deepEqual(strike.eyes.crop,{x:0,y:0,width:asset.width,height:asset.height});
+ const landed=active.find(x=>x.process?.eventId===event.eventId&&x.heat===text(event.after.H)&&x.mult===text(event.after.M));assert.ok(landed,'committed hero number arrives while the correct gaze is present');assert.deepEqual(landed.process.before,event.before);assert.deepEqual(landed.process.after,event.after);
+ const before=frames.find(x=>x.process?.eventId===event.eventId&&x.mult===text(event.before.M));assert.ok(before,'hero windup shows the actual preceding multiplier');
+ const sounds=record.audio.filter(x=>x.tag===row.tag&&x.method==='scoreImpact'&&x.eventId===event.eventId&&x.kind!=='flight');assert.equal(sounds.length,1,'one non-flight score impact per committed hero event');assert.ok(Math.abs(sounds[0].t-strike.t)<=250,'observed audio call aligns within one bounded software frame window');
+ return {event,firstEyeAt:active[0].t,strikeAt:strike.t,lastEyeAt:active.at(-1).t,source:landed.process.source,beforeText:before.mult,afterText:landed.mult,sound:sounds[0],soundMinusStrikeMs:sounds[0].t-strike.t,eye: strike.eyes};
+}
+try{
+ for(const id of ['azao','xiemu'])for(const spec of [{width:1366,height:768,touch:false},{width:390,height:844,touch:true}]){
+  const key=id+'-'+spec.width;if(process.env.TWO_HERO_CASES&&!process.env.TWO_HERO_CASES.split(',').includes(key))continue;
+  const context=await browser.newContext({viewport:{width:spec.width,height:spec.height},hasTouch:spec.touch,deviceScaleFactor:1}),p=await context.newPage(),row={key,id,spec,status:'RUNNING',checks:[],errors:[]};report.rows.push(row);p.setDefaultTimeout(25000);p.setDefaultNavigationTimeout(45000);p.on('pageerror',e=>row.errors.push(e.stack??e.message));p.on('dialog',d=>d.accept());
+  try{
+   console.log('Checking '+key);const f=fixtures[id];await load(p,f,true);await monitor(p,id);await mark(p,'choice-cancel');await select(p,f.selectedIds,spec.touch);
+   const before=await snapshot(p);row.available=await p.evaluate(()=>{const s=window.__harness.game.scene.getScene('game');return {hero:s.heroActionButton.getData('abilityState'),enabled:s.heroActionButton.input.enabled,label:s.heroActionButton.getData('label').text,charge:s.run.stage.azaoCharge,gold:s.run.gold};});assert.equal(row.available.hero,'available');
+   await skill(p,spec.touch);await p.screenshot({path:out+'/'+key+'-skill.png'});await p.keyboard.press('Escape');await p.waitForTimeout(380);assert.deepEqual(await snapshot(p),before);
+   const choose=id==='azao'?'本手释放 ×1.5':'付20金 ×3',cancel=id==='azao'?'取消本手释放':'取消本手支付';
+   await skill(p,spec.touch);await action(p,choose,spec.touch);assert.deepEqual(await snapshot(p),before,'choosing remains an unsaved draft');await skill(p,spec.touch);await action(p,cancel,spec.touch);assert.deepEqual(await snapshot(p),before,'explicit cancellation preserves all resources and receipts');
+   row.checks.push('available / Escape / select / explicit cancel preserve full state, journal and slots');
+   await skill(p,spec.touch);await action(p,choose,spec.touch);const paid=await play(p,'payoff-1',spec.touch,!spec.touch);row.command=commandCheck(before,paid);row.first={before:before.state.stage,after:paid.state.stage,trace:paid.state.lastTrace,goldBefore:before.state.gold,goldAfter:paid.state.gold};
+   const event=paid.state.lastTrace.events.find(e=>e.sourceType==='character'&&e.phase==='characterScore');assert.ok(event);
+   if(id==='xiemu'){assert.equal(paid.state.lastTrace.xiemuBurn.cost,20);assert.equal(paid.state.gold,before.state.gold-20);assert.equal(paid.state.stage.xiemuBurnUsed,true);}else{assert.equal(paid.state.lastTrace.azaoCharge.release,true);assert.equal(paid.state.stage.azaoCharge.charge,0);}
+   await mark(p,'read-only-repeat');const stable=await snapshot(p);await tapMenuAction(p,'回看上一手',spec.touch);await settle(p);assert.deepEqual(await snapshot(p),stable,'replay is read only');
+   if(id==='azao'){
+    await select(p,f.holdIds,spec.touch);const holdBefore=await snapshot(p),held=await play(p,'charge-again',spec.touch);commandCheck(holdBefore,held);assert.equal(held.state.stage.azaoCharge.charge,1);assert.equal(held.state.phase,'await-input');
+    await select(p,f.repeatIds,spec.touch);await skill(p,spec.touch);await action(p,choose,spec.touch);const repeatBefore=await snapshot(p),repeat=await play(p,'payoff-2',spec.touch);commandCheck(repeatBefore,repeat);row.repeatTrace=repeat.state.lastTrace;assert.equal(repeat.state.lastTrace.azaoCharge.release,true);row.checks.push('same-stage charge and second release are real distinct events');
+   }else{
+    await select(p,f.holdIds,spec.touch);row.used=await p.evaluate(()=>{const s=window.__harness.game.scene.getScene('game');return {state:s.heroActionButton.getData('abilityState'),enabled:s.heroActionButton.input.enabled};});assert.equal(row.used.state,'used');assert.equal(row.used.enabled,false);
+    await skill(p,spec.touch,false);assert.ok(await p.getByRole('button',{name:'付10金 ×2',exact:true}).isDisabled());await p.keyboard.press('Escape');await p.waitForTimeout(380);
+    const normalBefore=await snapshot(p),normal=await play(p,'already-used-normal',spec.touch);commandCheck(normalBefore,normal);assert.equal(normal.state.lastTrace.xiemuBurn.cost,0);row.checks.push('used skill cannot pay twice; normal next hand has no hero payoff');
+   }
+   await mark(p,'negative-loading');await load(p,fixtures[id+'-negative']);await mark(p,'unavailable-choice');await select(p,f.selectedIds,spec.touch);const neg=await snapshot(p);await skill(p,spec.touch,false);const unavailable=p.getByRole('button',{name:id==='azao'?'先实际出牌蓄势，才能释放':'付10金 ×2',exact:true});assert.ok(await unavailable.isDisabled());await p.keyboard.press('Escape');await p.waitForTimeout(380);assert.deepEqual(await snapshot(p),neg);
+   if(id==='xiemu')await select(p,[f.selectedIds[0]],spec.touch);
+   const noBefore=await snapshot(p),no=await play(p,'unavailable-normal',spec.touch);commandCheck(noBefore,no);assert.equal(no.state.lastTrace.events.filter(e=>e.sourceType==='character'&&e.phase==='characterScore').length,0);
+   const record=await p.evaluate(()=>({frames:window.__m.frames,audio:window.__m.audio,marks:window.__m.marks,warm:window.__m.warm,eyeBinding:window.__m.eyeBinding})),asset=eyes.find(x=>x.id===id);row.payoffs=[payoffCheck({id,tag:'payoff-1'},record,event,asset)];row.eyeBinding=record.eyeBinding;
+   if(id==='azao'){const second=row.repeatTrace.events.find(e=>e.sourceType==='character'&&e.phase==='characterScore');assert.notEqual(second.eventId,event.eventId);row.payoffs.push(payoffCheck({id,tag:'payoff-2'},record,second,asset));}
+   for(const tag of ['choice-cancel','read-only-repeat','charge-again','already-used-normal','unavailable-choice','unavailable-normal'])assert.equal(new Set(record.frames.filter(x=>x.tag===tag&&x.eyes).map(x=>x.eyes.eventId)).size,0,'no false/duplicate hero eye cue in '+tag);
+   row.checks.push('correct dedicated eye texture/full crop, exact before/after multiplier and one synchronized impact per payoff','no gaze during cancelled, unavailable, passive charge, already-used or replay paths');
+   const images=await p.evaluate(()=>Object.values(window.__m.images));row.images=[];for(let i=0;i<images.length;i++){const im=images[i],name=key+'-'+im.tag+'-strike.png';await writeFile(out+'/'+name,Buffer.from(im.png.split(',')[1],'base64'));row.images.push({tag:im.tag,eventId:im.eventId,t:im.t,file:name});}
+   await writeFile(out+'/'+key+'-frames.json.gz',gzipSync(JSON.stringify(record)));row.timingFile=key+'-frames.json.gz';row.frameCount=record.frames.length;row.audioWarm=record.warm;assert.deepEqual(row.errors,[]);row.status='PASS';
+  }catch(e){row.status='FAIL';row.failure=String(e.stack??e);await p.screenshot({path:out+'/'+key+'-FAIL.png'}).catch(()=>{});try{const data=await p.evaluate(()=>window.__m&&({frames:window.__m.frames,audio:window.__m.audio,marks:window.__m.marks}));if(data)await writeFile(out+'/'+key+'-FAIL-frames.json.gz',gzipSync(JSON.stringify(data)));}catch{}}
+  finally{await context.close();await writeFile(out+'/report.json',JSON.stringify(report,null,2));console.log(key+': '+row.status+(row.failure?' '+row.failure.slice(0,250):''));}
+ }
+}finally{report.status=report.rows.length&&report.rows.every(x=>x.status==='PASS')?'PASS':'FAIL';report.sourceSHA256=Object.fromEntries(await Promise.all(['src/game/GameScene.ts','src/game/HeroClimaxStage.ts','src/game/HeroPayoff.ts','src/audio/AudioEngine.ts','harness/fixtures/wencheng-huarui-dynamic.ts'].map(async file=>[file,createHash('sha256').update(await readFile(file)).digest('hex')])));await writeFile(out+'/report.json',JSON.stringify(report,null,2));await browser.close();await new Promise(r=>server.httpServer.close(r));}
+if(report.status!=='PASS')process.exitCode=1;

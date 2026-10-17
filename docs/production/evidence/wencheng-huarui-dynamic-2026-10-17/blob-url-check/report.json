@@ -1,0 +1,3873 @@
+{
+  "testedCommit": "e2e64946f6fabe6fc0e8b369a6b3b52c5bda9d29",
+  "browser": "153.0.8010.12",
+  "scope": "Only 文成公主/azao and 花蕊夫人/xiemu. Controlled validated current-rule snapshots and real GameScene inputs, one PC and one emulated portrait profile. Audio call/admission timing is not subjective sound or physical haptic/device acceptance. Four other heroes are not covered.",
+  "rows": [
+    {
+      "key": "azao-1366",
+      "id": "azao",
+      "spec": {
+        "width": 1366,
+        "height": 768,
+        "touch": false
+      },
+      "status": "FAIL",
+      "checks": [
+        "available / Escape / select / explicit cancel preserve full state, journal and slots",
+        "same-stage charge and second release are real distinct events"
+      ],
+      "errors": [],
+      "available": {
+        "hero": "available",
+        "enabled": true,
+        "label": "和亲",
+        "charge": {
+          "charge": 1,
+          "previousQualifiedType": "two-pair"
+        },
+        "gold": 14
+      },
+      "command": {
+        "runId": "dynamic-review/azao",
+        "commandId": "dynamic-review/azao/command/9",
+        "expectedSeq": 8,
+        "action": {
+          "type": "PlayHand",
+          "selectedIds": [
+            "spades-3",
+            "hearts-3",
+            "clubs-4",
+            "diamonds-4"
+          ],
+          "azaoRelease": true
+        }
+      },
+      "first": {
+        "before": {
+          "routeGrowth": {
+            "entry": {
+              "commandId": "fixture/6",
+              "seq": 7,
+              "type": "EnterStage"
+            },
+            "handTypes": [
+              "two-pair"
+            ],
+            "eligible": [
+              "G"
+            ],
+            "sources": [
+              {
+                "command": {
+                  "runId": "dynamic-review/azao",
+                  "commandId": "fixture/7",
+                  "expectedSeq": 7,
+                  "action": {
+                    "type": "PlayHand",
+                    "selectedIds": [
+                      "hearts-2",
+                      "spades-2",
+                      "clubs-14",
+                      "diamonds-14"
+                    ]
+                  }
+                },
+                "cards": [
+                  {
+                    "id": "hearts-2",
+                    "suit": "hearts",
+                    "rank": 2
+                  },
+                  {
+                    "id": "spades-2",
+                    "suit": "spades",
+                    "rank": 2
+                  },
+                  {
+                    "id": "clubs-14",
+                    "suit": "clubs",
+                    "rank": 14
+                  },
+                  {
+                    "id": "diamonds-14",
+                    "suit": "diamonds",
+                    "rank": 14
+                  }
+                ],
+                "rules": {
+                  "fourStraight": false,
+                  "fourFlush": false
+                }
+              }
+            ]
+          },
+          "azaoCharge": {
+            "charge": 1,
+            "previousQualifiedType": "two-pair"
+          },
+          "openingDiscard": null,
+          "index": 1,
+          "targetHeat": "600",
+          "initialTargetHeat": "600",
+          "heat": "182",
+          "handsLeft": 3,
+          "initialHands": 4,
+          "discardsLeft": 3,
+          "initialDiscards": 3,
+          "discardSpent": 0,
+          "discardGained": 0,
+          "doubleDiscardBeforeFirstPlay": false,
+          "discardsUsed": 0,
+          "skipResult": null,
+          "playIndex": 1,
+          "previousHandType": "two-pair",
+          "previousHandScore": "182",
+          "handLimit": 8,
+          "initialHandLimit": 8,
+          "boss": null,
+          "initialJokerIds": [],
+          "sealedJokerIds": [],
+          "challengeDisabledJokerId": null,
+          "rescueUsed": false,
+          "clearId": null,
+          "goldEarned": 0,
+          "disabledIds": [],
+          "wagerSelected": false,
+          "wagerUsed": false,
+          "maxPlayedCount": 4,
+          "ordinaryStraightSeen": false,
+          "ordinaryFlushSeen": false,
+          "quadRefundUsed": false,
+          "jokerSold": false
+        },
+        "after": {
+          "routeGrowth": {
+            "entry": {
+              "commandId": "fixture/6",
+              "seq": 7,
+              "type": "EnterStage"
+            },
+            "handTypes": [
+              "two-pair",
+              "two-pair"
+            ],
+            "eligible": [
+              "G"
+            ],
+            "sources": [
+              {
+                "command": {
+                  "runId": "dynamic-review/azao",
+                  "commandId": "fixture/7",
+                  "expectedSeq": 7,
+                  "action": {
+                    "type": "PlayHand",
+                    "selectedIds": [
+                      "hearts-2",
+                      "spades-2",
+                      "clubs-14",
+                      "diamonds-14"
+                    ]
+                  }
+                },
+                "cards": [
+                  {
+                    "id": "hearts-2",
+                    "suit": "hearts",
+                    "rank": 2
+                  },
+                  {
+                    "id": "spades-2",
+                    "suit": "spades",
+                    "rank": 2
+                  },
+                  {
+                    "id": "clubs-14",
+                    "suit": "clubs",
+                    "rank": 14
+                  },
+                  {
+                    "id": "diamonds-14",
+                    "suit": "diamonds",
+                    "rank": 14
+                  }
+                ],
+                "rules": {
+                  "fourStraight": false,
+                  "fourFlush": false
+                }
+              },
+              {
+                "command": {
+                  "runId": "dynamic-review/azao",
+                  "commandId": "dynamic-review/azao/command/9",
+                  "expectedSeq": 8,
+                  "action": {
+                    "type": "PlayHand",
+                    "selectedIds": [
+                      "spades-3",
+                      "hearts-3",
+                      "clubs-4",
+                      "diamonds-4"
+                    ],
+                    "azaoRelease": true
+                  }
+                },
+                "cards": [
+                  {
+                    "id": "spades-3",
+                    "suit": "spades",
+                    "rank": 3
+                  },
+                  {
+                    "id": "hearts-3",
+                    "suit": "hearts",
+                    "rank": 3
+                  },
+                  {
+                    "id": "clubs-4",
+                    "suit": "clubs",
+                    "rank": 4
+                  },
+                  {
+                    "id": "diamonds-4",
+                    "suit": "diamonds",
+                    "rank": 4
+                  }
+                ],
+                "rules": {
+                  "fourStraight": false,
+                  "fourFlush": false
+                }
+              }
+            ]
+          },
+          "azaoCharge": {
+            "charge": 0,
+            "previousQualifiedType": null
+          },
+          "openingDiscard": null,
+          "index": 1,
+          "targetHeat": "600",
+          "initialTargetHeat": "600",
+          "heat": "419",
+          "handsLeft": 2,
+          "initialHands": 4,
+          "discardsLeft": 3,
+          "initialDiscards": 3,
+          "discardSpent": 0,
+          "discardGained": 0,
+          "doubleDiscardBeforeFirstPlay": false,
+          "discardsUsed": 0,
+          "skipResult": null,
+          "playIndex": 2,
+          "previousHandType": "two-pair",
+          "previousHandScore": "237",
+          "handLimit": 8,
+          "initialHandLimit": 8,
+          "boss": null,
+          "initialJokerIds": [],
+          "sealedJokerIds": [],
+          "challengeDisabledJokerId": null,
+          "rescueUsed": false,
+          "clearId": null,
+          "goldEarned": 0,
+          "disabledIds": [],
+          "wagerSelected": false,
+          "wagerUsed": false,
+          "maxPlayedCount": 4,
+          "ordinaryStraightSeen": false,
+          "ordinaryFlushSeen": false,
+          "quadRefundUsed": false,
+          "jokerSold": false
+        },
+        "trace": {
+          "routeGrowth": {
+            "before": {
+              "clears": 1,
+              "G": 1,
+              "S": 0,
+              "F": 0
+            },
+            "factors": {
+              "G": {
+                "n": "1",
+                "d": "1"
+              }
+            }
+          },
+          "azaoCharge": {
+            "before": {
+              "charge": 1,
+              "previousQualifiedType": "two-pair"
+            },
+            "release": true,
+            "after": {
+              "charge": 0,
+              "previousQualifiedType": null
+            },
+            "multiplier": "1.5"
+          },
+          "rulesVersion": "r2",
+          "rootId": "dynamic-review/azao/hand/dynamic-review/azao/command/9",
+          "handType": "two-pair",
+          "level": 1,
+          "sets": {
+            "playedIds": [
+              "spades-3",
+              "hearts-3",
+              "clubs-4",
+              "diamonds-4"
+            ],
+            "scoringIds": [
+              "spades-3",
+              "hearts-3",
+              "clubs-4",
+              "diamonds-4"
+            ],
+            "activeScoringIds": [
+              "spades-3",
+              "hearts-3",
+              "clubs-4",
+              "diamonds-4"
+            ],
+            "heldIds": [
+              "spades-5",
+              "hearts-5",
+              "clubs-6",
+              "diamonds-6"
+            ]
+          },
+          "finalScore": "237",
+          "accumulator": {
+            "H": {
+              "n": "79",
+              "d": "1"
+            },
+            "M": {
+              "n": "3",
+              "d": "1"
+            }
+          },
+          "events": [
+            {
+              "eventId": "dynamic-review/azao/hand/dynamic-review/azao/command/9/event/0",
+              "rootId": "dynamic-review/azao/hand/dynamic-review/azao/command/9",
+              "rootEventId": "dynamic-review/azao/hand/dynamic-review/azao/command/9/event/0",
+              "phase": "base",
+              "sourceType": "rule",
+              "sourceDefinitionId": "two-pair",
+              "sourceInstanceId": "dynamic-review/azao",
+              "operation": "base",
+              "value": {
+                "n": "65",
+                "d": "1"
+              },
+              "before": {
+                "H": {
+                  "n": "0",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "0",
+                  "d": "1"
+                }
+              },
+              "after": {
+                "H": {
+                  "n": "65",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "2",
+                  "d": "1"
+                }
+              },
+              "reasonKey": "two-pair.base",
+              "visibleCondition": {
+                "kind": "always"
+              },
+              "retriggerDepth": 0
+            },
+            {
+              "eventId": "dynamic-review/azao/hand/dynamic-review/azao/command/9/event/1",
+              "rootId": "dynamic-review/azao/hand/dynamic-review/azao/command/9",
+              "rootEventId": "dynamic-review/azao/hand/dynamic-review/azao/command/9/event/1",
+              "phase": "onCardScore",
+              "sourceType": "card",
+              "sourceDefinitionId": "rank-3",
+              "sourceInstanceId": "spades-3",
+              "targetCardId": "spades-3",
+              "operation": "add-heat",
+              "value": {
+                "n": "3",
+                "d": "1"
+              },
+              "before": {
+                "H": {
+                  "n": "65",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "2",
+                  "d": "1"
+                }
+              },
+              "after": {
+                "H": {
+                  "n": "68",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "2",
+                  "d": "1"
+                }
+              },
+              "reasonKey": "rank-3.add-heat",
+              "visibleCondition": {
+                "kind": "always"
+              },
+              "retriggerDepth": 0
+            },
+            {
+              "eventId": "dynamic-review/azao/hand/dynamic-review/azao/command/9/event/2",
+              "rootId": "dynamic-review/azao/hand/dynamic-review/azao/command/9",
+              "rootEventId": "dynamic-review/azao/hand/dynamic-review/azao/command/9/event/2",
+              "phase": "onCardScore",
+              "sourceType": "card",
+              "sourceDefinitionId": "rank-3",
+              "sourceInstanceId": "hearts-3",
+              "targetCardId": "hearts-3",
+              "operation": "add-heat",
+              "value": {
+                "n": "3",
+                "d": "1"
+              },
+              "before": {
+                "H": {
+                  "n": "68",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "2",
+                  "d": "1"
+                }
+              },
+              "after": {
+                "H": {
+                  "n": "71",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "2",
+                  "d": "1"
+                }
+              },
+              "reasonKey": "rank-3.add-heat",
+              "visibleCondition": {
+                "kind": "always"
+              },
+              "retriggerDepth": 0
+            },
+            {
+              "eventId": "dynamic-review/azao/hand/dynamic-review/azao/command/9/event/3",
+              "rootId": "dynamic-review/azao/hand/dynamic-review/azao/command/9",
+              "rootEventId": "dynamic-review/azao/hand/dynamic-review/azao/command/9/event/3",
+              "phase": "onCardScore",
+              "sourceType": "card",
+              "sourceDefinitionId": "rank-4",
+              "sourceInstanceId": "clubs-4",
+              "targetCardId": "clubs-4",
+              "operation": "add-heat",
+              "value": {
+                "n": "4",
+                "d": "1"
+              },
+              "before": {
+                "H": {
+                  "n": "71",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "2",
+                  "d": "1"
+                }
+              },
+              "after": {
+                "H": {
+                  "n": "75",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "2",
+                  "d": "1"
+                }
+              },
+              "reasonKey": "rank-4.add-heat",
+              "visibleCondition": {
+                "kind": "always"
+              },
+              "retriggerDepth": 0
+            },
+            {
+              "eventId": "dynamic-review/azao/hand/dynamic-review/azao/command/9/event/4",
+              "rootId": "dynamic-review/azao/hand/dynamic-review/azao/command/9",
+              "rootEventId": "dynamic-review/azao/hand/dynamic-review/azao/command/9/event/4",
+              "phase": "onCardScore",
+              "sourceType": "card",
+              "sourceDefinitionId": "rank-4",
+              "sourceInstanceId": "diamonds-4",
+              "targetCardId": "diamonds-4",
+              "operation": "add-heat",
+              "value": {
+                "n": "4",
+                "d": "1"
+              },
+              "before": {
+                "H": {
+                  "n": "75",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "2",
+                  "d": "1"
+                }
+              },
+              "after": {
+                "H": {
+                  "n": "79",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "2",
+                  "d": "1"
+                }
+              },
+              "reasonKey": "rank-4.add-heat",
+              "visibleCondition": {
+                "kind": "always"
+              },
+              "retriggerDepth": 0
+            },
+            {
+              "eventId": "dynamic-review/azao/hand/dynamic-review/azao/command/9/event/5",
+              "rootId": "dynamic-review/azao/hand/dynamic-review/azao/command/9",
+              "rootEventId": "dynamic-review/azao/hand/dynamic-review/azao/command/9/event/5",
+              "phase": "routeGrowth",
+              "sourceType": "rule",
+              "sourceDefinitionId": "route-growth",
+              "sourceInstanceId": "dynamic-review/azao",
+              "operation": "route-factor",
+              "value": {
+                "n": "1",
+                "d": "1"
+              },
+              "before": {
+                "H": {
+                  "n": "79",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "2",
+                  "d": "1"
+                }
+              },
+              "after": {
+                "H": {
+                  "n": "79",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "2",
+                  "d": "1"
+                }
+              },
+              "reasonKey": "route-growth.G.factor",
+              "visibleCondition": {
+                "kind": "hand-type-in",
+                "values": [
+                  "pair",
+                  "two-pair",
+                  "three-kind",
+                  "full-house",
+                  "four-kind",
+                  "five-kind",
+                  "flush-house",
+                  "flush-five"
+                ]
+              },
+              "retriggerDepth": 0,
+              "routeFamily": "G",
+              "resourceBefore": 1,
+              "resourceAfter": 1
+            },
+            {
+              "eventId": "dynamic-review/azao/hand/dynamic-review/azao/command/9/event/6",
+              "rootId": "dynamic-review/azao/hand/dynamic-review/azao/command/9",
+              "rootEventId": "dynamic-review/azao/hand/dynamic-review/azao/command/9/event/6",
+              "phase": "characterScore",
+              "sourceType": "character",
+              "sourceDefinitionId": "azao",
+              "sourceInstanceId": "dynamic-review/azao/character",
+              "operation": "multiply-multiplier",
+              "value": {
+                "n": "3",
+                "d": "2"
+              },
+              "before": {
+                "H": {
+                  "n": "79",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "2",
+                  "d": "1"
+                }
+              },
+              "after": {
+                "H": {
+                  "n": "79",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "3",
+                  "d": "1"
+                }
+              },
+              "reasonKey": "azao.multiply-multiplier",
+              "visibleCondition": {
+                "kind": "always"
+              },
+              "retriggerDepth": 0
+            },
+            {
+              "eventId": "dynamic-review/azao/hand/dynamic-review/azao/command/9/event/7",
+              "rootId": "dynamic-review/azao/hand/dynamic-review/azao/command/9",
+              "rootEventId": "dynamic-review/azao/hand/dynamic-review/azao/command/9/event/7",
+              "phase": "finalScore",
+              "sourceType": "rule",
+              "sourceDefinitionId": "two-pair",
+              "sourceInstanceId": "dynamic-review/azao",
+              "operation": "final-score",
+              "value": {
+                "n": "237",
+                "d": "1"
+              },
+              "before": {
+                "H": {
+                  "n": "79",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "3",
+                  "d": "1"
+                }
+              },
+              "after": {
+                "H": {
+                  "n": "79",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "3",
+                  "d": "1"
+                }
+              },
+              "reasonKey": "two-pair.final-score",
+              "visibleCondition": {
+                "kind": "always"
+              },
+              "retriggerDepth": 0
+            }
+          ],
+          "jokers": [],
+          "rng": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 2405713301
+          },
+          "goldDelta": 0,
+          "destroyedCardIds": [],
+          "destroyedJokerIds": [],
+          "cards": [
+            {
+              "id": "spades-3",
+              "suit": "spades",
+              "rank": 3
+            },
+            {
+              "id": "hearts-3",
+              "suit": "hearts",
+              "rank": 3
+            },
+            {
+              "id": "clubs-4",
+              "suit": "clubs",
+              "rank": 4
+            },
+            {
+              "id": "diamonds-4",
+              "suit": "diamonds",
+              "rank": 4
+            },
+            {
+              "id": "spades-5",
+              "suit": "spades",
+              "rank": 5
+            },
+            {
+              "id": "hearts-5",
+              "suit": "hearts",
+              "rank": 5
+            },
+            {
+              "id": "clubs-6",
+              "suit": "clubs",
+              "rank": 6
+            },
+            {
+              "id": "diamonds-6",
+              "suit": "diamonds",
+              "rank": 6
+            }
+          ],
+          "sourceJokers": [],
+          "bossContext": {
+            "boss": null,
+            "previousHandType": "two-pair",
+            "sealedJokerIds": [],
+            "challengeDisabledJokerId": null
+          },
+          "combo": {
+            "goldBeforeRewards": null
+          }
+        },
+        "goldBefore": 14,
+        "goldAfter": 14
+      },
+      "repeatTrace": {
+        "routeGrowth": {
+          "before": {
+            "clears": 1,
+            "G": 1,
+            "S": 0,
+            "F": 0
+          },
+          "factors": {
+            "G": {
+              "n": "1",
+              "d": "1"
+            }
+          }
+        },
+        "azaoCharge": {
+          "before": {
+            "charge": 1,
+            "previousQualifiedType": "two-pair"
+          },
+          "release": true,
+          "after": {
+            "charge": 0,
+            "previousQualifiedType": null
+          },
+          "multiplier": "1.5"
+        },
+        "rulesVersion": "r2",
+        "rootId": "dynamic-review/azao/hand/dynamic-review/azao/command/11",
+        "handType": "two-pair",
+        "level": 1,
+        "sets": {
+          "playedIds": [
+            "spades-7",
+            "hearts-7",
+            "clubs-8",
+            "diamonds-8"
+          ],
+          "scoringIds": [
+            "spades-7",
+            "hearts-7",
+            "clubs-8",
+            "diamonds-8"
+          ],
+          "activeScoringIds": [
+            "spades-7",
+            "hearts-7",
+            "clubs-8",
+            "diamonds-8"
+          ],
+          "heldIds": [
+            "diamonds-13",
+            "diamonds-12",
+            "diamonds-11",
+            "diamonds-10"
+          ]
+        },
+        "finalScore": "285",
+        "accumulator": {
+          "H": {
+            "n": "95",
+            "d": "1"
+          },
+          "M": {
+            "n": "3",
+            "d": "1"
+          }
+        },
+        "events": [
+          {
+            "eventId": "dynamic-review/azao/hand/dynamic-review/azao/command/11/event/0",
+            "rootId": "dynamic-review/azao/hand/dynamic-review/azao/command/11",
+            "rootEventId": "dynamic-review/azao/hand/dynamic-review/azao/command/11/event/0",
+            "phase": "base",
+            "sourceType": "rule",
+            "sourceDefinitionId": "two-pair",
+            "sourceInstanceId": "dynamic-review/azao",
+            "operation": "base",
+            "value": {
+              "n": "65",
+              "d": "1"
+            },
+            "before": {
+              "H": {
+                "n": "0",
+                "d": "1"
+              },
+              "M": {
+                "n": "0",
+                "d": "1"
+              }
+            },
+            "after": {
+              "H": {
+                "n": "65",
+                "d": "1"
+              },
+              "M": {
+                "n": "2",
+                "d": "1"
+              }
+            },
+            "reasonKey": "two-pair.base",
+            "visibleCondition": {
+              "kind": "always"
+            },
+            "retriggerDepth": 0
+          },
+          {
+            "eventId": "dynamic-review/azao/hand/dynamic-review/azao/command/11/event/1",
+            "rootId": "dynamic-review/azao/hand/dynamic-review/azao/command/11",
+            "rootEventId": "dynamic-review/azao/hand/dynamic-review/azao/command/11/event/1",
+            "phase": "onCardScore",
+            "sourceType": "card",
+            "sourceDefinitionId": "rank-7",
+            "sourceInstanceId": "spades-7",
+            "targetCardId": "spades-7",
+            "operation": "add-heat",
+            "value": {
+              "n": "7",
+              "d": "1"
+            },
+            "before": {
+              "H": {
+                "n": "65",
+                "d": "1"
+              },
+              "M": {
+                "n": "2",
+                "d": "1"
+              }
+            },
+            "after": {
+              "H": {
+                "n": "72",
+                "d": "1"
+              },
+              "M": {
+                "n": "2",
+                "d": "1"
+              }
+            },
+            "reasonKey": "rank-7.add-heat",
+            "visibleCondition": {
+              "kind": "always"
+            },
+            "retriggerDepth": 0
+          },
+          {
+            "eventId": "dynamic-review/azao/hand/dynamic-review/azao/command/11/event/2",
+            "rootId": "dynamic-review/azao/hand/dynamic-review/azao/command/11",
+            "rootEventId": "dynamic-review/azao/hand/dynamic-review/azao/command/11/event/2",
+            "phase": "onCardScore",
+            "sourceType": "card",
+            "sourceDefinitionId": "rank-7",
+            "sourceInstanceId": "hearts-7",
+            "targetCardId": "hearts-7",
+            "operation": "add-heat",
+            "value": {
+              "n": "7",
+              "d": "1"
+            },
+            "before": {
+              "H": {
+                "n": "72",
+                "d": "1"
+              },
+              "M": {
+                "n": "2",
+                "d": "1"
+              }
+            },
+            "after": {
+              "H": {
+                "n": "79",
+                "d": "1"
+              },
+              "M": {
+                "n": "2",
+                "d": "1"
+              }
+            },
+            "reasonKey": "rank-7.add-heat",
+            "visibleCondition": {
+              "kind": "always"
+            },
+            "retriggerDepth": 0
+          },
+          {
+            "eventId": "dynamic-review/azao/hand/dynamic-review/azao/command/11/event/3",
+            "rootId": "dynamic-review/azao/hand/dynamic-review/azao/command/11",
+            "rootEventId": "dynamic-review/azao/hand/dynamic-review/azao/command/11/event/3",
+            "phase": "onCardScore",
+            "sourceType": "card",
+            "sourceDefinitionId": "rank-8",
+            "sourceInstanceId": "clubs-8",
+            "targetCardId": "clubs-8",
+            "operation": "add-heat",
+            "value": {
+              "n": "8",
+              "d": "1"
+            },
+            "before": {
+              "H": {
+                "n": "79",
+                "d": "1"
+              },
+              "M": {
+                "n": "2",
+                "d": "1"
+              }
+            },
+            "after": {
+              "H": {
+                "n": "87",
+                "d": "1"
+              },
+              "M": {
+                "n": "2",
+                "d": "1"
+              }
+            },
+            "reasonKey": "rank-8.add-heat",
+            "visibleCondition": {
+              "kind": "always"
+            },
+            "retriggerDepth": 0
+          },
+          {
+            "eventId": "dynamic-review/azao/hand/dynamic-review/azao/command/11/event/4",
+            "rootId": "dynamic-review/azao/hand/dynamic-review/azao/command/11",
+            "rootEventId": "dynamic-review/azao/hand/dynamic-review/azao/command/11/event/4",
+            "phase": "onCardScore",
+            "sourceType": "card",
+            "sourceDefinitionId": "rank-8",
+            "sourceInstanceId": "diamonds-8",
+            "targetCardId": "diamonds-8",
+            "operation": "add-heat",
+            "value": {
+              "n": "8",
+              "d": "1"
+            },
+            "before": {
+              "H": {
+                "n": "87",
+                "d": "1"
+              },
+              "M": {
+                "n": "2",
+                "d": "1"
+              }
+            },
+            "after": {
+              "H": {
+                "n": "95",
+                "d": "1"
+              },
+              "M": {
+                "n": "2",
+                "d": "1"
+              }
+            },
+            "reasonKey": "rank-8.add-heat",
+            "visibleCondition": {
+              "kind": "always"
+            },
+            "retriggerDepth": 0
+          },
+          {
+            "eventId": "dynamic-review/azao/hand/dynamic-review/azao/command/11/event/5",
+            "rootId": "dynamic-review/azao/hand/dynamic-review/azao/command/11",
+            "rootEventId": "dynamic-review/azao/hand/dynamic-review/azao/command/11/event/5",
+            "phase": "routeGrowth",
+            "sourceType": "rule",
+            "sourceDefinitionId": "route-growth",
+            "sourceInstanceId": "dynamic-review/azao",
+            "operation": "route-factor",
+            "value": {
+              "n": "1",
+              "d": "1"
+            },
+            "before": {
+              "H": {
+                "n": "95",
+                "d": "1"
+              },
+              "M": {
+                "n": "2",
+                "d": "1"
+              }
+            },
+            "after": {
+              "H": {
+                "n": "95",
+                "d": "1"
+              },
+              "M": {
+                "n": "2",
+                "d": "1"
+              }
+            },
+            "reasonKey": "route-growth.G.factor",
+            "visibleCondition": {
+              "kind": "hand-type-in",
+              "values": [
+                "pair",
+                "two-pair",
+                "three-kind",
+                "full-house",
+                "four-kind",
+                "five-kind",
+                "flush-house",
+                "flush-five"
+              ]
+            },
+            "retriggerDepth": 0,
+            "routeFamily": "G",
+            "resourceBefore": 1,
+            "resourceAfter": 1
+          },
+          {
+            "eventId": "dynamic-review/azao/hand/dynamic-review/azao/command/11/event/6",
+            "rootId": "dynamic-review/azao/hand/dynamic-review/azao/command/11",
+            "rootEventId": "dynamic-review/azao/hand/dynamic-review/azao/command/11/event/6",
+            "phase": "characterScore",
+            "sourceType": "character",
+            "sourceDefinitionId": "azao",
+            "sourceInstanceId": "dynamic-review/azao/character",
+            "operation": "multiply-multiplier",
+            "value": {
+              "n": "3",
+              "d": "2"
+            },
+            "before": {
+              "H": {
+                "n": "95",
+                "d": "1"
+              },
+              "M": {
+                "n": "2",
+                "d": "1"
+              }
+            },
+            "after": {
+              "H": {
+                "n": "95",
+                "d": "1"
+              },
+              "M": {
+                "n": "3",
+                "d": "1"
+              }
+            },
+            "reasonKey": "azao.multiply-multiplier",
+            "visibleCondition": {
+              "kind": "always"
+            },
+            "retriggerDepth": 0
+          },
+          {
+            "eventId": "dynamic-review/azao/hand/dynamic-review/azao/command/11/event/7",
+            "rootId": "dynamic-review/azao/hand/dynamic-review/azao/command/11",
+            "rootEventId": "dynamic-review/azao/hand/dynamic-review/azao/command/11/event/7",
+            "phase": "finalScore",
+            "sourceType": "rule",
+            "sourceDefinitionId": "two-pair",
+            "sourceInstanceId": "dynamic-review/azao",
+            "operation": "final-score",
+            "value": {
+              "n": "285",
+              "d": "1"
+            },
+            "before": {
+              "H": {
+                "n": "95",
+                "d": "1"
+              },
+              "M": {
+                "n": "3",
+                "d": "1"
+              }
+            },
+            "after": {
+              "H": {
+                "n": "95",
+                "d": "1"
+              },
+              "M": {
+                "n": "3",
+                "d": "1"
+              }
+            },
+            "reasonKey": "two-pair.final-score",
+            "visibleCondition": {
+              "kind": "always"
+            },
+            "retriggerDepth": 0
+          },
+          {
+            "eventId": "dynamic-review/azao/hand/dynamic-review/azao/command/11/event/8",
+            "rootId": "dynamic-review/azao/hand/dynamic-review/azao/command/11",
+            "rootEventId": "dynamic-review/azao/hand/dynamic-review/azao/command/11/event/8",
+            "phase": "onStageClear",
+            "sourceType": "rule",
+            "sourceDefinitionId": "route-growth",
+            "sourceInstanceId": "dynamic-review/azao",
+            "operation": "route-clear",
+            "value": {
+              "n": "1",
+              "d": "1"
+            },
+            "before": {
+              "H": {
+                "n": "95",
+                "d": "1"
+              },
+              "M": {
+                "n": "3",
+                "d": "1"
+              }
+            },
+            "after": {
+              "H": {
+                "n": "95",
+                "d": "1"
+              },
+              "M": {
+                "n": "3",
+                "d": "1"
+              }
+            },
+            "visibleCondition": {
+              "kind": "always"
+            },
+            "retriggerDepth": 0,
+            "reasonKey": "route-growth.clear",
+            "resourceBefore": 1,
+            "resourceAfter": 2
+          },
+          {
+            "eventId": "dynamic-review/azao/hand/dynamic-review/azao/command/11/event/9",
+            "rootId": "dynamic-review/azao/hand/dynamic-review/azao/command/11",
+            "rootEventId": "dynamic-review/azao/hand/dynamic-review/azao/command/11/event/9",
+            "phase": "onStageClear",
+            "sourceType": "rule",
+            "sourceDefinitionId": "route-growth",
+            "sourceInstanceId": "dynamic-review/azao",
+            "operation": "route-clear-family",
+            "value": {
+              "n": "1",
+              "d": "1"
+            },
+            "before": {
+              "H": {
+                "n": "95",
+                "d": "1"
+              },
+              "M": {
+                "n": "3",
+                "d": "1"
+              }
+            },
+            "after": {
+              "H": {
+                "n": "95",
+                "d": "1"
+              },
+              "M": {
+                "n": "3",
+                "d": "1"
+              }
+            },
+            "visibleCondition": {
+              "kind": "always"
+            },
+            "retriggerDepth": 0,
+            "reasonKey": "route-growth.G.clear",
+            "resourceBefore": 1,
+            "resourceAfter": 2,
+            "routeFamily": "G"
+          }
+        ],
+        "jokers": [],
+        "rng": {
+          "algorithm": "fnv1a-mulberry32-v1",
+          "state": 2405713301
+        },
+        "goldDelta": 0,
+        "destroyedCardIds": [],
+        "destroyedJokerIds": [],
+        "cards": [
+          {
+            "id": "spades-7",
+            "suit": "spades",
+            "rank": 7
+          },
+          {
+            "id": "hearts-7",
+            "suit": "hearts",
+            "rank": 7
+          },
+          {
+            "id": "clubs-8",
+            "suit": "clubs",
+            "rank": 8
+          },
+          {
+            "id": "diamonds-8",
+            "suit": "diamonds",
+            "rank": 8
+          },
+          {
+            "id": "diamonds-13",
+            "suit": "diamonds",
+            "rank": 13
+          },
+          {
+            "id": "diamonds-12",
+            "suit": "diamonds",
+            "rank": 12
+          },
+          {
+            "id": "diamonds-11",
+            "suit": "diamonds",
+            "rank": 11
+          },
+          {
+            "id": "diamonds-10",
+            "suit": "diamonds",
+            "rank": 10
+          }
+        ],
+        "sourceJokers": [],
+        "bossContext": {
+          "boss": null,
+          "previousHandType": "two-pair",
+          "sealedJokerIds": [],
+          "challengeDisabledJokerId": null
+        },
+        "combo": {
+          "goldBeforeRewards": 14
+        }
+      },
+      "failure": "AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:\n\n  assert.ok(strike.eyes.url.includes(asset.path))\n\n    at payoffCheck (file:///D:/ai/dachoupai/dachoupai/.codex-remote-attachments/wencheng-huarui-dynamic/harness/wencheng-huarui-dynamic.mjs:45:226)\n    at file:///D:/ai/dachoupai/dachoupai/.codex-remote-attachments/wencheng-huarui-dynamic/harness/wencheng-huarui-dynamic.mjs:77:178"
+    },
+    {
+      "key": "azao-390",
+      "id": "azao",
+      "spec": {
+        "width": 390,
+        "height": 844,
+        "touch": true
+      },
+      "status": "FAIL",
+      "checks": [
+        "available / Escape / select / explicit cancel preserve full state, journal and slots",
+        "same-stage charge and second release are real distinct events"
+      ],
+      "errors": [],
+      "available": {
+        "hero": "available",
+        "enabled": true,
+        "label": "和亲",
+        "charge": {
+          "charge": 1,
+          "previousQualifiedType": "two-pair"
+        },
+        "gold": 14
+      },
+      "command": {
+        "runId": "dynamic-review/azao",
+        "commandId": "dynamic-review/azao/command/9",
+        "expectedSeq": 8,
+        "action": {
+          "type": "PlayHand",
+          "selectedIds": [
+            "spades-3",
+            "hearts-3",
+            "clubs-4",
+            "diamonds-4"
+          ],
+          "azaoRelease": true
+        }
+      },
+      "first": {
+        "before": {
+          "routeGrowth": {
+            "entry": {
+              "commandId": "fixture/6",
+              "seq": 7,
+              "type": "EnterStage"
+            },
+            "handTypes": [
+              "two-pair"
+            ],
+            "eligible": [
+              "G"
+            ],
+            "sources": [
+              {
+                "command": {
+                  "runId": "dynamic-review/azao",
+                  "commandId": "fixture/7",
+                  "expectedSeq": 7,
+                  "action": {
+                    "type": "PlayHand",
+                    "selectedIds": [
+                      "hearts-2",
+                      "spades-2",
+                      "clubs-14",
+                      "diamonds-14"
+                    ]
+                  }
+                },
+                "cards": [
+                  {
+                    "id": "hearts-2",
+                    "suit": "hearts",
+                    "rank": 2
+                  },
+                  {
+                    "id": "spades-2",
+                    "suit": "spades",
+                    "rank": 2
+                  },
+                  {
+                    "id": "clubs-14",
+                    "suit": "clubs",
+                    "rank": 14
+                  },
+                  {
+                    "id": "diamonds-14",
+                    "suit": "diamonds",
+                    "rank": 14
+                  }
+                ],
+                "rules": {
+                  "fourStraight": false,
+                  "fourFlush": false
+                }
+              }
+            ]
+          },
+          "azaoCharge": {
+            "charge": 1,
+            "previousQualifiedType": "two-pair"
+          },
+          "openingDiscard": null,
+          "index": 1,
+          "targetHeat": "600",
+          "initialTargetHeat": "600",
+          "heat": "182",
+          "handsLeft": 3,
+          "initialHands": 4,
+          "discardsLeft": 3,
+          "initialDiscards": 3,
+          "discardSpent": 0,
+          "discardGained": 0,
+          "doubleDiscardBeforeFirstPlay": false,
+          "discardsUsed": 0,
+          "skipResult": null,
+          "playIndex": 1,
+          "previousHandType": "two-pair",
+          "previousHandScore": "182",
+          "handLimit": 8,
+          "initialHandLimit": 8,
+          "boss": null,
+          "initialJokerIds": [],
+          "sealedJokerIds": [],
+          "challengeDisabledJokerId": null,
+          "rescueUsed": false,
+          "clearId": null,
+          "goldEarned": 0,
+          "disabledIds": [],
+          "wagerSelected": false,
+          "wagerUsed": false,
+          "maxPlayedCount": 4,
+          "ordinaryStraightSeen": false,
+          "ordinaryFlushSeen": false,
+          "quadRefundUsed": false,
+          "jokerSold": false
+        },
+        "after": {
+          "routeGrowth": {
+            "entry": {
+              "commandId": "fixture/6",
+              "seq": 7,
+              "type": "EnterStage"
+            },
+            "handTypes": [
+              "two-pair",
+              "two-pair"
+            ],
+            "eligible": [
+              "G"
+            ],
+            "sources": [
+              {
+                "command": {
+                  "runId": "dynamic-review/azao",
+                  "commandId": "fixture/7",
+                  "expectedSeq": 7,
+                  "action": {
+                    "type": "PlayHand",
+                    "selectedIds": [
+                      "hearts-2",
+                      "spades-2",
+                      "clubs-14",
+                      "diamonds-14"
+                    ]
+                  }
+                },
+                "cards": [
+                  {
+                    "id": "hearts-2",
+                    "suit": "hearts",
+                    "rank": 2
+                  },
+                  {
+                    "id": "spades-2",
+                    "suit": "spades",
+                    "rank": 2
+                  },
+                  {
+                    "id": "clubs-14",
+                    "suit": "clubs",
+                    "rank": 14
+                  },
+                  {
+                    "id": "diamonds-14",
+                    "suit": "diamonds",
+                    "rank": 14
+                  }
+                ],
+                "rules": {
+                  "fourStraight": false,
+                  "fourFlush": false
+                }
+              },
+              {
+                "command": {
+                  "runId": "dynamic-review/azao",
+                  "commandId": "dynamic-review/azao/command/9",
+                  "expectedSeq": 8,
+                  "action": {
+                    "type": "PlayHand",
+                    "selectedIds": [
+                      "spades-3",
+                      "hearts-3",
+                      "clubs-4",
+                      "diamonds-4"
+                    ],
+                    "azaoRelease": true
+                  }
+                },
+                "cards": [
+                  {
+                    "id": "spades-3",
+                    "suit": "spades",
+                    "rank": 3
+                  },
+                  {
+                    "id": "hearts-3",
+                    "suit": "hearts",
+                    "rank": 3
+                  },
+                  {
+                    "id": "clubs-4",
+                    "suit": "clubs",
+                    "rank": 4
+                  },
+                  {
+                    "id": "diamonds-4",
+                    "suit": "diamonds",
+                    "rank": 4
+                  }
+                ],
+                "rules": {
+                  "fourStraight": false,
+                  "fourFlush": false
+                }
+              }
+            ]
+          },
+          "azaoCharge": {
+            "charge": 0,
+            "previousQualifiedType": null
+          },
+          "openingDiscard": null,
+          "index": 1,
+          "targetHeat": "600",
+          "initialTargetHeat": "600",
+          "heat": "419",
+          "handsLeft": 2,
+          "initialHands": 4,
+          "discardsLeft": 3,
+          "initialDiscards": 3,
+          "discardSpent": 0,
+          "discardGained": 0,
+          "doubleDiscardBeforeFirstPlay": false,
+          "discardsUsed": 0,
+          "skipResult": null,
+          "playIndex": 2,
+          "previousHandType": "two-pair",
+          "previousHandScore": "237",
+          "handLimit": 8,
+          "initialHandLimit": 8,
+          "boss": null,
+          "initialJokerIds": [],
+          "sealedJokerIds": [],
+          "challengeDisabledJokerId": null,
+          "rescueUsed": false,
+          "clearId": null,
+          "goldEarned": 0,
+          "disabledIds": [],
+          "wagerSelected": false,
+          "wagerUsed": false,
+          "maxPlayedCount": 4,
+          "ordinaryStraightSeen": false,
+          "ordinaryFlushSeen": false,
+          "quadRefundUsed": false,
+          "jokerSold": false
+        },
+        "trace": {
+          "routeGrowth": {
+            "before": {
+              "clears": 1,
+              "G": 1,
+              "S": 0,
+              "F": 0
+            },
+            "factors": {
+              "G": {
+                "n": "1",
+                "d": "1"
+              }
+            }
+          },
+          "azaoCharge": {
+            "before": {
+              "charge": 1,
+              "previousQualifiedType": "two-pair"
+            },
+            "release": true,
+            "after": {
+              "charge": 0,
+              "previousQualifiedType": null
+            },
+            "multiplier": "1.5"
+          },
+          "rulesVersion": "r2",
+          "rootId": "dynamic-review/azao/hand/dynamic-review/azao/command/9",
+          "handType": "two-pair",
+          "level": 1,
+          "sets": {
+            "playedIds": [
+              "spades-3",
+              "hearts-3",
+              "clubs-4",
+              "diamonds-4"
+            ],
+            "scoringIds": [
+              "spades-3",
+              "hearts-3",
+              "clubs-4",
+              "diamonds-4"
+            ],
+            "activeScoringIds": [
+              "spades-3",
+              "hearts-3",
+              "clubs-4",
+              "diamonds-4"
+            ],
+            "heldIds": [
+              "spades-5",
+              "hearts-5",
+              "clubs-6",
+              "diamonds-6"
+            ]
+          },
+          "finalScore": "237",
+          "accumulator": {
+            "H": {
+              "n": "79",
+              "d": "1"
+            },
+            "M": {
+              "n": "3",
+              "d": "1"
+            }
+          },
+          "events": [
+            {
+              "eventId": "dynamic-review/azao/hand/dynamic-review/azao/command/9/event/0",
+              "rootId": "dynamic-review/azao/hand/dynamic-review/azao/command/9",
+              "rootEventId": "dynamic-review/azao/hand/dynamic-review/azao/command/9/event/0",
+              "phase": "base",
+              "sourceType": "rule",
+              "sourceDefinitionId": "two-pair",
+              "sourceInstanceId": "dynamic-review/azao",
+              "operation": "base",
+              "value": {
+                "n": "65",
+                "d": "1"
+              },
+              "before": {
+                "H": {
+                  "n": "0",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "0",
+                  "d": "1"
+                }
+              },
+              "after": {
+                "H": {
+                  "n": "65",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "2",
+                  "d": "1"
+                }
+              },
+              "reasonKey": "two-pair.base",
+              "visibleCondition": {
+                "kind": "always"
+              },
+              "retriggerDepth": 0
+            },
+            {
+              "eventId": "dynamic-review/azao/hand/dynamic-review/azao/command/9/event/1",
+              "rootId": "dynamic-review/azao/hand/dynamic-review/azao/command/9",
+              "rootEventId": "dynamic-review/azao/hand/dynamic-review/azao/command/9/event/1",
+              "phase": "onCardScore",
+              "sourceType": "card",
+              "sourceDefinitionId": "rank-3",
+              "sourceInstanceId": "spades-3",
+              "targetCardId": "spades-3",
+              "operation": "add-heat",
+              "value": {
+                "n": "3",
+                "d": "1"
+              },
+              "before": {
+                "H": {
+                  "n": "65",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "2",
+                  "d": "1"
+                }
+              },
+              "after": {
+                "H": {
+                  "n": "68",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "2",
+                  "d": "1"
+                }
+              },
+              "reasonKey": "rank-3.add-heat",
+              "visibleCondition": {
+                "kind": "always"
+              },
+              "retriggerDepth": 0
+            },
+            {
+              "eventId": "dynamic-review/azao/hand/dynamic-review/azao/command/9/event/2",
+              "rootId": "dynamic-review/azao/hand/dynamic-review/azao/command/9",
+              "rootEventId": "dynamic-review/azao/hand/dynamic-review/azao/command/9/event/2",
+              "phase": "onCardScore",
+              "sourceType": "card",
+              "sourceDefinitionId": "rank-3",
+              "sourceInstanceId": "hearts-3",
+              "targetCardId": "hearts-3",
+              "operation": "add-heat",
+              "value": {
+                "n": "3",
+                "d": "1"
+              },
+              "before": {
+                "H": {
+                  "n": "68",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "2",
+                  "d": "1"
+                }
+              },
+              "after": {
+                "H": {
+                  "n": "71",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "2",
+                  "d": "1"
+                }
+              },
+              "reasonKey": "rank-3.add-heat",
+              "visibleCondition": {
+                "kind": "always"
+              },
+              "retriggerDepth": 0
+            },
+            {
+              "eventId": "dynamic-review/azao/hand/dynamic-review/azao/command/9/event/3",
+              "rootId": "dynamic-review/azao/hand/dynamic-review/azao/command/9",
+              "rootEventId": "dynamic-review/azao/hand/dynamic-review/azao/command/9/event/3",
+              "phase": "onCardScore",
+              "sourceType": "card",
+              "sourceDefinitionId": "rank-4",
+              "sourceInstanceId": "clubs-4",
+              "targetCardId": "clubs-4",
+              "operation": "add-heat",
+              "value": {
+                "n": "4",
+                "d": "1"
+              },
+              "before": {
+                "H": {
+                  "n": "71",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "2",
+                  "d": "1"
+                }
+              },
+              "after": {
+                "H": {
+                  "n": "75",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "2",
+                  "d": "1"
+                }
+              },
+              "reasonKey": "rank-4.add-heat",
+              "visibleCondition": {
+                "kind": "always"
+              },
+              "retriggerDepth": 0
+            },
+            {
+              "eventId": "dynamic-review/azao/hand/dynamic-review/azao/command/9/event/4",
+              "rootId": "dynamic-review/azao/hand/dynamic-review/azao/command/9",
+              "rootEventId": "dynamic-review/azao/hand/dynamic-review/azao/command/9/event/4",
+              "phase": "onCardScore",
+              "sourceType": "card",
+              "sourceDefinitionId": "rank-4",
+              "sourceInstanceId": "diamonds-4",
+              "targetCardId": "diamonds-4",
+              "operation": "add-heat",
+              "value": {
+                "n": "4",
+                "d": "1"
+              },
+              "before": {
+                "H": {
+                  "n": "75",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "2",
+                  "d": "1"
+                }
+              },
+              "after": {
+                "H": {
+                  "n": "79",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "2",
+                  "d": "1"
+                }
+              },
+              "reasonKey": "rank-4.add-heat",
+              "visibleCondition": {
+                "kind": "always"
+              },
+              "retriggerDepth": 0
+            },
+            {
+              "eventId": "dynamic-review/azao/hand/dynamic-review/azao/command/9/event/5",
+              "rootId": "dynamic-review/azao/hand/dynamic-review/azao/command/9",
+              "rootEventId": "dynamic-review/azao/hand/dynamic-review/azao/command/9/event/5",
+              "phase": "routeGrowth",
+              "sourceType": "rule",
+              "sourceDefinitionId": "route-growth",
+              "sourceInstanceId": "dynamic-review/azao",
+              "operation": "route-factor",
+              "value": {
+                "n": "1",
+                "d": "1"
+              },
+              "before": {
+                "H": {
+                  "n": "79",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "2",
+                  "d": "1"
+                }
+              },
+              "after": {
+                "H": {
+                  "n": "79",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "2",
+                  "d": "1"
+                }
+              },
+              "reasonKey": "route-growth.G.factor",
+              "visibleCondition": {
+                "kind": "hand-type-in",
+                "values": [
+                  "pair",
+                  "two-pair",
+                  "three-kind",
+                  "full-house",
+                  "four-kind",
+                  "five-kind",
+                  "flush-house",
+                  "flush-five"
+                ]
+              },
+              "retriggerDepth": 0,
+              "routeFamily": "G",
+              "resourceBefore": 1,
+              "resourceAfter": 1
+            },
+            {
+              "eventId": "dynamic-review/azao/hand/dynamic-review/azao/command/9/event/6",
+              "rootId": "dynamic-review/azao/hand/dynamic-review/azao/command/9",
+              "rootEventId": "dynamic-review/azao/hand/dynamic-review/azao/command/9/event/6",
+              "phase": "characterScore",
+              "sourceType": "character",
+              "sourceDefinitionId": "azao",
+              "sourceInstanceId": "dynamic-review/azao/character",
+              "operation": "multiply-multiplier",
+              "value": {
+                "n": "3",
+                "d": "2"
+              },
+              "before": {
+                "H": {
+                  "n": "79",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "2",
+                  "d": "1"
+                }
+              },
+              "after": {
+                "H": {
+                  "n": "79",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "3",
+                  "d": "1"
+                }
+              },
+              "reasonKey": "azao.multiply-multiplier",
+              "visibleCondition": {
+                "kind": "always"
+              },
+              "retriggerDepth": 0
+            },
+            {
+              "eventId": "dynamic-review/azao/hand/dynamic-review/azao/command/9/event/7",
+              "rootId": "dynamic-review/azao/hand/dynamic-review/azao/command/9",
+              "rootEventId": "dynamic-review/azao/hand/dynamic-review/azao/command/9/event/7",
+              "phase": "finalScore",
+              "sourceType": "rule",
+              "sourceDefinitionId": "two-pair",
+              "sourceInstanceId": "dynamic-review/azao",
+              "operation": "final-score",
+              "value": {
+                "n": "237",
+                "d": "1"
+              },
+              "before": {
+                "H": {
+                  "n": "79",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "3",
+                  "d": "1"
+                }
+              },
+              "after": {
+                "H": {
+                  "n": "79",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "3",
+                  "d": "1"
+                }
+              },
+              "reasonKey": "two-pair.final-score",
+              "visibleCondition": {
+                "kind": "always"
+              },
+              "retriggerDepth": 0
+            }
+          ],
+          "jokers": [],
+          "rng": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 2405713301
+          },
+          "goldDelta": 0,
+          "destroyedCardIds": [],
+          "destroyedJokerIds": [],
+          "cards": [
+            {
+              "id": "spades-3",
+              "suit": "spades",
+              "rank": 3
+            },
+            {
+              "id": "hearts-3",
+              "suit": "hearts",
+              "rank": 3
+            },
+            {
+              "id": "clubs-4",
+              "suit": "clubs",
+              "rank": 4
+            },
+            {
+              "id": "diamonds-4",
+              "suit": "diamonds",
+              "rank": 4
+            },
+            {
+              "id": "spades-5",
+              "suit": "spades",
+              "rank": 5
+            },
+            {
+              "id": "hearts-5",
+              "suit": "hearts",
+              "rank": 5
+            },
+            {
+              "id": "clubs-6",
+              "suit": "clubs",
+              "rank": 6
+            },
+            {
+              "id": "diamonds-6",
+              "suit": "diamonds",
+              "rank": 6
+            }
+          ],
+          "sourceJokers": [],
+          "bossContext": {
+            "boss": null,
+            "previousHandType": "two-pair",
+            "sealedJokerIds": [],
+            "challengeDisabledJokerId": null
+          },
+          "combo": {
+            "goldBeforeRewards": null
+          }
+        },
+        "goldBefore": 14,
+        "goldAfter": 14
+      },
+      "repeatTrace": {
+        "routeGrowth": {
+          "before": {
+            "clears": 1,
+            "G": 1,
+            "S": 0,
+            "F": 0
+          },
+          "factors": {
+            "G": {
+              "n": "1",
+              "d": "1"
+            }
+          }
+        },
+        "azaoCharge": {
+          "before": {
+            "charge": 1,
+            "previousQualifiedType": "two-pair"
+          },
+          "release": true,
+          "after": {
+            "charge": 0,
+            "previousQualifiedType": null
+          },
+          "multiplier": "1.5"
+        },
+        "rulesVersion": "r2",
+        "rootId": "dynamic-review/azao/hand/dynamic-review/azao/command/11",
+        "handType": "two-pair",
+        "level": 1,
+        "sets": {
+          "playedIds": [
+            "spades-7",
+            "hearts-7",
+            "clubs-8",
+            "diamonds-8"
+          ],
+          "scoringIds": [
+            "spades-7",
+            "hearts-7",
+            "clubs-8",
+            "diamonds-8"
+          ],
+          "activeScoringIds": [
+            "spades-7",
+            "hearts-7",
+            "clubs-8",
+            "diamonds-8"
+          ],
+          "heldIds": [
+            "diamonds-13",
+            "diamonds-12",
+            "diamonds-11",
+            "diamonds-10"
+          ]
+        },
+        "finalScore": "285",
+        "accumulator": {
+          "H": {
+            "n": "95",
+            "d": "1"
+          },
+          "M": {
+            "n": "3",
+            "d": "1"
+          }
+        },
+        "events": [
+          {
+            "eventId": "dynamic-review/azao/hand/dynamic-review/azao/command/11/event/0",
+            "rootId": "dynamic-review/azao/hand/dynamic-review/azao/command/11",
+            "rootEventId": "dynamic-review/azao/hand/dynamic-review/azao/command/11/event/0",
+            "phase": "base",
+            "sourceType": "rule",
+            "sourceDefinitionId": "two-pair",
+            "sourceInstanceId": "dynamic-review/azao",
+            "operation": "base",
+            "value": {
+              "n": "65",
+              "d": "1"
+            },
+            "before": {
+              "H": {
+                "n": "0",
+                "d": "1"
+              },
+              "M": {
+                "n": "0",
+                "d": "1"
+              }
+            },
+            "after": {
+              "H": {
+                "n": "65",
+                "d": "1"
+              },
+              "M": {
+                "n": "2",
+                "d": "1"
+              }
+            },
+            "reasonKey": "two-pair.base",
+            "visibleCondition": {
+              "kind": "always"
+            },
+            "retriggerDepth": 0
+          },
+          {
+            "eventId": "dynamic-review/azao/hand/dynamic-review/azao/command/11/event/1",
+            "rootId": "dynamic-review/azao/hand/dynamic-review/azao/command/11",
+            "rootEventId": "dynamic-review/azao/hand/dynamic-review/azao/command/11/event/1",
+            "phase": "onCardScore",
+            "sourceType": "card",
+            "sourceDefinitionId": "rank-7",
+            "sourceInstanceId": "spades-7",
+            "targetCardId": "spades-7",
+            "operation": "add-heat",
+            "value": {
+              "n": "7",
+              "d": "1"
+            },
+            "before": {
+              "H": {
+                "n": "65",
+                "d": "1"
+              },
+              "M": {
+                "n": "2",
+                "d": "1"
+              }
+            },
+            "after": {
+              "H": {
+                "n": "72",
+                "d": "1"
+              },
+              "M": {
+                "n": "2",
+                "d": "1"
+              }
+            },
+            "reasonKey": "rank-7.add-heat",
+            "visibleCondition": {
+              "kind": "always"
+            },
+            "retriggerDepth": 0
+          },
+          {
+            "eventId": "dynamic-review/azao/hand/dynamic-review/azao/command/11/event/2",
+            "rootId": "dynamic-review/azao/hand/dynamic-review/azao/command/11",
+            "rootEventId": "dynamic-review/azao/hand/dynamic-review/azao/command/11/event/2",
+            "phase": "onCardScore",
+            "sourceType": "card",
+            "sourceDefinitionId": "rank-7",
+            "sourceInstanceId": "hearts-7",
+            "targetCardId": "hearts-7",
+            "operation": "add-heat",
+            "value": {
+              "n": "7",
+              "d": "1"
+            },
+            "before": {
+              "H": {
+                "n": "72",
+                "d": "1"
+              },
+              "M": {
+                "n": "2",
+                "d": "1"
+              }
+            },
+            "after": {
+              "H": {
+                "n": "79",
+                "d": "1"
+              },
+              "M": {
+                "n": "2",
+                "d": "1"
+              }
+            },
+            "reasonKey": "rank-7.add-heat",
+            "visibleCondition": {
+              "kind": "always"
+            },
+            "retriggerDepth": 0
+          },
+          {
+            "eventId": "dynamic-review/azao/hand/dynamic-review/azao/command/11/event/3",
+            "rootId": "dynamic-review/azao/hand/dynamic-review/azao/command/11",
+            "rootEventId": "dynamic-review/azao/hand/dynamic-review/azao/command/11/event/3",
+            "phase": "onCardScore",
+            "sourceType": "card",
+            "sourceDefinitionId": "rank-8",
+            "sourceInstanceId": "clubs-8",
+            "targetCardId": "clubs-8",
+            "operation": "add-heat",
+            "value": {
+              "n": "8",
+              "d": "1"
+            },
+            "before": {
+              "H": {
+                "n": "79",
+                "d": "1"
+              },
+              "M": {
+                "n": "2",
+                "d": "1"
+              }
+            },
+            "after": {
+              "H": {
+                "n": "87",
+                "d": "1"
+              },
+              "M": {
+                "n": "2",
+                "d": "1"
+              }
+            },
+            "reasonKey": "rank-8.add-heat",
+            "visibleCondition": {
+              "kind": "always"
+            },
+            "retriggerDepth": 0
+          },
+          {
+            "eventId": "dynamic-review/azao/hand/dynamic-review/azao/command/11/event/4",
+            "rootId": "dynamic-review/azao/hand/dynamic-review/azao/command/11",
+            "rootEventId": "dynamic-review/azao/hand/dynamic-review/azao/command/11/event/4",
+            "phase": "onCardScore",
+            "sourceType": "card",
+            "sourceDefinitionId": "rank-8",
+            "sourceInstanceId": "diamonds-8",
+            "targetCardId": "diamonds-8",
+            "operation": "add-heat",
+            "value": {
+              "n": "8",
+              "d": "1"
+            },
+            "before": {
+              "H": {
+                "n": "87",
+                "d": "1"
+              },
+              "M": {
+                "n": "2",
+                "d": "1"
+              }
+            },
+            "after": {
+              "H": {
+                "n": "95",
+                "d": "1"
+              },
+              "M": {
+                "n": "2",
+                "d": "1"
+              }
+            },
+            "reasonKey": "rank-8.add-heat",
+            "visibleCondition": {
+              "kind": "always"
+            },
+            "retriggerDepth": 0
+          },
+          {
+            "eventId": "dynamic-review/azao/hand/dynamic-review/azao/command/11/event/5",
+            "rootId": "dynamic-review/azao/hand/dynamic-review/azao/command/11",
+            "rootEventId": "dynamic-review/azao/hand/dynamic-review/azao/command/11/event/5",
+            "phase": "routeGrowth",
+            "sourceType": "rule",
+            "sourceDefinitionId": "route-growth",
+            "sourceInstanceId": "dynamic-review/azao",
+            "operation": "route-factor",
+            "value": {
+              "n": "1",
+              "d": "1"
+            },
+            "before": {
+              "H": {
+                "n": "95",
+                "d": "1"
+              },
+              "M": {
+                "n": "2",
+                "d": "1"
+              }
+            },
+            "after": {
+              "H": {
+                "n": "95",
+                "d": "1"
+              },
+              "M": {
+                "n": "2",
+                "d": "1"
+              }
+            },
+            "reasonKey": "route-growth.G.factor",
+            "visibleCondition": {
+              "kind": "hand-type-in",
+              "values": [
+                "pair",
+                "two-pair",
+                "three-kind",
+                "full-house",
+                "four-kind",
+                "five-kind",
+                "flush-house",
+                "flush-five"
+              ]
+            },
+            "retriggerDepth": 0,
+            "routeFamily": "G",
+            "resourceBefore": 1,
+            "resourceAfter": 1
+          },
+          {
+            "eventId": "dynamic-review/azao/hand/dynamic-review/azao/command/11/event/6",
+            "rootId": "dynamic-review/azao/hand/dynamic-review/azao/command/11",
+            "rootEventId": "dynamic-review/azao/hand/dynamic-review/azao/command/11/event/6",
+            "phase": "characterScore",
+            "sourceType": "character",
+            "sourceDefinitionId": "azao",
+            "sourceInstanceId": "dynamic-review/azao/character",
+            "operation": "multiply-multiplier",
+            "value": {
+              "n": "3",
+              "d": "2"
+            },
+            "before": {
+              "H": {
+                "n": "95",
+                "d": "1"
+              },
+              "M": {
+                "n": "2",
+                "d": "1"
+              }
+            },
+            "after": {
+              "H": {
+                "n": "95",
+                "d": "1"
+              },
+              "M": {
+                "n": "3",
+                "d": "1"
+              }
+            },
+            "reasonKey": "azao.multiply-multiplier",
+            "visibleCondition": {
+              "kind": "always"
+            },
+            "retriggerDepth": 0
+          },
+          {
+            "eventId": "dynamic-review/azao/hand/dynamic-review/azao/command/11/event/7",
+            "rootId": "dynamic-review/azao/hand/dynamic-review/azao/command/11",
+            "rootEventId": "dynamic-review/azao/hand/dynamic-review/azao/command/11/event/7",
+            "phase": "finalScore",
+            "sourceType": "rule",
+            "sourceDefinitionId": "two-pair",
+            "sourceInstanceId": "dynamic-review/azao",
+            "operation": "final-score",
+            "value": {
+              "n": "285",
+              "d": "1"
+            },
+            "before": {
+              "H": {
+                "n": "95",
+                "d": "1"
+              },
+              "M": {
+                "n": "3",
+                "d": "1"
+              }
+            },
+            "after": {
+              "H": {
+                "n": "95",
+                "d": "1"
+              },
+              "M": {
+                "n": "3",
+                "d": "1"
+              }
+            },
+            "reasonKey": "two-pair.final-score",
+            "visibleCondition": {
+              "kind": "always"
+            },
+            "retriggerDepth": 0
+          },
+          {
+            "eventId": "dynamic-review/azao/hand/dynamic-review/azao/command/11/event/8",
+            "rootId": "dynamic-review/azao/hand/dynamic-review/azao/command/11",
+            "rootEventId": "dynamic-review/azao/hand/dynamic-review/azao/command/11/event/8",
+            "phase": "onStageClear",
+            "sourceType": "rule",
+            "sourceDefinitionId": "route-growth",
+            "sourceInstanceId": "dynamic-review/azao",
+            "operation": "route-clear",
+            "value": {
+              "n": "1",
+              "d": "1"
+            },
+            "before": {
+              "H": {
+                "n": "95",
+                "d": "1"
+              },
+              "M": {
+                "n": "3",
+                "d": "1"
+              }
+            },
+            "after": {
+              "H": {
+                "n": "95",
+                "d": "1"
+              },
+              "M": {
+                "n": "3",
+                "d": "1"
+              }
+            },
+            "visibleCondition": {
+              "kind": "always"
+            },
+            "retriggerDepth": 0,
+            "reasonKey": "route-growth.clear",
+            "resourceBefore": 1,
+            "resourceAfter": 2
+          },
+          {
+            "eventId": "dynamic-review/azao/hand/dynamic-review/azao/command/11/event/9",
+            "rootId": "dynamic-review/azao/hand/dynamic-review/azao/command/11",
+            "rootEventId": "dynamic-review/azao/hand/dynamic-review/azao/command/11/event/9",
+            "phase": "onStageClear",
+            "sourceType": "rule",
+            "sourceDefinitionId": "route-growth",
+            "sourceInstanceId": "dynamic-review/azao",
+            "operation": "route-clear-family",
+            "value": {
+              "n": "1",
+              "d": "1"
+            },
+            "before": {
+              "H": {
+                "n": "95",
+                "d": "1"
+              },
+              "M": {
+                "n": "3",
+                "d": "1"
+              }
+            },
+            "after": {
+              "H": {
+                "n": "95",
+                "d": "1"
+              },
+              "M": {
+                "n": "3",
+                "d": "1"
+              }
+            },
+            "visibleCondition": {
+              "kind": "always"
+            },
+            "retriggerDepth": 0,
+            "reasonKey": "route-growth.G.clear",
+            "resourceBefore": 1,
+            "resourceAfter": 2,
+            "routeFamily": "G"
+          }
+        ],
+        "jokers": [],
+        "rng": {
+          "algorithm": "fnv1a-mulberry32-v1",
+          "state": 2405713301
+        },
+        "goldDelta": 0,
+        "destroyedCardIds": [],
+        "destroyedJokerIds": [],
+        "cards": [
+          {
+            "id": "spades-7",
+            "suit": "spades",
+            "rank": 7
+          },
+          {
+            "id": "hearts-7",
+            "suit": "hearts",
+            "rank": 7
+          },
+          {
+            "id": "clubs-8",
+            "suit": "clubs",
+            "rank": 8
+          },
+          {
+            "id": "diamonds-8",
+            "suit": "diamonds",
+            "rank": 8
+          },
+          {
+            "id": "diamonds-13",
+            "suit": "diamonds",
+            "rank": 13
+          },
+          {
+            "id": "diamonds-12",
+            "suit": "diamonds",
+            "rank": 12
+          },
+          {
+            "id": "diamonds-11",
+            "suit": "diamonds",
+            "rank": 11
+          },
+          {
+            "id": "diamonds-10",
+            "suit": "diamonds",
+            "rank": 10
+          }
+        ],
+        "sourceJokers": [],
+        "bossContext": {
+          "boss": null,
+          "previousHandType": "two-pair",
+          "sealedJokerIds": [],
+          "challengeDisabledJokerId": null
+        },
+        "combo": {
+          "goldBeforeRewards": 14
+        }
+      },
+      "failure": "AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:\n\n  assert.ok(strike.eyes.url.includes(asset.path))\n\n    at payoffCheck (file:///D:/ai/dachoupai/dachoupai/.codex-remote-attachments/wencheng-huarui-dynamic/harness/wencheng-huarui-dynamic.mjs:45:226)\n    at file:///D:/ai/dachoupai/dachoupai/.codex-remote-attachments/wencheng-huarui-dynamic/harness/wencheng-huarui-dynamic.mjs:77:178"
+    },
+    {
+      "key": "xiemu-1366",
+      "id": "xiemu",
+      "spec": {
+        "width": 1366,
+        "height": 768,
+        "touch": false
+      },
+      "status": "FAIL",
+      "checks": [
+        "available / Escape / select / explicit cancel preserve full state, journal and slots",
+        "used skill cannot pay twice; normal next hand has no hero payoff"
+      ],
+      "errors": [],
+      "available": {
+        "hero": "available",
+        "enabled": true,
+        "label": "赏赐",
+        "gold": 35
+      },
+      "command": {
+        "runId": "dynamic-review/xiemu",
+        "commandId": "dynamic-review/xiemu/command/8",
+        "expectedSeq": 7,
+        "action": {
+          "type": "PlayHand",
+          "selectedIds": [
+            "spades-3",
+            "hearts-3",
+            "clubs-4",
+            "diamonds-4"
+          ],
+          "xiemuBurn": 20
+        }
+      },
+      "first": {
+        "before": {
+          "routeGrowth": {
+            "entry": {
+              "commandId": "fixture/6",
+              "seq": 7,
+              "type": "EnterStage"
+            },
+            "handTypes": [],
+            "eligible": [],
+            "sources": []
+          },
+          "xiemuBurnUsed": false,
+          "openingDiscard": null,
+          "index": 1,
+          "targetHeat": "600",
+          "initialTargetHeat": "600",
+          "heat": "0",
+          "handsLeft": 4,
+          "initialHands": 4,
+          "discardsLeft": 3,
+          "initialDiscards": 3,
+          "discardSpent": 0,
+          "discardGained": 0,
+          "doubleDiscardBeforeFirstPlay": false,
+          "discardsUsed": 0,
+          "skipResult": null,
+          "playIndex": 0,
+          "previousHandType": null,
+          "previousHandScore": null,
+          "handLimit": 8,
+          "initialHandLimit": 8,
+          "boss": null,
+          "initialJokerIds": [],
+          "sealedJokerIds": [],
+          "challengeDisabledJokerId": null,
+          "rescueUsed": false,
+          "clearId": null,
+          "goldEarned": 0,
+          "disabledIds": [],
+          "wagerSelected": false,
+          "wagerUsed": false,
+          "maxPlayedCount": 0,
+          "ordinaryStraightSeen": false,
+          "ordinaryFlushSeen": false,
+          "quadRefundUsed": false,
+          "jokerSold": false
+        },
+        "after": {
+          "routeGrowth": {
+            "entry": {
+              "commandId": "fixture/6",
+              "seq": 7,
+              "type": "EnterStage"
+            },
+            "handTypes": [
+              "two-pair"
+            ],
+            "eligible": [
+              "G"
+            ],
+            "sources": [
+              {
+                "command": {
+                  "runId": "dynamic-review/xiemu",
+                  "commandId": "dynamic-review/xiemu/command/8",
+                  "expectedSeq": 7,
+                  "action": {
+                    "type": "PlayHand",
+                    "selectedIds": [
+                      "spades-3",
+                      "hearts-3",
+                      "clubs-4",
+                      "diamonds-4"
+                    ],
+                    "xiemuBurn": 20
+                  }
+                },
+                "cards": [
+                  {
+                    "id": "spades-3",
+                    "suit": "spades",
+                    "rank": 3
+                  },
+                  {
+                    "id": "hearts-3",
+                    "suit": "hearts",
+                    "rank": 3
+                  },
+                  {
+                    "id": "clubs-4",
+                    "suit": "clubs",
+                    "rank": 4
+                  },
+                  {
+                    "id": "diamonds-4",
+                    "suit": "diamonds",
+                    "rank": 4
+                  }
+                ],
+                "rules": {
+                  "fourStraight": false,
+                  "fourFlush": false
+                }
+              }
+            ]
+          },
+          "xiemuBurnUsed": true,
+          "openingDiscard": null,
+          "index": 1,
+          "targetHeat": "600",
+          "initialTargetHeat": "600",
+          "heat": "474",
+          "handsLeft": 3,
+          "initialHands": 4,
+          "discardsLeft": 3,
+          "initialDiscards": 3,
+          "discardSpent": 0,
+          "discardGained": 0,
+          "doubleDiscardBeforeFirstPlay": false,
+          "discardsUsed": 0,
+          "skipResult": null,
+          "playIndex": 1,
+          "previousHandType": "two-pair",
+          "previousHandScore": "474",
+          "handLimit": 8,
+          "initialHandLimit": 8,
+          "boss": null,
+          "initialJokerIds": [],
+          "sealedJokerIds": [],
+          "challengeDisabledJokerId": null,
+          "rescueUsed": false,
+          "clearId": null,
+          "goldEarned": 0,
+          "disabledIds": [],
+          "wagerSelected": false,
+          "wagerUsed": false,
+          "maxPlayedCount": 4,
+          "ordinaryStraightSeen": false,
+          "ordinaryFlushSeen": false,
+          "quadRefundUsed": false,
+          "jokerSold": false
+        },
+        "trace": {
+          "routeGrowth": {
+            "before": {
+              "clears": 1,
+              "G": 1,
+              "S": 0,
+              "F": 0
+            },
+            "factors": {
+              "G": {
+                "n": "1",
+                "d": "1"
+              }
+            }
+          },
+          "xiemuBurn": {
+            "cost": 20,
+            "goldBefore": 35,
+            "beforeUsed": false,
+            "goldAfter": 15,
+            "afterUsed": true,
+            "multiplier": 3
+          },
+          "rulesVersion": "r2",
+          "rootId": "dynamic-review/xiemu/hand/dynamic-review/xiemu/command/8",
+          "handType": "two-pair",
+          "level": 1,
+          "sets": {
+            "playedIds": [
+              "spades-3",
+              "hearts-3",
+              "clubs-4",
+              "diamonds-4"
+            ],
+            "scoringIds": [
+              "spades-3",
+              "hearts-3",
+              "clubs-4",
+              "diamonds-4"
+            ],
+            "activeScoringIds": [
+              "spades-3",
+              "hearts-3",
+              "clubs-4",
+              "diamonds-4"
+            ],
+            "heldIds": [
+              "spades-5",
+              "hearts-5",
+              "clubs-6",
+              "diamonds-6"
+            ]
+          },
+          "finalScore": "474",
+          "accumulator": {
+            "H": {
+              "n": "79",
+              "d": "1"
+            },
+            "M": {
+              "n": "6",
+              "d": "1"
+            }
+          },
+          "events": [
+            {
+              "eventId": "dynamic-review/xiemu/hand/dynamic-review/xiemu/command/8/event/0",
+              "rootId": "dynamic-review/xiemu/hand/dynamic-review/xiemu/command/8",
+              "rootEventId": "dynamic-review/xiemu/hand/dynamic-review/xiemu/command/8/event/0",
+              "phase": "base",
+              "sourceType": "rule",
+              "sourceDefinitionId": "two-pair",
+              "sourceInstanceId": "dynamic-review/xiemu",
+              "operation": "base",
+              "value": {
+                "n": "65",
+                "d": "1"
+              },
+              "before": {
+                "H": {
+                  "n": "0",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "0",
+                  "d": "1"
+                }
+              },
+              "after": {
+                "H": {
+                  "n": "65",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "2",
+                  "d": "1"
+                }
+              },
+              "reasonKey": "two-pair.base",
+              "visibleCondition": {
+                "kind": "always"
+              },
+              "retriggerDepth": 0
+            },
+            {
+              "eventId": "dynamic-review/xiemu/hand/dynamic-review/xiemu/command/8/event/1",
+              "rootId": "dynamic-review/xiemu/hand/dynamic-review/xiemu/command/8",
+              "rootEventId": "dynamic-review/xiemu/hand/dynamic-review/xiemu/command/8/event/1",
+              "phase": "onCardScore",
+              "sourceType": "card",
+              "sourceDefinitionId": "rank-3",
+              "sourceInstanceId": "spades-3",
+              "targetCardId": "spades-3",
+              "operation": "add-heat",
+              "value": {
+                "n": "3",
+                "d": "1"
+              },
+              "before": {
+                "H": {
+                  "n": "65",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "2",
+                  "d": "1"
+                }
+              },
+              "after": {
+                "H": {
+                  "n": "68",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "2",
+                  "d": "1"
+                }
+              },
+              "reasonKey": "rank-3.add-heat",
+              "visibleCondition": {
+                "kind": "always"
+              },
+              "retriggerDepth": 0
+            },
+            {
+              "eventId": "dynamic-review/xiemu/hand/dynamic-review/xiemu/command/8/event/2",
+              "rootId": "dynamic-review/xiemu/hand/dynamic-review/xiemu/command/8",
+              "rootEventId": "dynamic-review/xiemu/hand/dynamic-review/xiemu/command/8/event/2",
+              "phase": "onCardScore",
+              "sourceType": "card",
+              "sourceDefinitionId": "rank-3",
+              "sourceInstanceId": "hearts-3",
+              "targetCardId": "hearts-3",
+              "operation": "add-heat",
+              "value": {
+                "n": "3",
+                "d": "1"
+              },
+              "before": {
+                "H": {
+                  "n": "68",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "2",
+                  "d": "1"
+                }
+              },
+              "after": {
+                "H": {
+                  "n": "71",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "2",
+                  "d": "1"
+                }
+              },
+              "reasonKey": "rank-3.add-heat",
+              "visibleCondition": {
+                "kind": "always"
+              },
+              "retriggerDepth": 0
+            },
+            {
+              "eventId": "dynamic-review/xiemu/hand/dynamic-review/xiemu/command/8/event/3",
+              "rootId": "dynamic-review/xiemu/hand/dynamic-review/xiemu/command/8",
+              "rootEventId": "dynamic-review/xiemu/hand/dynamic-review/xiemu/command/8/event/3",
+              "phase": "onCardScore",
+              "sourceType": "card",
+              "sourceDefinitionId": "rank-4",
+              "sourceInstanceId": "clubs-4",
+              "targetCardId": "clubs-4",
+              "operation": "add-heat",
+              "value": {
+                "n": "4",
+                "d": "1"
+              },
+              "before": {
+                "H": {
+                  "n": "71",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "2",
+                  "d": "1"
+                }
+              },
+              "after": {
+                "H": {
+                  "n": "75",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "2",
+                  "d": "1"
+                }
+              },
+              "reasonKey": "rank-4.add-heat",
+              "visibleCondition": {
+                "kind": "always"
+              },
+              "retriggerDepth": 0
+            },
+            {
+              "eventId": "dynamic-review/xiemu/hand/dynamic-review/xiemu/command/8/event/4",
+              "rootId": "dynamic-review/xiemu/hand/dynamic-review/xiemu/command/8",
+              "rootEventId": "dynamic-review/xiemu/hand/dynamic-review/xiemu/command/8/event/4",
+              "phase": "onCardScore",
+              "sourceType": "card",
+              "sourceDefinitionId": "rank-4",
+              "sourceInstanceId": "diamonds-4",
+              "targetCardId": "diamonds-4",
+              "operation": "add-heat",
+              "value": {
+                "n": "4",
+                "d": "1"
+              },
+              "before": {
+                "H": {
+                  "n": "75",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "2",
+                  "d": "1"
+                }
+              },
+              "after": {
+                "H": {
+                  "n": "79",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "2",
+                  "d": "1"
+                }
+              },
+              "reasonKey": "rank-4.add-heat",
+              "visibleCondition": {
+                "kind": "always"
+              },
+              "retriggerDepth": 0
+            },
+            {
+              "eventId": "dynamic-review/xiemu/hand/dynamic-review/xiemu/command/8/event/5",
+              "rootId": "dynamic-review/xiemu/hand/dynamic-review/xiemu/command/8",
+              "rootEventId": "dynamic-review/xiemu/hand/dynamic-review/xiemu/command/8/event/5",
+              "phase": "routeGrowth",
+              "sourceType": "rule",
+              "sourceDefinitionId": "route-growth",
+              "sourceInstanceId": "dynamic-review/xiemu",
+              "operation": "route-factor",
+              "value": {
+                "n": "1",
+                "d": "1"
+              },
+              "before": {
+                "H": {
+                  "n": "79",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "2",
+                  "d": "1"
+                }
+              },
+              "after": {
+                "H": {
+                  "n": "79",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "2",
+                  "d": "1"
+                }
+              },
+              "reasonKey": "route-growth.G.factor",
+              "visibleCondition": {
+                "kind": "hand-type-in",
+                "values": [
+                  "pair",
+                  "two-pair",
+                  "three-kind",
+                  "full-house",
+                  "four-kind",
+                  "five-kind",
+                  "flush-house",
+                  "flush-five"
+                ]
+              },
+              "retriggerDepth": 0,
+              "routeFamily": "G",
+              "resourceBefore": 1,
+              "resourceAfter": 1
+            },
+            {
+              "eventId": "dynamic-review/xiemu/hand/dynamic-review/xiemu/command/8/event/6",
+              "rootId": "dynamic-review/xiemu/hand/dynamic-review/xiemu/command/8",
+              "rootEventId": "dynamic-review/xiemu/hand/dynamic-review/xiemu/command/8/event/6",
+              "phase": "characterScore",
+              "sourceType": "character",
+              "sourceDefinitionId": "xiemu",
+              "sourceInstanceId": "dynamic-review/xiemu/character",
+              "operation": "multiply-multiplier",
+              "value": {
+                "n": "3",
+                "d": "1"
+              },
+              "before": {
+                "H": {
+                  "n": "79",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "2",
+                  "d": "1"
+                }
+              },
+              "after": {
+                "H": {
+                  "n": "79",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "6",
+                  "d": "1"
+                }
+              },
+              "reasonKey": "xiemu.multiply-multiplier",
+              "visibleCondition": {
+                "kind": "always"
+              },
+              "retriggerDepth": 0
+            },
+            {
+              "eventId": "dynamic-review/xiemu/hand/dynamic-review/xiemu/command/8/event/7",
+              "rootId": "dynamic-review/xiemu/hand/dynamic-review/xiemu/command/8",
+              "rootEventId": "dynamic-review/xiemu/hand/dynamic-review/xiemu/command/8/event/7",
+              "phase": "finalScore",
+              "sourceType": "rule",
+              "sourceDefinitionId": "two-pair",
+              "sourceInstanceId": "dynamic-review/xiemu",
+              "operation": "final-score",
+              "value": {
+                "n": "474",
+                "d": "1"
+              },
+              "before": {
+                "H": {
+                  "n": "79",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "6",
+                  "d": "1"
+                }
+              },
+              "after": {
+                "H": {
+                  "n": "79",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "6",
+                  "d": "1"
+                }
+              },
+              "reasonKey": "two-pair.final-score",
+              "visibleCondition": {
+                "kind": "always"
+              },
+              "retriggerDepth": 0
+            }
+          ],
+          "jokers": [],
+          "rng": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 2405713301
+          },
+          "goldDelta": 0,
+          "destroyedCardIds": [],
+          "destroyedJokerIds": [],
+          "cards": [
+            {
+              "id": "spades-3",
+              "suit": "spades",
+              "rank": 3
+            },
+            {
+              "id": "hearts-3",
+              "suit": "hearts",
+              "rank": 3
+            },
+            {
+              "id": "clubs-4",
+              "suit": "clubs",
+              "rank": 4
+            },
+            {
+              "id": "diamonds-4",
+              "suit": "diamonds",
+              "rank": 4
+            },
+            {
+              "id": "spades-5",
+              "suit": "spades",
+              "rank": 5
+            },
+            {
+              "id": "hearts-5",
+              "suit": "hearts",
+              "rank": 5
+            },
+            {
+              "id": "clubs-6",
+              "suit": "clubs",
+              "rank": 6
+            },
+            {
+              "id": "diamonds-6",
+              "suit": "diamonds",
+              "rank": 6
+            }
+          ],
+          "sourceJokers": [],
+          "bossContext": {
+            "boss": null,
+            "previousHandType": null,
+            "sealedJokerIds": [],
+            "challengeDisabledJokerId": null
+          },
+          "combo": {
+            "goldBeforeRewards": null
+          }
+        },
+        "goldBefore": 35,
+        "goldAfter": 15
+      },
+      "used": {
+        "state": "used",
+        "enabled": false
+      },
+      "failure": "AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:\n\n  assert.ok(strike.eyes.url.includes(asset.path))\n\n    at payoffCheck (file:///D:/ai/dachoupai/dachoupai/.codex-remote-attachments/wencheng-huarui-dynamic/harness/wencheng-huarui-dynamic.mjs:45:226)\n    at file:///D:/ai/dachoupai/dachoupai/.codex-remote-attachments/wencheng-huarui-dynamic/harness/wencheng-huarui-dynamic.mjs:77:178"
+    },
+    {
+      "key": "xiemu-390",
+      "id": "xiemu",
+      "spec": {
+        "width": 390,
+        "height": 844,
+        "touch": true
+      },
+      "status": "FAIL",
+      "checks": [
+        "available / Escape / select / explicit cancel preserve full state, journal and slots",
+        "used skill cannot pay twice; normal next hand has no hero payoff"
+      ],
+      "errors": [],
+      "available": {
+        "hero": "available",
+        "enabled": true,
+        "label": "赏赐",
+        "gold": 35
+      },
+      "command": {
+        "runId": "dynamic-review/xiemu",
+        "commandId": "dynamic-review/xiemu/command/8",
+        "expectedSeq": 7,
+        "action": {
+          "type": "PlayHand",
+          "selectedIds": [
+            "spades-3",
+            "hearts-3",
+            "clubs-4",
+            "diamonds-4"
+          ],
+          "xiemuBurn": 20
+        }
+      },
+      "first": {
+        "before": {
+          "routeGrowth": {
+            "entry": {
+              "commandId": "fixture/6",
+              "seq": 7,
+              "type": "EnterStage"
+            },
+            "handTypes": [],
+            "eligible": [],
+            "sources": []
+          },
+          "xiemuBurnUsed": false,
+          "openingDiscard": null,
+          "index": 1,
+          "targetHeat": "600",
+          "initialTargetHeat": "600",
+          "heat": "0",
+          "handsLeft": 4,
+          "initialHands": 4,
+          "discardsLeft": 3,
+          "initialDiscards": 3,
+          "discardSpent": 0,
+          "discardGained": 0,
+          "doubleDiscardBeforeFirstPlay": false,
+          "discardsUsed": 0,
+          "skipResult": null,
+          "playIndex": 0,
+          "previousHandType": null,
+          "previousHandScore": null,
+          "handLimit": 8,
+          "initialHandLimit": 8,
+          "boss": null,
+          "initialJokerIds": [],
+          "sealedJokerIds": [],
+          "challengeDisabledJokerId": null,
+          "rescueUsed": false,
+          "clearId": null,
+          "goldEarned": 0,
+          "disabledIds": [],
+          "wagerSelected": false,
+          "wagerUsed": false,
+          "maxPlayedCount": 0,
+          "ordinaryStraightSeen": false,
+          "ordinaryFlushSeen": false,
+          "quadRefundUsed": false,
+          "jokerSold": false
+        },
+        "after": {
+          "routeGrowth": {
+            "entry": {
+              "commandId": "fixture/6",
+              "seq": 7,
+              "type": "EnterStage"
+            },
+            "handTypes": [
+              "two-pair"
+            ],
+            "eligible": [
+              "G"
+            ],
+            "sources": [
+              {
+                "command": {
+                  "runId": "dynamic-review/xiemu",
+                  "commandId": "dynamic-review/xiemu/command/8",
+                  "expectedSeq": 7,
+                  "action": {
+                    "type": "PlayHand",
+                    "selectedIds": [
+                      "spades-3",
+                      "hearts-3",
+                      "clubs-4",
+                      "diamonds-4"
+                    ],
+                    "xiemuBurn": 20
+                  }
+                },
+                "cards": [
+                  {
+                    "id": "spades-3",
+                    "suit": "spades",
+                    "rank": 3
+                  },
+                  {
+                    "id": "hearts-3",
+                    "suit": "hearts",
+                    "rank": 3
+                  },
+                  {
+                    "id": "clubs-4",
+                    "suit": "clubs",
+                    "rank": 4
+                  },
+                  {
+                    "id": "diamonds-4",
+                    "suit": "diamonds",
+                    "rank": 4
+                  }
+                ],
+                "rules": {
+                  "fourStraight": false,
+                  "fourFlush": false
+                }
+              }
+            ]
+          },
+          "xiemuBurnUsed": true,
+          "openingDiscard": null,
+          "index": 1,
+          "targetHeat": "600",
+          "initialTargetHeat": "600",
+          "heat": "474",
+          "handsLeft": 3,
+          "initialHands": 4,
+          "discardsLeft": 3,
+          "initialDiscards": 3,
+          "discardSpent": 0,
+          "discardGained": 0,
+          "doubleDiscardBeforeFirstPlay": false,
+          "discardsUsed": 0,
+          "skipResult": null,
+          "playIndex": 1,
+          "previousHandType": "two-pair",
+          "previousHandScore": "474",
+          "handLimit": 8,
+          "initialHandLimit": 8,
+          "boss": null,
+          "initialJokerIds": [],
+          "sealedJokerIds": [],
+          "challengeDisabledJokerId": null,
+          "rescueUsed": false,
+          "clearId": null,
+          "goldEarned": 0,
+          "disabledIds": [],
+          "wagerSelected": false,
+          "wagerUsed": false,
+          "maxPlayedCount": 4,
+          "ordinaryStraightSeen": false,
+          "ordinaryFlushSeen": false,
+          "quadRefundUsed": false,
+          "jokerSold": false
+        },
+        "trace": {
+          "routeGrowth": {
+            "before": {
+              "clears": 1,
+              "G": 1,
+              "S": 0,
+              "F": 0
+            },
+            "factors": {
+              "G": {
+                "n": "1",
+                "d": "1"
+              }
+            }
+          },
+          "xiemuBurn": {
+            "cost": 20,
+            "goldBefore": 35,
+            "beforeUsed": false,
+            "goldAfter": 15,
+            "afterUsed": true,
+            "multiplier": 3
+          },
+          "rulesVersion": "r2",
+          "rootId": "dynamic-review/xiemu/hand/dynamic-review/xiemu/command/8",
+          "handType": "two-pair",
+          "level": 1,
+          "sets": {
+            "playedIds": [
+              "spades-3",
+              "hearts-3",
+              "clubs-4",
+              "diamonds-4"
+            ],
+            "scoringIds": [
+              "spades-3",
+              "hearts-3",
+              "clubs-4",
+              "diamonds-4"
+            ],
+            "activeScoringIds": [
+              "spades-3",
+              "hearts-3",
+              "clubs-4",
+              "diamonds-4"
+            ],
+            "heldIds": [
+              "spades-5",
+              "hearts-5",
+              "clubs-6",
+              "diamonds-6"
+            ]
+          },
+          "finalScore": "474",
+          "accumulator": {
+            "H": {
+              "n": "79",
+              "d": "1"
+            },
+            "M": {
+              "n": "6",
+              "d": "1"
+            }
+          },
+          "events": [
+            {
+              "eventId": "dynamic-review/xiemu/hand/dynamic-review/xiemu/command/8/event/0",
+              "rootId": "dynamic-review/xiemu/hand/dynamic-review/xiemu/command/8",
+              "rootEventId": "dynamic-review/xiemu/hand/dynamic-review/xiemu/command/8/event/0",
+              "phase": "base",
+              "sourceType": "rule",
+              "sourceDefinitionId": "two-pair",
+              "sourceInstanceId": "dynamic-review/xiemu",
+              "operation": "base",
+              "value": {
+                "n": "65",
+                "d": "1"
+              },
+              "before": {
+                "H": {
+                  "n": "0",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "0",
+                  "d": "1"
+                }
+              },
+              "after": {
+                "H": {
+                  "n": "65",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "2",
+                  "d": "1"
+                }
+              },
+              "reasonKey": "two-pair.base",
+              "visibleCondition": {
+                "kind": "always"
+              },
+              "retriggerDepth": 0
+            },
+            {
+              "eventId": "dynamic-review/xiemu/hand/dynamic-review/xiemu/command/8/event/1",
+              "rootId": "dynamic-review/xiemu/hand/dynamic-review/xiemu/command/8",
+              "rootEventId": "dynamic-review/xiemu/hand/dynamic-review/xiemu/command/8/event/1",
+              "phase": "onCardScore",
+              "sourceType": "card",
+              "sourceDefinitionId": "rank-3",
+              "sourceInstanceId": "spades-3",
+              "targetCardId": "spades-3",
+              "operation": "add-heat",
+              "value": {
+                "n": "3",
+                "d": "1"
+              },
+              "before": {
+                "H": {
+                  "n": "65",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "2",
+                  "d": "1"
+                }
+              },
+              "after": {
+                "H": {
+                  "n": "68",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "2",
+                  "d": "1"
+                }
+              },
+              "reasonKey": "rank-3.add-heat",
+              "visibleCondition": {
+                "kind": "always"
+              },
+              "retriggerDepth": 0
+            },
+            {
+              "eventId": "dynamic-review/xiemu/hand/dynamic-review/xiemu/command/8/event/2",
+              "rootId": "dynamic-review/xiemu/hand/dynamic-review/xiemu/command/8",
+              "rootEventId": "dynamic-review/xiemu/hand/dynamic-review/xiemu/command/8/event/2",
+              "phase": "onCardScore",
+              "sourceType": "card",
+              "sourceDefinitionId": "rank-3",
+              "sourceInstanceId": "hearts-3",
+              "targetCardId": "hearts-3",
+              "operation": "add-heat",
+              "value": {
+                "n": "3",
+                "d": "1"
+              },
+              "before": {
+                "H": {
+                  "n": "68",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "2",
+                  "d": "1"
+                }
+              },
+              "after": {
+                "H": {
+                  "n": "71",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "2",
+                  "d": "1"
+                }
+              },
+              "reasonKey": "rank-3.add-heat",
+              "visibleCondition": {
+                "kind": "always"
+              },
+              "retriggerDepth": 0
+            },
+            {
+              "eventId": "dynamic-review/xiemu/hand/dynamic-review/xiemu/command/8/event/3",
+              "rootId": "dynamic-review/xiemu/hand/dynamic-review/xiemu/command/8",
+              "rootEventId": "dynamic-review/xiemu/hand/dynamic-review/xiemu/command/8/event/3",
+              "phase": "onCardScore",
+              "sourceType": "card",
+              "sourceDefinitionId": "rank-4",
+              "sourceInstanceId": "clubs-4",
+              "targetCardId": "clubs-4",
+              "operation": "add-heat",
+              "value": {
+                "n": "4",
+                "d": "1"
+              },
+              "before": {
+                "H": {
+                  "n": "71",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "2",
+                  "d": "1"
+                }
+              },
+              "after": {
+                "H": {
+                  "n": "75",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "2",
+                  "d": "1"
+                }
+              },
+              "reasonKey": "rank-4.add-heat",
+              "visibleCondition": {
+                "kind": "always"
+              },
+              "retriggerDepth": 0
+            },
+            {
+              "eventId": "dynamic-review/xiemu/hand/dynamic-review/xiemu/command/8/event/4",
+              "rootId": "dynamic-review/xiemu/hand/dynamic-review/xiemu/command/8",
+              "rootEventId": "dynamic-review/xiemu/hand/dynamic-review/xiemu/command/8/event/4",
+              "phase": "onCardScore",
+              "sourceType": "card",
+              "sourceDefinitionId": "rank-4",
+              "sourceInstanceId": "diamonds-4",
+              "targetCardId": "diamonds-4",
+              "operation": "add-heat",
+              "value": {
+                "n": "4",
+                "d": "1"
+              },
+              "before": {
+                "H": {
+                  "n": "75",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "2",
+                  "d": "1"
+                }
+              },
+              "after": {
+                "H": {
+                  "n": "79",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "2",
+                  "d": "1"
+                }
+              },
+              "reasonKey": "rank-4.add-heat",
+              "visibleCondition": {
+                "kind": "always"
+              },
+              "retriggerDepth": 0
+            },
+            {
+              "eventId": "dynamic-review/xiemu/hand/dynamic-review/xiemu/command/8/event/5",
+              "rootId": "dynamic-review/xiemu/hand/dynamic-review/xiemu/command/8",
+              "rootEventId": "dynamic-review/xiemu/hand/dynamic-review/xiemu/command/8/event/5",
+              "phase": "routeGrowth",
+              "sourceType": "rule",
+              "sourceDefinitionId": "route-growth",
+              "sourceInstanceId": "dynamic-review/xiemu",
+              "operation": "route-factor",
+              "value": {
+                "n": "1",
+                "d": "1"
+              },
+              "before": {
+                "H": {
+                  "n": "79",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "2",
+                  "d": "1"
+                }
+              },
+              "after": {
+                "H": {
+                  "n": "79",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "2",
+                  "d": "1"
+                }
+              },
+              "reasonKey": "route-growth.G.factor",
+              "visibleCondition": {
+                "kind": "hand-type-in",
+                "values": [
+                  "pair",
+                  "two-pair",
+                  "three-kind",
+                  "full-house",
+                  "four-kind",
+                  "five-kind",
+                  "flush-house",
+                  "flush-five"
+                ]
+              },
+              "retriggerDepth": 0,
+              "routeFamily": "G",
+              "resourceBefore": 1,
+              "resourceAfter": 1
+            },
+            {
+              "eventId": "dynamic-review/xiemu/hand/dynamic-review/xiemu/command/8/event/6",
+              "rootId": "dynamic-review/xiemu/hand/dynamic-review/xiemu/command/8",
+              "rootEventId": "dynamic-review/xiemu/hand/dynamic-review/xiemu/command/8/event/6",
+              "phase": "characterScore",
+              "sourceType": "character",
+              "sourceDefinitionId": "xiemu",
+              "sourceInstanceId": "dynamic-review/xiemu/character",
+              "operation": "multiply-multiplier",
+              "value": {
+                "n": "3",
+                "d": "1"
+              },
+              "before": {
+                "H": {
+                  "n": "79",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "2",
+                  "d": "1"
+                }
+              },
+              "after": {
+                "H": {
+                  "n": "79",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "6",
+                  "d": "1"
+                }
+              },
+              "reasonKey": "xiemu.multiply-multiplier",
+              "visibleCondition": {
+                "kind": "always"
+              },
+              "retriggerDepth": 0
+            },
+            {
+              "eventId": "dynamic-review/xiemu/hand/dynamic-review/xiemu/command/8/event/7",
+              "rootId": "dynamic-review/xiemu/hand/dynamic-review/xiemu/command/8",
+              "rootEventId": "dynamic-review/xiemu/hand/dynamic-review/xiemu/command/8/event/7",
+              "phase": "finalScore",
+              "sourceType": "rule",
+              "sourceDefinitionId": "two-pair",
+              "sourceInstanceId": "dynamic-review/xiemu",
+              "operation": "final-score",
+              "value": {
+                "n": "474",
+                "d": "1"
+              },
+              "before": {
+                "H": {
+                  "n": "79",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "6",
+                  "d": "1"
+                }
+              },
+              "after": {
+                "H": {
+                  "n": "79",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "6",
+                  "d": "1"
+                }
+              },
+              "reasonKey": "two-pair.final-score",
+              "visibleCondition": {
+                "kind": "always"
+              },
+              "retriggerDepth": 0
+            }
+          ],
+          "jokers": [],
+          "rng": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 2405713301
+          },
+          "goldDelta": 0,
+          "destroyedCardIds": [],
+          "destroyedJokerIds": [],
+          "cards": [
+            {
+              "id": "spades-3",
+              "suit": "spades",
+              "rank": 3
+            },
+            {
+              "id": "hearts-3",
+              "suit": "hearts",
+              "rank": 3
+            },
+            {
+              "id": "clubs-4",
+              "suit": "clubs",
+              "rank": 4
+            },
+            {
+              "id": "diamonds-4",
+              "suit": "diamonds",
+              "rank": 4
+            },
+            {
+              "id": "spades-5",
+              "suit": "spades",
+              "rank": 5
+            },
+            {
+              "id": "hearts-5",
+              "suit": "hearts",
+              "rank": 5
+            },
+            {
+              "id": "clubs-6",
+              "suit": "clubs",
+              "rank": 6
+            },
+            {
+              "id": "diamonds-6",
+              "suit": "diamonds",
+              "rank": 6
+            }
+          ],
+          "sourceJokers": [],
+          "bossContext": {
+            "boss": null,
+            "previousHandType": null,
+            "sealedJokerIds": [],
+            "challengeDisabledJokerId": null
+          },
+          "combo": {
+            "goldBeforeRewards": null
+          }
+        },
+        "goldBefore": 35,
+        "goldAfter": 15
+      },
+      "used": {
+        "state": "used",
+        "enabled": false
+      },
+      "failure": "AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:\n\n  assert.ok(strike.eyes.url.includes(asset.path))\n\n    at payoffCheck (file:///D:/ai/dachoupai/dachoupai/.codex-remote-attachments/wencheng-huarui-dynamic/harness/wencheng-huarui-dynamic.mjs:45:226)\n    at file:///D:/ai/dachoupai/dachoupai/.codex-remote-attachments/wencheng-huarui-dynamic/harness/wencheng-huarui-dynamic.mjs:77:178"
+    }
+  ],
+  "status": "FAIL",
+  "sourceSHA256": {
+    "src/game/GameScene.ts": "70d771200dcfca5797474877fc178a519772b75fb051f802b08ff08dacb12a5e",
+    "src/game/HeroClimaxStage.ts": "66e15cc5ae2253eda27e9990f37d721ae5dfb50546655d2f5b31bc51703da714",
+    "src/game/HeroPayoff.ts": "10a52ab68a19b83e2a69fe9dada8ca8bb9b9af52af6a0dddfa0bfe5958a0c7bb",
+    "src/audio/AudioEngine.ts": "31fc7b066bb6e5404c6b564bbcedc0f191e1bff182f275534dfdffcc94328368",
+    "harness/fixtures/wencheng-huarui-dynamic.ts": "e73d8dd95339b9f2dcc1efd1e73d8424a292ff1126a67eba03b2e85568889a90"
+  }
+}
