@@ -3,6 +3,7 @@ import {presentStageSelection} from '../src/game/BlindSelectPresentation';
 import {DetailDialog} from '../src/game/DetailDialog';
 import {applyCommand, createRun, type R2RunState} from '../src/domain/run';
 import {R2_BOSSES} from '../src/domain/r2Chapter';
+import {r2ConsumableCapacity} from '../src/domain/r2Resources';
 import {dispatchRun,runController} from '../src/game/runAdapter';
 import {paperSceneStart} from '../src/game/PaperFlow';
 import {gameSession} from '../src/game/session';
@@ -143,7 +144,7 @@ describe('directory commands and settlement contract',()=>{
     vi.mocked(runController).mockReturnValue(owner as any);
     let finish!:(r:any)=>void;vi.mocked(dispatchRun).mockImplementation(()=>new Promise(resolve=>finish=resolve));
     const dialog=new DetailDialog(),s=scene(),done=presentStageSelection(dialog,run,s),host=dialog.current as unknown as MockElement;
-    const skip=host.querySelector('.is-skip')!,first=skip.click();
+    const skip=host.querySelector('.is-skip')!;skip.click();const first=skip.click();
     await skip.onclick?.({}); // A stale/programmatic second handler also cannot dispatch.
     expect(dispatchRun).toHaveBeenCalledTimes(1);expect(host.querySelectorAll('button').every(b=>b.disabled)).toBe(true);
     finish(result);await first;expect(await done).toBe(false);
@@ -154,14 +155,14 @@ describe('directory commands and settlement contract',()=>{
   it('a rejected command or thrown error restores controls and remains retryable',async()=>{
     const run=commandRun(),dialog=new DetailDialog();vi.mocked(dispatchRun).mockRejectedValueOnce(Error('transport')).mockResolvedValueOnce({ok:false,code:'command-busy',state:run});
     void presentStageSelection(dialog,run,scene());const host=dialog.current as unknown as MockElement,skip=host.querySelector('.is-skip')!;
-    await skip.click();expect(skip.disabled).toBe(false);expect(host.querySelector('.blind-operation-status')?.textContent).toContain('请重试');
-    await skip.click();expect(skip.disabled).toBe(false);expect(dispatchRun).toHaveBeenCalledTimes(2);expect(paperSceneStart).not.toHaveBeenCalled();dialog.close();
+    skip.click();await skip.click();expect(skip.disabled).toBe(false);expect(host.querySelector('.blind-operation-status')?.textContent).toContain('请重试');
+    skip.click();await skip.click();expect(skip.disabled).toBe(false);expect(dispatchRun).toHaveBeenCalledTimes(2);expect(paperSceneStart).not.toHaveBeenCalled();dialog.close();
   });
   it('save retry persists the same candidate without sending another SkipStage',async()=>{
     const run=commandRun(),saved=savedSkip(run),owner={state:run},retry=vi.fn(async()=>{if(saved.ok)owner.state=saved.state;return true;});
     vi.mocked(runController).mockReturnValue(owner as any);vi.mocked(gameSession).mockReturnValue({retry} as any);vi.mocked(dispatchRun).mockResolvedValue({ok:false,code:'save-failed',state:run});
     const dialog=new DetailDialog(),done=presentStageSelection(dialog,run,scene()),host=dialog.current as unknown as MockElement,skip=host.querySelector('.is-skip')!;
-    await skip.click();expect(skip.textContent).toBe('重试保存并跳场');expect(skip.disabled).toBe(false);
+    skip.click();await skip.click();expect(skip.textContent).toBe('重试保存并跳场');expect(skip.disabled).toBe(false);
     await skip.click();expect(await done).toBe(false);expect(retry).toHaveBeenCalledTimes(1);expect(dispatchRun).toHaveBeenCalledTimes(1);expect(paperSceneStart).toHaveBeenCalledTimes(1);
   });
   it('offers one later action; close and stale callbacks send no commands',async()=>{
@@ -170,10 +171,20 @@ describe('directory commands and settlement contract',()=>{
     const skip=host.querySelector('.is-skip')!;host.querySelector('.dialog-close')!.click();expect(await done).toBe(false);await skip.onclick?.({});
     expect(dispatchRun).not.toHaveBeenCalled();expect(paperSceneStart).not.toHaveBeenCalled();
   });
+  it('cancels local skip confirmation without changing the current run or dispatching',async()=>{
+    const run=commandRun(),before=JSON.stringify(run),dialog=new DetailDialog();
+    void presentStageSelection(dialog,run,scene());const host=dialog.current as unknown as MockElement,skip=host.querySelector('.is-skip')!;
+    skip.click();expect(skip.textContent).toBe('确认跳场');expect(dispatchRun).not.toHaveBeenCalled();
+    expect(host.querySelector('.blind-skip-confirm')?.textContent).toContain('放弃本场结算奖金、利息与过关效果');
+    expect(host.querySelector('.dialog-primary')?.disabled).toBe(true);
+    host.querySelector('.blind-skip-cancel')!.click();
+    expect(skip.textContent).toBe('跳过此场');expect(host.querySelector('.dialog-primary')?.disabled).toBe(false);
+    expect(JSON.stringify(run)).toBe(before);expect(dispatchRun).not.toHaveBeenCalled();dialog.close();
+  });
   it('a late saved skip cannot navigate a replaced scene/controller',async()=>{
     const run=commandRun(),result=savedSkip(run);let owner:any={state:run},finish!:(r:any)=>void;
     vi.mocked(runController).mockImplementation(()=>owner);vi.mocked(dispatchRun).mockImplementation(()=>new Promise(resolve=>finish=resolve));
-    const dialog=new DetailDialog();void presentStageSelection(dialog,run,scene());const host=dialog.current as unknown as MockElement,click=host.querySelector('.is-skip')!.click();
+    const dialog=new DetailDialog();void presentStageSelection(dialog,run,scene());const host=dialog.current as unknown as MockElement,skip=host.querySelector('.is-skip')!;skip.click();const click=skip.click();
     owner=undefined;finish(result);await click;expect(dispatchRun).toHaveBeenCalledTimes(1);expect(paperSceneStart).not.toHaveBeenCalled();dialog.close();
   });
 });
@@ -196,8 +207,8 @@ function makeRun(stageIndex: number, bossId: string = 'B04', phase: 'stage-ready
   return run;
 }
 
-describe('Three-fold Blind Selection & Boss Alert Presentation', () => {
-  it('displays the three stages, highlights active stage, and shows boss danger plate in warm-up', async () => {
+describe('three-stage confrontation presentation', () => {
+  it('shows one current stage and the real Boss rule in advance, with one start action', async () => {
     const run = makeRun(0, 'B04'); // Chapter 1, stage 0 (暖场), Boss B04 (素颜场)
     const dialog = new DetailDialog();
     const mockScene = {audio: {select: vi.fn(), sourceCue: vi.fn()}} as any;
@@ -207,7 +218,9 @@ describe('Three-fold Blind Selection & Boss Alert Presentation', () => {
     expect(host).toBeTruthy();
 
     expect(mockScene.audio.select).toHaveBeenCalled();
-    expect(host.querySelector('.blind-header-tag')?.textContent).toContain('第 1 章 · 节目录');
+    expect(host.querySelector('.dialog-header')?.textContent).toContain('第 1 章');
+    expect(host.querySelector('.blind-chapter-caption')?.textContent).toBe('三场对峙');
+    expect(host.querySelectorAll('.dialog-primary')).toHaveLength(1);
 
     // Cards
     const cards = host.querySelectorAll('.blind-card');
@@ -215,10 +228,13 @@ describe('Three-fold Blind Selection & Boss Alert Presentation', () => {
     expect(cards[0].classList.contains('is-active')).toBe(true);
     expect(cards[2].classList.contains('is-boss')).toBe(true);
 
-    // Boss warning plate is already visible in advance!
-    const bossPlate = host.querySelector('.boss-danger-plate');
+    expect(cards.every(card => card.querySelectorAll('.dialog-primary').length === 0)).toBe(true);
+    expect(cards[0].querySelector('.blind-target-value')?.textContent).toBe('400');
+    expect(cards[1].querySelector('.blind-target-value')?.textContent).toBe('600');
+    expect(cards[2].querySelector('.blind-target-value')?.textContent).toBe('800');
+    const bossPlate = host.querySelector('.blind-boss-declaration');
     expect(bossPlate).toBeTruthy();
-    expect(bossPlate!.textContent).toContain('素颜场');
+    expect(cards[2].textContent).toContain('素颜场');
     expect(bossPlate!.textContent).toContain('J/Q/K本场失效');
 
     dialog.close();
@@ -246,11 +262,11 @@ describe('Three-fold Blind Selection & Boss Alert Presentation', () => {
     expect(cards[2].textContent).toContain('♠');
 
     // Previous stages marked cleared
-    const stamps = host.querySelectorAll('.blind-stamp-cleared');
-    expect(stamps.length).toBeGreaterThanOrEqual(1);
+    expect(host.querySelectorAll('.is-cleared')).toHaveLength(2);
+    expect(host.querySelector('.is-skip')).toBeNull();
 
     // Enter boss button
-    const enterBtn = cards[2].querySelector('.is-boss-primary');
+    const enterBtn = host.querySelector('.dialog-primary');
     expect(enterBtn).toBeTruthy();
     expect(enterBtn!.textContent).toContain('迎战强敌');
 
@@ -268,11 +284,21 @@ describe('Three-fold Blind Selection & Boss Alert Presentation', () => {
     const host = dialog.current as unknown as MockElement;
     expect(host).toBeTruthy();
 
-    expect(host.querySelector('.blind-header-subtitle')?.textContent).toContain('正在商店筹备');
+    expect(host.querySelector('.is-active')?.textContent).toContain('正在商店筹备');
+    expect(host.querySelector('.dialog-primary')).toBeNull();
 
     dialog.close();
     const result = await promise;
     expect(result).toBe(false);
+  });
+
+  it('shows the actual full-inventory skip alternative without promising a lost item', () => {
+    const run = makeRun(1), dialog = new DetailDialog();
+    run.consumables = Array.from({length: r2ConsumableCapacity(run)}, (_, i) => ({instanceId: 'held/' + i, definitionId: 'T01'}));
+    void presentStageSelection(dialog, run);
+    const host = dialog.current as unknown as MockElement;
+    expect(host.querySelector('.is-active')?.textContent).toContain('道具栏已满，改得 1 金');
+    dialog.close();
   });
 
   it('handles all 16 boss definitions smoothly without crash', () => {
@@ -281,7 +307,9 @@ describe('Three-fold Blind Selection & Boss Alert Presentation', () => {
       const run = makeRun(2, boss.id);
       expect(() => presentStageSelection(dialog, run)).not.toThrow();
       const host = dialog.current as unknown as MockElement;
-      expect(host.querySelector('.boss-danger-plate')?.textContent).toContain(boss.name);
+      expect(host.querySelector('.is-active')?.textContent).toContain(boss.name);
+      expect(host.querySelector('.blind-boss-rule')?.textContent).toContain(boss.rule);
+      expect(host.querySelector('.blind-boss-response')?.textContent).toContain(boss.response);
       dialog.close();
     }
   });

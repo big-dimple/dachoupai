@@ -1,0 +1,229 @@
+/* Chapter entrance owns its paper stage; shared detail/confirmation shells stay untouched. */
+.detail-dialog.blind-select-dialog[open] {
+  --blind-ink: #293b3c;
+  --blind-muted: #5e655e;
+  --blind-paper: #eee5d3;
+  width: min(1100px, calc(100vw - var(--safe-left, 0px) - var(--safe-right, 0px) - 32px));
+  height: auto;
+  max-height: calc(100dvh - var(--safe-top, 0px) - var(--safe-bottom, 0px) - 32px);
+  top: calc(50% + (var(--safe-top, 0px) - var(--safe-bottom, 0px)) / 2);
+  bottom: auto;
+  transform: translateY(-50%);
+  padding: 0;
+  border: 1px solid #7c7c68;
+  border-radius: 3px 10px 3px 5px;
+  background: var(--blind-paper);
+  color: var(--blind-ink);
+  box-shadow: 0 24px 64px #172c334d, inset 0 0 0 4px #fcf4e2;
+  line-height: 1.5;
+  animation: none;
+  overflow: clip;
+}
+.blind-select-dialog::backdrop { background: #26383a99; }
+.blind-select-dialog > .dialog-header {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+  padding: 18px 28px 12px;
+  color: var(--blind-ink);
+  background: none;
+  border: 0;
+  box-shadow: none;
+}
+.blind-select-dialog .dialog-eyebrow,
+.blind-select-dialog .dialog-header::after { display: none; }
+.blind-select-dialog > .dialog-header h2 {
+  margin: 0;
+  color: var(--blind-ink);
+  font-size: 24px;
+  letter-spacing: .08em;
+  text-shadow: none;
+}
+.blind-select-dialog .blind-chapter-caption { font-size: 14px; letter-spacing: .15em; color: #6e5540; }
+.blind-select-dialog .blind-wallet { margin-left: auto; font-size: 14px; color: var(--blind-muted); }
+.blind-select-dialog > .dialog-content {
+  display: block;
+  min-height: 0;
+  max-height: none;
+  padding: 8px 28px 24px;
+  overflow: auto;
+}
+.blind-select-dialog .dialog-scroll,
+.blind-select-dialog .dialog-copy { overflow: visible; display: block; padding: 0; }
+.blind-select-dialog .dialog-body:empty,
+.blind-select-dialog .dialog-status:empty { display: none; }
+.blind-select-dialog .blind-confrontation {
+  display: grid;
+  grid-template-columns: minmax(0, 1.65fr) minmax(270px, 1fr);
+  grid-template-rows: auto auto;
+  gap: 14px 20px;
+  isolation: isolate;
+}
+.blind-select-dialog .blind-card {
+  position: relative;
+  grid-column: 2;
+  min-width: 0;
+  padding: 16px 18px;
+  background: #f8f2e6;
+  box-shadow: 2px 3px 0 #beb79f70, 0 6px 12px #293b3c0c;
+  border: 0;
+  border-top: 1px solid #a6a58f;
+  border-radius: 2px 4px 3px 1px;
+}
+.blind-select-dialog .blind-stage-heading { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; }
+.blind-select-dialog .blind-stage-number {
+  display: grid;
+  place-items: center;
+  flex: 0 0 40px;
+  height: 43px;
+  color: #65573f;
+  border: 1px solid #b7aa8c;
+  border-radius: 47% 44% 48% 43%;
+  font: 24px Georgia, 'Noto Serif SC', SimSun, serif;
+  transform: rotate(-5deg);
+}
+.blind-select-dialog .blind-stage-state { margin: 0 0 2px; color: var(--blind-muted); font-size: 12px; letter-spacing: .1em; }
+.blind-select-dialog .blind-card-title { margin: 0; color: var(--blind-ink); font: bold 24px/1.2 Georgia, 'Noto Serif SC', SimSun, serif; letter-spacing: .08em; }
+.blind-select-dialog .blind-boss-label { display: block; margin-top: 4px; color: #765141; font-size: 12px; }
+.blind-select-dialog .blind-target { display: flex; gap: 14px; align-items: baseline; margin: 0 0 8px; }
+.blind-select-dialog .blind-target-label { font-size: 14px; color: var(--blind-muted); }
+.blind-select-dialog .blind-target-value { font: bold 26px/1.2 Georgia, 'Noto Serif SC', serif; color: var(--blind-ink); overflow-wrap: anywhere; }
+.blind-select-dialog .blind-clear-reward,
+.blind-select-dialog .blind-skip-reward { margin: 5px 0 0; font-size: 14px; color: #4f584e; }
+.blind-select-dialog .blind-skip-cost { margin: 10px 0 0; font-size: 13px; color: #6e5540; }
+.blind-select-dialog .blind-boss-rule { margin: 8px 0 0; font-size: 14px; line-height: 1.55; font-weight: 600; }
+.blind-select-dialog .blind-boss-response { margin: 8px 0 12px; color: #5d655c; font-size: 13px; line-height: 1.5; }
+.blind-select-dialog .blind-card.is-boss:not(.is-active) { background: #e1e3d6; border-top-color: #45584f; }
+.blind-select-dialog .is-boss .blind-stage-number { border-color: #8a6a50; color: #80503c; }
+.blind-select-dialog .is-cleared { background: #e9e4d8; box-shadow: none; }
+.blind-select-dialog .is-cleared .blind-stage-state { color: #486653; }
+.blind-select-dialog .is-cleared .blind-stage-number { color: #486653; border-color: #98a58c; }
+.blind-select-dialog .blind-card.is-active {
+  grid-column: 1;
+  grid-row: 1 / span 2;
+  display: grid;
+  grid-template-columns: minmax(0, .95fr) minmax(0, 1.05fr);
+  grid-template-rows: auto 1fr;
+  gap: 12px 18px;
+  padding: 24px 22px 0;
+  min-height: 400px;
+  border: 0;
+  background: radial-gradient(ellipse at 24% 86%, #bac8b875, transparent 60%), linear-gradient(116deg, #e7e4d1, #fff8e9 69%);
+  box-shadow: 3px 5px 0 #a29f8166, 0 10px 18px #293b3c1a;
+}
+.blind-select-dialog .is-active::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 5px;
+  background: #354f4b;
+  clip-path: polygon(0 0, 100% 10%, 98% 74%, 74% 58%, 35% 100%, 0 62%);
+}
+.blind-select-dialog .is-active > .blind-stage-heading { grid-column: 1 / -1; margin: 0; align-items: center; }
+.blind-select-dialog .is-active .blind-stage-number { flex-basis: 49px; height: 52px; font-size: 30px; border-color: #5b7162; color: #354f4b; }
+.blind-select-dialog .is-active .blind-stage-state { color: #3c6054; font-weight: 700; }
+.blind-select-dialog .is-active .blind-card-title { font-size: clamp(30px, 3.7vw, 44px); letter-spacing: .13em; }
+.blind-select-dialog .blind-hero { position: relative; grid-column: 1; grid-row: 2; margin: 0; min-width: 0; align-self: end; }
+.blind-select-dialog .blind-hero-image { display: block; width: 100%; height: 320px; object-fit: cover; object-position: center top; mix-blend-mode: multiply; mask-image: linear-gradient(#000 80%, transparent); }
+.blind-select-dialog .blind-hero-name { position: absolute; left: 8px; bottom: 10px; padding: 2px 8px; color: #384a40; background: #f4eddbed; font-size: 13px; letter-spacing: .08em; }
+.blind-select-dialog .blind-hero.art-unavailable .blind-hero-image { visibility: hidden; }
+.blind-select-dialog .blind-stage-info { min-width: 0; }
+.blind-select-dialog .is-active > .blind-stage-info { grid-column: 2; grid-row: 2; align-self: center; padding: 12px 0 28px; }
+.blind-select-dialog .is-active .blind-target { display: block; margin-bottom: 20px; }
+.blind-select-dialog .is-active .blind-target-label { display: block; margin-bottom: 5px; }
+.blind-select-dialog .is-active .blind-target-value { display: block; font-size: clamp(38px, 5vw, 58px); letter-spacing: -.04em; }
+.blind-select-dialog .is-active.is-boss { background: radial-gradient(ellipse at 18% 85%, #c7c3ac8c, transparent 60%), linear-gradient(110deg, #d8daca, #f7f1e1 75%); }
+.blind-select-dialog .is-active.is-boss::before { background: #875441; }
+.blind-select-dialog .is-active .blind-boss-declaration { margin: 16px 0; padding-left: 12px; border-left: 2px solid #8b5b45; }
+.blind-select-dialog .is-active .blind-boss-rule { font-size: 16px; }
+.blind-select-dialog .blind-operation-status { margin: 12px 0 0; padding: 10px 0; color: #80503c; font-size: 14px; }
+.blind-select-dialog .blind-operation-status[hidden] { display: none; }
+.blind-select-dialog .blind-skip-confirm { grid-column: 1 / -1; padding: 14px 0; border-top: 1px solid #a5a58c; }
+.blind-select-dialog .blind-skip-confirm[hidden] { display: none; }
+.blind-select-dialog .blind-skip-confirm p { margin: 5px 0 10px; font-size: 14px; }
+.blind-select-dialog .blind-skip-cancel { min-height: 44px; padding: 8px 16px; background: transparent; border: 1px solid #8e927f; color: #435749; }
+.blind-select-dialog > .dialog-actions {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 12px;
+  align-items: center;
+  padding: 14px 28px;
+  background: #e5ddc8;
+  border-top: 1px solid #b2ae98;
+  box-shadow: none;
+}
+.blind-select-dialog > .dialog-actions button { min-height: 48px; border-radius: 3px; font-size: 15px; box-shadow: none; }
+.blind-select-dialog > .dialog-actions .dialog-primary { flex: 1 1 50%; color: #fff7e4; background: #354f4b; border: 1px solid #354f4b; font-size: 17px; letter-spacing: .1em; }
+.blind-select-dialog > .dialog-actions .blind-skip-action { flex: 0 1 160px; border: 1px solid #8e927f; color: #435749; background: #f1ead9; }
+.blind-select-dialog > .dialog-actions .dialog-close { flex: 0 0 auto; min-width: 88px; border-color: transparent; color: #5e655e; background: transparent; }
+.blind-select-dialog button:hover:not(:disabled) { filter: none; background-color: #d5ddcc; color: #293b3c; }
+.blind-select-dialog button:focus-visible { outline: 3px solid #9c6145; outline-offset: 3px; }
+.blind-select-dialog button:disabled { opacity: .55; cursor: not-allowed; }
+
+@media (max-width: 700px) and (orientation: portrait) {
+  .detail-dialog.blind-select-dialog[open] { width: calc(100vw - var(--safe-left, 0px) - var(--safe-right, 0px) - 16px); max-height: calc(100dvh - var(--safe-top, 0px) - var(--safe-bottom, 0px) - 16px); }
+  .blind-select-dialog > .dialog-header { gap: 10px; padding: 14px 16px 8px; flex-wrap: wrap; }
+  .blind-select-dialog > .dialog-header h2 { font-size: 21px; }
+  .blind-select-dialog .blind-chapter-caption { font-size: 13px; }
+  .blind-select-dialog .blind-wallet { margin-left: auto; font-size: 12px; }
+  .blind-select-dialog > .dialog-content { padding: 8px 14px 18px; }
+  .blind-select-dialog .blind-confrontation { grid-template-columns: minmax(0, 1fr); gap: 13px; }
+  .blind-select-dialog .blind-card { grid-column: 1; padding: 14px 16px; }
+  .blind-select-dialog .blind-card.is-active { grid-row: 1; grid-column: 1; min-height: 285px; padding: 18px 16px 0; gap: 8px 14px; grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); }
+  .blind-select-dialog .is-active .blind-card-title { font-size: 32px; }
+  .blind-select-dialog .is-active .blind-stage-number { flex-basis: 41px; height: 45px; font-size: 27px; }
+  .blind-select-dialog .blind-hero-image { height: 220px; }
+  .blind-select-dialog .blind-hero-name { bottom: 8px; left: 0; font-size: 12px; padding: 2px 4px; }
+  .blind-select-dialog .is-active > .blind-stage-info { padding: 6px 0 20px; }
+  .blind-select-dialog .is-active .blind-target { margin-bottom: 12px; }
+  .blind-select-dialog .is-active .blind-target-value { font-size: 42px; }
+  .blind-select-dialog .blind-clear-reward,
+  .blind-select-dialog .blind-skip-reward { font-size: 14px; }
+  .blind-select-dialog .is-active.is-boss { grid-template-columns: minmax(0, 1fr); }
+  .blind-select-dialog .is-active.is-boss > .blind-stage-info { grid-column: 1; position: relative; z-index: 1; }
+  .blind-select-dialog .is-active.is-boss .blind-hero { position: absolute; width: 115px; right: 8px; top: 12px; opacity: .22; }
+  .blind-select-dialog .is-active.is-boss .blind-hero-name { display: none; }
+  .blind-select-dialog .is-active.is-boss .blind-hero-image { height: 170px; }
+  .blind-select-dialog .is-active.is-boss .blind-target { margin: 8px 0 14px; }
+  .blind-select-dialog .is-active.is-boss .blind-boss-declaration { margin: 10px 0; }
+  .blind-select-dialog > .dialog-actions { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 5px 12px; padding: 10px 14px; }
+  .blind-select-dialog > .dialog-actions .dialog-primary { grid-column: 1 / -1; min-height: 48px; }
+  .blind-select-dialog > .dialog-actions .blind-skip-action { min-height: 44px; }
+  .blind-select-dialog > .dialog-actions .dialog-close { min-height: 44px; }
+  .blind-select-dialog[data-context=shop] > .dialog-actions { display: flex; justify-content: flex-end; }
+}
+@media (max-width: 350px) and (orientation: portrait) {
+  .blind-select-dialog .blind-wallet { flex-basis: 100%; margin: 0; }
+  .blind-select-dialog .blind-card.is-active { gap: 8px 10px; padding: 16px 12px 0; grid-template-columns: minmax(0, 1fr); }
+  .blind-select-dialog .is-active > .blind-stage-info { grid-column: 1; position: relative; z-index: 1; }
+  .blind-select-dialog .blind-card.is-active .blind-hero { position: absolute; right: 12px; top: 82px; width: 82px; opacity: .3; }
+  .blind-select-dialog .blind-hero-image { height: 140px; }
+  .blind-select-dialog .blind-hero-name { display: none; }
+  .blind-select-dialog .is-active .blind-target-value { font-size: 38px; }
+  .blind-select-dialog .blind-skip-cost { font-size: 13px; }
+}
+@media (max-height: 450px) and (orientation: landscape) {
+  .detail-dialog.blind-select-dialog[open] { width: calc(100vw - var(--safe-left, 0px) - var(--safe-right, 0px) - 20px); max-height: calc(100dvh - var(--safe-top, 0px) - var(--safe-bottom, 0px) - 12px); }
+  .blind-select-dialog > .dialog-header { padding: 8px 20px 4px; }
+  .blind-select-dialog > .dialog-header h2 { font-size: 20px; }
+  .blind-select-dialog > .dialog-content { padding: 6px 20px 12px; }
+  .blind-select-dialog .blind-confrontation { grid-template-columns: minmax(0, 1.2fr) minmax(240px, 1fr); gap: 10px 14px; }
+  .blind-select-dialog .blind-card.is-active { min-height: 0; padding: 16px; gap: 10px; grid-template-columns: minmax(0, 1fr) auto; grid-template-rows: auto; align-content: start; }
+  .blind-select-dialog .is-active > .blind-stage-heading { grid-column: 1; grid-row: 1; align-self: start; }
+  .blind-select-dialog .is-active > .blind-stage-info { display: contents; }
+  .blind-select-dialog .is-active > .blind-stage-info > * { grid-column: 1 / -1; position: relative; z-index: 1; }
+  .blind-select-dialog .is-active .blind-hero { position: absolute; right: 12px; bottom: 0; width: 85px; opacity: .18; }
+  .blind-select-dialog .blind-hero-image { height: 140px; }
+  .blind-select-dialog .blind-hero-name { display: none; }
+  .blind-select-dialog .is-active .blind-card-title { font-size: 30px; }
+  .blind-select-dialog .is-active .blind-target-value { font-size: 38px; }
+  .blind-select-dialog .is-active > .blind-stage-info > .blind-target { grid-column: 2; grid-row: 1; justify-self: end; margin: 0; text-align: right; }
+  .blind-select-dialog .is-active .blind-target-label { font-size: 12px; }
+  .blind-select-dialog .is-active .blind-target-value { font-size: 34px; }
+  .blind-select-dialog .is-active .blind-boss-declaration { margin: 2px 0 12px; }
+  .blind-select-dialog .blind-card:not(.is-active) { padding: 12px 14px; }
+  .blind-select-dialog > .dialog-actions { padding: 8px 20px; }
+  .blind-select-dialog > .dialog-actions button { min-height: 44px; padding: 8px 12px; }
+}
