@@ -1,0 +1,27 @@
+
+ RUN  v4.1.11 D:/ai/dachoupai/dachoupai/.codex-remote-attachments/shop-synergy-live-20261017
+
+ 鉂?tests/shop-synergy-conditions.test.ts (0 test)
+ 鉂?tests/shop-route-relations.test.ts (0 test)
+ 鉂?tests/shop-synergy.test.ts (0 test)
+ 鉂?tests/shop-post-purchase-condition.test.ts (0 test)
+
+鈳幆鈳幆鈳幆 Failed Suites 4 鈳幆鈳幆鈳幆鈳?
+ FAIL  tests/shop-post-purchase-condition.test.ts [ tests/shop-post-purchase-condition.test.ts ]
+ FAIL  tests/shop-route-relations.test.ts [ tests/shop-route-relations.test.ts ]
+ FAIL  tests/shop-synergy-conditions.test.ts [ tests/shop-synergy-conditions.test.ts ]
+ FAIL  tests/shop-synergy.test.ts [ tests/shop-synergy.test.ts ]
+Error: Cannot find module '../../public/assets/handdrawn-p08/manifest.json' imported from D:/ai/dachoupai/dachoupai/.codex-remote-attachments/shop-synergy-live-20261017/src/game/HanddrawnArt.ts
+ 鉂?src/game/HanddrawnArt.ts:1:1
+      1| import manifest from '../../public/assets/handdrawn-p08/manifest.json';
+       | ^
+      2| import {assetUrl} from './theme';
+      3| import type Phaser from 'phaser';
+ 鉂?src/game/jokerArt.ts:2:1
+
+鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆鈳幆[1/4]鈳?
+
+ Test Files  4 failed | 1 passed (5)
+      Tests  2 passed (2)
+   Start at  11:59:58
+   Duration  1.31s (transform 2.74s, setup 0ms, import 95ms, tests 7ms, environment 1ms)

@@ -1,0 +1,122 @@
+{
+  "task": "shop-synergy-live",
+  "baseCommit": "a14d3b55d456d9bafb75d031347985288404eff8",
+  "branch": "dev/shop-synergy-dynamic-20261017",
+  "scope": [
+    "src/game/ShopScene.ts",
+    "src/game/ShopSynergy.ts",
+    "src/game/ShopSynergyPreview.ts"
+  ],
+  "testedSourceHashes": {
+    "src/game/ShopScene.ts": "bf0336d4199e47cc7a4292d03d8d26e10feccd85bfa3e2290e8b19be9670f8d8",
+    "src/game/ShopSynergy.ts": "804450d40387f73bef43e9bf16dc032af5c7b863a6deb275eb1a022d44be6b78",
+    "src/game/ShopSynergyPreview.ts": "8f3067655885f5d6a65a9f0d38da4f44152c8c0560cf916572e8db5c0ef94899",
+    "tests/shop-synergy.test.ts": "c9ebfbb7b955617604b375cb0d4faf9a2b25e114e1fc3f42733d85f0233e360b",
+    "tests/shop-synergy-preview.test.ts": "11db766279454d3930ba9f7762f58fc3f1b62589407e612424028160f3c50e08"
+  },
+  "environment": {
+    "os": "win32",
+    "node": "v22.20.0"
+  },
+  "checks": [
+    {
+      "name": "targeted-shop-unit",
+      "command": "npm exec vitest run tests/shop-synergy.test.ts tests/shop-synergy-conditions.test.ts tests/shop-synergy-preview.test.ts tests/shop-post-purchase-condition.test.ts tests/shop-route-relations.test.ts",
+      "status": "PASS",
+      "exitCode": 0,
+      "tests": 31,
+      "evidence": "unit.txt",
+      "temporaryFixtureValidationTests": 1,
+      "actualRun": "Five retained test files plus temporary remote-qin-fixture-export.test.ts; 32 total passed. Temporary fixture exporter removed after success."
+    },
+    {
+      "name": "typecheck-and-production-build",
+      "command": "npm run build",
+      "status": "PASS",
+      "exitCode": 0,
+      "evidence": "build.txt"
+    },
+    {
+      "name": "remote-checkpoints-schema-and-invariants",
+      "status": "PASS",
+      "exitCode": 0,
+      "checkpoints": 5,
+      "evidence": [
+        "checkpoint-validation.txt",
+        "unit.txt"
+      ],
+      "note": "One-shot pure-domain fixture export test; removed after export."
+    },
+    {
+      "name": "visible-motion-touch-layout-native-purchase",
+      "status": "NOT_RUN",
+      "evidence": "README.md#dot-远端最短验收",
+      "reason": "Initial local Vite SSR runner timed out before Chromium launch; user directed global browser play to dot. No screenshot sequence or UI PASS claimed."
+    }
+  ],
+  "bundles": [
+    {
+      "name": "index-BjICR4K5.css",
+      "bytes": 81436,
+      "sha256": "0eb622be28a6de07f8df947f711b51254f07a9ceea9cb3fc64da3ca5534b1231"
+    },
+    {
+      "name": "index-DQrDcZFQ.js",
+      "bytes": 2835892,
+      "sha256": "d24e57760a492765351f2d1c8b9803ab7a7674dd76b84aadae680f39a8071f0c"
+    }
+  ],
+  "checkpoints": [
+    {
+      "name": "controlled-cash-change.json",
+      "sha256": "2df73689676a0f5616df99dca4347e1410e342ecc00cda59120386c18c3a50a9"
+    },
+    {
+      "name": "controlled-match.json",
+      "sha256": "026e05bb0b323f4051e22d2389e52687b5ba7fee57d30743ac26e102fdaf7bdd"
+    },
+    {
+      "name": "controlled-opposed-high.json",
+      "sha256": "364aae434a5d1d10ed7c895b95cacef92873e8a69b694f71c7b2c9e3c9691ef0"
+    },
+    {
+      "name": "controlled-opposed-low.json",
+      "sha256": "7679926d433110775ed40396e32d9eb3ac26d933e4394581b4c97938f918be75"
+    },
+    {
+      "name": "controlled-qin-no-discard.json",
+      "sha256": "a78ce955b223c4f356a7f8ea7a1c7f4e8e4b6d4dfcdfd09cbc499df7e25544e3"
+    }
+  ],
+  "recoveredEnvironmentFailures": [
+    {
+      "evidence": "unit-environment-FAIL.txt",
+      "reason": "Sparse worktree public manifest dependency absent; restored own public checkout before final run."
+    },
+    {
+      "evidence": "build-environment-FAIL.txt",
+      "reason": "Sparse worktree missing public manifests; final native resource checkout and build succeeded."
+    },
+    {
+      "action": "restore shared resource directory",
+      "reason": "Sparse cleanup traversed a shared junction. Exactly 548 deleted tracked main files were restored; no modified resource files overwritten.",
+      "verified": "git -C D:/ai/dachoupai/dachoupai diff --name-only -- public produced no changes."
+    }
+  ],
+  "limits": [
+    "Public simple supported conditions only; no inferred keyword/hero bonus or prediction of the next hand.",
+    "Full slots require an explicitly chosen sale before cash qualification can be assessed; no speculative glow.",
+    "Collapsed held rail lists actual matching held names; no claim of a frame around an invisible card.",
+    "No local screenshot/browser validation, no physical-device or human acceptance.",
+    "No main push, force push, CI/domain inspection, deployment, long game, generated image or rules/save/RNG change.",
+    "Qin Qiong f09 no-discard tradeoff is stated explicitly from the real no-discard hook/current skill identity, never a generic hero-fit bonus. Remote visible confirmation remains pending."
+  ],
+  "overall": "IMPLEMENTED_LOCAL_CHECKS_PASS_REMOTE_UI_PENDING",
+  "testedSourceBlobs": {
+    "src/game/ShopScene.ts": "85159fb744a443d59b91f60cae49802c3d1b0ba5",
+    "src/game/ShopSynergy.ts": "90f0daedb960691b7797845517422a1a0733a87a",
+    "src/game/ShopSynergyPreview.ts": "92b8d75b4ad609813a7598e25b053941155544a9",
+    "tests/shop-synergy.test.ts": "4ba3a10454f307e9a3690fa92e0ad8961b715364",
+    "tests/shop-synergy-preview.test.ts": "d82d80698a63af429ff2f305ea1f5ed41d704ae4"
+  }
+}
