@@ -1,232 +1,10 @@
 {
   "schemaVersion": 2,
-  "originalArtworkCount": 81,
-  "runtimeFileCount": 165,
-  "runtimeBytes": 10196942,
+  "originalArtworkCount": 75,
+  "runtimeFileCount": 147,
+  "runtimeBytes": 9701766,
   "sourceCommit": "c618cee93089bb2e556f16567709b0ea23abbcb9",
   "assets": [
-    {
-      "id": "azao",
-      "category": "character",
-      "outputs": [
-        {
-          "purpose": "avatar",
-          "path": "characters/azao.avatar.webp",
-          "width": 256,
-          "height": 256,
-          "bytes": 11572,
-          "sha256": "01bf61873bbf6be5f7101e16e3e8aa04ede6f0086ad18e003266053ac1898a4a"
-        },
-        {
-          "purpose": "selection",
-          "path": "characters/azao.selection.webp",
-          "width": 256,
-          "height": 320,
-          "bytes": 13164,
-          "sha256": "d4d3966ff707fca6a8f2c4b7af0809547d2696299ae22b3b66032183dbde85c8"
-        },
-        {
-          "purpose": "portrait",
-          "path": "characters/azao.portrait.webp",
-          "width": 615,
-          "height": 768,
-          "bytes": 53238,
-          "sha256": "e06bafb82524c72c6f84e3728ccee043f4223fada68aec6fc326188adcce494a"
-        }
-      ],
-      "currentSource": {
-        "receiptCommit": "928e1161e6fd1976057df927e24b172058575021",
-        "sourceManifestPath": "art/sources/handdrawn-runtime-20261004/manifest.json",
-        "sourceManifestSHA256": "076fe33863b46860696b8ad58cb069f87e3803c701123dbeec08031c2eff0b76",
-        "status": "derivatives-only",
-        "missingEvidence": "original bytes and per-original filename/SHA256 binding"
-      }
-    },
-    {
-      "id": "amo",
-      "category": "character",
-      "outputs": [
-        {
-          "purpose": "avatar",
-          "path": "characters/amo.avatar.webp",
-          "width": 256,
-          "height": 256,
-          "bytes": 9954,
-          "sha256": "a26037e3f0b3c1eb8733a6b1e85fb1c3cf63ddfae55005f0fb643dcae445ae1c"
-        },
-        {
-          "purpose": "selection",
-          "path": "characters/amo.selection.webp",
-          "width": 256,
-          "height": 320,
-          "bytes": 8470,
-          "sha256": "5d32af6c79a4a702f51760432447515bf1cbd05e289b2c157602c207fa1ae9cf"
-        },
-        {
-          "purpose": "portrait",
-          "path": "characters/amo.portrait.webp",
-          "width": 615,
-          "height": 768,
-          "bytes": 34664,
-          "sha256": "c6c1e5d13c5443e00585b60abba939e6369bda8da877848c8fad440760d95af1"
-        }
-      ],
-      "currentSource": {
-        "receiptCommit": "928e1161e6fd1976057df927e24b172058575021",
-        "sourceManifestPath": "art/sources/handdrawn-runtime-20261004/manifest.json",
-        "sourceManifestSHA256": "076fe33863b46860696b8ad58cb069f87e3803c701123dbeec08031c2eff0b76",
-        "status": "derivatives-only",
-        "missingEvidence": "original bytes and per-original filename/SHA256 binding"
-      }
-    },
-    {
-      "id": "touye",
-      "category": "character",
-      "outputs": [
-        {
-          "purpose": "avatar",
-          "path": "characters/touye.avatar.webp",
-          "width": 256,
-          "height": 256,
-          "bytes": 11046,
-          "sha256": "4cf98904271b32dfdab221bc5d49b0584b6fe201fa136aca7fedc678bf4f169d"
-        },
-        {
-          "purpose": "selection",
-          "path": "characters/touye.selection.webp",
-          "width": 256,
-          "height": 320,
-          "bytes": 10132,
-          "sha256": "147cc72c96df68aa20ce63692f87729e896afb46feb0be6cb092bba2339edd71"
-        },
-        {
-          "purpose": "portrait",
-          "path": "characters/touye.portrait.webp",
-          "width": 615,
-          "height": 768,
-          "bytes": 43080,
-          "sha256": "9d9e81cc4e67efc76568044822b015990823904c342c2a7997d778f33e0a4f2b"
-        }
-      ],
-      "currentSource": {
-        "receiptCommit": "928e1161e6fd1976057df927e24b172058575021",
-        "sourceManifestPath": "art/sources/handdrawn-runtime-20261004/manifest.json",
-        "sourceManifestSHA256": "076fe33863b46860696b8ad58cb069f87e3803c701123dbeec08031c2eff0b76",
-        "status": "derivatives-only",
-        "missingEvidence": "original bytes and per-original filename/SHA256 binding"
-      }
-    },
-    {
-      "id": "laohuan",
-      "category": "character",
-      "outputs": [
-        {
-          "purpose": "avatar",
-          "path": "characters/laohuan.avatar.webp",
-          "width": 256,
-          "height": 256,
-          "bytes": 10836,
-          "sha256": "ac44afd5e9821758b59a0172c561ba1f5bb547826ea360e1435a1d4c25b9bfa2"
-        },
-        {
-          "purpose": "selection",
-          "path": "characters/laohuan.selection.webp",
-          "width": 256,
-          "height": 320,
-          "bytes": 10208,
-          "sha256": "4a5b998fe57e0a9df7e6ac31da39aada99bac10e92f66c144f0af85e10422657"
-        },
-        {
-          "purpose": "portrait",
-          "path": "characters/laohuan.portrait.webp",
-          "width": 615,
-          "height": 768,
-          "bytes": 44862,
-          "sha256": "d3a6ea786783168ed8dcd60d649ebc6e2113c207785664fe9e95d74f079573a0"
-        }
-      ],
-      "currentSource": {
-        "receiptCommit": "928e1161e6fd1976057df927e24b172058575021",
-        "sourceManifestPath": "art/sources/handdrawn-runtime-20261004/manifest.json",
-        "sourceManifestSHA256": "076fe33863b46860696b8ad58cb069f87e3803c701123dbeec08031c2eff0b76",
-        "status": "derivatives-only",
-        "missingEvidence": "original bytes and per-original filename/SHA256 binding"
-      }
-    },
-    {
-      "id": "erxiang",
-      "category": "character",
-      "outputs": [
-        {
-          "purpose": "avatar",
-          "path": "characters/erxiang.avatar.webp",
-          "width": 256,
-          "height": 256,
-          "bytes": 15880,
-          "sha256": "9e6ad8631633b5dd22da9edcaef2fd40df037e1c2930bfc8db8b5e3e522342f9"
-        },
-        {
-          "purpose": "selection",
-          "path": "characters/erxiang.selection.webp",
-          "width": 256,
-          "height": 320,
-          "bytes": 18316,
-          "sha256": "a5071c29da50d8dac41aff04aee757454d9375da9cb2e84e7f7b45305af0f431"
-        },
-        {
-          "purpose": "portrait",
-          "path": "characters/erxiang.portrait.webp",
-          "width": 615,
-          "height": 768,
-          "bytes": 94756,
-          "sha256": "d1d99b6b8bd29e1318a6af44373e2921b2765a50b2edaac546d03a8b158c86cc"
-        }
-      ],
-      "currentSource": {
-        "receiptCommit": "928e1161e6fd1976057df927e24b172058575021",
-        "sourceManifestPath": "art/sources/handdrawn-runtime-20261004/manifest.json",
-        "sourceManifestSHA256": "076fe33863b46860696b8ad58cb069f87e3803c701123dbeec08031c2eff0b76",
-        "status": "derivatives-only",
-        "missingEvidence": "original bytes and per-original filename/SHA256 binding"
-      }
-    },
-    {
-      "id": "xiemu",
-      "category": "character",
-      "outputs": [
-        {
-          "purpose": "avatar",
-          "path": "characters/xiemu.avatar.webp",
-          "width": 256,
-          "height": 256,
-          "bytes": 14322,
-          "sha256": "7f4782df5faec333971a231052c610e4b78c9ac8d011a620e6e14e620aef9cad"
-        },
-        {
-          "purpose": "selection",
-          "path": "characters/xiemu.selection.webp",
-          "width": 256,
-          "height": 320,
-          "bytes": 15154,
-          "sha256": "b6d6db151f5bbb75c73feeef8ab5a58af53bb6bfa8e32cb149a5a003843c5efe"
-        },
-        {
-          "purpose": "portrait",
-          "path": "characters/xiemu.portrait.webp",
-          "width": 615,
-          "height": 768,
-          "bytes": 75522,
-          "sha256": "fad121b8fa0513be6bd38f818866d9654096c8ceb4c38c10c10f90351e761cac"
-        }
-      ],
-      "currentSource": {
-        "receiptCommit": "928e1161e6fd1976057df927e24b172058575021",
-        "sourceManifestPath": "art/sources/handdrawn-runtime-20261004/manifest.json",
-        "sourceManifestSHA256": "076fe33863b46860696b8ad58cb069f87e3803c701123dbeec08031c2eff0b76",
-        "status": "derivatives-only",
-        "missingEvidence": "original bytes and per-original filename/SHA256 binding"
-      }
-    },
     {
       "id": "j",
       "category": "court",
@@ -1547,7 +1325,8 @@
           "sourceManifestPath": "art/sources/handdrawn-runtime-20261017-half1/manifest.json",
           "sourceManifestSHA256": "a5a703a20c18ab3b9dca29b9a10cda15b50a22c37c7c804c07aaa8e09f8039b6",
           "status": "source-verified",
-          "outputsRoot": "public/assets/handdrawn-p08"
+          "outputsRoot": "public/assets/handdrawn-p08",
+          "outputsCommit": "c4525b2c2faf77ad2df0b5486e0ea64276856d04"
         }
       ],
       "currentSource": {
@@ -2183,7 +1962,8 @@
           "receiptCommit": "fddb7378112304ead60d67a676e73bb4a3fe2ec0",
           "sourceManifestPath": "art/sources/handdrawn-runtime-20261017-half1/manifest.json",
           "sourceManifestSHA256": "a5a703a20c18ab3b9dca29b9a10cda15b50a22c37c7c804c07aaa8e09f8039b6",
-          "outputsRoot": "public/assets/handdrawn-p08"
+          "outputsRoot": "public/assets/handdrawn-p08",
+          "outputsCommit": "c4525b2c2faf77ad2df0b5486e0ea64276856d04"
         }
       ],
       "currentSource": {

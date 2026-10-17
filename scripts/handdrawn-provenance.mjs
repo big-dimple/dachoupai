@@ -32,11 +32,14 @@ export function verifyOriginal(record, bytes) {
   assert.equal(sha256(bytes), record.sourceSHA256, record.id + ': original SHA256');
 }
 
-function verifyOutput(root, base, output) {
+function verifyOutput(root, base, output, commit) {
   assert.match(output.sha256, /^[a-f0-9]{64}$/, 'invalid output hash');
   assert.ok(Number.isInteger(output.width) && output.width > 0, 'invalid output width');
   assert.ok(Number.isInteger(output.height) && output.height > 0, 'invalid output height');
-  const file = localPath(root, base + '/' + output.path), bytes = fs.readFileSync(file);
+  const relative = base + '/' + output.path, file = localPath(root, relative);
+  const bytes = commit
+    ? execFileSync('git', ['show', commit + ':' + relative], {cwd:root,maxBuffer:4*1024*1024})
+    : fs.readFileSync(file);
   assert.equal(bytes.length, output.bytes, file + ': bytes');
   assert.equal(sha256(bytes), output.sha256, file + ': SHA256');
   return bytes;
@@ -65,7 +68,7 @@ export async function verifyProvenance(manifest, {root = process.cwd(), gitHisto
     assert.equal(receiptHash(receipt), ref.sourceManifestSHA256, ref.sourceManifestPath + ': receipt SHA256');
     return receipt;
   };
-  let total = 0, sourceVerified = 0;
+  let total = 0, sourceVerified = 0, historicalGitOutputsVerified = 0, historicalGitOutputsPending = 0;
   for (const asset of manifest.assets) {
     assert.ok(!('sourceCommit' in asset) && !('sourceManifestSHA256' in asset) && !('replacementSource' in asset), asset.id + ': ambiguous legacy provenance');
     const ref = asset.currentSource;
@@ -108,12 +111,19 @@ export async function verifyProvenance(manifest, {root = process.cwd(), gitHisto
       const archived = receiptRecord(readReceipt(historical), asset.id);
       assert.ok(archived, asset.id + ': missing historical record');
       assert.notEqual(historical.sourceManifestPath, ref.sourceManifestPath, asset.id + ': current receipt also labelled historical');
-      for (const output of receiptOutputs(archived)) verifyOutput(root, historical.outputsRoot ?? path.posix.dirname(historical.sourceManifestPath), output);
+      if (historical.outputsCommit) assert.match(historical.outputsCommit, /^[a-f0-9]{40}$/, 'invalid historical output commit');
+      for (const output of receiptOutputs(archived)) {
+        // Retired publication copies live in Git, not in a second project backup.
+        // Plain checks report this unperformed scope; --git-history verifies the actual bytes.
+        if (historical.outputsCommit && !gitHistory) { historicalGitOutputsPending++; continue; }
+        verifyOutput(root, historical.outputsRoot ?? path.posix.dirname(historical.sourceManifestPath), output, historical.outputsCommit);
+        if (historical.outputsCommit) historicalGitOutputsVerified++;
+      }
     }
   }
   assert.equal(runtimeFiles.size, manifest.runtimeFileCount, 'runtime file count');
   assert.equal(total, manifest.runtimeBytes, 'runtime byte total');
-  return {sourceVerified, originalsVerified: originals.size, derivativeOnlyIds, runtimeFiles: runtimeFiles.size, runtimeBytes: total, receiptsVerified: receipts.size, gitHistory};
+  return {sourceVerified, originalsVerified: originals.size, derivativeOnlyIds, runtimeFiles: runtimeFiles.size, runtimeBytes: total, receiptsVerified: receipts.size, gitHistory, historicalGitOutputsVerified, historicalGitOutputsPending};
 }
 
 if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {

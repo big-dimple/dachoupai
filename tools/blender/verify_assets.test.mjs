@@ -23,10 +23,18 @@ test('asset verification rejects broken contracts and leaves inputs unchanged', 
     const assets = await Promise.all(['test.png', 'test.glb'].map(file => inspectAsset(root, `public/assets/${file}`)));
     await writeFile(path.join(root, 'public/assets/meta.json'), '{\n  "version": 1\n}\n');
     assets.push(await inspectAsset(root, 'public/assets/meta.json'));
+    const svg='<svg xmlns="http://www.w3.org/2000/svg" width="2" height="3">\n<rect width="2" height="3" fill="red"/>\n</svg>\n';
+    await writeFile(path.join(root,'public/assets/test.svg'),svg);
+    assets.push(await inspectAsset(root,'public/assets/test.svg'));
     const baseline = { assets, sourceReferences: [] };
     assert.deepEqual(await verifyAssets(root, baseline), []);
     await writeFile(path.join(root, 'public/assets/meta.json'), '{\r\n  "version": 1\r\n}\r\n');
     assert.deepEqual(await verifyAssets(root, baseline), [], 'Git CRLF checkout must not break content integrity');
+    await writeFile(path.join(root,'public/assets/test.svg'),svg.replaceAll('\n','\r\n'));
+    assert.deepEqual(await verifyAssets(root,baseline),[],'SVG CRLF checkout is equivalent content');
+    await writeFile(path.join(root,'public/assets/test.svg'),svg.replace('red','blue'));
+    assert((await verifyAssets(root,baseline)).some(e=>e.includes('canonicalSha256')),'actual SVG artwork changes must still fail');
+    await writeFile(path.join(root,'public/assets/test.svg'),svg);
     const cli = async (inventory, status) => {
       const snapshot = path.join(root, 'inventory.json');
       await writeFile(snapshot, JSON.stringify(inventory));
@@ -97,6 +105,7 @@ test('current inventory separates source evidence from observed loading and reje
       "const thumb = 'assets/thumb.webp';",
       "const variants = `assets/renders/p0/background-${layer}.webp`;",
       "import recording from '../public/assets/recording.json';",
+      "const fromManifest = 'assets/' + definition.path;",
     ].join('\n'));
     const baseline = await createCurrentInventory(root);
     assert.deepEqual(await verifyAssets(root, baseline), []);
@@ -106,6 +115,8 @@ test('current inventory separates source evidence from observed loading and reje
     assert.deepEqual(baseline.staticRuntimePaths, ['public/assets/recording.json', 'public/assets/thumb.webp']);
     assert.equal(baseline.parameterizedSourceReferences[0].matchingPaths.length, 3);
     assert.equal(baseline.parameterizedSourceReferences[0].evidence, 'filename-match-only');
+    assert.equal(baseline.parameterizedSourceReferences[1].evidence, 'directory-prefix-match-only');
+    assert(baseline.parameterizedSourceReferences[1].matchingPaths.includes('public/assets/thumb.webp'));
     assert.deepEqual(baseline.indirectRuntimePaths, [{ source: 'public/assets/recording.json', field: 'runtimePath', path: 'public/assets/lazy.mp3' }]);
     const totals = structuredClone(baseline); totals.totals.bytes++;
     assert((await verifyAssets(root, totals)).includes('totals mismatch'));

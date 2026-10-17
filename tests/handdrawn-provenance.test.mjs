@@ -7,6 +7,7 @@ const half1 = 'art/sources/handdrawn-runtime-20261017-half1/manifest.json';
 const half2 = 'art/sources/handdrawn-runtime-20261017-half2/manifest.json';
 const c06 = 'art/sources/qingchuyulan-art-20261017/manifest.json';
 const b05 = 'art/sources/fengmingchaoyang-art-20261017/manifest.json';
+const initialReceipt = readJSON('art/sources/handdrawn-runtime-20261004/manifest.json');
 const currentReceipts = [
   [half1, 'fddb7378112304ead60d67a676e73bb4a3fe2ec0', 'a5a703a20c18ab3b9dca29b9a10cda15b50a22c37c7c804c07aaa8e09f8039b6', 34],
   [half2, 'c374c7aa31ec75f3a02b27b6d1bb0b6a5f8ea77e', '854b8f1d29a8aa511c7764c7f527eec8457c694d164c07f3a01f3920e73bb891', 36],
@@ -14,10 +15,11 @@ const currentReceipts = [
   [b05, '70340cc590a22882948490e6276808b9d12cca70', '76459e0c50e2ba0763b7b5bdf81b71e00ca8de2c382406a28879983aed8d9e18', 1],
 ];
 
-it('verifies all active source bindings, 74 original files, 165 runtime files and historical derivatives', async () => {
+it('verifies all active sources and 147 outputs, reporting four Git-only historical outputs as pending', async () => {
   expect(await verifyProvenance(manifest)).toEqual({sourceVerified:72, originalsVerified:74,
-    derivativeOnlyIds:['azao','amo','touye','laohuan','erxiang','xiemu','j','q','k'],
-    runtimeFiles:165, runtimeBytes:10196942, receiptsVerified:16, gitHistory:false});
+    derivativeOnlyIds:['j','q','k'],
+    runtimeFiles:147, runtimeBytes:9701766, receiptsVerified:16, gitHistory:false,
+    historicalGitOutputsVerified:0,historicalGitOutputsPending:4});
 }, 30000);
 
 it.each(currentReceipts)('pins current receipt %s independently of its outputs', (file, commit, hash, count) => {
@@ -40,20 +42,25 @@ it('distinguishes A11 v3 and the C06 override from their archived sources', () =
   expect(replacement.previous.outputs).toEqual(receiptOutputs(receiptRecord(readJSON(half1), 'c06')));
 });
 
-it('restores the exact nine-asset fingerprint and explicitly preserves their missing-original status', () => {
-  const nine = manifest.assets.filter(a => a.category !== 'functional-card');
+it('preserves the archived nine-asset fingerprint while retiring the six unused role copies', () => {
+  const nine = initialReceipt.assets.filter(a => a.category !== 'functional-card');
   expect(sha256(JSON.stringify(nine.map(({id,category,outputs}) => ({id,category,outputs}))))).toBe('dd9a9b78683af5f592a9108230611ae7941f551d4c477f80c4fa9ea5de8ed69d');
   expect(nine.reduce((n,a) => n+a.outputs.length,0)).toBe(21);
   expect(nine.reduce((n,a) => n+a.outputs.reduce((s,o) => s+o.bytes,0),0)).toBe(566958);
-  for (const asset of nine) {
+  for (const asset of nine) for(const output of asset.outputs) {
+    expect(sha256(fs.readFileSync('art/sources/handdrawn-runtime-20261004/'+output.path))).toBe(output.sha256);
+  }
+  for (const asset of manifest.assets.filter(a=>a.category==='court')) {
     expect(asset.currentSource.status).toBe('derivatives-only');
     expect(asset.currentSource.missingEvidence).toBe('original bytes and per-original filename/SHA256 binding');
   }
+  for(const asset of nine.filter(a=>a.category==='character'))expect(manifest.assets.some(a=>a.id===asset.id)).toBe(false);
 });
 
 it('retains the original 60-record/123-file fingerprint as history, with no claims about current 72-card bytes', () => {
   const finalIDs = new Set(['a05','b03','c06','d03','a10','b11','c10','d12','a06','a12','b09','c11','c12','e10','e12','e05','e08','e11','f06','f08','f12']);
-  const prior = manifest.assets.filter(a => !finalIDs.has(a.id)).map(asset => {
+  const archivedRoles=initialReceipt.assets.filter(a=>a.category==='character');
+  const prior = [...archivedRoles,...manifest.assets].filter(a => !finalIDs.has(a.id)).map(asset => {
     if (asset.category !== 'functional-card') return {id:asset.id,category:asset.category,outputs:asset.outputs};
     const ref = asset.id === 'a11'
       ? {receiptCommit:'030508fb4dca8af276094dd5bc3eb6a9774d8375',sourceManifestPath:'art/sources/handdrawn-runtime-20261004-b8/manifest.json',sourceManifestSHA256:'3c8a1e74038f5d934f6a8025c1cc541c8d9af3bc1240d3c9707bb97ebbc48003'}

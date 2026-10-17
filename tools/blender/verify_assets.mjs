@@ -12,6 +12,7 @@ import validator from 'gltf-validator';
 
 export const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
 export const currentInventoryPath = 'docs/assets/inventory.json';
+const normalizedTextAsset = file => /\.(json|svg|md|txt)$/i.test(file);
 export const retainedP0Renders = ['background-far.webp', 'background-mid.webp', 'background-near.webp'];
 export function p0PublicationErrors(paths) {
   return paths.filter(file => file.startsWith('public/assets/renders/p0/') &&
@@ -46,14 +47,18 @@ export function summarizeAssets(assets) {
   return totals;
 }
 /** Literal paths are source evidence, not proof of an executed network request.
- * Template matches are deliberately kept separate: file existence cannot prove
+ * Template/directory-prefix matches are deliberately kept separate: file existence cannot prove
  * that a parameter value is reachable. Imported JSON runtimePath is also tracked.
  */
 export async function runtimeReferenceReport(project, refs, paths) {
   const staticRuntimePaths = new Set(), parameterizedSourceReferences = [], indirectRuntimePaths = [];
   for (const ref of refs) {
     const resource = ref.expression.slice(ref.expression.indexOf('assets/')).split(/[?#]/)[0];
-    if (resource.includes('${')) {
+    if (resource.endsWith('/')) {
+      // Concatenated manifest paths (for example 'assets/handdrawn-p08/' + output.path)
+      // are directory prefixes, not missing literal files or proof of executed loading.
+      parameterizedSourceReferences.push({...ref,matchingPaths:paths.filter(file=>file.startsWith(`public/${resource}`)),evidence:'directory-prefix-match-only'});
+    } else if (resource.includes('${')) {
       const pattern = resource.split(/\$\{[^}]+\}/).map(part => part.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('[^/]+');
       const matches = paths.filter(file => new RegExp(`^public/${pattern}$`).test(file));
       parameterizedSourceReferences.push({ ...ref, matchingPaths: matches, evidence: 'filename-match-only' });
@@ -108,6 +113,10 @@ export async function inspectAsset(project, relative) {
   if (!absolute.startsWith(assetRoot + path.sep)) throw new Error(`unsafe path: ${relative}`);
   const data = await fs.readFile(absolute);
   const info = { path: relative, bytes: data.length, sha256: createHash('sha256').update(data).digest('hex') };
+  if (normalizedTextAsset(relative)) {
+    const canonical=Buffer.from(data.toString('utf8').replaceAll('\r\n','\n'));
+    Object.assign(info,{textNormalization:'LF',canonicalBytes:canonical.length,canonicalSha256:createHash('sha256').update(canonical).digest('hex')});
+  }
   if (/\.(png|webp)$/.test(relative)) {
     const m = await sharp(data).metadata();
     // Decode pixels, not only the container header.
@@ -140,11 +149,6 @@ export async function inspectAsset(project, relative) {
       khronosErrors: result.issues.numErrors, khronosWarnings: result.issues.numWarnings });
   } else if (relative.endsWith('.json')) {
     const json = JSON.parse(data.toString());
-    // Git may check text out as CRLF on Windows. Retain physical measurements,
-    // but compare LF-normalized bytes for cross-platform JSON integrity.
-    const canonical = Buffer.from(data.toString('utf8').replaceAll('\r\n', '\n'));
-    Object.assign(info, { textNormalization: 'LF', canonicalBytes: canonical.length,
-      canonicalSha256: createHash('sha256').update(canonical).digest('hex') });
     if (relative.includes('/sprites/')) {
       const atlas = await sharp(path.join(path.dirname(absolute), json.meta.image)).metadata();
       if (!atlas.hasAlpha || json.meta.alpha !== 'straight') throw new Error(`atlas alpha contract: ${relative}`);
@@ -173,7 +177,7 @@ export async function verifyAssets(project, inventory) {
     try {
       const measured = await inspectAsset(project, expected.path);
       measuredAssets.push(measured);
-      const identity = expected.path.endsWith('.json') ? ['canonicalBytes', 'canonicalSha256'] : ['bytes', 'sha256'];
+      const identity = normalizedTextAsset(expected.path) ? ['canonicalBytes', 'canonicalSha256'] : ['bytes', 'sha256'];
       for (const key of [...identity, 'width', 'height', 'alpha', 'clips']) {
         if (JSON.stringify(measured[key]) !== JSON.stringify(expected[key])) errors.push(`${expected.path}: ${key} mismatch`);
       }
@@ -207,7 +211,7 @@ export async function createCurrentInventory(project) {
     if (!paths.includes(file)) throw new Error(`missing source-referenced asset: ${file}`);
   return { schemaVersion: 2, scope: 'Current repository asset tree and static source evidence; not a runtime or visual approval',
     historicalEvidence: 'docs/production/evidence/a00-2026-10-01/inventory.json',
-    byteAccounting: 'JSON byte totals use LF normalization; all other files use physical bytes',
+    byteAccounting: 'UTF-8 JSON/SVG/Markdown/TXT identity and totals use LF normalization; binary assets use physical bytes',
     sourceReferences: refs, ...runtime, runtimeObservationStatus: 'NOT_OBSERVED', runtimeCurrentlyLoaded: [],
     publicationAllowlist: [],
     limitations: ['Static literals, imported JSON runtimePath and template filename matches are not whole-program dataflow or executed requests.',
