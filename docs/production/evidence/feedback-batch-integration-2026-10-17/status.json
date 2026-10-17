@@ -3,106 +3,90 @@
   "date": "2026-10-17",
   "taskId": "P08",
   "taskStatus": "in_progress",
-  "phase": "PARTIAL_SOURCES_MERGED_WAITING_REMAINDER",
+  "phase": "ALL_SOURCES_INTEGRATED_CHECKS_PASS",
   "baseCommit": "212e23d547d4fcfdd886f9dfe80699318e77a738",
-  "integratedProductCommit": "a54cb1efea32f6b42fdad37a490e70bfdd864e89",
+  "integratedProductCommit": "e978f295136c48f999895e2e9333f8c0b93cc5c1",
   "branch": "dev/feedback-batch-integration-20261017",
   "sources": [
     {
       "name": "numeric-melody",
-      "commit": "5273a1fa3099d29aba7a1300de7560c3d644ed1b",
-      "status": "MERGED_EXACT_OWNER_PATHS"
+      "sha": "5273a1fa3099d29aba7a1300de7560c3d644ed1b",
+      "paths": 22,
+      "exactPaths": 17
     },
     {
-      "name": "score-burst-footer-hero-names",
-      "commit": "09249ad5c6e382c56f19a395cbde150d0e3b9153",
-      "status": "MERGED_EXACT_OWNER_PATHS"
+      "name": "hero-footer-names",
+      "sha": "09249ad5c6e382c56f19a395cbde150d0e3b9153",
+      "paths": 52,
+      "exactPaths": 50
     },
     {
       "name": "mobile-settlement",
-      "commit": "236acc4cac8b990af9b622179dff4ccdc1e5c774",
-      "status": "MERGED_EXACT_OWNER_PATHS"
-    }
-  ],
-  "checks": [
-    {
-      "name": "Changed-path owner blobs and protected roots",
-      "status": "PASS",
-      "method": "Static Git object comparison only",
-      "evidence": "source-bindings.json"
+      "sha": "236acc4cac8b990af9b622179dff4ccdc1e5c774",
+      "paths": 2,
+      "exactPaths": 2
     },
     {
-      "name": "Audio/visual arrival API compatibility",
-      "status": "PASS",
-      "method": "Static inspection only",
-      "note": "Static only: scoreImpact signature/arrival route unchanged; finalGameScene exact09249ad5, SkillPresentation helper imported and bare name/common mark/separate status/draft/ariaLabel applied by owner, not integrator patch. ScoreEnergy classification unchanged; audio exact5273."
-    },
-    {
-      "name": "New combined unit/type/build/browser run",
-      "status": "NOT_RUN",
-      "reason": "Wait for all source owners, then one concentrated integration batch. No owner unit rerun or new matrix at this phase."
+      "name": "shop-boss",
+      "sha": "3b22614b86e73ba135e3be65db3fc90516300134",
+      "paths": 55,
+      "exactPaths": 50
     }
   ],
-  "reusedEvidence": {
-    "audio": "113 source contracts/type/build and3.56s SFX-only OfflineAudioContext render at exact audio source, not combined acceptance.",
-    "visual": "Owner reports51 checks/type/build and local-only short frame observations in its README; no private/local screenshots copied or uploaded.",
-    "footer": "Owner75 component/layout cases and9 wiring cancellation cases/type/build as scoped in source README, not added into a new aggregate total.",
-    "heroNames": "Owner226 name-projection cases and17 final owner wiring cases/type/build, per final sourceREADME. Not rerun and not aggregated with other overlapping source counts.",
-    "mobile": "Parent reports44 related checks/type/build and4 local visual cases at236acc4c; source has2 product files only. No matrix rerun or fabricated committed evidence link."
+  "finalIncrement": {
+    "sha": "e978f295136c48f999895e2e9333f8c0b93cc5c1",
+    "scope": "2/2/3/3 score material layers and within-hit rhythm; T18 UI-only 换货券 / 刷新一次商店商品; rejected comparison removed. Technical IDs, prices, operations and published hash definitions unchanged."
   },
-  "waitingSources": [
-    {
-      "owner": "01a147f7 / 01a147ee",
-      "scope": "Shop recommendation/blur/style/T18 plus Boss preparation module and actual music timing wiring",
-      "status": "WAITING_FINAL_SHOP_SHA",
-      "bossModuleCandidate": "d77fd635c91b52d71ebbceaa635e2d5ae10825a0",
-      "instruction": "Wait combined Shop source; no standalone duplicate patch/merge."
-    }
-  ],
+  "checks": {
+    "finalUniqueFiles": 31,
+    "finalUniqueTests": 365,
+    "typecheck": "PASS",
+    "build": "PASS,321 modules",
+    "rawLogs": "checks/",
+    "originalFailuresRetained": true,
+    "sourceStageArt": "PASS: all72,52 stage derivatives <=96KiB,20 detail reuse"
+  },
+  "sourceProtection": {
+    "gameSceneExact": "09249ad5c6e382c56f19a395cbde150d0e3b9153",
+    "mobileFilesExact": "236acc4cac8b990af9b622179dff4ccdc1e5c774",
+    "protectedDiff": [],
+    "binding": "source-bindings.json"
+  },
   "hearing": {
     "heard": false,
-    "parentPlaybackAttempt": "Parent reports audio input unsupported; no successful listening occurred.",
-    "boundary": "WAV/parameters are software evidence only; subjective do-re-mi/punch, live BGM mix and device listening remain NOT_RUN."
-  },
-  "ownership": "No new hand edits in GameScene, ShopScene, hero-name or mobile-settlement windows. Incoming exact SHA/patches will be merged in owner order; do not replace whole scenes.",
-  "publication": {
-    "mode": "Partial dev checkpoint only",
-    "main": "PENDING until remaining sources and concentrated integration checks complete",
-    "authorization": "User authorized today fixes; latest parent explicitly says no main until all source owners deliver.",
-    "restrictions": "No force push, CI/domain query, deployment, natural long game or repeated matrix."
+    "parentPlaybackAttempt": "Audio input unsupported; no successful listening.",
+    "render": "layered.wav / layered.json:8.36sec,23 actual saved numeric events,primary rate1→2 and capped;2/3 layers,production buses,one real OfflineAudioContext.",
+    "boundary": "SFX-only fixed320ms probe, no GameScene timing capture, live BGM listening, physical device or subjective acceptance."
   },
   "bossContract": {
-    "status": "RECEIVED_NOT_YET_INTEGRATED",
+    "status": "INTEGRATED_AND_SCOPED_SOFTWARE_CHECKS_PASS",
     "api": "presentBossPreparation(dialog,run,{valid,onReveal,onFinish})",
-    "returns": [
-      "shown",
-      "seen",
-      "not-applicable",
-      "deferred"
-    ],
-    "timing": "Shop owner calls after saved-state first render and before other dialogs, removes eager boss switch. shown: actual visible onReveal then setScene(boss)+sourceCue(boss); seen may keepboss; deferred keeps previous music. valid guards scene/controller/saved run; onFinish restores shop display.",
-    "state": "Continue/cancel only closes preview; no domain command, de-dup not saved.",
-    "audioChange": "None needed."
+    "timing": "Shop waits Phaser create/first render; shown waits visible RAF then boss music/source cue; seen/deferred/invalid/hidden lifecycle protected. Existing250ms crossfade retained.",
+    "state": "Preview only; no domain command; de-dup outside saved state.",
+    "scope": "Ordinary points only vs full card scoring vs Joker scoring+edition restrictions remain distinct."
   },
-  "heroSkillNames": {
-    "苏轼": "余音袅袅",
-    "秦琼": "跃马冲阵",
-    "辛弃疾": "众里寻他",
-    "刘娥": "垂帘听政",
-    "文成公主": "文成和亲",
-    "花蕊夫人": "花蕊赏赐"
+  "ownerEvidenceReuse": {
+    "audio": "5273 original113 by last-per-file plus initial old voice-count FAIL retained in owner evidence; final layering tested here.",
+    "visual": "09249 final source includes51 posture,75 footer component,226 names and17 final wiring checks in their documented scopes; not added as new totals. Local screenshots not copied/uploaded.",
+    "mobile": "Parent receipt:44 related/type/build and4 local view cases; source contains only2 product files; no invented committed logs or repeated matrix.",
+    "shop": "3b source contains57 Shop and43 Boss/lifecycle focused checks plus limited actual Shop view; original FAILs retained in owner folders. T18 comparison portion superseded here."
   },
-  "settlementCross": {
-    "status": "STATIC_MERGE_PRESERVED_BOTH",
-    "mobileFiles": [
-      "src/game/IntermissionScene.ts",
-      "src/game/SettlementPresentation.ts"
-    ],
-    "namesFiles": [
-      "src/game/SettlementHighlights.ts",
-      "src/game/ScoreReview.ts",
-      "src/game/HeroSkillPresentation.ts"
-    ],
-    "note": "No source-path collision. Mobile render consumes savedSkillName from final names module; each owner file remains exact. Runtime cross-check waits final batch."
-  }
+  "remaining": [
+    "Parent dot natural confirmation of integrated scoring, source lines, footer, Shop and Boss",
+    "Human listening, live BGM mix, true device performance and comprehension",
+    "Registered nonblocking: program-choice prebattle entry lost;72-art historical source provenance vs new runtime hash needs explicit reconciliation",
+    "Complex/old-identity long text not fully rewritten; formal C04/A03/V01/L01 gates unchanged"
+  ],
+  "publication": {
+    "authorization": "Latest user explicitly authorized normal dev/main merge and push after all sources and checks; supersedes earlier partial dev-only checkpoint.",
+    "mode": "normal dev push, then main fast-forward/push if remote main remains expected baseline",
+    "expectedMain": "212e23d547d4fcfdd886f9dfe80699318e77a738",
+    "releaseCommit": "Delivery commit containing this record; actual full SHA and successful push are reported in final receipt.",
+    "restrictions": "No force, CI/domain queries, deployment, new browser matrix or natural long game."
+  },
+  "partialSnapshots": [
+    "c11ece7b252c920b9cf4046c753c66d2632f0032",
+    "83d8ebe690c68c7c446f7512bad3d3e1a476a9e9",
+    "2194a78d8aa0a7e9eb1bef405e20d5559f53107e"
+  ]
 }

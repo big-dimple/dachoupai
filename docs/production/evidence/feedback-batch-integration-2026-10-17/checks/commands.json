@@ -1,0 +1,101 @@
+{
+  "scope": "One focused integration batch, followed only by affected display-boundary regressions. No browser matrix or natural game.",
+  "runs": [
+    {
+      "log": "focused-initial.log",
+      "files": [
+        "tests/score-melody-audio.test.ts",
+        "tests/score-recorded-audio.test.ts",
+        "tests/audio-mix-policy.test.ts",
+        "tests/audio-sample-loading.test.ts",
+        "tests/audio-music-lifecycle.test.ts",
+        "tests/hero-climax.test.ts",
+        "tests/score-posture.test.ts",
+        "tests/score-text-layout.test.ts",
+        "tests/hero-skill-presentation.test.ts",
+        "tests/touye-discard-handoff.test.ts",
+        "tests/hero-play-reminder.test.ts",
+        "tests/hand-action-controls.test.ts",
+        "tests/ai-hand-action-cancellation.test.ts",
+        "tests/shop-decision-copy.test.ts",
+        "tests/shop-synergy-preview.test.ts",
+        "tests/shop-synergy-conditions.test.ts",
+        "tests/boss-preparation-presentation.test.ts",
+        "tests/boss-card-visual.test.ts",
+        "tests/game-score-pressure.test.ts",
+        "tests/settlement-presentation.test.ts",
+        "tests/score-review.test.ts",
+        "tests/stage-gift-receipt.test.ts",
+        "tests/c01-tool-info.test.ts",
+        "tests/c01-economy.test.ts",
+        "tests/tangsong-card-names.test.ts",
+        "tests/source-stage-art.test.ts"
+      ],
+      "exitCode": 1,
+      "tests": 334,
+      "passed": 333,
+      "failed": 1,
+      "failure": "Old T18 name equality expected 免费逛摊; original FAIL preserved."
+    },
+    {
+      "log": "name-boundary-regression.log",
+      "files": [
+        "tests/c01-tool-info.test.ts",
+        "tests/joker-player-copy.test.ts",
+        "tests/joker-experience.test.ts",
+        "tests/make-cards-flow.test.ts",
+        "tests/saved-tool-result.test.ts",
+        "tests/player-copy-closeout.test.ts"
+      ],
+      "exitCode": 1,
+      "tests": 47,
+      "passed": 46,
+      "failed": 1,
+      "failure": "Same T18 catalog case still expected old name in label; original FAIL preserved."
+    },
+    {
+      "log": "tool-rename-regression.log",
+      "files": [
+        "tests/c01-tool-info.test.ts",
+        "tests/shop-decision-copy.test.ts"
+      ],
+      "exitCode": 0,
+      "tests": 19,
+      "passed": 19,
+      "failed": 0
+    }
+  ],
+  "finalUniqueFiles": 31,
+  "finalUniqueTests": 365,
+  "counting": "334 initial cases +31 new boundary cases; last passing c01-tool-info16 and shop-decision3 replace earlier results, not added again. Owner test counts are not aggregated.",
+  "typecheck": {
+    "command": "node node_modules/typescript/bin/tsc --noEmit",
+    "exitCode": 0,
+    "log": "typecheck.log",
+    "productCommit": "e978f295136c48f999895e2e9333f8c0b93cc5c1"
+  },
+  "build": {
+    "command": "node node_modules/vite/bin/vite.js build",
+    "exitCode": 0,
+    "log": "build.log",
+    "modules": 321,
+    "warning": "Existing >500kB chunk warning, no build failure.",
+    "productCommit": "e978f295136c48f999895e2e9333f8c0b93cc5c1"
+  },
+  "render": {
+    "command": "node docs/production/evidence/feedback-batch-integration-2026-10-17/render-layered-trace.mjs",
+    "defaultOutput": "shots/score-melody-audio/recheck",
+    "explicitRecordingEnv": {
+      "AUDIO_PROBE_OUTPUT": "docs/production/evidence/feedback-batch-integration-2026-10-17",
+      "AUDIO_LABEL": "layered"
+    },
+    "exitCode": 0,
+    "heard": false,
+    "durationSeconds": 8.36,
+    "peak": 0.3968198001384735,
+    "hitCount": 23,
+    "sourceHashMatchesProduct": "e978f295136c48f999895e2e9333f8c0b93cc5c1",
+    "headAtRender": "2b7e8dd149eb6b26a5512bf4fc49edb998b7eba2",
+    "note": "Render occurred immediately before the final product commit; the recorded normalized source hashes exactly match that commit. Fixed320ms arrivals are a probe, not captured GameScene timing."
+  }
+}

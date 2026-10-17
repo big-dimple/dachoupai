@@ -1,6 +1,6 @@
 {
   "baseCommit": "212e23d547d4fcfdd886f9dfe80699318e77a738",
-  "integratedProductCommit": "a54cb1efea32f6b42fdad37a490e70bfdd864e89",
+  "integratedProductCommit": "e978f295136c48f999895e2e9333f8c0b93cc5c1",
   "branch": "dev/feedback-batch-integration-20261017",
   "sources": [
     {
@@ -8,424 +8,836 @@
       "sha": "5273a1fa3099d29aba7a1300de7560c3d644ed1b",
       "ownerEvidence": "../score-melody-audio-2026-10-17/README.md",
       "paths": 22,
+      "exactPaths": 17,
       "bindings": [
         {
           "path": "docs/production/evidence/score-melody-audio-2026-10-17/BOSS_HANDOFF.md",
           "sourceBlob": "ce3fff074968fb6b71bc3bf5bd4d5341e8e44fc0",
-          "integratedBlob": "ce3fff074968fb6b71bc3bf5bd4d5341e8e44fc0"
+          "integratedBlob": "ce3fff074968fb6b71bc3bf5bd4d5341e8e44fc0",
+          "exact": true
         },
         {
           "path": "docs/production/evidence/score-melody-audio-2026-10-17/README.md",
           "sourceBlob": "5b5a9994876ae8c1e79c1c21c02acf89f592f1aa",
-          "integratedBlob": "5b5a9994876ae8c1e79c1c21c02acf89f592f1aa"
+          "integratedBlob": "5b5a9994876ae8c1e79c1c21c02acf89f592f1aa",
+          "exact": true
         },
         {
           "path": "docs/production/evidence/score-melody-audio-2026-10-17/after.json",
           "sourceBlob": "4f163703958f7fb0206fbc1c9d57fae110269dea",
-          "integratedBlob": "4f163703958f7fb0206fbc1c9d57fae110269dea"
+          "integratedBlob": "4f163703958f7fb0206fbc1c9d57fae110269dea",
+          "exact": true
         },
         {
           "path": "docs/production/evidence/score-melody-audio-2026-10-17/after.wav",
           "sourceBlob": "3523c8034cd098f5a9b12e17f93be78b658e6258",
-          "integratedBlob": "3523c8034cd098f5a9b12e17f93be78b658e6258"
+          "integratedBlob": "3523c8034cd098f5a9b12e17f93be78b658e6258",
+          "exact": true
         },
         {
           "path": "docs/production/evidence/score-melody-audio-2026-10-17/before.json",
           "sourceBlob": "ec7494d2ddd44c9f8e07b496b07f65d9a8609c9c",
-          "integratedBlob": "ec7494d2ddd44c9f8e07b496b07f65d9a8609c9c"
+          "integratedBlob": "ec7494d2ddd44c9f8e07b496b07f65d9a8609c9c",
+          "exact": true
         },
         {
           "path": "docs/production/evidence/score-melody-audio-2026-10-17/before.wav",
           "sourceBlob": "3f0114435e425462a52fc446c38dc3cc0f19be6a",
-          "integratedBlob": "3f0114435e425462a52fc446c38dc3cc0f19be6a"
+          "integratedBlob": "3f0114435e425462a52fc446c38dc3cc0f19be6a",
+          "exact": true
         },
         {
           "path": "docs/production/evidence/score-melody-audio-2026-10-17/checks/build-PASS.txt",
           "sourceBlob": "c9458c692142502dd968ba00c5918f38758a01fe",
-          "integratedBlob": "c9458c692142502dd968ba00c5918f38758a01fe"
+          "integratedBlob": "c9458c692142502dd968ba00c5918f38758a01fe",
+          "exact": true
         },
         {
           "path": "docs/production/evidence/score-melody-audio-2026-10-17/checks/built-source-info.json",
           "sourceBlob": "a8173cea4e43b280dc92330584908f6ed8747d99",
-          "integratedBlob": "a8173cea4e43b280dc92330584908f6ed8747d99"
+          "integratedBlob": "a8173cea4e43b280dc92330584908f6ed8747d99",
+          "exact": true
         },
         {
           "path": "docs/production/evidence/score-melody-audio-2026-10-17/checks/concentrated-original-FAIL.txt",
           "sourceBlob": "0aa6bd738f1ffca6415b872c045013cc56bfff51",
-          "integratedBlob": "0aa6bd738f1ffca6415b872c045013cc56bfff51"
+          "integratedBlob": "0aa6bd738f1ffca6415b872c045013cc56bfff51",
+          "exact": true
         },
         {
           "path": "docs/production/evidence/score-melody-audio-2026-10-17/checks/necessary-repair-PASS.txt",
           "sourceBlob": "b2e2e22b8cf158d9a1a747fc59aad06a53980650",
-          "integratedBlob": "b2e2e22b8cf158d9a1a747fc59aad06a53980650"
+          "integratedBlob": "b2e2e22b8cf158d9a1a747fc59aad06a53980650",
+          "exact": true
         },
         {
           "path": "docs/production/evidence/score-melody-audio-2026-10-17/checks/probe-setup-note.txt",
           "sourceBlob": "5dba8aae434014d4004c7f1b5d20fbdf87766065",
-          "integratedBlob": "5dba8aae434014d4004c7f1b5d20fbdf87766065"
+          "integratedBlob": "5dba8aae434014d4004c7f1b5d20fbdf87766065",
+          "exact": true
         },
         {
           "path": "docs/production/evidence/score-melody-audio-2026-10-17/checks/typecheck-PASS.txt",
           "sourceBlob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
-          "integratedBlob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+          "integratedBlob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+          "exact": true
         },
         {
           "path": "docs/production/evidence/score-melody-audio-2026-10-17/metrics-and-binding.json",
           "sourceBlob": "370dda29579efacd3614e647079245fc82b7b29c",
-          "integratedBlob": "370dda29579efacd3614e647079245fc82b7b29c"
+          "integratedBlob": "370dda29579efacd3614e647079245fc82b7b29c",
+          "exact": true
         },
         {
           "path": "docs/production/evidence/score-melody-audio-2026-10-17/render-short-trace.mjs",
           "sourceBlob": "decc3de20ac9c93bfe3867c166b4bdfe58e9111b",
-          "integratedBlob": "decc3de20ac9c93bfe3867c166b4bdfe58e9111b"
+          "integratedBlob": "decc3de20ac9c93bfe3867c166b4bdfe58e9111b",
+          "exact": true
         },
         {
           "path": "docs/production/evidence/score-melody-audio-2026-10-17/status.json",
           "sourceBlob": "f7b08082e1c472c8f0f5176a52b6b04c2ba70561",
-          "integratedBlob": "f7b08082e1c472c8f0f5176a52b6b04c2ba70561"
+          "integratedBlob": "f7b08082e1c472c8f0f5176a52b6b04c2ba70561",
+          "exact": true
         },
         {
           "path": "src/audio/AudioEngine.ts",
           "sourceBlob": "e2a5695e26d3da9a3a46237ca993562a4f68e5eb",
-          "integratedBlob": "e2a5695e26d3da9a3a46237ca993562a4f68e5eb"
+          "integratedBlob": "0e655c3d1cb9173af5d04d3de26785f74354c605",
+          "exact": false,
+          "reason": "Authorized final increment e978f295: numeric material layering or T18 display-only rename/removal of superseded comparison copy."
         },
         {
           "path": "src/audio/foley.ts",
           "sourceBlob": "3bee74507aa73623bbb1b8479cfc1f8cd7bbe6ed",
-          "integratedBlob": "3bee74507aa73623bbb1b8479cfc1f8cd7bbe6ed"
+          "integratedBlob": "d78ecd9e75505598981a106a54ada73f1a663799",
+          "exact": false,
+          "reason": "Authorized final increment e978f295: numeric material layering or T18 display-only rename/removal of superseded comparison copy."
         },
         {
           "path": "src/audio/mixPolicy.ts",
           "sourceBlob": "f07765853bb359166454305c9d014e403437d182",
-          "integratedBlob": "f07765853bb359166454305c9d014e403437d182"
+          "integratedBlob": "f07765853bb359166454305c9d014e403437d182",
+          "exact": true
         },
         {
           "path": "tests/audio-mix-policy.test.ts",
           "sourceBlob": "12179353dbd7616450139509bb7a35fad3744daf",
-          "integratedBlob": "12179353dbd7616450139509bb7a35fad3744daf"
+          "integratedBlob": "9b06aa241e9b9dbc3cd24c2c7c2f334317235abd",
+          "exact": false,
+          "reason": "Authorized final increment e978f295: numeric material layering or T18 display-only rename/removal of superseded comparison copy."
         },
         {
           "path": "tests/audio-sample-loading.test.ts",
           "sourceBlob": "d3e64091eef355affa890bf251fd8664baf57979",
-          "integratedBlob": "d3e64091eef355affa890bf251fd8664baf57979"
+          "integratedBlob": "d3e64091eef355affa890bf251fd8664baf57979",
+          "exact": true
         },
         {
           "path": "tests/score-melody-audio.test.ts",
           "sourceBlob": "739ef0a874e7ee5262836d6e10e81b6b7ef0a391",
-          "integratedBlob": "739ef0a874e7ee5262836d6e10e81b6b7ef0a391"
+          "integratedBlob": "5b851cb5112b4b8b0fbc871d9cc858934a3df823",
+          "exact": false,
+          "reason": "Authorized final increment e978f295: numeric material layering or T18 display-only rename/removal of superseded comparison copy."
         },
         {
           "path": "tests/score-recorded-audio.test.ts",
           "sourceBlob": "8cdc0d90e024fc77b73d7c427a1b25cb50533143",
-          "integratedBlob": "8cdc0d90e024fc77b73d7c427a1b25cb50533143"
+          "integratedBlob": "4dc3bf2d64d1b0e599470f27c1144cce99fb141f",
+          "exact": false,
+          "reason": "Authorized final increment e978f295: numeric material layering or T18 display-only rename/removal of superseded comparison copy."
         }
       ]
     },
     {
-      "name": "score-burst-footer-hero-names",
+      "name": "hero-footer-names",
       "sha": "09249ad5c6e382c56f19a395cbde150d0e3b9153",
-      "ownerEvidence": "../hero-skill-name-projection-2026-10-17/README.md",
+      "ownerEvidence": "../score-posture-pressure-2026-10-17/README.md",
       "paths": 52,
+      "exactPaths": 50,
       "bindings": [
         {
           "path": "docs/production/evidence/hand-action-footer-2026-10-17/GameScene.integration.patch",
           "sourceBlob": "04ae1047062c5202b036945abc51e9cbbf1ec399",
-          "integratedBlob": "04ae1047062c5202b036945abc51e9cbbf1ec399"
+          "integratedBlob": "04ae1047062c5202b036945abc51e9cbbf1ec399",
+          "exact": true
         },
         {
           "path": "docs/production/evidence/hand-action-footer-2026-10-17/README.md",
           "sourceBlob": "78b57667b2a5bcb0b9ca8ea2e23ae4ebb4e4cd76",
-          "integratedBlob": "78b57667b2a5bcb0b9ca8ea2e23ae4ebb4e4cd76"
+          "integratedBlob": "78b57667b2a5bcb0b9ca8ea2e23ae4ebb4e4cd76",
+          "exact": true
         },
         {
           "path": "docs/production/evidence/hand-action-footer-2026-10-17/components.png",
           "sourceBlob": "349cef2042ac205f9a774d497299f408f913dca8",
-          "integratedBlob": "349cef2042ac205f9a774d497299f408f913dca8"
+          "integratedBlob": "349cef2042ac205f9a774d497299f408f913dca8",
+          "exact": true
         },
         {
           "path": "docs/production/evidence/hand-action-footer-2026-10-17/report.json",
           "sourceBlob": "75b8cacdbd399c8522d00b1ae67b33115f3afef0",
-          "integratedBlob": "75b8cacdbd399c8522d00b1ae67b33115f3afef0"
+          "integratedBlob": "75b8cacdbd399c8522d00b1ae67b33115f3afef0",
+          "exact": true
         },
         {
           "path": "docs/production/evidence/hero-skill-name-projection-2026-10-17/GameScene-owner-only.patch",
           "sourceBlob": "cc3cc28d3eff111daa0529231b3cefde483007e5",
-          "integratedBlob": "cc3cc28d3eff111daa0529231b3cefde483007e5"
+          "integratedBlob": "cc3cc28d3eff111daa0529231b3cefde483007e5",
+          "exact": true
         },
         {
           "path": "docs/production/evidence/hero-skill-name-projection-2026-10-17/README.md",
           "sourceBlob": "3305919137f60711db17607970b3fcbf92cf42f6",
-          "integratedBlob": "3305919137f60711db17607970b3fcbf92cf42f6"
+          "integratedBlob": "3305919137f60711db17607970b3fcbf92cf42f6",
+          "exact": true
         },
         {
           "path": "docs/production/evidence/hero-skill-name-projection-2026-10-17/checks.json",
           "sourceBlob": "46604627f8448f4346a6adf0c405d3802d68a06c",
-          "integratedBlob": "46604627f8448f4346a6adf0c405d3802d68a06c"
+          "integratedBlob": "46604627f8448f4346a6adf0c405d3802d68a06c",
+          "exact": true
         },
         {
           "path": "docs/production/evidence/score-posture-pressure-2026-10-17/README.md",
           "sourceBlob": "6425d599b9f5eca95432deb8455233376c41b524",
-          "integratedBlob": "6425d599b9f5eca95432deb8455233376c41b524"
+          "integratedBlob": "6425d599b9f5eca95432deb8455233376c41b524",
+          "exact": true
         },
         {
           "path": "src/game/AssistChoiceDialog.ts",
           "sourceBlob": "b90879ef6171427849f783bbd5a41913c83dd22a",
-          "integratedBlob": "b90879ef6171427849f783bbd5a41913c83dd22a"
+          "integratedBlob": "b90879ef6171427849f783bbd5a41913c83dd22a",
+          "exact": true
         },
         {
           "path": "src/game/AssistSelection.ts",
           "sourceBlob": "710f3840179cddaa0252fd361f3adaa25a10a76d",
-          "integratedBlob": "710f3840179cddaa0252fd361f3adaa25a10a76d"
+          "integratedBlob": "710f3840179cddaa0252fd361f3adaa25a10a76d",
+          "exact": true
         },
         {
           "path": "src/game/AzaoChargeCopy.ts",
           "sourceBlob": "17670635e4d0d0a52924b0a51fb7cabdfd8e9fe6",
-          "integratedBlob": "17670635e4d0d0a52924b0a51fb7cabdfd8e9fe6"
+          "integratedBlob": "17670635e4d0d0a52924b0a51fb7cabdfd8e9fe6",
+          "exact": true
         },
         {
           "path": "src/game/CharacterRunCopy.ts",
           "sourceBlob": "c5c0aa1b5d8544d45808376caeb2dca391ef48c7",
-          "integratedBlob": "c5c0aa1b5d8544d45808376caeb2dca391ef48c7"
+          "integratedBlob": "c5c0aa1b5d8544d45808376caeb2dca391ef48c7",
+          "exact": true
         },
         {
           "path": "src/game/ErxiangHandoffCopy.ts",
           "sourceBlob": "bc4fc73e7fa613d0a03d51a90f3ee5fce946e99e",
-          "integratedBlob": "bc4fc73e7fa613d0a03d51a90f3ee5fce946e99e"
+          "integratedBlob": "bc4fc73e7fa613d0a03d51a90f3ee5fce946e99e",
+          "exact": true
         },
         {
           "path": "src/game/GameScene.ts",
           "sourceBlob": "f57dc64c5f6e85cf33d6723d1a6773f7eb3b2601",
-          "integratedBlob": "f57dc64c5f6e85cf33d6723d1a6773f7eb3b2601"
+          "integratedBlob": "f57dc64c5f6e85cf33d6723d1a6773f7eb3b2601",
+          "exact": true
         },
         {
           "path": "src/game/HandActionControls.ts",
           "sourceBlob": "99fb889591d298aa6ae719e37a91b8ff6da07327",
-          "integratedBlob": "99fb889591d298aa6ae719e37a91b8ff6da07327"
+          "integratedBlob": "99fb889591d298aa6ae719e37a91b8ff6da07327",
+          "exact": true
         },
         {
           "path": "src/game/HandRuleReference.ts",
           "sourceBlob": "fd13f474bf1c01686e6dd83b9bfc30a6db22b93b",
-          "integratedBlob": "fd13f474bf1c01686e6dd83b9bfc30a6db22b93b"
+          "integratedBlob": "fd13f474bf1c01686e6dd83b9bfc30a6db22b93b",
+          "exact": true
         },
         {
           "path": "src/game/HeroAbilityCue.ts",
           "sourceBlob": "75f5c6c67e90fe354c7c88685e805da28da8b402",
-          "integratedBlob": "75f5c6c67e90fe354c7c88685e805da28da8b402"
+          "integratedBlob": "75f5c6c67e90fe354c7c88685e805da28da8b402",
+          "exact": true
         },
         {
           "path": "src/game/HeroClimaxContribution.ts",
           "sourceBlob": "b7a3872d7f8dfcb19d2aeb33986ffea0413981e7",
-          "integratedBlob": "b7a3872d7f8dfcb19d2aeb33986ffea0413981e7"
+          "integratedBlob": "b7a3872d7f8dfcb19d2aeb33986ffea0413981e7",
+          "exact": true
         },
         {
           "path": "src/game/HeroClimaxStage.ts",
           "sourceBlob": "17300585f335a6b7e5c7dbeff56ff4fa9fc7c14f",
-          "integratedBlob": "17300585f335a6b7e5c7dbeff56ff4fa9fc7c14f"
+          "integratedBlob": "17300585f335a6b7e5c7dbeff56ff4fa9fc7c14f",
+          "exact": true
         },
         {
           "path": "src/game/HeroExplanation.ts",
           "sourceBlob": "021c62634e7144c92281d0bda568d34e4f35c4b4",
-          "integratedBlob": "021c62634e7144c92281d0bda568d34e4f35c4b4"
+          "integratedBlob": "021c62634e7144c92281d0bda568d34e4f35c4b4",
+          "exact": true
         },
         {
           "path": "src/game/HeroPlayReminder.ts",
           "sourceBlob": "e02a0c4cef4988658b877d1d996fa62a55f05918",
-          "integratedBlob": "e02a0c4cef4988658b877d1d996fa62a55f05918"
+          "integratedBlob": "e02a0c4cef4988658b877d1d996fa62a55f05918",
+          "exact": true
         },
         {
           "path": "src/game/HeroSignature.ts",
           "sourceBlob": "e1caa2b7161d57e7d016b43a856015e6d9b53a59",
-          "integratedBlob": "e1caa2b7161d57e7d016b43a856015e6d9b53a59"
+          "integratedBlob": "e1caa2b7161d57e7d016b43a856015e6d9b53a59",
+          "exact": true
         },
         {
           "path": "src/game/HeroSkillGuide.ts",
           "sourceBlob": "05710c88450da8457fc526b518f2a20943e6cd0e",
-          "integratedBlob": "05710c88450da8457fc526b518f2a20943e6cd0e"
+          "integratedBlob": "05710c88450da8457fc526b518f2a20943e6cd0e",
+          "exact": true
         },
         {
           "path": "src/game/HeroSkillPresentation.ts",
           "sourceBlob": "b89ae5a8fd887253fde280a51c02ca8c0ec0d97c",
-          "integratedBlob": "b89ae5a8fd887253fde280a51c02ca8c0ec0d97c"
+          "integratedBlob": "b89ae5a8fd887253fde280a51c02ca8c0ec0d97c",
+          "exact": true
         },
         {
           "path": "src/game/HeroStageContinuity.ts",
           "sourceBlob": "12fe952f6294ff043c3648a279f7272309962371",
-          "integratedBlob": "12fe952f6294ff043c3648a279f7272309962371"
+          "integratedBlob": "12fe952f6294ff043c3648a279f7272309962371",
+          "exact": true
         },
         {
           "path": "src/game/JokerExperience.ts",
           "sourceBlob": "3956dfcee8d5d2332d46262a86a3c8a8a3ef0302",
-          "integratedBlob": "3956dfcee8d5d2332d46262a86a3c8a8a3ef0302"
+          "integratedBlob": "80d304730e6d2888547a33722323351f047fb6ac",
+          "exact": false,
+          "reason": "Authorized final increment e978f295: numeric material layering or T18 display-only rename/removal of superseded comparison copy."
         },
         {
           "path": "src/game/OpeningPlaySample.ts",
           "sourceBlob": "cc7c0d2e3ab19013ee51059c7b764f8ef324cf31",
-          "integratedBlob": "cc7c0d2e3ab19013ee51059c7b764f8ef324cf31"
+          "integratedBlob": "cc7c0d2e3ab19013ee51059c7b764f8ef324cf31",
+          "exact": true
         },
         {
           "path": "src/game/ScoreEnergy.ts",
           "sourceBlob": "84adc08b7f6e20bd6d21703da228f7bde6c0bc04",
-          "integratedBlob": "84adc08b7f6e20bd6d21703da228f7bde6c0bc04"
+          "integratedBlob": "84adc08b7f6e20bd6d21703da228f7bde6c0bc04",
+          "exact": true
         },
         {
           "path": "src/game/ScorePosture.ts",
           "sourceBlob": "fb26d76741b881040cef30de0abc1f95615c5635",
-          "integratedBlob": "fb26d76741b881040cef30de0abc1f95615c5635"
+          "integratedBlob": "fb26d76741b881040cef30de0abc1f95615c5635",
+          "exact": true
         },
         {
           "path": "src/game/ScoreReview.ts",
           "sourceBlob": "cd3d1c5347747566fbed990d10c4a31631d38e93",
-          "integratedBlob": "cd3d1c5347747566fbed990d10c4a31631d38e93"
+          "integratedBlob": "b6ec40c4d912d50e5e592f7dac8971882d4ffab4",
+          "exact": false,
+          "reason": "Authorized final increment e978f295: numeric material layering or T18 display-only rename/removal of superseded comparison copy."
         },
         {
           "path": "src/game/ScoreTextLayout.ts",
           "sourceBlob": "314d7ff8266394f5b2a758eb4cc0e10d13a2f7fc",
-          "integratedBlob": "314d7ff8266394f5b2a758eb4cc0e10d13a2f7fc"
+          "integratedBlob": "314d7ff8266394f5b2a758eb4cc0e10d13a2f7fc",
+          "exact": true
         },
         {
           "path": "src/game/SelectionPresentation.ts",
           "sourceBlob": "75114957234e92d21aafbcd8b9fd8b73ee13c68a",
-          "integratedBlob": "75114957234e92d21aafbcd8b9fd8b73ee13c68a"
+          "integratedBlob": "75114957234e92d21aafbcd8b9fd8b73ee13c68a",
+          "exact": true
         },
         {
           "path": "src/game/SettlementHighlights.ts",
           "sourceBlob": "6b2250ac551aea3fabd045781e33de51a9c2854a",
-          "integratedBlob": "6b2250ac551aea3fabd045781e33de51a9c2854a"
+          "integratedBlob": "6b2250ac551aea3fabd045781e33de51a9c2854a",
+          "exact": true
         },
         {
           "path": "src/game/TouyeWagerCopy.ts",
           "sourceBlob": "3bfd9ee0b2236c1c6687b80be3ede4d919749b73",
-          "integratedBlob": "3bfd9ee0b2236c1c6687b80be3ede4d919749b73"
+          "integratedBlob": "3bfd9ee0b2236c1c6687b80be3ede4d919749b73",
+          "exact": true
         },
         {
           "path": "src/game/XiemuBurnCopy.ts",
           "sourceBlob": "855cc4012189aaf134434cebd1df841317644b47",
-          "integratedBlob": "855cc4012189aaf134434cebd1df841317644b47"
+          "integratedBlob": "855cc4012189aaf134434cebd1df841317644b47",
+          "exact": true
         },
         {
           "path": "src/game/characters.ts",
           "sourceBlob": "aba3871712a4de6de449e73eb3c6811951604535",
-          "integratedBlob": "aba3871712a4de6de449e73eb3c6811951604535"
+          "integratedBlob": "aba3871712a4de6de449e73eb3c6811951604535",
+          "exact": true
         },
         {
           "path": "src/game/layout.ts",
           "sourceBlob": "0c2a817934dbcb59792beee002c7e12d711a11ff",
-          "integratedBlob": "0c2a817934dbcb59792beee002c7e12d711a11ff"
+          "integratedBlob": "0c2a817934dbcb59792beee002c7e12d711a11ff",
+          "exact": true
         },
         {
           "path": "tests/amo-assist-consumption-save.test.ts",
           "sourceBlob": "b15a209eb13f91366ca681358eab396c844b6e54",
-          "integratedBlob": "b15a209eb13f91366ca681358eab396c844b6e54"
+          "integratedBlob": "b15a209eb13f91366ca681358eab396c844b6e54",
+          "exact": true
         },
         {
           "path": "tests/assist-entry-guards.test.ts",
           "sourceBlob": "02d2cbe98c69b805cccb9e785faa2ce3baaf06ac",
-          "integratedBlob": "02d2cbe98c69b805cccb9e785faa2ce3baaf06ac"
+          "integratedBlob": "02d2cbe98c69b805cccb9e785faa2ce3baaf06ac",
+          "exact": true
         },
         {
           "path": "tests/assist-profile-ui-copy.test.ts",
           "sourceBlob": "b2ea86a15fe90a71531f92810ec4c454021aa9d9",
-          "integratedBlob": "b2ea86a15fe90a71531f92810ec4c454021aa9d9"
+          "integratedBlob": "b2ea86a15fe90a71531f92810ec4c454021aa9d9",
+          "exact": true
         },
         {
           "path": "tests/hand-action-controls.test.ts",
           "sourceBlob": "8e0324607eded2405dcd2f1b77f403753f25f002",
-          "integratedBlob": "8e0324607eded2405dcd2f1b77f403753f25f002"
+          "integratedBlob": "8e0324607eded2405dcd2f1b77f403753f25f002",
+          "exact": true
         },
         {
           "path": "tests/hand-rule-order.test.ts",
           "sourceBlob": "3c5d156d265093f028b690d4a01fd647aa7fbad8",
-          "integratedBlob": "3c5d156d265093f028b690d4a01fd647aa7fbad8"
+          "integratedBlob": "3c5d156d265093f028b690d4a01fd647aa7fbad8",
+          "exact": true
         },
         {
           "path": "tests/hero-ability-cue.test.ts",
           "sourceBlob": "92eefb9f48ea23c6749e8fec26faeaae0463350b",
-          "integratedBlob": "92eefb9f48ea23c6749e8fec26faeaae0463350b"
+          "integratedBlob": "92eefb9f48ea23c6749e8fec26faeaae0463350b",
+          "exact": true
         },
         {
           "path": "tests/hero-climax.test.ts",
           "sourceBlob": "5385901f29c54e52a6051b4217aad12ad92e7497",
-          "integratedBlob": "5385901f29c54e52a6051b4217aad12ad92e7497"
+          "integratedBlob": "5385901f29c54e52a6051b4217aad12ad92e7497",
+          "exact": true
         },
         {
           "path": "tests/hero-skill-presentation.test.ts",
           "sourceBlob": "6a68293994490cab5deacfde7e254eb6ff5b2719",
-          "integratedBlob": "6a68293994490cab5deacfde7e254eb6ff5b2719"
+          "integratedBlob": "6a68293994490cab5deacfde7e254eb6ff5b2719",
+          "exact": true
         },
         {
           "path": "tests/hero-stage-continuity.test.ts",
           "sourceBlob": "abf924556f967caafd2958c915e8fa412adf5551",
-          "integratedBlob": "abf924556f967caafd2958c915e8fa412adf5551"
+          "integratedBlob": "abf924556f967caafd2958c915e8fa412adf5551",
+          "exact": true
         },
         {
           "path": "tests/hero-text-contract.test.ts",
           "sourceBlob": "42c2dcc89690cec106157ae0962e4390c6194db0",
-          "integratedBlob": "42c2dcc89690cec106157ae0962e4390c6194db0"
+          "integratedBlob": "42c2dcc89690cec106157ae0962e4390c6194db0",
+          "exact": true
         },
         {
           "path": "tests/layout.test.ts",
           "sourceBlob": "b171be4871b41d6a6c2854a78545fbcaa2e76ddc",
-          "integratedBlob": "b171be4871b41d6a6c2854a78545fbcaa2e76ddc"
+          "integratedBlob": "b171be4871b41d6a6c2854a78545fbcaa2e76ddc",
+          "exact": true
         },
         {
           "path": "tests/score-energy.test.ts",
           "sourceBlob": "a8d87ee4b290c5ede763213195d53768fb657d1d",
-          "integratedBlob": "a8d87ee4b290c5ede763213195d53768fb657d1d"
+          "integratedBlob": "a8d87ee4b290c5ede763213195d53768fb657d1d",
+          "exact": true
         },
         {
           "path": "tests/score-posture.test.ts",
           "sourceBlob": "20f54d1e0227669b8bd953212a9dadeff24648b1",
-          "integratedBlob": "20f54d1e0227669b8bd953212a9dadeff24648b1"
+          "integratedBlob": "20f54d1e0227669b8bd953212a9dadeff24648b1",
+          "exact": true
         },
         {
           "path": "tests/score-text-layout.test.ts",
           "sourceBlob": "1b22fa44b5451494e0758b8462e729dfa28528a3",
-          "integratedBlob": "1b22fa44b5451494e0758b8462e729dfa28528a3"
+          "integratedBlob": "1b22fa44b5451494e0758b8462e729dfa28528a3",
+          "exact": true
         },
         {
           "path": "tests/touye-wager.test.ts",
           "sourceBlob": "fa6c06c6c42ff8dd2cadaa30ebf6b4b53d91e23b",
-          "integratedBlob": "fa6c06c6c42ff8dd2cadaa30ebf6b4b53d91e23b"
+          "integratedBlob": "fa6c06c6c42ff8dd2cadaa30ebf6b4b53d91e23b",
+          "exact": true
         }
       ]
     },
     {
       "name": "mobile-settlement",
       "sha": "236acc4cac8b990af9b622179dff4ccdc1e5c774",
+      "ownerEvidence": null,
       "paths": 2,
+      "exactPaths": 2,
       "bindings": [
         {
           "path": "src/game/IntermissionScene.ts",
           "sourceBlob": "1e21a9225537f8e35005d3ccc61d73268ba95943",
-          "integratedBlob": "1e21a9225537f8e35005d3ccc61d73268ba95943"
+          "integratedBlob": "1e21a9225537f8e35005d3ccc61d73268ba95943",
+          "exact": true
         },
         {
           "path": "src/game/SettlementPresentation.ts",
           "sourceBlob": "727c664564af40740603a4658190619c11195e61",
-          "integratedBlob": "727c664564af40740603a4658190619c11195e61"
+          "integratedBlob": "727c664564af40740603a4658190619c11195e61",
+          "exact": true
         }
-      ],
-      "ownerEvidence": "Parent delivery:44 related contracts/type/build and4 local visual cases; this commit contains only2 product files, no new evidence files."
+      ]
+    },
+    {
+      "name": "shop-boss",
+      "sha": "3b22614b86e73ba135e3be65db3fc90516300134",
+      "ownerEvidence": "../shop-boss-wiring-2026-10-17/README.md",
+      "paths": 55,
+      "exactPaths": 50,
+      "bindings": [
+        {
+          "path": "docs/production/evidence/boss-preparation-entrance-2026-10-17/README.md",
+          "sourceBlob": "88f864c55898bfd00de519e00fe0147ad79e6e4e",
+          "integratedBlob": "88f864c55898bfd00de519e00fe0147ad79e6e4e",
+          "exact": true
+        },
+        {
+          "path": "docs/production/evidence/shop-boss-wiring-2026-10-17/README.md",
+          "sourceBlob": "e30a25c9e0c720266a45ceb719e91fbf9e0ba13b",
+          "integratedBlob": "e30a25c9e0c720266a45ceb719e91fbf9e0ba13b",
+          "exact": true
+        },
+        {
+          "path": "docs/production/evidence/shop-boss-wiring-2026-10-17/boss-checkpoint.json",
+          "sourceBlob": "efbd810f716ded72540e6afb86d491882843d7ef",
+          "integratedBlob": "efbd810f716ded72540e6afb86d491882843d7ef",
+          "exact": true
+        },
+        {
+          "path": "docs/production/evidence/shop-boss-wiring-2026-10-17/boss-preparation-phone.png",
+          "sourceBlob": "060a8f32e4bdfefacdb16670ed4a3223acdc69bd",
+          "integratedBlob": "060a8f32e4bdfefacdb16670ed4a3223acdc69bd",
+          "exact": true
+        },
+        {
+          "path": "docs/production/evidence/shop-boss-wiring-2026-10-17/browser-check-import-wait-fail.json",
+          "sourceBlob": "5601a83630aedc592586a38f557cdfec7f70aebb",
+          "integratedBlob": "5601a83630aedc592586a38f557cdfec7f70aebb",
+          "exact": true
+        },
+        {
+          "path": "docs/production/evidence/shop-boss-wiring-2026-10-17/browser-check-import-wait-fail.txt",
+          "sourceBlob": "77925ec11c117318cefdec019d6be3dac3c8785b",
+          "integratedBlob": "77925ec11c117318cefdec019d6be3dac3c8785b",
+          "exact": true
+        },
+        {
+          "path": "docs/production/evidence/shop-boss-wiring-2026-10-17/browser-check-lifecycle-fail.json",
+          "sourceBlob": "1b413082a2b24074a3193a0838827a995042bac6",
+          "integratedBlob": "1b413082a2b24074a3193a0838827a995042bac6",
+          "exact": true
+        },
+        {
+          "path": "docs/production/evidence/shop-boss-wiring-2026-10-17/browser-check-lifecycle-fail.txt",
+          "sourceBlob": "2f68fdeab63f5165c1b825871546a8a9c5c2585e",
+          "integratedBlob": "2f68fdeab63f5165c1b825871546a8a9c5c2585e",
+          "exact": true
+        },
+        {
+          "path": "docs/production/evidence/shop-boss-wiring-2026-10-17/browser-check.json",
+          "sourceBlob": "12f1196694a43d0d91874c4a8573cf54f81634ea",
+          "integratedBlob": "12f1196694a43d0d91874c4a8573cf54f81634ea",
+          "exact": true
+        },
+        {
+          "path": "docs/production/evidence/shop-boss-wiring-2026-10-17/browser-check.mjs",
+          "sourceBlob": "1b76150430c58f2e3a9ddf7177c0ef37f9980ddd",
+          "integratedBlob": "1b76150430c58f2e3a9ddf7177c0ef37f9980ddd",
+          "exact": true
+        },
+        {
+          "path": "docs/production/evidence/shop-boss-wiring-2026-10-17/browser-check.txt",
+          "sourceBlob": "3de5f3cdebc8bbe39e2171344d778cad81e395c9",
+          "integratedBlob": "3de5f3cdebc8bbe39e2171344d778cad81e395c9",
+          "exact": true
+        },
+        {
+          "path": "docs/production/evidence/shop-boss-wiring-2026-10-17/build-before-lifecycle-fix.txt",
+          "sourceBlob": "4b6712b51961e6951c47500a86d62bbf53a455d8",
+          "integratedBlob": "4b6712b51961e6951c47500a86d62bbf53a455d8",
+          "exact": true
+        },
+        {
+          "path": "docs/production/evidence/shop-boss-wiring-2026-10-17/build-check.txt",
+          "sourceBlob": "e5c9c241f15515bfd5a2ec42b9ff12d5bab76b54",
+          "integratedBlob": "e5c9c241f15515bfd5a2ec42b9ff12d5bab76b54",
+          "exact": true
+        },
+        {
+          "path": "docs/production/evidence/shop-boss-wiring-2026-10-17/failure-import-wait-fail.png",
+          "sourceBlob": "967b3d8869dae11d044336b7dc8ad8b953d47c99",
+          "integratedBlob": "967b3d8869dae11d044336b7dc8ad8b953d47c99",
+          "exact": true
+        },
+        {
+          "path": "docs/production/evidence/shop-boss-wiring-2026-10-17/failure-lifecycle-fail.png",
+          "sourceBlob": "41512279548f5439b9d7219b6fd34456b5970b2e",
+          "integratedBlob": "41512279548f5439b9d7219b6fd34456b5970b2e",
+          "exact": true
+        },
+        {
+          "path": "docs/production/evidence/shop-boss-wiring-2026-10-17/focused-unit-check.txt",
+          "sourceBlob": "a98b373d054dc35a6755a53fc432f808ec360adc",
+          "integratedBlob": "a98b373d054dc35a6755a53fc432f808ec360adc",
+          "exact": true
+        },
+        {
+          "path": "docs/production/evidence/shop-experience-2026-10-17/README.md",
+          "sourceBlob": "479afabc3bf5dabb48aff825a52fe0d7815a541c",
+          "integratedBlob": "479afabc3bf5dabb48aff825a52fe0d7815a541c",
+          "exact": true
+        },
+        {
+          "path": "docs/production/evidence/shop-experience-2026-10-17/affected-recheck.txt",
+          "sourceBlob": "dd17e517e6f979ac716ca8b737d91110f1f8ed7b",
+          "integratedBlob": "dd17e517e6f979ac716ca8b737d91110f1f8ed7b",
+          "exact": true
+        },
+        {
+          "path": "docs/production/evidence/shop-experience-2026-10-17/browser-check.json",
+          "sourceBlob": "deefab5116f119eb21fd4cc46be60722435e83c3",
+          "integratedBlob": "deefab5116f119eb21fd4cc46be60722435e83c3",
+          "exact": true
+        },
+        {
+          "path": "docs/production/evidence/shop-experience-2026-10-17/browser-check.mjs",
+          "sourceBlob": "b78aeaf0f82b7ca4f76f812051b5f92eb0338075",
+          "integratedBlob": "b78aeaf0f82b7ca4f76f812051b5f92eb0338075",
+          "exact": true
+        },
+        {
+          "path": "docs/production/evidence/shop-experience-2026-10-17/browser-check.txt",
+          "sourceBlob": "f2187d7ba0faeea168b81c8aae5b89f7fccb35ad",
+          "integratedBlob": "f2187d7ba0faeea168b81c8aae5b89f7fccb35ad",
+          "exact": true
+        },
+        {
+          "path": "docs/production/evidence/shop-experience-2026-10-17/browser-full-pass.json",
+          "sourceBlob": "2e817100ab4457974684c2d70ee9575dee568e42",
+          "integratedBlob": "2e817100ab4457974684c2d70ee9575dee568e42",
+          "exact": true
+        },
+        {
+          "path": "docs/production/evidence/shop-experience-2026-10-17/browser-full-pass.txt",
+          "sourceBlob": "f2187d7ba0faeea168b81c8aae5b89f7fccb35ad",
+          "integratedBlob": "f2187d7ba0faeea168b81c8aae5b89f7fccb35ad",
+          "exact": true
+        },
+        {
+          "path": "docs/production/evidence/shop-experience-2026-10-17/build-before-balance-cleanup.txt",
+          "sourceBlob": "84f33bf73bcf1aecba8d2cfd1c9f62f7a6a975b6",
+          "integratedBlob": "84f33bf73bcf1aecba8d2cfd1c9f62f7a6a975b6",
+          "exact": true
+        },
+        {
+          "path": "docs/production/evidence/shop-experience-2026-10-17/build-check.txt",
+          "sourceBlob": "43d67cfa4a67aa8c7f63d9c1f8a07b1850d90730",
+          "integratedBlob": "43d67cfa4a67aa8c7f63d9c1f8a07b1850d90730",
+          "exact": true
+        },
+        {
+          "path": "docs/production/evidence/shop-experience-2026-10-17/conditions-checkpoint.json",
+          "sourceBlob": "a71307765dcce1e46b4f74a2e8654c074e9badbc",
+          "integratedBlob": "a71307765dcce1e46b4f74a2e8654c074e9badbc",
+          "exact": true
+        },
+        {
+          "path": "docs/production/evidence/shop-experience-2026-10-17/diagnostic-history.json",
+          "sourceBlob": "19859b2bdbfcadf0ff4669da62812ab2b4ddd840",
+          "integratedBlob": "19859b2bdbfcadf0ff4669da62812ab2b4ddd840",
+          "exact": true
+        },
+        {
+          "path": "docs/production/evidence/shop-experience-2026-10-17/focused-check-initial-fail.txt",
+          "sourceBlob": "3eadd5c81ced7bad9023733b4fb0ba46639a271b",
+          "integratedBlob": "3eadd5c81ced7bad9023733b4fb0ba46639a271b",
+          "exact": true
+        },
+        {
+          "path": "docs/production/evidence/shop-experience-2026-10-17/phone-after-purchase.png",
+          "sourceBlob": "a62b986a386323cdbef80423cea231a6f5f60fd1",
+          "integratedBlob": "a62b986a386323cdbef80423cea231a6f5f60fd1",
+          "exact": true
+        },
+        {
+          "path": "docs/production/evidence/shop-experience-2026-10-17/phone-checkpoint.json",
+          "sourceBlob": "c1ba002a37c56f06dbd360e63765c4dce2d2ae0c",
+          "integratedBlob": "c1ba002a37c56f06dbd360e63765c4dce2d2ae0c",
+          "exact": true
+        },
+        {
+          "path": "docs/production/evidence/shop-experience-2026-10-17/phone-first-tap-native.png",
+          "sourceBlob": "963ec394ded10231b8ae5a25123cf6ede453fbfb",
+          "integratedBlob": "963ec394ded10231b8ae5a25123cf6ede453fbfb",
+          "exact": true
+        },
+        {
+          "path": "docs/production/evidence/shop-experience-2026-10-17/phone-first-tap.png",
+          "sourceBlob": "c1679302743a1ef417bdd9978f55651e0ed70f1b",
+          "integratedBlob": "c1679302743a1ef417bdd9978f55651e0ed70f1b",
+          "exact": true
+        },
+        {
+          "path": "docs/production/evidence/shop-experience-2026-10-17/phone-initial.png",
+          "sourceBlob": "fce607080c1c707c4f0413c37d8a3bc7ad9f905c",
+          "integratedBlob": "fce607080c1c707c4f0413c37d8a3bc7ad9f905c",
+          "exact": true
+        },
+        {
+          "path": "docs/production/evidence/shop-experience-2026-10-17/phone-matching-held.png",
+          "sourceBlob": "3488bb3c81846057a04603fe9c51b987026faa5d",
+          "integratedBlob": "3488bb3c81846057a04603fe9c51b987026faa5d",
+          "exact": true
+        },
+        {
+          "path": "docs/production/evidence/shop-experience-2026-10-17/preview-final-check.txt",
+          "sourceBlob": "ff1c96282aba6db5a9ca56ac7efbd6e0c1c82ffe",
+          "integratedBlob": "ff1c96282aba6db5a9ca56ac7efbd6e0c1c82ffe",
+          "exact": true
+        },
+        {
+          "path": "docs/production/evidence/shop-experience-2026-10-17/tool-workspace-check.txt",
+          "sourceBlob": "62db2b23c96554a5e3378958666d375f747bd55f",
+          "integratedBlob": "62db2b23c96554a5e3378958666d375f747bd55f",
+          "exact": true
+        },
+        {
+          "path": "docs/production/evidence/shop-experience-2026-10-17/user-image-provenance.json",
+          "sourceBlob": "84bb63075d803fc2b0a5fdc126516aee172a07e2",
+          "integratedBlob": "84bb63075d803fc2b0a5fdc126516aee172a07e2",
+          "exact": true
+        },
+        {
+          "path": "docs/production/evidence/shop-experience-2026-10-17/verified-source.json",
+          "sourceBlob": "6047ba841ccf99b0558706b470b3a07f6b16b10c",
+          "integratedBlob": "6047ba841ccf99b0558706b470b3a07f6b16b10c",
+          "exact": true
+        },
+        {
+          "path": "src/game/BossPreparationPresentation.css",
+          "sourceBlob": "d2ae62a282e5d78a47e5e2b0e1f03b75dd05e093",
+          "integratedBlob": "d2ae62a282e5d78a47e5e2b0e1f03b75dd05e093",
+          "exact": true
+        },
+        {
+          "path": "src/game/BossPreparationPresentation.ts",
+          "sourceBlob": "44010f01c6a38c2f4a6c750e12e195237c6ce379",
+          "integratedBlob": "44010f01c6a38c2f4a6c750e12e195237c6ce379",
+          "exact": true
+        },
+        {
+          "path": "src/game/MakeCardsDialog.ts",
+          "sourceBlob": "42caa5637dae9d53dc1c792b0e61c10f419b62cb",
+          "integratedBlob": "cf217ce5fb7e5257a0de605a664e4e29990e43f0",
+          "exact": false,
+          "reason": "Authorized final increment e978f295: numeric material layering or T18 display-only rename/removal of superseded comparison copy."
+        },
+        {
+          "path": "src/game/ShopArt.ts",
+          "sourceBlob": "e7d14ae0871ea75e3334bc02a76a661a20cbe4ba",
+          "integratedBlob": "e7d14ae0871ea75e3334bc02a76a661a20cbe4ba",
+          "exact": true
+        },
+        {
+          "path": "src/game/ShopComparisonDialog.ts",
+          "sourceBlob": "dfcffd317017ef7550bd8f3b72008cbf5e5092c4",
+          "integratedBlob": "dfcffd317017ef7550bd8f3b72008cbf5e5092c4",
+          "exact": true
+        },
+        {
+          "path": "src/game/ShopDecisionCopy.ts",
+          "sourceBlob": "563f5cb9e5bbfb0c660e6d377092b1b5d3742e26",
+          "integratedBlob": "563f5cb9e5bbfb0c660e6d377092b1b5d3742e26",
+          "exact": true
+        },
+        {
+          "path": "src/game/ShopJokerPresentation.ts",
+          "sourceBlob": "47b319fecb8d0ff22c35ba494402060d3c01ad8d",
+          "integratedBlob": "47b319fecb8d0ff22c35ba494402060d3c01ad8d",
+          "exact": true
+        },
+        {
+          "path": "src/game/ShopLayout.ts",
+          "sourceBlob": "0753710ac9fd7fe66281ac124681ad16fe713fd4",
+          "integratedBlob": "0753710ac9fd7fe66281ac124681ad16fe713fd4",
+          "exact": true
+        },
+        {
+          "path": "src/game/ShopOfferGuidance.ts",
+          "sourceBlob": "43b6da551d357472805ba8102f69f204f43d64d0",
+          "integratedBlob": "43b6da551d357472805ba8102f69f204f43d64d0",
+          "exact": true
+        },
+        {
+          "path": "src/game/ShopPresentation.css",
+          "sourceBlob": "06399be59c44608b670e7d873cae8d121de06f96",
+          "integratedBlob": "f2dfe1259f5105af23855130897fd0cb2a42e511",
+          "exact": false,
+          "reason": "Authorized final increment e978f295: numeric material layering or T18 display-only rename/removal of superseded comparison copy."
+        },
+        {
+          "path": "src/game/ShopRerollEconomyCopy.ts",
+          "sourceBlob": "651690b2c57eaaf19f72a69891837f299e825651",
+          "integratedBlob": null,
+          "exact": false,
+          "reason": "Authorized final increment e978f295: numeric material layering or T18 display-only rename/removal of superseded comparison copy."
+        },
+        {
+          "path": "src/game/ShopScene.ts",
+          "sourceBlob": "70bd90f583842e1338bb2be55678bc4c3ec546f2",
+          "integratedBlob": "adc67fa9b6e12afb6f88dd1b2cbc8800a9b50762",
+          "exact": false,
+          "reason": "Authorized final increment e978f295: numeric material layering or T18 display-only rename/removal of superseded comparison copy."
+        },
+        {
+          "path": "src/game/ShopSynergyPreview.ts",
+          "sourceBlob": "58d5eafddbc1449860b6bdb035a5ca4276161338",
+          "integratedBlob": "58d5eafddbc1449860b6bdb035a5ca4276161338",
+          "exact": true
+        },
+        {
+          "path": "tests/boss-preparation-presentation.test.ts",
+          "sourceBlob": "19218105040c345816a5a40d478b74934dcae176",
+          "integratedBlob": "19218105040c345816a5a40d478b74934dcae176",
+          "exact": true
+        },
+        {
+          "path": "tests/shop-decision-copy.test.ts",
+          "sourceBlob": "2bc28dbca5bbf420d0f73fa30a5156998226402f",
+          "integratedBlob": "6410d849b850c83f8c5bd8ac54e743d192b2f6d2",
+          "exact": false,
+          "reason": "Authorized final increment e978f295: numeric material layering or T18 display-only rename/removal of superseded comparison copy."
+        },
+        {
+          "path": "tests/shop-layout.test.ts",
+          "sourceBlob": "cc0b01b75f0559b6a6965020717e3bd8369902d2",
+          "integratedBlob": "cc0b01b75f0559b6a6965020717e3bd8369902d2",
+          "exact": true
+        },
+        {
+          "path": "tests/shop-synergy-preview.test.ts",
+          "sourceBlob": "56a616abddb84e79e46646f860a7721093904c07",
+          "integratedBlob": "56a616abddb84e79e46646f860a7721093904c07",
+          "exact": true
+        }
+      ]
     }
   ],
-  "changedPathOverlap": [],
-  "protectedRoots": [
-    "src/domain",
-    "src/content",
-    "src/application",
-    "src/platform",
-    "public",
-    "art",
-    "package.json",
-    "package-lock.json"
-  ],
-  "protectedRootsUnchanged": true,
-  "gameSceneExactSource": "09249ad5c6e382c56f19a395cbde150d0e3b9153",
-  "gameSceneBlob": "f57dc64c5f6e85cf33d6723d1a6773f7eb3b2601",
-  "priorPartialSnapshot": "565be54e0b588ddd98c54aae43d144637be9ff9e",
-  "latestMerge": "a54cb1efea32f6b42fdad37a490e70bfdd864e89 83d8ebe690c68c7c446f7512bad3d3e1a476a9e9 236acc4cac8b990af9b622179dff4ccdc1e5c774 Integrate mobile settlement content rhythm 236acc4c [skip ci]",
-  "sourceLineage": [
-    "deee66633965266c558704bf05b419ea0e45e4c5",
-    "1eacdcd0a8d31bffa57fdd8433f4cb06176b42de"
-  ]
+  "scope": "Exact source bindings at final product; later audio layering and T18 display override differences are explicit. No original source evidence rewritten.",
+  "protectedDiff": []
 }

@@ -1,0 +1,3103 @@
+{
+  "scope": "Actual saved scoreSourceProcessFixture(chain) trace -> numberImpact at its real saved target -> AudioEngine. One real OfflineAudioContext and production bus/compressor/ceiling; fixed320ms probe arrivals, SFX-only, no GameScene capture or human listening.",
+  "heard": false,
+  "score": {
+    "finalScore": "34681",
+    "activeScoringIds": [
+      "spades-2",
+      "spades-3",
+      "spades-4",
+      "spades-5",
+      "spades-6"
+    ],
+    "targetHeat": "400",
+    "events": [
+      {
+        "eventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/0",
+        "rootId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4",
+        "rootEventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/0",
+        "phase": "base",
+        "sourceType": "rule",
+        "sourceDefinitionId": "full-house",
+        "sourceInstanceId": "controlled/score-energy/multiply",
+        "operation": "base",
+        "value": {
+          "n": "210",
+          "d": "1"
+        },
+        "before": {
+          "H": {
+            "n": "0",
+            "d": "1"
+          },
+          "M": {
+            "n": "0",
+            "d": "1"
+          }
+        },
+        "after": {
+          "H": {
+            "n": "210",
+            "d": "1"
+          },
+          "M": {
+            "n": "5",
+            "d": "1"
+          }
+        },
+        "reasonKey": "full-house.base",
+        "visibleCondition": {
+          "kind": "always"
+        },
+        "retriggerDepth": 0
+      },
+      {
+        "eventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/1",
+        "rootId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4",
+        "rootEventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/1",
+        "phase": "onCardScore",
+        "sourceType": "card",
+        "sourceDefinitionId": "rank-7",
+        "sourceInstanceId": "spades-2",
+        "targetCardId": "spades-2",
+        "operation": "add-heat",
+        "value": {
+          "n": "7",
+          "d": "1"
+        },
+        "before": {
+          "H": {
+            "n": "210",
+            "d": "1"
+          },
+          "M": {
+            "n": "5",
+            "d": "1"
+          }
+        },
+        "after": {
+          "H": {
+            "n": "217",
+            "d": "1"
+          },
+          "M": {
+            "n": "5",
+            "d": "1"
+          }
+        },
+        "reasonKey": "rank-7.add-heat",
+        "visibleCondition": {
+          "kind": "always"
+        },
+        "retriggerDepth": 0
+      },
+      {
+        "eventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/2",
+        "rootId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4",
+        "rootEventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/1",
+        "phase": "onCardScore",
+        "sourceType": "card",
+        "sourceDefinitionId": "spades-2",
+        "sourceInstanceId": "spades-2",
+        "targetCardId": "spades-2",
+        "operation": "add-multiplier",
+        "value": {
+          "n": "2",
+          "d": "1"
+        },
+        "before": {
+          "H": {
+            "n": "217",
+            "d": "1"
+          },
+          "M": {
+            "n": "5",
+            "d": "1"
+          }
+        },
+        "after": {
+          "H": {
+            "n": "217",
+            "d": "1"
+          },
+          "M": {
+            "n": "7",
+            "d": "1"
+          }
+        },
+        "reasonKey": "enhancement.multiplier-paper.add-multiplier",
+        "visibleCondition": {
+          "kind": "always"
+        },
+        "retriggerDepth": 0
+      },
+      {
+        "eventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/3",
+        "rootId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4",
+        "rootEventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/1",
+        "phase": "onCardScore",
+        "sourceType": "card",
+        "sourceDefinitionId": "spades-2",
+        "sourceInstanceId": "spades-2",
+        "targetCardId": "spades-2",
+        "operation": "multiply-multiplier",
+        "value": {
+          "n": "3",
+          "d": "2"
+        },
+        "before": {
+          "H": {
+            "n": "217",
+            "d": "1"
+          },
+          "M": {
+            "n": "7",
+            "d": "1"
+          }
+        },
+        "after": {
+          "H": {
+            "n": "217",
+            "d": "1"
+          },
+          "M": {
+            "n": "21",
+            "d": "2"
+          }
+        },
+        "reasonKey": "edition.polychrome.multiply-multiplier",
+        "visibleCondition": {
+          "kind": "always"
+        },
+        "retriggerDepth": 0
+      },
+      {
+        "eventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/4",
+        "rootId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4",
+        "rootEventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/1",
+        "phase": "onCardScore",
+        "sourceType": "joker",
+        "sourceDefinitionId": "a11",
+        "sourceInstanceId": "controlled/source-process/0",
+        "targetCardId": "spades-2",
+        "operation": "retrigger-card",
+        "value": {
+          "n": "1",
+          "d": "1"
+        },
+        "before": {
+          "H": {
+            "n": "217",
+            "d": "1"
+          },
+          "M": {
+            "n": "21",
+            "d": "2"
+          }
+        },
+        "after": {
+          "H": {
+            "n": "217",
+            "d": "1"
+          },
+          "M": {
+            "n": "21",
+            "d": "2"
+          }
+        },
+        "reasonKey": "a11.retrigger-card",
+        "visibleCondition": {
+          "kind": "hand-type-in",
+          "values": [
+            "full-house",
+            "flush-house"
+          ]
+        },
+        "retriggerDepth": 0
+      },
+      {
+        "eventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/5",
+        "rootId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4",
+        "rootEventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/1",
+        "phase": "onCardScore",
+        "sourceType": "joker",
+        "sourceDefinitionId": "b06",
+        "sourceInstanceId": "controlled/source-process/1",
+        "targetCardId": "spades-2",
+        "operation": "retrigger-card",
+        "value": {
+          "n": "1",
+          "d": "1"
+        },
+        "before": {
+          "H": {
+            "n": "217",
+            "d": "1"
+          },
+          "M": {
+            "n": "21",
+            "d": "2"
+          }
+        },
+        "after": {
+          "H": {
+            "n": "217",
+            "d": "1"
+          },
+          "M": {
+            "n": "21",
+            "d": "2"
+          }
+        },
+        "reasonKey": "b06.retrigger-card",
+        "visibleCondition": {
+          "kind": "largest-scoring-rank-group"
+        },
+        "retriggerDepth": 0
+      },
+      {
+        "eventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/6",
+        "rootId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4",
+        "rootEventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/1",
+        "phase": "onCardScore",
+        "sourceType": "card",
+        "sourceDefinitionId": "rank-7",
+        "sourceInstanceId": "spades-2",
+        "targetCardId": "spades-2",
+        "operation": "add-heat",
+        "value": {
+          "n": "7",
+          "d": "1"
+        },
+        "before": {
+          "H": {
+            "n": "217",
+            "d": "1"
+          },
+          "M": {
+            "n": "21",
+            "d": "2"
+          }
+        },
+        "after": {
+          "H": {
+            "n": "224",
+            "d": "1"
+          },
+          "M": {
+            "n": "21",
+            "d": "2"
+          }
+        },
+        "reasonKey": "rank-7.add-heat",
+        "visibleCondition": {
+          "kind": "always"
+        },
+        "retriggerDepth": 1
+      },
+      {
+        "eventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/7",
+        "rootId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4",
+        "rootEventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/1",
+        "phase": "onCardScore",
+        "sourceType": "card",
+        "sourceDefinitionId": "spades-2",
+        "sourceInstanceId": "spades-2",
+        "targetCardId": "spades-2",
+        "operation": "add-multiplier",
+        "value": {
+          "n": "2",
+          "d": "1"
+        },
+        "before": {
+          "H": {
+            "n": "224",
+            "d": "1"
+          },
+          "M": {
+            "n": "21",
+            "d": "2"
+          }
+        },
+        "after": {
+          "H": {
+            "n": "224",
+            "d": "1"
+          },
+          "M": {
+            "n": "25",
+            "d": "2"
+          }
+        },
+        "reasonKey": "enhancement.multiplier-paper.add-multiplier",
+        "visibleCondition": {
+          "kind": "always"
+        },
+        "retriggerDepth": 1
+      },
+      {
+        "eventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/8",
+        "rootId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4",
+        "rootEventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/1",
+        "phase": "onCardScore",
+        "sourceType": "card",
+        "sourceDefinitionId": "spades-2",
+        "sourceInstanceId": "spades-2",
+        "targetCardId": "spades-2",
+        "operation": "multiply-multiplier",
+        "value": {
+          "n": "3",
+          "d": "2"
+        },
+        "before": {
+          "H": {
+            "n": "224",
+            "d": "1"
+          },
+          "M": {
+            "n": "25",
+            "d": "2"
+          }
+        },
+        "after": {
+          "H": {
+            "n": "224",
+            "d": "1"
+          },
+          "M": {
+            "n": "75",
+            "d": "4"
+          }
+        },
+        "reasonKey": "edition.polychrome.multiply-multiplier",
+        "visibleCondition": {
+          "kind": "always"
+        },
+        "retriggerDepth": 1
+      },
+      {
+        "eventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/9",
+        "rootId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4",
+        "rootEventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/1",
+        "phase": "onCardScore",
+        "sourceType": "card",
+        "sourceDefinitionId": "rank-7",
+        "sourceInstanceId": "spades-2",
+        "targetCardId": "spades-2",
+        "operation": "add-heat",
+        "value": {
+          "n": "7",
+          "d": "1"
+        },
+        "before": {
+          "H": {
+            "n": "224",
+            "d": "1"
+          },
+          "M": {
+            "n": "75",
+            "d": "4"
+          }
+        },
+        "after": {
+          "H": {
+            "n": "231",
+            "d": "1"
+          },
+          "M": {
+            "n": "75",
+            "d": "4"
+          }
+        },
+        "reasonKey": "rank-7.add-heat",
+        "visibleCondition": {
+          "kind": "always"
+        },
+        "retriggerDepth": 1
+      },
+      {
+        "eventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/10",
+        "rootId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4",
+        "rootEventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/1",
+        "phase": "onCardScore",
+        "sourceType": "card",
+        "sourceDefinitionId": "spades-2",
+        "sourceInstanceId": "spades-2",
+        "targetCardId": "spades-2",
+        "operation": "add-multiplier",
+        "value": {
+          "n": "2",
+          "d": "1"
+        },
+        "before": {
+          "H": {
+            "n": "231",
+            "d": "1"
+          },
+          "M": {
+            "n": "75",
+            "d": "4"
+          }
+        },
+        "after": {
+          "H": {
+            "n": "231",
+            "d": "1"
+          },
+          "M": {
+            "n": "83",
+            "d": "4"
+          }
+        },
+        "reasonKey": "enhancement.multiplier-paper.add-multiplier",
+        "visibleCondition": {
+          "kind": "always"
+        },
+        "retriggerDepth": 1
+      },
+      {
+        "eventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/11",
+        "rootId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4",
+        "rootEventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/1",
+        "phase": "onCardScore",
+        "sourceType": "card",
+        "sourceDefinitionId": "spades-2",
+        "sourceInstanceId": "spades-2",
+        "targetCardId": "spades-2",
+        "operation": "multiply-multiplier",
+        "value": {
+          "n": "3",
+          "d": "2"
+        },
+        "before": {
+          "H": {
+            "n": "231",
+            "d": "1"
+          },
+          "M": {
+            "n": "83",
+            "d": "4"
+          }
+        },
+        "after": {
+          "H": {
+            "n": "231",
+            "d": "1"
+          },
+          "M": {
+            "n": "249",
+            "d": "8"
+          }
+        },
+        "reasonKey": "edition.polychrome.multiply-multiplier",
+        "visibleCondition": {
+          "kind": "always"
+        },
+        "retriggerDepth": 1
+      },
+      {
+        "eventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/12",
+        "rootId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4",
+        "rootEventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/12",
+        "phase": "onCardScore",
+        "sourceType": "card",
+        "sourceDefinitionId": "rank-7",
+        "sourceInstanceId": "spades-3",
+        "targetCardId": "spades-3",
+        "operation": "add-heat",
+        "value": {
+          "n": "7",
+          "d": "1"
+        },
+        "before": {
+          "H": {
+            "n": "231",
+            "d": "1"
+          },
+          "M": {
+            "n": "249",
+            "d": "8"
+          }
+        },
+        "after": {
+          "H": {
+            "n": "238",
+            "d": "1"
+          },
+          "M": {
+            "n": "249",
+            "d": "8"
+          }
+        },
+        "reasonKey": "rank-7.add-heat",
+        "visibleCondition": {
+          "kind": "always"
+        },
+        "retriggerDepth": 0
+      },
+      {
+        "eventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/13",
+        "rootId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4",
+        "rootEventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/12",
+        "phase": "onCardScore",
+        "sourceType": "joker",
+        "sourceDefinitionId": "a11",
+        "sourceInstanceId": "controlled/source-process/0",
+        "targetCardId": "spades-3",
+        "operation": "retrigger-card",
+        "value": {
+          "n": "1",
+          "d": "1"
+        },
+        "before": {
+          "H": {
+            "n": "238",
+            "d": "1"
+          },
+          "M": {
+            "n": "249",
+            "d": "8"
+          }
+        },
+        "after": {
+          "H": {
+            "n": "238",
+            "d": "1"
+          },
+          "M": {
+            "n": "249",
+            "d": "8"
+          }
+        },
+        "reasonKey": "a11.retrigger-card",
+        "visibleCondition": {
+          "kind": "hand-type-in",
+          "values": [
+            "full-house",
+            "flush-house"
+          ]
+        },
+        "retriggerDepth": 0
+      },
+      {
+        "eventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/14",
+        "rootId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4",
+        "rootEventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/12",
+        "phase": "onCardScore",
+        "sourceType": "joker",
+        "sourceDefinitionId": "b06",
+        "sourceInstanceId": "controlled/source-process/1",
+        "targetCardId": "spades-3",
+        "operation": "retrigger-card",
+        "value": {
+          "n": "1",
+          "d": "1"
+        },
+        "before": {
+          "H": {
+            "n": "238",
+            "d": "1"
+          },
+          "M": {
+            "n": "249",
+            "d": "8"
+          }
+        },
+        "after": {
+          "H": {
+            "n": "238",
+            "d": "1"
+          },
+          "M": {
+            "n": "249",
+            "d": "8"
+          }
+        },
+        "reasonKey": "b06.retrigger-card",
+        "visibleCondition": {
+          "kind": "largest-scoring-rank-group"
+        },
+        "retriggerDepth": 0
+      },
+      {
+        "eventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/15",
+        "rootId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4",
+        "rootEventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/12",
+        "phase": "onCardScore",
+        "sourceType": "card",
+        "sourceDefinitionId": "rank-7",
+        "sourceInstanceId": "spades-3",
+        "targetCardId": "spades-3",
+        "operation": "add-heat",
+        "value": {
+          "n": "7",
+          "d": "1"
+        },
+        "before": {
+          "H": {
+            "n": "238",
+            "d": "1"
+          },
+          "M": {
+            "n": "249",
+            "d": "8"
+          }
+        },
+        "after": {
+          "H": {
+            "n": "245",
+            "d": "1"
+          },
+          "M": {
+            "n": "249",
+            "d": "8"
+          }
+        },
+        "reasonKey": "rank-7.add-heat",
+        "visibleCondition": {
+          "kind": "always"
+        },
+        "retriggerDepth": 1
+      },
+      {
+        "eventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/16",
+        "rootId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4",
+        "rootEventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/12",
+        "phase": "onCardScore",
+        "sourceType": "card",
+        "sourceDefinitionId": "rank-7",
+        "sourceInstanceId": "spades-3",
+        "targetCardId": "spades-3",
+        "operation": "add-heat",
+        "value": {
+          "n": "7",
+          "d": "1"
+        },
+        "before": {
+          "H": {
+            "n": "245",
+            "d": "1"
+          },
+          "M": {
+            "n": "249",
+            "d": "8"
+          }
+        },
+        "after": {
+          "H": {
+            "n": "252",
+            "d": "1"
+          },
+          "M": {
+            "n": "249",
+            "d": "8"
+          }
+        },
+        "reasonKey": "rank-7.add-heat",
+        "visibleCondition": {
+          "kind": "always"
+        },
+        "retriggerDepth": 1
+      },
+      {
+        "eventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/17",
+        "rootId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4",
+        "rootEventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/17",
+        "phase": "onCardScore",
+        "sourceType": "card",
+        "sourceDefinitionId": "rank-9",
+        "sourceInstanceId": "spades-4",
+        "targetCardId": "spades-4",
+        "operation": "add-heat",
+        "value": {
+          "n": "9",
+          "d": "1"
+        },
+        "before": {
+          "H": {
+            "n": "252",
+            "d": "1"
+          },
+          "M": {
+            "n": "249",
+            "d": "8"
+          }
+        },
+        "after": {
+          "H": {
+            "n": "261",
+            "d": "1"
+          },
+          "M": {
+            "n": "249",
+            "d": "8"
+          }
+        },
+        "reasonKey": "rank-9.add-heat",
+        "visibleCondition": {
+          "kind": "always"
+        },
+        "retriggerDepth": 0
+      },
+      {
+        "eventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/18",
+        "rootId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4",
+        "rootEventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/17",
+        "phase": "onCardScore",
+        "sourceType": "joker",
+        "sourceDefinitionId": "a11",
+        "sourceInstanceId": "controlled/source-process/0",
+        "targetCardId": "spades-4",
+        "operation": "retrigger-card",
+        "value": {
+          "n": "1",
+          "d": "1"
+        },
+        "before": {
+          "H": {
+            "n": "261",
+            "d": "1"
+          },
+          "M": {
+            "n": "249",
+            "d": "8"
+          }
+        },
+        "after": {
+          "H": {
+            "n": "261",
+            "d": "1"
+          },
+          "M": {
+            "n": "249",
+            "d": "8"
+          }
+        },
+        "reasonKey": "a11.retrigger-card",
+        "visibleCondition": {
+          "kind": "hand-type-in",
+          "values": [
+            "full-house",
+            "flush-house"
+          ]
+        },
+        "retriggerDepth": 0
+      },
+      {
+        "eventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/19",
+        "rootId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4",
+        "rootEventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/17",
+        "phase": "onCardScore",
+        "sourceType": "card",
+        "sourceDefinitionId": "rank-9",
+        "sourceInstanceId": "spades-4",
+        "targetCardId": "spades-4",
+        "operation": "add-heat",
+        "value": {
+          "n": "9",
+          "d": "1"
+        },
+        "before": {
+          "H": {
+            "n": "261",
+            "d": "1"
+          },
+          "M": {
+            "n": "249",
+            "d": "8"
+          }
+        },
+        "after": {
+          "H": {
+            "n": "270",
+            "d": "1"
+          },
+          "M": {
+            "n": "249",
+            "d": "8"
+          }
+        },
+        "reasonKey": "rank-9.add-heat",
+        "visibleCondition": {
+          "kind": "always"
+        },
+        "retriggerDepth": 1
+      },
+      {
+        "eventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/20",
+        "rootId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4",
+        "rootEventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/20",
+        "phase": "onCardScore",
+        "sourceType": "card",
+        "sourceDefinitionId": "rank-9",
+        "sourceInstanceId": "spades-5",
+        "targetCardId": "spades-5",
+        "operation": "add-heat",
+        "value": {
+          "n": "9",
+          "d": "1"
+        },
+        "before": {
+          "H": {
+            "n": "270",
+            "d": "1"
+          },
+          "M": {
+            "n": "249",
+            "d": "8"
+          }
+        },
+        "after": {
+          "H": {
+            "n": "279",
+            "d": "1"
+          },
+          "M": {
+            "n": "249",
+            "d": "8"
+          }
+        },
+        "reasonKey": "rank-9.add-heat",
+        "visibleCondition": {
+          "kind": "always"
+        },
+        "retriggerDepth": 0
+      },
+      {
+        "eventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/21",
+        "rootId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4",
+        "rootEventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/20",
+        "phase": "onCardScore",
+        "sourceType": "joker",
+        "sourceDefinitionId": "a11",
+        "sourceInstanceId": "controlled/source-process/0",
+        "targetCardId": "spades-5",
+        "operation": "retrigger-card",
+        "value": {
+          "n": "1",
+          "d": "1"
+        },
+        "before": {
+          "H": {
+            "n": "279",
+            "d": "1"
+          },
+          "M": {
+            "n": "249",
+            "d": "8"
+          }
+        },
+        "after": {
+          "H": {
+            "n": "279",
+            "d": "1"
+          },
+          "M": {
+            "n": "249",
+            "d": "8"
+          }
+        },
+        "reasonKey": "a11.retrigger-card",
+        "visibleCondition": {
+          "kind": "hand-type-in",
+          "values": [
+            "full-house",
+            "flush-house"
+          ]
+        },
+        "retriggerDepth": 0
+      },
+      {
+        "eventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/22",
+        "rootId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4",
+        "rootEventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/20",
+        "phase": "onCardScore",
+        "sourceType": "card",
+        "sourceDefinitionId": "rank-9",
+        "sourceInstanceId": "spades-5",
+        "targetCardId": "spades-5",
+        "operation": "add-heat",
+        "value": {
+          "n": "9",
+          "d": "1"
+        },
+        "before": {
+          "H": {
+            "n": "279",
+            "d": "1"
+          },
+          "M": {
+            "n": "249",
+            "d": "8"
+          }
+        },
+        "after": {
+          "H": {
+            "n": "288",
+            "d": "1"
+          },
+          "M": {
+            "n": "249",
+            "d": "8"
+          }
+        },
+        "reasonKey": "rank-9.add-heat",
+        "visibleCondition": {
+          "kind": "always"
+        },
+        "retriggerDepth": 1
+      },
+      {
+        "eventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/23",
+        "rootId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4",
+        "rootEventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/23",
+        "phase": "onCardScore",
+        "sourceType": "card",
+        "sourceDefinitionId": "rank-7",
+        "sourceInstanceId": "spades-6",
+        "targetCardId": "spades-6",
+        "operation": "add-heat",
+        "value": {
+          "n": "7",
+          "d": "1"
+        },
+        "before": {
+          "H": {
+            "n": "288",
+            "d": "1"
+          },
+          "M": {
+            "n": "249",
+            "d": "8"
+          }
+        },
+        "after": {
+          "H": {
+            "n": "295",
+            "d": "1"
+          },
+          "M": {
+            "n": "249",
+            "d": "8"
+          }
+        },
+        "reasonKey": "rank-7.add-heat",
+        "visibleCondition": {
+          "kind": "always"
+        },
+        "retriggerDepth": 0
+      },
+      {
+        "eventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/24",
+        "rootId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4",
+        "rootEventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/23",
+        "phase": "onCardScore",
+        "sourceType": "joker",
+        "sourceDefinitionId": "a11",
+        "sourceInstanceId": "controlled/source-process/0",
+        "targetCardId": "spades-6",
+        "operation": "retrigger-card",
+        "value": {
+          "n": "1",
+          "d": "1"
+        },
+        "before": {
+          "H": {
+            "n": "295",
+            "d": "1"
+          },
+          "M": {
+            "n": "249",
+            "d": "8"
+          }
+        },
+        "after": {
+          "H": {
+            "n": "295",
+            "d": "1"
+          },
+          "M": {
+            "n": "249",
+            "d": "8"
+          }
+        },
+        "reasonKey": "a11.retrigger-card",
+        "visibleCondition": {
+          "kind": "hand-type-in",
+          "values": [
+            "full-house",
+            "flush-house"
+          ]
+        },
+        "retriggerDepth": 0
+      },
+      {
+        "eventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/25",
+        "rootId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4",
+        "rootEventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/23",
+        "phase": "onCardScore",
+        "sourceType": "joker",
+        "sourceDefinitionId": "b06",
+        "sourceInstanceId": "controlled/source-process/1",
+        "targetCardId": "spades-6",
+        "operation": "retrigger-card",
+        "value": {
+          "n": "1",
+          "d": "1"
+        },
+        "before": {
+          "H": {
+            "n": "295",
+            "d": "1"
+          },
+          "M": {
+            "n": "249",
+            "d": "8"
+          }
+        },
+        "after": {
+          "H": {
+            "n": "295",
+            "d": "1"
+          },
+          "M": {
+            "n": "249",
+            "d": "8"
+          }
+        },
+        "reasonKey": "b06.retrigger-card",
+        "visibleCondition": {
+          "kind": "largest-scoring-rank-group"
+        },
+        "retriggerDepth": 0
+      },
+      {
+        "eventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/26",
+        "rootId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4",
+        "rootEventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/23",
+        "phase": "onCardScore",
+        "sourceType": "card",
+        "sourceDefinitionId": "rank-7",
+        "sourceInstanceId": "spades-6",
+        "targetCardId": "spades-6",
+        "operation": "add-heat",
+        "value": {
+          "n": "7",
+          "d": "1"
+        },
+        "before": {
+          "H": {
+            "n": "295",
+            "d": "1"
+          },
+          "M": {
+            "n": "249",
+            "d": "8"
+          }
+        },
+        "after": {
+          "H": {
+            "n": "302",
+            "d": "1"
+          },
+          "M": {
+            "n": "249",
+            "d": "8"
+          }
+        },
+        "reasonKey": "rank-7.add-heat",
+        "visibleCondition": {
+          "kind": "always"
+        },
+        "retriggerDepth": 1
+      },
+      {
+        "eventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/27",
+        "rootId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4",
+        "rootEventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/23",
+        "phase": "onCardScore",
+        "sourceType": "card",
+        "sourceDefinitionId": "rank-7",
+        "sourceInstanceId": "spades-6",
+        "targetCardId": "spades-6",
+        "operation": "add-heat",
+        "value": {
+          "n": "7",
+          "d": "1"
+        },
+        "before": {
+          "H": {
+            "n": "302",
+            "d": "1"
+          },
+          "M": {
+            "n": "249",
+            "d": "8"
+          }
+        },
+        "after": {
+          "H": {
+            "n": "309",
+            "d": "1"
+          },
+          "M": {
+            "n": "249",
+            "d": "8"
+          }
+        },
+        "reasonKey": "rank-7.add-heat",
+        "visibleCondition": {
+          "kind": "always"
+        },
+        "retriggerDepth": 1
+      },
+      {
+        "eventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/28",
+        "rootId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4",
+        "rootEventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/28",
+        "phase": "jokerScore",
+        "sourceType": "joker",
+        "sourceDefinitionId": "a11",
+        "sourceInstanceId": "controlled/source-process/0",
+        "operation": "add-multiplier",
+        "value": {
+          "n": "2",
+          "d": "1"
+        },
+        "before": {
+          "H": {
+            "n": "309",
+            "d": "1"
+          },
+          "M": {
+            "n": "249",
+            "d": "8"
+          }
+        },
+        "after": {
+          "H": {
+            "n": "309",
+            "d": "1"
+          },
+          "M": {
+            "n": "265",
+            "d": "8"
+          }
+        },
+        "reasonKey": "edition.holographic.add-multiplier",
+        "visibleCondition": {
+          "kind": "always"
+        },
+        "retriggerDepth": 0
+      },
+      {
+        "eventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/29",
+        "rootId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4",
+        "rootEventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/29",
+        "phase": "jokerScore",
+        "sourceType": "joker",
+        "sourceDefinitionId": "f09",
+        "sourceInstanceId": "controlled/source-process/2",
+        "operation": "multiply-multiplier",
+        "value": {
+          "n": "3",
+          "d": "2"
+        },
+        "before": {
+          "H": {
+            "n": "309",
+            "d": "1"
+          },
+          "M": {
+            "n": "265",
+            "d": "8"
+          }
+        },
+        "after": {
+          "H": {
+            "n": "309",
+            "d": "1"
+          },
+          "M": {
+            "n": "795",
+            "d": "16"
+          }
+        },
+        "reasonKey": "f09.multiply-multiplier",
+        "visibleCondition": {
+          "kind": "resource",
+          "resource": "discards-used",
+          "equals": 0
+        },
+        "retriggerDepth": 0
+      },
+      {
+        "eventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/30",
+        "rootId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4",
+        "rootEventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/30",
+        "phase": "jokerScore",
+        "sourceType": "joker",
+        "sourceDefinitionId": "e03",
+        "sourceInstanceId": "controlled/source-process/3",
+        "operation": "add-heat-per-gold",
+        "value": {
+          "n": "40",
+          "d": "1"
+        },
+        "before": {
+          "H": {
+            "n": "309",
+            "d": "1"
+          },
+          "M": {
+            "n": "795",
+            "d": "16"
+          }
+        },
+        "after": {
+          "H": {
+            "n": "349",
+            "d": "1"
+          },
+          "M": {
+            "n": "795",
+            "d": "16"
+          }
+        },
+        "reasonKey": "e03.add-heat-per-gold",
+        "visibleCondition": {
+          "kind": "always"
+        },
+        "retriggerDepth": 0
+      },
+      {
+        "eventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/31",
+        "rootId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4",
+        "rootEventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/31",
+        "phase": "routeGrowth",
+        "sourceType": "rule",
+        "sourceDefinitionId": "route-growth",
+        "sourceInstanceId": "controlled/score-energy/multiply",
+        "operation": "route-factor",
+        "value": {
+          "n": "1",
+          "d": "1"
+        },
+        "before": {
+          "H": {
+            "n": "349",
+            "d": "1"
+          },
+          "M": {
+            "n": "795",
+            "d": "16"
+          }
+        },
+        "after": {
+          "H": {
+            "n": "349",
+            "d": "1"
+          },
+          "M": {
+            "n": "795",
+            "d": "16"
+          }
+        },
+        "reasonKey": "route-growth.G.factor",
+        "visibleCondition": {
+          "kind": "hand-type-in",
+          "values": [
+            "pair",
+            "two-pair",
+            "three-kind",
+            "full-house",
+            "four-kind",
+            "five-kind",
+            "flush-house",
+            "flush-five"
+          ]
+        },
+        "retriggerDepth": 0,
+        "routeFamily": "G",
+        "resourceBefore": 0,
+        "resourceAfter": 0
+      },
+      {
+        "eventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/32",
+        "rootId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4",
+        "rootEventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/32",
+        "phase": "characterScore",
+        "sourceType": "character",
+        "sourceDefinitionId": "amo",
+        "sourceInstanceId": "controlled/score-energy/multiply/character",
+        "operation": "multiply-multiplier",
+        "value": {
+          "n": "2",
+          "d": "1"
+        },
+        "before": {
+          "H": {
+            "n": "349",
+            "d": "1"
+          },
+          "M": {
+            "n": "795",
+            "d": "16"
+          }
+        },
+        "after": {
+          "H": {
+            "n": "349",
+            "d": "1"
+          },
+          "M": {
+            "n": "795",
+            "d": "8"
+          }
+        },
+        "reasonKey": "amo.assist.pair",
+        "visibleCondition": {
+          "kind": "hand-type-in",
+          "values": [
+            "two-pair",
+            "three-kind",
+            "straight",
+            "flush",
+            "full-house",
+            "four-kind",
+            "straight-flush",
+            "five-kind",
+            "flush-house",
+            "flush-five"
+          ]
+        },
+        "retriggerDepth": 0
+      },
+      {
+        "eventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/33",
+        "rootId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4",
+        "rootEventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/33",
+        "phase": "finalScore",
+        "sourceType": "rule",
+        "sourceDefinitionId": "full-house",
+        "sourceInstanceId": "controlled/score-energy/multiply",
+        "operation": "final-score",
+        "value": {
+          "n": "34681",
+          "d": "1"
+        },
+        "before": {
+          "H": {
+            "n": "349",
+            "d": "1"
+          },
+          "M": {
+            "n": "795",
+            "d": "8"
+          }
+        },
+        "after": {
+          "H": {
+            "n": "349",
+            "d": "1"
+          },
+          "M": {
+            "n": "795",
+            "d": "8"
+          }
+        },
+        "reasonKey": "full-house.final-score",
+        "visibleCondition": {
+          "kind": "always"
+        },
+        "retriggerDepth": 0
+      },
+      {
+        "eventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/34",
+        "rootId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4",
+        "rootEventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/34",
+        "phase": "onStageClear",
+        "sourceType": "rule",
+        "sourceDefinitionId": "route-growth",
+        "sourceInstanceId": "controlled/score-energy/multiply",
+        "operation": "route-clear",
+        "value": {
+          "n": "1",
+          "d": "1"
+        },
+        "before": {
+          "H": {
+            "n": "349",
+            "d": "1"
+          },
+          "M": {
+            "n": "795",
+            "d": "8"
+          }
+        },
+        "after": {
+          "H": {
+            "n": "349",
+            "d": "1"
+          },
+          "M": {
+            "n": "795",
+            "d": "8"
+          }
+        },
+        "visibleCondition": {
+          "kind": "always"
+        },
+        "retriggerDepth": 0,
+        "reasonKey": "route-growth.clear",
+        "resourceBefore": 0,
+        "resourceAfter": 1
+      },
+      {
+        "eventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/35",
+        "rootId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4",
+        "rootEventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/35",
+        "phase": "onStageClear",
+        "sourceType": "rule",
+        "sourceDefinitionId": "route-growth",
+        "sourceInstanceId": "controlled/score-energy/multiply",
+        "operation": "route-clear-family",
+        "value": {
+          "n": "1",
+          "d": "1"
+        },
+        "before": {
+          "H": {
+            "n": "349",
+            "d": "1"
+          },
+          "M": {
+            "n": "795",
+            "d": "8"
+          }
+        },
+        "after": {
+          "H": {
+            "n": "349",
+            "d": "1"
+          },
+          "M": {
+            "n": "795",
+            "d": "8"
+          }
+        },
+        "visibleCondition": {
+          "kind": "always"
+        },
+        "retriggerDepth": 0,
+        "reasonKey": "route-growth.G.clear",
+        "resourceBefore": 0,
+        "resourceAfter": 1,
+        "routeFamily": "G"
+      }
+    ]
+  },
+  "samples": [
+    {
+      "name": "impactWood_light_000",
+      "rate": 24000,
+      "duration": 0.26266666666666666,
+      "body": {
+        "offset": 0,
+        "gain": 0.8138179738870738
+      },
+      "spectrum": {
+        "rms": 0.11401843423900852,
+        "peaks": [
+          [
+            325,
+            136.5683457640663
+          ],
+          [
+            320,
+            128.38423310433245
+          ],
+          [
+            340,
+            118.00580032047677
+          ],
+          [
+            330,
+            113.8600672613327
+          ],
+          [
+            335,
+            112.70635465046108
+          ],
+          [
+            345,
+            80.75147928305547
+          ]
+        ]
+      }
+    },
+    {
+      "name": "impactWood_light_001",
+      "rate": 24000,
+      "duration": 0.26266666666666666,
+      "body": {
+        "offset": 0,
+        "gain": 0.8951140165943691
+      },
+      "spectrum": {
+        "rms": 0.09315839182698944,
+        "peaks": [
+          [
+            290,
+            58.33058604621152
+          ],
+          [
+            285,
+            55.41844986532525
+          ],
+          [
+            305,
+            50.17341922740461
+          ],
+          [
+            295,
+            48.46200491210953
+          ],
+          [
+            300,
+            47.7770415694408
+          ],
+          [
+            310,
+            36.30685250963251
+          ]
+        ]
+      }
+    },
+    {
+      "name": "impactSoft_heavy_000",
+      "rate": 24000,
+      "duration": 0.5035416666666667,
+      "body": {
+        "offset": 0,
+        "gain": 0.6164107374825989
+      },
+      "spectrum": {
+        "rms": 0.278611071253278,
+        "peaks": [
+          [
+            100,
+            35620.60253540139
+          ],
+          [
+            105,
+            13099.29960570343
+          ],
+          [
+            110,
+            1265.83976540145
+          ],
+          [
+            115,
+            165.80675381126025
+          ],
+          [
+            120,
+            95.0368787375964
+          ],
+          [
+            125,
+            16.010826232112578
+          ]
+        ]
+      }
+    },
+    {
+      "name": "impactBell_heavy_003",
+      "rate": 24000,
+      "duration": 0.6535833333333333,
+      "body": {
+        "offset": 0,
+        "gain": 0.903523309135077
+      },
+      "spectrum": {
+        "rms": 0.13489070128518413,
+        "peaks": [
+          [
+            325,
+            5041.761218640162
+          ],
+          [
+            330,
+            3237.551687118971
+          ],
+          [
+            320,
+            2939.666309624954
+          ],
+          [
+            535,
+            1626.4595095975278
+          ],
+          [
+            540,
+            1019.1788857139304
+          ],
+          [
+            530,
+            1004.5959637179247
+          ]
+        ]
+      }
+    },
+    {
+      "name": "impactBell_heavy_000",
+      "rate": 24000,
+      "duration": 1.4801666666666666,
+      "body": {
+        "offset": 0,
+        "gain": 0.9124477740234733
+      },
+      "spectrum": {
+        "rms": 0.1406203806629641,
+        "peaks": [
+          [
+            380,
+            4721.601944234579
+          ],
+          [
+            375,
+            3199.8909879818766
+          ],
+          [
+            475,
+            3094.221879294427
+          ],
+          [
+            480,
+            2944.316048596019
+          ],
+          [
+            385,
+            2668.593201905939
+          ],
+          [
+            470,
+            1761.5424405299802
+          ]
+        ]
+      }
+    }
+  ],
+  "hits": [
+    {
+      "eventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/1",
+      "phase": "onCardScore",
+      "sourceType": "card",
+      "sourceDefinitionId": "rank-7",
+      "targetCardId": "spades-2",
+      "kind": "add",
+      "chain": 1,
+      "arrival": 0.25066666666666665,
+      "layers": [
+        {
+          "name": "impactBell_heavy_003",
+          "rate": 1,
+          "time": 0.25066666666666665,
+          "offset": 0,
+          "peak": 0.20238922124625724,
+          "semantic": "scoreAdd",
+          "endsAt": 0.45066666666666666
+        },
+        {
+          "name": "impactWood_light_000",
+          "rate": 1,
+          "time": 0.25066666666666665,
+          "offset": 0,
+          "peak": 0.05859489411986931,
+          "semantic": "scoreAdd",
+          "endsAt": 0.30566666666666664
+        }
+      ],
+      "outputSpectrum": {
+        "rms": 0.0429716393203115,
+        "peaks": [
+          [
+            325,
+            473.4276559093628
+          ],
+          [
+            320,
+            345.063769469402
+          ],
+          [
+            330,
+            337.34529823541436
+          ],
+          [
+            535,
+            140.85954449107277
+          ],
+          [
+            335,
+            119.6040295490022
+          ],
+          [
+            315,
+            119.202845881916
+          ]
+        ]
+      }
+    },
+    {
+      "eventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/2",
+      "phase": "onCardScore",
+      "sourceType": "card",
+      "sourceDefinitionId": "spades-2",
+      "targetCardId": "spades-2",
+      "kind": "key",
+      "chain": 1,
+      "arrival": 0.5706666666666667,
+      "layers": [
+        {
+          "name": "impactBell_heavy_003",
+          "rate": 1.1224620342254639,
+          "time": 0.5706666666666667,
+          "offset": 0,
+          "peak": 0.2319163629887915,
+          "semantic": "scoreKey",
+          "endsAt": 0.8106666666666666
+        },
+        {
+          "name": "impactWood_light_000",
+          "rate": 1.1224620342254639,
+          "time": 0.6056666666666667,
+          "offset": 0,
+          "peak": 0.08759936670920461,
+          "semantic": "scoreKey",
+          "endsAt": 0.6806666666666666
+        }
+      ],
+      "outputSpectrum": {
+        "rms": 0.0441333098239314,
+        "peaks": [
+          [
+            365,
+            297.1672362243886
+          ],
+          [
+            370,
+            194.52655023495123
+          ],
+          [
+            360,
+            179.85306956994683
+          ],
+          [
+            600,
+            134.99066592219668
+          ],
+          [
+            605,
+            107.2726812243635
+          ],
+          [
+            595,
+            87.44770289923393
+          ]
+        ]
+      }
+    },
+    {
+      "eventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/3",
+      "phase": "onCardScore",
+      "sourceType": "card",
+      "sourceDefinitionId": "spades-2",
+      "targetCardId": "spades-2",
+      "kind": "multiply",
+      "chain": 1,
+      "arrival": 0.8906666666666667,
+      "layers": [
+        {
+          "name": "impactBell_heavy_003",
+          "rate": 1.2599210739135742,
+          "time": 0.8906666666666667,
+          "offset": 0,
+          "peak": 0.2842845739862606,
+          "semantic": "scoreMultiply",
+          "endsAt": 1.1906666666666668
+        },
+        {
+          "name": "impactSoft_heavy_000",
+          "rate": 1.0331352949142456,
+          "time": 0.8906666666666667,
+          "offset": 0,
+          "peak": 0.13270090356525388,
+          "semantic": "scoreMultiply",
+          "endsAt": 0.9756666666666667
+        },
+        {
+          "name": "impactWood_light_000",
+          "rate": 1.2599210739135742,
+          "time": 0.9556666666666667,
+          "offset": 0,
+          "peak": 0.08086095388541964,
+          "semantic": "scoreMultiply",
+          "endsAt": 1.0506666666666666
+        }
+      ],
+      "outputSpectrum": {
+        "rms": 0.07553282171559962,
+        "peaks": [
+          [
+            100,
+            792.1471915084783
+          ],
+          [
+            410,
+            582.3180326120854
+          ],
+          [
+            105,
+            529.1246490486817
+          ],
+          [
+            405,
+            525.986177611096
+          ],
+          [
+            415,
+            345.42400780467085
+          ],
+          [
+            400,
+            246.56064316084846
+          ]
+        ]
+      }
+    },
+    {
+      "eventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/6",
+      "phase": "onCardScore",
+      "sourceType": "card",
+      "sourceDefinitionId": "rank-7",
+      "targetCardId": "spades-2",
+      "kind": "add",
+      "chain": 2,
+      "arrival": 1.2106666666666666,
+      "layers": [
+        {
+          "name": "impactBell_heavy_003",
+          "rate": 1.3348398208618164,
+          "time": 1.2106666666666666,
+          "offset": 0,
+          "peak": 0.20238922124625724,
+          "semantic": "scoreAdd",
+          "endsAt": 1.4106666666666665
+        },
+        {
+          "name": "impactWood_light_001",
+          "rate": 1.3348398208618164,
+          "time": 1.2106666666666666,
+          "offset": 0,
+          "peak": 0.06444820919479456,
+          "semantic": "scoreAdd",
+          "endsAt": 1.2656666666666665
+        }
+      ],
+      "outputSpectrum": {
+        "rms": 0.03923832911123143,
+        "peaks": [
+          [
+            435,
+            329.7574188356013
+          ],
+          [
+            430,
+            265.20428997679795
+          ],
+          [
+            440,
+            205.22704736645667
+          ],
+          [
+            715,
+            101.74418919823677
+          ],
+          [
+            425,
+            99.8046687328356
+          ],
+          [
+            710,
+            83.29099146982632
+          ]
+        ]
+      }
+    },
+    {
+      "eventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/7",
+      "phase": "onCardScore",
+      "sourceType": "card",
+      "sourceDefinitionId": "spades-2",
+      "targetCardId": "spades-2",
+      "kind": "key",
+      "chain": 2,
+      "arrival": 1.5306666666666666,
+      "layers": [
+        {
+          "name": "impactBell_heavy_003",
+          "rate": 1.4983071088790894,
+          "time": 1.5306666666666666,
+          "offset": 0,
+          "peak": 0.2319163629887915,
+          "semantic": "scoreKey",
+          "endsAt": 1.7706666666666666
+        },
+        {
+          "name": "impactWood_light_001",
+          "rate": 1.4983071088790894,
+          "time": 1.5656666666666665,
+          "offset": 0,
+          "peak": 0.09635007274621787,
+          "semantic": "scoreKey",
+          "endsAt": 1.6406666666666665
+        }
+      ],
+      "outputSpectrum": {
+        "rms": 0.04117455548097862,
+        "peaks": [
+          [
+            485,
+            487.7200136617994
+          ],
+          [
+            490,
+            455.0000027979978
+          ],
+          [
+            480,
+            300.4680986247048
+          ],
+          [
+            495,
+            235.83130132214433
+          ],
+          [
+            800,
+            117.78353743649383
+          ],
+          [
+            475,
+            110.61107912909155
+          ]
+        ]
+      }
+    },
+    {
+      "eventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/8",
+      "phase": "onCardScore",
+      "sourceType": "card",
+      "sourceDefinitionId": "spades-2",
+      "targetCardId": "spades-2",
+      "kind": "multiply",
+      "chain": 2,
+      "arrival": 1.8506666666666667,
+      "layers": [
+        {
+          "name": "impactBell_heavy_003",
+          "rate": 1.6817928552627563,
+          "time": 1.8506666666666667,
+          "offset": 0,
+          "peak": 0.2938980619954578,
+          "semantic": "scoreMultiply",
+          "endsAt": 2.1506666666666665
+        },
+        {
+          "name": "impactSoft_heavy_000",
+          "rate": 1.3790701627731323,
+          "time": 1.8506666666666667,
+          "offset": 0,
+          "peak": 0.1371883737341272,
+          "semantic": "scoreMultiply",
+          "endsAt": 1.9356666666666666
+        },
+        {
+          "name": "impactWood_light_001",
+          "rate": 1.6817928552627563,
+          "time": 1.9156666666666666,
+          "offset": 0,
+          "peak": 0.0919461117845736,
+          "semantic": "scoreMultiply",
+          "endsAt": 2.010666666666667
+        }
+      ],
+      "outputSpectrum": {
+        "rms": 0.06867206735185714,
+        "peaks": [
+          [
+            130,
+            605.5261604829097
+          ],
+          [
+            135,
+            553.9419353633061
+          ],
+          [
+            125,
+            402.5673391743112
+          ],
+          [
+            545,
+            400.7285910320782
+          ],
+          [
+            550,
+            358.0460228634963
+          ],
+          [
+            140,
+            305.225781327747
+          ]
+        ]
+      }
+    },
+    {
+      "eventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/9",
+      "phase": "onCardScore",
+      "sourceType": "card",
+      "sourceDefinitionId": "rank-7",
+      "targetCardId": "spades-2",
+      "kind": "key",
+      "chain": 3,
+      "arrival": 2.1706666666666665,
+      "layers": [
+        {
+          "name": "impactBell_heavy_003",
+          "rate": 1.8877485990524292,
+          "time": 2.1706666666666665,
+          "offset": 0,
+          "peak": 0.2319163629887915,
+          "semantic": "scoreKey",
+          "endsAt": 2.4106666666666667
+        },
+        {
+          "name": "impactWood_light_000",
+          "rate": 1.8877485990524292,
+          "time": 2.2056666666666667,
+          "offset": 0,
+          "peak": 0.08759936670920461,
+          "semantic": "scoreKey",
+          "endsAt": 2.280666666666667
+        }
+      ],
+      "outputSpectrum": {
+        "rms": 0.03644921468747979,
+        "peaks": [
+          [
+            615,
+            259.4762889721523
+          ],
+          [
+            610,
+            221.86855239524152
+          ],
+          [
+            620,
+            167.31093934735668
+          ],
+          [
+            1010,
+            118.5322532395267
+          ],
+          [
+            605,
+            107.98366501409458
+          ],
+          [
+            1015,
+            93.25585626289417
+          ]
+        ]
+      }
+    },
+    {
+      "eventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/10",
+      "phase": "onCardScore",
+      "sourceType": "card",
+      "sourceDefinitionId": "spades-2",
+      "targetCardId": "spades-2",
+      "kind": "key",
+      "chain": 3,
+      "arrival": 2.490666666666667,
+      "layers": [
+        {
+          "name": "impactBell_heavy_003",
+          "rate": 2,
+          "time": 2.490666666666667,
+          "offset": 0,
+          "peak": 0.2319163629887915,
+          "semantic": "scoreKey",
+          "endsAt": 2.730666666666667
+        },
+        {
+          "name": "impactWood_light_001",
+          "rate": 2,
+          "time": 2.525666666666667,
+          "offset": 0,
+          "peak": 0.09635007274621787,
+          "semantic": "scoreKey",
+          "endsAt": 2.600666666666667
+        }
+      ],
+      "outputSpectrum": {
+        "rms": 0.03444891464536101,
+        "peaks": [
+          [
+            650,
+            208.5295333928187
+          ],
+          [
+            655,
+            157.75300345320525
+          ],
+          [
+            645,
+            139.92510443590356
+          ],
+          [
+            1070,
+            98.6722743279104
+          ],
+          [
+            1075,
+            75.13995060282846
+          ],
+          [
+            1065,
+            71.48007435821748
+          ]
+        ]
+      }
+    },
+    {
+      "eventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/11",
+      "phase": "onCardScore",
+      "sourceType": "card",
+      "sourceDefinitionId": "spades-2",
+      "targetCardId": "spades-2",
+      "kind": "multiply",
+      "chain": 3,
+      "arrival": 2.8106666666666666,
+      "layers": [
+        {
+          "name": "impactBell_heavy_003",
+          "rate": 2,
+          "time": 2.8106666666666666,
+          "offset": 0,
+          "peak": 0.303511550004655,
+          "semantic": "scoreMultiply",
+          "endsAt": 3.1106666666666665
+        },
+        {
+          "name": "impactSoft_heavy_000",
+          "rate": 1.6399999856948853,
+          "time": 2.8106666666666666,
+          "offset": 0,
+          "peak": 0.14167584390300053,
+          "semantic": "scoreMultiply",
+          "endsAt": 2.8956666666666666
+        },
+        {
+          "name": "impactWood_light_000",
+          "rate": 2,
+          "time": 2.8756666666666666,
+          "offset": 0,
+          "peak": 0.08632981066994078,
+          "semantic": "scoreMultiply",
+          "endsAt": 2.970666666666667
+        }
+      ],
+      "outputSpectrum": {
+        "rms": 0.06621597202899926,
+        "peaks": [
+          [
+            160,
+            478.3241729568045
+          ],
+          [
+            650,
+            477.52376154783576
+          ],
+          [
+            155,
+            421.06741850537014
+          ],
+          [
+            165,
+            352.35345057442674
+          ],
+          [
+            655,
+            346.2964682115567
+          ],
+          [
+            645,
+            314.80198140239236
+          ]
+        ]
+      }
+    },
+    {
+      "eventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/12",
+      "phase": "onCardScore",
+      "sourceType": "card",
+      "sourceDefinitionId": "rank-7",
+      "targetCardId": "spades-3",
+      "kind": "key",
+      "chain": 4,
+      "arrival": 3.1306666666666665,
+      "layers": [
+        {
+          "name": "impactBell_heavy_003",
+          "rate": 2,
+          "time": 3.1306666666666665,
+          "offset": 0,
+          "peak": 0.2319163629887915,
+          "semantic": "scoreKey",
+          "endsAt": 3.3706666666666667
+        },
+        {
+          "name": "impactWood_light_000",
+          "rate": 2,
+          "time": 3.1656666666666666,
+          "offset": 0,
+          "peak": 0.08759936670920461,
+          "semantic": "scoreKey",
+          "endsAt": 3.240666666666667
+        }
+      ],
+      "outputSpectrum": {
+        "rms": 0.034303589545256405,
+        "peaks": [
+          [
+            650,
+            143.91550042516081
+          ],
+          [
+            655,
+            109.1354523695186
+          ],
+          [
+            1070,
+            108.60646725960996
+          ],
+          [
+            1075,
+            83.76879703429883
+          ],
+          [
+            645,
+            81.82683860194881
+          ],
+          [
+            1065,
+            79.18454447752245
+          ]
+        ]
+      }
+    },
+    {
+      "eventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/15",
+      "phase": "onCardScore",
+      "sourceType": "card",
+      "sourceDefinitionId": "rank-7",
+      "targetCardId": "spades-3",
+      "kind": "key",
+      "chain": 4,
+      "arrival": 3.4506666666666668,
+      "layers": [
+        {
+          "name": "impactBell_heavy_003",
+          "rate": 2,
+          "time": 3.4506666666666668,
+          "offset": 0,
+          "peak": 0.2319163629887915,
+          "semantic": "scoreKey",
+          "endsAt": 3.690666666666667
+        },
+        {
+          "name": "impactWood_light_001",
+          "rate": 2,
+          "time": 3.485666666666667,
+          "offset": 0,
+          "peak": 0.09635007274621787,
+          "semantic": "scoreKey",
+          "endsAt": 3.560666666666667
+        }
+      ],
+      "outputSpectrum": {
+        "rms": 0.03444891088950941,
+        "peaks": [
+          [
+            650,
+            208.529581212646
+          ],
+          [
+            655,
+            157.75300020335416
+          ],
+          [
+            645,
+            139.9252068707371
+          ],
+          [
+            1070,
+            98.67216531727126
+          ],
+          [
+            1075,
+            75.13989520037606
+          ],
+          [
+            1065,
+            71.47995155701327
+          ]
+        ]
+      }
+    },
+    {
+      "eventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/16",
+      "phase": "onCardScore",
+      "sourceType": "card",
+      "sourceDefinitionId": "rank-7",
+      "targetCardId": "spades-3",
+      "kind": "key",
+      "chain": 4,
+      "arrival": 3.7706666666666666,
+      "layers": [
+        {
+          "name": "impactBell_heavy_003",
+          "rate": 2,
+          "time": 3.7706666666666666,
+          "offset": 0,
+          "peak": 0.2319163629887915,
+          "semantic": "scoreKey",
+          "endsAt": 4.010666666666666
+        },
+        {
+          "name": "impactWood_light_000",
+          "rate": 2,
+          "time": 3.8056666666666668,
+          "offset": 0,
+          "peak": 0.08759936670920461,
+          "semantic": "scoreKey",
+          "endsAt": 3.880666666666667
+        }
+      ],
+      "outputSpectrum": {
+        "rms": 0.034303589545256405,
+        "peaks": [
+          [
+            650,
+            143.91550042516081
+          ],
+          [
+            655,
+            109.1354523695186
+          ],
+          [
+            1070,
+            108.60646725960996
+          ],
+          [
+            1075,
+            83.76879703429883
+          ],
+          [
+            645,
+            81.82683860194881
+          ],
+          [
+            1065,
+            79.18454447752245
+          ]
+        ]
+      }
+    },
+    {
+      "eventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/17",
+      "phase": "onCardScore",
+      "sourceType": "card",
+      "sourceDefinitionId": "rank-9",
+      "targetCardId": "spades-4",
+      "kind": "key",
+      "chain": 4,
+      "arrival": 4.0906666666666665,
+      "layers": [
+        {
+          "name": "impactBell_heavy_003",
+          "rate": 2,
+          "time": 4.0906666666666665,
+          "offset": 0,
+          "peak": 0.2319163629887915,
+          "semantic": "scoreKey",
+          "endsAt": 4.330666666666667
+        },
+        {
+          "name": "impactWood_light_001",
+          "rate": 2,
+          "time": 4.125666666666667,
+          "offset": 0,
+          "peak": 0.09635007274621787,
+          "semantic": "scoreKey",
+          "endsAt": 4.200666666666667
+        }
+      ],
+      "outputSpectrum": {
+        "rms": 0.03444891088950941,
+        "peaks": [
+          [
+            650,
+            208.529581212646
+          ],
+          [
+            655,
+            157.75300020335416
+          ],
+          [
+            645,
+            139.9252068707371
+          ],
+          [
+            1070,
+            98.67216531727126
+          ],
+          [
+            1075,
+            75.13989520037606
+          ],
+          [
+            1065,
+            71.47995155701327
+          ]
+        ]
+      }
+    },
+    {
+      "eventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/19",
+      "phase": "onCardScore",
+      "sourceType": "card",
+      "sourceDefinitionId": "rank-9",
+      "targetCardId": "spades-4",
+      "kind": "key",
+      "chain": 4,
+      "arrival": 4.410666666666667,
+      "layers": [
+        {
+          "name": "impactBell_heavy_003",
+          "rate": 2,
+          "time": 4.410666666666667,
+          "offset": 0,
+          "peak": 0.2319163629887915,
+          "semantic": "scoreKey",
+          "endsAt": 4.650666666666667
+        },
+        {
+          "name": "impactWood_light_000",
+          "rate": 2,
+          "time": 4.445666666666667,
+          "offset": 0,
+          "peak": 0.08759936670920461,
+          "semantic": "scoreKey",
+          "endsAt": 4.520666666666667
+        }
+      ],
+      "outputSpectrum": {
+        "rms": 0.034303589545256405,
+        "peaks": [
+          [
+            650,
+            143.91550042516081
+          ],
+          [
+            655,
+            109.1354523695186
+          ],
+          [
+            1070,
+            108.60646725960996
+          ],
+          [
+            1075,
+            83.76879703429883
+          ],
+          [
+            645,
+            81.82683860194881
+          ],
+          [
+            1065,
+            79.18454447752245
+          ]
+        ]
+      }
+    },
+    {
+      "eventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/20",
+      "phase": "onCardScore",
+      "sourceType": "card",
+      "sourceDefinitionId": "rank-9",
+      "targetCardId": "spades-5",
+      "kind": "key",
+      "chain": 4,
+      "arrival": 4.730666666666667,
+      "layers": [
+        {
+          "name": "impactBell_heavy_003",
+          "rate": 2,
+          "time": 4.730666666666667,
+          "offset": 0,
+          "peak": 0.2319163629887915,
+          "semantic": "scoreKey",
+          "endsAt": 4.970666666666667
+        },
+        {
+          "name": "impactWood_light_001",
+          "rate": 2,
+          "time": 4.765666666666667,
+          "offset": 0,
+          "peak": 0.09635007274621787,
+          "semantic": "scoreKey",
+          "endsAt": 4.840666666666667
+        }
+      ],
+      "outputSpectrum": {
+        "rms": 0.03444891464536101,
+        "peaks": [
+          [
+            650,
+            208.5295333928187
+          ],
+          [
+            655,
+            157.75300345320525
+          ],
+          [
+            645,
+            139.92510443590356
+          ],
+          [
+            1070,
+            98.6722743279104
+          ],
+          [
+            1075,
+            75.13995060282846
+          ],
+          [
+            1065,
+            71.48007435821748
+          ]
+        ]
+      }
+    },
+    {
+      "eventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/22",
+      "phase": "onCardScore",
+      "sourceType": "card",
+      "sourceDefinitionId": "rank-9",
+      "targetCardId": "spades-5",
+      "kind": "key",
+      "chain": 4,
+      "arrival": 5.050666666666666,
+      "layers": [
+        {
+          "name": "impactBell_heavy_003",
+          "rate": 2,
+          "time": 5.050666666666666,
+          "offset": 0,
+          "peak": 0.2319163629887915,
+          "semantic": "scoreKey",
+          "endsAt": 5.290666666666667
+        },
+        {
+          "name": "impactWood_light_000",
+          "rate": 2,
+          "time": 5.085666666666667,
+          "offset": 0,
+          "peak": 0.08759936670920461,
+          "semantic": "scoreKey",
+          "endsAt": 5.160666666666667
+        }
+      ],
+      "outputSpectrum": {
+        "rms": 0.034303589545256405,
+        "peaks": [
+          [
+            650,
+            143.91550042516081
+          ],
+          [
+            655,
+            109.1354523695186
+          ],
+          [
+            1070,
+            108.60646725960996
+          ],
+          [
+            1075,
+            83.76879703429883
+          ],
+          [
+            645,
+            81.82683860194881
+          ],
+          [
+            1065,
+            79.18454447752245
+          ]
+        ]
+      }
+    },
+    {
+      "eventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/23",
+      "phase": "onCardScore",
+      "sourceType": "card",
+      "sourceDefinitionId": "rank-7",
+      "targetCardId": "spades-6",
+      "kind": "key",
+      "chain": 4,
+      "arrival": 5.370666666666667,
+      "layers": [
+        {
+          "name": "impactBell_heavy_003",
+          "rate": 2,
+          "time": 5.370666666666667,
+          "offset": 0,
+          "peak": 0.2319163629887915,
+          "semantic": "scoreKey",
+          "endsAt": 5.610666666666667
+        },
+        {
+          "name": "impactWood_light_001",
+          "rate": 2,
+          "time": 5.405666666666667,
+          "offset": 0,
+          "peak": 0.09635007274621787,
+          "semantic": "scoreKey",
+          "endsAt": 5.480666666666667
+        }
+      ],
+      "outputSpectrum": {
+        "rms": 0.03444891088950941,
+        "peaks": [
+          [
+            650,
+            208.529581212646
+          ],
+          [
+            655,
+            157.75300020335416
+          ],
+          [
+            645,
+            139.9252068707371
+          ],
+          [
+            1070,
+            98.67216531727126
+          ],
+          [
+            1075,
+            75.13989520037606
+          ],
+          [
+            1065,
+            71.47995155701327
+          ]
+        ]
+      }
+    },
+    {
+      "eventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/26",
+      "phase": "onCardScore",
+      "sourceType": "card",
+      "sourceDefinitionId": "rank-7",
+      "targetCardId": "spades-6",
+      "kind": "key",
+      "chain": 4,
+      "arrival": 5.690666666666667,
+      "layers": [
+        {
+          "name": "impactBell_heavy_003",
+          "rate": 2,
+          "time": 5.690666666666667,
+          "offset": 0,
+          "peak": 0.2319163629887915,
+          "semantic": "scoreKey",
+          "endsAt": 5.930666666666667
+        },
+        {
+          "name": "impactWood_light_000",
+          "rate": 2,
+          "time": 5.725666666666667,
+          "offset": 0,
+          "peak": 0.08759936670920461,
+          "semantic": "scoreKey",
+          "endsAt": 5.800666666666667
+        }
+      ],
+      "outputSpectrum": {
+        "rms": 0.034303589545256405,
+        "peaks": [
+          [
+            650,
+            143.91550042516081
+          ],
+          [
+            655,
+            109.1354523695186
+          ],
+          [
+            1070,
+            108.60646725960996
+          ],
+          [
+            1075,
+            83.76879703429883
+          ],
+          [
+            645,
+            81.82683860194881
+          ],
+          [
+            1065,
+            79.18454447752245
+          ]
+        ]
+      }
+    },
+    {
+      "eventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/27",
+      "phase": "onCardScore",
+      "sourceType": "card",
+      "sourceDefinitionId": "rank-7",
+      "targetCardId": "spades-6",
+      "kind": "key",
+      "chain": 4,
+      "arrival": 6.010666666666666,
+      "layers": [
+        {
+          "name": "impactBell_heavy_003",
+          "rate": 2,
+          "time": 6.010666666666666,
+          "offset": 0,
+          "peak": 0.2319163629887915,
+          "semantic": "scoreKey",
+          "endsAt": 6.250666666666667
+        },
+        {
+          "name": "impactWood_light_001",
+          "rate": 2,
+          "time": 6.0456666666666665,
+          "offset": 0,
+          "peak": 0.09635007274621787,
+          "semantic": "scoreKey",
+          "endsAt": 6.120666666666667
+        }
+      ],
+      "outputSpectrum": {
+        "rms": 0.03444891088950941,
+        "peaks": [
+          [
+            650,
+            208.529581212646
+          ],
+          [
+            655,
+            157.75300020335416
+          ],
+          [
+            645,
+            139.9252068707371
+          ],
+          [
+            1070,
+            98.67216531727126
+          ],
+          [
+            1075,
+            75.13989520037606
+          ],
+          [
+            1065,
+            71.47995155701327
+          ]
+        ]
+      }
+    },
+    {
+      "eventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/28",
+      "phase": "jokerScore",
+      "sourceType": "joker",
+      "sourceDefinitionId": "a11",
+      "kind": "key",
+      "chain": 4,
+      "arrival": 6.330666666666667,
+      "layers": [
+        {
+          "name": "impactBell_heavy_003",
+          "rate": 2,
+          "time": 6.330666666666667,
+          "offset": 0,
+          "peak": 0.2319163629887915,
+          "semantic": "scoreKey",
+          "endsAt": 6.570666666666667
+        },
+        {
+          "name": "impactWood_light_000",
+          "rate": 2,
+          "time": 6.365666666666667,
+          "offset": 0,
+          "peak": 0.08759936670920461,
+          "semantic": "scoreKey",
+          "endsAt": 6.440666666666667
+        }
+      ],
+      "outputSpectrum": {
+        "rms": 0.034303589545256405,
+        "peaks": [
+          [
+            650,
+            143.91550042516081
+          ],
+          [
+            655,
+            109.1354523695186
+          ],
+          [
+            1070,
+            108.60646725960996
+          ],
+          [
+            1075,
+            83.76879703429883
+          ],
+          [
+            645,
+            81.82683860194881
+          ],
+          [
+            1065,
+            79.18454447752245
+          ]
+        ]
+      }
+    },
+    {
+      "eventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/29",
+      "phase": "jokerScore",
+      "sourceType": "joker",
+      "sourceDefinitionId": "f09",
+      "kind": "multiply",
+      "chain": 4,
+      "arrival": 6.650666666666667,
+      "layers": [
+        {
+          "name": "impactBell_heavy_003",
+          "rate": 2,
+          "time": 6.650666666666667,
+          "offset": 0,
+          "peak": 0.303511550004655,
+          "semantic": "scoreMultiply",
+          "endsAt": 6.950666666666667
+        },
+        {
+          "name": "impactSoft_heavy_000",
+          "rate": 1.6399999856948853,
+          "time": 6.650666666666667,
+          "offset": 0,
+          "peak": 0.14167584390300053,
+          "semantic": "scoreMultiply",
+          "endsAt": 6.735666666666667
+        },
+        {
+          "name": "impactWood_light_001",
+          "rate": 2,
+          "time": 6.715666666666667,
+          "offset": 0,
+          "peak": 0.09495369488033066,
+          "semantic": "scoreMultiply",
+          "endsAt": 6.810666666666667
+        }
+      ],
+      "outputSpectrum": {
+        "rms": 0.06564338315830721,
+        "peaks": [
+          [
+            160,
+            515.7568779586309
+          ],
+          [
+            155,
+            450.1948024894382
+          ],
+          [
+            650,
+            427.271646802143
+          ],
+          [
+            165,
+            359.27967873809365
+          ],
+          [
+            645,
+            328.54829167878506
+          ],
+          [
+            655,
+            280.08739098003355
+          ]
+        ]
+      }
+    },
+    {
+      "eventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/30",
+      "phase": "jokerScore",
+      "sourceType": "joker",
+      "sourceDefinitionId": "e03",
+      "kind": "key",
+      "chain": 5,
+      "arrival": 6.970666666666666,
+      "layers": [
+        {
+          "name": "impactBell_heavy_003",
+          "rate": 2,
+          "time": 6.970666666666666,
+          "offset": 0,
+          "peak": 0.2319163629887915,
+          "semantic": "scoreKey",
+          "endsAt": 7.210666666666667
+        },
+        {
+          "name": "impactWood_light_001",
+          "rate": 2,
+          "time": 7.0056666666666665,
+          "offset": 0,
+          "peak": 0.09635007274621787,
+          "semantic": "scoreKey",
+          "endsAt": 7.080666666666667
+        }
+      ],
+      "outputSpectrum": {
+        "rms": 0.03444891088950941,
+        "peaks": [
+          [
+            650,
+            208.529581212646
+          ],
+          [
+            655,
+            157.75300020335416
+          ],
+          [
+            645,
+            139.9252068707371
+          ],
+          [
+            1070,
+            98.67216531727126
+          ],
+          [
+            1075,
+            75.13989520037606
+          ],
+          [
+            1065,
+            71.47995155701327
+          ]
+        ]
+      }
+    },
+    {
+      "eventId": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/32",
+      "phase": "characterScore",
+      "sourceType": "character",
+      "sourceDefinitionId": "amo",
+      "kind": "multiply",
+      "chain": 5,
+      "arrival": 7.290666666666667,
+      "layers": [
+        {
+          "name": "impactBell_heavy_003",
+          "rate": 2,
+          "time": 7.290666666666667,
+          "offset": 0,
+          "peak": 0.303511550004655,
+          "semantic": "scoreMultiply",
+          "endsAt": 7.5906666666666665
+        },
+        {
+          "name": "impactSoft_heavy_000",
+          "rate": 1.6399999856948853,
+          "time": 7.290666666666667,
+          "offset": 0,
+          "peak": 0.14167584390300053,
+          "semantic": "scoreMultiply",
+          "endsAt": 7.375666666666667
+        },
+        {
+          "name": "impactWood_light_000",
+          "rate": 2,
+          "time": 7.355666666666667,
+          "offset": 0,
+          "peak": 0.08632981066994078,
+          "semantic": "scoreMultiply",
+          "endsAt": 7.450666666666667
+        }
+      ],
+      "outputSpectrum": {
+        "rms": 0.06621597202899926,
+        "peaks": [
+          [
+            160,
+            478.3241729568045
+          ],
+          [
+            650,
+            477.52376154783576
+          ],
+          [
+            155,
+            421.06741850537014
+          ],
+          [
+            165,
+            352.35345057442674
+          ],
+          [
+            655,
+            346.2964682115567
+          ],
+          [
+            645,
+            314.80198140239236
+          ]
+        ]
+      }
+    }
+  ],
+  "duration": 8.36,
+  "peak": 0.3968198001384735,
+  "rms": 0.023949487342813797,
+  "sourceBinding": {
+    "head": "2b7e8dd149eb6b26a5512bf4fc49edb998b7eba2",
+    "normalizedSHA256": {
+      "src/audio/AudioEngine.ts": "4a918029d8cb8a9179e77108826b86affa1db08302ff666ba1313f28cbb9d1be",
+      "src/audio/foley.ts": "fb4d51d101d790fe5cd3e335e181cb1fe3f1cc89f0404a340f536f55feed203b",
+      "src/audio/mixPolicy.ts": "531b25c68b861c5ee4a5f917bda47a5191766c66dfbeca9fc81524ee4a0d1215"
+    }
+  }
+}

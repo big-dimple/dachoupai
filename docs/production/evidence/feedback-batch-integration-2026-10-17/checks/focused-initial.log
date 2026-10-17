@@ -1,0 +1,30 @@
+
+ RUN  v4.1.11 C:/Users/wanghongping/AppData/Local/Temp/dachoupai-windows-integration-20261017
+
+ ❯ tests/c01-tool-info.test.ts (16 tests | 1 failed) 44ms
+     × covers the adopted 39 tools and 12 persistent items without fallback placeholders 23ms
+
+ Test Files  1 failed | 25 passed (26)
+      Tests  1 failed | 333 passed (334)
+   Start at  14:31:10
+   Duration  8.92s (transform 50.62s, setup 0ms, import 72.67s, tests 3.95s, environment 5ms)
+
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/c01-tool-info.test.ts > C01 public tool and item details > covers the adopted 39 tools and 12 persistent items without fallback placeholders
+AssertionError: expected '换货券' to be '免费逛摊' // Object.is equality
+
+Expected: "免费逛摊"
+Received: "换货券"
+
+ ❯ tests/c01-tool-info.test.ts:24:25
+     22|     for(const row of R2_TOOLS){
+     23|       const info=toolInfo(row.id);
+     24|       expect(info.name).toBe(row.name);expect(info.family).toBe(row.fa…
+       |                         ^
+     25|       expect(info.label).toContain(toolFamilyLabel(row.family));expect…
+     26|       for(const field of [info.description,info.cost,info.risk,info.ar…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+

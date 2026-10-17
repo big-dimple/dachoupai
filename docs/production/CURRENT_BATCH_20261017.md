@@ -2,23 +2,25 @@
 
 本页承接[统一计划](DELIVERY_PLAN.md)与[机器状态](plan.json)，逐项区分开发、整合、行为验证和用户体验验收。[跨轮需求/决策/承诺台账](REQUIREMENTS_DECISIONS_COMMITMENTS.md)保持，原整合前清单可按[92dc27ea原文](https://github.com/big-dimple/dachoupai/blob/92dc27ea2642267478d96182bad3fc74418db974/docs/production/CURRENT_BATCH_20261017.md)追溯，不据旧“待交付”重开开发。
 
-当前批次基线 main `f81724b57736c7d4f299cf1d95705a7ba3ef9497`；10来源已正常合入 `dev/current-batch-integration-20261017`，最终产品 `2c3bfe5c48d9d3429dcecc0112bfe3a64ffaa268`。[来源与集中证据](evidence/current-batch-integration-2026-10-17/README.md)；21文件162项、类型/构建通过。用户最新明确授权检查后正常dev及main合并/push，覆盖原“新图暂不main/仅dev”范围；最终main SHA以实际推送回执为准，不声明部署。P08仍 `in_progress`。
+当前反馈批基线 main `212e23d547d4fcfdd886f9dfe80699318e77a738`；四路最终来源5273a1fa/09249ad5/236acc4c/3b22614b全部正常合并，无冲突。最终产品 `e978f295136c48f999895e2e9333f8c0b93cc5c1`，分支dev/feedback-batch-integration-20261017；[本批精确来源、原FAIL与集中证据](evidence/feedback-batch-integration-2026-10-17/README.md)记录31文件365项去重通过、类型及321模块构建通过。用户最新明确授权全部来源和检查齐后正常dev/main合入push，覆盖较早等待来源/仅dev范围；实际main完整SHA以最终推送回执为准，无部署。P08仍in_progress。下表在原需求上更新实际入口/触发/证据/剩余；历史版本只按各自SHA读取。
 
 |项与用户原意|开发交付|整合|行为验证|用户体验验收/剩余边界|
 |---|---|---|---|---|
-|1 逐项计分：18px、±2.5°回弹、八档升调同步、最高1.54脉冲、震动与真实来源线|计分/Boss负责人最终1eab25d9，模块4c1a542e；保留原参数|已合；GameScene逐字节等于最终负责人|软件合同/实际事件模块通过；本批game-score-pressure等集中检查通过|连续帧、实际可见线条/同步与听感PENDING；不拿静态代码代签|
-|2 商店真实动态联动：真实关系呼吸与准确理由|2409977a，承接a14d；真实购款后匹配与逐条理由、触摸预览/详情、生命周期清理|已合，独立ShopScene/ShopSynergy窗口|语义/条件/preview集中检查通过，负责人checkpoint验证通过|真实动态画面与触摸流程dot PENDING；秦琼“始终如一”说明区分不弃牌与技能停用|
-|3 Boss实际压制：准确灰罩/锁链与说明|1eab25d9，读取当次/保存的真实压制对象|已合，交接后独占接线|真实规则与范围模块检查通过；旧版Q/K灰罩与红章已存在|当前候选实际对象、范围说明与连续画面dot PENDING，不记从零新增|
-|4 新51工具图：目录3接入，保留目录2既有36张|e5bed10d，51原图/102派生|已合，280/280增量路径与来源完全一致|原图/映射/hash/预算及同版资源检查通过|运行时观感dot/用户PENDING；原字节保留，非图像重新生成或新验收|
-|5 选角整屏board-race结构|91bd63b6，选角及必要局部组件|已合，18/18增量路径一致|负责人既有18项/有限软件画面按原SHA复用，跨源静态资源检查通过|候选整屏画面与交互dot PENDING；预热计数默认静默补正在产品2c3bfe5c|
-|6 章节对手界面|c1eb5ff3，章节/对手展示窗口|已合，19/19增量路径一致|负责人27项与既有有限软件证据按原范围复用|候选实际画面/交互dot PENDING|
-|7 短确认弹窗留白|7f6df3a7，短内容布局，保确认事务|已合，9/9增量路径一致|负责人既有161项与短软件证据复用；本批中途快照定向检查保留|候选短确认/取消与观感dot PENDING，不追加重复矩阵|
-|8 结算整屏连续来源与本场累计|3b6109cf，stageTotal；a14d显示卡名|已合；唯一冲突保留累计和按ID正名，未整份覆写|settlement-presentation/score-review集中检查通过|候选结算画面dot PENDING；源截图/受控存档证据上传遭外部审批拒绝，未复制/重采被拒材料；代码齐|
-|9 秦琼先弃再出、弃出等宽、理牌分组、AI真实等待|f6edb41b含1e647fa7与195f3f9f；空弃牌草稿、取消保原拟出牌、完整key完成候选复用|已交接并合入最终GameScene；无并发覆写|负责人去重186项及本批提醒/交接检查通过；原双J路径单测覆盖|双J现场与窄屏底栏/等待dot PENDING；旧版AI多次可用，不写成总不可用|
-|10 卡名与商店联动语义|a14d3b55/产品6479d437，领域身份保持|已含于f6ed祖先，后由2409977a动态补齐|原373项按精确未变范围复用，改动窗口在新批集中验证|旧结算名整改与商店准确理由待候选dot，动态不由静态文案代签|
-|11 高光归因调查与真实接线|静态调查是输入；1eab25d9实际接入不透明高光上层来源与累计|已合，固定眼位不改，贡献读保存事件|score-contribution/hero-climax等本批检查通过|可见性/遮挡/节奏连续帧dot PENDING；静态调查不算运行验收|
-|12 c06“青出于蓝”新图|3897abbc，原PNG/thumbnail/HD/climax新版本映射|已合，12/12路径一致|来源字节、活跃映射与资源合同通过，climax54670B守96KiB|运行时观感dot/用户PENDING，旧版本文件保留，不删除资源凑清理|
-|13 后台图片预热计数|2c3bfe5c，E2E且imageDebug=1才挂诊断层|已合，后台队列/传输不变|4个入口测试及17项队列/加载回归通过；生产JS无“图片预热”|候选实际页面dot PENDING；不把静默误写成取消预热|
+|1 逐项计分跃起、音阶和力度|09249ad5：`ScorePosture.scoreCardPose`、`GameScene` arrival及`ScoreTextLayout.scorePulseFrame`；5273a1fa+e978f295：`AudioEngine.scoreImpact`/foley/scoreStrikeRate。每个保存正向H/M事件到达时18px/±2.5°、约1.28/1.36/1.539分级脉冲、来源线；2/3音层，八档上行主音，重击限大触发/乘法，35–65ms次层拍点|已合；GameScene与09249完全一致，音频例外逐路径绑定|本批音频/姿态/布局实际事件及取消回归通过；8.36秒/23事件实际AudioEngine WAV，主音arrival无迟延；见本批回执|连续画面、现场BGM/音画感受、振动与真机/人耳未签；heard=false，不把短探针当自然运行|
+|2 商店真实动态呼应、清晰与准确理由|3b22614b：`ShopScene`首击预览/购买详情、`ShopSynergyPreview`/`ShopDecisionCopy`，`ShopSynergy.findShopSynergy`原匹配保持。选中候选/支出改变时列实际新购值、条件、购后余额和真实持牌配合；仅持牌描边呼吸，说明按实际DPR栅格、alpha/scale=1|已合，撤可见星级/起手角标/路线潜力/选择勾及假余额滚动；44px详情入口|条件/反例/预览/支付集中检查通过；来源有限360×690/DPR3及390软件画面与原生购买取消按原SHA复用|当前整合版dot触摸/呼应、文字与用户理解待验；互斥或无依据不签正联动|
+|3 Boss准确封印与可见备战、音乐|09249的`BossPressure.bossCardPressure/bossJokerPressure`和GameScene灰罩/锁链；3b22614b的`ShopScene`create后调用`presentBossPreparation`。Boss店首次真正可见onReveal才切曲/一次提示，seen/deferred/失效/隐藏分支分开处理|已合，既有250ms切曲与旧曲等待新曲可用保留；预告关闭不入领域命令/存档|本批Boss压力/灰罩/备战生命周期与音乐检查通过；来源真实Shop B04目标800、可见前后曲目和关闭状态一致证据复用|点数归零只禁普通点数；整牌计分禁增强/版次；大丑牌计分+版次禁用而经济/静态/结算后成长按各自条件。当前自然Boss与现场音乐听感待验|
+|4 新51工具图，保目录2既有36张|已发布e5bed10d：`GoodsArt`/`HanddrawnArt`映射及版本URL，商品/工具详情触发51原图与102派生；不重复重画|早批已合main，原280/280增量精确绑定见current-batch回执|原图/映射/hash/预算同版证据保留；本批source-stage-art再核全部72运行文件，52专用高光<=96KiB/20复用详情|本批没有新运行图或原画人验；72替换图原始来源链欠账另见台账H15，运行hash校验仍在|
+|5 选角整屏board-race结构|早批91bd63b6：`CharacterSelectScene`选角进入/选人/确认；后台预热状态默认静默|早批已发布；18/18来源绑定见current-batch回执|复用原18项及有限软件画面；当前不重跑选角矩阵|当前整合版整屏/操作dot与物理手机未签，不由板式交付代签理解|
+|6 章节对手与稍后开战|早批c1eb5ff3：`BlindSelectPresentation.presentStageSelection`，`ShopScene.inspectChapter`打开目录；稍后开战仅关目录、保当前局/待战状态|已发布；19/19原来源绑定与27项按原SHA复用|04:36 dot在2cc24a50见第二章待战/秦琼/10金/目标900保留，非新候选行为；本批不复做矩阵|节目单选择入口缺口已登记H14；不自动修或把挑战模式全局都判失效；自然新候选仍待验|
+|7 短确认留白与长规则折叠|早批7f6df3a7的`DetailDialog.open`；后续4d9910a7的详情内容高度/同名caption省略，短确认与收起/展开触发|分别已发main；4d9910a7最终main212e23d5，13路径/测试树精确来源|原161项/122项与有限组件检查按原范围复用；详情来源1180×757约499/696px，不当新整合测量|dot新候选短确认/展开/长滚动与用户观感待验；不是所有复杂规则已重写|
+|8 结算累计、连续来源与手机内容节奏|早批3b6109cf的stageTotal；236acc4c的`IntermissionScene`与`SettlementPresentation.settlementFacts/settlementContentHeight/drawSettlement`。过关/失败结算按内容收高、英雄/来源/奖励连续，红封去重，利息与奖励合组，下一步集中|已合，两个手机文件与236逐字节相同；名称模块在另一文件窗口完整保留|本批settlement/score-review/stage-gift交叉通过；手机来源44相关项/类型构建与4局部看图只按父级回执复用，源仅2产品文件|先前dot1451累计/765末手仅签2cc24a50；当前候选手机节奏和用户感知待验，不伪造源截图日志|
+|9 秦琼空弃牌草稿、取消保选、等宽按钮、理牌与AI、六技能名|f6ed祖先的草稿/完整AI key与完成候选复用；09249含`HandActionControls.handActionControls/renderHandSortGroup`：14px理牌标题+点数/花色/AI，桌面144/手机132组、44px触区、两侧等宽；`HeroSkillPresentation`投影六新技能名，独立技能按钮与既有提醒。出牌/技能/弃牌/AI计算和取消触发|全部合入，GameScene最终owner原样；身份/技术ID/旧局/技能规则不改|本批提醒/秦琼交接/底栏/AI取消/技能名交叉通过；来源186/75/226/17等按各自原范围复用、不叠加|dot旧版五同花→0/5弃牌器→取消恢复已见，未说双J复测；新底栏/六名现场理解与真机待验|
+|10 统一卡名与精简玩家文案|已发布6479d437与6a67b0e7：`cardDefinitionName`、`JokerPlayerCopy`、Shop详情/比较/回执、`ScoreReview`/`JokerExperience`。触发持有/购买/奖励/成长/回看时由UI按ID投影，不改规则name/hash|早批main50e82e5d；本批T18边界补正与六技能显示合并|原373与321按精确未改范围复用；本批对触及的名称/奖励/工具入口做必要回归，365去重内|工程式文案已收口的具体窗口可验；复杂多阶段/全部旧身份长规则未逐卡全覆盖，真人理解待验|
+|11 高光真实贡献与数值落位|09249：`HeroClimax.heroClimaxValue`、`HeroClimaxStage.mountHeroClimax`、贡献模块及GameScene key/highlight arrival；读保存来源/实际累计，不透明来源层保字，真实+7/+2/×1.5包|已合，固定眼位/原画保持；取消额外160ms落数延迟|本批hero-climax/姿态/文本检查通过；owner短连续帧/13.6–13.9ms下一帧报告按原README范围引用，本地shots未复制上传|不是独立眼原画、自然高光整体/同步听感或物理设备验收，连续帧dot仍待|
+|12 c06青出于蓝新图|早批3897abbc：`jokerArt`/`ClimaxSourceArt`同ID版本映射，缩略/HD/高光在各入口使用指定新PNG|早批已发布，12/12路径绑定保持，旧版资源保留|原字节/活跃映射/预算通过，本批source-stage-art复核；旧dot新缩略/详情/高清返回已观察|当前候选运行观感和用户美术仍待；不删除旧资源凑清理，不代签全部72来源链|
+|13 后台图片预热计数静默|早批2c3bfe5c：GameScene/加载入口的E2E+imageDebug=1诊断门与`imageWarmupStatus`；正常进场不挂预热诊断层，后台队列/传输不变|早批已发main2cc24a50，当前GameScene保最终owner|原4入口+17队列/加载回归及生产无“图片预热”证据复用；本批不为该未改功能再跑矩阵|目标设备实际等待未签，默认静默不等于取消预热|
+
+|14 T18正名与短文案（最新覆盖）|e978f295：`cardDisplayName`/`toolInfo`/`RouteFitCue.toolPurpose`及库存/奖励/回看边界显示“换货券 / 刷新一次商店商品”；删除ShopRerollEconomyCopy及对应UI/样式，购买/查看时仅通常价格与必要条件|已合；旧“免费逛摊”保留在规则定义中维持hash，T18/4金/优惠价/效果/素材不改|本批名称/标签/价格/货架短效果与c01-economy真实刷新回归通过；两次旧名断言FAIL保留|原新增“与直接刷新比较/节省/多花/已持有成本”方案由用户覆盖，不能再当验收目标；当前自然商店理解待验|
 
 ## 图片详情收尾交付
 
