@@ -4,7 +4,7 @@ import type {R2RunState} from '../domain/r2Run';
 import {ImageWarmupQueue,type WarmImage} from './ImageWarmupQueue';
 import {imageWarmupStatus} from './ImageWarmupStatus';
 import {CHARACTERS,type CharacterId} from './characters';
-import {avatarKey,avatarURL,selectionPortraitKey,selectionPortraitURL,portraitURL,portraitKey,portraitFocusKey,portraitFocusURL} from './portraits';
+import {avatarKey,avatarURL,selectionPortraitKey,selectionPortraitURL,portraitURL,portraitKey,portraitFocusKey,portraitFocusURL,heroEyesKey,heroEyesURL} from './portraits';
 import {COURT_ART} from './HanddrawnArt';
 import {JOKER_ART} from './jokerArt';
 import {assetUrl} from './theme';
@@ -61,7 +61,7 @@ export function warmOpeningImages(scene:Phaser.Scene):void {
   if(speculative()){warmRunImages(scene);warmCatalogBackground(scene);}
   warmNextSceneImages(scene,'character-select');
 }
-export function warmHeroImage(scene:Phaser.Scene,id:CharacterId):void {if(!portraitURL(id))return;queue(scene).request([{key:portraitKey(id),url:portraitURL(id),visible:true},{key:portraitFocusKey(id),url:portraitFocusURL(id),visible:true}].filter(a=>!!a.url),true);}
+export function warmHeroImage(scene:Phaser.Scene,id:CharacterId):void {if(!portraitURL(id))return;queue(scene).request([{key:heroEyesKey(id),url:heroEyesURL(id),visible:true},{key:portraitKey(id),url:portraitURL(id),visible:true},{key:portraitFocusKey(id),url:portraitFocusURL(id),visible:true}].filter(a=>!!a.url),true);}
 export function warmTableImages(scene:Phaser.Scene,id:CharacterId):void {
   warmRunImages(scene);
   queue(scene).request(COURT_ART.map(a=>({key:a.key,url:assetUrl(a.path)})),true);

@@ -1,0 +1,1889 @@
+{
+  "scope": "Six finite 390x844 1x actual GameScene imports and native card/play clicks. Controlled public hand and owned f09 fixture; actual domain PlayHand and saved ×1.5 source, no natural acquisition or active-skill claim. Original trigger, audio and score rules unchanged.",
+  "cases": [
+    {
+      "id": "amo",
+      "errors": [],
+      "requests": [
+        {
+          "url": "http://localhost:5188/public/assets/tangsong-eyes/manifest.json?import",
+          "time": 1792223523539
+        },
+        {
+          "url": "http://localhost:5188/assets/tangsong-eyes/amo.eyes-14056db36a63.webp?v=14056db36a63",
+          "time": 1792223525279
+        }
+      ],
+      "screens": [
+        {
+          "phase": "charge",
+          "shot": "eyes",
+          "camera": "dedicated-eye-strip",
+          "texture": "hero-eyes-amo",
+          "crop": {
+            "x": 0,
+            "y": 0,
+            "width": 768,
+            "height": 288
+          },
+          "bounds": {
+            "x": 42,
+            "y": 334,
+            "width": 244,
+            "height": 91.5
+          },
+          "scaleX": 0.3177083333333333,
+          "scaleY": 0.3177083333333333,
+          "value": "2",
+          "numberScale": 1,
+          "eventId": "controlled/dedicated-eyes/amo/hand/controlled/dedicated-eyes/amo/command/4/event/5",
+          "name": "charge",
+          "texts": [
+            {
+              "name": "hero/climax-name",
+              "text": "始终如一",
+              "bounds": {
+                "x": 30,
+                "y": 260,
+                "width": 120,
+                "height": 37
+              }
+            },
+            {
+              "name": "hero/climax-owner",
+              "text": "苏轼 · 风起赤壁",
+              "bounds": {
+                "x": 30,
+                "y": 300,
+                "width": 99,
+                "height": 18
+              }
+            },
+            {
+              "name": "hero/climax-note",
+              "text": "×1.5 倍率",
+              "bounds": {
+                "x": 30,
+                "y": 541,
+                "width": 65,
+                "height": 18
+              }
+            },
+            {
+              "name": "hero/climax-local-label",
+              "text": "本次倍率",
+              "bounds": {
+                "x": 30,
+                "y": 436,
+                "width": 56,
+                "height": 18
+              }
+            },
+            {
+              "name": "hero/climax-local-effect",
+              "text": "×1.5",
+              "bounds": {
+                "x": 72,
+                "y": 458,
+                "width": 60,
+                "height": 39
+              }
+            },
+            {
+              "name": "hero/climax-value-label",
+              "text": "累计倍率落位",
+              "bounds": {
+                "x": 190,
+                "y": 436,
+                "width": 84,
+                "height": 18
+              }
+            },
+            {
+              "name": "hero/climax-value",
+              "text": "2",
+              "bounds": {
+                "x": 265.72,
+                "y": 474,
+                "width": 19,
+                "height": 39
+              }
+            },
+            {
+              "name": "hero/climax-landing",
+              "text": "累计倍率 2→3",
+              "bounds": {
+                "x": 30,
+                "y": 564,
+                "width": 92,
+                "height": 18
+              }
+            }
+          ],
+          "route": true,
+          "eyePixelHash": "c3363264a67f0837b8de9f93598e51c2c140027367677b0495704488aabf00c1",
+          "path": "screens/amo-charge.png"
+        },
+        {
+          "phase": "strike",
+          "shot": "skill",
+          "camera": "dedicated-eye-strip",
+          "texture": "hero-eyes-amo",
+          "crop": {
+            "x": 0,
+            "y": 0,
+            "width": 768,
+            "height": 288
+          },
+          "bounds": {
+            "x": 42,
+            "y": 334,
+            "width": 244,
+            "height": 91.5
+          },
+          "scaleX": 0.3177083333333333,
+          "scaleY": 0.3177083333333333,
+          "value": "3",
+          "numberScale": 1.5391409967443024,
+          "eventId": "controlled/dedicated-eyes/amo/hand/controlled/dedicated-eyes/amo/command/4/event/5",
+          "name": "impact",
+          "texts": [
+            {
+              "name": "hero/climax-name",
+              "text": "始终如一",
+              "bounds": {
+                "x": 30,
+                "y": 260,
+                "width": 120,
+                "height": 37
+              }
+            },
+            {
+              "name": "hero/climax-owner",
+              "text": "苏轼 · 风起赤壁",
+              "bounds": {
+                "x": 30,
+                "y": 300,
+                "width": 99,
+                "height": 18
+              }
+            },
+            {
+              "name": "hero/climax-note",
+              "text": "×1.5 倍率",
+              "bounds": {
+                "x": 30,
+                "y": 541,
+                "width": 65,
+                "height": 18
+              }
+            },
+            {
+              "name": "hero/climax-local-label",
+              "text": "本次倍率",
+              "bounds": {
+                "x": 30,
+                "y": 436,
+                "width": 56,
+                "height": 18
+              }
+            },
+            {
+              "name": "hero/climax-local-effect",
+              "text": "×1.5",
+              "bounds": {
+                "x": 72,
+                "y": 458,
+                "width": 60,
+                "height": 39
+              }
+            },
+            {
+              "name": "hero/climax-value-label",
+              "text": "累计倍率落位",
+              "bounds": {
+                "x": 190,
+                "y": 436,
+                "width": 84,
+                "height": 18
+              }
+            },
+            {
+              "name": "hero/climax-value",
+              "text": "3",
+              "bounds": {
+                "x": 260.59816053092914,
+                "y": 459.49152280379553,
+                "width": 29.243678938141727,
+                "height": 60.026498873027776
+              }
+            },
+            {
+              "name": "hero/climax-landing",
+              "text": "累计倍率 2→3",
+              "bounds": {
+                "x": 30,
+                "y": 564,
+                "width": 92,
+                "height": 18
+              }
+            }
+          ],
+          "route": true,
+          "eyePixelHash": "c3363264a67f0837b8de9f93598e51c2c140027367677b0495704488aabf00c1",
+          "path": "screens/amo-impact.png"
+        }
+      ],
+      "preloaded": true,
+      "playAt": 1792223526494,
+      "frameCount": 55,
+      "eye": {
+        "phase": "charge",
+        "shot": "eyes",
+        "camera": "dedicated-eye-strip",
+        "texture": "hero-eyes-amo",
+        "crop": {
+          "x": 0,
+          "y": 0,
+          "width": 768,
+          "height": 288
+        },
+        "bounds": {
+          "x": 42,
+          "y": 334,
+          "width": 244,
+          "height": 91.5
+        },
+        "scaleX": 0.3177083333333333,
+        "scaleY": 0.3177083333333333,
+        "value": "2",
+        "numberScale": 1,
+        "eventId": "controlled/dedicated-eyes/amo/hand/controlled/dedicated-eyes/amo/command/4/event/5"
+      },
+      "peak": 1.5391409967443024,
+      "values": [
+        "2",
+        "3"
+      ],
+      "actualEvent": {
+        "eventId": "controlled/dedicated-eyes/amo/hand/controlled/dedicated-eyes/amo/command/4/event/5",
+        "rootId": "controlled/dedicated-eyes/amo/hand/controlled/dedicated-eyes/amo/command/4",
+        "rootEventId": "controlled/dedicated-eyes/amo/hand/controlled/dedicated-eyes/amo/command/4/event/5",
+        "phase": "jokerScore",
+        "sourceType": "joker",
+        "sourceDefinitionId": "f09",
+        "sourceInstanceId": "controlled/eyes/f09",
+        "operation": "multiply-multiplier",
+        "value": {
+          "n": "3",
+          "d": "2"
+        },
+        "before": {
+          "H": {
+            "n": "95",
+            "d": "1"
+          },
+          "M": {
+            "n": "2",
+            "d": "1"
+          }
+        },
+        "after": {
+          "H": {
+            "n": "95",
+            "d": "1"
+          },
+          "M": {
+            "n": "3",
+            "d": "1"
+          }
+        },
+        "reasonKey": "f09.multiply-multiplier",
+        "visibleCondition": {
+          "kind": "resource",
+          "resource": "discards-used",
+          "equals": 0
+        },
+        "retriggerDepth": 0
+      },
+      "canonicalStateEqual": true,
+      "status": "PASS",
+      "eyeTextOverlap": []
+    },
+    {
+      "id": "touye",
+      "errors": [],
+      "requests": [
+        {
+          "url": "http://localhost:5188/public/assets/tangsong-eyes/manifest.json?import",
+          "time": 1792223534741
+        },
+        {
+          "url": "http://localhost:5188/assets/tangsong-eyes/touye.eyes-12194e100f85.webp?v=12194e100f85",
+          "time": 1792223535836
+        }
+      ],
+      "screens": [
+        {
+          "phase": "charge",
+          "shot": "eyes",
+          "camera": "dedicated-eye-strip",
+          "texture": "hero-eyes-touye",
+          "crop": {
+            "x": 0,
+            "y": 0,
+            "width": 768,
+            "height": 288
+          },
+          "bounds": {
+            "x": 42,
+            "y": 334,
+            "width": 244,
+            "height": 91.5
+          },
+          "scaleX": 0.3177083333333333,
+          "scaleY": 0.3177083333333333,
+          "value": "2.3",
+          "numberScale": 1,
+          "eventId": "controlled/dedicated-eyes/touye/hand/controlled/dedicated-eyes/touye/command/4/event/6",
+          "name": "charge",
+          "texts": [
+            {
+              "name": "hero/climax-name",
+              "text": "始终如一",
+              "bounds": {
+                "x": 30,
+                "y": 260,
+                "width": 120,
+                "height": 37
+              }
+            },
+            {
+              "name": "hero/climax-owner",
+              "text": "秦琼 · 踏破山河",
+              "bounds": {
+                "x": 30,
+                "y": 300,
+                "width": 99,
+                "height": 18
+              }
+            },
+            {
+              "name": "hero/climax-note",
+              "text": "×1.5 倍率",
+              "bounds": {
+                "x": 30,
+                "y": 541,
+                "width": 65,
+                "height": 18
+              }
+            },
+            {
+              "name": "hero/climax-local-label",
+              "text": "本次倍率",
+              "bounds": {
+                "x": 30,
+                "y": 436,
+                "width": 56,
+                "height": 18
+              }
+            },
+            {
+              "name": "hero/climax-local-effect",
+              "text": "×1.5",
+              "bounds": {
+                "x": 72,
+                "y": 458,
+                "width": 60,
+                "height": 39
+              }
+            },
+            {
+              "name": "hero/climax-value-label",
+              "text": "累计倍率落位",
+              "bounds": {
+                "x": 190,
+                "y": 436,
+                "width": 84,
+                "height": 18
+              }
+            },
+            {
+              "name": "hero/climax-value",
+              "text": "2.3",
+              "bounds": {
+                "x": 251.72000000000003,
+                "y": 474,
+                "width": 47,
+                "height": 39
+              }
+            },
+            {
+              "name": "hero/climax-landing",
+              "text": "累计倍率 2.3→3.45",
+              "bounds": {
+                "x": 30,
+                "y": 564,
+                "width": 126,
+                "height": 18
+              }
+            }
+          ],
+          "route": true,
+          "eyePixelHash": "dec5ad07babb03a914ea7175c883bde48fd57e673c152771319fda00818b3a53",
+          "path": "screens/touye-charge.png"
+        },
+        {
+          "phase": "strike",
+          "shot": "skill",
+          "camera": "dedicated-eye-strip",
+          "texture": "hero-eyes-touye",
+          "crop": {
+            "x": 0,
+            "y": 0,
+            "width": 768,
+            "height": 288
+          },
+          "bounds": {
+            "x": 42,
+            "y": 334,
+            "width": 244,
+            "height": 91.5
+          },
+          "scaleX": 0.3177083333333333,
+          "scaleY": 0.3177083333333333,
+          "value": "3.45",
+          "numberScale": 1.5391409967443024,
+          "eventId": "controlled/dedicated-eyes/touye/hand/controlled/dedicated-eyes/touye/command/4/event/6",
+          "name": "impact",
+          "texts": [
+            {
+              "name": "hero/climax-name",
+              "text": "始终如一",
+              "bounds": {
+                "x": 30,
+                "y": 260,
+                "width": 120,
+                "height": 37
+              }
+            },
+            {
+              "name": "hero/climax-owner",
+              "text": "秦琼 · 踏破山河",
+              "bounds": {
+                "x": 30,
+                "y": 300,
+                "width": 99,
+                "height": 18
+              }
+            },
+            {
+              "name": "hero/climax-note",
+              "text": "×1.5 倍率",
+              "bounds": {
+                "x": 30,
+                "y": 541,
+                "width": 65,
+                "height": 18
+              }
+            },
+            {
+              "name": "hero/climax-local-label",
+              "text": "本次倍率",
+              "bounds": {
+                "x": 30,
+                "y": 436,
+                "width": 56,
+                "height": 18
+              }
+            },
+            {
+              "name": "hero/climax-local-effect",
+              "text": "×1.5",
+              "bounds": {
+                "x": 72,
+                "y": 458,
+                "width": 60,
+                "height": 39
+              }
+            },
+            {
+              "name": "hero/climax-value-label",
+              "text": "累计倍率落位",
+              "bounds": {
+                "x": 190,
+                "y": 436,
+                "width": 84,
+                "height": 18
+              }
+            },
+            {
+              "name": "hero/climax-value",
+              "text": "3.45",
+              "bounds": {
+                "x": 224.42834710743804,
+                "y": 459.49152280379553,
+                "width": 101.58330578512394,
+                "height": 60.026498873027776
+              }
+            },
+            {
+              "name": "hero/climax-landing",
+              "text": "累计倍率 2.3→3.45",
+              "bounds": {
+                "x": 30,
+                "y": 564,
+                "width": 126,
+                "height": 18
+              }
+            }
+          ],
+          "route": true,
+          "eyePixelHash": "dec5ad07babb03a914ea7175c883bde48fd57e673c152771319fda00818b3a53",
+          "path": "screens/touye-impact.png"
+        }
+      ],
+      "preloaded": true,
+      "playAt": 1792223537056,
+      "frameCount": 55,
+      "eye": {
+        "phase": "charge",
+        "shot": "eyes",
+        "camera": "dedicated-eye-strip",
+        "texture": "hero-eyes-touye",
+        "crop": {
+          "x": 0,
+          "y": 0,
+          "width": 768,
+          "height": 288
+        },
+        "bounds": {
+          "x": 42,
+          "y": 334,
+          "width": 244,
+          "height": 91.5
+        },
+        "scaleX": 0.3177083333333333,
+        "scaleY": 0.3177083333333333,
+        "value": "2.3",
+        "numberScale": 1,
+        "eventId": "controlled/dedicated-eyes/touye/hand/controlled/dedicated-eyes/touye/command/4/event/6"
+      },
+      "peak": 1.5391409967443024,
+      "values": [
+        "2.3",
+        "3.45"
+      ],
+      "actualEvent": {
+        "eventId": "controlled/dedicated-eyes/touye/hand/controlled/dedicated-eyes/touye/command/4/event/6",
+        "rootId": "controlled/dedicated-eyes/touye/hand/controlled/dedicated-eyes/touye/command/4",
+        "rootEventId": "controlled/dedicated-eyes/touye/hand/controlled/dedicated-eyes/touye/command/4/event/6",
+        "phase": "jokerScore",
+        "sourceType": "joker",
+        "sourceDefinitionId": "f09",
+        "sourceInstanceId": "controlled/eyes/f09",
+        "operation": "multiply-multiplier",
+        "value": {
+          "n": "3",
+          "d": "2"
+        },
+        "before": {
+          "H": {
+            "n": "95",
+            "d": "1"
+          },
+          "M": {
+            "n": "23",
+            "d": "10"
+          }
+        },
+        "after": {
+          "H": {
+            "n": "95",
+            "d": "1"
+          },
+          "M": {
+            "n": "69",
+            "d": "20"
+          }
+        },
+        "reasonKey": "f09.multiply-multiplier",
+        "visibleCondition": {
+          "kind": "resource",
+          "resource": "discards-used",
+          "equals": 0
+        },
+        "retriggerDepth": 0
+      },
+      "canonicalStateEqual": true,
+      "status": "PASS",
+      "eyeTextOverlap": []
+    },
+    {
+      "id": "laohuan",
+      "errors": [],
+      "requests": [
+        {
+          "url": "http://localhost:5188/public/assets/tangsong-eyes/manifest.json?import",
+          "time": 1792223546315
+        },
+        {
+          "url": "http://localhost:5188/assets/tangsong-eyes/laohuan.eyes-375b308030e5.webp?v=375b308030e5",
+          "time": 1792223547466
+        }
+      ],
+      "screens": [
+        {
+          "phase": "charge",
+          "shot": "eyes",
+          "camera": "dedicated-eye-strip",
+          "texture": "hero-eyes-laohuan",
+          "crop": {
+            "x": 0,
+            "y": 0,
+            "width": 768,
+            "height": 288
+          },
+          "bounds": {
+            "x": 42,
+            "y": 334,
+            "width": 244,
+            "height": 91.5
+          },
+          "scaleX": 0.3177083333333333,
+          "scaleY": 0.3177083333333333,
+          "value": "2",
+          "numberScale": 1,
+          "eventId": "controlled/dedicated-eyes/laohuan/hand/controlled/dedicated-eyes/laohuan/command/4/event/5",
+          "name": "charge",
+          "texts": [
+            {
+              "name": "hero/climax-name",
+              "text": "始终如一",
+              "bounds": {
+                "x": 30,
+                "y": 260,
+                "width": 120,
+                "height": 37
+              }
+            },
+            {
+              "name": "hero/climax-owner",
+              "text": "辛弃疾 · 墨影醉里挑灯看剑",
+              "bounds": {
+                "x": 30,
+                "y": 300,
+                "width": 169,
+                "height": 18
+              }
+            },
+            {
+              "name": "hero/climax-note",
+              "text": "×1.5 倍率",
+              "bounds": {
+                "x": 30,
+                "y": 541,
+                "width": 65,
+                "height": 18
+              }
+            },
+            {
+              "name": "hero/climax-local-label",
+              "text": "本次倍率",
+              "bounds": {
+                "x": 30,
+                "y": 436,
+                "width": 56,
+                "height": 18
+              }
+            },
+            {
+              "name": "hero/climax-local-effect",
+              "text": "×1.5",
+              "bounds": {
+                "x": 72,
+                "y": 458,
+                "width": 60,
+                "height": 39
+              }
+            },
+            {
+              "name": "hero/climax-value-label",
+              "text": "累计倍率落位",
+              "bounds": {
+                "x": 190,
+                "y": 436,
+                "width": 84,
+                "height": 18
+              }
+            },
+            {
+              "name": "hero/climax-value",
+              "text": "2",
+              "bounds": {
+                "x": 265.72,
+                "y": 474,
+                "width": 19,
+                "height": 39
+              }
+            },
+            {
+              "name": "hero/climax-landing",
+              "text": "累计倍率 2→3",
+              "bounds": {
+                "x": 30,
+                "y": 564,
+                "width": 92,
+                "height": 18
+              }
+            }
+          ],
+          "route": true,
+          "eyePixelHash": "11172d4aab87039667fa744b1d7b2847aa108ac71b6e28f91b07aa26e7a83598",
+          "path": "screens/laohuan-charge.png"
+        },
+        {
+          "phase": "strike",
+          "shot": "skill",
+          "camera": "dedicated-eye-strip",
+          "texture": "hero-eyes-laohuan",
+          "crop": {
+            "x": 0,
+            "y": 0,
+            "width": 768,
+            "height": 288
+          },
+          "bounds": {
+            "x": 42,
+            "y": 334,
+            "width": 244,
+            "height": 91.5
+          },
+          "scaleX": 0.3177083333333333,
+          "scaleY": 0.3177083333333333,
+          "value": "3",
+          "numberScale": 1.5391409967443024,
+          "eventId": "controlled/dedicated-eyes/laohuan/hand/controlled/dedicated-eyes/laohuan/command/4/event/5",
+          "name": "impact",
+          "texts": [
+            {
+              "name": "hero/climax-name",
+              "text": "始终如一",
+              "bounds": {
+                "x": 30,
+                "y": 260,
+                "width": 120,
+                "height": 37
+              }
+            },
+            {
+              "name": "hero/climax-owner",
+              "text": "辛弃疾 · 墨影醉里挑灯看剑",
+              "bounds": {
+                "x": 30,
+                "y": 300,
+                "width": 169,
+                "height": 18
+              }
+            },
+            {
+              "name": "hero/climax-note",
+              "text": "×1.5 倍率",
+              "bounds": {
+                "x": 30,
+                "y": 541,
+                "width": 65,
+                "height": 18
+              }
+            },
+            {
+              "name": "hero/climax-local-label",
+              "text": "本次倍率",
+              "bounds": {
+                "x": 30,
+                "y": 436,
+                "width": 56,
+                "height": 18
+              }
+            },
+            {
+              "name": "hero/climax-local-effect",
+              "text": "×1.5",
+              "bounds": {
+                "x": 72,
+                "y": 458,
+                "width": 60,
+                "height": 39
+              }
+            },
+            {
+              "name": "hero/climax-value-label",
+              "text": "累计倍率落位",
+              "bounds": {
+                "x": 190,
+                "y": 436,
+                "width": 84,
+                "height": 18
+              }
+            },
+            {
+              "name": "hero/climax-value",
+              "text": "3",
+              "bounds": {
+                "x": 260.59816053092914,
+                "y": 459.49152280379553,
+                "width": 29.243678938141727,
+                "height": 60.026498873027776
+              }
+            },
+            {
+              "name": "hero/climax-landing",
+              "text": "累计倍率 2→3",
+              "bounds": {
+                "x": 30,
+                "y": 564,
+                "width": 92,
+                "height": 18
+              }
+            }
+          ],
+          "route": true,
+          "eyePixelHash": "11172d4aab87039667fa744b1d7b2847aa108ac71b6e28f91b07aa26e7a83598",
+          "path": "screens/laohuan-impact.png"
+        }
+      ],
+      "preloaded": true,
+      "playAt": 1792223548809,
+      "frameCount": 55,
+      "eye": {
+        "phase": "charge",
+        "shot": "eyes",
+        "camera": "dedicated-eye-strip",
+        "texture": "hero-eyes-laohuan",
+        "crop": {
+          "x": 0,
+          "y": 0,
+          "width": 768,
+          "height": 288
+        },
+        "bounds": {
+          "x": 42,
+          "y": 334,
+          "width": 244,
+          "height": 91.5
+        },
+        "scaleX": 0.3177083333333333,
+        "scaleY": 0.3177083333333333,
+        "value": "2",
+        "numberScale": 1,
+        "eventId": "controlled/dedicated-eyes/laohuan/hand/controlled/dedicated-eyes/laohuan/command/4/event/5"
+      },
+      "peak": 1.5391409967443024,
+      "values": [
+        "2",
+        "3"
+      ],
+      "actualEvent": {
+        "eventId": "controlled/dedicated-eyes/laohuan/hand/controlled/dedicated-eyes/laohuan/command/4/event/5",
+        "rootId": "controlled/dedicated-eyes/laohuan/hand/controlled/dedicated-eyes/laohuan/command/4",
+        "rootEventId": "controlled/dedicated-eyes/laohuan/hand/controlled/dedicated-eyes/laohuan/command/4/event/5",
+        "phase": "jokerScore",
+        "sourceType": "joker",
+        "sourceDefinitionId": "f09",
+        "sourceInstanceId": "controlled/eyes/f09",
+        "operation": "multiply-multiplier",
+        "value": {
+          "n": "3",
+          "d": "2"
+        },
+        "before": {
+          "H": {
+            "n": "95",
+            "d": "1"
+          },
+          "M": {
+            "n": "2",
+            "d": "1"
+          }
+        },
+        "after": {
+          "H": {
+            "n": "95",
+            "d": "1"
+          },
+          "M": {
+            "n": "3",
+            "d": "1"
+          }
+        },
+        "reasonKey": "f09.multiply-multiplier",
+        "visibleCondition": {
+          "kind": "resource",
+          "resource": "discards-used",
+          "equals": 0
+        },
+        "retriggerDepth": 0
+      },
+      "canonicalStateEqual": true,
+      "status": "PASS",
+      "eyeTextOverlap": []
+    },
+    {
+      "id": "erxiang",
+      "errors": [],
+      "requests": [
+        {
+          "url": "http://localhost:5188/public/assets/tangsong-eyes/manifest.json?import",
+          "time": 1792223557026
+        },
+        {
+          "url": "http://localhost:5188/assets/tangsong-eyes/erxiang.eyes-3a23269ca3b5.webp?v=3a23269ca3b5",
+          "time": 1792223558150
+        }
+      ],
+      "screens": [
+        {
+          "phase": "charge",
+          "shot": "eyes",
+          "camera": "dedicated-eye-strip",
+          "texture": "hero-eyes-erxiang",
+          "crop": {
+            "x": 0,
+            "y": 0,
+            "width": 768,
+            "height": 288
+          },
+          "bounds": {
+            "x": 42,
+            "y": 334,
+            "width": 244,
+            "height": 91.5
+          },
+          "scaleX": 0.3177083333333333,
+          "scaleY": 0.3177083333333333,
+          "value": "2",
+          "numberScale": 1,
+          "eventId": "controlled/dedicated-eyes/erxiang/hand/controlled/dedicated-eyes/erxiang/command/4/event/5",
+          "name": "charge",
+          "texts": [
+            {
+              "name": "hero/climax-name",
+              "text": "始终如一",
+              "bounds": {
+                "x": 30,
+                "y": 260,
+                "width": 120,
+                "height": 37
+              }
+            },
+            {
+              "name": "hero/climax-owner",
+              "text": "刘娥 · 大宋之母",
+              "bounds": {
+                "x": 30,
+                "y": 300,
+                "width": 99,
+                "height": 18
+              }
+            },
+            {
+              "name": "hero/climax-note",
+              "text": "×1.5 倍率",
+              "bounds": {
+                "x": 30,
+                "y": 541,
+                "width": 65,
+                "height": 18
+              }
+            },
+            {
+              "name": "hero/climax-local-label",
+              "text": "本次倍率",
+              "bounds": {
+                "x": 30,
+                "y": 436,
+                "width": 56,
+                "height": 18
+              }
+            },
+            {
+              "name": "hero/climax-local-effect",
+              "text": "×1.5",
+              "bounds": {
+                "x": 72,
+                "y": 458,
+                "width": 60,
+                "height": 39
+              }
+            },
+            {
+              "name": "hero/climax-value-label",
+              "text": "累计倍率落位",
+              "bounds": {
+                "x": 190,
+                "y": 436,
+                "width": 84,
+                "height": 18
+              }
+            },
+            {
+              "name": "hero/climax-value",
+              "text": "2",
+              "bounds": {
+                "x": 265.72,
+                "y": 474,
+                "width": 19,
+                "height": 39
+              }
+            },
+            {
+              "name": "hero/climax-landing",
+              "text": "累计倍率 2→3",
+              "bounds": {
+                "x": 30,
+                "y": 564,
+                "width": 92,
+                "height": 18
+              }
+            }
+          ],
+          "route": true,
+          "eyePixelHash": "3db0e569be89d638282f593a9b9295ac98f5c5110f610354c226c21c3a68adc3",
+          "path": "screens/erxiang-charge.png"
+        },
+        {
+          "phase": "strike",
+          "shot": "skill",
+          "camera": "dedicated-eye-strip",
+          "texture": "hero-eyes-erxiang",
+          "crop": {
+            "x": 0,
+            "y": 0,
+            "width": 768,
+            "height": 288
+          },
+          "bounds": {
+            "x": 42,
+            "y": 334,
+            "width": 244,
+            "height": 91.5
+          },
+          "scaleX": 0.3177083333333333,
+          "scaleY": 0.3177083333333333,
+          "value": "3",
+          "numberScale": 1.5391409967443024,
+          "eventId": "controlled/dedicated-eyes/erxiang/hand/controlled/dedicated-eyes/erxiang/command/4/event/5",
+          "name": "impact",
+          "texts": [
+            {
+              "name": "hero/climax-name",
+              "text": "始终如一",
+              "bounds": {
+                "x": 30,
+                "y": 260,
+                "width": 120,
+                "height": 37
+              }
+            },
+            {
+              "name": "hero/climax-owner",
+              "text": "刘娥 · 大宋之母",
+              "bounds": {
+                "x": 30,
+                "y": 300,
+                "width": 99,
+                "height": 18
+              }
+            },
+            {
+              "name": "hero/climax-note",
+              "text": "×1.5 倍率",
+              "bounds": {
+                "x": 30,
+                "y": 541,
+                "width": 65,
+                "height": 18
+              }
+            },
+            {
+              "name": "hero/climax-local-label",
+              "text": "本次倍率",
+              "bounds": {
+                "x": 30,
+                "y": 436,
+                "width": 56,
+                "height": 18
+              }
+            },
+            {
+              "name": "hero/climax-local-effect",
+              "text": "×1.5",
+              "bounds": {
+                "x": 72,
+                "y": 458,
+                "width": 60,
+                "height": 39
+              }
+            },
+            {
+              "name": "hero/climax-value-label",
+              "text": "累计倍率落位",
+              "bounds": {
+                "x": 190,
+                "y": 436,
+                "width": 84,
+                "height": 18
+              }
+            },
+            {
+              "name": "hero/climax-value",
+              "text": "3",
+              "bounds": {
+                "x": 260.59816053092914,
+                "y": 459.49152280379553,
+                "width": 29.243678938141727,
+                "height": 60.026498873027776
+              }
+            },
+            {
+              "name": "hero/climax-landing",
+              "text": "累计倍率 2→3",
+              "bounds": {
+                "x": 30,
+                "y": 564,
+                "width": 92,
+                "height": 18
+              }
+            }
+          ],
+          "route": true,
+          "eyePixelHash": "3db0e569be89d638282f593a9b9295ac98f5c5110f610354c226c21c3a68adc3",
+          "path": "screens/erxiang-impact.png"
+        }
+      ],
+      "preloaded": true,
+      "playAt": 1792223559338,
+      "frameCount": 54,
+      "eye": {
+        "phase": "charge",
+        "shot": "eyes",
+        "camera": "dedicated-eye-strip",
+        "texture": "hero-eyes-erxiang",
+        "crop": {
+          "x": 0,
+          "y": 0,
+          "width": 768,
+          "height": 288
+        },
+        "bounds": {
+          "x": 42,
+          "y": 334,
+          "width": 244,
+          "height": 91.5
+        },
+        "scaleX": 0.3177083333333333,
+        "scaleY": 0.3177083333333333,
+        "value": "2",
+        "numberScale": 1,
+        "eventId": "controlled/dedicated-eyes/erxiang/hand/controlled/dedicated-eyes/erxiang/command/4/event/5"
+      },
+      "peak": 1.5391409967443024,
+      "values": [
+        "2",
+        "3"
+      ],
+      "actualEvent": {
+        "eventId": "controlled/dedicated-eyes/erxiang/hand/controlled/dedicated-eyes/erxiang/command/4/event/5",
+        "rootId": "controlled/dedicated-eyes/erxiang/hand/controlled/dedicated-eyes/erxiang/command/4",
+        "rootEventId": "controlled/dedicated-eyes/erxiang/hand/controlled/dedicated-eyes/erxiang/command/4/event/5",
+        "phase": "jokerScore",
+        "sourceType": "joker",
+        "sourceDefinitionId": "f09",
+        "sourceInstanceId": "controlled/eyes/f09",
+        "operation": "multiply-multiplier",
+        "value": {
+          "n": "3",
+          "d": "2"
+        },
+        "before": {
+          "H": {
+            "n": "95",
+            "d": "1"
+          },
+          "M": {
+            "n": "2",
+            "d": "1"
+          }
+        },
+        "after": {
+          "H": {
+            "n": "95",
+            "d": "1"
+          },
+          "M": {
+            "n": "3",
+            "d": "1"
+          }
+        },
+        "reasonKey": "f09.multiply-multiplier",
+        "visibleCondition": {
+          "kind": "resource",
+          "resource": "discards-used",
+          "equals": 0
+        },
+        "retriggerDepth": 0
+      },
+      "canonicalStateEqual": true,
+      "status": "PASS",
+      "eyeTextOverlap": []
+    },
+    {
+      "id": "azao",
+      "errors": [],
+      "requests": [
+        {
+          "url": "http://localhost:5188/public/assets/tangsong-eyes/manifest.json?import",
+          "time": 1792223663328
+        },
+        {
+          "url": "http://localhost:5188/assets/tangsong-eyes/azao.eyes-f6d4675e5bc3.webp?v=f6d4675e5bc3",
+          "time": 1792223664847
+        }
+      ],
+      "screens": [
+        {
+          "phase": "charge",
+          "shot": "eyes",
+          "camera": "dedicated-eye-strip",
+          "texture": "hero-eyes-azao",
+          "crop": {
+            "x": 0,
+            "y": 0,
+            "width": 768,
+            "height": 288
+          },
+          "bounds": {
+            "x": 42,
+            "y": 334,
+            "width": 244,
+            "height": 91.5
+          },
+          "scaleX": 0.3177083333333333,
+          "scaleY": 0.3177083333333333,
+          "value": "2",
+          "numberScale": 1,
+          "eventId": "controlled/dedicated-eyes/azao/hand/controlled/dedicated-eyes/azao/command/4/event/5",
+          "name": "charge",
+          "texts": [
+            {
+              "name": "hero/climax-name",
+              "text": "始终如一",
+              "bounds": {
+                "x": 30,
+                "y": 260,
+                "width": 120,
+                "height": 37
+              }
+            },
+            {
+              "name": "hero/climax-owner",
+              "text": "文成公主 · 藏地迎宾",
+              "bounds": {
+                "x": 30,
+                "y": 300,
+                "width": 127,
+                "height": 18
+              }
+            },
+            {
+              "name": "hero/climax-note",
+              "text": "×1.5 倍率",
+              "bounds": {
+                "x": 30,
+                "y": 541,
+                "width": 65,
+                "height": 18
+              }
+            },
+            {
+              "name": "hero/climax-local-label",
+              "text": "本次倍率",
+              "bounds": {
+                "x": 30,
+                "y": 436,
+                "width": 56,
+                "height": 18
+              }
+            },
+            {
+              "name": "hero/climax-local-effect",
+              "text": "×1.5",
+              "bounds": {
+                "x": 72,
+                "y": 458,
+                "width": 60,
+                "height": 39
+              }
+            },
+            {
+              "name": "hero/climax-value-label",
+              "text": "累计倍率落位",
+              "bounds": {
+                "x": 190,
+                "y": 436,
+                "width": 84,
+                "height": 18
+              }
+            },
+            {
+              "name": "hero/climax-value",
+              "text": "2",
+              "bounds": {
+                "x": 265.72,
+                "y": 474,
+                "width": 19,
+                "height": 39
+              }
+            },
+            {
+              "name": "hero/climax-landing",
+              "text": "累计倍率 2→3",
+              "bounds": {
+                "x": 30,
+                "y": 564,
+                "width": 92,
+                "height": 18
+              }
+            }
+          ],
+          "route": true,
+          "eyePixelHash": "8dfe67d5b16b9d9d4f7e246ee9167a40f8ee4d5858f07201f3bd813e108ba319",
+          "path": "screens/azao-charge.png"
+        },
+        {
+          "phase": "strike",
+          "shot": "skill",
+          "camera": "dedicated-eye-strip",
+          "texture": "hero-eyes-azao",
+          "crop": {
+            "x": 0,
+            "y": 0,
+            "width": 768,
+            "height": 288
+          },
+          "bounds": {
+            "x": 42,
+            "y": 334,
+            "width": 244,
+            "height": 91.5
+          },
+          "scaleX": 0.3177083333333333,
+          "scaleY": 0.3177083333333333,
+          "value": "3",
+          "numberScale": 1.5391409967443024,
+          "eventId": "controlled/dedicated-eyes/azao/hand/controlled/dedicated-eyes/azao/command/4/event/5",
+          "name": "impact",
+          "texts": [
+            {
+              "name": "hero/climax-name",
+              "text": "始终如一",
+              "bounds": {
+                "x": 30,
+                "y": 260,
+                "width": 120,
+                "height": 37
+              }
+            },
+            {
+              "name": "hero/climax-owner",
+              "text": "文成公主 · 藏地迎宾",
+              "bounds": {
+                "x": 30,
+                "y": 300,
+                "width": 127,
+                "height": 18
+              }
+            },
+            {
+              "name": "hero/climax-note",
+              "text": "×1.5 倍率",
+              "bounds": {
+                "x": 30,
+                "y": 541,
+                "width": 65,
+                "height": 18
+              }
+            },
+            {
+              "name": "hero/climax-local-label",
+              "text": "本次倍率",
+              "bounds": {
+                "x": 30,
+                "y": 436,
+                "width": 56,
+                "height": 18
+              }
+            },
+            {
+              "name": "hero/climax-local-effect",
+              "text": "×1.5",
+              "bounds": {
+                "x": 72,
+                "y": 458,
+                "width": 60,
+                "height": 39
+              }
+            },
+            {
+              "name": "hero/climax-value-label",
+              "text": "累计倍率落位",
+              "bounds": {
+                "x": 190,
+                "y": 436,
+                "width": 84,
+                "height": 18
+              }
+            },
+            {
+              "name": "hero/climax-value",
+              "text": "3",
+              "bounds": {
+                "x": 260.59816053092914,
+                "y": 459.49152280379553,
+                "width": 29.243678938141727,
+                "height": 60.026498873027776
+              }
+            },
+            {
+              "name": "hero/climax-landing",
+              "text": "累计倍率 2→3",
+              "bounds": {
+                "x": 30,
+                "y": 564,
+                "width": 92,
+                "height": 18
+              }
+            }
+          ],
+          "route": true,
+          "eyePixelHash": "8dfe67d5b16b9d9d4f7e246ee9167a40f8ee4d5858f07201f3bd813e108ba319",
+          "path": "screens/azao-impact.png"
+        }
+      ],
+      "preloaded": true,
+      "playAt": 1792223666248,
+      "frameCount": 54,
+      "eye": {
+        "phase": "charge",
+        "shot": "eyes",
+        "camera": "dedicated-eye-strip",
+        "texture": "hero-eyes-azao",
+        "crop": {
+          "x": 0,
+          "y": 0,
+          "width": 768,
+          "height": 288
+        },
+        "bounds": {
+          "x": 42,
+          "y": 334,
+          "width": 244,
+          "height": 91.5
+        },
+        "scaleX": 0.3177083333333333,
+        "scaleY": 0.3177083333333333,
+        "value": "2",
+        "numberScale": 1,
+        "eventId": "controlled/dedicated-eyes/azao/hand/controlled/dedicated-eyes/azao/command/4/event/5"
+      },
+      "peak": 1.5391409967443024,
+      "values": [
+        "2",
+        "3"
+      ],
+      "actualEvent": {
+        "eventId": "controlled/dedicated-eyes/azao/hand/controlled/dedicated-eyes/azao/command/4/event/5",
+        "rootId": "controlled/dedicated-eyes/azao/hand/controlled/dedicated-eyes/azao/command/4",
+        "rootEventId": "controlled/dedicated-eyes/azao/hand/controlled/dedicated-eyes/azao/command/4/event/5",
+        "phase": "jokerScore",
+        "sourceType": "joker",
+        "sourceDefinitionId": "f09",
+        "sourceInstanceId": "controlled/eyes/f09",
+        "operation": "multiply-multiplier",
+        "value": {
+          "n": "3",
+          "d": "2"
+        },
+        "before": {
+          "H": {
+            "n": "95",
+            "d": "1"
+          },
+          "M": {
+            "n": "2",
+            "d": "1"
+          }
+        },
+        "after": {
+          "H": {
+            "n": "95",
+            "d": "1"
+          },
+          "M": {
+            "n": "3",
+            "d": "1"
+          }
+        },
+        "reasonKey": "f09.multiply-multiplier",
+        "visibleCondition": {
+          "kind": "resource",
+          "resource": "discards-used",
+          "equals": 0
+        },
+        "retriggerDepth": 0
+      },
+      "canonicalStateEqual": true,
+      "status": "PASS",
+      "eyeTextOverlap": []
+    },
+    {
+      "id": "xiemu",
+      "errors": [],
+      "requests": [
+        {
+          "url": "http://localhost:5188/public/assets/tangsong-eyes/manifest.json?import",
+          "time": 1792223761770
+        },
+        {
+          "url": "http://localhost:5188/assets/tangsong-eyes/xiemu.eyes-8b93601ca4cc.webp?v=8b93601ca4cc",
+          "time": 1792223763242
+        }
+      ],
+      "screens": [
+        {
+          "phase": "charge",
+          "shot": "eyes",
+          "camera": "dedicated-eye-strip",
+          "texture": "hero-eyes-xiemu",
+          "crop": {
+            "x": 0,
+            "y": 0,
+            "width": 768,
+            "height": 288
+          },
+          "bounds": {
+            "x": 42,
+            "y": 334,
+            "width": 244,
+            "height": 91.5
+          },
+          "scaleX": 0.3177083333333333,
+          "scaleY": 0.3177083333333333,
+          "value": "2",
+          "numberScale": 1,
+          "eventId": "controlled/dedicated-eyes/xiemu/hand/controlled/dedicated-eyes/xiemu/command/4/event/5",
+          "name": "charge",
+          "texts": [
+            {
+              "name": "hero/climax-name",
+              "text": "始终如一",
+              "bounds": {
+                "x": 30,
+                "y": 260,
+                "width": 120,
+                "height": 37
+              }
+            },
+            {
+              "name": "hero/climax-owner",
+              "text": "花蕊夫人 · 执剑凌风",
+              "bounds": {
+                "x": 30,
+                "y": 300,
+                "width": 127,
+                "height": 18
+              }
+            },
+            {
+              "name": "hero/climax-note",
+              "text": "×1.5 倍率",
+              "bounds": {
+                "x": 30,
+                "y": 541,
+                "width": 65,
+                "height": 18
+              }
+            },
+            {
+              "name": "hero/climax-local-label",
+              "text": "本次倍率",
+              "bounds": {
+                "x": 30,
+                "y": 436,
+                "width": 56,
+                "height": 18
+              }
+            },
+            {
+              "name": "hero/climax-local-effect",
+              "text": "×1.5",
+              "bounds": {
+                "x": 72,
+                "y": 458,
+                "width": 60,
+                "height": 39
+              }
+            },
+            {
+              "name": "hero/climax-value-label",
+              "text": "累计倍率落位",
+              "bounds": {
+                "x": 190,
+                "y": 436,
+                "width": 84,
+                "height": 18
+              }
+            },
+            {
+              "name": "hero/climax-value",
+              "text": "2",
+              "bounds": {
+                "x": 265.72,
+                "y": 474,
+                "width": 19,
+                "height": 39
+              }
+            },
+            {
+              "name": "hero/climax-landing",
+              "text": "累计倍率 2→3",
+              "bounds": {
+                "x": 30,
+                "y": 564,
+                "width": 92,
+                "height": 18
+              }
+            }
+          ],
+          "route": true,
+          "eyePixelHash": "bd5448ef5162b8c5ce37c08f74edbbd65205a23a0cb23893d8afe17c0b5ea005",
+          "path": "screens/xiemu-charge.png"
+        },
+        {
+          "phase": "strike",
+          "shot": "skill",
+          "camera": "dedicated-eye-strip",
+          "texture": "hero-eyes-xiemu",
+          "crop": {
+            "x": 0,
+            "y": 0,
+            "width": 768,
+            "height": 288
+          },
+          "bounds": {
+            "x": 42,
+            "y": 334,
+            "width": 244,
+            "height": 91.5
+          },
+          "scaleX": 0.3177083333333333,
+          "scaleY": 0.3177083333333333,
+          "value": "3",
+          "numberScale": 1.5391409967443024,
+          "eventId": "controlled/dedicated-eyes/xiemu/hand/controlled/dedicated-eyes/xiemu/command/4/event/5",
+          "name": "impact",
+          "texts": [
+            {
+              "name": "hero/climax-name",
+              "text": "始终如一",
+              "bounds": {
+                "x": 30,
+                "y": 260,
+                "width": 120,
+                "height": 37
+              }
+            },
+            {
+              "name": "hero/climax-owner",
+              "text": "花蕊夫人 · 执剑凌风",
+              "bounds": {
+                "x": 30,
+                "y": 300,
+                "width": 127,
+                "height": 18
+              }
+            },
+            {
+              "name": "hero/climax-note",
+              "text": "×1.5 倍率",
+              "bounds": {
+                "x": 30,
+                "y": 541,
+                "width": 65,
+                "height": 18
+              }
+            },
+            {
+              "name": "hero/climax-local-label",
+              "text": "本次倍率",
+              "bounds": {
+                "x": 30,
+                "y": 436,
+                "width": 56,
+                "height": 18
+              }
+            },
+            {
+              "name": "hero/climax-local-effect",
+              "text": "×1.5",
+              "bounds": {
+                "x": 72,
+                "y": 458,
+                "width": 60,
+                "height": 39
+              }
+            },
+            {
+              "name": "hero/climax-value-label",
+              "text": "累计倍率落位",
+              "bounds": {
+                "x": 190,
+                "y": 436,
+                "width": 84,
+                "height": 18
+              }
+            },
+            {
+              "name": "hero/climax-value",
+              "text": "3",
+              "bounds": {
+                "x": 260.59816053092914,
+                "y": 459.49152280379553,
+                "width": 29.243678938141727,
+                "height": 60.026498873027776
+              }
+            },
+            {
+              "name": "hero/climax-landing",
+              "text": "累计倍率 2→3",
+              "bounds": {
+                "x": 30,
+                "y": 564,
+                "width": 92,
+                "height": 18
+              }
+            }
+          ],
+          "route": true,
+          "eyePixelHash": "bd5448ef5162b8c5ce37c08f74edbbd65205a23a0cb23893d8afe17c0b5ea005",
+          "path": "screens/xiemu-impact.png"
+        }
+      ],
+      "preloaded": true,
+      "playAt": 1792223764462,
+      "frameCount": 56,
+      "eye": {
+        "phase": "charge",
+        "shot": "eyes",
+        "camera": "dedicated-eye-strip",
+        "texture": "hero-eyes-xiemu",
+        "crop": {
+          "x": 0,
+          "y": 0,
+          "width": 768,
+          "height": 288
+        },
+        "bounds": {
+          "x": 42,
+          "y": 334,
+          "width": 244,
+          "height": 91.5
+        },
+        "scaleX": 0.3177083333333333,
+        "scaleY": 0.3177083333333333,
+        "value": "2",
+        "numberScale": 1,
+        "eventId": "controlled/dedicated-eyes/xiemu/hand/controlled/dedicated-eyes/xiemu/command/4/event/5"
+      },
+      "peak": 1.5391409967443024,
+      "values": [
+        "2",
+        "3"
+      ],
+      "actualEvent": {
+        "eventId": "controlled/dedicated-eyes/xiemu/hand/controlled/dedicated-eyes/xiemu/command/4/event/5",
+        "rootId": "controlled/dedicated-eyes/xiemu/hand/controlled/dedicated-eyes/xiemu/command/4",
+        "rootEventId": "controlled/dedicated-eyes/xiemu/hand/controlled/dedicated-eyes/xiemu/command/4/event/5",
+        "phase": "jokerScore",
+        "sourceType": "joker",
+        "sourceDefinitionId": "f09",
+        "sourceInstanceId": "controlled/eyes/f09",
+        "operation": "multiply-multiplier",
+        "value": {
+          "n": "3",
+          "d": "2"
+        },
+        "before": {
+          "H": {
+            "n": "95",
+            "d": "1"
+          },
+          "M": {
+            "n": "2",
+            "d": "1"
+          }
+        },
+        "after": {
+          "H": {
+            "n": "95",
+            "d": "1"
+          },
+          "M": {
+            "n": "3",
+            "d": "1"
+          }
+        },
+        "reasonKey": "f09.multiply-multiplier",
+        "visibleCondition": {
+          "kind": "resource",
+          "resource": "discards-used",
+          "equals": 0
+        },
+        "retriggerDepth": 0
+      },
+      "canonicalStateEqual": true,
+      "status": "PASS",
+      "eyeTextOverlap": []
+    }
+  ],
+  "testedBase": "a73d9ec2faae6e537e77a975f02e0a2cef220074",
+  "environment": {
+    "os": "win32",
+    "node": "v22.20.0",
+    "browser": "Microsoft Edge 143.0.3650.80",
+    "viewport": "390x844",
+    "deviceScaleFactor": 1,
+    "physicalDevice": "NOT_RUN"
+  },
+  "sourceSHA256": {
+    "src/game/CharacterArt.ts": "148a2b821459f829faf01744c6d08fff230f986d50b97862f01e33861501495f",
+    "src/game/HeroClimaxStage.ts": "cfe8e04497f3aa1f76f523dd8ad52e5ec1bae83b2f31026e1ad63d78f6e70ca2",
+    "src/game/portraits.ts": "7484a09c71509c6298940001b6856241ecc05c0bb5f6d30829559239d126b55d",
+    "src/game/SceneResources.ts": "92607c6a458568c9135d824c03814f0a928a1909814767a56bf594a78c47748d",
+    "src/game/StageImageWarmup.ts": "6925f6f17ee99a1a53e6149298cf9a6544006ee78fe3c028cbfdf800b338ec27",
+    "public/assets/tangsong-eyes/manifest.json": "13adf93fb29a49b3b02233770df7b6ef2e3008f8b3a84641b7077a29cee116f3",
+    "art/sources/tangsong-eyes-20261017/manifest.json": "6cc9d7306984b5c93eaa4b24078817919c79f959ea3f04ffb39923336ad439eb",
+    "scripts/build-dedicated-hero-eyes.mjs": "590e2f5fa3e15ae6273830c2318c56c8a1956bb88410dca298fad8695dd757a3"
+  },
+  "originalsRetainedAndUnchanged": true,
+  "unit": {
+    "files": 6,
+    "passed": 50
+  },
+  "build": {
+    "status": "PASS",
+    "command": "npm run build",
+    "includesTypeScript": true,
+    "modules": 322
+  }
+}
