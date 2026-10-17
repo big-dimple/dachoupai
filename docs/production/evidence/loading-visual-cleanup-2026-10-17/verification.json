@@ -1,0 +1,57 @@
+{
+  "base": "7d7921e76ca794a14e715e3eac3b4d66143862ff",
+  "branch": "fix/loading-visual-cleanup-20261017",
+  "productFiles": [
+    "index.html",
+    "src/game/LoadingScreen.ts"
+  ],
+  "unmodifiedProtectedFilesSha256": {
+    "src/main.ts": "0ae81a85f2ed680fbceaefde86ddd6f8af32b20c1e40f96e308cce9ae3d3b4e3",
+    "src/game/BootScene.ts": "72f13072f02398fdfe9af2cb3a6c56a0246c66dc59d3bc129b93f32c27815931",
+    "src/game/SceneResources.ts": "d641cee07d05e44a5967645c7f3455b528c95aa9c69d2f39451592bc9d20deff",
+    "src/game/ResourceRecovery.ts": "9f170ff0d4550e988422305cbb08e11e12b435b98219d9135b5a0507f21a33f3",
+    "src/game/LoadingProgress.ts": "9c93cc123ad69e59566c7da37f670a03ed334deb4dcf3d4738a385216e5079cf",
+    "src/game/ImageWarmupQueue.ts": "3f0b7aa26bddefbe1adefe0c6d5e210714ac1fabea7b51b6a404873383e10dfc",
+    "src/audio/AudioEngine.ts": "0cbf63bf5cd5e201024f7c95b3337d36b0df1a7551a342d7cbe4850977bc542e",
+    "src/game/BlindSelectPresentation.ts": "b82abf7c2a85c4f98603c398a59315b903845dd3230d7408ecf844db697da470",
+    "src/game/CardArtZoomModal.ts": "3f6e4dc5a935c68f46c12c59edd58be700a63487df9b1b07e45e39894ee480e2",
+    "src/game/DetailDialog.ts": "29f0cc5cee45eb1184ec8785d1f58b9289be892aea846a80066d0b4751bc5dac",
+    "src/game/GameScene.ts": "3bd220bbf4bc353d6aa59a51143e5cf91f4c4dfc74bc88c08ff9fd7064caf92a",
+    "src/game/ShopScene.ts": "8b5a2e0a1ea7385f560392b6ec3f128ff8b27234cd0709fd04273f814fad9277"
+  },
+  "publicAssetsUnchanged": true,
+  "buildSha256": {
+    "shots/loading-visual-build/index.html": "b930bc4e15c4d192d2ea5fcff190f1573d5938236700d85028d08c5894866aa2",
+    "shots/loading-visual-build/assets/index-BVlRn4Aq.js": "cd74949c9c0057f5a9082e7a71b2c9559aaee255dbee0ef3b64736837c09e205",
+    "shots/loading-visual-build/assets/index-C0jssEey.css": "f4150ec2cdeb97734db4f62072f53c2736fbc28e840b29e16caf4524a05147f7"
+  },
+  "harnessSha256": "17298e24b5fdeec0273a377e3b8e200aa197a877ecdff6c4abcf6178162a5249",
+  "checks": [
+    {
+      "command": "npm run typecheck",
+      "status": "PASS"
+    },
+    {
+      "command": "npm test -- tests/loading-progress.test.ts tests/resource-recovery.test.ts tests/scene-resources.test.ts tests/image-warmup-queue.test.ts",
+      "status": "PASS",
+      "files": 4,
+      "tests": 18
+    },
+    {
+      "command": "node harness/loading-visual-cleanup.mjs",
+      "status": "PASS",
+      "cases": 4,
+      "buildMode": "e2e"
+    }
+  ],
+  "actualView": [
+    "pc-loading.png",
+    "390-loading.png",
+    "390-os-reduce-loading.png"
+  ],
+  "limitations": [
+    "Software Chromium 151; viewport emulation only",
+    "No physical-device, player or deployed-site acceptance",
+    "No CI/domain query; no loading strategy/save change"
+  ]
+}
