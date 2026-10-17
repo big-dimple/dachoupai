@@ -1,4 +1,5 @@
 import {GAME_NAME,GAME_DESCRIPTION} from './game/Brand';
+import {normalizeTextSetter,observePlayerText} from './game/PlayerFacingText';
 import Phaser from 'phaser';
 import './style.css';
 import { BootScene } from './game/BootScene';
@@ -31,6 +32,8 @@ const config: Phaser.Types.Core.GameConfig = {
   callbacks: {postBoot:installViewport},
 };
 
+normalizeTextSetter(Phaser.GameObjects.Text.prototype);
+observePlayerText(document.body);
 const game = new Phaser.Game(config);
 game.canvas.tabIndex=0;
 document.title=GAME_NAME;document.querySelector('meta[name=description]')?.setAttribute('content',GAME_NAME+' · '+GAME_DESCRIPTION);

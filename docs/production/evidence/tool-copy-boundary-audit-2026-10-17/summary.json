@@ -1,0 +1,45 @@
+{
+  "base": "e389ea2c4a7f6d49284546f91992d13055072655",
+  "hashes": {
+    "src/main.ts": "0ea68c7050694f9f3eb66cbbc3b83fd3f59ae5dfafe709d2f6e1e3938742ed69",
+    "src/game/PlayerFacingText.ts": "ae3f90680976cb1b7b82e11d04d4d0af5d64d95b2bec2be607c9040bdd4f3858",
+    "src/game/Brand.ts": "39113b796e483c759bbd657880d30c4922c98be54e6a588f7b96656a523c4271",
+    "src/game/r2ToolInfo.ts": "894cb2d6781896709949ee0989ddfe8054823d0d3b6968b128b12f8b7bd86838",
+    "src/game/ConsumableDialog.ts": "3f94ab889de47bfdbac457788e31f4f3f71cc5e6f870e8ba65cc82dab2ab04a6",
+    "src/game/SavedToolResult.ts": "fa1e7485d08c6840f979f0944aa6c6a0363f549dfaf044e266c3482e39a31d53",
+    "src/game/Catalog.ts": "e5608424a863cb4ca4dae1c4bc21bfdc2c70a125e2e1e8d090d604b9d552bd55",
+    "src/game/DetailDialog.ts": "5fc1f56c83ba22715abfb9f74145242d71eb72614cacab89f96aa6c65da7c727",
+    "src/domain/r2PublishedContent.json": "47d2b0b0abcc923dc3495bd9059948bf3b8bf279a3da9f11b91696504421dc5f"
+  },
+  "nativeCases": 4,
+  "oldAndCurrentToolComponents": 79,
+  "catalog": 51,
+  "longTermDetails": 12,
+  "renderedViews": 189,
+  "displayOldNameHits": 0,
+  "attributeOldNameHits": 0,
+  "legacyDomGuard": {
+    "before": "仅验证显示层每个空大丑牌槽加12热度，最多4个空槽。持有期间购买其他大丑牌后，热度成长 +8，上限80；每手加入已有成长。持有期间成功出售其他大丑牌后，倍率成长 +0.5，上限3；出售自己不成长，成长属于原实例。采购证：可与大丑牌优惠叠加；孤注获得稀有大丑牌；谢幕镀彩牺牲大丑牌",
+    "after": "仅验证显示层每个空唐宋牌槽加12热度，最多4个空槽。持有期间购买其他唐宋牌后，热度成长 +8，上限80；每手加入已有成长。持有期间成功出售其他唐宋牌后，倍率成长 +0.5，上限3；出售自己不成长，成长属于原实例。采购证：可与唐宋牌优惠叠加；孤注获得稀有唐宋牌；谢幕镀彩牺牲唐宋牌",
+    "attributes": [
+      "每个空唐宋牌槽加12热度，最多4个空槽。",
+      "每个空唐宋牌槽加12热度，最多4个空槽。",
+      "每个空唐宋牌槽加12热度，最多4个空槽。",
+      "每个空唐宋牌槽加12热度，最多4个空槽。",
+      "持有期间购买其他唐宋牌后，热度成长 +8，上限80；每手加入已有成长。",
+      "持有期间购买其他唐宋牌后，热度成长 +8，上限80；每手加入已有成长。",
+      "持有期间购买其他唐宋牌后，热度成长 +8，上限80；每手加入已有成长。",
+      "持有期间购买其他唐宋牌后，热度成长 +8，上限80；每手加入已有成长。",
+      "持有期间成功出售其他唐宋牌后，倍率成长 +0.5，上限3；出售自己不成长，成长属于原实例。",
+      "持有期间成功出售其他唐宋牌后，倍率成长 +0.5，上限3；出售自己不成长，成长属于原实例。",
+      "持有期间成功出售其他唐宋牌后，倍率成长 +0.5，上限3；出售自己不成长，成长属于原实例。",
+      "持有期间成功出售其他唐宋牌后，倍率成长 +0.5，上限3；出售自己不成长，成长属于原实例。"
+    ],
+    "rawUnchanged": true
+  },
+  "phaserGuard": {
+    "initial": "唐宋牌",
+    "updated": "唐宋牌槽\n唐宋牌奖励"
+  },
+  "status": "PASS"
+}
