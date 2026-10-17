@@ -39,7 +39,7 @@
     "CardTiltEffect DOM"
   ],
   "cleanupBranch": "feat/gamefeel-audio-elevation-rfc",
-  "cleanupStatus": "pending_after_main_publish",
+  "cleanupStatus": "complete",
   "productCommit": "08ed04633ca0b30b5275c9aabc787542a415ac16",
   "sourceHistoryMerge": "cd85ac5bf1acb6a35fb16ac40b89ab65db682099",
   "sourceHistory": {
@@ -85,5 +85,18 @@
       "modified": false
     }
   },
-  "status": "adopted_verified_ready_for_normal_publish"
+  "status": "adopted_published_source_branch_cleaned",
+  "publicationAndCleanup": {
+    "publishedMainBeforeCleanup": "02ce7700fed218ef2405e230cdb381d82a5aa5dd",
+    "verifiedAll3RemoteHeads": true,
+    "sourceAncestorOfPublishedMain": true,
+    "deletedOnlyBranch": "feat/gamefeel-audio-elevation-rfc",
+    "deletedTip": "fbb614a84087060c99e8973c118a473771448984",
+    "remoteBranchAbsent": true,
+    "sameNameLocalHeadAbsent": true,
+    "sameNameRemoteTrackingAbsent": true,
+    "resourcesDeleted": false,
+    "otherBranchesDeleted": false,
+    "pushOutput": "\"C:/Users/wanghongping/.workbuddy/binaries/PortableGit/versions/1.2.0/mingw64/bin/git-credential-manager.exe\" store: line 1: C:/Users/wanghongping/.workbuddy/binaries/PortableGit/versions/1.2.0/mingw64/bin/git-credential-manager.exe: No such file or directory\nTo https://github.com/big-dimple/dachoupai.git\n - [deleted]           feat/gamefeel-audio-elevation-rfc\n"
+  }
 }

@@ -2795,7 +2795,7 @@
     "scope": "**来源牌撞分＋苏轼可见性小样顺序整合已检查：** 从已发布9b6061d9普通合入5172b931（撞分产品9969b9e6）及0da40ebf（苏轼小样0676e0d9），最终产品1099ad96。GameScene自动三方局部合并，无冲突；8份独立源码精确来源，13个方法/片段分别绑定撞分来源和9b606六英雄/候选段。保留六人真实目标附着、f135苏轼提示、辛弃疾候选修复、Shop/615图库、居中结算、单次开场/解码加载、英雄/c12、指定音频和规则存档/资源字节。来源牌只向实际H/M撞击、碎旧字/准确新值/弹簧回位，终局才总分收束；苏轼小样仅副牌外侧墨丝/短注入，不扩六人、不签理想烟雾强度。源39及PC/390/4×/低动态/取消/销毁音画、苏轼源13/390零内部像素等按原版复用。仅补一个最终PC实际苏轼助攻＋撞分混合用例：5笔数字撞击、1次英雄真实兑现、完整state/journal/storage一致，碎字/撞击清零。首轮交叉12通过1夹具FAIL（缺setAlpha），只补模拟接口后该文件5项通过，另两文件8项复用；原触觉到达断言不变，全部FAIL保留。最终类型/356模块构建通过；整包397文件/37154089B仍超20MB。按授权普通dev/main发布，不等新加坡最后原型。P08三目标/整体美术/方向重量听感/真机、4×持续渐密及正式门仍未签；冷续局先首页/纸底并可能解码等待限制保持。"
   },
   "singaporeFinalAdoption": {
-    "status": "adopted_verified_ready_for_normal_publish",
+    "status": "adopted_published_source_branch_cleaned",
     "baseCommit": "e9a8036d0cba3513ef39bc78db1be81bfb142f94",
     "verifiedSourceTip": "fbb614a84087060c99e8973c118a473771448984",
     "reportedWrongTip": "fbb614a80ce05f4e1f57ce79c4a30e8c7bb8fc42",
@@ -2897,7 +2897,7 @@
       }
     ],
     "cleanupOnlyBranch": "feat/gamefeel-audio-elevation-rfc",
-    "cleanupStatus": "pending_after_main_publish",
+    "cleanupStatus": "complete",
     "evidence": "docs/production/evidence/singapore-final-adoption-2026-10-17/README.md",
     "productCommit": "08ed04633ca0b30b5275c9aabc787542a415ac16",
     "sourceHistoryMerge": "cd85ac5bf1acb6a35fb16ac40b89ab65db682099",
@@ -2918,6 +2918,9 @@
         "sourceStatus": "clean",
         "modified": false
       }
-    }
+    },
+    "publishedMainBeforeCleanup": "02ce7700fed218ef2405e230cdb381d82a5aa5dd",
+    "sourceReachableFromPublishedMain": true,
+    "remoteAndSameNameLocalRefsAbsent": true
   }
 }
