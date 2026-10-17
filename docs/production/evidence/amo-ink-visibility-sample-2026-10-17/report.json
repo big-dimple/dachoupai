@@ -1,0 +1,210 @@
+{
+  "head": "08b01d21da92eb1d10045f391323ebf46b1edb7e",
+  "baseline": "5be8927f2ef464aff30c32b80d6f12a723929e89",
+  "scope": "Su Shi visibility sample only. Existing real GameScene targets and native shortcut; same saved state, source options and real card poses. Before renderer is loaded from exact Git snapshot; after renderer is current working tree. No six-hero rollout, scoring replay or strength acceptance claim.",
+  "viewport": {
+    "width": 390,
+    "height": 844,
+    "dpr": 2
+  },
+  "sourceHashes": {
+    "src/game/HeroTargetAttachment.ts": "9d0168f43b8ca5edca7c61adbfa850c99ed8fb36fd18fab385bf3c292469f20d",
+    "src/game/HeroTargetAttachmentState.ts": "5b572dd12d760e40d1b8686395c3a7f32a8d3dfa75286860eda16aa17ef1a3ee",
+    "src/game/AssistInkGeometry.ts": "65b1a41e82ae18e05e32e24416a3ecd08ebda876c56f5bbf7b4a8ad03e058eba"
+  },
+  "checks": [
+    "same state/journal/storage; unchanged card poses and native assist choice; 3 seconds continuous normal-size capture per version",
+    "new ink on/off changes zero pixels inside actual main, assist and normal card faces",
+    "reduced removes flowing smoke and injection, retaining original static aid; hidden clears and returns idle without injection replay",
+    "cancel and destroy clear smoke; no state writes"
+  ],
+  "frames": [
+    {
+      "version": "before",
+      "target": 120,
+      "elapsed": 356.40000000596046
+    },
+    {
+      "version": "before",
+      "target": 300,
+      "elapsed": 492
+    },
+    {
+      "version": "before",
+      "target": 650,
+      "elapsed": 758
+    },
+    {
+      "version": "before",
+      "target": 1300,
+      "elapsed": 1370.2999999970198
+    },
+    {
+      "version": "before",
+      "target": 2200,
+      "elapsed": 2270
+    },
+    {
+      "version": "before",
+      "target": 3000,
+      "elapsed": 3069.5
+    },
+    {
+      "version": "after",
+      "target": 120,
+      "elapsed": 343,
+      "ink": {
+        "members": [
+          "spades-13",
+          "hearts-13"
+        ],
+        "clock": 166.65000000000006,
+        "segments": 186,
+        "phase": "travel"
+      },
+      "flight": {
+        "progress": 0.3967857142857144,
+        "segments": 288
+      }
+    },
+    {
+      "version": "after",
+      "target": 300,
+      "elapsed": 483.59999999403954,
+      "ink": {
+        "members": [
+          "spades-13",
+          "hearts-13"
+        ],
+        "clock": 298.33,
+        "segments": 161,
+        "phase": "travel"
+      },
+      "flight": {
+        "progress": 0.7103095238095237,
+        "segments": 288
+      }
+    },
+    {
+      "version": "after",
+      "target": 650,
+      "elapsed": 795.9000000059605,
+      "ink": {
+        "members": [
+          "spades-13",
+          "hearts-13"
+        ],
+        "clock": 634.9699999999998,
+        "segments": 179,
+        "phase": "idle"
+      }
+    },
+    {
+      "version": "after",
+      "target": 1300,
+      "elapsed": 1415.2999999970198,
+      "ink": {
+        "members": [
+          "spades-13",
+          "hearts-13"
+        ],
+        "clock": 1233.27,
+        "segments": 171,
+        "phase": "idle"
+      }
+    },
+    {
+      "version": "after",
+      "target": 2200,
+      "elapsed": 2285.0999999940395,
+      "ink": {
+        "members": [
+          "spades-13",
+          "hearts-13"
+        ],
+        "clock": 2099.9199999999996,
+        "segments": 176,
+        "phase": "idle"
+      }
+    },
+    {
+      "version": "after",
+      "target": 3000,
+      "elapsed": 3082,
+      "ink": {
+        "members": [
+          "spades-13",
+          "hearts-13"
+        ],
+        "clock": 2899.8999999999996,
+        "segments": 187,
+        "phase": "idle"
+      }
+    }
+  ],
+  "errors": [],
+  "status": "PASS",
+  "visualAcceptance": "PENDING_REVIEW",
+  "printSafety": {
+    "method": "Same current renderer and real poses, only the new ink overlay toggled. Actual card transform rectangles inset by 2 CSS px; all normal and assist cards included.",
+    "faces": [
+      {
+        "id": "spades-8",
+        "x": 12,
+        "y": 646.4000122070313,
+        "width": 64,
+        "height": 89.59999999999991
+      },
+      {
+        "id": "hearts-8",
+        "x": 55.142860412597656,
+        "y": 646.4000122070313,
+        "width": 64,
+        "height": 89.59999999999991
+      },
+      {
+        "id": "clubs-7",
+        "x": 98.28572082519531,
+        "y": 646.4000122070313,
+        "width": 64,
+        "height": 89.59999999999991
+      },
+      {
+        "id": "diamonds-7",
+        "x": 141.42857360839844,
+        "y": 646.4000122070313,
+        "width": 64,
+        "height": 89.59999999999991
+      },
+      {
+        "id": "spades-13",
+        "x": 184.57142639160156,
+        "y": 646.4000122070313,
+        "width": 64,
+        "height": 89.59999999999991
+      },
+      {
+        "id": "hearts-13",
+        "x": 227.71429443359375,
+        "y": 646.4000122070313,
+        "width": 64,
+        "height": 89.59999999999991
+      },
+      {
+        "id": "clubs-2",
+        "x": 270.8571472167969,
+        "y": 662.4000122070313,
+        "width": 64,
+        "height": 89.59999999999991
+      },
+      {
+        "id": "diamonds-4",
+        "x": 314,
+        "y": 662.4000122070313,
+        "width": 64,
+        "height": 89.59999999999991
+      }
+    ],
+    "changedPixels": 0
+  }
+}
