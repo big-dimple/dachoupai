@@ -1,0 +1,31 @@
+{
+  "unitRegression": "New single-line regression failed on the old two-line caption before the fix.",
+  "attempts": [
+    {
+      "status": "FAIL",
+      "stage": "observer-rectangle-fail",
+      "error": "page.evaluate: TypeError: o.getBounds(...).toJSON is not a function"
+    },
+    {
+      "status": "FAIL",
+      "stage": "observer-pc-margin-fail",
+      "error": "AssertionError [ERR_ASSERTION]: no title/meta/effect/price overlap 1180/5/0/1"
+    },
+    {
+      "status": "FAIL",
+      "stage": "observer-pc-bound-fail",
+      "error": "AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:"
+    },
+    {
+      "status": "FAIL",
+      "stage": "fractional-caption-gap-fail",
+      "error": "AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:"
+    },
+    {
+      "status": "FAIL",
+      "stage": "observer-fresh-confirm-fail",
+      "error": "page.waitForFunction: Timeout 20000ms exceeded."
+    }
+  ],
+  "resolution": "Rectangle observer serialized Phaser geometry fields; PC uses its actual cell boundary and existing1px metadata gap; held caption moved1px inward for fractional rounding; real fresh-run flow clicks the retained-save confirmation. Final text report covers all target cases."
+}

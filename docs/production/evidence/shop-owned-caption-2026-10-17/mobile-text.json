@@ -1,0 +1,2109 @@
+{
+  "phase": "text",
+  "scope": "Only readability at1180x757 and browser-chrome-adjusted mobile390x736/360x680, DPR3,0/5 held slots. Catalog short/long names, rarity/edition, two summary rows, price, actual fonts-ready geometry. Native inspect/cancel and one real menu fresh-run lifecycle after a legally skipped-to Boss shop. No transaction or long-play matrix.",
+  "sourceHashes": {
+    "src/game/ShopScene.ts": "55a8ed370eb2aefd5d39af8fb6dacb178bcd5c6c48a286dad833243fb5cab65d",
+    "src/game/ShopOfferGuidance.ts": "10cc136df03892124ca68a77bd9ee06179ddbe53ce9f21e97a6aa5681ef37a87",
+    "src/game/ShopOfferLayout.ts": "d1cabc0dd79d99a1539efd68ca74cbf5e993397534a25f9b3ed455bc62488353",
+    "src/game/ShopLayout.ts": "0a89fe5a5fb995ae053c4277f7a9401cca7021d956d713e5ee471d3ac8ead362",
+    "src/game/ShopArt.ts": "c5df3ef1cc98e12c5f3988535463c2c0db69b7e9dbb5b620e6d09ac3abcffc75"
+  },
+  "cases": [
+    {
+      "profile": {
+        "width": 1180,
+        "height": 757,
+        "count": 5,
+        "dpr": 1
+      },
+      "stock": [
+        {
+          "name": "回马枪",
+          "rarity": "稀有"
+        },
+        {
+          "name": "压轴好戏",
+          "rarity": "稀有"
+        },
+        {
+          "name": "青出于蓝",
+          "rarity": "特别"
+        }
+      ],
+      "errors": [],
+      "shots": [
+        "1180-5-slots-shop-text.png"
+      ],
+      "layout": {
+        "geometry": {
+          "x": 24,
+          "w": 1132,
+          "top": 8,
+          "pc": {
+            "left": {
+              "x": 24,
+              "y": 8,
+              "width": 224,
+              "height": 741
+            },
+            "ownedRail": {
+              "x": 272,
+              "y": 8,
+              "width": 884,
+              "height": 149.6
+            },
+            "inventoryEntry": {
+              "x": 988,
+              "y": 72,
+              "width": 168,
+              "height": 44
+            },
+            "shopPanel": {
+              "x": 272,
+              "y": 177.6,
+              "width": 884,
+              "height": 571.4
+            },
+            "actionRail": {
+              "x": 1016,
+              "y": 205.6,
+              "width": 128,
+              "height": 519.4
+            },
+            "jokerOffers": [
+              {
+                "x": 288,
+                "y": 205.6,
+                "width": 228,
+                "height": 351.4
+              },
+              {
+                "x": 528,
+                "y": 205.6,
+                "width": 228,
+                "height": 351.4
+              },
+              {
+                "x": 768,
+                "y": 205.6,
+                "width": 228,
+                "height": 351.4
+              }
+            ],
+            "toolOffers": {
+              "x": 288,
+              "y": 589,
+              "width": 346,
+              "height": 128
+            },
+            "itemOffers": {
+              "x": 650,
+              "y": 589,
+              "width": 346,
+              "height": 128
+            },
+            "feedback": {
+              "x": 284,
+              "y": 725,
+              "width": 860,
+              "height": 20
+            },
+            "groupY": 565,
+            "guidanceHeight": 0
+          },
+          "desktop": true,
+          "short": false,
+          "copyBeside": false,
+          "inventoryCollapsed": false,
+          "compact": false,
+          "wideHeader": false,
+          "portrait": false,
+          "slots": [
+            {
+              "x": 272,
+              "y": 64,
+              "width": 64,
+              "height": 89.6
+            },
+            {
+              "x": 348,
+              "y": 64,
+              "width": 64,
+              "height": 89.6
+            },
+            {
+              "x": 424,
+              "y": 64,
+              "width": 64,
+              "height": 89.6
+            },
+            {
+              "x": 500,
+              "y": 64,
+              "width": 64,
+              "height": 89.6
+            },
+            {
+              "x": 576,
+              "y": 64,
+              "width": 64,
+              "height": 89.6
+            }
+          ],
+          "shelf": [
+            {
+              "x": 317.44,
+              "y": 213.6,
+              "width": 169.12,
+              "height": 211.4
+            },
+            {
+              "x": 557.44,
+              "y": 213.6,
+              "width": 169.12,
+              "height": 211.4
+            },
+            {
+              "x": 797.44,
+              "y": 213.6,
+              "width": 169.12,
+              "height": 211.4
+            }
+          ],
+          "tabs": {
+            "x": 288,
+            "y": 181.6,
+            "width": 708,
+            "height": 20
+          },
+          "chapter": {
+            "x": 24,
+            "y": 184,
+            "width": 224,
+            "height": 44
+          },
+          "items": {
+            "x": 988,
+            "y": 72,
+            "width": 168,
+            "height": 44
+          },
+          "build": {
+            "x": 664,
+            "y": 14,
+            "width": 132,
+            "height": 44
+          },
+          "reroll": {
+            "x": 1016,
+            "y": 273.6,
+            "width": 128,
+            "height": 44
+          },
+          "play": {
+            "x": 1016,
+            "y": 205.6,
+            "width": 128,
+            "height": 56
+          },
+          "noticeY": 725
+        },
+        "fonts": {
+          "ready": "loaded",
+          "dpr": 1,
+          "zoom": 1,
+          "canvasWidth": 1180,
+          "canvasCssWidth": 1180,
+          "fontFaces": [
+            {
+              "family": "Dachoupai Score",
+              "status": "loaded"
+            }
+          ]
+        },
+        "fields": [
+          {
+            "name": "shop/owned-heading",
+            "text": "持有 5/5 · 通常从左到右结算 · 拖动排序",
+            "font": "\"Microsoft YaHei\", \"PingFang SC\", \"Noto Sans SC\", sans-serif",
+            "fontSize": "16px",
+            "x": 272,
+            "y": 20,
+            "width": 281,
+            "height": 19
+          },
+          {
+            "name": "shop/owned-name",
+            "text": "掌灯破雾",
+            "font": "\"Microsoft YaHei\", \"PingFang SC\", \"Noto Sans SC\", sans-serif",
+            "fontSize": "12px",
+            "x": 272,
+            "y": 46.000003051757815,
+            "width": 48,
+            "height": 15
+          },
+          {
+            "name": "shop/owned-identity",
+            "text": "普通",
+            "font": "\"Microsoft YaHei\", \"PingFang SC\", \"Noto Sans SC\", sans-serif",
+            "fontSize": "11px",
+            "x": 272,
+            "y": 138.0000030517578,
+            "width": 22,
+            "height": 13
+          },
+          {
+            "name": "shop/owned-state",
+            "text": "同/顺/花",
+            "font": "\"Microsoft YaHei\", \"PingFang SC\", \"Noto Sans SC\", sans-serif",
+            "fontSize": "14px",
+            "x": 272,
+            "y": 156.0000030517578,
+            "width": 54,
+            "height": 17
+          },
+          {
+            "name": "shop/owned-name",
+            "text": "精打细算",
+            "font": "\"Microsoft YaHei\", \"PingFang SC\", \"Noto Sans SC\", sans-serif",
+            "fontSize": "12px",
+            "x": 348,
+            "y": 46.000003051757815,
+            "width": 48,
+            "height": 15
+          },
+          {
+            "name": "shop/owned-identity",
+            "text": "特别 · 闪箔",
+            "font": "\"Microsoft YaHei\", \"PingFang SC\", \"Noto Sans SC\", sans-serif",
+            "fontSize": "11px",
+            "x": 348,
+            "y": 138.0000030517578,
+            "width": 54,
+            "height": 13
+          },
+          {
+            "name": "shop/owned-state",
+            "text": "同/顺/花",
+            "font": "\"Microsoft YaHei\", \"PingFang SC\", \"Noto Sans SC\", sans-serif",
+            "fontSize": "14px",
+            "x": 348,
+            "y": 156.0000030517578,
+            "width": 54,
+            "height": 17
+          },
+          {
+            "name": "shop/owned-name",
+            "text": "回马枪",
+            "font": "\"Microsoft YaHei\", \"PingFang SC\", \"Noto Sans SC\", sans-serif",
+            "fontSize": "12px",
+            "x": 424,
+            "y": 46.000003051757815,
+            "width": 36,
+            "height": 15
+          },
+          {
+            "name": "shop/owned-identity",
+            "text": "稀有 · 全息",
+            "font": "\"Microsoft YaHei\", \"PingFang SC\", \"Noto Sans SC\", sans-serif",
+            "fontSize": "11px",
+            "x": 424,
+            "y": 138.0000030517578,
+            "width": 54,
+            "height": 13
+          },
+          {
+            "name": "shop/owned-state",
+            "text": "同/顺/花",
+            "font": "\"Microsoft YaHei\", \"PingFang SC\", \"Noto Sans SC\", sans-serif",
+            "fontSize": "14px",
+            "x": 424,
+            "y": 156.0000030517578,
+            "width": 54,
+            "height": 17
+          },
+          {
+            "name": "shop/owned-name",
+            "text": "巧借东风",
+            "font": "\"Microsoft YaHei\", \"PingFang SC\", \"Noto Sans SC\", sans-serif",
+            "fontSize": "12px",
+            "x": 500,
+            "y": 46.000003051757815,
+            "width": 48,
+            "height": 15
+          },
+          {
+            "name": "shop/owned-identity",
+            "text": "特别 · 多彩",
+            "font": "\"Microsoft YaHei\", \"PingFang SC\", \"Noto Sans SC\", sans-serif",
+            "fontSize": "11px",
+            "x": 500,
+            "y": 138.0000030517578,
+            "width": 54,
+            "height": 13
+          },
+          {
+            "name": "shop/owned-state",
+            "text": "同/顺/花",
+            "font": "\"Microsoft YaHei\", \"PingFang SC\", \"Noto Sans SC\", sans-serif",
+            "fontSize": "14px",
+            "x": 500,
+            "y": 156.0000030517578,
+            "width": 54,
+            "height": 17
+          },
+          {
+            "name": "shop/owned-name",
+            "text": "轻车熟路",
+            "font": "\"Microsoft YaHei\", \"PingFang SC\", \"Noto Sans SC\", sans-serif",
+            "fontSize": "12px",
+            "x": 576,
+            "y": 46.000003051757815,
+            "width": 48,
+            "height": 15
+          },
+          {
+            "name": "shop/owned-identity",
+            "text": "特别",
+            "font": "\"Microsoft YaHei\", \"PingFang SC\", \"Noto Sans SC\", sans-serif",
+            "fontSize": "11px",
+            "x": 576,
+            "y": 138.0000030517578,
+            "width": 22,
+            "height": 13
+          },
+          {
+            "name": "shop/owned-state",
+            "text": "同/顺/花",
+            "font": "\"Microsoft YaHei\", \"PingFang SC\", \"Noto Sans SC\", sans-serif",
+            "fontSize": "14px",
+            "x": 576,
+            "y": 156.0000030517578,
+            "width": 54,
+            "height": 17
+          },
+          {
+            "name": "shop/offer-name",
+            "text": "回马枪",
+            "offerId": "controlled/mobile-readable/5/shop/0/1/joker/0",
+            "font": "\"Microsoft YaHei\", \"PingFang SC\", \"Noto Sans SC\", sans-serif",
+            "fontSize": "15px",
+            "x": 296,
+            "y": 428.9999877929688,
+            "width": 45,
+            "height": 19
+          },
+          {
+            "name": "shop/offer-identity",
+            "text": "稀有 · 普通版",
+            "offerId": "controlled/mobile-readable/5/shop/0/1/joker/0",
+            "font": "\"Microsoft YaHei\", \"PingFang SC\", \"Noto Sans SC\", sans-serif",
+            "fontSize": "14px",
+            "x": 296,
+            "y": 450.9999877929688,
+            "width": 82,
+            "height": 17
+          },
+          {
+            "name": "shop/offer-purpose",
+            "text": "每手1次 倍率×2\n本场第3/6/9…次出牌",
+            "offerId": "controlled/mobile-readable/5/shop/0/1/joker/0",
+            "font": "\"Microsoft YaHei\", \"PingFang SC\", \"Noto Sans SC\", sans-serif",
+            "fontSize": "14px",
+            "x": 296,
+            "y": 468.9999877929688,
+            "width": 132,
+            "height": 34
+          },
+          {
+            "name": "shop/offer-price",
+            "text": "8 金 · 比较替换",
+            "offerId": "controlled/mobile-readable/5/shop/0/1/joker/0",
+            "font": "\"Microsoft YaHei\", \"PingFang SC\", \"Noto Sans SC\", sans-serif",
+            "fontSize": "16px",
+            "x": 296,
+            "y": 506.9999877929688,
+            "width": 112,
+            "height": 19
+          },
+          {
+            "name": "shop/offer-name",
+            "text": "压轴好戏",
+            "offerId": "controlled/mobile-readable/5/shop/0/1/joker/1",
+            "font": "\"Microsoft YaHei\", \"PingFang SC\", \"Noto Sans SC\", sans-serif",
+            "fontSize": "15px",
+            "x": 536,
+            "y": 428.9999877929688,
+            "width": 60,
+            "height": 19
+          },
+          {
+            "name": "shop/offer-identity",
+            "text": "稀有 · 普通版",
+            "offerId": "controlled/mobile-readable/5/shop/0/1/joker/1",
+            "font": "\"Microsoft YaHei\", \"PingFang SC\", \"Noto Sans SC\", sans-serif",
+            "fontSize": "14px",
+            "x": 536,
+            "y": 450.9999877929688,
+            "width": 82,
+            "height": 17
+          },
+          {
+            "name": "shop/offer-purpose",
+            "text": "多步条件 · 倍率×已存值",
+            "offerId": "controlled/mobile-readable/5/shop/0/1/joker/1",
+            "font": "\"Microsoft YaHei\", \"PingFang SC\", \"Noto Sans SC\", sans-serif",
+            "fontSize": "14px",
+            "x": 536,
+            "y": 468.9999877929688,
+            "width": 149,
+            "height": 17
+          },
+          {
+            "name": "shop/offer-price",
+            "text": "8 金 · 比较替换",
+            "offerId": "controlled/mobile-readable/5/shop/0/1/joker/1",
+            "font": "\"Microsoft YaHei\", \"PingFang SC\", \"Noto Sans SC\", sans-serif",
+            "fontSize": "16px",
+            "x": 536,
+            "y": 506.9999877929688,
+            "width": 112,
+            "height": 19
+          },
+          {
+            "name": "shop/offer-name",
+            "text": "青出于蓝",
+            "offerId": "controlled/mobile-readable/5/shop/0/1/joker/2",
+            "font": "\"Microsoft YaHei\", \"PingFang SC\", \"Noto Sans SC\", sans-serif",
+            "fontSize": "15px",
+            "x": 776,
+            "y": 428.9999877929688,
+            "width": 60,
+            "height": 19
+          },
+          {
+            "name": "shop/offer-identity",
+            "text": "特别 · 普通版",
+            "offerId": "controlled/mobile-readable/5/shop/0/1/joker/2",
+            "font": "\"Microsoft YaHei\", \"PingFang SC\", \"Noto Sans SC\", sans-serif",
+            "fontSize": "14px",
+            "x": 776,
+            "y": 450.9999877929688,
+            "width": 82,
+            "height": 17
+          },
+          {
+            "name": "shop/offer-purpose",
+            "text": "新购倍率+0\n同花族后+0.5，下手用",
+            "offerId": "controlled/mobile-readable/5/shop/0/1/joker/2",
+            "font": "\"Microsoft YaHei\", \"PingFang SC\", \"Noto Sans SC\", sans-serif",
+            "fontSize": "14px",
+            "x": 776,
+            "y": 468.9999877929688,
+            "width": 143,
+            "height": 34
+          },
+          {
+            "name": "shop/offer-price",
+            "text": "6 金 · 比较替换",
+            "offerId": "controlled/mobile-readable/5/shop/0/1/joker/2",
+            "font": "\"Microsoft YaHei\", \"PingFang SC\", \"Noto Sans SC\", sans-serif",
+            "fontSize": "16px",
+            "x": 776,
+            "y": 506.9999877929688,
+            "width": 112,
+            "height": 19
+          },
+          {
+            "name": "shop/offer-name",
+            "text": "往上挪",
+            "offerId": "controlled/mobile-readable/5/shop/0/1/tool/0",
+            "font": "\"Microsoft YaHei\", \"PingFang SC\", \"Noto Sans SC\", sans-serif",
+            "fontSize": "15px",
+            "x": 398,
+            "y": 597,
+            "width": 45,
+            "height": 19
+          },
+          {
+            "name": "shop/offer-purpose",
+            "text": "选中的扑克点数+1",
+            "offerId": "controlled/mobile-readable/5/shop/0/1/tool/0",
+            "font": "\"Microsoft YaHei\", \"PingFang SC\", \"Noto Sans SC\", sans-serif",
+            "fontSize": "14px",
+            "x": 398,
+            "y": 625,
+            "width": 117,
+            "height": 17
+          },
+          {
+            "name": "shop/offer-price",
+            "text": "2 金 · 查看",
+            "offerId": "controlled/mobile-readable/5/shop/0/1/tool/0",
+            "font": "\"Microsoft YaHei\", \"PingFang SC\", \"Noto Sans SC\", sans-serif",
+            "fontSize": "16px",
+            "x": 398,
+            "y": 667,
+            "width": 80,
+            "height": 19
+          },
+          {
+            "name": "shop/offer-name",
+            "text": "采购证",
+            "offerId": "controlled/mobile-readable/5/shop/0/0/item/0",
+            "font": "\"Microsoft YaHei\", \"PingFang SC\", \"Noto Sans SC\", sans-serif",
+            "fontSize": "15px",
+            "x": 760,
+            "y": 597,
+            "width": 45,
+            "height": 19
+          },
+          {
+            "name": "shop/offer-purpose",
+            "text": "每间商店第一次成功购买价格−1金\n，至少1金，可与大丑牌优惠叠加",
+            "offerId": "controlled/mobile-readable/5/shop/0/0/item/0",
+            "font": "\"Microsoft YaHei\", \"PingFang SC\", \"Noto Sans SC\", sans-serif",
+            "fontSize": "14px",
+            "x": 760,
+            "y": 625,
+            "width": 215,
+            "height": 34
+          },
+          {
+            "name": "shop/offer-price",
+            "text": "10 金 · 查看",
+            "offerId": "controlled/mobile-readable/5/shop/0/0/item/0",
+            "font": "\"Microsoft YaHei\", \"PingFang SC\", \"Noto Sans SC\", sans-serif",
+            "fontSize": "16px",
+            "x": 760,
+            "y": 667,
+            "width": 90,
+            "height": 19
+          }
+        ],
+        "hero": [
+          {
+            "name": "shop/hero-backdrop",
+            "alpha": 0.18,
+            "x": 24,
+            "y": 8,
+            "width": 599.2,
+            "height": 749
+          }
+        ],
+        "notice": ""
+      },
+      "status": "PASS"
+    },
+    {
+      "profile": {
+        "width": 390,
+        "height": 736,
+        "count": 0,
+        "dpr": 3
+      },
+      "stock": [
+        {
+          "name": "金玉满盘",
+          "rarity": "普通"
+        },
+        {
+          "name": "奇兵突起",
+          "rarity": "普通"
+        },
+        {
+          "name": "青出于蓝",
+          "rarity": "特别"
+        }
+      ],
+      "errors": [],
+      "shots": [
+        "390-0-slots-shop-text.png",
+        "390-0-slots-fresh-no-boss-text.png"
+      ],
+      "layout": {
+        "geometry": {
+          "x": 12,
+          "w": 366,
+          "top": 8,
+          "pc": null,
+          "desktop": false,
+          "short": false,
+          "copyBeside": false,
+          "inventoryCollapsed": false,
+          "compact": true,
+          "wideHeader": false,
+          "portrait": true,
+          "guidanceBelow": false,
+          "slots": [
+            {
+              "x": 53,
+              "y": 413,
+              "width": 52,
+              "height": 101
+            },
+            {
+              "x": 111,
+              "y": 413,
+              "width": 52,
+              "height": 101
+            },
+            {
+              "x": 169,
+              "y": 413,
+              "width": 52,
+              "height": 101
+            },
+            {
+              "x": 227,
+              "y": 413,
+              "width": 52,
+              "height": 101
+            },
+            {
+              "x": 285,
+              "y": 413,
+              "width": 52,
+              "height": 101
+            }
+          ],
+          "shelf": [
+            {
+              "x": 16.333333333333336,
+              "y": 112,
+              "width": 108,
+              "height": 135
+            },
+            {
+              "x": 141.00000000000003,
+              "y": 112,
+              "width": 108,
+              "height": 135
+            },
+            {
+              "x": 265.6666666666667,
+              "y": 112,
+              "width": 108,
+              "height": 135
+            }
+          ],
+          "tabs": {
+            "x": 12,
+            "y": 60,
+            "width": 366,
+            "height": 44
+          },
+          "chapter": {
+            "x": 12,
+            "y": 538,
+            "width": 179,
+            "height": 44
+          },
+          "items": {
+            "x": 199,
+            "y": 538,
+            "width": 179,
+            "height": 44
+          },
+          "reroll": {
+            "x": 12,
+            "y": 592,
+            "width": 179,
+            "height": 44
+          },
+          "build": {
+            "x": 199,
+            "y": 592,
+            "width": 179,
+            "height": 44
+          },
+          "play": {
+            "x": 12,
+            "y": 644,
+            "width": 366,
+            "height": 56
+          },
+          "noticeY": 708
+        },
+        "fonts": {
+          "ready": "loaded",
+          "dpr": 3,
+          "zoom": 0.3333333333333333,
+          "canvasWidth": 1170,
+          "canvasCssWidth": 390,
+          "fontFaces": [
+            {
+              "family": "Dachoupai Score",
+              "status": "loaded"
+            }
+          ]
+        },
+        "fields": [
+          {
+            "name": "shop/owned-heading",
+            "text": "当前持有 0/5",
+            "font": "\"Microsoft YaHei\", \"PingFang SC\", \"Noto Sans SC\", sans-serif",
+            "fontSize": "14px",
+            "x": 53,
+            "y": 393,
+            "width": 83,
+            "height": 17
+          },
+          {
+            "name": "shop/offer-name",
+            "text": "金玉满盘",
+            "offerId": "controlled/mobile-readable/0/shop/0/1/joker/0",
+            "font": "\"Microsoft YaHei\", \"PingFang SC\", \"Noto Sans SC\", sans-serif",
+            "fontSize": "15px",
+            "x": 16.0000025431315,
+            "y": 251,
+            "width": 60,
+            "height": 19
+          },
+          {
+            "name": "shop/offer-purpose",
+            "text": "获得2金\n成功过关",
+            "offerId": "controlled/mobile-readable/0/shop/0/1/joker/0",
+            "font": "\"Microsoft YaHei\", \"PingFang SC\", \"Noto Sans SC\", sans-serif",
+            "fontSize": "14px",
+            "x": 16.0000025431315,
+            "y": 295,
+            "width": 56,
+            "height": 34
+          },
+          {
+            "name": "shop/offer-identity",
+            "text": "普通·原版",
+            "offerId": "controlled/mobile-readable/0/shop/0/1/joker/0",
+            "font": "\"Microsoft YaHei\", \"PingFang SC\", \"Noto Sans SC\", sans-serif",
+            "fontSize": "14px",
+            "x": 16.0000025431315,
+            "y": 274,
+            "width": 60,
+            "height": 17
+          },
+          {
+            "name": "shop/offer-price",
+            "text": "4金 · 选择",
+            "offerId": "controlled/mobile-readable/0/shop/0/1/joker/0",
+            "font": "\"Microsoft YaHei\", \"PingFang SC\", \"Noto Sans SC\", sans-serif",
+            "fontSize": "16px",
+            "x": 16.0000025431315,
+            "y": 335,
+            "width": 75,
+            "height": 19
+          },
+          {
+            "name": "shop/offer-name",
+            "text": "奇兵突起",
+            "offerId": "controlled/mobile-readable/0/shop/0/1/joker/1",
+            "font": "\"Microsoft YaHei\", \"PingFang SC\", \"Noto Sans SC\", sans-serif",
+            "fontSize": "15px",
+            "x": 140.99999999999997,
+            "y": 251,
+            "width": 60,
+            "height": 19
+          },
+          {
+            "name": "shop/offer-purpose",
+            "text": "每张符合条件的…\n留2/3/4/5前4张",
+            "offerId": "controlled/mobile-readable/0/shop/0/1/joker/1",
+            "font": "\"Microsoft YaHei\", \"PingFang SC\", \"Noto Sans SC\", sans-serif",
+            "fontSize": "14px",
+            "x": 140.99999999999997,
+            "y": 295,
+            "width": 110,
+            "height": 34
+          },
+          {
+            "name": "shop/offer-identity",
+            "text": "普通·原版",
+            "offerId": "controlled/mobile-readable/0/shop/0/1/joker/1",
+            "font": "\"Microsoft YaHei\", \"PingFang SC\", \"Noto Sans SC\", sans-serif",
+            "fontSize": "14px",
+            "x": 140.99999999999997,
+            "y": 274,
+            "width": 60,
+            "height": 17
+          },
+          {
+            "name": "shop/offer-price",
+            "text": "4金 · 选择",
+            "offerId": "controlled/mobile-readable/0/shop/0/1/joker/1",
+            "font": "\"Microsoft YaHei\", \"PingFang SC\", \"Noto Sans SC\", sans-serif",
+            "fontSize": "16px",
+            "x": 140.99999999999997,
+            "y": 335,
+            "width": 75,
+            "height": 19
+          },
+          {
+            "name": "shop/offer-name",
+            "text": "青出于蓝",
+            "offerId": "controlled/mobile-readable/0/shop/0/1/joker/2",
+            "font": "\"Microsoft YaHei\", \"PingFang SC\", \"Noto Sans SC\", sans-serif",
+            "fontSize": "15px",
+            "x": 265.99998982747394,
+            "y": 251,
+            "width": 60,
+            "height": 19
+          },
+          {
+            "name": "shop/offer-purpose",
+            "text": "新购倍率+0\n同花族后+0.5，…",
+            "offerId": "controlled/mobile-readable/0/shop/0/1/joker/2",
+            "font": "\"Microsoft YaHei\", \"PingFang SC\", \"Noto Sans SC\", sans-serif",
+            "fontSize": "14px",
+            "x": 265.99998982747394,
+            "y": 295,
+            "width": 112,
+            "height": 34
+          },
+          {
+            "name": "shop/offer-identity",
+            "text": "特别·原版",
+            "offerId": "controlled/mobile-readable/0/shop/0/1/joker/2",
+            "font": "\"Microsoft YaHei\", \"PingFang SC\", \"Noto Sans SC\", sans-serif",
+            "fontSize": "14px",
+            "x": 265.99998982747394,
+            "y": 274,
+            "width": 60,
+            "height": 17
+          },
+          {
+            "name": "shop/offer-price",
+            "text": "6金 · 选择",
+            "offerId": "controlled/mobile-readable/0/shop/0/1/joker/2",
+            "font": "\"Microsoft YaHei\", \"PingFang SC\", \"Noto Sans SC\", sans-serif",
+            "fontSize": "16px",
+            "x": 265.99998982747394,
+            "y": 335,
+            "width": 75,
+            "height": 19
+          }
+        ],
+        "hero": [
+          {
+            "name": "shop/hero-backdrop",
+            "alpha": 0.18,
+            "x": 0,
+            "y": 150.25,
+            "width": 390,
+            "height": 487.5
+          }
+        ],
+        "notice": ""
+      },
+      "reset": {
+        "sameScene": true,
+        "runId": "run/1792234719182/erxiang",
+        "characterId": "erxiang",
+        "stageIndex": 0,
+        "notice": ""
+      },
+      "status": "PASS"
+    },
+    {
+      "profile": {
+        "width": 390,
+        "height": 736,
+        "count": 5,
+        "dpr": 3
+      },
+      "stock": [
+        {
+          "name": "回马枪",
+          "rarity": "稀有"
+        },
+        {
+          "name": "压轴好戏",
+          "rarity": "稀有"
+        },
+        {
+          "name": "青出于蓝",
+          "rarity": "特别"
+        }
+      ],
+      "errors": [],
+      "shots": [
+        "390-5-slots-shop-text.png"
+      ],
+      "layout": {
+        "geometry": {
+          "x": 12,
+          "w": 366,
+          "top": 8,
+          "pc": null,
+          "desktop": false,
+          "short": false,
+          "copyBeside": false,
+          "inventoryCollapsed": false,
+          "compact": true,
+          "wideHeader": false,
+          "portrait": true,
+          "guidanceBelow": false,
+          "slots": [
+            {
+              "x": 53,
+              "y": 413,
+              "width": 52,
+              "height": 101
+            },
+            {
+              "x": 111,
+              "y": 413,
+              "width": 52,
+              "height": 101
+            },
+            {
+              "x": 169,
+              "y": 413,
+              "width": 52,
+              "height": 101
+            },
+            {
+              "x": 227,
+              "y": 413,
+              "width": 52,
+              "height": 101
+            },
+            {
+              "x": 285,
+              "y": 413,
+              "width": 52,
+              "height": 101
+            }
+          ],
+          "shelf": [
+            {
+              "x": 16.333333333333336,
+              "y": 112,
+              "width": 108,
+              "height": 135
+            },
+            {
+              "x": 141.00000000000003,
+              "y": 112,
+              "width": 108,
+              "height": 135
+            },
+            {
+              "x": 265.6666666666667,
+              "y": 112,
+              "width": 108,
+              "height": 135
+            }
+          ],
+          "tabs": {
+            "x": 12,
+            "y": 60,
+            "width": 366,
+            "height": 44
+          },
+          "chapter": {
+            "x": 12,
+            "y": 538,
+            "width": 179,
+            "height": 44
+          },
+          "items": {
+            "x": 199,
+            "y": 538,
+            "width": 179,
+            "height": 44
+          },
+          "reroll": {
+            "x": 12,
+            "y": 592,
+            "width": 179,
+            "height": 44
+          },
+          "build": {
+            "x": 199,
+            "y": 592,
+            "width": 179,
+            "height": 44
+          },
+          "play": {
+            "x": 12,
+            "y": 644,
+            "width": 366,
+            "height": 56
+          },
+          "noticeY": 708
+        },
+        "fonts": {
+          "ready": "loaded",
+          "dpr": 3,
+          "zoom": 0.3333333333333333,
+          "canvasWidth": 1170,
+          "canvasCssWidth": 390,
+          "fontFaces": [
+            {
+              "family": "Dachoupai Score",
+              "status": "loaded"
+            }
+          ]
+        },
+        "fields": [
+          {
+            "name": "shop/owned-heading",
+            "text": "通常从左到右结算 · 长按拖动排序",
+            "font": "\"Microsoft YaHei\", \"PingFang SC\", \"Noto Sans SC\", sans-serif",
+            "fontSize": "14px",
+            "x": 53,
+            "y": 389,
+            "width": 208,
+            "height": 17
+          },
+          {
+            "name": "shop/owned-name",
+            "text": "掌灯破雾",
+            "font": "\"Microsoft YaHei\", \"PingFang SC\", \"Noto Sans SC\", sans-serif",
+            "fontSize": "12px",
+            "x": 53,
+            "y": 480,
+            "width": 48,
+            "height": 15
+          },
+          {
+            "name": "shop/owned-identity",
+            "text": "普通",
+            "font": "\"Microsoft YaHei\", \"PingFang SC\", \"Noto Sans SC\", sans-serif",
+            "fontSize": "11px",
+            "x": 53,
+            "y": 498,
+            "width": 22,
+            "height": 13
+          },
+          {
+            "name": "shop/owned-route",
+            "text": "同/顺/花",
+            "font": "\"Microsoft YaHei\", \"PingFang SC\", \"Noto Sans SC\", sans-serif",
+            "fontSize": "14px",
+            "x": 52,
+            "y": 517,
+            "width": 54,
+            "height": 17
+          },
+          {
+            "name": "shop/owned-name",
+            "text": "精打细算",
+            "font": "\"Microsoft YaHei\", \"PingFang SC\", \"Noto Sans SC\", sans-serif",
+            "fontSize": "12px",
+            "x": 111,
+            "y": 480,
+            "width": 48,
+            "height": 15
+          },
+          {
+            "name": "shop/owned-identity",
+            "text": "特别 · 闪…",
+            "font": "\"Microsoft YaHei\", \"PingFang SC\", \"Noto Sans SC\", sans-serif",
+            "fontSize": "11px",
+            "x": 111,
+            "y": 498,
+            "width": 52,
+            "height": 13
+          },
+          {
+            "name": "shop/owned-route",
+            "text": "同/顺/花",
+            "font": "\"Microsoft YaHei\", \"PingFang SC\", \"Noto Sans SC\", sans-serif",
+            "fontSize": "14px",
+            "x": 110,
+            "y": 517,
+            "width": 54,
+            "height": 17
+          },
+          {
+            "name": "shop/owned-name",
+            "text": "回马枪",
+            "font": "\"Microsoft YaHei\", \"PingFang SC\", \"Noto Sans SC\", sans-serif",
+            "fontSize": "12px",
+            "x": 169,
+            "y": 480,
+            "width": 36,
+            "height": 15
+          },
+          {
+            "name": "shop/owned-identity",
+            "text": "稀有 · 全…",
+            "font": "\"Microsoft YaHei\", \"PingFang SC\", \"Noto Sans SC\", sans-serif",
+            "fontSize": "11px",
+            "x": 169,
+            "y": 498,
+            "width": 52,
+            "height": 13
+          },
+          {
+            "name": "shop/owned-route",
+            "text": "同/顺/花",
+            "font": "\"Microsoft YaHei\", \"PingFang SC\", \"Noto Sans SC\", sans-serif",
+            "fontSize": "14px",
+            "x": 168,
+            "y": 517,
+            "width": 54,
+            "height": 17
+          },
+          {
+            "name": "shop/owned-name",
+            "text": "巧借东风",
+            "font": "\"Microsoft YaHei\", \"PingFang SC\", \"Noto Sans SC\", sans-serif",
+            "fontSize": "12px",
+            "x": 227,
+            "y": 480,
+            "width": 48,
+            "height": 15
+          },
+          {
+            "name": "shop/owned-identity",
+            "text": "特别 · 多…",
+            "font": "\"Microsoft YaHei\", \"PingFang SC\", \"Noto Sans SC\", sans-serif",
+            "fontSize": "11px",
+            "x": 227,
+            "y": 498,
+            "width": 52,
+            "height": 13
+          },
+          {
+            "name": "shop/owned-route",
+            "text": "同/顺/花",
+            "font": "\"Microsoft YaHei\", \"PingFang SC\", \"Noto Sans SC\", sans-serif",
+            "fontSize": "14px",
+            "x": 226,
+            "y": 517,
+            "width": 54,
+            "height": 17
+          },
+          {
+            "name": "shop/owned-name",
+            "text": "轻车熟路",
+            "font": "\"Microsoft YaHei\", \"PingFang SC\", \"Noto Sans SC\", sans-serif",
+            "fontSize": "12px",
+            "x": 285,
+            "y": 480,
+            "width": 48,
+            "height": 15
+          },
+          {
+            "name": "shop/owned-identity",
+            "text": "特别",
+            "font": "\"Microsoft YaHei\", \"PingFang SC\", \"Noto Sans SC\", sans-serif",
+            "fontSize": "11px",
+            "x": 285,
+            "y": 498,
+            "width": 22,
+            "height": 13
+          },
+          {
+            "name": "shop/owned-route",
+            "text": "同/顺/花",
+            "font": "\"Microsoft YaHei\", \"PingFang SC\", \"Noto Sans SC\", sans-serif",
+            "fontSize": "14px",
+            "x": 284,
+            "y": 517,
+            "width": 54,
+            "height": 17
+          },
+          {
+            "name": "shop/offer-name",
+            "text": "回马枪",
+            "offerId": "controlled/mobile-readable/5/shop/0/1/joker/0",
+            "font": "\"Microsoft YaHei\", \"PingFang SC\", \"Noto Sans SC\", sans-serif",
+            "fontSize": "15px",
+            "x": 16.0000025431315,
+            "y": 251,
+            "width": 45,
+            "height": 19
+          },
+          {
+            "name": "shop/offer-purpose",
+            "text": "每手1次 倍率×2\n本场第3/6/9……",
+            "offerId": "controlled/mobile-readable/5/shop/0/1/joker/0",
+            "font": "\"Microsoft YaHei\", \"PingFang SC\", \"Noto Sans SC\", sans-serif",
+            "fontSize": "14px",
+            "x": 16.0000025431315,
+            "y": 295,
+            "width": 102,
+            "height": 34
+          },
+          {
+            "name": "shop/offer-identity",
+            "text": "稀有·原版",
+            "offerId": "controlled/mobile-readable/5/shop/0/1/joker/0",
+            "font": "\"Microsoft YaHei\", \"PingFang SC\", \"Noto Sans SC\", sans-serif",
+            "fontSize": "14px",
+            "x": 16.0000025431315,
+            "y": 274,
+            "width": 60,
+            "height": 17
+          },
+          {
+            "name": "shop/offer-price",
+            "text": "8金 · 差2",
+            "offerId": "controlled/mobile-readable/5/shop/0/1/joker/0",
+            "font": "\"Microsoft YaHei\", \"PingFang SC\", \"Noto Sans SC\", sans-serif",
+            "fontSize": "16px",
+            "x": 16.0000025431315,
+            "y": 335,
+            "width": 69,
+            "height": 19
+          },
+          {
+            "name": "shop/offer-name",
+            "text": "压轴好戏",
+            "offerId": "controlled/mobile-readable/5/shop/0/1/joker/1",
+            "font": "\"Microsoft YaHei\", \"PingFang SC\", \"Noto Sans SC\", sans-serif",
+            "fontSize": "15px",
+            "x": 140.99999999999997,
+            "y": 251,
+            "width": 60,
+            "height": 19
+          },
+          {
+            "name": "shop/offer-purpose",
+            "text": "多步条件 · 倍率×\n已存值",
+            "offerId": "controlled/mobile-readable/5/shop/0/1/joker/1",
+            "font": "\"Microsoft YaHei\", \"PingFang SC\", \"Noto Sans SC\", sans-serif",
+            "fontSize": "14px",
+            "x": 140.99999999999997,
+            "y": 295,
+            "width": 107,
+            "height": 34
+          },
+          {
+            "name": "shop/offer-identity",
+            "text": "稀有·原版",
+            "offerId": "controlled/mobile-readable/5/shop/0/1/joker/1",
+            "font": "\"Microsoft YaHei\", \"PingFang SC\", \"Noto Sans SC\", sans-serif",
+            "fontSize": "14px",
+            "x": 140.99999999999997,
+            "y": 274,
+            "width": 60,
+            "height": 17
+          },
+          {
+            "name": "shop/offer-price",
+            "text": "8金 · 差2",
+            "offerId": "controlled/mobile-readable/5/shop/0/1/joker/1",
+            "font": "\"Microsoft YaHei\", \"PingFang SC\", \"Noto Sans SC\", sans-serif",
+            "fontSize": "16px",
+            "x": 140.99999999999997,
+            "y": 335,
+            "width": 69,
+            "height": 19
+          },
+          {
+            "name": "shop/offer-name",
+            "text": "青出于蓝",
+            "offerId": "controlled/mobile-readable/5/shop/0/1/joker/2",
+            "font": "\"Microsoft YaHei\", \"PingFang SC\", \"Noto Sans SC\", sans-serif",
+            "fontSize": "15px",
+            "x": 265.99998982747394,
+            "y": 251,
+            "width": 60,
+            "height": 19
+          },
+          {
+            "name": "shop/offer-purpose",
+            "text": "新购倍率+0\n同花族后+0.5，…",
+            "offerId": "controlled/mobile-readable/5/shop/0/1/joker/2",
+            "font": "\"Microsoft YaHei\", \"PingFang SC\", \"Noto Sans SC\", sans-serif",
+            "fontSize": "14px",
+            "x": 265.99998982747394,
+            "y": 295,
+            "width": 112,
+            "height": 34
+          },
+          {
+            "name": "shop/offer-identity",
+            "text": "特别·原版",
+            "offerId": "controlled/mobile-readable/5/shop/0/1/joker/2",
+            "font": "\"Microsoft YaHei\", \"PingFang SC\", \"Noto Sans SC\", sans-serif",
+            "fontSize": "14px",
+            "x": 265.99998982747394,
+            "y": 274,
+            "width": 60,
+            "height": 17
+          },
+          {
+            "name": "shop/offer-price",
+            "text": "6金 · 选择",
+            "offerId": "controlled/mobile-readable/5/shop/0/1/joker/2",
+            "font": "\"Microsoft YaHei\", \"PingFang SC\", \"Noto Sans SC\", sans-serif",
+            "fontSize": "16px",
+            "x": 265.99998982747394,
+            "y": 335,
+            "width": 75,
+            "height": 19
+          }
+        ],
+        "hero": [
+          {
+            "name": "shop/hero-backdrop",
+            "alpha": 0.18,
+            "x": 0,
+            "y": 150.25,
+            "width": 390,
+            "height": 487.5
+          }
+        ],
+        "notice": ""
+      },
+      "status": "PASS"
+    },
+    {
+      "profile": {
+        "width": 360,
+        "height": 680,
+        "count": 0,
+        "dpr": 3
+      },
+      "stock": [
+        {
+          "name": "金玉满盘",
+          "rarity": "普通"
+        },
+        {
+          "name": "奇兵突起",
+          "rarity": "普通"
+        },
+        {
+          "name": "青出于蓝",
+          "rarity": "特别"
+        }
+      ],
+      "errors": [],
+      "shots": [
+        "360-0-slots-shop-text.png"
+      ],
+      "layout": {
+        "geometry": {
+          "x": 12,
+          "w": 336,
+          "top": 8,
+          "pc": null,
+          "desktop": false,
+          "short": false,
+          "copyBeside": false,
+          "inventoryCollapsed": false,
+          "compact": true,
+          "wideHeader": false,
+          "portrait": true,
+          "guidanceBelow": false,
+          "slots": [
+            {
+              "x": 38,
+              "y": 357,
+              "width": 52,
+              "height": 101
+            },
+            {
+              "x": 96,
+              "y": 357,
+              "width": 52,
+              "height": 101
+            },
+            {
+              "x": 154,
+              "y": 357,
+              "width": 52,
+              "height": 101
+            },
+            {
+              "x": 212,
+              "y": 357,
+              "width": 52,
+              "height": 101
+            },
+            {
+              "x": 270,
+              "y": 357,
+              "width": 52,
+              "height": 101
+            }
+          ],
+          "shelf": [
+            {
+              "x": 26.76190476190476,
+              "y": 112,
+              "width": 77.14285714285715,
+              "height": 96.42857142857144
+            },
+            {
+              "x": 141.42857142857144,
+              "y": 112,
+              "width": 77.14285714285715,
+              "height": 96.42857142857144
+            },
+            {
+              "x": 256.0952380952381,
+              "y": 112,
+              "width": 77.14285714285715,
+              "height": 96.42857142857144
+            }
+          ],
+          "tabs": {
+            "x": 12,
+            "y": 60,
+            "width": 336,
+            "height": 44
+          },
+          "chapter": {
+            "x": 12,
+            "y": 482,
+            "width": 164,
+            "height": 44
+          },
+          "items": {
+            "x": 184,
+            "y": 482,
+            "width": 164,
+            "height": 44
+          },
+          "reroll": {
+            "x": 12,
+            "y": 536,
+            "width": 164,
+            "height": 44
+          },
+          "build": {
+            "x": 184,
+            "y": 536,
+            "width": 164,
+            "height": 44
+          },
+          "play": {
+            "x": 12,
+            "y": 588,
+            "width": 336,
+            "height": 56
+          },
+          "noticeY": 652
+        },
+        "fonts": {
+          "ready": "loaded",
+          "dpr": 3,
+          "zoom": 0.3333333333333333,
+          "canvasWidth": 1080,
+          "canvasCssWidth": 360,
+          "fontFaces": [
+            {
+              "family": "Dachoupai Score",
+              "status": "loaded"
+            }
+          ]
+        },
+        "fields": [
+          {
+            "name": "shop/owned-heading",
+            "text": "当前持有 0/5",
+            "font": "\"Microsoft YaHei\", \"PingFang SC\", \"Noto Sans SC\", sans-serif",
+            "fontSize": "14px",
+            "x": 38,
+            "y": 337,
+            "width": 83,
+            "height": 17
+          },
+          {
+            "name": "shop/offer-name",
+            "text": "金玉满盘",
+            "offerId": "controlled/mobile-readable/0/shop/0/1/joker/0",
+            "font": "\"Microsoft YaHei\", \"PingFang SC\", \"Noto Sans SC\", sans-serif",
+            "fontSize": "15px",
+            "x": 27.0000025431315,
+            "y": 212,
+            "width": 60,
+            "height": 19
+          },
+          {
+            "name": "shop/offer-purpose",
+            "text": "获得2金\n成功过关",
+            "offerId": "controlled/mobile-readable/0/shop/0/1/joker/0",
+            "font": "\"Microsoft YaHei\", \"PingFang SC\", \"Noto Sans SC\", sans-serif",
+            "fontSize": "14px",
+            "x": 27.0000025431315,
+            "y": 256,
+            "width": 56,
+            "height": 34
+          },
+          {
+            "name": "shop/offer-identity",
+            "text": "普通·原版",
+            "offerId": "controlled/mobile-readable/0/shop/0/1/joker/0",
+            "font": "\"Microsoft YaHei\", \"PingFang SC\", \"Noto Sans SC\", sans-serif",
+            "fontSize": "14px",
+            "x": 27.0000025431315,
+            "y": 235,
+            "width": 60,
+            "height": 17
+          },
+          {
+            "name": "shop/offer-price",
+            "text": "4金 · 选择",
+            "offerId": "controlled/mobile-readable/0/shop/0/1/joker/0",
+            "font": "\"Microsoft YaHei\", \"PingFang SC\", \"Noto Sans SC\", sans-serif",
+            "fontSize": "16px",
+            "x": 27.0000025431315,
+            "y": 296,
+            "width": 75,
+            "height": 19
+          },
+          {
+            "name": "shop/offer-name",
+            "text": "奇兵突起",
+            "offerId": "controlled/mobile-readable/0/shop/0/1/joker/1",
+            "font": "\"Microsoft YaHei\", \"PingFang SC\", \"Noto Sans SC\", sans-serif",
+            "fontSize": "15px",
+            "x": 140.99999999999997,
+            "y": 212,
+            "width": 60,
+            "height": 19
+          },
+          {
+            "name": "shop/offer-purpose",
+            "text": "每张符合条…\n留2/3/4/5…",
+            "offerId": "controlled/mobile-readable/0/shop/0/1/joker/1",
+            "font": "\"Microsoft YaHei\", \"PingFang SC\", \"Noto Sans SC\", sans-serif",
+            "fontSize": "14px",
+            "x": 140.99999999999997,
+            "y": 256,
+            "width": 82,
+            "height": 34
+          },
+          {
+            "name": "shop/offer-identity",
+            "text": "普通·原版",
+            "offerId": "controlled/mobile-readable/0/shop/0/1/joker/1",
+            "font": "\"Microsoft YaHei\", \"PingFang SC\", \"Noto Sans SC\", sans-serif",
+            "fontSize": "14px",
+            "x": 140.99999999999997,
+            "y": 235,
+            "width": 60,
+            "height": 17
+          },
+          {
+            "name": "shop/offer-price",
+            "text": "4金 · 选择",
+            "offerId": "controlled/mobile-readable/0/shop/0/1/joker/1",
+            "font": "\"Microsoft YaHei\", \"PingFang SC\", \"Noto Sans SC\", sans-serif",
+            "fontSize": "16px",
+            "x": 140.99999999999997,
+            "y": 296,
+            "width": 75,
+            "height": 19
+          },
+          {
+            "name": "shop/offer-name",
+            "text": "青出于蓝",
+            "offerId": "controlled/mobile-readable/0/shop/0/1/joker/2",
+            "font": "\"Microsoft YaHei\", \"PingFang SC\", \"Noto Sans SC\", sans-serif",
+            "fontSize": "15px",
+            "x": 255.999989827474,
+            "y": 212,
+            "width": 60,
+            "height": 19
+          },
+          {
+            "name": "shop/offer-purpose",
+            "text": "新购倍率+0\n同花族后…",
+            "offerId": "controlled/mobile-readable/0/shop/0/1/joker/2",
+            "font": "\"Microsoft YaHei\", \"PingFang SC\", \"Noto Sans SC\", sans-serif",
+            "fontSize": "14px",
+            "x": 255.999989827474,
+            "y": 256,
+            "width": 75,
+            "height": 34
+          },
+          {
+            "name": "shop/offer-identity",
+            "text": "特别·原版",
+            "offerId": "controlled/mobile-readable/0/shop/0/1/joker/2",
+            "font": "\"Microsoft YaHei\", \"PingFang SC\", \"Noto Sans SC\", sans-serif",
+            "fontSize": "14px",
+            "x": 255.999989827474,
+            "y": 235,
+            "width": 60,
+            "height": 17
+          },
+          {
+            "name": "shop/offer-price",
+            "text": "6金 · 选择",
+            "offerId": "controlled/mobile-readable/0/shop/0/1/joker/2",
+            "font": "\"Microsoft YaHei\", \"PingFang SC\", \"Noto Sans SC\", sans-serif",
+            "fontSize": "16px",
+            "x": 255.999989827474,
+            "y": 296,
+            "width": 75,
+            "height": 19
+          }
+        ],
+        "hero": [
+          {
+            "name": "shop/hero-backdrop",
+            "alpha": 0.18,
+            "x": 0,
+            "y": 141,
+            "width": 360,
+            "height": 450
+          }
+        ],
+        "notice": ""
+      },
+      "status": "PASS"
+    },
+    {
+      "profile": {
+        "width": 360,
+        "height": 680,
+        "count": 5,
+        "dpr": 3
+      },
+      "stock": [
+        {
+          "name": "回马枪",
+          "rarity": "稀有"
+        },
+        {
+          "name": "压轴好戏",
+          "rarity": "稀有"
+        },
+        {
+          "name": "青出于蓝",
+          "rarity": "特别"
+        }
+      ],
+      "errors": [],
+      "shots": [
+        "360-5-slots-shop-text.png"
+      ],
+      "layout": {
+        "geometry": {
+          "x": 12,
+          "w": 336,
+          "top": 8,
+          "pc": null,
+          "desktop": false,
+          "short": false,
+          "copyBeside": false,
+          "inventoryCollapsed": false,
+          "compact": true,
+          "wideHeader": false,
+          "portrait": true,
+          "guidanceBelow": false,
+          "slots": [
+            {
+              "x": 38,
+              "y": 357,
+              "width": 52,
+              "height": 101
+            },
+            {
+              "x": 96,
+              "y": 357,
+              "width": 52,
+              "height": 101
+            },
+            {
+              "x": 154,
+              "y": 357,
+              "width": 52,
+              "height": 101
+            },
+            {
+              "x": 212,
+              "y": 357,
+              "width": 52,
+              "height": 101
+            },
+            {
+              "x": 270,
+              "y": 357,
+              "width": 52,
+              "height": 101
+            }
+          ],
+          "shelf": [
+            {
+              "x": 26.76190476190476,
+              "y": 112,
+              "width": 77.14285714285715,
+              "height": 96.42857142857144
+            },
+            {
+              "x": 141.42857142857144,
+              "y": 112,
+              "width": 77.14285714285715,
+              "height": 96.42857142857144
+            },
+            {
+              "x": 256.0952380952381,
+              "y": 112,
+              "width": 77.14285714285715,
+              "height": 96.42857142857144
+            }
+          ],
+          "tabs": {
+            "x": 12,
+            "y": 60,
+            "width": 336,
+            "height": 44
+          },
+          "chapter": {
+            "x": 12,
+            "y": 482,
+            "width": 164,
+            "height": 44
+          },
+          "items": {
+            "x": 184,
+            "y": 482,
+            "width": 164,
+            "height": 44
+          },
+          "reroll": {
+            "x": 12,
+            "y": 536,
+            "width": 164,
+            "height": 44
+          },
+          "build": {
+            "x": 184,
+            "y": 536,
+            "width": 164,
+            "height": 44
+          },
+          "play": {
+            "x": 12,
+            "y": 588,
+            "width": 336,
+            "height": 56
+          },
+          "noticeY": 652
+        },
+        "fonts": {
+          "ready": "loaded",
+          "dpr": 3,
+          "zoom": 0.3333333333333333,
+          "canvasWidth": 1080,
+          "canvasCssWidth": 360,
+          "fontFaces": [
+            {
+              "family": "Dachoupai Score",
+              "status": "loaded"
+            }
+          ]
+        },
+        "fields": [
+          {
+            "name": "shop/owned-heading",
+            "text": "通常从左到右结算 · 长按拖动排序",
+            "font": "\"Microsoft YaHei\", \"PingFang SC\", \"Noto Sans SC\", sans-serif",
+            "fontSize": "14px",
+            "x": 38,
+            "y": 333,
+            "width": 208,
+            "height": 17
+          },
+          {
+            "name": "shop/owned-name",
+            "text": "掌灯破雾",
+            "font": "\"Microsoft YaHei\", \"PingFang SC\", \"Noto Sans SC\", sans-serif",
+            "fontSize": "12px",
+            "x": 38,
+            "y": 424,
+            "width": 48,
+            "height": 15
+          },
+          {
+            "name": "shop/owned-identity",
+            "text": "普通",
+            "font": "\"Microsoft YaHei\", \"PingFang SC\", \"Noto Sans SC\", sans-serif",
+            "fontSize": "11px",
+            "x": 38,
+            "y": 442,
+            "width": 22,
+            "height": 13
+          },
+          {
+            "name": "shop/owned-route",
+            "text": "同/顺/花",
+            "font": "\"Microsoft YaHei\", \"PingFang SC\", \"Noto Sans SC\", sans-serif",
+            "fontSize": "14px",
+            "x": 37,
+            "y": 461,
+            "width": 54,
+            "height": 17
+          },
+          {
+            "name": "shop/owned-name",
+            "text": "精打细算",
+            "font": "\"Microsoft YaHei\", \"PingFang SC\", \"Noto Sans SC\", sans-serif",
+            "fontSize": "12px",
+            "x": 96,
+            "y": 424,
+            "width": 48,
+            "height": 15
+          },
+          {
+            "name": "shop/owned-identity",
+            "text": "特别 · 闪…",
+            "font": "\"Microsoft YaHei\", \"PingFang SC\", \"Noto Sans SC\", sans-serif",
+            "fontSize": "11px",
+            "x": 96,
+            "y": 442,
+            "width": 52,
+            "height": 13
+          },
+          {
+            "name": "shop/owned-route",
+            "text": "同/顺/花",
+            "font": "\"Microsoft YaHei\", \"PingFang SC\", \"Noto Sans SC\", sans-serif",
+            "fontSize": "14px",
+            "x": 95,
+            "y": 461,
+            "width": 54,
+            "height": 17
+          },
+          {
+            "name": "shop/owned-name",
+            "text": "回马枪",
+            "font": "\"Microsoft YaHei\", \"PingFang SC\", \"Noto Sans SC\", sans-serif",
+            "fontSize": "12px",
+            "x": 154,
+            "y": 424,
+            "width": 36,
+            "height": 15
+          },
+          {
+            "name": "shop/owned-identity",
+            "text": "稀有 · 全…",
+            "font": "\"Microsoft YaHei\", \"PingFang SC\", \"Noto Sans SC\", sans-serif",
+            "fontSize": "11px",
+            "x": 154,
+            "y": 442,
+            "width": 52,
+            "height": 13
+          },
+          {
+            "name": "shop/owned-route",
+            "text": "同/顺/花",
+            "font": "\"Microsoft YaHei\", \"PingFang SC\", \"Noto Sans SC\", sans-serif",
+            "fontSize": "14px",
+            "x": 153,
+            "y": 461,
+            "width": 54,
+            "height": 17
+          },
+          {
+            "name": "shop/owned-name",
+            "text": "巧借东风",
+            "font": "\"Microsoft YaHei\", \"PingFang SC\", \"Noto Sans SC\", sans-serif",
+            "fontSize": "12px",
+            "x": 212,
+            "y": 424,
+            "width": 48,
+            "height": 15
+          },
+          {
+            "name": "shop/owned-identity",
+            "text": "特别 · 多…",
+            "font": "\"Microsoft YaHei\", \"PingFang SC\", \"Noto Sans SC\", sans-serif",
+            "fontSize": "11px",
+            "x": 212,
+            "y": 442,
+            "width": 52,
+            "height": 13
+          },
+          {
+            "name": "shop/owned-route",
+            "text": "同/顺/花",
+            "font": "\"Microsoft YaHei\", \"PingFang SC\", \"Noto Sans SC\", sans-serif",
+            "fontSize": "14px",
+            "x": 211,
+            "y": 461,
+            "width": 54,
+            "height": 17
+          },
+          {
+            "name": "shop/owned-name",
+            "text": "轻车熟路",
+            "font": "\"Microsoft YaHei\", \"PingFang SC\", \"Noto Sans SC\", sans-serif",
+            "fontSize": "12px",
+            "x": 270,
+            "y": 424,
+            "width": 48,
+            "height": 15
+          },
+          {
+            "name": "shop/owned-identity",
+            "text": "特别",
+            "font": "\"Microsoft YaHei\", \"PingFang SC\", \"Noto Sans SC\", sans-serif",
+            "fontSize": "11px",
+            "x": 270,
+            "y": 442,
+            "width": 22,
+            "height": 13
+          },
+          {
+            "name": "shop/owned-route",
+            "text": "同/顺/花",
+            "font": "\"Microsoft YaHei\", \"PingFang SC\", \"Noto Sans SC\", sans-serif",
+            "fontSize": "14px",
+            "x": 269,
+            "y": 461,
+            "width": 54,
+            "height": 17
+          },
+          {
+            "name": "shop/offer-name",
+            "text": "回马枪",
+            "offerId": "controlled/mobile-readable/5/shop/0/1/joker/0",
+            "font": "\"Microsoft YaHei\", \"PingFang SC\", \"Noto Sans SC\", sans-serif",
+            "fontSize": "15px",
+            "x": 27.0000025431315,
+            "y": 212,
+            "width": 45,
+            "height": 19
+          },
+          {
+            "name": "shop/offer-purpose",
+            "text": "每手1次 倍…\n本场第…",
+            "offerId": "controlled/mobile-readable/5/shop/0/1/joker/0",
+            "font": "\"Microsoft YaHei\", \"PingFang SC\", \"Noto Sans SC\", sans-serif",
+            "fontSize": "14px",
+            "x": 27.0000025431315,
+            "y": 256,
+            "width": 80,
+            "height": 34
+          },
+          {
+            "name": "shop/offer-identity",
+            "text": "稀有·原版",
+            "offerId": "controlled/mobile-readable/5/shop/0/1/joker/0",
+            "font": "\"Microsoft YaHei\", \"PingFang SC\", \"Noto Sans SC\", sans-serif",
+            "fontSize": "14px",
+            "x": 27.0000025431315,
+            "y": 235,
+            "width": 60,
+            "height": 17
+          },
+          {
+            "name": "shop/offer-price",
+            "text": "8金 · 差2",
+            "offerId": "controlled/mobile-readable/5/shop/0/1/joker/0",
+            "font": "\"Microsoft YaHei\", \"PingFang SC\", \"Noto Sans SC\", sans-serif",
+            "fontSize": "16px",
+            "x": 27.0000025431315,
+            "y": 296,
+            "width": 69,
+            "height": 19
+          },
+          {
+            "name": "shop/offer-name",
+            "text": "压轴好戏",
+            "offerId": "controlled/mobile-readable/5/shop/0/1/joker/1",
+            "font": "\"Microsoft YaHei\", \"PingFang SC\", \"Noto Sans SC\", sans-serif",
+            "fontSize": "15px",
+            "x": 140.99999999999997,
+            "y": 212,
+            "width": 60,
+            "height": 19
+          },
+          {
+            "name": "shop/offer-purpose",
+            "text": "多步条件 · 倍\n率×已存值",
+            "offerId": "controlled/mobile-readable/5/shop/0/1/joker/1",
+            "font": "\"Microsoft YaHei\", \"PingFang SC\", \"Noto Sans SC\", sans-serif",
+            "fontSize": "14px",
+            "x": 140.99999999999997,
+            "y": 256,
+            "width": 82,
+            "height": 34
+          },
+          {
+            "name": "shop/offer-identity",
+            "text": "稀有·原版",
+            "offerId": "controlled/mobile-readable/5/shop/0/1/joker/1",
+            "font": "\"Microsoft YaHei\", \"PingFang SC\", \"Noto Sans SC\", sans-serif",
+            "fontSize": "14px",
+            "x": 140.99999999999997,
+            "y": 235,
+            "width": 60,
+            "height": 17
+          },
+          {
+            "name": "shop/offer-price",
+            "text": "8金 · 差2",
+            "offerId": "controlled/mobile-readable/5/shop/0/1/joker/1",
+            "font": "\"Microsoft YaHei\", \"PingFang SC\", \"Noto Sans SC\", sans-serif",
+            "fontSize": "16px",
+            "x": 140.99999999999997,
+            "y": 296,
+            "width": 69,
+            "height": 19
+          },
+          {
+            "name": "shop/offer-name",
+            "text": "青出于蓝",
+            "offerId": "controlled/mobile-readable/5/shop/0/1/joker/2",
+            "font": "\"Microsoft YaHei\", \"PingFang SC\", \"Noto Sans SC\", sans-serif",
+            "fontSize": "15px",
+            "x": 255.999989827474,
+            "y": 212,
+            "width": 60,
+            "height": 19
+          },
+          {
+            "name": "shop/offer-purpose",
+            "text": "新购倍率+0\n同花族后…",
+            "offerId": "controlled/mobile-readable/5/shop/0/1/joker/2",
+            "font": "\"Microsoft YaHei\", \"PingFang SC\", \"Noto Sans SC\", sans-serif",
+            "fontSize": "14px",
+            "x": 255.999989827474,
+            "y": 256,
+            "width": 75,
+            "height": 34
+          },
+          {
+            "name": "shop/offer-identity",
+            "text": "特别·原版",
+            "offerId": "controlled/mobile-readable/5/shop/0/1/joker/2",
+            "font": "\"Microsoft YaHei\", \"PingFang SC\", \"Noto Sans SC\", sans-serif",
+            "fontSize": "14px",
+            "x": 255.999989827474,
+            "y": 235,
+            "width": 60,
+            "height": 17
+          },
+          {
+            "name": "shop/offer-price",
+            "text": "6金 · 选择",
+            "offerId": "controlled/mobile-readable/5/shop/0/1/joker/2",
+            "font": "\"Microsoft YaHei\", \"PingFang SC\", \"Noto Sans SC\", sans-serif",
+            "fontSize": "16px",
+            "x": 255.999989827474,
+            "y": 296,
+            "width": 75,
+            "height": 19
+          }
+        ],
+        "hero": [
+          {
+            "name": "shop/hero-backdrop",
+            "alpha": 0.18,
+            "x": 0,
+            "y": 141,
+            "width": 360,
+            "height": 450
+          }
+        ],
+        "notice": ""
+      },
+      "status": "PASS"
+    }
+  ],
+  "browser": "153.0.8010.12",
+  "status": "PASS"
+}

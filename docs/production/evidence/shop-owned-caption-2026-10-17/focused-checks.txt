@@ -1,0 +1,25 @@
+
+ RUN  v4.1.11 D:/ai/dachoupai/dachoupai/.codex-remote-attachments/shop-owned-caption-20261017
+
+
+ Test Files  5 passed (5)
+      Tests  86 passed (86)
+   Start at  18:58:09
+   Duration  3.36s (transform 5.36s, setup 0ms, import 6.88s, tests 607ms, environment 1ms)
+
+Typecheck exit 0
+vite v7.3.6 building client environment for production...
+transforming...
+✓ 327 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/build-info.json                0.36 kB │ gzip:   0.24 kB
+dist/index.html                    14.39 kB │ gzip:   4.75 kB
+dist/assets/index-Kq_p7tYm.css    117.05 kB │ gzip:  20.87 kB
+dist/assets/index-qZaQnyb8.js   2,832.68 kB │ gzip: 822.30 kB
+
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+✓ built in 10.13s
