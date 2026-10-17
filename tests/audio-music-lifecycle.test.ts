@@ -199,7 +199,7 @@ it('keeps the old song during slow loading and uses complementary 250ms ramps wi
   expect(media).toHaveLength(2); engine.setSuspended(true); expect(vi.getTimerCount()).toBe(0);
 });
 
-it('pitch escalation clamps invalid and arbitrarily long chains to its declared eight-step contract', () => {
-  expect([chainRate(-1), chainRate(NaN), chainRate(Infinity)]).toEqual([1, 1, 1]);
-  expect(chainRate(3.9)).toBe(1.35); expect(chainRate(7)).toBe(2); expect(chainRate(100000)).toBe(2);
+it('legacy material pitch stays in a narrow register for invalid and arbitrarily long chains', () => {
+  expect([chainRate(-1), chainRate(NaN), chainRate(Infinity)]).toEqual([.94, .94, .94]);
+  expect(chainRate(1)).toBe(1);expect(chainRate(3.9)).toBe(1.06); expect(chainRate(7)).toBe(1.06); expect(chainRate(100000)).toBe(1.06);
 });
