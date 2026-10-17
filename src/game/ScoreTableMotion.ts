@@ -5,7 +5,7 @@ import type {Box} from './layout';
 import {scoreContributions} from './ScoreContribution';
 import {readableFractionText} from './scoreText';
 import type {ScoreAnimate} from './ScorePosture';
-import {crispText,prepareTextScale} from './TextRaster';
+import {crispText,prepareTextScale,textDensity} from './TextRaster';
 import {UI_FONT} from './theme';
 
 export type ScoreArrivalKind='heat'|'mult-add'|'mult-multiply'|'total';
@@ -28,7 +28,7 @@ export const SCORE_CHANNEL={heat:{color:0x247b93,css:'#247b93',size:18},'mult-ad
 export async function presentScoreSource(scene:Phaser.Scene,parent:Phaser.GameObjects.Container,options:{event:ScoreEvent;source:Box;target:Box;viewport:Box;duration:number;reduced:boolean;beside?:boolean;animate:ScoreAnimate;context:EffectContext;protectedBounds?:readonly Box[]}):Promise<void>{
  const cue=scoreArrival(options.event);if(!cue||options.context.signal.aborted)return;const style=SCORE_CHANNEL[cue.kind];
  const group=scene.add.container(0,0).setName('score/source-arrival').setData('eventId',cue.eventId).setData('kind',cue.kind);parent.add(group);
- const label=scene.add.text(0,0,cue.label,{fontFamily:UI_FONT,fontSize:style.size+'px',fontStyle:'bold',color:style.css,backgroundColor:'#fff9ee'}).setName('score/source-value').setOrigin(.5);group.add(label);prepareTextScale(label,1.08);
+ const label=scene.add.text(0,0,cue.label,{fontFamily:UI_FONT,fontSize:style.size+'px',fontStyle:'bold',color:style.css,backgroundColor:'#fff9ee',resolution:Math.ceil(textDensity(scene)*1.08)}).setName('score/source-value').setOrigin(.5);group.add(label);prepareTextScale(label,1.08);
  const centerX=Math.max(options.viewport.x+label.width/2+4,Math.min(options.viewport.x+options.viewport.width-label.width/2-4,options.source.x+options.source.width/2)),candidates=[...(options.beside?[{x:options.source.x+options.source.width+label.width/2+8,y:options.source.y+options.source.height/2},{x:options.source.x-label.width/2-8,y:options.source.y+options.source.height/2}]:[]),{x:centerX,y:options.source.y-label.height/2-5},{x:centerX,y:options.source.y+options.source.height+label.height/2+5}],clear=({x,y}:{x:number;y:number})=>x-label.width/2>=options.viewport.x+4&&x+label.width/2<=options.viewport.x+options.viewport.width-4&&y-label.height/2>=options.viewport.y&&y+label.height/2<=options.viewport.y+options.viewport.height&&!(options.protectedBounds??[]).some(b=>x+label.width/2>b.x&&x-label.width/2<b.x+b.width&&y+label.height/2>b.y&&y-label.height/2<b.y+b.height),{x,y}=candidates.find(clear)??{x:centerX,y:options.source.y+label.height/2+3};label.setPosition(x,y);crispText(label);
  let disposed=false;const dispose=()=>{if(disposed)return;disposed=true;options.context.signal.removeEventListener('abort',dispose);group.destroy();};options.context.signal.addEventListener('abort',dispose,{once:true});
  try{const t={p:0};await options.animate({targets:t,p:1,duration:options.duration,ease:'Linear',onUpdate:()=>{if(disposed)return;label.setPosition(x,y-(options.reduced?0:Math.min(8,options.duration/20)*t.p)).setAlpha(options.reduced?1:1-.35*t.p);crispText(label);}},options.context);}finally{dispose();}
