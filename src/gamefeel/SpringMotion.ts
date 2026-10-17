@@ -143,6 +143,14 @@ export class SpringCardTransform {
     }
   }
 
+  public reset(x: number = 0, y: number = 0, scale: number = 1.0, rotation: number = 0): void {
+    this.x.reset(x);
+    this.y.reset(y);
+    this.scaleX.reset(scale);
+    this.scaleY.reset(scale);
+    this.rotation.reset(rotation);
+  }
+
   public step(dtSeconds: number): boolean {
     const sX = this.x.step(dtSeconds);
     const sY = this.y.step(dtSeconds);

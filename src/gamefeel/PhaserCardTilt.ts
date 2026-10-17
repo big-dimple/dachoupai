@@ -3,11 +3,11 @@
  * 2.5D Perspective Tilt & Parallax Component specifically designed for Phaser 3 Containers.
  * 
  * Complies with Dachoupai Table Architecture:
- * - Operates directly on Phaser.GameObjects.Container.
- * - Retains full pointer click, selection, and drag hit-testing (Phaser interactive hitArea).
- * - Multi-layer internal parallax (art vs frame vs label shift relative to tilt).
- * - Drag-velocity dynamic tilt (leans into drag direction).
- * - Complete teardown and listener cleanup in destroy().
+ * - Operates strictly on an inner visual container (innerVisual), NEVER mutating outer container position/scale/rotation.
+ * - Uses container.getLocalPoint(worldX, worldY) to correctly respect parent transforms, zoom, and nested containers.
+ * - Retains full pointer click, selection, and drag hit-testing without hijacking drag x/y.
+ * - Multi-layer internal parallax (art shifts relative to tilt).
+ * - Complete teardown and listener cleanup in destroy(), resetting visual layer to identity.
  */
 
 import Phaser from 'phaser';
@@ -22,18 +22,14 @@ export interface PhaserCardTiltConfig {
 
 export class PhaserCardTilt {
   private container: Phaser.GameObjects.Container;
+  private innerVisual: Phaser.GameObjects.Container;
   private scene: Phaser.Scene;
   private config: Required<PhaserCardTiltConfig>;
 
-  // Base state
-  private baseScaleX: number;
-  private baseScaleY: number;
-  private baseRotation: number;
-
-  // Runtime targets
+  // Target visual transforms (applied strictly to innerVisual)
   private targetRotation: number = 0;
-  private targetScaleX: number;
-  private targetScaleY: number;
+  private targetScaleX: number = 1.0;
+  private targetScaleY: number = 1.0;
   private targetArtOffsetX: number = 0;
   private targetArtOffsetY: number = 0;
 
@@ -52,15 +48,15 @@ export class PhaserCardTilt {
   private onPointerOverBound: (p: Phaser.Input.Pointer) => void;
   private onPointerMoveBound: (p: Phaser.Input.Pointer) => void;
   private onPointerOutBound: (p: Phaser.Input.Pointer) => void;
-  private onDragStartBound: (p: Phaser.Input.Pointer, dragX: number, dragY: number) => void;
-  private onDragBound: (p: Phaser.Input.Pointer, dragX: number, dragY: number) => void;
+  private onDragStartBound: (p: Phaser.Input.Pointer) => void;
+  private onDragBound: (p: Phaser.Input.Pointer) => void;
   private onDragEndBound: (p: Phaser.Input.Pointer) => void;
 
   constructor(
     container: Phaser.GameObjects.Container,
     cardWidth: number,
     cardHeight: number,
-    artChildIndexOrName?: number | string,
+    innerVisualOrArtName?: Phaser.GameObjects.Container | string,
     config: PhaserCardTiltConfig = {}
   ) {
     this.container = container;
@@ -74,27 +70,38 @@ export class PhaserCardTilt {
       lerpSpeed: config.lerpSpeed ?? 0.20
     };
 
-    this.baseScaleX = container.scaleX;
-    this.baseScaleY = container.scaleY;
-    this.baseRotation = container.rotation;
-    this.targetScaleX = this.baseScaleX;
-    this.targetScaleY = this.baseScaleY;
-
-    // Resolve art child for layered parallax
-    if (typeof artChildIndexOrName === 'number') {
-      this.artChild = container.getAt(artChildIndexOrName);
-    } else if (typeof artChildIndexOrName === 'string') {
-      this.artChild = container.getByName(artChildIndexOrName);
-    } else if (container.length > 0) {
-      // Default to child 0 or child named 'card-art'
-      this.artChild = container.getByName('card-art') ?? container.getAt(0);
+    // Resolve or establish inner visual layer
+    if (innerVisualOrArtName instanceof Phaser.GameObjects.Container) {
+      this.innerVisual = innerVisualOrArtName;
+    } else {
+      const found = container.getByName('card-visual') as Phaser.GameObjects.Container | null;
+      if (found && found instanceof Phaser.GameObjects.Container) {
+        this.innerVisual = found;
+      } else {
+        // If container already has children but no dedicated visual layer, wrap them
+        this.innerVisual = this.scene.add.container(0, 0);
+        this.innerVisual.setName('card-visual');
+        const children = [...container.list];
+        for (const child of children) {
+          container.remove(child);
+          this.innerVisual.add(child);
+        }
+        container.add(this.innerVisual);
+      }
     }
 
-    // Optional subtle additive specular glare layer
+    // Resolve art child for layered parallax
+    if (typeof innerVisualOrArtName === 'string') {
+      this.artChild = this.innerVisual.getByName(innerVisualOrArtName) ?? container.getByName(innerVisualOrArtName);
+    } else {
+      this.artChild = this.innerVisual.getByName('card-art') ?? this.innerVisual.getAt(0);
+    }
+
+    // Optional subtle additive specular glare layer inside inner visual
     this.glareChild = this.scene.add.graphics();
     this.glareChild.setBlendMode(Phaser.BlendModes.ADD);
     this.glareChild.setAlpha(0);
-    this.container.add(this.glareChild);
+    this.innerVisual.add(this.glareChild);
 
     // Bind event handlers
     this.onPointerOverBound = this.handlePointerOver.bind(this);
@@ -108,13 +115,12 @@ export class PhaserCardTilt {
   }
 
   private setupInteractivity(width: number, height: number): void {
-    // If container not already interactive, create a centered rectangular hit area
+    // If container not already interactive, set centered hit area
     if (!this.container.input) {
       this.container.setInteractive({
         hitArea: new Phaser.Geom.Rectangle(-width / 2, -height / 2, width, height),
         hitAreaCallback: Phaser.Geom.Rectangle.Contains,
-        useHandCursor: true,
-        draggable: true
+        useHandCursor: true
       });
     }
 
@@ -135,20 +141,18 @@ export class PhaserCardTilt {
   private handlePointerMove(pointer: Phaser.Input.Pointer, width: number, height: number): void {
     if (this.isDestroyed || this.isDragging) return;
 
-    // Convert world pointer coordinates into container local coordinate space
-    const localX = pointer.worldX - this.container.x;
-    const localY = pointer.worldY - this.container.y;
+    // Convert world pointer coordinates into container local coordinate space properly
+    const localPoint = this.container.getLocalPoint(pointer.worldX, pointer.worldY);
+    const normX = Phaser.Math.Clamp(localPoint.x / (width * 0.5), -1, 1);
+    const normY = Phaser.Math.Clamp(localPoint.y / (height * 0.5), -1, 1);
 
-    const normX = Phaser.Math.Clamp(localX / (width * 0.5), -1, 1);
-    const normY = Phaser.Math.Clamp(localY / (height * 0.5), -1, 1);
-
-    // Tilt rotation in radians
+    // Tilt rotation in radians (applied to innerVisual)
     const maxRad = Phaser.Math.DegToRad(this.config.maxRotationDeg);
-    this.targetRotation = this.baseRotation + (normX * maxRad);
+    this.targetRotation = normX * maxRad;
 
     // Perspective foreshortening: slight scale compression perpendicular to tilt
-    this.targetScaleX = this.baseScaleX * (1 - Math.abs(normX) * this.config.scaleModulation);
-    this.targetScaleY = this.baseScaleY * (1 - Math.abs(normY) * this.config.scaleModulation);
+    this.targetScaleX = 1 - Math.abs(normX) * this.config.scaleModulation;
+    this.targetScaleY = 1 - Math.abs(normY) * this.config.scaleModulation;
 
     // Multi-layer parallax: art shifts slightly opposite to perspective
     this.targetArtOffsetX = normX * this.config.artParallaxPx;
@@ -173,22 +177,17 @@ export class PhaserCardTilt {
     this.isDragging = true;
     this.lastDragX = pointer.x;
     this.lastDragY = pointer.y;
-    this.targetScaleX = this.baseScaleX * 1.06;
-    this.targetScaleY = this.baseScaleY * 1.06;
+    this.targetScaleX = 1.05;
+    this.targetScaleY = 1.05;
   }
 
-  private handleDrag(pointer: Phaser.Input.Pointer, dragX: number, dragY: number): void {
+  private handleDrag(pointer: Phaser.Input.Pointer): void {
     if (this.isDestroyed) return;
-    // Update container position
-    this.container.x = dragX;
-    this.container.y = dragY;
-
-    // Calculate drag velocity for dynamic lean
+    // Calculate drag velocity for dynamic lean without hijacking container x/y
     const vx = pointer.x - this.lastDragX;
     this.lastDragX = pointer.x;
     this.lastDragY = pointer.y;
 
-    // Lean into movement direction
     const leanAngle = Phaser.Math.Clamp(vx * this.config.dragLeanFactor, -12, 12);
     this.targetRotation = Phaser.Math.DegToRad(leanAngle);
   }
@@ -200,9 +199,9 @@ export class PhaserCardTilt {
   }
 
   private resetTargets(): void {
-    this.targetRotation = this.baseRotation;
-    this.targetScaleX = this.baseScaleX;
-    this.targetScaleY = this.baseScaleY;
+    this.targetRotation = 0;
+    this.targetScaleX = 1.0;
+    this.targetScaleY = 1.0;
     this.targetArtOffsetX = 0;
     this.targetArtOffsetY = 0;
     if (this.glareChild) this.glareChild.setAlpha(0);
@@ -215,10 +214,10 @@ export class PhaserCardTilt {
     if (this.isDestroyed) return;
     const lerp = this.config.lerpSpeed;
 
-    // Interpolate container transforms
-    this.container.rotation = Phaser.Math.Linear(this.container.rotation, this.targetRotation, lerp);
-    this.container.scaleX = Phaser.Math.Linear(this.container.scaleX, this.targetScaleX, lerp);
-    this.container.scaleY = Phaser.Math.Linear(this.container.scaleY, this.targetScaleY, lerp);
+    // Interpolate strictly on innerVisual
+    this.innerVisual.rotation = Phaser.Math.Linear(this.innerVisual.rotation, this.targetRotation, lerp);
+    this.innerVisual.scaleX = Phaser.Math.Linear(this.innerVisual.scaleX, this.targetScaleX, lerp);
+    this.innerVisual.scaleY = Phaser.Math.Linear(this.innerVisual.scaleY, this.targetScaleY, lerp);
 
     // Interpolate internal art parallax offset
     if (this.artChild && 'x' in this.artChild && 'y' in this.artChild) {
@@ -228,8 +227,12 @@ export class PhaserCardTilt {
     }
   }
 
+  public getInnerVisual(): Phaser.GameObjects.Container {
+    return this.innerVisual;
+  }
+
   /**
-   * Strict teardown: unbinds all listeners and cleans up game objects.
+   * Strict teardown: unbinds all listeners and resets inner visual transforms to identity.
    */
   public destroy(): void {
     if (this.isDestroyed) return;
@@ -243,10 +246,10 @@ export class PhaserCardTilt {
     this.container.off(Phaser.Input.Events.DRAG, this.onDragBound);
     this.container.off(Phaser.Input.Events.DRAG_END, this.onDragEndBound);
 
-    // Reset container to base transforms
-    this.container.rotation = this.baseRotation;
-    this.container.scaleX = this.baseScaleX;
-    this.container.scaleY = this.baseScaleY;
+    // Reset innerVisual to baseline
+    this.innerVisual.rotation = 0;
+    this.innerVisual.scaleX = 1.0;
+    this.innerVisual.scaleY = 1.0;
 
     if (this.artChild && 'x' in this.artChild && 'y' in this.artChild) {
       const art = this.artChild as unknown as { x: number; y: number };
