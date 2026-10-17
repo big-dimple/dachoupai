@@ -3,8 +3,10 @@
  * Unified 4-Phase Scoring Rhythm Orchestrator (起势、连发、爆点、收束).
  * 
  * Strict Domain & Presentation Decoupling:
- * - Strictly consumes domain ScoreTrace and final results.
+ * - Strictly consumes authentic ScoreTrace.events in their exact original order.
+ * - Categorizes events to determine rhythm and animation intensity WITHOUT reordering.
  * - NEVER computes scores itself, never invents ×2 defaults, never assumes victory.
+ * - Preserves Rational precision: decimal numbers like 1.5 are preserved, never floored.
  * - Drives visual spring physics and audio chimes using a shared presentation clock delta.
  * - Freezes physics during Hit-Stop, accelerates physics during fast-forward (1x..4x).
  * - Instant cancellation cleanly restores visual poses with zero orphaned callbacks.
@@ -30,6 +32,7 @@ export interface OrchestrationCallbacks {
   onResolutionComplete?: (finalScore: string, isVictory: boolean) => void;
   onScreenShake?: (intensity: number) => void;
   onPhaseChange?: (phase: ScoringPhase) => void;
+  onEventProcessed?: (eventIndex: number, event: ScoreEvent) => void;
 }
 
 export type ScoringPhase = 'idle' | 'windup' | 'striking' | 'climax' | 'resolution' | 'completed';
@@ -40,19 +43,38 @@ export interface ScoringSequenceOptions {
   isStageCleared?: boolean;
 }
 
+/**
+ * Formats a Fraction or Rational object to decimal string without losing precision.
+ * e.g. 3/2 -> "1.5", 2/1 -> "2", 704/1 -> "704".
+ */
+export function formatRational(value: unknown): string {
+  if (!value || typeof value !== 'object') return '0';
+  try {
+    const r = value instanceof Rational ? value : Rational.fromJSON(value);
+    if (r.d === 1n) return r.n.toString();
+    const num = Number(r.n) / Number(r.d);
+    if (Number.isFinite(num)) {
+      const rounded = Math.round(num * 100) / 100;
+      return rounded.toString();
+    }
+    return `${r.n}/${r.d}`;
+  } catch {
+    return '0';
+  }
+}
+
 export class ScoringRhythmOrchestrator {
   private synth: PentatonicSynth;
   private timeline: HitStopPresentationTimeline;
   private cards: ScoringCardItem[] = [];
   private callbacks: OrchestrationCallbacks;
 
-  // Domain score data
+  // Domain score data strictly preserved in original order
   private trace?: ScoreTrace;
-  private cardEvents: ScoreEvent[] = [];
-  private multEvents: ScoreEvent[] = [];
+  private events: ScoreEvent[] = [];
   private currentEventIndex: number = 0;
-  private currentMultEventIndex: number = 0;
-  private currentCardIndex: number = 0;
+  private cardStrikeCount: number = 0;
+  private currentEventDurationMs: number = 150;
 
   // State
   private phase: ScoringPhase = 'idle';
@@ -74,7 +96,7 @@ export class ScoringRhythmOrchestrator {
   }
 
   /**
-   * Begins a coordinated scoring sequence by strictly consuming an existing ScoreTrace.
+   * Begins a coordinated scoring sequence by strictly consuming an existing ScoreTrace in its exact event order.
    */
   public startScoringSequence(
     cards: ScoringCardItem[],
@@ -84,29 +106,18 @@ export class ScoringRhythmOrchestrator {
     this.cancel(); // Cancel any prior sequence and reset state
 
     this.sequenceGeneration++;
-    const currentGen = this.sequenceGeneration;
 
     this.cards = cards;
     this.trace = trace;
+    this.events = trace.events; // Strictly retain exact original order!
     this.speedRatio = Math.max(0.5, Math.min(4.0, options.speedRatio ?? 1.0));
     this.goalScore = options.goalScore;
     this.isStageCleared = options.isStageCleared;
     this.abortController = new AbortController();
 
-    // Extract real card scoring events and multiplier events from trace
-    this.cardEvents = trace.events.filter(e => e.sourceType === 'card' && e.phase === 'onCardScore');
-    // If no phase === 'onCardScore' filter matched, fallback to all card events
-    if (this.cardEvents.length === 0) {
-      this.cardEvents = trace.events.filter(e => e.sourceType === 'card');
-    }
-
-    // Climax multiplier events: only genuine multiply operations
-    const MULTIPLY_OPS = ['multiply-multiplier', 'multiply-coefficient', 'route-factor', 'rescue-multiplier'];
-    this.multEvents = trace.events.filter(e => MULTIPLY_OPS.includes(e.operation));
-
     this.currentEventIndex = 0;
-    this.currentCardIndex = 0;
-    this.currentMultEventIndex = 0;
+    this.cardStrikeCount = 0;
+    this.currentEventDurationMs = 150;
     this.settlingCard = undefined;
     this.settleTimerMs = 0;
 
@@ -122,12 +133,12 @@ export class ScoringRhythmOrchestrator {
       card.transform.scaleY.setTarget(1.04);
     }
 
-    // Initial base accumulator display
+    // Initial base accumulator display strictly from initial event before
     const baseEvent = trace.events[0];
     if (baseEvent) {
-      const hStr = Rational.fromJSON(baseEvent.after.H).floor().toString();
-      const mStr = Rational.fromJSON(baseEvent.after.M).floor().toString();
-      const prodStr = Rational.fromJSON(baseEvent.after.H).multiply(Rational.fromJSON(baseEvent.after.M)).floor().toString();
+      const hStr = formatRational(baseEvent.before.H);
+      const mStr = formatRational(baseEvent.before.M);
+      const prodStr = Rational.fromJSON(baseEvent.before.H).multiply(Rational.fromJSON(baseEvent.before.M)).floor().toString();
       this.callbacks.onScoreAccumulate?.(hStr, mStr, prodStr);
     }
   }
@@ -173,10 +184,8 @@ export class ScoringRhythmOrchestrator {
         this.updateWindup();
         break;
       case 'striking':
-        this.updateStriking();
-        break;
       case 'climax':
-        this.updateClimax();
+        this.updateEventProgression();
         break;
       case 'resolution':
         this.updateResolution();
@@ -187,140 +196,130 @@ export class ScoringRhythmOrchestrator {
   // Phase 1: 起势 (Windup) - 120ms intentional pause for anticipation
   private updateWindup(): void {
     if (this.phaseTimeMs >= 120) {
-      this.setPhase('striking');
       this.phaseTimeMs = 0;
-      this.currentCardIndex = 0;
-      if (this.cardEvents.length > 0) {
-        this.strikeCard(0);
+      this.currentEventIndex = 0;
+      if (this.events.length > 0) {
+        this.processCurrentEvent();
       } else {
-        // No card strike events; transition directly
-        this.transitionToClimaxOrResolution();
-      }
-    }
-  }
-
-  // Phase 2: 连发 (Rapid Card Strikes) - Step-by-step ascending pentatonic cadence
-  private updateStriking(): void {
-    const strikeInterval = 160;
-    if (this.phaseTimeMs >= strikeInterval) {
-      this.phaseTimeMs -= strikeInterval;
-      this.currentCardIndex++;
-
-      if (this.currentCardIndex < this.cardEvents.length) {
-        this.strikeCard(this.currentCardIndex);
-      } else {
-        // All card strikes completed; move to Phase 3: 爆点 or Phase 4: 收束
-        this.transitionToClimaxOrResolution();
-      }
-    }
-  }
-
-  private strikeCard(idx: number): void {
-    const event = this.cardEvents[idx];
-    if (!event) return;
-
-    // Find corresponding card transform
-    let card = this.cards.find(c => c.id === event.targetCardId);
-    if (!card) {
-      card = this.cards[idx] ?? this.cards[0];
-    }
-
-    if (card) {
-      card.transform.y.setTarget(-32); // Pop forward
-      card.transform.scaleX.setTarget(1.12);
-      card.transform.scaleY.setTarget(1.12);
-      this.settlingCard = card;
-      this.settleTimerMs = 0;
-    }
-
-    // Audio: Pentatonic chime note
-    this.synth.triggerCardScore(idx, false, this.speedRatio);
-
-    // Read score values strictly from domain event.after
-    const hStr = Rational.fromJSON(event.after.H).floor().toString();
-    const mStr = Rational.fromJSON(event.after.M).floor().toString();
-    const totalStr = Rational.fromJSON(event.after.H).multiply(Rational.fromJSON(event.after.M)).floor().toString();
-
-    if (card) {
-      this.callbacks.onCardStrike?.(idx, card, event);
-    }
-    this.callbacks.onScoreAccumulate?.(hStr, mStr, totalStr);
-  }
-
-  private transitionToClimaxOrResolution(): void {
-    if (this.multEvents.length > 0) {
-      this.setPhase('climax');
-      this.phaseTimeMs = 0;
-      this.currentMultEventIndex = 0;
-      this.triggerClimaxEvent(0);
-    } else {
-      // No multiplier events in this hand: smoothly transition to Phase 4 without fake mult
-      this.setPhase('resolution');
-      this.phaseTimeMs = 0;
-      this.resolveTotalScore();
-    }
-  }
-
-  // Phase 3: 爆点 (Climax) - Heavy Beat with 50ms Hit-Stop Micro-freeze for real mult events
-  private triggerClimaxEvent(idx: number): void {
-    const event = this.multEvents[idx];
-    if (!event) {
-      this.setPhase('resolution');
-      this.phaseTimeMs = 0;
-      this.resolveTotalScore();
-      return;
-    }
-
-    const currentGen = this.sequenceGeneration;
-    const multCard = this.cards.find(c => c.id === event.targetCardId) ?? this.cards[this.cards.length - 1];
-
-    // Trigger 50ms Hit-Stop micro-freeze on the presentation clock
-    this.timeline.triggerHitStop({
-      durationMs: 50 / this.speedRatio,
-      signal: this.abortController?.signal,
-      onFreezeStart: () => {
-        if (currentGen !== this.sequenceGeneration) return;
-        if (multCard) {
-          multCard.transform.y.setConfig(SPRING_PRESETS.bouncy);
-          multCard.transform.y.setTarget(-45);
-          multCard.transform.scaleX.setTarget(1.25);
-          multCard.transform.scaleY.setTarget(1.25);
-        }
-      },
-      onFreezeEnd: () => {
-        if (currentGen !== this.sequenceGeneration) return;
-        // Unfreeze: Audio explosion (Tang Dynasty War Drum Sub-Bass)
-        this.synth.triggerWarDrum(this.speedRatio);
-        this.callbacks.onScreenShake?.(1.0);
-
-        // Update score strictly from event.after
-        const hStr = Rational.fromJSON(event.after.H).floor().toString();
-        const mStr = Rational.fromJSON(event.after.M).floor().toString();
-        const totalStr = Rational.fromJSON(event.after.H).multiply(Rational.fromJSON(event.after.M)).floor().toString();
-
-        this.callbacks.onClimaxBurst?.(event, mStr);
-        this.callbacks.onScoreAccumulate?.(hStr, mStr, totalStr);
-      }
-    });
-  }
-
-  private updateClimax(): void {
-    // Hold climax impact for 360ms before next mult or resolution
-    if (this.phaseTimeMs >= 360) {
-      this.phaseTimeMs = 0;
-      this.currentMultEventIndex++;
-      if (this.currentMultEventIndex < this.multEvents.length) {
-        this.triggerClimaxEvent(this.currentMultEventIndex);
-      } else {
-        this.setPhase('resolution');
         this.resolveTotalScore();
       }
     }
   }
 
+  // Phase 2: Sequential Event Progression strictly in ScoreTrace order
+  private updateEventProgression(): void {
+    if (this.phaseTimeMs >= this.currentEventDurationMs) {
+      this.phaseTimeMs -= this.currentEventDurationMs;
+      this.currentEventIndex++;
+      if (this.currentEventIndex < this.events.length) {
+        this.processCurrentEvent();
+      } else {
+        this.resolveTotalScore();
+      }
+    }
+  }
+
+  private processCurrentEvent(): void {
+    const event = this.events[this.currentEventIndex];
+    if (!event) {
+      this.resolveTotalScore();
+      return;
+    }
+
+    const currentGen = this.sequenceGeneration;
+    const MULTIPLY_OPS = ['multiply-multiplier', 'multiply-coefficient', 'route-factor', 'rescue-multiplier'];
+    const isMultiplier = MULTIPLY_OPS.includes(event.operation);
+
+    if (isMultiplier) {
+      // Climax multiplier hit: 50ms Hit-Stop micro-freeze + war drum
+      this.setPhase('climax');
+      this.currentEventDurationMs = 320;
+
+      let targetCard = this.cards.find(c => c.id === event.targetCardId);
+      if (!targetCard) {
+        targetCard = this.cards[this.cards.length - 1];
+      }
+
+      this.timeline.triggerHitStop({
+        durationMs: 50 / this.speedRatio,
+        signal: this.abortController?.signal,
+        onFreezeStart: () => {
+          if (currentGen !== this.sequenceGeneration) return;
+          if (targetCard) {
+            targetCard.transform.y.setConfig(SPRING_PRESETS.bouncy);
+            targetCard.transform.y.setTarget(-45);
+            targetCard.transform.scaleX.setTarget(1.25);
+            targetCard.transform.scaleY.setTarget(1.25);
+          }
+        },
+        onFreezeEnd: () => {
+          if (currentGen !== this.sequenceGeneration) return;
+          this.synth.triggerWarDrum(this.speedRatio);
+          this.callbacks.onScreenShake?.(1.0);
+          this.callbacks.onClimaxBurst?.(event, formatRational(event.after.M));
+        }
+      });
+    } else if (event.sourceType === 'card') {
+      // Regular card strike: pentatonic ascending chime
+      this.setPhase('striking');
+      this.currentEventDurationMs = 160;
+
+      let card = this.cards.find(c => c.id === event.targetCardId);
+      if (!card) {
+        card = this.cards[this.cardStrikeCount % this.cards.length];
+      }
+
+      if (card) {
+        card.transform.y.setTarget(-32); // Pop forward
+        card.transform.scaleX.setTarget(1.12);
+        card.transform.scaleY.setTarget(1.12);
+        this.settlingCard = card;
+        this.settleTimerMs = 0;
+      }
+
+      this.synth.triggerCardScore(this.cardStrikeCount, false, this.speedRatio);
+      if (card) {
+        this.callbacks.onCardStrike?.(this.cardStrikeCount, card, event);
+      }
+      this.cardStrikeCount++;
+    } else if (event.sourceType === 'character') {
+      // Hero skill payoff
+      this.setPhase('striking');
+      this.currentEventDurationMs = 220;
+      this.synth.triggerCardScore(this.cardStrikeCount, false, this.speedRatio);
+      const leadCard = this.cards[0];
+      if (leadCard) {
+        leadCard.transform.y.setTarget(-28);
+        leadCard.transform.scaleX.setTarget(1.08);
+        leadCard.transform.scaleY.setTarget(1.08);
+        this.settlingCard = leadCard;
+        this.settleTimerMs = 0;
+      }
+    } else if (event.sourceType === 'joker') {
+      // TangSong card Joker additive
+      this.setPhase('striking');
+      this.currentEventDurationMs = 180;
+      this.synth.triggerCardScore(this.cardStrikeCount, false, this.speedRatio);
+    } else {
+      this.setPhase('striking');
+      this.currentEventDurationMs = 140;
+    }
+
+    // Read score values strictly from domain event.after preserving decimal precision!
+    const hStr = formatRational(event.after.H);
+    const mStr = formatRational(event.after.M);
+    const totalStr = Rational.fromJSON(event.after.H).multiply(Rational.fromJSON(event.after.M)).floor().toString();
+
+    this.callbacks.onScoreAccumulate?.(hStr, mStr, totalStr);
+    this.callbacks.onEventProcessed?.(this.currentEventIndex, event);
+  }
+
   // Phase 4: 收束 (Resolution & Result)
   private resolveTotalScore(): void {
     if (!this.trace) return;
+
+    this.setPhase('resolution');
+    this.phaseTimeMs = 0;
 
     const finalScoreStr = this.trace.finalScore;
 
@@ -353,8 +352,8 @@ export class ScoringRhythmOrchestrator {
   }
 
   private updateResolution(): void {
-    // 400ms post-resolution breathing space (留白)
-    if (this.phaseTimeMs >= 400) {
+    // 350ms post-resolution breathing space (留白)
+    if (this.phaseTimeMs >= 350) {
       this.setPhase('completed');
     }
   }
