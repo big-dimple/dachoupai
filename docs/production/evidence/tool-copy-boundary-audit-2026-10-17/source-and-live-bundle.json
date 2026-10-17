@@ -1,0 +1,399 @@
+{
+  "testedCommit": "e389ea2c4a7f6d49284546f91992d13055072655",
+  "live": {
+    "url": "https://pai.hp666.cc/",
+    "bundleURL": "https://pai.hp666.cc/assets/index-Jf_Uhwhc.js",
+    "build": {
+      "version": "C03",
+      "builtAt": "2026-10-17T11:49:27.743Z",
+      "revision": "e389ea2c4a7f6d49284546f91992d13055072655",
+      "sourceStatus": "dirty",
+      "modified": true,
+      "modifiedFileCount": 1,
+      "modifiedFiles": [
+        "package-lock.json"
+      ]
+    },
+    "bytes": 2827834,
+    "sha256": "0f8cf0957c88b3ed01f0605c7bafa2d7d5621663f22d65cf01f0ca8aa743b3d1",
+    "legacyStringNodes": [
+      {
+        "offset": 1343094,
+        "kind": "embedded-frozen-json",
+        "sha256": "b49bb6b77787964c15a923980c5c3f5b825ba10a40034b10d308b69545b3e82e",
+        "fields": [
+          {
+            "path": "/jokers/16/description",
+            "value": "每个空大丑牌槽加12热度，最多4个空槽。"
+          },
+          {
+            "path": "/jokers/19/description",
+            "value": "持有期间购买其他大丑牌后，热度成长 +8，上限80；每手加入已有成长。"
+          },
+          {
+            "path": "/jokers/42/description",
+            "value": "持有期间成功出售其他大丑牌后，倍率成长 +0.5，上限3；出售自己不成长，成长属于原实例。"
+          },
+          {
+            "path": "/bosses/1/rule",
+            "value": "所出第4/5张不给普通点数；仍成型且明确的大丑牌效果正常。"
+          },
+          {
+            "path": "/bosses/4/rule",
+            "value": "连续两手同牌型时，本手等级计算后的牌型基础热度减半；普通点数和大丑牌热度不减，首手不减。"
+          },
+          {
+            "path": "/bosses/4/response",
+            "value": "交替使用两种可成型牌型，或用点数、增强和大丑牌补足热度。"
+          },
+          {
+            "path": "/bosses/5/rule",
+            "value": "当前第2/4槽大丑牌计分和版次停用；静态资源和经济效果保留，出牌前可调序。"
+          },
+          {
+            "path": "/bosses/7/response",
+            "value": "用牌型、增强和大丑牌完成计分，谢幕人的成功额外金币仍保留。"
+          },
+          {
+            "path": "/bosses/9/response",
+            "value": "用宽桌面和增加手牌上限的大丑牌准备本场，减少必须同时攒齐的牌。"
+          },
+          {
+            "path": "/bosses/11/rule",
+            "value": "全场等级计算后的牌型基础热度减半；普通点数、增强和大丑牌热度正常。"
+          },
+          {
+            "path": "/bosses/11/response",
+            "value": "提升牌型仍有收益，也可用高点数、热度纸和大丑牌补足基础热度。"
+          },
+          {
+            "path": "/bosses/12/rule",
+            "value": "整手大丑牌计分按槽位右到左，本体和版次一起反序；其他时点保持原序。"
+          },
+          {
+            "path": "/bosses/14/rule",
+            "value": "每手后封禁当前最左且尚未封禁的大丑牌计分，按实例跟随调序，持续到本场结束。"
+          },
+          {
+            "path": "/bosses/15/rule",
+            "value": "稀有大丑牌的计分和版次停用；常见、罕见正常，静态资源和经济效果保留。"
+          },
+          {
+            "path": "/modes/challenges/1/description",
+            "value": "基础大丑牌槽位为3。"
+          },
+          {
+            "path": "/modes/challenges/10/description",
+            "value": "每章公开封禁一个大丑牌定义的计分与版次；静态、经济及非数学生命周期保留。"
+          }
+        ]
+      },
+      {
+        "offset": 1430254,
+        "kind": "embedded-frozen-json",
+        "sha256": "c65c06cb6475bc17acf2d89c28285dad06f9f35649dfab98a6a627a31c990c69",
+        "fields": [
+          {
+            "path": "/16/description",
+            "value": "每个空大丑牌槽加12热度，最多4个空槽。"
+          },
+          {
+            "path": "/19/description",
+            "value": "持有期间购买其他大丑牌后，热度成长 +8，上限80；每手加入已有成长。"
+          },
+          {
+            "path": "/42/description",
+            "value": "持有期间成功出售其他大丑牌后，倍率成长 +0.5，上限3；出售自己不成长，成长属于原实例。"
+          }
+        ]
+      },
+      {
+        "offset": 1454555,
+        "kind": "frozen-rule-text",
+        "value": "基础大丑牌槽位为3。"
+      },
+      {
+        "offset": 1455281,
+        "kind": "frozen-rule-text",
+        "value": "每章公开封禁一个大丑牌定义的计分与版次；静态、经济及非数学生命周期保留。"
+      },
+      {
+        "offset": 1465231,
+        "kind": "frozen-rule-text",
+        "value": "所出第4/5张不给普通点数；仍成型且明确的大丑牌效果正常。"
+      },
+      {
+        "offset": 1465490,
+        "kind": "frozen-rule-text",
+        "value": "连续两手同牌型时，本手等级计算后的牌型基础热度减半；普通点数和大丑牌热度不减，首手不减。"
+      },
+      {
+        "offset": 1465546,
+        "kind": "frozen-rule-text",
+        "value": "交替使用两种可成型牌型，或用点数、增强和大丑牌补足热度。"
+      },
+      {
+        "offset": 1465604,
+        "kind": "frozen-rule-text",
+        "value": "当前第2/4槽大丑牌计分和版次停用；静态资源和经济效果保留，出牌前可调序。"
+      },
+      {
+        "offset": 1465853,
+        "kind": "frozen-rule-text",
+        "value": "用牌型、增强和大丑牌完成计分，谢幕人的成功额外金币仍保留。"
+      },
+      {
+        "offset": 1466048,
+        "kind": "frozen-rule-text",
+        "value": "用宽桌面和增加手牌上限的大丑牌准备本场，减少必须同时攒齐的牌。"
+      },
+      {
+        "offset": 1466212,
+        "kind": "frozen-rule-text",
+        "value": "全场等级计算后的牌型基础热度减半；普通点数、增强和大丑牌热度正常。"
+      },
+      {
+        "offset": 1466257,
+        "kind": "frozen-rule-text",
+        "value": "提升牌型仍有收益，也可用高点数、热度纸和大丑牌补足基础热度。"
+      },
+      {
+        "offset": 1466317,
+        "kind": "frozen-rule-text",
+        "value": "整手大丑牌计分按槽位右到左，本体和版次一起反序；其他时点保持原序。"
+      },
+      {
+        "offset": 1466532,
+        "kind": "frozen-rule-text",
+        "value": "每手后封禁当前最左且尚未封禁的大丑牌计分，按实例跟随调序，持续到本场结束。"
+      },
+      {
+        "offset": 1466640,
+        "kind": "frozen-rule-text",
+        "value": "稀有大丑牌的计分和版次停用；常见、罕见正常，静态资源和经济效果保留。"
+      }
+    ],
+    "currentToolCopyNodes": [
+      {
+        "offset": 1793859,
+        "value": "稀有唐宋牌"
+      },
+      {
+        "offset": 1795722,
+        "value": "从当前可用且未持有的稀有唐宋牌中等概率获得一张："
+      },
+      {
+        "offset": 1795842,
+        "value": "受赠唐宋牌变为"
+      },
+      {
+        "offset": 1797891,
+        "value": "须有空唐宋牌槽，最多"
+      },
+      {
+        "offset": 1797986,
+        "value": "牺牲后按真实剩余唐宋牌重算库存容量，消费此工具后其余工具仍须装得下。"
+      },
+      {
+        "offset": 2207213,
+        "value": "当前没有可获得的未持有稀有唐宋牌。"
+      },
+      {
+        "offset": 2232476,
+        "value": "稀有唐宋牌计分与版次停用"
+      }
+    ]
+  },
+  "sourceHits": [
+    {
+      "file": "src/content/r2-jokers.json",
+      "sha256": "fb04ff0089115816bec8eba55620ab1bc45ca2a7a554709474f5812db8c12768",
+      "hits": [
+        {
+          "line": 18,
+          "text": "{\"id\":\"d10\",\"name\":\"空位有价\",\"rarity\":\"common\",\"description\":\"每个空大丑牌槽加12热度，最多4个空槽。\",\"hooks\":[{\"phase\":\"jokerScore\",\"condition\":{\"kind\":\"always\"},\"operations\":[{\"kind\":\"add-heat-per-empty-slot\",\"value\":{\"n\":\"12\",\"d\":\"1\"},\"cap\":{\"n\":\"48\",\"d\":\"1\"}}]}]},"
+        },
+        {
+          "line": 21,
+          "text": "{\"id\":\"e05\",\"name\":\"置办行头\",\"rarity\":\"uncommon\",\"description\":\"持有期间购买其他大丑牌后，热度成长 +8，上限80；每手加入已有成长。\",\"hooks\":[{\"phase\":\"jokerScore\",\"condition\":{\"kind\":\"always\"},\"operations\":[{\"kind\":\"read-growth\",\"key\":\"heat\",\"target\":\"heat\"}]},{\"phase\":\"onBuyOffer\",\"condition\":{\"kind\":\"always\"},\"operations\":[{\"kind\":\"add-growth\",\"key\":\"heat\",\"value\":{\"n\":\"8\",\"d\":\"1\"},\"cap\":{\"n\":\"80\",\"d\":\"1\"}}]}]},"
+        },
+        {
+          "line": 44,
+          "text": "{\"id\":\"e06\",\"name\":\"旧物新用\",\"rarity\":\"uncommon\",\"description\":\"持有期间成功出售其他大丑牌后，倍率成长 +0.5，上限3；出售自己不成长，成长属于原实例。\",\"requiredFeatures\":[\"score-hooks\",\"trade-hooks\"],\"hooks\":[{\"phase\":\"jokerScore\",\"condition\":{\"kind\":\"always\"},\"operations\":[{\"kind\":\"read-growth\",\"key\":\"multiplier\",\"target\":\"multiplier\"}]},{\"phase\":\"onSellJoker\",\"condition\":{\"kind\":\"always\"},\"operations\":[{\"kind\":\"add-growth\",\"key\":\"multiplier\",\"value\":{\"n\":\"1\",\"d\":\"2\"},\"cap\":{\"n\":\"3\",\"d\":\"1\"}}]}]},"
+        }
+      ]
+    },
+    {
+      "file": "src/content/r2Modes.ts",
+      "sha256": "950b21edba3da392e1ae650e511d2e3ecdd44353db74bec68a1f95f8f04412d9",
+      "hits": [
+        {
+          "line": 91,
+          "text": "challenge('Q02','三席舞台','基础大丑牌槽位为3。',{jokerSlots:3}),"
+        },
+        {
+          "line": 101,
+          "text": "challenge('Q11','每章封角','每章公开封禁一个大丑牌定义的计分与版次；静态、经济及非数学生命周期保留。',{chapterJokerBanCount:1}),"
+        }
+      ]
+    },
+    {
+      "file": "src/domain/r2Chapter.ts",
+      "sha256": "3bb3773bd6b2275de818277b9a57b0c64bbff6f293bb1906d768938262a392b3",
+      "hits": [
+        {
+          "line": 63,
+          "text": "{id:'B02',name:'低调点',rule:'所出第4/5张不给普通点数；仍成型且明确的大丑牌效果正常。',response:'可调手牌顺序，让高点数或关键普通点数排前面。'},"
+        },
+        {
+          "line": 66,
+          "text": "{id:'B05',name:'回音墙',rule:'连续两手同牌型时，本手等级计算后的牌型基础热度减半；普通点数和大丑牌热度不减，首手不减。',response:'交替使用两种可成型牌型，或用点数、增强和大丑牌补足热度。'},"
+        },
+        {
+          "line": 67,
+          "text": "{id:'B06',name:'半边灯',rule:'当前第2/4槽大丑牌计分和版次停用；静态资源和经济效果保留，出牌前可调序。',response:'把关键计分牌放在第1/3/5槽，资源或经济牌可放在受限槽。'},"
+        },
+        {
+          "line": 69,
+          "text": "{id:'B08',name:'静场',rule:'角色计分能力本场停用；初始等级和非计分过关奖励保留，骰爷不能押注。',response:'用牌型、增强和大丑牌完成计分，谢幕人的成功额外金币仍保留。'},"
+        },
+        {
+          "line": 71,
+          "text": "{id:'B10',name:'小舞台',rule:'进场手牌上限-2，最低5；入场预算固定，旋转或续局不重抽。',response:'用宽桌面和增加手牌上限的大丑牌准备本场，减少必须同时攒齐的牌。'},"
+        },
+        {
+          "line": 73,
+          "text": "{id:'B12',name:'挑剔',rule:'全场等级计算后的牌型基础热度减半；普通点数、增强和大丑牌热度正常。',response:'提升牌型仍有收益，也可用高点数、热度纸和大丑牌补足基础热度。'},"
+        },
+        {
+          "line": 74,
+          "text": "{id:'B13',name:'逆着来',rule:'整手大丑牌计分按槽位右到左，本体和版次一起反序；其他时点保持原序。',response:'把加倍率牌放右侧，乘倍率牌放左侧，并核对本槽版次的执行顺序。'},"
+        },
+        {
+          "line": 76,
+          "text": "{id:'B15',name:'逐个谢幕',rule:'每手后封禁当前最左且尚未封禁的大丑牌计分，按实例跟随调序，持续到本场结束。',response:'出牌前把可暂缓计分的牌放左边；已封禁实例不会因调序恢复。'},"
+        },
+        {
+          "line": 77,
+          "text": "{id:'B16',name:'不吃名气',rule:'稀有大丑牌的计分和版次停用；常见、罕见正常，静态资源和经济效果保留。',response:'用常见和罕见牌构筑，稀有牌的静态或经济能力仍能支持本场。'},"
+        }
+      ]
+    },
+    {
+      "file": "src/domain/r2PublishedContent.json",
+      "sha256": "47d2b0b0abcc923dc3495bd9059948bf3b8bf279a3da9f11b91696504421dc5f",
+      "hits": [
+        {
+          "line": 508,
+          "text": "\"description\": \"每个空大丑牌槽加12热度，最多4个空槽。\","
+        },
+        {
+          "line": 582,
+          "text": "\"description\": \"持有期间购买其他大丑牌后，热度成长 +8，上限80；每手加入已有成长。\","
+        },
+        {
+          "line": 1192,
+          "text": "\"description\": \"持有期间成功出售其他大丑牌后，倍率成长 +0.5，上限3；出售自己不成长，成长属于原实例。\","
+        },
+        {
+          "line": 4875,
+          "text": "\"rule\": \"所出第4/5张不给普通点数；仍成型且明确的大丑牌效果正常。\","
+        },
+        {
+          "line": 4893,
+          "text": "\"rule\": \"连续两手同牌型时，本手等级计算后的牌型基础热度减半；普通点数和大丑牌热度不减，首手不减。\","
+        },
+        {
+          "line": 4894,
+          "text": "\"response\": \"交替使用两种可成型牌型，或用点数、增强和大丑牌补足热度。\""
+        },
+        {
+          "line": 4899,
+          "text": "\"rule\": \"当前第2/4槽大丑牌计分和版次停用；静态资源和经济效果保留，出牌前可调序。\","
+        },
+        {
+          "line": 4912,
+          "text": "\"response\": \"用牌型、增强和大丑牌完成计分，谢幕人的成功额外金币仍保留。\""
+        },
+        {
+          "line": 4924,
+          "text": "\"response\": \"用宽桌面和增加手牌上限的大丑牌准备本场，减少必须同时攒齐的牌。\""
+        },
+        {
+          "line": 4935,
+          "text": "\"rule\": \"全场等级计算后的牌型基础热度减半；普通点数、增强和大丑牌热度正常。\","
+        },
+        {
+          "line": 4936,
+          "text": "\"response\": \"提升牌型仍有收益，也可用高点数、热度纸和大丑牌补足基础热度。\""
+        },
+        {
+          "line": 4941,
+          "text": "\"rule\": \"整手大丑牌计分按槽位右到左，本体和版次一起反序；其他时点保持原序。\","
+        },
+        {
+          "line": 4953,
+          "text": "\"rule\": \"每手后封禁当前最左且尚未封禁的大丑牌计分，按实例跟随调序，持续到本场结束。\","
+        },
+        {
+          "line": 4959,
+          "text": "\"rule\": \"稀有大丑牌的计分和版次停用；常见、罕见正常，静态资源和经济效果保留。\","
+        },
+        {
+          "line": 5184,
+          "text": "\"description\": \"基础大丑牌槽位为3。\","
+        },
+        {
+          "line": 5780,
+          "text": "\"description\": \"每章公开封禁一个大丑牌定义的计分与版次；静态、经济及非数学生命周期保留。\","
+        }
+      ]
+    },
+    {
+      "file": "src/game/Brand.ts",
+      "sha256": "39113b796e483c759bbd657880d30c4922c98be54e6a588f7b96656a523c4271",
+      "hits": [
+        {
+          "line": 6,
+          "text": "export function playerText(copy:string):string {return copy.replace(/大丑牌|大丑/g,GAME_NAME);}"
+        }
+      ]
+    },
+    {
+      "file": "src/run/shop.ts",
+      "sha256": "5001e25eca0f6407f568a66f4f4ce684f829a0725769dd5d01deb36ad7de3809",
+      "hits": [
+        {
+          "line": 36,
+          "text": "/** 可售池：全部大丑牌中尚未装备的 */"
+        }
+      ]
+    },
+    {
+      "file": "public/assets/models/asset-pack-v1.json",
+      "sha256": "cc71c9e59d08090aa6ef89e9c9dea7cf5ab8d427e92bb17961025fa1318b0768",
+      "hits": [
+        {
+          "line": 187,
+          "text": "\"purpose\": \"普通大丑牌卡框；独立插画节点可换图，边框节点可整套替换\","
+        },
+        {
+          "line": 215,
+          "text": "\"purpose\": \"史诗大丑牌卡框；独立插画节点可换图，边框节点可整套替换\","
+        },
+        {
+          "line": 243,
+          "text": "\"purpose\": \"传说大丑牌卡框；独立插画节点可换图，边框节点可整套替换\","
+        },
+        {
+          "line": 271,
+          "text": "\"purpose\": \"稀有大丑牌卡框；独立插画节点可换图，边框节点可整套替换\","
+        },
+        {
+          "line": 300,
+          "text": "\"purpose\": \"特殊大丑牌卡框；独立插画节点可换图，边框节点可整套替换\","
+        }
+      ]
+    }
+  ]
+}

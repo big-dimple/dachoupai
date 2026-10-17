@@ -57,7 +57,7 @@ describe('C01 public tool and item details',()=>{
     expect(sacrifice).toContain('未增强');expect(sacrifice).toContain('不同');
     expect(sacrifice).toMatch(/商店[\s\S]*牌组[\s\S]*顺序[\s\S]*待出牌[\s\S]*手牌[\s\S]*顺序/);
     expect(sacrifice).toContain('点击顺序');expect((sacrifice.match(/1\/7/g)??[]).length).toBe(7);
-    expect(edition).toContain('普通版次');expect(edition).toContain('扑克');expect(edition).toContain('大丑牌');
+    expect(edition).toContain('普通版次');expect(edition).toContain('扑克');expect(edition).toContain('唐宋牌');
     expect(edition).toMatch(/闪箔[\s\S]*5\/10/);expect(edition).toMatch(/全息[\s\S]*3\/10/);
     expect(edition).toMatch(/多彩[\s\S]*2\/10/);expect(edition).toContain('稀有度');expect(edition).toContain('购入价');
   });
@@ -185,6 +185,6 @@ it('purchase summaries distinguish actual later payment and permanent sacrifice'
  expect(toolInfo('S05').summary).toContain('使用另付3金');
  expect(toolInfo('S06').summary).toContain('清空全部金币（至少持有5金）');
  expect(toolInfo('S01').summary).toContain('永久献出一张扑克');
- expect(toolInfo('S07').summary).toContain('永久献出一张大丑牌');
+ expect(toolInfo('S07').summary).toContain('永久献出一张唐宋牌');
  expect(toolInfo('T07').summary).toContain('不立即补牌');
 });
