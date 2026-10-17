@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "auditCommit": "7d7921e76ca794a14e715e3eac3b4d66143862ff",
   "currentTask": "P08",
-  "selectionPolicy": "最终fe532齐全部必要源，含7c9详情艺术墙及346公共Canvas采样/峰值窄修；8跨模块/类型/327构建通过，来源原范围复用。六英雄原分工证据齐，原视觉FAIL保留并经受影响字段/手机边界窄修复验，不全量重跑或签完整最终矩阵。按已有授权正常dev/main发布不等CI或用户回复；三目标体验未达标、整包45171422B超20MB、真人听感实体触感Safari与正式门保持，P08仍in_progress。",
+  "selectionPolicy": "当前小批60a81684已齐68手机文字/新局提示、98玩家正名、71零成长显示；12必要交叉/类型/327构建通过，源86/分批304/26原范围复用。按用户重新明确授权正常eyes dev/main发布，不force不改安全权限、不等CI。背景/工坊结构/资源清理后续，三目标未达标/P08 in_progress及预算人验设备听感正式门保持。",
   "resumeContract": {
     "candidateCommit": "4bf6a7d63d7738d3c415d09439a1bdca878dc685",
     "gateTask": "A01",
@@ -1550,7 +1550,7 @@
     }
   },
   "recordingHold": {
-    "status": "ALL_NECESSARY_SOURCES_READY_SCOPED_FINAL_SOFTWARE_CHECKS_PASS",
+    "status": "PREVIOUS_BATCH_PUBLISHED_c452_SCOPED_EVIDENCE_RETAINED",
     "baseline": "4314a2459ade4ea68133f67468c98f9f42b2e251",
     "reason": "All necessary source deliveries and scoped fixes are merged. Final cross/typecheck/build PASS, exact source attribution verified. Normal dev/main publication authorized; no further user reply or CI wait.",
     "devBranch": "dev/eyes-followups-integration-20261017",
@@ -1811,7 +1811,9 @@
       "expectedMain": "4314a2459ade4ea68133f67468c98f9f42b2e251",
       "releaseCommit": "Final documentation commit carrying this receipt; actual full main SHA supplied only after successful push receipt",
       "authorization": "Latest direct instruction: all necessary sources complete including timely detail wall; publish after necessary checks without CI or further user reply.",
-      "devTarget": "dev/eyes-followups-integration-20261017"
+      "devTarget": "dev/eyes-followups-integration-20261017",
+      "actualPublishedMain": "c4525b2c2faf77ad2df0b5486e0ea64276856d04",
+      "confirmation": "Previous batch normal dev/main push succeeded; remote main and authorized eyes ref matched c452; source evidence remains historical."
     },
     "detailArtWall": {
       "source": "7c9a185a711ed705598458c59645b1d40958730b",
@@ -1918,5 +1920,84 @@
         "src/game/OwnedJokerDragVisual.ts"
       ]
     }
+  },
+  "currentFollowupBatch": {
+    "baseMain": "c4525b2c2faf77ad2df0b5486e0ea64276856d04",
+    "product": "60a81684058bec92c5fb8eabd0937550bd55ad49",
+    "devBranch": "dev/eyes-followups-integration-20261017",
+    "status": "ALL_THREE_SOURCES_MERGED_NECESSARY_CHECKS_PASS",
+    "sources": [
+      {
+        "source": "68affa5cbec3ecbebee0a1164c37cb27ba10600b",
+        "scope": "phone metadata/edition/rarity measured text flow;1180 five-slot captions;fresh run transient boss notice",
+        "paths": 21,
+        "exactPaths": 21,
+        "sourceTestsReused": 86,
+        "runtime": "ad83701f2fbda73d142361499ff41d6431dec719",
+        "browser": "1180x757 5 slots;390x736 and360x680 0/5 slots DPR3;fresh same-Scene/new-runId/stage0 notice empty,real pre-Boss notice kept;5 source hashes matched"
+      },
+      {
+        "source": "98bc463597c02811920c5c73524afc8ab3c6ee79",
+        "scope": "player/current-document Tang Song naming and legacy display projection only",
+        "paths": 62,
+        "exactPaths": 61,
+        "intentionalCombination": [
+          "src/game/r2Help.ts"
+        ],
+        "sourceTestsReused": "304 across15 files/batches281+18+5 per original receipt;not rerun here",
+        "browser": "1366 PC version/mode menu only;not full mobile/device"
+      },
+      {
+        "source": "71a02da58785bad8125d8b9d959c9a51d33611aa",
+        "scope": "zero read-growth source-declared unit and neutral presentation receipt;trace/save and+10/next-hand read retained",
+        "paths": 6,
+        "exactPaths": 5,
+        "intentionalCombination": [
+          "src/game/r2Help.ts"
+        ],
+        "sourceTestsReused": 26,
+        "realCommandFixture": "H146 M17/2 total1241;zero trace retained,growth+10 and next read10 preserved"
+      }
+    ],
+    "cross": {
+      "status": "PASS",
+      "files": [
+        "tests/zero-growth-presentation.test.ts",
+        "tests/tangsong-player-terms.test.ts",
+        "tests/shop-offer-guidance.test.ts"
+      ],
+      "tests": 12,
+      "log": "docs/production/evidence/feedback-batch-integration-2026-10-17/checks/mobile-name-zero-cross.log"
+    },
+    "typecheck": {
+      "status": "PASS",
+      "exitCode": 0,
+      "log": "docs/production/evidence/feedback-batch-integration-2026-10-17/checks/mobile-name-zero-typecheck.log"
+    },
+    "build": {
+      "status": "PASS",
+      "exitCode": 0,
+      "modules": 327,
+      "log": "docs/production/evidence/feedback-batch-integration-2026-10-17/checks/mobile-name-zero-build.log",
+      "warning": "Existing chunk warning"
+    },
+    "protected": "No domain/content/application/platform/audio/public/art/history/package/lock/GameScene diff fromc452;display template/spec JSON intentionally changed by naming owner",
+    "lockedPublishedContentSHA256": "47d2b0b0abcc923dc3495bd9059948bf3b8bf279a3da9f11b91696504421dc5f",
+    "distBudget": {
+      "files": 526,
+      "bytes": 45172542,
+      "maxBytes": 20000000,
+      "status": "FAIL",
+      "scope": "Complete dist filesystem;not network transfer;threshold unchanged"
+    },
+    "publication": {
+      "expectedMain": "c4525b2c2faf77ad2df0b5486e0ea64276856d04",
+      "devTarget": "dev/eyes-followups-integration-20261017",
+      "mode": "Normal dev push,guarded clean main fast-forward/push",
+      "authorization": "User explicitly re-approved this exact mobile/naming/zero-growth batch; no force or security/permission changes,no further reply/CI wait",
+      "releaseSHA": "Final commit carrying this receipt;exact main SHA only after successful push"
+    },
+    "excluded": "background redesign,workshop structure,resource cleanup;no new broad matrix/natural long play",
+    "acceptance": "P08 in_progress;three experience goals NOT_MET;physical Android/font behavior,human understanding,listening,haptics and formal gates not signed"
   }
 }

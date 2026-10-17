@@ -1,5 +1,13 @@
 # 本轮反馈整合回执 · 2026-10-17
 
+## 手机文字／正名／零成长小批
+
+基线main `c4525b2c2faf77ad2df0b5486e0ea64276856d04`，产品 `60a81684058bec92c5fb8eabd0937550bd55ad49`。正常合入[68手机热修](../shop-owned-caption-2026-10-17/README.md)、[98玩家正名](../tangsong-visible-name-2026-10-17/README.md)、[71零成长](../zero-growth-caption-2026-10-17/README.md)，无冲突；路径分别21/21、61/62、5/6，唯一r2Help自动组合保留名称和零成长单位修复。锁定发布JSON SHA47d2b0b0…、规则/保存协议/历史/美术/AudioEngine/GameScene与c452保持；正名显示模板/文案JSON为授权范围。
+
+本地[3文件12项交叉](checks/mobile-name-zero-cross.log)、[类型](checks/mobile-name-zero-typecheck.log)、[327模块构建](checks/mobile-name-zero-build.log)均PASS，source86/304分批/26及各自DPR3/实际菜单证据复用，不相加或重跑矩阵。整合者查看源390五槽图，仅为源图核对，不冒充新合版浏览器截图或实体Android验收。完整dist526文件/45172542B，20,000,000B预算仍FAIL，原chunk提示保留。
+
+按用户本批重新明确授权正常dev/main发布，不force/改权限或安全设置，不等CI或再次回复；背景/工坊结构/资源清理后续，不混入。实际完整main SHA以成功推送回执为准。三项目标体验未达标/重新整改、P08与正式门、人验/设备/听感/触感边界保持，旧批和所有原FAIL证据保留如下。
+
 ## 当前后继合版：连续计分、统一触觉与手机商店
 
 最终后继产品 `fe532299c50a659be65d01f0cdcfde4a6366fcb9`；所有必要来源已无冲突合并，含及时完成的[7c9详情艺术墙](../card-detail-background-2026-10-17/README.md)与[346公共文字采样/峰值安全修复](../score-raster-safe-area-2026-10-17/README.md)。7c9 30路径/4指纹、34616路径/修后4指纹精确；关键19产品路径的最终SHA归属见原plan.json recordingHold.finalFileAttribution。规则/存档/AudioEngine/原图/public/包锁与4314保持。源208/59/72/240等各按原范围复用，不相加。
