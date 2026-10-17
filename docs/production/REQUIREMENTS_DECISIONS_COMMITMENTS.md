@@ -4,6 +4,12 @@
 
 本轮逐项 owner、文件窗口及“开发 / 整合 / 行为验证 / 用户体验验收”四状态见 [当前逐项清单](CURRENT_BATCH_20261017.md)。唯一排程仍为 [DELIVERY_PLAN](DELIVERY_PLAN.md#当前统一执行计划) / [plan.json](plan.json)；本台账负责防漏和证据追溯，不自动新增工作包、改数值或解锁历史暂停项。P08 保持 `in_progress`。
 
+## 当前共用放大/理牌批
+
+已发布并由父级核实main a73d9ec2；9ec861ad公共详情放大与d98b72f2理牌精修无冲突合入产品`fb6f699c8ac9d0db9d684ed68f3d6596ccfee9ac`，26源路径完全一致、GameScene/ShopScene/manifest/原图保持a73。共用72+39+12真实注册图的黑底contain/关闭焦点/失败重试及理牌细分隔/轻抬/固定触区/触控清理/低动态/字形对齐已接入；[现有逐项表7/9/16](CURRENT_BATCH_20261017.md)与[精确回执](evidence/feedback-batch-integration-2026-10-17/zoom-sort.json)更新。复用来源152/35和短流程，新增现行b05等注册resolver3、类型/323模块构建通过；旧源上下文与当前合版区分，原FAIL保留，不重跑矩阵或把数目相加。
+
+本批已获普通dev/main推送授权，不等01a148ba未完成商店重排/布局/购后流程，明确不宣称该路已完成。当前详情仍是既有615×768，原图未变；整包预算超标/历史来源缺证及新合版自然、真人理解/听感/设备和正式门继续开放，P08仍in_progress。
+
 ## 当前战前/新图批：来源齐全并完成必要检查
 
 67b4b2cd与最终艺术2e22aa31（含2229/70340）无冲突合入产品`d2029a560330671a62354c3374cfdfd7a5b2e0e5`，43源路径一致，9e015/6a044修复保留。H14节目入口/H16Boss规则共享有界软件证据已同版，H15当前72来源已按currentSource/历史分层修复；b05用户完整PNG归档、contain和新hashURL接入，其他80条美术不动。只新增高光跨源检查：旧b05绑定原FAIL保留，修单个48,306B派生后14项/复现通过，53专用/19复用守原96KiB；类型/321模块构建通过。[精确绑定/原FAIL/边界](evidence/feedback-batch-integration-2026-10-17/prebattle-art.json)。用户现明确齐源后普通dev/main合批push，不等未完新商店/高清鉴赏/理牌精修，实际完整main见回执。

@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "auditCommit": "7d7921e76ca794a14e715e3eac3b4d66143862ff",
   "currentTask": "P08",
-  "selectionPolicy": "战前/新图两源67b+2e22齐全，最终产品d2029a560330671a62354c3374cfdfd7a5b2e0e5，43源路径一致，保9e015修复。复用68/48与8短流程，只补高光14项/单图复现/类型321模块构建；旧b05来源绑定FAIL保留并单资源修复，53专用19复用守96KiB。用户授权普通dev/main合批push，不等下一批新商店/高清鉴赏/理牌精修，不等CI/部署。H14/H16软件已接齐，H15当前72源绑定已修但历史缺证留存；完整dist44514019/20000000B仍FAIL、四个源基线扩展FAIL保留，P08/自然/听感/真机/正式门未关闭。",
+  "selectionPolicy": "当前共用放大/理牌批9ec+d98正常合入fb6f699c8ac9d0db9d684ed68f3d6596ccfee9ac，26源路径一致，GameScene/ShopScene/manifest/原图保持a73、b05新hash兼容；复用152/35和来源短流程，仅增resolver3/类型323模块构建通过。已授权普通dev/main push，不等01a148ba未完商店重排/布局/购后流程，不签它完成。现有615x768详情复用，整包预算/历史图源缺证/源FAIL与自然/真人/听感/设备/正式门保持，P08仍in_progress，无CI/部署。",
   "resumeContract": {
     "candidateCommit": "4bf6a7d63d7738d3c415d09439a1bdca878dc685",
     "gateTask": "A01",
@@ -38,8 +38,9 @@
       ],
       "package": "docs/production/WORK_PACKAGES.md#p08",
       "humanGate": false,
-      "completionScope": "最终合批产品d2029a560330671a62354c3374cfdfd7a5b2e0e5含67b战前/Boss可见去重及节目入口、2e22现行72来源分层和完整b05用户PNG（70340归档）；43源路径一致保9e015。只补b05新详情造成的旧高光绑定，48306B320x400、其他71高光/80美术不动；14项回归/单图复现及类型/321模块构建通过，源68/48和8短流程按原范围复用，原FAIL保留。用户授权普通dev/main合批发布，完整main见回执；未完新商店/高清鉴赏/理牌精修下一批不纳入。完整dist519文件44514019B超20000000B、历史原图缺证、源扩展四基线FAIL仍开放；H14/H16与H15当前绑定软件已修不代签自然/人验，眼神/听感false/真机/正式门保持，P08仍in_progress。",
+      "completionScope": "当前合批产品fb6f699c8ac9d0db9d684ed68f3d6596ccfee9ac：公共CardArtSource/DetailDialog/ZoomModal覆盖72唐宋牌39工具升级12长期物品，真实URL对/黑底完整contain/关闭焦点/失败恢复；HandActionControls/SceneView/HandSortButtonVisual精修理牌分隔、2px视觉反馈/固定hit/触控清理/低动态/字体对齐。26来源路径一致，GameScene/ShopScene/manifest/原图保a73；复用152/35及有限源短流程，当前resolver3/类型323模块构建通过，b05-v3兼容。已授权普通dev/main发布，01a148ba新商店布局/购后流程未完成且未纳入。现有615x768详情，无更高像素管线；整包预算/历史缺证/源FAIL及新合版自然/听感false/真人/设备/正式门保持，P08仍in_progress。",
       "evidence": [
+        "docs/production/evidence/feedback-batch-integration-2026-10-17/zoom-sort.json",
         "docs/production/evidence/feedback-batch-integration-2026-10-17/prebattle-art.json",
         "docs/production/evidence/feedback-batch-integration-2026-10-17/dot-followup.json",
         "docs/production/evidence/feedback-batch-integration-2026-10-17/status.json",

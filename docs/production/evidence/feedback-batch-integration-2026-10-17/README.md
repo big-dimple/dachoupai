@@ -1,5 +1,16 @@
 # 本轮反馈整合回执 · 2026-10-17
 
+## 共用放大与理牌精修整合
+
+基线main `a73d9ec2faae6e537e77a975f02e0a2cef220074`；来源9ec861adce4e8e088d638dc36800ff9cac304ad7和d98b72f2c7a63de0d384a21cd00dbabf58255468已无冲突合入dev/zoom-sort-integration-20261017，最终产品`fb6f699c8ac9d0db9d684ed68f3d6596ccfee9ac`。两路26增量路径与来源blob全部一致；GameScene、ShopScene、规则/数值/存档/音频、public/原图/manifest、包锁与a73保持，完整b05原图、当前hash及48,306B高光不回退。[精确绑定与检查](zoom-sort.json)。已获准普通dev/main合批push，实际远端完整main SHA以成功推送回执为准，不等未完成商店下一批，无CI/域名/部署。
+
+[共用放大来源](../common-art-zoom-2026-10-17/README.md)将CardArtSource/cardArtSource/portraitCardArt、DetailDialog和CardArtZoomModal统一用于72唐宋牌+39工具/升级+12长期物品。按当前注册的精确高清/缩略URL对认图，拒绝旧路径/跨卡混配/机制示意；黑底完整contain、44px关闭/Escape/焦点返回与解码失败重试保留，没有真实高清则不出入口。现有615×768详情被复用，未新增原始更高像素管线；原字节未改。来源152项和10短组件流程/type-build精确复用，源首次重试焦点FAIL及goods-art两条基线旧文案FAIL保留。
+
+[理牌来源](../hand-sort-polish-2026-10-17/README.md)在HandActionControls、SceneView、HandSortButtonVisual仅对三技术ID添两条低对比细短分隔；鼠标纸面/文字2px轻抬、浅底细阴影，固定44px hit不动，触控/失焦/后台/禁用清理，reduced motion位移0，字形按现有字体与crispText光学对齐。原排序/AI、键盘焦点与其他按钮保持，SelectionStageView排除；源35项/构建和有限PC/手机DPR2真实触控排序证据复用，原误判no-op的检查更正按源说明保留。
+
+当前合版只新增[resolver3项](checks/zoom-sort-resolver-cross.log)：实际现行72注册对包含b05-v3新路径/完整hash，并遍历39/12资源及拒绝过期/混配；配合manifest逐blob等于a73，不需要改resolver或新图。[类型](checks/zoom-sort-typecheck.log)与[323模块构建](checks/zoom-sort-build.log)通过，原大chunk警告保留。不重跑152/35或新浏览器矩阵，不机械相加检查数。来源放大4产品文件、理牌3产品文件指纹均可匹配；理牌报告还记录其9e015的GameScene浏览器上下文，与现a73/67b不同，JSON明确区分，不能把源旧牌桌短流程称当前合版自然/浏览器复测。
+
+已更新现有计划/逐项表，不宣称新商店布局/重排/购后流程完成；该路仍由01a148ba接线且不纳入本批。完整dist519文件/44,518,174B仍超20,000,000B，历史图源缺证与源基线FAIL按原回执开放。本批图像完整性/软件组件检查不代签新b05放大观感、全部123浏览器、真人阅读/听感/物理设备、自然眼神高光或正式门，P08仍in_progress。
 ## 战前/新图批最终整合
 
 基线main `9e015286d1d223afad0a6e6b2860fcfed1457faf`；最终产品 `d2029a560330671a62354c3374cfdfd7a5b2e0e5`，分支dev/prebattle-art-integration-20261017。战前67b4b2cdd10ce8b6ffcd1a10f6bdb55a9f6ab865和艺术2e22aa3137db107f508de7dc0b2ee5bbe53c1ece已无冲突合入，两源43个增量路径全部与来源blob一致，6a044秦琼紧凑提醒及9e015购买修复保留。[精确回执/来源绑定](prebattle-art.json)。用户现已明确授权齐源后普通dev/main合批push，覆盖前一dev等待边界；实际完整main SHA以成功推送回执为准，不等新商店/高清鉴赏/理牌精修，也无CI/域名/部署。
