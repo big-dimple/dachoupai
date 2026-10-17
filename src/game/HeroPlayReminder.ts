@@ -1,3 +1,5 @@
+import {usesTouyeWager} from '../domain/r2TouyeWager';
+import {r2DiscardCost} from '../domain/r2Run';
 import './HeroPlayReminder.css';
 import type {R2RunState} from '../domain/r2Run';
 import type {R2SelectionFacts} from '../domain/r2SelectionFacts';
@@ -35,11 +37,11 @@ export function createHeroPlayReminders(storage:()=>Storage){
 export const heroPlayReminders=createHeroPlayReminders(()=>globalThis.localStorage);
 /** Only UI callbacks: returning never chooses a target or sends a game command. */
 export function showHeroPlayReminder(dialog:DetailDialog,run:R2RunState,facts:R2SelectionFacts,ids:readonly string[],assistAvailable:boolean,callbacks:{valid:()=>boolean;back:()=>void;play:()=>void;disable:()=>void}):void {
- const guide=heroSkillGuide(run,facts,ids,assistAvailable),hero=characterForRun(run);let consumed=false;
+ const guide=heroSkillGuide(run,facts,ids,assistAvailable),hero=characterForRun(run),exchange=usesTouyeWager(run);let consumed=false;
  const act=(next:()=>void)=>{if(consumed||!dialog.active(modal))return;consumed=true;const valid=callbacks.valid();dialog.close(modal);if(valid)next();};
- const modal=dialog.open('这手要用主动技能吗？','主动操作：'+guide.effect+'\n'+guide.risk,[
-  {label:'返回用技能',primary:true,run:()=>act(callbacks.back)},
-  {label:'继续出牌',run:()=>act(callbacks.play)},
+ const modal=dialog.open(exchange?'先换牌，再出牌？':'这手要用主动技能吗？',(exchange?'先重新选1–5张要弃的牌，再押目标并确认换牌，最后出牌。原拟出牌选择会保留。\n确认换牌才消耗'+r2DiscardCost(run)+'次弃牌'+(run.stage?.boss?.definitionId==='B07'?'＋1金币':'，不另收金币')+'。\n':'')+'主动操作：'+guide.effect+'\n'+guide.risk,[
+  {label:exchange?'重选弃牌 · 进入技能':'返回用技能',primary:true,run:()=>act(callbacks.back)},
+  {label:exchange?'按原选择出牌':'继续出牌',run:()=>act(callbacks.play)},
  ],{summaryBody:hero.name+' · '+hero.passiveName+'\n当前可用，尚未选择本手主动操作。',closeLabel:'取消 · 返回选牌'});
  modal.classList.add('hero-play-reminder');
  const automatic=document.createElement('p');automatic.className='hero-reminder-automatic';automatic.textContent='继续出牌：本手不使用这项主动操作。被动／自动效果仍按各自条件结算，不会一起关闭。返回后仍由你决定是否使用，不会自动发动。';modal.querySelector('.dialog-scroll')!.append(automatic);

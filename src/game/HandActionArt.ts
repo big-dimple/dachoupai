@@ -18,5 +18,5 @@ export function drawHandActionGlyph(g:Phaser.GameObjects.Graphics,kind:HandActio
 }
 /** The symbol has its own rail; text/counts never have to share its ink footprint. */
 export function handActionContent(b:Box){
-  return {glyph:{x:b.x+6,y:b.y+(b.height-36)/2,width:28,height:36},text:{x:b.x+36,y:b.y+4,width:b.width-42,height:b.height-8},centerX:b.x+(b.width+30)/2,labelY:b.y+15,countY:b.y+37};
+  const symbol=b.width>=96;return {glyph:{x:b.x+6,y:b.y+(b.height-36)/2,width:symbol?28:0,height:36},text:{x:b.x+(symbol?36:6),y:b.y+4,width:b.width-(symbol?42:12),height:b.height-8},centerX:b.x+(b.width+(symbol?30:0))/2,labelY:b.y+15,countY:b.y+37};
 }

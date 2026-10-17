@@ -1,3 +1,4 @@
+import {showTouyeDiscardChoice} from './TouyeDiscardChoice';
 import {carriedToolAtEntry,carriedToolAtHand,type ToolCarryIntent} from './ToolCarryIntent';
 import {heroText} from './HeroIdentity';
 import {GAME_NAME} from './Brand';
@@ -529,8 +530,9 @@ export class GameScene extends Phaser.Scene {
     const brief=portrait||l.shortLandscape||l.buttons.rank.width<80;
     const sort=l.tools;
     const sortArt=this.add.graphics().fillStyle(T.jadeSoft).fillRoundedRect(sort.x,sort.y,sort.width,sort.height,6).lineStyle(1,T.jade,.9).strokeRoundedRect(sort.x+.5,sort.y+.5,sort.width-1,sort.height-1,6).lineStyle(1,T.jade,.35);
-    if(sort.height>sort.width){for(const offset of [52,108])sortArt.beginPath().moveTo(sort.x+8,sort.y+offset).lineTo(sort.x+sort.width-8,sort.y+offset).strokePath();}else for(const offset of [44,88])sortArt.beginPath().moveTo(sort.x+offset,sort.y+10).lineTo(sort.x+offset,sort.y+sort.height-10).strokePath();
+    if(sort.height>sort.width){for(const offset of [52,108])sortArt.beginPath().moveTo(sort.x+8,sort.y+offset).lineTo(sort.x+sort.width-8,sort.y+offset).strokePath();}else for(const offset of [36,80,124])sortArt.beginPath().moveTo(sort.x+offset,sort.y+10).lineTo(sort.x+offset,sort.y+sort.height-10).strokePath();
     v.add(sortArt.setName('action/sort-group').setData('bounds',sort));
+    v.text(sort.x+18,sort.y+sort.height/2,'理牌',14,C.jade).setOrigin(.5).setName('action/sort-title');
     this.rankButton=v.button(l.buttons.rank,brief?'点数':'点数排序','action/sort-rank',()=>void this.sortHand('rank'),this.ready,false,'sort');
     this.suitButton=v.button(l.buttons.suit,brief?'花色':'花色排序','action/sort-suit',()=>void this.sortHand('suit'),this.ready,false,'sort');
     this.aiButton=v.button(l.buttons.ai,this.assistProfile?'AI\n主手':'AI 切','selection/switch-type',()=>this.switchHandType(),false,false,'sort');
@@ -543,7 +545,7 @@ export class GameScene extends Phaser.Scene {
     this.resourceCounts={} as Record<'play'|'discard',Phaser.GameObjects.Text>;
     for(const kind of ['play','discard'] as const){
       const b=kind==='discard'?discardBox:l.tableActions[kind],button=kind==='play'?this.playButton:this.discardButton;
-      const content=handActionContent(b);
+      const content=handActionContent(b);(button.getData('buttonGlyph') as Phaser.GameObjects.Graphics|undefined)?.setVisible(content.glyph.width>0);
       const label=button.getData('label') as Phaser.GameObjects.Text;
       label.setFontSize(kind==='play'?16:14).setPosition(content.centerX,content.labelY).setData('restY',content.labelY);
       this.resourceCounts[kind]=v.text(content.centerX,content.countY,'',14,kind==='play'?C.paperLight:C.jade).setOrigin(.5).setName('button/'+kind+'-left');
@@ -1292,17 +1294,23 @@ export class GameScene extends Phaser.Scene {
     }this.inspectRole();
   }
   private inspectTouye():void {
-    const copy=touyeChoice(this.run,[...this.selectedIds]),seq=this.run.commandSeq,ids=[...this.selectedIds];
+    if(this.pendingTouye){this.inspectTouyeTargets([...this.selectedIds]);return;}
+    if(!this.ready||this.presentation)return;
+    const state=this.run,lifecycle=this.lifecycle;
+    showTouyeDiscardChoice(this.dialog,this.run,()=>this.ready&&!this.presentation&&this.run===state&&this.lifecycle===lifecycle,ids=>this.inspectTouyeTargets(ids));
+  }
+  private inspectTouyeTargets(ids:string[]):void {
+    const copy=touyeChoice(this.run,ids),seq=this.run.commandSeq;
     const guide=heroSkillGuide(this.run,this.selectionPreview(),ids);
     const dialog=this.dialog.open(characterForRun(this.run).name+' · '+characterForRun(this.run).passiveName,copy.details,[],{
-      guideSteps:heroOperationSteps(this.run,guide),summaryBody:guide.step,effectBody:guide.effect+(copy.enabled&&touyeComboCue(this.run)?'\n'+touyeComboCue(this.run):''),collapseRules:true,rulesLabel:'赌约细则',closeLabel:copy.pending?'返回出牌':ids.length?'返回牌桌':'返回选弃牌',
-      choices:copy.pending?[]:copy.choices.map(c=>({label:'押'+c.label,detail:c.reason==='当前整手已可达，不能押'?'整手已可凑出'+c.label+'，不能押':c.reason||undefined,disabled:!this.ready||!c.available,run:()=>this.confirmTouye(c.target,copy.snapshotToken,seq,ids,c.accepted)})),
-      secondaryActions:[{label:'培养手记',run:()=>this.inspectJourney()},{label:'查看物品',run:()=>showConsumables(this.dialog,this.run,this.ready&&!this.pendingTouye,(a,seq)=>this.command(a,seq))},{label:'上一手详情',disabled:!this.run.lastTrace,run:()=>this.inspectLastTrace()}],
+      guideSteps:heroOperationSteps(this.run,guide),summaryBody:guide.step,effectBody:guide.effect+(copy.enabled&&touyeComboCue(this.run)?'\n'+touyeComboCue(this.run):''),collapseRules:true,rulesLabel:'赌约细则',closeLabel:copy.pending?'返回出牌':'返回 · 保留原出牌选择',
+      choices:copy.pending?[]:copy.choices.map(c=>({label:'押'+c.label,detail:c.reason==='当前整手已可达，不能押'?'整手已可凑出'+c.label+'，不能押':c.reason||undefined,disabled:!this.ready||!c.available,run:()=>{if(this.dialog.active(dialog)&&this.ready&&this.run.commandSeq===seq)this.confirmTouye(c.target,copy.snapshotToken,seq,ids,c.accepted);}})),
+      secondaryActions:[...(!copy.pending?[{label:'重新选弃牌',run:()=>this.inspectTouye()}]:[]),{label:'培养手记',run:()=>this.inspectJourney()},{label:'查看物品',run:()=>showConsumables(this.dialog,this.run,this.ready&&!this.pendingTouye,(a,seq)=>this.command(a,seq))},{label:'上一手详情',disabled:!this.run.lastTrace,run:()=>this.inspectLastTrace()}],
     });mountHeroSkillGuide(dialog,this.run);
   }
   private confirmTouye(target:TouyeTarget,snapshotToken:string,seq:number,ids:string[],accepted:string):void {
     const cost=r2DiscardCost(this.run),gold=stageNotice(this.run)?.discardGoldCost??0,copy=touyeConfirmationCopy(this.run,ids);
-    const dialog=this.dialog.open('押'+HAND_LABELS[target]+' · 弃'+ids.length+'张',copy.risk+'。\n'+copy.success+'，替代普通×1.15。\n'+copy.qualification+'；接受：'+accepted+'。\n本次实际弃牌：'+ids.map(id=>{const c=this.hand.find(c=>c.id===id)!;return rankLabel(c.rank)+SUIT_SYMBOL[c.suit];}).join(' ')+'。\n花'+cost+'次弃牌'+(gold?'＋'+gold+'金币':'，不另收金币')+'；确认保存后才补牌，不能取消重抽。',[{label:'确认押'+HAND_LABELS[target]+'并弃'+ids.length+'张',primary:true,run:()=>{this.dialog.close();void this.discardSelected(false,{target,snapshotToken},seq,ids);}}],{closeLabel:'取消 · 不弃牌',guideSteps:{labels:['选要弃的牌','选押注目标','确认补牌'],current:2},summaryBody:'③ 确认押'+HAND_LABELS[target]+'并补牌',effectBody:'弃'+ids.length+'张，补'+copy.refillCount+'张 · 花'+cost+'次弃牌'+(gold?'＋'+gold+'金币':'')+'\n'+copy.risk+'；'+copy.success+'。',collapseRules:true,rulesLabel:'目标与弃牌明细'});mountHeroSkillGuide(dialog,this.run);dialog.classList.add('hero-confirm-dialog');
+    const dialog=this.dialog.open('押'+HAND_LABELS[target]+' · 弃'+ids.length+'张',copy.risk+'。\n'+copy.success+'，替代普通×1.15。\n'+copy.qualification+'；接受：'+accepted+'。\n本次实际弃牌：'+ids.map(id=>{const c=this.hand.find(c=>c.id===id)!;return rankLabel(c.rank)+SUIT_SYMBOL[c.suit];}).join(' ')+'。\n花'+cost+'次弃牌'+(gold?'＋'+gold+'金币':'，不另收金币')+'；确认保存后才补牌，不能取消重抽。',[{label:'确认押'+HAND_LABELS[target]+'并弃'+ids.length+'张',primary:true,run:()=>{if(!this.dialog.active(dialog)||!this.ready||this.run.commandSeq!==seq)return;this.dialog.close(dialog);void this.discardSelected(false,{target,snapshotToken},seq,ids);}}],{closeLabel:'取消 · 不弃牌',guideSteps:{labels:['选要弃的牌','选押注目标','确认补牌'],current:2},summaryBody:'③ 确认押'+HAND_LABELS[target]+'并补牌',effectBody:'要弃的牌：'+ids.map(id=>{const c=this.hand.find(c=>c.id===id)!;return rankLabel(c.rank)+SUIT_SYMBOL[c.suit];}).join(' ')+'\n弃'+ids.length+'张，补'+copy.refillCount+'张 · 花'+cost+'次弃牌'+(gold?'＋'+gold+'金币':'')+'\n'+copy.risk+'；'+copy.success+'。',collapseRules:true,rulesLabel:'目标与弃牌明细'});mountHeroSkillGuide(dialog,this.run);dialog.classList.add('hero-confirm-dialog');
   }
   private inspectErxiang():void {
     const seq=this.run.commandSeq,choice=erxiangChoice(this.run,this.selectionPreview(),this.erxiangTargetId);
@@ -1609,7 +1617,7 @@ export class GameScene extends Phaser.Scene {
   private async discardSelected(trick=false,bet?:TouyeBet,seq?:number,committedIds?:string[]):Promise<void> {
     if(this.pendingTouye)return;
     if(this.pendingRefill){if(!this.ready)return;this.refillHidden=!this.refillHidden;this.selectedIds.clear();this.statusMessage='';this.render();return;}
-    if(!this.ready||!this.selectedIds.size||this.run.stage!.discardsLeft<r2DiscardCost(this.run))return;this.clearHover();this.cancelAiCandidates();this.playing=true;this.statusMessage='';this.updateControls();const lifecycle=this.lifecycle,intent=++this.intent,previousRun=this.run,selectedIds=committedIds??[...this.selectedIds],previousIds=[...this.run.handOrder],beforeDiscards=this.run.stage!.discardsLeft,spentDiscards=beforeDiscards-r2DiscardCost(this.run);
+    if(!this.ready||!(committedIds??[...this.selectedIds]).length||this.run.stage!.discardsLeft<r2DiscardCost(this.run))return;this.clearHover();this.cancelAiCandidates();this.playing=true;this.statusMessage='';this.updateControls();const lifecycle=this.lifecycle,intent=++this.intent,previousRun=this.run,selectedIds=committedIds??[...this.selectedIds],previousIds=[...this.run.handOrder],beforeDiscards=this.run.stage!.discardsLeft,spentDiscards=beforeDiscards-r2DiscardCost(this.run);
     try {
       const result=await dispatchRun(this,{type:'DiscardHand',selectedIds,...(trick?{laohuanTrick:true}:{}),...(bet?{touyeBet:bet}:{})},seq);
       if(!this.alive(lifecycle,intent))return;
