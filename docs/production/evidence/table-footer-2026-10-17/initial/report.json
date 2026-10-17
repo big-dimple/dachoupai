@@ -1,0 +1,86 @@
+{
+  "head": "36ba1e41984883b4f2b4ae740d67743018ca0718",
+  "browser": "151.0.7922.173",
+  "renderer": "Chromium software Canvas",
+  "fixture": "Current new-run identity, validator-approved curated nine visible cards / hand capacity; no natural draw/acquisition claim.",
+  "sourceHashes": {
+    "GameScene": "423c0f4639f15e313b68e91fe5c2b2b3c956f70c728d1694439a7ce92e225a9c",
+    "layout": "0eb82e2f23eb3f0e980e3b6d60c875dac66ea54801de367d5d691370e8d40dd9",
+    "HeroActionShortcut": "c3bf80f026b150827fbfb6204abc2b241cd2149802c361ecbc968c97e1f836e6"
+  },
+  "rows": [
+    {
+      "name": "desktop",
+      "spec": {
+        "name": "desktop",
+        "width": 1366,
+        "height": 768,
+        "touch": false,
+        "safe": {
+          "top": 0,
+          "left": 0,
+          "right": 0,
+          "bottom": 0
+        }
+      },
+      "status": "FAIL",
+      "errors": [],
+      "error": "page.evaluate: TypeError: o.getBounds(...).toJSON is not a function\n    at eval (eval at evaluate (:311:30), <anonymous>:1:225)\n    at Array.map (<anonymous>)\n    at eval (eval at evaluate (:311:30), <anonymous>:1:186)\n    at UtilityScript.evaluate (<anonymous>:313:16)\n    at UtilityScript.<anonymous> (<anonymous>:1:44)\n    at geometry (/workspace/dachoupai/harness/table-footer-regressions.mjs:33:23)\n    at async file:///workspace/dachoupai/harness/table-footer-regressions.mjs:56:18"
+    },
+    {
+      "name": "phone-safe34",
+      "spec": {
+        "name": "phone-safe34",
+        "width": 390,
+        "height": 844,
+        "touch": true,
+        "safe": {
+          "top": 12,
+          "left": 0,
+          "right": 0,
+          "bottom": 34
+        }
+      },
+      "status": "FAIL",
+      "errors": [],
+      "error": "page.evaluate: TypeError: o.getBounds(...).toJSON is not a function\n    at eval (eval at evaluate (:311:30), <anonymous>:1:225)\n    at Array.map (<anonymous>)\n    at eval (eval at evaluate (:311:30), <anonymous>:1:186)\n    at UtilityScript.evaluate (<anonymous>:313:16)\n    at UtilityScript.<anonymous> (<anonymous>:1:44)\n    at geometry (/workspace/dachoupai/harness/table-footer-regressions.mjs:33:23)\n    at async file:///workspace/dachoupai/harness/table-footer-regressions.mjs:56:18"
+    },
+    {
+      "name": "narrow",
+      "spec": {
+        "name": "narrow",
+        "width": 320,
+        "height": 568,
+        "touch": true,
+        "safe": {
+          "top": 0,
+          "left": 0,
+          "right": 0,
+          "bottom": 0
+        }
+      },
+      "status": "FAIL",
+      "errors": [],
+      "error": "page.evaluate: TypeError: o.getBounds(...).toJSON is not a function\n    at eval (eval at evaluate (:311:30), <anonymous>:1:225)\n    at Array.map (<anonymous>)\n    at eval (eval at evaluate (:311:30), <anonymous>:1:186)\n    at UtilityScript.evaluate (<anonymous>:313:16)\n    at UtilityScript.<anonymous> (<anonymous>:1:44)\n    at geometry (/workspace/dachoupai/harness/table-footer-regressions.mjs:33:23)\n    at async file:///workspace/dachoupai/harness/table-footer-regressions.mjs:56:18"
+    },
+    {
+      "name": "short-notch",
+      "spec": {
+        "name": "short-notch",
+        "width": 740,
+        "height": 320,
+        "touch": true,
+        "safe": {
+          "top": 12,
+          "left": 44,
+          "right": 12,
+          "bottom": 20
+        }
+      },
+      "status": "FAIL",
+      "errors": [],
+      "error": "page.evaluate: TypeError: o.getBounds(...).toJSON is not a function\n    at eval (eval at evaluate (:311:30), <anonymous>:1:225)\n    at Array.map (<anonymous>)\n    at eval (eval at evaluate (:311:30), <anonymous>:1:186)\n    at UtilityScript.evaluate (<anonymous>:313:16)\n    at UtilityScript.<anonymous> (<anonymous>:1:44)\n    at geometry (/workspace/dachoupai/harness/table-footer-regressions.mjs:33:23)\n    at async file:///workspace/dachoupai/harness/table-footer-regressions.mjs:56:18"
+    }
+  ],
+  "status": "FAIL"
+}
