@@ -2,7 +2,13 @@
 
 ## 当前后继合版：连续计分、统一触觉与手机商店
 
-当前后继产品 `242f8cc8fada68e160f301fdc16b9344b062bb09` 已正常合入[2a两英雄窄修/实际小字接线](../amo-laohuan-public-fix-2026-10-17/README.md)，包含[efb模块](../hero-skill-status-density-2026-10-17/README.md)、保留[af9字段](../continuous-score-table-2026-10-17/status-retention/README.md)与a6商店/aac触觉。47应用路径/4最终指纹精确；源72与22按原范围不相加，四格在接线前、最终辛弃疾390×740 DPR3在真正磁盘场景接线后，不能冒称四格全按末次版本重录。[c197原失败](../amo-laohuan-dynamic-2026-10-17/README.md)保留。[361文成/花蕊审查](../wencheng-huarui-dynamic-2026-10-17/README.md)47证据/脚本路径已精确合入、运行时未变；六英雄回执已归齐但该四功能例PASS/Canvas密度裁切视觉FAIL，连同热度峰值待公共TextRaster修正，只补受影响字段/手机边界；下文1629检查仍仅历史快照，最新合版收口后必要复检，未推main。不签全布局或六英雄全通过，详情艺术墙独立后续不阻塞。
+最终后继产品 `fe532299c50a659be65d01f0cdcfde4a6366fcb9`；所有必要来源已无冲突合并，含及时完成的[7c9详情艺术墙](../card-detail-background-2026-10-17/README.md)与[346公共文字采样/峰值安全修复](../score-raster-safe-area-2026-10-17/README.md)。7c9 30路径/4指纹、34616路径/修后4指纹精确；关键19产品路径的最终SHA归属见原plan.json recordingHold.finalFileAttribution。规则/存档/AudioEngine/原图/public/包锁与4314保持。源208/59/72/240等各按原范围复用，不相加。
+
+最终本地仅补[2文件8项跨模块](checks/release-final-cross.log)（共享文字理牌消费者、秦琼原选牌/弃牌意图）、[类型](checks/release-final-typecheck.log)及[327模块构建](checks/release-final-build.log)，均PASS，旧chunk提示保留。构建后只改台账。完整dist526文件/45,171,422B超20,000,000B，仍FAIL，未删素材或放宽门槛。下文1629检查及夹具首次失败保留为历史，不冒充最终新测。
+
+[c197](../amo-laohuan-dynamic-2026-10-17/README.md)/[361](../wencheng-huarui-dynamic-2026-10-17/README.md)原视觉FAIL不抹除；[2a](../amo-laohuan-public-fix-2026-10-17/README.md)与346只复验受影响字段及手机边界。346同事件75实际下缘326.78→265.20，框下缘285.6，乘倍率峰值仍约1.54；苏轼/文成/花蕊实际draw密度/越界/重叠0，保存全等。六人原分工证据齐，不声称全部按最终版本完整重跑。整合者查看源after75及390购买艺术墙图，只为来源像素核对，不代签新合版动态、人验或设备。
+
+目标/阶段已得/实际余次/技能状态/真实来源分别保持，af9真实assistUsed与2a状态模块实际接线保留；隐藏的是提示光晕、动作输入由playing门禁禁用，重复长副文本不另起数字。商店英雄18%沉底仍限标准PC/手机竖屏；卡牌详情用当前卡图铺满/局部文字浅底/顶部44px原图入口，目标工作区清旧背景并保持手动确认，是另一明确范围。按已有授权正常dev/main发布，实际完整main SHA以最终成功推送回执为准，不等CI/用户回复，不部署/查域名。三目标仍体验未达标/重新整改，P08及正式门不关闭，听感/实体触感/实体手机/Safari/WebGL和自然长局未验；父级后续dot另行核对。
 
 
 
