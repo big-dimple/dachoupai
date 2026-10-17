@@ -69,7 +69,8 @@ import {selectionExperience,hasActualBenefit,savedBenefit,experienceBeat} from '
 import {groupGrowthCausality,savedGrowthDiscovery} from './JokerGrowthCausality';
 import {courtArtKey} from './HanddrawnArt';
 import {R2HandCandidateCache,r2CandidateKey,r2HandRevision,type R2CandidateInput,type R2CandidateResult} from '../domain/r2HandCandidates';
-import {AI_HAND_POLICY,AiHandCandidateCache,aiHandKey,nextAiHand,type AiHandInput,type AiHandCursor} from './AiHandCandidates';
+import {AI_HAND_POLICY,AiHandCandidateCache,aiHandKey,aiScoreContext,nextAiHand,type AiHandInput,type AiHandCursor} from './AiHandCandidates';
+import {retainChosenHeroDraft,type ChosenHeroDraft} from './HeroSkillDraftLifecycle';
 import {jokerMemory,jokerAbilityCopyForRun,publicJokerMemoryContext,recordedJokerMemoryContext} from './JokerMemory';
 import {fitJokerLabel,jokerLabelRoom} from './JokerLabel';
 import {r2AssistAvailability} from '../domain/r2Assist';
@@ -207,7 +208,7 @@ export class GameScene extends Phaser.Scene {
   private readonly aiCandidates=new AiHandCandidateCache();
   private aiCursor?:AiHandCursor;
   private candidateGhost?:{key:string;facts:HandPreview;assistIds?:string[]};
-  private candidateUndo?:{revision:string;ids:string[];assistIds?:string[]};
+  private candidateUndo?:{revision:string;ids:string[];assistIds?:string[];skill?:ChosenHeroDraft};
   private hoveredCardId?:string;
   private hoveredJokerId?:string;
   private jokerHoverPreview?:Phaser.GameObjects.Container;
@@ -938,7 +939,7 @@ export class GameScene extends Phaser.Scene {
     this.targetAttachment?.preview(target?{key:JSON.stringify([this.run.runId,this.run.stage?.index,[...this.selectedIds].sort()]),targetId:target}:undefined);
   }
   private refreshSelection(animateId?:string):void {
-    if(!this.presentation&&!this.playing&&this.run.phase==='await-input'){this.validateAssistSelection();this.ensureCandidates();}
+    if(!this.presentation&&!this.playing&&this.run.phase==='await-input'){this.validateAssistSelection();Object.assign(this,retainChosenHeroDraft(this.run,this.selectionPreview(),this.chosenHeroDraft()));this.ensureCandidates();}
     const preview=this.selectionPreview();
     if(usesErxiangHandoff(this.run)&&!this.presentation&&!this.playing&&this.erxiangTargetId&&!erxiangChoice(this.run,preview,this.erxiangTargetId).selected)this.erxiangTargetId=null;
     const active=this.presentation?.score.sets.activeScoringIds??preview?.activeScoringIds??[];
@@ -1005,6 +1006,7 @@ export class GameScene extends Phaser.Scene {
   }
   private get assistProfile():boolean {return r2UsesAssist(this.run);}
   private get jokerDefinitions(){return r2JokerDefinitionsFor(this.run);}
+  private chosenHeroDraft():ChosenHeroDraft {return {erxiangTargetId:this.erxiangTargetId,azaoRelease:this.azaoRelease,xiemuBurn:this.xiemuBurn};}
   private jokerDefinition(id:string){const d=r2JokerDefinitionFor(this.run,id);return {...d,name:cardDisplayName(d.id,d.name)};}
   private draftRevision():string {return JSON.stringify([this.run.contentVersion,this.run.contentHash,r2HandRevision(this.candidateInput())]);}
   private assistInput(){return{...this.candidateInput(),selectedIds:[...this.selectedIds]};}
@@ -1081,8 +1083,8 @@ export class GameScene extends Phaser.Scene {
     const input=this.aiInput(),next=nextAiHand(this.aiCandidates.result,aiHandKey(input),[...this.selectedIds],this.aiCursor);
     if(!next)return;const facts=next.facts;
     this.handInput?.cancel();this.view.cancelInteraction();this.candidateGhost=undefined;
-    this.candidateUndo={revision:this.draftRevision(),ids:[...this.selectedIds],assistIds:[...this.assistIds]};
-    this.erxiangTargetId=null;this.azaoRelease=false;this.xiemuBurn=0;this.aiCursor=next.cursor;this.selectedIds=new Set(facts.playedIds);this.assistIds=[];this.assistPage=0;this.statusMessage=this.assistProfile?'已换主手，助攻请重新选':'AI已选'+HAND_LABELS[facts.type]+' · 查看牌型可撤销';this.refreshSelection();
+    this.candidateUndo={revision:this.draftRevision(),ids:[...this.selectedIds],assistIds:[...this.assistIds],skill:this.chosenHeroDraft()};
+    this.aiCursor=next.cursor;this.selectedIds=new Set(facts.playedIds);this.assistPage=0;this.statusMessage='AI已选'+HAND_LABELS[facts.type]+' · 查看牌型可撤销';this.refreshSelection();
   }
   private inspectHandRules():void {
     if(!this.ready||this.presentation||this.run.phase!=='await-input')return;
@@ -1208,7 +1210,7 @@ export class GameScene extends Phaser.Scene {
   }
   private aiInput():AiHandInput {
     const stage=this.run.stage!,context=r2ScoreContext(this.run,this.hand,[]);
-    return{...this.candidateInput(),boss:context.boss,sealedJokerIds:context.sealedJokerIds,challengeDisabledJokerId:context.challengeDisabledJokerId,score:{...(context.boundedClear?{boundedClear:context.boundedClear}:{}),...(context.activeMultTiming?{activeMultTiming:context.activeMultTiming}:{}),...(context.routeGrowth?{routeGrowth:context.routeGrowth}:{}),...(context.erxiangHandoff?{erxiangHandoff:context.erxiangHandoff}:{}),...(context.touyeWager?{touyeWager:context.touyeWager}:{}),...(context.laohuanTrick?{laohuanTrick:context.laohuanTrick}:{}),...(context.xiemuBurn?{xiemuBurn:context.xiemuBurn}:{}),...(context.azaoCharge?{azaoCharge:context.azaoCharge}:{}),characterId:context.characterId,amoScoreTiming:context.amoScoreTiming,jokerSlots:context.jokerSlots,handLevels:this.run.handLevels,previousHandType:stage.previousHandType,previousHandScore:context.previousHandScore,wager:stage.wagerSelected}};
+    return{...this.candidateInput(),boss:context.boss,sealedJokerIds:context.sealedJokerIds,challengeDisabledJokerId:context.challengeDisabledJokerId,score:aiScoreContext({...(context.boundedClear?{boundedClear:context.boundedClear}:{}),...(context.activeMultTiming?{activeMultTiming:context.activeMultTiming}:{}),...(context.routeGrowth?{routeGrowth:context.routeGrowth}:{}),...(context.erxiangHandoff?{erxiangHandoff:context.erxiangHandoff}:{}),...(context.touyeWager?{touyeWager:context.touyeWager}:{}),...(context.laohuanTrick?{laohuanTrick:context.laohuanTrick}:{}),...(context.xiemuBurn?{xiemuBurn:context.xiemuBurn}:{}),...(context.azaoCharge?{azaoCharge:context.azaoCharge}:{}),characterId:context.characterId,amoScoreTiming:context.amoScoreTiming,jokerSlots:context.jokerSlots,handLevels:this.run.handLevels,previousHandType:stage.previousHandType,previousHandScore:context.previousHandScore,wager:stage.wagerSelected},{...this.chosenHeroDraft(),assistIds:this.assistIds})};
   }
   private cancelAiCandidates():void {
     // Finished facts are immutable and still checked against the full public key.
@@ -1235,12 +1237,12 @@ export class GameScene extends Phaser.Scene {
     const dialog=this.dialog.open(growthOnly?'本轮成长机会':'当前手牌怎么凑',initial+'\n'+(result.status==='ready'?'共'+groups.length+'种：'+groups.map(g=>HAND_LABELS[g.type]).join(' · '):'本轮牌型整理中')+'\n★代表计分牌。已成型示例只用当前手牌；未成型参考标“留”，不是计分牌型。\n点示例不改选择；换组后仍需自己出牌。成长不是通关必选，不必为成长强留场。'+(growthOnly?'出牌、弃牌、交易与关末成长分开看；只亮公开可判断的出牌成长。':''),[
       {label:'换为这组',primary:true,disabled:true,run:()=>{
         const ghost=this.candidateGhost;if(!isCurrent()||!ghost||ghost.key!==key){message.textContent=isCurrent()?'先点一个示例，只查看不会改选择。':'手牌或规则已变化，请关闭后重新查看。';return;}
-        this.candidateUndo={revision:this.draftRevision(),ids:[...this.selectedIds],assistIds:[...this.assistIds]};
-        this.erxiangTargetId=null;this.azaoRelease=false;this.xiemuBurn=0;this.aiCursor=undefined;this.selectedIds=new Set(ghost.facts.playedIds);if(ghost.assistIds!==undefined){this.assistIds=[...ghost.assistIds];this.assistPage=0;}this.validateAssistSelection();this.candidateGhost=undefined;this.dialog.close(dialog);this.refreshSelection();this.statusMessage='已换组，仍需自己出牌；查看牌型可撤销';this.updateControls();
+        this.candidateUndo={revision:this.draftRevision(),ids:[...this.selectedIds],assistIds:[...this.assistIds],skill:this.chosenHeroDraft()};
+        this.aiCursor=undefined;this.selectedIds=new Set(ghost.facts.playedIds);if(ghost.assistIds!==undefined){this.assistIds=[...ghost.assistIds];this.assistPage=0;}this.validateAssistSelection();this.candidateGhost=undefined;this.dialog.close(dialog);this.refreshSelection();this.statusMessage='已换组，仍需自己出牌；查看牌型可撤销';this.updateControls();
       }},
       {label:'撤销换组',disabled:!this.candidateUndo,run:()=>{
         const undo=this.candidateUndo;if(!isCurrent()||!undo||undo.revision!==this.draftRevision()){message.textContent='手牌或选择已变化，旧换组不能撤销。';return;}
-        this.erxiangTargetId=null;this.azaoRelease=false;this.xiemuBurn=0;this.aiCursor=undefined;this.selectedIds=new Set(undo.ids);this.assistIds=[...(undo.assistIds??[])];this.candidateUndo=undefined;this.candidateGhost=undefined;this.dialog.close(dialog);this.statusMessage='已撤销换组，恢复原选择';this.refreshSelection();
+        Object.assign(this,undo.skill??{erxiangTargetId:null,azaoRelease:false,xiemuBurn:0});this.aiCursor=undefined;this.selectedIds=new Set(undo.ids);this.assistIds=[...(undo.assistIds??[])];this.candidateUndo=undefined;this.candidateGhost=undefined;this.dialog.close(dialog);this.statusMessage='已撤销换组，恢复原选择';this.refreshSelection();
       }},
       {label:growthOnly?'全部可成牌型':'查看成长机会',run:()=>this.inspectCandidates(!growthOnly,focus)},
       {label:toolInventoryLabel(this.run),run:()=>showConsumables(this.dialog,this.run,this.ready&&!this.pendingRefill&&!this.pendingTouye,(a,seq)=>this.command(a,seq))},
