@@ -41,12 +41,13 @@ import {paperSceneStart} from './PaperFlow';
 import {usesTouyeWager,usesTouyeNewCore,type TouyeBet,type TouyeTarget} from '../domain/r2TouyeWager';
 import {touyeChoice,touyeConfirmationCopy} from './TouyeWagerCopy';
 import {usesLaohuanRefill} from '../domain/r2LaohuanRefill';
-import {presentScoreCredit} from './ScoreTableCredit';
+import {presentScoreCredit,presentScoreConvergence} from './ScoreTableCredit';
 import {tableScoreCells,tableScoreCaption,localHeroEyeSlot} from './ScoreTableLayout';
 import {mountTableScoreMarks,fitTableScoreReadouts} from './ScoreTableReadouts';
 import {presentScoreSource,presentScoreArrival,scoreArrival,isNeutralScoreReceipt,SCORE_CHANNEL} from './ScoreTableMotion';
 import {numberImpact,numberPulse,type NumberImpact} from './ScoreEnergy';
 import {scorePhrase} from './ScorePhrase';
+import {jokerScoreStrikeCue,prepareJokerScoreStrike} from './JokerScoreStrike';
 import {OWNED_SCORE_SPRING} from './inkwaveSpring';
 import {ScorePosture} from './ScorePosture';
 import {ownedJokerScoreLayer,mountOwnedJokerIdle,ownedJokerMotionCue,ownedJokerMotionDuration,playOwnedJokerScoreMotion} from './OwnedJokerScoreMotion';
@@ -1826,7 +1827,7 @@ export class GameScene extends Phaser.Scene {
   private refreshScoreFire(product:string):void {
     const presentation=this.presentation;if(!presentation)return;
     const level=scoreFireLevel(presentation.originHeat,product,this.stage.targetHeat);
-    this.scoreTotal.setColor(level?C.red:C.ink);this.keepScoreReadable();
+    this.scoreTotal.setColor(presentation.credited?(level?C.red:C.ink):C.mutedInk);this.keepScoreReadable();
   }
   private stopScoreFire():void {this.audio.stopScoreFire();}
 
@@ -1856,7 +1857,6 @@ export class GameScene extends Phaser.Scene {
     const targets=[];
     if(event.before.H.n!==event.after.H.n||event.before.H.d!==event.after.H.d)targets.push(this.scoreHeat);
     if(event.before.M.n!==event.after.M.n||event.before.M.d!==event.after.M.d)targets.push(this.scoreMult);
-    if(targets.length)targets.push(this.scoreTotal);
     const strength=scoreBeat(event).strength,level=this.presentation?scoreFireLevel(this.presentation.originHeat,this.displayedScoreProduct,this.stage.targetHeat):0;
     const isMultiply=strength==='multiply'||event.operation==='multiply-multiplier'||impact?.kind==='multiply';
     const scale=Math.min(1.54,(isMultiply?1.46:strength==='role'?1.34:1.28)+level*.02);
@@ -1875,12 +1875,13 @@ export class GameScene extends Phaser.Scene {
       }},context);
     } finally {if(text.active){text.setData('scorePulseScale',1).setData('scorePulseY',0).setScale(1);this.fitScoreReadouts();}}
   }
-  private impactAccumulator(event:ScoreEvent,duration:number,context:EffectContext,impact?:NumberImpact,beat?:ScoreBeat):Promise<void> {
+  private impactAccumulator(event:ScoreEvent,duration:number,context:EffectContext,impact?:NumberImpact,beat?:ScoreBeat,visualHandled=false):Promise<void> {
     if(context.signal.aborted||!this.presentation)return Promise.resolve();
     const positive=Rational.fromJSON(event.after.H).compare(Rational.fromJSON(event.before.H))>0||Rational.fromJSON(event.after.M).compare(Rational.fromJSON(event.before.M))>0;
     if(positive&&!this.presentation.replay)this.audio.scoreImpact(this.presentation,event.eventId,impact?.kind??'add',impact?.tier??0,impact?.chain??0,{paired:!this.reducedMotion&&!!ownedJokerMotionCue(this.presentation.score,event)&&(beat?.phrase?.paired??true),durationMs:duration/gameSession().speed,signal:context.signal,accentWeight:beat?.phrase?.accentWeight,pulse:beat?.phrase?.pulse});
     const cue=scoreArrival(event);if(!cue)return Promise.resolve();
     if(positive&&!this.presentation.replay&&cue.kind==='mult-multiply'&&this.scoreHaptic?.generation===context.generation)this.scoreHaptic.scope.multiplierArrived(event.eventId);
+    if(visualHandled)return Promise.resolve();
     const target=tableScoreCells(this.view.layout.scoreBoard)[cue.kind==='heat'?0:cue.kind==='total'?2:1];
     return presentScoreArrival(this,this.view.root,{event,target,duration,reduced:this.reducedMotion||this.presentation.replay,context,animate:(config,c)=>this.animate(config,c)});
   }
@@ -1957,6 +1958,8 @@ export class GameScene extends Phaser.Scene {
     const process=processCue?presentScoreSourceProcess(this.resultText,this.scoreLabels[1],processCue,tableScoreCaption(s),context.signal):undefined;
     this.setAccumulator(event.before);
     this.scoreTotal.setData('eventId',event.eventId).setData('eventPhase','windup').setData('phraseBeat',timing);
+    const strikeCue=this.presentation&&!this.reducedMotion&&!this.presentation.replay?jokerScoreStrikeCue(this.presentation.score,event):undefined,marker=strikeCue?this.jokerViews.get(strikeCue.sourceInstanceId):undefined,cells=tableScoreCells(s);
+    const strike=strikeCue&&marker?prepareJokerScoreStrike(this,this.view.root,marker,strikeCue,{context,beat:timing,textureKey:jokerArtKey(event.sourceDefinitionId)??'',artBounds:marker.getData('scoreArtBounds')??{x:-32,y:-45,width:64,height:90},portrait:this.view.layout.mode==='portrait',targets:{H:this.scoreHeat,M:this.scoreMult},cells:{H:cells[0],M:cells[1]},animate:(config,c)=>this.animate(config,c),refresh:()=>this.fitScoreReadouts(),onRebound:remaining=>{if(this.presentation&&!context.signal.aborted)this.audio.scoreRebound(this.presentation,event.eventId,{durationMs:remaining/gameSession().speed,signal:context.signal});}}):undefined;
     const sourceEffects:Promise<void>[]=[];
     // All source reactions wait for the actual packet arrival, including slow frames.
     let arrive!:()=>void;
@@ -1966,7 +1969,7 @@ export class GameScene extends Phaser.Scene {
     if(event.sourceType==='character'){
       sourceEffects.push(this.animateRole(note,duration,context,timing,impact));
       if(this.heroPortraitMotion&&this.presentation){const image=this.heroPortrait;sourceEffects.push(this.heroPortraitMotion.play({trace:this.presentation.score,event,context,arrival:impact,duration:timing.impact,replay:this.presentation.replay,onPhase:phase=>{if(image?.active)image.setData('scoreEventId',event.eventId).setData('scorePhase',phase);}}));}
-    }else if(event.sourceType==='joker'&&sourceBenefit){
+    }else if(event.sourceType==='joker'&&sourceBenefit&&!strike){
       sourceEffects.push(this.animateJoker(event,duration,context,timing,impact));
     }else if(event.operation==='seal-joker'&&event.targetJokerInstanceId){
       sourceEffects.push(this.animateJoker({sourceInstanceId:event.targetJokerInstanceId,operation:'seal-joker'},duration,context,timing,impact).then(()=>{
@@ -1983,10 +1986,12 @@ export class GameScene extends Phaser.Scene {
       sourceEffects.push(this.floatNote(source,b.x+b.width/2,b.y-12,'#ffdda3',duration,context));
     }
     if(!timing.phrase&&number&&this.presentation&&!this.presentation.replay&&number.kind!=='add'&&!this.reducedMotion)this.audio.scoreImpact(this.presentation,event.eventId,'flight',number.tier,number.chain);
-    await this.wait(timing.windup,context);
+    await (strike?.windup??this.wait(timing.windup,context));
     if(context.signal.aborted){arrive();return;}
-    sourceEffects.push(this.transferToAccumulator(event,card,timing.flight+timing.impact,context));
-    await this.wait(timing.flight,context);
+    if(strike)await strike.fly();
+    else {sourceEffects.push(this.transferToAccumulator(event,card,timing.flight+timing.impact,context));await this.wait(timing.flight,context);}
+    if(context.signal.aborted){arrive();return;}
+    if(strike)sourceEffects.push(strike.land());
     arrive();
     if(context.signal.aborted)return;
     // The domain result is already saved. Only the display and SFX arrive with this hit.
@@ -2020,8 +2025,8 @@ export class GameScene extends Phaser.Scene {
     // the brief compressed hold and rebound, without extending the trace timeline.
     const positive=Rational.fromJSON(event.after.H).compare(Rational.fromJSON(event.before.H))>0||Rational.fromJSON(event.after.M).compare(Rational.fromJSON(event.before.M))>0;
     const accumulator=positive?(this.setAccumulator(event.after),Promise.resolve()):this.rollAccumulator(event,impactDuration,context);
-    if(number){const cue=scoreArrival(event),color=cue?SCORE_CHANNEL[cue.kind].css:number.color;this.scoreTotal.setColor(number.color).setData('numberImpact',number);if(event.before.M.n!==event.after.M.n||event.before.M.d!==event.after.M.d)this.scoreMult.setColor(color);if(event.before.H.n!==event.after.H.n||event.before.H.d!==event.after.H.d)this.scoreHeat.setColor(color);}
-    const effects=[...sourceEffects,accumulator,this.pulseAccumulator(event,impactDuration,context,number,timing),this.impactAccumulator(event,impactDuration,context,number,timing),this.wait(impactDuration,context)],notes:Promise<void>[]=[];
+    if(number){const cue=scoreArrival(event),color=cue?SCORE_CHANNEL[cue.kind].css:number.color;this.scoreTotal.setData('numberImpact',number);if(event.before.M.n!==event.after.M.n||event.before.M.d!==event.after.M.d)this.scoreMult.setColor(color);if(event.before.H.n!==event.after.H.n||event.before.H.d!==event.after.H.d)this.scoreHeat.setColor(color);}
+    const effects=[...sourceEffects,accumulator,...(strike?[]:[this.pulseAccumulator(event,impactDuration,context,number,timing)]),this.impactAccumulator(event,impactDuration,context,number,timing,!!strike),this.wait(impactDuration,context)],notes:Promise<void>[]=[];
     if((event.operation==='rescue-hand'||event.operation==='refund-hand')&&this.presentation&&!this.presentation.replay&&event.resourceBefore!==undefined&&event.resourceAfter!==undefined){
       this.presentation.resourcePlayLeft=event.resourceAfter;
       effects.push(this.pulseResource('play',event.resourceBefore,context,event.resourceAfter));this.audio.select();
@@ -2135,6 +2140,7 @@ export class GameScene extends Phaser.Scene {
     this.resultText.setText((presentation.replay?'回看 · ':celebration.cleared?celebration.label+' · ':HAND_LABELS[score.handType]+' · ')+'+'+heatText(score.finalScore));
     this.breakdownText.setText(readableScoreFormula(score.accumulator.H,score.accumulator.M,score.finalScore));
     presentation.credited=true;this.updateHud();
+    this.scoreTotal.setAlpha(1);
     this.scoreTotal.setData('eventId',score.events.find(event=>event.phase==='finalScore')?.eventId).setData('eventPhase','award');
     const finalId=score.events.find(event=>event.phase==='finalScore')?.eventId;
     if(finalId&&!presentation.replay&&this.scoreHaptic?.generation===context.generation)this.scoreHaptic.scope.settlementArrived(finalId);
@@ -2160,7 +2166,7 @@ export class GameScene extends Phaser.Scene {
     effects.push(this.wait(this.reducedMotion?180:landingDuration+(beat?.rest??130),context));await Promise.all(effects);if(context.signal.aborted)return;this.scoreTotal.setColor(C.ink);this.scoreHeat.setColor(C.jade);this.scoreMult.setColor(C.red);
   }
   private convergeScore(context:EffectContext,duration=100):Promise<void> {
-    return this.wait(this.reducedMotion?0:duration,context);
+    return this.reducedMotion||this.presentation?.replay?this.wait(this.reducedMotion?0:duration,context):presentScoreConvergence(this,this.view.root,{heat:this.scoreHeat,mult:this.scoreMult,total:this.scoreTotal,duration,context,animate:(config,c)=>this.animate(config,c)});
   }
 
   private async presentTrace(score:ScoreTrace,state:RunState,views:readonly CardView[],lifecycle:number,intent:number,beforeHeat=this.heat,replay=false,previousTrace:ScoreTrace|null=this.run.lastTrace,beforeHands?:number,beforeGold?:number,gifts:readonly SavedStageGift[]=[]):Promise<void> {
@@ -2176,6 +2182,7 @@ export class GameScene extends Phaser.Scene {
     }
     this.refreshSelection();this.updateHud();this.setSettlementFocus(true);this.previewCards?.destroy();this.previewCards=undefined;(this.view.root.list.find(o=>o.name==='table/played-label') as Phaser.GameObjects.Text|undefined)?.setText('已出牌');
     [this.scoreHeat,this.scoreMult,this.scoreTotal,...this.scoreLabels].forEach(text=>text.setVisible(true));
+    this.scoreTotal.setAlpha(replay?1:.62);
     this.view.root.list.filter(o=>o.name.startsWith('score/formula-')).forEach(o=>(o as Phaser.GameObjects.Text).setVisible(true));
     (this.view.root.list.find(o=>o.name==='score/total-pedestal') as Phaser.GameObjects.Graphics|undefined)?.setVisible(true);
     this.scoreLabels.forEach((label,i)=>label.setText(['热度','倍率','本手得分'][i]));this.resultText.setText((replay?'回看 · ':'打出 · ')+HAND_LABELS[score.handType]);

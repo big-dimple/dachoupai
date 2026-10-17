@@ -21,7 +21,7 @@ export interface ScorePhraseGesture {
  /** Effective presentation milliseconds, before Phaser applies the selected speed. */
  start:number;arrival:number;end:number;
 }
-export type ScoreBeat={windup:number;flight:number;impact:number;rest:number;strength:'light'|'medium'|'role'|'multiply'|'retrigger';phrase?:ScorePhraseGesture};
+export type ScoreBeat={windup:number;flight:number;impact:number;rest:number;strength:'light'|'medium'|'role'|'multiply'|'retrigger';phrase?:ScorePhraseGesture;strike?:{hold:number;recovery:number}};
 
 /** Zero-based presented trace position, never chain length or a rule clock. Long chains retain every beat. */
 export function scoreBeat(event:ScoreEvent,ordinal=0):ScoreBeat {

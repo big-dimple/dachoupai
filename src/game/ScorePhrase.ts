@@ -1,9 +1,12 @@
 import type {ScoreEvent} from '../domain/scoreR2';
 import {actualMultiplier} from '../domain/openingShow';
+import {Rational} from '../domain/rational';
 import {numberImpact} from './ScoreEnergy';
 import {hasActualBenefit} from './JokerExperience';
 import {scoreBeat,type ScoreBeat,type ScorePhraseGesture} from './scorePresentation';
 import {OWNED_SCORE_SPRING} from './inkwaveSpring';
+import {scoreContributions} from './ScoreContribution';
+import {jokerStrikeBeat} from './JokerScoreStrike';
 
 /** Read-only phrase over the committed order. No sorting, score arithmetic,
  * independent timers, or mutation of a trace. The Scene consumes each beat once. */
@@ -17,7 +20,7 @@ export function scorePhrase(events:readonly ScoreEvent[],target:string,speed=1):
  for(const event of events){
   const base=scoreBeat(event,pulse),gain=eligible(event),repeat=gain&&previousSource===event.sourceInstanceId;
   let role:ScorePhraseGesture['role'],weight:number,paired=false,windup:number,flight:number,impact:number,rest:number;
-  if(event.phase==='finalScore'){role='settle';weight=1;windup=120;flight=0;impact=430;rest=130;settled=true;}
+  if(event.phase==='finalScore'){role='settle';weight=1;windup=Math.max(120,70*rate);flight=0;impact=430;rest=130;settled=true;}
   else if(settled||['afterHand','onStageClear','beforeFailure'].includes(event.phase)){role='receipt';weight=.28;windup=20;flight=0;impact=100;rest=24;}
   else if(gain){
    const progress=Math.min(1,pulse/Math.max(1,gains.length-1));
@@ -34,8 +37,10 @@ export function scorePhrase(events:readonly ScoreEvent[],target:string,speed=1):
   // single strikes retain their faster slots; no later motion layer overrides it.
   if(paired)impact=Math.max(impact,Math.ceil(50/OWNED_SCORE_SPRING.reboundAt*rate));
   else if(gain&&event.sourceType==='joker')impact=Math.max(impact,96*rate);
-  const start=cursor,arrival=start+windup+flight;cursor=arrival+impact+rest;
-  beats.set(event.eventId,{...base,windup,flight,impact,rest,phrase:{role,pulse:gain?pulse-1:pulse,accentWeight:weight,paired,start,arrival,end:cursor}});
+  let beat:ScoreBeat={...base,windup,flight,impact,rest,phrase:{role,pulse:gain?pulse-1:pulse,accentWeight:weight,paired,start:cursor,arrival:0,end:0}};
+  if(gain&&event.sourceType==='joker'&&scoreContributions(event).some(c=>Rational.fromJSON(c.after).compare(Rational.fromJSON(c.before))>0))beat=jokerStrikeBeat(beat,scoreContributions(event).some(c=>c.kind==='multiply'),rate);
+  beat.phrase!.arrival=cursor+beat.windup+beat.flight;cursor=beat.phrase!.arrival+beat.impact+beat.rest;beat.phrase!.end=cursor;
+  beats.set(event.eventId,beat);
  }
  return beats;
 }
