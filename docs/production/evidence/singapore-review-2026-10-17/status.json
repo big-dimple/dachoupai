@@ -1,0 +1,117 @@
+{
+  "taskId": "P08",
+  "testedCommit": "7d7921e76ca794a14e715e3eac3b4d66143862ff",
+  "comparisonCommit": "ba49d4536a21c647a6710b047053def874d29ace",
+  "date": "2026-10-17",
+  "status": "FAIL",
+  "scope": "Bounded software-browser interaction review and read-only technical probes. Findings confirmed; no product remediation performed.",
+  "acceptance": {
+    "P08": "in_progress",
+    "physicalDevice": "NOT_RUN",
+    "listening": "NOT_RUN",
+    "completeNaturalRun": "NOT_RUN",
+    "liveDomain": "BLOCKED_PROXY_TUNNEL_403",
+    "liveVersion": "UNKNOWN"
+  },
+  "checks": [
+    {
+      "name": "production build",
+      "command": "npm run build",
+      "status": "PASS",
+      "evidence": "build.log"
+    },
+    {
+      "name": "targeted existing tests",
+      "status": "FAIL",
+      "passed": 33,
+      "failed": 1,
+      "total": 34,
+      "evidence": "targeted-tests.log"
+    },
+    {
+      "name": "skip from shop",
+      "status": "FAIL",
+      "reason": "Saved SkipStage followed by Intermission result-shape exception",
+      "evidence": "flow-report.json"
+    },
+    {
+      "name": "skip from entrance",
+      "status": "FAIL",
+      "reason": "Same exception plus character-select cancellation path",
+      "evidence": "flow-report.json"
+    },
+    {
+      "name": "AI new-run candidates",
+      "status": "FAIL",
+      "reason": "Display-name mapping changes definitions identity; invalid-route-growth-snapshot",
+      "evidence": "minimal-domain-report.json"
+    },
+    {
+      "name": "short landscape zoom",
+      "status": "FAIL",
+      "reason": "Offscreen close/header and cover-cropped image",
+      "evidence": "browser-report.json"
+    },
+    {
+      "name": "72 registered card component entries",
+      "status": "FAIL",
+      "renderedThumbnails": 72,
+      "clickHandlers": 71,
+      "missingHandler": [
+        "a11"
+      ],
+      "evidence": "browser-report.json"
+    },
+    {
+      "name": "close/backdrop/ESC/repeat without state changes",
+      "status": "PASS_WITH_SCOPE",
+      "viewports": [
+        "390x740",
+        "740x320",
+        "1366x900"
+      ],
+      "evidence": "browser-report.json"
+    },
+    {
+      "name": "late old image does not overwrite current image",
+      "status": "PASS_WITH_SCOPE",
+      "evidence": "async-report.json"
+    },
+    {
+      "name": "original plan structural checker",
+      "status": "FAIL_EXISTING",
+      "errors": 12,
+      "evidence": "plan-check-baseline.log"
+    }
+  ],
+  "rawManifest": "evidence-manifest.json",
+  "reports": [
+    "../../reviews/SINGAPORE_REVIEW_20261017.md",
+    "../../reviews/REMEDIATION_PLAN_20261017.md"
+  ],
+  "fixesImplemented": false,
+  "productTestsChanged": false,
+  "mainPushed": false,
+  "ciQueried": false,
+  "deploymentChanged": false,
+  "planStructure": {
+    "baselineErrors": 12,
+    "afterErrors": 12,
+    "outputIdentical": true,
+    "newEvidenceRecordValid": true,
+    "reason": "Existing historical P08 records lack required taskId/testedCommit shape; originals intentionally preserved.",
+    "afterEvidence": "plan-check-after.log"
+  },
+  "latestUserRequests": [
+    "remove goldfish loading visual while keeping actual progress/retry",
+    "bottom bar discard / three sorting controls / play",
+    "separate skill location",
+    "check and reuse existing available-skill play reminder",
+    "later battle closes overview and retains current run"
+  ],
+  "whitespaceCheck": {
+    "authoredText": "PASS",
+    "originalHttpHeaders": "RAW_CRLF_WARNINGS_PRESERVED",
+    "evidence": "staged-diff-check-raw.log"
+  }
+}

@@ -1,14 +1,14 @@
 {
   "schemaVersion": 1,
-  "auditCommit": "8e2174141920ef001b95a30485e70525920d3d9f",
+  "auditCommit": "7d7921e76ca794a14e715e3eac3b4d66143862ff",
   "currentTask": "P08",
-  "selectionPolicy": "当前三路视觉批次经用户明确允许合并提交：胜利dfa755、六英雄黑底全图及用户新苏轼原图76e64c14、含新眼位与紧凑暗场的高光3924854b。并集运行时f4d814b1；只补新苏轼原画关闭返回、高光→胜利→商店及短横长数字交叉，原各套按责任源码完全相同保留。此前main8728e18已核实；本批最终远端SHA以实际Git回执为准，不查CI/域名。未改数值/领域/存档/音频/平台；P08仍in_progress，正式门、听感/真机/自然晚期不代签。",
+  "selectionPolicy": "2026-10-17新加坡批次评审：产品7d7921e76ca794a14e715e3eac3b4d66143862ff对比ba49d4536a21c647a6710b047053def874d29ace；以reviews/SINGAPORE_REVIEW_20261017.md与REMEDIATION_PLAN_20261017.md为当前排程。仅独立docs分支文档交付，所有产品整改待实施；先跳场/AI数据隔离，GameScene单负责人再处理punch，后续卡图/音频/商店按文件责任并行。用户指定去金鱼、底栏弃牌—理牌三块—出牌、技能另位、复核既有技能提醒、稍后开战留当前局已纳入。P08仍in_progress，不改领域hash/数值，不push main/查CI/管理部署。域名代理403，没完成线上一局，未试听/真机；C04历史暂停待用户决策，不阻塞本批明确回归整改。",
   "resumeContract": {
     "candidateCommit": "4bf6a7d63d7738d3c415d09439a1bdca878dc685",
     "gateTask": "A01",
     "decisionId": "D22",
     "decision": "docs/production/DECISIONS.md",
-    "afterOwnerAcceptance": "D22/A01保留其历史局部放行范围，不是完整体验签收。用户已对当前三路视觉批次明确允许正常合并提交；本批只包含胜利页、六英雄黑底全图/新苏轼授权原图及最终高光。前一批61提示+92计划已通过main8728e18交付；当前完整SHA以实际发布回执为准。900→1000等数值建议、C04剩余/A03整体/V01/L01、独立素材/听感/真机不由本批解锁。",
+    "afterOwnerAcceptance": "本提交只交付独立docs/review-singapore-20261017分支的评审、证据与待实施计划；产品修复由父线程独立指派及既有会话授权处理，main发布不在本提交范围。此前各局部放行按原SHA保留，不因文档交付解锁C04/A03/V01/L01或听感/真机；后续逐包记录候选SHA与验证，不能把计划当已修。",
     "milestones": "docs/production/WORK_PACKAGES.md#玩家可检验的里程碑",
     "approvalEvidence": "docs/production/evidence/A01-2026-10-02.json"
   },
@@ -32,12 +32,15 @@
         "docs/production/CONTENT.md",
         "docs/production/QUALITY.md",
         "docs/production/HERO_TEXT_SPEC_20261015.md",
-        "docs/production/HERO_TEXT_SPEC_20261015.json"
+        "docs/production/HERO_TEXT_SPEC_20261015.json",
+        "docs/production/reviews/SINGAPORE_REVIEW_20261017.md",
+        "docs/production/reviews/REMEDIATION_PLAN_20261017.md"
       ],
       "package": "docs/production/WORK_PACKAGES.md#p08",
       "humanGate": false,
-      "completionScope": "此前main8728e18包含61燃金提示+92计划及更早交互/六英雄/六图软件范围。当前三路视觉批次经用户允许合并提交：胜利页、六英雄黑底全图与新苏轼原图、紧凑固定眼神高光已同版交叉；精确mainSHA见发布回执。没有重跑各自完整矩阵，没有新自然经营或数值改动；P08仍in_progress，独立素材、人类理解、听感/物理设备、自然晚期与正式门不代签。",
+      "completionScope": "2026-10-17评审产品7d7921e相对ba49：72卡资源与六英雄黑底/新苏轼等既有事实保留；跳场保存后转场异常/错误选角、AI显示名污染规则身份、短横zoom/a11等确认失败未修。本地34项33PASS/1FAIL与build PASS分别保留，旧43仅局部35+8。新增用户交互要求已排入待实施计划。P08仍in_progress；只有独立文档分支交付，线上代理403没完成一局，未试听/真机或正式签收。",
       "evidence": [
+        "docs/production/evidence/singapore-review-2026-10-17/status.json",
         "docs/production/evidence/cards-bgm-tangsong-refresh-2026-10-17/status.json",
         "docs/production/evidence/visual-three-route-integration-2026-10-16/status.json",
         "docs/production/evidence/cash-warning-plan-main-integration-2026-10-16/status.json",
