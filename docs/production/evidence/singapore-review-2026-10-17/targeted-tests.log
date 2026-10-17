@@ -1,0 +1,30 @@
+
+> dachoupai@0.1.0 test
+> vitest run tests/score-recorded-audio.test.ts tests/handdrawn-art.test.ts tests/tangsong-card-names.test.ts
+
+
+ RUN  v4.1.11 /workspace/dachoupai
+
+ ❯ tests/score-recorded-audio.test.ts (12 tests | 1 failed) 41ms
+   × ordinary hits stay light and key multiplication has bounded three-layer timbre, all cancellable 7ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/score-recorded-audio.test.ts > ordinary hits stay light and key multiplication has bounded three-layer timbre, all cancellable
+AssertionError: expected 1.107 to be close to 0.8815, received difference is 0.22550000000000003, but expected 0.005
+ ❯ tests/score-recorded-audio.test.ts:6:457
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 2 passed (3)
+      Tests  1 failed | 33 passed (34)
+   Start at  01:40:28
+   Duration  369ms (transform 349ms, setup 0ms, import 475ms, tests 114ms, environment 0ms)
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice

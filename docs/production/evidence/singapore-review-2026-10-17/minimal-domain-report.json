@@ -1,0 +1,1625 @@
+{
+  "scope": "Independent read-only reducer/preview probe. No browser state import or mutation.",
+  "skip": {
+    "ok": true,
+    "phase": "stage-cleared",
+    "stageIndex": 1,
+    "stage": {
+      "routeGrowth": {
+        "entry": {
+          "commandId": "minimal-map/2",
+          "seq": 2,
+          "type": "SkipStage"
+        },
+        "handTypes": [],
+        "eligible": [],
+        "sources": []
+      },
+      "openingDiscard": null,
+      "assistUsed": false,
+      "index": 0,
+      "targetHeat": "400",
+      "initialTargetHeat": "400",
+      "heat": "0",
+      "handsLeft": 4,
+      "initialHands": 4,
+      "discardsLeft": 3,
+      "initialDiscards": 3,
+      "discardSpent": 0,
+      "discardGained": 0,
+      "doubleDiscardBeforeFirstPlay": false,
+      "discardsUsed": 0,
+      "skipResult": {
+        "kind": "coupon",
+        "amount": 2
+      },
+      "playIndex": 0,
+      "previousHandType": null,
+      "previousHandScore": null,
+      "handLimit": 8,
+      "initialHandLimit": 8,
+      "boss": null,
+      "initialJokerIds": [],
+      "sealedJokerIds": [],
+      "challengeDisabledJokerId": null,
+      "rescueUsed": false,
+      "clearId": null,
+      "goldEarned": 0,
+      "disabledIds": [],
+      "wagerSelected": false,
+      "wagerUsed": false,
+      "maxPlayedCount": 0,
+      "ordinaryStraightSeen": false,
+      "ordinaryFlushSeen": false,
+      "quadRefundUsed": false,
+      "jokerSold": false
+    }
+  },
+  "definitions": {
+    "rawProfile": true,
+    "mappedProfile": false,
+    "changedNames": [
+      {
+        "id": "pengci",
+        "raw": "碰瓷",
+        "mapped": "狭路相逢"
+      },
+      {
+        "id": "mantangcai",
+        "raw": "满堂彩",
+        "mapped": "满堂喝彩"
+      },
+      {
+        "id": "tiesuanpan",
+        "raw": "铁算盘",
+        "mapped": "精打细算"
+      },
+      {
+        "id": "jiedongfeng",
+        "raw": "借东风",
+        "mapped": "巧借东风"
+      },
+      {
+        "id": "a03",
+        "raw": "一束光",
+        "mapped": "掌灯破雾"
+      },
+      {
+        "id": "a05",
+        "raw": "熟面孔",
+        "mapped": "轻车熟路"
+      },
+      {
+        "id": "b02",
+        "raw": "对上眼",
+        "mapped": "心有灵犀"
+      },
+      {
+        "id": "b03",
+        "raw": "老搭档",
+        "mapped": "莫逆之交"
+      },
+      {
+        "id": "b04",
+        "raw": "一唱一和",
+        "mapped": "琴瑟和鸣"
+      },
+      {
+        "id": "c02",
+        "raw": "红线",
+        "mapped": "朱砂点绛"
+      },
+      {
+        "id": "c04",
+        "raw": "搭台阶",
+        "mapped": "步步高升"
+      },
+      {
+        "id": "c06",
+        "raw": "越染越深",
+        "mapped": "青出于蓝"
+      },
+      {
+        "id": "d01",
+        "raw": "候场席",
+        "mapped": "坐镇中军"
+      },
+      {
+        "id": "d03",
+        "raw": "等得住",
+        "mapped": "陈年佳酿"
+      },
+      {
+        "id": "d05",
+        "raw": "彩排",
+        "mapped": "小试牛刀"
+      },
+      {
+        "id": "d10",
+        "raw": "空位有价",
+        "mapped": "无中生有"
+      },
+      {
+        "id": "e01",
+        "raw": "小费盒",
+        "mapped": "金玉满盘"
+      },
+      {
+        "id": "e03",
+        "raw": "家底",
+        "mapped": "聚宝金瓮"
+      },
+      {
+        "id": "e05",
+        "raw": "置办行头",
+        "mapped": "鲜衣怒马"
+      },
+      {
+        "id": "e08",
+        "raw": "包场",
+        "mapped": "一掷千金"
+      },
+      {
+        "id": "f02",
+        "raw": "最后一句",
+        "mapped": "孤注一掷"
+      },
+      {
+        "id": "f03",
+        "raw": "开门见喜",
+        "mapped": "双喜临门"
+      },
+      {
+        "id": "f09",
+        "raw": "不换词",
+        "mapped": "始终如一"
+      },
+      {
+        "id": "a04",
+        "raw": "小口袋",
+        "mapped": "乾坤锦囊"
+      },
+      {
+        "id": "a06",
+        "raw": "独家戏",
+        "mapped": "一舞倾城"
+      },
+      {
+        "id": "a07",
+        "raw": "偷闲",
+        "mapped": "浮生半日"
+      },
+      {
+        "id": "a08",
+        "raw": "小人物",
+        "mapped": "野火春风"
+      },
+      {
+        "id": "b05",
+        "raw": "合唱班",
+        "mapped": "凤鸣朝阳"
+      },
+      {
+        "id": "b06",
+        "raw": "再说一遍",
+        "mapped": "重锤响鼓"
+      },
+      {
+        "id": "b07",
+        "raw": "人人有份",
+        "mapped": "宾主尽欢"
+      },
+      {
+        "id": "b08",
+        "raw": "对半分",
+        "mapped": "平分秋色"
+      },
+      {
+        "id": "c03",
+        "raw": "蓝墨",
+        "mapped": "挥毫泼墨"
+      },
+      {
+        "id": "c05",
+        "raw": "换布景",
+        "mapped": "辞旧迎新"
+      },
+      {
+        "id": "c07",
+        "raw": "拖个尾音",
+        "mapped": "弦外之音"
+      },
+      {
+        "id": "c08",
+        "raw": "少一级",
+        "mapped": "一步之遥"
+      },
+      {
+        "id": "d02",
+        "raw": "小凳子",
+        "mapped": "奇兵突起"
+      },
+      {
+        "id": "d04",
+        "raw": "递个眼色",
+        "mapped": "顾盼生威"
+      },
+      {
+        "id": "d06",
+        "raw": "搬张椅子",
+        "mapped": "虚位以待"
+      },
+      {
+        "id": "d07",
+        "raw": "镜头不空",
+        "mapped": "箭无虚发"
+      },
+      {
+        "id": "e02",
+        "raw": "熟客券",
+        "mapped": "宾至如归"
+      },
+      {
+        "id": "e04",
+        "raw": "滚个零头",
+        "mapped": "一本万利"
+      },
+      {
+        "id": "e06",
+        "raw": "旧物新用",
+        "mapped": "点石成金"
+      },
+      {
+        "id": "e07",
+        "raw": "加班费",
+        "mapped": "天道酬勤"
+      },
+      {
+        "id": "f04",
+        "raw": "兜比脸净",
+        "mapped": "两袖清风"
+      },
+      {
+        "id": "f05",
+        "raw": "越说越顺",
+        "mapped": "青云直上"
+      },
+      {
+        "id": "f06",
+        "raw": "一次性招牌",
+        "mapped": "刹那芳华"
+      },
+      {
+        "id": "f07",
+        "raw": "安全网",
+        "mapped": "逢凶化吉"
+      },
+      {
+        "id": "a09",
+        "raw": "短节目",
+        "mapped": "清音穿云"
+      },
+      {
+        "id": "a10",
+        "raw": "后台眼神",
+        "mapped": "慧眼识珠"
+      },
+      {
+        "id": "a11",
+        "raw": "返个场",
+        "mapped": "梅开二度"
+      },
+      {
+        "id": "a12",
+        "raw": "不铺张",
+        "mapped": "一盏清茗"
+      },
+      {
+        "id": "b09",
+        "raw": "四座皆惊",
+        "mapped": "技惊四座"
+      },
+      {
+        "id": "b10",
+        "raw": "练对子",
+        "mapped": "炉火纯青"
+      },
+      {
+        "id": "b11",
+        "raw": "候场同伴",
+        "mapped": "蓄势待发"
+      },
+      {
+        "id": "b12",
+        "raw": "救个场",
+        "mapped": "绝处逢生"
+      },
+      {
+        "id": "c09",
+        "raw": "少一块布",
+        "mapped": "天衣无缝"
+      },
+      {
+        "id": "c10",
+        "raw": "压住书页",
+        "mapped": "稳如泰山"
+      },
+      {
+        "id": "c11",
+        "raw": "换轨",
+        "mapped": "峰回路转"
+      },
+      {
+        "id": "c12",
+        "raw": "换一身",
+        "mapped": "锦上添花"
+      },
+      {
+        "id": "d08",
+        "raw": "留声机",
+        "mapped": "余音绕梁"
+      },
+      {
+        "id": "d09",
+        "raw": "回声越来越近",
+        "mapped": "空谷传响"
+      },
+      {
+        "id": "d11",
+        "raw": "三拍子",
+        "mapped": "一鼓作气"
+      },
+      {
+        "id": "d12",
+        "raw": "留点悬念",
+        "mapped": "深藏不露"
+      },
+      {
+        "id": "e09",
+        "raw": "储物箱",
+        "mapped": "内有乾坤"
+      },
+      {
+        "id": "e10",
+        "raw": "赠票",
+        "mapped": "倾囊相授"
+      },
+      {
+        "id": "e11",
+        "raw": "长期捧场",
+        "mapped": "薪火相传"
+      },
+      {
+        "id": "e12",
+        "raw": "淘旧摊",
+        "mapped": "沙里淘金"
+      },
+      {
+        "id": "f08",
+        "raw": "试试手气",
+        "mapped": "上上大吉"
+      },
+      {
+        "id": "f10",
+        "raw": "冷场救火",
+        "mapped": "柳暗花明"
+      },
+      {
+        "id": "f11",
+        "raw": "越挫越会",
+        "mapped": "越战越勇"
+      },
+      {
+        "id": "f12",
+        "raw": "真正的压轴",
+        "mapped": "压轴好戏"
+      }
+    ]
+  },
+  "previewRaw": {
+    "ok": true,
+    "result": {
+      "routeGrowth": {
+        "before": {
+          "clears": 0,
+          "G": 0,
+          "S": 0,
+          "F": 0
+        },
+        "factors": {}
+      },
+      "handType": "high-card",
+      "level": 1,
+      "base": {
+        "H": {
+          "n": "20",
+          "d": "1"
+        },
+        "M": {
+          "n": "1",
+          "d": "1"
+        }
+      },
+      "sets": {
+        "playedIds": [
+          "diamonds-4"
+        ],
+        "scoringIds": [
+          "diamonds-4"
+        ],
+        "activeScoringIds": [
+          "diamonds-4"
+        ],
+        "heldIds": [
+          "clubs-10",
+          "spades-7",
+          "clubs-7",
+          "spades-9",
+          "hearts-14",
+          "spades-2",
+          "clubs-11"
+        ],
+        "assistConsumedIds": []
+      },
+      "breakdown": {
+        "minimum": {
+          "H": {
+            "n": "24",
+            "d": "1"
+          },
+          "M": {
+            "n": "1",
+            "d": "1"
+          }
+        },
+        "maximum": {
+          "H": {
+            "n": "24",
+            "d": "1"
+          },
+          "M": {
+            "n": "1",
+            "d": "1"
+          }
+        },
+        "events": [
+          {
+            "eventId": "review-only/event/0",
+            "rootId": "review-only",
+            "rootEventId": "review-only/event/0",
+            "phase": "base",
+            "sourceType": "rule",
+            "sourceDefinitionId": "high-card",
+            "sourceInstanceId": "minimal-map",
+            "operation": "base",
+            "value": {
+              "n": "20",
+              "d": "1"
+            },
+            "before": {
+              "H": {
+                "n": "0",
+                "d": "1"
+              },
+              "M": {
+                "n": "0",
+                "d": "1"
+              }
+            },
+            "after": {
+              "H": {
+                "n": "20",
+                "d": "1"
+              },
+              "M": {
+                "n": "1",
+                "d": "1"
+              }
+            },
+            "reasonKey": "high-card.base",
+            "visibleCondition": {
+              "kind": "always"
+            },
+            "retriggerDepth": 0
+          },
+          {
+            "eventId": "review-only/event/1",
+            "rootId": "review-only",
+            "rootEventId": "review-only/event/1",
+            "phase": "onCardScore",
+            "sourceType": "card",
+            "sourceDefinitionId": "rank-4",
+            "sourceInstanceId": "diamonds-4",
+            "targetCardId": "diamonds-4",
+            "operation": "add-heat",
+            "value": {
+              "n": "4",
+              "d": "1"
+            },
+            "before": {
+              "H": {
+                "n": "20",
+                "d": "1"
+              },
+              "M": {
+                "n": "1",
+                "d": "1"
+              }
+            },
+            "after": {
+              "H": {
+                "n": "24",
+                "d": "1"
+              },
+              "M": {
+                "n": "1",
+                "d": "1"
+              }
+            },
+            "reasonKey": "rank-4.add-heat",
+            "visibleCondition": {
+              "kind": "always"
+            },
+            "retriggerDepth": 0
+          },
+          {
+            "eventId": "review-only/event/2",
+            "rootId": "review-only",
+            "rootEventId": "review-only/event/2",
+            "phase": "finalScore",
+            "sourceType": "rule",
+            "sourceDefinitionId": "high-card",
+            "sourceInstanceId": "minimal-map",
+            "operation": "final-score",
+            "value": {
+              "n": "24",
+              "d": "1"
+            },
+            "before": {
+              "H": {
+                "n": "24",
+                "d": "1"
+              },
+              "M": {
+                "n": "1",
+                "d": "1"
+              }
+            },
+            "after": {
+              "H": {
+                "n": "24",
+                "d": "1"
+              },
+              "M": {
+                "n": "1",
+                "d": "1"
+              }
+            },
+            "reasonKey": "high-card.final-score",
+            "visibleCondition": {
+              "kind": "always"
+            },
+            "retriggerDepth": 0
+          }
+        ]
+      },
+      "possibleScores": [
+        "24"
+      ],
+      "scoreRange": {
+        "minimum": "24",
+        "maximum": "24"
+      },
+      "randomEffects": []
+    }
+  },
+  "previewMapped": {
+    "ok": false,
+    "error": "Error: invalid-route-growth-snapshot\n    at resolveScore (/workspace/dachoupai/src/domain/scoreR2.ts:155:128)\n    at previewR2Hand (/workspace/dachoupai/src/domain/scoreR2.ts:613:19)\n    at file:///workspace/review-7d7921e/minimal-domain-probe.mjs:19:510\n    at attempt (file:///workspace/review-7d7921e/minimal-domain-probe.mjs:18:48)\n    at file:///workspace/review-7d7921e/minimal-domain-probe.mjs:19:498"
+  },
+  "actualCommand": {
+    "ok": true,
+    "result": {
+      "ok": true,
+      "state": {
+        "routeGrowth": {
+          "clears": 0,
+          "G": 0,
+          "S": 0,
+          "F": 0,
+          "settlements": []
+        },
+        "schemaVersion": 2,
+        "rulesVersion": "r2",
+        "contentVersion": "quality-r2-s04-finish-v1",
+        "contentHash": "json-fnv-v1:65b545bd97c0fdf1",
+        "runId": "minimal-map",
+        "seed": "minimal-map",
+        "commandSeq": 4,
+        "difficulty": 0,
+        "characterId": "amo",
+        "openingRoute": "group",
+        "openingShow": {
+          "handsScored": 1,
+          "rootId": null,
+          "eventId": null,
+          "reason": null
+        },
+        "routeStarter": {
+          "instanceId": null,
+          "rootId": null,
+          "eventId": null
+        },
+        "mode": "standard",
+        "challengeId": null,
+        "programsEnabled": false,
+        "programRerollCoupon": false,
+        "chapterDisabledJokerId": null,
+        "chapter": 1,
+        "stageIndex": 0,
+        "phase": "await-input",
+        "deckInstances": [
+          {
+            "id": "spades-2",
+            "suit": "spades",
+            "rank": 2
+          },
+          {
+            "id": "spades-3",
+            "suit": "spades",
+            "rank": 3
+          },
+          {
+            "id": "spades-4",
+            "suit": "spades",
+            "rank": 4
+          },
+          {
+            "id": "spades-5",
+            "suit": "spades",
+            "rank": 5
+          },
+          {
+            "id": "spades-6",
+            "suit": "spades",
+            "rank": 6
+          },
+          {
+            "id": "spades-7",
+            "suit": "spades",
+            "rank": 7
+          },
+          {
+            "id": "spades-8",
+            "suit": "spades",
+            "rank": 8
+          },
+          {
+            "id": "spades-9",
+            "suit": "spades",
+            "rank": 9
+          },
+          {
+            "id": "spades-10",
+            "suit": "spades",
+            "rank": 10
+          },
+          {
+            "id": "spades-11",
+            "suit": "spades",
+            "rank": 11
+          },
+          {
+            "id": "spades-12",
+            "suit": "spades",
+            "rank": 12
+          },
+          {
+            "id": "spades-13",
+            "suit": "spades",
+            "rank": 13
+          },
+          {
+            "id": "spades-14",
+            "suit": "spades",
+            "rank": 14
+          },
+          {
+            "id": "hearts-2",
+            "suit": "hearts",
+            "rank": 2
+          },
+          {
+            "id": "hearts-3",
+            "suit": "hearts",
+            "rank": 3
+          },
+          {
+            "id": "hearts-4",
+            "suit": "hearts",
+            "rank": 4
+          },
+          {
+            "id": "hearts-5",
+            "suit": "hearts",
+            "rank": 5
+          },
+          {
+            "id": "hearts-6",
+            "suit": "hearts",
+            "rank": 6
+          },
+          {
+            "id": "hearts-7",
+            "suit": "hearts",
+            "rank": 7
+          },
+          {
+            "id": "hearts-8",
+            "suit": "hearts",
+            "rank": 8
+          },
+          {
+            "id": "hearts-9",
+            "suit": "hearts",
+            "rank": 9
+          },
+          {
+            "id": "hearts-10",
+            "suit": "hearts",
+            "rank": 10
+          },
+          {
+            "id": "hearts-11",
+            "suit": "hearts",
+            "rank": 11
+          },
+          {
+            "id": "hearts-12",
+            "suit": "hearts",
+            "rank": 12
+          },
+          {
+            "id": "hearts-13",
+            "suit": "hearts",
+            "rank": 13
+          },
+          {
+            "id": "hearts-14",
+            "suit": "hearts",
+            "rank": 14
+          },
+          {
+            "id": "clubs-2",
+            "suit": "clubs",
+            "rank": 2
+          },
+          {
+            "id": "clubs-3",
+            "suit": "clubs",
+            "rank": 3
+          },
+          {
+            "id": "clubs-4",
+            "suit": "clubs",
+            "rank": 4
+          },
+          {
+            "id": "clubs-5",
+            "suit": "clubs",
+            "rank": 5
+          },
+          {
+            "id": "clubs-6",
+            "suit": "clubs",
+            "rank": 6
+          },
+          {
+            "id": "clubs-7",
+            "suit": "clubs",
+            "rank": 7
+          },
+          {
+            "id": "clubs-8",
+            "suit": "clubs",
+            "rank": 8
+          },
+          {
+            "id": "clubs-9",
+            "suit": "clubs",
+            "rank": 9
+          },
+          {
+            "id": "clubs-10",
+            "suit": "clubs",
+            "rank": 10
+          },
+          {
+            "id": "clubs-11",
+            "suit": "clubs",
+            "rank": 11
+          },
+          {
+            "id": "clubs-12",
+            "suit": "clubs",
+            "rank": 12
+          },
+          {
+            "id": "clubs-13",
+            "suit": "clubs",
+            "rank": 13
+          },
+          {
+            "id": "clubs-14",
+            "suit": "clubs",
+            "rank": 14
+          },
+          {
+            "id": "diamonds-2",
+            "suit": "diamonds",
+            "rank": 2
+          },
+          {
+            "id": "diamonds-3",
+            "suit": "diamonds",
+            "rank": 3
+          },
+          {
+            "id": "diamonds-4",
+            "suit": "diamonds",
+            "rank": 4
+          },
+          {
+            "id": "diamonds-5",
+            "suit": "diamonds",
+            "rank": 5
+          },
+          {
+            "id": "diamonds-6",
+            "suit": "diamonds",
+            "rank": 6
+          },
+          {
+            "id": "diamonds-7",
+            "suit": "diamonds",
+            "rank": 7
+          },
+          {
+            "id": "diamonds-8",
+            "suit": "diamonds",
+            "rank": 8
+          },
+          {
+            "id": "diamonds-9",
+            "suit": "diamonds",
+            "rank": 9
+          },
+          {
+            "id": "diamonds-10",
+            "suit": "diamonds",
+            "rank": 10
+          },
+          {
+            "id": "diamonds-11",
+            "suit": "diamonds",
+            "rank": 11
+          },
+          {
+            "id": "diamonds-12",
+            "suit": "diamonds",
+            "rank": 12
+          },
+          {
+            "id": "diamonds-13",
+            "suit": "diamonds",
+            "rank": 13
+          },
+          {
+            "id": "diamonds-14",
+            "suit": "diamonds",
+            "rank": 14
+          }
+        ],
+        "drawPile": [
+          "clubs-6",
+          "clubs-14",
+          "spades-8",
+          "spades-6",
+          "spades-13",
+          "hearts-9",
+          "diamonds-11",
+          "diamonds-8",
+          "hearts-13",
+          "spades-3",
+          "clubs-3",
+          "clubs-5",
+          "diamonds-14",
+          "clubs-13",
+          "diamonds-9",
+          "spades-12",
+          "diamonds-13",
+          "hearts-10",
+          "hearts-8",
+          "spades-11",
+          "clubs-9",
+          "diamonds-5",
+          "hearts-5",
+          "diamonds-12",
+          "spades-4",
+          "diamonds-6",
+          "diamonds-2",
+          "diamonds-10",
+          "hearts-11",
+          "clubs-4",
+          "diamonds-3",
+          "clubs-12",
+          "hearts-4",
+          "clubs-8",
+          "spades-5",
+          "diamonds-7",
+          "spades-14",
+          "hearts-7",
+          "hearts-3",
+          "spades-10",
+          "hearts-6",
+          "clubs-2",
+          "hearts-2"
+        ],
+        "handOrder": [
+          "clubs-10",
+          "spades-7",
+          "clubs-7",
+          "spades-9",
+          "hearts-14",
+          "spades-2",
+          "clubs-11",
+          "hearts-12"
+        ],
+        "playedPile": [
+          "diamonds-4"
+        ],
+        "discardPile": [],
+        "destroyedIds": [],
+        "stage": {
+          "routeGrowth": {
+            "entry": {
+              "commandId": "minimal-map/3",
+              "seq": 3,
+              "type": "EnterStage"
+            },
+            "handTypes": [
+              "high-card"
+            ],
+            "eligible": [],
+            "sources": [
+              {
+                "command": {
+                  "runId": "minimal-map",
+                  "commandId": "minimal-map/4",
+                  "expectedSeq": 3,
+                  "action": {
+                    "type": "PlayHand",
+                    "selectedIds": [
+                      "diamonds-4"
+                    ]
+                  }
+                },
+                "cards": [
+                  {
+                    "id": "diamonds-4",
+                    "suit": "diamonds",
+                    "rank": 4
+                  }
+                ],
+                "rules": {
+                  "fourStraight": false,
+                  "fourFlush": false
+                }
+              }
+            ]
+          },
+          "openingDiscard": null,
+          "assistUsed": false,
+          "index": 0,
+          "targetHeat": "400",
+          "initialTargetHeat": "400",
+          "heat": "24",
+          "handsLeft": 3,
+          "initialHands": 4,
+          "discardsLeft": 3,
+          "initialDiscards": 3,
+          "discardSpent": 0,
+          "discardGained": 0,
+          "doubleDiscardBeforeFirstPlay": false,
+          "discardsUsed": 0,
+          "skipResult": null,
+          "playIndex": 1,
+          "previousHandType": "high-card",
+          "previousHandScore": "24",
+          "handLimit": 8,
+          "initialHandLimit": 8,
+          "boss": null,
+          "initialJokerIds": [],
+          "sealedJokerIds": [],
+          "challengeDisabledJokerId": null,
+          "rescueUsed": false,
+          "clearId": null,
+          "goldEarned": 0,
+          "disabledIds": [],
+          "wagerSelected": false,
+          "wagerUsed": false,
+          "maxPlayedCount": 1,
+          "ordinaryStraightSeen": false,
+          "ordinaryFlushSeen": false,
+          "quadRefundUsed": false,
+          "jokerSold": false
+        },
+        "totalHeat": "0",
+        "gold": 6,
+        "jokers": [],
+        "consumables": [],
+        "longTermItems": [],
+        "program": null,
+        "boss": {
+          "definitionId": "B01",
+          "disabledSuit": null
+        },
+        "seenBossIds": [
+          "B01"
+        ],
+        "chapterSkipConsumable": "T17",
+        "purchaseCoupons": 0,
+        "safetyNetUsed": false,
+        "shop": null,
+        "spectralModifiers": {
+          "handsPenalty": 0,
+          "handPenalty": 0,
+          "cleanSlateBonus": 0
+        },
+        "supplyRewardClaimed": false,
+        "chapterHandUsage": {
+          "high-card": 1
+        },
+        "normalClearClaimed": false,
+        "tourMode": "normal",
+        "normalCompletion": null,
+        "rng": {
+          "deck": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 1504161122
+          },
+          "rule": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 2929113293
+          },
+          "shop": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 1082479172
+          },
+          "reward": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 198369534
+          },
+          "program": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 2572198728
+          },
+          "challenge": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 2849902821
+          }
+        },
+        "receipts": [
+          {
+            "commandId": "minimal-map/start",
+            "fingerprint": "json-fnv-v1:6c1c8eb994e71785",
+            "seq": 1
+          },
+          {
+            "commandId": "minimal-map/2",
+            "fingerprint": "json-fnv-v1:eaa4e38f35cfd6ab",
+            "seq": 2
+          },
+          {
+            "commandId": "minimal-map/3",
+            "fingerprint": "json-fnv-v1:b924283c7d4a3e38",
+            "seq": 3
+          },
+          {
+            "commandId": "minimal-map/4",
+            "fingerprint": "json-fnv-v1:798080342be678a0",
+            "seq": 4
+          }
+        ],
+        "lastTrace": {
+          "routeGrowth": {
+            "before": {
+              "clears": 0,
+              "G": 0,
+              "S": 0,
+              "F": 0
+            },
+            "factors": {}
+          },
+          "rulesVersion": "r2",
+          "rootId": "minimal-map/hand/minimal-map/4",
+          "handType": "high-card",
+          "level": 1,
+          "sets": {
+            "playedIds": [
+              "diamonds-4"
+            ],
+            "scoringIds": [
+              "diamonds-4"
+            ],
+            "activeScoringIds": [
+              "diamonds-4"
+            ],
+            "heldIds": [
+              "clubs-10",
+              "spades-7",
+              "clubs-7",
+              "spades-9",
+              "hearts-14",
+              "spades-2",
+              "clubs-11"
+            ],
+            "assistConsumedIds": []
+          },
+          "assist": null,
+          "finalScore": "24",
+          "accumulator": {
+            "H": {
+              "n": "24",
+              "d": "1"
+            },
+            "M": {
+              "n": "1",
+              "d": "1"
+            }
+          },
+          "events": [
+            {
+              "eventId": "minimal-map/hand/minimal-map/4/event/0",
+              "rootId": "minimal-map/hand/minimal-map/4",
+              "rootEventId": "minimal-map/hand/minimal-map/4/event/0",
+              "phase": "base",
+              "sourceType": "rule",
+              "sourceDefinitionId": "high-card",
+              "sourceInstanceId": "minimal-map",
+              "operation": "base",
+              "value": {
+                "n": "20",
+                "d": "1"
+              },
+              "before": {
+                "H": {
+                  "n": "0",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "0",
+                  "d": "1"
+                }
+              },
+              "after": {
+                "H": {
+                  "n": "20",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "1",
+                  "d": "1"
+                }
+              },
+              "reasonKey": "high-card.base",
+              "visibleCondition": {
+                "kind": "always"
+              },
+              "retriggerDepth": 0
+            },
+            {
+              "eventId": "minimal-map/hand/minimal-map/4/event/1",
+              "rootId": "minimal-map/hand/minimal-map/4",
+              "rootEventId": "minimal-map/hand/minimal-map/4/event/1",
+              "phase": "onCardScore",
+              "sourceType": "card",
+              "sourceDefinitionId": "rank-4",
+              "sourceInstanceId": "diamonds-4",
+              "targetCardId": "diamonds-4",
+              "operation": "add-heat",
+              "value": {
+                "n": "4",
+                "d": "1"
+              },
+              "before": {
+                "H": {
+                  "n": "20",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "1",
+                  "d": "1"
+                }
+              },
+              "after": {
+                "H": {
+                  "n": "24",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "1",
+                  "d": "1"
+                }
+              },
+              "reasonKey": "rank-4.add-heat",
+              "visibleCondition": {
+                "kind": "always"
+              },
+              "retriggerDepth": 0
+            },
+            {
+              "eventId": "minimal-map/hand/minimal-map/4/event/2",
+              "rootId": "minimal-map/hand/minimal-map/4",
+              "rootEventId": "minimal-map/hand/minimal-map/4/event/2",
+              "phase": "finalScore",
+              "sourceType": "rule",
+              "sourceDefinitionId": "high-card",
+              "sourceInstanceId": "minimal-map",
+              "operation": "final-score",
+              "value": {
+                "n": "24",
+                "d": "1"
+              },
+              "before": {
+                "H": {
+                  "n": "24",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "1",
+                  "d": "1"
+                }
+              },
+              "after": {
+                "H": {
+                  "n": "24",
+                  "d": "1"
+                },
+                "M": {
+                  "n": "1",
+                  "d": "1"
+                }
+              },
+              "reasonKey": "high-card.final-score",
+              "visibleCondition": {
+                "kind": "always"
+              },
+              "retriggerDepth": 0
+            }
+          ],
+          "jokers": [],
+          "rng": {
+            "algorithm": "fnv1a-mulberry32-v1",
+            "state": 2929113293
+          },
+          "goldDelta": 0,
+          "destroyedCardIds": [],
+          "destroyedJokerIds": [],
+          "cards": [
+            {
+              "id": "diamonds-4",
+              "suit": "diamonds",
+              "rank": 4
+            },
+            {
+              "id": "clubs-10",
+              "suit": "clubs",
+              "rank": 10
+            },
+            {
+              "id": "spades-7",
+              "suit": "spades",
+              "rank": 7
+            },
+            {
+              "id": "clubs-7",
+              "suit": "clubs",
+              "rank": 7
+            },
+            {
+              "id": "spades-9",
+              "suit": "spades",
+              "rank": 9
+            },
+            {
+              "id": "hearts-14",
+              "suit": "hearts",
+              "rank": 14
+            },
+            {
+              "id": "spades-2",
+              "suit": "spades",
+              "rank": 2
+            },
+            {
+              "id": "clubs-11",
+              "suit": "clubs",
+              "rank": 11
+            }
+          ],
+          "sourceJokers": [],
+          "bossContext": {
+            "boss": null,
+            "previousHandType": null,
+            "sealedJokerIds": [],
+            "challengeDisabledJokerId": null
+          },
+          "combo": {
+            "goldBeforeRewards": null
+          }
+        },
+        "handLevels": {
+          "high-card": 1
+        },
+        "outcome": null,
+        "chapterTargetPlan": {
+          "policyVersion": "core-build-target-v1",
+          "chapter": 1,
+          "targets": [
+            "400",
+            "600",
+            "800"
+          ],
+          "boss": {
+            "definitionId": "B01",
+            "disabledSuit": null
+          }
+        }
+      },
+      "events": [
+        {
+          "type": "hand-scored-r2",
+          "score": {
+            "routeGrowth": {
+              "before": {
+                "clears": 0,
+                "G": 0,
+                "S": 0,
+                "F": 0
+              },
+              "factors": {}
+            },
+            "rulesVersion": "r2",
+            "rootId": "minimal-map/hand/minimal-map/4",
+            "handType": "high-card",
+            "level": 1,
+            "sets": {
+              "playedIds": [
+                "diamonds-4"
+              ],
+              "scoringIds": [
+                "diamonds-4"
+              ],
+              "activeScoringIds": [
+                "diamonds-4"
+              ],
+              "heldIds": [
+                "clubs-10",
+                "spades-7",
+                "clubs-7",
+                "spades-9",
+                "hearts-14",
+                "spades-2",
+                "clubs-11"
+              ],
+              "assistConsumedIds": []
+            },
+            "assist": null,
+            "finalScore": "24",
+            "accumulator": {
+              "H": {
+                "n": "24",
+                "d": "1"
+              },
+              "M": {
+                "n": "1",
+                "d": "1"
+              }
+            },
+            "events": [
+              {
+                "eventId": "minimal-map/hand/minimal-map/4/event/0",
+                "rootId": "minimal-map/hand/minimal-map/4",
+                "rootEventId": "minimal-map/hand/minimal-map/4/event/0",
+                "phase": "base",
+                "sourceType": "rule",
+                "sourceDefinitionId": "high-card",
+                "sourceInstanceId": "minimal-map",
+                "operation": "base",
+                "value": {
+                  "n": "20",
+                  "d": "1"
+                },
+                "before": {
+                  "H": {
+                    "n": "0",
+                    "d": "1"
+                  },
+                  "M": {
+                    "n": "0",
+                    "d": "1"
+                  }
+                },
+                "after": {
+                  "H": {
+                    "n": "20",
+                    "d": "1"
+                  },
+                  "M": {
+                    "n": "1",
+                    "d": "1"
+                  }
+                },
+                "reasonKey": "high-card.base",
+                "visibleCondition": {
+                  "kind": "always"
+                },
+                "retriggerDepth": 0
+              },
+              {
+                "eventId": "minimal-map/hand/minimal-map/4/event/1",
+                "rootId": "minimal-map/hand/minimal-map/4",
+                "rootEventId": "minimal-map/hand/minimal-map/4/event/1",
+                "phase": "onCardScore",
+                "sourceType": "card",
+                "sourceDefinitionId": "rank-4",
+                "sourceInstanceId": "diamonds-4",
+                "targetCardId": "diamonds-4",
+                "operation": "add-heat",
+                "value": {
+                  "n": "4",
+                  "d": "1"
+                },
+                "before": {
+                  "H": {
+                    "n": "20",
+                    "d": "1"
+                  },
+                  "M": {
+                    "n": "1",
+                    "d": "1"
+                  }
+                },
+                "after": {
+                  "H": {
+                    "n": "24",
+                    "d": "1"
+                  },
+                  "M": {
+                    "n": "1",
+                    "d": "1"
+                  }
+                },
+                "reasonKey": "rank-4.add-heat",
+                "visibleCondition": {
+                  "kind": "always"
+                },
+                "retriggerDepth": 0
+              },
+              {
+                "eventId": "minimal-map/hand/minimal-map/4/event/2",
+                "rootId": "minimal-map/hand/minimal-map/4",
+                "rootEventId": "minimal-map/hand/minimal-map/4/event/2",
+                "phase": "finalScore",
+                "sourceType": "rule",
+                "sourceDefinitionId": "high-card",
+                "sourceInstanceId": "minimal-map",
+                "operation": "final-score",
+                "value": {
+                  "n": "24",
+                  "d": "1"
+                },
+                "before": {
+                  "H": {
+                    "n": "24",
+                    "d": "1"
+                  },
+                  "M": {
+                    "n": "1",
+                    "d": "1"
+                  }
+                },
+                "after": {
+                  "H": {
+                    "n": "24",
+                    "d": "1"
+                  },
+                  "M": {
+                    "n": "1",
+                    "d": "1"
+                  }
+                },
+                "reasonKey": "high-card.final-score",
+                "visibleCondition": {
+                  "kind": "always"
+                },
+                "retriggerDepth": 0
+              }
+            ],
+            "jokers": [],
+            "rng": {
+              "algorithm": "fnv1a-mulberry32-v1",
+              "state": 2929113293
+            },
+            "goldDelta": 0,
+            "destroyedCardIds": [],
+            "destroyedJokerIds": [],
+            "cards": [
+              {
+                "id": "diamonds-4",
+                "suit": "diamonds",
+                "rank": 4
+              },
+              {
+                "id": "clubs-10",
+                "suit": "clubs",
+                "rank": 10
+              },
+              {
+                "id": "spades-7",
+                "suit": "spades",
+                "rank": 7
+              },
+              {
+                "id": "clubs-7",
+                "suit": "clubs",
+                "rank": 7
+              },
+              {
+                "id": "spades-9",
+                "suit": "spades",
+                "rank": 9
+              },
+              {
+                "id": "hearts-14",
+                "suit": "hearts",
+                "rank": 14
+              },
+              {
+                "id": "spades-2",
+                "suit": "spades",
+                "rank": 2
+              },
+              {
+                "id": "clubs-11",
+                "suit": "clubs",
+                "rank": 11
+              }
+            ],
+            "sourceJokers": [],
+            "bossContext": {
+              "boss": null,
+              "previousHandType": null,
+              "sealedJokerIds": [],
+              "challengeDisabledJokerId": null
+            },
+            "combo": {
+              "goldBeforeRewards": null
+            }
+          },
+          "playedIds": [
+            "diamonds-4"
+          ],
+          "playIndex": 1
+        }
+      ],
+      "receipt": {
+        "commandId": "minimal-map/4",
+        "fingerprint": "json-fnv-v1:798080342be678a0",
+        "seq": 4
+      },
+      "duplicate": false
+    }
+  }
+}

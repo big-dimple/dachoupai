@@ -1,0 +1,1928 @@
+{
+  "head": "7d7921e76ca794a14e715e3eac3b4d66143862ff",
+  "browser": "151.0.7922.173",
+  "scope": "Real native fresh run + separately labelled component probes; software browser, not physical-device acceptance",
+  "cases": [
+    {
+      "key": "phone",
+      "viewport": {
+        "width": 390,
+        "height": 740
+      },
+      "errors": [],
+      "heroes": [
+        {
+          "id": "amo",
+          "label": "苏轼 · 全图",
+          "image": [
+            {
+              "src": "blob:http://127.0.0.1:5199/64654656-b4a3-4a95-b6a2-e38c02d72db9",
+              "natural": [
+                615,
+                768
+              ]
+            }
+          ],
+          "close": {
+            "x": 334,
+            "y": 4,
+            "w": 48,
+            "h": 48
+          }
+        }
+      ],
+      "start": {
+        "seq": 1,
+        "offers": [
+          {
+            "offerId": "run/singapore-review/amo/shop/0/0/joker/0",
+            "definitionId": "a09",
+            "price": 4,
+            "edition": "none",
+            "consumed": false
+          },
+          {
+            "offerId": "run/singapore-review/amo/shop/0/0/joker/1",
+            "definitionId": "f03",
+            "price": 4,
+            "edition": "none",
+            "consumed": false
+          },
+          {
+            "offerId": "run/singapore-review/amo/shop/0/0/joker/2",
+            "definitionId": "mantangcai",
+            "price": 4,
+            "edition": "none",
+            "consumed": false
+          }
+        ]
+      },
+      "detail": {
+        "viewport": {
+          "w": 390,
+          "h": 740
+        },
+        "active": "<button class=\"dialog-close\">取消</button>",
+        "dialogs": [
+          {
+            "class": "detail-dialog detail-dialog--plain-joker detail-dialog--illustrated shop-joker-purchase",
+            "x": 19,
+            "y": 12,
+            "w": 352,
+            "h": 716,
+            "scrollH": 714,
+            "clientH": 714,
+            "scrollTop": 0
+          }
+        ],
+        "parts": [
+          {
+            "class": "dialog-card-art",
+            "text": "● 普通🔍 点击放大细节",
+            "x": 130.9375,
+            "y": 132.5,
+            "w": 128.125,
+            "h": 121.359375,
+            "scrollH": 140,
+            "clientH": 119,
+            "scrollTop": 0
+          },
+          {
+            "class": "dialog-scroll",
+            "text": "● 普通版次 · 普通推荐指数短手加倍率 · 实际出牌≤2张组合条件：按卡牌自身条件。直接买入 · 实付 4 金 · 余额 6 → 2 金出1–2张 → 每手一次，倍率+1数所有打",
+            "x": 36,
+            "y": 265.859375,
+            "w": 318,
+            "h": 316.140625,
+            "scrollH": 636,
+            "clientH": 316,
+            "scrollTop": 0
+          },
+          {
+            "class": "dialog-actions",
+            "text": "略过此提示本局不提示不再显示",
+            "x": 46,
+            "y": 795.109375,
+            "w": 298,
+            "h": 97,
+            "scrollH": 96,
+            "clientH": 96,
+            "scrollTop": 0
+          },
+          {
+            "class": "dialog-actions",
+            "text": "邀请 · 4 金取消",
+            "x": 20,
+            "y": 598,
+            "w": 350,
+            "h": 129,
+            "scrollH": 128,
+            "clientH": 128,
+            "scrollTop": 0
+          }
+        ],
+        "docScroll": {
+          "x": 0,
+          "y": 0,
+          "w": 390,
+          "h": 740
+        }
+      },
+      "zoom": {
+        "figureAccessibility": {
+          "tag": "FIGURE",
+          "role": null,
+          "tabIndex": -1,
+          "onclick": true,
+          "title": "点击放大鉴赏手绘卡面细节",
+          "badge": "🔍 点击放大细节"
+        },
+        "loaded": {
+          "viewport": {
+            "w": 390,
+            "h": 740
+          },
+          "active": "<button type=\"button\" class=\"card-art-zoom-close\" aria-label=\"关闭赏析\">×</button>",
+          "dialogs": [
+            {
+              "class": "detail-dialog detail-dialog--plain-joker detail-dialog--illustrated shop-joker-purchase",
+              "x": 19,
+              "y": 12,
+              "w": 352,
+              "h": 716,
+              "scrollH": 714,
+              "clientH": 714,
+              "scrollTop": 0
+            },
+            {
+              "class": "card-art-zoom-dialog",
+              "x": 18,
+              "y": 14.3984375,
+              "w": 354,
+              "h": 540.609375,
+              "scrollH": 539,
+              "clientH": 539,
+              "scrollTop": 0
+            }
+          ],
+          "parts": [
+            {
+              "class": "dialog-card-art",
+              "text": "● 普通🔍 点击放大细节",
+              "x": 150.515625,
+              "y": 132.5,
+              "w": 88.96875,
+              "h": 121.359375,
+              "scrollH": 119,
+              "clientH": 119,
+              "scrollTop": 0
+            },
+            {
+              "class": "dialog-scroll",
+              "text": "● 普通版次 · 普通推荐指数短手加倍率 · 实际出牌≤2张组合条件：按卡牌自身条件。直接买入 · 实付 4 金 · 余额 6 → 2 金出1–2张 → 每手一次，倍率+1数所有打",
+              "x": 36,
+              "y": 265.859375,
+              "w": 318,
+              "h": 316.140625,
+              "scrollH": 636,
+              "clientH": 316,
+              "scrollTop": 0
+            },
+            {
+              "class": "dialog-actions",
+              "text": "略过此提示本局不提示不再显示",
+              "x": 46,
+              "y": 795.109375,
+              "w": 298,
+              "h": 97,
+              "scrollH": 96,
+              "clientH": 96,
+              "scrollTop": 0
+            },
+            {
+              "class": "dialog-actions",
+              "text": "邀请 · 4 金取消",
+              "x": 20,
+              "y": 598,
+              "w": 350,
+              "h": 129,
+              "scrollH": 128,
+              "clientH": 128,
+              "scrollTop": 0
+            },
+            {
+              "class": "card-art-zoom-header",
+              "text": "【清音穿云】手绘卡面 · 高清鉴赏×",
+              "x": 19,
+              "y": 15.3984375,
+              "w": 352,
+              "h": 69,
+              "scrollH": 68,
+              "clientH": 68,
+              "scrollTop": 0
+            },
+            {
+              "class": "card-art-zoom-title",
+              "text": "【清音穿云】",
+              "x": 35,
+              "y": 37.8984375,
+              "w": 101.765625,
+              "h": 23,
+              "scrollH": 23,
+              "clientH": 23,
+              "scrollTop": 0
+            },
+            {
+              "class": "card-art-zoom-close",
+              "text": "×",
+              "x": 311,
+              "y": 27.3984375,
+              "w": 44,
+              "h": 44,
+              "scrollH": 44,
+              "clientH": 44,
+              "scrollTop": 0
+            },
+            {
+              "class": "card-art-zoom-body",
+              "text": "正在加载高清卡面…",
+              "x": 19,
+              "y": 84.3984375,
+              "w": 352,
+              "h": 431.609375,
+              "scrollH": 432,
+              "clientH": 432,
+              "scrollTop": 0
+            },
+            {
+              "class": "card-art-zoom-img-wrapper",
+              "text": "正在加载高清卡面…",
+              "x": 35,
+              "y": 100.3984375,
+              "w": 320,
+              "h": 399.609375,
+              "scrollH": 410,
+              "clientH": 400,
+              "scrollTop": 0
+            },
+            {
+              "class": "card-art-zoom-detail is-loaded",
+              "x": 35,
+              "y": 100.3984375,
+              "w": 320,
+              "h": 399.609375,
+              "scrollH": 400,
+              "clientH": 400,
+              "scrollTop": 0,
+              "natural": [
+                615,
+                768
+              ]
+            },
+            {
+              "class": "card-art-zoom-footer",
+              "text": "唐宋手绘卡牌工笔原画 · 点击任意处返回",
+              "x": 19,
+              "y": 516.0078125,
+              "w": 352,
+              "h": 38,
+              "scrollH": 37,
+              "clientH": 37,
+              "scrollTop": 0
+            }
+          ],
+          "docScroll": {
+            "x": 0,
+            "y": 0,
+            "w": 390,
+            "h": 740
+          }
+        },
+        "tab": {
+          "active": "",
+          "inZoom": false
+        },
+        "imageClickStillOpen": 1,
+        "footerClickStillOpen": 1,
+        "escape": {
+          "zoom": 0,
+          "parent": 1,
+          "active": "detail-dialog detail-dialog--plain-joker detail-dialog--illustrated shop-joker-purchase"
+        },
+        "repeated": {
+          "zoomCount": 0,
+          "parentCount": 1
+        },
+        "backdrop": {
+          "zoom": 0,
+          "parent": 1
+        },
+        "stateUnchanged": true
+      },
+      "detailCloseCount": 0,
+      "status": "DONE"
+    },
+    {
+      "key": "short",
+      "viewport": {
+        "width": 740,
+        "height": 320
+      },
+      "errors": [],
+      "heroes": [
+        {
+          "id": "amo",
+          "label": "苏轼 · 全图",
+          "image": [
+            {
+              "src": "blob:http://127.0.0.1:5199/d7898280-adaf-4e58-aed1-0d6c1076cb3a",
+              "natural": [
+                615,
+                768
+              ]
+            }
+          ],
+          "close": {
+            "x": 684,
+            "y": 4,
+            "w": 48,
+            "h": 48
+          }
+        }
+      ],
+      "start": {
+        "seq": 1,
+        "offers": [
+          {
+            "offerId": "run/singapore-review/amo/shop/0/0/joker/0",
+            "definitionId": "a09",
+            "price": 4,
+            "edition": "none",
+            "consumed": false
+          },
+          {
+            "offerId": "run/singapore-review/amo/shop/0/0/joker/1",
+            "definitionId": "f03",
+            "price": 4,
+            "edition": "none",
+            "consumed": false
+          },
+          {
+            "offerId": "run/singapore-review/amo/shop/0/0/joker/2",
+            "definitionId": "mantangcai",
+            "price": 4,
+            "edition": "none",
+            "consumed": false
+          }
+        ]
+      },
+      "detail": {
+        "viewport": {
+          "w": 740,
+          "h": 320
+        },
+        "active": "<button class=\"dialog-close\">取消</button>",
+        "dialogs": [
+          {
+            "class": "detail-dialog detail-dialog--plain-joker detail-dialog--illustrated shop-joker-purchase",
+            "x": 19,
+            "y": 12,
+            "w": 702,
+            "h": 296,
+            "scrollH": 294,
+            "clientH": 294,
+            "scrollTop": 0
+          }
+        ],
+        "parts": [
+          {
+            "class": "dialog-card-art",
+            "text": "● 普通🔍 点击放大细节",
+            "x": 76.25,
+            "y": 119.5,
+            "w": 128.125,
+            "h": 102.5,
+            "scrollH": 122,
+            "clientH": 101,
+            "scrollTop": 0
+          },
+          {
+            "class": "dialog-scroll",
+            "text": "● 普通版次 · 普通推荐指数短手加倍率 · 实际出牌≤2张组合条件：按卡牌自身条件。直接买入 · 实付 4 金 · 余额 6 → 2 金出1–2张 → 每手一次，倍率+1数所有打",
+            "x": 260.625,
+            "y": 119.5,
+            "w": 443.375,
+            "h": 102.5,
+            "scrollH": 584,
+            "clientH": 103,
+            "scrollTop": 0
+          },
+          {
+            "class": "dialog-actions",
+            "text": "略过此提示本局不提示不再显示",
+            "x": 270.625,
+            "y": 648.75,
+            "w": 423.375,
+            "h": 45,
+            "scrollH": 44,
+            "clientH": 44,
+            "scrollTop": 0
+          },
+          {
+            "class": "dialog-actions",
+            "text": "邀请 · 4 金取消",
+            "x": 20,
+            "y": 238,
+            "w": 700,
+            "h": 69,
+            "scrollH": 68,
+            "clientH": 68,
+            "scrollTop": 0
+          }
+        ],
+        "docScroll": {
+          "x": 0,
+          "y": 0,
+          "w": 740,
+          "h": 320
+        }
+      },
+      "zoom": {
+        "figureAccessibility": {
+          "tag": "FIGURE",
+          "role": null,
+          "tabIndex": -1,
+          "onclick": true,
+          "title": "点击放大鉴赏手绘卡面细节",
+          "badge": "🔍 点击放大细节"
+        },
+        "loaded": {
+          "viewport": {
+            "w": 740,
+            "h": 320
+          },
+          "active": "<button type=\"button\" class=\"card-art-zoom-close\" aria-label=\"关闭赏析\">×</button>",
+          "dialogs": [
+            {
+              "class": "detail-dialog detail-dialog--plain-joker detail-dialog--illustrated shop-joker-purchase",
+              "x": 19,
+              "y": 12,
+              "w": 702,
+              "h": 296,
+              "scrollH": 294,
+              "clientH": 294,
+              "scrollTop": 0
+            },
+            {
+              "class": "card-art-zoom-dialog",
+              "x": 129,
+              "y": -50,
+              "w": 482,
+              "h": 290,
+              "scrollH": 288,
+              "clientH": 288,
+              "scrollTop": 0
+            }
+          ],
+          "parts": [
+            {
+              "class": "dialog-card-art",
+              "text": "● 普通🔍 点击放大细节",
+              "x": 102.5625,
+              "y": 119.5,
+              "w": 75.5,
+              "h": 102.5,
+              "scrollH": 101,
+              "clientH": 101,
+              "scrollTop": 0
+            },
+            {
+              "class": "dialog-scroll",
+              "text": "● 普通版次 · 普通推荐指数短手加倍率 · 实际出牌≤2张组合条件：按卡牌自身条件。直接买入 · 实付 4 金 · 余额 6 → 2 金出1–2张 → 每手一次，倍率+1数所有打",
+              "x": 260.625,
+              "y": 119.5,
+              "w": 443.375,
+              "h": 102.5,
+              "scrollH": 584,
+              "clientH": 103,
+              "scrollTop": 0
+            },
+            {
+              "class": "dialog-actions",
+              "text": "略过此提示本局不提示不再显示",
+              "x": 270.625,
+              "y": 648.75,
+              "w": 423.375,
+              "h": 45,
+              "scrollH": 44,
+              "clientH": 44,
+              "scrollTop": 0
+            },
+            {
+              "class": "dialog-actions",
+              "text": "邀请 · 4 金取消",
+              "x": 20,
+              "y": 238,
+              "w": 700,
+              "h": 69,
+              "scrollH": 68,
+              "clientH": 68,
+              "scrollTop": 0
+            },
+            {
+              "class": "card-art-zoom-header",
+              "text": "【清音穿云】手绘卡面 · 高清鉴赏×",
+              "x": 130,
+              "y": -49,
+              "w": 480,
+              "h": 69,
+              "scrollH": 68,
+              "clientH": 68,
+              "scrollTop": 0
+            },
+            {
+              "class": "card-art-zoom-title",
+              "text": "【清音穿云】",
+              "x": 146,
+              "y": -28.5,
+              "w": 120.84375,
+              "h": 27,
+              "scrollH": 27,
+              "clientH": 27,
+              "scrollTop": 0
+            },
+            {
+              "class": "card-art-zoom-close",
+              "text": "×",
+              "x": 550,
+              "y": -37,
+              "w": 44,
+              "h": 44,
+              "scrollH": 44,
+              "clientH": 44,
+              "scrollTop": 0
+            },
+            {
+              "class": "card-art-zoom-body",
+              "text": "正在加载高清卡面…",
+              "x": 130,
+              "y": 20,
+              "w": 480,
+              "h": 181,
+              "scrollH": 181,
+              "clientH": 181,
+              "scrollTop": 0
+            },
+            {
+              "class": "card-art-zoom-img-wrapper",
+              "text": "正在加载高清卡面…",
+              "x": 190,
+              "y": 36,
+              "w": 360,
+              "h": 149,
+              "scrollH": 153,
+              "clientH": 149,
+              "scrollTop": 0
+            },
+            {
+              "class": "card-art-zoom-detail is-loaded",
+              "x": 190,
+              "y": 36,
+              "w": 360,
+              "h": 149,
+              "scrollH": 149,
+              "clientH": 149,
+              "scrollTop": 0,
+              "natural": [
+                615,
+                768
+              ]
+            },
+            {
+              "class": "card-art-zoom-footer",
+              "text": "唐宋手绘卡牌工笔原画 · 点击任意处返回",
+              "x": 130,
+              "y": 201,
+              "w": 480,
+              "h": 38,
+              "scrollH": 37,
+              "clientH": 37,
+              "scrollTop": 0
+            }
+          ],
+          "docScroll": {
+            "x": 0,
+            "y": 0,
+            "w": 740,
+            "h": 320
+          }
+        },
+        "tab": {
+          "active": "",
+          "inZoom": false
+        },
+        "imageClickStillOpen": 1,
+        "footerClickStillOpen": 1,
+        "escape": {
+          "zoom": 0,
+          "parent": 1,
+          "active": "detail-dialog detail-dialog--plain-joker detail-dialog--illustrated shop-joker-purchase"
+        },
+        "repeated": {
+          "zoomCount": 0,
+          "parentCount": 1
+        },
+        "backdrop": {
+          "zoom": 0,
+          "parent": 1
+        },
+        "stateUnchanged": true
+      },
+      "detailCloseCount": 0,
+      "status": "DONE"
+    },
+    {
+      "key": "pc",
+      "viewport": {
+        "width": 1366,
+        "height": 900
+      },
+      "errors": [],
+      "heroes": [
+        {
+          "id": "amo",
+          "label": "苏轼 · 全图",
+          "image": [
+            {
+              "src": "blob:http://127.0.0.1:5199/3d750639-be33-4dd8-85e7-da42c4363c9c",
+              "natural": [
+                615,
+                768
+              ]
+            }
+          ],
+          "close": {
+            "x": 1310,
+            "y": 4,
+            "w": 48,
+            "h": 48
+          }
+        },
+        {
+          "id": "touye",
+          "label": "秦琼 · 全图",
+          "image": [
+            {
+              "src": "blob:http://127.0.0.1:5199/0ea36bfd-c113-49f8-91c2-cf09e7b9b66f",
+              "natural": [
+                615,
+                768
+              ]
+            }
+          ],
+          "close": {
+            "x": 1310,
+            "y": 4,
+            "w": 48,
+            "h": 48
+          }
+        },
+        {
+          "id": "laohuan",
+          "label": "辛弃疾 · 全图",
+          "image": [
+            {
+              "src": "blob:http://127.0.0.1:5199/8de623e8-ffb8-44a8-b574-370089cdbdbc",
+              "natural": [
+                615,
+                768
+              ]
+            }
+          ],
+          "close": {
+            "x": 1310,
+            "y": 4,
+            "w": 48,
+            "h": 48
+          }
+        },
+        {
+          "id": "erxiang",
+          "label": "刘娥 · 全图",
+          "image": [
+            {
+              "src": "blob:http://127.0.0.1:5199/99a5bc2a-4dd3-40b9-bc61-3dfc71e6500d",
+              "natural": [
+                615,
+                768
+              ]
+            }
+          ],
+          "close": {
+            "x": 1310,
+            "y": 4,
+            "w": 48,
+            "h": 48
+          }
+        },
+        {
+          "id": "azao",
+          "label": "文成公主 · 全图",
+          "image": [
+            {
+              "src": "blob:http://127.0.0.1:5199/3979d759-f69d-4e78-a3e1-0591f442ebb7",
+              "natural": [
+                615,
+                768
+              ]
+            }
+          ],
+          "close": {
+            "x": 1310,
+            "y": 4,
+            "w": 48,
+            "h": 48
+          }
+        },
+        {
+          "id": "xiemu",
+          "label": "花蕊夫人 · 全图",
+          "image": [
+            {
+              "src": "blob:http://127.0.0.1:5199/dea05baa-3f30-4c01-9f1a-f4484875bef2",
+              "natural": [
+                615,
+                768
+              ]
+            }
+          ],
+          "close": {
+            "x": 1310,
+            "y": 4,
+            "w": 48,
+            "h": 48
+          }
+        }
+      ],
+      "start": {
+        "seq": 1,
+        "offers": [
+          {
+            "offerId": "run/singapore-review/amo/shop/0/0/joker/0",
+            "definitionId": "a09",
+            "price": 4,
+            "edition": "none",
+            "consumed": false
+          },
+          {
+            "offerId": "run/singapore-review/amo/shop/0/0/joker/1",
+            "definitionId": "f03",
+            "price": 4,
+            "edition": "none",
+            "consumed": false
+          },
+          {
+            "offerId": "run/singapore-review/amo/shop/0/0/joker/2",
+            "definitionId": "mantangcai",
+            "price": 4,
+            "edition": "none",
+            "consumed": false
+          }
+        ]
+      },
+      "detail": {
+        "viewport": {
+          "w": 1366,
+          "h": 900
+        },
+        "active": "<button class=\"dialog-close\">取消</button>",
+        "dialogs": [
+          {
+            "class": "detail-dialog detail-dialog--plain-joker detail-dialog--illustrated shop-joker-purchase",
+            "x": 243,
+            "y": 60,
+            "w": 880,
+            "h": 780,
+            "scrollH": 778,
+            "clientH": 778,
+            "scrollTop": 0
+          }
+        ],
+        "parts": [
+          {
+            "class": "dialog-card-art",
+            "text": "● 普通🔍 点击放大细节",
+            "x": 314.296875,
+            "y": 184.5,
+            "w": 240,
+            "h": 356.796875,
+            "scrollH": 355,
+            "clientH": 355,
+            "scrollTop": 0
+          },
+          {
+            "class": "dialog-scroll",
+            "text": "● 普通版次 · 普通推荐指数短手加倍率 · 实际出牌≤2张组合条件：按卡牌自身条件。直接买入 · 实付 4 金 · 余额 6 → 2 金出1–2张 → 每手一次，倍率+1数所有打",
+            "x": 624.59375,
+            "y": 184.5,
+            "w": 481.390625,
+            "h": 557.5,
+            "scrollH": 584,
+            "clientH": 558,
+            "scrollTop": 0
+          },
+          {
+            "class": "dialog-actions",
+            "text": "略过此提示本局不提示不再显示",
+            "x": 634.59375,
+            "y": 713.75,
+            "w": 461.390625,
+            "h": 45,
+            "scrollH": 44,
+            "clientH": 44,
+            "scrollTop": 0
+          },
+          {
+            "class": "dialog-actions",
+            "text": "邀请 · 4 金取消",
+            "x": 244,
+            "y": 758,
+            "w": 878,
+            "h": 81,
+            "scrollH": 80,
+            "clientH": 80,
+            "scrollTop": 0
+          }
+        ],
+        "docScroll": {
+          "x": 0,
+          "y": 0,
+          "w": 1366,
+          "h": 900
+        }
+      },
+      "zoom": {
+        "figureAccessibility": {
+          "tag": "FIGURE",
+          "role": null,
+          "tabIndex": -1,
+          "onclick": true,
+          "title": "点击放大鉴赏手绘卡面细节",
+          "badge": "🔍 点击放大细节"
+        },
+        "loaded": {
+          "viewport": {
+            "w": 1366,
+            "h": 900
+          },
+          "active": "<button type=\"button\" class=\"card-art-zoom-close\" aria-label=\"关闭赏析\">×</button>",
+          "dialogs": [
+            {
+              "class": "detail-dialog detail-dialog--plain-joker detail-dialog--illustrated shop-joker-purchase",
+              "x": 243,
+              "y": 60,
+              "w": 880,
+              "h": 780,
+              "scrollH": 778,
+              "clientH": 778,
+              "scrollTop": 0
+            },
+            {
+              "class": "card-art-zoom-dialog",
+              "x": 542.5,
+              "y": 83.4609375,
+              "w": 482,
+              "h": 591.546875,
+              "scrollH": 590,
+              "clientH": 590,
+              "scrollTop": 0
+            }
+          ],
+          "parts": [
+            {
+              "class": "dialog-card-art",
+              "text": "● 普通🔍 点击放大细节",
+              "x": 314.296875,
+              "y": 184.5,
+              "w": 240,
+              "h": 332.796875,
+              "scrollH": 331,
+              "clientH": 331,
+              "scrollTop": 0
+            },
+            {
+              "class": "dialog-scroll",
+              "text": "● 普通版次 · 普通推荐指数短手加倍率 · 实际出牌≤2张组合条件：按卡牌自身条件。直接买入 · 实付 4 金 · 余额 6 → 2 金出1–2张 → 每手一次，倍率+1数所有打",
+              "x": 624.59375,
+              "y": 184.5,
+              "w": 481.390625,
+              "h": 557.5,
+              "scrollH": 584,
+              "clientH": 558,
+              "scrollTop": 0
+            },
+            {
+              "class": "dialog-actions",
+              "text": "略过此提示本局不提示不再显示",
+              "x": 634.59375,
+              "y": 713.75,
+              "w": 461.390625,
+              "h": 45,
+              "scrollH": 44,
+              "clientH": 44,
+              "scrollTop": 0
+            },
+            {
+              "class": "dialog-actions",
+              "text": "邀请 · 4 金取消",
+              "x": 244,
+              "y": 758,
+              "w": 878,
+              "h": 81,
+              "scrollH": 80,
+              "clientH": 80,
+              "scrollTop": 0
+            },
+            {
+              "class": "card-art-zoom-header",
+              "text": "【清音穿云】手绘卡面 · 高清鉴赏×",
+              "x": 543.5,
+              "y": 84.4609375,
+              "w": 480,
+              "h": 69,
+              "scrollH": 68,
+              "clientH": 68,
+              "scrollTop": 0
+            },
+            {
+              "class": "card-art-zoom-title",
+              "text": "【清音穿云】",
+              "x": 559.5,
+              "y": 104.9609375,
+              "w": 120.84375,
+              "h": 27,
+              "scrollH": 27,
+              "clientH": 27,
+              "scrollTop": 0
+            },
+            {
+              "class": "card-art-zoom-close",
+              "text": "×",
+              "x": 963.5,
+              "y": 96.4609375,
+              "w": 44,
+              "h": 44,
+              "scrollH": 44,
+              "clientH": 44,
+              "scrollTop": 0
+            },
+            {
+              "class": "card-art-zoom-body",
+              "text": "正在加载高清卡面…",
+              "x": 543.5,
+              "y": 153.4609375,
+              "w": 480,
+              "h": 481.546875,
+              "scrollH": 482,
+              "clientH": 482,
+              "scrollTop": 0
+            },
+            {
+              "class": "card-art-zoom-img-wrapper",
+              "text": "正在加载高清卡面…",
+              "x": 603.5,
+              "y": 169.4609375,
+              "w": 360,
+              "h": 449.546875,
+              "scrollH": 461,
+              "clientH": 450,
+              "scrollTop": 0
+            },
+            {
+              "class": "card-art-zoom-detail is-loaded",
+              "x": 603.5,
+              "y": 169.4609375,
+              "w": 360,
+              "h": 449.546875,
+              "scrollH": 450,
+              "clientH": 450,
+              "scrollTop": 0,
+              "natural": [
+                615,
+                768
+              ]
+            },
+            {
+              "class": "card-art-zoom-footer",
+              "text": "唐宋手绘卡牌工笔原画 · 点击任意处返回",
+              "x": 543.5,
+              "y": 635.0078125,
+              "w": 480,
+              "h": 39,
+              "scrollH": 38,
+              "clientH": 38,
+              "scrollTop": 0
+            }
+          ],
+          "docScroll": {
+            "x": 0,
+            "y": 0,
+            "w": 1366,
+            "h": 900
+          }
+        },
+        "tab": {
+          "active": "",
+          "inZoom": false
+        },
+        "imageClickStillOpen": 1,
+        "footerClickStillOpen": 1,
+        "escape": {
+          "zoom": 0,
+          "parent": 1,
+          "active": "detail-dialog detail-dialog--plain-joker detail-dialog--illustrated shop-joker-purchase"
+        },
+        "repeated": {
+          "zoomCount": 0,
+          "parentCount": 1
+        },
+        "backdrop": {
+          "zoom": 0,
+          "parent": 1
+        },
+        "stateUnchanged": true
+      },
+      "detailCloseCount": 0,
+      "cards": [
+        {
+          "id": "f04",
+          "path": "assets/handdrawn-p08/cards/f04.thumbnail.webp",
+          "detailPath": "assets/handdrawn-p08/cards/f04.detail.webp"
+        },
+        {
+          "id": "e07",
+          "path": "assets/handdrawn-p08/cards/e07.thumbnail.webp",
+          "detailPath": "assets/handdrawn-p08/cards/e07.detail.webp"
+        },
+        {
+          "id": "f09",
+          "path": "assets/handdrawn-p08/cards/f09.thumbnail.webp",
+          "detailPath": "assets/handdrawn-p08/cards/f09.detail.webp"
+        },
+        {
+          "id": "f07",
+          "path": "assets/handdrawn-p08/cards/f07.thumbnail.webp",
+          "detailPath": "assets/handdrawn-p08/cards/f07.detail.webp"
+        },
+        {
+          "id": "d07",
+          "path": "assets/handdrawn-p08/cards/d07.thumbnail.webp",
+          "detailPath": "assets/handdrawn-p08/cards/d07.detail.webp"
+        },
+        {
+          "id": "a07",
+          "path": "assets/handdrawn-p08/cards/a07.thumbnail.webp",
+          "detailPath": "assets/handdrawn-p08/cards/a07.detail.webp"
+        },
+        {
+          "id": "a08",
+          "path": "assets/handdrawn-p08/cards/a08.thumbnail.webp",
+          "detailPath": "assets/handdrawn-p08/cards/a08.detail.webp"
+        },
+        {
+          "id": "c03",
+          "path": "assets/handdrawn-p08/cards/c03.thumbnail.webp",
+          "detailPath": "assets/handdrawn-p08/cards/c03.detail.webp"
+        },
+        {
+          "id": "d02",
+          "path": "assets/handdrawn-p08/cards/d02.thumbnail.webp",
+          "detailPath": "assets/handdrawn-p08/cards/d02.detail.webp"
+        },
+        {
+          "id": "e02",
+          "path": "assets/handdrawn-p08/cards/e02.thumbnail.webp",
+          "detailPath": "assets/handdrawn-p08/cards/e02.detail.webp"
+        },
+        {
+          "id": "e09",
+          "path": "assets/handdrawn-p08/cards/e09.thumbnail.webp",
+          "detailPath": "assets/handdrawn-p08/cards/e09.detail.webp"
+        },
+        {
+          "id": "tiesuanpan",
+          "path": "assets/handdrawn-p08/cards/tiesuanpan.thumbnail.webp",
+          "detailPath": "assets/handdrawn-p08/cards/tiesuanpan.detail.webp"
+        },
+        {
+          "id": "f10",
+          "path": "assets/handdrawn-p08/cards/f10.thumbnail.webp",
+          "detailPath": "assets/handdrawn-p08/cards/f10.detail.webp"
+        },
+        {
+          "id": "c08",
+          "path": "assets/handdrawn-p08/cards/c08.thumbnail.webp",
+          "detailPath": "assets/handdrawn-p08/cards/c08.detail.webp"
+        },
+        {
+          "id": "c09",
+          "path": "assets/handdrawn-p08/cards/c09.thumbnail.webp",
+          "detailPath": "assets/handdrawn-p08/cards/c09.detail.webp"
+        },
+        {
+          "id": "pengci",
+          "path": "assets/handdrawn-p08/cards/pengci.thumbnail.webp",
+          "detailPath": "assets/handdrawn-p08/cards/pengci.detail.webp"
+        },
+        {
+          "id": "mantangcai",
+          "path": "assets/handdrawn-p08/cards/mantangcai.thumbnail.webp",
+          "detailPath": "assets/handdrawn-p08/cards/mantangcai.detail.webp"
+        },
+        {
+          "id": "huimaqiang",
+          "path": "assets/handdrawn-p08/cards/huimaqiang.thumbnail.webp",
+          "detailPath": "assets/handdrawn-p08/cards/huimaqiang.detail.webp"
+        },
+        {
+          "id": "jiedongfeng",
+          "path": "assets/handdrawn-p08/cards/jiedongfeng.thumbnail.webp",
+          "detailPath": "assets/handdrawn-p08/cards/jiedongfeng.detail.webp"
+        },
+        {
+          "id": "b07",
+          "path": "assets/handdrawn-p08/cards/b07.thumbnail.webp",
+          "detailPath": "assets/handdrawn-p08/cards/b07.detail.webp"
+        },
+        {
+          "id": "a09",
+          "path": "assets/handdrawn-p08/cards/a09.thumbnail.webp",
+          "detailPath": "assets/handdrawn-p08/cards/a09.detail.webp"
+        },
+        {
+          "id": "d06",
+          "path": "assets/handdrawn-p08/cards/d06.thumbnail.webp",
+          "detailPath": "assets/handdrawn-p08/cards/d06.detail.webp"
+        },
+        {
+          "id": "a04",
+          "path": "assets/handdrawn-p08/cards/a04.thumbnail.webp",
+          "detailPath": "assets/handdrawn-p08/cards/a04.detail.webp"
+        },
+        {
+          "id": "e04",
+          "path": "assets/handdrawn-p08/cards/e04.thumbnail.webp",
+          "detailPath": "assets/handdrawn-p08/cards/e04.detail.webp"
+        },
+        {
+          "id": "c05",
+          "path": "assets/handdrawn-p08/cards/c05.thumbnail.webp",
+          "detailPath": "assets/handdrawn-p08/cards/c05.detail.webp"
+        },
+        {
+          "id": "c02",
+          "path": "assets/handdrawn-p08/cards/c02.thumbnail.webp",
+          "detailPath": "assets/handdrawn-p08/cards/c02.detail.webp"
+        },
+        {
+          "id": "f03",
+          "path": "assets/handdrawn-p08/cards/f03.thumbnail.webp",
+          "detailPath": "assets/handdrawn-p08/cards/f03.detail.webp"
+        },
+        {
+          "id": "a03",
+          "path": "assets/handdrawn-p08/cards/a03.thumbnail.webp",
+          "detailPath": "assets/handdrawn-p08/cards/a03.detail.webp"
+        },
+        {
+          "id": "b02",
+          "path": "assets/handdrawn-p08/cards/b02.thumbnail.webp",
+          "detailPath": "assets/handdrawn-p08/cards/b02.detail.webp"
+        },
+        {
+          "id": "b04",
+          "path": "assets/handdrawn-p08/cards/b04.thumbnail.webp",
+          "detailPath": "assets/handdrawn-p08/cards/b04.detail.webp"
+        },
+        {
+          "id": "c04",
+          "path": "assets/handdrawn-p08/cards/c04.thumbnail.webp",
+          "detailPath": "assets/handdrawn-p08/cards/c04.detail.webp"
+        },
+        {
+          "id": "d01",
+          "path": "assets/handdrawn-p08/cards/d01.thumbnail.webp",
+          "detailPath": "assets/handdrawn-p08/cards/d01.detail.webp"
+        },
+        {
+          "id": "f02",
+          "path": "assets/handdrawn-p08/cards/f02.thumbnail.webp",
+          "detailPath": "assets/handdrawn-p08/cards/f02.detail.webp"
+        },
+        {
+          "id": "d10",
+          "path": "assets/handdrawn-p08/cards/d10.thumbnail.webp",
+          "detailPath": "assets/handdrawn-p08/cards/d10.detail.webp"
+        },
+        {
+          "id": "e01",
+          "path": "assets/handdrawn-p08/cards/e01.thumbnail.webp",
+          "detailPath": "assets/handdrawn-p08/cards/e01.detail.webp"
+        },
+        {
+          "id": "b05",
+          "path": "assets/handdrawn-p08/cards/b05.thumbnail.webp",
+          "detailPath": "assets/handdrawn-p08/cards/b05.detail.webp"
+        },
+        {
+          "id": "b10",
+          "path": "assets/handdrawn-p08/cards/b10.thumbnail.webp",
+          "detailPath": "assets/handdrawn-p08/cards/b10.detail.webp"
+        },
+        {
+          "id": "b08",
+          "path": "assets/handdrawn-p08/cards/b08.thumbnail.webp",
+          "detailPath": "assets/handdrawn-p08/cards/b08.detail.webp"
+        },
+        {
+          "id": "d05",
+          "path": "assets/handdrawn-p08/cards/d05.thumbnail.webp",
+          "detailPath": "assets/handdrawn-p08/cards/d05.detail.webp"
+        },
+        {
+          "id": "e03",
+          "path": "assets/handdrawn-p08/cards/e03.thumbnail.webp",
+          "detailPath": "assets/handdrawn-p08/cards/e03.detail.webp"
+        },
+        {
+          "id": "e06",
+          "path": "assets/handdrawn-p08/cards/e06.thumbnail.webp",
+          "detailPath": "assets/handdrawn-p08/cards/e06.detail.webp"
+        },
+        {
+          "id": "f05",
+          "path": "assets/handdrawn-p08/cards/f05.thumbnail.webp",
+          "detailPath": "assets/handdrawn-p08/cards/f05.detail.webp"
+        },
+        {
+          "id": "f11",
+          "path": "assets/handdrawn-p08/cards/f11.thumbnail.webp",
+          "detailPath": "assets/handdrawn-p08/cards/f11.detail.webp"
+        },
+        {
+          "id": "b06",
+          "path": "assets/handdrawn-p08/cards/b06.thumbnail.webp",
+          "detailPath": "assets/handdrawn-p08/cards/b06.detail.webp"
+        },
+        {
+          "id": "a11",
+          "path": "assets/handdrawn-p08/cards/a11-v2-ea9e76e4a31f.thumbnail.webp",
+          "detailPath": "assets/handdrawn-p08/cards/a11-v2-aa4e6a9988ab.detail.webp"
+        },
+        {
+          "id": "d04",
+          "path": "assets/handdrawn-p08/cards/d04.thumbnail.webp",
+          "detailPath": "assets/handdrawn-p08/cards/d04.detail.webp"
+        },
+        {
+          "id": "c07",
+          "path": "assets/handdrawn-p08/cards/c07.thumbnail.webp",
+          "detailPath": "assets/handdrawn-p08/cards/c07.detail.webp"
+        },
+        {
+          "id": "d11",
+          "path": "assets/handdrawn-p08/cards/d11.thumbnail.webp",
+          "detailPath": "assets/handdrawn-p08/cards/d11.detail.webp"
+        },
+        {
+          "id": "d08",
+          "path": "assets/handdrawn-p08/cards/d08.thumbnail.webp",
+          "detailPath": "assets/handdrawn-p08/cards/d08.detail.webp"
+        },
+        {
+          "id": "d09",
+          "path": "assets/handdrawn-p08/cards/d09.thumbnail.webp",
+          "detailPath": "assets/handdrawn-p08/cards/d09.detail.webp"
+        },
+        {
+          "id": "b12",
+          "path": "assets/handdrawn-p08/cards/b12.thumbnail.webp",
+          "detailPath": "assets/handdrawn-p08/cards/b12.detail.webp"
+        },
+        {
+          "id": "a05",
+          "path": "assets/handdrawn-p08/cards/a05.thumbnail.webp",
+          "detailPath": "assets/handdrawn-p08/cards/a05.detail.webp"
+        },
+        {
+          "id": "b03",
+          "path": "assets/handdrawn-p08/cards/b03.thumbnail.webp",
+          "detailPath": "assets/handdrawn-p08/cards/b03.detail.webp"
+        },
+        {
+          "id": "c06",
+          "path": "assets/handdrawn-p08/cards/c06.thumbnail.webp",
+          "detailPath": "assets/handdrawn-p08/cards/c06.detail.webp"
+        },
+        {
+          "id": "d03",
+          "path": "assets/handdrawn-p08/cards/d03.thumbnail.webp",
+          "detailPath": "assets/handdrawn-p08/cards/d03.detail.webp"
+        },
+        {
+          "id": "a10",
+          "path": "assets/handdrawn-p08/cards/a10.thumbnail.webp",
+          "detailPath": "assets/handdrawn-p08/cards/a10.detail.webp"
+        },
+        {
+          "id": "b11",
+          "path": "assets/handdrawn-p08/cards/b11.thumbnail.webp",
+          "detailPath": "assets/handdrawn-p08/cards/b11.detail.webp"
+        },
+        {
+          "id": "c10",
+          "path": "assets/handdrawn-p08/cards/c10.thumbnail.webp",
+          "detailPath": "assets/handdrawn-p08/cards/c10.detail.webp"
+        },
+        {
+          "id": "d12",
+          "path": "assets/handdrawn-p08/cards/d12.thumbnail.webp",
+          "detailPath": "assets/handdrawn-p08/cards/d12.detail.webp"
+        },
+        {
+          "id": "a06",
+          "path": "assets/handdrawn-p08/cards/a06.thumbnail.webp",
+          "detailPath": "assets/handdrawn-p08/cards/a06.detail.webp"
+        },
+        {
+          "id": "a12",
+          "path": "assets/handdrawn-p08/cards/a12.thumbnail.webp",
+          "detailPath": "assets/handdrawn-p08/cards/a12.detail.webp"
+        },
+        {
+          "id": "b09",
+          "path": "assets/handdrawn-p08/cards/b09.thumbnail.webp",
+          "detailPath": "assets/handdrawn-p08/cards/b09.detail.webp"
+        },
+        {
+          "id": "c11",
+          "path": "assets/handdrawn-p08/cards/c11.thumbnail.webp",
+          "detailPath": "assets/handdrawn-p08/cards/c11.detail.webp"
+        },
+        {
+          "id": "c12",
+          "path": "assets/handdrawn-p08/cards/c12.thumbnail.webp",
+          "detailPath": "assets/handdrawn-p08/cards/c12.detail.webp"
+        },
+        {
+          "id": "e10",
+          "path": "assets/handdrawn-p08/cards/e10.thumbnail.webp",
+          "detailPath": "assets/handdrawn-p08/cards/e10.detail.webp"
+        },
+        {
+          "id": "e12",
+          "path": "assets/handdrawn-p08/cards/e12.thumbnail.webp",
+          "detailPath": "assets/handdrawn-p08/cards/e12.detail.webp"
+        },
+        {
+          "id": "e05",
+          "path": "assets/handdrawn-p08/cards/e05.thumbnail.webp",
+          "detailPath": "assets/handdrawn-p08/cards/e05.detail.webp"
+        },
+        {
+          "id": "e08",
+          "path": "assets/handdrawn-p08/cards/e08.thumbnail.webp",
+          "detailPath": "assets/handdrawn-p08/cards/e08.detail.webp"
+        },
+        {
+          "id": "e11",
+          "path": "assets/handdrawn-p08/cards/e11.thumbnail.webp",
+          "detailPath": "assets/handdrawn-p08/cards/e11.detail.webp"
+        },
+        {
+          "id": "f06",
+          "path": "assets/handdrawn-p08/cards/f06.thumbnail.webp",
+          "detailPath": "assets/handdrawn-p08/cards/f06.detail.webp"
+        },
+        {
+          "id": "f08",
+          "path": "assets/handdrawn-p08/cards/f08.thumbnail.webp",
+          "detailPath": "assets/handdrawn-p08/cards/f08.detail.webp"
+        },
+        {
+          "id": "f12",
+          "path": "assets/handdrawn-p08/cards/f12.thumbnail.webp",
+          "detailPath": "assets/handdrawn-p08/cards/f12.detail.webp"
+        }
+      ],
+      "cardResults": [
+        {
+          "id": "f04",
+          "onclick": true,
+          "title": "点击放大鉴赏手绘卡面细节",
+          "badge": true,
+          "src": "blob:http://127.0.0.1:5199/61db7f0f-65d8-4f11-a88b-26078f8fe31d"
+        },
+        {
+          "id": "e07",
+          "onclick": true,
+          "title": "点击放大鉴赏手绘卡面细节",
+          "badge": true,
+          "src": "blob:http://127.0.0.1:5199/7ca773f6-1882-4513-92dd-e04dcff7cd0d"
+        },
+        {
+          "id": "f09",
+          "onclick": true,
+          "title": "点击放大鉴赏手绘卡面细节",
+          "badge": true,
+          "src": "http://127.0.0.1:5199/assets/handdrawn-p08/cards/f09.thumbnail.webp"
+        },
+        {
+          "id": "f07",
+          "onclick": true,
+          "title": "点击放大鉴赏手绘卡面细节",
+          "badge": true,
+          "src": "http://127.0.0.1:5199/assets/handdrawn-p08/cards/f07.thumbnail.webp"
+        },
+        {
+          "id": "d07",
+          "onclick": true,
+          "title": "点击放大鉴赏手绘卡面细节",
+          "badge": true,
+          "src": "http://127.0.0.1:5199/assets/handdrawn-p08/cards/d07.thumbnail.webp"
+        },
+        {
+          "id": "a07",
+          "onclick": true,
+          "title": "点击放大鉴赏手绘卡面细节",
+          "badge": true,
+          "src": "http://127.0.0.1:5199/assets/handdrawn-p08/cards/a07.thumbnail.webp"
+        },
+        {
+          "id": "a08",
+          "onclick": true,
+          "title": "点击放大鉴赏手绘卡面细节",
+          "badge": true,
+          "src": "blob:http://127.0.0.1:5199/323cb1e7-a714-47f7-b8e8-3979bbbce0c7"
+        },
+        {
+          "id": "c03",
+          "onclick": true,
+          "title": "点击放大鉴赏手绘卡面细节",
+          "badge": true,
+          "src": "blob:http://127.0.0.1:5199/d0b4e8ee-1195-40a3-b0fc-9bd14c9775d9"
+        },
+        {
+          "id": "d02",
+          "onclick": true,
+          "title": "点击放大鉴赏手绘卡面细节",
+          "badge": true,
+          "src": "blob:http://127.0.0.1:5199/94dfcc24-770c-4c2a-ae9b-ae8420d97c53"
+        },
+        {
+          "id": "e02",
+          "onclick": true,
+          "title": "点击放大鉴赏手绘卡面细节",
+          "badge": true,
+          "src": "blob:http://127.0.0.1:5199/f62f7fb2-1125-4eea-97d9-b5640f280a8c"
+        },
+        {
+          "id": "e09",
+          "onclick": true,
+          "title": "点击放大鉴赏手绘卡面细节",
+          "badge": true,
+          "src": "blob:http://127.0.0.1:5199/5267c2ef-3301-4bf4-b6ac-18d77e8a24b7"
+        },
+        {
+          "id": "tiesuanpan",
+          "onclick": true,
+          "title": "点击放大鉴赏手绘卡面细节",
+          "badge": true,
+          "src": "http://127.0.0.1:5199/assets/handdrawn-p08/cards/tiesuanpan.thumbnail.webp"
+        },
+        {
+          "id": "f10",
+          "onclick": true,
+          "title": "点击放大鉴赏手绘卡面细节",
+          "badge": true,
+          "src": "blob:http://127.0.0.1:5199/a34a3a79-d93b-446c-a8ec-37f872e77342"
+        },
+        {
+          "id": "c08",
+          "onclick": true,
+          "title": "点击放大鉴赏手绘卡面细节",
+          "badge": true,
+          "src": "blob:http://127.0.0.1:5199/19d30b52-a5da-4c0a-862e-7670edcb9f80"
+        },
+        {
+          "id": "c09",
+          "onclick": true,
+          "title": "点击放大鉴赏手绘卡面细节",
+          "badge": true,
+          "src": "blob:http://127.0.0.1:5199/41060efe-1192-459e-8572-45c94f98001d"
+        },
+        {
+          "id": "pengci",
+          "onclick": true,
+          "title": "点击放大鉴赏手绘卡面细节",
+          "badge": true,
+          "src": "http://127.0.0.1:5199/assets/handdrawn-p08/cards/pengci.thumbnail.webp"
+        },
+        {
+          "id": "mantangcai",
+          "onclick": true,
+          "title": "点击放大鉴赏手绘卡面细节",
+          "badge": true,
+          "src": "http://127.0.0.1:5199/assets/handdrawn-p08/cards/mantangcai.thumbnail.webp"
+        },
+        {
+          "id": "huimaqiang",
+          "onclick": true,
+          "title": "点击放大鉴赏手绘卡面细节",
+          "badge": true,
+          "src": "blob:http://127.0.0.1:5199/48b06f93-6afc-4ad8-b325-04209c527861"
+        },
+        {
+          "id": "jiedongfeng",
+          "onclick": true,
+          "title": "点击放大鉴赏手绘卡面细节",
+          "badge": true,
+          "src": "blob:http://127.0.0.1:5199/39042088-c0f0-4887-bbb1-3a7944eaf720"
+        },
+        {
+          "id": "b07",
+          "onclick": true,
+          "title": "点击放大鉴赏手绘卡面细节",
+          "badge": true,
+          "src": "http://127.0.0.1:5199/assets/handdrawn-p08/cards/b07.thumbnail.webp"
+        },
+        {
+          "id": "a09",
+          "onclick": true,
+          "title": "点击放大鉴赏手绘卡面细节",
+          "badge": true,
+          "src": "http://127.0.0.1:5199/assets/handdrawn-p08/cards/a09.thumbnail.webp"
+        },
+        {
+          "id": "d06",
+          "onclick": true,
+          "title": "点击放大鉴赏手绘卡面细节",
+          "badge": true,
+          "src": "http://127.0.0.1:5199/assets/handdrawn-p08/cards/d06.thumbnail.webp"
+        },
+        {
+          "id": "a04",
+          "onclick": true,
+          "title": "点击放大鉴赏手绘卡面细节",
+          "badge": true,
+          "src": "blob:http://127.0.0.1:5199/0d4110d8-5e4c-4567-8842-5f89d17a8c73"
+        },
+        {
+          "id": "e04",
+          "onclick": true,
+          "title": "点击放大鉴赏手绘卡面细节",
+          "badge": true,
+          "src": "http://127.0.0.1:5199/assets/handdrawn-p08/cards/e04.thumbnail.webp"
+        },
+        {
+          "id": "c05",
+          "onclick": true,
+          "title": "点击放大鉴赏手绘卡面细节",
+          "badge": true,
+          "src": "http://127.0.0.1:5199/assets/handdrawn-p08/cards/c05.thumbnail.webp"
+        },
+        {
+          "id": "c02",
+          "onclick": true,
+          "title": "点击放大鉴赏手绘卡面细节",
+          "badge": true,
+          "src": "blob:http://127.0.0.1:5199/ddff41a6-4d82-49d0-9e6b-ed7e5fe2f120"
+        },
+        {
+          "id": "f03",
+          "onclick": true,
+          "title": "点击放大鉴赏手绘卡面细节",
+          "badge": true,
+          "src": "http://127.0.0.1:5199/assets/handdrawn-p08/cards/f03.thumbnail.webp"
+        },
+        {
+          "id": "a03",
+          "onclick": true,
+          "title": "点击放大鉴赏手绘卡面细节",
+          "badge": true,
+          "src": "blob:http://127.0.0.1:5199/236fc2bf-3b9a-437a-b9fb-e507e32d2d6f"
+        },
+        {
+          "id": "b02",
+          "onclick": true,
+          "title": "点击放大鉴赏手绘卡面细节",
+          "badge": true,
+          "src": "blob:http://127.0.0.1:5199/7fe6827b-791f-4855-b1dd-7e84cc85d152"
+        },
+        {
+          "id": "b04",
+          "onclick": true,
+          "title": "点击放大鉴赏手绘卡面细节",
+          "badge": true,
+          "src": "http://127.0.0.1:5199/assets/handdrawn-p08/cards/b04.thumbnail.webp"
+        },
+        {
+          "id": "c04",
+          "onclick": true,
+          "title": "点击放大鉴赏手绘卡面细节",
+          "badge": true,
+          "src": "blob:http://127.0.0.1:5199/43bbc637-8fe9-40e3-9ee4-f9291a8695fb"
+        },
+        {
+          "id": "d01",
+          "onclick": true,
+          "title": "点击放大鉴赏手绘卡面细节",
+          "badge": true,
+          "src": "blob:http://127.0.0.1:5199/e161be71-377d-47d3-8922-e2a9e682b3ea"
+        },
+        {
+          "id": "f02",
+          "onclick": true,
+          "title": "点击放大鉴赏手绘卡面细节",
+          "badge": true,
+          "src": "http://127.0.0.1:5199/assets/handdrawn-p08/cards/f02.thumbnail.webp"
+        },
+        {
+          "id": "d10",
+          "onclick": true,
+          "title": "点击放大鉴赏手绘卡面细节",
+          "badge": true,
+          "src": "blob:http://127.0.0.1:5199/2558a1bf-b233-4418-9c6d-84ed15d942bf"
+        },
+        {
+          "id": "e01",
+          "onclick": true,
+          "title": "点击放大鉴赏手绘卡面细节",
+          "badge": true,
+          "src": "blob:http://127.0.0.1:5199/a61488fa-cd19-42a8-a352-dd4e2077f8aa"
+        },
+        {
+          "id": "b05",
+          "onclick": true,
+          "title": "点击放大鉴赏手绘卡面细节",
+          "badge": true,
+          "src": "blob:http://127.0.0.1:5199/e0f3d649-1330-4571-b18a-01ad7c45959f"
+        },
+        {
+          "id": "b10",
+          "onclick": true,
+          "title": "点击放大鉴赏手绘卡面细节",
+          "badge": true,
+          "src": "http://127.0.0.1:5199/assets/handdrawn-p08/cards/b10.thumbnail.webp"
+        },
+        {
+          "id": "b08",
+          "onclick": true,
+          "title": "点击放大鉴赏手绘卡面细节",
+          "badge": true,
+          "src": "blob:http://127.0.0.1:5199/5e41d7cf-2790-40e9-b5c4-3dcaf5ecc743"
+        },
+        {
+          "id": "d05",
+          "onclick": true,
+          "title": "点击放大鉴赏手绘卡面细节",
+          "badge": true,
+          "src": "http://127.0.0.1:5199/assets/handdrawn-p08/cards/d05.thumbnail.webp"
+        },
+        {
+          "id": "e03",
+          "onclick": true,
+          "title": "点击放大鉴赏手绘卡面细节",
+          "badge": true,
+          "src": "blob:http://127.0.0.1:5199/e578c00c-e3cb-4083-abfd-a4c7bee4a1eb"
+        },
+        {
+          "id": "e06",
+          "onclick": true,
+          "title": "点击放大鉴赏手绘卡面细节",
+          "badge": true,
+          "src": "blob:http://127.0.0.1:5199/cdb11ca9-6d77-46e1-ac45-5ad153a20f7d"
+        },
+        {
+          "id": "f05",
+          "onclick": true,
+          "title": "点击放大鉴赏手绘卡面细节",
+          "badge": true,
+          "src": "blob:http://127.0.0.1:5199/d6bb351d-f6f3-4018-b134-cdbb7de8f29a"
+        },
+        {
+          "id": "f11",
+          "onclick": true,
+          "title": "点击放大鉴赏手绘卡面细节",
+          "badge": true,
+          "src": "blob:http://127.0.0.1:5199/f0cd944a-eca2-4b7c-8fb8-f1b667578a42"
+        },
+        {
+          "id": "b06",
+          "onclick": true,
+          "title": "点击放大鉴赏手绘卡面细节",
+          "badge": true,
+          "src": "blob:http://127.0.0.1:5199/a87132a2-cc93-4be6-b330-703bbeb40bdf"
+        },
+        {
+          "id": "a11",
+          "onclick": false,
+          "title": "",
+          "badge": true,
+          "src": "blob:http://127.0.0.1:5199/2c52a6cf-211d-425b-89d0-21141a122fcd"
+        },
+        {
+          "id": "d04",
+          "onclick": true,
+          "title": "点击放大鉴赏手绘卡面细节",
+          "badge": true,
+          "src": "http://127.0.0.1:5199/assets/handdrawn-p08/cards/d04.thumbnail.webp"
+        },
+        {
+          "id": "c07",
+          "onclick": true,
+          "title": "点击放大鉴赏手绘卡面细节",
+          "badge": true,
+          "src": "http://127.0.0.1:5199/assets/handdrawn-p08/cards/c07.thumbnail.webp"
+        },
+        {
+          "id": "d11",
+          "onclick": true,
+          "title": "点击放大鉴赏手绘卡面细节",
+          "badge": true,
+          "src": "blob:http://127.0.0.1:5199/9576fa64-13bc-4344-9cd2-6f44ee9cade9"
+        },
+        {
+          "id": "d08",
+          "onclick": true,
+          "title": "点击放大鉴赏手绘卡面细节",
+          "badge": true,
+          "src": "blob:http://127.0.0.1:5199/3d6a0aba-7616-456e-99be-6d4b5217de5a"
+        },
+        {
+          "id": "d09",
+          "onclick": true,
+          "title": "点击放大鉴赏手绘卡面细节",
+          "badge": true,
+          "src": "http://127.0.0.1:5199/assets/handdrawn-p08/cards/d09.thumbnail.webp"
+        },
+        {
+          "id": "b12",
+          "onclick": true,
+          "title": "点击放大鉴赏手绘卡面细节",
+          "badge": true,
+          "src": "blob:http://127.0.0.1:5199/f5b52ad7-d0f7-491f-8036-719a075f54e8"
+        },
+        {
+          "id": "a05",
+          "onclick": true,
+          "title": "点击放大鉴赏手绘卡面细节",
+          "badge": true,
+          "src": "http://127.0.0.1:5199/assets/handdrawn-p08/cards/a05.thumbnail.webp"
+        },
+        {
+          "id": "b03",
+          "onclick": true,
+          "title": "点击放大鉴赏手绘卡面细节",
+          "badge": true,
+          "src": "blob:http://127.0.0.1:5199/c3ceccd1-d7bd-4f26-837b-1dec8bac3711"
+        },
+        {
+          "id": "c06",
+          "onclick": true,
+          "title": "点击放大鉴赏手绘卡面细节",
+          "badge": true,
+          "src": "blob:http://127.0.0.1:5199/83730940-a0c9-4f9b-856c-e51b7c778a7b"
+        },
+        {
+          "id": "d03",
+          "onclick": true,
+          "title": "点击放大鉴赏手绘卡面细节",
+          "badge": true,
+          "src": "blob:http://127.0.0.1:5199/00d42a9d-34b2-49e3-a01f-5002c26a69af"
+        },
+        {
+          "id": "a10",
+          "onclick": true,
+          "title": "点击放大鉴赏手绘卡面细节",
+          "badge": true,
+          "src": "http://127.0.0.1:5199/assets/handdrawn-p08/cards/a10.thumbnail.webp"
+        },
+        {
+          "id": "b11",
+          "onclick": true,
+          "title": "点击放大鉴赏手绘卡面细节",
+          "badge": true,
+          "src": "http://127.0.0.1:5199/assets/handdrawn-p08/cards/b11.thumbnail.webp"
+        },
+        {
+          "id": "c10",
+          "onclick": true,
+          "title": "点击放大鉴赏手绘卡面细节",
+          "badge": true,
+          "src": "http://127.0.0.1:5199/assets/handdrawn-p08/cards/c10.thumbnail.webp"
+        },
+        {
+          "id": "d12",
+          "onclick": true,
+          "title": "点击放大鉴赏手绘卡面细节",
+          "badge": true,
+          "src": "blob:http://127.0.0.1:5199/ef719b29-c77e-4eee-9370-a1aa9375cefa"
+        },
+        {
+          "id": "a06",
+          "onclick": true,
+          "title": "点击放大鉴赏手绘卡面细节",
+          "badge": true,
+          "src": "blob:http://127.0.0.1:5199/a7ca89e9-88e7-4e25-8a85-774a44c90b23"
+        },
+        {
+          "id": "a12",
+          "onclick": true,
+          "title": "点击放大鉴赏手绘卡面细节",
+          "badge": true,
+          "src": "http://127.0.0.1:5199/assets/handdrawn-p08/cards/a12.thumbnail.webp"
+        },
+        {
+          "id": "b09",
+          "onclick": true,
+          "title": "点击放大鉴赏手绘卡面细节",
+          "badge": true,
+          "src": "blob:http://127.0.0.1:5199/70d60107-56e5-4fd7-9a9e-c7d4c68dd819"
+        },
+        {
+          "id": "c11",
+          "onclick": true,
+          "title": "点击放大鉴赏手绘卡面细节",
+          "badge": true,
+          "src": "blob:http://127.0.0.1:5199/fc409544-a3b8-4c1c-a2dd-0a9e54dcd5bd"
+        },
+        {
+          "id": "c12",
+          "onclick": true,
+          "title": "点击放大鉴赏手绘卡面细节",
+          "badge": true,
+          "src": "blob:http://127.0.0.1:5199/a96a6be7-4a06-4980-93a1-628be4f08fa9"
+        },
+        {
+          "id": "e10",
+          "onclick": true,
+          "title": "点击放大鉴赏手绘卡面细节",
+          "badge": true,
+          "src": "http://127.0.0.1:5199/assets/handdrawn-p08/cards/e10.thumbnail.webp"
+        },
+        {
+          "id": "e12",
+          "onclick": true,
+          "title": "点击放大鉴赏手绘卡面细节",
+          "badge": true,
+          "src": "blob:http://127.0.0.1:5199/1c12924b-1048-4ad3-a5b4-929ddbd8f8c9"
+        },
+        {
+          "id": "e05",
+          "onclick": true,
+          "title": "点击放大鉴赏手绘卡面细节",
+          "badge": true,
+          "src": "http://127.0.0.1:5199/assets/handdrawn-p08/cards/e05.thumbnail.webp"
+        },
+        {
+          "id": "e08",
+          "onclick": true,
+          "title": "点击放大鉴赏手绘卡面细节",
+          "badge": true,
+          "src": "blob:http://127.0.0.1:5199/e6528d3e-855a-45df-acbb-1e5d1c65c16d"
+        },
+        {
+          "id": "e11",
+          "onclick": true,
+          "title": "点击放大鉴赏手绘卡面细节",
+          "badge": true,
+          "src": "http://127.0.0.1:5199/assets/handdrawn-p08/cards/e11.thumbnail.webp"
+        },
+        {
+          "id": "f06",
+          "onclick": true,
+          "title": "点击放大鉴赏手绘卡面细节",
+          "badge": true,
+          "src": "blob:http://127.0.0.1:5199/a9017bf0-1498-4bf0-be0b-a23fdf1ad4e4"
+        },
+        {
+          "id": "f08",
+          "onclick": true,
+          "title": "点击放大鉴赏手绘卡面细节",
+          "badge": true,
+          "src": "blob:http://127.0.0.1:5199/f79278ce-b6bc-475e-84e7-e7e798b1fd68"
+        },
+        {
+          "id": "f12",
+          "onclick": true,
+          "title": "点击放大鉴赏手绘卡面细节",
+          "badge": true,
+          "src": "blob:http://127.0.0.1:5199/001922fa-3fd6-4b40-a219-baf3ebe9f2a1"
+        }
+      ],
+      "a11ClickZoomCount": 0,
+      "status": "DONE"
+    }
+  ]
+}

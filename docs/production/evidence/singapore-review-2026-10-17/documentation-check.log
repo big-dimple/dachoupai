@@ -1,0 +1,8 @@
+PASS: staged authored Markdown/JSON whitespace check.
+RAW_WARNING_PRESERVED: full staged whitespace check flags original HTTP headers CRLF and terminating blank line; both .headers are intentionally byte-exact original evidence, not normalized. See staged-diff-check-raw.log.
+PASS: all 43 original copied evidence files match recorded bytes and SHA-256.
+PASS: new report, remediation plan and evidence index relative links resolve.
+PASS: P08 currentTask/status remains P08/in_progress.
+PASS: original author handoff README/status untouched; previous DELIVERY current section archived verbatim.
+FAIL_EXISTING: plan structural checker returns the same 12 invalid-evidence-record lines before/after, byte-identical. No failure assertion or historical evidence rewritten.
+NOT_RUN: product checks were not repeated for this docs-only change; build/33PASS+1FAIL evidence corresponds to product 7d7921e.
