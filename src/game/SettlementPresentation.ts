@@ -54,7 +54,7 @@ export function settlementFacts(run:R2RunState,cleared:boolean,skipped=false){
  return {...saved,stageTotal:run.stage?.heat??'0',tier,tag,hero,heroSkill,heroCopy,card,cardCopy,operation,routeCopy,routeSummary,chain,jokerFactorSourceCount,factorCount:factors.length};
 }
 
-/** The portrait, hand result and saved contributions share one compact composition. */
+/** Initial viewport budget. The rendered paper is then shortened to its actual content. */
 export function settlementContentHeight(width:number,heroCaption=false,highScore=false){
  return width>=600?344:highScore||heroCaption?322:302;
 }
@@ -80,12 +80,11 @@ function fit(view:SceneView,x:number,y:number,text:string,size:number,width:numb
 }
 
 /** Read only: every caption comes from the saved trace; optional art never moves a fact. */
-export function drawSettlement(scene:Phaser.Scene,view:SceneView,b:Box,run:R2RunState,cleared:boolean,skipped:boolean){
+export function drawSettlement(scene:Phaser.Scene,view:SceneView,b:Box,run:R2RunState,cleared:boolean,skipped:boolean,formulaOverride?:string,rewardLabel?:string){
  const facts=settlementFacts(run,cleared,skipped),lost=!cleared&&!skipped,p=settlementPlan(b,view.layout.height<500);
  const paper=scene.add.graphics().setName('result-art/stage').setData('bounds',b);
- paper.fillStyle(T.paperLight).fillRoundedRect(b.x,b.y,b.width,b.height,6);
- paper.lineStyle(1,T.divider,.65).strokeRoundedRect(b.x+.5,b.y+.5,b.width-1,b.height-1,6);view.add(paper);
- if(scene.textures.exists('p00-paper'))view.add(scene.add.tileSprite(b.x+3,b.y+3,b.width-6,b.height-6,'p00-paper').setOrigin(0).setAlpha(.08));
+ view.add(paper);
+ const paperTexture=scene.textures.exists('p00-paper')?view.add(scene.add.tileSprite(b.x+3,b.y+3,b.width-6,b.height-6,'p00-paper').setOrigin(0).setAlpha(.08)):undefined;
  const main=p.score,compact=p.compact;
  const hand=skipped?'本场跳过':'本场总热度';
  const tag=fit(view,main.x,main.y,hand,14,main.width,C.jade,'result/hand');
@@ -95,48 +94,66 @@ export function drawSettlement(scene:Phaser.Scene,view:SceneView,b:Box,run:R2Run
  const score=view.text(main.x,tag.y+tag.height+3,scoreLabel,size,facts.tier?C.red:C.ink).setName('result/score').setWordWrapWidth(0).setFontFamily(SCORE_FONT).setFontStyle('bold').setData('exactScore',exactScore);
  for(let font=size;score.width>main.width&&font>24;)score.setFontSize(--font);
  if(score.width>main.width)score.setScale(main.width/score.width);
- const formula=lost?'目标 '+heatText(run.stage!.targetHeat)+' · 差 '+heatText((BigInt(run.stage!.targetHeat)-BigInt(facts.stageTotal)).toString()):facts.trace?'目标 '+heatText(run.stage!.targetHeat)+' · 已过关':skipped?'本场跳过':'本场累计 '+heatText(facts.stageTotal);
+ const formula=formulaOverride??(lost?'目标 '+heatText(run.stage!.targetHeat)+' · 差 '+heatText((BigInt(run.stage!.targetHeat)-BigInt(facts.stageTotal)).toString()):facts.trace?'目标 '+heatText(run.stage!.targetHeat)+' · 已过关':skipped?'本场跳过':'本场累计 '+heatText(facts.stageTotal));
  const formulaText=fit(view,main.x,score.y+score.displayHeight+3,formula,14,main.width,C.jade,'result/formula');
  const receipt=lost?failureSummary(run).lastHand:facts.trace?'末手 '+HAND_LABELS[facts.trace.handType]+' · '+heatText(facts.trace.finalScore):'末手记录不可用';
- fit(view,main.x,formulaText.y+formulaText.height+3,skipped?'没有本场计分':receipt,14,main.width,C.jade,'result/gap');
- // A short horizontal join ends in the gap above the contribution. It never crosses text.
- const source=p.source,linkY=source.y-5;
- view.add(scene.add.graphics().lineStyle(1,facts.tier?T.red:T.jade,.32).beginPath().moveTo(source.x,linkY).lineTo(source.x+source.width,linkY).strokePath()).setName('result-art/contribution-rule');
+ const receiptText=fit(view,main.x,formulaText.y+formulaText.height+3,skipped?'没有本场计分':receipt,14,main.width,C.jade,'result/gap');
  if(p.desktop&&facts.tier>=2)fit(view,main.x+main.width,main.y,facts.tag,14,main.width*.45,C.red,'result/tier').setOrigin(1,0);
  const artLayer=scene.add.container(0,0).setName('result-art/source-layer');view.add(artLayer);
+ let contentBottom=receiptText.y+receiptText.height;
  const paint=()=>{
   artLayer.removeAll(true);const start=view.root.length;
   const addArt=(key:string,box:Box,name:string,id:string)=>{const image=scene.add.image(box.x+box.width/2,box.y+box.height/2,key).setName(name).setData('assetId',id).setData('bounds',box);image.setScale(Math.min(box.width/image.width,box.height/image.height));view.add(image);return image;};
-  const hero=p.hero,foot=facts.hero?(compact?68:72):p.desktop?40:24,artHeight=Math.max(40,hero.height-foot),key=selectionPortraitKey(run.characterId),box={...hero,height:artHeight};
+  const hero=p.hero,artHeight=p.desktop?168:compact?(facts.hero?40:64):facts.hero?76:96,key=selectionPortraitKey(run.characterId),box={...hero,height:artHeight};
   let heroImage:Phaser.GameObjects.Image|undefined;
   if(scene.textures.exists(key))heroImage=addArt(key,box,'result-art/hero',run.characterId+'.selection');
   else if(scene.textures.exists(avatarKey(run.characterId)))heroImage=addArt(avatarKey(run.characterId),box,'result-art/hero',run.characterId+'.avatar');
   else fit(view,hero.x+hero.width/2,hero.y+10,getCharacter(run.characterId).name,18,hero.width,C.ink,'result-art/hero-fallback',true);
   const name=fit(view,hero.x+hero.width/2,hero.y+artHeight+3,getCharacter(run.characterId).name,p.desktop?20:16,hero.width,C.ink,'result/hero-name',true).setFontFamily('Georgia, "Noto Serif SC", SimSun, serif').setFontStyle('bold');
+  let heroBottom=name.y+name.height;
   if(facts.hero){
    const skill=fit(view,hero.x+hero.width/2,name.y+name.height+2,facts.heroSkill??'',14,hero.width,C.red,'result/hero-skill',true).setFontStyle('bold');
    // The exact source operation remains directly attached to its owner.
-   fit(view,hero.x+hero.width/2,skill.y+skill.height+2,facts.heroCopy.replace('本手兑现 · ',''),14,hero.width,C.red,'result/hero-effect',true).setData('ownerCharacter',run.characterId);
+   const effect=fit(view,hero.x+hero.width/2,skill.y+skill.height+2,facts.heroCopy.replace('本手兑现 · ',''),14,hero.width,C.red,'result/hero-effect',true).setData('ownerCharacter',run.characterId);
+   heroBottom=effect.y+effect.height;
   }
+  const topBottom=p.desktop?receiptText.y+receiptText.height:Math.max(receiptText.y+receiptText.height,heroBottom);
+  const source={...p.source,y:topBottom+(compact?8:12)};let sourceBottom=topBottom;
   if(lost){
-   fit(view,source.x,source.y,failureSummary(run).reason,14,source.width,C.ink,'result/failure-reason');
+   const reason=fit(view,source.x,source.y,failureSummary(run).reason,14,source.width,C.ink,'result/failure-reason');sourceBottom=reason.y+reason.height;
   }else if(facts.card){
    const card=facts.card,cardWidth=compact?32:p.desktop?52:40,cardBox={x:source.x,y:source.y,width:cardWidth,height:cardWidth*1.4},cardKey=jokerArtKey(card.id),textX=source.x+cardWidth+12,textWidth=source.width-cardWidth-12;
    if(cardKey&&scene.textures.exists(cardKey))addArt(cardKey,cardBox,'result-art/source',card.id+'.thumbnail');
    else {view.material(cardBox,T.paper,T.paper,3);fit(view,cardBox.x+cardWidth/2,cardBox.y+5,'来源',14,cardWidth-4,C.jade,'result-art/source-fallback',true);}
    const label=fit(view,textX,source.y,'末手来源 · '+card.name,p.desktop?17:14,textWidth,C.ink,'result/source-continuity').setFontStyle('bold');
-   const effect=fit(view,textX,label.y+label.height+2,facts.cardCopy!,14,textWidth,C.red,'result/source-effect');
+   const effect=fit(view,textX,label.y+label.height+2,p.short?facts.cardCopy!.replaceAll('\n',' · '):facts.cardCopy!,14,textWidth,C.red,'result/source-effect');
+   sourceBottom=Math.max(cardBox.y+cardBox.height,effect.y+effect.height);
    const growth=facts.growth?.definitionId===card.id&&facts.growth.instanceId===card.event.sourceInstanceId?facts.growth:undefined;
-   if(growth)fit(view,textX,effect.y+effect.height+2,'手后 '+growth.before+' → '+growth.after,14,textWidth,C.jade,'result/growth-saved').setData('ownerSourceInstance',card.event.sourceInstanceId);
+   if(growth){const saved=fit(view,textX,effect.y+effect.height+2,'手后 '+growth.before+' → '+growth.after,14,textWidth,C.jade,'result/growth-saved').setData('ownerSourceInstance',card.event.sourceInstanceId);sourceBottom=Math.max(sourceBottom,saved.y+saved.height);}
   }else if(facts.trace){
    const played=facts.trace.sets.playedIds.map(id=>facts.trace!.cards.find(c=>c.id===id)).filter(c=>!!c);
    const label=fit(view,source.x,source.y,'末手牌面',14,source.width,C.jade,'result-art/hand-fallback');
-   fit(view,source.x,label.y+label.height+5,played.map(c=>rankLabel(c.rank)+SUIT_SYMBOL[c.suit]).join('  '),18,source.width,C.ink,'result/played-cards');
+   const cards=fit(view,source.x,label.y+label.height+5,played.map(c=>rankLabel(c.rank)+SUIT_SYMBOL[c.suit]).join('  '),18,source.width,C.ink,'result/played-cards');sourceBottom=cards.y+cards.height;
   }
+  if(sourceBottom>topBottom)view.add(scene.add.graphics().lineStyle(1,facts.tier?T.red:T.jade,.32).beginPath().moveTo(source.x,source.y-5).lineTo(source.x+source.width,source.y-5).strokePath()).setName('result-art/contribution-rule');
+  contentBottom=Math.max(heroBottom,sourceBottom,receiptText.y+receiptText.height);
   artLayer.add(view.root.list.slice(start));return heroImage;
  };
  const hero=paint();
- return {facts,score,reward:p.reward,paint,hero,stage:b};
+ const reward={...p.reward,y:contentBottom+(compact?12:16)};
+ let rewardText:Phaser.GameObjects.Text|undefined;
+ if(cleared&&!skipped&&rewardLabel){
+  const size=compact?14:rewardLabel.includes(' · ')?16:20;
+  rewardText=fit(view,reward.x+reward.width/2,reward.y+7,rewardLabel,size,reward.width-32,C.ink,'result/reward',true).setFontStyle('bold');
+  // Bold metrics can add a line; include the final measured height in the paper.
+  if(rewardText.width>reward.width-32)rewardText.setWordWrapWidth(reward.width-32,true);
+  reward.height=Math.max(reward.height,rewardText.height+10);
+ }
+ const bottom=cleared&&!skipped?reward.y+reward.height:contentBottom;
+ const stage={...b,height:bottom-b.y+(compact?8:16)};
+ paper.setData('bounds',stage).clear().fillStyle(T.paperLight).fillRoundedRect(stage.x,stage.y,stage.width,stage.height,6).lineStyle(1,T.divider,.65).strokeRoundedRect(stage.x+.5,stage.y+.5,stage.width-1,stage.height-1,6);
+ paperTexture?.setSize(stage.width-6,stage.height-6);
+ return {facts,score,reward,rewardText,paint,hero,stage};
 }
 
 /** One real second, independent of Phaser's acceleration. No input or command callback. */
