@@ -19,7 +19,8 @@
       "src/game/OwnedCardTilt.ts": "0aa536ba1c6975866c23b4523af4d9bdd3c0bc26810d4a4b25f758cd5b1a0909",
       "src/game/SpringMotion.ts": "dacb70756bd4f09030a2303e361474391de5de1265cd2fca72528615a299b1c1",
       "tests/singapore-final-adoption.test.ts": "aad17f8ec6f4047ad7eb1f40d37fd54f0bb7c2ae60fcaf157643773bf014d2b9"
-    }
+    },
+    "all7BindingsMatchProductCommit": true
   },
   "allowedRuntimePaths": [
     "src/audio/AudioEngine.ts",
@@ -38,5 +39,51 @@
     "CardTiltEffect DOM"
   ],
   "cleanupBranch": "feat/gamefeel-audio-elevation-rfc",
-  "cleanupStatus": "pending"
+  "cleanupStatus": "pending_after_main_publish",
+  "productCommit": "08ed04633ca0b30b5275c9aabc787542a415ac16",
+  "sourceHistoryMerge": "cd85ac5bf1acb6a35fb16ac40b89ab65db682099",
+  "sourceHistory": {
+    "sourceIsAncestor": true,
+    "mergeTreeEqualsProduct": true,
+    "tree": "1dfbdcde1ac6eaec1afd584fd97b98303a0fa625"
+  },
+  "protectedAreasUnchanged": [
+    "public",
+    "art",
+    "src/domain",
+    "src/core",
+    "src/game/HeroTargetAttachment.ts",
+    "src/game/HeroPortraitScoreMotion.ts",
+    "src/game/StageGiftDelivery.ts",
+    "src/game/ScorePhrase.ts",
+    "src/game/ScoreEffectQueue.ts"
+  ],
+  "audioProvenance": {
+    "all7OggMatchBasePublic": true,
+    "sourceBgmMatchBaseArchivedOriginals": true,
+    "sourceBgmBlobs": [
+      "1560f55391d19acf55e815dd3e02168dfead0589",
+      "3733a8087d7d209decb559e664a529fd95c5e9ab"
+    ],
+    "currentPublicBgmPreserved": true
+  },
+  "build": {
+    "executedCommit": "cd85ac5bf1acb6a35fb16ac40b89ab65db682099",
+    "typecheck": "PASS",
+    "vite": "PASS",
+    "modules": 358,
+    "distFiles": 397,
+    "distBytes": 37160409,
+    "budgetBytes": 20000000,
+    "budgetStatus": "FAIL",
+    "rawLog": "build.txt",
+    "buildInfo": {
+      "version": "C03",
+      "builtAt": "2026-10-17T16:10:04.355Z",
+      "revision": "cd85ac5bf1acb6a35fb16ac40b89ab65db682099",
+      "sourceStatus": "clean",
+      "modified": false
+    }
+  },
+  "status": "adopted_verified_ready_for_normal_publish"
 }

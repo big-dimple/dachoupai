@@ -11,3 +11,5 @@
 本批将选取的产品先提交，再以保留当前树的 merge 记录来源祖先；核对产品树完全相同且来源提交可从发布 main 到达。原型 src/gamefeel、ScoringRhythmOrchestrator、HitStopPresentationTimeline、PentatonicSynth、AudioFilterTransition、DOM CardTiltEffect 与测试床不复制到发布树。只有发布核实之后才删除 feat/gamefeel-audio-elevation-rfc 的远端分支及同名本地引用；不删除资源、其他分支或原始提交历史。
 
 P08 仍为 in_progress；计分爽感、商店联动、Boss 压制仍体验未达标／重新整改。本回执不签听感、美术、真人理解、自然长局、真机或 V01/L01 正式门，不查 CI/域名、不部署。
+
+最终产品 `08ed04633ca0b30b5275c9aabc787542a415ac16`，来源历史合并 `cd85ac5bf1acb6a35fb16ac40b89ab65db682099`；后者完整树与产品树相同，来源 fbb 为祖先。最终运行时范围仅 status.json 的六条白名单，public/art、领域/核心规则和六英雄附着/c12/phrase/queue 保护区均无差异。生产构建在 cd85ac5b 执行，[完整日志](build.txt)：类型检查及 358 模块构建通过；dist 397 文件 / 37160409B，20,000,000B 总预算仍 FAIL，不将它写成通过。
