@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "auditCommit": "7d7921e76ca794a14e715e3eac3b4d66143862ff",
   "currentTask": "P08",
-  "selectionPolicy": "已发布main e389；完整9c12长期物品文案已合67a187a2，15路径/1文案hash/4UI消费者精确，源Windows105与PC/390原范围复用，新增图鉴10/类型329构建通过。孤注旧词未复现仍开放，不虚构修复。额外加成4b74待Shop owner货架/detail/标签接线，AI e321待唯一Scene owner输入/草稿回执，均未合；af45登记随本批携带。已有授权普通eyes/main发布，不等问答/虹光/大样例。389文件37460654B预算FAIL、CI/三目标未达标/P08人验正式门保持。",
+  "selectionPolicy": "已发布main7f40；最终商店7db6/c048及等价adapter284已正常合入77b19cae，74路径73精确、r2ToolInfo唯一保9c12组合，两patch-id已核。41必要交叉/类型333构建通过，来源136/46与10/5页面各原范围复用，不旧矩阵或机械相加。1af6/GameScene/Xin/规则资产/137清理保持；四区三路/Boss派生/额外收益货架接线软件已交付，不代签审美/三目标。AI接线8cf/刘娥387已交，先本商店发布再接，AI需实际窄验；真实牌动作/虹光/图鉴不纳。按已有授权普通eyes/main发布；389文件37471750B预算FAIL、P08/CI人验正式门保持。",
   "resumeContract": {
     "candidateCommit": "4bf6a7d63d7738d3c415d09439a1bdca878dc685",
     "gateTask": "A01",
@@ -38,7 +38,7 @@
       ],
       "package": "docs/production/WORK_PACKAGES.md#p08",
       "humanGate": false,
-      "completionScope": "三目标体验未达标/P08 in_progress。已发布e389含侧栏与真实阶段已用/结束区分、Xin隔离、137旧资源清理与原批源证据。完整9c12加演许可/长期物品文案已合67a187a2，15路径/1指纹/4UI消费者精确，新增图鉴10交叉/类型329构建通过，源105和PC/390原范围复用；孤注旧词未复现、原因未知仍开放。4b74额外加成adapter待Shop货架/detail/标签，AI e321待Scene输入/草稿一致性回执，均未合，不以模块单测签落地。H17刘娥独立实现未交付、四消费区未交付；不等问答虹光大样例才交完整小修。389文件37460654B超20MB；历史CI及人验/听感/触感/实体设备/C04/A03/V01/L01保持。",
+      "completionScope": "三目标体验未达标/P08 in_progress。已发布7f40保1af6侧栏/真实结束状态、Xin目标隔离、9c12长期物品说明和137退役；最终7db6商店四区/自选三路/Boss当前预告及额外收益货架/详情接线已合77b19，74路径73精确、r2ToolInfo保9c组合，41交叉/类型333构建通过。adapter由284等价4b74移植，原候选不在源祖先，未重复套入。主体136/10页面、追加46/5页面及Boss/扩货架补查各按原范围复用；软件通过不代签审美/联动/整体体验，父级审图仍开放。AI8cf接线及刘娥387已交待本商店发布后接，AI须实际选择/取消/切换窄验；真实牌动作/虹光/图鉴未纳；孤注未复现仍开放。389文件37471750B超20MB；CI/真人/设备/听感/触感与正式门保持。",
       "evidence": [
         "docs/production/evidence/feedback-batch-integration-2026-10-17/eyes-followups.json",
         "docs/production/evidence/feedback-batch-integration-2026-10-17/zoom-sort.json",
@@ -2186,7 +2186,7 @@
       "moduleProduct": "24285a60bb049ab5cb87b3e1b56572a008b00738",
       "branch": "dev/ai-preview-context-20261017",
       "base": "760b9ebd56605d44786e6e8d2221b8ba22ab06a6",
-      "status": "WAITING_SINGLE_SCENE_OWNER_WIRING_AND_DRAFT_PARITY_RECEIPT_NOT_MERGED",
+      "status": "OWNER_RECEIPT_RECEIVED_NEXT_BATCH_AFTER_SHOP_REQUIRES_NATIVE_PARITY_CHECK_NOT_MERGED",
       "sceneOwner": "01a147f6",
       "requiredBeforeJointMerge": [
         "GameScene import aiScoreContext and wrap aiInput().score with explicit current draft",
@@ -2211,25 +2211,22 @@
       "mainPushForRegistration": false,
       "strategy": "high card remains last;public minimum branch,one candidate per type;no active-skill global optimality or random-result guarantee",
       "nextAction": "wait for unique owner patch receipt then jointly integrate complete candidate;do not claim module tests prove final operation",
-      "registrationPublication": "Initial af45 registration was dev only;its plan is now carried in complete9c12 batch,AI module and wiring still unmerged"
+      "registrationPublication": "Initial af45 registration was dev only;its plan is now carried in complete9c12 batch,AI module and wiring still unmerged",
+      "ownerWiringSource": "8cf3b9221f82980062af12eccaddd127a041b34c",
+      "ownerSourceChecks": "51 narrow tests/typecheck PASS;browser NOT_RUN",
+      "requiredNativeCheck": "Liu E select/cancel/AI switch once actual operation before claiming parity"
     },
-    "jokerExtraBonusCopy": {
-      "candidate": "4b74ebc71aa760700d978057f7fd7fa46ca3bdaf",
-      "base": "9c12d119cbd1fa2e763e9e481f526ef6056dfad3",
-      "status": "WAITING_SHOP_OWNER_SHELF_DETAIL_TAG_WIRING_RECEIPT_NOT_MERGED",
-      "owner": "existing ShopScene owner per parent;no concurrent Scene edits",
-      "readme": "https://github.com/big-dimple/dachoupai/blob/4b74ebc71aa760700d978057f7fd7fa46ca3bdaf/docs/production/evidence/joker-extra-bonus-copy-2026-10-17/README.md",
-      "sourceEvidence": "3 files76 tests/typecheck PASS adapter only;not runtime UI",
-      "requiredBeforeJointMerge": [
-        "unselected shelf bonus.shelf visible",
-        "detail jokerEditionSummary uses adapter explanation",
-        "createShopIdentityTags uses same label/title adapter",
-        "same-version owner wiring and UI evidence receipt"
-      ],
-      "moduleMerged": false,
-      "playerOperationLanded": false,
-      "notWaitingFor": "new Q&A or polychrome rainbow effects",
-      "preserve": "familiar 多彩 label,extra multiplier×1.5 and actual c12 gift conditions;no rules/save mutation"
+    "liueTargetAttachment": {
+      "candidate": "387c2ea895367cc85a6a52d1661887898d7fe039",
+      "sourceProductShort": "b0a52c96",
+      "branch": "dev/liue-target-attachment-20261017",
+      "status": "DELIVERED_NEXT_BATCH_AFTER_SHOP_NOT_MERGED",
+      "sourceEvidence": "31narrow/type PASS;PC/phone/boundary/reduced-motion4segments source only",
+      "notClaimed": [
+        "real source-card action followup",
+        "rainbow",
+        "human experience acceptance"
+      ]
     }
   },
   "encoreCopyFollowup": {
@@ -2238,7 +2235,7 @@
     "source": "9c12d119cbd1fa2e763e9e481f526ef6056dfad3",
     "product": "67a187a286f9132f2c8dcb4b032014ffdc9cd00c",
     "devBranch": "dev/eyes-followups-integration-20261017",
-    "status": "MERGED_COMPLETE_COPY_NECESSARY_CHECKS_PASS_NORMAL_PUBLICATION_AUTHORIZED",
+    "status": "PUBLISHED_MAIN_AND_EYES_7f40_SCOPED_EVIDENCE_RETAINED",
     "sourcePaths": 15,
     "exactPaths": 15,
     "sourceTextFingerprintMatched": true,
@@ -2270,6 +2267,95 @@
       "4b74ebc71aa760700d978057f7fd7fa46ca3bdaf",
       "e32149e8923e5a885b495e924233225837a077f4"
     ],
-    "CI": "No rerun;source updates2old-name expectations in c01-tool-info without relaxing numeric rules;original4b0 fail log retained,not all55 resolved;Linux line-ending hash test still open"
+    "CI": "No rerun;source updates2old-name expectations in c01-tool-info without relaxing numeric rules;original4b0 fail log retained,not all55 resolved;Linux line-ending hash test still open",
+    "actualPublishedMain": "7f40cd1b07d2fac8c0cddfb0860ba79fb27ba5b6"
+  },
+  "resolvedIntegrations": {
+    "jokerExtraBonusCopy": {
+      "candidate": "4b74ebc71aa760700d978057f7fd7fa46ca3bdaf",
+      "base": "9c12d119cbd1fa2e763e9e481f526ef6056dfad3",
+      "status": "EQUIVALENT_ADAPTER_AND_OWNER_UI_WIRING_MERGED_SCOPED_SOFTWARE_ONLY",
+      "owner": "existing ShopScene owner per parent;no concurrent Scene edits",
+      "readme": "https://github.com/big-dimple/dachoupai/blob/4b74ebc71aa760700d978057f7fd7fa46ca3bdaf/docs/production/evidence/joker-extra-bonus-copy-2026-10-17/README.md",
+      "sourceEvidence": "3 files76 tests/typecheck PASS adapter only;not runtime UI",
+      "requiredBeforeJointMerge": [
+        "unselected shelf bonus.shelf visible",
+        "detail jokerEditionSummary uses adapter explanation",
+        "createShopIdentityTags uses same label/title adapter",
+        "same-version owner wiring and UI evidence receipt"
+      ],
+      "moduleMerged": true,
+      "playerOperationLanded": true,
+      "notWaitingFor": "new Q&A or polychrome rainbow effects",
+      "preserve": "familiar 多彩 label,extra multiplier×1.5 and actual c12 gift conditions;no rules/save mutation",
+      "originalCandidateIsAncestor": false,
+      "implementationEquivalentCommit": "28429044e0c5cba565b4186b719b92dfa315596b",
+      "productTestPatchId": "b958dbca09881503834dbdfa1afa5b769300d34b",
+      "runtimeWiringSource": "7db6e8395b10f58b19986c181e0e29fd8d4b2192",
+      "uiWiringMerged": true,
+      "humanAcceptance": "NOT_GRANTED;source5extra-page software evidence only",
+      "resolvedInProduct": "77b19cae62904a45647a8b7c7c30f02d5daabfb7"
+    }
+  },
+  "shopStructureFollowup": {
+    "baseMain": "7f40cd1b07d2fac8c0cddfb0860ba79fb27ba5b6",
+    "primarySource": "c0480291da2e51876a5089021221648b0bd5eedb",
+    "finalSource": "7db6e8395b10f58b19986c181e0e29fd8d4b2192",
+    "equivalentAdapterCommit": "28429044e0c5cba565b4186b719b92dfa315596b",
+    "originalAdapterCandidate": "4b74ebc71aa760700d978057f7fd7fa46ca3bdaf",
+    "originalAdapterAnd9c12AreAncestorsOfSource": false,
+    "product": "77b19cae62904a45647a8b7c7c30f02d5daabfb7",
+    "devBranch": "dev/eyes-followups-integration-20261017",
+    "status": "FINAL_SOURCES_MERGED_NECESSARY_CHECKS_PASS_NORMAL_PUBLICATION_AUTHORIZED",
+    "sourcePaths": 74,
+    "exactPaths": 73,
+    "intentionalCombined": [
+      "src/game/r2ToolInfo.ts"
+    ],
+    "preserved9c12PatchId": "19084b79fae7bab534ed8574b48369b7edc0aa02",
+    "newCross": {
+      "files": 4,
+      "tests": 41,
+      "status": "PASS",
+      "log": "docs/production/evidence/feedback-batch-integration-2026-10-17/checks/shop-structure-final-cross.log"
+    },
+    "typecheckAndBuild": "PASS333 modules",
+    "sourceEvidenceReused": {
+      "main": "136tests/12files,10controlled pages,5flows/8command checks",
+      "extra": "46tests/4files,5controlled pages",
+      "expanded": "1additional profile/flow",
+      "boss": "1additional profile/flow/command check",
+      "base": "4b0working-source reports;not new integrated browser test;counts not summed"
+    },
+    "runtimeSoftwareScope": [
+      "PC4simultaneous consumption areas;portrait4reachable categories;short landscape4compact entries",
+      "three shared once-per-shop routes,reversible before save,empty targets,existing canonical commands",
+      "current shop visit/stage Boss warning and music context revalidation",
+      "unhovered foil+25heat,holographic+2multiplier,polychrome×1.5 plus shared detail/tag copy"
+    ],
+    "protectedUnchanged": [
+      "1af6 sidebar and GameScene/Xin",
+      "score/haptics",
+      "domain/content/application/platform",
+      "AudioEngine",
+      "public/art/sources",
+      "137 retired assets",
+      ".github/package lock"
+    ],
+    "fullDist": {
+      "files": 389,
+      "bytes": 37471750,
+      "limit": 20000000,
+      "status": "FAIL"
+    },
+    "aestheticStatus": "PARENT_REVIEW_OPEN_NOT_PASSED;no-script-error does not prove aesthetic acceptance",
+    "notIncluded": [
+      "rainbow animated edges",
+      "catalogue re-layout",
+      "H17 large sample",
+      "AI e321 module/wiring"
+    ],
+    "open": "three unmet experience goals,P08,CI defects,Guzhu old word not reproduced,human/device/hearing/haptics/formal gates",
+    "nextBatchAfterShop": "387c Liu E and8cf AI owner receipt plus e321 module delivered;AI requires one actual select/cancel/switch check;not in this shop release"
   }
 }
