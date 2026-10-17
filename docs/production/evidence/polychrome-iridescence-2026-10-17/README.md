@@ -35,13 +35,13 @@ ShopScene 的 PC 货架、竖屏货架和已持有牌使用当前实际美术框
 
 `mountPolychromeCardIridescence(scene, host, bounds, edition)` 的 bounds 是 host 局部坐标。无需另接清理或偏好监听。`mountForgetTechniqueAttention(scene, host, bounds, toolId)` 仅接受 S05；原生库存已接 `mountForgetTechniqueAttentionElement`，它在所属 dialog close 时清理，非dialog调用者应保存返回的 disposer。
 
-`renderJokerRack` 原画之后、名称/数值之前追加：
+`renderJokerRack` 原画之后、名称/数值之前追加。若已接 `OwnedJokerScoreMotion`，host 使用其左右摆动的同一个内层牌视觉容器，bounds 按该容器实际原点换算；外层 slot/hit 不随虹彩改变。下面 `marker` 仅表示该视觉 host：
 
 ```ts
 mountPolychromeCardIridescence(this, marker,
   {x:-b.width/2,y:-b.height/2,width:b.width,height:b.height},j.edition);
 ```
 
-`editionTrim` 的 polychrome 分支应调用同一组件，跳过原多条套线和呼吸 tween，保留其原标签逻辑；foil/holographic 维持原行为。回看临时 joker 容器应读取本手 `sourceJokers` 的真实 edition 再挂，不从当前局反推。该文件仍由 `01a147f6-89d8-77a0-9ec2-d975e10fb023` 持有，本分支没有覆盖。
+`editionTrim` 的 polychrome 分支应调用同一组件，跳过原多条套线和呼吸 tween，保留其原标签逻辑；foil/holographic 维持原行为。回看临时 joker 容器应读取本手 `sourceJokers` 的真实 edition 再挂，不从当前局反推。root 最新协调：刘娥与 AI 原 owner 已释放，当前唯一 owner 为 `01a147ec-1cdc-7048-a9f6-cb648f263023`，正在接 `OwnedJokerScoreMotion`；上述 hook 已交该 owner，本分支没有覆盖 GameScene。
 
 真人审美、自然购买率/全局长玩、实际手机帧率/听感、最终合版的 GameScene 正式动态验证：NOT_RUN。P08保持in_progress，无整体完成百分比、CI/域名/部署操作。
