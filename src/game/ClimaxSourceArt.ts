@@ -1,13 +1,16 @@
 import type Phaser from 'phaser';
-import {HANDDRAWN_ART,handdrawnPath} from './HanddrawnArt';
+import {HANDDRAWN_ART} from './HanddrawnArt';
 import {assetUrl} from './theme';
+import manifest from '../../public/assets/handdrawn-climax/manifest.json';
 export const CLIMAX_SOURCE_BYTES=96*1024;
+export const CLIMAX_SOURCE_ART=manifest.assets;
 export const climaxSourceKey=(id:string)=>'climax-source/'+id;
-/** Only one already mapped same-ID detail, bounded independently of its artwork provenance. */
+/** Same-ID complete stage art: reuse a compliant detail or its dedicated small variant. */
 export function climaxSourceAsset(id:string){
- const a=HANDDRAWN_ART.find(a=>a.id===id&&a.category==='functional-card'),o=a?.outputs.find(o=>o.purpose==='detail'),path=handdrawnPath(id,'detail');
- if(!o||!path||o.bytes>CLIMAX_SOURCE_BYTES||o.width>768||o.height>768)return;
- return {id,key:climaxSourceKey(id),url:assetUrl(path),bytes:o.bytes,width:o.width,height:o.height};
+ const a=HANDDRAWN_ART.find(a=>a.id===id&&a.category==='functional-card'),detail=a?.outputs.find(o=>o.purpose==='detail'),o=CLIMAX_SOURCE_ART.find(a=>a.id===id);
+ // A later illustration replacement must never reuse a stale derivative from another revision.
+ if(!detail||!o||o.sourceSHA256!==detail.sha256||o.sourcePath!=='assets/handdrawn-p08/'+detail.path||o.bytes>CLIMAX_SOURCE_BYTES||o.width>768||o.height>768)return;
+ return {id,key:climaxSourceKey(id),url:assetUrl(o.path)+'?v='+o.sha256,bytes:o.bytes,width:o.width,height:o.height};
 }
 /** Optional saved-event fetch. Never awaited by scoring; abort/dimension/byte guards precede texture publication. */
 export async function loadClimaxSourceArt(scene:Phaser.Scene,id:string,signal:AbortSignal,current:()=>boolean):Promise<boolean>{
