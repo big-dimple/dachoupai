@@ -35,6 +35,7 @@ import {unusedHeroAbility,heroPlayReminders,showHeroPlayReminder} from './HeroPl
 import {usesErxiangHandoff} from '../domain/r2ErxiangHandoff';
 import {erxiangChoice,savedErxiangHandoff} from './ErxiangHandoffCopy';
 import {HeroTargetAttachment} from './HeroTargetAttachment';
+import {savedHeroAttachment} from './HeroAttachmentFacts';
 import {drawStageTableArt,playedCaptionBox} from './StageTableArt';
 import {paperSceneStart} from './PaperFlow';
 import {usesTouyeWager,usesTouyeNewCore,type TouyeBet,type TouyeTarget} from '../domain/r2TouyeWager';
@@ -372,10 +373,11 @@ export class GameScene extends Phaser.Scene {
     },()=>this.handLayoutWindow);
     this.targetAttachment=new HeroTargetAttachment(this,{
       root:()=>this.view?.root,
-      target:id=>{const view=this.settledCards.get(id)??this.cardViews.find(v=>v.card.id===id);return view?{container:view.container,width:Number(view.container.getData('width')),height:Number(view.container.getData('height'))}:undefined;},
+      target:id=>{const view=this.settledCards.get(id)??this.cardViews.find(v=>v.card.id===id);return view?{container:view.container,width:Number(view.container.getData('width')),height:Number(view.container.getData('height')),labelWidth:this.view.layout.cards[this.cardViews.indexOf(view)]?.hit.width}:undefined;},
       source:()=>{const source=this.heroActionButton?.active&&this.heroActionButton.visible?this.heroActionButton:this.roleAvatar;if(!source?.active||!source.visible)return;const b=source.getBounds(),viewport=cssViewport(this);return b.x+b.width+28<=viewport.width?{x:b.x+b.width+16,y:b.y+b.height/2}:{x:b.x+b.width/2,y:Math.max(16,b.y-16)};},
       motion:()=>this.reducedMotion?'reduced':'full',
-      blocked:()=>!this.scene.isActive()||!!document.querySelector('dialog[open]')||!this.ready&&!this.presentation,
+      blocked:()=>!this.scene.isActive()||!!document.querySelector('dialog[open]')||!this.ready&&!this.presentation&&!this.refillPresentation,
+      labelExclusions:()=>[this.heroActionButton,this.inventoryButton,this.playButton,this.discardButton,this.rankButton,this.suitButton,this.aiButton].flatMap(o=>o?.active&&o.visible?[o.getBounds()]:[]),
     });
     const carried=carriedToolAtEntry(controller.state,data?.carriedTool)?data?.carriedTool:undefined;
     let enteredStage=false;
@@ -1024,9 +1026,27 @@ export class GameScene extends Phaser.Scene {
   }
   private syncHeroTargetAttachment():void {
     if(this.presentation||this.playing)return;
+    const key=(ids:readonly string[])=>JSON.stringify([this.run.runId,this.run.stage?.index,[...this.selectedIds].sort(),[...ids].sort()]);
+    if(this.pendingRefill){
+      const pending=this.pendingRefill,ids=[...this.selectedIds].filter(id=>pending.candidateIds.includes(id));
+      this.targetAttachment?.preview(!this.refillHidden&&ids.length===pending.required?{key:key(ids),targetId:ids[0],targetIds:ids,kind:'candidate',label:'待留',resolvedLabel:'已留',releaseReason:'laohuan.refill'}:undefined);return;
+    }
     if(this.assistProfile){
       const assist=validAssistDraft(this.assistInput(),r2AssistAvailability(this.run).available,this.assistIds),ids=assist?.assistIds;
       this.targetAttachment?.preview(ids?.length?{key:JSON.stringify([this.run.runId,this.run.stage?.index,[...this.selectedIds].sort(),[...ids].sort()]),targetId:ids[0],targetIds:ids,kind:'assist',label:'助',resolvedLabel:'已助',releaseReason:'amo.assist.'}:undefined);return;
+    }
+    if(usesTouyeWager(this.run)){
+      const pending=touyeChoice(this.run).pending,ids=pending?.refill?.refilledIds.filter(id=>this.run.handOrder.includes(id));
+      this.targetAttachment?.preview(ids?.length?{key:pending!.discardCommandId,targetId:ids[0],targetIds:ids,kind:'wager',label:'新·待判',resolvedLabel:'已参与',releaseReason:'touye.'}:undefined);return;
+    }
+    const preview=this.selectionPreview(),main=preview?.activeScoringIds.length?preview.activeScoringIds:preview?.playedIds??[];
+    if(usesAzaoCharge(this.run)){
+      const chosen=this.azaoRelease&&azaoChoice(this.run,preview?.type).available;
+      this.targetAttachment?.preview(chosen&&main.length?{key:key(main),targetId:main[0],targetIds:main,kind:'group',label:'本手待放',resolvedLabel:'已释放',releaseReason:'azao.multiply-multiplier'}:undefined);return;
+    }
+    if(usesXiemuBurn(this.run)){
+      const chosen=xiemuChoice(this.run,preview?.type,this.xiemuBurn).choices.some(c=>c.cost===this.xiemuBurn&&c.available);
+      this.targetAttachment?.preview(chosen&&main.length?{key:key(main)+'/'+this.xiemuBurn,targetId:main[0],targetIds:main,kind:'group',label:'待付'+this.xiemuBurn,resolvedLabel:'已付'+this.xiemuBurn,releaseReason:'xiemu.multiply-multiplier'}:undefined);return;
     }
     const target=usesErxiangHandoff(this.run)?erxiangChoice(this.run,this.selectionPreview(),this.erxiangTargetId).selected?.card.id:undefined;
     this.targetAttachment?.preview(target?{key:JSON.stringify([this.run.runId,this.run.stage?.index,[...this.selectedIds].sort()]),targetId:target}:undefined);
@@ -1737,7 +1757,10 @@ export class GameScene extends Phaser.Scene {
     const eventId=receipt.commandId+'/laohuan-refill';if(this.shownPayoffs.has(eventId))return;
     const cards=ids.map(id=>this.run.deckInstances.find(c=>c.id===id)).filter((c):c is PlayingCard=>!!c),names=cards.map(c=>rankLabel(c.rank)+SUIT_SYMBOL[c.suit]).join(' ');
     const key:JokerKeyHighlight={eventId,kind:'payoff',heroId:'laohuan',cause:heroSkillName('laohuan')+'实际留牌',landing:'留'+cards.length+'张 · 已保存',fact:{eventId,sourceInstanceId:this.run.runId+'/character',definitionId:'',title:characterForRun(this.run).name+' · '+characterForRun(this.run).passiveName+' · 实际留牌',effect:'实际留下 '+names,condition:'换牌与留牌操作成功保存',destination:'当前手牌 · 不增加计分',next:'继续自主选牌'}};
-    this.effects.clear();this.effects.enqueue(async context=>{this.refillPresentation=context;if(refill)this.playSavedRefillPortrait(refill.before,refill.result,context);try {const l=this.view.layout,stage=mountHeroClimax(this,this.view.root,{x:0,y:0,...cssViewport(this)},key,{skillName:characterForRun(this.run).passiveName,label:'实际留牌',before:cards.length+'张',after:cards.length+'张',note:'多看'+looked+'张 · '+names+'；不增加计分'},this.reducedMotion,{eyes:localHeroEyeSlot(l,toolInventoryPlayedArea(l),this.jokerViews.size)});if(!stage){
+    this.effects.clear();this.effects.enqueue(async context=>{this.refillPresentation=context;
+      const retained=ids.filter(id=>this.run.handOrder.includes(id)&&(!refill||!refill.before.handOrder.includes(id)));
+      if(retained.length)this.targetAttachment?.resolveSaved({key:eventId,targetId:retained[0],targetIds:retained,kind:'candidate',label:'已留',resolvedLabel:'已留',releaseReason:'laohuan.refill'},eventId,context);
+      if(refill)this.playSavedRefillPortrait(refill.before,refill.result,context);try {const l=this.view.layout,stage=mountHeroClimax(this,this.view.root,{x:0,y:0,...cssViewport(this)},key,{skillName:characterForRun(this.run).passiveName,label:'实际留牌',before:cards.length+'张',after:cards.length+'张',note:'多看'+looked+'张 · '+names+'；不增加计分'},this.reducedMotion,{eyes:localHeroEyeSlot(l,toolInventoryPlayedArea(l),this.jokerViews.size)});if(!stage){
       // No free eye slot: the saved retention remains in the existing HUD.
       // A local avatar response cannot cover rules or turn retention into score.
       if(context.signal.aborted)return;this.shownPayoffs.add(eventId);this.audio.sourceCue('character');
@@ -2164,10 +2187,8 @@ export class GameScene extends Phaser.Scene {
     const base=score.events[0],baseProduct=Rational.fromJSON(base.after.H).multiply(Rational.fromJSON(base.after.M)).floor().toString();
     const baseCue=!replay&&BigInt(baseProduct)>0n&&scoreFireLevel(originHeat,baseProduct,this.stage.targetHeat)>0;
     this.effects.enqueue(async context=>{
-      const handoff=replay?undefined:score.events.find(e=>e.reasonKey==='erxiang.handoff'&&e.targetCardId===score.erxiangHandoff?.targetId);
-      const assisted=replay?undefined:score.events.find(e=>e.sourceType==='character'&&e.reasonKey.startsWith('amo.assist.')&&score.sets.assistConsumedIds?.length);
-      if(assisted)this.targetAttachment?.commit(assisted.eventId,context);
-      else if(handoff?.targetCardId)this.targetAttachment?.consume(handoff.targetCardId,handoff.eventId,context);else this.targetAttachment?.clear();
+      const attachment=replay?undefined:savedHeroAttachment(score,this.run.characterId);
+      if(attachment){if(attachment.targetIds)this.targetAttachment?.retainTargets(attachment.targetIds);this.targetAttachment?.commit(attachment.event.eventId,context);}else this.targetAttachment?.clear();
       this.scoreHaptic?.scope.cancel();this.scoreHaptic=replay?undefined:{generation:context.generation,scope:Haptics.shared.createScope(context.signal)};
       if(!replay)this.audio.playHand();
       await Promise.all([...(beforeHands!==undefined&&!replay?[this.pulseResource('play',beforeHands,context,beforeHands-1)]:[]),...landing.map(async({view,box},i)=>{

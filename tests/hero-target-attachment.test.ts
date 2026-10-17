@@ -55,4 +55,15 @@ describe('hero target intent ownership',()=>{
     state.preview({key:'assist-b',targetId:'c',targetIds:['c','d','e'],kind:'assist',releaseReason:'amo.assist.'});old.abort();expect(state.value?.targetIds).toEqual(['c','d','e']);
     expect(state.release({eventId:'old',reasonKey:'amo.assist.pair'},context())).toBe(false);state.preview(undefined);expect(state.value).toBeUndefined();
   });
+  it('the whole-hand bracket changes payment wording only after saving and waits for the exact saved source event',()=>{
+    const state=new HeroTargetAttachmentState();state.preview({key:'burn20',targetId:'main/a',targetIds:['main/a','main/b'],kind:'group',label:'待付20',releaseReason:'xiemu.multiply-multiplier'});
+    expect(state.value?.label).toBe('待付20');state.consume('main/a','saved/payment',context());expect(state.value?.label).toBe('已付20·待算');
+    expect(state.release({eventId:'saved/payment',reasonKey:'ordinary.points'},context())).toBe(false);
+    expect(state.release({eventId:'saved/payment',reasonKey:'xiemu.multiply-multiplier'},context())).toBe(true);
+  });
+  it('a saved core can narrow new-card ownership while retaining one abort-bound generation',()=>{
+    const state=new HeroTargetAttachmentState(),abort=new AbortController();state.preview({key:'wager',targetId:'new/a',targetIds:['new/a','new/b'],kind:'wager',releaseReason:'touye.'});const generation=state.value?.generation;
+    state.retainTargets(['new/b']);state.consume('new/b','saved/win',{generation:1,signal:abort.signal});expect(state.value).toMatchObject({generation,targetId:'new/b',targetIds:['new/b']});
+    abort.abort();expect(state.value).toBeUndefined();
+  });
 });

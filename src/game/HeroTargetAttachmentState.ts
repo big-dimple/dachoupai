@@ -3,11 +3,11 @@ import type {EffectContext} from '../core/EffectQueue';
 export type AttachmentMotion='full'|'reduced'|'off';
 export interface AttachmentDraft {
   key:string;targetId:string;targetIds?:readonly string[];
-  kind?:'card'|'assist'|'group'|'condition'|'candidate';
+  kind?:'card'|'assist'|'group'|'condition'|'candidate'|'wager';
   label?:string;resolvedLabel?:string;releaseReason?:string;
 }
 export interface AttachmentState extends AttachmentDraft {
-  generation:number;phase:'travel'|'idle'|'committed'|'release';elapsed:number;clock:number;eventId?:string;
+  generation:number;phase:'travel'|'idle'|'committed'|'release';elapsed:number;clock:number;eventId?:string;failed?:boolean;
 }
 export const ATTACHMENT_TRAVEL_MS=190,ATTACHMENT_RELEASE_MS=220;
 
@@ -32,6 +32,7 @@ export class HeroTargetAttachmentState {
     if(!state||state.targetId!==targetId||context.signal.aborted)return false;
     if(state.eventId)return state.eventId===eventId;
     state.phase='committed';state.elapsed=0;state.eventId=eventId;
+    if(state.kind==='group')state.label=state.releaseReason==='xiemu.multiply-multiplier'?(state.label??'待付').replace('待付','已付')+'·待算':'待兑现';
     const generation=state.generation,cancel=()=>{if(this.current?.generation===generation)this.clear();};
     context.signal.addEventListener('abort',cancel,{once:true});
     this.unbind=()=>context.signal.removeEventListener('abort',cancel);
@@ -44,7 +45,13 @@ export class HeroTargetAttachmentState {
     const single=!state?.kind||state.kind==='card';
     if(context.signal.aborted||!state||state.phase!=='committed'||state.eventId!==event.eventId||single&&state.targetId!==event.targetCardId||!matches)return false;
     if(this.motion!=='full'){this.clear();return true;}
+    state.failed=event.reasonKey?.startsWith('touye.lost.')===true;if(state.failed)state.resolvedLabel='未成';
     state.phase='release';state.elapsed=0;return true;
+  }
+
+  retainTargets(ids:readonly string[]):void {
+    if(!this.current)return;if(!ids.length){this.clear();return;}
+    this.current.targetId=ids[0];this.current.targetIds=[...ids];
   }
 
   setMotion(motion:AttachmentMotion):void {
