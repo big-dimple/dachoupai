@@ -2,6 +2,7 @@ import type Phaser from 'phaser';
 import type {Box} from './layout';
 import {HandSelectionGesture,type HandSelectionHitBox,type HandSelectionInterruptReason,type HandSelectionUpdate} from './HandSelectionGesture';
 import {modalBlocksCanvas} from './DetailDialog';
+import {Haptics,type HapticScope} from '../haptics/Haptics';
 
 interface HandInputOptions {
   ready:()=>boolean;
@@ -27,6 +28,8 @@ export class HandSelectionInput {
   private bounds?:Box;
   private allowVertical=false;
   private destroyed=false;
+  private haptic?:HapticScope;
+  private touch=false;
   private readonly canvasResize?:ResizeObserver;
   constructor(private readonly scene:Phaser.Scene,private readonly options:HandInputOptions){
     this.surface.className='hand-input-surface';this.surface.setAttribute('aria-hidden','true');
@@ -59,11 +62,16 @@ export class HandSelectionInput {
     return {x:(event.clientX-rect.left)*this.scene.scale.width*zoom/rect.width,y:(event.clientY-rect.top)*this.scene.scale.height*zoom/rect.height};
   }
   private cardAt(x:number,y:number):HandSelectionHitBox|undefined {return this.options.cards().find(b=>b.visible!==false&&x>=b.x&&x<=b.x+b.width&&y>=b.y&&y<=b.y+b.height);}
-  private apply(update:HandSelectionUpdate|undefined):void {if(update&&!this.destroyed)this.options.update(update);}
+  private apply(update:HandSelectionUpdate|undefined):void {
+    if(!update||this.destroyed)return;
+    const before=new Set(this.options.selected());this.options.update(update);const after=this.options.selected();
+    if(update.phase!=='cancelled'&&(before.size!==after.size||[...before].some(id=>!after.has(id))))this.haptic?.selectionChanged(this.touch);
+  }
   private readonly down=(event:PointerEvent)=>{
     if(this.contacts.size!==1||!event.isPrimary){this.options.cancelCanvas();return;}
     if(event.button!==0||this.active||!this.options.ready()||modalBlocksCanvas(event.clientX,event.clientY))return;
     const {x,y}=this.coordinates(event),card=this.cardAt(x,y);if(!card)return;
+    this.haptic?.cancel();this.haptic=Haptics.shared.createScope();this.touch=event.pointerType==='touch';
     this.options.cancelCanvas();
     this.options.pointerCard?.(card.id);
     this.owner=event.pointerId;this.pointers.add(event.pointerId);this.savedInput=this.scene.input.enabled;this.scene.input.enabled=false;
@@ -135,6 +143,7 @@ export class HandSelectionInput {
   private readonly visibility=()=>{if(document.hidden)this.stopCapture('hidden');};
   private readonly focus=()=>{if(this.active&&document.querySelector('dialog[open]'))this.cancel('modal');};
   cancel(reason:HandSelectionInterruptReason|'escape'='reset'):void {
+    this.haptic?.cancel();
     clearTimeout(this.timer);this.options.cancelCanvas();this.options.hover(undefined);
     this.apply(reason==='escape'?this.gesture.cancel('escape'):this.gesture.interrupt(reason));
   }

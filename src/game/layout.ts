@@ -1,4 +1,5 @@
 import {handActionControls} from './HandActionControls';
+import {continuousScoreAreas} from './ScoreTableLayout';
 export interface Box {x:number;y:number;width:number;height:number}
 export interface Insets {top:number;right:number;bottom:number;left:number}
 export type LayoutMode='portrait'|'landscape'|'desktop';
@@ -156,7 +157,8 @@ export function layout(viewport:{width:number;height:number},safe:Insets,request
   // reuse the former sorting area; short tables use the sidebar skill label.
   const heroAction=l.mode==='landscape'?box(l.hud.x+76,l.hud.y+64,l.hud.width-88,44):box(l.hand.x,l.hand.y-48,132,44);
   const playedArea=desktop?{...l.playedArea,height:Math.max(0,Math.min(l.playedArea.height,heroAction.y-4-l.playedArea.y))}:l.playedArea;
-  return {...l,...footer,toolsInHud:false,heroAction,playedArea};
+  const table=continuousScoreAreas({...l,playedArea});
+  return {...l,...footer,toolsInHud:false,heroAction,scoreBoard:table.scoreBoard,playedArea:table.playedArea,scoreEyes:table.eyes};
 }
 export type TableLayout=ReturnType<typeof layout>;
 

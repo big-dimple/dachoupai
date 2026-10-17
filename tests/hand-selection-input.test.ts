@@ -2,6 +2,7 @@ import type Phaser from 'phaser';
 import {afterEach,beforeEach,describe,expect,it,vi} from 'vitest';
 import {HandSelectionInput} from '../src/game/HandSelectionInput';
 import type {HandSelectionUpdate} from '../src/game/HandSelectionGesture';
+import {Haptics} from '../src/haptics/Haptics';
 
 const modal=vi.hoisted(()=>({open:false}));
 vi.mock('../src/game/DetailDialog',()=>({modalBlocksCanvas:()=>modal.open}));
@@ -28,7 +29,7 @@ beforeEach(()=>{
   doc=Object.assign(new EventTarget(),{hidden:false,body:{append:()=>{}},createElement:()=>new Surface(),querySelector:()=>modal.open?{}:null});
   vi.stubGlobal('window',win);vi.stubGlobal('document',doc);
 });
-afterEach(()=>{inputs.splice(0).forEach(input=>input.destroy());vi.clearAllTimers();vi.useRealTimers();vi.unstubAllGlobals();});
+afterEach(()=>{inputs.splice(0).forEach(input=>input.destroy());Haptics.shared.dispose();vi.restoreAllMocks();vi.clearAllTimers();vi.useRealTimers();vi.unstubAllGlobals();});
 
 function setup(initial=['h'],twoRows=false){
   const scene={game:{canvas:new Surface()},scale:{width:400,height:300,zoom:1},input:{enabled:true}},updates:HandSelectionUpdate[]=[];
@@ -47,6 +48,11 @@ function setup(initial=['h'],twoRows=false){
 }
 
 describe('hand native contact lifecycle',()=>{
+  it('touch selection feedback follows an actual changed selection, with no press or cancelled hold feedback',()=>{
+    const scope={selectionChanged:vi.fn(),pickup:vi.fn(),saved:vi.fn(),multiplierArrived:vi.fn(),settlementArrived:vi.fn(),cancel:vi.fn()};vi.spyOn(Haptics.shared,'createScope').mockReturnValue(scope);
+    const f=setup([]);f.send('pointerdown',{pointerType:'touch'});expect(scope.selectionChanged).not.toHaveBeenCalled();f.send('pointerup',{pointerType:'touch'});expect(f.selection()).toEqual(['b']);expect(scope.selectionChanged).toHaveBeenCalledExactlyOnceWith(true);
+    scope.selectionChanged.mockClear();f.send('pointerdown',{pointerType:'touch',pointerId:2});vi.advanceTimersByTime(356);expect(scope.selectionChanged).not.toHaveBeenCalled();expect(scope.cancel).toHaveBeenCalled();
+  });
   it('resynchronizes the native hit surface after the canvas finishes a CSS resize without changing selection',()=>{
     let resized!:ResizeObserverCallback;
     const disconnect=vi.fn(),observe=vi.fn();

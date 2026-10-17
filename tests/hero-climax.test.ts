@@ -21,61 +21,29 @@ it('licensed transition BGM is named and remains gesture-gated before any media 
 });
 
 import {mountHeroClimax} from '../src/game/HeroClimax';
-// Phaser emits DESTROY before clearing `active`/`scene`; mirror that order to catch recursive destruction.
-function stageFixture(detail=true,eyes=true){
- const tweens:any[]=[];
- const object=(type='Object',text=''):any=>{const data=new Map(),events=new Map();const o:any={type,text,width:Math.max(10,text.length*20),height:24,displayOriginX:0,displayOriginY:0,scaleX:1,scaleY:1,alpha:1,active:true,list:[],scene:{},style:{fontSize:'44px'},visible:true,destroyCount:0};
-  for(const name of ['setName','setAlpha','setX','setY','setAngle','setVisible'] as const)o[name]=(v:any)=>{o[{setName:'name',setAlpha:'alpha',setX:'x',setY:'y',setAngle:'angle',setVisible:'visible'}[name]!]=v;return o;};
-  for(const name of ['setOrigin','setCrop','setStrokeStyle','setDisplaySize','fillStyle','fillPoints','clear','lineStyle','strokeCircle','lineBetween','fillEllipse'])o[name]=()=>o;
-  o.lineBetween=vi.fn(()=>o);o.getBounds=()=>({x:o.x,y:o.y,width:o.width*o.scaleX,height:o.height*o.scaleY});Object.defineProperty(o,'displayHeight',{get:()=>o.height*o.scaleY});Object.defineProperty(o,'displayWidth',{get:()=>o.width*o.scaleX});o.setFontSize=()=>o;o.setWordWrapWidth=()=>o;
-  o.setText=(v:string)=>{o.text=v;o.width=v.length*20;return o;};o.setData=(k:string,v:any)=>{data.set(k,v);return o;};o.getData=(k:string)=>data.get(k);o.setPosition=(x:number,y:number)=>{o.x=x;o.y=y;return o;};o.setScale=(x:number,y=x)=>{o.scaleX=x;o.scaleY=y;return o;};o.add=(v:any)=>{o.list.push(...(Array.isArray(v)?v:[v]));return o;};o.addAt=(v:any,i:number)=>{o.list.splice(i,0,v);return o;};o.once=(e:string,f:()=>void)=>{events.set(e,f);return o;};o.destroy=()=>{o.destroyCount++;const f=events.get('destroy');events.delete('destroy');f?.();o.active=false;o.scene=undefined;};return o;
- };
- const listeners=new Set();const scene:any={events:{on:(_:string,f:any)=>listeners.add(f),off:(_:string,f:any)=>listeners.delete(f)},scale:{zoom:1},textures:{exists:(key:string)=>(eyes||!key.startsWith('hero-eyes-'))&&(detail||!key.startsWith('climax-source/')),get:(key:string)=>({getSourceImage:()=>key.startsWith('hero-eyes-')?{width:768,height:288}:{width:615,height:768}})},tweens:{add:(config:any)=>{const t={config,remove:vi.fn()};tweens.push(t);return t;}},add:{container:()=>object('Container'),graphics:()=>object('Graphics'),rectangle:()=>object('Rectangle'),tileSprite:()=>object('TileSprite'),image:()=>object('Image'),text:(_:number,__:number,s:string)=>object('Text',s)}};
- const p=play('multiply'),key=keyHighlight(p.s,p.t)!,stage=mountHeroClimax(scene,object('Container'),{x:0,y:0,width:390,height:740},key,heroClimaxValue(p.s,p.t,key)!,false)!;
- return {stage,tweens,listeners};
+// Phaser emits DESTROY before clearing active; callbacks must remain idempotent.
+function stageFixture(reduced=false,eyes=true){
+ const tweens:any[]=[],objects:any[]=[];
+ const object=(type='Container'):any=>{const data=new Map(),events=new Map(),o:any={type,active:true,scaleX:1,scaleY:1,x:0,y:0,alpha:1,list:[],destroyCount:0};
+  for(const [method,key] of [['setName','name'],['setAlpha','alpha']])o[method]=(v:any)=>{o[key]=v;return o;};
+  o.setOrigin=()=>o;o.setCrop=(...v:any[])=>{o.crop=v;return o;};o.setScale=(v:number)=>{o.scaleX=o.scaleY=v;return o;};o.setData=(k:string,v:any)=>{data.set(k,v);return o;};o.getData=(k:string)=>data.get(k);o.add=(v:any)=>{o.list.push(v);return o;};o.once=(e:string,f:any)=>{events.set(e,f);return o;};o.destroy=()=>{o.destroyCount++;const f=events.get('destroy');events.delete('destroy');f?.();o.active=false;};objects.push(o);return o;};
+ const scene:any={scale:{zoom:1},textures:{exists:(key:string)=>eyes||!key.startsWith('hero-eyes-'),get:(key:string)=>({getSourceImage:()=>key.startsWith('hero-eyes-')?{width:768,height:288}:{width:600,height:600}})},tweens:{add:(config:any)=>{const t={config,remove:vi.fn()};tweens.push(t);return t;}},add:{container:()=>object(),image:(x:number,y:number)=>Object.assign(object('Image'),{x,y})}};
+ const p=play('multiply'),key=keyHighlight(p.s,p.t)!,root=object(),stage=mountHeroClimax(scene,root,{x:0,y:0,width:1366,height:768},key,heroClimaxValue(p.s,p.t,key)!,reduced,{eyes:{x:12,y:180,width:208,height:78}})!;
+ return {stage,tweens,objects,scene,key,value:heroClimaxValue(p.s,p.t,key)!};
 }
-it('external Phaser destruction clears owned tweens and release wait without recursively destroying the group',async()=>{
+it('the key view contains only the full eye strip; score and table context remain outside its ownership',()=>{
+ const {stage,objects}=stageFixture(),group=stage.group as any,eye=group.list[0];expect(stage.inline).toBe(true);expect(objects.filter(o=>o.type==='Image')).toHaveLength(1);expect(group.list).toHaveLength(1);expect(group.getData('opaqueBackdrop')).toBeUndefined();expect(eye.getData('sampledCrop')).toEqual({x:0,y:0,width:768,height:288});expect(eye.getData('camera')).toBe('dedicated-eye-strip');expect(eye.scaleX).toBe(eye.scaleY);expect(group.getData('bounds')).toEqual({x:12,y:180,width:208,height:78});stage.dispose();
+});
+it('strike changes only local opacity and never moves or stretches the eye texture',()=>{
+ const {stage,tweens}=stageFixture(),eye=(stage.group as any).list[0],pose=[eye.x,eye.y,eye.scaleX,eye.scaleY];stage.strike();stage.strike();expect(tweens).toHaveLength(1);expect(tweens[0].remove).toHaveBeenCalledOnce();expect([eye.x,eye.y,eye.scaleX,eye.scaleY]).toEqual(pose);stage.reduce();expect([eye.x,eye.y,eye.scaleX,eye.scaleY]).toEqual(pose);stage.dispose();
+});
+it('external destruction cancels its opacity tween and resolves an outstanding release exactly once',async()=>{
  const {stage,tweens}=stageFixture(),done=stage.release();stage.group.destroy();await done;expect((stage.group as any).destroyCount).toBe(1);expect(tweens.every(t=>t.remove.mock.calls.length===1)).toBe(true);stage.dispose();expect((stage.group as any).destroyCount).toBe(1);
 });
-it('uses the entire dedicated eye original without portrait cropping, stretching or camera movement',()=>{
- const {stage}=stageFixture(),board=(stage.group as any).list.find((o:any)=>o.name==='hero/climax-board'),eye=board.list.find((o:any)=>o.name==='hero/focus-anchor').list.find((o:any)=>o.name==='hero/climax-eyes');
- expect(eye.getData('camera')).toBe('dedicated-eye-strip');expect(eye.getData('sampledCrop')).toEqual({x:0,y:0,width:768,height:288});expect(eye.getData('assetId')).toMatch(/\.eyes$/);expect(eye.scaleX).toBe(eye.scaleY);expect(eye.scaleX).toBeLessThanOrEqual(1);
- const pose=[eye.x,eye.y,eye.scaleX,eye.scaleY];stage.strike();expect([eye.x,eye.y,eye.scaleX,eye.scaleY]).toEqual(pose);stage.reduce();expect([eye.x,eye.y,eye.scaleX,eye.scaleY]).toEqual(pose);stage.dispose();
- const fallback=stageFixture(true,false),old=(fallback.stage.group as any).list.find((o:any)=>o.name==='hero/climax-board').list.find((o:any)=>o.name==='hero/focus-anchor').list.find((o:any)=>o.name==='hero/climax-eyes');expect(old.getData('camera')).toBe('stable-eye-strip');fallback.stage.dispose();
+it('reduced motion is a static local eye view and can settle a release already in progress',async()=>{
+ const initial=stageFixture(true);expect(initial.tweens).toHaveLength(0);initial.stage.strike();await initial.stage.release();expect(initial.tweens).toHaveLength(0);initial.stage.dispose();
+ const {stage}=stageFixture(),done=stage.release();stage.reduce();await done;expect(stage.group.getData('phase')).toBe('still');stage.dispose();
 });
-it('prepares the numeric peak and routes only the flight outside the measured label row',()=>{
- const {stage,tweens}=stageFixture(),board=(stage.group as any).list.find((o:any)=>o.name==='hero/climax-board'),texts=board.list.find((o:any)=>o.name==='hero/climax-readouts').list,route=board.list.find((o:any)=>o.name==='hero/shot-skill').list.find((o:any)=>o.name==='hero/contribution-route');
- expect(texts.find((o:any)=>o.name==='hero/climax-value').getData('rasterPeakScale')).toBe(1.54);expect(texts.find((o:any)=>o.name==='hero/climax-local-effect').getData('rasterPeakScale')).toBe(1.12);
- for(const [a,b] of route.getData('segments')){expect([a.x,a.y,b.x,b.y].every(Number.isFinite)).toBe(true);for(const guard of route.getData('guards')){const inside=(p:any)=>p.x>guard.x&&p.x<guard.x+guard.width&&p.y>guard.y&&p.y<guard.y+guard.height;expect(inside(a)).toBe(false);expect(inside(b)).toBe(false);}}
- const charge=tweens[0].config;charge.targets.t=80;charge.onUpdate();expect(route.lineBetween.mock.calls.length).toBeGreaterThan(0);stage.strike();const calls=route.lineBetween.mock.calls.length,pulse=tweens[1].config;pulse.targets.t=292;pulse.onUpdate();expect(route.lineBetween.mock.calls.length).toBe(calls);stage.dispose();
-});
-it('switching to reduced motion during release settles its wait and leaves disposal idempotent',async()=>{
- const {stage}=stageFixture(),done=stage.release();stage.reduce();await done;stage.dispose();stage.dispose();expect((stage.group as any).destroyCount).toBe(1);
-});
-
-it('charge and arrival own their clocks; repeated strike does not replay either one',()=>{
- const {stage,tweens}=stageFixture();stage.strike();const count=tweens.length;expect(count).toBe(2);stage.strike();expect(tweens).toHaveLength(count);stage.reduce();expect(tweens.every(t=>t.remove.mock.calls.length===1)).toBe(true);stage.dispose();
-});
-it('charge already contains one saved numeric readout and a full-viewport backdrop, with stable placement when reducing',()=>{
- const {stage}=stageFixture(),group=stage.group as any,board=group.list.find((o:any)=>o.name==='hero/climax-board');
- expect(group.getData('shot')).toBe('eyes');expect(group.getData('opaqueBackdrop')).toEqual({x:0,y:0,width:390,height:740});
- const readouts=board.list.find((o:any)=>o.name==='hero/climax-readouts');expect(readouts.visible).toBe(true);expect(readouts.list.filter((o:any)=>o.name==='hero/climax-value')).toHaveLength(1);
- const y=board.y;stage.strike();expect(board.y).toBe(y);stage.reduce();expect(board.y).toBe(y);stage.dispose();
-});
-
-it('missing optional detail keeps the same-source thumbnail still during the existing impact',()=>{const {stage,tweens}=stageFixture(false),board=(stage.group as any).list.find((o:any)=>o.type==='Container'),card=board.list.flatMap((o:any)=>o.list??[]).find((o:any)=>o.name==='hero/climax-source-card');expect(card.getData('detail')).toBe(false);stage.strike();expect(card.scaleX).toBe(1);expect(tweens.some(t=>t.config.targets===card)).toBe(false);stage.dispose();});
-
-it('visible source route and before/after numeric landing follow the tween clock even at fast playback',()=>{
- let now=0;const clock=vi.spyOn(performance,'now').mockImplementation(()=>now),{stage,listeners,tweens}=stageFixture();
- const board=(stage.group as any).list.find((o:any)=>o.name==='hero/climax-board'),layers=board.list.filter((o:any)=>o.name?.startsWith('hero/shot-'));
- const caption=board.list.find((o:any)=>o.name==='hero/climax-note');
- expect(caption.text).toBeTruthy();
- const tick=()=>{for(const f of listeners) (f as ()=>void)();expect(layers.filter((o:any)=>o.visible)).toHaveLength(1);expect(caption.visible).toBe(true);expect(caption.scaleX).toBe(1);expect(layers.flatMap((o:any)=>o.list).filter((o:any)=>o.name==='hero/climax-note')).toHaveLength(0);};
- const readout=board.list.find((o:any)=>o.name==='hero/climax-readouts').list.find((o:any)=>o.name==='hero/climax-value');const before=readout.text;
- expect(stage.group.getData('shot')).toBe('eyes');const charge=tweens[0].config;charge.targets.t=80;charge.onUpdate();tick();expect(readout.text).toBe(before);expect(stage.group.getData('shot')).toBe('skill');
- charge.targets.t=160;charge.onUpdate();expect(readout.text).toBe(before);now=70;stage.strike();tick();expect(readout.text).not.toBe(before);expect(stage.group.getData('shot')).toBe('skill');
- const tween=tweens[1].config;const advance=(age:number)=>{tween.targets.t=age;tween.onUpdate();tick();};
- expect(layers.find((o:any)=>o.name==='hero/shot-skill').list.find((o:any)=>o.name==='hero/contribution-route').lineBetween.mock.calls.length).toBeGreaterThan(0);
- advance(292);expect(readout.scaleX).toBeCloseTo(1.54);advance(500);expect(stage.group.getData('shot')).toBe('landing');
- stage.reduce();tick();expect(stage.group.getData('shot')).toBe('landing');stage.dispose();expect(listeners.size).toBe(0);clock.mockRestore();
+it('an unavailable eye slot or texture cannot publish a fallback full-screen panel',()=>{
+ const {scene,key,value,stage}=stageFixture();stage.dispose();const root:any={add:vi.fn()};expect(mountHeroClimax(scene,root,{x:0,y:0,width:390,height:740},key,value,false,{})).toBeUndefined();scene.textures.exists=()=>false;expect(mountHeroClimax(scene,root,{x:0,y:0,width:390,height:740},key,value,false,{eyes:{x:0,y:0,width:160,height:60}})).toBeUndefined();expect(root.add).not.toHaveBeenCalled();
 });

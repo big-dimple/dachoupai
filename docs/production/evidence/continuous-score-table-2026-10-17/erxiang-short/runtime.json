@@ -1,0 +1,896 @@
+{
+  "mode": "erxiang-short",
+  "scope": "Controlled imported public hand; real native decisions, selection and command commit, canonical state comparison. Vibration API, when instrumented, only reports software requests; not natural acquisition, hearing or physical touch acceptance.",
+  "browser": "143.0.3650.80",
+  "viewport": {
+    "width": 390,
+    "height": 740
+  },
+  "errors": [],
+  "events": {
+    "controlled/continuous-four-sixes/hand/controlled/continuous-four-sixes/command/4/event/0": {
+      "id": "controlled/continuous-four-sixes/hand/controlled/continuous-four-sixes/command/4/event/0",
+      "source": "four-kind",
+      "operation": "base",
+      "before": {
+        "H": {
+          "n": "0",
+          "d": "1"
+        },
+        "M": {
+          "n": "0",
+          "d": "1"
+        }
+      },
+      "after": {
+        "H": {
+          "n": "320",
+          "d": "1"
+        },
+        "M": {
+          "n": "7",
+          "d": "1"
+        }
+      },
+      "phases": [
+        "base-impact"
+      ],
+      "phaseTimes": {
+        "base-impact": 5517.70000000298
+      },
+      "peak": 1.3338369988299492,
+      "cardTravel": 0,
+      "first": 5517.60000000149,
+      "last": 6022.20000000298
+    },
+    "controlled/continuous-four-sixes/hand/controlled/continuous-four-sixes/command/4/event/2": {
+      "id": "controlled/continuous-four-sixes/hand/controlled/continuous-four-sixes/command/4/event/2",
+      "source": "erxiang",
+      "operation": "add-multiplier",
+      "before": {
+        "H": {
+          "n": "320",
+          "d": "1"
+        },
+        "M": {
+          "n": "7",
+          "d": "1"
+        }
+      },
+      "after": {
+        "H": {
+          "n": "320",
+          "d": "1"
+        },
+        "M": {
+          "n": "13",
+          "d": "1"
+        }
+      },
+      "phases": [
+        "windup",
+        "impact",
+        "rest"
+      ],
+      "phaseTimes": {
+        "windup": 6040.9000000059605,
+        "impact": 6381.30000000447,
+        "rest": 6741
+      },
+      "peak": 1.4766492249009733,
+      "cardTravel": 19.731867283950635,
+      "first": 6040.9000000059605,
+      "last": 6848.60000000149
+    },
+    "controlled/continuous-four-sixes/hand/controlled/continuous-four-sixes/command/4/event/3": {
+      "id": "controlled/continuous-four-sixes/hand/controlled/continuous-four-sixes/command/4/event/3",
+      "source": "rank-6",
+      "operation": "add-heat",
+      "before": {
+        "H": {
+          "n": "320",
+          "d": "1"
+        },
+        "M": {
+          "n": "13",
+          "d": "1"
+        }
+      },
+      "after": {
+        "H": {
+          "n": "326",
+          "d": "1"
+        },
+        "M": {
+          "n": "13",
+          "d": "1"
+        }
+      },
+      "phases": [
+        "windup",
+        "impact",
+        "rest"
+      ],
+      "phaseTimes": {
+        "windup": 6867.30000000447,
+        "impact": 7100.20000000298,
+        "rest": 7332.30000000447
+      },
+      "peak": 1.2775810048537322,
+      "cardTravel": 19.968379944570415,
+      "first": 6867.30000000447,
+      "last": 7404.4000000059605
+    },
+    "controlled/continuous-four-sixes/hand/controlled/continuous-four-sixes/command/4/event/4": {
+      "id": "controlled/continuous-four-sixes/hand/controlled/continuous-four-sixes/command/4/event/4",
+      "source": "rank-6",
+      "operation": "add-heat",
+      "before": {
+        "H": {
+          "n": "326",
+          "d": "1"
+        },
+        "M": {
+          "n": "13",
+          "d": "1"
+        }
+      },
+      "after": {
+        "H": {
+          "n": "332",
+          "d": "1"
+        },
+        "M": {
+          "n": "13",
+          "d": "1"
+        }
+      },
+      "phases": [
+        "windup",
+        "impact",
+        "rest"
+      ],
+      "phaseTimes": {
+        "windup": 7422.5,
+        "impact": 7655.60000000149,
+        "rest": 7889.30000000447
+      },
+      "peak": 1.2775810048537322,
+      "cardTravel": 19.814058956916085,
+      "first": 7422.5,
+      "last": 7961.30000000447
+    },
+    "controlled/continuous-four-sixes/hand/controlled/continuous-four-sixes/command/4/event/5": {
+      "id": "controlled/continuous-four-sixes/hand/controlled/continuous-four-sixes/command/4/event/5",
+      "source": "rank-6",
+      "operation": "add-heat",
+      "before": {
+        "H": {
+          "n": "332",
+          "d": "1"
+        },
+        "M": {
+          "n": "13",
+          "d": "1"
+        }
+      },
+      "after": {
+        "H": {
+          "n": "338",
+          "d": "1"
+        },
+        "M": {
+          "n": "13",
+          "d": "1"
+        }
+      },
+      "phases": [
+        "windup",
+        "impact",
+        "rest"
+      ],
+      "phaseTimes": {
+        "windup": 7979.5,
+        "impact": 8213.70000000298,
+        "rest": 8445.70000000298
+      },
+      "peak": 1.279999825032894,
+      "cardTravel": 19.890432098765416,
+      "first": 7979.5,
+      "last": 8643
+    },
+    "controlled/continuous-four-sixes/hand/controlled/continuous-four-sixes/command/4/event/7": {
+      "id": "controlled/continuous-four-sixes/hand/controlled/continuous-four-sixes/command/4/event/7",
+      "source": "four-kind",
+      "operation": "final-score",
+      "before": {
+        "H": {
+          "n": "338",
+          "d": "1"
+        },
+        "M": {
+          "n": "13",
+          "d": "1"
+        }
+      },
+      "after": {
+        "H": {
+          "n": "338",
+          "d": "1"
+        },
+        "M": {
+          "n": "13",
+          "d": "1"
+        }
+      },
+      "phases": [
+        "award"
+      ],
+      "phaseTimes": {
+        "award": 8661
+      },
+      "peak": 1.3925755674007423,
+      "cardTravel": 0,
+      "first": 8661,
+      "last": 9360.70000000298
+    }
+  },
+  "images": [
+    {
+      "key": "hero-source",
+      "id": "controlled/continuous-four-sixes/hand/controlled/continuous-four-sixes/command/4/event/2",
+      "phase": "windup",
+      "at": 6184.80000000447,
+      "numeric": [
+        {
+          "text": "320",
+          "full": "320",
+          "bounds": {
+            "x": 38,
+            "y": 219,
+            "width": 57,
+            "height": 39
+          },
+          "scale": 1,
+          "color": "#247b93",
+          "resolution": 2,
+          "visible": true,
+          "alpha": 1,
+          "renderFlags": 15
+        },
+        {
+          "text": "7",
+          "full": "7",
+          "bounds": {
+            "x": 158,
+            "y": 215,
+            "width": 23,
+            "height": 48
+          },
+          "scale": 1,
+          "color": "#b8473a",
+          "resolution": 2,
+          "visible": true,
+          "alpha": 1,
+          "renderFlags": 15
+        },
+        {
+          "text": "2,240",
+          "full": "2,240",
+          "bounds": {
+            "x": 254,
+            "y": 217,
+            "width": 88,
+            "height": 43
+          },
+          "scale": 1,
+          "color": "#b8473a",
+          "resolution": 2,
+          "visible": true,
+          "alpha": 1,
+          "renderFlags": 15
+        }
+      ],
+      "caption": "刘娥·垂帘听政 · 倍率+6",
+      "sourceBadge": "+6",
+      "eye": {
+        "bounds": {
+          "x": 131,
+          "y": 291.6,
+          "width": 128,
+          "height": 48
+        },
+        "children": [
+          "hero/climax-eyes"
+        ]
+      },
+      "round": "0 / 400",
+      "plays": "3 次",
+      "discards": "3 次",
+      "path": "01-hero-source.png"
+    },
+    {
+      "key": "hero-impact",
+      "id": "controlled/continuous-four-sixes/hand/controlled/continuous-four-sixes/command/4/event/2",
+      "phase": "impact",
+      "at": 6453.60000000149,
+      "numeric": [
+        {
+          "text": "320",
+          "full": "320",
+          "bounds": {
+            "x": 38,
+            "y": 219,
+            "width": 57,
+            "height": 39
+          },
+          "scale": 1,
+          "color": "#247b93",
+          "resolution": 2,
+          "visible": true,
+          "alpha": 1,
+          "renderFlags": 15
+        },
+        {
+          "text": "13",
+          "full": "13",
+          "bounds": {
+            "x": 136,
+            "y": 200,
+            "width": 66.1506828677363,
+            "height": 70.56072839225203
+          },
+          "scale": 1.4700151748385846,
+          "color": "#b8473a",
+          "resolution": 2,
+          "visible": true,
+          "alpha": 1,
+          "renderFlags": 15
+        },
+        {
+          "text": "4,160",
+          "full": "4,160",
+          "bounds": {
+            "x": 233,
+            "y": 203,
+            "width": 129.36133538579543,
+            "height": 63.210652518059135
+          },
+          "scale": 1.4700151748385846,
+          "color": "#b8473a",
+          "resolution": 2,
+          "visible": true,
+          "alpha": 1,
+          "renderFlags": 15
+        }
+      ],
+      "caption": "刘娥·垂帘听政 · 倍率+6",
+      "sourceBadge": "+6",
+      "eye": {
+        "bounds": {
+          "x": 131,
+          "y": 291.6,
+          "width": 128,
+          "height": 48
+        },
+        "children": [
+          "hero/climax-eyes"
+        ]
+      },
+      "round": "0 / 400",
+      "plays": "3 次",
+      "discards": "3 次",
+      "path": "02-hero-impact.png"
+    },
+    {
+      "key": "hero-settled",
+      "id": "controlled/continuous-four-sixes/hand/controlled/continuous-four-sixes/command/4/event/2",
+      "phase": "rest",
+      "at": 6741.10000000149,
+      "numeric": [
+        {
+          "text": "320",
+          "full": "320",
+          "bounds": {
+            "x": 38,
+            "y": 219,
+            "width": 57,
+            "height": 39
+          },
+          "scale": 1,
+          "color": "#247b93",
+          "resolution": 2,
+          "visible": true,
+          "alpha": 1,
+          "renderFlags": 15
+        },
+        {
+          "text": "13",
+          "full": "13",
+          "bounds": {
+            "x": 147,
+            "y": 215,
+            "width": 45,
+            "height": 48
+          },
+          "scale": 1,
+          "color": "#b8473a",
+          "resolution": 2,
+          "visible": true,
+          "alpha": 1,
+          "renderFlags": 15
+        },
+        {
+          "text": "4,160",
+          "full": "4,160",
+          "bounds": {
+            "x": 254,
+            "y": 217,
+            "width": 88,
+            "height": 43
+          },
+          "scale": 1,
+          "color": "#b8473a",
+          "resolution": 2,
+          "visible": true,
+          "alpha": 1,
+          "renderFlags": 15
+        }
+      ],
+      "caption": "刘娥·垂帘听政 · 倍率+6",
+      "eye": {
+        "bounds": {
+          "x": 131,
+          "y": 291.6,
+          "width": 128,
+          "height": 48
+        },
+        "children": [
+          "hero/climax-eyes"
+        ]
+      },
+      "round": "0 / 400",
+      "plays": "3 次",
+      "discards": "3 次",
+      "path": "03-hero-settled.png"
+    },
+    {
+      "key": "heat-source",
+      "id": "controlled/continuous-four-sixes/hand/controlled/continuous-four-sixes/command/4/event/3",
+      "phase": "windup",
+      "at": 6957,
+      "numeric": [
+        {
+          "text": "320",
+          "full": "320",
+          "bounds": {
+            "x": 38,
+            "y": 219,
+            "width": 57,
+            "height": 39
+          },
+          "scale": 1,
+          "color": "#247b93",
+          "resolution": 2,
+          "visible": true,
+          "alpha": 1,
+          "renderFlags": 15
+        },
+        {
+          "text": "13",
+          "full": "13",
+          "bounds": {
+            "x": 147,
+            "y": 215,
+            "width": 45,
+            "height": 48
+          },
+          "scale": 1,
+          "color": "#b8473a",
+          "resolution": 2,
+          "visible": true,
+          "alpha": 1,
+          "renderFlags": 15
+        },
+        {
+          "text": "4,160",
+          "full": "4,160",
+          "bounds": {
+            "x": 254,
+            "y": 217,
+            "width": 88,
+            "height": 43
+          },
+          "scale": 1,
+          "color": "#b8473a",
+          "resolution": 2,
+          "visible": true,
+          "alpha": 1,
+          "renderFlags": 15
+        }
+      ],
+      "caption": "6♥ · 热度+6",
+      "sourceBadge": "+6",
+      "round": "0 / 400",
+      "plays": "3 次",
+      "discards": "3 次",
+      "path": "04-heat-source.png"
+    },
+    {
+      "key": "heat-impact",
+      "id": "controlled/continuous-four-sixes/hand/controlled/continuous-four-sixes/command/4/event/3",
+      "phase": "impact",
+      "at": 7154.9000000059605,
+      "numeric": [
+        {
+          "text": "326",
+          "full": "326",
+          "bounds": {
+            "x": 30,
+            "y": 210,
+            "width": 72.13908340419502,
+            "height": 49.358320223922874
+          },
+          "scale": 1.2655979544595617,
+          "color": "#247b93",
+          "resolution": 2,
+          "visible": true,
+          "alpha": 1,
+          "renderFlags": 15
+        },
+        {
+          "text": "13",
+          "full": "13",
+          "bounds": {
+            "x": 147,
+            "y": 215,
+            "width": 45,
+            "height": 48
+          },
+          "scale": 1,
+          "color": "#b8473a",
+          "resolution": 2,
+          "visible": true,
+          "alpha": 1,
+          "renderFlags": 15
+        },
+        {
+          "text": "4,238",
+          "full": "4,238",
+          "bounds": {
+            "x": 242,
+            "y": 208,
+            "width": 111.3726199924414,
+            "height": 54.420712041761135
+          },
+          "scale": 1.2655979544595617,
+          "color": "#26313a",
+          "resolution": 2,
+          "visible": true,
+          "alpha": 1,
+          "renderFlags": 15
+        }
+      ],
+      "caption": "6♥ · 热度+6",
+      "sourceBadge": "+6",
+      "round": "0 / 400",
+      "plays": "3 次",
+      "discards": "3 次",
+      "path": "05-heat-impact.png"
+    },
+    {
+      "key": "heat-settled",
+      "id": "controlled/continuous-four-sixes/hand/controlled/continuous-four-sixes/command/4/event/3",
+      "phase": "rest",
+      "at": 7332.5,
+      "numeric": [
+        {
+          "text": "326",
+          "full": "326",
+          "bounds": {
+            "x": 38,
+            "y": 219,
+            "width": 57,
+            "height": 39
+          },
+          "scale": 1,
+          "color": "#247b93",
+          "resolution": 2,
+          "visible": true,
+          "alpha": 1,
+          "renderFlags": 15
+        },
+        {
+          "text": "13",
+          "full": "13",
+          "bounds": {
+            "x": 147,
+            "y": 215,
+            "width": 45,
+            "height": 48
+          },
+          "scale": 1,
+          "color": "#b8473a",
+          "resolution": 2,
+          "visible": true,
+          "alpha": 1,
+          "renderFlags": 15
+        },
+        {
+          "text": "4,238",
+          "full": "4,238",
+          "bounds": {
+            "x": 254,
+            "y": 217,
+            "width": 88,
+            "height": 43
+          },
+          "scale": 1,
+          "color": "#b8473a",
+          "resolution": 2,
+          "visible": true,
+          "alpha": 1,
+          "renderFlags": 15
+        }
+      ],
+      "caption": "6♥ · 热度+6",
+      "round": "0 / 400",
+      "plays": "3 次",
+      "discards": "3 次",
+      "path": "06-heat-settled.png"
+    },
+    {
+      "key": "award-credit",
+      "id": "controlled/continuous-four-sixes/hand/controlled/continuous-four-sixes/command/4/event/7",
+      "phase": "award",
+      "at": 8661.10000000149,
+      "numeric": [
+        {
+          "text": "338",
+          "full": "338",
+          "bounds": {
+            "x": 38,
+            "y": 219,
+            "width": 57,
+            "height": 39
+          },
+          "scale": 1,
+          "color": "#247b93",
+          "resolution": 2,
+          "visible": true,
+          "alpha": 1,
+          "renderFlags": 15
+        },
+        {
+          "text": "13",
+          "full": "13",
+          "bounds": {
+            "x": 147,
+            "y": 215,
+            "width": 45,
+            "height": 48
+          },
+          "scale": 1,
+          "color": "#b8473a",
+          "resolution": 2,
+          "visible": true,
+          "alpha": 1,
+          "renderFlags": 15
+        },
+        {
+          "text": "4,394",
+          "full": "4,394",
+          "bounds": {
+            "x": 257,
+            "y": 219,
+            "width": 81.84000000000003,
+            "height": 39.99000000000001
+          },
+          "scale": 0.93,
+          "color": "#80551f",
+          "resolution": 2,
+          "visible": true,
+          "alpha": 1,
+          "renderFlags": 15
+        }
+      ],
+      "caption": "五倍炸场 · +4,394",
+      "round": "0 / 400",
+      "plays": "3 次",
+      "discards": "3 次",
+      "path": "07-award-credit.png"
+    },
+    {
+      "key": "award-rolling",
+      "id": "controlled/continuous-four-sixes/hand/controlled/continuous-four-sixes/command/4/event/7",
+      "phase": "award",
+      "at": 8679.40000000596,
+      "numeric": [
+        {
+          "text": "338",
+          "full": "338",
+          "bounds": {
+            "x": 38,
+            "y": 219,
+            "width": 57,
+            "height": 39
+          },
+          "scale": 1,
+          "color": "#247b93",
+          "resolution": 2,
+          "visible": true,
+          "alpha": 1,
+          "renderFlags": 15
+        },
+        {
+          "text": "13",
+          "full": "13",
+          "bounds": {
+            "x": 147,
+            "y": 215,
+            "width": 45,
+            "height": 48
+          },
+          "scale": 1,
+          "color": "#b8473a",
+          "resolution": 2,
+          "visible": true,
+          "alpha": 1,
+          "renderFlags": 15
+        },
+        {
+          "text": "4,394",
+          "full": "4,394",
+          "bounds": {
+            "x": 257,
+            "y": 219,
+            "width": 81.84000000000003,
+            "height": 39.99000000000001
+          },
+          "scale": 0.93,
+          "color": "#80551f",
+          "resolution": 2,
+          "visible": true,
+          "alpha": 1,
+          "renderFlags": 15
+        }
+      ],
+      "caption": "五倍炸场 · +4,394",
+      "round": "410 / 400",
+      "plays": "3 次",
+      "discards": "3 次",
+      "path": "08-award-rolling.png",
+      "visibleHeatPixels": 871
+    },
+    {
+      "key": "award-landed",
+      "id": "controlled/continuous-four-sixes/hand/controlled/continuous-four-sixes/command/4/event/7",
+      "phase": "award",
+      "at": 9236,
+      "numeric": [
+        {
+          "text": "338",
+          "full": "338",
+          "bounds": {
+            "x": 38,
+            "y": 219,
+            "width": 57,
+            "height": 39
+          },
+          "scale": 1,
+          "color": "#247b93",
+          "resolution": 2,
+          "visible": true,
+          "alpha": 1,
+          "renderFlags": 15
+        },
+        {
+          "text": "13",
+          "full": "13",
+          "bounds": {
+            "x": 147,
+            "y": 215,
+            "width": 45,
+            "height": 48
+          },
+          "scale": 1,
+          "color": "#b8473a",
+          "resolution": 2,
+          "visible": true,
+          "alpha": 1,
+          "renderFlags": 15
+        },
+        {
+          "text": "4,394",
+          "full": "4,394",
+          "bounds": {
+            "x": 254,
+            "y": 217,
+            "width": 88,
+            "height": 43
+          },
+          "scale": 1,
+          "color": "#80551f",
+          "resolution": 2,
+          "visible": true,
+          "alpha": 1,
+          "renderFlags": 15
+        }
+      ],
+      "caption": "五倍炸场 · +4,394",
+      "round": "4,394 / 400",
+      "plays": "3 次",
+      "discards": "3 次",
+      "path": "09-award-landed.png",
+      "visibleHeatPixels": 871
+    }
+  ],
+  "seen": {
+    "hero": "controlled/continuous-four-sixes/hand/controlled/continuous-four-sixes/command/4/event/2",
+    "heat": "controlled/continuous-four-sixes/hand/controlled/continuous-four-sixes/command/4/event/3",
+    "award": "controlled/continuous-four-sixes/hand/controlled/continuous-four-sixes/command/4/event/7"
+  },
+  "finished": true,
+  "audio": [
+    {
+      "id": "controlled/continuous-four-sixes/hand/controlled/continuous-four-sixes/command/4/event/0",
+      "kind": "add",
+      "at": 5510.20000000298,
+      "phase": "base-impact",
+      "H": "320",
+      "M": "7"
+    },
+    {
+      "id": "controlled/continuous-four-sixes/hand/controlled/continuous-four-sixes/command/4/event/2",
+      "kind": "flight",
+      "at": 6027.10000000149,
+      "phase": "windup",
+      "H": "320",
+      "M": "7"
+    },
+    {
+      "id": "controlled/continuous-four-sixes/hand/controlled/continuous-four-sixes/command/4/event/2",
+      "kind": "key",
+      "at": 6366.5,
+      "phase": "impact",
+      "H": "320",
+      "M": "13"
+    },
+    {
+      "id": "controlled/continuous-four-sixes/hand/controlled/continuous-four-sixes/command/4/event/3",
+      "kind": "add",
+      "at": 7086.20000000298,
+      "phase": "impact",
+      "H": "326",
+      "M": "13"
+    },
+    {
+      "id": "controlled/continuous-four-sixes/hand/controlled/continuous-four-sixes/command/4/event/4",
+      "kind": "add",
+      "at": 7639.4000000059605,
+      "phase": "impact",
+      "H": "332",
+      "M": "13"
+    },
+    {
+      "id": "controlled/continuous-four-sixes/hand/controlled/continuous-four-sixes/command/4/event/5",
+      "kind": "add",
+      "at": 8198.60000000149,
+      "phase": "impact",
+      "H": "338",
+      "M": "13"
+    },
+    {
+      "id": "award",
+      "kind": "award",
+      "at": 8646.90000000596,
+      "phase": "award",
+      "H": "338",
+      "M": "13"
+    }
+  ],
+  "violations": [],
+  "frames": 247,
+  "lingering": [],
+  "decisions": []
+}

@@ -193,10 +193,10 @@ describe('pointer intent prevents accidental commands',()=>{
   });
 });
 
-it('foreground total protects digits without holes in short and safe-inset layouts',()=>{
+it('the continuous score band protects its digits and real played cards in short and safe-inset layouts',()=>{
  for(const [width,height,count] of [[360,740,14],[390,740,9],[844,300,9],[1280,720,9]])for(const bottom of [0,12,34]){
-  const l=layout({width,height},{top:12,left:0,right:0,bottom},undefined,{count}),base=scorePedestal(l.scoreBoard)!,total=scoreCells(l.scoreBoard)[2];
-  expect(l.scoreFire.height).toBeGreaterThan(0);expect(base.y+base.height).toBeLessThanOrEqual(l.scoreBoard.y+l.scoreBoard.height);expect(l.scoreFire.y+l.scoreFire.height).toBeLessThan(total.y);expect(intersects(base,l.playedArea)).toBe(false);
+  const l=layout({width,height},{top:12,left:0,right:0,bottom},undefined,{count});
+  expect(intersects(l.scoreBoard,l.playedArea)).toBe(false);
   const mat=playedFootprint(l.playedArea,l.mode==='portrait');expect(mat.width).toBeLessThanOrEqual(l.mode==='portrait'?316:600);expect(mat.height).toBeLessThanOrEqual(l.playedArea.height);
  }
 });

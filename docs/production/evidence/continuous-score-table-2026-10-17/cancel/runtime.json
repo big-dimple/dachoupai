@@ -1,0 +1,344 @@
+{
+  "mode": "cancel",
+  "scope": "Controlled imported public hand; real native decisions, selection and command commit, canonical state comparison. Vibration API, when instrumented, only reports software requests; not natural acquisition, hearing or physical touch acceptance.",
+  "browser": "143.0.3650.80",
+  "viewport": {
+    "width": 1366,
+    "height": 768
+  },
+  "errors": [],
+  "events": {
+    "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/0": {
+      "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/0",
+      "source": "full-house",
+      "operation": "base",
+      "before": {
+        "H": {
+          "n": "0",
+          "d": "1"
+        },
+        "M": {
+          "n": "0",
+          "d": "1"
+        }
+      },
+      "after": {
+        "H": {
+          "n": "210",
+          "d": "1"
+        },
+        "M": {
+          "n": "5",
+          "d": "1"
+        }
+      },
+      "phases": [
+        "base-impact"
+      ],
+      "phaseTimes": {
+        "base-impact": 6741.4000000059605
+      },
+      "peak": 1.3129198512491782,
+      "cardTravel": 0,
+      "first": 6741.4000000059605,
+      "last": 7245.5
+    },
+    "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/1": {
+      "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/1",
+      "source": "rank-7",
+      "operation": "add-heat",
+      "before": {
+        "H": {
+          "n": "210",
+          "d": "1"
+        },
+        "M": {
+          "n": "5",
+          "d": "1"
+        }
+      },
+      "after": {
+        "H": {
+          "n": "217",
+          "d": "1"
+        },
+        "M": {
+          "n": "5",
+          "d": "1"
+        }
+      },
+      "phases": [
+        "windup",
+        "impact",
+        "rest"
+      ],
+      "phaseTimes": {
+        "windup": 7263.4000000059605,
+        "impact": 7487.60000000149,
+        "rest": 7736.10000000149
+      },
+      "peak": 1.2777292987668318,
+      "cardTravel": 19.7978779989362,
+      "first": 7263.4000000059605,
+      "last": 7823.5
+    },
+    "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/2": {
+      "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/2",
+      "source": "spades-2",
+      "operation": "add-multiplier",
+      "before": {
+        "H": {
+          "n": "217",
+          "d": "1"
+        },
+        "M": {
+          "n": "5",
+          "d": "1"
+        }
+      },
+      "after": {
+        "H": {
+          "n": "217",
+          "d": "1"
+        },
+        "M": {
+          "n": "7",
+          "d": "1"
+        }
+      },
+      "phases": [
+        "windup"
+      ],
+      "phaseTimes": {
+        "windup": 7840.4000000059605
+      },
+      "peak": 1,
+      "cardTravel": 0,
+      "first": 7840.4000000059605,
+      "last": 7840.4000000059605
+    }
+  },
+  "images": [
+    {
+      "key": "heat-source",
+      "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/1",
+      "phase": "windup",
+      "at": 7353,
+      "numeric": [
+        {
+          "text": "210",
+          "full": "210",
+          "bounds": {
+            "x": 422,
+            "y": 257,
+            "width": 68,
+            "height": 48
+          },
+          "scale": 1,
+          "color": "#247b93",
+          "resolution": 2,
+          "visible": true,
+          "alpha": 1,
+          "renderFlags": 15
+        },
+        {
+          "text": "5",
+          "full": "5",
+          "bounds": {
+            "x": 662,
+            "y": 257,
+            "width": 23,
+            "height": 48
+          },
+          "scale": 1,
+          "color": "#b8473a",
+          "resolution": 2,
+          "visible": true,
+          "alpha": 1,
+          "renderFlags": 15
+        },
+        {
+          "text": "1,050",
+          "full": "1,050",
+          "bounds": {
+            "x": 898,
+            "y": 258,
+            "width": 97,
+            "height": 46
+          },
+          "scale": 1,
+          "color": "#b8473a",
+          "resolution": 2,
+          "visible": true,
+          "alpha": 1,
+          "renderFlags": 15
+        }
+      ],
+      "caption": "7♣ · 热度+7",
+      "sourceBadge": "+7",
+      "round": "0",
+      "plays": "3 次",
+      "discards": "3 次",
+      "path": "01-heat-source.png"
+    },
+    {
+      "key": "heat-impact",
+      "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/1",
+      "phase": "impact",
+      "at": 7553.5,
+      "numeric": [
+        {
+          "text": "217",
+          "full": "217",
+          "bounds": {
+            "x": 412,
+            "y": 247,
+            "width": 86.88559231614454,
+            "height": 61.3310063408079
+          },
+          "scale": 1.2777292987668318,
+          "color": "#247b93",
+          "resolution": 2,
+          "visible": true,
+          "alpha": 1,
+          "renderFlags": 15
+        },
+        {
+          "text": "5",
+          "full": "5",
+          "bounds": {
+            "x": 662,
+            "y": 257,
+            "width": 23,
+            "height": 48
+          },
+          "scale": 1,
+          "color": "#b8473a",
+          "resolution": 2,
+          "visible": true,
+          "alpha": 1,
+          "renderFlags": 15
+        },
+        {
+          "text": "1,085",
+          "full": "1,085",
+          "bounds": {
+            "x": 885,
+            "y": 248,
+            "width": 123.93974198038268,
+            "height": 58.775547743274274
+          },
+          "scale": 1.2777292987668318,
+          "color": "#26313a",
+          "resolution": 2,
+          "visible": true,
+          "alpha": 1,
+          "renderFlags": 15
+        }
+      ],
+      "caption": "7♣ · 热度+7",
+      "sourceBadge": "+7",
+      "round": "0",
+      "plays": "3 次",
+      "discards": "3 次",
+      "path": "02-heat-impact.png"
+    },
+    {
+      "key": "heat-settled",
+      "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/1",
+      "phase": "rest",
+      "at": 7736.20000000298,
+      "numeric": [
+        {
+          "text": "217",
+          "full": "217",
+          "bounds": {
+            "x": 422,
+            "y": 257,
+            "width": 68,
+            "height": 48
+          },
+          "scale": 1,
+          "color": "#247b93",
+          "resolution": 2,
+          "visible": true,
+          "alpha": 1,
+          "renderFlags": 15
+        },
+        {
+          "text": "5",
+          "full": "5",
+          "bounds": {
+            "x": 662,
+            "y": 257,
+            "width": 23,
+            "height": 48
+          },
+          "scale": 1,
+          "color": "#b8473a",
+          "resolution": 2,
+          "visible": true,
+          "alpha": 1,
+          "renderFlags": 15
+        },
+        {
+          "text": "1,085",
+          "full": "1,085",
+          "bounds": {
+            "x": 898,
+            "y": 258,
+            "width": 97,
+            "height": 46
+          },
+          "scale": 1,
+          "color": "#b8473a",
+          "resolution": 2,
+          "visible": true,
+          "alpha": 1,
+          "renderFlags": 15
+        }
+      ],
+      "caption": "7♣ · 热度+7",
+      "round": "0",
+      "plays": "3 次",
+      "discards": "3 次",
+      "path": "03-heat-settled.png"
+    }
+  ],
+  "seen": {
+    "heat": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/1",
+    "add": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/2"
+  },
+  "finished": true,
+  "audio": [
+    {
+      "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/0",
+      "kind": "add",
+      "at": 6730.9000000059605,
+      "phase": "base-impact",
+      "H": "210",
+      "M": "5"
+    },
+    {
+      "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/1",
+      "kind": "add",
+      "at": 7476.80000000447,
+      "phase": "impact",
+      "H": "217",
+      "M": "5"
+    },
+    {
+      "id": "controlled/score-energy/multiply/hand/controlled/score-energy/multiply/command/4/event/2",
+      "kind": "flight",
+      "at": 7825.10000000149,
+      "phase": "windup",
+      "H": "217",
+      "M": "5"
+    }
+  ],
+  "violations": [],
+  "frames": 100,
+  "lingering": [],
+  "vibrationRequests": [],
+  "decisions": []
+}
