@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "auditCommit": "7d7921e76ca794a14e715e3eac3b4d66143862ff",
   "currentTask": "P08",
-  "selectionPolicy": "当前产品4d496e20四路软件合批可按授权普通发布；既有共用放大/理牌已发布43725，a73/fb6只历史绑定。三大体验08:10明确未达标/重新整改；08:15自然两对1199+四条8906=10105/1800已触发完整高光并暴露小HUD/长射线/opaque割裂，连续计分重编排另行开发。动态视听触由连续过程验收，统一触觉01a148f7在补，API/设备/体感分别验；用户休息/无录屏不停止。505a商店细分及跨景美术余项见原表，Qin临时hooks已由c9/1607445b交付，108/鼠标触屏证据复用，不等后续连续计分/触觉。H01既有规则17领域检查不重做，H10a14d已合；P08/预算/缺证/真人听感真机正式门保持，不签三目标完成。",
+  "selectionPolicy": "当前线上main4314录制冻结；待视频或用户后续发布信息再整批发布，只推进dev。当前产品4d496e20四路软件合批可按授权普通发布；既有共用放大/理牌已发布43725，a73/fb6只历史绑定。三大体验08:10明确未达标/重新整改；08:15自然两对1199+四条8906=10105/1800已触发完整高光并暴露小HUD/长射线/opaque割裂，连续计分重编排另行开发。动态视听触由连续过程验收，统一触觉01a148f7在补，API/设备/体感分别验；用户休息/无录屏不停止。505a商店细分及跨景美术余项见原表，Qin临时hooks已由c9/1607445b交付，108/鼠标触屏证据复用，不等后续连续计分/触觉。H01既有规则17领域检查不重做，H10a14d已合；P08/预算/缺证/真人听感真机正式门保持，不签三目标完成。",
   "resumeContract": {
     "candidateCommit": "4bf6a7d63d7738d3c415d09439a1bdca878dc685",
     "gateTask": "A01",
@@ -1548,5 +1548,29 @@
       "mainPushed": false,
       "reminderFollowup": "docs/production/evidence/hero-reminder-scope-2026-10-17/status.json"
     }
+  },
+  "recordingHold": {
+    "status": "MAIN_PUBLICATION_ON_HOLD",
+    "baseline": "4314a2459ade4ea68133f67468c98f9f42b2e251",
+    "reason": "User recording current online version; await video or follow-up release direction.",
+    "devBranch": "dev/recording-followups-integration-20261017",
+    "devProduct": "d996ed79c423b0fece173e618be5eda3b7034c75",
+    "mergedCandidate": "aac060561724efd62dd06ea764d73b658b68ff3a",
+    "sourcePathsExactIncludingDeletions": 18,
+    "sourceChecksReused": {
+      "testedCommit": "11a7d776bc1e9da4327df7d96a535216d4ba8ca7",
+      "unitTests": 69,
+      "browserCases": 10,
+      "typecheck": "PASS at source",
+      "build": "PASS at source"
+    },
+    "integratedChecks": "PENDING until next sources ready; no new full source rerun",
+    "pendingOwners": [
+      "continuous scoring owner: GameScene selection/placement/score/hero multiplier haptics",
+      "shop owner: mobile labels/white borders/overlap/mid-width layout"
+    ],
+    "qinSkillObservation": "User reports skill actual trigger/presentation absent; video reproduction pending. Eyes resources and c9 temporary phase wiring are not trigger verification.",
+    "physicalHaptics": "NOT_RUN",
+    "reference": "docs/production/CURRENT_BATCH_20261017.md"
   }
 }
